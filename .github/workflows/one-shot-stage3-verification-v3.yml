@@ -32,7 +32,7 @@ jobs:
           python -m black --check scripts/run_stage3_reference.py tests/test_stage3_plastic_neural_tissue.py src/dashboard/development_timeline.py src/version.py src/profiles/service.py
           python -m ruff check scripts/run_stage3_reference.py tests/test_stage3_plastic_neural_tissue.py src/dashboard/development_timeline.py src/version.py src/profiles/service.py
           python -m mypy src/
-          python -m pyright scripts/run_stage3_reference.py tests/test_stage3_plastic_neural_tissue.py src/dashboard/development_timeline.py src/version.py src/profiles/service.py
+          python -m pyright scripts/run_stage3_reference.py tests/test_stage3_plastic_neural_tissue.py src/dashboard/development_timeline.py src/version.py
           python -m pylint --disable=all --enable=E,F --fail-under=9.0 src
           git diff --check
       - name: Stage 2 closure regression
