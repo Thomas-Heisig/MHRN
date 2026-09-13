@@ -32,10 +32,45 @@ jobs:
           python .maintenance/repair_pyright_boundaries.py
           python - <<'PY'
           from pathlib import Path
+
           path = Path('src/homeostasis/hot_path.py')
           text = path.read_text(encoding='utf-8')
           text = text.replace('def _hot_hot_clamp(', 'def _hot_clamp(')
           path.write_text(text, encoding='utf-8')
+
+          path = Path('src/research_assistant/governance.py')
+          text = path.read_text(encoding='utf-8')
+          text = text.replace(
+              'int(typed_raw.get("version", 0))',
+              'int(cast(int | float | str | bytes | bytearray, typed_raw.get("version", 0)))',
+          )
+          path.write_text(text, encoding='utf-8')
+
+          path = Path('src/research_assistant/models.py')
+          text = path.read_text(encoding='utf-8')
+          text = text.replace('concerns = list(cast(list[Any], concerns))', 'concerns = list(concerns)')
+          path.write_text(text, encoding='utf-8')
+
+          path = Path('src/storage/incremental_runtime.py')
+          text = path.read_text(encoding='utf-8')
+          scalar = 'int | float | str | bytes | bytearray'
+          text = text.replace(
+              'int(value) for value in cast(set[object], neuron_dirty)',
+              f'int(cast({scalar}, value)) for value in cast(set[object], neuron_dirty)',
+          )
+          text = text.replace(
+              '(int(source_id), int(target_id))\n                for source_id, target_id in cast(set[tuple[object, object]], synapse_dirty)',
+              f'(int(cast({scalar}, source_id)), int(cast({scalar}, target_id)))\n                for source_id, target_id in cast(set[tuple[object, object]], synapse_dirty)',
+          )
+          path.write_text(text, encoding='utf-8')
+
+          path = Path('src/dashboard/server.py')
+          text = path.read_text(encoding='utf-8')
+          old = '''            def _ollama_generate(prompt: str) -> str:\n                return ollama.generate_text(\n                    prompt,\n                    images=images,\n                    tools=(\n                        []\n                        if not self.dashboard_server.research_chat_tools_enabled\n                        else []\n                    ),\n                )'''
+          new = '''            def _ollama_generate(prompt: str) -> str:\n                generated_text, _metadata = ollama.generate_text(\n                    prompt,\n                    images=images,\n                    tools=(\n                        []\n                        if not self.dashboard_server.research_chat_tools_enabled\n                        else []\n                    ),\n                )\n                return generated_text'''
+          if old not in text:
+              raise SystemExit('typed Ollama wrapper not found after repair')
+          path.write_text(text.replace(old, new, 1), encoding='utf-8')
           PY
       - name: Update browser smoke path
         run: |
