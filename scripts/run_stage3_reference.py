@@ -31,7 +31,7 @@ DEFAULT_OUTPUT = (
     / "research"
     / "generated"
     / "verification"
-    / "plastic_neural_tissue_reference.json"
+    / "plastic_neural_tissue_reference_alpha3.json"
 )
 CONFIG_PATH = REPO_ROOT / "configs" / "learning_experiment.yaml"
 

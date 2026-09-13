@@ -132,3 +132,7 @@ main{width:min(calc(100% - var(--gutter)*2 - var(--mhrn-sidebar-width)),var(--ma
 @media(max-width:900px){:root{--mhrn-sidebar-width:184px}.mhrn-area-overview-grid{grid-template-columns:1fr}.ai-report-grid,.learning-prep-grid{grid-template-columns:1fr}}
 @media(max-width:720px){:root{--mhrn-sidebar-width:0px}body .brain5d-primary-nav{position:sticky!important;top:var(--dashboard-topbar-height,68px)!important;bottom:auto!important;width:100%!important;flex-direction:row!important;overflow-x:auto;border-right:0!important;border-bottom:1px solid var(--rule-2)!important}body .brain5d-primary-nav>button{flex:0 0 auto;width:auto!important;min-width:110px;min-height:44px!important}.mhrn-nav-number,.mhrn-nav-icon{display:none!important}main{width:calc(100% - var(--gutter)*2);margin:0 auto}.mhrn-area-overview-hero{display:grid}.box-state-header{padding-right:8px!important;padding-top:38px!important}.box-state-tools{left:7px;right:auto}.box-state-maximized,.box-state-native-fullscreen{inset:8px!important}.ai-report-section form,.learning-prep-form{grid-template-columns:1fr}.ai-report-wide,.learning-prep-wide{grid-column:auto}}
 @media print{.brain5d-primary-nav,.mhrn-context-nav,.box-state-tools,.box-info-popover{display:none!important}main{width:100%!important;margin:0!important}}
+
+/* Keep all runtime controls accessible below measured responsive chrome. */
+body .brain5d-primary-nav { bottom:var(--mhrn-footer-height,70px); }
+main { padding-bottom:calc(var(--mhrn-footer-height,70px) + 30px); }

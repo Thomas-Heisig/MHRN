@@ -90,7 +90,7 @@ def main() -> int:
         ("full_baseline_large", [sys.executable, "scripts/generate_baseline.py"]),
         ("docs", [sys.executable, "scripts/check_doc_consistency.py", "--check-tests"]),
         ("browser_smoke", [sys.executable, "scripts/browser_check.py"]),
-        ("browser_e2e", ["npx", "playwright", "test", "--reporter=line", "--max-failures=5"]),
+        ("browser_e2e", ["npx", "playwright", "test", "--reporter=line"]),
     ):
         log = OUT / (name + ".log")
         with log.open("w", encoding="utf-8") as stream:

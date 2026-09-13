@@ -13,7 +13,7 @@ REFERENCE_ARTIFACT = (
     / "research"
     / "generated"
     / "verification"
-    / "plastic_neural_tissue_reference.json"
+    / "plastic_neural_tissue_reference_alpha3.json"
 )
 
 

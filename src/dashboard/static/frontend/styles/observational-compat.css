@@ -19,7 +19,7 @@
 }
 
 /* -------------------------------------------------------------------------
-   Dashboard experience layer                                                 
+   Dashboard experience layer
    ------------------------------------------------------------------------- */
 .experience-ready { color:var(--ink); background:var(--paper); }
 .experience-status-cluster { display:flex; align-items:stretch; min-width:0; overflow:auto; border:1px solid var(--rule); border-radius:var(--r-sm); background:var(--rule); }
@@ -79,7 +79,7 @@ kbd { display:inline-grid; min-width:21px; min-height:20px; place-items:center; 
 .experience-shortcut-grid strong { margin-left:auto; color:var(--ink-3); font-size:.65rem; }
 .experience-integrity-note { margin:0; padding:10px 13px; border-top:1px solid var(--rule); color:var(--ink-3); font-size:.66rem; line-height:1.5; }
 /* -------------------------------------------------------------------------
-   Real body / technical self-model                                             
+   Real body / technical self-model
    ------------------------------------------------------------------------- */
 .real-body-shell { min-width:0; margin:14px 0 18px; border:1px solid var(--rule); border-radius:var(--r-md); background:var(--paper-2); color:var(--ink); overflow:hidden; isolation:isolate; }
 .real-body-shell[data-telemetry="degraded"] { border-color:color-mix(in srgb,var(--amber) 52%,var(--rule)); }
@@ -135,7 +135,7 @@ kbd { display:inline-grid; min-width:21px; min-height:20px; place-items:center; 
 .legacy-embodiment-details { margin-top:12px; }
 
 /* -------------------------------------------------------------------------
-   Empirical anatomy overlay                                                   
+   Empirical anatomy overlay
    ------------------------------------------------------------------------- */
 #wesen-anatomy-layer { pointer-events:none; }
 .wesen-body-silhouette { opacity:.9; }

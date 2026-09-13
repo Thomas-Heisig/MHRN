@@ -603,7 +603,7 @@ function bindReleaseDocumentLinks() {
   releaseDocumentLinksBound = true;
   document.querySelectorAll('[data-release-document]').forEach((button) => {
     button.addEventListener('click', () => {
-      document.querySelector('[data-tab="research"]')?.click();
+      window.MHRNWorkspaceArchitecture?.selectRoute("files", "browse");
       openDocumentationFile(button.dataset.releaseDocument || '');
     });
   });

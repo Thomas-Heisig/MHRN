@@ -250,7 +250,7 @@ test("navigation and box-state controls remain usable", async ({ page }) => {
 test("Release workspace renders the documentation timeline", async ({ page }) => {
   await openDashboard(page);
   await selectRoute(page, "release", "timeline");
-  await expect(page.locator("#release-timeline-list .release-timeline-entry")).toHaveCount(1);
+  await expect(page.locator("#release-timeline-list .timeline-entry")).toHaveCount(1);
   await expect(page.locator("#release-timeline-list")).toContainText("Release timeline restoration");
   await expect(page.locator("#release-timeline-sources")).toContainText("TODO");
   await expect(page.locator("#release-development-track .development-marker-technical")).toContainText("Du bist hier");
@@ -279,7 +279,7 @@ test("Release workspace renders the documentation timeline", async ({ page }) =>
 
   await selectRoute(page, "release", "documents");
   await page.locator('[data-release-document="08-roadmap/TODO.md"]').click();
-  await expect(page.locator("#tab-research")).toHaveClass(/active/);
+  await expect(page.locator("body")).toHaveAttribute("data-current-area", "files");
   await expect(page.locator("#fm-viewer")).not.toHaveClass(/fm-viewer-hidden/);
 });
 
@@ -291,7 +291,7 @@ test("active workspace remains clear of fixed chrome and footer", async ({ page 
     const topbar = rect(".topbar");
     const primaryNav = rect(".brain5d-primary-nav");
     const active = rect(".tab-content.active");
-    const footer = rect(".site-footer");
+    const footer = rect("#mhrn-global-status");
     const horizontalNavBottom = primaryNav && primaryNav.width > primaryNav.height ? primaryNav.bottom : 0;
     const chromeBottom = Math.max(topbar?.bottom || 0, horizontalNavBottom);
     const startTop = active?.top || 0;
@@ -310,7 +310,7 @@ for (const viewport of [{ width: 1440, height: 900 }, { width: 1024, height: 768
     await page.setViewportSize(viewport);
     await openDashboard(page);
     const metrics = await page.evaluate(() => {
-      const footer = document.querySelector(".site-footer").getBoundingClientRect();
+      const footer = document.querySelector("#mhrn-global-status").getBoundingClientRect();
       return {
         horizontalOverflow: document.documentElement.scrollWidth - window.innerWidth,
         footerWidth: footer.width,

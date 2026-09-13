@@ -333,7 +333,7 @@ def _stage_specs() -> tuple[StageSpec, ...]:
                     paths=("src/core/synapse.py", "src/learning/stdp_plugin.py"),
                     tests=("tests/test_stdp_integration.py",),
                     verification=(
-                        "research/generated/verification/plastic_neural_tissue_reference.json",
+                        "research/generated/verification/plastic_neural_tissue_reference_alpha3.json",
                     ),
                 ),
                 CriterionSpec(
@@ -349,7 +349,7 @@ def _stage_specs() -> tuple[StageSpec, ...]:
                         "tests/test_learning_experiment.py",
                     ),
                     verification=(
-                        "research/generated/verification/plastic_neural_tissue_reference.json",
+                        "research/generated/verification/plastic_neural_tissue_reference_alpha3.json",
                     ),
                 ),
                 CriterionSpec(
@@ -358,7 +358,7 @@ def _stage_specs() -> tuple[StageSpec, ...]:
                     paths=("src/homeostasis/engine.py",),
                     tests=("tests/test_homeostasis_engine.py",),
                     verification=(
-                        "research/generated/verification/plastic_neural_tissue_reference.json",
+                        "research/generated/verification/plastic_neural_tissue_reference_alpha3.json",
                     ),
                 ),
                 CriterionSpec(
@@ -371,7 +371,7 @@ def _stage_specs() -> tuple[StageSpec, ...]:
                     ),
                     verification=(
                         "research/generated/verification/structural_e2e.json",
-                        "research/generated/verification/plastic_neural_tissue_reference.json",
+                        "research/generated/verification/plastic_neural_tissue_reference_alpha3.json",
                     ),
                 ),
                 CriterionSpec(
@@ -382,7 +382,7 @@ def _stage_specs() -> tuple[StageSpec, ...]:
                         "tests/test_checkpoint_v4.py",
                     ),
                     verification=(
-                        "research/generated/verification/plastic_neural_tissue_reference.json",
+                        "research/generated/verification/plastic_neural_tissue_reference_alpha3.json",
                     ),
                 ),
             ),
@@ -406,7 +406,7 @@ def _stage_specs() -> tuple[StageSpec, ...]:
             (
                 "src/experiments/learning_lab.py",
                 "scripts/run_stage3_reference.py",
-                "research/generated/verification/plastic_neural_tissue_reference.json",
+                "research/generated/verification/plastic_neural_tissue_reference_alpha3.json",
             ),
             ("RQ1", "RQ3", "RQ5", "RQ10"),
             (

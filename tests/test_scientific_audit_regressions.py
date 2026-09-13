@@ -92,3 +92,21 @@ def test_dashboard_loaded_stylesheet_graph_is_complete() -> None:
     assert len(paths) == len(set(paths))
     assert any(path.name == "workspace-architecture.css" for path in paths)
     assert all(path.is_file() for path in paths)
+
+
+def test_static_frontier_contract_is_json_only_inside_static_root() -> None:
+    from src.dashboard.server import _ALLOWED_STATIC_EXTENSIONS, _media_type
+
+    assert ".json" in _ALLOWED_STATIC_EXTENSIONS
+    assert _media_type(".json") == "application/json; charset=utf-8"
+    assert ".yaml" not in _ALLOWED_STATIC_EXTENSIONS
+
+
+def test_canonical_router_measures_responsive_chrome() -> None:
+    root = Path(__file__).resolve().parents[1] / "src/dashboard/static"
+    router = (root / "frontend/workspace-router.js").read_text()
+    assert "observeChromeInsets();" in router
+    assert 'style.setProperty("--dashboard-topbar-height"' in router
+    assert 'style.setProperty("--mhrn-footer-height"' in router
+    assert "ResizeObserver" in router
+    assert 'selectRoute("files", "browse")' in (root / "gate-board.js").read_text()
