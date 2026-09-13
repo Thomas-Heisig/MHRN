@@ -44,10 +44,10 @@ def test_timeline_closes_stage2_and_reaches_stage3_engineering_boundary() -> Non
     stage2 = stages["recurrent_snn"]
     assert stage2["implementation_score"] == 1.0
     assert stage2["status"] == "reached"
-    assert stage2["next_steps"] == []
+    assert stage2["next_technical_steps"] == []
 
-    stage3 = stages["plastic_tissue"]
+    stage3 = stages["plastic_neural_tissue"]
     assert stage3["implementation_score"] == 1.0
     assert stage3["status"] == "reached"
     assert stage3["research_readiness_score"] < 1.0
-    assert "R2 productive-learning evidence closure" in stage3["open_research"]
+    assert "R2 productive-learning evidence closure" in stage3["open_todos"]
