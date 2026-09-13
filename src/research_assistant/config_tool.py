@@ -71,17 +71,23 @@ _VALIDATORS: dict[str, callable] = {
     "simulation.ticks": lambda v: isinstance(v, int) and 0 <= v <= 10_000_000,
     "simulation.dt_ms": lambda v: isinstance(v, (int, float)) and 0.1 <= v <= 100.0,
     "simulation.max_delay": lambda v: isinstance(v, int) and 1 <= v <= 1000,
-    "network.initial_connections_per_neuron": lambda v: isinstance(v, int) and 0 <= v <= 1000,
-    "network.neighbour_radius": lambda v: isinstance(v, (int, float)) and 0.1 <= v <= 100.0,
+    "network.initial_connections_per_neuron": lambda v: isinstance(v, int)
+    and 0 <= v <= 1000,
+    "network.neighbour_radius": lambda v: isinstance(v, (int, float))
+    and 0.1 <= v <= 100.0,
     "network.weight_min": lambda v: isinstance(v, (int, float)) and 0.0 <= v <= 10.0,
     "network.weight_max": lambda v: isinstance(v, (int, float)) and 0.0 <= v <= 10.0,
-    "homeostasis.target_rate_hz": lambda v: isinstance(v, (int, float)) and 0.1 <= v <= 1000.0,
-    "self_organization.pruning_weight_threshold": lambda v: isinstance(v, (int, float)) and 0.0 <= v <= 1.0,
+    "homeostasis.target_rate_hz": lambda v: isinstance(v, (int, float))
+    and 0.1 <= v <= 1000.0,
+    "self_organization.pruning_weight_threshold": lambda v: isinstance(v, (int, float))
+    and 0.0 <= v <= 1.0,
     "energy.initial": lambda v: isinstance(v, (int, float)) and 0.0 <= v <= 10.0,
     "energy.spike_cost": lambda v: isinstance(v, (int, float)) and 0.0 <= v <= 1.0,
-    "research_chat.temperature": lambda v: isinstance(v, (int, float)) and 0.0 <= v <= 2.0,
+    "research_chat.temperature": lambda v: isinstance(v, (int, float))
+    and 0.0 <= v <= 2.0,
     "research_chat.max_tokens": lambda v: isinstance(v, int) and 64 <= v <= 32_768,
-    "research_chat.max_context_chars": lambda v: isinstance(v, int) and 4_000 <= v <= 120_000,
+    "research_chat.max_context_chars": lambda v: isinstance(v, int)
+    and 4_000 <= v <= 120_000,
 }
 
 _BOOL_KEYS = {
@@ -115,9 +121,7 @@ def validate_config_change(key: str, value: Any) -> str | None:
     return None
 
 
-def apply_config_change(
-    config_path: Path, key: str, value: Any
-) -> tuple[bool, str]:
+def apply_config_change(config_path: Path, key: str, value: Any) -> tuple[bool, str]:
     """Apply a validated config change to the YAML file.
 
     Returns (success, message).
@@ -147,7 +151,9 @@ def apply_config_change(
     # Write back
     try:
         with open(config_path, "w", encoding="utf-8") as f:
-            yaml.dump(config, f, default_flow_style=False, allow_unicode=True, sort_keys=False)
+            yaml.dump(
+                config, f, default_flow_style=False, allow_unicode=True, sort_keys=False
+            )
     except (OSError, yaml.YAMLError) as exc:
         return False, f"Failed to write config: {exc}"
 
@@ -175,6 +181,7 @@ def get_config_value(config_path: Path, key: str) -> tuple[bool, Any]:
 
 
 # ── Ollama-compatible tool definition ────────────────────────────────────
+
 
 def tool_definition() -> list[dict[str, object]]:
     """Return the Ollama-compatible tool definition for config management."""
@@ -234,6 +241,7 @@ def tool_definition() -> list[dict[str, object]]:
 
 
 # ── Tool execution ───────────────────────────────────────────────────────
+
 
 def execute_tool(
     config_path: Path,

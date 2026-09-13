@@ -94,7 +94,9 @@ class SelfMonitor:
             active_neurons=sum(
                 1 for neuron in values if int(getattr(neuron, "spike_counter", 0)) > 0
             ),
-            total_spikes=sum(int(getattr(neuron, "spike_counter", 0)) for neuron in values),
+            total_spikes=sum(
+                int(getattr(neuron, "spike_counter", 0)) for neuron in values
+            ),
             mean_firing_rate=mean("firing_rate_estimate"),
             mean_energy=mean("energy"),
             mean_threshold_adaptation=mean("threshold_adaptation"),

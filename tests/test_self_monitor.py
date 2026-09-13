@@ -27,7 +27,9 @@ def _network() -> NeuralNetwork:
 
 def test_self_monitor_observes_without_mutating_network_state() -> None:
     net = _network()
-    before = {identifier: neuron.to_dict() for identifier, neuron in net.neurons.items()}
+    before = {
+        identifier: neuron.to_dict() for identifier, neuron in net.neurons.items()
+    }
     monitor = SelfMonitor(max_history=4)
 
     snapshot = monitor.observe(net, tick=11)

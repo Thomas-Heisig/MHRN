@@ -3200,18 +3200,24 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
             line = line.strip()
             # Match [CONFIG_READ] key.name
             if line.startswith("[CONFIG_READ]") or line.startswith("[CONFIG_READ]"):
-                key = line.split("]", 1)[1].strip() if "]" in line else line[13:].strip()
+                key = (
+                    line.split("]", 1)[1].strip() if "]" in line else line[13:].strip()
+                )
                 if key:
                     found, value = get_config_value(config_path, key)
-                    results.append({
-                        "action": "read",
-                        "key": key,
-                        "found": found,
-                        "value": value if found else None,
-                    })
+                    results.append(
+                        {
+                            "action": "read",
+                            "key": key,
+                            "found": found,
+                            "value": value if found else None,
+                        }
+                    )
             # Match [CONFIG_WRITE] key.name = value
             elif line.startswith("[CONFIG_WRITE]") or line.startswith("[CONFIG_WRITE]"):
-                rest = line.split("]", 1)[1].strip() if "]" in line else line[14:].strip()
+                rest = (
+                    line.split("]", 1)[1].strip() if "]" in line else line[14:].strip()
+                )
                 if "=" in rest:
                     key = rest.split("=", 1)[0].strip()
                     value_str = rest.split("=", 1)[1].strip()
@@ -3228,20 +3234,25 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
                             try:
                                 value = float(value_str)
                             except ValueError:
-                                if value_str.startswith("[") and value_str.endswith("]"):
+                                if value_str.startswith("[") and value_str.endswith(
+                                    "]"
+                                ):
                                     try:
                                         import json
+
                                         value = json.loads(value_str)
                                     except (json.JSONDecodeError, ValueError):
                                         pass
                     success, message = apply_config_change(config_path, key, value)
-                    results.append({
-                        "action": "write",
-                        "key": key,
-                        "value": value,
-                        "success": success,
-                        "message": message,
-                    })
+                    results.append(
+                        {
+                            "action": "write",
+                            "key": key,
+                            "value": value,
+                            "success": success,
+                            "message": message,
+                        }
+                    )
         return results
 
     def _research_chat(self, body: dict[str, object]) -> None:

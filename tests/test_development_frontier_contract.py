@@ -45,7 +45,9 @@ def test_frontier_contract_is_research_only_and_references_real_files() -> None:
         assert (ROOT / stage["experiment_backlog"]).is_file()
 
 
-def test_frontier_observer_is_real_read_only_module_without_maturity_promotion() -> None:
+def test_frontier_observer_is_real_read_only_module_without_maturity_promotion() -> (
+    None
+):
     contract = _contract()
     stages = contract["stages"]
     assert isinstance(stages, dict)
