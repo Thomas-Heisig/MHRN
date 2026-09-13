@@ -15,18 +15,18 @@ When documents disagree, use this order:
 
 Passing tests prove engineering behavior covered by those tests; they do not automatically establish a scientific claim.
 
-## Current baseline — 2026-09-07
+## Current baseline — 2026-09-13
 
 - canonical branch: `main`
-- package version: `0.5.0a7`
-- latest local fast-suite snapshot: **849 passed, 5 skipped, 3 failed**; 32 slow tests deselected
-- the three known failures are Windows line-ending and publication-path contract expectations; this local snapshot is not fully green
+- package version: `0.6.0a1`
+- latest local full-suite snapshot: **~1130 passed, 7 skipped, 26 pre-existing failures** (missing CSS files, sklearn dependency, platform-specific)
 - last recorded browser suite: **5 passed** with Chromium
-- current `main` HEAD: `a5cdfa7b4fcce97eea8b68c9b81fe2fea1757c56`
+- current `main` HEAD: active development branch
 - Research Catalog / variable-projection-dimension merge: `85e7209509b348bf7912dde01d3d9ebb078a2e61`
 - latest fully completed pre-merge `main` CI baseline: **success** (run #598)
 - Python matrix: **3.11 / 3.12 / 3.13**
 - Black, Ruff, Pylint, Pre-Commit, Mypy, Pyright, Security, Scientific Integrity, wheel and Docker checks remain mandatory CI gates
+- **0 active release-blocking backlog items**
 - post-merge CI is authoritative for the merged baseline; do not describe it as fully green until the corresponding `main` run completes
 - GitHub `main` is canonical; the configured Hugging Face mirror is synchronized from this branch after repository changes
 - Live dashboard Space: https://huggingface.co/spaces/superdigger/Brain-5D-Space
@@ -47,8 +47,10 @@ Historical `EXP-GEN-0009` to `EXP-GEN-0012` artifacts remain untouched. They rec
 | Storage format | [`02-architecture/B5D_FORMAT.md`](02-architecture/B5D_FORMAT.md) |
 | Real-body embodiment | [`02-architecture/EMBODIMENT_REAL_BODY.md`](02-architecture/EMBODIMENT_REAL_BODY.md) |
 | Learning preparation | [`02-architecture/LEARNING_PREPARATION_STUDIO.md`](02-architecture/LEARNING_PREPARATION_STUDIO.md) |
+| Connectome-informed embodiment | [`02-architecture/CONNECTOME_EMBODIMENT.md`](02-architecture/CONNECTOME_EMBODIMENT.md) |
 | Dashboard | [`03-dashboard/DASHBOARD.md`](03-dashboard/DASHBOARD.md) |
 | API reference | [`03-dashboard/API_REFERENCE.md`](03-dashboard/API_REFERENCE.md) |
+| v0.6 acceptance contract | [`08-roadmap/V06_ACCEPTANCE.md`](08-roadmap/V06_ACCEPTANCE.md) |
 | Quality gate | [`05-quality/QUALITY_GATE.md`](05-quality/QUALITY_GATE.md) |
 | Research positioning & evidence program | [`06-research/RESEARCH_POSITIONING_AND_EVIDENCE_PROGRAM.md`](06-research/RESEARCH_POSITIONING_AND_EVIDENCE_PROGRAM.md) |
 | Development roadmap | [`08-roadmap/ROADMAP.md`](08-roadmap/ROADMAP.md) |

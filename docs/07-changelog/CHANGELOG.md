@@ -1,5 +1,29 @@
 # Changelog
 
+## 2026-09-13 — Deterministic frontend tab routing
+
+- Rewrote `workspace-router.js` with a central `setRouteElementVisibility()` function
+  that consistently sets `hidden`, `aria-hidden`, `inert` and CSS classes.
+- Added `reconcileRouteVisibility()` as the single authority for panel visibility after
+  every navigation, eliminating content leakage between subtabs.
+- Fixed Science tab isolation: Observatory, Experiments, Network, Dynamics, Inspect,
+  Data, Files and Registry subtabs now exclusively show their own panels.
+- Fixed `focus` action: no longer just `scrollIntoView()` — now hides all other content
+  in the workspace and shows only the targeted element(s).
+- Fixed `focusOnly` action: properly isolates deeply nested panels, not just direct children.
+- Added `data-mhrn-persistent` attribute support for elements that must remain visible
+  across routes (e.g. context navigation).
+- Updated `MutationObserver` to re-apply route visibility after dynamically loaded
+  modules appear in the DOM, with debounce guard against infinite loops.
+- Removed old three-area `frontend-architecture.js` import from `console-log.js` to
+  prevent conflicting navigation systems.
+- Strengthened CSS hide rules with `!important` cascade for all route-hidden states.
+- Added 18 new automated tests covering: central visibility function, reconciliation,
+  all route action handlers, valid workspace references, CSS hide rules,
+  MutationObserver integration, old architecture removal, and route-specific ownership.
+- Verified: 24 workspace-architecture tests pass, ~1130/1156 full suite pass
+  (26 pre-existing failures from missing CSS files, sklearn dependency, etc.).
+
 ## 2026-09-12 - Scientific metrics workbench
 
 - Added `GET /api/science/metrics`, including live spike-window metrics

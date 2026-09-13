@@ -21,25 +21,29 @@ MHRN is a research framework for studying learning, self-organization and embodi
 
 > **Scientific status:** MHRN is an experimental engineering and research platform. Implementation, passing tests, dashboards, reachable devices, generated reports or available AI/network adapters are not by themselves scientific evidence. The project makes no claim of AGI, consciousness, sentience or biological equivalence.
 
-## Historical baseline snapshot (2026-09-08)
+## Historical baseline snapshot (2026-09-13)
 
 For current source-bound checks, consult CI at the exact commit and
 `tests/test_baseline.json`; older counts below are not current green-status claims.
 
-Updated on **2026-09-08** after the v0.6 development line opened:
+Updated on **2026-09-13** after extensive v0.6 development:
 
 - package version: `0.6.0a1`
 - v0.5.0-alpha.7 gate: closed and historically recorded; v0.6 remains an open development milestone
-- latest local full-suite snapshot: **1000 passed, 7 skipped, 0 failed**
-- current development branch: `fix/cross-platform-source-freeze-digest`
-- current source-freeze digest: `4c778b8826c75d9fc32c018a974c2adc404370fc7fa41d3d9c4854a6e506c78d`
-- v0.6 scope: scaling benchmarks, bounded telemetry/storage, deterministic resume and migration compatibility
-- release readiness for v0.6 remains open until its specific milestone criteria are completed
+- latest local full-suite snapshot: **~1130 passed, 7 skipped, 26 pre-existing failures** (CSS, sklearn, platform-specific)
+- current development branch: `main`
+- v0.6 scope: scaling benchmarks, bounded telemetry/storage, deterministic resume and migration compatibility, memory/prediction/behavior profile foundation, full backend API integration, scientific metrics workbench, deterministic frontend routing
+- release readiness for v0.6 remains open until the exact source-freeze CI and release-readiness snapshot are green
+- **0 active release-blocking backlog items**
 - GitHub `main` is the canonical source; the configured Hugging Face mirror is updated from this branch after repository changes
 - Live dashboard Space: https://huggingface.co/spaces/superdigger/Brain-5D-Space
 - Python verification matrix: **3.11, 3.12 and 3.13**
 - Black, Ruff, Pylint, Pre-Commit, Mypy, Pyright, Scientific Integrity, security, wheel and Docker are mandatory CI gates
-- PR #21 is merged; no scientific DATA/EVID was rewritten by the integration
+- Research Catalog facets, Neural Symbiosis gateway runtime, Wesen Profile & Identitaet, Development Timeline and Trusted-LAN access are integrated
+- Bounded memory, prediction and behavior profile foundation completed
+- Full backend API integration (25 endpoints) into 7 new frontend panels
+- Scientific Observatory with 12 analysis layers
+- Deterministic frontend routing and tab isolation
 
 The dashboard uses explicit unknown-state rendering. Missing telemetry is never replaced with plausible-looking constants.
 
@@ -48,21 +52,23 @@ The dashboard uses explicit unknown-state rendering. Missing telemetry is never 
 | Layer | Current capability |
 | --- | --- |
 | SNN core | Sparse 5D coordinates, Izhikevich RS neurons, delayed event propagation, deterministic RNG state |
-| Learning | STDP, signed eligibility traces, delayed reward / three-factor learning, productive-learning protocols |
-| Homeostasis | Firing-rate, threshold and energy regulation with explicit telemetry |
-| Structural plasticity | Proposal → approval/rejection → bounded mutation → journal → undo/recovery |
-| Persistence | `.b5d` snapshots, delta journal, structural journal, checkpoints, deterministic restore/continue |
-| Embodiment | Typed sensors/actuators, authorization gates, audit trail, host interoception, device discovery, deterministic environments |
-| Neural Symbiosis | Open-set peripheral neural/virtual areas, disabled pipeline templates and inert plastic-gateway candidate math at the embodiment boundary |
-| MSBA | Modality-specific audio/vision/digital gateway contracts, energy/resource accounting and configurable external projection spaces from 1–32 dimensions |
+| Learning | STDP, signed eligibility traces, delayed reward / three-factor learning, productive-learning protocols, Learning Preparation Studio with partition leakage guards |
+| Homeostasis | Firing-rate, threshold and energy regulation with explicit telemetry, component-level energy accounting, provenance classes |
+| Structural plasticity | Proposal → approval/rejection → bounded mutation → journal → undo/recovery, heatmap/history/config APIs |
+| Persistence | `.b5d` snapshots, delta journal, structural journal, checkpoints, deterministic restore/continue, v0.6 frozen binary contract |
+| Embodiment | Typed sensors/actuators, authorization gates, audit trail, host interoception, device discovery, deterministic environments, individual sensor lifecycle controls |
+| Neural Symbiosis | Open-set peripheral neural/virtual areas, experiment-only gateway runtime with Frozen/Random/Shuffle controls, guarded Plastic activation, productive activation LOCKED |
+| MSBA | Modality-specific audio/vision/digital gateway contracts, energy/resource accounting, configurable external projection spaces from 1–32 dimensions, hard protection/ordering gates |
 | Experience loop | Sensor → encoding → SNN → action → observed outcome → reward path with explicit authorization |
-| Memory and prediction | Optional bounded working/episodic memory plus one-step observation-only transition prediction with independent read/write controls and integrity-checked state |
+| Memory and prediction | Optional bounded working/episodic memory plus one-step observation-only transition prediction with independent read/write controls, integrity-checked state, capacity/retention limits |
 | Behavior profile | Optional bounded operational profile that can select among explicit decoder action candidates; initial, situational and adaptive values remain separate |
-| Research | Fragmentable RQ/H registries, searchable Research Catalog, manifests, DATA/EVID separation, scientific integrity gate, AI provenance, frozen replay and causal-taint contracts |
-| Experiment observability | Tick, spike, neuron, synapse, latency, recurrence and digest measurements persisted per run |
-| Dashboard | Responsive operator/research shell plus dedicated adaptive `Wesen` body view |
+| Research | Fragmentable RQ/H registries, searchable Research Catalog, manifests, DATA/EVID separation, scientific integrity gate, AI provenance, frozen replay and causal-taint contracts, Research Review Inbox, experiment organizer |
+| Experiment observability | Tick, spike, neuron, synapse, latency, recurrence, digest measurements, runtime phase profiling, epistemic layer separation, energy contribution accounting |
+| Dashboard | Responsive operator/research shell, dedicated adaptive `Wesen` body view, 12-tab Research Observatory, Release/Gate board with development timeline |
 | Accessibility | Shared German read-aloud controls for the File Viewer, chat file cards and Research Chat answers |
 | AI boundary | Research AI / Language Organ / Cognitive Advisor contracts remain read-only or proposal-only unless explicitly registered as a treatment |
+| Profile & Identitaet | Schema-v1 holistic technical Wesen profiles with canonical digest, revision history, parent lineage, atomic writes, import/export |
+| Cognition telemetry | Granular memory, prediction, world-model and behavior profile state at `/api/cognition/*` |
 
 ## Research Catalog and variable dimensions
 
@@ -158,7 +164,7 @@ controller contribution. No complete biological dataset or human anatomical mapp
 
 The next gains should come from evidence closure rather than feature volume:
 
-- dedicated protocols/preregistrations for every still-unmapped canonical RQ/H;
+- dedicated protocols/preregistrations for every still-unmapped canonical RQ/H (43 questions still lack their own operational runner);
 - post-repair multi-seed propagation/recurrence validation;
 - productive-learning evidence and independent replication;
 - closed-loop embodiment evidence and EVID promotion;
@@ -169,7 +175,9 @@ The next gains should come from evidence closure rather than feature volume:
 - self-regulation and sensor-loss studies;
 - memory/world-model experiments;
 - multimodal grounding;
-- AI-as-treatment experiments.
+- AI-as-treatment experiments;
+- 22 human reviews remain pending;
+- independent replication and external ethics decisions.
 
 See:
 
@@ -327,7 +335,7 @@ See [`docs/03-dashboard/DASHBOARD.md`](docs/03-dashboard/DASHBOARD.md) and
   author  = {Thomas Heisig},
   title   = {Multi-Scale Homeostatic Recurrence Network (MHRN)},
   year    = {2026},
-  version = {0.5.0a7},
+  version = {0.6.0a1},
   url     = {https://github.com/Thomas-Heisig/MHRN},
   license = {MIT}
 }
@@ -354,9 +362,47 @@ The [current treatise](research/publications/README.md) integrates a [38-topic c
 
 The repository File Viewer is the canonical renderer for Dashboard, Research and Chat file cards. It now includes bounded media metadata, bounded PDF metadata/text when local tools are available, optional local Graphviz/PlantUML-to-SVG conversion, DOCX page/section markers, RIS export with selectable citation styles, and a responsive split editor with live preview and optimistic-lock conflict diff. Scientific artifacts remain read-only and local converters never upload source material.
 
-### Research Review Inbox
+### Research Review Inbox and experiment organizer
 
 Research now includes a review inbox for open Human Reviews. The dashboard lists pending review targets and lets a human reviewer record reviewer identity, an accept/reject decision and mandatory comments. Review records are append-only and do not automatically promote artifacts to scientific evidence.
+
+The experiment organizer supports experiment-series launch, active experiment inventory, immutable archive/restore and non-destructive metadata-only work-view indexing.
+
+### Scientific metrics workbench (2026-09-12)
+
+The Research workspace now includes a 12-tab **Research Observatory** covering: Observatory, Spike trains, Topology/5D, Criticality, Learning, Energy/Homeostasis, Statistics, Causality, Embodiment, Provenance, Benchmarks and Falsification. It exposes live spike-window metrics (ISI/CV, Fano, Victor-Purpura, van Rossum, entropy, avalanches, branching), network degree/topology/5D distance, learning, homeostasis, provenance and replication-statistics groups. Advanced metrics lacking a validated data contract remain `UNKNOWN` rather than inferred from operational zeros.
+
+### Full backend API integration (2026-09-11)
+
+All 130 backend API routes are audited and consumed. Seven new ES-module panels integrate 25 previously unused endpoints: cognition, gateway-monitor, docs-browser, research-docs, ai-report-tools, learning-prep, structural-inspector and system-info — all with auto-refresh and resilient parallel fetching.
+
+### Bounded memory, prediction and behavior profile (2026-09-10)
+
+The `ExperienceEngine` now supports optional bounded working/episodic memory, one-step observation-only transition prediction and an operational behavior profile with separate initial/situational/adaptive state. Granular cognition telemetry is exposed at `/api/cognition/*`. Individual sensor lifecycle controls and experiment-only Gateway lifecycle controls are available in Wesen.
+
+### Wesen Profile & Identitaet (2026-09-09)
+
+Schema-v1 holistic technical Wesen profiles with canonical SHA-256 digests, revision history, parent lineage, atomic writes, profile-only/state-bound load modes, clone, archive/delete guards and secure ZIP import/export. Senses, learning, morphology, actuators, gateway, memory, self-model, resources and safety declarations are integrated. Autonomous identity mutation remains locked.
+
+### Neural Symbiosis gateway runtime (2026-09-09)
+
+A core-independent, experiment-only gateway runtime with explicit lifecycle states (disabled through active_plastic, paused, error), Frozen/Random/Shuffle controls and guarded Plastic activation. Deterministic topology, checkpoint/resume state, bounded structural journaling, traffic/resource metrics and throttling limits. Productive gateway activation remains `available: false` pending preregistered validation.
+
+### Development Timeline (2026-09-09)
+
+The Release workspace includes an **Entwicklungs-Timeline** tab with eleven machine-derived stages, dual technical/scientific markers, score separation and confidence. Stage 10 displays research criteria only and never produces a consciousness claim.
+
+### Trusted-LAN dashboard access (2026-09-09)
+
+Windows `start.cmd` and `start.ps1` bind the dashboard to `0.0.0.0:8765` by default for LAN access. Direct Python startup remains loopback-only. Improved startup diagnostics with canonical version, configuration, runtime mode, bind/local/LAN URLs and process ID.
+
+### Deterministic frontend routing (2026-09-13)
+
+The dashboard frontend was rewritten with a central `setRouteElementVisibility()` function that consistently sets `hidden`, `aria-hidden`, `inert` and CSS classes. All Science subtabs (Observatory, Experiments, Network, Dynamics, Inspect, Data, Files, Registry) now exclusively show their own panels. 18 new automated tests verify route visibility, reconciliation, CSS hide rules and MutationObserver integration.
+
+### Sidebar navigation fix and dashboard cleanup (2026-09-12)
+
+Fixed a critical sidebar navigation bug where `data-primary-area` matching on `document.body` caused all global-workspace button clicks to reset to overview. Removed redundant dashboard elements (experience-status-cluster, ⌘K button, header-context span, workspace headers, utility bars, ribbons). All 8 sidebar links now navigate to correct destinations.
 
 ## Empirical results / Messstand 2026-09-10
 
@@ -364,4 +410,10 @@ Original campaign: 1272 seed/condition records; execution states `{'completed': 
 
 Native synthetic association: 78.5% vs 50% for each of four controls, paired difference 28.5 percentage points, pointwise 95% bootstrap CI [20,37], Holm-p 0.0078125 (ten paired seeds). No supported 5D propagation advantage (all Holm-p 1). Brian2 exact single-cell conformance failed in all three runs; this negative is retained. Original scaling failed at coordinate 256; its addressing amendment and results are recorded separately. These are exploratory DATA, not accepted EVID, general cognition, independent replication or ethics approval.
 
-[Full measurements, limitations and failure inventory](research/experiments/EXP-EMP-20260910/ANALYSIS.md) - [Complete manuscript 1.4](research/publications/2026-09-10_recursive-epistemics_v1.4/README.md).
+Regulation recovery experiment (`EXP-REG-0002-R1`): 40 runs, regulation-on reduced pressure-phase spikes from 15 to 5, recovery-ratio means 5.0 vs 1.4 — review-pending.
+
+Recurrence/propagation validation (`EXP-REC-0001-R1`): 300 runs, 20 seeds, full weight×delay grid — observed immediate decay, transient recurrence and persistent-to-window classes.
+
+RQ-SNN-001 clean-freeze rerun (`EXP-SNN-001-R5`): 20 runs, 10 seeds, 100,000 ticks, `dirty=false` — 20/20 stability passes, classified `DIRECT_MATCH`.
+
+[Full measurements, limitations and failure inventory](research/experiments/EXP-EMP-20260910/ANALYSIS.md) — [Complete manuscript 1.4](research/publications/2026-09-10_recursive-epistemics_v1.4/README.md).

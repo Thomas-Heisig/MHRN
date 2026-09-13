@@ -47,19 +47,24 @@ https://huggingface.co/spaces/superdigger/Brain-5D-Space
 
 - sparse 5D Izhikevich SNN with delayed events and deterministic RNG state;
 - STDP, signed eligibility and delayed reward / three-factor learning;
-- homeostasis and bounded interoception;
-- structural proposals, explicit approval, mutation, journal, undo and recovery;
-- `.b5d` snapshots, delta journals, checkpoints and deterministic restore/continue;
-- typed embodiment, actuator authorization, audit trails and deterministic environments;
+- Learning Preparation Studio with partition leakage guards;
+- homeostasis, bounded interoception, component-level energy accounting and provenance classes;
+- structural proposals, explicit approval, mutation, journal, undo and recovery, plus heatmap/history/config APIs;
+- `.b5d` snapshots, delta journals, checkpoints, deterministic restore/continue, v0.6 frozen binary contract;
+- typed embodiment, actuator authorization, audit trails, deterministic environments, individual sensor lifecycle controls;
 - real host telemetry/device discovery without fabricated fallback values;
-- **Neural Symbiosis**: open-set peripheral neural/virtual area contracts and read-only pipeline reachability;
-- **MSBA**: modality-specific pathways, energy/resource accounting and external projection dimensionality from 1–32 dimensions;
+- **Neural Symbiosis**: open-set peripheral neural/virtual area contracts, experiment-only gateway runtime with Frozen/Random/Shuffle controls, productive activation LOCKED;
+- **MSBA**: modality-specific pathways, energy/resource accounting, external projection dimensionality from 1–32 dimensions, hard protection/ordering gates;
 - fragmentable canonical research-question/hypothesis registries with duplicate-ID rejection;
 - searchable Research Catalog with operational/exploratory distinction;
 - repository-wide read-only RQ/H reference audit;
 - backend-owned Research Catalog facets for domain, status, evidence status and experiment progress;
-- research registries, manifests, DATA/EVID separation and AI provenance;
-- responsive dashboard centered on Overview, Control, Research, Settings, Wesen and Embodiment;
+- research registries, manifests, DATA/EVID separation, AI provenance, Research Review Inbox, experiment organizer;
+- **Bounded memory, prediction and behavior profile**: optional working/episodic memory, one-step transition predictor, operational behavior profile;
+- **Wesen Profile & Identitaet**: schema-v1 holistic technical profiles with canonical digest, revision history, import/export;
+- **Scientific Observatory**: 12-tab metrics workbench with live spike-window, topology, criticality, learning and provenance groups;
+- **Full API integration**: all 130 backend routes consumed by 7+ frontend panels with auto-refresh;
+- responsive dashboard centered on Overview, Control, Research, Settings, Wesen, Embodiment, Release/Gate;
 - natural German read-aloud controls for File Viewer previews, chat file cards and Research Chat answers.
 
 ## Research Catalog and dimensions
@@ -153,7 +158,7 @@ MIT License — see `LICENSE`.
   author  = {Thomas Heisig},
   title   = {Multi-Scale Homeostatic Recurrence Network (MHRN)},
   year    = {2026},
-  version = {0.5.0a7},
+  version = {0.6.0a1},
   url     = {https://github.com/Thomas-Heisig/MHRN},
   license = {MIT}
 }
