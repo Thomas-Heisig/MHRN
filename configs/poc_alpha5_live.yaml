@@ -207,5 +207,5 @@ research_chat:
   system_prompt: ""
   handoff_prompt: ""
   vision_enabled: false
-  tools_enabled: false
+  tools_enabled: true
   fallback_model: "gemma3:1b"

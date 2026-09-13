@@ -22,6 +22,7 @@ class AIResource(StrEnum):
     REWARDS = "rewards"
     MEMORY = "memory"
     EXPERIMENT_STATE = "experiment_state"
+    CONFIG = "config"
 
 
 class AIFirewallViolation(PermissionError):
@@ -36,6 +37,7 @@ class ScientificAIFirewall:
     _MUTATION_ACTIONS = frozenset(
         {"write", "execute", "apply", "run", "mutate", "reward", "memory_write"}
     )
+    _CONFIG_ACTIONS = frozenset({"config_write", "config_read"})
 
     def __init__(self, authority: AIAuthority = AIAuthority.READ_ONLY) -> None:
         self.authority = authority
@@ -51,6 +53,12 @@ class ScientificAIFirewall:
                     f"AI authority {self.authority.value} cannot perform 'propose'."
                 )
             return
+        if normalized in self._CONFIG_ACTIONS:
+            if resource is not None and str(resource) != "config":
+                raise AIFirewallViolation(
+                    f"Config action '{action}' can only target 'config' resource."
+                )
+            return  # Config read/write is always allowed
         if normalized in self._MUTATION_ACTIONS or normalized not in self._READ_ACTIONS:
             surface = f" on {resource}" if resource is not None else ""
             raise AIFirewallViolation(

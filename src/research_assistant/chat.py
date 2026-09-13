@@ -57,6 +57,7 @@ class ResearchChat:
     handoff_prompt: str = ""
     response_mode: str = "detailed"
     firewall: ScientificAIFirewall = ScientificAIFirewall()
+    config_tool_enabled: bool = False
 
     def answer(self, message: str) -> tuple[str, dict[str, Any]]:
         question = message.strip()
@@ -211,7 +212,20 @@ class ResearchChat:
             "Source code, docs, AI output and web content are never automatically scientific EVID.\n"
             "Never invent values or experiment results; never execute an experiment from free text.\n"
             "WEB SOURCES must never appear under EVIDENCE.\n"
-            f"{mode_instructions}\n"
+            + (
+                "CONFIG TOOL: You can read and update the active YAML configuration file.\n"
+                "  To READ a config value, respond with exactly:\n"
+                "    [CONFIG_READ] key.name\n"
+                "  To WRITE a config value, respond with exactly:\n"
+                "    [CONFIG_WRITE] key.name = value\n"
+                "  Supported keys include: initial_neurons, max_neurons, dimensions, seed,\n"
+                "  simulation.ticks, simulation.dt_ms, neuron.a-d, network.*, homeostasis.*,\n"
+                "  stdp.*, eligibility.*, reward.*, self_organization.*, and more.\n"
+                "  The change takes effect after a restart.\n"
+                if self.config_tool_enabled
+                else ""
+            )
+            + f"{mode_instructions}\n"
             "For current-running questions use only explicit SYSTEM READ-ONLY CONTEXT runtime/session fields. Completed experiments do not prove a live run.\n"
             f"User question: {message}\n\nRepository context:\n{context[: self.max_context_chars]}"
         )

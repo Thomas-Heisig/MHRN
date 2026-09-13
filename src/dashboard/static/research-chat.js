@@ -331,6 +331,23 @@ function renderInteractionTrace(metadata) {
       if (!response.ok) throw new Error(payload.error || `HTTP ${response.status}`);
       document.getElementById('chat-waiting')?.remove();
       room.messages.push({ role: 'assistant', content: payload.answer || '', metadata: payload.metadata || {}, files: payload.files || [] });
+      // Show config results if any
+      if (payload.config_results && payload.config_results.length) {
+        const configHtml = payload.config_results.map((r) => {
+          if (r.action === 'write') {
+            return r.success
+              ? `<div class="chat-config-success">🔧 Config geändert: <code>${escapeChat(r.key)}</code> = <code>${escapeChat(JSON.stringify(r.value))}</code></div>`
+              : `<div class="chat-config-error">❌ Config-Fehler: ${escapeChat(r.message)}</div>`;
+          }
+          if (r.action === 'read') {
+            return r.found
+              ? `<div class="chat-config-info">📖 <code>${escapeChat(r.key)}</code> = <code>${escapeChat(JSON.stringify(r.value))}</code></div>`
+              : `<div class="chat-config-error">🔍 Schlüssel <code>${escapeChat(r.key)}</code> nicht gefunden</div>`;
+          }
+          return '';
+        }).join('');
+        log.insertAdjacentHTML('beforeend', `<div class="chat-message config-result">${configHtml}</div>`);
+      }
       imageInput.value = '';
       dropZone.classList.remove('has-files');
       saveState(state);

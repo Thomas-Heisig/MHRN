@@ -226,6 +226,7 @@ class DashboardServer(ThreadingHTTPServer):
         self.research_chat_handoff_prompt = ""
         self.research_chat_vision_enabled = False
         self.research_chat_tools_enabled = False
+        self.research_chat_config_path: Path | None = None
         self.experience = experience
         self.research_chat_oauth_state: str | None = None
         self.research_chat_oauth_token: str | None = None
@@ -3124,6 +3125,125 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
         response["summary"] = summary_path
         self._send_json(response, HTTPStatus.CREATED)
 
+    def _handle_chat_config_action(self, body: dict[str, object]) -> None:
+        """Handle 'config' action from the research chat: read or update config."""
+        from src.research_assistant.config_tool import (
+            apply_config_change,
+            get_config_value,
+            validate_config_change,
+        )
+
+        config_path = self.dashboard_server.research_chat_config_path
+        if config_path is None or not config_path.is_file():
+            self._send_json(
+                {"error": "No active config file is set on this server."},
+                HTTPStatus.SERVICE_UNAVAILABLE,
+            )
+            return
+
+        sub_action = body.get("config_action", "read")
+        key = body.get("key")
+        if not isinstance(key, str) or not key.strip():
+            self._send_json(
+                {"error": "key is required."},
+                HTTPStatus.BAD_REQUEST,
+            )
+            return
+        key = key.strip()
+
+        if sub_action == "read":
+            found, value = get_config_value(config_path, key)
+            if found:
+                self._send_json({"key": key, "value": value})
+            else:
+                self._send_json(
+                    {"error": f"Key '{key}' not found in config."},
+                    HTTPStatus.NOT_FOUND,
+                )
+        elif sub_action == "write":
+            value = body.get("value")
+            error = validate_config_change(key, value)
+            if error is not None:
+                self._send_json(
+                    {"error": error},
+                    HTTPStatus.BAD_REQUEST,
+                )
+                return
+            success, message = apply_config_change(config_path, key, value)
+            if success:
+                print(f"🔧 Config change via chat: {key} = {value!r}")
+                self._send_json({"success": True, "message": message})
+            else:
+                self._send_json(
+                    {"error": message},
+                    HTTPStatus.INTERNAL_SERVER_ERROR,
+                )
+        else:
+            self._send_json(
+                {"error": "config_action must be 'read' or 'write'."},
+                HTTPStatus.BAD_REQUEST,
+            )
+
+    def _execute_chat_config_commands(self, answer: str) -> list[dict[str, object]]:
+        """Parse and execute [CONFIG_READ] and [CONFIG_WRITE] commands from AI response."""
+        from src.research_assistant.config_tool import (
+            apply_config_change,
+            get_config_value,
+        )
+
+        config_path = self.dashboard_server.research_chat_config_path
+        if config_path is None or not config_path.is_file():
+            return []
+
+        results: list[dict[str, object]] = []
+        for line in answer.splitlines():
+            line = line.strip()
+            # Match [CONFIG_READ] key.name
+            if line.startswith("[CONFIG_READ]") or line.startswith("[CONFIG_READ]"):
+                key = line.split("]", 1)[1].strip() if "]" in line else line[13:].strip()
+                if key:
+                    found, value = get_config_value(config_path, key)
+                    results.append({
+                        "action": "read",
+                        "key": key,
+                        "found": found,
+                        "value": value if found else None,
+                    })
+            # Match [CONFIG_WRITE] key.name = value
+            elif line.startswith("[CONFIG_WRITE]") or line.startswith("[CONFIG_WRITE]"):
+                rest = line.split("]", 1)[1].strip() if "]" in line else line[14:].strip()
+                if "=" in rest:
+                    key = rest.split("=", 1)[0].strip()
+                    value_str = rest.split("=", 1)[1].strip()
+                    # Parse value: try int, float, bool, list, or keep as string
+                    value: object = value_str
+                    if value_str.lower() == "true":
+                        value = True
+                    elif value_str.lower() == "false":
+                        value = False
+                    else:
+                        try:
+                            value = int(value_str)
+                        except ValueError:
+                            try:
+                                value = float(value_str)
+                            except ValueError:
+                                if value_str.startswith("[") and value_str.endswith("]"):
+                                    try:
+                                        import json
+                                        value = json.loads(value_str)
+                                    except (json.JSONDecodeError, ValueError):
+                                        pass
+                    success, message = apply_config_change(config_path, key, value)
+                    results.append({
+                        "action": "write",
+                        "key": key,
+                        "value": value,
+                        "success": success,
+                        "message": message,
+                    })
+        return results
+
     def _research_chat(self, body: dict[str, object]) -> None:
         source = self._require_research_source()
         action = body.get("action", "ask")
@@ -3132,6 +3252,9 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
             if not isinstance(workflow, dict):
                 raise InvalidRequestError("workflow object is required for execution.")
             self._run_experiment_workflow(cast(dict[str, object], workflow))
+            return
+        if action == "config":
+            self._handle_chat_config_action(body)
             return
         if action != "ask":
             raise InvalidRequestError("Unknown research chat action.")
@@ -3244,12 +3367,16 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
                 handoff_prompt=self.dashboard_server.research_chat_handoff_prompt,
                 response_mode=response_mode,
                 web_context=web_context if not is_fallback else "",
+                config_tool_enabled=self.dashboard_server.research_chat_tools_enabled,
             ).answer(message)
+            # Parse config commands from AI response
+            config_results = self._execute_chat_config_commands(answer)
             self._send_json(
                 {
                     "answer": answer,
                     "metadata": cast(JSONValue, metadata),
                     "grounded": True,
+                    "config_results": config_results,
                 }
             )
         except (OSError, TimeoutError) as exc:
@@ -3283,6 +3410,7 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
                         handoff_prompt=self.dashboard_server.research_chat_handoff_prompt,
                         response_mode=response_mode,
                         web_context="",
+                        config_tool_enabled=False,
                     ).answer(message)
                     self._send_json(
                         {
@@ -3321,6 +3449,7 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
                     handoff_prompt=self.dashboard_server.research_chat_handoff_prompt,
                     response_mode=response_mode,
                     web_context="",
+                    config_tool_enabled=False,
                 ).answer(message)
                 self._send_json(
                     {
@@ -5086,6 +5215,7 @@ def serve_dashboard(
     research_root: Path | None = None,
     chat_settings: Mapping[str, Any] | None = None,
     experience: Any | None = None,
+    config_path: Path | None = None,
 ) -> None:
     """Run the local MHRN operator dashboard until interrupted."""
 
@@ -5328,6 +5458,7 @@ def serve_dashboard(
         server.research_chat_handoff_prompt = handoff_prompt
         server.research_chat_vision_enabled = vision_enabled
         server.research_chat_tools_enabled = tools_enabled
+        server.research_chat_config_path = config_path
         server.research_chat_ollama_backend = ollama_backend
         server.research_chat_ollama_fallback_backend = ollama_fallback_backend
         server.research_chat_fallback_backend = local_fallback_backend
