@@ -10,7 +10,9 @@ ROOT = Path(__file__).resolve().parents[1]
 def test_small_snn_stage_is_technically_complete_from_scoped_verification() -> None:
     timeline = build_development_timeline(ROOT)
     stage = next(item for item in timeline["stages"] if item["id"] == "small_snn")
-    spike = next(item for item in stage["criteria"] if item["id"] == "spike_propagation")
+    spike = next(
+        item for item in stage["criteria"] if item["id"] == "spike_propagation"
+    )
 
     assert stage["implementation_score"] == 1.0
     assert stage["verification_score"] == 0.5
