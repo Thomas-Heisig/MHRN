@@ -46,9 +46,43 @@ jobs:
           )
           path.write_text(text, encoding='utf-8')
 
+          path = Path('src/research_assistant/airr.py')
+          text = path.read_text(encoding='utf-8')
+          old = '''                if isinstance(raw, dict) and raw.get("role") == role:\n                    return AIAnalysisRecord(**cast(dict[str, Any], raw))'''
+          new = '''                if isinstance(raw, dict):\n                    typed_raw = cast(dict[str, Any], raw)\n                    if typed_raw.get("role") == role:\n                        return AIAnalysisRecord(**typed_raw)'''
+          if old not in text:
+              raise SystemExit('AIRR JSON boundary block not found after repair')
+          path.write_text(text.replace(old, new, 1), encoding='utf-8')
+
+          path = Path('src/research_assistant/causal.py')
+          text = path.read_text(encoding='utf-8')
+          old = '''def _string_tuple(value: object, field: str) -> tuple[str, ...]:\n    if not isinstance(value, (list, tuple)) or not all(\n        isinstance(item, str) and item.strip() for item in value\n    ):\n        raise ValueError(f"Causal attribution {field} must contain strings")\n    values = cast(list[object] | tuple[object, ...], value)\n    return tuple(cast(str, item) for item in values)'''
+          new = '''def _string_tuple(value: object, field: str) -> tuple[str, ...]:\n    if not isinstance(value, (list, tuple)):\n        raise ValueError(f"Causal attribution {field} must contain strings")\n    values = cast(list[object] | tuple[object, ...], value)\n    if not all(isinstance(item, str) and item.strip() for item in values):\n        raise ValueError(f"Causal attribution {field} must contain strings")\n    return tuple(cast(str, item) for item in values)'''
+          if old not in text:
+              raise SystemExit('causal string tuple block not found after repair')
+          path.write_text(text.replace(old, new, 1), encoding='utf-8')
+
+          path = Path('src/research_assistant/config_tool.py')
+          text = path.read_text(encoding='utf-8')
+          text = text.replace(
+              '        mapping = cast(dict[str, Any], current)\n',
+              '        mapping = current\n',
+              1,
+          )
+          path.write_text(text, encoding='utf-8')
+
           path = Path('src/research_assistant/models.py')
           text = path.read_text(encoding='utf-8')
-          text = text.replace('concerns = list(cast(list[Any], concerns))', 'concerns = list(concerns)')
+          old = '''    concerns = normalized.get("methodological_concerns")\n    if not isinstance(concerns, list):\n        concerns = []\n    else:\n        concerns = list(cast(list[Any], concerns))\n    concerns.append('''
+          new = '''    concerns = normalized.get("methodological_concerns")\n    typed_concerns: list[Any]\n    if not isinstance(concerns, list):\n        typed_concerns = []\n    else:\n        typed_concerns = concerns\n    typed_concerns.append('''
+          if old not in text:
+              raise SystemExit('model concerns block not found after repair')
+          text = text.replace(old, new, 1)
+          text = text.replace(
+              '    normalized["methodological_concerns"] = concerns\n',
+              '    normalized["methodological_concerns"] = typed_concerns\n',
+              1,
+          )
           path.write_text(text, encoding='utf-8')
 
           path = Path('src/storage/incremental_runtime.py')
