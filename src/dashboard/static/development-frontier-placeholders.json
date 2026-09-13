@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.0",
+  "schema_version": "1.1",
   "status": "PLANNED_RESEARCH_ONLY",
   "purpose": "Frontend placeholder contract for development timeline stages 8-10. This file does not raise implementation, verification, or scientific-evidence scores.",
   "stages": {
@@ -21,6 +21,7 @@
       "solution_placeholders": [
         "CompetenceRegistry",
         "RetentionMatrix",
+        "SynapticConsolidationContract",
         "PlasticityStrategyContract",
         "BoundedStrategySelector",
         "ReversibleReorganization",
@@ -56,6 +57,7 @@
       ],
       "solution_placeholders": [
         "AttentionAllocator",
+        "AttentionGainContract",
         "DriveVector",
         "BoundedPlanner",
         "ConsolidationScheduler",
@@ -80,6 +82,7 @@
       "maturity": "planned_research_frontier",
       "research_document": "research/frontiers/STAGES_8_10_FOUNDATIONS.md",
       "experiment_backlog": "research/experiments/STAGES_8_10_EXPERIMENT_BACKLOG.md",
+      "observer_module": "src/research/self_monitor.py",
       "existing_program": "research/protocols/COGNITION_CONSCIOUSNESS.md",
       "existing_questions": "research/registry/questions.cognition.yaml",
       "existing_hypotheses": "research/registry/hypotheses.cognition.yaml",
@@ -98,6 +101,7 @@
         "RQ-WEL-103"
       ],
       "method_placeholders": [
+        "SelfMonitor (observer-only longitudinal instrument)",
         "TheoryIndicatorMatrix",
         "ContrastingPredictionRegistry",
         "PerturbationPlan",
@@ -116,7 +120,7 @@
         "E10-G Welfare and stop-governance drills",
         "E10-H Independent adversarial replication"
       ],
-      "claim_boundary": "No marker count, score, behavior or intervention automatically establishes consciousness, sentience or moral status. Stage maturity concerns research quality, operationalization, intervention, replication and governance only."
+      "claim_boundary": "SelfMonitor is read-only observability. No marker count, score, behavior or intervention automatically establishes consciousness, sentience or moral status. Stage maturity concerns research quality, operationalization, intervention, replication and governance only."
     }
   }
 }

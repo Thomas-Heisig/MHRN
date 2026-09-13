@@ -1,40 +1,35 @@
-"""Synapse data model with STDP eligibility and plasticity support.
+"""Deterministic synapse primitive with pair-STDP and reward eligibility.
 
-This module defines the Synapse class, which represents a connection between
-two neurons in the MHRN network. It supports:
-- Weighted synaptic transmission with configurable delay
-- Spike-Timing-Dependent Plasticity (STDP) eligibility traces
-- Pair-based and triplet STDP variants
-- Weight bounds and normalization
-- Metaplasticity state tracking
+The production learning pipeline lives in :mod:`src.learning.learning_engine` and
+keeps its own eligibility state. This primitive therefore remains a standalone,
+serializable building block: callers may use pair-STDP directly, accumulate a
+signed timing eligibility trace for later reward modulation, or keep both paths
+disabled. The two eligibility implementations must not be mixed implicitly.
 """
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+import math
+from dataclasses import asdict, dataclass, field, fields
 from typing import Any, Callable
 
-# ============================================================================
-# STDP Constants (Default values from Song & Abbott 2000)
-# ============================================================================
-
-A_PLUS: float = 0.1  # LTP amplitude
-A_MINUS: float = 0.12  # LTD amplitude
-TAU_PLUS: float = 20.0  # LTP time constant (ms)
-TAU_MINUS: float = 20.0  # LTD time constant (ms)
-W_MIN: float = 0.0  # Minimum weight
-W_MAX: float = 1.0  # Maximum weight
-ELIGIBILITY_DECAY: float = 0.95  # Eligibility trace decay per tick
-
-
-# ============================================================================
-# Synapse Configuration
-# ============================================================================
+A_PLUS: float = 0.1
+A_MINUS: float = 0.12
+TAU_PLUS: float = 20.0
+TAU_MINUS: float = 20.0
+W_MIN: float = 0.0
+W_MAX: float = 1.0
+ELIGIBILITY_DECAY: float = 0.95
 
 
 @dataclass(frozen=True, slots=True)
 class SynapseConfig:
-    """Configuration parameters for synaptic plasticity."""
+    """Configuration for the standalone synaptic plasticity primitive.
+
+    ``meta_state`` is stored on :class:`Synapse`; lower values bias the
+    pair-STDP kernel toward LTP and higher values bias it toward LTD. This is
+    an explicit engineering convention, not a biological claim.
+    """
 
     a_plus: float = A_PLUS
     a_minus: float = A_MINUS
@@ -43,283 +38,240 @@ class SynapseConfig:
     w_min: float = W_MIN
     w_max: float = W_MAX
     eligibility_decay: float = ELIGIBILITY_DECAY
-    enable_triplet: bool = False  # Triplet STDP (requires additional traces)
+    reward_learning_rate: float = 0.01
+    reset_eligibility_after_reward: bool = True
+    enable_triplet: bool = False
     enable_metaplasticity: bool = False
 
+    def __post_init__(self) -> None:
+        if self.a_plus < 0.0 or self.a_minus < 0.0:
+            raise ValueError("STDP amplitudes must be >= 0")
+        if self.tau_plus <= 0.0 or self.tau_minus <= 0.0:
+            raise ValueError("STDP time constants must be > 0")
+        if self.w_min > self.w_max:
+            raise ValueError("w_min must be <= w_max")
+        if not 0.0 <= self.eligibility_decay <= 1.0:
+            raise ValueError("eligibility_decay must be in [0, 1]")
+        if self.reward_learning_rate < 0.0:
+            raise ValueError("reward_learning_rate must be >= 0")
 
-# ============================================================================
-# Synapse Class
-# ============================================================================
+    def to_dict(self) -> dict[str, Any]:
+        return asdict(self)
+
+    @classmethod
+    def from_dict(cls, data: dict[str, Any]) -> "SynapseConfig":
+        names = {item.name for item in fields(cls)}
+        return cls(**{key: value for key, value in data.items() if key in names})
 
 
 @dataclass(slots=True)
 class Synapse:
-    """A synaptic connection between two neurons with STDP plasticity.
+    """One bounded synaptic connection with explicit plasticity state.
 
-    Attributes:
-        target_id: ID of the postsynaptic neuron.
-        weight: Synaptic weight (connection strength).
-        delay: Transmission delay in ticks (>= 1).
-        eligibility: STDP eligibility trace value.
-        last_pre_spike: Tick of the last presynaptic spike.
-        last_post_spike: Tick of the last postsynaptic spike.
-        pre_trace: Presynaptic trace for triplet STDP (if enabled).
-        post_trace: Postsynaptic trace for triplet STDP (if enabled).
-        meta_state: Metaplasticity state (if enabled).
-        update_count: Number of plasticity updates applied.
-        created_tick: Tick when this synapse was created.
+    ``eligibility`` is signed: positive values support reward-gated LTP and
+    negative values support reward-gated LTD. Direct pair-STDP does not consume
+    that trace; reward application may reset it according to the config.
     """
 
-    # === Core fields ===
     target_id: int
     weight: float
     delay: int
-
-    # === STDP Eligibility ===
     eligibility: float = 0.0
-
-    # === Spike timing traces (for pair-based STDP) ===
     last_pre_spike: int = -1
     last_post_spike: int = -1
-
-    # === Triplet STDP traces (optional) ===
-    pre_trace: float = 0.0  # Presynaptic trace for triplet
-    post_trace: float = 0.0  # Postsynaptic trace for triplet
-
-    # === Metaplasticity (optional) ===
-    meta_state: float = 0.5  # Metaplasticity state (0.0 - 1.0)
-
-    # === Statistics ===
+    pre_trace: float = 0.0
+    post_trace: float = 0.0
+    meta_state: float = 0.5
     update_count: int = 0
     created_tick: int = 0
-
-    # === Internal state ===
     _config: SynapseConfig | None = field(default=None, repr=False, init=False)
     _enabled: bool = field(default=True, repr=False, init=False)
     _dirty_callback: Callable[[], None] | None = field(
         default=None, repr=False, init=False
     )
 
-    def set_dirty_callback(self, callback: Callable[[], None] | None) -> None:
-        """Attach the runtime callback used to publish state mutations."""
-        self._dirty_callback = callback
-
-    def mark_dirty(self) -> None:
-        """Publish a mutation to an attached runtime observer."""
-        if self._dirty_callback is not None:
-            self._dirty_callback()
-
     def __post_init__(self) -> None:
-        """Validate synapse parameters after initialization."""
         if self.delay < 1:
             raise ValueError(f"Delay must be >= 1, got {self.delay}")
-
+        if not math.isfinite(self.weight):
+            raise ValueError("Weight must be finite")
         if self.weight < 0.0:
-            raise ValueError(f"Weight must be >= 0, got {self.weight}")
-
-        if self.eligibility < 0.0:
-            raise ValueError(f"Eligibility must be >= 0, got {self.eligibility}")
-
-        # Set default config if not provided
+            raise ValueError("Weight must be non-negative")
+        if not math.isfinite(self.eligibility):
+            raise ValueError("Eligibility must be finite")
+        if not 0.0 <= self.meta_state <= 1.0:
+            raise ValueError("meta_state must be in [0, 1]")
         if self._config is None:
             self._config = SynapseConfig()
 
-    # ========================================================================
-    # Configuration
-    # ========================================================================
+    def set_dirty_callback(self, callback: Callable[[], None] | None) -> None:
+        self._dirty_callback = callback
+
+    def mark_dirty(self) -> None:
+        if self._dirty_callback is not None:
+            self._dirty_callback()
 
     @property
     def config(self) -> SynapseConfig:
-        """Get the current configuration."""
         if self._config is None:
             self._config = SynapseConfig()
         return self._config
 
     def set_config(self, config: SynapseConfig) -> None:
-        """Set the configuration for this synapse."""
+        if not config.w_min <= self.weight <= config.w_max:
+            raise ValueError("Current weight is outside the requested config bounds")
         self._config = config
-
-    # ========================================================================
-    # STDP Eligibility Updates
-    # ========================================================================
+        self.mark_dirty()
 
     def update_eligibility(self, _tick: int) -> None:
-        """Decay the eligibility trace at each tick."""
-        if self._enabled:
-            decay = self.config.eligibility_decay
-            self.eligibility *= decay
-            self.mark_dirty()
+        """Decay signed reward eligibility by one simulation update."""
+        if not self._enabled:
+            return
+        self.eligibility *= self.config.eligibility_decay
+        if abs(self.eligibility) < 1e-15:
+            self.eligibility = 0.0
+        self.mark_dirty()
+
+    def _timing_kernel(self, dt: float) -> float:
+        """Return the signed pair-STDP timing kernel before weight soft-bounds."""
+        if dt == 0.0 or abs(dt) > 100.0:
+            return 0.0
+        if dt > 0.0:
+            return (
+                self.config.a_plus
+                * (1.0 - self.meta_state)
+                * math.exp(-dt / self.config.tau_plus)
+            )
+        return (
+            -self.config.a_minus
+            * self.meta_state
+            * math.exp(dt / self.config.tau_minus)
+        )
 
     def record_pre_spike(self, tick: int) -> None:
-        """Record a presynaptic spike for STDP."""
+        """Record a pre-spike and accumulate post-before-pre eligibility."""
+        if self.last_post_spike >= 0 and tick > self.last_post_spike:
+            self.eligibility += self._timing_kernel(self.last_post_spike - tick)
         self.last_pre_spike = tick
-        # For triplet STDP: update pre_trace
         if self.config.enable_triplet:
             self.pre_trace = 1.0
         self.mark_dirty()
 
     def record_post_spike(self, tick: int) -> None:
-        """Record a postsynaptic spike for STDP."""
+        """Record a post-spike and accumulate pre-before-post eligibility."""
+        if self.last_pre_spike >= 0 and tick > self.last_pre_spike:
+            self.eligibility += self._timing_kernel(tick - self.last_pre_spike)
         self.last_post_spike = tick
-        # For triplet STDP: update post_trace
         if self.config.enable_triplet:
             self.post_trace = 1.0
         self.mark_dirty()
 
     def decay_traces(self) -> None:
-        """Decay triplet STDP traces."""
-        if self.config.enable_triplet:
-            tau_pre = self.config.tau_plus
-            tau_post = self.config.tau_minus
-            # Simplified decay per tick
-            self.pre_trace *= (1.0 - 1.0 / tau_pre) if tau_pre > 0 else 1.0
-            self.post_trace *= (1.0 - 1.0 / tau_post) if tau_post > 0 else 1.0
+        """Decay stored pre/post traces deterministically.
 
-    # ========================================================================
-    # STDP Weight Update
-    # ========================================================================
-
-    def compute_stdp_update(self, dt: float) -> float:
-        """Compute the STDP weight change based on timing difference.
-
-        Args:
-            dt: Time difference (post - pre) in ticks/ms.
-
-        Returns:
-            Weight change (delta_w).
+        Record methods populate these traces only when triplet mode is enabled,
+        but restored non-zero traces are also allowed to decay after a mode
+        change instead of becoming immortal hidden state.
         """
-        if dt == 0.0 or abs(dt) > 100.0:
-            return 0.0
+        tau_pre = self.config.tau_plus
+        tau_post = self.config.tau_minus
+        old_pre = self.pre_trace
+        old_post = self.post_trace
+        self.pre_trace *= 1.0 - 1.0 / tau_pre
+        self.post_trace *= 1.0 - 1.0 / tau_post
+        if self.pre_trace != old_pre or self.post_trace != old_post:
+            self.mark_dirty()
 
-        config = self.config
-
-        if dt > 0:
-            # LTP: post fires after pre
-            delta = config.a_plus * (1.0 - self.meta_state) * self.eligibility
-            delta *= self._weight_scale()
-            return delta
-        else:
-            # LTD: post fires before pre
-            delta = -config.a_minus * self.meta_state * self.eligibility
-            delta *= self._weight_scale()
-            return delta
-
-    def _weight_scale(self) -> float:
-        """Scale factor based on current weight (soft bounds)."""
-        w = self.weight
+    def _weight_scale(self, *, is_ltp: bool) -> float:
+        """Return a directional soft-bound scale in ``[0, 1]``."""
         w_min = self.config.w_min
         w_max = self.config.w_max
-        range_w = w_max - w_min
+        width = w_max - w_min
+        if width <= 0.0:
+            return 0.0
+        if is_ltp:
+            return max(0.0, min(1.0, (w_max - self.weight) / width))
+        return max(0.0, min(1.0, (self.weight - w_min) / width))
 
-        if range_w <= 0.0:
-            return 1.0
-
-        # Soft bounds: scale LTP down near max, LTD down near min
-        scale_plus = (w_max - w) / range_w if w < w_max else 0.0
-        scale_minus = (w - w_min) / range_w if w > w_min else 0.0
-
-        return scale_plus if w < w_max else scale_minus
+    def compute_stdp_update(self, dt: float) -> float:
+        """Compute one bounded pair-STDP update for ``dt = post - pre``."""
+        raw = self._timing_kernel(dt)
+        if raw == 0.0:
+            return 0.0
+        return raw * self._weight_scale(is_ltp=raw > 0.0)
 
     def apply_stdp(self, dt: float) -> float:
-        """Apply STDP weight update based on timing difference.
-
-        Args:
-            dt: Time difference (post - pre) in ticks/ms.
-
-        Returns:
-            The actual weight change applied.
-        """
+        """Apply one direct pair-STDP update without consuming reward eligibility."""
         if not self._enabled:
             return 0.0
-
         delta = self.compute_stdp_update(dt)
-
-        if delta != 0.0:
-            new_weight = self.weight + delta
-            # Clip to bounds
-            new_weight = max(self.config.w_min, min(self.config.w_max, new_weight))
-            delta = new_weight - self.weight
-            self.weight = new_weight
+        if delta == 0.0:
+            return 0.0
+        old_weight = self.weight
+        self.weight = max(
+            self.config.w_min,
+            min(self.config.w_max, self.weight + delta),
+        )
+        actual = self.weight - old_weight
+        if actual != 0.0:
             self.update_count += 1
-            # Apply metaplasticity if enabled
             if self.config.enable_metaplasticity:
-                self._update_meta_state(delta)
-
-            # Reset eligibility after application
-            self.eligibility = 0.0
-
-        return delta
+                self._update_meta_state(actual)
+            self.mark_dirty()
+        return actual
 
     def _update_meta_state(self, delta: float) -> None:
-        """Update metaplasticity state based on weight change."""
-        # Simple metaplasticity: state moves toward 0.5 with change
-        # Positive delta (LTP) decreases meta_state (makes LTD easier)
-        # Negative delta (LTD) increases meta_state (makes LTP easier)
-        learning_rate = 0.01
-        self.meta_state += learning_rate * (-delta)
+        """Move metaplasticity toward the opposite future plasticity direction."""
+        self.meta_state += 0.01 * (-delta)
         self.meta_state = max(0.0, min(1.0, self.meta_state))
 
-    # ========================================================================
-    # Reward-Modulated Plasticity
-    # ========================================================================
-
     def compute_reward_update(self, reward: float) -> float:
-        """Compute reward-modulated weight change.
+        """Apply a three-factor reward update using signed eligibility.
 
-        Args:
-            reward: Global reward signal (positive = good, negative = bad).
-
-        Returns:
-            Weight change (delta_w).
+        This helper belongs to the standalone primitive only. The production
+        ``LearningEngine`` has its own eligibility state and must not mirror its
+        trace into this field.
         """
-        if not self._enabled or reward == 0.0:
+        if not self._enabled or reward == 0.0 or self.eligibility == 0.0:
             return 0.0
-
-        # Reward-modulated STDP: weight change based on eligibility trace
-        # and reward signal
-        delta = reward * self.eligibility * 0.01
-
-        # Apply weight bounds
-        new_weight = self.weight + delta
-        new_weight = max(self.config.w_min, min(self.config.w_max, new_weight))
-        delta = new_weight - self.weight
-        self.weight = new_weight
-        self.mark_dirty()
-
-        if delta != 0.0:
+        raw = self.config.reward_learning_rate * reward * self.eligibility
+        raw *= self._weight_scale(is_ltp=raw > 0.0)
+        old_weight = self.weight
+        self.weight = max(
+            self.config.w_min,
+            min(self.config.w_max, self.weight + raw),
+        )
+        actual = self.weight - old_weight
+        if actual != 0.0:
             self.update_count += 1
-            # Reset eligibility after application
-            self.eligibility = 0.0
-
-        return delta
-
-    # ========================================================================
-    # State Management
-    # ========================================================================
+            if self.config.enable_metaplasticity:
+                self._update_meta_state(actual)
+            if self.config.reset_eligibility_after_reward:
+                self.eligibility = 0.0
+            self.mark_dirty()
+        return actual
 
     def enable(self) -> None:
-        """Enable plasticity for this synapse."""
         self._enabled = True
+        self.mark_dirty()
 
     def disable(self) -> None:
-        """Disable plasticity for this synapse."""
         self._enabled = False
+        self.mark_dirty()
 
     @property
     def is_enabled(self) -> bool:
-        """Check if plasticity is enabled for this synapse."""
         return self._enabled
 
     def reset_traces(self) -> None:
-        """Reset all trace values."""
         self.eligibility = 0.0
         self.pre_trace = 0.0
         self.post_trace = 0.0
         self.last_pre_spike = -1
         self.last_post_spike = -1
+        self.mark_dirty()
 
-    def copy(self) -> Synapse:
-        """Create a copy of this synapse."""
+    def copy(self) -> "Synapse":
         synapse = Synapse(
             target_id=self.target_id,
             weight=self.weight,
@@ -333,62 +285,62 @@ class Synapse:
             update_count=self.update_count,
             created_tick=self.created_tick,
         )
-        # Copy configuration (if set)
-        if self._config is not None:
-            synapse._config = self._config
+        synapse._config = self.config
+        synapse._enabled = self._enabled
         return synapse
 
-    # ========================================================================
-    # Serialization
-    # ========================================================================
-
     def to_dict(self) -> dict[str, Any]:
-        """Serialize synapse to dictionary."""
         return {
+            "schema_version": 2,
             "target_id": self.target_id,
             "weight": self.weight,
             "delay": self.delay,
             "eligibility": self.eligibility,
             "last_pre_spike": self.last_pre_spike,
             "last_post_spike": self.last_post_spike,
+            "pre_trace": self.pre_trace,
+            "post_trace": self.post_trace,
+            "meta_state": self.meta_state,
             "update_count": self.update_count,
             "created_tick": self.created_tick,
+            "enabled": self._enabled,
+            "config": self.config.to_dict(),
         }
 
     @classmethod
-    def from_dict(cls, data: dict[str, Any]) -> Synapse:
-        """Deserialize synapse from dictionary."""
-        return cls(
-            target_id=data["target_id"],
-            weight=data["weight"],
-            delay=data["delay"],
-            eligibility=data.get("eligibility", 0.0),
-            last_pre_spike=data.get("last_pre_spike", -1),
-            last_post_spike=data.get("last_post_spike", -1),
-            update_count=data.get("update_count", 0),
-            created_tick=data.get("created_tick", 0),
+    def from_dict(cls, data: dict[str, Any]) -> "Synapse":
+        config_data = data.get("config")
+        config = (
+            SynapseConfig.from_dict(config_data)
+            if isinstance(config_data, dict)
+            else SynapseConfig()
         )
-
-    # ========================================================================
-    # String Representation
-    # ========================================================================
+        synapse = cls(
+            target_id=int(data["target_id"]),
+            weight=float(data["weight"]),
+            delay=int(data["delay"]),
+            eligibility=float(data.get("eligibility", 0.0)),
+            last_pre_spike=int(data.get("last_pre_spike", -1)),
+            last_post_spike=int(data.get("last_post_spike", -1)),
+            pre_trace=float(data.get("pre_trace", 0.0)),
+            post_trace=float(data.get("post_trace", 0.0)),
+            meta_state=float(data.get("meta_state", 0.5)),
+            update_count=int(data.get("update_count", 0)),
+            created_tick=int(data.get("created_tick", 0)),
+        )
+        synapse.set_config(config)
+        synapse._enabled = bool(data.get("enabled", True))
+        return synapse
 
     def __str__(self) -> str:
         return (
-            f"Synapse(target={self.target_id}, "
-            f"weight={self.weight:.4f}, "
-            f"delay={self.delay}, "
-            f"eligibility={self.eligibility:.4f}, "
+            f"Synapse(target={self.target_id}, weight={self.weight:.4f}, "
+            f"delay={self.delay}, eligibility={self.eligibility:.4f}, "
             f"updates={self.update_count})"
         )
 
     def __repr__(self) -> str:
         return self.__str__()
-
-
-# ============================================================================
-# Factory Functions
-# ============================================================================
 
 
 def create_synapse(
@@ -397,26 +349,14 @@ def create_synapse(
     delay: int = 1,
     config: SynapseConfig | None = None,
 ) -> Synapse:
-    """Create a new synapse with default configuration.
-
-    Args:
-        target_id: ID of the postsynaptic neuron.
-        weight: Initial synaptic weight (0.0 - 1.0).
-        delay: Transmission delay in ticks (>= 1).
-        config: Optional custom configuration.
-
-    Returns:
-        A new Synapse instance.
-    """
-    lower_bound = config.w_min if config is not None else 0.0
-    upper_bound = config.w_max if config is not None else 1.0
+    """Create a bounded synapse using the supplied configuration."""
+    selected = config or SynapseConfig()
     synapse = Synapse(
         target_id=target_id,
-        weight=max(lower_bound, min(upper_bound, weight)),
+        weight=max(selected.w_min, min(selected.w_max, weight)),
         delay=max(1, delay),
     )
-    if config is not None:
-        synapse.set_config(config)
+    synapse.set_config(selected)
     return synapse
 
 
@@ -426,25 +366,11 @@ def create_random_synapse(
     weight_range: tuple[float, float] = (0.0, 1.0),
     delay_range: tuple[int, int] = (1, 5),
 ) -> Synapse:
-    """Create a synapse with random weight and delay.
-
-    Args:
-        target_id: ID of the postsynaptic neuron.
-        rng: Random number generator with .uniform() and .randint() methods.
-        weight_range: (min, max) weight range.
-        delay_range: (min, max) delay range.
-
-    Returns:
-        A new Synapse instance with random parameters.
-    """
+    """Create a synapse from a caller-owned deterministic RNG."""
     weight = rng.uniform(weight_range[0], weight_range[1])
     delay = rng.randint(delay_range[0], delay_range[1])
     return create_synapse(target_id, weight, delay)
 
-
-# ============================================================================
-# Module Exports
-# ============================================================================
 
 __all__ = [
     "A_MINUS",
