@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "suite": "recurrent_snn_reference",
+  "stage": 2,
+  "status": "verified",
+  "scope": "software_reference_contract",
+  "reference": {
+    "topology": "A -> B -> C -> D -> A",
+    "neurons": 4,
+    "synapses": 4,
+    "delay_ticks": 1,
+    "weight": 200.0,
+    "ticks": 20000,
+    "neuron_model": "izhikevich-2003",
+    "secondary_mechanisms": "disabled"
+  },
+  "expected": {
+    "spikes_per_tick": 1,
+    "total_spikes": 20000,
+    "events_processed": 19999,
+    "queued_events_after_run": 1,
+    "max_queue_depth": 1,
+    "per_neuron_spikes": 5000
+  },
+  "proofs": {
+    "closed_recurrent_topology": true,
+    "bounded_event_queue": true,
+    "finite_membrane_state": true,
+    "sustained_spike_activity": true,
+    "long_run_completed": true,
+    "deterministic_replay_identity": true
+  },
+  "related_research": {
+    "research_question": "RQ-SNN-001",
+    "existing_experiment": "EXP-BATCH-20260908200906-01",
+    "existing_experiment_ticks_per_run": 100000,
+    "note": "The reference contract is an engineering verification. The registered experiment remains DATA/analysis and is not automatically promoted to scientific EVID."
+  },
+  "limits": [
+    "The reference ring is deliberately small and strongly coupled.",
+    "Passing this contract does not prove stability for arbitrary recurrent topology, weights, delays or neuron models.",
+    "Passing this contract does not establish Stage-2 target-scale tractability at 1,000-10,000 neurons.",
+    "Deterministic sustained activity is not evidence of cognition or biological equivalence."
+  ]
+}
