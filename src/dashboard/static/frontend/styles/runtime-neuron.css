@@ -1,0 +1,42 @@
+.runtime-neuron-panel { display:grid; gap:14px; }
+.runtime-neuron-panel[hidden] { display:none !important; }
+.runtime-neuron-head { display:flex; justify-content:space-between; gap:16px; align-items:flex-start; }
+.runtime-neuron-head h2 { margin:.15rem 0 .3rem; }
+.runtime-neuron-head p { margin:0; max-width:76ch; color:var(--ink-3); }
+.runtime-neuron-badges { display:flex; flex-wrap:wrap; justify-content:flex-end; gap:6px; }
+.runtime-neuron-badge { padding:5px 8px; border:1px solid var(--rule-2); border-radius:999px; background:var(--paper-3); font:700 .55rem/1 var(--font-mono); text-transform:uppercase; letter-spacing:.07em; }
+.runtime-neuron-badge[data-state="active"], .runtime-neuron-badge[data-state="canonical"] { color:var(--moss); background:var(--moss-wash); }
+.runtime-neuron-badge[data-state="refractory"], .runtime-neuron-badge[data-state="experimental"] { color:var(--amber); background:var(--amber-wash); }
+.runtime-neuron-toolbar { display:grid; grid-template-columns:minmax(170px,.7fr) minmax(190px,1fr) auto auto auto; gap:8px; align-items:end; padding:12px; border:1px solid var(--rule); background:var(--paper-2); }
+.runtime-neuron-toolbar label { display:grid; gap:5px; color:var(--ink-3); font:700 .57rem/1.2 var(--font-mono); text-transform:uppercase; letter-spacing:.06em; }
+.runtime-neuron-toolbar input { min-height:36px; }
+.runtime-neuron-layout { display:grid; grid-template-columns:minmax(330px,.9fr) minmax(0,1.45fr); gap:14px; }
+.runtime-neuron-visual { position:relative; min-height:520px; border:1px solid var(--rule); background:var(--paper-2); overflow:hidden; }
+.runtime-neuron-visual svg { width:100%; height:100%; min-height:520px; display:block; }
+.runtime-neuron-visual .rn-dendrite, .runtime-neuron-visual .rn-axon { fill:none; stroke:var(--ink-4); stroke-width:4; stroke-linecap:round; opacity:.65; }
+.runtime-neuron-visual .rn-soma { fill:var(--paper-3); stroke:var(--ink-2); stroke-width:3; }
+.runtime-neuron-visual .rn-nucleus { fill:var(--paper); stroke:var(--rule-2); stroke-width:2; }
+.runtime-neuron-visual .rn-pulse { fill:none; stroke:var(--moss); stroke-width:4; opacity:.15; }
+.runtime-neuron-visual[data-spiked="true"] .rn-pulse { animation:rn-pulse .7s ease-out; }
+.runtime-neuron-visual[data-refractory="true"] .rn-soma { stroke:var(--amber); }
+.runtime-neuron-visual text { fill:var(--ink-3); font-family:var(--font-mono); font-size:12px; }
+@keyframes rn-pulse { 0%{opacity:.95; transform:scale(.75); transform-origin:center;} 100%{opacity:0; transform:scale(1.35); transform-origin:center;} }
+.runtime-neuron-meter-stack { position:absolute; inset:auto 14px 14px 14px; display:grid; gap:7px; }
+.runtime-neuron-meter { display:grid; grid-template-columns:110px 1fr 72px; gap:8px; align-items:center; font:600 .58rem/1.2 var(--font-mono); }
+.runtime-neuron-meter-track { height:8px; border:1px solid var(--rule); background:var(--paper); overflow:hidden; }
+.runtime-neuron-meter-fill { height:100%; width:0; background:currentColor; transition:width .2s ease; }
+.runtime-neuron-detail { display:grid; gap:10px; align-content:start; }
+.runtime-neuron-section { border:1px solid var(--rule); background:var(--paper-2); }
+.runtime-neuron-section > header { display:flex; justify-content:space-between; align-items:baseline; gap:12px; padding:9px 11px; border-bottom:1px solid var(--rule); }
+.runtime-neuron-section h3 { margin:0; font-size:.78rem; }
+.runtime-neuron-section header span { color:var(--ink-4); font:600 .52rem/1 var(--font-mono); text-transform:uppercase; }
+.runtime-neuron-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1px; background:var(--rule); }
+.runtime-neuron-kv { min-width:0; padding:9px 10px; background:var(--paper-2); }
+.runtime-neuron-kv span { display:block; color:var(--ink-4); font:600 .5rem/1.2 var(--font-mono); text-transform:uppercase; letter-spacing:.06em; }
+.runtime-neuron-kv strong { display:block; margin-top:4px; color:var(--ink); font:700 .7rem/1.3 var(--font-mono); overflow-wrap:anywhere; }
+.runtime-neuron-config { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:1px; background:var(--rule); }
+.runtime-neuron-status { padding:9px 11px; border-left:2px solid var(--moss); background:var(--moss-wash); color:var(--ink-2); font:600 .61rem/1.45 var(--font-mono); }
+.runtime-neuron-status[data-state="error"] { border-left-color:var(--crimson); color:var(--crimson); background:var(--crimson-wash); }
+.runtime-neuron-boundary { padding:9px 11px; border-left:2px solid var(--amber); background:var(--amber-wash); color:var(--ink-3); font:600 .58rem/1.45 var(--font-mono); }
+@media (max-width:1100px){.runtime-neuron-layout{grid-template-columns:1fr}.runtime-neuron-visual{min-height:430px}.runtime-neuron-visual svg{min-height:430px}.runtime-neuron-config{grid-template-columns:repeat(2,minmax(0,1fr));}}
+@media (max-width:720px){.runtime-neuron-head{flex-direction:column}.runtime-neuron-badges{justify-content:flex-start}.runtime-neuron-toolbar{grid-template-columns:1fr 1fr}.runtime-neuron-grid,.runtime-neuron-config{grid-template-columns:1fr 1fr}.runtime-neuron-meter{grid-template-columns:88px 1fr 58px;}}
