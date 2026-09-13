@@ -118,16 +118,16 @@ class IncrementalStorageSession(StorageSession):
 
         try:
             for neuron_id in sorted(dirty_neurons):
-                current = self.network.neurons.get(neuron_id)
-                previous = self._neurons.get(neuron_id)
-                if current is None and previous is not None:
+                current_neuron = self.network.neurons.get(neuron_id)
+                previous_neuron = self._neurons.get(neuron_id)
+                if current_neuron is None and previous_neuron is not None:
                     deltas.append(
                         encode_neuron_remove(tick, NeuronRemoveDelta(neuron_id))
                     )
                     self._neurons.pop(neuron_id, None)
                     self._topology_deltas += 1
-                elif current is not None and previous is None:
-                    optical = state_from_neuron(current)
+                elif current_neuron is not None and previous_neuron is None:
+                    optical = state_from_neuron(current_neuron)
                     deltas.append(
                         encode_neuron_add(
                             tick,
@@ -135,17 +135,17 @@ class IncrementalStorageSession(StorageSession):
                                 neuron_id=neuron_id,
                                 tick=tick,
                                 optical=optical,
-                                a=float(current.a),
-                                b=float(current.b),
-                                c=float(current.c),
-                                d=float(current.d),
-                                spike_cost=float(current.spike_cost),
-                                spike_counter=int(current.spike_counter),
-                                last_spike_tick=int(current.last_spike_tick),
+                                a=float(current_neuron.a),
+                                b=float(current_neuron.b),
+                                c=float(current_neuron.c),
+                                d=float(current_neuron.d),
+                                spike_cost=float(current_neuron.spike_cost),
+                                spike_counter=int(current_neuron.spike_counter),
+                                last_spike_tick=int(current_neuron.last_spike_tick),
                             ),
                         )
                     )
-                    self._neurons[neuron_id] = self._neuron_fingerprint(current)
+                    self._neurons[neuron_id] = self._neuron_fingerprint(current_neuron)
                     self._topology_deltas += 1
 
             capture_neuron_state = (
@@ -157,31 +157,34 @@ class IncrementalStorageSession(StorageSession):
                 # shortcut for v/u because membrane state changes continuously.
                 for neuron_id, neuron in self.network.neurons.items():
                     numeric_id = int(neuron_id)
-                    fingerprint = self._neuron_fingerprint(neuron)
-                    previous = self._neurons.get(numeric_id)
-                    if previous is not None and fingerprint != previous:
+                    neuron_fingerprint = self._neuron_fingerprint(neuron)
+                    previous_neuron_fingerprint = self._neurons.get(numeric_id)
+                    if (
+                        previous_neuron_fingerprint is not None
+                        and neuron_fingerprint != previous_neuron_fingerprint
+                    ):
                         deltas.append(
                             encode_neuron_state(
                                 tick,
                                 NeuronStateDelta(
                                     neuron_id=numeric_id,
-                                    membrane_v=fingerprint.v,
-                                    recovery_u=fingerprint.u,
-                                    energy=fingerprint.energy,
-                                    spike_counter=fingerprint.spike_counter,
-                                    last_spike_tick=fingerprint.last_spike_tick,
+                                    membrane_v=neuron_fingerprint.v,
+                                    recovery_u=neuron_fingerprint.u,
+                                    energy=neuron_fingerprint.energy,
+                                    spike_counter=neuron_fingerprint.spike_counter,
+                                    last_spike_tick=neuron_fingerprint.last_spike_tick,
                                 ),
                             )
                         )
                         self._neuron_deltas += 1
-                    self._neurons[numeric_id] = fingerprint
+                    self._neurons[numeric_id] = neuron_fingerprint
 
             for source_id, target_id in sorted(dirty_synapses):
                 key = (source_id, target_id)
-                current = self._current_synapse(source_id, target_id)
-                previous = self._synapses.get(key)
-                if current is None:
-                    if previous is not None:
+                current_synapse = self._current_synapse(source_id, target_id)
+                previous_synapse = self._synapses.get(key)
+                if current_synapse is None:
+                    if previous_synapse is not None:
                         deltas.append(
                             encode_synapse_remove(
                                 tick,
@@ -194,37 +197,37 @@ class IncrementalStorageSession(StorageSession):
                         self._topology_deltas += 1
                     continue
 
-                fingerprint = self._synapse_fingerprint(current)
-                if previous is None:
+                synapse_fingerprint = self._synapse_fingerprint(current_synapse)
+                if previous_synapse is None:
                     deltas.append(
                         encode_synapse_add(
                             tick,
                             SynapseAddDelta(
                                 source_id=source_id,
                                 target_id=target_id,
-                                weight=fingerprint.weight,
-                                eligibility=fingerprint.eligibility,
-                                delay=fingerprint.delay,
-                                last_pre_spike=fingerprint.last_pre_spike,
+                                weight=synapse_fingerprint.weight,
+                                eligibility=synapse_fingerprint.eligibility,
+                                delay=synapse_fingerprint.delay,
+                                last_pre_spike=synapse_fingerprint.last_pre_spike,
                             ),
                         )
                     )
                     self._topology_deltas += 1
-                elif fingerprint != previous:
+                elif synapse_fingerprint != previous_synapse:
                     deltas.append(
                         encode_synapse_weight(
                             tick,
                             SynapseWeightDelta(
                                 source_id=source_id,
                                 target_id=target_id,
-                                weight=fingerprint.weight,
-                                eligibility=fingerprint.eligibility,
-                                last_pre_spike=fingerprint.last_pre_spike,
+                                weight=synapse_fingerprint.weight,
+                                eligibility=synapse_fingerprint.eligibility,
+                                last_pre_spike=synapse_fingerprint.last_pre_spike,
                             ),
                         )
                     )
                     self._synapse_deltas += 1
-                self._synapses[key] = fingerprint
+                self._synapses[key] = synapse_fingerprint
 
             if self.config.capture_spike_events:
                 for neuron_id in result.spike_ids:
