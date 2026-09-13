@@ -1455,3 +1455,517 @@ different tag propagation depths
 dürfen später als kontrollierte Alternativen untersucht werden.
 
 Sie dürfen nicht nachträglich stillschweigend unter derselben Modellversion ausgetauscht werden.
+
+
+================================================================================
+                   MHRN - SNN / GATEWAY / LLM ARCHITEKTUR
+================================================================================
+
+
+                         AUSSENWELT / SENSORIK / TASK
+                         ============================
+
+        Kamera        Audio        Digital        Task / Reward      Systemzustand
+          |             |             |                |                  |
+          v             v             v                v                  v
+     +---------+   +---------+   +---------+      +---------+       +---------+
+     | Encoder |   | Encoder |   | Codec   |      | Reward  |       | Intero- |
+     | Vision  |   | Audio   |   | Digital |      | Source  |       | zeption |
+     +----+----+   +----+----+   +----+----+      +----+----+       +----+----+
+          |             |             |                |                  |
+          +-------------+-------------+----------------+------------------+
+                                        |
+                                        v
+                             +-----------------------+
+                             |    Boundary Frames    |
+                             |-----------------------|
+                             | source_id             |
+                             | sequence_id           |
+                             | target_tick           |
+                             | valid_until_tick      |
+                             | codec_id              |
+                             | payload / content hash|
+                             +-----------+-----------+
+                                         |
+                                         v
+
+
+================================================================================
+                     GPU / SNN - SIMULATION TIME
+================================================================================
+
+                  Canonisches Spiking Neural Network
+                  -------------------------------
+
+
+       GATEWAY_AFFERENT / SENSORISCHE EINGANGSPOPULATIONEN
+       ==================================================
+
+         +-------------+   +-------------+   +-------------+
+         | VISION_IN   |   | AUDIO_IN    |   | DIGITAL_IN  |
+         | neurons     |   | neurons     |   | neurons     |
+         +------+------+   +------+------+   +------+------+
+                \                |                 /
+                 \               |                /
+                  \              |               /
+                   v             v              v
+
+                    +---------------------------+
+                    | ASSOCIATIVE POPULATION    |
+                    |---------------------------|
+                    | Musterbildung             |
+                    | Integration               |
+                    | Rekurrenz                 |
+                    | Prediction                |
+                    | Salience                  |
+                    +-------------+-------------+
+                                  |
+              +-------------------+-------------------+
+              |                   |                   |
+              v                   v                   v
+
+      +---------------+   +---------------+   +---------------+
+      | CONTEXT       |   | MEMORY        |   | VALUE / COST  |
+      | population    |   | population    |   | population    |
+      |---------------|   |---------------|   |---------------|
+      | aktuelle Lage |   | Erfahrung     |   | Nutzen        |
+      | task state    |   | Muster        |   | Kosten        |
+      | relevance     |   | Assoziation   |   | Trust         |
+      +-------+-------+   +-------+-------+   +-------+-------+
+              \                   |                   /
+               \                  |                  /
+                +-----------------+-----------------+
+                                  |
+                                  v
+                        +--------------------+
+                        | ACTION SELECTION   |
+                        |--------------------|
+                        | NO_REQUEST         |
+                        | REQUEST_LANGUAGE   |
+                        | REQUEST_VISION     |
+                        | REQUEST_MEMORY     |
+                        | REQUEST_PLAN       |
+                        | normal actions     |
+                        +---------+----------+
+                                  |
+                                  |
+                      decision interval / threshold
+                                  |
+                                  v
+
+                 GATEWAY_EFFERENT REQUEST POPULATIONS
+                 ====================================
+
+             +----------------------+   +----------------------+
+             | REQUEST_LANGUAGE     |   | REQUEST_MEMORY       |
+             | population           |   | population           |
+             +----------+-----------+   +----------+-----------+
+                        |                          |
+             +----------+-----------+   +----------+-----------+
+             | REQUEST_VISION       |   | REQUEST_PLAN         |
+             | population           |   | population           |
+             +----------+-----------+   +----------+-----------+
+                        \                          /
+                         \                        /
+                          +----------+-----------+
+                                     |
+                                     v
+                           +---------------------+
+                           | REQUEST DECODER     |
+                           |---------------------|
+                           | population activity |
+                           | -> RequestFrame      |
+                           +----------+----------+
+                                      |
+                                      |
+                                      | asynchronous boundary
+                                      |
+                                      v
+
+
+================================================================================
+                         CPU - GATEWAY SERVICE
+                         WALL-CLOCK TIME
+================================================================================
+
+                           +----------------------+
+                           | Request Manager      |
+                           |----------------------|
+                           | request_id           |
+                           | gateway_id           |
+                           | operation            |
+                           | issued_tick          |
+                           | valid_until_tick     |
+                           | context_snapshot_id  |
+                           | trial_id             |
+                           +----------+-----------+
+                                      |
+                                      v
+                           +----------------------+
+                           | Pending Request      |
+                           |----------------------|
+                           | CREATED              |
+                           | QUEUED               |
+                           | DISPATCHED           |
+                           | RESPONDED            |
+                           | CONSUMED             |
+                           | EXPIRED              |
+                           | CANCELLED            |
+                           +----------+-----------+
+                                      |
+                                      v
+                    +--------------------------------------+
+                    | NetworkAreaAdapter / Neural Symbiosis|
+                    +------------------+-------------------+
+                                       |
+                     +-----------------+-----------------+
+                     |                                   |
+                     v                                   v
+            +------------------+                +------------------+
+            | LLM / Language   |                | Other Tool       |
+            |------------------|                |------------------|
+            | local model      |                | Vision model     |
+            | CPU model        |                | Memory           |
+            | remote service   |                | Logic            |
+            | API              |                | Database         |
+            +--------+---------+                +--------+---------+
+                     |                                   |
+                     +-----------------+-----------------+
+                                       |
+                                       v
+                           +----------------------+
+                           | Response Processor   |
+                           |----------------------|
+                           | schema validation    |
+                           | confidence           |
+                           | output normalization |
+                           | response hash        |
+                           +----------+-----------+
+                                      |
+                                      v
+                           +----------------------+
+                           | ResponseFrame        |
+                           |----------------------|
+                           | request_id           |
+                           | context_snapshot_id  |
+                           | structured payload   |
+                           | provider confidence  |
+                           | latency              |
+                           | cost                 |
+                           | backend provenance   |
+                           +----------+-----------+
+                                      |
+                                      |
+                                      | async return
+                                      |
+                                      v
+
+
+================================================================================
+                    GPU / SNN - RESPONSE-INJEKTION
+================================================================================
+
+                         +-----------------------+
+                         | GatewayStateCodec     |
+                         +-----------+-----------+
+                                     |
+            +------------------------+------------------------+
+            |                        |                        |
+            v                        v                        v
+
+    +---------------+       +----------------+       +----------------+
+    | RESPONSE      |       | CONTEXT SLOT   |       | GATEWAY STATE  |
+    | population    |       | population     |       | population     |
+    |---------------|       |----------------|       |----------------|
+    | response info |       | request context|       | latency        |
+    | concepts      |       | binding        |       | cost           |
+    | attributes    |       |                |       | confidence     |
+    +-------+-------+       +--------+-------+       | reliability    |
+            \                        |               +--------+-------+
+             \                       |                        /
+              +----------------------+-----------------------+
+                                     |
+                                     v
+                          +----------------------+
+                          | ASSOCIATIVE NETWORK  |
+                          +----------+-----------+
+                                     |
+                       +-------------+-------------+
+                       |                           |
+                       v                           v
+              +----------------+          +----------------+
+              | MEMORY UPDATE  |          | ACTION GATE    |
+              | population     |          | population     |
+              +-------+--------+          +-------+--------+
+                      |                           |
+                      |                           v
+                      |                  +------------------+
+                      |                  | EFFERENT OUTPUT  |
+                      |                  |------------------|
+                      |                  | motor            |
+                      |                  | speech           |
+                      |                  | digital action   |
+                      |                  +--------+---------+
+                      |                           |
+                      +---------------------------+
+                                                  |
+                                                  v
+                                             AUSSENWELT
+
+
+================================================================================
+                             SYNAPSENEBENE
+================================================================================
+
+ Normale Core-Synapse
+ --------------------
+   pre neuron
+       |
+       | weight
+       | delay
+       | STDP / eligibility
+       v
+   post neuron
+
+
+ Beispiel:
+
+   [ASSOCIATIVE neuron]
+           |
+           | edge_id = 1042
+           | weight  = 0.63
+           | delay   = 4 ticks
+           v
+   [REQUEST_LANGUAGE neuron]
+
+
+ Wichtige Trennung:
+
+   Synapse Identity:            edge_id
+   Neuron Identity:             logical_neuron_id
+   Speicherposition GPU:        physical_slot
+   GPU-Synapsenposition:        edge_slot
+
+
+================================================================================
+                         GATEWAY-LEARNING-PFAD
+================================================================================
+
+          normale Aktivität vor Request
+                     |
+                     v
+        +---------------------------+
+        | normale Synaptic          |
+        | Eligibility               |
+        | kurze Zeitskala           |
+        +-------------+-------------+
+                      |
+                      | Request ausgelöst
+                      v
+        +---------------------------+
+        | TAG-AND-CAPTURE           |
+        |---------------------------|
+        | nur kausale edge_ids      |
+        | werden eingefroren        |
+        +-------------+-------------+
+                      |
+                      v
+        RequestEligibilityRecord
+        ------------------------
+        request_id
+        tagged_edges[]
+        issued_tick
+        tau_g
+        trial_id
+        context_id
+                      |
+                      |
+            externe LLM-Wartezeit
+                      |
+                      v
+                  Response
+                      |
+                      v
+                  Aktion
+                      |
+                      v
+                   Reward
+                      |
+                      v
+          +-----------------------+
+          | Gateway Attribution   |
+          +-----------+-----------+
+                      |
+                      v
+
+          Delta w(r,e) =
+              eta_g
+            * Reward
+            * request_attribution
+            * gateway_eligibility
+            * captured_edge_tag
+
+                      |
+                      v
+            NUR GETAGGTE SYNAPSEN
+              werden verändert
+
+
+ Nicht:
+
+          Reward
+            |
+            v
+     ALLE SYNAPSEN IM NETZ
+
+
+================================================================================
+                           AUSFÜHRUNGSORTE
+================================================================================
+
+ GPU / CUDA
+ ----------
+ - Neuronen
+ - Synapsen
+ - Membranmodelle
+ - Spike propagation
+ - Delay ring
+ - STDP
+ - lokale Eligibility
+ - Tissue-State
+ - Request-Populationen
+ - Response-Populationen
+ - Action Selection
+ - neuronales Memory
+ - Gateway-State-Repräsentation
+
+
+ CPU / MHRN Runtime
+ ------------------
+ - Gateway Runtime
+ - Request Manager
+ - Pending Requests
+ - Context Snapshot
+ - BoundaryFrame / RequestFrame / ResponseFrame
+ - Gateway Eligibility Records
+ - Gateway Memory
+ - Record / Replay
+ - Provenienz
+ - Checkpoints
+ - Structural Barriers
+ - Codec-Referenz
+
+
+ EXTERN / OPTIONAL
+ -----------------
+ - LLM
+ - Vision Transformer
+ - Speech Model
+ - Datenbank
+ - Logic Engine
+ - weitere neuronale Netze
+ - Remote Services
+
+
+ SSD
+ ---
+ - Snapshots
+ - Checkpoints
+ - Gateway Journal
+ - Replay-Daten
+ - Experiment DATA
+ - EVID / Reports
+ - große persistente Zustände
+
+
+================================================================================
+                           NEURON ROLE SCHEMA
+================================================================================
+
+                           Neuron
+                              |
+          +-------------------+-------------------+
+          |                   |                   |
+        MODEL               TYPE                ROLE
+          |                   |                   |
+    Izhikevich           sensory           ASSOCIATIVE
+    LIF                  motor             AFFERENT
+    HH future            RS                EFFERENT
+    ...                  FS                GATEWAY_AFFERENT
+                         ...               GATEWAY_EFFERENT
+
+
+ Beispiel:
+
+ logical_neuron_id = 4711
+
+ Model:
+     Izhikevich
+
+ Type:
+     sensory
+
+ Role:
+     GATEWAY_AFFERENT
+
+ Population:
+     RESPONSE_LANGUAGE
+
+ physical_location:
+     GPU 0 / slot 58213
+
+
+================================================================================
+                    GESAMTER GESCHLOSSENER KREIS
+================================================================================
+
+     Umwelt
+       |
+       v
+   Sensoren
+       |
+       v
+     SNN
+       |
+       | "Brauche ich externes Wissen?"
+       |
+       +---------------- NO ----------------+
+       |                                    |
+      YES                                   |
+       |                                    |
+       v                                    |
+ Request Population                         |
+       |                                    |
+       v                                    |
+ RequestFrame                               |
+       |                                    |
+       v                                    |
+     LLM                                    |
+       |                                    |
+       v                                    |
+ ResponseFrame                              |
+       |                                    |
+       v                                    |
+ Response Neurons                           |
+       |                                    |
+       v                                    |
+ Associatives SNN <-------------------------+
+       |
+       v
+   Action Gate
+       |
+       v
+     Aktion
+       |
+       v
+    Ergebnis
+       |
+       v
+ Reward / Cost / Trust
+       |
+       v
+ Gateway Learning
+       |
+       v
+ zukünftige Gateway-
+ Entscheidungen ändern sich
