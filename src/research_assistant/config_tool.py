@@ -144,10 +144,27 @@ def apply_config_change(
     old_value = current.get(parts[-1], "<not set>")
     current[parts[-1]] = value
 
-    # Write back
+    # Write back — preserve flow style for lists
     try:
+        class _FlowListDumper(yaml.SafeDumper):
+            """Dumper that preserves flow style for list values."""
+            pass
+
+        _FlowListDumper.add_representer(
+            list,
+            lambda dumper, data: dumper.represent_sequence(
+                "tag:yaml.org,2002:seq", data, flow_style=True
+            ),
+        )
+
         with open(config_path, "w", encoding="utf-8") as f:
-            yaml.dump(config, f, default_flow_style=False, allow_unicode=True, sort_keys=False)
+            yaml.dump(
+                config, f,
+                Dumper=_FlowListDumper,
+                default_flow_style=False,
+                allow_unicode=True,
+                sort_keys=False,
+            )
     except (OSError, yaml.YAMLError) as exc:
         return False, f"Failed to write config: {exc}"
 
