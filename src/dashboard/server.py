@@ -3199,7 +3199,7 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
         for line in answer.splitlines():
             line = line.strip()
             # Match [CONFIG_READ] key.name
-            if line.startswith("[CONFIG_READ]") or line.startswith("[CONFIG_READ]"):
+            if line.startswith("[CONFIG_READ]"):
                 key = line.split("]", 1)[1].strip() if "]" in line else line[13:].strip()
                 if key:
                     found, value = get_config_value(config_path, key)
@@ -3210,7 +3210,7 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
                         "value": value if found else None,
                     })
             # Match [CONFIG_WRITE] key.name = value
-            elif line.startswith("[CONFIG_WRITE]") or line.startswith("[CONFIG_WRITE]"):
+            elif line.startswith("[CONFIG_WRITE]"):
                 rest = line.split("]", 1)[1].strip() if "]" in line else line[14:].strip()
                 if "=" in rest:
                     key = rest.split("=", 1)[0].strip()
