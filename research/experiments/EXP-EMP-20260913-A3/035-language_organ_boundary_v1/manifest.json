@@ -1,0 +1,76 @@
+{
+  "experiment_id": "EXP-EMP-20260913-A3-035",
+  "experiment_status": "completed",
+  "ai_exposure": "none",
+  "ai_reproducibility": "R0",
+  "ai_protocol": {
+    "version": 1,
+    "bump_reason": "initial registration"
+  },
+  "causal_taint": "PURE",
+  "ai_interactions": [],
+  "causal_card": {
+    "classification": "PURE",
+    "interaction_ids": [],
+    "roles": []
+  },
+  "timestamp": "2026-09-13T21:34:23.682550",
+  "created_at": "2026-09-13T21:34:23.682557+00:00",
+  "git": {
+    "commit": "531f12335ebeebd7242beb4ba0bd95e81b3dfb8e",
+    "dirty": false,
+    "branch": "work/scientific-main-audit-20260913"
+  },
+  "software": {
+    "python": "3.13.15",
+    "os": "Linux 6.17.0-1022-azure",
+    "brain5d_version": "0.6.0a3"
+  },
+  "simulation": {
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "ticks": null
+  },
+  "artifacts": {
+    "raw_runs": "runs.json.gz"
+  },
+  "research_questions": [
+    "RQ-LLM-001"
+  ],
+  "hypotheses": [
+    "H-LLM-001-A"
+  ],
+  "config": {
+    "path": "configs/learning_experiment.yaml",
+    "sha256": "6f6cd457caf6216c286fee47ef03b529a0b496ed2dd53ee96b85d3b51e7b3a1c"
+  },
+  "validity": {
+    "valid": true,
+    "reason": null,
+    "runtime_error_count": 0,
+    "fatal_error_count": 0
+  },
+  "runtime_errors": [],
+  "research_run_mode": "EXPLORATORY",
+  "data_partitions": [],
+  "network_mode": "OFFLINE",
+  "provenance_digests": {
+    "code": "1e383330cb8b50a1821dd61d000dc3747dd5f58ee4c0bbc00c6d11ed5e149eb0",
+    "config": "6f6cd457caf6216c286fee47ef03b529a0b496ed2dd53ee96b85d3b51e7b3a1c",
+    "prompt": "9aade1ef66a6c8b5bd1ceb86129cbd635d801b4040f0db9b985f64f35ee3b98e",
+    "data": "8b086cfa42fafd54d5c2638f9dfd499937c38d30ae1f36e520b427018a26f9fa"
+  },
+  "source_freeze_sha": "3f8429c9a41259b97d911dbe5bd65501f6bc7e255b39716cd1952cc03419c464",
+  "results": {
+    "protocol": "language_organ_boundary_v1",
+    "run_count": 3,
+    "execution_status": "completed",
+    "ai_assisted_design": true,
+    "runtime_ai_calls": 0,
+    "pre_execution_source_digest": "1e383330cb8b50a1821dd61d000dc3747dd5f58ee4c0bbc00c6d11ed5e149eb0",
+    "accepted_evidence": false
+  }
+}

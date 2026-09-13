@@ -2,8 +2,8 @@
   "status": "clean",
   "audit": {
     "clean": false,
-    "question_reference_count": 2895,
-    "hypothesis_reference_count": 2295,
+    "question_reference_count": 3029,
+    "hypothesis_reference_count": 2299,
     "missing_questions": [
       "RQ-AI-DESIGN-001",
       "RQ-AI-EFF-001",
@@ -15,6 +15,7 @@
       "RQ-DUP-001",
       "RQ-EPI-1",
       "RQ-EXTRA-E01",
+      "RQ-GW-CODEC-001",
       "RQ-LAT-001",
       "RQ-LEARN-INTERF-001",
       "RQ-MISSING-001",
@@ -42,6 +43,7 @@
       "H-GW-04",
       "H-GW-05",
       "H-GW-06",
+      "H-GW-LLM-01",
       "H-MISSING-001",
       "H-MSBA-E",
       "H-SYN-01",
@@ -450,6 +452,24 @@
         "research/publications/2026-09-10_recursive-epistemics_v1.4/MANUSCRIPT.md",
         "research/publications/2026-09-10_recursive-epistemics_v1.4/section-035.md",
         "research/publications/reader/section-035.md",
+        "research/registry/catalog_audit_allow_list.yaml"
+      ]
+    }
+  },
+  "architecture_proposals": {
+    "H-GW-LLM-01": {
+      "reason": "Gateway language-organ design hypothesis; not preregistered, executed or evidence.",
+      "status": "PROPOSED_NOT_REGISTERED",
+      "references": [
+        "docs/02-architecture/MHRN_GATAWAY.md",
+        "research/registry/catalog_audit_allow_list.yaml"
+      ]
+    },
+    "RQ-GW-CODEC-001": {
+      "reason": "Neural codec interface design question; implementation/validation remain pending.",
+      "status": "PROPOSED_NOT_REGISTERED",
+      "references": [
+        "docs/02-architecture/MHRN_GATAWAY_NEURAL_INTERFACE.md",
         "research/registry/catalog_audit_allow_list.yaml"
       ]
     }
