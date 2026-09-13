@@ -1,15 +1,10 @@
 name: Scientific Main Audit
 
 on:
-  push:
-    branches: [work/scientific-main-audit-20260913]
-    paths:
-      - .github/workflows/scientific-main-audit.yml
-      - scripts/scientific_main_audit.py
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
   group: scientific-main-audit-${{ github.ref }}
@@ -23,41 +18,27 @@ jobs:
       - uses: actions/checkout@v7
         with:
           fetch-depth: 0
+          persist-credentials: false
       - uses: actions/setup-python@v7
         with:
           python-version: '3.13'
           cache: pip
           cache-dependency-path: pyproject.toml
-      - name: Apply explicitly hash-guarded corrections
-        run: python .maintenance/apply_scientific_audit.py
-      - name: Install research and verification dependencies
+      - name: Install frozen research tools
+        run: python -m pip install -e '.[dev,docs,empirical]'
+      - name: Execute unique source-bound campaign without rewriting repository DATA
+        env:
+          AUDIT_ID: EXP-AUDIT-${{ github.run_id }}-${{ github.run_attempt }}
         run: |
-          python -m pip install --upgrade pip setuptools wheel
-          python -m pip install -e '.[dev,docs,empirical]'
-      - name: Archive exact source and Git provenance
-        run: |
-          mkdir -p /tmp/mhrn-source
-          git rev-parse HEAD > /tmp/mhrn-source/source-sha.txt
-          git bundle create /tmp/mhrn-source/source.bundle --all
-          git status --porcelain=v1
-      - name: Upload source snapshot
-        uses: actions/upload-artifact@v7
-        with:
-          name: scientific-audit-source-${{ github.sha }}
-          path: /tmp/mhrn-source/
-          retention-days: 14
-      - name: Execute audit when present
-        run: |
-          if [ -f scripts/scientific_main_audit.py ]; then
-            python scripts/scientific_main_audit.py --output /tmp/scientific-audit
-          else
-            echo 'Source repair bootstrap only; no experiment or verification claimed.'
-          fi
-      - name: Upload audit artifacts
+          python scripts/empirical_campaign.py --output /tmp/scientific-audit --campaign-id "$AUDIT_ID"
+          python scripts/run_stage3_reference.py --output /tmp/stage3-audit.json
+      - name: Upload observed DATA and scientific limitations
         if: always()
         uses: actions/upload-artifact@v7
         with:
-          name: scientific-main-audit-${{ github.sha }}
-          path: /tmp/scientific-audit/
+          name: scientific-main-audit-${{ github.sha }}-${{ github.run_attempt }}
+          path: |
+            /tmp/scientific-audit/
+            /tmp/stage3-audit.json
           if-no-files-found: warn
           retention-days: 30
