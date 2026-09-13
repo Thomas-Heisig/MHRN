@@ -145,6 +145,10 @@ body .embedding-analysis-form button { padding:0 10px !important; border:1px sol
 .chat-waiting-dots::after { content:''; display:inline-block; animation:waiting-dots 1.4s steps(4,end) infinite; }
 @keyframes waiting-dots { 0% { content:''; } 25% { content:'.'; } 50% { content:'..'; } 75% { content:'...'; } 100% { content:''; } }
 .chat-message.error .chat-output { border-color:var(--crimson); background:var(--crimson-wash); color:var(--crimson); }
+.chat-message.config-result { max-width:min(88%,820px); margin:0 0 16px; }
+.chat-config-success { padding:8px 12px; border:1px solid var(--moss); border-radius:var(--r-sm); background:color-mix(in srgb,var(--moss) 12%,transparent); color:var(--ink); font:.78rem/1.4 var(--font-ui); margin-bottom:4px; }
+.chat-config-error { padding:8px 12px; border:1px solid var(--crimson); border-radius:var(--r-sm); background:var(--crimson-wash); color:var(--crimson); font:.78rem/1.4 var(--font-ui); margin-bottom:4px; }
+.chat-config-info { padding:8px 12px; border:1px solid var(--rule-2); border-radius:var(--r-sm); background:var(--paper-3); color:var(--ink); font:.78rem/1.4 var(--font-ui); margin-bottom:4px; }
 .chat-trace { display:block; margin-top:8px; padding-top:7px; border-top:1px dashed var(--rule-2); color:var(--ink-4); font:500 .57rem/1.45 var(--font-mono); }
 
 /* ── Chat-Input ── großzügiges Textfeld ── */
