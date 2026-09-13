@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import hashlib
 import json
-from collections.abc import Callable, Sequence
+from collections.abc import Sequence
 from dataclasses import dataclass
 from typing import Any, Protocol, cast
 
@@ -36,7 +36,10 @@ class _DocsSource(Protocol):
     def read_content(self, path: str) -> str: ...
 
 
-ChatBackend = Callable[[str], tuple[str, dict[str, Any]]]
+class ChatBackend(Protocol):
+    """Callable read-only research-chat backend contract."""
+
+    def __call__(self, prompt: str) -> tuple[str, dict[str, Any]]: ...
 
 
 @dataclass(frozen=True, slots=True)
@@ -214,7 +217,7 @@ class ResearchChat:
         )
 
 
-def chat_backend_from_text_backend(backend: Callable[[str], Any]) -> ChatBackend:
+def chat_backend_from_text_backend(backend: Any) -> ChatBackend:
     """Adapt a shared provider backend returning text or ``(text, metadata)``."""
 
     def call(prompt: str) -> tuple[str, dict[str, Any]]:
