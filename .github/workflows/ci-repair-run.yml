@@ -34,11 +34,8 @@ jobs:
           from pathlib import Path
           path = Path('src/homeostasis/hot_path.py')
           text = path.read_text(encoding='utf-8')
-          marker = 'from .engine import HomeostasisEngine, HomeostasisStats\n\n\nclass HotPathHomeostasisEngine'
-          replacement = '''from .engine import HomeostasisEngine, HomeostasisStats\n\n\ndef _hot_clamp(value: float, lower: float, upper: float) -> float:\n    return max(lower, min(upper, value))\n\n\nclass HotPathHomeostasisEngine'''
-          if marker not in text:
-              raise SystemExit('hot_path repaired import marker not found')
-          path.write_text(text.replace(marker, replacement, 1), encoding='utf-8')
+          text = text.replace('def _hot_hot_clamp(', 'def _hot_clamp(')
+          path.write_text(text, encoding='utf-8')
           PY
       - name: Update browser smoke path
         run: |
