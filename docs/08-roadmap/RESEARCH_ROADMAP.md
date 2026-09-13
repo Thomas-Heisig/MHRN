@@ -1,8 +1,8 @@
 # MHRN Research Roadmap
 
 **Canonical research roadmap**
-**Updated:** 2026-09-04
-**Engineering baseline:** `mhrn-core 0.6.0a1`
+**Updated:** 2026-09-13
+**Engineering baseline:** `mhrn-core 0.6.0a2`
 
 ## Research objective
 
@@ -31,6 +31,9 @@ Engineering now supports:
 - experiment registries, manifests, DATA/EVID separation and evidence gates;
 - AI governance, frozen replay/sham backends and provenance-bound analysis;
 - a dashboard that exposes research state without treating presentation as evidence.
+- bounded working/episodic memory and observation-only one-step transition prediction with registered exploratory component controls;
+- versioned technical Wesen identity, operational Behavior Profile state and an experiment-only governed Neural Symbiosis Gateway lifecycle;
+- theory, literature, experiment-planning and frontend-placeholder foundations for Stages 8-10 that remain explicitly `planned` and do not raise capability maturity.
 
 This readiness makes the next phase an **evidence program**, not primarily another architecture expansion.
 

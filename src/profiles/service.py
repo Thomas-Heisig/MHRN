@@ -18,6 +18,8 @@ from datetime import datetime, timezone
 from pathlib import Path, PurePosixPath
 from typing import Any, cast
 
+from src.version import MHRN_VERSION
+
 PROFILE_SCHEMA_VERSION = 1
 MAX_PROFILE_BYTES = 256 * 1024
 MAX_IMPORT_BYTES = 8 * 1024 * 1024
@@ -108,7 +110,7 @@ def _default_profile(profile_id: str, name: str) -> dict[str, Any]:
         "runtime": {
             "mode": "operator",
             "target_hz": None,
-            "runtime_version": "0.6.0a2",
+            "runtime_version": MHRN_VERSION,
             "implementation_status": "implemented",
         },
         "neural_core": {
@@ -218,7 +220,7 @@ def _default_profile(profile_id: str, name: str) -> dict[str, Any]:
         },
         "provenance": {
             "source": "profile_service",
-            "runtime_version": "0.6.0a2",
+            "runtime_version": MHRN_VERSION,
             "profile_digest": None,
             "latest_snapshot": None,
             "history": [],
@@ -236,7 +238,7 @@ def _default_profile(profile_id: str, name: str) -> dict[str, Any]:
 
 
 def validate_profile(
-    value: object, *, runtime_version: str = "0.6.0a1"
+    value: object, *, runtime_version: str = MHRN_VERSION
 ) -> dict[str, Any]:
     profile = _mapping(value, "profile")
     required = {
@@ -348,7 +350,7 @@ class ProfileService:
     """Manage bounded profile metadata under one controlled root."""
 
     def __init__(
-        self, root: Path = Path("profiles"), *, runtime_version: str = "0.6.0a1"
+        self, root: Path = Path("profiles"), *, runtime_version: str = MHRN_VERSION
     ) -> None:
         self.root = root.resolve()
         self.runtime_version = runtime_version

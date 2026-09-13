@@ -30,7 +30,14 @@ def test_current_release_matches_canonical_development_version() -> None:
     assert current["as_of"] == "2026-09-13"
     assert current["milestone_status"] == "stage3_engineering_reached"
     assert current["release_blockers"] == 0
-    assert current["open"]
+    assert len(current["open"]) == 4
+    assert len(current["scope"]) == 9
+    assert any("stages 8-10" in item for item in current["scope"])
+    assert any("File Viewer drill-down" in item for item in current["open"])
+    assert not any(
+        "add registered delayed-information control runs" in item
+        for item in current["open"]
+    )
     assert "scientific evidence" in current["research_boundary"]
 
 
