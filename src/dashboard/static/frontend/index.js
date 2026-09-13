@@ -25,6 +25,7 @@ import { initResearchSubtabs } from "./modules/research-subtabs.js";
 import { initNeuronModelScience } from "./modules/neuron-model-science.js";
 import { initRuntimeNeuron } from "./modules/runtime-neuron.js";
 import { initSmallSNNStage } from "./modules/small-snn-stage.js";
+import { initRecurrentSNNStage } from "./modules/recurrent-snn-stage.js";
 import { initWorkspaceRouter } from "./workspace-router.js";
 
 installPollingGovernor();
@@ -55,6 +56,7 @@ function init() {
   initNeuronModelScience();
   initRuntimeNeuron();
   initSmallSNNStage();
+  initRecurrentSNNStage();
 }
 
 if (document.readyState === "loading") {
