@@ -41,6 +41,17 @@
 | others (2026) |  | RQ-CONN-001, RQ-CONN-002 | open |
 | team (2026) |  | RQ-EMB-001, RQ-EMB-002, RQ-EMB-003, RQ-EMB-004, RQ-MSBA-E05, RQ-REG-002, RQ-EMB-007, RQ-EMB-008, RQ-CONN-001, RQ-CONN-002, RQ-EMB-009, RQ-TIME-002 | open |
 | FlyEM (2026) |  |  |  |
+| Parisi (2019) |  | RQ-LIFE-001, RQ-GEN-001 | open |
+| Kirkpatrick (2017) |  | RQ-LIFE-001 | open |
+| Zenke (2017) |  | RQ-LIFE-001 | open |
+| Najarro (2020) |  | RQ-GEN-001, RQ-LIFE-001 | open |
+| Dong (2026) |  | RQ-LIFE-001, RQ-HOM-002 | open |
+| Nagabhushana (2026) |  | RQ-LIFE-001 | open |
+| McClelland (1995) |  | RQ-LIFE-001, RQ-MEM-002 | open |
+| Golilarz (2026) |  | RQ-CNS-103, RQ-CNS-105, RQ-CNS-111, RQ-CNS-112, RQ-CNS-116 | open |
+| Simões (2017) |  | RQ-CNS-103, RQ-CNS-105, RQ-CNS-111 | open |
+| Vladu (2026) |  | RQ-CNS-112, RQ-CNS-114 | open |
+| Vetcha (2026) |  | RQ-LIFE-001, RQ-GEN-001 | open |
 
 ---
-*Automatisch generiert am 2026-09-11*
+*Automatisch generiert am 2026-09-13*

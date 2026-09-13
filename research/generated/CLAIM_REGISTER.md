@@ -1,6 +1,6 @@
 # MHRN Claim Register
 
-*Generiert am 2026-09-11*
+*Generiert am 2026-09-13*
 
 | Claim | Status | Konfidenz | Evidenzen | Experimente |
 |-------|--------|-----------|-----------|-------------|

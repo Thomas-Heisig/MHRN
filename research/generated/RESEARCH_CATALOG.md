@@ -1,13 +1,13 @@
 # MHRN Research Catalog
 
-*Generiert am 2026-09-11*
+*Generiert am 2026-09-13*
 
 ## Übersicht
 
 - **Forschungsfragen:** 94
 - **Hypothesen:** 97
 - **Claims:** 8
-- **Literaturquellen:** 39
+- **Literaturquellen:** 50
 
 ---
 
