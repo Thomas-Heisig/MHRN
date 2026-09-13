@@ -141,3 +141,10 @@ def test_recurrent_reference_artifact_matches_contract() -> None:
     assert payload["expected"]["events_processed"] == LONG_RUN_TICKS - 1
     assert payload["expected"]["max_queue_depth"] == 1
     assert all(payload["proofs"].values())
+
+    related = payload["related_research"]
+    assert related["research_question"] == "RQ-SNN-001"
+    assert related["existing_experiment"] == "EXP-BATCH-20260908200906-01"
+    assert related["existing_experiment_ticks_per_run"] == 100_000
+    assert "DATA" in related["note"]
+    assert "not automatically promoted to scientific EVID" in related["note"]
