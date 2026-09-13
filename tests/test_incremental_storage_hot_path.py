@@ -14,9 +14,7 @@ from src.storage.runtime import StorageRuntimeConfig
 def test_dirty_synapse_collection_avoids_full_synapse_traversal(
     tmp_path: Path,
 ) -> None:
-    network = NeuralNetwork(
-        Brain5DConfig(dimensions=(3, 3, 3, 3, 3)), random.Random(3)
-    )
+    network = NeuralNetwork(Brain5DConfig(dimensions=(3, 3, 3, 3, 3)), random.Random(3))
     source = network.add_neuron((1, 1, 1, 1, 1))
     target = network.add_neuron((1, 1, 1, 1, 2))
     network.connect(source, target, weight=0.2, delay=1)
@@ -44,9 +42,7 @@ def test_dirty_synapse_collection_avoids_full_synapse_traversal(
 
 
 def test_neuron_state_interval_is_explicit(tmp_path: Path) -> None:
-    network = NeuralNetwork(
-        Brain5DConfig(dimensions=(3, 3, 3, 3, 3)), random.Random(4)
-    )
+    network = NeuralNetwork(Brain5DConfig(dimensions=(3, 3, 3, 3, 3)), random.Random(4))
     neuron_id = network.add_neuron((1, 1, 1, 1, 1))
     collector = IncrementalStorageSession(
         network,
