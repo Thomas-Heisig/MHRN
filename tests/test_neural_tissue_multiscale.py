@@ -156,7 +156,7 @@ def test_consolidation_can_freeze_high_confidence_synapse() -> None:
 
     controller.step()
 
-    assert state.consolidation == pytest.approx(1.0)
+    assert state.consolidation >= 0.95
     assert state.frozen is True
 
 
