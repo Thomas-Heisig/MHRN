@@ -73,12 +73,14 @@ def _parse_document(path: Path, source: str) -> list[TimelineEntry]:
             }
         elif current is not None and (bullet := _BULLET_RE.match(line.strip())):
             checked = bullet.group("checked")
-            current_items.append(
-                {
-                    "text": bullet.group("text").strip(),
-                    "done": None if checked is None else checked.lower() == "x",
-                }
-            )
+            text = bullet.group("text").strip()
+            if checked is not None:
+                done = checked.lower() == "x"
+            elif source in ("ROADMAP", "CHANGELOG"):
+                done = True  # narrative past-tense bullet = completed work
+            else:
+                done = None
+            current_items.append({"text": text, "done": done})
     if current is not None:
         entries.append(current)
     return entries
