@@ -211,7 +211,7 @@ function renderInteractionTrace(metadata) {
       ]);
       if (!settingsResp.ok) throw new Error(`Settings HTTP ${settingsResp.status}`);
       const payload = await settingsResp.json();
-      const providers = providersResp.ok ? await providersResp.json() : { models: [] };
+      const providers = providersResp.ok ? await providersResp.json() : { providers: [], models: [] };
       document.getElementById('chat-setting-provider').value = payload.provider || '';
       const modelSelect = document.getElementById('chat-setting-model');
       const currentModel = modelSelect.dataset.persistedModel || payload.model || '';
@@ -229,12 +229,24 @@ function renderInteractionTrace(metadata) {
       document.getElementById('chat-setting-handoff').value = payload.handoff_prompt || '';
       document.getElementById('chat-setting-vision').checked = payload.vision_enabled === true;
       document.getElementById('chat-setting-tools').checked = payload.tools_enabled === true;
+      // Provider-abhängige Felder aktivieren/deaktivieren
+      const isFallback = payload.provider === 'local-fallback';
+      modelSelect.disabled = isFallback;
+      document.getElementById('chat-setting-endpoint').disabled = isFallback;
+      document.getElementById('chat-setting-temperature').disabled = isFallback;
+      document.getElementById('chat-setting-top-p').disabled = isFallback;
+      document.getElementById('chat-setting-vision').disabled = isFallback;
+      document.getElementById('chat-setting-tools').disabled = isFallback;
+      // Health-Check
       health.className = 'provider-health pending';
       health.lastChild.textContent = ' checking…';
       const healthResponse = await fetch('/api/research/chat/health');
       const healthPayload = healthResponse.ok ? await healthResponse.json() : { ok: false };
+      const isFallbackActive = healthPayload.fallback === true;
       health.className = `provider-health ${healthPayload.ok ? 'online' : 'offline'}`;
-      health.lastChild.textContent = healthPayload.ok ? ' ✓ online' : ' ✗ offline';
+      health.lastChild.textContent = isFallbackActive
+        ? ' ⚠ Fallback aktiv'
+        : (healthPayload.ok ? ' ✓ online' : ' ✗ offline');
     } catch (_) {
       document.getElementById('chat-setting-provider').value = 'unavailable';
       health.className = 'provider-health offline';
@@ -263,15 +275,23 @@ function renderInteractionTrace(metadata) {
   });
   settingsSave.addEventListener('click', async () => {
     const value = (id) => document.getElementById(id).value;
+    const provider = value('chat-setting-provider');
     settingsSave.disabled = true;
     settingsSave.textContent = 'Speichern …';
     try {
-      const response = await fetch('/api/research/chat/settings', { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({
-        model: value('chat-setting-model'), endpoint: value('chat-setting-endpoint'), temperature: Number(value('chat-setting-temperature')),
-        top_p: Number(value('chat-setting-top-p')), max_tokens: Number(value('chat-setting-max-tokens')), max_context_chars: Number(value('chat-setting-context')),
+      const body = {
+        provider: provider,
+        model: value('chat-setting-model'), endpoint: value('chat-setting-endpoint'),
+        temperature: Number(value('chat-setting-temperature')),
+        top_p: Number(value('chat-setting-top-p')), max_tokens: Number(value('chat-setting-max-tokens')),
+        max_context_chars: Number(value('chat-setting-context')),
         system_prompt: value('chat-setting-prompt'), handoff_prompt: value('chat-setting-handoff'),
-        vision_enabled: document.getElementById('chat-setting-vision').checked, tools_enabled: document.getElementById('chat-setting-tools').checked
-      })});
+        vision_enabled: document.getElementById('chat-setting-vision').checked,
+        tools_enabled: document.getElementById('chat-setting-tools').checked
+      };
+      const response = await fetch('/api/research/chat/settings', {
+        method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(body)
+      });
       if (!response.ok) {
         const err = await response.json().catch(() => ({}));
         window.alert(err.error || 'Settings konnten nicht gespeichert werden.');
@@ -285,7 +305,7 @@ function renderInteractionTrace(metadata) {
     } finally {
       settingsSave.disabled = false;
       settingsSave.textContent = '✓ Gespeichert';
-      setTimeout(() => { settingsSave.textContent = 'Settings speichern'; }, 2000);
+      setTimeout(() => { settingsSave.textContent = '💾 Settings speichern'; }, 2000);
     }
   });
   webSearch.addEventListener('change', () => {

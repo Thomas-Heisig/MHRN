@@ -48,6 +48,16 @@ tmp/trace_diag/
 research/experiments/EXP-GEN-0019/DATA/runs.json
 research/experiments/*/DATA/runs.json
 
+# Large model files (GGUF, ONNX, etc.) — must not be committed
+*.gguf
+*.ggml
+*.bin
+*.onnx
+*.pt
+*.pth
+*.safetensors
+model_cache/
+
 # OS noise
 .DS_Store
 Thumbs.db

@@ -71,6 +71,10 @@ from .observation_stream import (
     ObservationStreamError,
     ObservationStreamRecord,
 )
+from .local_fallback_backend import (
+    LocalFallbackBackend,
+    create_local_fallback_backend,
+)
 from .replay_backend import FrozenAIReplayBackend, FrozenAIReplayError
 from .shadow import (
     ShadowMode,

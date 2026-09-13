@@ -79,6 +79,10 @@ from src.research_assistant import (
     write_artifact_review,
     write_human_review,
 )
+from src.research_assistant.local_fallback_backend import (
+    LocalFallbackBackend,
+    create_local_fallback_backend,
+)
 from src.research_assistant.ollama_backend import OllamaBackend
 
 from .control_http import handle_control_get, handle_control_post
@@ -226,6 +230,7 @@ class DashboardServer(ThreadingHTTPServer):
         self.research_chat_oauth_state: str | None = None
         self.research_chat_oauth_token: str | None = None
         self.research_chat_ollama_backend: OllamaBackend | None = None
+        self.research_chat_fallback_backend: LocalFallbackBackend | None = None
         self.research_chat_settings: dict[str, JSONValue] = {
             "provider": "unconfigured",
             "model": None,
@@ -3207,21 +3212,62 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
                     ),
                 )
             )
-        answer, metadata = ResearchChat(
-            cast(Any, source),
-            cast(Any, docs),
-            request_backend,
-            max_context_chars=context_chars,
-            system_context=system_context,
-            system_prompt=self.dashboard_server.research_chat_system_prompt,
-            conversation_context=conversation_context,
-            handoff_prompt=self.dashboard_server.research_chat_handoff_prompt,
-            response_mode=response_mode,
-            web_context=web_context,
-        ).answer(message)
-        self._send_json(
-            {"answer": answer, "metadata": cast(JSONValue, metadata), "grounded": True}
-        )
+        try:
+            answer, metadata = ResearchChat(
+                cast(Any, source),
+                cast(Any, docs),
+                request_backend,
+                max_context_chars=context_chars,
+                system_context=system_context,
+                system_prompt=self.dashboard_server.research_chat_system_prompt,
+                conversation_context=conversation_context,
+                handoff_prompt=self.dashboard_server.research_chat_handoff_prompt,
+                response_mode=response_mode,
+                web_context=web_context,
+            ).answer(message)
+            self._send_json(
+                {
+                    "answer": answer,
+                    "metadata": cast(JSONValue, metadata),
+                    "grounded": True,
+                }
+            )
+        except (OSError, TimeoutError) as exc:
+            # Automatisches Fallback bei Provider-Fehler
+            fallback = self.dashboard_server.research_chat_fallback_backend
+            if fallback is not None and self.dashboard_server.research_chat_settings.get(
+                "provider"
+            ) != "local-fallback":
+                print(
+                    f"⚠️ Chat provider failed ({exc}), "
+                    f"falling back to local-fallback for this request"
+                )
+                fallback_backend = chat_backend_from_text_backend(
+                    fallback.generate_text
+                )
+                answer, metadata = ResearchChat(
+                    cast(Any, source),
+                    cast(Any, docs),
+                    fallback_backend,
+                    max_context_chars=context_chars,
+                    system_context=system_context,
+                    system_prompt=self.dashboard_server.research_chat_system_prompt,
+                    conversation_context=conversation_context,
+                    handoff_prompt=self.dashboard_server.research_chat_handoff_prompt,
+                    response_mode=response_mode,
+                    web_context="",
+                ).answer(message)
+                self._send_json(
+                    {
+                        "answer": answer,
+                        "metadata": cast(JSONValue, metadata),
+                        "grounded": True,
+                        "fallback": True,
+                        "fallback_reason": str(exc),
+                    }
+                )
+            else:
+                raise
 
     def _run_learning_workflow(self, body: dict[str, object]) -> None:
         """Run only the fixed, explicitly operator-triggered learning workflow."""
@@ -3358,6 +3404,34 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
                     "handoff_prompt must be text up to 8000 characters."
                 )
             server.research_chat_handoff_prompt = prompt.strip()
+        # ── Provider-Wechsel ──
+        if "provider" in body:
+            provider = body["provider"]
+            if not isinstance(provider, str) or provider not in {
+                "ollama",
+                "local-fallback",
+            }:
+                raise InvalidRequestError(
+                    "provider must be 'ollama' or 'local-fallback'."
+                )
+            if provider == "local-fallback" and server.research_chat_fallback_backend:
+                server.research_chat_backend = chat_backend_from_text_backend(
+                    server.research_chat_fallback_backend.generate_text
+                )
+                server.research_chat_settings["provider"] = "local-fallback"
+                server.research_chat_settings["model"] = "local-fallback"
+                server.research_chat_settings["vision_enabled"] = False
+                server.research_chat_settings["tools_enabled"] = False
+                print("🔄 Chat provider switched to: local-fallback")
+            elif provider == "ollama" and server.research_chat_ollama_backend:
+                server.research_chat_backend = chat_backend_from_text_backend(
+                    server.research_chat_ollama_backend.generate_text
+                )
+                server.research_chat_settings["provider"] = "ollama"
+                server.research_chat_settings["model"] = (
+                    server.research_chat_ollama_backend.model
+                )
+                print("🔄 Chat provider switched to: ollama")
         for key in ("vision_enabled", "tools_enabled"):
             if key in body:
                 value = body[key]
@@ -3475,34 +3549,49 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
         )
 
     def _research_chat_health(self) -> None:
-        """Probe the configured Ollama provider without generating tokens."""
-        backend = self.dashboard_server.research_chat_ollama_backend
-        if backend is None:
+        """Probe the configured provider. Falls back to local-fallback if Ollama is down."""
+        ollama = self.dashboard_server.research_chat_ollama_backend
+        fallback = self.dashboard_server.research_chat_fallback_backend
+        # Prüfe Ollama zuerst
+        if ollama is not None:
+            tags_endpoint = ollama.endpoint.rsplit("/api/", 1)[0] + "/api/tags"
+            try:
+                with urlopen(
+                    tags_endpoint, timeout=3
+                ) as response:  # nosec B310: configured local provider endpoint
+                    ok = 200 <= response.status < 300
+                if ok:
+                    self._send_json(
+                        {"ok": True, "provider": ollama.name}
+                    )
+                    return
+            except OSError:
+                pass
+        # Fallback: LocalFallback ist immer verfügbar
+        if fallback is not None:
             self._send_json(
                 {
-                    "ok": False,
-                    "provider": "unconfigured",
-                    "error": "No provider configured.",
-                },
-                HTTPStatus.SERVICE_UNAVAILABLE,
+                    "ok": True,
+                    "provider": fallback.name,
+                    "fallback": True,
+                    "message": "Ollama nicht erreichbar — lokales Fallback-Modell aktiv.",
+                }
             )
             return
-        tags_endpoint = backend.endpoint.rsplit("/api/", 1)[0] + "/api/tags"
-        try:
-            with urlopen(
-                tags_endpoint, timeout=3
-            ) as response:  # nosec B310: configured local provider endpoint
-                ok = 200 <= response.status < 300
-            self._send_json({"ok": ok, "provider": backend.name})
-        except OSError as exc:
-            self._send_json(
-                {"ok": False, "provider": backend.name, "error": str(exc)},
-                HTTPStatus.SERVICE_UNAVAILABLE,
+        # Kein Provider
+        self._send_json(
+            {
+                "ok": False,
+                "provider": "unconfigured",
+                "error": "No provider configured.",
+            },
+            HTTPStatus.SERVICE_UNAVAILABLE,
             )
 
     def _research_chat_providers(self) -> None:
         """Return configured provider choices and locally available Ollama models."""
         backend = self.dashboard_server.research_chat_ollama_backend
+        fallback = self.dashboard_server.research_chat_fallback_backend
         models: list[str] = []
         if backend is not None:
             tags_endpoint = backend.endpoint.rsplit("/api/", 1)[0] + "/api/tags"
@@ -3533,6 +3622,13 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
                             "label": "Ollama",
                             "available": backend is not None,
                             "capabilities": ["chat", "vision", "tools"],
+                        },
+                        {
+                            "id": "local-fallback",
+                            "label": "Lokales Fallback",
+                            "available": fallback is not None,
+                            "capabilities": ["chat"],
+                            "reason": "Eingebautes Mini-Modell, kein Netzwerk nötig.",
                         },
                         {
                             "id": "microsoft-copilot",
@@ -5016,7 +5112,9 @@ def serve_dashboard(
     tools_enabled = os.environ.get(
         "BRAIN5D_CHAT_TOOLS", str(configured_chat.get("tools_enabled", False))
     ).lower() in {"1", "true", "yes", "on"}
+    # ── Ollama Backend (primär) ──
     ollama_backend: OllamaBackend | None = None
+    ollama_available = False
     resolved_chat_settings: dict[str, JSONValue] = {}
     if chat_model:
         chat_endpoint = os.environ.get(
@@ -5039,44 +5137,91 @@ def serve_dashboard(
             retries=1,
             retry_backoff_seconds=1.0,
         )
-        chat_backend = chat_backend_from_text_backend(ollama_backend.generate_text)
-
-        # Warmup: Modell vorladen, damit der erste Benutzer-Request nicht timeoutet
+        # Prüfe ob Ollama tatsächlich erreichbar ist
         try:
-            print(f"🤖 Warming up Ollama model ({chat_model})...")
-            warmup_payload = json.dumps({
-                "model": chat_model,
-                "prompt": "Hello",
-                "stream": False,
-                "options": {"temperature": 0.0, "num_predict": 1},
-            }).encode("utf-8")
-            warmup_req = Request(
-                chat_endpoint,
-                data=warmup_payload,
-                headers={"Content-Type": "application/json"},
-                method="POST",
+            tags_url = chat_endpoint.rsplit("/api/", 1)[0] + "/api/tags"
+            with urlopen(tags_url, timeout=5) as resp:
+                ollama_available = 200 <= resp.status < 300
+        except Exception:
+            ollama_available = False
+
+        if ollama_available:
+            chat_backend = chat_backend_from_text_backend(
+                ollama_backend.generate_text
             )
-            with urlopen(warmup_req, timeout=180) as warmup_resp:
-                warmup_resp.read()
-            print(f"✅ Ollama model {chat_model} warmed up successfully")
-        except Exception as warmup_err:
-            print(f"⚠️ Ollama warmup failed (model may still load on first request): {warmup_err}")
-        resolved_chat_settings = {
-            "provider": "ollama",
-            "model": chat_model,
-            "endpoint": chat_endpoint,
-            "temperature": temperature,
-            "top_p": top_p,
-            "max_tokens": max_tokens,
-            "max_context_chars": context_chars,
-            "read_only": True,
-            "web_search_enabled": web_search_enabled,
-            "system_prompt": system_prompt,
-            "handoff_prompt": handoff_prompt,
-            "vision_enabled": vision_enabled,
-            "tools_enabled": tools_enabled,
-        }
-        print(f"🤖 Research chat backend: Ollama ({chat_model})")
+            # Warmup: Modell vorladen
+            try:
+                print(f"🤖 Warming up Ollama model ({chat_model})...")
+                warmup_payload = json.dumps({
+                    "model": chat_model,
+                    "prompt": "Hello",
+                    "stream": False,
+                    "options": {"temperature": 0.0, "num_predict": 1},
+                }).encode("utf-8")
+                warmup_req = Request(
+                    chat_endpoint,
+                    data=warmup_payload,
+                    headers={"Content-Type": "application/json"},
+                    method="POST",
+                )
+                with urlopen(warmup_req, timeout=180) as warmup_resp:
+                    warmup_resp.read()
+                print(f"✅ Ollama model {chat_model} warmed up successfully")
+            except Exception as warmup_err:
+                print(
+                    f"⚠️ Ollama warmup failed: {warmup_err}"
+                )
+            resolved_chat_settings = {
+                "provider": "ollama",
+                "model": chat_model,
+                "endpoint": chat_endpoint,
+                "temperature": temperature,
+                "top_p": top_p,
+                "max_tokens": max_tokens,
+                "max_context_chars": context_chars,
+                "read_only": True,
+                "web_search_enabled": web_search_enabled,
+                "system_prompt": system_prompt,
+                "handoff_prompt": handoff_prompt,
+                "vision_enabled": vision_enabled,
+                "tools_enabled": tools_enabled,
+            }
+            print(f"🤖 Research chat backend: Ollama ({chat_model})")
+        else:
+            print(
+                f"⚠️ Ollama ({chat_model}) nicht erreichbar "
+                f"– Fallback wird verwendet"
+            )
+
+    # ── Local Fallback Backend (immer verfügbar) ──
+    fallback_backend = create_local_fallback_backend()
+    fallback_chat_backend = chat_backend_from_text_backend(
+        fallback_backend.generate_text
+    )
+    print("🤖 Local fallback backend: immer verfügbar (kein Netzwerk nötig)")
+
+    # ── Aktiven Backend wählen ──
+    # Wenn Ollama verfügbar ist, wird es verwendet; sonst Fallback.
+    # Der Benutzer kann in den Einstellungen zwischen beiden wechseln.
+    active_provider = "ollama" if ollama_available else "local-fallback"
+    if not chat_backend and fallback_chat_backend:
+        chat_backend = fallback_chat_backend
+        if not resolved_chat_settings:
+            resolved_chat_settings = {
+                "provider": "local-fallback",
+                "model": "local-fallback",
+                "endpoint": None,
+                "temperature": 0.0,
+                "top_p": 0.0,
+                "max_tokens": 1024,
+                "max_context_chars": context_chars,
+                "read_only": True,
+                "web_search_enabled": False,
+                "vision_enabled": False,
+                "tools_enabled": False,
+                "system_prompt": system_prompt,
+                "handoff_prompt": handoff_prompt,
+            }
 
     # ------------------------------------------------------------------------
     # Server
@@ -5102,6 +5247,7 @@ def serve_dashboard(
         server.research_chat_vision_enabled = vision_enabled
         server.research_chat_tools_enabled = tools_enabled
         server.research_chat_ollama_backend = ollama_backend
+        server.research_chat_fallback_backend = fallback_backend
         server.research_chat_settings = cast(
             dict[str, JSONValue],
             (
@@ -5109,8 +5255,11 @@ def serve_dashboard(
                     **resolved_chat_settings,
                     "web_search_enabled": web_search_enabled,
                 }
-                if chat_model
-                else {**configured_chat, "web_search_enabled": web_search_enabled}
+                if resolved_chat_settings
+                else {
+                    **configured_chat,
+                    "web_search_enabled": web_search_enabled,
+                }
             ),
         )
         server.research_chat_web_search_enabled = web_search_enabled
