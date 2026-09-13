@@ -9,6 +9,7 @@ partially populated research tree never crashes the dashboard.
 from __future__ import annotations
 
 import json
+import time
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, cast
@@ -121,6 +122,9 @@ class ResearchSource:
 
     def __init__(self, research_root: Path) -> None:
         self._root = research_root.resolve()
+        self._documents_cache: list[ResearchDocument] | None = None
+        self._documents_cache_time: float = 0.0
+        self._cache_ttl: float = 5.0  # Sekunden
 
     def is_available(self) -> bool:
         """Return True when the research root exists and is a directory."""
@@ -129,10 +133,32 @@ class ResearchSource:
     def root(self) -> Path:
         return self._root
 
-    def list_documents(self) -> list[ResearchDocument]:
-        """List all research artifacts grouped by category."""
+    def _invalidate_cache(self) -> None:
+        """Force cache refresh on next call."""
+        self._documents_cache = None
+        self._documents_cache_time = 0.0
+
+    def list_documents(
+        self, max_count: int = 0
+    ) -> list[ResearchDocument]:
+        """List research artifacts grouped by category, with caching.
+
+        Args:
+            max_count: Maximum number of documents to return.
+                       0 = return all (uncached behavior).
+
+        Returns:
+            Sorted list of ResearchDocument objects.
+        """
+        now = time.monotonic()
+        # Use cache only when requesting all documents
+        if max_count == 0 and self._documents_cache is not None:
+            if now - self._documents_cache_time < self._cache_ttl:
+                return self._documents_cache
+
         if not self.is_available():
             return []
+
         documents: list[ResearchDocument] = []
         for category in self._CATEGORIES:
             directory = self._root / category
@@ -151,6 +177,16 @@ class ResearchSource:
                         category=category,
                     )
                 )
+                # Early exit when max_count is set and reached
+                if max_count > 0 and len(documents) >= max_count:
+                    break
+            if max_count > 0 and len(documents) >= max_count:
+                break
+
+        if max_count == 0:
+            self._documents_cache = documents
+            self._documents_cache_time = now
+
         return documents
 
     def read_content(self, relative_path: str) -> str:

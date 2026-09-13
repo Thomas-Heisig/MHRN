@@ -6,13 +6,12 @@ import hashlib
 import json
 from collections.abc import Callable, Sequence
 from dataclasses import dataclass
-from pathlib import Path
 from typing import Any, Protocol, cast
 
 from .contracts import AIExposure, AIInteractionRecord, CausalTaint
 from .firewall import ScientificAIFirewall
 from .governance import KnowledgeOrigin, NetworkMode, RetrievalRecord
-from .repository_context import RepositoryContext, RepositoryKnowledgeView
+from .repository_context import RepositoryContext
 
 
 class _ResearchDocument(Protocol):
@@ -31,7 +30,9 @@ class _DocDocument(Protocol):
 
 
 class _DocsSource(Protocol):
-    def list_documents(self, recursive: bool = False) -> Sequence[_DocDocument]: ...
+    def list_documents(
+        self, recursive: bool = False, max_count: int = 0
+    ) -> Sequence[_DocDocument]: ...
     def read_content(self, path: str) -> str: ...
 
 
@@ -92,27 +93,38 @@ class ResearchChat:
         return answer, {**metadata, "ai_interaction": interaction.to_dict()}
 
     def _repository_context(self, question: str) -> RepositoryContext:
-        root_reader = getattr(self.research, "root", None)
-        root = root_reader() if callable(root_reader) else None
-        if isinstance(root, Path):
-            return RepositoryKnowledgeView(
-                root.parent, max_context_chars=self.max_context_chars
-            ).retrieve(question)
-        # Compatibility for explicitly supplied document sources; never scan cwd.
+        # IMMER den schnellen list_documents(max_count=N)-Pfad verwenden.
+        # Der RepositoryKnowledgeView-Pfad (der self.root.rglob("*") über das
+        # gesamte Projekt macht) wird nur als Fallback für Nicht-Dashboard-Quellen
+        # verwendet. Bei 5000+ Research-Dateien wäre das viel zu langsam.
         chunks: list[str] = []
         paths: list[str] = []
-        for label, source in (
+        # max_docs: genug für einen guten Überblick, aber nicht zu viele
+        max_docs = min(16, max(4, self.max_context_chars // 4000))
+
+        def _try_read(source: Any, path: str) -> str | None:
+            try:
+                return source.read_content(path)[:6000]
+            except (OSError, ValueError, FileNotFoundError, UnicodeError):
+                return None
+
+        for label, src in (
             ("SCIENTIFIC RESEARCH SOURCES", self.research),
             ("DOCUMENTATION SOURCES", self.docs),
         ):
             chunks.append(label)
-            for document in source.list_documents():
-                if len(paths) >= 32:
+            try:
+                documents = src.list_documents(max_count=max_docs)
+            except TypeError:
+                documents = list(src.list_documents())[:max_docs]
+            for document in documents:
+                if len(paths) >= max_docs:
                     break
-                paths.append(document.path)
-                chunks.append(
-                    f"[{document.path}]\n{source.read_content(document.path)[:8000]}"
-                )
+                doc_path = document.path if hasattr(document, "path") else str(document)
+                paths.append(doc_path)
+                content = _try_read(src, doc_path)
+                if content:
+                    chunks.append(f"[{doc_path}]\n{content}")
         text = "\n\n".join(chunks)[: self.max_context_chars]
         return RepositoryContext(
             text,

@@ -85,8 +85,8 @@ if ($ollamaOnPath) {
     if (-not [string]::IsNullOrWhiteSpace($env:BRAIN5D_CHAT_MODEL)) {
         Write-Host "  Research Chat: $env:BRAIN5D_CHAT_MODEL (via env)" -ForegroundColor Gray
     } else {
-        $env:BRAIN5D_CHAT_MODEL = "gemma4:latest"
-        Write-Host "  Research Chat: gemma4:latest (Ollama erkannt)" -ForegroundColor Gray
+        $env:BRAIN5D_CHAT_MODEL = "qwen3:8b"
+        Write-Host "  Research Chat: qwen3:8b (Ollama erkannt)" -ForegroundColor Gray
     }
     if ([string]::IsNullOrWhiteSpace($env:BRAIN5D_CHAT_WEB_SEARCH)) {
         $env:BRAIN5D_CHAT_WEB_SEARCH = "true"

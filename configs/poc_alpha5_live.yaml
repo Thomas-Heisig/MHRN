@@ -207,7 +207,7 @@ structural:
 # Wird automatisch aktiviert wenn ollama auf dem System installiert ist.
 # Überschreibbar via BRAIN5D_CHAT_* Umgebungsvariablen.
 research_chat:
-  model: "gemma4:latest"
+  model: "qwen3:8b"
   endpoint: "http://127.0.0.1:11434/api/generate"
   temperature: 0.0
   top_p: 0.9
@@ -218,3 +218,4 @@ research_chat:
   handoff_prompt: ""
   vision_enabled: false
   tools_enabled: false
+  fallback_model: "gemma3:1b"

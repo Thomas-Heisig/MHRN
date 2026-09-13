@@ -230,6 +230,7 @@ class DashboardServer(ThreadingHTTPServer):
         self.research_chat_oauth_state: str | None = None
         self.research_chat_oauth_token: str | None = None
         self.research_chat_ollama_backend: OllamaBackend | None = None
+        self.research_chat_ollama_fallback_backend: OllamaBackend | None = None
         self.research_chat_fallback_backend: LocalFallbackBackend | None = None
         self.research_chat_settings: dict[str, JSONValue] = {
             "provider": "unconfigured",
@@ -3212,18 +3213,24 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
                     ),
                 )
             )
+        # Reduziere Kontext für Fallback-Backend (sowieso kein LLM-Kontext nötig)
+        is_fallback = (
+            self.dashboard_server.research_chat_settings.get("provider")
+            == "local-fallback"
+        )
+        effective_context_chars = min(context_chars, 8000) if is_fallback else context_chars
         try:
             answer, metadata = ResearchChat(
                 cast(Any, source),
                 cast(Any, docs),
                 request_backend,
-                max_context_chars=context_chars,
-                system_context=system_context,
+                max_context_chars=effective_context_chars,
+                system_context=system_context if not is_fallback else "",
                 system_prompt=self.dashboard_server.research_chat_system_prompt,
                 conversation_context=conversation_context,
                 handoff_prompt=self.dashboard_server.research_chat_handoff_prompt,
                 response_mode=response_mode,
-                web_context=web_context,
+                web_context=web_context if not is_fallback else "",
             ).answer(message)
             self._send_json(
                 {
@@ -3233,24 +3240,67 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
                 }
             )
         except (OSError, TimeoutError) as exc:
-            # Automatisches Fallback bei Provider-Fehler
-            fallback = self.dashboard_server.research_chat_fallback_backend
-            if fallback is not None and self.dashboard_server.research_chat_settings.get(
-                "provider"
-            ) != "local-fallback":
+            # Automatisches Fallback bei Provider-Fehler:
+            # 1. Versuche kleines Ollama-Modell (z. B. gemma3:1b)
+            # 2. Wenn das auch fehlschlägt, lokales Fallback
+            fallback_ollama = (
+                self.dashboard_server.research_chat_ollama_fallback_backend
+            )
+            fallback_local = self.dashboard_server.research_chat_fallback_backend
+            used_fallback = False
+
+            # Stufe 1: Kleines Ollama-Modell
+            if fallback_ollama is not None and not is_fallback:
                 print(
-                    f"⚠️ Chat provider failed ({exc}), "
+                    f"⚠️ Primary model failed ({exc}), "
+                    f"trying fallback model {fallback_ollama.model}"
+                )
+                try:
+                    fb_backend = chat_backend_from_text_backend(
+                        fallback_ollama.generate_text
+                    )
+                    answer, metadata = ResearchChat(
+                        cast(Any, source),
+                        cast(Any, docs),
+                        fb_backend,
+                        max_context_chars=8000,
+                        system_context="",
+                        system_prompt=self.dashboard_server.research_chat_system_prompt,
+                        conversation_context=conversation_context,
+                        handoff_prompt=self.dashboard_server.research_chat_handoff_prompt,
+                        response_mode=response_mode,
+                        web_context="",
+                    ).answer(message)
+                    self._send_json({
+                        "answer": answer,
+                        "metadata": cast(JSONValue, metadata),
+                        "grounded": True,
+                        "fallback": True,
+                        "fallback_model": fallback_ollama.model,
+                    })
+                    used_fallback = True
+                    return
+                except (OSError, TimeoutError) as fb_err:
+                    print(
+                        f"⚠️ Fallback model also failed ({fb_err}), "
+                        f"trying local-fallback"
+                    )
+
+            # Stufe 2: Lokales Fallback (regelbasiert)
+            if fallback_local is not None and not used_fallback:
+                print(
+                    f"⚠️ All models failed, "
                     f"falling back to local-fallback for this request"
                 )
                 fallback_backend = chat_backend_from_text_backend(
-                    fallback.generate_text
+                    fallback_local.generate_text
                 )
                 answer, metadata = ResearchChat(
                     cast(Any, source),
                     cast(Any, docs),
                     fallback_backend,
-                    max_context_chars=context_chars,
-                    system_context=system_context,
+                    max_context_chars=8000,
+                    system_context="",
                     system_prompt=self.dashboard_server.research_chat_system_prompt,
                     conversation_context=conversation_context,
                     handoff_prompt=self.dashboard_server.research_chat_handoff_prompt,
@@ -5114,6 +5164,7 @@ def serve_dashboard(
     ).lower() in {"1", "true", "yes", "on"}
     # ── Ollama Backend (primär) ──
     ollama_backend: OllamaBackend | None = None
+    ollama_fallback_backend: OllamaBackend | None = None
     ollama_available = False
     resolved_chat_settings: dict[str, JSONValue] = {}
     if chat_model:
@@ -5127,6 +5178,10 @@ def serve_dashboard(
                 str(configured_chat.get("temperature", 0.0)),
             )
         )
+        # Kleines Fallback-Modell für schnelle Antworten (z. B. gemma3:1b)
+        fallback_model = str(
+            configured_chat.get("fallback_model", "gemma3:1b")
+        ).strip()
         ollama_backend = OllamaBackend(
             chat_model,
             chat_endpoint,
@@ -5149,7 +5204,21 @@ def serve_dashboard(
             chat_backend = chat_backend_from_text_backend(
                 ollama_backend.generate_text
             )
-            # Warmup: Modell vorladen
+            # Zweites Ollama-Backend mit kleinem Modell für Fallback
+            if fallback_model and fallback_model != chat_model:
+                ollama_fallback_backend = OllamaBackend(
+                    fallback_model,
+                    chat_endpoint,
+                    temperature,
+                    top_p,
+                    min(max_tokens, 512),
+                    timeout=60.0,
+                )
+                print(
+                    f"🤖 Ollama fallback model: {fallback_model} "
+                    f"(für schnelle Antworten bei Auslastung)"
+                )
+            # Warmup: Hauptmodell vorladen
             try:
                 print(f"🤖 Warming up Ollama model ({chat_model})...")
                 warmup_payload = json.dumps({
@@ -5174,6 +5243,7 @@ def serve_dashboard(
             resolved_chat_settings = {
                 "provider": "ollama",
                 "model": chat_model,
+                "fallback_model": fallback_model,
                 "endpoint": chat_endpoint,
                 "temperature": temperature,
                 "top_p": top_p,
@@ -5193,19 +5263,16 @@ def serve_dashboard(
                 f"– Fallback wird verwendet"
             )
 
-    # ── Local Fallback Backend (immer verfügbar) ──
-    fallback_backend = create_local_fallback_backend()
-    fallback_chat_backend = chat_backend_from_text_backend(
-        fallback_backend.generate_text
+    # ── Local Fallback Backend (immer verfügbar, letzte Reserve) ──
+    local_fallback_backend = create_local_fallback_backend()
+    local_fallback_chat_backend = chat_backend_from_text_backend(
+        local_fallback_backend.generate_text
     )
     print("🤖 Local fallback backend: immer verfügbar (kein Netzwerk nötig)")
 
     # ── Aktiven Backend wählen ──
-    # Wenn Ollama verfügbar ist, wird es verwendet; sonst Fallback.
-    # Der Benutzer kann in den Einstellungen zwischen beiden wechseln.
-    active_provider = "ollama" if ollama_available else "local-fallback"
-    if not chat_backend and fallback_chat_backend:
-        chat_backend = fallback_chat_backend
+    if not chat_backend and local_fallback_chat_backend:
+        chat_backend = local_fallback_chat_backend
         if not resolved_chat_settings:
             resolved_chat_settings = {
                 "provider": "local-fallback",
@@ -5247,7 +5314,8 @@ def serve_dashboard(
         server.research_chat_vision_enabled = vision_enabled
         server.research_chat_tools_enabled = tools_enabled
         server.research_chat_ollama_backend = ollama_backend
-        server.research_chat_fallback_backend = fallback_backend
+        server.research_chat_ollama_fallback_backend = ollama_fallback_backend
+        server.research_chat_fallback_backend = local_fallback_backend
         server.research_chat_settings = cast(
             dict[str, JSONValue],
             (

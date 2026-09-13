@@ -160,11 +160,15 @@ class DocumentationSource:
         self.max_file_size_bytes = max_file_size_mb * 1024 * 1024
         self.enable_caching = enable_caching
 
-    def list_documents(self, recursive: bool = False) -> tuple[DocumentationEntry, ...]:
+    def list_documents(
+        self, recursive: bool = False, max_count: int = 0
+    ) -> tuple[DocumentationEntry, ...]:
         """List all supported documents in stable order.
 
         Args:
             recursive: Whether to scan subdirectories recursively.
+            max_count: Maximum number of documents to return.
+                       0 = return all.
 
         Returns:
             Tuple of DocumentationEntry objects.
@@ -172,18 +176,22 @@ class DocumentationSource:
         if not self.docs_root.is_dir():
             return ()
 
+        # Use cache for full listings
+        if max_count == 0 and self.enable_caching:
+            return self._get_cached_list(recursive)
+
         pattern = "**/*" if recursive else "*"
         entries: list[DocumentationEntry] = []
-
         for path in sorted(self.docs_root.glob(pattern)):
             if not path.is_file():
                 continue
             if self._is_excluded(path):
                 continue
-
             entry = self._build_entry(path)
             if entry is not None:
                 entries.append(entry)
+                if max_count > 0 and len(entries) >= max_count:
+                    break
 
         return tuple(entries)
 
