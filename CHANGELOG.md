@@ -2,6 +2,20 @@
 
 ## Unreleased
 
+
+### Stage 2 recurrence closure / Stage 3 plastic neural tissue
+
+- Closed the scoped Stage-2 engineering boundary using the merged recurrent SNN
+  long-run/replay/restore contract while keeping target-scale performance a
+  separate benchmark question.
+- Added `PLASTIC_NEURAL_TISSUE_CONTRACT.md`, a deterministic Stage-3 reference
+  runner and regression coverage for STDP, reward-modulated three-factor
+  learning, homeostasis, structural plasticity and checkpointed adaptive state.
+- Added `learning_on`, `learning_off` and `sham_replay` controls and explicitly
+  prohibited automatic scientific evidence promotion from the engineering
+  verification artifact.
+- Advanced the active development version to `0.6.0a2` / `0.6.0-alpha.2`.
+
 ### Added
 
 - **Effective runtime provenance and learning observability**: `/api/config`

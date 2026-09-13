@@ -1,8 +1,27 @@
 # MHRN Development Roadmap
 
 **Canonical roadmap for current `main`**  
-**Baseline:** `mhrn-core 0.6.0a1`
+**Baseline:** `mhrn-core 0.6.0a2`
 **Updated:** 2026-09-13
+
+
+## 2026-09-13 Stage 2 closure and Stage 3 plastic neural tissue
+
+- Closed Stage 2 at the scoped engineering boundary after the merged recurrent
+  reference contract proved sustained bounded activity, deterministic replay,
+  long-run execution and restart/restore continuity. The declared 1,000-10,000
+  neuron scale remains a separate performance benchmark, not a completion
+  blocker for recurrence mechanics.
+- Added the Stage-3 plastic-neural-tissue contract and deterministic reference
+  runner covering STDP, signed eligibility, delayed reward/three-factor
+  plasticity, homeostasis, structural plasticity and checkpointed adaptive
+  state.
+- Added matched `learning_on`, `learning_off` and `sham_replay` controls plus a
+  deterministic replay identity check. The reference is engineering
+  verification only and cannot create or promote scientific EVID.
+- Advanced the development version to `mhrn-core 0.6.0a2`.
+- R2 productive-learning evidence closure, held-out independent runs and
+  target-scale plastic-network benchmarks remain open research work.
 
 ## 2026-09-12 Scientific metrics workbench
 
