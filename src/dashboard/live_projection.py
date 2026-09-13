@@ -212,8 +212,7 @@ def capture_frame(
     )
     activity = (
         tuple(
-            (nid, activity_accumulator.spikes_in_window(nid))
-            for nid in network.neurons
+            (nid, activity_accumulator.spikes_in_window(nid)) for nid in network.neurons
         )
         if activity_accumulator is not None
         else ()

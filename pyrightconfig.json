@@ -13,7 +13,8 @@
     "src/learning",
     "src/telemetry",
     "src/utils",
-    "src/embodiment"
+    "src/embodiment",
+    "src/research_assistant"
   ],
   "pythonVersion": "3.13",
   "typeCheckingMode": "strict",
