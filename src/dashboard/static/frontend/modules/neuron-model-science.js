@@ -62,6 +62,10 @@ const FIELD_LABELS = Object.freeze({
   "neuron.enable_homeostasis": "Homeostatic regulation",
 });
 
+const ROUTE_ID = "cellmodel";
+const ROUTE = Object.freeze([ROUTE_ID, "Cell Model", "network", "view", ROUTE_ID]);
+const ROUTER_STORAGE_KEY = "mhrn-workspace-router-v1";
+
 const state = {
   parameters: {},
   pending: {},
@@ -159,7 +163,12 @@ function render() {
 
   const pendingCount = Object.keys(state.pending).filter((name) => name.startsWith("neuron.")).length;
   byId("science-neuron-pending-count").textContent = String(pendingCount);
-  setStatus(pendingCount ? `${pendingCount} neuron change(s) pending review/application.` : "Cell-model editor synchronized with the active configuration.", pendingCount ? "warning" : "ok");
+  setStatus(
+    pendingCount
+      ? `${pendingCount} neuron change(s) pending review/application.`
+      : "Cell-model settings synchronized with the active configuration.",
+    pendingCount ? "warning" : "ok"
+  );
 }
 
 async function refresh() {
@@ -279,33 +288,81 @@ function ensureStylesheet() {
   document.head.appendChild(link);
 }
 
+function addContextRouteButton(nav, architecture) {
+  if (!nav || nav.querySelector(`[data-area-route="${ROUTE_ID}"]`)) return;
+  const button = document.createElement("button");
+  button.type = "button";
+  button.setAttribute("role", "tab");
+  button.dataset.areaRoute = ROUTE_ID;
+  button.title = "Stage 0 single-neuron model and settings";
+  button.textContent = "Cell Model";
+  const networkButton = nav.querySelector('[data-area-route="network"]');
+  if (networkButton?.nextSibling) nav.insertBefore(button, networkButton.nextSibling);
+  else nav.appendChild(button);
+  button.addEventListener("click", () => architecture.selectRoute("science", ROUTE_ID));
+}
+
+function addOverviewRouteCard(architecture) {
+  const grid = document.querySelector('[data-area-overview="science"] .mhrn-area-route-grid');
+  if (!grid || grid.querySelector(`[data-route-card="${ROUTE_ID}"]`)) return;
+  const button = document.createElement("button");
+  button.type = "button";
+  button.dataset.routeCard = ROUTE_ID;
+  button.title = "Cell Model öffnen";
+  button.innerHTML = '<span>04</span><strong>Cell Model</strong>';
+  const networkCard = grid.querySelector('[data-route-card="network"]');
+  if (networkCard?.nextSibling) grid.insertBefore(button, networkCard.nextSibling);
+  else grid.appendChild(button);
+  button.addEventListener("click", () => architecture.selectRoute("science", ROUTE_ID));
+}
+
+function ensureSettingsNavigationFallback(architecture) {
+  const nav = document.querySelector(".brain5d-primary-nav");
+  if (!nav || nav.querySelector('[data-mhrn-area="settings"]')) return;
+  const button = document.createElement("button");
+  button.type = "button";
+  button.dataset.mhrnArea = "settings";
+  button.title = "Settings: App & Integrationen";
+  button.innerHTML = '<span class="mhrn-nav-number">06</span><span class="mhrn-nav-icon">S</span><span class="mhrn-nav-copy"><strong>Settings</strong><span>App & Integrationen</span></span>';
+  nav.appendChild(button);
+  button.addEventListener("click", () => architecture.selectRoute("settings", "overview"));
+}
+
+function ensureCanonicalRoute() {
+  const architecture = window.MHRNWorkspaceArchitecture;
+  const routes = architecture?.areas?.science?.routes;
+  if (!architecture?.selectRoute || !Array.isArray(routes)) return false;
+
+  if (!routes.some(([id]) => id === ROUTE_ID)) {
+    const networkIndex = routes.findIndex(([id]) => id === "network");
+    routes.splice(networkIndex >= 0 ? networkIndex + 1 : routes.length, 0, [...ROUTE]);
+  }
+
+  document.querySelectorAll('.mhrn-context-nav[data-area="science"]').forEach((nav) => {
+    addContextRouteButton(nav, architecture);
+  });
+  addOverviewRouteCard(architecture);
+  ensureSettingsNavigationFallback(architecture);
+  return true;
+}
+
 function ensureWorkbench() {
   ensureStylesheet();
-  const nav = document.querySelector('[data-workspace-views="network"]');
   const root = byId("tab-network");
-  if (!nav || !root) return false;
-
-  if (!nav.querySelector('[data-workspace-view="cellmodel"]')) {
-    const button = document.createElement("button");
-    button.type = "button";
-    button.dataset.workspaceView = "cellmodel";
-    button.textContent = "Cell Model";
-    button.title = "Stage 0 single-neuron model and construction parameters";
-    nav.appendChild(button);
-  }
+  if (!root) return false;
 
   if (!byId("mhrn-neuron-model-science")) {
     const panel = document.createElement("section");
     panel.className = "card neuron-model-settings";
     panel.id = "mhrn-neuron-model-science";
-    panel.dataset.networkView = "cellmodel";
+    panel.dataset.networkView = ROUTE_ID;
     panel.hidden = true;
     panel.innerHTML = `
       <header class="panel-title neuron-model-settings__header">
         <div>
           <span class="workspace-kicker">STAGE 0 · SINGLE CELL</span>
           <h2>Neuron / Cell Model</h2>
-          <p class="panel-subtitle">Explicit experimental treatment for the single-cell dynamics contract.</p>
+          <p class="panel-subtitle">Model selection and scientifically sensitive single-cell settings.</p>
         </div>
         <div class="neuron-model-provenance" aria-label="Model provenance">
           <span id="science-neuron-maturity" class="neuron-model-badge">unknown</span>
@@ -323,6 +380,10 @@ function ensureWorkbench() {
         <div class="neuron-model-equation"><span>Equation family</span><strong id="science-neuron-equation">—</strong></div>
       </div>
       <div id="science-neuron-note" class="neuron-model-warning" role="note"></div>
+      <div class="neuron-model-shortcuts" aria-label="Related settings">
+        <button type="button" class="btn-secondary" data-route-jump="control:parameters">Alle Parameter</button>
+        <button type="button" class="btn-secondary" data-route-jump="settings:overview">App Settings</button>
+      </div>
       <div id="science-neuron-fields" class="neuron-model-fields" aria-live="polite"></div>
       <div class="neuron-model-actions neuron-model-actions--science">
         <span id="science-neuron-status" class="neuron-model-status">Loading Stage-0 cell-model configuration …</span>
@@ -349,14 +410,25 @@ function bind() {
   byId("science-neuron-save")?.addEventListener("click", () => applyChanges(true));
   byId("science-neuron-cancel")?.addEventListener("click", cancelChanges);
 
-  document.querySelector('[data-workspace-views="network"]')?.addEventListener("click", (event) => {
-    const button = event.target.closest('[data-workspace-view="cellmodel"]');
-    if (button) refresh();
+  document.addEventListener("click", (event) => {
+    const routeButton = event.target.closest(`[data-area-route="${ROUTE_ID}"], [data-route-card="${ROUTE_ID}"]`);
+    if (routeButton) queueMicrotask(refresh);
   });
 }
 
+function restoreCellModelRouteIfRequested() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(ROUTER_STORAGE_KEY) || "null");
+    if (saved?.area === "science" && saved?.route === ROUTE_ID) {
+      window.MHRNWorkspaceArchitecture?.selectRoute?.("science", ROUTE_ID);
+    }
+  } catch (_) {}
+}
+
 export function initNeuronModelScience() {
+  if (!ensureCanonicalRoute()) return;
   if (!ensureWorkbench()) return;
   bind();
   refresh();
+  restoreCellModelRouteIfRequested();
 }

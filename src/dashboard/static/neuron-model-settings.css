@@ -1,6 +1,6 @@
 /* Dedicated Stage-0 neuron model editor.
- * Shared by the legacy parameter inspector and the scientific Cell Model
- * workbench so both surfaces render the same model/provenance contract.
+ * Shared by the canonical Science/Cell Model route and the legacy parameter
+ * inspector fallback. Mutation workflows continue to use the same pending API.
  */
 
 .neuron-model-settings {
@@ -115,6 +115,16 @@
   background: var(--amber-wash);
   color: var(--ink-2);
   font: 600 .66rem/1.45 var(--font-mono);
+}
+
+.neuron-model-shortcuts {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding: 9px 12px;
+  border-bottom: 1px solid var(--rule);
+  background: color-mix(in srgb, var(--paper-3) 58%, transparent);
 }
 
 .neuron-model-fields {
@@ -238,12 +248,14 @@
     grid-template-columns: 1fr;
   }
 
-  .neuron-model-provenance {
+  .neuron-model-provenance,
+  .neuron-model-shortcuts {
     justify-content: flex-start;
   }
 
   .neuron-model-actions > button,
-  .neuron-model-actions--science > button {
+  .neuron-model-actions--science > button,
+  .neuron-model-shortcuts > button {
     width: 100%;
   }
 }
