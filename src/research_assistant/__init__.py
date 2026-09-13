@@ -65,15 +65,15 @@ from .governance import (
     validate_data_partition,
     validate_network_mode,
 )
+from .local_fallback_backend import (
+    LocalFallbackBackend,
+    create_local_fallback_backend,
+)
 from .models import AIAnalysisRecord, ResearchPacket
 from .observation_stream import (
     ObservationStream,
     ObservationStreamError,
     ObservationStreamRecord,
-)
-from .local_fallback_backend import (
-    LocalFallbackBackend,
-    create_local_fallback_backend,
 )
 from .replay_backend import FrozenAIReplayBackend, FrozenAIReplayError
 from .shadow import (
@@ -129,6 +129,8 @@ __all__ = [
     "CognitiveAdvisor",
     "FrozenAIReplayBackend",
     "FrozenAIReplayError",
+    "LocalFallbackBackend",
+    "create_local_fallback_backend",
     "ShadowMode",
     "ShadowProposalMetrics",
     "ShadowResult",

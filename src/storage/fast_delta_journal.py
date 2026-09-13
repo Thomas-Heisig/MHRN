@@ -12,6 +12,8 @@ import os
 
 from .crc import compute_crc32
 from .delta_journal import (
+    _COMMIT_STRUCT,
+    _ENTRY_HEADER_STRUCT,
     COMMIT_MAGIC,
     COMMIT_MARKER_SIZE,
     ENTRY_FLAG_NONE,
@@ -20,8 +22,6 @@ from .delta_journal import (
     DeltaJournal,
     DeltaRecord,
     UncommittedTailError,
-    _COMMIT_STRUCT,
-    _ENTRY_HEADER_STRUCT,
 )
 
 

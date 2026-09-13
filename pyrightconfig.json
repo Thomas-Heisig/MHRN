@@ -13,8 +13,7 @@
     "src/learning",
     "src/telemetry",
     "src/utils",
-    "src/embodiment",
-    "tests"
+    "src/embodiment"
   ],
   "pythonVersion": "3.13",
   "typeCheckingMode": "strict",

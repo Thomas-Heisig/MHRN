@@ -153,13 +153,21 @@ def _spike_metrics(
         "burst_train_count": sum(1 for train in train_values if len(train) >= 3),
         "victor_purpura": {
             "available": bool(pair_values),
-            "value": _finite(mean([_victor_purpura(a, b, 1.0) for a, b in pair_values])) if pair_values else None,
+            "value": (
+                _finite(mean([_victor_purpura(a, b, 1.0) for a, b in pair_values]))
+                if pair_values
+                else None
+            ),
             "q_per_tick": 1.0,
             "pairs": len(pair_values),
         },
         "van_rossum": {
             "available": bool(pair_values),
-            "value": _finite(mean([_van_rossum(a, b, 10.0) for a, b in pair_values])) if pair_values else None,
+            "value": (
+                _finite(mean([_van_rossum(a, b, 10.0) for a, b in pair_values]))
+                if pair_values
+                else None
+            ),
             "tau_ticks": 10.0,
             "pairs": len(pair_values),
         },
@@ -183,7 +191,9 @@ def _population_entropy(values: list[float]) -> dict[str, JSONValue]:
         return {"available": False, "value": None, "n": 0}
     counts = Counter(values)
     total = len(values)
-    entropy = -sum((count / total) * math.log2(count / total) for count in counts.values())
+    entropy = -sum(
+        (count / total) * math.log2(count / total) for count in counts.values()
+    )
     return {"available": True, "value": _finite(entropy), "n": total}
 
 
@@ -205,8 +215,12 @@ def _topology_metrics(network: Any) -> dict[str, JSONValue]:
             weights.append(float(getattr(synapse, "weight", 0.0)))
             source_coords = unpack_coords(int(source_id))
             target_coords = unpack_coords(target_id)
-            distances.append(sum(abs(a - b) for a, b in zip(source_coords, target_coords)))
-    density = edge_count / (neuron_count * max(neuron_count - 1, 1)) if neuron_count else None
+            distances.append(
+                sum(abs(a - b) for a, b in zip(source_coords, target_coords))
+            )
+    density = (
+        edge_count / (neuron_count * max(neuron_count - 1, 1)) if neuron_count else None
+    )
     return {
         "synaptic_density": _finite(density),
         "mean_fan_out": _finite(edge_count / neuron_count) if neuron_count else None,
@@ -216,7 +230,9 @@ def _topology_metrics(network: Any) -> dict[str, JSONValue]:
         "weight": _summary(weights),
         "five_d": {
             "available": bool(distances),
-            "mean_manhattan_synapse_distance": _finite(mean(distances)) if distances else None,
+            "mean_manhattan_synapse_distance": (
+                _finite(mean(distances)) if distances else None
+            ),
             "dimension_count": len(getattr(network, "dimensions", ())),
             "edge_count": edge_count,
         },
@@ -247,7 +263,9 @@ def build_scientific_metrics(
     topology["mean_path_length"] = network_state.get("mean_path_length")
     return {
         "source": "live_runtime",
-        "tick": getattr(network, "current_tick", snapshot_json.get("system", {}).get("tick", 0)),
+        "tick": getattr(
+            network, "current_tick", snapshot_json.get("system", {}).get("tick", 0)
+        ),
         "network": snapshot_json.get("network", {}),
         "spike_trains": spike_metrics,
         "topology": topology,
