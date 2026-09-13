@@ -212,6 +212,27 @@ The reviewed v0.5.0a7 release gate is closed. Version `0.6.0a1` opens the develo
 - [x] Improve terminal startup output with missing version, configuration, runtime mode, URL and process information; keep UTF-8 symbols readable on Windows.
 - [x] Report the owning listener PID for occupied dashboard ports, including localized Windows `netstat` states.
 
+## 2026-09-09 Versioned Wesen profile identity
+
+- [x] Add schema-v1 holistic technical Wesen profiles and bounded registry metadata.
+- [x] Add canonical digest, revision history, parent lineage and atomic writes.
+- [x] Bind profiles to existing snapshots by digest without copying neural state into `profile.json`.
+- [x] Add profile-only/state-bound load modes, clone, archive/delete guards and secure ZIP import/export.
+- [x] Integrate senses, learning, morphology, actuators, gateway, memory, self-model, resources and safety declarations.
+- [x] Add the Wesen Profile & Identitaet dashboard view and lifecycle actions.
+- [x] Apply supported runtime pacing settings during profile-only load and bind optional profile identity into experiment manifests.
+- [ ] Connect the canonical snapshot restore hook for Profile + State loading; it remains fail-closed with `runtime_applied: false`.
+- [ ] Keep autonomous profile mutation locked until bounded domains, journal, rollback and experiment gates exist.
+
+## 2026-09-09 Controlled Neural Symbiosis gateway runtime
+
+- [x] Add a core-independent, experiment-only gateway runtime with explicit lifecycle states, Frozen/Random/Shuffle controls and guarded Plastic activation.
+- [x] Add deterministic topology, checkpoint/resume state, bounded structural journaling, traffic/resource metrics and throttling limits.
+- [x] Add read-only gateway status/topology APIs and an experiment-scoped lifecycle API; no general productive plasticity endpoint exists.
+- [x] Update Wesen to show real gateway state, maturity, aggregated topology and `Productive: LOCKED`.
+- [x] Add gateway research questions for learning, modality, stability, transfer/interference, structure, closed loop and resources.
+- [ ] Execute the new gateway RQ programme with independent seeds, statistical comparisons and human scientific review.
+
 ### Non-blocking roadmap backlog
 
 These items remain open but are not release blockers for the v0.6 engineering foundation. Their detailed task lists remain in the linked roadmap documents.
