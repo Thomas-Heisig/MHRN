@@ -1,0 +1,58 @@
+name: One-shot alpha2 timeline verify
+
+on:
+  push:
+    branches:
+      - audit/timeline-alpha2-reconciliation
+
+permissions:
+  contents: write
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: audit/timeline-alpha2-reconciliation
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+          cache: pip
+      - name: Apply deterministic reconciliation
+        run: python scripts/reconcile_alpha2_timeline.py
+      - name: Install development dependencies
+        run: python -m pip install -e ".[dev]"
+      - name: Format and lint
+        run: |
+          python -m black src/dashboard/development_timeline.py src/profiles/service.py tests/test_development_timeline.py tests/test_development_frontier_contract.py tests/test_profiles.py tests/test_release_registry.py
+          python -m ruff check src/dashboard/development_timeline.py src/profiles/service.py tests/test_development_timeline.py tests/test_development_frontier_contract.py tests/test_profiles.py tests/test_release_registry.py
+          python -m black --check src/dashboard/development_timeline.py src/profiles/service.py tests/test_development_timeline.py tests/test_development_frontier_contract.py tests/test_profiles.py tests/test_release_registry.py
+      - name: Targeted tests
+        run: |
+          python -m pytest -q tests/test_development_timeline.py tests/test_development_frontier_contract.py tests/test_profiles.py tests/test_release_registry.py tests/test_memory_layer.py tests/test_cognition_operational_experiments.py tests/test_msba.py tests/test_gateway_runtime.py tests/test_msba_experiment_runner.py
+      - name: Print maturity
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from unittest.mock import patch
+          from src.dashboard.development_timeline import build_development_timeline
+          from src.dashboard.verification import BaselineEvaluation
+          def b(stale):
+              return BaselineEvaluation(True, stale, 1, 0, 0, 0, None, None, None, None)
+          for stale in (True, False):
+              with patch("src.dashboard.development_timeline.evaluate_test_baseline", return_value=b(stale)):
+                  data = build_development_timeline(Path.cwd())
+              print("stale=", stale, "current_stage=", data["current_stage"])
+              print([(s["stage"], s["implementation_score"], s["verification_score"], s["status"]) for s in data["stages"]])
+          PY
+      - name: Commit verified reconciliation and remove helpers
+        run: |
+          rm scripts/reconcile_alpha2_timeline.py .github/workflows/one-shot-alpha2-timeline-verify.yml
+          git config user.name "MHRN timeline reconciliation"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --check
+          git commit -m "docs: reconcile alpha2 development maturity"
+          git push origin HEAD:audit/timeline-alpha2-reconciliation
