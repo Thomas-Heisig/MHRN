@@ -7,9 +7,8 @@ All changes are validated, logged, and require explicit AI tool invocation.
 
 from __future__ import annotations
 
-import re
 from pathlib import Path
-from typing import Any
+from typing import Any, Callable
 
 import yaml
 
@@ -59,7 +58,9 @@ ALLOWED_CONFIG_KEYS: dict[str, str] = {
 
 # ── Validation rules ─────────────────────────────────────────────────────
 
-_VALIDATORS: dict[str, callable] = {
+Validator = Callable[[Any], bool]
+
+_VALIDATORS: dict[str, Validator] = {
     "initial_neurons": lambda v: isinstance(v, int) and 1 <= v <= 10_000_000,
     "max_neurons": lambda v: isinstance(v, int) and 1 <= v <= 10_000_000,
     "dimensions": lambda v: (
@@ -112,12 +113,11 @@ def validate_config_change(key: str, value: Any) -> str | None:
             return f"Key '{key}' requires a boolean value (true/false)."
         return None
     validator = _VALIDATORS.get(key)
-    if validator is not None:
-        if not validator(value):
-            return (
-                f"Value {value!r} is invalid for key '{key}'. "
-                f"Description: {ALLOWED_CONFIG_KEYS[key]}"
-            )
+    if validator is not None and not validator(value):
+        return (
+            f"Value {value!r} is invalid for key '{key}'. "
+            f"Description: {ALLOWED_CONFIG_KEYS[key]}"
+        )
     return None
 
 
@@ -126,19 +126,16 @@ def apply_config_change(config_path: Path, key: str, value: Any) -> tuple[bool, 
 
     Returns (success, message).
     """
-    # Validate first
     error = validate_config_change(key, value)
     if error is not None:
         return False, error
 
-    # Read current config
     try:
         with open(config_path, encoding="utf-8") as f:
             config: dict[str, Any] = yaml.safe_load(f) or {}
     except (OSError, yaml.YAMLError) as exc:
         return False, f"Failed to read config: {exc}"
 
-    # Navigate dot-separated path and set value
     parts = key.split(".")
     current = config
     for part in parts[:-1]:
@@ -148,7 +145,6 @@ def apply_config_change(config_path: Path, key: str, value: Any) -> tuple[bool, 
     old_value = current.get(parts[-1], "<not set>")
     current[parts[-1]] = value
 
-    # Write back
     try:
         with open(config_path, "w", encoding="utf-8") as f:
             yaml.dump(
@@ -252,14 +248,12 @@ def execute_tool(
     if tool_name == "update_config":
         key = arguments.get("key", "")
         value = arguments.get("value")
-        success, message = apply_config_change(config_path, key, value)
+        _success, message = apply_config_change(config_path, key, value)
         return message
-    elif tool_name == "read_config":
+    if tool_name == "read_config":
         key = arguments.get("key", "")
         found, value = get_config_value(config_path, key)
         if found:
             return f"Current value of '{key}': {value!r}"
-        else:
-            return f"Key '{key}' not found in config."
-    else:
-        return f"Unknown tool: {tool_name}"
+        return f"Key '{key}' not found in config."
+    return f"Unknown tool: {tool_name}"
