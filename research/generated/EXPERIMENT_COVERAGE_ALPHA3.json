@@ -1,0 +1,2064 @@
+{
+  "source_commit": "531f12335ebeebd7242beb4ba0bd95e81b3dfb8e",
+  "campaign": "EXP-EMP-20260913-A3",
+  "selections": [
+    {
+      "direct_test_of_hypothesis": false,
+      "execution_kind": "registered_simulation",
+      "execution_mode": "EXPLORATORY_REEXECUTION",
+      "hypothesis": "H-REC-001-A",
+      "preregistration": "preregistrations/PREREG-REC-001.json",
+      "primary_outcomes": [
+        "last_response_latency",
+        "recurrent_events",
+        "propagation_depth",
+        "persistence_class"
+      ],
+      "protocol": "recurrence_map_v1",
+      "registered_mode": "CONFIRMATORY",
+      "research_question": "RQ-REC-001",
+      "runner": "run_recurrence_map",
+      "scientific_evidence": false,
+      "seeds": [
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "ticks": 256,
+      "timeout_seconds": 1200
+    },
+    {
+      "direct_test_of_hypothesis": false,
+      "execution_kind": "registered_simulation",
+      "execution_mode": "EXPLORATORY_REEXECUTION",
+      "hypothesis": "H-GEN-001-A",
+      "preregistration": "preregistrations/PREREG-GEN-001.json",
+      "primary_outcomes": [
+        "generalization_success",
+        "p_success_after",
+        "mean_weight_delta"
+      ],
+      "protocol": "learning_generalization_v1",
+      "registered_mode": "CONFIRMATORY",
+      "research_question": "RQ-GEN-001",
+      "runner": "run_generalization",
+      "scientific_evidence": false,
+      "seeds": [
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "ticks": null,
+      "timeout_seconds": 1200
+    },
+    {
+      "direct_test_of_hypothesis": false,
+      "execution_kind": "registered_simulation",
+      "execution_mode": "EXPLORATORY_REEXECUTION",
+      "hypothesis": "H-REPL-001-A",
+      "preregistration": "preregistrations/PREREG-REPL-001.json",
+      "primary_outcomes": [
+        "total_spikes",
+        "recurrent_events",
+        "propagation_depth",
+        "last_response_latency"
+      ],
+      "protocol": "independent_replication_v1",
+      "registered_mode": "REPLICATION",
+      "research_question": "RQ-REPL-001",
+      "runner": "run_replication",
+      "scientific_evidence": false,
+      "seeds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19
+      ],
+      "ticks": 256,
+      "timeout_seconds": 1200
+    },
+    {
+      "direct_test_of_hypothesis": false,
+      "execution_kind": "registered_simulation",
+      "execution_mode": "EXPLORATORY_REEXECUTION",
+      "hypothesis": "H-5D-005-A",
+      "preregistration": "preregistrations/PREREG-5D-005.json",
+      "primary_outcomes": [
+        "first_response_latency",
+        "last_response_latency",
+        "propagation_depth",
+        "total_spikes"
+      ],
+      "protocol": "topology_matched_5d_v1",
+      "registered_mode": "CONFIRMATORY",
+      "research_question": "RQ-5D-005",
+      "runner": "run_5d_matched",
+      "scientific_evidence": false,
+      "seeds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29
+      ],
+      "ticks": 64,
+      "timeout_seconds": 1200
+    },
+    {
+      "direct_test_of_hypothesis": false,
+      "execution_kind": "registered_simulation",
+      "execution_mode": "EXPLORATORY_REEXECUTION",
+      "hypothesis": "H-REG-002-A",
+      "preregistration": "preregistrations/PREREG-REG-002.json",
+      "primary_outcomes": [
+        "pressure_phase_spikes",
+        "recovery_phase_spikes",
+        "recovery_ratio"
+      ],
+      "protocol": "closed_loop_regulation_v1",
+      "registered_mode": "CONFIRMATORY",
+      "research_question": "RQ-REG-002",
+      "runner": "run_regulation_recovery",
+      "scientific_evidence": false,
+      "seeds": [
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "ticks": 128,
+      "timeout_seconds": 1200
+    },
+    {
+      "direct_test_of_hypothesis": false,
+      "execution_kind": "registered_simulation",
+      "execution_mode": "EXPLORATORY_REEXECUTION",
+      "hypothesis": "H-TEMP-002-A",
+      "preregistration": "preregistrations/PREREG-TEMP-002.json",
+      "primary_outcomes": [
+        "output_spike_count",
+        "total_spikes",
+        "sequence_digest"
+      ],
+      "protocol": "temporal_order_spiking_v1",
+      "registered_mode": "CONFIRMATORY",
+      "research_question": "RQ-TEMP-002",
+      "runner": "run_temporal_order",
+      "scientific_evidence": false,
+      "seeds": [
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "ticks": 32,
+      "timeout_seconds": 1200
+    },
+    {
+      "direct_test_of_hypothesis": false,
+      "execution_kind": "registered_simulation",
+      "execution_mode": "EXPLORATORY_REEXECUTION",
+      "hypothesis": "H-PERF-001-A",
+      "preregistration": "preregistrations/PREREG-PERF-001.json",
+      "primary_outcomes": [
+        "construction_seconds",
+        "core_step_seconds",
+        "digest_seconds",
+        "ticks_per_second"
+      ],
+      "protocol": "subsystem_performance_v1",
+      "registered_mode": "EXPLORATORY",
+      "research_question": "RQ-PERF-001",
+      "runner": "run_performance_profile",
+      "scientific_evidence": false,
+      "seeds": [
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51
+      ],
+      "ticks": 10000,
+      "timeout_seconds": 1200
+    },
+    {
+      "direct_test_of_hypothesis": false,
+      "execution_kind": "registered_simulation",
+      "execution_mode": "EXPLORATORY_REEXECUTION",
+      "hypothesis": "H-REC-002-A",
+      "preregistration": "preregistrations/PREREG-REC-002.json",
+      "primary_outcomes": [
+        "last_response_latency",
+        "recurrent_events",
+        "propagation_depth"
+      ],
+      "protocol": "recurrence_scale_v1",
+      "registered_mode": "CONFIRMATORY",
+      "research_question": "RQ-REC-002",
+      "runner": "run_recurrence_scale",
+      "scientific_evidence": false,
+      "seeds": [
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "ticks": 256,
+      "timeout_seconds": 1200
+    },
+    {
+      "direct_test_of_hypothesis": false,
+      "execution_kind": "registered_simulation",
+      "execution_mode": "EXPLORATORY_REEXECUTION",
+      "hypothesis": "H-LIFE-001-A",
+      "preregistration": "preregistrations/PREREG-LIFE-001.json",
+      "primary_outcomes": [
+        "retained_success_fraction",
+        "weight_range",
+        "task_successes"
+      ],
+      "protocol": "learning_interference_screen_v1",
+      "registered_mode": "EXPLORATORY",
+      "research_question": "RQ-LIFE-001",
+      "runner": "run_learning_interference",
+      "scientific_evidence": false,
+      "seeds": [
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "ticks": null,
+      "timeout_seconds": 1200
+    },
+    {
+      "direct_test_of_hypothesis": false,
+      "execution_kind": "registered_simulation",
+      "execution_mode": "EXPLORATORY_REEXECUTION",
+      "hypothesis": "H-SNN-001-A",
+      "preregistration": "preregistrations/PREREG-SNN-001.json",
+      "primary_outcomes": [
+        "post_burn_in_spike_cv",
+        "post_burn_in_spike_relative_drift",
+        "finite_state",
+        "topology_unchanged"
+      ],
+      "protocol": "sustained_activity_stability_v1",
+      "registered_mode": "CONFIRMATORY",
+      "research_question": "RQ-SNN-001",
+      "runner": "run_sustained_stability",
+      "scientific_evidence": false,
+      "seeds": [
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51
+      ],
+      "ticks": 100000,
+      "timeout_seconds": 1200
+    },
+    {
+      "direct_test_of_hypothesis": false,
+      "execution_kind": "registered_simulation",
+      "execution_mode": "EXPLORATORY_REEXECUTION",
+      "hypothesis": "H-MSBA-E01-A",
+      "preregistration": "preregistrations/PREREG-MSBA-E01.json",
+      "primary_outcomes": [
+        "normalized_energy_units_per_correct_decision",
+        "synaptic_events_per_correct_decision",
+        "task_accuracy"
+      ],
+      "protocol": "msba_energy_efficiency_v1",
+      "registered_mode": "CONFIRMATORY",
+      "research_question": "RQ-MSBA-E01",
+      "runner": "run_msba_e01",
+      "scientific_evidence": false,
+      "seeds": [
+        101,
+        102,
+        103
+      ],
+      "ticks": 48,
+      "timeout_seconds": 1200
+    },
+    {
+      "direct_test_of_hypothesis": false,
+      "execution_kind": "registered_simulation",
+      "execution_mode": "EXPLORATORY_REEXECUTION",
+      "hypothesis": "H-MSBA-E02-A",
+      "preregistration": "preregistrations/PREREG-MSBA-E02.json",
+      "primary_outcomes": [
+        "task_accuracy",
+        "resource_budget_consumed",
+        "time_to_budget_exhaustion"
+      ],
+      "protocol": "msba_resource_allocation_v1",
+      "registered_mode": "CONFIRMATORY",
+      "research_question": "RQ-MSBA-E02",
+      "runner": "run_msba_e02",
+      "scientific_evidence": false,
+      "seeds": [
+        101,
+        102,
+        103
+      ],
+      "ticks": 96,
+      "timeout_seconds": 1200
+    },
+    {
+      "direct_test_of_hypothesis": false,
+      "execution_kind": "registered_simulation",
+      "execution_mode": "EXPLORATORY_REEXECUTION",
+      "hypothesis": "H-MSBA-E03-A",
+      "preregistration": "preregistrations/PREREG-MSBA-E03.json",
+      "primary_outcomes": [
+        "roi_overlap_with_task_relevant_region",
+        "task_accuracy",
+        "visual_energy_units"
+      ],
+      "protocol": "msba_visual_roi_v1",
+      "registered_mode": "CONFIRMATORY",
+      "research_question": "RQ-MSBA-E03",
+      "runner": "run_msba_e03",
+      "scientific_evidence": false,
+      "seeds": [
+        101,
+        102,
+        103
+      ],
+      "ticks": 48,
+      "timeout_seconds": 1200
+    },
+    {
+      "direct_test_of_hypothesis": false,
+      "execution_kind": "registered_simulation",
+      "execution_mode": "EXPLORATORY_REEXECUTION",
+      "hypothesis": "H-MSBA-E04-A",
+      "preregistration": "preregistrations/PREREG-MSBA-E04.json",
+      "primary_outcomes": [
+        "checksum_mismatches",
+        "admitted_symbol_rate",
+        "exact_integrity_pass"
+      ],
+      "protocol": "msba_digital_integrity_v1",
+      "registered_mode": "CONFIRMATORY",
+      "research_question": "RQ-MSBA-E04",
+      "runner": "run_msba_e04",
+      "scientific_evidence": false,
+      "seeds": [
+        101,
+        102,
+        103
+      ],
+      "ticks": 64,
+      "timeout_seconds": 1200
+    },
+    {
+      "direct_test_of_hypothesis": false,
+      "execution_kind": "registered_simulation",
+      "execution_mode": "EXPLORATORY_REEXECUTION",
+      "hypothesis": "H-MSBA-E05-A",
+      "preregistration": "preregistrations/PREREG-MSBA-E05.json",
+      "primary_outcomes": [
+        "compensatory_gate_change",
+        "task_recovery",
+        "incremental_energy_cost"
+      ],
+      "protocol": "msba_modality_compensation_v1",
+      "registered_mode": "CONFIRMATORY",
+      "research_question": "RQ-MSBA-E05",
+      "runner": "run_msba_e05",
+      "scientific_evidence": false,
+      "seeds": [
+        101,
+        102,
+        103
+      ],
+      "ticks": 48,
+      "timeout_seconds": 1200
+    },
+    {
+      "direct_test_of_hypothesis": true,
+      "execution_kind": "functional_experiment",
+      "execution_mode": "EXPLORATORY_REEXECUTION",
+      "hypothesis": "H-5D-001-A",
+      "preregistration": "preregistrations/operational/catalog_completion_v1.json",
+      "primary_outcomes": [
+        "registered_runner_outputs"
+      ],
+      "protocol": "dimension_dynamics_v1",
+      "registered_mode": "EXPLORATORY",
+      "research_question": "RQ-5D-001",
+      "runner": "run_5d",
+      "scientific_evidence": false,
+      "seeds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29
+      ],
+      "ticks": 256,
+      "timeout_seconds": 1200
+    },
+    {
+      "direct_test_of_hypothesis": true,
+      "execution_kind": "functional_experiment",
+      "execution_mode": "EXPLORATORY_REEXECUTION",
+      "hypothesis": "H-5D-002-A",
+      "preregistration": "preregistrations/operational/catalog_completion_v1.json",
+      "primary_outcomes": [
+        "registered_runner_outputs"
+      ],
+      "protocol": "dimension_propagation_v1",
+      "registered_mode": "EXPLORATORY",
+      "research_question": "RQ-5D-002",
+      "runner": "run_5d",
+      "scientific_evidence": false,
+      "seeds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29
+      ],
+      "ticks": 256,
+      "timeout_seconds": 1200
+    },
+    {
+      "direct_test_of_hypothesis": false,
+      "execution_kind": "boundary_audit",
+      "execution_mode": "EXPLORATORY_REEXECUTION",
+      "hypothesis": "H-5D-003-A",
+      "preregistration": "preregistrations/operational/catalog_completion_v1.json",
+      "primary_outcomes": [
+        "audit_contract_complete"
+      ],
+      "protocol": "dimension_modularity_boundary_v1",
+      "registered_mode": "EXPLORATORY",
+      "research_question": "RQ-5D-003",
+      "runner": "run_boundary_audit",
+      "scientific_evidence": false,
+      "seeds": [
+        42,
+        43,
+        44
+      ],
+      "ticks": null,
+      "timeout_seconds": 1200
+    },
+    {
+      "direct_test_of_hypothesis": false,
+      "execution_kind": "boundary_audit",
+      "execution_mode": "EXPLORATORY_REEXECUTION",
+      "hypothesis": "H-5D-004-A",
+      "preregistration": "preregistrations/operational/catalog_completion_v1.json",
+      "primary_outcomes": [
+        "audit_contract_complete"
+      ],
+      "protocol": "dimension_information_boundary_v1",
+      "registered_mode": "EXPLORATORY",
+      "research_question": "RQ-5D-004",
+      "runner": "run_boundary_audit",
+      "scientific_evidence": false,
+      "seeds": [
+        42,
+        43,
+        44
+      ],
+      "ticks": null,
+      "timeout_seconds": 1200
+    },
+    {
+      "direct_test_of_hypothesis": false,
+      "execution_kind": "boundary_audit",
+      "execution_mode": "EXPLORATORY_REEXECUTION",
+      "hypothesis": "H-AIR-001-A",
+      "preregistration": "preregistrations/operational/catalog_completion_v1.json",
+      "primary_outcomes": [
+        "audit_contract_complete"
+      ],
+      "protocol": "research_assistant_methodology_audit_v1",
+      "registered_mode": "EXPLORATORY",
+      "research_question": "RQ-AIR-001",
+      "runner": "run_boundary_audit",
+      "scientific_evidence": false,
+      "seeds": [
+        42,
+        43,
+        44
+      ],
+      "ticks": null,
+      "timeout_seconds": 1200
+    },
+    {
+      "direct_test_of_hypothesis": false,
+      "execution_kind": "boundary_audit",
+      "execution_mode": "EXPLORATORY_REEXECUTION",
+      "hypothesis": "H-CONN-001-A",
+      "preregistration": "preregistrations/operational/catalog_completion_v1.json",
+      "primary_outcomes": [
+        "audit_contract_complete"
+      ],
+      "protocol": "connectome_reference_gap_audit_v1",
+      "registered_mode": "EXPLORATORY",
+      "research_question": "RQ-CONN-001",
+      "runner": "run_boundary_audit",
+      "scientific_evidence": false,
+      "seeds": [
+        42,
+        43,
+        44
+      ],
+      "ticks": null,
+      "timeout_seconds": 1200
+    },
+    {
+      "direct_test_of_hypothesis": true,
+      "execution_kind": "functional_experiment",
+      "execution_mode": "EXPLORATORY_REEXECUTION",
+      "hypothesis": "H-SNN-003-A",
+      "preregistration": "preregistrations/operational/catalog_completion_v1.json",
+      "primary_outcomes": [
+        "registered_runner_outputs"
+      ],
+      "protocol": "deterministic_replica_v1",
+      "registered_mode": "EXPLORATORY",
+      "research_question": "RQ-DET-001",
+      "runner": "run_ping_v2",
+      "scientific_evidence": false,
+      "seeds": [
+        42,
+        43,
+        44
+      ],
+      "ticks": 256,
+      "timeout_seconds": 1200
+    },
+    {
+      "direct_test_of_hypothesis": false,
+      "execution_kind": "boundary_audit",
+      "execution_mode": "EXPLORATORY_REEXECUTION",
+      "hypothesis": "H-EMB-003-A",
+      "preregistration": "preregistrations/operational/catalog_completion_v1.json",
+      "primary_outcomes": [
+        "audit_contract_complete"
+      ],
+      "protocol": "embodied_mapping_learning_gap_audit_v1",
+      "registered_mode": "EXPLORATORY",
+      "research_question": "RQ-EMB-003",
+      "runner": "run_boundary_audit",
+      "scientific_evidence": false,
+      "seeds": [
+        42,
+        43,
+        44
+      ],
+      "ticks": null,
+      "timeout_seconds": 1200
+    },
+    {
+      "direct_test_of_hypothesis": false,
+      "execution_kind": "boundary_audit",
+      "execution_mode": "EXPLORATORY_REEXECUTION",
+      "hypothesis": "H-EMB-007-A",
+      "preregistration": "preregistrations/operational/catalog_completion_v1.json",
+      "primary_outcomes": [
+        "audit_contract_complete"
+      ],
+      "protocol": "embodied_efference_copy_gap_audit_v1",
+      "registered_mode": "EXPLORATORY",
+      "research_question": "RQ-EMB-007",
+      "runner": "run_boundary_audit",
+      "scientific_evidence": false,
+      "seeds": [
+        42,
+        43,
+        44
+      ],
+      "ticks": null,
+      "timeout_seconds": 1200
+    },
+    {
+      "direct_test_of_hypothesis": false,
+      "execution_kind": "boundary_audit",
+      "execution_mode": "EXPLORATORY_REEXECUTION",
+      "hypothesis": "H-EMB-008-A",
+      "preregistration": "preregistrations/operational/catalog_completion_v1.json",
+      "primary_outcomes": [
+        "audit_contract_complete"
+      ],
+      "protocol": "embodied_morphology_transfer_gap_audit_v1",
+      "registered_mode": "EXPLORATORY",
+      "research_question": "RQ-EMB-008",
+      "runner": "run_boundary_audit",
+      "scientific_evidence": false,
+      "seeds": [
+        42,
+        43,
+        44
+      ],
+      "ticks": null,
+      "timeout_seconds": 1200
+    },
+    {
+      "direct_test_of_hypothesis": false,
+      "execution_kind": "boundary_audit",
+      "execution_mode": "EXPLORATORY_REEXECUTION",
+      "hypothesis": "H-GW-001-A",
+      "preregistration": "preregistrations/operational/catalog_completion_v1.json",
+      "primary_outcomes": [
+        "audit_contract_complete"
+      ],
+      "protocol": "gateway_learning_boundary_v1",
+      "registered_mode": "EXPLORATORY",
+      "research_question": "RQ-GW-001",
+      "runner": "run_boundary_audit",
+      "scientific_evidence": false,
+      "seeds": [
+        42,
+        43,
+        44
+      ],
+      "ticks": null,
+      "timeout_seconds": 1200
+    },
+    {
+      "direct_test_of_hypothesis": false,
+      "execution_kind": "boundary_audit",
+      "execution_mode": "EXPLORATORY_REEXECUTION",
+      "hypothesis": "H-GW-002-A",
+      "preregistration": "preregistrations/operational/catalog_completion_v1.json",
+      "primary_outcomes": [
+        "audit_contract_complete"
+      ],
+      "protocol": "gateway_modality_rules_boundary_v1",
+      "registered_mode": "EXPLORATORY",
+      "research_question": "RQ-GW-002",
+      "runner": "run_boundary_audit",
+      "scientific_evidence": false,
+      "seeds": [
+        42,
+        43,
+        44
+      ],
+      "ticks": null,
+      "timeout_seconds": 1200
+    },
+    {
+      "direct_test_of_hypothesis": false,
+      "execution_kind": "boundary_audit",
+      "execution_mode": "EXPLORATORY_REEXECUTION",
+      "hypothesis": "H-GW-003-A",
+      "preregistration": "preregistrations/operational/catalog_completion_v1.json",
+      "primary_outcomes": [
+        "audit_contract_complete"
+      ],
+      "protocol": "gateway_stability_boundary_v1",
+      "registered_mode": "EXPLORATORY",
+      "research_question": "RQ-GW-003",
+      "runner": "run_boundary_audit",
+      "scientific_evidence": false,
+      "seeds": [
+        42,
+        43,
+        44
+      ],
+      "ticks": null,
+      "timeout_seconds": 1200
+    },
+    {
+      "direct_test_of_hypothesis": false,
+      "execution_kind": "boundary_audit",
+      "execution_mode": "EXPLORATORY_REEXECUTION",
+      "hypothesis": "H-GW-004-A",
+      "preregistration": "preregistrations/operational/catalog_completion_v1.json",
+      "primary_outcomes": [
+        "audit_contract_complete"
+      ],
+      "protocol": "gateway_transfer_boundary_v1",
+      "registered_mode": "EXPLORATORY",
+      "research_question": "RQ-GW-004",
+      "runner": "run_boundary_audit",
+      "scientific_evidence": false,
+      "seeds": [
+        42,
+        43,
+        44
+      ],
+      "ticks": null,
+      "timeout_seconds": 1200
+    },
+    {
+      "direct_test_of_hypothesis": false,
+      "execution_kind": "boundary_audit",
+      "execution_mode": "EXPLORATORY_REEXECUTION",
+      "hypothesis": "H-GW-005-A",
+      "preregistration": "preregistrations/operational/catalog_completion_v1.json",
+      "primary_outcomes": [
+        "audit_contract_complete"
+      ],
+      "protocol": "gateway_structure_boundary_v1",
+      "registered_mode": "EXPLORATORY",
+      "research_question": "RQ-GW-005",
+      "runner": "run_boundary_audit",
+      "scientific_evidence": false,
+      "seeds": [
+        42,
+        43,
+        44
+      ],
+      "ticks": null,
+      "timeout_seconds": 1200
+    },
+    {
+      "direct_test_of_hypothesis": false,
+      "execution_kind": "boundary_audit",
+      "execution_mode": "EXPLORATORY_REEXECUTION",
+      "hypothesis": "H-GW-006-A",
+      "preregistration": "preregistrations/operational/catalog_completion_v1.json",
+      "primary_outcomes": [
+        "audit_contract_complete"
+      ],
+      "protocol": "gateway_closed_loop_boundary_v1",
+      "registered_mode": "EXPLORATORY",
+      "research_question": "RQ-GW-006",
+      "runner": "run_boundary_audit",
+      "scientific_evidence": false,
+      "seeds": [
+        42,
+        43,
+        44
+      ],
+      "ticks": null,
+      "timeout_seconds": 1200
+    },
+    {
+      "direct_test_of_hypothesis": false,
+      "execution_kind": "boundary_audit",
+      "execution_mode": "EXPLORATORY_REEXECUTION",
+      "hypothesis": "H-GW-007-A",
+      "preregistration": "preregistrations/operational/catalog_completion_v1.json",
+      "primary_outcomes": [
+        "audit_contract_complete"
+      ],
+      "protocol": "gateway_resources_boundary_v1",
+      "registered_mode": "EXPLORATORY",
+      "research_question": "RQ-GW-007",
+      "runner": "run_boundary_audit",
+      "scientific_evidence": false,
+      "seeds": [
+        42,
+        43,
+        44
+      ],
+      "ticks": null,
+      "timeout_seconds": 1200
+    },
+    {
+      "direct_test_of_hypothesis": false,
+      "execution_kind": "boundary_audit",
+      "execution_mode": "EXPLORATORY_REEXECUTION",
+      "hypothesis": "H-HOM-001-A",
+      "preregistration": "preregistrations/operational/catalog_completion_v1.json",
+      "primary_outcomes": [
+        "audit_contract_complete"
+      ],
+      "protocol": "homeostasis_rate_boundary_v1",
+      "registered_mode": "EXPLORATORY",
+      "research_question": "RQ-HOM-001",
+      "runner": "run_boundary_audit",
+      "scientific_evidence": false,
+      "seeds": [
+        42,
+        43,
+        44
+      ],
+      "ticks": null,
+      "timeout_seconds": 1200
+    },
+    {
+      "direct_test_of_hypothesis": false,
+      "execution_kind": "boundary_audit",
+      "execution_mode": "EXPLORATORY_REEXECUTION",
+      "hypothesis": "H-HOM-002-A",
+      "preregistration": "preregistrations/operational/catalog_completion_v1.json",
+      "primary_outcomes": [
+        "audit_contract_complete"
+      ],
+      "protocol": "homeostasis_stdp_boundary_v1",
+      "registered_mode": "EXPLORATORY",
+      "research_question": "RQ-HOM-002",
+      "runner": "run_boundary_audit",
+      "scientific_evidence": false,
+      "seeds": [
+        42,
+        43,
+        44
+      ],
+      "ticks": null,
+      "timeout_seconds": 1200
+    },
+    {
+      "direct_test_of_hypothesis": false,
+      "execution_kind": "boundary_audit",
+      "execution_mode": "EXPLORATORY_REEXECUTION",
+      "hypothesis": "H-LLM-001-A",
+      "preregistration": "preregistrations/operational/catalog_completion_v1.json",
+      "primary_outcomes": [
+        "audit_contract_complete"
+      ],
+      "protocol": "language_organ_boundary_v1",
+      "registered_mode": "EXPLORATORY",
+      "research_question": "RQ-LLM-001",
+      "runner": "run_boundary_audit",
+      "scientific_evidence": false,
+      "seeds": [
+        42,
+        43,
+        44
+      ],
+      "ticks": null,
+      "timeout_seconds": 1200
+    },
+    {
+      "direct_test_of_hypothesis": false,
+      "execution_kind": "boundary_audit",
+      "execution_mode": "EXPLORATORY_REEXECUTION",
+      "hypothesis": "H-MEM-001-A",
+      "preregistration": "preregistrations/operational/catalog_completion_v1.json",
+      "primary_outcomes": [
+        "audit_contract_complete"
+      ],
+      "protocol": "synaptic_memory_boundary_v1",
+      "registered_mode": "EXPLORATORY",
+      "research_question": "RQ-MEM-001",
+      "runner": "run_boundary_audit",
+      "scientific_evidence": false,
+      "seeds": [
+        42,
+        43,
+        44
+      ],
+      "ticks": null,
+      "timeout_seconds": 1200
+    },
+    {
+      "direct_test_of_hypothesis": true,
+      "execution_kind": "functional_experiment",
+      "execution_mode": "EXPLORATORY_REEXECUTION",
+      "hypothesis": "H-PING-001-A",
+      "preregistration": "preregistrations/operational/catalog_completion_v1.json",
+      "primary_outcomes": [
+        "registered_runner_outputs"
+      ],
+      "protocol": "network_impulse_reproducibility_v1",
+      "registered_mode": "EXPLORATORY",
+      "research_question": "RQ-PING-001",
+      "runner": "run_ping_v2",
+      "scientific_evidence": false,
+      "seeds": [
+        42,
+        43,
+        44
+      ],
+      "ticks": 256,
+      "timeout_seconds": 1200
+    },
+    {
+      "direct_test_of_hypothesis": true,
+      "execution_kind": "functional_experiment",
+      "execution_mode": "EXPLORATORY_REEXECUTION",
+      "hypothesis": "H-REG-001-A",
+      "preregistration": "preregistrations/operational/catalog_completion_v1.json",
+      "primary_outcomes": [
+        "registered_runner_outputs"
+      ],
+      "protocol": "regulation_telemetry_v1",
+      "registered_mode": "EXPLORATORY",
+      "research_question": "RQ-REG-001",
+      "runner": "run_regulation",
+      "scientific_evidence": false,
+      "seeds": [
+        42,
+        43,
+        44
+      ],
+      "ticks": null,
+      "timeout_seconds": 1200
+    },
+    {
+      "direct_test_of_hypothesis": false,
+      "execution_kind": "boundary_audit",
+      "execution_mode": "EXPLORATORY_REEXECUTION",
+      "hypothesis": "H-SCALE-001-A",
+      "preregistration": "preregistrations/operational/catalog_completion_v1.json",
+      "primary_outcomes": [
+        "audit_contract_complete"
+      ],
+      "protocol": "million_neuron_scaling_boundary_v1",
+      "registered_mode": "EXPLORATORY",
+      "research_question": "RQ-SCALE-001",
+      "runner": "run_boundary_audit",
+      "scientific_evidence": false,
+      "seeds": [
+        42,
+        43,
+        44
+      ],
+      "ticks": null,
+      "timeout_seconds": 1200
+    },
+    {
+      "direct_test_of_hypothesis": false,
+      "execution_kind": "boundary_audit",
+      "execution_mode": "EXPLORATORY_REEXECUTION",
+      "hypothesis": "H-SELF-001-A",
+      "preregistration": "preregistrations/operational/catalog_completion_v1.json",
+      "primary_outcomes": [
+        "audit_contract_complete"
+      ],
+      "protocol": "self_organization_clusters_boundary_v1",
+      "registered_mode": "EXPLORATORY",
+      "research_question": "RQ-SELF-001",
+      "runner": "run_boundary_audit",
+      "scientific_evidence": false,
+      "seeds": [
+        42,
+        43,
+        44
+      ],
+      "ticks": null,
+      "timeout_seconds": 1200
+    },
+    {
+      "direct_test_of_hypothesis": false,
+      "execution_kind": "boundary_audit",
+      "execution_mode": "EXPLORATORY_REEXECUTION",
+      "hypothesis": "H-SELF-002-A",
+      "preregistration": "preregistrations/operational/catalog_completion_v1.json",
+      "primary_outcomes": [
+        "audit_contract_complete"
+      ],
+      "protocol": "self_organization_emergence_boundary_v1",
+      "registered_mode": "EXPLORATORY",
+      "research_question": "RQ-SELF-002",
+      "runner": "run_boundary_audit",
+      "scientific_evidence": false,
+      "seeds": [
+        42,
+        43,
+        44
+      ],
+      "ticks": null,
+      "timeout_seconds": 1200
+    },
+    {
+      "direct_test_of_hypothesis": true,
+      "execution_kind": "functional_experiment",
+      "execution_mode": "EXPLORATORY_REEXECUTION",
+      "hypothesis": "H-SNN-002-A",
+      "preregistration": "preregistrations/operational/catalog_completion_v1.json",
+      "primary_outcomes": [
+        "registered_runner_outputs"
+      ],
+      "protocol": "tonic_spike_reproducibility_v1",
+      "registered_mode": "EXPLORATORY",
+      "research_question": "RQ-SNN-002",
+      "runner": "run_tonic_spike_reproducibility",
+      "scientific_evidence": false,
+      "seeds": [
+        42,
+        43,
+        44
+      ],
+      "ticks": 256,
+      "timeout_seconds": 1200
+    },
+    {
+      "direct_test_of_hypothesis": true,
+      "execution_kind": "functional_experiment",
+      "execution_mode": "EXPLORATORY_REEXECUTION",
+      "hypothesis": "H-SNN-003-B",
+      "preregistration": "preregistrations/operational/catalog_completion_v1.json",
+      "primary_outcomes": [
+        "registered_runner_outputs"
+      ],
+      "protocol": "topology_propagation_v1",
+      "registered_mode": "EXPLORATORY",
+      "research_question": "RQ-SNN-003",
+      "runner": "run_5d",
+      "scientific_evidence": false,
+      "seeds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29
+      ],
+      "ticks": 256,
+      "timeout_seconds": 1200
+    },
+    {
+      "direct_test_of_hypothesis": true,
+      "execution_kind": "functional_experiment",
+      "execution_mode": "EXPLORATORY_REEXECUTION",
+      "hypothesis": "H-SNN-004-A",
+      "preregistration": "preregistrations/operational/catalog_completion_v1.json",
+      "primary_outcomes": [
+        "registered_runner_outputs"
+      ],
+      "protocol": "stdp_weight_matrix_v1",
+      "registered_mode": "EXPLORATORY",
+      "research_question": "RQ-SNN-004",
+      "runner": "run_stdp",
+      "scientific_evidence": false,
+      "seeds": [
+        42,
+        43,
+        44
+      ],
+      "ticks": null,
+      "timeout_seconds": 1200
+    },
+    {
+      "direct_test_of_hypothesis": true,
+      "execution_kind": "functional_experiment",
+      "execution_mode": "EXPLORATORY_REEXECUTION",
+      "hypothesis": "H-SNN-005-A",
+      "preregistration": "preregistrations/operational/catalog_completion_v1.json",
+      "primary_outcomes": [
+        "registered_runner_outputs"
+      ],
+      "protocol": "stdp_learning_performance_v1",
+      "registered_mode": "EXPLORATORY",
+      "research_question": "RQ-SNN-005",
+      "runner": "run_learning_repeat",
+      "scientific_evidence": false,
+      "seeds": [
+        42,
+        43,
+        44
+      ],
+      "ticks": null,
+      "timeout_seconds": 1200
+    },
+    {
+      "direct_test_of_hypothesis": true,
+      "execution_kind": "functional_experiment",
+      "execution_mode": "EXPLORATORY_REEXECUTION",
+      "hypothesis": "H-STDP-001-A",
+      "preregistration": "preregistrations/operational/catalog_completion_v1.json",
+      "primary_outcomes": [
+        "registered_runner_outputs"
+      ],
+      "protocol": "stdp_pair_timing_registered_v1",
+      "registered_mode": "EXPLORATORY",
+      "research_question": "RQ-STDP-001",
+      "runner": "run_stdp_pair_registered",
+      "scientific_evidence": false,
+      "seeds": [
+        42,
+        43,
+        44
+      ],
+      "ticks": null,
+      "timeout_seconds": 1200
+    },
+    {
+      "direct_test_of_hypothesis": false,
+      "execution_kind": "boundary_audit",
+      "execution_mode": "EXPLORATORY_REEXECUTION",
+      "hypothesis": "H-STDP-002-A",
+      "preregistration": "preregistrations/operational/catalog_completion_v1.json",
+      "primary_outcomes": [
+        "audit_contract_complete"
+      ],
+      "protocol": "stdp_long_stability_boundary_v1",
+      "registered_mode": "EXPLORATORY",
+      "research_question": "RQ-STDP-002",
+      "runner": "run_boundary_audit",
+      "scientific_evidence": false,
+      "seeds": [
+        42,
+        43,
+        44
+      ],
+      "ticks": null,
+      "timeout_seconds": 1200
+    },
+    {
+      "direct_test_of_hypothesis": false,
+      "execution_kind": "boundary_audit",
+      "execution_mode": "EXPLORATORY_REEXECUTION",
+      "hypothesis": "H-STOR-001-A",
+      "preregistration": "preregistrations/operational/catalog_completion_v1.json",
+      "primary_outcomes": [
+        "audit_contract_complete"
+      ],
+      "protocol": "storage_roundtrip_boundary_v1",
+      "registered_mode": "EXPLORATORY",
+      "research_question": "RQ-STORAGE-001",
+      "runner": "run_boundary_audit",
+      "scientific_evidence": false,
+      "seeds": [
+        42,
+        43,
+        44
+      ],
+      "ticks": null,
+      "timeout_seconds": 1200
+    },
+    {
+      "direct_test_of_hypothesis": false,
+      "execution_kind": "boundary_audit",
+      "execution_mode": "EXPLORATORY_REEXECUTION",
+      "hypothesis": "H-STOR-002-A",
+      "preregistration": "preregistrations/operational/catalog_completion_v1.json",
+      "primary_outcomes": [
+        "audit_contract_complete"
+      ],
+      "protocol": "storage_causal_resume_boundary_v1",
+      "registered_mode": "EXPLORATORY",
+      "research_question": "RQ-STORAGE-002",
+      "runner": "run_boundary_audit",
+      "scientific_evidence": false,
+      "seeds": [
+        42,
+        43,
+        44
+      ],
+      "ticks": null,
+      "timeout_seconds": 1200
+    },
+    {
+      "direct_test_of_hypothesis": false,
+      "execution_kind": "boundary_audit",
+      "execution_mode": "EXPLORATORY_REEXECUTION",
+      "hypothesis": "H-STOR-003-A",
+      "preregistration": "preregistrations/operational/catalog_completion_v1.json",
+      "primary_outcomes": [
+        "audit_contract_complete"
+      ],
+      "protocol": "storage_density_boundary_v1",
+      "registered_mode": "EXPLORATORY",
+      "research_question": "RQ-STORAGE-003",
+      "runner": "run_boundary_audit",
+      "scientific_evidence": false,
+      "seeds": [
+        42,
+        43,
+        44
+      ],
+      "ticks": null,
+      "timeout_seconds": 1200
+    },
+    {
+      "direct_test_of_hypothesis": false,
+      "execution_kind": "boundary_audit",
+      "execution_mode": "EXPLORATORY_REEXECUTION",
+      "hypothesis": "H-STOR-004-A",
+      "preregistration": "preregistrations/operational/catalog_completion_v1.json",
+      "primary_outcomes": [
+        "audit_contract_complete"
+      ],
+      "protocol": "storage_scale_boundary_v1",
+      "registered_mode": "EXPLORATORY",
+      "research_question": "RQ-STORAGE-004",
+      "runner": "run_boundary_audit",
+      "scientific_evidence": false,
+      "seeds": [
+        42,
+        43,
+        44
+      ],
+      "ticks": null,
+      "timeout_seconds": 1200
+    },
+    {
+      "direct_test_of_hypothesis": false,
+      "execution_kind": "boundary_audit",
+      "execution_mode": "EXPLORATORY_REEXECUTION",
+      "hypothesis": "H-STRUCT-001-A",
+      "preregistration": "preregistrations/operational/catalog_completion_v1.json",
+      "primary_outcomes": [
+        "audit_contract_complete"
+      ],
+      "protocol": "structural_efficiency_boundary_v1",
+      "registered_mode": "EXPLORATORY",
+      "research_question": "RQ-STRUCT-001",
+      "runner": "run_boundary_audit",
+      "scientific_evidence": false,
+      "seeds": [
+        42,
+        43,
+        44
+      ],
+      "ticks": null,
+      "timeout_seconds": 1200
+    },
+    {
+      "direct_test_of_hypothesis": true,
+      "execution_kind": "functional_experiment",
+      "execution_mode": "EXPLORATORY_REEXECUTION",
+      "hypothesis": "H-SUITE-001-A",
+      "preregistration": "preregistrations/operational/catalog_completion_v1.json",
+      "primary_outcomes": [
+        "registered_runner_outputs"
+      ],
+      "protocol": "science_suite_registered_v1",
+      "registered_mode": "EXPLORATORY",
+      "research_question": "RQ-SUITE-001",
+      "runner": "run_all",
+      "scientific_evidence": false,
+      "seeds": [
+        42,
+        43,
+        44
+      ],
+      "ticks": 256,
+      "timeout_seconds": 1200
+    },
+    {
+      "direct_test_of_hypothesis": true,
+      "execution_kind": "functional_experiment",
+      "execution_mode": "EXPLORATORY_REEXECUTION",
+      "hypothesis": "H-TEMP-001-A",
+      "preregistration": "preregistrations/operational/catalog_completion_v1.json",
+      "primary_outcomes": [
+        "registered_runner_outputs"
+      ],
+      "protocol": "temporal_state_registered_v1",
+      "registered_mode": "EXPLORATORY",
+      "research_question": "RQ-TEMP-001",
+      "runner": "run_temporal",
+      "scientific_evidence": false,
+      "seeds": [
+        42,
+        43,
+        44
+      ],
+      "ticks": 256,
+      "timeout_seconds": 1200
+    },
+    {
+      "direct_test_of_hypothesis": true,
+      "execution_kind": "functional_experiment",
+      "execution_mode": "EXPLORATORY_REEXECUTION",
+      "hypothesis": "H-TIME-001-A",
+      "preregistration": "preregistrations/operational/catalog_completion_v1.json",
+      "primary_outcomes": [
+        "registered_runner_outputs"
+      ],
+      "protocol": "learning_timescale_registered_v1",
+      "registered_mode": "EXPLORATORY",
+      "research_question": "RQ-TIME-001",
+      "runner": "run_time",
+      "scientific_evidence": false,
+      "seeds": [
+        42,
+        43,
+        44
+      ],
+      "ticks": 100000,
+      "timeout_seconds": 1200
+    },
+    {
+      "direct_test_of_hypothesis": true,
+      "execution_kind": "functional_experiment",
+      "execution_mode": "EXPLORATORY_REEXECUTION",
+      "hypothesis": "H-MEM-002-A",
+      "preregistration": "preregistrations/operational/cognition_bundle_v1.json",
+      "primary_outcomes": [
+        "accuracy",
+        "retrievals"
+      ],
+      "protocol": "memory_delayed_information_v1",
+      "registered_mode": "EXPLORATORY",
+      "research_question": "RQ-MEM-002",
+      "runner": "run_memory_delayed_information",
+      "scientific_evidence": false,
+      "seeds": [
+        101,
+        102,
+        103
+      ],
+      "ticks": null,
+      "timeout_seconds": 1200
+    },
+    {
+      "direct_test_of_hypothesis": true,
+      "execution_kind": "functional_experiment",
+      "execution_mode": "EXPLORATORY_REEXECUTION",
+      "hypothesis": "H-WM-001-A",
+      "preregistration": "preregistrations/operational/cognition_bundle_v1.json",
+      "primary_outcomes": [
+        "mean_prediction_error"
+      ],
+      "protocol": "world_model_prediction_v1",
+      "registered_mode": "EXPLORATORY",
+      "research_question": "RQ-WM-001",
+      "runner": "run_world_model_prediction",
+      "scientific_evidence": false,
+      "seeds": [
+        101,
+        102,
+        103
+      ],
+      "ticks": null,
+      "timeout_seconds": 1200
+    },
+    {
+      "direct_test_of_hypothesis": true,
+      "execution_kind": "functional_experiment",
+      "execution_mode": "EXPLORATORY_REEXECUTION",
+      "hypothesis": "H-PROFILE-001-A",
+      "preregistration": "preregistrations/operational/cognition_bundle_v1.json",
+      "primary_outcomes": [
+        "accuracy",
+        "update_count"
+      ],
+      "protocol": "behavior_profile_control_v1",
+      "registered_mode": "EXPLORATORY",
+      "research_question": "RQ-PROFILE-001",
+      "runner": "run_behavior_profile_control",
+      "scientific_evidence": false,
+      "seeds": [
+        101,
+        102,
+        103
+      ],
+      "ticks": null,
+      "timeout_seconds": 1200
+    },
+    {
+      "direct_test_of_hypothesis": false,
+      "execution_kind": "registered_simulation",
+      "execution_mode": "EXPLORATORY_REEXECUTION",
+      "hypothesis": "H-EMB-001-B",
+      "preregistration": "preregistrations/connectome/embodied_closed_loop_v1.json",
+      "primary_outcomes": [
+        "tracking_rmse_rad"
+      ],
+      "protocol": "embodied_closed_loop_v1",
+      "registered_mode": "EXPLORATORY",
+      "research_question": "RQ-EMB-001",
+      "runner": "run_embodied_closed_loop",
+      "scientific_evidence": false,
+      "seeds": [
+        101,
+        102,
+        103
+      ],
+      "ticks": 600,
+      "timeout_seconds": 1200
+    },
+    {
+      "direct_test_of_hypothesis": false,
+      "execution_kind": "registered_simulation",
+      "execution_mode": "EXPLORATORY_REEXECUTION",
+      "hypothesis": "H-EMB-002-A",
+      "preregistration": "preregistrations/connectome/embodied_proprioception_v1.json",
+      "primary_outcomes": [
+        "tracking_rmse_rad"
+      ],
+      "protocol": "embodied_proprioception_v1",
+      "registered_mode": "EXPLORATORY",
+      "research_question": "RQ-EMB-002",
+      "runner": "run_embodied_proprioception",
+      "scientific_evidence": false,
+      "seeds": [
+        101,
+        102,
+        103
+      ],
+      "ticks": 600,
+      "timeout_seconds": 1200
+    },
+    {
+      "direct_test_of_hypothesis": false,
+      "execution_kind": "registered_simulation",
+      "execution_mode": "EXPLORATORY_REEXECUTION",
+      "hypothesis": "H-EMB-004-A",
+      "preregistration": "preregistrations/connectome/embodied_perturbation_screen_v1.json",
+      "primary_outcomes": [
+        "tracking_rmse_rad"
+      ],
+      "protocol": "embodied_perturbation_screen_v1",
+      "registered_mode": "EXPLORATORY",
+      "research_question": "RQ-EMB-004",
+      "runner": "run_embodied_perturbation",
+      "scientific_evidence": false,
+      "seeds": [
+        101,
+        102,
+        103
+      ],
+      "ticks": 600,
+      "timeout_seconds": 1200
+    },
+    {
+      "direct_test_of_hypothesis": false,
+      "execution_kind": "registered_simulation",
+      "execution_mode": "EXPLORATORY_REEXECUTION",
+      "hypothesis": "H-CONN-002-A",
+      "preregistration": "preregistrations/connectome/connectome_topology_screen_v1.json",
+      "primary_outcomes": [
+        "tracking_rmse_rad"
+      ],
+      "protocol": "connectome_topology_screen_v1",
+      "registered_mode": "EXPLORATORY",
+      "research_question": "RQ-CONN-002",
+      "runner": "run_connectome_topology",
+      "scientific_evidence": false,
+      "seeds": [
+        101,
+        102,
+        103
+      ],
+      "ticks": 600,
+      "timeout_seconds": 1200
+    },
+    {
+      "direct_test_of_hypothesis": false,
+      "execution_kind": "registered_simulation",
+      "execution_mode": "EXPLORATORY_REEXECUTION",
+      "hypothesis": "H-EMB-009-A",
+      "preregistration": "preregistrations/connectome/embodied_controller_attribution_v1.json",
+      "primary_outcomes": [
+        "tracking_rmse_rad"
+      ],
+      "protocol": "embodied_controller_attribution_v1",
+      "registered_mode": "EXPLORATORY",
+      "research_question": "RQ-EMB-009",
+      "runner": "run_embodied_controller",
+      "scientific_evidence": false,
+      "seeds": [
+        101,
+        102,
+        103
+      ],
+      "ticks": 600,
+      "timeout_seconds": 1200
+    },
+    {
+      "direct_test_of_hypothesis": false,
+      "execution_kind": "registered_simulation",
+      "execution_mode": "EXPLORATORY_REEXECUTION",
+      "hypothesis": "H-TIME-002-A",
+      "preregistration": "preregistrations/connectome/embodied_timing_v1.json",
+      "primary_outcomes": [
+        "batch_digest_identity"
+      ],
+      "protocol": "embodied_timing_v1",
+      "registered_mode": "EXPLORATORY",
+      "research_question": "RQ-TIME-002",
+      "runner": "run_embodied_timing",
+      "scientific_evidence": false,
+      "seeds": [
+        101,
+        102,
+        103
+      ],
+      "ticks": 600,
+      "timeout_seconds": 1200
+    },
+    {
+      "direct_test_of_hypothesis": true,
+      "execution_kind": "functional_experiment",
+      "execution_mode": "EXPLORATORY_REEXECUTION",
+      "hypothesis": "H-EVAL-005-A",
+      "preregistration": "preregistrations/operational/active_scaling_v2.json",
+      "primary_outcomes": [
+        "ticks_per_second",
+        "finite_state"
+      ],
+      "protocol": "active_scaling_v2",
+      "registered_mode": "EXPLORATORY",
+      "research_question": "RQ-EVAL-005",
+      "runner": "run_eval_scaling_v2",
+      "scientific_evidence": false,
+      "seeds": [
+        21001,
+        21002,
+        21003
+      ],
+      "ticks": null,
+      "timeout_seconds": 1200
+    },
+    {
+      "direct_test_of_hypothesis": true,
+      "execution_kind": "functional_experiment",
+      "execution_mode": "EXPLORATORY_REEXECUTION",
+      "hypothesis": "H-EVAL-001-A",
+      "preregistration": "preregistrations/operational/dimensional_connectivity_v1.json",
+      "primary_outcomes": [
+        "output_spikes"
+      ],
+      "protocol": "dimensional_connectivity_v1",
+      "registered_mode": "EXPLORATORY",
+      "research_question": "RQ-EVAL-001",
+      "runner": "run_eval_dimensional",
+      "scientific_evidence": false,
+      "seeds": [
+        20001,
+        20002,
+        20003,
+        20004,
+        20005,
+        20006,
+        20007,
+        20008,
+        20009,
+        20010
+      ],
+      "ticks": 256,
+      "timeout_seconds": 1200
+    },
+    {
+      "direct_test_of_hypothesis": true,
+      "execution_kind": "functional_experiment",
+      "execution_mode": "EXPLORATORY_REEXECUTION",
+      "hypothesis": "H-EVAL-002-A",
+      "preregistration": "preregistrations/operational/native_association_holdout_v1.json",
+      "primary_outcomes": [
+        "test_accuracy"
+      ],
+      "protocol": "native_association_holdout_v1",
+      "registered_mode": "EXPLORATORY",
+      "research_question": "RQ-EVAL-002",
+      "runner": "run_eval_association",
+      "scientific_evidence": false,
+      "seeds": [
+        20001,
+        20002,
+        20003,
+        20004,
+        20005,
+        20006,
+        20007,
+        20008,
+        20009,
+        20010
+      ],
+      "ticks": null,
+      "timeout_seconds": 1200
+    },
+    {
+      "direct_test_of_hypothesis": true,
+      "execution_kind": "functional_experiment",
+      "execution_mode": "EXPLORATORY_REEXECUTION",
+      "hypothesis": "H-EVAL-003-A",
+      "preregistration": "preregistrations/operational/brian2_single_neuron_v1.json",
+      "primary_outcomes": [
+        "conformance_within_1e_8"
+      ],
+      "protocol": "brian2_single_neuron_v1",
+      "registered_mode": "EXPLORATORY",
+      "research_question": "RQ-EVAL-003",
+      "runner": "run_eval_brian2",
+      "scientific_evidence": false,
+      "seeds": [
+        20001,
+        20002,
+        20003
+      ],
+      "ticks": null,
+      "timeout_seconds": 1200
+    },
+    {
+      "direct_test_of_hypothesis": true,
+      "execution_kind": "functional_experiment",
+      "execution_mode": "EXPLORATORY_REEXECUTION",
+      "hypothesis": "H-EVAL-004-A",
+      "preregistration": "preregistrations/operational/active_scaling_v1.json",
+      "primary_outcomes": [
+        "ticks_per_second",
+        "finite_state"
+      ],
+      "protocol": "active_scaling_v1",
+      "registered_mode": "EXPLORATORY",
+      "research_question": "RQ-EVAL-004",
+      "runner": "run_eval_scaling",
+      "scientific_evidence": false,
+      "seeds": [
+        20001,
+        20002,
+        20003
+      ],
+      "ticks": null,
+      "timeout_seconds": 1200
+    },
+    {
+      "direct_test_of_hypothesis": false,
+      "execution_kind": "composite_engineering_screen",
+      "execution_mode": "EXPLORATORY",
+      "hypothesis": null,
+      "primary_outcomes": [],
+      "protocol": "foundational_seven_suite",
+      "research_question": null,
+      "runner": "run_all",
+      "scientific_evidence": false,
+      "seeds": [
+        42,
+        43,
+        44
+      ],
+      "ticks": 1000,
+      "timeout_seconds": 1200
+    }
+  ],
+  "human_templates": [
+    {
+      "executed": false,
+      "execution_kind": "conceptual_audit",
+      "hypothesis": "H-EPIST-001-A",
+      "protocol": "epistemic_boundary_audit_v1",
+      "reason": "Human or conceptual assessment; no automatic substitute experiment.",
+      "research_question": "RQ-EPIST-001",
+      "status": "human_review_pending"
+    },
+    {
+      "executed": false,
+      "execution_kind": "conceptual_audit",
+      "hypothesis": "H-ETH-001-A",
+      "protocol": "authorship_responsibility_audit_v1",
+      "reason": "Human or conceptual assessment; no automatic substitute experiment.",
+      "research_question": "RQ-ETH-001",
+      "status": "human_review_pending"
+    },
+    {
+      "executed": false,
+      "execution_kind": "conceptual_audit",
+      "hypothesis": "H-ETH-002-A",
+      "protocol": "control_responsibility_audit_v1",
+      "reason": "Human or conceptual assessment; no automatic substitute experiment.",
+      "research_question": "RQ-ETH-002",
+      "status": "human_review_pending"
+    },
+    {
+      "executed": false,
+      "execution_kind": "conceptual_audit",
+      "hypothesis": "H-CNS-101-A",
+      "protocol": "cog_cns_101_v1",
+      "reason": "Human or conceptual assessment; no automatic substitute experiment.",
+      "research_question": "RQ-CNS-101",
+      "status": "human_review_pending"
+    },
+    {
+      "executed": false,
+      "execution_kind": "conceptual_audit",
+      "hypothesis": "H-CNS-102-A",
+      "protocol": "cog_cns_102_v1",
+      "reason": "Human or conceptual assessment; no automatic substitute experiment.",
+      "research_question": "RQ-CNS-102",
+      "status": "human_review_pending"
+    },
+    {
+      "executed": false,
+      "execution_kind": "conceptual_audit",
+      "hypothesis": "H-CNS-103-A",
+      "protocol": "cog_cns_103_v1",
+      "reason": "Human or conceptual assessment; no automatic substitute experiment.",
+      "research_question": "RQ-CNS-103",
+      "status": "human_review_pending"
+    },
+    {
+      "executed": false,
+      "execution_kind": "conceptual_audit",
+      "hypothesis": "H-CNS-104-A",
+      "protocol": "cog_cns_104_v1",
+      "reason": "Human or conceptual assessment; no automatic substitute experiment.",
+      "research_question": "RQ-CNS-104",
+      "status": "human_review_pending"
+    },
+    {
+      "executed": false,
+      "execution_kind": "conceptual_audit",
+      "hypothesis": "H-CNS-105-A",
+      "protocol": "cog_cns_105_v1",
+      "reason": "Human or conceptual assessment; no automatic substitute experiment.",
+      "research_question": "RQ-CNS-105",
+      "status": "human_review_pending"
+    },
+    {
+      "executed": false,
+      "execution_kind": "conceptual_audit",
+      "hypothesis": "H-CNS-106-A",
+      "protocol": "cog_cns_106_v1",
+      "reason": "Human or conceptual assessment; no automatic substitute experiment.",
+      "research_question": "RQ-CNS-106",
+      "status": "human_review_pending"
+    },
+    {
+      "executed": false,
+      "execution_kind": "conceptual_audit",
+      "hypothesis": "H-CNS-107-A",
+      "protocol": "cog_cns_107_v1",
+      "reason": "Human or conceptual assessment; no automatic substitute experiment.",
+      "research_question": "RQ-CNS-107",
+      "status": "human_review_pending"
+    },
+    {
+      "executed": false,
+      "execution_kind": "conceptual_audit",
+      "hypothesis": "H-CNS-108-A",
+      "protocol": "cog_cns_108_v1",
+      "reason": "Human or conceptual assessment; no automatic substitute experiment.",
+      "research_question": "RQ-CNS-108",
+      "status": "human_review_pending"
+    },
+    {
+      "executed": false,
+      "execution_kind": "conceptual_audit",
+      "hypothesis": "H-CNS-109-A",
+      "protocol": "cog_cns_109_v1",
+      "reason": "Human or conceptual assessment; no automatic substitute experiment.",
+      "research_question": "RQ-CNS-109",
+      "status": "human_review_pending"
+    },
+    {
+      "executed": false,
+      "execution_kind": "conceptual_audit",
+      "hypothesis": "H-CNS-110-A",
+      "protocol": "cog_cns_110_v1",
+      "reason": "Human or conceptual assessment; no automatic substitute experiment.",
+      "research_question": "RQ-CNS-110",
+      "status": "human_review_pending"
+    },
+    {
+      "executed": false,
+      "execution_kind": "conceptual_audit",
+      "hypothesis": "H-CNS-111-A",
+      "protocol": "cog_cns_111_v1",
+      "reason": "Human or conceptual assessment; no automatic substitute experiment.",
+      "research_question": "RQ-CNS-111",
+      "status": "human_review_pending"
+    },
+    {
+      "executed": false,
+      "execution_kind": "conceptual_audit",
+      "hypothesis": "H-CNS-112-A",
+      "protocol": "cog_cns_112_v1",
+      "reason": "Human or conceptual assessment; no automatic substitute experiment.",
+      "research_question": "RQ-CNS-112",
+      "status": "human_review_pending"
+    },
+    {
+      "executed": false,
+      "execution_kind": "conceptual_audit",
+      "hypothesis": "H-CNS-113-A",
+      "protocol": "cog_cns_113_v1",
+      "reason": "Human or conceptual assessment; no automatic substitute experiment.",
+      "research_question": "RQ-CNS-113",
+      "status": "human_review_pending"
+    },
+    {
+      "executed": false,
+      "execution_kind": "conceptual_audit",
+      "hypothesis": "H-CNS-114-A",
+      "protocol": "cog_cns_114_v1",
+      "reason": "Human or conceptual assessment; no automatic substitute experiment.",
+      "research_question": "RQ-CNS-114",
+      "status": "human_review_pending"
+    },
+    {
+      "executed": false,
+      "execution_kind": "conceptual_audit",
+      "hypothesis": "H-CNS-115-A",
+      "protocol": "cog_cns_115_v1",
+      "reason": "Human or conceptual assessment; no automatic substitute experiment.",
+      "research_question": "RQ-CNS-115",
+      "status": "human_review_pending"
+    },
+    {
+      "executed": false,
+      "execution_kind": "conceptual_audit",
+      "hypothesis": "H-CNS-116-A",
+      "protocol": "cog_cns_116_v1",
+      "reason": "Human or conceptual assessment; no automatic substitute experiment.",
+      "research_question": "RQ-CNS-116",
+      "status": "human_review_pending"
+    },
+    {
+      "executed": false,
+      "execution_kind": "conceptual_audit",
+      "hypothesis": "H-CNS-117-A",
+      "protocol": "cog_cns_117_v1",
+      "reason": "Human or conceptual assessment; no automatic substitute experiment.",
+      "research_question": "RQ-CNS-117",
+      "status": "human_review_pending"
+    },
+    {
+      "executed": false,
+      "execution_kind": "conceptual_audit",
+      "hypothesis": "H-EPI-101-A",
+      "protocol": "cog_epi_101_v1",
+      "reason": "Human or conceptual assessment; no automatic substitute experiment.",
+      "research_question": "RQ-EPI-101",
+      "status": "human_review_pending"
+    },
+    {
+      "executed": false,
+      "execution_kind": "conceptual_audit",
+      "hypothesis": "H-EPI-102-A",
+      "protocol": "cog_epi_102_v1",
+      "reason": "Human or conceptual assessment; no automatic substitute experiment.",
+      "research_question": "RQ-EPI-102",
+      "status": "human_review_pending"
+    },
+    {
+      "executed": false,
+      "execution_kind": "conceptual_audit",
+      "hypothesis": "H-WEL-101-A",
+      "protocol": "cog_wel_101_v1",
+      "reason": "Human or conceptual assessment; no automatic substitute experiment.",
+      "research_question": "RQ-WEL-101",
+      "status": "human_review_pending"
+    },
+    {
+      "executed": false,
+      "execution_kind": "conceptual_audit",
+      "hypothesis": "H-WEL-102-A",
+      "protocol": "cog_wel_102_v1",
+      "reason": "Human or conceptual assessment; no automatic substitute experiment.",
+      "research_question": "RQ-WEL-102",
+      "status": "human_review_pending"
+    },
+    {
+      "executed": false,
+      "execution_kind": "conceptual_audit",
+      "hypothesis": "H-WEL-103-A",
+      "protocol": "cog_wel_103_v1",
+      "reason": "Human or conceptual assessment; no automatic substitute experiment.",
+      "research_question": "RQ-WEL-103",
+      "status": "human_review_pending"
+    }
+  ],
+  "accepted_evidence": false
+}

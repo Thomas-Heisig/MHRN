@@ -1,3 +1,9 @@
+# Rekursive Epistemik - aktuelle Fassung 1.5
+
+[Dissertationsmanuskript und Forschungsarbeit](2026-09-13_recursive-epistemics_v1.5/README.md). Vollstaendige Ausgabe, aktuelle quellgebundene Messbilanz, menschliches Review ausstehend.
+
+<details><summary>Historischer Publikationsindex</summary>
+
 # Recursive Epistemics in Embodied Spiking Neural Architectures
 
 ## Fassung 1.4: Explorative Messdaten, negative Befunde und Grenzen
@@ -50,5 +56,7 @@ verbindet das versionierte Erhebungsinstrument mit kritikpunktbezogenen
 Abschlusskriterien. Der Zusatz dokumentiert technische Integration, keine
 vorliegende externe Ethikfreigabe oder akzeptierte Kognitions-EVID.
 Fruehere veroeffentlichte Fassungen bleiben unveraendert.
+
+</details>
 
 </details>
