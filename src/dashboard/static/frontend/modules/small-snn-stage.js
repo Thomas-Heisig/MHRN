@@ -11,7 +11,13 @@ const EDITABLE = Object.freeze([
   "network.neighbour_radius",
 ]);
 
-const state = { timer: null, parameters: {}, pending: {} };
+const state = {
+  timer: null,
+  parameters: {},
+  pending: {},
+  runtimeLastTick: null,
+  runtimeInFlight: false,
+};
 const $ = (id) => document.getElementById(id);
 
 async function json(url, options = {}) {
@@ -160,18 +166,31 @@ async function refreshScience() {
     const data = await loadNetwork();
     $("small-snn-science-summary").innerHTML = summaryHtml(data.summary);
     $("small-snn-science-graph").innerHTML = graphSvg(data.neurons, data.synapses);
-    $("small-snn-science-status").textContent = `Quelle live_runtime · ${data.neurons.length} Neuronen visualisiert · ${data.synapses.length} Synapsen gelesen`;
+    $("small-snn-science-status").textContent = `Quelle live_runtime · Tick ${data.summary.current_tick} · ${data.neurons.length} Neuronen visualisiert · ${data.synapses.length} Synapsen gelesen`;
   } catch (error) { $("small-snn-science-status").textContent = `Nicht verfügbar: ${error.message}`; }
 }
 
 async function refreshRuntime() {
-  if (document.body.dataset.currentArea !== "wesen" || document.body.dataset.currentRoute !== "snn") return;
+  if (document.body.dataset.currentArea !== "wesen" || document.body.dataset.currentRoute !== "snn" || state.runtimeInFlight) return;
+  state.runtimeInFlight = true;
   try {
     const data = await loadNetwork();
     $("small-snn-runtime-summary").innerHTML = summaryHtml(data.summary);
     $("small-snn-runtime-graph").innerHTML = graphSvg(data.neurons, data.synapses);
-    $("small-snn-runtime-status").textContent = `Live · Tick ${data.summary.current_tick} · queue ${data.summary.queue_depth}`;
-  } catch (error) { $("small-snn-runtime-status").textContent = `Nicht verfügbar: ${error.message}`; }
+    const currentTick = Number(data.summary.current_tick ?? 0);
+    const deltaTick = state.runtimeLastTick === null ? 0 : currentTick - state.runtimeLastTick;
+    state.runtimeLastTick = currentTick;
+    const moving = deltaTick > 0 ? "RUNNING" : "IDLE/UNCHANGED";
+    const status = $("small-snn-runtime-status");
+    status.dataset.state = deltaTick > 0 ? "ok" : "idle";
+    status.textContent = `${moving} · Tick ${currentTick} · Δtick ${deltaTick} · queue ${data.summary.queue_depth} · total spikes ${data.summary.total_spikes} · live_runtime`;
+  } catch (error) {
+    const status = $("small-snn-runtime-status");
+    status.dataset.state = "error";
+    status.textContent = `Nicht verfügbar: ${error.message}`;
+  } finally {
+    state.runtimeInFlight = false;
+  }
 }
 
 function effective(name) {
@@ -231,9 +250,25 @@ async function applyControl() {
 function routeRefresh() {
   const area = document.body.dataset.currentArea;
   const route = document.body.dataset.currentRoute;
-  if (area === "science" && route === "snn") refreshScience();
-  if (area === "wesen" && route === "snn") refreshRuntime();
-  if (area === "control" && route === "snn") refreshControl();
+  if (route !== "snn") return;
+  if (area === "science") refreshScience();
+  if (area === "wesen") refreshRuntime();
+  if (area === "control") refreshControl();
+}
+
+function syncPolling() {
+  const area = document.body.dataset.currentArea;
+  const route = document.body.dataset.currentRoute;
+  const liveRoute = route === "snn" && (area === "science" || area === "wesen");
+  if (route === "snn") routeRefresh();
+  if (liveRoute && !state.timer) {
+    state.timer = setInterval(routeRefresh, 900);
+    return;
+  }
+  if (!liveRoute && state.timer) {
+    clearInterval(state.timer);
+    state.timer = null;
+  }
 }
 
 export function initSmallSNNStage() {
@@ -241,10 +276,14 @@ export function initSmallSNNStage() {
   ensureSciencePanel();
   ensureRuntimePanel();
   ensureControlPanel();
-  document.addEventListener("click", (event) => {
-    if (event.target.closest('[data-area-route="snn"], [data-route-card="snn"]')) setTimeout(routeRefresh, 0);
+  const observer = new MutationObserver(syncPolling);
+  observer.observe(document.body, {
+    attributes: true,
+    attributeFilter: ["data-current-area", "data-current-route"],
   });
-  if (state.timer) clearInterval(state.timer);
-  state.timer = setInterval(routeRefresh, 1200);
-  routeRefresh();
+  document.addEventListener("click", (event) => {
+    if (event.target.closest('[data-area-route="snn"], [data-route-card="snn"]')) setTimeout(syncPolling, 0);
+  });
+  window.addEventListener("beforeunload", () => state.timer && clearInterval(state.timer), { once: true });
+  syncPolling();
 }
