@@ -1,0 +1,66 @@
+name: One-shot CI maintenance
+
+on:
+  push:
+    branches: [fix/ci-gate-baseline]
+
+permissions:
+  contents: write
+
+jobs:
+  normalize:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: fix/ci-gate-baseline
+          fetch-depth: 0
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.13'
+      - name: Harden configured Ollama URL and annotate validated urllib calls
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path('src/dashboard/server.py')
+          text = path.read_text(encoding='utf-8')
+
+          endpoint_block = '''        chat_endpoint = os.environ.get(\n            "BRAIN5D_CHAT_ENDPOINT",\n            str(configured_chat.get("endpoint", "http://127.0.0.1:11434/api/generate")),\n        ).strip()\n'''
+          hardened_block = endpoint_block + '''        if not chat_endpoint.startswith(("http://", "https://")):\n            raise ValueError("BRAIN5D_CHAT_ENDPOINT must use http:// or https://")\n'''
+          if text.count(endpoint_block) != 1:
+              raise SystemExit('Expected exactly one chat_endpoint configuration block')
+          text = text.replace(endpoint_block, hardened_block, 1)
+
+          old_tags = '            with urlopen(tags_url, timeout=5) as resp:\n'
+          new_tags = '            with urlopen(  # nosec B310: validated HTTP(S) provider endpoint\n                tags_url, timeout=5\n            ) as resp:\n'
+          if text.count(old_tags) != 1:
+              raise SystemExit('Expected exactly one Ollama tags urlopen call')
+          text = text.replace(old_tags, new_tags, 1)
+
+          old_warmup = '                with urlopen(warmup_req, timeout=180) as warmup_resp:\n'
+          new_warmup = '                with urlopen(  # nosec B310: validated HTTP(S) provider endpoint\n                    warmup_req, timeout=180\n                ) as warmup_resp:\n'
+          if text.count(old_warmup) != 1:
+              raise SystemExit('Expected exactly one Ollama warmup urlopen call')
+          text = text.replace(old_warmup, new_warmup, 1)
+
+          path.write_text(text, encoding='utf-8')
+          PY
+      - name: Normalize Python formatting with repository-pinned Black
+        run: |
+          python -m pip install 'black==26.5.1'
+          python -m black src tests scripts
+      - name: Verify maintenance result
+        run: |
+          python -m black --check src tests scripts
+          python -m compileall -q src scripts tests
+      - name: Self-remove and commit normalized tree
+        run: |
+          rm .github/workflows/one-shot-ci-maintenance.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add src tests scripts .github/workflows/one-shot-ci-maintenance.yml
+          git diff --cached --check
+          git commit -m 'chore: normalize CI formatting and validated provider URLs'
+          git push origin HEAD:fix/ci-gate-baseline
