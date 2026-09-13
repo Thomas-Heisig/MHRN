@@ -110,13 +110,9 @@ def build_report(*, run_tests: bool = True) -> dict[str, Any]:
     )
 
     proofs: dict[str, bool] = {
-        "stdp_and_three_factor_tests_passed": group_results[
-            "stdp_and_three_factor"
-        ],
+        "stdp_and_three_factor_tests_passed": group_results["stdp_and_three_factor"],
         "homeostasis_tests_passed": group_results["homeostasis"],
-        "structural_plasticity_tests_passed": group_results[
-            "structural_plasticity"
-        ],
+        "structural_plasticity_tests_passed": group_results["structural_plasticity"],
         "learning_state_checkpoint_tests_passed": group_results[
             "learning_state_checkpoint"
         ],
