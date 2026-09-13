@@ -293,15 +293,15 @@ class LocalFallbackBackend:
         normalized_prompt = " ".join(words)
         direct_matches = [key for key in self._knowledge if key in normalized_prompt]
         if direct_matches:
-            best_key = max(direct_matches, key=len)
-            return self._knowledge[best_key], {
+            direct_best_key = max(direct_matches, key=len)
+            return self._knowledge[direct_best_key], {
                 "method": "knowledge_match",
                 "confidence": 1.0,
                 "keywords": keywords[:8],
-                "matched_key": best_key,
+                "matched_key": direct_best_key,
             }
 
-        best_key: str | None = None
+        fuzzy_best_key: str | None = None
         best_score = 0.0
         for key in self._knowledge:
             key_words = set(key.split())
@@ -309,15 +309,15 @@ class LocalFallbackBackend:
             denominator = len(key_words) + len(keywords) - overlap
             score = overlap / denominator if denominator else 0.0
             if score > best_score:
-                best_key = key
+                fuzzy_best_key = key
                 best_score = score
 
-        if best_key is not None and best_score >= 0.25:
-            return self._knowledge[best_key], {
+        if fuzzy_best_key is not None and best_score >= 0.25:
+            return self._knowledge[fuzzy_best_key], {
                 "method": "knowledge_match",
                 "confidence": round(best_score, 3),
                 "keywords": keywords[:8],
-                "matched_key": best_key,
+                "matched_key": fuzzy_best_key,
             }
 
         return self._template_response(keywords), {
