@@ -11,8 +11,12 @@ from src.storage.incremental_runtime import IncrementalStorageSession
 from src.storage.runtime import StorageRuntimeConfig
 
 
-def test_dirty_synapse_collection_avoids_full_synapse_traversal(tmp_path: Path) -> None:
-    network = NeuralNetwork(Brain5DConfig(dimensions=(3, 3, 3, 3, 3)), random.Random(3))
+def test_dirty_synapse_collection_avoids_full_synapse_traversal(
+    tmp_path: Path,
+) -> None:
+    network = NeuralNetwork(
+        Brain5DConfig(dimensions=(3, 3, 3, 3, 3)), random.Random(3)
+    )
     source = network.add_neuron((1, 1, 1, 1, 1))
     target = network.add_neuron((1, 1, 1, 1, 2))
     network.connect(source, target, weight=0.2, delay=1)
@@ -32,8 +36,6 @@ def test_dirty_synapse_collection_avoids_full_synapse_traversal(tmp_path: Path) 
     synapse.weight = 0.3
     synapse.mark_dirty()
 
-    # Tick 1 is outside the 10-tick neuron-state cadence. Only the dirty
-    # synapse should be inspected and encoded.
     deltas = collector.collect_deltas(StepResult(tick=1))
 
     assert [delta.delta_type for delta in deltas] == [DeltaType.SYNAPSE_WEIGHT]
@@ -42,7 +44,9 @@ def test_dirty_synapse_collection_avoids_full_synapse_traversal(tmp_path: Path) 
 
 
 def test_neuron_state_interval_is_explicit(tmp_path: Path) -> None:
-    network = NeuralNetwork(Brain5DConfig(dimensions=(3, 3, 3, 3, 3)), random.Random(4))
+    network = NeuralNetwork(
+        Brain5DConfig(dimensions=(3, 3, 3, 3, 3)), random.Random(4)
+    )
     neuron_id = network.add_neuron((1, 1, 1, 1, 1))
     collector = IncrementalStorageSession(
         network,
