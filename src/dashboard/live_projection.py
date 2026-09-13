@@ -198,19 +198,22 @@ def capture_frame(
         A TelemetryFrame with neuron data.
     """
     tick = network.current_tick
+    # Python dicts preserve insertion order (CPython 3.7+).
+    # Neurons and synapses are added in monotonically increasing ID order,
+    # so sorted() is redundant and costs O(N log N) per frame.
     neurons = tuple(
         (nid, n.v, n.energy, n.u, n.spike_counter, n.last_spike_tick)
-        for nid, n in sorted(network.neurons.items())
+        for nid, n in network.neurons.items()
     )
     syns = tuple(
         (src_id, syn.target_id, syn.weight)
-        for src_id, syns in sorted(network.synapses.items())
+        for src_id, syns in network.synapses.items()
         for syn in syns
     )
     activity = (
         tuple(
             (nid, activity_accumulator.spikes_in_window(nid))
-            for nid, _ in sorted(network.neurons.items())
+            for nid in network.neurons
         )
         if activity_accumulator is not None
         else ()
@@ -258,7 +261,7 @@ class TelemetryFrameStore:
 
     def __init__(
         self,
-        capture_interval_ticks: int = 5,
+        capture_interval_ticks: int = 20,
         activity_window_ticks: int = 20,
     ) -> None:
         if capture_interval_ticks <= 0:

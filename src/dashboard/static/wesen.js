@@ -178,7 +178,7 @@ function integrateShell() {
   ensureFooterTools();
   refreshSensors();
   if (sensorRefreshTimer) clearInterval(sensorRefreshTimer);
-  sensorRefreshTimer = setInterval(refreshSensors, 3000);
+  sensorRefreshTimer = setInterval(refreshSensors, 5000);
 }
 
 if (document.readyState === "loading") {

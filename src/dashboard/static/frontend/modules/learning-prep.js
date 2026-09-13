@@ -101,5 +101,5 @@ export function initLearningPrep() {
   ensurePanel();
   refresh();
   if (refreshTimer) clearInterval(refreshTimer);
-  refreshTimer = window.setInterval(refresh, 15000);
+  refreshTimer = window.setInterval(refresh, 30000);
 }

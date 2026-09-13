@@ -354,7 +354,7 @@ export class ControlPanel {
   constructor() {
     this.state = new ControlState();
     this.pollingInterval = null;
-    this.pollingRate = 500; // ms
+    this.pollingRate = 2000; // ms
     this.commandInFlight = false;
 
     // DOM references

@@ -107,7 +107,7 @@ function activate() {
   if (state.timer) clearInterval(state.timer);
   state.timer = setInterval(() => {
     if (!panel.hidden && document.body.dataset.currentRoute === "neuron") refresh();
-  }, 1000);
+  }, 3000);
 }
 
 function setIndex(value) {

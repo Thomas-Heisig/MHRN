@@ -1,7 +1,7 @@
 /* Technical Wesen identity profile view. Configuration identity is not consciousness. */
 import { openFMFile } from "./file-viewer.js";
 
-const PROFILE_POLL_MS = 3000;
+const PROFILE_POLL_MS = 5000;
 let profileTimer = null;
 let profilePayload = { profiles: [], active_profile_id: null };
 let cognitionPayload = { available: false };

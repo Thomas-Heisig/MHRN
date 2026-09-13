@@ -1116,12 +1116,12 @@ function initDashboard() {
   if (populationInterval) clearInterval(populationInterval);
 
   heatmapInterval = setInterval(refreshHeatmap, pollInterval(5000));
-  liveProjectionInterval = setInterval(refreshLiveProjection, pollInterval(500));
-  setInterval(refreshSnapshotInfo, pollInterval(3000));
+  liveProjectionInterval = setInterval(refreshLiveProjection, pollInterval(2000));
+  setInterval(refreshSnapshotInfo, pollInterval(5000));
   setInterval(refreshLiveLoopStatus, pollInterval(5000));
 
-  ioFlowInterval = setInterval(refreshIOFlow, pollInterval(2000));
-  populationInterval = setInterval(refreshPopulation, pollInterval(2000));
+  ioFlowInterval = setInterval(refreshIOFlow, pollInterval(3000));
+  populationInterval = setInterval(refreshPopulation, pollInterval(3000));
 
   // Heatmap kind buttons
   $$('button[data-kind]').forEach(button => {
@@ -1170,9 +1170,9 @@ function initDynamicsTab() {
   // Set up intervals
   if (dynamicsInterval) clearInterval(dynamicsInterval);
   if (layerExplorerInterval) clearInterval(layerExplorerInterval);
-  dynamicsInterval = setInterval(refreshSpikeRaster, pollInterval(2000));
-  dynamicsInterval = setInterval(refreshRateHistogram, pollInterval(2000));
-  layerExplorerInterval = setInterval(refreshLayerExplorer, pollInterval(3000));
+  dynamicsInterval = setInterval(refreshSpikeRaster, pollInterval(3000));
+  dynamicsInterval = setInterval(refreshRateHistogram, pollInterval(3000));
+  layerExplorerInterval = setInterval(refreshLayerExplorer, pollInterval(5000));
 
   // Layer slider controls
   const slider = document.getElementById('layer-slider');
@@ -1499,7 +1499,7 @@ function initInspectTab() {
 
   // Auto-refresh summary every 2s while inspect tab is active
   if (inspectInterval) clearInterval(inspectInterval);
-  inspectInterval = setInterval(refreshNetworkSummary, pollInterval(2000));
+  inspectInterval = setInterval(refreshNetworkSummary, pollInterval(5000));
   console.log('✅ Inspect tab ready');
 }
 
@@ -2257,7 +2257,7 @@ function setupAutoRefreshToggle() {
       heatmapInterval = null;
       statusEl.textContent += ' (paused)';
     } else {
-      refreshInterval = setInterval(refreshStatus, pollInterval(1000));
+      refreshInterval = setInterval(refreshStatus, pollInterval(3000));
       heatmapInterval = setInterval(refreshHeatmap, pollInterval(5000));
       statusEl.textContent = statusEl.textContent.replace(' (paused)', '');
     }

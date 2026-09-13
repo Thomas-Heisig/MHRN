@@ -14,7 +14,7 @@
 
 import { pollInterval, readJson } from "./api-client.js";
 
-const POLL_INTERVAL_MS = pollInterval(1000);
+const POLL_INTERVAL_MS = pollInterval(3000);
 
 /**
  * Deep-merge two objects (shallow merge for arrays).

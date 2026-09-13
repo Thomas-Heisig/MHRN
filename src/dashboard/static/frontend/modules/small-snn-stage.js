@@ -245,6 +245,6 @@ export function initSmallSNNStage() {
     if (event.target.closest('[data-area-route="snn"], [data-route-card="snn"]')) setTimeout(routeRefresh, 0);
   });
   if (state.timer) clearInterval(state.timer);
-  state.timer = setInterval(routeRefresh, 1200);
+  state.timer = setInterval(routeRefresh, 3000);
   routeRefresh();
 }

@@ -1,6 +1,6 @@
 "use strict";
 
-const POLL_MS = 2000;
+const POLL_MS = 5000;
 let lastConnections = null;
 let lastStatus = null;
 let selectedConnectionId = null;

@@ -2,7 +2,7 @@
 
 const VIEWER_PROFILE_KEY = "mhrn.neuron-model-viewer.profile.v1";
 const RATE_REFRESH_MS = 5000;
-const EMBODIMENT_REFRESH_MS = 3000;
+const EMBODIMENT_REFRESH_MS = 5000;
 
 let initialized = false;
 let viewerTimer = null;

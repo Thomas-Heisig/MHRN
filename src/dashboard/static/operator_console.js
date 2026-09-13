@@ -384,7 +384,7 @@ export class OperatorConsole {
   constructor() {
     this.logger = null;
     this.pollingInterval = null;
-    this.pollingRate = 1000;
+    this.pollingRate = 3000;
     this.status = null;
     this.proposalPanel = null;
 

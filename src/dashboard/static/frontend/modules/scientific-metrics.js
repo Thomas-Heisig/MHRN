@@ -303,7 +303,7 @@ function handleAction(event) {
       refreshTimer = null;
       event.target.textContent = "Auto: off";
     } else {
-      refreshTimer = setInterval(refresh, 10000);
+      refreshTimer = setInterval(refresh, 15000);
       event.target.textContent = "Auto: on";
     }
   }

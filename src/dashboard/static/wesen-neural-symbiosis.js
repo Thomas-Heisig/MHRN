@@ -2,7 +2,7 @@
  * Status is read-only; lifecycle controls are limited to registered experiments.
  */
 
-const SYMBIOSIS_POLL_MS = 2000;
+const SYMBIOSIS_POLL_MS = 5000;
 const NETWORK_AREAS = [
   ["CNN", "Vision / Audio", "sensorische Merkmalsextraktion"],
   ["Vision Transformer", "Vision", "globale visuelle Aufmerksamkeit"],

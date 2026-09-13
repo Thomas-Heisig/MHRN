@@ -339,7 +339,7 @@ export function initWesenOrganismV2() {
       model.observer = new MutationObserver(() => setTimeout(enhance, 0));
       model.observer.observe(layer, { childList: true });
     }
-    clearInterval(model.timer); model.timer = setInterval(enhance, 1500);
+    clearInterval(model.timer); model.timer = setInterval(enhance, 3000);
   };
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", start, { once: true });
   else start();
