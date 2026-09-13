@@ -2,12 +2,12 @@
 
 The original :class:`StorageSession` remains the conservative reference path.
 This collector is used by the asynchronous operator/runtime path when
-``capture_policy=dirty_tracking``.  It consumes the network's dirty sets after
+``capture_policy=dirty_tracking``. It consumes the network's dirty sets after
 all hooks registered before storage have run and avoids rebuilding the complete
 synapse map on every tick.
 
 Neuron membrane state is special: an active spiking neuron legitimately changes
-on almost every tick.  ``neuron_state_interval_ticks`` therefore controls an
+on almost every tick. ``neuron_state_interval_ticks`` therefore controls an
 explicit persistence trade-off:
 
 * ``1`` keeps per-tick neuron-state capture for exact restart-oriented runs.
@@ -21,7 +21,6 @@ claim of per-tick restart equivalence.
 from __future__ import annotations
 
 from collections.abc import MutableSet
-from typing import cast
 
 from .delta_codec import (
     NeuronAddDelta,
@@ -41,7 +40,13 @@ from .delta_codec import (
 )
 from .delta_journal import DeltaRecord
 from .optical_codec import state_from_neuron
-from .runtime import RuntimeSynapseLike, StepResultLike, StorageRuntimeConfig, StorageSession
+from .runtime import (
+    RuntimeNetworkLike,
+    RuntimeSynapseLike,
+    StepResultLike,
+    StorageRuntimeConfig,
+    StorageSession,
+)
 
 
 class IncrementalStorageSession(StorageSession):
@@ -49,12 +54,12 @@ class IncrementalStorageSession(StorageSession):
 
     def __init__(
         self,
-        network: object,
+        network: RuntimeNetworkLike,
         config: StorageRuntimeConfig,
         *,
         neuron_state_interval_ticks: int = 1,
     ) -> None:
-        super().__init__(cast(object, network), config)  # type: ignore[arg-type]
+        super().__init__(network, config)
         if neuron_state_interval_ticks <= 0:
             raise ValueError("neuron_state_interval_ticks must be positive")
         self.neuron_state_interval_ticks = int(neuron_state_interval_ticks)
@@ -96,7 +101,9 @@ class IncrementalStorageSession(StorageSession):
             if isinstance(values, MutableSet):
                 values.clear()
 
-    def _current_synapse(self, source_id: int, target_id: int) -> RuntimeSynapseLike | None:
+    def _current_synapse(
+        self, source_id: int, target_id: int
+    ) -> RuntimeSynapseLike | None:
         outgoing = self.network.synapses.get(source_id, ())
         for synapse in outgoing:
             if int(synapse.target_id) == target_id:
@@ -110,7 +117,6 @@ class IncrementalStorageSession(StorageSession):
         dirty_neurons, dirty_synapses = self._network_dirty_sets(result)
 
         try:
-            # Topology changes are always persisted, independent of the state cadence.
             for neuron_id in sorted(dirty_neurons):
                 current = self.network.neurons.get(neuron_id)
                 previous = self._neurons.get(neuron_id)
@@ -147,9 +153,8 @@ class IncrementalStorageSession(StorageSession):
                 or (tick + 1) % self.neuron_state_interval_ticks == 0
             )
             if capture_neuron_state:
-                # O(N) by design at the declared cadence.  There is no honest
-                # O(changes) shortcut for v/u because membrane state changes
-                # continuously even when no spike occurs.
+                # O(N) at the declared cadence. There is no honest O(changes)
+                # shortcut for v/u because membrane state changes continuously.
                 for neuron_id, neuron in self.network.neurons.items():
                     numeric_id = int(neuron_id)
                     fingerprint = self._neuron_fingerprint(neuron)
@@ -171,9 +176,6 @@ class IncrementalStorageSession(StorageSession):
                         self._neuron_deltas += 1
                     self._neurons[numeric_id] = fingerprint
 
-            # Synapse work is limited to the explicit dirty keys.  Average
-            # outgoing degree is small, so locating one target is bounded by
-            # local fan-out rather than total E.
             for source_id, target_id in sorted(dirty_synapses):
                 key = (source_id, target_id)
                 current = self._current_synapse(source_id, target_id)
