@@ -23,7 +23,7 @@ def test_research_workspace_is_owned_by_central_workspace_router() -> None:
         "registry",
     ):
         assert re.search(r'\[\s*"' + re.escape(route) + r'"\s*,', router)
-    assert 'files: {' in router
+    assert "files: {" in router
     assert 'selectRoute("files", "browse")' in router
     assert 'label: "Wissenschaft"' in router
     assert "research-workspace-tabs" not in controller

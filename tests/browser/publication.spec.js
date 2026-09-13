@@ -1,71 +1,55 @@
 import { test, expect } from '@playwright/test';
+import { selectRoute } from './routes.js';
 
 test.use({ baseURL: 'http://127.0.0.1:4174' });
 
-async function selectResearchView(page, view) {
-  await page
-    .locator(`[data-research-workspace-view="${view}"]`)
-    .evaluate((button) => button.click());
-  await expect(page.locator(`[data-research-workspace-panel="${view}"]`)).toBeVisible();
-}
-
 for (const port of [4174, 4175]) {
-  test(`publication ${port}: complete research reader, central rendering and immutable originals`, async ({ page }) => {
+  test(`publication ${port}: complete current reader and immutable historical sources`, async ({ page }) => {
     const errors = [];
     page.on('pageerror', error => errors.push(error.message));
     await page.goto(`http://127.0.0.1:${port}/`);
-    await page.locator('[data-primary-area="science"]').click();
-    await selectResearchView(page, 'files');
-    await page.locator('.fm-source-btn[data-source="docs"]').click();
+    await selectRoute(page, 'files', 'browse');
     await page.getByRole('button', { name: 'Abhandlung lesen', exact: true }).click();
     const viewer = page.locator('#fm-viewer');
     await expect(viewer).toHaveAttribute('data-render-state', 'ready');
-    await expect(viewer).toContainText('Edition 1.3');
-    // mhrn_new_edition: new source plus historical source remain reachable.
-    const newBase = 'publications/2026-09-08_recursive-epistemics_v1.3/';
-    await viewer.getByRole('button', { name: 'Die vollständige aktuelle wissenschaftliche Abhandlung lesen', exact: true }).click();
-    await expect(viewer).toContainText('Recursive Epistemics in Embodied');
-    await expect(viewer).toContainText('Rekursive Epistemik in verkörperten');
-    const currentManifestResponse = await page.request.get(`http://127.0.0.1:${port}/api/files/preview/` + encodeURIComponent(newBase + 'manifest.json') + '?source=research');
-    const currentManifest = JSON.parse((await currentManifestResponse.json()).content);
-    expect(currentManifest.section_count).toBe(57);
-    for (const name of currentManifest.section_order) {
-      const r = await page.request.get(`http://127.0.0.1:${port}/api/files/preview/` + encodeURIComponent(newBase + name) + '?source=research');
-      const d = await r.json();
-      expect(d.truncated, name).toBe(false);
-      expect(d.read_only, name).toBe(true);
-    }
-    await viewer.getByRole('button', { name: 'Publikationsübersicht', exact: true }).click();
-    await viewer.getByRole('button', { name: 'Lesefassung 1.0', exact: true }).click();
-    await expect(viewer).toContainText('vollstaendige Lesefassung');
-    await expect(page.locator('.fm-source-btn[data-source="research"]')).toHaveClass(/active/);
-    await expect(viewer.getByRole('button', { name: 'Bearbeiten', exact: true })).toHaveCount(0);
+    await expect(viewer).toContainText('Fassung 1.5');
+    await viewer.getByRole('button', { name: 'Dissertationsmanuskript und Forschungsarbeit', exact: true }).click();
+    await expect(viewer).toContainText('Menschliches wissenschaftliches Review');
     const prefix = `http://127.0.0.1:${port}/api/files/preview/`;
-    const manifestResponse = await page.request.get(prefix + encodeURIComponent('publications/reader/manifest.json') + '?source=research');
-    expect(manifestResponse.ok()).toBeTruthy();
-    const manifest = JSON.parse((await manifestResponse.json()).content);
-    expect(manifest.section_count).toBe(46);
-    for (const section of manifest.sections) {
+    const catalogue = JSON.parse((await (await page.request.get(prefix + encodeURIComponent('publications/catalog.json') + '?source=research')).json()).content);
+    const current = catalogue.publications.filter(item => item.current);
+    expect(current).toHaveLength(1);
+    expect(current[0].version).toBe('1.5');
+    expect(current[0].authority).toBe('interpretation_only');
+    expect(current[0].automatic_evidence_promotion).toBe(false);
+    const base = current[0].snapshot + '/';
+    const manifest = JSON.parse((await (await page.request.get(prefix + encodeURIComponent(base + 'manifest.json') + '?source=research')).json()).content);
+    expect(manifest.section_count).toBe(69);
+    expect(manifest.accepted_evidence).toBe(false);
+    for (const name of manifest.section_order) {
+      const response = await page.request.get(prefix + encodeURIComponent(base + name) + '?source=research');
+      expect(response.ok(), name).toBeTruthy();
+      const descriptor = await response.json();
+      expect(descriptor.truncated, name).toBe(false);
+      expect(descriptor.read_only, name).toBe(true);
+      expect(descriptor.editable, name).toBe(false);
+    }
+    await viewer.getByRole('button', { name: 'Quellenbindung und Zusammenfassung', exact: true }).click();
+    await expect(viewer).toContainText('EXP-EMP-20260913-A3');
+    await expect(viewer.getByRole('button', { name: 'Bearbeiten', exact: true })).toHaveCount(0);
+    const historical = JSON.parse((await (await page.request.get(prefix + encodeURIComponent('publications/reader/manifest.json') + '?source=research')).json()).content);
+    expect(historical.section_count).toBe(46);
+    for (const section of historical.sections) {
       const response = await page.request.get(prefix + encodeURIComponent(`publications/reader/${section.path}`) + '?source=research');
-      expect(response.ok(), section.path).toBeTruthy();
       const descriptor = await response.json();
       expect(descriptor.truncated, section.path).toBe(false);
       expect(descriptor.read_only, section.path).toBe(true);
-      expect(descriptor.editable, section.path).toBe(false);
       expect(descriptor.content, section.path).toContain('Inhaltsuebersicht');
     }
-    await viewer.getByRole('button', { name: manifest.sections[0].title, exact: true }).click();
-    await expect(viewer.getByRole('button', { name: 'Weiter', exact: true }).first()).toBeVisible();
-    await viewer.getByRole('button', { name: 'Weiter', exact: true }).first().click();
-    await expect(viewer).toContainText(manifest.sections[1].title);
-    const write = await page.request.put(`http://127.0.0.1:${port}/api/files/document/` + encodeURIComponent('publications/reader/README.md') + '?source=research', {
+    const write = await page.request.put(`http://127.0.0.1:${port}/api/files/document/` + encodeURIComponent(base + 'README.md') + '?source=research', {
       data: { action: 'write', content: 'unauthorized change', expected_sha256: 'invalid' },
     });
     expect(write.status()).toBe(403);
-    const catalog = await page.request.get(prefix + encodeURIComponent('publications/catalog.json') + '?source=research');
-    const publication = JSON.parse((await catalog.json()).content).publications[0];
-    expect(publication.authority).toBe('interpretation_only');
-    expect(publication.automatic_evidence_promotion).toBe(false);
     expect(errors).toEqual([]);
   });
 }

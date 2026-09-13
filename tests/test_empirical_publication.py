@@ -23,7 +23,7 @@ def test_one_current_edition_and_no_evidence_promotion() -> None:
     )
     current = [item for item in catalogue["publications"] if item.get("current")]
     assert len(current) == 1
-    assert current[0]["version"] == "1.4"
+    assert current[0]["version"] == "1.5"
     assert catalogue["current_publication_id"] == current[0]["id"]
     assert catalogue["current_publication"] == current[0]["id"]
     manifest: dict[str, Any] = json.loads(

@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { selectRoute } from './routes.js';
 
 test.use({ baseURL: 'http://127.0.0.1:4174' });
 
@@ -26,8 +27,7 @@ test('real server keeps stages 8-10 planned from backend through rendered fronte
   expect(placeholders.stages['10'].claim_boundary).toContain('read-only');
 
   await page.goto('/');
-  await page.locator('[data-tab="gate"]').evaluate(button => button.click());
-  await page.locator('[data-workspace-view="development"]').click();
+  await selectRoute(page, 'release', 'development');
 
   for (const number of [8, 9, 10]) {
     const card = page.locator(`#development-stage-list [data-development-stage="${number}"]`);

@@ -3,9 +3,9 @@ message: "Cite the MHRN software and the Recursive Epistemics publication separa
 title: "Multi-Scale Homeostatic Recurrence Network (MHRN)"
 abstract: "Mehrskaliges homöostatisches Rekurrenznetzwerk. A Spiking Neural Architecture with Topological Plasticity."
 type: software
-version: "0.5.0a7"
+version: "0.6.0a3"
 authors:
   - family-names: Heisig
     given-names: Thomas
-repository-code: "https://github.com/Thomas-Heisig/Brain-5D"
+repository-code: "https://github.com/Thomas-Heisig/MHRN"
 license: MIT

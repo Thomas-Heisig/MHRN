@@ -2,7 +2,7 @@
 
 **Canonical research roadmap**
 **Updated:** 2026-09-13
-**Engineering baseline:** `mhrn-core 0.6.0a2`
+**Engineering baseline:** `mhrn-core 0.6.0a3`
 
 ## Research objective
 
