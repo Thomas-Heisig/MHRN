@@ -78,7 +78,7 @@ jobs:
               raise SystemExit('model concerns block not found after repair')
           text = text.replace(old, new, 1)
           helper_marker = '\n\ndef normalize_output(output: dict[str, Any]) -> dict[str, Any]:'
-          helper = '''\n\ndef _analysis_list(value: Any) -> list[Any]:\n    if not isinstance(value, list):\n        return []\n    return list[Any](value)\n\n\ndef normalize_output(output: dict[str, Any]) -> dict[str, Any]:'''
+          helper = '''\n\ndef _analysis_list(value: Any) -> list[Any]:\n    if not isinstance(value, list):\n        return []\n    result: list[Any] = []\n    for index in range(len(value)):\n        item: Any = value[index]\n        result.append(item)\n    return result\n\n\ndef normalize_output(output: dict[str, Any]) -> dict[str, Any]:'''
           if helper_marker not in text:
               raise SystemExit('model normalize helper marker not found')
           text = text.replace(helper_marker, helper, 1)
