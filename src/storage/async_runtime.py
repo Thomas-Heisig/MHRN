@@ -11,7 +11,12 @@ from typing import Final
 from .delta_journal import DeltaJournal, DeltaRecord
 from .fast_delta_journal import FastDeltaJournal
 from .incremental_runtime import IncrementalStorageSession
-from .runtime import RuntimeNetworkLike, StepResultLike, StorageRuntimeConfig, StorageSession
+from .runtime import (
+    RuntimeNetworkLike,
+    StepResultLike,
+    StorageRuntimeConfig,
+    StorageSession,
+)
 
 _STOP: Final[object] = object()
 
@@ -182,7 +187,9 @@ class AsyncStorageSession:
 
     def _raise_worker_failure(self) -> None:
         if self._failure is not None:
-            raise RuntimeError("asynchronous storage worker failed") from self._failure
+            raise RuntimeError(
+                "asynchronous storage worker failed"
+            ) from self._failure
 
     def _worker_main(self) -> None:
         try:
