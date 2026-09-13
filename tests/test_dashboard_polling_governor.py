@@ -14,9 +14,9 @@ def test_polling_governor_is_installed_before_frontend_initializers() -> None:
 
 
 def test_polling_governor_coalesces_and_throttles_intervals() -> None:
-    source = (
-        STATIC / "frontend" / "core" / "polling-governor.js"
-    ).read_text(encoding="utf-8")
+    source = (STATIC / "frontend" / "core" / "polling-governor.js").read_text(
+        encoding="utf-8"
+    )
     assert "const buckets = new Map()" in source
     assert "document.hidden" in source
     assert "bucket.cycles % 4" in source
