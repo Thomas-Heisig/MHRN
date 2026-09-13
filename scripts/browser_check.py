@@ -115,9 +115,6 @@ def _run_check(
                 page.locator("#tab-research").wait_for(
                     state="visible", timeout=timeout_ms
                 )
-                plan_view = page.locator('[data-research-workspace-view="plan"]')
-                plan_view.wait_for(state="attached", timeout=timeout_ms)
-                plan_view.evaluate("button => button.click()")
                 page.locator("#workflow-batch-open").wait_for(
                     state="visible", timeout=timeout_ms
                 )

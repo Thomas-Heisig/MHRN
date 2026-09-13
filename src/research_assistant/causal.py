@@ -5,7 +5,7 @@ from __future__ import annotations
 import hashlib
 import json
 from dataclasses import dataclass
-from typing import Any, Mapping
+from typing import Any, Mapping, cast
 
 
 @dataclass(frozen=True, slots=True)
@@ -54,8 +54,11 @@ def generate_causal_attribution_report(
         raise ValueError("Causal attribution requires causal_taint")
     if not isinstance(card, Mapping):
         raise ValueError("Causal attribution requires causal_card")
-    interaction_ids = _string_tuple(card.get("interaction_ids", []), "interaction_ids")
-    roles = _string_tuple(card.get("roles", []), "roles")
+    typed_card = cast(Mapping[str, object], card)
+    interaction_ids = _string_tuple(
+        typed_card.get("interaction_ids", []), "interaction_ids"
+    )
+    roles = _string_tuple(typed_card.get("roles", []), "roles")
     treatment = _optional_mapping(manifest.get("ai_treatment"), "ai_treatment")
     twin_run = _optional_mapping(manifest.get("twin_run"), "twin_run")
     ablation = _optional_mapping(manifest.get("ablation"), "ablation")
@@ -89,11 +92,12 @@ def generate_causal_attribution_report(
 
 
 def _string_tuple(value: object, field: str) -> tuple[str, ...]:
-    if not isinstance(value, (list, tuple)) or not all(
-        isinstance(item, str) and item.strip() for item in value
-    ):
+    if not isinstance(value, (list, tuple)):
         raise ValueError(f"Causal attribution {field} must contain strings")
-    return tuple(value)
+    values = cast(list[object] | tuple[object, ...], value)
+    if not all(isinstance(item, str) and item.strip() for item in values):
+        raise ValueError(f"Causal attribution {field} must contain strings")
+    return tuple(cast(str, item) for item in values)
 
 
 def _optional_mapping(value: object, field: str) -> dict[str, Any] | None:
@@ -101,4 +105,4 @@ def _optional_mapping(value: object, field: str) -> dict[str, Any] | None:
         return None
     if not isinstance(value, Mapping):
         raise ValueError(f"Causal attribution {field} must be an object")
-    return dict(value)
+    return dict(cast(Mapping[str, Any], value))

@@ -3200,7 +3200,9 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
             line = line.strip()
             # Match [CONFIG_READ] key.name
             if line.startswith("[CONFIG_READ]") or line.startswith("[CONFIG_READ]"):
-                key = line.split("]", 1)[1].strip() if "]" in line else line[13:].strip()
+                key = (
+                    line.split("]", 1)[1].strip() if "]" in line else line[13:].strip()
+                )
                 if key:
                     found, current_value = get_config_value(config_path, key)
                     results.append(
@@ -3213,7 +3215,9 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
                     )
             # Match [CONFIG_WRITE] key.name = value
             elif line.startswith("[CONFIG_WRITE]") or line.startswith("[CONFIG_WRITE]"):
-                rest = line.split("]", 1)[1].strip() if "]" in line else line[14:].strip()
+                rest = (
+                    line.split("]", 1)[1].strip() if "]" in line else line[14:].strip()
+                )
                 if "=" in rest:
                     key = rest.split("=", 1)[0].strip()
                     value_str = rest.split("=", 1)[1].strip()
@@ -3234,8 +3238,6 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
                                     "]"
                                 ):
                                     try:
-                                        import json
-
                                         parsed_value = json.loads(value_str)
                                     except (json.JSONDecodeError, ValueError):
                                         pass
@@ -3345,8 +3347,9 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
         if ollama is not None and (
             images or self.dashboard_server.research_chat_tools_enabled
         ):
-            request_backend = chat_backend_from_text_backend(
-                lambda prompt: ollama.generate_text(
+
+            def _ollama_generate(prompt: str) -> str:
+                generated_text, _metadata = ollama.generate_text(
                     prompt,
                     images=images,
                     tools=(
@@ -3355,7 +3358,9 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
                         else []
                     ),
                 )
-            )
+                return generated_text
+
+            request_backend = chat_backend_from_text_backend(_ollama_generate)
         # Reduziere Kontext für Fallback-Backend (sowieso kein LLM-Kontext nötig)
         is_fallback = (
             self.dashboard_server.research_chat_settings.get("provider")

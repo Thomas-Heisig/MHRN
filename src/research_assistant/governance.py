@@ -7,7 +7,7 @@ import json
 from dataclasses import dataclass
 from enum import StrEnum
 from pathlib import Path
-from typing import Any, Mapping
+from typing import Any, Mapping, cast
 
 
 class NetworkMode(StrEnum):
@@ -71,12 +71,14 @@ def validate_version_bump_contract(
     raw_bumps = manifest.get("version_bumps")
     if not isinstance(raw_bumps, Mapping):
         raise ValueError("Manifest requires version_bumps for changed AI components")
+    typed_bumps = cast(Mapping[str, object], raw_bumps)
     for component in sorted(changed_components):
-        bump = raw_bumps.get(component)
+        bump = typed_bumps.get(component)
         if not isinstance(bump, Mapping):
             raise ValueError(f"Missing version bump for {component}")
-        version = bump.get("version")
-        reason = bump.get("bump_reason")
+        typed_bump = cast(Mapping[str, object], bump)
+        version = typed_bump.get("version")
+        reason = typed_bump.get("bump_reason")
         if not isinstance(version, int) or isinstance(version, bool) or version < 1:
             raise ValueError(f"Version bump for {component} must be positive")
         if not isinstance(reason, str) or not reason.strip():
@@ -148,12 +150,18 @@ class PromptRegistry:
             raw = json.loads(path.read_text(encoding="utf-8"))
             if not isinstance(raw, dict):
                 raise ValueError(f"Prompt file must contain an object: {path}")
+            typed_raw = cast(dict[str, object], raw)
             prompt = VersionedPrompt.create(
-                str(raw.get("prompt_id", "")),
-                int(raw.get("version", 0)),
-                str(raw.get("text", "")),
+                str(typed_raw.get("prompt_id", "")),
+                int(
+                    cast(
+                        int | float | str | bytes | bytearray,
+                        typed_raw.get("version", 0),
+                    )
+                ),
+                str(typed_raw.get("text", "")),
             )
-            expected_digest = raw.get("protocol_digest")
+            expected_digest = typed_raw.get("protocol_digest")
             if expected_digest != prompt.protocol_digest:
                 raise ValueError(f"Prompt digest mismatch: {path}")
             self.register(prompt)

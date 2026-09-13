@@ -22,10 +22,7 @@ class FrozenAIReplayBackend:
     def __post_init__(self) -> None:
         if not self.model.strip():
             raise ValueError("Replay model name must not be empty.")
-        if any(
-            not digest or not isinstance(text, str)
-            for digest, text in self.responses.items()
-        ):
+        if any(not digest or not text for digest, text in self.responses.items()):
             raise ValueError(
                 "Replay responses must use non-empty digests and text values."
             )

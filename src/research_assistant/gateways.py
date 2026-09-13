@@ -10,6 +10,10 @@ from typing import Any, Callable, Mapping
 from .advisor import ActionProposal
 
 
+def _allow_proposal(_proposal: ActionProposal) -> bool:
+    return True
+
+
 @dataclass(frozen=True, slots=True)
 class ApprovedIntervention:
     """Human-approved description; it contains no executable callback."""
@@ -43,8 +47,10 @@ class InterventionGateway:
             raise ValueError("Rate limit must be positive")
         self._capabilities = frozenset(capabilities)
         self._limit = max_per_tick_window
-        self._policy = policy or (lambda _proposal: True)
-        self._safety_envelope = safety_envelope or (lambda _proposal: True)
+        self._policy: Callable[[ActionProposal], bool] = policy or _allow_proposal
+        self._safety_envelope: Callable[[ActionProposal], bool] = (
+            safety_envelope or _allow_proposal
+        )
         self._audit: list[dict[str, Any]] = []
         self._approvals: dict[str, ApprovedIntervention] = {}
 

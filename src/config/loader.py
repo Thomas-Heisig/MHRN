@@ -467,7 +467,8 @@ def _validate_neuron_config(
             raise ValueError(f"neuron.{key} must be numeric")
         result[key] = float(value)  # type: ignore[literal-required]
 
-    if result["lif_tau_m_ms"] <= 0.0:
+    lif_tau_m_ms = result.get("lif_tau_m_ms")
+    if not isinstance(lif_tau_m_ms, float) or lif_tau_m_ms <= 0.0:
         raise ValueError("neuron.lif_tau_m_ms must be > 0")
 
     refractory = raw.get("refractory_ticks", defaults.get("refractory_ticks", 0))

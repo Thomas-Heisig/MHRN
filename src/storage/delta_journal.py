@@ -71,6 +71,10 @@ class UncommittedTailError(JournalError):
     """Raised when append is attempted after an uncommitted tail."""
 
 
+ENTRY_HEADER_STRUCT = _ENTRY_HEADER_STRUCT
+COMMIT_STRUCT = _COMMIT_STRUCT
+
+
 @dataclass(frozen=True, slots=True)
 class JournalHeader:
     """Immutable journal-file header."""

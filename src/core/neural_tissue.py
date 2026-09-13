@@ -205,7 +205,9 @@ class SynapseTissueState:
         probability = _clip(self.release_probability + 0.5 * self.facilitation)
         released = self.depression_resource * self.ready_vesicle_fraction * probability
         self.depression_resource = _clip(self.depression_resource - released)
-        self.ready_vesicle_fraction = _clip(self.ready_vesicle_fraction - 0.5 * released)
+        self.ready_vesicle_fraction = _clip(
+            self.ready_vesicle_fraction - 0.5 * released
+        )
         self.presynaptic_calcium = _clip(self.presynaptic_calcium + 0.2, 0.0, 4.0)
         self.use_count += 1
         return 0.0 if self.silent else released * self.modulation_gain
@@ -241,7 +243,9 @@ class SynapseTissueState:
         calcium_gate = _clip(post_calcium / 2.0)
         delta = coincidence * direction * calcium_gate * self.modulation_gain
         self.synaptic_tag = _clip(0.95 * self.synaptic_tag + 0.05 * abs(delta))
-        self.retrograde_signal = _clip(0.9 * self.retrograde_signal + 0.1 * post_calcium)
+        self.retrograde_signal = _clip(
+            0.9 * self.retrograde_signal + 0.1 * post_calcium
+        )
         agreement = 1.0 if delta >= 0.0 else 0.0
         self.confidence = _clip(
             (1.0 - config.confidence_rate) * self.confidence
@@ -375,7 +379,9 @@ class NeuralTissueController:
 
         for (pre_id, post_id), state in self.synapses.items():
             state.recover(self.config)
-            pre_activity = 1.0 if pre_id in spikes else self.neurons[pre_id].activity_memory
+            pre_activity = (
+                1.0 if pre_id in spikes else self.neurons[pre_id].activity_memory
+            )
             post_activity = (
                 1.0 if post_id in spikes else self.neurons[post_id].activity_memory
             )
@@ -487,9 +493,7 @@ class NeuralTissueController:
         tick_number = result.tick + 1
         timescales = self.config.timescales
         plasticity_ran = tick_number % timescales.plasticity_interval_ticks == 0
-        consolidation_ran = (
-            tick_number % timescales.consolidation_interval_ticks == 0
-        )
+        consolidation_ran = tick_number % timescales.consolidation_interval_ticks == 0
         development_ran = tick_number % timescales.development_interval_ticks == 0
 
         spent = self._run_plasticity(result) if plasticity_ran else 0.0
