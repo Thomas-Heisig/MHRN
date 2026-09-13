@@ -10,7 +10,7 @@ from __future__ import annotations
 import random
 from dataclasses import replace
 
-from src.core.network import Brain5DConfig, NeuralNetwork, SimulationConfig
+from src.core.network import Brain5DConfig, NeuralNetwork, SimulationConfig, StepResult
 from src.core.neuron import NeuronConfig
 from src.core.synapse import SynapseConfig
 
@@ -33,8 +33,8 @@ def _chain() -> tuple[NeuralNetwork, tuple[int, int, int]]:
     return network, (a, b, c)
 
 
-def _normalized(results: tuple[object, ...]) -> tuple[object, ...]:
-    return tuple(replace(result, core_step_ms=0.0) for result in results)  # type: ignore[arg-type]
+def _normalized(results: tuple[StepResult, ...]) -> tuple[StepResult, ...]:
+    return tuple(replace(result, core_step_ms=0.0) for result in results)
 
 
 def test_three_neuron_chain_propagates_spikes_at_declared_delays() -> None:
