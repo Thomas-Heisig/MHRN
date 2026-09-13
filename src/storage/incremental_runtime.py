@@ -21,6 +21,7 @@ claim of per-tick restart equivalence.
 from __future__ import annotations
 
 from collections.abc import MutableSet
+from typing import cast
 
 from .delta_codec import (
     NeuronAddDelta,
@@ -75,13 +76,21 @@ class IncrementalStorageSession(StorageSession):
         neuron_dirty = getattr(self.network, "_dirty_neuron_ids", None)
         synapse_dirty = getattr(self.network, "_dirty_synapse_ids", None)
         if isinstance(neuron_dirty, set):
-            neuron_ids = {int(value) for value in neuron_dirty}
+            neuron_ids = {
+                int(cast(int | float | str | bytes | bytearray, value))
+                for value in cast(set[object], neuron_dirty)
+            }
         else:
             neuron_ids = {int(value) for value in result.dirty_neuron_ids}
         if isinstance(synapse_dirty, set):
             synapse_ids = {
-                (int(source_id), int(target_id))
-                for source_id, target_id in synapse_dirty
+                (
+                    int(cast(int | float | str | bytes | bytearray, source_id)),
+                    int(cast(int | float | str | bytes | bytearray, target_id)),
+                )
+                for source_id, target_id in cast(
+                    set[tuple[object, object]], synapse_dirty
+                )
             }
         else:
             synapse_ids = {

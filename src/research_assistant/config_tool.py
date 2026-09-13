@@ -8,7 +8,7 @@ All changes are validated, logged, and require explicit AI tool invocation.
 from __future__ import annotations
 
 from pathlib import Path
-from typing import Any, Callable
+from typing import Any, Callable, cast
 
 import yaml
 
@@ -60,14 +60,23 @@ ALLOWED_CONFIG_KEYS: dict[str, str] = {
 
 Validator = Callable[[Any], bool]
 
+
+def _valid_dimensions(value: Any) -> bool:
+    if not isinstance(value, list):
+        return False
+    dimensions = cast(list[object], value)
+    return len(dimensions) == 5 and all(
+        isinstance(dimension, int)
+        and not isinstance(dimension, bool)
+        and 1 <= dimension <= 100
+        for dimension in dimensions
+    )
+
+
 _VALIDATORS: dict[str, Validator] = {
     "initial_neurons": lambda v: isinstance(v, int) and 1 <= v <= 10_000_000,
     "max_neurons": lambda v: isinstance(v, int) and 1 <= v <= 10_000_000,
-    "dimensions": lambda v: (
-        isinstance(v, list)
-        and len(v) == 5
-        and all(isinstance(d, int) and 1 <= d <= 100 for d in v)
-    ),
+    "dimensions": _valid_dimensions,
     "seed": lambda v: isinstance(v, int) and 0 <= v <= 2**31 - 1,
     "simulation.ticks": lambda v: isinstance(v, int) and 0 <= v <= 10_000_000,
     "simulation.dt_ms": lambda v: isinstance(v, (int, float)) and 0.1 <= v <= 100.0,
@@ -147,8 +156,10 @@ def apply_config_change(config_path: Path, key: str, value: Any) -> tuple[bool, 
 
     # Write back — preserve flow style for lists
     try:
+
         class _FlowListDumper(yaml.SafeDumper):
             """Dumper that preserves flow style for list values."""
+
             pass
 
         _FlowListDumper.add_representer(
@@ -160,7 +171,8 @@ def apply_config_change(config_path: Path, key: str, value: Any) -> tuple[bool, 
 
         with open(config_path, "w", encoding="utf-8") as f:
             yaml.dump(
-                config, f,
+                config,
+                f,
                 Dumper=_FlowListDumper,
                 default_flow_style=False,
                 allow_unicode=True,
@@ -183,12 +195,14 @@ def get_config_value(config_path: Path, key: str) -> tuple[bool, Any]:
     except (OSError, yaml.YAMLError):
         return False, None
     parts = key.split(".")
-    current = config
+    current: object = config
     for part in parts:
-        if isinstance(current, dict) and part in current:
-            current = current[part]
-        else:
+        if not isinstance(current, dict):
             return False, None
+        mapping = cast(dict[object, object], current)
+        if part not in mapping:
+            return False, None
+        current = mapping[part]
     return True, current
 
 

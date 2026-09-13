@@ -13,7 +13,11 @@ from collections.abc import Mapping
 
 from src.core.network import NeuralNetwork, StepResult
 
-from .engine import HomeostasisEngine, HomeostasisStats, _clamp
+from .engine import HomeostasisEngine, HomeostasisStats
+
+
+def _hot_clamp(value: float, low: float, high: float) -> float:
+    return max(low, min(high, value))
 
 
 class HotPathHomeostasisEngine(HomeostasisEngine):
@@ -64,7 +68,7 @@ class HotPathHomeostasisEngine(HomeostasisEngine):
             changed = False
             rate_error = rate - self.params.target_rate_hz
             adjustment = self.params.threshold_learning_rate * rate_error
-            next_threshold = _clamp(
+            next_threshold = _hot_clamp(
                 neuron.threshold_adaptation + adjustment,
                 self.params.threshold_min,
                 self.params.threshold_max,
@@ -77,7 +81,7 @@ class HotPathHomeostasisEngine(HomeostasisEngine):
                 recovery = self.params.energy_recovery_rate * (
                     self.params.target_energy - neuron.energy
                 )
-                next_energy = _clamp(
+                next_energy = _hot_clamp(
                     neuron.energy + recovery,
                     self.params.energy_min,
                     self.params.energy_max,

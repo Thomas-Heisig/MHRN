@@ -6,7 +6,7 @@ import hashlib
 import json
 from dataclasses import asdict, dataclass
 from datetime import datetime, timezone
-from typing import Any
+from typing import Any, cast
 
 
 @dataclass(frozen=True, slots=True)
@@ -107,6 +107,16 @@ class AIAnalysisRecord:
         )
 
 
+def _analysis_list(value: Any) -> list[Any]:
+    if not isinstance(value, list):
+        return []
+    values = cast(list[object], value)
+    result: list[Any] = []
+    for item in values:
+        result.append(item)
+    return result
+
+
 def normalize_output(output: dict[str, Any]) -> dict[str, Any]:
     """Normalize common model-format variations before schema validation.
 
@@ -144,11 +154,7 @@ def normalize_output(output: dict[str, Any]) -> dict[str, Any]:
 
     normalized["confidence_original"] = raw_confidence
     normalized["confidence"] = 0.0
-    concerns = normalized.get("methodological_concerns")
-    if not isinstance(concerns, list):
-        concerns = []
-    else:
-        concerns = list(concerns)
+    concerns = _analysis_list(normalized.get("methodological_concerns"))
     concerns.append(
         "Die vom Modell ausgegebene confidence war schemawidrig oder ausserhalb "
         "des Bereichs 0..1. Sie wurde fuer die AIRR-Provenienz konservativ auf "

@@ -12,11 +12,11 @@ import os
 
 from .crc import compute_crc32
 from .delta_journal import (
-    _COMMIT_STRUCT,
-    _ENTRY_HEADER_STRUCT,
     COMMIT_MAGIC,
     COMMIT_MARKER_SIZE,
+    COMMIT_STRUCT,
     ENTRY_FLAG_NONE,
+    ENTRY_HEADER_STRUCT,
     ENTRY_MAGIC,
     CommitMarker,
     DeltaJournal,
@@ -54,7 +54,7 @@ class FastDeltaJournal(DeltaJournal):
                 delta.payload,
             )
         )
-        raw_header = _ENTRY_HEADER_STRUCT.pack(
+        raw_header = ENTRY_HEADER_STRUCT.pack(
             ENTRY_MAGIC,
             sequence,
             delta.tick,
@@ -83,7 +83,7 @@ class FastDeltaJournal(DeltaJournal):
         crc = compute_crc32(
             self._commit_crc_input(sequence, tick, committed_entry_count)
         )
-        raw = _COMMIT_STRUCT.pack(
+        raw = COMMIT_STRUCT.pack(
             COMMIT_MAGIC,
             sequence,
             tick,

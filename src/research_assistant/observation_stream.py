@@ -6,7 +6,7 @@ import hashlib
 import json
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any, Mapping
+from typing import Any, Mapping, cast
 
 
 class ObservationStreamError(ValueError):
@@ -75,7 +75,7 @@ class ObservationStream:
                     raise ObservationStreamError(
                         f"Record at line {line_number} is not an object."
                     )
-                record = _record_from_dict(raw, line_number)
+                record = _record_from_dict(cast(dict[str, Any], raw), line_number)
                 if record.sequence != len(records):
                     raise ObservationStreamError(
                         f"Unexpected sequence at JSONL line {line_number}."
@@ -105,12 +105,13 @@ def _record_from_dict(raw: dict[str, Any], line_number: int) -> ObservationStrea
         raise ObservationStreamError(
             f"Invalid observation record at JSONL line {line_number}."
         )
-    payload = _canonical_json(observation)
+    typed_observation = cast(dict[str, Any], observation)
+    payload = _canonical_json(typed_observation)
     if _digest(payload) != digest:
         raise ObservationStreamError(
             f"Observation digest mismatch at JSONL line {line_number}."
         )
-    return ObservationStreamRecord(sequence, tick, digest, observation)
+    return ObservationStreamRecord(sequence, tick, digest, typed_observation)
 
 
 def _canonical_json(value: object) -> str:

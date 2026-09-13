@@ -247,11 +247,12 @@ class OllamaBackend:
                 response_payload = json.loads(raw)
                 if not isinstance(response_payload, dict):
                     raise ValueError("Ollama response must be a JSON object.")
-                text = response_payload.get("response")
+                typed_payload = cast(dict[str, Any], response_payload)
+                text = typed_payload.get("response")
                 if not isinstance(text, str) or not text.strip():
                     raise ValueError("Ollama returned no analysis text.")
                 return text, self._metadata(
-                    response_payload,
+                    typed_payload,
                     text,
                     request_digest=request_digest,
                     request_timestamp=request_timestamp,
