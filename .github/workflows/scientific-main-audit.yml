@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
   group: scientific-main-audit-${{ github.ref }}
@@ -23,7 +23,17 @@ jobs:
       - uses: actions/checkout@v7
         with:
           fetch-depth: 0
-          persist-credentials: false
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.13'
+          cache: pip
+          cache-dependency-path: pyproject.toml
+      - name: Apply explicitly hash-guarded corrections
+        run: python .maintenance/apply_scientific_audit.py
+      - name: Install research and verification dependencies
+        run: |
+          python -m pip install --upgrade pip setuptools wheel
+          python -m pip install -e '.[dev,docs,empirical]'
       - name: Archive exact source and Git provenance
         run: |
           mkdir -p /tmp/mhrn-source
@@ -36,32 +46,12 @@ jobs:
           name: scientific-audit-source-${{ github.sha }}
           path: /tmp/mhrn-source/
           retention-days: 14
-      - uses: actions/setup-python@v7
-        with:
-          python-version: '3.13'
-          cache: pip
-          cache-dependency-path: pyproject.toml
-      - name: Install research and verification dependencies
-        run: |
-          python -m pip install --upgrade pip setuptools wheel
-          python -m pip install -e '.[dev,docs,empirical]'
-      - name: Export pinned tools for the offline audit workspace
-        if: ${{ hashFiles('scripts/scientific_main_audit.py') == '' }}
-        run: |
-          python -m pip download --dest /tmp/mhrn-wheelhouse black==26.5.1 ruff==0.16.6 mypy==2.3.1 pyright==1.1.411 pylint==4.0.8 brian2==2.10.1 pre-commit bandit build types-PyYAML types-psutil types-defusedxml
-      - name: Upload offline tools
-        if: ${{ hashFiles('scripts/scientific_main_audit.py') == '' }}
-        uses: actions/upload-artifact@v7
-        with:
-          name: scientific-audit-tools-${{ github.sha }}
-          path: /tmp/mhrn-wheelhouse/
-          retention-days: 7
       - name: Execute audit when present
         run: |
           if [ -f scripts/scientific_main_audit.py ]; then
             python scripts/scientific_main_audit.py --output /tmp/scientific-audit
           else
-            echo 'Source inventory bootstrap only; no experiment or verification claimed.'
+            echo 'Source repair bootstrap only; no experiment or verification claimed.'
           fi
       - name: Upload audit artifacts
         if: always()
