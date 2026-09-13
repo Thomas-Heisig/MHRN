@@ -85,15 +85,21 @@ function activate() {
   const root = $("tab-wesen");
   const panel = $("mhrn-runtime-neuron");
   if (!root || !panel) return;
-  root.querySelectorAll(":scope > section, :scope > article, :scope > .card").forEach((node) => {
-    if (node === panel) return;
-    node.hidden = true;
-    node.style.display = "none";
-    node.setAttribute("aria-hidden", "true");
-  });
-  panel.hidden = false;
-  panel.style.display = "grid";
-  panel.setAttribute("aria-hidden", "false");
+  // Router benachrichtigen — der übernimmt Sichtbarkeit und Navigation
+  if (window.MHRNWorkspaceArchitecture?.selectRoute) {
+    window.MHRNWorkspaceArchitecture.selectRoute("wesen", "neuron");
+  } else {
+    // Fallback falls Router noch nicht bereit
+    root.querySelectorAll(":scope > section, :scope > article, :scope > .card").forEach((node) => {
+      if (node === panel) return;
+      node.hidden = true;
+      node.style.display = "none";
+      node.setAttribute("aria-hidden", "true");
+    });
+    panel.hidden = false;
+    panel.style.display = "grid";
+    panel.setAttribute("aria-hidden", "false");
+  }
   document.querySelectorAll('.mhrn-context-nav[data-area="wesen"] button').forEach((button) => button.classList.toggle("active", button.dataset.runtimeNeuronTab === "true"));
   document.body.dataset.currentArea = "wesen";
   document.body.dataset.currentRoute = "neuron";
