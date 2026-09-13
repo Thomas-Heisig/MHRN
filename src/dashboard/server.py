@@ -3204,13 +3204,13 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
                     line.split("]", 1)[1].strip() if "]" in line else line[13:].strip()
                 )
                 if key:
-                    found, value = get_config_value(config_path, key)
+                    found, current_value = get_config_value(config_path, key)
                     results.append(
                         {
                             "action": "read",
                             "key": key,
                             "found": found,
-                            "value": value if found else None,
+                            "value": cast(JSONValue, current_value) if found else None,
                         }
                     )
             # Match [CONFIG_WRITE] key.name = value
@@ -3222,17 +3222,17 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
                     key = rest.split("=", 1)[0].strip()
                     value_str = rest.split("=", 1)[1].strip()
                     # Parse value: try int, float, bool, list, or keep as string
-                    value: object = value_str
+                    parsed_value: object = value_str
                     if value_str.lower() == "true":
-                        value = True
+                        parsed_value = True
                     elif value_str.lower() == "false":
-                        value = False
+                        parsed_value = False
                     else:
                         try:
-                            value = int(value_str)
+                            parsed_value = int(value_str)
                         except ValueError:
                             try:
-                                value = float(value_str)
+                                parsed_value = float(value_str)
                             except ValueError:
                                 if value_str.startswith("[") and value_str.endswith(
                                     "]"
@@ -3240,15 +3240,17 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
                                     try:
                                         import json
 
-                                        value = json.loads(value_str)
+                                        parsed_value = json.loads(value_str)
                                     except (json.JSONDecodeError, ValueError):
                                         pass
-                    success, message = apply_config_change(config_path, key, value)
+                    success, message = apply_config_change(
+                        config_path, key, parsed_value
+                    )
                     results.append(
                         {
                             "action": "write",
                             "key": key,
-                            "value": value,
+                            "value": cast(JSONValue, parsed_value),
                             "success": success,
                             "message": message,
                         }
@@ -3387,7 +3389,7 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
                     "answer": answer,
                     "metadata": cast(JSONValue, metadata),
                     "grounded": True,
-                    "config_results": config_results,
+                    "config_results": cast(JSONValue, config_results),
                 }
             )
         except (OSError, TimeoutError) as exc:
