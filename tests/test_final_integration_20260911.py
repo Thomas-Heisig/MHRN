@@ -207,14 +207,10 @@ def test_frontend_final_integration_contract_is_present() -> None:
         "frontend/modules/runtime-io.js",
         "frontend/modules/science-transparency.js",
         "frontend/modules/review-link.js",
-        "frontend/styles/tokens.css",
-        "frontend/styles/reset.css",
-        "frontend/styles/base.css",
-        "frontend/styles/layout.css",
-        "frontend/styles/components.css",
-        "frontend/styles/modules.css",
-        "frontend/styles/utilities.css",
-        "frontend/styles/print.css",
+        "frontend/styles/index.css",
+        "frontend/styles/observational-modules.css",
+        "frontend/styles/observational-compat.css",
+        "frontend/styles/workspace-architecture.css",
     ]
     assert all((static / path).is_file() for path in required)
     html = (static / "index.html").read_text(encoding="utf-8")

@@ -197,3 +197,11 @@ kbd { display:inline-grid; min-width:21px; min-height:20px; place-items:center; 
 @media (prefers-reduced-motion:reduce) {
   .core-aura,.real-body-organ,.wesen-body-silhouette,.wesen-body-torso,.wesen-body-spine { animation:none !important; transition:none !important; }
 }
+
+/* Runtime states and bibliographic columns used by the canonical renderer. */
+.bibtex-cell-year,.file-renderer-bibtex td:nth-child(4) { min-width:5.5rem; white-space:nowrap; font-variant-numeric:tabular-nums; }
+.wesen-delayed-clone { opacity:.3; pointer-events:none; }
+.is-test-running { cursor:progress; }
+.is-test-running:disabled { opacity:.65; }
+.gate-board { width:100%; max-width:none; margin:0; }
+.release-gate-panel { width:100%; max-width:none; }

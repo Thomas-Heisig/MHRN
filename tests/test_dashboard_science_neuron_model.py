@@ -22,10 +22,10 @@ def test_scientific_frontend_initializes_cell_model_module() -> None:
 
 def test_cell_model_is_a_network_workbench_view() -> None:
     module = _read("frontend/modules/neuron-model-science.js")
-    assert 'data-workspace-views="network"' in module
-    assert 'button.dataset.workspaceView = "cellmodel"' in module
-    assert 'button.textContent = "Cell Model"' in module
-    assert 'panel.dataset.networkView = "cellmodel"' in module
+    assert '[ROUTE_ID, "Cell Model", "network", "view", ROUTE_ID]' in module
+    assert 'architecture.selectRoute("science", ROUTE_ID)' in module
+    assert "button.dataset.areaRoute = ROUTE_ID" in module
+    assert "panel.dataset.networkView = ROUTE_ID" in module
     assert 'panel.id = "mhrn-neuron-model-science"' in module
 
 

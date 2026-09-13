@@ -48,9 +48,10 @@ class Source:
     def __init__(self, files: dict[str, str]) -> None:
         self.files = files
 
-    def list_documents(self, recursive: bool = False) -> list[Doc]:
+    def list_documents(self, recursive: bool = False, max_count: int = 0) -> list[Doc]:
         del recursive
-        return [Doc(path) for path in self.files]
+        docs = [Doc(path) for path in self.files]
+        return docs[:max_count] if max_count else docs
 
     def read_content(self, path: str) -> str:
         return self.files[path]

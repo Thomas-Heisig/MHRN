@@ -23,7 +23,9 @@ from src.core.synapse_stochastic import QuantalSTPSynapse, QuantalSynapseConfig
 
 def test_hh_ablation_uses_same_class_with_channels_disabled() -> None:
     base = HodgkinHuxleyNeuron(1, HHConfig(enabled=True, enable_na=True, enable_k=True))
-    ablated = HodgkinHuxleyNeuron(1, HHConfig(enabled=True, enable_na=False, enable_k=True))
+    ablated = HodgkinHuxleyNeuron(
+        1, HHConfig(enabled=True, enable_na=False, enable_k=True)
+    )
     for tick in range(20):
         base.step(10.0, tick)
         ablated.step(10.0, tick)
@@ -35,7 +37,9 @@ def test_hh_ablation_uses_same_class_with_channels_disabled() -> None:
 def test_compartment_and_nmda_plateau_are_independent_axes() -> None:
     linear = CompartmentNeuron(
         1,
-        CompartmentConfig(enabled=True, dendritic_nonlinearity=DendriticNonlinearity.LINEAR),
+        CompartmentConfig(
+            enabled=True, dendritic_nonlinearity=DendriticNonlinearity.LINEAR
+        ),
         dendrite_v=[-30.0, -30.0],
     )
     plateau = CompartmentNeuron(

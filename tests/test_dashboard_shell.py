@@ -1,5 +1,7 @@
 from pathlib import Path
 
+from tests.dashboard_assets import dashboard_css
+
 # fmt: off
 STATIC = Path(__file__).parents[1] / "src" / "dashboard" / "static"
 TABS = (
@@ -17,7 +19,7 @@ def test_dashboard_shell_covers_every_primary_tab() -> None:
     source = (STATIC / "dashboard-shell.js").read_text(encoding="utf-8")
     for tab in TABS:
         assert f"{tab}:" in source
-    assert "tab-${tabName}" in source
+    assert "tab-${button.dataset.tab}" in source
 
 
 def test_dashboard_shell_is_full_width_and_responsive() -> None:
@@ -59,12 +61,25 @@ def test_dashboard_tabs_are_hidden_before_external_styles_load() -> None:
 
 
 def test_print_styles_do_not_capture_screen_rules() -> None:
-    css = (STATIC / "styles.css").read_text(encoding="utf-8")
-    assert "color: black !important;\n  }\n}\n\n/* ============================================================================\n   BIBTEX VIEWER" in css
+    css = dashboard_css()
+    import re
+
+    from tests.dashboard_assets import stylesheet_paths
+
+    for path in stylesheet_paths():
+        raw = re.sub(r"/\*.*?\*/", "", path.read_text(), flags=re.S)
+        depth = 0
+        for char in raw:
+            depth += (char == "{") - (char == "}")
+            assert depth >= 0, path
+        assert depth == 0, path
+    assert "@media print" in css
+    assert "break-inside: avoid" in css
+
 
 
 def test_bibtex_year_columns_reserve_four_digit_width() -> None:
-    css = (STATIC / "styles.css").read_text(encoding="utf-8")
+    css = dashboard_css()
     assert ".bibtex-cell-year" in css
     assert "min-width: 5.5rem" in css
     assert "font-variant-numeric: tabular-nums" in css

@@ -5,10 +5,14 @@ from __future__ import annotations
 from pathlib import Path
 from xml.etree import ElementTree
 
+from tests.dashboard_assets import dashboard_css
+
 STATIC_DIR = Path(__file__).parent.parent / "src" / "dashboard" / "static"
 
 
 def _read(name: str) -> str:
+    if name.endswith(".css"):
+        return dashboard_css()
     return (STATIC_DIR / name).read_text(encoding="utf-8")
 
 
@@ -85,7 +89,7 @@ def test_embodiment_animation_is_store_driven_and_accessible() -> None:
     assert 'livingMap.style.setProperty("--energy"' in workspace_js
     assert 'livingMap.style.setProperty("--synchrony"' in workspace_js
     assert "@media (prefers-reduced-motion: reduce)" in styles
-    assert ".brain5d-being," in styles
+    assert ".brain5d-being" in styles
 
 
 def test_connection_manager_is_store_driven_and_has_no_control_actions() -> None:

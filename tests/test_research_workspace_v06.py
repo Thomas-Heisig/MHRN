@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import re
 from pathlib import Path
 
 from src.dashboard.experiment_archive import ExperimentArchiveService
@@ -19,10 +20,11 @@ def test_research_workspace_is_owned_by_central_workspace_router() -> None:
         "dynamics",
         "inspect",
         "data",
-        "files",
         "registry",
     ):
-        assert f'["{route}",' in router
+        assert re.search(r'\[\s*"' + re.escape(route) + r'"\s*,', router)
+    assert 'files: {' in router
+    assert 'selectRoute("files", "browse")' in router
     assert 'label: "Wissenschaft"' in router
     assert "research-workspace-tabs" not in controller
     assert "installResearchWorkspaceStyle" not in controller

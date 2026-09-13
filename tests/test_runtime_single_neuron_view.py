@@ -24,7 +24,7 @@ def _network() -> NeuralNetwork:
     )
     network = NeuralNetwork(config, random.Random(7))
     neuron_id = linear_to_5d(0, config.dimensions)
-    network.add_neuron(neuron_id)
+    neuron_id = network.add_neuron(neuron_id)
     neuron = network.get_neuron(neuron_id)
     assert neuron is not None
     neuron.last_external_current = 4.0

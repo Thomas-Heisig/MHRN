@@ -53,22 +53,28 @@ def test_wesen_shell_keeps_embodiment_sibling_and_moves_utilities_to_footer() ->
 
 
 def test_visual_shell_v2_is_visible_and_exposes_global_routes() -> None:
-    frontend = (STATIC / "frontend" / "index.js").read_text(encoding="utf-8")
-    styles = (STATIC / "frontend" / "styles" / "index.css").read_text(encoding="utf-8")
-    visual = (STATIC / "frontend" / "styles" / "visual-shell.css").read_text(
-        encoding="utf-8"
-    )
+    from tests.dashboard_assets import dashboard_css, stylesheet_paths
 
-    assert 'document.body.classList.add("mhrn-visual-shell-v2")' in frontend
-    assert 'class="mhrn-area-tabs"' in frontend or "mhrn-area-tabs" in frontend
-    assert 'data-global-workspace="gate"' in frontend
-    assert 'data-global-workspace="settings"' in frontend
-    assert 'ws === "parameter"' in frontend
-    assert 'document.body.dataset.globalWorkspace = "parameter"' in frontend
-    assert 'id="parameter-inspector-card"' in frontend
-    assert 'href="/review"' in frontend
-    assert "./visual-shell.css" in styles
-    assert ".mhrn-area-tabs" in visual
-    assert ".mhrn-global-actions" in visual
-    assert ".overview-command-bar" in visual
-    assert ".overview-status-rail" in visual
+    frontend = (STATIC / "frontend" / "index.js").read_text(encoding="utf-8")
+    router = (STATIC / "frontend" / "workspace-router.js").read_text(encoding="utf-8")
+    assert 'import { initWorkspaceRouter } from "./workspace-router.js";' in frontend
+    assert "initWorkspaceRouter();" in frontend
+    for area in (
+        "dashboard",
+        "science",
+        "wesen",
+        "control",
+        "release",
+        "settings",
+        "review",
+        "files",
+    ):
+        assert f"  {area}: {{" in router
+    assert 'data-mhrn-area="${id}"' in router
+    assert "selectRoute(button.dataset.mhrnArea" in router
+    assert "parameter-inspector-card" in router
+    assert "/api/research/reviews" in router
+    assert "#control-causal-flow,#runtime-control-card" in router
+    assert all(path.name != "visual-shell.css" for path in stylesheet_paths())
+    assert ".brain5d-primary-nav" in dashboard_css()
+    assert ".mhrn-context-nav" in dashboard_css()

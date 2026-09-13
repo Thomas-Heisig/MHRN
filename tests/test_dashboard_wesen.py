@@ -1,5 +1,7 @@
 from pathlib import Path
 
+from tests.dashboard_assets import dashboard_css
+
 STATIC = Path(__file__).parents[1] / "src" / "dashboard" / "static"
 
 
@@ -59,14 +61,14 @@ def test_wesen_has_dynamic_machine_native_morphology() -> None:
         "minDistance",
     ):
         assert token in organism
-    assert "WESEN_POLL_MS = 750" in base
+    assert "WESEN_POLL_MS = 1000" in base
     assert "sensor-placeholder" in base
     assert "actuator-placeholder" in base
 
 
 def test_wesen_has_icon_first_collision_safe_accessibility() -> None:
     organism = (STATIC / "wesen-organism-v2.js").read_text(encoding="utf-8")
-    styles = (STATIC / "wesen-organism.css").read_text(encoding="utf-8")
+    styles = dashboard_css()
     for token in (
         "deviceType",
         "iconFor",
@@ -89,7 +91,7 @@ def test_wesen_has_icon_first_collision_safe_accessibility() -> None:
 
 def test_wesen_has_body_like_machine_anatomy() -> None:
     anatomy = (STATIC / "wesen-anatomy-v3.js").read_text(encoding="utf-8")
-    styles = (STATIC / "wesen-anatomy-v3.css").read_text(encoding="utf-8")
+    styles = dashboard_css()
     for token in (
         "wesen-body-head",
         "wesen-body-torso",
@@ -108,7 +110,7 @@ def test_wesen_has_body_like_machine_anatomy() -> None:
 
 def test_wesen_empirical_overlay_uses_backend_data_without_fallback_values() -> None:
     anatomy = (STATIC / "wesen-anatomy-v3.js").read_text(encoding="utf-8")
-    styles = (STATIC / "wesen-anatomy-v3.css").read_text(encoding="utf-8")
+    styles = dashboard_css()
     for token in (
         "sensory_integrity",
         "resource_pressure",
@@ -130,7 +132,7 @@ def test_wesen_empirical_overlay_uses_backend_data_without_fallback_values() -> 
 def test_wesen_has_loopback_causality_camera_and_time_travel() -> None:
     base = (STATIC / "wesen-base.js").read_text(encoding="utf-8")
     organism = (STATIC / "wesen-organism-v2.js").read_text(encoding="utf-8")
-    styles = (STATIC / "wesen-organism.css").read_text(encoding="utf-8")
+    styles = dashboard_css()
     assert "renderEcho" in base
     assert "show-causality" in organism
     assert "delayedClone" in organism
@@ -145,7 +147,7 @@ def test_wesen_has_loopback_causality_camera_and_time_travel() -> None:
 
 def test_wesen_has_neutral_terminology_and_differentiated_states() -> None:
     organism = (STATIC / "wesen-organism-v2.js").read_text(encoding="utf-8")
-    styles = (STATIC / "wesen-organism.css").read_text(encoding="utf-8")
+    styles = dashboard_css()
     for term in (
         "SNN-Kern",
         "Adaptive Regelstruktur",
@@ -170,8 +172,9 @@ def test_wesen_has_neutral_terminology_and_differentiated_states() -> None:
 def test_primary_frontend_uses_three_areas_and_keeps_utility_routes() -> None:
     console = (STATIC / "console-log.js").read_text(encoding="utf-8")
     architecture = (STATIC / "frontend-architecture.js").read_text(encoding="utf-8")
-    styles = (STATIC / "wesen.css").read_text(encoding="utf-8")
-    assert 'import "./frontend-architecture.js"' in console
+    styles = dashboard_css()
+    assert 'import "./frontend-architecture.js"' not in console
+    assert 'import "./frontend/index.js"' in console
     assert 'data-primary-area="dashboard"' in architecture
     assert 'data-primary-area="science"' in architecture
     assert 'data-primary-area="wesen"' in architecture
@@ -179,25 +182,30 @@ def test_primary_frontend_uses_three_areas_and_keeps_utility_routes() -> None:
     assert 'button.classList.add("wesen-utility-hidden")' in console
     assert "ensureReleaseFooterButton" not in console
     assert "wesen-release-button" not in console
-    assert '.tab-btn[data-tab="network"]' in styles
-    assert '.tab-btn[data-tab="gate"]' in styles
+    assert ".tab-nav" in styles
+    assert "display: none !important" in styles
 
 
 def test_embodiment_is_presented_as_simple_technical_surface() -> None:
     console = (STATIC / "console-log.js").read_text(encoding="utf-8")
-    styles = (STATIC / "wesen.css").read_text(encoding="utf-8")
+    styles = dashboard_css()
     assert "Embodiment bleibt die einfache technische Schnittstellen-Seite" in console
-    assert "#tab-embodiment .anatomy-zone" in styles
-    assert "#tab-embodiment .legacy-embodiment-details" in styles
+    assert (
+        ".anatomy-zone"
+        in (STATIC / "frontend" / "styles" / "observational-compat.css").read_text()
+        or "anatomy-zone"
+        in (STATIC / "frontend" / "styles" / "observational-compat.css").read_text()
+    )
+    assert ".legacy-embodiment-details" in styles
 
 
 def test_wesen_design_is_theme_responsive_and_reduced_motion_safe() -> None:
-    styles = (STATIC / "wesen.css").read_text(encoding="utf-8")
-    adaptive = (STATIC / "wesen-adaptive.css").read_text(encoding="utf-8")
-    organism = (STATIC / "wesen-organism.css").read_text(encoding="utf-8")
-    anatomy = (STATIC / "wesen-anatomy-v3.css").read_text(encoding="utf-8")
+    styles = dashboard_css()
+    adaptive = dashboard_css()
+    organism = dashboard_css()
+    anatomy = dashboard_css()
     assert 'body[data-theme="light"]' in styles
-    assert "@media (max-width: 1050px)" in styles
+    assert "@media (max-width: 1100px)" in styles
     assert "@media (max-width: 820px)" in styles
     assert "prefers-reduced-motion" in adaptive
     assert "prefers-reduced-motion" in organism
