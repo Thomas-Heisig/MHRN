@@ -105,8 +105,8 @@ jobs:
 
           replace(
               "src/research_assistant/local_fallback_backend.py",
-              '''            if isinstance(value, dict):\n                return value\n''',
-              '''            if isinstance(value, dict):\n                return {str(key): item for key, item in value.items()}\n''',
+              '''        try:\n            return json.loads(text)\n        except json.JSONDecodeError:\n            return {"response": text, "assessment": text}\n''',
+              '''        try:\n            value = json.loads(text)\n        except json.JSONDecodeError:\n            return {"response": text, "assessment": text}\n        if isinstance(value, dict):\n            return {str(key): item for key, item in value.items()}\n        return {"response": text, "assessment": text}\n''',
           )
           PY
       - name: Install pinned tools
