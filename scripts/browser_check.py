@@ -105,10 +105,11 @@ def _run_check(
                 science_nav = page.locator('[data-mhrn-area="science"]')
                 science_nav.wait_for(state="visible", timeout=timeout_ms)
                 science_nav.click(timeout=timeout_ms)
-                page.locator('[data-area-overview="science"]').wait_for(
-                    state="visible", timeout=timeout_ms
+                science_overview = page.locator('[data-area-overview="science"]')
+                science_overview.wait_for(state="visible", timeout=timeout_ms)
+                experiments_route = science_overview.locator(
+                    '[data-route-card="experiments"]'
                 )
-                experiments_route = page.locator('[data-area-route="experiments"]')
                 experiments_route.wait_for(state="visible", timeout=timeout_ms)
                 experiments_route.click(timeout=timeout_ms)
                 page.locator("#tab-research").wait_for(
