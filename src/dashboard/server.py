@@ -4715,6 +4715,15 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
             )
             return
 
+        if isinstance(exc, TimeoutError):
+            self._send_json(
+                {
+                    "error": "The provider did not respond in time. Check that Ollama is running and the model is loaded.",
+                },
+                HTTPStatus.GATEWAY_TIMEOUT,
+            )
+            return
+
         self._send_json(
             {"error": (f"Internal server error: " f"{type(exc).__name__}: {exc}")},
             HTTPStatus.INTERNAL_SERVER_ERROR,
@@ -5021,9 +5030,37 @@ def serve_dashboard(
             )
         )
         ollama_backend = OllamaBackend(
-            chat_model, chat_endpoint, temperature, top_p, max_tokens
+            chat_model,
+            chat_endpoint,
+            temperature,
+            top_p,
+            max_tokens,
+            timeout=120.0,
+            retries=1,
+            retry_backoff_seconds=1.0,
         )
         chat_backend = chat_backend_from_text_backend(ollama_backend.generate_text)
+
+        # Warmup: Modell vorladen, damit der erste Benutzer-Request nicht timeoutet
+        try:
+            print(f"🤖 Warming up Ollama model ({chat_model})...")
+            warmup_payload = json.dumps({
+                "model": chat_model,
+                "prompt": "Hello",
+                "stream": False,
+                "options": {"temperature": 0.0, "num_predict": 1},
+            }).encode("utf-8")
+            warmup_req = Request(
+                chat_endpoint,
+                data=warmup_payload,
+                headers={"Content-Type": "application/json"},
+                method="POST",
+            )
+            with urlopen(warmup_req, timeout=180) as warmup_resp:
+                warmup_resp.read()
+            print(f"✅ Ollama model {chat_model} warmed up successfully")
+        except Exception as warmup_err:
+            print(f"⚠️ Ollama warmup failed (model may still load on first request): {warmup_err}")
         resolved_chat_settings = {
             "provider": "ollama",
             "model": chat_model,
