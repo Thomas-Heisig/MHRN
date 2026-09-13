@@ -11,7 +11,9 @@ from src.core import Brain5DConfig, NeuralNetwork
 from src.core.network import NeuralNetwork as ReferenceNeuralNetwork
 from src.core.runtime_network import RuntimeNeuralNetwork
 from src.core.synapse import SynapseConfig
-from src.homeostasis.engine import HomeostasisEngine as ReferenceHomeostasisEngine
+from src.homeostasis.engine import (
+    HomeostasisEngine as ReferenceHomeostasisEngine,
+)
 from src.homeostasis.hot_path import HotPathHomeostasisEngine
 from src.storage.delta_journal import DeltaJournal, DeltaRecord, DeltaType
 from src.storage.fast_delta_journal import FastDeltaJournal
@@ -86,15 +88,19 @@ def test_hot_homeostasis_matches_reference_equations() -> None:
         assert right.energy == left.energy
 
 
-def test_fast_journal_commit_remains_readable_by_reference_reader(tmp_path: Path) -> None:
+def test_fast_journal_commit_remains_readable_by_reference_reader(
+    tmp_path: Path,
+) -> None:
     path = tmp_path / "runtime.journal"
     journal = FastDeltaJournal(path, fsync_on_commit=False)
     journal.open()
     journal.append(DeltaRecord(DeltaType.SPIKE_EVENT, 1, b"one"))
     journal.append(DeltaRecord(DeltaType.SPIKE_EVENT, 2, b"two"))
 
-    # A live commit must not need a complete journal scan.
-    journal.scan = lambda: (_ for _ in ()).throw(AssertionError("unexpected scan"))  # type: ignore[method-assign]
+    def unexpected_scan() -> object:
+        raise AssertionError("unexpected scan")
+
+    journal.scan = unexpected_scan  # type: ignore[method-assign]
     marker = journal.commit()
     assert marker is not None
     journal.close()
@@ -107,7 +113,9 @@ def test_fast_journal_commit_remains_readable_by_reference_reader(tmp_path: Path
 
 
 def test_live_profile_selects_incremental_runtime_persistence() -> None:
-    config = yaml.safe_load((ROOT / "configs" / "poc_alpha5_live.yaml").read_text())
+    config = yaml.safe_load(
+        (ROOT / "configs" / "poc_alpha5_live.yaml").read_text(encoding="utf-8")
+    )
     runtime = config["storage"]["runtime"]
     journal = config["storage"]["journal"]
     live = config["dashboard"]["live_telemetry"]
