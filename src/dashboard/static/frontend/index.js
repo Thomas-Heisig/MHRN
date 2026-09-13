@@ -1,5 +1,6 @@
 "use strict";
 
+import { installPollingGovernor } from "./core/polling-governor.js";
 import { initStatusBar } from "./components/status-bar.js";
 import { initNotificationCenter } from "./components/notification-center.js";
 import { initPanelHelp } from "./components/help.js";
@@ -25,6 +26,8 @@ import { initNeuronModelScience } from "./modules/neuron-model-science.js";
 import { initRuntimeNeuron } from "./modules/runtime-neuron.js";
 import { initSmallSNNStage } from "./modules/small-snn-stage.js";
 import { initWorkspaceRouter } from "./workspace-router.js";
+
+installPollingGovernor();
 
 function init() {
   initWorkspaceRouter();

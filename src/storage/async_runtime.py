@@ -9,6 +9,8 @@ from threading import Event, Lock, Thread
 from typing import Final
 
 from .delta_journal import DeltaJournal, DeltaRecord
+from .fast_delta_journal import FastDeltaJournal
+from .incremental_runtime import IncrementalStorageSession
 from .runtime import (
     RuntimeNetworkLike,
     StepResultLike,
@@ -26,12 +28,16 @@ class AsyncStorageConfig:
     queue_size: int = 1000
     drop_on_overflow: bool = False
     enqueue_timeout_s: float = 0.25
+    neuron_state_interval_ticks: int = 1
+    fsync_on_commit: bool = True
 
     def __post_init__(self) -> None:
         if self.queue_size <= 0:
             raise ValueError("queue_size must be positive")
         if self.enqueue_timeout_s < 0.0:
             raise ValueError("enqueue_timeout_s must be non-negative")
+        if self.neuron_state_interval_ticks <= 0:
+            raise ValueError("neuron_state_interval_ticks must be positive")
 
 
 @dataclass(frozen=True, slots=True)
@@ -58,12 +64,7 @@ class _Batch:
 
 
 class AsyncStorageSession:
-    """Persist typed delta batches on a bounded background worker thread.
-
-    Delta detection remains on the simulation thread so the worker never reads
-    mutable network state. Only immutable ``DeltaRecord`` instances cross the
-    queue boundary.
-    """
+    """Persist typed delta batches on a bounded background worker thread."""
 
     def __init__(
         self,
@@ -74,7 +75,14 @@ class AsyncStorageSession:
         self.network = network
         self.runtime_config = runtime_config
         self.async_config = async_config
-        self._collector = StorageSession(network, runtime_config)
+        if runtime_config.capture_policy == "dirty_tracking":
+            self._collector: StorageSession = IncrementalStorageSession(
+                network,
+                runtime_config,
+                neuron_state_interval_ticks=async_config.neuron_state_interval_ticks,
+            )
+        else:
+            self._collector = StorageSession(network, runtime_config)
         self._queue: Queue[_Batch | object] = Queue(maxsize=async_config.queue_size)
         self._thread: Thread | None = None
         self._stop = Event()
@@ -93,20 +101,15 @@ class AsyncStorageSession:
         self.start()
         return self
 
-    def __exit__(
-        self,
-        *_args: object,
-    ) -> None:
+    def __exit__(self, *_args: object) -> None:
         self.close()
 
     @property
     def attached(self) -> bool:
-        """Return whether the network hook is active."""
         return self._attached
 
     @property
     def telemetry(self) -> StorageTelemetrySnapshot:
-        """Return a consistent snapshot of queue and write telemetry."""
         with self._lock:
             journal_size = (
                 self.runtime_config.journal_path.stat().st_size
@@ -128,7 +131,6 @@ class AsyncStorageSession:
             )
 
     def start(self) -> None:
-        """Initialize snapshot/fingerprints and start the storage worker."""
         if self._attached:
             return
         self._prepare_collector()
@@ -143,14 +145,14 @@ class AsyncStorageSession:
         self._attached = True
 
     def _prepare_collector(self) -> None:
-        """Prime the synchronous collector without leaving its journal open."""
         self._collector.prepare_snapshot()
         self._collector.prime()
 
     def capture(self, result: StepResultLike) -> None:
-        """Collect immutable deltas and enqueue one tick batch."""
         self._raise_worker_failure()
         deltas = self._collector.collect_deltas(result)
+        if not deltas:
+            return
         batch = _Batch(int(result.tick), deltas)
         if self.async_config.drop_on_overflow:
             try:
@@ -160,17 +162,18 @@ class AsyncStorageSession:
                     self._dropped_batches += 1
                 return
         else:
-            self._queue.put(batch, timeout=self.async_config.enqueue_timeout_s or None)
+            self._queue.put(
+                batch,
+                timeout=self.async_config.enqueue_timeout_s or None,
+            )
         with self._lock:
             self._batches_enqueued += 1
 
     def flush(self) -> None:
-        """Wait until all queued batches have been processed."""
         self._queue.join()
         self._raise_worker_failure()
 
     def close(self) -> None:
-        """Drain pending work, commit, detach, and stop the worker."""
         if self._attached:
             self.network.remove_post_step_hook(self.capture)
             self._attached = False
@@ -188,9 +191,10 @@ class AsyncStorageSession:
 
     def _worker_main(self) -> None:
         try:
-            with DeltaJournal(
+            with FastDeltaJournal(
                 self.runtime_config.journal_path,
                 base_tick=self.network.current_tick,
+                fsync_on_commit=self.async_config.fsync_on_commit,
             ) as journal:
                 scan = journal.validate()
                 if scan.has_uncommitted_tail:
@@ -207,7 +211,7 @@ class AsyncStorageSession:
                         self._write_batch(journal, item)
                     finally:
                         self._queue.task_done()
-        except BaseException as exc:  # worker must surface all failures
+        except BaseException as exc:
             self._failure = exc
 
     def _write_batch(self, journal: DeltaJournal, batch: _Batch) -> None:
@@ -218,7 +222,7 @@ class AsyncStorageSession:
             written_bytes += len(delta.payload)
         elapsed_ms = (time.perf_counter() - started) * 1000.0
         if (
-            batch.tick % self.runtime_config.commit_interval_ticks == 0
+            (batch.tick + 1) % self.runtime_config.commit_interval_ticks == 0
             and journal.dirty_entry_count
         ):
             self._record_commit(journal)
