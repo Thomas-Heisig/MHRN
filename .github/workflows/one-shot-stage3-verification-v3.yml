@@ -26,7 +26,17 @@ jobs:
         run: |
           python -m pip install --upgrade pip setuptools wheel
           python -m pip install -e ".[dev,docs]"
-          python -m pip install pre-commit
+      - name: Normalize new Stage 3 source formatting
+        run: |
+          python -m black scripts/run_stage3_reference.py tests/test_stage3_plastic_neural_tissue.py
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if ! git diff --quiet; then
+            git add scripts/run_stage3_reference.py tests/test_stage3_plastic_neural_tissue.py
+            git diff --cached --check
+            git commit -m "style: normalize Stage 3 verification sources"
+            git push origin HEAD:feature/stage3-plastic-neural-tissue
+          fi
       - name: Stage 3 source quality
         run: |
           python -m black --check scripts/run_stage3_reference.py tests/test_stage3_plastic_neural_tissue.py src/dashboard/development_timeline.py src/version.py src/profiles/service.py
@@ -92,8 +102,6 @@ jobs:
           PY
       - name: Commit verified Stage 3 artifact
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add research/generated/verification/plastic_neural_tissue_reference.json
           git diff --cached --check
           git commit -m "test: publish Stage 3 plasticity verification artifact"
