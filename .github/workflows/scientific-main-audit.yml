@@ -1,0 +1,62 @@
+name: Scientific Main Audit
+
+on:
+  push:
+    branches: [work/scientific-main-audit-20260913]
+    paths:
+      - .github/workflows/scientific-main-audit.yml
+      - scripts/scientific_main_audit.py
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: scientific-main-audit-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Archive exact tracked source for reproducible inspection
+        run: |
+          mkdir -p /tmp/mhrn-source
+          git rev-parse HEAD > /tmp/mhrn-source/source-sha.txt
+          git archive --format=tar.gz -o /tmp/mhrn-source/source.tar.gz HEAD
+          git status --porcelain=v1
+      - name: Upload source snapshot
+        uses: actions/upload-artifact@v7
+        with:
+          name: scientific-audit-source-${{ github.sha }}
+          path: /tmp/mhrn-source/
+          retention-days: 14
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.13'
+          cache: pip
+          cache-dependency-path: pyproject.toml
+      - name: Install research and verification dependencies
+        run: |
+          python -m pip install --upgrade pip setuptools wheel
+          python -m pip install -e '.[dev,docs,empirical]'
+      - name: Execute audit when present
+        run: |
+          if [ -f scripts/scientific_main_audit.py ]; then
+            python scripts/scientific_main_audit.py --output /tmp/scientific-audit
+          else
+            echo 'Source inventory bootstrap only; no experiment or verification claimed.'
+          fi
+      - name: Upload audit artifacts
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: scientific-main-audit-${{ github.sha }}
+          path: /tmp/scientific-audit/
+          if-no-files-found: warn
+          retention-days: 30
