@@ -16,7 +16,10 @@ def test_recurrent_snn_is_routed_through_science_runtime_and_control() -> None:
         encoding="utf-8"
     )
     assert '["recurrent", "Rekurrentes SNN", "network", "view", "recurrent"]' in script
-    assert '["recurrent", "Rekurrenz", "wesen", "focus", "#mhrn-runtime-recurrent"]' in script
+    assert (
+        '["recurrent", "Rekurrenz", "wesen", "focus", "#mhrn-runtime-recurrent"]'
+        in script
+    )
     assert (
         '["recurrent", "Rekurrenz-Parameter", "settings", "focus", "#mhrn-recurrent-control"]'
         in script

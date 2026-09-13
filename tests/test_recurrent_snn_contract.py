@@ -76,9 +76,10 @@ def test_recurrent_reference_topology_is_an_explicit_closed_ring() -> None:
     for index, source_id in enumerate(ids):
         target_id = ids[(index + 1) % len(ids)]
         assert network.in_degree[source_id] == 1
-        assert [(syn.target_id, syn.weight, syn.delay) for syn in network.get_synapses(source_id)] == [
-            (target_id, REFERENCE_WEIGHT, 1)
-        ]
+        assert [
+            (syn.target_id, syn.weight, syn.delay)
+            for syn in network.get_synapses(source_id)
+        ] == [(target_id, REFERENCE_WEIGHT, 1)]
 
 
 def test_recurrent_reference_remains_bounded_for_long_run() -> None:

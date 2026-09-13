@@ -261,12 +261,22 @@ def _stage_specs() -> tuple[StageSpec, ...]:
                     "recurrent_network",
                     "Recurrent network execution",
                     paths=("src/core/network.py",),
+                    tests=("tests/test_recurrent_snn_contract.py",),
+                    verification=(
+                        "research/generated/verification/recurrent_snn_reference.json",
+                    ),
                 ),
                 CriterionSpec(
                     "deterministic_runtime",
                     "Deterministic runtime state",
                     paths=("src/controller/runtime.py",),
-                    tests=("tests/test_v06_pause_resume_identity.py",),
+                    tests=(
+                        "tests/test_v06_pause_resume_identity.py",
+                        "tests/test_recurrent_snn_contract.py",
+                    ),
+                    verification=(
+                        "research/generated/verification/recurrent_snn_reference.json",
+                    ),
                 ),
                 CriterionSpec(
                     "restart_restore",
@@ -286,12 +296,25 @@ def _stage_specs() -> tuple[StageSpec, ...]:
                 "src/storage/recovery.py",
                 "src/storage/b5d.py",
             ),
-            ("tests/test_v06_pause_resume_identity.py",),
-            ("research/protocols",),
+            (
+                "tests/test_v06_pause_resume_identity.py",
+                "tests/test_recurrent_snn_contract.py",
+                "tests/test_recurrent_snn_timeline.py",
+                "tests/test_recurrent_snn_frontend.py",
+            ),
+            (
+                "research/protocols",
+                "research/experiments/EXP-BATCH-20260908200906-01",
+            ),
             ("RQ-SNN-001", "RQ10"),
-            ("A deterministic runtime is not a claim about cognition.",),
+            (
+                "A deterministic runtime is not a claim about cognition.",
+                "The scoped four-neuron ring does not establish target-scale tractability or stability for arbitrary recurrent networks.",
+            ),
             (),
-            (),
+            (
+                "Benchmark recurrent stability and throughput at the declared 1,000-10,000 neuron Stage-2 scale.",
+            ),
         ),
         StageSpec(
             3,
