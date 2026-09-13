@@ -20,6 +20,17 @@ jobs:
         with:
           python-version: '3.13'
           cache: pip
+      - name: Normalize existing roadmap indentation for deterministic patching
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('scripts/reconcile_alpha2_timeline.py')
+          s = p.read_text(encoding='utf-8')
+          s = s.replace('snapshot/\\n  checkpoint boundary and prove pause/resume equivalence.\\n- [ ] Add registered delayed-information control runs and dashboard/File Viewer\\n  inspection;', 'snapshot/\\n\\tcheckpoint boundary and prove pause/resume equivalence.\\n- [ ] Add registered delayed-information control runs and dashboard/File Viewer\\n\\tinspection;')
+          s = s.replace('snapshot/\\n  checkpoint boundary.\\n- [ ] Prove deterministic pause/resume equivalence for the complete coupled\\n  cognition state.\\n- [x] Execute registered exploratory component controls for delayed information\\n  (`016-memory_delayed_information_v1`) and one-step world-model prediction\\n  (`017-world_model_prediction_v1`); these runs remain DATA, not automatic EVID.\\n- [ ] Add explicit File Viewer drill-down for the existing cognition campaign,\\n  including bounded inspection of compressed raw-run data.', 'snapshot/\\n\\tcheckpoint boundary.\\n- [ ] Prove deterministic pause/resume equivalence for the complete coupled\\n\\tcognition state.\\n- [x] Execute registered exploratory component controls for delayed information\\n\\t(`016-memory_delayed_information_v1`) and one-step world-model prediction\\n\\t(`017-world_model_prediction_v1`); these runs remain DATA, not automatic EVID.\\n- [ ] Add explicit File Viewer drill-down for the existing cognition campaign,\\n\\tincluding bounded inspection of compressed raw-run data.')
+          s = s.replace('frozen-model\\n  and no-memory comparisons, held-out episodes', 'frozen-model\\n\\tand no-memory comparisons, held-out episodes')
+          p.write_text(s, encoding='utf-8')
+          PY
       - name: Apply deterministic reconciliation
         run: python scripts/reconcile_alpha2_timeline.py
       - name: Install development dependencies
