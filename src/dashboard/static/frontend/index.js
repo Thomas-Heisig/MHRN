@@ -23,6 +23,7 @@ import { initOverviewSubtabs } from "./modules/overview-subtabs.js";
 import { initResearchSubtabs } from "./modules/research-subtabs.js";
 import { initNeuronModelScience } from "./modules/neuron-model-science.js";
 import { initRuntimeNeuron } from "./modules/runtime-neuron.js";
+import { initSmallSNNStage } from "./modules/small-snn-stage.js";
 import { initWorkspaceRouter } from "./workspace-router.js";
 
 function init() {
@@ -50,6 +51,7 @@ function init() {
   initResearchSubtabs();
   initNeuronModelScience();
   initRuntimeNeuron();
+  initSmallSNNStage();
 }
 
 if (document.readyState === "loading") {

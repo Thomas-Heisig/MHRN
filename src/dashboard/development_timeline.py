@@ -226,7 +226,10 @@ def _stage_specs() -> tuple[StageSpec, ...]:
                 CriterionSpec(
                     "spike_propagation",
                     "Spike propagation",
-                    tests=("tests/test_network.py",),
+                    tests=("tests/test_network.py", "tests/test_small_snn_contract.py"),
+                    verification=(
+                        "research/generated/verification/small_snn_reference.json",
+                    ),
                 ),
                 CriterionSpec(
                     "sparse_topology",
@@ -235,7 +238,7 @@ def _stage_specs() -> tuple[StageSpec, ...]:
                 ),
             ),
             ("src/core/network.py", "src/core/synapse.py", "src/core/spatial_index.py"),
-            ("tests/test_network.py",),
+            ("tests/test_network.py", "tests/test_small_snn_contract.py"),
             (),
             (),
             ("Small-network tests do not establish large-scale tractability.",),
