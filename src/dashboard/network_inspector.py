@@ -245,9 +245,15 @@ class NetworkInspector:
         for nid, n in page:
             x1, x2, x3, x4, x5 = unpack_coords(nid)
             model = getattr(n, "model", None)
-            model_id = getattr(model, "value", str(model) if model is not None else None)
+            model_id = getattr(
+                model, "value", str(model) if model is not None else None
+            )
             config = getattr(n, "config", None)
-            config_payload = config.to_dict() if config is not None and hasattr(config, "to_dict") else None
+            config_payload = (
+                config.to_dict()
+                if config is not None and hasattr(config, "to_dict")
+                else None
+            )
             provenance = getattr(n, "model_provenance", None)
             refractory_until = int(getattr(n, "_refractory_until_tick", -1))
             neurons.append(
@@ -282,7 +288,9 @@ class NetworkInspector:
                     "enabled": bool(getattr(n, "is_enabled", True)),
                     "refractory_until_tick": refractory_until,
                     "refractory_active": refractory_until >= current_tick,
-                    "refractory_remaining_ticks": max(0, refractory_until - current_tick + 1),
+                    "refractory_remaining_ticks": max(
+                        0, refractory_until - current_tick + 1
+                    ),
                     "runtime_tick": current_tick,
                 }
             )

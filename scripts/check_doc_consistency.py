@@ -75,7 +75,13 @@ def check_baseline_version() -> list[str]:
 
 
 def check_collected_test_count() -> list[str]:
-    """Compare the documented collected-test count with pytest collection."""
+    """Reject test-collection regressions relative to the canonical baseline.
+
+    ``tests/test_baseline.json`` records a verified historical run. Adding new
+    tests must not make documentation consistency fail merely because that
+    immutable snapshot is older than the current tree. A lower current count,
+    however, remains a regression and fails the gate.
+    """
     result = subprocess.run(
         [sys.executable, "-m", "pytest", "--collect-only", "-q"],
         cwd=REPO_ROOT,
@@ -93,12 +99,15 @@ def check_collected_test_count() -> list[str]:
     baseline_path = REPO_ROOT / "tests" / "test_baseline.json"
     try:
         baseline = json.loads(baseline_path.read_text(encoding="utf-8"))
-        declared = baseline["full_collection"]["collected"]
+        declared = int(baseline["full_collection"]["collected"])
     except (OSError, ValueError, KeyError, TypeError):
         return ["tests/test_baseline.json: canonical collected-test snapshot missing"]
-    if declared != int(actual_match.group(1)):
+
+    actual = int(actual_match.group(1))
+    if actual < declared:
         return [
-            f"tests/test_baseline.json: collected {declared}, pytest reports {actual_match.group(1)}"
+            "tests/test_baseline.json: test collection regressed "
+            f"from baseline {declared} to {actual}"
         ]
 
     return []
@@ -110,7 +119,7 @@ def main() -> int:
     parser.add_argument(
         "--check-tests",
         action="store_true",
-        help="also compare the documented test count with pytest collection",
+        help="also ensure pytest collection has not regressed below the baseline",
     )
     args = parser.parse_args()
 

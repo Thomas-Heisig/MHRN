@@ -1,0 +1,120 @@
+name: One-shot Pyright source fixes
+
+on:
+  push:
+    branches: [fix/ci-gate-baseline]
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: fix/ci-gate-baseline
+          fetch-depth: 0
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.13'
+      - name: Apply strict source typing repairs
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          def replace(path: str, old: str, new: str, count: int = 1) -> None:
+              p = Path(path)
+              text = p.read_text(encoding='utf-8')
+              if text.count(old) != count:
+                  raise SystemExit(f'{path}: expected {count} occurrence(s), got {text.count(old)}')
+              p.write_text(text.replace(old, new, count), encoding='utf-8')
+
+          replace(
+              'src/config/loader.py',
+              '    if result["lif_tau_m_ms"] <= 0.0:\n',
+              '    if float(result.get("lif_tau_m_ms", 0.0)) <= 0.0:\n',
+          )
+
+          replace(
+              'src/dashboard/scientific_metrics.py',
+              'from typing import Any\n',
+              'from typing import Any, cast\n',
+          )
+          replace(
+              'src/dashboard/scientific_metrics.py',
+              '''    network_state = snapshot_json.get("network", {})\n    if not isinstance(network_state, dict):\n        network_state = {}\n''',
+              '''    raw_network_state = snapshot_json.get("network", {})\n    network_state: dict[str, JSONValue] = (\n        cast(dict[str, JSONValue], raw_network_state)\n        if isinstance(raw_network_state, dict)\n        else {}\n    )\n    raw_system_state = snapshot_json.get("system", {})\n    system_state: dict[str, JSONValue] = (\n        cast(dict[str, JSONValue], raw_system_state)\n        if isinstance(raw_system_state, dict)\n        else {}\n    )\n''',
+          )
+          replace(
+              'src/dashboard/scientific_metrics.py',
+              '''        "tick": getattr(\n            network, "current_tick", snapshot_json.get("system", {}).get("tick", 0)\n        ),\n''',
+              '''        "tick": getattr(network, "current_tick", system_state.get("tick", 0)),\n''',
+          )
+
+          replace(
+              'src/dashboard/server.py',
+              '''            request_backend = chat_backend_from_text_backend(\n                lambda prompt: ollama.generate_text(\n                    prompt,\n                    images=images,\n                    tools=(\n                        []\n                        if not self.dashboard_server.research_chat_tools_enabled\n                        else []\n                    ),\n                )\n            )\n''',
+              '''            def multimodal_backend(prompt: str) -> tuple[str, dict[str, Any]]:\n                return ollama.generate_text(\n                    prompt,\n                    images=images,\n                    tools=(\n                        []\n                        if not self.dashboard_server.research_chat_tools_enabled\n                        else []\n                    ),\n                )\n\n            request_backend = chat_backend_from_text_backend(multimodal_backend)\n''',
+          )
+
+          replace(
+              'src/homeostasis/hot_path.py',
+              'from .engine import HomeostasisEngine, HomeostasisStats, _clamp\n',
+              '''from .engine import HomeostasisEngine, HomeostasisStats\n\n\ndef _clamp(value: float, minimum: float, maximum: float) -> float:\n    """Clamp a hot-path value without importing a private engine helper."""\n    return max(minimum, min(maximum, value))\n''',
+          )
+
+          replace(
+              'src/storage/delta_journal.py',
+              '_COMMIT_STRUCT = struct.Struct("<4sQqII4s")\n\n',
+              '''_COMMIT_STRUCT = struct.Struct("<4sQqII4s")\n# Public read-only format aliases for optimized writers that must emit the\n# exact canonical on-disk layout without importing private module names.\nENTRY_HEADER_STRUCT = _ENTRY_HEADER_STRUCT\nCOMMIT_STRUCT = _COMMIT_STRUCT\n\n''',
+          )
+          replace(
+              'src/storage/fast_delta_journal.py',
+              '''from .delta_journal import (\n    _COMMIT_STRUCT,\n    _ENTRY_HEADER_STRUCT,\n    COMMIT_MAGIC,\n''',
+              '''from .delta_journal import (\n    COMMIT_MAGIC,\n    COMMIT_STRUCT,\n''',
+          )
+          replace(
+              'src/storage/fast_delta_journal.py',
+              '    ENTRY_FLAG_NONE,\n    ENTRY_MAGIC,\n',
+              '    ENTRY_FLAG_NONE,\n    ENTRY_HEADER_STRUCT,\n    ENTRY_MAGIC,\n',
+          )
+          replace('src/storage/fast_delta_journal.py', '_ENTRY_HEADER_STRUCT.pack(', 'ENTRY_HEADER_STRUCT.pack(')
+          replace('src/storage/fast_delta_journal.py', '_COMMIT_STRUCT.pack(', 'COMMIT_STRUCT.pack(')
+
+          replace(
+              'src/storage/incremental_runtime.py',
+              'from collections.abc import MutableSet\n',
+              'from collections.abc import MutableSet\nfrom typing import cast\n',
+          )
+          replace(
+              'src/storage/incremental_runtime.py',
+              '''        if isinstance(neuron_dirty, set):\n            neuron_ids = {int(value) for value in neuron_dirty}\n''',
+              '''        if isinstance(neuron_dirty, set):\n            typed_neuron_dirty = cast(set[object], neuron_dirty)\n            neuron_ids = {int(value) for value in typed_neuron_dirty}\n''',
+          )
+          replace(
+              'src/storage/incremental_runtime.py',
+              '''        if isinstance(synapse_dirty, set):\n            synapse_ids = {\n                (int(source_id), int(target_id))\n                for source_id, target_id in synapse_dirty\n            }\n''',
+              '''        if isinstance(synapse_dirty, set):\n            typed_synapse_dirty = cast(set[tuple[object, object]], synapse_dirty)\n            synapse_ids = {\n                (int(source_id), int(target_id))\n                for source_id, target_id in typed_synapse_dirty\n            }\n''',
+          )
+          PY
+      - name: Install pinned type and format tools
+        run: |
+          python -m pip install -e ".[dev,docs]"
+      - name: Format and verify strict production typing
+        run: |
+          python -m black src/config/loader.py src/dashboard/scientific_metrics.py src/dashboard/server.py src/homeostasis/hot_path.py src/storage/delta_journal.py src/storage/fast_delta_journal.py src/storage/incremental_runtime.py
+          python -m ruff check src/config/loader.py src/dashboard/scientific_metrics.py src/dashboard/server.py src/homeostasis/hot_path.py src/storage/delta_journal.py src/storage/fast_delta_journal.py src/storage/incremental_runtime.py --fix
+          python -m black src/config/loader.py src/dashboard/scientific_metrics.py src/dashboard/server.py src/homeostasis/hot_path.py src/storage/delta_journal.py src/storage/fast_delta_journal.py src/storage/incremental_runtime.py
+          python -m mypy src/
+          python -m pyright
+      - name: Self-remove and commit
+        run: |
+          rm .github/workflows/one-shot-pyright-source-fix.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add src pyrightconfig.json .github/workflows/one-shot-pyright-source-fix.yml
+          git diff --cached --check
+          git commit -m 'fix: satisfy strict Pyright production source checks'
+          git push origin HEAD:fix/ci-gate-baseline

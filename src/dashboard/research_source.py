@@ -138,9 +138,7 @@ class ResearchSource:
         self._documents_cache = None
         self._documents_cache_time = 0.0
 
-    def list_documents(
-        self, max_count: int = 0
-    ) -> list[ResearchDocument]:
+    def list_documents(self, max_count: int = 0) -> list[ResearchDocument]:
         """List research artifacts grouped by category, with caching.
 
         Args:

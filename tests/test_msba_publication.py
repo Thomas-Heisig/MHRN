@@ -10,7 +10,7 @@ def test_public_msba_surface_is_present_and_explicitly_read_only() -> None:
     assert "PUBLIC · READ ONLY" in page
     assert "Wissenschaftliche Grenze" in page
     assert "Gateway-Plastizität bleibt standardmäßig deaktiviert" in page
-    assert 'data-gateway-action' not in page
+    assert "data-gateway-action" not in page
     assert "Aktivieren" not in page
 
 
@@ -18,7 +18,7 @@ def test_public_msba_client_only_reads_existing_contracts() -> None:
     client = (MSBA / "msba.js").read_text(encoding="utf-8")
     assert 'getJson("/api/embodiment/neural-symbiosis")' in client
     assert 'getJson("/api/embodiment/connections")' in client
-    assert "method: \"POST\"" not in client
+    assert 'method: "POST"' not in client
     assert "method:'POST'" not in client
     assert "fetch(" in client
     assert "availableConnectionIds" in client
@@ -61,10 +61,10 @@ def test_existing_gateway_runtime_remains_fail_closed() -> None:
     assert '"experiment_only": True' in runtime
     assert '"canonical_core_mutation": False' in runtime
     assert '"direct_llm_write": False' in runtime
-    assert 'GatewayCondition.FROZEN' in runtime
-    assert 'GatewayCondition.RANDOM' in runtime
-    assert 'GatewayCondition.SHUFFLE' in runtime
-    assert 'GatewayCondition.PLASTIC' in runtime
+    assert "GatewayCondition.FROZEN" in runtime
+    assert "GatewayCondition.RANDOM" in runtime
+    assert "GatewayCondition.SHUFFLE" in runtime
+    assert "GatewayCondition.PLASTIC" in runtime
 
 
 def test_symbiosis_catalog_keeps_reachability_separate_from_activation() -> None:

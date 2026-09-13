@@ -10,7 +10,7 @@ def test_polling_governor_is_installed_before_frontend_initializers() -> None:
     install = index.index("installPollingGovernor();")
     init = index.index("function init()")
     assert install < init
-    assert './core/polling-governor.js' in index
+    assert "./core/polling-governor.js" in index
 
 
 def test_polling_governor_coalesces_and_throttles_intervals() -> None:
