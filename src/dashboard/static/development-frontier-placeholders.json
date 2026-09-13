@@ -1,0 +1,122 @@
+{
+  "schema_version": "1.0",
+  "status": "PLANNED_RESEARCH_ONLY",
+  "purpose": "Frontend placeholder contract for development timeline stages 8-10. This file does not raise implementation, verification, or scientific-evidence scores.",
+  "stages": {
+    "8": {
+      "id": "autonomous_lifelong_development",
+      "title": "Autonome lebenslange Entwicklung",
+      "maturity": "planned",
+      "research_document": "research/frontiers/STAGES_8_10_FOUNDATIONS.md",
+      "experiment_backlog": "research/experiments/STAGES_8_10_EXPERIMENT_BACKLOG.md",
+      "literature_registry": "research/registry/sources.frontier.yaml",
+      "literature_bib": "research/literature/stages_8_10_frontier.bib",
+      "existing_research_questions": [
+        "RQ-LIFE-001",
+        "RQ-GEN-001",
+        "RQ-STRUCT-001",
+        "RQ-HOM-002",
+        "RQ-REPL-001"
+      ],
+      "solution_placeholders": [
+        "CompetenceRegistry",
+        "RetentionMatrix",
+        "PlasticityStrategyContract",
+        "BoundedStrategySelector",
+        "ReversibleReorganization",
+        "ResourceNormalizedEvaluation"
+      ],
+      "next_experiments": [
+        "E8-A Shared-network sequential retention",
+        "E8-B Stability-plasticity mechanism comparison",
+        "E8-C Bounded replay and consolidation",
+        "E8-D Reversible structural reorganization",
+        "E8-E Adaptive learning-strategy selector",
+        "E8-F Reusable competence transfer"
+      ],
+      "claim_boundary": "Existing interference screens are precursor experiments only. No claim of lifelong autonomous learning until a continuously trained shared network, retention/transfer controls, rollback and independent replication are demonstrated."
+    },
+    "9": {
+      "id": "integrated_artificial_cognition",
+      "title": "Hochintegrierte künstliche Kognition",
+      "maturity": "planned",
+      "research_document": "research/frontiers/STAGES_8_10_FOUNDATIONS.md",
+      "experiment_backlog": "research/experiments/STAGES_8_10_EXPERIMENT_BACKLOG.md",
+      "literature_registry": "research/registry/sources.frontier.yaml",
+      "literature_bib": "research/literature/stages_8_10_frontier.bib",
+      "existing_research_questions": [
+        "RQ-CNS-103",
+        "RQ-CNS-105",
+        "RQ-CNS-110",
+        "RQ-CNS-111",
+        "RQ-CNS-112",
+        "RQ-CNS-116",
+        "RQ-MEM-002",
+        "RQ-WM-001"
+      ],
+      "solution_placeholders": [
+        "AttentionAllocator",
+        "DriveVector",
+        "BoundedPlanner",
+        "ConsolidationScheduler",
+        "LongTermMemoryContract",
+        "IntegrationWorkspace",
+        "CognitiveCycleTrace"
+      ],
+      "next_experiments": [
+        "E9-A Attention as causal resource allocation",
+        "E9-B Working-memory integration",
+        "E9-C Bounded planning vs reactive policy",
+        "E9-D Operational motivation / drive prioritization",
+        "E9-E Reliability-weighted multimodal integration",
+        "E9-F Consolidation phase comparison",
+        "E9-G Integrated cognitive-cycle ablation"
+      ],
+      "claim_boundary": "Attention, motivation and planning are operational engineering constructs here. Integrated functional performance is not a claim of human-like cognition or subjective experience."
+    },
+    "10": {
+      "id": "consciousness_research",
+      "title": "Bewusstseinsforschung",
+      "maturity": "planned_research_frontier",
+      "research_document": "research/frontiers/STAGES_8_10_FOUNDATIONS.md",
+      "experiment_backlog": "research/experiments/STAGES_8_10_EXPERIMENT_BACKLOG.md",
+      "existing_program": "research/protocols/COGNITION_CONSCIOUSNESS.md",
+      "existing_questions": "research/registry/questions.cognition.yaml",
+      "existing_hypotheses": "research/registry/hypotheses.cognition.yaml",
+      "existing_ethics": "research/ethics/AI_WELFARE_POLICY.md",
+      "existing_critique": "research/critique/CONSCIOUSNESS_CRITIQUE.md",
+      "existing_research_questions": [
+        "RQ-CNS-101",
+        "RQ-CNS-108",
+        "RQ-CNS-109",
+        "RQ-CNS-113",
+        "RQ-CNS-114",
+        "RQ-EPI-101",
+        "RQ-EPI-102",
+        "RQ-WEL-101",
+        "RQ-WEL-102",
+        "RQ-WEL-103"
+      ],
+      "method_placeholders": [
+        "TheoryIndicatorMatrix",
+        "ContrastingPredictionRegistry",
+        "PerturbationPlan",
+        "StateInterchangeProtocol",
+        "MatchedActivityControl",
+        "IndependentReplicationPackage",
+        "EthicsReviewHold"
+      ],
+      "next_experiments": [
+        "E10-A Theory-to-indicator contrast audit",
+        "E10-B Perturbational causal complexity",
+        "E10-C Access/report dissociation",
+        "E10-D Closed-loop causal contribution",
+        "E10-E Recurrence/timescale intervention",
+        "E10-F State interchange / causal substitution",
+        "E10-G Welfare and stop-governance drills",
+        "E10-H Independent adversarial replication"
+      ],
+      "claim_boundary": "No marker count, score, behavior or intervention automatically establishes consciousness, sentience or moral status. Stage maturity concerns research quality, operationalization, intervention, replication and governance only."
+    }
+  }
+}

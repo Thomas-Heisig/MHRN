@@ -1,0 +1,231 @@
+- source_id: SRC-FRONTIER-PARISI-2019
+  authors:
+  - German I. Parisi
+  - Ronald Kemker
+  - Jose L. Part
+  - Christopher Kanan
+  - Stefan Wermter
+  title: 'Continual lifelong learning with neural networks: A review'
+  year: 2019
+  journal: Neural Networks
+  doi: 10.1016/j.neunet.2019.01.012
+  topic:
+  - continual learning
+  - catastrophic forgetting
+  - stability plasticity
+  claims: []
+  brain5d_questions:
+  - RQ-LIFE-001
+  - RQ-GEN-001
+  brain5d_relevance: Review of continual-learning mechanisms and the stability-plasticity problem; conceptual basis, not MHRN validation.
+
+- source_id: SRC-FRONTIER-EWC-2017
+  authors:
+  - James Kirkpatrick
+  - Razvan Pascanu
+  - Neil Rabinowitz
+  - Joel Veness
+  - Guillaume Desjardins
+  - Andrei A. Rusu
+  - Kieran Milan
+  - John Quan
+  - Tiago Ramalho
+  - Agnieszka Grabska-Barwinska
+  - Demis Hassabis
+  - Claudia Clopath
+  - Dharshan Kumaran
+  - Raia Hadsell
+  title: Overcoming catastrophic forgetting in neural networks
+  year: 2017
+  journal: Proceedings of the National Academy of Sciences
+  doi: 10.1073/pnas.1611835114
+  topic:
+  - continual learning
+  - parameter stability
+  claims: []
+  brain5d_questions:
+  - RQ-LIFE-001
+  brain5d_relevance: EWC motivates protecting important parameters. MHRN must test a local SNN-compatible analogue rather than transplant the gradient-based method unchanged.
+
+- source_id: SRC-FRONTIER-SI-2017
+  authors:
+  - Friedemann Zenke
+  - Ben Poole
+  - Surya Ganguli
+  title: Continual Learning Through Synaptic Intelligence
+  year: 2017
+  journal: Proceedings of Machine Learning Research
+  publisher: PMLR
+  url: https://proceedings.mlr.press/v70/zenke17a.html
+  topic:
+  - continual learning
+  - synaptic importance
+  claims: []
+  brain5d_questions:
+  - RQ-LIFE-001
+  brain5d_relevance: Synaptic-importance regularization is relevant as a mechanistic comparison; not assumed to map directly onto local MHRN plasticity.
+
+- source_id: SRC-FRONTIER-HEBBMETA-2020
+  authors:
+  - Elias Najarro
+  - Sebastian Risi
+  title: Meta-Learning through Hebbian Plasticity in Random Networks
+  year: 2020
+  journal: Advances in Neural Information Processing Systems
+  url: https://proceedings.neurips.cc/paper/2020/hash/ee23e7ad9b473ad072d57aaa9b2a5222-Abstract.html
+  topic:
+  - meta learning
+  - Hebbian plasticity
+  - lifelong adaptation
+  claims: []
+  brain5d_questions:
+  - RQ-GEN-001
+  - RQ-LIFE-001
+  brain5d_relevance: Supports treating the learning rule itself as a bounded experimental variable; does not justify unconstrained self-modification.
+
+- source_id: SRC-FRONTIER-AGMP-2026
+  authors:
+  - Zhengshan Dong
+  - Wude He
+  title: Astrocyte-gated multi-timescale plasticity for online continual learning in deep spiking neural networks
+  year: 2026
+  journal: Frontiers in Neuroscience
+  doi: 10.3389/fnins.2025.1768235
+  publication_date: '2026-01-27'
+  topic:
+  - spiking neural networks
+  - continual learning
+  - multi-timescale plasticity
+  - eligibility traces
+  claims: []
+  brain5d_questions:
+  - RQ-LIFE-001
+  - RQ-HOM-002
+  brain5d_relevance: Directly relevant recent SNN example of slow gating plus eligibility traces. Requires independent MHRN-compatible replication before any transfer claim.
+
+- source_id: SRC-FRONTIER-CATFORMER-2026
+  authors:
+  - Vaishnavi Nagabhushana
+  - Kartikay Agrawal
+  - Ayon Borthakur
+  title: 'CATFormer: When Continual Learning Meets Spiking Transformers With Dynamic Thresholds'
+  year: 2026
+  journal: Proceedings of the First Workshop on NeuroAI Multimodal Intelligence @ AAAI 2026
+  publisher: PMLR
+  url: https://proceedings.mlr.press/v308/nagabhushana26a.html
+  topic:
+  - spiking neural networks
+  - continual learning
+  - adaptive thresholds
+  claims: []
+  brain5d_questions:
+  - RQ-LIFE-001
+  brain5d_relevance: Provides a recent SNN comparison point for context-adaptive excitability and rehearsal-free class-incremental learning; architecture differs materially from MHRN.
+
+- source_id: SRC-FRONTIER-CLS-1995
+  authors:
+  - James L. McClelland
+  - Bruce L. McNaughton
+  - Randall C. O'Reilly
+  title: 'Why there are complementary learning systems in the hippocampus and neocortex: insights from the successes and failures of connectionist models of learning and memory'
+  year: 1995
+  journal: Psychological Review
+  doi: 10.1037/0033-295X.102.3.419
+  topic:
+  - memory consolidation
+  - complementary learning systems
+  - interference
+  claims: []
+  brain5d_questions:
+  - RQ-LIFE-001
+  - RQ-MEM-002
+  brain5d_relevance: Motivates experimentally separating rapid episodic acquisition from slower integration; used as inspiration rather than biological equivalence.
+
+- source_id: SRC-FRONTIER-NII-2026
+  authors:
+  - Noorbakhsh Amiri Golilarz
+  - Hassan S. Al Khatib
+  - Shahram Rahimi
+  title: 'Toward Neurocognitive-Inspired Intelligence: From AI’s Structural Mimicry to Human-Like Functional Cognition'
+  year: 2026
+  journal: IEEE Access
+  doi: 10.1109/ACCESS.2026.3689754
+  topic:
+  - cognitive architecture
+  - attention
+  - memory
+  - adaptation
+  - action
+  claims: []
+  brain5d_questions:
+  - RQ-CNS-103
+  - RQ-CNS-105
+  - RQ-CNS-111
+  - RQ-CNS-112
+  - RQ-CNS-116
+  brain5d_relevance: Useful as a recent functional taxonomy for integrated cognition. It is not an implementation or validation of MHRN.
+
+- source_id: SRC-FRONTIER-CONAIM-2017
+  authors:
+  - Alexandre da Silva Simões
+  - Esther Luna Colombini
+  - Carlos Henrique Costa Ribeiro
+  title: 'CONAIM: A Conscious Attention-Based Integrated Model for Human-Like Robots'
+  year: 2017
+  journal: IEEE Systems Journal
+  doi: 10.1109/JSYST.2015.2498542
+  topic:
+  - cognitive architecture
+  - attention
+  - memory
+  - planning
+  - motivation
+  - robotics
+  claims: []
+  brain5d_questions:
+  - RQ-CNS-103
+  - RQ-CNS-105
+  - RQ-CNS-111
+  brain5d_relevance: Historical integrative architecture example. MHRN uses its modular integration idea only; consciousness terminology is not inherited as a claim.
+
+- source_id: SRC-FRONTIER-DIME-2026
+  authors:
+  - Ionel Cristian Vladu
+  - Nicu George Bîzdoacă
+  - Ionica Pirici
+  - Tudor-Adrian Bălșeanu
+  - Eduard Nicușor Bondoc
+  title: 'The DIME Architecture: A Unified Operational Algorithm for Neural Representation, Dynamics, Control and Integration'
+  year: 2026
+  journal: arXiv preprint
+  doi: 10.48550/arXiv.2603.12286
+  source_type: preprint
+  topic:
+  - cognitive architecture
+  - integration
+  - control
+  - memory
+  claims: []
+  brain5d_questions:
+  - RQ-CNS-112
+  - RQ-CNS-114
+  brain5d_relevance: Exploratory architecture comparison only; not treated as an empirically established baseline.
+
+- source_id: SRC-FRONTIER-SOLAR-2026
+  authors:
+  - Nitin Vetcha
+  - Dianbo Liu
+  title: 'SOLAR: A Self-Optimizing Open-Ended Autonomous Agent for Lifelong Learning and Continual Adaptation'
+  year: 2026
+  journal: arXiv preprint
+  doi: 10.48550/arXiv.2605.20189
+  source_type: preprint
+  topic:
+  - lifelong learning
+  - meta learning
+  - autonomous agents
+  claims: []
+  brain5d_questions:
+  - RQ-LIFE-001
+  - RQ-GEN-001
+  brain5d_relevance: Conceptual example of adaptation-strategy reuse in an LLM agent; not SNN evidence and not a justification for unrestricted MHRN self-modification.
