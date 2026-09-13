@@ -2,7 +2,12 @@
 
 from __future__ import annotations
 
+from pathlib import Path
+
 from scripts.run_stage3_reference import build_report
+from src.dashboard.development_timeline import build_development_timeline
+
+ROOT = Path(__file__).resolve().parents[1]
 
 
 def test_stage3_reference_controls_are_deterministic() -> None:
@@ -30,3 +35,19 @@ def test_stage3_reference_keeps_scientific_boundary_explicit() -> None:
     assert "scientific claims" in note
     assert any("10,000-100,000" in item for item in limits)
     assert any("No cognition or consciousness" in item for item in limits)
+
+
+def test_timeline_closes_stage2_and_reaches_stage3_engineering_boundary() -> None:
+    timeline = build_development_timeline(ROOT)
+    stages = {item["id"]: item for item in timeline["stages"]}
+
+    stage2 = stages["recurrent_snn"]
+    assert stage2["implementation_score"] == 1.0
+    assert stage2["status"] == "reached"
+    assert stage2["next_steps"] == []
+
+    stage3 = stages["plastic_tissue"]
+    assert stage3["implementation_score"] == 1.0
+    assert stage3["status"] == "reached"
+    assert stage3["research_readiness_score"] < 1.0
+    assert "R2 productive-learning evidence closure" in stage3["open_research"]
