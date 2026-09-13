@@ -1133,9 +1133,7 @@ def main() -> int:
             if _serve_dashboard is not None:
                 _config_path_str: str | None = config_dict.get("_path")
                 _resolved_config_path: Path | None = (
-                    Path(_config_path_str).resolve()
-                    if _config_path_str
-                    else None
+                    Path(_config_path_str).resolve() if _config_path_str else None
                 )
                 _serve_dashboard(host=_dashboard_host, port=_dashboard_port, state=state_store, snapshot_path=_snapshot_path, structural_bridge=operator_bridge, docs_root=docs_root, research_root=research_root, chat_settings=cast(dict[str, Any], config_dict.get("research_chat", {})), experience=experience, config_path=_resolved_config_path)  # type: ignore[reportOptionalCall, call-arg, operator]
 

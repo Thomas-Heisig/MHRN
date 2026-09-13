@@ -7,9 +7,8 @@ All changes are validated, logged, and require explicit AI tool invocation.
 
 from __future__ import annotations
 
-import re
 from pathlib import Path
-from typing import Any
+from typing import Any, Callable
 
 import yaml
 
@@ -59,7 +58,9 @@ ALLOWED_CONFIG_KEYS: dict[str, str] = {
 
 # ── Validation rules ─────────────────────────────────────────────────────
 
-_VALIDATORS: dict[str, callable] = {
+Validator = Callable[[Any], bool]
+
+_VALIDATORS: dict[str, Validator] = {
     "initial_neurons": lambda v: isinstance(v, int) and 1 <= v <= 10_000_000,
     "max_neurons": lambda v: isinstance(v, int) and 1 <= v <= 10_000_000,
     "dimensions": lambda v: (
@@ -71,17 +72,23 @@ _VALIDATORS: dict[str, callable] = {
     "simulation.ticks": lambda v: isinstance(v, int) and 0 <= v <= 10_000_000,
     "simulation.dt_ms": lambda v: isinstance(v, (int, float)) and 0.1 <= v <= 100.0,
     "simulation.max_delay": lambda v: isinstance(v, int) and 1 <= v <= 1000,
-    "network.initial_connections_per_neuron": lambda v: isinstance(v, int) and 0 <= v <= 1000,
-    "network.neighbour_radius": lambda v: isinstance(v, (int, float)) and 0.1 <= v <= 100.0,
+    "network.initial_connections_per_neuron": lambda v: isinstance(v, int)
+    and 0 <= v <= 1000,
+    "network.neighbour_radius": lambda v: isinstance(v, (int, float))
+    and 0.1 <= v <= 100.0,
     "network.weight_min": lambda v: isinstance(v, (int, float)) and 0.0 <= v <= 10.0,
     "network.weight_max": lambda v: isinstance(v, (int, float)) and 0.0 <= v <= 10.0,
-    "homeostasis.target_rate_hz": lambda v: isinstance(v, (int, float)) and 0.1 <= v <= 1000.0,
-    "self_organization.pruning_weight_threshold": lambda v: isinstance(v, (int, float)) and 0.0 <= v <= 1.0,
+    "homeostasis.target_rate_hz": lambda v: isinstance(v, (int, float))
+    and 0.1 <= v <= 1000.0,
+    "self_organization.pruning_weight_threshold": lambda v: isinstance(v, (int, float))
+    and 0.0 <= v <= 1.0,
     "energy.initial": lambda v: isinstance(v, (int, float)) and 0.0 <= v <= 10.0,
     "energy.spike_cost": lambda v: isinstance(v, (int, float)) and 0.0 <= v <= 1.0,
-    "research_chat.temperature": lambda v: isinstance(v, (int, float)) and 0.0 <= v <= 2.0,
+    "research_chat.temperature": lambda v: isinstance(v, (int, float))
+    and 0.0 <= v <= 2.0,
     "research_chat.max_tokens": lambda v: isinstance(v, int) and 64 <= v <= 32_768,
-    "research_chat.max_context_chars": lambda v: isinstance(v, int) and 4_000 <= v <= 120_000,
+    "research_chat.max_context_chars": lambda v: isinstance(v, int)
+    and 4_000 <= v <= 120_000,
 }
 
 _BOOL_KEYS = {
@@ -106,35 +113,29 @@ def validate_config_change(key: str, value: Any) -> str | None:
             return f"Key '{key}' requires a boolean value (true/false)."
         return None
     validator = _VALIDATORS.get(key)
-    if validator is not None:
-        if not validator(value):
-            return (
-                f"Value {value!r} is invalid for key '{key}'. "
-                f"Description: {ALLOWED_CONFIG_KEYS[key]}"
-            )
+    if validator is not None and not validator(value):
+        return (
+            f"Value {value!r} is invalid for key '{key}'. "
+            f"Description: {ALLOWED_CONFIG_KEYS[key]}"
+        )
     return None
 
 
-def apply_config_change(
-    config_path: Path, key: str, value: Any
-) -> tuple[bool, str]:
+def apply_config_change(config_path: Path, key: str, value: Any) -> tuple[bool, str]:
     """Apply a validated config change to the YAML file.
 
     Returns (success, message).
     """
-    # Validate first
     error = validate_config_change(key, value)
     if error is not None:
         return False, error
 
-    # Read current config
     try:
         with open(config_path, encoding="utf-8") as f:
             config: dict[str, Any] = yaml.safe_load(f) or {}
     except (OSError, yaml.YAMLError) as exc:
         return False, f"Failed to read config: {exc}"
 
-    # Navigate dot-separated path and set value
     parts = key.split(".")
     current = config
     for part in parts[:-1]:
@@ -192,6 +193,7 @@ def get_config_value(config_path: Path, key: str) -> tuple[bool, Any]:
 
 
 # ── Ollama-compatible tool definition ────────────────────────────────────
+
 
 def tool_definition() -> list[dict[str, object]]:
     """Return the Ollama-compatible tool definition for config management."""
@@ -252,6 +254,7 @@ def tool_definition() -> list[dict[str, object]]:
 
 # ── Tool execution ───────────────────────────────────────────────────────
 
+
 def execute_tool(
     config_path: Path,
     tool_name: str,
@@ -261,14 +264,12 @@ def execute_tool(
     if tool_name == "update_config":
         key = arguments.get("key", "")
         value = arguments.get("value")
-        success, message = apply_config_change(config_path, key, value)
+        _success, message = apply_config_change(config_path, key, value)
         return message
-    elif tool_name == "read_config":
+    if tool_name == "read_config":
         key = arguments.get("key", "")
         found, value = get_config_value(config_path, key)
         if found:
             return f"Current value of '{key}': {value!r}"
-        else:
-            return f"Key '{key}' not found in config."
-    else:
-        return f"Unknown tool: {tool_name}"
+        return f"Key '{key}' not found in config."
+    return f"Unknown tool: {tool_name}"
