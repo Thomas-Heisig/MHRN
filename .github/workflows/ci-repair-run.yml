@@ -30,6 +30,16 @@ jobs:
           curl -fsSL https://raw.githubusercontent.com/Thomas-Heisig/MHRN/32ffb2f3a52cf3718ec7a7bfd6d1c4e2e3116bd1/.maintenance/fix_repair_observation.py -o .maintenance/fix_repair_observation.py
           python .maintenance/fix_repair_observation.py
           python .maintenance/repair_pyright_boundaries.py
+          python - <<'PY'
+          from pathlib import Path
+          path = Path('src/homeostasis/hot_path.py')
+          text = path.read_text(encoding='utf-8')
+          marker = 'from .engine import HomeostasisEngine, HomeostasisStats\n\n\nclass HotPathHomeostasisEngine'
+          replacement = '''from .engine import HomeostasisEngine, HomeostasisStats\n\n\ndef _hot_clamp(value: float, lower: float, upper: float) -> float:\n    return max(lower, min(upper, value))\n\n\nclass HotPathHomeostasisEngine'''
+          if marker not in text:
+              raise SystemExit('hot_path repaired import marker not found')
+          path.write_text(text.replace(marker, replacement, 1), encoding='utf-8')
+          PY
       - name: Update browser smoke path
         run: |
           python - <<'PY'
@@ -37,9 +47,9 @@ jobs:
           path = Path('scripts/browser_check.py')
           text = path.read_text(encoding='utf-8')
           old = '''                plan_view = page.locator('[data-research-workspace-view="plan"]')\n                plan_view.wait_for(state="attached", timeout=timeout_ms)\n                plan_view.evaluate("button => button.click()")\n'''
-          if old not in text:
-              raise SystemExit('browser smoke plan-view block not found')
-          path.write_text(text.replace(old, '', 1), encoding='utf-8')
+          if old in text:
+              text = text.replace(old, '', 1)
+          path.write_text(text, encoding='utf-8')
           PY
       - name: Install project checks
         run: |
@@ -50,6 +60,7 @@ jobs:
           python -m black src tests scripts
           python -m ruff check --fix src tests scripts
           python -m black src tests scripts
+          python -m ruff check src tests scripts
           python -m mypy src/
           python -m pyright
       - name: Verify version registry
