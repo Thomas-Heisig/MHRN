@@ -11,7 +11,7 @@ from __future__ import annotations
 
 import math
 from dataclasses import asdict, dataclass, field, fields
-from typing import Any, Callable
+from typing import Any, Callable, cast
 
 A_PLUS: float = 0.1
 A_MINUS: float = 0.12
@@ -311,7 +311,7 @@ class Synapse:
     def from_dict(cls, data: dict[str, Any]) -> "Synapse":
         config_data = data.get("config")
         config = (
-            SynapseConfig.from_dict(config_data)
+            SynapseConfig.from_dict(cast(dict[str, Any], config_data))
             if isinstance(config_data, dict)
             else SynapseConfig()
         )

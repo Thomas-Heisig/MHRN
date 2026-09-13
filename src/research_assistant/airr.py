@@ -184,8 +184,10 @@ class AIRRPipeline:
         for path in sorted(directory.glob("AIAR-*.json")):
             try:
                 raw = json.loads(path.read_text(encoding="utf-8"))
-                if isinstance(raw, dict) and raw.get("role") == role:
-                    return AIAnalysisRecord(**raw)
+                if isinstance(raw, dict):
+                    typed_raw = cast(dict[str, Any], raw)
+                    if typed_raw.get("role") == role:
+                        return AIAnalysisRecord(**typed_raw)
             except (OSError, json.JSONDecodeError, TypeError):
                 continue
         return None

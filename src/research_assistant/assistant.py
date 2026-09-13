@@ -335,15 +335,17 @@ class ResearchAssistant:
 def _compact_for_analysis(value: Any) -> Any:
     """Bound large raw sequences before they enter an AI analysis prompt."""
     if isinstance(value, dict):
-        return {str(key): _compact_for_analysis(item) for key, item in value.items()}
+        mapping = cast(dict[object, object], value)
+        return {str(key): _compact_for_analysis(item) for key, item in mapping.items()}
     if isinstance(value, list):
-        if len(value) <= _MAX_ANALYSIS_SEQUENCE_ITEMS:
-            return [_compact_for_analysis(item) for item in value]
-        head = value[:_ANALYSIS_SAMPLE_ITEMS]
-        tail = value[-_ANALYSIS_SAMPLE_ITEMS:]
+        sequence = cast(list[object], value)
+        if len(sequence) <= _MAX_ANALYSIS_SEQUENCE_ITEMS:
+            return [_compact_for_analysis(item) for item in sequence]
+        head = sequence[:_ANALYSIS_SAMPLE_ITEMS]
+        tail = sequence[-_ANALYSIS_SAMPLE_ITEMS:]
         return {
             "_analysis_projection": "truncated_sequence",
-            "item_count": len(value),
+            "item_count": len(sequence),
             "head": [_compact_for_analysis(item) for item in head],
             "tail": [_compact_for_analysis(item) for item in tail],
         }

@@ -10,7 +10,7 @@ from __future__ import annotations
 import math
 from collections import Counter, defaultdict
 from statistics import mean, pstdev
-from typing import Any
+from typing import Any, cast
 
 from src.core.spatial_index import unpack_coords
 
@@ -246,6 +246,18 @@ def _topology_metrics(network: Any) -> dict[str, JSONValue]:
     }
 
 
+def _snapshot_tick(snapshot_json: dict[str, Any]) -> int:
+    system_raw = snapshot_json.get("system")
+    if not isinstance(system_raw, dict):
+        return 0
+    value = cast(dict[str, Any], system_raw).get("tick", 0)
+    return (
+        int(value)
+        if isinstance(value, (int, float)) and not isinstance(value, bool)
+        else 0
+    )
+
+
 def build_scientific_metrics(
     network: Any,
     accumulator: ActivityWindowAccumulator | None,
@@ -253,19 +265,18 @@ def build_scientific_metrics(
     telemetry: dict[str, Any] | None,
 ) -> dict[str, JSONValue]:
     events = accumulator.recent_events() if accumulator is not None else []
-    snapshot_json = snapshot.to_json()
-    network_state = snapshot_json.get("network", {})
-    if not isinstance(network_state, dict):
-        network_state = {}
+    snapshot_json = cast(dict[str, Any], snapshot.to_json())
+    network_raw = snapshot_json.get("network", {})
+    network_state: dict[str, Any] = (
+        cast(dict[str, Any], network_raw) if isinstance(network_raw, dict) else {}
+    )
     spike_metrics = _spike_metrics(events)
     topology = _topology_metrics(network)
     topology["clustering_coefficient"] = network_state.get("clustering_coefficient")
     topology["mean_path_length"] = network_state.get("mean_path_length")
     return {
         "source": "live_runtime",
-        "tick": getattr(
-            network, "current_tick", snapshot_json.get("system", {}).get("tick", 0)
-        ),
+        "tick": getattr(network, "current_tick", _snapshot_tick(snapshot_json)),
         "network": snapshot_json.get("network", {}),
         "spike_trains": spike_metrics,
         "topology": topology,

@@ -13,7 +13,7 @@ import json
 import random
 import re
 import time
-from typing import Any
+from typing import Any, cast
 
 from src.language_organ.protocols import LanguageRequest, LanguageResponse
 
@@ -352,7 +352,8 @@ class LocalFallbackBackend:
         except json.JSONDecodeError:
             return {"response": text, "assessment": text}
         if isinstance(parsed, dict):
-            return {str(key): value for key, value in parsed.items()}
+            mapping = cast(dict[object, Any], parsed)
+            return {str(key): value for key, value in mapping.items()}
         return {"response": text, "assessment": text}
 
 
