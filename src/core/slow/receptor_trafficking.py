@@ -1,4 +1,5 @@
 """Subsynaptic receptor availability that modulates transmission, not weight."""
+
 from __future__ import annotations
 
 from dataclasses import asdict, dataclass
@@ -48,10 +49,9 @@ class ReceptorTrafficking:
     ) -> float:
         if not self.config.enabled:
             return state.availability
-        delta = (
-            self.config.insertion_rate * max(0.0, insertion_signal)
-            - self.config.removal_rate * max(0.0, removal_signal)
-        )
+        delta = self.config.insertion_rate * max(
+            0.0, insertion_signal
+        ) - self.config.removal_rate * max(0.0, removal_signal)
         state.availability = min(1.0, max(0.0, state.availability + delta))
         return state.availability
 

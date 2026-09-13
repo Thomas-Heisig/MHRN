@@ -53,3 +53,8 @@ publication_proposals:
   H-SYN-06: "Source and approval-status consistency proposal; not preregistered and no evidence."
   H-SYN-07: "Persistence versus episodic-recall proposal; not preregistered and no evidence."
   H-SYN-08: "Intervention-window proposal; not preregistered and no evidence."
+
+# Scope limited to architecture designs; use in executable records fails CI.
+architecture_proposals:
+  H-GW-LLM-01: "Gateway language-organ design hypothesis; not preregistered, executed or evidence."
+  RQ-GW-CODEC-001: "Neural codec interface design question; implementation/validation remain pending."

@@ -1,6 +1,10 @@
 """Slow consolidation and subsynaptic sidecars."""
 
-from .protein_synthesis import ProteinSynthesisConfig, SlowConsolidation, TagCaptureState
+from .protein_synthesis import (
+    ProteinSynthesisConfig,
+    SlowConsolidation,
+    TagCaptureState,
+)
 from .receptor_trafficking import (
     ReceptorTrafficking,
     ReceptorTraffickingConfig,

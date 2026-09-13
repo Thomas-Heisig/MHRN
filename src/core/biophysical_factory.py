@@ -4,6 +4,7 @@ The canonical NeuralNetwork still owns point neurons. Experimental HH and
 multi-compartment cells are constructed here so they cannot be selected by a
 hidden boolean or silently share incompatible state layouts.
 """
+
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -73,7 +74,9 @@ def create_biophysical_neuron(
         else NeuronModel.IZHIKEVICH
     )
     point_config = NeuronConfig.from_dict(config.point.to_dict())
-    point_config = NeuronConfig.from_dict({**point_config.to_dict(), "model": point_model.value})
+    point_config = NeuronConfig.from_dict(
+        {**point_config.to_dict(), "model": point_model.value}
+    )
     return create_neuron(neuron_id, neuron_type, point_config)
 
 

@@ -1,4 +1,5 @@
 """Astrocyte sidecar: slow calcium/glutamate-homeostasis modulation only."""
+
 from __future__ import annotations
 
 from dataclasses import asdict, dataclass
@@ -39,7 +40,9 @@ class AstrocyteField:
     def plasticity_update(self, synaptic_activity: float) -> float:
         if not self.config.enabled:
             return 1.0
-        self.calcium = self.calcium * self.config.calcium_decay + max(0.0, synaptic_activity)
+        self.calcium = self.calcium * self.config.calcium_decay + max(
+            0.0, synaptic_activity
+        )
         self.extracellular_glutamate = max(
             0.0,
             self.extracellular_glutamate

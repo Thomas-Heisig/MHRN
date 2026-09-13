@@ -1,4 +1,5 @@
 """Experimental multi-compartment neuron variant with separable NMDA plateau axis."""
+
 from __future__ import annotations
 
 from dataclasses import asdict, dataclass, field
@@ -45,7 +46,7 @@ class CompartmentNeuron:
     soma_v: float = -65.0
     spike_counter: int = 0
     last_spike_tick: int = -1
-    dendrite_v: list[float] = field(default_factory=list)
+    dendrite_v: list[float] = field(default_factory=list[float])
 
     def __post_init__(self) -> None:
         expected = self.config.compartments - 1
@@ -86,7 +87,8 @@ class CompartmentNeuron:
             plateau = 0.0
             if (
                 self.config.enable_nmda_plateau
-                and self.config.dendritic_nonlinearity is DendriticNonlinearity.NMDA_PLATEAU
+                and self.config.dendritic_nonlinearity
+                is DendriticNonlinearity.NMDA_PLATEAU
                 and v >= self.config.nmda_plateau_threshold
             ):
                 plateau = self.config.nmda_plateau_gain

@@ -11,9 +11,11 @@ import dataclasses
 import gzip
 import hashlib
 import importlib
+import importlib.metadata
 import inspect
 import json
 import math
+import os
 import platform
 import subprocess
 import sys
@@ -106,6 +108,10 @@ def make_plan() -> dict[str, Any]:
                     "protocol": item["id"],
                     "status": "human_review_pending",
                     "executed": False,
+                    "research_question": item["research_question"],
+                    "hypothesis": item["hypothesis"],
+                    "execution_kind": "conceptual_audit",
+                    "reason": "Human or conceptual assessment; no automatic substitute experiment.",
                 }
             )
             continue
@@ -139,6 +145,11 @@ def make_plan() -> dict[str, Any]:
             {
                 "protocol": item["id"],
                 "runner": name,
+                "execution_kind": item.get("execution_kind") or "registered_simulation",
+                "direct_test_of_hypothesis": item.get(
+                    "direct_test_of_hypothesis", False
+                ),
+                "scientific_evidence": False,
                 "seeds": seeds,
                 "ticks": ticks,
                 "research_question": item["research_question"],
@@ -154,6 +165,9 @@ def make_plan() -> dict[str, Any]:
         {
             "protocol": "foundational_seven_suite",
             "runner": "run_all",
+            "execution_kind": "composite_engineering_screen",
+            "direct_test_of_hypothesis": False,
+            "scientific_evidence": False,
             "seeds": [42, 43, 44],
             "ticks": 1000,
             "research_question": None,
@@ -177,7 +191,7 @@ def make_plan() -> dict[str, Any]:
         q["id"] for q in questions if q["id"] not in mapped | template_ids
     )
     return {
-        "schema_version": 1,
+        "schema_version": 2,
         "campaign": "EXP-EMP-20260910",
         "created_at": datetime.now(timezone.utc).isoformat(),
         "source": source_receipt(),
@@ -190,7 +204,18 @@ def make_plan() -> dict[str, Any]:
         "execution_policy": "complete all declared budgets; no data-dependent tuning or retries; scientific negatives retained",
         "selections": selections,
         "human_templates": templates,
-        "questions_without_specific_runnable_protocol": unmapped,
+        "questions_without_registered_contract": unmapped,
+        "questions_without_specific_runnable_protocol": sorted(
+            set(unmapped)
+            | template_ids
+            | {
+                s["research_question"]
+                for s in selections
+                if s["execution_kind"] == "boundary_audit"
+            }
+        ),
+        "execution_kind_counts": dict(Counter(s["execution_kind"] for s in selections)),
+        "environment": environment_receipt(),
     }
 
 
@@ -210,6 +235,72 @@ def finite_json(
     if isinstance(value, (list, tuple)):
         return [finite_json(v, f"{path}[{i}]", problems) for i, v in enumerate(value)]
     return value
+
+
+def environment_receipt() -> dict[str, Any]:
+    """Record the actual numerical dependencies, not an assumed CI environment."""
+    packages: dict[str, str | None] = {}
+    for name in ("numpy", "scipy", "brian2", "PyYAML", "psutil", "mhrn-core"):
+        try:
+            packages[name] = importlib.metadata.version(name)
+        except importlib.metadata.PackageNotFoundError:
+            packages[name] = None
+    return {
+        "python": platform.python_version(),
+        "platform": platform.platform(),
+        "machine": platform.machine(),
+        "processor": platform.processor(),
+        "logical_cpus": os.cpu_count(),
+        "packages": packages,
+        "thread_environment": {
+            key: os.environ.get(key)
+            for key in ("OMP_NUM_THREADS", "OPENBLAS_NUM_THREADS", "MKL_NUM_THREADS")
+        },
+    }
+
+
+def validate_rows(rows: list[dict[str, Any]], seeds: list[int]) -> list[str]:
+    """Check observed coverage without inventing expected condition labels.
+
+    Several registered sweeps use parameterized conditions. Every observed
+    condition must cover all declared seeds; this check alone cannot establish
+    that all scientifically intended conditions have been implemented.
+    """
+    problems: list[str] = []
+    if not rows:
+        return ["empty_run_series"]
+    conditions: dict[str, set[int]] = defaultdict(set)
+    for row in rows:
+        if not isinstance(row.get("condition"), str) or not isinstance(
+            row.get("seed"), int
+        ):
+            problems.append("invalid_condition_or_seed")
+            continue
+        conditions[row["condition"]].add(row["seed"])
+    for condition, observed in sorted(conditions.items()):
+        if observed != set(seeds):
+            problems.append(f"seed_coverage:{condition}")
+    return problems
+
+
+def verified_result(folder: Path, spec: dict[str, Any]) -> dict[str, Any]:
+    """Verify immutable receipts before any scientific summary is calculated."""
+    receipt = json.loads((folder / "receipt.json").read_text(encoding="utf-8"))
+    packed = (folder / "runs.json.gz").read_bytes()
+    if sha(packed) != receipt["compressed_data_sha256"]:
+        raise ValueError(f"Compressed DATA digest mismatch: {folder.name}")
+    raw = gzip.decompress(packed)
+    if sha(raw) != receipt["uncompressed_data_sha256"]:
+        raise ValueError(f"Raw DATA digest mismatch: {folder.name}")
+    result: dict[str, Any] = json.loads(raw)
+    if (
+        result["protocol"] != spec["protocol"]
+        or receipt["protocol"] != spec["protocol"]
+        or receipt["run_count"] != len(result["runs"])
+        or receipt["status"] != result["status"]
+    ):
+        raise ValueError(f"DATA receipt metadata mismatch: {folder.name}")
+    return result
 
 
 def worker(output: Path, index: int) -> None:
@@ -235,16 +326,16 @@ def worker(output: Path, index: int) -> None:
         result["runs"] = finite_json(rows, problems=result["nonfinite_paths"])
         errors = [r.get("runtime_error") for r in rows if r.get("runtime_error")]
         result["status"] = (
-            "invalid" if errors or result["nonfinite_paths"] else "completed"
+            "invalid"
+            if errors or result["nonfinite_paths"] or validate_rows(rows, spec["seeds"])
+            else "completed"
         )
         result["runtime_errors"] = errors
+        result["coverage_errors"] = validate_rows(rows, spec["seeds"])
     except Exception:
         result["error"] = traceback.format_exc()
     result["wall_seconds"] = time.perf_counter() - started
-    result["environment"] = {
-        "python": platform.python_version(),
-        "platform": platform.platform(),
-    }
+    result["environment"] = environment_receipt()
     raw = encode(result)
     with gzip.GzipFile(
         filename=str(folder / "runs.json.gz"), mode="wb", mtime=0
@@ -372,9 +463,13 @@ def execute(
             "completed_at": datetime.now(timezone.utc).isoformat(),
         },
     )
-    analyze(output)
+    summary = analyze(output)
     if not unchanged:
         raise RuntimeError("Source changed during campaign")
+    if any(item["status"] != "completed" for item in summary["protocols"]):
+        raise RuntimeError(
+            "Campaign execution incomplete or invalid; retained DATA needs inspection"
+        )
 
 
 def analyze(output: Path) -> dict[str, Any]:
@@ -388,7 +483,20 @@ def analyze(output: Path) -> dict[str, Any]:
         "ai_assisted_analysis": True,
         "accepted_evidence": False,
         "protocols": [],
+        # Compatibility field counts templates only, not accepted execution reviews.
         "human_review_pending": len(plan["human_templates"]),
+        "human_templates_pending": len(plan["human_templates"]),
+        "execution_reviews_pending": len(plan["selections"]),
+        "review_count_scope": "campaign templates and unreviewed executions, not the global review inbox",
+        "questions_without_registered_contract": plan.get(
+            "questions_without_registered_contract", []
+        ),
+        "execution_kind_counts": dict(
+            Counter(
+                s.get("execution_kind", "legacy_unspecified")
+                for s in plan["selections"]
+            )
+        ),
         "questions_without_specific_runnable_protocol": plan[
             "questions_without_specific_runnable_protocol"
         ],
@@ -401,7 +509,18 @@ def analyze(output: Path) -> dict[str, Any]:
                 {"protocol": spec["protocol"], "status": "incomplete", "runs": 0}
             )
             continue
-        result = json.loads(gzip.decompress((folder / "runs.json.gz").read_bytes()))
+        try:
+            result = verified_result(folder, spec)
+        except (OSError, ValueError, KeyError, TypeError, EOFError) as error:
+            summary["protocols"].append(
+                {
+                    "protocol": spec["protocol"],
+                    "status": "invalid",
+                    "runs": 0,
+                    "error": str(error),
+                }
+            )
+            continue
         groups: dict[str, list[dict[str, Any]]] = defaultdict(list)
         for run in result["runs"]:
             groups[run["condition"]].append(run)
@@ -442,7 +561,9 @@ def analyze(output: Path) -> dict[str, Any]:
         summary["protocols"].append(
             {
                 "protocol": spec["protocol"],
+                "execution_kind": spec.get("execution_kind", "legacy_unspecified"),
                 "status": result["status"],
+                "accepted_evidence": False,
                 "runs": len(result["runs"]),
                 "conditions": conditions,
                 "wall_seconds": result["wall_seconds"],
@@ -510,7 +631,10 @@ def analyze(output: Path) -> dict[str, Any]:
         lines.append(f"| {item['protocol']} | {item['status']} | {item['runs']} |")
     lines += [
         "",
-        f"Human review templates not executed: {summary['human_review_pending']}.",
+        f"Human review templates not executed: {summary['human_templates_pending']}. Unreviewed campaign executions: {summary['execution_reviews_pending']}.",
+        "",
+        f"Execution categories: {json.dumps(summary['execution_kind_counts'], sort_keys=True)}.",
+        "Boundary audits and composite engineering screens do not count as direct hypothesis tests. Repeated rows/conditions are not independent experiments.",
         "",
         "## Scope and inference",
         "",
@@ -526,7 +650,7 @@ def analyze(output: Path) -> dict[str, Any]:
         json.dumps(summary["comparisons"], indent=2),
         "```",
         "",
-        "## Questions without a matching runnable protocol",
+        "## Questions without a specific measurement/simulation protocol",
         "",
         ", ".join(summary["questions_without_specific_runnable_protocol"]),
         "",
@@ -547,7 +671,9 @@ def main() -> None:
     if args.worker is not None:
         worker(args.output, args.worker)
     elif args.analyze:
-        analyze(args.output)
+        result = analyze(args.output)
+        if any(item["status"] != "completed" for item in result["protocols"]):
+            raise SystemExit(1)
     else:
         execute(args.output, args.protocol, args.campaign_id)
 

@@ -5,7 +5,7 @@ MHRN / Multi-Scale Homeostatic Recurrence Network. Publication: Recursive Episte
 # MHRN Current TODO
 
 **Canonical TODO for `main`**  
-**Baseline:** `mhrn-core 0.6.0a2`
+**Baseline:** `mhrn-core 0.6.0a3`
 **Updated:** 2026-09-13
 **Current release-blocking backlog:** **0**
 

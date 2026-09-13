@@ -1,4 +1,5 @@
 """Slow tag-to-capture consolidation with an explicit finite capture window."""
+
 from __future__ import annotations
 
 from dataclasses import asdict, dataclass

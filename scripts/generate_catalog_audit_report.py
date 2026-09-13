@@ -28,7 +28,12 @@ def load_allow_list(path: Path) -> dict[str, dict[str, str]]:
     if not isinstance(raw, dict):
         raise ValueError("Catalog audit allow-list must be a mapping")
     result: dict[str, dict[str, str]] = {}
-    for category in ("historical_only", "test_fixtures", "publication_proposals"):
+    for category in (
+        "historical_only",
+        "test_fixtures",
+        "publication_proposals",
+        "architecture_proposals",
+    ):
         entries = raw.get(category, {})
         if not isinstance(entries, dict):
             raise ValueError(f"Allow-list category must be a mapping: {category}")
@@ -74,9 +79,26 @@ def report_data(
             for path in _references_for(audit, identifier)
         )
     }
-    stale_allow_list = sorted((historical | fixtures | proposals) - missing)
+    architecture = set(allow_list.get("architecture_proposals", {}))
+    scoped_architecture = {
+        identifier
+        for identifier in architecture
+        if all(
+            path.startswith("docs/02-architecture/")
+            or path == "research/registry/catalog_audit_allow_list.yaml"
+            for path in _references_for(audit, identifier)
+        )
+    }
+    stale_allow_list = sorted(
+        (historical | fixtures | proposals | architecture) - missing
+    )
     disallowed = sorted(
-        missing - historical - fixtures - scoped_proposals - namespace_prefixes
+        missing
+        - historical
+        - fixtures
+        - scoped_proposals
+        - scoped_architecture
+        - namespace_prefixes
     )
     return {
         "status": "clean" if not disallowed and not audit.link_issues else "failed",
@@ -109,6 +131,14 @@ def report_data(
                 "references": _references_for(audit, identifier),
             }
             for identifier in sorted(missing & scoped_proposals)
+        },
+        "architecture_proposals": {
+            identifier: {
+                "reason": allow_list["architecture_proposals"][identifier],
+                "status": "PROPOSED_NOT_REGISTERED",
+                "references": _references_for(audit, identifier),
+            }
+            for identifier in sorted(missing & scoped_architecture)
         },
         "namespace_prefixes": {
             identifier: {
@@ -147,6 +177,10 @@ def _markdown_report(data: dict[str, Any]) -> str:
         ("Test fixtures", "test_fixtures"),
         ("Code namespace selectors - not research entities", "namespace_prefixes"),
         ("Publication proposals - not registered or executed", "publication_proposals"),
+        (
+            "Architecture proposals - not registered or executed",
+            "architecture_proposals",
+        ),
     ):
         lines.extend([f"## {title}", ""])
         entries = data[key]
