@@ -16,7 +16,10 @@ def _network() -> NeuralNetwork:
     config = Brain5DConfig.from_dict(
         {
             "dimensions": [4, 4, 4, 4, 4],
-            "network": {"initial_connections_per_neuron": 1, "neighbour_radius": 2.0},
+            "network": {
+                "initial_connections_per_neuron": 1,
+                "neighbour_radius": 2.0,
+            },
         }
     )
     network = NeuralNetwork(config, random.Random(7))
@@ -70,6 +73,7 @@ def test_runtime_neuron_frontend_is_initialized_from_new_frontend() -> None:
     module = (STATIC / "frontend" / "modules" / "runtime-neuron.js").read_text(
         encoding="utf-8"
     )
+    router = (STATIC / "frontend" / "workspace-router.js").read_text(encoding="utf-8")
     styles = (STATIC / "frontend" / "styles" / "runtime-neuron.css").read_text(
         encoding="utf-8"
     )
@@ -79,8 +83,8 @@ def test_runtime_neuron_frontend_is_initialized_from_new_frontend() -> None:
 
     assert 'import { initRuntimeNeuron } from "./modules/runtime-neuron.js";' in index
     assert "initRuntimeNeuron();" in index
-    assert 'button.textContent = "Neuron"' in module
-    assert 'id = "mhrn-runtime-neuron"' in module
+    assert '["neuron", "Neuron", "wesen", "focus", "#mhrn-runtime-neuron"]' in router
+    assert 'panel.id = "mhrn-runtime-neuron"' in module
     assert "/api/network/neurons?limit=1&offset=" in module
     assert "model_provenance" in module
     assert "threshold_adaptation" in module
@@ -90,3 +94,29 @@ def test_runtime_neuron_frontend_is_initialized_from_new_frontend() -> None:
     assert "biologischer Äquivalenz" in module
     assert ".runtime-neuron-panel" in styles
     assert '@import url("./runtime-neuron.css");' in style_index
+
+
+def test_runtime_neuron_polling_follows_canonical_router_state() -> None:
+    module = (STATIC / "frontend" / "modules" / "runtime-neuron.js").read_text(
+        encoding="utf-8"
+    )
+
+    assert 'document.body.dataset.currentArea === "wesen"' in module
+    assert 'document.body.dataset.currentRoute === "neuron"' in module
+    assert "new MutationObserver(syncPolling)" in module
+    assert 'attributeFilter: ["data-current-area", "data-current-route"]' in module
+    assert "setInterval" in module
+    assert "clearInterval" in module
+    assert "state.inFlight" in module
+
+
+def test_runtime_neuron_shows_tick_progress_even_without_new_spikes() -> None:
+    module = (STATIC / "frontend" / "modules" / "runtime-neuron.js").read_text(
+        encoding="utf-8"
+    )
+
+    assert "lastRuntimeTick" in module
+    assert "deltaTick" in module
+    assert 'deltaTick > 0 ? "RUNNING" : "IDLE/UNCHANGED"' in module
+    assert "Δtick" in module
+    assert "live_runtime" in module
