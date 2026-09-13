@@ -187,9 +187,7 @@ class AsyncStorageSession:
 
     def _raise_worker_failure(self) -> None:
         if self._failure is not None:
-            raise RuntimeError(
-                "asynchronous storage worker failed"
-            ) from self._failure
+            raise RuntimeError("asynchronous storage worker failed") from self._failure
 
     def _worker_main(self) -> None:
         try:
