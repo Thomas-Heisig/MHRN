@@ -38,6 +38,7 @@ jobs:
       - name: Format and lint
         run: |
           python -m black src/dashboard/development_timeline.py src/profiles/service.py tests/test_development_timeline.py tests/test_development_frontier_contract.py tests/test_profiles.py tests/test_release_registry.py
+          python -m ruff check --fix tests/test_profiles.py
           python -m ruff check src/dashboard/development_timeline.py src/profiles/service.py tests/test_development_timeline.py tests/test_development_frontier_contract.py tests/test_profiles.py tests/test_release_registry.py
           python -m black --check src/dashboard/development_timeline.py src/profiles/service.py tests/test_development_timeline.py tests/test_development_frontier_contract.py tests/test_profiles.py tests/test_release_registry.py
       - name: Targeted tests
@@ -60,7 +61,7 @@ jobs:
           PY
       - name: Commit verified reconciliation and remove helpers
         run: |
-          rm scripts/reconcile_alpha2_timeline.py .github/workflows/one-shot-alpha2-timeline-verify.yml
+          rm scripts/reconcile_alpha2_timeline.py .github/workflows/one-shot-alpha2-timeline-verify.yml .maintenance/alpha2-timeline-trigger.txt
           git config user.name "MHRN timeline reconciliation"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
