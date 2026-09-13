@@ -9,6 +9,7 @@ from threading import Event, Lock, Thread
 from typing import Final
 
 from .delta_journal import DeltaJournal, DeltaRecord
+from .fast_delta_journal import FastDeltaJournal
 from .incremental_runtime import IncrementalStorageSession
 from .runtime import RuntimeNetworkLike, StepResultLike, StorageRuntimeConfig, StorageSession
 
@@ -156,8 +157,6 @@ class AsyncStorageSession:
                     self._dropped_batches += 1
                 return
         else:
-            # Exact/restart-oriented mode preserves the previous semantics:
-            # queue pressure is surfaced instead of silently losing a batch.
             self._queue.put(
                 batch,
                 timeout=self.async_config.enqueue_timeout_s or None,
@@ -187,7 +186,7 @@ class AsyncStorageSession:
 
     def _worker_main(self) -> None:
         try:
-            with DeltaJournal(
+            with FastDeltaJournal(
                 self.runtime_config.journal_path,
                 base_tick=self.network.current_tick,
                 fsync_on_commit=self.async_config.fsync_on_commit,
