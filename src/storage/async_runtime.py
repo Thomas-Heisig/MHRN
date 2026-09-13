@@ -23,6 +23,7 @@ class AsyncStorageConfig:
     drop_on_overflow: bool = False
     enqueue_timeout_s: float = 0.25
     neuron_state_interval_ticks: int = 1
+    fsync_on_commit: bool = True
 
     def __post_init__(self) -> None:
         if self.queue_size <= 0:
@@ -128,7 +129,11 @@ class AsyncStorageSession:
             return
         self._prepare_collector()
         self._stop.clear()
-        self._thread = Thread(target=self._worker_main, name="brain5d-storage", daemon=True)
+        self._thread = Thread(
+            target=self._worker_main,
+            name="brain5d-storage",
+            daemon=True,
+        )
         self._thread.start()
         self.network.add_post_step_hook(self.capture)
         self._attached = True
@@ -151,15 +156,12 @@ class AsyncStorageSession:
                     self._dropped_batches += 1
                 return
         else:
-            try:
-                self._queue.put(
-                    batch,
-                    timeout=self.async_config.enqueue_timeout_s or None,
-                )
-            except Full:
-                with self._lock:
-                    self._dropped_batches += 1
-                return
+            # Exact/restart-oriented mode preserves the previous semantics:
+            # queue pressure is surfaced instead of silently losing a batch.
+            self._queue.put(
+                batch,
+                timeout=self.async_config.enqueue_timeout_s or None,
+            )
         with self._lock:
             self._batches_enqueued += 1
 
@@ -188,6 +190,7 @@ class AsyncStorageSession:
             with DeltaJournal(
                 self.runtime_config.journal_path,
                 base_tick=self.network.current_tick,
+                fsync_on_commit=self.async_config.fsync_on_commit,
             ) as journal:
                 scan = journal.validate()
                 if scan.has_uncommitted_tail:
