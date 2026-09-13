@@ -1,139 +1,194 @@
-"""Local fallback AI backend — embedded, zero-dependency, no network required.
+"""Deterministic zero-network fallback backend for MHRN research chat.
 
-Provides a lightweight rule-based response engine for basic chat tasks when
-Ollama or other external providers are unavailable. Uses keyword matching,
-pattern templates, and a small embedded knowledge base.
-
-This module is self-contained and intentionally does NOT import any external
-AI/ML libraries. All responses are generated locally via deterministic rules.
-
-Usage:
-    backend = LocalFallbackBackend()
-    text, metadata = backend.generate_text("What is the firing rate?")
+The fallback is deliberately small and read-only. It does not execute tools,
+access the network, mutate the SNN, or create scientific evidence. Its purpose
+is to keep basic operator/help chat available when a configured model provider
+is unavailable.
 """
 
 from __future__ import annotations
 
 import hashlib
 import json
-import math
 import random
 import re
 import time
-from datetime import datetime, timezone
 from typing import Any
 
 from src.language_organ.protocols import LanguageRequest, LanguageResponse
 
 from .contracts import AIInferenceFailureEvent
 
-
-# ── Embedded knowledge base ────────────────────────────────────────────────
-# These are simple Q/A pairs for common MHRN/Brain-5D questions.
-# Extended dynamically by the response engine.
-
 _EMBEDDED_KNOWLEDGE: dict[str, str] = {
     "what is mhrn": (
-        "MHRN (Multi-Scale Homeostatic Recurrence Network) is a "
-        "biologically-inspired spiking neural network simulation. It models "
-        "neurons with Izhikevich dynamics, STDP-based plasticity, "
-        "homeostatic regulation, and structural self-organization."
+        "MHRN is the project runtime for experiments with recurrent spiking "
+        "neural networks, explicit plasticity, homeostasis and reproducible "
+        "research workflows."
     ),
     "what is brain-5d": (
-        "Brain-5D is the codename for the MHRN project — a 5-dimensional "
-        "spiking neural network simulation platform for cognitive architecture research."
+        "Brain-5D is the former project name. The current project name is MHRN. "
+        "Dimensionality is an experimental treatment, not a biological claim."
     ),
     "firing rate": (
-        "The mean firing rate is reported in the dashboard Vitals panel. "
-        "Homeostasis targets a rate of 5.0 Hz by default. Current rate "
-        "depends on network activity and input stimulation."
+        "Firing-rate telemetry is available from the live runtime and dashboard. "
+        "Use the current run data rather than a historical experiment when asking "
+        "about the network that is running now."
     ),
     "homeostasis": (
-        "Homeostasis regulates neuron firing rates toward a target (default 5.0 Hz) "
-        "by adjusting thresholds. It also manages energy levels. "
-        "Configuration is in the `homeostasis` section of the YAML config."
+        "Homeostasis is a configurable regulation mechanism that can adjust "
+        "neural state toward declared targets. Its effect must be evaluated by "
+        "matched experiments and must not be inferred from configuration alone."
     ),
     "stdp": (
-        "STDP (Spike-Timing-Dependent Plasticity) strengthens or weakens "
-        "synapses based on the relative timing of pre- and post-synaptic spikes. "
-        "Parameters: A_plus=0.1, A_minus=0.12, tau_plus=20.0, tau_minus=20.0."
+        "STDP changes eligible synaptic weights as a function of relative spike "
+        "timing. The configured rule and parameters belong to the run provenance."
     ),
     "synapse": (
-        "Synapses connect neurons and transmit spikes. The network starts "
-        "with ~10 connections per neuron. Synapses have weights (0.0-0.5), "
-        "delays (1-20ms), and can be pruned or sprouted during self-organization."
+        "Synapses are explicit directed network connections with runtime state "
+        "such as weight and delay. The live dashboard reads the canonical network."
     ),
     "neuron": (
-        "Neurons use Izhikevich dynamics with parameters a=0.02, b=0.2, "
-        "c=-65.0, d=8.0 (regular spiking). The network starts with 5000 "
-        "neurons in a 5D grid of dimensions [10, 10, 10, 10, 10]."
+        "MHRN neurons expose model identity and live state such as membrane "
+        "potential, recovery state, energy, spike count, traces and regulation."
     ),
     "experiment": (
-        "Experiments are registered in the research registry. Use the "
-        "Research tab to view registered experiments, their status, "
-        "and evidence records. Experiments follow a structured workflow "
-        "with pre-registration, execution, and analysis phases."
+        "Experiments are governed through the research registry and evidence "
+        "workflow. Engineering success does not automatically promote a result "
+        "to scientific evidence."
     ),
     "self-organization": (
-        "Self-organization manages structural plasticity: pruning weak "
-        "synapses (weight < 0.005, age > 1000 ticks), sprouting new "
-        "connections (max 12 per neuron, radius 2.0), and neurogenesis "
-        "(when spike rate delta exceeds 50 Hz)."
+        "Self-organization covers declared structural mechanisms such as pruning "
+        "and sprouting. Their effects require controlled experiments."
     ),
     "dashboard": (
-        "The MHRN Operator Dashboard provides real-time telemetry: "
-        "neural activity, learning metrics, structural changes, storage "
-        "status, and experiment management. Tabs: Overview, Network, "
-        "Control, Research, Release, Settings, Embodiment."
+        "The MHRN dashboard provides read-only observability and explicit operator "
+        "controls for runtime, science, files, review, release and settings."
     ),
     "energy": (
-        "Each neuron has an energy level (initial 1.0). Spikes cost "
-        "0.001 energy. Homeostasis can manage energy with target=1.0, "
-        "recovery_rate=0.001. Energy-affects-firing is disabled by default."
+        "Energy is an explicit simulation state variable. Its semantics and causal "
+        "effect depend on the active model/configuration and must be read from run "
+        "provenance."
     ),
     "reward": (
-        "The reward system modulates STDP based on external reward "
-        "signals. Learning_rate=0.01, delay=5 ticks. Rewards can be "
-        "used for reinforcement learning experiments."
+        "Reward/modulatory signals are experimental inputs. They do not grant an "
+        "AI assistant authority to change the canonical SNN outside declared APIs."
     ),
     "structural plasticity": (
-        "Structural plasticity encompasses pruning (removing weak synapses), "
-        "sprouting (creating new connections), and neurogenesis (adding "
-        "new neurons). All are configured in the `self_organization` section."
+        "Structural plasticity changes network topology under declared rules. "
+        "Topology changes must remain observable, reproducible and attributable."
     ),
     "storage": (
-        "Storage uses the .b5d binary format with journaling for crash "
-        "recovery. Runtime deltas are captured for telemetry. Checkpoints "
-        "can be written on demand via the dashboard Control tab."
+        "Runtime persistence uses project storage/checkpoint mechanisms. The "
+        "dashboard reports storage state but does not turn persisted data into "
+        "accepted evidence automatically."
     ),
-    "tik tok": (
-        "A tick is the basic simulation time step (dt=1.0ms). Each tick "
-        "updates all neuron potentials, processes spikes, applies STDP, "
-        "and runs self-organization at configured intervals."
+    "tick": (
+        "A tick is the canonical discrete simulation step. A changing live tick "
+        "is the clearest basic indicator that the runtime is advancing even when "
+        "the current spike count is zero."
     ),
     "help": (
-        "I am the MHRN Local Fallback Assistant. I can answer basic "
-        "questions about the system architecture, components, and "
-        "configuration. For detailed analysis, please use Ollama. "
-        "Try asking about: neurons, synapses, STDP, homeostasis, "
-        "experiments, dashboard, energy, or self-organization."
+        "I am the deterministic MHRN local fallback assistant. I can provide basic "
+        "project help when the configured model provider is unavailable."
     ),
+}
+
+_STOP_WORDS: set[str] = {
+    "der",
+    "die",
+    "das",
+    "den",
+    "dem",
+    "des",
+    "ein",
+    "eine",
+    "einen",
+    "einem",
+    "eines",
+    "und",
+    "oder",
+    "aber",
+    "mit",
+    "von",
+    "für",
+    "auf",
+    "an",
+    "in",
+    "zu",
+    "aus",
+    "bei",
+    "nach",
+    "um",
+    "vor",
+    "the",
+    "a",
+    "an",
+    "is",
+    "are",
+    "was",
+    "were",
+    "be",
+    "been",
+    "being",
+    "have",
+    "has",
+    "had",
+    "do",
+    "does",
+    "did",
+    "will",
+    "would",
+    "could",
+    "should",
+    "may",
+    "might",
+    "shall",
+    "can",
+    "not",
+    "no",
+    "nor",
+    "but",
+    "or",
+    "if",
+    "so",
+    "as",
+    "at",
+    "by",
+    "for",
+    "from",
+    "into",
+    "of",
+    "on",
+    "to",
+    "with",
+    "it",
+    "its",
+    "this",
+    "that",
+    "these",
+    "those",
+    "we",
+    "you",
+    "they",
+    "he",
+    "she",
+    "them",
+    "their",
+    "your",
+    "our",
+    "my",
+    "bitte",
+    "danke",
+    "gern",
+    "gerne",
+    "hallo",
+    "hi",
+    "hey",
 }
 
 
 class LocalFallbackBackend:
-    """Zero-dependency local fallback AI backend.
-
-    Generates responses using pattern matching against an embedded
-    knowledge base and simple template expansion. No network calls,
-    no model files, no external dependencies.
-
-    The backend provides:
-    - Keyword-based Q/A from embedded knowledge
-    - Template-based responses for unknown queries
-    - Metadata tracking (response time, match method, digest)
-    - Full compatibility with the ChatBackend protocol
-    """
+    """Small deterministic assistant compatible with the language/chat protocols."""
 
     def __init__(
         self,
@@ -147,8 +202,9 @@ class LocalFallbackBackend:
         self.temperature = temperature
         self.max_tokens = max_tokens
         self._rng = random.Random(seed) if seed is not None else random.Random()
-        self._knowledge = {**knowledge_base} if knowledge_base else {}
-        self._knowledge.update(_EMBEDDED_KNOWLEDGE)
+        self._knowledge = dict(_EMBEDDED_KNOWLEDGE)
+        if knowledge_base:
+            self._knowledge.update(knowledge_base)
         self._last_failure_event: AIInferenceFailureEvent | None = None
 
     @property
@@ -159,10 +215,8 @@ class LocalFallbackBackend:
     def last_failure_event(self) -> AIInferenceFailureEvent | None:
         return self._last_failure_event
 
-    # ── LanguageModelBackend protocol ──
-
     def infer(self, request: LanguageRequest) -> LanguageResponse:
-        """Implement the LanguageModelBackend protocol."""
+        """Implement the canonical language-model backend contract."""
         started = time.time()
         try:
             text, _metadata = self.generate_text(request.text)
@@ -192,69 +246,43 @@ class LocalFallbackBackend:
                 error=str(exc),
             )
 
-    # ── Chat interface ──
-
     def generate_text(
         self,
         prompt: str,
         images: list[str] | None = None,
         tools: list[dict[str, object]] | None = None,
     ) -> tuple[str, dict[str, Any]]:
-        """Generate a response from the embedded knowledge base.
-
-        Args:
-            prompt: The input text prompt.
-            images: Ignored (fallback has no vision capability).
-            tools: Ignored (fallback has no tool-use capability).
-
-        Returns:
-            Tuple of (response_text, metadata_dict).
-        """
-        del images  # not supported
-        del tools  # not supported
-
+        """Generate a deterministic local response and provider-style metadata."""
+        del images, tools
         started_ns = time.perf_counter_ns()
         response, match_info = self._match_response(prompt)
-        elapsed_ms = (time.perf_counter_ns() - started_ns) / 1_000_000
-
+        elapsed_ns = time.perf_counter_ns() - started_ns
         metadata: dict[str, Any] = {
             "model": self.model,
             "provider": self.name,
-            "response_digest": hashlib.sha256(
-                response.encode("utf-8")
-            ).hexdigest(),
-            "total_duration_ns": (time.perf_counter_ns() - started_ns),
-            "eval_duration_ms": elapsed_ms,
+            "response_digest": hashlib.sha256(response.encode("utf-8")).hexdigest(),
+            "total_duration_ns": elapsed_ns,
+            "eval_duration_ms": elapsed_ns / 1_000_000,
             "match_method": match_info.get("method", "template"),
-            "match_confidence": match_info.get("confidence", 0.5),
+            "match_confidence": match_info.get("confidence", 0.0),
             "match_keywords": match_info.get("keywords", []),
             "structured_output_valid": True,
             "vision_enabled": False,
             "tools_enabled": False,
+            "network_access": False,
+            "authority": "read_only_non_evidentiary",
         }
         return response, metadata
 
     def __call__(self, prompt: str) -> tuple[dict[str, Any], dict[str, Any]]:
-        """Return schema-shaped analysis (for AIRR compatibility)."""
+        """Return an AIRR-compatible schema-shaped analysis result."""
         text, metadata = self.generate_text(prompt)
         return {"response": text, "assessment": text}, metadata
 
-    # ── Response engine ──
-
     def _match_response(self, prompt: str) -> tuple[str, dict[str, Any]]:
-        """Match a prompt against the knowledge base and return a response.
-
-        Strategy:
-        1. Extract keywords from the prompt
-        2. Score each knowledge entry by keyword overlap
-        3. If best score > threshold, return the matched answer
-        4. Otherwise, generate a template-based response
-        """
-        # Normalize and extract significant words
         clean = re.sub(r"[^\w\s]", " ", prompt.lower())
-        words = [w for w in clean.split() if len(w) > 2 and w not in _STOP_WORDS]
-        keywords = list(dict.fromkeys(words))  # deduplicate, preserve order
-
+        words = [word for word in clean.split() if len(word) > 2]
+        keywords = list(dict.fromkeys(word for word in words if word not in _STOP_WORDS))
         if not keywords:
             return self._greeting_response(), {
                 "method": "greeting",
@@ -262,21 +290,28 @@ class LocalFallbackBackend:
                 "keywords": [],
             }
 
-        # Score each knowledge entry
+        normalized_prompt = " ".join(words)
+        direct_matches = [key for key in self._knowledge if key in normalized_prompt]
+        if direct_matches:
+            best_key = max(direct_matches, key=len)
+            return self._knowledge[best_key], {
+                "method": "knowledge_match",
+                "confidence": 1.0,
+                "keywords": keywords[:8],
+                "matched_key": best_key,
+            }
+
         best_key: str | None = None
         best_score = 0.0
-        for key, _value in self._knowledge.items():
+        for key in self._knowledge:
             key_words = set(key.split())
-            if not key_words:
-                continue
-            # Jaccard-like similarity
-            overlap = sum(1 for w in keywords if w in key_words)
-            score = overlap / (len(key_words) + len(keywords) - overlap + 0.001)
+            overlap = sum(1 for word in keywords if word in key_words)
+            denominator = len(key_words) + len(keywords) - overlap
+            score = overlap / denominator if denominator else 0.0
             if score > best_score:
-                best_score = score
                 best_key = key
+                best_score = score
 
-        # Threshold for direct match
         if best_key is not None and best_score >= 0.25:
             return self._knowledge[best_key], {
                 "method": "knowledge_match",
@@ -285,107 +320,45 @@ class LocalFallbackBackend:
                 "matched_key": best_key,
             }
 
-        # Check for question patterns
-        return self._template_response(keywords, prompt), {
+        return self._template_response(keywords), {
             "method": "template",
             "confidence": round(best_score, 3),
             "keywords": keywords[:8],
         }
 
     def _greeting_response(self) -> str:
-        """Return a greeting when no specific question is detected."""
-        greetings = [
-            "Hallo! Ich bin der MHRN Local Fallback Assistant. "
-            "Wie kann ich Ihnen helfen? Fragen Sie z. B. nach "
-            "Neuronen, Synapsen, STDP oder Homöostase.",
-            "Willkommen beim MHRN Research Assistant (Fallback-Modus). "
-            "Ich beantworte Fragen zur Systemarchitektur. "
-            "Tipp: Fragen Sie nach 'Neuronen', 'Synapsen' oder 'Experimenten'.",
-        ]
+        greetings = (
+            "Hallo! Ich bin der lokale MHRN-Fallback. Fragen Sie mich z. B. "
+            "nach Neuronen, Synapsen, STDP, Homöostase oder Experimenten.",
+            "MHRN Local Fallback ist aktiv. Für Live-Zustände verwenden Sie die "
+            "Runtime-Ansichten; für tiefe Analysen den konfigurierten Modellanbieter.",
+        )
         return self._rng.choice(greetings)
 
-    def _template_response(
-        self, keywords: list[str], original: str
-    ) -> str:
-        """Generate a template-based response for unrecognized queries."""
-        # Categorize keywords
-        question_words = {"was", "wie", "warum", "wann", "wo", "wer", "welche",
-                          "what", "how", "why", "when", "where", "who", "which",
-                          "is", "are", "does", "can", "do", "define", "explain",
-                          "describe", "tell", "meaning", "purpose", "function"}
-        is_question = any(w in question_words for w in keywords[:5])
-
-        # Build context-aware response
-        if is_question:
-            response = (
-                "Ihre Frage enthält Begriffe, zu denen ich keine "
-                "spezifischen Informationen in meiner Wissensdatenbank habe. "
-            )
-        else:
-            response = (
-                "Ich habe Ihre Eingabe erhalten, kann aber keine "
-                "direkte Übereinstimmung in meiner Wissensdatenbank finden. "
-            )
-
-        # Add keyword context if available
-        if keywords:
-            known = [k for k in keywords if k in self._knowledge]
-            if known:
-                response += (
-                    f" Ich habe Informationen zu: {', '.join(known[:5])}. "
-                    f"Stellen Sie eine gezielte Frage dazu."
-                )
-            else:
-                response += (
-                    "Die genannten Begriffe sind mir nicht bekannt. "
-                    "Versuchen Sie es mit: Neuronen, Synapsen, STDP, "
-                    "Homöostase, Experimente, Energie oder Dashboard."
-                )
-
-        response += (
-            "\n\nHinweis: Für detaillierte Analysen aktivieren Sie bitte "
-            "Ollama in den Chat-Einstellungen."
+    def _template_response(self, keywords: list[str]) -> str:
+        visible = ", ".join(keywords[:6]) if keywords else "keine"
+        return (
+            "Der lokale Fallback hat dafür keine ausreichend spezifische, "
+            "repository-gestützte Antwort. Erkannte Begriffe: "
+            f"{visible}. Nutzen Sie für detaillierte Analyse den konfigurierten "
+            "Research-Chat. Der Fallback erfindet keine Laufzeit- oder "
+            "Experimentergebnisse."
         )
-        return response
 
     def _repair_json(self, text: str) -> dict[str, Any]:
-        """Attempt to repair malformed JSON (for AIRR compatibility)."""
+        """Return a dictionary for valid JSON objects, otherwise a safe fallback."""
         try:
-            return json.loads(text)
+            parsed: object = json.loads(text)
         except json.JSONDecodeError:
             return {"response": text, "assessment": text}
+        if isinstance(parsed, dict):
+            return {str(key): value for key, value in parsed.items()}
+        return {"response": text, "assessment": text}
 
-
-# ── Stop words ─────────────────────────────────────────────────────────────
-
-_STOP_WORDS: set[str] = {
-    "der", "die", "das", "den", "dem", "des", "ein", "eine", "einen",
-    "einem", "eines", "und", "oder", "aber", "mit", "von", "für",
-    "auf", "an", "in", "zu", "aus", "bei", "nach", "um", "vor",
-    "the", "a", "an", "is", "are", "was", "were", "be", "been",
-    "being", "have", "has", "had", "do", "does", "did", "will",
-    "would", "could", "should", "may", "might", "shall", "can",
-    "not", "no", "nor", "but", "or", "if", "so", "as", "at",
-    "by", "for", "from", "in", "into", "of", "on", "to", "with",
-    "it", "its", "this", "that", "these", "those", "we", "you",
-    "they", "he", "she", "them", "their", "your", "our", "my",
-    "bitte", "danke", "gern", "gerne", "hallo", "hi", "hey",
-}
-
-
-# ── Module-level factory ───────────────────────────────────────────────────
 
 def create_local_fallback_backend(
     model: str = "local-fallback",
     **kwargs: Any,
 ) -> LocalFallbackBackend:
-    """Create a configured LocalFallbackBackend instance.
-
-    Args:
-        model: Model identifier string.
-        **kwargs: Additional arguments passed to LocalFallbackBackend.__init__.
-
-    Returns:
-        A configured LocalFallbackBackend instance.
-    """
+    """Create the always-available deterministic fallback backend."""
     return LocalFallbackBackend(model=model, **kwargs)
