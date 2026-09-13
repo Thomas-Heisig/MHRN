@@ -35,6 +35,18 @@ function kv(label, value) {
   return `<div class="small-snn-kv"><span>${label}</span><strong>${fmt(value)}</strong></div>`;
 }
 
+function addOverviewCard(areaId, route, architecture) {
+  const grid = document.querySelector(`[data-area-overview="${areaId}"] .mhrn-area-route-grid`);
+  if (!grid || grid.querySelector(`[data-route-card="${route[0]}"]`)) return;
+  const button = document.createElement("button");
+  button.type = "button";
+  button.dataset.routeCard = route[0];
+  button.title = `${route[1]} öffnen`;
+  button.innerHTML = `<span>S1</span><strong>${route[1]}</strong>`;
+  grid.appendChild(button);
+  button.addEventListener("click", () => architecture.selectRoute(areaId, route[0]));
+}
+
 function addRoute(areaId, route) {
   const architecture = window.MHRNWorkspaceArchitecture;
   const routes = architecture?.areas?.[areaId]?.routes;
@@ -55,6 +67,7 @@ function addRoute(areaId, route) {
     nav.appendChild(button);
     button.addEventListener("click", () => architecture.selectRoute(areaId, route[0]));
   });
+  addOverviewCard(areaId, route, architecture);
   return true;
 }
 
@@ -223,23 +236,13 @@ function routeRefresh() {
   if (area === "control" && route === "snn") refreshControl();
 }
 
-function bindRouteJumps() {
-  document.addEventListener("click", (event) => {
-    const button = event.target.closest("[data-route-jump]");
-    if (!button) return;
-    const [area, route] = button.dataset.routeJump.split(":");
-    if (area && route) window.MHRNWorkspaceArchitecture?.selectRoute?.(area, route);
-  });
-}
-
 export function initSmallSNNStage() {
   if (!ensureRoutes()) return;
   ensureSciencePanel();
   ensureRuntimePanel();
   ensureControlPanel();
-  bindRouteJumps();
   document.addEventListener("click", (event) => {
-    if (event.target.closest('[data-area-route="snn"]')) setTimeout(routeRefresh, 0);
+    if (event.target.closest('[data-area-route="snn"], [data-route-card="snn"]')) setTimeout(routeRefresh, 0);
   });
   if (state.timer) clearInterval(state.timer);
   state.timer = setInterval(routeRefresh, 1200);
