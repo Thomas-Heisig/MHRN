@@ -1,6 +1,14 @@
 "use strict";
 
-const state = { index: 0, total: 0, neuron: null, timer: null, lastSpike: null };
+const state = {
+  index: 0,
+  total: 0,
+  neuron: null,
+  timer: null,
+  lastSpike: null,
+  lastRuntimeTick: null,
+  inFlight: false,
+};
 const $ = (id) => document.getElementById(id);
 
 async function readJson(url) {
@@ -18,18 +26,6 @@ function fmt(value, digits = 3) {
 
 function kv(label, value, digits = 3) {
   return `<div class="runtime-neuron-kv"><span>${label}</span><strong>${fmt(value, digits)}</strong></div>`;
-}
-
-function ensureTabButton() {
-  const nav = document.querySelector('.mhrn-context-nav[data-area="wesen"]');
-  if (!nav || nav.querySelector('[data-runtime-neuron-tab]')) return;
-  const button = document.createElement("button");
-  button.type = "button";
-  button.dataset.runtimeNeuronTab = "true";
-  button.textContent = "Neuron";
-  button.title = "Ein einzelnes Live-Neuron mit allen integrierten Zuständen";
-  nav.appendChild(button);
-  button.addEventListener("click", activate);
 }
 
 function ensurePanel() {
@@ -81,33 +77,24 @@ function ensurePanel() {
   $("rn-index")?.addEventListener("change", (event) => setIndex(Number(event.target.value)));
 }
 
-function activate() {
-  const root = $("tab-wesen");
-  const panel = $("mhrn-runtime-neuron");
-  if (!root || !panel) return;
-  // Router benachrichtigen — der übernimmt Sichtbarkeit und Navigation
-  if (window.MHRNWorkspaceArchitecture?.selectRoute) {
-    window.MHRNWorkspaceArchitecture.selectRoute("wesen", "neuron");
-  } else {
-    // Fallback falls Router noch nicht bereit
-    root.querySelectorAll(":scope > section, :scope > article, :scope > .card").forEach((node) => {
-      if (node === panel) return;
-      node.hidden = true;
-      node.style.display = "none";
-      node.setAttribute("aria-hidden", "true");
-    });
-    panel.hidden = false;
-    panel.style.display = "grid";
-    panel.setAttribute("aria-hidden", "false");
+function isActiveRoute() {
+  return document.body.dataset.currentArea === "wesen" && document.body.dataset.currentRoute === "neuron";
+}
+
+function syncPolling() {
+  if (isActiveRoute()) {
+    refresh();
+    if (!state.timer) {
+      state.timer = setInterval(() => {
+        if (isActiveRoute()) refresh();
+      }, 750);
+    }
+    return;
   }
-  document.querySelectorAll('.mhrn-context-nav[data-area="wesen"] button').forEach((button) => button.classList.toggle("active", button.dataset.runtimeNeuronTab === "true"));
-  document.body.dataset.currentArea = "wesen";
-  document.body.dataset.currentRoute = "neuron";
-  refresh();
-  if (state.timer) clearInterval(state.timer);
-  state.timer = setInterval(() => {
-    if (!panel.hidden && document.body.dataset.currentRoute === "neuron") refresh();
-  }, 1000);
+  if (state.timer) {
+    clearInterval(state.timer);
+    state.timer = null;
+  }
 }
 
 function setIndex(value) {
@@ -146,25 +133,43 @@ function render(neuron, total) {
   $("rn-provenance").innerHTML = [kv("model",model),kv("family",neuron.model_provenance?.family),kv("version",neuron.model_provenance?.version),kv("canonical",neuron.model_provenance?.canonical),kv("switch count",neuron.model_switch_count),kv("last switch tick",neuron.last_model_switch_tick)].join("");
   const cfg = neuron.config || {};
   $("rn-config").innerHTML = Object.entries(cfg).map(([key,value]) => kv(key,value)).join("");
-  $("rn-status").textContent = `Neuron ${state.index + 1} / ${total} · ID ${neuron.neuron_id} · Quelle live_runtime`;
+  const runtimeTick = Number(neuron.runtime_tick ?? 0);
+  const deltaTick = state.lastRuntimeTick === null ? 0 : runtimeTick - state.lastRuntimeTick;
+  state.lastRuntimeTick = runtimeTick;
+  const moving = deltaTick > 0 ? "RUNNING" : "IDLE/UNCHANGED";
+  $("rn-status").dataset.state = deltaTick > 0 ? "ok" : "idle";
+  $("rn-status").textContent = `${moving} · Tick ${runtimeTick} · Δtick ${deltaTick} · Neuron ${state.index + 1} / ${total} · ID ${neuron.neuron_id} · live_runtime`;
 }
 
 async function refresh() {
+  if (state.inFlight || !$("mhrn-runtime-neuron")) return;
   const status = $("rn-status");
+  state.inFlight = true;
   try {
-    if (status) { status.dataset.state = "ok"; status.textContent = "Live-Neuron wird gelesen …"; }
+    if (status && state.lastRuntimeTick === null) { status.dataset.state = "ok"; status.textContent = "Live-Neuron wird gelesen …"; }
     const payload = await readJson(`/api/network/neurons?limit=1&offset=${state.index}`);
     const neuron = payload.neurons?.[0];
     if (!neuron) throw new Error("Neuron an diesem Index nicht vorhanden");
     render(neuron, payload.total || 0);
   } catch (error) {
     if (status) { status.dataset.state = "error"; status.textContent = `Neuron nicht verfügbar: ${error.message}`; }
+  } finally {
+    state.inFlight = false;
   }
 }
 
 export function initRuntimeNeuron() {
   ensurePanel();
-  ensureTabButton();
-  const observer = new MutationObserver(() => ensureTabButton());
-  observer.observe(document.body, { childList: true, subtree: true });
+  const observer = new MutationObserver(syncPolling);
+  observer.observe(document.body, {
+    attributes: true,
+    attributeFilter: ["data-current-area", "data-current-route"],
+  });
+  document.addEventListener("click", (event) => {
+    if (event.target.closest('[data-area-route="neuron"], [data-route-card="neuron"]')) {
+      setTimeout(syncPolling, 0);
+    }
+  });
+  window.addEventListener("beforeunload", () => state.timer && clearInterval(state.timer), { once: true });
+  syncPolling();
 }
