@@ -1,0 +1,241 @@
+"""Incremental hot-path collector for runtime persistence.
+
+The original :class:`StorageSession` remains the conservative reference path.
+This collector is used by the asynchronous operator/runtime path when
+``capture_policy=dirty_tracking``.  It consumes the network's dirty sets after
+all hooks registered before storage have run and avoids rebuilding the complete
+synapse map on every tick.
+
+Neuron membrane state is special: an active spiking neuron legitimately changes
+on almost every tick.  ``neuron_state_interval_ticks`` therefore controls an
+explicit persistence trade-off:
+
+* ``1`` keeps per-tick neuron-state capture for exact restart-oriented runs.
+* ``>1`` captures neuron state at a bounded cadence for interactive/operator
+  runs while spike, synapse and topology deltas remain event-driven.
+
+Using an interval greater than one is an engineering performance mode, not a
+claim of per-tick restart equivalence.
+"""
+
+from __future__ import annotations
+
+from collections.abc import MutableSet
+from typing import cast
+
+from .delta_codec import (
+    NeuronAddDelta,
+    NeuronRemoveDelta,
+    NeuronStateDelta,
+    SpikeEventDelta,
+    SynapseAddDelta,
+    SynapseRemoveDelta,
+    SynapseWeightDelta,
+    encode_neuron_add,
+    encode_neuron_remove,
+    encode_neuron_state,
+    encode_spike_event,
+    encode_synapse_add,
+    encode_synapse_remove,
+    encode_synapse_weight,
+)
+from .delta_journal import DeltaRecord
+from .optical_codec import state_from_neuron
+from .runtime import RuntimeSynapseLike, StepResultLike, StorageRuntimeConfig, StorageSession
+
+
+class IncrementalStorageSession(StorageSession):
+    """Storage collector whose per-tick synapse work is proportional to dirties."""
+
+    def __init__(
+        self,
+        network: object,
+        config: StorageRuntimeConfig,
+        *,
+        neuron_state_interval_ticks: int = 1,
+    ) -> None:
+        super().__init__(cast(object, network), config)  # type: ignore[arg-type]
+        if neuron_state_interval_ticks <= 0:
+            raise ValueError("neuron_state_interval_ticks must be positive")
+        self.neuron_state_interval_ticks = int(neuron_state_interval_ticks)
+
+    def prime(self) -> None:
+        """Prime fingerprints and discard construction-time dirty markers."""
+        super().prime()
+        self._consume_network_dirty_sets()
+
+    def _network_dirty_sets(
+        self, result: StepResultLike
+    ) -> tuple[set[int], set[tuple[int, int]]]:
+        neuron_dirty = getattr(self.network, "_dirty_neuron_ids", None)
+        synapse_dirty = getattr(self.network, "_dirty_synapse_ids", None)
+        if isinstance(neuron_dirty, set):
+            neuron_ids = {int(value) for value in neuron_dirty}
+        else:
+            neuron_ids = {int(value) for value in result.dirty_neuron_ids}
+        if isinstance(synapse_dirty, set):
+            synapse_ids = {
+                (int(source_id), int(target_id))
+                for source_id, target_id in synapse_dirty
+            }
+        else:
+            synapse_ids = {
+                (int(source_id), int(target_id))
+                for source_id, target_id in result.dirty_synapse_ids
+            }
+        return neuron_ids, synapse_ids
+
+    def _consume_network_dirty_sets(self) -> None:
+        """Clear dirty markers already consumed by this storage hook.
+
+        Hooks that execute after storage can mark the sets again; those changes
+        are then observed on the next storage callback.
+        """
+        for attribute in ("_dirty_neuron_ids", "_dirty_synapse_ids"):
+            values = getattr(self.network, attribute, None)
+            if isinstance(values, MutableSet):
+                values.clear()
+
+    def _current_synapse(self, source_id: int, target_id: int) -> RuntimeSynapseLike | None:
+        outgoing = self.network.synapses.get(source_id, ())
+        for synapse in outgoing:
+            if int(synapse.target_id) == target_id:
+                return synapse
+        return None
+
+    def collect_deltas(self, result: StepResultLike) -> tuple[DeltaRecord, ...]:
+        """Collect one tick without a full O(E) topology reconstruction."""
+        tick = int(result.tick)
+        deltas: list[DeltaRecord] = []
+        dirty_neurons, dirty_synapses = self._network_dirty_sets(result)
+
+        try:
+            # Topology changes are always persisted, independent of the state cadence.
+            for neuron_id in sorted(dirty_neurons):
+                current = self.network.neurons.get(neuron_id)
+                previous = self._neurons.get(neuron_id)
+                if current is None and previous is not None:
+                    deltas.append(
+                        encode_neuron_remove(tick, NeuronRemoveDelta(neuron_id))
+                    )
+                    self._neurons.pop(neuron_id, None)
+                    self._topology_deltas += 1
+                elif current is not None and previous is None:
+                    optical = state_from_neuron(current)
+                    deltas.append(
+                        encode_neuron_add(
+                            tick,
+                            NeuronAddDelta(
+                                neuron_id=neuron_id,
+                                tick=tick,
+                                optical=optical,
+                                a=float(current.a),
+                                b=float(current.b),
+                                c=float(current.c),
+                                d=float(current.d),
+                                spike_cost=float(current.spike_cost),
+                                spike_counter=int(current.spike_counter),
+                                last_spike_tick=int(current.last_spike_tick),
+                            ),
+                        )
+                    )
+                    self._neurons[neuron_id] = self._neuron_fingerprint(current)
+                    self._topology_deltas += 1
+
+            capture_neuron_state = (
+                self.neuron_state_interval_ticks == 1
+                or (tick + 1) % self.neuron_state_interval_ticks == 0
+            )
+            if capture_neuron_state:
+                # O(N) by design at the declared cadence.  There is no honest
+                # O(changes) shortcut for v/u because membrane state changes
+                # continuously even when no spike occurs.
+                for neuron_id, neuron in self.network.neurons.items():
+                    numeric_id = int(neuron_id)
+                    fingerprint = self._neuron_fingerprint(neuron)
+                    previous = self._neurons.get(numeric_id)
+                    if previous is not None and fingerprint != previous:
+                        deltas.append(
+                            encode_neuron_state(
+                                tick,
+                                NeuronStateDelta(
+                                    neuron_id=numeric_id,
+                                    membrane_v=fingerprint.v,
+                                    recovery_u=fingerprint.u,
+                                    energy=fingerprint.energy,
+                                    spike_counter=fingerprint.spike_counter,
+                                    last_spike_tick=fingerprint.last_spike_tick,
+                                ),
+                            )
+                        )
+                        self._neuron_deltas += 1
+                    self._neurons[numeric_id] = fingerprint
+
+            # Synapse work is limited to the explicit dirty keys.  Average
+            # outgoing degree is small, so locating one target is bounded by
+            # local fan-out rather than total E.
+            for source_id, target_id in sorted(dirty_synapses):
+                key = (source_id, target_id)
+                current = self._current_synapse(source_id, target_id)
+                previous = self._synapses.get(key)
+                if current is None:
+                    if previous is not None:
+                        deltas.append(
+                            encode_synapse_remove(
+                                tick,
+                                SynapseRemoveDelta(
+                                    source_id=source_id, target_id=target_id
+                                ),
+                            )
+                        )
+                        self._synapses.pop(key, None)
+                        self._topology_deltas += 1
+                    continue
+
+                fingerprint = self._synapse_fingerprint(current)
+                if previous is None:
+                    deltas.append(
+                        encode_synapse_add(
+                            tick,
+                            SynapseAddDelta(
+                                source_id=source_id,
+                                target_id=target_id,
+                                weight=fingerprint.weight,
+                                eligibility=fingerprint.eligibility,
+                                delay=fingerprint.delay,
+                                last_pre_spike=fingerprint.last_pre_spike,
+                            ),
+                        )
+                    )
+                    self._topology_deltas += 1
+                elif fingerprint != previous:
+                    deltas.append(
+                        encode_synapse_weight(
+                            tick,
+                            SynapseWeightDelta(
+                                source_id=source_id,
+                                target_id=target_id,
+                                weight=fingerprint.weight,
+                                eligibility=fingerprint.eligibility,
+                                last_pre_spike=fingerprint.last_pre_spike,
+                            ),
+                        )
+                    )
+                    self._synapse_deltas += 1
+                self._synapses[key] = fingerprint
+
+            if self.config.capture_spike_events:
+                for neuron_id in result.spike_ids:
+                    deltas.append(
+                        encode_spike_event(
+                            tick, SpikeEventDelta(neuron_id=int(neuron_id))
+                        )
+                    )
+                    self._spike_events += 1
+
+            return tuple(deltas)
+        finally:
+            self._consume_network_dirty_sets()
+
+
+__all__ = ["IncrementalStorageSession"]
