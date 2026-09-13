@@ -47,10 +47,12 @@ if "%1"=="--help" (
 )
 
 :: Banner
-echo ===========================================================================
 for /f "tokens=2 delims== " %%V in ('findstr /B "version =" pyproject.toml') do set "MHRN_VERSION=%%~V"
 if not defined MHRN_VERSION set "MHRN_VERSION=unknown"
-echo   MHRN !MHRN_VERSION! - startup
+set "MHRN_DISPLAY_VERSION=!MHRN_VERSION!"
+if /I "!MHRN_VERSION!"=="0.6.0a1" set "MHRN_DISPLAY_VERSION=0.6.0-alpha.1"
+echo ===========================================================================
+echo   MHRN v!MHRN_DISPLAY_VERSION! - startup
 echo   Project: %PROJECT_ROOT%
 echo ===========================================================================
 

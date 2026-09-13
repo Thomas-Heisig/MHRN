@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import hashlib
 import json
-from collections.abc import Callable, Sequence
+from collections.abc import Sequence
 from dataclasses import dataclass
 from typing import Any, Protocol, cast
 
@@ -36,7 +36,10 @@ class _DocsSource(Protocol):
     def read_content(self, path: str) -> str: ...
 
 
-ChatBackend = Callable[[str], tuple[str, dict[str, Any]]]
+class ChatBackend(Protocol):
+    """Callable read-only research-chat backend contract."""
+
+    def __call__(self, prompt: str) -> tuple[str, dict[str, Any]]: ...
 
 
 @dataclass(frozen=True, slots=True)
@@ -93,38 +96,49 @@ class ResearchChat:
         return answer, {**metadata, "ai_interaction": interaction.to_dict()}
 
     def _repository_context(self, question: str) -> RepositoryContext:
-        # IMMER den schnellen list_documents(max_count=N)-Pfad verwenden.
-        # Der RepositoryKnowledgeView-Pfad (der self.root.rglob("*") über das
-        # gesamte Projekt macht) wird nur als Fallback für Nicht-Dashboard-Quellen
-        # verwendet. Bei 5000+ Research-Dateien wäre das viel zu langsam.
+        del question  # Retrieval is bounded by source inventories, not free-text execution.
         chunks: list[str] = []
         paths: list[str] = []
-        # max_docs: genug für einen guten Überblick, aber nicht zu viele
         max_docs = min(16, max(4, self.max_context_chars // 4000))
 
-        def _try_read(source: Any, path: str) -> str | None:
+        def _try_read(source: _ResearchSource | _DocsSource, path: str) -> str | None:
             try:
-                return source.read_content(path)[:6000]
+                content = source.read_content(path)
+                return content[:6000]
             except (OSError, ValueError, FileNotFoundError, UnicodeError):
                 return None
 
-        for label, src in (
-            ("SCIENTIFIC RESEARCH SOURCES", self.research),
-            ("DOCUMENTATION SOURCES", self.docs),
-        ):
+        def _append_documents(
+            label: str,
+            source: _ResearchSource | _DocsSource,
+            documents: Sequence[_ResearchDocument | _DocDocument],
+        ) -> None:
             chunks.append(label)
-            try:
-                documents = src.list_documents(max_count=max_docs)
-            except TypeError:
-                documents = list(src.list_documents())[:max_docs]
             for document in documents:
                 if len(paths) >= max_docs:
                     break
-                doc_path = document.path if hasattr(document, "path") else str(document)
+                doc_path = document.path
                 paths.append(doc_path)
-                content = _try_read(src, doc_path)
+                content = _try_read(source, doc_path)
                 if content:
                     chunks.append(f"[{doc_path}]\n{content}")
+
+        research_documents = list(self.research.list_documents())[:max_docs]
+        _append_documents(
+            "SCIENTIFIC RESEARCH SOURCES",
+            self.research,
+            research_documents,
+        )
+
+        remaining = max(0, max_docs - len(paths))
+        if remaining:
+            documentation_documents = self.docs.list_documents(max_count=remaining)
+            _append_documents(
+                "DOCUMENTATION SOURCES",
+                self.docs,
+                documentation_documents,
+            )
+
         text = "\n\n".join(chunks)[: self.max_context_chars]
         return RepositoryContext(
             text,
@@ -203,7 +217,7 @@ class ResearchChat:
         )
 
 
-def chat_backend_from_text_backend(backend: Callable[[str], Any]) -> ChatBackend:
+def chat_backend_from_text_backend(backend: Any) -> ChatBackend:
     """Adapt a shared provider backend returning text or ``(text, metadata)``."""
 
     def call(prompt: str) -> tuple[str, dict[str, Any]]:
