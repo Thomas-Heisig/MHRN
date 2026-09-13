@@ -3304,8 +3304,8 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
             # Stufe 2: Lokales Fallback (regelbasiert)
             if fallback_local is not None and not used_fallback:
                 print(
-                    f"⚠️ All models failed, "
-                    f"falling back to local-fallback for this request"
+                    "⚠️ All models failed, "
+                    "falling back to local-fallback for this request"
                 )
                 fallback_backend = chat_backend_from_text_backend(
                     fallback_local.generate_text
