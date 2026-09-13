@@ -11,6 +11,11 @@
     "dt_ms": 1.0,
     "model": "izhikevich-2003",
     "secondary_mechanisms": false,
+    "reference_synaptic_bounds": {
+      "w_min": 0.0,
+      "w_max": 100.0,
+      "scope": "verification fixture only; production defaults unchanged"
+    },
     "connections": [
       {"source": "A", "target": "B", "weight": 100.0, "delay_ticks": 1},
       {"source": "B", "target": "C", "weight": 100.0, "delay_ticks": 2}
