@@ -1,8 +1,9 @@
 """Real 5D network inspector for the MHRN operator dashboard.
 
 This module provides data-backed inspection of the live MHRN network.
-It surfaces real neuron 5D coordinates, membrane potentials, energies,
-synapse weights/delays/eligibilities, and a real 5D→3D projection.
+It surfaces real neuron 5D coordinates, membrane potentials, recovery state,
+energy, traces, threshold adaptation, model provenance, synapse
+weights/delays/eligibilities, and a real 5D→3D projection.
 
 Design rules (Alpha.5 Dashboard Completion):
 - No synthetic/demo data. Every value comes from the live ``NeuralNetwork``.
@@ -221,8 +222,9 @@ class NetworkInspector:
     ) -> NeuronPage:
         """Return one paginated page of real neuron records.
 
-        Each neuron record contains the real 5D coordinate plus v, u, energy,
-        last_spike_tick, spike_counter, and active flag.
+        The record intentionally exposes the already-integrated single-cell
+        runtime state required by the Runtime & Wesen neuron view. This is
+        read-only observability: no model or cell state is mutated here.
         """
         net = self.network
         limit = max(1, min(limit, _MAX_NEURONS_PER_PAGE))
@@ -237,10 +239,17 @@ class NetworkInspector:
 
         total = len(items)
         page = items[offset : offset + limit]
+        current_tick = int(getattr(net, "current_tick", 0))
 
         neurons: list[JSONValue] = []
         for nid, n in page:
             x1, x2, x3, x4, x5 = unpack_coords(nid)
+            model = getattr(n, "model", None)
+            model_id = getattr(model, "value", str(model) if model is not None else None)
+            config = getattr(n, "config", None)
+            config_payload = config.to_dict() if config is not None and hasattr(config, "to_dict") else None
+            provenance = getattr(n, "model_provenance", None)
+            refractory_until = int(getattr(n, "_refractory_until_tick", -1))
             neurons.append(
                 {
                     "neuron_id": nid,
@@ -258,6 +267,23 @@ class NetworkInspector:
                     "is_input": nid in net.input_cells,
                     "is_output": nid in net.output_cells,
                     "neuron_type": n.neuron_type.name,
+                    "model": model_id,
+                    "model_provenance": provenance,
+                    "config": config_payload,
+                    "current_threshold": getattr(n, "current_threshold", None),
+                    "threshold_adaptation": getattr(n, "threshold_adaptation", None),
+                    "last_external_current": getattr(n, "last_external_current", None),
+                    "last_synaptic_current": getattr(n, "last_synaptic_current", None),
+                    "pre_trace": getattr(n, "pre_trace", None),
+                    "post_trace": getattr(n, "post_trace", None),
+                    "firing_rate_estimate": getattr(n, "firing_rate_estimate", None),
+                    "model_switch_count": getattr(n, "model_switch_count", 0),
+                    "last_model_switch_tick": getattr(n, "last_model_switch_tick", -1),
+                    "enabled": bool(getattr(n, "is_enabled", True)),
+                    "refractory_until_tick": refractory_until,
+                    "refractory_active": refractory_until >= current_tick,
+                    "refractory_remaining_ticks": max(0, refractory_until - current_tick + 1),
+                    "runtime_tick": current_tick,
                 }
             )
 
