@@ -18,7 +18,7 @@ import subprocess
 import sys
 from dataclasses import asdict
 from pathlib import Path
-from typing import Any
+from typing import Any, cast
 
 import yaml
 
@@ -51,9 +51,10 @@ TEST_GROUPS: dict[str, tuple[str, ...]] = {
 
 
 def _load_config() -> dict[str, Any]:
-    raw = yaml.safe_load(CONFIG_PATH.read_text(encoding="utf-8"))
-    if not isinstance(raw, dict):
+    raw_object: object = yaml.safe_load(CONFIG_PATH.read_text(encoding="utf-8"))
+    if not isinstance(raw_object, dict):
         raise TypeError("learning experiment config root must be a mapping")
+    raw = cast(dict[object, object], raw_object)
     return {str(key): value for key, value in raw.items()}
 
 
@@ -110,9 +111,13 @@ def build_report(*, run_tests: bool = True) -> dict[str, Any]:
     )
 
     proofs: dict[str, bool] = {
-        "stdp_and_three_factor_tests_passed": group_results["stdp_and_three_factor"],
+        "stdp_and_three_factor_tests_passed": group_results[
+            "stdp_and_three_factor"
+        ],
         "homeostasis_tests_passed": group_results["homeostasis"],
-        "structural_plasticity_tests_passed": group_results["structural_plasticity"],
+        "structural_plasticity_tests_passed": group_results[
+            "structural_plasticity"
+        ],
         "learning_state_checkpoint_tests_passed": group_results[
             "learning_state_checkpoint"
         ],
