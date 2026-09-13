@@ -3,9 +3,11 @@
 This package provides the fundamental building blocks of the MHRN
 spiking neural network, including:
 - 5D spatial indexing and coordinate transformations
-- versioned neuron dynamics
-- synaptic connections with STDP and reward-modulated plasticity
-- sparse spiking neural networks with delayed event propagation
+- Izhikevich neuron model with multiple types, homeostasis, and energy
+- Synaptic connections with STDP, reward-modulated plasticity, and metaplasticity
+- Sparse spiking neural network with event-driven spike propagation
+
+All components are fully typed and support serialization.
 """
 
 from __future__ import annotations
@@ -13,6 +15,7 @@ from __future__ import annotations
 from .network import (
     Brain5DConfig,
     NetworkConfig,
+    NeuralNetwork,
     PostStepHook,
     SimulationConfig,
     SpikeEvent,
@@ -20,7 +23,6 @@ from .network import (
     TopologyConfig,
     create_network,
 )
-from .runtime_network import RuntimeNeuralNetwork as NeuralNetwork
 from .neuron import (
     Neuron,
     NeuronConfig,
