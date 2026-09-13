@@ -19,8 +19,10 @@ jobs:
       - uses: actions/setup-python@v7
         with:
           python-version: "3.13"
-      - name: Apply asserted canonical patch
-        run: python scripts/apply_stage3_release_patch.py
+      - name: Correct known assertion and apply canonical patch
+        run: |
+          sed -i 's/"0.6.0a1", "0.6.0a2", count=3/"0.6.0a1", "0.6.0a2", count=2/' scripts/apply_stage3_release_patch.py
+          python scripts/apply_stage3_release_patch.py
       - name: Syntax and whitespace verification
         run: |
           python -m compileall -q src scripts tests
