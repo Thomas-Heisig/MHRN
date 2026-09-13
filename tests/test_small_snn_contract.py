@@ -12,6 +12,7 @@ from dataclasses import replace
 
 from src.core.network import Brain5DConfig, NeuralNetwork, SimulationConfig
 from src.core.neuron import NeuronConfig
+from src.core.synapse import SynapseConfig
 
 
 def _chain() -> tuple[NeuralNetwork, tuple[int, int, int]]:
@@ -19,6 +20,9 @@ def _chain() -> tuple[NeuralNetwork, tuple[int, int, int]]:
         dimensions=(4, 4, 4, 4, 4),
         simulation=SimulationConfig(dt_ms=1.0, max_delay=4),
         neuron=NeuronConfig.isolated_reference(),
+        # The strong reference transmission is explicit and isolated to this
+        # software contract; production defaults remain unchanged.
+        synapse=SynapseConfig(w_min=0.0, w_max=100.0),
     )
     network = NeuralNetwork(config, random.Random(17))
     a = network.add_neuron((1, 1, 1, 1, 1))
