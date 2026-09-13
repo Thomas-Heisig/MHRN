@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "status": "verified",
+  "stage": 1,
+  "id": "small_snn",
+  "scientific_scope": "software reference network only; not biological validation or scaling evidence",
+  "protocol": {
+    "neurons": 3,
+    "synapses": 2,
+    "topology": "feed-forward chain A -> B -> C",
+    "dt_ms": 1.0,
+    "model": "izhikevich-2003",
+    "secondary_mechanisms": false,
+    "connections": [
+      {"source": "A", "target": "B", "weight": 100.0, "delay_ticks": 1},
+      {"source": "B", "target": "C", "weight": 100.0, "delay_ticks": 2}
+    ],
+    "initial_trigger": "A.v = 30 mV at tick 0"
+  },
+  "expected_causal_trace": [
+    {"tick": 0, "spikes": ["A"], "delivered_events": 0, "queued_events": 1},
+    {"tick": 1, "spikes": ["B"], "delivered_events": 1, "queued_events": 1},
+    {"tick": 2, "spikes": [], "delivered_events": 0, "queued_events": 1},
+    {"tick": 3, "spikes": ["C"], "delivered_events": 1, "queued_events": 0}
+  ],
+  "proofs_required": [
+    "explicit_sparse_topology",
+    "delayed_event_delivery",
+    "causal_spike_propagation",
+    "deterministic_replay",
+    "batch_tick_equivalence"
+  ],
+  "proofs": {
+    "explicit_sparse_topology": true,
+    "delayed_event_delivery": true,
+    "causal_spike_propagation": true,
+    "deterministic_replay": true,
+    "batch_tick_equivalence": true
+  },
+  "verification_scope": "Stage-1 software contract; not evidence of biological equivalence, cognition, learning quality or large-scale tractability"
+}
