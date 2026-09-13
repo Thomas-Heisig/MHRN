@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "source_revision": "da6c871598a923bf69fe9ab3094fb075de771733",
+  "workflow_run_id": "34785665087",
+  "generated_at": "2026-09-13T22:09:11.452378+00:00",
+  "checks": [
+    {
+      "name": "black",
+      "command": [
+        "/opt/hostedtoolcache/Python/3.13.15/x64/bin/python",
+        "-m",
+        "black",
+        "--check",
+        "src",
+        "tests",
+        "scripts"
+      ],
+      "exit_code": 0,
+      "log": "black.log"
+    },
+    {
+      "name": "ruff",
+      "command": [
+        "/opt/hostedtoolcache/Python/3.13.15/x64/bin/python",
+        "-m",
+        "ruff",
+        "check",
+        "src",
+        "tests",
+        "scripts"
+      ],
+      "exit_code": 0,
+      "log": "ruff.log"
+    },
+    {
+      "name": "precommit",
+      "command": [
+        "/opt/hostedtoolcache/Python/3.13.15/x64/bin/python",
+        "-m",
+        "pre_commit",
+        "run",
+        "--all-files",
+        "--show-diff-on-failure"
+      ],
+      "exit_code": 1,
+      "log": "precommit.log"
+    },
+    {
+      "name": "full_baseline_large",
+      "command": [
+        "/opt/hostedtoolcache/Python/3.13.15/x64/bin/python",
+        "scripts/generate_baseline.py"
+      ],
+      "exit_code": 1,
+      "log": "full_baseline_large.log"
+    },
+    {
+      "name": "docs",
+      "command": [
+        "/opt/hostedtoolcache/Python/3.13.15/x64/bin/python",
+        "scripts/check_doc_consistency.py",
+        "--check-tests"
+      ],
+      "exit_code": 0,
+      "log": "docs.log"
+    },
+    {
+      "name": "browser_smoke",
+      "command": [
+        "/opt/hostedtoolcache/Python/3.13.15/x64/bin/python",
+        "scripts/browser_check.py"
+      ],
+      "exit_code": 0,
+      "log": "browser_smoke.log"
+    },
+    {
+      "name": "browser_e2e",
+      "command": [
+        "npx",
+        "playwright",
+        "test",
+        "--reporter=line",
+        "--max-failures=5"
+      ],
+      "exit_code": 1,
+      "log": "browser_e2e.log"
+    }
+  ],
+  "all_checks_passed": false,
+  "human_scientific_review": "pending",
+  "automatic_evidence_promotion": false
+}
