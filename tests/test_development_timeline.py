@@ -36,7 +36,7 @@ def _baseline(*, stale: bool) -> BaselineEvaluation:
 
 @pytest.mark.parametrize(
     ("stale", "stage_floor", "stage_next", "current_stage"),
-    [(True, 3, 4, 3.75), (False, 5, 6, 5.19)],
+    [(True, 3, 4, 3.75), (False, 5, 6, 5.69)],
     ids=["stale-baseline", "current-baseline"],
 )
 def test_development_timeline_separates_engineering_verification_and_evidence(
@@ -87,6 +87,54 @@ def test_planned_features_do_not_count_as_implemented() -> None:
     assert stage_eight["status"] == "planned"
     assert all(item["status"] == "planned" for item in stage_eight["criteria"])
     assert payload["scientific_evidence_score"] <= 1.0
+
+
+def test_memory_identity_foundations_are_counted_without_overclaiming() -> None:
+    with patch(
+        "src.dashboard.development_timeline.evaluate_test_baseline",
+        return_value=_baseline(stale=True),
+    ):
+        payload = build_development_timeline(ROOT)
+    stage_six = next(stage for stage in payload["stages"] if stage["stage"] == 6)
+    assert stage_six["implementation_score"] == 0.562
+    assert stage_six["status"] == "active"
+    assert (
+        next(item for item in stage_six["criteria"] if item["id"] == "semantic_memory")[
+            "status"
+        ]
+        == "planned"
+    )
+    stage_seven = next(stage for stage in payload["stages"] if stage["stage"] == 7)
+    assert stage_seven["implementation_score"] == 0.417
+    assert stage_seven["status"] == "active"
+    assert (
+        next(
+            item
+            for item in stage_seven["criteria"]
+            if item["id"] == "self_model_backend"
+        )["status"]
+        == "planned"
+    )
+    assert (
+        next(
+            item
+            for item in stage_seven["criteria"]
+            if item["id"] == "causal_action_attribution"
+        )["status"]
+        == "planned"
+    )
+
+
+def test_partial_verified_stage_is_active_not_planned() -> None:
+    with patch(
+        "src.dashboard.development_timeline.evaluate_test_baseline",
+        return_value=_baseline(stale=False),
+    ):
+        payload = build_development_timeline(ROOT)
+    stage_six = next(stage for stage in payload["stages"] if stage["stage"] == 6)
+    assert stage_six["implementation_score"] == 0.688
+    assert stage_six["verification_score"] == 0.562
+    assert stage_six["status"] == "active"
 
 
 def test_runtime_override_and_snapshot_fallback_are_distinct() -> None:

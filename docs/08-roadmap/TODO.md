@@ -23,6 +23,14 @@ MHRN / Multi-Scale Homeostatic Recurrence Network. Publication: Recursive Episte
 - [ ] Benchmark plastic-network stability/throughput at the declared Stage-3
   target scale separately from the mechanism contract.
 
+## 2026-09-13 Alpha.2 timeline and frontier reconciliation
+
+- [x] Keep the canonical development version at `0.6.0a2` / `0.6.0-alpha.2` and derive active profile runtime defaults from `src.version`.
+- [x] Reconcile Stage 6 with bounded working/episodic memory, one-step transition prediction and the executed exploratory cognition controls; semantic memory and canonical coupled-state restore remain open.
+- [x] Reconcile Stage 7 with versioned Wesen identity, snapshot binding and the operational Behavior Profile while keeping causal self-attribution and a genuine self-model unimplemented.
+- [x] Bind Stages 8-10 to merged theory, literature, experiment backlog and frontend placeholder contracts without raising their `planned`/0 % implementation maturity.
+- [x] Keep historical experiment manifests immutable; recorded `0.6.0a1` provenance is not rewritten after the Alpha.2 advance.
+
 ## 2026-09-12 Scientific metrics workbench
 
 - [x] Add `GET /api/science/metrics` with bounded live spike-window,
@@ -104,9 +112,14 @@ MHRN / Multi-Scale Homeostatic Recurrence Network. Publication: Recursive Episte
 - [x] Add explicit Profile Snapshot binding metadata and central File Viewer
 	access, plus a machine-readable backend/frontend coverage contract.
 - [ ] Connect coupled cognition state to the canonical runtime snapshot/
-	checkpoint boundary and prove pause/resume equivalence.
-- [ ] Add registered delayed-information control runs and dashboard/File Viewer
-	inspection; engineering implementation is not scientific evidence.
+	checkpoint boundary.
+- [ ] Prove deterministic pause/resume equivalence for the complete coupled
+	cognition state.
+- [x] Execute registered exploratory component controls for delayed information
+	(`016-memory_delayed_information_v1`) and one-step world-model prediction
+	(`017-world_model_prediction_v1`); these runs remain DATA, not automatic EVID.
+- [ ] Add explicit File Viewer drill-down for the existing cognition campaign,
+	including bounded inspection of compressed raw-run data.
 
 Neural Symbiosis gateway status: **experimental activation implemented; Frozen / Random / Shuffle controls implemented; experimental plasticity implemented; productive activation locked pending validation**.
 
@@ -294,7 +307,8 @@ A scientific milestone is complete only when all applicable requirements are sat
 
 ## Current status
 
-**Engineering implementation TODO:** none.  
+**Release-blocking engineering implementation TODO:** none.
+**Non-blocking integration TODO:** coupled cognition checkpoint binding, complete-state pause/resume identity, and cognition-campaign File Viewer drill-down.
 **Source-freeze verification:** pending the exact final branch/main gate run; this is verification, not implementation backlog.  
 **Release-record publication:** intentionally deferred until that verified source freeze is green.  
 **Scientific roadmap:** active and intentionally not represented as completed work.

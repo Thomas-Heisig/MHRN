@@ -12,11 +12,16 @@ from src.profiles import (
     ProfileService,
     ProfileValidationError,
 )
+from src.version import MHRN_VERSION
 
 
 def test_create_digest_revision_lineage_and_snapshot_binding(tmp_path: Path) -> None:
     service = ProfileService(tmp_path / "profiles")
     profile = service.create(name="Wesen Alpha")
+    assert MHRN_VERSION == "0.6.0a2"
+    assert service.runtime_version == MHRN_VERSION
+    assert profile["runtime"]["runtime_version"] == MHRN_VERSION
+    assert profile["provenance"]["runtime_version"] == MHRN_VERSION
     assert profile["profile_id"] == "WESEN-0001"
     assert profile["provenance"]["profile_digest"]
     assert profile["gateway"]["productive_gateway_lock"] is True

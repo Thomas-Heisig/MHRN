@@ -17,7 +17,8 @@
     "migration and rollback tests for persisted-state schema changes",
     "bounded memory, observation-only prediction and operational behavior profile foundation",
     "Wesen telemetry and fail-closed sensor and experimental Gateway lifecycle controls",
-    "scoped Stage-3 plastic neural tissue verification with explicit scientific-evidence separation"
+    "scoped Stage-3 plastic neural tissue verification with explicit scientific-evidence separation",
+    "planned research foundations, experiment backlog, literature provenance and frontend placeholder contracts for stages 8-10 without maturity promotion"
   ],
   "completed": [
     "v0.6 compatibility, benchmark, storage, determinism and migration foundation",
@@ -27,14 +28,16 @@
     "operational Behavior Profile with bounded auditable updates",
     "cognition telemetry, backend-confirmed controls and fail-closed lifecycle checks",
     "Stage-2 stable recurrent SNN engineering contract closed with deterministic long-run and restore/replay verification",
-    "Stage-3 STDP, three-factor plasticity, homeostasis, structural plasticity and adaptive-state persistence reference integrated"
+    "Stage-3 STDP, three-factor plasticity, homeostasis, structural plasticity and adaptive-state persistence reference integrated",
+    "registered exploratory delayed-information and one-step world-model component controls executed with immutable campaign artifacts",
+    "Stages 8-10 research foundation, experiment backlog, frontier literature and planned-only frontend placeholder contract integrated"
   ],
   "open": [
     "connect coupled cognition state to the canonical snapshot/checkpoint boundary",
     "prove pause/resume equivalence for coupled cognition state",
-    "add registered delayed-information control runs and File Viewer inspection",
+    "add explicit File Viewer drill-down for the existing registered cognition campaign artifacts, including bounded inspection of compressed raw-run data",
     "generate the immutable v0.6 release record after the exact source-freeze gate is green"
   ],
-  "research_boundary": "Stage-2/3 engineering completion and a green gate do not constitute scientific evidence; controlled learning experiments, held-out evaluation, review and replication remain open.",
-  "note": "Stand 2026-09-13: v0.6.0a2 closes the scoped Stage-2 recurrent-SNN engineering boundary and reaches the Stage-3 plastic-neural-tissue engineering contract. Target-scale benchmarks and R2 productive-learning evidence closure remain scientific/empirical follow-up work."
+  "research_boundary": "Stage-2/3 engineering completion, Stage-6/7 component foundations, frontier planning and a green engineering gate do not constitute scientific evidence; controlled SNN-involved experiments, held-out evaluation, review and replication remain open.",
+  "note": "Stand 2026-09-13: v0.6.0a2 closes the scoped Stage-2 recurrent-SNN boundary, reaches the Stage-3 plastic-neural-tissue engineering contract, records implemented Stage-6/7 foundations, and integrates research-only foundations for Stages 8-10. Target-scale benchmarks, coupled cognition checkpoint identity and scientific evidence closure remain open."
 }

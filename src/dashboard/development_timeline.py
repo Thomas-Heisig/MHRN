@@ -460,7 +460,12 @@ def _stage_specs() -> tuple[StageSpec, ...]:
                 "src/embodiment/msba.py",
                 "src/embodiment/neural_symbiosis.py",
             ),
-            ("tests/test_msba.py", "tests/test_signal_processing.py"),
+            (
+                "tests/test_msba.py",
+                "tests/test_signal_processing.py",
+                "tests/test_gateway_runtime.py",
+                "tests/test_msba_experiment_runner.py",
+            ),
             ("src/experiments/msba_lab.py",),
             ("RQ9", "RQ11", "RQ-MSBA-E01"),
             (
@@ -538,20 +543,62 @@ def _stage_specs() -> tuple[StageSpec, ...]:
                     tests=("tests/test_temporal.py",),
                 ),
                 CriterionSpec(
-                    "episodic_memory", "Persistent episodic memory", planned=True
+                    "episodic_memory",
+                    "Bounded working and episodic memory foundation",
+                    paths=("src/memory/store.py", "src/memory/layer.py"),
+                    tests=(
+                        "tests/test_memory_layer.py",
+                        "tests/test_experience_engine.py",
+                    ),
                 ),
                 CriterionSpec("semantic_memory", "Semantic memory", planned=True),
                 CriterionSpec(
-                    "world_model_prediction", "World-model prediction", planned=True
+                    "world_model_prediction",
+                    "Observation-only one-step world-model prediction foundation",
+                    paths=(
+                        "src/memory/world_model.py",
+                        "src/experience/composition.py",
+                        "src/research/cognition_experiments.py",
+                    ),
+                    tests=(
+                        "tests/test_memory_layer.py",
+                        "tests/test_cognition_operational_experiments.py",
+                    ),
                 ),
             ),
-            ("src/research/temporal.py",),
-            ("tests/test_temporal.py",),
-            (),
-            ("RQ8", "RQ11"),
-            ("Temporal diagnostics are not yet a complete memory or world model.",),
-            ("R9 memory and world-model layer",),
-            ("Define memory-on/off and prediction/recall protocols.",),
+            (
+                "src/research/temporal.py",
+                "src/memory",
+                "src/experience/composition.py",
+                "src/research/cognition_experiments.py",
+            ),
+            (
+                "tests/test_temporal.py",
+                "tests/test_memory_layer.py",
+                "tests/test_cognition_operational_experiments.py",
+                "tests/test_experience_engine.py",
+            ),
+            (
+                "research/experiments/EXP-EMP-20260910/016-memory_delayed_information_v1",
+                "research/experiments/EXP-EMP-20260910/017-world_model_prediction_v1",
+            ),
+            ("RQ-MEM-002", "RQ-WM-001"),
+            (
+                "Bounded working/episodic memory is not semantic memory.",
+                "The current predictor is observation-only and one-step, not a complete multi-step world model.",
+                "The registered cognition campaign is an exploratory component screen with snn_involved=false and is not accepted EVID.",
+                "Coupled cognition state is not yet in the canonical runtime checkpoint boundary; pause/resume identity is unproven.",
+            ),
+            (
+                "Couple cognition state to the canonical snapshot/checkpoint boundary and prove pause/resume identity.",
+                "Semantic memory remains unimplemented.",
+                "Confirmatory SNN-involved memory/world-model evidence remains open.",
+            ),
+            (
+                "Integrate coupled cognition persistence with runtime checkpoints.",
+                "Add a provenance-bound semantic-memory and recall contract.",
+                "Run confirmatory held-out SNN-involved controls with human evidence review.",
+            ),
         ),
         StageSpec(
             7,
@@ -566,6 +613,25 @@ def _stage_specs() -> tuple[StageSpec, ...]:
             {"neurons": "10^7-10^8+", "synapses": "not specified"},
             (
                 CriterionSpec(
+                    "versioned_technical_identity",
+                    "Versioned technical identity and snapshot binding",
+                    paths=("src/profiles/service.py",),
+                    tests=("tests/test_profiles.py",),
+                ),
+                CriterionSpec(
+                    "operational_behavior_state",
+                    "Persistent operational behavior-state foundation",
+                    paths=(
+                        "src/profiles/behavior.py",
+                        "src/experience/composition.py",
+                        "src/research/cognition_experiments.py",
+                    ),
+                    tests=(
+                        "tests/test_memory_layer.py",
+                        "tests/test_cognition_operational_experiments.py",
+                    ),
+                ),
+                CriterionSpec(
                     "self_model_backend", "Persistent self-model state", planned=True
                 ),
                 CriterionSpec(
@@ -575,22 +641,41 @@ def _stage_specs() -> tuple[StageSpec, ...]:
                 ),
                 CriterionSpec(
                     "sensor_actuator_confidence",
-                    "Sensor and actuator confidence",
+                    "Sensor and actuator inventory/confidence inputs",
                     paths=("src/embodiment/models.py", "src/embodiment/connections.py"),
                 ),
                 CriterionSpec(
                     "self_model_restore", "Self-model restore identity", planned=True
                 ),
             ),
-            ("src/embodiment/models.py", "src/embodiment/connections.py"),
-            (),
-            (),
-            ("RQ6", "RQ7"),
             (
-                "No consciousness inference; a self-model would remain an operational construct.",
+                "src/profiles/service.py",
+                "src/profiles/behavior.py",
+                "src/experience/composition.py",
+                "src/embodiment/models.py",
+                "src/embodiment/connections.py",
             ),
-            ("Alpha.8 recursive loopback and post-thesis self-model TODOs",),
-            ("Implement observer-only causal attribution before recursive feedback.",),
+            (
+                "tests/test_profiles.py",
+                "tests/test_memory_layer.py",
+                "tests/test_cognition_operational_experiments.py",
+            ),
+            ("research/experiments/EXP-EMP-20260910/018-behavior_profile_control_v1",),
+            ("RQ-PROFILE-001", "RQ6", "RQ7"),
+            (
+                "Versioned Wesen identity and an operational behavior profile are technical foundations, not a self-model.",
+                "Causal self/other attribution and canonical coupled-state restore identity are not implemented.",
+                "No consciousness inference is permitted from identity, profile or behavior-state persistence.",
+            ),
+            (
+                "Connect Profile + State loading to the canonical runtime restore hook.",
+                "Implement observer-only causal action attribution before recursive feedback.",
+                "Keep autonomous identity mutation locked until bounded mutation, journal and rollback gates exist.",
+            ),
+            (
+                "Prove coupled profile/state restore and pause/resume identity.",
+                "Add controlled self-versus-external action-attribution experiments.",
+            ),
         ),
         StageSpec(
             8,
@@ -614,15 +699,23 @@ def _stage_specs() -> tuple[StageSpec, ...]:
                     "strategy_adaptation", "Learning-strategy adaptation", planned=True
                 ),
             ),
-            (),
-            (),
-            (),
-            ("R2", "R9", "R12"),
+            ("src/dashboard/static/development-frontier-placeholders.json",),
+            ("tests/test_development_frontier_contract.py",),
             (
-                "Autonomy is a future governed research programme, not a current status.",
+                "research/experiments/EXP-LIFE-0001-R1",
+                "research/experiments/STAGES_8_10_EXPERIMENT_BACKLOG.md",
+                "research/frontiers/STAGES_8_10_FOUNDATIONS.md",
             ),
-            ("v0.7-v1.2 research roadmap",),
-            ("Define bounded continual-learning controls and rollback.",),
+            ("RQ-LIFE-001", "RQ-GEN-001", "RQ-STRUCT-001", "RQ-HOM-002", "RQ-REPL-001"),
+            (
+                "Stage-8 theory/design/experiment-planning foundations do not raise implementation maturity.",
+                "EXP-LIFE-0001-R1 is an exploratory interference precursor, not evidence of autonomous lifelong learning.",
+            ),
+            ("E8-A through E8-G remain planned research work.",),
+            (
+                "Run continuously trained shared-network sequential retention without learned-state resets.",
+                "Require rollback, resource-matched controls and independent replication before stronger claims.",
+            ),
         ),
         StageSpec(
             9,
@@ -648,14 +741,30 @@ def _stage_specs() -> tuple[StageSpec, ...]:
                     "consolidation", "Sleep or consolidation phases", planned=True
                 ),
             ),
-            (),
-            (),
-            (),
-            ("R9", "R10", "R11"),
-            ("High integration is a design target, not an observed capability.",),
-            ("v0.9-v1.1 research roadmap",),
+            ("src/dashboard/static/development-frontier-placeholders.json",),
+            ("tests/test_development_frontier_contract.py",),
             (
-                "Require matched controls and independent replication for each capability.",
+                "research/experiments/STAGES_8_10_EXPERIMENT_BACKLOG.md",
+                "research/frontiers/STAGES_8_10_FOUNDATIONS.md",
+            ),
+            (
+                "RQ-CNS-103",
+                "RQ-CNS-105",
+                "RQ-CNS-110",
+                "RQ-CNS-111",
+                "RQ-CNS-112",
+                "RQ-CNS-116",
+                "RQ-MEM-002",
+                "RQ-WM-001",
+            ),
+            (
+                "Stage-9 material is a research architecture and placeholder contract, not an observed integrated cognitive capability.",
+                "Attention, motivation and planning remain operational constructs rather than subjective-state claims.",
+            ),
+            ("E9-A through E9-G remain planned research work.",),
+            (
+                "Implement and ablate bounded attention, planning, multimodal integration and consolidation under matched budgets.",
+                "Require independent replication for each claimed functional capability.",
             ),
         ),
         StageSpec(
@@ -685,14 +794,37 @@ def _stage_specs() -> tuple[StageSpec, ...]:
                     "ethics_and_stop_criteria", "Ethics and stop criteria", planned=True
                 ),
             ),
-            (),
-            (),
-            (),
-            (),
-            ("This stage never produces an automatic consciousness claim.",),
-            ("TODO_SELF_MODEL_THINKING.md",),
             (
-                "Define and preregister operational research questions without anthropomorphic inference.",
+                "src/dashboard/static/development-frontier-placeholders.json",
+                "src/research/cognition_governance.py",
+            ),
+            ("tests/test_development_frontier_contract.py",),
+            (
+                "research/experiments/STAGES_8_10_EXPERIMENT_BACKLOG.md",
+                "research/frontiers/STAGES_8_10_FOUNDATIONS.md",
+                "research/protocols/COGNITION_CONSCIOUSNESS.md",
+                "research/ethics/AI_WELFARE_POLICY.md",
+            ),
+            (
+                "RQ-CNS-101",
+                "RQ-CNS-108",
+                "RQ-CNS-109",
+                "RQ-CNS-113",
+                "RQ-CNS-114",
+                "RQ-EPI-101",
+                "RQ-EPI-102",
+                "RQ-WEL-101",
+                "RQ-WEL-102",
+                "RQ-WEL-103",
+            ),
+            (
+                "Stage 10 is a research-quality frontier and never automatically establishes consciousness, sentience or moral status.",
+                "Theory, literature, ethics and experiment designs do not count as implementation or evidence for consciousness.",
+            ),
+            ("E10-A through E10-H remain planned research/governance work.",),
+            (
+                "Preregister contrasting operational predictions and causal interventions.",
+                "Require ethics/stop governance and independent adversarial replication before interpretation.",
             ),
         ),
     )
@@ -784,7 +916,7 @@ def _stage_status(
 ) -> str:
     if implementation >= 0.8 and verification >= 0.5:
         return "reached"
-    if any(item["status"] == "experimental" for item in criteria):
+    if any(item["status"] in {"experimental", "verified"} for item in criteria):
         return "active"
     if any(item["status"] == "implemented" for item in criteria):
         return "implemented"
