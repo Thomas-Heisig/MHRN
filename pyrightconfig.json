@@ -14,7 +14,7 @@
     "src/telemetry",
     "src/utils",
     "src/embodiment",
-    "tests"
+    "src/research_assistant"
   ],
   "pythonVersion": "3.13",
   "typeCheckingMode": "strict",
