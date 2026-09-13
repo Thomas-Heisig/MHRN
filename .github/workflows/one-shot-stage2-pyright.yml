@@ -73,13 +73,8 @@ jobs:
           )
           replace(
               "src/storage/fast_delta_journal.py",
-              '''from .delta_journal import (\n    _COMMIT_STRUCT,\n    _ENTRY_HEADER_STRUCT,\n    COMMIT_MAGIC,\n''',
-              '''from .delta_journal import (\n    COMMIT_MAGIC,\n    COMMIT_STRUCT,\n''',
-          )
-          replace(
-              "src/storage/fast_delta_journal.py",
-              "    ENTRY_FLAG_NONE,\n    ENTRY_MAGIC,\n",
-              "    ENTRY_FLAG_NONE,\n    ENTRY_HEADER_STRUCT,\n    ENTRY_MAGIC,\n",
+              '''from .delta_journal import (\n    COMMIT_MAGIC,\n    COMMIT_MARKER_SIZE,\n    ENTRY_FLAG_NONE,\n    ENTRY_MAGIC,\n    CommitMarker,\n    DeltaJournal,\n    DeltaRecord,\n    UncommittedTailError,\n    _COMMIT_STRUCT,\n    _ENTRY_HEADER_STRUCT,\n)\n''',
+              '''from .delta_journal import (\n    COMMIT_MAGIC,\n    COMMIT_MARKER_SIZE,\n    COMMIT_STRUCT,\n    ENTRY_FLAG_NONE,\n    ENTRY_HEADER_STRUCT,\n    ENTRY_MAGIC,\n    CommitMarker,\n    DeltaJournal,\n    DeltaRecord,\n    UncommittedTailError,\n)\n''',
           )
           replace(
               "src/storage/fast_delta_journal.py",
