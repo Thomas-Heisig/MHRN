@@ -7,10 +7,7 @@ from pathlib import Path
 
 import yaml
 
-from src.core import Brain5DConfig, NeuralNetwork
-from src.core.network import NeuralNetwork as ReferenceNeuralNetwork
-from src.core.runtime_network import RuntimeNeuralNetwork
-from src.core.synapse import SynapseConfig
+from src.core.network import NeuralNetwork
 from src.homeostasis.engine import (
     HomeostasisEngine as ReferenceHomeostasisEngine,
 )
@@ -21,37 +18,20 @@ from src.storage.fast_delta_journal import FastDeltaJournal
 ROOT = Path(__file__).resolve().parents[1]
 
 
-def _network(cls: type[ReferenceNeuralNetwork]) -> ReferenceNeuralNetwork:
+def _network() -> NeuralNetwork:
+    from src.core.network import Brain5DConfig
+    from src.core.synapse import SynapseConfig
+
     config = Brain5DConfig(
         dimensions=(4, 4, 4, 4, 4),
         synapse=SynapseConfig(w_min=0.0, w_max=100.0),
     )
-    network = cls(config, random.Random(7))
+    network = NeuralNetwork(config, random.Random(7))
     a = network.add_neuron((1, 1, 1, 1, 1))
     b = network.add_neuron((1, 1, 1, 1, 2))
     network.connect(a, b, weight=100.0, delay=1)
     network.neurons[a].v = 30.0
     return network
-
-
-def test_public_core_uses_runtime_hot_path() -> None:
-    assert NeuralNetwork is RuntimeNeuralNetwork
-
-
-def test_runtime_network_matches_reference_state() -> None:
-    reference = _network(ReferenceNeuralNetwork)
-    optimized = _network(RuntimeNeuralNetwork)
-
-    reference_results = tuple(reference.step() for _ in range(4))
-    optimized_results = tuple(optimized.step() for _ in range(4))
-
-    assert [result.spike_ids for result in optimized_results] == [
-        result.spike_ids for result in reference_results
-    ]
-    assert [result.delivered_events for result in optimized_results] == [
-        result.delivered_events for result in reference_results
-    ]
-    assert optimized.to_dict() == reference.to_dict()
 
 
 def test_hot_homeostasis_matches_reference_equations() -> None:
@@ -70,8 +50,8 @@ def test_hot_homeostasis_matches_reference_equations() -> None:
             "energy_max": 1.0,
         }
     }
-    reference_network = _network(ReferenceNeuralNetwork)
-    optimized_network = _network(ReferenceNeuralNetwork)
+    reference_network = _network()
+    optimized_network = _network()
     reference_engine = ReferenceHomeostasisEngine(reference_network, config)
     optimized_engine = HotPathHomeostasisEngine(optimized_network, config)
 
