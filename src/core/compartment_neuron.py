@@ -1,7 +1,7 @@
 """Experimental multi-compartment neuron variant with separable NMDA plateau axis."""
 from __future__ import annotations
 
-from dataclasses import asdict, dataclass
+from dataclasses import asdict, dataclass, field
 from typing import Any
 
 from .biophysical_contracts import (
@@ -45,9 +45,14 @@ class CompartmentNeuron:
     soma_v: float = -65.0
     spike_counter: int = 0
     last_spike_tick: int = -1
+    dendrite_v: list[float] = field(default_factory=list)
 
     def __post_init__(self) -> None:
-        self.dendrite_v = [self.config.resting_potential] * (self.config.compartments - 1)
+        expected = self.config.compartments - 1
+        if not self.dendrite_v:
+            self.dendrite_v = [self.config.resting_potential] * expected
+        elif len(self.dendrite_v) != expected:
+            raise ValueError("dendrite_v must match configured compartments")
 
     @property
     def provenance_tag(self) -> ModelProvenance:
