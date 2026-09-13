@@ -1,0 +1,772 @@
+name: One-shot alpha2 timeline reconciliation
+
+on:
+  push:
+    branches:
+      - audit/timeline-alpha2-reconciliation
+
+permissions:
+  contents: write
+
+jobs:
+  reconcile:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: audit/timeline-alpha2-reconciliation
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+          cache: pip
+
+      - name: Reconcile timeline, roadmap, TODO and alpha2 version defaults
+        shell: bash
+        run: |
+          python - <<'PY'
+          from __future__ import annotations
+
+          import json
+          from pathlib import Path
+
+          def read(path: str) -> str:
+              return Path(path).read_text(encoding="utf-8")
+
+          def write(path: str, text: str) -> None:
+              Path(path).write_text(text, encoding="utf-8")
+
+          def replace_once(text: str, old: str, new: str, label: str) -> str:
+              if old not in text:
+                  raise SystemExit(f"missing replacement anchor: {label}")
+              return text.replace(old, new, 1)
+
+          def replace_stage(text: str, number: int, next_number: int | None, block: str) -> str:
+              start = f"        StageSpec(\n            {number},"
+              if next_number is None:
+                  end = "    )\n\n\ndef _safe_json"
+              else:
+                  end = f"        StageSpec(\n            {next_number},"
+              left = text.find(start)
+              right = text.find(end, left + 1)
+              if left < 0 or right < 0:
+                  raise SystemExit(f"cannot locate StageSpec {number}")
+              suffix = end if next_number is None else ""
+              return text[:left] + block + ("\n" if next_number is not None else "\n") + text[right:]
+
+          # Canonical alpha2 runtime version: active code derives from src.version.
+          path = "src/profiles/service.py"
+          text = read(path)
+          text = replace_once(
+              text,
+              "from typing import Any, cast\n",
+              "from typing import Any, cast\n\nfrom src.version import MHRN_VERSION\n",
+              "profile version import",
+          )
+          text = text.replace('"runtime_version": "0.6.0a2"', '"runtime_version": MHRN_VERSION')
+          text = text.replace('runtime_version: str = "0.6.0a1"', 'runtime_version: str = MHRN_VERSION')
+          if 'runtime_version: str = "0.6.0a1"' in text:
+              raise SystemExit("stale ProfileService alpha1 runtime default remains")
+          write(path, text)
+
+          # Repository-derived development timeline: recognize implemented foundations
+          # without promoting research-only frontiers.
+          path = "src/dashboard/development_timeline.py"
+          text = read(path)
+          old_status = '''def _stage_status(
+              implementation: float, verification: float, criteria: list[Criterion]
+          ) -> str:
+              if implementation >= 0.8 and verification >= 0.5:
+                  return "reached"
+              if any(item["status"] == "experimental" for item in criteria):
+                  return "active"
+              if any(item["status"] == "implemented" for item in criteria):
+                  return "implemented"
+              return "planned"
+          '''
+          new_status = '''def _stage_status(
+              implementation: float, verification: float, criteria: list[Criterion]
+          ) -> str:
+              if implementation >= 0.8 and verification >= 0.5:
+                  return "reached"
+              if any(item["status"] in {"experimental", "verified"} for item in criteria):
+                  return "active"
+              if any(item["status"] == "implemented" for item in criteria):
+                  return "implemented"
+              return "planned"
+          '''
+          text = replace_once(text, old_status, new_status, "partial verified stage status")
+
+          stage6 = '''        StageSpec(
+              6,
+              "memory_world_model",
+              "Gedächtnis und Weltmodell",
+              "Weltmodell",
+              (
+                  "Episodisches und semantisches Gedächtnis",
+                  "zeitliche Modelle",
+                  "Vorhersage und Prediction Error",
+              ),
+              {"neurons": "10^7-10^8", "synapses": "10^9-10^10"},
+              (
+                  CriterionSpec(
+                      "temporal_memory",
+                      "Temporal state memory",
+                      paths=("src/research/temporal.py",),
+                      tests=("tests/test_temporal.py",),
+                  ),
+                  CriterionSpec(
+                      "episodic_memory",
+                      "Bounded working and episodic memory foundation",
+                      paths=("src/memory/store.py", "src/memory/layer.py"),
+                      tests=("tests/test_memory_layer.py", "tests/test_experience_engine.py"),
+                  ),
+                  CriterionSpec("semantic_memory", "Semantic memory", planned=True),
+                  CriterionSpec(
+                      "world_model_prediction",
+                      "Observation-only one-step world-model prediction foundation",
+                      paths=(
+                          "src/memory/world_model.py",
+                          "src/experience/composition.py",
+                          "src/research/cognition_experiments.py",
+                      ),
+                      tests=(
+                          "tests/test_memory_layer.py",
+                          "tests/test_cognition_operational_experiments.py",
+                      ),
+                  ),
+              ),
+              (
+                  "src/research/temporal.py",
+                  "src/memory",
+                  "src/experience/composition.py",
+                  "src/research/cognition_experiments.py",
+              ),
+              (
+                  "tests/test_temporal.py",
+                  "tests/test_memory_layer.py",
+                  "tests/test_cognition_operational_experiments.py",
+                  "tests/test_experience_engine.py",
+              ),
+              (
+                  "research/experiments/EXP-EMP-20260910/016-memory_delayed_information_v1",
+                  "research/experiments/EXP-EMP-20260910/017-world_model_prediction_v1",
+              ),
+              ("RQ-MEM-002", "RQ-WM-001"),
+              (
+                  "Bounded working/episodic memory is not semantic memory.",
+                  "The current predictor is an observation-only one-step transition model, not a complete multi-step world model.",
+                  "The registered cognition campaign is an exploratory component screen with snn_involved=false and is not accepted EVID.",
+                  "Coupled cognition state is not yet part of the canonical runtime checkpoint boundary and pause/resume identity is unproven.",
+              ),
+              (
+                  "Couple cognition state to the canonical snapshot/checkpoint boundary and prove pause/resume identity.",
+                  "Semantic memory remains unimplemented.",
+                  "Confirmatory SNN-involved memory/world-model evidence remains open.",
+              ),
+              (
+                  "Integrate coupled cognition persistence with runtime checkpoints.",
+                  "Add a provenance-bound semantic-memory and recall contract.",
+                  "Run confirmatory held-out SNN-involved controls with human evidence review.",
+              ),
+          ),'''
+
+          stage7 = '''        StageSpec(
+              7,
+              "self_model_embodied_identity",
+              "Selbstmodell und verkörperte Identität",
+              "Selbstmodell",
+              (
+                  "Eigenzustand und Umwelt unterscheiden",
+                  "Handlungsursachen und eigene Sensorik/Aktorik modellieren",
+                  "dauerhafter interner Zustand",
+              ),
+              {"neurons": "10^7-10^8+", "synapses": "not specified"},
+              (
+                  CriterionSpec(
+                      "versioned_technical_identity",
+                      "Versioned technical identity and snapshot binding",
+                      paths=("src/profiles/service.py",),
+                      tests=("tests/test_profiles.py",),
+                  ),
+                  CriterionSpec(
+                      "operational_behavior_state",
+                      "Persistent operational behavior-state foundation",
+                      paths=(
+                          "src/profiles/behavior.py",
+                          "src/experience/composition.py",
+                          "src/research/cognition_experiments.py",
+                      ),
+                      tests=(
+                          "tests/test_memory_layer.py",
+                          "tests/test_cognition_operational_experiments.py",
+                      ),
+                  ),
+                  CriterionSpec(
+                      "self_model_backend", "Persistent self-model state", planned=True
+                  ),
+                  CriterionSpec(
+                      "causal_action_attribution",
+                      "Causal action attribution",
+                      planned=True,
+                  ),
+                  CriterionSpec(
+                      "sensor_actuator_confidence",
+                      "Sensor and actuator inventory/confidence inputs",
+                      paths=("src/embodiment/models.py", "src/embodiment/connections.py"),
+                  ),
+                  CriterionSpec(
+                      "self_model_restore", "Self-model restore identity", planned=True
+                  ),
+              ),
+              (
+                  "src/profiles/service.py",
+                  "src/profiles/behavior.py",
+                  "src/experience/composition.py",
+                  "src/embodiment/models.py",
+                  "src/embodiment/connections.py",
+              ),
+              (
+                  "tests/test_profiles.py",
+                  "tests/test_memory_layer.py",
+                  "tests/test_cognition_operational_experiments.py",
+              ),
+              (
+                  "research/experiments/EXP-EMP-20260910/018-behavior_profile_control_v1",
+              ),
+              ("RQ-PROFILE-001", "RQ6", "RQ7"),
+              (
+                  "Versioned Wesen identity and an operational behavior profile are technical foundations, not a self-model.",
+                  "Causal self/other attribution and canonical coupled-state restore identity are not implemented.",
+                  "No consciousness inference is permitted from identity, profile or behavior-state persistence.",
+              ),
+              (
+                  "Connect Profile + State loading to the canonical runtime restore hook.",
+                  "Implement observer-only causal action attribution before recursive feedback.",
+                  "Keep autonomous identity mutation locked until bounded mutation, journal and rollback gates exist.",
+              ),
+              (
+                  "Prove coupled profile/state restore and pause/resume identity.",
+                  "Add controlled self-versus-external action-attribution experiments.",
+              ),
+          ),'''
+
+          stage8 = '''        StageSpec(
+              8,
+              "autonomous_lifelong_development",
+              "Autonome lebenslange Entwicklung",
+              "Autonome Entwicklung",
+              (
+                  "Continual Learning",
+                  "autonome Reorganisation",
+                  "wiederverwendbare Kompetenzen und angepasste Lernstrategien",
+              ),
+              {"neurons": "10^8-10^9", "synapses": "10^10-10^11"},
+              (
+                  CriterionSpec("continual_learning", "Continual learning", planned=True),
+                  CriterionSpec(
+                      "autonomous_reorganization",
+                      "Autonomous reorganization",
+                      planned=True,
+                  ),
+                  CriterionSpec(
+                      "strategy_adaptation", "Learning-strategy adaptation", planned=True
+                  ),
+              ),
+              ("src/dashboard/static/development-frontier-placeholders.json",),
+              ("tests/test_development_frontier_contract.py",),
+              (
+                  "research/experiments/EXP-LIFE-0001-R1",
+                  "research/experiments/STAGES_8_10_EXPERIMENT_BACKLOG.md",
+                  "research/frontiers/STAGES_8_10_FOUNDATIONS.md",
+              ),
+              (
+                  "RQ-LIFE-001",
+                  "RQ-GEN-001",
+                  "RQ-STRUCT-001",
+                  "RQ-HOM-002",
+                  "RQ-REPL-001",
+              ),
+              (
+                  "The merged Stage-8 material is a theory/design/experiment-planning foundation and deliberately does not raise implementation maturity.",
+                  "EXP-LIFE-0001-R1 is an exploratory interference precursor, not evidence of autonomous lifelong learning.",
+                  "Autonomy remains a governed future research programme with rollback and resource boundaries.",
+              ),
+              ("E8-A through E8-G remain planned research work.",),
+              (
+                  "Run a continuously trained shared-network sequential-retention study without resetting learned state between tasks.",
+                  "Require rollback, resource-matched controls and independent replication before stronger claims.",
+              ),
+          ),'''
+
+          stage9 = '''        StageSpec(
+              9,
+              "integrated_artificial_cognition",
+              "Hochintegrierte künstliche Kognition",
+              "Integrierte Kognition",
+              (
+                  "Aufmerksamkeit, Motivation und Planung",
+                  "langfristige Erinnerung",
+                  "integrierte multimodale Verarbeitung und Konsolidierung",
+              ),
+              {"neurons": "10^8-10^9+", "synapses": "not specified"},
+              (
+                  CriterionSpec(
+                      "attention_and_planning", "Attention and planning", planned=True
+                  ),
+                  CriterionSpec(
+                      "integrated_multimodal_processing",
+                      "Integrated multimodal processing",
+                      planned=True,
+                  ),
+                  CriterionSpec(
+                      "consolidation", "Sleep or consolidation phases", planned=True
+                  ),
+              ),
+              ("src/dashboard/static/development-frontier-placeholders.json",),
+              ("tests/test_development_frontier_contract.py",),
+              (
+                  "research/experiments/STAGES_8_10_EXPERIMENT_BACKLOG.md",
+                  "research/frontiers/STAGES_8_10_FOUNDATIONS.md",
+              ),
+              (
+                  "RQ-CNS-103",
+                  "RQ-CNS-105",
+                  "RQ-CNS-110",
+                  "RQ-CNS-111",
+                  "RQ-CNS-112",
+                  "RQ-CNS-116",
+                  "RQ-MEM-002",
+                  "RQ-WM-001",
+              ),
+              (
+                  "The merged Stage-9 material is a research architecture and placeholder contract, not an observed integrated cognitive capability.",
+                  "Attention, motivation and planning remain operational engineering constructs rather than subjective-state claims.",
+              ),
+              ("E9-A through E9-G remain planned research work.",),
+              (
+                  "Implement and ablate bounded attention, planning, multimodal integration and consolidation under matched resource budgets.",
+                  "Require independent replication for each claimed functional capability.",
+              ),
+          ),'''
+
+          stage10 = '''        StageSpec(
+              10,
+              "consciousness_research",
+              "Bewusstseinsforschung",
+              "Forschungsfrontier",
+              (
+                  "Ausschließlich Forschungsstufe",
+                  "operationale Kriterien, Interventionen und Reproduzierbarkeit",
+                  "Ethik- und Abbruchkriterien",
+              ),
+              {
+                  "neurons": "biological reference: ~86 billion",
+                  "synapses": "biological reference: ~10^14-10^15",
+              },
+              (
+                  CriterionSpec(
+                      "operational_criteria",
+                      "Predefined operational criteria",
+                      planned=True,
+                  ),
+                  CriterionSpec(
+                      "independent_replication", "Independent replication", planned=True
+                  ),
+                  CriterionSpec(
+                      "ethics_and_stop_criteria", "Ethics and stop criteria", planned=True
+                  ),
+              ),
+              (
+                  "src/dashboard/static/development-frontier-placeholders.json",
+                  "src/research/cognition_governance.py",
+              ),
+              ("tests/test_development_frontier_contract.py",),
+              (
+                  "research/experiments/STAGES_8_10_EXPERIMENT_BACKLOG.md",
+                  "research/frontiers/STAGES_8_10_FOUNDATIONS.md",
+                  "research/protocols/COGNITION_CONSCIOUSNESS.md",
+                  "research/ethics/AI_WELFARE_POLICY.md",
+              ),
+              (
+                  "RQ-CNS-101",
+                  "RQ-CNS-108",
+                  "RQ-CNS-109",
+                  "RQ-CNS-113",
+                  "RQ-CNS-114",
+                  "RQ-EPI-101",
+                  "RQ-EPI-102",
+                  "RQ-WEL-101",
+                  "RQ-WEL-102",
+                  "RQ-WEL-103",
+              ),
+              (
+                  "Stage 10 remains a research-quality frontier and never produces an automatic consciousness, sentience or moral-status claim.",
+                  "Theory, literature, ethics and experiment designs do not count as implementation or evidence for consciousness.",
+              ),
+              ("E10-A through E10-H remain planned research/governance work.",),
+              (
+                  "Preregister contrasting operational predictions and causal interventions.",
+                  "Require ethics/stop governance and independent adversarial replication before interpretation.",
+              ),
+          ),'''
+
+          text = replace_stage(text, 6, 7, stage6)
+          text = replace_stage(text, 7, 8, stage7)
+          text = replace_stage(text, 8, 9, stage8)
+          text = replace_stage(text, 9, 10, stage9)
+          text = replace_stage(text, 10, None, stage10)
+
+          stage4_old = '("tests/test_msba.py", "tests/test_signal_processing.py"),'
+          stage4_new = '''(
+                  "tests/test_msba.py",
+                  "tests/test_signal_processing.py",
+                  "tests/test_gateway_runtime.py",
+                  "tests/test_msba_experiment_runner.py",
+              ),'''
+          text = replace_once(text, stage4_old, stage4_new, "Stage 4 test inventory")
+
+          source_anchor = '''        {
+              "path": "docs/08-roadmap/TODO.md",
+              "available": (repo_root / "docs/08-roadmap/TODO.md").is_file(),
+              "kind": "context_only",
+          },'''
+          source_insert = '''        {
+              "path": "src/dashboard/static/development-frontier-placeholders.json",
+              "available": (repo_root / "src/dashboard/static/development-frontier-placeholders.json").is_file(),
+              "kind": "planned_frontier_contract",
+          },
+          {
+              "path": "research/frontiers/STAGES_8_10_FOUNDATIONS.md",
+              "available": (repo_root / "research/frontiers/STAGES_8_10_FOUNDATIONS.md").is_file(),
+              "kind": "context_only",
+          },
+          {
+              "path": "research/experiments/STAGES_8_10_EXPERIMENT_BACKLOG.md",
+              "available": (repo_root / "research/experiments/STAGES_8_10_EXPERIMENT_BACKLOG.md").is_file(),
+              "kind": "context_only",
+          },
+          ''' + source_anchor
+          text = replace_once(text, source_anchor, source_insert, "frontier timeline sources")
+          write(path, text)
+
+          # TODO: distinguish executed exploratory component controls from the still-open
+          # checkpoint/File-Viewer work.
+          path = "docs/08-roadmap/TODO.md"
+          text = read(path)
+          old = '''- [ ] Connect coupled cognition state to the canonical runtime snapshot/
+          \tcheckpoint boundary and prove pause/resume equivalence.
+          - [ ] Add registered delayed-information control runs and dashboard/File Viewer
+          \tinspection; engineering implementation is not scientific evidence.
+          '''
+          new = '''- [ ] Connect coupled cognition state to the canonical runtime snapshot/
+          \tcheckpoint boundary.
+          - [ ] Prove deterministic pause/resume equivalence for the complete coupled
+          \tcognition state.
+          - [x] Execute the registered exploratory component controls for delayed
+          \tinformation (`016-memory_delayed_information_v1`) and one-step world-model
+          \tprediction (`017-world_model_prediction_v1`); these runs remain DATA, not
+          \tautomatic EVID, and explicitly do not establish SNN-level cognition.
+          - [ ] Add explicit File Viewer drill-down for the existing cognition campaign,
+          \tincluding bounded inspection of compressed raw-run data.
+          '''
+          text = replace_once(text, old, new, "cognition TODO split")
+          marker = "## 2026-09-12 Scientific metrics workbench\n"
+          section = '''## 2026-09-13 Alpha.2 timeline and frontier reconciliation
+
+          - [x] Keep the canonical development version at `0.6.0a2` / `0.6.0-alpha.2`
+            and derive active profile runtime defaults from `src.version` rather than a
+            stale `0.6.0a1` literal.
+          - [x] Reconcile Stage 6 with the implemented bounded working/episodic memory,
+            observation-only one-step transition model and executed exploratory control
+            campaign; semantic memory and canonical coupled-state restore remain open.
+          - [x] Reconcile Stage 7 with versioned Wesen identity, snapshot binding and the
+            operational Behavior Profile while keeping causal self-attribution and a
+            genuine self-model explicitly unimplemented.
+          - [x] Bind Stages 8-10 to their merged theory, literature, experiment backlog
+            and frontend placeholder contracts without raising their `planned`/0 %
+            implementation maturity.
+          - [x] Keep historical experiment manifests immutable; recorded `0.6.0a1`
+            provenance is not rewritten after the Alpha.2 version advance.
+
+          '''
+          text = replace_once(text, marker, section + marker, "alpha2 TODO reconciliation section")
+          text = replace_once(
+              text,
+              "**Engineering implementation TODO:** none.  \n",
+              "**Release-blocking engineering implementation TODO:** none.  \n**Non-blocking integration TODO:** coupled cognition checkpoint binding, complete-state pause/resume identity, and explicit cognition-campaign File Viewer drill-down.  \n",
+              "TODO current status",
+          )
+          write(path, text)
+
+          # ROADMAP: record what is genuinely implemented/executed and the planned frontier.
+          path = "docs/08-roadmap/ROADMAP.md"
+          text = read(path)
+          marker = "## 2026-09-12 Scientific metrics workbench\n"
+          section = '''## 2026-09-13 Stage 6/7 reconciliation and Stages 8-10 frontier foundation
+
+          - Reconciled Stage 6 with the existing bounded working/episodic `MemoryStore`,
+            observation-only `TransitionWorldModel`, ExperienceEngine composition and the
+            registered exploratory 2026-09-10 cognition campaign. The delayed-information
+            and one-step prediction controls were executed, but semantic memory,
+            canonical coupled-state checkpointing and SNN-level confirmatory evidence
+            remain open.
+          - Reconciled Stage 7 with versioned technical Wesen identity, digest/revision/
+            lineage, snapshot binding and the persistent operational Behavior Profile.
+            These are foundations only: causal self/other attribution and a genuine
+            operational self-model remain unimplemented.
+          - Added the merged Stage 8-10 research foundation, experiment backlog,
+            literature provenance and frontend placeholder contract to the roadmap.
+            Their maturity intentionally remains `planned`/0 %; planning material does
+            not count as implementation or EVID.
+          - Kept `mhrn-core 0.6.0a2` as the current development version. Historical
+            experiment manifests retain the version recorded when they actually ran.
+
+          '''
+          text = replace_once(text, marker, section + marker, "roadmap reconciliation section")
+          old = '''- Open: coupled runtime snapshot boundary, delayed-cue controls, frozen-model
+          \tand no-memory comparisons, held-out episodes and independent replication.
+          '''
+          new = '''- Executed exploratory component controls now include delayed-cue memory
+          \tread/write/time-shuffle conditions and adaptive/frozen/persistence/no-model
+          \tone-step prediction conditions. These are DATA-level component screens, not
+          \tSNN-level cognition evidence.
+          - Open: coupled runtime snapshot/checkpoint boundary, full-state pause/resume
+          \tidentity, explicit File Viewer raw-run drill-down, semantic memory, SNN-level
+          \theld-out confirmatory studies, human review and independent replication.
+          '''
+          text = replace_once(text, old, new, "roadmap memory open items")
+          write(path, text)
+
+          # Canonical research roadmap follows the current engineering baseline.
+          path = "docs/08-roadmap/RESEARCH_ROADMAP.md"
+          text = read(path)
+          text = replace_once(text, "**Updated:** 2026-09-04", "**Updated:** 2026-09-13", "research roadmap date")
+          text = replace_once(text, "**Engineering baseline:** `mhrn-core 0.6.0a1`", "**Engineering baseline:** `mhrn-core 0.6.0a2`", "research roadmap version")
+          anchor = "- a dashboard that exposes research state without treating presentation as evidence.\n"
+          addition = '''- bounded working/episodic memory and observation-only one-step transition prediction with registered exploratory component controls;
+          - versioned technical Wesen identity, operational Behavior Profile state and an experiment-only governed Neural Symbiosis Gateway lifecycle;
+          - theory, literature, experiment-planning and frontend-placeholder foundations for Stages 8-10 that remain explicitly `planned` and do not raise capability maturity.
+          '''
+          text = replace_once(text, anchor, anchor + addition, "research readiness additions")
+          write(path, text)
+
+          # Release projection remains Alpha.2. Scope reflects the already merged frontier
+          # planning bundle; open count remains four but the delayed-info work is no longer
+          # falsely described as unexecuted.
+          path = Path("releases/current.json")
+          current = json.loads(path.read_text(encoding="utf-8"))
+          assert current["pep440"] == "0.6.0a2"
+          assert current["version"] == "0.6.0-alpha.2"
+          frontier_scope = "planned research foundations, experiment backlog, literature provenance and frontend placeholder contracts for stages 8-10 without maturity promotion"
+          if frontier_scope not in current["scope"]:
+              current["scope"].append(frontier_scope)
+          completed = [
+              "registered exploratory delayed-information and one-step world-model component controls executed with immutable campaign artifacts",
+              "Stages 8-10 research foundation, experiment backlog, frontier literature and planned-only frontend placeholder contract integrated",
+          ]
+          for item in completed:
+              if item not in current["completed"]:
+                  current["completed"].append(item)
+          old_open = "add registered delayed-information control runs and File Viewer inspection"
+          new_open = "add explicit File Viewer drill-down for the existing registered cognition campaign artifacts, including bounded inspection of compressed raw-run data"
+          current["open"] = [new_open if item == old_open else item for item in current["open"]]
+          assert len(current["open"]) == 4
+          assert len(current["scope"]) == 9
+          current["research_boundary"] = (
+              "Stage-2/3 engineering completion, Stage-6/7 component foundations, frontier planning and a green engineering gate do not constitute scientific evidence; controlled SNN-involved experiments, held-out evaluation, review and replication remain open."
+          )
+          current["note"] = (
+              "Stand 2026-09-13: v0.6.0a2 closes the scoped Stage-2 recurrent-SNN boundary, reaches the Stage-3 plastic-neural-tissue engineering contract, records implemented Stage-6/7 foundations, and integrates research-only foundations for Stages 8-10. Target-scale benchmarks, coupled cognition checkpoint identity and scientific evidence closure remain open."
+          )
+          path.write_text(json.dumps(current, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+
+          # Tests: pin version source and maturity boundaries.
+          path = "tests/test_profiles.py"
+          text = read(path)
+          text = replace_once(text, "import pytest\n\nfrom src.profiles import (", "import pytest\n\nfrom src.version import MHRN_VERSION\nfrom src.profiles import (", "profile test version import")
+          anchor = '''    profile = service.create(name="Wesen Alpha")
+              assert profile["profile_id"] == "WESEN-0001"
+          '''
+          replacement = '''    profile = service.create(name="Wesen Alpha")
+              assert MHRN_VERSION == "0.6.0a2"
+              assert service.runtime_version == MHRN_VERSION
+              assert profile["runtime"]["runtime_version"] == MHRN_VERSION
+              assert profile["provenance"]["runtime_version"] == MHRN_VERSION
+              assert profile["profile_id"] == "WESEN-0001"
+          '''
+          text = replace_once(text, anchor, replacement, "profile alpha2 assertions")
+          write(path, text)
+
+          path = "tests/test_development_timeline.py"
+          text = read(path)
+          text = replace_once(text, "(False, 5, 6, 5.19)", "(False, 5, 6, 5.75)", "fresh timeline score")
+          anchor = '''def test_runtime_override_and_snapshot_fallback_are_distinct() -> None:
+          '''
+          addition = '''def test_memory_identity_foundations_are_counted_without_overclaiming() -> None:
+              with patch(
+                  "src.dashboard.development_timeline.evaluate_test_baseline",
+                  return_value=_baseline(stale=True),
+              ):
+                  payload = build_development_timeline(ROOT)
+
+              stage_six = next(stage for stage in payload["stages"] if stage["stage"] == 6)
+              assert stage_six["implementation_score"] == 0.562
+              assert stage_six["status"] == "active"
+              assert next(
+                  item for item in stage_six["criteria"] if item["id"] == "semantic_memory"
+              )["status"] == "planned"
+              assert "RQ-MEM-002" in stage_six["relevant_research_questions"]
+              assert "RQ-WM-001" in stage_six["relevant_research_questions"]
+
+              stage_seven = next(stage for stage in payload["stages"] if stage["stage"] == 7)
+              assert stage_seven["implementation_score"] == 0.417
+              assert stage_seven["status"] == "active"
+              assert next(
+                  item for item in stage_seven["criteria"] if item["id"] == "self_model_backend"
+              )["status"] == "planned"
+              assert next(
+                  item for item in stage_seven["criteria"] if item["id"] == "causal_action_attribution"
+              )["status"] == "planned"
+
+
+          def test_partial_verified_stage_is_active_not_planned() -> None:
+              with patch(
+                  "src.dashboard.development_timeline.evaluate_test_baseline",
+                  return_value=_baseline(stale=False),
+              ):
+                  payload = build_development_timeline(ROOT)
+              stage_six = next(stage for stage in payload["stages"] if stage["stage"] == 6)
+              assert stage_six["implementation_score"] == 0.75
+              assert stage_six["verification_score"] == 0.75
+              assert stage_six["status"] == "active"
+
+
+          '''
+          text = replace_once(text, anchor, addition + anchor, "timeline foundation tests")
+          write(path, text)
+
+          path = "tests/test_release_registry.py"
+          text = read(path)
+          anchor = '''    assert current["open"]
+              assert "scientific evidence" in current["research_boundary"]
+          '''
+          replacement = '''    assert len(current["open"]) == 4
+              assert len(current["scope"]) == 9
+              assert any("stages 8-10" in item for item in current["scope"])
+              assert any("File Viewer drill-down" in item for item in current["open"])
+              assert not any("add registered delayed-information control runs" in item for item in current["open"])
+              assert "scientific evidence" in current["research_boundary"]
+          '''
+          text = replace_once(text, anchor, replacement, "release scope/open assertions")
+          write(path, text)
+
+          frontier_test = '''from __future__ import annotations
+
+          import json
+          from pathlib import Path
+          from unittest.mock import patch
+
+          from src.dashboard.development_timeline import build_development_timeline
+          from src.dashboard.verification import BaselineEvaluation
+
+          ROOT = Path(__file__).resolve().parents[1]
+
+
+          def _baseline() -> BaselineEvaluation:
+              return BaselineEvaluation(
+                  available=True,
+                  stale=False,
+                  passed=1,
+                  failed=0,
+                  skipped=0,
+                  collection_errors=0,
+                  tested_commit=None,
+                  current_commit=None,
+                  tested_tree_digest=None,
+                  current_tree_digest=None,
+              )
+
+
+          def test_frontier_contract_is_research_only_and_references_real_files() -> None:
+              contract_path = ROOT / "src/dashboard/static/development-frontier-placeholders.json"
+              contract = json.loads(contract_path.read_text(encoding="utf-8"))
+              assert contract["status"] == "PLANNED_RESEARCH_ONLY"
+              assert set(contract["stages"]) == {"8", "9", "10"}
+              for stage in contract["stages"].values():
+                  assert (ROOT / stage["research_document"]).is_file()
+                  assert (ROOT / stage["experiment_backlog"]).is_file()
+
+
+          def test_frontier_foundations_do_not_raise_timeline_maturity() -> None:
+              with patch(
+                  "src.dashboard.development_timeline.evaluate_test_baseline",
+                  return_value=_baseline(),
+              ):
+                  timeline = build_development_timeline(ROOT)
+              for number in (8, 9, 10):
+                  stage = next(item for item in timeline["stages"] if item["stage"] == number)
+                  assert stage["implementation_score"] == 0.0
+                  assert stage["status"] == "planned"
+                  assert all(item["status"] == "planned" for item in stage["criteria"])
+          '''
+          # Dedent the embedded source from this workflow script.
+          import textwrap
+          write("tests/test_development_frontier_contract.py", textwrap.dedent(frontier_test))
+          PY
+
+      - name: Install development dependencies
+        run: python -m pip install -e ".[dev]"
+
+      - name: Format changed Python files
+        run: |
+          python -m black src/dashboard/development_timeline.py src/profiles/service.py tests/test_development_timeline.py tests/test_development_frontier_contract.py tests/test_profiles.py tests/test_release_registry.py
+
+      - name: Static checks
+        run: |
+          python -m ruff check src/dashboard/development_timeline.py src/profiles/service.py tests/test_development_timeline.py tests/test_development_frontier_contract.py tests/test_profiles.py tests/test_release_registry.py
+          python -m black --check src/dashboard/development_timeline.py src/profiles/service.py tests/test_development_timeline.py tests/test_development_frontier_contract.py tests/test_profiles.py tests/test_release_registry.py
+
+      - name: Targeted reconciliation tests
+        run: |
+          python -m pytest -q \
+            tests/test_development_timeline.py \
+            tests/test_development_frontier_contract.py \
+            tests/test_profiles.py \
+            tests/test_release_registry.py \
+            tests/test_memory_layer.py \
+            tests/test_cognition_operational_experiments.py \
+            tests/test_msba.py \
+            tests/test_gateway_runtime.py \
+            tests/test_msba_experiment_runner.py
+
+      - name: Show derived maturity
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from unittest.mock import patch
+          from src.dashboard.development_timeline import build_development_timeline
+          from src.dashboard.verification import BaselineEvaluation
+
+          def baseline(stale: bool):
+              return BaselineEvaluation(True, stale, 1, 0, 0, 0, None, None, None, None)
+
+          for stale in (True, False):
+              with patch("src.dashboard.development_timeline.evaluate_test_baseline", return_value=baseline(stale)):
+                  data = build_development_timeline(Path.cwd())
+              print("baseline_stale=", stale, "current_stage=", data["current_stage"])
+              for stage in data["stages"]:
+                  print(stage["stage"], stage["implementation_score"], stage["verification_score"], stage["status"])
+          PY
+
+      - name: Commit reconciled repository state and remove one-shot workflow
+        shell: bash
+        run: |
+          rm .github/workflows/one-shot-alpha2-timeline-reconciliation.yml
+          git config user.name "MHRN timeline reconciliation"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --check
+          git commit -m "docs: reconcile alpha2 development maturity"
+          git push origin HEAD:audit/timeline-alpha2-reconciliation
