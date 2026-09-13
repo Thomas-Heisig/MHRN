@@ -13,7 +13,10 @@ def _read(path: str) -> str:
 
 def test_scientific_frontend_initializes_cell_model_module() -> None:
     frontend = _read("frontend/index.js")
-    assert 'import { initNeuronModelScience } from "./modules/neuron-model-science.js";' in frontend
+    assert (
+        'import { initNeuronModelScience } from "./modules/neuron-model-science.js";'
+        in frontend
+    )
     assert "initNeuronModelScience();" in frontend
 
 
@@ -37,7 +40,9 @@ def test_cell_model_workbench_is_independent_of_legacy_parameter_inspector() -> 
     assert "parameter-inspector-card" not in module
 
 
-def test_cell_model_workbench_exposes_supported_treatments_and_shared_controls() -> None:
+def test_cell_model_workbench_exposes_supported_treatments_and_shared_controls() -> (
+    None
+):
     module = _read("frontend/modules/neuron-model-science.js")
     for token in (
         '"izhikevich-2003"',

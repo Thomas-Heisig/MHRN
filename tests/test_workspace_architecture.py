@@ -5,7 +5,16 @@ STATIC = Path("src/dashboard/static")
 
 def test_eight_first_class_workspaces_and_parameter_ownership() -> None:
     router = (STATIC / "frontend" / "workspace-router.js").read_text(encoding="utf-8")
-    for area in ("dashboard", "science", "wesen", "control", "release", "settings", "review", "files"):
+    for area in (
+        "dashboard",
+        "science",
+        "wesen",
+        "control",
+        "release",
+        "settings",
+        "review",
+        "files",
+    ):
         assert f"  {area}: {{" in router
     assert 'number: "08"' in router
     assert '["parameters", "Parameter", "settings"]' in router
@@ -20,8 +29,12 @@ def test_every_main_area_has_overview_howto_and_backend_contracts() -> None:
     assert "howto:" in router
     assert "contracts:" in router
     for endpoint in (
-        "/api/status", "/api/science/metrics", "/api/embodiment/state",
-        "/api/control", "/api/gate/status", "/api/research/chat/settings",
+        "/api/status",
+        "/api/science/metrics",
+        "/api/embodiment/state",
+        "/api/control",
+        "/api/gate/status",
+        "/api/research/chat/settings",
         "/api/research/reviews",
     ):
         assert endpoint in router
@@ -29,10 +42,12 @@ def test_every_main_area_has_overview_howto_and_backend_contracts() -> None:
 
 def test_review_and_airr_frontend_match_backend_contracts() -> None:
     router = (STATIC / "frontend" / "workspace-router.js").read_text(encoding="utf-8")
-    tools = (STATIC / "frontend" / "modules" / "ai-report-tools.js").read_text(encoding="utf-8")
+    tools = (STATIC / "frontend" / "modules" / "ai-report-tools.js").read_text(
+        encoding="utf-8"
+    )
     assert "/api/research/reviews" in router
     assert "/api/research/external-review" in router
-    assert '{ experiment_id: experimentId }' in tools
+    assert "{ experiment_id: experimentId }" in tools
     assert "experiment_ref" not in tools
     assert "review_status: reviewStatus" in tools
     assert "encodeURIComponent(experimentId)" in tools
@@ -40,7 +55,9 @@ def test_review_and_airr_frontend_match_backend_contracts() -> None:
 
 
 def test_learning_preparation_matches_guarded_nonexecuting_schema() -> None:
-    source = (STATIC / "frontend" / "modules" / "learning-prep.js").read_text(encoding="utf-8")
+    source = (STATIC / "frontend" / "modules" / "learning-prep.js").read_text(
+        encoding="utf-8"
+    )
     assert 'action: "create"' in source
     assert 'action: "approve"' in source
     assert "objective_id" in source
@@ -51,8 +68,12 @@ def test_learning_preparation_matches_guarded_nonexecuting_schema() -> None:
 
 
 def test_canonical_file_viewer_owns_docs_and_research_rendering() -> None:
-    docs = (STATIC / "frontend" / "modules" / "docs-browser.js").read_text(encoding="utf-8")
-    research = (STATIC / "frontend" / "modules" / "research-docs.js").read_text(encoding="utf-8")
+    docs = (STATIC / "frontend" / "modules" / "docs-browser.js").read_text(
+        encoding="utf-8"
+    )
+    research = (STATIC / "frontend" / "modules" / "research-docs.js").read_text(
+        encoding="utf-8"
+    )
     assert "brain5d:open-file" in docs
     assert "brain5d:open-file" in research
     assert "/api/docs-files/" not in docs
@@ -62,7 +83,13 @@ def test_canonical_file_viewer_owns_docs_and_research_rendering() -> None:
 
 def test_panels_have_minimize_standard_maximize_fullscreen_and_info() -> None:
     source = (STATIC / "box-state-controller.js").read_text(encoding="utf-8")
-    for label in ("Minimieren", "Standardgröße", "Maximieren", "Vollbild", "Information"):
+    for label in (
+        "Minimieren",
+        "Standardgröße",
+        "Maximieren",
+        "Vollbild",
+        "Information",
+    ):
         assert label in source
     assert "requestFullscreen" in source
     assert "box-info-popover" in source
@@ -71,7 +98,7 @@ def test_panels_have_minimize_standard_maximize_fullscreen_and_info() -> None:
 
 def test_workspace_and_review_css_are_loaded() -> None:
     index = (STATIC / "frontend" / "styles" / "index.css").read_text(encoding="utf-8")
-    assert 'workspace-architecture.css' in index
+    assert "workspace-architecture.css" in index
     review_css = STATIC / "review" / "review.css"
     assert review_css.is_file()
     assert "#f4efe6" in review_css.read_text(encoding="utf-8")
@@ -101,9 +128,21 @@ def test_router_has_reconcileRouteVisibility() -> None:
 def test_router_handles_all_route_actions() -> None:
     """Every route action type must have a handler in showRouteContent."""
     router = (STATIC / "frontend" / "workspace-router.js").read_text(encoding="utf-8")
-    actions = {"research", "overview", "embodiment", "view", "focus", "focusOnly", "generated", "release"}
+    actions = {
+        "research",
+        "overview",
+        "embodiment",
+        "view",
+        "focus",
+        "focusOnly",
+        "generated",
+        "release",
+    }
     for action in actions:
-        assert f'action === "{action}"' in router or f'if (action === "{action}")' in router
+        assert (
+            f'action === "{action}"' in router
+            or f'if (action === "{action}")' in router
+        )
 
 
 def test_every_route_has_valid_workspace() -> None:
@@ -119,9 +158,9 @@ def test_every_route_has_valid_workspace() -> None:
 
     for match in __import__("re").finditer(r'\["(\w+)",\s*"[^"]+",\s*"(\w+)"', router):
         route_id, workspace = match.group(1), match.group(2)
-        assert workspace in workspaces_in_html, (
-            f'Route "{route_id}" uses workspace "{workspace}" which has no matching tab'
-        )
+        assert (
+            workspace in workspaces_in_html
+        ), f'Route "{route_id}" uses workspace "{workspace}" which has no matching tab'
 
 
 def test_no_legacy_frontend_architecture_imported() -> None:
@@ -132,14 +171,16 @@ def test_no_legacy_frontend_architecture_imported() -> None:
 
 def test_css_has_robust_hide_rules() -> None:
     """CSS must have !important hide rules for all route-hidden states."""
-    css = (STATIC / "frontend" / "styles" / "workspace-architecture.css").read_text(encoding="utf-8")
+    css = (STATIC / "frontend" / "styles" / "workspace-architecture.css").read_text(
+        encoding="utf-8"
+    )
     assert "[hidden]" in css
     assert ".mhrn-route-hidden" in css
     assert ".mhrn-routed-local-tabs" in css
     assert ".mhrn-overview-content-hidden" in css
     assert ".mhrn-route-focus-hidden" in css
     assert "display: none !important" in css
-    assert "[aria-hidden=\"true\"]" in css
+    assert '[aria-hidden="true"]' in css
 
 
 def test_mutation_observer_calls_reconciliation() -> None:
@@ -172,7 +213,9 @@ def test_all_science_routes_have_unique_ownership() -> None:
     """Each science sub-route must map to a distinct workspace/action combination."""
     router = (STATIC / "frontend" / "workspace-router.js").read_text(encoding="utf-8")
     # Parse science routes
-    science_section = router.split("science: {")[1].split("},")[0] if "science: {" in router else ""
+    science_section = (
+        router.split("science: {")[1].split("},")[0] if "science: {" in router else ""
+    )
     assert science_section, "science section not found"
     # Verify observatory uses focus (not just scroll)
     assert '"observatory", "Observatory", "research", "focus"' in router
@@ -211,7 +254,10 @@ def test_review_routes_use_generated_workspace() -> None:
 def test_settings_routes_use_generated_workspace() -> None:
     """Settings routes must use the 'appsettings' generated workspace."""
     router = (STATIC / "frontend" / "workspace-router.js").read_text(encoding="utf-8")
-    assert '["appearance", "Oberfläche", "appsettings", "generated", "appearance"]' in router
+    assert (
+        '["appearance", "Oberfläche", "appsettings", "generated", "appearance"]'
+        in router
+    )
     assert '["ai", "AI & Chat", "appsettings", "generated", "ai"]' in router
 
 

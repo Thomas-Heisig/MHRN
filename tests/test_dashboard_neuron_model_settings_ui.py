@@ -54,10 +54,10 @@ def test_neuron_model_editor_uses_declared_model_ids_and_pending_workflow() -> N
     assert 'maturity: "canonical"' in script
     assert 'maturity: "experimental"' in script
     assert 'version: "mhrn-1.0"' in script
-    assert 'ParameterAPI.proposeChange(name, value)' in script
+    assert "ParameterAPI.proposeChange(name, value)" in script
     assert 'ParameterAPI.proposeChange("neuron.model"' not in script
-    assert 'unsupported neuron model' in script
-    assert 'requires a new run/restart' in script
+    assert "unsupported neuron model" in script
+    assert "requires a new run/restart" in script
 
 
 def test_neuron_model_editor_exposes_model_specific_and_common_fields() -> None:

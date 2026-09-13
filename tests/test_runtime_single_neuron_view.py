@@ -67,9 +67,15 @@ def test_live_neuron_record_exposes_integrated_cell_state() -> None:
 
 def test_runtime_neuron_frontend_is_initialized_from_new_frontend() -> None:
     index = (STATIC / "frontend" / "index.js").read_text(encoding="utf-8")
-    module = (STATIC / "frontend" / "modules" / "runtime-neuron.js").read_text(encoding="utf-8")
-    styles = (STATIC / "frontend" / "styles" / "runtime-neuron.css").read_text(encoding="utf-8")
-    style_index = (STATIC / "frontend" / "styles" / "index.css").read_text(encoding="utf-8")
+    module = (STATIC / "frontend" / "modules" / "runtime-neuron.js").read_text(
+        encoding="utf-8"
+    )
+    styles = (STATIC / "frontend" / "styles" / "runtime-neuron.css").read_text(
+        encoding="utf-8"
+    )
+    style_index = (STATIC / "frontend" / "styles" / "index.css").read_text(
+        encoding="utf-8"
+    )
 
     assert 'import { initRuntimeNeuron } from "./modules/runtime-neuron.js";' in index
     assert "initRuntimeNeuron();" in index
@@ -82,5 +88,5 @@ def test_runtime_neuron_frontend_is_initialized_from_new_frontend() -> None:
     assert "last_external_current" in module and "last_synaptic_current" in module
     assert "refractory_remaining_ticks" in module
     assert "biologischer Äquivalenz" in module
-    assert '.runtime-neuron-panel' in styles
+    assert ".runtime-neuron-panel" in styles
     assert '@import url("./runtime-neuron.css");' in style_index

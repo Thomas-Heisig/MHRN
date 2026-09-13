@@ -231,9 +231,7 @@ class LocalFallbackBackend:
             self._last_failure_event = AIInferenceFailureEvent.create(
                 request_id=request.request_id,
                 backend=self.name,
-                request_digest=hashlib.sha256(
-                    request.text.encode("utf-8")
-                ).hexdigest(),
+                request_digest=hashlib.sha256(request.text.encode("utf-8")).hexdigest(),
                 latency_ms=latency_ms,
                 retry_status="not_retried",
                 error=str(exc),
@@ -282,7 +280,9 @@ class LocalFallbackBackend:
     def _match_response(self, prompt: str) -> tuple[str, dict[str, Any]]:
         clean = re.sub(r"[^\w\s]", " ", prompt.lower())
         words = [word for word in clean.split() if len(word) > 2]
-        keywords = list(dict.fromkeys(word for word in words if word not in _STOP_WORDS))
+        keywords = list(
+            dict.fromkeys(word for word in words if word not in _STOP_WORDS)
+        )
         if not keywords:
             return self._greeting_response(), {
                 "method": "greeting",

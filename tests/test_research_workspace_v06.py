@@ -12,12 +12,23 @@ STATIC = Path("src/dashboard/static")
 def test_research_workspace_is_owned_by_central_workspace_router() -> None:
     router = (STATIC / "frontend" / "workspace-router.js").read_text(encoding="utf-8")
     controller = (STATIC / "box-state-controller.js").read_text(encoding="utf-8")
-    for route in ("observatory", "experiments", "network", "dynamics", "inspect", "data", "files", "registry"):
+    for route in (
+        "observatory",
+        "experiments",
+        "network",
+        "dynamics",
+        "inspect",
+        "data",
+        "files",
+        "registry",
+    ):
         assert f'["{route}",' in router
     assert 'label: "Wissenschaft"' in router
     assert "research-workspace-tabs" not in controller
     assert "installResearchWorkspaceStyle" not in controller
-    assert "brain5d:open-file" in (STATIC / "frontend" / "modules" / "research-docs.js").read_text(encoding="utf-8")
+    assert "brain5d:open-file" in (
+        STATIC / "frontend" / "modules" / "research-docs.js"
+    ).read_text(encoding="utf-8")
 
 
 def test_metadata_archive_filters_work_view_without_moving_artifacts(

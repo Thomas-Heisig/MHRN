@@ -2716,16 +2716,27 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
         try:
             bridge = self._require_bridge()
         except BridgeNotConfiguredError:
-            self._send_json({"error": "No live runtime available."}, HTTPStatus.SERVICE_UNAVAILABLE)
+            self._send_json(
+                {"error": "No live runtime available."}, HTTPStatus.SERVICE_UNAVAILABLE
+            )
             return
         network = getattr(bridge.controller, "network", None)
         if network is None:
-            self._send_json({"error": "Live network is not available."}, HTTPStatus.SERVICE_UNAVAILABLE)
+            self._send_json(
+                {"error": "Live network is not available."},
+                HTTPStatus.SERVICE_UNAVAILABLE,
+            )
             return
         telemetry_store = bridge.live_projection.frame_store
-        accumulator = telemetry_store.accumulator if telemetry_store is not None else None
+        accumulator = (
+            telemetry_store.accumulator if telemetry_store is not None else None
+        )
         runtime_tick = getattr(network, "current_tick", 0)
-        telemetry = telemetry_store.stats_at(runtime_tick) if telemetry_store is not None else None
+        telemetry = (
+            telemetry_store.stats_at(runtime_tick)
+            if telemetry_store is not None
+            else None
+        )
         self._send_json(
             build_scientific_metrics(
                 network,
@@ -3218,7 +3229,9 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
             self.dashboard_server.research_chat_settings.get("provider")
             == "local-fallback"
         )
-        effective_context_chars = min(context_chars, 8000) if is_fallback else context_chars
+        effective_context_chars = (
+            min(context_chars, 8000) if is_fallback else context_chars
+        )
         try:
             answer, metadata = ResearchChat(
                 cast(Any, source),
@@ -3271,13 +3284,15 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
                         response_mode=response_mode,
                         web_context="",
                     ).answer(message)
-                    self._send_json({
-                        "answer": answer,
-                        "metadata": cast(JSONValue, metadata),
-                        "grounded": True,
-                        "fallback": True,
-                        "fallback_model": fallback_ollama.model,
-                    })
+                    self._send_json(
+                        {
+                            "answer": answer,
+                            "metadata": cast(JSONValue, metadata),
+                            "grounded": True,
+                            "fallback": True,
+                            "fallback_model": fallback_ollama.model,
+                        }
+                    )
                     used_fallback = True
                     return
                 except (OSError, TimeoutError) as fb_err:
@@ -3611,9 +3626,7 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
                 ) as response:  # nosec B310: configured local provider endpoint
                     ok = 200 <= response.status < 300
                 if ok:
-                    self._send_json(
-                        {"ok": True, "provider": ollama.name}
-                    )
+                    self._send_json({"ok": True, "provider": ollama.name})
                     return
             except OSError:
                 pass
@@ -3636,7 +3649,7 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
                 "error": "No provider configured.",
             },
             HTTPStatus.SERVICE_UNAVAILABLE,
-            )
+        )
 
     def _research_chat_providers(self) -> None:
         """Return configured provider choices and locally available Ollama models."""
@@ -5172,6 +5185,8 @@ def serve_dashboard(
             "BRAIN5D_CHAT_ENDPOINT",
             str(configured_chat.get("endpoint", "http://127.0.0.1:11434/api/generate")),
         ).strip()
+        if not chat_endpoint.startswith(("http://", "https://")):
+            raise ValueError("BRAIN5D_CHAT_ENDPOINT must use http:// or https://")
         temperature = float(
             os.environ.get(
                 "BRAIN5D_CHAT_TEMPERATURE",
@@ -5179,9 +5194,7 @@ def serve_dashboard(
             )
         )
         # Kleines Fallback-Modell für schnelle Antworten (z. B. gemma3:1b)
-        fallback_model = str(
-            configured_chat.get("fallback_model", "gemma3:1b")
-        ).strip()
+        fallback_model = str(configured_chat.get("fallback_model", "gemma3:1b")).strip()
         ollama_backend = OllamaBackend(
             chat_model,
             chat_endpoint,
@@ -5195,15 +5208,15 @@ def serve_dashboard(
         # Prüfe ob Ollama tatsächlich erreichbar ist
         try:
             tags_url = chat_endpoint.rsplit("/api/", 1)[0] + "/api/tags"
-            with urlopen(tags_url, timeout=5) as resp:
+            with urlopen(  # nosec B310: validated HTTP(S) provider endpoint
+                tags_url, timeout=5
+            ) as resp:
                 ollama_available = 200 <= resp.status < 300
         except Exception:
             ollama_available = False
 
         if ollama_available:
-            chat_backend = chat_backend_from_text_backend(
-                ollama_backend.generate_text
-            )
+            chat_backend = chat_backend_from_text_backend(ollama_backend.generate_text)
             # Zweites Ollama-Backend mit kleinem Modell für Fallback
             if fallback_model and fallback_model != chat_model:
                 ollama_fallback_backend = OllamaBackend(
@@ -5221,25 +5234,27 @@ def serve_dashboard(
             # Warmup: Hauptmodell vorladen
             try:
                 print(f"🤖 Warming up Ollama model ({chat_model})...")
-                warmup_payload = json.dumps({
-                    "model": chat_model,
-                    "prompt": "Hello",
-                    "stream": False,
-                    "options": {"temperature": 0.0, "num_predict": 1},
-                }).encode("utf-8")
+                warmup_payload = json.dumps(
+                    {
+                        "model": chat_model,
+                        "prompt": "Hello",
+                        "stream": False,
+                        "options": {"temperature": 0.0, "num_predict": 1},
+                    }
+                ).encode("utf-8")
                 warmup_req = Request(
                     chat_endpoint,
                     data=warmup_payload,
                     headers={"Content-Type": "application/json"},
                     method="POST",
                 )
-                with urlopen(warmup_req, timeout=180) as warmup_resp:
+                with urlopen(  # nosec B310: validated HTTP(S) provider endpoint
+                    warmup_req, timeout=180
+                ) as warmup_resp:
                     warmup_resp.read()
                 print(f"✅ Ollama model {chat_model} warmed up successfully")
             except Exception as warmup_err:
-                print(
-                    f"⚠️ Ollama warmup failed: {warmup_err}"
-                )
+                print(f"⚠️ Ollama warmup failed: {warmup_err}")
             resolved_chat_settings = {
                 "provider": "ollama",
                 "model": chat_model,

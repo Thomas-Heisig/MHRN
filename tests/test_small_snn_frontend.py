@@ -46,9 +46,7 @@ def test_small_snn_parameter_changes_use_pending_workflow() -> None:
 
 
 def test_small_snn_styles_are_loaded_and_responsive() -> None:
-    styles = (STATIC / "frontend" / "styles" / "index.css").read_text(
-        encoding="utf-8"
-    )
+    styles = (STATIC / "frontend" / "styles" / "index.css").read_text(encoding="utf-8")
     module_styles = (STATIC / "frontend" / "styles" / "small-snn.css").read_text(
         encoding="utf-8"
     )

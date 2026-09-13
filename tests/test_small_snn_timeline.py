@@ -21,8 +21,7 @@ def test_small_snn_stage_is_technically_complete_from_scoped_verification() -> N
     assert spike["status"] == "verified"
     assert "tests/test_small_snn_contract.py" in spike["evidence"]
     assert (
-        "research/generated/verification/small_snn_reference.json"
-        in spike["evidence"]
+        "research/generated/verification/small_snn_reference.json" in spike["evidence"]
     )
 
 
