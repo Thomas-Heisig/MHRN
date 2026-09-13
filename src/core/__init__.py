@@ -3,22 +3,16 @@
 This package provides the fundamental building blocks of the MHRN
 spiking neural network, including:
 - 5D spatial indexing and coordinate transformations
-- Izhikevich neuron model with multiple types, homeostasis, and energy
-- Synaptic connections with STDP, reward-modulated plasticity, and metaplasticity
-- Sparse spiking neural network with event-driven spike propagation
-
-All components are fully typed and support serialization.
+- versioned neuron dynamics
+- synaptic connections with STDP and reward-modulated plasticity
+- sparse spiking neural networks with delayed event propagation
 """
 
 from __future__ import annotations
 
-# ============================================================================
-# Network
-# ============================================================================
 from .network import (
     Brain5DConfig,
     NetworkConfig,
-    NeuralNetwork,
     PostStepHook,
     SimulationConfig,
     SpikeEvent,
@@ -26,10 +20,7 @@ from .network import (
     TopologyConfig,
     create_network,
 )
-
-# ============================================================================
-# Neuron
-# ============================================================================
+from .runtime_network import RuntimeNeuralNetwork as NeuralNetwork
 from .neuron import (
     Neuron,
     NeuronConfig,
@@ -37,10 +28,6 @@ from .neuron import (
     create_neuron,
     create_random_neuron,
 )
-
-# ============================================================================
-# Spatial Index
-# ============================================================================
 from .spatial_index import (
     BITS_PER_DIM,
     DIM_INDICES,
@@ -76,10 +63,6 @@ from .spatial_index import (
     validate_dims,
     weighted_distance_5d,
 )
-
-# ============================================================================
-# Synapse
-# ============================================================================
 from .synapse import (
     A_MINUS,
     A_PLUS,
@@ -94,12 +77,7 @@ from .synapse import (
     create_synapse,
 )
 
-# ============================================================================
-# Public API
-# ============================================================================
-
 __all__ = [
-    # Spatial index
     "BITS_PER_DIM",
     "Coord5D",
     "DIM_INDICES",
@@ -133,13 +111,11 @@ __all__ = [
     "validate_coord_in_dims",
     "validate_dims",
     "weighted_distance_5d",
-    # Neuron
     "Neuron",
     "NeuronConfig",
     "NeuronType",
     "create_neuron",
     "create_random_neuron",
-    # Synapse
     "A_MINUS",
     "A_PLUS",
     "ELIGIBILITY_DECAY",
@@ -151,7 +127,6 @@ __all__ = [
     "SynapseConfig",
     "create_random_synapse",
     "create_synapse",
-    # Network
     "Brain5DConfig",
     "NetworkConfig",
     "NeuralNetwork",
