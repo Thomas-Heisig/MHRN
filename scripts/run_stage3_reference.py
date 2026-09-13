@@ -41,7 +41,7 @@ TEST_GROUPS: dict[str, tuple[str, ...]] = {
         "tests/test_reward.py",
         "tests/test_learning_experiment.py",
     ),
-    "homeostasis": ("tests/test_homeostasis.py",),
+    "homeostasis": ("tests/test_homeostasis_engine.py",),
     "structural_plasticity": (
         "tests/test_structural_e2e.py",
         "tests/test_structural_determinism.py",
