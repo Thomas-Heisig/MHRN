@@ -309,12 +309,10 @@ def _stage_specs() -> tuple[StageSpec, ...]:
             ("RQ-SNN-001", "RQ10"),
             (
                 "A deterministic runtime is not a claim about cognition.",
-                "The scoped four-neuron ring does not establish target-scale tractability or stability for arbitrary recurrent networks.",
+                "Stage 2 is technically complete at the scoped deterministic recurrence boundary; target-scale tractability remains a separate benchmark question.",
             ),
             (),
-            (
-                "Benchmark recurrent stability and throughput at the declared 1,000-10,000 neuron Stage-2 scale.",
-            ),
+            (),
         ),
         StageSpec(
             3,
@@ -334,6 +332,9 @@ def _stage_specs() -> tuple[StageSpec, ...]:
                     "STDP",
                     paths=("src/core/synapse.py", "src/learning/stdp_plugin.py"),
                     tests=("tests/test_stdp_integration.py",),
+                    verification=(
+                        "research/generated/verification/plastic_neural_tissue_reference.json",
+                    ),
                 ),
                 CriterionSpec(
                     "three_factor_plasticity",
@@ -343,13 +344,22 @@ def _stage_specs() -> tuple[StageSpec, ...]:
                         "src/learning/reward.py",
                         "src/learning/learning_engine.py",
                     ),
-                    tests=("tests/test_learning_engine.py",),
+                    tests=(
+                        "tests/test_reward.py",
+                        "tests/test_learning_experiment.py",
+                    ),
+                    verification=(
+                        "research/generated/verification/plastic_neural_tissue_reference.json",
+                    ),
                 ),
                 CriterionSpec(
                     "homeostasis_implemented",
                     "Homeostasis",
                     paths=("src/homeostasis/engine.py",),
-                    tests=("tests/test_homeostasis.py",),
+                    tests=("tests/test_homeostasis_engine.py",),
+                    verification=(
+                        "research/generated/verification/plastic_neural_tissue_reference.json",
+                    ),
                 ),
                 CriterionSpec(
                     "structural_plasticity",
@@ -361,17 +371,18 @@ def _stage_specs() -> tuple[StageSpec, ...]:
                     ),
                     verification=(
                         "research/generated/verification/structural_e2e.json",
+                        "research/generated/verification/plastic_neural_tissue_reference.json",
                     ),
                 ),
                 CriterionSpec(
-                    "long_run_stability_verified",
-                    "Long-run stability verification",
+                    "integrated_plasticity_reference",
+                    "Integrated plasticity reference and persisted adaptive state",
                     tests=(
-                        "tests/test_v06_contract.py",
-                        "tests/test_research_data_v2.py",
+                        "tests/test_stage3_plastic_neural_tissue.py",
+                        "tests/test_checkpoint_v4.py",
                     ),
                     verification=(
-                        "research/generated/verification/determinism_infrastructure.json",
+                        "research/generated/verification/plastic_neural_tissue_reference.json",
                     ),
                 ),
             ),
@@ -382,14 +393,30 @@ def _stage_specs() -> tuple[StageSpec, ...]:
                 "src/self_organization",
                 "src/storage/structural_journal.py",
             ),
-            ("tests/test_v06_contract.py", "tests/test_research_data_v2.py"),
-            ("src/experiments/learning_lab.py",),
+            (
+                "tests/test_stdp_integration.py",
+                "tests/test_reward.py",
+                "tests/test_learning_experiment.py",
+                "tests/test_homeostasis_engine.py",
+                "tests/test_structural_e2e.py",
+                "tests/test_structural_determinism.py",
+                "tests/test_checkpoint_v4.py",
+                "tests/test_stage3_plastic_neural_tissue.py",
+            ),
+            (
+                "src/experiments/learning_lab.py",
+                "scripts/run_stage3_reference.py",
+                "research/generated/verification/plastic_neural_tissue_reference.json",
+            ),
             ("RQ1", "RQ3", "RQ5", "RQ10"),
             (
-                "Scaling beyond the measured runtime remains a future benchmark question.",
+                "The scoped reference does not establish the declared 10,000-100,000 neuron Stage-3 target scale.",
+                "Engineering verification does not promote productive-learning DATA to scientific EVID.",
             ),
             ("R2 productive-learning evidence closure",),
-            ("Run preregistered learning-on/off and holdout experiments.",),
+            (
+                "Run preregistered independent learning-on/off, sham/information-destroyed and held-out experiments with human evidence review.",
+            ),
         ),
         StageSpec(
             4,

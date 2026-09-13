@@ -18,7 +18,7 @@ Passing tests prove engineering behavior covered by those tests; they do not aut
 ## Current baseline — 2026-09-13
 
 - canonical branch: `main`
-- package version: `0.6.0a1`
+- package version: `0.6.0a2`
 - latest local full-suite snapshot: **~1130 passed, 7 skipped, 26 pre-existing failures** (missing CSS files, sklearn dependency, platform-specific)
 - last recorded browser suite: **5 passed** with Chromium
 - current `main` HEAD: active development branch

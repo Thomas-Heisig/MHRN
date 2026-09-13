@@ -5,9 +5,23 @@ MHRN / Multi-Scale Homeostatic Recurrence Network. Publication: Recursive Episte
 # MHRN Current TODO
 
 **Canonical TODO for `main`**  
-**Baseline:** `mhrn-core 0.6.0a1`
+**Baseline:** `mhrn-core 0.6.0a2`
 **Updated:** 2026-09-13
 **Current release-blocking backlog:** **0**
+
+
+## 2026-09-13 Stage 2 / Stage 3 development boundary
+
+- [x] Close the scoped Stage-2 recurrent-SNN engineering contract with long-run,
+  deterministic replay and restore verification.
+- [x] Add a Stage-3 contract joining STDP, three-factor learning, homeostasis,
+  structural plasticity and checkpointed adaptive state.
+- [x] Add deterministic learning-on/off/sham controls and a generated
+  verification artifact without automatic EVID promotion.
+- [ ] Close R2 productive-learning evidence with preregistered independent
+  runs, held-out evaluation and human evidence review.
+- [ ] Benchmark plastic-network stability/throughput at the declared Stage-3
+  target scale separately from the mechanism contract.
 
 ## 2026-09-12 Scientific metrics workbench
 

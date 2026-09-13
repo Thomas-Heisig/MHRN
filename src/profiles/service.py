@@ -108,7 +108,7 @@ def _default_profile(profile_id: str, name: str) -> dict[str, Any]:
         "runtime": {
             "mode": "operator",
             "target_hz": None,
-            "runtime_version": "0.6.0a1",
+            "runtime_version": "0.6.0a2",
             "implementation_status": "implemented",
         },
         "neural_core": {
@@ -218,7 +218,7 @@ def _default_profile(profile_id: str, name: str) -> dict[str, Any]:
         },
         "provenance": {
             "source": "profile_service",
-            "runtime_version": "0.6.0a1",
+            "runtime_version": "0.6.0a2",
             "profile_digest": None,
             "latest_snapshot": None,
             "history": [],
