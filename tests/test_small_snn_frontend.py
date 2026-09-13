@@ -34,6 +34,30 @@ def test_small_snn_uses_real_network_inspector_endpoints() -> None:
     assert "live_runtime" in script
 
 
+def test_small_snn_live_polling_follows_canonical_router_state() -> None:
+    script = (STATIC / "frontend" / "modules" / "small-snn-stage.js").read_text(
+        encoding="utf-8"
+    )
+    assert "new MutationObserver(syncPolling)" in script
+    assert 'attributeFilter: ["data-current-area", "data-current-route"]' in script
+    assert 'const liveRoute = route === "snn"' in script
+    assert "setInterval(routeRefresh, 900)" in script
+    assert "clearInterval(state.timer)" in script
+    assert "runtimeInFlight" in script
+
+
+def test_small_snn_runtime_shows_tick_progress_with_low_spike_activity() -> None:
+    script = (STATIC / "frontend" / "modules" / "small-snn-stage.js").read_text(
+        encoding="utf-8"
+    )
+    assert "runtimeLastTick" in script
+    assert "deltaTick" in script
+    assert 'deltaTick > 0 ? "RUNNING" : "IDLE/UNCHANGED"' in script
+    assert "Δtick" in script
+    assert "total spikes" in script
+    assert "live_runtime" in script
+
+
 def test_small_snn_parameter_changes_use_pending_workflow() -> None:
     script = (STATIC / "frontend" / "modules" / "small-snn-stage.js").read_text(
         encoding="utf-8"
