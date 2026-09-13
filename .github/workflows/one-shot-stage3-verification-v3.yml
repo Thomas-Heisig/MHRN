@@ -48,6 +48,7 @@ jobs:
       - name: Stage 2 closure regression
         run: python -m pytest tests/test_recurrent_snn_contract.py tests/test_recurrent_snn_timeline.py -q
       - name: Stage 3 mechanism and control suites
+        # This unit suite is valid both before and after the generated Stage-3 artifact exists.
         run: |
           python -m pytest \
             tests/test_stdp_integration.py \
