@@ -102,14 +102,20 @@ jobs:
               '''        if isinstance(synapse_dirty, set):\n            synapse_ids = {\n                (int(source_id), int(target_id))\n                for source_id, target_id in synapse_dirty\n            }\n''',
               '''        if isinstance(synapse_dirty, set):\n            typed_synapse_dirty = cast(set[tuple[int, int]], synapse_dirty)\n            synapse_ids = set(typed_synapse_dirty)\n''',
           )
+
+          replace(
+              "src/research_assistant/local_fallback_backend.py",
+              '''            if isinstance(value, dict):\n                return value\n''',
+              '''            if isinstance(value, dict):\n                return {str(key): item for key, item in value.items()}\n''',
+          )
           PY
       - name: Install pinned tools
         run: python -m pip install -e ".[dev,docs]"
       - name: Verify formatting, lint and both type systems
         run: |
-          python -m black src/config/loader.py src/dashboard/scientific_metrics.py src/dashboard/server.py src/homeostasis/hot_path.py src/storage/delta_journal.py src/storage/fast_delta_journal.py src/storage/incremental_runtime.py
-          python -m ruff check src/config/loader.py src/dashboard/scientific_metrics.py src/dashboard/server.py src/homeostasis/hot_path.py src/storage/delta_journal.py src/storage/fast_delta_journal.py src/storage/incremental_runtime.py --fix
-          python -m black --check src/config/loader.py src/dashboard/scientific_metrics.py src/dashboard/server.py src/homeostasis/hot_path.py src/storage/delta_journal.py src/storage/fast_delta_journal.py src/storage/incremental_runtime.py
+          python -m black src/config/loader.py src/dashboard/scientific_metrics.py src/dashboard/server.py src/homeostasis/hot_path.py src/storage/delta_journal.py src/storage/fast_delta_journal.py src/storage/incremental_runtime.py src/research_assistant/local_fallback_backend.py
+          python -m ruff check src/config/loader.py src/dashboard/scientific_metrics.py src/dashboard/server.py src/homeostasis/hot_path.py src/storage/delta_journal.py src/storage/fast_delta_journal.py src/storage/incremental_runtime.py src/research_assistant/local_fallback_backend.py --fix
+          python -m black --check src/config/loader.py src/dashboard/scientific_metrics.py src/dashboard/server.py src/homeostasis/hot_path.py src/storage/delta_journal.py src/storage/fast_delta_journal.py src/storage/incremental_runtime.py src/research_assistant/local_fallback_backend.py
           python -m mypy src/
           python -m pyright
       - name: Self-remove and commit verified repair
