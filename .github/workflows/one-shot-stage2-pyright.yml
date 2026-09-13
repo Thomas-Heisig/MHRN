@@ -50,7 +50,7 @@ jobs:
           )
           replace(
               "src/dashboard/scientific_metrics.py",
-              '''        "tick": getattr(\n            network, "current_tick", snapshot_json.get("system", {}).get("tick", 0)\n        ),\n''',
+              '''        "tick": getattr(network, "current_tick", snapshot_json.get("system", {}).get("tick", 0)),\n''',
               '''        "tick": getattr(network, "current_tick", system_state.get("tick", 0)),\n''',
           )
 
