@@ -2,7 +2,7 @@
 from __future__ import annotations
 
 import random
-from dataclasses import asdict, dataclass
+from dataclasses import asdict, dataclass, field
 from typing import Any
 
 from .biophysical_contracts import ModelProvenance, ModelTimescale
@@ -40,6 +40,7 @@ class QuantalSTPSynapse:
     facilitation: float = 0.0
     last_tick: int = 0
     release_count: int = 0
+    _rng: random.Random = field(init=False, repr=False)
 
     def __post_init__(self) -> None:
         if self.delay < 1:
