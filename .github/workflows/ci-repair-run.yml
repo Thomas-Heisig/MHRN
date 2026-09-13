@@ -64,25 +64,24 @@ jobs:
 
           path = Path('src/research_assistant/config_tool.py')
           text = path.read_text(encoding='utf-8')
-          text = text.replace(
-              '        mapping = cast(dict[str, Any], current)\n',
-              '        mapping = current\n',
-              1,
-          )
-          path.write_text(text, encoding='utf-8')
+          old = '''    parts = key.split(".")\n    current: object = config\n    for part in parts:\n        if not isinstance(current, dict):\n            return False, None\n        mapping = cast(dict[str, Any], current)\n        if part not in mapping:\n            return False, None\n        current = mapping[part]\n    return True, current'''
+          new = '''    parts = key.split(".")\n    current: object = config\n    for part in parts:\n        if not isinstance(current, dict):\n            return False, None\n        mapping = cast(dict[object, object], current)\n        if part not in mapping:\n            return False, None\n        current = mapping[part]\n    return True, current'''
+          if old not in text:
+              raise SystemExit('config traversal block not found after repair')
+          path.write_text(text.replace(old, new, 1), encoding='utf-8')
 
           path = Path('src/research_assistant/models.py')
           text = path.read_text(encoding='utf-8')
           old = '''    concerns = normalized.get("methodological_concerns")\n    if not isinstance(concerns, list):\n        concerns = []\n    else:\n        concerns = list(cast(list[Any], concerns))\n    concerns.append('''
-          new = '''    concerns = normalized.get("methodological_concerns")\n    typed_concerns: list[Any]\n    if not isinstance(concerns, list):\n        typed_concerns = []\n    else:\n        typed_concerns = concerns\n    typed_concerns.append('''
+          new = '''    concerns = _analysis_list(normalized.get("methodological_concerns"))\n    concerns.append('''
           if old not in text:
               raise SystemExit('model concerns block not found after repair')
           text = text.replace(old, new, 1)
-          text = text.replace(
-              '    normalized["methodological_concerns"] = concerns\n',
-              '    normalized["methodological_concerns"] = typed_concerns\n',
-              1,
-          )
+          helper_marker = '\n\ndef _normalize_confidence(output: dict[str, Any]) -> dict[str, Any]:'
+          helper = '''\n\ndef _analysis_list(value: Any) -> list[Any]:\n    if not isinstance(value, list):\n        return []\n    return value\n\n\ndef _normalize_confidence(output: dict[str, Any]) -> dict[str, Any]:'''
+          if helper_marker not in text:
+              raise SystemExit('model confidence helper marker not found')
+          text = text.replace(helper_marker, helper, 1)
           path.write_text(text, encoding='utf-8')
 
           path = Path('src/storage/incremental_runtime.py')
