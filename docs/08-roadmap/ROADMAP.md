@@ -23,6 +23,13 @@
 - R2 productive-learning evidence closure, held-out independent runs and
   target-scale plastic-network benchmarks remain open research work.
 
+## 2026-09-13 Stage 6/7 reconciliation and Stages 8-10 frontier foundation
+
+- Stage 6 now reflects bounded working/episodic memory, the observation-only `TransitionWorldModel`, ExperienceEngine composition and the registered exploratory 2026-09-10 cognition campaign. Delayed-information and one-step prediction controls were executed; semantic memory, canonical coupled-state checkpointing and SNN-level confirmatory evidence remain open.
+- Stage 7 now reflects versioned technical Wesen identity, digest/revision/lineage, snapshot binding and the persistent operational Behavior Profile. These are foundations only: causal self/other attribution and a genuine operational self-model remain unimplemented.
+- Stages 8-10 now reference their merged research foundation, experiment backlog, literature provenance and frontend placeholder contract. Their maturity intentionally remains `planned`/0 %; planning material is not implementation or EVID.
+- The development version remains `mhrn-core 0.6.0a2`; historical experiment manifests retain the version recorded when they actually ran.
+
 ## 2026-09-12 Scientific metrics workbench
 
 - Added a live `/api/science/metrics` contract derived from the retained
@@ -101,8 +108,8 @@
 	Gateway activation remains locked.
 - Added explicit profile snapshot binding and central File Viewer access, plus
 	the machine-readable backend/frontend coverage contract.
-- Open: coupled runtime snapshot boundary, delayed-cue controls, frozen-model
-	and no-memory comparisons, held-out episodes and independent replication.
+- Executed exploratory component controls include delayed-cue memory read/write/time-shuffle conditions and adaptive/frozen/persistence/no-model one-step prediction conditions. These are DATA-level screens, not SNN-level cognition evidence.
+- Open: coupled runtime snapshot/checkpoint boundary, full-state pause/resume identity, explicit File Viewer raw-run drill-down, semantic memory, SNN-level held-out confirmatory studies, human review and independent replication.
 
 ## 2026-09-08 Versioned embedding and cluster analysis
 
