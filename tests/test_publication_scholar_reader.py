@@ -1,3 +1,5 @@
+import json
+import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -30,8 +32,15 @@ def test_publication_uses_one_shared_speech_reader() -> None:
 def test_shared_speech_reader_is_bilingual_and_prefers_natural_voices() -> None:
     speech = _read(STATIC / "speech-reader.js")
 
-    assert 'de: ["katja", "conrad"]' in speech
-    assert 'en: ["jenny", "aria", "guy", "ryan", "sonia"]' in speech
+    # Keep required voices without rejecting compatible additions from main.
+    expected = {
+        "de": {"katja", "conrad"},
+        "en": {"jenny", "aria", "guy", "ryan", "sonia"},
+    }
+    for language, required in expected.items():
+        match = re.search(rf"\b{language}:\s*(\[[^\]]*\])", speech)
+        assert match is not None
+        assert required.issubset(json.loads(match.group(1)))
     assert "detectSpeechLanguage" in speech
     assert "chooseSpeechVoice" in speech
     assert "Natural".lower() in speech.lower()
@@ -86,7 +95,7 @@ def test_publication_formulas_use_shared_mathjax_renderer() -> None:
     assert 'MATH_ROOT_SELECTOR = ".fm-markdown, .pub-reader-article"' in formula
     assert 'processHtmlClass: "fm-markdown|pub-reader-article"' in formula
     assert "mathJax.typesetPromise(roots)" in formula
-    assert 'mjx-container[display="true"]' in formula
+    assert 'mjx-container[display="true"]' in refinements
     assert ".pub-reader-article mjx-container" in refinements
 
 
