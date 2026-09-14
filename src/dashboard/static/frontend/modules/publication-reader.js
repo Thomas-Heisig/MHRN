@@ -862,7 +862,7 @@ function ensureReaderStyles() {
   style.id = "publication-reader-styles";
   style.textContent = `
     #publication-panel { padding: 0; }
-    .publication-reader { --pub-accent: var(--accent, #275df5); --pub-text: var(--text-primary, #18202b); --pub-muted: var(--text-secondary, #667085); --pub-border: var(--border-color, #d9dee7); --pub-surface: var(--surface, #ffffff); --pub-soft: var(--surface-secondary, #f6f8fb); color: var(--pub-text); position: relative; min-width: 0; }
+    .publication-reader { --pub-accent: var(--accent, #275df5); --pub-text: var(--ink, #18202b); --pub-muted: var(--ink-3, #667085); --pub-border: var(--rule, #d9dee7); --pub-surface: var(--paper-2, #ffffff); --pub-soft: color-mix(in srgb, var(--paper-3) 42%, transparent); color: var(--pub-text); position: relative; min-width: 0; }
     .pub-reader-progress { position: sticky; top: 0; z-index: 25; height: 3px; background: transparent; }
     .pub-reader-progress span { display: block; width: 0; height: 100%; background: var(--pub-accent); transition: width 120ms linear; }
     .pub-reader-hero { display: flex; justify-content: space-between; gap: 24px; align-items: flex-start; padding: 28px 30px 22px; border: 1px solid var(--pub-border); border-radius: 18px 18px 0 0; background: var(--pub-surface); }
@@ -877,7 +877,7 @@ function ensureReaderStyles() {
     .pub-reader-button-primary { background: var(--pub-accent); color: #fff; border-color: var(--pub-accent); }
     .pub-reader-icon-button { width: 38px; padding: 0; font-size: 1.05rem; }
     .pub-reader-icon-button:disabled, .pub-reader-button:disabled { opacity: .38; cursor: default; }
-    .pub-reader-toolbar { position: sticky; top: 3px; z-index: 20; display: grid; grid-template-columns: auto minmax(180px, 1fr) minmax(280px, 420px); gap: 12px; align-items: center; padding: 10px 14px; border: 1px solid var(--pub-border); border-top: 0; background: color-mix(in srgb, var(--pub-surface) 94%, transparent); backdrop-filter: blur(12px); }
+    .pub-reader-toolbar { position: sticky; top: 3px; z-index: 20; display: grid; grid-template-columns: auto auto minmax(180px, 1fr) minmax(280px, 420px); gap: 12px; align-items: center; padding: 10px 14px; border: 1px solid var(--pub-border); border-top: 0; background: color-mix(in srgb, var(--pub-surface) 94%, transparent); backdrop-filter: blur(12px); }
     .pub-reader-history { display: flex; gap: 6px; }
     .pub-reader-location { min-width: 0; display: flex; gap: 5px; align-items: center; color: var(--pub-muted); overflow: hidden; font-size: .78rem; }
     .pub-reader-location span { color: var(--pub-accent); font-weight: 700; }
@@ -887,6 +887,12 @@ function ensureReaderStyles() {
     .pub-reader-search input { min-width: 0; width: 100%; border: 0; outline: 0; padding: 8px 10px; color: inherit; background: transparent; }
     .pub-reader-search output { color: var(--pub-muted); font-size: .72rem; white-space: nowrap; }
     .pub-reader-search button { min-height: 34px; padding: 0; border-width: 0 0 0 1px; border-radius: 0; }
+    .pub-reader-speech { display: flex; align-items: center; }
+    .pub-reader-speech .speech-reader-controls { display: inline-flex; align-items: center; gap: 3px; }
+    .pub-reader-speech .speech-reader-controls button { width: 30px; height: 30px; padding: 0; border: 1px solid var(--pub-border); border-radius: 7px; background: var(--pub-surface); color: var(--pub-text); font-size: .8rem; cursor: pointer; display: grid; place-items: center; transition: background .12s, color .12s; }
+    .pub-reader-speech .speech-reader-controls button:hover:not(:disabled) { background: var(--pub-soft); border-color: var(--pub-accent); }
+    .pub-reader-speech .speech-reader-controls button:disabled { opacity: .35; cursor: default; }
+    .pub-reader-speech .speech-reader-status { font-size: .6rem; color: var(--pub-muted); min-width: 5ch; margin-left: 3px; white-space: nowrap; }
     .pub-reader-layout { display: grid; grid-template-columns: minmax(210px, 270px) minmax(0, 1fr); align-items: start; border: 1px solid var(--pub-border); border-top: 0; background: var(--pub-surface); }
     .pub-reader-toc { position: sticky; top: 60px; max-height: calc(100vh - 84px); overflow: auto; padding: 20px 14px 24px; border-right: 1px solid var(--pub-border); }
     .pub-reader-toc-head { display: flex; justify-content: space-between; gap: 8px; align-items: baseline; padding: 0 6px 10px; }
