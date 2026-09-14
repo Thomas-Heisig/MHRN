@@ -11,6 +11,10 @@ Aktueller Einstieg: `research/publications/2026-09-13_recursive-epistemics_v1.5/
 
 **Letzte README-Aktualisierung: 2026-09-14 auf Commit `8e096931` (v0.6.0-alpha.3).**
 
+## Integration supplement: Stages 0-6 (2026-09-14)
+
+[Branch/function audit](docs/07-changelog/2026-09-14_STAGES_0_6_INTEGRATION.md) and [dissertation/research addendum to edition 1.5](research/publications/2026-09-14_stages0-6-integration_v1.5-addendum/README.md). Stage 6 remains an observation-only statistical reference, not completed neural semantic memory. Exact-commit CI is authoritative; the historical measurements above are not reruns on this integration. [Explicit reference rebuild](research/specifications/STAGE6_REPLAY_FORMAT.md) never silently upgrades or overwrites older state files.
+
 # Multi-Scale Homeostatic Recurrence Network (MHRN)
 
 ## Mehrskaliges homöostatisches Rekurrenznetzwerk

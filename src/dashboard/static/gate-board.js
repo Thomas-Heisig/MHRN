@@ -588,16 +588,29 @@ function bindDevelopmentTimeline() {
   });
 }
 
+let developmentTimelineLoading = false;
+let developmentTimelineLoadedAt = 0;
+
 async function loadDevelopmentTimeline() {
+  if (developmentTimelineLoading || Date.now() - developmentTimelineLoadedAt < 5000) return;
+  developmentTimelineLoading = true;
   try {
     const response = await fetch('/api/release/development-timeline', { cache: 'no-store' });
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     renderDevelopmentTimeline(await response.json());
+    developmentTimelineLoadedAt = Date.now();
     bindDevelopmentTimeline();
   } catch (err) {
     const notice = $('development-timeline-notice');
     if (notice) notice.textContent = 'Entwicklungs-Timeline unavailable.';
-  }
+  } finally { developmentTimelineLoading = false; }
+}
+
+// Development progress must also be usable without a live Gate subscription.
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', () => loadDevelopmentTimeline(), { once: true });
+} else {
+  loadDevelopmentTimeline();
 }
 
 let releaseDocumentLinksBound = false;

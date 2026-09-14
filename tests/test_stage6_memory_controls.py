@@ -34,7 +34,7 @@ def cycle(layer, tick, label="A"):
 
 
 @pytest.mark.parametrize(
-    "read,write,infer,learn", itertools.product((False, True), repeat=4)
+    "read,write,infer,learn", list(itertools.product((False, True), repeat=4))
 )
 def test_all_four_controls_are_independent(read, write, infer, learn):
     layer = make_layer(prediction_enabled=infer, learning_enabled=learn)

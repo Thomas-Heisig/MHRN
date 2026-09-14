@@ -1,6 +1,5 @@
 from pathlib import Path
 
-
 ROOT = Path(__file__).resolve().parents[1]
 STATIC = ROOT / "src" / "dashboard" / "static"
 MODULES = STATIC / "frontend" / "modules"
@@ -54,7 +53,9 @@ def test_publication_restores_late_windows_and_microsoft_voices() -> None:
     assert "width: 100%" in refinements
 
 
-def test_publication_scholar_reader_has_persistent_navigation_and_reading_flow() -> None:
+def test_publication_scholar_reader_has_persistent_navigation_and_reading_flow() -> (
+    None
+):
     scholar = _read(MODULES / "publication-scholar-tools.js")
     layout = _read(STYLES / "publication-reader.css")
 
@@ -85,7 +86,7 @@ def test_publication_formulas_use_shared_mathjax_renderer() -> None:
     assert 'MATH_ROOT_SELECTOR = ".fm-markdown, .pub-reader-article"' in formula
     assert 'processHtmlClass: "fm-markdown|pub-reader-article"' in formula
     assert "mathJax.typesetPromise(roots)" in formula
-    assert "mjx-container[display=\"true\"]" in formula
+    assert 'mjx-container[display="true"]' in formula
     assert ".pub-reader-article mjx-container" in refinements
 
 
@@ -122,22 +123,29 @@ def test_easy_language_is_reserved_as_separate_future_mode() -> None:
 def test_frontend_initializes_scholar_tools_after_publication_reader() -> None:
     frontend = _read(STATIC / "frontend" / "index.js")
 
-    assert 'import { initPublicationScholarTools } from "./modules/publication-scholar-bootstrap.js";' in frontend
-    assert frontend.index("initPublicationPanel();") < frontend.index("initPublicationScholarTools();")
+    assert (
+        'import { initPublicationScholarTools } from "./modules/publication-scholar-bootstrap.js";'
+        in frontend
+    )
+    assert frontend.index("initPublicationPanel();") < frontend.index(
+        "initPublicationScholarTools();"
+    )
 
 
 def test_reader_layout_is_scoped_and_resets_nested_main_sidebar_offset() -> None:
     layout = _read(STYLES / "publication-reader.css")
     index_css = _read(STYLES / "index.css")
 
-    assert '#tab-publication #publication-panel main.pub-reader-document' in layout
+    assert "#tab-publication #publication-panel main.pub-reader-document" in layout
     assert "margin: 0 !important" in layout
     assert "width: 100% !important" in layout
     assert "grid-template-columns: var(--pub-rail-width) minmax(0, 1fr)" in layout
     assert "--pub-reader-gap: 0px" in layout
     assert '@import url("./publication-reader.css");' in index_css
     assert '@import url("./publication-reader-voice-math.css");' in index_css
-    assert index_css.index('publication-reader.css') < index_css.index('publication-reader-voice-math.css')
+    assert index_css.index("publication-reader.css") < index_css.index(
+        "publication-reader-voice-math.css"
+    )
 
 
 def test_reader_has_one_sticky_chrome_layer_and_contiguous_document_geometry() -> None:
@@ -154,7 +162,7 @@ def test_reader_has_one_sticky_chrome_layer_and_contiguous_document_geometry() -
 def test_scholar_bootstrap_does_not_watch_entire_reader_subtree() -> None:
     bootstrap = _read(MODULES / "publication-scholar-bootstrap.js")
 
-    assert 'observer.observe(container, { childList: true });' in bootstrap
+    assert "observer.observe(container, { childList: true });" in bootstrap
     assert "subtree: true" not in bootstrap
     assert "requestAnimationFrame(() => void enhance())" in bootstrap
     assert 'cache: "no-cache"' in bootstrap

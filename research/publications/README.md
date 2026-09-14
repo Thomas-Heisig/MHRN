@@ -4,6 +4,8 @@
 
 ## Nachträge vom 14. September 2026
 
+[Stages 0-6: Integration, Referenzgedaechtnis und offene Grenzen](2026-09-14_stages0-6-integration_v1.5-addendum/README.md) ergaenzt Dissertation und Forschungsarbeit 1.5 um den gemeinsamen Branchstand, die typgetreue Vorhersagemethodik, Lesesperren und den expliziten Referenz-Wiederaufbau. Keine neue EVID-Freigabe; historische Manuskripte und Binarexporte bleiben unveraendert.
+
 [Stage 5 — integriertes künstliches Nervensystem](2026-09-14_stage5-integrated-nervous-system_v1.5-addendum/README.md) ergänzt Fassung 1.5 um Sensorik, digitale Interozeption, autorisierte Aktorik, Feedbackschleifen und Ressourcenhaushalt als gemeinsamen Full-Stack-/E2E-Vertrag. Die Stage-5-Referenz bleibt DATA, `H-EMB-001-B` bleibt offen, Real-Device-/Langzeitbehauptungen und automatische EVID-Freigabe sind ausgeschlossen.
 
 [Stage 4 — spezialisierte neuronale Areale](2026-09-14_stage4-specialized-areas_v1.5-addendum/README.md) ergänzt Fassung 1.5 um den nach ihrem Redaktionsstand verifizierten Full-Stack-/Experimentstand. Die Originalfassung, ihre Kampagnenprovenienz und ihre Binärexporte bleiben unverändert. Der Nachtrag dokumentiert Audio-, Vision- und Digitalpfade, `RQ-MSBA-E01` bis `E05`, die E01–E05-DATA-Serie sowie die Grenzen der aggregierten 100k/10M-Topologiebehauptung. Keine automatische EVID-Freigabe.

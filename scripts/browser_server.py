@@ -127,6 +127,52 @@ def main() -> None:
             """Test-only inventory changes, never exported by the production server."""
 
             def do_POST(self) -> None:
+                if self.path == "/__test__/cognition":
+                    from types import SimpleNamespace
+
+                    from src.embodiment.models import (
+                        EnvironmentObservation,
+                        SensorFrame,
+                    )
+                    from src.memory import (
+                        MemoryStore,
+                        MemoryWorldModel,
+                        TransitionWorldModel,
+                    )
+
+                    value = cast(dict[str, Any], self._read_json_body())
+                    if value.get("available") is False:
+                        server.experience = None
+                    else:
+                        memory = MemoryWorldModel(
+                            MemoryStore(run_id="browser-reference-only"),
+                            TransitionWorldModel(),
+                            "browser-reference-only",
+                        )
+                        for tick in range(3):
+                            frame = SensorFrame(
+                                "browser-reference", tick, "digital", {"cue": 1}
+                            )
+                            observation = EnvironmentObservation(
+                                tick + 1, {"matched": False, "position": 0}
+                            )
+                            memory.complete(
+                                frame,
+                                None,
+                                observation,
+                                tick,
+                                memory.predict(frame, None, tick),
+                            )
+                        server.experience = SimpleNamespace(
+                            memory=memory, behavior_profile=None
+                        )
+                    self._send_json(
+                        {
+                            "ok": True,
+                            "fixture": "statistical_reference_not_neural_memory",
+                        }
+                    )
+                    return
                 if self.path != "/__test__/inventory":
                     super().do_POST()
                     return

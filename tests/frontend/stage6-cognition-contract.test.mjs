@@ -38,3 +38,15 @@ test("object state displays as JSON and does not become object Object", () => {
   assert.equal(displayValue(false), "false");
   assert.equal(displayValue(null), "\u2014");
 });
+
+test("read-disabled and unavailable payloads cannot look like empty successful observations", () => {
+  assert.equal(predictionRows({ available: false, predictions: [] }), null);
+  assert.equal(predictionRows({ available: true, read_enabled: false, predictions: [] }), null);
+  assert.deepEqual(predictionRows({ available: true, read_enabled: true, predictions: [] }), []);
+});
+
+test("fieldwise error values and zero coverage remain distinguishable from unavailable", () => {
+  const errors = { numeric_absolute: { x: 0 }, categorical_mismatch: { matched: 0 }, coverage: 0 };
+  assert.deepEqual(predictionRows({ predictions: [{ error_components: errors }] })[0].errorComponents, errors);
+  assert.equal(predictionRows({ predictions: [{}] })[0].errorComponents, null);
+});

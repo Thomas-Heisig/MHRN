@@ -17,7 +17,7 @@ export function memorySummary(payload) {
 }
 
 export function predictionRows(payload) {
-  if (!record(payload) || !Array.isArray(payload.predictions)) return null;
+  if (!record(payload) || payload.available === false || payload.read_enabled === false || !Array.isArray(payload.predictions)) return null;
   return payload.predictions.filter(record).slice(-20).reverse().map((row) => ({
     tick: row.tick ?? null,
     targetTick: row.target_tick ?? null,
@@ -26,6 +26,7 @@ export function predictionRows(payload) {
     error: typeof row.error === "number" && Number.isFinite(row.error) ? row.error : null,
     uncertainty: typeof row.uncertainty === "number" && Number.isFinite(row.uncertainty) ? row.uncertainty : null,
     source: typeof row.source === "string" ? row.source : null,
+    errorComponents: record(row.error_components) ? row.error_components : null,
   }));
 }
 

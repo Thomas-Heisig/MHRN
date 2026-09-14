@@ -1411,7 +1411,7 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
                 "prediction_count": len(store.predictions),
                 "latest_prediction": (
                     None
-                    if not store.predictions
+                    if not store.read_enabled or not store.predictions
                     else cast(JSONValue, store.predictions[-1].to_dict())
                 ),
                 "source": "ExperienceEngine",
@@ -1541,7 +1541,16 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
                 "available": True,
                 "read_enabled": cognition.store.read_enabled,
                 "predictions": [
-                    cast(JSONValue, record.to_dict()) for record in records
+                    cast(
+                        JSONValue,
+                        {
+                            **record.to_dict(),
+                            "error_components": cognition.world_model.error_components(
+                                record.predicted_state, record.actual_state
+                            ),
+                        },
+                    )
+                    for record in records
                 ],
             }
         )
@@ -1556,6 +1565,8 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
             {
                 "available": cognition.store.read_enabled,
                 "status": "observation_only",
+                "prediction_enabled": cognition.prediction_enabled,
+                "learning_enabled": cognition.learning_enabled,
                 "model": (
                     cast(JSONValue, cognition.world_model.state_dict())
                     if cognition.store.read_enabled

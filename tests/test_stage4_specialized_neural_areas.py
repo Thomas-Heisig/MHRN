@@ -26,10 +26,17 @@ def test_stage4_has_three_distinct_modality_paths_and_rules() -> None:
     }
     assert len({area.pathway for area in areas}) == 3
     assert len({area.plasticity_rule for area in areas}) == 3
-    assert next(area for area in areas if area.modality is Modality.DIGITAL).exact_payload_outside_snn is True
+    assert (
+        next(
+            area for area in areas if area.modality is Modality.DIGITAL
+        ).exact_payload_outside_snn
+        is True
+    )
 
 
-def test_stage4_aggregated_topology_reaches_declared_lower_bound_without_faking_execution() -> None:
+def test_stage4_aggregated_topology_reaches_declared_lower_bound_without_faking_execution() -> (
+    None
+):
     network = SpecializedAreaNetwork()
     topology = network.topology_summary()
     assert topology["total_neuron_budget"] >= STAGE4_MIN_NEURONS
@@ -45,7 +52,9 @@ def test_stage4_aggregated_topology_reaches_declared_lower_bound_without_faking_
     assert {row["modality"] for row in sample_a} == {"audio", "vision", "digital"}
 
 
-def test_stage4_reference_probes_cover_audio_vision_and_exact_digital_integrity() -> None:
+def test_stage4_reference_probes_cover_audio_vision_and_exact_digital_integrity() -> (
+    None
+):
     suite_a = reference_probe_suite()
     suite_b = reference_probe_suite()
     assert suite_a == suite_b
@@ -64,10 +73,14 @@ def test_stage4_reference_probes_cover_audio_vision_and_exact_digital_integrity(
     assert digital["exact_integrity_pass"] is True
     assert digital["input_sha256"] == digital["output_sha256"]
     assert all(probe["canonical_core_mutated"] is False for probe in probes.values())
-    assert all(probe["productive_activation_enabled"] is False for probe in probes.values())
+    assert all(
+        probe["productive_activation_enabled"] is False for probe in probes.values()
+    )
 
 
-def test_stage4_contract_links_the_latest_msba_data_without_promoting_it_to_evidence() -> None:
+def test_stage4_contract_links_the_latest_msba_data_without_promoting_it_to_evidence() -> (
+    None
+):
     contract = specialized_area_contract()
     assert contract["status"] == "implemented_experimental"
     boundary = contract["scientific_boundary"]
@@ -94,9 +107,7 @@ def test_latest_msba_data_preserves_key_observed_controls() -> None:
     }
     assert len(set(accuracies.values())) == 1
     costs = {
-        name: values["metrics"]["normalized_energy_units_per_correct_decision"][
-            "mean"
-        ]
+        name: values["metrics"]["normalized_energy_units_per_correct_decision"]["mean"]
         for name, values in conditions.items()
     }
     assert costs["digital"] < costs["audio"] < costs["vision"]

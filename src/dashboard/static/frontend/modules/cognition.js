@@ -63,13 +63,30 @@ function renderMemory(panel, payload) {
 
 function renderWorld(panel, model, predictions) {
   const rows = predictionRows(predictions);
-  const header = `<dl>${row("Status", model?.status ?? null)}${row("Modellversion", model?.model?.model_version ?? null)}${row("Bedingung", model?.condition ?? null)}</dl>`;
-  const boundary = "<p>Fehlerwert: Legacy-Telemetrie mit gemischten Einheiten, keine Genauigkeit. Unsicherheit: nicht kalibrierte St\u00fctzh\u00e4ufigkeit.</p>";
+  const header = `<dl>${row("Status", model?.status ?? null)}${row("Modellversion", model?.model?.model_version ?? null)}${row("Bedingung", model?.condition ?? null)}${row("Vorhersagen aktiviert", model?.prediction_enabled ?? null)}${row("Prädiktorlernen aktiviert", model?.learning_enabled ?? null)}</dl>`;
+  const boundary = "<p>Feldweise Fehler und Abdeckung; der Legacy-Mittelwert mischt Einheiten und ist keine Genauigkeit. Unsicherheit: nicht kalibrierte St\u00fctzh\u00e4ufigkeit.</p>";
   let content;
   if (rows === null) content = "<p>Vorhersagedaten nicht verf\u00fcgbar.</p>";
   else if (!rows.length) content = "<p>Keine gespeicherten Vorhersagen.</p>";
-  else content = `<div class="table-scroll"><table><thead><tr><th>Tick</th><th>Vorhersage</th><th>Beobachtung</th><th>Fehler</th></tr></thead><tbody>${rows.map((item) => `<tr><td>${escape(item.tick)} \u2192 ${escape(item.targetTick)}</td><td>${escape(item.predicted)}</td><td>${escape(item.actual)}</td><td>${escape(item.error)}</td></tr>`).join("")}</tbody></table></div>`;
-  panel.querySelector("[data-world]").innerHTML = header + boundary + content;
+  else content = `<div class="table-scroll"><table><thead><tr><th>Tick</th><th>Vorhersage</th><th>Beobachtung</th><th>Feldweise Fehler / Abdeckung</th></tr></thead><tbody>${rows.map((item) => `<tr><td>${escape(item.tick)} \u2192 ${escape(item.targetTick)}</td><td>${escape(item.predicted)}</td><td>${escape(item.actual)}</td><td>${escape(item.errorComponents)}</td></tr>`).join("")}</tbody></table></div>`;
+  const world = panel.querySelector("[data-world]");
+  world.innerHTML = header + boundary + content;
+  if (rows !== null && rows.length) {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.textContent = "Angezeigte Vorhersagen als JSON exportieren (max. 20)";
+    button.dataset.predictionExport = "";
+    button.addEventListener("click", () => {
+      const blob = new Blob([JSON.stringify({ schema_version: 1, scope: "visible_bounded_prediction_records", scientific_evidence: false, predictions: predictions.predictions.slice(-20) }, null, 2)], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const anchor = document.createElement("a");
+      anchor.href = url;
+      anchor.download = "mhrn-predictions-bounded.json";
+      anchor.click();
+      window.setTimeout(() => URL.revokeObjectURL(url), 1000);
+    });
+    world.append(button);
+  }
 }
 
 async function refresh(force = false) {
@@ -86,7 +103,10 @@ async function refresh(force = false) {
     ]);
     const [state, memory, model, predictions] = results;
     if (state.status === "fulfilled") renderState(panel, state.value);
-    else panel.querySelector("[data-state]").textContent = "Zustand nicht verf\u00fcgbar.";
+    else {
+      panel.querySelector("[data-state]").textContent = "Zustand nicht verfügbar.";
+      panel.querySelector("#cognition-state-badge").textContent = "unavailable";
+    }
     if (memory.status === "fulfilled" && !writing) renderMemory(panel, memory.value);
     else if (memory.status !== "fulfilled") panel.querySelector("[data-memory]").textContent = "Ged\u00e4chtnisdaten nicht verf\u00fcgbar.";
     renderWorld(panel, model.status === "fulfilled" ? model.value : null, predictions.status === "fulfilled" ? predictions.value : null);
