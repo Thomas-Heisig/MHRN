@@ -36,7 +36,7 @@ def _baseline(*, stale: bool) -> BaselineEvaluation:
 
 @pytest.mark.parametrize(
     ("stale", "stage_floor", "stage_next", "current_stage"),
-    [(True, 4, 5, 4.95), (False, 4, 5, 5.0)],
+    [(True, 5, 6, 5.56), (False, 5, 6, 5.69)],
     ids=["stale-baseline", "current-baseline"],
 )
 def test_development_timeline_separates_engineering_verification_and_evidence(
@@ -66,6 +66,13 @@ def test_development_timeline_separates_engineering_verification_and_evidence(
     assert stage_four["implementation_score"] == 1.0
     assert all(item["status"] == "verified" for item in stage_four["criteria"])
     assert any("100k-neuron/10M-edge" in item for item in stage_four["known_limits"])
+
+    stage_five = next(stage for stage in payload["stages"] if stage["stage"] == 5)
+    assert stage_five["status"] == "reached"
+    assert stage_five["implementation_score"] == 1.0
+    assert stage_five["verification_score"] == 1.0
+    assert all(item["status"] == "verified" for item in stage_five["criteria"])
+    assert any("H-EMB-001-B" in item for item in stage_five["known_limits"])
 
 
 def test_baseline_refresh_does_not_promote_scientific_evidence() -> None:

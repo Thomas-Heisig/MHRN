@@ -544,17 +544,36 @@ def _stage_specs() -> tuple[StageSpec, ...]:
                 CriterionSpec(
                     "sensor_contracts",
                     "Sensor input contracts",
-                    paths=("src/embodiment/models.py", "src/embodiment/connections.py"),
+                    paths=(
+                        "src/embodiment/models.py",
+                        "src/embodiment/connections.py",
+                        "src/embodiment/integrated_nervous_system.py",
+                    ),
+                    tests=("tests/test_stage5_integrated_nervous_system.py",),
+                    verification=(
+                        "research/generated/verification/integrated_nervous_system_reference_alpha3.json",
+                    ),
                 ),
                 CriterionSpec(
                     "interoception",
                     "Interoception",
                     paths=("src/embodiment/interoception.py",),
+                    tests=("tests/test_stage5_integrated_nervous_system.py",),
+                    verification=(
+                        "research/generated/verification/integrated_nervous_system_reference_alpha3.json",
+                    ),
                 ),
                 CriterionSpec(
                     "authorized_actuation",
                     "Authorized actuator path",
                     paths=("src/embodiment/controlled.py", "src/embodiment/audit.py"),
+                    tests=(
+                        "tests/test_embodiment_lab.py",
+                        "tests/test_stage5_integrated_nervous_system.py",
+                    ),
+                    verification=(
+                        "research/generated/verification/integrated_nervous_system_reference_alpha3.json",
+                    ),
                 ),
                 CriterionSpec(
                     "closed_loop_environment",
@@ -563,21 +582,61 @@ def _stage_specs() -> tuple[StageSpec, ...]:
                         "src/experience/engine.py",
                         "src/embodiment/deterministic.py",
                     ),
-                    tests=("tests/test_experience_engine.py",),
+                    tests=(
+                        "tests/test_experience_engine.py",
+                        "tests/test_embodiment_lab.py",
+                        "tests/test_stage5_integrated_nervous_system.py",
+                    ),
+                    verification=(
+                        "research/generated/verification/integrated_nervous_system_reference_alpha3.json",
+                    ),
                 ),
                 CriterionSpec(
                     "resource_accounting",
                     "Resource accounting",
-                    paths=("src/embodiment/msba.py",),
+                    paths=(
+                        "src/embodiment/interoception.py",
+                        "src/embodiment/msba.py",
+                    ),
+                    tests=(
+                        "tests/test_interoception.py",
+                        "tests/test_stage5_integrated_nervous_system.py",
+                    ),
+                    verification=(
+                        "research/generated/verification/integrated_nervous_system_reference_alpha3.json",
+                    ),
                 ),
             ),
-            ("src/embodiment", "src/experience"),
-            ("tests/test_experience_engine.py",),
-            ("src/experiments/embodiment_lab.py",),
-            ("RQ6", "RQ7", "RQ8", "RQ9"),
-            ("Real-device and long-horizon embodiment claims remain out of scope.",),
-            ("R3 closed-loop embodiment evidence closure",),
-            ("Complete independent closed-loop replications and failure controls.",),
+            (
+                "src/embodiment",
+                "src/experience",
+                "src/embodiment/integrated_nervous_system.py",
+                "src/dashboard/static/frontend/modules/integrated-nervous-system.js",
+            ),
+            (
+                "tests/test_stage5_integrated_nervous_system.py",
+                "tests/test_stage5_frontend_contract.py",
+                "tests/test_embodiment_lab.py",
+                "tests/test_experience_engine.py",
+                "tests/test_interoception.py",
+            ),
+            ("research/experiments/EXP-STAGE5-20260914-INTEGRATED-NERVOUS-SYSTEM",),
+            ("RQ-EMB-001", "RQ6", "RQ7", "RQ8", "RQ9"),
+            (
+                "The verified reference environment is synthetic and deterministic; real-device and long-horizon embodiment claims remain out of scope.",
+                "Host telemetry is digital interoception, not biological interoception or metabolism.",
+                "H-EMB-001-A is DATA-supported only; H-EMB-001-B remains untested by the Stage-5 reference protocol.",
+                "No automatic EVID promotion or consciousness claim follows from Stage-5 completion.",
+            ),
+            (
+                "R3 scientific evidence closure remains separate from scoped Stage-5 engineering completion.",
+                "H-EMB-001-B still requires matched disturbance, yoked replay and interrupted-feedback tracking metrics.",
+            ),
+            (
+                "Run independent confirmatory closed-loop replication before any EVID promotion.",
+                "Preregister and execute the matched-disturbance H-EMB-001-B protocol.",
+                "Validate real-device adapters and long-horizon operation as separate safety-gated studies.",
+            ),
         ),
         StageSpec(
             6,
