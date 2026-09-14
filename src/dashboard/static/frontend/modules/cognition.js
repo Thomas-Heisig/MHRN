@@ -1,132 +1,101 @@
-"use strict";
+/** Existing cognition surface: consume summary and prediction endpoints separately. */
 import { apiGet, apiPost } from "../core/api.js";
+import { displayValue, memorySummary, predictionRows } from "./cognition-contract.js";
 
-let refreshTimer = null;
+let timer = null;
+let refreshing = false;
+let writing = false;
+const escape = (value) => displayValue(value).replace(/[&<>"']/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[char]));
+const row = (name, value) => `<dt>${escape(name)}</dt><dd>${escape(value)}</dd>`;
 
 function ensurePanel() {
   let panel = document.getElementById("mhrn-cognition");
   if (panel) return panel;
-  const workspace = document.getElementById("tab-wesen");
-  if (!workspace) return null;
+  const host = document.getElementById("tab-wesen");
+  if (!host) return null;
   panel = document.createElement("section");
   panel.id = "mhrn-cognition";
   panel.className = "mhrn-cognition card";
   panel.innerHTML = `
-    <header>
-      <div>
-        <span class="workspace-kicker">COGNITION · MEMORY · WORLD MODEL</span>
-        <h2>Kognitiver Zustand</h2>
-        <p>Vollständige Memory-State-Daten, World-Model und globaler Kognitions-Status.</p>
-      </div>
-      <span id="cognition-state-badge" class="maturity-state pending">lade …</span>
-    </header>
+    <header><h2>Kognition: Ged\u00e4chtnis und Weltmodell</h2><span id="cognition-state-badge" class="maturity-state pending">Unbekannt</span><button type="button" data-refresh>Aktualisieren</button></header>
+    <p>Technische Referenzkomponenten. Kein Nachweis neuronalen semantischen Ged\u00e4chtnisses oder eines mehrschrittigen Weltmodells.</p>
+    <p data-message role="status" aria-live="polite"></p>
     <div class="cognition-grid">
-      <div class="cognition-section">
-        <h3>Globaler Status</h3>
-        <div id="cognition-state-detail" class="cognition-detail">lade …</div>
-      </div>
-      <div class="cognition-section">
-        <h3>Memory State</h3>
-        <div id="cognition-memory-detail" class="cognition-detail">lade …</div>
-      </div>
-      <div class="cognition-section">
-        <h3>World Model</h3>
-        <div id="cognition-world-model-detail" class="cognition-detail">lade …</div>
-      </div>
+      <article class="cognition-section"><h4>Zustand</h4><div id="cognition-state-detail" class="cognition-detail" data-state>Wird geladen \u2026</div></article>
+      <article class="cognition-section"><h4>Ged\u00e4chtnis</h4><div id="cognition-memory-detail" class="cognition-detail" data-memory>Wird geladen \u2026</div></article>
+      <article class="cognition-section"><h4>Weltmodell</h4><div id="cognition-world-model-detail" class="cognition-detail" data-world>Wird geladen \u2026</div></article>
     </div>`;
-  const subnav = workspace.querySelector(":scope > .wesen-subnav");
-  const anchor = workspace.querySelector(":scope > header");
-  if (subnav) subnav.insertAdjacentElement("afterend", panel);
-  else if (anchor) anchor.insertAdjacentElement("afterend", panel);
-  else workspace.prepend(panel);
+  const anchor = host.querySelector(":scope > .wesen-subnav") || host.querySelector(":scope > header");
+  if (anchor) anchor.insertAdjacentElement("afterend", panel);
+  else host.prepend(panel);
+  panel.querySelector("[data-refresh]").addEventListener("click", () => refresh(true));
   return panel;
 }
 
-function renderState(data) {
-  const el = document.getElementById("cognition-state-detail");
-  if (!el) return;
-  const rows = Object.entries(data).filter(([, v]) => v !== null && v !== undefined);
-  if (!rows.length) { el.textContent = "keine Daten"; return; }
-  el.innerHTML = `<dl>${rows.map(([k, v]) => `<dt>${escapeHtml(k)}</dt><dd>${escapeHtml(String(v))}</dd>`).join("")}</dl>`;
-  const badge = document.getElementById("cognition-state-badge");
-  if (badge) badge.textContent = data.status || data.mode || "aktiv";
+function renderState(panel, payload) {
+  panel.querySelector("#cognition-state-badge").textContent = displayValue(payload.status);
+  panel.querySelector("[data-state]").innerHTML = `<dl>${row("Status", payload.status ?? null)}${row("Verf\u00fcgbar", payload.available ?? null)}</dl>`;
 }
 
-function renderMemory(data) {
-  const el = document.getElementById("cognition-memory-detail");
-  if (!el) return;
-  if (!data || data.available === false) { el.textContent = "Memory nicht verfügbar"; return; }
-  const controls = data.controls || {};
-  const episodes = data.episodes || [];
-  el.innerHTML = `
-    <div class="cognition-memory-controls">
-      <label><input type="checkbox" id="cognition-read-enabled" ${controls.read_enabled ? "checked" : ""}> Read</label>
-      <label><input type="checkbox" id="cognition-write-enabled" ${controls.write_enabled ? "checked" : ""}> Write</label>
-    </div>
-    <div class="cognition-memory-stats">
-      <span>Episoden: <strong>${episodes.length}</strong></span>
-      <span>Integrity: <strong>${data.integrity_status || "—"}</strong></span>
-    </div>`;
-  const readCb = el.querySelector("#cognition-read-enabled");
-  const writeCb = el.querySelector("#cognition-write-enabled");
-  if (readCb) readCb.addEventListener("change", () => updateControls(readCb, writeCb));
-  if (writeCb) writeCb.addEventListener("change", () => updateControls(readCb, writeCb));
+function renderMemory(panel, payload) {
+  const node = panel.querySelector("[data-memory]");
+  const memory = memorySummary(payload);
+  if (!memory) { node.textContent = "Ged\u00e4chtnisdaten nicht verf\u00fcgbar."; return; }
+  node.innerHTML = `<dl>${row("Episoden", memory.episodeCount)}${row("Arbeitsspeicher", memory.workingCount)}${row("Vorhersagedatens\u00e4tze", memory.predictionCount)}${row("Integrit\u00e4tsdigest", memory.integrityDigest?.slice(0, 16))}</dl>
+    <label><input type="checkbox" id="cognition-read-enabled" data-control="read_enabled" ${memory.readEnabled ? "checked" : ""} ${(memory.readEnabled === null || memory.writeEnabled === null) ? "disabled" : ""}> Episoden lesen</label>
+    <label><input type="checkbox" id="cognition-write-enabled" data-control="write_enabled" ${memory.writeEnabled ? "checked" : ""} ${(memory.readEnabled === null || memory.writeEnabled === null) ? "disabled" : ""}> Episoden schreiben</label>
+    <p>Speicherschalter steuern nicht das Pr\u00e4diktorlernen.</p>`;
+  node.querySelectorAll("[data-control]").forEach((input) => input.addEventListener("change", async () => {
+    writing = true;
+    node.querySelectorAll("input").forEach((control) => { control.disabled = true; });
+    const body = { read_enabled: memory.readEnabled, write_enabled: memory.writeEnabled, [input.dataset.control]: input.checked };
+    try {
+      await apiPost("/api/cognition/memory/controls", body);
+      panel.querySelector("[data-message]").textContent = "Speichereinstellung vom Server best\u00e4tigt.";
+    } catch (error) {
+      panel.querySelector("[data-message]").textContent = `Nicht gespeichert: ${error.message || error}`;
+    } finally {
+      writing = false;
+      await refresh(true);
+    }
+  }));
 }
 
-async function updateControls(readCb, writeCb) {
-  try {
-    await apiPost("/api/cognition/memory/controls", {
-      read_enabled: readCb?.checked ?? false,
-      write_enabled: writeCb?.checked ?? false,
-    });
-  } catch (e) {
-    // silently fail — UI reflects backend state on next refresh
-  }
+function renderWorld(panel, model, predictions) {
+  const rows = predictionRows(predictions);
+  const header = `<dl>${row("Status", model?.status ?? null)}${row("Modellversion", model?.model?.model_version ?? null)}${row("Bedingung", model?.condition ?? null)}</dl>`;
+  const boundary = "<p>Fehlerwert: Legacy-Telemetrie mit gemischten Einheiten, keine Genauigkeit. Unsicherheit: nicht kalibrierte St\u00fctzh\u00e4ufigkeit.</p>";
+  let content;
+  if (rows === null) content = "<p>Vorhersagedaten nicht verf\u00fcgbar.</p>";
+  else if (!rows.length) content = "<p>Keine gespeicherten Vorhersagen.</p>";
+  else content = `<div class="table-scroll"><table><thead><tr><th>Tick</th><th>Vorhersage</th><th>Beobachtung</th><th>Fehler</th></tr></thead><tbody>${rows.map((item) => `<tr><td>${escape(item.tick)} \u2192 ${escape(item.targetTick)}</td><td>${escape(item.predicted)}</td><td>${escape(item.actual)}</td><td>${escape(item.error)}</td></tr>`).join("")}</tbody></table></div>`;
+  panel.querySelector("[data-world]").innerHTML = header + boundary + content;
 }
 
-function renderWorldModel(data) {
-  const el = document.getElementById("cognition-world-model-detail");
-  if (!el) return;
-  if (!data || data.available === false) { el.textContent = "World Model nicht verfügbar"; return; }
-  const predictions = data.predictions || [];
-  el.innerHTML = `
-    <div class="cognition-world-model-stats">
-      <span>Mode: <strong>${data.mode || "—"}</strong></span>
-      <span>Predictions: <strong>${predictions.length}</strong></span>
-      <span>Accuracy: <strong>${data.accuracy != null ? Number(data.accuracy).toFixed(3) : "—"}</strong></span>
-    </div>
-    ${predictions.length ? `<table class="cognition-prediction-table"><thead><tr><th>Tick</th><th>Predicted</th><th>Observed</th><th>Error</th></tr></thead><tbody>${predictions.slice(0, 10).map(p => `<tr><td>${p.tick ?? "—"}</td><td>${escapeHtml(String(p.predicted ?? "—"))}</td><td>${escapeHtml(String(p.observed ?? "—"))}</td><td>${p.error != null ? Number(p.error).toFixed(4) : "—"}</td></tr>`).join("")}</tbody></table>` : "<p>Keine Vorhersagen verfügbar.</p>"}`;
-}
-
-async function refresh() {
+async function refresh(force = false) {
   const panel = ensurePanel();
-  if (!panel || panel.hidden) return;
+  if (!panel || refreshing || writing || document.hidden) return;
+  if (!force && panel.getClientRects().length === 0) return;
+  refreshing = true;
   try {
-    const [state, memory, worldModel] = await Promise.allSettled([
+    const results = await Promise.allSettled([
       apiGet("/api/cognition/state"),
       apiGet("/api/cognition/memory"),
       apiGet("/api/cognition/world-model"),
+      apiGet("/api/cognition/predictions?limit=20"),
     ]);
-    if (state.status === "fulfilled") renderState(state.value);
-    else document.getElementById("cognition-state-detail").textContent = `Fehler: ${state.reason.message}`;
-    if (memory.status === "fulfilled") renderMemory(memory.value);
-    else document.getElementById("cognition-memory-detail").textContent = `Fehler: ${memory.reason.message}`;
-    if (worldModel.status === "fulfilled") renderWorldModel(worldModel.value);
-    else document.getElementById("cognition-world-model-detail").textContent = `Fehler: ${worldModel.reason.message}`;
-  } catch (e) {
-    // panel-level error
-  }
-}
-
-function escapeHtml(s) {
-  const div = document.createElement("div");
-  div.textContent = s;
-  return div.innerHTML;
+    const [state, memory, model, predictions] = results;
+    if (state.status === "fulfilled") renderState(panel, state.value);
+    else panel.querySelector("[data-state]").textContent = "Zustand nicht verf\u00fcgbar.";
+    if (memory.status === "fulfilled" && !writing) renderMemory(panel, memory.value);
+    else if (memory.status !== "fulfilled") panel.querySelector("[data-memory]").textContent = "Ged\u00e4chtnisdaten nicht verf\u00fcgbar.";
+    renderWorld(panel, model.status === "fulfilled" ? model.value : null, predictions.status === "fulfilled" ? predictions.value : null);
+  } finally { refreshing = false; }
 }
 
 export function initCognition() {
+  if (timer !== null) return;
   ensurePanel();
-  refresh();
-  if (refreshTimer) clearInterval(refreshTimer);
-  refreshTimer = setInterval(refresh, 5000);
+  refresh(true);
+  timer = window.setInterval(refresh, 5000);
 }
