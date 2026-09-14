@@ -54,4 +54,4 @@
 | Vetcha (2026) |  | RQ-LIFE-001, RQ-GEN-001 | open |
 
 ---
-*Automatisch generiert am 2026-09-13*
+*Automatisch generiert am 2026-09-14*
