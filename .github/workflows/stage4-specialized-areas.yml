@@ -6,6 +6,12 @@ on:
       - feature/stage4-specialized-neural-areas
     paths:
       - .github/workflows/stage4-specialized-areas.yml
+      - research/stage4_specialized_neural_areas.md
+      - research/publications/2026-09-14_stage4-specialized-areas_v1.5-addendum/**
+      - research/publications/README.md
+      - src/embodiment/specialized_areas.py
+      - src/dashboard/**
+      - tests/test_stage4_*.py
 
 permissions:
   contents: write
@@ -50,6 +56,21 @@ jobs:
 
       - name: Run Stage-4 frontend and timeline contract tests
         run: python -m pytest tests/test_stage4_frontend_contract.py tests/test_development_timeline.py tests/test_backend_frontend_coverage.py -q
+
+      - name: Verify publication 1.5 Stage-4 addendum
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          addendum = Path('research/publications/2026-09-14_stage4-specialized-areas_v1.5-addendum/README.md').read_text(encoding='utf-8')
+          stage4 = Path('research/stage4_specialized_neural_areas.md').read_text(encoding='utf-8')
+          index = Path('research/publications/README.md').read_text(encoding='utf-8')
+          for token in ('RQ-MSBA-E01', 'RQ-MSBA-E02', 'RQ-MSBA-E03', 'RQ-MSBA-E04', 'RQ-MSBA-E05'):
+              assert token in addendum
+              assert token in stage4
+          assert 'dynamic_scale_execution_verified=false' in addendum
+          assert 'keine automatische EVID-Freigabe' in addendum
+          assert '2026-09-14_stage4-specialized-areas_v1.5-addendum/README.md' in index
+          PY
 
       - name: Verify no automatic evidence promotion
         run: |
