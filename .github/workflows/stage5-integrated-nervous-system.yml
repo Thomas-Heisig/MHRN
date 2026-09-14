@@ -8,11 +8,15 @@ on:
       - "src/embodiment/**"
       - "src/experience/**"
       - "src/experiments/embodiment_lab.py"
+      - "src/dashboard/development_timeline.py"
       - "src/dashboard/static/frontend/**"
+      - "scripts/apply_stage5_timeline.py"
       - "scripts/run_stage5_reference.py"
       - "tests/test_stage5_*"
+      - "tests/test_development_timeline.py"
       - "tests/test_embodiment_lab.py"
       - "tests/test_experience_engine.py"
+      - "tests/test_interoception.py"
       - "research/stage5_integrated_nervous_system.md"
       - "research/publications/2026-09-14_stage5-integrated-nervous-system_v1.5-addendum/**"
       - "research/publications/README.md"
@@ -37,6 +41,11 @@ jobs:
       - name: Install development dependencies
         run: python -m pip install -e ".[dev]"
 
+      - name: Apply Stage-5 timeline integration
+        run: |
+          python scripts/apply_stage5_timeline.py
+          python -m black src/dashboard/development_timeline.py tests/test_development_timeline.py scripts/apply_stage5_timeline.py
+
       - name: Run Stage-5 reference experiment
         run: python scripts/run_stage5_reference.py
 
@@ -45,6 +54,7 @@ jobs:
           python -m pytest -q
           tests/test_stage5_integrated_nervous_system.py
           tests/test_stage5_frontend_contract.py
+          tests/test_development_timeline.py
           tests/test_embodiment_lab.py
           tests/test_experience_engine.py
           tests/test_interoception.py
@@ -57,6 +67,7 @@ jobs:
           research = Path("research/stage5_integrated_nervous_system.md").read_text(encoding="utf-8")
           index = Path("research/publications/README.md").read_text(encoding="utf-8")
           verification = Path("research/generated/verification/integrated_nervous_system_reference_alpha3.json").read_text(encoding="utf-8")
+          timeline = Path("src/dashboard/development_timeline.py").read_text(encoding="utf-8")
           for token in ("RQ-EMB-001", "H-EMB-001-A", "H-EMB-001-B"):
               assert token in addendum and token in research
           assert "keine automatische EVID-Freigabe" in addendum
@@ -66,16 +77,22 @@ jobs:
           assert '"status": "verified"' in verification
           assert '"automatic_evidence_promotion": false' in verification
           assert '"H-EMB-001-B": "untested by Stage-5 reference protocol"' in verification
+          assert "integrated_nervous_system_reference_alpha3.json" in timeline
+          assert "tests/test_stage5_integrated_nervous_system.py" in timeline
           PY
 
-      - name: Commit verified Stage-5 DATA and verification artifact
+      - name: Commit verified Stage-5 integration artifacts
         run: |
-          git add research/experiments/EXP-STAGE5-20260914-INTEGRATED-NERVOUS-SYSTEM research/generated/verification/integrated_nervous_system_reference_alpha3.json
+          git add \
+            src/dashboard/development_timeline.py \
+            tests/test_development_timeline.py \
+            research/experiments/EXP-STAGE5-20260914-INTEGRATED-NERVOUS-SYSTEM \
+            research/generated/verification/integrated_nervous_system_reference_alpha3.json
           if git diff --cached --quiet; then
-            echo "Stage-5 artifacts already current."
+            echo "Stage-5 integration artifacts already current."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git commit -m "research(stage5): record verified integrated nervous system DATA"
+          git commit -m "research(stage5): finalize verified integration state"
           git push
