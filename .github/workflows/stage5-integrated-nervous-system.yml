@@ -60,7 +60,7 @@ jobs:
           for token in ("RQ-EMB-001", "H-EMB-001-A", "H-EMB-001-B"):
               assert token in addendum and token in research
           assert "keine automatische EVID-Freigabe" in addendum
-          assert "nicht abgeschlossen" in addendum
+          assert "**nicht** abgeschlossen" in addendum
           assert "matched-disturbance" in addendum
           assert "stage5-integrated-nervous-system_v1.5-addendum" in index
           assert '"status": "verified"' in verification
