@@ -1,12 +1,11 @@
 """Apply the six-file, reviewed integration repair without touching other work.
 
-Only unique preimages are accepted. This script is run in an isolated GitHub
-checkout; formatting uses the repository-pinned Black/Ruff versions. It neither
-changes tests' assertions nor rewrites research DATA or evidence status.
+Only unique preimages are accepted. The isolated checkout uses repository-pinned
+Black/Ruff versions. Test assertions, research DATA and evidence stay unchanged.
 """
 
-from pathlib import Path
 import subprocess
+from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -60,6 +59,10 @@ def main() -> None:
         "scripts/run_stage5_reference.py",
         "tests/test_stage5_frontend_contract.py",
     ]
+    subprocess.run(
+        ["python", "-m", "ruff", "check", "--select", "I", "--fix", *targets],
+        cwd=ROOT, check=True,
+    )
     subprocess.run(["python", "-m", "black", *targets], cwd=ROOT, check=True)
     subprocess.run(["python", "-m", "ruff", "check", *targets], cwd=ROOT, check=True)
     changed = subprocess.check_output(
