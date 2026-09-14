@@ -9,6 +9,8 @@
 
 "use strict";
 
+import { createSpeechControls } from "../../speech-reader.js";
+
 const CURRENT_PUBLICATION_ENDPOINT = "/api/publication/current";
 const REPOSITORY_BLOB_ROOT = "https://github.com/Thomas-Heisig/MHRN/blob/main/";
 const READER_EXTENSIONS = /\.(?:md|markdown|txt)$/i;
@@ -162,6 +164,7 @@ function renderReader(container) {
           <button type="button" class="pub-reader-icon-button" data-pub-action="home" ${isRoot ? "disabled" : ""} aria-label="Zum Publikationsindex">⌂</button>
           <button type="button" class="pub-reader-icon-button" data-pub-action="forward" ${state.index >= state.views.length - 1 ? "disabled" : ""} aria-label="Vorwärts">→</button>
         </div>
+        <div class="pub-reader-speech" id="pub-reader-speech-mount"></div>
         <div class="pub-reader-location" title="${escapeHtml(`${sourceLabel}/${view.path}`)}">
           <span>${escapeHtml(sourceLabel)}</span><strong>/</strong><code>${escapeHtml(view.path)}</code>
         </div>
@@ -202,6 +205,7 @@ function renderReader(container) {
 
   wireHeadingObserver(container);
   wireReadingProgress(container);
+  wireSpeechControls(container);
 }
 
 function renderToc(headings) {
@@ -750,6 +754,14 @@ function wireReadingProgress(container) {
   };
   window.addEventListener("scroll", update, { passive: true });
   update();
+}
+
+function wireSpeechControls(container) {
+  const mount = container.querySelector("#pub-reader-speech-mount");
+  const article = container.querySelector("#pub-reader-article");
+  if (!mount || !article) return;
+  const getText = () => article.innerText || article.textContent || "";
+  createSpeechControls(mount, getText, { label: "Publikation vorlesen" });
 }
 
 function showToast(container, message, isError = false) {

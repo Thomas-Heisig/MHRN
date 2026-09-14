@@ -1071,14 +1071,19 @@ body[data-theme="light"][data-contrast="high"] { --rule:rgba(240,233,218,.32); -
 }
 
 /* ================================================================
-   Publication Panel (eigener Tab)
+   Publication Panel (eigener Tab) — angeglichen an Dashboard-Design
    ================================================================ */
 #tab-publication {
-  padding: 0;
+  padding: var(--gutter);
+  max-width: var(--max);
 }
 
 #publication-panel {
   padding: 0;
+  border: 1px solid var(--rule);
+  border-radius: var(--r-md);
+  background: var(--paper-2);
+  overflow: hidden;
 }
 
 .publication-loading,
@@ -1098,9 +1103,16 @@ body[data-theme="light"][data-contrast="high"] { --rule:rgba(240,233,218,.32); -
   align-items: flex-start;
   justify-content: space-between;
   gap: 16px;
-  padding: 20px 24px;
-  border-bottom: 1px solid var(--rule-2);
-  background: var(--paper-2);
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--rule);
+  background: color-mix(in srgb, var(--paper-3) 42%, transparent);
+}
+
+.publication-header .workspace-kicker {
+  color: var(--accent);
+  font: 700 .54rem/1 var(--font-mono);
+  letter-spacing: .14em;
+  text-transform: uppercase;
 }
 
 .publication-meta h2 {
@@ -1136,6 +1148,7 @@ body[data-theme="light"][data-contrast="high"] { --rule:rgba(240,233,218,.32); -
   overflow-y: auto;
   font: 400 .82rem/1.65 var(--font-display);
   color: var(--ink-2);
+  background: var(--paper-2);
 }
 
 .publication-body h1,
@@ -1161,6 +1174,7 @@ body[data-theme="light"][data-contrast="high"] { --rule:rgba(240,233,218,.32); -
   background: var(--paper-3);
   padding: 1px 4px;
   border-radius: var(--r-xs);
+  color: var(--ink-2);
 }
 
 .publication-body pre {
@@ -1177,6 +1191,7 @@ body[data-theme="light"][data-contrast="high"] { --rule:rgba(240,233,218,.32); -
   padding: 0;
   font-size: .72rem;
   line-height: 1.4;
+  color: var(--ink-2);
 }
 
 .publication-body blockquote {
@@ -1186,6 +1201,7 @@ body[data-theme="light"][data-contrast="high"] { --rule:rgba(240,233,218,.32); -
   background: var(--accent-wash);
   color: var(--ink-2);
   font-style: italic;
+  border-radius: 0 var(--r-sm) var(--r-sm) 0;
 }
 
 .publication-body ul {
@@ -1216,10 +1232,11 @@ body[data-theme="light"][data-contrast="high"] { --rule:rgba(240,233,218,.32); -
 .publication-footer {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   gap: 12px;
-  padding: 16px 24px;
-  border-top: 1px solid var(--rule-2);
-  background: var(--paper-2);
+  padding: 12px 20px;
+  border-top: 1px solid var(--rule);
+  background: color-mix(in srgb, var(--paper-3) 42%, transparent);
   font-size: .72rem;
 }
 
@@ -1247,4 +1264,41 @@ body[data-theme="light"][data-contrast="high"] { --rule:rgba(240,233,218,.32); -
   min-height: 26px;
   padding: 3px 10px;
   font-size: .65rem;
+}
+
+/* ── Speech reader controls im Publication Panel ── */
+#publication-panel .speech-reader-controls {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: auto;
+}
+
+#publication-panel .speech-reader-controls button {
+  min-width: 28px;
+  min-height: 26px;
+  padding: 2px 6px;
+  border: 1px solid var(--rule);
+  border-radius: var(--r-xs);
+  background: var(--paper-2);
+  color: var(--ink-2);
+  font-size: .7rem;
+  cursor: pointer;
+  transition: background var(--t-fast), color var(--t-fast);
+}
+
+#publication-panel .speech-reader-controls button:hover:not(:disabled) {
+  background: var(--paper-3);
+  color: var(--ink);
+}
+
+#publication-panel .speech-reader-controls button:disabled {
+  opacity: .4;
+  cursor: default;
+}
+
+#publication-panel .speech-reader-status {
+  font: 400 .6rem/1 var(--font-ui);
+  color: var(--ink-4);
+  min-width: 6ch;
 }
