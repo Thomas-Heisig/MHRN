@@ -129,6 +129,22 @@ const rootFor = (workspace) => byId(`tab-${workspace}`);
 
 // ── Legacy workspace activation ────────────────────────────────
 function activateLegacy(workspace) {
+  if (workspace === "publication") {
+    // Publication tab uses style=display:none (not hidden), so click() won't bubble.
+    // Activate it directly.
+    requestAnimationFrame(() => {
+      document.querySelectorAll(".tab-content[id^='tab-']").forEach((node) => {
+        const active = node.id === "tab-publication";
+        node.classList.toggle("active", active);
+        node.hidden = !active;
+      });
+      document.querySelectorAll(".tab-btn[data-tab]").forEach((node) => {
+        node.classList.toggle("active", node.dataset.tab === "publication");
+      });
+      document.body.dataset.currentTab = "publication";
+    });
+    return true;
+  }
   const button = document.querySelector(`.tab-nav .tab-btn[data-tab="${workspace}"]`);
   if (!button) return false;
   button.click();
@@ -270,6 +286,11 @@ function resetWorkspaceVisibility(workspace) {
 
 function showRouteContent(areaId, route) {
   const [id, label, workspace, action, arg] = route;
+
+  // Special case: publication is a direct-content tab, no routing needed
+  if (areaId === "publication") {
+    return;
+  }
 
   // Always show the overview if this is the overview route
   if (id === "overview") {
@@ -458,8 +479,10 @@ function applyRoute(areaId, route) {
 
     if (action === "generated") showGenerated(workspace, arg);
 
-    // Set overview visibility
-    setOverview(areaId, id === "overview");
+    // Set overview visibility — skip for publication (direct content tab)
+    if (areaId !== "publication") {
+      setOverview(areaId, id === "overview");
+    }
 
     // RUN RECONCILIATION — this is the central visibility authority
     reconcileRouteVisibility(areaId, id);

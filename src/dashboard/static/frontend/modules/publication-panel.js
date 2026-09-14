@@ -13,8 +13,40 @@ export async function initPublicationPanel() {
   if (!container || container.dataset.initialised === "true") return;
   container.dataset.initialised = "true";
 
-  // Load publication content immediately (the tab is now a separate workspace)
-  loadPublication(container);
+  // Listen for navigation to the publication area via event delegation
+  document.addEventListener("click", (event) => {
+    const btn = event.target.closest('[data-mhrn-area="publication"]');
+    if (btn) {
+      const hasContent = container.querySelector(".publication-header") !== null;
+      if (!hasContent) {
+        loadPublication(container);
+      }
+    }
+  });
+
+  // Also observe the tab becoming active (in case navigation happens via other means)
+  const pubTab = document.getElementById("tab-publication");
+  if (pubTab) {
+    const observer = new MutationObserver(() => {
+      if (pubTab.classList.contains("active") && !pubTab.hidden) {
+        const hasContent = container.querySelector(".publication-header") !== null;
+        if (!hasContent) {
+          loadPublication(container);
+        }
+        observer.disconnect();
+      }
+    });
+    observer.observe(pubTab, { attributes: true, attributeFilter: ["class", "hidden"] });
+
+    // Also check immediately in case it's already active
+    if (pubTab.classList.contains("active") && !pubTab.hidden) {
+      loadPublication(container);
+      observer.disconnect();
+    }
+  } else {
+    // Fallback: load immediately
+    loadPublication(container);
+  }
 }
 
 async function loadPublication(container) {
@@ -98,9 +130,7 @@ function renderPublication(container, data) {
   const openFvBtn = document.getElementById("pub-open-fv");
   if (openFvBtn) {
     openFvBtn.addEventListener("click", () => {
-      window.dispatchEvent(new CustomEvent("brain5d:open-file", {
-        detail: { source: "research", path: readme_path }
-      }));
+      _openInFileViewer(readme_path);
     });
   }
 
@@ -109,21 +139,38 @@ function renderPublication(container, data) {
     link.addEventListener("click", (event) => {
       event.preventDefault();
       const path = link.dataset.pubLink;
-      if (path) {
-        window.dispatchEvent(new CustomEvent("brain5d:open-file", {
-          detail: { source: "research", path }
-        }));
-      }
+      if (path) _openInFileViewer(path);
     });
   });
 
   container.querySelectorAll("[data-pub-path]").forEach((btn) => {
     btn.addEventListener("click", () => {
-      window.dispatchEvent(new CustomEvent("brain5d:open-file", {
-        detail: { source: "research", path: btn.dataset.pubPath }
-      }));
+      _openInFileViewer(btn.dataset.pubPath);
     });
   });
+}
+
+/**
+ * Navigate to the research/files tab and open a file in the File Viewer.
+ */
+function _openInFileViewer(path) {
+  // First try to use the workspace router to navigate to files area
+  if (window.selectRoute) {
+    window.selectRoute("files", "browse");
+  } else {
+    // Fallback: click the research tab button
+    const fmTab = document.querySelector('.tab-btn[data-tab="research"]');
+    if (fmTab) fmTab.click();
+  }
+  // Then open the file
+  if (window.openBrain5DFile) {
+    window.openBrain5DFile("research", path);
+  } else {
+    window.dispatchEvent(new CustomEvent("brain5d:open-file", {
+      detail: { source: "research", path }
+    }));
+  }
+}
 }
 
 /**
