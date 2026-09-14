@@ -337,7 +337,7 @@
   "stage": 4,
   "status": "verified",
   "suite": "specialized_neural_areas_reference",
-  "test_output_tail": "........................................................                 [100%]\n56 passed in 6.00s",
+  "test_output_tail": "........................................................                 [100%]\n56 passed in 6.21s",
   "test_paths": [
     "tests/test_stage4_specialized_neural_areas.py",
     "tests/test_msba.py",
