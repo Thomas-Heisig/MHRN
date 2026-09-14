@@ -1,0 +1,101 @@
+name: Stage 4 Specialized Areas
+
+on:
+  push:
+    branches:
+      - feature/stage4-specialized-neural-areas
+    paths:
+      - .github/workflows/stage4-specialized-areas.yml
+      - research/stage4_specialized_neural_areas.md
+      - research/publications/2026-09-14_stage4-specialized-areas_v1.5-addendum/**
+      - research/publications/README.md
+      - src/embodiment/specialized_areas.py
+      - src/dashboard/**
+      - tests/test_stage4_*.py
+
+permissions:
+  contents: write
+
+jobs:
+  integrate-and-verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Apply Stage-4 integration
+        run: |
+          python scripts/apply_stage4_integration.py
+          python scripts/fix_stage4_signal_contract_reference.py
+
+      - name: Install project and development dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e ".[dev]"
+
+      - name: Format Stage-4 Python changes
+        run: |
+          python -m black src/embodiment/specialized_areas.py src/embodiment/__init__.py src/dashboard/server.py src/dashboard/development_timeline.py scripts/apply_stage4_integration.py scripts/fix_stage4_signal_contract_reference.py scripts/run_stage4_reference.py tests/test_stage4_specialized_neural_areas.py tests/test_stage4_frontend_contract.py tests/test_development_timeline.py
+          python -m ruff check --fix src/embodiment/specialized_areas.py src/embodiment/__init__.py src/dashboard/server.py src/dashboard/development_timeline.py scripts/apply_stage4_integration.py scripts/fix_stage4_signal_contract_reference.py scripts/run_stage4_reference.py tests/test_stage4_specialized_neural_areas.py tests/test_stage4_frontend_contract.py tests/test_development_timeline.py
+
+      - name: Run Stage-4 engineering reference
+        run: |
+          set +e
+          python scripts/run_stage4_reference.py
+          rc=$?
+          if [ -f research/generated/verification/specialized_neural_areas_reference_alpha3.json ]; then
+            cat research/generated/verification/specialized_neural_areas_reference_alpha3.json
+          fi
+          exit $rc
+
+      - name: Run Stage-4 frontend and timeline contract tests
+        run: python -m pytest tests/test_stage4_frontend_contract.py tests/test_development_timeline.py tests/test_backend_frontend_coverage.py -q
+
+      - name: Verify publication 1.5 Stage-4 addendum
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          addendum = Path('research/publications/2026-09-14_stage4-specialized-areas_v1.5-addendum/README.md').read_text(encoding='utf-8')
+          stage4 = Path('research/stage4_specialized_neural_areas.md').read_text(encoding='utf-8')
+          index = Path('research/publications/README.md').read_text(encoding='utf-8')
+          for token in ('RQ-MSBA-E01', 'RQ-MSBA-E02', 'RQ-MSBA-E03', 'RQ-MSBA-E04', 'RQ-MSBA-E05'):
+              assert token in addendum
+              assert token in stage4
+          assert 'dynamic_scale_execution_verified=false' in addendum
+          assert 'keine automatische EVID-Freigabe' in addendum
+          assert '2026-09-14_stage4-specialized-areas_v1.5-addendum/README.md' in index
+          PY
+
+      - name: Verify no automatic evidence promotion
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p = Path('research/generated/verification/specialized_neural_areas_reference_alpha3.json')
+          data = json.loads(p.read_text(encoding='utf-8'))
+          assert data['status'] == 'verified'
+          assert data['scope'] == 'engineering_verification'
+          assert data['scientific_promotion']['automatic_evidence_promotion'] is False
+          assert data['scientific_promotion']['accepted_evid_created'] is False
+          assert data['contract']['topology']['dynamic_scale_execution_verified'] is False
+          assert data['contract']['scientific_boundary']['productive_activation_enabled'] is False
+          PY
+
+      - name: Commit verified integration to feature branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/embodiment/__init__.py src/dashboard/server.py src/dashboard/development_timeline.py src/dashboard/static/wesen-neural-symbiosis.js src/dashboard/static/msba/msba.js scripts/apply_stage4_integration.py research/README.md docs/08-roadmap/TODO.md research/generated/verification/specialized_neural_areas_reference_alpha3.json
+          git diff --cached --check
+          if git diff --cached --quiet; then
+            echo "Stage-4 integration already applied."
+          else
+            git commit -m "feat(stage4): complete specialized neural areas full stack"
+            git push origin HEAD:feature/stage4-specialized-neural-areas
+          fi

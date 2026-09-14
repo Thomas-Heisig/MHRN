@@ -2,6 +2,10 @@
 
 [Dissertationsmanuskript und Forschungsarbeit](2026-09-13_recursive-epistemics_v1.5/README.md). Vollstaendige Ausgabe, aktuelle quellgebundene Messbilanz, menschliches Review ausstehend.
 
+## Nachtrag vom 14. September 2026
+
+[Stage 4 — spezialisierte neuronale Areale](2026-09-14_stage4-specialized-areas_v1.5-addendum/README.md) ergänzt Fassung 1.5 um den nach ihrem Redaktionsstand verifizierten Full-Stack-/Experimentstand. Die Originalfassung, ihre Kampagnenprovenienz und ihre Binärexporte bleiben unverändert. Der Nachtrag dokumentiert Audio-, Vision- und Digitalpfade, `RQ-MSBA-E01` bis `E05`, die E01–E05-DATA-Serie sowie die Grenzen der aggregierten 100k/10M-Topologiebehauptung. Keine automatische EVID-Freigabe.
+
 <details><summary>Historischer Publikationsindex</summary>
 
 # Recursive Epistemics in Embodied Spiking Neural Architectures

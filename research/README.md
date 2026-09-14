@@ -1,3 +1,15 @@
+<!-- stage4-specialized-areas -->
+## Stage 4 — Spezialisierte neuronale Areale
+
+Der technische Stage-4-Vertrag ist auf `feature/stage4-specialized-neural-areas`
+als durchgängiger Audio-/Vision-/Digitalpfad ergänzt. Die E01–E05-Serie vom
+14.09.2026 wird als DATA-Grundlage referenziert; eine automatische EVID-Promotion
+findet nicht statt. Der 100k-Neuronen-/10M-Synapsen-Wert ist ein aggregierter
+Topologievertrag und ausdrücklich kein behaupteter dynamischer Großskalierungslauf.
+
+Details: `research/stage4_specialized_neural_areas.md` und
+`research/generated/verification/specialized_neural_areas_reference_alpha3.json`.
+
 <!-- alpha3-current-state -->
 ## Wissenschaftlicher Stand: Alpha.3 / Publikationsfassung 1.5
 

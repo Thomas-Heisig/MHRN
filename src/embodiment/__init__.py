@@ -89,6 +89,16 @@ from .real_body import ConnectionManager
 from .registry import EmbodimentRegistry
 from .sensor import SensorAdapter
 from .sensor_activation import SensorActivationAudit, SensorActivationService
+from .specialized_areas import (
+    LATEST_MSBA_DATA,
+    STAGE4_MIN_NEURONS,
+    STAGE4_MIN_SYNAPSES,
+    SpecializedAreaNetwork,
+    SpecializedAreaSpec,
+    default_specialized_areas,
+    reference_probe_suite,
+    specialized_area_contract,
+)
 from .system_sensor import (
     SystemSensorAdapter,
     host_system_readings,
@@ -155,6 +165,11 @@ __all__ = [
     "SensorActivationAudit",
     "SensorActivationService",
     "SensorFrame",
+    "LATEST_MSBA_DATA",
+    "STAGE4_MIN_NEURONS",
+    "STAGE4_MIN_SYNAPSES",
+    "SpecializedAreaNetwork",
+    "SpecializedAreaSpec",
     "SymbolFrame",
     "TaskOutcome",
     "TaskOutcomeVerifier",
@@ -162,6 +177,9 @@ __all__ = [
     "VitalSignal",
     "allocation_gate",
     "default_modality_profiles",
+    "default_specialized_areas",
+    "reference_probe_suite",
+    "specialized_area_contract",
     "derive_drives",
     "derive_functional_state",
     "derive_regulatory_state",
