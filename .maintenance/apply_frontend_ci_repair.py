@@ -9,6 +9,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 MANIFEST = ROOT / ".maintenance/frontend-ci-repair.json.gz"
+OVERRIDES = ROOT / ".maintenance/frontend-ci-repair-overrides.json"
 ALLOWED = ("src/dashboard/", "src/storage/optical_codec.py", "tests/browser/", ".github/workflows/ci.yml")
 
 
@@ -16,6 +17,8 @@ def main() -> None:
     if os.environ.get("GITHUB_REF_NAME") != "main":
         raise RuntimeError("This source-bound integration repair is restricted to main")
     plan = json.loads(gzip.decompress(MANIFEST.read_bytes()))
+    if OVERRIDES.exists():
+        plan.update(json.loads(OVERRIDES.read_text(encoding="utf-8")))
     prepared = []
     for name, spec in plan.items():
         relative = Path(name)
@@ -42,6 +45,9 @@ def main() -> None:
     for path, data in prepared:
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_bytes(data)
+    receipt = Path("/tmp/frontend-ci-repair/paths.json")
+    receipt.parent.mkdir(parents=True, exist_ok=True)
+    receipt.write_text(json.dumps(list(plan)) + "\n", encoding="utf-8")
     print(f"Applied {len(prepared)} digest-verified CI repairs; no scientific DATA changed.")
 
 

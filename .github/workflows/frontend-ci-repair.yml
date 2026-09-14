@@ -2,7 +2,7 @@ name: Frontend CI Repair Verification
 on:
   push:
     branches: [main]
-    paths: [.github/workflows/frontend-ci-repair.yml, .maintenance/frontend-ci-repair.json.gz, .maintenance/apply_frontend_ci_repair.py]
+    paths: [.github/workflows/frontend-ci-repair.yml, .maintenance/frontend-ci-repair.json.gz, .maintenance/frontend-ci-repair-overrides.json, .maintenance/apply_frontend_ci_repair.py]
   workflow_dispatch:
 permissions:
   contents: write
@@ -56,8 +56,8 @@ jobs:
       - name: Commit only verified repairs without overwriting concurrent work
         run: |
           test "$(git ls-remote origin refs/heads/main | cut -f1)" = "$GITHUB_SHA"
-          python -c 'import gzip,json,subprocess; paths=list(json.load(gzip.open(".maintenance/frontend-ci-repair.json.gz"))); subprocess.run(["git","add","--",*paths],check=True)'
-          git -c user.name='MHRN CI repair (AI-assisted)' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'fix: restore nested navigation, review mounting, viewer tests and strict CI types'
+          python -c 'import json,subprocess; paths=json.load(open("/tmp/frontend-ci-repair/paths.json")); subprocess.run(["git","add","--",*paths],check=True)'
+          git -c user.name='MHRN CI repair (AI-assisted)' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'fix: restore nested navigation, review mounting, file filters and strict CI types'
           git push origin HEAD:main
           git rev-parse HEAD > /tmp/frontend-ci-repair/verified-commit.txt
       - name: Preserve exact diagnostics and source
