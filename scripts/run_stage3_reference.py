@@ -31,7 +31,7 @@ DEFAULT_OUTPUT = (
     / "research"
     / "generated"
     / "verification"
-    / "plastic_neural_tissue_reference.json"
+    / "plastic_neural_tissue_reference_alpha3.json"
 )
 CONFIG_PATH = REPO_ROOT / "configs" / "learning_experiment.yaml"
 
@@ -97,7 +97,7 @@ def build_report(*, run_tests: bool = True) -> dict[str, Any]:
     sham_payload = _condition_payload(sham_replay)
 
     group_results = {
-        name: (_run_test_group(paths) if run_tests else True)
+        name: (_run_test_group(paths) if run_tests else None)
         for name, paths in TEST_GROUPS.items()
     }
 
@@ -110,7 +110,7 @@ def build_report(*, run_tests: bool = True) -> dict[str, Any]:
         for payload in (on_payload, replay_payload, off_payload, sham_payload)
     )
 
-    proofs: dict[str, bool] = {
+    proofs: dict[str, bool | None] = {
         "stdp_and_three_factor_tests_passed": group_results["stdp_and_three_factor"],
         "homeostasis_tests_passed": group_results["homeostasis"],
         "structural_plasticity_tests_passed": group_results["structural_plasticity"],
@@ -143,13 +143,23 @@ def build_report(*, run_tests: bool = True) -> dict[str, Any]:
         "deterministic_learning_replay_identity": on_payload == replay_payload,
         "finite_bounded_weight_summary": finite_means and bounded_means,
     }
-    verified = all(proofs.values())
+    verified = all(value is True for value in proofs.values())
+    status = (
+        "verified"
+        if verified
+        else (
+            "failed"
+            if any(value is False for value in proofs.values())
+            else "incomplete"
+        )
+    )
 
     return {
         "schema_version": 1,
         "suite": "plastic_neural_tissue_reference",
         "stage": 3,
-        "status": "verified" if verified else "failed",
+        "status": status,
+        "tests_executed": run_tests,
         "scope": "engineering_verification",
         "software_version": MHRN_VERSION,
         "protocol": {

@@ -4,15 +4,16 @@ from __future__ import annotations
 
 from pathlib import Path
 
-import pytest
+from tests.dashboard_assets import dashboard_css
 
 STATIC_DIR = Path(__file__).parent.parent / "src" / "dashboard" / "static"
 
 
 def _read_static(name: str) -> str:
+    if name.endswith(".css"):
+        return dashboard_css()
     path = STATIC_DIR / name
-    if not path.exists():
-        pytest.skip(f"{name} not found in static directory")
+    assert path.is_file(), f"Required dashboard asset is missing: {name}"
     return path.read_text(encoding="utf-8")
 
 
@@ -79,7 +80,7 @@ class TestExperimentModeFrontendWiring:
         assert "TIMELINE_PHASES" in gate_board
         assert 'data-release-document="08-roadmap/TODO.md"' in html
         assert "openDocumentationFile" in gate_board
-        assert "release-preview-facts" in gate_board
+        assert "preview-stats" in gate_board
         assert "research_boundary" in gate_board
         assert "export function openDocumentationFile" in file_viewer
         assert "loadReleaseDocuments" not in gate_board
@@ -100,11 +101,10 @@ class TestExperimentModeFrontendWiring:
         overview_js = _read_static("overview-panel.js")
 
         for element_id in (
-            "overview-runtime-status",
-            "overview-health-status",
-            "overview-scientific-status",
-            "overview-ci-status",
-            "overview-release-status",
+            "overview-system-status",
+            "overview-active-neurons",
+            "overview-mean-rate",
+            "overview-problem-count",
             "overview-component-grid",
             "overview-problem-list",
         ):
@@ -204,7 +204,10 @@ class TestExperimentModeFrontendWiring:
             assert f'data-research-query="{query}"' in html
         assert "setupWorkspaceViews()" in app_js
         assert "setupResearchLanes()" in app_js
-        assert "height: 1029px" in styles
+        assert "height: 1029px" not in styles
+        assert ".tab-content" in styles
+        assert "max-width" in styles
+        assert "overflow" in styles
 
     def test_embodiment_closed_loop_uses_read_only_endpoints(self) -> None:
         html = _read_static("index.html")

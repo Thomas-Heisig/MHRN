@@ -3,6 +3,7 @@
 These types make model selection, ablation and timescale ownership explicit.
 They intentionally do not mutate the canonical point-neuron or synapse schemas.
 """
+
 from __future__ import annotations
 
 from dataclasses import asdict, dataclass

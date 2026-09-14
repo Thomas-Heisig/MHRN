@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.6.0-alpha.3 - 2026-09-13
+
+Source-bound scientific audit and publication reconciliation. Fix recursive document cache dispatch; fail closed for skipped Stage-3 verification groups; bind frontend checks to loaded assets and the canonical router; record experiment environments, validate DATA receipts and distinguish conceptual/boundary audits from simulation studies. Historical DATA and publication editions remain immutable. Publication edition 1.5 and the research report are separate from software release readiness; no automatic EVID promotion. Exact-commit CI remains authoritative.
+
 ## Unreleased
 
 

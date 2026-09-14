@@ -659,9 +659,34 @@ function restore() {
   return { area: "dashboard", route: "overview" };
 }
 
+// The canonical router owns measured chrome insets; the retired router is not loaded.
+function observeChromeInsets() {
+  const topbar = document.querySelector(".topbar");
+  const nav = document.querySelector(".brain5d-primary-nav");
+  const footer = document.querySelector("#mhrn-global-status");
+  const update = () => {
+    const height = Math.ceil(topbar?.getBoundingClientRect().height || 0);
+    const footerHeight = Math.ceil(footer?.getBoundingClientRect().height || 0);
+    const mobile = window.matchMedia("(max-width:720px)").matches;
+    const navHeight = mobile ? Math.ceil(nav?.getBoundingClientRect().height || 0) : 0;
+    const style = document.documentElement.style;
+    style.setProperty("--dashboard-topbar-height", `${height}px`);
+    style.setProperty("--mhrn-footer-height", `${footerHeight}px`);
+    style.setProperty("--mhrn-sticky-offset", `${height + navHeight + 12}px`);
+  };
+  update();
+  if (typeof ResizeObserver === "function") {
+    const observer = new ResizeObserver(update);
+    [topbar, nav, footer].filter(Boolean).forEach(node => observer.observe(node));
+    window.addEventListener("beforeunload", () => observer.disconnect(), { once: true });
+  }
+  window.addEventListener("resize", update);
+}
+
 export function initWorkspaceRouter() {
   ensureGeneratedWorkspaces();
   ensureNavigation();
+  observeChromeInsets();
   Object.keys(AREAS).forEach((id) => {
     ensureOverview(id);
     ensureContextNav(id);

@@ -3,6 +3,7 @@
 This is an alternative neuron body with explicit gating state. It is not mixed
 into the canonical :class:`src.core.neuron.Neuron` dataclass.
 """
+
 from __future__ import annotations
 
 import math
@@ -96,7 +97,11 @@ class HodgkinHuxleyNeuron:
             i_k = self.config.g_k * (self.n**4) * (self.v - self.config.e_k)
         i_ca = 0.0
         if self.config.enable_ca:
-            self.ca_gate += dt * ((1.0 / (1.0 + math.exp(-(self.v + 20.0) / 6.5))) - self.ca_gate) / 5.0
+            self.ca_gate += (
+                dt
+                * ((1.0 / (1.0 + math.exp(-(self.v + 20.0) / 6.5))) - self.ca_gate)
+                / 5.0
+            )
             self.ca_gate = min(1.0, max(0.0, self.ca_gate))
             i_ca = self.config.g_ca * (self.ca_gate**2) * (self.v - self.config.e_ca)
         i_leak = self.config.g_leak * (self.v - self.config.e_leak)

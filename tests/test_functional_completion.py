@@ -21,7 +21,7 @@ def test_neuron_viewer_uses_real_runtime_contracts_for_cumulative_hz() -> None:
     assert "/api/network/projection?limit=${requested}&mode=activity" in source
     assert "const dtMs = 1.0" in source
     assert "spikeCount / durationSeconds" in source
-    assert "kumulative Feuerrate" in source
+    assert "Kumulative Feuerrate" in source
     assert "Kein EVIDENCE-Claim" in source
 
 

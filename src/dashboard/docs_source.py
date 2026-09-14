@@ -180,6 +180,12 @@ class DocumentationSource:
         if max_count == 0 and self.enable_caching:
             return self._get_cached_list(recursive)
 
+        return self._list_documents_uncached(recursive, max_count)
+
+    def _list_documents_uncached(
+        self, recursive: bool = False, max_count: int = 0
+    ) -> tuple[DocumentationEntry, ...]:
+        """Perform a scan without re-entering the cached public dispatcher."""
         pattern = "**/*" if recursive else "*"
         entries: list[DocumentationEntry] = []
         for path in sorted(self.docs_root.glob(pattern)):
@@ -516,7 +522,7 @@ class DocumentationSource:
     @lru_cache(maxsize=128)
     def _get_cached_list(self, recursive: bool) -> tuple[DocumentationEntry, ...]:
         """Cached version of list_documents for performance."""
-        return self.list_documents(recursive)
+        return self._list_documents_uncached(recursive)
 
     def invalidate_cache(self) -> None:
         """Invalidate the internal cache."""

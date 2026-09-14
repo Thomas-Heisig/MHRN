@@ -22,8 +22,8 @@ def test_current_release_matches_canonical_development_version() -> None:
         project = tomllib.load(stream)["project"]
     current = _release("current.json")
 
-    assert project["version"] == "0.6.0a2"
-    assert current["version"] == "0.6.0-alpha.2"
+    assert project["version"] == "0.6.0a3"
+    assert current["version"] == "0.6.0-alpha.3"
     assert current["pep440"] == project["version"]
     assert current["status"] == "development"
     assert current["parent"] == "v0.5.0-alpha.7"

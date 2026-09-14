@@ -13,7 +13,7 @@ REFERENCE_ARTIFACT = (
     / "research"
     / "generated"
     / "verification"
-    / "plastic_neural_tissue_reference.json"
+    / "plastic_neural_tissue_reference_alpha3.json"
 )
 
 
@@ -21,7 +21,9 @@ def test_stage3_reference_controls_are_deterministic() -> None:
     report = build_report(run_tests=False)
 
     assert report["stage"] == 3
-    assert report["status"] == "verified"
+    assert report["status"] == "incomplete"
+    assert report["tests_executed"] is False
+    assert all(group["passed"] is None for group in report["test_groups"].values())
     assert report["scope"] == "engineering_verification"
     assert report["scientific_promotion"]["automatic_evidence_promotion"] is False
 

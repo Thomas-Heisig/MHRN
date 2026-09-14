@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "version": "0.6.0-alpha.2",
-  "pep440": "0.6.0a2",
+  "version": "0.6.0-alpha.3",
+  "pep440": "0.6.0a3",
   "status": "development",
-  "title": "Plastic Neural Tissue Verification",
+  "title": "Source-bound Scientific Audit and Publication Reconciliation",
   "parent": "v0.5.0-alpha.7",
   "gate": "open",
   "as_of": "2026-09-13",
@@ -39,5 +39,5 @@
     "generate the immutable v0.6 release record after the exact source-freeze gate is green"
   ],
   "research_boundary": "Stage-2/3 engineering completion, Stage-6/7 component foundations, frontier planning and a green engineering gate do not constitute scientific evidence; controlled SNN-involved experiments, held-out evaluation, review and replication remain open.",
-  "note": "Stand 2026-09-13: v0.6.0a2 closes the scoped Stage-2 recurrent-SNN boundary, reaches the Stage-3 plastic-neural-tissue engineering contract, records implemented Stage-6/7 foundations, and integrates research-only foundations for Stages 8-10. Target-scale benchmarks, coupled cognition checkpoint identity and scientific evidence closure remain open."
+  "note": "Alpha.3 reconciles execution, documentation and source-bound engineering verification. Publication edition 1.5 is separate from software versioning. The development milestone and human scientific review remain open; no accepted EVID is manufactured."
 }

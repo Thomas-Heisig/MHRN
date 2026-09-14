@@ -1,4 +1,5 @@
 """Microglia sidecar: slow structural surveillance and pruning proposals."""
+
 from __future__ import annotations
 
 from dataclasses import asdict, dataclass
@@ -52,7 +53,9 @@ class MicrogliaField:
     ) -> MicrogliaProposal | None:
         if not self.config.enabled:
             return None
-        self.inflammatory_state = max(0.0, 0.99 * self.inflammatory_state + damage_signal)
+        self.inflammatory_state = max(
+            0.0, 0.99 * self.inflammatory_state + damage_signal
+        )
         if confidence < self.config.prune_confidence_threshold:
             return MicrogliaProposal("prune", pre_id, post_id, "low-confidence")
         if self.inflammatory_state >= self.config.inflammation_threshold:

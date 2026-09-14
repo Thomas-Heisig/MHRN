@@ -1,20 +1,16 @@
 import { test, expect } from '@playwright/test';
+import { selectRoute, selectLabStage, selectResearchView } from './routes.js';
 
 test.use({ baseURL: 'http://127.0.0.1:4174' });
 
-async function selectResearchView(page, view) {
-  await page
-    .locator(`[data-research-workspace-view="${view}"]`)
-    .evaluate((button) => button.click());
-  await expect(page.locator(`[data-research-workspace-panel="${view}"]`)).toBeVisible();
-}
+
 
 for (const port of [4174, 4175]) {
   test(`real server ${port}: routing, catalog, MSBA and shared file/chat renderer`, async ({ page }) => {
     const errors = [];
     page.on('pageerror', error => errors.push(error.message));
     await page.goto(`http://127.0.0.1:${port}/`);
-    await page.locator('[data-primary-area="science"]').click();
+    await selectLabStage(page, 'question');
     await expect(page.locator('#workflow-research-results')).toBeVisible();
     await page.locator('#workflow-research-search').fill('RQ-MSBA-E01');
     await expect(page.locator('.research-rq-card')).toHaveCount(1);
@@ -23,12 +19,13 @@ for (const port of [4174, 4175]) {
     await page.locator('#workflow-research-operational').check();
     await expect(page.locator('.research-rq-card')).toHaveCount(1);
     await page.locator('#workflow-research-operational').uncheck();
-    await page.locator('[data-primary-area="wesen"]').click();
+    await selectRoute(page, 'wesen', 'symbiosis');
     await expect(page.locator('#wesen-neural-symbiosis')).toBeVisible();
     await expect(page.locator('#wesen-msba-pathways')).toContainText('Audio');
+    await selectRoute(page, 'wesen', 'profile');
     await expect(page.locator('#wesen-profile-identity')).toBeVisible();
     await expect(page.locator('#wesen-profile-identity')).toContainText('Profile & Identität');
-    await page.locator('[data-primary-area="science"]').click();
+    await selectLabStage(page, 'question');
     await selectResearchView(page, 'files');
     await page.locator('.fm-source-btn[data-source="docs"]').click();
     await page.locator('.fm-file-label').filter({ hasText: 'preview.md' }).click();
@@ -88,7 +85,7 @@ test('real registered batch: runner, manifest, DATA, report and central renderin
   expect(manifest.experiment_status).toBe('completed');
   expect(manifest.epistemic_layers.evid).toContain('not_created');
   expect(descriptor.read_only).toBe(true);
-  await page.locator('[data-primary-area="science"]').click();
+  await selectLabStage(page, 'question');
   await page.evaluate(async (filePath) => {
     const module = await import('/file-renderer.js');
     const host = document.createElement('section'); host.id = 'fullstack-artifact'; document.querySelector('#tab-research').prepend(host);
@@ -100,7 +97,7 @@ test('real registered batch: runner, manifest, DATA, report and central renderin
 
 test('real inventory changes reach the Wesen pipeline view without authorizing devices', async ({ page }) => {
   await page.goto('http://127.0.0.1:4174/');
-  await page.locator('[data-primary-area="wesen"]').click();
+  await selectRoute(page, 'wesen', 'symbiosis');
   await page.request.post('/__test__/inventory', { data: { available: true } });
   const camera = page.locator('#wesen-symbiosis-pipelines .wesen-symbiosis-item').filter({ hasText: 'Camera' });
   const robot = page.locator('#wesen-symbiosis-pipelines .wesen-symbiosis-item').filter({ hasText: 'Robotics' });
@@ -162,7 +159,7 @@ test('canonical file viewer: split editor live preview and stale-write conflict 
 
 test('research review inbox completes an append-only human review', async ({ page }) => {
   await page.goto('http://127.0.0.1:4174/');
-  await page.locator('[data-primary-area="science"]').click();
+  await selectLabStage(page, 'question');
   await selectResearchView(page, 'review');
   await expect(page.locator('#workflow-review-inbox')).toBeVisible();
   const inboxResponse = await page.request.get('/api/research/reviews');
@@ -174,7 +171,7 @@ test('research review inbox completes an append-only human review', async ({ pag
 
 test('external review: subtab, public readiness and central viewer without private responses', async ({ page }) => {
   await page.goto('http://127.0.0.1:4174/');
-  await page.locator('[data-primary-area="science"]').click();
+  await selectLabStage(page, 'question');
   await selectResearchView(page, 'external');
   const panel = page.locator('#external-review-status');
   await expect(panel).toBeVisible();
@@ -190,7 +187,7 @@ test('external review: subtab, public readiness and central viewer without priva
 
 test('external review: stale success is cleared after failed status fetch', async ({ page }) => {
   await page.goto('http://127.0.0.1:4174/');
-  await page.locator('[data-primary-area="science"]').click();
+  await selectLabStage(page, 'question');
   await selectResearchView(page, 'external');
   await expect(page.locator('#external-review-summary')).toContainText('135 Fragen');
   await page.route('**/api/research/external-review', route => route.fulfill({ status: 503, body: '{}' }));

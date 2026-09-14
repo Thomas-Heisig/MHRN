@@ -1,5 +1,7 @@
 from pathlib import Path
 
+from tests.dashboard_assets import dashboard_css
+
 STATIC = Path(__file__).parents[1] / "src" / "dashboard" / "static"
 TABS = (
     "overview",
@@ -35,16 +37,16 @@ def test_experience_layer_is_presentation_only() -> None:
 
 def test_experience_unknown_state_is_explicit() -> None:
     source = (STATIC / "dashboard-experience.js").read_text(encoding="utf-8")
-    css = (STATIC / "dashboard-experience.css").read_text(encoding="utf-8")
+    css = dashboard_css()
     assert "experience-unknown-state" in source
     assert "Noch kein beobachteter Wert verfügbar" in source
     assert ".experience-unknown-state" in css
 
 
 def test_experience_has_responsive_and_accessible_contracts() -> None:
-    css = (STATIC / "dashboard-experience.css").read_text(encoding="utf-8")
+    css = dashboard_css()
     assert 'body[data-theme="light"]' in css
-    assert "@media (max-width: 1180px)" in css
+    assert "@media (max-width: 1100px)" in css
     assert "@media (max-width: 820px)" in css
     assert "@media (max-width: 520px)" in css
     assert "prefers-reduced-motion" in css

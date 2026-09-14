@@ -9,6 +9,7 @@ import pytest
 import src.embodiment.system_sensor as system_sensor
 from src.embodiment import ConnectionManager
 from src.embodiment.system_sensor import host_system_readings
+from tests.dashboard_assets import dashboard_css
 
 STATIC = Path("src/dashboard/static")
 
@@ -72,7 +73,7 @@ def test_host_snapshot_handles_platform_missing_optional_sensors(
 
 def test_dynamic_self_model_is_real_data_driven_and_theme_safe() -> None:
     module = (STATIC / "embodiment-self-model.js").read_text(encoding="utf-8")
-    styles = (STATIC / "embodiment-self-model.css").read_text(encoding="utf-8")
+    styles = dashboard_css()
     console = (STATIC / "console-log.js").read_text(encoding="utf-8")
 
     assert 'readJson("/api/embodiment/connections")' in module

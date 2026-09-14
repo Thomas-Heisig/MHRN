@@ -1,4 +1,5 @@
 """Seeded quantal-release synapse variant built on one coherent STP model."""
+
 from __future__ import annotations
 
 import random
@@ -62,9 +63,9 @@ class QuantalSTPSynapse:
         elapsed = max(0, tick - self.last_tick)
         if elapsed == 0:
             return
-        self.available_fraction += (
-            1.0 - self.available_fraction
-        ) * min(1.0, elapsed / self.config.tau_recovery_ticks)
+        self.available_fraction += (1.0 - self.available_fraction) * min(
+            1.0, elapsed / self.config.tau_recovery_ticks
+        )
         self.facilitation *= max(
             0.0, 1.0 - elapsed / self.config.tau_facilitation_ticks
         )
@@ -82,7 +83,9 @@ class QuantalSTPSynapse:
             * self.available_fraction,
         )
         quanta = sum(
-            1 for _ in range(self.config.release_sites) if self._rng.random() < effective_p
+            1
+            for _ in range(self.config.release_sites)
+            if self._rng.random() < effective_p
         )
         used_fraction = quanta / self.config.release_sites
         self.available_fraction = max(0.0, self.available_fraction - used_fraction)

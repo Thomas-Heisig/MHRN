@@ -17,8 +17,8 @@ def test_cell_model_is_promoted_to_canonical_science_route() -> None:
     assert 'const ROUTE_ID = "cellmodel"' in script
     assert '[ROUTE_ID, "Cell Model", "network", "view", ROUTE_ID]' in script
     assert 'architecture.selectRoute("science", ROUTE_ID)' in script
-    assert "data.areaRoute = ROUTE_ID" in script
-    assert "data.routeCard = ROUTE_ID" in script
+    assert "button.dataset.areaRoute = ROUTE_ID" in script
+    assert "button.dataset.routeCard = ROUTE_ID" in script
 
 
 def test_cell_model_does_not_depend_on_hidden_legacy_network_tabs() -> None:

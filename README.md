@@ -1,3 +1,14 @@
+<!-- alpha3-current-state -->
+## Wissenschaftlicher Stand: Alpha.3 / Publikationsfassung 1.5
+
+Kampagne `EXP-EMP-20260913-A3` auf Commit `531f12335ebeebd7242beb4ba0bd95e81b3dfb8e`.
+
+70 ausgewiesene Ausfuehrungen; Status `{'completed': 70}`; 2043 gespeicherte Datensaetze. 25 menschliche Vorlagen werden nicht als Experimente ausgegeben. Die Unterscheidung zwischen Simulation, Grenzaudit, Komponentenfunktion und menschlicher Entscheidung bestimmt die Reichweite aller Aussagen.
+
+Ein protokollierter Lauf, eine bestandene Softwarepruefung und eine wissenschaftliche Annahmeentscheidung bleiben verschiedene Objekte. Die Ausgabe dokumentiert auch verfehlte wissenschaftliche Erfolgskriterien.
+
+Aktueller Einstieg: `research/publications/2026-09-13_recursive-epistemics_v1.5/README.md` (repository-relative). Detaillierte Architektur: `docs/02-architecture/SCIENTIFIC_CONTRACTS_ALPHA3.md`. Die nachfolgenden aelteren Statusabschnitte sind datierte Historie, keine aktuelle CI- oder EVID-Freigabe.
+
 # Multi-Scale Homeostatic Recurrence Network (MHRN)
 
 ## Mehrskaliges homöostatisches Rekurrenznetzwerk
@@ -14,7 +25,7 @@ MHRN is the current project name. Historical publications, scientific coordinate
 **Experimental sparse 5D spiking-neural research framework with deterministic persistence, controlled plasticity, embodiment, multi-network peripheral integration and scientific provenance.**
 
 [![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-blue.svg)](https://www.python.org/)
-[![Version](https://img.shields.io/badge/version-0.6.0a2-orange.svg)](pyproject.toml)
+[![Version](https://img.shields.io/badge/version-0.6.0a3-orange.svg)](pyproject.toml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-yellow.svg)](LICENSE)
 
 MHRN is a research framework for studying learning, self-organization and embodied closed-loop behavior in a sparse five-dimensional spiking neural network (SNN). The SNN remains the primary adaptive system. Language models, research assistants and peripheral neural networks are bounded components and do not acquire implicit authority over canonical neural state, reward, memory, experiment DATA or accepted EVID.

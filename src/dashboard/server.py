@@ -138,6 +138,7 @@ _MAX_HISTORY_LIMIT = 1000
 
 _ALLOWED_STATIC_EXTENSIONS = {
     ".html",
+    ".json",
     ".css",
     ".js",
     ".svg",
@@ -5167,6 +5168,7 @@ def _media_type(
 
     return {
         ".html": "text/html; charset=utf-8",
+        ".json": "application/json; charset=utf-8",
         ".css": "text/css; charset=utf-8",
         ".js": "text/javascript; charset=utf-8",
         ".svg": "image/svg+xml",

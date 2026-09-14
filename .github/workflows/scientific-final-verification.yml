@@ -1,0 +1,70 @@
+name: Scientific Final Verification
+
+on:
+  push:
+    branches: [work/scientific-main-audit-20260913]
+    paths: [.github/workflows/scientific-final-verification.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: scientific-final-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  verification:
+    if: github.ref_name == 'work/scientific-main-audit-20260913'
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    env:
+      PYTHONUNBUFFERED: '1'
+      BRAIN5D_RUN_LARGE_STORAGE_TEST: '1'
+      BRAIN5D_RUN_LARGE_STORAGE_TESTS: '1'
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.13'
+          cache: pip
+          cache-dependency-path: pyproject.toml
+      - name: Apply tested checksum-bound integration corrections
+        run: python .maintenance/apply_scientific_audit.py
+      - name: Install verification tools and browser
+        run: |
+          python -m pip install -e '.[dev,docs,browser,empirical]' pre-commit bandit build
+          for source in /etc/apt/sources.list.d/*.list /etc/apt/sources.list.d/*.sources; do
+            if [ -f "$source" ] && grep -qF 'dl.google.com/linux/chrome' "$source"; then
+              sudo mv "$source" "$source.disabled-for-playwright"
+            fi
+          done
+          python -m playwright install --with-deps chromium
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install pinned E2E dependencies
+        run: npm ci && npx playwright install chromium
+      - name: Verify immutable publication and execute every engineering check
+        run: python .maintenance/publish_alpha3.py
+      - name: Preserve exact final source and any diagnostic patch
+        if: always()
+        run: |
+          mkdir -p /tmp/alpha3-publication
+          git rev-parse HEAD > /tmp/alpha3-publication/source-sha.txt
+          git status --porcelain=v1 > /tmp/alpha3-publication/git-status.txt
+          git diff > /tmp/alpha3-publication/uncommitted.patch
+          git bundle create /tmp/alpha3-publication/source-final.bundle --all
+      - name: Upload observed verification, documents and failure traces
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: scientific-final-${{ github.run_id }}
+          path: |
+            /tmp/alpha3-publication/
+            playwright-report/
+            test-results/
+          retention-days: 30

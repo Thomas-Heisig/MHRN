@@ -1,4 +1,5 @@
 import { test, expect } from "@playwright/test";
+import { selectRoute, selectLabStage, selectResearchView } from "./routes.js";
 import { createReadStream, existsSync, statSync } from "node:fs";
 import { createServer } from "node:http";
 import { extname, join, normalize, resolve } from "node:path";
@@ -165,16 +166,11 @@ async function openDashboard(page, batchResponse = null) {
     await route.fulfill({ status: 200, contentType: "application/json", body: "{}" });
   });
   await page.goto("/");
-  await page.locator('[data-tab="research"]').evaluate((button) => button.click());
+  await selectLabStage(page, "run");
   await expect(page.locator("#workflow-status")).toHaveText("Bereit");
 }
 
-async function selectResearchView(page, view) {
-  await page
-    .locator(`[data-research-workspace-view="${view}"]`)
-    .evaluate((button) => button.click());
-  await expect(page.locator(`[data-research-workspace-panel="${view}"]`)).toBeVisible();
-}
+
 
 test("batch dialog edits per-protocol options, reports completion, and updates footer", async ({ page }) => {
   const batchResponse = { body: null };
@@ -197,6 +193,7 @@ test("batch dialog edits per-protocol options, reports completion, and updates f
   await page.locator("#workflow-batch-start").click();
 
   await expect(page.locator("#workflow-batch-status")).toContainText("1 erfolgreich");
+  await selectResearchView(page, "results");
   await expect(page.locator("#workflow-result")).toContainText("EXP-BROWSER-BATCH");
   await expect(page.locator("#workflow-batch-dialog")).not.toBeVisible();
   await expect(page.locator("#footer-experiment-state")).toContainText("Experiment-Workflow abgeschlossen");
@@ -214,18 +211,18 @@ test("research help explains operational and exploratory status", async ({ page 
 
 test("research workspace switches between experiments, files and registry", async ({ page }) => {
   await openDashboard(page);
-  await page.locator('[data-tab="research"]').evaluate((button) => button.click());
+  await selectLabStage(page, "run");
 
   await expect(page.locator(".research-subtab")).toHaveCount(3);
   await expect(page.locator('.research-subpanel[data-subpanel="experiments"]')).toBeVisible();
   await expect(page.locator('.research-subpanel[data-subpanel="files"]')).toBeHidden();
   await expect(page.locator('.research-subpanel[data-subpanel="registry"]')).toBeHidden();
 
-  await page.locator('[data-subtab="files"]').click();
+  await selectRoute(page, "files", "browse");
   await expect(page.locator('.research-subpanel[data-subpanel="files"]')).toBeVisible();
   await expect(page.locator('.research-subpanel[data-subpanel="experiments"]')).toBeHidden();
 
-  await page.locator('[data-subtab="registry"]').click();
+  await selectRoute(page, "science", "registry");
   await expect(page.locator('.research-subpanel[data-subpanel="registry"]')).toBeVisible();
   await expect(page.locator('#mhrn-research-docs')).toBeVisible();
   await expect(page.locator('.research-subpanel[data-subpanel="experiments"]')).toBeHidden();
@@ -234,12 +231,12 @@ test("research workspace switches between experiments, files and registry", asyn
 
 test("navigation and box-state controls remain usable", async ({ page }) => {
   await openDashboard(page);
-  await page.locator('[data-tab="network"]').evaluate((button) => button.click());
+  await selectRoute(page, "science", "network");
   await expect(page.locator("#tab-network")).toHaveClass(/active/);
-  await page.locator('[data-tab="research"]').evaluate((button) => button.click());
+  await selectLabStage(page, "run");
   await expect(page.locator("#tab-research")).toHaveClass(/active/);
 
-  const box = page.locator(".tab-content.active .box-state-ready").first();
+  const box = page.locator(".tab-content.active .box-state-ready:visible").first();
   await expect(box).toBeVisible();
   const ownControls = box.locator(":scope > .box-state-header > .box-state-tools");
   await ownControls.locator('[data-box-state="minimized"]').click();
@@ -252,14 +249,14 @@ test("navigation and box-state controls remain usable", async ({ page }) => {
 
 test("Release workspace renders the documentation timeline", async ({ page }) => {
   await openDashboard(page);
-  await page.locator('[data-tab="gate"]').evaluate((button) => button.click());
-  await expect(page.locator("#release-timeline-list .release-timeline-entry")).toHaveCount(1);
+  await selectRoute(page, "release", "timeline");
+  await expect(page.locator("#release-timeline-list .timeline-entry")).toHaveCount(1);
   await expect(page.locator("#release-timeline-list")).toContainText("Release timeline restoration");
   await expect(page.locator("#release-timeline-sources")).toContainText("TODO");
   await expect(page.locator("#release-development-track .development-marker-technical")).toContainText("Du bist hier");
   await expect(page.locator("#release-development-track .development-marker-scientific")).toContainText("Wissenschaftlich hier");
   await expect(page.locator("#release-development-track .development-track-node")).toHaveCount(11);
-  await page.locator('[data-workspace-view="timeline"]').click();
+  await selectRoute(page, "release", "timeline");
   await expect(page.locator("#release-development-track")).toBeVisible();
   await expect(page.locator("[data-timeline-phase]")).toHaveCount(3);
   await expect(page.locator('[data-timeline-phase="past"]')).toContainText("Was war");
@@ -267,11 +264,11 @@ test("Release workspace renders the documentation timeline", async ({ page }) =>
   await expect(page.locator('[data-timeline-phase="future"]')).toContainText("Was wird");
 
   for (const view of ["releases", "preview", "timeline", "development", "documents", "gate"]) {
-    await page.locator(`[data-workspace-view="${view}"]`).click();
+    await selectRoute(page, "release", view);
     await expect(page.locator(`[data-release-view="${view}"]`)).toBeVisible();
   }
 
-  await page.locator('[data-workspace-view="development"]').click();
+  await selectRoute(page, "release", "development");
   await expect(page.locator("#development-timeline-track .development-marker-technical")).toContainText("Du bist hier");
   await expect(page.locator("#development-score-grid")).toContainText("Scientific Evidence");
   await expect(page.locator("#development-scale-grid .development-scale")).toHaveCount(2);
@@ -280,9 +277,9 @@ test("Release workspace renders the documentation timeline", async ({ page }) =>
   await expect(page.locator("#development-detail")).toBeVisible();
   await expect(page.locator("#development-detail")).toContainText("Plastisches Nervengewebe");
 
-  await page.locator('[data-workspace-view="documents"]').click();
+  await selectRoute(page, "release", "documents");
   await page.locator('[data-release-document="08-roadmap/TODO.md"]').click();
-  await expect(page.locator("#tab-research")).toHaveClass(/active/);
+  await expect(page.locator("body")).toHaveAttribute("data-current-area", "files");
   await expect(page.locator("#fm-viewer")).not.toHaveClass(/fm-viewer-hidden/);
 });
 
@@ -294,8 +291,9 @@ test("active workspace remains clear of fixed chrome and footer", async ({ page 
     const topbar = rect(".topbar");
     const primaryNav = rect(".brain5d-primary-nav");
     const active = rect(".tab-content.active");
-    const footer = rect(".site-footer");
-    const chromeBottom = Math.max(topbar?.bottom || 0, primaryNav?.bottom || 0);
+    const footer = rect("#mhrn-global-status");
+    const horizontalNavBottom = primaryNav && primaryNav.width > primaryNav.height ? primaryNav.bottom : 0;
+    const chromeBottom = Math.max(topbar?.bottom || 0, horizontalNavBottom);
     const startTop = active?.top || 0;
     const maxScroll = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
     window.scrollTo(0, maxScroll);
@@ -312,7 +310,7 @@ for (const viewport of [{ width: 1440, height: 900 }, { width: 1024, height: 768
     await page.setViewportSize(viewport);
     await openDashboard(page);
     const metrics = await page.evaluate(() => {
-      const footer = document.querySelector(".site-footer").getBoundingClientRect();
+      const footer = document.querySelector("#mhrn-global-status").getBoundingClientRect();
       return {
         horizontalOverflow: document.documentElement.scrollWidth - window.innerWidth,
         footerWidth: footer.width,

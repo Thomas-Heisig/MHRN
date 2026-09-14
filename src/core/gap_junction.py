@@ -1,4 +1,5 @@
 """Bidirectional ohmic coupling kept separate from directed chemical synapses."""
+
 from __future__ import annotations
 
 from dataclasses import asdict, dataclass

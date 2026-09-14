@@ -1,0 +1,157 @@
+{
+  "conditions": {
+    "learning_off": {
+      "baseline_probes_executed": 1,
+      "baseline_target_peak_v": -65.0,
+      "baseline_target_spike_tick": null,
+      "baseline_target_spiked": false,
+      "condition": "learning_off",
+      "final_mean_weight": 0.05,
+      "holdout_episodes_executed": 0,
+      "holdout_trial_count": 4,
+      "initial_mean_weight": 0.05,
+      "learned": false,
+      "mean_weight_delta": 0.0,
+      "partition_counts_are_declared": true,
+      "post_training_probes_executed": 1,
+      "presynaptic_neurons": 48,
+      "protocol_id": "PROTOCOL-STDP-0002",
+      "protocol_version": 1,
+      "reward_weight_updates": 0,
+      "rewards_applied": 0,
+      "rewards_received": 0,
+      "train_trial_count": 12,
+      "trained_target_peak_v": -65.0,
+      "trained_target_spike_tick": null,
+      "trained_target_spiked": false,
+      "training_trials": 20,
+      "validation_episodes_executed": 0,
+      "validation_trial_count": 4
+    },
+    "learning_on": {
+      "baseline_probes_executed": 1,
+      "baseline_target_peak_v": -65.0,
+      "baseline_target_spike_tick": null,
+      "baseline_target_spiked": false,
+      "condition": "learning_on",
+      "final_mean_weight": 0.517280469842843,
+      "holdout_episodes_executed": 0,
+      "holdout_trial_count": 4,
+      "initial_mean_weight": 0.05,
+      "learned": true,
+      "mean_weight_delta": 0.46728046984284305,
+      "partition_counts_are_declared": true,
+      "post_training_probes_executed": 1,
+      "presynaptic_neurons": 48,
+      "protocol_id": "PROTOCOL-STDP-0002",
+      "protocol_version": 1,
+      "reward_weight_updates": 576,
+      "rewards_applied": 12,
+      "rewards_received": 12,
+      "train_trial_count": 12,
+      "trained_target_peak_v": 26.239795413974708,
+      "trained_target_spike_tick": 4,
+      "trained_target_spiked": true,
+      "training_trials": 20,
+      "validation_episodes_executed": 0,
+      "validation_trial_count": 4
+    },
+    "sham_replay": {
+      "baseline_probes_executed": 1,
+      "baseline_target_peak_v": -65.0,
+      "baseline_target_spike_tick": null,
+      "baseline_target_spiked": false,
+      "condition": "sham_replay",
+      "final_mean_weight": 0.05,
+      "holdout_episodes_executed": 0,
+      "holdout_trial_count": 4,
+      "initial_mean_weight": 0.05,
+      "learned": false,
+      "mean_weight_delta": 0.0,
+      "partition_counts_are_declared": true,
+      "post_training_probes_executed": 1,
+      "presynaptic_neurons": 48,
+      "protocol_id": "PROTOCOL-STDP-0002",
+      "protocol_version": 1,
+      "reward_weight_updates": 0,
+      "rewards_applied": 12,
+      "rewards_received": 12,
+      "train_trial_count": 12,
+      "trained_target_peak_v": -65.0,
+      "trained_target_spike_tick": null,
+      "trained_target_spiked": false,
+      "training_trials": 20,
+      "validation_episodes_executed": 0,
+      "validation_trial_count": 4
+    }
+  },
+  "limits": [
+    "The reference uses the bounded learning-experiment topology rather than the declared 10,000-100,000 neuron Stage-3 scale.",
+    "Passing the reference does not establish long-horizon stability for arbitrary plastic networks or reward formulations.",
+    "Structural plasticity is verified by the existing deterministic E2E suite; this runner does not claim biological tissue equivalence.",
+    "No cognition or consciousness inference follows from plasticity verification."
+  ],
+  "proofs": {
+    "deterministic_learning_replay_identity": true,
+    "finite_bounded_weight_summary": true,
+    "homeostasis_tests_passed": true,
+    "learning_off_control_has_no_reward_updates": true,
+    "learning_on_changes_fresh_probe_response": true,
+    "learning_state_checkpoint_tests_passed": true,
+    "sham_replay_destroys_eligibility_effect": true,
+    "stdp_and_three_factor_tests_passed": true,
+    "structural_plasticity_tests_passed": true,
+    "three_factor_learning_changes_weights": true
+  },
+  "protocol": {
+    "conditions": [
+      "learning_on",
+      "learning_off",
+      "sham_replay"
+    ],
+    "config": "configs/learning_experiment.yaml",
+    "deterministic_replay": true,
+    "protocol_id": "PROTOCOL-STDP-0002",
+    "protocol_version": 1
+  },
+  "schema_version": 1,
+  "scientific_promotion": {
+    "automatic_evidence_promotion": false,
+    "note": "This reference closes a scoped engineering verification gap only. Preregistered independent learning-on/off/holdout runs and human evidence review remain required for scientific claims."
+  },
+  "scope": "engineering_verification",
+  "software_version": "0.6.0a3",
+  "stage": 3,
+  "status": "verified",
+  "suite": "plastic_neural_tissue_reference",
+  "test_groups": {
+    "homeostasis": {
+      "passed": true,
+      "paths": [
+        "tests/test_homeostasis_engine.py"
+      ]
+    },
+    "learning_state_checkpoint": {
+      "passed": true,
+      "paths": [
+        "tests/test_checkpoint_v4.py"
+      ]
+    },
+    "stdp_and_three_factor": {
+      "passed": true,
+      "paths": [
+        "tests/test_stdp_integration.py",
+        "tests/test_reward.py",
+        "tests/test_learning_experiment.py"
+      ]
+    },
+    "structural_plasticity": {
+      "passed": true,
+      "paths": [
+        "tests/test_structural_e2e.py",
+        "tests/test_structural_determinism.py"
+      ]
+    }
+  },
+  "tests_executed": true
+}

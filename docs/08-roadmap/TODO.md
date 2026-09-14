@@ -1,3 +1,14 @@
+## Alpha.3 - wissenschaftlicher Abgleich, 2026-09-13
+
+- [x] Die registrierte maschinelle Kampagne ausfuehren und alle Receipts/Negativbefunde bewahren.
+- [x] Vollstaendige Publikationsfassung 1.5 und eigenstaendige Forschungsarbeit erzeugen.
+- [x] Ausfuehrung, Grenzaudit und EVID-Freigabe getrennt dokumentieren.
+- [ ] Die 25 menschlichen Vorlagen sowie die wissenschaftlichen Ergebnisreviews bearbeiten.
+- [ ] Direkte Messvertraege fuer die ausgewiesenen Grenzfragen und gekoppelte Kognitions-/Langzeitplastizitaetspruefungen vervollstaendigen.
+- [ ] Unabhaengige Replikation und konkrete EVID-Freigaben einholen.
+
+Aeltere offene Zaehler unten sind zeitgebundene Bestandsaufnahmen; der aktuelle Registerabgleich steht in research/generated/EXPERIMENT_COVERAGE_ALPHA3.json.
+
 ## Naming update — 2026-09-08
 
 MHRN / Multi-Scale Homeostatic Recurrence Network. Publication: Recursive Epistemics / Rekursive Epistemik. [Migration and compatibility](../../NAMING.md). Historical scientific artifacts remain unchanged.
@@ -5,7 +16,7 @@ MHRN / Multi-Scale Homeostatic Recurrence Network. Publication: Recursive Episte
 # MHRN Current TODO
 
 **Canonical TODO for `main`**  
-**Baseline:** `mhrn-core 0.6.0a2`
+**Baseline:** `mhrn-core 0.6.0a3`
 **Updated:** 2026-09-13
 **Current release-blocking backlog:** **0**
 

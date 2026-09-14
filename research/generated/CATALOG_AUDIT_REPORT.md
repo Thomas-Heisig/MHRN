@@ -5,10 +5,10 @@
 The canonical ResearchRegistry remains authoritative. Historical/design references and test-only fixtures are listed with explicit reasons; an unknown missing identifier fails CI.
 
 ## Summary
-- Question references: 2895
-- Hypothesis references: 2295
-- Missing questions: 25
-- Missing hypotheses: 21
+- Question references: 3029
+- Hypothesis references: 2299
+- Missing questions: 26
+- Missing hypotheses: 22
 - Registry link issues: 0
 - Disallowed missing identifiers: 0
 
@@ -69,6 +69,11 @@ The canonical ResearchRegistry remains authoritative. Historical/design referenc
 - `H-SYN-06`: Source and approval-status consistency proposal; not preregistered and no evidence. Sources: `research/publications/2026-09-07_ki-die-geliehene-intelligenz/forschungsfragen_hypothesen.json`, `research/publications/2026-09-07_ki-die-geliehene-intelligenz/wissenschaftliche_abhandlung.md`, `research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.1/section-035.md`, `research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.2/section-035.md`, `research/publications/2026-09-08_recursive-epistemics_v1.3/section-035.md`, `research/publications/2026-09-10_recursive-epistemics_v1.4/MANUSCRIPT.md`, `research/publications/2026-09-10_recursive-epistemics_v1.4/section-035.md`, `research/publications/reader/section-035.md`, `research/registry/catalog_audit_allow_list.yaml`
 - `H-SYN-07`: Persistence versus episodic-recall proposal; not preregistered and no evidence. Sources: `research/publications/2026-09-07_ki-die-geliehene-intelligenz/forschungsfragen_hypothesen.json`, `research/publications/2026-09-07_ki-die-geliehene-intelligenz/wissenschaftliche_abhandlung.md`, `research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.1/section-035.md`, `research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.2/section-035.md`, `research/publications/2026-09-08_recursive-epistemics_v1.3/section-035.md`, `research/publications/2026-09-10_recursive-epistemics_v1.4/MANUSCRIPT.md`, `research/publications/2026-09-10_recursive-epistemics_v1.4/section-035.md`, `research/publications/reader/section-035.md`, `research/registry/catalog_audit_allow_list.yaml`
 - `H-SYN-08`: Intervention-window proposal; not preregistered and no evidence. Sources: `research/publications/2026-09-07_ki-die-geliehene-intelligenz/forschungsfragen_hypothesen.json`, `research/publications/2026-09-07_ki-die-geliehene-intelligenz/wissenschaftliche_abhandlung.md`, `research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.1/section-035.md`, `research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.2/section-035.md`, `research/publications/2026-09-08_recursive-epistemics_v1.3/section-035.md`, `research/publications/2026-09-10_recursive-epistemics_v1.4/MANUSCRIPT.md`, `research/publications/2026-09-10_recursive-epistemics_v1.4/section-035.md`, `research/publications/reader/section-035.md`, `research/registry/catalog_audit_allow_list.yaml`
+
+## Architecture proposals - not registered or executed
+
+- `H-GW-LLM-01`: Gateway language-organ design hypothesis; not preregistered, executed or evidence. Sources: `docs/02-architecture/MHRN_GATAWAY.md`, `research/registry/catalog_audit_allow_list.yaml`
+- `RQ-GW-CODEC-001`: Neural codec interface design question; implementation/validation remain pending. Sources: `docs/02-architecture/MHRN_GATAWAY_NEURAL_INTERFACE.md`, `research/registry/catalog_audit_allow_list.yaml`
 
 ## Failures
 

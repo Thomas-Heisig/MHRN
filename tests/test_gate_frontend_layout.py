@@ -1,12 +1,14 @@
 from pathlib import Path
 
+from tests.dashboard_assets import compact_css
+
 ROOT = Path(__file__).resolve().parents[1]
 
 
 def test_gate_board_uses_full_release_workspace_width() -> None:
-    css = (ROOT / "src/dashboard/static/styles.css").read_text(encoding="utf-8")
-    assert ".gate-board {\n  width: 100%;\n  max-width: none;\n  margin: 0;\n}" in css
-    assert ".release-gate-panel {\n  width: 100%;\n  max-width: none;\n}" in css
+    css = compact_css()
+    assert ".gate-board{width:100%;max-width:none;margin:0;}" in css
+    assert ".release-gate-panel{width:100%;max-width:none;}" in css
 
 
 # The release record stays gated by the verified final source freeze.
