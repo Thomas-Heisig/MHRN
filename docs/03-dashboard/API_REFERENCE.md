@@ -126,3 +126,14 @@ readiness and pending assessment stages. It does not query the private
 collector, expose participant identities, record reviewer decisions, or grant
 ethics approval. Response counts remain null. Missing or changed instrument
 bytes yield `available: false`. No write route exists.
+
+
+## Stage-6 reference compatibility (2026-09-14)
+
+`GET /api/cognition/predictions?limit=N` retains the existing record fields and adds `error_components` per returned record: `numeric_absolute`, `categorical_mismatch`, `missing_fields`, `unsupported_fields`, `target_fields`, `coverage`, and the explicitly non-accuracy `legacy_mean_error`. Values are computed from the stored prediction/observation pair; no state or historical files are mutated. `limit` remains bounded by 128; the cognition panel requests at most 20 and exports only that bounded view.
+
+`GET /api/cognition/world-model` adds boolean `prediction_enabled` and `learning_enabled`. These are independent of episodic read/write controls and are not new mutation endpoints. `POST /api/cognition/memory/controls` continues to accept only explicit boolean `read_enabled` and `write_enabled`.
+
+When reading is disabled, the episode/prediction lists are empty, the model body is withheld, and `/api/cognition/state` returns `latest_prediction: null`. Availability/read flags distinguish a denied read from an actual empty memory. Counts and controls remain operational metadata. This is an experiment-control contract, not authentication or retroactive deletion of earlier exports.
+
+A missing request result renders unavailable, not measured zero or an active badge. The bounded JSON export is not a replay input. See [rebuild protocol](../../research/specifications/STAGE6_REPLAY_FORMAT.md) and [integration audit](../07-changelog/2026-09-14_STAGES_0_6_INTEGRATION.md).

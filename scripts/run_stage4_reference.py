@@ -69,13 +69,10 @@ def _data_checks() -> dict[str, bool]:
 
     e01_conditions = e01["conditions"]
     accuracies = [
-        row["metrics"]["task_accuracy"]["mean"]
-        for row in e01_conditions.values()
+        row["metrics"]["task_accuracy"]["mean"] for row in e01_conditions.values()
     ]
     costs = {
-        name: row["metrics"]["normalized_energy_units_per_correct_decision"][
-            "mean"
-        ]
+        name: row["metrics"]["normalized_energy_units_per_correct_decision"]["mean"]
         for name, row in e01_conditions.items()
     }
     e04_integrity = all(
@@ -87,11 +84,12 @@ def _data_checks() -> dict[str, bool]:
     e05_fixed = e05["conditions"]["fixed_allocation"]["metrics"]
     return {
         "e01_matched_accuracy": len(set(accuracies)) == 1,
-        "e01_modality_cost_order_observed": costs["digital"] < costs["audio"] < costs["vision"],
+        "e01_modality_cost_order_observed": costs["digital"]
+        < costs["audio"]
+        < costs["vision"],
         "e04_exact_integrity_observed": e04_integrity,
         "e05_adaptive_compensation_exceeds_fixed_in_recorded_data": (
-            e05_adaptive["task_recovery"]["mean"]
-            > e05_fixed["task_recovery"]["mean"]
+            e05_adaptive["task_recovery"]["mean"] > e05_fixed["task_recovery"]["mean"]
         ),
     }
 
@@ -130,8 +128,7 @@ def build_report(*, run_tests: bool = True) -> dict[str, Any]:
             row["canonical_core_mutated"] is False for row in probe_rows.values()
         ),
         "productive_activation_remains_locked": all(
-            row["productive_activation_enabled"] is False
-            for row in probe_rows.values()
+            row["productive_activation_enabled"] is False for row in probe_rows.values()
         ),
         "latest_msba_data_checks_pass": all(data_checks.values()),
         "stage4_targeted_tests_pass": tests_passed,
@@ -140,7 +137,11 @@ def build_report(*, run_tests: bool = True) -> dict[str, Any]:
     status = (
         "verified"
         if verified
-        else "failed" if any(value is False for value in proofs.values()) else "incomplete"
+        else (
+            "failed"
+            if any(value is False for value in proofs.values())
+            else "incomplete"
+        )
     )
     return {
         "schema_version": 1,

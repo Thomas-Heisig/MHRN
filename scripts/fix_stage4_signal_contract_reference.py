@@ -22,8 +22,13 @@ def main() -> int:
         ROOT / "src" / "dashboard" / "development_timeline.py",
         ROOT / "scripts" / "apply_stage4_integration.py",
     )
-    changed = [str(path.relative_to(ROOT)) for path in targets if replace_reference(path)]
-    print("Stage-4 signal-processing references normalized:", changed or "already canonical")
+    changed = [
+        str(path.relative_to(ROOT)) for path in targets if replace_reference(path)
+    ]
+    print(
+        "Stage-4 signal-processing references normalized:",
+        changed or "already canonical",
+    )
     return 0
 
 

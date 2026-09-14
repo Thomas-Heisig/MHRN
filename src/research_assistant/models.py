@@ -138,8 +138,14 @@ def normalize_output(output: dict[str, Any]) -> dict[str, Any]:
         "Die Analyse konnte nicht vollstaendig schema-konform erzeugt werden. "
         "Das Modell hat das erforderliche assessment-Feld nicht geliefert."
     )
-    if not isinstance(normalized.get("assessment"), str):
+    if (
+        not isinstance(normalized.get("assessment"), str)
+        or not normalized["assessment"].strip()
+    ):
         normalized["assessment"] = _ASSESSMENT_DEFAULT
+        normalized["analysis_unavailable"] = True
+        normalized["confidence_original"] = normalized.get("confidence")
+        normalized["confidence"] = 0.0
     for _list_field in (
         "observations",
         "methodological_concerns",

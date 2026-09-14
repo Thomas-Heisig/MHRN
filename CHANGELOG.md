@@ -6,6 +6,16 @@ Source-bound scientific audit and publication reconciliation. Fix recursive docu
 
 ## Unreleased
 
+### Stage 0-6 preserved integration and Stage-6 reference hardening
+
+- Preserve the later Stage-5 and Stage-6A histories on the main baseline that includes Reader voices/math fixes.
+- Enforce the cognition read gate for the latest prediction; expose field-wise prediction errors and independent predictor flags without rewriting saved records.
+- Add a hash-bound, strict raw-event reference rebuild into a new directory; reject incomplete/legacy aggregate inputs and preserve their source bytes.
+- Extend the existing cognition view with bounded JSON export and honest error states, real API tests and both browser fixtures.
+- Load the development timeline independently of Gate availability; retain the planned Stage 8-10 boundary.
+- Mark missing AIRR assessments unavailable rather than silently manufacturing a successful analysis.
+- Add the Stage 0-6 audit, migration contract and scientific addendum to edition 1.5. Neural semantic memory, canonical cognition checkpoints and confirmatory SNN evidence remain open.
+
 
 ### Stage 2 recurrence closure / Stage 3 plastic neural tissue
 
