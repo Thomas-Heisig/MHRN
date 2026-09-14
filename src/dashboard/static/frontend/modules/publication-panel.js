@@ -154,15 +154,14 @@ function renderPublication(container, data) {
  * Navigate to the research/files tab and open a file in the File Viewer.
  */
 function _openInFileViewer(path) {
-  // First try to use the workspace router to navigate to files area
-  if (window.selectRoute) {
-    window.selectRoute("files", "browse");
+  // Force popup mode so the File Viewer opens as a dialog overlay
+  // without leaving the publication tab.
+  if (typeof fmUsePopup !== 'undefined') {
+    fmUsePopup = true;
   } else {
-    // Fallback: click the research tab button
-    const fmTab = document.querySelector('.tab-btn[data-tab="research"]');
-    if (fmTab) fmTab.click();
+    try { localStorage.setItem('mhrn-fm-popup', 'true'); } catch (_) {}
   }
-  // Then open the file
+  // Open the file
   if (window.openBrain5DFile) {
     window.openBrain5DFile("research", path);
   } else {
@@ -170,7 +169,6 @@ function _openInFileViewer(path) {
       detail: { source: "research", path }
     }));
   }
-}
 }
 
 /**
