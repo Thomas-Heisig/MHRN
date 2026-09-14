@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
-  "tested_commit": "70e1d8acf3c8b3f2dfd5c0fde5c6adfdb72cec39",
-  "tested_tree_digest": "fe3ce7f4da6ddabdc25209750d2405c8127283a9772532a3ba29b291774a78c3",
+  "tested_commit": "c6cee4b07725dc2f756f743fad990acd3ad98e9b",
+  "tested_tree_digest": "ca94b8ed4a8cf566dcc7dce514bb28494b36bff3c77aec901f21f04985a4cf46",
   "tree_digest_paths": [
     "src/",
     "configs/",
@@ -12,20 +12,20 @@
   "tree_digest_excludes": [
     "tests/test_baseline.json"
   ],
-  "timestamp": "2026-09-14T06:33:08.411584+00:00",
+  "timestamp": "2026-09-14T07:21:58.554462+00:00",
   "python": "3.13.15",
   "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
   "source_unchanged_during_run": true,
   "full_collection": {
     "status": "passed",
-    "collected": 1307,
+    "collected": 1309,
     "collection_errors": 0
   },
   "full_suite": {
     "command": "python -m pytest tests/ -q -ra --junitxml=<temporary-report>",
     "status": "passed",
     "exit_code": 0,
-    "passed": 1307,
+    "passed": 1309,
     "failed": 0,
     "errors": 0,
     "skipped": 0,
@@ -64,7 +64,7 @@
     "src/dashboard/adapters.py": "abfc9be6e6001bab58be2b751e91dfa8bcb96a8d8e86b98347eb1d6996064cbe",
     "src/dashboard/control_http.py": "5998aec2d16593b17af7f40d46440a482967c55afe12b74e41a190161b134b6b",
     "src/dashboard/control_service.py": "a00bda3524a92aa14a5c13900cf466b517bb6558b0d8775c0c25787559bcd487",
-    "src/dashboard/development_timeline.py": "fc97d4ab8cbb055199865045c036e8cc07b1a2daa6b13e35893b8240565e815f",
+    "src/dashboard/development_timeline.py": "758a688ed7a6bb264db92a729261384ca094a5cefa4bd2abc008e83cd10d971e",
     "src/dashboard/docs_source.py": "033f72554c7dad70d69582e563ae188de11dbc429164bb6f80dfb673af3f3a49",
     "src/dashboard/embedding_jobs.py": "ef6424bf5e26068f9ff631a31235e59655a59fc5f4f15aca17b4a0b0d50289da",
     "src/dashboard/experiment_archive.py": "30186da22a91d5ca4a4e639cbf0ed9e6f84958810470894df8ad11281bba08f1",
@@ -451,7 +451,7 @@
     "tests/test_dashboard_wesen.py": "9fd865ad64d642c6c501b41e6c7c0d3675f46836a72718a5a11a5bf840d61f1f",
     "tests/test_delta_journal.py": "68bccda03bd5db2e3022d3193d661e7e4960d721d1a9577a05293c80d069a08e",
     "tests/test_development_frontier_contract.py": "380474fbb2425a4effe2ff90edb43f4d5bbe0d9f4584f84797ecb712e3e50cbb",
-    "tests/test_development_timeline.py": "e806710eacb2bb63bbcc641451e426355fcb910f818028ee40e4c21562b84eef",
+    "tests/test_development_timeline.py": "00fd03f24c09a970ace3de8f612099a424325c72c0ea391dd8531c95954dcd5f",
     "tests/test_doc_consistency.py": "006b1c5ff390ac0a0750db18e71f6750036a10c4d1ba72135d0ff1cce71c6c59",
     "tests/test_eligibility.py": "7d7e70a37bf4a569489bbe2257e686a39e1b7814ee29a6f568395d390f37c840",
     "tests/test_embedding_jobs.py": "0464ea72b8717d2f74de73d3b60cd5ac057708c243486c943b8023d583325b1e",
