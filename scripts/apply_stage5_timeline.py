@@ -7,9 +7,11 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 TIMELINE = ROOT / "src/dashboard/development_timeline.py"
 TESTS = ROOT / "tests/test_development_timeline.py"
-VERIFY = "research/generated/verification/integrated_nervous_system_reference_alpha3.json"
+VERIFY = (
+    "research/generated/verification/integrated_nervous_system_reference_alpha3.json"
+)
 
-NEW_STAGE5 = '''        StageSpec(
+NEW_STAGE5 = """        StageSpec(
             5,
             "integrated_artificial_nervous_system",
             "Integriertes künstliches Nervensystem",
@@ -120,15 +122,19 @@ NEW_STAGE5 = '''        StageSpec(
                 "Validate real-device adapters and long-horizon operation as separate safety-gated studies.",
             ),
         ),
-'''
+"""
 
 
 def patch_timeline() -> bool:
     text = TIMELINE.read_text(encoding="utf-8")
     if VERIFY in text:
         return False
-    start = text.index('        StageSpec(\n            5,\n            "integrated_artificial_nervous_system",')
-    end = text.index('        StageSpec(\n            6,\n            "memory_world_model",', start)
+    start = text.index(
+        '        StageSpec(\n            5,\n            "integrated_artificial_nervous_system",'
+    )
+    end = text.index(
+        '        StageSpec(\n            6,\n            "memory_world_model",', start
+    )
     TIMELINE.write_text(text[:start] + NEW_STAGE5 + text[end:], encoding="utf-8")
     return True
 
@@ -136,13 +142,13 @@ def patch_timeline() -> bool:
 def patch_tests() -> bool:
     text = TESTS.read_text(encoding="utf-8")
     changed = False
-    old = '[(True, 4, 5, 4.95), (False, 4, 5, 5.0)]'
-    new = '[(True, 5, 6, 5.56), (False, 5, 6, 5.69)]'
+    old = "[(True, 4, 5, 4.95), (False, 4, 5, 5.0)]"
+    new = "[(True, 5, 6, 5.56), (False, 5, 6, 5.69)]"
     if old in text:
         text = text.replace(old, new, 1)
         changed = True
     marker = '    assert any("100k-neuron/10M-edge" in item for item in stage_four["known_limits"])\n'
-    addition = '''\n    stage_five = next(stage for stage in payload["stages"] if stage["stage"] == 5)\n    assert stage_five["status"] == "reached"\n    assert stage_five["implementation_score"] == 1.0\n    assert stage_five["verification_score"] == 1.0\n    assert all(item["status"] == "verified" for item in stage_five["criteria"])\n    assert any("H-EMB-001-B" in item for item in stage_five["known_limits"])\n'''
+    addition = """\n    stage_five = next(stage for stage in payload["stages"] if stage["stage"] == 5)\n    assert stage_five["status"] == "reached"\n    assert stage_five["implementation_score"] == 1.0\n    assert stage_five["verification_score"] == 1.0\n    assert all(item["status"] == "verified" for item in stage_five["criteria"])\n    assert any("H-EMB-001-B" in item for item in stage_five["known_limits"])\n"""
     if addition.strip() not in text and marker in text:
         text = text.replace(marker, marker + addition, 1)
         changed = True
@@ -153,7 +159,11 @@ def patch_tests() -> bool:
 
 def main() -> int:
     changed = [patch_timeline(), patch_tests()]
-    print("Stage-5 timeline integration updated." if any(changed) else "Stage-5 timeline integration already current.")
+    print(
+        "Stage-5 timeline integration updated."
+        if any(changed)
+        else "Stage-5 timeline integration already current."
+    )
     return 0
 
 

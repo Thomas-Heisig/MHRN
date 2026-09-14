@@ -2171,7 +2171,7 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
                 edition = latest.name.split("_v")[-1]
 
             # Also look for a FORSCHUNGSBERICHT.md (separate research report)
-            forschungsbericht = None
+            forschungsbericht: dict[str, JSONValue] | None = None
             for fb_name in ("FORSCHUNGSBERICHT.md", "Forschungsbericht.md"):
                 fb_path = latest / fb_name
                 if fb_path.exists():
@@ -2185,7 +2185,7 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
                     break
 
             # Collect available export formats
-            exports = []
+            exports: list[JSONValue] = []
             for ext in (".pdf", ".docx"):
                 for f in latest.iterdir():
                     if f.suffix == ext and f.stem.startswith("MHRN"):

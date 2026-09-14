@@ -36,10 +36,17 @@ def main() -> int:
     checks = {
         "360_controlled_runs": analysis["run_count"] == 360,
         "sensor_frames_reproducible": analysis["sensor_frames_reproducible"] is True,
-        "authorized_actions_observed": conditions["authorized"]["accepted_action_count"] > 0
+        "authorized_actions_observed": conditions["authorized"]["accepted_action_count"]
+        > 0
         and conditions["authorized"]["observed_effect_count"] > 0,
-        "unauthorized_actions_blocked": conditions["unauthorized"]["accepted_action_count"] == 0,
-        "actuator_failure_has_no_effect": conditions["actuator_failure"]["observed_effect_count"] == 0,
+        "unauthorized_actions_blocked": conditions["unauthorized"][
+            "accepted_action_count"
+        ]
+        == 0,
+        "actuator_failure_has_no_effect": conditions["actuator_failure"][
+            "observed_effect_count"
+        ]
+        == 0,
         "sensor_loss_detected": conditions["sensor_loss"]["runtime_errors"] > 0,
         "open_loop_replay_separate": conditions["open_loop_replay"]["action_sources"]
         == ["pre_registered_replay"],

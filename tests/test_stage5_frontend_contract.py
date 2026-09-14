@@ -8,14 +8,17 @@ STATIC = ROOT / "src/dashboard/static"
 
 def test_stage5_frontend_module_is_loaded() -> None:
     index = (STATIC / "frontend/index.js").read_text(encoding="utf-8")
-    assert 'import { initIntegratedNervousSystem } from "./modules/integrated-nervous-system.js";' in index
+    assert (
+        'import { initIntegratedNervousSystem } from "./modules/integrated-nervous-system.js";'
+        in index
+    )
     assert "initIntegratedNervousSystem();" in index
 
 
 def test_stage5_frontend_consumes_existing_embodiment_apis() -> None:
-    source = (
-        STATIC / "frontend/modules/integrated-nervous-system.js"
-    ).read_text(encoding="utf-8")
+    source = (STATIC / "frontend/modules/integrated-nervous-system.js").read_text(
+        encoding="utf-8"
+    )
     for endpoint in (
         "/api/embodiment/state",
         "/api/embodiment/pipeline",
@@ -33,8 +36,8 @@ def test_stage5_frontend_consumes_existing_embodiment_apis() -> None:
 
 
 def test_stage5_frontend_keeps_scientific_boundary_visible() -> None:
-    source = (
-        STATIC / "frontend/modules/integrated-nervous-system.js"
-    ).read_text(encoding="utf-8")
+    source = (STATIC / "frontend/modules/integrated-nervous-system.js").read_text(
+        encoding="utf-8"
+    )
     assert "keine automatische EVID-Freigabe" in source
     assert "Real-Device/Langzeit" in source

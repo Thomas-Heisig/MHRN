@@ -17,6 +17,7 @@ from .interoception import (
     derive_regulatory_state,
     normalize_vital_signals,
 )
+from .models import JSONValue
 
 STAGE5_REFERENCE_EXPERIMENT = (
     "research/experiments/EXP-STAGE5-20260914-INTEGRATED-NERVOUS-SYSTEM"
@@ -25,7 +26,7 @@ STAGE5_REFERENCE_EXPERIMENT = (
 
 def reference_interoception_probe() -> dict[str, Any]:
     """Return a deterministic Stage-5 interoception/regulation reference probe."""
-    readings = {
+    readings: dict[str, JSONValue] = {
         "cpu_percent": 42.0,
         "memory_percent": 55.0,
         "temperature_c": 63.0,
