@@ -18,7 +18,7 @@ WORKDIR /build
 RUN pip install --no-cache-dir build "setuptools>=68" wheel
 
 # Copy package metadata and sources
-COPY pyproject.toml setup.py README.md ./
+COPY pyproject.toml setup.py README.md LICENSE ./
 COPY src/ src/
 
 # Build wheel
