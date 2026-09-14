@@ -154,6 +154,8 @@ def build_experience_subsystem(
             ),
             store.run_id,
             persistence_path=persistence_path,
+            prediction_enabled=memory_config.get("prediction_enabled", True),
+            learning_enabled=memory_config.get("learning_enabled", True),
         )
     behavior_profile = None
     behavior_value = raw.get("behavior", config.get("behavior", {}))
