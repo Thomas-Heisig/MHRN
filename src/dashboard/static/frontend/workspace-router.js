@@ -35,7 +35,6 @@ const AREAS = Object.freeze({
       ["organs", "Organe", "overview", "overview", "organs"], ["memory", "Gedächtnis", "overview", "overview", "memory"],
       ["structure", "Struktur", "overview", "overview", "structure"], ["snapshot", "Snapshot", "overview", "overview", "snapshot"],
       ["sysinfo", "System Info", "overview", "overview", "sysinfo"],
-      ["publikation", "Publikation", "overview", "overview", "publication"],
     ],
   },
   science: {
@@ -108,6 +107,15 @@ const AREAS = Object.freeze({
     contracts: ["/api/files/statistics", "/api/docs/tree"],
     routes: [
       ["overview", "Übersicht", "research"], ["browse", "Datei-Explorer", "research", "research", "files"],
+    ],
+  },
+  publication: {
+    number: "09", label: "Publikation", subtitle: "Wissenschaftliche Arbeit", owner: "publication",
+    purpose: "Aktuelle wissenschaftliche Hauptarbeit (Recursive Epistemics) als Volltext im Dashboard.",
+    howto: ["Die Publikation wird beim Aufruf geladen und als formatierter Text dargestellt.", "Interne Links öffnen Abschnitte im File Viewer.", "PDF- und DOCX-Exporte stehen im Footer zum Download bereit."],
+    contracts: ["/api/publication/current"],
+    routes: [
+      ["overview", "Übersicht", "publication"],
     ],
   },
 });
@@ -698,7 +706,9 @@ export function initWorkspaceRouter() {
   ensureNavigation();
   observeChromeInsets();
   Object.keys(AREAS).forEach((id) => {
-    ensureOverview(id);
+    if (id !== "publication") {
+      ensureOverview(id);
+    }
     ensureContextNav(id);
   });
   hideLocalTabs();

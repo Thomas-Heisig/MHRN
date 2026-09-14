@@ -13,18 +13,8 @@ export async function initPublicationPanel() {
   if (!container || container.dataset.initialised === "true") return;
   container.dataset.initialised = "true";
 
-  await loadPublication(container);
-
-  // Re-load when the sub-tab becomes visible (user clicks the tab)
-  const subtab = document.querySelector('.overview-subtab[data-subtab="publication"]');
-  if (subtab) {
-    subtab.addEventListener("click", () => {
-      // Only reload if content is missing (e.g. after error)
-      if (!container.querySelector(".publication-content")) {
-        loadPublication(container);
-      }
-    });
-  }
+  // Load publication content immediately (the tab is now a separate workspace)
+  loadPublication(container);
 }
 
 async function loadPublication(container) {

@@ -1071,8 +1071,12 @@ body[data-theme="light"][data-contrast="high"] { --rule:rgba(240,233,218,.32); -
 }
 
 /* ================================================================
-   Publication Panel (Overview → Publikation)
+   Publication Panel (eigener Tab)
    ================================================================ */
+#tab-publication {
+  padding: 0;
+}
+
 #publication-panel {
   padding: 0;
 }
