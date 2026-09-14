@@ -472,8 +472,12 @@ function renderDevelopmentTrack(data, containerId) {
   const container = $(containerId);
   if (!container) return;
   const stages = Array.isArray(data.stages) ? data.stages : [];
-  const technicalIdx = Math.max(0, Math.min(stages.length - 1, Number(data.current_stage) || 0));
-  const scientificIdx = Math.max(0, Math.min(stages.length - 1, Number(data.scientific_stage) || 0));
+  // Fractional maturity belongs to the containing discrete stage. Unknown
+  // measurements must not silently become a marker at stage zero.
+  const stageIndex = (value) => typeof value === 'number' && Number.isFinite(value) && stages.length
+    ? Math.max(0, Math.min(stages.length - 1, Math.floor(value))) : null;
+  const technicalIdx = stageIndex(data.current_stage);
+  const scientificIdx = stageIndex(data.scientific_stage);
 
   container.innerHTML = stages.map((stage, idx) => {
     const isTech = idx === technicalIdx;

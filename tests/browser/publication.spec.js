@@ -4,13 +4,16 @@ import { selectRoute } from './routes.js';
 test.use({ baseURL: 'http://127.0.0.1:4174' });
 
 for (const port of [4174, 4175]) {
-  test(`publication ${port}: complete current reader and immutable historical sources`, async ({ page }) => {
+ for (const popup of [true, false]) {
+  test(`publication ${port} ${popup ? "popup" : "inline"}: complete current reader and immutable historical sources`, async ({ page }) => {
     const errors = [];
     page.on('pageerror', error => errors.push(error.message));
     await page.goto(`http://127.0.0.1:${port}/`);
     await selectRoute(page, 'files', 'browse');
+    await page.locator('#fm-popup-toggle').setChecked(popup);
     await page.getByRole('button', { name: 'Abhandlung lesen', exact: true }).click();
-    const viewer = page.locator('#fm-viewer');
+    const viewer = page.locator(popup ? '#fm-dialog-viewer' : '#fm-viewer');
+    await expect(viewer).toBeVisible();
     await expect(viewer).toHaveAttribute('data-render-state', 'ready');
     await expect(viewer).toContainText('Fassung 1.5');
     await viewer.getByRole('button', { name: 'Dissertationsmanuskript und Forschungsarbeit', exact: true }).click();
@@ -52,4 +55,5 @@ for (const port of [4174, 4175]) {
     expect(write.status()).toBe(403);
     expect(errors).toEqual([]);
   });
+}
 }

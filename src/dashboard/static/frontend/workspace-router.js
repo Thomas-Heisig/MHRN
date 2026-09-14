@@ -235,6 +235,12 @@ function hideLocalTabs() {
 function resetWorkspaceVisibility(workspace) {
   const root = rootFor(workspace);
   if (!root) return;
+  // Undo only sibling hiding owned by the previous focus route. Do not open
+  // controls that were already hidden by their own component or safety state.
+  root.querySelectorAll("[data-mhrn-focus-sibling]").forEach((node) => {
+    setRouteElementVisibility(node, true);
+    node.removeAttribute("data-mhrn-focus-sibling");
+  });
   // Only hide top-level route-managed panels, not every nested section/article.
   // This prevents hiding content inside panels that should remain visible.
   const routeManaged = root.querySelectorAll(":scope > .overview-subpanel, :scope > .research-subpanel, :scope > .embodiment-subpanel, :scope > [data-generated-panel], :scope > [data-workspace-panel], :scope > [data-release-view], :scope > .mhrn-area-overview, :scope > .mhrn-scientific-metrics, :scope > .mhrn-cognition, :scope > .mhrn-runtime-io, :scope > .mhrn-gateway-monitor, :scope > .wesen-profile-panel, :scope > #wesen-neural-symbiosis, :scope > .mhrn-learning-prep, :scope > .mhrn-structural-inspector, :scope > .operator-console, :scope > .experiment-panel, :scope > .control-card, :scope > .structural-live-card, :scope > .settings-guardrail-grid, :scope > .settings-mode-selector, :scope > .settings-domain-filter, :scope > .settings-note, :scope > .parameter-inspector-card, :scope > .card.heatmap-panel, :scope > .card.io-flow-panel, :scope > .card.population-panel, :scope > .card.raster-panel, :scope > .card.histogram-panel, :scope > .card.panel, :scope > .wesen-layout, :scope > .wesen-stage-card, :scope > .wesen-console, :scope > .wesen-sidebar, :scope > .embodiment-living-map, :scope > .connection-manager, :scope > .embodiment-system-strip, :scope > .embodiment-loop, :scope > .embodiment-detail-modal, :scope > .wesen-cognition-zone, :scope > .wesen-profile-grid, :scope > .wesen-profile-toolbar, :scope > .wesen-profile-boundary, :scope > .wesen-profile-header, :scope > .mhrn-science-transparency");
@@ -315,37 +321,40 @@ function showRouteContent(areaId, route) {
     return;
   }
 
-  // For "focus" action: show only the targeted element(s)
-  if (action === "focus" && arg) {
-    const targets = arg.split(",").map((s) => s.trim());
-    targets.forEach((sel) => {
-      document.querySelectorAll(sel).forEach((node) => setRouteElementVisibility(node, true));
-    });
-    // Also show elements explicitly tagged for this route via data-mhrn-route
-    const routeTag = `${areaId}:${id}`;
-    document.querySelectorAll(`[data-mhrn-route="${routeTag}"]`).forEach((node) => {
-      setRouteElementVisibility(node, true);
-    });
-    return;
-  }
-
-  // For "focusOnly" action: hide everything except the specified selectors
-  if (action === "focusOnly" && arg) {
-    const keep = new Set(arg.split(",").map((s) => s.trim()));
+  // Focus targets can be nested. Reveal their ancestor paths and isolate
+  // sibling branches without globally opening the rest of a workspace.
+  if ((action === "focus" || action === "focusOnly") && arg) {
     const root = rootFor(workspace);
-    if (root) {
-      root.querySelectorAll(":scope > section, :scope > article, :scope > .card, :scope > .panel, :scope > .operator-console, :scope > .experiment-panel").forEach((node) => {
-        if (isPersistent(node)) return;
-        const matches = [...keep].some((sel) => node.matches(sel));
-        setRouteElementVisibility(node, matches);
-      });
+    if (!root) return;
+    const routeTag = `${areaId}:${id}`;
+    const candidates = [...root.querySelectorAll(`${arg},[data-mhrn-route="${routeTag}"]`)];
+    // A whole-panel target includes its descendants. Processing an overlapping
+    // nested target again would incorrectly isolate siblings inside that panel.
+    const targets = candidates.filter((node) => !candidates.some((other) => other !== node && other.contains(node)));
+    const onPath = (node) => targets.some((target) => node === target || node.contains(target));
+    for (const target of targets) {
+      for (let node = target; node && node !== root; node = node.parentElement) {
+        setRouteElementVisibility(node, true);
+        if (node === target) continue;
+        for (const sibling of node.children) {
+          if (onPath(sibling) || isPersistent(sibling) || sibling.hidden) continue;
+          sibling.setAttribute("data-mhrn-focus-sibling", "");
+          setRouteElementVisibility(sibling, false);
+        }
+      }
+    }
+    if (action === "focusOnly") {
+      for (const node of root.children) {
+        if (isPersistent(node) || node.matches(".workspace-header,.mhrn-context-nav,.mhrn-breadcrumb-bar")) continue;
+        setRouteElementVisibility(node, onPath(node));
+      }
     }
     return;
   }
 
   // For "generated" action: show matching generated panel (any workspace)
   if (action === "generated") {
-    document.querySelectorAll("[data-generated-panel]").forEach((node) => {
+    rootFor(workspace)?.querySelectorAll("[data-generated-panel]").forEach((node) => {
       setRouteElementVisibility(node, node.dataset.generatedPanel === arg);
     });
     return;

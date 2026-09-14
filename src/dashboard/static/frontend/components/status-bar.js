@@ -76,13 +76,17 @@ async function refresh() {
     modeBadge.classList.add(/operator|debug/.test(currentMode) ? "mhrn-badge-ok" : "mhrn-badge-warn");
   }
 
-  // Update experiment state in footer
-  const expState = document.getElementById("footer-experiment-state");
-  const expId = document.getElementById("footer-experiment-id");
-  const expSeg = document.getElementById("footer-experiment");
-  if (expState) expState.textContent = modeResult.status === "fulfilled" ? (modeResult.value?.current_mode || "inactive") : "inactive";
-  if (expId) expId.textContent = activeExperiment(modeResult.status === "fulfilled" ? modeResult.value : null);
-  if (expSeg) expSeg.dataset.active = String(modeResult.status === "fulfilled" && modeResult.value?.current_mode && modeResult.value.current_mode !== "operator");
+  // Workflow progress owns this segment until another workflow clears it.
+  // Polling runtime mode must not replace a finished batch with "inactive".
+  if (!["true", "completed"].includes(document.body.dataset.experimentWorkflowActive)) {
+    const expState = document.getElementById("footer-experiment-state");
+    const expId = document.getElementById("footer-experiment-id");
+    const expSeg = document.getElementById("footer-experiment");
+    const currentMode = mode?.current_mode;
+    if (expState) expState.textContent = currentMode || "inactive";
+    if (expId) expId.textContent = activeExperiment(mode);
+    if (expSeg) expSeg.dataset.active = String(Boolean(currentMode && currentMode !== "operator"));
+  }
 
   window.dispatchEvent(new CustomEvent("mhrn:global-status", { detail: lastPayload }));
 }

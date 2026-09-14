@@ -197,6 +197,7 @@ test("batch dialog edits per-protocol options, reports completion, and updates f
   await expect(page.locator("#workflow-result")).toContainText("EXP-BROWSER-BATCH");
   await expect(page.locator("#workflow-batch-dialog")).not.toBeVisible();
   await expect(page.locator("#footer-experiment-state")).toContainText("Experiment-Workflow abgeschlossen");
+  await expect(page.locator("#footer-experiment")).toBeVisible();
   expect(batchResponse.body.protocol_options.browser_protocol).toEqual({ seeds: "21-23", ticks: 48 });
 });
 
@@ -253,15 +254,8 @@ test("Release workspace renders the documentation timeline", async ({ page }) =>
   await expect(page.locator("#release-timeline-list .timeline-entry")).toHaveCount(1);
   await expect(page.locator("#release-timeline-list")).toContainText("Release timeline restoration");
   await expect(page.locator("#release-timeline-sources")).toContainText("TODO");
-  await expect(page.locator("#release-development-track .development-marker-technical")).toContainText("Du bist hier");
-  await expect(page.locator("#release-development-track .development-marker-scientific")).toContainText("Wissenschaftlich hier");
-  await expect(page.locator("#release-development-track .development-track-node")).toHaveCount(11);
-  await selectRoute(page, "release", "timeline");
-  await expect(page.locator("#release-development-track")).toBeVisible();
-  await expect(page.locator("[data-timeline-phase]")).toHaveCount(3);
-  await expect(page.locator('[data-timeline-phase="past"]')).toContainText("Was war");
-  await expect(page.locator('[data-timeline-phase="current"]')).toContainText("Was ist");
-  await expect(page.locator('[data-timeline-phase="future"]')).toContainText("Was wird");
+  // The redesigned shell separates chronological releases from maturity.
+  await expect(page.locator('[data-release-view="development"]')).toBeHidden();
 
   for (const view of ["releases", "preview", "timeline", "development", "documents", "gate"]) {
     await selectRoute(page, "release", view);
@@ -269,9 +263,13 @@ test("Release workspace renders the documentation timeline", async ({ page }) =>
   }
 
   await selectRoute(page, "release", "development");
-  await expect(page.locator("#development-timeline-track .development-marker-technical")).toContainText("Du bist hier");
+  await expect(page.locator("#development-timeline-track .dev-node-marker-tech")).toContainText("hier");
+  await expect(page.locator('#development-timeline-track .dev-node')).toHaveCount(11);
+  await expect(page.locator('#development-timeline-track .dev-node-marker-sci')).toContainText('Evidenz');
+  await expect(page.locator('#development-timeline-track [data-development-stage="3"]')).toHaveClass(/is-tech-here/);
+  await expect(page.locator('#development-timeline-track [data-development-stage="2"]')).toHaveClass(/is-sci-here/);
   await expect(page.locator("#development-score-grid")).toContainText("Scientific Evidence");
-  await expect(page.locator("#development-scale-grid .development-scale")).toHaveCount(2);
+  await expect(page.locator("#development-scale-grid .dev-scale")).toHaveCount(2);
   await expect(page.locator("#development-scale-grid")).toContainText("5.000");
   await page.locator('#development-stage-list [data-development-stage="3"]').click();
   await expect(page.locator("#development-detail")).toBeVisible();
@@ -280,7 +278,7 @@ test("Release workspace renders the documentation timeline", async ({ page }) =>
   await selectRoute(page, "release", "documents");
   await page.locator('[data-release-document="08-roadmap/TODO.md"]').click();
   await expect(page.locator("body")).toHaveAttribute("data-current-area", "files");
-  await expect(page.locator("#fm-viewer")).not.toHaveClass(/fm-viewer-hidden/);
+  await expect(page.locator("#fm-viewer-dialog")).toBeVisible();
 });
 
 test("active workspace remains clear of fixed chrome and footer", async ({ page }) => {

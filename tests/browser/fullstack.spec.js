@@ -27,8 +27,18 @@ for (const port of [4174, 4175]) {
     await expect(page.locator('#wesen-profile-identity')).toContainText('Profile & Identität');
     await selectLabStage(page, 'question');
     await selectResearchView(page, 'files');
+    await page.locator('#fm-popup-toggle').uncheck();
     await page.locator('.fm-source-btn[data-source="docs"]').click();
-    await page.locator('.fm-file-label').filter({ hasText: 'preview.md' }).click();
+    const preview = page.locator('.fm-tree-file').filter({ has: page.locator('.fm-file-label', { hasText: 'preview.md' }) });
+    const csv = page.locator('.fm-tree-file').filter({ has: page.locator('.fm-file-label', { hasText: 'data.csv' }) });
+    await expect(preview).toBeVisible();
+    await expect(csv).toBeVisible();
+    await page.locator('.fm-filter-chip').filter({ hasText: /^Markdown$/ }).click();
+    await expect(preview).toBeVisible();
+    await expect(csv).toBeHidden();
+    await page.locator('.fm-filter-chip').filter({ hasText: /^All$/ }).click();
+    await expect(csv).toBeVisible();
+    await preview.locator('.fm-file-label').click();
     const viewer = page.locator('#fm-viewer');
     await expect(viewer).toHaveAttribute('data-render-state', 'ready');
     await expect(viewer.locator('.file-renderer-body h2')).toHaveText('Gemeinsamer Renderer');
@@ -130,15 +140,12 @@ test('canonical file viewer: split editor live preview and stale-write conflict 
   expect(created.ok()).toBeTruthy();
   const createdData = await created.json();
 
-  await page.evaluate(async (filePath) => {
-    const module = await import('/file-renderer.js');
-    const host = document.createElement('section');
-    host.id = 'split-editor-artifact';
-    document.body.append(host);
-    await module.renderFile(host, { source: 'docs', path: filePath });
-  }, reference);
-
-  const host = page.locator('#split-editor-artifact');
+  await selectRoute(page, 'files', 'browse');
+  await page.locator('#fm-popup-toggle').uncheck();
+  // Exercise the actual shared viewer and its layout, not an orphan body child
+  // placed underneath fixed chrome by the test itself.
+  await page.evaluate(filePath => window.openBrain5DFile('docs', filePath), reference);
+  const host = page.locator('#fm-viewer');
   await expect(host).toHaveAttribute('data-render-state', 'ready');
   await host.getByRole('button', { name: 'Bearbeiten', exact: true }).click();
   await expect(host.locator('.file-renderer-editor-split')).toBeVisible();
@@ -181,8 +188,9 @@ test('external review: subtab, public readiness and central viewer without priva
   expect(metadata.response_count).toBeNull();
   expect(metadata.scientific_evidence).toBe(false);
   await panel.locator('#external-review-method').click();
-  await expect(page.locator('#fm-viewer')).toHaveAttribute('data-render-state', 'ready');
-  await expect(page.locator('#fm-viewer')).toContainText('Abschlusskriterien');
+  await expect(page.locator('#fm-viewer-dialog')).toBeVisible();
+  await expect(page.locator('#fm-dialog-viewer')).toHaveAttribute('data-render-state', 'ready');
+  await expect(page.locator('#fm-dialog-viewer')).toContainText('Abschlusskriterien');
 });
 
 test('external review: stale success is cleared after failed status fetch', async ({ page }) => {
@@ -192,6 +200,6 @@ test('external review: stale success is cleared after failed status fetch', asyn
   await expect(page.locator('#external-review-summary')).toContainText('135 Fragen');
   await page.route('**/api/research/external-review', route => route.fulfill({ status: 503, body: '{}' }));
   await page.locator('#external-review-refresh').click();
-  await expect(page.locator('#external-review-summary')).toContainText('Nicht verfuegbar');
+  await expect(page.locator('#external-review-summary')).toContainText('Nicht verf\u00fcgbar');
   await expect(page.locator('#external-review-stages dt')).toHaveCount(0);
 });

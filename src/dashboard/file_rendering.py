@@ -88,9 +88,11 @@ def _image_dimensions(path: Path) -> tuple[int, int] | None:
     with path.open("rb") as stream:
         header = stream.read(32)
         if header.startswith(b"\x89PNG\r\n\x1a\n") and len(header) >= 24:
-            return cast(tuple[int, int], struct.unpack(">II", header[16:24]))
+            width, height = struct.unpack(">II", header[16:24])
+            return int(width), int(height)
         if header[:6] in {b"GIF87a", b"GIF89a"} and len(header) >= 10:
-            return cast(tuple[int, int], struct.unpack("<HH", header[6:10]))
+            width, height = struct.unpack("<HH", header[6:10])
+            return int(width), int(height)
     return None
 
 

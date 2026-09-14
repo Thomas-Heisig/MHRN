@@ -125,7 +125,7 @@ def decode_optical_record(data: bytes) -> tuple[int, int, OpticalPointState]:
     spectrum = struct.unpack_from("<32H", data, 16)
     brightness = _from_u16_norm(struct.unpack_from("<H", data, 80)[0])
     phase = _from_u16_norm(struct.unpack_from("<H", data, 82)[0])
-    stokes_raw = struct.unpack_from("<4h", data, 84)
+    s0, s1, s2, s3 = struct.unpack_from("<4h", data, 84)
     coherence = _from_u16_norm(struct.unpack_from("<H", data, 92)[0])
     theta = _from_u16_norm(struct.unpack_from("<H", data, 94)[0])
     phi = _from_u16_norm(struct.unpack_from("<H", data, 96)[0])
@@ -139,9 +139,7 @@ def decode_optical_record(data: bytes) -> tuple[int, int, OpticalPointState]:
         spectrum=tuple(spectrum),
         brightness=brightness,
         phase=phase,
-        stokes=tuple(
-            value / 32_767.0 for value in stokes_raw
-        ),  # pyright: ignore[arg-type]
+        stokes=(s0 / 32_767.0, s1 / 32_767.0, s2 / 32_767.0, s3 / 32_767.0),
         coherence=coherence,
         theta=theta,
         phi=phi,

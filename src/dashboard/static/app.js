@@ -290,6 +290,7 @@ let sharedExperimentMode = null;
 function renderExperimentRunFooter() {
   const footer = document.getElementById('footer-experiment');
   if (!footer) return;
+  footer.hidden = !experimentRunActive && document.body.dataset.experimentWorkflowActive !== 'completed';
   footer.classList.toggle('is-test-running', experimentRunActive);
   if (!experimentRunActive) return;
 

@@ -551,7 +551,7 @@ function renderFMTree(node, container, depth) {
                    child.is_spreadsheet ? '📊' :
                    child.is_document ? '📘' :
                    child.is_binary ? '📦' : '📄';
-      li.innerHTML = `${icon} ${escapeHtml(child.name)} <span class="fm-file-size">${formatBytes(child.size_bytes)}</span>`;
+      li.innerHTML = `<span class="fm-file-icon" aria-hidden="true">${icon}</span> <span class="fm-file-label">${escapeHtml(child.name)}</span> <span class="fm-file-size">${formatBytes(child.size_bytes)}</span>`;
       li.addEventListener('click', (event) => {
         event.stopPropagation();
         // Mark selection
