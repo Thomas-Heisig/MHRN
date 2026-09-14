@@ -35,8 +35,8 @@ jobs:
 
       - name: Format Stage-4 Python changes
         run: |
-          python -m black src/embodiment/specialized_areas.py src/embodiment/__init__.py src/dashboard/server.py src/dashboard/development_timeline.py scripts/apply_stage4_integration.py scripts/fix_stage4_signal_contract_reference.py scripts/run_stage4_reference.py tests/test_stage4_specialized_neural_areas.py tests/test_stage4_frontend_contract.py
-          python -m ruff check --fix src/embodiment/specialized_areas.py src/embodiment/__init__.py src/dashboard/server.py src/dashboard/development_timeline.py scripts/apply_stage4_integration.py scripts/fix_stage4_signal_contract_reference.py scripts/run_stage4_reference.py tests/test_stage4_specialized_neural_areas.py tests/test_stage4_frontend_contract.py
+          python -m black src/embodiment/specialized_areas.py src/embodiment/__init__.py src/dashboard/server.py src/dashboard/development_timeline.py scripts/apply_stage4_integration.py scripts/fix_stage4_signal_contract_reference.py scripts/run_stage4_reference.py tests/test_stage4_specialized_neural_areas.py tests/test_stage4_frontend_contract.py tests/test_development_timeline.py
+          python -m ruff check --fix src/embodiment/specialized_areas.py src/embodiment/__init__.py src/dashboard/server.py src/dashboard/development_timeline.py scripts/apply_stage4_integration.py scripts/fix_stage4_signal_contract_reference.py scripts/run_stage4_reference.py tests/test_stage4_specialized_neural_areas.py tests/test_stage4_frontend_contract.py tests/test_development_timeline.py
 
       - name: Run Stage-4 engineering reference
         run: |
