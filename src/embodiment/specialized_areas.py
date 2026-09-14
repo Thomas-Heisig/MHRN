@@ -160,7 +160,9 @@ class SpecializedAreaNetwork:
         by_modality = {item.modality: item for item in configured}
         required = {Modality.AUDIO, Modality.VISION, Modality.DIGITAL}
         if set(by_modality) != required:
-            raise ValueError("Stage-4 network requires exactly audio, vision and digital")
+            raise ValueError(
+                "Stage-4 network requires exactly audio, vision and digital"
+            )
         self._areas = configured
         self._by_modality = by_modality
 
@@ -242,7 +244,7 @@ class SpecializedAreaNetwork:
         features = processed.get("features")
         if not isinstance(features, list):
             raise RuntimeError("numeric specialized adapter omitted features")
-        feature_values = [float(value) for value in features]
+        feature_values = list(self._numeric_payload(features))
         if selected is Modality.AUDIO:
             phase = math.atan2(
                 values[1] if len(values) > 1 else 0.0,
@@ -377,7 +379,7 @@ def specialized_area_contract() -> dict[str, JSONValue]:
         "status": "implemented_experimental",
         "areas": [item.to_json() for item in default_specialized_areas()],
         "topology": network.topology_summary(),
-        "topology_edge_sample": network.edge_sample(),
+        "topology_edge_sample": [item for item in network.edge_sample()],
         "reference_probes": reference_probe_suite(),
         "research_data": list(LATEST_MSBA_DATA),
         "scientific_boundary": {
