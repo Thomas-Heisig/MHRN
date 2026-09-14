@@ -1,0 +1,796 @@
+{
+  "experiment_id": "EXP-EMB-0001",
+  "experiment_status": "completed",
+  "ai_exposure": "none",
+  "ai_reproducibility": "R0",
+  "ai_protocol": {
+    "version": 1,
+    "bump_reason": "initial registration"
+  },
+  "causal_taint": "PURE",
+  "ai_interactions": [],
+  "causal_card": {
+    "classification": "PURE",
+    "interaction_ids": [],
+    "roles": []
+  },
+  "timestamp": "2026-09-14T16:19:39.751103",
+  "created_at": "2026-09-14T16:19:39.751113+00:00",
+  "git": {
+    "commit": "2d3611570ecf7f4678e0c89fca497ea7b6e3cf63",
+    "dirty": true,
+    "branch": "feature/stage5-integrated-nervous-system"
+  },
+  "software": {
+    "python": "3.13.15",
+    "os": "Linux 6.17.0-1022-azure",
+    "brain5d_version": "0.6.0a3"
+  },
+  "simulation": {
+    "independent_runs": 20,
+    "repetitions_per_condition": 3,
+    "conditions": [
+      "authorized",
+      "unauthorized",
+      "actuator_failure",
+      "sensor_loss",
+      "open_loop_replay",
+      "sensor_reproducibility"
+    ]
+  },
+  "artifacts": {
+    "data": "DATA/runs.jsonl",
+    "analysis": "DATA/analysis.json"
+  },
+  "research_questions": [
+    "RQ-EMB-001"
+  ],
+  "hypotheses": [
+    "H-EMB-001-A"
+  ],
+  "config": {},
+  "validity": {
+    "valid": true,
+    "reason": null,
+    "runtime_error_count": 0,
+    "fatal_error_count": 0
+  },
+  "runtime_errors": [],
+  "research_run_mode": "EXPLORATORY",
+  "data_partitions": [],
+  "network_mode": "OFFLINE",
+  "results": {
+    "experiment_id": "EXP-EMB-0001",
+    "status": "completed",
+    "run_count": 360,
+    "provenance_digests": {
+      "code": "a0d5d14a3af74e7d85271ba9dc46c4c96ca52f5cee82c11e488faeabcfbfd1b4",
+      "config": "6d78a7132d4fa4b4a847a67a1f7d6183edd3a54b3b11d817823d4f684370b6c6",
+      "prompt": "dd18e473908e7e75b1717c240bac221729ea38753abfd28b701b37b20d5f5e14",
+      "data": "3f9531380fe8156520a022a494de9a06a8ad708607e9fffd8298d265d3742ed1"
+    },
+    "source_freeze_sha": "9906382ed6032ecda269791fd939fc366c44592a293769164c8c5c083cc6b55f",
+    "replay_plan": {
+      "actions": [
+        "right",
+        "right",
+        "right"
+      ],
+      "source": "pre_registered_replay"
+    },
+    "conditions": {
+      "authorized": {
+        "runs": 60,
+        "target_reached_rate": 0.5,
+        "total_reward": 60.0,
+        "all_audits_valid": true,
+        "all_one_tick_hooks": true,
+        "runtime_errors": 0,
+        "accepted_action_count": 180,
+        "observed_effect_count": 180,
+        "acceptance_receipts_complete": true,
+        "effect_receipts_complete": true,
+        "action_sources": [
+          "network_output"
+        ],
+        "seed_metrics": {
+          "42": {
+            "runs": 3,
+            "target_reached_rate": 1.0,
+            "runtime_errors": 0
+          },
+          "43": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 0
+          },
+          "44": {
+            "runs": 3,
+            "target_reached_rate": 1.0,
+            "runtime_errors": 0
+          },
+          "45": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 0
+          },
+          "46": {
+            "runs": 3,
+            "target_reached_rate": 1.0,
+            "runtime_errors": 0
+          },
+          "47": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 0
+          },
+          "48": {
+            "runs": 3,
+            "target_reached_rate": 1.0,
+            "runtime_errors": 0
+          },
+          "49": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 0
+          },
+          "50": {
+            "runs": 3,
+            "target_reached_rate": 1.0,
+            "runtime_errors": 0
+          },
+          "51": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 0
+          },
+          "52": {
+            "runs": 3,
+            "target_reached_rate": 1.0,
+            "runtime_errors": 0
+          },
+          "53": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 0
+          },
+          "54": {
+            "runs": 3,
+            "target_reached_rate": 1.0,
+            "runtime_errors": 0
+          },
+          "55": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 0
+          },
+          "56": {
+            "runs": 3,
+            "target_reached_rate": 1.0,
+            "runtime_errors": 0
+          },
+          "57": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 0
+          },
+          "58": {
+            "runs": 3,
+            "target_reached_rate": 1.0,
+            "runtime_errors": 0
+          },
+          "59": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 0
+          },
+          "60": {
+            "runs": 3,
+            "target_reached_rate": 1.0,
+            "runtime_errors": 0
+          },
+          "61": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 0
+          }
+        }
+      },
+      "unauthorized": {
+        "runs": 60,
+        "target_reached_rate": 0.0,
+        "total_reward": 0,
+        "all_audits_valid": true,
+        "all_one_tick_hooks": true,
+        "runtime_errors": 0,
+        "accepted_action_count": 0,
+        "observed_effect_count": 0,
+        "acceptance_receipts_complete": true,
+        "effect_receipts_complete": true,
+        "action_sources": [
+          "network_output"
+        ],
+        "seed_metrics": {
+          "42": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 0
+          },
+          "43": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 0
+          },
+          "44": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 0
+          },
+          "45": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 0
+          },
+          "46": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 0
+          },
+          "47": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 0
+          },
+          "48": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 0
+          },
+          "49": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 0
+          },
+          "50": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 0
+          },
+          "51": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 0
+          },
+          "52": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 0
+          },
+          "53": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 0
+          },
+          "54": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 0
+          },
+          "55": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 0
+          },
+          "56": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 0
+          },
+          "57": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 0
+          },
+          "58": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 0
+          },
+          "59": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 0
+          },
+          "60": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 0
+          },
+          "61": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 0
+          }
+        }
+      },
+      "actuator_failure": {
+        "runs": 60,
+        "target_reached_rate": 0.0,
+        "total_reward": 0,
+        "all_audits_valid": true,
+        "all_one_tick_hooks": true,
+        "runtime_errors": 0,
+        "accepted_action_count": 0,
+        "observed_effect_count": 0,
+        "acceptance_receipts_complete": true,
+        "effect_receipts_complete": true,
+        "action_sources": [
+          "network_output"
+        ],
+        "seed_metrics": {
+          "42": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 0
+          },
+          "43": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 0
+          },
+          "44": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 0
+          },
+          "45": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 0
+          },
+          "46": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 0
+          },
+          "47": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 0
+          },
+          "48": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 0
+          },
+          "49": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 0
+          },
+          "50": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 0
+          },
+          "51": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 0
+          },
+          "52": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 0
+          },
+          "53": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 0
+          },
+          "54": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 0
+          },
+          "55": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 0
+          },
+          "56": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 0
+          },
+          "57": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 0
+          },
+          "58": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 0
+          },
+          "59": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 0
+          },
+          "60": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 0
+          },
+          "61": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 0
+          }
+        }
+      },
+      "sensor_loss": {
+        "runs": 60,
+        "target_reached_rate": 0.0,
+        "total_reward": 0.0,
+        "all_audits_valid": false,
+        "all_one_tick_hooks": false,
+        "runtime_errors": 60,
+        "accepted_action_count": 0,
+        "observed_effect_count": 0,
+        "acceptance_receipts_complete": false,
+        "effect_receipts_complete": false,
+        "action_sources": [
+          "network_output"
+        ],
+        "seed_metrics": {
+          "42": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 3
+          },
+          "43": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 3
+          },
+          "44": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 3
+          },
+          "45": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 3
+          },
+          "46": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 3
+          },
+          "47": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 3
+          },
+          "48": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 3
+          },
+          "49": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 3
+          },
+          "50": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 3
+          },
+          "51": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 3
+          },
+          "52": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 3
+          },
+          "53": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 3
+          },
+          "54": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 3
+          },
+          "55": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 3
+          },
+          "56": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 3
+          },
+          "57": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 3
+          },
+          "58": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 3
+          },
+          "59": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 3
+          },
+          "60": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 3
+          },
+          "61": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 3
+          }
+        }
+      },
+      "open_loop_replay": {
+        "runs": 60,
+        "target_reached_rate": 0.5,
+        "total_reward": 60.0,
+        "all_audits_valid": true,
+        "all_one_tick_hooks": true,
+        "runtime_errors": 0,
+        "accepted_action_count": 180,
+        "observed_effect_count": 180,
+        "acceptance_receipts_complete": true,
+        "effect_receipts_complete": true,
+        "action_sources": [
+          "pre_registered_replay"
+        ],
+        "seed_metrics": {
+          "42": {
+            "runs": 3,
+            "target_reached_rate": 1.0,
+            "runtime_errors": 0
+          },
+          "43": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 0
+          },
+          "44": {
+            "runs": 3,
+            "target_reached_rate": 1.0,
+            "runtime_errors": 0
+          },
+          "45": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 0
+          },
+          "46": {
+            "runs": 3,
+            "target_reached_rate": 1.0,
+            "runtime_errors": 0
+          },
+          "47": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 0
+          },
+          "48": {
+            "runs": 3,
+            "target_reached_rate": 1.0,
+            "runtime_errors": 0
+          },
+          "49": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 0
+          },
+          "50": {
+            "runs": 3,
+            "target_reached_rate": 1.0,
+            "runtime_errors": 0
+          },
+          "51": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 0
+          },
+          "52": {
+            "runs": 3,
+            "target_reached_rate": 1.0,
+            "runtime_errors": 0
+          },
+          "53": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 0
+          },
+          "54": {
+            "runs": 3,
+            "target_reached_rate": 1.0,
+            "runtime_errors": 0
+          },
+          "55": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 0
+          },
+          "56": {
+            "runs": 3,
+            "target_reached_rate": 1.0,
+            "runtime_errors": 0
+          },
+          "57": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 0
+          },
+          "58": {
+            "runs": 3,
+            "target_reached_rate": 1.0,
+            "runtime_errors": 0
+          },
+          "59": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 0
+          },
+          "60": {
+            "runs": 3,
+            "target_reached_rate": 1.0,
+            "runtime_errors": 0
+          },
+          "61": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 0
+          }
+        }
+      },
+      "sensor_reproducibility": {
+        "runs": 60,
+        "target_reached_rate": 0.0,
+        "total_reward": 0,
+        "all_audits_valid": true,
+        "all_one_tick_hooks": true,
+        "runtime_errors": 0,
+        "accepted_action_count": 0,
+        "observed_effect_count": 0,
+        "acceptance_receipts_complete": true,
+        "effect_receipts_complete": true,
+        "action_sources": [
+          "network_output"
+        ],
+        "seed_metrics": {
+          "42": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 0
+          },
+          "43": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 0
+          },
+          "44": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 0
+          },
+          "45": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 0
+          },
+          "46": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 0
+          },
+          "47": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 0
+          },
+          "48": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 0
+          },
+          "49": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 0
+          },
+          "50": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 0
+          },
+          "51": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 0
+          },
+          "52": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 0
+          },
+          "53": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 0
+          },
+          "54": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 0
+          },
+          "55": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 0
+          },
+          "56": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 0
+          },
+          "57": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 0
+          },
+          "58": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 0
+          },
+          "59": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 0
+          },
+          "60": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 0
+          },
+          "61": {
+            "runs": 3,
+            "target_reached_rate": 0.0,
+            "runtime_errors": 0
+          }
+        }
+      }
+    },
+    "sensor_frames_reproducible": true,
+    "evidence_eligible": false,
+    "evidence_reason": "DATA run only; EVID requires clean source freeze and review"
+  },
+  "provenance_digests": {
+    "code": "a0d5d14a3af74e7d85271ba9dc46c4c96ca52f5cee82c11e488faeabcfbfd1b4",
+    "config": "6d78a7132d4fa4b4a847a67a1f7d6183edd3a54b3b11d817823d4f684370b6c6",
+    "prompt": "dd18e473908e7e75b1717c240bac221729ea38753abfd28b701b37b20d5f5e14",
+    "data": "3f9531380fe8156520a022a494de9a06a8ad708607e9fffd8298d265d3742ed1"
+  },
+  "source_freeze_sha": "9906382ed6032ecda269791fd939fc366c44592a293769164c8c5c083cc6b55f"
+}

@@ -1,0 +1,32 @@
+{
+  "experiment_id": "EXP-STAGE5-20260914-INTEGRATED-NERVOUS-SYSTEM",
+  "protocol_family": "EXP-EMB-0001",
+  "scope": "engineering_verification",
+  "research_question": "RQ-EMB-001",
+  "hypotheses": {
+    "H-EMB-001-A": "DATA-supported by deterministic closed-loop controls; not EVID",
+    "H-EMB-001-B": "not tested by this protocol; requires matched external disturbance, yoked replay and interrupted-feedback tracking metrics"
+  },
+  "run_count": 360,
+  "conditions": [
+    "authorized",
+    "unauthorized",
+    "actuator_failure",
+    "sensor_loss",
+    "open_loop_replay",
+    "sensor_reproducibility"
+  ],
+  "source_freeze_sha": "9906382ed6032ecda269791fd939fc366c44592a293769164c8c5c083cc6b55f",
+  "data_sha256": "3f9531380fe8156520a022a494de9a06a8ad708607e9fffd8298d265d3742ed1",
+  "analysis_sha256": "dfcb4a0d5a36c118ce4631167baca836e2c8eb6768bc5b1b591e4f97a56f3661",
+  "automatic_evidence_promotion": false,
+  "evidence_eligible": false,
+  "limits": [
+    "synthetic deterministic target environment only",
+    "no real-device verification",
+    "no long-horizon autonomous operation claim",
+    "host/resource telemetry is digital interoception, not biological interoception",
+    "resource accounting is not biological metabolism",
+    "H-EMB-001-B remains untested by this protocol"
+  ]
+}

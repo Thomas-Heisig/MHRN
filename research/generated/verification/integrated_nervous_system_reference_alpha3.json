@@ -1,0 +1,432 @@
+{
+  "stage": 5,
+  "status": "verified",
+  "scope": "engineering_verification",
+  "checks": {
+    "360_controlled_runs": true,
+    "sensor_frames_reproducible": true,
+    "authorized_actions_observed": true,
+    "unauthorized_actions_blocked": true,
+    "actuator_failure_has_no_effect": true,
+    "sensor_loss_detected": true,
+    "open_loop_replay_separate": true,
+    "all_stage5_layers_present": true,
+    "productive_external_actuation_locked": true,
+    "no_automatic_evidence_promotion": true
+  },
+  "experiment": {
+    "experiment_id": "EXP-STAGE5-20260914-INTEGRATED-NERVOUS-SYSTEM",
+    "protocol_family": "EXP-EMB-0001",
+    "scope": "engineering_verification",
+    "research_question": "RQ-EMB-001",
+    "hypotheses": {
+      "H-EMB-001-A": "DATA-supported by deterministic closed-loop controls; not EVID",
+      "H-EMB-001-B": "not tested by this protocol; requires matched external disturbance, yoked replay and interrupted-feedback tracking metrics"
+    },
+    "run_count": 360,
+    "conditions": [
+      "authorized",
+      "unauthorized",
+      "actuator_failure",
+      "sensor_loss",
+      "open_loop_replay",
+      "sensor_reproducibility"
+    ],
+    "source_freeze_sha": "9906382ed6032ecda269791fd939fc366c44592a293769164c8c5c083cc6b55f",
+    "data_sha256": "3f9531380fe8156520a022a494de9a06a8ad708607e9fffd8298d265d3742ed1",
+    "analysis_sha256": "dfcb4a0d5a36c118ce4631167baca836e2c8eb6768bc5b1b591e4f97a56f3661",
+    "automatic_evidence_promotion": false,
+    "evidence_eligible": false,
+    "limits": [
+      "synthetic deterministic target environment only",
+      "no real-device verification",
+      "no long-horizon autonomous operation claim",
+      "host/resource telemetry is digital interoception, not biological interoception",
+      "resource accounting is not biological metabolism",
+      "H-EMB-001-B remains untested by this protocol"
+    ]
+  },
+  "contract": {
+    "stage": 5,
+    "slug": "integrated_artificial_nervous_system",
+    "title": "Integriertes künstliches Nervensystem",
+    "scope": "engineering_verification",
+    "layers": {
+      "sensorik": {
+        "implemented": true,
+        "paths": [
+          "src/embodiment/sensor.py",
+          "src/embodiment/system_sensor.py",
+          "src/embodiment/sensor_activation.py"
+        ],
+        "claim": "typed and operator-controlled sensor boundary"
+      },
+      "interozeption": {
+        "implemented": true,
+        "paths": [
+          "src/embodiment/interoception.py"
+        ],
+        "claim": "typed host/resource observations with uncertainty"
+      },
+      "aktorik": {
+        "implemented": true,
+        "paths": [
+          "src/embodiment/controlled.py",
+          "src/embodiment/actuator_hub.py",
+          "src/embodiment/audit.py"
+        ],
+        "claim": "authorized commands with acceptance/effect receipts"
+      },
+      "feedback": {
+        "implemented": true,
+        "paths": [
+          "src/experience/engine.py",
+          "src/embodiment/deterministic.py"
+        ],
+        "claim": "deterministic synthetic sensor-SNN-action-observation loop"
+      },
+      "ressourcenhaushalt": {
+        "implemented": true,
+        "paths": [
+          "src/embodiment/interoception.py",
+          "src/embodiment/msba.py"
+        ],
+        "claim": "bounded resource pressure, uncertainty and energy accounting"
+      }
+    },
+    "runtime_projection": {
+      "state": "/api/embodiment/state",
+      "pipeline": "/api/embodiment/pipeline",
+      "metrics": "/api/embodiment/metrics",
+      "history": "/api/embodiment/history",
+      "connections": "/api/embodiment/connections",
+      "sensors": "/api/embodiment/sensors"
+    },
+    "experiment": {
+      "path": "research/experiments/EXP-STAGE5-20260914-INTEGRATED-NERVOUS-SYSTEM",
+      "research_question": "RQ-EMB-001",
+      "hypotheses": [
+        "H-EMB-001-A",
+        "H-EMB-001-B"
+      ],
+      "status": "DATA",
+      "automatic_evidence_promotion": false
+    },
+    "boundaries": {
+      "productive_external_actuation_enabled": false,
+      "real_device_verified": false,
+      "long_horizon_verified": false,
+      "biological_interoception_claim": false,
+      "biological_metabolism_claim": false,
+      "conscious_experience_claim": false,
+      "automatic_evidence_promotion": false
+    },
+    "reference_probe": {
+      "frame": {
+        "tick": 1,
+        "signals": [
+          {
+            "name": "actuator_confidence",
+            "value": 1.0,
+            "unit": "ratio",
+            "safe_range": null,
+            "warning_range": null,
+            "critical_range": null,
+            "confidence": 1.0,
+            "freshness": "current",
+            "source": "system_sensor",
+            "causal_criticality": "continuity",
+            "recoverability": "unknown",
+            "status": "nominal"
+          },
+          {
+            "name": "battery_percent",
+            "value": 80.0,
+            "unit": "%",
+            "safe_range": null,
+            "warning_range": [
+              20.0,
+              100.0
+            ],
+            "critical_range": [
+              5.0,
+              100.0
+            ],
+            "confidence": 1.0,
+            "freshness": "current",
+            "source": "system_sensor",
+            "causal_criticality": "continuity",
+            "recoverability": "unknown",
+            "status": "nominal"
+          },
+          {
+            "name": "battery_plugged",
+            "value": null,
+            "unit": "bool",
+            "safe_range": null,
+            "warning_range": null,
+            "critical_range": null,
+            "confidence": 1.0,
+            "freshness": "current",
+            "source": "system_sensor",
+            "causal_criticality": "continuity",
+            "recoverability": "unknown",
+            "status": "unknown"
+          },
+          {
+            "name": "cpu_percent",
+            "value": 42.0,
+            "unit": "%",
+            "safe_range": null,
+            "warning_range": [
+              0.0,
+              85.0
+            ],
+            "critical_range": [
+              0.0,
+              98.0
+            ],
+            "confidence": 1.0,
+            "freshness": "current",
+            "source": "system_sensor",
+            "causal_criticality": "informational",
+            "recoverability": "unknown",
+            "status": "nominal"
+          },
+          {
+            "name": "disk_free_bytes",
+            "value": null,
+            "unit": "bytes",
+            "safe_range": null,
+            "warning_range": null,
+            "critical_range": null,
+            "confidence": 1.0,
+            "freshness": "current",
+            "source": "system_sensor",
+            "causal_criticality": "continuity",
+            "recoverability": "unknown",
+            "status": "unknown"
+          },
+          {
+            "name": "disk_read_bytes",
+            "value": null,
+            "unit": "bytes",
+            "safe_range": null,
+            "warning_range": null,
+            "critical_range": null,
+            "confidence": 1.0,
+            "freshness": "current",
+            "source": "system_sensor",
+            "causal_criticality": "resource",
+            "recoverability": "unknown",
+            "status": "unknown"
+          },
+          {
+            "name": "disk_write_bytes",
+            "value": null,
+            "unit": "bytes",
+            "safe_range": null,
+            "warning_range": null,
+            "critical_range": null,
+            "confidence": 1.0,
+            "freshness": "current",
+            "source": "system_sensor",
+            "causal_criticality": "resource",
+            "recoverability": "unknown",
+            "status": "unknown"
+          },
+          {
+            "name": "fan_rpm",
+            "value": null,
+            "unit": "rpm",
+            "safe_range": null,
+            "warning_range": null,
+            "critical_range": null,
+            "confidence": 1.0,
+            "freshness": "current",
+            "source": "system_sensor",
+            "causal_criticality": "thermal",
+            "recoverability": "unknown",
+            "status": "unknown"
+          },
+          {
+            "name": "memory_available_bytes",
+            "value": null,
+            "unit": "bytes",
+            "safe_range": null,
+            "warning_range": null,
+            "critical_range": null,
+            "confidence": 1.0,
+            "freshness": "current",
+            "source": "system_sensor",
+            "causal_criticality": "continuity",
+            "recoverability": "unknown",
+            "status": "unknown"
+          },
+          {
+            "name": "memory_percent",
+            "value": 55.0,
+            "unit": "%",
+            "safe_range": null,
+            "warning_range": [
+              0.0,
+              85.0
+            ],
+            "critical_range": [
+              0.0,
+              98.0
+            ],
+            "confidence": 1.0,
+            "freshness": "current",
+            "source": "system_sensor",
+            "causal_criticality": "informational",
+            "recoverability": "unknown",
+            "status": "nominal"
+          },
+          {
+            "name": "network_bytes_received",
+            "value": null,
+            "unit": "bytes",
+            "safe_range": null,
+            "warning_range": null,
+            "critical_range": null,
+            "confidence": 1.0,
+            "freshness": "current",
+            "source": "system_sensor",
+            "causal_criticality": "continuity",
+            "recoverability": "unknown",
+            "status": "unknown"
+          },
+          {
+            "name": "network_bytes_sent",
+            "value": null,
+            "unit": "bytes",
+            "safe_range": null,
+            "warning_range": null,
+            "critical_range": null,
+            "confidence": 1.0,
+            "freshness": "current",
+            "source": "system_sensor",
+            "causal_criticality": "continuity",
+            "recoverability": "unknown",
+            "status": "unknown"
+          },
+          {
+            "name": "network_up",
+            "value": true,
+            "unit": "bool",
+            "safe_range": null,
+            "warning_range": null,
+            "critical_range": null,
+            "confidence": 1.0,
+            "freshness": "current",
+            "source": "system_sensor",
+            "causal_criticality": "continuity",
+            "recoverability": "unknown",
+            "status": "nominal"
+          },
+          {
+            "name": "novelty",
+            "value": 0.25,
+            "unit": "ratio",
+            "safe_range": null,
+            "warning_range": null,
+            "critical_range": null,
+            "confidence": 1.0,
+            "freshness": "current",
+            "source": "system_sensor",
+            "causal_criticality": "informational",
+            "recoverability": "unknown",
+            "status": "nominal"
+          },
+          {
+            "name": "task_progress",
+            "value": 0.5,
+            "unit": "ratio",
+            "safe_range": null,
+            "warning_range": null,
+            "critical_range": null,
+            "confidence": 1.0,
+            "freshness": "current",
+            "source": "system_sensor",
+            "causal_criticality": "task",
+            "recoverability": "unknown",
+            "status": "nominal"
+          },
+          {
+            "name": "temperature_c",
+            "value": 63.0,
+            "unit": "degC",
+            "safe_range": null,
+            "warning_range": [
+              -20.0,
+              80.0
+            ],
+            "critical_range": [
+              -30.0,
+              95.0
+            ],
+            "confidence": 1.0,
+            "freshness": "current",
+            "source": "system_sensor",
+            "causal_criticality": "informational",
+            "recoverability": "unknown",
+            "status": "nominal"
+          }
+        ]
+      },
+      "drives": {
+        "tick": 1,
+        "drives": {
+          "thermal_threat": 0.0,
+          "resource_pressure": 0.0,
+          "sensory_integrity": 1.0,
+          "continuity_risk": 0.0,
+          "task_progress": 0.5,
+          "novelty": 0.25,
+          "actuator_confidence": 1.0
+        },
+        "uncertainty": {
+          "thermal_threat": 0.0,
+          "resource_pressure": 0.0,
+          "sensory_integrity": 0.0,
+          "continuity_risk": 0.0,
+          "task_progress": 0.0,
+          "novelty": 0.0,
+          "actuator_confidence": 0.0
+        }
+      },
+      "regulatory": {
+        "tick": 1,
+        "values": {
+          "thermal_margin": 1.0,
+          "energy_reserve": 1.0,
+          "continuity_risk": 0.0,
+          "sensory_integrity": 1.0,
+          "resource_pressure": 0.0,
+          "task_progress": 0.5
+        },
+        "uncertainty": {
+          "thermal_margin": 0.0,
+          "energy_reserve": 0.0,
+          "continuity_risk": 0.0,
+          "sensory_integrity": 0.0,
+          "resource_pressure": 0.0,
+          "task_progress": 0.0
+        }
+      },
+      "functional": {
+        "tick": 1,
+        "valence": 1.0,
+        "activation": 0.125,
+        "safety": 1.0,
+        "uncertainty": 0.0
+      }
+    }
+  },
+  "scientific_status": {
+    "RQ-EMB-001": "open",
+    "H-EMB-001-A": "DATA-supported, not accepted EVID",
+    "H-EMB-001-B": "untested by Stage-5 reference protocol"
+  }
+}
