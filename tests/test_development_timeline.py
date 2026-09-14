@@ -36,7 +36,7 @@ def _baseline(*, stale: bool) -> BaselineEvaluation:
 
 @pytest.mark.parametrize(
     ("stale", "stage_floor", "stage_next", "current_stage"),
-    [(True, 3, 4, 3.75), (False, 5, 6, 5.69)],
+    [(True, 3, 4, 3.75), (False, 3, 4, 3.75)],
     ids=["stale-baseline", "current-baseline"],
 )
 def test_development_timeline_separates_engineering_verification_and_evidence(
@@ -179,3 +179,24 @@ def test_development_timeline_api_is_read_only_and_reachable() -> None:
     finally:
         server.shutdown()
         server.server_close()
+
+
+@pytest.mark.parametrize("stale", [True, False], ids=["stale", "current"])
+def test_baseline_cannot_verify_criteria_without_registered_tests(stale: bool) -> None:
+    with patch(
+        "src.dashboard.development_timeline.evaluate_test_baseline",
+        return_value=_baseline(stale=stale),
+    ):
+        payload = build_development_timeline(ROOT)
+
+    stage = next(item for item in payload["stages"] if item["id"] == "small_snn")
+    statuses = {item["id"]: item["status"] for item in stage["criteria"]}
+    assert statuses == {
+        "network_core": "implemented",
+        "spike_propagation": "verified",
+        "sparse_topology": "implemented",
+    }
+    assert stage["implementation_score"] == 1.0
+    assert stage["verification_score"] == 0.5
+    assert stage["research_readiness_score"] == 0.233
+    assert stage["status"] == "reached"

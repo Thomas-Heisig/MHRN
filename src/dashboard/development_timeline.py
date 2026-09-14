@@ -898,7 +898,8 @@ def _criterion_status(
         and baseline.failed == 0
         and baseline.collection_errors == 0
     )
-    if verification_ok or (tests_ok and baseline_ok):
+    # all(()) is True, but no declared tests cannot verify a criterion.
+    if verification_ok or (bool(spec.tests) and tests_ok and baseline_ok):
         return "verified", evidence
     if paths_ok and (spec.tests or spec.verification):
         return "experimental", evidence

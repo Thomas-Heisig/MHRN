@@ -38,43 +38,6 @@ jobs:
         run: |
           python -m pip install --upgrade pip setuptools wheel
           python -m pip install -e '.[dev,docs]' pre-commit bandit build
-      - name: Apply reviewed timeline correction once
-        shell: bash
-        run: |
-          python - <<'PY'
-          import hashlib
-          import subprocess
-          from pathlib import Path
-          patch = Path('.maintenance/timeline-verification.patch')
-          if hashlib.sha256(patch.read_bytes()).hexdigest() != 'f3720d3f7ff0129500692d8e4a1536a1624817da9861e13af7235d7a873a1caa':
-              raise SystemExit('Reviewed patch digest mismatch')
-          images = {
-              'src/dashboard/development_timeline.py': ('0c04b063290f2ed38451915874fb327e93d13b9c', 'b677edf9ed4285d23285abb4e5895d085d2addbb'),
-              'tests/test_development_timeline.py': ('b5b27448097d5b61c311580264bfc98613f49729', '11eb2c6b93905334bcea9253a2ae6ff40a245f3e'),
-          }
-          def blob(path):
-              return subprocess.check_output(['git', 'hash-object', '--', path], text=True).strip()
-          for path, (before, after) in images.items():
-              if blob(path) != before:
-                  raise SystemExit('Source changed since review: ' + path)
-          subprocess.run(['git', 'apply', '--check', '--index', str(patch)], check=True)
-          subprocess.run(['git', 'apply', '--index', str(patch)], check=True)
-          for path, (before, after) in images.items():
-              if blob(path) != after:
-                  raise SystemExit('Unexpected repaired content: ' + path)
-          subprocess.run(['git', 'rm', '--', str(patch)], check=True)
-          workflow = Path('.github/workflows/repository-maintenance.yml')
-          text = workflow.read_text(encoding='utf-8')
-          start = text.index('      - name: Apply reviewed timeline correction once\n')
-          end = text.index('      - name: Verify prepared source, publication and security\n', start)
-          workflow.write_text(text[:start] + text[end:], encoding='utf-8')
-          subprocess.run(['git', 'add', '--', str(workflow)], check=True)
-          PY
-          python -m pytest tests/test_*timeline*.py tests/test_development_frontier_contract.py -q
-          python -m black --check src/dashboard/development_timeline.py tests/test_development_timeline.py
-          python -m ruff check src/dashboard/development_timeline.py tests/test_development_timeline.py
-          git diff --cached --check
-          git commit -m 'fix: require declared tests before timeline verification'
       - name: Verify prepared source, publication and security
         run: |
           python scripts/publication_bundle.py
