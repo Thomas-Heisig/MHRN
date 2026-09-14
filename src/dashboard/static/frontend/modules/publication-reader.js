@@ -893,8 +893,8 @@ function ensureReaderStyles() {
     .pub-reader-speech .speech-reader-controls button:hover:not(:disabled) { background: var(--pub-soft); border-color: var(--pub-accent); }
     .pub-reader-speech .speech-reader-controls button:disabled { opacity: .35; cursor: default; }
     .pub-reader-speech .speech-reader-status { font-size: .6rem; color: var(--pub-muted); min-width: 5ch; margin-left: 3px; white-space: nowrap; }
-    .pub-reader-layout { display: grid; grid-template-columns: minmax(210px, 270px) minmax(0, 1fr); align-items: start; border: 1px solid var(--pub-border); border-top: 0; background: var(--pub-surface); }
-    .pub-reader-toc { position: sticky; top: 60px; max-height: calc(100vh - 84px); overflow: auto; padding: 20px 14px 24px; border-right: 1px solid var(--pub-border); }
+    .pub-reader-layout { display: grid; grid-template-columns: minmax(180px, 240px) minmax(0, 1fr); align-items: start; border: 1px solid var(--pub-border); border-top: 0; background: var(--pub-surface); }
+    .pub-reader-toc { position: sticky; top: 0; max-height: calc(100vh - 60px); overflow-y: auto; padding: 20px 14px 24px; border-right: 1px solid var(--pub-border); }
     .pub-reader-toc-head { display: flex; justify-content: space-between; gap: 8px; align-items: baseline; padding: 0 6px 10px; }
     .pub-reader-toc-head span { color: var(--pub-muted); font-size: .72rem; }
     .pub-reader-toc nav { display: grid; gap: 2px; }
@@ -910,7 +910,7 @@ function ensureReaderStyles() {
     .pub-reader-document-banner div { min-width: 0; display: grid; gap: 3px; }
     .pub-reader-document-banner span { color: var(--pub-accent); font: 700 .66rem/1.2 var(--font-mono, monospace); letter-spacing: .08em; }
     .pub-reader-document-banner strong { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-    .pub-reader-article { width: min(100%, 980px); margin: 0 auto; padding: clamp(28px, 5vw, 64px) clamp(22px, 6vw, 76px) 80px; font-size: 1rem; line-height: 1.72; }
+    .pub-reader-article { width: 100%; max-width: 100%; margin: 0; padding: 28px 32px 60px 32px; font-size: 1rem; line-height: 1.72; }
     .pub-reader-article h1, .pub-reader-article h2, .pub-reader-article h3, .pub-reader-article h4, .pub-reader-article h5, .pub-reader-article h6 { scroll-margin-top: 82px; line-height: 1.2; letter-spacing: -.015em; }
     .pub-reader-article h1 { margin: 0 0 28px; font-size: clamp(1.8rem, 3vw, 2.65rem); }
     .pub-reader-article h2 { margin: 2.4em 0 .75em; padding-bottom: .35em; border-bottom: 1px solid var(--pub-border); font-size: clamp(1.35rem, 2vw, 1.85rem); }
