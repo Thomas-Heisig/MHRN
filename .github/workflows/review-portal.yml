@@ -73,4 +73,4 @@ jobs:
           path: src/dashboard/static/review
       - name: Publish questionnaire ONLY, never response data or the runtime
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
