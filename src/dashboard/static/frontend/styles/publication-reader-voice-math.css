@@ -1,0 +1,106 @@
+/* Publication reader: voice chooser + scientific math refinements. */
+
+#tab-publication #publication-panel #pub-reader-speech-mount .speech-reader-options-panel {
+  width: min(680px, calc(100vw - 36px));
+  min-width: min(560px, calc(100vw - 36px));
+  max-height: min(72vh, 680px);
+  overflow: auto;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 12px;
+  padding: 16px;
+}
+
+#tab-publication #publication-panel #pub-reader-speech-mount .speech-reader-options-panel label {
+  width: 100%;
+  min-width: 0;
+  grid-template-columns: 92px minmax(0, 1fr);
+  align-items: center;
+  gap: 10px;
+  font-size: .76rem;
+  font-weight: 600;
+}
+
+#tab-publication #publication-panel #pub-reader-speech-mount .speech-reader-options-panel select {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  height: 38px;
+  padding: 6px 34px 6px 10px;
+  border: 1px solid var(--pub-border, var(--rule, #d9dee7));
+  border-radius: 7px;
+  background: var(--pub-surface, var(--paper-2, #fff));
+  color: inherit;
+  font: inherit;
+  font-size: .78rem;
+  text-overflow: ellipsis;
+}
+
+#tab-publication #publication-panel #pub-reader-speech-mount .speech-reader-options-panel input[type="range"] {
+  width: 100%;
+  min-width: 0;
+}
+
+#tab-publication #publication-panel #pub-reader-speech-mount .speech-reader-options-panel output {
+  justify-self: end;
+  color: var(--pub-muted, var(--ink-3, #667085));
+}
+
+#tab-publication #publication-panel #pub-reader-speech-mount .speech-reader-options-panel small {
+  display: block;
+  line-height: 1.45;
+  white-space: normal;
+  color: var(--pub-muted, var(--ink-3, #667085));
+}
+
+#tab-publication #publication-panel #pub-reader-speech-mount .speech-reader-refresh {
+  justify-self: start;
+  min-height: 34px;
+  padding: 6px 10px;
+  border: 1px solid var(--pub-border, var(--rule, #d9dee7));
+  border-radius: 7px;
+  background: var(--pub-surface, var(--paper-2, #fff));
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  font-size: .75rem;
+}
+
+#tab-publication #publication-panel #pub-reader-speech-mount .speech-reader-refresh:hover {
+  border-color: var(--pub-accent, var(--accent, #275df5));
+  background: var(--pub-soft, color-mix(in srgb, currentColor 6%, transparent));
+}
+
+#tab-publication #publication-panel .pub-reader-article mjx-container[jax="SVG"] {
+  color: var(--pub-text, var(--ink, #18202b));
+}
+
+#tab-publication #publication-panel .pub-reader-article mjx-container[display="true"] {
+  margin-block: 1.25rem 1.45rem !important;
+  padding: 1.1rem clamp(1rem, 2.3vw, 1.65rem);
+  border: 1px solid var(--pub-border, var(--rule, #d9dee7));
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--pub-surface, #fff) 94%, var(--pub-accent, #275df5));
+}
+
+#tab-publication #publication-panel .pub-reader-article mjx-container[display="true"] > svg {
+  margin-inline: auto;
+}
+
+#tab-publication #publication-panel .pub-reader-article mjx-container:not([display="true"]) {
+  margin-inline: .05em;
+}
+
+@media (max-width: 760px) {
+  #tab-publication #publication-panel #pub-reader-speech-mount .speech-reader-options-panel {
+    position: fixed;
+    inset: auto 12px 12px 12px;
+    width: auto;
+    min-width: 0;
+    max-height: 68vh;
+  }
+
+  #tab-publication #publication-panel #pub-reader-speech-mount .speech-reader-options-panel label {
+    grid-template-columns: 1fr;
+    gap: 5px;
+  }
+}

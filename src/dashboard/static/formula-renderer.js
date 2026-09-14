@@ -1,14 +1,16 @@
 "use strict";
 
 /**
- * Scientific formula renderer for dynamically opened Markdown files.
+ * Scientific formula renderer for dynamically opened Markdown files and the
+ * dissertation/publication reader.
  *
- * MathJax is loaded lazily only when a Markdown document contains TeX delimiters.
- * The dashboard remains usable without the CDN; in that case formula source is
- * preserved and presented in a readable fallback style instead of being lost.
+ * MathJax is loaded lazily only when a document contains TeX delimiters. The
+ * dashboard remains usable without the CDN; in that case formula source is
+ * preserved in a readable fallback style instead of being lost.
  */
 
 const MATHJAX_URL = "https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-svg.js";
+const MATH_ROOT_SELECTOR = ".fm-markdown, .pub-reader-article";
 let loadPromise = null;
 let observer = null;
 let scheduled = false;
@@ -18,35 +20,56 @@ function injectFormulaStyles() {
   const style = document.createElement("style");
   style.id = "brain5d-formula-styles";
   style.textContent = `
-    .fm-markdown mjx-container[jax="SVG"] {
+    :is(.fm-markdown, .pub-reader-article) mjx-container[jax="SVG"] {
       max-width: 100%;
       overflow-x: auto;
       overflow-y: hidden;
       padding: 0.08rem 0;
+      font-size: 1.02em;
     }
-    .fm-markdown mjx-container[display="true"] {
-      margin: 1.15rem 0 !important;
-      padding: 0.9rem 1rem;
-      border: 1px solid color-mix(in srgb, currentColor 16%, transparent);
+    :is(.fm-markdown, .pub-reader-article) mjx-container[jax="SVG"] > svg {
+      max-width: none;
+      min-width: min-content;
+    }
+    :is(.fm-markdown, .pub-reader-article) mjx-container[display="true"] {
+      display: block;
+      width: 100%;
+      margin: 1.2rem 0 1.35rem !important;
+      padding: 1rem clamp(.8rem, 2vw, 1.4rem);
+      border: 1px solid color-mix(in srgb, currentColor 15%, transparent);
       border-radius: 10px;
-      background: color-mix(in srgb, currentColor 4%, transparent);
+      background: color-mix(in srgb, currentColor 3.5%, transparent);
       text-align: center;
+      scrollbar-width: thin;
     }
-    .fm-markdown .fm-math-fallback {
+    .pub-reader-article mjx-container[display="true"] {
+      box-shadow: inset 3px 0 0 color-mix(in srgb, var(--pub-accent, #275df5) 36%, transparent);
+    }
+    :is(.fm-markdown, .pub-reader-article) mjx-container:not([display="true"]) {
+      display: inline-block;
+      max-width: 100%;
+      vertical-align: -.12em;
+      overflow: visible;
+      padding-inline: .06em;
+    }
+    :is(.fm-markdown, .pub-reader-article) .fm-math-fallback {
       font-family: "Cambria Math", "STIX Two Math", "Times New Roman", serif;
       font-size: 1.04em;
       white-space: nowrap;
     }
-    .fm-markdown .fm-math-fallback-display {
+    :is(.fm-markdown, .pub-reader-article) .fm-math-fallback-display {
       display: block;
       overflow-x: auto;
-      margin: 1rem 0;
-      padding: 0.85rem 1rem;
+      margin: 1rem 0 1.25rem;
+      padding: 0.95rem 1rem;
       border: 1px solid color-mix(in srgb, currentColor 16%, transparent);
       border-radius: 10px;
       background: color-mix(in srgb, currentColor 4%, transparent);
       text-align: center;
       white-space: pre;
+    }
+    .pub-reader-article .fm-math-fallback-display {
+      box-shadow: inset 3px 0 0 color-mix(in srgb, var(--pub-accent, #275df5) 36%, transparent);
     }
   `;
   document.head.appendChild(style);
@@ -71,8 +94,8 @@ function ensureMathJax() {
     svg: { fontCache: "global" },
     options: {
       skipHtmlTags: ["script", "noscript", "style", "textarea", "pre", "code"],
-      ignoreHtmlClass: "fm-code|fm-inline-code",
-      processHtmlClass: "fm-markdown",
+      ignoreHtmlClass: "fm-code|fm-inline-code|pub-code",
+      processHtmlClass: "fm-markdown|pub-reader-article",
     },
     startup: { typeset: false },
   };
@@ -134,7 +157,7 @@ function fallbackMath(root) {
 
 async function typesetMarkdownMath() {
   scheduled = false;
-  const roots = [...document.querySelectorAll(".fm-markdown")].filter(
+  const roots = [...document.querySelectorAll(MATH_ROOT_SELECTOR)].filter(
     (root) => root.dataset.mathProcessed !== "true" && containsMath(root),
   );
   if (!roots.length) return;
@@ -152,19 +175,21 @@ async function typesetMarkdownMath() {
 function scheduleTypeset() {
   if (scheduled) return;
   scheduled = true;
-  queueMicrotask(typesetMarkdownMath);
+  requestAnimationFrame(() => void typesetMarkdownMath());
+}
+
+function nodeContainsMathRoot(node) {
+  return node?.nodeType === Node.ELEMENT_NODE &&
+    (node.matches?.(MATH_ROOT_SELECTOR) || node.querySelector?.(MATH_ROOT_SELECTOR));
 }
 
 function initFormulaRenderer() {
   injectFormulaStyles();
   observer = new MutationObserver((mutations) => {
     if (mutations.some((mutation) =>
-      mutation.target?.matches?.(".fm-markdown") ||
-      mutation.target?.closest?.(".fm-markdown") ||
-      [...mutation.addedNodes].some((node) =>
-        node.nodeType === Node.ELEMENT_NODE &&
-        (node.matches?.(".fm-markdown") || node.querySelector?.(".fm-markdown")),
-      ),
+      mutation.target?.matches?.(MATH_ROOT_SELECTOR) ||
+      mutation.target?.closest?.(MATH_ROOT_SELECTOR) ||
+      [...mutation.addedNodes].some(nodeContainsMathRoot),
     )) {
       scheduleTypeset();
     }

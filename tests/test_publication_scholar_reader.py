@@ -39,6 +39,21 @@ def test_shared_speech_reader_is_bilingual_and_prefers_natural_voices() -> None:
     assert "voiceschanged" in speech
 
 
+def test_publication_restores_late_windows_and_microsoft_voices() -> None:
+    bootstrap = _read(MODULES / "publication-scholar-bootstrap.js")
+    refinements = _read(STYLES / "publication-reader-voice-math.css")
+
+    assert "WINDOWS_VOICE_HINTS" in bootstrap
+    assert "microsoft" in bootstrap.lower()
+    assert "refreshPublicationVoiceSelectors" in bootstrap
+    assert "voiceschanged" in bootstrap
+    assert "Stimmen neu laden" in bootstrap
+    assert "[180, 700, 1800, 3500]" in bootstrap
+    assert "width: min(680px" in refinements
+    assert ".speech-reader-options-panel select" in refinements
+    assert "width: 100%" in refinements
+
+
 def test_publication_scholar_reader_has_persistent_navigation_and_reading_flow() -> None:
     scholar = _read(MODULES / "publication-scholar-tools.js")
     layout = _read(STYLES / "publication-reader.css")
@@ -61,6 +76,17 @@ def test_read_aloud_tracks_and_scrolls_current_text() -> None:
     assert 'scrollIntoView({ behavior: "smooth", block: "center" })' in scholar
     assert "getSegments" in scholar
     assert "speechSegments(article)" in scholar
+
+
+def test_publication_formulas_use_shared_mathjax_renderer() -> None:
+    formula = _read(STATIC / "formula-renderer.js")
+    refinements = _read(STYLES / "publication-reader-voice-math.css")
+
+    assert 'MATH_ROOT_SELECTOR = ".fm-markdown, .pub-reader-article"' in formula
+    assert 'processHtmlClass: "fm-markdown|pub-reader-article"' in formula
+    assert "mathJax.typesetPromise(roots)" in formula
+    assert "mjx-container[display=\"true\"]" in formula
+    assert ".pub-reader-article mjx-container" in refinements
 
 
 def test_selected_dissertation_text_can_be_sent_to_existing_research_ai() -> None:
@@ -110,7 +136,8 @@ def test_reader_layout_is_scoped_and_resets_nested_main_sidebar_offset() -> None
     assert "grid-template-columns: var(--pub-rail-width) minmax(0, 1fr)" in layout
     assert "--pub-reader-gap: 0px" in layout
     assert '@import url("./publication-reader.css");' in index_css
-    assert index_css.rstrip().endswith('@import url("./publication-reader.css");')
+    assert '@import url("./publication-reader-voice-math.css");' in index_css
+    assert index_css.index('publication-reader.css') < index_css.index('publication-reader-voice-math.css')
 
 
 def test_reader_has_one_sticky_chrome_layer_and_contiguous_document_geometry() -> None:

@@ -4,6 +4,99 @@ import { enhancePublicationScholarReader } from "./publication-scholar-tools.js"
 
 let rootDataPromise = null;
 
+const WINDOWS_VOICE_HINTS = {
+  de: ["katja", "conrad", "heda", "stefan"],
+  en: ["jenny", "aria", "guy", "ryan", "sonia", "zira", "david", "mark"],
+};
+
+function speechBaseLang(lang) {
+  return String(lang || "").toLowerCase().startsWith("en") ? "en" : "de";
+}
+
+function voiceBelongsToLanguage(voice, lang) {
+  const wanted = speechBaseLang(lang);
+  const voiceLang = String(voice?.lang || "").toLowerCase();
+  const name = String(voice?.name || "").toLowerCase();
+  if (voiceLang.startsWith(`${wanted}-`) || voiceLang === wanted) return true;
+  return WINDOWS_VOICE_HINTS[wanted].some((hint) => name.includes(hint));
+}
+
+function voiceRank(voice, lang) {
+  const name = String(voice?.name || "").toLowerCase();
+  const voiceLang = String(voice?.lang || "").toLowerCase();
+  const wanted = speechBaseLang(lang);
+  let score = 0;
+  if (voiceLang.startsWith(`${wanted}-`) || voiceLang === wanted) score += 100;
+  if (/microsoft/.test(name)) score += 70;
+  if (/natural|neural|online/.test(name)) score += 80;
+  if (WINDOWS_VOICE_HINTS[wanted].some((hint) => name.includes(hint))) score += 65;
+  if (voice?.default) score += 10;
+  if (voice?.localService) score += 4;
+  return score;
+}
+
+function refreshPublicationVoiceSelectors(reader) {
+  if (!reader || !("speechSynthesis" in window)) return;
+  const allVoices = [...(window.speechSynthesis.getVoices?.() || [])];
+  if (!allVoices.length) return;
+
+  reader.querySelectorAll(".speech-reader-voice").forEach((select) => {
+    const lang = select.dataset.speechLang || "de-DE";
+    const previous = select.value;
+    const voices = allVoices
+      .filter((voice) => voiceBelongsToLanguage(voice, lang))
+      .sort((left, right) => voiceRank(right, lang) - voiceRank(left, lang) || String(left.name).localeCompare(String(right.name)));
+    if (!voices.length) return;
+
+    select.replaceChildren(...voices.map((voice) => {
+      const option = document.createElement("option");
+      option.value = voice.name;
+      const name = String(voice.name || "Systemstimme");
+      const quality = /natural|neural|online/i.test(name) || /microsoft/i.test(name) ? " ★" : "";
+      option.textContent = `${name} · ${voice.lang || "System"}${quality}`;
+      return option;
+    }));
+
+    if (previous && voices.some((voice) => voice.name === previous)) select.value = previous;
+  });
+}
+
+function installVoiceRefresh(reader) {
+  if (!reader || reader.dataset.voiceRefreshInstalled === "true") return;
+  reader.dataset.voiceRefreshInstalled = "true";
+
+  const panel = reader.querySelector(".speech-reader-options-panel");
+  if (panel && !panel.querySelector("[data-speech-refresh]")) {
+    const refresh = document.createElement("button");
+    refresh.type = "button";
+    refresh.className = "speech-reader-refresh";
+    refresh.dataset.speechRefresh = "true";
+    refresh.textContent = "Stimmen neu laden";
+    refresh.title = "System- und Microsoft-Stimmen erneut aus Windows/Chromium einlesen";
+    refresh.addEventListener("click", () => refreshPublicationVoiceSelectors(reader));
+    panel.append(refresh);
+  }
+
+  refreshPublicationVoiceSelectors(reader);
+  [180, 700, 1800, 3500].forEach((delay) => {
+    window.setTimeout(() => {
+      if (reader.isConnected) refreshPublicationVoiceSelectors(reader);
+    }, delay);
+  });
+
+  const synth = window.speechSynthesis;
+  if (typeof synth?.addEventListener === "function") {
+    const listener = () => {
+      if (!reader.isConnected) {
+        synth.removeEventListener("voiceschanged", listener);
+        return;
+      }
+      refreshPublicationVoiceSelectors(reader);
+    };
+    synth.addEventListener("voiceschanged", listener);
+  }
+}
+
 export function initPublicationScholarTools() {
   const container = document.getElementById("publication-panel");
   if (!container || container.dataset.scholarBootstrap === "true") return;
@@ -47,11 +140,9 @@ export function initPublicationScholarTools() {
     const enhancedControls = enhancedMount?.querySelector(".speech-reader-controls");
     if (!canonicalMount || !enhancedControls) return;
 
-    /* The base Publication Reader and Scholar layer both use the same TTS
-       service. Keep the richer Scholar controls, but mount them in the one
-       canonical speech slot instead of presenting two independent button sets. */
     canonicalMount.replaceChildren(enhancedControls);
     enhancedMount.remove();
+    installVoiceRefresh(reader);
   };
 
   const enhance = async () => {
@@ -83,14 +174,10 @@ export function initPublicationScholarTools() {
     requestAnimationFrame(() => void enhance());
   };
 
-  /* renderReader() replaces the publication panel's direct child. Watching the
-     entire subtree caused enhancement work to wake up for speech highlights,
-     selection UI, TOC changes and other tiny mutations. */
   const observer = new MutationObserver(scheduleEnhance);
   observer.observe(container, { childList: true });
   scheduleEnhance();
 
-  // Fix the publication -> canonical File Viewer bridge in capture phase.
   container.addEventListener("click", async (event) => {
     const button = event.target.closest('[data-pub-action="open-file"]');
     if (!button) return;
@@ -111,7 +198,6 @@ export function initPublicationScholarTools() {
     else document.dispatchEvent(new CustomEvent("brain5d:open-file", { detail: { source, path } }));
   }, true);
 
-  // Selected dissertation text -> existing Research Chat. No second AI surface.
   document.addEventListener("brain5d:ask-ai", (event) => {
     const prompt = String(event.detail?.prompt || "").trim();
     if (!prompt) return;
