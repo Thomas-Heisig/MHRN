@@ -1,0 +1,555 @@
+{
+  "report_id": "AIRR-2026-0001",
+  "experiment_id": "EXP-BATCH-20260914074039-89",
+  "research_question_id": "RQ-GW-007",
+  "hypothesis_ids": [
+    "H-GW-007-A"
+  ],
+  "claim_ids": [],
+  "generated_at": "2026-09-14T12:04:13.741740+00:00",
+  "report_schema_version": "1.0",
+  "report_protocol_version": "PROTOCOL-AIRR-001",
+  "generated_by": "artificial_intelligence",
+  "ai_generated": true,
+  "scientific_evidence": false,
+  "human_review_required": true,
+  "status": "review_pending",
+  "content": {
+    "identification": {
+      "experiment": "EXP-BATCH-20260914074039-89",
+      "research_question": "Wie skalieren Gateway-Latenz, Traffic, synaptische Operationen und Energie unter wachsender Topologie?",
+      "hypotheses": [
+        {
+          "id": "H-GW-007-A",
+          "research_question": "RQ-GW-007",
+          "hypothesis": "Gateway-Traffic, Latenz und Energie skalieren innerhalb definierter Limits nachvollziehbar mit der aggregierten Topologie.",
+          "status": "untested",
+          "evidence": [],
+          "created": "2026-09-09",
+          "updated": "2026-09-09"
+        }
+      ],
+      "date": "2026-09-14",
+      "source_sha": "8e096931a779b2d2eb4d010eb20154150b07bbf2"
+    },
+    "executive_summary": "Die Daten sind beschreibend, keine inferenzielle Analyse vorhanden.",
+    "research_question": {
+      "id": "RQ-GW-007",
+      "domain": "Gateway Resources",
+      "question": "Wie skalieren Gateway-Latenz, Traffic, synaptische Operationen und Energie unter wachsender Topologie?",
+      "relevance": "Operationalisiert Bandbreiten- und Ressourcenlimits fuer spaetere Promotion-Gates.",
+      "literature": [],
+      "hypotheses": [
+        "H-GW-007-A"
+      ],
+      "evidence": [],
+      "status": "open",
+      "answer": {
+        "current": null,
+        "confidence": "none",
+        "limitations": "Normalisierte Energieeinheiten sind keine gemessenen Joule."
+      },
+      "created": "2026-09-09",
+      "updated": "2026-09-09"
+    },
+    "experimental_design": {
+      "experiment_id": "EXP-BATCH-20260914074039-89",
+      "research_question": "RQ-GW-007",
+      "hypothesis": "H-GW-007-A",
+      "title": "Experiment workflow: gateway_resources_boundary_v1",
+      "conditions": "Registered protocol conditions",
+      "ticks": 1000,
+      "ticks_contract": "minimum requested observation window",
+      "seeds": [
+        101,
+        102,
+        103
+      ],
+      "protocol": "gateway_resources_boundary_v1",
+      "resolved_runner": "run_boundary_audit",
+      "tick_validation": {
+        "status": "NOT_APPLICABLE",
+        "mode": "protocol_defined_internal_trials",
+        "requested_ticks": 1000
+      },
+      "notes": "",
+      "execution": "registered experiment_suite runner",
+      "assistant_policy": "AI is post-hoc interpretation only.",
+      "epistemic_layers": {
+        "ui_state": "operator/dashboard progress only; not a scientific result",
+        "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+        "evid": "not_created; requires semantic validation, clean freeze and human review",
+        "interpretation": "post-hoc AI or human interpretation; never execution input"
+      }
+    },
+    "data_basis": {
+      "data": {
+        "ai_input_policy": "compact_only_raw_on_explicit_deterministic_extract",
+        "generated_by": "deterministic_research_data_v2",
+        "limits": {
+          "ai_packet_max_bytes": 1000000,
+          "run_summary_max_bytes": 5000000,
+          "sequence_preview_items": 16
+        },
+        "raw_index": {
+          "path": "DATA/runs_index.json",
+          "run_count": 3,
+          "sha256": "aaef9c8995da303f0b131536b7247b245b33dbedb4ca51b69aeb017cc00f611e"
+        },
+        "run_count": 3,
+        "run_preview": [
+          {
+            "_raw_artifact": {
+              "format": "json.gz",
+              "path": "DATA/raw/run-0000-instrumentation_gap_audit-seed-101.json.gz",
+              "sha256": "9405dd9d0abc1b6c7703612daedfaf25e5a1d555d487bf7dda90291ea3773bd2",
+              "size_bytes": 380,
+              "uncompressed_bytes": 481
+            },
+            "condition": "instrumentation_gap_audit",
+            "experiment_id": "EXP-BATCH-20260914074039-89",
+            "metrics": {
+              "audit_complete": true,
+              "automatic_evidence_promotion": false,
+              "claim_boundary": "No direct causal measurement is performed by this runner. Completion means only that the registered gap/boundary contract was executed and preserved for review.",
+              "direct_test_of_hypothesis": false,
+              "scientific_evidence": false
+            },
+            "runtime_error": null,
+            "seed": 101,
+            "state_digest_after": "",
+            "state_digest_before": ""
+          },
+          {
+            "_raw_artifact": {
+              "format": "json.gz",
+              "path": "DATA/raw/run-0001-instrumentation_gap_audit-seed-102.json.gz",
+              "sha256": "8b0ff5cd32db00a1ecce984cb6c8b12854098a5cc463fc6d236d5b65a6c7f457",
+              "size_bytes": 380,
+              "uncompressed_bytes": 481
+            },
+            "condition": "instrumentation_gap_audit",
+            "experiment_id": "EXP-BATCH-20260914074039-89",
+            "metrics": {
+              "audit_complete": true,
+              "automatic_evidence_promotion": false,
+              "claim_boundary": "No direct causal measurement is performed by this runner. Completion means only that the registered gap/boundary contract was executed and preserved for review.",
+              "direct_test_of_hypothesis": false,
+              "scientific_evidence": false
+            },
+            "runtime_error": null,
+            "seed": 102,
+            "state_digest_after": "",
+            "state_digest_before": ""
+          },
+          {
+            "_raw_artifact": {
+              "format": "json.gz",
+              "path": "DATA/raw/run-0002-instrumentation_gap_audit-seed-103.json.gz",
+              "sha256": "582fc6462cbb4012a858eacf5d882e6269d6f4a6e408d6844f5948e001bcb463",
+              "size_bytes": 380,
+              "uncompressed_bytes": 481
+            },
+            "condition": "instrumentation_gap_audit",
+            "experiment_id": "EXP-BATCH-20260914074039-89",
+            "metrics": {
+              "audit_complete": true,
+              "automatic_evidence_promotion": false,
+              "claim_boundary": "No direct causal measurement is performed by this runner. Completion means only that the registered gap/boundary contract was executed and preserved for review.",
+              "direct_test_of_hypothesis": false,
+              "scientific_evidence": false
+            },
+            "runtime_error": null,
+            "seed": 103,
+            "state_digest_after": "",
+            "state_digest_before": ""
+          }
+        ],
+        "schema_version": "2.0",
+        "statistics": {
+          "conditions": {
+            "instrumentation_gap_audit": {
+              "metrics": {},
+              "run_count": 3,
+              "seeds": [
+                101,
+                102,
+                103
+              ]
+            }
+          },
+          "formulas": {
+            "difference": "Delta_x = mean(x_B) - mean(x_A)",
+            "inter_spike_interval": "ISI_i = t_(i+1) - t_i",
+            "mean": "mean(x) = (1/n) * sum_i x_i",
+            "population_std": "sigma = sqrt((1/n) * sum_i (x_i - mean(x))^2)",
+            "ratio": "R_x = mean(x_B) / mean(x_A), defined only when mean(x_A) != 0"
+          },
+          "generated_by": "deterministic_statistics_engine",
+          "run_count": 3,
+          "schema_version": "2.0"
+        }
+      },
+      "evid": [],
+      "literature": []
+    },
+    "quantitative_results": {
+      "conditions": {
+        "instrumentation_gap_audit": {
+          "metrics": {},
+          "run_count": 3,
+          "seeds": [
+            101,
+            102,
+            103
+          ]
+        }
+      },
+      "formulas": {
+        "difference": "Delta_x = mean(x_B) - mean(x_A)",
+        "inter_spike_interval": "ISI_i = t_(i+1) - t_i",
+        "mean": "mean(x) = (1/n) * sum_i x_i",
+        "population_std": "sigma = sqrt((1/n) * sum_i (x_i - mean(x))^2)",
+        "ratio": "R_x = mean(x_B) / mean(x_A), defined only when mean(x_A) != 0"
+      },
+      "generated_by": "deterministic_statistics_engine",
+      "run_count": 3,
+      "schema_version": "2.0"
+    },
+    "observations": [
+      "Die Experimente wurden mit drei verschiedenen Seeds (101, 102, 103) durchgefuehrt.",
+      "Die Bedingung 'instrumentation_gap_audit' wurde in allen drei Laufungen angewandt.",
+      "Die Metriken zeigen, dass keine direkte Hypothesentestung oder wissenschaftliche Evidenz durchgefuehrt wurde.",
+      "Die statistischen Formeln sind definiert, aber keine numerischen Ergebnisse oder Berechnungen sind vorhanden."
+    ],
+    "interpretation": {
+      "assessment": "Die Daten sind beschreibend, keine inferenzielle Analyse vorhanden.",
+      "effect_direction": "Keine messbaren Effekte oder Richtungen wurden erfasst.",
+      "methodological_concerns": [
+        "Keine wissenschaftliche Evidenz ist mit diesem Experiment verknüpft.",
+        "Die Git-Provenance ist unvollständig oder nicht verfugbar.",
+        "Die Experimente sind rein deskriptiv und enthalten keine inferenziellen Analysen."
+      ],
+      "observations": [
+        "Die Experimente wurden mit drei verschiedenen Seeds (101, 102, 103) durchgeführt.",
+        "Die Bedingung 'instrumentation_gap_audit' wurde in allen drei Laufungen angewandt.",
+        "Die Metriken zeigen, dass keine direkte Hypothesentestung oder wissenschaftliche Evidenz durchgeführt wurde.",
+        "Die statistischen Formeln sind definiert, aber keine numerischen Ergebnisse oder Berechnungen sind vorhanden."
+      ],
+      "alternative_explanations": [
+        "Die fehlende wissenschaftliche Evidenz kann auf eine unzureichende Experimentaldesign oder -durchführung zurückzuführen sein.",
+        "Die Ergebnisse sind nicht ausreichend, um Schlussfolgerungen zu ziehen.",
+        "Die verwendeten Formeln sind theoretisch, aber keine numerischen Daten wurden berechnet oder gemessen."
+      ],
+      "recommended_experiments": [
+        "Ein Experiment, das direkt die Hypothese 'Gateway-Traffic, Latenz und Energie skalieren innerhalb definierter Limits nachvollziehbar mit der aggregierten Topologie' testet.",
+        "Ein Experiment, das wissenschaftliche Evidenz durch empirische Messungen oder inferenzielle Analysen erzeugt.",
+        "Ein Experiment, das die Ressourcen- und Latenzmessungen unter wachsender Topologie systematisch erfasst und analysiert."
+      ],
+      "requested_evidence": [
+        "Messbare numerische Ergebnisse oder Berechnungen der definierten Formeln.",
+        "Empirische Daten zur skalierenden Beziehung zwischen Gateway-Latenz, Traffic, synaptischen Operationen und Energie.",
+        "Ein direkter Test der Hypothese mit inferenziellen Analysen oder wissenschaftlicher Evidenz.",
+        "Eine vollständige Git-Provenance mit sauberen Commits und verfügbaren Artefakten."
+      ],
+      "confidence": 0.0
+    },
+    "methodological_critique": [
+      "Keine wissenschaftliche Evidenz ist mit diesem Experiment verknuepft.",
+      "Die Git-Provenance ist unvollstaendig oder nicht verfuegbar.",
+      "Die Experimente sind rein deskriptiv und enthalten keine inferenziellen Analysen."
+    ],
+    "alternative_explanations": [
+      "Die fehlende wissenschaftliche Evidenz kann auf eine unzureichende Experimentaldesign oder -durchfuehrung zurueckzufuehren sein.",
+      "Die Ergebnisse sind nicht ausreichend, um Schlussfolgerungen zu ziehen.",
+      "Die verwendeten Formeln sind theoretisch, aber keine numerischen Daten wurden berechnet oder gemessen."
+    ],
+    "reproducibility": {
+      "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+      "experiment_status": "completed",
+      "evidence_mode": "not_reported",
+      "git_dirty": "True",
+      "source_freeze_sha": "d6be10e0818ed6a7244eccd30ce680dffd60e8a754abe18ed761d2055da924d4",
+      "configuration_path": "F:\\Brain-5D\\configs\\learning_experiment.yaml",
+      "configuration_sha256": "6f6cd457caf6216c286fee47ef03b529a0b496ed2dd53ee96b85d3b51e7b3a1c",
+      "experiment_manifest_digest": "5e1405fc3fc1a7356b5e17abe42e44198ebef83b793d18c3273097c0d94818a0",
+      "data_ids": "NOT_AVAILABLE",
+      "evid_ids": "NOT_AVAILABLE",
+      "protocol_id": "NOT_AVAILABLE",
+      "protocol_digest": "0f7b4aac91322bef90cf1d7c85e489e8c332f4e3ce8b7e60aaba5c16d6d9cd4b",
+      "data_digest": "527634ec5800507cdc6e30e7b1edf34eac0c02df2075ca3ffc45b57ab4ea79c6",
+      "evid_digests": "[]"
+    },
+    "epistemic_status": {
+      "implementation": "NOT_DETERMINED",
+      "experiment_data": "PRESENT",
+      "registered_evidence": "ABSENT",
+      "ai_interpretation": "PRESENT",
+      "human_review": "PENDING",
+      "claim_support": "NOT_DETERMINED",
+      "rq_status": "IN_PROGRESS"
+    },
+    "ai_confidence": 0.0,
+    "missing_evidence": [
+      "Messbare numerische Ergebnisse oder Berechnungen der definierten Formeln.",
+      "Empirische Daten zur skalierenden Beziehung zwischen Gateway-Latenz, Traffic, synaptischen Operationen und Energie.",
+      "Ein direkter Test der Hypothese mit inferenziellen Analysen oder wissenschaftlicher Evidenz.",
+      "Eine vollständige Git-Provenance mit sauberen Commits und verfügbaren Artefakten."
+    ],
+    "recommended_follow_up": [
+      "Ein Experiment, das direkt die Hypothese 'Gateway-Traffic, Latenz und Energie skalieren innerhalb definierter Limits nachvollziehbar mit der aggregierten Topologie' testet.",
+      "Ein Experiment, das wissenschaftliche Evidenz durch empirische Messungen oder inferenzielle Analysen erzeugt.",
+      "Ein Experiment, das die Ressourcen- und Latenzmessungen unter wachsender Topologie systematisch erfasst und analysiert."
+    ],
+    "conclusion": "Die Daten sind beschreibend, keine inferenzielle Analyse vorhanden.",
+    "human_review": {
+      "status": "PENDING",
+      "reviewer": null,
+      "reviewed_at": null,
+      "disposition": null,
+      "comments": null
+    },
+    "aiar": {
+      "analyst": {
+        "analysis_id": "AIAR-scientific_analyst-20260914090701629803-473a6c1c",
+        "role": "scientific_analyst",
+        "model": {
+          "provider": "ollama",
+          "model_name": "qwen3:8b",
+          "model_digest": "not_reported",
+          "quantization": "not_reported",
+          "context_length": "unknown",
+          "temperature": 0.0,
+          "top_p": 0.9,
+          "seed": "not_reported",
+          "backend_version": "unknown"
+        },
+        "inputs": {
+          "experiment_id": "EXP-BATCH-20260914074039-89",
+          "packet_digest": "473a6c1c2652846f2feb47e229c486208f21d6f3de20f1edbfa79d9fbbaed7e5"
+        },
+        "output": {
+          "assessment": "Die Daten sind beschreibend, keine inferenzielle Analyse vorhanden.",
+          "observations": [
+            "Die Experimente wurden mit drei verschiedenen Seeds (101, 102, 103) durchgefuehrt.",
+            "Die Bedingung 'instrumentation_gap_audit' wurde in allen drei Laufungen angewandt.",
+            "Die Metriken zeigen, dass keine direkte Hypothesentestung oder wissenschaftliche Evidenz durchgefuehrt wurde.",
+            "Die statistischen Formeln sind definiert, aber keine numerischen Ergebnisse oder Berechnungen sind vorhanden."
+          ],
+          "effect_direction": "Keine messbaren Effekte oder Richtungen wurden erfasst.",
+          "methodological_concerns": [
+            "Keine wissenschaftliche Evidenz ist mit diesem Experiment verknuepft.",
+            "Die Git-Provenance ist unvollstaendig oder nicht verfuegbar.",
+            "Die Experimente sind rein deskriptiv und enthalten keine inferenziellen Analysen."
+          ],
+          "alternative_explanations": [
+            "Die fehlende wissenschaftliche Evidenz kann auf eine unzureichende Experimentaldesign oder -durchfuehrung zurueckzufuehren sein.",
+            "Die Ergebnisse sind nicht ausreichend, um Schlussfolgerungen zu ziehen.",
+            "Die verwendeten Formeln sind theoretisch, aber keine numerischen Daten wurden berechnet oder gemessen."
+          ],
+          "recommended_experiments": [
+            "Ein Experiment, das direkt die Hypothese 'Gateway-Traffic, Latenz und Energie skalieren innerhalb definierter Limits nachvollziehbar mit der aggregierten Topologie' testet.",
+            "Ein Experiment, das wissenschaftliche Evidenz durch empirische Messungen oder inferenzielle Analysen erzeugt.",
+            "Ein Experiment, das die Ressourcen- und Latenzmessungen unter wachsender Topologie systematisch erfasst und analysiert."
+          ],
+          "requested_evidence": [
+            "Messbare numerische Ergebnisse oder Berechnungen der definierten Formeln.",
+            "Empirische Daten zur skalierenden Beziehung zwischen Gateway-Latenz, Traffic, synaptischen Operationen und Energie.",
+            "Ein direkter Test der Hypothese mit inferenziellen Analysen oder wissenschaftlicher Evidenz.",
+            "Eine vollstaendige Git-Provenance mit sauberen Commits und verfuegbaren Artefakten."
+          ],
+          "confidence": 0.0
+        },
+        "provenance": {
+          "prompt_sha256": "ad6c7cf5cf5a0bd356f658a686bae53f3a4d37878f2ef65e8007e3351243549d",
+          "research_packet_digest": "473a6c1c2652846f2feb47e229c486208f21d6f3de20f1edbfa79d9fbbaed7e5",
+          "prompt_protocol_version": "research_assistant_v1",
+          "assistant_schema_version": "1.2",
+          "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+          "model_self_confidence": "0.0"
+        },
+        "epistemic_status": {
+          "evidence": false,
+          "interpretation_only": true,
+          "human_review_required": true
+        },
+        "review": {
+          "status": "pending",
+          "reviewer": null,
+          "reviewed_at": null,
+          "disposition": null
+        },
+        "generated_at": "2026-09-14T09:07:01.629803+00:00"
+      },
+      "reviewer": {
+        "analysis_id": "AIAR-critical_reviewer-20260914090724259778-473a6c1c",
+        "role": "critical_reviewer",
+        "model": {
+          "provider": "ollama",
+          "model_name": "qwen3:8b",
+          "model_digest": "not_reported",
+          "quantization": "not_reported",
+          "context_length": "unknown",
+          "temperature": 0.0,
+          "top_p": 0.9,
+          "seed": "not_reported",
+          "backend_version": "unknown"
+        },
+        "inputs": {
+          "experiment_id": "EXP-BATCH-20260914074039-89",
+          "packet_digest": "473a6c1c2652846f2feb47e229c486208f21d6f3de20f1edbfa79d9fbbaed7e5"
+        },
+        "output": {
+          "assessment": "Die Daten sind beschreibend, keine inferenzielle Analyse vorhanden.",
+          "observations": [
+            "Die Experimente wurden mit drei verschiedenen Seeds (101, 102, 103) durchgefuehrt.",
+            "Die Bedingung 'instrumentation_gap_audit' wurde in allen drei Laufungen angewandt.",
+            "Die Metriken zeigen, dass keine direkte Hypothesentestung oder wissenschaftliche Evidenz durchgefuehrt wurde.",
+            "Die statistischen Formeln sind definiert, aber keine numerischen Ergebnisse oder Berechnungen sind vorhanden."
+          ],
+          "effect_direction": "Keine messbaren Effekte oder Richtungen wurden erfasst.",
+          "methodological_concerns": [
+            "Keine wissenschaftliche Evidenz ist mit diesem Experiment verknuepft.",
+            "Die Git-Provenance ist unvollstaendig oder nicht verfuegbar.",
+            "Die Experimente sind rein deskriptiv und enthalten keine inferenziellen Analysen."
+          ],
+          "alternative_explanations": [
+            "Die fehlende wissenschaftliche Evidenz kann auf eine unzureichende Experimentaldesign oder -durchfuehrung zurueckzufuehren sein.",
+            "Die Ergebnisse sind nicht ausreichend, um Schlussfolgerungen zu ziehen.",
+            "Die verwendeten Formeln sind theoretisch, aber keine numerischen Daten wurden berechnet oder gemessen."
+          ],
+          "recommended_experiments": [
+            "Ein Experiment, das direkt die Hypothese 'Gateway-Traffic, Latenz und Energie skalieren innerhalb definierter Limits nachvollziehbar mit der aggregierten Topologie' testet.",
+            "Ein Experiment, das wissenschaftliche Evidenz durch empirische Messungen oder inferenzielle Analysen erzeugt.",
+            "Ein Experiment, das die Ressourcen- und Latenzmessungen unter wachsender Topologie systematisch erfasst und analysiert."
+          ],
+          "requested_evidence": [
+            "Messbare numerische Ergebnisse oder Berechnungen der definierten Formeln.",
+            "Empirische Daten zur skalierenden Beziehung zwischen Gateway-Latenz, Traffic, synaptischen Operationen und Energie.",
+            "Ein direkter Test der Hypothese mit inferenziellen Analysen oder wissenschaftlicher Evidenz.",
+            "Eine vollstaendige Git-Provenance mit sauberen Commits und verfuegbaren Artefakten."
+          ],
+          "confidence": 0.0
+        },
+        "provenance": {
+          "prompt_sha256": "f202c4bc119c1a104eb997281f0b08d365aab2c6cbe28443aadc5b685114bbda",
+          "research_packet_digest": "473a6c1c2652846f2feb47e229c486208f21d6f3de20f1edbfa79d9fbbaed7e5",
+          "prompt_protocol_version": "research_assistant_v1",
+          "assistant_schema_version": "1.2",
+          "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+          "model_self_confidence": "0.0"
+        },
+        "epistemic_status": {
+          "evidence": false,
+          "interpretation_only": true,
+          "human_review_required": true
+        },
+        "review": {
+          "status": "pending",
+          "reviewer": null,
+          "reviewed_at": null,
+          "disposition": null
+        },
+        "generated_at": "2026-09-14T09:07:24.259778+00:00"
+      },
+      "writer": {
+        "analysis_id": "AIAR-scientific_writer-20260914090818847676-473a6c1c",
+        "role": "scientific_writer",
+        "model": {
+          "provider": "ollama",
+          "model_name": "qwen3:8b",
+          "model_digest": "not_reported",
+          "quantization": "not_reported",
+          "context_length": "unknown",
+          "temperature": 0.0,
+          "top_p": 0.9,
+          "seed": "not_reported",
+          "backend_version": "unknown"
+        },
+        "inputs": {
+          "experiment_id": "EXP-BATCH-20260914074039-89",
+          "packet_digest": "473a6c1c2652846f2feb47e229c486208f21d6f3de20f1edbfa79d9fbbaed7e5"
+        },
+        "output": {
+          "assessment": "Die Daten sind beschreibend, keine inferenzielle Analyse vorhanden.",
+          "effect_direction": "Keine messbaren Effekte oder Richtungen wurden erfasst.",
+          "methodological_concerns": [
+            "Keine wissenschaftliche Evidenz ist mit diesem Experiment verknüpft.",
+            "Die Git-Provenance ist unvollständig oder nicht verfugbar.",
+            "Die Experimente sind rein deskriptiv und enthalten keine inferenziellen Analysen."
+          ],
+          "observations": [
+            "Die Experimente wurden mit drei verschiedenen Seeds (101, 102, 103) durchgeführt.",
+            "Die Bedingung 'instrumentation_gap_audit' wurde in allen drei Laufungen angewandt.",
+            "Die Metriken zeigen, dass keine direkte Hypothesentestung oder wissenschaftliche Evidenz durchgeführt wurde.",
+            "Die statistischen Formeln sind definiert, aber keine numerischen Ergebnisse oder Berechnungen sind vorhanden."
+          ],
+          "alternative_explanations": [
+            "Die fehlende wissenschaftliche Evidenz kann auf eine unzureichende Experimentaldesign oder -durchführung zurückzuführen sein.",
+            "Die Ergebnisse sind nicht ausreichend, um Schlussfolgerungen zu ziehen.",
+            "Die verwendeten Formeln sind theoretisch, aber keine numerischen Daten wurden berechnet oder gemessen."
+          ],
+          "recommended_experiments": [
+            "Ein Experiment, das direkt die Hypothese 'Gateway-Traffic, Latenz und Energie skalieren innerhalb definierter Limits nachvollziehbar mit der aggregierten Topologie' testet.",
+            "Ein Experiment, das wissenschaftliche Evidenz durch empirische Messungen oder inferenzielle Analysen erzeugt.",
+            "Ein Experiment, das die Ressourcen- und Latenzmessungen unter wachsender Topologie systematisch erfasst und analysiert."
+          ],
+          "requested_evidence": [
+            "Messbare numerische Ergebnisse oder Berechnungen der definierten Formeln.",
+            "Empirische Daten zur skalierenden Beziehung zwischen Gateway-Latenz, Traffic, synaptischen Operationen und Energie.",
+            "Ein direkter Test der Hypothese mit inferenziellen Analysen oder wissenschaftlicher Evidenz.",
+            "Eine vollständige Git-Provenance mit sauberen Commits und verfügbaren Artefakten."
+          ],
+          "confidence": 0.0
+        },
+        "provenance": {
+          "prompt_sha256": "fca66c6e5177196a21f92a1c72904cc4afc952b0a758568253c000aa1b6cadfc",
+          "research_packet_digest": "473a6c1c2652846f2feb47e229c486208f21d6f3de20f1edbfa79d9fbbaed7e5",
+          "prompt_protocol_version": "research_assistant_v1",
+          "assistant_schema_version": "1.2",
+          "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+          "model_self_confidence": "0.0"
+        },
+        "epistemic_status": {
+          "evidence": false,
+          "interpretation_only": true,
+          "human_review_required": true
+        },
+        "review": {
+          "status": "pending",
+          "reviewer": null,
+          "reviewed_at": null,
+          "disposition": null
+        },
+        "generated_at": "2026-09-14T09:08:18.847676+00:00"
+      }
+    }
+  },
+  "provenance": {
+    "research_packet_digest": "ea41e3d59b0d433460a0eb99369868a9ce78b2f2bd10c518101b0fe0bc4fa4d3",
+    "source": {
+      "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+      "experiment_status": "completed",
+      "evidence_mode": "not_reported",
+      "git_dirty": "True",
+      "source_freeze_sha": "d6be10e0818ed6a7244eccd30ce680dffd60e8a754abe18ed761d2055da924d4",
+      "configuration_path": "F:\\Brain-5D\\configs\\learning_experiment.yaml",
+      "configuration_sha256": "6f6cd457caf6216c286fee47ef03b529a0b496ed2dd53ee96b85d3b51e7b3a1c",
+      "experiment_manifest_digest": "5e1405fc3fc1a7356b5e17abe42e44198ebef83b793d18c3273097c0d94818a0",
+      "data_ids": "NOT_AVAILABLE",
+      "evid_ids": "NOT_AVAILABLE",
+      "protocol_id": "NOT_AVAILABLE",
+      "protocol_digest": "0f7b4aac91322bef90cf1d7c85e489e8c332f4e3ce8b7e60aaba5c16d6d9cd4b",
+      "data_digest": "527634ec5800507cdc6e30e7b1edf34eac0c02df2075ca3ffc45b57ab4ea79c6",
+      "evid_digests": "[]"
+    }
+  },
+  "analysis_ids": [
+    "AIAR-scientific_analyst-20260914090701629803-473a6c1c",
+    "AIAR-critical_reviewer-20260914090724259778-473a6c1c",
+    "AIAR-scientific_writer-20260914090818847676-473a6c1c"
+  ],
+  "supersedes": null,
+  "content_digest": "7b170ea1a075d7c16f7a7751d6013caa1d9ad27bb882e5d09fc3443ca62b8b7a",
+  "markdown_digest": "3c37737bf7c42f4ef9552de230a4018565d4ddf956a002985e7a06658138ac7c"
+}

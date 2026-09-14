@@ -1,0 +1,556 @@
+{
+  "report_id": "AIRR-2026-0001",
+  "experiment_id": "EXP-BATCH-20260914074039-23",
+  "research_question_id": "RQ-SCALE-001",
+  "hypothesis_ids": [
+    "H-SCALE-001-A"
+  ],
+  "claim_ids": [],
+  "generated_at": "2026-09-14T11:27:11.149934+00:00",
+  "report_schema_version": "1.0",
+  "report_protocol_version": "PROTOCOL-AIRR-001",
+  "generated_by": "artificial_intelligence",
+  "ai_generated": true,
+  "scientific_evidence": false,
+  "human_review_required": true,
+  "status": "review_pending",
+  "content": {
+    "identification": {
+      "experiment": "EXP-BATCH-20260914074039-23",
+      "research_question": "Skaliert Brain-5D von 5.000 auf Millionen Neuronen ohne qualitative Dynamikveränderung?",
+      "hypotheses": [
+        {
+          "id": "H-SCALE-001-A",
+          "research_question": "RQ-SCALE-001",
+          "hypothesis": "Brain-5D skaliert von 5.000 auf 1.000.000 Neuronen ohne qualitative Änderung der Spikedynamik.",
+          "status": "untested",
+          "evidence": [],
+          "created": "2026-08-23",
+          "updated": "2026-08-23"
+        }
+      ],
+      "date": "2026-09-14",
+      "source_sha": "8e096931a779b2d2eb4d010eb20154150b07bbf2"
+    },
+    "executive_summary": "Die experimentellen Ergebnisse zeigen keine direkten kausalen Messungen, sondern nur die Ausführung und Erhaltung des registrierten Gap/Border-Vertrags. Es wurden keine statistischen Signifikanztests durchgeführt.",
+    "research_question": {
+      "id": "RQ-SCALE-001",
+      "domain": "Scaling",
+      "question": "Skaliert Brain-5D von 5.000 auf Millionen Neuronen ohne qualitative Dynamikveränderung?",
+      "relevance": "Nachweis der Architekturskalierbarkeit.",
+      "literature": [],
+      "hypotheses": [
+        "H-SCALE-001-A"
+      ],
+      "evidence": [],
+      "status": "open",
+      "answer": {
+        "current": null,
+        "confidence": "none",
+        "limitations": null
+      },
+      "created": "2026-08-23",
+      "updated": "2026-08-23"
+    },
+    "experimental_design": {
+      "experiment_id": "EXP-BATCH-20260914074039-23",
+      "research_question": "RQ-SCALE-001",
+      "hypothesis": "H-SCALE-001-A",
+      "title": "Experiment workflow: million_neuron_scaling_boundary_v1",
+      "conditions": "Registered protocol conditions",
+      "ticks": 1000,
+      "ticks_contract": "minimum requested observation window",
+      "seeds": [
+        101,
+        102,
+        103
+      ],
+      "protocol": "million_neuron_scaling_boundary_v1",
+      "resolved_runner": "run_boundary_audit",
+      "tick_validation": {
+        "status": "NOT_APPLICABLE",
+        "mode": "protocol_defined_internal_trials",
+        "requested_ticks": 1000
+      },
+      "notes": "",
+      "execution": "registered experiment_suite runner",
+      "assistant_policy": "AI is post-hoc interpretation only.",
+      "epistemic_layers": {
+        "ui_state": "operator/dashboard progress only; not a scientific result",
+        "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+        "evid": "not_created; requires semantic validation, clean freeze and human review",
+        "interpretation": "post-hoc AI or human interpretation; never execution input"
+      }
+    },
+    "data_basis": {
+      "data": {
+        "ai_input_policy": "compact_only_raw_on_explicit_deterministic_extract",
+        "generated_by": "deterministic_research_data_v2",
+        "limits": {
+          "ai_packet_max_bytes": 1000000,
+          "run_summary_max_bytes": 5000000,
+          "sequence_preview_items": 16
+        },
+        "raw_index": {
+          "path": "DATA/runs_index.json",
+          "run_count": 3,
+          "sha256": "cb8418794ff64a780a672642d38ce841ac8ffd07545f43928e4d6529da35ccc3"
+        },
+        "run_count": 3,
+        "run_preview": [
+          {
+            "_raw_artifact": {
+              "format": "json.gz",
+              "path": "DATA/raw/run-0000-instrumentation_gap_audit-seed-101.json.gz",
+              "sha256": "975beb6e7f52ff4fe20a6251385e31b6d286b29d663763d940ee5e64c3fe1748",
+              "size_bytes": 380,
+              "uncompressed_bytes": 481
+            },
+            "condition": "instrumentation_gap_audit",
+            "experiment_id": "EXP-BATCH-20260914074039-23",
+            "metrics": {
+              "audit_complete": true,
+              "automatic_evidence_promotion": false,
+              "claim_boundary": "No direct causal measurement is performed by this runner. Completion means only that the registered gap/boundary contract was executed and preserved for review.",
+              "direct_test_of_hypothesis": false,
+              "scientific_evidence": false
+            },
+            "runtime_error": null,
+            "seed": 101,
+            "state_digest_after": "",
+            "state_digest_before": ""
+          },
+          {
+            "_raw_artifact": {
+              "format": "json.gz",
+              "path": "DATA/raw/run-0001-instrumentation_gap_audit-seed-102.json.gz",
+              "sha256": "d122b6350818c4f345f45f5887b6a64d4b16a3d65550c5cfc99ec2108753805e",
+              "size_bytes": 380,
+              "uncompressed_bytes": 481
+            },
+            "condition": "instrumentation_gap_audit",
+            "experiment_id": "EXP-BATCH-20260914074039-23",
+            "metrics": {
+              "audit_complete": true,
+              "automatic_evidence_promotion": false,
+              "claim_boundary": "No direct causal measurement is performed by this runner. Completion means only that the registered gap/boundary contract was executed and preserved for review.",
+              "direct_test_of_hypothesis": false,
+              "scientific_evidence": false
+            },
+            "runtime_error": null,
+            "seed": 102,
+            "state_digest_after": "",
+            "state_digest_before": ""
+          },
+          {
+            "_raw_artifact": {
+              "format": "json.gz",
+              "path": "DATA/raw/run-0002-instrumentation_gap_audit-seed-103.json.gz",
+              "sha256": "5576f43a8bf2315a0fb7ce524939a28e15ad0eb255362f3db35de7717e1bab67",
+              "size_bytes": 380,
+              "uncompressed_bytes": 481
+            },
+            "condition": "instrumentation_gap_audit",
+            "experiment_id": "EXP-BATCH-20260914074039-23",
+            "metrics": {
+              "audit_complete": true,
+              "automatic_evidence_promotion": false,
+              "claim_boundary": "No direct causal measurement is performed by this runner. Completion means only that the registered gap/boundary contract was executed and preserved for review.",
+              "direct_test_of_hypothesis": false,
+              "scientific_evidence": false
+            },
+            "runtime_error": null,
+            "seed": 103,
+            "state_digest_after": "",
+            "state_digest_before": ""
+          }
+        ],
+        "schema_version": "2.0",
+        "statistics": {
+          "conditions": {
+            "instrumentation_gap_audit": {
+              "metrics": {},
+              "run_count": 3,
+              "seeds": [
+                101,
+                102,
+                103
+              ]
+            }
+          },
+          "formulas": {
+            "difference": "Delta_x = mean(x_B) - mean(x_A)",
+            "inter_spike_interval": "ISI_i = t_(i+1) - t_i",
+            "mean": "mean(x) = (1/n) * sum_i x_i",
+            "population_std": "sigma = sqrt((1/n) * sum_i (x_i - mean(x))^2)",
+            "ratio": "R_x = mean(x_B) / mean(x_A), defined only when mean(x_A) != 0"
+          },
+          "generated_by": "deterministic_statistics_engine",
+          "run_count": 3,
+          "schema_version": "2.0"
+        }
+      },
+      "evid": [],
+      "literature": []
+    },
+    "quantitative_results": {
+      "conditions": {
+        "instrumentation_gap_audit": {
+          "metrics": {},
+          "run_count": 3,
+          "seeds": [
+            101,
+            102,
+            103
+          ]
+        }
+      },
+      "formulas": {
+        "difference": "Delta_x = mean(x_B) - mean(x_A)",
+        "inter_spike_interval": "ISI_i = t_(i+1) - t_i",
+        "mean": "mean(x) = (1/n) * sum_i x_i",
+        "population_std": "sigma = sqrt((1/n) * sum_i (x_i - mean(x))^2)",
+        "ratio": "R_x = mean(x_B) / mean(x_A), defined only when mean(x_A) != 0"
+      },
+      "generated_by": "deterministic_statistics_engine",
+      "run_count": 3,
+      "schema_version": "2.0"
+    },
+    "observations": [
+      "Die Audit-Verfahren wurden für drei verschiedene Seeds (101, 102, 103) durchgeführt.",
+      "Die Metriken der Runs zeigen, dass der Audit-Vorgang abgeschlossen wurde, aber keine kausalen Tests wurden durchgeführt.",
+      "Die experimentellen Runs wurden ohne Fehler abgeschlossen und folgen dem festgelegten Protokoll."
+    ],
+    "interpretation": {
+      "assessment": "Die experimentellen Ergebnisse zeigen keine direkten kausalen Messungen, sondern nur die Ausführung und Erhaltung des registrierten Gap/Border-Vertrags. Es wurden keine statistischen Signifikanztests durchgeführt.",
+      "observations": [
+        "Die Audit-Verfahren wurden für drei verschiedene Seeds (101, 102, 103) durchgeführt.",
+        "Die Metriken der Runs zeigen, dass der Audit-Vorgang abgeschlossen wurde, aber keine kausalen Tests wurden durchgeführt.",
+        "Die experimentellen Runs wurden ohne Fehler abgeschlossen und folgen dem festgelegten Protokoll."
+      ],
+      "effect_direction": "Es wurden keine kausalen Effekte gemessen oder beobachtet.",
+      "methodological_concerns": [
+        "Keine direkten kausalen Messungen wurden durchgeführt.",
+        "Es fehlen wissenschaftliche Evidenzen, die mit diesem Experiment verknüpft sind.",
+        "Die Git-Provenance ist unvollständig oder nicht verfügbar."
+      ],
+      "alternative_explanations": [
+        "Die beobachteten Ergebnisse können auf die Erfüllung des registrierten Vertrags zurückzuführen sein, nicht auf kausale Effekte.",
+        "Die fehlende wissenschaftliche Evidenz könnte auf eine unzureichende Methodik oder Dateninterpretation hinweisen."
+      ],
+      "recommended_experiments": [
+        "Ein Experiment, das direkt kausale Effekte testet, wäre nötig.",
+        "Ein Experiment, das die Spikedynamik bei unterschiedlichen Neuronenzahlen analysiert.",
+        "Ein Experiment, das die wissenschaftliche Evidenz und die kausale Validierung der Ergebnisse überprüft."
+      ],
+      "requested_evidence": [
+        "Wissenschaftliche Evidenzen, die direkt auf die Skalierbarkeit von Brain-5D hinweisen.",
+        "Detaillierte Analysen der Spikedynamik bei unterschiedlichen Neuronenzahlen.",
+        "Evidenzen für die kausale Validierung der Ergebnisse und die Architekturskalierbarkeit."
+      ],
+      "confidence": 0.0,
+      "calculations": [],
+      "interpretation": [],
+      "limitations": [
+        "Die Git-Provenance ist unvollständig oder nicht verfügbar.",
+        "Es gibt keine registrierte wissenschaftliche Evidenz, die mit diesem Experiment verknüpft ist."
+      ]
+    },
+    "methodological_critique": [
+      "Keine direkten kausalen Messungen wurden durchgeführt.",
+      "Es fehlen wissenschaftliche Evidenzen, die mit diesem Experiment verknüpft sind.",
+      "Die Git-Provenance ist unvollständig oder nicht verfügbar."
+    ],
+    "alternative_explanations": [
+      "Die beobachteten Ergebnisse können auf die Erfüllung des registrierten Vertrags zurückzuführen sein, nicht auf kausale Effekte.",
+      "Die fehlende wissenschaftliche Evidenz könnte auf eine unzureichende Methodik oder Dateninterpretation hinweisen."
+    ],
+    "reproducibility": {
+      "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+      "experiment_status": "completed",
+      "evidence_mode": "not_reported",
+      "git_dirty": "True",
+      "source_freeze_sha": "a09560dc1ca57a7db97c696d1dae316e343c77cd63d7357e47fac1dd8c6c5c93",
+      "configuration_path": "F:\\Brain-5D\\configs\\learning_experiment.yaml",
+      "configuration_sha256": "6f6cd457caf6216c286fee47ef03b529a0b496ed2dd53ee96b85d3b51e7b3a1c",
+      "experiment_manifest_digest": "4ea92b0edfa24ac8afaee4697334ecb0f34d9119b9d4acf92c54cdea8d417aba",
+      "data_ids": "NOT_AVAILABLE",
+      "evid_ids": "NOT_AVAILABLE",
+      "protocol_id": "NOT_AVAILABLE",
+      "protocol_digest": "d778de3a211857813ec2dccfe4248cb6e4e954d019c1a893706c6eafee5a6bfe",
+      "data_digest": "cb0922a3ebb8688023760581e83397f0c1f42a8970858c9e15c1a6a117799e81",
+      "evid_digests": "[]"
+    },
+    "epistemic_status": {
+      "implementation": "NOT_DETERMINED",
+      "experiment_data": "PRESENT",
+      "registered_evidence": "ABSENT",
+      "ai_interpretation": "PRESENT",
+      "human_review": "PENDING",
+      "claim_support": "NOT_DETERMINED",
+      "rq_status": "IN_PROGRESS"
+    },
+    "ai_confidence": 0.0,
+    "missing_evidence": [
+      "Wissenschaftliche Evidenzen, die direkt auf die Skalierbarkeit von Brain-5D hinweisen.",
+      "Detaillierte Analysen der Spikedynamik bei unterschiedlichen Neuronenzahlen.",
+      "Evidenzen für die kausale Validierung der Ergebnisse und die Architekturskalierbarkeit."
+    ],
+    "recommended_follow_up": [
+      "Ein Experiment, das direkt kausale Effekte testet, wäre nötig.",
+      "Ein Experiment, das die Spikedynamik bei unterschiedlichen Neuronenzahlen analysiert.",
+      "Ein Experiment, das die wissenschaftliche Evidenz und die kausale Validierung der Ergebnisse überprüft."
+    ],
+    "conclusion": "Die experimentellen Ergebnisse zeigen keine direkten kausalen Messungen, sondern nur die Ausführung und Erhaltung des registrierten Gap/Border-Vertrags. Es wurden keine statistischen Signifikanztests durchgeführt.",
+    "human_review": {
+      "status": "PENDING",
+      "reviewer": null,
+      "reviewed_at": null,
+      "disposition": null,
+      "comments": null
+    },
+    "aiar": {
+      "analyst": {
+        "analysis_id": "AIAR-scientific_analyst-20260914081736361400-a28e83a4",
+        "role": "scientific_analyst",
+        "model": {
+          "provider": "ollama",
+          "model_name": "qwen3:8b",
+          "model_digest": "not_reported",
+          "quantization": "not_reported",
+          "context_length": "unknown",
+          "temperature": 0.0,
+          "top_p": 0.9,
+          "seed": "not_reported",
+          "backend_version": "unknown"
+        },
+        "inputs": {
+          "experiment_id": "EXP-BATCH-20260914074039-23",
+          "packet_digest": "a28e83a4eaa3c76169342553970fddc6273134352212476327c4c8feb38f2249"
+        },
+        "output": {
+          "assessment": "Die experimentellen Ergebnisse zeigen keine direkten kausalen Messungen, sondern nur die Ausführung und Erhaltung des registrierten Gap/Border-Vertrags. Es wurden keine statistischen Signifikanztests durchgeführt.",
+          "observations": [
+            "Die Audit-Verfahren wurden für drei verschiedene Seeds (101, 102, 103) durchgeführt.",
+            "Die Metriken der Runs zeigen, dass der Audit-Vorgang abgeschlossen wurde, aber keine kausalen Tests wurden durchgeführt.",
+            "Die experimentellen Runs wurden ohne Fehler abgeschlossen und folgen dem festgelegten Protokoll."
+          ],
+          "effect_direction": "Es wurden keine kausalen Effekte gemessen oder beobachtet.",
+          "methodological_concerns": [
+            "Keine direkten kausalen Messungen wurden durchgeführt.",
+            "Es fehlen wissenschaftliche Evidenzen, die mit diesem Experiment verknüpft sind.",
+            "Die Git-Provenance ist unvollständig oder nicht verfügbar."
+          ],
+          "alternative_explanations": [
+            "Die beobachteten Ergebnisse können auf die Erfüllung des registrierten Vertrags zurückzuführen sein, nicht auf kausale Effekte.",
+            "Die fehlende wissenschaftliche Evidenz könnte auf eine unzureichende Methodik oder Dateninterpretation hinweisen."
+          ],
+          "recommended_experiments": [
+            "Ein Experiment, das direkt kausale Effekte testet, wäre nötig.",
+            "Ein Experiment, das die Spikedynamik bei unterschiedlichen Neuronenzahlen analysiert.",
+            "Ein Experiment, das die wissenschaftliche Evidenz und die kausale Validierung der Ergebnisse überprüft."
+          ],
+          "requested_evidence": [
+            "Wissenschaftliche Evidenzen, die direkt auf die Skalierbarkeit von Brain-5D hinweisen.",
+            "Detaillierte Analysen der Spikedynamik bei unterschiedlichen Neuronenzahlen.",
+            "Evidenzen für die kausale Validierung der Ergebnisse und die Architekturskalierbarkeit."
+          ],
+          "confidence": 0.0
+        },
+        "provenance": {
+          "prompt_sha256": "90dd44d29934d09d6499b26b37e3b162a52891442091524732218a363e1c5fca",
+          "research_packet_digest": "a28e83a4eaa3c76169342553970fddc6273134352212476327c4c8feb38f2249",
+          "prompt_protocol_version": "research_assistant_v1",
+          "assistant_schema_version": "1.2",
+          "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+          "model_self_confidence": "0.0"
+        },
+        "epistemic_status": {
+          "evidence": false,
+          "interpretation_only": true,
+          "human_review_required": true
+        },
+        "review": {
+          "status": "pending",
+          "reviewer": null,
+          "reviewed_at": null,
+          "disposition": null
+        },
+        "generated_at": "2026-09-14T08:17:36.361400+00:00"
+      },
+      "reviewer": {
+        "analysis_id": "AIAR-critical_reviewer-20260914081801471804-a28e83a4",
+        "role": "critical_reviewer",
+        "model": {
+          "provider": "ollama",
+          "model_name": "qwen3:8b",
+          "model_digest": "not_reported",
+          "quantization": "not_reported",
+          "context_length": "unknown",
+          "temperature": 0.0,
+          "top_p": 0.9,
+          "seed": "not_reported",
+          "backend_version": "unknown"
+        },
+        "inputs": {
+          "experiment_id": "EXP-BATCH-20260914074039-23",
+          "packet_digest": "a28e83a4eaa3c76169342553970fddc6273134352212476327c4c8feb38f2249"
+        },
+        "output": {
+          "assessment": "Die experimentellen Ergebnisse zeigen keine direkten kausalen Messungen, sondern nur die Ausführung und Erhaltung des registrierten Gap/Border-Vertrags. Es wurden keine statistischen Signifikanztests durchgeführt.",
+          "confidence": 0.0,
+          "effect_direction": "Es wurden keine kausalen Effekte gemessen oder beobachtet.",
+          "methodological_concerns": [
+            "Keine direkten kausalen Messungen wurden durchgeführt.",
+            "Es fehlen wissenschaftliche Evidenzen, die mit diesem Experiment verknüpft sind.",
+            "Die Git-Provenance ist unvollständig oder nicht verfügbar."
+          ],
+          "observations": [
+            "Die Audit-Verfahren wurden für drei verschiedene Seeds (101, 102, 103) durchgeführt.",
+            "Die Metriken der Runs zeigen, dass der Audit-Vorgang abgeschlossen wurde, aber keine kausalen Tests wurden durchgeführt.",
+            "Die experimentellen Runs wurden ohne Fehler abgeschlossen und folgen dem festgelegten Protokoll."
+          ],
+          "alternative_explanations": [
+            "Die beobachteten Ergebnisse können auf die Erfüllung des registrierten Vertrags zurückzuführen sein, nicht auf kausale Effekte.",
+            "Die fehlende wissenschaftliche Evidenz könnte auf eine unzureichende Methodik oder Dateninterpretation hinweisen."
+          ],
+          "recommended_experiments": [
+            "Ein Experiment, das direkt kausale Effekte testet, wäre nötig.",
+            "Ein Experiment, das die Spikedynamik bei unterschiedlichen Neuronenzahlen analysiert.",
+            "Ein Experiment, das die wissenschaftliche Evidenz und die kausale Validierung der Ergebnisse überprüft."
+          ],
+          "requested_evidence": [
+            "Wissenschaftliche Evidenzen, die direkt auf die Skal, "
+          ],
+          "calculations": [],
+          "interpretation": [],
+          "limitations": [
+            "Git provenance is dirty or unavailable.",
+            "No registered scientific evidence is linked to this experiment."
+          ]
+        },
+        "provenance": {
+          "prompt_sha256": "97a7aee913c829b0befbf7052b951e87d1dde869098eba9c8e9fa9cb53a06d5f",
+          "research_packet_digest": "a28e83a4eaa3c76169342553970fddc6273134352212476327c4c8feb38f2249",
+          "prompt_protocol_version": "research_assistant_v1",
+          "assistant_schema_version": "1.2",
+          "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+          "model_self_confidence": "0.0"
+        },
+        "epistemic_status": {
+          "evidence": false,
+          "interpretation_only": true,
+          "human_review_required": true
+        },
+        "review": {
+          "status": "pending",
+          "reviewer": null,
+          "reviewed_at": null,
+          "disposition": null
+        },
+        "generated_at": "2026-09-14T08:18:01.471804+00:00"
+      },
+      "writer": {
+        "analysis_id": "AIAR-scientific_writer-20260914081818069661-a28e83a4",
+        "role": "scientific_writer",
+        "model": {
+          "provider": "ollama",
+          "model_name": "qwen3:8b",
+          "model_digest": "not_reported",
+          "quantization": "not_reported",
+          "context_length": "unknown",
+          "temperature": 0.0,
+          "top_p": 0.9,
+          "seed": "not_reported",
+          "backend_version": "unknown"
+        },
+        "inputs": {
+          "experiment_id": "EXP-BATCH-20260914074039-23",
+          "packet_digest": "a28e83a4eaa3c76169342553970fddc6273134352212476327c4c8feb38f2249"
+        },
+        "output": {
+          "assessment": "Die experimentellen Ergebnisse zeigen keine direkten kausalen Messungen, sondern nur die Ausführung und Erhaltung des registrierten Gap/Border-Vertrags. Es wurden keine statistischen Signifikanztests durchgeführt.",
+          "observations": [
+            "Die Audit-Verfahren wurden für drei verschiedene Seeds (101, 102, 103) durchgeführt.",
+            "Die Metriken der Runs zeigen, dass der Audit-Vorgang abgeschlossen wurde, aber keine kausalen Tests wurden durchgeführt.",
+            "Die experimentellen Runs wurden ohne Fehler abgeschlossen und folgen dem festgelegten Protokoll."
+          ],
+          "effect_direction": "Es wurden keine kausalen Effekte gemessen oder beobachtet.",
+          "methodological_concerns": [
+            "Keine direkten kausalen Messungen wurden durchgeführt.",
+            "Es fehlen wissenschaftliche Evidenzen, die mit diesem Experiment verknüpft sind.",
+            "Die Git-Provenance ist unvollständig oder nicht verfügbar."
+          ],
+          "alternative_explanations": [
+            "Die beobachteten Ergebnisse können auf die Erfüllung des registrierten Vertrags zurückzuführen sein, nicht auf kausale Effekte.",
+            "Die fehlende wissenschaftliche Evidenz könnte auf eine unzureichende Methodik oder Dateninterpretation hinweisen."
+          ],
+          "recommended_experiments": [
+            "Ein Experiment, das direkt kausale Effekte testet, wäre nötig.",
+            "Ein Experiment, das die Spikedynamik bei unterschiedlichen Neuronenzahlen analysiert.",
+            "Ein Experiment, das die wissenschaftliche Evidenz und die kausale Validierung der Ergebnisse überprüft."
+          ],
+          "requested_evidence": [
+            "Wissenschaftliche Evidenzen, die direkt auf die Skalierbarkeit von Brain-5D hinweisen.",
+            "Detaillierte Analysen der Spikedynamik bei unterschiedlichen Neuronenzahlen.",
+            "Evidenzen für die kausale Validierung der Ergebnisse und die Architekturskalierbarkeit."
+          ],
+          "confidence": 0.0,
+          "calculations": [],
+          "interpretation": [],
+          "limitations": [
+            "Die Git-Provenance ist unvollständig oder nicht verfügbar.",
+            "Es gibt keine registrierte wissenschaftliche Evidenz, die mit diesem Experiment verknüpft ist."
+          ]
+        },
+        "provenance": {
+          "prompt_sha256": "ad3e1baf731757292e91a506b29a10cbcfbd40426af3adea96f0394d94fbdf3e",
+          "research_packet_digest": "a28e83a4eaa3c76169342553970fddc6273134352212476327c4c8feb38f2249",
+          "prompt_protocol_version": "research_assistant_v1",
+          "assistant_schema_version": "1.2",
+          "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+          "model_self_confidence": "0.0"
+        },
+        "epistemic_status": {
+          "evidence": false,
+          "interpretation_only": true,
+          "human_review_required": true
+        },
+        "review": {
+          "status": "pending",
+          "reviewer": null,
+          "reviewed_at": null,
+          "disposition": null
+        },
+        "generated_at": "2026-09-14T08:18:18.069661+00:00"
+      }
+    }
+  },
+  "provenance": {
+    "research_packet_digest": "05c212079e05a90347bbdb0874a61b5c7c2068b1bb9f000f76507ef3979b7c83",
+    "source": {
+      "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+      "experiment_status": "completed",
+      "evidence_mode": "not_reported",
+      "git_dirty": "True",
+      "source_freeze_sha": "a09560dc1ca57a7db97c696d1dae316e343c77cd63d7357e47fac1dd8c6c5c93",
+      "configuration_path": "F:\\Brain-5D\\configs\\learning_experiment.yaml",
+      "configuration_sha256": "6f6cd457caf6216c286fee47ef03b529a0b496ed2dd53ee96b85d3b51e7b3a1c",
+      "experiment_manifest_digest": "4ea92b0edfa24ac8afaee4697334ecb0f34d9119b9d4acf92c54cdea8d417aba",
+      "data_ids": "NOT_AVAILABLE",
+      "evid_ids": "NOT_AVAILABLE",
+      "protocol_id": "NOT_AVAILABLE",
+      "protocol_digest": "d778de3a211857813ec2dccfe4248cb6e4e954d019c1a893706c6eafee5a6bfe",
+      "data_digest": "cb0922a3ebb8688023760581e83397f0c1f42a8970858c9e15c1a6a117799e81",
+      "evid_digests": "[]"
+    }
+  },
+  "analysis_ids": [
+    "AIAR-scientific_analyst-20260914081736361400-a28e83a4",
+    "AIAR-critical_reviewer-20260914081801471804-a28e83a4",
+    "AIAR-scientific_writer-20260914081818069661-a28e83a4"
+  ],
+  "supersedes": null,
+  "content_digest": "9b76a3d0798f07fd9dd44a77c85a287fc1851f9dd198681acc3f9b73e4398f91",
+  "markdown_digest": "0ad9438d69c4b083c7e37db859accfdbcedadd29e1aaa4a819fc92da6c437510"
+}

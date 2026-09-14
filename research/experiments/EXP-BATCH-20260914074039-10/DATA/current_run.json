@@ -1,0 +1,11 @@
+{
+  "last_archived_run": 8,
+  "raw_artifact": {
+    "format": "json.gz",
+    "path": "DATA/raw/run-0008-telemetry_unknown-seed-103.json.gz",
+    "sha256": "5b3442cb0d922fb00c6b2a20d23ad5d1994ff18e11bc2f624c51526181d8f622",
+    "size_bytes": 420,
+    "uncompressed_bytes": 973
+  },
+  "status": "idle"
+}

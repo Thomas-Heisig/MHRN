@@ -1,0 +1,127 @@
+{
+  "run_count": 12,
+  "runs": [
+    {
+      "condition": "adaptive_roi",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0000-adaptive_roi-seed-101.json.gz",
+      "run_index": 0,
+      "seed": 101,
+      "sha256": "441a028eeb9e0e1dc548725ccb292b6cd0bab848149238b6d9db05d3bb90ee4e",
+      "size_bytes": 578,
+      "uncompressed_bytes": 1041
+    },
+    {
+      "condition": "fixed_center_roi",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0001-fixed_center_roi-seed-101.json.gz",
+      "run_index": 1,
+      "seed": 101,
+      "sha256": "75e13842fec41393b6acfd0f23ce373da011edc78b4c2ad0062a23fe87aa4a40",
+      "size_bytes": 598,
+      "uncompressed_bytes": 1096
+    },
+    {
+      "condition": "random_roi",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0002-random_roi-seed-101.json.gz",
+      "run_index": 2,
+      "seed": 101,
+      "sha256": "fb1cc79587ad06548fb65b8ab0c7aa99726135361efa51cc54b791366d5055b0",
+      "size_bytes": 575,
+      "uncompressed_bytes": 1046
+    },
+    {
+      "condition": "full_image",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0003-full_image-seed-101.json.gz",
+      "run_index": 3,
+      "seed": 101,
+      "sha256": "905e5996f2f9a064f26ea228cc0126c7b18a31a743e96c544f9d3e0f16df1cd1",
+      "size_bytes": 579,
+      "uncompressed_bytes": 1041
+    },
+    {
+      "condition": "adaptive_roi",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0004-adaptive_roi-seed-102.json.gz",
+      "run_index": 4,
+      "seed": 102,
+      "sha256": "de240fc28e95e648ce19fab659f75c8d87d0caf7a67de7f99fda9a4a4cf3d4f4",
+      "size_bytes": 577,
+      "uncompressed_bytes": 1038
+    },
+    {
+      "condition": "fixed_center_roi",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0005-fixed_center_roi-seed-102.json.gz",
+      "run_index": 5,
+      "seed": 102,
+      "sha256": "6b5537e1ac52047cd377479e971283eda86c8d0e29f3147edd7c5bbd98bdf56f",
+      "size_bytes": 587,
+      "uncompressed_bytes": 1052
+    },
+    {
+      "condition": "random_roi",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0006-random_roi-seed-102.json.gz",
+      "run_index": 6,
+      "seed": 102,
+      "sha256": "f426df88ca7dac5399eacae87f750c7d6945ce76fe58c3f7d3f5c13964c91107",
+      "size_bytes": 578,
+      "uncompressed_bytes": 1082
+    },
+    {
+      "condition": "full_image",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0007-full_image-seed-102.json.gz",
+      "run_index": 7,
+      "seed": 102,
+      "sha256": "a4b9e516e1e05fee721cad2672f103985be64bd4321ad6e97d4bb26472973f6b",
+      "size_bytes": 577,
+      "uncompressed_bytes": 1038
+    },
+    {
+      "condition": "adaptive_roi",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0008-adaptive_roi-seed-103.json.gz",
+      "run_index": 8,
+      "seed": 103,
+      "sha256": "8f18b28a8c74a91cbfa691bf2d90a7259b015794782444007e3733cd06978eb0",
+      "size_bytes": 575,
+      "uncompressed_bytes": 1040
+    },
+    {
+      "condition": "fixed_center_roi",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0009-fixed_center_roi-seed-103.json.gz",
+      "run_index": 9,
+      "seed": 103,
+      "sha256": "5d21b64c78d0ad043e6c8799622bc8114225c595c8de80c7ec50bf5ce5473882",
+      "size_bytes": 593,
+      "uncompressed_bytes": 1098
+    },
+    {
+      "condition": "random_roi",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0010-random_roi-seed-103.json.gz",
+      "run_index": 10,
+      "seed": 103,
+      "sha256": "a359fc0c3cdcd8aecf8f97d349efb3179bd90127edae055c3936c52de2d9a148",
+      "size_bytes": 572,
+      "uncompressed_bytes": 1045
+    },
+    {
+      "condition": "full_image",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0011-full_image-seed-103.json.gz",
+      "run_index": 11,
+      "seed": 103,
+      "sha256": "73393f48ce192a1d52c073ffffe67699490b80fbfb9334f9f7e586bc405e26c0",
+      "size_bytes": 576,
+      "uncompressed_bytes": 1040
+    }
+  ],
+  "schema_version": "2.0",
+  "storage_policy": "immutable_raw_runs_plus_compact_current_experiment"
+}

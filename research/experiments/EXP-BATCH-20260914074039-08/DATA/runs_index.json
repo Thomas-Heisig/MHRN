@@ -1,0 +1,37 @@
+{
+  "run_count": 3,
+  "runs": [
+    {
+      "condition": "fast_medium_slow",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0000-fast_medium_slow-seed-101.json.gz",
+      "run_index": 0,
+      "seed": 101,
+      "sha256": "8e026c000948a970a23362d2a0f8a03ce4629e3bfb7b22a47373664636da8c05",
+      "size_bytes": 12495,
+      "uncompressed_bytes": 111774
+    },
+    {
+      "condition": "fast_medium_slow",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0001-fast_medium_slow-seed-102.json.gz",
+      "run_index": 1,
+      "seed": 102,
+      "sha256": "78867fde91dad893a9db7b76d61ed5bf507bda37cb8d9d30b4a5730875a5d3b0",
+      "size_bytes": 12491,
+      "uncompressed_bytes": 111774
+    },
+    {
+      "condition": "fast_medium_slow",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0002-fast_medium_slow-seed-103.json.gz",
+      "run_index": 2,
+      "seed": 103,
+      "sha256": "836942cb31464890f4e98babd69d53b6030a710af273e62f049532754fe58e01",
+      "size_bytes": 12492,
+      "uncompressed_bytes": 111774
+    }
+  ],
+  "schema_version": "2.0",
+  "storage_policy": "immutable_raw_runs_plus_compact_current_experiment"
+}

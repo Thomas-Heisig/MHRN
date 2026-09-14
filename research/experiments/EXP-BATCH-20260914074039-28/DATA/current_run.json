@@ -1,0 +1,11 @@
+{
+  "last_archived_run": 8,
+  "raw_artifact": {
+    "format": "json.gz",
+    "path": "DATA/raw/run-0008-feedback_absent-seed-103.json.gz",
+    "sha256": "2daa450292846ea2115819a393fc961ce66387032e5dd3057438f0f52ef95dd1",
+    "size_bytes": 24474,
+    "uncompressed_bytes": 156989
+  },
+  "status": "idle"
+}

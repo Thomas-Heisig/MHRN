@@ -1,0 +1,87 @@
+{
+  "conditions": {
+    "subsystem_profile": {
+      "metrics": {
+        "construction_seconds": {
+          "max": 0.0010282999719493091,
+          "mean": 0.0002786199969705194,
+          "median": 0.00013499998021870852,
+          "min": 0.0001115999766625464,
+          "n": 10,
+          "std": 0.000302527931809029
+        },
+        "core_step_seconds": {
+          "max": 0.09923069999786094,
+          "mean": 0.07841819999739527,
+          "median": 0.07348125000135042,
+          "min": 0.06460600002901629,
+          "n": 10,
+          "std": 0.012126760975092032
+        },
+        "digest_seconds": {
+          "max": 0.0006393999792635441,
+          "mean": 0.00030554000986739995,
+          "median": 0.00023345000226981938,
+          "min": 0.000181600044015795,
+          "n": 10,
+          "std": 0.0001473328992060203
+        },
+        "measured_total_seconds": {
+          "max": 0.10003919998416677,
+          "mean": 0.07900236000423319,
+          "median": 0.07413345001987182,
+          "min": 0.0651868000277318,
+          "n": 10,
+          "std": 0.01223347225833535
+        },
+        "ticks_executed": {
+          "max": 10000.0,
+          "mean": 10000.0,
+          "median": 10000.0,
+          "min": 10000.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "ticks_per_second": {
+          "max": 154784.38528168795,
+          "mean": 130350.76806263349,
+          "median": 136287.51415654522,
+          "min": 100775.26410894576,
+          "n": 10,
+          "std": 18396.71857385436
+        },
+        "total_spikes": {
+          "max": 33.0,
+          "mean": 33.0,
+          "median": 33.0,
+          "min": 33.0,
+          "n": 10,
+          "std": 0.0
+        }
+      },
+      "run_count": 10,
+      "seeds": [
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109,
+        110
+      ]
+    }
+  },
+  "formulas": {
+    "difference": "Delta_x = mean(x_B) - mean(x_A)",
+    "inter_spike_interval": "ISI_i = t_(i+1) - t_i",
+    "mean": "mean(x) = (1/n) * sum_i x_i",
+    "population_std": "sigma = sqrt((1/n) * sum_i (x_i - mean(x))^2)",
+    "ratio": "R_x = mean(x_B) / mean(x_A), defined only when mean(x_A) != 0"
+  },
+  "generated_by": "deterministic_statistics_engine",
+  "run_count": 10,
+  "schema_version": "2.0"
+}

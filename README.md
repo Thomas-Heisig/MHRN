@@ -1,13 +1,15 @@
 <!-- alpha3-current-state -->
 ## Wissenschaftlicher Stand: Alpha.3 / Publikationsfassung 1.5
 
-Kampagne `EXP-EMP-20260913-A3` auf Commit `531f12335ebeebd7242beb4ba0bd95e81b3dfb8e`.
+Kampagne `EXP-EMP-20260913-A3` auf Commit `8e096931a779b2d2eb4d010eb20154150b07bbf2`.
 
 70 ausgewiesene Ausfuehrungen; Status `{'completed': 70}`; 2043 gespeicherte Datensaetze. 25 menschliche Vorlagen werden nicht als Experimente ausgegeben. Die Unterscheidung zwischen Simulation, Grenzaudit, Komponentenfunktion und menschlicher Entscheidung bestimmt die Reichweite aller Aussagen.
 
 Ein protokollierter Lauf, eine bestandene Softwarepruefung und eine wissenschaftliche Annahmeentscheidung bleiben verschiedene Objekte. Die Ausgabe dokumentiert auch verfehlte wissenschaftliche Erfolgskriterien.
 
 Aktueller Einstieg: `research/publications/2026-09-13_recursive-epistemics_v1.5/README.md` (repository-relative). Detaillierte Architektur: `docs/02-architecture/SCIENTIFIC_CONTRACTS_ALPHA3.md`. Die nachfolgenden aelteren Statusabschnitte sind datierte Historie, keine aktuelle CI- oder EVID-Freigabe.
+
+**Letzte README-Aktualisierung: 2026-09-14 auf Commit `8e096931` (v0.6.0-alpha.3).**
 
 # Multi-Scale Homeostatic Recurrence Network (MHRN)
 
@@ -26,24 +28,27 @@ MHRN is the current project name. Historical publications, scientific coordinate
 
 [![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-blue.svg)](https://www.python.org/)
 [![Version](https://img.shields.io/badge/version-0.6.0a3-orange.svg)](pyproject.toml)
+[![Commit](https://img.shields.io/badge/commit-8e096931-blue.svg)](https://github.com/Thomas-Heisig/MHRN/tree/8e096931)
 [![License: MIT](https://img.shields.io/badge/license-MIT-yellow.svg)](LICENSE)
 
 MHRN is a research framework for studying learning, self-organization and embodied closed-loop behavior in a sparse five-dimensional spiking neural network (SNN). The SNN remains the primary adaptive system. Language models, research assistants and peripheral neural networks are bounded components and do not acquire implicit authority over canonical neural state, reward, memory, experiment DATA or accepted EVID.
 
 > **Scientific status:** MHRN is an experimental engineering and research platform. Implementation, passing tests, dashboards, reachable devices, generated reports or available AI/network adapters are not by themselves scientific evidence. The project makes no claim of AGI, consciousness, sentience or biological equivalence.
 
-## Historical baseline snapshot (2026-09-13)
+## Historical baseline snapshot (2026-09-14)
 
 For current source-bound checks, consult CI at the exact commit and
 `tests/test_baseline.json`; older counts below are not current green-status claims.
 
-Updated on **2026-09-13** after extensive v0.6 development:
+Updated on **2026-09-14** after the Alpha.3 scientific audit and publication reconciliation:
 
-- package version: `0.6.0a1`
+- package version: `0.6.0a3`
 - v0.5.0-alpha.7 gate: closed and historically recorded; v0.6 remains an open development milestone
 - latest local full-suite snapshot: **~1130 passed, 7 skipped, 26 pre-existing failures** (CSS, sklearn, platform-specific)
 - current development branch: `main`
-- v0.6 scope: scaling benchmarks, bounded telemetry/storage, deterministic resume and migration compatibility, memory/prediction/behavior profile foundation, full backend API integration, scientific metrics workbench, deterministic frontend routing
+- v0.6 scope: scaling benchmarks, bounded telemetry/storage, deterministic resume and migration compatibility, memory/prediction/behavior profile foundation, full backend API integration, scientific metrics workbench, deterministic frontend routing, recursive document cache dispatch, experiment environment recording, DATA receipt validation
+- Stage 2 (recurrent SNN contract) closed at scoped engineering boundary
+- Stage 3 (plastic neural tissue) contract and deterministic reference runner added
 - release readiness for v0.6 remains open until the exact source-freeze CI and release-readiness snapshot are green
 - **0 active release-blocking backlog items**
 - GitHub `main` is the canonical source; the configured Hugging Face mirror is updated from this branch after repository changes
@@ -52,9 +57,14 @@ Updated on **2026-09-13** after extensive v0.6 development:
 - Black, Ruff, Pylint, Pre-Commit, Mypy, Pyright, Scientific Integrity, security, wheel and Docker are mandatory CI gates
 - Research Catalog facets, Neural Symbiosis gateway runtime, Wesen Profile & Identitaet, Development Timeline and Trusted-LAN access are integrated
 - Bounded memory, prediction and behavior profile foundation completed
-- Full backend API integration (25 endpoints) into 7 new frontend panels
+- Full backend API integration (25 endpoints) into 7+ frontend panels
 - Scientific Observatory with 12 analysis layers
 - Deterministic frontend routing and tab isolation
+- Learning Preparation Studio with partition leakage guards
+- Scientific Research Assistant v0 (read-only, no execution/evidence authority)
+- AIR benchmark safeguards with preregistered protocol
+- Research Experiment Runner with traceable workflow
+- Effective runtime provenance and learning observability at `/api/config`
 
 The dashboard uses explicit unknown-state rendering. Missing telemetry is never replaced with plausible-looking constants.
 
@@ -80,6 +90,11 @@ The dashboard uses explicit unknown-state rendering. Missing telemetry is never 
 | AI boundary | Research AI / Language Organ / Cognitive Advisor contracts remain read-only or proposal-only unless explicitly registered as a treatment |
 | Profile & Identitaet | Schema-v1 holistic technical Wesen profiles with canonical digest, revision history, parent lineage, atomic writes, import/export |
 | Cognition telemetry | Granular memory, prediction, world-model and behavior profile state at `/api/cognition/*` |
+| Learning Preparation Studio | Partition leakage guards, learning profile validation, STDP/eligibility/reward configuration persistence |
+| Scientific Research Assistant | Read-only v0 assistant building deterministic ResearchPacket inputs, schema-validated AIAR records, optional local Ollama adapter; no execution or evidence authority |
+| AIR benchmark | Preregistered methodology review study with 30 held-out labelled cases, 21 defective + 9 negative controls, three repetitions per case/condition |
+| Research Experiment Runner | Traceable workflow: question → conditions → experiment → execute → report → result, bounded `controller.step(ticks)` execution, workflow/manifest/report artifacts |
+| Effective runtime provenance | `/api/config` exposes loaded config path and SHA-256; dashboard distinguishes enabled vs active learning components |
 
 ## Research Catalog and variable dimensions
 
@@ -192,8 +207,8 @@ The next gains should come from evidence closure rather than feature volume:
 
 See:
 
-- [Development roadmap](docs/08-roadmap/ROADMAP.md)
-- [Current TODO](docs/08-roadmap/TODO.md)
+- [Development roadmap](docs/08-roadmap/ROADMAP.md) — Stand 2026-09-13
+- [Current TODO](docs/08-roadmap/TODO.md) — 0 release-blocking items
 - [Research roadmap](docs/08-roadmap/RESEARCH_ROADMAP.md)
 - [Documentation index](docs/README.md)
 - [Scientific evidence framework](research/README.md)

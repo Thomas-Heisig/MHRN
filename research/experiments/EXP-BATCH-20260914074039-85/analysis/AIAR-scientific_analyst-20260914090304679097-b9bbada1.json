@@ -1,0 +1,69 @@
+{
+  "analysis_id": "AIAR-scientific_analyst-20260914090304679097-b9bbada1",
+  "role": "scientific_analyst",
+  "model": {
+    "provider": "ollama",
+    "model_name": "qwen3:8b",
+    "model_digest": "not_reported",
+    "quantization": "not_reported",
+    "context_length": "unknown",
+    "temperature": 0.0,
+    "top_p": 0.9,
+    "seed": "not_reported",
+    "backend_version": "unknown"
+  },
+  "inputs": {
+    "experiment_id": "EXP-BATCH-20260914074039-85",
+    "packet_digest": "b9bbada114000f7a4e6b0cfc9f578dbeafcb3a35edd10c302202b1bb3952ef75"
+  },
+  "output": {
+    "assessment": "Die vorliegenden Daten zeigen keine direkten kausalen Messungen oder statistischen Signifikanztests. Die Experimente sind auf die Prüfung der definierten Grenzen und Verträge beschränkt, ohne Bewusstseins- oder Verstehensmetriken zu berücksichtigen.",
+    "observations": [
+      "Die Experimente wurden mit drei verschiedenen Seeds (101, 102, 103) durchgeführt.",
+      "Die Audit-Status aller Runs ist 'audit_complete' mit 'scientific_evidence' als 'false'.",
+      "Die 'direct_test_of_hypothesis' ist in allen Fällen 'false'.",
+      "Die 'claim_boundary' besagt, dass keine direkte kausale Messung durchgeführt wurde, und die 'audit_complete' bedeutet nur, dass der Vertrag ausgeführt und für die Überprüfung gespeichert wurde."
+    ],
+    "effect_direction": "Es gibt keine Beobachtung von Effekten oder Richtung der Wirkung, da keine kausalen Messungen durchgeführt wurden.",
+    "methodological_concerns": [
+      "Keine registrierte wissenschaftliche Evidenz ist mit diesem Experiment verknüpft.",
+      "Die Git-Provenance ist unvollständig oder nicht verfügbar.",
+      "Die Experimente sind auf die Prüfung von Grenzen und Verträgen beschränkt, ohne Bewusstseins- oder Verstehensmetriken zu berücksichtigen."
+    ],
+    "alternative_explanations": [
+      "Die Stabilität des Core-Netzes könnte durch externe Faktoren beeinflusst werden, die nicht im Experiment berücksichtigt wurden.",
+      "Die verwendeten Metriken sind technisch, aber keine Bewusstseins- oder Verstehensmetriken, was die Interpretation der Ergebnisse einschränkt."
+    ],
+    "recommended_experiments": [
+      "Ein Experiment, das Bewusstseins- oder Verstehensmetriken direkt misst, um die Stabilität des Core-Netzes zu bewerten.",
+      "Ein Experiment, das externe Faktoren isoliert, um deren Einfluss auf die Stabilität des Core-Netzes zu testen.",
+      "Ein Experiment, das die kausalen Beziehungen zwischen Gateway-Plastizität und Core-Stabilität direkt untersucht."
+    ],
+    "requested_evidence": [
+      "Registrierte wissenschaftliche Evidenz, die den Zusammenhang zwischen Gateway-Plastizität und Core-Stabilität belegt.",
+      "Dokumentation der Git-Provenance, um die Replizierbarkeit der Experimente zu gewährleisten.",
+      "Beweise für die Validierung der verwendeten Metriken als Bewusstseins- oder Verstehensmetriken."
+    ],
+    "confidence": 0.0
+  },
+  "provenance": {
+    "prompt_sha256": "657e574e637ad6d2e473f7b440a1f03dc4d0f84f214e62800849a6e205d4a8cd",
+    "research_packet_digest": "b9bbada114000f7a4e6b0cfc9f578dbeafcb3a35edd10c302202b1bb3952ef75",
+    "prompt_protocol_version": "research_assistant_v1",
+    "assistant_schema_version": "1.2",
+    "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+    "model_self_confidence": "0.0"
+  },
+  "epistemic_status": {
+    "evidence": false,
+    "interpretation_only": true,
+    "human_review_required": true
+  },
+  "review": {
+    "status": "pending",
+    "reviewer": null,
+    "reviewed_at": null,
+    "disposition": null
+  },
+  "generated_at": "2026-09-14T09:03:04.679097+00:00"
+}

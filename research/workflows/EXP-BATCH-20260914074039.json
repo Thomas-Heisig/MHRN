@@ -1,0 +1,3391 @@
+{
+  "workflow_id": "EXP-BATCH-20260914074039",
+  "created_at": "2026-09-14T09:16:37.547775+00:00",
+  "protocols": [
+    "sustained_activity_stability_v1",
+    "tonic_spike_reproducibility_v1",
+    "deterministic_replica_v1",
+    "topology_propagation_v1",
+    "stdp_weight_matrix_v1",
+    "stdp_learning_performance_v1",
+    "network_impulse_reproducibility_v1",
+    "temporal_state_registered_v1",
+    "learning_timescale_registered_v1",
+    "regulation_telemetry_v1",
+    "stdp_pair_timing_registered_v1",
+    "stdp_long_stability_boundary_v1",
+    "homeostasis_rate_boundary_v1",
+    "homeostasis_stdp_boundary_v1",
+    "dimension_dynamics_v1",
+    "dimension_propagation_v1",
+    "dimension_modularity_boundary_v1",
+    "dimension_information_boundary_v1",
+    "storage_roundtrip_boundary_v1",
+    "storage_causal_resume_boundary_v1",
+    "storage_density_boundary_v1",
+    "storage_scale_boundary_v1",
+    "million_neuron_scaling_boundary_v1",
+    "self_organization_clusters_boundary_v1",
+    "self_organization_emergence_boundary_v1",
+    "structural_efficiency_boundary_v1",
+    "synaptic_memory_boundary_v1",
+    "embodied_closed_loop_v1",
+    "language_organ_boundary_v1",
+    "authorship_responsibility_audit_v1",
+    "control_responsibility_audit_v1",
+    "epistemic_boundary_audit_v1",
+    "research_assistant_methodology_audit_v1",
+    "science_suite_registered_v1",
+    "recurrence_map_v1",
+    "learning_generalization_v1",
+    "independent_replication_v1",
+    "topology_matched_5d_v1",
+    "closed_loop_regulation_v1",
+    "temporal_order_spiking_v1",
+    "subsystem_performance_v1",
+    "recurrence_scale_v1",
+    "learning_interference_screen_v1",
+    "memory_delayed_information_v1",
+    "world_model_prediction_v1",
+    "behavior_profile_control_v1",
+    "cog_cns_101_v1",
+    "cog_cns_102_v1",
+    "cog_cns_103_v1",
+    "cog_cns_104_v1",
+    "cog_cns_105_v1",
+    "cog_cns_106_v1",
+    "cog_cns_107_v1",
+    "cog_cns_108_v1",
+    "cog_cns_109_v1",
+    "cog_cns_110_v1",
+    "cog_cns_111_v1",
+    "cog_cns_112_v1",
+    "cog_cns_113_v1",
+    "cog_cns_114_v1",
+    "cog_cns_115_v1",
+    "cog_cns_116_v1",
+    "cog_cns_117_v1",
+    "cog_epi_101_v1",
+    "cog_epi_102_v1",
+    "cog_wel_101_v1",
+    "cog_wel_102_v1",
+    "cog_wel_103_v1",
+    "embodied_proprioception_v1",
+    "embodied_mapping_learning_gap_audit_v1",
+    "embodied_perturbation_screen_v1",
+    "embodied_efference_copy_gap_audit_v1",
+    "embodied_morphology_transfer_gap_audit_v1",
+    "connectome_reference_gap_audit_v1",
+    "connectome_topology_screen_v1",
+    "embodied_controller_attribution_v1",
+    "embodied_timing_v1",
+    "dimensional_connectivity_v1",
+    "native_association_holdout_v1",
+    "brian2_single_neuron_v1",
+    "active_scaling_v1",
+    "active_scaling_v2",
+    "gateway_learning_boundary_v1",
+    "gateway_modality_rules_boundary_v1",
+    "gateway_stability_boundary_v1",
+    "gateway_transfer_boundary_v1",
+    "gateway_structure_boundary_v1",
+    "gateway_closed_loop_boundary_v1",
+    "gateway_resources_boundary_v1",
+    "msba_energy_efficiency_v1",
+    "msba_resource_allocation_v1",
+    "msba_visual_roi_v1",
+    "msba_digital_integrity_v1",
+    "msba_modality_compensation_v1"
+  ],
+  "requested_ticks": 1000,
+  "seeds": "42-44",
+  "completed": 63,
+  "blocked": 4,
+  "failed": 27,
+  "results": [
+    {
+      "protocol": "sustained_activity_stability_v1",
+      "ticks": 100000,
+      "seeds": "42,43,44,45,46,47,48,49,50,51",
+      "status": "completed",
+      "experiment_id": "EXP-BATCH-20260914074039-01",
+      "manifest": "experiments/EXP-BATCH-20260914074039-01/manifest.json",
+      "report": "experiments/EXP-BATCH-20260914074039-01/report.md",
+      "workflow": "experiments/EXP-BATCH-20260914074039-01/workflow.json",
+      "statistics": "experiments/EXP-BATCH-20260914074039-01/analysis/statistics.json",
+      "ai_packet": "experiments/EXP-BATCH-20260914074039-01/analysis/ai_packet.json",
+      "raw_run_index": "experiments/EXP-BATCH-20260914074039-01/DATA/runs_index.json",
+      "data_id": "DATA-EXP-BATCH-20260914074039-01",
+      "ai_report": {
+        "status": "generated",
+        "report_id": "AIRR-2026-0001",
+        "json": "experiments/EXP-BATCH-20260914074039-01/reports/AIRR-2026-0001.json",
+        "markdown": "experiments/EXP-BATCH-20260914074039-01/reports/AIRR-2026-0001.md",
+        "human_review": "PENDING",
+        "scientific_evidence": false
+      },
+      "summary": "experiments/EXP-BATCH-20260914074039-01/summary.md",
+      "result": {
+        "run_count": 20,
+        "duration_seconds": 15.515038900019135,
+        "runner": "run_sustained_stability",
+        "ticks_requested": 100000,
+        "seeds_executed": [
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51
+        ],
+        "tick_validation": {
+          "status": "SATISFIED",
+          "mode": "minimum_per_run_with_control_and_treatment",
+          "requested_ticks": 100000,
+          "observed_min": 100000,
+          "observed_max": 100000,
+          "run_count": 20
+        }
+      },
+      "epistemic_layers": {
+        "ui_state": "operator/dashboard progress only; not a scientific result",
+        "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+        "evid": "not_created; requires semantic validation, clean freeze and human review",
+        "interpretation": "post-hoc AI or human interpretation; never execution input"
+      }
+    },
+    {
+      "protocol": "tonic_spike_reproducibility_v1",
+      "ticks": 256,
+      "seeds": "101-103",
+      "status": "completed",
+      "experiment_id": "EXP-BATCH-20260914074039-02",
+      "manifest": "experiments/EXP-BATCH-20260914074039-02/manifest.json",
+      "report": "experiments/EXP-BATCH-20260914074039-02/report.md",
+      "workflow": "experiments/EXP-BATCH-20260914074039-02/workflow.json",
+      "statistics": "experiments/EXP-BATCH-20260914074039-02/analysis/statistics.json",
+      "ai_packet": "experiments/EXP-BATCH-20260914074039-02/analysis/ai_packet.json",
+      "raw_run_index": "experiments/EXP-BATCH-20260914074039-02/DATA/runs_index.json",
+      "data_id": "DATA-EXP-BATCH-20260914074039-02",
+      "ai_report": {
+        "status": "generated",
+        "report_id": "AIRR-2026-0001",
+        "json": "experiments/EXP-BATCH-20260914074039-02/reports/AIRR-2026-0001.json",
+        "markdown": "experiments/EXP-BATCH-20260914074039-02/reports/AIRR-2026-0001.md",
+        "human_review": "PENDING",
+        "scientific_evidence": false
+      },
+      "summary": "experiments/EXP-BATCH-20260914074039-02/summary.md",
+      "result": {
+        "run_count": 3,
+        "duration_seconds": 0.09472789999563247,
+        "runner": "run_tonic_spike_reproducibility",
+        "ticks_requested": 256,
+        "seeds_executed": [
+          101,
+          102,
+          103
+        ],
+        "tick_validation": {
+          "status": "NOT_APPLICABLE",
+          "mode": "protocol_defined_internal_trials",
+          "requested_ticks": 256
+        }
+      },
+      "epistemic_layers": {
+        "ui_state": "operator/dashboard progress only; not a scientific result",
+        "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+        "evid": "not_created; requires semantic validation, clean freeze and human review",
+        "interpretation": "post-hoc AI or human interpretation; never execution input"
+      }
+    },
+    {
+      "protocol": "deterministic_replica_v1",
+      "ticks": 256,
+      "seeds": "101-103",
+      "status": "completed",
+      "experiment_id": "EXP-BATCH-20260914074039-03",
+      "manifest": "experiments/EXP-BATCH-20260914074039-03/manifest.json",
+      "report": "experiments/EXP-BATCH-20260914074039-03/report.md",
+      "workflow": "experiments/EXP-BATCH-20260914074039-03/workflow.json",
+      "statistics": "experiments/EXP-BATCH-20260914074039-03/analysis/statistics.json",
+      "ai_packet": "experiments/EXP-BATCH-20260914074039-03/analysis/ai_packet.json",
+      "raw_run_index": "experiments/EXP-BATCH-20260914074039-03/DATA/runs_index.json",
+      "data_id": "DATA-EXP-BATCH-20260914074039-03",
+      "ai_report": {
+        "status": "generated",
+        "report_id": "AIRR-2026-0001",
+        "json": "experiments/EXP-BATCH-20260914074039-03/reports/AIRR-2026-0001.json",
+        "markdown": "experiments/EXP-BATCH-20260914074039-03/reports/AIRR-2026-0001.md",
+        "human_review": "PENDING",
+        "scientific_evidence": false
+      },
+      "summary": "experiments/EXP-BATCH-20260914074039-03/summary.md",
+      "result": {
+        "run_count": 12,
+        "duration_seconds": 0.06103919999441132,
+        "runner": "run_ping_v2",
+        "ticks_requested": 256,
+        "seeds_executed": [
+          101,
+          102,
+          103
+        ],
+        "tick_validation": {
+          "status": "SATISFIED",
+          "mode": "minimum_per_run",
+          "requested_ticks": 256,
+          "observed_min": 256,
+          "observed_max": 256
+        }
+      },
+      "epistemic_layers": {
+        "ui_state": "operator/dashboard progress only; not a scientific result",
+        "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+        "evid": "not_created; requires semantic validation, clean freeze and human review",
+        "interpretation": "post-hoc AI or human interpretation; never execution input"
+      }
+    },
+    {
+      "protocol": "topology_propagation_v1",
+      "ticks": 256,
+      "seeds": "101-103",
+      "status": "completed",
+      "experiment_id": "EXP-BATCH-20260914074039-04",
+      "manifest": "experiments/EXP-BATCH-20260914074039-04/manifest.json",
+      "report": "experiments/EXP-BATCH-20260914074039-04/report.md",
+      "workflow": "experiments/EXP-BATCH-20260914074039-04/workflow.json",
+      "statistics": "experiments/EXP-BATCH-20260914074039-04/analysis/statistics.json",
+      "ai_packet": "experiments/EXP-BATCH-20260914074039-04/analysis/ai_packet.json",
+      "raw_run_index": "experiments/EXP-BATCH-20260914074039-04/DATA/runs_index.json",
+      "data_id": "DATA-EXP-BATCH-20260914074039-04",
+      "ai_report": {
+        "status": "generated",
+        "report_id": "AIRR-2026-0001",
+        "json": "experiments/EXP-BATCH-20260914074039-04/reports/AIRR-2026-0001.json",
+        "markdown": "experiments/EXP-BATCH-20260914074039-04/reports/AIRR-2026-0001.md",
+        "human_review": "PENDING",
+        "scientific_evidence": false
+      },
+      "summary": "experiments/EXP-BATCH-20260914074039-04/summary.md",
+      "result": {
+        "run_count": 18,
+        "duration_seconds": 0.13028939999639988,
+        "runner": "run_5d",
+        "ticks_requested": 256,
+        "seeds_executed": [
+          101,
+          102,
+          103
+        ],
+        "tick_validation": {
+          "status": "SATISFIED",
+          "mode": "minimum_per_run",
+          "requested_ticks": 256,
+          "observed_min": 256,
+          "observed_max": 256
+        }
+      },
+      "epistemic_layers": {
+        "ui_state": "operator/dashboard progress only; not a scientific result",
+        "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+        "evid": "not_created; requires semantic validation, clean freeze and human review",
+        "interpretation": "post-hoc AI or human interpretation; never execution input"
+      }
+    },
+    {
+      "protocol": "stdp_weight_matrix_v1",
+      "ticks": 1000,
+      "seeds": "101-103",
+      "status": "completed",
+      "experiment_id": "EXP-BATCH-20260914074039-05",
+      "manifest": "experiments/EXP-BATCH-20260914074039-05/manifest.json",
+      "report": "experiments/EXP-BATCH-20260914074039-05/report.md",
+      "workflow": "experiments/EXP-BATCH-20260914074039-05/workflow.json",
+      "statistics": "experiments/EXP-BATCH-20260914074039-05/analysis/statistics.json",
+      "ai_packet": "experiments/EXP-BATCH-20260914074039-05/analysis/ai_packet.json",
+      "raw_run_index": "experiments/EXP-BATCH-20260914074039-05/DATA/runs_index.json",
+      "data_id": "DATA-EXP-BATCH-20260914074039-05",
+      "ai_report": {
+        "status": "generated",
+        "report_id": "AIRR-2026-0001",
+        "json": "experiments/EXP-BATCH-20260914074039-05/reports/AIRR-2026-0001.json",
+        "markdown": "experiments/EXP-BATCH-20260914074039-05/reports/AIRR-2026-0001.md",
+        "human_review": "PENDING",
+        "scientific_evidence": false
+      },
+      "summary": "experiments/EXP-BATCH-20260914074039-05/summary.md",
+      "result": {
+        "run_count": 3,
+        "duration_seconds": 0.10662139998748899,
+        "runner": "run_stdp",
+        "ticks_requested": 1000,
+        "seeds_executed": [
+          101,
+          102,
+          103
+        ],
+        "tick_validation": {
+          "status": "NOT_APPLICABLE",
+          "mode": "protocol_defined_internal_trials",
+          "requested_ticks": 1000
+        }
+      },
+      "epistemic_layers": {
+        "ui_state": "operator/dashboard progress only; not a scientific result",
+        "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+        "evid": "not_created; requires semantic validation, clean freeze and human review",
+        "interpretation": "post-hoc AI or human interpretation; never execution input"
+      }
+    },
+    {
+      "protocol": "stdp_learning_performance_v1",
+      "ticks": 1000,
+      "seeds": "101-103",
+      "status": "completed",
+      "experiment_id": "EXP-BATCH-20260914074039-06",
+      "manifest": "experiments/EXP-BATCH-20260914074039-06/manifest.json",
+      "report": "experiments/EXP-BATCH-20260914074039-06/report.md",
+      "workflow": "experiments/EXP-BATCH-20260914074039-06/workflow.json",
+      "statistics": "experiments/EXP-BATCH-20260914074039-06/analysis/statistics.json",
+      "ai_packet": "experiments/EXP-BATCH-20260914074039-06/analysis/ai_packet.json",
+      "raw_run_index": "experiments/EXP-BATCH-20260914074039-06/DATA/runs_index.json",
+      "data_id": "DATA-EXP-BATCH-20260914074039-06",
+      "ai_report": {
+        "status": "generated",
+        "report_id": "AIRR-2026-0001",
+        "json": "experiments/EXP-BATCH-20260914074039-06/reports/AIRR-2026-0001.json",
+        "markdown": "experiments/EXP-BATCH-20260914074039-06/reports/AIRR-2026-0001.md",
+        "human_review": "PENDING",
+        "scientific_evidence": false
+      },
+      "summary": "experiments/EXP-BATCH-20260914074039-06/summary.md",
+      "result": {
+        "run_count": 9,
+        "duration_seconds": 0.2531027999939397,
+        "runner": "run_learning_repeat",
+        "ticks_requested": 1000,
+        "seeds_executed": [
+          101,
+          102,
+          103
+        ],
+        "tick_validation": {
+          "status": "NOT_APPLICABLE",
+          "mode": "protocol_defined_internal_trials",
+          "requested_ticks": 1000
+        }
+      },
+      "epistemic_layers": {
+        "ui_state": "operator/dashboard progress only; not a scientific result",
+        "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+        "evid": "not_created; requires semantic validation, clean freeze and human review",
+        "interpretation": "post-hoc AI or human interpretation; never execution input"
+      }
+    },
+    {
+      "protocol": "network_impulse_reproducibility_v1",
+      "ticks": 256,
+      "seeds": "101-103",
+      "status": "completed",
+      "experiment_id": "EXP-BATCH-20260914074039-07",
+      "manifest": "experiments/EXP-BATCH-20260914074039-07/manifest.json",
+      "report": "experiments/EXP-BATCH-20260914074039-07/report.md",
+      "workflow": "experiments/EXP-BATCH-20260914074039-07/workflow.json",
+      "statistics": "experiments/EXP-BATCH-20260914074039-07/analysis/statistics.json",
+      "ai_packet": "experiments/EXP-BATCH-20260914074039-07/analysis/ai_packet.json",
+      "raw_run_index": "experiments/EXP-BATCH-20260914074039-07/DATA/runs_index.json",
+      "data_id": "DATA-EXP-BATCH-20260914074039-07",
+      "ai_report": {
+        "status": "generated",
+        "report_id": "AIRR-2026-0001",
+        "json": "experiments/EXP-BATCH-20260914074039-07/reports/AIRR-2026-0001.json",
+        "markdown": "experiments/EXP-BATCH-20260914074039-07/reports/AIRR-2026-0001.md",
+        "human_review": "PENDING",
+        "scientific_evidence": false
+      },
+      "summary": "experiments/EXP-BATCH-20260914074039-07/summary.md",
+      "result": {
+        "run_count": 12,
+        "duration_seconds": 0.10253620002185926,
+        "runner": "run_ping_v2",
+        "ticks_requested": 256,
+        "seeds_executed": [
+          101,
+          102,
+          103
+        ],
+        "tick_validation": {
+          "status": "SATISFIED",
+          "mode": "minimum_per_run",
+          "requested_ticks": 256,
+          "observed_min": 256,
+          "observed_max": 256
+        }
+      },
+      "epistemic_layers": {
+        "ui_state": "operator/dashboard progress only; not a scientific result",
+        "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+        "evid": "not_created; requires semantic validation, clean freeze and human review",
+        "interpretation": "post-hoc AI or human interpretation; never execution input"
+      }
+    },
+    {
+      "protocol": "temporal_state_registered_v1",
+      "ticks": 256,
+      "seeds": "101-103",
+      "status": "completed",
+      "experiment_id": "EXP-BATCH-20260914074039-08",
+      "manifest": "experiments/EXP-BATCH-20260914074039-08/manifest.json",
+      "report": "experiments/EXP-BATCH-20260914074039-08/report.md",
+      "workflow": "experiments/EXP-BATCH-20260914074039-08/workflow.json",
+      "statistics": "experiments/EXP-BATCH-20260914074039-08/analysis/statistics.json",
+      "ai_packet": "experiments/EXP-BATCH-20260914074039-08/analysis/ai_packet.json",
+      "raw_run_index": "experiments/EXP-BATCH-20260914074039-08/DATA/runs_index.json",
+      "data_id": "DATA-EXP-BATCH-20260914074039-08",
+      "ai_report": {
+        "status": "generated",
+        "report_id": "AIRR-2026-0001",
+        "json": "experiments/EXP-BATCH-20260914074039-08/reports/AIRR-2026-0001.json",
+        "markdown": "experiments/EXP-BATCH-20260914074039-08/reports/AIRR-2026-0001.md",
+        "human_review": "PENDING",
+        "scientific_evidence": false
+      },
+      "summary": "experiments/EXP-BATCH-20260914074039-08/summary.md",
+      "result": {
+        "run_count": 3,
+        "duration_seconds": 0.23622159997466952,
+        "runner": "run_temporal",
+        "ticks_requested": 256,
+        "seeds_executed": [
+          101,
+          102,
+          103
+        ],
+        "tick_validation": {
+          "status": "SATISFIED",
+          "mode": "minimum_per_run",
+          "requested_ticks": 256,
+          "observed_min": 256,
+          "observed_max": 256
+        }
+      },
+      "epistemic_layers": {
+        "ui_state": "operator/dashboard progress only; not a scientific result",
+        "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+        "evid": "not_created; requires semantic validation, clean freeze and human review",
+        "interpretation": "post-hoc AI or human interpretation; never execution input"
+      }
+    },
+    {
+      "protocol": "learning_timescale_registered_v1",
+      "ticks": 100000,
+      "seeds": "101-103",
+      "status": "completed",
+      "experiment_id": "EXP-BATCH-20260914074039-09",
+      "manifest": "experiments/EXP-BATCH-20260914074039-09/manifest.json",
+      "report": "experiments/EXP-BATCH-20260914074039-09/report.md",
+      "workflow": "experiments/EXP-BATCH-20260914074039-09/workflow.json",
+      "statistics": "experiments/EXP-BATCH-20260914074039-09/analysis/statistics.json",
+      "ai_packet": "experiments/EXP-BATCH-20260914074039-09/analysis/ai_packet.json",
+      "raw_run_index": "experiments/EXP-BATCH-20260914074039-09/DATA/runs_index.json",
+      "data_id": "DATA-EXP-BATCH-20260914074039-09",
+      "ai_report": {
+        "status": "generated",
+        "report_id": "AIRR-2026-0001",
+        "json": "experiments/EXP-BATCH-20260914074039-09/reports/AIRR-2026-0001.json",
+        "markdown": "experiments/EXP-BATCH-20260914074039-09/reports/AIRR-2026-0001.md",
+        "human_review": "PENDING",
+        "scientific_evidence": false
+      },
+      "summary": "experiments/EXP-BATCH-20260914074039-09/summary.md",
+      "result": {
+        "run_count": 12,
+        "duration_seconds": 2.0622502000187524,
+        "runner": "run_time",
+        "ticks_requested": 100000,
+        "seeds_executed": [
+          101,
+          102,
+          103
+        ],
+        "tick_validation": {
+          "status": "SATISFIED",
+          "mode": "terminal_tick_per_seed",
+          "requested_ticks": 100000
+        }
+      },
+      "epistemic_layers": {
+        "ui_state": "operator/dashboard progress only; not a scientific result",
+        "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+        "evid": "not_created; requires semantic validation, clean freeze and human review",
+        "interpretation": "post-hoc AI or human interpretation; never execution input"
+      }
+    },
+    {
+      "protocol": "regulation_telemetry_v1",
+      "ticks": 1000,
+      "seeds": "101-103",
+      "status": "completed",
+      "experiment_id": "EXP-BATCH-20260914074039-10",
+      "manifest": "experiments/EXP-BATCH-20260914074039-10/manifest.json",
+      "report": "experiments/EXP-BATCH-20260914074039-10/report.md",
+      "workflow": "experiments/EXP-BATCH-20260914074039-10/workflow.json",
+      "statistics": "experiments/EXP-BATCH-20260914074039-10/analysis/statistics.json",
+      "ai_packet": "experiments/EXP-BATCH-20260914074039-10/analysis/ai_packet.json",
+      "raw_run_index": "experiments/EXP-BATCH-20260914074039-10/DATA/runs_index.json",
+      "data_id": "DATA-EXP-BATCH-20260914074039-10",
+      "ai_report": {
+        "status": "generated",
+        "report_id": "AIRR-2026-0001",
+        "json": "experiments/EXP-BATCH-20260914074039-10/reports/AIRR-2026-0001.json",
+        "markdown": "experiments/EXP-BATCH-20260914074039-10/reports/AIRR-2026-0001.md",
+        "human_review": "PENDING",
+        "scientific_evidence": false
+      },
+      "summary": "experiments/EXP-BATCH-20260914074039-10/summary.md",
+      "result": {
+        "run_count": 9,
+        "duration_seconds": 0.023810499988030642,
+        "runner": "run_regulation",
+        "ticks_requested": 1000,
+        "seeds_executed": [
+          101,
+          102,
+          103
+        ],
+        "tick_validation": {
+          "status": "NOT_APPLICABLE",
+          "mode": "protocol_defined_internal_trials",
+          "requested_ticks": 1000
+        }
+      },
+      "epistemic_layers": {
+        "ui_state": "operator/dashboard progress only; not a scientific result",
+        "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+        "evid": "not_created; requires semantic validation, clean freeze and human review",
+        "interpretation": "post-hoc AI or human interpretation; never execution input"
+      }
+    },
+    {
+      "protocol": "stdp_pair_timing_registered_v1",
+      "ticks": 1000,
+      "seeds": "101-103",
+      "status": "completed",
+      "experiment_id": "EXP-BATCH-20260914074039-11",
+      "manifest": "experiments/EXP-BATCH-20260914074039-11/manifest.json",
+      "report": "experiments/EXP-BATCH-20260914074039-11/report.md",
+      "workflow": "experiments/EXP-BATCH-20260914074039-11/workflow.json",
+      "statistics": "experiments/EXP-BATCH-20260914074039-11/analysis/statistics.json",
+      "ai_packet": "experiments/EXP-BATCH-20260914074039-11/analysis/ai_packet.json",
+      "raw_run_index": "experiments/EXP-BATCH-20260914074039-11/DATA/runs_index.json",
+      "data_id": "DATA-EXP-BATCH-20260914074039-11",
+      "ai_report": {
+        "status": "generated",
+        "report_id": "AIRR-2026-0001",
+        "json": "experiments/EXP-BATCH-20260914074039-11/reports/AIRR-2026-0001.json",
+        "markdown": "experiments/EXP-BATCH-20260914074039-11/reports/AIRR-2026-0001.md",
+        "human_review": "PENDING",
+        "scientific_evidence": false
+      },
+      "summary": "experiments/EXP-BATCH-20260914074039-11/summary.md",
+      "result": {
+        "run_count": 3,
+        "duration_seconds": 0.047335200011730194,
+        "runner": "run_stdp_pair_registered",
+        "ticks_requested": 1000,
+        "seeds_executed": [
+          101,
+          102,
+          103
+        ],
+        "tick_validation": {
+          "status": "NOT_APPLICABLE",
+          "mode": "protocol_defined_internal_trials",
+          "requested_ticks": 1000
+        }
+      },
+      "epistemic_layers": {
+        "ui_state": "operator/dashboard progress only; not a scientific result",
+        "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+        "evid": "not_created; requires semantic validation, clean freeze and human review",
+        "interpretation": "post-hoc AI or human interpretation; never execution input"
+      }
+    },
+    {
+      "protocol": "stdp_long_stability_boundary_v1",
+      "ticks": 1000,
+      "seeds": "101-103",
+      "status": "completed",
+      "experiment_id": "EXP-BATCH-20260914074039-12",
+      "manifest": "experiments/EXP-BATCH-20260914074039-12/manifest.json",
+      "report": "experiments/EXP-BATCH-20260914074039-12/report.md",
+      "workflow": "experiments/EXP-BATCH-20260914074039-12/workflow.json",
+      "statistics": "experiments/EXP-BATCH-20260914074039-12/analysis/statistics.json",
+      "ai_packet": "experiments/EXP-BATCH-20260914074039-12/analysis/ai_packet.json",
+      "raw_run_index": "experiments/EXP-BATCH-20260914074039-12/DATA/runs_index.json",
+      "data_id": "DATA-EXP-BATCH-20260914074039-12",
+      "ai_report": {
+        "status": "generated",
+        "report_id": "AIRR-2026-0001",
+        "json": "experiments/EXP-BATCH-20260914074039-12/reports/AIRR-2026-0001.json",
+        "markdown": "experiments/EXP-BATCH-20260914074039-12/reports/AIRR-2026-0001.md",
+        "human_review": "PENDING",
+        "scientific_evidence": false
+      },
+      "summary": "experiments/EXP-BATCH-20260914074039-12/summary.md",
+      "result": {
+        "run_count": 3,
+        "duration_seconds": 0.028397599991876632,
+        "runner": "run_boundary_audit",
+        "ticks_requested": 1000,
+        "seeds_executed": [
+          101,
+          102,
+          103
+        ],
+        "tick_validation": {
+          "status": "NOT_APPLICABLE",
+          "mode": "protocol_defined_internal_trials",
+          "requested_ticks": 1000
+        }
+      },
+      "epistemic_layers": {
+        "ui_state": "operator/dashboard progress only; not a scientific result",
+        "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+        "evid": "not_created; requires semantic validation, clean freeze and human review",
+        "interpretation": "post-hoc AI or human interpretation; never execution input"
+      }
+    },
+    {
+      "protocol": "homeostasis_rate_boundary_v1",
+      "ticks": 1000,
+      "seeds": "101-103",
+      "status": "completed",
+      "experiment_id": "EXP-BATCH-20260914074039-13",
+      "manifest": "experiments/EXP-BATCH-20260914074039-13/manifest.json",
+      "report": "experiments/EXP-BATCH-20260914074039-13/report.md",
+      "workflow": "experiments/EXP-BATCH-20260914074039-13/workflow.json",
+      "statistics": "experiments/EXP-BATCH-20260914074039-13/analysis/statistics.json",
+      "ai_packet": "experiments/EXP-BATCH-20260914074039-13/analysis/ai_packet.json",
+      "raw_run_index": "experiments/EXP-BATCH-20260914074039-13/DATA/runs_index.json",
+      "data_id": "DATA-EXP-BATCH-20260914074039-13",
+      "ai_report": {
+        "status": "generated",
+        "report_id": "AIRR-2026-0001",
+        "json": "experiments/EXP-BATCH-20260914074039-13/reports/AIRR-2026-0001.json",
+        "markdown": "experiments/EXP-BATCH-20260914074039-13/reports/AIRR-2026-0001.md",
+        "human_review": "PENDING",
+        "scientific_evidence": false
+      },
+      "summary": "experiments/EXP-BATCH-20260914074039-13/summary.md",
+      "result": {
+        "run_count": 3,
+        "duration_seconds": 0.15113779995590448,
+        "runner": "run_boundary_audit",
+        "ticks_requested": 1000,
+        "seeds_executed": [
+          101,
+          102,
+          103
+        ],
+        "tick_validation": {
+          "status": "NOT_APPLICABLE",
+          "mode": "protocol_defined_internal_trials",
+          "requested_ticks": 1000
+        }
+      },
+      "epistemic_layers": {
+        "ui_state": "operator/dashboard progress only; not a scientific result",
+        "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+        "evid": "not_created; requires semantic validation, clean freeze and human review",
+        "interpretation": "post-hoc AI or human interpretation; never execution input"
+      }
+    },
+    {
+      "protocol": "homeostasis_stdp_boundary_v1",
+      "ticks": 1000,
+      "seeds": "101-103",
+      "status": "completed",
+      "experiment_id": "EXP-BATCH-20260914074039-14",
+      "manifest": "experiments/EXP-BATCH-20260914074039-14/manifest.json",
+      "report": "experiments/EXP-BATCH-20260914074039-14/report.md",
+      "workflow": "experiments/EXP-BATCH-20260914074039-14/workflow.json",
+      "statistics": "experiments/EXP-BATCH-20260914074039-14/analysis/statistics.json",
+      "ai_packet": "experiments/EXP-BATCH-20260914074039-14/analysis/ai_packet.json",
+      "raw_run_index": "experiments/EXP-BATCH-20260914074039-14/DATA/runs_index.json",
+      "data_id": "DATA-EXP-BATCH-20260914074039-14",
+      "ai_report": {
+        "status": "generated",
+        "report_id": "AIRR-2026-0001",
+        "json": "experiments/EXP-BATCH-20260914074039-14/reports/AIRR-2026-0001.json",
+        "markdown": "experiments/EXP-BATCH-20260914074039-14/reports/AIRR-2026-0001.md",
+        "human_review": "PENDING",
+        "scientific_evidence": false
+      },
+      "summary": "experiments/EXP-BATCH-20260914074039-14/summary.md",
+      "result": {
+        "run_count": 3,
+        "duration_seconds": 0.03254650003509596,
+        "runner": "run_boundary_audit",
+        "ticks_requested": 1000,
+        "seeds_executed": [
+          101,
+          102,
+          103
+        ],
+        "tick_validation": {
+          "status": "NOT_APPLICABLE",
+          "mode": "protocol_defined_internal_trials",
+          "requested_ticks": 1000
+        }
+      },
+      "epistemic_layers": {
+        "ui_state": "operator/dashboard progress only; not a scientific result",
+        "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+        "evid": "not_created; requires semantic validation, clean freeze and human review",
+        "interpretation": "post-hoc AI or human interpretation; never execution input"
+      }
+    },
+    {
+      "protocol": "dimension_dynamics_v1",
+      "ticks": 256,
+      "seeds": "101-103",
+      "status": "completed",
+      "experiment_id": "EXP-BATCH-20260914074039-15",
+      "manifest": "experiments/EXP-BATCH-20260914074039-15/manifest.json",
+      "report": "experiments/EXP-BATCH-20260914074039-15/report.md",
+      "workflow": "experiments/EXP-BATCH-20260914074039-15/workflow.json",
+      "statistics": "experiments/EXP-BATCH-20260914074039-15/analysis/statistics.json",
+      "ai_packet": "experiments/EXP-BATCH-20260914074039-15/analysis/ai_packet.json",
+      "raw_run_index": "experiments/EXP-BATCH-20260914074039-15/DATA/runs_index.json",
+      "data_id": "DATA-EXP-BATCH-20260914074039-15",
+      "ai_report": {
+        "status": "generated",
+        "report_id": "AIRR-2026-0001",
+        "json": "experiments/EXP-BATCH-20260914074039-15/reports/AIRR-2026-0001.json",
+        "markdown": "experiments/EXP-BATCH-20260914074039-15/reports/AIRR-2026-0001.md",
+        "human_review": "PENDING",
+        "scientific_evidence": false
+      },
+      "summary": "experiments/EXP-BATCH-20260914074039-15/summary.md",
+      "result": {
+        "run_count": 18,
+        "duration_seconds": 0.06435380002949387,
+        "runner": "run_5d",
+        "ticks_requested": 256,
+        "seeds_executed": [
+          101,
+          102,
+          103
+        ],
+        "tick_validation": {
+          "status": "SATISFIED",
+          "mode": "minimum_per_run",
+          "requested_ticks": 256,
+          "observed_min": 256,
+          "observed_max": 256
+        }
+      },
+      "epistemic_layers": {
+        "ui_state": "operator/dashboard progress only; not a scientific result",
+        "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+        "evid": "not_created; requires semantic validation, clean freeze and human review",
+        "interpretation": "post-hoc AI or human interpretation; never execution input"
+      }
+    },
+    {
+      "protocol": "dimension_propagation_v1",
+      "ticks": 256,
+      "seeds": "101-103",
+      "status": "completed",
+      "experiment_id": "EXP-BATCH-20260914074039-16",
+      "manifest": "experiments/EXP-BATCH-20260914074039-16/manifest.json",
+      "report": "experiments/EXP-BATCH-20260914074039-16/report.md",
+      "workflow": "experiments/EXP-BATCH-20260914074039-16/workflow.json",
+      "statistics": "experiments/EXP-BATCH-20260914074039-16/analysis/statistics.json",
+      "ai_packet": "experiments/EXP-BATCH-20260914074039-16/analysis/ai_packet.json",
+      "raw_run_index": "experiments/EXP-BATCH-20260914074039-16/DATA/runs_index.json",
+      "data_id": "DATA-EXP-BATCH-20260914074039-16",
+      "ai_report": {
+        "status": "generated",
+        "report_id": "AIRR-2026-0001",
+        "json": "experiments/EXP-BATCH-20260914074039-16/reports/AIRR-2026-0001.json",
+        "markdown": "experiments/EXP-BATCH-20260914074039-16/reports/AIRR-2026-0001.md",
+        "human_review": "PENDING",
+        "scientific_evidence": false
+      },
+      "summary": "experiments/EXP-BATCH-20260914074039-16/summary.md",
+      "result": {
+        "run_count": 18,
+        "duration_seconds": 0.12718140002107248,
+        "runner": "run_5d",
+        "ticks_requested": 256,
+        "seeds_executed": [
+          101,
+          102,
+          103
+        ],
+        "tick_validation": {
+          "status": "SATISFIED",
+          "mode": "minimum_per_run",
+          "requested_ticks": 256,
+          "observed_min": 256,
+          "observed_max": 256
+        }
+      },
+      "epistemic_layers": {
+        "ui_state": "operator/dashboard progress only; not a scientific result",
+        "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+        "evid": "not_created; requires semantic validation, clean freeze and human review",
+        "interpretation": "post-hoc AI or human interpretation; never execution input"
+      }
+    },
+    {
+      "protocol": "dimension_modularity_boundary_v1",
+      "ticks": 1000,
+      "seeds": "101-103",
+      "status": "completed",
+      "experiment_id": "EXP-BATCH-20260914074039-17",
+      "manifest": "experiments/EXP-BATCH-20260914074039-17/manifest.json",
+      "report": "experiments/EXP-BATCH-20260914074039-17/report.md",
+      "workflow": "experiments/EXP-BATCH-20260914074039-17/workflow.json",
+      "statistics": "experiments/EXP-BATCH-20260914074039-17/analysis/statistics.json",
+      "ai_packet": "experiments/EXP-BATCH-20260914074039-17/analysis/ai_packet.json",
+      "raw_run_index": "experiments/EXP-BATCH-20260914074039-17/DATA/runs_index.json",
+      "data_id": "DATA-EXP-BATCH-20260914074039-17",
+      "ai_report": {
+        "status": "generated",
+        "report_id": "AIRR-2026-0001",
+        "json": "experiments/EXP-BATCH-20260914074039-17/reports/AIRR-2026-0001.json",
+        "markdown": "experiments/EXP-BATCH-20260914074039-17/reports/AIRR-2026-0001.md",
+        "human_review": "PENDING",
+        "scientific_evidence": false
+      },
+      "summary": "experiments/EXP-BATCH-20260914074039-17/summary.md",
+      "result": {
+        "run_count": 3,
+        "duration_seconds": 0.015169599966611713,
+        "runner": "run_boundary_audit",
+        "ticks_requested": 1000,
+        "seeds_executed": [
+          101,
+          102,
+          103
+        ],
+        "tick_validation": {
+          "status": "NOT_APPLICABLE",
+          "mode": "protocol_defined_internal_trials",
+          "requested_ticks": 1000
+        }
+      },
+      "epistemic_layers": {
+        "ui_state": "operator/dashboard progress only; not a scientific result",
+        "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+        "evid": "not_created; requires semantic validation, clean freeze and human review",
+        "interpretation": "post-hoc AI or human interpretation; never execution input"
+      }
+    },
+    {
+      "protocol": "dimension_information_boundary_v1",
+      "ticks": 1000,
+      "seeds": "101-103",
+      "status": "completed",
+      "experiment_id": "EXP-BATCH-20260914074039-18",
+      "manifest": "experiments/EXP-BATCH-20260914074039-18/manifest.json",
+      "report": "experiments/EXP-BATCH-20260914074039-18/report.md",
+      "workflow": "experiments/EXP-BATCH-20260914074039-18/workflow.json",
+      "statistics": "experiments/EXP-BATCH-20260914074039-18/analysis/statistics.json",
+      "ai_packet": "experiments/EXP-BATCH-20260914074039-18/analysis/ai_packet.json",
+      "raw_run_index": "experiments/EXP-BATCH-20260914074039-18/DATA/runs_index.json",
+      "data_id": "DATA-EXP-BATCH-20260914074039-18",
+      "ai_report": {
+        "status": "generated",
+        "report_id": "AIRR-2026-0001",
+        "json": "experiments/EXP-BATCH-20260914074039-18/reports/AIRR-2026-0001.json",
+        "markdown": "experiments/EXP-BATCH-20260914074039-18/reports/AIRR-2026-0001.md",
+        "human_review": "PENDING",
+        "scientific_evidence": false
+      },
+      "summary": "experiments/EXP-BATCH-20260914074039-18/summary.md",
+      "result": {
+        "run_count": 3,
+        "duration_seconds": 0.08842230000300333,
+        "runner": "run_boundary_audit",
+        "ticks_requested": 1000,
+        "seeds_executed": [
+          101,
+          102,
+          103
+        ],
+        "tick_validation": {
+          "status": "NOT_APPLICABLE",
+          "mode": "protocol_defined_internal_trials",
+          "requested_ticks": 1000
+        }
+      },
+      "epistemic_layers": {
+        "ui_state": "operator/dashboard progress only; not a scientific result",
+        "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+        "evid": "not_created; requires semantic validation, clean freeze and human review",
+        "interpretation": "post-hoc AI or human interpretation; never execution input"
+      }
+    },
+    {
+      "protocol": "storage_roundtrip_boundary_v1",
+      "ticks": 1000,
+      "seeds": "101-103",
+      "status": "completed",
+      "experiment_id": "EXP-BATCH-20260914074039-19",
+      "manifest": "experiments/EXP-BATCH-20260914074039-19/manifest.json",
+      "report": "experiments/EXP-BATCH-20260914074039-19/report.md",
+      "workflow": "experiments/EXP-BATCH-20260914074039-19/workflow.json",
+      "statistics": "experiments/EXP-BATCH-20260914074039-19/analysis/statistics.json",
+      "ai_packet": "experiments/EXP-BATCH-20260914074039-19/analysis/ai_packet.json",
+      "raw_run_index": "experiments/EXP-BATCH-20260914074039-19/DATA/runs_index.json",
+      "data_id": "DATA-EXP-BATCH-20260914074039-19",
+      "ai_report": {
+        "status": "generated",
+        "report_id": "AIRR-2026-0001",
+        "json": "experiments/EXP-BATCH-20260914074039-19/reports/AIRR-2026-0001.json",
+        "markdown": "experiments/EXP-BATCH-20260914074039-19/reports/AIRR-2026-0001.md",
+        "human_review": "PENDING",
+        "scientific_evidence": false
+      },
+      "summary": "experiments/EXP-BATCH-20260914074039-19/summary.md",
+      "result": {
+        "run_count": 3,
+        "duration_seconds": 0.023250300029758364,
+        "runner": "run_boundary_audit",
+        "ticks_requested": 1000,
+        "seeds_executed": [
+          101,
+          102,
+          103
+        ],
+        "tick_validation": {
+          "status": "NOT_APPLICABLE",
+          "mode": "protocol_defined_internal_trials",
+          "requested_ticks": 1000
+        }
+      },
+      "epistemic_layers": {
+        "ui_state": "operator/dashboard progress only; not a scientific result",
+        "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+        "evid": "not_created; requires semantic validation, clean freeze and human review",
+        "interpretation": "post-hoc AI or human interpretation; never execution input"
+      }
+    },
+    {
+      "protocol": "storage_causal_resume_boundary_v1",
+      "ticks": 1000,
+      "seeds": "101-103",
+      "status": "completed",
+      "experiment_id": "EXP-BATCH-20260914074039-20",
+      "manifest": "experiments/EXP-BATCH-20260914074039-20/manifest.json",
+      "report": "experiments/EXP-BATCH-20260914074039-20/report.md",
+      "workflow": "experiments/EXP-BATCH-20260914074039-20/workflow.json",
+      "statistics": "experiments/EXP-BATCH-20260914074039-20/analysis/statistics.json",
+      "ai_packet": "experiments/EXP-BATCH-20260914074039-20/analysis/ai_packet.json",
+      "raw_run_index": "experiments/EXP-BATCH-20260914074039-20/DATA/runs_index.json",
+      "data_id": "DATA-EXP-BATCH-20260914074039-20",
+      "ai_report": {
+        "status": "generated",
+        "report_id": "AIRR-2026-0001",
+        "json": "experiments/EXP-BATCH-20260914074039-20/reports/AIRR-2026-0001.json",
+        "markdown": "experiments/EXP-BATCH-20260914074039-20/reports/AIRR-2026-0001.md",
+        "human_review": "PENDING",
+        "scientific_evidence": false
+      },
+      "summary": "experiments/EXP-BATCH-20260914074039-20/summary.md",
+      "result": {
+        "run_count": 3,
+        "duration_seconds": 0.04588930000318214,
+        "runner": "run_boundary_audit",
+        "ticks_requested": 1000,
+        "seeds_executed": [
+          101,
+          102,
+          103
+        ],
+        "tick_validation": {
+          "status": "NOT_APPLICABLE",
+          "mode": "protocol_defined_internal_trials",
+          "requested_ticks": 1000
+        }
+      },
+      "epistemic_layers": {
+        "ui_state": "operator/dashboard progress only; not a scientific result",
+        "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+        "evid": "not_created; requires semantic validation, clean freeze and human review",
+        "interpretation": "post-hoc AI or human interpretation; never execution input"
+      }
+    },
+    {
+      "protocol": "storage_density_boundary_v1",
+      "ticks": 1000,
+      "seeds": "101-103",
+      "status": "completed",
+      "experiment_id": "EXP-BATCH-20260914074039-21",
+      "manifest": "experiments/EXP-BATCH-20260914074039-21/manifest.json",
+      "report": "experiments/EXP-BATCH-20260914074039-21/report.md",
+      "workflow": "experiments/EXP-BATCH-20260914074039-21/workflow.json",
+      "statistics": "experiments/EXP-BATCH-20260914074039-21/analysis/statistics.json",
+      "ai_packet": "experiments/EXP-BATCH-20260914074039-21/analysis/ai_packet.json",
+      "raw_run_index": "experiments/EXP-BATCH-20260914074039-21/DATA/runs_index.json",
+      "data_id": "DATA-EXP-BATCH-20260914074039-21",
+      "ai_report": {
+        "status": "generated",
+        "report_id": "AIRR-2026-0001",
+        "json": "experiments/EXP-BATCH-20260914074039-21/reports/AIRR-2026-0001.json",
+        "markdown": "experiments/EXP-BATCH-20260914074039-21/reports/AIRR-2026-0001.md",
+        "human_review": "PENDING",
+        "scientific_evidence": false
+      },
+      "summary": "experiments/EXP-BATCH-20260914074039-21/summary.md",
+      "result": {
+        "run_count": 3,
+        "duration_seconds": 0.012370599957648665,
+        "runner": "run_boundary_audit",
+        "ticks_requested": 1000,
+        "seeds_executed": [
+          101,
+          102,
+          103
+        ],
+        "tick_validation": {
+          "status": "NOT_APPLICABLE",
+          "mode": "protocol_defined_internal_trials",
+          "requested_ticks": 1000
+        }
+      },
+      "epistemic_layers": {
+        "ui_state": "operator/dashboard progress only; not a scientific result",
+        "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+        "evid": "not_created; requires semantic validation, clean freeze and human review",
+        "interpretation": "post-hoc AI or human interpretation; never execution input"
+      }
+    },
+    {
+      "protocol": "storage_scale_boundary_v1",
+      "ticks": 1000,
+      "seeds": "101-103",
+      "status": "completed",
+      "experiment_id": "EXP-BATCH-20260914074039-22",
+      "manifest": "experiments/EXP-BATCH-20260914074039-22/manifest.json",
+      "report": "experiments/EXP-BATCH-20260914074039-22/report.md",
+      "workflow": "experiments/EXP-BATCH-20260914074039-22/workflow.json",
+      "statistics": "experiments/EXP-BATCH-20260914074039-22/analysis/statistics.json",
+      "ai_packet": "experiments/EXP-BATCH-20260914074039-22/analysis/ai_packet.json",
+      "raw_run_index": "experiments/EXP-BATCH-20260914074039-22/DATA/runs_index.json",
+      "data_id": "DATA-EXP-BATCH-20260914074039-22",
+      "ai_report": {
+        "status": "generated",
+        "report_id": "AIRR-2026-0001",
+        "json": "experiments/EXP-BATCH-20260914074039-22/reports/AIRR-2026-0001.json",
+        "markdown": "experiments/EXP-BATCH-20260914074039-22/reports/AIRR-2026-0001.md",
+        "human_review": "PENDING",
+        "scientific_evidence": false
+      },
+      "summary": "experiments/EXP-BATCH-20260914074039-22/summary.md",
+      "result": {
+        "run_count": 3,
+        "duration_seconds": 0.02655650000087917,
+        "runner": "run_boundary_audit",
+        "ticks_requested": 1000,
+        "seeds_executed": [
+          101,
+          102,
+          103
+        ],
+        "tick_validation": {
+          "status": "NOT_APPLICABLE",
+          "mode": "protocol_defined_internal_trials",
+          "requested_ticks": 1000
+        }
+      },
+      "epistemic_layers": {
+        "ui_state": "operator/dashboard progress only; not a scientific result",
+        "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+        "evid": "not_created; requires semantic validation, clean freeze and human review",
+        "interpretation": "post-hoc AI or human interpretation; never execution input"
+      }
+    },
+    {
+      "protocol": "million_neuron_scaling_boundary_v1",
+      "ticks": 1000,
+      "seeds": "101-103",
+      "status": "completed",
+      "experiment_id": "EXP-BATCH-20260914074039-23",
+      "manifest": "experiments/EXP-BATCH-20260914074039-23/manifest.json",
+      "report": "experiments/EXP-BATCH-20260914074039-23/report.md",
+      "workflow": "experiments/EXP-BATCH-20260914074039-23/workflow.json",
+      "statistics": "experiments/EXP-BATCH-20260914074039-23/analysis/statistics.json",
+      "ai_packet": "experiments/EXP-BATCH-20260914074039-23/analysis/ai_packet.json",
+      "raw_run_index": "experiments/EXP-BATCH-20260914074039-23/DATA/runs_index.json",
+      "data_id": "DATA-EXP-BATCH-20260914074039-23",
+      "ai_report": {
+        "status": "generated",
+        "report_id": "AIRR-2026-0001",
+        "json": "experiments/EXP-BATCH-20260914074039-23/reports/AIRR-2026-0001.json",
+        "markdown": "experiments/EXP-BATCH-20260914074039-23/reports/AIRR-2026-0001.md",
+        "human_review": "PENDING",
+        "scientific_evidence": false
+      },
+      "summary": "experiments/EXP-BATCH-20260914074039-23/summary.md",
+      "result": {
+        "run_count": 3,
+        "duration_seconds": 0.02638600004138425,
+        "runner": "run_boundary_audit",
+        "ticks_requested": 1000,
+        "seeds_executed": [
+          101,
+          102,
+          103
+        ],
+        "tick_validation": {
+          "status": "NOT_APPLICABLE",
+          "mode": "protocol_defined_internal_trials",
+          "requested_ticks": 1000
+        }
+      },
+      "epistemic_layers": {
+        "ui_state": "operator/dashboard progress only; not a scientific result",
+        "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+        "evid": "not_created; requires semantic validation, clean freeze and human review",
+        "interpretation": "post-hoc AI or human interpretation; never execution input"
+      }
+    },
+    {
+      "protocol": "self_organization_clusters_boundary_v1",
+      "ticks": 1000,
+      "seeds": "101-103",
+      "status": "completed",
+      "experiment_id": "EXP-BATCH-20260914074039-24",
+      "manifest": "experiments/EXP-BATCH-20260914074039-24/manifest.json",
+      "report": "experiments/EXP-BATCH-20260914074039-24/report.md",
+      "workflow": "experiments/EXP-BATCH-20260914074039-24/workflow.json",
+      "statistics": "experiments/EXP-BATCH-20260914074039-24/analysis/statistics.json",
+      "ai_packet": "experiments/EXP-BATCH-20260914074039-24/analysis/ai_packet.json",
+      "raw_run_index": "experiments/EXP-BATCH-20260914074039-24/DATA/runs_index.json",
+      "data_id": "DATA-EXP-BATCH-20260914074039-24",
+      "ai_report": {
+        "status": "generated",
+        "report_id": "AIRR-2026-0001",
+        "json": "experiments/EXP-BATCH-20260914074039-24/reports/AIRR-2026-0001.json",
+        "markdown": "experiments/EXP-BATCH-20260914074039-24/reports/AIRR-2026-0001.md",
+        "human_review": "PENDING",
+        "scientific_evidence": false
+      },
+      "summary": "experiments/EXP-BATCH-20260914074039-24/summary.md",
+      "result": {
+        "run_count": 3,
+        "duration_seconds": 0.18038969999179244,
+        "runner": "run_boundary_audit",
+        "ticks_requested": 1000,
+        "seeds_executed": [
+          101,
+          102,
+          103
+        ],
+        "tick_validation": {
+          "status": "NOT_APPLICABLE",
+          "mode": "protocol_defined_internal_trials",
+          "requested_ticks": 1000
+        }
+      },
+      "epistemic_layers": {
+        "ui_state": "operator/dashboard progress only; not a scientific result",
+        "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+        "evid": "not_created; requires semantic validation, clean freeze and human review",
+        "interpretation": "post-hoc AI or human interpretation; never execution input"
+      }
+    },
+    {
+      "protocol": "self_organization_emergence_boundary_v1",
+      "ticks": 1000,
+      "seeds": "101-103",
+      "status": "completed",
+      "experiment_id": "EXP-BATCH-20260914074039-25",
+      "manifest": "experiments/EXP-BATCH-20260914074039-25/manifest.json",
+      "report": "experiments/EXP-BATCH-20260914074039-25/report.md",
+      "workflow": "experiments/EXP-BATCH-20260914074039-25/workflow.json",
+      "statistics": "experiments/EXP-BATCH-20260914074039-25/analysis/statistics.json",
+      "ai_packet": "experiments/EXP-BATCH-20260914074039-25/analysis/ai_packet.json",
+      "raw_run_index": "experiments/EXP-BATCH-20260914074039-25/DATA/runs_index.json",
+      "data_id": "DATA-EXP-BATCH-20260914074039-25",
+      "ai_report": {
+        "status": "generated",
+        "report_id": "AIRR-2026-0001",
+        "json": "experiments/EXP-BATCH-20260914074039-25/reports/AIRR-2026-0001.json",
+        "markdown": "experiments/EXP-BATCH-20260914074039-25/reports/AIRR-2026-0001.md",
+        "human_review": "PENDING",
+        "scientific_evidence": false
+      },
+      "summary": "experiments/EXP-BATCH-20260914074039-25/summary.md",
+      "result": {
+        "run_count": 3,
+        "duration_seconds": 0.023349699971731752,
+        "runner": "run_boundary_audit",
+        "ticks_requested": 1000,
+        "seeds_executed": [
+          101,
+          102,
+          103
+        ],
+        "tick_validation": {
+          "status": "NOT_APPLICABLE",
+          "mode": "protocol_defined_internal_trials",
+          "requested_ticks": 1000
+        }
+      },
+      "epistemic_layers": {
+        "ui_state": "operator/dashboard progress only; not a scientific result",
+        "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+        "evid": "not_created; requires semantic validation, clean freeze and human review",
+        "interpretation": "post-hoc AI or human interpretation; never execution input"
+      }
+    },
+    {
+      "protocol": "structural_efficiency_boundary_v1",
+      "ticks": 1000,
+      "seeds": "101-103",
+      "status": "completed",
+      "experiment_id": "EXP-BATCH-20260914074039-26",
+      "manifest": "experiments/EXP-BATCH-20260914074039-26/manifest.json",
+      "report": "experiments/EXP-BATCH-20260914074039-26/report.md",
+      "workflow": "experiments/EXP-BATCH-20260914074039-26/workflow.json",
+      "statistics": "experiments/EXP-BATCH-20260914074039-26/analysis/statistics.json",
+      "ai_packet": "experiments/EXP-BATCH-20260914074039-26/analysis/ai_packet.json",
+      "raw_run_index": "experiments/EXP-BATCH-20260914074039-26/DATA/runs_index.json",
+      "data_id": "DATA-EXP-BATCH-20260914074039-26",
+      "ai_report": {
+        "status": "failed",
+        "error": "ValueError",
+        "message": "LLM must not generate quantitative statistics: statistics"
+      },
+      "summary": "experiments/EXP-BATCH-20260914074039-26/summary.md",
+      "result": {
+        "run_count": 3,
+        "duration_seconds": 0.053931200003717095,
+        "runner": "run_boundary_audit",
+        "ticks_requested": 1000,
+        "seeds_executed": [
+          101,
+          102,
+          103
+        ],
+        "tick_validation": {
+          "status": "NOT_APPLICABLE",
+          "mode": "protocol_defined_internal_trials",
+          "requested_ticks": 1000
+        }
+      },
+      "epistemic_layers": {
+        "ui_state": "operator/dashboard progress only; not a scientific result",
+        "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+        "evid": "not_created; requires semantic validation, clean freeze and human review",
+        "interpretation": "post-hoc AI or human interpretation; never execution input"
+      }
+    },
+    {
+      "protocol": "synaptic_memory_boundary_v1",
+      "ticks": 1000,
+      "seeds": "101-103",
+      "status": "completed",
+      "experiment_id": "EXP-BATCH-20260914074039-27",
+      "manifest": "experiments/EXP-BATCH-20260914074039-27/manifest.json",
+      "report": "experiments/EXP-BATCH-20260914074039-27/report.md",
+      "workflow": "experiments/EXP-BATCH-20260914074039-27/workflow.json",
+      "statistics": "experiments/EXP-BATCH-20260914074039-27/analysis/statistics.json",
+      "ai_packet": "experiments/EXP-BATCH-20260914074039-27/analysis/ai_packet.json",
+      "raw_run_index": "experiments/EXP-BATCH-20260914074039-27/DATA/runs_index.json",
+      "data_id": "DATA-EXP-BATCH-20260914074039-27",
+      "ai_report": {
+        "status": "generated",
+        "report_id": "AIRR-2026-0001",
+        "json": "experiments/EXP-BATCH-20260914074039-27/reports/AIRR-2026-0001.json",
+        "markdown": "experiments/EXP-BATCH-20260914074039-27/reports/AIRR-2026-0001.md",
+        "human_review": "PENDING",
+        "scientific_evidence": false
+      },
+      "summary": "experiments/EXP-BATCH-20260914074039-27/summary.md",
+      "result": {
+        "run_count": 3,
+        "duration_seconds": 0.016479500045534223,
+        "runner": "run_boundary_audit",
+        "ticks_requested": 1000,
+        "seeds_executed": [
+          101,
+          102,
+          103
+        ],
+        "tick_validation": {
+          "status": "NOT_APPLICABLE",
+          "mode": "protocol_defined_internal_trials",
+          "requested_ticks": 1000
+        }
+      },
+      "epistemic_layers": {
+        "ui_state": "operator/dashboard progress only; not a scientific result",
+        "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+        "evid": "not_created; requires semantic validation, clean freeze and human review",
+        "interpretation": "post-hoc AI or human interpretation; never execution input"
+      }
+    },
+    {
+      "protocol": "embodied_closed_loop_v1",
+      "ticks": 1000,
+      "seeds": "101-103",
+      "status": "completed",
+      "experiment_id": "EXP-BATCH-20260914074039-28",
+      "manifest": "experiments/EXP-BATCH-20260914074039-28/manifest.json",
+      "report": "experiments/EXP-BATCH-20260914074039-28/report.md",
+      "workflow": "experiments/EXP-BATCH-20260914074039-28/workflow.json",
+      "statistics": "experiments/EXP-BATCH-20260914074039-28/analysis/statistics.json",
+      "ai_packet": "experiments/EXP-BATCH-20260914074039-28/analysis/ai_packet.json",
+      "raw_run_index": "experiments/EXP-BATCH-20260914074039-28/DATA/runs_index.json",
+      "data_id": "DATA-EXP-BATCH-20260914074039-28",
+      "ai_report": {
+        "status": "generated",
+        "report_id": "AIRR-2026-0001",
+        "json": "experiments/EXP-BATCH-20260914074039-28/reports/AIRR-2026-0001.json",
+        "markdown": "experiments/EXP-BATCH-20260914074039-28/reports/AIRR-2026-0001.md",
+        "human_review": "PENDING",
+        "scientific_evidence": false
+      },
+      "summary": "experiments/EXP-BATCH-20260914074039-28/summary.md",
+      "result": {
+        "run_count": 9,
+        "duration_seconds": 0.21358300000429153,
+        "runner": "run_embodied_closed_loop",
+        "ticks_requested": 1000,
+        "seeds_executed": [
+          101,
+          102,
+          103
+        ],
+        "tick_validation": {
+          "status": "VIOLATED",
+          "requested_ticks": 1000,
+          "reason": "Tick contract violated: runner run_embodied_closed_loop did not execute at least 1000 ticks in every run.",
+          "retained_failed_observations": true
+        }
+      },
+      "epistemic_layers": {
+        "ui_state": "operator/dashboard progress only; not a scientific result",
+        "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+        "evid": "not_created; requires semantic validation, clean freeze and human review",
+        "interpretation": "post-hoc AI or human interpretation; never execution input"
+      }
+    },
+    {
+      "protocol": "language_organ_boundary_v1",
+      "ticks": 1000,
+      "seeds": "101-103",
+      "status": "completed",
+      "experiment_id": "EXP-BATCH-20260914074039-29",
+      "manifest": "experiments/EXP-BATCH-20260914074039-29/manifest.json",
+      "report": "experiments/EXP-BATCH-20260914074039-29/report.md",
+      "workflow": "experiments/EXP-BATCH-20260914074039-29/workflow.json",
+      "statistics": "experiments/EXP-BATCH-20260914074039-29/analysis/statistics.json",
+      "ai_packet": "experiments/EXP-BATCH-20260914074039-29/analysis/ai_packet.json",
+      "raw_run_index": "experiments/EXP-BATCH-20260914074039-29/DATA/runs_index.json",
+      "data_id": "DATA-EXP-BATCH-20260914074039-29",
+      "ai_report": {
+        "status": "generated",
+        "report_id": "AIRR-2026-0001",
+        "json": "experiments/EXP-BATCH-20260914074039-29/reports/AIRR-2026-0001.json",
+        "markdown": "experiments/EXP-BATCH-20260914074039-29/reports/AIRR-2026-0001.md",
+        "human_review": "PENDING",
+        "scientific_evidence": false
+      },
+      "summary": "experiments/EXP-BATCH-20260914074039-29/summary.md",
+      "result": {
+        "run_count": 3,
+        "duration_seconds": 0.03389760002028197,
+        "runner": "run_boundary_audit",
+        "ticks_requested": 1000,
+        "seeds_executed": [
+          101,
+          102,
+          103
+        ],
+        "tick_validation": {
+          "status": "NOT_APPLICABLE",
+          "mode": "protocol_defined_internal_trials",
+          "requested_ticks": 1000
+        }
+      },
+      "epistemic_layers": {
+        "ui_state": "operator/dashboard progress only; not a scientific result",
+        "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+        "evid": "not_created; requires semantic validation, clean freeze and human review",
+        "interpretation": "post-hoc AI or human interpretation; never execution input"
+      }
+    },
+    {
+      "protocol": "authorship_responsibility_audit_v1",
+      "ticks": 1000,
+      "seeds": "101-103",
+      "status": "completed",
+      "experiment_id": "EXP-BATCH-20260914074039-30",
+      "manifest": "experiments/EXP-BATCH-20260914074039-30/manifest.json",
+      "report": "experiments/EXP-BATCH-20260914074039-30/report.md",
+      "workflow": "experiments/EXP-BATCH-20260914074039-30/workflow.json",
+      "statistics": "experiments/EXP-BATCH-20260914074039-30/analysis/statistics.json",
+      "ai_packet": "experiments/EXP-BATCH-20260914074039-30/analysis/ai_packet.json",
+      "raw_run_index": "experiments/EXP-BATCH-20260914074039-30/DATA/runs_index.json",
+      "data_id": "DATA-EXP-BATCH-20260914074039-30",
+      "ai_report": {
+        "status": "generated",
+        "report_id": "AIRR-2026-0001",
+        "json": "experiments/EXP-BATCH-20260914074039-30/reports/AIRR-2026-0001.json",
+        "markdown": "experiments/EXP-BATCH-20260914074039-30/reports/AIRR-2026-0001.md",
+        "human_review": "PENDING",
+        "scientific_evidence": false
+      },
+      "summary": "experiments/EXP-BATCH-20260914074039-30/summary.md",
+      "result": {
+        "run_count": 3,
+        "duration_seconds": 0.021341499988920987,
+        "runner": "run_boundary_audit",
+        "ticks_requested": 1000,
+        "seeds_executed": [
+          101,
+          102,
+          103
+        ],
+        "tick_validation": {
+          "status": "NOT_APPLICABLE",
+          "mode": "protocol_defined_internal_trials",
+          "requested_ticks": 1000
+        }
+      },
+      "epistemic_layers": {
+        "ui_state": "operator/dashboard progress only; not a scientific result",
+        "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+        "evid": "not_created; requires semantic validation, clean freeze and human review",
+        "interpretation": "post-hoc AI or human interpretation; never execution input"
+      }
+    },
+    {
+      "protocol": "control_responsibility_audit_v1",
+      "ticks": 1000,
+      "seeds": "101-103",
+      "status": "completed",
+      "experiment_id": "EXP-BATCH-20260914074039-31",
+      "manifest": "experiments/EXP-BATCH-20260914074039-31/manifest.json",
+      "report": "experiments/EXP-BATCH-20260914074039-31/report.md",
+      "workflow": "experiments/EXP-BATCH-20260914074039-31/workflow.json",
+      "statistics": "experiments/EXP-BATCH-20260914074039-31/analysis/statistics.json",
+      "ai_packet": "experiments/EXP-BATCH-20260914074039-31/analysis/ai_packet.json",
+      "raw_run_index": "experiments/EXP-BATCH-20260914074039-31/DATA/runs_index.json",
+      "data_id": "DATA-EXP-BATCH-20260914074039-31",
+      "ai_report": {
+        "status": "generated",
+        "report_id": "AIRR-2026-0001",
+        "json": "experiments/EXP-BATCH-20260914074039-31/reports/AIRR-2026-0001.json",
+        "markdown": "experiments/EXP-BATCH-20260914074039-31/reports/AIRR-2026-0001.md",
+        "human_review": "PENDING",
+        "scientific_evidence": false
+      },
+      "summary": "experiments/EXP-BATCH-20260914074039-31/summary.md",
+      "result": {
+        "run_count": 3,
+        "duration_seconds": 0.040730000007897615,
+        "runner": "run_boundary_audit",
+        "ticks_requested": 1000,
+        "seeds_executed": [
+          101,
+          102,
+          103
+        ],
+        "tick_validation": {
+          "status": "NOT_APPLICABLE",
+          "mode": "protocol_defined_internal_trials",
+          "requested_ticks": 1000
+        }
+      },
+      "epistemic_layers": {
+        "ui_state": "operator/dashboard progress only; not a scientific result",
+        "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+        "evid": "not_created; requires semantic validation, clean freeze and human review",
+        "interpretation": "post-hoc AI or human interpretation; never execution input"
+      }
+    },
+    {
+      "protocol": "epistemic_boundary_audit_v1",
+      "ticks": 1000,
+      "seeds": "101-103",
+      "status": "completed",
+      "experiment_id": "EXP-BATCH-20260914074039-32",
+      "manifest": "experiments/EXP-BATCH-20260914074039-32/manifest.json",
+      "report": "experiments/EXP-BATCH-20260914074039-32/report.md",
+      "workflow": "experiments/EXP-BATCH-20260914074039-32/workflow.json",
+      "statistics": "experiments/EXP-BATCH-20260914074039-32/analysis/statistics.json",
+      "ai_packet": "experiments/EXP-BATCH-20260914074039-32/analysis/ai_packet.json",
+      "raw_run_index": "experiments/EXP-BATCH-20260914074039-32/DATA/runs_index.json",
+      "data_id": "DATA-EXP-BATCH-20260914074039-32",
+      "ai_report": {
+        "status": "generated",
+        "report_id": "AIRR-2026-0001",
+        "json": "experiments/EXP-BATCH-20260914074039-32/reports/AIRR-2026-0001.json",
+        "markdown": "experiments/EXP-BATCH-20260914074039-32/reports/AIRR-2026-0001.md",
+        "human_review": "PENDING",
+        "scientific_evidence": false
+      },
+      "summary": "experiments/EXP-BATCH-20260914074039-32/summary.md",
+      "result": {
+        "run_count": 3,
+        "duration_seconds": 0.016502799990121275,
+        "runner": "run_boundary_audit",
+        "ticks_requested": 1000,
+        "seeds_executed": [
+          101,
+          102,
+          103
+        ],
+        "tick_validation": {
+          "status": "NOT_APPLICABLE",
+          "mode": "protocol_defined_internal_trials",
+          "requested_ticks": 1000
+        }
+      },
+      "epistemic_layers": {
+        "ui_state": "operator/dashboard progress only; not a scientific result",
+        "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+        "evid": "not_created; requires semantic validation, clean freeze and human review",
+        "interpretation": "post-hoc AI or human interpretation; never execution input"
+      }
+    },
+    {
+      "protocol": "research_assistant_methodology_audit_v1",
+      "ticks": 1000,
+      "seeds": "101-103",
+      "status": "completed",
+      "experiment_id": "EXP-BATCH-20260914074039-33",
+      "manifest": "experiments/EXP-BATCH-20260914074039-33/manifest.json",
+      "report": "experiments/EXP-BATCH-20260914074039-33/report.md",
+      "workflow": "experiments/EXP-BATCH-20260914074039-33/workflow.json",
+      "statistics": "experiments/EXP-BATCH-20260914074039-33/analysis/statistics.json",
+      "ai_packet": "experiments/EXP-BATCH-20260914074039-33/analysis/ai_packet.json",
+      "raw_run_index": "experiments/EXP-BATCH-20260914074039-33/DATA/runs_index.json",
+      "data_id": "DATA-EXP-BATCH-20260914074039-33",
+      "ai_report": {
+        "status": "generated",
+        "report_id": "AIRR-2026-0001",
+        "json": "experiments/EXP-BATCH-20260914074039-33/reports/AIRR-2026-0001.json",
+        "markdown": "experiments/EXP-BATCH-20260914074039-33/reports/AIRR-2026-0001.md",
+        "human_review": "PENDING",
+        "scientific_evidence": false
+      },
+      "summary": "experiments/EXP-BATCH-20260914074039-33/summary.md",
+      "result": {
+        "run_count": 3,
+        "duration_seconds": 0.06088410003576428,
+        "runner": "run_boundary_audit",
+        "ticks_requested": 1000,
+        "seeds_executed": [
+          101,
+          102,
+          103
+        ],
+        "tick_validation": {
+          "status": "NOT_APPLICABLE",
+          "mode": "protocol_defined_internal_trials",
+          "requested_ticks": 1000
+        }
+      },
+      "epistemic_layers": {
+        "ui_state": "operator/dashboard progress only; not a scientific result",
+        "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+        "evid": "not_created; requires semantic validation, clean freeze and human review",
+        "interpretation": "post-hoc AI or human interpretation; never execution input"
+      }
+    },
+    {
+      "protocol": "science_suite_registered_v1",
+      "ticks": 256,
+      "seeds": "101-103",
+      "status": "completed",
+      "experiment_id": "EXP-BATCH-20260914074039-34",
+      "manifest": "experiments/EXP-BATCH-20260914074039-34/manifest.json",
+      "report": "experiments/EXP-BATCH-20260914074039-34/report.md",
+      "workflow": "experiments/EXP-BATCH-20260914074039-34/workflow.json",
+      "statistics": "experiments/EXP-BATCH-20260914074039-34/analysis/statistics.json",
+      "ai_packet": "experiments/EXP-BATCH-20260914074039-34/analysis/ai_packet.json",
+      "raw_run_index": "experiments/EXP-BATCH-20260914074039-34/DATA/runs_index.json",
+      "data_id": "DATA-EXP-BATCH-20260914074039-34",
+      "ai_report": {
+        "status": "generated",
+        "report_id": "AIRR-2026-0001",
+        "json": "experiments/EXP-BATCH-20260914074039-34/reports/AIRR-2026-0001.json",
+        "markdown": "experiments/EXP-BATCH-20260914074039-34/reports/AIRR-2026-0001.md",
+        "human_review": "PENDING",
+        "scientific_evidence": false
+      },
+      "summary": "experiments/EXP-BATCH-20260914074039-34/summary.md",
+      "result": {
+        "run_count": 54,
+        "duration_seconds": 0.5183241000049748,
+        "runner": "run_all",
+        "ticks_requested": 256,
+        "seeds_executed": [
+          101,
+          102,
+          103
+        ],
+        "tick_validation": {
+          "status": "SATISFIED",
+          "mode": "mixed_protocol_tick_contract",
+          "requested_ticks": 256
+        }
+      },
+      "epistemic_layers": {
+        "ui_state": "operator/dashboard progress only; not a scientific result",
+        "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+        "evid": "not_created; requires semantic validation, clean freeze and human review",
+        "interpretation": "post-hoc AI or human interpretation; never execution input"
+      }
+    },
+    {
+      "protocol": "recurrence_map_v1",
+      "ticks": 256,
+      "seeds": "101-120",
+      "status": "completed",
+      "experiment_id": "EXP-BATCH-20260914074039-35",
+      "manifest": "experiments/EXP-BATCH-20260914074039-35/manifest.json",
+      "report": "experiments/EXP-BATCH-20260914074039-35/report.md",
+      "workflow": "experiments/EXP-BATCH-20260914074039-35/workflow.json",
+      "statistics": "experiments/EXP-BATCH-20260914074039-35/analysis/statistics.json",
+      "ai_packet": "experiments/EXP-BATCH-20260914074039-35/analysis/ai_packet.json",
+      "raw_run_index": "experiments/EXP-BATCH-20260914074039-35/DATA/runs_index.json",
+      "data_id": "DATA-EXP-BATCH-20260914074039-35",
+      "ai_report": {
+        "status": "generated",
+        "report_id": "AIRR-2026-0001",
+        "json": "experiments/EXP-BATCH-20260914074039-35/reports/AIRR-2026-0001.json",
+        "markdown": "experiments/EXP-BATCH-20260914074039-35/reports/AIRR-2026-0001.md",
+        "human_review": "PENDING",
+        "scientific_evidence": false
+      },
+      "summary": "experiments/EXP-BATCH-20260914074039-35/summary.md",
+      "result": {
+        "run_count": 300,
+        "duration_seconds": 0.9582089999457821,
+        "runner": "run_recurrence_map",
+        "ticks_requested": 256,
+        "seeds_executed": [
+          101,
+          102,
+          103,
+          104,
+          105,
+          106,
+          107,
+          108,
+          109,
+          110,
+          111,
+          112,
+          113,
+          114,
+          115,
+          116,
+          117,
+          118,
+          119,
+          120
+        ],
+        "tick_validation": {
+          "status": "SATISFIED",
+          "mode": "minimum_per_run",
+          "requested_ticks": 256,
+          "observed_min": 256,
+          "observed_max": 256
+        }
+      },
+      "epistemic_layers": {
+        "ui_state": "operator/dashboard progress only; not a scientific result",
+        "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+        "evid": "not_created; requires semantic validation, clean freeze and human review",
+        "interpretation": "post-hoc AI or human interpretation; never execution input"
+      }
+    },
+    {
+      "protocol": "learning_generalization_v1",
+      "ticks": 1000,
+      "seeds": "101-120",
+      "status": "completed",
+      "experiment_id": "EXP-BATCH-20260914074039-36",
+      "manifest": "experiments/EXP-BATCH-20260914074039-36/manifest.json",
+      "report": "experiments/EXP-BATCH-20260914074039-36/report.md",
+      "workflow": "experiments/EXP-BATCH-20260914074039-36/workflow.json",
+      "statistics": "experiments/EXP-BATCH-20260914074039-36/analysis/statistics.json",
+      "ai_packet": "experiments/EXP-BATCH-20260914074039-36/analysis/ai_packet.json",
+      "raw_run_index": "experiments/EXP-BATCH-20260914074039-36/DATA/runs_index.json",
+      "data_id": "DATA-EXP-BATCH-20260914074039-36",
+      "ai_report": {
+        "status": "generated",
+        "report_id": "AIRR-2026-0001",
+        "json": "experiments/EXP-BATCH-20260914074039-36/reports/AIRR-2026-0001.json",
+        "markdown": "experiments/EXP-BATCH-20260914074039-36/reports/AIRR-2026-0001.md",
+        "human_review": "PENDING",
+        "scientific_evidence": false
+      },
+      "summary": "experiments/EXP-BATCH-20260914074039-36/summary.md",
+      "result": {
+        "run_count": 180,
+        "duration_seconds": 2.416308099986054,
+        "runner": "run_generalization",
+        "ticks_requested": 1000,
+        "seeds_executed": [
+          101,
+          102,
+          103,
+          104,
+          105,
+          106,
+          107,
+          108,
+          109,
+          110,
+          111,
+          112,
+          113,
+          114,
+          115,
+          116,
+          117,
+          118,
+          119,
+          120
+        ],
+        "tick_validation": {
+          "status": "NOT_APPLICABLE",
+          "mode": "protocol_defined_internal_trials",
+          "requested_ticks": 1000
+        }
+      },
+      "epistemic_layers": {
+        "ui_state": "operator/dashboard progress only; not a scientific result",
+        "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+        "evid": "not_created; requires semantic validation, clean freeze and human review",
+        "interpretation": "post-hoc AI or human interpretation; never execution input"
+      }
+    },
+    {
+      "protocol": "independent_replication_v1",
+      "ticks": 256,
+      "seeds": "101-120",
+      "status": "completed",
+      "experiment_id": "EXP-BATCH-20260914074039-37",
+      "manifest": "experiments/EXP-BATCH-20260914074039-37/manifest.json",
+      "report": "experiments/EXP-BATCH-20260914074039-37/report.md",
+      "workflow": "experiments/EXP-BATCH-20260914074039-37/workflow.json",
+      "statistics": "experiments/EXP-BATCH-20260914074039-37/analysis/statistics.json",
+      "ai_packet": "experiments/EXP-BATCH-20260914074039-37/analysis/ai_packet.json",
+      "raw_run_index": "experiments/EXP-BATCH-20260914074039-37/DATA/runs_index.json",
+      "data_id": "DATA-EXP-BATCH-20260914074039-37",
+      "ai_report": {
+        "status": "generated",
+        "report_id": "AIRR-2026-0001",
+        "json": "experiments/EXP-BATCH-20260914074039-37/reports/AIRR-2026-0001.json",
+        "markdown": "experiments/EXP-BATCH-20260914074039-37/reports/AIRR-2026-0001.md",
+        "human_review": "PENDING",
+        "scientific_evidence": false
+      },
+      "summary": "experiments/EXP-BATCH-20260914074039-37/summary.md",
+      "result": {
+        "run_count": 40,
+        "duration_seconds": 0.10444859997369349,
+        "runner": "run_replication",
+        "ticks_requested": 256,
+        "seeds_executed": [
+          101,
+          102,
+          103,
+          104,
+          105,
+          106,
+          107,
+          108,
+          109,
+          110,
+          111,
+          112,
+          113,
+          114,
+          115,
+          116,
+          117,
+          118,
+          119,
+          120
+        ],
+        "tick_validation": {
+          "status": "SATISFIED",
+          "mode": "minimum_per_run",
+          "requested_ticks": 256,
+          "observed_min": 256,
+          "observed_max": 256
+        }
+      },
+      "epistemic_layers": {
+        "ui_state": "operator/dashboard progress only; not a scientific result",
+        "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+        "evid": "not_created; requires semantic validation, clean freeze and human review",
+        "interpretation": "post-hoc AI or human interpretation; never execution input"
+      }
+    },
+    {
+      "protocol": "topology_matched_5d_v1",
+      "ticks": 64,
+      "seeds": "101-130",
+      "status": "completed",
+      "experiment_id": "EXP-BATCH-20260914074039-38",
+      "manifest": "experiments/EXP-BATCH-20260914074039-38/manifest.json",
+      "report": "experiments/EXP-BATCH-20260914074039-38/report.md",
+      "workflow": "experiments/EXP-BATCH-20260914074039-38/workflow.json",
+      "statistics": "experiments/EXP-BATCH-20260914074039-38/analysis/statistics.json",
+      "ai_packet": "experiments/EXP-BATCH-20260914074039-38/analysis/ai_packet.json",
+      "raw_run_index": "experiments/EXP-BATCH-20260914074039-38/DATA/runs_index.json",
+      "data_id": "DATA-EXP-BATCH-20260914074039-38",
+      "ai_report": {
+        "status": "generated",
+        "report_id": "AIRR-2026-0001",
+        "json": "experiments/EXP-BATCH-20260914074039-38/reports/AIRR-2026-0001.json",
+        "markdown": "experiments/EXP-BATCH-20260914074039-38/reports/AIRR-2026-0001.md",
+        "human_review": "PENDING",
+        "scientific_evidence": false
+      },
+      "summary": "experiments/EXP-BATCH-20260914074039-38/summary.md",
+      "result": {
+        "run_count": 120,
+        "duration_seconds": 0.15180010005133227,
+        "runner": "run_5d_matched",
+        "ticks_requested": 64,
+        "seeds_executed": [
+          101,
+          102,
+          103,
+          104,
+          105,
+          106,
+          107,
+          108,
+          109,
+          110,
+          111,
+          112,
+          113,
+          114,
+          115,
+          116,
+          117,
+          118,
+          119,
+          120,
+          121,
+          122,
+          123,
+          124,
+          125,
+          126,
+          127,
+          128,
+          129,
+          130
+        ],
+        "tick_validation": {
+          "status": "SATISFIED",
+          "mode": "minimum_per_run",
+          "requested_ticks": 64,
+          "observed_min": 64,
+          "observed_max": 64
+        }
+      },
+      "epistemic_layers": {
+        "ui_state": "operator/dashboard progress only; not a scientific result",
+        "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+        "evid": "not_created; requires semantic validation, clean freeze and human review",
+        "interpretation": "post-hoc AI or human interpretation; never execution input"
+      }
+    },
+    {
+      "protocol": "closed_loop_regulation_v1",
+      "ticks": 128,
+      "seeds": "101-120",
+      "status": "completed",
+      "experiment_id": "EXP-BATCH-20260914074039-39",
+      "manifest": "experiments/EXP-BATCH-20260914074039-39/manifest.json",
+      "report": "experiments/EXP-BATCH-20260914074039-39/report.md",
+      "workflow": "experiments/EXP-BATCH-20260914074039-39/workflow.json",
+      "statistics": "experiments/EXP-BATCH-20260914074039-39/analysis/statistics.json",
+      "ai_packet": "experiments/EXP-BATCH-20260914074039-39/analysis/ai_packet.json",
+      "raw_run_index": "experiments/EXP-BATCH-20260914074039-39/DATA/runs_index.json",
+      "data_id": "DATA-EXP-BATCH-20260914074039-39",
+      "ai_report": {
+        "status": "generated",
+        "report_id": "AIRR-2026-0001",
+        "json": "experiments/EXP-BATCH-20260914074039-39/reports/AIRR-2026-0001.json",
+        "markdown": "experiments/EXP-BATCH-20260914074039-39/reports/AIRR-2026-0001.md",
+        "human_review": "PENDING",
+        "scientific_evidence": false
+      },
+      "summary": "experiments/EXP-BATCH-20260914074039-39/summary.md",
+      "result": {
+        "run_count": 40,
+        "duration_seconds": 0.2411642000079155,
+        "runner": "run_regulation_recovery",
+        "ticks_requested": 128,
+        "seeds_executed": [
+          101,
+          102,
+          103,
+          104,
+          105,
+          106,
+          107,
+          108,
+          109,
+          110,
+          111,
+          112,
+          113,
+          114,
+          115,
+          116,
+          117,
+          118,
+          119,
+          120
+        ],
+        "tick_validation": {
+          "status": "SATISFIED",
+          "mode": "minimum_per_run",
+          "requested_ticks": 128,
+          "observed_min": 128,
+          "observed_max": 128
+        }
+      },
+      "epistemic_layers": {
+        "ui_state": "operator/dashboard progress only; not a scientific result",
+        "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+        "evid": "not_created; requires semantic validation, clean freeze and human review",
+        "interpretation": "post-hoc AI or human interpretation; never execution input"
+      }
+    },
+    {
+      "protocol": "temporal_order_spiking_v1",
+      "ticks": 32,
+      "seeds": "101-120",
+      "status": "completed",
+      "experiment_id": "EXP-BATCH-20260914074039-40",
+      "manifest": "experiments/EXP-BATCH-20260914074039-40/manifest.json",
+      "report": "experiments/EXP-BATCH-20260914074039-40/report.md",
+      "workflow": "experiments/EXP-BATCH-20260914074039-40/workflow.json",
+      "statistics": "experiments/EXP-BATCH-20260914074039-40/analysis/statistics.json",
+      "ai_packet": "experiments/EXP-BATCH-20260914074039-40/analysis/ai_packet.json",
+      "raw_run_index": "experiments/EXP-BATCH-20260914074039-40/DATA/runs_index.json",
+      "data_id": "DATA-EXP-BATCH-20260914074039-40",
+      "ai_report": {
+        "status": "generated",
+        "report_id": "AIRR-2026-0001",
+        "json": "experiments/EXP-BATCH-20260914074039-40/reports/AIRR-2026-0001.json",
+        "markdown": "experiments/EXP-BATCH-20260914074039-40/reports/AIRR-2026-0001.md",
+        "human_review": "PENDING",
+        "scientific_evidence": false
+      },
+      "summary": "experiments/EXP-BATCH-20260914074039-40/summary.md",
+      "result": {
+        "run_count": 60,
+        "duration_seconds": 0.06530049996217713,
+        "runner": "run_temporal_order",
+        "ticks_requested": 32,
+        "seeds_executed": [
+          101,
+          102,
+          103,
+          104,
+          105,
+          106,
+          107,
+          108,
+          109,
+          110,
+          111,
+          112,
+          113,
+          114,
+          115,
+          116,
+          117,
+          118,
+          119,
+          120
+        ],
+        "tick_validation": {
+          "status": "SATISFIED",
+          "mode": "minimum_per_run",
+          "requested_ticks": 32,
+          "observed_min": 32,
+          "observed_max": 32
+        }
+      },
+      "epistemic_layers": {
+        "ui_state": "operator/dashboard progress only; not a scientific result",
+        "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+        "evid": "not_created; requires semantic validation, clean freeze and human review",
+        "interpretation": "post-hoc AI or human interpretation; never execution input"
+      }
+    },
+    {
+      "protocol": "subsystem_performance_v1",
+      "ticks": 10000,
+      "seeds": "101-110",
+      "status": "completed",
+      "experiment_id": "EXP-BATCH-20260914074039-41",
+      "manifest": "experiments/EXP-BATCH-20260914074039-41/manifest.json",
+      "report": "experiments/EXP-BATCH-20260914074039-41/report.md",
+      "workflow": "experiments/EXP-BATCH-20260914074039-41/workflow.json",
+      "statistics": "experiments/EXP-BATCH-20260914074039-41/analysis/statistics.json",
+      "ai_packet": "experiments/EXP-BATCH-20260914074039-41/analysis/ai_packet.json",
+      "raw_run_index": "experiments/EXP-BATCH-20260914074039-41/DATA/runs_index.json",
+      "data_id": "DATA-EXP-BATCH-20260914074039-41",
+      "ai_report": {
+        "status": "generated",
+        "report_id": "AIRR-2026-0001",
+        "json": "experiments/EXP-BATCH-20260914074039-41/reports/AIRR-2026-0001.json",
+        "markdown": "experiments/EXP-BATCH-20260914074039-41/reports/AIRR-2026-0001.md",
+        "human_review": "PENDING",
+        "scientific_evidence": false
+      },
+      "summary": "experiments/EXP-BATCH-20260914074039-41/summary.md",
+      "result": {
+        "run_count": 10,
+        "duration_seconds": 0.8426769999787211,
+        "runner": "run_performance_profile",
+        "ticks_requested": 10000,
+        "seeds_executed": [
+          101,
+          102,
+          103,
+          104,
+          105,
+          106,
+          107,
+          108,
+          109,
+          110
+        ],
+        "tick_validation": {
+          "status": "SATISFIED",
+          "mode": "minimum_per_run",
+          "requested_ticks": 10000,
+          "observed_min": 10000,
+          "observed_max": 10000
+        }
+      },
+      "epistemic_layers": {
+        "ui_state": "operator/dashboard progress only; not a scientific result",
+        "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+        "evid": "not_created; requires semantic validation, clean freeze and human review",
+        "interpretation": "post-hoc AI or human interpretation; never execution input"
+      }
+    },
+    {
+      "protocol": "recurrence_scale_v1",
+      "ticks": 256,
+      "seeds": "101-120",
+      "status": "completed",
+      "experiment_id": "EXP-BATCH-20260914074039-42",
+      "manifest": "experiments/EXP-BATCH-20260914074039-42/manifest.json",
+      "report": "experiments/EXP-BATCH-20260914074039-42/report.md",
+      "workflow": "experiments/EXP-BATCH-20260914074039-42/workflow.json",
+      "statistics": "experiments/EXP-BATCH-20260914074039-42/analysis/statistics.json",
+      "ai_packet": "experiments/EXP-BATCH-20260914074039-42/analysis/ai_packet.json",
+      "raw_run_index": "experiments/EXP-BATCH-20260914074039-42/DATA/runs_index.json",
+      "data_id": "DATA-EXP-BATCH-20260914074039-42",
+      "ai_report": {
+        "status": "generated",
+        "report_id": "AIRR-2026-0001",
+        "json": "experiments/EXP-BATCH-20260914074039-42/reports/AIRR-2026-0001.json",
+        "markdown": "experiments/EXP-BATCH-20260914074039-42/reports/AIRR-2026-0001.md",
+        "human_review": "PENDING",
+        "scientific_evidence": false
+      },
+      "summary": "experiments/EXP-BATCH-20260914074039-42/summary.md",
+      "result": {
+        "run_count": 80,
+        "duration_seconds": 0.2559729000204243,
+        "runner": "run_recurrence_scale",
+        "ticks_requested": 256,
+        "seeds_executed": [
+          101,
+          102,
+          103,
+          104,
+          105,
+          106,
+          107,
+          108,
+          109,
+          110,
+          111,
+          112,
+          113,
+          114,
+          115,
+          116,
+          117,
+          118,
+          119,
+          120
+        ],
+        "tick_validation": {
+          "status": "SATISFIED",
+          "mode": "minimum_per_run",
+          "requested_ticks": 256,
+          "observed_min": 256,
+          "observed_max": 256
+        }
+      },
+      "epistemic_layers": {
+        "ui_state": "operator/dashboard progress only; not a scientific result",
+        "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+        "evid": "not_created; requires semantic validation, clean freeze and human review",
+        "interpretation": "post-hoc AI or human interpretation; never execution input"
+      }
+    },
+    {
+      "protocol": "learning_interference_screen_v1",
+      "ticks": 1000,
+      "seeds": "101-120",
+      "status": "completed",
+      "experiment_id": "EXP-BATCH-20260914074039-43",
+      "manifest": "experiments/EXP-BATCH-20260914074039-43/manifest.json",
+      "report": "experiments/EXP-BATCH-20260914074039-43/report.md",
+      "workflow": "experiments/EXP-BATCH-20260914074039-43/workflow.json",
+      "statistics": "experiments/EXP-BATCH-20260914074039-43/analysis/statistics.json",
+      "ai_packet": "experiments/EXP-BATCH-20260914074039-43/analysis/ai_packet.json",
+      "raw_run_index": "experiments/EXP-BATCH-20260914074039-43/DATA/runs_index.json",
+      "data_id": "DATA-EXP-BATCH-20260914074039-43",
+      "ai_report": {
+        "status": "generated",
+        "report_id": "AIRR-2026-0001",
+        "json": "experiments/EXP-BATCH-20260914074039-43/reports/AIRR-2026-0001.json",
+        "markdown": "experiments/EXP-BATCH-20260914074039-43/reports/AIRR-2026-0001.md",
+        "human_review": "PENDING",
+        "scientific_evidence": false
+      },
+      "summary": "experiments/EXP-BATCH-20260914074039-43/summary.md",
+      "result": {
+        "run_count": 20,
+        "duration_seconds": 8.779681499989238,
+        "runner": "run_learning_interference",
+        "ticks_requested": 1000,
+        "seeds_executed": [
+          101,
+          102,
+          103,
+          104,
+          105,
+          106,
+          107,
+          108,
+          109,
+          110,
+          111,
+          112,
+          113,
+          114,
+          115,
+          116,
+          117,
+          118,
+          119,
+          120
+        ],
+        "tick_validation": {
+          "status": "NOT_APPLICABLE",
+          "mode": "protocol_defined_internal_trials",
+          "requested_ticks": 1000
+        }
+      },
+      "epistemic_layers": {
+        "ui_state": "operator/dashboard progress only; not a scientific result",
+        "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+        "evid": "not_created; requires semantic validation, clean freeze and human review",
+        "interpretation": "post-hoc AI or human interpretation; never execution input"
+      }
+    },
+    {
+      "protocol": "memory_delayed_information_v1",
+      "ticks": 1000,
+      "seeds": "101-103",
+      "experiment_id": "EXP-BATCH-20260914074039-44",
+      "status": "failed",
+      "error": "WorkflowValidationError: Cannot verify runtime/source consistency for run_memory_delayed_information."
+    },
+    {
+      "protocol": "world_model_prediction_v1",
+      "ticks": 1000,
+      "seeds": "101-103",
+      "experiment_id": "EXP-BATCH-20260914074039-45",
+      "status": "failed",
+      "error": "WorkflowValidationError: Cannot verify runtime/source consistency for run_world_model_prediction."
+    },
+    {
+      "protocol": "behavior_profile_control_v1",
+      "ticks": 1000,
+      "seeds": "101-103",
+      "experiment_id": "EXP-BATCH-20260914074039-46",
+      "status": "failed",
+      "error": "WorkflowValidationError: Cannot verify runtime/source consistency for run_behavior_profile_control."
+    },
+    {
+      "protocol": "cog_cns_101_v1",
+      "ticks": 1000,
+      "seeds": "101-103",
+      "experiment_id": "EXP-BATCH-20260914074039-47",
+      "status": "failed",
+      "error": "WorkflowValidationError: Cannot verify runtime/source consistency for run_cog_cns_101_v1."
+    },
+    {
+      "protocol": "cog_cns_102_v1",
+      "ticks": 1000,
+      "seeds": "101-103",
+      "experiment_id": "EXP-BATCH-20260914074039-48",
+      "status": "failed",
+      "error": "WorkflowValidationError: Cannot verify runtime/source consistency for run_cog_cns_102_v1."
+    },
+    {
+      "protocol": "cog_cns_103_v1",
+      "ticks": 1000,
+      "seeds": "101-103",
+      "experiment_id": "EXP-BATCH-20260914074039-49",
+      "status": "failed",
+      "error": "WorkflowValidationError: Cannot verify runtime/source consistency for run_cog_cns_103_v1."
+    },
+    {
+      "protocol": "cog_cns_104_v1",
+      "ticks": 1000,
+      "seeds": "101-103",
+      "experiment_id": "EXP-BATCH-20260914074039-50",
+      "status": "failed",
+      "error": "WorkflowValidationError: Cannot verify runtime/source consistency for run_cog_cns_104_v1."
+    },
+    {
+      "protocol": "cog_cns_105_v1",
+      "ticks": 1000,
+      "seeds": "101-103",
+      "experiment_id": "EXP-BATCH-20260914074039-51",
+      "status": "failed",
+      "error": "WorkflowValidationError: Cannot verify runtime/source consistency for run_cog_cns_105_v1."
+    },
+    {
+      "protocol": "cog_cns_106_v1",
+      "ticks": 1000,
+      "seeds": "101-103",
+      "experiment_id": "EXP-BATCH-20260914074039-52",
+      "status": "failed",
+      "error": "WorkflowValidationError: Cannot verify runtime/source consistency for run_cog_cns_106_v1."
+    },
+    {
+      "protocol": "cog_cns_107_v1",
+      "ticks": 1000,
+      "seeds": "101-103",
+      "experiment_id": "EXP-BATCH-20260914074039-53",
+      "status": "failed",
+      "error": "WorkflowValidationError: Cannot verify runtime/source consistency for run_cog_cns_107_v1."
+    },
+    {
+      "protocol": "cog_cns_108_v1",
+      "ticks": 1000,
+      "seeds": "101-103",
+      "experiment_id": "EXP-BATCH-20260914074039-54",
+      "status": "failed",
+      "error": "WorkflowValidationError: Cannot verify runtime/source consistency for run_cog_cns_108_v1."
+    },
+    {
+      "protocol": "cog_cns_109_v1",
+      "ticks": 1000,
+      "seeds": "101-103",
+      "experiment_id": "EXP-BATCH-20260914074039-55",
+      "status": "failed",
+      "error": "WorkflowValidationError: Cannot verify runtime/source consistency for run_cog_cns_109_v1."
+    },
+    {
+      "protocol": "cog_cns_110_v1",
+      "ticks": 1000,
+      "seeds": "101-103",
+      "experiment_id": "EXP-BATCH-20260914074039-56",
+      "status": "failed",
+      "error": "WorkflowValidationError: Cannot verify runtime/source consistency for run_cog_cns_110_v1."
+    },
+    {
+      "protocol": "cog_cns_111_v1",
+      "ticks": 1000,
+      "seeds": "101-103",
+      "experiment_id": "EXP-BATCH-20260914074039-57",
+      "status": "failed",
+      "error": "WorkflowValidationError: Cannot verify runtime/source consistency for run_cog_cns_111_v1."
+    },
+    {
+      "protocol": "cog_cns_112_v1",
+      "ticks": 1000,
+      "seeds": "101-103",
+      "experiment_id": "EXP-BATCH-20260914074039-58",
+      "status": "failed",
+      "error": "WorkflowValidationError: Cannot verify runtime/source consistency for run_cog_cns_112_v1."
+    },
+    {
+      "protocol": "cog_cns_113_v1",
+      "ticks": 1000,
+      "seeds": "101-103",
+      "experiment_id": "EXP-BATCH-20260914074039-59",
+      "status": "failed",
+      "error": "WorkflowValidationError: Cannot verify runtime/source consistency for run_cog_cns_113_v1."
+    },
+    {
+      "protocol": "cog_cns_114_v1",
+      "ticks": 1000,
+      "seeds": "101-103",
+      "experiment_id": "EXP-BATCH-20260914074039-60",
+      "status": "failed",
+      "error": "WorkflowValidationError: Cannot verify runtime/source consistency for run_cog_cns_114_v1."
+    },
+    {
+      "protocol": "cog_cns_115_v1",
+      "ticks": 1000,
+      "seeds": "101-103",
+      "experiment_id": "EXP-BATCH-20260914074039-61",
+      "status": "failed",
+      "error": "WorkflowValidationError: Cannot verify runtime/source consistency for run_cog_cns_115_v1."
+    },
+    {
+      "protocol": "cog_cns_116_v1",
+      "ticks": 1000,
+      "seeds": "101-103",
+      "experiment_id": "EXP-BATCH-20260914074039-62",
+      "status": "failed",
+      "error": "WorkflowValidationError: Cannot verify runtime/source consistency for run_cog_cns_116_v1."
+    },
+    {
+      "protocol": "cog_cns_117_v1",
+      "ticks": 1000,
+      "seeds": "101-103",
+      "experiment_id": "EXP-BATCH-20260914074039-63",
+      "status": "failed",
+      "error": "WorkflowValidationError: Cannot verify runtime/source consistency for run_cog_cns_117_v1."
+    },
+    {
+      "protocol": "cog_epi_101_v1",
+      "ticks": 1000,
+      "seeds": "101-103",
+      "experiment_id": "EXP-BATCH-20260914074039-64",
+      "status": "failed",
+      "error": "WorkflowValidationError: Cannot verify runtime/source consistency for run_cog_epi_101_v1."
+    },
+    {
+      "protocol": "cog_epi_102_v1",
+      "ticks": 1000,
+      "seeds": "101-103",
+      "experiment_id": "EXP-BATCH-20260914074039-65",
+      "status": "failed",
+      "error": "WorkflowValidationError: Cannot verify runtime/source consistency for run_cog_epi_102_v1."
+    },
+    {
+      "protocol": "cog_wel_101_v1",
+      "ticks": 1000,
+      "seeds": "101-103",
+      "experiment_id": "EXP-BATCH-20260914074039-66",
+      "status": "failed",
+      "error": "WorkflowValidationError: Cannot verify runtime/source consistency for run_cog_wel_101_v1."
+    },
+    {
+      "protocol": "cog_wel_102_v1",
+      "ticks": 1000,
+      "seeds": "101-103",
+      "experiment_id": "EXP-BATCH-20260914074039-67",
+      "status": "failed",
+      "error": "WorkflowValidationError: Cannot verify runtime/source consistency for run_cog_wel_102_v1."
+    },
+    {
+      "protocol": "cog_wel_103_v1",
+      "ticks": 1000,
+      "seeds": "101-103",
+      "experiment_id": "EXP-BATCH-20260914074039-68",
+      "status": "failed",
+      "error": "WorkflowValidationError: Cannot verify runtime/source consistency for run_cog_wel_103_v1."
+    },
+    {
+      "protocol": "embodied_proprioception_v1",
+      "ticks": 1000,
+      "seeds": "101-103",
+      "status": "completed",
+      "experiment_id": "EXP-BATCH-20260914074039-69",
+      "manifest": "experiments/EXP-BATCH-20260914074039-69/manifest.json",
+      "report": "experiments/EXP-BATCH-20260914074039-69/report.md",
+      "workflow": "experiments/EXP-BATCH-20260914074039-69/workflow.json",
+      "statistics": "experiments/EXP-BATCH-20260914074039-69/analysis/statistics.json",
+      "ai_packet": "experiments/EXP-BATCH-20260914074039-69/analysis/ai_packet.json",
+      "raw_run_index": "experiments/EXP-BATCH-20260914074039-69/DATA/runs_index.json",
+      "data_id": "DATA-EXP-BATCH-20260914074039-69",
+      "ai_report": {
+        "status": "generated",
+        "report_id": "AIRR-2026-0001",
+        "json": "experiments/EXP-BATCH-20260914074039-69/reports/AIRR-2026-0001.json",
+        "markdown": "experiments/EXP-BATCH-20260914074039-69/reports/AIRR-2026-0001.md",
+        "human_review": "PENDING",
+        "scientific_evidence": false
+      },
+      "summary": "experiments/EXP-BATCH-20260914074039-69/summary.md",
+      "result": {
+        "run_count": 12,
+        "duration_seconds": 0.2808352000429295,
+        "runner": "run_embodied_proprioception",
+        "ticks_requested": 1000,
+        "seeds_executed": [
+          101,
+          102,
+          103
+        ],
+        "tick_validation": {
+          "status": "VIOLATED",
+          "requested_ticks": 1000,
+          "reason": "Tick contract violated: runner run_embodied_proprioception did not execute at least 1000 ticks in every run.",
+          "retained_failed_observations": true
+        }
+      },
+      "epistemic_layers": {
+        "ui_state": "operator/dashboard progress only; not a scientific result",
+        "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+        "evid": "not_created; requires semantic validation, clean freeze and human review",
+        "interpretation": "post-hoc AI or human interpretation; never execution input"
+      }
+    },
+    {
+      "protocol": "embodied_mapping_learning_gap_audit_v1",
+      "ticks": 1000,
+      "seeds": "101-103",
+      "experiment_id": "EXP-BATCH-20260914074039-70",
+      "status": "blocked",
+      "error": "WorkflowValidationError: CONNECTOME_ADAPTER_NOT_VALIDATED: no generic ticks/PING substitution; select a matching native exploratory protocol or complete adapter review."
+    },
+    {
+      "protocol": "embodied_perturbation_screen_v1",
+      "ticks": 1000,
+      "seeds": "101-103",
+      "status": "completed",
+      "experiment_id": "EXP-BATCH-20260914074039-71",
+      "manifest": "experiments/EXP-BATCH-20260914074039-71/manifest.json",
+      "report": "experiments/EXP-BATCH-20260914074039-71/report.md",
+      "workflow": "experiments/EXP-BATCH-20260914074039-71/workflow.json",
+      "statistics": "experiments/EXP-BATCH-20260914074039-71/analysis/statistics.json",
+      "ai_packet": "experiments/EXP-BATCH-20260914074039-71/analysis/ai_packet.json",
+      "raw_run_index": "experiments/EXP-BATCH-20260914074039-71/DATA/runs_index.json",
+      "data_id": "DATA-EXP-BATCH-20260914074039-71",
+      "ai_report": {
+        "status": "generated",
+        "report_id": "AIRR-2026-0001",
+        "json": "experiments/EXP-BATCH-20260914074039-71/reports/AIRR-2026-0001.json",
+        "markdown": "experiments/EXP-BATCH-20260914074039-71/reports/AIRR-2026-0001.md",
+        "human_review": "PENDING",
+        "scientific_evidence": false
+      },
+      "summary": "experiments/EXP-BATCH-20260914074039-71/summary.md",
+      "result": {
+        "run_count": 12,
+        "duration_seconds": 0.22386420000111684,
+        "runner": "run_embodied_perturbation",
+        "ticks_requested": 1000,
+        "seeds_executed": [
+          101,
+          102,
+          103
+        ],
+        "tick_validation": {
+          "status": "VIOLATED",
+          "requested_ticks": 1000,
+          "reason": "Tick contract violated: runner run_embodied_perturbation did not execute at least 1000 ticks in every run.",
+          "retained_failed_observations": true
+        }
+      },
+      "epistemic_layers": {
+        "ui_state": "operator/dashboard progress only; not a scientific result",
+        "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+        "evid": "not_created; requires semantic validation, clean freeze and human review",
+        "interpretation": "post-hoc AI or human interpretation; never execution input"
+      }
+    },
+    {
+      "protocol": "embodied_efference_copy_gap_audit_v1",
+      "ticks": 1000,
+      "seeds": "101-103",
+      "experiment_id": "EXP-BATCH-20260914074039-72",
+      "status": "blocked",
+      "error": "WorkflowValidationError: CONNECTOME_ADAPTER_NOT_VALIDATED: no generic ticks/PING substitution; select a matching native exploratory protocol or complete adapter review."
+    },
+    {
+      "protocol": "embodied_morphology_transfer_gap_audit_v1",
+      "ticks": 1000,
+      "seeds": "101-103",
+      "experiment_id": "EXP-BATCH-20260914074039-73",
+      "status": "blocked",
+      "error": "WorkflowValidationError: CONNECTOME_ADAPTER_NOT_VALIDATED: no generic ticks/PING substitution; select a matching native exploratory protocol or complete adapter review."
+    },
+    {
+      "protocol": "connectome_reference_gap_audit_v1",
+      "ticks": 1000,
+      "seeds": "101-103",
+      "experiment_id": "EXP-BATCH-20260914074039-74",
+      "status": "blocked",
+      "error": "WorkflowValidationError: CONNECTOME_ADAPTER_NOT_VALIDATED: no generic ticks/PING substitution; select a matching native exploratory protocol or complete adapter review."
+    },
+    {
+      "protocol": "connectome_topology_screen_v1",
+      "ticks": 1000,
+      "seeds": "101-103",
+      "status": "completed",
+      "experiment_id": "EXP-BATCH-20260914074039-75",
+      "manifest": "experiments/EXP-BATCH-20260914074039-75/manifest.json",
+      "report": "experiments/EXP-BATCH-20260914074039-75/report.md",
+      "workflow": "experiments/EXP-BATCH-20260914074039-75/workflow.json",
+      "statistics": "experiments/EXP-BATCH-20260914074039-75/analysis/statistics.json",
+      "ai_packet": "experiments/EXP-BATCH-20260914074039-75/analysis/ai_packet.json",
+      "raw_run_index": "experiments/EXP-BATCH-20260914074039-75/DATA/runs_index.json",
+      "data_id": "DATA-EXP-BATCH-20260914074039-75",
+      "ai_report": {
+        "status": "generated",
+        "report_id": "AIRR-2026-0001",
+        "json": "experiments/EXP-BATCH-20260914074039-75/reports/AIRR-2026-0001.json",
+        "markdown": "experiments/EXP-BATCH-20260914074039-75/reports/AIRR-2026-0001.md",
+        "human_review": "PENDING",
+        "scientific_evidence": false
+      },
+      "summary": "experiments/EXP-BATCH-20260914074039-75/summary.md",
+      "result": {
+        "run_count": 12,
+        "duration_seconds": 0.23628370004007593,
+        "runner": "run_connectome_topology",
+        "ticks_requested": 1000,
+        "seeds_executed": [
+          101,
+          102,
+          103
+        ],
+        "tick_validation": {
+          "status": "VIOLATED",
+          "requested_ticks": 1000,
+          "reason": "Tick contract violated: runner run_connectome_topology did not execute at least 1000 ticks in every run.",
+          "retained_failed_observations": true
+        }
+      },
+      "epistemic_layers": {
+        "ui_state": "operator/dashboard progress only; not a scientific result",
+        "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+        "evid": "not_created; requires semantic validation, clean freeze and human review",
+        "interpretation": "post-hoc AI or human interpretation; never execution input"
+      }
+    },
+    {
+      "protocol": "embodied_controller_attribution_v1",
+      "ticks": 1000,
+      "seeds": "101-103",
+      "status": "completed",
+      "experiment_id": "EXP-BATCH-20260914074039-76",
+      "manifest": "experiments/EXP-BATCH-20260914074039-76/manifest.json",
+      "report": "experiments/EXP-BATCH-20260914074039-76/report.md",
+      "workflow": "experiments/EXP-BATCH-20260914074039-76/workflow.json",
+      "statistics": "experiments/EXP-BATCH-20260914074039-76/analysis/statistics.json",
+      "ai_packet": "experiments/EXP-BATCH-20260914074039-76/analysis/ai_packet.json",
+      "raw_run_index": "experiments/EXP-BATCH-20260914074039-76/DATA/runs_index.json",
+      "data_id": "DATA-EXP-BATCH-20260914074039-76",
+      "ai_report": {
+        "status": "generated",
+        "report_id": "AIRR-2026-0001",
+        "json": "experiments/EXP-BATCH-20260914074039-76/reports/AIRR-2026-0001.json",
+        "markdown": "experiments/EXP-BATCH-20260914074039-76/reports/AIRR-2026-0001.md",
+        "human_review": "PENDING",
+        "scientific_evidence": false
+      },
+      "summary": "experiments/EXP-BATCH-20260914074039-76/summary.md",
+      "result": {
+        "run_count": 12,
+        "duration_seconds": 0.2852887000190094,
+        "runner": "run_embodied_controller",
+        "ticks_requested": 1000,
+        "seeds_executed": [
+          101,
+          102,
+          103
+        ],
+        "tick_validation": {
+          "status": "VIOLATED",
+          "requested_ticks": 1000,
+          "reason": "Tick contract violated: runner run_embodied_controller did not execute at least 1000 ticks in every run.",
+          "retained_failed_observations": true
+        }
+      },
+      "epistemic_layers": {
+        "ui_state": "operator/dashboard progress only; not a scientific result",
+        "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+        "evid": "not_created; requires semantic validation, clean freeze and human review",
+        "interpretation": "post-hoc AI or human interpretation; never execution input"
+      }
+    },
+    {
+      "protocol": "embodied_timing_v1",
+      "ticks": 1000,
+      "seeds": "101-103",
+      "status": "completed",
+      "experiment_id": "EXP-BATCH-20260914074039-77",
+      "manifest": "experiments/EXP-BATCH-20260914074039-77/manifest.json",
+      "report": "experiments/EXP-BATCH-20260914074039-77/report.md",
+      "workflow": "experiments/EXP-BATCH-20260914074039-77/workflow.json",
+      "statistics": "experiments/EXP-BATCH-20260914074039-77/analysis/statistics.json",
+      "ai_packet": "experiments/EXP-BATCH-20260914074039-77/analysis/ai_packet.json",
+      "raw_run_index": "experiments/EXP-BATCH-20260914074039-77/DATA/runs_index.json",
+      "data_id": "DATA-EXP-BATCH-20260914074039-77",
+      "ai_report": {
+        "status": "generated",
+        "report_id": "AIRR-2026-0001",
+        "json": "experiments/EXP-BATCH-20260914074039-77/reports/AIRR-2026-0001.json",
+        "markdown": "experiments/EXP-BATCH-20260914074039-77/reports/AIRR-2026-0001.md",
+        "human_review": "PENDING",
+        "scientific_evidence": false
+      },
+      "summary": "experiments/EXP-BATCH-20260914074039-77/summary.md",
+      "result": {
+        "run_count": 21,
+        "duration_seconds": 0.306832599977497,
+        "runner": "run_embodied_timing",
+        "ticks_requested": 1000,
+        "seeds_executed": [
+          101,
+          102,
+          103
+        ],
+        "tick_validation": {
+          "status": "VIOLATED",
+          "requested_ticks": 1000,
+          "reason": "Tick contract violated: runner run_embodied_timing did not execute at least 1000 ticks in every run.",
+          "retained_failed_observations": true
+        }
+      },
+      "epistemic_layers": {
+        "ui_state": "operator/dashboard progress only; not a scientific result",
+        "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+        "evid": "not_created; requires semantic validation, clean freeze and human review",
+        "interpretation": "post-hoc AI or human interpretation; never execution input"
+      }
+    },
+    {
+      "protocol": "dimensional_connectivity_v1",
+      "ticks": 256,
+      "seeds": "20001,20002,20003,20004,20005,20006,20007,20008,20009,20010",
+      "status": "completed",
+      "experiment_id": "EXP-BATCH-20260914074039-78",
+      "manifest": "experiments/EXP-BATCH-20260914074039-78/manifest.json",
+      "report": "experiments/EXP-BATCH-20260914074039-78/report.md",
+      "workflow": "experiments/EXP-BATCH-20260914074039-78/workflow.json",
+      "statistics": "experiments/EXP-BATCH-20260914074039-78/analysis/statistics.json",
+      "ai_packet": "experiments/EXP-BATCH-20260914074039-78/analysis/ai_packet.json",
+      "raw_run_index": "experiments/EXP-BATCH-20260914074039-78/DATA/runs_index.json",
+      "data_id": "DATA-EXP-BATCH-20260914074039-78",
+      "ai_report": {
+        "status": "generated",
+        "report_id": "AIRR-2026-0001",
+        "json": "experiments/EXP-BATCH-20260914074039-78/reports/AIRR-2026-0001.json",
+        "markdown": "experiments/EXP-BATCH-20260914074039-78/reports/AIRR-2026-0001.md",
+        "human_review": "PENDING",
+        "scientific_evidence": false
+      },
+      "summary": "experiments/EXP-BATCH-20260914074039-78/summary.md",
+      "result": {
+        "run_count": 130,
+        "duration_seconds": 11.050001099996734,
+        "runner": "run_eval_dimensional",
+        "ticks_requested": 256,
+        "seeds_executed": [
+          20001,
+          20002,
+          20003,
+          20004,
+          20005,
+          20006,
+          20007,
+          20008,
+          20009,
+          20010
+        ],
+        "tick_validation": {
+          "status": "SATISFIED",
+          "mode": "minimum_per_run",
+          "requested_ticks": 256,
+          "observed_min": 256,
+          "observed_max": 256
+        }
+      },
+      "epistemic_layers": {
+        "ui_state": "operator/dashboard progress only; not a scientific result",
+        "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+        "evid": "not_created; requires semantic validation, clean freeze and human review",
+        "interpretation": "post-hoc AI or human interpretation; never execution input"
+      }
+    },
+    {
+      "protocol": "native_association_holdout_v1",
+      "ticks": 1000,
+      "seeds": "20001,20002,20003,20004,20005,20006,20007,20008,20009,20010",
+      "experiment_id": "EXP-BATCH-20260914074039-79",
+      "status": "failed",
+      "error": "ValueError: AI packet exceeds hard limit of 1000000 bytes; the deterministic projection must be tightened."
+    },
+    {
+      "protocol": "brian2_single_neuron_v1",
+      "ticks": 1000,
+      "seeds": "20001,20002,20003",
+      "experiment_id": "EXP-BATCH-20260914074039-80",
+      "status": "failed",
+      "error": "RuntimeError: BRIAN2_DEPENDENCY_MISSING: install the declared Brian2 baseline dependency"
+    },
+    {
+      "protocol": "active_scaling_v1",
+      "ticks": 1000,
+      "seeds": "20001,20002,20003",
+      "status": "completed",
+      "experiment_id": "EXP-BATCH-20260914074039-81",
+      "manifest": "experiments/EXP-BATCH-20260914074039-81/manifest.json",
+      "report": "experiments/EXP-BATCH-20260914074039-81/report.md",
+      "workflow": "experiments/EXP-BATCH-20260914074039-81/workflow.json",
+      "statistics": "experiments/EXP-BATCH-20260914074039-81/analysis/statistics.json",
+      "ai_packet": "experiments/EXP-BATCH-20260914074039-81/analysis/ai_packet.json",
+      "raw_run_index": "experiments/EXP-BATCH-20260914074039-81/DATA/runs_index.json",
+      "data_id": "DATA-EXP-BATCH-20260914074039-81",
+      "ai_report": {
+        "status": "generated",
+        "report_id": "AIRR-2026-0001",
+        "json": "experiments/EXP-BATCH-20260914074039-81/reports/AIRR-2026-0001.json",
+        "markdown": "experiments/EXP-BATCH-20260914074039-81/reports/AIRR-2026-0001.md",
+        "human_review": "PENDING",
+        "scientific_evidence": false
+      },
+      "summary": "experiments/EXP-BATCH-20260914074039-81/summary.md",
+      "result": {
+        "run_count": 15,
+        "duration_seconds": 57.51314120000461,
+        "runner": "run_eval_scaling",
+        "ticks_requested": 1000,
+        "seeds_executed": [
+          20001,
+          20002,
+          20003
+        ],
+        "tick_validation": {
+          "status": "NOT_APPLICABLE",
+          "mode": "protocol_defined_internal_trials",
+          "requested_ticks": 1000
+        }
+      },
+      "epistemic_layers": {
+        "ui_state": "operator/dashboard progress only; not a scientific result",
+        "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+        "evid": "not_created; requires semantic validation, clean freeze and human review",
+        "interpretation": "post-hoc AI or human interpretation; never execution input"
+      }
+    },
+    {
+      "protocol": "active_scaling_v2",
+      "ticks": 1000,
+      "seeds": "21001,21002,21003",
+      "status": "completed",
+      "experiment_id": "EXP-BATCH-20260914074039-82",
+      "manifest": "experiments/EXP-BATCH-20260914074039-82/manifest.json",
+      "report": "experiments/EXP-BATCH-20260914074039-82/report.md",
+      "workflow": "experiments/EXP-BATCH-20260914074039-82/workflow.json",
+      "statistics": "experiments/EXP-BATCH-20260914074039-82/analysis/statistics.json",
+      "ai_packet": "experiments/EXP-BATCH-20260914074039-82/analysis/ai_packet.json",
+      "raw_run_index": "experiments/EXP-BATCH-20260914074039-82/DATA/runs_index.json",
+      "data_id": "DATA-EXP-BATCH-20260914074039-82",
+      "ai_report": {
+        "status": "generated",
+        "report_id": "AIRR-2026-0001",
+        "json": "experiments/EXP-BATCH-20260914074039-82/reports/AIRR-2026-0001.json",
+        "markdown": "experiments/EXP-BATCH-20260914074039-82/reports/AIRR-2026-0001.md",
+        "human_review": "PENDING",
+        "scientific_evidence": false
+      },
+      "summary": "experiments/EXP-BATCH-20260914074039-82/summary.md",
+      "result": {
+        "run_count": 15,
+        "duration_seconds": 56.90105729998322,
+        "runner": "run_eval_scaling_v2",
+        "ticks_requested": 1000,
+        "seeds_executed": [
+          21001,
+          21002,
+          21003
+        ],
+        "tick_validation": {
+          "status": "NOT_APPLICABLE",
+          "mode": "protocol_defined_internal_trials",
+          "requested_ticks": 1000
+        }
+      },
+      "epistemic_layers": {
+        "ui_state": "operator/dashboard progress only; not a scientific result",
+        "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+        "evid": "not_created; requires semantic validation, clean freeze and human review",
+        "interpretation": "post-hoc AI or human interpretation; never execution input"
+      }
+    },
+    {
+      "protocol": "gateway_learning_boundary_v1",
+      "ticks": 1000,
+      "seeds": "101-103",
+      "status": "completed",
+      "experiment_id": "EXP-BATCH-20260914074039-83",
+      "manifest": "experiments/EXP-BATCH-20260914074039-83/manifest.json",
+      "report": "experiments/EXP-BATCH-20260914074039-83/report.md",
+      "workflow": "experiments/EXP-BATCH-20260914074039-83/workflow.json",
+      "statistics": "experiments/EXP-BATCH-20260914074039-83/analysis/statistics.json",
+      "ai_packet": "experiments/EXP-BATCH-20260914074039-83/analysis/ai_packet.json",
+      "raw_run_index": "experiments/EXP-BATCH-20260914074039-83/DATA/runs_index.json",
+      "data_id": "DATA-EXP-BATCH-20260914074039-83",
+      "ai_report": {
+        "status": "generated",
+        "report_id": "AIRR-2026-0001",
+        "json": "experiments/EXP-BATCH-20260914074039-83/reports/AIRR-2026-0001.json",
+        "markdown": "experiments/EXP-BATCH-20260914074039-83/reports/AIRR-2026-0001.md",
+        "human_review": "PENDING",
+        "scientific_evidence": false
+      },
+      "summary": "experiments/EXP-BATCH-20260914074039-83/summary.md",
+      "result": {
+        "run_count": 3,
+        "duration_seconds": 0.048606199969071895,
+        "runner": "run_boundary_audit",
+        "ticks_requested": 1000,
+        "seeds_executed": [
+          101,
+          102,
+          103
+        ],
+        "tick_validation": {
+          "status": "NOT_APPLICABLE",
+          "mode": "protocol_defined_internal_trials",
+          "requested_ticks": 1000
+        }
+      },
+      "epistemic_layers": {
+        "ui_state": "operator/dashboard progress only; not a scientific result",
+        "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+        "evid": "not_created; requires semantic validation, clean freeze and human review",
+        "interpretation": "post-hoc AI or human interpretation; never execution input"
+      }
+    },
+    {
+      "protocol": "gateway_modality_rules_boundary_v1",
+      "ticks": 1000,
+      "seeds": "101-103",
+      "status": "completed",
+      "experiment_id": "EXP-BATCH-20260914074039-84",
+      "manifest": "experiments/EXP-BATCH-20260914074039-84/manifest.json",
+      "report": "experiments/EXP-BATCH-20260914074039-84/report.md",
+      "workflow": "experiments/EXP-BATCH-20260914074039-84/workflow.json",
+      "statistics": "experiments/EXP-BATCH-20260914074039-84/analysis/statistics.json",
+      "ai_packet": "experiments/EXP-BATCH-20260914074039-84/analysis/ai_packet.json",
+      "raw_run_index": "experiments/EXP-BATCH-20260914074039-84/DATA/runs_index.json",
+      "data_id": "DATA-EXP-BATCH-20260914074039-84",
+      "ai_report": {
+        "status": "generated",
+        "report_id": "AIRR-2026-0001",
+        "json": "experiments/EXP-BATCH-20260914074039-84/reports/AIRR-2026-0001.json",
+        "markdown": "experiments/EXP-BATCH-20260914074039-84/reports/AIRR-2026-0001.md",
+        "human_review": "PENDING",
+        "scientific_evidence": false
+      },
+      "summary": "experiments/EXP-BATCH-20260914074039-84/summary.md",
+      "result": {
+        "run_count": 3,
+        "duration_seconds": 0.02987050003139302,
+        "runner": "run_boundary_audit",
+        "ticks_requested": 1000,
+        "seeds_executed": [
+          101,
+          102,
+          103
+        ],
+        "tick_validation": {
+          "status": "NOT_APPLICABLE",
+          "mode": "protocol_defined_internal_trials",
+          "requested_ticks": 1000
+        }
+      },
+      "epistemic_layers": {
+        "ui_state": "operator/dashboard progress only; not a scientific result",
+        "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+        "evid": "not_created; requires semantic validation, clean freeze and human review",
+        "interpretation": "post-hoc AI or human interpretation; never execution input"
+      }
+    },
+    {
+      "protocol": "gateway_stability_boundary_v1",
+      "ticks": 1000,
+      "seeds": "101-103",
+      "status": "completed",
+      "experiment_id": "EXP-BATCH-20260914074039-85",
+      "manifest": "experiments/EXP-BATCH-20260914074039-85/manifest.json",
+      "report": "experiments/EXP-BATCH-20260914074039-85/report.md",
+      "workflow": "experiments/EXP-BATCH-20260914074039-85/workflow.json",
+      "statistics": "experiments/EXP-BATCH-20260914074039-85/analysis/statistics.json",
+      "ai_packet": "experiments/EXP-BATCH-20260914074039-85/analysis/ai_packet.json",
+      "raw_run_index": "experiments/EXP-BATCH-20260914074039-85/DATA/runs_index.json",
+      "data_id": "DATA-EXP-BATCH-20260914074039-85",
+      "ai_report": {
+        "status": "generated",
+        "report_id": "AIRR-2026-0001",
+        "json": "experiments/EXP-BATCH-20260914074039-85/reports/AIRR-2026-0001.json",
+        "markdown": "experiments/EXP-BATCH-20260914074039-85/reports/AIRR-2026-0001.md",
+        "human_review": "PENDING",
+        "scientific_evidence": false
+      },
+      "summary": "experiments/EXP-BATCH-20260914074039-85/summary.md",
+      "result": {
+        "run_count": 3,
+        "duration_seconds": 0.00953849998768419,
+        "runner": "run_boundary_audit",
+        "ticks_requested": 1000,
+        "seeds_executed": [
+          101,
+          102,
+          103
+        ],
+        "tick_validation": {
+          "status": "NOT_APPLICABLE",
+          "mode": "protocol_defined_internal_trials",
+          "requested_ticks": 1000
+        }
+      },
+      "epistemic_layers": {
+        "ui_state": "operator/dashboard progress only; not a scientific result",
+        "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+        "evid": "not_created; requires semantic validation, clean freeze and human review",
+        "interpretation": "post-hoc AI or human interpretation; never execution input"
+      }
+    },
+    {
+      "protocol": "gateway_transfer_boundary_v1",
+      "ticks": 1000,
+      "seeds": "101-103",
+      "status": "completed",
+      "experiment_id": "EXP-BATCH-20260914074039-86",
+      "manifest": "experiments/EXP-BATCH-20260914074039-86/manifest.json",
+      "report": "experiments/EXP-BATCH-20260914074039-86/report.md",
+      "workflow": "experiments/EXP-BATCH-20260914074039-86/workflow.json",
+      "statistics": "experiments/EXP-BATCH-20260914074039-86/analysis/statistics.json",
+      "ai_packet": "experiments/EXP-BATCH-20260914074039-86/analysis/ai_packet.json",
+      "raw_run_index": "experiments/EXP-BATCH-20260914074039-86/DATA/runs_index.json",
+      "data_id": "DATA-EXP-BATCH-20260914074039-86",
+      "ai_report": {
+        "status": "generated",
+        "report_id": "AIRR-2026-0001",
+        "json": "experiments/EXP-BATCH-20260914074039-86/reports/AIRR-2026-0001.json",
+        "markdown": "experiments/EXP-BATCH-20260914074039-86/reports/AIRR-2026-0001.md",
+        "human_review": "PENDING",
+        "scientific_evidence": false
+      },
+      "summary": "experiments/EXP-BATCH-20260914074039-86/summary.md",
+      "result": {
+        "run_count": 3,
+        "duration_seconds": 0.021780100010801107,
+        "runner": "run_boundary_audit",
+        "ticks_requested": 1000,
+        "seeds_executed": [
+          101,
+          102,
+          103
+        ],
+        "tick_validation": {
+          "status": "NOT_APPLICABLE",
+          "mode": "protocol_defined_internal_trials",
+          "requested_ticks": 1000
+        }
+      },
+      "epistemic_layers": {
+        "ui_state": "operator/dashboard progress only; not a scientific result",
+        "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+        "evid": "not_created; requires semantic validation, clean freeze and human review",
+        "interpretation": "post-hoc AI or human interpretation; never execution input"
+      }
+    },
+    {
+      "protocol": "gateway_structure_boundary_v1",
+      "ticks": 1000,
+      "seeds": "101-103",
+      "status": "completed",
+      "experiment_id": "EXP-BATCH-20260914074039-87",
+      "manifest": "experiments/EXP-BATCH-20260914074039-87/manifest.json",
+      "report": "experiments/EXP-BATCH-20260914074039-87/report.md",
+      "workflow": "experiments/EXP-BATCH-20260914074039-87/workflow.json",
+      "statistics": "experiments/EXP-BATCH-20260914074039-87/analysis/statistics.json",
+      "ai_packet": "experiments/EXP-BATCH-20260914074039-87/analysis/ai_packet.json",
+      "raw_run_index": "experiments/EXP-BATCH-20260914074039-87/DATA/runs_index.json",
+      "data_id": "DATA-EXP-BATCH-20260914074039-87",
+      "ai_report": {
+        "status": "generated",
+        "report_id": "AIRR-2026-0001",
+        "json": "experiments/EXP-BATCH-20260914074039-87/reports/AIRR-2026-0001.json",
+        "markdown": "experiments/EXP-BATCH-20260914074039-87/reports/AIRR-2026-0001.md",
+        "human_review": "PENDING",
+        "scientific_evidence": false
+      },
+      "summary": "experiments/EXP-BATCH-20260914074039-87/summary.md",
+      "result": {
+        "run_count": 3,
+        "duration_seconds": 0.014873399981297553,
+        "runner": "run_boundary_audit",
+        "ticks_requested": 1000,
+        "seeds_executed": [
+          101,
+          102,
+          103
+        ],
+        "tick_validation": {
+          "status": "NOT_APPLICABLE",
+          "mode": "protocol_defined_internal_trials",
+          "requested_ticks": 1000
+        }
+      },
+      "epistemic_layers": {
+        "ui_state": "operator/dashboard progress only; not a scientific result",
+        "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+        "evid": "not_created; requires semantic validation, clean freeze and human review",
+        "interpretation": "post-hoc AI or human interpretation; never execution input"
+      }
+    },
+    {
+      "protocol": "gateway_closed_loop_boundary_v1",
+      "ticks": 1000,
+      "seeds": "101-103",
+      "status": "completed",
+      "experiment_id": "EXP-BATCH-20260914074039-88",
+      "manifest": "experiments/EXP-BATCH-20260914074039-88/manifest.json",
+      "report": "experiments/EXP-BATCH-20260914074039-88/report.md",
+      "workflow": "experiments/EXP-BATCH-20260914074039-88/workflow.json",
+      "statistics": "experiments/EXP-BATCH-20260914074039-88/analysis/statistics.json",
+      "ai_packet": "experiments/EXP-BATCH-20260914074039-88/analysis/ai_packet.json",
+      "raw_run_index": "experiments/EXP-BATCH-20260914074039-88/DATA/runs_index.json",
+      "data_id": "DATA-EXP-BATCH-20260914074039-88",
+      "ai_report": {
+        "status": "generated",
+        "report_id": "AIRR-2026-0001",
+        "json": "experiments/EXP-BATCH-20260914074039-88/reports/AIRR-2026-0001.json",
+        "markdown": "experiments/EXP-BATCH-20260914074039-88/reports/AIRR-2026-0001.md",
+        "human_review": "PENDING",
+        "scientific_evidence": false
+      },
+      "summary": "experiments/EXP-BATCH-20260914074039-88/summary.md",
+      "result": {
+        "run_count": 3,
+        "duration_seconds": 0.014234900008887053,
+        "runner": "run_boundary_audit",
+        "ticks_requested": 1000,
+        "seeds_executed": [
+          101,
+          102,
+          103
+        ],
+        "tick_validation": {
+          "status": "NOT_APPLICABLE",
+          "mode": "protocol_defined_internal_trials",
+          "requested_ticks": 1000
+        }
+      },
+      "epistemic_layers": {
+        "ui_state": "operator/dashboard progress only; not a scientific result",
+        "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+        "evid": "not_created; requires semantic validation, clean freeze and human review",
+        "interpretation": "post-hoc AI or human interpretation; never execution input"
+      }
+    },
+    {
+      "protocol": "gateway_resources_boundary_v1",
+      "ticks": 1000,
+      "seeds": "101-103",
+      "status": "completed",
+      "experiment_id": "EXP-BATCH-20260914074039-89",
+      "manifest": "experiments/EXP-BATCH-20260914074039-89/manifest.json",
+      "report": "experiments/EXP-BATCH-20260914074039-89/report.md",
+      "workflow": "experiments/EXP-BATCH-20260914074039-89/workflow.json",
+      "statistics": "experiments/EXP-BATCH-20260914074039-89/analysis/statistics.json",
+      "ai_packet": "experiments/EXP-BATCH-20260914074039-89/analysis/ai_packet.json",
+      "raw_run_index": "experiments/EXP-BATCH-20260914074039-89/DATA/runs_index.json",
+      "data_id": "DATA-EXP-BATCH-20260914074039-89",
+      "ai_report": {
+        "status": "generated",
+        "report_id": "AIRR-2026-0001",
+        "json": "experiments/EXP-BATCH-20260914074039-89/reports/AIRR-2026-0001.json",
+        "markdown": "experiments/EXP-BATCH-20260914074039-89/reports/AIRR-2026-0001.md",
+        "human_review": "PENDING",
+        "scientific_evidence": false
+      },
+      "summary": "experiments/EXP-BATCH-20260914074039-89/summary.md",
+      "result": {
+        "run_count": 3,
+        "duration_seconds": 0.01754949998576194,
+        "runner": "run_boundary_audit",
+        "ticks_requested": 1000,
+        "seeds_executed": [
+          101,
+          102,
+          103
+        ],
+        "tick_validation": {
+          "status": "NOT_APPLICABLE",
+          "mode": "protocol_defined_internal_trials",
+          "requested_ticks": 1000
+        }
+      },
+      "epistemic_layers": {
+        "ui_state": "operator/dashboard progress only; not a scientific result",
+        "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+        "evid": "not_created; requires semantic validation, clean freeze and human review",
+        "interpretation": "post-hoc AI or human interpretation; never execution input"
+      }
+    },
+    {
+      "protocol": "msba_energy_efficiency_v1",
+      "ticks": 48,
+      "seeds": "101-103",
+      "status": "completed",
+      "experiment_id": "EXP-BATCH-20260914074039-90",
+      "manifest": "experiments/EXP-BATCH-20260914074039-90/manifest.json",
+      "report": "experiments/EXP-BATCH-20260914074039-90/report.md",
+      "workflow": "experiments/EXP-BATCH-20260914074039-90/workflow.json",
+      "statistics": "experiments/EXP-BATCH-20260914074039-90/analysis/statistics.json",
+      "ai_packet": "experiments/EXP-BATCH-20260914074039-90/analysis/ai_packet.json",
+      "raw_run_index": "experiments/EXP-BATCH-20260914074039-90/DATA/runs_index.json",
+      "data_id": "DATA-EXP-BATCH-20260914074039-90",
+      "ai_report": {
+        "status": "generated",
+        "report_id": "AIRR-2026-0001",
+        "json": "experiments/EXP-BATCH-20260914074039-90/reports/AIRR-2026-0001.json",
+        "markdown": "experiments/EXP-BATCH-20260914074039-90/reports/AIRR-2026-0001.md",
+        "human_review": "PENDING",
+        "scientific_evidence": false
+      },
+      "summary": "experiments/EXP-BATCH-20260914074039-90/summary.md",
+      "result": {
+        "run_count": 9,
+        "duration_seconds": 0.0176414999878034,
+        "runner": "run_msba_e01",
+        "ticks_requested": 48,
+        "seeds_executed": [
+          101,
+          102,
+          103
+        ],
+        "tick_validation": {
+          "status": "NOT_APPLICABLE",
+          "mode": "protocol_defined_internal_trials",
+          "requested_ticks": 48
+        }
+      },
+      "epistemic_layers": {
+        "ui_state": "operator/dashboard progress only; not a scientific result",
+        "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+        "evid": "not_created; requires semantic validation, clean freeze and human review",
+        "interpretation": "post-hoc AI or human interpretation; never execution input"
+      }
+    },
+    {
+      "protocol": "msba_resource_allocation_v1",
+      "ticks": 96,
+      "seeds": "101-103",
+      "status": "completed",
+      "experiment_id": "EXP-BATCH-20260914074039-91",
+      "manifest": "experiments/EXP-BATCH-20260914074039-91/manifest.json",
+      "report": "experiments/EXP-BATCH-20260914074039-91/report.md",
+      "workflow": "experiments/EXP-BATCH-20260914074039-91/workflow.json",
+      "statistics": "experiments/EXP-BATCH-20260914074039-91/analysis/statistics.json",
+      "ai_packet": "experiments/EXP-BATCH-20260914074039-91/analysis/ai_packet.json",
+      "raw_run_index": "experiments/EXP-BATCH-20260914074039-91/DATA/runs_index.json",
+      "data_id": "DATA-EXP-BATCH-20260914074039-91",
+      "ai_report": {
+        "status": "generated",
+        "report_id": "AIRR-2026-0001",
+        "json": "experiments/EXP-BATCH-20260914074039-91/reports/AIRR-2026-0001.json",
+        "markdown": "experiments/EXP-BATCH-20260914074039-91/reports/AIRR-2026-0001.md",
+        "human_review": "PENDING",
+        "scientific_evidence": false
+      },
+      "summary": "experiments/EXP-BATCH-20260914074039-91/summary.md",
+      "result": {
+        "run_count": 9,
+        "duration_seconds": 0.02601839997805655,
+        "runner": "run_msba_e02",
+        "ticks_requested": 96,
+        "seeds_executed": [
+          101,
+          102,
+          103
+        ],
+        "tick_validation": {
+          "status": "NOT_APPLICABLE",
+          "mode": "protocol_defined_internal_trials",
+          "requested_ticks": 96
+        }
+      },
+      "epistemic_layers": {
+        "ui_state": "operator/dashboard progress only; not a scientific result",
+        "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+        "evid": "not_created; requires semantic validation, clean freeze and human review",
+        "interpretation": "post-hoc AI or human interpretation; never execution input"
+      }
+    },
+    {
+      "protocol": "msba_visual_roi_v1",
+      "ticks": 48,
+      "seeds": "101-103",
+      "status": "completed",
+      "experiment_id": "EXP-BATCH-20260914074039-92",
+      "manifest": "experiments/EXP-BATCH-20260914074039-92/manifest.json",
+      "report": "experiments/EXP-BATCH-20260914074039-92/report.md",
+      "workflow": "experiments/EXP-BATCH-20260914074039-92/workflow.json",
+      "statistics": "experiments/EXP-BATCH-20260914074039-92/analysis/statistics.json",
+      "ai_packet": "experiments/EXP-BATCH-20260914074039-92/analysis/ai_packet.json",
+      "raw_run_index": "experiments/EXP-BATCH-20260914074039-92/DATA/runs_index.json",
+      "data_id": "DATA-EXP-BATCH-20260914074039-92",
+      "ai_report": {
+        "status": "generated",
+        "report_id": "AIRR-2026-0001",
+        "json": "experiments/EXP-BATCH-20260914074039-92/reports/AIRR-2026-0001.json",
+        "markdown": "experiments/EXP-BATCH-20260914074039-92/reports/AIRR-2026-0001.md",
+        "human_review": "PENDING",
+        "scientific_evidence": false
+      },
+      "summary": "experiments/EXP-BATCH-20260914074039-92/summary.md",
+      "result": {
+        "run_count": 12,
+        "duration_seconds": 0.026605799968820065,
+        "runner": "run_msba_e03",
+        "ticks_requested": 48,
+        "seeds_executed": [
+          101,
+          102,
+          103
+        ],
+        "tick_validation": {
+          "status": "NOT_APPLICABLE",
+          "mode": "protocol_defined_internal_trials",
+          "requested_ticks": 48
+        }
+      },
+      "epistemic_layers": {
+        "ui_state": "operator/dashboard progress only; not a scientific result",
+        "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+        "evid": "not_created; requires semantic validation, clean freeze and human review",
+        "interpretation": "post-hoc AI or human interpretation; never execution input"
+      }
+    },
+    {
+      "protocol": "msba_digital_integrity_v1",
+      "ticks": 64,
+      "seeds": "101-103",
+      "status": "completed",
+      "experiment_id": "EXP-BATCH-20260914074039-93",
+      "manifest": "experiments/EXP-BATCH-20260914074039-93/manifest.json",
+      "report": "experiments/EXP-BATCH-20260914074039-93/report.md",
+      "workflow": "experiments/EXP-BATCH-20260914074039-93/workflow.json",
+      "statistics": "experiments/EXP-BATCH-20260914074039-93/analysis/statistics.json",
+      "ai_packet": "experiments/EXP-BATCH-20260914074039-93/analysis/ai_packet.json",
+      "raw_run_index": "experiments/EXP-BATCH-20260914074039-93/DATA/runs_index.json",
+      "data_id": "DATA-EXP-BATCH-20260914074039-93",
+      "ai_report": {
+        "status": "generated",
+        "report_id": "AIRR-2026-0001",
+        "json": "experiments/EXP-BATCH-20260914074039-93/reports/AIRR-2026-0001.json",
+        "markdown": "experiments/EXP-BATCH-20260914074039-93/reports/AIRR-2026-0001.md",
+        "human_review": "PENDING",
+        "scientific_evidence": false
+      },
+      "summary": "experiments/EXP-BATCH-20260914074039-93/summary.md",
+      "result": {
+        "run_count": 9,
+        "duration_seconds": 0.022863699996378273,
+        "runner": "run_msba_e04",
+        "ticks_requested": 64,
+        "seeds_executed": [
+          101,
+          102,
+          103
+        ],
+        "tick_validation": {
+          "status": "NOT_APPLICABLE",
+          "mode": "protocol_defined_internal_trials",
+          "requested_ticks": 64
+        }
+      },
+      "epistemic_layers": {
+        "ui_state": "operator/dashboard progress only; not a scientific result",
+        "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+        "evid": "not_created; requires semantic validation, clean freeze and human review",
+        "interpretation": "post-hoc AI or human interpretation; never execution input"
+      }
+    },
+    {
+      "protocol": "msba_modality_compensation_v1",
+      "ticks": 48,
+      "seeds": "101-103",
+      "status": "completed",
+      "experiment_id": "EXP-BATCH-20260914074039-94",
+      "manifest": "experiments/EXP-BATCH-20260914074039-94/manifest.json",
+      "report": "experiments/EXP-BATCH-20260914074039-94/report.md",
+      "workflow": "experiments/EXP-BATCH-20260914074039-94/workflow.json",
+      "statistics": "experiments/EXP-BATCH-20260914074039-94/analysis/statistics.json",
+      "ai_packet": "experiments/EXP-BATCH-20260914074039-94/analysis/ai_packet.json",
+      "raw_run_index": "experiments/EXP-BATCH-20260914074039-94/DATA/runs_index.json",
+      "data_id": "DATA-EXP-BATCH-20260914074039-94",
+      "ai_report": {
+        "status": "generated",
+        "report_id": "AIRR-2026-0001",
+        "json": "experiments/EXP-BATCH-20260914074039-94/reports/AIRR-2026-0001.json",
+        "markdown": "experiments/EXP-BATCH-20260914074039-94/reports/AIRR-2026-0001.md",
+        "human_review": "PENDING",
+        "scientific_evidence": false
+      },
+      "summary": "experiments/EXP-BATCH-20260914074039-94/summary.md",
+      "result": {
+        "run_count": 12,
+        "duration_seconds": 0.019027299946174026,
+        "runner": "run_msba_e05",
+        "ticks_requested": 48,
+        "seeds_executed": [
+          101,
+          102,
+          103
+        ],
+        "tick_validation": {
+          "status": "NOT_APPLICABLE",
+          "mode": "protocol_defined_internal_trials",
+          "requested_ticks": 48
+        }
+      },
+      "epistemic_layers": {
+        "ui_state": "operator/dashboard progress only; not a scientific result",
+        "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+        "evid": "not_created; requires semantic validation, clean freeze and human review",
+        "interpretation": "post-hoc AI or human interpretation; never execution input"
+      }
+    }
+  ]
+}

@@ -1,0 +1,316 @@
+{
+  "analysis_id": "AIAR-scientific_writer-20260914113548202375-e27bf824",
+  "role": "scientific_writer",
+  "model": {
+    "provider": "ollama",
+    "model_name": "qwen2.5-coder:7b",
+    "model_digest": "not_reported",
+    "quantization": "not_reported",
+    "context_length": "unknown",
+    "temperature": 0.0,
+    "top_p": 1.0,
+    "seed": "not_reported",
+    "backend_version": "unknown"
+  },
+  "inputs": {
+    "experiment_id": "EXP-BATCH-20260914074039-34",
+    "packet_digest": "e27bf824f6be31dc361e5af8fded9f5fcba660ce0da108d8e8ec0d9808b25a1a"
+  },
+  "output": {
+    "functional_activation": {
+      "max": 0.0,
+      "mean": 0.0,
+      "median": 0.0,
+      "min": 0.0,
+      "n": 54,
+      "std": 0.0
+    },
+    "functional_safety": {
+      "max": 1.0,
+      "mean": 1.0,
+      "median": 1.0,
+      "min": 1.0,
+      "n": 54,
+      "std": 0.0
+    },
+    "functional_uncertainty": {
+      "max": 0.9642857142857143,
+      "mean": 0.9642857142857143,
+      "median": 0.9642857142857143,
+      "min": 0.9642857142857143,
+      "n": 54,
+      "std": 0.0
+    },
+    "functional_valence": {
+      "max": 1.0,
+      "mean": 1.0,
+      "median": 1.0,
+      "min": 1.0,
+      "n": 54,
+      "std": 0.0
+    },
+    "regulatory_continuity_risk": {
+      "max": 0.0,
+      "mean": 0.0,
+      "median": 0.0,
+      "min": 0.0,
+      "n": 54,
+      "std": 0.0
+    },
+    "regulatory_energy_reserve": {
+      "max": 1.0,
+      "mean": 1.0,
+      "median": 1.0,
+      "min": 1.0,
+      "n": 54,
+      "std": 0.0
+    },
+    "regulatory_resource_pressure": {
+      "max": 0.0,
+      "mean": 0.0,
+      "median": 0.0,
+      "min": 0.0,
+      "n": 54,
+      "std": 0.0
+    },
+    "regulatory_sensory_integrity": {
+      "max": 0.25,
+      "mean": 0.25,
+      "median": 0.25,
+      "min": 0.25,
+      "n": 54,
+      "std": 0.0
+    },
+    "regulatory_thermal_margin": {
+      "max": 1.0,
+      "mean": 1.0,
+      "median": 1.0,
+      "min": 1.0,
+      "n": 54,
+      "std": 0.0
+    },
+    "baseline_probes_executed": {
+      "max": 1.0,
+      "mean": 1.0,
+      "median": 1.0,
+      "min": 1.0,
+      "n": 54,
+      "std": 0.0
+    },
+    "baseline_target_peak_v": {
+      "max": -65.0,
+      "mean": -65.0,
+      "median": -65.0,
+      "min": -65.0,
+      "n": 54,
+      "std": 0.0
+    },
+    "final_mean_weight": {
+      "max": 0.517280469842843,
+      "mean": 0.517280469842843,
+      "median": 0.517280469842843,
+      "min": 0.517280469842843,
+      "n": 54,
+      "std": 0.0
+    },
+    "holdout_episodes_executed": {
+      "max": 0.0,
+      "mean": 0.0,
+      "median": 0.0,
+      "min": 0.0,
+      "n": 54,
+      "std": 0.0
+    },
+    "holdout_trial_count": {
+      "max": 4.0,
+      "mean": 4.0,
+      "median": 4.0,
+      "min": 4.0,
+      "n": 54,
+      "std": 0.0
+    },
+    "initial_mean_weight": {
+      "max": 0.05,
+      "mean": 0.05000000000000001,
+      "median": 0.05,
+      "min": 0.05,
+      "n": 54,
+      "std": 0.0
+    },
+    "mean_weight_delta": {
+      "max": 0.46728046984284305,
+      "mean": 0.46728046984284305,
+      "median": 0.46728046984284305,
+      "min": 0.46728046984284305,
+      "n": 54,
+      "std": 0.0
+    },
+    "post_training_probes_executed": {
+      "max": 1.0,
+      "mean": 1.0,
+      "median": 1.0,
+      "min": 1.0,
+      "n": 54,
+      "std": 0.0
+    },
+    "presynaptic_neurons": {
+      "max": 48.0,
+      "mean": 48.0,
+      "median": 48.0,
+      "min": 48.0,
+      "n": 54,
+      "std": 0.0
+    },
+    "protocol_version": {
+      "max": 1.0,
+      "mean": 1.0,
+      "median": 1.0,
+      "min": 1.0,
+      "n": 54,
+      "std": 0.0
+    },
+    "reward_weight_updates": {
+      "max": 576.0,
+      "mean": 576.0,
+      "median": 576.0,
+      "min": 576.0,
+      "n": 54,
+      "std": 0.0
+    },
+    "rewards_applied": {
+      "max": 12.0,
+      "mean": 12.0,
+      "median": 12.0,
+      "min": 12.0,
+      "n": 54,
+      "std": 0.0
+    },
+    "rewards_received": {
+      "max": 12.0,
+      "mean": 12.0,
+      "median": 12.0,
+      "min": 12.0,
+      "n": 54,
+      "std": 0.0
+    },
+    "train_trial_count": {
+      "max": 12.0,
+      "mean": 12.0,
+      "median": 12.0,
+      "min": 12.0,
+      "n": 54,
+      "std": 0.0
+    },
+    "trained_target_peak_v": {
+      "max": 26.239795413974708,
+      "mean": 26.239795413974708,
+      "median": 26.239795413974708,
+      "min": 26.239795413974708,
+      "n": 54,
+      "std": 0.0
+    },
+    "trained_target_spike_tick": {
+      "max": 4.0,
+      "mean": 4.0,
+      "median": 4.0,
+      "min": 4.0,
+      "n": 54,
+      "std": 0.0
+    },
+    "training_trials": {
+      "max": 20.0,
+      "mean": 20.0,
+      "median": 20.0,
+      "min": 20.0,
+      "n": 54,
+      "std": 0.0
+    },
+    "validation_episodes_executed": {
+      "max": 0.0,
+      "mean": 0.0,
+      "median": 0.0,
+      "min": 0.0,
+      "n": 54,
+      "std": 0.0
+    },
+    "validation_trial_count": {
+      "max": 4.0,
+      "mean": 4.0,
+      "median": 4.0,
+      "min": 4.0,
+      "n": 54,
+      "std": 0.0
+    },
+    "ticks_executed": {
+      "max": 256.0,
+      "mean": 256.0,
+      "median": 256.0,
+      "min": 256.0,
+      "n": 54,
+      "std": 0.0
+    },
+    "ticks_requested": {
+      "max": 256.0,
+      "mean": 256.0,
+      "median": 256.0,
+      "min": 256.0,
+      "n": 54,
+      "std": 0.0
+    },
+    "total_spikes": {
+      "max": 0.0,
+      "mean": 0.0,
+      "median": 0.0,
+      "min": 0.0,
+      "n": 54,
+      "std": 0.0
+    },
+    "duration_seconds": {
+      "max": 0.0017318000318482518,
+      "mean": 0.0014980000172120829,
+      "median": 0.0013964000390842557,
+      "min": 0.0013657999807037413,
+      "n": 54,
+      "std": 0.0001657928949545734
+    },
+    "ticks_per_second": {
+      "max": 187435.9376312874,
+      "mean": 172862.5210638827,
+      "median": 183328.5540208679,
+      "min": 147823.07153949278,
+      "n": 54,
+      "std": 17784.790775531364
+    },
+    "assessment": "Die Analyse konnte nicht vollstaendig schema-konform erzeugt werden. Das Modell hat das erforderliche assessment-Feld nicht geliefert.",
+    "observations": [],
+    "methodological_concerns": [
+      "Die vom Modell ausgegebene confidence war schemawidrig oder ausserhalb des Bereichs 0..1. Sie wurde fuer die AIRR-Provenienz konservativ auf 0.0 gesetzt; der Originalwert bleibt als confidence_original erhalten."
+    ],
+    "alternative_explanations": [],
+    "recommended_experiments": [],
+    "requested_evidence": [],
+    "effect_direction": "not_determined",
+    "confidence_original": null,
+    "confidence": 0.0
+  },
+  "provenance": {
+    "prompt_sha256": "238f85d5c7155024822cbde153fb688daa6fc256c47620d444ce89f588caeba1",
+    "research_packet_digest": "e27bf824f6be31dc361e5af8fded9f5fcba660ce0da108d8e8ec0d9808b25a1a",
+    "prompt_protocol_version": "research_assistant_v1",
+    "assistant_schema_version": "1.2",
+    "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+    "model_self_confidence": "0.0"
+  },
+  "epistemic_status": {
+    "evidence": false,
+    "interpretation_only": true,
+    "human_review_required": true
+  },
+  "review": {
+    "status": "pending",
+    "reviewer": null,
+    "reviewed_at": null,
+    "disposition": null
+  },
+  "generated_at": "2026-09-14T11:35:48.202375+00:00"
+}

@@ -1,0 +1,127 @@
+{
+  "run_count": 12,
+  "runs": [
+    {
+      "condition": "recurrence_off_replica_a",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0000-recurrence_off_replica_a-seed-101.json.gz",
+      "run_index": 0,
+      "seed": 101,
+      "sha256": "c3e37293e12c933252dcec1b9cb6667f216553759f435e3e5d85a98b1706b342",
+      "size_bytes": 521,
+      "uncompressed_bytes": 956
+    },
+    {
+      "condition": "recurrence_off_replica_b",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0001-recurrence_off_replica_b-seed-101.json.gz",
+      "run_index": 1,
+      "seed": 101,
+      "sha256": "a353f9d7b77dfdb7a8d2c4619110161748fef4073a688dd2fa02811069859b1f",
+      "size_bytes": 521,
+      "uncompressed_bytes": 956
+    },
+    {
+      "condition": "recurrence_on_replica_a",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0002-recurrence_on_replica_a-seed-101.json.gz",
+      "run_index": 2,
+      "seed": 101,
+      "sha256": "e5b632859ab2e9bfbb2b8018dd2220b7a118bb9d48f9fde25b93862749d8c68b",
+      "size_bytes": 619,
+      "uncompressed_bytes": 1733
+    },
+    {
+      "condition": "recurrence_on_replica_b",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0003-recurrence_on_replica_b-seed-101.json.gz",
+      "run_index": 3,
+      "seed": 101,
+      "sha256": "13cf863224bdcce9f69bf94b8c721907114a022f40ba3f2988f0905223c05e61",
+      "size_bytes": 619,
+      "uncompressed_bytes": 1733
+    },
+    {
+      "condition": "recurrence_off_replica_a",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0004-recurrence_off_replica_a-seed-102.json.gz",
+      "run_index": 4,
+      "seed": 102,
+      "sha256": "b2a46f1f8e5d01c0fdbac20ab5f3e6bbd721acb34d7d436cbf865c09e507babd",
+      "size_bytes": 519,
+      "uncompressed_bytes": 956
+    },
+    {
+      "condition": "recurrence_off_replica_b",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0005-recurrence_off_replica_b-seed-102.json.gz",
+      "run_index": 5,
+      "seed": 102,
+      "sha256": "8733c3e5b8e35265b51085e9e0197cec627aa921f4568a343897b625ae33ef80",
+      "size_bytes": 519,
+      "uncompressed_bytes": 956
+    },
+    {
+      "condition": "recurrence_on_replica_a",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0006-recurrence_on_replica_a-seed-102.json.gz",
+      "run_index": 6,
+      "seed": 102,
+      "sha256": "1e28bee5cfb16a6d55dbd7de798e847cc5e2a4868d542ae8fa42f5b9903775e2",
+      "size_bytes": 620,
+      "uncompressed_bytes": 1733
+    },
+    {
+      "condition": "recurrence_on_replica_b",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0007-recurrence_on_replica_b-seed-102.json.gz",
+      "run_index": 7,
+      "seed": 102,
+      "sha256": "f5ddb5db09bf34a55b0f8d36c0fc5c758bb065c881c19e90615598609ca8632e",
+      "size_bytes": 621,
+      "uncompressed_bytes": 1733
+    },
+    {
+      "condition": "recurrence_off_replica_a",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0008-recurrence_off_replica_a-seed-103.json.gz",
+      "run_index": 8,
+      "seed": 103,
+      "sha256": "f6d6b229792c86d25a7b0a850fae2bf64750e1413c6e79299e8c92ee4ee599b6",
+      "size_bytes": 522,
+      "uncompressed_bytes": 956
+    },
+    {
+      "condition": "recurrence_off_replica_b",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0009-recurrence_off_replica_b-seed-103.json.gz",
+      "run_index": 9,
+      "seed": 103,
+      "sha256": "d01ed565d2f3b5c6b2a6ffeffa4ceede1d2be3fe8418db0a46efe35dc36e1895",
+      "size_bytes": 521,
+      "uncompressed_bytes": 956
+    },
+    {
+      "condition": "recurrence_on_replica_a",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0010-recurrence_on_replica_a-seed-103.json.gz",
+      "run_index": 10,
+      "seed": 103,
+      "sha256": "9382b79dfed71dbf038c01937457a74ce858420a4d797276e0bf21b1ec846dd9",
+      "size_bytes": 619,
+      "uncompressed_bytes": 1733
+    },
+    {
+      "condition": "recurrence_on_replica_b",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0011-recurrence_on_replica_b-seed-103.json.gz",
+      "run_index": 11,
+      "seed": 103,
+      "sha256": "12d790c5e685c7c70ffd607276878b961ec03032373abab93da87e431de344fb",
+      "size_bytes": 619,
+      "uncompressed_bytes": 1733
+    }
+  ],
+  "schema_version": "2.0",
+  "storage_policy": "immutable_raw_runs_plus_compact_current_experiment"
+}

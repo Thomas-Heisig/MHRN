@@ -1,0 +1,607 @@
+{
+  "run_count": 60,
+  "runs": [
+    {
+      "condition": "forward",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0000-forward-seed-101.json.gz",
+      "run_index": 0,
+      "seed": 101,
+      "sha256": "f90f7649313b08cec61e0092cdf7455da15625ead8d3378b92f6f82f4a336dc7",
+      "size_bytes": 332,
+      "uncompressed_bytes": 452
+    },
+    {
+      "condition": "reverse",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0001-reverse-seed-101.json.gz",
+      "run_index": 1,
+      "seed": 101,
+      "sha256": "f71046bf6da37b18e134bc9b2edf87587d395cab3303da9c9fa234ca35f02c23",
+      "size_bytes": 333,
+      "uncompressed_bytes": 452
+    },
+    {
+      "condition": "simultaneous",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0002-simultaneous-seed-101.json.gz",
+      "run_index": 2,
+      "seed": 101,
+      "sha256": "1c6334aeee94b98fecf736626dc686ba08871ac95b538d5d60215e5311317f57",
+      "size_bytes": 338,
+      "uncompressed_bytes": 457
+    },
+    {
+      "condition": "forward",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0003-forward-seed-102.json.gz",
+      "run_index": 3,
+      "seed": 102,
+      "sha256": "b69f3530d1a08f9e5927ebfce0194164334fce67772f7d3da16edcd566cef5f8",
+      "size_bytes": 328,
+      "uncompressed_bytes": 452
+    },
+    {
+      "condition": "reverse",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0004-reverse-seed-102.json.gz",
+      "run_index": 4,
+      "seed": 102,
+      "sha256": "0eddaf71e3c622d71a09feb33207ffe8e9a87bd4c3148c0103799928fcbb9a50",
+      "size_bytes": 327,
+      "uncompressed_bytes": 452
+    },
+    {
+      "condition": "simultaneous",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0005-simultaneous-seed-102.json.gz",
+      "run_index": 5,
+      "seed": 102,
+      "sha256": "dd6dbb36bc237233b42df61cd7fca148da4701391ca4639697751a60611a1a9e",
+      "size_bytes": 337,
+      "uncompressed_bytes": 457
+    },
+    {
+      "condition": "forward",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0006-forward-seed-103.json.gz",
+      "run_index": 6,
+      "seed": 103,
+      "sha256": "6e7db1c35033889ee4cd84b862bba6dd927f6ff9e6f220c7c447a555e01c901f",
+      "size_bytes": 333,
+      "uncompressed_bytes": 452
+    },
+    {
+      "condition": "reverse",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0007-reverse-seed-103.json.gz",
+      "run_index": 7,
+      "seed": 103,
+      "sha256": "8bafec53de29ce1fba4d71715b90a742b917247f0f20f02c91f37aa0febec7c4",
+      "size_bytes": 330,
+      "uncompressed_bytes": 452
+    },
+    {
+      "condition": "simultaneous",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0008-simultaneous-seed-103.json.gz",
+      "run_index": 8,
+      "seed": 103,
+      "sha256": "4ddbdf71e3678a691687b4bb6e8e8b4a13e40bf248cb8d78a24e1a619927395e",
+      "size_bytes": 338,
+      "uncompressed_bytes": 457
+    },
+    {
+      "condition": "forward",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0009-forward-seed-104.json.gz",
+      "run_index": 9,
+      "seed": 104,
+      "sha256": "9255b6db1820c5150b3d0c765afb352725f692aa1e03faa35b004ddfcf1c03f1",
+      "size_bytes": 331,
+      "uncompressed_bytes": 452
+    },
+    {
+      "condition": "reverse",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0010-reverse-seed-104.json.gz",
+      "run_index": 10,
+      "seed": 104,
+      "sha256": "a1a942a81bdf1b076b2d3c6d095523ec2b08a41f4e620869c6a703a5160d6ae1",
+      "size_bytes": 331,
+      "uncompressed_bytes": 452
+    },
+    {
+      "condition": "simultaneous",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0011-simultaneous-seed-104.json.gz",
+      "run_index": 11,
+      "seed": 104,
+      "sha256": "7ca4159c12529fc625e3e3aefce25cb93cc048151b2c6bdf86bc470bcd05c374",
+      "size_bytes": 341,
+      "uncompressed_bytes": 457
+    },
+    {
+      "condition": "forward",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0012-forward-seed-105.json.gz",
+      "run_index": 12,
+      "seed": 105,
+      "sha256": "1f3bffcb15c56d4f5d9e530300b8ea4d4fd8c2f53a965e3b9022b459f9bae9c3",
+      "size_bytes": 332,
+      "uncompressed_bytes": 452
+    },
+    {
+      "condition": "reverse",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0013-reverse-seed-105.json.gz",
+      "run_index": 13,
+      "seed": 105,
+      "sha256": "cea30b8ea78695a8b9e3888d81d6a57a8c73df0688918fd83888e134a6ef2df5",
+      "size_bytes": 332,
+      "uncompressed_bytes": 452
+    },
+    {
+      "condition": "simultaneous",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0014-simultaneous-seed-105.json.gz",
+      "run_index": 14,
+      "seed": 105,
+      "sha256": "4d6d64c5fa49744138b567af3de1d2da95a1c8ad50e6e09f388f9ac2bd8a39da",
+      "size_bytes": 339,
+      "uncompressed_bytes": 457
+    },
+    {
+      "condition": "forward",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0015-forward-seed-106.json.gz",
+      "run_index": 15,
+      "seed": 106,
+      "sha256": "f89213d02e09caa11487558fc2432c981ed154aaaa0987521aaad14b80f74e55",
+      "size_bytes": 332,
+      "uncompressed_bytes": 452
+    },
+    {
+      "condition": "reverse",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0016-reverse-seed-106.json.gz",
+      "run_index": 16,
+      "seed": 106,
+      "sha256": "13392e7001a98a7fa810ad7588e021f84b9c3ca371774eca151cc75f5759ca57",
+      "size_bytes": 328,
+      "uncompressed_bytes": 452
+    },
+    {
+      "condition": "simultaneous",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0017-simultaneous-seed-106.json.gz",
+      "run_index": 17,
+      "seed": 106,
+      "sha256": "e024331abc9de3440db14cd2392ab4d094370a703e26d61258a27227a82b4b11",
+      "size_bytes": 340,
+      "uncompressed_bytes": 457
+    },
+    {
+      "condition": "forward",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0018-forward-seed-107.json.gz",
+      "run_index": 18,
+      "seed": 107,
+      "sha256": "7cb1810c390c2ecf875dc4f8d5c7939e007ab7f9cf519ccf348d3f36237d4f55",
+      "size_bytes": 333,
+      "uncompressed_bytes": 452
+    },
+    {
+      "condition": "reverse",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0019-reverse-seed-107.json.gz",
+      "run_index": 19,
+      "seed": 107,
+      "sha256": "f14a087162fea407d6fe9e12b6fdc127964bfb5e7dacfe06ee25c0015612a09b",
+      "size_bytes": 332,
+      "uncompressed_bytes": 452
+    },
+    {
+      "condition": "simultaneous",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0020-simultaneous-seed-107.json.gz",
+      "run_index": 20,
+      "seed": 107,
+      "sha256": "b355a1981e278295e5b4b1a50fbf11af734da6cb515750653c88ce138b18f4bd",
+      "size_bytes": 338,
+      "uncompressed_bytes": 457
+    },
+    {
+      "condition": "forward",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0021-forward-seed-108.json.gz",
+      "run_index": 21,
+      "seed": 108,
+      "sha256": "0983c7ce7fe39fb0833cd0da2aed6efcaefe7ee84dfbfb781dc3ab221b128a58",
+      "size_bytes": 331,
+      "uncompressed_bytes": 452
+    },
+    {
+      "condition": "reverse",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0022-reverse-seed-108.json.gz",
+      "run_index": 22,
+      "seed": 108,
+      "sha256": "de6cc00f82c01c53c6263a2f006d71b868884347b67283a44c796e0d0f9d8939",
+      "size_bytes": 331,
+      "uncompressed_bytes": 452
+    },
+    {
+      "condition": "simultaneous",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0023-simultaneous-seed-108.json.gz",
+      "run_index": 23,
+      "seed": 108,
+      "sha256": "b0660624fbb8e27100d46267bf1ef4d96df0d4f9885c44b355175ce86e656aad",
+      "size_bytes": 339,
+      "uncompressed_bytes": 457
+    },
+    {
+      "condition": "forward",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0024-forward-seed-109.json.gz",
+      "run_index": 24,
+      "seed": 109,
+      "sha256": "1c6dc6e7d1a512eec5d240e9dbd08d0ff116e664c8bc1983855e92fd4f38a3d7",
+      "size_bytes": 331,
+      "uncompressed_bytes": 452
+    },
+    {
+      "condition": "reverse",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0025-reverse-seed-109.json.gz",
+      "run_index": 25,
+      "seed": 109,
+      "sha256": "9ddc6805d300878056b411e5daef9bab2664ed5eceb0cacddc48ca7f466cc5dd",
+      "size_bytes": 331,
+      "uncompressed_bytes": 452
+    },
+    {
+      "condition": "simultaneous",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0026-simultaneous-seed-109.json.gz",
+      "run_index": 26,
+      "seed": 109,
+      "sha256": "0f5d4ac980cae8db38a67e469f6dadecc8e5fb1d4c94e498dbfaacf4c5c3db59",
+      "size_bytes": 340,
+      "uncompressed_bytes": 457
+    },
+    {
+      "condition": "forward",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0027-forward-seed-110.json.gz",
+      "run_index": 27,
+      "seed": 110,
+      "sha256": "888d4c403f1c6fc78b63118781edf4b2650bfba71949dcf8b85fe1e42ba5a4f8",
+      "size_bytes": 332,
+      "uncompressed_bytes": 452
+    },
+    {
+      "condition": "reverse",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0028-reverse-seed-110.json.gz",
+      "run_index": 28,
+      "seed": 110,
+      "sha256": "e952eea30fc27c037c6d3894db193a40827c424574eb9b11e3bf2140350307b9",
+      "size_bytes": 332,
+      "uncompressed_bytes": 452
+    },
+    {
+      "condition": "simultaneous",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0029-simultaneous-seed-110.json.gz",
+      "run_index": 29,
+      "seed": 110,
+      "sha256": "a4571f10da5dd16878f8a88ffc3a91fe5da1e368e004682a16ee2950d72458b5",
+      "size_bytes": 340,
+      "uncompressed_bytes": 457
+    },
+    {
+      "condition": "forward",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0030-forward-seed-111.json.gz",
+      "run_index": 30,
+      "seed": 111,
+      "sha256": "2b42c75cca8297c24a92f0c648a0d5867d4b8bc494e5080016023c52f5c523a7",
+      "size_bytes": 332,
+      "uncompressed_bytes": 452
+    },
+    {
+      "condition": "reverse",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0031-reverse-seed-111.json.gz",
+      "run_index": 31,
+      "seed": 111,
+      "sha256": "c5c92363e00136e80650253f49289158a9a4466980c8f65f66cd8489c7ccdd0b",
+      "size_bytes": 331,
+      "uncompressed_bytes": 452
+    },
+    {
+      "condition": "simultaneous",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0032-simultaneous-seed-111.json.gz",
+      "run_index": 32,
+      "seed": 111,
+      "sha256": "2b19ff95d6c16f19fe1aff8214019be33531ae620d0e2160022b7d8d95f243ac",
+      "size_bytes": 338,
+      "uncompressed_bytes": 457
+    },
+    {
+      "condition": "forward",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0033-forward-seed-112.json.gz",
+      "run_index": 33,
+      "seed": 112,
+      "sha256": "30b8c4581074e47bf58e8c660f854ad6eae3814f198b28e19c00aa9d98291045",
+      "size_bytes": 327,
+      "uncompressed_bytes": 452
+    },
+    {
+      "condition": "reverse",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0034-reverse-seed-112.json.gz",
+      "run_index": 34,
+      "seed": 112,
+      "sha256": "f8a2a3fa0b58a4a4643bff125c813f2b413b1467c0c54d5ef7bb42b10bd615ba",
+      "size_bytes": 329,
+      "uncompressed_bytes": 452
+    },
+    {
+      "condition": "simultaneous",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0035-simultaneous-seed-112.json.gz",
+      "run_index": 35,
+      "seed": 112,
+      "sha256": "98b849d2d031cc204f5bb60ce4e758caaf6b578656129b644f3717559fdf2554",
+      "size_bytes": 339,
+      "uncompressed_bytes": 457
+    },
+    {
+      "condition": "forward",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0036-forward-seed-113.json.gz",
+      "run_index": 36,
+      "seed": 113,
+      "sha256": "4d8a26a70174d75713663303772b1e8adf1526b1d3ab5dbdccf10a0dd72921af",
+      "size_bytes": 331,
+      "uncompressed_bytes": 452
+    },
+    {
+      "condition": "reverse",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0037-reverse-seed-113.json.gz",
+      "run_index": 37,
+      "seed": 113,
+      "sha256": "5907c5dfc0b458ea78ce29060aeec73bc9a14e26a4c8296de9c93f3f8b184677",
+      "size_bytes": 331,
+      "uncompressed_bytes": 452
+    },
+    {
+      "condition": "simultaneous",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0038-simultaneous-seed-113.json.gz",
+      "run_index": 38,
+      "seed": 113,
+      "sha256": "f5cd2509cd2521d58bbea0b8a66628f8c84866cc16bd5e2d01cd52dfd2ccb026",
+      "size_bytes": 339,
+      "uncompressed_bytes": 457
+    },
+    {
+      "condition": "forward",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0039-forward-seed-114.json.gz",
+      "run_index": 39,
+      "seed": 114,
+      "sha256": "d867d9725c78950c322514a38ec30728768cd4ab61d5fb19f0d576582fbcc66a",
+      "size_bytes": 332,
+      "uncompressed_bytes": 452
+    },
+    {
+      "condition": "reverse",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0040-reverse-seed-114.json.gz",
+      "run_index": 40,
+      "seed": 114,
+      "sha256": "e409527e07ad1980a418a967452834aeb2bff6fb12f68ea1d491c77ca0bdc95e",
+      "size_bytes": 331,
+      "uncompressed_bytes": 452
+    },
+    {
+      "condition": "simultaneous",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0041-simultaneous-seed-114.json.gz",
+      "run_index": 41,
+      "seed": 114,
+      "sha256": "be280d720b6d1470a3930cc1c9113464dd12a477e53cd66da94ad14303664114",
+      "size_bytes": 339,
+      "uncompressed_bytes": 457
+    },
+    {
+      "condition": "forward",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0042-forward-seed-115.json.gz",
+      "run_index": 42,
+      "seed": 115,
+      "sha256": "c591550f4cdf654bf64cd7e25768c4da32f0ab293c975d59f6e638437e97a9be",
+      "size_bytes": 333,
+      "uncompressed_bytes": 452
+    },
+    {
+      "condition": "reverse",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0043-reverse-seed-115.json.gz",
+      "run_index": 43,
+      "seed": 115,
+      "sha256": "9c78a387ad64014d69b10f738444192a54963aaaab80c8687400049cd61fbe5a",
+      "size_bytes": 332,
+      "uncompressed_bytes": 452
+    },
+    {
+      "condition": "simultaneous",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0044-simultaneous-seed-115.json.gz",
+      "run_index": 44,
+      "seed": 115,
+      "sha256": "abd41691f6f6492eab9c78cbf81d97a2c6a6d9d03e0c22b4d539ec179ea130a8",
+      "size_bytes": 340,
+      "uncompressed_bytes": 457
+    },
+    {
+      "condition": "forward",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0045-forward-seed-116.json.gz",
+      "run_index": 45,
+      "seed": 116,
+      "sha256": "8a0e0baf6918d15919d0b8199bdcf1b99134e622d1a5dc970ee4a36ed98db300",
+      "size_bytes": 331,
+      "uncompressed_bytes": 452
+    },
+    {
+      "condition": "reverse",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0046-reverse-seed-116.json.gz",
+      "run_index": 46,
+      "seed": 116,
+      "sha256": "1f09bf7ece93b2ec916498245fd4a2719e27729944f996bd7a26a5b40e56e511",
+      "size_bytes": 331,
+      "uncompressed_bytes": 452
+    },
+    {
+      "condition": "simultaneous",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0047-simultaneous-seed-116.json.gz",
+      "run_index": 47,
+      "seed": 116,
+      "sha256": "0cd86dbfe9c8dad8c37df89e835700a4bda795b76a1c626bb087ef4ea54cd1aa",
+      "size_bytes": 341,
+      "uncompressed_bytes": 457
+    },
+    {
+      "condition": "forward",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0048-forward-seed-117.json.gz",
+      "run_index": 48,
+      "seed": 117,
+      "sha256": "c884bb90ce8c52ae76961bf9b9790077ba42b128d0f7e60eeea25227c15101b3",
+      "size_bytes": 332,
+      "uncompressed_bytes": 452
+    },
+    {
+      "condition": "reverse",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0049-reverse-seed-117.json.gz",
+      "run_index": 49,
+      "seed": 117,
+      "sha256": "f37b47e820fce01d3862b84f041e366ac192a57b630c79d6cb4dcedda63e7466",
+      "size_bytes": 332,
+      "uncompressed_bytes": 452
+    },
+    {
+      "condition": "simultaneous",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0050-simultaneous-seed-117.json.gz",
+      "run_index": 50,
+      "seed": 117,
+      "sha256": "c9a92d9173324fbcee4b9a59ddb6decb12716be1ce5732b74d1f6720c53d59a8",
+      "size_bytes": 340,
+      "uncompressed_bytes": 457
+    },
+    {
+      "condition": "forward",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0051-forward-seed-118.json.gz",
+      "run_index": 51,
+      "seed": 118,
+      "sha256": "d0b42c90fcdd544ad7327219a27f072533779097b2496f9ce079f363572348c0",
+      "size_bytes": 330,
+      "uncompressed_bytes": 452
+    },
+    {
+      "condition": "reverse",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0052-reverse-seed-118.json.gz",
+      "run_index": 52,
+      "seed": 118,
+      "sha256": "6e2b5e79add6e99273762875b3d239feda33020297a4ea829ca9f5c3d0aa667d",
+      "size_bytes": 330,
+      "uncompressed_bytes": 452
+    },
+    {
+      "condition": "simultaneous",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0053-simultaneous-seed-118.json.gz",
+      "run_index": 53,
+      "seed": 118,
+      "sha256": "45f2c6f1ed71945f4bf68fa328fb24a17e369a083870804342294a4f87958c84",
+      "size_bytes": 336,
+      "uncompressed_bytes": 457
+    },
+    {
+      "condition": "forward",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0054-forward-seed-119.json.gz",
+      "run_index": 54,
+      "seed": 119,
+      "sha256": "c48115e69d30c174a960a704051eacc4ef15871d519ff35fe136439ac03ff32d",
+      "size_bytes": 332,
+      "uncompressed_bytes": 452
+    },
+    {
+      "condition": "reverse",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0055-reverse-seed-119.json.gz",
+      "run_index": 55,
+      "seed": 119,
+      "sha256": "ac692318bcf2e9b985d046041a236650055789de48b89bf4b8e37f60e0f58961",
+      "size_bytes": 332,
+      "uncompressed_bytes": 452
+    },
+    {
+      "condition": "simultaneous",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0056-simultaneous-seed-119.json.gz",
+      "run_index": 56,
+      "seed": 119,
+      "sha256": "15e674e0a5426e6eee5416164fc7debf3c775aba8126404af08fa3791e4b2c18",
+      "size_bytes": 338,
+      "uncompressed_bytes": 457
+    },
+    {
+      "condition": "forward",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0057-forward-seed-120.json.gz",
+      "run_index": 57,
+      "seed": 120,
+      "sha256": "47038d03ec926d47a3608f8ad4af797cbd358471ccdb0c2a273ad1ec3eb25fbf",
+      "size_bytes": 332,
+      "uncompressed_bytes": 452
+    },
+    {
+      "condition": "reverse",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0058-reverse-seed-120.json.gz",
+      "run_index": 58,
+      "seed": 120,
+      "sha256": "d99d90b2f75e9ed635d689953c75f2f93ca888c3cbd47144dad4b60172431ef6",
+      "size_bytes": 331,
+      "uncompressed_bytes": 452
+    },
+    {
+      "condition": "simultaneous",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0059-simultaneous-seed-120.json.gz",
+      "run_index": 59,
+      "seed": 120,
+      "sha256": "0d7417e35b77882424bd4465ae6c635cbbd675ab456ff83c95fcb421e77ac9ea",
+      "size_bytes": 340,
+      "uncompressed_bytes": 457
+    }
+  ],
+  "schema_version": "2.0",
+  "storage_policy": "immutable_raw_runs_plus_compact_current_experiment"
+}

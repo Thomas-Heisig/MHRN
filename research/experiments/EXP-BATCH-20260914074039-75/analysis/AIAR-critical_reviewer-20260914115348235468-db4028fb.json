@@ -1,0 +1,83 @@
+{
+  "analysis_id": "AIAR-critical_reviewer-20260914115348235468-db4028fb",
+  "role": "critical_reviewer",
+  "model": {
+    "provider": "ollama",
+    "model_name": "qwen2.5-coder:7b",
+    "model_digest": "not_reported",
+    "quantization": "not_reported",
+    "context_length": "unknown",
+    "temperature": 0.0,
+    "top_p": 1.0,
+    "seed": "not_reported",
+    "backend_version": "unknown"
+  },
+  "inputs": {
+    "experiment_id": "EXP-BATCH-20260914074039-75",
+    "packet_digest": "db4028fb00316d73fbd754fabb7073b0d0fc29badc680d9e6038e7bb80304267"
+  },
+  "output": {
+    "experiment_id": "EXP-BATCH-20260914074039-75",
+    "hypotheses": [
+      {
+        "id": "H-CONN-002-A",
+        "hypothesis": "Gezieltes Umverdrahten oder Gewichtsvertauschen veraendert den sensorimotorischen Outcome gegenueber derselben synthetischen Ausgangstopologie bei gleichem Knoten-, Kanten- und Tickbudget."
+      }
+    ],
+    "metrics": {
+      "weight_shuffle": {
+        "metrics": {
+          "tracking_rmse_rad": {
+            "mean": 0.3928023954314801,
+            "std": 0.17500435291811092
+          }
+        }
+      },
+      "conn_shuffle": {
+        "metrics": {
+          "tracking_rmse_rad": {
+            "mean": 0.19492318860567073,
+            "std": 0.0013981971462885137
+          }
+        }
+      }
+    },
+    "formulas": {
+      "difference": "Delta_x = mean(x_B) - mean(x_A)"
+    },
+    "generated_by": "deterministic_statistics_engine",
+    "run_count": 12,
+    "schema_version": "2.0",
+    "assessment": "Die Analyse konnte nicht vollstaendig schema-konform erzeugt werden. Das Modell hat das erforderliche assessment-Feld nicht geliefert.",
+    "observations": [],
+    "methodological_concerns": [
+      "Die vom Modell ausgegebene confidence war schemawidrig oder ausserhalb des Bereichs 0..1. Sie wurde fuer die AIRR-Provenienz konservativ auf 0.0 gesetzt; der Originalwert bleibt als confidence_original erhalten."
+    ],
+    "alternative_explanations": [],
+    "recommended_experiments": [],
+    "requested_evidence": [],
+    "effect_direction": "not_determined",
+    "confidence_original": null,
+    "confidence": 0.0
+  },
+  "provenance": {
+    "prompt_sha256": "96700260d7d93293198432ac2aeae33c000433cb3e49b9242c77e3a9b79acb58",
+    "research_packet_digest": "db4028fb00316d73fbd754fabb7073b0d0fc29badc680d9e6038e7bb80304267",
+    "prompt_protocol_version": "research_assistant_v1",
+    "assistant_schema_version": "1.2",
+    "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+    "model_self_confidence": "0.0"
+  },
+  "epistemic_status": {
+    "evidence": false,
+    "interpretation_only": true,
+    "human_review_required": true
+  },
+  "review": {
+    "status": "pending",
+    "reviewer": null,
+    "reviewed_at": null,
+    "disposition": null
+  },
+  "generated_at": "2026-09-14T11:53:48.235468+00:00"
+}

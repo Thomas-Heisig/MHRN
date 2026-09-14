@@ -1,0 +1,552 @@
+{
+  "report_id": "AIRR-2026-0001",
+  "experiment_id": "EXP-BATCH-20260914074039-84",
+  "research_question_id": "RQ-GW-002",
+  "hypothesis_ids": [
+    "H-GW-002-A"
+  ],
+  "claim_ids": [],
+  "generated_at": "2026-09-14T12:04:13.184047+00:00",
+  "report_schema_version": "1.0",
+  "report_protocol_version": "PROTOCOL-AIRR-001",
+  "generated_by": "artificial_intelligence",
+  "ai_generated": true,
+  "scientific_evidence": false,
+  "human_review_required": true,
+  "status": "review_pending",
+  "content": {
+    "identification": {
+      "experiment": "EXP-BATCH-20260914074039-84",
+      "research_question": "Sind modalitaetsspezifische Audio-, Vision- und Digital-Regeln besser als eine generische Gateway-Regel?",
+      "hypotheses": [
+        {
+          "id": "H-GW-002-A",
+          "research_question": "RQ-GW-002",
+          "hypothesis": "Modalitaetsspezifische Regeln erzielen unter matched tasks bessere primaere Outcomes als eine generische Gateway-Regel.",
+          "status": "untested",
+          "evidence": [],
+          "created": "2026-09-09",
+          "updated": "2026-09-09"
+        }
+      ],
+      "date": "2026-09-14",
+      "source_sha": "8e096931a779b2d2eb4d010eb20154150b07bbf2"
+    },
+    "executive_summary": "Die Forschung ist unvollstaendig und erfordert weitere Untersuchungen.",
+    "research_question": {
+      "id": "RQ-GW-002",
+      "domain": "Modality-Specific Gateway Rules",
+      "question": "Sind modalitaetsspezifische Audio-, Vision- und Digital-Regeln besser als eine generische Gateway-Regel?",
+      "relevance": "Trennt zeitliche, raeumliche und exakte symbolische Anforderungen.",
+      "literature": [],
+      "hypotheses": [
+        "H-GW-002-A"
+      ],
+      "evidence": [],
+      "status": "open",
+      "answer": {
+        "current": null,
+        "confidence": "none",
+        "limitations": "Gateway-Aktivitaet allein ist kein Nachweis modalitaetsspezifischen Nutzens."
+      },
+      "created": "2026-09-09",
+      "updated": "2026-09-09"
+    },
+    "experimental_design": {
+      "experiment_id": "EXP-BATCH-20260914074039-84",
+      "research_question": "RQ-GW-002",
+      "hypothesis": "H-GW-002-A",
+      "title": "Experiment workflow: gateway_modality_rules_boundary_v1",
+      "conditions": "Registered protocol conditions",
+      "ticks": 1000,
+      "ticks_contract": "minimum requested observation window",
+      "seeds": [
+        101,
+        102,
+        103
+      ],
+      "protocol": "gateway_modality_rules_boundary_v1",
+      "resolved_runner": "run_boundary_audit",
+      "tick_validation": {
+        "status": "NOT_APPLICABLE",
+        "mode": "protocol_defined_internal_trials",
+        "requested_ticks": 1000
+      },
+      "notes": "",
+      "execution": "registered experiment_suite runner",
+      "assistant_policy": "AI is post-hoc interpretation only.",
+      "epistemic_layers": {
+        "ui_state": "operator/dashboard progress only; not a scientific result",
+        "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+        "evid": "not_created; requires semantic validation, clean freeze and human review",
+        "interpretation": "post-hoc AI or human interpretation; never execution input"
+      }
+    },
+    "data_basis": {
+      "data": {
+        "ai_input_policy": "compact_only_raw_on_explicit_deterministic_extract",
+        "generated_by": "deterministic_research_data_v2",
+        "limits": {
+          "ai_packet_max_bytes": 1000000,
+          "run_summary_max_bytes": 5000000,
+          "sequence_preview_items": 16
+        },
+        "raw_index": {
+          "path": "DATA/runs_index.json",
+          "run_count": 3,
+          "sha256": "584b95c8153d9ceddc9c390144862cf2b579f41cda60351e9ca5e29b8ac91047"
+        },
+        "run_count": 3,
+        "run_preview": [
+          {
+            "_raw_artifact": {
+              "format": "json.gz",
+              "path": "DATA/raw/run-0000-instrumentation_gap_audit-seed-101.json.gz",
+              "sha256": "f6c9e7cf401be29860f975f201c6fe2b533ce70f991d0011e529207095234791",
+              "size_bytes": 380,
+              "uncompressed_bytes": 481
+            },
+            "condition": "instrumentation_gap_audit",
+            "experiment_id": "EXP-BATCH-20260914074039-84",
+            "metrics": {
+              "audit_complete": true,
+              "automatic_evidence_promotion": false,
+              "claim_boundary": "No direct causal measurement is performed by this runner. Completion means only that the registered gap/boundary contract was executed and preserved for review.",
+              "direct_test_of_hypothesis": false,
+              "scientific_evidence": false
+            },
+            "runtime_error": null,
+            "seed": 101,
+            "state_digest_after": "",
+            "state_digest_before": ""
+          },
+          {
+            "_raw_artifact": {
+              "format": "json.gz",
+              "path": "DATA/raw/run-0001-instrumentation_gap_audit-seed-102.json.gz",
+              "sha256": "3fe2a36acfa849c0e86f929be71aa5fa885a73dbff98e0e5d533837b7314b9f2",
+              "size_bytes": 380,
+              "uncompressed_bytes": 481
+            },
+            "condition": "instrumentation_gap_audit",
+            "experiment_id": "EXP-BATCH-20260914074039-84",
+            "metrics": {
+              "audit_complete": true,
+              "automatic_evidence_promotion": false,
+              "claim_boundary": "No direct causal measurement is performed by this runner. Completion means only that the registered gap/boundary contract was executed and preserved for review.",
+              "direct_test_of_hypothesis": false,
+              "scientific_evidence": false
+            },
+            "runtime_error": null,
+            "seed": 102,
+            "state_digest_after": "",
+            "state_digest_before": ""
+          },
+          {
+            "_raw_artifact": {
+              "format": "json.gz",
+              "path": "DATA/raw/run-0002-instrumentation_gap_audit-seed-103.json.gz",
+              "sha256": "db09749426e9de7ce078d5244b55c271b7049c1b99fa4767b524444f272c7524",
+              "size_bytes": 380,
+              "uncompressed_bytes": 481
+            },
+            "condition": "instrumentation_gap_audit",
+            "experiment_id": "EXP-BATCH-20260914074039-84",
+            "metrics": {
+              "audit_complete": true,
+              "automatic_evidence_promotion": false,
+              "claim_boundary": "No direct causal measurement is performed by this runner. Completion means only that the registered gap/boundary contract was executed and preserved for review.",
+              "direct_test_of_hypothesis": false,
+              "scientific_evidence": false
+            },
+            "runtime_error": null,
+            "seed": 103,
+            "state_digest_after": "",
+            "state_digest_before": ""
+          }
+        ],
+        "schema_version": "2.0",
+        "statistics": {
+          "conditions": {
+            "instrumentation_gap_audit": {
+              "metrics": {},
+              "run_count": 3,
+              "seeds": [
+                101,
+                102,
+                103
+              ]
+            }
+          },
+          "formulas": {
+            "difference": "Delta_x = mean(x_B) - mean(x_A)",
+            "inter_spike_interval": "ISI_i = t_(i+1) - t_i",
+            "mean": "mean(x) = (1/n) * sum_i x_i",
+            "population_std": "sigma = sqrt((1/n) * sum_i (x_i - mean(x))^2)",
+            "ratio": "R_x = mean(x_B) / mean(x_A), defined only when mean(x_A) != 0"
+          },
+          "generated_by": "deterministic_statistics_engine",
+          "run_count": 3,
+          "schema_version": "2.0"
+        }
+      },
+      "evid": [],
+      "literature": []
+    },
+    "quantitative_results": {
+      "conditions": {
+        "instrumentation_gap_audit": {
+          "metrics": {},
+          "run_count": 3,
+          "seeds": [
+            101,
+            102,
+            103
+          ]
+        }
+      },
+      "formulas": {
+        "difference": "Delta_x = mean(x_B) - mean(x_A)",
+        "inter_spike_interval": "ISI_i = t_(i+1) - t_i",
+        "mean": "mean(x) = (1/n) * sum_i x_i",
+        "population_std": "sigma = sqrt((1/n) * sum_i (x_i - mean(x))^2)",
+        "ratio": "R_x = mean(x_B) / mean(x_A), defined only when mean(x_A) != 0"
+      },
+      "generated_by": "deterministic_statistics_engine",
+      "run_count": 3,
+      "schema_version": "2.0"
+    },
+    "observations": [
+      "Die Experimente wurden mit drei verschiedenen Seeds durchgefuehrt, wobei die Bedingung \"instrumentation_gap_audit\" angewandt wurde.",
+      "Die Metriken zeigen, dass keine direkte kausale Messung durchgefuehrt wurde, und die Experimente sind auf die Ausfuehrung des registrierten Gap/Border-Vertrags beschränkt.",
+      "Es gibt keine verknüpften wissenschaftlichen Beweise oder evidenzielen Daten, die den Versuch oder die Hypothese stuetzen.",
+      "Die Forschungsfrage bleibt offen, da keine statistische Signifikanz getestet wurde und keine kausale Beziehung nachgewiesen werden konnte."
+    ],
+    "interpretation": {
+      "assessment": "Die Forschung ist unvollstaendig und erfordert weitere Untersuchungen.",
+      "observations": [
+        "Die Experimente wurden mit drei verschiedenen Seeds durchgefuehrt, wobei die Bedingung \"instrumentation_gap_audit\" angewandt wurde.",
+        "Die Metriken zeigen, dass keine direkte kausale Messung durchgefuehrt wurde, und die Experimente sind auf die Ausfuehrung des registrierten Gap/Border-Vertrags beschränkt.",
+        "Es gibt keine verknüpften wissenschaftlichen Beweise oder evidenzielen Daten, die den Versuch oder die Hypothese stuetzen.",
+        "Die Forschungsfrage bleibt offen, da keine statistische Signifikanz getestet wurde und keine kausale Beziehung nachgewiesen werden konnte."
+      ],
+      "effect_direction": "Keine kausale Richtung kann bestimmt werden, da keine kausale Messung durchgefuehrt wurde.",
+      "methodological_concerns": [
+        "Keine kausale Messung wurde durchgefuehrt.",
+        "Keine wissenschaftlichen Beweise oder evidenzielen Daten sind verknüpft.",
+        "Die Forschungsfrage wurde nicht vollstaendig beantwortet, da keine statistische Signifikanz getestet wurde."
+      ],
+      "alternative_explanations": [
+        "Die Ergebnisse koennten auf andere Faktoren zurueckzufuehren sein, da keine kausale Analyse durchgefuehrt wurde.",
+        "Die Verknuepfung mit wissenschaftlichen Beweisen fehlt, was andere Erklaerungen fuer die Ergebnisse erlaubt.",
+        "Die Forschungsfrage wurde nicht vollstaendig beantwortet, was andere Erklaerungen fuer die Beobachtungen erlaubt."
+      ],
+      "recommended_experiments": [
+        "Eine kausale Analyse mit direkter Hypothesentestung durchzufuehren.",
+        "Die Verknuepfung mit wissenschaftlichen Beweisen und evidenzielen Daten zu sichern.",
+        "Die Forschungsfrage mit statistischen Tests zu beantworten, um kausale Beziehungen zu untersuchen."
+      ],
+      "requested_evidence": [
+        "Wissenschaftliche Beweise oder evidenzielle Daten, die den Versuch oder die Hypothese stuetzen.",
+        "Statistische Analysen, die die Forschungsfrage beantworten und kausale Beziehungen untersuchen.",
+        "Evidenz fuer die kausale Richtung der Effekte, falls vorhanden."
+      ],
+      "confidence": 0.05,
+      "research_question": "Sind modalitaetsspezifische Audio-, Vision- und Digital-Regeln besser als eine generische Gateway-Regel?"
+    },
+    "methodological_critique": [
+      "Keine kausale Messung wurde durchgefuehrt.",
+      "Keine wissenschaftlichen Beweise oder evidenzielen Daten sind verknüpft.",
+      "Die Forschungsfrage wurde nicht vollstaendig beantwortet, da keine statistische Signifikanz getestet wurde."
+    ],
+    "alternative_explanations": [
+      "Die Ergebnisse koennten auf andere Faktoren zurueckzufuehren sein, da keine kausale Analyse durchgefuehrt wurde.",
+      "Die Verknuepfung mit wissenschaftlichen Beweisen fehlt, was andere Erklaerungen fuer die Ergebnisse erlaubt.",
+      "Die Forschungsfrage wurde nicht vollstaendig beantwortet, was andere Erklaerungen fuer die Beobachtungen erlaubt."
+    ],
+    "reproducibility": {
+      "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+      "experiment_status": "completed",
+      "evidence_mode": "not_reported",
+      "git_dirty": "True",
+      "source_freeze_sha": "8eaf71fc8b5f1d6cfb125a8e55b54e262f2fbefb2082fb2793d4dce9b4fb9fc8",
+      "configuration_path": "F:\\Brain-5D\\configs\\learning_experiment.yaml",
+      "configuration_sha256": "6f6cd457caf6216c286fee47ef03b529a0b496ed2dd53ee96b85d3b51e7b3a1c",
+      "experiment_manifest_digest": "6660adfc9c228fa09ec861ff5dbcfacb957ed12e757a88c836fea5609fbb0cdd",
+      "data_ids": "NOT_AVAILABLE",
+      "evid_ids": "NOT_AVAILABLE",
+      "protocol_id": "NOT_AVAILABLE",
+      "protocol_digest": "77aeee35e90eb5f1cea5185986b6b584f9a64d7a7a8012ceb3a8fd6ca7e37952",
+      "data_digest": "c578147dc6b1c64dc0696ffedac00e7bd8af289268b14ce0dfbaa3e261d3f38c",
+      "evid_digests": "[]"
+    },
+    "epistemic_status": {
+      "implementation": "NOT_DETERMINED",
+      "experiment_data": "PRESENT",
+      "registered_evidence": "ABSENT",
+      "ai_interpretation": "PRESENT",
+      "human_review": "PENDING",
+      "claim_support": "NOT_DETERMINED",
+      "rq_status": "IN_PROGRESS"
+    },
+    "ai_confidence": 0.05,
+    "missing_evidence": [
+      "Wissenschaftliche Beweise oder evidenzielle Daten, die den Versuch oder die Hypothese stuetzen.",
+      "Statistische Analysen, die die Forschungsfrage beantworten und kausale Beziehungen untersuchen.",
+      "Evidenz fuer die kausale Richtung der Effekte, falls vorhanden."
+    ],
+    "recommended_follow_up": [
+      "Eine kausale Analyse mit direkter Hypothesentestung durchzufuehren.",
+      "Die Verknuepfung mit wissenschaftlichen Beweisen und evidenzielen Daten zu sichern.",
+      "Die Forschungsfrage mit statistischen Tests zu beantworten, um kausale Beziehungen zu untersuchen."
+    ],
+    "conclusion": "Die Forschung ist unvollstaendig und erfordert weitere Untersuchungen.",
+    "human_review": {
+      "status": "PENDING",
+      "reviewer": null,
+      "reviewed_at": null,
+      "disposition": null,
+      "comments": null
+    },
+    "aiar": {
+      "analyst": {
+        "analysis_id": "AIAR-scientific_analyst-20260914090213962413-9390e2db",
+        "role": "scientific_analyst",
+        "model": {
+          "provider": "ollama",
+          "model_name": "qwen3:8b",
+          "model_digest": "not_reported",
+          "quantization": "not_reported",
+          "context_length": "unknown",
+          "temperature": 0.0,
+          "top_p": 0.9,
+          "seed": "not_reported",
+          "backend_version": "unknown"
+        },
+        "inputs": {
+          "experiment_id": "EXP-BATCH-20260914074039-84",
+          "packet_digest": "9390e2db5562c21eb7713d461bc3a5730d36e8d992edc13ae49813f18e26099f"
+        },
+        "output": {
+          "assessment": "Die Forschung ist unvollstaendig und erfordert weitere Untersuchungen.",
+          "observations": [
+            "Die Experimente wurden mit drei verschiedenen Seeds durchgefuehrt, wobei die Bedingung \"instrumentation_gap_audit\" angewandt wurde.",
+            "Die Metriken zeigen, dass keine direkte kausale Messung durchgefuehrt wurde, und die Experimente sind auf die Ausfuehrung des registrierten Gap/Border-Vertrags beschränkt.",
+            "Es gibt keine verknüpften wissenschaftlichen Beweise oder evidenzielen Daten, die den Versuch oder die Hypothese stuetzen.",
+            "Die Forschungsfrage bleibt offen, da keine statistische Signifikanz getestet wurde und keine kausale Beziehung nachgewiesen werden konnte."
+          ],
+          "methodological_concerns": [
+            "Keine kausale Messung wurde durchgefuehrt.",
+            "Keine wissenschaftlichen Beweise oder evidenzielen Daten sind verknüpft.",
+            "Die Forschungsfrage wurde nicht vollstaendig beantwortet, da keine statistische Signifikanz getestet wurde."
+          ],
+          "alternative_explanations": [
+            "Die Ergebnisse koennten auf andere Faktoren zurueckzufuehren sein, da keine kausale Analyse durchgefuehrt wurde.",
+            "Die Verknuepfung mit wreaktischen Beweisen fehlt, was andere Erklaerungen fuer die Ergebnisse erlaubt.",
+            "Die Forschungsfrage wurde nicht vollstaendig beantwortet, was andere Erklaerungen fuer die Beobachtungen erlaubt."
+          ],
+          "recommended_experiments": [
+            "Eine kausale Analyse mit direkter Hypothesentestung durchzufuehren.",
+            "Die Verknuepfung mit wissenschaftlichen Beweisen und evidenzielen Daten zu sichern.",
+            "Die Forschungsfrage mit statistischen Tests zu beantworten, um kausale Beziehungen zu untersuchen."
+          ],
+          "requested_evidence": [
+            "Wissenschaftliche Beweise oder evidenzielle Daten, die den Versuch oder die Hypothese stuetzen.",
+            "Statistische Analysen, die die Forschungsfrage beantworten und kausale Beziehungen untersuchen.",
+            "Evidenz fuer die kausale Richtung der Effekte, falls vorhanden."
+          ],
+          "confidence": 0.05,
+          "effect_direction": "Keine kausale Richtung kann bestimmt werden, da keine kausale Messung durchgefuehrt wurde."
+        },
+        "provenance": {
+          "prompt_sha256": "9f291d4cb635162903908595d6272eedb32cc9520f81b68100929fa50e121d4b",
+          "research_packet_digest": "9390e2db5562c21eb7713d461bc3a5730d36e8d992edc13ae49813f18e26099f",
+          "prompt_protocol_version": "research_assistant_v1",
+          "assistant_schema_version": "1.2",
+          "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+          "model_self_confidence": "0.05"
+        },
+        "epistemic_status": {
+          "evidence": false,
+          "interpretation_only": true,
+          "human_review_required": true
+        },
+        "review": {
+          "status": "pending",
+          "reviewer": null,
+          "reviewed_at": null,
+          "disposition": null
+        },
+        "generated_at": "2026-09-14T09:02:13.962413+00:00"
+      },
+      "reviewer": {
+        "analysis_id": "AIAR-critical_reviewer-20260914090235731681-9390e2db",
+        "role": "critical_reviewer",
+        "model": {
+          "provider": "ollama",
+          "model_name": "qwen3:8b",
+          "model_digest": "not_reported",
+          "quantization": "not_reported",
+          "context_length": "unknown",
+          "temperature": 0.0,
+          "top_p": 0.9,
+          "seed": "not_reported",
+          "backend_version": "unknown"
+        },
+        "inputs": {
+          "experiment_id": "EXP-BATCH-20260914074039-84",
+          "packet_digest": "9390e2db5562c21eb7713d461bc3a5730d36e8d992edc13ae49813f18e26099f"
+        },
+        "output": {
+          "assessment": "Die Forschung ist unvollstaendig und erfordert weitere Untersuchungen.",
+          "observations": [
+            "Die Experimente wurden mit drei verschiedenen Seeds durchgefuehrt, wobei die Bedingung \"instrumentation_gap_audit\" angewandt wurde.",
+            "Die Metriken zeigen, dass keine direkte kausale Messung durchgefuehrt wurde, und die Experimente sind auf die Ausfuehrung des registrierten Gap/Border-Vertrags beschränkt.",
+            "Es gibt keine verknüpften wissenschaftlichen Beweise oder evidenzielen Daten, die den Versuch oder die Hypothese stuetzen.",
+            "Die Forschungsfrage bleibt offen, da keine statistische Signifikanz getestet wurde und keine kausale Beziehung nachgewiesen werden konnte."
+          ],
+          "effect_direction": "Keine kausale Richtung kann bestimmt werden, da keine kausale Messung durchgefuehrt wurde.",
+          "methodological_concerns": [
+            "Keine kausale Messung wurde durchgefuehrt.",
+            "Keine wissenschaftlichen Beweise oder evidenzielen Daten sind verknüpft.",
+            "Die Forschungsfrage wurde nicht vollstaendig beantwortet, da keine statistische Signifikanz getestet wurde."
+          ],
+          "alternative_explanations": [
+            "Die Ergebnisse koennten auf andere Faktoren zurueckzufuehren sein, da keine kausale Analyse durchgefuehrt wurde.",
+            "Die Verknuepfung mit wissenschaftlichen Beweisen fehlt, was andere Erklaerungen fuer die Ergebnisse erlaubt.",
+            "Die Forschungsfrage wurde nicht vollstaendig beantwortet, was andere Erklaerungen fuer die Beobachtungen erlaubt."
+          ],
+          "recommended_experiments": [
+            "Eine kausale Analyse mit direkter Hypothesentestung durchzufuehren.",
+            "Die Verknuepfung mit wissenschaftlichen Beweisen und evidenzielen Daten zu sichern.",
+            "Die Forschungsfrage mit statistischen Tests zu beantworten, um kaus, "
+          ],
+          "requested_evidence": [
+            "Wissenschaftliche Beweise oder evidenzielle Daten, die den Versuch oder die Hypothese stuetzen.",
+            "Statistische Analysen, die die Forschungsfrage beantworten und kausale Beziehungen untersuchen.",
+            "Evidenz fuer die kausale Richtung der Effekte, falls vorhanden."
+          ],
+          "confidence": 0.05
+        },
+        "provenance": {
+          "prompt_sha256": "7ca5e4d7e354c45580efd159f4413706b20da60bfe8f3c5a4d202b07b56fa6e6",
+          "research_packet_digest": "9390e2db5562c21eb7713d461bc3a5730d36e8d992edc13ae49813f18e26099f",
+          "prompt_protocol_version": "research_assistant_v1",
+          "assistant_schema_version": "1.2",
+          "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+          "model_self_confidence": "0.05"
+        },
+        "epistemic_status": {
+          "evidence": false,
+          "interpretation_only": true,
+          "human_review_required": true
+        },
+        "review": {
+          "status": "pending",
+          "reviewer": null,
+          "reviewed_at": null,
+          "disposition": null
+        },
+        "generated_at": "2026-09-14T09:02:35.731681+00:00"
+      },
+      "writer": {
+        "analysis_id": "AIAR-scientific_writer-20260914090250947594-9390e2db",
+        "role": "scientific_writer",
+        "model": {
+          "provider": "ollama",
+          "model_name": "qwen3:8b",
+          "model_digest": "not_reported",
+          "quantization": "not_reported",
+          "context_length": "unknown",
+          "temperature": 0.0,
+          "top_p": 0.9,
+          "seed": "not_reported",
+          "backend_version": "unknown"
+        },
+        "inputs": {
+          "experiment_id": "EXP-BATCH-20260914074039-84",
+          "packet_digest": "9390e2db5562c21eb7713d461bc3a5730d36e8d992edc13ae49813f18e26099f"
+        },
+        "output": {
+          "assessment": "Die Forschung ist unvollstaendig und erfordert weitere Untersuchungen.",
+          "observations": [
+            "Die Experimente wurden mit drei verschiedenen Seeds durchgefuehrt, wobei die Bedingung \"instrumentation_gap_audit\" angewandt wurde.",
+            "Die Metriken zeigen, dass keine direkte kausale Messung durchgefuehrt wurde, und die Experimente sind auf die Ausfuehrung des registrierten Gap/Border-Vertrags beschränkt.",
+            "Es gibt keine verknüpften wissenschaftlichen Beweise oder evidenzielen Daten, die den Versuch oder die Hypothese stuetzen.",
+            "Die Forschungsfrage bleibt offen, da keine statistische Signifikanz getestet wurde und keine kausale Beziehung nachgewiesen werden konnte."
+          ],
+          "effect_direction": "Keine kausale Richtung kann bestimmt werden, da keine kausale Messung durchgefuehrt wurde.",
+          "methodological_concerns": [
+            "Keine kausale Messung wurde durchgefuehrt.",
+            "Keine wissenschaftlichen Beweise oder evidenzielen Daten sind verknüpft.",
+            "Die Forschungsfrage wurde nicht vollstaendig beantwortet, da keine statistische Signifikanz getestet wurde."
+          ],
+          "alternative_explanations": [
+            "Die Ergebnisse koennten auf andere Faktoren zurueckzufuehren sein, da keine kausale Analyse durchgefuehrt wurde.",
+            "Die Verknuepfung mit wissenschaftlichen Beweisen fehlt, was andere Erklaerungen fuer die Ergebnisse erlaubt.",
+            "Die Forschungsfrage wurde nicht vollstaendig beantwortet, was andere Erklaerungen fuer die Beobachtungen erlaubt."
+          ],
+          "recommended_experiments": [
+            "Eine kausale Analyse mit direkter Hypothesentestung durchzufuehren.",
+            "Die Verknuepfung mit wissenschaftlichen Beweisen und evidenzielen Daten zu sichern.",
+            "Die Forschungsfrage mit statistischen Tests zu beantworten, um kausale Beziehungen zu untersuchen."
+          ],
+          "requested_evidence": [
+            "Wissenschaftliche Beweise oder evidenzielle Daten, die den Versuch oder die Hypothese stuetzen.",
+            "Statistische Analysen, die die Forschungsfrage beantworten und kausale Beziehungen untersuchen.",
+            "Evidenz fuer die kausale Richtung der Effekte, falls vorhanden."
+          ],
+          "confidence": 0.05,
+          "research_question": "Sind modalitaetsspezifische Audio-, Vision- und Digital-Regeln besser als eine generische Gateway-Regel?"
+        },
+        "provenance": {
+          "prompt_sha256": "b5140736b444ad26be528053102070b91ab92888f3abeef6d1a688b52253c2ad",
+          "research_packet_digest": "9390e2db5562c21eb7713d461bc3a5730d36e8d992edc13ae49813f18e26099f",
+          "prompt_protocol_version": "research_assistant_v1",
+          "assistant_schema_version": "1.2",
+          "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+          "model_self_confidence": "0.05"
+        },
+        "epistemic_status": {
+          "evidence": false,
+          "interpretation_only": true,
+          "human_review_required": true
+        },
+        "review": {
+          "status": "pending",
+          "reviewer": null,
+          "reviewed_at": null,
+          "disposition": null
+        },
+        "generated_at": "2026-09-14T09:02:50.947594+00:00"
+      }
+    }
+  },
+  "provenance": {
+    "research_packet_digest": "e3408b5e992d3623a20a5c9e20d5d01fc2adfb4b8bd86c99b73ea77dc6c1ff72",
+    "source": {
+      "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+      "experiment_status": "completed",
+      "evidence_mode": "not_reported",
+      "git_dirty": "True",
+      "source_freeze_sha": "8eaf71fc8b5f1d6cfb125a8e55b54e262f2fbefb2082fb2793d4dce9b4fb9fc8",
+      "configuration_path": "F:\\Brain-5D\\configs\\learning_experiment.yaml",
+      "configuration_sha256": "6f6cd457caf6216c286fee47ef03b529a0b496ed2dd53ee96b85d3b51e7b3a1c",
+      "experiment_manifest_digest": "6660adfc9c228fa09ec861ff5dbcfacb957ed12e757a88c836fea5609fbb0cdd",
+      "data_ids": "NOT_AVAILABLE",
+      "evid_ids": "NOT_AVAILABLE",
+      "protocol_id": "NOT_AVAILABLE",
+      "protocol_digest": "77aeee35e90eb5f1cea5185986b6b584f9a64d7a7a8012ceb3a8fd6ca7e37952",
+      "data_digest": "c578147dc6b1c64dc0696ffedac00e7bd8af289268b14ce0dfbaa3e261d3f38c",
+      "evid_digests": "[]"
+    }
+  },
+  "analysis_ids": [
+    "AIAR-scientific_analyst-20260914090213962413-9390e2db",
+    "AIAR-critical_reviewer-20260914090235731681-9390e2db",
+    "AIAR-scientific_writer-20260914090250947594-9390e2db"
+  ],
+  "supersedes": null,
+  "content_digest": "e6cc0fd2527966d1d12a61bc4c787cb67c2bcfb8fd7f713d989390f217d55f19",
+  "markdown_digest": "4e29544665ea809922745f1f12246500bbedeb47777568e9147ab1c1ff17412f"
+}

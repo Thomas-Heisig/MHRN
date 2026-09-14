@@ -1,0 +1,1030 @@
+{
+  "report_id": "AIRR-2026-0001",
+  "experiment_id": "EXP-BATCH-20260914074039-43",
+  "research_question_id": "RQ-LIFE-001",
+  "hypothesis_ids": [
+    "H-LIFE-001-A"
+  ],
+  "claim_ids": [],
+  "generated_at": "2026-09-14T11:45:55.353906+00:00",
+  "report_schema_version": "1.0",
+  "report_protocol_version": "PROTOCOL-AIRR-001",
+  "generated_by": "artificial_intelligence",
+  "ai_generated": true,
+  "scientific_evidence": false,
+  "human_review_required": true,
+  "status": "review_pending",
+  "content": {
+    "identification": {
+      "experiment": "EXP-BATCH-20260914074039-43",
+      "research_question": "Bleibt zuvor erworbene Lernleistung bei sequenziellen Aufgaben erhalten oder entstehen messbare Interferenzeffekte?",
+      "hypotheses": [
+        {
+          "id": "H-LIFE-001-A",
+          "research_question": "RQ-LIFE-001",
+          "hypothesis": "Sequenzielle Lernaufgaben zeigen eine messbare Veränderung der Retentions- oder Gewichtssignatur gegenüber einer Single-Task-Baseline.",
+          "status": "untested",
+          "evidence": [],
+          "created": "2026-09-05",
+          "updated": "2026-09-05"
+        }
+      ],
+      "date": "2026-09-14",
+      "source_sha": "8e096931a779b2d2eb4d010eb20154150b07bbf2"
+    },
+    "executive_summary": "Die Daten zeigen, dass bei sequenziellen Lernaufgaben die Retentionsleistung vollständig erhalten bleibt, was auf eine geringe oder keine Interferenz hinweist. Die Ergebnisse sind konsistent und zeigen keine signifikanten Abweichungen.",
+    "research_question": {
+      "id": "RQ-LIFE-001",
+      "domain": "Lifelong Learning",
+      "question": "Bleibt zuvor erworbene Lernleistung bei sequenziellen Aufgaben erhalten oder entstehen messbare Interferenzeffekte?",
+      "relevance": "Das positive Single-Task-Learningsignal aus EXP-GEN-0021 motiviert Retentionstests.",
+      "literature": [],
+      "hypotheses": [
+        "H-LIFE-001-A"
+      ],
+      "evidence": [],
+      "status": "open",
+      "answer": {
+        "current": null,
+        "confidence": "none",
+        "limitations": "Der erste Runner ist ein Vorläufer-Screen; echte Catastrophic-Forgetting-Evidenz erfordert ein gemeinsames fortlaufend trainiertes Netzwerk."
+      },
+      "created": "2026-09-05",
+      "updated": "2026-09-05"
+    },
+    "experimental_design": {
+      "experiment_id": "EXP-BATCH-20260914074039-43",
+      "research_question": "RQ-LIFE-001",
+      "hypothesis": "H-LIFE-001-A",
+      "title": "Experiment workflow: learning_interference_screen_v1",
+      "conditions": "Registered protocol conditions",
+      "ticks": 1000,
+      "ticks_contract": "minimum requested observation window",
+      "seeds": [
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109,
+        110,
+        111,
+        112,
+        113,
+        114,
+        115,
+        116,
+        117,
+        118,
+        119,
+        120
+      ],
+      "protocol": "learning_interference_screen_v1",
+      "resolved_runner": "run_learning_interference",
+      "tick_validation": {
+        "status": "NOT_APPLICABLE",
+        "mode": "protocol_defined_internal_trials",
+        "requested_ticks": 1000
+      },
+      "notes": "",
+      "execution": "registered experiment_suite runner",
+      "assistant_policy": "AI is post-hoc interpretation only.",
+      "epistemic_layers": {
+        "ui_state": "operator/dashboard progress only; not a scientific result",
+        "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+        "evid": "not_created; requires semantic validation, clean freeze and human review",
+        "interpretation": "post-hoc AI or human interpretation; never execution input"
+      }
+    },
+    "data_basis": {
+      "data": {
+        "ai_input_policy": "compact_only_raw_on_explicit_deterministic_extract",
+        "generated_by": "deterministic_research_data_v2",
+        "limits": {
+          "ai_packet_max_bytes": 1000000,
+          "run_summary_max_bytes": 5000000,
+          "sequence_preview_items": 16
+        },
+        "raw_index": {
+          "path": "DATA/runs_index.json",
+          "run_count": 20,
+          "sha256": "c6d2ea5de2c55c963b208dbfd18ec683da9c5a87bc42fdc0768bf9af48899797"
+        },
+        "run_count": 20,
+        "run_preview": {
+          "_projection": "bounded_sequence",
+          "head": [
+            {
+              "_raw_artifact": {
+                "format": "json.gz",
+                "path": "DATA/raw/run-0000-sequential_three_task_screen-seed-101.json.gz",
+                "sha256": "8586b2bd4f373efd795eaf21a860af7cc7cd4e72ed82ebd96a976b9941a69ef8",
+                "size_bytes": 376,
+                "uncompressed_bytes": 477
+              },
+              "condition": "sequential_three_task_screen",
+              "experiment_id": "EXP-BATCH-20260914074039-43",
+              "metrics": {
+                "interpretation_limit": "independent task instances; precursor screen, not yet shared-network catastrophic-forgetting proof",
+                "retained_success_fraction": 1.0,
+                "task_final_mean_weights": [
+                  0.5987452014839845,
+                  0.5987452014839845,
+                  0.5987452014839845
+                ],
+                "task_successes": [
+                  true,
+                  true,
+                  true
+                ],
+                "weight_range": 0.0
+              },
+              "runtime_error": null,
+              "seed": 101,
+              "state_digest_after": "",
+              "state_digest_before": ""
+            },
+            {
+              "_raw_artifact": {
+                "format": "json.gz",
+                "path": "DATA/raw/run-0001-sequential_three_task_screen-seed-102.json.gz",
+                "sha256": "9f37bfd1d9a8d38a0fdfae5d799b7a20938527e272a0a132bfae04afd8bfdb44",
+                "size_bytes": 376,
+                "uncompressed_bytes": 477
+              },
+              "condition": "sequential_three_task_screen",
+              "experiment_id": "EXP-BATCH-20260914074039-43",
+              "metrics": {
+                "interpretation_limit": "independent task instances; precursor screen, not yet shared-network catastrophic-forgetting proof",
+                "retained_success_fraction": 1.0,
+                "task_final_mean_weights": [
+                  0.5987452014839845,
+                  0.5987452014839845,
+                  0.5987452014839845
+                ],
+                "task_successes": [
+                  true,
+                  true,
+                  true
+                ],
+                "weight_range": 0.0
+              },
+              "runtime_error": null,
+              "seed": 102,
+              "state_digest_after": "",
+              "state_digest_before": ""
+            },
+            {
+              "_raw_artifact": {
+                "format": "json.gz",
+                "path": "DATA/raw/run-0002-sequential_three_task_screen-seed-103.json.gz",
+                "sha256": "6e3d78fd49ad8d69cd3a4f4f682d49d55d4252376110fd5c56ef2f20f1e86c45",
+                "size_bytes": 376,
+                "uncompressed_bytes": 477
+              },
+              "condition": "sequential_three_task_screen",
+              "experiment_id": "EXP-BATCH-20260914074039-43",
+              "metrics": {
+                "interpretation_limit": "independent task instances; precursor screen, not yet shared-network catastrophic-forgetting proof",
+                "retained_success_fraction": 1.0,
+                "task_final_mean_weights": [
+                  0.5987452014839845,
+                  0.5987452014839845,
+                  0.5987452014839845
+                ],
+                "task_successes": [
+                  true,
+                  true,
+                  true
+                ],
+                "weight_range": 0.0
+              },
+              "runtime_error": null,
+              "seed": 103,
+              "state_digest_after": "",
+              "state_digest_before": ""
+            },
+            {
+              "_raw_artifact": {
+                "format": "json.gz",
+                "path": "DATA/raw/run-0003-sequential_three_task_screen-seed-104.json.gz",
+                "sha256": "e9dcae21cebf492d7ac106c0f66e27f822fb99111d19d4bd01cf02ac707ae007",
+                "size_bytes": 376,
+                "uncompressed_bytes": 477
+              },
+              "condition": "sequential_three_task_screen",
+              "experiment_id": "EXP-BATCH-20260914074039-43",
+              "metrics": {
+                "interpretation_limit": "independent task instances; precursor screen, not yet shared-network catastrophic-forgetting proof",
+                "retained_success_fraction": 1.0,
+                "task_final_mean_weights": [
+                  0.5987452014839845,
+                  0.5987452014839845,
+                  0.5987452014839845
+                ],
+                "task_successes": [
+                  true,
+                  true,
+                  true
+                ],
+                "weight_range": 0.0
+              },
+              "runtime_error": null,
+              "seed": 104,
+              "state_digest_after": "",
+              "state_digest_before": ""
+            },
+            {
+              "_raw_artifact": {
+                "format": "json.gz",
+                "path": "DATA/raw/run-0004-sequential_three_task_screen-seed-105.json.gz",
+                "sha256": "a6d2ed3b49293273a65c506656d012c487d4a305bfa91e29b55c9a70d97e431f",
+                "size_bytes": 376,
+                "uncompressed_bytes": 477
+              },
+              "condition": "sequential_three_task_screen",
+              "experiment_id": "EXP-BATCH-20260914074039-43",
+              "metrics": {
+                "interpretation_limit": "independent task instances; precursor screen, not yet shared-network catastrophic-forgetting proof",
+                "retained_success_fraction": 1.0,
+                "task_final_mean_weights": [
+                  0.5987452014839845,
+                  0.5987452014839845,
+                  0.5987452014839845
+                ],
+                "task_successes": [
+                  true,
+                  true,
+                  true
+                ],
+                "weight_range": 0.0
+              },
+              "runtime_error": null,
+              "seed": 105,
+              "state_digest_after": "",
+              "state_digest_before": ""
+            },
+            {
+              "_raw_artifact": {
+                "format": "json.gz",
+                "path": "DATA/raw/run-0005-sequential_three_task_screen-seed-106.json.gz",
+                "sha256": "a8352d7b1bbedf7ae0829b83a6f55c3852fd289fec2598e0e845c293db43f186",
+                "size_bytes": 376,
+                "uncompressed_bytes": 477
+              },
+              "condition": "sequential_three_task_screen",
+              "experiment_id": "EXP-BATCH-20260914074039-43",
+              "metrics": {
+                "interpretation_limit": "independent task instances; precursor screen, not yet shared-network catastrophic-forgetting proof",
+                "retained_success_fraction": 1.0,
+                "task_final_mean_weights": [
+                  0.5987452014839845,
+                  0.5987452014839845,
+                  0.5987452014839845
+                ],
+                "task_successes": [
+                  true,
+                  true,
+                  true
+                ],
+                "weight_range": 0.0
+              },
+              "runtime_error": null,
+              "seed": 106,
+              "state_digest_after": "",
+              "state_digest_before": ""
+            },
+            {
+              "_raw_artifact": {
+                "format": "json.gz",
+                "path": "DATA/raw/run-0006-sequential_three_task_screen-seed-107.json.gz",
+                "sha256": "5610daa2d84e59b14e0524e8c354eefa31ef9bc2d24fafbd091064867562a7fe",
+                "size_bytes": 376,
+                "uncompressed_bytes": 477
+              },
+              "condition": "sequential_three_task_screen",
+              "experiment_id": "EXP-BATCH-20260914074039-43",
+              "metrics": {
+                "interpretation_limit": "independent task instances; precursor screen, not yet shared-network catastrophic-forgetting proof",
+                "retained_success_fraction": 1.0,
+                "task_final_mean_weights": [
+                  0.5987452014839845,
+                  0.5987452014839845,
+                  0.5987452014839845
+                ],
+                "task_successes": [
+                  true,
+                  true,
+                  true
+                ],
+                "weight_range": 0.0
+              },
+              "runtime_error": null,
+              "seed": 107,
+              "state_digest_after": "",
+              "state_digest_before": ""
+            },
+            {
+              "_raw_artifact": {
+                "format": "json.gz",
+                "path": "DATA/raw/run-0007-sequential_three_task_screen-seed-108.json.gz",
+                "sha256": "11a06a2460cc37863899a9e47e6326f147870fa5787d5f17b495b9b20bede579",
+                "size_bytes": 376,
+                "uncompressed_bytes": 477
+              },
+              "condition": "sequential_three_task_screen",
+              "experiment_id": "EXP-BATCH-20260914074039-43",
+              "metrics": {
+                "interpretation_limit": "independent task instances; precursor screen, not yet shared-network catastrophic-forgetting proof",
+                "retained_success_fraction": 1.0,
+                "task_final_mean_weights": [
+                  0.5987452014839845,
+                  0.5987452014839845,
+                  0.5987452014839845
+                ],
+                "task_successes": [
+                  true,
+                  true,
+                  true
+                ],
+                "weight_range": 0.0
+              },
+              "runtime_error": null,
+              "seed": 108,
+              "state_digest_after": "",
+              "state_digest_before": ""
+            }
+          ],
+          "item_count": 20,
+          "tail": [
+            {
+              "_raw_artifact": {
+                "format": "json.gz",
+                "path": "DATA/raw/run-0012-sequential_three_task_screen-seed-113.json.gz",
+                "sha256": "07cfb795ca2ae291c3626f830d40220733124470de020d3938c6087e3876f3d5",
+                "size_bytes": 376,
+                "uncompressed_bytes": 477
+              },
+              "condition": "sequential_three_task_screen",
+              "experiment_id": "EXP-BATCH-20260914074039-43",
+              "metrics": {
+                "interpretation_limit": "independent task instances; precursor screen, not yet shared-network catastrophic-forgetting proof",
+                "retained_success_fraction": 1.0,
+                "task_final_mean_weights": [
+                  0.5987452014839845,
+                  0.5987452014839845,
+                  0.5987452014839845
+                ],
+                "task_successes": [
+                  true,
+                  true,
+                  true
+                ],
+                "weight_range": 0.0
+              },
+              "runtime_error": null,
+              "seed": 113,
+              "state_digest_after": "",
+              "state_digest_before": ""
+            },
+            {
+              "_raw_artifact": {
+                "format": "json.gz",
+                "path": "DATA/raw/run-0013-sequential_three_task_screen-seed-114.json.gz",
+                "sha256": "7c1807c200d85ef3f2341f580509992db514f1cd346cd38edf52b9e3d18380a0",
+                "size_bytes": 376,
+                "uncompressed_bytes": 477
+              },
+              "condition": "sequential_three_task_screen",
+              "experiment_id": "EXP-BATCH-20260914074039-43",
+              "metrics": {
+                "interpretation_limit": "independent task instances; precursor screen, not yet shared-network catastrophic-forgetting proof",
+                "retained_success_fraction": 1.0,
+                "task_final_mean_weights": [
+                  0.5987452014839845,
+                  0.5987452014839845,
+                  0.5987452014839845
+                ],
+                "task_successes": [
+                  true,
+                  true,
+                  true
+                ],
+                "weight_range": 0.0
+              },
+              "runtime_error": null,
+              "seed": 114,
+              "state_digest_after": "",
+              "state_digest_before": ""
+            },
+            {
+              "_raw_artifact": {
+                "format": "json.gz",
+                "path": "DATA/raw/run-0014-sequential_three_task_screen-seed-115.json.gz",
+                "sha256": "3c3d61fc71838f99277a8e5fd73877dae9825fff0086b0efe2bd6e6deee0e3b5",
+                "size_bytes": 376,
+                "uncompressed_bytes": 477
+              },
+              "condition": "sequential_three_task_screen",
+              "experiment_id": "EXP-BATCH-20260914074039-43",
+              "metrics": {
+                "interpretation_limit": "independent task instances; precursor screen, not yet shared-network catastrophic-forgetting proof",
+                "retained_success_fraction": 1.0,
+                "task_final_mean_weights": [
+                  0.5987452014839845,
+                  0.5987452014839845,
+                  0.5987452014839845
+                ],
+                "task_successes": [
+                  true,
+                  true,
+                  true
+                ],
+                "weight_range": 0.0
+              },
+              "runtime_error": null,
+              "seed": 115,
+              "state_digest_after": "",
+              "state_digest_before": ""
+            },
+            {
+              "_raw_artifact": {
+                "format": "json.gz",
+                "path": "DATA/raw/run-0015-sequential_three_task_screen-seed-116.json.gz",
+                "sha256": "51d09e708a229af3f66c0beb23943ed2957680e7c92681b2f422ce1b1a77bebe",
+                "size_bytes": 376,
+                "uncompressed_bytes": 477
+              },
+              "condition": "sequential_three_task_screen",
+              "experiment_id": "EXP-BATCH-20260914074039-43",
+              "metrics": {
+                "interpretation_limit": "independent task instances; precursor screen, not yet shared-network catastrophic-forgetting proof",
+                "retained_success_fraction": 1.0,
+                "task_final_mean_weights": [
+                  0.5987452014839845,
+                  0.5987452014839845,
+                  0.5987452014839845
+                ],
+                "task_successes": [
+                  true,
+                  true,
+                  true
+                ],
+                "weight_range": 0.0
+              },
+              "runtime_error": null,
+              "seed": 116,
+              "state_digest_after": "",
+              "state_digest_before": ""
+            },
+            {
+              "_raw_artifact": {
+                "format": "json.gz",
+                "path": "DATA/raw/run-0016-sequential_three_task_screen-seed-117.json.gz",
+                "sha256": "53ead19b7fa48c2f3635f89f612866dfddf1dcb6ef283ed044e1359f763e76c5",
+                "size_bytes": 376,
+                "uncompressed_bytes": 477
+              },
+              "condition": "sequential_three_task_screen",
+              "experiment_id": "EXP-BATCH-20260914074039-43",
+              "metrics": {
+                "interpretation_limit": "independent task instances; precursor screen, not yet shared-network catastrophic-forgetting proof",
+                "retained_success_fraction": 1.0,
+                "task_final_mean_weights": [
+                  0.5987452014839845,
+                  0.5987452014839845,
+                  0.5987452014839845
+                ],
+                "task_successes": [
+                  true,
+                  true,
+                  true
+                ],
+                "weight_range": 0.0
+              },
+              "runtime_error": null,
+              "seed": 117,
+              "state_digest_after": "",
+              "state_digest_before": ""
+            },
+            {
+              "_raw_artifact": {
+                "format": "json.gz",
+                "path": "DATA/raw/run-0017-sequential_three_task_screen-seed-118.json.gz",
+                "sha256": "2b5ceff3d1f5b1c8c699d5e51ddbbcd0ae4630bebbaca68a6ad5080f69450182",
+                "size_bytes": 376,
+                "uncompressed_bytes": 477
+              },
+              "condition": "sequential_three_task_screen",
+              "experiment_id": "EXP-BATCH-20260914074039-43",
+              "metrics": {
+                "interpretation_limit": "independent task instances; precursor screen, not yet shared-network catastrophic-forgetting proof",
+                "retained_success_fraction": 1.0,
+                "task_final_mean_weights": [
+                  0.5987452014839845,
+                  0.5987452014839845,
+                  0.5987452014839845
+                ],
+                "task_successes": [
+                  true,
+                  true,
+                  true
+                ],
+                "weight_range": 0.0
+              },
+              "runtime_error": null,
+              "seed": 118,
+              "state_digest_after": "",
+              "state_digest_before": ""
+            },
+            {
+              "_raw_artifact": {
+                "format": "json.gz",
+                "path": "DATA/raw/run-0018-sequential_three_task_screen-seed-119.json.gz",
+                "sha256": "268ea9f499b9eb466b58a694888d06800f56943f913f89fdea95b46ed1ea2178",
+                "size_bytes": 376,
+                "uncompressed_bytes": 477
+              },
+              "condition": "sequential_three_task_screen",
+              "experiment_id": "EXP-BATCH-20260914074039-43",
+              "metrics": {
+                "interpretation_limit": "independent task instances; precursor screen, not yet shared-network catastrophic-forgetting proof",
+                "retained_success_fraction": 1.0,
+                "task_final_mean_weights": [
+                  0.5987452014839845,
+                  0.5987452014839845,
+                  0.5987452014839845
+                ],
+                "task_successes": [
+                  true,
+                  true,
+                  true
+                ],
+                "weight_range": 0.0
+              },
+              "runtime_error": null,
+              "seed": 119,
+              "state_digest_after": "",
+              "state_digest_before": ""
+            },
+            {
+              "_raw_artifact": {
+                "format": "json.gz",
+                "path": "DATA/raw/run-0019-sequential_three_task_screen-seed-120.json.gz",
+                "sha256": "21e9ebedc02fc66f73e0fda86e7a9a8e4f4640e1280d10a9e375d4701c518ae5",
+                "size_bytes": 376,
+                "uncompressed_bytes": 477
+              },
+              "condition": "sequential_three_task_screen",
+              "experiment_id": "EXP-BATCH-20260914074039-43",
+              "metrics": {
+                "interpretation_limit": "independent task instances; precursor screen, not yet shared-network catastrophic-forgetting proof",
+                "retained_success_fraction": 1.0,
+                "task_final_mean_weights": [
+                  0.5987452014839845,
+                  0.5987452014839845,
+                  0.5987452014839845
+                ],
+                "task_successes": [
+                  true,
+                  true,
+                  true
+                ],
+                "weight_range": 0.0
+              },
+              "runtime_error": null,
+              "seed": 120,
+              "state_digest_after": "",
+              "state_digest_before": ""
+            }
+          ]
+        },
+        "schema_version": "2.0",
+        "statistics": {
+          "conditions": {
+            "sequential_three_task_screen": {
+              "metrics": {
+                "retained_success_fraction": {
+                  "max": 1.0,
+                  "mean": 1.0,
+                  "median": 1.0,
+                  "min": 1.0,
+                  "n": 20,
+                  "std": 0.0
+                },
+                "weight_range": {
+                  "max": 0.0,
+                  "mean": 0.0,
+                  "median": 0.0,
+                  "min": 0.0,
+                  "n": 20,
+                  "std": 0.0
+                }
+              },
+              "run_count": 20,
+              "seeds": [
+                101,
+                102,
+                103,
+                104,
+                105,
+                106,
+                107,
+                108,
+                109,
+                110,
+                111,
+                112,
+                113,
+                114,
+                115,
+                116,
+                117,
+                118,
+                119,
+                120
+              ]
+            }
+          },
+          "formulas": {
+            "difference": "Delta_x = mean(x_B) - mean(x_A)",
+            "inter_spike_interval": "ISI_i = t_(i+1) - t_i",
+            "mean": "mean(x) = (1/n) * sum_i x_i",
+            "population_std": "sigma = sqrt((1/n) * sum_i (x_i - mean(x))^2)",
+            "ratio": "R_x = mean(x_B) / mean(x_A), defined only when mean(x_A) != 0"
+          },
+          "generated_by": "deterministic_statistics_engine",
+          "run_count": 20,
+          "schema_version": "2.0"
+        }
+      },
+      "evid": [],
+      "literature": []
+    },
+    "quantitative_results": {
+      "conditions": {
+        "sequential_three_task_screen": {
+          "metrics": {
+            "retained_success_fraction": {
+              "max": 1.0,
+              "mean": 1.0,
+              "median": 1.0,
+              "min": 1.0,
+              "n": 20,
+              "std": 0.0
+            },
+            "weight_range": {
+              "max": 0.0,
+              "mean": 0.0,
+              "median": 0.0,
+              "min": 0.0,
+              "n": 20,
+              "std": 0.0
+            }
+          },
+          "run_count": 20,
+          "seeds": [
+            101,
+            102,
+            103,
+            104,
+            105,
+            106,
+            107,
+            108,
+            109,
+            110,
+            111,
+            112,
+            113,
+            114,
+            115,
+            116,
+            117,
+            118,
+            119,
+            120
+          ]
+        }
+      },
+      "formulas": {
+        "difference": "Delta_x = mean(x_B) - mean(x_A)",
+        "inter_spike_interval": "ISI_i = t_(i+1) - t_i",
+        "mean": "mean(x) = (1/n) * sum_i x_i",
+        "population_std": "sigma = sqrt((1/n) * sum_i (x_i - mean(x))^2)",
+        "ratio": "R_x = mean(x_B) / mean(x_A), defined only when mean(x_A) != 0"
+      },
+      "generated_by": "deterministic_statistics_engine",
+      "run_count": 20,
+      "schema_version": "2.0"
+    },
+    "observations": [
+      "Bei allen 20 Durchläufen wurde die Retentionsleistung mit 100 % erreicht.",
+      "Die Gewichtssignatur bleibt konstant und zeigt keine Veränderungen.",
+      "Die Task-Erfolge sind in allen Fällen als wahr bezeichnet worden."
+    ],
+    "interpretation": {
+      "assessment": "Die Daten zeigen, dass bei sequenziellen Lernaufgaben die Retentionsleistung vollständig erhalten bleibt, was auf eine geringe oder keine Interferenz hinweist. Die Ergebnisse sind konsistent und zeigen keine signifikanten Abweichungen.",
+      "confidence": 0.95,
+      "effect_direction": "Keine signifikante Veränderung der Retentionsleistung oder Gewichtssignatur beobachtet.",
+      "methodological_concerns": [
+        "Die Experimente sind als Vorläufer-Screen registriert, was mögliche Limitationen bei der Messung von Catastrophic-Forgetting aufweist.",
+        "Es fehlen verifizierte Evidenzen oder semantische Validierung der Ergebnisse."
+      ],
+      "observations": [
+        "Bei allen 20 Durchläufen wurde die Retentionsleistung mit 100 % erreicht.",
+        "Die Gewichtssignatur bleibt konstant und zeigt keine Veränderungen.",
+        "Die Task-Erfolge sind in allen Fällen als wahr bezeichnet worden."
+      ],
+      "alternative_explanations": [
+        "Die verwendeten Aufgaben könnten nicht ausreichend komplex sein, um Interferenzeffekte zu erzeugen.",
+        "Die verwendete Messmethode könnte nicht in der Lage sein, subtile Veränderungen in der Retentionsleistung zu erfassen."
+      ],
+      "recommended_experiments": [
+        "Ein Experiment mit einem gemeinsamen fortlaufend trainierten Netzwerk, um Catastrophic-Forgetting zu testen.",
+        "Ein Vergleich mit einer Single-Task-Baseline, um die Retentionsleistung zu quantifizieren."
+      ],
+      "requested_evidence": [
+        "Verifizierte Evidenzen oder semantische Validierung der Ergebnisse.",
+        "Zusätzliche Experimente mit komplexeren Aufgaben, um Interferenzeffekte zu testen."
+      ]
+    },
+    "methodological_critique": [
+      "Die Experimente sind als Vorläufer-Screen registriert, was mögliche Limitationen bei der Messung von Catastrophic-Forgetting aufweist.",
+      "Es fehlen verifizierte Evidenzen oder semantische Validierung der Ergebnisse."
+    ],
+    "alternative_explanations": [
+      "Die verwendeten Aufgaben könnten nicht ausreichend komplex sein, um Interferenzeffekte zu erzeugen.",
+      "Die verwendete Messmethode könnte nicht in der Lage sein, subtile Veränderungen in der Retentionsleistung zu erfassen."
+    ],
+    "reproducibility": {
+      "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+      "experiment_status": "completed",
+      "evidence_mode": "not_reported",
+      "git_dirty": "True",
+      "source_freeze_sha": "e362f441d4d0a355709f6b997f96826c566a2822edaebbd9e2695ce26b1bd9c6",
+      "configuration_path": "F:\\Brain-5D\\configs\\learning_experiment.yaml",
+      "configuration_sha256": "6f6cd457caf6216c286fee47ef03b529a0b496ed2dd53ee96b85d3b51e7b3a1c",
+      "experiment_manifest_digest": "df2ae1116ed6214ea27a311e792ddc8960e9db8f865963c6e3f1b4f2de8d62d3",
+      "data_ids": "NOT_AVAILABLE",
+      "evid_ids": "NOT_AVAILABLE",
+      "protocol_id": "NOT_AVAILABLE",
+      "protocol_digest": "0de0120277988d55cf793284f8514b155fcbb14e1be1ee05f1624d1c76c8a614",
+      "data_digest": "d84d4beaa2fd1d31b6a97c3155490fe9b117a5888e8ad9152dbf32ed4a18f7e3",
+      "evid_digests": "[]"
+    },
+    "epistemic_status": {
+      "implementation": "NOT_DETERMINED",
+      "experiment_data": "PRESENT",
+      "registered_evidence": "ABSENT",
+      "ai_interpretation": "PRESENT",
+      "human_review": "PENDING",
+      "claim_support": "NOT_DETERMINED",
+      "rq_status": "IN_PROGRESS"
+    },
+    "ai_confidence": 0.95,
+    "missing_evidence": [
+      "Verifizierte Evidenzen oder semantische Validierung der Ergebnisse.",
+      "Zusätzliche Experimente mit komplexeren Aufgaben, um Interferenzeffekte zu testen."
+    ],
+    "recommended_follow_up": [
+      "Ein Experiment mit einem gemeinsamen fortlaufend trainierten Netzwerk, um Catastrophic-Forgetting zu testen.",
+      "Ein Vergleich mit einer Single-Task-Baseline, um die Retentionsleistung zu quantifizieren."
+    ],
+    "conclusion": "Die Daten zeigen, dass bei sequenziellen Lernaufgaben die Retentionsleistung vollständig erhalten bleibt, was auf eine geringe oder keine Interferenz hinweist. Die Ergebnisse sind konsistent und zeigen keine signifikanten Abweichungen.",
+    "human_review": {
+      "status": "PENDING",
+      "reviewer": null,
+      "reviewed_at": null,
+      "disposition": null,
+      "comments": null
+    },
+    "aiar": {
+      "analyst": {
+        "analysis_id": "AIAR-scientific_analyst-20260914084623138992-b6010d7d",
+        "role": "scientific_analyst",
+        "model": {
+          "provider": "ollama",
+          "model_name": "qwen3:8b",
+          "model_digest": "not_reported",
+          "quantization": "not_reported",
+          "context_length": "unknown",
+          "temperature": 0.0,
+          "top_p": 0.9,
+          "seed": "not_reported",
+          "backend_version": "unknown"
+        },
+        "inputs": {
+          "experiment_id": "EXP-BATCH-20260914074039-43",
+          "packet_digest": "b6010d7d5c9d55af12372c8b777035d9d027e2ce680361fc726c6fa91489e9ec"
+        },
+        "output": {
+          "assessment": "Die Daten zeigen, dass bei sequenziellen Lernaufgaben die Retentionsleistung vollständig erhalten bleibt, was auf eine geringe oder keine Interferenz hinweist. Die Ergebnisse sind konsistent und zeigen keine signifikanten Abweichungen.",
+          "observations": [
+            "Bei allen 20 Durchläufen wurde die Retentionsleistung mit 100 % erreicht.",
+            "Die Gewichtssignatur bleibt konstant und zeigt keine Veränderungen.",
+            "Die Task-Erfolge sind in allen Fällen als wahr bezeichnet worden."
+          ],
+          "effect_direction": "Keine signifikante Veränderung der Retentionsleistung oder Gewichtssignatur beobachtet.",
+          "methodological_concerns": [
+            "Die Experimente sind als Vorläufer-Screen registriert, was mögliche Limitationen bei der Messung von Catastrophic-Forgetting aufweist.",
+            "Es fehlen verifizierte Evidenzen oder semantische Validierung der Ergebnisse."
+          ],
+          "alternative_explanations": [
+            "Die verwendeten Aufgaben könnten nicht ausreichend komplex sein, um Interferenzeffekte zu erzeugen.",
+            "Die verwendete Messmethode könnte nicht in der Lage sein, subtile Veränderungen in der Retentionsleistung zu erfassen."
+          ],
+          "recommended_experiments": [
+            "Ein Experiment mit einem gemeinsamen fortlaufend trainierten Netzwerk, um Catastrophic-Forgetting zu testen.",
+            "Ein Vergleich mit einer Single-Task-Baseline, um die Retentionsleistung zu quantifizieren."
+          ],
+          "requested_evidence": [
+            "Verifizierte Evidenzen oder semantische Validierung der Ergebnisse.",
+            "Zusätzliche Experimente mit komplexeren Aufgaben, um Interferenzeffekte zu testen."
+          ],
+          "confidence": 0.95
+        },
+        "provenance": {
+          "prompt_sha256": "5f7c6867471bde8624662edc0c81f34fee639013d49fc3089cd1e9c42a68316a",
+          "research_packet_digest": "b6010d7d5c9d55af12372c8b777035d9d027e2ce680361fc726c6fa91489e9ec",
+          "prompt_protocol_version": "research_assistant_v1",
+          "assistant_schema_version": "1.2",
+          "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+          "model_self_confidence": "0.95"
+        },
+        "epistemic_status": {
+          "evidence": false,
+          "interpretation_only": true,
+          "human_review_required": true
+        },
+        "review": {
+          "status": "pending",
+          "reviewer": null,
+          "reviewed_at": null,
+          "disposition": null
+        },
+        "generated_at": "2026-09-14T08:46:23.138992+00:00"
+      },
+      "reviewer": {
+        "analysis_id": "AIAR-critical_reviewer-20260914114555343416-9a1965d1",
+        "role": "critical_reviewer",
+        "model": {
+          "provider": "ollama",
+          "model_name": "qwen2.5-coder:7b",
+          "model_digest": "not_reported",
+          "quantization": "not_reported",
+          "context_length": "unknown",
+          "temperature": 0.0,
+          "top_p": 1.0,
+          "seed": "not_reported",
+          "backend_version": "unknown"
+        },
+        "inputs": {
+          "experiment_id": "EXP-BATCH-20260914074039-43",
+          "packet_digest": "9a1965d1f46a56b9d82884b4a5bb0caed014bcc2454679085307577d862a0218"
+        },
+        "output": {
+          "assessment": "Die Daten zeigen, dass bei sequenziellen Lernaufgaben die Retentionsleistung vollständig erhalten bleibt, was auf eine geringe oder keine Interferenz hinweist. Die Ergebnisse sind konsistent und zeigen keine signifikanten Abweichungen.",
+          "observations": [
+            "Bei allen 20 Durchläufen wurde die Retentionsleistung mit 100 % erreicht.",
+            "Die Gewichtssignatur bleibt konstant und zeigt keine Veränderungen.",
+            "Die Task-Erfolge sind in allen Fällen als wahr bezeichnet worden."
+          ],
+          "effect_direction": "Keine signifikante Veränderung der Retentionsleistung oder Gewichtssignatur beobachtet.",
+          "methodological_concerns": [
+            "Die Experimente sind als Vorläufer-Screen registriert, was mögliche Limitationen bei der Messung von Catastrophic-Forgetting aufweist.",
+            "Es fehlen verifizierte Evidenzen oder semantische Validierung der Ergebnisse."
+          ],
+          "alternative_explanations": [
+            "Die verwendeten Aufgaben könnten nicht ausreichend komplex sein, um Interferenzeffekte zu erzeugen.",
+            "Die verwendete Messmethode könnte nicht in der Lage sein, subtile Veränderungen in der Retentionsleistung zu erfassen."
+          ],
+          "recommended_experiments": [
+            "Ein Experiment mit einem gemeinsamen fortlaufend trainierten Netzwerk, um Catastrophic-Forgetting zu testen.",
+            "Ein Vergleich mit einer Single-Task-Baseline, um die Retentionsleistung zu quantifizieren."
+          ],
+          "requested_evidence": [
+            "Verifizierte Evidenzen oder semantische Validierung der Ergebnisse.",
+            "Zusätzliche Experimente mit komplexeren Aufgaben, um Interferenzeffekte zu testen."
+          ],
+          "confidence": 0.95
+        },
+        "provenance": {
+          "prompt_sha256": "8443686832757d66a2ccb884cebaee682a92041d901393cc821cb1bd8224e179",
+          "research_packet_digest": "9a1965d1f46a56b9d82884b4a5bb0caed014bcc2454679085307577d862a0218",
+          "prompt_protocol_version": "research_assistant_v1",
+          "assistant_schema_version": "1.2",
+          "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+          "model_self_confidence": "0.95"
+        },
+        "epistemic_status": {
+          "evidence": false,
+          "interpretation_only": true,
+          "human_review_required": true
+        },
+        "review": {
+          "status": "pending",
+          "reviewer": null,
+          "reviewed_at": null,
+          "disposition": null
+        },
+        "generated_at": "2026-09-14T11:45:55.343416+00:00"
+      },
+      "writer": {
+        "analysis_id": "AIAR-scientific_writer-20260914084733992299-b6010d7d",
+        "role": "scientific_writer",
+        "model": {
+          "provider": "ollama",
+          "model_name": "qwen3:8b",
+          "model_digest": "not_reported",
+          "quantization": "not_reported",
+          "context_length": "unknown",
+          "temperature": 0.0,
+          "top_p": 0.9,
+          "seed": "not_reported",
+          "backend_version": "unknown"
+        },
+        "inputs": {
+          "experiment_id": "EXP-BATCH-20260914074039-43",
+          "packet_digest": "b6010d7d5c9d55af12372c8b777035d9d027e2ce680361fc726c6fa91489e9ec"
+        },
+        "output": {
+          "assessment": "Die Daten zeigen, dass bei sequenziellen Lernaufgaben die Retentionsleistung vollständig erhalten bleibt, was auf eine geringe oder keine Interferenz hinweist. Die Ergebnisse sind konsistent und zeigen keine signifikanten Abweichungen.",
+          "confidence": 0.95,
+          "effect_direction": "Keine signifikante Veränderung der Retentionsleistung oder Gewichtssignatur beobachtet.",
+          "methodological_concerns": [
+            "Die Experimente sind als Vorläufer-Screen registriert, was mögliche Limitationen bei der Messung von Catastrophic-Forgetting aufweist.",
+            "Es fehlen verifizierte Evidenzen oder semantische Validierung der Ergebnisse."
+          ],
+          "observations": [
+            "Bei allen 20 Durchläufen wurde die Retentionsleistung mit 100 % erreicht.",
+            "Die Gewichtssignatur bleibt konstant und zeigt keine Veränderungen.",
+            "Die Task-Erfolge sind in allen Fällen als wahr bezeichnet worden."
+          ],
+          "alternative_explanations": [
+            "Die verwendeten Aufgaben könnten nicht ausreichend komplex sein, um Interferenzeffekte zu erzeugen.",
+            "Die verwendete Messmethode könnte nicht in der Lage sein, subtile Veränderungen in der Retentionsleistung zu erfassen."
+          ],
+          "recommended_experiments": [
+            "Ein Experiment mit einem gemeinsamen fortlaufend trainierten Netzwerk, um Catastrophic-Forgetting zu testen.",
+            "Ein Vergleich mit einer Single-Task-Baseline, um die Retentionsleistung zu quantifizieren."
+          ],
+          "requested_evidence": [
+            "Verifizierte Evidenzen oder semantische Validierung der Ergebnisse.",
+            "Zusätzliche Experimente mit komplexeren Aufgaben, um Interferenzeffekte zu testen."
+          ]
+        },
+        "provenance": {
+          "prompt_sha256": "8b91436fca487ff5d868982fd3632680bce32e09c86194194d316913bb007ebe",
+          "research_packet_digest": "b6010d7d5c9d55af12372c8b777035d9d027e2ce680361fc726c6fa91489e9ec",
+          "prompt_protocol_version": "research_assistant_v1",
+          "assistant_schema_version": "1.2",
+          "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+          "model_self_confidence": "0.95"
+        },
+        "epistemic_status": {
+          "evidence": false,
+          "interpretation_only": true,
+          "human_review_required": true
+        },
+        "review": {
+          "status": "pending",
+          "reviewer": null,
+          "reviewed_at": null,
+          "disposition": null
+        },
+        "generated_at": "2026-09-14T08:47:33.992299+00:00"
+      }
+    }
+  },
+  "provenance": {
+    "research_packet_digest": "9a1965d1f46a56b9d82884b4a5bb0caed014bcc2454679085307577d862a0218",
+    "source": {
+      "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+      "experiment_status": "completed",
+      "evidence_mode": "not_reported",
+      "git_dirty": "True",
+      "source_freeze_sha": "e362f441d4d0a355709f6b997f96826c566a2822edaebbd9e2695ce26b1bd9c6",
+      "configuration_path": "F:\\Brain-5D\\configs\\learning_experiment.yaml",
+      "configuration_sha256": "6f6cd457caf6216c286fee47ef03b529a0b496ed2dd53ee96b85d3b51e7b3a1c",
+      "experiment_manifest_digest": "df2ae1116ed6214ea27a311e792ddc8960e9db8f865963c6e3f1b4f2de8d62d3",
+      "data_ids": "NOT_AVAILABLE",
+      "evid_ids": "NOT_AVAILABLE",
+      "protocol_id": "NOT_AVAILABLE",
+      "protocol_digest": "0de0120277988d55cf793284f8514b155fcbb14e1be1ee05f1624d1c76c8a614",
+      "data_digest": "d84d4beaa2fd1d31b6a97c3155490fe9b117a5888e8ad9152dbf32ed4a18f7e3",
+      "evid_digests": "[]"
+    }
+  },
+  "analysis_ids": [
+    "AIAR-scientific_analyst-20260914084623138992-b6010d7d",
+    "AIAR-critical_reviewer-20260914114555343416-9a1965d1",
+    "AIAR-scientific_writer-20260914084733992299-b6010d7d"
+  ],
+  "supersedes": null,
+  "content_digest": "2a03c7cc533371996cdd6520e3f10ef6dc4ec2dd54da68fa3eecb3301fcf8451",
+  "markdown_digest": "cddc7177722be18de9150eadb901046ef6b86a002c800686378a9d48b33a19cc"
+}

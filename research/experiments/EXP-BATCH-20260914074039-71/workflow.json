@@ -1,0 +1,31 @@
+{
+  "experiment_id": "EXP-BATCH-20260914074039-71",
+  "research_question": "RQ-EMB-004",
+  "hypothesis": "H-EMB-004-A",
+  "title": "Experiment workflow: embodied_perturbation_screen_v1",
+  "conditions": "Registered protocol conditions",
+  "ticks": 1000,
+  "ticks_contract": "minimum requested observation window",
+  "seeds": [
+    101,
+    102,
+    103
+  ],
+  "protocol": "embodied_perturbation_screen_v1",
+  "resolved_runner": "run_embodied_perturbation",
+  "tick_validation": {
+    "status": "VIOLATED",
+    "requested_ticks": 1000,
+    "reason": "Tick contract violated: runner run_embodied_perturbation did not execute at least 1000 ticks in every run.",
+    "retained_failed_observations": true
+  },
+  "notes": "",
+  "execution": "registered experiment_suite runner",
+  "assistant_policy": "AI is post-hoc interpretation only.",
+  "epistemic_layers": {
+    "ui_state": "operator/dashboard progress only; not a scientific result",
+    "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+    "evid": "not_created; requires semantic validation, clean freeze and human review",
+    "interpretation": "post-hoc AI or human interpretation; never execution input"
+  }
+}

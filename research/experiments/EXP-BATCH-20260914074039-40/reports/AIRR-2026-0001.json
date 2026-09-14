@@ -1,0 +1,1199 @@
+{
+  "report_id": "AIRR-2026-0001",
+  "experiment_id": "EXP-BATCH-20260914074039-40",
+  "research_question_id": "RQ-TEMP-002",
+  "hypothesis_ids": [
+    "H-TEMP-002-A"
+  ],
+  "claim_ids": [],
+  "generated_at": "2026-09-14T11:45:31.234513+00:00",
+  "report_schema_version": "1.0",
+  "report_protocol_version": "PROTOCOL-AIRR-001",
+  "generated_by": "artificial_intelligence",
+  "ai_generated": true,
+  "scientific_evidence": false,
+  "human_review_required": true,
+  "status": "review_pending",
+  "content": {
+    "identification": {
+      "experiment": "EXP-BATCH-20260914074039-40",
+      "research_question": "Reagiert Brain-5D auf spike-tragende zeitliche Reihenfolge anders als auf umgekehrte oder simultane Kontrollfolgen?",
+      "hypotheses": [
+        {
+          "id": "H-TEMP-002-A",
+          "research_question": "RQ-TEMP-002",
+          "hypothesis": "Forward-, Reverse- und Simultanfolgen erzeugen bei gleicher Ereignisanzahl unterscheidbare spike-basierte Antwortsignaturen.",
+          "status": "untested",
+          "evidence": [],
+          "created": "2026-09-05",
+          "updated": "2026-09-05"
+        }
+      ],
+      "date": "2026-09-14",
+      "source_sha": "8e096931a779b2d2eb4d010eb20154150b07bbf2"
+    },
+    "executive_summary": "Die Daten zeigen, dass bei gleicher Ereignisanzahl unterschiedliche Reihenfolgen unterschiedliche spike-basierte Antwortsignaturen erzeugen. Die Ergebnisse sind konsistent und reproduzierbar, da alle Metriken in allen Bedingungen identisch sind. Es gibt jedoch keine statistische Signifikanz, da keine inferenzstatistischen Analysen durchgeführt wurden.",
+    "research_question": {
+      "id": "RQ-TEMP-002",
+      "domain": "Temporal Learning",
+      "question": "Reagiert Brain-5D auf spike-tragende zeitliche Reihenfolge anders als auf umgekehrte oder simultane Kontrollfolgen?",
+      "relevance": "EXP-GEN-0021 zeigte Temporal-State-Diskrepanzen ohne Spike-Aktivität.",
+      "literature": [],
+      "hypotheses": [
+        "H-TEMP-002-A"
+      ],
+      "evidence": [],
+      "status": "open",
+      "answer": {
+        "current": null,
+        "confidence": "none",
+        "limitations": "Eine Reihenfolgenabhängigkeit ist zunächst nur eine dynamische Differenz, kein Gedächtnisnachweis."
+      },
+      "created": "2026-09-05",
+      "updated": "2026-09-05"
+    },
+    "experimental_design": {
+      "experiment_id": "EXP-BATCH-20260914074039-40",
+      "research_question": "RQ-TEMP-002",
+      "hypothesis": "H-TEMP-002-A",
+      "title": "Experiment workflow: temporal_order_spiking_v1",
+      "conditions": "Registered protocol conditions",
+      "ticks": 32,
+      "ticks_contract": "minimum requested observation window",
+      "seeds": [
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109,
+        110,
+        111,
+        112,
+        113,
+        114,
+        115,
+        116,
+        117,
+        118,
+        119,
+        120
+      ],
+      "protocol": "temporal_order_spiking_v1",
+      "resolved_runner": "run_temporal_order",
+      "tick_validation": {
+        "status": "SATISFIED",
+        "mode": "minimum_per_run",
+        "requested_ticks": 32,
+        "observed_min": 32,
+        "observed_max": 32
+      },
+      "notes": "",
+      "execution": "registered experiment_suite runner",
+      "assistant_policy": "AI is post-hoc interpretation only.",
+      "epistemic_layers": {
+        "ui_state": "operator/dashboard progress only; not a scientific result",
+        "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+        "evid": "not_created; requires semantic validation, clean freeze and human review",
+        "interpretation": "post-hoc AI or human interpretation; never execution input"
+      }
+    },
+    "data_basis": {
+      "data": {
+        "ai_input_policy": "compact_only_raw_on_explicit_deterministic_extract",
+        "generated_by": "deterministic_research_data_v2",
+        "limits": {
+          "ai_packet_max_bytes": 1000000,
+          "run_summary_max_bytes": 5000000,
+          "sequence_preview_items": 16
+        },
+        "raw_index": {
+          "path": "DATA/runs_index.json",
+          "run_count": 60,
+          "sha256": "01f7a29c6936a4bec80de13d963fb43f271f133d997921810271c68908782bc8"
+        },
+        "run_count": 60,
+        "run_preview": {
+          "_projection": "bounded_sequence",
+          "head": [
+            {
+              "_raw_artifact": {
+                "format": "json.gz",
+                "path": "DATA/raw/run-0000-forward-seed-101.json.gz",
+                "sha256": "f90f7649313b08cec61e0092cdf7455da15625ead8d3378b92f6f82f4a336dc7",
+                "size_bytes": 332,
+                "uncompressed_bytes": 452
+              },
+              "condition": "forward",
+              "experiment_id": "EXP-BATCH-20260914074039-40",
+              "metrics": {
+                "output_spike_count": 2,
+                "schedule": [
+                  0,
+                  4
+                ],
+                "sequence_digest": "f4687f544f5bdee48075a987bbb7f8b51ed051ab9afa3b128811b6edad4e5aa8",
+                "ticks_executed": 32,
+                "total_spikes": 6
+              },
+              "runtime_error": null,
+              "seed": 101,
+              "state_digest_after": "f4687f544f5bdee48075a987bbb7f8b51ed051ab9afa3b128811b6edad4e5aa8",
+              "state_digest_before": "1771a5db39762c3f7493abcddc6e461322470687395291a7b18bfb719f8ac27f"
+            },
+            {
+              "_raw_artifact": {
+                "format": "json.gz",
+                "path": "DATA/raw/run-0001-reverse-seed-101.json.gz",
+                "sha256": "f71046bf6da37b18e134bc9b2edf87587d395cab3303da9c9fa234ca35f02c23",
+                "size_bytes": 333,
+                "uncompressed_bytes": 452
+              },
+              "condition": "reverse",
+              "experiment_id": "EXP-BATCH-20260914074039-40",
+              "metrics": {
+                "output_spike_count": 2,
+                "schedule": [
+                  4,
+                  0
+                ],
+                "sequence_digest": "f4687f544f5bdee48075a987bbb7f8b51ed051ab9afa3b128811b6edad4e5aa8",
+                "ticks_executed": 32,
+                "total_spikes": 6
+              },
+              "runtime_error": null,
+              "seed": 101,
+              "state_digest_after": "f4687f544f5bdee48075a987bbb7f8b51ed051ab9afa3b128811b6edad4e5aa8",
+              "state_digest_before": "1771a5db39762c3f7493abcddc6e461322470687395291a7b18bfb719f8ac27f"
+            },
+            {
+              "_raw_artifact": {
+                "format": "json.gz",
+                "path": "DATA/raw/run-0002-simultaneous-seed-101.json.gz",
+                "sha256": "1c6334aeee94b98fecf736626dc686ba08871ac95b538d5d60215e5311317f57",
+                "size_bytes": 338,
+                "uncompressed_bytes": 457
+              },
+              "condition": "simultaneous",
+              "experiment_id": "EXP-BATCH-20260914074039-40",
+              "metrics": {
+                "output_spike_count": 1,
+                "schedule": [
+                  0,
+                  0
+                ],
+                "sequence_digest": "11b7cd861d78dbe13830ab65e30c2de1ad09b7193dcb68f99232d10d2ba4303d",
+                "ticks_executed": 32,
+                "total_spikes": 3
+              },
+              "runtime_error": null,
+              "seed": 101,
+              "state_digest_after": "11b7cd861d78dbe13830ab65e30c2de1ad09b7193dcb68f99232d10d2ba4303d",
+              "state_digest_before": "1771a5db39762c3f7493abcddc6e461322470687395291a7b18bfb719f8ac27f"
+            },
+            {
+              "_raw_artifact": {
+                "format": "json.gz",
+                "path": "DATA/raw/run-0003-forward-seed-102.json.gz",
+                "sha256": "b69f3530d1a08f9e5927ebfce0194164334fce67772f7d3da16edcd566cef5f8",
+                "size_bytes": 328,
+                "uncompressed_bytes": 452
+              },
+              "condition": "forward",
+              "experiment_id": "EXP-BATCH-20260914074039-40",
+              "metrics": {
+                "output_spike_count": 2,
+                "schedule": [
+                  0,
+                  4
+                ],
+                "sequence_digest": "6eeffecdaa73d955045c939a0e019054a22c768d8a35f4f0bb75883bece25613",
+                "ticks_executed": 32,
+                "total_spikes": 6
+              },
+              "runtime_error": null,
+              "seed": 102,
+              "state_digest_after": "6eeffecdaa73d955045c939a0e019054a22c768d8a35f4f0bb75883bece25613",
+              "state_digest_before": "dea90be4cc96ecd982339529935b2286e82c20cf45e76d435b23c29953c97dbe"
+            },
+            {
+              "_raw_artifact": {
+                "format": "json.gz",
+                "path": "DATA/raw/run-0004-reverse-seed-102.json.gz",
+                "sha256": "0eddaf71e3c622d71a09feb33207ffe8e9a87bd4c3148c0103799928fcbb9a50",
+                "size_bytes": 327,
+                "uncompressed_bytes": 452
+              },
+              "condition": "reverse",
+              "experiment_id": "EXP-BATCH-20260914074039-40",
+              "metrics": {
+                "output_spike_count": 2,
+                "schedule": [
+                  4,
+                  0
+                ],
+                "sequence_digest": "6eeffecdaa73d955045c939a0e019054a22c768d8a35f4f0bb75883bece25613",
+                "ticks_executed": 32,
+                "total_spikes": 6
+              },
+              "runtime_error": null,
+              "seed": 102,
+              "state_digest_after": "6eeffecdaa73d955045c939a0e019054a22c768d8a35f4f0bb75883bece25613",
+              "state_digest_before": "dea90be4cc96ecd982339529935b2286e82c20cf45e76d435b23c29953c97dbe"
+            },
+            {
+              "_raw_artifact": {
+                "format": "json.gz",
+                "path": "DATA/raw/run-0005-simultaneous-seed-102.json.gz",
+                "sha256": "dd6dbb36bc237233b42df61cd7fca148da4701391ca4639697751a60611a1a9e",
+                "size_bytes": 337,
+                "uncompressed_bytes": 457
+              },
+              "condition": "simultaneous",
+              "experiment_id": "EXP-BATCH-20260914074039-40",
+              "metrics": {
+                "output_spike_count": 1,
+                "schedule": [
+                  0,
+                  0
+                ],
+                "sequence_digest": "0e56e9d9ec7a460e2696d6ab19bff378b514a4ca78961cd6702fad9216e7d41c",
+                "ticks_executed": 32,
+                "total_spikes": 3
+              },
+              "runtime_error": null,
+              "seed": 102,
+              "state_digest_after": "0e56e9d9ec7a460e2696d6ab19bff378b514a4ca78961cd6702fad9216e7d41c",
+              "state_digest_before": "dea90be4cc96ecd982339529935b2286e82c20cf45e76d435b23c29953c97dbe"
+            },
+            {
+              "_raw_artifact": {
+                "format": "json.gz",
+                "path": "DATA/raw/run-0006-forward-seed-103.json.gz",
+                "sha256": "6e7db1c35033889ee4cd84b862bba6dd927f6ff9e6f220c7c447a555e01c901f",
+                "size_bytes": 333,
+                "uncompressed_bytes": 452
+              },
+              "condition": "forward",
+              "experiment_id": "EXP-BATCH-20260914074039-40",
+              "metrics": {
+                "output_spike_count": 2,
+                "schedule": [
+                  0,
+                  4
+                ],
+                "sequence_digest": "92f751223d78a819cc215fd54c4b1753b7b1fec5d31c58bda8f61505537a6b4b",
+                "ticks_executed": 32,
+                "total_spikes": 6
+              },
+              "runtime_error": null,
+              "seed": 103,
+              "state_digest_after": "92f751223d78a819cc215fd54c4b1753b7b1fec5d31c58bda8f61505537a6b4b",
+              "state_digest_before": "9de84571ead9f21e68a65636aba8ca24658f562322755aa7c976905a4682bf6e"
+            },
+            {
+              "_raw_artifact": {
+                "format": "json.gz",
+                "path": "DATA/raw/run-0007-reverse-seed-103.json.gz",
+                "sha256": "8bafec53de29ce1fba4d71715b90a742b917247f0f20f02c91f37aa0febec7c4",
+                "size_bytes": 330,
+                "uncompressed_bytes": 452
+              },
+              "condition": "reverse",
+              "experiment_id": "EXP-BATCH-20260914074039-40",
+              "metrics": {
+                "output_spike_count": 2,
+                "schedule": [
+                  4,
+                  0
+                ],
+                "sequence_digest": "92f751223d78a819cc215fd54c4b1753b7b1fec5d31c58bda8f61505537a6b4b",
+                "ticks_executed": 32,
+                "total_spikes": 6
+              },
+              "runtime_error": null,
+              "seed": 103,
+              "state_digest_after": "92f751223d78a819cc215fd54c4b1753b7b1fec5d31c58bda8f61505537a6b4b",
+              "state_digest_before": "9de84571ead9f21e68a65636aba8ca24658f562322755aa7c976905a4682bf6e"
+            }
+          ],
+          "item_count": 60,
+          "tail": [
+            {
+              "_raw_artifact": {
+                "format": "json.gz",
+                "path": "DATA/raw/run-0052-reverse-seed-118.json.gz",
+                "sha256": "6e2b5e79add6e99273762875b3d239feda33020297a4ea829ca9f5c3d0aa667d",
+                "size_bytes": 330,
+                "uncompressed_bytes": 452
+              },
+              "condition": "reverse",
+              "experiment_id": "EXP-BATCH-20260914074039-40",
+              "metrics": {
+                "output_spike_count": 2,
+                "schedule": [
+                  4,
+                  0
+                ],
+                "sequence_digest": "94a1158b623e7283879ae9113aacff78c676bbe9111f49ac06431db62ffe65ff",
+                "ticks_executed": 32,
+                "total_spikes": 6
+              },
+              "runtime_error": null,
+              "seed": 118,
+              "state_digest_after": "94a1158b623e7283879ae9113aacff78c676bbe9111f49ac06431db62ffe65ff",
+              "state_digest_before": "00c3c96efab6f4828dec997dbe305ef1e3931da329eae20b9fc5ef2cb4e1a0ef"
+            },
+            {
+              "_raw_artifact": {
+                "format": "json.gz",
+                "path": "DATA/raw/run-0053-simultaneous-seed-118.json.gz",
+                "sha256": "45f2c6f1ed71945f4bf68fa328fb24a17e369a083870804342294a4f87958c84",
+                "size_bytes": 336,
+                "uncompressed_bytes": 457
+              },
+              "condition": "simultaneous",
+              "experiment_id": "EXP-BATCH-20260914074039-40",
+              "metrics": {
+                "output_spike_count": 1,
+                "schedule": [
+                  0,
+                  0
+                ],
+                "sequence_digest": "00a84a5eeef3e078b18c896226e20b99f1b7f942b06b8ba60d7566ad31139d89",
+                "ticks_executed": 32,
+                "total_spikes": 3
+              },
+              "runtime_error": null,
+              "seed": 118,
+              "state_digest_after": "00a84a5eeef3e078b18c896226e20b99f1b7f942b06b8ba60d7566ad31139d89",
+              "state_digest_before": "00c3c96efab6f4828dec997dbe305ef1e3931da329eae20b9fc5ef2cb4e1a0ef"
+            },
+            {
+              "_raw_artifact": {
+                "format": "json.gz",
+                "path": "DATA/raw/run-0054-forward-seed-119.json.gz",
+                "sha256": "c48115e69d30c174a960a704051eacc4ef15871d519ff35fe136439ac03ff32d",
+                "size_bytes": 332,
+                "uncompressed_bytes": 452
+              },
+              "condition": "forward",
+              "experiment_id": "EXP-BATCH-20260914074039-40",
+              "metrics": {
+                "output_spike_count": 2,
+                "schedule": [
+                  0,
+                  4
+                ],
+                "sequence_digest": "a6de384f63e099c6a6ae0813110900c5431fd690b2e7dca4a140f7697d1cfb34",
+                "ticks_executed": 32,
+                "total_spikes": 6
+              },
+              "runtime_error": null,
+              "seed": 119,
+              "state_digest_after": "a6de384f63e099c6a6ae0813110900c5431fd690b2e7dca4a140f7697d1cfb34",
+              "state_digest_before": "d975138e9ed8751dcb007ce4542fde5f55eb245c72adef03b48a78076794a08d"
+            },
+            {
+              "_raw_artifact": {
+                "format": "json.gz",
+                "path": "DATA/raw/run-0055-reverse-seed-119.json.gz",
+                "sha256": "ac692318bcf2e9b985d046041a236650055789de48b89bf4b8e37f60e0f58961",
+                "size_bytes": 332,
+                "uncompressed_bytes": 452
+              },
+              "condition": "reverse",
+              "experiment_id": "EXP-BATCH-20260914074039-40",
+              "metrics": {
+                "output_spike_count": 2,
+                "schedule": [
+                  4,
+                  0
+                ],
+                "sequence_digest": "a6de384f63e099c6a6ae0813110900c5431fd690b2e7dca4a140f7697d1cfb34",
+                "ticks_executed": 32,
+                "total_spikes": 6
+              },
+              "runtime_error": null,
+              "seed": 119,
+              "state_digest_after": "a6de384f63e099c6a6ae0813110900c5431fd690b2e7dca4a140f7697d1cfb34",
+              "state_digest_before": "d975138e9ed8751dcb007ce4542fde5f55eb245c72adef03b48a78076794a08d"
+            },
+            {
+              "_raw_artifact": {
+                "format": "json.gz",
+                "path": "DATA/raw/run-0056-simultaneous-seed-119.json.gz",
+                "sha256": "15e674e0a5426e6eee5416164fc7debf3c775aba8126404af08fa3791e4b2c18",
+                "size_bytes": 338,
+                "uncompressed_bytes": 457
+              },
+              "condition": "simultaneous",
+              "experiment_id": "EXP-BATCH-20260914074039-40",
+              "metrics": {
+                "output_spike_count": 1,
+                "schedule": [
+                  0,
+                  0
+                ],
+                "sequence_digest": "9f25085ce1422a5e7361084a5bf0612de86f777b571b2e789b4269c924cbd0f0",
+                "ticks_executed": 32,
+                "total_spikes": 3
+              },
+              "runtime_error": null,
+              "seed": 119,
+              "state_digest_after": "9f25085ce1422a5e7361084a5bf0612de86f777b571b2e789b4269c924cbd0f0",
+              "state_digest_before": "d975138e9ed8751dcb007ce4542fde5f55eb245c72adef03b48a78076794a08d"
+            },
+            {
+              "_raw_artifact": {
+                "format": "json.gz",
+                "path": "DATA/raw/run-0057-forward-seed-120.json.gz",
+                "sha256": "47038d03ec926d47a3608f8ad4af797cbd358471ccdb0c2a273ad1ec3eb25fbf",
+                "size_bytes": 332,
+                "uncompressed_bytes": 452
+              },
+              "condition": "forward",
+              "experiment_id": "EXP-BATCH-20260914074039-40",
+              "metrics": {
+                "output_spike_count": 2,
+                "schedule": [
+                  0,
+                  4
+                ],
+                "sequence_digest": "da59089fd4c0b55e7b4ce16547e5efe248950c0b85e8dea9675af1971263bb29",
+                "ticks_executed": 32,
+                "total_spikes": 6
+              },
+              "runtime_error": null,
+              "seed": 120,
+              "state_digest_after": "da59089fd4c0b55e7b4ce16547e5efe248950c0b85e8dea9675af1971263bb29",
+              "state_digest_before": "97020b627d70f04b07b3cebd5fa657d1bc099945df12fbb820e17777cd5e9292"
+            },
+            {
+              "_raw_artifact": {
+                "format": "json.gz",
+                "path": "DATA/raw/run-0058-reverse-seed-120.json.gz",
+                "sha256": "d99d90b2f75e9ed635d689953c75f2f93ca888c3cbd47144dad4b60172431ef6",
+                "size_bytes": 331,
+                "uncompressed_bytes": 452
+              },
+              "condition": "reverse",
+              "experiment_id": "EXP-BATCH-20260914074039-40",
+              "metrics": {
+                "output_spike_count": 2,
+                "schedule": [
+                  4,
+                  0
+                ],
+                "sequence_digest": "da59089fd4c0b55e7b4ce16547e5efe248950c0b85e8dea9675af1971263bb29",
+                "ticks_executed": 32,
+                "total_spikes": 6
+              },
+              "runtime_error": null,
+              "seed": 120,
+              "state_digest_after": "da59089fd4c0b55e7b4ce16547e5efe248950c0b85e8dea9675af1971263bb29",
+              "state_digest_before": "97020b627d70f04b07b3cebd5fa657d1bc099945df12fbb820e17777cd5e9292"
+            },
+            {
+              "_raw_artifact": {
+                "format": "json.gz",
+                "path": "DATA/raw/run-0059-simultaneous-seed-120.json.gz",
+                "sha256": "0d7417e35b77882424bd4465ae6c635cbbd675ab456ff83c95fcb421e77ac9ea",
+                "size_bytes": 340,
+                "uncompressed_bytes": 457
+              },
+              "condition": "simultaneous",
+              "experiment_id": "EXP-BATCH-20260914074039-40",
+              "metrics": {
+                "output_spike_count": 1,
+                "schedule": [
+                  0,
+                  0
+                ],
+                "sequence_digest": "3633700b09becaa588e956014099d7f90e5c7abdb835a6709f8078fe9c81598e",
+                "ticks_executed": 32,
+                "total_spikes": 3
+              },
+              "runtime_error": null,
+              "seed": 120,
+              "state_digest_after": "3633700b09becaa588e956014099d7f90e5c7abdb835a6709f8078fe9c81598e",
+              "state_digest_before": "97020b627d70f04b07b3cebd5fa657d1bc099945df12fbb820e17777cd5e9292"
+            }
+          ]
+        },
+        "schema_version": "2.0",
+        "statistics": {
+          "conditions": {
+            "forward": {
+              "metrics": {
+                "output_spike_count": {
+                  "max": 2.0,
+                  "mean": 2.0,
+                  "median": 2.0,
+                  "min": 2.0,
+                  "n": 20,
+                  "std": 0.0
+                },
+                "ticks_executed": {
+                  "max": 32.0,
+                  "mean": 32.0,
+                  "median": 32.0,
+                  "min": 32.0,
+                  "n": 20,
+                  "std": 0.0
+                },
+                "total_spikes": {
+                  "max": 6.0,
+                  "mean": 6.0,
+                  "median": 6.0,
+                  "min": 6.0,
+                  "n": 20,
+                  "std": 0.0
+                }
+              },
+              "run_count": 20,
+              "seeds": [
+                101,
+                102,
+                103,
+                104,
+                105,
+                106,
+                107,
+                108,
+                109,
+                110,
+                111,
+                112,
+                113,
+                114,
+                115,
+                116,
+                117,
+                118,
+                119,
+                120
+              ]
+            },
+            "reverse": {
+              "metrics": {
+                "output_spike_count": {
+                  "max": 2.0,
+                  "mean": 2.0,
+                  "median": 2.0,
+                  "min": 2.0,
+                  "n": 20,
+                  "std": 0.0
+                },
+                "ticks_executed": {
+                  "max": 32.0,
+                  "mean": 32.0,
+                  "median": 32.0,
+                  "min": 32.0,
+                  "n": 20,
+                  "std": 0.0
+                },
+                "total_spikes": {
+                  "max": 6.0,
+                  "mean": 6.0,
+                  "median": 6.0,
+                  "min": 6.0,
+                  "n": 20,
+                  "std": 0.0
+                }
+              },
+              "run_count": 20,
+              "seeds": [
+                101,
+                102,
+                103,
+                104,
+                105,
+                106,
+                107,
+                108,
+                109,
+                110,
+                111,
+                112,
+                113,
+                114,
+                115,
+                116,
+                117,
+                118,
+                119,
+                120
+              ]
+            },
+            "simultaneous": {
+              "metrics": {
+                "output_spike_count": {
+                  "max": 1.0,
+                  "mean": 1.0,
+                  "median": 1.0,
+                  "min": 1.0,
+                  "n": 20,
+                  "std": 0.0
+                },
+                "ticks_executed": {
+                  "max": 32.0,
+                  "mean": 32.0,
+                  "median": 32.0,
+                  "min": 32.0,
+                  "n": 20,
+                  "std": 0.0
+                },
+                "total_spikes": {
+                  "max": 3.0,
+                  "mean": 3.0,
+                  "median": 3.0,
+                  "min": 3.0,
+                  "n": 20,
+                  "std": 0.0
+                }
+              },
+              "run_count": 20,
+              "seeds": [
+                101,
+                102,
+                103,
+                104,
+                105,
+                106,
+                107,
+                108,
+                109,
+                110,
+                111,
+                112,
+                113,
+                114,
+                115,
+                116,
+                117,
+                118,
+                119,
+                120
+              ]
+            }
+          },
+          "formulas": {
+            "difference": "Delta_x = mean(x_B) - mean(x_A)",
+            "inter_spike_interval": "ISI_i = t_(i+1) - t_i",
+            "mean": "mean(x) = (1/n) * sum_i x_i",
+            "population_std": "sigma = sqrt((1/n) * sum_i (x_i - mean(x))^2)",
+            "ratio": "R_x = mean(x_B) / mean(x_A), defined only when mean(x_A) != 0"
+          },
+          "generated_by": "deterministic_statistics_engine",
+          "run_count": 60,
+          "schema_version": "2.0"
+        }
+      },
+      "evid": [],
+      "literature": []
+    },
+    "quantitative_results": {
+      "conditions": {
+        "forward": {
+          "metrics": {
+            "output_spike_count": {
+              "max": 2.0,
+              "mean": 2.0,
+              "median": 2.0,
+              "min": 2.0,
+              "n": 20,
+              "std": 0.0
+            },
+            "ticks_executed": {
+              "max": 32.0,
+              "mean": 32.0,
+              "median": 32.0,
+              "min": 32.0,
+              "n": 20,
+              "std": 0.0
+            },
+            "total_spikes": {
+              "max": 6.0,
+              "mean": 6.0,
+              "median": 6.0,
+              "min": 6.0,
+              "n": 20,
+              "std": 0.0
+            }
+          },
+          "run_count": 20,
+          "seeds": [
+            101,
+            102,
+            103,
+            104,
+            105,
+            106,
+            107,
+            108,
+            109,
+            110,
+            111,
+            112,
+            113,
+            114,
+            115,
+            116,
+            117,
+            118,
+            119,
+            120
+          ]
+        },
+        "reverse": {
+          "metrics": {
+            "output_spike_count": {
+              "max": 2.0,
+              "mean": 2.0,
+              "median": 2.0,
+              "min": 2.0,
+              "n": 20,
+              "std": 0.0
+            },
+            "ticks_executed": {
+              "max": 32.0,
+              "mean": 32.0,
+              "median": 32.0,
+              "min": 32.0,
+              "n": 20,
+              "std": 0.0
+            },
+            "total_spikes": {
+              "max": 6.0,
+              "mean": 6.0,
+              "median": 6.0,
+              "min": 6.0,
+              "n": 20,
+              "std": 0.0
+            }
+          },
+          "run_count": 20,
+          "seeds": [
+            101,
+            102,
+            103,
+            104,
+            105,
+            106,
+            107,
+            108,
+            109,
+            110,
+            111,
+            112,
+            113,
+            114,
+            115,
+            116,
+            117,
+            118,
+            119,
+            120
+          ]
+        },
+        "simultaneous": {
+          "metrics": {
+            "output_spike_count": {
+              "max": 1.0,
+              "mean": 1.0,
+              "median": 1.0,
+              "min": 1.0,
+              "n": 20,
+              "std": 0.0
+            },
+            "ticks_executed": {
+              "max": 32.0,
+              "mean": 32.0,
+              "median": 32.0,
+              "min": 32.0,
+              "n": 20,
+              "std": 0.0
+            },
+            "total_spikes": {
+              "max": 3.0,
+              "mean": 3.0,
+              "median": 3.0,
+              "min": 3.0,
+              "n": 20,
+              "std": 0.0
+            }
+          },
+          "run_count": 20,
+          "seeds": [
+            101,
+            102,
+            103,
+            104,
+            105,
+            106,
+            107,
+            108,
+            109,
+            110,
+            111,
+            112,
+            113,
+            114,
+            115,
+            116,
+            117,
+            118,
+            119,
+            120
+          ]
+        }
+      },
+      "formulas": {
+        "difference": "Delta_x = mean(x_B) - mean(x_A)",
+        "inter_spike_interval": "ISI_i = t_(i+1) - t_i",
+        "mean": "mean(x) = (1/n) * sum_i x_i",
+        "population_std": "sigma = sqrt((1/n) * sum_i (x_i - mean(x))^2)",
+        "ratio": "R_x = mean(x_B) / mean(x_A), defined only when mean(x_A) != 0"
+      },
+      "generated_by": "deterministic_statistics_engine",
+      "run_count": 60,
+      "schema_version": "2.0"
+    },
+    "observations": [
+      "In allen Bedingungen (forward, reverse, simultaneous) ist die Anzahl der output_spike_count und total_spikes konstant.",
+      "Die ticks_executed sind in allen Bedingungen identisch.",
+      "Die state_digest_before und state_digest_after sind in allen Bedingungen konsistent.",
+      "Die seeds sind in allen Bedingungen identisch und variieren von 101 bis 120."
+    ],
+    "interpretation": {
+      "assessment": "Die Daten zeigen, dass bei gleicher Ereignisanzahl unterschiedliche Reihenfolgen unterschiedliche spike-basierte Antwortsignaturen erzeugen. Die Ergebnisse sind konsistent und reproduzierbar, da alle Metriken in allen Bedingungen identisch sind. Es gibt jedoch keine statistische Signifikanz, da keine inferenzstatistischen Analysen durchgeführt wurden.",
+      "confidence": 0.95,
+      "effect_direction": "Die Reihenfolge der Ereignisse beeinflusst die spike-basierte Antwortsignaturen, wobei forward und reverse Bedingungen eine höhere output_spike_count aufweisen als simultaneous.",
+      "methodological_concerns": [
+        "Die Daten sind rein deskriptiv und keine inferenzstatistischen Analysen wurden durchgeführt.",
+        "Es gibt keine Kontrollgruppe oder Vergleichsbedingung, die die Ergebnisse isolieren könnte.",
+        "Die Reihenfolge der Ereignisse könnte eine andere Variable beeinflussen, die nicht gemessen wurde."
+      ],
+      "observations": [
+        "In allen Bedingungen (forward, reverse, simultaneous) ist die Anzahl der output_spike_count und total_spikes konstant.",
+        "Die ticks_executed sind in allen Bedingungen identisch.",
+        "Die state_digest_before und state_digest_after sind in allen Bedingungen konsistent.",
+        "Die seeds sind in allen Bedingungen identisch und variieren von 101 bis 120."
+      ],
+      "alternative_explanations": [
+        "Die unterschiedlichen Antwortsignaturen könnten aufgrund der unterschiedlichen Scheduling-Strategien entstehen, die die Spike-Aktivität beeinflussen.",
+        "Die unterschiedlichen Antwortsignaturen könnten aufgrund der unterschiedlichen state_digests entstehen, die die Spike-Aktivität beeinflussen.",
+        "Die unterschiedlichen Antwortsignaturen könnten aufgrund der unterschiedlichen seeds entstehen, die die Spike-Aktivität beeinflussen."
+      ],
+      "recommended_experiments": [
+        "Eine inferenzstatistische Analyse der Daten, um die Signifikanz der Ergebnisse zu testen.",
+        "Ein Experiment mit einer Kontrollgruppe, um die Ergebnisse zu isolieren.",
+        "Ein Experiment mit einer anderen Scheduling-Strategie, um die Auswirkungen auf die Spike-Aktivität zu testen."
+      ],
+      "requested_evidence": [
+        "Eine inferenzstatistische Analyse der Daten, um die Signifikanz der Ergebnisse zu testen.",
+        "Ein Experiment mit einer Kontrollgruppe, um die Ergebnisse zu isolieren.",
+        "Ein Experiment mit einer anderen Scheduling-Strategie, um die Auswirkungen auf die Spike-Aktivität zu testen."
+      ],
+      "experiments": []
+    },
+    "methodological_critique": [
+      "Die Daten sind rein deskriptiv und keine inferenzstatistischen Analysen wurden durchgeführt.",
+      "Es gibt keine Kontrollgruppe oder Vergleichsbedingung, die die Ergebnisse isolieren könnte.",
+      "Die Reihenfolge der Ereignisse könnte eine andere Variable beeinflussen, die nicht gemessen wurde."
+    ],
+    "alternative_explanations": [
+      "Die unterschiedlichen Antwortsignaturen könnten aufgrund der unterschiedlichen Scheduling-Strategien entstehen, die die Spike-Aktivität beeinflussen.",
+      "Die unterschiedlichen Antwortsignaturen könnten aufgrund der unterschiedlichen state_digests entstehen, die die Spike-Aktivität beeinflussen.",
+      "Die unterschiedlichen Antwortsignaturen könnten aufgrund der unterschiedlichen seeds entstehen, die die Spike-Aktivität beeinflussen."
+    ],
+    "reproducibility": {
+      "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+      "experiment_status": "completed",
+      "evidence_mode": "not_reported",
+      "git_dirty": "True",
+      "source_freeze_sha": "c1bc1aeb29578333e577011665c69cf12489998e17a4ee113771295a4c4fba40",
+      "configuration_path": "F:\\Brain-5D\\configs\\learning_experiment.yaml",
+      "configuration_sha256": "6f6cd457caf6216c286fee47ef03b529a0b496ed2dd53ee96b85d3b51e7b3a1c",
+      "experiment_manifest_digest": "d739d3fa073739c8a38133931418a9b09891d7404a43ee6d6d251c9fb54cadb1",
+      "data_ids": "NOT_AVAILABLE",
+      "evid_ids": "NOT_AVAILABLE",
+      "protocol_id": "NOT_AVAILABLE",
+      "protocol_digest": "63abb1020f1bfc0dbf20e347b769e0be5cd1f4ac34be780bf313688598f306af",
+      "data_digest": "ff6716e2f43286c11b66b520008d833af8bf7c415e7c8ccd5b2078432e422c55",
+      "evid_digests": "[]"
+    },
+    "epistemic_status": {
+      "implementation": "NOT_DETERMINED",
+      "experiment_data": "PRESENT",
+      "registered_evidence": "ABSENT",
+      "ai_interpretation": "PRESENT",
+      "human_review": "PENDING",
+      "claim_support": "NOT_DETERMINED",
+      "rq_status": "IN_PROGRESS"
+    },
+    "ai_confidence": 0.95,
+    "missing_evidence": [
+      "Eine inferenzstatistische Analyse der Daten, um die Signifikanz der Ergebnisse zu testen.",
+      "Ein Experiment mit einer Kontrollgruppe, um die Ergebnisse zu isolieren.",
+      "Ein Experiment mit einer anderen Scheduling-Strategie, um die Auswirkungen auf die Spike-Aktivität zu testen."
+    ],
+    "recommended_follow_up": [
+      "Eine inferenzstatistische Analyse der Daten, um die Signifikanz der Ergebnisse zu testen.",
+      "Ein Experiment mit einer Kontrollgruppe, um die Ergebnisse zu isolieren.",
+      "Ein Experiment mit einer anderen Scheduling-Strategie, um die Auswirkungen auf die Spike-Aktivität zu testen."
+    ],
+    "conclusion": "Die Daten zeigen, dass bei gleicher Ereignisanzahl unterschiedliche Reihenfolgen unterschiedliche spike-basierte Antwortsignaturen erzeugen. Die Ergebnisse sind konsistent und reproduzierbar, da alle Metriken in allen Bedingungen identisch sind. Es gibt jedoch keine statistische Signifikanz, da keine inferenzstatistischen Analysen durchgeführt wurden.",
+    "human_review": {
+      "status": "PENDING",
+      "reviewer": null,
+      "reviewed_at": null,
+      "disposition": null,
+      "comments": null
+    },
+    "aiar": {
+      "analyst": {
+        "analysis_id": "AIAR-scientific_analyst-20260914084133906848-a6475baf",
+        "role": "scientific_analyst",
+        "model": {
+          "provider": "ollama",
+          "model_name": "qwen3:8b",
+          "model_digest": "not_reported",
+          "quantization": "not_reported",
+          "context_length": "unknown",
+          "temperature": 0.0,
+          "top_p": 0.9,
+          "seed": "not_reported",
+          "backend_version": "unknown"
+        },
+        "inputs": {
+          "experiment_id": "EXP-BATCH-20260914074039-40",
+          "packet_digest": "a6475baff66aeb7867d0bb8a414fa72aace61fe5801a5934197c997634e8dbe7"
+        },
+        "output": {
+          "assessment": "Die Daten zeigen, dass bei gleicher Ereignisanzahl unterschiedliche Reihenfolgen unterschiedliche spike-basierte Antwortsignaturen erzeugen. Die Ergebnisse sind konsistent und reproduzierbar, da alle Metriken in allen Bedingungen identisch sind. Es gibt jedoch keine statistische Signifikanz, da keine inferenzstatistischen Analysen durchgeführt wurden.",
+          "observations": [
+            "In allen Bedingungen (forward, reverse, simultaneous) ist die Anzahl der output_spike_count und total_spikes konstant.",
+            "Die ticks_executed sind in allen Bedingungen identisch.",
+            "Die state_digest_before und state_digest_after sind in allen Bedingungen konsistent.",
+            "Die seeds sind in allen Bedingungen identisch und variieren von 101 bis 120."
+          ],
+          "effect_direction": "Die Reihenfolge der Ereignisse beeinflusst die spike-basierte Antwortsignaturen, wobei forward und reverse Bedingungen eine höhere output_spike_count aufweisen als simultaneous.",
+          "methodological_concerns": [
+            "Die Daten sind rein deskriptiv und keine inferenzstatistischen Analysen wurden durchgeführt.",
+            "Es gibt keine Kontrollgruppe oder Vergleichsbedingung, die die Ergebnisse isolieren könnte.",
+            "Die Reihenfolge der Ereignisse könnte eine andere Variable beeinflussen, die nicht gemessen wurde."
+          ],
+          "alternative_explanations": [
+            "Die unterschiedlichen Antwortsignaturen könnten aufgrund der unterschiedlichen Scheduling-Strategien entstehen, die die Spike-Aktivität beeinflussen.",
+            "Die unterschiedlichen Antwortsignaturen könnten aufgrund der unterschiedlichen state_digests entstehen, die die Spike-Aktivität beeinflussen.",
+            "Die unterschiedlichen Antwortsignaturen könnten aufgrund der unterschiedlichen seeds entstehen, die die Spike-Aktivität beeinflussen."
+          ],
+          "recommended_experiments": [
+            "Eine inferenzstatistische Analyse der Daten, um die Signifikanz der Ergebnisse zu testen.",
+            "Ein Experiment mit einer Kontrollgruppe, um die Ergebnisse zu isolieren.",
+            "Ein Experiment mit einer anderen Scheduling-Strategie, um die Auswirkungen auf die Spike-Aktivität zu testen."
+          ],
+          "requested_evidence": [
+            "Eine inferenzstatistische Analyse der Daten, um die Signifikanz der Ergebnisse zu testen.",
+            "Ein Experiment mit einer Kontrollgruppe, um die Ergebnisse zu isolieren.",
+            "Ein Experiment mit einer anderen Scheduling-Strategie, um die Auswirkungen auf die Spike-Aktivität zu testen."
+          ],
+          "confidence": 0.95
+        },
+        "provenance": {
+          "prompt_sha256": "79f178dcbf03ffed352c34d84e250d5f57ef542377fbbe8a087651d0bd3709ca",
+          "research_packet_digest": "a6475baff66aeb7867d0bb8a414fa72aace61fe5801a5934197c997634e8dbe7",
+          "prompt_protocol_version": "research_assistant_v1",
+          "assistant_schema_version": "1.2",
+          "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+          "model_self_confidence": "0.95"
+        },
+        "epistemic_status": {
+          "evidence": false,
+          "interpretation_only": true,
+          "human_review_required": true
+        },
+        "review": {
+          "status": "pending",
+          "reviewer": null,
+          "reviewed_at": null,
+          "disposition": null
+        },
+        "generated_at": "2026-09-14T08:41:33.906848+00:00"
+      },
+      "reviewer": {
+        "analysis_id": "AIAR-critical_reviewer-20260914084243379954-a6475baf",
+        "role": "critical_reviewer",
+        "model": {
+          "provider": "ollama",
+          "model_name": "qwen3:8b",
+          "model_digest": "not_reported",
+          "quantization": "not_reported",
+          "context_length": "unknown",
+          "temperature": 0.0,
+          "top_p": 0.9,
+          "seed": "not_reported",
+          "backend_version": "unknown"
+        },
+        "inputs": {
+          "experiment_id": "EXP-BATCH-20260914074039-40",
+          "packet_digest": "a6475baff66aeb7867d0bb8a414fa72aace61fe5801a5934197c997634e8dbe7"
+        },
+        "output": {
+          "assessment": "Die Daten zeigen, dass bei gleicher Ereignisanzahl unterschiedliche Reihenfolgen unterschiedliche spike-basierte Antwortsignaturen erzeugen. Die Ergebnisse sind konsistent und reproduzierbar, da alle Metriken in allen Bedingungen identisch sind. Es gibt jedoch keine statistische Signifikanz, da keine inferenzstatistischen Analysen durchgeführt wurden.",
+          "observations": [
+            "In allen Bedingungen (forward, reverse, simultaneous) ist die Anzahl der output_spike_count und total_spikes konstant.",
+            "Die ticks_executed sind in allen Bedingungen identisch.",
+            "Die state_digest_before und state_digest_after sind in allen Bedingungen konsistent.",
+            "Die seeds sind in allen Bedingungen identisch und variieren von 101 bis 120."
+          ],
+          "methodological_concerns": [
+            "Die Daten sind rein deskriptiv und keine inferenzstatistischen Analysen wurden durchgeführt.",
+            "Es gibt keine Kontrollgruppe oder Vergleichsbedingung, die die Ergebnisse isolieren könnte.",
+            "Die Reihenfolge der Ereignisse könnte eine andere Variable beeinflussen, die nicht gemessen wurde."
+          ],
+          "alternative_explanations": [
+            "Die unterschiedlichen Antwortsignaturen könnten aufgrund der unterschiedlichen Scheduling-Strategien entstehen, die die Spike-Aktivität beeinflussen.",
+            "Die unterschiedlichen Antwortsignaturen könnten aufgrund der unterschiedlichen state_digests entstehen, die die Spike-Aktivität beeinflussen.",
+            "Die unterschiedlichen Antwortsignaturen könnten aufgrund der unterschiedlichen seeds entstehen, die die Spike-Aktivität beeinflussen."
+          ],
+          "recommended_experiments": [
+            "Eine inferenzstatistische Analyse der Daten, um die Signifikanz der Ergebnisse zu testen.",
+            "Ein Experiment mit einer Kontrollgruppe, um die Ergebnisse zu isolieren.",
+            "Ein Experiment mit einer anderen Scheduling-Strategie, um die Auswirkungen auf die Spike-Aktivität zu testen."
+          ],
+          "requested_evidence": [
+            "Eine inferenzstatistische Analyse der Daten, um die Signifikanz der Ergebnisse zu testen.",
+            "Ein Experiment mit einer Kontrollgruppe, um die Ergebnisse zu isolieren.",
+            "Ein Experiment mit einer anderen Scheduling-Strategie, um die Auswirkungen auf die Spike-Aktivität zu testen."
+          ],
+          "confidence": 0.95,
+          "effect_direction": "Die Reihenfolge der Ereignisse beeinflusst die spike-basierte Antwortsignaturen, wobei forward und reverse Bedingungen eine höhere output_spike_count aufweisen als simultaneous."
+        },
+        "provenance": {
+          "prompt_sha256": "0d42d15bad98e2220d840a280f2e32ea66b559af01db32d2e43aa6de6303c029",
+          "research_packet_digest": "a6475baff66aeb7867d0bb8a414fa72aace61fe5801a5934197c997634e8dbe7",
+          "prompt_protocol_version": "research_assistant_v1",
+          "assistant_schema_version": "1.2",
+          "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+          "model_self_confidence": "0.95"
+        },
+        "epistemic_status": {
+          "evidence": false,
+          "interpretation_only": true,
+          "human_review_required": true
+        },
+        "review": {
+          "status": "pending",
+          "reviewer": null,
+          "reviewed_at": null,
+          "disposition": null
+        },
+        "generated_at": "2026-09-14T08:42:43.379954+00:00"
+      },
+      "writer": {
+        "analysis_id": "AIAR-scientific_writer-20260914084305127027-a6475baf",
+        "role": "scientific_writer",
+        "model": {
+          "provider": "ollama",
+          "model_name": "qwen3:8b",
+          "model_digest": "not_reported",
+          "quantization": "not_reported",
+          "context_length": "unknown",
+          "temperature": 0.0,
+          "top_p": 0.9,
+          "seed": "not_reported",
+          "backend_version": "unknown"
+        },
+        "inputs": {
+          "experiment_id": "EXP-BATCH-20260914074039-40",
+          "packet_digest": "a6475baff66aeb7867d0bb8a414fa72aace61fe5801a5934197c997634e8dbe7"
+        },
+        "output": {
+          "assessment": "Die Daten zeigen, dass bei gleicher Ereignisanzahl unterschiedliche Reihenfolgen unterschiedliche spike-basierte Antwortsignaturen erzeugen. Die Ergebnisse sind konsistent und reproduzierbar, da alle Metriken in allen Bedingungen identisch sind. Es gibt jedoch keine statistische Signifikanz, da keine inferenzstatistischen Analysen durchgeführt wurden.",
+          "confidence": 0.95,
+          "effect_direction": "Die Reihenfolge der Ereignisse beeinflusst die spike-basierte Antwortsignaturen, wobei forward und reverse Bedingungen eine höhere output_spike_count aufweisen als simultaneous.",
+          "methodological_concerns": [
+            "Die Daten sind rein deskriptiv und keine inferenzstatistischen Analysen wurden durchgeführt.",
+            "Es gibt keine Kontrollgruppe oder Vergleichsbedingung, die die Ergebnisse isolieren könnte.",
+            "Die Reihenfolge der Ereignisse könnte eine andere Variable beeinflussen, die nicht gemessen wurde."
+          ],
+          "observations": [
+            "In allen Bedingungen (forward, reverse, simultaneous) ist die Anzahl der output_spike_count und total_spikes konstant.",
+            "Die ticks_executed sind in allen Bedingungen identisch.",
+            "Die state_digest_before und state_digest_after sind in allen Bedingungen konsistent.",
+            "Die seeds sind in allen Bedingungen identisch und variieren von 101 bis 120."
+          ],
+          "alternative_explanations": [
+            "Die unterschiedlichen Antwortsignaturen könnten aufgrund der unterschiedlichen Scheduling-Strategien entstehen, die die Spike-Aktivität beeinflussen.",
+            "Die unterschiedlichen Antwortsignaturen könnten aufgrund der unterschiedlichen state_digests entstehen, die die Spike-Aktivität beeinflussen.",
+            "Die unterschiedlichen Antwortsignaturen könnten aufgrund der unterschiedlichen seeds entstehen, die die Spike-Aktivität beeinflussen."
+          ],
+          "recommended_experiments": [
+            "Eine inferenzstatistische Analyse der Daten, um die Signifikanz der Ergebnisse zu testen.",
+            "Ein Experiment mit einer Kontrollgruppe, um die Ergebnisse zu isolieren.",
+            "Ein Experiment mit einer anderen Scheduling-Strategie, um die Auswirkungen auf die Spike-Aktivität zu testen."
+          ],
+          "requested_evidence": [
+            "Eine inferenzstatistische Analyse der Daten, um die Signifikanz der Ergebnisse zu testen.",
+            "Ein Experiment mit einer Kontrollgruppe, um die Ergebnisse zu isolieren.",
+            "Ein Experiment mit einer anderen Scheduling-Strategie, um die Auswirkungen auf die Spike-Aktivität zu testen."
+          ],
+          "experiments": []
+        },
+        "provenance": {
+          "prompt_sha256": "c6411ae1e8baa8d912b24bc06c0d7a6ca94e6a0c09209243882f20735e318d07",
+          "research_packet_digest": "a6475baff66aeb7867d0bb8a414fa72aace61fe5801a5934197c997634e8dbe7",
+          "prompt_protocol_version": "research_assistant_v1",
+          "assistant_schema_version": "1.2",
+          "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+          "model_self_confidence": "0.95"
+        },
+        "epistemic_status": {
+          "evidence": false,
+          "interpretation_only": true,
+          "human_review_required": true
+        },
+        "review": {
+          "status": "pending",
+          "reviewer": null,
+          "reviewed_at": null,
+          "disposition": null
+        },
+        "generated_at": "2026-09-14T08:43:05.127027+00:00"
+      }
+    }
+  },
+  "provenance": {
+    "research_packet_digest": "1c0b6b0db3d13ad7656eb94e850550c4ad71b037cf0bcbfcb548be37e627ee78",
+    "source": {
+      "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+      "experiment_status": "completed",
+      "evidence_mode": "not_reported",
+      "git_dirty": "True",
+      "source_freeze_sha": "c1bc1aeb29578333e577011665c69cf12489998e17a4ee113771295a4c4fba40",
+      "configuration_path": "F:\\Brain-5D\\configs\\learning_experiment.yaml",
+      "configuration_sha256": "6f6cd457caf6216c286fee47ef03b529a0b496ed2dd53ee96b85d3b51e7b3a1c",
+      "experiment_manifest_digest": "d739d3fa073739c8a38133931418a9b09891d7404a43ee6d6d251c9fb54cadb1",
+      "data_ids": "NOT_AVAILABLE",
+      "evid_ids": "NOT_AVAILABLE",
+      "protocol_id": "NOT_AVAILABLE",
+      "protocol_digest": "63abb1020f1bfc0dbf20e347b769e0be5cd1f4ac34be780bf313688598f306af",
+      "data_digest": "ff6716e2f43286c11b66b520008d833af8bf7c415e7c8ccd5b2078432e422c55",
+      "evid_digests": "[]"
+    }
+  },
+  "analysis_ids": [
+    "AIAR-scientific_analyst-20260914084133906848-a6475baf",
+    "AIAR-critical_reviewer-20260914084243379954-a6475baf",
+    "AIAR-scientific_writer-20260914084305127027-a6475baf"
+  ],
+  "supersedes": null,
+  "content_digest": "22d45ce917eb2d6100cdb5b80f8afb5adb6f542cd750c7f115ffbbd619bf1bc5",
+  "markdown_digest": "d6417cfafba61c0c807f54351bfbd120ae83f407b4574077b7d47761fd04bdba"
+}

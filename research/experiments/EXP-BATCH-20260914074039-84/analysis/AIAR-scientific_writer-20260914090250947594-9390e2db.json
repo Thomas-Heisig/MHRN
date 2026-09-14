@@ -1,0 +1,71 @@
+{
+  "analysis_id": "AIAR-scientific_writer-20260914090250947594-9390e2db",
+  "role": "scientific_writer",
+  "model": {
+    "provider": "ollama",
+    "model_name": "qwen3:8b",
+    "model_digest": "not_reported",
+    "quantization": "not_reported",
+    "context_length": "unknown",
+    "temperature": 0.0,
+    "top_p": 0.9,
+    "seed": "not_reported",
+    "backend_version": "unknown"
+  },
+  "inputs": {
+    "experiment_id": "EXP-BATCH-20260914074039-84",
+    "packet_digest": "9390e2db5562c21eb7713d461bc3a5730d36e8d992edc13ae49813f18e26099f"
+  },
+  "output": {
+    "assessment": "Die Forschung ist unvollstaendig und erfordert weitere Untersuchungen.",
+    "observations": [
+      "Die Experimente wurden mit drei verschiedenen Seeds durchgefuehrt, wobei die Bedingung \"instrumentation_gap_audit\" angewandt wurde.",
+      "Die Metriken zeigen, dass keine direkte kausale Messung durchgefuehrt wurde, und die Experimente sind auf die Ausfuehrung des registrierten Gap/Border-Vertrags beschränkt.",
+      "Es gibt keine verknüpften wissenschaftlichen Beweise oder evidenzielen Daten, die den Versuch oder die Hypothese stuetzen.",
+      "Die Forschungsfrage bleibt offen, da keine statistische Signifikanz getestet wurde und keine kausale Beziehung nachgewiesen werden konnte."
+    ],
+    "effect_direction": "Keine kausale Richtung kann bestimmt werden, da keine kausale Messung durchgefuehrt wurde.",
+    "methodological_concerns": [
+      "Keine kausale Messung wurde durchgefuehrt.",
+      "Keine wissenschaftlichen Beweise oder evidenzielen Daten sind verknüpft.",
+      "Die Forschungsfrage wurde nicht vollstaendig beantwortet, da keine statistische Signifikanz getestet wurde."
+    ],
+    "alternative_explanations": [
+      "Die Ergebnisse koennten auf andere Faktoren zurueckzufuehren sein, da keine kausale Analyse durchgefuehrt wurde.",
+      "Die Verknuepfung mit wissenschaftlichen Beweisen fehlt, was andere Erklaerungen fuer die Ergebnisse erlaubt.",
+      "Die Forschungsfrage wurde nicht vollstaendig beantwortet, was andere Erklaerungen fuer die Beobachtungen erlaubt."
+    ],
+    "recommended_experiments": [
+      "Eine kausale Analyse mit direkter Hypothesentestung durchzufuehren.",
+      "Die Verknuepfung mit wissenschaftlichen Beweisen und evidenzielen Daten zu sichern.",
+      "Die Forschungsfrage mit statistischen Tests zu beantworten, um kausale Beziehungen zu untersuchen."
+    ],
+    "requested_evidence": [
+      "Wissenschaftliche Beweise oder evidenzielle Daten, die den Versuch oder die Hypothese stuetzen.",
+      "Statistische Analysen, die die Forschungsfrage beantworten und kausale Beziehungen untersuchen.",
+      "Evidenz fuer die kausale Richtung der Effekte, falls vorhanden."
+    ],
+    "confidence": 0.05,
+    "research_question": "Sind modalitaetsspezifische Audio-, Vision- und Digital-Regeln besser als eine generische Gateway-Regel?"
+  },
+  "provenance": {
+    "prompt_sha256": "b5140736b444ad26be528053102070b91ab92888f3abeef6d1a688b52253c2ad",
+    "research_packet_digest": "9390e2db5562c21eb7713d461bc3a5730d36e8d992edc13ae49813f18e26099f",
+    "prompt_protocol_version": "research_assistant_v1",
+    "assistant_schema_version": "1.2",
+    "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+    "model_self_confidence": "0.05"
+  },
+  "epistemic_status": {
+    "evidence": false,
+    "interpretation_only": true,
+    "human_review_required": true
+  },
+  "review": {
+    "status": "pending",
+    "reviewer": null,
+    "reviewed_at": null,
+    "disposition": null
+  },
+  "generated_at": "2026-09-14T09:02:50.947594+00:00"
+}

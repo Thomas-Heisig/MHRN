@@ -1,0 +1,56 @@
+{
+  "analysis_id": "AIAR-critical_reviewer-20260914115216969750-7ba1db66",
+  "role": "critical_reviewer",
+  "model": {
+    "provider": "ollama",
+    "model_name": "qwen2.5-coder:7b",
+    "model_digest": "not_reported",
+    "quantization": "not_reported",
+    "context_length": "unknown",
+    "temperature": 0.0,
+    "top_p": 1.0,
+    "seed": "not_reported",
+    "backend_version": "unknown"
+  },
+  "inputs": {
+    "experiment_id": "EXP-BATCH-20260914074039-71",
+    "packet_digest": "7ba1db66e309cbdb0647d063af99c25c4d5e4823cdb92d42e61fbd70c03de06b"
+  },
+  "output": {
+    "id": "H-EMB-004-A",
+    "hypothesis": "Gelenkblockade und Aktuatorschwaechung erzeugen reproduzierbare Unterschiede in Position, Kontakt und sensorischer Aktivitaet gegenueber nominalem Betrieb.",
+    "research_question": "RQ-EMB-004",
+    "status": "untested",
+    "assessment": "Die Analyse konnte nicht vollstaendig schema-konform erzeugt werden. Das Modell hat das erforderliche assessment-Feld nicht geliefert.",
+    "observations": [],
+    "methodological_concerns": [
+      "Die vom Modell ausgegebene confidence war schemawidrig oder ausserhalb des Bereichs 0..1. Sie wurde fuer die AIRR-Provenienz konservativ auf 0.0 gesetzt; der Originalwert bleibt als confidence_original erhalten."
+    ],
+    "alternative_explanations": [],
+    "recommended_experiments": [],
+    "requested_evidence": [],
+    "effect_direction": "not_determined",
+    "confidence_original": null,
+    "confidence": 0.0
+  },
+  "provenance": {
+    "prompt_sha256": "f3996960cfa77384c245c42176ab30941ee211f4a0701e496bd18651ac45389e",
+    "research_packet_digest": "7ba1db66e309cbdb0647d063af99c25c4d5e4823cdb92d42e61fbd70c03de06b",
+    "prompt_protocol_version": "research_assistant_v1",
+    "assistant_schema_version": "1.2",
+    "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+    "model_self_confidence": "0.0"
+  },
+  "epistemic_status": {
+    "evidence": false,
+    "interpretation_only": true,
+    "human_review_required": true
+  },
+  "review": {
+    "status": "pending",
+    "reviewer": null,
+    "reviewed_at": null,
+    "disposition": null
+  },
+  "generated_at": "2026-09-14T11:52:16.969750+00:00"
+}

@@ -1,0 +1,11 @@
+{
+  "last_archived_run": 2,
+  "raw_artifact": {
+    "format": "json.gz",
+    "path": "DATA/raw/run-0002-instrumentation_gap_audit-seed-103.json.gz",
+    "sha256": "582fc6462cbb4012a858eacf5d882e6269d6f4a6e408d6844f5948e001bcb463",
+    "size_bytes": 380,
+    "uncompressed_bytes": 481
+  },
+  "status": "idle"
+}

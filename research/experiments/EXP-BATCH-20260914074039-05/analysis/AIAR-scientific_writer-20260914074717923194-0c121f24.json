@@ -1,0 +1,54 @@
+{
+  "analysis_id": "AIAR-scientific_writer-20260914074717923194-0c121f24",
+  "role": "scientific_writer",
+  "model": {
+    "provider": "ollama",
+    "model_name": "qwen3:8b",
+    "model_digest": "not_reported",
+    "quantization": "not_reported",
+    "context_length": "unknown",
+    "temperature": 0.0,
+    "top_p": 0.9,
+    "seed": "not_reported",
+    "backend_version": "unknown"
+  },
+  "inputs": {
+    "experiment_id": "EXP-BATCH-20260914074039-05",
+    "packet_digest": "0c121f2443d820e11552bbf73fbc46618ce59e8b6acc1cb38351878315dc846a"
+  },
+  "output": {
+    "assessment": "Provider output could not be validated as structured analysis; no scientific interpretation is inferred.",
+    "observations": [],
+    "methodological_concerns": [
+      "Initial structured output invalid: ValueError: Ollama output must contain a JSON object.",
+      "Repair attempt failed: ValueError: Ollama output must contain a JSON object."
+    ],
+    "alternative_explanations": [],
+    "recommended_experiments": [],
+    "requested_evidence": [
+      "Repeat provider analysis from the same immutable research packet."
+    ],
+    "effect_direction": "not_assessed",
+    "confidence": 0.0
+  },
+  "provenance": {
+    "prompt_sha256": "91941f5e83a526ef49fc8489b4205a2035ddf00f63e2e189be94b5a402feb10d",
+    "research_packet_digest": "0c121f2443d820e11552bbf73fbc46618ce59e8b6acc1cb38351878315dc846a",
+    "prompt_protocol_version": "research_assistant_v1",
+    "assistant_schema_version": "1.2",
+    "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+    "model_self_confidence": "0.0"
+  },
+  "epistemic_status": {
+    "evidence": false,
+    "interpretation_only": true,
+    "human_review_required": true
+  },
+  "review": {
+    "status": "pending",
+    "reviewer": null,
+    "reviewed_at": null,
+    "disposition": null
+  },
+  "generated_at": "2026-09-14T07:47:17.923194+00:00"
+}

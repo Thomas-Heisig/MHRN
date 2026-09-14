@@ -1,0 +1,131 @@
+{
+  "ai_exposure": "none",
+  "ai_interactions": [],
+  "ai_protocol": {
+    "bump_reason": "initial registration",
+    "version": 1
+  },
+  "ai_reproducibility": "R0",
+  "artifacts": {
+    "ai_packet": "analysis/ai_packet.json",
+    "ai_packet_digest": "analysis/ai_packet_digest.json",
+    "ai_report_json": "experiments/EXP-BATCH-20260914074039-15/reports/AIRR-2026-0001.json",
+    "ai_report_markdown": "experiments/EXP-BATCH-20260914074039-15/reports/AIRR-2026-0001.md",
+    "current_run": "DATA/current_run.json",
+    "data": "DATA/runs.json",
+    "data_index": "DATA/runs_index.json",
+    "preregistration": "preregistrations/operational/catalog_completion_v1.json",
+    "raw_run_index": "DATA/runs_index.json",
+    "report": "report.md",
+    "statistics": "analysis/statistics.json",
+    "workflow": "workflow.json"
+  },
+  "causal_card": {
+    "classification": "PURE",
+    "interaction_ids": [],
+    "roles": []
+  },
+  "causal_taint": "PURE",
+  "config": {
+    "path": "F:\\Brain-5D\\configs\\learning_experiment.yaml",
+    "sha256": "6f6cd457caf6216c286fee47ef03b529a0b496ed2dd53ee96b85d3b51e7b3a1c"
+  },
+  "created_at": "2026-09-14T08:03:56.811381+00:00",
+  "data_partitions": [],
+  "epistemic_layers": {
+    "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+    "evid": "not_created; requires semantic validation, clean freeze and human review",
+    "interpretation": "post-hoc AI or human interpretation; never execution input",
+    "ui_state": "operator/dashboard progress only; not a scientific result"
+  },
+  "execution_contract": {
+    "hypothesis_id": "H-5D-001-A",
+    "protocol": "dimension_dynamics_v1",
+    "question_id": "RQ-5D-001",
+    "resolved_runner": "run_5d",
+    "runtime_runner_bytecode_sha256": "e22ce037e9a577f24d60f60ee2c9d8f5a506ecc6506aec5859b8e48770b7e0a6",
+    "runtime_summary_bytecode_sha256": "8d311e523e6093b1bbb23954dae163406f1836fb0defa5b8c4479ac68a929395",
+    "source_runner_bytecode_sha256": "e22ce037e9a577f24d60f60ee2c9d8f5a506ecc6506aec5859b8e48770b7e0a6",
+    "source_runtime_consistency": "MATCH",
+    "source_summary_bytecode_sha256": "8d311e523e6093b1bbb23954dae163406f1836fb0defa5b8c4479ac68a929395",
+    "tick_validation": {
+      "mode": "minimum_per_run",
+      "observed_max": 256,
+      "observed_min": 256,
+      "requested_ticks": 256,
+      "status": "SATISFIED"
+    },
+    "ticks_requested": 256
+  },
+  "execution_semantics": {
+    "automatic_evidence_promotion": false,
+    "claim_scope": "direct_technical_measurement_not_automatic_evidence",
+    "direct_test_of_hypothesis": true,
+    "external_review": "external_review/INTEGRATION.md",
+    "human_assessment": "not_recorded",
+    "kind": "functional_experiment",
+    "scientific_evidence": false,
+    "snn_involved": true
+  },
+  "experiment_id": "EXP-BATCH-20260914074039-15",
+  "experiment_status": "completed",
+  "git": {
+    "branch": "main",
+    "commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+    "dirty": true
+  },
+  "hypotheses": [
+    "H-5D-001-A"
+  ],
+  "network_mode": "OFFLINE",
+  "provenance_digests": {
+    "code": "5a11ea288e7e695c2dcd456642b533cbb3e6daf38b72e150134e60e69059531f",
+    "config": "6f6cd457caf6216c286fee47ef03b529a0b496ed2dd53ee96b85d3b51e7b3a1c",
+    "data": "9ddbed5b0c805d701d683312fe86243ff5ffa7bf394b7112da3e36a830d2ce01",
+    "prompt": "dd18e473908e7e75b1717c240bac221729ea38753abfd28b701b37b20d5f5e14"
+  },
+  "research_questions": [
+    "RQ-5D-001"
+  ],
+  "research_run_mode": "EXPLORATORY",
+  "results": {
+    "protocol": "dimension_dynamics_v1",
+    "run_count": 18,
+    "runner": "run_5d",
+    "tick_contract": {
+      "mode": "minimum_per_run",
+      "observed_max": 256,
+      "observed_min": 256,
+      "requested_ticks": 256,
+      "status": "SATISFIED"
+    },
+    "ticks_requested": 256
+  },
+  "runtime": {
+    "duration_seconds": 0.06435380002949387
+  },
+  "runtime_errors": [],
+  "simulation": {
+    "protocol": "dimension_dynamics_v1",
+    "seed": 101,
+    "seeds": [
+      101,
+      102,
+      103
+    ],
+    "ticks": 256
+  },
+  "software": {
+    "brain5d_version": "0.6.0a3",
+    "os": "Windows 11",
+    "python": "3.13.14"
+  },
+  "source_freeze_sha": "db1a720dfa9a60f8e888efe8124e5b101395ea13afe27c109adc6de3999ae550",
+  "timestamp": "2026-09-14T10:03:56.811375",
+  "validity": {
+    "fatal_error_count": 0,
+    "reason": null,
+    "runtime_error_count": 0,
+    "valid": true
+  }
+}

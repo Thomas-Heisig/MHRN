@@ -1,0 +1,404 @@
+{
+  "conditions": {
+    "closed_loop": {
+      "metrics": {
+        "activated_neuron_count": {
+          "max": 6.0,
+          "mean": 6.0,
+          "median": 6.0,
+          "min": 6.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "donor_ticks_overhead": {
+          "max": 600.0,
+          "mean": 600.0,
+          "median": 600.0,
+          "min": 600.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "execution_batch_ticks": {
+          "max": 1.0,
+          "mean": 1.0,
+          "median": 1.0,
+          "min": 1.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "integrity_contact_count": {
+          "max": 0.0,
+          "mean": 0.0,
+          "median": 0.0,
+          "min": 0.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "modelled_absolute_work_j": {
+          "max": 0.004346775987269422,
+          "mean": 0.0042703051441139875,
+          "median": 0.00426925651474668,
+          "min": 0.004194882930325861,
+          "n": 3,
+          "std": 6.201451391718696e-05
+        },
+        "neural_dt_ms": {
+          "max": 1.0,
+          "mean": 1.0,
+          "median": 1.0,
+          "min": 1.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "nonzero_action_ticks": {
+          "max": 596.0,
+          "mean": 596.0,
+          "median": 596.0,
+          "min": 596.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "physics_period_ticks": {
+          "max": 1.0,
+          "mean": 1.0,
+          "median": 1.0,
+          "min": 1.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "sensor_period_ticks": {
+          "max": 1.0,
+          "mean": 1.0,
+          "median": 1.0,
+          "min": 1.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "synaptic_events_delivered": {
+          "max": 39.0,
+          "mean": 38.666666666666664,
+          "median": 39.0,
+          "min": 38.0,
+          "n": 3,
+          "std": 0.4714045207910317
+        },
+        "ticks_executed": {
+          "max": 600.0,
+          "mean": 600.0,
+          "median": 600.0,
+          "min": 600.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "ticks_requested": {
+          "max": 600.0,
+          "mean": 600.0,
+          "median": 600.0,
+          "min": 600.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "torque_saturation_count": {
+          "max": 19.0,
+          "mean": 16.0,
+          "median": 17.0,
+          "min": 12.0,
+          "n": 3,
+          "std": 2.943920288775949
+        },
+        "total_spikes": {
+          "max": 39.0,
+          "mean": 39.0,
+          "median": 39.0,
+          "min": 39.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "tracking_rmse_rad": {
+          "max": 0.1967980588275751,
+          "mean": 0.19492318860567073,
+          "median": 0.1945298850303754,
+          "min": 0.19344162195906173,
+          "n": 3,
+          "std": 0.0013981971462885137
+        }
+      },
+      "run_count": 3,
+      "seeds": [
+        101,
+        102,
+        103
+      ]
+    },
+    "feedback_absent": {
+      "metrics": {
+        "activated_neuron_count": {
+          "max": 6.0,
+          "mean": 6.0,
+          "median": 6.0,
+          "min": 6.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "donor_ticks_overhead": {
+          "max": 600.0,
+          "mean": 600.0,
+          "median": 600.0,
+          "min": 600.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "execution_batch_ticks": {
+          "max": 1.0,
+          "mean": 1.0,
+          "median": 1.0,
+          "min": 1.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "integrity_contact_count": {
+          "max": 92.0,
+          "mean": 83.0,
+          "median": 84.0,
+          "min": 73.0,
+          "n": 3,
+          "std": 7.788880963698615
+        },
+        "modelled_absolute_work_j": {
+          "max": 0.010486955365482682,
+          "mean": 0.010300089616275284,
+          "median": 0.010344176629637955,
+          "min": 0.010069136853705214,
+          "n": 3,
+          "std": 0.00017339901144742208
+        },
+        "neural_dt_ms": {
+          "max": 1.0,
+          "mean": 1.0,
+          "median": 1.0,
+          "min": 1.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "nonzero_action_ticks": {
+          "max": 596.0,
+          "mean": 596.0,
+          "median": 596.0,
+          "min": 596.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "physics_period_ticks": {
+          "max": 1.0,
+          "mean": 1.0,
+          "median": 1.0,
+          "min": 1.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "sensor_period_ticks": {
+          "max": 1.0,
+          "mean": 1.0,
+          "median": 1.0,
+          "min": 1.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "synaptic_events_delivered": {
+          "max": 78.0,
+          "mean": 78.0,
+          "median": 78.0,
+          "min": 78.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "ticks_executed": {
+          "max": 600.0,
+          "mean": 600.0,
+          "median": 600.0,
+          "min": 600.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "ticks_requested": {
+          "max": 600.0,
+          "mean": 600.0,
+          "median": 600.0,
+          "min": 600.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "torque_saturation_count": {
+          "max": 0.0,
+          "mean": 0.0,
+          "median": 0.0,
+          "min": 0.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "total_spikes": {
+          "max": 78.0,
+          "mean": 78.0,
+          "median": 78.0,
+          "min": 78.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "tracking_rmse_rad": {
+          "max": 0.5242175233106423,
+          "mean": 0.5217486871821682,
+          "median": 0.5213358415432612,
+          "min": 0.5196926966926011,
+          "n": 3,
+          "std": 0.0018701773751896675
+        }
+      },
+      "run_count": 3,
+      "seeds": [
+        101,
+        102,
+        103
+      ]
+    },
+    "yoked_replay": {
+      "metrics": {
+        "activated_neuron_count": {
+          "max": 6.0,
+          "mean": 6.0,
+          "median": 6.0,
+          "min": 6.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "donor_ticks_overhead": {
+          "max": 600.0,
+          "mean": 600.0,
+          "median": 600.0,
+          "min": 600.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "execution_batch_ticks": {
+          "max": 1.0,
+          "mean": 1.0,
+          "median": 1.0,
+          "min": 1.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "integrity_contact_count": {
+          "max": 0.0,
+          "mean": 0.0,
+          "median": 0.0,
+          "min": 0.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "modelled_absolute_work_j": {
+          "max": 0.004130152048054448,
+          "mean": 0.003801895766653226,
+          "median": 0.0038518931402003634,
+          "min": 0.0034236421117048665,
+          "n": 3,
+          "std": 0.0002905900612677379
+        },
+        "neural_dt_ms": {
+          "max": 1.0,
+          "mean": 1.0,
+          "median": 1.0,
+          "min": 1.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "nonzero_action_ticks": {
+          "max": 596.0,
+          "mean": 596.0,
+          "median": 596.0,
+          "min": 596.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "physics_period_ticks": {
+          "max": 1.0,
+          "mean": 1.0,
+          "median": 1.0,
+          "min": 1.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "sensor_period_ticks": {
+          "max": 1.0,
+          "mean": 1.0,
+          "median": 1.0,
+          "min": 1.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "synaptic_events_delivered": {
+          "max": 39.0,
+          "mean": 36.0,
+          "median": 36.0,
+          "min": 33.0,
+          "n": 3,
+          "std": 2.449489742783178
+        },
+        "ticks_executed": {
+          "max": 600.0,
+          "mean": 600.0,
+          "median": 600.0,
+          "min": 600.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "ticks_requested": {
+          "max": 600.0,
+          "mean": 600.0,
+          "median": 600.0,
+          "min": 600.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "torque_saturation_count": {
+          "max": 15.0,
+          "mean": 14.333333333333334,
+          "median": 14.0,
+          "min": 14.0,
+          "n": 3,
+          "std": 0.4714045207910317
+        },
+        "total_spikes": {
+          "max": 39.0,
+          "mean": 36.0,
+          "median": 36.0,
+          "min": 33.0,
+          "n": 3,
+          "std": 2.449489742783178
+        },
+        "tracking_rmse_rad": {
+          "max": 0.30793087801437136,
+          "mean": 0.3035479018620123,
+          "median": 0.30383596150814873,
+          "min": 0.2988768660635168,
+          "n": 3,
+          "std": 0.003701892927620802
+        }
+      },
+      "run_count": 3,
+      "seeds": [
+        101,
+        102,
+        103
+      ]
+    }
+  },
+  "formulas": {
+    "difference": "Delta_x = mean(x_B) - mean(x_A)",
+    "inter_spike_interval": "ISI_i = t_(i+1) - t_i",
+    "mean": "mean(x) = (1/n) * sum_i x_i",
+    "population_std": "sigma = sqrt((1/n) * sum_i (x_i - mean(x))^2)",
+    "ratio": "R_x = mean(x_B) / mean(x_A), defined only when mean(x_A) != 0"
+  },
+  "generated_by": "deterministic_statistics_engine",
+  "run_count": 9,
+  "schema_version": "2.0"
+}

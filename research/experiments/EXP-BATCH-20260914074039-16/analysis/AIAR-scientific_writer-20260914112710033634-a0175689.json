@@ -1,0 +1,190 @@
+{
+  "analysis_id": "AIAR-scientific_writer-20260914112710033634-a0175689",
+  "role": "scientific_writer",
+  "model": {
+    "provider": "ollama",
+    "model_name": "qwen2.5-coder:7b",
+    "model_digest": "not_reported",
+    "quantization": "not_reported",
+    "context_length": "unknown",
+    "temperature": 0.0,
+    "top_p": 1.0,
+    "seed": "not_reported",
+    "backend_version": "unknown"
+  },
+  "inputs": {
+    "experiment_id": "EXP-BATCH-20260914074039-16",
+    "packet_digest": "a0175689361e57895a3c2c06e2c438aba6a275d1d67bcaaac5fe9b223c1c7430"
+  },
+  "output": {
+    "1d": {
+      "metrics": {
+        "activated_neurons": 3,
+        "delivered_synaptic_events": 2,
+        "first_response_latency": 2,
+        "last_response_latency": 2,
+        "max_synaptic_current_targets": 1,
+        "peak_spike_rate": 1.0,
+        "propagation_depth": 1,
+        "recurrent_events": 0,
+        "synaptic_activity_ticks": 2,
+        "ticks_executed": 256,
+        "ticks_requested": 256,
+        "total_spikes": 3,
+        "total_synapses": 2
+      },
+      "run_count": 3,
+      "seeds": [
+        101,
+        102,
+        103
+      ]
+    },
+    "2d": {
+      "metrics": {
+        "activated_neurons": 3,
+        "delivered_synaptic_events": 2,
+        "first_response_latency": 2,
+        "last_response_latency": 2,
+        "max_synaptic_current_targets": 1,
+        "peak_spike_rate": 1.0,
+        "propagation_depth": 1,
+        "recurrent_events": 0,
+        "synaptic_activity_ticks": 2,
+        "ticks_executed": 256,
+        "ticks_requested": 256,
+        "total_spikes": 3,
+        "total_synapses": 2
+      },
+      "run_count": 3,
+      "seeds": [
+        101,
+        102,
+        103
+      ]
+    },
+    "3d": {
+      "metrics": {
+        "activated_neurons": 3,
+        "delivered_synaptic_events": 2,
+        "first_response_latency": 2,
+        "last_response_latency": 2,
+        "max_synaptic_current_targets": 1,
+        "peak_spike_rate": 1.0,
+        "propagation_depth": 1,
+        "recurrent_events": 0,
+        "synaptic_activity_ticks": 2,
+        "ticks_executed": 256,
+        "ticks_requested": 256,
+        "total_spikes": 3,
+        "total_synapses": 2
+      },
+      "run_count": 3,
+      "seeds": [
+        101,
+        102,
+        103
+      ]
+    },
+    "5d": {
+      "metrics": {
+        "activated_neurons": 3,
+        "delivered_synaptic_events": 2,
+        "first_response_latency": 2,
+        "last_response_latency": 2,
+        "max_synaptic_current_targets": 1,
+        "peak_spike_rate": 1.0,
+        "propagation_depth": 1,
+        "recurrent_events": 0,
+        "synaptic_activity_ticks": 2,
+        "ticks_executed": 256,
+        "ticks_requested": 256,
+        "total_spikes": 3,
+        "total_synapses": 2
+      },
+      "run_count": 3,
+      "seeds": [
+        101,
+        102,
+        103
+      ]
+    },
+    "5d_shuffled": {
+      "metrics": {
+        "activated_neurons": 3,
+        "delivered_synaptic_events": 2,
+        "first_response_latency": 2,
+        "last_response_latency": 2,
+        "max_synaptic_current_targets": 1,
+        "peak_spike_rate": 1.0,
+        "propagation_depth": 1,
+        "recurrent_events": 0,
+        "synaptic_activity_ticks": 2,
+        "ticks_executed": 256,
+        "ticks_requested": 256,
+        "total_spikes": 3,
+        "total_synapses": 2
+      },
+      "run_count": 3,
+      "seeds": [
+        101,
+        102,
+        103
+      ]
+    },
+    "random_graph": {
+      "metrics": {
+        "activated_neurons": 3,
+        "delivered_synaptic_events": 2,
+        "first_response_latency": 1,
+        "last_response_latency": 1,
+        "max_synaptic_current_targets": 1,
+        "peak_spike_rate": 1.0,
+        "propagation_depth": 1,
+        "recurrent_events": 0,
+        "synaptic_activity_ticks": 2,
+        "ticks_executed": 256,
+        "ticks_requested": 256,
+        "total_spikes": 3,
+        "total_synapses": 2
+      },
+      "run_count": 3,
+      "seeds": [
+        101,
+        102,
+        103
+      ]
+    },
+    "assessment": "Die Analyse konnte nicht vollstaendig schema-konform erzeugt werden. Das Modell hat das erforderliche assessment-Feld nicht geliefert.",
+    "observations": [],
+    "methodological_concerns": [
+      "Die vom Modell ausgegebene confidence war schemawidrig oder ausserhalb des Bereichs 0..1. Sie wurde fuer die AIRR-Provenienz konservativ auf 0.0 gesetzt; der Originalwert bleibt als confidence_original erhalten."
+    ],
+    "alternative_explanations": [],
+    "recommended_experiments": [],
+    "requested_evidence": [],
+    "effect_direction": "not_determined",
+    "confidence_original": null,
+    "confidence": 0.0
+  },
+  "provenance": {
+    "prompt_sha256": "6fe858211c981d400a5661ed3887bd5021da396afa8c691aa11f261a99b31c98",
+    "research_packet_digest": "a0175689361e57895a3c2c06e2c438aba6a275d1d67bcaaac5fe9b223c1c7430",
+    "prompt_protocol_version": "research_assistant_v1",
+    "assistant_schema_version": "1.2",
+    "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+    "model_self_confidence": "0.0"
+  },
+  "epistemic_status": {
+    "evidence": false,
+    "interpretation_only": true,
+    "human_review_required": true
+  },
+  "review": {
+    "status": "pending",
+    "reviewer": null,
+    "reviewed_at": null,
+    "disposition": null
+  },
+  "generated_at": "2026-09-14T11:27:10.033634+00:00"
+}

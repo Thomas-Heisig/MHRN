@@ -1,0 +1,37 @@
+{
+  "run_count": 3,
+  "runs": [
+    {
+      "condition": "registered_pair_timing_curve",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0000-registered_pair_timing_curve-seed-101.json.gz",
+      "run_index": 0,
+      "seed": 101,
+      "sha256": "110b9681b4fefd63525e89bdd2e5371d2123bfe8d4dad42824f1a447668fb8c1",
+      "size_bytes": 861,
+      "uncompressed_bytes": 2941
+    },
+    {
+      "condition": "registered_pair_timing_curve",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0001-registered_pair_timing_curve-seed-102.json.gz",
+      "run_index": 1,
+      "seed": 102,
+      "sha256": "b4c94ecff0466b66c7ad83211ace203c5feacc31cd9bc6e13e57f7a75c3ebd67",
+      "size_bytes": 861,
+      "uncompressed_bytes": 2941
+    },
+    {
+      "condition": "registered_pair_timing_curve",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0002-registered_pair_timing_curve-seed-103.json.gz",
+      "run_index": 2,
+      "seed": 103,
+      "sha256": "ab80c935900107190bf4fdc946a33f603b1dd1efb29b5b8c63765d281185f143",
+      "size_bytes": 862,
+      "uncompressed_bytes": 2941
+    }
+  ],
+  "schema_version": "2.0",
+  "storage_policy": "immutable_raw_runs_plus_compact_current_experiment"
+}

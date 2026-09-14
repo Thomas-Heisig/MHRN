@@ -1,0 +1,2869 @@
+{
+  "report_id": "AIRR-2026-0001",
+  "experiment_id": "EXP-BATCH-20260914074039-81",
+  "research_question_id": "RQ-EVAL-004",
+  "hypothesis_ids": [
+    "H-EVAL-004-A"
+  ],
+  "claim_ids": [],
+  "generated_at": "2026-09-14T12:00:56.571264+00:00",
+  "report_schema_version": "1.0",
+  "report_protocol_version": "PROTOCOL-AIRR-001",
+  "generated_by": "artificial_intelligence",
+  "ai_generated": true,
+  "scientific_evidence": false,
+  "human_review_required": true,
+  "status": "review_pending",
+  "content": {
+    "identification": {
+      "experiment": "EXP-BATCH-20260914074039-81",
+      "research_question": "What throughput and sampled process memory arise in short active four-outgoing-edge workloads through 100000 neurons?",
+      "hypotheses": [
+        {
+          "id": "H-EVAL-004-A",
+          "research_question": "RQ-EVAL-004",
+          "hypothesis": "All declared 32-tick active sparse workloads complete with finite states; no linear-scaling or real-time claim.",
+          "status": "untested",
+          "evidence": [],
+          "created": "2026-09-10",
+          "updated": "2026-09-10"
+        }
+      ],
+      "date": "2026-09-14",
+      "source_sha": "8e096931a779b2d2eb4d010eb20154150b07bbf2"
+    },
+    "executive_summary": "Die Analyse konnte nicht vollstaendig schema-konform erzeugt werden. Das Modell hat das erforderliche assessment-Feld nicht geliefert.",
+    "research_question": {
+      "id": "RQ-EVAL-004",
+      "domain": "Empirical Evaluation",
+      "question": "What throughput and sampled process memory arise in short active four-outgoing-edge workloads through 100000 neurons?",
+      "relevance": "Bounded exploratory observation; preserves historical records and requires human evidence review.",
+      "literature": [],
+      "hypotheses": [
+        "H-EVAL-004-A"
+      ],
+      "evidence": [],
+      "status": "open",
+      "answer": {
+        "current": null,
+        "confidence": "none",
+        "limitations": "Protocol/data availability does not mean accepted EVID."
+      },
+      "created": "2026-09-10",
+      "updated": "2026-09-10"
+    },
+    "experimental_design": {
+      "experiment_id": "EXP-BATCH-20260914074039-81",
+      "research_question": "RQ-EVAL-004",
+      "hypothesis": "H-EVAL-004-A",
+      "title": "Experiment workflow: active_scaling_v1",
+      "conditions": "Registered protocol conditions",
+      "ticks": 1000,
+      "ticks_contract": "minimum requested observation window",
+      "seeds": [
+        20001,
+        20002,
+        20003
+      ],
+      "protocol": "active_scaling_v1",
+      "resolved_runner": "run_eval_scaling",
+      "tick_validation": {
+        "status": "NOT_APPLICABLE",
+        "mode": "protocol_defined_internal_trials",
+        "requested_ticks": 1000
+      },
+      "notes": "",
+      "execution": "registered experiment_suite runner",
+      "assistant_policy": "AI is post-hoc interpretation only.",
+      "epistemic_layers": {
+        "ui_state": "operator/dashboard progress only; not a scientific result",
+        "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+        "evid": "not_created; requires semantic validation, clean freeze and human review",
+        "interpretation": "post-hoc AI or human interpretation; never execution input"
+      }
+    },
+    "data_basis": {
+      "data": {
+        "ai_input_policy": "compact_only_raw_on_explicit_deterministic_extract",
+        "generated_by": "deterministic_research_data_v2",
+        "limits": {
+          "ai_packet_max_bytes": 1000000,
+          "run_summary_max_bytes": 5000000,
+          "sequence_preview_items": 16
+        },
+        "raw_index": {
+          "path": "DATA/runs_index.json",
+          "run_count": 15,
+          "sha256": "c8e72876a556fe9ac97b35c609363cc350debd2bc2f6238165703dfa01ebc8ef"
+        },
+        "run_count": 15,
+        "run_preview": [
+          {
+            "_raw_artifact": {
+              "format": "json.gz",
+              "path": "DATA/raw/run-0000-n128-seed-20001.json.gz",
+              "sha256": "7f989cd37eec77dd99927422a715c8e38dec08cdd869686009d368b275018973",
+              "size_bytes": 602,
+              "uncompressed_bytes": 895
+            },
+            "condition": "n128",
+            "experiment_id": "EXP-BATCH-20260914074039-81",
+            "metrics": {
+              "address_encoding": "canonical_5d_base256_v2",
+              "construction_seconds": 0.0036031000199727714,
+              "coordinate_repair_not_nd_migration": true,
+              "events_processed": 1219,
+              "finite_state": true,
+              "interpretation_limit": "32-tick sparse active engineering workload, no long-horizon learning/real-time guarantee. RSS is sampled process memory, not an isolated allocation peak. No energy-in-joules claim.",
+              "neuron_updates_per_second": 433608.92430331674,
+              "neurons": 128,
+              "rss_after_build_bytes": 277684224,
+              "rss_after_run_bytes": 277684224,
+              "spikes_per_tick": {
+                "_projection": "bounded_sequence",
+                "head": [
+                  8,
+                  0,
+                  0,
+                  7,
+                  1,
+                  8,
+                  9,
+                  15
+                ],
+                "item_count": 32,
+                "tail": [
+                  7,
+                  7,
+                  3,
+                  9,
+                  2,
+                  3,
+                  3,
+                  3
+                ]
+              },
+              "step_seconds": 0.009446300042327493,
+              "synapses": 512,
+              "ticks_executed": 32,
+              "ticks_per_second": 3387.569721119662,
+              "total_spikes": 312
+            },
+            "runtime_error": null,
+            "seed": 20001,
+            "state_digest_after": "",
+            "state_digest_before": ""
+          },
+          {
+            "_raw_artifact": {
+              "format": "json.gz",
+              "path": "DATA/raw/run-0001-n1024-seed-20001.json.gz",
+              "sha256": "78c19ffb796b31cdc1343be46b9a32e007d2e8abdbd07ee388e6b505350fa318",
+              "size_bytes": 612,
+              "uncompressed_bytes": 904
+            },
+            "condition": "n1024",
+            "experiment_id": "EXP-BATCH-20260914074039-81",
+            "metrics": {
+              "address_encoding": "canonical_5d_base256_v2",
+              "construction_seconds": 0.02430849999655038,
+              "coordinate_repair_not_nd_migration": true,
+              "events_processed": 3750,
+              "finite_state": true,
+              "interpretation_limit": "32-tick sparse active engineering workload, no long-horizon learning/real-time guarantee. RSS is sampled process memory, not an isolated allocation peak. No energy-in-joules claim.",
+              "neuron_updates_per_second": 493332.008452319,
+              "neurons": 1024,
+              "rss_after_build_bytes": 277716992,
+              "rss_after_run_bytes": 277729280,
+              "spikes_per_tick": {
+                "_projection": "bounded_sequence",
+                "head": [
+                  8,
+                  0,
+                  0,
+                  8,
+                  1,
+                  7,
+                  9,
+                  22
+                ],
+                "item_count": 32,
+                "tail": [
+                  46,
+                  49,
+                  49,
+                  49,
+                  49,
+                  53,
+                  49,
+                  52
+                ]
+              },
+              "step_seconds": 0.06642180000199005,
+              "synapses": 4096,
+              "ticks_executed": 32,
+              "ticks_per_second": 481.7695395042178,
+              "total_spikes": 1065
+            },
+            "runtime_error": null,
+            "seed": 20001,
+            "state_digest_after": "",
+            "state_digest_before": ""
+          },
+          {
+            "_raw_artifact": {
+              "format": "json.gz",
+              "path": "DATA/raw/run-0002-n5000-seed-20001.json.gz",
+              "sha256": "6502365dc12d84c428aececea12789f00e84a90e5a797db8a099572e4a4ff92c",
+              "size_bytes": 622,
+              "uncompressed_bytes": 906
+            },
+            "condition": "n5000",
+            "experiment_id": "EXP-BATCH-20260914074039-81",
+            "metrics": {
+              "address_encoding": "canonical_5d_base256_v2",
+              "construction_seconds": 0.3139952000346966,
+              "coordinate_repair_not_nd_migration": true,
+              "events_processed": 4523,
+              "finite_state": true,
+              "interpretation_limit": "32-tick sparse active engineering workload, no long-horizon learning/real-time guarantee. RSS is sampled process memory, not an isolated allocation peak. No energy-in-joules claim.",
+              "neuron_updates_per_second": 445207.6044773785,
+              "neurons": 5000,
+              "rss_after_build_bytes": 277798912,
+              "rss_after_run_bytes": 258424832,
+              "spikes_per_tick": {
+                "_projection": "bounded_sequence",
+                "head": [
+                  8,
+                  0,
+                  0,
+                  8,
+                  0,
+                  10,
+                  7,
+                  22
+                ],
+                "item_count": 32,
+                "tail": [
+                  49,
+                  86,
+                  64,
+                  87,
+                  59,
+                  92,
+                  90,
+                  105
+                ]
+              },
+              "step_seconds": 0.35938290000194684,
+              "synapses": 20000,
+              "ticks_executed": 32,
+              "ticks_per_second": 89.04152089547568,
+              "total_spikes": 1364
+            },
+            "runtime_error": null,
+            "seed": 20001,
+            "state_digest_after": "",
+            "state_digest_before": ""
+          },
+          {
+            "_raw_artifact": {
+              "format": "json.gz",
+              "path": "DATA/raw/run-0003-n25000-seed-20001.json.gz",
+              "sha256": "ee4c4f9189a5709a3a8f528702a630d699328be224a78b58739c97b63bb41558",
+              "size_bytes": 621,
+              "uncompressed_bytes": 906
+            },
+            "condition": "n25000",
+            "experiment_id": "EXP-BATCH-20260914074039-81",
+            "metrics": {
+              "address_encoding": "canonical_5d_base256_v2",
+              "construction_seconds": 1.0847765000071377,
+              "coordinate_repair_not_nd_migration": true,
+              "events_processed": 4914,
+              "finite_state": true,
+              "interpretation_limit": "32-tick sparse active engineering workload, no long-horizon learning/real-time guarantee. RSS is sampled process memory, not an isolated allocation peak. No energy-in-joules claim.",
+              "neuron_updates_per_second": 370586.2025198661,
+              "neurons": 25000,
+              "rss_after_build_bytes": 304746496,
+              "rss_after_run_bytes": 315445248,
+              "spikes_per_tick": {
+                "_projection": "bounded_sequence",
+                "head": [
+                  8,
+                  0,
+                  0,
+                  8,
+                  0,
+                  8,
+                  8,
+                  24
+                ],
+                "item_count": 32,
+                "tail": [
+                  56,
+                  89,
+                  67,
+                  95,
+                  69,
+                  93,
+                  85,
+                  119
+                ]
+              },
+              "step_seconds": 2.15874199999962,
+              "synapses": 100000,
+              "ticks_executed": 32,
+              "ticks_per_second": 14.823448100794645,
+              "total_spikes": 1475
+            },
+            "runtime_error": null,
+            "seed": 20001,
+            "state_digest_after": "",
+            "state_digest_before": ""
+          },
+          {
+            "_raw_artifact": {
+              "format": "json.gz",
+              "path": "DATA/raw/run-0004-n100000-seed-20001.json.gz",
+              "sha256": "468bb0dfab7e8a5d0081de8830d01c4be4250511b749ffc45b7531016a7ea85c",
+              "size_bytes": 608,
+              "uncompressed_bytes": 912
+            },
+            "condition": "n100000",
+            "experiment_id": "EXP-BATCH-20260914074039-81",
+            "metrics": {
+              "address_encoding": "canonical_5d_base256_v2",
+              "construction_seconds": 4.439663199998904,
+              "coordinate_repair_not_nd_migration": true,
+              "events_processed": 5123,
+              "finite_state": true,
+              "interpretation_limit": "32-tick sparse active engineering workload, no long-horizon learning/real-time guarantee. RSS is sampled process memory, not an isolated allocation peak. No energy-in-joules claim.",
+              "neuron_updates_per_second": 286145.37393972924,
+              "neurons": 100000,
+              "rss_after_build_bytes": 581500928,
+              "rss_after_run_bytes": 613695488,
+              "spikes_per_tick": {
+                "_projection": "bounded_sequence",
+                "head": [
+                  8,
+                  0,
+                  0,
+                  8,
+                  0,
+                  8,
+                  8,
+                  24
+                ],
+                "item_count": 32,
+                "tail": [
+                  56,
+                  96,
+                  73,
+                  102,
+                  73,
+                  103,
+                  94,
+                  130
+                ]
+              },
+              "step_seconds": 11.18312679999508,
+              "synapses": 400000,
+              "ticks_executed": 32,
+              "ticks_per_second": 2.8614537393972928,
+              "total_spikes": 1551
+            },
+            "runtime_error": null,
+            "seed": 20001,
+            "state_digest_after": "",
+            "state_digest_before": ""
+          },
+          {
+            "_raw_artifact": {
+              "format": "json.gz",
+              "path": "DATA/raw/run-0005-n128-seed-20002.json.gz",
+              "sha256": "cfa64af8ca7339421ca79d587fd28be8a8b1604e6bd78a87b4a63a0573c09a99",
+              "size_bytes": 607,
+              "uncompressed_bytes": 893
+            },
+            "condition": "n128",
+            "experiment_id": "EXP-BATCH-20260914074039-81",
+            "metrics": {
+              "address_encoding": "canonical_5d_base256_v2",
+              "construction_seconds": 0.004132499976549298,
+              "coordinate_repair_not_nd_migration": true,
+              "events_processed": 1315,
+              "finite_state": true,
+              "interpretation_limit": "32-tick sparse active engineering workload, no long-horizon learning/real-time guarantee. RSS is sampled process memory, not an isolated allocation peak. No energy-in-joules claim.",
+              "neuron_updates_per_second": 624752.1393718073,
+              "neurons": 128,
+              "rss_after_build_bytes": 613810176,
+              "rss_after_run_bytes": 613928960,
+              "spikes_per_tick": {
+                "_projection": "bounded_sequence",
+                "head": [
+                  8,
+                  0,
+                  0,
+                  8,
+                  1,
+                  8,
+                  9,
+                  18
+                ],
+                "item_count": 32,
+                "tail": [
+                  13,
+                  3,
+                  5,
+                  6,
+                  1,
+                  5,
+                  2,
+                  1
+                ]
+              },
+              "step_seconds": 0.00655620003817603,
+              "synapses": 512,
+              "ticks_executed": 32,
+              "ticks_per_second": 4880.876088842245,
+              "total_spikes": 334
+            },
+            "runtime_error": null,
+            "seed": 20002,
+            "state_digest_after": "",
+            "state_digest_before": ""
+          },
+          {
+            "_raw_artifact": {
+              "format": "json.gz",
+              "path": "DATA/raw/run-0006-n1024-seed-20002.json.gz",
+              "sha256": "837b322ed3b2315912af270fc65fcd0cfd9e9bf4de2678bec1b2540f5dc97d3b",
+              "size_bytes": 617,
+              "uncompressed_bytes": 903
+            },
+            "condition": "n1024",
+            "experiment_id": "EXP-BATCH-20260914074039-81",
+            "metrics": {
+              "address_encoding": "canonical_5d_base256_v2",
+              "construction_seconds": 0.02059750002808869,
+              "coordinate_repair_not_nd_migration": true,
+              "events_processed": 4028,
+              "finite_state": true,
+              "interpretation_limit": "32-tick sparse active engineering workload, no long-horizon learning/real-time guarantee. RSS is sampled process memory, not an isolated allocation peak. No energy-in-joules claim.",
+              "neuron_updates_per_second": 588169.8311700042,
+              "neurons": 1024,
+              "rss_after_build_bytes": 614486016,
+              "rss_after_run_bytes": 614764544,
+              "spikes_per_tick": {
+                "_projection": "bounded_sequence",
+                "head": [
+                  8,
+                  0,
+                  0,
+                  8,
+                  1,
+                  7,
+                  9,
+                  22
+                ],
+                "item_count": 32,
+                "tail": [
+                  49,
+                  60,
+                  53,
+                  62,
+                  62,
+                  56,
+                  58,
+                  72
+                ]
+              },
+              "step_seconds": 0.055711799999699,
+              "synapses": 4096,
+              "ticks_executed": 32,
+              "ticks_per_second": 574.3846007519572,
+              "total_spikes": 1166
+            },
+            "runtime_error": null,
+            "seed": 20002,
+            "state_digest_after": "",
+            "state_digest_before": ""
+          },
+          {
+            "_raw_artifact": {
+              "format": "json.gz",
+              "path": "DATA/raw/run-0007-n5000-seed-20002.json.gz",
+              "sha256": "735cf3e103a4671838203f72916914ecdbefac0c31faceeb377a36236ac069eb",
+              "size_bytes": 619,
+              "uncompressed_bytes": 906
+            },
+            "condition": "n5000",
+            "experiment_id": "EXP-BATCH-20260914074039-81",
+            "metrics": {
+              "address_encoding": "canonical_5d_base256_v2",
+              "construction_seconds": 1.1700330999447033,
+              "coordinate_repair_not_nd_migration": true,
+              "events_processed": 4999,
+              "finite_state": true,
+              "interpretation_limit": "32-tick sparse active engineering workload, no long-horizon learning/real-time guarantee. RSS is sampled process memory, not an isolated allocation peak. No energy-in-joules claim.",
+              "neuron_updates_per_second": 515926.489418714,
+              "neurons": 5000,
+              "rss_after_build_bytes": 589680640,
+              "rss_after_run_bytes": 590336000,
+              "spikes_per_tick": {
+                "_projection": "bounded_sequence",
+                "head": [
+                  8,
+                  0,
+                  0,
+                  8,
+                  0,
+                  8,
+                  8,
+                  24
+                ],
+                "item_count": 32,
+                "tail": [
+                  54,
+                  93,
+                  68,
+                  100,
+                  73,
+                  101,
+                  90,
+                  119
+                ]
+              },
+              "step_seconds": 0.3101217000512406,
+              "synapses": 20000,
+              "ticks_executed": 32,
+              "ticks_per_second": 103.1852978837428,
+              "total_spikes": 1505
+            },
+            "runtime_error": null,
+            "seed": 20002,
+            "state_digest_after": "",
+            "state_digest_before": ""
+          },
+          {
+            "_raw_artifact": {
+              "format": "json.gz",
+              "path": "DATA/raw/run-0008-n25000-seed-20002.json.gz",
+              "sha256": "58ec874a7d255933263ccc5b64c20162d12243c0952981d688818b36d221b653",
+              "size_bytes": 614,
+              "uncompressed_bytes": 910
+            },
+            "condition": "n25000",
+            "experiment_id": "EXP-BATCH-20260914074039-81",
+            "metrics": {
+              "address_encoding": "canonical_5d_base256_v2",
+              "construction_seconds": 0.9328165999613702,
+              "coordinate_repair_not_nd_migration": true,
+              "events_processed": 5123,
+              "finite_state": true,
+              "interpretation_limit": "32-tick sparse active engineering workload, no long-horizon learning/real-time guarantee. RSS is sampled process memory, not an isolated allocation peak. No energy-in-joules claim.",
+              "neuron_updates_per_second": 387772.2421659893,
+              "neurons": 25000,
+              "rss_after_build_bytes": 583585792,
+              "rss_after_run_bytes": 586424320,
+              "spikes_per_tick": {
+                "_projection": "bounded_sequence",
+                "head": [
+                  8,
+                  0,
+                  0,
+                  8,
+                  0,
+                  8,
+                  8,
+                  24
+                ],
+                "item_count": 32,
+                "tail": [
+                  56,
+                  96,
+                  72,
+                  104,
+                  70,
+                  104,
+                  97,
+                  134
+                ]
+              },
+              "step_seconds": 2.0630667000077665,
+              "synapses": 100000,
+              "ticks_executed": 32,
+              "ticks_per_second": 15.51088968663957,
+              "total_spikes": 1557
+            },
+            "runtime_error": null,
+            "seed": 20002,
+            "state_digest_after": "",
+            "state_digest_before": ""
+          },
+          {
+            "_raw_artifact": {
+              "format": "json.gz",
+              "path": "DATA/raw/run-0009-n100000-seed-20002.json.gz",
+              "sha256": "a54746b0f1ff7977a285e583dd1d5220839dd033d5d215edae66551d119bcf5e",
+              "size_bytes": 609,
+              "uncompressed_bytes": 912
+            },
+            "condition": "n100000",
+            "experiment_id": "EXP-BATCH-20260914074039-81",
+            "metrics": {
+              "address_encoding": "canonical_5d_base256_v2",
+              "construction_seconds": 4.240122199989855,
+              "coordinate_repair_not_nd_migration": true,
+              "events_processed": 5128,
+              "finite_state": true,
+              "interpretation_limit": "32-tick sparse active engineering workload, no long-horizon learning/real-time guarantee. RSS is sampled process memory, not an isolated allocation peak. No energy-in-joules claim.",
+              "neuron_updates_per_second": 317366.4456286379,
+              "neurons": 100000,
+              "rss_after_build_bytes": 609697792,
+              "rss_after_run_bytes": 632238080,
+              "spikes_per_tick": {
+                "_projection": "bounded_sequence",
+                "head": [
+                  8,
+                  0,
+                  0,
+                  8,
+                  0,
+                  8,
+                  8,
+                  24
+                ],
+                "item_count": 32,
+                "tail": [
+                  56,
+                  96,
+                  72,
+                  104,
+                  72,
+                  104,
+                  96,
+                  136
+                ]
+              },
+              "step_seconds": 10.082981500017922,
+              "synapses": 400000,
+              "ticks_executed": 32,
+              "ticks_per_second": 3.1736644562863794,
+              "total_spikes": 1560
+            },
+            "runtime_error": null,
+            "seed": 20002,
+            "state_digest_after": "",
+            "state_digest_before": ""
+          },
+          {
+            "_raw_artifact": {
+              "format": "json.gz",
+              "path": "DATA/raw/run-0010-n128-seed-20003.json.gz",
+              "sha256": "b20b574f93dc9948328e2583097b29a36f8762c61f6ad8cfe420209a37142d42",
+              "size_bytes": 605,
+              "uncompressed_bytes": 893
+            },
+            "condition": "n128",
+            "experiment_id": "EXP-BATCH-20260914074039-81",
+            "metrics": {
+              "address_encoding": "canonical_5d_base256_v2",
+              "construction_seconds": 0.002965399995446205,
+              "coordinate_repair_not_nd_migration": true,
+              "events_processed": 1342,
+              "finite_state": true,
+              "interpretation_limit": "32-tick sparse active engineering workload, no long-horizon learning/real-time guarantee. RSS is sampled process memory, not an isolated allocation peak. No energy-in-joules claim.",
+              "neuron_updates_per_second": 548003.8541289101,
+              "neurons": 128,
+              "rss_after_build_bytes": 632320000,
+              "rss_after_run_bytes": 632532992,
+              "spikes_per_tick": {
+                "_projection": "bounded_sequence",
+                "head": [
+                  8,
+                  0,
+                  0,
+                  8,
+                  2,
+                  6,
+                  8,
+                  18
+                ],
+                "item_count": 32,
+                "tail": [
+                  5,
+                  10,
+                  8,
+                  7,
+                  1,
+                  5,
+                  5,
+                  1
+                ]
+              },
+              "step_seconds": 0.007474399986676872,
+              "synapses": 512,
+              "ticks_executed": 32,
+              "ticks_per_second": 4281.28011038211,
+              "total_spikes": 343
+            },
+            "runtime_error": null,
+            "seed": 20003,
+            "state_digest_after": "",
+            "state_digest_before": ""
+          },
+          {
+            "_raw_artifact": {
+              "format": "json.gz",
+              "path": "DATA/raw/run-0011-n1024-seed-20003.json.gz",
+              "sha256": "4eb97ce070454d2d8ced9b4d19c264795a74b896a11f5917e828288928fe5db1",
+              "size_bytes": 611,
+              "uncompressed_bytes": 904
+            },
+            "condition": "n1024",
+            "experiment_id": "EXP-BATCH-20260914074039-81",
+            "metrics": {
+              "address_encoding": "canonical_5d_base256_v2",
+              "construction_seconds": 0.017846900038421154,
+              "coordinate_repair_not_nd_migration": true,
+              "events_processed": 3054,
+              "finite_state": true,
+              "interpretation_limit": "32-tick sparse active engineering workload, no long-horizon learning/real-time guarantee. RSS is sampled process memory, not an isolated allocation peak. No energy-in-joules claim.",
+              "neuron_updates_per_second": 549781.1312017128,
+              "neurons": 1024,
+              "rss_after_build_bytes": 632668160,
+              "rss_after_run_bytes": 633036800,
+              "spikes_per_tick": {
+                "_projection": "bounded_sequence",
+                "head": [
+                  8,
+                  0,
+                  0,
+                  7,
+                  1,
+                  8,
+                  9,
+                  17
+                ],
+                "item_count": 32,
+                "tail": [
+                  37,
+                  45,
+                  42,
+                  44,
+                  41,
+                  42,
+                  47,
+                  45
+                ]
+              },
+              "step_seconds": 0.05960189999314025,
+              "synapses": 4096,
+              "ticks_executed": 32,
+              "ticks_per_second": 536.8956359391726,
+              "total_spikes": 875
+            },
+            "runtime_error": null,
+            "seed": 20003,
+            "state_digest_after": "",
+            "state_digest_before": ""
+          },
+          {
+            "_raw_artifact": {
+              "format": "json.gz",
+              "path": "DATA/raw/run-0012-n5000-seed-20003.json.gz",
+              "sha256": "36c380b6b184db998c907a98ecd3083c57e974f7a5243ca7974d905b54def97f",
+              "size_bytes": 623,
+              "uncompressed_bytes": 906
+            },
+            "condition": "n5000",
+            "experiment_id": "EXP-BATCH-20260914074039-81",
+            "metrics": {
+              "address_encoding": "canonical_5d_base256_v2",
+              "construction_seconds": 0.12341219995869324,
+              "coordinate_repair_not_nd_migration": true,
+              "events_processed": 4219,
+              "finite_state": true,
+              "interpretation_limit": "32-tick sparse active engineering workload, no long-horizon learning/real-time guarantee. RSS is sampled process memory, not an isolated allocation peak. No energy-in-joules claim.",
+              "neuron_updates_per_second": 547764.3682145388,
+              "neurons": 5000,
+              "rss_after_build_bytes": 640700416,
+              "rss_after_run_bytes": 625696768,
+              "spikes_per_tick": {
+                "_projection": "bounded_sequence",
+                "head": [
+                  8,
+                  0,
+                  0,
+                  8,
+                  1,
+                  7,
+                  9,
+                  21
+                ],
+                "item_count": 32,
+                "tail": [
+                  48,
+                  75,
+                  62,
+                  77,
+                  66,
+                  74,
+                  77,
+                  93
+                ]
+              },
+              "step_seconds": 0.29209639999317005,
+              "synapses": 20000,
+              "ticks_executed": 32,
+              "ticks_per_second": 109.55287364290776,
+              "total_spikes": 1259
+            },
+            "runtime_error": null,
+            "seed": 20003,
+            "state_digest_after": "",
+            "state_digest_before": ""
+          },
+          {
+            "_raw_artifact": {
+              "format": "json.gz",
+              "path": "DATA/raw/run-0013-n25000-seed-20003.json.gz",
+              "sha256": "942147faeadaa56e9d80f388a74304825708bbbf512535259e3b94db69c2d1a2",
+              "size_bytes": 624,
+              "uncompressed_bytes": 907
+            },
+            "condition": "n25000",
+            "experiment_id": "EXP-BATCH-20260914074039-81",
+            "metrics": {
+              "address_encoding": "canonical_5d_base256_v2",
+              "construction_seconds": 1.75417590001598,
+              "coordinate_repair_not_nd_migration": true,
+              "events_processed": 4882,
+              "finite_state": true,
+              "interpretation_limit": "32-tick sparse active engineering workload, no long-horizon learning/real-time guarantee. RSS is sampled process memory, not an isolated allocation peak. No energy-in-joules claim.",
+              "neuron_updates_per_second": 408428.7231414393,
+              "neurons": 25000,
+              "rss_after_build_bytes": 665899008,
+              "rss_after_run_bytes": 650772480,
+              "spikes_per_tick": {
+                "_projection": "bounded_sequence",
+                "head": [
+                  8,
+                  0,
+                  0,
+                  8,
+                  0,
+                  9,
+                  8,
+                  22
+                ],
+                "item_count": 32,
+                "tail": [
+                  54,
+                  93,
+                  69,
+                  98,
+                  65,
+                  101,
+                  97,
+                  122
+                ]
+              },
+              "step_seconds": 1.9587260999833234,
+              "synapses": 100000,
+              "ticks_executed": 32,
+              "ticks_per_second": 16.337148925657573,
+              "total_spikes": 1482
+            },
+            "runtime_error": null,
+            "seed": 20003,
+            "state_digest_after": "",
+            "state_digest_before": ""
+          },
+          {
+            "_raw_artifact": {
+              "format": "json.gz",
+              "path": "DATA/raw/run-0014-n100000-seed-20003.json.gz",
+              "sha256": "2a43f4c649fd0f0db2c962f085a2a4000270a221704011f517ac4e4d8c22e3d0",
+              "size_bytes": 604,
+              "uncompressed_bytes": 912
+            },
+            "condition": "n100000",
+            "experiment_id": "EXP-BATCH-20260914074039-81",
+            "metrics": {
+              "address_encoding": "canonical_5d_base256_v2",
+              "construction_seconds": 4.0079812000039965,
+              "coordinate_repair_not_nd_migration": true,
+              "events_processed": 5130,
+              "finite_state": true,
+              "interpretation_limit": "32-tick sparse active engineering workload, no long-horizon learning/real-time guarantee. RSS is sampled process memory, not an isolated allocation peak. No energy-in-joules claim.",
+              "neuron_updates_per_second": 300885.0694160264,
+              "neurons": 100000,
+              "rss_after_build_bytes": 674988032,
+              "rss_after_run_bytes": 677482496,
+              "spikes_per_tick": {
+                "_projection": "bounded_sequence",
+                "head": [
+                  8,
+                  0,
+                  0,
+                  8,
+                  0,
+                  8,
+                  8,
+                  24
+                ],
+                "item_count": 32,
+                "tail": [
+                  56,
+                  96,
+                  72,
+                  104,
+                  72,
+                  105,
+                  96,
+                  134
+                ]
+              },
+              "step_seconds": 10.635290100006387,
+              "synapses": 400000,
+              "ticks_executed": 32,
+              "ticks_per_second": 3.008850694160264,
+              "total_spikes": 1559
+            },
+            "runtime_error": null,
+            "seed": 20003,
+            "state_digest_after": "",
+            "state_digest_before": ""
+          }
+        ],
+        "schema_version": "2.0",
+        "statistics": {
+          "conditions": {
+            "n100000": {
+              "metrics": {
+                "construction_seconds": {
+                  "max": 4.439663199998904,
+                  "mean": 4.229255533330918,
+                  "median": 4.240122199989855,
+                  "min": 4.0079812000039965,
+                  "n": 3,
+                  "std": 0.17640087039299282
+                },
+                "events_processed": {
+                  "max": 5130.0,
+                  "mean": 5127.0,
+                  "median": 5128.0,
+                  "min": 5123.0,
+                  "n": 3,
+                  "std": 2.943920288775949
+                },
+                "neuron_updates_per_second": {
+                  "max": 317366.4456286379,
+                  "mean": 301465.62966146454,
+                  "median": 300885.0694160264,
+                  "min": 286145.37393972924,
+                  "n": 3,
+                  "std": 12752.558357703003
+                },
+                "neurons": {
+                  "max": 100000.0,
+                  "mean": 100000.0,
+                  "median": 100000.0,
+                  "min": 100000.0,
+                  "n": 3,
+                  "std": 0.0
+                },
+                "rss_after_build_bytes": {
+                  "max": 674988032.0,
+                  "mean": 622062250.6666666,
+                  "median": 609697792.0,
+                  "min": 581500928.0,
+                  "n": 3,
+                  "std": 39154561.52367167
+                },
+                "rss_after_run_bytes": {
+                  "max": 677482496.0,
+                  "mean": 641138688.0,
+                  "median": 632238080.0,
+                  "min": 613695488.0,
+                  "n": 3,
+                  "std": 26790685.128420588
+                },
+                "step_seconds": {
+                  "max": 11.18312679999508,
+                  "mean": 10.63379946667313,
+                  "median": 10.635290100006387,
+                  "min": 10.082981500017922,
+                  "n": 3,
+                  "std": 0.449133674797944
+                },
+                "synapses": {
+                  "max": 400000.0,
+                  "mean": 400000.0,
+                  "median": 400000.0,
+                  "min": 400000.0,
+                  "n": 3,
+                  "std": 0.0
+                },
+                "ticks_executed": {
+                  "max": 32.0,
+                  "mean": 32.0,
+                  "median": 32.0,
+                  "min": 32.0,
+                  "n": 3,
+                  "std": 0.0
+                },
+                "ticks_per_second": {
+                  "max": 3.1736644562863794,
+                  "mean": 3.0146562966146457,
+                  "median": 3.008850694160264,
+                  "min": 2.8614537393972928,
+                  "n": 3,
+                  "std": 0.12752558357702998
+                },
+                "total_spikes": {
+                  "max": 1560.0,
+                  "mean": 1556.6666666666667,
+                  "median": 1559.0,
+                  "min": 1551.0,
+                  "n": 3,
+                  "std": 4.0276819911981905
+                }
+              },
+              "run_count": 3,
+              "seeds": [
+                20001,
+                20002,
+                20003
+              ]
+            },
+            "n1024": {
+              "metrics": {
+                "construction_seconds": {
+                  "max": 0.02430849999655038,
+                  "mean": 0.02091763335435341,
+                  "median": 0.02059750002808869,
+                  "min": 0.017846900038421154,
+                  "n": 3,
+                  "std": 0.002647631962674431
+                },
+                "events_processed": {
+                  "max": 4028.0,
+                  "mean": 3610.6666666666665,
+                  "median": 3750.0,
+                  "min": 3054.0,
+                  "n": 3,
+                  "std": 409.6578518172886
+                },
+                "neuron_updates_per_second": {
+                  "max": 588169.8311700042,
+                  "mean": 543760.9902746787,
+                  "median": 549781.1312017128,
+                  "min": 493332.008452319,
+                  "n": 3,
+                  "std": 38950.69299378198
+                },
+                "neurons": {
+                  "max": 1024.0,
+                  "mean": 1024.0,
+                  "median": 1024.0,
+                  "min": 1024.0,
+                  "n": 3,
+                  "std": 0.0
+                },
+                "rss_after_build_bytes": {
+                  "max": 632668160.0,
+                  "mean": 508290389.3333333,
+                  "median": 614486016.0,
+                  "min": 277716992.0,
+                  "n": 3,
+                  "std": 163208897.34424323
+                },
+                "rss_after_run_bytes": {
+                  "max": 633036800.0,
+                  "mean": 508510208.0,
+                  "median": 614764544.0,
+                  "min": 277729280.0,
+                  "n": 3,
+                  "std": 163357167.74650216
+                },
+                "step_seconds": {
+                  "max": 0.06642180000199005,
+                  "mean": 0.060578499998276435,
+                  "median": 0.05960189999314025,
+                  "min": 0.055711799999699,
+                  "n": 3,
+                  "std": 0.004426536320103457
+                },
+                "synapses": {
+                  "max": 4096.0,
+                  "mean": 4096.0,
+                  "median": 4096.0,
+                  "min": 4096.0,
+                  "n": 3,
+                  "std": 0.0
+                },
+                "ticks_executed": {
+                  "max": 32.0,
+                  "mean": 32.0,
+                  "median": 32.0,
+                  "min": 32.0,
+                  "n": 3,
+                  "std": 0.0
+                },
+                "ticks_per_second": {
+                  "max": 574.3846007519572,
+                  "mean": 531.0165920651159,
+                  "median": 536.8956359391726,
+                  "min": 481.7695395042178,
+                  "n": 3,
+                  "std": 38.037786126740215
+                },
+                "total_spikes": {
+                  "max": 1166.0,
+                  "mean": 1035.3333333333333,
+                  "median": 1065.0,
+                  "min": 875.0,
+                  "n": 3,
+                  "std": 120.63811816982042
+                }
+              },
+              "run_count": 3,
+              "seeds": [
+                20001,
+                20002,
+                20003
+              ]
+            },
+            "n128": {
+              "metrics": {
+                "construction_seconds": {
+                  "max": 0.004132499976549298,
+                  "mean": 0.003566999997322758,
+                  "median": 0.0036031000199727714,
+                  "min": 0.002965399995446205,
+                  "n": 3,
+                  "std": 0.00047714987177280635
+                },
+                "events_processed": {
+                  "max": 1342.0,
+                  "mean": 1292.0,
+                  "median": 1315.0,
+                  "min": 1219.0,
+                  "n": 3,
+                  "std": 52.78257288158659
+                },
+                "neuron_updates_per_second": {
+                  "max": 624752.1393718073,
+                  "mean": 535454.9726013447,
+                  "median": 548003.8541289101,
+                  "min": 433608.92430331674,
+                  "n": 3,
+                  "std": 78536.776894117
+                },
+                "neurons": {
+                  "max": 128.0,
+                  "mean": 128.0,
+                  "median": 128.0,
+                  "min": 128.0,
+                  "n": 3,
+                  "std": 0.0
+                },
+                "rss_after_build_bytes": {
+                  "max": 632320000.0,
+                  "mean": 507938133.3333333,
+                  "median": 613810176.0,
+                  "min": 277684224.0,
+                  "n": 3,
+                  "std": 162989366.6645975
+                },
+                "rss_after_run_bytes": {
+                  "max": 632532992.0,
+                  "mean": 508048725.3333333,
+                  "median": 613928960.0,
+                  "min": 277684224.0,
+                  "n": 3,
+                  "std": 163069269.75487188
+                },
+                "step_seconds": {
+                  "max": 0.009446300042327493,
+                  "mean": 0.007825633355726799,
+                  "median": 0.007474399986676872,
+                  "min": 0.00655620003817603,
+                  "n": 3,
+                  "std": 0.001205734400866596
+                },
+                "synapses": {
+                  "max": 512.0,
+                  "mean": 512.0,
+                  "median": 512.0,
+                  "min": 512.0,
+                  "n": 3,
+                  "std": 0.0
+                },
+                "ticks_executed": {
+                  "max": 32.0,
+                  "mean": 32.0,
+                  "median": 32.0,
+                  "min": 32.0,
+                  "n": 3,
+                  "std": 0.0
+                },
+                "ticks_per_second": {
+                  "max": 4880.876088842245,
+                  "mean": 4183.241973448005,
+                  "median": 4281.28011038211,
+                  "min": 3387.569721119662,
+                  "n": 3,
+                  "std": 613.5685694852891
+                },
+                "total_spikes": {
+                  "max": 343.0,
+                  "mean": 329.6666666666667,
+                  "median": 334.0,
+                  "min": 312.0,
+                  "n": 3,
+                  "std": 13.02134998974974
+                }
+              },
+              "run_count": 3,
+              "seeds": [
+                20001,
+                20002,
+                20003
+              ]
+            },
+            "n25000": {
+              "metrics": {
+                "construction_seconds": {
+                  "max": 1.75417590001598,
+                  "mean": 1.2572563333281626,
+                  "median": 1.0847765000071377,
+                  "min": 0.9328165999613702,
+                  "n": 3,
+                  "std": 0.3568097014968306
+                },
+                "events_processed": {
+                  "max": 5123.0,
+                  "mean": 4973.0,
+                  "median": 4914.0,
+                  "min": 4882.0,
+                  "n": 3,
+                  "std": 106.86751923136734
+                },
+                "neuron_updates_per_second": {
+                  "max": 408428.7231414393,
+                  "mean": 388929.05594243156,
+                  "median": 387772.2421659893,
+                  "min": 370586.2025198661,
+                  "n": 3,
+                  "std": 15470.784408761638
+                },
+                "neurons": {
+                  "max": 25000.0,
+                  "mean": 25000.0,
+                  "median": 25000.0,
+                  "min": 25000.0,
+                  "n": 3,
+                  "std": 0.0
+                },
+                "rss_after_build_bytes": {
+                  "max": 665899008.0,
+                  "mean": 518077098.6666667,
+                  "median": 583585792.0,
+                  "min": 304746496.0,
+                  "n": 3,
+                  "std": 154545194.91647756
+                },
+                "rss_after_run_bytes": {
+                  "max": 650772480.0,
+                  "mean": 517547349.3333333,
+                  "median": 586424320.0,
+                  "min": 315445248.0,
+                  "n": 3,
+                  "std": 145302250.37568665
+                },
+                "step_seconds": {
+                  "max": 2.15874199999962,
+                  "mean": 2.06017826666357,
+                  "median": 2.0630667000077665,
+                  "min": 1.9587260999833234,
+                  "n": 3,
+                  "std": 0.08168168848328326
+                },
+                "synapses": {
+                  "max": 100000.0,
+                  "mean": 100000.0,
+                  "median": 100000.0,
+                  "min": 100000.0,
+                  "n": 3,
+                  "std": 0.0
+                },
+                "ticks_executed": {
+                  "max": 32.0,
+                  "mean": 32.0,
+                  "median": 32.0,
+                  "min": 32.0,
+                  "n": 3,
+                  "std": 0.0
+                },
+                "ticks_per_second": {
+                  "max": 16.337148925657573,
+                  "mean": 15.557162237697263,
+                  "median": 15.51088968663957,
+                  "min": 14.823448100794645,
+                  "n": 3,
+                  "std": 0.6188313763504656
+                },
+                "total_spikes": {
+                  "max": 1557.0,
+                  "mean": 1504.6666666666667,
+                  "median": 1482.0,
+                  "min": 1475.0,
+                  "n": 3,
+                  "std": 37.11543554312081
+                }
+              },
+              "run_count": 3,
+              "seeds": [
+                20001,
+                20002,
+                20003
+              ]
+            },
+            "n5000": {
+              "metrics": {
+                "construction_seconds": {
+                  "max": 1.1700330999447033,
+                  "mean": 0.5358134999793643,
+                  "median": 0.3139952000346966,
+                  "min": 0.12341219995869324,
+                  "n": 3,
+                  "std": 0.45516029829401006
+                },
+                "events_processed": {
+                  "max": 4999.0,
+                  "mean": 4580.333333333333,
+                  "median": 4523.0,
+                  "min": 4219.0,
+                  "n": 3,
+                  "std": 321.0039805914493
+                },
+                "neuron_updates_per_second": {
+                  "max": 547764.3682145388,
+                  "mean": 502966.15403687704,
+                  "median": 515926.489418714,
+                  "min": 445207.6044773785,
+                  "n": 3,
+                  "std": 42859.85041945589
+                },
+                "neurons": {
+                  "max": 5000.0,
+                  "mean": 5000.0,
+                  "median": 5000.0,
+                  "min": 5000.0,
+                  "n": 3,
+                  "std": 0.0
+                },
+                "rss_after_build_bytes": {
+                  "max": 640700416.0,
+                  "mean": 502726656.0,
+                  "median": 589680640.0,
+                  "min": 277798912.0,
+                  "n": 3,
+                  "std": 160405988.87711912
+                },
+                "rss_after_run_bytes": {
+                  "max": 625696768.0,
+                  "mean": 491485866.6666667,
+                  "median": 590336000.0,
+                  "min": 258424832.0,
+                  "n": 3,
+                  "std": 165430106.86955857
+                },
+                "step_seconds": {
+                  "max": 0.35938290000194684,
+                  "mean": 0.3205336666821192,
+                  "median": 0.3101217000512406,
+                  "min": 0.29209639999317005,
+                  "n": 3,
+                  "std": 0.02843911693073088
+                },
+                "synapses": {
+                  "max": 20000.0,
+                  "mean": 20000.0,
+                  "median": 20000.0,
+                  "min": 20000.0,
+                  "n": 3,
+                  "std": 0.0
+                },
+                "ticks_executed": {
+                  "max": 32.0,
+                  "mean": 32.0,
+                  "median": 32.0,
+                  "min": 32.0,
+                  "n": 3,
+                  "std": 0.0
+                },
+                "ticks_per_second": {
+                  "max": 109.55287364290776,
+                  "mean": 100.5932308073754,
+                  "median": 103.1852978837428,
+                  "min": 89.04152089547568,
+                  "n": 3,
+                  "std": 8.571970083891184
+                },
+                "total_spikes": {
+                  "max": 1505.0,
+                  "mean": 1376.0,
+                  "median": 1364.0,
+                  "min": 1259.0,
+                  "n": 3,
+                  "std": 100.7869039111729
+                }
+              },
+              "run_count": 3,
+              "seeds": [
+                20001,
+                20002,
+                20003
+              ]
+            }
+          },
+          "formulas": {
+            "difference": "Delta_x = mean(x_B) - mean(x_A)",
+            "inter_spike_interval": "ISI_i = t_(i+1) - t_i",
+            "mean": "mean(x) = (1/n) * sum_i x_i",
+            "population_std": "sigma = sqrt((1/n) * sum_i (x_i - mean(x))^2)",
+            "ratio": "R_x = mean(x_B) / mean(x_A), defined only when mean(x_A) != 0"
+          },
+          "generated_by": "deterministic_statistics_engine",
+          "run_count": 15,
+          "schema_version": "2.0"
+        }
+      },
+      "evid": [],
+      "literature": []
+    },
+    "quantitative_results": {
+      "conditions": {
+        "n100000": {
+          "metrics": {
+            "construction_seconds": {
+              "max": 4.439663199998904,
+              "mean": 4.229255533330918,
+              "median": 4.240122199989855,
+              "min": 4.0079812000039965,
+              "n": 3,
+              "std": 0.17640087039299282
+            },
+            "events_processed": {
+              "max": 5130.0,
+              "mean": 5127.0,
+              "median": 5128.0,
+              "min": 5123.0,
+              "n": 3,
+              "std": 2.943920288775949
+            },
+            "neuron_updates_per_second": {
+              "max": 317366.4456286379,
+              "mean": 301465.62966146454,
+              "median": 300885.0694160264,
+              "min": 286145.37393972924,
+              "n": 3,
+              "std": 12752.558357703003
+            },
+            "neurons": {
+              "max": 100000.0,
+              "mean": 100000.0,
+              "median": 100000.0,
+              "min": 100000.0,
+              "n": 3,
+              "std": 0.0
+            },
+            "rss_after_build_bytes": {
+              "max": 674988032.0,
+              "mean": 622062250.6666666,
+              "median": 609697792.0,
+              "min": 581500928.0,
+              "n": 3,
+              "std": 39154561.52367167
+            },
+            "rss_after_run_bytes": {
+              "max": 677482496.0,
+              "mean": 641138688.0,
+              "median": 632238080.0,
+              "min": 613695488.0,
+              "n": 3,
+              "std": 26790685.128420588
+            },
+            "step_seconds": {
+              "max": 11.18312679999508,
+              "mean": 10.63379946667313,
+              "median": 10.635290100006387,
+              "min": 10.082981500017922,
+              "n": 3,
+              "std": 0.449133674797944
+            },
+            "synapses": {
+              "max": 400000.0,
+              "mean": 400000.0,
+              "median": 400000.0,
+              "min": 400000.0,
+              "n": 3,
+              "std": 0.0
+            },
+            "ticks_executed": {
+              "max": 32.0,
+              "mean": 32.0,
+              "median": 32.0,
+              "min": 32.0,
+              "n": 3,
+              "std": 0.0
+            },
+            "ticks_per_second": {
+              "max": 3.1736644562863794,
+              "mean": 3.0146562966146457,
+              "median": 3.008850694160264,
+              "min": 2.8614537393972928,
+              "n": 3,
+              "std": 0.12752558357702998
+            },
+            "total_spikes": {
+              "max": 1560.0,
+              "mean": 1556.6666666666667,
+              "median": 1559.0,
+              "min": 1551.0,
+              "n": 3,
+              "std": 4.0276819911981905
+            }
+          },
+          "run_count": 3,
+          "seeds": [
+            20001,
+            20002,
+            20003
+          ]
+        },
+        "n1024": {
+          "metrics": {
+            "construction_seconds": {
+              "max": 0.02430849999655038,
+              "mean": 0.02091763335435341,
+              "median": 0.02059750002808869,
+              "min": 0.017846900038421154,
+              "n": 3,
+              "std": 0.002647631962674431
+            },
+            "events_processed": {
+              "max": 4028.0,
+              "mean": 3610.6666666666665,
+              "median": 3750.0,
+              "min": 3054.0,
+              "n": 3,
+              "std": 409.6578518172886
+            },
+            "neuron_updates_per_second": {
+              "max": 588169.8311700042,
+              "mean": 543760.9902746787,
+              "median": 549781.1312017128,
+              "min": 493332.008452319,
+              "n": 3,
+              "std": 38950.69299378198
+            },
+            "neurons": {
+              "max": 1024.0,
+              "mean": 1024.0,
+              "median": 1024.0,
+              "min": 1024.0,
+              "n": 3,
+              "std": 0.0
+            },
+            "rss_after_build_bytes": {
+              "max": 632668160.0,
+              "mean": 508290389.3333333,
+              "median": 614486016.0,
+              "min": 277716992.0,
+              "n": 3,
+              "std": 163208897.34424323
+            },
+            "rss_after_run_bytes": {
+              "max": 633036800.0,
+              "mean": 508510208.0,
+              "median": 614764544.0,
+              "min": 277729280.0,
+              "n": 3,
+              "std": 163357167.74650216
+            },
+            "step_seconds": {
+              "max": 0.06642180000199005,
+              "mean": 0.060578499998276435,
+              "median": 0.05960189999314025,
+              "min": 0.055711799999699,
+              "n": 3,
+              "std": 0.004426536320103457
+            },
+            "synapses": {
+              "max": 4096.0,
+              "mean": 4096.0,
+              "median": 4096.0,
+              "min": 4096.0,
+              "n": 3,
+              "std": 0.0
+            },
+            "ticks_executed": {
+              "max": 32.0,
+              "mean": 32.0,
+              "median": 32.0,
+              "min": 32.0,
+              "n": 3,
+              "std": 0.0
+            },
+            "ticks_per_second": {
+              "max": 574.3846007519572,
+              "mean": 531.0165920651159,
+              "median": 536.8956359391726,
+              "min": 481.7695395042178,
+              "n": 3,
+              "std": 38.037786126740215
+            },
+            "total_spikes": {
+              "max": 1166.0,
+              "mean": 1035.3333333333333,
+              "median": 1065.0,
+              "min": 875.0,
+              "n": 3,
+              "std": 120.63811816982042
+            }
+          },
+          "run_count": 3,
+          "seeds": [
+            20001,
+            20002,
+            20003
+          ]
+        },
+        "n128": {
+          "metrics": {
+            "construction_seconds": {
+              "max": 0.004132499976549298,
+              "mean": 0.003566999997322758,
+              "median": 0.0036031000199727714,
+              "min": 0.002965399995446205,
+              "n": 3,
+              "std": 0.00047714987177280635
+            },
+            "events_processed": {
+              "max": 1342.0,
+              "mean": 1292.0,
+              "median": 1315.0,
+              "min": 1219.0,
+              "n": 3,
+              "std": 52.78257288158659
+            },
+            "neuron_updates_per_second": {
+              "max": 624752.1393718073,
+              "mean": 535454.9726013447,
+              "median": 548003.8541289101,
+              "min": 433608.92430331674,
+              "n": 3,
+              "std": 78536.776894117
+            },
+            "neurons": {
+              "max": 128.0,
+              "mean": 128.0,
+              "median": 128.0,
+              "min": 128.0,
+              "n": 3,
+              "std": 0.0
+            },
+            "rss_after_build_bytes": {
+              "max": 632320000.0,
+              "mean": 507938133.3333333,
+              "median": 613810176.0,
+              "min": 277684224.0,
+              "n": 3,
+              "std": 162989366.6645975
+            },
+            "rss_after_run_bytes": {
+              "max": 632532992.0,
+              "mean": 508048725.3333333,
+              "median": 613928960.0,
+              "min": 277684224.0,
+              "n": 3,
+              "std": 163069269.75487188
+            },
+            "step_seconds": {
+              "max": 0.009446300042327493,
+              "mean": 0.007825633355726799,
+              "median": 0.007474399986676872,
+              "min": 0.00655620003817603,
+              "n": 3,
+              "std": 0.001205734400866596
+            },
+            "synapses": {
+              "max": 512.0,
+              "mean": 512.0,
+              "median": 512.0,
+              "min": 512.0,
+              "n": 3,
+              "std": 0.0
+            },
+            "ticks_executed": {
+              "max": 32.0,
+              "mean": 32.0,
+              "median": 32.0,
+              "min": 32.0,
+              "n": 3,
+              "std": 0.0
+            },
+            "ticks_per_second": {
+              "max": 4880.876088842245,
+              "mean": 4183.241973448005,
+              "median": 4281.28011038211,
+              "min": 3387.569721119662,
+              "n": 3,
+              "std": 613.5685694852891
+            },
+            "total_spikes": {
+              "max": 343.0,
+              "mean": 329.6666666666667,
+              "median": 334.0,
+              "min": 312.0,
+              "n": 3,
+              "std": 13.02134998974974
+            }
+          },
+          "run_count": 3,
+          "seeds": [
+            20001,
+            20002,
+            20003
+          ]
+        },
+        "n25000": {
+          "metrics": {
+            "construction_seconds": {
+              "max": 1.75417590001598,
+              "mean": 1.2572563333281626,
+              "median": 1.0847765000071377,
+              "min": 0.9328165999613702,
+              "n": 3,
+              "std": 0.3568097014968306
+            },
+            "events_processed": {
+              "max": 5123.0,
+              "mean": 4973.0,
+              "median": 4914.0,
+              "min": 4882.0,
+              "n": 3,
+              "std": 106.86751923136734
+            },
+            "neuron_updates_per_second": {
+              "max": 408428.7231414393,
+              "mean": 388929.05594243156,
+              "median": 387772.2421659893,
+              "min": 370586.2025198661,
+              "n": 3,
+              "std": 15470.784408761638
+            },
+            "neurons": {
+              "max": 25000.0,
+              "mean": 25000.0,
+              "median": 25000.0,
+              "min": 25000.0,
+              "n": 3,
+              "std": 0.0
+            },
+            "rss_after_build_bytes": {
+              "max": 665899008.0,
+              "mean": 518077098.6666667,
+              "median": 583585792.0,
+              "min": 304746496.0,
+              "n": 3,
+              "std": 154545194.91647756
+            },
+            "rss_after_run_bytes": {
+              "max": 650772480.0,
+              "mean": 517547349.3333333,
+              "median": 586424320.0,
+              "min": 315445248.0,
+              "n": 3,
+              "std": 145302250.37568665
+            },
+            "step_seconds": {
+              "max": 2.15874199999962,
+              "mean": 2.06017826666357,
+              "median": 2.0630667000077665,
+              "min": 1.9587260999833234,
+              "n": 3,
+              "std": 0.08168168848328326
+            },
+            "synapses": {
+              "max": 100000.0,
+              "mean": 100000.0,
+              "median": 100000.0,
+              "min": 100000.0,
+              "n": 3,
+              "std": 0.0
+            },
+            "ticks_executed": {
+              "max": 32.0,
+              "mean": 32.0,
+              "median": 32.0,
+              "min": 32.0,
+              "n": 3,
+              "std": 0.0
+            },
+            "ticks_per_second": {
+              "max": 16.337148925657573,
+              "mean": 15.557162237697263,
+              "median": 15.51088968663957,
+              "min": 14.823448100794645,
+              "n": 3,
+              "std": 0.6188313763504656
+            },
+            "total_spikes": {
+              "max": 1557.0,
+              "mean": 1504.6666666666667,
+              "median": 1482.0,
+              "min": 1475.0,
+              "n": 3,
+              "std": 37.11543554312081
+            }
+          },
+          "run_count": 3,
+          "seeds": [
+            20001,
+            20002,
+            20003
+          ]
+        },
+        "n5000": {
+          "metrics": {
+            "construction_seconds": {
+              "max": 1.1700330999447033,
+              "mean": 0.5358134999793643,
+              "median": 0.3139952000346966,
+              "min": 0.12341219995869324,
+              "n": 3,
+              "std": 0.45516029829401006
+            },
+            "events_processed": {
+              "max": 4999.0,
+              "mean": 4580.333333333333,
+              "median": 4523.0,
+              "min": 4219.0,
+              "n": 3,
+              "std": 321.0039805914493
+            },
+            "neuron_updates_per_second": {
+              "max": 547764.3682145388,
+              "mean": 502966.15403687704,
+              "median": 515926.489418714,
+              "min": 445207.6044773785,
+              "n": 3,
+              "std": 42859.85041945589
+            },
+            "neurons": {
+              "max": 5000.0,
+              "mean": 5000.0,
+              "median": 5000.0,
+              "min": 5000.0,
+              "n": 3,
+              "std": 0.0
+            },
+            "rss_after_build_bytes": {
+              "max": 640700416.0,
+              "mean": 502726656.0,
+              "median": 589680640.0,
+              "min": 277798912.0,
+              "n": 3,
+              "std": 160405988.87711912
+            },
+            "rss_after_run_bytes": {
+              "max": 625696768.0,
+              "mean": 491485866.6666667,
+              "median": 590336000.0,
+              "min": 258424832.0,
+              "n": 3,
+              "std": 165430106.86955857
+            },
+            "step_seconds": {
+              "max": 0.35938290000194684,
+              "mean": 0.3205336666821192,
+              "median": 0.3101217000512406,
+              "min": 0.29209639999317005,
+              "n": 3,
+              "std": 0.02843911693073088
+            },
+            "synapses": {
+              "max": 20000.0,
+              "mean": 20000.0,
+              "median": 20000.0,
+              "min": 20000.0,
+              "n": 3,
+              "std": 0.0
+            },
+            "ticks_executed": {
+              "max": 32.0,
+              "mean": 32.0,
+              "median": 32.0,
+              "min": 32.0,
+              "n": 3,
+              "std": 0.0
+            },
+            "ticks_per_second": {
+              "max": 109.55287364290776,
+              "mean": 100.5932308073754,
+              "median": 103.1852978837428,
+              "min": 89.04152089547568,
+              "n": 3,
+              "std": 8.571970083891184
+            },
+            "total_spikes": {
+              "max": 1505.0,
+              "mean": 1376.0,
+              "median": 1364.0,
+              "min": 1259.0,
+              "n": 3,
+              "std": 100.7869039111729
+            }
+          },
+          "run_count": 3,
+          "seeds": [
+            20001,
+            20002,
+            20003
+          ]
+        }
+      },
+      "formulas": {
+        "difference": "Delta_x = mean(x_B) - mean(x_A)",
+        "inter_spike_interval": "ISI_i = t_(i+1) - t_i",
+        "mean": "mean(x) = (1/n) * sum_i x_i",
+        "population_std": "sigma = sqrt((1/n) * sum_i (x_i - mean(x))^2)",
+        "ratio": "R_x = mean(x_B) / mean(x_A), defined only when mean(x_A) != 0"
+      },
+      "generated_by": "deterministic_statistics_engine",
+      "run_count": 15,
+      "schema_version": "2.0"
+    },
+    "observations": [],
+    "interpretation": {
+      "experiment_id": "EXP-BATCH-20260914074039-81",
+      "run_count": 15,
+      "seeds": [
+        20001,
+        20002,
+        20003
+      ],
+      "software": {
+        "brain5d_version": "0.6.0a3",
+        "os": "Windows 11",
+        "python": "3.13.14"
+      },
+      "git": {
+        "branch": "main",
+        "commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+        "dirty": true
+      },
+      "protocol": "active_scaling_v1",
+      "research_question": {
+        "answer": {
+          "confidence": "none",
+          "current": null,
+          "limitations": "Protocol/data availability does not mean accepted EVID."
+        },
+        "created": "2026-09-10",
+        "domain": "Empirical Evaluation",
+        "evidence": [],
+        "hypotheses": [
+          "H-EVAL-004-A"
+        ],
+        "id": "RQ-EVAL-004",
+        "literature": [],
+        "question": "What throughput and sampled process memory arise in short active four-outgoing-edge workloads through 100000 neurons?",
+        "relevance": "Bounded exploratory observation; preserves historical records and requires human evidence review.",
+        "status": "open",
+        "updated": "2026-09-10"
+      },
+      "hypotheses": [
+        "H-EVAL-004-A"
+      ],
+      "known_limitations": [
+        "Git provenance is dirty or unavailable.",
+        "No registered scientific evidence is linked to this experiment."
+      ],
+      "literature_sources": [],
+      "manifest": {
+        "ai_exposure": "none",
+        "ai_interactions": [],
+        "ai_protocol": {
+          "bump_reason": "initial registration",
+          "version": 1
+        },
+        "ai_reproducibility": "R0",
+        "artifacts": {
+          "ai_packet": "analysis/ai_packet.json",
+          "ai_packet_digest": "analysis/ai_packet_digest.json",
+          "ai_report_json": "experiments/EXP-BATCH-20260914074039-81/reports/AIRR-2026-0001.json",
+          "ai_report_markdown": "experiments/EXP-BATCH-20260914074039-81/reports/AIRR-2026-0001.md",
+          "current_run": "DATA/current_run.json",
+          "data": "DATA/runs.json",
+          "data_index": "DATA/runs_index.json",
+          "preregistration": "preregistrations/operational/active_scaling_v1.json",
+          "raw_run_index": "DATA/runs_index.json",
+          "report": "report.md",
+          "statistics": "analysis/statistics.json",
+          "workflow": "workflow.json"
+        },
+        "causal_card": {
+          "classification": "PURE",
+          "interaction_ids": [],
+          "roles": []
+        },
+        "causal_taint": "PURE",
+        "config": {
+          "path": "F:\\Brain-5D\\configs\\learning_experiment.yaml",
+          "sha256": "6f6cd457caf6216c286fee47ef03b529a0b496ed2dd53ee96b85d3b51e7b3a1c"
+        },
+        "created_at": "2026-09-14T08:55:54.692639+00:00",
+        "data_partitions": [],
+        "epistemic_layers": {
+          "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+          "evid": "not_created; requires semantic validation, clean freeze and human review",
+          "interpretation": "post-hoc AI or human interpretation; never execution input",
+          "ui_state": "operator/dashboard progress only; not a scientific result"
+        },
+        "execution_contract": {
+          "hypothesis_id": "H-EVAL-004-A",
+          "protocol": "active_scaling_v1",
+          "question_id": "RQ-EVAL-004",
+          "resolved_runner": "run_eval_scaling",
+          "runtime_runner_bytecode_sha256": "ca87b97820809dbdb240927567927a7c7a45a801b86ecd9d9a7421146ccab755",
+          "runtime_summary_bytecode_sha256": "8d311e523e6093b1bbb23954dae163406f1836fb0defa5b8c4479ac68a929395",
+          "source_runner_bytecode_sha256": "ca87b97820809dbdb240927567927a7c7a45a801b86ecd9d9a7421146ccab755",
+          "source_runtime_consistency": "MATCH",
+          "source_summary_bytecode_sha256": "8d311e523e6093b1bbb23954dae163406f1836fb0defa5b8c4479ac68a929395",
+          "tick_validation": {
+            "mode": "protocol_defined_internal_trials",
+            "requested_ticks": 1000,
+            "status": "NOT_APPLICABLE"
+          },
+          "ticks_requested": 1000
+        },
+        "execution_semantics": {
+          "automatic_evidence_promotion": false,
+          "claim_scope": "direct_technical_measurement_not_automatic_evidence",
+          "direct_test_of_hypothesis": true,
+          "external_review": "external_review/INTEGRATION.md",
+          "human_assessment": "not_recorded",
+          "kind": "functional_experiment",
+          "scientific_evidence": false,
+          "snn_involved": true
+        },
+        "experiment_id": "EXP-BATCH-20260914074039-81",
+        "experiment_status": "completed",
+        "git": {
+          "branch": "main",
+          "commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+          "dirty": true
+        },
+        "hypotheses": [
+          "H-EVAL-004-A"
+        ],
+        "network_mode": "OFFLINE",
+        "provenance_digests": {
+          "code": "5a11ea288e7e695c2dcd456642b533cbb3e6daf38b72e150134e60e69059531f",
+          "config": "6f6cd457caf6216c286fee47ef03b529a0b496ed2dd53ee96b85d3b51e7b3a1c",
+          "data": "6386e8d4a67f59ee14abe0983b7051e2db1e050195d86e56ddf3e518e7b4e73e",
+          "prompt": "dd18e473908e7e75b1717c240bac221729ea38753abfd28b701b37b20d5f5e14"
+        },
+        "research_questions": [
+          "RQ-EVAL-004"
+        ],
+        "research_run_mode": "EXPLORATORY",
+        "results": {
+          "protocol": "active_scaling_v1",
+          "run_count": 15,
+          "runner": "run_eval_scaling",
+          "tick_contract": {
+            "mode": "protocol_defined_internal_trials",
+            "requested_ticks": 1000,
+            "status": "NOT_APPLICABLE"
+          },
+          "ticks_requested": 1000
+        },
+        "runtime": {
+          "duration_seconds": 57.51314120000461
+        },
+        "runtime_errors": [],
+        "simulation": {
+          "protocol": "active_scaling_v1",
+          "seed": 20001,
+          "seeds": [
+            20001,
+            20002,
+            20003
+          ],
+          "ticks": 1000
+        },
+        "source_freeze_sha": "558f3def1a93b35f41a275de8ab428289bf09228793b0ba5a5e5ca95ed0b1840",
+        "timestamp": "2026-09-14T10:55:54.692631",
+        "validity": {
+          "fatal_error_count": 0,
+          "reason": null,
+          "runtime_error_count": 0,
+          "valid": true
+        }
+      },
+      "previous_analyses": [],
+      "provenance": {
+        "configuration_path": "F:\\Brain-5D\\configs\\learning_experiment.yaml",
+        "configuration_sha256": "6f6cd457caf6216c286fee47ef03b529a0b496ed2dd53ee96b85d3b51e7b3a1c",
+        "data_digest": "5e79e3da9686b522481814c969d31d86bff5596c7115a18b25a1d2c9858bd316",
+        "data_ids": "NOT_AVAILABLE",
+        "evid_digests": "[]",
+        "evid_ids": "NOT_AVAILABLE",
+        "evidence_mode": "not_reported",
+        "experiment_manifest_digest": "09343e9733c8f43324a1ad76936db7c4270d24943b9826d6470bcf59fc199c62",
+        "experiment_status": "completed",
+        "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+        "git_dirty": "True",
+        "protocol_digest": "81422f8bcd6aee7cd1ae6321a9ed5693b084e2e76b58dab2577c2d2913a11e94",
+        "protocol_id": "NOT_AVAILABLE",
+        "source_freeze_sha": "558f3def1a93b35f41a275de8ab428289bf09228793b0ba5a5e5ca95ed0b1840"
+      },
+      "assessment": "Die Analyse konnte nicht vollstaendig schema-konform erzeugt werden. Das Modell hat das erforderliche assessment-Feld nicht geliefert.",
+      "observations": [],
+      "methodological_concerns": [
+        "Die vom Modell ausgegebene confidence war schemawidrig oder ausserhalb des Bereichs 0..1. Sie wurde fuer die AIRR-Provenienz konservativ auf 0.0 gesetzt; der Originalwert bleibt als confidence_original erhalten."
+      ],
+      "alternative_explanations": [],
+      "recommended_experiments": [],
+      "requested_evidence": [],
+      "effect_direction": "not_determined",
+      "confidence_original": null,
+      "confidence": 0.0
+    },
+    "methodological_critique": [
+      "Die vom Modell ausgegebene confidence war schemawidrig oder ausserhalb des Bereichs 0..1. Sie wurde fuer die AIRR-Provenienz konservativ auf 0.0 gesetzt; der Originalwert bleibt als confidence_original erhalten."
+    ],
+    "alternative_explanations": [],
+    "reproducibility": {
+      "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+      "experiment_status": "completed",
+      "evidence_mode": "not_reported",
+      "git_dirty": "True",
+      "source_freeze_sha": "558f3def1a93b35f41a275de8ab428289bf09228793b0ba5a5e5ca95ed0b1840",
+      "configuration_path": "F:\\Brain-5D\\configs\\learning_experiment.yaml",
+      "configuration_sha256": "6f6cd457caf6216c286fee47ef03b529a0b496ed2dd53ee96b85d3b51e7b3a1c",
+      "experiment_manifest_digest": "09343e9733c8f43324a1ad76936db7c4270d24943b9826d6470bcf59fc199c62",
+      "data_ids": "NOT_AVAILABLE",
+      "evid_ids": "NOT_AVAILABLE",
+      "protocol_id": "NOT_AVAILABLE",
+      "protocol_digest": "81422f8bcd6aee7cd1ae6321a9ed5693b084e2e76b58dab2577c2d2913a11e94",
+      "data_digest": "5e79e3da9686b522481814c969d31d86bff5596c7115a18b25a1d2c9858bd316",
+      "evid_digests": "[]"
+    },
+    "epistemic_status": {
+      "implementation": "NOT_DETERMINED",
+      "experiment_data": "PRESENT",
+      "registered_evidence": "ABSENT",
+      "ai_interpretation": "PRESENT",
+      "human_review": "PENDING",
+      "claim_support": "NOT_DETERMINED",
+      "rq_status": "IN_PROGRESS"
+    },
+    "ai_confidence": 0.0,
+    "missing_evidence": [],
+    "recommended_follow_up": [],
+    "conclusion": "Die Analyse konnte nicht vollstaendig schema-konform erzeugt werden. Das Modell hat das erforderliche assessment-Feld nicht geliefert.",
+    "human_review": {
+      "status": "PENDING",
+      "reviewer": null,
+      "reviewed_at": null,
+      "disposition": null,
+      "comments": null
+    },
+    "aiar": {
+      "analyst": {
+        "analysis_id": "AIAR-scientific_analyst-20260914115926257004-6717b224",
+        "role": "scientific_analyst",
+        "model": {
+          "provider": "ollama",
+          "model_name": "qwen2.5-coder:7b",
+          "model_digest": "not_reported",
+          "quantization": "not_reported",
+          "context_length": "unknown",
+          "temperature": 0.0,
+          "top_p": 1.0,
+          "seed": "not_reported",
+          "backend_version": "unknown"
+        },
+        "inputs": {
+          "experiment_id": "EXP-BATCH-20260914074039-81",
+          "packet_digest": "6717b224f0b259fc9598437a864f8f6f38b66ace26d21200d2beb40ed9ab5d63"
+        },
+        "output": {
+          "experiment_id": "EXP-BATCH-20260914074039-81",
+          "run_count": 15,
+          "seeds": [
+            20001,
+            20002,
+            20003
+          ],
+          "metrics": {
+            "n1024": {
+              "construction_seconds": {
+                "mean": 0.02091763335435341,
+                "std": 0.002647631962674431
+              },
+              "events_processed": {
+                "mean": 3610.6666666666665,
+                "std": 409.6578518172886
+              },
+              "neuron_updates_per_second": {
+                "mean": 543760.9902746787,
+                "std": 38950.69299378198
+              },
+              "synapses": {
+                "mean": 4096.0,
+                "std": 0.0
+              },
+              "ticks_per_second": {
+                "mean": 531.0165920651159,
+                "std": 38.037786126740215
+              },
+              "total_spikes": {
+                "mean": 1035.3333333333333,
+                "std": 120.63811816982042
+              }
+            },
+            "n128": {
+              "construction_seconds": {
+                "mean": 0.003566999997322758,
+                "std": 0.00047714987177280635
+              },
+              "events_processed": {
+                "mean": 1292.0,
+                "std": 52.78257288158659
+              },
+              "neuron_updates_per_second": {
+                "mean": 535454.9726013447,
+                "std": 78536.776894117
+              },
+              "synapses": {
+                "mean": 512.0,
+                "std": 0.0
+              },
+              "ticks_per_second": {
+                "mean": 4183.241973448005,
+                "std": 613.5685694852891
+              },
+              "total_spikes": {
+                "mean": 329.6666666666667,
+                "std": 13.02134998974974
+              }
+            },
+            "n25000": {
+              "construction_seconds": {
+                "mean": 1.2572563333281626,
+                "std": 0.3568097014968306
+              },
+              "events_processed": {
+                "mean": 4973.0,
+                "std": 106.86751923136734
+              },
+              "neuron_updates_per_second": {
+                "mean": 388929.05594243156,
+                "std": 15470.784408761638
+              },
+              "synapses": {
+                "mean": 100000.0,
+                "std": 0.0
+              },
+              "ticks_per_second": {
+                "mean": 15.557162237697263,
+                "std": 0.6188313763504656
+              },
+              "total_spikes": {
+                "mean": 1504.6666666666667,
+                "std": 37.11543554312081
+              }
+            },
+            "n5000": {
+              "construction_seconds": {
+                "mean": 0.5358134999793643,
+                "std": 0.45516029829401006
+              },
+              "events_processed": {
+                "mean": 4580.333333333333,
+                "std": 321.0039805914493
+              },
+              "neuron_updates_per_second": {
+                "mean": 502966.15403687704,
+                "std": 42859.85041945589
+              },
+              "synapses": {
+                "mean": 20000.0,
+                "std": 0.0
+              },
+              "ticks_per_second": {
+                "mean": 100.5932308073754,
+                "std": 8.571970083891184
+              },
+              "total_spikes": {
+                "mean": 1376.0,
+                "std": 100.7869039111729
+              }
+            }
+          },
+          "formulas": {
+            "difference": "Delta_x = mean(x_B) - mean(x_A)",
+            "inter_spike_interval": "ISI_i = t_(i+1) - t_i",
+            "mean": "mean(x) = (1/n) * sum_i x_i",
+            "population_std": "sigma = sqrt((1/n) * sum_i (x_i - mean(x))^2)",
+            "ratio": "R_x = mean(x_B) / mean(x_A), defined only when mean(x_A) != 0"
+          },
+          "generated_by": "deterministic_statistics_engine",
+          "schema_version": "2.0",
+          "assessment": "Die Analyse konnte nicht vollstaendig schema-konform erzeugt werden. Das Modell hat das erforderliche assessment-Feld nicht geliefert.",
+          "observations": [],
+          "methodological_concerns": [
+            "Die vom Modell ausgegebene confidence war schemawidrig oder ausserhalb des Bereichs 0..1. Sie wurde fuer die AIRR-Provenienz konservativ auf 0.0 gesetzt; der Originalwert bleibt als confidence_original erhalten."
+          ],
+          "alternative_explanations": [],
+          "recommended_experiments": [],
+          "requested_evidence": [],
+          "effect_direction": "not_determined",
+          "confidence_original": null,
+          "confidence": 0.0
+        },
+        "provenance": {
+          "prompt_sha256": "e12d6d84f4cf5c330a1046faec8ba933aa50aa2dd9867712ef0b036a691130b9",
+          "research_packet_digest": "6717b224f0b259fc9598437a864f8f6f38b66ace26d21200d2beb40ed9ab5d63",
+          "prompt_protocol_version": "research_assistant_v1",
+          "assistant_schema_version": "1.2",
+          "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+          "model_self_confidence": "0.0"
+        },
+        "epistemic_status": {
+          "evidence": false,
+          "interpretation_only": true,
+          "human_review_required": true
+        },
+        "review": {
+          "status": "pending",
+          "reviewer": null,
+          "reviewed_at": null,
+          "disposition": null
+        },
+        "generated_at": "2026-09-14T11:59:26.257004+00:00"
+      },
+      "reviewer": {
+        "analysis_id": "AIAR-critical_reviewer-20260914120011417514-6717b224",
+        "role": "critical_reviewer",
+        "model": {
+          "provider": "ollama",
+          "model_name": "qwen2.5-coder:7b",
+          "model_digest": "not_reported",
+          "quantization": "not_reported",
+          "context_length": "unknown",
+          "temperature": 0.0,
+          "top_p": 1.0,
+          "seed": "not_reported",
+          "backend_version": "unknown"
+        },
+        "inputs": {
+          "experiment_id": "EXP-BATCH-20260914074039-81",
+          "packet_digest": "6717b224f0b259fc9598437a864f8f6f38b66ace26d21200d2beb40ed9ab5d63"
+        },
+        "output": {
+          "experiment_id": "EXP-BATCH-20260914074039-81",
+          "run_count": 15,
+          "seeds": [
+            20001,
+            20002,
+            20003
+          ],
+          "software": {
+            "brain5d_version": "0.6.0a3",
+            "os": "Windows 11",
+            "python": "3.13.14"
+          },
+          "git": {
+            "branch": "main",
+            "commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+            "dirty": true
+          },
+          "protocol": "active_scaling_v1",
+          "research_question": {
+            "answer": {
+              "confidence": "none",
+              "current": null,
+              "limitations": "Protocol/data availability does not mean accepted EVID."
+            },
+            "created": "2026-09-10",
+            "domain": "Empirical Evaluation",
+            "evidence": [],
+            "hypotheses": [
+              "H-EVAL-004-A"
+            ],
+            "id": "RQ-EVAL-004",
+            "literature": [],
+            "question": "What throughput and sampled process memory arise in short active four-outgoing-edge workloads through 100000 neurons?",
+            "relevance": "Bounded exploratory observation; preserves historical records and requires human evidence review.",
+            "status": "open",
+            "updated": "2026-09-10"
+          },
+          "hypotheses": [
+            "H-EVAL-004-A"
+          ],
+          "known_limitations": [
+            "Git provenance is dirty or unavailable.",
+            "No registered scientific evidence is linked to this experiment."
+          ],
+          "literature_sources": [],
+          "manifest": {
+            "ai_exposure": "none",
+            "ai_interactions": [],
+            "ai_protocol": {
+              "bump_reason": "initial registration",
+              "version": 1
+            },
+            "ai_reproducibility": "R0",
+            "artifacts": {
+              "ai_packet": "analysis/ai_packet.json",
+              "ai_packet_digest": "analysis/ai_packet_digest.json",
+              "ai_report_json": "experiments/EXP-BATCH-20260914074039-81/reports/AIRR-2026-0001.json",
+              "ai_report_markdown": "experiments/EXP-BATCH-20260914074039-81/reports/AIRR-2026-0001.md",
+              "current_run": "DATA/current_run.json",
+              "data": "DATA/runs.json",
+              "data_index": "DATA/runs_index.json",
+              "preregistration": "preregistrations/operational/active_scaling_v1.json",
+              "raw_run_index": "DATA/runs_index.json",
+              "report": "report.md",
+              "statistics": "analysis/statistics.json",
+              "workflow": "workflow.json"
+            },
+            "causal_card": {
+              "classification": "PURE",
+              "interaction_ids": [],
+              "roles": []
+            },
+            "causal_taint": "PURE",
+            "config": {
+              "path": "F:\\Brain-5D\\configs\\learning_experiment.yaml",
+              "sha256": "6f6cd457caf6216c286fee47ef03b529a0b496ed2dd53ee96b85d3b51e7b3a1c"
+            },
+            "created_at": "2026-09-14T08:55:54.692639+00:00",
+            "data_partitions": [],
+            "epistemic_layers": {
+              "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+              "evid": "not_created; requires semantic validation, clean freeze and human review",
+              "interpretation": "post-hoc AI or human interpretation; never execution input",
+              "ui_state": "operator/dashboard progress only; not a scientific result"
+            },
+            "execution_contract": {
+              "hypothesis_id": "H-EVAL-004-A",
+              "protocol": "active_scaling_v1",
+              "question_id": "RQ-EVAL-004",
+              "resolved_runner": "run_eval_scaling",
+              "runtime_runner_bytecode_sha256": "ca87b97820809dbdb240927567927a7c7a45a801b86ecd9d9a7421146ccab755",
+              "runtime_summary_bytecode_sha256": "8d311e523e6093b1bbb23954dae163406f1836fb0defa5b8c4479ac68a929395",
+              "source_runner_bytecode_sha256": "ca87b97820809dbdb240927567927a7c7a45a801b86ecd9d9a7421146ccab755",
+              "source_runtime_consistency": "MATCH",
+              "source_summary_bytecode_sha256": "8d311e523e6093b1bbb23954dae163406f1836fb0defa5b8c4479ac68a929395",
+              "tick_validation": {
+                "mode": "protocol_defined_internal_trials",
+                "requested_ticks": 1000,
+                "status": "NOT_APPLICABLE"
+              },
+              "ticks_requested": 1000
+            },
+            "execution_semantics": {
+              "automatic_evidence_promotion": false,
+              "claim_scope": "direct_technical_measurement_not_automatic_evidence",
+              "direct_test_of_hypothesis": true,
+              "external_review": "external_review/INTEGRATION.md",
+              "human_assessment": "not_recorded",
+              "kind": "functional_experiment",
+              "scientific_evidence": false,
+              "snn_involved": true
+            },
+            "experiment_id": "EXP-BATCH-20260914074039-81",
+            "experiment_status": "completed",
+            "git": {
+              "branch": "main",
+              "commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+              "dirty": true
+            },
+            "hypotheses": [
+              "H-EVAL-004-A"
+            ],
+            "network_mode": "OFFLINE",
+            "provenance_digests": {
+              "code": "5a11ea288e7e695c2dcd456642b533cbb3e6daf38b72e150134e60e69059531f",
+              "config": "6f6cd457caf6216c286fee47ef03b529a0b496ed2dd53ee96b85d3b51e7b3a1c",
+              "data": "6386e8d4a67f59ee14abe0983b7051e2db1e050195d86e56ddf3e518e7b4e73e",
+              "prompt": "dd18e473908e7e75b1717c240bac221729ea38753abfd28b701b37b20d5f5e14"
+            },
+            "research_questions": [
+              "RQ-EVAL-004"
+            ],
+            "research_run_mode": "EXPLORATORY",
+            "results": {
+              "protocol": "active_scaling_v1",
+              "run_count": 15,
+              "runner": "run_eval_scaling",
+              "tick_contract": {
+                "mode": "protocol_defined_internal_trials",
+                "requested_ticks": 1000,
+                "status": "NOT_APPLICABLE"
+              },
+              "ticks_requested": 1000
+            },
+            "runtime": {
+              "duration_seconds": 57.51314120000461
+            },
+            "runtime_errors": [],
+            "simulation": {
+              "protocol": "active_scaling_v1",
+              "seed": 20001,
+              "seeds": [
+                20001,
+                20002,
+                20003
+              ],
+              "ticks": 1000
+            },
+            "source_freeze_sha": "558f3def1a93b35f41a275de8ab428289bf09228793b0ba5a5e5ca95ed0b1840",
+            "timestamp": "2026-09-14T10:55:54.692631",
+            "validity": {
+              "fatal_error_count": 0,
+              "reason": null,
+              "runtime_error_count": 0,
+              "valid": true
+            }
+          },
+          "previous_analyses": [],
+          "provenance": {
+            "configuration_path": "F:\\Brain-5D\\configs\\learning_experiment.yaml",
+            "configuration_sha256": "6f6cd457caf6216c286fee47ef03b529a0b496ed2dd53ee96b85d3b51e7b3a1c",
+            "data_digest": "5e79e3da9686b522481814c969d31d86bff5596c7115a18b25a1d2c9858bd316",
+            "data_ids": "NOT_AVAILABLE",
+            "evid_digests": "[]",
+            "evid_ids": "NOT_AVAILABLE",
+            "evidence_mode": "not_reported",
+            "experiment_manifest_digest": "09343e9733c8f43324a1ad76936db7c4270d24943b9826d6470bcf59fc199c62",
+            "experiment_status": "completed",
+            "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+            "git_dirty": "True",
+            "protocol_digest": "81422f8bcd6aee7cd1ae6321a9ed5693b084e2e76b58dab2577c2d2913a11e94",
+            "protocol_id": "NOT_AVAILABLE",
+            "source_freeze_sha": "558f3def1a93b35f41a275de8ab428289bf09228793b0ba5a5e5ca95ed0b1840"
+          },
+          "assessment": "Die Analyse konnte nicht vollstaendig schema-konform erzeugt werden. Das Modell hat das erforderliche assessment-Feld nicht geliefert.",
+          "observations": [],
+          "methodological_concerns": [
+            "Die vom Modell ausgegebene confidence war schemawidrig oder ausserhalb des Bereichs 0..1. Sie wurde fuer die AIRR-Provenienz konservativ auf 0.0 gesetzt; der Originalwert bleibt als confidence_original erhalten."
+          ],
+          "alternative_explanations": [],
+          "recommended_experiments": [],
+          "requested_evidence": [],
+          "effect_direction": "not_determined",
+          "confidence_original": null,
+          "confidence": 0.0
+        },
+        "provenance": {
+          "prompt_sha256": "2fc7277bd77c40f3bcd72edba96dfb76f87fa36289e2ddeb48065e73d48ecaf4",
+          "research_packet_digest": "6717b224f0b259fc9598437a864f8f6f38b66ace26d21200d2beb40ed9ab5d63",
+          "prompt_protocol_version": "research_assistant_v1",
+          "assistant_schema_version": "1.2",
+          "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+          "model_self_confidence": "0.0"
+        },
+        "epistemic_status": {
+          "evidence": false,
+          "interpretation_only": true,
+          "human_review_required": true
+        },
+        "review": {
+          "status": "pending",
+          "reviewer": null,
+          "reviewed_at": null,
+          "disposition": null
+        },
+        "generated_at": "2026-09-14T12:00:11.417514+00:00"
+      },
+      "writer": {
+        "analysis_id": "AIAR-scientific_writer-20260914120056569232-6717b224",
+        "role": "scientific_writer",
+        "model": {
+          "provider": "ollama",
+          "model_name": "qwen2.5-coder:7b",
+          "model_digest": "not_reported",
+          "quantization": "not_reported",
+          "context_length": "unknown",
+          "temperature": 0.0,
+          "top_p": 1.0,
+          "seed": "not_reported",
+          "backend_version": "unknown"
+        },
+        "inputs": {
+          "experiment_id": "EXP-BATCH-20260914074039-81",
+          "packet_digest": "6717b224f0b259fc9598437a864f8f6f38b66ace26d21200d2beb40ed9ab5d63"
+        },
+        "output": {
+          "experiment_id": "EXP-BATCH-20260914074039-81",
+          "run_count": 15,
+          "seeds": [
+            20001,
+            20002,
+            20003
+          ],
+          "software": {
+            "brain5d_version": "0.6.0a3",
+            "os": "Windows 11",
+            "python": "3.13.14"
+          },
+          "git": {
+            "branch": "main",
+            "commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+            "dirty": true
+          },
+          "protocol": "active_scaling_v1",
+          "research_question": {
+            "answer": {
+              "confidence": "none",
+              "current": null,
+              "limitations": "Protocol/data availability does not mean accepted EVID."
+            },
+            "created": "2026-09-10",
+            "domain": "Empirical Evaluation",
+            "evidence": [],
+            "hypotheses": [
+              "H-EVAL-004-A"
+            ],
+            "id": "RQ-EVAL-004",
+            "literature": [],
+            "question": "What throughput and sampled process memory arise in short active four-outgoing-edge workloads through 100000 neurons?",
+            "relevance": "Bounded exploratory observation; preserves historical records and requires human evidence review.",
+            "status": "open",
+            "updated": "2026-09-10"
+          },
+          "hypotheses": [
+            "H-EVAL-004-A"
+          ],
+          "known_limitations": [
+            "Git provenance is dirty or unavailable.",
+            "No registered scientific evidence is linked to this experiment."
+          ],
+          "literature_sources": [],
+          "manifest": {
+            "ai_exposure": "none",
+            "ai_interactions": [],
+            "ai_protocol": {
+              "bump_reason": "initial registration",
+              "version": 1
+            },
+            "ai_reproducibility": "R0",
+            "artifacts": {
+              "ai_packet": "analysis/ai_packet.json",
+              "ai_packet_digest": "analysis/ai_packet_digest.json",
+              "ai_report_json": "experiments/EXP-BATCH-20260914074039-81/reports/AIRR-2026-0001.json",
+              "ai_report_markdown": "experiments/EXP-BATCH-20260914074039-81/reports/AIRR-2026-0001.md",
+              "current_run": "DATA/current_run.json",
+              "data": "DATA/runs.json",
+              "data_index": "DATA/runs_index.json",
+              "preregistration": "preregistrations/operational/active_scaling_v1.json",
+              "raw_run_index": "DATA/runs_index.json",
+              "report": "report.md",
+              "statistics": "analysis/statistics.json",
+              "workflow": "workflow.json"
+            },
+            "causal_card": {
+              "classification": "PURE",
+              "interaction_ids": [],
+              "roles": []
+            },
+            "causal_taint": "PURE",
+            "config": {
+              "path": "F:\\Brain-5D\\configs\\learning_experiment.yaml",
+              "sha256": "6f6cd457caf6216c286fee47ef03b529a0b496ed2dd53ee96b85d3b51e7b3a1c"
+            },
+            "created_at": "2026-09-14T08:55:54.692639+00:00",
+            "data_partitions": [],
+            "epistemic_layers": {
+              "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+              "evid": "not_created; requires semantic validation, clean freeze and human review",
+              "interpretation": "post-hoc AI or human interpretation; never execution input",
+              "ui_state": "operator/dashboard progress only; not a scientific result"
+            },
+            "execution_contract": {
+              "hypothesis_id": "H-EVAL-004-A",
+              "protocol": "active_scaling_v1",
+              "question_id": "RQ-EVAL-004",
+              "resolved_runner": "run_eval_scaling",
+              "runtime_runner_bytecode_sha256": "ca87b97820809dbdb240927567927a7c7a45a801b86ecd9d9a7421146ccab755",
+              "runtime_summary_bytecode_sha256": "8d311e523e6093b1bbb23954dae163406f1836fb0defa5b8c4479ac68a929395",
+              "source_runner_bytecode_sha256": "ca87b97820809dbdb240927567927a7c7a45a801b86ecd9d9a7421146ccab755",
+              "source_runtime_consistency": "MATCH",
+              "source_summary_bytecode_sha256": "8d311e523e6093b1bbb23954dae163406f1836fb0defa5b8c4479ac68a929395",
+              "tick_validation": {
+                "mode": "protocol_defined_internal_trials",
+                "requested_ticks": 1000,
+                "status": "NOT_APPLICABLE"
+              },
+              "ticks_requested": 1000
+            },
+            "execution_semantics": {
+              "automatic_evidence_promotion": false,
+              "claim_scope": "direct_technical_measurement_not_automatic_evidence",
+              "direct_test_of_hypothesis": true,
+              "external_review": "external_review/INTEGRATION.md",
+              "human_assessment": "not_recorded",
+              "kind": "functional_experiment",
+              "scientific_evidence": false,
+              "snn_involved": true
+            },
+            "experiment_id": "EXP-BATCH-20260914074039-81",
+            "experiment_status": "completed",
+            "git": {
+              "branch": "main",
+              "commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+              "dirty": true
+            },
+            "hypotheses": [
+              "H-EVAL-004-A"
+            ],
+            "network_mode": "OFFLINE",
+            "provenance_digests": {
+              "code": "5a11ea288e7e695c2dcd456642b533cbb3e6daf38b72e150134e60e69059531f",
+              "config": "6f6cd457caf6216c286fee47ef03b529a0b496ed2dd53ee96b85d3b51e7b3a1c",
+              "data": "6386e8d4a67f59ee14abe0983b7051e2db1e050195d86e56ddf3e518e7b4e73e",
+              "prompt": "dd18e473908e7e75b1717c240bac221729ea38753abfd28b701b37b20d5f5e14"
+            },
+            "research_questions": [
+              "RQ-EVAL-004"
+            ],
+            "research_run_mode": "EXPLORATORY",
+            "results": {
+              "protocol": "active_scaling_v1",
+              "run_count": 15,
+              "runner": "run_eval_scaling",
+              "tick_contract": {
+                "mode": "protocol_defined_internal_trials",
+                "requested_ticks": 1000,
+                "status": "NOT_APPLICABLE"
+              },
+              "ticks_requested": 1000
+            },
+            "runtime": {
+              "duration_seconds": 57.51314120000461
+            },
+            "runtime_errors": [],
+            "simulation": {
+              "protocol": "active_scaling_v1",
+              "seed": 20001,
+              "seeds": [
+                20001,
+                20002,
+                20003
+              ],
+              "ticks": 1000
+            },
+            "source_freeze_sha": "558f3def1a93b35f41a275de8ab428289bf09228793b0ba5a5e5ca95ed0b1840",
+            "timestamp": "2026-09-14T10:55:54.692631",
+            "validity": {
+              "fatal_error_count": 0,
+              "reason": null,
+              "runtime_error_count": 0,
+              "valid": true
+            }
+          },
+          "previous_analyses": [],
+          "provenance": {
+            "configuration_path": "F:\\Brain-5D\\configs\\learning_experiment.yaml",
+            "configuration_sha256": "6f6cd457caf6216c286fee47ef03b529a0b496ed2dd53ee96b85d3b51e7b3a1c",
+            "data_digest": "5e79e3da9686b522481814c969d31d86bff5596c7115a18b25a1d2c9858bd316",
+            "data_ids": "NOT_AVAILABLE",
+            "evid_digests": "[]",
+            "evid_ids": "NOT_AVAILABLE",
+            "evidence_mode": "not_reported",
+            "experiment_manifest_digest": "09343e9733c8f43324a1ad76936db7c4270d24943b9826d6470bcf59fc199c62",
+            "experiment_status": "completed",
+            "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+            "git_dirty": "True",
+            "protocol_digest": "81422f8bcd6aee7cd1ae6321a9ed5693b084e2e76b58dab2577c2d2913a11e94",
+            "protocol_id": "NOT_AVAILABLE",
+            "source_freeze_sha": "558f3def1a93b35f41a275de8ab428289bf09228793b0ba5a5e5ca95ed0b1840"
+          },
+          "assessment": "Die Analyse konnte nicht vollstaendig schema-konform erzeugt werden. Das Modell hat das erforderliche assessment-Feld nicht geliefert.",
+          "observations": [],
+          "methodological_concerns": [
+            "Die vom Modell ausgegebene confidence war schemawidrig oder ausserhalb des Bereichs 0..1. Sie wurde fuer die AIRR-Provenienz konservativ auf 0.0 gesetzt; der Originalwert bleibt als confidence_original erhalten."
+          ],
+          "alternative_explanations": [],
+          "recommended_experiments": [],
+          "requested_evidence": [],
+          "effect_direction": "not_determined",
+          "confidence_original": null,
+          "confidence": 0.0
+        },
+        "provenance": {
+          "prompt_sha256": "926c3cfaf53f6ffc877a4a9bb97bbd46881d79e73e20a03cae6c2f61291d135d",
+          "research_packet_digest": "6717b224f0b259fc9598437a864f8f6f38b66ace26d21200d2beb40ed9ab5d63",
+          "prompt_protocol_version": "research_assistant_v1",
+          "assistant_schema_version": "1.2",
+          "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+          "model_self_confidence": "0.0"
+        },
+        "epistemic_status": {
+          "evidence": false,
+          "interpretation_only": true,
+          "human_review_required": true
+        },
+        "review": {
+          "status": "pending",
+          "reviewer": null,
+          "reviewed_at": null,
+          "disposition": null
+        },
+        "generated_at": "2026-09-14T12:00:56.569232+00:00"
+      }
+    }
+  },
+  "provenance": {
+    "research_packet_digest": "6717b224f0b259fc9598437a864f8f6f38b66ace26d21200d2beb40ed9ab5d63",
+    "source": {
+      "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+      "experiment_status": "completed",
+      "evidence_mode": "not_reported",
+      "git_dirty": "True",
+      "source_freeze_sha": "558f3def1a93b35f41a275de8ab428289bf09228793b0ba5a5e5ca95ed0b1840",
+      "configuration_path": "F:\\Brain-5D\\configs\\learning_experiment.yaml",
+      "configuration_sha256": "6f6cd457caf6216c286fee47ef03b529a0b496ed2dd53ee96b85d3b51e7b3a1c",
+      "experiment_manifest_digest": "09343e9733c8f43324a1ad76936db7c4270d24943b9826d6470bcf59fc199c62",
+      "data_ids": "NOT_AVAILABLE",
+      "evid_ids": "NOT_AVAILABLE",
+      "protocol_id": "NOT_AVAILABLE",
+      "protocol_digest": "81422f8bcd6aee7cd1ae6321a9ed5693b084e2e76b58dab2577c2d2913a11e94",
+      "data_digest": "5e79e3da9686b522481814c969d31d86bff5596c7115a18b25a1d2c9858bd316",
+      "evid_digests": "[]"
+    }
+  },
+  "analysis_ids": [
+    "AIAR-scientific_analyst-20260914115926257004-6717b224",
+    "AIAR-critical_reviewer-20260914120011417514-6717b224",
+    "AIAR-scientific_writer-20260914120056569232-6717b224"
+  ],
+  "supersedes": null,
+  "content_digest": "b6a897cf69a9fdf3aa1a2640b40b9a45fa65247a4a2a68ef0ddb2a429161672c",
+  "markdown_digest": "83fa14e7521d6cd3c510a3cdb53f2f10650cb0544c1942588e7e487239b0db30"
+}

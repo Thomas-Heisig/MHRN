@@ -1,0 +1,127 @@
+{
+  "run_count": 12,
+  "runs": [
+    {
+      "condition": "adaptive_compensation",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0000-adaptive_compensation-seed-101.json.gz",
+      "run_index": 0,
+      "seed": 101,
+      "sha256": "9f747fecd64ac4acd7b7997173ce813fdc8cd67424bdf3829cc89ebc34e150da",
+      "size_bytes": 902,
+      "uncompressed_bytes": 2025
+    },
+    {
+      "condition": "fixed_allocation",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0001-fixed_allocation-seed-101.json.gz",
+      "run_index": 1,
+      "seed": 101,
+      "sha256": "5c6df57c1dd6e125ff562f2ff29141e5c9401a42ab809654464657dfd9ab428d",
+      "size_bytes": 882,
+      "uncompressed_bytes": 2000
+    },
+    {
+      "condition": "shuffled_utility",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0002-shuffled_utility-seed-101.json.gz",
+      "run_index": 2,
+      "seed": 101,
+      "sha256": "18ac3125dc3d3640b942abca61f609222b410065c5aba278aef8e19ca4313c58",
+      "size_bytes": 928,
+      "uncompressed_bytes": 2061
+    },
+    {
+      "condition": "no_compensation",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0003-no_compensation-seed-101.json.gz",
+      "run_index": 3,
+      "seed": 101,
+      "sha256": "1d2845eeb3ab561640de6f241e351e61d4142dd570e8632b9043d24babf93966",
+      "size_bytes": 888,
+      "uncompressed_bytes": 2015
+    },
+    {
+      "condition": "adaptive_compensation",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0004-adaptive_compensation-seed-102.json.gz",
+      "run_index": 4,
+      "seed": 102,
+      "sha256": "d24fe68dfc1c124006993482469ba002d6ef979927f72f7392d35bd842bda931",
+      "size_bytes": 910,
+      "uncompressed_bytes": 2037
+    },
+    {
+      "condition": "fixed_allocation",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0005-fixed_allocation-seed-102.json.gz",
+      "run_index": 5,
+      "seed": 102,
+      "sha256": "1f3a31d396b6f566bbc5de6aa941a6ba9646b452ca7f91a8891303e1c72c0b4f",
+      "size_bytes": 891,
+      "uncompressed_bytes": 2012
+    },
+    {
+      "condition": "shuffled_utility",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0006-shuffled_utility-seed-102.json.gz",
+      "run_index": 6,
+      "seed": 102,
+      "sha256": "596bd36f692bc514220068dafb0e5d338021d304a3e1ad43cd372e1f0fd8f77d",
+      "size_bytes": 941,
+      "uncompressed_bytes": 2073
+    },
+    {
+      "condition": "no_compensation",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0007-no_compensation-seed-102.json.gz",
+      "run_index": 7,
+      "seed": 102,
+      "sha256": "ee76a905f6c80a6f870b711259b746273ebbb873778bae9474a3f095bf597c8d",
+      "size_bytes": 896,
+      "uncompressed_bytes": 2027
+    },
+    {
+      "condition": "adaptive_compensation",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0008-adaptive_compensation-seed-103.json.gz",
+      "run_index": 8,
+      "seed": 103,
+      "sha256": "17f3fed41b63ddd50aabf563ae6c1f54d7626a669f9ac505255332cfb350158e",
+      "size_bytes": 901,
+      "uncompressed_bytes": 2023
+    },
+    {
+      "condition": "fixed_allocation",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0009-fixed_allocation-seed-103.json.gz",
+      "run_index": 9,
+      "seed": 103,
+      "sha256": "ff69d876698d5dfe519ed2429546db025b64d785de7c8fffd6e5ec718205fb77",
+      "size_bytes": 881,
+      "uncompressed_bytes": 1998
+    },
+    {
+      "condition": "shuffled_utility",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0010-shuffled_utility-seed-103.json.gz",
+      "run_index": 10,
+      "seed": 103,
+      "sha256": "e0ad9aaaaedd76ce7d08279ffda9049135b350d7276ec215d11f750953e5c5ac",
+      "size_bytes": 931,
+      "uncompressed_bytes": 2060
+    },
+    {
+      "condition": "no_compensation",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0011-no_compensation-seed-103.json.gz",
+      "run_index": 11,
+      "seed": 103,
+      "sha256": "f29dc4ce1d6e3c5474e2b04d227473ac339666159042bedacd5310139c1b705d",
+      "size_bytes": 885,
+      "uncompressed_bytes": 2013
+    }
+  ],
+  "schema_version": "2.0",
+  "storage_policy": "immutable_raw_runs_plus_compact_current_experiment"
+}

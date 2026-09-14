@@ -126,9 +126,32 @@ def normalize_output(output: dict[str, Any]) -> dict[str, Any]:
     0.0. The original representation is preserved in ``confidence_original`` and
     the repair is recorded as a methodological concern. A formatting defect must
     not destroy an otherwise auditable analyst/reviewer/writer chain.
+
+    Missing required fields are filled with safe defaults so that a model which
+    omits a key does not silently discard the entire analysis.
     """
 
     normalized = dict(output)
+
+    # ── Fill missing required fields with safe defaults ──
+    _ASSESSMENT_DEFAULT = (
+        "Die Analyse konnte nicht vollstaendig schema-konform erzeugt werden. "
+        "Das Modell hat das erforderliche assessment-Feld nicht geliefert."
+    )
+    if not isinstance(normalized.get("assessment"), str):
+        normalized["assessment"] = _ASSESSMENT_DEFAULT
+    for _list_field in (
+        "observations",
+        "methodological_concerns",
+        "alternative_explanations",
+        "recommended_experiments",
+        "requested_evidence",
+    ):
+        if not isinstance(normalized.get(_list_field), list):
+            normalized[_list_field] = []
+    if not isinstance(normalized.get("effect_direction"), str):
+        normalized["effect_direction"] = "not_determined"
+
     raw_confidence = normalized.get("confidence")
     parsed: float | None = None
 

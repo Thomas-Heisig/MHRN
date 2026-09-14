@@ -1,0 +1,1307 @@
+{
+  "run_count": 130,
+  "runs": [
+    {
+      "condition": "geometry_2d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0000-geometry_2d-seed-20001.json.gz",
+      "run_index": 0,
+      "seed": 20001,
+      "sha256": "65c4836510eefb484472afdb72aa35a35fa83a89223fb12cfd5b46ecac03070b",
+      "size_bytes": 5825,
+      "uncompressed_bytes": 21777
+    },
+    {
+      "condition": "geometry_3d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0001-geometry_3d-seed-20001.json.gz",
+      "run_index": 1,
+      "seed": 20001,
+      "sha256": "e8ad9f1a88b89cb6fe6180e8f2dc4462566cae075c3fe05481fe7ca18515e549",
+      "size_bytes": 5788,
+      "uncompressed_bytes": 22006
+    },
+    {
+      "condition": "geometry_4d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0002-geometry_4d-seed-20001.json.gz",
+      "run_index": 2,
+      "seed": 20001,
+      "sha256": "ed83334ec911975c77895495aaebedc1db116dae2ffba52faa18247e847f92ed",
+      "size_bytes": 5744,
+      "uncompressed_bytes": 21603
+    },
+    {
+      "condition": "geometry_5d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0003-geometry_5d-seed-20001.json.gz",
+      "run_index": 3,
+      "seed": 20001,
+      "sha256": "e01dcc5a358e0374d18330df0a2aa25f8c4b47bf37918513d2a627b3d27fa1c7",
+      "size_bytes": 5715,
+      "uncompressed_bytes": 21623
+    },
+    {
+      "condition": "geometry_6d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0004-geometry_6d-seed-20001.json.gz",
+      "run_index": 4,
+      "seed": 20001,
+      "sha256": "17205d1d68bce262ddf148217de4398aa062a206f868657b2d2fe6b8eb88fd34",
+      "size_bytes": 5754,
+      "uncompressed_bytes": 21916
+    },
+    {
+      "condition": "geometry_8d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0005-geometry_8d-seed-20001.json.gz",
+      "run_index": 5,
+      "seed": 20001,
+      "sha256": "09e4f952b64d1f331d3ac15e62b3302ddfacafe459fac1dbdaf25e188376f20b",
+      "size_bytes": 5695,
+      "uncompressed_bytes": 21484
+    },
+    {
+      "condition": "fixed_graph_label_2d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0006-fixed_graph_label_2d-seed-20001.json.gz",
+      "run_index": 6,
+      "seed": 20001,
+      "sha256": "f75d15f032843be285508e48353eabb2a1a17ddb788fbec99f118df5b164589b",
+      "size_bytes": 5738,
+      "uncompressed_bytes": 21632
+    },
+    {
+      "condition": "fixed_graph_label_3d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0007-fixed_graph_label_3d-seed-20001.json.gz",
+      "run_index": 7,
+      "seed": 20001,
+      "sha256": "80298b32fa65d83b22342a5ece6c7f55acdba70358c4b2ea7e6d7849aa64ba2d",
+      "size_bytes": 5737,
+      "uncompressed_bytes": 21632
+    },
+    {
+      "condition": "fixed_graph_label_4d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0008-fixed_graph_label_4d-seed-20001.json.gz",
+      "run_index": 8,
+      "seed": 20001,
+      "sha256": "b38e20037bb0f9a4f92d07f9c8591babc03b4cf7718e18358bccadd938d69cf0",
+      "size_bytes": 5738,
+      "uncompressed_bytes": 21632
+    },
+    {
+      "condition": "fixed_graph_label_5d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0009-fixed_graph_label_5d-seed-20001.json.gz",
+      "run_index": 9,
+      "seed": 20001,
+      "sha256": "5f672171ddd5b83386ceb64de997b1be5510ccc7f6871919aea2505d891e8ffb",
+      "size_bytes": 5735,
+      "uncompressed_bytes": 21632
+    },
+    {
+      "condition": "fixed_graph_label_6d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0010-fixed_graph_label_6d-seed-20001.json.gz",
+      "run_index": 10,
+      "seed": 20001,
+      "sha256": "37d7680c6a9cba3c2530c58fad37e982bd2816a813c2d0127a7d0933d6780518",
+      "size_bytes": 5737,
+      "uncompressed_bytes": 21632
+    },
+    {
+      "condition": "fixed_graph_label_8d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0011-fixed_graph_label_8d-seed-20001.json.gz",
+      "run_index": 11,
+      "seed": 20001,
+      "sha256": "55c03df58440af9cc3cd3f2e4a30dbe287c85eb7f2fefea7bc45908c7022304e",
+      "size_bytes": 5740,
+      "uncompressed_bytes": 21632
+    },
+    {
+      "condition": "random_graph",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0012-random_graph-seed-20001.json.gz",
+      "run_index": 12,
+      "seed": 20001,
+      "sha256": "d40829aafd9c49dbace120c219b085aa440d56a6d0bb21dbc7ad3063ba9f8da4",
+      "size_bytes": 5866,
+      "uncompressed_bytes": 22097
+    },
+    {
+      "condition": "geometry_2d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0013-geometry_2d-seed-20002.json.gz",
+      "run_index": 13,
+      "seed": 20002,
+      "sha256": "5a366945d2cbe03ee419ba7a5359ea149787fc3b94c289eec69c8ca03eb632fe",
+      "size_bytes": 5863,
+      "uncompressed_bytes": 21941
+    },
+    {
+      "condition": "geometry_3d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0014-geometry_3d-seed-20002.json.gz",
+      "run_index": 14,
+      "seed": 20002,
+      "sha256": "a535596ae9ec0f333e437390a5490013f58074f1e4e582a368ea76f1cf372004",
+      "size_bytes": 5809,
+      "uncompressed_bytes": 21966
+    },
+    {
+      "condition": "geometry_4d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0015-geometry_4d-seed-20002.json.gz",
+      "run_index": 15,
+      "seed": 20002,
+      "sha256": "2dbce5bf5d22ef6c13608494ed2b2419deb3a9e03d76f70736c97d31334bb15e",
+      "size_bytes": 5693,
+      "uncompressed_bytes": 21598
+    },
+    {
+      "condition": "geometry_5d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0016-geometry_5d-seed-20002.json.gz",
+      "run_index": 16,
+      "seed": 20002,
+      "sha256": "ca638b34b33e2ecc6f880189321fd3ccb2948ffdfc3ebe2489eb8676443cae47",
+      "size_bytes": 5782,
+      "uncompressed_bytes": 21761
+    },
+    {
+      "condition": "geometry_6d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0017-geometry_6d-seed-20002.json.gz",
+      "run_index": 17,
+      "seed": 20002,
+      "sha256": "67284d44f8f1acdeb9f50eaf26328f988e43937681c8a5894851938e4b82eca5",
+      "size_bytes": 5803,
+      "uncompressed_bytes": 21852
+    },
+    {
+      "condition": "geometry_8d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0018-geometry_8d-seed-20002.json.gz",
+      "run_index": 18,
+      "seed": 20002,
+      "sha256": "0bb3de7589192a13344d8bae9642dee9e9d7e1bebf6ba178c26601ae573053c4",
+      "size_bytes": 5667,
+      "uncompressed_bytes": 21612
+    },
+    {
+      "condition": "fixed_graph_label_2d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0019-fixed_graph_label_2d-seed-20002.json.gz",
+      "run_index": 19,
+      "seed": 20002,
+      "sha256": "314d95cd1a2b2b3e57894f276e043345ad809928bf4b03632ef37f8faa2fb1ea",
+      "size_bytes": 5804,
+      "uncompressed_bytes": 21768
+    },
+    {
+      "condition": "fixed_graph_label_3d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0020-fixed_graph_label_3d-seed-20002.json.gz",
+      "run_index": 20,
+      "seed": 20002,
+      "sha256": "2b36aa0105f7b609bc256323c4695f1453eaea4e6bdf5af524e1153be34e9a0d",
+      "size_bytes": 5805,
+      "uncompressed_bytes": 21769
+    },
+    {
+      "condition": "fixed_graph_label_4d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0021-fixed_graph_label_4d-seed-20002.json.gz",
+      "run_index": 21,
+      "seed": 20002,
+      "sha256": "8134c384e5b08ee88c04b5e41e4e3b313f989934ea3160f22f5d66c65134d0c4",
+      "size_bytes": 5802,
+      "uncompressed_bytes": 21769
+    },
+    {
+      "condition": "fixed_graph_label_5d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0022-fixed_graph_label_5d-seed-20002.json.gz",
+      "run_index": 22,
+      "seed": 20002,
+      "sha256": "37b6fef7c2b2a7f7a568daa96e6330bd8493b24b1a0ecd37bdd7f21f697b0da9",
+      "size_bytes": 5803,
+      "uncompressed_bytes": 21769
+    },
+    {
+      "condition": "fixed_graph_label_6d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0023-fixed_graph_label_6d-seed-20002.json.gz",
+      "run_index": 23,
+      "seed": 20002,
+      "sha256": "c93ccbd1b59329ef383f4fce04511c08b897f79e70c697961218ccde28a4fb25",
+      "size_bytes": 5805,
+      "uncompressed_bytes": 21769
+    },
+    {
+      "condition": "fixed_graph_label_8d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0024-fixed_graph_label_8d-seed-20002.json.gz",
+      "run_index": 24,
+      "seed": 20002,
+      "sha256": "7d0c45861eda287f112f2baab768d87a71a893bac3a17035716cdef9522c4045",
+      "size_bytes": 5805,
+      "uncompressed_bytes": 21768
+    },
+    {
+      "condition": "random_graph",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0025-random_graph-seed-20002.json.gz",
+      "run_index": 25,
+      "seed": 20002,
+      "sha256": "5bbf53de3bc375e7b4f59ebd1a8c0a4fa09e6a8647a63273ffeb34f1920a0000",
+      "size_bytes": 5213,
+      "uncompressed_bytes": 20480
+    },
+    {
+      "condition": "geometry_2d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0026-geometry_2d-seed-20003.json.gz",
+      "run_index": 26,
+      "seed": 20003,
+      "sha256": "e709c6256d95abe226c8215ed7d79b57f50d8b4bc67964d268dca9ddbe105b79",
+      "size_bytes": 5960,
+      "uncompressed_bytes": 22110
+    },
+    {
+      "condition": "geometry_3d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0027-geometry_3d-seed-20003.json.gz",
+      "run_index": 27,
+      "seed": 20003,
+      "sha256": "8ce959a3d3470148452dca8d798fd6014ef590647f811c44cbbf8c8ef42edd2d",
+      "size_bytes": 5860,
+      "uncompressed_bytes": 21956
+    },
+    {
+      "condition": "geometry_4d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0028-geometry_4d-seed-20003.json.gz",
+      "run_index": 28,
+      "seed": 20003,
+      "sha256": "59e12ba06cf58ba408142d16858c56e476268e27a4be3ac981fb03c1e182f32e",
+      "size_bytes": 5732,
+      "uncompressed_bytes": 21744
+    },
+    {
+      "condition": "geometry_5d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0029-geometry_5d-seed-20003.json.gz",
+      "run_index": 29,
+      "seed": 20003,
+      "sha256": "a76cb8bb4f496b111ba3631d8e8611cb60ad98cb8aa12ca48324245ccd8b5b09",
+      "size_bytes": 5659,
+      "uncompressed_bytes": 21683
+    },
+    {
+      "condition": "geometry_6d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0030-geometry_6d-seed-20003.json.gz",
+      "run_index": 30,
+      "seed": 20003,
+      "sha256": "7527c9040c12cde74b5d79fc1a8c00a5b63d6ef8ba08803dda253764256ab280",
+      "size_bytes": 5660,
+      "uncompressed_bytes": 21765
+    },
+    {
+      "condition": "geometry_8d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0031-geometry_8d-seed-20003.json.gz",
+      "run_index": 31,
+      "seed": 20003,
+      "sha256": "2998970d555a3dd64a604c3e030a77d2c9a291b3e5b48d0d168078685dd2cba7",
+      "size_bytes": 5629,
+      "uncompressed_bytes": 21675
+    },
+    {
+      "condition": "fixed_graph_label_2d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0032-fixed_graph_label_2d-seed-20003.json.gz",
+      "run_index": 32,
+      "seed": 20003,
+      "sha256": "00589c7dfe96afeacb2587051406cb1609baac607858fb72f85cb782dd7c4b5b",
+      "size_bytes": 5681,
+      "uncompressed_bytes": 21692
+    },
+    {
+      "condition": "fixed_graph_label_3d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0033-fixed_graph_label_3d-seed-20003.json.gz",
+      "run_index": 33,
+      "seed": 20003,
+      "sha256": "9e34f7eeefbc7d8ab38b6380f1cf2a89533b8e3c3cfa5609c6639c886eb98e65",
+      "size_bytes": 5680,
+      "uncompressed_bytes": 21692
+    },
+    {
+      "condition": "fixed_graph_label_4d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0034-fixed_graph_label_4d-seed-20003.json.gz",
+      "run_index": 34,
+      "seed": 20003,
+      "sha256": "5f7c23d9c3267801cb2d8ec4eb3c9bfb11be47d3a4926d9e12f6c17194c8ec65",
+      "size_bytes": 5682,
+      "uncompressed_bytes": 21692
+    },
+    {
+      "condition": "fixed_graph_label_5d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0035-fixed_graph_label_5d-seed-20003.json.gz",
+      "run_index": 35,
+      "seed": 20003,
+      "sha256": "372de46ff7976d93d1f3c04b162214afd7add84379b5b61583947a2ce1b587b7",
+      "size_bytes": 5679,
+      "uncompressed_bytes": 21692
+    },
+    {
+      "condition": "fixed_graph_label_6d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0036-fixed_graph_label_6d-seed-20003.json.gz",
+      "run_index": 36,
+      "seed": 20003,
+      "sha256": "da2f1c199f48e0f01f4025783a5c243b9f445870a11a1cf980ed629c261b0869",
+      "size_bytes": 5682,
+      "uncompressed_bytes": 21692
+    },
+    {
+      "condition": "fixed_graph_label_8d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0037-fixed_graph_label_8d-seed-20003.json.gz",
+      "run_index": 37,
+      "seed": 20003,
+      "sha256": "c76d85056299c577e01753e90d2c6edcd3d7274ef11eeb51eada54e0496f533e",
+      "size_bytes": 5683,
+      "uncompressed_bytes": 21692
+    },
+    {
+      "condition": "random_graph",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0038-random_graph-seed-20003.json.gz",
+      "run_index": 38,
+      "seed": 20003,
+      "sha256": "f8086ecf8f3339e1dd96ac70eeff0f50ca0ccf8f0bc842aca36c8d7ca47aa75f",
+      "size_bytes": 5149,
+      "uncompressed_bytes": 20378
+    },
+    {
+      "condition": "geometry_2d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0039-geometry_2d-seed-20004.json.gz",
+      "run_index": 39,
+      "seed": 20004,
+      "sha256": "ff24e0f90e7a40fe82dd943a2ddd81eb638052e25c9fbf333c619b13681051e2",
+      "size_bytes": 5949,
+      "uncompressed_bytes": 22095
+    },
+    {
+      "condition": "geometry_3d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0040-geometry_3d-seed-20004.json.gz",
+      "run_index": 40,
+      "seed": 20004,
+      "sha256": "a83749841c1a6e0a898c9a6b6866ac19ad584ec29b05830e19923827c92407dd",
+      "size_bytes": 5868,
+      "uncompressed_bytes": 21968
+    },
+    {
+      "condition": "geometry_4d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0041-geometry_4d-seed-20004.json.gz",
+      "run_index": 41,
+      "seed": 20004,
+      "sha256": "a86e92be595d009f92e92ce790989d0420a6f3e26c12dd92f14e3a76fb756e92",
+      "size_bytes": 5737,
+      "uncompressed_bytes": 21478
+    },
+    {
+      "condition": "geometry_5d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0042-geometry_5d-seed-20004.json.gz",
+      "run_index": 42,
+      "seed": 20004,
+      "sha256": "2c0c676cb2569621158653997bf82d71cecf2d634e81df18946cf6c06c7949bd",
+      "size_bytes": 5645,
+      "uncompressed_bytes": 21669
+    },
+    {
+      "condition": "geometry_6d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0043-geometry_6d-seed-20004.json.gz",
+      "run_index": 43,
+      "seed": 20004,
+      "sha256": "01a51ddf1e567843708df421108d9673b24235b0b4e97ccf1449edcedd40fc8b",
+      "size_bytes": 5621,
+      "uncompressed_bytes": 21608
+    },
+    {
+      "condition": "geometry_8d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0044-geometry_8d-seed-20004.json.gz",
+      "run_index": 44,
+      "seed": 20004,
+      "sha256": "5bfff189e78b25e1133a6c4e27edaea6dcc0296242691e968433162a27ac072f",
+      "size_bytes": 5616,
+      "uncompressed_bytes": 21400
+    },
+    {
+      "condition": "fixed_graph_label_2d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0045-fixed_graph_label_2d-seed-20004.json.gz",
+      "run_index": 45,
+      "seed": 20004,
+      "sha256": "95a6bd8097d4945411e94700f3c39280d877d8bbd9c1f9f772cf9ed20ccb9786",
+      "size_bytes": 5667,
+      "uncompressed_bytes": 21678
+    },
+    {
+      "condition": "fixed_graph_label_3d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0046-fixed_graph_label_3d-seed-20004.json.gz",
+      "run_index": 46,
+      "seed": 20004,
+      "sha256": "d9bfd71da66d6938c219975b5a4e0d76718a6703019f1fcd983d45c3e6373b6a",
+      "size_bytes": 5668,
+      "uncompressed_bytes": 21678
+    },
+    {
+      "condition": "fixed_graph_label_4d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0047-fixed_graph_label_4d-seed-20004.json.gz",
+      "run_index": 47,
+      "seed": 20004,
+      "sha256": "3de18226beb5c35bf88e5483fb84fbe3c5355e030ec7ecd7e2aeb3e76194f8e4",
+      "size_bytes": 5667,
+      "uncompressed_bytes": 21678
+    },
+    {
+      "condition": "fixed_graph_label_5d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0048-fixed_graph_label_5d-seed-20004.json.gz",
+      "run_index": 48,
+      "seed": 20004,
+      "sha256": "f374a0c798886fec4e46ab600605ba783b065ed978668ba6541b9bb12156254a",
+      "size_bytes": 5665,
+      "uncompressed_bytes": 21677
+    },
+    {
+      "condition": "fixed_graph_label_6d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0049-fixed_graph_label_6d-seed-20004.json.gz",
+      "run_index": 49,
+      "seed": 20004,
+      "sha256": "aaa4a1cd73a036562ace269963801cb55d0ddd01819c2f4a03c8780f68f6de3f",
+      "size_bytes": 5668,
+      "uncompressed_bytes": 21678
+    },
+    {
+      "condition": "fixed_graph_label_8d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0050-fixed_graph_label_8d-seed-20004.json.gz",
+      "run_index": 50,
+      "seed": 20004,
+      "sha256": "d9bad4caae9fb563a0172765c3121bfe7f5304054d5c4db9647f5e39d7aed763",
+      "size_bytes": 5668,
+      "uncompressed_bytes": 21678
+    },
+    {
+      "condition": "random_graph",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0051-random_graph-seed-20004.json.gz",
+      "run_index": 51,
+      "seed": 20004,
+      "sha256": "ba56ef883816d186c82bb90686b3df3c99df2eec1f7987a121477a6196ffc928",
+      "size_bytes": 5169,
+      "uncompressed_bytes": 20490
+    },
+    {
+      "condition": "geometry_2d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0052-geometry_2d-seed-20005.json.gz",
+      "run_index": 52,
+      "seed": 20005,
+      "sha256": "fb7bd1d1264fe561ada57e8757eb8fc1d2b36abe911de11e555ab3e94bce6010",
+      "size_bytes": 5942,
+      "uncompressed_bytes": 21951
+    },
+    {
+      "condition": "geometry_3d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0053-geometry_3d-seed-20005.json.gz",
+      "run_index": 53,
+      "seed": 20005,
+      "sha256": "a09aecad4a8a79816dc78199e7178e877118c99fcc06ff6437e8203195052232",
+      "size_bytes": 5800,
+      "uncompressed_bytes": 21770
+    },
+    {
+      "condition": "geometry_4d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0054-geometry_4d-seed-20005.json.gz",
+      "run_index": 54,
+      "seed": 20005,
+      "sha256": "4e6726a36f8479a5033341eb6c37814a25f016a741522ddfa173546ec273ce6f",
+      "size_bytes": 5764,
+      "uncompressed_bytes": 21804
+    },
+    {
+      "condition": "geometry_5d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0055-geometry_5d-seed-20005.json.gz",
+      "run_index": 55,
+      "seed": 20005,
+      "sha256": "f85a5f6345e037416140e7e24ca700f939df51c203e5497aa76f24e2aea71806",
+      "size_bytes": 5707,
+      "uncompressed_bytes": 21626
+    },
+    {
+      "condition": "geometry_6d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0056-geometry_6d-seed-20005.json.gz",
+      "run_index": 56,
+      "seed": 20005,
+      "sha256": "2834430e752359d91098f8ae5dfb7fdb89a55e307bf91841b9a179a5a4853225",
+      "size_bytes": 5676,
+      "uncompressed_bytes": 21667
+    },
+    {
+      "condition": "geometry_8d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0057-geometry_8d-seed-20005.json.gz",
+      "run_index": 57,
+      "seed": 20005,
+      "sha256": "db64da8524b08755fa8a3f42081d004e13e6d27c55f2927ea0979768f5eb1175",
+      "size_bytes": 5710,
+      "uncompressed_bytes": 21506
+    },
+    {
+      "condition": "fixed_graph_label_2d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0058-fixed_graph_label_2d-seed-20005.json.gz",
+      "run_index": 58,
+      "seed": 20005,
+      "sha256": "d93b6c8fc4f68c0c5208fbb284e2a676b2f309890a563d1aa49f25a487aa0968",
+      "size_bytes": 5730,
+      "uncompressed_bytes": 21635
+    },
+    {
+      "condition": "fixed_graph_label_3d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0059-fixed_graph_label_3d-seed-20005.json.gz",
+      "run_index": 59,
+      "seed": 20005,
+      "sha256": "fdf2f616de7c94d889349887c36f3f050997d259b9475b7dc33ef50b8cb57fd3",
+      "size_bytes": 5731,
+      "uncompressed_bytes": 21635
+    },
+    {
+      "condition": "fixed_graph_label_4d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0060-fixed_graph_label_4d-seed-20005.json.gz",
+      "run_index": 60,
+      "seed": 20005,
+      "sha256": "fecfbe0d505e7eebbf677b37b75d530edd1b57c2beec33f7583da874c43c3663",
+      "size_bytes": 5728,
+      "uncompressed_bytes": 21636
+    },
+    {
+      "condition": "fixed_graph_label_5d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0061-fixed_graph_label_5d-seed-20005.json.gz",
+      "run_index": 61,
+      "seed": 20005,
+      "sha256": "a83ae56c01dc8259ee04f14cf81fa5cb4cfe457ddfe99e0a559cd0d3fd8f425c",
+      "size_bytes": 5729,
+      "uncompressed_bytes": 21636
+    },
+    {
+      "condition": "fixed_graph_label_6d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0062-fixed_graph_label_6d-seed-20005.json.gz",
+      "run_index": 62,
+      "seed": 20005,
+      "sha256": "bd5edbef4580f5052610a3927bf2b299131f469a904c15409f0c0325ff5c49b7",
+      "size_bytes": 5730,
+      "uncompressed_bytes": 21635
+    },
+    {
+      "condition": "fixed_graph_label_8d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0063-fixed_graph_label_8d-seed-20005.json.gz",
+      "run_index": 63,
+      "seed": 20005,
+      "sha256": "c7d12222f25c7e2da33e1c736a977d06ce6abd6239f0ec211134d5f21b6fd353",
+      "size_bytes": 5732,
+      "uncompressed_bytes": 21635
+    },
+    {
+      "condition": "random_graph",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0064-random_graph-seed-20005.json.gz",
+      "run_index": 64,
+      "seed": 20005,
+      "sha256": "ea10ed39557c5a5ab12d794a6a5b1243d9c729b4387924a8e320b4718c10659e",
+      "size_bytes": 5854,
+      "uncompressed_bytes": 22114
+    },
+    {
+      "condition": "geometry_2d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0065-geometry_2d-seed-20006.json.gz",
+      "run_index": 65,
+      "seed": 20006,
+      "sha256": "88ea419008389268b08c57c32fe3df885093d618cac2eb27f04eacd45db6a8d3",
+      "size_bytes": 5764,
+      "uncompressed_bytes": 21755
+    },
+    {
+      "condition": "geometry_3d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0066-geometry_3d-seed-20006.json.gz",
+      "run_index": 66,
+      "seed": 20006,
+      "sha256": "88db2c4aeb5cdfe634e2ab674bdde3ca9cc567bd8100cbca95957f35c5ac86e7",
+      "size_bytes": 5841,
+      "uncompressed_bytes": 21862
+    },
+    {
+      "condition": "geometry_4d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0067-geometry_4d-seed-20006.json.gz",
+      "run_index": 67,
+      "seed": 20006,
+      "sha256": "7ae2320fc031b7aefff5852e1b3519d8933cf5bb066b6859a37a63b81a6b5d39",
+      "size_bytes": 5795,
+      "uncompressed_bytes": 21641
+    },
+    {
+      "condition": "geometry_5d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0068-geometry_5d-seed-20006.json.gz",
+      "run_index": 68,
+      "seed": 20006,
+      "sha256": "43a0bbf42c51de9185345cd7281a15ffaaac7c469a19336961cabf7ad90c7235",
+      "size_bytes": 5696,
+      "uncompressed_bytes": 21616
+    },
+    {
+      "condition": "geometry_6d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0069-geometry_6d-seed-20006.json.gz",
+      "run_index": 69,
+      "seed": 20006,
+      "sha256": "a20b1bde7f73e7797c2c9c4d84d158f226b1f046814ae326423616f31763ccd5",
+      "size_bytes": 5750,
+      "uncompressed_bytes": 21814
+    },
+    {
+      "condition": "geometry_8d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0070-geometry_8d-seed-20006.json.gz",
+      "run_index": 70,
+      "seed": 20006,
+      "sha256": "c31a31cd760d98d7996e64c56c12b4900ac0835c49828c52f5ad600abd1fa65a",
+      "size_bytes": 5585,
+      "uncompressed_bytes": 21362
+    },
+    {
+      "condition": "fixed_graph_label_2d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0071-fixed_graph_label_2d-seed-20006.json.gz",
+      "run_index": 71,
+      "seed": 20006,
+      "sha256": "8d6dd92c2a6f659dc0bfef1f6ac7e31931bf03b25e8f76b482d4b2a6240d8c9e",
+      "size_bytes": 5719,
+      "uncompressed_bytes": 21625
+    },
+    {
+      "condition": "fixed_graph_label_3d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0072-fixed_graph_label_3d-seed-20006.json.gz",
+      "run_index": 72,
+      "seed": 20006,
+      "sha256": "20cd7df06096376924f61c643e23c5ef8c5a7217c0a9fb044ace391877d92762",
+      "size_bytes": 5719,
+      "uncompressed_bytes": 21625
+    },
+    {
+      "condition": "fixed_graph_label_4d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0073-fixed_graph_label_4d-seed-20006.json.gz",
+      "run_index": 73,
+      "seed": 20006,
+      "sha256": "d489cd1674487c5048ce0b4e25f4918e8cde5d14de9e66a798e1e5b11a3b599f",
+      "size_bytes": 5718,
+      "uncompressed_bytes": 21624
+    },
+    {
+      "condition": "fixed_graph_label_5d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0074-fixed_graph_label_5d-seed-20006.json.gz",
+      "run_index": 74,
+      "seed": 20006,
+      "sha256": "106e0f83156dc87f7390e853a0bdd49a78646ef93ee5922ce5372ecc4b4c1f20",
+      "size_bytes": 5716,
+      "uncompressed_bytes": 21625
+    },
+    {
+      "condition": "fixed_graph_label_6d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0075-fixed_graph_label_6d-seed-20006.json.gz",
+      "run_index": 75,
+      "seed": 20006,
+      "sha256": "1f4383459d80686a4cd00991d8b9351ee99e93ced24fe5c68b9c1679ebd90a1f",
+      "size_bytes": 5717,
+      "uncompressed_bytes": 21624
+    },
+    {
+      "condition": "fixed_graph_label_8d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0076-fixed_graph_label_8d-seed-20006.json.gz",
+      "run_index": 76,
+      "seed": 20006,
+      "sha256": "d853bbb851eb811931be85c74144a296e2be3801619204312e2c9d1ae00fa409",
+      "size_bytes": 5721,
+      "uncompressed_bytes": 21625
+    },
+    {
+      "condition": "random_graph",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0077-random_graph-seed-20006.json.gz",
+      "run_index": 77,
+      "seed": 20006,
+      "sha256": "52b71282a32146dabf334ee3ee6c2994f67e76331e4a64c0cb99a1aa8a05f1a1",
+      "size_bytes": 5848,
+      "uncompressed_bytes": 22159
+    },
+    {
+      "condition": "geometry_2d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0078-geometry_2d-seed-20007.json.gz",
+      "run_index": 78,
+      "seed": 20007,
+      "sha256": "b707c1d7b862dbaffe27de5535ae436090a937632641654accea824116439f74",
+      "size_bytes": 5988,
+      "uncompressed_bytes": 22199
+    },
+    {
+      "condition": "geometry_3d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0079-geometry_3d-seed-20007.json.gz",
+      "run_index": 79,
+      "seed": 20007,
+      "sha256": "3616bf6912756ecfc1e9245919d27374f7d80e2018e6f9b97666fbb61b966a7f",
+      "size_bytes": 5764,
+      "uncompressed_bytes": 21748
+    },
+    {
+      "condition": "geometry_4d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0080-geometry_4d-seed-20007.json.gz",
+      "run_index": 80,
+      "seed": 20007,
+      "sha256": "7e24701325c360b9555b381f58db9c5f3a2fcf50fa77e007da59cc438103aa77",
+      "size_bytes": 5709,
+      "uncompressed_bytes": 21673
+    },
+    {
+      "condition": "geometry_5d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0081-geometry_5d-seed-20007.json.gz",
+      "run_index": 81,
+      "seed": 20007,
+      "sha256": "2c3d95c73bf2f154e3ec15e0205583f0672a9dba3714b0e73217a750e83f5c5c",
+      "size_bytes": 5588,
+      "uncompressed_bytes": 21505
+    },
+    {
+      "condition": "geometry_6d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0082-geometry_6d-seed-20007.json.gz",
+      "run_index": 82,
+      "seed": 20007,
+      "sha256": "56948f2953b671cd81c780b9b272d028125774e1b7284f874db49809850eacfe",
+      "size_bytes": 5619,
+      "uncompressed_bytes": 21286
+    },
+    {
+      "condition": "geometry_8d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0083-geometry_8d-seed-20007.json.gz",
+      "run_index": 83,
+      "seed": 20007,
+      "sha256": "a65b6ab15e0da169014c0213f0085342dbcb20d770973981876173dae1c685bb",
+      "size_bytes": 5647,
+      "uncompressed_bytes": 21663
+    },
+    {
+      "condition": "fixed_graph_label_2d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0084-fixed_graph_label_2d-seed-20007.json.gz",
+      "run_index": 84,
+      "seed": 20007,
+      "sha256": "48c03042e83928261b2568e487b5f97a0eebe67433cc1d1cead5496c0e3c1c83",
+      "size_bytes": 5611,
+      "uncompressed_bytes": 21515
+    },
+    {
+      "condition": "fixed_graph_label_3d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0085-fixed_graph_label_3d-seed-20007.json.gz",
+      "run_index": 85,
+      "seed": 20007,
+      "sha256": "1e07d657213ec8eb8c8ab49b34c5dece177e29b0214c515c5658bb075f693bd3",
+      "size_bytes": 5611,
+      "uncompressed_bytes": 21515
+    },
+    {
+      "condition": "fixed_graph_label_4d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0086-fixed_graph_label_4d-seed-20007.json.gz",
+      "run_index": 86,
+      "seed": 20007,
+      "sha256": "69695403230dd4b16148137e90fe0bcf90e0b3305e25d6e59f21cb7731a53ed5",
+      "size_bytes": 5612,
+      "uncompressed_bytes": 21515
+    },
+    {
+      "condition": "fixed_graph_label_5d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0087-fixed_graph_label_5d-seed-20007.json.gz",
+      "run_index": 87,
+      "seed": 20007,
+      "sha256": "791a897a46461417cdba5a6f58e0f7f62e2968dad759f64ef57e32f044365abb",
+      "size_bytes": 5608,
+      "uncompressed_bytes": 21514
+    },
+    {
+      "condition": "fixed_graph_label_6d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0088-fixed_graph_label_6d-seed-20007.json.gz",
+      "run_index": 88,
+      "seed": 20007,
+      "sha256": "a03295ac9b3a49d5d582c8c1fd47c8cd0155d8e258b7d57bb4289b65452b3ab4",
+      "size_bytes": 5611,
+      "uncompressed_bytes": 21515
+    },
+    {
+      "condition": "fixed_graph_label_8d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0089-fixed_graph_label_8d-seed-20007.json.gz",
+      "run_index": 89,
+      "seed": 20007,
+      "sha256": "27882a37e87533a5af111e1626e0d0bae9ba65091636755d9055c751e87a4191",
+      "size_bytes": 5614,
+      "uncompressed_bytes": 21516
+    },
+    {
+      "condition": "random_graph",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0090-random_graph-seed-20007.json.gz",
+      "run_index": 90,
+      "seed": 20007,
+      "sha256": "4b0ad20aec337c6b2f2a949459c724df9f033ba926b0c401e1958f404245afb4",
+      "size_bytes": 5816,
+      "uncompressed_bytes": 22094
+    },
+    {
+      "condition": "geometry_2d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0091-geometry_2d-seed-20008.json.gz",
+      "run_index": 91,
+      "seed": 20008,
+      "sha256": "60d7290ca2166fc2d5baf438307feaf3f2bfd4c78f768a2692d743b8ef0a666f",
+      "size_bytes": 5765,
+      "uncompressed_bytes": 21749
+    },
+    {
+      "condition": "geometry_3d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0092-geometry_3d-seed-20008.json.gz",
+      "run_index": 92,
+      "seed": 20008,
+      "sha256": "5c54b3404c033194eff611d980bbd211384e5c9ea3f752616efd57d26f4e4aad",
+      "size_bytes": 5734,
+      "uncompressed_bytes": 21654
+    },
+    {
+      "condition": "geometry_4d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0093-geometry_4d-seed-20008.json.gz",
+      "run_index": 93,
+      "seed": 20008,
+      "sha256": "e057de968ee14307ca2067e1c79cebca43eab0f313dbd01bb34a7d8312c68b24",
+      "size_bytes": 5696,
+      "uncompressed_bytes": 21583
+    },
+    {
+      "condition": "geometry_5d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0094-geometry_5d-seed-20008.json.gz",
+      "run_index": 94,
+      "seed": 20008,
+      "sha256": "5fbb48c414879a540f485c41e25f5e383d59c1e155d6726256cf9381d3587ad7",
+      "size_bytes": 5617,
+      "uncompressed_bytes": 21381
+    },
+    {
+      "condition": "geometry_6d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0095-geometry_6d-seed-20008.json.gz",
+      "run_index": 95,
+      "seed": 20008,
+      "sha256": "a82e1fce83bb5fa69744d46074409c3dce70fa99e32786975492c878b1a62876",
+      "size_bytes": 5637,
+      "uncompressed_bytes": 21435
+    },
+    {
+      "condition": "geometry_8d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0096-geometry_8d-seed-20008.json.gz",
+      "run_index": 96,
+      "seed": 20008,
+      "sha256": "3b4a997f1e5f1f2a811a9b075e084957512c42681cc0207b5310341b1e5aa404",
+      "size_bytes": 5521,
+      "uncompressed_bytes": 21100
+    },
+    {
+      "condition": "fixed_graph_label_2d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0097-fixed_graph_label_2d-seed-20008.json.gz",
+      "run_index": 97,
+      "seed": 20008,
+      "sha256": "56882941736724d231071b7c468c62b54a7557530075bd9efe751153fe9b9b5d",
+      "size_bytes": 5639,
+      "uncompressed_bytes": 21390
+    },
+    {
+      "condition": "fixed_graph_label_3d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0098-fixed_graph_label_3d-seed-20008.json.gz",
+      "run_index": 98,
+      "seed": 20008,
+      "sha256": "1dba4fc949e29a353ed2c55b484ddfbf8d9da7bf675ea54e3bcf57c31f0060f3",
+      "size_bytes": 5638,
+      "uncompressed_bytes": 21389
+    },
+    {
+      "condition": "fixed_graph_label_4d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0099-fixed_graph_label_4d-seed-20008.json.gz",
+      "run_index": 99,
+      "seed": 20008,
+      "sha256": "d33b82828198f80c6b3440a76eda73565853293e6a6fd65fa5d5ab54e5a8b399",
+      "size_bytes": 5637,
+      "uncompressed_bytes": 21389
+    },
+    {
+      "condition": "fixed_graph_label_5d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0100-fixed_graph_label_5d-seed-20008.json.gz",
+      "run_index": 100,
+      "seed": 20008,
+      "sha256": "40ea74e6a972a879303cddafb5b654186ce4ccbbe91b287bce29ab12ffe1cfb9",
+      "size_bytes": 5637,
+      "uncompressed_bytes": 21390
+    },
+    {
+      "condition": "fixed_graph_label_6d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0101-fixed_graph_label_6d-seed-20008.json.gz",
+      "run_index": 101,
+      "seed": 20008,
+      "sha256": "86c293292c282e85755dd22fcb7bb74ba39c4ce4759648039984dd72e0f6030d",
+      "size_bytes": 5638,
+      "uncompressed_bytes": 21389
+    },
+    {
+      "condition": "fixed_graph_label_8d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0102-fixed_graph_label_8d-seed-20008.json.gz",
+      "run_index": 102,
+      "seed": 20008,
+      "sha256": "30ae00a8873c5b2c49f9fd672ce1c8efb776a411c690a6ff4ebe0f129df942dd",
+      "size_bytes": 5640,
+      "uncompressed_bytes": 21389
+    },
+    {
+      "condition": "random_graph",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0103-random_graph-seed-20008.json.gz",
+      "run_index": 103,
+      "seed": 20008,
+      "sha256": "63944bb885b3c37727961a3a605de2ff9ca01228c41908a94d7d07db50c07101",
+      "size_bytes": 5874,
+      "uncompressed_bytes": 22232
+    },
+    {
+      "condition": "geometry_2d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0104-geometry_2d-seed-20009.json.gz",
+      "run_index": 104,
+      "seed": 20009,
+      "sha256": "a787a695e3219735bd17952a8e025e46dabf792556000277e97bba727ea3cecd",
+      "size_bytes": 5918,
+      "uncompressed_bytes": 21992
+    },
+    {
+      "condition": "geometry_3d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0105-geometry_3d-seed-20009.json.gz",
+      "run_index": 105,
+      "seed": 20009,
+      "sha256": "531c238bcb8ce6d4ec5918d6279e9b30408c92f8f2f2da155d8306941b2b8835",
+      "size_bytes": 5771,
+      "uncompressed_bytes": 21843
+    },
+    {
+      "condition": "geometry_4d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0106-geometry_4d-seed-20009.json.gz",
+      "run_index": 106,
+      "seed": 20009,
+      "sha256": "b311ef52c3535616fa8aeeac160e0f541ade619e04a45d863f811881e2344378",
+      "size_bytes": 5742,
+      "uncompressed_bytes": 21804
+    },
+    {
+      "condition": "geometry_5d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0107-geometry_5d-seed-20009.json.gz",
+      "run_index": 107,
+      "seed": 20009,
+      "sha256": "e0b1c8ac40d2fa67829de7333b8488dd1b054e1ff2a3a8f34758b986a9d69aa4",
+      "size_bytes": 5762,
+      "uncompressed_bytes": 21863
+    },
+    {
+      "condition": "geometry_6d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0108-geometry_6d-seed-20009.json.gz",
+      "run_index": 108,
+      "seed": 20009,
+      "sha256": "933f693ce988c7286231c0bcc864d7f5038e62fb705c79c6de154523653a1f76",
+      "size_bytes": 5783,
+      "uncompressed_bytes": 21883
+    },
+    {
+      "condition": "geometry_8d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0109-geometry_8d-seed-20009.json.gz",
+      "run_index": 109,
+      "seed": 20009,
+      "sha256": "42e408ce6a98c5399a1f976ae466cb661e912ef185610652c66c68aaf20dbb3e",
+      "size_bytes": 5766,
+      "uncompressed_bytes": 21805
+    },
+    {
+      "condition": "fixed_graph_label_2d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0110-fixed_graph_label_2d-seed-20009.json.gz",
+      "run_index": 110,
+      "seed": 20009,
+      "sha256": "989c501ba1408d0c5536f4b64209052e7b267b0ae44015f18673b1d7bc3243f8",
+      "size_bytes": 5785,
+      "uncompressed_bytes": 21873
+    },
+    {
+      "condition": "fixed_graph_label_3d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0111-fixed_graph_label_3d-seed-20009.json.gz",
+      "run_index": 111,
+      "seed": 20009,
+      "sha256": "299c87768aa6fa5f3bc61b942094b56188b10787ca83b9b3480dbe786814baf1",
+      "size_bytes": 5785,
+      "uncompressed_bytes": 21872
+    },
+    {
+      "condition": "fixed_graph_label_4d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0112-fixed_graph_label_4d-seed-20009.json.gz",
+      "run_index": 112,
+      "seed": 20009,
+      "sha256": "f4d513c461f912c3986ea0c661d0d9c703f9b89d2d377ab69d50961c7a9c68bc",
+      "size_bytes": 5785,
+      "uncompressed_bytes": 21873
+    },
+    {
+      "condition": "fixed_graph_label_5d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0113-fixed_graph_label_5d-seed-20009.json.gz",
+      "run_index": 113,
+      "seed": 20009,
+      "sha256": "6dd9d369da840ffd95188862f9b6b75c07839702bf3f52b76978ed61600847ec",
+      "size_bytes": 5781,
+      "uncompressed_bytes": 21872
+    },
+    {
+      "condition": "fixed_graph_label_6d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0114-fixed_graph_label_6d-seed-20009.json.gz",
+      "run_index": 114,
+      "seed": 20009,
+      "sha256": "23e4594ab8fdfb731f8c5622b72c0f77283a3410fb012f2469e9029b7efe53d8",
+      "size_bytes": 5785,
+      "uncompressed_bytes": 21872
+    },
+    {
+      "condition": "fixed_graph_label_8d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0115-fixed_graph_label_8d-seed-20009.json.gz",
+      "run_index": 115,
+      "seed": 20009,
+      "sha256": "4d6f3c1c9b1a65f38a8437d047319a38faea61b66a3061b55c258cff2bc46a66",
+      "size_bytes": 5786,
+      "uncompressed_bytes": 21872
+    },
+    {
+      "condition": "random_graph",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0116-random_graph-seed-20009.json.gz",
+      "run_index": 116,
+      "seed": 20009,
+      "sha256": "941f46c289f99519ff5116e5d4d46c256998400e48a18becdacf3ceb2df4fa87",
+      "size_bytes": 5872,
+      "uncompressed_bytes": 22210
+    },
+    {
+      "condition": "geometry_2d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0117-geometry_2d-seed-20010.json.gz",
+      "run_index": 117,
+      "seed": 20010,
+      "sha256": "8b2f4e1bd32283d4d3bfa9c13ced8224850cae693c0372c44af40748043b400e",
+      "size_bytes": 5624,
+      "uncompressed_bytes": 21211
+    },
+    {
+      "condition": "geometry_3d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0118-geometry_3d-seed-20010.json.gz",
+      "run_index": 118,
+      "seed": 20010,
+      "sha256": "983b295fcacd16a94e8b60c840136453b7dc7024e821b98dfff087f5ce3b9d3f",
+      "size_bytes": 5790,
+      "uncompressed_bytes": 21770
+    },
+    {
+      "condition": "geometry_4d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0119-geometry_4d-seed-20010.json.gz",
+      "run_index": 119,
+      "seed": 20010,
+      "sha256": "7a3603eab18ebac153749ac3b956bedb5dbc98f47f8a1d327287279dd87a07f5",
+      "size_bytes": 5761,
+      "uncompressed_bytes": 21711
+    },
+    {
+      "condition": "geometry_5d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0120-geometry_5d-seed-20010.json.gz",
+      "run_index": 120,
+      "seed": 20010,
+      "sha256": "276e9ee133c326432d97a94ff580c690a4a3d9cb299324ed3d7e36ef600938e7",
+      "size_bytes": 5858,
+      "uncompressed_bytes": 21796
+    },
+    {
+      "condition": "geometry_6d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0121-geometry_6d-seed-20010.json.gz",
+      "run_index": 121,
+      "seed": 20010,
+      "sha256": "46ff162a748322b42d985ed94f7c3370efbca18b2409aa6bca261df89145a24e",
+      "size_bytes": 5663,
+      "uncompressed_bytes": 21351
+    },
+    {
+      "condition": "geometry_8d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0122-geometry_8d-seed-20010.json.gz",
+      "run_index": 122,
+      "seed": 20010,
+      "sha256": "b94d0fc181de1800afdf3403fcf8e215248f5d81107723d21967a20073971c18",
+      "size_bytes": 5607,
+      "uncompressed_bytes": 21336
+    },
+    {
+      "condition": "fixed_graph_label_2d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0123-fixed_graph_label_2d-seed-20010.json.gz",
+      "run_index": 123,
+      "seed": 20010,
+      "sha256": "611157b1f26cd632d7c6d569a2e0b3714db407cf0c96e0bbf25f7b3d8da4aa44",
+      "size_bytes": 5883,
+      "uncompressed_bytes": 21805
+    },
+    {
+      "condition": "fixed_graph_label_3d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0124-fixed_graph_label_3d-seed-20010.json.gz",
+      "run_index": 124,
+      "seed": 20010,
+      "sha256": "1446ed9c3b77e2dc12c7c60f670bb4bc56f2f7a66e7c70cfeab085f77a94de17",
+      "size_bytes": 5884,
+      "uncompressed_bytes": 21806
+    },
+    {
+      "condition": "fixed_graph_label_4d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0125-fixed_graph_label_4d-seed-20010.json.gz",
+      "run_index": 125,
+      "seed": 20010,
+      "sha256": "0002b46c0478f3741318800f37d979ca4c9a4f6987af61507b2c4a53f14376f1",
+      "size_bytes": 5882,
+      "uncompressed_bytes": 21806
+    },
+    {
+      "condition": "fixed_graph_label_5d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0126-fixed_graph_label_5d-seed-20010.json.gz",
+      "run_index": 126,
+      "seed": 20010,
+      "sha256": "dbd922b7c261aca3bb0c1dd0d33ca12cf3e37364b62281d12db88c2489e39577",
+      "size_bytes": 5882,
+      "uncompressed_bytes": 21806
+    },
+    {
+      "condition": "fixed_graph_label_6d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0127-fixed_graph_label_6d-seed-20010.json.gz",
+      "run_index": 127,
+      "seed": 20010,
+      "sha256": "7f929c6270767828c6aebc29abf375150bb6a92df2b9f3d7a778d6617d805085",
+      "size_bytes": 5881,
+      "uncompressed_bytes": 21804
+    },
+    {
+      "condition": "fixed_graph_label_8d",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0128-fixed_graph_label_8d-seed-20010.json.gz",
+      "run_index": 128,
+      "seed": 20010,
+      "sha256": "d1a09d396b8e2fabf7650d0d1d9e6ed866c3d997bdb64d72338ccb735eb51aa8",
+      "size_bytes": 5884,
+      "uncompressed_bytes": 21805
+    },
+    {
+      "condition": "random_graph",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0129-random_graph-seed-20010.json.gz",
+      "run_index": 129,
+      "seed": 20010,
+      "sha256": "efd5740148403755f10f2d1a6f0cb7dddb41fbcc953f62f499acace314390794",
+      "size_bytes": 5757,
+      "uncompressed_bytes": 21973
+    }
+  ],
+  "schema_version": "2.0",
+  "storage_policy": "immutable_raw_runs_plus_compact_current_experiment"
+}

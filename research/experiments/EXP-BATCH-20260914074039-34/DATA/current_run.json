@@ -1,0 +1,11 @@
+{
+  "last_archived_run": 53,
+  "raw_artifact": {
+    "format": "json.gz",
+    "path": "DATA/raw/run-0053-regulation-telemetry_unknown-seed-103.json.gz",
+    "sha256": "f6f97bce61b72e42f79cb1fbe3d7b9d59aa428a9ac94f874f3909679d81e8928",
+    "size_bytes": 435,
+    "uncompressed_bytes": 984
+  },
+  "status": "idle"
+}

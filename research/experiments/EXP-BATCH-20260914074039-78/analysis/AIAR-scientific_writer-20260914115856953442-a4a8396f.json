@@ -1,0 +1,99 @@
+{
+  "analysis_id": "AIAR-scientific_writer-20260914115856953442-a4a8396f",
+  "role": "scientific_writer",
+  "model": {
+    "provider": "ollama",
+    "model_name": "qwen2.5-coder:7b",
+    "model_digest": "not_reported",
+    "quantization": "not_reported",
+    "context_length": "unknown",
+    "temperature": 0.0,
+    "top_p": 1.0,
+    "seed": "not_reported",
+    "backend_version": "unknown"
+  },
+  "inputs": {
+    "experiment_id": "EXP-BATCH-20260914074039-78",
+    "packet_digest": "a4a8396f53a528f6c0c8044dbe1ae48ef1c1c34e39605d98cf077dc0cf549d64"
+  },
+  "output": {
+    "experiment_id": "EXP-BATCH-20260914074039-78",
+    "protocol": "dimensional_connectivity_v1",
+    "run_count": 130,
+    "hypotheses": [
+      {
+        "id": "H-EVAL-001-A",
+        "hypothesis": "The 5D-guided connectivity yields different output spike counts from at least one non-5D geometry; no optimal-dimension claim."
+      }
+    ],
+    "metrics": {
+      "geometry_2d": {
+        "output_spikes": {
+          "mean": 80.4
+        }
+      },
+      "geometry_3d": {
+        "output_spikes": {
+          "mean": 80.4
+        }
+      },
+      "geometry_4d": {
+        "output_spikes": {
+          "mean": 75.0
+        }
+      },
+      "geometry_5d": {
+        "output_spikes": {
+          "mean": 77.4
+        }
+      },
+      "geometry_6d": {
+        "output_spikes": {
+          "mean": 77.1
+        }
+      },
+      "geometry_8d": {
+        "output_spikes": {
+          "mean": 74.6
+        }
+      },
+      "random_graph": {
+        "output_spikes": {
+          "mean": 69.6
+        }
+      }
+    },
+    "conclusion": "The 5D-guided connectivity yields different output spike counts from at least one non-5D geometry. The mean output spike count for 5D geometry is 77.4, while the mean output spike count for 2D, 3D, 4D, 6D, and 8D geometries are 80.4, 80.4, 75.0, 77.1, and 74.6, respectively. The mean output spike count for the random graph is 69.6.",
+    "assessment": "Die Analyse konnte nicht vollstaendig schema-konform erzeugt werden. Das Modell hat das erforderliche assessment-Feld nicht geliefert.",
+    "observations": [],
+    "methodological_concerns": [
+      "Die vom Modell ausgegebene confidence war schemawidrig oder ausserhalb des Bereichs 0..1. Sie wurde fuer die AIRR-Provenienz konservativ auf 0.0 gesetzt; der Originalwert bleibt als confidence_original erhalten."
+    ],
+    "alternative_explanations": [],
+    "recommended_experiments": [],
+    "requested_evidence": [],
+    "effect_direction": "not_determined",
+    "confidence_original": null,
+    "confidence": 0.0
+  },
+  "provenance": {
+    "prompt_sha256": "0fa16d5adaeb5ede2bdbeb911931c83208e82bc30c72054fe266f0b05258f042",
+    "research_packet_digest": "a4a8396f53a528f6c0c8044dbe1ae48ef1c1c34e39605d98cf077dc0cf549d64",
+    "prompt_protocol_version": "research_assistant_v1",
+    "assistant_schema_version": "1.2",
+    "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+    "model_self_confidence": "0.0"
+  },
+  "epistemic_status": {
+    "evidence": false,
+    "interpretation_only": true,
+    "human_review_required": true
+  },
+  "review": {
+    "status": "pending",
+    "reviewer": null,
+    "reviewed_at": null,
+    "disposition": null
+  },
+  "generated_at": "2026-09-14T11:58:56.953442+00:00"
+}

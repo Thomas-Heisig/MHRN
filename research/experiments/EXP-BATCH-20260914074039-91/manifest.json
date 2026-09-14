@@ -1,0 +1,118 @@
+{
+  "ai_exposure": "none",
+  "ai_interactions": [],
+  "ai_protocol": {
+    "bump_reason": "initial registration",
+    "version": 1
+  },
+  "ai_reproducibility": "R0",
+  "artifacts": {
+    "ai_packet": "analysis/ai_packet.json",
+    "ai_packet_digest": "analysis/ai_packet_digest.json",
+    "ai_report_json": "experiments/EXP-BATCH-20260914074039-91/reports/AIRR-2026-0001.json",
+    "ai_report_markdown": "experiments/EXP-BATCH-20260914074039-91/reports/AIRR-2026-0001.md",
+    "current_run": "DATA/current_run.json",
+    "data": "DATA/runs.json",
+    "data_index": "DATA/runs_index.json",
+    "gateway_state": "DATA/gateway_state.json",
+    "preregistration": "preregistrations/PREREG-MSBA-E02.json",
+    "raw_run_index": "DATA/runs_index.json",
+    "report": "report.md",
+    "statistics": "analysis/statistics.json",
+    "workflow": "workflow.json"
+  },
+  "causal_card": {
+    "classification": "PURE",
+    "interaction_ids": [],
+    "roles": []
+  },
+  "causal_taint": "PURE",
+  "config": {
+    "path": "F:\\Brain-5D\\configs\\learning_experiment.yaml",
+    "sha256": "6f6cd457caf6216c286fee47ef03b529a0b496ed2dd53ee96b85d3b51e7b3a1c"
+  },
+  "created_at": "2026-09-14T09:10:09.874496+00:00",
+  "data_partitions": [],
+  "epistemic_layers": {
+    "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+    "evid": "not_created; requires semantic validation, clean freeze and human review",
+    "interpretation": "post-hoc AI or human interpretation; never execution input",
+    "ui_state": "operator/dashboard progress only; not a scientific result"
+  },
+  "execution_contract": {
+    "hypothesis_id": "H-MSBA-E02-A",
+    "protocol": "msba_resource_allocation_v1",
+    "question_id": "RQ-MSBA-E02",
+    "resolved_runner": "run_msba_e02",
+    "runtime_runner_bytecode_sha256": "181cbccff2586769156029fa5c59e185ee82480b6191a37745644b040caae297",
+    "runtime_summary_bytecode_sha256": "8d311e523e6093b1bbb23954dae163406f1836fb0defa5b8c4479ac68a929395",
+    "source_runner_bytecode_sha256": "181cbccff2586769156029fa5c59e185ee82480b6191a37745644b040caae297",
+    "source_runtime_consistency": "MATCH",
+    "source_summary_bytecode_sha256": "8d311e523e6093b1bbb23954dae163406f1836fb0defa5b8c4479ac68a929395",
+    "tick_validation": {
+      "mode": "protocol_defined_internal_trials",
+      "requested_ticks": 96,
+      "status": "NOT_APPLICABLE"
+    },
+    "ticks_requested": 96
+  },
+  "experiment_id": "EXP-BATCH-20260914074039-91",
+  "experiment_status": "completed",
+  "git": {
+    "branch": "main",
+    "commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+    "dirty": true
+  },
+  "hypotheses": [
+    "H-MSBA-E02-A"
+  ],
+  "network_mode": "OFFLINE",
+  "provenance_digests": {
+    "code": "5a11ea288e7e695c2dcd456642b533cbb3e6daf38b72e150134e60e69059531f",
+    "config": "6f6cd457caf6216c286fee47ef03b529a0b496ed2dd53ee96b85d3b51e7b3a1c",
+    "data": "5eefbbe669817047d34d14f69a072f083fba5156f65bc4c724bac7c8148b28e4",
+    "prompt": "dd18e473908e7e75b1717c240bac221729ea38753abfd28b701b37b20d5f5e14"
+  },
+  "research_questions": [
+    "RQ-MSBA-E02"
+  ],
+  "research_run_mode": "CONFIRMATORY",
+  "results": {
+    "protocol": "msba_resource_allocation_v1",
+    "run_count": 9,
+    "runner": "run_msba_e02",
+    "tick_contract": {
+      "mode": "protocol_defined_internal_trials",
+      "requested_ticks": 96,
+      "status": "NOT_APPLICABLE"
+    },
+    "ticks_requested": 96
+  },
+  "runtime": {
+    "duration_seconds": 0.02601839997805655
+  },
+  "runtime_errors": [],
+  "simulation": {
+    "protocol": "msba_resource_allocation_v1",
+    "seed": 101,
+    "seeds": [
+      101,
+      102,
+      103
+    ],
+    "ticks": 96
+  },
+  "software": {
+    "brain5d_version": "0.6.0a3",
+    "os": "Windows 11",
+    "python": "3.13.14"
+  },
+  "source_freeze_sha": "9b47fe58c7288359100e9a483ee9f7d08a7e1c4baff679f9ed56a66b3d71c22d",
+  "timestamp": "2026-09-14T11:10:09.874484",
+  "validity": {
+    "fatal_error_count": 0,
+    "reason": null,
+    "runtime_error_count": 0,
+    "valid": true
+  }
+}

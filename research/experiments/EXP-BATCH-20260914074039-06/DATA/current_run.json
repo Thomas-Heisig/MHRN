@@ -1,0 +1,11 @@
+{
+  "last_archived_run": 8,
+  "raw_artifact": {
+    "format": "json.gz",
+    "path": "DATA/raw/run-0008-sham_replay-seed-103.json.gz",
+    "sha256": "9ff026f4036d874a2592a4620f666ce8c6f9a44e9b4445b1d38b76aa9adeffea",
+    "size_bytes": 351,
+    "uncompressed_bytes": 544
+  },
+  "status": "idle"
+}

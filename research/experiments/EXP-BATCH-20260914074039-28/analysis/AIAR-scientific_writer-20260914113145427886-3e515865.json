@@ -1,0 +1,78 @@
+{
+  "analysis_id": "AIAR-scientific_writer-20260914113145427886-3e515865",
+  "role": "scientific_writer",
+  "model": {
+    "provider": "ollama",
+    "model_name": "qwen2.5-coder:7b",
+    "model_digest": "not_reported",
+    "quantization": "not_reported",
+    "context_length": "unknown",
+    "temperature": 0.0,
+    "top_p": 1.0,
+    "seed": "not_reported",
+    "backend_version": "unknown"
+  },
+  "inputs": {
+    "experiment_id": "EXP-BATCH-20260914074039-28",
+    "packet_digest": "3e515865a024b9c356502067332dca6903244cee5c2e4a65fe4cbf17bab8944b"
+  },
+  "output": {
+    "conditions": {
+      "closed_loop": {
+        "metrics": {
+          "tracking_rmse_rad": {
+            "mean": 0.19492318860567073,
+            "std": 0.0013981971462885137
+          }
+        }
+      },
+      "feedback_absent": {
+        "metrics": {
+          "tracking_rmse_rad": {
+            "mean": 0.5217486871821682,
+            "std": 0.0018701773751896675
+          }
+        }
+      },
+      "yoked_replay": {
+        "metrics": {
+          "tracking_rmse_rad": {
+            "mean": 0.3035479018620123,
+            "std": 0.003701892927620802
+          }
+        }
+      }
+    },
+    "assessment": "Die Analyse konnte nicht vollstaendig schema-konform erzeugt werden. Das Modell hat das erforderliche assessment-Feld nicht geliefert.",
+    "observations": [],
+    "methodological_concerns": [
+      "Die vom Modell ausgegebene confidence war schemawidrig oder ausserhalb des Bereichs 0..1. Sie wurde fuer die AIRR-Provenienz konservativ auf 0.0 gesetzt; der Originalwert bleibt als confidence_original erhalten."
+    ],
+    "alternative_explanations": [],
+    "recommended_experiments": [],
+    "requested_evidence": [],
+    "effect_direction": "not_determined",
+    "confidence_original": null,
+    "confidence": 0.0
+  },
+  "provenance": {
+    "prompt_sha256": "19270f2dd6a26c41e0c84a16705f320b6e3bd0241b035723b21fac634c1af40f",
+    "research_packet_digest": "3e515865a024b9c356502067332dca6903244cee5c2e4a65fe4cbf17bab8944b",
+    "prompt_protocol_version": "research_assistant_v1",
+    "assistant_schema_version": "1.2",
+    "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+    "model_self_confidence": "0.0"
+  },
+  "epistemic_status": {
+    "evidence": false,
+    "interpretation_only": true,
+    "human_review_required": true
+  },
+  "review": {
+    "status": "pending",
+    "reviewer": null,
+    "reviewed_at": null,
+    "disposition": null
+  },
+  "generated_at": "2026-09-14T11:31:45.427886+00:00"
+}

@@ -1,0 +1,1743 @@
+{
+  "report_id": "AIRR-2026-0001",
+  "experiment_id": "EXP-BATCH-20260914074039-92",
+  "research_question_id": "RQ-MSBA-E03",
+  "hypothesis_ids": [
+    "H-MSBA-E03-A"
+  ],
+  "claim_ids": [],
+  "generated_at": "2026-09-14T12:07:54.489553+00:00",
+  "report_schema_version": "1.0",
+  "report_protocol_version": "PROTOCOL-AIRR-001",
+  "generated_by": "artificial_intelligence",
+  "ai_generated": true,
+  "scientific_evidence": false,
+  "human_review_required": true,
+  "status": "review_pending",
+  "content": {
+    "identification": {
+      "experiment": "EXP-BATCH-20260914074039-92",
+      "research_question": "Kann sich eine nutzungsabhaengige visuelle ROI/Foveation ohne hart kodierte Zielregion entwickeln?",
+      "hypotheses": [
+        {
+          "id": "H-MSBA-E03-A",
+          "research_question": "RQ-MSBA-E03",
+          "hypothesis": "Adaptive visuelle ROI-Allokation konzentriert Ressourcen auf aufgabenrelevante Regionen und verbessert Leistung pro Ressourceneinheit gegenueber einer zufaelligen ROI-Kontrolle.",
+          "status": "untested",
+          "evidence": [],
+          "created": "2026-09-06",
+          "updated": "2026-09-06"
+        }
+      ],
+      "date": "2026-09-14",
+      "source_sha": "8e096931a779b2d2eb4d010eb20154150b07bbf2"
+    },
+    "executive_summary": "Die Analyse konnte nicht vollstaendig schema-konform erzeugt werden. Das Modell hat das erforderliche assessment-Feld nicht geliefert.",
+    "research_question": {
+      "id": "RQ-MSBA-E03",
+      "domain": "Visual Resource Allocation",
+      "question": "Kann sich eine nutzungsabhaengige visuelle ROI/Foveation ohne hart kodierte Zielregion entwickeln?",
+      "relevance": "Trennt adaptive visuelle Ressourcenlenkung von fest programmierten Zentrum- oder Vollbildstrategien.",
+      "literature": [],
+      "hypotheses": [
+        "H-MSBA-E03-A"
+      ],
+      "evidence": [],
+      "status": "open",
+      "answer": {
+        "current": null,
+        "confidence": "none",
+        "limitations": "Der adaptive ROI-Lernpfad ist noch nicht als bestaetigender Runner operationalisiert."
+      },
+      "created": "2026-09-06",
+      "updated": "2026-09-06"
+    },
+    "experimental_design": {
+      "experiment_id": "EXP-BATCH-20260914074039-92",
+      "research_question": "RQ-MSBA-E03",
+      "hypothesis": "H-MSBA-E03-A",
+      "title": "Experiment workflow: msba_visual_roi_v1",
+      "conditions": "Registered protocol conditions",
+      "ticks": 48,
+      "ticks_contract": "minimum requested observation window",
+      "seeds": [
+        101,
+        102,
+        103
+      ],
+      "protocol": "msba_visual_roi_v1",
+      "resolved_runner": "run_msba_e03",
+      "tick_validation": {
+        "status": "NOT_APPLICABLE",
+        "mode": "protocol_defined_internal_trials",
+        "requested_ticks": 48
+      },
+      "notes": "",
+      "execution": "registered experiment_suite runner",
+      "assistant_policy": "AI is post-hoc interpretation only.",
+      "epistemic_layers": {
+        "ui_state": "operator/dashboard progress only; not a scientific result",
+        "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+        "evid": "not_created; requires semantic validation, clean freeze and human review",
+        "interpretation": "post-hoc AI or human interpretation; never execution input"
+      }
+    },
+    "data_basis": {
+      "data": {
+        "ai_input_policy": "compact_only_raw_on_explicit_deterministic_extract",
+        "generated_by": "deterministic_research_data_v2",
+        "limits": {
+          "ai_packet_max_bytes": 1000000,
+          "run_summary_max_bytes": 5000000,
+          "sequence_preview_items": 16
+        },
+        "raw_index": {
+          "path": "DATA/runs_index.json",
+          "run_count": 12,
+          "sha256": "671bbec957038d13543a394b97c8276e15f8daf5561db0254573a23ac772a89e"
+        },
+        "run_count": 12,
+        "run_preview": [
+          {
+            "_raw_artifact": {
+              "format": "json.gz",
+              "path": "DATA/raw/run-0000-adaptive_roi-seed-101.json.gz",
+              "sha256": "441a028eeb9e0e1dc548725ccb292b6cd0bab848149238b6d9db05d3bb90ee4e",
+              "size_bytes": 578,
+              "uncompressed_bytes": 1041
+            },
+            "condition": "adaptive_roi",
+            "experiment_id": "EXP-BATCH-20260914074039-92",
+            "metrics": {
+              "canonical_snn_synapse_state": "not_accessed",
+              "control_matrix": {
+                "projection_treatments": {
+                  "increased_dimensional": {
+                    "decision": 1,
+                    "dimensions": 16,
+                    "l2_norm": 2.3552636711963997
+                  },
+                  "random": {
+                    "decision": 0,
+                    "dimensions": 8,
+                    "l2_norm": 2.311579089845818
+                  },
+                  "reduced_dimensional": {
+                    "decision": 1,
+                    "dimensions": 4,
+                    "l2_norm": 0.27562901390367206
+                  },
+                  "shuffled": {
+                    "decision": 0,
+                    "dimensions": 8,
+                    "l2_norm": 1.6525467604104336
+                  },
+                  "structured": {
+                    "decision": 1,
+                    "dimensions": 8,
+                    "l2_norm": 1.6525467604104336
+                  }
+                }
+              },
+              "correct_per_energy_unit": 1.0,
+              "gateway_state_separate_persistence_required": true,
+              "production_peripheral_activation_enabled": false,
+              "research_question": "RQ-MSBA-E03",
+              "roi_mode": "adaptive_roi",
+              "roi_overlap_with_task_relevant_region": 1.0,
+              "task_accuracy": 1.0,
+              "visual_energy_units": 48.0
+            },
+            "runtime_error": null,
+            "seed": 101,
+            "state_digest_after": "9162226e57a97a906ba42dac5aab4d0647e392ad4528e98d114954f3fd5b5de1",
+            "state_digest_before": "9162226e57a97a906ba42dac5aab4d0647e392ad4528e98d114954f3fd5b5de1"
+          },
+          {
+            "_raw_artifact": {
+              "format": "json.gz",
+              "path": "DATA/raw/run-0001-fixed_center_roi-seed-101.json.gz",
+              "sha256": "75e13842fec41393b6acfd0f23ce373da011edc78b4c2ad0062a23fe87aa4a40",
+              "size_bytes": 598,
+              "uncompressed_bytes": 1096
+            },
+            "condition": "fixed_center_roi",
+            "experiment_id": "EXP-BATCH-20260914074039-92",
+            "metrics": {
+              "canonical_snn_synapse_state": "not_accessed",
+              "control_matrix": {
+                "projection_treatments": {
+                  "increased_dimensional": {
+                    "decision": 1,
+                    "dimensions": 16,
+                    "l2_norm": 2.3552636711963997
+                  },
+                  "random": {
+                    "decision": 0,
+                    "dimensions": 8,
+                    "l2_norm": 2.311579089845818
+                  },
+                  "reduced_dimensional": {
+                    "decision": 1,
+                    "dimensions": 4,
+                    "l2_norm": 0.27562901390367206
+                  },
+                  "shuffled": {
+                    "decision": 0,
+                    "dimensions": 8,
+                    "l2_norm": 1.6525467604104336
+                  },
+                  "structured": {
+                    "decision": 1,
+                    "dimensions": 8,
+                    "l2_norm": 1.6525467604104336
+                  }
+                }
+              },
+              "correct_per_energy_unit": 0.08854166666666667,
+              "gateway_state_separate_persistence_required": true,
+              "production_peripheral_activation_enabled": false,
+              "research_question": "RQ-MSBA-E03",
+              "roi_mode": "fixed_center_roi",
+              "roi_overlap_with_task_relevant_region": 0.3541666666666667,
+              "task_accuracy": 0.3541666666666667,
+              "visual_energy_units": 192.0
+            },
+            "runtime_error": null,
+            "seed": 101,
+            "state_digest_after": "9162226e57a97a906ba42dac5aab4d0647e392ad4528e98d114954f3fd5b5de1",
+            "state_digest_before": "9162226e57a97a906ba42dac5aab4d0647e392ad4528e98d114954f3fd5b5de1"
+          },
+          {
+            "_raw_artifact": {
+              "format": "json.gz",
+              "path": "DATA/raw/run-0002-random_roi-seed-101.json.gz",
+              "sha256": "fb1cc79587ad06548fb65b8ab0c7aa99726135361efa51cc54b791366d5055b0",
+              "size_bytes": 575,
+              "uncompressed_bytes": 1046
+            },
+            "condition": "random_roi",
+            "experiment_id": "EXP-BATCH-20260914074039-92",
+            "metrics": {
+              "canonical_snn_synapse_state": "not_accessed",
+              "control_matrix": {
+                "projection_treatments": {
+                  "increased_dimensional": {
+                    "decision": 1,
+                    "dimensions": 16,
+                    "l2_norm": 2.3552636711963997
+                  },
+                  "random": {
+                    "decision": 0,
+                    "dimensions": 8,
+                    "l2_norm": 2.311579089845818
+                  },
+                  "reduced_dimensional": {
+                    "decision": 1,
+                    "dimensions": 4,
+                    "l2_norm": 0.27562901390367206
+                  },
+                  "shuffled": {
+                    "decision": 0,
+                    "dimensions": 8,
+                    "l2_norm": 1.6525467604104336
+                  },
+                  "structured": {
+                    "decision": 1,
+                    "dimensions": 8,
+                    "l2_norm": 1.6525467604104336
+                  }
+                }
+              },
+              "correct_per_energy_unit": 0.0625,
+              "gateway_state_separate_persistence_required": true,
+              "production_peripheral_activation_enabled": false,
+              "research_question": "RQ-MSBA-E03",
+              "roi_mode": "random_roi",
+              "roi_overlap_with_task_relevant_region": 0.0625,
+              "task_accuracy": 0.0625,
+              "visual_energy_units": 48.0
+            },
+            "runtime_error": null,
+            "seed": 101,
+            "state_digest_after": "9162226e57a97a906ba42dac5aab4d0647e392ad4528e98d114954f3fd5b5de1",
+            "state_digest_before": "9162226e57a97a906ba42dac5aab4d0647e392ad4528e98d114954f3fd5b5de1"
+          },
+          {
+            "_raw_artifact": {
+              "format": "json.gz",
+              "path": "DATA/raw/run-0003-full_image-seed-101.json.gz",
+              "sha256": "905e5996f2f9a064f26ea228cc0126c7b18a31a743e96c544f9d3e0f16df1cd1",
+              "size_bytes": 579,
+              "uncompressed_bytes": 1041
+            },
+            "condition": "full_image",
+            "experiment_id": "EXP-BATCH-20260914074039-92",
+            "metrics": {
+              "canonical_snn_synapse_state": "not_accessed",
+              "control_matrix": {
+                "projection_treatments": {
+                  "increased_dimensional": {
+                    "decision": 1,
+                    "dimensions": 16,
+                    "l2_norm": 2.3552636711963997
+                  },
+                  "random": {
+                    "decision": 0,
+                    "dimensions": 8,
+                    "l2_norm": 2.311579089845818
+                  },
+                  "reduced_dimensional": {
+                    "decision": 1,
+                    "dimensions": 4,
+                    "l2_norm": 0.27562901390367206
+                  },
+                  "shuffled": {
+                    "decision": 0,
+                    "dimensions": 8,
+                    "l2_norm": 1.6525467604104336
+                  },
+                  "structured": {
+                    "decision": 1,
+                    "dimensions": 8,
+                    "l2_norm": 1.6525467604104336
+                  }
+                }
+              },
+              "correct_per_energy_unit": 0.0625,
+              "gateway_state_separate_persistence_required": true,
+              "production_peripheral_activation_enabled": false,
+              "research_question": "RQ-MSBA-E03",
+              "roi_mode": "full_image",
+              "roi_overlap_with_task_relevant_region": 1.0,
+              "task_accuracy": 1.0,
+              "visual_energy_units": 768.0
+            },
+            "runtime_error": null,
+            "seed": 101,
+            "state_digest_after": "9162226e57a97a906ba42dac5aab4d0647e392ad4528e98d114954f3fd5b5de1",
+            "state_digest_before": "9162226e57a97a906ba42dac5aab4d0647e392ad4528e98d114954f3fd5b5de1"
+          },
+          {
+            "_raw_artifact": {
+              "format": "json.gz",
+              "path": "DATA/raw/run-0004-adaptive_roi-seed-102.json.gz",
+              "sha256": "de240fc28e95e648ce19fab659f75c8d87d0caf7a67de7f99fda9a4a4cf3d4f4",
+              "size_bytes": 577,
+              "uncompressed_bytes": 1038
+            },
+            "condition": "adaptive_roi",
+            "experiment_id": "EXP-BATCH-20260914074039-92",
+            "metrics": {
+              "canonical_snn_synapse_state": "not_accessed",
+              "control_matrix": {
+                "projection_treatments": {
+                  "increased_dimensional": {
+                    "decision": 0,
+                    "dimensions": 16,
+                    "l2_norm": 1.4162296898250915
+                  },
+                  "random": {
+                    "decision": 1,
+                    "dimensions": 8,
+                    "l2_norm": 0.641173524802001
+                  },
+                  "reduced_dimensional": {
+                    "decision": 0,
+                    "dimensions": 4,
+                    "l2_norm": 0.4272375946992002
+                  },
+                  "shuffled": {
+                    "decision": 1,
+                    "dimensions": 8,
+                    "l2_norm": 1.157063269858866
+                  },
+                  "structured": {
+                    "decision": 0,
+                    "dimensions": 8,
+                    "l2_norm": 1.157063269858866
+                  }
+                }
+              },
+              "correct_per_energy_unit": 1.0,
+              "gateway_state_separate_persistence_required": true,
+              "production_peripheral_activation_enabled": false,
+              "research_question": "RQ-MSBA-E03",
+              "roi_mode": "adaptive_roi",
+              "roi_overlap_with_task_relevant_region": 1.0,
+              "task_accuracy": 1.0,
+              "visual_energy_units": 48.0
+            },
+            "runtime_error": null,
+            "seed": 102,
+            "state_digest_after": "9162226e57a97a906ba42dac5aab4d0647e392ad4528e98d114954f3fd5b5de1",
+            "state_digest_before": "9162226e57a97a906ba42dac5aab4d0647e392ad4528e98d114954f3fd5b5de1"
+          },
+          {
+            "_raw_artifact": {
+              "format": "json.gz",
+              "path": "DATA/raw/run-0005-fixed_center_roi-seed-102.json.gz",
+              "sha256": "6b5537e1ac52047cd377479e971283eda86c8d0e29f3147edd7c5bbd98bdf56f",
+              "size_bytes": 587,
+              "uncompressed_bytes": 1052
+            },
+            "condition": "fixed_center_roi",
+            "experiment_id": "EXP-BATCH-20260914074039-92",
+            "metrics": {
+              "canonical_snn_synapse_state": "not_accessed",
+              "control_matrix": {
+                "projection_treatments": {
+                  "increased_dimensional": {
+                    "decision": 0,
+                    "dimensions": 16,
+                    "l2_norm": 1.4162296898250915
+                  },
+                  "random": {
+                    "decision": 1,
+                    "dimensions": 8,
+                    "l2_norm": 0.641173524802001
+                  },
+                  "reduced_dimensional": {
+                    "decision": 0,
+                    "dimensions": 4,
+                    "l2_norm": 0.4272375946992002
+                  },
+                  "shuffled": {
+                    "decision": 1,
+                    "dimensions": 8,
+                    "l2_norm": 1.157063269858866
+                  },
+                  "structured": {
+                    "decision": 0,
+                    "dimensions": 8,
+                    "l2_norm": 1.157063269858866
+                  }
+                }
+              },
+              "correct_per_energy_unit": 0.0625,
+              "gateway_state_separate_persistence_required": true,
+              "production_peripheral_activation_enabled": false,
+              "research_question": "RQ-MSBA-E03",
+              "roi_mode": "fixed_center_roi",
+              "roi_overlap_with_task_relevant_region": 0.25,
+              "task_accuracy": 0.25,
+              "visual_energy_units": 192.0
+            },
+            "runtime_error": null,
+            "seed": 102,
+            "state_digest_after": "9162226e57a97a906ba42dac5aab4d0647e392ad4528e98d114954f3fd5b5de1",
+            "state_digest_before": "9162226e57a97a906ba42dac5aab4d0647e392ad4528e98d114954f3fd5b5de1"
+          },
+          {
+            "_raw_artifact": {
+              "format": "json.gz",
+              "path": "DATA/raw/run-0006-random_roi-seed-102.json.gz",
+              "sha256": "f426df88ca7dac5399eacae87f750c7d6945ce76fe58c3f7d3f5c13964c91107",
+              "size_bytes": 578,
+              "uncompressed_bytes": 1082
+            },
+            "condition": "random_roi",
+            "experiment_id": "EXP-BATCH-20260914074039-92",
+            "metrics": {
+              "canonical_snn_synapse_state": "not_accessed",
+              "control_matrix": {
+                "projection_treatments": {
+                  "increased_dimensional": {
+                    "decision": 0,
+                    "dimensions": 16,
+                    "l2_norm": 1.4162296898250915
+                  },
+                  "random": {
+                    "decision": 1,
+                    "dimensions": 8,
+                    "l2_norm": 0.641173524802001
+                  },
+                  "reduced_dimensional": {
+                    "decision": 0,
+                    "dimensions": 4,
+                    "l2_norm": 0.4272375946992002
+                  },
+                  "shuffled": {
+                    "decision": 1,
+                    "dimensions": 8,
+                    "l2_norm": 1.157063269858866
+                  },
+                  "structured": {
+                    "decision": 0,
+                    "dimensions": 8,
+                    "l2_norm": 1.157063269858866
+                  }
+                }
+              },
+              "correct_per_energy_unit": 0.08333333333333333,
+              "gateway_state_separate_persistence_required": true,
+              "production_peripheral_activation_enabled": false,
+              "research_question": "RQ-MSBA-E03",
+              "roi_mode": "random_roi",
+              "roi_overlap_with_task_relevant_region": 0.08333333333333333,
+              "task_accuracy": 0.08333333333333333,
+              "visual_energy_units": 48.0
+            },
+            "runtime_error": null,
+            "seed": 102,
+            "state_digest_after": "9162226e57a97a906ba42dac5aab4d0647e392ad4528e98d114954f3fd5b5de1",
+            "state_digest_before": "9162226e57a97a906ba42dac5aab4d0647e392ad4528e98d114954f3fd5b5de1"
+          },
+          {
+            "_raw_artifact": {
+              "format": "json.gz",
+              "path": "DATA/raw/run-0007-full_image-seed-102.json.gz",
+              "sha256": "a4b9e516e1e05fee721cad2672f103985be64bd4321ad6e97d4bb26472973f6b",
+              "size_bytes": 577,
+              "uncompressed_bytes": 1038
+            },
+            "condition": "full_image",
+            "experiment_id": "EXP-BATCH-20260914074039-92",
+            "metrics": {
+              "canonical_snn_synapse_state": "not_accessed",
+              "control_matrix": {
+                "projection_treatments": {
+                  "increased_dimensional": {
+                    "decision": 0,
+                    "dimensions": 16,
+                    "l2_norm": 1.4162296898250915
+                  },
+                  "random": {
+                    "decision": 1,
+                    "dimensions": 8,
+                    "l2_norm": 0.641173524802001
+                  },
+                  "reduced_dimensional": {
+                    "decision": 0,
+                    "dimensions": 4,
+                    "l2_norm": 0.4272375946992002
+                  },
+                  "shuffled": {
+                    "decision": 1,
+                    "dimensions": 8,
+                    "l2_norm": 1.157063269858866
+                  },
+                  "structured": {
+                    "decision": 0,
+                    "dimensions": 8,
+                    "l2_norm": 1.157063269858866
+                  }
+                }
+              },
+              "correct_per_energy_unit": 0.0625,
+              "gateway_state_separate_persistence_required": true,
+              "production_peripheral_activation_enabled": false,
+              "research_question": "RQ-MSBA-E03",
+              "roi_mode": "full_image",
+              "roi_overlap_with_task_relevant_region": 1.0,
+              "task_accuracy": 1.0,
+              "visual_energy_units": 768.0
+            },
+            "runtime_error": null,
+            "seed": 102,
+            "state_digest_after": "9162226e57a97a906ba42dac5aab4d0647e392ad4528e98d114954f3fd5b5de1",
+            "state_digest_before": "9162226e57a97a906ba42dac5aab4d0647e392ad4528e98d114954f3fd5b5de1"
+          },
+          {
+            "_raw_artifact": {
+              "format": "json.gz",
+              "path": "DATA/raw/run-0008-adaptive_roi-seed-103.json.gz",
+              "sha256": "8f18b28a8c74a91cbfa691bf2d90a7259b015794782444007e3733cd06978eb0",
+              "size_bytes": 575,
+              "uncompressed_bytes": 1040
+            },
+            "condition": "adaptive_roi",
+            "experiment_id": "EXP-BATCH-20260914074039-92",
+            "metrics": {
+              "canonical_snn_synapse_state": "not_accessed",
+              "control_matrix": {
+                "projection_treatments": {
+                  "increased_dimensional": {
+                    "decision": 1,
+                    "dimensions": 16,
+                    "l2_norm": 2.2851856250305325
+                  },
+                  "random": {
+                    "decision": 1,
+                    "dimensions": 8,
+                    "l2_norm": 1.532529736085419
+                  },
+                  "reduced_dimensional": {
+                    "decision": 0,
+                    "dimensions": 4,
+                    "l2_norm": 0.6151300067488722
+                  },
+                  "shuffled": {
+                    "decision": 1,
+                    "dimensions": 8,
+                    "l2_norm": 1.7289285452458567
+                  },
+                  "structured": {
+                    "decision": 1,
+                    "dimensions": 8,
+                    "l2_norm": 1.7289285452458567
+                  }
+                }
+              },
+              "correct_per_energy_unit": 1.0,
+              "gateway_state_separate_persistence_required": true,
+              "production_peripheral_activation_enabled": false,
+              "research_question": "RQ-MSBA-E03",
+              "roi_mode": "adaptive_roi",
+              "roi_overlap_with_task_relevant_region": 1.0,
+              "task_accuracy": 1.0,
+              "visual_energy_units": 48.0
+            },
+            "runtime_error": null,
+            "seed": 103,
+            "state_digest_after": "9162226e57a97a906ba42dac5aab4d0647e392ad4528e98d114954f3fd5b5de1",
+            "state_digest_before": "9162226e57a97a906ba42dac5aab4d0647e392ad4528e98d114954f3fd5b5de1"
+          },
+          {
+            "_raw_artifact": {
+              "format": "json.gz",
+              "path": "DATA/raw/run-0009-fixed_center_roi-seed-103.json.gz",
+              "sha256": "5d21b64c78d0ad043e6c8799622bc8114225c595c8de80c7ec50bf5ce5473882",
+              "size_bytes": 593,
+              "uncompressed_bytes": 1098
+            },
+            "condition": "fixed_center_roi",
+            "experiment_id": "EXP-BATCH-20260914074039-92",
+            "metrics": {
+              "canonical_snn_synapse_state": "not_accessed",
+              "control_matrix": {
+                "projection_treatments": {
+                  "increased_dimensional": {
+                    "decision": 1,
+                    "dimensions": 16,
+                    "l2_norm": 2.2851856250305325
+                  },
+                  "random": {
+                    "decision": 1,
+                    "dimensions": 8,
+                    "l2_norm": 1.532529736085419
+                  },
+                  "reduced_dimensional": {
+                    "decision": 0,
+                    "dimensions": 4,
+                    "l2_norm": 0.6151300067488722
+                  },
+                  "shuffled": {
+                    "decision": 1,
+                    "dimensions": 8,
+                    "l2_norm": 1.7289285452458567
+                  },
+                  "structured": {
+                    "decision": 1,
+                    "dimensions": 8,
+                    "l2_norm": 1.7289285452458567
+                  }
+                }
+              },
+              "correct_per_energy_unit": 0.052083333333333336,
+              "gateway_state_separate_persistence_required": true,
+              "production_peripheral_activation_enabled": false,
+              "research_question": "RQ-MSBA-E03",
+              "roi_mode": "fixed_center_roi",
+              "roi_overlap_with_task_relevant_region": 0.20833333333333334,
+              "task_accuracy": 0.20833333333333334,
+              "visual_energy_units": 192.0
+            },
+            "runtime_error": null,
+            "seed": 103,
+            "state_digest_after": "9162226e57a97a906ba42dac5aab4d0647e392ad4528e98d114954f3fd5b5de1",
+            "state_digest_before": "9162226e57a97a906ba42dac5aab4d0647e392ad4528e98d114954f3fd5b5de1"
+          },
+          {
+            "_raw_artifact": {
+              "format": "json.gz",
+              "path": "DATA/raw/run-0010-random_roi-seed-103.json.gz",
+              "sha256": "a359fc0c3cdcd8aecf8f97d349efb3179bd90127edae055c3936c52de2d9a148",
+              "size_bytes": 572,
+              "uncompressed_bytes": 1045
+            },
+            "condition": "random_roi",
+            "experiment_id": "EXP-BATCH-20260914074039-92",
+            "metrics": {
+              "canonical_snn_synapse_state": "not_accessed",
+              "control_matrix": {
+                "projection_treatments": {
+                  "increased_dimensional": {
+                    "decision": 1,
+                    "dimensions": 16,
+                    "l2_norm": 2.2851856250305325
+                  },
+                  "random": {
+                    "decision": 1,
+                    "dimensions": 8,
+                    "l2_norm": 1.532529736085419
+                  },
+                  "reduced_dimensional": {
+                    "decision": 0,
+                    "dimensions": 4,
+                    "l2_norm": 0.6151300067488722
+                  },
+                  "shuffled": {
+                    "decision": 1,
+                    "dimensions": 8,
+                    "l2_norm": 1.7289285452458567
+                  },
+                  "structured": {
+                    "decision": 1,
+                    "dimensions": 8,
+                    "l2_norm": 1.7289285452458567
+                  }
+                }
+              },
+              "correct_per_energy_unit": 0.0625,
+              "gateway_state_separate_persistence_required": true,
+              "production_peripheral_activation_enabled": false,
+              "research_question": "RQ-MSBA-E03",
+              "roi_mode": "random_roi",
+              "roi_overlap_with_task_relevant_region": 0.0625,
+              "task_accuracy": 0.0625,
+              "visual_energy_units": 48.0
+            },
+            "runtime_error": null,
+            "seed": 103,
+            "state_digest_after": "9162226e57a97a906ba42dac5aab4d0647e392ad4528e98d114954f3fd5b5de1",
+            "state_digest_before": "9162226e57a97a906ba42dac5aab4d0647e392ad4528e98d114954f3fd5b5de1"
+          },
+          {
+            "_raw_artifact": {
+              "format": "json.gz",
+              "path": "DATA/raw/run-0011-full_image-seed-103.json.gz",
+              "sha256": "73393f48ce192a1d52c073ffffe67699490b80fbfb9334f9f7e586bc405e26c0",
+              "size_bytes": 576,
+              "uncompressed_bytes": 1040
+            },
+            "condition": "full_image",
+            "experiment_id": "EXP-BATCH-20260914074039-92",
+            "metrics": {
+              "canonical_snn_synapse_state": "not_accessed",
+              "control_matrix": {
+                "projection_treatments": {
+                  "increased_dimensional": {
+                    "decision": 1,
+                    "dimensions": 16,
+                    "l2_norm": 2.2851856250305325
+                  },
+                  "random": {
+                    "decision": 1,
+                    "dimensions": 8,
+                    "l2_norm": 1.532529736085419
+                  },
+                  "reduced_dimensional": {
+                    "decision": 0,
+                    "dimensions": 4,
+                    "l2_norm": 0.6151300067488722
+                  },
+                  "shuffled": {
+                    "decision": 1,
+                    "dimensions": 8,
+                    "l2_norm": 1.7289285452458567
+                  },
+                  "structured": {
+                    "decision": 1,
+                    "dimensions": 8,
+                    "l2_norm": 1.7289285452458567
+                  }
+                }
+              },
+              "correct_per_energy_unit": 0.0625,
+              "gateway_state_separate_persistence_required": true,
+              "production_peripheral_activation_enabled": false,
+              "research_question": "RQ-MSBA-E03",
+              "roi_mode": "full_image",
+              "roi_overlap_with_task_relevant_region": 1.0,
+              "task_accuracy": 1.0,
+              "visual_energy_units": 768.0
+            },
+            "runtime_error": null,
+            "seed": 103,
+            "state_digest_after": "9162226e57a97a906ba42dac5aab4d0647e392ad4528e98d114954f3fd5b5de1",
+            "state_digest_before": "9162226e57a97a906ba42dac5aab4d0647e392ad4528e98d114954f3fd5b5de1"
+          }
+        ],
+        "schema_version": "2.0",
+        "statistics": {
+          "conditions": {
+            "adaptive_roi": {
+              "metrics": {
+                "correct_per_energy_unit": {
+                  "max": 1.0,
+                  "mean": 1.0,
+                  "median": 1.0,
+                  "min": 1.0,
+                  "n": 3,
+                  "std": 0.0
+                },
+                "roi_overlap_with_task_relevant_region": {
+                  "max": 1.0,
+                  "mean": 1.0,
+                  "median": 1.0,
+                  "min": 1.0,
+                  "n": 3,
+                  "std": 0.0
+                },
+                "task_accuracy": {
+                  "max": 1.0,
+                  "mean": 1.0,
+                  "median": 1.0,
+                  "min": 1.0,
+                  "n": 3,
+                  "std": 0.0
+                },
+                "visual_energy_units": {
+                  "max": 48.0,
+                  "mean": 48.0,
+                  "median": 48.0,
+                  "min": 48.0,
+                  "n": 3,
+                  "std": 0.0
+                }
+              },
+              "run_count": 3,
+              "seeds": [
+                101,
+                102,
+                103
+              ]
+            },
+            "fixed_center_roi": {
+              "metrics": {
+                "correct_per_energy_unit": {
+                  "max": 0.08854166666666667,
+                  "mean": 0.06770833333333333,
+                  "median": 0.0625,
+                  "min": 0.052083333333333336,
+                  "n": 3,
+                  "std": 0.015332918170708068
+                },
+                "roi_overlap_with_task_relevant_region": {
+                  "max": 0.3541666666666667,
+                  "mean": 0.2708333333333333,
+                  "median": 0.25,
+                  "min": 0.20833333333333334,
+                  "n": 3,
+                  "std": 0.061331672682832274
+                },
+                "task_accuracy": {
+                  "max": 0.3541666666666667,
+                  "mean": 0.2708333333333333,
+                  "median": 0.25,
+                  "min": 0.20833333333333334,
+                  "n": 3,
+                  "std": 0.061331672682832274
+                },
+                "visual_energy_units": {
+                  "max": 192.0,
+                  "mean": 192.0,
+                  "median": 192.0,
+                  "min": 192.0,
+                  "n": 3,
+                  "std": 0.0
+                }
+              },
+              "run_count": 3,
+              "seeds": [
+                101,
+                102,
+                103
+              ]
+            },
+            "full_image": {
+              "metrics": {
+                "correct_per_energy_unit": {
+                  "max": 0.0625,
+                  "mean": 0.0625,
+                  "median": 0.0625,
+                  "min": 0.0625,
+                  "n": 3,
+                  "std": 0.0
+                },
+                "roi_overlap_with_task_relevant_region": {
+                  "max": 1.0,
+                  "mean": 1.0,
+                  "median": 1.0,
+                  "min": 1.0,
+                  "n": 3,
+                  "std": 0.0
+                },
+                "task_accuracy": {
+                  "max": 1.0,
+                  "mean": 1.0,
+                  "median": 1.0,
+                  "min": 1.0,
+                  "n": 3,
+                  "std": 0.0
+                },
+                "visual_energy_units": {
+                  "max": 768.0,
+                  "mean": 768.0,
+                  "median": 768.0,
+                  "min": 768.0,
+                  "n": 3,
+                  "std": 0.0
+                }
+              },
+              "run_count": 3,
+              "seeds": [
+                101,
+                102,
+                103
+              ]
+            },
+            "random_roi": {
+              "metrics": {
+                "correct_per_energy_unit": {
+                  "max": 0.08333333333333333,
+                  "mean": 0.06944444444444443,
+                  "median": 0.0625,
+                  "min": 0.0625,
+                  "n": 3,
+                  "std": 0.009820927516479824
+                },
+                "roi_overlap_with_task_relevant_region": {
+                  "max": 0.08333333333333333,
+                  "mean": 0.06944444444444443,
+                  "median": 0.0625,
+                  "min": 0.0625,
+                  "n": 3,
+                  "std": 0.009820927516479824
+                },
+                "task_accuracy": {
+                  "max": 0.08333333333333333,
+                  "mean": 0.06944444444444443,
+                  "median": 0.0625,
+                  "min": 0.0625,
+                  "n": 3,
+                  "std": 0.009820927516479824
+                },
+                "visual_energy_units": {
+                  "max": 48.0,
+                  "mean": 48.0,
+                  "median": 48.0,
+                  "min": 48.0,
+                  "n": 3,
+                  "std": 0.0
+                }
+              },
+              "run_count": 3,
+              "seeds": [
+                101,
+                102,
+                103
+              ]
+            }
+          },
+          "formulas": {
+            "difference": "Delta_x = mean(x_B) - mean(x_A)",
+            "inter_spike_interval": "ISI_i = t_(i+1) - t_i",
+            "mean": "mean(x) = (1/n) * sum_i x_i",
+            "population_std": "sigma = sqrt((1/n) * sum_i (x_i - mean(x))^2)",
+            "ratio": "R_x = mean(x_B) / mean(x_A), defined only when mean(x_A) != 0"
+          },
+          "generated_by": "deterministic_statistics_engine",
+          "run_count": 12,
+          "schema_version": "2.0"
+        }
+      },
+      "evid": [],
+      "literature": []
+    },
+    "quantitative_results": {
+      "conditions": {
+        "adaptive_roi": {
+          "metrics": {
+            "correct_per_energy_unit": {
+              "max": 1.0,
+              "mean": 1.0,
+              "median": 1.0,
+              "min": 1.0,
+              "n": 3,
+              "std": 0.0
+            },
+            "roi_overlap_with_task_relevant_region": {
+              "max": 1.0,
+              "mean": 1.0,
+              "median": 1.0,
+              "min": 1.0,
+              "n": 3,
+              "std": 0.0
+            },
+            "task_accuracy": {
+              "max": 1.0,
+              "mean": 1.0,
+              "median": 1.0,
+              "min": 1.0,
+              "n": 3,
+              "std": 0.0
+            },
+            "visual_energy_units": {
+              "max": 48.0,
+              "mean": 48.0,
+              "median": 48.0,
+              "min": 48.0,
+              "n": 3,
+              "std": 0.0
+            }
+          },
+          "run_count": 3,
+          "seeds": [
+            101,
+            102,
+            103
+          ]
+        },
+        "fixed_center_roi": {
+          "metrics": {
+            "correct_per_energy_unit": {
+              "max": 0.08854166666666667,
+              "mean": 0.06770833333333333,
+              "median": 0.0625,
+              "min": 0.052083333333333336,
+              "n": 3,
+              "std": 0.015332918170708068
+            },
+            "roi_overlap_with_task_relevant_region": {
+              "max": 0.3541666666666667,
+              "mean": 0.2708333333333333,
+              "median": 0.25,
+              "min": 0.20833333333333334,
+              "n": 3,
+              "std": 0.061331672682832274
+            },
+            "task_accuracy": {
+              "max": 0.3541666666666667,
+              "mean": 0.2708333333333333,
+              "median": 0.25,
+              "min": 0.20833333333333334,
+              "n": 3,
+              "std": 0.061331672682832274
+            },
+            "visual_energy_units": {
+              "max": 192.0,
+              "mean": 192.0,
+              "median": 192.0,
+              "min": 192.0,
+              "n": 3,
+              "std": 0.0
+            }
+          },
+          "run_count": 3,
+          "seeds": [
+            101,
+            102,
+            103
+          ]
+        },
+        "full_image": {
+          "metrics": {
+            "correct_per_energy_unit": {
+              "max": 0.0625,
+              "mean": 0.0625,
+              "median": 0.0625,
+              "min": 0.0625,
+              "n": 3,
+              "std": 0.0
+            },
+            "roi_overlap_with_task_relevant_region": {
+              "max": 1.0,
+              "mean": 1.0,
+              "median": 1.0,
+              "min": 1.0,
+              "n": 3,
+              "std": 0.0
+            },
+            "task_accuracy": {
+              "max": 1.0,
+              "mean": 1.0,
+              "median": 1.0,
+              "min": 1.0,
+              "n": 3,
+              "std": 0.0
+            },
+            "visual_energy_units": {
+              "max": 768.0,
+              "mean": 768.0,
+              "median": 768.0,
+              "min": 768.0,
+              "n": 3,
+              "std": 0.0
+            }
+          },
+          "run_count": 3,
+          "seeds": [
+            101,
+            102,
+            103
+          ]
+        },
+        "random_roi": {
+          "metrics": {
+            "correct_per_energy_unit": {
+              "max": 0.08333333333333333,
+              "mean": 0.06944444444444443,
+              "median": 0.0625,
+              "min": 0.0625,
+              "n": 3,
+              "std": 0.009820927516479824
+            },
+            "roi_overlap_with_task_relevant_region": {
+              "max": 0.08333333333333333,
+              "mean": 0.06944444444444443,
+              "median": 0.0625,
+              "min": 0.0625,
+              "n": 3,
+              "std": 0.009820927516479824
+            },
+            "task_accuracy": {
+              "max": 0.08333333333333333,
+              "mean": 0.06944444444444443,
+              "median": 0.0625,
+              "min": 0.0625,
+              "n": 3,
+              "std": 0.009820927516479824
+            },
+            "visual_energy_units": {
+              "max": 48.0,
+              "mean": 48.0,
+              "median": 48.0,
+              "min": 48.0,
+              "n": 3,
+              "std": 0.0
+            }
+          },
+          "run_count": 3,
+          "seeds": [
+            101,
+            102,
+            103
+          ]
+        }
+      },
+      "formulas": {
+        "difference": "Delta_x = mean(x_B) - mean(x_A)",
+        "inter_spike_interval": "ISI_i = t_(i+1) - t_i",
+        "mean": "mean(x) = (1/n) * sum_i x_i",
+        "population_std": "sigma = sqrt((1/n) * sum_i (x_i - mean(x))^2)",
+        "ratio": "R_x = mean(x_B) / mean(x_A), defined only when mean(x_A) != 0"
+      },
+      "generated_by": "deterministic_statistics_engine",
+      "run_count": 12,
+      "schema_version": "2.0"
+    },
+    "observations": [
+      "Der adaptive ROI-Modus erreicht eine maximale Leistung von 1.0 pro Energieeinheit, während andere Modi wie fixed_center_roi und random_roi deutlich niedrigere Werte aufweisen.",
+      "Die ROI-Überlappung mit der aufgabenrelevanten Region ist bei adaptive ROI konstant 1.0, was auf eine optimale Ausrichtung hinweist.",
+      "Die visuelle Energieeinheit ist bei adaptive ROI auf 48.0 begrenzt, während full_image eine höhere Energie aufwendet, aber eine vollständige Überlappung erzielt."
+    ],
+    "interpretation": {
+      "adaptive_roi": {
+        "metrics": {
+          "correct_per_energy_unit": {
+            "max": 1.0,
+            "mean": 1.0,
+            "median": 1.0,
+            "min": 1.0,
+            "n": 3,
+            "std": 0.0
+          },
+          "roi_overlap_with_task_relevant_region": {
+            "max": 1.0,
+            "mean": 1.0,
+            "median": 1.0,
+            "min": 1.0,
+            "n": 3,
+            "std": 0.0
+          },
+          "task_accuracy": {
+            "max": 1.0,
+            "mean": 1.0,
+            "median": 1.0,
+            "min": 1.0,
+            "n": 3,
+            "std": 0.0
+          },
+          "visual_energy_units": {
+            "max": 48.0,
+            "mean": 48.0,
+            "median": 48.0,
+            "min": 48.0,
+            "n": 3,
+            "std": 0.0
+          }
+        },
+        "run_count": 3,
+        "seeds": [
+          101,
+          102,
+          103
+        ]
+      },
+      "fixed_center_roi": {
+        "metrics": {
+          "correct_per_energy_unit": {
+            "max": 0.08854166666666667,
+            "mean": 0.06770833333333333,
+            "median": 0.0625,
+            "min": 0.052083333333333336,
+            "n": 3,
+            "std": 0.015332918170708068
+          },
+          "roi_overlap_with_task_relevant_region": {
+            "max": 0.3541666666666667,
+            "mean": 0.2708333333333333,
+            "median": 0.25,
+            "min": 0.20833333333333334,
+            "n": 3,
+            "std": 0.061331672682832274
+          },
+          "task_accuracy": {
+            "max": 0.3541666666666667,
+            "mean": 0.2708333333333333,
+            "median": 0.25,
+            "min": 0.20833333333333334,
+            "n": 3,
+            "std": 0.061331672682832274
+          },
+          "visual_energy_units": {
+            "max": 192.0,
+            "mean": 192.0,
+            "median": 192.0,
+            "min": 192.0,
+            "n": 3,
+            "std": 0.0
+          }
+        },
+        "run_count": 3,
+        "seeds": [
+          101,
+          102,
+          103
+        ]
+      },
+      "full_image": {
+        "metrics": {
+          "correct_per_energy_unit": {
+            "max": 0.0625,
+            "mean": 0.0625,
+            "median": 0.0625,
+            "min": 0.0625,
+            "n": 3,
+            "std": 0.0
+          },
+          "roi_overlap_with_task_relevant_region": {
+            "max": 1.0,
+            "mean": 1.0,
+            "median": 1.0,
+            "min": 1.0,
+            "n": 3,
+            "std": 0.0
+          },
+          "task_accuracy": {
+            "max": 1.0,
+            "mean": 1.0,
+            "median": 1.0,
+            "min": 1.0,
+            "n": 3,
+            "std": 0.0
+          },
+          "visual_energy_units": {
+            "max": 768.0,
+            "mean": 768.0,
+            "median": 768.0,
+            "min": 768.0,
+            "n": 3,
+            "std": 0.0
+          }
+        },
+        "run_count": 3,
+        "seeds": [
+          101,
+          102,
+          103
+        ]
+      },
+      "random_roi": {
+        "metrics": {
+          "correct_per_energy_unit": {
+            "max": 0.08333333333333333,
+            "mean": 0.06944444444444443,
+            "median": 0.0625,
+            "min": 0.0625,
+            "n": 3,
+            "std": 0.009820927516479824
+          },
+          "roi_overlap_with_task_relevant_region": {
+            "max": 0.08333333333333333,
+            "mean": 0.06944444444444443,
+            "median": 0.0625,
+            "min": 0.0625,
+            "n": 3,
+            "std": 0.009820927516479824
+          },
+          "task_accuracy": {
+            "max": 0.08333333333333333,
+            "mean": 0.06944444444444443,
+            "median": 0.0625,
+            "min": 0.0625,
+            "n": 3,
+            "std": 0.009820927516479824
+          },
+          "visual_energy_units": {
+            "max": 48.0,
+            "mean": 48.0,
+            "median": 48.0,
+            "min": 48.0,
+            "n": 3,
+            "std": 0.0
+          }
+        },
+        "run_count": 3,
+        "seeds": [
+          101,
+          102,
+          103
+        ]
+      },
+      "assessment": "Die Analyse konnte nicht vollstaendig schema-konform erzeugt werden. Das Modell hat das erforderliche assessment-Feld nicht geliefert.",
+      "observations": [],
+      "methodological_concerns": [
+        "Die vom Modell ausgegebene confidence war schemawidrig oder ausserhalb des Bereichs 0..1. Sie wurde fuer die AIRR-Provenienz konservativ auf 0.0 gesetzt; der Originalwert bleibt als confidence_original erhalten."
+      ],
+      "alternative_explanations": [],
+      "recommended_experiments": [],
+      "requested_evidence": [],
+      "effect_direction": "not_determined",
+      "confidence_original": null,
+      "confidence": 0.0
+    },
+    "methodological_critique": [
+      "Die Daten stammen aus einer einzigen Experimentierreihe, was die Generalisierbarkeit der Ergebnisse beeinträchtigen könnte.",
+      "Es fehlen statistische Tests zur Bestätigung der signifikanten Unterschiede zwischen den Modellen."
+    ],
+    "alternative_explanations": [
+      "Die bessere Leistung könnte auf zufällige Faktoren wie Seed-Werte oder andere nicht gemessene Variablen zurückgehen.",
+      "Die hohe ROI-Überlappung bei adaptive ROI könnte auf eine fehlerhafte Messung oder eine unvollständige Aufzeichnung der Daten hinweisen."
+    ],
+    "reproducibility": {
+      "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+      "experiment_status": "completed",
+      "evidence_mode": "not_reported",
+      "git_dirty": "True",
+      "source_freeze_sha": "edcbd90745f1f4fd60005baabbb059f7655030b5233484b5bd9fa17ce127a32e",
+      "configuration_path": "F:\\Brain-5D\\configs\\learning_experiment.yaml",
+      "configuration_sha256": "6f6cd457caf6216c286fee47ef03b529a0b496ed2dd53ee96b85d3b51e7b3a1c",
+      "experiment_manifest_digest": "c1284933ae3835a681096300fb7103abefd31f77290b541211e5164faaeb9892",
+      "data_ids": "NOT_AVAILABLE",
+      "evid_ids": "NOT_AVAILABLE",
+      "protocol_id": "NOT_AVAILABLE",
+      "protocol_digest": "2f7fee6f44435d01ad795716be6718764f95296eb5dffdf77bcd35a003620de0",
+      "data_digest": "afc778b98adb30fde31cdd32a976c5db9102c8280ad1f1475bee44c2854a4541",
+      "evid_digests": "[]"
+    },
+    "epistemic_status": {
+      "implementation": "NOT_DETERMINED",
+      "experiment_data": "PRESENT",
+      "registered_evidence": "ABSENT",
+      "ai_interpretation": "PRESENT",
+      "human_review": "PENDING",
+      "claim_support": "NOT_DETERMINED",
+      "rq_status": "IN_PROGRESS"
+    },
+    "ai_confidence": 0.0,
+    "missing_evidence": [],
+    "recommended_follow_up": [],
+    "conclusion": "Die Analyse konnte nicht vollstaendig schema-konform erzeugt werden. Das Modell hat das erforderliche assessment-Feld nicht geliefert.",
+    "human_review": {
+      "status": "PENDING",
+      "reviewer": null,
+      "reviewed_at": null,
+      "disposition": null,
+      "comments": null
+    },
+    "aiar": {
+      "analyst": {
+        "analysis_id": "AIAR-scientific_analyst-20260914091303514767-d0abf811",
+        "role": "scientific_analyst",
+        "model": {
+          "provider": "ollama",
+          "model_name": "qwen3:8b",
+          "model_digest": "not_reported",
+          "quantization": "not_reported",
+          "context_length": "unknown",
+          "temperature": 0.0,
+          "top_p": 0.9,
+          "seed": "not_reported",
+          "backend_version": "unknown"
+        },
+        "inputs": {
+          "experiment_id": "EXP-BATCH-20260914074039-92",
+          "packet_digest": "d0abf81154fb838b4090f3258650cae205d8b1ccf2029a79eea62bf6f2de71f8"
+        },
+        "output": {
+          "assessment": "Die Daten zeigen, dass der adaptive ROI-Modus eine signifikante Leistungssteigerung im Vergleich zu anderen ROI-Modi erzielt, jedoch sind weitere Experimente erforderlich, um die Ergebnisse zu bestätigen.",
+          "observations": [
+            "Der adaptive ROI-Modus erreicht eine maximale Leistung von 1.0 pro Energieeinheit, während andere Modi wie fixed_center_roi und random_roi deutlich niedrigere Werte aufweisen.",
+            "Die ROI-Überlappung mit der aufgabenrelevanten Region ist bei adaptive ROI konstant 1.0, was auf eine optimale Ausrichtung hinweist.",
+            "Die visuelle Energieeinheit ist bei adaptive ROI auf 48.0 begrenzt, während full_image eine höhere Energie aufwendet, aber eine vollständige Überlappung erzielt."
+          ],
+          "effect_direction": "Der adaptive ROI-Modus führt zu einer höheren Leistung pro Energieeinheit im Vergleich zu anderen Modellen.",
+          "methodological_concerns": [
+            "Die Daten sind aus einer einzigen Experimentierreihe, was die Generalisierbarkeit der Ergebnisse beeinträchtigen könnte.",
+            "Es fehlen statistische Tests zur Bestätigung der signifikanten Unterschiede zwischen den Modellen."
+          ],
+          "alternative_explanations": [
+            "Die bessere Leistung könnte auf zufällige Faktoren wie Seed-Werte oder andere nicht gemessene Variablen zurückgehen.",
+            "Die hohe ROI-Überlappung bei adaptive ROI könnte auf eine fehlerhafte Messung oder eine unvollständige Aufzeichnung der Daten hinweisen."
+          ],
+          "recommended_experiments": [
+            "Eine Wiederholung der Experimente mit verschiedenen Seed-Werten und anderen Parametern, um die Ergebnisse zu validieren.",
+            "Ein Vergleich mit anderen ROI-Strategien, um die Effektivität des adaptive ROI-Modus weiter zu untersuchen."
+          ],
+          "requested_evidence": [
+            "Statistische Analysen zur Bestätigung der signifikanten Unterschiede zwischen den Modellen.",
+            "Dokumentation der verwendeten Seed-Werte und deren Einfluss auf die Ergebnisse.",
+            "Evidenz für die Validierung der ROI-Überlappungsmessung und deren Genauigkeit."
+          ],
+          "confidence": 0.65
+        },
+        "provenance": {
+          "prompt_sha256": "33148c157424105c0c6405a1c006d995cb7a32d917d1739ac6e9589a04763382",
+          "research_packet_digest": "d0abf81154fb838b4090f3258650cae205d8b1ccf2029a79eea62bf6f2de71f8",
+          "prompt_protocol_version": "research_assistant_v1",
+          "assistant_schema_version": "1.2",
+          "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+          "model_self_confidence": "0.65"
+        },
+        "epistemic_status": {
+          "evidence": false,
+          "interpretation_only": true,
+          "human_review_required": true
+        },
+        "review": {
+          "status": "pending",
+          "reviewer": null,
+          "reviewed_at": null,
+          "disposition": null
+        },
+        "generated_at": "2026-09-14T09:13:03.514767+00:00"
+      },
+      "reviewer": {
+        "analysis_id": "AIAR-critical_reviewer-20260914091323150767-d0abf811",
+        "role": "critical_reviewer",
+        "model": {
+          "provider": "ollama",
+          "model_name": "qwen3:8b",
+          "model_digest": "not_reported",
+          "quantization": "not_reported",
+          "context_length": "unknown",
+          "temperature": 0.0,
+          "top_p": 0.9,
+          "seed": "not_reported",
+          "backend_version": "unknown"
+        },
+        "inputs": {
+          "experiment_id": "EXP-BATCH-20260914074039-92",
+          "packet_digest": "d0abf81154fb838b4090f3258650cae205d8b1ccf2029a79eea62bf6f2de71f8"
+        },
+        "output": {
+          "assessment": "Die Daten zeigen, dass der adaptive ROI-Modus eine signifikante Leistungssteigerung im Vergleich zu anderen ROI-Modi erzielt, jedoch sind weitere Experimente erforderlich, um die Ergebnisse zu bestätigen.",
+          "observations": [
+            "Der adaptive ROI-Modus erreicht eine maximale Leistung von 1.0 pro Energieeinheit, wobei andere Modi wie fixed_center_roi und random_roi deutlich niedrigere Werte aufweisen.",
+            "Die ROI-Überlappung mit der aufgabenrelevanten Region ist bei adaptive ROI konstant 1.0, was auf eine optimale Ausrichtung hinweist.",
+            "Die visuelle Energieeinheit ist bei adaptive ROI auf 48.0 begrenzt, wobei full_image eine höhere Energie aufwendet, aber eine vollständige Überlappung erzielt."
+          ],
+          "effect_direction": "Der adaptive ROI-Modus führt zu einer höheren Leistung pro Energieeinheit im Vergleich zu anderen Modellen.",
+          "methodological_concerns": [
+            "Die Daten stammen aus einer einzigen Experimentierreihe, was die Generalisierbarkeit der Ergebnisse beeinträchtigen könnte.",
+            "Es fehlen statistische Tests zur Bestätigung der signifikanten Unterschiede zwischen den Modellen."
+          ],
+          "alternative_explanations": [
+            "Die bessere Leistung könnte auf zufällige Faktoren wie Seed-Werte oder andere nicht gemessene Variablen zurückgehen.",
+            "Die hohe ROI-Überlappung bei adaptive ROI könnte auf eine fehlerhafte Messung oder eine unvollständige Aufzeichnung der Daten hinweisen."
+          ],
+          "recommended_experiments": [
+            "Eine Wiederholung der Experimente mit verschiedenen Seed-Werten und anderen Parametern, um die Ergebnisse zu validieren.",
+            "Ein Vergleich mit anderen ROI-Strategien, um die Effektivität des adaptive ROI-Modus weiter zu untersuchen."
+          ],
+          "requested_evidence": [
+            "Statistische Analysen zur Bestätigung der signifikanten Unterschiede zwischen den Modellen.",
+            "Dokumentation der verwendeten Seed-Werte und deren Einfluss auf die Ergebnisse.",
+            "Evidenz für die Validierung der ROI-Überlappungsmessung und deren Genauigkeit."
+          ],
+          "confidence": 0.65
+        },
+        "provenance": {
+          "prompt_sha256": "0a17d7292bcc98de7db8f11398e0e2fc84c895cff67652ca5330e301b523579e",
+          "research_packet_digest": "d0abf81154fb838b4090f3258650cae205d8b1ccf2029a79eea62bf6f2de71f8",
+          "prompt_protocol_version": "research_assistant_v1",
+          "assistant_schema_version": "1.2",
+          "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+          "model_self_confidence": "0.65"
+        },
+        "epistemic_status": {
+          "evidence": false,
+          "interpretation_only": true,
+          "human_review_required": true
+        },
+        "review": {
+          "status": "pending",
+          "reviewer": null,
+          "reviewed_at": null,
+          "disposition": null
+        },
+        "generated_at": "2026-09-14T09:13:23.150767+00:00"
+      },
+      "writer": {
+        "analysis_id": "AIAR-scientific_writer-20260914120754487786-75c4acee",
+        "role": "scientific_writer",
+        "model": {
+          "provider": "ollama",
+          "model_name": "qwen2.5-coder:7b",
+          "model_digest": "not_reported",
+          "quantization": "not_reported",
+          "context_length": "unknown",
+          "temperature": 0.0,
+          "top_p": 1.0,
+          "seed": "not_reported",
+          "backend_version": "unknown"
+        },
+        "inputs": {
+          "experiment_id": "EXP-BATCH-20260914074039-92",
+          "packet_digest": "75c4aceeb18fa66da8afd876a2558d440e1883e1b4f0de8e26f4a4a3a784a5c1"
+        },
+        "output": {
+          "adaptive_roi": {
+            "metrics": {
+              "correct_per_energy_unit": {
+                "max": 1.0,
+                "mean": 1.0,
+                "median": 1.0,
+                "min": 1.0,
+                "n": 3,
+                "std": 0.0
+              },
+              "roi_overlap_with_task_relevant_region": {
+                "max": 1.0,
+                "mean": 1.0,
+                "median": 1.0,
+                "min": 1.0,
+                "n": 3,
+                "std": 0.0
+              },
+              "task_accuracy": {
+                "max": 1.0,
+                "mean": 1.0,
+                "median": 1.0,
+                "min": 1.0,
+                "n": 3,
+                "std": 0.0
+              },
+              "visual_energy_units": {
+                "max": 48.0,
+                "mean": 48.0,
+                "median": 48.0,
+                "min": 48.0,
+                "n": 3,
+                "std": 0.0
+              }
+            },
+            "run_count": 3,
+            "seeds": [
+              101,
+              102,
+              103
+            ]
+          },
+          "fixed_center_roi": {
+            "metrics": {
+              "correct_per_energy_unit": {
+                "max": 0.08854166666666667,
+                "mean": 0.06770833333333333,
+                "median": 0.0625,
+                "min": 0.052083333333333336,
+                "n": 3,
+                "std": 0.015332918170708068
+              },
+              "roi_overlap_with_task_relevant_region": {
+                "max": 0.3541666666666667,
+                "mean": 0.2708333333333333,
+                "median": 0.25,
+                "min": 0.20833333333333334,
+                "n": 3,
+                "std": 0.061331672682832274
+              },
+              "task_accuracy": {
+                "max": 0.3541666666666667,
+                "mean": 0.2708333333333333,
+                "median": 0.25,
+                "min": 0.20833333333333334,
+                "n": 3,
+                "std": 0.061331672682832274
+              },
+              "visual_energy_units": {
+                "max": 192.0,
+                "mean": 192.0,
+                "median": 192.0,
+                "min": 192.0,
+                "n": 3,
+                "std": 0.0
+              }
+            },
+            "run_count": 3,
+            "seeds": [
+              101,
+              102,
+              103
+            ]
+          },
+          "full_image": {
+            "metrics": {
+              "correct_per_energy_unit": {
+                "max": 0.0625,
+                "mean": 0.0625,
+                "median": 0.0625,
+                "min": 0.0625,
+                "n": 3,
+                "std": 0.0
+              },
+              "roi_overlap_with_task_relevant_region": {
+                "max": 1.0,
+                "mean": 1.0,
+                "median": 1.0,
+                "min": 1.0,
+                "n": 3,
+                "std": 0.0
+              },
+              "task_accuracy": {
+                "max": 1.0,
+                "mean": 1.0,
+                "median": 1.0,
+                "min": 1.0,
+                "n": 3,
+                "std": 0.0
+              },
+              "visual_energy_units": {
+                "max": 768.0,
+                "mean": 768.0,
+                "median": 768.0,
+                "min": 768.0,
+                "n": 3,
+                "std": 0.0
+              }
+            },
+            "run_count": 3,
+            "seeds": [
+              101,
+              102,
+              103
+            ]
+          },
+          "random_roi": {
+            "metrics": {
+              "correct_per_energy_unit": {
+                "max": 0.08333333333333333,
+                "mean": 0.06944444444444443,
+                "median": 0.0625,
+                "min": 0.0625,
+                "n": 3,
+                "std": 0.009820927516479824
+              },
+              "roi_overlap_with_task_relevant_region": {
+                "max": 0.08333333333333333,
+                "mean": 0.06944444444444443,
+                "median": 0.0625,
+                "min": 0.0625,
+                "n": 3,
+                "std": 0.009820927516479824
+              },
+              "task_accuracy": {
+                "max": 0.08333333333333333,
+                "mean": 0.06944444444444443,
+                "median": 0.0625,
+                "min": 0.0625,
+                "n": 3,
+                "std": 0.009820927516479824
+              },
+              "visual_energy_units": {
+                "max": 48.0,
+                "mean": 48.0,
+                "median": 48.0,
+                "min": 48.0,
+                "n": 3,
+                "std": 0.0
+              }
+            },
+            "run_count": 3,
+            "seeds": [
+              101,
+              102,
+              103
+            ]
+          },
+          "assessment": "Die Analyse konnte nicht vollstaendig schema-konform erzeugt werden. Das Modell hat das erforderliche assessment-Feld nicht geliefert.",
+          "observations": [],
+          "methodological_concerns": [
+            "Die vom Modell ausgegebene confidence war schemawidrig oder ausserhalb des Bereichs 0..1. Sie wurde fuer die AIRR-Provenienz konservativ auf 0.0 gesetzt; der Originalwert bleibt als confidence_original erhalten."
+          ],
+          "alternative_explanations": [],
+          "recommended_experiments": [],
+          "requested_evidence": [],
+          "effect_direction": "not_determined",
+          "confidence_original": null,
+          "confidence": 0.0
+        },
+        "provenance": {
+          "prompt_sha256": "758156867a66dddc4e092cc4c0d4a27d4376d55691c80632a1cc1ddfd4183ff8",
+          "research_packet_digest": "75c4aceeb18fa66da8afd876a2558d440e1883e1b4f0de8e26f4a4a3a784a5c1",
+          "prompt_protocol_version": "research_assistant_v1",
+          "assistant_schema_version": "1.2",
+          "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+          "model_self_confidence": "0.0"
+        },
+        "epistemic_status": {
+          "evidence": false,
+          "interpretation_only": true,
+          "human_review_required": true
+        },
+        "review": {
+          "status": "pending",
+          "reviewer": null,
+          "reviewed_at": null,
+          "disposition": null
+        },
+        "generated_at": "2026-09-14T12:07:54.487786+00:00"
+      }
+    }
+  },
+  "provenance": {
+    "research_packet_digest": "75c4aceeb18fa66da8afd876a2558d440e1883e1b4f0de8e26f4a4a3a784a5c1",
+    "source": {
+      "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+      "experiment_status": "completed",
+      "evidence_mode": "not_reported",
+      "git_dirty": "True",
+      "source_freeze_sha": "edcbd90745f1f4fd60005baabbb059f7655030b5233484b5bd9fa17ce127a32e",
+      "configuration_path": "F:\\Brain-5D\\configs\\learning_experiment.yaml",
+      "configuration_sha256": "6f6cd457caf6216c286fee47ef03b529a0b496ed2dd53ee96b85d3b51e7b3a1c",
+      "experiment_manifest_digest": "c1284933ae3835a681096300fb7103abefd31f77290b541211e5164faaeb9892",
+      "data_ids": "NOT_AVAILABLE",
+      "evid_ids": "NOT_AVAILABLE",
+      "protocol_id": "NOT_AVAILABLE",
+      "protocol_digest": "2f7fee6f44435d01ad795716be6718764f95296eb5dffdf77bcd35a003620de0",
+      "data_digest": "afc778b98adb30fde31cdd32a976c5db9102c8280ad1f1475bee44c2854a4541",
+      "evid_digests": "[]"
+    }
+  },
+  "analysis_ids": [
+    "AIAR-scientific_analyst-20260914091303514767-d0abf811",
+    "AIAR-critical_reviewer-20260914091323150767-d0abf811",
+    "AIAR-scientific_writer-20260914120754487786-75c4acee"
+  ],
+  "supersedes": null,
+  "content_digest": "904eb91df89aa6566e11094f990380e47c3fd5176aa418ae2130d70d64a75296",
+  "markdown_digest": "20fa2fee7809f430ba78a53fc7001e7db3295ca885710a89a9c5da07eb39d0ca"
+}

@@ -1,0 +1,220 @@
+{
+  "analysis_id": "AIAR-scientific_writer-20260914120754487786-75c4acee",
+  "role": "scientific_writer",
+  "model": {
+    "provider": "ollama",
+    "model_name": "qwen2.5-coder:7b",
+    "model_digest": "not_reported",
+    "quantization": "not_reported",
+    "context_length": "unknown",
+    "temperature": 0.0,
+    "top_p": 1.0,
+    "seed": "not_reported",
+    "backend_version": "unknown"
+  },
+  "inputs": {
+    "experiment_id": "EXP-BATCH-20260914074039-92",
+    "packet_digest": "75c4aceeb18fa66da8afd876a2558d440e1883e1b4f0de8e26f4a4a3a784a5c1"
+  },
+  "output": {
+    "adaptive_roi": {
+      "metrics": {
+        "correct_per_energy_unit": {
+          "max": 1.0,
+          "mean": 1.0,
+          "median": 1.0,
+          "min": 1.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "roi_overlap_with_task_relevant_region": {
+          "max": 1.0,
+          "mean": 1.0,
+          "median": 1.0,
+          "min": 1.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "task_accuracy": {
+          "max": 1.0,
+          "mean": 1.0,
+          "median": 1.0,
+          "min": 1.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "visual_energy_units": {
+          "max": 48.0,
+          "mean": 48.0,
+          "median": 48.0,
+          "min": 48.0,
+          "n": 3,
+          "std": 0.0
+        }
+      },
+      "run_count": 3,
+      "seeds": [
+        101,
+        102,
+        103
+      ]
+    },
+    "fixed_center_roi": {
+      "metrics": {
+        "correct_per_energy_unit": {
+          "max": 0.08854166666666667,
+          "mean": 0.06770833333333333,
+          "median": 0.0625,
+          "min": 0.052083333333333336,
+          "n": 3,
+          "std": 0.015332918170708068
+        },
+        "roi_overlap_with_task_relevant_region": {
+          "max": 0.3541666666666667,
+          "mean": 0.2708333333333333,
+          "median": 0.25,
+          "min": 0.20833333333333334,
+          "n": 3,
+          "std": 0.061331672682832274
+        },
+        "task_accuracy": {
+          "max": 0.3541666666666667,
+          "mean": 0.2708333333333333,
+          "median": 0.25,
+          "min": 0.20833333333333334,
+          "n": 3,
+          "std": 0.061331672682832274
+        },
+        "visual_energy_units": {
+          "max": 192.0,
+          "mean": 192.0,
+          "median": 192.0,
+          "min": 192.0,
+          "n": 3,
+          "std": 0.0
+        }
+      },
+      "run_count": 3,
+      "seeds": [
+        101,
+        102,
+        103
+      ]
+    },
+    "full_image": {
+      "metrics": {
+        "correct_per_energy_unit": {
+          "max": 0.0625,
+          "mean": 0.0625,
+          "median": 0.0625,
+          "min": 0.0625,
+          "n": 3,
+          "std": 0.0
+        },
+        "roi_overlap_with_task_relevant_region": {
+          "max": 1.0,
+          "mean": 1.0,
+          "median": 1.0,
+          "min": 1.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "task_accuracy": {
+          "max": 1.0,
+          "mean": 1.0,
+          "median": 1.0,
+          "min": 1.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "visual_energy_units": {
+          "max": 768.0,
+          "mean": 768.0,
+          "median": 768.0,
+          "min": 768.0,
+          "n": 3,
+          "std": 0.0
+        }
+      },
+      "run_count": 3,
+      "seeds": [
+        101,
+        102,
+        103
+      ]
+    },
+    "random_roi": {
+      "metrics": {
+        "correct_per_energy_unit": {
+          "max": 0.08333333333333333,
+          "mean": 0.06944444444444443,
+          "median": 0.0625,
+          "min": 0.0625,
+          "n": 3,
+          "std": 0.009820927516479824
+        },
+        "roi_overlap_with_task_relevant_region": {
+          "max": 0.08333333333333333,
+          "mean": 0.06944444444444443,
+          "median": 0.0625,
+          "min": 0.0625,
+          "n": 3,
+          "std": 0.009820927516479824
+        },
+        "task_accuracy": {
+          "max": 0.08333333333333333,
+          "mean": 0.06944444444444443,
+          "median": 0.0625,
+          "min": 0.0625,
+          "n": 3,
+          "std": 0.009820927516479824
+        },
+        "visual_energy_units": {
+          "max": 48.0,
+          "mean": 48.0,
+          "median": 48.0,
+          "min": 48.0,
+          "n": 3,
+          "std": 0.0
+        }
+      },
+      "run_count": 3,
+      "seeds": [
+        101,
+        102,
+        103
+      ]
+    },
+    "assessment": "Die Analyse konnte nicht vollstaendig schema-konform erzeugt werden. Das Modell hat das erforderliche assessment-Feld nicht geliefert.",
+    "observations": [],
+    "methodological_concerns": [
+      "Die vom Modell ausgegebene confidence war schemawidrig oder ausserhalb des Bereichs 0..1. Sie wurde fuer die AIRR-Provenienz konservativ auf 0.0 gesetzt; der Originalwert bleibt als confidence_original erhalten."
+    ],
+    "alternative_explanations": [],
+    "recommended_experiments": [],
+    "requested_evidence": [],
+    "effect_direction": "not_determined",
+    "confidence_original": null,
+    "confidence": 0.0
+  },
+  "provenance": {
+    "prompt_sha256": "758156867a66dddc4e092cc4c0d4a27d4376d55691c80632a1cc1ddfd4183ff8",
+    "research_packet_digest": "75c4aceeb18fa66da8afd876a2558d440e1883e1b4f0de8e26f4a4a3a784a5c1",
+    "prompt_protocol_version": "research_assistant_v1",
+    "assistant_schema_version": "1.2",
+    "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+    "model_self_confidence": "0.0"
+  },
+  "epistemic_status": {
+    "evidence": false,
+    "interpretation_only": true,
+    "human_review_required": true
+  },
+  "review": {
+    "status": "pending",
+    "reviewer": null,
+    "reviewed_at": null,
+    "disposition": null
+  },
+  "generated_at": "2026-09-14T12:07:54.487786+00:00"
+}

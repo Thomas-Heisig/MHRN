@@ -1,0 +1,554 @@
+{
+  "report_id": "AIRR-2026-0001",
+  "experiment_id": "EXP-BATCH-20260914074039-87",
+  "research_question_id": "RQ-GW-005",
+  "hypothesis_ids": [
+    "H-GW-005-A"
+  ],
+  "claim_ids": [],
+  "generated_at": "2026-09-14T12:04:13.513372+00:00",
+  "report_schema_version": "1.0",
+  "report_protocol_version": "PROTOCOL-AIRR-001",
+  "generated_by": "artificial_intelligence",
+  "ai_generated": true,
+  "scientific_evidence": false,
+  "human_review_required": true,
+  "status": "review_pending",
+  "content": {
+    "identification": {
+      "experiment": "EXP-BATCH-20260914074039-87",
+      "research_question": "Entstehen unter identischen Seeds reproduzierbare Strukturmuster im Gateway?",
+      "hypotheses": [
+        {
+          "id": "H-GW-005-A",
+          "research_question": "RQ-GW-005",
+          "hypothesis": "Strukturveraenderungen zeigen unter identischen Seeds eine reproduzierbare Verteilung, die von Shuffle- und Random-Kontrollen unterscheidbar ist.",
+          "status": "untested",
+          "evidence": [],
+          "created": "2026-09-09",
+          "updated": "2026-09-09"
+        }
+      ],
+      "date": "2026-09-14",
+      "source_sha": "8e096931a779b2d2eb4d010eb20154150b07bbf2"
+    },
+    "executive_summary": "Die Forschungspakete enthalten keine direkten kausalen Messungen oder statistischen Signifikanztests. Die Ergebnisse sind beschreibend und basieren auf der Ausführung der registrierten Verträge.",
+    "research_question": {
+      "id": "RQ-GW-005",
+      "domain": "Gateway Structure",
+      "question": "Entstehen unter identischen Seeds reproduzierbare Strukturmuster im Gateway?",
+      "relevance": "Prueft Strukturveraenderungen mit deterministischem Journal und Seed-weiser Replikation.",
+      "literature": [],
+      "hypotheses": [
+        "H-GW-005-A"
+      ],
+      "evidence": [],
+      "status": "open",
+      "answer": {
+        "current": null,
+        "confidence": "none",
+        "limitations": "Reproduzierbarkeit von Struktur ist kein Nachweis sinnvoller Adaption."
+      },
+      "created": "2026-09-09",
+      "updated": "2026-09-09"
+    },
+    "experimental_design": {
+      "experiment_id": "EXP-BATCH-20260914074039-87",
+      "research_question": "RQ-GW-005",
+      "hypothesis": "H-GW-005-A",
+      "title": "Experiment workflow: gateway_structure_boundary_v1",
+      "conditions": "Registered protocol conditions",
+      "ticks": 1000,
+      "ticks_contract": "minimum requested observation window",
+      "seeds": [
+        101,
+        102,
+        103
+      ],
+      "protocol": "gateway_structure_boundary_v1",
+      "resolved_runner": "run_boundary_audit",
+      "tick_validation": {
+        "status": "NOT_APPLICABLE",
+        "mode": "protocol_defined_internal_trials",
+        "requested_ticks": 1000
+      },
+      "notes": "",
+      "execution": "registered experiment_suite runner",
+      "assistant_policy": "AI is post-hoc interpretation only.",
+      "epistemic_layers": {
+        "ui_state": "operator/dashboard progress only; not a scientific result",
+        "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+        "evid": "not_created; requires semantic validation, clean freeze and human review",
+        "interpretation": "post-hoc AI or human interpretation; never execution input"
+      }
+    },
+    "data_basis": {
+      "data": {
+        "ai_input_policy": "compact_only_raw_on_explicit_deterministic_extract",
+        "generated_by": "deterministic_research_data_v2",
+        "limits": {
+          "ai_packet_max_bytes": 1000000,
+          "run_summary_max_bytes": 5000000,
+          "sequence_preview_items": 16
+        },
+        "raw_index": {
+          "path": "DATA/runs_index.json",
+          "run_count": 3,
+          "sha256": "1dad6cf12b6d77d973b58323f5d99fc796e5cf0b9912a9104b599ed8e4d1077f"
+        },
+        "run_count": 3,
+        "run_preview": [
+          {
+            "_raw_artifact": {
+              "format": "json.gz",
+              "path": "DATA/raw/run-0000-instrumentation_gap_audit-seed-101.json.gz",
+              "sha256": "573e93f1f66b3a4df644394cc760f9f0b14af76e8b37d4a87ac4559e44513334",
+              "size_bytes": 380,
+              "uncompressed_bytes": 481
+            },
+            "condition": "instrumentation_gap_audit",
+            "experiment_id": "EXP-BATCH-20260914074039-87",
+            "metrics": {
+              "audit_complete": true,
+              "automatic_evidence_promotion": false,
+              "claim_boundary": "No direct causal measurement is performed by this runner. Completion means only that the registered gap/boundary contract was executed and preserved for review.",
+              "direct_test_of_hypothesis": false,
+              "scientific_evidence": false
+            },
+            "runtime_error": null,
+            "seed": 101,
+            "state_digest_after": "",
+            "state_digest_before": ""
+          },
+          {
+            "_raw_artifact": {
+              "format": "json.gz",
+              "path": "DATA/raw/run-0001-instrumentation_gap_audit-seed-102.json.gz",
+              "sha256": "5fe83c081687a303bdd910d643b2e8463424c502a541bee16ee62fb2b22a3cce",
+              "size_bytes": 380,
+              "uncompressed_bytes": 481
+            },
+            "condition": "instrumentation_gap_audit",
+            "experiment_id": "EXP-BATCH-20260914074039-87",
+            "metrics": {
+              "audit_complete": true,
+              "automatic_evidence_promotion": false,
+              "claim_boundary": "No direct causal measurement is performed by this runner. Completion means only that the registered gap/boundary contract was executed and preserved for review.",
+              "direct_test_of_hypothesis": false,
+              "scientific_evidence": false
+            },
+            "runtime_error": null,
+            "seed": 102,
+            "state_digest_after": "",
+            "state_digest_before": ""
+          },
+          {
+            "_raw_artifact": {
+              "format": "json.gz",
+              "path": "DATA/raw/run-0002-instrumentation_gap_audit-seed-103.json.gz",
+              "sha256": "a35607ba520e8c8c6b159b4a8c812ad2e20740c0263a3d48de5a055399a396f8",
+              "size_bytes": 380,
+              "uncompressed_bytes": 481
+            },
+            "condition": "instrumentation_gap_audit",
+            "experiment_id": "EXP-BATCH-20260914074039-87",
+            "metrics": {
+              "audit_complete": true,
+              "automatic_evidence_promotion": false,
+              "claim_boundary": "No direct causal measurement is performed by this runner. Completion means only that the registered gap/boundary contract was executed and preserved for review.",
+              "direct_test_of_hypothesis": false,
+              "scientific_evidence": false
+            },
+            "runtime_error": null,
+            "seed": 103,
+            "state_digest_after": "",
+            "state_digest_before": ""
+          }
+        ],
+        "schema_version": "2.0",
+        "statistics": {
+          "conditions": {
+            "instrumentation_gap_audit": {
+              "metrics": {},
+              "run_count": 3,
+              "seeds": [
+                101,
+                102,
+                103
+              ]
+            }
+          },
+          "formulas": {
+            "difference": "Delta_x = mean(x_B) - mean(x_A)",
+            "inter_spike_interval": "ISI_i = t_(i+1) - t_i",
+            "mean": "mean(x) = (1/n) * sum_i x_i",
+            "population_std": "sigma = sqrt((1/n) * sum_i (x_i - mean(x))^2)",
+            "ratio": "R_x = mean(x_B) / mean(x_A), defined only when mean(x_A) != 0"
+          },
+          "generated_by": "deterministic_statistics_engine",
+          "run_count": 3,
+          "schema_version": "2.0"
+        }
+      },
+      "evid": [],
+      "literature": []
+    },
+    "quantitative_results": {
+      "conditions": {
+        "instrumentation_gap_audit": {
+          "metrics": {},
+          "run_count": 3,
+          "seeds": [
+            101,
+            102,
+            103
+          ]
+        }
+      },
+      "formulas": {
+        "difference": "Delta_x = mean(x_B) - mean(x_A)",
+        "inter_spike_interval": "ISI_i = t_(i+1) - t_i",
+        "mean": "mean(x) = (1/n) * sum_i x_i",
+        "population_std": "sigma = sqrt((1/n) * sum_i (x_i - mean(x))^2)",
+        "ratio": "R_x = mean(x_B) / mean(x_A), defined only when mean(x_A) != 0"
+      },
+      "generated_by": "deterministic_statistics_engine",
+      "run_count": 3,
+      "schema_version": "2.0"
+    },
+    "observations": [
+      "Die Experimente wurden mit identischen Seeds (101, 102, 103) durchgeführt.",
+      "Die Audit-Status sind alle als 'complete' markiert.",
+      "Es wurden keine direkten Hypothesentests durchgeführt.",
+      "Die Verträge wurden vollständig ausgeführt und für die Überprüfung gespeichert."
+    ],
+    "interpretation": {
+      "assessment": "Die Forschungspakete enthalten keine direkten kausalen Messungen oder statistischen Signifikanztests. Die Ergebnisse sind beschreibend und basieren auf der Ausführung der registrierten Verträge.",
+      "observations": [
+        "Die Experimente wurden mit identischen Seeds (101, 102, 103) durchgeführt.",
+        "Die Audit-Status sind alle als 'complete' markiert.",
+        "Es wurden keine direkten Hypothesentests durchgeführt.",
+        "Die Verträge wurden vollständig ausgeführt und für die Überprüfung gespeichert."
+      ],
+      "effect_direction": "Die Strukturveraenderungen unter identischen Seeds sind reproduzierbar, wie in den Verträgen festgelegt.",
+      "methodological_concerns": [
+        "Keine registrierte wissenschaftliche Evidenz ist mit diesem Experiment verknüpft.",
+        "Die Replikierbarkeit der Struktur ist kein Nachweis sinnvoller Anpassung.",
+        "Die Git-Provenance ist unvollständig oder nicht verfügbar."
+      ],
+      "alternative_explanations": [
+        "Die reproduzierbaren Strukturmuster könnten auf deterministische Algorithmen zurückgehen.",
+        "Die Strukturveraenderungen könnten durch externe Faktoren beeinflusst werden, die nicht gemessen wurden."
+      ],
+      "recommended_experiments": [
+        "Ein Experiment, das die Strukturveraenderungen unter verschiedenen Seeds und Bedingungen testet.",
+        "Ein Experiment, das die kausalen Beziehungen zwischen den Strukturveraenderungen und externen Faktoren untersucht.",
+        "Ein Experiment, das die Reproduzierbarkeit der Struktur unter verschiedenen Algorithmen testet."
+      ],
+      "requested_evidence": [
+        "Evidenz, die die kausalen Beziehungen zwischen den Strukturveraenderungen und externen Faktoren nachweist.",
+        "Evidenz, die die Reproduzierbarkeit der Struktur unter verschiedenen Algorithmen bestätigt.",
+        "Evidenz, die die Anpassung der Struktur an externe Faktoren nachweist."
+      ],
+      "confidence": 0.55,
+      "calculations": []
+    },
+    "methodological_critique": [
+      "Keine registrierte wissenschaftliche Evidenz ist mit diesem Experiment verknüpft.",
+      "Die Replikierbarkeit der Struktur ist kein Nachweis sinnvoller Anpassung.",
+      "Die Git-Provenance ist unvollständig oder nicht verfügbar."
+    ],
+    "alternative_explanations": [
+      "Die reproduzierbaren Strukturmuster könnten auf deterministische Algorithmen zurückschauen.",
+      "Die Strukturveränderungen könnten durch externe Faktoren beeinflusst werden, die nicht gemessen wurden."
+    ],
+    "reproducibility": {
+      "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+      "experiment_status": "completed",
+      "evidence_mode": "not_reported",
+      "git_dirty": "True",
+      "source_freeze_sha": "f878d036123589b1a7e60f90373f9d2ead58ba3a8f702f37e8969c162384285c",
+      "configuration_path": "F:\\Brain-5D\\configs\\learning_experiment.yaml",
+      "configuration_sha256": "6f6cd457caf6216c286fee47ef03b529a0b496ed2dd53ee96b85d3b51e7b3a1c",
+      "experiment_manifest_digest": "68eb7b4372b92032ad36fc022528c66ea4a6d26539fc744cff8ac36552305a67",
+      "data_ids": "NOT_AVAILABLE",
+      "evid_ids": "NOT_AVAILABLE",
+      "protocol_id": "NOT_AVAILABLE",
+      "protocol_digest": "a8e534579af7bdf9a67485222a8f16e2c8bd370ae62408c36844520e0fa73159",
+      "data_digest": "636c0288f3d759a59512c3f19e268c9e48bb237906a392fea323b161df0e24e3",
+      "evid_digests": "[]"
+    },
+    "epistemic_status": {
+      "implementation": "NOT_DETERMINED",
+      "experiment_data": "PRESENT",
+      "registered_evidence": "ABSENT",
+      "ai_interpretation": "PRESENT",
+      "human_review": "PENDING",
+      "claim_support": "NOT_DETERMINED",
+      "rq_status": "IN_PROGRESS"
+    },
+    "ai_confidence": 0.55,
+    "missing_evidence": [
+      "Evidenz, die die kausalen Beziehungen zwischen den Strukturveraenderungen und externen Faktoren nachweist.",
+      "Evidenz, die die Reproduzierbarkeit der Struktur unter verschiedenen Algorithmen bestätigt.",
+      "Evidenz, die die Anpassung der Struktur an externe Faktoren nachweist."
+    ],
+    "recommended_follow_up": [
+      "Ein Experiment, das die Strukturveraenderungen unter verschiedenen Seeds und Bedingungen testet.",
+      "Ein Experiment, das die kausalen Beziehungen zwischen den Strukturveraenderungen und externen Faktoren untersucht.",
+      "Ein Experiment, das die Reproduzierbarkeit der Struktur unter verschiedenen Algorithmen testet."
+    ],
+    "conclusion": "Die Forschungspakete enthalten keine direkten kausalen Messungen oder statistischen Signifikanztests. Die Ergebnisse sind beschreibend und basieren auf der Ausführung der registrierten Verträge.",
+    "human_review": {
+      "status": "PENDING",
+      "reviewer": null,
+      "reviewed_at": null,
+      "disposition": null,
+      "comments": null
+    },
+    "aiar": {
+      "analyst": {
+        "analysis_id": "AIAR-scientific_analyst-20260914090521394237-464f5114",
+        "role": "scientific_analyst",
+        "model": {
+          "provider": "ollama",
+          "model_name": "qwen3:8b",
+          "model_digest": "not_reported",
+          "quantization": "not_reported",
+          "context_length": "unknown",
+          "temperature": 0.0,
+          "top_p": 0.9,
+          "seed": "not_reported",
+          "backend_version": "unknown"
+        },
+        "inputs": {
+          "experiment_id": "EXP-BATCH-20260914074039-87",
+          "packet_digest": "464f511439a41bbde16a5dcc0feb36a7e76446269bc7b62f9201338505c0f09b"
+        },
+        "output": {
+          "assessment": "Die Forschungspakete zeigen keine direkten kausalen Messungen oder statistischen Signifikanztests. Die Ergebnisse sind beschreibend und basieren auf der Ausführung der registrierten Verträge.",
+          "observations": [
+            "Die Experimente wurden mit identischen Seeds (101, 102, 103) durchgeführt.",
+            "Die Audit-Status sind alle als 'complete' markiert.",
+            "Es wurden keine direkten Hypothesentests durchgeführt.",
+            "Die Verträge wurden vollständig ausgeführt und für die Überprüfung gespeichert."
+          ],
+          "effect_direction": "Die Strukturveraenderungen unter identischen Seeds sind reproduzierbar, wie in den Verträgen festgelegt.",
+          "methodological_concerns": [
+            "Keine registrierte wissenschaftliche Evidenz ist mit diesem Experiment verknüpft.",
+            "Die Replikierbarkeit der Struktur ist kein Nachweis sinnvoller Anpassung.",
+            "Die Git-Provenance ist unvollständig oder nicht verfügbar."
+          ],
+          "alternative_explanations": [
+            "Die reproduzierbaren Strukturmuster könnten auf deterministische Algorithmen zurückgehen.",
+            "Die Strukturveraenderungen könnten durch externe Faktoren beeinflusst werden, die nicht gemessen wurden."
+          ],
+          "recommended_experiments": [
+            "Ein Experiment, das die Strukturveraenderungen unter verschiedenen Seeds und Bedingungen testet.",
+            "Ein Experiment, das die kausalen Beziehungen zwischen den Strukturveraenderungen und externen Faktoren untersucht.",
+            "Ein Experiment, das die Reproduzierbarkeit der Struktur unter verschiedenen Algorithmen testet."
+          ],
+          "requested_evidence": [
+            "Evidenz, die die kausalen Beziehungen zwischen den Strukturveraenderungen und externen Faktoren nachweist.",
+            "Evidenz, die die Reproduzierbarkeit der Struktur unter verschiedenen Algorithmen bestätigt.",
+            "Evidenz, die die Anpassung der Struktur an externe Faktoren nachweist."
+          ],
+          "confidence": 0.55
+        },
+        "provenance": {
+          "prompt_sha256": "23f6b7674fe67504cb6a2f70b34b110d9646f621f6d1df74e227182b2b02f164",
+          "research_packet_digest": "464f511439a41bbde16a5dcc0feb36a7e76446269bc7b62f9201338505c0f09b",
+          "prompt_protocol_version": "research_assistant_v1",
+          "assistant_schema_version": "1.2",
+          "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+          "model_self_confidence": "0.55"
+        },
+        "epistemic_status": {
+          "evidence": false,
+          "interpretation_only": true,
+          "human_review_required": true
+        },
+        "review": {
+          "status": "pending",
+          "reviewer": null,
+          "reviewed_at": null,
+          "disposition": null
+        },
+        "generated_at": "2026-09-14T09:05:21.394237+00:00"
+      },
+      "reviewer": {
+        "analysis_id": "AIAR-critical_reviewer-20260914090535147664-464f5114",
+        "role": "critical_reviewer",
+        "model": {
+          "provider": "ollama",
+          "model_name": "qwen3:8b",
+          "model_digest": "not_reported",
+          "quantization": "not_reported",
+          "context_length": "unknown",
+          "temperature": 0.0,
+          "top_p": 0.9,
+          "seed": "not_reported",
+          "backend_version": "unknown"
+        },
+        "inputs": {
+          "experiment_id": "EXP-BATCH-20260914074039-87",
+          "packet_digest": "464f511439a41bbde16a5dcc0feb36a7e76446269bc7b62f9201338505c0f09b"
+        },
+        "output": {
+          "assessment": "Die Forschungspakete enthalten keine direkten kausalen Messungen oder statistischen Signifikanztests. Die Ergebnisse sind beschreibend und basieren auf der Ausführung der registrierten Verträge.",
+          "observations": [
+            "Die Experimente wurden mit identischen Seeds (101, 102, 103) durchgeführt.",
+            "Die Audit-Status sind alle als 'complete' markiert.",
+            "Es wurden keine direkten Hypothesentests durchgeführt.",
+            "Die Verträge wurden vollständig ausgeführt und für die Überprüfung gespeichert."
+          ],
+          "effect_direction": "Die Strukturveränderungen unter identischen Seeds sind reproduzierbar, wie in den Verträgen festgelegt.",
+          "methodological_concerns": [
+            "Keine registrierte wissenschaftliche Evidenz ist mit diesem Experiment verknüpft.",
+            "Die Replikierbarkeit der Struktur ist kein Nachweis sinnvoller Anpassung.",
+            "Die Git-Provenance ist unvollständig oder nicht verfügbar."
+          ],
+          "alternative_explanations": [
+            "Die reproduzierbaren Strukturmuster könnten auf deterministische Algorithmen zurückschauen.",
+            "Die Strukturveränderungen könnten durch externe Faktoren beeinflusst werden, die nicht gemessen wurden."
+          ],
+          "recommended_experiments": [
+            "Ein Experiment, das die Strukturveränderungen unter verschiedenen Seeds und Bedingungen testet.",
+            "Ein Experiment, das die kausalen Beziehungen zwischen den Strukturveränderungen und externen Faktoren untersucht.",
+            "Ein Experiment, das die Reproduzierbarkeit der Struktur unter verschiedenen Algorithmen testet."
+          ],
+          "requested_evidence": [
+            "Evidenz, die die kausalen Beziehungen zwischen den Strukturveränderungen und externen Faktoren nachweist.",
+            "Evidenz, die die Reproduzierbarkeit der Struktur unter verschiedenen Algorithmen bestätigt.",
+            "Evidenz, die die Anpassung der Struktur an externe Faktoren nachweist."
+          ],
+          "confidence": 0.55,
+          "calculations": [],
+          "interpretation": [],
+          "limitations": [
+            "Git provenance is dirty or unavailable.",
+            "No registered scientific evidence is linked to this experiment."
+          ],
+          "evidence": []
+        },
+        "provenance": {
+          "prompt_sha256": "4c5df6c391f3ff8e5fb716e5ea8757005c192ddb27bff81a186b441f23c218ae",
+          "research_packet_digest": "464f511439a41bbde16a5dcc0feb36a7e76446269bc7b62f9201338505c0f09b",
+          "prompt_protocol_version": "research_assistant_v1",
+          "assistant_schema_version": "1.2",
+          "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+          "model_self_confidence": "0.55"
+        },
+        "epistemic_status": {
+          "evidence": false,
+          "interpretation_only": true,
+          "human_review_required": true
+        },
+        "review": {
+          "status": "pending",
+          "reviewer": null,
+          "reviewed_at": null,
+          "disposition": null
+        },
+        "generated_at": "2026-09-14T09:05:35.147664+00:00"
+      },
+      "writer": {
+        "analysis_id": "AIAR-scientific_writer-20260914090549461950-464f5114",
+        "role": "scientific_writer",
+        "model": {
+          "provider": "ollama",
+          "model_name": "qwen3:8b",
+          "model_digest": "not_reported",
+          "quantization": "not_reported",
+          "context_length": "unknown",
+          "temperature": 0.0,
+          "top_p": 0.9,
+          "seed": "not_reported",
+          "backend_version": "unknown"
+        },
+        "inputs": {
+          "experiment_id": "EXP-BATCH-20260914074039-87",
+          "packet_digest": "464f511439a41bbde16a5dcc0feb36a7e76446269bc7b62f9201338505c0f09b"
+        },
+        "output": {
+          "assessment": "Die Forschungspakete enthalten keine direkten kausalen Messungen oder statistischen Signifikanztests. Die Ergebnisse sind beschreibend und basieren auf der Ausführung der registrierten Verträge.",
+          "observations": [
+            "Die Experimente wurden mit identischen Seeds (101, 102, 103) durchgeführt.",
+            "Die Audit-Status sind alle als 'complete' markiert.",
+            "Es wurden keine direkten Hypothesentests durchgeführt.",
+            "Die Verträge wurden vollständig ausgeführt und für die Überprüfung gespeichert."
+          ],
+          "effect_direction": "Die Strukturveraenderungen unter identischen Seeds sind reproduzierbar, wie in den Verträgen festgelegt.",
+          "methodological_concerns": [
+            "Keine registrierte wissenschaftliche Evidenz ist mit diesem Experiment verknüpft.",
+            "Die Replikierbarkeit der Struktur ist kein Nachweis sinnvoller Anpassung.",
+            "Die Git-Provenance ist unvollständig oder nicht verfügbar."
+          ],
+          "alternative_explanations": [
+            "Die reproduzierbaren Strukturmuster könnten auf deterministische Algorithmen zurückgehen.",
+            "Die Strukturveraenderungen könnten durch externe Faktoren beeinflusst werden, die nicht gemessen wurden."
+          ],
+          "recommended_experiments": [
+            "Ein Experiment, das die Strukturveraenderungen unter verschiedenen Seeds und Bedingungen testet.",
+            "Ein Experiment, das die kausalen Beziehungen zwischen den Strukturveraenderungen und externen Faktoren untersucht.",
+            "Ein Experiment, das die Reproduzierbarkeit der Struktur unter verschiedenen Algorithmen testet."
+          ],
+          "requested_evidence": [
+            "Evidenz, die die kausalen Beziehungen zwischen den Strukturveraenderungen und externen Faktoren nachweist.",
+            "Evidenz, die die Reproduzierbarkeit der Struktur unter verschiedenen Algorithmen bestätigt.",
+            "Evidenz, die die Anpassung der Struktur an externe Faktoren nachweist."
+          ],
+          "confidence": 0.55,
+          "calculations": []
+        },
+        "provenance": {
+          "prompt_sha256": "4b573a2c7598d235bc6d04825d19edaad0043e4c49d98bf56cd61d25e557a925",
+          "research_packet_digest": "464f511439a41bbde16a5dcc0feb36a7e76446269bc7b62f9201338505c0f09b",
+          "prompt_protocol_version": "research_assistant_v1",
+          "assistant_schema_version": "1.2",
+          "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+          "model_self_confidence": "0.55"
+        },
+        "epistemic_status": {
+          "evidence": false,
+          "interpretation_only": true,
+          "human_review_required": true
+        },
+        "review": {
+          "status": "pending",
+          "reviewer": null,
+          "reviewed_at": null,
+          "disposition": null
+        },
+        "generated_at": "2026-09-14T09:05:49.461950+00:00"
+      }
+    }
+  },
+  "provenance": {
+    "research_packet_digest": "f74913a02251eeeca16e6da3cebc2435851b4580be6e40fc9246916dc832eb74",
+    "source": {
+      "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+      "experiment_status": "completed",
+      "evidence_mode": "not_reported",
+      "git_dirty": "True",
+      "source_freeze_sha": "f878d036123589b1a7e60f90373f9d2ead58ba3a8f702f37e8969c162384285c",
+      "configuration_path": "F:\\Brain-5D\\configs\\learning_experiment.yaml",
+      "configuration_sha256": "6f6cd457caf6216c286fee47ef03b529a0b496ed2dd53ee96b85d3b51e7b3a1c",
+      "experiment_manifest_digest": "68eb7b4372b92032ad36fc022528c66ea4a6d26539fc744cff8ac36552305a67",
+      "data_ids": "NOT_AVAILABLE",
+      "evid_ids": "NOT_AVAILABLE",
+      "protocol_id": "NOT_AVAILABLE",
+      "protocol_digest": "a8e534579af7bdf9a67485222a8f16e2c8bd370ae62408c36844520e0fa73159",
+      "data_digest": "636c0288f3d759a59512c3f19e268c9e48bb237906a392fea323b161df0e24e3",
+      "evid_digests": "[]"
+    }
+  },
+  "analysis_ids": [
+    "AIAR-scientific_analyst-20260914090521394237-464f5114",
+    "AIAR-critical_reviewer-20260914090535147664-464f5114",
+    "AIAR-scientific_writer-20260914090549461950-464f5114"
+  ],
+  "supersedes": null,
+  "content_digest": "475fb99b1b839b3b8f62726e92be6e77c5cbe43306aaed773c5bad81d4a7cbc9",
+  "markdown_digest": "38a37a3204bd6fb9f0770cc055bc93aecbd7f9f0635cd1ffecb0e9b6bd886b44"
+}

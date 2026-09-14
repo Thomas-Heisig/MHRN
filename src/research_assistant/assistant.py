@@ -326,8 +326,8 @@ class ResearchAssistant:
         )
         return (
             f"Role: {role}\n{common}{writer}{reviewer}\n"
-            "Return JSON only with assessment, observations, methodological_concerns, alternative_explanations, recommended_experiments, confidence, requested_evidence. "
-            "Observations should contain exact values and formulas where possible.\n"
+            "Return JSON only with assessment (string), observations (array), methodological_concerns (array), alternative_explanations (array), recommended_experiments (array), requested_evidence (array), effect_direction (string), confidence (number 0..1). "
+            "ALL fields are required. Observations should contain exact values and formulas where possible.\n"
             f"Packet: {packet.to_json()}"
         )
 

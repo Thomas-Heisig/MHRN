@@ -1,0 +1,97 @@
+{
+  "run_count": 9,
+  "runs": [
+    {
+      "condition": "audio",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0000-audio-seed-101.json.gz",
+      "run_index": 0,
+      "seed": 101,
+      "sha256": "34456f68134c2ca40488b3934d714324c2923f7883abfc5113a972479afb9b4f",
+      "size_bytes": 963,
+      "uncompressed_bytes": 2049
+    },
+    {
+      "condition": "vision",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0001-vision-seed-101.json.gz",
+      "run_index": 1,
+      "seed": 101,
+      "sha256": "dd74d25b1c3f947413245d2f9bf893a14978eb1a59f9a4737f7642d1aaf0c32d",
+      "size_bytes": 964,
+      "uncompressed_bytes": 2056
+    },
+    {
+      "condition": "digital",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0002-digital-seed-101.json.gz",
+      "run_index": 2,
+      "seed": 101,
+      "sha256": "2b34ed0745627b6063bdee9b42345bc1e564312957b77c536ebaa4d210e5d7e1",
+      "size_bytes": 966,
+      "uncompressed_bytes": 2060
+    },
+    {
+      "condition": "audio",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0003-audio-seed-102.json.gz",
+      "run_index": 3,
+      "seed": 102,
+      "sha256": "ca01f96600cad07035c6a742c7f826a4ad349bd19260cba3bfa4c2e22f0b6ad9",
+      "size_bytes": 985,
+      "uncompressed_bytes": 2087
+    },
+    {
+      "condition": "vision",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0004-vision-seed-102.json.gz",
+      "run_index": 4,
+      "seed": 102,
+      "sha256": "1e4e996d54b8108ea5018e316a7d570d0a872ac010a1fbe1f723fbf9c03f7a4b",
+      "size_bytes": 985,
+      "uncompressed_bytes": 2094
+    },
+    {
+      "condition": "digital",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0005-digital-seed-102.json.gz",
+      "run_index": 5,
+      "seed": 102,
+      "sha256": "85306415aa79d09dbc602ae512bd9bbb14eb5d9d7ae3d84c5f2c8e250975e234",
+      "size_bytes": 986,
+      "uncompressed_bytes": 2098
+    },
+    {
+      "condition": "audio",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0006-audio-seed-103.json.gz",
+      "run_index": 6,
+      "seed": 103,
+      "sha256": "2e6e746b26c95ca730c0296242bcd0aabd04d6374ae06d10c5adbd759fe1f292",
+      "size_bytes": 970,
+      "uncompressed_bytes": 2077
+    },
+    {
+      "condition": "vision",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0007-vision-seed-103.json.gz",
+      "run_index": 7,
+      "seed": 103,
+      "sha256": "442f41ed8d3221702323f532a10f84ea083f102ae92909451bba8b3b2ab64ea7",
+      "size_bytes": 971,
+      "uncompressed_bytes": 2084
+    },
+    {
+      "condition": "digital",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0008-digital-seed-103.json.gz",
+      "run_index": 8,
+      "seed": 103,
+      "sha256": "f86c55d738508d926d582efcc48c6b238a9b9b07ff81d7ef3bb71cc9ea0b3bcb",
+      "size_bytes": 971,
+      "uncompressed_bytes": 2088
+    }
+  ],
+  "schema_version": "2.0",
+  "storage_policy": "immutable_raw_runs_plus_compact_current_experiment"
+}

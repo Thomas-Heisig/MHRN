@@ -1,0 +1,613 @@
+{
+  "ai_input_policy": "compact_only_raw_on_explicit_deterministic_extract",
+  "generated_by": "deterministic_research_data_v2",
+  "limits": {
+    "ai_packet_max_bytes": 1000000,
+    "run_summary_max_bytes": 5000000,
+    "sequence_preview_items": 16
+  },
+  "raw_index": {
+    "path": "DATA/runs_index.json",
+    "run_count": 9,
+    "sha256": "e13e387de961477f5c0f52f0dd1ab1a08dab24ac94cd0e9b18a8bb1ebdc24a41"
+  },
+  "run_count": 9,
+  "run_preview": [
+    {
+      "_raw_artifact": {
+        "format": "json.gz",
+        "path": "DATA/raw/run-0000-learning_on-seed-101.json.gz",
+        "sha256": "08122c24aa6986735781767f3926680045eeb53efe33fcbcc67b03069d419cdc",
+        "size_bytes": 375,
+        "uncompressed_bytes": 573
+      },
+      "condition": "learning_on",
+      "experiment_id": "EXP-BATCH-20260914074039-06",
+      "metrics": {
+        "after_greater_than_before": true,
+        "final_mean_weight": 0.517280469842843,
+        "holdout_trial_count": 4,
+        "initial_mean_weight": 0.05,
+        "mean_weight_delta": 0.46728046984284305,
+        "p_success_after": 1.0,
+        "p_success_before": 0.0,
+        "protocol_id": "PROTOCOL-STDP-0002",
+        "protocol_version": 1,
+        "reward_weight_updates": 576,
+        "rewards_received": 12,
+        "success_after": true,
+        "success_before": false,
+        "train_trial_count": 12,
+        "validation_trial_count": 4
+      },
+      "runtime_error": null,
+      "seed": 101,
+      "state_digest_after": "",
+      "state_digest_before": ""
+    },
+    {
+      "_raw_artifact": {
+        "format": "json.gz",
+        "path": "DATA/raw/run-0001-learning_off-seed-101.json.gz",
+        "sha256": "2ef9c7187ffe0fb83b841051fc55f7f5ab240faa211ca472dc10767745571018",
+        "size_bytes": 351,
+        "uncompressed_bytes": 544
+      },
+      "condition": "learning_off",
+      "experiment_id": "EXP-BATCH-20260914074039-06",
+      "metrics": {
+        "after_greater_than_before": false,
+        "final_mean_weight": 0.05,
+        "holdout_trial_count": 4,
+        "initial_mean_weight": 0.05,
+        "mean_weight_delta": 0.0,
+        "p_success_after": 0.0,
+        "p_success_before": 0.0,
+        "protocol_id": "PROTOCOL-STDP-0002",
+        "protocol_version": 1,
+        "reward_weight_updates": 0,
+        "rewards_received": 0,
+        "success_after": false,
+        "success_before": false,
+        "train_trial_count": 12,
+        "validation_trial_count": 4
+      },
+      "runtime_error": null,
+      "seed": 101,
+      "state_digest_after": "",
+      "state_digest_before": ""
+    },
+    {
+      "_raw_artifact": {
+        "format": "json.gz",
+        "path": "DATA/raw/run-0002-sham_replay-seed-101.json.gz",
+        "sha256": "091a7db7eec694215d4bcd5d861d3effdb3a97f39aa988bbe35f4fa70c99a68a",
+        "size_bytes": 351,
+        "uncompressed_bytes": 544
+      },
+      "condition": "sham_replay",
+      "experiment_id": "EXP-BATCH-20260914074039-06",
+      "metrics": {
+        "after_greater_than_before": false,
+        "final_mean_weight": 0.05,
+        "holdout_trial_count": 4,
+        "initial_mean_weight": 0.05,
+        "mean_weight_delta": 0.0,
+        "p_success_after": 0.0,
+        "p_success_before": 0.0,
+        "protocol_id": "PROTOCOL-STDP-0002",
+        "protocol_version": 1,
+        "reward_weight_updates": 0,
+        "rewards_received": 12,
+        "success_after": false,
+        "success_before": false,
+        "train_trial_count": 12,
+        "validation_trial_count": 4
+      },
+      "runtime_error": null,
+      "seed": 101,
+      "state_digest_after": "",
+      "state_digest_before": ""
+    },
+    {
+      "_raw_artifact": {
+        "format": "json.gz",
+        "path": "DATA/raw/run-0003-learning_on-seed-102.json.gz",
+        "sha256": "ff6fd98f0a8dc4eb1a85ab64a8294f1f319470b6dfc8491939661faebb5ec0ba",
+        "size_bytes": 375,
+        "uncompressed_bytes": 573
+      },
+      "condition": "learning_on",
+      "experiment_id": "EXP-BATCH-20260914074039-06",
+      "metrics": {
+        "after_greater_than_before": true,
+        "final_mean_weight": 0.517280469842843,
+        "holdout_trial_count": 4,
+        "initial_mean_weight": 0.05,
+        "mean_weight_delta": 0.46728046984284305,
+        "p_success_after": 1.0,
+        "p_success_before": 0.0,
+        "protocol_id": "PROTOCOL-STDP-0002",
+        "protocol_version": 1,
+        "reward_weight_updates": 576,
+        "rewards_received": 12,
+        "success_after": true,
+        "success_before": false,
+        "train_trial_count": 12,
+        "validation_trial_count": 4
+      },
+      "runtime_error": null,
+      "seed": 102,
+      "state_digest_after": "",
+      "state_digest_before": ""
+    },
+    {
+      "_raw_artifact": {
+        "format": "json.gz",
+        "path": "DATA/raw/run-0004-learning_off-seed-102.json.gz",
+        "sha256": "721bfef5f0c8f432e7d83c7f3fe17e944c82ceaef59b7fcf336f9b17398f213b",
+        "size_bytes": 352,
+        "uncompressed_bytes": 544
+      },
+      "condition": "learning_off",
+      "experiment_id": "EXP-BATCH-20260914074039-06",
+      "metrics": {
+        "after_greater_than_before": false,
+        "final_mean_weight": 0.05,
+        "holdout_trial_count": 4,
+        "initial_mean_weight": 0.05,
+        "mean_weight_delta": 0.0,
+        "p_success_after": 0.0,
+        "p_success_before": 0.0,
+        "protocol_id": "PROTOCOL-STDP-0002",
+        "protocol_version": 1,
+        "reward_weight_updates": 0,
+        "rewards_received": 0,
+        "success_after": false,
+        "success_before": false,
+        "train_trial_count": 12,
+        "validation_trial_count": 4
+      },
+      "runtime_error": null,
+      "seed": 102,
+      "state_digest_after": "",
+      "state_digest_before": ""
+    },
+    {
+      "_raw_artifact": {
+        "format": "json.gz",
+        "path": "DATA/raw/run-0005-sham_replay-seed-102.json.gz",
+        "sha256": "d77402a3dd4c832d4c8eb3cc186a67d2aec86f6366c011fa6905d3b5a2dbcdd6",
+        "size_bytes": 350,
+        "uncompressed_bytes": 544
+      },
+      "condition": "sham_replay",
+      "experiment_id": "EXP-BATCH-20260914074039-06",
+      "metrics": {
+        "after_greater_than_before": false,
+        "final_mean_weight": 0.05,
+        "holdout_trial_count": 4,
+        "initial_mean_weight": 0.05,
+        "mean_weight_delta": 0.0,
+        "p_success_after": 0.0,
+        "p_success_before": 0.0,
+        "protocol_id": "PROTOCOL-STDP-0002",
+        "protocol_version": 1,
+        "reward_weight_updates": 0,
+        "rewards_received": 12,
+        "success_after": false,
+        "success_before": false,
+        "train_trial_count": 12,
+        "validation_trial_count": 4
+      },
+      "runtime_error": null,
+      "seed": 102,
+      "state_digest_after": "",
+      "state_digest_before": ""
+    },
+    {
+      "_raw_artifact": {
+        "format": "json.gz",
+        "path": "DATA/raw/run-0006-learning_on-seed-103.json.gz",
+        "sha256": "71e98701b612d8ef4a02cd35ec236caa042589c418b19eac3370ce570d5ab133",
+        "size_bytes": 375,
+        "uncompressed_bytes": 573
+      },
+      "condition": "learning_on",
+      "experiment_id": "EXP-BATCH-20260914074039-06",
+      "metrics": {
+        "after_greater_than_before": true,
+        "final_mean_weight": 0.517280469842843,
+        "holdout_trial_count": 4,
+        "initial_mean_weight": 0.05,
+        "mean_weight_delta": 0.46728046984284305,
+        "p_success_after": 1.0,
+        "p_success_before": 0.0,
+        "protocol_id": "PROTOCOL-STDP-0002",
+        "protocol_version": 1,
+        "reward_weight_updates": 576,
+        "rewards_received": 12,
+        "success_after": true,
+        "success_before": false,
+        "train_trial_count": 12,
+        "validation_trial_count": 4
+      },
+      "runtime_error": null,
+      "seed": 103,
+      "state_digest_after": "",
+      "state_digest_before": ""
+    },
+    {
+      "_raw_artifact": {
+        "format": "json.gz",
+        "path": "DATA/raw/run-0007-learning_off-seed-103.json.gz",
+        "sha256": "917b12cff2d77e1e558ca34000e1ee38bbbd69c681671ab1255c8b6707c1abf8",
+        "size_bytes": 352,
+        "uncompressed_bytes": 544
+      },
+      "condition": "learning_off",
+      "experiment_id": "EXP-BATCH-20260914074039-06",
+      "metrics": {
+        "after_greater_than_before": false,
+        "final_mean_weight": 0.05,
+        "holdout_trial_count": 4,
+        "initial_mean_weight": 0.05,
+        "mean_weight_delta": 0.0,
+        "p_success_after": 0.0,
+        "p_success_before": 0.0,
+        "protocol_id": "PROTOCOL-STDP-0002",
+        "protocol_version": 1,
+        "reward_weight_updates": 0,
+        "rewards_received": 0,
+        "success_after": false,
+        "success_before": false,
+        "train_trial_count": 12,
+        "validation_trial_count": 4
+      },
+      "runtime_error": null,
+      "seed": 103,
+      "state_digest_after": "",
+      "state_digest_before": ""
+    },
+    {
+      "_raw_artifact": {
+        "format": "json.gz",
+        "path": "DATA/raw/run-0008-sham_replay-seed-103.json.gz",
+        "sha256": "9ff026f4036d874a2592a4620f666ce8c6f9a44e9b4445b1d38b76aa9adeffea",
+        "size_bytes": 351,
+        "uncompressed_bytes": 544
+      },
+      "condition": "sham_replay",
+      "experiment_id": "EXP-BATCH-20260914074039-06",
+      "metrics": {
+        "after_greater_than_before": false,
+        "final_mean_weight": 0.05,
+        "holdout_trial_count": 4,
+        "initial_mean_weight": 0.05,
+        "mean_weight_delta": 0.0,
+        "p_success_after": 0.0,
+        "p_success_before": 0.0,
+        "protocol_id": "PROTOCOL-STDP-0002",
+        "protocol_version": 1,
+        "reward_weight_updates": 0,
+        "rewards_received": 12,
+        "success_after": false,
+        "success_before": false,
+        "train_trial_count": 12,
+        "validation_trial_count": 4
+      },
+      "runtime_error": null,
+      "seed": 103,
+      "state_digest_after": "",
+      "state_digest_before": ""
+    }
+  ],
+  "schema_version": "2.0",
+  "statistics": {
+    "conditions": {
+      "learning_off": {
+        "metrics": {
+          "final_mean_weight": {
+            "max": 0.05,
+            "mean": 0.05000000000000001,
+            "median": 0.05,
+            "min": 0.05,
+            "n": 3,
+            "std": 0.0
+          },
+          "holdout_trial_count": {
+            "max": 4.0,
+            "mean": 4.0,
+            "median": 4.0,
+            "min": 4.0,
+            "n": 3,
+            "std": 0.0
+          },
+          "initial_mean_weight": {
+            "max": 0.05,
+            "mean": 0.05000000000000001,
+            "median": 0.05,
+            "min": 0.05,
+            "n": 3,
+            "std": 0.0
+          },
+          "mean_weight_delta": {
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "min": 0.0,
+            "n": 3,
+            "std": 0.0
+          },
+          "p_success_after": {
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "min": 0.0,
+            "n": 3,
+            "std": 0.0
+          },
+          "p_success_before": {
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "min": 0.0,
+            "n": 3,
+            "std": 0.0
+          },
+          "protocol_version": {
+            "max": 1.0,
+            "mean": 1.0,
+            "median": 1.0,
+            "min": 1.0,
+            "n": 3,
+            "std": 0.0
+          },
+          "reward_weight_updates": {
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "min": 0.0,
+            "n": 3,
+            "std": 0.0
+          },
+          "rewards_received": {
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "min": 0.0,
+            "n": 3,
+            "std": 0.0
+          },
+          "train_trial_count": {
+            "max": 12.0,
+            "mean": 12.0,
+            "median": 12.0,
+            "min": 12.0,
+            "n": 3,
+            "std": 0.0
+          },
+          "validation_trial_count": {
+            "max": 4.0,
+            "mean": 4.0,
+            "median": 4.0,
+            "min": 4.0,
+            "n": 3,
+            "std": 0.0
+          }
+        },
+        "run_count": 3,
+        "seeds": [
+          101,
+          102,
+          103
+        ]
+      },
+      "learning_on": {
+        "metrics": {
+          "final_mean_weight": {
+            "max": 0.517280469842843,
+            "mean": 0.517280469842843,
+            "median": 0.517280469842843,
+            "min": 0.517280469842843,
+            "n": 3,
+            "std": 0.0
+          },
+          "holdout_trial_count": {
+            "max": 4.0,
+            "mean": 4.0,
+            "median": 4.0,
+            "min": 4.0,
+            "n": 3,
+            "std": 0.0
+          },
+          "initial_mean_weight": {
+            "max": 0.05,
+            "mean": 0.05000000000000001,
+            "median": 0.05,
+            "min": 0.05,
+            "n": 3,
+            "std": 0.0
+          },
+          "mean_weight_delta": {
+            "max": 0.46728046984284305,
+            "mean": 0.46728046984284305,
+            "median": 0.46728046984284305,
+            "min": 0.46728046984284305,
+            "n": 3,
+            "std": 0.0
+          },
+          "p_success_after": {
+            "max": 1.0,
+            "mean": 1.0,
+            "median": 1.0,
+            "min": 1.0,
+            "n": 3,
+            "std": 0.0
+          },
+          "p_success_before": {
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "min": 0.0,
+            "n": 3,
+            "std": 0.0
+          },
+          "protocol_version": {
+            "max": 1.0,
+            "mean": 1.0,
+            "median": 1.0,
+            "min": 1.0,
+            "n": 3,
+            "std": 0.0
+          },
+          "reward_weight_updates": {
+            "max": 576.0,
+            "mean": 576.0,
+            "median": 576.0,
+            "min": 576.0,
+            "n": 3,
+            "std": 0.0
+          },
+          "rewards_received": {
+            "max": 12.0,
+            "mean": 12.0,
+            "median": 12.0,
+            "min": 12.0,
+            "n": 3,
+            "std": 0.0
+          },
+          "train_trial_count": {
+            "max": 12.0,
+            "mean": 12.0,
+            "median": 12.0,
+            "min": 12.0,
+            "n": 3,
+            "std": 0.0
+          },
+          "validation_trial_count": {
+            "max": 4.0,
+            "mean": 4.0,
+            "median": 4.0,
+            "min": 4.0,
+            "n": 3,
+            "std": 0.0
+          }
+        },
+        "run_count": 3,
+        "seeds": [
+          101,
+          102,
+          103
+        ]
+      },
+      "sham_replay": {
+        "metrics": {
+          "final_mean_weight": {
+            "max": 0.05,
+            "mean": 0.05000000000000001,
+            "median": 0.05,
+            "min": 0.05,
+            "n": 3,
+            "std": 0.0
+          },
+          "holdout_trial_count": {
+            "max": 4.0,
+            "mean": 4.0,
+            "median": 4.0,
+            "min": 4.0,
+            "n": 3,
+            "std": 0.0
+          },
+          "initial_mean_weight": {
+            "max": 0.05,
+            "mean": 0.05000000000000001,
+            "median": 0.05,
+            "min": 0.05,
+            "n": 3,
+            "std": 0.0
+          },
+          "mean_weight_delta": {
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "min": 0.0,
+            "n": 3,
+            "std": 0.0
+          },
+          "p_success_after": {
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "min": 0.0,
+            "n": 3,
+            "std": 0.0
+          },
+          "p_success_before": {
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "min": 0.0,
+            "n": 3,
+            "std": 0.0
+          },
+          "protocol_version": {
+            "max": 1.0,
+            "mean": 1.0,
+            "median": 1.0,
+            "min": 1.0,
+            "n": 3,
+            "std": 0.0
+          },
+          "reward_weight_updates": {
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "min": 0.0,
+            "n": 3,
+            "std": 0.0
+          },
+          "rewards_received": {
+            "max": 12.0,
+            "mean": 12.0,
+            "median": 12.0,
+            "min": 12.0,
+            "n": 3,
+            "std": 0.0
+          },
+          "train_trial_count": {
+            "max": 12.0,
+            "mean": 12.0,
+            "median": 12.0,
+            "min": 12.0,
+            "n": 3,
+            "std": 0.0
+          },
+          "validation_trial_count": {
+            "max": 4.0,
+            "mean": 4.0,
+            "median": 4.0,
+            "min": 4.0,
+            "n": 3,
+            "std": 0.0
+          }
+        },
+        "run_count": 3,
+        "seeds": [
+          101,
+          102,
+          103
+        ]
+      }
+    },
+    "formulas": {
+      "difference": "Delta_x = mean(x_B) - mean(x_A)",
+      "inter_spike_interval": "ISI_i = t_(i+1) - t_i",
+      "mean": "mean(x) = (1/n) * sum_i x_i",
+      "population_std": "sigma = sqrt((1/n) * sum_i (x_i - mean(x))^2)",
+      "ratio": "R_x = mean(x_B) / mean(x_A), defined only when mean(x_A) != 0"
+    },
+    "run_count": 9,
+    "schema_version": "2.0"
+  }
+}

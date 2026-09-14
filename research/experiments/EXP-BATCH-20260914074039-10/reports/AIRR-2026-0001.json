@@ -1,0 +1,1416 @@
+{
+  "report_id": "AIRR-2026-0001",
+  "experiment_id": "EXP-BATCH-20260914074039-10",
+  "research_question_id": "RQ-REG-001",
+  "hypothesis_ids": [
+    "H-REG-001-A"
+  ],
+  "claim_ids": [],
+  "generated_at": "2026-09-14T11:21:48.908257+00:00",
+  "report_schema_version": "1.0",
+  "report_protocol_version": "PROTOCOL-AIRR-001",
+  "generated_by": "artificial_intelligence",
+  "ai_generated": true,
+  "scientific_evidence": false,
+  "human_review_required": true,
+  "status": "review_pending",
+  "content": {
+    "identification": {
+      "experiment": "EXP-BATCH-20260914074039-10",
+      "research_question": "Wie reagieren Drives und funktionale Zustandsgrößen auf nominale, chronische und unbekannte Telemetrie?",
+      "hypotheses": [
+        {
+          "id": "H-REG-001-A",
+          "research_question": "RQ-REG-001",
+          "hypothesis": "Chronischer Druck erhöht deterministisch Resource Pressure und Thermal Threat, während unbekannte Telemetrie Unsicherheit erhält.",
+          "status": "untested",
+          "evidence": [],
+          "created": "2026-09-03",
+          "updated": "2026-09-03"
+        }
+      ],
+      "date": "2026-09-14",
+      "source_sha": "8e096931a779b2d2eb4d010eb20154150b07bbf2"
+    },
+    "executive_summary": "Die Daten zeigen eine deterministische Reaktion der Drives und funktionalen Zustandsgrößen auf die verschiedenen Telemetriebedingungen. Es gibt keine statistische Signifikanz zu testen, da nur deskriptive Statistiken vorliegen.",
+    "research_question": {
+      "id": "RQ-REG-001",
+      "domain": "Regulation",
+      "question": "Wie reagieren Drives und funktionale Zustandsgrößen auf nominale, chronische und unbekannte Telemetrie?",
+      "relevance": "Deterministische Prüfung der Selbstregulation unter Ressourcen- und Sensorbedingungen.",
+      "hypotheses": [
+        "H-REG-001-A"
+      ],
+      "evidence": [],
+      "status": "open",
+      "answer": {
+        "current": null,
+        "confidence": "none",
+        "limitations": null
+      },
+      "created": "2026-09-03",
+      "updated": "2026-09-03"
+    },
+    "experimental_design": {
+      "experiment_id": "EXP-BATCH-20260914074039-10",
+      "research_question": "RQ-REG-001",
+      "hypothesis": "H-REG-001-A",
+      "title": "Experiment workflow: regulation_telemetry_v1",
+      "conditions": "Registered protocol conditions",
+      "ticks": 1000,
+      "ticks_contract": "minimum requested observation window",
+      "seeds": [
+        101,
+        102,
+        103
+      ],
+      "protocol": "regulation_telemetry_v1",
+      "resolved_runner": "run_regulation",
+      "tick_validation": {
+        "status": "NOT_APPLICABLE",
+        "mode": "protocol_defined_internal_trials",
+        "requested_ticks": 1000
+      },
+      "notes": "",
+      "execution": "registered experiment_suite runner",
+      "assistant_policy": "AI is post-hoc interpretation only.",
+      "epistemic_layers": {
+        "ui_state": "operator/dashboard progress only; not a scientific result",
+        "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+        "evid": "not_created; requires semantic validation, clean freeze and human review",
+        "interpretation": "post-hoc AI or human interpretation; never execution input"
+      }
+    },
+    "data_basis": {
+      "data": {
+        "ai_input_policy": "compact_only_raw_on_explicit_deterministic_extract",
+        "generated_by": "deterministic_research_data_v2",
+        "limits": {
+          "ai_packet_max_bytes": 1000000,
+          "run_summary_max_bytes": 5000000,
+          "sequence_preview_items": 16
+        },
+        "raw_index": {
+          "path": "DATA/runs_index.json",
+          "run_count": 9,
+          "sha256": "d260ee1053a9e954547279d24e61bdce893a790fc2269f25b8e7a5979c38bbbd"
+        },
+        "run_count": 9,
+        "run_preview": [
+          {
+            "_raw_artifact": {
+              "format": "json.gz",
+              "path": "DATA/raw/run-0000-nominal-seed-101.json.gz",
+              "sha256": "4de63870e8f30b5c83bf8c7fadd1dea0351c1b7d229d1e8ddf9124d1aae3901c",
+              "size_bytes": 399,
+              "uncompressed_bytes": 950
+            },
+            "condition": "nominal",
+            "experiment_id": "EXP-BATCH-20260914074039-10",
+            "metrics": {
+              "drives": {
+                "drives": {
+                  "actuator_confidence": null,
+                  "continuity_risk": 0.0,
+                  "novelty": null,
+                  "resource_pressure": 0.0,
+                  "sensory_integrity": 1.0,
+                  "task_progress": null,
+                  "thermal_threat": 0.0
+                },
+                "tick": 101,
+                "uncertainty": {
+                  "actuator_confidence": 1.0,
+                  "continuity_risk": 0.0,
+                  "novelty": 1.0,
+                  "resource_pressure": 0.0,
+                  "sensory_integrity": 0.0,
+                  "task_progress": 1.0,
+                  "thermal_threat": 0.0
+                }
+              },
+              "functional_state": {
+                "activation": 0.0,
+                "safety": 1.0,
+                "tick": 101,
+                "uncertainty": 0.42857142857142855,
+                "valence": 1.0
+              },
+              "regulatory_state": {
+                "tick": 101,
+                "uncertainty": {
+                  "continuity_risk": 0.0,
+                  "energy_reserve": 0.0,
+                  "resource_pressure": 0.0,
+                  "sensory_integrity": 0.0,
+                  "task_progress": 1.0,
+                  "thermal_margin": 0.0
+                },
+                "values": {
+                  "continuity_risk": 0.0,
+                  "energy_reserve": 1.0,
+                  "resource_pressure": 0.0,
+                  "sensory_integrity": 1.0,
+                  "task_progress": null,
+                  "thermal_margin": 1.0
+                }
+              }
+            },
+            "runtime_error": null,
+            "seed": 101,
+            "state_digest_after": "",
+            "state_digest_before": ""
+          },
+          {
+            "_raw_artifact": {
+              "format": "json.gz",
+              "path": "DATA/raw/run-0001-chronic_pressure-seed-101.json.gz",
+              "sha256": "d862acc3c621481273800d9ccf01fc9f046596b2fe5ebbde74d81cfb4e843ef6",
+              "size_bytes": 430,
+              "uncompressed_bytes": 1052
+            },
+            "condition": "chronic_pressure",
+            "experiment_id": "EXP-BATCH-20260914074039-10",
+            "metrics": {
+              "drives": {
+                "drives": {
+                  "actuator_confidence": null,
+                  "continuity_risk": 1.0,
+                  "novelty": null,
+                  "resource_pressure": 0.6666666666666666,
+                  "sensory_integrity": 1.0,
+                  "task_progress": null,
+                  "thermal_threat": 0.6666666666666666
+                },
+                "tick": 101,
+                "uncertainty": {
+                  "actuator_confidence": 1.0,
+                  "continuity_risk": 0.0,
+                  "novelty": 1.0,
+                  "resource_pressure": 0.0,
+                  "sensory_integrity": 0.0,
+                  "task_progress": 1.0,
+                  "thermal_threat": 0.0
+                }
+              },
+              "functional_state": {
+                "activation": 0.6666666666666666,
+                "safety": 0.0,
+                "tick": 101,
+                "uncertainty": 0.42857142857142855,
+                "valence": -1.0
+              },
+              "regulatory_state": {
+                "tick": 101,
+                "uncertainty": {
+                  "continuity_risk": 0.0,
+                  "energy_reserve": 0.0,
+                  "resource_pressure": 0.0,
+                  "sensory_integrity": 0.0,
+                  "task_progress": 1.0,
+                  "thermal_margin": 0.0
+                },
+                "values": {
+                  "continuity_risk": 1.0,
+                  "energy_reserve": 0.33333333333333337,
+                  "resource_pressure": 0.6666666666666666,
+                  "sensory_integrity": 1.0,
+                  "task_progress": null,
+                  "thermal_margin": 0.33333333333333337
+                }
+              }
+            },
+            "runtime_error": null,
+            "seed": 101,
+            "state_digest_after": "",
+            "state_digest_before": ""
+          },
+          {
+            "_raw_artifact": {
+              "format": "json.gz",
+              "path": "DATA/raw/run-0002-telemetry_unknown-seed-101.json.gz",
+              "sha256": "17a12f579fb31b01f3a13277d17af8b5772dd85b281528e50d2a923ac15496fe",
+              "size_bytes": 420,
+              "uncompressed_bytes": 973
+            },
+            "condition": "telemetry_unknown",
+            "experiment_id": "EXP-BATCH-20260914074039-10",
+            "metrics": {
+              "drives": {
+                "drives": {
+                  "actuator_confidence": null,
+                  "continuity_risk": null,
+                  "novelty": null,
+                  "resource_pressure": null,
+                  "sensory_integrity": 0.25,
+                  "task_progress": null,
+                  "thermal_threat": null
+                },
+                "tick": 101,
+                "uncertainty": {
+                  "actuator_confidence": 1.0,
+                  "continuity_risk": 1.0,
+                  "novelty": 1.0,
+                  "resource_pressure": 1.0,
+                  "sensory_integrity": 0.75,
+                  "task_progress": 1.0,
+                  "thermal_threat": 1.0
+                }
+              },
+              "functional_state": {
+                "activation": null,
+                "safety": null,
+                "tick": 101,
+                "uncertainty": 0.9642857142857143,
+                "valence": null
+              },
+              "regulatory_state": {
+                "tick": 101,
+                "uncertainty": {
+                  "continuity_risk": 1.0,
+                  "energy_reserve": 1.0,
+                  "resource_pressure": 1.0,
+                  "sensory_integrity": 0.75,
+                  "task_progress": 1.0,
+                  "thermal_margin": 1.0
+                },
+                "values": {
+                  "continuity_risk": null,
+                  "energy_reserve": null,
+                  "resource_pressure": null,
+                  "sensory_integrity": 0.25,
+                  "task_progress": null,
+                  "thermal_margin": null
+                }
+              }
+            },
+            "runtime_error": null,
+            "seed": 101,
+            "state_digest_after": "",
+            "state_digest_before": ""
+          },
+          {
+            "_raw_artifact": {
+              "format": "json.gz",
+              "path": "DATA/raw/run-0003-nominal-seed-102.json.gz",
+              "sha256": "cb50fe531faba4159b7fa3ab69dccd8c49042e6d9ca35dcafc13dd4acbece340",
+              "size_bytes": 399,
+              "uncompressed_bytes": 950
+            },
+            "condition": "nominal",
+            "experiment_id": "EXP-BATCH-20260914074039-10",
+            "metrics": {
+              "drives": {
+                "drives": {
+                  "actuator_confidence": null,
+                  "continuity_risk": 0.0,
+                  "novelty": null,
+                  "resource_pressure": 0.0,
+                  "sensory_integrity": 1.0,
+                  "task_progress": null,
+                  "thermal_threat": 0.0
+                },
+                "tick": 102,
+                "uncertainty": {
+                  "actuator_confidence": 1.0,
+                  "continuity_risk": 0.0,
+                  "novelty": 1.0,
+                  "resource_pressure": 0.0,
+                  "sensory_integrity": 0.0,
+                  "task_progress": 1.0,
+                  "thermal_threat": 0.0
+                }
+              },
+              "functional_state": {
+                "activation": 0.0,
+                "safety": 1.0,
+                "tick": 102,
+                "uncertainty": 0.42857142857142855,
+                "valence": 1.0
+              },
+              "regulatory_state": {
+                "tick": 102,
+                "uncertainty": {
+                  "continuity_risk": 0.0,
+                  "energy_reserve": 0.0,
+                  "resource_pressure": 0.0,
+                  "sensory_integrity": 0.0,
+                  "task_progress": 1.0,
+                  "thermal_margin": 0.0
+                },
+                "values": {
+                  "continuity_risk": 0.0,
+                  "energy_reserve": 1.0,
+                  "resource_pressure": 0.0,
+                  "sensory_integrity": 1.0,
+                  "task_progress": null,
+                  "thermal_margin": 1.0
+                }
+              }
+            },
+            "runtime_error": null,
+            "seed": 102,
+            "state_digest_after": "",
+            "state_digest_before": ""
+          },
+          {
+            "_raw_artifact": {
+              "format": "json.gz",
+              "path": "DATA/raw/run-0004-chronic_pressure-seed-102.json.gz",
+              "sha256": "1fdb29ee9f325488c30f7ea9e2a8b37c103f54701571edd5db562a0e51967e50",
+              "size_bytes": 429,
+              "uncompressed_bytes": 1052
+            },
+            "condition": "chronic_pressure",
+            "experiment_id": "EXP-BATCH-20260914074039-10",
+            "metrics": {
+              "drives": {
+                "drives": {
+                  "actuator_confidence": null,
+                  "continuity_risk": 1.0,
+                  "novelty": null,
+                  "resource_pressure": 0.6666666666666666,
+                  "sensory_integrity": 1.0,
+                  "task_progress": null,
+                  "thermal_threat": 0.6666666666666666
+                },
+                "tick": 102,
+                "uncertainty": {
+                  "actuator_confidence": 1.0,
+                  "continuity_risk": 0.0,
+                  "novelty": 1.0,
+                  "resource_pressure": 0.0,
+                  "sensory_integrity": 0.0,
+                  "task_progress": 1.0,
+                  "thermal_threat": 0.0
+                }
+              },
+              "functional_state": {
+                "activation": 0.6666666666666666,
+                "safety": 0.0,
+                "tick": 102,
+                "uncertainty": 0.42857142857142855,
+                "valence": -1.0
+              },
+              "regulatory_state": {
+                "tick": 102,
+                "uncertainty": {
+                  "continuity_risk": 0.0,
+                  "energy_reserve": 0.0,
+                  "resource_pressure": 0.0,
+                  "sensory_integrity": 0.0,
+                  "task_progress": 1.0,
+                  "thermal_margin": 0.0
+                },
+                "values": {
+                  "continuity_risk": 1.0,
+                  "energy_reserve": 0.33333333333333337,
+                  "resource_pressure": 0.6666666666666666,
+                  "sensory_integrity": 1.0,
+                  "task_progress": null,
+                  "thermal_margin": 0.33333333333333337
+                }
+              }
+            },
+            "runtime_error": null,
+            "seed": 102,
+            "state_digest_after": "",
+            "state_digest_before": ""
+          },
+          {
+            "_raw_artifact": {
+              "format": "json.gz",
+              "path": "DATA/raw/run-0005-telemetry_unknown-seed-102.json.gz",
+              "sha256": "8df6cb360fa84a9f56698b0168d626dea1fd0ecfd06832c5590da29b47c2e6ba",
+              "size_bytes": 421,
+              "uncompressed_bytes": 973
+            },
+            "condition": "telemetry_unknown",
+            "experiment_id": "EXP-BATCH-20260914074039-10",
+            "metrics": {
+              "drives": {
+                "drives": {
+                  "actuator_confidence": null,
+                  "continuity_risk": null,
+                  "novelty": null,
+                  "resource_pressure": null,
+                  "sensory_integrity": 0.25,
+                  "task_progress": null,
+                  "thermal_threat": null
+                },
+                "tick": 102,
+                "uncertainty": {
+                  "actuator_confidence": 1.0,
+                  "continuity_risk": 1.0,
+                  "novelty": 1.0,
+                  "resource_pressure": 1.0,
+                  "sensory_integrity": 0.75,
+                  "task_progress": 1.0,
+                  "thermal_threat": 1.0
+                }
+              },
+              "functional_state": {
+                "activation": null,
+                "safety": null,
+                "tick": 102,
+                "uncertainty": 0.9642857142857143,
+                "valence": null
+              },
+              "regulatory_state": {
+                "tick": 102,
+                "uncertainty": {
+                  "continuity_risk": 1.0,
+                  "energy_reserve": 1.0,
+                  "resource_pressure": 1.0,
+                  "sensory_integrity": 0.75,
+                  "task_progress": 1.0,
+                  "thermal_margin": 1.0
+                },
+                "values": {
+                  "continuity_risk": null,
+                  "energy_reserve": null,
+                  "resource_pressure": null,
+                  "sensory_integrity": 0.25,
+                  "task_progress": null,
+                  "thermal_margin": null
+                }
+              }
+            },
+            "runtime_error": null,
+            "seed": 102,
+            "state_digest_after": "",
+            "state_digest_before": ""
+          },
+          {
+            "_raw_artifact": {
+              "format": "json.gz",
+              "path": "DATA/raw/run-0006-nominal-seed-103.json.gz",
+              "sha256": "160edc0bb14cbd18990a0a7ba87fa4e1a4a1b3bd6725a7102b4b32f101b0b046",
+              "size_bytes": 399,
+              "uncompressed_bytes": 950
+            },
+            "condition": "nominal",
+            "experiment_id": "EXP-BATCH-20260914074039-10",
+            "metrics": {
+              "drives": {
+                "drives": {
+                  "actuator_confidence": null,
+                  "continuity_risk": 0.0,
+                  "novelty": null,
+                  "resource_pressure": 0.0,
+                  "sensory_integrity": 1.0,
+                  "task_progress": null,
+                  "thermal_threat": 0.0
+                },
+                "tick": 103,
+                "uncertainty": {
+                  "actuator_confidence": 1.0,
+                  "continuity_risk": 0.0,
+                  "novelty": 1.0,
+                  "resource_pressure": 0.0,
+                  "sensory_integrity": 0.0,
+                  "task_progress": 1.0,
+                  "thermal_threat": 0.0
+                }
+              },
+              "functional_state": {
+                "activation": 0.0,
+                "safety": 1.0,
+                "tick": 103,
+                "uncertainty": 0.42857142857142855,
+                "valence": 1.0
+              },
+              "regulatory_state": {
+                "tick": 103,
+                "uncertainty": {
+                  "continuity_risk": 0.0,
+                  "energy_reserve": 0.0,
+                  "resource_pressure": 0.0,
+                  "sensory_integrity": 0.0,
+                  "task_progress": 1.0,
+                  "thermal_margin": 0.0
+                },
+                "values": {
+                  "continuity_risk": 0.0,
+                  "energy_reserve": 1.0,
+                  "resource_pressure": 0.0,
+                  "sensory_integrity": 1.0,
+                  "task_progress": null,
+                  "thermal_margin": 1.0
+                }
+              }
+            },
+            "runtime_error": null,
+            "seed": 103,
+            "state_digest_after": "",
+            "state_digest_before": ""
+          },
+          {
+            "_raw_artifact": {
+              "format": "json.gz",
+              "path": "DATA/raw/run-0007-chronic_pressure-seed-103.json.gz",
+              "sha256": "d02f434e61c3e829c1892cc370aeab870758b6e4cfda2d77565be71eb7172aad",
+              "size_bytes": 430,
+              "uncompressed_bytes": 1052
+            },
+            "condition": "chronic_pressure",
+            "experiment_id": "EXP-BATCH-20260914074039-10",
+            "metrics": {
+              "drives": {
+                "drives": {
+                  "actuator_confidence": null,
+                  "continuity_risk": 1.0,
+                  "novelty": null,
+                  "resource_pressure": 0.6666666666666666,
+                  "sensory_integrity": 1.0,
+                  "task_progress": null,
+                  "thermal_threat": 0.6666666666666666
+                },
+                "tick": 103,
+                "uncertainty": {
+                  "actuator_confidence": 1.0,
+                  "continuity_risk": 0.0,
+                  "novelty": 1.0,
+                  "resource_pressure": 0.0,
+                  "sensory_integrity": 0.0,
+                  "task_progress": 1.0,
+                  "thermal_threat": 0.0
+                }
+              },
+              "functional_state": {
+                "activation": 0.6666666666666666,
+                "safety": 0.0,
+                "tick": 103,
+                "uncertainty": 0.42857142857142855,
+                "valence": -1.0
+              },
+              "regulatory_state": {
+                "tick": 103,
+                "uncertainty": {
+                  "continuity_risk": 0.0,
+                  "energy_reserve": 0.0,
+                  "resource_pressure": 0.0,
+                  "sensory_integrity": 0.0,
+                  "task_progress": 1.0,
+                  "thermal_margin": 0.0
+                },
+                "values": {
+                  "continuity_risk": 1.0,
+                  "energy_reserve": 0.33333333333333337,
+                  "resource_pressure": 0.6666666666666666,
+                  "sensory_integrity": 1.0,
+                  "task_progress": null,
+                  "thermal_margin": 0.33333333333333337
+                }
+              }
+            },
+            "runtime_error": null,
+            "seed": 103,
+            "state_digest_after": "",
+            "state_digest_before": ""
+          },
+          {
+            "_raw_artifact": {
+              "format": "json.gz",
+              "path": "DATA/raw/run-0008-telemetry_unknown-seed-103.json.gz",
+              "sha256": "5b3442cb0d922fb00c6b2a20d23ad5d1994ff18e11bc2f624c51526181d8f622",
+              "size_bytes": 420,
+              "uncompressed_bytes": 973
+            },
+            "condition": "telemetry_unknown",
+            "experiment_id": "EXP-BATCH-20260914074039-10",
+            "metrics": {
+              "drives": {
+                "drives": {
+                  "actuator_confidence": null,
+                  "continuity_risk": null,
+                  "novelty": null,
+                  "resource_pressure": null,
+                  "sensory_integrity": 0.25,
+                  "task_progress": null,
+                  "thermal_threat": null
+                },
+                "tick": 103,
+                "uncertainty": {
+                  "actuator_confidence": 1.0,
+                  "continuity_risk": 1.0,
+                  "novelty": 1.0,
+                  "resource_pressure": 1.0,
+                  "sensory_integrity": 0.75,
+                  "task_progress": 1.0,
+                  "thermal_threat": 1.0
+                }
+              },
+              "functional_state": {
+                "activation": null,
+                "safety": null,
+                "tick": 103,
+                "uncertainty": 0.9642857142857143,
+                "valence": null
+              },
+              "regulatory_state": {
+                "tick": 103,
+                "uncertainty": {
+                  "continuity_risk": 1.0,
+                  "energy_reserve": 1.0,
+                  "resource_pressure": 1.0,
+                  "sensory_integrity": 0.75,
+                  "task_progress": 1.0,
+                  "thermal_margin": 1.0
+                },
+                "values": {
+                  "continuity_risk": null,
+                  "energy_reserve": null,
+                  "resource_pressure": null,
+                  "sensory_integrity": 0.25,
+                  "task_progress": null,
+                  "thermal_margin": null
+                }
+              }
+            },
+            "runtime_error": null,
+            "seed": 103,
+            "state_digest_after": "",
+            "state_digest_before": ""
+          }
+        ],
+        "schema_version": "2.0",
+        "statistics": {
+          "conditions": {
+            "chronic_pressure": {
+              "metrics": {
+                "functional_activation": {
+                  "max": 0.6666666666666666,
+                  "mean": 0.6666666666666666,
+                  "median": 0.6666666666666666,
+                  "min": 0.6666666666666666,
+                  "n": 3,
+                  "std": 0.0
+                },
+                "functional_safety": {
+                  "max": 0.0,
+                  "mean": 0.0,
+                  "median": 0.0,
+                  "min": 0.0,
+                  "n": 3,
+                  "std": 0.0
+                },
+                "functional_uncertainty": {
+                  "max": 0.42857142857142855,
+                  "mean": 0.42857142857142855,
+                  "median": 0.42857142857142855,
+                  "min": 0.42857142857142855,
+                  "n": 3,
+                  "std": 0.0
+                },
+                "functional_valence": {
+                  "max": -1.0,
+                  "mean": -1.0,
+                  "median": -1.0,
+                  "min": -1.0,
+                  "n": 3,
+                  "std": 0.0
+                },
+                "regulatory_continuity_risk": {
+                  "max": 1.0,
+                  "mean": 1.0,
+                  "median": 1.0,
+                  "min": 1.0,
+                  "n": 3,
+                  "std": 0.0
+                },
+                "regulatory_energy_reserve": {
+                  "max": 0.33333333333333337,
+                  "mean": 0.3333333333333333,
+                  "median": 0.33333333333333337,
+                  "min": 0.33333333333333337,
+                  "n": 3,
+                  "std": 0.0
+                },
+                "regulatory_resource_pressure": {
+                  "max": 0.6666666666666666,
+                  "mean": 0.6666666666666666,
+                  "median": 0.6666666666666666,
+                  "min": 0.6666666666666666,
+                  "n": 3,
+                  "std": 0.0
+                },
+                "regulatory_sensory_integrity": {
+                  "max": 1.0,
+                  "mean": 1.0,
+                  "median": 1.0,
+                  "min": 1.0,
+                  "n": 3,
+                  "std": 0.0
+                },
+                "regulatory_thermal_margin": {
+                  "max": 0.33333333333333337,
+                  "mean": 0.3333333333333333,
+                  "median": 0.33333333333333337,
+                  "min": 0.33333333333333337,
+                  "n": 3,
+                  "std": 0.0
+                }
+              },
+              "run_count": 3,
+              "seeds": [
+                101,
+                102,
+                103
+              ]
+            },
+            "nominal": {
+              "metrics": {
+                "functional_activation": {
+                  "max": 0.0,
+                  "mean": 0.0,
+                  "median": 0.0,
+                  "min": 0.0,
+                  "n": 3,
+                  "std": 0.0
+                },
+                "functional_safety": {
+                  "max": 1.0,
+                  "mean": 1.0,
+                  "median": 1.0,
+                  "min": 1.0,
+                  "n": 3,
+                  "std": 0.0
+                },
+                "functional_uncertainty": {
+                  "max": 0.42857142857142855,
+                  "mean": 0.42857142857142855,
+                  "median": 0.42857142857142855,
+                  "min": 0.42857142857142855,
+                  "n": 3,
+                  "std": 0.0
+                },
+                "functional_valence": {
+                  "max": 1.0,
+                  "mean": 1.0,
+                  "median": 1.0,
+                  "min": 1.0,
+                  "n": 3,
+                  "std": 0.0
+                },
+                "regulatory_continuity_risk": {
+                  "max": 0.0,
+                  "mean": 0.0,
+                  "median": 0.0,
+                  "min": 0.0,
+                  "n": 3,
+                  "std": 0.0
+                },
+                "regulatory_energy_reserve": {
+                  "max": 1.0,
+                  "mean": 1.0,
+                  "median": 1.0,
+                  "min": 1.0,
+                  "n": 3,
+                  "std": 0.0
+                },
+                "regulatory_resource_pressure": {
+                  "max": 0.0,
+                  "mean": 0.0,
+                  "median": 0.0,
+                  "min": 0.0,
+                  "n": 3,
+                  "std": 0.0
+                },
+                "regulatory_sensory_integrity": {
+                  "max": 1.0,
+                  "mean": 1.0,
+                  "median": 1.0,
+                  "min": 1.0,
+                  "n": 3,
+                  "std": 0.0
+                },
+                "regulatory_thermal_margin": {
+                  "max": 1.0,
+                  "mean": 1.0,
+                  "median": 1.0,
+                  "min": 1.0,
+                  "n": 3,
+                  "std": 0.0
+                }
+              },
+              "run_count": 3,
+              "seeds": [
+                101,
+                102,
+                103
+              ]
+            },
+            "telemetry_unknown": {
+              "metrics": {
+                "functional_uncertainty": {
+                  "max": 0.9642857142857143,
+                  "mean": 0.9642857142857143,
+                  "median": 0.9642857142857143,
+                  "min": 0.9642857142857143,
+                  "n": 3,
+                  "std": 0.0
+                },
+                "regulatory_sensory_integrity": {
+                  "max": 0.25,
+                  "mean": 0.25,
+                  "median": 0.25,
+                  "min": 0.25,
+                  "n": 3,
+                  "std": 0.0
+                }
+              },
+              "run_count": 3,
+              "seeds": [
+                101,
+                102,
+                103
+              ]
+            }
+          },
+          "formulas": {
+            "difference": "Delta_x = mean(x_B) - mean(x_A)",
+            "inter_spike_interval": "ISI_i = t_(i+1) - t_i",
+            "mean": "mean(x) = (1/n) * sum_i x_i",
+            "population_std": "sigma = sqrt((1/n) * sum_i (x_i - mean(x))^2)",
+            "ratio": "R_x = mean(x_B) / mean(x_A), defined only when mean(x_A) != 0"
+          },
+          "generated_by": "deterministic_statistics_engine",
+          "run_count": 9,
+          "schema_version": "2.0"
+        }
+      },
+      "evid": [],
+      "literature": []
+    },
+    "quantitative_results": {
+      "conditions": {
+        "chronic_pressure": {
+          "metrics": {
+            "functional_activation": {
+              "max": 0.6666666666666666,
+              "mean": 0.6666666666666666,
+              "median": 0.6666666666666666,
+              "min": 0.6666666666666666,
+              "n": 3,
+              "std": 0.0
+            },
+            "functional_safety": {
+              "max": 0.0,
+              "mean": 0.0,
+              "median": 0.0,
+              "min": 0.0,
+              "n": 3,
+              "std": 0.0
+            },
+            "functional_uncertainty": {
+              "max": 0.42857142857142855,
+              "mean": 0.42857142857142855,
+              "median": 0.42857142857142855,
+              "min": 0.42857142857142855,
+              "n": 3,
+              "std": 0.0
+            },
+            "functional_valence": {
+              "max": -1.0,
+              "mean": -1.0,
+              "median": -1.0,
+              "min": -1.0,
+              "n": 3,
+              "std": 0.0
+            },
+            "regulatory_continuity_risk": {
+              "max": 1.0,
+              "mean": 1.0,
+              "median": 1.0,
+              "min": 1.0,
+              "n": 3,
+              "std": 0.0
+            },
+            "regulatory_energy_reserve": {
+              "max": 0.33333333333333337,
+              "mean": 0.3333333333333333,
+              "median": 0.33333333333333337,
+              "min": 0.33333333333333337,
+              "n": 3,
+              "std": 0.0
+            },
+            "regulatory_resource_pressure": {
+              "max": 0.6666666666666666,
+              "mean": 0.6666666666666666,
+              "median": 0.6666666666666666,
+              "min": 0.6666666666666666,
+              "n": 3,
+              "std": 0.0
+            },
+            "regulatory_sensory_integrity": {
+              "max": 1.0,
+              "mean": 1.0,
+              "median": 1.0,
+              "min": 1.0,
+              "n": 3,
+              "std": 0.0
+            },
+            "regulatory_thermal_margin": {
+              "max": 0.33333333333333337,
+              "mean": 0.3333333333333333,
+              "median": 0.33333333333333337,
+              "min": 0.33333333333333337,
+              "n": 3,
+              "std": 0.0
+            }
+          },
+          "run_count": 3,
+          "seeds": [
+            101,
+            102,
+            103
+          ]
+        },
+        "nominal": {
+          "metrics": {
+            "functional_activation": {
+              "max": 0.0,
+              "mean": 0.0,
+              "median": 0.0,
+              "min": 0.0,
+              "n": 3,
+              "std": 0.0
+            },
+            "functional_safety": {
+              "max": 1.0,
+              "mean": 1.0,
+              "median": 1.0,
+              "min": 1.0,
+              "n": 3,
+              "std": 0.0
+            },
+            "functional_uncertainty": {
+              "max": 0.42857142857142855,
+              "mean": 0.42857142857142855,
+              "median": 0.42857142857142855,
+              "min": 0.42857142857142855,
+              "n": 3,
+              "std": 0.0
+            },
+            "functional_valence": {
+              "max": 1.0,
+              "mean": 1.0,
+              "median": 1.0,
+              "min": 1.0,
+              "n": 3,
+              "std": 0.0
+            },
+            "regulatory_continuity_risk": {
+              "max": 0.0,
+              "mean": 0.0,
+              "median": 0.0,
+              "min": 0.0,
+              "n": 3,
+              "std": 0.0
+            },
+            "regulatory_energy_reserve": {
+              "max": 1.0,
+              "mean": 1.0,
+              "median": 1.0,
+              "min": 1.0,
+              "n": 3,
+              "std": 0.0
+            },
+            "regulatory_resource_pressure": {
+              "max": 0.0,
+              "mean": 0.0,
+              "median": 0.0,
+              "min": 0.0,
+              "n": 3,
+              "std": 0.0
+            },
+            "regulatory_sensory_integrity": {
+              "max": 1.0,
+              "mean": 1.0,
+              "median": 1.0,
+              "min": 1.0,
+              "n": 3,
+              "std": 0.0
+            },
+            "regulatory_thermal_margin": {
+              "max": 1.0,
+              "mean": 1.0,
+              "median": 1.0,
+              "min": 1.0,
+              "n": 3,
+              "std": 0.0
+            }
+          },
+          "run_count": 3,
+          "seeds": [
+            101,
+            102,
+            103
+          ]
+        },
+        "telemetry_unknown": {
+          "metrics": {
+            "functional_uncertainty": {
+              "max": 0.9642857142857143,
+              "mean": 0.9642857142857143,
+              "median": 0.9642857142857143,
+              "min": 0.9642857142857143,
+              "n": 3,
+              "std": 0.0
+            },
+            "regulatory_sensory_integrity": {
+              "max": 0.25,
+              "mean": 0.25,
+              "median": 0.25,
+              "min": 0.25,
+              "n": 3,
+              "std": 0.0
+            }
+          },
+          "run_count": 3,
+          "seeds": [
+            101,
+            102,
+            103
+          ]
+        }
+      },
+      "formulas": {
+        "difference": "Delta_x = mean(x_B) - mean(x_A)",
+        "inter_spike_interval": "ISI_i = t_(i+1) - t_i",
+        "mean": "mean(x) = (1/n) * sum_i x_i",
+        "population_std": "sigma = sqrt((1/n) * sum_i (x_i - mean(x))^2)",
+        "ratio": "R_x = mean(x_B) / mean(x_A), defined only when mean(x_A) != 0"
+      },
+      "generated_by": "deterministic_statistics_engine",
+      "run_count": 9,
+      "schema_version": "2.0"
+    },
+    "observations": [
+      "Bei der nominalen Bedingung sind die Drives und Zustandsgrößen stabil und zeigen keine signifikanten Veränderungen.",
+      "Bei der chronischen Druckbedingung steigt die Resource Pressure und Thermal Threat, während die Sicherheit abnimmt.",
+      "Bei der unbekannten Telemetrie-Bedingung ist die Unsicherheit hoch, und die Sensory Integrity ist niedrig."
+    ],
+    "interpretation": {
+      "assessment": "Die Daten zeigen eine deterministische Reaktion der Drives und funktionalen Zustandsgrößen auf die verschiedenen Telemetriebedingungen. Es gibt keine statistische Signifikanz zu testen, da nur deskriptive Statistiken vorliegen.",
+      "confidence": 0.75,
+      "effect_direction": "Bei der chronischen Druckbedingung steigt die Resource Pressure und Thermal Threat, während die Sicherheit abnimmt. Bei der unbekannten Telemetrie-Bedingung ist die Unsicherheit hoch, und die Sensory Integrity ist niedrig.",
+      "methodological_concerns": [
+        "Die Daten sind rein deskriptiv und enthalten keine inferenziellen Analysen.",
+        "Es gibt keine kontrollierten Variablen oder Vergleichsgruppen.",
+        "Die Interpretation der Ergebnisse ist aufgrund der fehlenden statistischen Signifikanz begrenzt."
+      ],
+      "observations": [
+        "Bei der nominalen Bedingung sind die Drives und Zustandsgrößen stabil und zeigen keine signifikanten Veränderungen.",
+        "Bei der chronischen Druckbedingung steigt die Resource Pressure und Thermal Threat, während die Sicherheit abnimmt.",
+        "Bei der unbekannten Telemetrie-Bedingung ist die Unsicherheit hoch, und die Sensory Integrity ist niedrig."
+      ],
+      "alternative_explanations": [
+        "Die beobachteten Effekte könnten auf andere Faktoren zurückzuführen sein, die nicht gemessen wurden.",
+        "Die Determinismusannahme könnte nicht vollständig korrekt sein.",
+        "Die Unsicherheit bei der unbekannten Telemetrie könnte auf andere Systemeigenschaften beruhen."
+      ],
+      "recommended_experiments": [
+        "Eine inferenzielle Analyse mit statistischen Tests durchzuführen.",
+        "Die Experimentbedingungen erweitern, um andere Faktoren zu kontrollieren.",
+        "Die Messung zusätzlicher Variablen, die möglicherweise die Ergebnisse beeinflussen."
+      ],
+      "requested_evidence": [
+        "Statistische Analysen zur Bestätigung der beobachteten Effekte.",
+        "Dokumentation der verwendeten Algorithmen und Modellannahmen.",
+        "Nachweis der Determinismusannahme und ihrer Validierung."
+      ]
+    },
+    "methodological_critique": [
+      "Die Daten sind rein deskriptiv und enthalten keine inferenziellen Analysen.",
+      "Es gibt keine kontrollierten Variablen oder Vergleichsgruppen.",
+      "Die Interpretation der Ergebnisse ist aufgrund der fehlenden statistischen Signifikanz begrenzt."
+    ],
+    "alternative_explanations": [
+      "Die beobachteten Effekte könnten auf andere Faktoren zurückzuführen sein, die nicht gemessen wurden.",
+      "Die Determinismusannahme könnte nicht vollständig korrekt sein.",
+      "Die Unsicherheit bei der unbekannten Telemetrie könnte auf andere Systemeigenschaften beruhen."
+    ],
+    "reproducibility": {
+      "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+      "experiment_status": "completed",
+      "evidence_mode": "not_reported",
+      "git_dirty": "True",
+      "source_freeze_sha": "5221c16da9e55c9e1b4a4a434fe0dc0e5a15b224e45c05e7f0d4c4776a9171a1",
+      "configuration_path": "F:\\Brain-5D\\configs\\learning_experiment.yaml",
+      "configuration_sha256": "6f6cd457caf6216c286fee47ef03b529a0b496ed2dd53ee96b85d3b51e7b3a1c",
+      "experiment_manifest_digest": "01bc5ccde38e6234fb52be5eef2d1d268e65568e6ff6ea7ecaff59a4e97b2e0d",
+      "data_ids": "NOT_AVAILABLE",
+      "evid_ids": "NOT_AVAILABLE",
+      "protocol_id": "NOT_AVAILABLE",
+      "protocol_digest": "871f532217edc01e3b6988f3f1b337b0361f89611b973b141728121dc3390984",
+      "data_digest": "2ca665f40f92601b458eba12d878235c2b9b2e421e01c0f34ce33d7c90129383",
+      "evid_digests": "[]"
+    },
+    "epistemic_status": {
+      "implementation": "NOT_DETERMINED",
+      "experiment_data": "PRESENT",
+      "registered_evidence": "ABSENT",
+      "ai_interpretation": "PRESENT",
+      "human_review": "PENDING",
+      "claim_support": "NOT_DETERMINED",
+      "rq_status": "IN_PROGRESS"
+    },
+    "ai_confidence": 0.75,
+    "missing_evidence": [
+      "Statistische Analysen zur Bestätigung der beobachteten Effekte.",
+      "Dokumentation der verwendeten Algorithmen und Modellannahmen.",
+      "Nachweis der Determinismusannahme und ihrer Validierung."
+    ],
+    "recommended_follow_up": [
+      "Eine inferenzielle Analyse mit statistischen Tests durchzuführen.",
+      "Die Experimentbedingungen erweitern, um andere Faktoren zu kontrollieren.",
+      "Die Messung zusätzlicher Variablen, die möglicherweise die Ergebnisse beeinflussen."
+    ],
+    "conclusion": "Die Daten zeigen eine deterministische Reaktion der Drives und funktionalen Zustandsgrößen auf die verschiedenen Telemetriebedingungen. Es gibt keine statistische Signifikanz zu testen, da nur deskriptive Statistiken vorliegen.",
+    "human_review": {
+      "status": "PENDING",
+      "reviewer": null,
+      "reviewed_at": null,
+      "disposition": null,
+      "comments": null
+    },
+    "aiar": {
+      "analyst": {
+        "analysis_id": "AIAR-scientific_analyst-20260914075622276802-677e51dd",
+        "role": "scientific_analyst",
+        "model": {
+          "provider": "ollama",
+          "model_name": "qwen3:8b",
+          "model_digest": "not_reported",
+          "quantization": "not_reported",
+          "context_length": "unknown",
+          "temperature": 0.0,
+          "top_p": 0.9,
+          "seed": "not_reported",
+          "backend_version": "unknown"
+        },
+        "inputs": {
+          "experiment_id": "EXP-BATCH-20260914074039-10",
+          "packet_digest": "677e51dd1e7d8829269a473fc22ded1f8317439f3e2b2a9bb92c5b9fe384e1ba"
+        },
+        "output": {
+          "assessment": "Die Daten zeigen eine deterministische Reaktion der Drives und funktionalen Zustandsgrößen auf die verschiedenen Telemetriebedingungen. Es gibt keine statistische Signifikanz zu testen, da nur deskriptive Statistiken vorliegen.",
+          "observations": [
+            "Bei der nominalen Bedingung sind die Drives und Zustandsgrößen stabil und zeigen keine signifikanten Veränderungen.",
+            "Bei der chronischen Druckbedingung steigt die Resource Pressure und Thermal Threat, während die Sicherheit abnimmt.",
+            "Bei der unbekannten Telemetrie-Bedingung ist die Unsicherheit hoch, und die Sensory Integrity ist niedrig."
+          ],
+          "effect_direction": "Bei der chronischen Druckbedingung steigt die Resource Pressure und Thermal Threat, während die Sicherheit abnimmt. Bei der unbekannten Telemetrie-Bedingung ist die Unsicherheit hoch, und die Sensory Integrity ist niedrig.",
+          "methodological_concerns": [
+            "Die Daten sind rein deskriptiv und enthalten keine inferenziellen Analysen.",
+            "Es gibt keine kontrollierten Variablen oder Vergleichsgruppen.",
+            "Die Interpretation der Ergebnisse ist aufgrund der fehlenden statistischen Signifikanz begrenzt."
+          ],
+          "alternative_explanations": [
+            "Die beobachteten Effekte könnten auf andere Faktoren zurückzuführen sein, die nicht gemessen wurden.",
+            "Die Determinismusannahme könnte nicht vollständig korrekt sein.",
+            "Die Unsicherheit bei der unbekannten Telemetrie könnte auf andere Systemeigenschaften beruhen."
+          ],
+          "recommended_experiments": [
+            "Eine inferenzielle Analyse mit statistischen Tests durchführen.",
+            "Die Experimentbedingungen erweitern, um andere Faktoren zu kontrollieren.",
+            "Die Messung zusätzlicher Variablen, die möglicherweise die Ergebnisse beeinflussen."
+          ],
+          "requested_evidence": [
+            "Statistische Analysen zur Bestätigung der beobachteten Effekte.",
+            "Dokumentation der verwendeten Algorithmen und Modellannahmen.",
+            "Nachweis der Determinismusannahme und ihrer Validierung."
+          ],
+          "confidence": 0.75
+        },
+        "provenance": {
+          "prompt_sha256": "4d109e70aa66add002379b7f2d434207ec5d72773e62078dc1f5dffb3ef05cff",
+          "research_packet_digest": "677e51dd1e7d8829269a473fc22ded1f8317439f3e2b2a9bb92c5b9fe384e1ba",
+          "prompt_protocol_version": "research_assistant_v1",
+          "assistant_schema_version": "1.2",
+          "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+          "model_self_confidence": "0.75"
+        },
+        "epistemic_status": {
+          "evidence": false,
+          "interpretation_only": true,
+          "human_review_required": true
+        },
+        "review": {
+          "status": "pending",
+          "reviewer": null,
+          "reviewed_at": null,
+          "disposition": null
+        },
+        "generated_at": "2026-09-14T07:56:22.276802+00:00"
+      },
+      "reviewer": {
+        "analysis_id": "AIAR-critical_reviewer-20260914075729434410-677e51dd",
+        "role": "critical_reviewer",
+        "model": {
+          "provider": "ollama",
+          "model_name": "qwen3:8b",
+          "model_digest": "not_reported",
+          "quantization": "not_reported",
+          "context_length": "unknown",
+          "temperature": 0.0,
+          "top_p": 0.9,
+          "seed": "not_reported",
+          "backend_version": "unknown"
+        },
+        "inputs": {
+          "experiment_id": "EXP-BATCH-20260914074039-10",
+          "packet_digest": "677e51dd1e7d8829269a473fc22ded1f8317439f3e2b2a9bb92c5b9fe384e1ba"
+        },
+        "output": {
+          "assessment": "Die Daten zeigen eine deterministische Reaktion der Drives und funktionalen Zustandsgrößen auf die verschiedenen Telemetriebedingungen. Es gibt keine statistische Signifikanz zu testen, da nur deskriptive Statistiken vorliegen.",
+          "confidence": 0.75,
+          "effect_direction": "Bei der chronischen Druckbedingung steigt die Resource Pressure und Thermal Threat, wohingegen die Sicherheit abnimmt. Bei der unbekannten Telemetrie-Bedingung ist die Unsicherheit hoch, und die Sensory Integrity ist niedrig.",
+          "methodological_concerns": [
+            "Die Daten sind rein deskriptiv und enthalten keine inferenziellen Analysen.",
+            "Es gibt keine kontrollierten Variablen oder Vergleichsgruppen.",
+            "Die Interpretation der Ergebnisse ist aufgrund der fehlenden statistischen Signifikanz begrenzt."
+          ],
+          "observations": [
+            "Bei der nominalen Bedingung sind die Drives und Zustandsgrößen stabil und zeigen keine signifikanten Veränderungen.",
+            "Bei der chronischen Druckbedingung steigt die Resource Pressure und Thermal Threat, wohingegen die Sicherheit abnimmt.",
+            "Bei der unbekannten Telemetrie-Bedingung ist die Unsicherheit hoch, und die Sensory Integrity ist niedrig."
+          ],
+          "alternative_explanations": [
+            "Die beobachteten Effekte könnten auf andere Faktoren zurückzuführen sein, die nicht gemessen wurden.",
+            "Die Determinismusannahme könnte nicht vollständig korrekt sein.",
+            "Die Unsicherheit bei der unbekannten Telemetrie könnte auf andere Systemeigenschaften beruhen."
+          ],
+          "recommended_experiments": [
+            "Eine inferenzielle Analyse mit statistischen Tests durchzuführen.",
+            "Die Experimentbedingungen erweitern, um andere Faktoren zu kontrollieren.",
+            "Die Messung zusätzlicher Variablen, die möglicherweise die Ergebnisse beeinflussen."
+          ],
+          "requested_evidence": [
+            "Statistische Analysen zur Bestätigung der beobachteten Effekte.",
+            "Dokumentation der verwendeten Algorithmen und Modellannahmen.",
+            "Nachweis der Determinismusannahme und ihrer Validierung."
+          ]
+        },
+        "provenance": {
+          "prompt_sha256": "09f9f35c0b0253ef7f8601d8fa90ef7b036750c6ddcbf948972612ceae26da9e",
+          "research_packet_digest": "677e51dd1e7d8829269a473fc22ded1f8317439f3e2b2a9bb92c5b9fe384e1ba",
+          "prompt_protocol_version": "research_assistant_v1",
+          "assistant_schema_version": "1.2",
+          "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+          "model_self_confidence": "0.75"
+        },
+        "epistemic_status": {
+          "evidence": false,
+          "interpretation_only": true,
+          "human_review_required": true
+        },
+        "review": {
+          "status": "pending",
+          "reviewer": null,
+          "reviewed_at": null,
+          "disposition": null
+        },
+        "generated_at": "2026-09-14T07:57:29.434410+00:00"
+      },
+      "writer": {
+        "analysis_id": "AIAR-scientific_writer-20260914075749692922-677e51dd",
+        "role": "scientific_writer",
+        "model": {
+          "provider": "ollama",
+          "model_name": "qwen3:8b",
+          "model_digest": "not_reported",
+          "quantization": "not_reported",
+          "context_length": "unknown",
+          "temperature": 0.0,
+          "top_p": 0.9,
+          "seed": "not_reported",
+          "backend_version": "unknown"
+        },
+        "inputs": {
+          "experiment_id": "EXP-BATCH-20260914074039-10",
+          "packet_digest": "677e51dd1e7d8829269a473fc22ded1f8317439f3e2b2a9bb92c5b9fe384e1ba"
+        },
+        "output": {
+          "assessment": "Die Daten zeigen eine deterministische Reaktion der Drives und funktionalen Zustandsgrößen auf die verschiedenen Telemetriebedingungen. Es gibt keine statistische Signifikanz zu testen, da nur deskriptive Statistiken vorliegen.",
+          "confidence": 0.75,
+          "effect_direction": "Bei der chronischen Druckbedingung steigt die Resource Pressure und Thermal Threat, während die Sicherheit abnimmt. Bei der unbekannten Telemetrie-Bedingung ist die Unsicherheit hoch, und die Sensory Integrity ist niedrig.",
+          "methodological_concerns": [
+            "Die Daten sind rein deskriptiv und enthalten keine inferenziellen Analysen.",
+            "Es gibt keine kontrollierten Variablen oder Vergleichsgruppen.",
+            "Die Interpretation der Ergebnisse ist aufgrund der fehlenden statistischen Signifikanz begrenzt."
+          ],
+          "observations": [
+            "Bei der nominalen Bedingung sind die Drives und Zustandsgrößen stabil und zeigen keine signifikanten Veränderungen.",
+            "Bei der chronischen Druckbedingung steigt die Resource Pressure und Thermal Threat, während die Sicherheit abnimmt.",
+            "Bei der unbekannten Telemetrie-Bedingung ist die Unsicherheit hoch, und die Sensory Integrity ist niedrig."
+          ],
+          "alternative_explanations": [
+            "Die beobachteten Effekte könnten auf andere Faktoren zurückzuführen sein, die nicht gemessen wurden.",
+            "Die Determinismusannahme könnte nicht vollständig korrekt sein.",
+            "Die Unsicherheit bei der unbekannten Telemetrie könnte auf andere Systemeigenschaften beruhen."
+          ],
+          "recommended_experiments": [
+            "Eine inferenzielle Analyse mit statistischen Tests durchzuführen.",
+            "Die Experimentbedingungen erweitern, um andere Faktoren zu kontrollieren.",
+            "Die Messung zusätzlicher Variablen, die möglicherweise die Ergebnisse beeinflussen."
+          ],
+          "requested_evidence": [
+            "Statistische Analysen zur Bestätigung der beobachteten Effekte.",
+            "Dokumentation der verwendeten Algorithmen und Modellannahmen.",
+            "Nachweis der Determinismusannahme und ihrer Validierung."
+          ]
+        },
+        "provenance": {
+          "prompt_sha256": "b1eef3d41343469a0eb247d29798c6c865e18886af0dbe8b985f99ac69d76168",
+          "research_packet_digest": "677e51dd1e7d8829269a473fc22ded1f8317439f3e2b2a9bb92c5b9fe384e1ba",
+          "prompt_protocol_version": "research_assistant_v1",
+          "assistant_schema_version": "1.2",
+          "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+          "model_self_confidence": "0.75"
+        },
+        "epistemic_status": {
+          "evidence": false,
+          "interpretation_only": true,
+          "human_review_required": true
+        },
+        "review": {
+          "status": "pending",
+          "reviewer": null,
+          "reviewed_at": null,
+          "disposition": null
+        },
+        "generated_at": "2026-09-14T07:57:49.692922+00:00"
+      }
+    }
+  },
+  "provenance": {
+    "research_packet_digest": "52341c10a65e4533c15963679f733d8f47e8e639b6245d24ae6a33d96fe1347e",
+    "source": {
+      "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+      "experiment_status": "completed",
+      "evidence_mode": "not_reported",
+      "git_dirty": "True",
+      "source_freeze_sha": "5221c16da9e55c9e1b4a4a434fe0dc0e5a15b224e45c05e7f0d4c4776a9171a1",
+      "configuration_path": "F:\\Brain-5D\\configs\\learning_experiment.yaml",
+      "configuration_sha256": "6f6cd457caf6216c286fee47ef03b529a0b496ed2dd53ee96b85d3b51e7b3a1c",
+      "experiment_manifest_digest": "01bc5ccde38e6234fb52be5eef2d1d268e65568e6ff6ea7ecaff59a4e97b2e0d",
+      "data_ids": "NOT_AVAILABLE",
+      "evid_ids": "NOT_AVAILABLE",
+      "protocol_id": "NOT_AVAILABLE",
+      "protocol_digest": "871f532217edc01e3b6988f3f1b337b0361f89611b973b141728121dc3390984",
+      "data_digest": "2ca665f40f92601b458eba12d878235c2b9b2e421e01c0f34ce33d7c90129383",
+      "evid_digests": "[]"
+    }
+  },
+  "analysis_ids": [
+    "AIAR-scientific_analyst-20260914075622276802-677e51dd",
+    "AIAR-critical_reviewer-20260914075729434410-677e51dd",
+    "AIAR-scientific_writer-20260914075749692922-677e51dd"
+  ],
+  "supersedes": null,
+  "content_digest": "75a6e90528fbb62a475210f5a02dbb2fb8cf389bea4f6aab6d0045c7ddd2d149",
+  "markdown_digest": "001e5f7c432f8876d0b849951bd73f924a23ee4c77cdd042d82f0dd64d248d9e"
+}

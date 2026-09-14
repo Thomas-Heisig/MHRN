@@ -1,0 +1,37 @@
+{
+  "run_count": 3,
+  "runs": [
+    {
+      "condition": "same_seed_tonic_replica_pair",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0000-same_seed_tonic_replica_pair-seed-101.json.gz",
+      "run_index": 0,
+      "seed": 101,
+      "sha256": "19e7de6ef959d8b9a87ee1df19dde593e6da4cd7561475af6325c637b6550b92",
+      "size_bytes": 466,
+      "uncompressed_bytes": 845
+    },
+    {
+      "condition": "same_seed_tonic_replica_pair",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0001-same_seed_tonic_replica_pair-seed-102.json.gz",
+      "run_index": 1,
+      "seed": 102,
+      "sha256": "efc7742cd59554fafa5ec77b3dcaaf768189aa5096aec5d06a28321021689861",
+      "size_bytes": 463,
+      "uncompressed_bytes": 845
+    },
+    {
+      "condition": "same_seed_tonic_replica_pair",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0002-same_seed_tonic_replica_pair-seed-103.json.gz",
+      "run_index": 2,
+      "seed": 103,
+      "sha256": "ae9ec4c59eee7f9b0cc4a08ecd2c9d55ebde8523a94c8e11c6010ffd77989058",
+      "size_bytes": 463,
+      "uncompressed_bytes": 845
+    }
+  ],
+  "schema_version": "2.0",
+  "storage_policy": "immutable_raw_runs_plus_compact_current_experiment"
+}

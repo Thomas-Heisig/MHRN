@@ -1,0 +1,150 @@
+{
+  "conditions": {
+    "adaptive_compensation": {
+      "metrics": {
+        "compensatory_gate_change": {
+          "max": 0.5,
+          "mean": 0.5,
+          "median": 0.5,
+          "min": 0.5,
+          "n": 3,
+          "std": 0.0
+        },
+        "incremental_energy_cost": {
+          "max": 0.09999999999999998,
+          "mean": 0.09999999999999998,
+          "median": 0.09999999999999998,
+          "min": 0.09999999999999998,
+          "n": 3,
+          "std": 0.0
+        },
+        "task_recovery": {
+          "max": 0.85,
+          "mean": 0.85,
+          "median": 0.85,
+          "min": 0.85,
+          "n": 3,
+          "std": 0.0
+        }
+      },
+      "run_count": 3,
+      "seeds": [
+        101,
+        102,
+        103
+      ]
+    },
+    "fixed_allocation": {
+      "metrics": {
+        "compensatory_gate_change": {
+          "max": 0.0,
+          "mean": 0.0,
+          "median": 0.0,
+          "min": 0.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "incremental_energy_cost": {
+          "max": 0.0,
+          "mean": 0.0,
+          "median": 0.0,
+          "min": 0.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "task_recovery": {
+          "max": 0.425,
+          "mean": 0.425,
+          "median": 0.425,
+          "min": 0.425,
+          "n": 3,
+          "std": 0.0
+        }
+      },
+      "run_count": 3,
+      "seeds": [
+        101,
+        102,
+        103
+      ]
+    },
+    "no_compensation": {
+      "metrics": {
+        "compensatory_gate_change": {
+          "max": 0.0,
+          "mean": 0.0,
+          "median": 0.0,
+          "min": 0.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "incremental_energy_cost": {
+          "max": -0.35000000000000003,
+          "mean": -0.35000000000000003,
+          "median": -0.35000000000000003,
+          "min": -0.35000000000000003,
+          "n": 3,
+          "std": 0.0
+        },
+        "task_recovery": {
+          "max": 0.425,
+          "mean": 0.425,
+          "median": 0.425,
+          "min": 0.425,
+          "n": 3,
+          "std": 0.0
+        }
+      },
+      "run_count": 3,
+      "seeds": [
+        101,
+        102,
+        103
+      ]
+    },
+    "shuffled_utility": {
+      "metrics": {
+        "compensatory_gate_change": {
+          "max": 0.03309975355812078,
+          "mean": -0.14948666119938245,
+          "median": -0.0726231992910622,
+          "min": -0.4089365378652059,
+          "n": 3,
+          "std": 0.1884675295928026
+        },
+        "incremental_energy_cost": {
+          "max": -0.3202102217976913,
+          "mean": -0.48453799507944423,
+          "median": -0.41536087936195604,
+          "min": -0.7180428840786853,
+          "n": 3,
+          "std": 0.16962077663352235
+        },
+        "task_recovery": {
+          "max": 0.45313479052440264,
+          "mean": 0.29793633798052493,
+          "median": 0.36327028060259714,
+          "min": 0.07740394281457498,
+          "n": 3,
+          "std": 0.16019740015388223
+        }
+      },
+      "run_count": 3,
+      "seeds": [
+        101,
+        102,
+        103
+      ]
+    }
+  },
+  "formulas": {
+    "difference": "Delta_x = mean(x_B) - mean(x_A)",
+    "inter_spike_interval": "ISI_i = t_(i+1) - t_i",
+    "mean": "mean(x) = (1/n) * sum_i x_i",
+    "population_std": "sigma = sqrt((1/n) * sum_i (x_i - mean(x))^2)",
+    "ratio": "R_x = mean(x_B) / mean(x_A), defined only when mean(x_A) != 0"
+  },
+  "generated_by": "deterministic_statistics_engine",
+  "run_count": 12,
+  "schema_version": "2.0"
+}

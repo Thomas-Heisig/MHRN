@@ -1,0 +1,544 @@
+{
+  "report_id": "AIRR-2026-0001",
+  "experiment_id": "EXP-BATCH-20260914074039-27",
+  "research_question_id": "RQ-MEM-001",
+  "hypothesis_ids": [
+    "H-MEM-001-A"
+  ],
+  "claim_ids": [],
+  "generated_at": "2026-09-14T11:27:55.720015+00:00",
+  "report_schema_version": "1.0",
+  "report_protocol_version": "PROTOCOL-AIRR-001",
+  "generated_by": "artificial_intelligence",
+  "ai_generated": true,
+  "scientific_evidence": false,
+  "human_review_required": true,
+  "status": "review_pending",
+  "content": {
+    "identification": {
+      "experiment": "EXP-BATCH-20260914074039-27",
+      "research_question": "Kann Brain-5D Informationen über synaptische Gewichte speichern und zuverlässig abrufen?",
+      "hypotheses": [
+        {
+          "id": "H-MEM-001-A",
+          "research_question": "RQ-MEM-001",
+          "hypothesis": "Brain-5D kann Informationen über synaptische Gewichte speichern und auf Input-Muster abrufen.",
+          "status": "untested",
+          "evidence": [],
+          "created": "2026-08-23",
+          "updated": "2026-08-23"
+        }
+      ],
+      "date": "2026-09-14",
+      "source_sha": "8e096931a779b2d2eb4d010eb20154150b07bbf2"
+    },
+    "executive_summary": "Die vorliegenden Daten und Experimente liefern keine ausreichende wissenschaftliche Evidenz, um die Hypothese H-MEM-001-A zu bewerten.",
+    "research_question": {
+      "id": "RQ-MEM-001",
+      "domain": "Memory",
+      "question": "Kann Brain-5D Informationen über synaptische Gewichte speichern und zuverlässig abrufen?",
+      "relevance": "Gedächtnis ist eine Kernfunktion neuronaler Systeme.",
+      "literature": [],
+      "hypotheses": [
+        "H-MEM-001-A"
+      ],
+      "evidence": [],
+      "status": "open",
+      "answer": {
+        "current": null,
+        "confidence": "none",
+        "limitations": null
+      },
+      "created": "2026-08-23",
+      "updated": "2026-08-23"
+    },
+    "experimental_design": {
+      "experiment_id": "EXP-BATCH-20260914074039-27",
+      "research_question": "RQ-MEM-001",
+      "hypothesis": "H-MEM-001-A",
+      "title": "Experiment workflow: synaptic_memory_boundary_v1",
+      "conditions": "Registered protocol conditions",
+      "ticks": 1000,
+      "ticks_contract": "minimum requested observation window",
+      "seeds": [
+        101,
+        102,
+        103
+      ],
+      "protocol": "synaptic_memory_boundary_v1",
+      "resolved_runner": "run_boundary_audit",
+      "tick_validation": {
+        "status": "NOT_APPLICABLE",
+        "mode": "protocol_defined_internal_trials",
+        "requested_ticks": 1000
+      },
+      "notes": "",
+      "execution": "registered experiment_suite runner",
+      "assistant_policy": "AI is post-hoc interpretation only.",
+      "epistemic_layers": {
+        "ui_state": "operator/dashboard progress only; not a scientific result",
+        "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+        "evid": "not_created; requires semantic validation, clean freeze and human review",
+        "interpretation": "post-hoc AI or human interpretation; never execution input"
+      }
+    },
+    "data_basis": {
+      "data": {
+        "ai_input_policy": "compact_only_raw_on_explicit_deterministic_extract",
+        "generated_by": "deterministic_research_data_v2",
+        "limits": {
+          "ai_packet_max_bytes": 1000000,
+          "run_summary_max_bytes": 5000000,
+          "sequence_preview_items": 16
+        },
+        "raw_index": {
+          "path": "DATA/runs_index.json",
+          "run_count": 3,
+          "sha256": "a5018e6fe31a1ac3449bf78f4a203e95b51aafbb5e8afed939f4a0333f28fafd"
+        },
+        "run_count": 3,
+        "run_preview": [
+          {
+            "_raw_artifact": {
+              "format": "json.gz",
+              "path": "DATA/raw/run-0000-instrumentation_gap_audit-seed-101.json.gz",
+              "sha256": "bf4e2da1f7ddf5c48a6991c8b03b2fb795e605d1ff7db624eed7ba8726e567db",
+              "size_bytes": 380,
+              "uncompressed_bytes": 481
+            },
+            "condition": "instrumentation_gap_audit",
+            "experiment_id": "EXP-BATCH-20260914074039-27",
+            "metrics": {
+              "audit_complete": true,
+              "automatic_evidence_promotion": false,
+              "claim_boundary": "No direct causal measurement is performed by this runner. Completion means only that the registered gap/boundary contract was executed and preserved for review.",
+              "direct_test_of_hypothesis": false,
+              "scientific_evidence": false
+            },
+            "runtime_error": null,
+            "seed": 101,
+            "state_digest_after": "",
+            "state_digest_before": ""
+          },
+          {
+            "_raw_artifact": {
+              "format": "json.gz",
+              "path": "DATA/raw/run-0001-instrumentation_gap_audit-seed-102.json.gz",
+              "sha256": "675e3cee53d9705829074c3f3fa339e83b2fcef1b5efb81e46e8409295c9b487",
+              "size_bytes": 380,
+              "uncompressed_bytes": 481
+            },
+            "condition": "instrumentation_gap_audit",
+            "experiment_id": "EXP-BATCH-20260914074039-27",
+            "metrics": {
+              "audit_complete": true,
+              "automatic_evidence_promotion": false,
+              "claim_boundary": "No direct causal measurement is performed by this runner. Completion means only that the registered gap/boundary contract was executed and preserved for review.",
+              "direct_test_of_hypothesis": false,
+              "scientific_evidence": false
+            },
+            "runtime_error": null,
+            "seed": 102,
+            "state_digest_after": "",
+            "state_digest_before": ""
+          },
+          {
+            "_raw_artifact": {
+              "format": "json.gz",
+              "path": "DATA/raw/run-0002-instrumentation_gap_audit-seed-103.json.gz",
+              "sha256": "978188ff98b8891d06b7c83c9e2b1011e196a46d2b1fe77298729f880cc63e17",
+              "size_bytes": 380,
+              "uncompressed_bytes": 481
+            },
+            "condition": "instrumentation_gap_audit",
+            "experiment_id": "EXP-BATCH-20260914074039-27",
+            "metrics": {
+              "audit_complete": true,
+              "automatic_evidence_promotion": false,
+              "claim_boundary": "No direct causal measurement is performed by this runner. Completion means only that the registered gap/boundary contract was executed and preserved for review.",
+              "direct_test_of_hypothesis": false,
+              "scientific_evidence": false
+            },
+            "runtime_error": null,
+            "seed": 103,
+            "state_digest_after": "",
+            "state_digest_before": ""
+          }
+        ],
+        "schema_version": "2.0",
+        "statistics": {
+          "conditions": {
+            "instrumentation_gap_audit": {
+              "metrics": {},
+              "run_count": 3,
+              "seeds": [
+                101,
+                102,
+                103
+              ]
+            }
+          },
+          "formulas": {
+            "difference": "Delta_x = mean(x_B) - mean(x_A)",
+            "inter_spike_interval": "ISI_i = t_(i+1) - t_i",
+            "mean": "mean(x) = (1/n) * sum_i x_i",
+            "population_std": "sigma = sqrt((1/n) * sum_i (x_i - mean(x))^2)",
+            "ratio": "R_x = mean(x_B) / mean(x_A), defined only when mean(x_A) != 0"
+          },
+          "generated_by": "deterministic_statistics_engine",
+          "run_count": 3,
+          "schema_version": "2.0"
+        }
+      },
+      "evid": [],
+      "literature": []
+    },
+    "quantitative_results": {
+      "conditions": {
+        "instrumentation_gap_audit": {
+          "metrics": {},
+          "run_count": 3,
+          "seeds": [
+            101,
+            102,
+            103
+          ]
+        }
+      },
+      "formulas": {
+        "difference": "Delta_x = mean(x_B) - mean(x_A)",
+        "inter_spike_interval": "ISI_i = t_(i+1) - t_i",
+        "mean": "mean(x) = (1/n) * sum_i x_i",
+        "population_std": "sigma = sqrt((1/n) * sum_i (x_i - mean(x))^2)",
+        "ratio": "R_x = mean(x_B) / mean(x_A), defined only when mean(x_A) != 0"
+      },
+      "generated_by": "deterministic_statistics_engine",
+      "run_count": 3,
+      "schema_version": "2.0"
+    },
+    "observations": [
+      "Die Experimente wurden mit der Bedingung 'instrumentation_gap_audit' durchgeführt, wobei keine direkte kausale Messung durchgeführt wurde.",
+      "Die Metriken zeigen, dass die Audits abgeschlossen wurden, aber keine wissenschaftlichen Beweise wurden erfasst.",
+      "Die Experimente sind auf der Grundlage von deterministischen Daten und Statistiken durchgeführt worden, ohne inferentielle Analysen oder statistische Signifikanzstests durchzuführen."
+    ],
+    "interpretation": {
+      "assessment": "Die vorliegenden Daten und Experimente liefern keine ausreichende wissenschaftliche Evidenz, um die Hypothese H-MEM-001-A zu bewerten.",
+      "observations": [
+        "Die Experimente wurden mit der Bedingung 'instrumentation_gap_audit' durchgeführt, wobei keine direkte kausale Messung durchgeführt wurde.",
+        "Die Metriken zeigen, dass die Audits abgeschlossen wurden, aber keine wissenschaftlichen Beweise wurden erfasst.",
+        "Die Experimente sind auf der Grundlage von deterministischen Daten und Statistiken durchgeführt worden, ohne inferentielle Analysen oder statistische Signifikanzstests durchzuführen."
+      ],
+      "effect_direction": "Es wurden keine messbaren Effekte oder Unterschiede gemessen, die auf eine kausale Beziehung hinweisen.",
+      "methodological_concerns": [
+        "Keine direkte kausale Messung wurde durchgeführt.",
+        "Keine inferentielle Analyse oder statistische Signifikanztests wurden durchgeführt.",
+        "Die experimentellen Ergebnisse sind rein deskriptiv und nicht für die Bewertung der Hypothese geeignet."
+      ],
+      "alternative_explanations": [
+        "Die Ergebnisse könnten aufgrund der fehlenden kausalen Messung und inferentiellen Analysen auf andere Faktoren zurückzuführen sein.",
+        "Die Experimente könnten nicht ausreichend kontrolliert oder reproduzierbar sein, was die Interpretation der Ergebnisse erschwert."
+      ],
+      "recommended_experiments": [
+        "Durchführung von Experimenten mit direkter kausaler Messung und inferentiellen Analysen.",
+        "Einbindung von statistischen Signifikanztests und kausalen Inferenzmethoden.",
+        "Erhöhung der Kontrolle über experimentelle Variablen und Verbesserung der Reproduzierbarkeit."
+      ],
+      "requested_evidence": [
+        "Wissenschaftliche Evidenz, die direkt auf die Hypothese H-MEM-001-A hinweist.",
+        "Statistische Analysen mit inferentiellen Methoden, um kausale Beziehungen zu bewerten.",
+        "Dokumentation der experimentellen Kontrollen und Reproduzierbarkeit der Ergebnisse."
+      ],
+      "confidence": 0.0,
+      "experiment_id": "EXP-BATCH-20260914074039-27",
+      "research_question": "Kann Brain-5D Informationen über synaptische Gewichte speichern und zuverlässig abrufen?"
+    },
+    "methodological_critique": [
+      "Keine direkte kausale Messung wurde durchgeführt.",
+      "Keine inferentielle Analyse oder statistische Signifikanztests wurden durchgeführt.",
+      "Die experimentellen Ergebnisse sind rein deskriptiv und nicht für die Bewertung der Hypothese geeignet."
+    ],
+    "alternative_explanations": [
+      "Die Ergebnisse könnten aufgrund der fehlenden kausalen Messung und inferentiellen Analysen auf andere Faktoren zurückzuführen sein.",
+      "Die Experimente könnten nicht ausreichend kontrolliert oder reproduzierbar sein, was die Interpretation der Ergebnisse erschwert."
+    ],
+    "reproducibility": {
+      "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+      "experiment_status": "completed",
+      "evidence_mode": "not_reported",
+      "git_dirty": "True",
+      "source_freeze_sha": "b24fb4736c084bbdd4c5091e58f5a1e6ff60e07dff83f0c83bc2e2791ba8f043",
+      "configuration_path": "F:\\Brain-5D\\configs\\learning_experiment.yaml",
+      "configuration_sha256": "6f6cd457caf6216c286fee47ef03b529a0b496ed2dd53ee96b85d3b51e7b3a1c",
+      "experiment_manifest_digest": "fcaea59dfab0b4cd711fadc673e2fb72fe5c9a5a17c2f82d82cdf94b252d1800",
+      "data_ids": "NOT_AVAILABLE",
+      "evid_ids": "NOT_AVAILABLE",
+      "protocol_id": "NOT_AVAILABLE",
+      "protocol_digest": "c87ce8c206d28ddb1df2853cfcd4804a89b0cb02f934d7023046ca07827c3988",
+      "data_digest": "4838232c8324d8c1661c0a4d5edd57e7793e79e153e76118dd5aebd1c726af13",
+      "evid_digests": "[]"
+    },
+    "epistemic_status": {
+      "implementation": "NOT_DETERMINED",
+      "experiment_data": "PRESENT",
+      "registered_evidence": "ABSENT",
+      "ai_interpretation": "PRESENT",
+      "human_review": "PENDING",
+      "claim_support": "NOT_DETERMINED",
+      "rq_status": "IN_PROGRESS"
+    },
+    "ai_confidence": 0.0,
+    "missing_evidence": [
+      "Wissenschaftliche Evidenz, die direkt auf die Hypothese H-MEM-001-A hinweist.",
+      "Statistische Analysen mit inferentiellen Methoden, um kausale Beziehungen zu bewerten.",
+      "Dokumentation der experimentellen Kontrollen und Reproduzierbarkeit der Ergebnisse."
+    ],
+    "recommended_follow_up": [
+      "Durchführung von Experimenten mit direkter kausaler Messung und inferentiellen Analysen.",
+      "Einbindung von statistischen Signifikanztests und kausalen Inferenzmethoden.",
+      "Erhöhung der Kontrolle über experimentelle Variablen und Verbesserung der Reproduzierbarkeit."
+    ],
+    "conclusion": "Die vorliegenden Daten und Experimente liefern keine ausreichende wissenschaftliche Evidenz, um die Hypothese H-MEM-001-A zu bewerten.",
+    "human_review": {
+      "status": "PENDING",
+      "reviewer": null,
+      "reviewed_at": null,
+      "disposition": null,
+      "comments": null
+    },
+    "aiar": {
+      "analyst": {
+        "analysis_id": "AIAR-scientific_analyst-20260914082223340056-dbd59bc5",
+        "role": "scientific_analyst",
+        "model": {
+          "provider": "ollama",
+          "model_name": "qwen3:8b",
+          "model_digest": "not_reported",
+          "quantization": "not_reported",
+          "context_length": "unknown",
+          "temperature": 0.0,
+          "top_p": 0.9,
+          "seed": "not_reported",
+          "backend_version": "unknown"
+        },
+        "inputs": {
+          "experiment_id": "EXP-BATCH-20260914074039-27",
+          "packet_digest": "dbd59bc586feae00e0da0c24ab0a1cb5951397a6bcf62610d8b44fa5559d0e8a"
+        },
+        "output": {
+          "assessment": "Die vorliegenden Daten und Experimente liefern keine ausreichende wissenschaftliche Evidenz, um die Hypothese zu bewerten.",
+          "observations": [
+            "Die Experimente wurden mit der Bedingung 'instrumentation_gap_audit' durchgeführt, wobei keine direkte kausale Messung durchgeführt wurde.",
+            "Die Metriken zeigen, dass die Audits abgeschlossen wurden, aber keine wissenschaftlichen Beweise wurden erfasst.",
+            "Die Experimente sind auf der Grundlage von deterministischen Daten und Statistiken durchgeführt worden, ohne inferentielle Analysen oder statistische Signifikanzstests durchzuführen."
+          ],
+          "effect_direction": "Es wurden keine messbaren Effekte oder Unterschiede gemessen, die auf eine kausale Beziehung hinweisen.",
+          "methodological_concerns": [
+            "Keine direkte kausale Messung wurde durchgeführt.",
+            "Keine inferentielle Analyse oder statistische Signifikanztests wurden durchgeführt.",
+            "Die experimentellen Ergebnisse sind rein deskriptiv und nicht für die Bewertung der Hypothese geeignet."
+          ],
+          "alternative_explanations": [
+            "Die Ergebnisse könnten aufgrund der fehlenden kausalen Messung und inferentiellen Analysen auf andere Faktoren zurückzuführen sein.",
+            "Die Experimente könnten nicht ausreichend kontrolliert oder reproduzierbar sein, was die Interpretation der Ergebnisse erschwert."
+          ],
+          "recommended_experiments": [
+            "Durchführung von Experimenten mit direkter kausaler Messung und inferentiellen Analysen.",
+            "Einbindung von statistischen Signifikanztests und kausalen Inferenzmethoden.",
+            "Erhöhung der Kontrolle über experimentelle Variablen und Verbesserung der Reproduzierbarkeit."
+          ],
+          "requested_evidence": [
+            "Wissenschaftliche Evidenz, die direkt auf die Hypothese 'H-MEM-001-A' hinweist.",
+            "Statistische Analysen mit inferentiellen Methoden, um kausale Beziehungen zu bewerten.",
+            "Dokumentation der experimentellen Kontrollen und Reproduzierbarkeit der Ergebnisse."
+          ],
+          "confidence": 0.0
+        },
+        "provenance": {
+          "prompt_sha256": "c216465fa1a87d41d906ccf7ce97a435596f95a02ae9464337ffef79cd9880cc",
+          "research_packet_digest": "dbd59bc586feae00e0da0c24ab0a1cb5951397a6bcf62610d8b44fa5559d0e8a",
+          "prompt_protocol_version": "research_assistant_v1",
+          "assistant_schema_version": "1.2",
+          "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+          "model_self_confidence": "0.0"
+        },
+        "epistemic_status": {
+          "evidence": false,
+          "interpretation_only": true,
+          "human_review_required": true
+        },
+        "review": {
+          "status": "pending",
+          "reviewer": null,
+          "reviewed_at": null,
+          "disposition": null
+        },
+        "generated_at": "2026-09-14T08:22:23.340056+00:00"
+      },
+      "reviewer": {
+        "analysis_id": "AIAR-critical_reviewer-20260914082247991127-dbd59bc5",
+        "role": "critical_reviewer",
+        "model": {
+          "provider": "ollama",
+          "model_name": "qwen3:8b",
+          "model_digest": "not_reported",
+          "quantization": "not_reported",
+          "context_length": "unknown",
+          "temperature": 0.0,
+          "top_p": 0.9,
+          "seed": "not_reported",
+          "backend_version": "unknown"
+        },
+        "inputs": {
+          "experiment_id": "EXP-BATCH-20260914074039-27",
+          "packet_digest": "dbd59bc586feae00e0da0c24ab0a1cb5951397a6bcf62610d8b44fa5559d0e8a"
+        },
+        "output": {
+          "assessment": "Die vorliegenden Daten und Experimente liefern keine ausreichende wissenschaftliche Evidenz, um die Hypothese H-MEM-001-A zu bewerten.",
+          "observations": [
+            "Die Experimente wurden mit der Bedingung 'instrumentation_gap_audit' durchgeführt, wobei keine direkte kausale Messung durchgeführt wurde.",
+            "Die Metriken zeigen, dass die Audits abgeschlossen wurden, aber keine wissenschaftlichen Beweise wurden erfasst.",
+            "Die Experimente sind auf der Grundlage von deterministischen Daten und Statistiken durchgeführt worden, ohne inferentielle Analysen oder statistische Signifikanzstests durchzuführen."
+          ],
+          "effect_direction": "Es wurden keine messbaren Effekte oder Unterschiede gemessen, die auf eine kausale Beziehung hinweisen.",
+          "methodological_concerns": [
+            "Keine direkte kausale Messung wurde durchgeführt.",
+            "Keine inferentielle Analyse oder statistische Signifikanztests wurden durchgeführt.",
+            "Die experimentellen Ergebnisse sind rein deskriptiv und nicht für die Bewertung der Hypothese geeignet."
+          ],
+          "alternative_explanations": [
+            "Die Ergebnisse könnten aufgrund der fehlenden kausalen Messung und inferentiellen Analysen auf andere Faktoren zurückzuführen sein.",
+            "Die Experimente könnten nicht ausreichend kontrolliert oder reproduzierbar sein, was die Interpretation der Ergebnisse erschwert."
+          ],
+          "recommended_experiments": [
+            "Durchführung von Experimenten mit direkter kausaler Messung und inferentiellen Analysen.",
+            "Einbindung von statistischen Signifikanztests und kausalen Inferenzmethoden.",
+            "Erhöhung der Kontrolle über experimentelle Variablen und Verbesserung der Reproduzierbarkeit."
+          ],
+          "requested_evidence": [
+            "Wissenschaftliche Evidenz, die direkt auf die Hypothese H-MEM-001-A hinweist.",
+            "Statistische Analysen mit inferentiellen Methoden, um kausale Beziehungen zu bewerten.",
+            "Dokumentation der experimentellen Kontrollen und Reproduzierbarkeit der Ergebnisse."
+          ],
+          "confidence": 0.0
+        },
+        "provenance": {
+          "prompt_sha256": "7b02a53ead6216edfab0d996015944c6258472d60b271bcf2d9630cad8d6f4d6",
+          "research_packet_digest": "dbd59bc586feae00e0da0c24ab0a1cb5951397a6bcf62610d8b44fa5559d0e8a",
+          "prompt_protocol_version": "research_assistant_v1",
+          "assistant_schema_version": "1.2",
+          "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+          "model_self_confidence": "0.0"
+        },
+        "epistemic_status": {
+          "evidence": false,
+          "interpretation_only": true,
+          "human_review_required": true
+        },
+        "review": {
+          "status": "pending",
+          "reviewer": null,
+          "reviewed_at": null,
+          "disposition": null
+        },
+        "generated_at": "2026-09-14T08:22:47.991127+00:00"
+      },
+      "writer": {
+        "analysis_id": "AIAR-scientific_writer-20260914082304342263-dbd59bc5",
+        "role": "scientific_writer",
+        "model": {
+          "provider": "ollama",
+          "model_name": "qwen3:8b",
+          "model_digest": "not_reported",
+          "quantization": "not_reported",
+          "context_length": "unknown",
+          "temperature": 0.0,
+          "top_p": 0.9,
+          "seed": "not_reported",
+          "backend_version": "unknown"
+        },
+        "inputs": {
+          "experiment_id": "EXP-BATCH-20260914074039-27",
+          "packet_digest": "dbd59bc586feae00e0da0c24ab0a1cb5951397a6bcf62610d8b44fa5559d0e8a"
+        },
+        "output": {
+          "assessment": "Die vorliegenden Daten und Experimente liefern keine ausreichende wissenschaftliche Evidenz, um die Hypothese H-MEM-001-A zu bewerten.",
+          "observations": [
+            "Die Experimente wurden mit der Bedingung 'instrumentation_gap_audit' durchgeführt, wobei keine direkte kausale Messung durchgeführt wurde.",
+            "Die Metriken zeigen, dass die Audits abgeschlossen wurden, aber keine wissenschaftlichen Beweise wurden erfasst.",
+            "Die Experimente sind auf der Grundlage von deterministischen Daten und Statistiken durchgeführt worden, ohne inferentielle Analysen oder statistische Signifikanzstests durchzuführen."
+          ],
+          "effect_direction": "Es wurden keine messbaren Effekte oder Unterschiede gemessen, die auf eine kausale Beziehung hinweisen.",
+          "methodological_concerns": [
+            "Keine direkte kausale Messung wurde durchgeführt.",
+            "Keine inferentielle Analyse oder statistische Signifikanztests wurden durchgeführt.",
+            "Die experimentellen Ergebnisse sind rein deskriptiv und nicht für die Bewertung der Hypothese geeignet."
+          ],
+          "alternative_explanations": [
+            "Die Ergebnisse könnten aufgrund der fehlenden kausalen Messung und inferentiellen Analysen auf andere Faktoren zurückzuführen sein.",
+            "Die Experimente könnten nicht ausreichend kontrolliert oder reproduzierbar sein, was die Interpretation der Ergebnisse erschwert."
+          ],
+          "recommended_experiments": [
+            "Durchführung von Experimenten mit direkter kausaler Messung und inferentiellen Analysen.",
+            "Einbindung von statistischen Signifikanztests und kausalen Inferenzmethoden.",
+            "Erhöhung der Kontrolle über experimentelle Variablen und Verbesserung der Reproduzierbarkeit."
+          ],
+          "requested_evidence": [
+            "Wissenschaftliche Evidenz, die direkt auf die Hypothese H-MEM-001-A hinweist.",
+            "Statistische Analysen mit inferentiellen Methoden, um kausale Beziehungen zu bewerten.",
+            "Dokumentation der experimentellen Kontrollen und Reproduzierbarkeit der Ergebnisse."
+          ],
+          "confidence": 0.0,
+          "experiment_id": "EXP-BATCH-20260914074039-27",
+          "research_question": "Kann Brain-5D Informationen über synaptische Gewichte speichern und zuverlässig abrufen?"
+        },
+        "provenance": {
+          "prompt_sha256": "466cb9dc46d0cbc1de82e793d49b9b06fa8b435a7c15557791075bdde19a92cd",
+          "research_packet_digest": "dbd59bc586feae00e0da0c24ab0a1cb5951397a6bcf62610d8b44fa5559d0e8a",
+          "prompt_protocol_version": "research_assistant_v1",
+          "assistant_schema_version": "1.2",
+          "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+          "model_self_confidence": "0.0"
+        },
+        "epistemic_status": {
+          "evidence": false,
+          "interpretation_only": true,
+          "human_review_required": true
+        },
+        "review": {
+          "status": "pending",
+          "reviewer": null,
+          "reviewed_at": null,
+          "disposition": null
+        },
+        "generated_at": "2026-09-14T08:23:04.342263+00:00"
+      }
+    }
+  },
+  "provenance": {
+    "research_packet_digest": "b47b8e431583d77f0336aa2a0865aac91a4af8797265c76cc13f1bd53def9aa6",
+    "source": {
+      "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+      "experiment_status": "completed",
+      "evidence_mode": "not_reported",
+      "git_dirty": "True",
+      "source_freeze_sha": "b24fb4736c084bbdd4c5091e58f5a1e6ff60e07dff83f0c83bc2e2791ba8f043",
+      "configuration_path": "F:\\Brain-5D\\configs\\learning_experiment.yaml",
+      "configuration_sha256": "6f6cd457caf6216c286fee47ef03b529a0b496ed2dd53ee96b85d3b51e7b3a1c",
+      "experiment_manifest_digest": "fcaea59dfab0b4cd711fadc673e2fb72fe5c9a5a17c2f82d82cdf94b252d1800",
+      "data_ids": "NOT_AVAILABLE",
+      "evid_ids": "NOT_AVAILABLE",
+      "protocol_id": "NOT_AVAILABLE",
+      "protocol_digest": "c87ce8c206d28ddb1df2853cfcd4804a89b0cb02f934d7023046ca07827c3988",
+      "data_digest": "4838232c8324d8c1661c0a4d5edd57e7793e79e153e76118dd5aebd1c726af13",
+      "evid_digests": "[]"
+    }
+  },
+  "analysis_ids": [
+    "AIAR-scientific_analyst-20260914082223340056-dbd59bc5",
+    "AIAR-critical_reviewer-20260914082247991127-dbd59bc5",
+    "AIAR-scientific_writer-20260914082304342263-dbd59bc5"
+  ],
+  "supersedes": null,
+  "content_digest": "1622f12ac2dbd4171b40d801426737d5cef97642fd46943d6573e5d522d70289",
+  "markdown_digest": "79e3ca4c32d99101a8d49e28ce60b0167936f16d4861d32d887660beb9f28739"
+}

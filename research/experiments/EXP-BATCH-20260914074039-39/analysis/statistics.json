@@ -1,0 +1,180 @@
+{
+  "conditions": {
+    "regulation_off": {
+      "metrics": {
+        "pressure_phase_spikes": {
+          "max": 15.0,
+          "mean": 15.0,
+          "median": 15.0,
+          "min": 15.0,
+          "n": 20,
+          "std": 0.0
+        },
+        "recovery_phase_spikes": {
+          "max": 21.0,
+          "mean": 21.0,
+          "median": 21.0,
+          "min": 21.0,
+          "n": 20,
+          "std": 0.0
+        },
+        "recovery_ratio": {
+          "max": 1.4,
+          "mean": 1.4,
+          "median": 1.4,
+          "min": 1.4,
+          "n": 20,
+          "std": 0.0
+        },
+        "ticks_executed": {
+          "max": 128.0,
+          "mean": 128.0,
+          "median": 128.0,
+          "min": 128.0,
+          "n": 20,
+          "std": 0.0
+        },
+        "total_spikes": {
+          "max": 73.0,
+          "mean": 73.0,
+          "median": 73.0,
+          "min": 73.0,
+          "n": 20,
+          "std": 0.0
+        }
+      },
+      "run_count": 20,
+      "seeds": [
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109,
+        110,
+        111,
+        112,
+        113,
+        114,
+        115,
+        116,
+        117,
+        118,
+        119,
+        120
+      ]
+    },
+    "regulation_on": {
+      "metrics": {
+        "pressure_phase_spikes": {
+          "max": 5.0,
+          "mean": 5.0,
+          "median": 5.0,
+          "min": 5.0,
+          "n": 20,
+          "std": 0.0
+        },
+        "recovery_phase_spikes": {
+          "max": 25.0,
+          "mean": 25.0,
+          "median": 25.0,
+          "min": 25.0,
+          "n": 20,
+          "std": 0.0
+        },
+        "recovery_ratio": {
+          "max": 5.0,
+          "mean": 5.0,
+          "median": 5.0,
+          "min": 5.0,
+          "n": 20,
+          "std": 0.0
+        },
+        "ticks_executed": {
+          "max": 128.0,
+          "mean": 128.0,
+          "median": 128.0,
+          "min": 128.0,
+          "n": 20,
+          "std": 0.0
+        },
+        "total_spikes": {
+          "max": 67.0,
+          "mean": 67.0,
+          "median": 67.0,
+          "min": 67.0,
+          "n": 20,
+          "std": 0.0
+        }
+      },
+      "run_count": 20,
+      "seeds": [
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109,
+        110,
+        111,
+        112,
+        113,
+        114,
+        115,
+        116,
+        117,
+        118,
+        119,
+        120
+      ]
+    }
+  },
+  "formulas": {
+    "difference": "Delta_x = mean(x_B) - mean(x_A)",
+    "inter_spike_interval": "ISI_i = t_(i+1) - t_i",
+    "mean": "mean(x) = (1/n) * sum_i x_i",
+    "population_std": "sigma = sqrt((1/n) * sum_i (x_i - mean(x))^2)",
+    "ratio": "R_x = mean(x_B) / mean(x_A), defined only when mean(x_A) != 0"
+  },
+  "generated_by": "deterministic_statistics_engine",
+  "run_count": 40,
+  "schema_version": "2.0",
+  "two_condition_effects": {
+    "pressure_phase_spikes": {
+      "absolute_difference": -10.0,
+      "comparison_condition": "regulation_on",
+      "ratio": 0.3333333333333333,
+      "reference_condition": "regulation_off"
+    },
+    "recovery_phase_spikes": {
+      "absolute_difference": 4.0,
+      "comparison_condition": "regulation_on",
+      "ratio": 1.1904761904761905,
+      "reference_condition": "regulation_off"
+    },
+    "recovery_ratio": {
+      "absolute_difference": 3.6,
+      "comparison_condition": "regulation_on",
+      "ratio": 3.5714285714285716,
+      "reference_condition": "regulation_off"
+    },
+    "ticks_executed": {
+      "absolute_difference": 0.0,
+      "comparison_condition": "regulation_on",
+      "ratio": 1.0,
+      "reference_condition": "regulation_off"
+    },
+    "total_spikes": {
+      "absolute_difference": -6.0,
+      "comparison_condition": "regulation_on",
+      "ratio": 0.9178082191780822,
+      "reference_condition": "regulation_off"
+    }
+  }
+}

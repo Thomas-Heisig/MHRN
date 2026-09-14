@@ -1,0 +1,1483 @@
+{
+  "conditions": {
+    "fixed_graph_label_2d": {
+      "metrics": {
+        "active_neuron_fraction": {
+          "max": 1.0,
+          "mean": 0.9984375,
+          "median": 1.0,
+          "min": 0.9921875,
+          "n": 10,
+          "std": 0.003125
+        },
+        "core_id_dimensions": {
+          "max": 5.0,
+          "mean": 5.0,
+          "median": 5.0,
+          "min": 5.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "dimensions_external_geometry": {
+          "max": 2.0,
+          "mean": 2.0,
+          "median": 2.0,
+          "min": 2.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "first_output_tick": {
+          "max": 7.0,
+          "mean": 4.5,
+          "median": 5.0,
+          "min": 2.0,
+          "n": 10,
+          "std": 1.284523257866513
+        },
+        "neurons": {
+          "max": 128.0,
+          "mean": 128.0,
+          "median": 128.0,
+          "min": 128.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "out_degree": {
+          "max": 8.0,
+          "mean": 8.0,
+          "median": 8.0,
+          "min": 8.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "output_spikes": {
+          "max": 94.0,
+          "mean": 77.4,
+          "median": 75.0,
+          "min": 66.0,
+          "n": 10,
+          "std": 10.081666528902849
+        },
+        "simulation_seconds": {
+          "max": 0.12369729997590184,
+          "mean": 0.06988405999727547,
+          "median": 0.06332175002899021,
+          "min": 0.060694699990563095,
+          "n": 10,
+          "std": 0.018201766825739995
+        },
+        "synapses": {
+          "max": 1024.0,
+          "mean": 1024.0,
+          "median": 1024.0,
+          "min": 1024.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "ticks_executed": {
+          "max": 256.0,
+          "mean": 256.0,
+          "median": 256.0,
+          "min": 256.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "total_spikes": {
+          "max": 1222.0,
+          "mean": 1160.1,
+          "median": 1152.0,
+          "min": 1096.0,
+          "n": 10,
+          "std": 36.57717867742125
+        },
+        "weight": {
+          "max": 20.0,
+          "mean": 20.0,
+          "median": 20.0,
+          "min": 20.0,
+          "n": 10,
+          "std": 0.0
+        }
+      },
+      "run_count": 10,
+      "seeds": [
+        20001,
+        20002,
+        20003,
+        20004,
+        20005,
+        20006,
+        20007,
+        20008,
+        20009,
+        20010
+      ]
+    },
+    "fixed_graph_label_3d": {
+      "metrics": {
+        "active_neuron_fraction": {
+          "max": 1.0,
+          "mean": 0.9984375,
+          "median": 1.0,
+          "min": 0.9921875,
+          "n": 10,
+          "std": 0.003125
+        },
+        "core_id_dimensions": {
+          "max": 5.0,
+          "mean": 5.0,
+          "median": 5.0,
+          "min": 5.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "dimensions_external_geometry": {
+          "max": 3.0,
+          "mean": 3.0,
+          "median": 3.0,
+          "min": 3.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "first_output_tick": {
+          "max": 7.0,
+          "mean": 4.5,
+          "median": 5.0,
+          "min": 2.0,
+          "n": 10,
+          "std": 1.284523257866513
+        },
+        "neurons": {
+          "max": 128.0,
+          "mean": 128.0,
+          "median": 128.0,
+          "min": 128.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "out_degree": {
+          "max": 8.0,
+          "mean": 8.0,
+          "median": 8.0,
+          "min": 8.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "output_spikes": {
+          "max": 94.0,
+          "mean": 77.4,
+          "median": 75.0,
+          "min": 66.0,
+          "n": 10,
+          "std": 10.081666528902849
+        },
+        "simulation_seconds": {
+          "max": 0.09103290003258735,
+          "mean": 0.06991460000281222,
+          "median": 0.06636699999216944,
+          "min": 0.06000470003345981,
+          "n": 10,
+          "std": 0.00989928291962946
+        },
+        "synapses": {
+          "max": 1024.0,
+          "mean": 1024.0,
+          "median": 1024.0,
+          "min": 1024.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "ticks_executed": {
+          "max": 256.0,
+          "mean": 256.0,
+          "median": 256.0,
+          "min": 256.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "total_spikes": {
+          "max": 1222.0,
+          "mean": 1160.1,
+          "median": 1152.0,
+          "min": 1096.0,
+          "n": 10,
+          "std": 36.57717867742125
+        },
+        "weight": {
+          "max": 20.0,
+          "mean": 20.0,
+          "median": 20.0,
+          "min": 20.0,
+          "n": 10,
+          "std": 0.0
+        }
+      },
+      "run_count": 10,
+      "seeds": [
+        20001,
+        20002,
+        20003,
+        20004,
+        20005,
+        20006,
+        20007,
+        20008,
+        20009,
+        20010
+      ]
+    },
+    "fixed_graph_label_4d": {
+      "metrics": {
+        "active_neuron_fraction": {
+          "max": 1.0,
+          "mean": 0.9984375,
+          "median": 1.0,
+          "min": 0.9921875,
+          "n": 10,
+          "std": 0.003125
+        },
+        "core_id_dimensions": {
+          "max": 5.0,
+          "mean": 5.0,
+          "median": 5.0,
+          "min": 5.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "dimensions_external_geometry": {
+          "max": 4.0,
+          "mean": 4.0,
+          "median": 4.0,
+          "min": 4.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "first_output_tick": {
+          "max": 7.0,
+          "mean": 4.5,
+          "median": 5.0,
+          "min": 2.0,
+          "n": 10,
+          "std": 1.284523257866513
+        },
+        "neurons": {
+          "max": 128.0,
+          "mean": 128.0,
+          "median": 128.0,
+          "min": 128.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "out_degree": {
+          "max": 8.0,
+          "mean": 8.0,
+          "median": 8.0,
+          "min": 8.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "output_spikes": {
+          "max": 94.0,
+          "mean": 77.4,
+          "median": 75.0,
+          "min": 66.0,
+          "n": 10,
+          "std": 10.081666528902849
+        },
+        "simulation_seconds": {
+          "max": 0.09493219997966662,
+          "mean": 0.06776764998794534,
+          "median": 0.06224309996468946,
+          "min": 0.060590999957639724,
+          "n": 10,
+          "std": 0.010568865436009618
+        },
+        "synapses": {
+          "max": 1024.0,
+          "mean": 1024.0,
+          "median": 1024.0,
+          "min": 1024.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "ticks_executed": {
+          "max": 256.0,
+          "mean": 256.0,
+          "median": 256.0,
+          "min": 256.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "total_spikes": {
+          "max": 1222.0,
+          "mean": 1160.1,
+          "median": 1152.0,
+          "min": 1096.0,
+          "n": 10,
+          "std": 36.57717867742125
+        },
+        "weight": {
+          "max": 20.0,
+          "mean": 20.0,
+          "median": 20.0,
+          "min": 20.0,
+          "n": 10,
+          "std": 0.0
+        }
+      },
+      "run_count": 10,
+      "seeds": [
+        20001,
+        20002,
+        20003,
+        20004,
+        20005,
+        20006,
+        20007,
+        20008,
+        20009,
+        20010
+      ]
+    },
+    "fixed_graph_label_5d": {
+      "metrics": {
+        "active_neuron_fraction": {
+          "max": 1.0,
+          "mean": 0.9984375,
+          "median": 1.0,
+          "min": 0.9921875,
+          "n": 10,
+          "std": 0.003125
+        },
+        "core_id_dimensions": {
+          "max": 5.0,
+          "mean": 5.0,
+          "median": 5.0,
+          "min": 5.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "dimensions_external_geometry": {
+          "max": 5.0,
+          "mean": 5.0,
+          "median": 5.0,
+          "min": 5.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "first_output_tick": {
+          "max": 7.0,
+          "mean": 4.5,
+          "median": 5.0,
+          "min": 2.0,
+          "n": 10,
+          "std": 1.284523257866513
+        },
+        "neurons": {
+          "max": 128.0,
+          "mean": 128.0,
+          "median": 128.0,
+          "min": 128.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "out_degree": {
+          "max": 8.0,
+          "mean": 8.0,
+          "median": 8.0,
+          "min": 8.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "output_spikes": {
+          "max": 94.0,
+          "mean": 77.4,
+          "median": 75.0,
+          "min": 66.0,
+          "n": 10,
+          "std": 10.081666528902849
+        },
+        "simulation_seconds": {
+          "max": 0.0828789999941364,
+          "mean": 0.0650704699975904,
+          "median": 0.061627149989362806,
+          "min": 0.0590125999879092,
+          "n": 10,
+          "std": 0.007703497796945983
+        },
+        "synapses": {
+          "max": 1024.0,
+          "mean": 1024.0,
+          "median": 1024.0,
+          "min": 1024.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "ticks_executed": {
+          "max": 256.0,
+          "mean": 256.0,
+          "median": 256.0,
+          "min": 256.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "total_spikes": {
+          "max": 1222.0,
+          "mean": 1160.1,
+          "median": 1152.0,
+          "min": 1096.0,
+          "n": 10,
+          "std": 36.57717867742125
+        },
+        "weight": {
+          "max": 20.0,
+          "mean": 20.0,
+          "median": 20.0,
+          "min": 20.0,
+          "n": 10,
+          "std": 0.0
+        }
+      },
+      "run_count": 10,
+      "seeds": [
+        20001,
+        20002,
+        20003,
+        20004,
+        20005,
+        20006,
+        20007,
+        20008,
+        20009,
+        20010
+      ]
+    },
+    "fixed_graph_label_6d": {
+      "metrics": {
+        "active_neuron_fraction": {
+          "max": 1.0,
+          "mean": 0.9984375,
+          "median": 1.0,
+          "min": 0.9921875,
+          "n": 10,
+          "std": 0.003125
+        },
+        "core_id_dimensions": {
+          "max": 5.0,
+          "mean": 5.0,
+          "median": 5.0,
+          "min": 5.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "dimensions_external_geometry": {
+          "max": 6.0,
+          "mean": 6.0,
+          "median": 6.0,
+          "min": 6.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "first_output_tick": {
+          "max": 7.0,
+          "mean": 4.5,
+          "median": 5.0,
+          "min": 2.0,
+          "n": 10,
+          "std": 1.284523257866513
+        },
+        "neurons": {
+          "max": 128.0,
+          "mean": 128.0,
+          "median": 128.0,
+          "min": 128.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "out_degree": {
+          "max": 8.0,
+          "mean": 8.0,
+          "median": 8.0,
+          "min": 8.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "output_spikes": {
+          "max": 94.0,
+          "mean": 77.4,
+          "median": 75.0,
+          "min": 66.0,
+          "n": 10,
+          "std": 10.081666528902849
+        },
+        "simulation_seconds": {
+          "max": 0.07499580003786832,
+          "mean": 0.06584925000206568,
+          "median": 0.06418389998725615,
+          "min": 0.0597637000028044,
+          "n": 10,
+          "std": 0.005004179009522679
+        },
+        "synapses": {
+          "max": 1024.0,
+          "mean": 1024.0,
+          "median": 1024.0,
+          "min": 1024.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "ticks_executed": {
+          "max": 256.0,
+          "mean": 256.0,
+          "median": 256.0,
+          "min": 256.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "total_spikes": {
+          "max": 1222.0,
+          "mean": 1160.1,
+          "median": 1152.0,
+          "min": 1096.0,
+          "n": 10,
+          "std": 36.57717867742125
+        },
+        "weight": {
+          "max": 20.0,
+          "mean": 20.0,
+          "median": 20.0,
+          "min": 20.0,
+          "n": 10,
+          "std": 0.0
+        }
+      },
+      "run_count": 10,
+      "seeds": [
+        20001,
+        20002,
+        20003,
+        20004,
+        20005,
+        20006,
+        20007,
+        20008,
+        20009,
+        20010
+      ]
+    },
+    "fixed_graph_label_8d": {
+      "metrics": {
+        "active_neuron_fraction": {
+          "max": 1.0,
+          "mean": 0.9984375,
+          "median": 1.0,
+          "min": 0.9921875,
+          "n": 10,
+          "std": 0.003125
+        },
+        "core_id_dimensions": {
+          "max": 5.0,
+          "mean": 5.0,
+          "median": 5.0,
+          "min": 5.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "dimensions_external_geometry": {
+          "max": 8.0,
+          "mean": 8.0,
+          "median": 8.0,
+          "min": 8.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "first_output_tick": {
+          "max": 7.0,
+          "mean": 4.5,
+          "median": 5.0,
+          "min": 2.0,
+          "n": 10,
+          "std": 1.284523257866513
+        },
+        "neurons": {
+          "max": 128.0,
+          "mean": 128.0,
+          "median": 128.0,
+          "min": 128.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "out_degree": {
+          "max": 8.0,
+          "mean": 8.0,
+          "median": 8.0,
+          "min": 8.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "output_spikes": {
+          "max": 94.0,
+          "mean": 77.4,
+          "median": 75.0,
+          "min": 66.0,
+          "n": 10,
+          "std": 10.081666528902849
+        },
+        "simulation_seconds": {
+          "max": 0.10951350000686944,
+          "mean": 0.07242843000567518,
+          "median": 0.07009530000505038,
+          "min": 0.06028760003391653,
+          "n": 10,
+          "std": 0.014147666018800869
+        },
+        "synapses": {
+          "max": 1024.0,
+          "mean": 1024.0,
+          "median": 1024.0,
+          "min": 1024.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "ticks_executed": {
+          "max": 256.0,
+          "mean": 256.0,
+          "median": 256.0,
+          "min": 256.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "total_spikes": {
+          "max": 1222.0,
+          "mean": 1160.1,
+          "median": 1152.0,
+          "min": 1096.0,
+          "n": 10,
+          "std": 36.57717867742125
+        },
+        "weight": {
+          "max": 20.0,
+          "mean": 20.0,
+          "median": 20.0,
+          "min": 20.0,
+          "n": 10,
+          "std": 0.0
+        }
+      },
+      "run_count": 10,
+      "seeds": [
+        20001,
+        20002,
+        20003,
+        20004,
+        20005,
+        20006,
+        20007,
+        20008,
+        20009,
+        20010
+      ]
+    },
+    "geometry_2d": {
+      "metrics": {
+        "active_neuron_fraction": {
+          "max": 1.0,
+          "mean": 0.99453125,
+          "median": 1.0,
+          "min": 0.9453125,
+          "n": 10,
+          "std": 0.01640625
+        },
+        "core_id_dimensions": {
+          "max": 5.0,
+          "mean": 5.0,
+          "median": 5.0,
+          "min": 5.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "dimensions_external_geometry": {
+          "max": 2.0,
+          "mean": 2.0,
+          "median": 2.0,
+          "min": 2.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "first_output_tick": {
+          "max": 7.0,
+          "mean": 4.9,
+          "median": 5.0,
+          "min": 3.0,
+          "n": 10,
+          "std": 1.1357816691600546
+        },
+        "neurons": {
+          "max": 128.0,
+          "mean": 128.0,
+          "median": 128.0,
+          "min": 128.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "out_degree": {
+          "max": 8.0,
+          "mean": 8.0,
+          "median": 8.0,
+          "min": 8.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "output_spikes": {
+          "max": 83.0,
+          "mean": 72.4,
+          "median": 75.5,
+          "min": 60.0,
+          "n": 10,
+          "std": 8.101851640211638
+        },
+        "simulation_seconds": {
+          "max": 0.07458610000321642,
+          "mean": 0.06476354000042192,
+          "median": 0.06322495001950301,
+          "min": 0.06094729999313131,
+          "n": 10,
+          "std": 0.003998416874963286
+        },
+        "synapses": {
+          "max": 1024.0,
+          "mean": 1024.0,
+          "median": 1024.0,
+          "min": 1024.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "ticks_executed": {
+          "max": 256.0,
+          "mean": 256.0,
+          "median": 256.0,
+          "min": 256.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "total_spikes": {
+          "max": 1343.0,
+          "mean": 1245.6,
+          "median": 1265.0,
+          "min": 1042.0,
+          "n": 10,
+          "std": 79.9452312524018
+        },
+        "weight": {
+          "max": 20.0,
+          "mean": 20.0,
+          "median": 20.0,
+          "min": 20.0,
+          "n": 10,
+          "std": 0.0
+        }
+      },
+      "run_count": 10,
+      "seeds": [
+        20001,
+        20002,
+        20003,
+        20004,
+        20005,
+        20006,
+        20007,
+        20008,
+        20009,
+        20010
+      ]
+    },
+    "geometry_3d": {
+      "metrics": {
+        "active_neuron_fraction": {
+          "max": 1.0,
+          "mean": 0.9984375,
+          "median": 1.0,
+          "min": 0.9921875,
+          "n": 10,
+          "std": 0.003125
+        },
+        "core_id_dimensions": {
+          "max": 5.0,
+          "mean": 5.0,
+          "median": 5.0,
+          "min": 5.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "dimensions_external_geometry": {
+          "max": 3.0,
+          "mean": 3.0,
+          "median": 3.0,
+          "min": 3.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "first_output_tick": {
+          "max": 7.0,
+          "mean": 4.5,
+          "median": 4.0,
+          "min": 2.0,
+          "n": 10,
+          "std": 1.4317821063276353
+        },
+        "neurons": {
+          "max": 128.0,
+          "mean": 128.0,
+          "median": 128.0,
+          "min": 128.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "out_degree": {
+          "max": 8.0,
+          "mean": 8.0,
+          "median": 8.0,
+          "min": 8.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "output_spikes": {
+          "max": 101.0,
+          "mean": 80.4,
+          "median": 80.5,
+          "min": 63.0,
+          "n": 10,
+          "std": 9.971960689854328
+        },
+        "simulation_seconds": {
+          "max": 0.08277959999395534,
+          "mean": 0.06828380998922512,
+          "median": 0.06400839998968877,
+          "min": 0.0621707999962382,
+          "n": 10,
+          "std": 0.00755160054697422
+        },
+        "synapses": {
+          "max": 1024.0,
+          "mean": 1024.0,
+          "median": 1024.0,
+          "min": 1024.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "ticks_executed": {
+          "max": 256.0,
+          "mean": 256.0,
+          "median": 256.0,
+          "min": 256.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "total_spikes": {
+          "max": 1271.0,
+          "mean": 1229.6,
+          "median": 1234.0,
+          "min": 1185.0,
+          "n": 10,
+          "std": 32.8609190376654
+        },
+        "weight": {
+          "max": 20.0,
+          "mean": 20.0,
+          "median": 20.0,
+          "min": 20.0,
+          "n": 10,
+          "std": 0.0
+        }
+      },
+      "run_count": 10,
+      "seeds": [
+        20001,
+        20002,
+        20003,
+        20004,
+        20005,
+        20006,
+        20007,
+        20008,
+        20009,
+        20010
+      ]
+    },
+    "geometry_4d": {
+      "metrics": {
+        "active_neuron_fraction": {
+          "max": 1.0,
+          "mean": 0.99765625,
+          "median": 1.0,
+          "min": 0.984375,
+          "n": 10,
+          "std": 0.005002440810494413
+        },
+        "core_id_dimensions": {
+          "max": 5.0,
+          "mean": 5.0,
+          "median": 5.0,
+          "min": 5.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "dimensions_external_geometry": {
+          "max": 4.0,
+          "mean": 4.0,
+          "median": 4.0,
+          "min": 4.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "first_output_tick": {
+          "max": 7.0,
+          "mean": 4.7,
+          "median": 5.0,
+          "min": 3.0,
+          "n": 10,
+          "std": 1.004987562112089
+        },
+        "neurons": {
+          "max": 128.0,
+          "mean": 128.0,
+          "median": 128.0,
+          "min": 128.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "out_degree": {
+          "max": 8.0,
+          "mean": 8.0,
+          "median": 8.0,
+          "min": 8.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "output_spikes": {
+          "max": 90.0,
+          "mean": 75.0,
+          "median": 74.0,
+          "min": 62.0,
+          "n": 10,
+          "std": 8.414273587185052
+        },
+        "simulation_seconds": {
+          "max": 0.10050160001264885,
+          "mean": 0.06638008001027629,
+          "median": 0.061625100002856925,
+          "min": 0.06089419999625534,
+          "n": 10,
+          "std": 0.011543510071614286
+        },
+        "synapses": {
+          "max": 1024.0,
+          "mean": 1024.0,
+          "median": 1024.0,
+          "min": 1024.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "ticks_executed": {
+          "max": 256.0,
+          "mean": 256.0,
+          "median": 256.0,
+          "min": 256.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "total_spikes": {
+          "max": 1199.0,
+          "mean": 1163.8,
+          "median": 1170.0,
+          "min": 1111.0,
+          "n": 10,
+          "std": 27.541967976163214
+        },
+        "weight": {
+          "max": 20.0,
+          "mean": 20.0,
+          "median": 20.0,
+          "min": 20.0,
+          "n": 10,
+          "std": 0.0
+        }
+      },
+      "run_count": 10,
+      "seeds": [
+        20001,
+        20002,
+        20003,
+        20004,
+        20005,
+        20006,
+        20007,
+        20008,
+        20009,
+        20010
+      ]
+    },
+    "geometry_5d": {
+      "metrics": {
+        "active_neuron_fraction": {
+          "max": 1.0,
+          "mean": 0.9984375,
+          "median": 1.0,
+          "min": 0.9921875,
+          "n": 10,
+          "std": 0.003125
+        },
+        "core_id_dimensions": {
+          "max": 5.0,
+          "mean": 5.0,
+          "median": 5.0,
+          "min": 5.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "dimensions_external_geometry": {
+          "max": 5.0,
+          "mean": 5.0,
+          "median": 5.0,
+          "min": 5.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "first_output_tick": {
+          "max": 7.0,
+          "mean": 4.5,
+          "median": 5.0,
+          "min": 2.0,
+          "n": 10,
+          "std": 1.284523257866513
+        },
+        "neurons": {
+          "max": 128.0,
+          "mean": 128.0,
+          "median": 128.0,
+          "min": 128.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "out_degree": {
+          "max": 8.0,
+          "mean": 8.0,
+          "median": 8.0,
+          "min": 8.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "output_spikes": {
+          "max": 94.0,
+          "mean": 77.4,
+          "median": 75.0,
+          "min": 66.0,
+          "n": 10,
+          "std": 10.081666528902849
+        },
+        "simulation_seconds": {
+          "max": 0.09078289999160916,
+          "mean": 0.06738526999251918,
+          "median": 0.06413564999820665,
+          "min": 0.059998499986249954,
+          "n": 10,
+          "std": 0.008896963767739853
+        },
+        "synapses": {
+          "max": 1024.0,
+          "mean": 1024.0,
+          "median": 1024.0,
+          "min": 1024.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "ticks_executed": {
+          "max": 256.0,
+          "mean": 256.0,
+          "median": 256.0,
+          "min": 256.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "total_spikes": {
+          "max": 1222.0,
+          "mean": 1160.1,
+          "median": 1152.0,
+          "min": 1096.0,
+          "n": 10,
+          "std": 36.57717867742125
+        },
+        "weight": {
+          "max": 20.0,
+          "mean": 20.0,
+          "median": 20.0,
+          "min": 20.0,
+          "n": 10,
+          "std": 0.0
+        }
+      },
+      "run_count": 10,
+      "seeds": [
+        20001,
+        20002,
+        20003,
+        20004,
+        20005,
+        20006,
+        20007,
+        20008,
+        20009,
+        20010
+      ]
+    },
+    "geometry_6d": {
+      "metrics": {
+        "active_neuron_fraction": {
+          "max": 1.0,
+          "mean": 0.9953125,
+          "median": 1.0,
+          "min": 0.984375,
+          "n": 10,
+          "std": 0.00625
+        },
+        "core_id_dimensions": {
+          "max": 5.0,
+          "mean": 5.0,
+          "median": 5.0,
+          "min": 5.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "dimensions_external_geometry": {
+          "max": 6.0,
+          "mean": 6.0,
+          "median": 6.0,
+          "min": 6.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "first_output_tick": {
+          "max": 5.0,
+          "mean": 4.2,
+          "median": 4.0,
+          "min": 3.0,
+          "n": 10,
+          "std": 0.7483314773547883
+        },
+        "neurons": {
+          "max": 128.0,
+          "mean": 128.0,
+          "median": 128.0,
+          "min": 128.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "out_degree": {
+          "max": 8.0,
+          "mean": 8.0,
+          "median": 8.0,
+          "min": 8.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "output_spikes": {
+          "max": 99.0,
+          "mean": 77.1,
+          "median": 75.5,
+          "min": 59.0,
+          "n": 10,
+          "std": 12.061923561356206
+        },
+        "simulation_seconds": {
+          "max": 0.09328910004114732,
+          "mean": 0.0718306099937763,
+          "median": 0.06530349998502061,
+          "min": 0.05999149999115616,
+          "n": 10,
+          "std": 0.013101103755661977
+        },
+        "synapses": {
+          "max": 1024.0,
+          "mean": 1024.0,
+          "median": 1024.0,
+          "min": 1024.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "ticks_executed": {
+          "max": 256.0,
+          "mean": 256.0,
+          "median": 256.0,
+          "min": 256.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "total_spikes": {
+          "max": 1238.0,
+          "mean": 1160.9,
+          "median": 1163.0,
+          "min": 1056.0,
+          "n": 10,
+          "std": 62.505119790301976
+        },
+        "weight": {
+          "max": 20.0,
+          "mean": 20.0,
+          "median": 20.0,
+          "min": 20.0,
+          "n": 10,
+          "std": 0.0
+        }
+      },
+      "run_count": 10,
+      "seeds": [
+        20001,
+        20002,
+        20003,
+        20004,
+        20005,
+        20006,
+        20007,
+        20008,
+        20009,
+        20010
+      ]
+    },
+    "geometry_8d": {
+      "metrics": {
+        "active_neuron_fraction": {
+          "max": 1.0,
+          "mean": 0.99140625,
+          "median": 0.9921875,
+          "min": 0.96875,
+          "n": 10,
+          "std": 0.01015625
+        },
+        "core_id_dimensions": {
+          "max": 5.0,
+          "mean": 5.0,
+          "median": 5.0,
+          "min": 5.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "dimensions_external_geometry": {
+          "max": 8.0,
+          "mean": 8.0,
+          "median": 8.0,
+          "min": 8.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "first_output_tick": {
+          "max": 8.0,
+          "mean": 4.0,
+          "median": 3.5,
+          "min": 2.0,
+          "n": 10,
+          "std": 1.6124515496597098
+        },
+        "neurons": {
+          "max": 128.0,
+          "mean": 128.0,
+          "median": 128.0,
+          "min": 128.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "out_degree": {
+          "max": 8.0,
+          "mean": 8.0,
+          "median": 8.0,
+          "min": 8.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "output_spikes": {
+          "max": 90.0,
+          "mean": 74.6,
+          "median": 74.0,
+          "min": 61.0,
+          "n": 10,
+          "std": 7.889233169326408
+        },
+        "simulation_seconds": {
+          "max": 0.0916960000176914,
+          "mean": 0.06949305998859927,
+          "median": 0.06481489998986945,
+          "min": 0.05939790001139045,
+          "n": 10,
+          "std": 0.010799152671255464
+        },
+        "synapses": {
+          "max": 1024.0,
+          "mean": 1024.0,
+          "median": 1024.0,
+          "min": 1024.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "ticks_executed": {
+          "max": 256.0,
+          "mean": 256.0,
+          "median": 256.0,
+          "min": 256.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "total_spikes": {
+          "max": 1219.0,
+          "mean": 1101.7,
+          "median": 1111.5,
+          "min": 994.0,
+          "n": 10,
+          "std": 58.832049088910715
+        },
+        "weight": {
+          "max": 20.0,
+          "mean": 20.0,
+          "median": 20.0,
+          "min": 20.0,
+          "n": 10,
+          "std": 0.0
+        }
+      },
+      "run_count": 10,
+      "seeds": [
+        20001,
+        20002,
+        20003,
+        20004,
+        20005,
+        20006,
+        20007,
+        20008,
+        20009,
+        20010
+      ]
+    },
+    "random_graph": {
+      "metrics": {
+        "active_neuron_fraction": {
+          "max": 1.0,
+          "mean": 1.0,
+          "median": 1.0,
+          "min": 1.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "core_id_dimensions": {
+          "max": 5.0,
+          "mean": 5.0,
+          "median": 5.0,
+          "min": 5.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "dimensions_external_geometry": {
+          "max": 5.0,
+          "mean": 5.0,
+          "median": 5.0,
+          "min": 5.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "first_output_tick": {
+          "max": 7.0,
+          "mean": 5.1,
+          "median": 5.0,
+          "min": 4.0,
+          "n": 10,
+          "std": 1.044030650891055
+        },
+        "neurons": {
+          "max": 128.0,
+          "mean": 128.0,
+          "median": 128.0,
+          "min": 128.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "out_degree": {
+          "max": 8.0,
+          "mean": 8.0,
+          "median": 8.0,
+          "min": 8.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "output_spikes": {
+          "max": 92.0,
+          "mean": 69.6,
+          "median": 73.5,
+          "min": 40.0,
+          "n": 10,
+          "std": 17.18254928699464
+        },
+        "simulation_seconds": {
+          "max": 0.07806820003315806,
+          "mean": 0.06639754001516848,
+          "median": 0.062377599999308586,
+          "min": 0.06070879998151213,
+          "n": 10,
+          "std": 0.006690188931628567
+        },
+        "synapses": {
+          "max": 1024.0,
+          "mean": 1024.0,
+          "median": 1024.0,
+          "min": 1024.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "ticks_executed": {
+          "max": 256.0,
+          "mean": 256.0,
+          "median": 256.0,
+          "min": 256.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "total_spikes": {
+          "max": 1337.0,
+          "mean": 1150.2,
+          "median": 1304.0,
+          "min": 753.0,
+          "n": 10,
+          "std": 246.4981947195557
+        },
+        "weight": {
+          "max": 20.0,
+          "mean": 20.0,
+          "median": 20.0,
+          "min": 20.0,
+          "n": 10,
+          "std": 0.0
+        }
+      },
+      "run_count": 10,
+      "seeds": [
+        20001,
+        20002,
+        20003,
+        20004,
+        20005,
+        20006,
+        20007,
+        20008,
+        20009,
+        20010
+      ]
+    }
+  },
+  "formulas": {
+    "difference": "Delta_x = mean(x_B) - mean(x_A)",
+    "inter_spike_interval": "ISI_i = t_(i+1) - t_i",
+    "mean": "mean(x) = (1/n) * sum_i x_i",
+    "population_std": "sigma = sqrt((1/n) * sum_i (x_i - mean(x))^2)",
+    "ratio": "R_x = mean(x_B) / mean(x_A), defined only when mean(x_A) != 0"
+  },
+  "generated_by": "deterministic_statistics_engine",
+  "run_count": 130,
+  "schema_version": "2.0"
+}

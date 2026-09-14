@@ -1,0 +1,585 @@
+{
+  "report_id": "AIRR-2026-0001",
+  "experiment_id": "EXP-BATCH-20260914074039-18",
+  "research_question_id": "RQ-5D-004",
+  "hypothesis_ids": [
+    "H-5D-004-A"
+  ],
+  "claim_ids": [
+    "CLAIM-5D-002"
+  ],
+  "generated_at": "2026-09-14T11:27:10.356720+00:00",
+  "report_schema_version": "1.0",
+  "report_protocol_version": "PROTOCOL-AIRR-001",
+  "generated_by": "artificial_intelligence",
+  "ai_generated": true,
+  "scientific_evidence": false,
+  "human_review_required": true,
+  "status": "review_pending",
+  "content": {
+    "identification": {
+      "experiment": "EXP-BATCH-20260914074039-18",
+      "research_question": "Sind zusätzliche Dimensionen informationstragend oder lediglich zusätzliche Koordinaten?",
+      "hypotheses": [
+        {
+          "id": "H-5D-004-A",
+          "research_question": "RQ-5D-004",
+          "hypothesis": "Die zusätzlichen Dimensionen in 5D sind informationstragend und nicht redundant.",
+          "status": "untested",
+          "evidence": [],
+          "created": "2026-08-23",
+          "updated": "2026-08-23"
+        }
+      ],
+      "date": "2026-09-14",
+      "source_sha": "8e096931a779b2d2eb4d010eb20154150b07bbf2"
+    },
+    "executive_summary": "Die vorliegenden Daten und Experimente liefern keine ausreichende Grundlage zur Bewertung der Behauptung, da keine wissenschaftlichen Beweise verknüpft sind und die experimentellen Ergebnisse nicht direkt auf die Hypothese abgestimmt sind.",
+    "research_question": {
+      "id": "RQ-5D-004",
+      "domain": "5D Topology",
+      "question": "Sind zusätzliche Dimensionen informationstragend oder lediglich zusätzliche Koordinaten?",
+      "relevance": "Eine der wichtigsten Fragen des gesamten Projekts — betrifft fundamentale Natur der 5D-Repräsentation.",
+      "literature": [],
+      "hypotheses": [
+        "H-5D-004-A"
+      ],
+      "evidence": [],
+      "status": "open",
+      "answer": {
+        "current": null,
+        "confidence": "none",
+        "limitations": null
+      },
+      "created": "2026-08-23",
+      "updated": "2026-08-23"
+    },
+    "experimental_design": {
+      "experiment_id": "EXP-BATCH-20260914074039-18",
+      "research_question": "RQ-5D-004",
+      "hypothesis": "H-5D-004-A",
+      "title": "Experiment workflow: dimension_information_boundary_v1",
+      "conditions": "Registered protocol conditions",
+      "ticks": 1000,
+      "ticks_contract": "minimum requested observation window",
+      "seeds": [
+        101,
+        102,
+        103
+      ],
+      "protocol": "dimension_information_boundary_v1",
+      "resolved_runner": "run_boundary_audit",
+      "tick_validation": {
+        "status": "NOT_APPLICABLE",
+        "mode": "protocol_defined_internal_trials",
+        "requested_ticks": 1000
+      },
+      "notes": "",
+      "execution": "registered experiment_suite runner",
+      "assistant_policy": "AI is post-hoc interpretation only.",
+      "epistemic_layers": {
+        "ui_state": "operator/dashboard progress only; not a scientific result",
+        "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+        "evid": "not_created; requires semantic validation, clean freeze and human review",
+        "interpretation": "post-hoc AI or human interpretation; never execution input"
+      }
+    },
+    "data_basis": {
+      "data": {
+        "ai_input_policy": "compact_only_raw_on_explicit_deterministic_extract",
+        "generated_by": "deterministic_research_data_v2",
+        "limits": {
+          "ai_packet_max_bytes": 1000000,
+          "run_summary_max_bytes": 5000000,
+          "sequence_preview_items": 16
+        },
+        "raw_index": {
+          "path": "DATA/runs_index.json",
+          "run_count": 3,
+          "sha256": "730f6c3703a10730c14e75e0d6b5296e9be437940a9e7f135edfe3dc6f873379"
+        },
+        "run_count": 3,
+        "run_preview": [
+          {
+            "_raw_artifact": {
+              "format": "json.gz",
+              "path": "DATA/raw/run-0000-instrumentation_gap_audit-seed-101.json.gz",
+              "sha256": "810c72e2063dd5a34829d1d8d85d72951b40bd2d42d7116de139f7cb2a6ac4ed",
+              "size_bytes": 380,
+              "uncompressed_bytes": 481
+            },
+            "condition": "instrumentation_gap_audit",
+            "experiment_id": "EXP-BATCH-20260914074039-18",
+            "metrics": {
+              "audit_complete": true,
+              "automatic_evidence_promotion": false,
+              "claim_boundary": "No direct causal measurement is performed by this runner. Completion means only that the registered gap/boundary contract was executed and preserved for review.",
+              "direct_test_of_hypothesis": false,
+              "scientific_evidence": false
+            },
+            "runtime_error": null,
+            "seed": 101,
+            "state_digest_after": "",
+            "state_digest_before": ""
+          },
+          {
+            "_raw_artifact": {
+              "format": "json.gz",
+              "path": "DATA/raw/run-0001-instrumentation_gap_audit-seed-102.json.gz",
+              "sha256": "a205911ebbb957f8c9a77f95c113aca5122f7dded584915c098e8f401822c9c7",
+              "size_bytes": 380,
+              "uncompressed_bytes": 481
+            },
+            "condition": "instrumentation_gap_audit",
+            "experiment_id": "EXP-BATCH-20260914074039-18",
+            "metrics": {
+              "audit_complete": true,
+              "automatic_evidence_promotion": false,
+              "claim_boundary": "No direct causal measurement is performed by this runner. Completion means only that the registered gap/boundary contract was executed and preserved for review.",
+              "direct_test_of_hypothesis": false,
+              "scientific_evidence": false
+            },
+            "runtime_error": null,
+            "seed": 102,
+            "state_digest_after": "",
+            "state_digest_before": ""
+          },
+          {
+            "_raw_artifact": {
+              "format": "json.gz",
+              "path": "DATA/raw/run-0002-instrumentation_gap_audit-seed-103.json.gz",
+              "sha256": "0315defd0e0dfaff611275e3ebfa003f37cb6e39da1a0cc5cd95b3c315b2c3c5",
+              "size_bytes": 380,
+              "uncompressed_bytes": 481
+            },
+            "condition": "instrumentation_gap_audit",
+            "experiment_id": "EXP-BATCH-20260914074039-18",
+            "metrics": {
+              "audit_complete": true,
+              "automatic_evidence_promotion": false,
+              "claim_boundary": "No direct causal measurement is performed by this runner. Completion means only that the registered gap/boundary contract was executed and preserved for review.",
+              "direct_test_of_hypothesis": false,
+              "scientific_evidence": false
+            },
+            "runtime_error": null,
+            "seed": 103,
+            "state_digest_after": "",
+            "state_digest_before": ""
+          }
+        ],
+        "schema_version": "2.0",
+        "statistics": {
+          "conditions": {
+            "instrumentation_gap_audit": {
+              "metrics": {},
+              "run_count": 3,
+              "seeds": [
+                101,
+                102,
+                103
+              ]
+            }
+          },
+          "formulas": {
+            "difference": "Delta_x = mean(x_B) - mean(x_A)",
+            "inter_spike_interval": "ISI_i = t_(i+1) - t_i",
+            "mean": "mean(x) = (1/n) * sum_i x_i",
+            "population_std": "sigma = sqrt((1/n) * sum_i (x_i - mean(x))^2)",
+            "ratio": "R_x = mean(x_B) / mean(x_A), defined only when mean(x_A) != 0"
+          },
+          "generated_by": "deterministic_statistics_engine",
+          "run_count": 3,
+          "schema_version": "2.0"
+        }
+      },
+      "evid": [],
+      "literature": []
+    },
+    "quantitative_results": {
+      "conditions": {
+        "instrumentation_gap_audit": {
+          "metrics": {},
+          "run_count": 3,
+          "seeds": [
+            101,
+            102,
+            103
+          ]
+        }
+      },
+      "formulas": {
+        "difference": "Delta_x = mean(x_B) - mean(x_A)",
+        "inter_spike_interval": "ISI_i = t_(i+1) - t_i",
+        "mean": "mean(x) = (1/n) * sum_i x_i",
+        "population_std": "sigma = sqrt((1/n) * sum_i (x_i - mean(x))^2)",
+        "ratio": "R_x = mean(x_B) / mean(x_A), defined only when mean(x_A) != 0"
+      },
+      "generated_by": "deterministic_statistics_engine",
+      "run_count": 3,
+      "schema_version": "2.0"
+    },
+    "observations": [
+      "Die Experimente wurden mit drei verschiedenen Seeds durchgeführt, was eine gewisse Reproduzierbarkeit gewährleistet.",
+      "Die Metriken der Experimente zeigen, dass keine direkte Hypothesentests durchgeführt wurden.",
+      "Die Datenbank enthält keine messbaren Ergebnisse zur Informationskapazität von 5D-Netzwerken.",
+      "Die verwendeten Algorithmen und Protokolle sind deterministisch und folgen einem festgelegten Schema.",
+      "Die Ergebnisse der Experimente sind nicht direkt mit der Behauptung verknüpft, sondern beziehen sich auf die Durchführung der Audit-Verfahren.",
+      "Die Forschungsfragen sind nicht vollständig beantwortet, da keine empirischen Daten zur Verfügung stehen, die die Hypne Hypothese testen könnten."
+    ],
+    "interpretation": {
+      "assessment": "Die vorliegenden Daten und Experimente liefern keine ausreichende Grundlage zur Bewertung der Behauptung, da keine wissenschaftlichen Beweise verknüpft sind und die experimentellen Ergebnisse nicht direkt auf die Hypothese abgestimmt sind.",
+      "observations": [
+        "Die Experimente wurden mit drei verschiedenen Seeds durchgeführt, was eine gewisse Reproduzierbarkeit gewährleistet.",
+        "Die Metriken der Experimente zeigen, dass keine direkte Hypothesentests durchgeführt wurden.",
+        "Die Datenbank enthält keine messbaren Ergebnisse zur Informationskapazität von 5D-Netzwerken.",
+        "Die verwendeten Algorithmen und Protokolle sind deterministisch und folgen einem festgelegten Schema.",
+        "Die Ergebnisse der Experimente sind nicht direkt mit der Behauptung verknüpft, sondern beziehen sich auf die Durchführung der Audit-Verfahren.",
+        "Die Forschungsfragen sind nicht vollständig beantwortet, da keine empirischen Daten zur Verfügung stehen, die die Hypothese testen könnten."
+      ],
+      "effect_direction": "Es gibt keine klare Richtung des Effekts, da keine statistischen Tests durchgeführt wurden und keine messbaren Ergebnisse vorliegen.",
+      "methodological_concerns": [
+        "Fehlende direkte Tests der Hypothese",
+        "Keine verknüpften wissenschaftlichen Beweise",
+        "Unzureichende empirische Daten zur Validierung der Behauptung",
+        "Die Experimente konzentrieren sich auf Audit-Verfahren, nicht auf die direkte Messung der Informationskapazität"
+      ],
+      "alternative_explanations": [
+        "Die zusätzlichen Dimensionen könnten redundant sein und somit keine zusätzliche Informationskapazität liefern.",
+        "Die Messung der Informationskapazität wurde nicht durchgeführt, sodass keine Schlussfolgerungen gezogen werden könnten.",
+        "Die verwendeten Algorithmen könnten nicht in der Lage sein, die Informationskapazität der Netzwerke zu messen.",
+        "Die experimentellen Ergebnisse konzentrieren sich auf die Durchführung von Audit-Verfahren, nicht auf die direkte Validierung der Hypothese."
+      ],
+      "recommended_experiments": [
+        "Messung der Informationskapazität von 5D-Netzwerken im Vergleich zu niedrigdimensionalen Netzwerken",
+        "Ablationstests, um die Rolle der zusätzlichen Dimensionen zu analysieren",
+        "Statistische Reproduktion der Ergebnisse mit verschiedenen Parametern und Bedingungen",
+        "Direkte Tests der Hypothese, um die informationstragende Natur der zusätzlichen Dimensionen zu überprüfen"
+      ],
+      "requested_evidence": [
+        "Messungen der Informationskapazität",
+        "Ablationstests zur Dimensionenanalyse",
+        "Statistische Reproduktion der Ergebnisse",
+        "Direkte Tests der Hypothese"
+      ],
+      "confidence": 0.05,
+      "research_question": "Sind zusätzliche Dimensionen informationstragend oder lediglich zusätzliche Koordinaten?"
+    },
+    "methodological_critique": [
+      "Fehlende direkte Tests der Hypothese",
+      "Keine verknüpften wissenschaftlichen Beweise",
+      "Unzureichende empirische Daten zur Validierung der Behauptung",
+      "Die Experimente konzentrieren sich auf Audit-Verfahren, nicht auf die direkte Messung der Informationskapazität"
+    ],
+    "alternative_explanations": [
+      "Die zusätzlichen Dimensionen könnten redundant sein und somit keine zusätzliche Informationskapazität liefern.",
+      "Die Messung der Informationskapazität wurde nicht durchgeführt, sodass keine Schlussfolgerungen gezogen werden können.",
+      "Die verwendeten Algorithmen könnten nicht in der Lage sein, die Informationskapazität der Netzwerke zu messen.",
+      "Die experimentellen Ergebnisse konzentrieren sich auf die Durchführung von Audit-Verfahren, nicht auf die direkte Validierung der Hypothese."
+    ],
+    "reproducibility": {
+      "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+      "experiment_status": "completed",
+      "evidence_mode": "not_reported",
+      "git_dirty": "True",
+      "source_freeze_sha": "e2d5bdc7deb25972c0ac03ae50efbe46ebd591a73a7e0f513b28ec4d6d4d2dd7",
+      "configuration_path": "F:\\Brain-5D\\configs\\learning_experiment.yaml",
+      "configuration_sha256": "6f6cd457caf6216c286fee47ef03b529a0b496ed2dd53ee96b85d3b51e7b3a1c",
+      "experiment_manifest_digest": "764ac772d6fe69837bc264919baa934048661aa0d18b755773a50fd2f7666a31",
+      "data_ids": "NOT_AVAILABLE",
+      "evid_ids": "NOT_AVAILABLE",
+      "protocol_id": "NOT_AVAILABLE",
+      "protocol_digest": "acf389bdf9a97170dba997e5f99bdccb17d726448ad9799b702f7559e2a994bb",
+      "data_digest": "bc79fd0ea833f389851e625f7611eeded542a83c284d3ec75d4c23c86ac6e624",
+      "evid_digests": "[]"
+    },
+    "epistemic_status": {
+      "implementation": "NOT_DETERMINED",
+      "experiment_data": "PRESENT",
+      "registered_evidence": "ABSENT",
+      "ai_interpretation": "PRESENT",
+      "human_review": "PENDING",
+      "claim_support": "NOT_DETERMINED",
+      "rq_status": "IN_PROGRESS"
+    },
+    "ai_confidence": 0.05,
+    "missing_evidence": [
+      "Messungen der Informationskapazität",
+      "Ablationstests zur Dimensionenanalyse",
+      "Statistische Reproduktion der Ergebnisse",
+      "Direkte Tests der Hypothese"
+    ],
+    "recommended_follow_up": [
+      "Messung der Informationskapazität von 5D-Netzwerken im Vergleich zu niedrigdimensionalen Netzwerken",
+      "Ablationstests, um die Rolle der zusätzlichen Dimensionen zu analysieren",
+      "Statistische Reproduktion der Ergebnisse mit verschiedenen Parametern und Bedingungen",
+      "Direkte Tests der Hypothese, um die informationstragende Natur der zusätzlichen Dimensionen zu überprüfen"
+    ],
+    "conclusion": "Die vorliegenden Daten und Experimente liefern keine ausreichende Grundlage zur Bewertung der Behauptung, da keine wissenschaftlichen Beweise verknüpft sind und die experimentellen Ergebnisse nicht direkt auf die Hypothese abgestimmt sind.",
+    "human_review": {
+      "status": "PENDING",
+      "reviewer": null,
+      "reviewed_at": null,
+      "disposition": null,
+      "comments": null
+    },
+    "aiar": {
+      "analyst": {
+        "analysis_id": "AIAR-scientific_analyst-20260914080959835143-912c0c8d",
+        "role": "scientific_analyst",
+        "model": {
+          "provider": "ollama",
+          "model_name": "qwen3:8b",
+          "model_digest": "not_reported",
+          "quantization": "not_reported",
+          "context_length": "unknown",
+          "temperature": 0.0,
+          "top_p": 0.9,
+          "seed": "not_reported",
+          "backend_version": "unknown"
+        },
+        "inputs": {
+          "experiment_id": "EXP-BATCH-20260914074039-18",
+          "packet_digest": "912c0c8d833d3ff6de2cde13afb9a93a9ab4debddba42cfee3cde6b9895cef7b"
+        },
+        "output": {
+          "assessment": "Die vorliegenden Daten und Experimente liefern keine ausreichende Grundlage zur Bewertung der Behauptung, da keine wissenschaftlichen Beweise verknüpft sind und die experimentellen Ergebnisse nicht direkt auf die Hypothese abgestimmt sind.",
+          "observations": [
+            "Die Experimente wurden mit drei verschiedenen Seeds durchgeführt, was eine gewisse Reproduzierbarkeit gewährleistet.",
+            "Die Metriken der Experimente zeigen, dass keine direkte Hypothesentests durchgeführt wurden.",
+            "Die Datenbank enthält keine messbaren Ergebnisse zur Informationskapazität von 5D-Netzwerken.",
+            "Die verwendeten Algorithmen und Protokolle sind deterministisch und folgen einem festgelegten Schema.",
+            "Die Ergebnisse der Experimente sind nicht direkt mit der Behauptung verknüpft, sondern beziehen sich auf die Durchführung der Audit-Verfahren.",
+            "Die Forschungsfragen sind nicht vollständig beantwortet, da keine empirischen Daten zur Verfügung stehen, die die Hypne Hypothese testen könnten."
+          ],
+          "methodological_concerns": [
+            "Fehlende direkte Tests der Hypothese",
+            "Keine verknüpften wissenschaftlichen Beweise",
+            "Unzureichende empirische Daten zur Validierung der Behauptung",
+            "Die Experimente konzentrieren sich auf Audit-Verfahren, nicht auf die direkte Messung der Informationskapazität"
+          ],
+          "alternative_explanations": [
+            "Die zusätzlichen Dimensionen könnten redundant sein und somit keine zusätzliche Informationskapazität liefern.",
+            "Die Messung der Informationskapazität wurde nicht durchgeführt, sodass keine Schlussfolgerungen gezogen werden können.",
+            "Die verwendeten Algorithmen könnten nicht in der Lage sein, die Informationskapazität der Netzwerke zu messen.",
+            "Die experimentellen Ergebnisse konzentrieren sich auf die Durchführung von Audit-Verfahren, nicht auf die direkte Validierung der Hypothese."
+          ],
+          "recommended_experiments": [
+            "Messung der Informationskapazität von 5D-Netzwerken im Vergleich zu niedrigdimensionalen Netzwerken",
+            "Ablationstests, um die Rolle der zusätzlichen Dimensionen zu analysieren",
+            "Statistische Reproduktion der Ergebnisse mit verschiedenen Parametern und Bedingungen",
+            "Direkte Tests der Hypothese, um die informationstragende Natur der zusätzlichen Dimensionen zu überprüfen"
+          ],
+          "requested_evidence": [
+            "Messungen der Informationskapazität",
+            "Ablationstests zur Dimensionenanalyse",
+            "Statistische Reproduktion der Ergebnisse",
+            "Direkte Tests der Hypothese"
+          ],
+          "confidence": 0.05,
+          "effect_direction": "Es gibt keine klare Richtung des Effekts, da keine statistischen Tests durchgeführt wurden und keine messbaren Ergebnisse vorliegen."
+        },
+        "provenance": {
+          "prompt_sha256": "fbe54e3ea5fab09d9aa87e812f1c5db9e372b5bcd9db0efc0fcdc6b5f61b7aeb",
+          "research_packet_digest": "912c0c8d833d3ff6de2cde13afb9a93a9ab4debddba42cfee3cde6b9895cef7b",
+          "prompt_protocol_version": "research_assistant_v1",
+          "assistant_schema_version": "1.2",
+          "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+          "model_self_confidence": "0.05"
+        },
+        "epistemic_status": {
+          "evidence": false,
+          "interpretation_only": true,
+          "human_review_required": true
+        },
+        "review": {
+          "status": "pending",
+          "reviewer": null,
+          "reviewed_at": null,
+          "disposition": null
+        },
+        "generated_at": "2026-09-14T08:09:59.835143+00:00"
+      },
+      "reviewer": {
+        "analysis_id": "AIAR-critical_reviewer-20260914081019746899-912c0c8d",
+        "role": "critical_reviewer",
+        "model": {
+          "provider": "ollama",
+          "model_name": "qwen3:8b",
+          "model_digest": "not_reported",
+          "quantization": "not_reported",
+          "context_length": "unknown",
+          "temperature": 0.0,
+          "top_p": 0.9,
+          "seed": "not_reported",
+          "backend_version": "unknown"
+        },
+        "inputs": {
+          "experiment_id": "EXP-BATCH-20260914074039-18",
+          "packet_digest": "912c0c8d833d3ff6de2cde13afb9a93a9ab4debddba42cfee3cde6b9895cef7b"
+        },
+        "output": {
+          "assessment": "Die vorliegenden Daten und Experimente liefern keine ausreichende Grundlage zur Bewertung der Behauptung, da keine wissenschaftlichen Beweise verknüpft sind und die experimentellen Ergebnisse nicht direkt auf die Hypothese abgestimmt sind.",
+          "observations": [
+            "Die Experimente wurden mit drei verschiedenen Seeds durchgeführt, was eine gewisse Reproduzierbarkeit gewährleistet.",
+            "Die Metriken der Experimente zeigen, dass keine direkte Hypothesentests durchgeführt wurden.",
+            "Die Datenbank enthält keine messbaren Ergebnisse zur Informationskapazität von 5D-Netzwerken.",
+            "Die verwendeten Algorithmen und Protokolle sind deterministisch und folgen einem festgelegten Schema.",
+            "Die Ergebnisse der Experimente sind nicht direkt mit der Behauptung verknüpft, sondern beziehen sich auf die Durchführung der Audit-Verfahren.",
+            "Die Forschungsfragen sind nicht vollständig beantwortet, da keine empirischen Daten zur Verfügung stehen, die die Hypothese testen könnten."
+          ],
+          "effect_direction": "Es gibt keine klare Richtung des Effekts, da keine statistischen Tests durchgeführt wurden und keine messbaren Ergebnisse vorliegen.",
+          "methodological_concerns": [
+            "Fehlende direkte Tests der Hypothese",
+            "Keine verknüpften wissenschaftlichen Beweise",
+            "Unzureichende empirische Daten zur Validierung der Behauptung",
+            "Die Experimente konzentrieren sich auf Audit-Verfahren, nicht auf die direkte Messung der Informationskapazität"
+          ],
+          "alternative_explanations": [
+            "Die zusätzlichen Dimensionen könnten redundant sein und somit keine zusätzliche Informationskapazität liefern.",
+            "Die Messung der Informationskapazität wurde nicht durchgeführt, sodass keine Schlussfolgerungen gezogen werden können.",
+            "Die verwendeten Algorithmen könnten nicht in der Lage sein, die Informationskapazität der Netzwerke zu messen.",
+            "Die experimentellen Ergebnisse konzentrieren sich auf die Durchführung von Audit-Verfahren, nicht auf die direkte Validierung der Hypothese."
+          ],
+          "recommended_experiments": [
+            "Messung der Informationskapazität von 5D-Netzwerken im Vergleich zu niedrigdimensionalen Netzwerken",
+            "Ablationstests, um die Rolle der zusätzlichen Dimensionen zu analysieren",
+            "Statistische Reproduktion der Ergebnisse mit verschiedenen Parametern und Bedingungen",
+            "Direkte Tests der Hypothese, um die informationstragende Natur der zusätzlichen Dimensionen zu überprüfen"
+          ],
+          "requested_evidence": [
+            "Messungen der Informationskapazität",
+            "Ablationstests zur Dimensionenanalyse",
+            "Statistische Reproduktion der Ergebnisse",
+            "Direkte Tests der Hypothese"
+          ],
+          "confidence": 0.05,
+          "research_question": "Sind zusätzliche Dimensionen informationstragend oder lediglich zusätzliche Koordinaten?"
+        },
+        "provenance": {
+          "prompt_sha256": "6eac023628a4920ea6334d289a3637d1364ecadff6390abaa88b895f1073d22d",
+          "research_packet_digest": "912c0c8d833d3ff6de2cde13afb9a93a9ab4debddba42cfee3cde6b9895cef7b",
+          "prompt_protocol_version": "research_assistant_v1",
+          "assistant_schema_version": "1.2",
+          "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+          "model_self_confidence": "0.05"
+        },
+        "epistemic_status": {
+          "evidence": false,
+          "interpretation_only": true,
+          "human_review_required": true
+        },
+        "review": {
+          "status": "pending",
+          "reviewer": null,
+          "reviewed_at": null,
+          "disposition": null
+        },
+        "generated_at": "2026-09-14T08:10:19.746899+00:00"
+      },
+      "writer": {
+        "analysis_id": "AIAR-scientific_writer-20260914081041185337-912c0c8d",
+        "role": "scientific_writer",
+        "model": {
+          "provider": "ollama",
+          "model_name": "qwen3:8b",
+          "model_digest": "not_reported",
+          "quantization": "not_reported",
+          "context_length": "unknown",
+          "temperature": 0.0,
+          "top_p": 0.9,
+          "seed": "not_reported",
+          "backend_version": "unknown"
+        },
+        "inputs": {
+          "experiment_id": "EXP-BATCH-20260914074039-18",
+          "packet_digest": "912c0c8d833d3ff6de2cde13afb9a93a9ab4debddba42cfee3cde6b9895cef7b"
+        },
+        "output": {
+          "assessment": "Die vorliegenden Daten und Experimente liefern keine ausreichende Grundlage zur Bewertung der Behauptung, da keine wissenschaftlichen Beweise verknüpft sind und die experimentellen Ergebnisse nicht direkt auf die Hypothese abgestimmt sind.",
+          "observations": [
+            "Die Experimente wurden mit drei verschiedenen Seeds durchgeführt, was eine gewisse Reproduzierbarkeit gewährleistet.",
+            "Die Metriken der Experimente zeigen, dass keine direkte Hypothesentests durchgeführt wurden.",
+            "Die Datenbank enthält keine messbaren Ergebnisse zur Informationskapazität von 5D-Netzwerken.",
+            "Die verwendeten Algorithmen und Protokolle sind deterministisch und folgen einem festgelegten Schema.",
+            "Die Ergebnisse der Experimente sind nicht direkt mit der Behauptung verknüpft, sondern beziehen sich auf die Durchführung der Audit-Verfahren.",
+            "Die Forschungsfragen sind nicht vollständig beantwortet, da keine empirischen Daten zur Verfügung stehen, die die Hypothese testen könnten."
+          ],
+          "effect_direction": "Es gibt keine klare Richtung des Effekts, da keine statistischen Tests durchgeführt wurden und keine messbaren Ergebnisse vorliegen.",
+          "methodological_concerns": [
+            "Fehlende direkte Tests der Hypothese",
+            "Keine verknüpften wissenschaftlichen Beweise",
+            "Unzureichende empirische Daten zur Validierung der Behauptung",
+            "Die Experimente konzentrieren sich auf Audit-Verfahren, nicht auf die direkte Messung der Informationskapazität"
+          ],
+          "alternative_explanations": [
+            "Die zusätzlichen Dimensionen könnten redundant sein und somit keine zusätzliche Informationskapazität liefern.",
+            "Die Messung der Informationskapazität wurde nicht durchgeführt, sodass keine Schlussfolgerungen gezogen werden könnten.",
+            "Die verwendeten Algorithmen könnten nicht in der Lage sein, die Informationskapazität der Netzwerke zu messen.",
+            "Die experimentellen Ergebnisse konzentrieren sich auf die Durchführung von Audit-Verfahren, nicht auf die direkte Validierung der Hypothese."
+          ],
+          "recommended_experiments": [
+            "Messung der Informationskapazität von 5D-Netzwerken im Vergleich zu niedrigdimensionalen Netzwerken",
+            "Ablationstests, um die Rolle der zusätzlichen Dimensionen zu analysieren",
+            "Statistische Reproduktion der Ergebnisse mit verschiedenen Parametern und Bedingungen",
+            "Direkte Tests der Hypothese, um die informationstragende Natur der zusätzlichen Dimensionen zu überprüfen"
+          ],
+          "requested_evidence": [
+            "Messungen der Informationskapazität",
+            "Ablationstests zur Dimensionenanalyse",
+            "Statistische Reproduktion der Ergebnisse",
+            "Direkte Tests der Hypothese"
+          ],
+          "confidence": 0.05,
+          "research_question": "Sind zusätzliche Dimensionen informationstragend oder lediglich zusätzliche Koordinaten?"
+        },
+        "provenance": {
+          "prompt_sha256": "48cfa6aed7d72373ea44c32711d92ba73bc265b9c56a86062655e67a66e36f46",
+          "research_packet_digest": "912c0c8d833d3ff6de2cde13afb9a93a9ab4debddba42cfee3cde6b9895cef7b",
+          "prompt_protocol_version": "research_assistant_v1",
+          "assistant_schema_version": "1.2",
+          "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+          "model_self_confidence": "0.05"
+        },
+        "epistemic_status": {
+          "evidence": false,
+          "interpretation_only": true,
+          "human_review_required": true
+        },
+        "review": {
+          "status": "pending",
+          "reviewer": null,
+          "reviewed_at": null,
+          "disposition": null
+        },
+        "generated_at": "2026-09-14T08:10:41.185337+00:00"
+      }
+    }
+  },
+  "provenance": {
+    "research_packet_digest": "d51ed1f8c8c41c066caecb07917e949ae1395c06596997454080147b870777b1",
+    "source": {
+      "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+      "experiment_status": "completed",
+      "evidence_mode": "not_reported",
+      "git_dirty": "True",
+      "source_freeze_sha": "e2d5bdc7deb25972c0ac03ae50efbe46ebd591a73a7e0f513b28ec4d6d4d2dd7",
+      "configuration_path": "F:\\Brain-5D\\configs\\learning_experiment.yaml",
+      "configuration_sha256": "6f6cd457caf6216c286fee47ef03b529a0b496ed2dd53ee96b85d3b51e7b3a1c",
+      "experiment_manifest_digest": "764ac772d6fe69837bc264919baa934048661aa0d18b755773a50fd2f7666a31",
+      "data_ids": "NOT_AVAILABLE",
+      "evid_ids": "NOT_AVAILABLE",
+      "protocol_id": "NOT_AVAILABLE",
+      "protocol_digest": "acf389bdf9a97170dba997e5f99bdccb17d726448ad9799b702f7559e2a994bb",
+      "data_digest": "bc79fd0ea833f389851e625f7611eeded542a83c284d3ec75d4c23c86ac6e624",
+      "evid_digests": "[]"
+    }
+  },
+  "analysis_ids": [
+    "AIAR-scientific_analyst-20260914080959835143-912c0c8d",
+    "AIAR-critical_reviewer-20260914081019746899-912c0c8d",
+    "AIAR-scientific_writer-20260914081041185337-912c0c8d"
+  ],
+  "supersedes": null,
+  "content_digest": "c77daddc9f12f72a42968189ff78c4276d704ab79b82933cbe2d72fa41ad0f61",
+  "markdown_digest": "b47b1d4b1e517870b3b8a0e3adadc9af94965ecc21d4becca4568c773466d6b2"
+}

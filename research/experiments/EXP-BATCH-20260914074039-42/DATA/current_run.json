@@ -1,0 +1,11 @@
+{
+  "last_archived_run": 79,
+  "raw_artifact": {
+    "format": "json.gz",
+    "path": "DATA/raw/run-0079-loop_delay_8-seed-120.json.gz",
+    "sha256": "4afaf21c5c1da64a24f5852b1d2101b6d7b4be42e3a82151d275b7582f32f793",
+    "size_bytes": 714,
+    "uncompressed_bytes": 2515
+  },
+  "status": "idle"
+}

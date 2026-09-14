@@ -1,0 +1,30 @@
+{
+  "experiment_id": "EXP-BATCH-20260914074039-09",
+  "research_question": "RQ-TIME-001",
+  "hypothesis": "H-TIME-001-A",
+  "title": "Experiment workflow: learning_timescale_registered_v1",
+  "conditions": "Registered protocol conditions",
+  "ticks": 100000,
+  "ticks_contract": "minimum requested observation window",
+  "seeds": [
+    101,
+    102,
+    103
+  ],
+  "protocol": "learning_timescale_registered_v1",
+  "resolved_runner": "run_time",
+  "tick_validation": {
+    "status": "SATISFIED",
+    "mode": "terminal_tick_per_seed",
+    "requested_ticks": 100000
+  },
+  "notes": "",
+  "execution": "registered experiment_suite runner",
+  "assistant_policy": "AI is post-hoc interpretation only.",
+  "epistemic_layers": {
+    "ui_state": "operator/dashboard progress only; not a scientific result",
+    "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+    "evid": "not_created; requires semantic validation, clean freeze and human review",
+    "interpretation": "post-hoc AI or human interpretation; never execution input"
+  }
+}

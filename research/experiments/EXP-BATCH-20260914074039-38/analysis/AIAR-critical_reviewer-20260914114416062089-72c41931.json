@@ -1,0 +1,207 @@
+{
+  "analysis_id": "AIAR-critical_reviewer-20260914114416062089-72c41931",
+  "role": "critical_reviewer",
+  "model": {
+    "provider": "ollama",
+    "model_name": "qwen2.5-coder:7b",
+    "model_digest": "not_reported",
+    "quantization": "not_reported",
+    "context_length": "unknown",
+    "temperature": 0.0,
+    "top_p": 1.0,
+    "seed": "not_reported",
+    "backend_version": "unknown"
+  },
+  "inputs": {
+    "experiment_id": "EXP-BATCH-20260914074039-38",
+    "packet_digest": "72c419313949d4d6bf1535970023313fe6619e0ac9bc1d9a88aba88715f0056c"
+  },
+  "output": {
+    "metrics": {
+      "activated_neurons": {
+        "max": 3.0,
+        "mean": 3.0,
+        "median": 3.0,
+        "min": 3.0,
+        "n": 30,
+        "std": 0.0
+      },
+      "delivered_synaptic_events": {
+        "max": 2.0,
+        "mean": 2.0,
+        "median": 2.0,
+        "min": 2.0,
+        "n": 30,
+        "std": 0.0
+      },
+      "first_response_latency": {
+        "max": 2.0,
+        "mean": 2.0,
+        "median": 2.0,
+        "min": 2.0,
+        "n": 30,
+        "std": 0.0
+      },
+      "last_response_latency": {
+        "max": 2.0,
+        "mean": 2.0,
+        "median": 2.0,
+        "min": 2.0,
+        "n": 30,
+        "std": 0.0
+      },
+      "matched_neuron_count": {
+        "max": 3.0,
+        "mean": 3.0,
+        "median": 3.0,
+        "min": 3.0,
+        "n": 30,
+        "std": 0.0
+      },
+      "matched_synapse_count": {
+        "max": 2.0,
+        "mean": 2.0,
+        "median": 2.0,
+        "min": 2.0,
+        "n": 30,
+        "std": 0.0
+      },
+      "max_synaptic_current_targets": {
+        "max": 1.0,
+        "mean": 1.0,
+        "median": 1.0,
+        "min": 1.0,
+        "n": 30,
+        "std": 0.0
+      },
+      "peak_spike_rate": {
+        "max": 1.0,
+        "mean": 1.0,
+        "median": 1.0,
+        "min": 1.0,
+        "n": 30,
+        "std": 0.0
+      },
+      "propagation_depth": {
+        "max": 1.0,
+        "mean": 1.0,
+        "median": 1.0,
+        "min": 1.0,
+        "n": 30,
+        "std": 0.0
+      },
+      "recurrent_events": {
+        "max": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "n": 30,
+        "std": 0.0
+      },
+      "synaptic_activity_ticks": {
+        "max": 2.0,
+        "mean": 2.0,
+        "median": 2.0,
+        "min": 2.0,
+        "n": 30,
+        "std": 0.0
+      },
+      "ticks_executed": {
+        "max": 64.0,
+        "mean": 64.0,
+        "median": 64.0,
+        "min": 64.0,
+        "n": 30,
+        "std": 0.0
+      },
+      "ticks_requested": {
+        "max": 64.0,
+        "mean": 64.0,
+        "median": 64.0,
+        "min": 64.0,
+        "n": 30,
+        "std": 0.0
+      },
+      "total_spikes": {
+        "max": 3.0,
+        "mean": 3.0,
+        "median": 3.0,
+        "min": 3.0,
+        "n": 30,
+        "std": 0.0
+      },
+      "total_synapses": {
+        "max": 2.0,
+        "mean": 2.0,
+        "median": 2.0,
+        "min": 2.0,
+        "n": 30,
+        "std": 0.0
+      }
+    },
+    "run_count": 30,
+    "seeds": [
+      101,
+      102,
+      103,
+      104,
+      105,
+      106,
+      107,
+      108,
+      109,
+      110,
+      111,
+      112,
+      113,
+      114,
+      115,
+      116,
+      117,
+      118,
+      119,
+      120,
+      121,
+      122,
+      123,
+      124,
+      125,
+      126,
+      127,
+      128,
+      129,
+      130
+    ],
+    "assessment": "Die Analyse konnte nicht vollstaendig schema-konform erzeugt werden. Das Modell hat das erforderliche assessment-Feld nicht geliefert.",
+    "observations": [],
+    "methodological_concerns": [
+      "Die vom Modell ausgegebene confidence war schemawidrig oder ausserhalb des Bereichs 0..1. Sie wurde fuer die AIRR-Provenienz konservativ auf 0.0 gesetzt; der Originalwert bleibt als confidence_original erhalten."
+    ],
+    "alternative_explanations": [],
+    "recommended_experiments": [],
+    "requested_evidence": [],
+    "effect_direction": "not_determined",
+    "confidence_original": null,
+    "confidence": 0.0
+  },
+  "provenance": {
+    "prompt_sha256": "820df7fdadb8c22724112dd1593d173504aa9b3ef827931868cf6a88e0a43052",
+    "research_packet_digest": "72c419313949d4d6bf1535970023313fe6619e0ac9bc1d9a88aba88715f0056c",
+    "prompt_protocol_version": "research_assistant_v1",
+    "assistant_schema_version": "1.2",
+    "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+    "model_self_confidence": "0.0"
+  },
+  "epistemic_status": {
+    "evidence": false,
+    "interpretation_only": true,
+    "human_review_required": true
+  },
+  "review": {
+    "status": "pending",
+    "reviewer": null,
+    "reviewed_at": null,
+    "disposition": null
+  },
+  "generated_at": "2026-09-14T11:44:16.062089+00:00"
+}

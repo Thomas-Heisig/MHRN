@@ -1,0 +1,11 @@
+{
+  "last_archived_run": 8,
+  "raw_artifact": {
+    "format": "json.gz",
+    "path": "DATA/raw/run-0008-no_throttling-seed-103.json.gz",
+    "sha256": "018774b95dd68a1636026b96394735bcdd584350328ee9daacd1d8a0a7f2ddcf",
+    "size_bytes": 4026,
+    "uncompressed_bytes": 17399
+  },
+  "status": "idle"
+}

@@ -1,0 +1,176 @@
+{
+  "conditions": {
+    "productive_reward_stdp": {
+      "metrics": {
+        "baseline_probes_executed": {
+          "max": 1.0,
+          "mean": 1.0,
+          "median": 1.0,
+          "min": 1.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "baseline_target_peak_v": {
+          "max": -65.0,
+          "mean": -65.0,
+          "median": -65.0,
+          "min": -65.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "final_mean_weight": {
+          "max": 0.517280469842843,
+          "mean": 0.517280469842843,
+          "median": 0.517280469842843,
+          "min": 0.517280469842843,
+          "n": 3,
+          "std": 0.0
+        },
+        "holdout_episodes_executed": {
+          "max": 0.0,
+          "mean": 0.0,
+          "median": 0.0,
+          "min": 0.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "holdout_trial_count": {
+          "max": 4.0,
+          "mean": 4.0,
+          "median": 4.0,
+          "min": 4.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "initial_mean_weight": {
+          "max": 0.05,
+          "mean": 0.05000000000000001,
+          "median": 0.05,
+          "min": 0.05,
+          "n": 3,
+          "std": 0.0
+        },
+        "mean_weight_delta": {
+          "max": 0.46728046984284305,
+          "mean": 0.46728046984284305,
+          "median": 0.46728046984284305,
+          "min": 0.46728046984284305,
+          "n": 3,
+          "std": 0.0
+        },
+        "post_training_probes_executed": {
+          "max": 1.0,
+          "mean": 1.0,
+          "median": 1.0,
+          "min": 1.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "presynaptic_neurons": {
+          "max": 48.0,
+          "mean": 48.0,
+          "median": 48.0,
+          "min": 48.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "protocol_version": {
+          "max": 1.0,
+          "mean": 1.0,
+          "median": 1.0,
+          "min": 1.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "reward_weight_updates": {
+          "max": 576.0,
+          "mean": 576.0,
+          "median": 576.0,
+          "min": 576.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "rewards_applied": {
+          "max": 12.0,
+          "mean": 12.0,
+          "median": 12.0,
+          "min": 12.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "rewards_received": {
+          "max": 12.0,
+          "mean": 12.0,
+          "median": 12.0,
+          "min": 12.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "train_trial_count": {
+          "max": 12.0,
+          "mean": 12.0,
+          "median": 12.0,
+          "min": 12.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "trained_target_peak_v": {
+          "max": 26.239795413974708,
+          "mean": 26.239795413974708,
+          "median": 26.239795413974708,
+          "min": 26.239795413974708,
+          "n": 3,
+          "std": 0.0
+        },
+        "trained_target_spike_tick": {
+          "max": 4.0,
+          "mean": 4.0,
+          "median": 4.0,
+          "min": 4.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "training_trials": {
+          "max": 20.0,
+          "mean": 20.0,
+          "median": 20.0,
+          "min": 20.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "validation_episodes_executed": {
+          "max": 0.0,
+          "mean": 0.0,
+          "median": 0.0,
+          "min": 0.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "validation_trial_count": {
+          "max": 4.0,
+          "mean": 4.0,
+          "median": 4.0,
+          "min": 4.0,
+          "n": 3,
+          "std": 0.0
+        }
+      },
+      "run_count": 3,
+      "seeds": [
+        101,
+        102,
+        103
+      ]
+    }
+  },
+  "formulas": {
+    "difference": "Delta_x = mean(x_B) - mean(x_A)",
+    "inter_spike_interval": "ISI_i = t_(i+1) - t_i",
+    "mean": "mean(x) = (1/n) * sum_i x_i",
+    "population_std": "sigma = sqrt((1/n) * sum_i (x_i - mean(x))^2)",
+    "ratio": "R_x = mean(x_B) / mean(x_A), defined only when mean(x_A) != 0"
+  },
+  "generated_by": "deterministic_statistics_engine",
+  "run_count": 3,
+  "schema_version": "2.0"
+}

@@ -1,0 +1,97 @@
+{
+  "run_count": 9,
+  "runs": [
+    {
+      "condition": "learning_on",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0000-learning_on-seed-101.json.gz",
+      "run_index": 0,
+      "seed": 101,
+      "sha256": "08122c24aa6986735781767f3926680045eeb53efe33fcbcc67b03069d419cdc",
+      "size_bytes": 375,
+      "uncompressed_bytes": 573
+    },
+    {
+      "condition": "learning_off",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0001-learning_off-seed-101.json.gz",
+      "run_index": 1,
+      "seed": 101,
+      "sha256": "2ef9c7187ffe0fb83b841051fc55f7f5ab240faa211ca472dc10767745571018",
+      "size_bytes": 351,
+      "uncompressed_bytes": 544
+    },
+    {
+      "condition": "sham_replay",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0002-sham_replay-seed-101.json.gz",
+      "run_index": 2,
+      "seed": 101,
+      "sha256": "091a7db7eec694215d4bcd5d861d3effdb3a97f39aa988bbe35f4fa70c99a68a",
+      "size_bytes": 351,
+      "uncompressed_bytes": 544
+    },
+    {
+      "condition": "learning_on",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0003-learning_on-seed-102.json.gz",
+      "run_index": 3,
+      "seed": 102,
+      "sha256": "ff6fd98f0a8dc4eb1a85ab64a8294f1f319470b6dfc8491939661faebb5ec0ba",
+      "size_bytes": 375,
+      "uncompressed_bytes": 573
+    },
+    {
+      "condition": "learning_off",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0004-learning_off-seed-102.json.gz",
+      "run_index": 4,
+      "seed": 102,
+      "sha256": "721bfef5f0c8f432e7d83c7f3fe17e944c82ceaef59b7fcf336f9b17398f213b",
+      "size_bytes": 352,
+      "uncompressed_bytes": 544
+    },
+    {
+      "condition": "sham_replay",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0005-sham_replay-seed-102.json.gz",
+      "run_index": 5,
+      "seed": 102,
+      "sha256": "d77402a3dd4c832d4c8eb3cc186a67d2aec86f6366c011fa6905d3b5a2dbcdd6",
+      "size_bytes": 350,
+      "uncompressed_bytes": 544
+    },
+    {
+      "condition": "learning_on",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0006-learning_on-seed-103.json.gz",
+      "run_index": 6,
+      "seed": 103,
+      "sha256": "71e98701b612d8ef4a02cd35ec236caa042589c418b19eac3370ce570d5ab133",
+      "size_bytes": 375,
+      "uncompressed_bytes": 573
+    },
+    {
+      "condition": "learning_off",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0007-learning_off-seed-103.json.gz",
+      "run_index": 7,
+      "seed": 103,
+      "sha256": "917b12cff2d77e1e558ca34000e1ee38bbbd69c681671ab1255c8b6707c1abf8",
+      "size_bytes": 352,
+      "uncompressed_bytes": 544
+    },
+    {
+      "condition": "sham_replay",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0008-sham_replay-seed-103.json.gz",
+      "run_index": 8,
+      "seed": 103,
+      "sha256": "9ff026f4036d874a2592a4620f666ce8c6f9a44e9b4445b1d38b76aa9adeffea",
+      "size_bytes": 351,
+      "uncompressed_bytes": 544
+    }
+  ],
+  "schema_version": "2.0",
+  "storage_policy": "immutable_raw_runs_plus_compact_current_experiment"
+}

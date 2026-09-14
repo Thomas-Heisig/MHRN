@@ -1,0 +1,11 @@
+{
+  "last_archived_run": 11,
+  "raw_artifact": {
+    "format": "json.gz",
+    "path": "DATA/raw/run-0011-timing_shuffle-seed-103.json.gz",
+    "sha256": "cf442a46a495dbde612e3f09ccaeab0332ae765ea49da147ab0c3f118e928934",
+    "size_bytes": 37365,
+    "uncompressed_bytes": 175367
+  },
+  "status": "idle"
+}

@@ -1,0 +1,87 @@
+{
+  "analysis_id": "AIAR-critical_reviewer-20260914120528748650-1143748c",
+  "role": "critical_reviewer",
+  "model": {
+    "provider": "ollama",
+    "model_name": "qwen2.5-coder:7b",
+    "model_digest": "not_reported",
+    "quantization": "not_reported",
+    "context_length": "unknown",
+    "temperature": 0.0,
+    "top_p": 1.0,
+    "seed": "not_reported",
+    "backend_version": "unknown"
+  },
+  "inputs": {
+    "experiment_id": "EXP-BATCH-20260914074039-90",
+    "packet_digest": "1143748cdae5c1efcf27ef7e0a1fdb0c22bbd1db3c59134a376cb7d751dba142"
+  },
+  "output": {
+    "correct_decisions": {
+      "audio": 46,
+      "digital": 46,
+      "vision": 46
+    },
+    "matched_task_count": {
+      "audio": 48,
+      "digital": 48,
+      "vision": 48
+    },
+    "normalized_energy_units": {
+      "audio": 891.0144,
+      "digital": 495.0144,
+      "vision": 2071.8144
+    },
+    "normalized_energy_units_per_correct_decision": {
+      "audio": 19.3943,
+      "digital": 10.7748,
+      "vision": 45.0963
+    },
+    "synaptic_events": {
+      "audio": 768.0,
+      "digital": 384.0,
+      "vision": 1920.0
+    },
+    "synaptic_events_per_correct_decision": {
+      "audio": 16.7167,
+      "digital": 8.3584,
+      "vision": 41.7918
+    },
+    "task_accuracy": {
+      "audio": 0.9583,
+      "digital": 0.9583,
+      "vision": 0.9583
+    },
+    "assessment": "Die Analyse konnte nicht vollstaendig schema-konform erzeugt werden. Das Modell hat das erforderliche assessment-Feld nicht geliefert.",
+    "observations": [],
+    "methodological_concerns": [
+      "Die vom Modell ausgegebene confidence war schemawidrig oder ausserhalb des Bereichs 0..1. Sie wurde fuer die AIRR-Provenienz konservativ auf 0.0 gesetzt; der Originalwert bleibt als confidence_original erhalten."
+    ],
+    "alternative_explanations": [],
+    "recommended_experiments": [],
+    "requested_evidence": [],
+    "effect_direction": "not_determined",
+    "confidence_original": null,
+    "confidence": 0.0
+  },
+  "provenance": {
+    "prompt_sha256": "87c619ea2f00b24105ae37427b7385e4023eda611503c7ce377fe3b7f31dba8e",
+    "research_packet_digest": "1143748cdae5c1efcf27ef7e0a1fdb0c22bbd1db3c59134a376cb7d751dba142",
+    "prompt_protocol_version": "research_assistant_v1",
+    "assistant_schema_version": "1.2",
+    "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+    "model_self_confidence": "0.0"
+  },
+  "epistemic_status": {
+    "evidence": false,
+    "interpretation_only": true,
+    "human_review_required": true
+  },
+  "review": {
+    "status": "pending",
+    "reviewer": null,
+    "reviewed_at": null,
+    "disposition": null
+  },
+  "generated_at": "2026-09-14T12:05:28.748650+00:00"
+}

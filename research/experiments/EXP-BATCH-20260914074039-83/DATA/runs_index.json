@@ -1,0 +1,37 @@
+{
+  "run_count": 3,
+  "runs": [
+    {
+      "condition": "instrumentation_gap_audit",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0000-instrumentation_gap_audit-seed-101.json.gz",
+      "run_index": 0,
+      "seed": 101,
+      "sha256": "a0b2a81c39f98772cf623d10f2232c6197e54402f9d19e5d1f78ec90b57fcfe6",
+      "size_bytes": 380,
+      "uncompressed_bytes": 481
+    },
+    {
+      "condition": "instrumentation_gap_audit",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0001-instrumentation_gap_audit-seed-102.json.gz",
+      "run_index": 1,
+      "seed": 102,
+      "sha256": "591a68e91e6490398c113171c6b3bccdcb30ed2cfa10a0263c6cb04daebc2863",
+      "size_bytes": 380,
+      "uncompressed_bytes": 481
+    },
+    {
+      "condition": "instrumentation_gap_audit",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0002-instrumentation_gap_audit-seed-103.json.gz",
+      "run_index": 2,
+      "seed": 103,
+      "sha256": "f1a40b4c21eb9ac36a930a0a9003ecb50bc29831ed054013bd98609fe85bbe37",
+      "size_bytes": 380,
+      "uncompressed_bytes": 481
+    }
+  ],
+  "schema_version": "2.0",
+  "storage_policy": "immutable_raw_runs_plus_compact_current_experiment"
+}

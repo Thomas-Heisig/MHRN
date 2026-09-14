@@ -1,0 +1,308 @@
+{
+  "conditions": {
+    "learning_off": {
+      "metrics": {
+        "final_mean_weight": {
+          "max": 0.05,
+          "mean": 0.05000000000000001,
+          "median": 0.05,
+          "min": 0.05,
+          "n": 3,
+          "std": 0.0
+        },
+        "holdout_trial_count": {
+          "max": 4.0,
+          "mean": 4.0,
+          "median": 4.0,
+          "min": 4.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "initial_mean_weight": {
+          "max": 0.05,
+          "mean": 0.05000000000000001,
+          "median": 0.05,
+          "min": 0.05,
+          "n": 3,
+          "std": 0.0
+        },
+        "mean_weight_delta": {
+          "max": 0.0,
+          "mean": 0.0,
+          "median": 0.0,
+          "min": 0.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "p_success_after": {
+          "max": 0.0,
+          "mean": 0.0,
+          "median": 0.0,
+          "min": 0.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "p_success_before": {
+          "max": 0.0,
+          "mean": 0.0,
+          "median": 0.0,
+          "min": 0.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "protocol_version": {
+          "max": 1.0,
+          "mean": 1.0,
+          "median": 1.0,
+          "min": 1.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "reward_weight_updates": {
+          "max": 0.0,
+          "mean": 0.0,
+          "median": 0.0,
+          "min": 0.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "rewards_received": {
+          "max": 0.0,
+          "mean": 0.0,
+          "median": 0.0,
+          "min": 0.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "train_trial_count": {
+          "max": 12.0,
+          "mean": 12.0,
+          "median": 12.0,
+          "min": 12.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "validation_trial_count": {
+          "max": 4.0,
+          "mean": 4.0,
+          "median": 4.0,
+          "min": 4.0,
+          "n": 3,
+          "std": 0.0
+        }
+      },
+      "run_count": 3,
+      "seeds": [
+        101,
+        102,
+        103
+      ]
+    },
+    "learning_on": {
+      "metrics": {
+        "final_mean_weight": {
+          "max": 0.517280469842843,
+          "mean": 0.517280469842843,
+          "median": 0.517280469842843,
+          "min": 0.517280469842843,
+          "n": 3,
+          "std": 0.0
+        },
+        "holdout_trial_count": {
+          "max": 4.0,
+          "mean": 4.0,
+          "median": 4.0,
+          "min": 4.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "initial_mean_weight": {
+          "max": 0.05,
+          "mean": 0.05000000000000001,
+          "median": 0.05,
+          "min": 0.05,
+          "n": 3,
+          "std": 0.0
+        },
+        "mean_weight_delta": {
+          "max": 0.46728046984284305,
+          "mean": 0.46728046984284305,
+          "median": 0.46728046984284305,
+          "min": 0.46728046984284305,
+          "n": 3,
+          "std": 0.0
+        },
+        "p_success_after": {
+          "max": 1.0,
+          "mean": 1.0,
+          "median": 1.0,
+          "min": 1.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "p_success_before": {
+          "max": 0.0,
+          "mean": 0.0,
+          "median": 0.0,
+          "min": 0.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "protocol_version": {
+          "max": 1.0,
+          "mean": 1.0,
+          "median": 1.0,
+          "min": 1.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "reward_weight_updates": {
+          "max": 576.0,
+          "mean": 576.0,
+          "median": 576.0,
+          "min": 576.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "rewards_received": {
+          "max": 12.0,
+          "mean": 12.0,
+          "median": 12.0,
+          "min": 12.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "train_trial_count": {
+          "max": 12.0,
+          "mean": 12.0,
+          "median": 12.0,
+          "min": 12.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "validation_trial_count": {
+          "max": 4.0,
+          "mean": 4.0,
+          "median": 4.0,
+          "min": 4.0,
+          "n": 3,
+          "std": 0.0
+        }
+      },
+      "run_count": 3,
+      "seeds": [
+        101,
+        102,
+        103
+      ]
+    },
+    "sham_replay": {
+      "metrics": {
+        "final_mean_weight": {
+          "max": 0.05,
+          "mean": 0.05000000000000001,
+          "median": 0.05,
+          "min": 0.05,
+          "n": 3,
+          "std": 0.0
+        },
+        "holdout_trial_count": {
+          "max": 4.0,
+          "mean": 4.0,
+          "median": 4.0,
+          "min": 4.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "initial_mean_weight": {
+          "max": 0.05,
+          "mean": 0.05000000000000001,
+          "median": 0.05,
+          "min": 0.05,
+          "n": 3,
+          "std": 0.0
+        },
+        "mean_weight_delta": {
+          "max": 0.0,
+          "mean": 0.0,
+          "median": 0.0,
+          "min": 0.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "p_success_after": {
+          "max": 0.0,
+          "mean": 0.0,
+          "median": 0.0,
+          "min": 0.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "p_success_before": {
+          "max": 0.0,
+          "mean": 0.0,
+          "median": 0.0,
+          "min": 0.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "protocol_version": {
+          "max": 1.0,
+          "mean": 1.0,
+          "median": 1.0,
+          "min": 1.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "reward_weight_updates": {
+          "max": 0.0,
+          "mean": 0.0,
+          "median": 0.0,
+          "min": 0.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "rewards_received": {
+          "max": 12.0,
+          "mean": 12.0,
+          "median": 12.0,
+          "min": 12.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "train_trial_count": {
+          "max": 12.0,
+          "mean": 12.0,
+          "median": 12.0,
+          "min": 12.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "validation_trial_count": {
+          "max": 4.0,
+          "mean": 4.0,
+          "median": 4.0,
+          "min": 4.0,
+          "n": 3,
+          "std": 0.0
+        }
+      },
+      "run_count": 3,
+      "seeds": [
+        101,
+        102,
+        103
+      ]
+    }
+  },
+  "formulas": {
+    "difference": "Delta_x = mean(x_B) - mean(x_A)",
+    "inter_spike_interval": "ISI_i = t_(i+1) - t_i",
+    "mean": "mean(x) = (1/n) * sum_i x_i",
+    "population_std": "sigma = sqrt((1/n) * sum_i (x_i - mean(x))^2)",
+    "ratio": "R_x = mean(x_B) / mean(x_A), defined only when mean(x_A) != 0"
+  },
+  "generated_by": "deterministic_statistics_engine",
+  "run_count": 9,
+  "schema_version": "2.0"
+}

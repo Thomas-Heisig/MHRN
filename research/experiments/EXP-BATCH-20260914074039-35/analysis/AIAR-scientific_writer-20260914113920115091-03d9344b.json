@@ -1,0 +1,172 @@
+{
+  "analysis_id": "AIAR-scientific_writer-20260914113920115091-03d9344b",
+  "role": "scientific_writer",
+  "model": {
+    "provider": "ollama",
+    "model_name": "qwen2.5-coder:7b",
+    "model_digest": "not_reported",
+    "quantization": "not_reported",
+    "context_length": "unknown",
+    "temperature": 0.0,
+    "top_p": 1.0,
+    "seed": "not_reported",
+    "backend_version": "unknown"
+  },
+  "inputs": {
+    "experiment_id": "EXP-BATCH-20260914074039-35",
+    "packet_digest": "03d9344ba0c34d8fbf2d4cb4b6c9054802613a1dc709d3ade04d76a810213fb1"
+  },
+  "output": {
+    "activated_neurons": {
+      "max": 3.0,
+      "mean": 3.0,
+      "median": 3.0,
+      "min": 3.0,
+      "n": 300,
+      "std": 0.0
+    },
+    "activity_fraction": {
+      "max": 0.22265625,
+      "mean": 0.161375,
+      "median": 0.140625,
+      "min": 0.09765625,
+      "n": 300,
+      "std": 0.04419417382415923
+    },
+    "delivered_synaptic_events": {
+      "max": 21.0,
+      "mean": 14.0,
+      "median": 13.0,
+      "min": 1.0,
+      "n": 300,
+      "std": 4.0
+    },
+    "first_response_latency": {
+      "max": 57.0,
+      "mean": 10.0,
+      "median": 8.0,
+      "min": 2.0,
+      "n": 300,
+      "std": 4.0
+    },
+    "last_response_latency": {
+      "max": 57.0,
+      "mean": 25.0,
+      "median": 23.0,
+      "min": 2.0,
+      "n": 300,
+      "std": 4.0
+    },
+    "max_synaptic_current_targets": {
+      "max": 1.0,
+      "mean": 1.0,
+      "median": 1.0,
+      "min": 1.0,
+      "n": 300,
+      "std": 0.0
+    },
+    "peak_spike_rate": {
+      "max": 1.0,
+      "mean": 1.0,
+      "median": 1.0,
+      "min": 1.0,
+      "n": 300,
+      "std": 0.0
+    },
+    "propagation_depth": {
+      "max": 56.0,
+      "mean": 14.0,
+      "median": 13.0,
+      "min": 2.0,
+      "n": 300,
+      "std": 4.0
+    },
+    "recurrent_delay": {
+      "max": 4.0,
+      "mean": 2.0,
+      "median": 2.0,
+      "min": 1.0,
+      "n": 300,
+      "std": 0.0
+    },
+    "recurrent_events": {
+      "max": 6.0,
+      "mean": 3.0,
+      "median": 3.0,
+      "min": 1.0,
+      "n": 300,
+      "std": 0.0
+    },
+    "recurrent_weight": {
+      "max": 75.0,
+      "mean": 50.0,
+      "median": 50.0,
+      "min": 25.0,
+      "n": 300,
+      "std": 12.5
+    },
+    "return_latency": {
+      "max": 7.0,
+      "mean": 4.0,
+      "median": 4.0,
+      "min": 2.0,
+      "n": 300,
+      "std": 0.0
+    },
+    "synaptic_activity_ticks": {
+      "max": 21.0,
+      "mean": 14.0,
+      "median": 13.0,
+      "min": 1.0,
+      "n": 300,
+      "std": 4.0
+    },
+    "total_spikes": {
+      "max": 21.0,
+      "mean": 14.0,
+      "median": 13.0,
+      "min": 1.0,
+      "n": 300,
+      "std": 4.0
+    },
+    "total_synapses": {
+      "max": 3.0,
+      "mean": 3.0,
+      "median": 3.0,
+      "min": 3.0,
+      "n": 300,
+      "std": 0.0
+    },
+    "assessment": "Die Analyse konnte nicht vollstaendig schema-konform erzeugt werden. Das Modell hat das erforderliche assessment-Feld nicht geliefert.",
+    "observations": [],
+    "methodological_concerns": [
+      "Die vom Modell ausgegebene confidence war schemawidrig oder ausserhalb des Bereichs 0..1. Sie wurde fuer die AIRR-Provenienz konservativ auf 0.0 gesetzt; der Originalwert bleibt als confidence_original erhalten."
+    ],
+    "alternative_explanations": [],
+    "recommended_experiments": [],
+    "requested_evidence": [],
+    "effect_direction": "not_determined",
+    "confidence_original": null,
+    "confidence": 0.0
+  },
+  "provenance": {
+    "prompt_sha256": "e887fa7666f211a47fb5e646acc5319a9077e53bb4da3e92bb9cacaee061d07a",
+    "research_packet_digest": "03d9344ba0c34d8fbf2d4cb4b6c9054802613a1dc709d3ade04d76a810213fb1",
+    "prompt_protocol_version": "research_assistant_v1",
+    "assistant_schema_version": "1.2",
+    "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+    "model_self_confidence": "0.0"
+  },
+  "epistemic_status": {
+    "evidence": false,
+    "interpretation_only": true,
+    "human_review_required": true
+  },
+  "review": {
+    "status": "pending",
+    "reviewer": null,
+    "reviewed_at": null,
+    "disposition": null
+  },
+  "generated_at": "2026-09-14T11:39:20.115091+00:00"
+}

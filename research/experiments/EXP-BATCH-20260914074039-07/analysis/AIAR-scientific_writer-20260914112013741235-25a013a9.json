@@ -1,0 +1,119 @@
+{
+  "analysis_id": "AIAR-scientific_writer-20260914112013741235-25a013a9",
+  "role": "scientific_writer",
+  "model": {
+    "provider": "ollama",
+    "model_name": "qwen2.5-coder:7b",
+    "model_digest": "not_reported",
+    "quantization": "not_reported",
+    "context_length": "unknown",
+    "temperature": 0.0,
+    "top_p": 1.0,
+    "seed": "not_reported",
+    "backend_version": "unknown"
+  },
+  "inputs": {
+    "experiment_id": "EXP-BATCH-20260914074039-07",
+    "packet_digest": "25a013a9eef2b1266bfa5ce9a1713cb9bcf54b5e701a269a5e9d262269aaf26c"
+  },
+  "output": {
+    "experiment_id": "EXP-BATCH-20260914074039-07",
+    "hypotheses": [
+      {
+        "id": "H-PING-001-A",
+        "hypothesis": "Identische Impulse erzeugen bei identischem Anfangszustand dieselbe beobachtete Response-Signatur."
+      }
+    ],
+    "metrics": {
+      "activated_neurons": {
+        "mean": 3.0,
+        "std": 0.0
+      },
+      "delivered_synaptic_events": {
+        "mean": 33.0,
+        "std": 0.0
+      },
+      "first_response_latency": {
+        "mean": 2.0,
+        "std": 0.0
+      },
+      "last_response_latency": {
+        "mean": 62.0,
+        "std": 0.0
+      },
+      "max_synaptic_current_targets": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "peak_spike_rate": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "propagation_depth": {
+        "mean": 61.0,
+        "std": 0.0
+      },
+      "recurrent_events": {
+        "mean": 10.0,
+        "std": 0.0
+      },
+      "return_latency": {
+        "mean": 3.0,
+        "std": 0.0
+      },
+      "synaptic_activity_ticks": {
+        "mean": 33.0,
+        "std": 0.0
+      },
+      "ticks_executed": {
+        "mean": 256.0,
+        "std": 0.0
+      },
+      "total_spikes": {
+        "mean": 33.0,
+        "std": 0.0
+      },
+      "total_synapses": {
+        "mean": 3.0,
+        "std": 0.0
+      }
+    },
+    "inter_spike_intervals": {
+      "mean": 1.9375,
+      "std": 0.5555121510822243
+    },
+    "run_count": 12,
+    "schema_version": "2.0",
+    "assessment": "Die Analyse konnte nicht vollstaendig schema-konform erzeugt werden. Das Modell hat das erforderliche assessment-Feld nicht geliefert.",
+    "observations": [],
+    "methodological_concerns": [
+      "Die vom Modell ausgegebene confidence war schemawidrig oder ausserhalb des Bereichs 0..1. Sie wurde fuer die AIRR-Provenienz konservativ auf 0.0 gesetzt; der Originalwert bleibt als confidence_original erhalten."
+    ],
+    "alternative_explanations": [],
+    "recommended_experiments": [],
+    "requested_evidence": [],
+    "effect_direction": "not_determined",
+    "confidence_original": null,
+    "confidence": 0.0
+  },
+  "provenance": {
+    "prompt_sha256": "b5cd1179959a84b4f5615e48971334ac447bb656e04a599af9e99d0874351d56",
+    "research_packet_digest": "25a013a9eef2b1266bfa5ce9a1713cb9bcf54b5e701a269a5e9d262269aaf26c",
+    "prompt_protocol_version": "research_assistant_v1",
+    "assistant_schema_version": "1.2",
+    "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+    "model_self_confidence": "0.0"
+  },
+  "epistemic_status": {
+    "evidence": false,
+    "interpretation_only": true,
+    "human_review_required": true
+  },
+  "review": {
+    "status": "pending",
+    "reviewer": null,
+    "reviewed_at": null,
+    "disposition": null
+  },
+  "generated_at": "2026-09-14T11:20:13.741235+00:00"
+}

@@ -1,0 +1,164 @@
+{
+  "conditions": {
+    "adaptive": {
+      "metrics": {
+        "resource_budget": {
+          "max": 120.0,
+          "mean": 120.0,
+          "median": 120.0,
+          "min": 120.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "resource_budget_consumed": {
+          "max": 66.0,
+          "mean": 66.0,
+          "median": 66.0,
+          "min": 66.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "task_accuracy": {
+          "max": 0.30235119047619025,
+          "mean": 0.30235119047619025,
+          "median": 0.30235119047619025,
+          "min": 0.30235119047619025,
+          "n": 3,
+          "std": 0.0
+        },
+        "time_to_budget_exhaustion": {
+          "max": 96.0,
+          "mean": 96.0,
+          "median": 96.0,
+          "min": 96.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "utility_captured": {
+          "max": 29.025714285714265,
+          "mean": 29.02571428571427,
+          "median": 29.025714285714265,
+          "min": 29.025714285714265,
+          "n": 3,
+          "std": 0.0
+        }
+      },
+      "run_count": 3,
+      "seeds": [
+        101,
+        102,
+        103
+      ]
+    },
+    "fixed": {
+      "metrics": {
+        "resource_budget": {
+          "max": 120.0,
+          "mean": 120.0,
+          "median": 120.0,
+          "min": 120.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "resource_budget_consumed": {
+          "max": 80.39999999999999,
+          "mean": 80.39999999999999,
+          "median": 80.39999999999999,
+          "min": 80.39999999999999,
+          "n": 3,
+          "std": 0.0
+        },
+        "task_accuracy": {
+          "max": 0.34375,
+          "mean": 0.34375,
+          "median": 0.34375,
+          "min": 0.34375,
+          "n": 3,
+          "std": 0.0
+        },
+        "time_to_budget_exhaustion": {
+          "max": 96.0,
+          "mean": 96.0,
+          "median": 96.0,
+          "min": 96.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "utility_captured": {
+          "max": 33.0,
+          "mean": 33.0,
+          "median": 33.0,
+          "min": 33.0,
+          "n": 3,
+          "std": 0.0
+        }
+      },
+      "run_count": 3,
+      "seeds": [
+        101,
+        102,
+        103
+      ]
+    },
+    "random": {
+      "metrics": {
+        "resource_budget": {
+          "max": 120.0,
+          "mean": 120.0,
+          "median": 120.0,
+          "min": 120.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "resource_budget_consumed": {
+          "max": 81.21940500832038,
+          "mean": 77.82065781058053,
+          "median": 78.4355044778919,
+          "min": 73.8070639455293,
+          "n": 3,
+          "std": 3.057147616762249
+        },
+        "task_accuracy": {
+          "max": 0.344105565960793,
+          "mean": 0.3349111445349861,
+          "median": 0.3422898544694381,
+          "min": 0.31833801317472715,
+          "n": 3,
+          "std": 0.011742393690335832
+        },
+        "time_to_budget_exhaustion": {
+          "max": 96.0,
+          "mean": 96.0,
+          "median": 96.0,
+          "min": 96.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "utility_captured": {
+          "max": 33.03413433223613,
+          "mean": 32.151469875358664,
+          "median": 32.859826029066056,
+          "min": 30.56044926477381,
+          "n": 3,
+          "std": 1.1272697942722387
+        }
+      },
+      "run_count": 3,
+      "seeds": [
+        101,
+        102,
+        103
+      ]
+    }
+  },
+  "formulas": {
+    "difference": "Delta_x = mean(x_B) - mean(x_A)",
+    "inter_spike_interval": "ISI_i = t_(i+1) - t_i",
+    "mean": "mean(x) = (1/n) * sum_i x_i",
+    "population_std": "sigma = sqrt((1/n) * sum_i (x_i - mean(x))^2)",
+    "ratio": "R_x = mean(x_B) / mean(x_A), defined only when mean(x_A) != 0"
+  },
+  "generated_by": "deterministic_statistics_engine",
+  "run_count": 9,
+  "schema_version": "2.0"
+}

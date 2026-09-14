@@ -1,0 +1,560 @@
+{
+  "ai_input_policy": "compact_only_raw_on_explicit_deterministic_extract",
+  "generated_by": "deterministic_research_data_v2",
+  "limits": {
+    "ai_packet_max_bytes": 1000000,
+    "run_summary_max_bytes": 5000000,
+    "sequence_preview_items": 16
+  },
+  "raw_index": {
+    "path": "DATA/runs_index.json",
+    "run_count": 20,
+    "sha256": "c6d2ea5de2c55c963b208dbfd18ec683da9c5a87bc42fdc0768bf9af48899797"
+  },
+  "run_count": 20,
+  "run_preview": {
+    "_projection": "bounded_sequence",
+    "head": [
+      {
+        "_raw_artifact": {
+          "format": "json.gz",
+          "path": "DATA/raw/run-0000-sequential_three_task_screen-seed-101.json.gz",
+          "sha256": "8586b2bd4f373efd795eaf21a860af7cc7cd4e72ed82ebd96a976b9941a69ef8",
+          "size_bytes": 376,
+          "uncompressed_bytes": 477
+        },
+        "condition": "sequential_three_task_screen",
+        "experiment_id": "EXP-BATCH-20260914074039-43",
+        "metrics": {
+          "interpretation_limit": "independent task instances; precursor screen, not yet shared-network catastrophic-forgetting proof",
+          "retained_success_fraction": 1.0,
+          "task_final_mean_weights": [
+            0.5987452014839845,
+            0.5987452014839845,
+            0.5987452014839845
+          ],
+          "task_successes": [
+            true,
+            true,
+            true
+          ],
+          "weight_range": 0.0
+        },
+        "runtime_error": null,
+        "seed": 101,
+        "state_digest_after": "",
+        "state_digest_before": ""
+      },
+      {
+        "_raw_artifact": {
+          "format": "json.gz",
+          "path": "DATA/raw/run-0001-sequential_three_task_screen-seed-102.json.gz",
+          "sha256": "9f37bfd1d9a8d38a0fdfae5d799b7a20938527e272a0a132bfae04afd8bfdb44",
+          "size_bytes": 376,
+          "uncompressed_bytes": 477
+        },
+        "condition": "sequential_three_task_screen",
+        "experiment_id": "EXP-BATCH-20260914074039-43",
+        "metrics": {
+          "interpretation_limit": "independent task instances; precursor screen, not yet shared-network catastrophic-forgetting proof",
+          "retained_success_fraction": 1.0,
+          "task_final_mean_weights": [
+            0.5987452014839845,
+            0.5987452014839845,
+            0.5987452014839845
+          ],
+          "task_successes": [
+            true,
+            true,
+            true
+          ],
+          "weight_range": 0.0
+        },
+        "runtime_error": null,
+        "seed": 102,
+        "state_digest_after": "",
+        "state_digest_before": ""
+      },
+      {
+        "_raw_artifact": {
+          "format": "json.gz",
+          "path": "DATA/raw/run-0002-sequential_three_task_screen-seed-103.json.gz",
+          "sha256": "6e3d78fd49ad8d69cd3a4f4f682d49d55d4252376110fd5c56ef2f20f1e86c45",
+          "size_bytes": 376,
+          "uncompressed_bytes": 477
+        },
+        "condition": "sequential_three_task_screen",
+        "experiment_id": "EXP-BATCH-20260914074039-43",
+        "metrics": {
+          "interpretation_limit": "independent task instances; precursor screen, not yet shared-network catastrophic-forgetting proof",
+          "retained_success_fraction": 1.0,
+          "task_final_mean_weights": [
+            0.5987452014839845,
+            0.5987452014839845,
+            0.5987452014839845
+          ],
+          "task_successes": [
+            true,
+            true,
+            true
+          ],
+          "weight_range": 0.0
+        },
+        "runtime_error": null,
+        "seed": 103,
+        "state_digest_after": "",
+        "state_digest_before": ""
+      },
+      {
+        "_raw_artifact": {
+          "format": "json.gz",
+          "path": "DATA/raw/run-0003-sequential_three_task_screen-seed-104.json.gz",
+          "sha256": "e9dcae21cebf492d7ac106c0f66e27f822fb99111d19d4bd01cf02ac707ae007",
+          "size_bytes": 376,
+          "uncompressed_bytes": 477
+        },
+        "condition": "sequential_three_task_screen",
+        "experiment_id": "EXP-BATCH-20260914074039-43",
+        "metrics": {
+          "interpretation_limit": "independent task instances; precursor screen, not yet shared-network catastrophic-forgetting proof",
+          "retained_success_fraction": 1.0,
+          "task_final_mean_weights": [
+            0.5987452014839845,
+            0.5987452014839845,
+            0.5987452014839845
+          ],
+          "task_successes": [
+            true,
+            true,
+            true
+          ],
+          "weight_range": 0.0
+        },
+        "runtime_error": null,
+        "seed": 104,
+        "state_digest_after": "",
+        "state_digest_before": ""
+      },
+      {
+        "_raw_artifact": {
+          "format": "json.gz",
+          "path": "DATA/raw/run-0004-sequential_three_task_screen-seed-105.json.gz",
+          "sha256": "a6d2ed3b49293273a65c506656d012c487d4a305bfa91e29b55c9a70d97e431f",
+          "size_bytes": 376,
+          "uncompressed_bytes": 477
+        },
+        "condition": "sequential_three_task_screen",
+        "experiment_id": "EXP-BATCH-20260914074039-43",
+        "metrics": {
+          "interpretation_limit": "independent task instances; precursor screen, not yet shared-network catastrophic-forgetting proof",
+          "retained_success_fraction": 1.0,
+          "task_final_mean_weights": [
+            0.5987452014839845,
+            0.5987452014839845,
+            0.5987452014839845
+          ],
+          "task_successes": [
+            true,
+            true,
+            true
+          ],
+          "weight_range": 0.0
+        },
+        "runtime_error": null,
+        "seed": 105,
+        "state_digest_after": "",
+        "state_digest_before": ""
+      },
+      {
+        "_raw_artifact": {
+          "format": "json.gz",
+          "path": "DATA/raw/run-0005-sequential_three_task_screen-seed-106.json.gz",
+          "sha256": "a8352d7b1bbedf7ae0829b83a6f55c3852fd289fec2598e0e845c293db43f186",
+          "size_bytes": 376,
+          "uncompressed_bytes": 477
+        },
+        "condition": "sequential_three_task_screen",
+        "experiment_id": "EXP-BATCH-20260914074039-43",
+        "metrics": {
+          "interpretation_limit": "independent task instances; precursor screen, not yet shared-network catastrophic-forgetting proof",
+          "retained_success_fraction": 1.0,
+          "task_final_mean_weights": [
+            0.5987452014839845,
+            0.5987452014839845,
+            0.5987452014839845
+          ],
+          "task_successes": [
+            true,
+            true,
+            true
+          ],
+          "weight_range": 0.0
+        },
+        "runtime_error": null,
+        "seed": 106,
+        "state_digest_after": "",
+        "state_digest_before": ""
+      },
+      {
+        "_raw_artifact": {
+          "format": "json.gz",
+          "path": "DATA/raw/run-0006-sequential_three_task_screen-seed-107.json.gz",
+          "sha256": "5610daa2d84e59b14e0524e8c354eefa31ef9bc2d24fafbd091064867562a7fe",
+          "size_bytes": 376,
+          "uncompressed_bytes": 477
+        },
+        "condition": "sequential_three_task_screen",
+        "experiment_id": "EXP-BATCH-20260914074039-43",
+        "metrics": {
+          "interpretation_limit": "independent task instances; precursor screen, not yet shared-network catastrophic-forgetting proof",
+          "retained_success_fraction": 1.0,
+          "task_final_mean_weights": [
+            0.5987452014839845,
+            0.5987452014839845,
+            0.5987452014839845
+          ],
+          "task_successes": [
+            true,
+            true,
+            true
+          ],
+          "weight_range": 0.0
+        },
+        "runtime_error": null,
+        "seed": 107,
+        "state_digest_after": "",
+        "state_digest_before": ""
+      },
+      {
+        "_raw_artifact": {
+          "format": "json.gz",
+          "path": "DATA/raw/run-0007-sequential_three_task_screen-seed-108.json.gz",
+          "sha256": "11a06a2460cc37863899a9e47e6326f147870fa5787d5f17b495b9b20bede579",
+          "size_bytes": 376,
+          "uncompressed_bytes": 477
+        },
+        "condition": "sequential_three_task_screen",
+        "experiment_id": "EXP-BATCH-20260914074039-43",
+        "metrics": {
+          "interpretation_limit": "independent task instances; precursor screen, not yet shared-network catastrophic-forgetting proof",
+          "retained_success_fraction": 1.0,
+          "task_final_mean_weights": [
+            0.5987452014839845,
+            0.5987452014839845,
+            0.5987452014839845
+          ],
+          "task_successes": [
+            true,
+            true,
+            true
+          ],
+          "weight_range": 0.0
+        },
+        "runtime_error": null,
+        "seed": 108,
+        "state_digest_after": "",
+        "state_digest_before": ""
+      }
+    ],
+    "item_count": 20,
+    "tail": [
+      {
+        "_raw_artifact": {
+          "format": "json.gz",
+          "path": "DATA/raw/run-0012-sequential_three_task_screen-seed-113.json.gz",
+          "sha256": "07cfb795ca2ae291c3626f830d40220733124470de020d3938c6087e3876f3d5",
+          "size_bytes": 376,
+          "uncompressed_bytes": 477
+        },
+        "condition": "sequential_three_task_screen",
+        "experiment_id": "EXP-BATCH-20260914074039-43",
+        "metrics": {
+          "interpretation_limit": "independent task instances; precursor screen, not yet shared-network catastrophic-forgetting proof",
+          "retained_success_fraction": 1.0,
+          "task_final_mean_weights": [
+            0.5987452014839845,
+            0.5987452014839845,
+            0.5987452014839845
+          ],
+          "task_successes": [
+            true,
+            true,
+            true
+          ],
+          "weight_range": 0.0
+        },
+        "runtime_error": null,
+        "seed": 113,
+        "state_digest_after": "",
+        "state_digest_before": ""
+      },
+      {
+        "_raw_artifact": {
+          "format": "json.gz",
+          "path": "DATA/raw/run-0013-sequential_three_task_screen-seed-114.json.gz",
+          "sha256": "7c1807c200d85ef3f2341f580509992db514f1cd346cd38edf52b9e3d18380a0",
+          "size_bytes": 376,
+          "uncompressed_bytes": 477
+        },
+        "condition": "sequential_three_task_screen",
+        "experiment_id": "EXP-BATCH-20260914074039-43",
+        "metrics": {
+          "interpretation_limit": "independent task instances; precursor screen, not yet shared-network catastrophic-forgetting proof",
+          "retained_success_fraction": 1.0,
+          "task_final_mean_weights": [
+            0.5987452014839845,
+            0.5987452014839845,
+            0.5987452014839845
+          ],
+          "task_successes": [
+            true,
+            true,
+            true
+          ],
+          "weight_range": 0.0
+        },
+        "runtime_error": null,
+        "seed": 114,
+        "state_digest_after": "",
+        "state_digest_before": ""
+      },
+      {
+        "_raw_artifact": {
+          "format": "json.gz",
+          "path": "DATA/raw/run-0014-sequential_three_task_screen-seed-115.json.gz",
+          "sha256": "3c3d61fc71838f99277a8e5fd73877dae9825fff0086b0efe2bd6e6deee0e3b5",
+          "size_bytes": 376,
+          "uncompressed_bytes": 477
+        },
+        "condition": "sequential_three_task_screen",
+        "experiment_id": "EXP-BATCH-20260914074039-43",
+        "metrics": {
+          "interpretation_limit": "independent task instances; precursor screen, not yet shared-network catastrophic-forgetting proof",
+          "retained_success_fraction": 1.0,
+          "task_final_mean_weights": [
+            0.5987452014839845,
+            0.5987452014839845,
+            0.5987452014839845
+          ],
+          "task_successes": [
+            true,
+            true,
+            true
+          ],
+          "weight_range": 0.0
+        },
+        "runtime_error": null,
+        "seed": 115,
+        "state_digest_after": "",
+        "state_digest_before": ""
+      },
+      {
+        "_raw_artifact": {
+          "format": "json.gz",
+          "path": "DATA/raw/run-0015-sequential_three_task_screen-seed-116.json.gz",
+          "sha256": "51d09e708a229af3f66c0beb23943ed2957680e7c92681b2f422ce1b1a77bebe",
+          "size_bytes": 376,
+          "uncompressed_bytes": 477
+        },
+        "condition": "sequential_three_task_screen",
+        "experiment_id": "EXP-BATCH-20260914074039-43",
+        "metrics": {
+          "interpretation_limit": "independent task instances; precursor screen, not yet shared-network catastrophic-forgetting proof",
+          "retained_success_fraction": 1.0,
+          "task_final_mean_weights": [
+            0.5987452014839845,
+            0.5987452014839845,
+            0.5987452014839845
+          ],
+          "task_successes": [
+            true,
+            true,
+            true
+          ],
+          "weight_range": 0.0
+        },
+        "runtime_error": null,
+        "seed": 116,
+        "state_digest_after": "",
+        "state_digest_before": ""
+      },
+      {
+        "_raw_artifact": {
+          "format": "json.gz",
+          "path": "DATA/raw/run-0016-sequential_three_task_screen-seed-117.json.gz",
+          "sha256": "53ead19b7fa48c2f3635f89f612866dfddf1dcb6ef283ed044e1359f763e76c5",
+          "size_bytes": 376,
+          "uncompressed_bytes": 477
+        },
+        "condition": "sequential_three_task_screen",
+        "experiment_id": "EXP-BATCH-20260914074039-43",
+        "metrics": {
+          "interpretation_limit": "independent task instances; precursor screen, not yet shared-network catastrophic-forgetting proof",
+          "retained_success_fraction": 1.0,
+          "task_final_mean_weights": [
+            0.5987452014839845,
+            0.5987452014839845,
+            0.5987452014839845
+          ],
+          "task_successes": [
+            true,
+            true,
+            true
+          ],
+          "weight_range": 0.0
+        },
+        "runtime_error": null,
+        "seed": 117,
+        "state_digest_after": "",
+        "state_digest_before": ""
+      },
+      {
+        "_raw_artifact": {
+          "format": "json.gz",
+          "path": "DATA/raw/run-0017-sequential_three_task_screen-seed-118.json.gz",
+          "sha256": "2b5ceff3d1f5b1c8c699d5e51ddbbcd0ae4630bebbaca68a6ad5080f69450182",
+          "size_bytes": 376,
+          "uncompressed_bytes": 477
+        },
+        "condition": "sequential_three_task_screen",
+        "experiment_id": "EXP-BATCH-20260914074039-43",
+        "metrics": {
+          "interpretation_limit": "independent task instances; precursor screen, not yet shared-network catastrophic-forgetting proof",
+          "retained_success_fraction": 1.0,
+          "task_final_mean_weights": [
+            0.5987452014839845,
+            0.5987452014839845,
+            0.5987452014839845
+          ],
+          "task_successes": [
+            true,
+            true,
+            true
+          ],
+          "weight_range": 0.0
+        },
+        "runtime_error": null,
+        "seed": 118,
+        "state_digest_after": "",
+        "state_digest_before": ""
+      },
+      {
+        "_raw_artifact": {
+          "format": "json.gz",
+          "path": "DATA/raw/run-0018-sequential_three_task_screen-seed-119.json.gz",
+          "sha256": "268ea9f499b9eb466b58a694888d06800f56943f913f89fdea95b46ed1ea2178",
+          "size_bytes": 376,
+          "uncompressed_bytes": 477
+        },
+        "condition": "sequential_three_task_screen",
+        "experiment_id": "EXP-BATCH-20260914074039-43",
+        "metrics": {
+          "interpretation_limit": "independent task instances; precursor screen, not yet shared-network catastrophic-forgetting proof",
+          "retained_success_fraction": 1.0,
+          "task_final_mean_weights": [
+            0.5987452014839845,
+            0.5987452014839845,
+            0.5987452014839845
+          ],
+          "task_successes": [
+            true,
+            true,
+            true
+          ],
+          "weight_range": 0.0
+        },
+        "runtime_error": null,
+        "seed": 119,
+        "state_digest_after": "",
+        "state_digest_before": ""
+      },
+      {
+        "_raw_artifact": {
+          "format": "json.gz",
+          "path": "DATA/raw/run-0019-sequential_three_task_screen-seed-120.json.gz",
+          "sha256": "21e9ebedc02fc66f73e0fda86e7a9a8e4f4640e1280d10a9e375d4701c518ae5",
+          "size_bytes": 376,
+          "uncompressed_bytes": 477
+        },
+        "condition": "sequential_three_task_screen",
+        "experiment_id": "EXP-BATCH-20260914074039-43",
+        "metrics": {
+          "interpretation_limit": "independent task instances; precursor screen, not yet shared-network catastrophic-forgetting proof",
+          "retained_success_fraction": 1.0,
+          "task_final_mean_weights": [
+            0.5987452014839845,
+            0.5987452014839845,
+            0.5987452014839845
+          ],
+          "task_successes": [
+            true,
+            true,
+            true
+          ],
+          "weight_range": 0.0
+        },
+        "runtime_error": null,
+        "seed": 120,
+        "state_digest_after": "",
+        "state_digest_before": ""
+      }
+    ]
+  },
+  "schema_version": "2.0",
+  "statistics": {
+    "conditions": {
+      "sequential_three_task_screen": {
+        "metrics": {
+          "retained_success_fraction": {
+            "max": 1.0,
+            "mean": 1.0,
+            "median": 1.0,
+            "min": 1.0,
+            "n": 20,
+            "std": 0.0
+          },
+          "weight_range": {
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "min": 0.0,
+            "n": 20,
+            "std": 0.0
+          }
+        },
+        "run_count": 20,
+        "seeds": [
+          101,
+          102,
+          103,
+          104,
+          105,
+          106,
+          107,
+          108,
+          109,
+          110,
+          111,
+          112,
+          113,
+          114,
+          115,
+          116,
+          117,
+          118,
+          119,
+          120
+        ]
+      }
+    },
+    "formulas": {
+      "difference": "Delta_x = mean(x_B) - mean(x_A)",
+      "inter_spike_interval": "ISI_i = t_(i+1) - t_i",
+      "mean": "mean(x) = (1/n) * sum_i x_i",
+      "population_std": "sigma = sqrt((1/n) * sum_i (x_i - mean(x))^2)",
+      "ratio": "R_x = mean(x_B) / mean(x_A), defined only when mean(x_A) != 0"
+    },
+    "run_count": 20,
+    "schema_version": "2.0"
+  }
+}

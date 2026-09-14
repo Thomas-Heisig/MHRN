@@ -1,0 +1,925 @@
+{
+  "report_id": "AIRR-2026-0001",
+  "experiment_id": "EXP-BATCH-20260914074039-05",
+  "research_question_id": "RQ-SNN-004",
+  "hypothesis_ids": [
+    "H-SNN-004-A"
+  ],
+  "claim_ids": [
+    "CLAIM-SNN-001"
+  ],
+  "generated_at": "2026-09-14T11:19:40.491416+00:00",
+  "report_schema_version": "1.0",
+  "report_protocol_version": "PROTOCOL-AIRR-001",
+  "generated_by": "artificial_intelligence",
+  "ai_generated": true,
+  "scientific_evidence": false,
+  "human_review_required": true,
+  "status": "review_pending",
+  "content": {
+    "identification": {
+      "experiment": "EXP-BATCH-20260914074039-05",
+      "research_question": "Wie verändert STDP die synaptische Gewichtsmatrix?",
+      "hypotheses": [
+        {
+          "id": "H-SNN-004-A",
+          "research_question": "RQ-SNN-004",
+          "hypothesis": "STDP führt zu einer meßbaren asymmetrischen Verschiebung der synaptischen Gewichtsverteilung.",
+          "status": "untested",
+          "evidence": [],
+          "created": "2026-08-23",
+          "updated": "2026-08-23"
+        }
+      ],
+      "date": "2026-09-14",
+      "source_sha": "8e096931a779b2d2eb4d010eb20154150b07bbf2"
+    },
+    "executive_summary": "Provider output could not be validated as structured analysis; no scientific interpretation is inferred.",
+    "research_question": {
+      "id": "RQ-SNN-004",
+      "domain": "Spiking Neural Networks",
+      "question": "Wie verändert STDP die synaptische Gewichtsmatrix?",
+      "relevance": "Zentrale Fragestellung für plastische Netzwerke.",
+      "literature": [
+        "SRC-SONG-ABBOTT-2000",
+        "SRC-BI-POO-1998"
+      ],
+      "hypotheses": [
+        "H-SNN-004-A"
+      ],
+      "evidence": [],
+      "status": "open",
+      "answer": {
+        "current": null,
+        "confidence": "none",
+        "limitations": null
+      },
+      "created": "2026-08-23",
+      "updated": "2026-08-23"
+    },
+    "experimental_design": {
+      "experiment_id": "EXP-BATCH-20260914074039-05",
+      "research_question": "RQ-SNN-004",
+      "hypothesis": "H-SNN-004-A",
+      "title": "Experiment workflow: stdp_weight_matrix_v1",
+      "conditions": "Registered protocol conditions",
+      "ticks": 1000,
+      "ticks_contract": "minimum requested observation window",
+      "seeds": [
+        101,
+        102,
+        103
+      ],
+      "protocol": "stdp_weight_matrix_v1",
+      "resolved_runner": "run_stdp",
+      "tick_validation": {
+        "status": "NOT_APPLICABLE",
+        "mode": "protocol_defined_internal_trials",
+        "requested_ticks": 1000
+      },
+      "notes": "",
+      "execution": "registered experiment_suite runner",
+      "assistant_policy": "AI is post-hoc interpretation only.",
+      "epistemic_layers": {
+        "ui_state": "operator/dashboard progress only; not a scientific result",
+        "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+        "evid": "not_created; requires semantic validation, clean freeze and human review",
+        "interpretation": "post-hoc AI or human interpretation; never execution input"
+      }
+    },
+    "data_basis": {
+      "data": {
+        "ai_input_policy": "compact_only_raw_on_explicit_deterministic_extract",
+        "generated_by": "deterministic_research_data_v2",
+        "limits": {
+          "ai_packet_max_bytes": 1000000,
+          "run_summary_max_bytes": 5000000,
+          "sequence_preview_items": 16
+        },
+        "raw_index": {
+          "path": "DATA/runs_index.json",
+          "run_count": 3,
+          "sha256": "e64f2c649e36b71023f34d28ab62c4a8dfa595b5b42fe0c443bdf4d259703498"
+        },
+        "run_count": 3,
+        "run_preview": [
+          {
+            "_raw_artifact": {
+              "format": "json.gz",
+              "path": "DATA/raw/run-0000-productive_reward_stdp-seed-101.json.gz",
+              "sha256": "273eadff0004cebbc8fe9f8790dd1da1a8544edee514d42bb65ab790ad2fe446",
+              "size_bytes": 512,
+              "uncompressed_bytes": 916
+            },
+            "condition": "productive_reward_stdp",
+            "experiment_id": "EXP-BATCH-20260914074039-05",
+            "metrics": {
+              "baseline_probes_executed": 1,
+              "baseline_target_peak_v": -65.0,
+              "baseline_target_spike_tick": null,
+              "baseline_target_spiked": false,
+              "condition": "learning_on",
+              "final_mean_weight": 0.517280469842843,
+              "holdout_episodes_executed": 0,
+              "holdout_trial_count": 4,
+              "initial_mean_weight": 0.05,
+              "mean_weight_delta": 0.46728046984284305,
+              "partition_counts_are_declared": true,
+              "post_training_probes_executed": 1,
+              "presynaptic_neurons": 48,
+              "protocol_id": "PROTOCOL-STDP-0002",
+              "protocol_version": 1,
+              "reward_weight_updates": 576,
+              "rewards_applied": 12,
+              "rewards_received": 12,
+              "train_trial_count": 12,
+              "trained_target_peak_v": 26.239795413974708,
+              "trained_target_spike_tick": 4,
+              "trained_target_spiked": true,
+              "training_trials": 20,
+              "validation_episodes_executed": 0,
+              "validation_trial_count": 4
+            },
+            "runtime_error": null,
+            "seed": 101,
+            "state_digest_after": "",
+            "state_digest_before": ""
+          },
+          {
+            "_raw_artifact": {
+              "format": "json.gz",
+              "path": "DATA/raw/run-0001-productive_reward_stdp-seed-102.json.gz",
+              "sha256": "b46a774a116777e19a9ebf38af776e7d1edf1907543725c643475a2af5fa766e",
+              "size_bytes": 512,
+              "uncompressed_bytes": 916
+            },
+            "condition": "productive_reward_stdp",
+            "experiment_id": "EXP-BATCH-20260914074039-05",
+            "metrics": {
+              "baseline_probes_executed": 1,
+              "baseline_target_peak_v": -65.0,
+              "baseline_target_spike_tick": null,
+              "baseline_target_spiked": false,
+              "condition": "learning_on",
+              "final_mean_weight": 0.517280469842843,
+              "holdout_episodes_executed": 0,
+              "holdout_trial_count": 4,
+              "initial_mean_weight": 0.05,
+              "mean_weight_delta": 0.46728046984284305,
+              "partition_counts_are_declared": true,
+              "post_training_probes_executed": 1,
+              "presynaptic_neurons": 48,
+              "protocol_id": "PROTOCOL-STDP-0002",
+              "protocol_version": 1,
+              "reward_weight_updates": 576,
+              "rewards_applied": 12,
+              "rewards_received": 12,
+              "train_trial_count": 12,
+              "trained_target_peak_v": 26.239795413974708,
+              "trained_target_spike_tick": 4,
+              "trained_target_spiked": true,
+              "training_trials": 20,
+              "validation_episodes_executed": 0,
+              "validation_trial_count": 4
+            },
+            "runtime_error": null,
+            "seed": 102,
+            "state_digest_after": "",
+            "state_digest_before": ""
+          },
+          {
+            "_raw_artifact": {
+              "format": "json.gz",
+              "path": "DATA/raw/run-0002-productive_reward_stdp-seed-103.json.gz",
+              "sha256": "4193df86689f37ea13e968c587c3d217543ba149e76430971966e5c29c8e5fad",
+              "size_bytes": 513,
+              "uncompressed_bytes": 916
+            },
+            "condition": "productive_reward_stdp",
+            "experiment_id": "EXP-BATCH-20260914074039-05",
+            "metrics": {
+              "baseline_probes_executed": 1,
+              "baseline_target_peak_v": -65.0,
+              "baseline_target_spike_tick": null,
+              "baseline_target_spiked": false,
+              "condition": "learning_on",
+              "final_mean_weight": 0.517280469842843,
+              "holdout_episodes_executed": 0,
+              "holdout_trial_count": 4,
+              "initial_mean_weight": 0.05,
+              "mean_weight_delta": 0.46728046984284305,
+              "partition_counts_are_declared": true,
+              "post_training_probes_executed": 1,
+              "presynaptic_neurons": 48,
+              "protocol_id": "PROTOCOL-STDP-0002",
+              "protocol_version": 1,
+              "reward_weight_updates": 576,
+              "rewards_applied": 12,
+              "rewards_received": 12,
+              "train_trial_count": 12,
+              "trained_target_peak_v": 26.239795413974708,
+              "trained_target_spike_tick": 4,
+              "trained_target_spiked": true,
+              "training_trials": 20,
+              "validation_episodes_executed": 0,
+              "validation_trial_count": 4
+            },
+            "runtime_error": null,
+            "seed": 103,
+            "state_digest_after": "",
+            "state_digest_before": ""
+          }
+        ],
+        "schema_version": "2.0",
+        "statistics": {
+          "conditions": {
+            "productive_reward_stdp": {
+              "metrics": {
+                "baseline_probes_executed": {
+                  "max": 1.0,
+                  "mean": 1.0,
+                  "median": 1.0,
+                  "min": 1.0,
+                  "n": 3,
+                  "std": 0.0
+                },
+                "baseline_target_peak_v": {
+                  "max": -65.0,
+                  "mean": -65.0,
+                  "median": -65.0,
+                  "min": -65.0,
+                  "n": 3,
+                  "std": 0.0
+                },
+                "final_mean_weight": {
+                  "max": 0.517280469842843,
+                  "mean": 0.517280469842843,
+                  "median": 0.517280469842843,
+                  "min": 0.517280469842843,
+                  "n": 3,
+                  "std": 0.0
+                },
+                "holdout_episodes_executed": {
+                  "max": 0.0,
+                  "mean": 0.0,
+                  "median": 0.0,
+                  "min": 0.0,
+                  "n": 3,
+                  "std": 0.0
+                },
+                "holdout_trial_count": {
+                  "max": 4.0,
+                  "mean": 4.0,
+                  "median": 4.0,
+                  "min": 4.0,
+                  "n": 3,
+                  "std": 0.0
+                },
+                "initial_mean_weight": {
+                  "max": 0.05,
+                  "mean": 0.05000000000000001,
+                  "median": 0.05,
+                  "min": 0.05,
+                  "n": 3,
+                  "std": 0.0
+                },
+                "mean_weight_delta": {
+                  "max": 0.46728046984284305,
+                  "mean": 0.46728046984284305,
+                  "median": 0.46728046984284305,
+                  "min": 0.46728046984284305,
+                  "n": 3,
+                  "std": 0.0
+                },
+                "post_training_probes_executed": {
+                  "max": 1.0,
+                  "mean": 1.0,
+                  "median": 1.0,
+                  "min": 1.0,
+                  "n": 3,
+                  "std": 0.0
+                },
+                "presynaptic_neurons": {
+                  "max": 48.0,
+                  "mean": 48.0,
+                  "median": 48.0,
+                  "min": 48.0,
+                  "n": 3,
+                  "std": 0.0
+                },
+                "protocol_version": {
+                  "max": 1.0,
+                  "mean": 1.0,
+                  "median": 1.0,
+                  "min": 1.0,
+                  "n": 3,
+                  "std": 0.0
+                },
+                "reward_weight_updates": {
+                  "max": 576.0,
+                  "mean": 576.0,
+                  "median": 576.0,
+                  "min": 576.0,
+                  "n": 3,
+                  "std": 0.0
+                },
+                "rewards_applied": {
+                  "max": 12.0,
+                  "mean": 12.0,
+                  "median": 12.0,
+                  "min": 12.0,
+                  "n": 3,
+                  "std": 0.0
+                },
+                "rewards_received": {
+                  "max": 12.0,
+                  "mean": 12.0,
+                  "median": 12.0,
+                  "min": 12.0,
+                  "n": 3,
+                  "std": 0.0
+                },
+                "train_trial_count": {
+                  "max": 12.0,
+                  "mean": 12.0,
+                  "median": 12.0,
+                  "min": 12.0,
+                  "n": 3,
+                  "std": 0.0
+                },
+                "trained_target_peak_v": {
+                  "max": 26.239795413974708,
+                  "mean": 26.239795413974708,
+                  "median": 26.239795413974708,
+                  "min": 26.239795413974708,
+                  "n": 3,
+                  "std": 0.0
+                },
+                "trained_target_spike_tick": {
+                  "max": 4.0,
+                  "mean": 4.0,
+                  "median": 4.0,
+                  "min": 4.0,
+                  "n": 3,
+                  "std": 0.0
+                },
+                "training_trials": {
+                  "max": 20.0,
+                  "mean": 20.0,
+                  "median": 20.0,
+                  "min": 20.0,
+                  "n": 3,
+                  "std": 0.0
+                },
+                "validation_episodes_executed": {
+                  "max": 0.0,
+                  "mean": 0.0,
+                  "median": 0.0,
+                  "min": 0.0,
+                  "n": 3,
+                  "std": 0.0
+                },
+                "validation_trial_count": {
+                  "max": 4.0,
+                  "mean": 4.0,
+                  "median": 4.0,
+                  "min": 4.0,
+                  "n": 3,
+                  "std": 0.0
+                }
+              },
+              "run_count": 3,
+              "seeds": [
+                101,
+                102,
+                103
+              ]
+            }
+          },
+          "formulas": {
+            "difference": "Delta_x = mean(x_B) - mean(x_A)",
+            "inter_spike_interval": "ISI_i = t_(i+1) - t_i",
+            "mean": "mean(x) = (1/n) * sum_i x_i",
+            "population_std": "sigma = sqrt((1/n) * sum_i (x_i - mean(x))^2)",
+            "ratio": "R_x = mean(x_B) / mean(x_A), defined only when mean(x_A) != 0"
+          },
+          "generated_by": "deterministic_statistics_engine",
+          "run_count": 3,
+          "schema_version": "2.0"
+        }
+      },
+      "evid": [],
+      "literature": [
+        {
+          "source_id": "SRC-SONG-ABBOTT-2000",
+          "authors": [
+            "Sen Song",
+            "Kenneth D. Miller",
+            "Larry F. Abbott"
+          ],
+          "title": "Competitive Hebbian learning through spike-timing-dependent synaptic plasticity",
+          "year": 2000,
+          "journal": "Nature Neuroscience",
+          "doi": "10.1038/78829",
+          "topic": [
+            "stdp",
+            "plasticity"
+          ],
+          "claims": [
+            "STDP can produce competitive synaptic modification."
+          ],
+          "brain5d_questions": [
+            "RQ-SNN-004",
+            "RQ-SNN-005",
+            "RQ-STDP-001",
+            "RQ-STDP-002"
+          ],
+          "brain5d_relevance": "Fundamentale STDP-Referenz für Timing-abhängige Plastizität."
+        },
+        {
+          "source_id": "SRC-BI-POO-1998",
+          "authors": [
+            "Guo-Qiang Bi",
+            "Mu-ming Poo"
+          ],
+          "title": "Synaptic Modifications in Cultured Hippocampal Neurons: Dependence on Spike Timing, Synaptic Strength, and Postsynaptic Cell Type",
+          "year": 1998,
+          "journal": "Journal of Neuroscience",
+          "doi": "10.1523/JNEUROSCI.18-24-10464.1998",
+          "topic": [
+            "stdp",
+            "plasticity"
+          ],
+          "claims": [
+            "Spike timing determines the direction and magnitude of synaptic modification."
+          ],
+          "brain5d_questions": [
+            "RQ-STDP-001"
+          ],
+          "brain5d_relevance": "Biologische Evidenz für STDP-Mechanismen."
+        }
+      ]
+    },
+    "quantitative_results": {
+      "conditions": {
+        "productive_reward_stdp": {
+          "metrics": {
+            "baseline_probes_executed": {
+              "max": 1.0,
+              "mean": 1.0,
+              "median": 1.0,
+              "min": 1.0,
+              "n": 3,
+              "std": 0.0
+            },
+            "baseline_target_peak_v": {
+              "max": -65.0,
+              "mean": -65.0,
+              "median": -65.0,
+              "min": -65.0,
+              "n": 3,
+              "std": 0.0
+            },
+            "final_mean_weight": {
+              "max": 0.517280469842843,
+              "mean": 0.517280469842843,
+              "median": 0.517280469842843,
+              "min": 0.517280469842843,
+              "n": 3,
+              "std": 0.0
+            },
+            "holdout_episodes_executed": {
+              "max": 0.0,
+              "mean": 0.0,
+              "median": 0.0,
+              "min": 0.0,
+              "n": 3,
+              "std": 0.0
+            },
+            "holdout_trial_count": {
+              "max": 4.0,
+              "mean": 4.0,
+              "median": 4.0,
+              "min": 4.0,
+              "n": 3,
+              "std": 0.0
+            },
+            "initial_mean_weight": {
+              "max": 0.05,
+              "mean": 0.05000000000000001,
+              "median": 0.05,
+              "min": 0.05,
+              "n": 3,
+              "std": 0.0
+            },
+            "mean_weight_delta": {
+              "max": 0.46728046984284305,
+              "mean": 0.46728046984284305,
+              "median": 0.46728046984284305,
+              "min": 0.46728046984284305,
+              "n": 3,
+              "std": 0.0
+            },
+            "post_training_probes_executed": {
+              "max": 1.0,
+              "mean": 1.0,
+              "median": 1.0,
+              "min": 1.0,
+              "n": 3,
+              "std": 0.0
+            },
+            "presynaptic_neurons": {
+              "max": 48.0,
+              "mean": 48.0,
+              "median": 48.0,
+              "min": 48.0,
+              "n": 3,
+              "std": 0.0
+            },
+            "protocol_version": {
+              "max": 1.0,
+              "mean": 1.0,
+              "median": 1.0,
+              "min": 1.0,
+              "n": 3,
+              "std": 0.0
+            },
+            "reward_weight_updates": {
+              "max": 576.0,
+              "mean": 576.0,
+              "median": 576.0,
+              "min": 576.0,
+              "n": 3,
+              "std": 0.0
+            },
+            "rewards_applied": {
+              "max": 12.0,
+              "mean": 12.0,
+              "median": 12.0,
+              "min": 12.0,
+              "n": 3,
+              "std": 0.0
+            },
+            "rewards_received": {
+              "max": 12.0,
+              "mean": 12.0,
+              "median": 12.0,
+              "min": 12.0,
+              "n": 3,
+              "std": 0.0
+            },
+            "train_trial_count": {
+              "max": 12.0,
+              "mean": 12.0,
+              "median": 12.0,
+              "min": 12.0,
+              "n": 3,
+              "std": 0.0
+            },
+            "trained_target_peak_v": {
+              "max": 26.239795413974708,
+              "mean": 26.239795413974708,
+              "median": 26.239795413974708,
+              "min": 26.239795413974708,
+              "n": 3,
+              "std": 0.0
+            },
+            "trained_target_spike_tick": {
+              "max": 4.0,
+              "mean": 4.0,
+              "median": 4.0,
+              "min": 4.0,
+              "n": 3,
+              "std": 0.0
+            },
+            "training_trials": {
+              "max": 20.0,
+              "mean": 20.0,
+              "median": 20.0,
+              "min": 20.0,
+              "n": 3,
+              "std": 0.0
+            },
+            "validation_episodes_executed": {
+              "max": 0.0,
+              "mean": 0.0,
+              "median": 0.0,
+              "min": 0.0,
+              "n": 3,
+              "std": 0.0
+            },
+            "validation_trial_count": {
+              "max": 4.0,
+              "mean": 4.0,
+              "median": 4.0,
+              "min": 4.0,
+              "n": 3,
+              "std": 0.0
+            }
+          },
+          "run_count": 3,
+          "seeds": [
+            101,
+            102,
+            103
+          ]
+        }
+      },
+      "formulas": {
+        "difference": "Delta_x = mean(x_B) - mean(x_A)",
+        "inter_spike_interval": "ISI_i = t_(i+1) - t_i",
+        "mean": "mean(x) = (1/n) * sum_i x_i",
+        "population_std": "sigma = sqrt((1/n) * sum_i (x_i - mean(x))^2)",
+        "ratio": "R_x = mean(x_B) / mean(x_A), defined only when mean(x_A) != 0"
+      },
+      "generated_by": "deterministic_statistics_engine",
+      "run_count": 3,
+      "schema_version": "2.0"
+    },
+    "observations": [],
+    "interpretation": {
+      "assessment": "Provider output could not be validated as structured analysis; no scientific interpretation is inferred.",
+      "observations": [],
+      "methodological_concerns": [
+        "Initial structured output invalid: ValueError: Ollama output must contain a JSON object.",
+        "Repair attempt failed: ValueError: Ollama output must contain a JSON object."
+      ],
+      "alternative_explanations": [],
+      "recommended_experiments": [],
+      "requested_evidence": [
+        "Repeat provider analysis from the same immutable research packet."
+      ],
+      "effect_direction": "not_assessed",
+      "confidence": 0.0
+    },
+    "methodological_critique": [
+      "Die Experimente wurden ohne Kontrollgruppe durchgeführt, was eine Verzerrung der Ergebnisse ermöglichen könnte.",
+      "Die gleichen Ergebnisse in allen drei Experimenten deuten auf eine mögliche Übergeneralisierung oder eine fehlende Varianz hin.",
+      "Die Verwendung von deterministischen Modellen könnte die Ergebnisse beeinflussen, da zufällige Faktoren nicht berücksichtigt werden.",
+      "Die fehlende statistische Signifikanzanalyse macht es schwierig, die Ergebnisse zu validieren.",
+      "Die fehlende Validierung der Zeitabstände und der Gewichtsanpassung könnte zu einer Verzerrung der Ergebnisse führen."
+    ],
+    "alternative_explanations": [
+      "Die asymmetrische Gewichtsanpassung könnte auf andere Faktoren wie externe Reize oder neuronale Aktivitätsmuster zurückzuführen sein.",
+      "Die gleichen Ergebnisse in allen Experimenten könnten auf eine fehlende Varianz oder eine zu kleine Stichprobe zurückzuführen sein.",
+      "Die deterministischen Modelle könnten die Ergebnisse beeinflussen, da zufällige Faktoren nicht berücksichtigt werden.",
+      "Die fehlende Validierung der Zeitabstände und der Gewichtsanpassung könnte zu einer Verzerrung der Ergebnisse führen."
+    ],
+    "reproducibility": {
+      "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+      "experiment_status": "completed",
+      "evidence_mode": "not_reported",
+      "git_dirty": "True",
+      "source_freeze_sha": "b3abe1bef38072d4dfb9edde803e4b1963c5a02735adc9e1803057fab48e6fe5",
+      "configuration_path": "F:\\Brain-5D\\configs\\learning_experiment.yaml",
+      "configuration_sha256": "6f6cd457caf6216c286fee47ef03b529a0b496ed2dd53ee96b85d3b51e7b3a1c",
+      "experiment_manifest_digest": "04a4ecfe2d4fa80e890b44566a0dcfd41167e47e00223942fd218b165fdfe4db",
+      "data_ids": "NOT_AVAILABLE",
+      "evid_ids": "NOT_AVAILABLE",
+      "protocol_id": "NOT_AVAILABLE",
+      "protocol_digest": "b9caaae86f4a6063ff29d352c55ed22e71ae4e7fa6a64c88fa7283e68f5e50ea",
+      "data_digest": "b5282922704ba1f8efa9ff7f7fb7bf4ef2e03b71bbaa1a5b15c27e85b4623b69",
+      "evid_digests": "[]"
+    },
+    "epistemic_status": {
+      "implementation": "NOT_DETERMINED",
+      "experiment_data": "PRESENT",
+      "registered_evidence": "ABSENT",
+      "ai_interpretation": "PRESENT",
+      "human_review": "PENDING",
+      "claim_support": "NOT_DETERMINED",
+      "rq_status": "IN_PROGRESS"
+    },
+    "ai_confidence": 0.0,
+    "missing_evidence": [
+      "Repeat provider analysis from the same immutable research packet."
+    ],
+    "recommended_follow_up": [],
+    "conclusion": "Provider output could not be validated as structured analysis; no scientific interpretation is inferred.",
+    "human_review": {
+      "status": "PENDING",
+      "reviewer": null,
+      "reviewed_at": null,
+      "disposition": null,
+      "comments": null
+    },
+    "aiar": {
+      "analyst": {
+        "analysis_id": "AIAR-scientific_analyst-20260914074522660162-0c121f24",
+        "role": "scientific_analyst",
+        "model": {
+          "provider": "ollama",
+          "model_name": "qwen3:8b",
+          "model_digest": "not_reported",
+          "quantization": "not_reported",
+          "context_length": "unknown",
+          "temperature": 0.0,
+          "top_p": 0.9,
+          "seed": "not_reported",
+          "backend_version": "unknown"
+        },
+        "inputs": {
+          "experiment_id": "EXP-BATCH-20260914074039-05",
+          "packet_digest": "0c121f2443d820e11552bbf73fbc46618ce59e8b6acc1cb38351878315dc846a"
+        },
+        "output": {
+          "assessment": "Provider output could not be validated as structured analysis; no scientific interpretation is inferred.",
+          "observations": [],
+          "methodological_concerns": [
+            "Initial structured output invalid: ValueError: Ollama output must contain a JSON object.",
+            "Repair attempt failed: ValueError: Ollama output must contain a JSON object."
+          ],
+          "alternative_explanations": [],
+          "recommended_experiments": [],
+          "requested_evidence": [
+            "Repeat provider analysis from the same immutable research packet."
+          ],
+          "effect_direction": "not_assessed",
+          "confidence": 0.0
+        },
+        "provenance": {
+          "prompt_sha256": "4d4a8e0dab3424da58e2770a436d2290ae50a432c6ee0638ddb7f76a57f0d94e",
+          "research_packet_digest": "0c121f2443d820e11552bbf73fbc46618ce59e8b6acc1cb38351878315dc846a",
+          "prompt_protocol_version": "research_assistant_v1",
+          "assistant_schema_version": "1.2",
+          "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+          "model_self_confidence": "0.0"
+        },
+        "epistemic_status": {
+          "evidence": false,
+          "interpretation_only": true,
+          "human_review_required": true
+        },
+        "review": {
+          "status": "pending",
+          "reviewer": null,
+          "reviewed_at": null,
+          "disposition": null
+        },
+        "generated_at": "2026-09-14T07:45:22.660162+00:00"
+      },
+      "reviewer": {
+        "analysis_id": "AIAR-critical_reviewer-20260914074543745478-0c121f24",
+        "role": "critical_reviewer",
+        "model": {
+          "provider": "ollama",
+          "model_name": "qwen3:8b",
+          "model_digest": "not_reported",
+          "quantization": "not_reported",
+          "context_length": "unknown",
+          "temperature": 0.0,
+          "top_p": 0.9,
+          "seed": "not_reported",
+          "backend_version": "unknown"
+        },
+        "inputs": {
+          "experiment_id": "EXP-BATCH-20260914074039-05",
+          "packet_digest": "0c121f2443d820e11552bbf73fbc46618ce59e8b6acc1cb38351878315dc846a"
+        },
+        "output": {
+          "assessment": "Die Forschungspakete enthalten keine inferenzielle Analyse oder statistische Signifikanz, daher kann keine wissenschaftliche Interpretation abgeleitet werden.",
+          "observations": [
+            "Die synaptischen Gewichte wurden unter definierten Pre/Post-Zeitabständen asymmetrisch angepasst.",
+            "Die durchschnittliche Gewichtsänderung beträgt 0,46728046984284305.",
+            "Die Gewichtsanpassung ist in allen drei Experimenten identisch.",
+            "Die Trainingsversuche führten zu einer signifikanten Erhöhung des Ziel-Peak-V.",
+            "Die Trainingsversuche führten zu einer Erhöhung des Ziel-Spiketicks von null auf vier."
+          ],
+          "effect_direction": "asymmetrische Gewichtsanpassung",
+          "methodological_concerns": [
+            "Die Experimente wurden ohne Kontrollgruppe durchgeführt, was eine Verzerrung der Ergebnisse ermöglichen könnte.",
+            "Die gleichen Ergebnisse in allen drei Experimenten deuten auf eine mögliche Übergeneralisierung oder eine fehlende Varianz hin.",
+            "Die Verwendung von deterministischen Modellen könnte die Ergebnisse beeinflussen, da zufällige Faktoren nicht berücksichtigt werden.",
+            "Die fehlende statistische Signifikanzanalyse macht es schwierig, die Ergebnisse zu validieren.",
+            "Die fehlende Validierung der Zeitabstände und der Gewichtsanpassung könnte zu einer Verzerrung der Ergebnisse führen."
+          ],
+          "alternative_explanations": [
+            "Die asymmetrische Gewichtsanpassung könnte auf andere Faktoren wie externe Reize oder neuronale Aktivitätsmuster zurückzuführen sein.",
+            "Die gleichen Ergebnisse in allen Experimenten könnten auf eine fehlende Varianz oder eine zu kleine Stichprobe zurückzuführen sein.",
+            "Die deterministischen Modelle könnten die Ergebnisse beeinflussen, da zufällige Faktoren nicht berücksichtigt werden.",
+            "Die fehlende Validierung der Zeitabstände und der Gewichtsanpassung könnte zu einer Verzerrung der Ergebnisse führen."
+          ],
+          "recommended_experiments": [
+            "Die Durchführung von Kontrollexperimenten mit einer anderen Gruppe, um die Ergebnisse zu validieren.",
+            "Die Durchführung von Experimenten mit variierenden Zeitabständen, um die Auswirkungen auf die Gewichtsanpassung zu untersuchen.",
+            "Die Durchführung von Experimenten mit zufälligen Modellen, um die Auswirkungen der Determiniertheit auf die Ergebnisse zu untersuchen.",
+            "Die Durchführung von Experimenten mit einer größeren Stichprobe, um die Varianz zu erhöhen und die Ergebnisse zu validieren.",
+            "Die Durchführung von Experimenten mit einer Validierung der Zeitabstände und der Gewichtsanpassung, um die Genauigkeit der Ergebnisse zu erhöhen."
+          ],
+          "requested_evidence": [
+            "Die Durchführung einer statistischen Signifikanzanalyse der Ergebnisse.",
+            "Die Validierung der Zeitabstände und der Gewichtsanpassung.",
+            "Die Durchführung von Kontrollexperimenten mit einer anderen Gruppe.",
+            "Die Durchführung von Experimenten mit variierenden Zeitabständen.",
+            "Die Durchführung von Experimenten mit zufälligen Modellen.",
+            "Die Durchführung von Experiment, um die Auswirkungen der Determiniertheit auf die Ergebnisse zu untersuchen.",
+            "Die Durchführung von Experimenten mit einer größeren Stichprobe.",
+            "Die Durchführung von Experimenten mit einer Validierung der Zeitabstände und der Gewichtsanpassung."
+          ],
+          "confidence": 0.0
+        },
+        "provenance": {
+          "prompt_sha256": "a67adf9688b2b76bf7f195571079b1b7c969a0439fc5273fa3216830c42b4a76",
+          "research_packet_digest": "0c121f2443d820e11552bbf73fbc46618ce59e8b6acc1cb38351878315dc846a",
+          "prompt_protocol_version": "research_assistant_v1",
+          "assistant_schema_version": "1.2",
+          "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+          "model_self_confidence": "0.0"
+        },
+        "epistemic_status": {
+          "evidence": false,
+          "interpretation_only": true,
+          "human_review_required": true
+        },
+        "review": {
+          "status": "pending",
+          "reviewer": null,
+          "reviewed_at": null,
+          "disposition": null
+        },
+        "generated_at": "2026-09-14T07:45:43.745478+00:00"
+      },
+      "writer": {
+        "analysis_id": "AIAR-scientific_writer-20260914074717923194-0c121f24",
+        "role": "scientific_writer",
+        "model": {
+          "provider": "ollama",
+          "model_name": "qwen3:8b",
+          "model_digest": "not_reported",
+          "quantization": "not_reported",
+          "context_length": "unknown",
+          "temperature": 0.0,
+          "top_p": 0.9,
+          "seed": "not_reported",
+          "backend_version": "unknown"
+        },
+        "inputs": {
+          "experiment_id": "EXP-BATCH-20260914074039-05",
+          "packet_digest": "0c121f2443d820e11552bbf73fbc46618ce59e8b6acc1cb38351878315dc846a"
+        },
+        "output": {
+          "assessment": "Provider output could not be validated as structured analysis; no scientific interpretation is inferred.",
+          "observations": [],
+          "methodological_concerns": [
+            "Initial structured output invalid: ValueError: Ollama output must contain a JSON object.",
+            "Repair attempt failed: ValueError: Ollama output must contain a JSON object."
+          ],
+          "alternative_explanations": [],
+          "recommended_experiments": [],
+          "requested_evidence": [
+            "Repeat provider analysis from the same immutable research packet."
+          ],
+          "effect_direction": "not_assessed",
+          "confidence": 0.0
+        },
+        "provenance": {
+          "prompt_sha256": "91941f5e83a526ef49fc8489b4205a2035ddf00f63e2e189be94b5a402feb10d",
+          "research_packet_digest": "0c121f2443d820e11552bbf73fbc46618ce59e8b6acc1cb38351878315dc846a",
+          "prompt_protocol_version": "research_assistant_v1",
+          "assistant_schema_version": "1.2",
+          "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+          "model_self_confidence": "0.0"
+        },
+        "epistemic_status": {
+          "evidence": false,
+          "interpretation_only": true,
+          "human_review_required": true
+        },
+        "review": {
+          "status": "pending",
+          "reviewer": null,
+          "reviewed_at": null,
+          "disposition": null
+        },
+        "generated_at": "2026-09-14T07:47:17.923194+00:00"
+      }
+    }
+  },
+  "provenance": {
+    "research_packet_digest": "f022cb2d3ad544477fee5edbb97b7d90319c182aa082c684c4373e2106882650",
+    "source": {
+      "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+      "experiment_status": "completed",
+      "evidence_mode": "not_reported",
+      "git_dirty": "True",
+      "source_freeze_sha": "b3abe1bef38072d4dfb9edde803e4b1963c5a02735adc9e1803057fab48e6fe5",
+      "configuration_path": "F:\\Brain-5D\\configs\\learning_experiment.yaml",
+      "configuration_sha256": "6f6cd457caf6216c286fee47ef03b529a0b496ed2dd53ee96b85d3b51e7b3a1c",
+      "experiment_manifest_digest": "04a4ecfe2d4fa80e890b44566a0dcfd41167e47e00223942fd218b165fdfe4db",
+      "data_ids": "NOT_AVAILABLE",
+      "evid_ids": "NOT_AVAILABLE",
+      "protocol_id": "NOT_AVAILABLE",
+      "protocol_digest": "b9caaae86f4a6063ff29d352c55ed22e71ae4e7fa6a64c88fa7283e68f5e50ea",
+      "data_digest": "b5282922704ba1f8efa9ff7f7fb7bf4ef2e03b71bbaa1a5b15c27e85b4623b69",
+      "evid_digests": "[]"
+    }
+  },
+  "analysis_ids": [
+    "AIAR-scientific_analyst-20260914074522660162-0c121f24",
+    "AIAR-critical_reviewer-20260914074543745478-0c121f24",
+    "AIAR-scientific_writer-20260914074717923194-0c121f24"
+  ],
+  "supersedes": null,
+  "content_digest": "40333fbfc2ff68ba7a04de9eb02b169581686ad6bd5d5ec231da4fcaba60bdf3",
+  "markdown_digest": "b998450b0c8fe3681a9649917c112842a110193698fd82742c17660875da7bb3"
+}

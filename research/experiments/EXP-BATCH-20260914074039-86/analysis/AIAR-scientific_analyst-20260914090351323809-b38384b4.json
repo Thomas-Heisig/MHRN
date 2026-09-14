@@ -1,0 +1,74 @@
+{
+  "analysis_id": "AIAR-scientific_analyst-20260914090351323809-b38384b4",
+  "role": "scientific_analyst",
+  "model": {
+    "provider": "ollama",
+    "model_name": "qwen3:8b",
+    "model_digest": "not_reported",
+    "quantization": "not_reported",
+    "context_length": "unknown",
+    "temperature": 0.0,
+    "top_p": 0.9,
+    "seed": "not_reported",
+    "backend_version": "unknown"
+  },
+  "inputs": {
+    "experiment_id": "EXP-BATCH-20260914074039-86",
+    "packet_digest": "b38384b4a28a523ea8cc521fbab286100dafe5b498278e7ff1a7a345dbbb686a"
+  },
+  "output": {
+    "assessment": "Die Forschungsergebnisse zeigen keine klaren Belege fuer eine generalisierte Leistung des gelernten Gateways oder eine Interferenz. Die Experimente wurden durchgefuehrt, um die Bedingungen fuer die Audits zu pruefen, aber keine direkten kausalen Messungen wurden durchgefuehrt.",
+    "observations": [
+      "Die Experimente wurden mit drei verschiedenen Seeds (101, 102, 103) durchgefuehrt.",
+      "Die Audit-Status ist fuer alle Laufungen als 'complete' markiert.",
+      "Es wurden keine statistischen Tests fuer Signifikanz durchgefuehrt.",
+      "Die Metriken enthalten keine kausalen Messungen oder Hypothesentests.",
+      "Die Forschungsfragen und Hypothesen sind nicht mit empirischen Ergebnissen verknuepft."
+    ],
+    "effect_direction": "Es gibt keine Beobachtung von Effekten in eine Richtung, da keine kausalen Messungen durchgefuehrt wurden.",
+    "methodological_concerns": [
+      "Fehlende kausale Messungen",
+      "Keine statistische Signifikanz getestet",
+      "Keine Verknuepfung der Hypothesen mit empirischen Ergebnissen",
+      "Unvollstaendige Nachweisverknuepfung"
+    ],
+    "alternative_explanations": [
+      "Die Audits wurden erfolgreich durchgefuehrt, aber keine kausalen Effekte wurden gemessen.",
+      "Die Ergebnisse koennen auf die Durchfuehrung der Audit-Verfahren zurueckzufuehren sein, nicht auf kausale Effekte.",
+      "Die fehlende kausale Messung kann auf eine fehlende Experimentaldesign-Struktur zurueckzufuehren sein."
+    ],
+    "recommended_experiments": [
+      "Durchfuehrung von Experimenten mit direkten kausalen Messungen",
+      "Implementierung von statistischen Tests fuer Signifikanz",
+      "Verknuepfung der Hypothesen mit empirischen Ergebnissen",
+      "Erstellung von Holdout-Daten und vorab definierten Exklusionsregeln"
+    ],
+    "requested_evidence": [
+      "Holdout-Daten mit vorab definierten Exklusionsregeln",
+      "Statistische Analysen fuer Signifikanz",
+      "Verknuepfung der Hypothesen mit empirischen Ergebnissen",
+      "Nachweis der kausalen Messungen"
+    ],
+    "confidence": 0.05
+  },
+  "provenance": {
+    "prompt_sha256": "4ee51a82d37a9a7418f599812917ff252019d53617690435ee1b229083842308",
+    "research_packet_digest": "b38384b4a28a523ea8cc521fbab286100dafe5b498278e7ff1a7a345dbbb686a",
+    "prompt_protocol_version": "research_assistant_v1",
+    "assistant_schema_version": "1.2",
+    "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+    "model_self_confidence": "0.05"
+  },
+  "epistemic_status": {
+    "evidence": false,
+    "interpretation_only": true,
+    "human_review_required": true
+  },
+  "review": {
+    "status": "pending",
+    "reviewer": null,
+    "reviewed_at": null,
+    "disposition": null
+  },
+  "generated_at": "2026-09-14T09:03:51.323809+00:00"
+}

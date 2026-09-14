@@ -1,0 +1,157 @@
+{
+  "run_count": 15,
+  "runs": [
+    {
+      "condition": "n128",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0000-n128-seed-21001.json.gz",
+      "run_index": 0,
+      "seed": 21001,
+      "sha256": "6e82fb18fbab056e6e80639a2a533f3f092feec6c8f7c65d4306b9336aa8d57e",
+      "size_bytes": 600,
+      "uncompressed_bytes": 895
+    },
+    {
+      "condition": "n1024",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0001-n1024-seed-21001.json.gz",
+      "run_index": 1,
+      "seed": 21001,
+      "sha256": "e29314ef674d1c4a3f3635b08b658347739724d3feb9d61069d80d980eed880a",
+      "size_bytes": 616,
+      "uncompressed_bytes": 904
+    },
+    {
+      "condition": "n5000",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0002-n5000-seed-21001.json.gz",
+      "run_index": 2,
+      "seed": 21001,
+      "sha256": "8313216efa84bd2f0f695ec9e6ac0399ca3bfcc9a946c83de780d6b416575ecd",
+      "size_bytes": 614,
+      "uncompressed_bytes": 907
+    },
+    {
+      "condition": "n25000",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0003-n25000-seed-21001.json.gz",
+      "run_index": 3,
+      "seed": 21001,
+      "sha256": "dde9dd45ea6f83a1a70d674e95c7e0ec5c9d29a78b37a37f8201b94d7127ce46",
+      "size_bytes": 611,
+      "uncompressed_bytes": 911
+    },
+    {
+      "condition": "n100000",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0004-n100000-seed-21001.json.gz",
+      "run_index": 4,
+      "seed": 21001,
+      "sha256": "e343b9bfbbe82e2ec2488f1284049d21fdb4bffc1b598d288f6e9e653496c9ac",
+      "size_bytes": 605,
+      "uncompressed_bytes": 911
+    },
+    {
+      "condition": "n128",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0005-n128-seed-21002.json.gz",
+      "run_index": 5,
+      "seed": 21002,
+      "sha256": "da9e39e39f74176c5149422c50810d3ede51f89778147d29e820e2a0c9d49623",
+      "size_bytes": 603,
+      "uncompressed_bytes": 894
+    },
+    {
+      "condition": "n1024",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0006-n1024-seed-21002.json.gz",
+      "run_index": 6,
+      "seed": 21002,
+      "sha256": "a96535239c671eb5068a0123357cf08a7921df1ff6f3b593915147604ad6c854",
+      "size_bytes": 618,
+      "uncompressed_bytes": 906
+    },
+    {
+      "condition": "n5000",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0007-n5000-seed-21002.json.gz",
+      "run_index": 7,
+      "seed": 21002,
+      "sha256": "eb982c15329a98ec253814028acb018f87c8842469572886b1542b482fb0e363",
+      "size_bytes": 615,
+      "uncompressed_bytes": 907
+    },
+    {
+      "condition": "n25000",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0008-n25000-seed-21002.json.gz",
+      "run_index": 8,
+      "seed": 21002,
+      "sha256": "6ceef71419733b8c55d6a81c4b5d020171f742b6e365317fe0b4df61ea177316",
+      "size_bytes": 612,
+      "uncompressed_bytes": 910
+    },
+    {
+      "condition": "n100000",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0009-n100000-seed-21002.json.gz",
+      "run_index": 9,
+      "seed": 21002,
+      "sha256": "b616cc752e9ca6c21ef59f00784e72ccc05a8c71e91912822c294184677d55a0",
+      "size_bytes": 605,
+      "uncompressed_bytes": 911
+    },
+    {
+      "condition": "n128",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0010-n128-seed-21003.json.gz",
+      "run_index": 10,
+      "seed": 21003,
+      "sha256": "270f292126f41fc3b96282a0fcc6fc0ea2ce437a262e58cea94488a86b9b92e0",
+      "size_bytes": 605,
+      "uncompressed_bytes": 894
+    },
+    {
+      "condition": "n1024",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0011-n1024-seed-21003.json.gz",
+      "run_index": 11,
+      "seed": 21003,
+      "sha256": "11bcf0066fc782fc9efe83ff29c140f964af1d201ff4620f6f69a3ff9c5481a6",
+      "size_bytes": 613,
+      "uncompressed_bytes": 905
+    },
+    {
+      "condition": "n5000",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0012-n5000-seed-21003.json.gz",
+      "run_index": 12,
+      "seed": 21003,
+      "sha256": "3f30c11e2ad378bb2cd89fb01b61e3295d7e33f42562e745d9259f7ed6ff7c56",
+      "size_bytes": 618,
+      "uncompressed_bytes": 906
+    },
+    {
+      "condition": "n25000",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0013-n25000-seed-21003.json.gz",
+      "run_index": 13,
+      "seed": 21003,
+      "sha256": "80608a81f0cdb806c55bc2041e661748e8ea63e1d99e652dc85a2590d0d51250",
+      "size_bytes": 613,
+      "uncompressed_bytes": 908
+    },
+    {
+      "condition": "n100000",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0014-n100000-seed-21003.json.gz",
+      "run_index": 14,
+      "seed": 21003,
+      "sha256": "5f2ce77a81ebb92bb72de63c283f275d4e846918a44ecfce2b23749ebf7fedef",
+      "size_bytes": 604,
+      "uncompressed_bytes": 914
+    }
+  ],
+  "schema_version": "2.0",
+  "storage_policy": "immutable_raw_runs_plus_compact_current_experiment"
+}

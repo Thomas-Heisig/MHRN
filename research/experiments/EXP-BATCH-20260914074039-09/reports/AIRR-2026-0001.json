@@ -1,0 +1,1367 @@
+{
+  "report_id": "AIRR-2026-0001",
+  "experiment_id": "EXP-BATCH-20260914074039-09",
+  "research_question_id": "RQ-TIME-001",
+  "hypothesis_ids": [
+    "H-TIME-001-A"
+  ],
+  "claim_ids": [],
+  "generated_at": "2026-09-14T11:21:48.730163+00:00",
+  "report_schema_version": "1.0",
+  "report_protocol_version": "PROTOCOL-AIRR-001",
+  "generated_by": "artificial_intelligence",
+  "ai_generated": true,
+  "scientific_evidence": false,
+  "human_review_required": true,
+  "status": "review_pending",
+  "content": {
+    "identification": {
+      "experiment": "EXP-BATCH-20260914074039-09",
+      "research_question": "Wie verändert sich die messbare Laufzeit und Lernaktivität über die registrierte Tick-Leiter?",
+      "hypotheses": [
+        {
+          "id": "H-TIME-001-A",
+          "research_question": "RQ-TIME-001",
+          "hypothesis": "Die Tick-Leiter liefert reproduzierbare Durchsatz- und Zustandsmessungen bis 1.000.000 Ticks.",
+          "status": "untested",
+          "evidence": [],
+          "created": "2026-09-03",
+          "updated": "2026-09-03"
+        }
+      ],
+      "date": "2026-09-14",
+      "source_sha": "8e096931a779b2d2eb4d010eb20154150b07bbf2"
+    },
+    "executive_summary": "Die Tick-Leiter liefert reproduzierbare Durchsatz- und Zustandsmessungen bis 1.000.000 Ticks.",
+    "research_question": {
+      "id": "RQ-TIME-001",
+      "domain": "Learning Timescale",
+      "question": "Wie verändert sich die messbare Laufzeit und Lernaktivität über die registrierte Tick-Leiter?",
+      "relevance": "Kalibrierung der zeitlichen Ausführung vor Langzeitexperimenten.",
+      "hypotheses": [
+        "H-TIME-001-A"
+      ],
+      "evidence": [],
+      "status": "open",
+      "answer": {
+        "current": null,
+        "confidence": "none",
+        "limitations": null
+      },
+      "created": "2026-09-03",
+      "updated": "2026-09-03"
+    },
+    "experimental_design": {
+      "experiment_id": "EXP-BATCH-20260914074039-09",
+      "research_question": "RQ-TIME-001",
+      "hypothesis": "H-TIME-001-A",
+      "title": "Experiment workflow: learning_timescale_registered_v1",
+      "conditions": "Registered protocol conditions",
+      "ticks": 100000,
+      "ticks_contract": "minimum requested observation window",
+      "seeds": [
+        101,
+        102,
+        103
+      ],
+      "protocol": "learning_timescale_registered_v1",
+      "resolved_runner": "run_time",
+      "tick_validation": {
+        "status": "SATISFIED",
+        "mode": "terminal_tick_per_seed",
+        "requested_ticks": 100000
+      },
+      "notes": "",
+      "execution": "registered experiment_suite runner",
+      "assistant_policy": "AI is post-hoc interpretation only.",
+      "epistemic_layers": {
+        "ui_state": "operator/dashboard progress only; not a scientific result",
+        "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+        "evid": "not_created; requires semantic validation, clean freeze and human review",
+        "interpretation": "post-hoc AI or human interpretation; never execution input"
+      }
+    },
+    "data_basis": {
+      "data": {
+        "ai_input_policy": "compact_only_raw_on_explicit_deterministic_extract",
+        "generated_by": "deterministic_research_data_v2",
+        "limits": {
+          "ai_packet_max_bytes": 1000000,
+          "run_summary_max_bytes": 5000000,
+          "sequence_preview_items": 16
+        },
+        "raw_index": {
+          "path": "DATA/runs_index.json",
+          "run_count": 12,
+          "sha256": "2a9592e1f7e51d4f453fdef9d4d767a1ba1f5ebdc3b9c1933b965740ff5210cf"
+        },
+        "run_count": 12,
+        "run_preview": [
+          {
+            "_raw_artifact": {
+              "format": "json.gz",
+              "path": "DATA/raw/run-0000-100-seed-101.json.gz",
+              "sha256": "30c0f60703762d375504856236460ece96e91a245977d850bba48ef7ded8ecf9",
+              "size_bytes": 321,
+              "uncompressed_bytes": 402
+            },
+            "condition": "100",
+            "experiment_id": "EXP-BATCH-20260914074039-09",
+            "metrics": {
+              "duration_seconds": 0.0007314999820664525,
+              "ticks": 100,
+              "ticks_per_second": 136705.40321478175,
+              "ticks_requested": 100000
+            },
+            "runtime_error": null,
+            "seed": 101,
+            "state_digest_after": "0613ae29548d4b3f6675d9e45b4c8561fd30b3cf262abfe267d0ab4999b13abc",
+            "state_digest_before": "1771a5db39762c3f7493abcddc6e461322470687395291a7b18bfb719f8ac27f"
+          },
+          {
+            "_raw_artifact": {
+              "format": "json.gz",
+              "path": "DATA/raw/run-0001-1000-seed-101.json.gz",
+              "sha256": "4cd28b5e7b5f6d3ae6dca639833b3d1d5c7cbdd18457205631cb00e559ac6cb9",
+              "size_bytes": 321,
+              "uncompressed_bytes": 402
+            },
+            "condition": "1000",
+            "experiment_id": "EXP-BATCH-20260914074039-09",
+            "metrics": {
+              "duration_seconds": 0.006931199983227998,
+              "ticks": 1000,
+              "ticks_per_second": 144275.1619372956,
+              "ticks_requested": 100000
+            },
+            "runtime_error": null,
+            "seed": 101,
+            "state_digest_after": "0dfc4d8791199eb14181ef67642a6d86d338b34738cd68e97c9a0c68af535394",
+            "state_digest_before": "1771a5db39762c3f7493abcddc6e461322470687395291a7b18bfb719f8ac27f"
+          },
+          {
+            "_raw_artifact": {
+              "format": "json.gz",
+              "path": "DATA/raw/run-0002-10000-seed-101.json.gz",
+              "sha256": "5079ea3d8eba79a1fe238f92a161fc49db76021be509962aa18be134909b7514",
+              "size_bytes": 320,
+              "uncompressed_bytes": 403
+            },
+            "condition": "10000",
+            "experiment_id": "EXP-BATCH-20260914074039-09",
+            "metrics": {
+              "duration_seconds": 0.0581495999940671,
+              "ticks": 10000,
+              "ticks_per_second": 171970.22853158545,
+              "ticks_requested": 100000
+            },
+            "runtime_error": null,
+            "seed": 101,
+            "state_digest_after": "2ea003c4cbdd553348df3eab93303ebfeac93e3a6e818ff03f88e3cc253883e1",
+            "state_digest_before": "1771a5db39762c3f7493abcddc6e461322470687395291a7b18bfb719f8ac27f"
+          },
+          {
+            "_raw_artifact": {
+              "format": "json.gz",
+              "path": "DATA/raw/run-0003-100000-seed-101.json.gz",
+              "sha256": "23bd60970e562c97c220e4fa583c99a9a79f74f787c94aef95b5d3fe5c231b1a",
+              "size_bytes": 322,
+              "uncompressed_bytes": 405
+            },
+            "condition": "100000",
+            "experiment_id": "EXP-BATCH-20260914074039-09",
+            "metrics": {
+              "duration_seconds": 0.5810703000170179,
+              "ticks": 100000,
+              "ticks_per_second": 172096.21623592067,
+              "ticks_requested": 100000
+            },
+            "runtime_error": null,
+            "seed": 101,
+            "state_digest_after": "40f5c6f3dc13df43a3d11173d651a0c7e1f8a4196b283174592ef1f385d015fd",
+            "state_digest_before": "1771a5db39762c3f7493abcddc6e461322470687395291a7b18bfb719f8ac27f"
+          },
+          {
+            "_raw_artifact": {
+              "format": "json.gz",
+              "path": "DATA/raw/run-0004-100-seed-102.json.gz",
+              "sha256": "0174cc38158d0371b2343d2f760831fa45d92115d6ca16ac1e2829a7c54d20d6",
+              "size_bytes": 318,
+              "uncompressed_bytes": 401
+            },
+            "condition": "100",
+            "experiment_id": "EXP-BATCH-20260914074039-09",
+            "metrics": {
+              "duration_seconds": 0.0005722999921999872,
+              "ticks": 100,
+              "ticks_per_second": 174733.5337461538,
+              "ticks_requested": 100000
+            },
+            "runtime_error": null,
+            "seed": 102,
+            "state_digest_after": "68bc57f3595fbd6cbb459c34deffaa7e2d90b8845497d78ff4ddac212008cd7a",
+            "state_digest_before": "dea90be4cc96ecd982339529935b2286e82c20cf45e76d435b23c29953c97dbe"
+          },
+          {
+            "_raw_artifact": {
+              "format": "json.gz",
+              "path": "DATA/raw/run-0005-1000-seed-102.json.gz",
+              "sha256": "5541d42bc6f8d70fe05b837d76a7c1a46e7e46a8c2ac9690593241b0b67922d4",
+              "size_bytes": 321,
+              "uncompressed_bytes": 403
+            },
+            "condition": "1000",
+            "experiment_id": "EXP-BATCH-20260914074039-09",
+            "metrics": {
+              "duration_seconds": 0.005843400023877621,
+              "ticks": 1000,
+              "ticks_per_second": 171133.24364475225,
+              "ticks_requested": 100000
+            },
+            "runtime_error": null,
+            "seed": 102,
+            "state_digest_after": "ffbe7d713891bbec90c2f879144290b608fff976669c1f72dd1129cd768c8b2c",
+            "state_digest_before": "dea90be4cc96ecd982339529935b2286e82c20cf45e76d435b23c29953c97dbe"
+          },
+          {
+            "_raw_artifact": {
+              "format": "json.gz",
+              "path": "DATA/raw/run-0006-10000-seed-102.json.gz",
+              "sha256": "ae09e1ca865370b3caa462361b477a17b0441540a1c7191bc8cab76956f7d8f0",
+              "size_bytes": 319,
+              "uncompressed_bytes": 404
+            },
+            "condition": "10000",
+            "experiment_id": "EXP-BATCH-20260914074039-09",
+            "metrics": {
+              "duration_seconds": 0.05566940002609044,
+              "ticks": 10000,
+              "ticks_per_second": 179631.89822978736,
+              "ticks_requested": 100000
+            },
+            "runtime_error": null,
+            "seed": 102,
+            "state_digest_after": "d419ae717779c6efc3904f870283bb57be5dc4b062578c17e4b816a11b095c7b",
+            "state_digest_before": "dea90be4cc96ecd982339529935b2286e82c20cf45e76d435b23c29953c97dbe"
+          },
+          {
+            "_raw_artifact": {
+              "format": "json.gz",
+              "path": "DATA/raw/run-0007-100000-seed-102.json.gz",
+              "sha256": "648e779b638a294c342cf13d05e3709d17ff4f0efa88eff59b9491ee20a40224",
+              "size_bytes": 319,
+              "uncompressed_bytes": 405
+            },
+            "condition": "100000",
+            "experiment_id": "EXP-BATCH-20260914074039-09",
+            "metrics": {
+              "duration_seconds": 0.6316922000260092,
+              "ticks": 100000,
+              "ticks_per_second": 158304.94661147092,
+              "ticks_requested": 100000
+            },
+            "runtime_error": null,
+            "seed": 102,
+            "state_digest_after": "6947cb63510d87d6466b95e8b9de5015380d5f3ae67159dfae431a2bdd2eb6bf",
+            "state_digest_before": "dea90be4cc96ecd982339529935b2286e82c20cf45e76d435b23c29953c97dbe"
+          },
+          {
+            "_raw_artifact": {
+              "format": "json.gz",
+              "path": "DATA/raw/run-0008-100-seed-103.json.gz",
+              "sha256": "caf889d2e52e6a295b214bf6a72992ea62564d4afebdbb4780984d39edb16f81",
+              "size_bytes": 321,
+              "uncompressed_bytes": 402
+            },
+            "condition": "100",
+            "experiment_id": "EXP-BATCH-20260914074039-09",
+            "metrics": {
+              "duration_seconds": 0.0005667000077664852,
+              "ticks": 100,
+              "ticks_per_second": 176460.20580470163,
+              "ticks_requested": 100000
+            },
+            "runtime_error": null,
+            "seed": 103,
+            "state_digest_after": "898fac71983283fae80321439a4af44c12781a1cace8109f8b506c9d1d91e5d7",
+            "state_digest_before": "9de84571ead9f21e68a65636aba8ca24658f562322755aa7c976905a4682bf6e"
+          },
+          {
+            "_raw_artifact": {
+              "format": "json.gz",
+              "path": "DATA/raw/run-0009-1000-seed-103.json.gz",
+              "sha256": "4f18b3af66100cffb377eb1ec516b9329bd40d2d696211c60427aa5c15c49ad2",
+              "size_bytes": 320,
+              "uncompressed_bytes": 403
+            },
+            "condition": "1000",
+            "experiment_id": "EXP-BATCH-20260914074039-09",
+            "metrics": {
+              "duration_seconds": 0.007696599990595132,
+              "ticks": 1000,
+              "ticks_per_second": 129927.50061351129,
+              "ticks_requested": 100000
+            },
+            "runtime_error": null,
+            "seed": 103,
+            "state_digest_after": "7a3dea7246428e55b7fa6e5e3431d775846519ce2e3b17ad447a4a2b1ade54b8",
+            "state_digest_before": "9de84571ead9f21e68a65636aba8ca24658f562322755aa7c976905a4682bf6e"
+          },
+          {
+            "_raw_artifact": {
+              "format": "json.gz",
+              "path": "DATA/raw/run-0010-10000-seed-103.json.gz",
+              "sha256": "92e90edf68c784eb8b108dee2472f5905226399d17ad98a4b84d659ed6140a8b",
+              "size_bytes": 320,
+              "uncompressed_bytes": 402
+            },
+            "condition": "10000",
+            "experiment_id": "EXP-BATCH-20260914074039-09",
+            "metrics": {
+              "duration_seconds": 0.05678080004872754,
+              "ticks": 10000,
+              "ticks_per_second": 176115.870002154,
+              "ticks_requested": 100000
+            },
+            "runtime_error": null,
+            "seed": 103,
+            "state_digest_after": "8ea630bd84f831d2025c4e64aab07bf6275b4ebcd63009a74592617826345d94",
+            "state_digest_before": "9de84571ead9f21e68a65636aba8ca24658f562322755aa7c976905a4682bf6e"
+          },
+          {
+            "_raw_artifact": {
+              "format": "json.gz",
+              "path": "DATA/raw/run-0011-100000-seed-103.json.gz",
+              "sha256": "ecba9b5d14272210a34a9b71e8814731c11a17c61e104da573b2f9300176c68b",
+              "size_bytes": 322,
+              "uncompressed_bytes": 404
+            },
+            "condition": "100000",
+            "experiment_id": "EXP-BATCH-20260914074039-09",
+            "metrics": {
+              "duration_seconds": 0.579437600041274,
+              "ticks": 100000,
+              "ticks_per_second": 172581.13728359513,
+              "ticks_requested": 100000
+            },
+            "runtime_error": null,
+            "seed": 103,
+            "state_digest_after": "ef4c24da2f767f636a6cdf1db3b1d44f03dc16ff4e650456bcb3e2ee339049da",
+            "state_digest_before": "9de84571ead9f21e68a65636aba8ca24658f562322755aa7c976905a4682bf6e"
+          }
+        ],
+        "schema_version": "2.0",
+        "statistics": {
+          "conditions": {
+            "100": {
+              "metrics": {
+                "duration_seconds": {
+                  "max": 0.0007314999820664525,
+                  "mean": 0.000623499994010975,
+                  "median": 0.0005722999921999872,
+                  "min": 0.0005667000077664852,
+                  "n": 3,
+                  "std": 7.640173654833304e-05
+                },
+                "ticks": {
+                  "max": 100.0,
+                  "mean": 100.0,
+                  "median": 100.0,
+                  "min": 100.0,
+                  "n": 3,
+                  "std": 0.0
+                },
+                "ticks_per_second": {
+                  "max": 176460.20580470163,
+                  "mean": 162633.0475885457,
+                  "median": 174733.5337461538,
+                  "min": 136705.40321478175,
+                  "n": 3,
+                  "std": 18347.1597471057
+                },
+                "ticks_requested": {
+                  "max": 100000.0,
+                  "mean": 100000.0,
+                  "median": 100000.0,
+                  "min": 100000.0,
+                  "n": 3,
+                  "std": 0.0
+                }
+              },
+              "run_count": 3,
+              "seeds": [
+                101,
+                102,
+                103
+              ]
+            },
+            "1000": {
+              "metrics": {
+                "duration_seconds": {
+                  "max": 0.007696599990595132,
+                  "mean": 0.006823733332566917,
+                  "median": 0.006931199983227998,
+                  "min": 0.005843400023877621,
+                  "n": 3,
+                  "std": 0.0007603724262551343
+                },
+                "ticks": {
+                  "max": 1000.0,
+                  "mean": 1000.0,
+                  "median": 1000.0,
+                  "min": 1000.0,
+                  "n": 3,
+                  "std": 0.0
+                },
+                "ticks_per_second": {
+                  "max": 171133.24364475225,
+                  "mean": 148445.30206518638,
+                  "median": 144275.1619372956,
+                  "min": 129927.50061351129,
+                  "n": 3,
+                  "std": 17078.658538340558
+                },
+                "ticks_requested": {
+                  "max": 100000.0,
+                  "mean": 100000.0,
+                  "median": 100000.0,
+                  "min": 100000.0,
+                  "n": 3,
+                  "std": 0.0
+                }
+              },
+              "run_count": 3,
+              "seeds": [
+                101,
+                102,
+                103
+              ]
+            },
+            "10000": {
+              "metrics": {
+                "duration_seconds": {
+                  "max": 0.0581495999940671,
+                  "mean": 0.0568666000229617,
+                  "median": 0.05678080004872754,
+                  "min": 0.05566940002609044,
+                  "n": 3,
+                  "std": 0.0010143533891012514
+                },
+                "ticks": {
+                  "max": 10000.0,
+                  "mean": 10000.0,
+                  "median": 10000.0,
+                  "min": 10000.0,
+                  "n": 3,
+                  "std": 0.0
+                },
+                "ticks_per_second": {
+                  "max": 179631.89822978736,
+                  "mean": 175905.9989211756,
+                  "median": 176115.870002154,
+                  "min": 171970.22853158545,
+                  "n": 3,
+                  "std": 3131.3820212018845
+                },
+                "ticks_requested": {
+                  "max": 100000.0,
+                  "mean": 100000.0,
+                  "median": 100000.0,
+                  "min": 100000.0,
+                  "n": 3,
+                  "std": 0.0
+                }
+              },
+              "run_count": 3,
+              "seeds": [
+                101,
+                102,
+                103
+              ]
+            },
+            "100000": {
+              "metrics": {
+                "duration_seconds": {
+                  "max": 0.6316922000260092,
+                  "mean": 0.5974000333614337,
+                  "median": 0.5810703000170179,
+                  "min": 0.579437600041274,
+                  "n": 3,
+                  "std": 0.02425738304401319
+                },
+                "ticks": {
+                  "max": 100000.0,
+                  "mean": 100000.0,
+                  "median": 100000.0,
+                  "min": 100000.0,
+                  "n": 3,
+                  "std": 0.0
+                },
+                "ticks_per_second": {
+                  "max": 172581.13728359513,
+                  "mean": 167660.7667103289,
+                  "median": 172096.21623592067,
+                  "min": 158304.94661147092,
+                  "n": 3,
+                  "std": 6618.525233376678
+                },
+                "ticks_requested": {
+                  "max": 100000.0,
+                  "mean": 100000.0,
+                  "median": 100000.0,
+                  "min": 100000.0,
+                  "n": 3,
+                  "std": 0.0
+                }
+              },
+              "run_count": 3,
+              "seeds": [
+                101,
+                102,
+                103
+              ]
+            }
+          },
+          "formulas": {
+            "difference": "Delta_x = mean(x_B) - mean(x_A)",
+            "inter_spike_interval": "ISI_i = t_(i+1) - t_i",
+            "mean": "mean(x) = (1/n) * sum_i x_i",
+            "population_std": "sigma = sqrt((1/n) * sum_i (x_i - mean(x))^2)",
+            "ratio": "R_x = mean(x_B) / mean(x_A), defined only when mean(x_A) != 0"
+          },
+          "generated_by": "deterministic_statistics_engine",
+          "run_count": 12,
+          "schema_version": "2.0"
+        }
+      },
+      "evid": [],
+      "literature": []
+    },
+    "quantitative_results": {
+      "conditions": {
+        "100": {
+          "metrics": {
+            "duration_seconds": {
+              "max": 0.0007314999820664525,
+              "mean": 0.000623499994010975,
+              "median": 0.0005722999921999872,
+              "min": 0.0005667000077664852,
+              "n": 3,
+              "std": 7.640173654833304e-05
+            },
+            "ticks": {
+              "max": 100.0,
+              "mean": 100.0,
+              "median": 100.0,
+              "min": 100.0,
+              "n": 3,
+              "std": 0.0
+            },
+            "ticks_per_second": {
+              "max": 176460.20580470163,
+              "mean": 162633.0475885457,
+              "median": 174733.5337461538,
+              "min": 136705.40321478175,
+              "n": 3,
+              "std": 18347.1597471057
+            },
+            "ticks_requested": {
+              "max": 100000.0,
+              "mean": 100000.0,
+              "median": 100000.0,
+              "min": 100000.0,
+              "n": 3,
+              "std": 0.0
+            }
+          },
+          "run_count": 3,
+          "seeds": [
+            101,
+            102,
+            103
+          ]
+        },
+        "1000": {
+          "metrics": {
+            "duration_seconds": {
+              "max": 0.007696599990595132,
+              "mean": 0.006823733332566917,
+              "median": 0.006931199983227998,
+              "min": 0.005843400023877621,
+              "n": 3,
+              "std": 0.0007603724262551343
+            },
+            "ticks": {
+              "max": 1000.0,
+              "mean": 1000.0,
+              "median": 1000.0,
+              "min": 1000.0,
+              "n": 3,
+              "std": 0.0
+            },
+            "ticks_per_second": {
+              "max": 171133.24364475225,
+              "mean": 148445.30206518638,
+              "median": 144275.1619372956,
+              "min": 129927.50061351129,
+              "n": 3,
+              "std": 17078.658538340558
+            },
+            "ticks_requested": {
+              "max": 100000.0,
+              "mean": 100000.0,
+              "median": 100000.0,
+              "min": 100000.0,
+              "n": 3,
+              "std": 0.0
+            }
+          },
+          "run_count": 3,
+          "seeds": [
+            101,
+            102,
+            103
+          ]
+        },
+        "10000": {
+          "metrics": {
+            "duration_seconds": {
+              "max": 0.0581495999940671,
+              "mean": 0.0568666000229617,
+              "median": 0.05678080004872754,
+              "min": 0.05566940002609044,
+              "n": 3,
+              "std": 0.0010143533891012514
+            },
+            "ticks": {
+              "max": 10000.0,
+              "mean": 10000.0,
+              "median": 10000.0,
+              "min": 10000.0,
+              "n": 3,
+              "std": 0.0
+            },
+            "ticks_per_second": {
+              "max": 179631.89822978736,
+              "mean": 175905.9989211756,
+              "median": 176115.870002154,
+              "min": 171970.22853158545,
+              "n": 3,
+              "std": 3131.3820212018845
+            },
+            "ticks_requested": {
+              "max": 100000.0,
+              "mean": 100000.0,
+              "median": 100000.0,
+              "min": 100000.0,
+              "n": 3,
+              "std": 0.0
+            }
+          },
+          "run_count": 3,
+          "seeds": [
+            101,
+            102,
+            103
+          ]
+        },
+        "100000": {
+          "metrics": {
+            "duration_seconds": {
+              "max": 0.6316922000260092,
+              "mean": 0.5974000333614337,
+              "median": 0.5810703000170179,
+              "min": 0.579437600041274,
+              "n": 3,
+              "std": 0.02425738304401319
+            },
+            "ticks": {
+              "max": 100000.0,
+              "mean": 100000.0,
+              "median": 100000.0,
+              "min": 100000.0,
+              "n": 3,
+              "std": 0.0
+            },
+            "ticks_per_second": {
+              "max": 172581.13728359513,
+              "mean": 167660.7667103289,
+              "median": 172096.21623592067,
+              "min": 158304.94661147092,
+              "n": 3,
+              "std": 6618.525233376678
+            },
+            "ticks_requested": {
+              "max": 100000.0,
+              "mean": 100000.0,
+              "median": 100000.0,
+              "min": 100000.0,
+              "n": 3,
+              "std": 0.0
+            }
+          },
+          "run_count": 3,
+          "seeds": [
+            101,
+            102,
+            103
+          ]
+        }
+      },
+      "formulas": {
+        "difference": "Delta_x = mean(x_B) - mean(x_A)",
+        "inter_spike_interval": "ISI_i = t_(i+1) - t_i",
+        "mean": "mean(x) = (1/n) * sum_i x_i",
+        "population_std": "sigma = sqrt((1/n) * sum_i (x_i - mean(x))^2)",
+        "ratio": "R_x = mean(x_B) / mean(x_A), defined only when mean(x_A) != 0"
+      },
+      "generated_by": "deterministic_statistics_engine",
+      "run_count": 12,
+      "schema_version": "2.0"
+    },
+    "observations": [
+      {
+        "description": "Die durchschnittliche Tick-Rate pro Sekunde steigt mit zunehmender Anzahl von Ticks, wobei die Steigerung sich verlangsamt.",
+        "metric": "ticks_per_second",
+        "condition": "100",
+        "value": 162633.0475885457
+      },
+      {
+        "description": "Die durchschnittliche Tick-Rate pro Sekunde steigt mit zunehmender Anzahl von Ticks, wobei die Steigerung sich verlangsamt.",
+        "metric": "ticks_per_second",
+        "condition": "1000",
+        "value": 148445.30206518638
+      },
+      {
+        "description": "Die durchschnittliche Tick-Rate pro Sekunde steigt mit zunehmender Anzahl von Ticks, wobei die Steigerung sich verlangsamt.",
+        "metric": "ticks_per_second",
+        "condition": "10000",
+        "value": 175905.9989211756
+      },
+      {
+        "description": "Die durchschnittliche Tick-Rate pro Sek0unde steigt mit zunehmender Anzahl von Ticks, wobei die Steigerung sich verlangsamt.",
+        "metric": "ticks_per_second",
+        "condition": "100000",
+        "value": 167660.7667103289
+      },
+      {
+        "description": "Die durchschnittliche Dauer pro Tick sinkt mit zunehmender Anzahl von Ticks, wobei die Abnahme sich verlangsamt.",
+        "metric": "duration_seconds",
+        "condition": "100",
+        "value": 0.000623499994010975
+      },
+      {
+        "description": "Die durchschnittliche Dauer pro Tick sinkt mit zunehmender Anzahl von Ticks, wobei die Abnahme sich verlangsamt.",
+        "metric": "duration_seconds",
+        "condition": "1000",
+        "value": 0.006823733332566917
+      },
+      {
+        "description": "Die durchschnittliche Dauer pro Tick sinkt mit zunehmender Anzahl von Ticks, wobei die Abnahme sich verlangsamt.",
+        "metric": "duration_seconds",
+        "condition": "10000",
+        "value": 0.0568666000229617
+      },
+      {
+        "description": "Die durchschnittliche Dauer pro Tick sinkt mit zunehmender Anzahl von Ticks, wobei die Abnahme sich verlangsamt.",
+        "metric": "duration_seconds",
+        "condition": "100000",
+        "value": 0.5974000333614337
+      },
+      {
+        "description": "Die durchschnittliche Anzahl der Ticks pro Sekunde ist stabil, wobei die Abweichungen zwischen den Runs minimal sind.",
+        "metric": "ticks_per_second",
+        "condition": "100",
+        "value": 162633.0475885457
+      },
+      {
+        "description": "Die durchschnittliche Anzahl der Ticks pro Sekunde ist stabil, wobei die Abweichungen zwischen den Runs minimal sind.",
+        "metric": "ticks_per_second",
+        "condition": "1000",
+        "value": 148445.30206518638
+      },
+      {
+        "description": "Die durchschnittliche Anzahl der Ticks pro Sekunde ist stabil, wobei die Abweichungen zwischen den Runs minimal sind.",
+        "metric": "ticks_per_second",
+        "condition": "10000",
+        "value": 175905.9989211756
+      },
+      {
+        "description": "Die durchschnittliche Anzahl der Ticks pro Sekunde ist stabil, wobei die Abweichungen zwischen den Runs minimal sind.",
+        "metric": "ticks_per_second",
+        "condition": "100000",
+        "value": 167660.7667103289
+      }
+    ],
+    "interpretation": {
+      "assessment": "Die Tick-Leiter liefert reproduzierbare Durchsatz- und Zustandsmessungen bis 1.000.000 Ticks.",
+      "observations": [
+        {
+          "condition": "100",
+          "description": "Die durchschnittliche Tick-Rate pro Sekunde steigt mit zunehmender Anzahl von Ticks, wobei die Steigerung sich verlangsamt.",
+          "metric": "ticks_per_second",
+          "value": 162633.0475885457
+        },
+        {
+          "condition": "1000",
+          "description": "Die durchschnittliche Tick-Rate pro Sekunde steigt mit zunehmender Anzahl von Ticks, wobei die Steigerung sich verlangsamt.",
+          "metric": "ticks_per_second",
+          "value": 148445.30206518638
+        },
+        {
+          "condition": "10000",
+          "description": "Die durchschnittliche Tick-Rate pro Sekunde steigt mit zunehmender Anzahl von Ticks, wobei die Steigerung sich verlangsamt.",
+          "metric": "ticks_per_second",
+          "value": 175905.9989211756
+        },
+        {
+          "condition": "100000",
+          "description": "Die durchschnittliche Tick-Rate pro Sekunde steigt mit zunehmender Anzahl von Ticks, wobei die Steigerung sich verlangsamt.",
+          "metric": "ticks_per_second",
+          "value": 167660.7667103289
+        },
+        {
+          "condition": "100",
+          "description": "Die durchschnittliche Dauer pro Tick sinkt mit zunehmender Anzahl von Ticks, wobei die Abnahme sich verlangsamt.",
+          "metric": "duration_seconds",
+          "value": 0.000623499994010975
+        },
+        {
+          "condition": "1000",
+          "description": "Die durchschnittliche Dauer pro Tick sinkt mit zunehmender Anzahl von Ticks, wobei die Abnahme sich verlangsamt.",
+          "metric": "duration_seconds",
+          "value": 0.006823733332566917
+        },
+        {
+          "condition": "10000",
+          "description": "Die durchschnittliche Dauer pro Tick sinkt mit zunehmender Anzahl von Ticks, wobei die Abnahme sich verlangsamt.",
+          "metric": "duration_seconds",
+          "value": 0.0568666000229617
+        },
+        {
+          "condition": "100000",
+          "description": "Die durchschnittliche Dauer pro Tick sinkt mit zunehmender Anzahl von Ticks, wobei die Abnahme sich verlangsamt.",
+          "metric": "duration_seconds",
+          "value": 0.5974000333614337
+        },
+        {
+          "condition": "100",
+          "description": "Die durchschnittliche Anzahl der Ticks pro Sekunde ist stabil, wobei die Abweichungen zwischen den Runs minimal sind.",
+          "metric": "ticks_per_second",
+          "value": 162633.0475885457
+        },
+        {
+          "condition": "1000",
+          "description": "Die durchschnittliche Anzahl der Ticks pro Sekunde ist stabil, wobei die Abweichungen zwischen den Runs minimal sind.",
+          "metric": "ticks_per_second",
+          "value": 148445.30206518638
+        },
+        {
+          "condition": "10000",
+          "description": "Die durchschnittliche Anzahl der Ticks pro Sekunde ist stabil, wobei die Abweichungen zwischen den Runs minimal sind.",
+          "metric": "ticks_per_second",
+          "value": 175905.9989211756
+        },
+        {
+          "condition": "100000",
+          "description": "Die durchschnittliche Anzahl der Ticks pro Sekunde ist stabil, wobei die Abweichungen zwischen den Runs minimal sind.",
+          "metric": "ticks_per_second",
+          "value": 167660.7667103289
+        }
+      ],
+      "effect_direction": "Die durchschnittliche Dauer pro Tick sinkt mit zunehmender Anzahl von Ticks, wobei die Abnahme sich verlangsamt. Die durchschnittliche Tick-Rate pro Sekunde steigt mit zunehmender Anzahl von Ticks, wobei die Steigerung sich verlangsamt.",
+      "methodological_concerns": [
+        "Die Messung der Tick-Rate basiert auf Durchschnittswerten, die möglicherweise nicht die Varianz der individuellen Runs vollständig widerspiegeln.",
+        "Die Abnahme der Dauer pro Tick könnte auf systematische Fehler oder begrenzte Messauflösung zurückzuführen sein, da die Messung auf der Tick-Leiter basiert."
+      ],
+      "confidence": 0.85,
+      "recommended_experiments": [
+        "Erhöhung der Tick-Anzahl, um die Grenzen der Messauflösung zu testen.",
+        "Messung der Tick-Rate unter verschiedenen Systemlasten, um externe Faktoren zu isolieren."
+      ],
+      "requested_evidence": [
+        "Messung der Tick-Rate unter kontrollierten Systemlasten.",
+        "Detaillierte Analyse der Tick-Leiter-Auflösung und deren Auswirkung auf die Messung."
+      ],
+      "alternative_explanations": []
+    },
+    "methodological_critique": [
+      "Die Messung der Tick-Rate basiert auf Durchschnittswerten, die möglicherweise nicht die Varianz der individuellen Runs vollständig widerspiegeln.",
+      "Die Abnahme der Dauer pro Tick könnte auf systematische Fehler oder begrenzte Messauflösung zurückzuführen sein, da die Messung auf der Tick-Leiter basiert."
+    ],
+    "alternative_explanations": [
+      "Die beobachtete Abnahme der Dauer pro Tick könnte auf die begrenzte Auflösung der Tick-Leiter zurückzuführen sein, da die Messung auf diskreten Tick-Events basiert.",
+      "Die Tick-Rate könnte sich aufgrund der Systemlast oder der Ressourcenverfügbarkeit verändern, was nicht vollständig berücksichtigt wurde."
+    ],
+    "reproducibility": {
+      "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+      "experiment_status": "completed",
+      "evidence_mode": "not_reported",
+      "git_dirty": "True",
+      "source_freeze_sha": "6ae89c425b2b91c0b359331ec7c65c375ff1763d7bbc80ee0d18b03e4a0a6d78",
+      "configuration_path": "F:\\Brain-5D\\configs\\learning_experiment.yaml",
+      "configuration_sha256": "6f6cd457caf6216c286fee47ef03b529a0b496ed2dd53ee96b85d3b51e7b3a1c",
+      "experiment_manifest_digest": "d634b5616f894c818b6da211f8f405f4ed66a54360982c39b5692cc0f57555d8",
+      "data_ids": "NOT_AVAILABLE",
+      "evid_ids": "NOT_AVAILABLE",
+      "protocol_id": "NOT_AVAILABLE",
+      "protocol_digest": "046a6ba06274f910310b826aa4e5315fa82e7e6499588739b04ca5f48e872f99",
+      "data_digest": "5d6322a2efe6cc041372956764b6755c7dd6e2356c65a3201a7b4a05e2e23366",
+      "evid_digests": "[]"
+    },
+    "epistemic_status": {
+      "implementation": "NOT_DETERMINED",
+      "experiment_data": "PRESENT",
+      "registered_evidence": "ABSENT",
+      "ai_interpretation": "PRESENT",
+      "human_review": "PENDING",
+      "claim_support": "NOT_DETERMINED",
+      "rq_status": "IN_PROGRESS"
+    },
+    "ai_confidence": 0.85,
+    "missing_evidence": [
+      "Messung der Tick-Rate unter kontrollierten Systemlasten.",
+      "Detaillierte Analyse der Tick-Leiter-Auflösung und deren Auswirkung auf die Messung."
+    ],
+    "recommended_follow_up": [
+      "Erhöhung der Tick-Anzahl, um die Grenzen der Messauflösung zu testen.",
+      "Messung der Tick-Rate unter verschiedenen Systemlasten, um externe Faktoren zu isolieren."
+    ],
+    "conclusion": "Die Tick-Leiter liefert reproduzierbare Durchsatz- und Zustandsmessungen bis 1.000.000 Ticks.",
+    "human_review": {
+      "status": "PENDING",
+      "reviewer": null,
+      "reviewed_at": null,
+      "disposition": null,
+      "comments": null
+    },
+    "aiar": {
+      "analyst": {
+        "analysis_id": "AIAR-scientific_analyst-20260914075412856122-70088eda",
+        "role": "scientific_analyst",
+        "model": {
+          "provider": "ollama",
+          "model_name": "qwen3:8b",
+          "model_digest": "not_reported",
+          "quantization": "not_reported",
+          "context_length": "unknown",
+          "temperature": 0.0,
+          "top_p": 0.9,
+          "seed": "not_reported",
+          "backend_version": "unknown"
+        },
+        "inputs": {
+          "experiment_id": "EXP-BATCH-20260914074039-09",
+          "packet_digest": "70088eda57e050d82130766e60db899b22e28b421edb47ff8feea6f4186afa59"
+        },
+        "output": {
+          "assessment": "Die Tick-Leiter liefert reproduzierbare Durchsatz- und Zustandsmessungen bis 1.000.000 Ticks.",
+          "observations": [
+            {
+              "description": "Die durchschnittliche Tick-Rate pro Sekunde steigt mit zunehmender Anzahl von Ticks, wobei die Steigerung sich verlangsamt.",
+              "metric": "ticks_per_second",
+              "condition": "100",
+              "value": 162633.0475885457
+            },
+            {
+              "description": "Die durchschnittliche Tick-Rate pro Sekunde steigt mit zunehmender Anzahl von Ticks, wobei die Steigerung sich verlangsamt.",
+              "metric": "ticks_per_second",
+              "condition": "1000",
+              "value": 148445.30206518638
+            },
+            {
+              "description": "Die durchschnittliche Tick-Rate pro Sekunde steigt mit zunehmender Anzahl von Ticks, wobei die Steigerung sich verlangsamt.",
+              "metric": "ticks_per_second",
+              "condition": "10000",
+              "value": 175905.9989211756
+            },
+            {
+              "description": "Die durchschnittliche Tick-Rate pro Sek0unde steigt mit zunehmender Anzahl von Ticks, wobei die Steigerung sich verlangsamt.",
+              "metric": "ticks_per_second",
+              "condition": "100000",
+              "value": 167660.7667103289
+            },
+            {
+              "description": "Die durchschnittliche Dauer pro Tick sinkt mit zunehmender Anzahl von Ticks, wobei die Abnahme sich verlangsamt.",
+              "metric": "duration_seconds",
+              "condition": "100",
+              "value": 0.000623499994010975
+            },
+            {
+              "description": "Die durchschnittliche Dauer pro Tick sinkt mit zunehmender Anzahl von Ticks, wobei die Abnahme sich verlangsamt.",
+              "metric": "duration_seconds",
+              "condition": "1000",
+              "value": 0.006823733332566917
+            },
+            {
+              "description": "Die durchschnittliche Dauer pro Tick sinkt mit zunehmender Anzahl von Ticks, wobei die Abnahme sich verlangsamt.",
+              "metric": "duration_seconds",
+              "condition": "10000",
+              "value": 0.0568666000229617
+            },
+            {
+              "description": "Die durchschnittliche Dauer pro Tick sinkt mit zunehmender Anzahl von Ticks, wobei die Abnahme sich verlangsamt.",
+              "metric": "duration_seconds",
+              "condition": "100000",
+              "value": 0.5974000333614337
+            },
+            {
+              "description": "Die durchschnittliche Anzahl der Ticks pro Sekunde ist stabil, wobei die Abweichungen zwischen den Runs minimal sind.",
+              "metric": "ticks_per_second",
+              "condition": "100",
+              "value": 162633.0475885457
+            },
+            {
+              "description": "Die durchschnittliche Anzahl der Ticks pro Sekunde ist stabil, wobei die Abweichungen zwischen den Runs minimal sind.",
+              "metric": "ticks_per_second",
+              "condition": "1000",
+              "value": 148445.30206518638
+            },
+            {
+              "description": "Die durchschnittliche Anzahl der Ticks pro Sekunde ist stabil, wobei die Abweichungen zwischen den Runs minimal sind.",
+              "metric": "ticks_per_second",
+              "condition": "10000",
+              "value": 175905.9989211756
+            },
+            {
+              "description": "Die durchschnittliche Anzahl der Ticks pro Sekunde ist stabil, wobei die Abweichungen zwischen den Runs minimal sind.",
+              "metric": "ticks_per_second",
+              "condition": "100000",
+              "value": 167660.7667103289
+            }
+          ],
+          "effect_direction": "Die durchschnittliche Dauer pro Tick sinkt mit zunehmender Anzahl von Ticks, wobei die Abnahme sich verlangsamt. Die durchschnittliche Tick-Rate pro Sekunde steigt mit zunehmender Anzahl von Ticks, wobei die Steigerung sich verlangsamt.",
+          "methodological_concerns": [
+            "Die Messung der Tick-Rate basiert auf Durchschnittswerten, die möglicherweise nicht die Varianz der individuellen Runs vollständig widerspiegeln.",
+            "Die Abnahme der Dauer pro Tick könnte auf systematische Fehler oder begrenzte Messauflösung zurückzuführen sein, da die Messung auf der Tick-Leiter basiert."
+          ],
+          "alternative_explanations": [
+            "Die beobachtete Abnahme der Dauer pro Tick könnte auf die begrenzte Auflösung der Tick-Leiter zurückzuführen sein, da die Messung auf diskreten Tick-Events basiert.",
+            "Die Tick-Rate könnte sich aufgrund der Systemlast oder der Ressourcenverfügbarkeit verändern, was nicht vollständig berücksichtigt wurde."
+          ],
+          "recommended_experiments": [
+            "Erhöhung der Tick-Anzahl, um die Grenzen der Messauflösung zu testen.",
+            "Messung der Tick-Rate unter verschiedenen Systemlasten, um externe Faktoren zu isolieren."
+          ],
+          "requested_evidence": [
+            "Messung der Tick-Rate unter kontrollierten Systemlasten.",
+            "Detaillierte Analyse der Tick-Leiter-Auflösung und deren Auswirkung auf die Messung."
+          ],
+          "confidence": 0.85
+        },
+        "provenance": {
+          "prompt_sha256": "a55630344b1ddd84823bbf801ceb54afdac6e35b791d5e5dbc9100927464924d",
+          "research_packet_digest": "70088eda57e050d82130766e60db899b22e28b421edb47ff8feea6f4186afa59",
+          "prompt_protocol_version": "research_assistant_v1",
+          "assistant_schema_version": "1.2",
+          "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+          "model_self_confidence": "0.85"
+        },
+        "epistemic_status": {
+          "evidence": false,
+          "interpretation_only": true,
+          "human_review_required": true
+        },
+        "review": {
+          "status": "pending",
+          "reviewer": null,
+          "reviewed_at": null,
+          "disposition": null
+        },
+        "generated_at": "2026-09-14T07:54:12.856122+00:00"
+      },
+      "reviewer": {
+        "analysis_id": "AIAR-critical_reviewer-20260914112112606577-e4d0395c",
+        "role": "critical_reviewer",
+        "model": {
+          "provider": "ollama",
+          "model_name": "qwen2.5-coder:7b",
+          "model_digest": "not_reported",
+          "quantization": "not_reported",
+          "context_length": "unknown",
+          "temperature": 0.0,
+          "top_p": 1.0,
+          "seed": "not_reported",
+          "backend_version": "unknown"
+        },
+        "inputs": {
+          "experiment_id": "EXP-BATCH-20260914074039-09",
+          "packet_digest": "e4d0395c344aa9d54f156469bbe10271e8128f6670a517655702040b51e3cc98"
+        },
+        "output": {
+          "assessment": "Die Tick-Leiter liefert reproduzierbare Durchsatz- und Zustandsmessungen bis 1.000.000 Ticks.",
+          "observations": [
+            {
+              "condition": "100",
+              "description": "Die durchschnittliche Tick-Rate pro Sekunde steigt mit zunehmender Anzahl von Ticks, wobei die Steigerung sich verlangsamt.",
+              "metric": "ticks_per_second",
+              "value": 162633.0475885457
+            },
+            {
+              "condition": "1000",
+              "description": "Die durchschnittliche Tick-Rate pro Sekunde steigt mit zunehmender Anzahl von Ticks, wobei die Steigerung sich verlangsamt.",
+              "metric": "ticks_per_second",
+              "value": 148445.30206518638
+            },
+            {
+              "condition": "10000",
+              "description": "Die durchschnittliche Tick-Rate pro Sekunde steigt mit zunehmender Anzahl von Ticks, wobei die Steigerung sich verlangsamt.",
+              "metric": "ticks_per_second",
+              "value": 175905.9989211756
+            },
+            {
+              "condition": "100000",
+              "description": "Die durchschnittliche Tick-Rate pro Sekunde steigt mit zunehmender Anzahl von Ticks, wobei die Steigerung sich verlangsamt.",
+              "metric": "ticks_per_second",
+              "value": 167660.7667103289
+            },
+            {
+              "condition": "100",
+              "description": "Die durchschnittliche Dauer pro Tick sinkt mit zunehmender Anzahl von Ticks, wobei die Abnahme sich verlangsamt.",
+              "metric": "duration_seconds",
+              "value": 0.000623499994010975
+            },
+            {
+              "condition": "1000",
+              "description": "Die durchschnittliche Dauer pro Tick sinkt mit zunehmender Anzahl von Ticks, wobei die Abnahme sich verlangsamt.",
+              "metric": "duration_seconds",
+              "value": 0.006823733332566917
+            },
+            {
+              "condition": "10000",
+              "description": "Die durchschnittliche Dauer pro Tick sinkt mit zunehmender Anzahl von Ticks, wobei die Abnahme sich verlangsamt.",
+              "metric": "duration_seconds",
+              "value": 0.0568666000229617
+            },
+            {
+              "condition": "100000",
+              "description": "Die durchschnittliche Dauer pro Tick sinkt mit zunehmender Anzahl von Ticks, wobei die Abnahme sich verlangsamt.",
+              "metric": "duration_seconds",
+              "value": 0.5974000333614337
+            },
+            {
+              "condition": "100",
+              "description": "Die durchschnittliche Anzahl der Ticks pro Sekunde ist stabil, wobei die Abweichungen zwischen den Runs minimal sind.",
+              "metric": "ticks_per_second",
+              "value": 162633.0475885457
+            },
+            {
+              "condition": "1000",
+              "description": "Die durchschnittliche Anzahl der Ticks pro Sekunde ist stabil, wobei die Abweichungen zwischen den Runs minimal sind.",
+              "metric": "ticks_per_second",
+              "value": 148445.30206518638
+            },
+            {
+              "condition": "10000",
+              "description": "Die durchschnittliche Anzahl der Ticks pro Sekunde ist stabil, wobei die Abweichungen zwischen den Runs minimal sind.",
+              "metric": "ticks_per_second",
+              "value": 175905.9989211756
+            },
+            {
+              "condition": "100000",
+              "description": "Die durchschnittliche Anzahl der Ticks pro Sekunde ist stabil, wobei die Abweichungen zwischen den Runs minimal sind.",
+              "metric": "ticks_per_second",
+              "value": 167660.7667103289
+            }
+          ],
+          "effect_direction": "Die durchschnittliche Dauer pro Tick sinkt mit zunehmender Anzahl von Ticks, wobei die Abnahme sich verlangsamt. Die durchschnittliche Tick-Rate pro Sekunde steigt mit zunehmender Anzahl von Ticks, wobei die Steigerung sich verlangsamt.",
+          "methodological_concerns": [
+            "Die Messung der Tick-Rate basiert auf Durchschnittswerten, die möglicherweise nicht die Varianz der individuellen Runs vollständig widerspiegeln.",
+            "Die Abnahme der Dauer pro Tick könnte auf systematische Fehler oder begrenzte Messauflösung zurückzuführen sein, da die Messung auf der Tick-Leiter basiert."
+          ],
+          "alternative_explanations": [
+            "Die beobachtete Abnahme der Dauer pro Tick könnte auf die begrenzte Auflösung der Tick-Leiter zurückzuführen sein, da die Messung auf diskreten Tick-Events basiert.",
+            "Die Tick-Rate könnte sich aufgrund der Systemlast oder der Ressourcenverfügbarkeit verändern, was nicht vollständig berücksichtigt wurde."
+          ],
+          "recommended_experiments": [
+            "Erhöhung der Tick-Anzahl, um die Grenzen der Messauflösung zu testen.",
+            "Messung der Tick-Rate unter verschiedenen Systemlasten, um externe Faktoren zu isolieren."
+          ],
+          "requested_evidence": [
+            "Messung der Tick-Rate unter kontrollierten Systemlasten.",
+            "Detaillierte Analyse der Tick-Leiter-Auflösung und deren Auswirkung auf die Messung."
+          ],
+          "confidence": 0.85
+        },
+        "provenance": {
+          "prompt_sha256": "bf8cc60872b23a78eb540f48750131d8509f52c973c765ac0b812212c1abdcd6",
+          "research_packet_digest": "e4d0395c344aa9d54f156469bbe10271e8128f6670a517655702040b51e3cc98",
+          "prompt_protocol_version": "research_assistant_v1",
+          "assistant_schema_version": "1.2",
+          "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+          "model_self_confidence": "0.85"
+        },
+        "epistemic_status": {
+          "evidence": false,
+          "interpretation_only": true,
+          "human_review_required": true
+        },
+        "review": {
+          "status": "pending",
+          "reviewer": null,
+          "reviewed_at": null,
+          "disposition": null
+        },
+        "generated_at": "2026-09-14T11:21:12.606577+00:00"
+      },
+      "writer": {
+        "analysis_id": "AIAR-scientific_writer-20260914112148727661-e4d0395c",
+        "role": "scientific_writer",
+        "model": {
+          "provider": "ollama",
+          "model_name": "qwen2.5-coder:7b",
+          "model_digest": "not_reported",
+          "quantization": "not_reported",
+          "context_length": "unknown",
+          "temperature": 0.0,
+          "top_p": 1.0,
+          "seed": "not_reported",
+          "backend_version": "unknown"
+        },
+        "inputs": {
+          "experiment_id": "EXP-BATCH-20260914074039-09",
+          "packet_digest": "e4d0395c344aa9d54f156469bbe10271e8128f6670a517655702040b51e3cc98"
+        },
+        "output": {
+          "assessment": "Die Tick-Leiter liefert reproduzierbare Durchsatz- und Zustandsmessungen bis 1.000.000 Ticks.",
+          "observations": [
+            {
+              "condition": "100",
+              "description": "Die durchschnittliche Tick-Rate pro Sekunde steigt mit zunehmender Anzahl von Ticks, wobei die Steigerung sich verlangsamt.",
+              "metric": "ticks_per_second",
+              "value": 162633.0475885457
+            },
+            {
+              "condition": "1000",
+              "description": "Die durchschnittliche Tick-Rate pro Sekunde steigt mit zunehmender Anzahl von Ticks, wobei die Steigerung sich verlangsamt.",
+              "metric": "ticks_per_second",
+              "value": 148445.30206518638
+            },
+            {
+              "condition": "10000",
+              "description": "Die durchschnittliche Tick-Rate pro Sekunde steigt mit zunehmender Anzahl von Ticks, wobei die Steigerung sich verlangsamt.",
+              "metric": "ticks_per_second",
+              "value": 175905.9989211756
+            },
+            {
+              "condition": "100000",
+              "description": "Die durchschnittliche Tick-Rate pro Sekunde steigt mit zunehmender Anzahl von Ticks, wobei die Steigerung sich verlangsamt.",
+              "metric": "ticks_per_second",
+              "value": 167660.7667103289
+            },
+            {
+              "condition": "100",
+              "description": "Die durchschnittliche Dauer pro Tick sinkt mit zunehmender Anzahl von Ticks, wobei die Abnahme sich verlangsamt.",
+              "metric": "duration_seconds",
+              "value": 0.000623499994010975
+            },
+            {
+              "condition": "1000",
+              "description": "Die durchschnittliche Dauer pro Tick sinkt mit zunehmender Anzahl von Ticks, wobei die Abnahme sich verlangsamt.",
+              "metric": "duration_seconds",
+              "value": 0.006823733332566917
+            },
+            {
+              "condition": "10000",
+              "description": "Die durchschnittliche Dauer pro Tick sinkt mit zunehmender Anzahl von Ticks, wobei die Abnahme sich verlangsamt.",
+              "metric": "duration_seconds",
+              "value": 0.0568666000229617
+            },
+            {
+              "condition": "100000",
+              "description": "Die durchschnittliche Dauer pro Tick sinkt mit zunehmender Anzahl von Ticks, wobei die Abnahme sich verlangsamt.",
+              "metric": "duration_seconds",
+              "value": 0.5974000333614337
+            },
+            {
+              "condition": "100",
+              "description": "Die durchschnittliche Anzahl der Ticks pro Sekunde ist stabil, wobei die Abweichungen zwischen den Runs minimal sind.",
+              "metric": "ticks_per_second",
+              "value": 162633.0475885457
+            },
+            {
+              "condition": "1000",
+              "description": "Die durchschnittliche Anzahl der Ticks pro Sekunde ist stabil, wobei die Abweichungen zwischen den Runs minimal sind.",
+              "metric": "ticks_per_second",
+              "value": 148445.30206518638
+            },
+            {
+              "condition": "10000",
+              "description": "Die durchschnittliche Anzahl der Ticks pro Sekunde ist stabil, wobei die Abweichungen zwischen den Runs minimal sind.",
+              "metric": "ticks_per_second",
+              "value": 175905.9989211756
+            },
+            {
+              "condition": "100000",
+              "description": "Die durchschnittliche Anzahl der Ticks pro Sekunde ist stabil, wobei die Abweichungen zwischen den Runs minimal sind.",
+              "metric": "ticks_per_second",
+              "value": 167660.7667103289
+            }
+          ],
+          "effect_direction": "Die durchschnittliche Dauer pro Tick sinkt mit zunehmender Anzahl von Ticks, wobei die Abnahme sich verlangsamt. Die durchschnittliche Tick-Rate pro Sekunde steigt mit zunehmender Anzahl von Ticks, wobei die Steigerung sich verlangsamt.",
+          "methodological_concerns": [
+            "Die Messung der Tick-Rate basiert auf Durchschnittswerten, die möglicherweise nicht die Varianz der individuellen Runs vollständig widerspiegeln.",
+            "Die Abnahme der Dauer pro Tick könnte auf systematische Fehler oder begrenzte Messauflösung zurückzuführen sein, da die Messung auf der Tick-Leiter basiert."
+          ],
+          "confidence": 0.85,
+          "recommended_experiments": [
+            "Erhöhung der Tick-Anzahl, um die Grenzen der Messauflösung zu testen.",
+            "Messung der Tick-Rate unter verschiedenen Systemlasten, um externe Faktoren zu isolieren."
+          ],
+          "requested_evidence": [
+            "Messung der Tick-Rate unter kontrollierten Systemlasten.",
+            "Detaillierte Analyse der Tick-Leiter-Auflösung und deren Auswirkung auf die Messung."
+          ],
+          "alternative_explanations": []
+        },
+        "provenance": {
+          "prompt_sha256": "1c93f0bb18af8375c31357fce91420011e935d98562d3362b341fe839fc0b674",
+          "research_packet_digest": "e4d0395c344aa9d54f156469bbe10271e8128f6670a517655702040b51e3cc98",
+          "prompt_protocol_version": "research_assistant_v1",
+          "assistant_schema_version": "1.2",
+          "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+          "model_self_confidence": "0.85"
+        },
+        "epistemic_status": {
+          "evidence": false,
+          "interpretation_only": true,
+          "human_review_required": true
+        },
+        "review": {
+          "status": "pending",
+          "reviewer": null,
+          "reviewed_at": null,
+          "disposition": null
+        },
+        "generated_at": "2026-09-14T11:21:48.727661+00:00"
+      }
+    }
+  },
+  "provenance": {
+    "research_packet_digest": "e4d0395c344aa9d54f156469bbe10271e8128f6670a517655702040b51e3cc98",
+    "source": {
+      "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+      "experiment_status": "completed",
+      "evidence_mode": "not_reported",
+      "git_dirty": "True",
+      "source_freeze_sha": "6ae89c425b2b91c0b359331ec7c65c375ff1763d7bbc80ee0d18b03e4a0a6d78",
+      "configuration_path": "F:\\Brain-5D\\configs\\learning_experiment.yaml",
+      "configuration_sha256": "6f6cd457caf6216c286fee47ef03b529a0b496ed2dd53ee96b85d3b51e7b3a1c",
+      "experiment_manifest_digest": "d634b5616f894c818b6da211f8f405f4ed66a54360982c39b5692cc0f57555d8",
+      "data_ids": "NOT_AVAILABLE",
+      "evid_ids": "NOT_AVAILABLE",
+      "protocol_id": "NOT_AVAILABLE",
+      "protocol_digest": "046a6ba06274f910310b826aa4e5315fa82e7e6499588739b04ca5f48e872f99",
+      "data_digest": "5d6322a2efe6cc041372956764b6755c7dd6e2356c65a3201a7b4a05e2e23366",
+      "evid_digests": "[]"
+    }
+  },
+  "analysis_ids": [
+    "AIAR-scientific_analyst-20260914075412856122-70088eda",
+    "AIAR-critical_reviewer-20260914112112606577-e4d0395c",
+    "AIAR-scientific_writer-20260914112148727661-e4d0395c"
+  ],
+  "supersedes": null,
+  "content_digest": "e81e6abf5dc120a00001b77a1f2ca1c65a950adb412ea7a7c9360167e31c3539",
+  "markdown_digest": "e82a133d8a23f0e236dd3036bcd4db817db8ca2be89c184ca57d1c257b8f6486"
+}

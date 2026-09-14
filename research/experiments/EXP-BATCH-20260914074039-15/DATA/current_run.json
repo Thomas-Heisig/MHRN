@@ -1,0 +1,11 @@
+{
+  "last_archived_run": 17,
+  "raw_artifact": {
+    "format": "json.gz",
+    "path": "DATA/raw/run-0017-random_graph-seed-103.json.gz",
+    "sha256": "3eb2c3f5cdcf7e0d59597d92f9a42b83145a22ddf24a353d7e6901321fdb7a89",
+    "size_bytes": 546,
+    "uncompressed_bytes": 1010
+  },
+  "status": "idle"
+}

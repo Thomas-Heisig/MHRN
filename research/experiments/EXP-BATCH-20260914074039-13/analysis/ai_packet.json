@@ -1,0 +1,106 @@
+{
+  "ai_input_policy": "compact_only_raw_on_explicit_deterministic_extract",
+  "generated_by": "deterministic_research_data_v2",
+  "limits": {
+    "ai_packet_max_bytes": 1000000,
+    "run_summary_max_bytes": 5000000,
+    "sequence_preview_items": 16
+  },
+  "raw_index": {
+    "path": "DATA/runs_index.json",
+    "run_count": 3,
+    "sha256": "9fe229fa2c6e7389f163304798dd0b0dce182fed9c768b16f10266293a6f11a8"
+  },
+  "run_count": 3,
+  "run_preview": [
+    {
+      "_raw_artifact": {
+        "format": "json.gz",
+        "path": "DATA/raw/run-0000-instrumentation_gap_audit-seed-101.json.gz",
+        "sha256": "0800338b73d563f30b8ac26720c9835e828f9d3e017dd1ff9ba62c31b4706101",
+        "size_bytes": 380,
+        "uncompressed_bytes": 481
+      },
+      "condition": "instrumentation_gap_audit",
+      "experiment_id": "EXP-BATCH-20260914074039-13",
+      "metrics": {
+        "audit_complete": true,
+        "automatic_evidence_promotion": false,
+        "claim_boundary": "No direct causal measurement is performed by this runner. Completion means only that the registered gap/boundary contract was executed and preserved for review.",
+        "direct_test_of_hypothesis": false,
+        "scientific_evidence": false
+      },
+      "runtime_error": null,
+      "seed": 101,
+      "state_digest_after": "",
+      "state_digest_before": ""
+    },
+    {
+      "_raw_artifact": {
+        "format": "json.gz",
+        "path": "DATA/raw/run-0001-instrumentation_gap_audit-seed-102.json.gz",
+        "sha256": "553a295067dc55eccc36caae1bd81c60aceded581f4a063077c9276935b0ad80",
+        "size_bytes": 380,
+        "uncompressed_bytes": 481
+      },
+      "condition": "instrumentation_gap_audit",
+      "experiment_id": "EXP-BATCH-20260914074039-13",
+      "metrics": {
+        "audit_complete": true,
+        "automatic_evidence_promotion": false,
+        "claim_boundary": "No direct causal measurement is performed by this runner. Completion means only that the registered gap/boundary contract was executed and preserved for review.",
+        "direct_test_of_hypothesis": false,
+        "scientific_evidence": false
+      },
+      "runtime_error": null,
+      "seed": 102,
+      "state_digest_after": "",
+      "state_digest_before": ""
+    },
+    {
+      "_raw_artifact": {
+        "format": "json.gz",
+        "path": "DATA/raw/run-0002-instrumentation_gap_audit-seed-103.json.gz",
+        "sha256": "4bf5571fdcb8ac31705431435e627a339637938f28da8475978f9e725ee48411",
+        "size_bytes": 380,
+        "uncompressed_bytes": 481
+      },
+      "condition": "instrumentation_gap_audit",
+      "experiment_id": "EXP-BATCH-20260914074039-13",
+      "metrics": {
+        "audit_complete": true,
+        "automatic_evidence_promotion": false,
+        "claim_boundary": "No direct causal measurement is performed by this runner. Completion means only that the registered gap/boundary contract was executed and preserved for review.",
+        "direct_test_of_hypothesis": false,
+        "scientific_evidence": false
+      },
+      "runtime_error": null,
+      "seed": 103,
+      "state_digest_after": "",
+      "state_digest_before": ""
+    }
+  ],
+  "schema_version": "2.0",
+  "statistics": {
+    "conditions": {
+      "instrumentation_gap_audit": {
+        "metrics": {},
+        "run_count": 3,
+        "seeds": [
+          101,
+          102,
+          103
+        ]
+      }
+    },
+    "formulas": {
+      "difference": "Delta_x = mean(x_B) - mean(x_A)",
+      "inter_spike_interval": "ISI_i = t_(i+1) - t_i",
+      "mean": "mean(x) = (1/n) * sum_i x_i",
+      "population_std": "sigma = sqrt((1/n) * sum_i (x_i - mean(x))^2)",
+      "ratio": "R_x = mean(x_B) / mean(x_A), defined only when mean(x_A) != 0"
+    },
+    "run_count": 3,
+    "schema_version": "2.0"
+  }
+}

@@ -1,0 +1,320 @@
+{
+  "analysis_id": "AIAR-scientific_writer-20260914120359104298-daf68309",
+  "role": "scientific_writer",
+  "model": {
+    "provider": "ollama",
+    "model_name": "qwen2.5-coder:7b",
+    "model_digest": "not_reported",
+    "quantization": "not_reported",
+    "context_length": "unknown",
+    "temperature": 0.0,
+    "top_p": 1.0,
+    "seed": "not_reported",
+    "backend_version": "unknown"
+  },
+  "inputs": {
+    "experiment_id": "EXP-BATCH-20260914074039-82",
+    "packet_digest": "daf683090199cc598423df0837089bb744f15f0d0da2bfc0610eb813d5b3676e"
+  },
+  "output": {
+    "experiment_id": "EXP-BATCH-20260914074039-82",
+    "run_count": 15,
+    "seeds": [
+      21001,
+      21002,
+      21003
+    ],
+    "metrics": {
+      "n1024": {
+        "construction_seconds": {
+          "mean": 0.01940093331116562
+        },
+        "neuron_updates_per_second": {
+          "mean": 530121.8527166274
+        },
+        "ticks_per_second": {
+          "mean": 517.6971217935815
+        },
+        "total_spikes": {
+          "mean": 1128.3333333333333
+        }
+      },
+      "n128": {
+        "construction_seconds": {
+          "mean": 0.0032201000140048563
+        },
+        "neuron_updates_per_second": {
+          "mean": 557559.9482436825
+        },
+        "ticks_per_second": {
+          "mean": 4355.93709565377
+        },
+        "total_spikes": {
+          "mean": 319.3333333333333
+        }
+      },
+      "n25000": {
+        "construction_seconds": {
+          "mean": 1.5793472333461978
+        },
+        "neuron_updates_per_second": {
+          "mean": 345389.1372502619
+        },
+        "ticks_per_second": {
+          "mean": 13.815565490010478
+        },
+        "total_spikes": {
+          "mean": 1560.0
+        }
+      },
+      "n5000": {
+        "construction_seconds": {
+          "mean": 0.10978216666262597
+        },
+        "neuron_updates_per_second": {
+          "mean": 429878.42530334723
+        },
+        "ticks_per_second": {
+          "mean": 85.97568506066945
+        },
+        "total_spikes": {
+          "mean": 1452.0
+        }
+      }
+    },
+    "hypotheses": [
+      {
+        "id": "H-EVAL-005-A",
+        "status": "untested"
+      }
+    ],
+    "known_limitations": [
+      "Git provenance is dirty or unavailable.",
+      "No registered scientific evidence is linked to this experiment."
+    ],
+    "literature_sources": [],
+    "manifest": {
+      "ai_exposure": "none",
+      "ai_interactions": [],
+      "ai_protocol": {
+        "version": 1
+      },
+      "ai_reproducibility": "R0",
+      "artifacts": {
+        "ai_packet": "analysis/ai_packet.json",
+        "ai_packet_digest": "analysis/ai_packet_digest.json",
+        "ai_report_json": "experiments/EXP-BATCH-20260914074039-82/reports/AIRR-2026-0001.json",
+        "ai_report_markdown": "experiments/EXP-BATCH-20260914074039-82/reports/AIRR-2026-0001.md",
+        "current_run": "DATA/current_run.json",
+        "data": "DATA/runs.json",
+        "data_index": "DATA/runs_index.json",
+        "preregistration": "preregistrations/operational/active_scaling_v2.json",
+        "raw_run_index": "DATA/runs_index.json",
+        "report": "report.md",
+        "statistics": "analysis/statistics.json",
+        "workflow": "workflow.json"
+      },
+      "causal_card": {
+        "classification": "PURE",
+        "interaction_ids": [],
+        "roles": []
+      },
+      "causal_taint": "PURE",
+      "config": {
+        "path": "F:\\Brain-5D\\configs\\learning_experiment.yaml",
+        "sha256": "6f6cd457caf6216c286fee47ef03b529a0b496ed2dd53ee96b85d3b51e7b3a1c"
+      },
+      "created_at": "2026-09-14T08:59:03.623215+00:00",
+      "data_partitions": [],
+      "epistemic_layers": {
+        "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+        "evid": "not_created; requires semantic validation, clean freeze and human review",
+        "interpretation": "post-hoc AI or human interpretation; never execution input",
+        "ui_state": "operator/dashboard progress only; not a scientific result"
+      },
+      "execution_contract": {
+        "hypothesis_id": "H-EVAL-005-A",
+        "protocol": "active_scaling_v2",
+        "question_id": "RQ-EVAL-005",
+        "resolved_runner": "run_eval_scaling_v2",
+        "runtime_runner_bytecode_sha256": "d814965b739b4dbdad1519b8247156658acfcb8c4d4be547f5096a2044ad723a",
+        "runtime_summary_bytecode_sha256": "8d311e523e6093b1bbb23954dae163406f1836fb0defa5b8c4479ac68a929395",
+        "source_runner_bytecode_sha256": "d814965b739b4dbdad1519b8247156658acfcb8c4d4be547f5096a2044ad723a",
+        "source_runtime_consistency": "MATCH",
+        "source_summary_bytecode_sha256": "8d311e523e6093b1bbb23954dae163406f1836fb0defa5b8c4479ac68a929395",
+        "tick_validation": {
+          "mode": "protocol_defined_internal_trials",
+          "requested_ticks": 1000,
+          "status": "NOT_APPLICABLE"
+        },
+        "ticks_requested": 1000
+      },
+      "execution_semantics": {
+        "automatic_evidence_promotion": false,
+        "claim_scope": "direct_technical_measurement_not_automatic_evidence",
+        "direct_test_of_hypothesis": true,
+        "external_review": "external_review/INTEGRATION.md",
+        "human_assessment": "not_recorded",
+        "kind": "functional_experiment",
+        "scientific_evidence": false,
+        "snn_involved": true
+      },
+      "experiment_id": "EXP-BATCH-20260914074039-82",
+      "experiment_status": "completed",
+      "git": {
+        "branch": "main",
+        "commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+        "dirty": true
+      },
+      "hypotheses": [
+        "H-EVAL-005-A"
+      ],
+      "network_mode": "OFFLINE",
+      "provenance_digests": {
+        "code": "5a11ea288e7e695c2dcd456642b533cbb3e6daf38b72e150134e60e69059531f",
+        "config": "6f6cd457caf6216c286fee47ef03b529a0b496ed2dd53ee96b85d3b51e7b3a1c",
+        "data": "b95ae52373bd0e7330d0e61d9f22befec0c8377ce8878170510a78818624ec19",
+        "prompt": "dd18e473908e7e75b1717c240bac221729ea38753abfd28b701b37b20d5f5e14"
+      },
+      "research_questions": [
+        "RQ-EVAL-005"
+      ],
+      "research_run_mode": "EXPLORATORY",
+      "results": {
+        "protocol": "active_scaling_v2",
+        "run_count": 15,
+        "runner": "run_eval_scaling_v2",
+        "tick_contract": {
+          "mode": "protocol_defined_internal_trials",
+          "requested_ticks": 1000,
+          "status": "NOT_APPLICABLE"
+        },
+        "ticks_requested": 1000
+      },
+      "runtime": {
+        "duration_seconds": 56.90105729998322
+      },
+      "runtime_errors": [],
+      "simulation": {
+        "protocol": "active_scaling_v2",
+        "seed": 21001,
+        "seeds": [
+          21001,
+          21002,
+          21003
+        ],
+        "ticks": 1000
+      },
+      "software": {
+        "brain5d_version": "0.6.0a3",
+        "os": "Windows 11",
+        "python": "3.13.14"
+      },
+      "source_freeze_sha": "bf72efb70739b3d7f4ddf56821e13a86e7d29595e36d998e309f6ba049f181bf",
+      "timestamp": "2026-09-14T10:59:03.623207",
+      "validity": {
+        "fatal_error_count": 0,
+        "reason": null,
+        "runtime_error_count": 0,
+        "valid": true
+      }
+    },
+    "previous_analyses": [],
+    "protocol": {
+      "assistant_policy": "AI is post-hoc interpretation only.",
+      "conditions": "Registered protocol conditions",
+      "epistemic_layers": {
+        "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+        "evid": "not_created; requires semantic validation, clean freeze and human review",
+        "interpretation": "post-hoc AI or human interpretation; never execution input",
+        "ui_state": "operator/dashboard progress only; not a scientific result"
+      },
+      "execution": "registered experiment_suite runner",
+      "experiment_id": "EXP-BATCH-20260914074039-82",
+      "hypothesis": "H-EVAL-005-A",
+      "notes": "",
+      "protocol": "active_scaling_v2",
+      "research_question": "RQ-EVAL-005",
+      "resolved_runner": "run_eval_scaling_v2",
+      "seeds": [
+        21001,
+        21002,
+        21003
+      ],
+      "tick_validation": {
+        "mode": "protocol_defined_internal_trials",
+        "requested_ticks": 1000,
+        "status": "NOT_APPLICABLE"
+      },
+      "ticks": 1000,
+      "ticks_contract": "minimum requested observation window",
+      "title": "Experiment workflow: active_scaling_v2"
+    },
+    "provenance": {
+      "configuration_path": "F:\\Brain-5D\\configs\\learning_experiment.yaml",
+      "configuration_sha256": "6f6cd457caf6216c286fee47ef03b529a0b496ed2dd53ee96b85d3b51e7b3a1c",
+      "data_digest": "47e7581121b8e1e71362abd84b748a1370d3cb9b56656f70c7d5543e54fa7f88",
+      "data_ids": "NOT_AVAILABLE",
+      "evid_digests": "[]",
+      "evid_ids": "NOT_AVAILABLE",
+      "evidence_mode": "not_reported",
+      "experiment_manifest_digest": "19fc72a35345e23c990630e33235493f7fdc6d09975d439dc2dd558df08dcd91",
+      "experiment_status": "completed",
+      "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+      "git_dirty": "True",
+      "protocol_digest": "2bfb7cfb770db05942a87186416449844e9e2e5ebb396dcbc2c879b991d249df",
+      "protocol_id": "NOT_AVAILABLE",
+      "source_freeze_sha": "bf72efb70739b3d7f4ddf56821e13a86e7d29595e36d998e309f6ba049f181bf"
+    },
+    "research_question": {
+      "answer": {
+        "confidence": "none",
+        "current": null,
+        "limitations": "Protocol/data availability does not mean accepted EVID."
+      },
+      "created": "2026-09-10",
+      "domain": "Empirical Evaluation",
+      "evidence": [],
+      "hypotheses": [
+        "H-EVAL-005-A"
+      ],
+      "id": "RQ-EVAL-005",
+      "literature": [],
+      "question": "Does corrected canonical base256 addressing execute the declared active-scaling workload through100000 neurons without changing graph budgets?",
+      "relevance": "Bounded exploratory observation; preserves historical records and requires human evidence review.",
+      "status": "open",
+      "updated": "2026-09-10"
+    },
+    "assessment": "Die Analyse konnte nicht vollstaendig schema-konform erzeugt werden. Das Modell hat das erforderliche assessment-Feld nicht geliefert.",
+    "observations": [],
+    "methodological_concerns": [
+      "Die vom Modell ausgegebene confidence war schemawidrig oder ausserhalb des Bereichs 0..1. Sie wurde fuer die AIRR-Provenienz konservativ auf 0.0 gesetzt; der Originalwert bleibt als confidence_original erhalten."
+    ],
+    "alternative_explanations": [],
+    "recommended_experiments": [],
+    "requested_evidence": [],
+    "effect_direction": "not_determined",
+    "confidence_original": null,
+    "confidence": 0.0
+  },
+  "provenance": {
+    "prompt_sha256": "f12cc0c148849930e9b9e710108bae133171fc4e233a420d334cda0ee534de1a",
+    "research_packet_digest": "daf683090199cc598423df0837089bb744f15f0d0da2bfc0610eb813d5b3676e",
+    "prompt_protocol_version": "research_assistant_v1",
+    "assistant_schema_version": "1.2",
+    "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+    "model_self_confidence": "0.0"
+  },
+  "epistemic_status": {
+    "evidence": false,
+    "interpretation_only": true,
+    "human_review_required": true
+  },
+  "review": {
+    "status": "pending",
+    "reviewer": null,
+    "reviewed_at": null,
+    "disposition": null
+  },
+  "generated_at": "2026-09-14T12:03:59.104298+00:00"
+}

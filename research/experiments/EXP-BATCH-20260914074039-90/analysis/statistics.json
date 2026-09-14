@@ -1,0 +1,212 @@
+{
+  "conditions": {
+    "audio": {
+      "metrics": {
+        "correct_decisions": {
+          "max": 48.0,
+          "mean": 46.0,
+          "median": 46.0,
+          "min": 44.0,
+          "n": 3,
+          "std": 1.632993161855452
+        },
+        "matched_task_count": {
+          "max": 48.0,
+          "mean": 48.0,
+          "median": 48.0,
+          "min": 48.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "normalized_energy_units": {
+          "max": 891.0144000000006,
+          "mean": 891.0144000000006,
+          "median": 891.0144000000006,
+          "min": 891.0144000000006,
+          "n": 3,
+          "std": 0.0
+        },
+        "normalized_energy_units_per_correct_decision": {
+          "max": 20.250327272727286,
+          "mean": 19.394335177865624,
+          "median": 19.369878260869577,
+          "min": 18.562800000000014,
+          "n": 3,
+          "std": 0.6891471442497124
+        },
+        "synaptic_events": {
+          "max": 768.0,
+          "mean": 768.0,
+          "median": 768.0,
+          "min": 768.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "synaptic_events_per_correct_decision": {
+          "max": 17.454545454545453,
+          "mean": 16.7167325428195,
+          "median": 16.695652173913043,
+          "min": 16.0,
+          "n": 3,
+          "std": 0.5940027532481837
+        },
+        "task_accuracy": {
+          "max": 1.0,
+          "mean": 0.9583333333333334,
+          "median": 0.9583333333333334,
+          "min": 0.9166666666666666,
+          "n": 3,
+          "std": 0.0340206908719886
+        }
+      },
+      "run_count": 3,
+      "seeds": [
+        101,
+        102,
+        103
+      ]
+    },
+    "digital": {
+      "metrics": {
+        "correct_decisions": {
+          "max": 48.0,
+          "mean": 46.0,
+          "median": 46.0,
+          "min": 44.0,
+          "n": 3,
+          "std": 1.632993161855452
+        },
+        "matched_task_count": {
+          "max": 48.0,
+          "mean": 48.0,
+          "median": 48.0,
+          "min": 48.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "normalized_energy_units": {
+          "max": 495.0143999999997,
+          "mean": 495.01439999999974,
+          "median": 495.0143999999997,
+          "min": 495.0143999999997,
+          "n": 3,
+          "std": 0.0
+        },
+        "normalized_energy_units_per_correct_decision": {
+          "max": 11.250327272727265,
+          "mean": 10.774769960474302,
+          "median": 10.761182608695645,
+          "min": 10.312799999999994,
+          "n": 3,
+          "std": 0.38286447460611656
+        },
+        "synaptic_events": {
+          "max": 384.0,
+          "mean": 384.0,
+          "median": 384.0,
+          "min": 384.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "synaptic_events_per_correct_decision": {
+          "max": 8.727272727272727,
+          "mean": 8.35836627140975,
+          "median": 8.347826086956522,
+          "min": 8.0,
+          "n": 3,
+          "std": 0.2970013766240919
+        },
+        "task_accuracy": {
+          "max": 1.0,
+          "mean": 0.9583333333333334,
+          "median": 0.9583333333333334,
+          "min": 0.9166666666666666,
+          "n": 3,
+          "std": 0.0340206908719886
+        }
+      },
+      "run_count": 3,
+      "seeds": [
+        101,
+        102,
+        103
+      ]
+    },
+    "vision": {
+      "metrics": {
+        "correct_decisions": {
+          "max": 48.0,
+          "mean": 46.0,
+          "median": 46.0,
+          "min": 44.0,
+          "n": 3,
+          "std": 1.632993161855452
+        },
+        "matched_task_count": {
+          "max": 48.0,
+          "mean": 48.0,
+          "median": 48.0,
+          "min": 48.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "normalized_energy_units": {
+          "max": 2071.8144000000007,
+          "mean": 2071.8144000000007,
+          "median": 2071.8144000000007,
+          "min": 2071.8144000000007,
+          "n": 3,
+          "std": 0.0
+        },
+        "normalized_energy_units_per_correct_decision": {
+          "max": 47.086690909090926,
+          "mean": 45.09631146245061,
+          "median": 45.039443478260885,
+          "min": 43.16280000000001,
+          "n": 3,
+          "std": 1.6024263773687977
+        },
+        "synaptic_events": {
+          "max": 1920.0,
+          "mean": 1920.0,
+          "median": 1920.0,
+          "min": 1920.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "synaptic_events_per_correct_decision": {
+          "max": 43.63636363636363,
+          "mean": 41.79183135704875,
+          "median": 41.73913043478261,
+          "min": 40.0,
+          "n": 3,
+          "std": 1.4850068831204593
+        },
+        "task_accuracy": {
+          "max": 1.0,
+          "mean": 0.9583333333333334,
+          "median": 0.9583333333333334,
+          "min": 0.9166666666666666,
+          "n": 3,
+          "std": 0.0340206908719886
+        }
+      },
+      "run_count": 3,
+      "seeds": [
+        101,
+        102,
+        103
+      ]
+    }
+  },
+  "formulas": {
+    "difference": "Delta_x = mean(x_B) - mean(x_A)",
+    "inter_spike_interval": "ISI_i = t_(i+1) - t_i",
+    "mean": "mean(x) = (1/n) * sum_i x_i",
+    "population_std": "sigma = sqrt((1/n) * sum_i (x_i - mean(x))^2)",
+    "ratio": "R_x = mean(x_B) / mean(x_A), defined only when mean(x_A) != 0"
+  },
+  "generated_by": "deterministic_statistics_engine",
+  "run_count": 9,
+  "schema_version": "2.0"
+}

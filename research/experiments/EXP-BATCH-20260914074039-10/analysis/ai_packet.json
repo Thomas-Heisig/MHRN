@@ -1,0 +1,797 @@
+{
+  "ai_input_policy": "compact_only_raw_on_explicit_deterministic_extract",
+  "generated_by": "deterministic_research_data_v2",
+  "limits": {
+    "ai_packet_max_bytes": 1000000,
+    "run_summary_max_bytes": 5000000,
+    "sequence_preview_items": 16
+  },
+  "raw_index": {
+    "path": "DATA/runs_index.json",
+    "run_count": 9,
+    "sha256": "d260ee1053a9e954547279d24e61bdce893a790fc2269f25b8e7a5979c38bbbd"
+  },
+  "run_count": 9,
+  "run_preview": [
+    {
+      "_raw_artifact": {
+        "format": "json.gz",
+        "path": "DATA/raw/run-0000-nominal-seed-101.json.gz",
+        "sha256": "4de63870e8f30b5c83bf8c7fadd1dea0351c1b7d229d1e8ddf9124d1aae3901c",
+        "size_bytes": 399,
+        "uncompressed_bytes": 950
+      },
+      "condition": "nominal",
+      "experiment_id": "EXP-BATCH-20260914074039-10",
+      "metrics": {
+        "drives": {
+          "drives": {
+            "actuator_confidence": null,
+            "continuity_risk": 0.0,
+            "novelty": null,
+            "resource_pressure": 0.0,
+            "sensory_integrity": 1.0,
+            "task_progress": null,
+            "thermal_threat": 0.0
+          },
+          "tick": 101,
+          "uncertainty": {
+            "actuator_confidence": 1.0,
+            "continuity_risk": 0.0,
+            "novelty": 1.0,
+            "resource_pressure": 0.0,
+            "sensory_integrity": 0.0,
+            "task_progress": 1.0,
+            "thermal_threat": 0.0
+          }
+        },
+        "functional_state": {
+          "activation": 0.0,
+          "safety": 1.0,
+          "tick": 101,
+          "uncertainty": 0.42857142857142855,
+          "valence": 1.0
+        },
+        "regulatory_state": {
+          "tick": 101,
+          "uncertainty": {
+            "continuity_risk": 0.0,
+            "energy_reserve": 0.0,
+            "resource_pressure": 0.0,
+            "sensory_integrity": 0.0,
+            "task_progress": 1.0,
+            "thermal_margin": 0.0
+          },
+          "values": {
+            "continuity_risk": 0.0,
+            "energy_reserve": 1.0,
+            "resource_pressure": 0.0,
+            "sensory_integrity": 1.0,
+            "task_progress": null,
+            "thermal_margin": 1.0
+          }
+        }
+      },
+      "runtime_error": null,
+      "seed": 101,
+      "state_digest_after": "",
+      "state_digest_before": ""
+    },
+    {
+      "_raw_artifact": {
+        "format": "json.gz",
+        "path": "DATA/raw/run-0001-chronic_pressure-seed-101.json.gz",
+        "sha256": "d862acc3c621481273800d9ccf01fc9f046596b2fe5ebbde74d81cfb4e843ef6",
+        "size_bytes": 430,
+        "uncompressed_bytes": 1052
+      },
+      "condition": "chronic_pressure",
+      "experiment_id": "EXP-BATCH-20260914074039-10",
+      "metrics": {
+        "drives": {
+          "drives": {
+            "actuator_confidence": null,
+            "continuity_risk": 1.0,
+            "novelty": null,
+            "resource_pressure": 0.6666666666666666,
+            "sensory_integrity": 1.0,
+            "task_progress": null,
+            "thermal_threat": 0.6666666666666666
+          },
+          "tick": 101,
+          "uncertainty": {
+            "actuator_confidence": 1.0,
+            "continuity_risk": 0.0,
+            "novelty": 1.0,
+            "resource_pressure": 0.0,
+            "sensory_integrity": 0.0,
+            "task_progress": 1.0,
+            "thermal_threat": 0.0
+          }
+        },
+        "functional_state": {
+          "activation": 0.6666666666666666,
+          "safety": 0.0,
+          "tick": 101,
+          "uncertainty": 0.42857142857142855,
+          "valence": -1.0
+        },
+        "regulatory_state": {
+          "tick": 101,
+          "uncertainty": {
+            "continuity_risk": 0.0,
+            "energy_reserve": 0.0,
+            "resource_pressure": 0.0,
+            "sensory_integrity": 0.0,
+            "task_progress": 1.0,
+            "thermal_margin": 0.0
+          },
+          "values": {
+            "continuity_risk": 1.0,
+            "energy_reserve": 0.33333333333333337,
+            "resource_pressure": 0.6666666666666666,
+            "sensory_integrity": 1.0,
+            "task_progress": null,
+            "thermal_margin": 0.33333333333333337
+          }
+        }
+      },
+      "runtime_error": null,
+      "seed": 101,
+      "state_digest_after": "",
+      "state_digest_before": ""
+    },
+    {
+      "_raw_artifact": {
+        "format": "json.gz",
+        "path": "DATA/raw/run-0002-telemetry_unknown-seed-101.json.gz",
+        "sha256": "17a12f579fb31b01f3a13277d17af8b5772dd85b281528e50d2a923ac15496fe",
+        "size_bytes": 420,
+        "uncompressed_bytes": 973
+      },
+      "condition": "telemetry_unknown",
+      "experiment_id": "EXP-BATCH-20260914074039-10",
+      "metrics": {
+        "drives": {
+          "drives": {
+            "actuator_confidence": null,
+            "continuity_risk": null,
+            "novelty": null,
+            "resource_pressure": null,
+            "sensory_integrity": 0.25,
+            "task_progress": null,
+            "thermal_threat": null
+          },
+          "tick": 101,
+          "uncertainty": {
+            "actuator_confidence": 1.0,
+            "continuity_risk": 1.0,
+            "novelty": 1.0,
+            "resource_pressure": 1.0,
+            "sensory_integrity": 0.75,
+            "task_progress": 1.0,
+            "thermal_threat": 1.0
+          }
+        },
+        "functional_state": {
+          "activation": null,
+          "safety": null,
+          "tick": 101,
+          "uncertainty": 0.9642857142857143,
+          "valence": null
+        },
+        "regulatory_state": {
+          "tick": 101,
+          "uncertainty": {
+            "continuity_risk": 1.0,
+            "energy_reserve": 1.0,
+            "resource_pressure": 1.0,
+            "sensory_integrity": 0.75,
+            "task_progress": 1.0,
+            "thermal_margin": 1.0
+          },
+          "values": {
+            "continuity_risk": null,
+            "energy_reserve": null,
+            "resource_pressure": null,
+            "sensory_integrity": 0.25,
+            "task_progress": null,
+            "thermal_margin": null
+          }
+        }
+      },
+      "runtime_error": null,
+      "seed": 101,
+      "state_digest_after": "",
+      "state_digest_before": ""
+    },
+    {
+      "_raw_artifact": {
+        "format": "json.gz",
+        "path": "DATA/raw/run-0003-nominal-seed-102.json.gz",
+        "sha256": "cb50fe531faba4159b7fa3ab69dccd8c49042e6d9ca35dcafc13dd4acbece340",
+        "size_bytes": 399,
+        "uncompressed_bytes": 950
+      },
+      "condition": "nominal",
+      "experiment_id": "EXP-BATCH-20260914074039-10",
+      "metrics": {
+        "drives": {
+          "drives": {
+            "actuator_confidence": null,
+            "continuity_risk": 0.0,
+            "novelty": null,
+            "resource_pressure": 0.0,
+            "sensory_integrity": 1.0,
+            "task_progress": null,
+            "thermal_threat": 0.0
+          },
+          "tick": 102,
+          "uncertainty": {
+            "actuator_confidence": 1.0,
+            "continuity_risk": 0.0,
+            "novelty": 1.0,
+            "resource_pressure": 0.0,
+            "sensory_integrity": 0.0,
+            "task_progress": 1.0,
+            "thermal_threat": 0.0
+          }
+        },
+        "functional_state": {
+          "activation": 0.0,
+          "safety": 1.0,
+          "tick": 102,
+          "uncertainty": 0.42857142857142855,
+          "valence": 1.0
+        },
+        "regulatory_state": {
+          "tick": 102,
+          "uncertainty": {
+            "continuity_risk": 0.0,
+            "energy_reserve": 0.0,
+            "resource_pressure": 0.0,
+            "sensory_integrity": 0.0,
+            "task_progress": 1.0,
+            "thermal_margin": 0.0
+          },
+          "values": {
+            "continuity_risk": 0.0,
+            "energy_reserve": 1.0,
+            "resource_pressure": 0.0,
+            "sensory_integrity": 1.0,
+            "task_progress": null,
+            "thermal_margin": 1.0
+          }
+        }
+      },
+      "runtime_error": null,
+      "seed": 102,
+      "state_digest_after": "",
+      "state_digest_before": ""
+    },
+    {
+      "_raw_artifact": {
+        "format": "json.gz",
+        "path": "DATA/raw/run-0004-chronic_pressure-seed-102.json.gz",
+        "sha256": "1fdb29ee9f325488c30f7ea9e2a8b37c103f54701571edd5db562a0e51967e50",
+        "size_bytes": 429,
+        "uncompressed_bytes": 1052
+      },
+      "condition": "chronic_pressure",
+      "experiment_id": "EXP-BATCH-20260914074039-10",
+      "metrics": {
+        "drives": {
+          "drives": {
+            "actuator_confidence": null,
+            "continuity_risk": 1.0,
+            "novelty": null,
+            "resource_pressure": 0.6666666666666666,
+            "sensory_integrity": 1.0,
+            "task_progress": null,
+            "thermal_threat": 0.6666666666666666
+          },
+          "tick": 102,
+          "uncertainty": {
+            "actuator_confidence": 1.0,
+            "continuity_risk": 0.0,
+            "novelty": 1.0,
+            "resource_pressure": 0.0,
+            "sensory_integrity": 0.0,
+            "task_progress": 1.0,
+            "thermal_threat": 0.0
+          }
+        },
+        "functional_state": {
+          "activation": 0.6666666666666666,
+          "safety": 0.0,
+          "tick": 102,
+          "uncertainty": 0.42857142857142855,
+          "valence": -1.0
+        },
+        "regulatory_state": {
+          "tick": 102,
+          "uncertainty": {
+            "continuity_risk": 0.0,
+            "energy_reserve": 0.0,
+            "resource_pressure": 0.0,
+            "sensory_integrity": 0.0,
+            "task_progress": 1.0,
+            "thermal_margin": 0.0
+          },
+          "values": {
+            "continuity_risk": 1.0,
+            "energy_reserve": 0.33333333333333337,
+            "resource_pressure": 0.6666666666666666,
+            "sensory_integrity": 1.0,
+            "task_progress": null,
+            "thermal_margin": 0.33333333333333337
+          }
+        }
+      },
+      "runtime_error": null,
+      "seed": 102,
+      "state_digest_after": "",
+      "state_digest_before": ""
+    },
+    {
+      "_raw_artifact": {
+        "format": "json.gz",
+        "path": "DATA/raw/run-0005-telemetry_unknown-seed-102.json.gz",
+        "sha256": "8df6cb360fa84a9f56698b0168d626dea1fd0ecfd06832c5590da29b47c2e6ba",
+        "size_bytes": 421,
+        "uncompressed_bytes": 973
+      },
+      "condition": "telemetry_unknown",
+      "experiment_id": "EXP-BATCH-20260914074039-10",
+      "metrics": {
+        "drives": {
+          "drives": {
+            "actuator_confidence": null,
+            "continuity_risk": null,
+            "novelty": null,
+            "resource_pressure": null,
+            "sensory_integrity": 0.25,
+            "task_progress": null,
+            "thermal_threat": null
+          },
+          "tick": 102,
+          "uncertainty": {
+            "actuator_confidence": 1.0,
+            "continuity_risk": 1.0,
+            "novelty": 1.0,
+            "resource_pressure": 1.0,
+            "sensory_integrity": 0.75,
+            "task_progress": 1.0,
+            "thermal_threat": 1.0
+          }
+        },
+        "functional_state": {
+          "activation": null,
+          "safety": null,
+          "tick": 102,
+          "uncertainty": 0.9642857142857143,
+          "valence": null
+        },
+        "regulatory_state": {
+          "tick": 102,
+          "uncertainty": {
+            "continuity_risk": 1.0,
+            "energy_reserve": 1.0,
+            "resource_pressure": 1.0,
+            "sensory_integrity": 0.75,
+            "task_progress": 1.0,
+            "thermal_margin": 1.0
+          },
+          "values": {
+            "continuity_risk": null,
+            "energy_reserve": null,
+            "resource_pressure": null,
+            "sensory_integrity": 0.25,
+            "task_progress": null,
+            "thermal_margin": null
+          }
+        }
+      },
+      "runtime_error": null,
+      "seed": 102,
+      "state_digest_after": "",
+      "state_digest_before": ""
+    },
+    {
+      "_raw_artifact": {
+        "format": "json.gz",
+        "path": "DATA/raw/run-0006-nominal-seed-103.json.gz",
+        "sha256": "160edc0bb14cbd18990a0a7ba87fa4e1a4a1b3bd6725a7102b4b32f101b0b046",
+        "size_bytes": 399,
+        "uncompressed_bytes": 950
+      },
+      "condition": "nominal",
+      "experiment_id": "EXP-BATCH-20260914074039-10",
+      "metrics": {
+        "drives": {
+          "drives": {
+            "actuator_confidence": null,
+            "continuity_risk": 0.0,
+            "novelty": null,
+            "resource_pressure": 0.0,
+            "sensory_integrity": 1.0,
+            "task_progress": null,
+            "thermal_threat": 0.0
+          },
+          "tick": 103,
+          "uncertainty": {
+            "actuator_confidence": 1.0,
+            "continuity_risk": 0.0,
+            "novelty": 1.0,
+            "resource_pressure": 0.0,
+            "sensory_integrity": 0.0,
+            "task_progress": 1.0,
+            "thermal_threat": 0.0
+          }
+        },
+        "functional_state": {
+          "activation": 0.0,
+          "safety": 1.0,
+          "tick": 103,
+          "uncertainty": 0.42857142857142855,
+          "valence": 1.0
+        },
+        "regulatory_state": {
+          "tick": 103,
+          "uncertainty": {
+            "continuity_risk": 0.0,
+            "energy_reserve": 0.0,
+            "resource_pressure": 0.0,
+            "sensory_integrity": 0.0,
+            "task_progress": 1.0,
+            "thermal_margin": 0.0
+          },
+          "values": {
+            "continuity_risk": 0.0,
+            "energy_reserve": 1.0,
+            "resource_pressure": 0.0,
+            "sensory_integrity": 1.0,
+            "task_progress": null,
+            "thermal_margin": 1.0
+          }
+        }
+      },
+      "runtime_error": null,
+      "seed": 103,
+      "state_digest_after": "",
+      "state_digest_before": ""
+    },
+    {
+      "_raw_artifact": {
+        "format": "json.gz",
+        "path": "DATA/raw/run-0007-chronic_pressure-seed-103.json.gz",
+        "sha256": "d02f434e61c3e829c1892cc370aeab870758b6e4cfda2d77565be71eb7172aad",
+        "size_bytes": 430,
+        "uncompressed_bytes": 1052
+      },
+      "condition": "chronic_pressure",
+      "experiment_id": "EXP-BATCH-20260914074039-10",
+      "metrics": {
+        "drives": {
+          "drives": {
+            "actuator_confidence": null,
+            "continuity_risk": 1.0,
+            "novelty": null,
+            "resource_pressure": 0.6666666666666666,
+            "sensory_integrity": 1.0,
+            "task_progress": null,
+            "thermal_threat": 0.6666666666666666
+          },
+          "tick": 103,
+          "uncertainty": {
+            "actuator_confidence": 1.0,
+            "continuity_risk": 0.0,
+            "novelty": 1.0,
+            "resource_pressure": 0.0,
+            "sensory_integrity": 0.0,
+            "task_progress": 1.0,
+            "thermal_threat": 0.0
+          }
+        },
+        "functional_state": {
+          "activation": 0.6666666666666666,
+          "safety": 0.0,
+          "tick": 103,
+          "uncertainty": 0.42857142857142855,
+          "valence": -1.0
+        },
+        "regulatory_state": {
+          "tick": 103,
+          "uncertainty": {
+            "continuity_risk": 0.0,
+            "energy_reserve": 0.0,
+            "resource_pressure": 0.0,
+            "sensory_integrity": 0.0,
+            "task_progress": 1.0,
+            "thermal_margin": 0.0
+          },
+          "values": {
+            "continuity_risk": 1.0,
+            "energy_reserve": 0.33333333333333337,
+            "resource_pressure": 0.6666666666666666,
+            "sensory_integrity": 1.0,
+            "task_progress": null,
+            "thermal_margin": 0.33333333333333337
+          }
+        }
+      },
+      "runtime_error": null,
+      "seed": 103,
+      "state_digest_after": "",
+      "state_digest_before": ""
+    },
+    {
+      "_raw_artifact": {
+        "format": "json.gz",
+        "path": "DATA/raw/run-0008-telemetry_unknown-seed-103.json.gz",
+        "sha256": "5b3442cb0d922fb00c6b2a20d23ad5d1994ff18e11bc2f624c51526181d8f622",
+        "size_bytes": 420,
+        "uncompressed_bytes": 973
+      },
+      "condition": "telemetry_unknown",
+      "experiment_id": "EXP-BATCH-20260914074039-10",
+      "metrics": {
+        "drives": {
+          "drives": {
+            "actuator_confidence": null,
+            "continuity_risk": null,
+            "novelty": null,
+            "resource_pressure": null,
+            "sensory_integrity": 0.25,
+            "task_progress": null,
+            "thermal_threat": null
+          },
+          "tick": 103,
+          "uncertainty": {
+            "actuator_confidence": 1.0,
+            "continuity_risk": 1.0,
+            "novelty": 1.0,
+            "resource_pressure": 1.0,
+            "sensory_integrity": 0.75,
+            "task_progress": 1.0,
+            "thermal_threat": 1.0
+          }
+        },
+        "functional_state": {
+          "activation": null,
+          "safety": null,
+          "tick": 103,
+          "uncertainty": 0.9642857142857143,
+          "valence": null
+        },
+        "regulatory_state": {
+          "tick": 103,
+          "uncertainty": {
+            "continuity_risk": 1.0,
+            "energy_reserve": 1.0,
+            "resource_pressure": 1.0,
+            "sensory_integrity": 0.75,
+            "task_progress": 1.0,
+            "thermal_margin": 1.0
+          },
+          "values": {
+            "continuity_risk": null,
+            "energy_reserve": null,
+            "resource_pressure": null,
+            "sensory_integrity": 0.25,
+            "task_progress": null,
+            "thermal_margin": null
+          }
+        }
+      },
+      "runtime_error": null,
+      "seed": 103,
+      "state_digest_after": "",
+      "state_digest_before": ""
+    }
+  ],
+  "schema_version": "2.0",
+  "statistics": {
+    "conditions": {
+      "chronic_pressure": {
+        "metrics": {
+          "functional_activation": {
+            "max": 0.6666666666666666,
+            "mean": 0.6666666666666666,
+            "median": 0.6666666666666666,
+            "min": 0.6666666666666666,
+            "n": 3,
+            "std": 0.0
+          },
+          "functional_safety": {
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "min": 0.0,
+            "n": 3,
+            "std": 0.0
+          },
+          "functional_uncertainty": {
+            "max": 0.42857142857142855,
+            "mean": 0.42857142857142855,
+            "median": 0.42857142857142855,
+            "min": 0.42857142857142855,
+            "n": 3,
+            "std": 0.0
+          },
+          "functional_valence": {
+            "max": -1.0,
+            "mean": -1.0,
+            "median": -1.0,
+            "min": -1.0,
+            "n": 3,
+            "std": 0.0
+          },
+          "regulatory_continuity_risk": {
+            "max": 1.0,
+            "mean": 1.0,
+            "median": 1.0,
+            "min": 1.0,
+            "n": 3,
+            "std": 0.0
+          },
+          "regulatory_energy_reserve": {
+            "max": 0.33333333333333337,
+            "mean": 0.3333333333333333,
+            "median": 0.33333333333333337,
+            "min": 0.33333333333333337,
+            "n": 3,
+            "std": 0.0
+          },
+          "regulatory_resource_pressure": {
+            "max": 0.6666666666666666,
+            "mean": 0.6666666666666666,
+            "median": 0.6666666666666666,
+            "min": 0.6666666666666666,
+            "n": 3,
+            "std": 0.0
+          },
+          "regulatory_sensory_integrity": {
+            "max": 1.0,
+            "mean": 1.0,
+            "median": 1.0,
+            "min": 1.0,
+            "n": 3,
+            "std": 0.0
+          },
+          "regulatory_thermal_margin": {
+            "max": 0.33333333333333337,
+            "mean": 0.3333333333333333,
+            "median": 0.33333333333333337,
+            "min": 0.33333333333333337,
+            "n": 3,
+            "std": 0.0
+          }
+        },
+        "run_count": 3,
+        "seeds": [
+          101,
+          102,
+          103
+        ]
+      },
+      "nominal": {
+        "metrics": {
+          "functional_activation": {
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "min": 0.0,
+            "n": 3,
+            "std": 0.0
+          },
+          "functional_safety": {
+            "max": 1.0,
+            "mean": 1.0,
+            "median": 1.0,
+            "min": 1.0,
+            "n": 3,
+            "std": 0.0
+          },
+          "functional_uncertainty": {
+            "max": 0.42857142857142855,
+            "mean": 0.42857142857142855,
+            "median": 0.42857142857142855,
+            "min": 0.42857142857142855,
+            "n": 3,
+            "std": 0.0
+          },
+          "functional_valence": {
+            "max": 1.0,
+            "mean": 1.0,
+            "median": 1.0,
+            "min": 1.0,
+            "n": 3,
+            "std": 0.0
+          },
+          "regulatory_continuity_risk": {
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "min": 0.0,
+            "n": 3,
+            "std": 0.0
+          },
+          "regulatory_energy_reserve": {
+            "max": 1.0,
+            "mean": 1.0,
+            "median": 1.0,
+            "min": 1.0,
+            "n": 3,
+            "std": 0.0
+          },
+          "regulatory_resource_pressure": {
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "min": 0.0,
+            "n": 3,
+            "std": 0.0
+          },
+          "regulatory_sensory_integrity": {
+            "max": 1.0,
+            "mean": 1.0,
+            "median": 1.0,
+            "min": 1.0,
+            "n": 3,
+            "std": 0.0
+          },
+          "regulatory_thermal_margin": {
+            "max": 1.0,
+            "mean": 1.0,
+            "median": 1.0,
+            "min": 1.0,
+            "n": 3,
+            "std": 0.0
+          }
+        },
+        "run_count": 3,
+        "seeds": [
+          101,
+          102,
+          103
+        ]
+      },
+      "telemetry_unknown": {
+        "metrics": {
+          "functional_uncertainty": {
+            "max": 0.9642857142857143,
+            "mean": 0.9642857142857143,
+            "median": 0.9642857142857143,
+            "min": 0.9642857142857143,
+            "n": 3,
+            "std": 0.0
+          },
+          "regulatory_sensory_integrity": {
+            "max": 0.25,
+            "mean": 0.25,
+            "median": 0.25,
+            "min": 0.25,
+            "n": 3,
+            "std": 0.0
+          }
+        },
+        "run_count": 3,
+        "seeds": [
+          101,
+          102,
+          103
+        ]
+      }
+    },
+    "formulas": {
+      "difference": "Delta_x = mean(x_B) - mean(x_A)",
+      "inter_spike_interval": "ISI_i = t_(i+1) - t_i",
+      "mean": "mean(x) = (1/n) * sum_i x_i",
+      "population_std": "sigma = sqrt((1/n) * sum_i (x_i - mean(x))^2)",
+      "ratio": "R_x = mean(x_B) / mean(x_A), defined only when mean(x_A) != 0"
+    },
+    "run_count": 9,
+    "schema_version": "2.0"
+  }
+}

@@ -1,0 +1,182 @@
+{
+  "conditions": {
+    "adaptive_roi": {
+      "metrics": {
+        "correct_per_energy_unit": {
+          "max": 1.0,
+          "mean": 1.0,
+          "median": 1.0,
+          "min": 1.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "roi_overlap_with_task_relevant_region": {
+          "max": 1.0,
+          "mean": 1.0,
+          "median": 1.0,
+          "min": 1.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "task_accuracy": {
+          "max": 1.0,
+          "mean": 1.0,
+          "median": 1.0,
+          "min": 1.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "visual_energy_units": {
+          "max": 48.0,
+          "mean": 48.0,
+          "median": 48.0,
+          "min": 48.0,
+          "n": 3,
+          "std": 0.0
+        }
+      },
+      "run_count": 3,
+      "seeds": [
+        101,
+        102,
+        103
+      ]
+    },
+    "fixed_center_roi": {
+      "metrics": {
+        "correct_per_energy_unit": {
+          "max": 0.08854166666666667,
+          "mean": 0.06770833333333333,
+          "median": 0.0625,
+          "min": 0.052083333333333336,
+          "n": 3,
+          "std": 0.015332918170708068
+        },
+        "roi_overlap_with_task_relevant_region": {
+          "max": 0.3541666666666667,
+          "mean": 0.2708333333333333,
+          "median": 0.25,
+          "min": 0.20833333333333334,
+          "n": 3,
+          "std": 0.061331672682832274
+        },
+        "task_accuracy": {
+          "max": 0.3541666666666667,
+          "mean": 0.2708333333333333,
+          "median": 0.25,
+          "min": 0.20833333333333334,
+          "n": 3,
+          "std": 0.061331672682832274
+        },
+        "visual_energy_units": {
+          "max": 192.0,
+          "mean": 192.0,
+          "median": 192.0,
+          "min": 192.0,
+          "n": 3,
+          "std": 0.0
+        }
+      },
+      "run_count": 3,
+      "seeds": [
+        101,
+        102,
+        103
+      ]
+    },
+    "full_image": {
+      "metrics": {
+        "correct_per_energy_unit": {
+          "max": 0.0625,
+          "mean": 0.0625,
+          "median": 0.0625,
+          "min": 0.0625,
+          "n": 3,
+          "std": 0.0
+        },
+        "roi_overlap_with_task_relevant_region": {
+          "max": 1.0,
+          "mean": 1.0,
+          "median": 1.0,
+          "min": 1.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "task_accuracy": {
+          "max": 1.0,
+          "mean": 1.0,
+          "median": 1.0,
+          "min": 1.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "visual_energy_units": {
+          "max": 768.0,
+          "mean": 768.0,
+          "median": 768.0,
+          "min": 768.0,
+          "n": 3,
+          "std": 0.0
+        }
+      },
+      "run_count": 3,
+      "seeds": [
+        101,
+        102,
+        103
+      ]
+    },
+    "random_roi": {
+      "metrics": {
+        "correct_per_energy_unit": {
+          "max": 0.08333333333333333,
+          "mean": 0.06944444444444443,
+          "median": 0.0625,
+          "min": 0.0625,
+          "n": 3,
+          "std": 0.009820927516479824
+        },
+        "roi_overlap_with_task_relevant_region": {
+          "max": 0.08333333333333333,
+          "mean": 0.06944444444444443,
+          "median": 0.0625,
+          "min": 0.0625,
+          "n": 3,
+          "std": 0.009820927516479824
+        },
+        "task_accuracy": {
+          "max": 0.08333333333333333,
+          "mean": 0.06944444444444443,
+          "median": 0.0625,
+          "min": 0.0625,
+          "n": 3,
+          "std": 0.009820927516479824
+        },
+        "visual_energy_units": {
+          "max": 48.0,
+          "mean": 48.0,
+          "median": 48.0,
+          "min": 48.0,
+          "n": 3,
+          "std": 0.0
+        }
+      },
+      "run_count": 3,
+      "seeds": [
+        101,
+        102,
+        103
+      ]
+    }
+  },
+  "formulas": {
+    "difference": "Delta_x = mean(x_B) - mean(x_A)",
+    "inter_spike_interval": "ISI_i = t_(i+1) - t_i",
+    "mean": "mean(x) = (1/n) * sum_i x_i",
+    "population_std": "sigma = sqrt((1/n) * sum_i (x_i - mean(x))^2)",
+    "ratio": "R_x = mean(x_B) / mean(x_A), defined only when mean(x_A) != 0"
+  },
+  "generated_by": "deterministic_statistics_engine",
+  "run_count": 12,
+  "schema_version": "2.0"
+}

@@ -1,0 +1,79 @@
+{
+  "analysis_id": "AIAR-scientific_analyst-20260914090605645243-726a5143",
+  "role": "scientific_analyst",
+  "model": {
+    "provider": "ollama",
+    "model_name": "qwen3:8b",
+    "model_digest": "not_reported",
+    "quantization": "not_reported",
+    "context_length": "unknown",
+    "temperature": 0.0,
+    "top_p": 0.9,
+    "seed": "not_reported",
+    "backend_version": "unknown"
+  },
+  "inputs": {
+    "experiment_id": "EXP-BATCH-20260914074039-88",
+    "packet_digest": "726a5143054e68f3a26ab8226c1dd7741068dc173e54257c1a9c9ec6c8a8eb9d"
+  },
+  "output": {
+    "assessment": "Die vorliegenden Daten zeigen keine direkten kausalen Messungen oder statistischen Signifikanztests. Die Experimente sind auf die Ausführung von Vertragsbedingungen und die Prüfung von Grenzen beschränkt.",
+    "observations": [
+      "Die Experimente wurden mit drei verschiedenen Seeds (101, 102, 103) durchgeführt.",
+      "Die Audit-Status aller Runs ist 'audit_complete' und keine Fehler wurden gemeldet.",
+      "Die Metriken zeigen keine direkten kausalen Tests oder wissenschaftlichen Beweise.",
+      "Die Vertragsbedingungen sind auf 'instrumentation_gap_audit' festgelegt und wurden vollständig ausgeführt.",
+      "Die statistischen Formeln sind definiert, aber keine Berechnungen wurden durchgeführt oder interpretiert.",
+      "Die Forschungsfragen und Hypothesen sind nicht getestet und bleiben offengelegt."
+    ],
+    "effect_direction": "Es wurden keine messbaren Effekte oder Richtungen der Wirkung identifiziert, da keine statistischen Tests durchgeführt wurden.",
+    "methodological_concerns": [
+      "Keine wissenschaftlichen Beweise oder inferenziellen Analysen wurden registriert.",
+      "Die Forschungsfragen und Hypothesen wurden nicht getestet.",
+      "Die Daten sind rein deskriptiv und keine kausalen Schlussfolgerungen können gezogen werden.",
+      "Die Git-Provenance ist unvollständig oder nicht verfügbar.",
+      "Es gibt keine rekursiven Feedback-Loops ohne separaten Contract und Rollback-Regeln.",
+      "Die Experimente sind auf die Ausführung von Vertragsbedingungen beschränkt und keine direkten kausalen Messungen wurden durchgeführt."
+    ],
+    "alternative_explanations": [
+      "Die Ergebnisse könnten aufgrund der begrenzten Experimente und der fehlenden inferenziellen Analysen nicht vollständig interpretiert werden.",
+      "Die Vertragsbedingungen könnten die Ergebnisse beeinflussen, aber keine kausalen Tests wurden durchgeführt.",
+      "Die fehlende wissenschaftliche Evidenz und die begrenzten Experimente könnten die Interpretation der Ergebnisse beeinträchtigen."
+    ],
+    "recommended_experiments": [
+      "Durchführung von inferenziellen Analysen, um statistische Signifikanz zu testen.",
+      "Erstellung von wissenschaftlichen Beweisen und Validierung der Ergebnisse durch menschliche Überprüfung.",
+      "Erweiterung der Experimente, um rekursive Feedback-Loops mit separaten Contracts und Rollback-Regeln zu testen.",
+      "Durchführung von kausalen Tests, um die Wirkung der bidirektionalen Gateway-Kopplung zu bewerten.",
+      "Erhöhung der Datenmenge und der Experimente, um die Robustheit der Ergebnisse zu prüfen."
+    ],
+    "requested_evidence": [
+      "Registrierte wissenschaftliche Beweise und inferenzielle Analysen.",
+      "Detaillierte statistische Berechnungen und Interpretationen der Formeln.",
+      "Validierung der Vertragsbedingungen und der Grenzen durch menschliche Überprüfung.",
+      "Dokumentation der Git-Provenance und der Datenherkunft.",
+      "Erklärung der rekursiven Feedback-Loops und der verwendeten Contracts und Rollback-Regeln."
+    ],
+    "confidence": 0.0
+  },
+  "provenance": {
+    "prompt_sha256": "aabd503790f048874f89ca7faaf0ae25cc2ae7e550ef3d97ba2b63c7504447ca",
+    "research_packet_digest": "726a5143054e68f3a26ab8226c1dd7741068dc173e54257c1a9c9ec6c8a8eb9d",
+    "prompt_protocol_version": "research_assistant_v1",
+    "assistant_schema_version": "1.2",
+    "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+    "model_self_confidence": "0.0"
+  },
+  "epistemic_status": {
+    "evidence": false,
+    "interpretation_only": true,
+    "human_review_required": true
+  },
+  "review": {
+    "status": "pending",
+    "reviewer": null,
+    "reviewed_at": null,
+    "disposition": null
+  },
+  "generated_at": "2026-09-14T09:06:05.645243+00:00"
+}

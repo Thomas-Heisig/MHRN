@@ -1,0 +1,963 @@
+{
+  "report_id": "AIRR-2026-0001",
+  "experiment_id": "EXP-BATCH-20260914074039-86",
+  "research_question_id": "RQ-GW-004",
+  "hypothesis_ids": [
+    "H-GW-004-A"
+  ],
+  "claim_ids": [],
+  "generated_at": "2026-09-14T12:04:13.403043+00:00",
+  "report_schema_version": "1.0",
+  "report_protocol_version": "PROTOCOL-AIRR-001",
+  "generated_by": "artificial_intelligence",
+  "ai_generated": true,
+  "scientific_evidence": false,
+  "human_review_required": true,
+  "status": "review_pending",
+  "content": {
+    "identification": {
+      "experiment": "EXP-BATCH-20260914074039-86",
+      "research_question": "Generalisiert ein gelerntes Gateway auf neue Inputs, ohne erworbene Faehigkeiten zu stoeren?",
+      "hypotheses": [
+        {
+          "id": "H-GW-004-A",
+          "research_question": "RQ-GW-004",
+          "hypothesis": "Ein gelerntes Gateway erhaelt Holdout-Leistung und verursacht keine vorab definierte Interferenzregression.",
+          "status": "untested",
+          "evidence": [],
+          "created": "2026-09-09",
+          "updated": "2026-09-09"
+        }
+      ],
+      "date": "2026-09-14",
+      "source_sha": "8e096931a779b2d2eb4d010eb20154150b07bbf2"
+    },
+    "executive_summary": "Die Forschungsergebnisse zeigen keine klaren Belege fuer eine generalisierte Leistung des gelernten Gateways oder eine Interferenz. Die Experimente wurden durchgefuehrt, um die Bedingungen fuer die Audits zu pruefen, aber keine direkten kausalen Messungen wurden durchgefuehrt.",
+    "research_question": {
+      "id": "RQ-GW-004",
+      "domain": "Gateway Transfer and Interference",
+      "question": "Generalisiert ein gelerntes Gateway auf neue Inputs, ohne erworbene Faehigkeiten zu stoeren?",
+      "relevance": "Verbindet Transfer- und Interferenzkontrollen in einem getrennten Evaluationsfenster.",
+      "literature": [],
+      "hypotheses": [
+        "H-GW-004-A"
+      ],
+      "evidence": [],
+      "status": "open",
+      "answer": {
+        "current": null,
+        "confidence": "none",
+        "limitations": "Erfordert Holdout-Daten und vorab definierte Exklusionsregeln."
+      },
+      "created": "2026-09-09",
+      "updated": "2026-09-09"
+    },
+    "experimental_design": {
+      "experiment_id": "EXP-BATCH-20260914074039-86",
+      "research_question": "RQ-GW-004",
+      "hypothesis": "H-GW-004-A",
+      "title": "Experiment workflow: gateway_transfer_boundary_v1",
+      "conditions": "Registered protocol conditions",
+      "ticks": 1000,
+      "ticks_contract": "minimum requested observation window",
+      "seeds": [
+        101,
+        102,
+        103
+      ],
+      "protocol": "gateway_transfer_boundary_v1",
+      "resolved_runner": "run_boundary_audit",
+      "tick_validation": {
+        "status": "NOT_APPLICABLE",
+        "mode": "protocol_defined_internal_trials",
+        "requested_ticks": 1000
+      },
+      "notes": "",
+      "execution": "registered experiment_suite runner",
+      "assistant_policy": "AI is post-hoc interpretation only.",
+      "epistemic_layers": {
+        "ui_state": "operator/dashboard progress only; not a scientific result",
+        "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+        "evid": "not_created; requires semantic validation, clean freeze and human review",
+        "interpretation": "post-hoc AI or human interpretation; never execution input"
+      }
+    },
+    "data_basis": {
+      "data": {
+        "ai_input_policy": "compact_only_raw_on_explicit_deterministic_extract",
+        "generated_by": "deterministic_research_data_v2",
+        "limits": {
+          "ai_packet_max_bytes": 1000000,
+          "run_summary_max_bytes": 5000000,
+          "sequence_preview_items": 16
+        },
+        "raw_index": {
+          "path": "DATA/runs_index.json",
+          "run_count": 3,
+          "sha256": "9813697368fd160420ae8423c825e656980ad0de16e5d2a10fee5ec44af57613"
+        },
+        "run_count": 3,
+        "run_preview": [
+          {
+            "_raw_artifact": {
+              "format": "json.gz",
+              "path": "DATA/raw/run-0000-instrumentation_gap_audit-seed-101.json.gz",
+              "sha256": "fe239a662cc2d5436218c0c3fbb0fa005767ecaafd88ca84c6b8eb455bc2d2a8",
+              "size_bytes": 380,
+              "uncompressed_bytes": 481
+            },
+            "condition": "instrumentation_gap_audit",
+            "experiment_id": "EXP-BATCH-20260914074039-86",
+            "metrics": {
+              "audit_complete": true,
+              "automatic_evidence_promotion": false,
+              "claim_boundary": "No direct causal measurement is performed by this runner. Completion means only that the registered gap/boundary contract was executed and preserved for review.",
+              "direct_test_of_hypothesis": false,
+              "scientific_evidence": false
+            },
+            "runtime_error": null,
+            "seed": 101,
+            "state_digest_after": "",
+            "state_digest_before": ""
+          },
+          {
+            "_raw_artifact": {
+              "format": "json.gz",
+              "path": "DATA/raw/run-0001-instrumentation_gap_audit-seed-102.json.gz",
+              "sha256": "8794130312ed1abf8b84ea144a36307c5d0bbd9cdf1d4b6f277aaa8906965f36",
+              "size_bytes": 380,
+              "uncompressed_bytes": 481
+            },
+            "condition": "instrumentation_gap_audit",
+            "experiment_id": "EXP-BATCH-20260914074039-86",
+            "metrics": {
+              "audit_complete": true,
+              "automatic_evidence_promotion": false,
+              "claim_boundary": "No direct causal measurement is performed by this runner. Completion means only that the registered gap/boundary contract was executed and preserved for review.",
+              "direct_test_of_hypothesis": false,
+              "scientific_evidence": false
+            },
+            "runtime_error": null,
+            "seed": 102,
+            "state_digest_after": "",
+            "state_digest_before": ""
+          },
+          {
+            "_raw_artifact": {
+              "format": "json.gz",
+              "path": "DATA/raw/run-0002-instrumentation_gap_audit-seed-103.json.gz",
+              "sha256": "d4d6317e0a9d14127faf5af24e5e5afbee8be5d0944252885f86706181bab877",
+              "size_bytes": 380,
+              "uncompressed_bytes": 481
+            },
+            "condition": "instrumentation_gap_audit",
+            "experiment_id": "EXP-BATCH-20260914074039-86",
+            "metrics": {
+              "audit_complete": true,
+              "automatic_evidence_promotion": false,
+              "claim_boundary": "No direct causal measurement is performed by this runner. Completion means only that the registered gap/boundary contract was executed and preserved for review.",
+              "direct_test_of_hypothesis": false,
+              "scientific_evidence": false
+            },
+            "runtime_error": null,
+            "seed": 103,
+            "state_digest_after": "",
+            "state_digest_before": ""
+          }
+        ],
+        "schema_version": "2.0",
+        "statistics": {
+          "conditions": {
+            "instrumentation_gap_audit": {
+              "metrics": {},
+              "run_count": 3,
+              "seeds": [
+                101,
+                102,
+                103
+              ]
+            }
+          },
+          "formulas": {
+            "difference": "Delta_x = mean(x_B) - mean(x_A)",
+            "inter_spike_interval": "ISI_i = t_(i+1) - t_i",
+            "mean": "mean(x) = (1/n) * sum_i x_i",
+            "population_std": "sigma = sqrt((1/n) * sum_i (x_i - mean(x))^2)",
+            "ratio": "R_x = mean(x_B) / mean(x_A), defined only when mean(x_A) != 0"
+          },
+          "generated_by": "deterministic_statistics_engine",
+          "run_count": 3,
+          "schema_version": "2.0"
+        }
+      },
+      "evid": [],
+      "literature": []
+    },
+    "quantitative_results": {
+      "conditions": {
+        "instrumentation_gap_audit": {
+          "metrics": {},
+          "run_count": 3,
+          "seeds": [
+            101,
+            102,
+            103
+          ]
+        }
+      },
+      "formulas": {
+        "difference": "Delta_x = mean(x_B) - mean(x_A)",
+        "inter_spike_interval": "ISI_i = t_(i+1) - t_i",
+        "mean": "mean(x) = (1/n) * sum_i x_i",
+        "population_std": "sigma = sqrt((1/n) * sum_i (x_i - mean(x))^2)",
+        "ratio": "R_x = mean(x_B) / mean(x_A), defined only when mean(x_A) != 0"
+      },
+      "generated_by": "deterministic_statistics_engine",
+      "run_count": 3,
+      "schema_version": "2.0"
+    },
+    "observations": [
+      "Die Experimente wurden mit drei verschiedenen Seeds (101, 102, 103) durchgefuehrt.",
+      "Die Audit-Status ist fuer alle Laufungen als 'complete' markiert.",
+      "Es wurden keine statistischen Tests fuer Signifikanz durchgefuehrt.",
+      "Die Metriken enthalten keine kausalen Messungen oder Hypothesentests.",
+      "Die Forschungsfragen und Hypothesen sind nicht mit empirischen Ergebnissen verknuepft."
+    ],
+    "interpretation": {
+      "assessment": "Die Forschungsergebnisse zeigen keine klaren Belege fuer eine generalisierte Leistung des gelernten Gateways oder eine Interferenz. Die Experimente wurden durchgefuehrt, um die Bedingungen fuer die Audits zu pruefen, aber keine direkten kausalen Messungen wurden durchgefuehrt.",
+      "observations": [
+        "Die Experimente wurden mit drei verschiedenen Seeds (101, 102, 103) durchgefuehrt.",
+        "Der Audit-Status ist fuer alle Laufungen als 'complete' markiert.",
+        "Es wurden keine statistischen Tests fuer Signifikanz durchgefuehrt.",
+        "Die Metriken enthalten keine kausalen Messungen oder Hypothesentests.",
+        "Die Forschungsfragen und Hypothesen sind nicht mit empirischen Ergebnissen verknuepft."
+      ],
+      "effect_direction": "Es gibt keine Beobachtung von Effekten in eine Richtung, da keine kausalen Messungen durchgefuehrt wurden.",
+      "methodological_concerns": [
+        "Fehlende kausale Messungen",
+        "Keine statistische Signifikanz getestet",
+        "Keine Verknuepfung der Hypothesen mit empirischen Ergebnissen",
+        "Unvollstaendige Nachweisverknuepfung"
+      ],
+      "alternative_explanations": [
+        "Die Audits wurden erfolgreich durchgefuehrt, aber keine kausalen Effekte wurden gemessen.",
+        "Die Ergebnisse koennen auf die Durchfuehrung der Audit-Verfahren zurueckzufuehren sein, nicht auf kausale Effekte.",
+        "Die fehlende kausale Messung kann auf eine fehlende Experimentaldesign-Struktur zurueckzufuehren sein."
+      ],
+      "recommended_experiments": [
+        "Durchfuehrung von Experimenten mit direkten kausalen Messungen",
+        "Implementierung von statistischen Tests fuer Signifikanz",
+        "Verknuepfung der Hypothesen mit empirischen Ergebnissen",
+        "Erstellung von Holdout-Daten und vorab definierten Exklusionsregeln"
+      ],
+      "requested_evidence": [
+        "Holdout-Daten mit vorab definierten Exklusionsregeln",
+        "Statistische Analysen fuer Signifikanz",
+        "Verknuepfung der Hypothesen mit empirischen Ergebnissen",
+        "Nachweis der kausalen Messungen"
+      ],
+      "confidence": 0.05,
+      "research_packet": {
+        "data": {
+          "run_preview": [
+            {
+              "_raw_artifact": {
+                "format": "json.gz",
+                "path": "DATA/raw/run-0000-instrumentation_gap_audit-seed-101.json.gz",
+                "sha256": "fe239a662cc2d5436218c0c3fbb0fa005767ecaafd88ca84c6b8eb455bc2d2a8",
+                "size_bytes": 380,
+                "uncompressed_bytes": 481
+              },
+              "condition": "instrumentation_gap_audit",
+              "experiment_id": "EXP-BATCH-20260914074039-86",
+              "metrics": {
+                "audit_complete": true,
+                "automatic_evidence_promotion": false,
+                "claim_boundary": "No direct causal measurement is performed by this runner. Completion means only that the registered gap/boundary contract was executed and preserved for review.",
+                "direct_test_of_hypothesis": false,
+                "scientific_evidence": false
+              },
+              "runtime_error": null,
+              "seed": 101,
+              "state_digest_after": "",
+              "state_digest_before": ""
+            },
+            {
+              "_raw_artifact": {
+                "format": "json.gz",
+                "path": "DATA/raw/run-0001-instrumentation_gap_audit-seed-102.json.gz",
+                "sha256": "8794130312ed1abf8b84ea144a36307c5d0bbd9cdf1d4b6f277aaa8906965f36",
+                "size_bytes": 380,
+                "uncompressed_bytes": 481
+              },
+              "condition": "instrumentation_gap_audit",
+              "experiment_id": "EXP-BATCH-20260914074039-86",
+              "metrics": {
+                "audit_complete": true,
+                "automatic_evidence_promotion": false,
+                "claim_boundary": "No direct causal measurement is performed by this runner. Completion means only that the registered gap/boundary contract was executed and preserved for review.",
+                "direct_test_of_hypothesis": false,
+                "scientific_evidence": false
+              },
+              "runtime_error": null,
+              "seed": 102,
+              "state_digest_after": "",
+              "state_digest_before": ""
+            },
+            {
+              "_raw_artifact": {
+                "format": "json.gz",
+                "path": "DATA/raw/run-0002-instrumentation_gap_audit-seed-103.json.gz",
+                "sha256": "d4d6317e0a9d14127faf5af24e5e5afbee8be5d0944252885f86706181bab877",
+                "size_bytes": 380,
+                "uncompressed_bytes": 481
+              },
+              "condition": "instrumentation_gap_audit",
+              "experiment_id": "EXP-BATCH-20260914074039-86",
+              "metrics": {
+                "audit_complete": true,
+                "automatic_evidence_promotion": false,
+                "claim_boundary": "No direct causal measurement is performed by this runner. Completion means only that the registered gap/boundary contract was executed and preserved for review.",
+                "direct_test_of_hypothesis": false,
+                "scientific_evidence": false
+              },
+              "runtime_error": null,
+              "seed": 103,
+              "state_digest_after": "",
+              "state_digest_before": ""
+            }
+          ],
+          "schema_version": "2.0",
+          "statistics": {
+            "conditions": {
+              "instrumentation_gap_audit": {
+                "metrics": {},
+                "run_count": 3,
+                "seeds": [
+                  101,
+                  102,
+                  103
+                ]
+              }
+            },
+            "formulas": {
+              "difference": "Delta_x = mean(x_B) - mean(x_A)",
+              "inter_spike_interval": "ISI_i = t_(i+1) - t_i",
+              "mean": "mean(x) = (1/n) * sum_i x_i",
+              "population_std": "sigma = sqrt((1/n) * sum_i (x_i - mean(x))^2)",
+              "ratio": "R_x = mean(x_B) / mean(x_A), defined only when mean(x_A) != 0"
+            },
+            "generated_by": "deterministic_statistics_engine",
+            "run_count": 3,
+            "schema_version": "2.0"
+          }
+        },
+        "experiment_id": "EXP-BATCH-20260914074039-86",
+        "hypotheses": [
+          {
+            "created": "2026-09-09",
+            "evidence": [],
+            "hypothesis": "Ein gelerntes Gateway erhaelt Holdout-Leistung und verursacht keine vorab definierte Interferenzregression.",
+            "id": "H-GW-004-A",
+            "research_question": "RQ-GW-004",
+            "status": "untested",
+            "updated": "2026-09-09"
+          }
+        ],
+        "known_limitations": [
+          "Git provenance is dirty or unavailable.",
+          "No registered scientific evidence is linked to this experiment."
+        ],
+        "research_question": {
+          "answer": {
+            "confidence": "none",
+            "current": null,
+            "limitations": "Erfordert Holdout-Daten und vorab definierte Exklusionsregeln."
+          },
+          "created": "2026-09-09",
+          "domain": "Gateway Transfer and Interference",
+          "evidence": [],
+          "hypotheses": [
+            "H-GW-004-A"
+          ],
+          "id": "RQ-GW-004",
+          "literature": [],
+          "question": "Generalisiert ein gelerntes Gateway auf neue Inputs, ohne erworbene Faehigkeiten zu stoeren?",
+          "relevance": "Verbindet Transfer- und Interferenzkontrollen in einem getrennten Evaluationsfenster.",
+          "status": "open",
+          "updated": "2026-09-09"
+        }
+      }
+    },
+    "methodological_critique": [
+      "Fehlende kausale Messungen",
+      "Keine statistische Signifikanz getestet",
+      "Keine Verknuepfung der Hypothesen mit empirischen Ergebnissen",
+      "Unvollstaendige Nachweisverknuepfung"
+    ],
+    "alternative_explanations": [
+      "Die Audits wurden erfolgreich durchgefuehrt, aber keine kausalen Effekte wurden gemessen.",
+      "Die Ergebnisse koennen auf die Durchfuehrung der Audit-Verfahren zurueckzufuehren sein, nicht auf kausale Effekte.",
+      "Die fehlende kausale Messung kann auf eine fehlende Experimentaldesign-Struktur zurueckzufuehren sein."
+    ],
+    "reproducibility": {
+      "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+      "experiment_status": "completed",
+      "evidence_mode": "not_reported",
+      "git_dirty": "True",
+      "source_freeze_sha": "287dbd252d618ab7c669a5a9a232d3de89b0022bd3042b2516c5ca8f83834830",
+      "configuration_path": "F:\\Brain-5D\\configs\\learning_experiment.yaml",
+      "configuration_sha256": "6f6cd457caf6216c286fee47ef03b529a0b496ed2dd53ee96b85d3b51e7b3a1c",
+      "experiment_manifest_digest": "c7a246da55b613e2c753ed6d967a585c2a9bd2366fdd7f09c737e067ce667c94",
+      "data_ids": "NOT_AVAILABLE",
+      "evid_ids": "NOT_AVAILABLE",
+      "protocol_id": "NOT_AVAILABLE",
+      "protocol_digest": "134b5d2e83f15a416382bce583d210738f8fd3ffad1a6ad848cf505a05ec8e4c",
+      "data_digest": "f0cd0b658be4a5bfe701dc418b83db3a63424b3834d24132680af5698f93dfd7",
+      "evid_digests": "[]"
+    },
+    "epistemic_status": {
+      "implementation": "NOT_DETERMINED",
+      "experiment_data": "PRESENT",
+      "registered_evidence": "ABSENT",
+      "ai_interpretation": "PRESENT",
+      "human_review": "PENDING",
+      "claim_support": "NOT_DETERMINED",
+      "rq_status": "IN_PROGRESS"
+    },
+    "ai_confidence": 0.05,
+    "missing_evidence": [
+      "Holdout-Daten mit vorab definierten Exklusionsregeln",
+      "Statistische Analysen fuer Signifikanz",
+      "Verknuepfung der Hypothesen mit empirischen Ergebnissen",
+      "Nachweis der kausalen Messungen"
+    ],
+    "recommended_follow_up": [
+      "Durchfuehrung von Experimenten mit direkten kausalen Messungen",
+      "Implementierung von statistischen Tests fuer Signifikanz",
+      "Verknuepfung der Hypothesen mit empirischen Ergebnissen",
+      "Erstellung von Holdout-Daten und vorab definierten Exklusionsregeln"
+    ],
+    "conclusion": "Die Forschungsergebnisse zeigen keine klaren Belege fuer eine generalisierte Leistung des gelernten Gateways oder eine Interferenz. Die Experimente wurden durchgefuehrt, um die Bedingungen fuer die Audits zu pruefen, aber keine direkten kausalen Messungen wurden durchgefuehrt.",
+    "human_review": {
+      "status": "PENDING",
+      "reviewer": null,
+      "reviewed_at": null,
+      "disposition": null,
+      "comments": null
+    },
+    "aiar": {
+      "analyst": {
+        "analysis_id": "AIAR-scientific_analyst-20260914090351323809-b38384b4",
+        "role": "scientific_analyst",
+        "model": {
+          "provider": "ollama",
+          "model_name": "qwen3:8b",
+          "model_digest": "not_reported",
+          "quantization": "not_reported",
+          "context_length": "unknown",
+          "temperature": 0.0,
+          "top_p": 0.9,
+          "seed": "not_reported",
+          "backend_version": "unknown"
+        },
+        "inputs": {
+          "experiment_id": "EXP-BATCH-20260914074039-86",
+          "packet_digest": "b38384b4a28a523ea8cc521fbab286100dafe5b498278e7ff1a7a345dbbb686a"
+        },
+        "output": {
+          "assessment": "Die Forschungsergebnisse zeigen keine klaren Belege fuer eine generalisierte Leistung des gelernten Gateways oder eine Interferenz. Die Experimente wurden durchgefuehrt, um die Bedingungen fuer die Audits zu pruefen, aber keine direkten kausalen Messungen wurden durchgefuehrt.",
+          "observations": [
+            "Die Experimente wurden mit drei verschiedenen Seeds (101, 102, 103) durchgefuehrt.",
+            "Die Audit-Status ist fuer alle Laufungen als 'complete' markiert.",
+            "Es wurden keine statistischen Tests fuer Signifikanz durchgefuehrt.",
+            "Die Metriken enthalten keine kausalen Messungen oder Hypothesentests.",
+            "Die Forschungsfragen und Hypothesen sind nicht mit empirischen Ergebnissen verknuepft."
+          ],
+          "effect_direction": "Es gibt keine Beobachtung von Effekten in eine Richtung, da keine kausalen Messungen durchgefuehrt wurden.",
+          "methodological_concerns": [
+            "Fehlende kausale Messungen",
+            "Keine statistische Signifikanz getestet",
+            "Keine Verknuepfung der Hypothesen mit empirischen Ergebnissen",
+            "Unvollstaendige Nachweisverknuepfung"
+          ],
+          "alternative_explanations": [
+            "Die Audits wurden erfolgreich durchgefuehrt, aber keine kausalen Effekte wurden gemessen.",
+            "Die Ergebnisse koennen auf die Durchfuehrung der Audit-Verfahren zurueckzufuehren sein, nicht auf kausale Effekte.",
+            "Die fehlende kausale Messung kann auf eine fehlende Experimentaldesign-Struktur zurueckzufuehren sein."
+          ],
+          "recommended_experiments": [
+            "Durchfuehrung von Experimenten mit direkten kausalen Messungen",
+            "Implementierung von statistischen Tests fuer Signifikanz",
+            "Verknuepfung der Hypothesen mit empirischen Ergebnissen",
+            "Erstellung von Holdout-Daten und vorab definierten Exklusionsregeln"
+          ],
+          "requested_evidence": [
+            "Holdout-Daten mit vorab definierten Exklusionsregeln",
+            "Statistische Analysen fuer Signifikanz",
+            "Verknuepfung der Hypothesen mit empirischen Ergebnissen",
+            "Nachweis der kausalen Messungen"
+          ],
+          "confidence": 0.05
+        },
+        "provenance": {
+          "prompt_sha256": "4ee51a82d37a9a7418f599812917ff252019d53617690435ee1b229083842308",
+          "research_packet_digest": "b38384b4a28a523ea8cc521fbab286100dafe5b498278e7ff1a7a345dbbb686a",
+          "prompt_protocol_version": "research_assistant_v1",
+          "assistant_schema_version": "1.2",
+          "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+          "model_self_confidence": "0.05"
+        },
+        "epistemic_status": {
+          "evidence": false,
+          "interpretation_only": true,
+          "human_review_required": true
+        },
+        "review": {
+          "status": "pending",
+          "reviewer": null,
+          "reviewed_at": null,
+          "disposition": null
+        },
+        "generated_at": "2026-09-14T09:03:51.323809+00:00"
+      },
+      "reviewer": {
+        "analysis_id": "AIAR-critical_reviewer-20260914090428993303-b38384b4",
+        "role": "critical_reviewer",
+        "model": {
+          "provider": "ollama",
+          "model_name": "qwen3:8b",
+          "model_digest": "not_reported",
+          "quantization": "not_reported",
+          "context_length": "unknown",
+          "temperature": 0.0,
+          "top_p": 0.9,
+          "seed": "not_reported",
+          "backend_version": "unknown"
+        },
+        "inputs": {
+          "experiment_id": "EXP-BATCH-20260914074039-86",
+          "packet_digest": "b38384b4a28a523ea8cc521fbab286100dafe5b498278e7ff1a7a345dbbb686a"
+        },
+        "output": {
+          "assessment": "Die Forschungsergebnisse zeigen keine klaren Belege fuer eine generalisierte Leistung des gelernten Gateways oder eine Interferenz. Die Experimente wurden durchgefuehrt, um die Bedingungen fuer die Audits zu pruefen, aber keine direkten kausalen Messungen wurden durchgefuehrt.",
+          "observations": [
+            "Die Experimente wurden mit drei verschiedenen Seeds (101, 102, 103) durchgefuehrt.",
+            "Die Audit-Status ist fuer alle Laufungen als 'complete' markiert.",
+            "Es wurden keine statistischen Tests fuer Signifikanz durchgefuehrt.",
+            "Die Metriken enthalten keine kausalen Messungen oder Hypothesentests.",
+            "Die Forschungsfragen und Hypothesen sind nicht mit empirischen Ergebnissen verknuepft."
+          ],
+          "effect_direction": "Es gibt keine Beobachtung von Effekten in eine Richtung, da keine kausalen Messungen durchgefuehrt wurden.",
+          "methodological_concerns": [
+            "Fehlende kausale Messungen",
+            "Keine statistische Signifikanz getestet",
+            "Keine Verknuepfung der Hypothesen mit empirischen Ergebnissen",
+            "Unvollstaendige Nachweisverknuepfung"
+          ],
+          "alternative_explanations": [
+            "Die Audits wurden erfolgreich durchgefuehrt, aber keine kausalen Effekte wurden gemessen.",
+            "Die Ergebnisse koennen auf die Durchfuehrung der Audit-Verfahren zurueckzufuehren sein, nicht auf kausale Effekte.",
+            "Die fehlende kausale Messung kann auf eine fehlende Experimentaldesign-Struktur zurueckzufuehren sein."
+          ],
+          "recommended_experiments": [
+            "Durchfuehrung von Experimenten mit direkten kausalen Messungen",
+            "Implementierung von statistischen Tests fuer Signifikanz",
+            "Verknuepfung der Hypothesen mit empirischen Ergebnissen",
+            "Erstellung von Holdout-Daten und vorab definierten Exklusionsregeln"
+          ],
+          "requested_evidence": [
+            "Holdout-Daten mit vorab definierten Exklusionsregeln",
+            "Statistische Analysen fuer Signifikanz",
+            "Verknuepfung der Hypothesen mit empirischen Ergebnissen",
+            "Nachweis der kausalen Messungen"
+          ],
+          "confidence": 0.05,
+          "research_packet": {
+            "experiment_id": "EXP-BATCH-20260914074039-86",
+            "data": {
+              "run_preview": [
+                {
+                  "_raw_artifact": {
+                    "format": "json.gz",
+                    "path": "DATA/raw/run-0000-instrumentation_gap_audit-seed-101.json.gz",
+                    "sha256": "fe239a662cc2d5436218c0c3fbb0fa005767ecaafd88ca84c6b8eb455bc2d2a8",
+                    "size_bytes": 380,
+                    "uncompressed_bytes": 481
+                  },
+                  "condition": "instrumentation_gap_audit",
+                  "experiment_id": "EXP-BATCH-20260914074039-86",
+                  "metrics": {
+                    "audit_complete": true,
+                    "automatic_evidence_promotion": false,
+                    "claim_boundary": "No direct causal measurement is performed by this runner. Completion means only that the registered gap/boundary contract was executed and preserved for review.",
+                    "direct_test_of_hypothesis": false,
+                    "scientific_evidence": false
+                  },
+                  "runtime_error": null,
+                  "seed": 101,
+                  "state_digest_after": "",
+                  "state_digest_before": ""
+                },
+                {
+                  "_raw_artifact": {
+                    "format": "json.gz",
+                    "path": "DATA/raw/run-0001-instrumentation_gap_audit-seed-102.json.gz",
+                    "sha256": "8794130312ed1abf8b84ea144a36307c5d0bbd9cdf1d4b6f277aaa8906965f36",
+                    "size_bytes": 380,
+                    "uncompressed_bytes": 481
+                  },
+                  "condition": "instrumentation_gap_audit",
+                  "experiment_id": "EXP-BATCH-20260914074039-86",
+                  "metrics": {
+                    "audit_complete": true,
+                    "automatic_evidence_promotion": false,
+                    "claim_boundary": "No direct causal measurement is performed by this runner. Completion means only that the registered gap/boundary contract was executed and preserved for review.",
+                    "direct_test_of_hypothesis": false,
+                    "scientific_evidence": false
+                  },
+                  "runtime_error": null,
+                  "seed": 102,
+                  "state_digest_after": "",
+                  "state_digest_before": ""
+                },
+                {
+                  "_raw_artifact": {
+                    "format": "json.gz",
+                    "path": "DATA/raw/run-0002-instrumentation_gap_audit-seed-103.json.gz",
+                    "sha256": "d4d6317e0a9d14127faf5af24e5e5afbee8be5d0944252885f86706181bab877",
+                    "size_bytes": 380,
+                    "uncompressed_bytes": 481
+                  },
+                  "condition": "instrumentation_gap_audit",
+                  "experiment_id": "EXP-BATCH-20260914074039-86",
+                  "metrics": {
+                    "audit_complete": true,
+                    "automatic_evidence_promotion": false,
+                    "claim_boundary": "No direct causal measurement is performed by this runner. Completion means only that the registered gap/boundary contract was executed and preserved for review.",
+                    "direct_test_of_hypothesis": false,
+                    "scientific_evidence": false
+                  },
+                  "runtime_error": null,
+                  "seed": 103,
+                  "state_digest_after": "",
+                  "state_digest_before": ""
+                }
+              ],
+              "schema_version": "2.0",
+              "statistics": {
+                "conditions": {
+                  "instrumentation_gap_audit": {
+                    "metrics": {},
+                    "run_count": 3,
+                    "seeds": [
+                      101,
+                      102,
+                      103
+                    ]
+                  }
+                },
+                "formulas": {
+                  "difference": "Delta_x = mean(x_B) - mean(x_A)",
+                  "inter_spike_interval": "ISI_i = t_(i+1) - t_i",
+                  "mean": "mean(x) = (1/n) * sum_i x_i",
+                  "population_std": "sigma = sqrt((1/n) * sum_i (x_i - mean(x))^2)",
+                  "ratio": "R_x = mean(x_B) / mean(x_A), defined only when mean(x_A) != 0"
+                },
+                "generated_by": "deterministic_statistics_engine",
+                "run_count": 3,
+                "schema_version": "2.0"
+              }
+            },
+            "hypotheses": [
+              {
+                "created": "2026-09-09",
+                "evidence": [],
+                "hypothesis": "Ein gelerntes Gateway erhaelt Holdout-Leistung und verursacht keine vorab definierte Interferenzregression.",
+                "id": "H-GW-004-A",
+                "research_question": "RQ-GW-004",
+                "status": "untested",
+                "updated": "2026-09-09"
+              }
+            ],
+            "known_limitations": [
+              "Git provenance is dirty or unavailable.",
+              "No registered scientific evidence is linked to this experiment."
+            ],
+            "research_question": {
+              "answer": {
+                "confidence": "none",
+                "current": null,
+                "limitations": "Erfordert Holdout-Daten und vorab definierte Exklusionsregeln."
+              },
+              "created": "2026-09-09",
+              "domain": "Gateway Transfer and Interference",
+              "evidence": [],
+              "hypotheses": [
+                "H-GW-004-A"
+              ],
+              "id": "RQ-GW-004",
+              "literature": [],
+              "question": "Generalisiert ein gelerntes Gateway auf neue Inputs, ohne erworbene Faehigkeiten zu stoeren?",
+              "relevance": "Verbindet Transfer- und Interferenzkontrollen in einem getrennten Evaluationsfenster.",
+              "status": "open",
+              "updated": "2026-09-09"
+            }
+          }
+        },
+        "provenance": {
+          "prompt_sha256": "fab50e08e7843a1ed324c51995b9b70b0833cf77489716db1640bdbca0e539ce",
+          "research_packet_digest": "b38384b4a28a523ea8cc521fbab286100dafe5b498278e7ff1a7a345dbbb686a",
+          "prompt_protocol_version": "research_assistant_v1",
+          "assistant_schema_version": "1.2",
+          "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+          "model_self_confidence": "0.05"
+        },
+        "epistemic_status": {
+          "evidence": false,
+          "interpretation_only": true,
+          "human_review_required": true
+        },
+        "review": {
+          "status": "pending",
+          "reviewer": null,
+          "reviewed_at": null,
+          "disposition": null
+        },
+        "generated_at": "2026-09-14T09:04:28.993303+00:00"
+      },
+      "writer": {
+        "analysis_id": "AIAR-scientific_writer-20260914090510033352-b38384b4",
+        "role": "scientific_writer",
+        "model": {
+          "provider": "ollama",
+          "model_name": "qwen3:8b",
+          "model_digest": "not_reported",
+          "quantization": "not_reported",
+          "context_length": "unknown",
+          "temperature": 0.0,
+          "top_p": 0.9,
+          "seed": "not_reported",
+          "backend_version": "unknown"
+        },
+        "inputs": {
+          "experiment_id": "EXP-BATCH-20260914074039-86",
+          "packet_digest": "b38384b4a28a523ea8cc521fbab286100dafe5b498278e7ff1a7a345dbbb686a"
+        },
+        "output": {
+          "assessment": "Die Forschungsergebnisse zeigen keine klaren Belege fuer eine generalisierte Leistung des gelernten Gateways oder eine Interferenz. Die Experimente wurden durchgefuehrt, um die Bedingungen fuer die Audits zu pruefen, aber keine direkten kausalen Messungen wurden durchgefuehrt.",
+          "observations": [
+            "Die Experimente wurden mit drei verschiedenen Seeds (101, 102, 103) durchgefuehrt.",
+            "Der Audit-Status ist fuer alle Laufungen als 'complete' markiert.",
+            "Es wurden keine statistischen Tests fuer Signifikanz durchgefuehrt.",
+            "Die Metriken enthalten keine kausalen Messungen oder Hypothesentests.",
+            "Die Forschungsfragen und Hypothesen sind nicht mit empirischen Ergebnissen verknuepft."
+          ],
+          "effect_direction": "Es gibt keine Beobachtung von Effekten in eine Richtung, da keine kausalen Messungen durchgefuehrt wurden.",
+          "methodological_concerns": [
+            "Fehlende kausale Messungen",
+            "Keine statistische Signifikanz getestet",
+            "Keine Verknuepfung der Hypothesen mit empirischen Ergebnissen",
+            "Unvollstaendige Nachweisverknuepfung"
+          ],
+          "alternative_explanations": [
+            "Die Audits wurden erfolgreich durchgefuehrt, aber keine kausalen Effekte wurden gemessen.",
+            "Die Ergebnisse koennen auf die Durchfuehrung der Audit-Verfahren zurueckzufuehren sein, nicht auf kausale Effekte.",
+            "Die fehlende kausale Messung kann auf eine fehlende Experimentaldesign-Struktur zurueckzufuehren sein."
+          ],
+          "recommended_experiments": [
+            "Durchfuehrung von Experimenten mit direkten kausalen Messungen",
+            "Implementierung von statistischen Tests fuer Signifikanz",
+            "Verknuepfung der Hypothesen mit empirischen Ergebnissen",
+            "Erstellung von Holdout-Daten und vorab definierten Exklusionsregeln"
+          ],
+          "requested_evidence": [
+            "Holdout-Daten mit vorab definierten Exklusionsregeln",
+            "Statistische Analysen fuer Signifikanz",
+            "Verknuepfung der Hypothesen mit empirischen Ergebnissen",
+            "Nachweis der kausalen Messungen"
+          ],
+          "confidence": 0.05,
+          "research_packet": {
+            "data": {
+              "run_preview": [
+                {
+                  "_raw_artifact": {
+                    "format": "json.gz",
+                    "path": "DATA/raw/run-0000-instrumentation_gap_audit-seed-101.json.gz",
+                    "sha256": "fe239a662cc2d5436218c0c3fbb0fa005767ecaafd88ca84c6b8eb455bc2d2a8",
+                    "size_bytes": 380,
+                    "uncompressed_bytes": 481
+                  },
+                  "condition": "instrumentation_gap_audit",
+                  "experiment_id": "EXP-BATCH-20260914074039-86",
+                  "metrics": {
+                    "audit_complete": true,
+                    "automatic_evidence_promotion": false,
+                    "claim_boundary": "No direct causal measurement is performed by this runner. Completion means only that the registered gap/boundary contract was executed and preserved for review.",
+                    "direct_test_of_hypothesis": false,
+                    "scientific_evidence": false
+                  },
+                  "runtime_error": null,
+                  "seed": 101,
+                  "state_digest_after": "",
+                  "state_digest_before": ""
+                },
+                {
+                  "_raw_artifact": {
+                    "format": "json.gz",
+                    "path": "DATA/raw/run-0001-instrumentation_gap_audit-seed-102.json.gz",
+                    "sha256": "8794130312ed1abf8b84ea144a36307c5d0bbd9cdf1d4b6f277aaa8906965f36",
+                    "size_bytes": 380,
+                    "uncompressed_bytes": 481
+                  },
+                  "condition": "instrumentation_gap_audit",
+                  "experiment_id": "EXP-BATCH-20260914074039-86",
+                  "metrics": {
+                    "audit_complete": true,
+                    "automatic_evidence_promotion": false,
+                    "claim_boundary": "No direct causal measurement is performed by this runner. Completion means only that the registered gap/boundary contract was executed and preserved for review.",
+                    "direct_test_of_hypothesis": false,
+                    "scientific_evidence": false
+                  },
+                  "runtime_error": null,
+                  "seed": 102,
+                  "state_digest_after": "",
+                  "state_digest_before": ""
+                },
+                {
+                  "_raw_artifact": {
+                    "format": "json.gz",
+                    "path": "DATA/raw/run-0002-instrumentation_gap_audit-seed-103.json.gz",
+                    "sha256": "d4d6317e0a9d14127faf5af24e5e5afbee8be5d0944252885f86706181bab877",
+                    "size_bytes": 380,
+                    "uncompressed_bytes": 481
+                  },
+                  "condition": "instrumentation_gap_audit",
+                  "experiment_id": "EXP-BATCH-20260914074039-86",
+                  "metrics": {
+                    "audit_complete": true,
+                    "automatic_evidence_promotion": false,
+                    "claim_boundary": "No direct causal measurement is performed by this runner. Completion means only that the registered gap/boundary contract was executed and preserved for review.",
+                    "direct_test_of_hypothesis": false,
+                    "scientific_evidence": false
+                  },
+                  "runtime_error": null,
+                  "seed": 103,
+                  "state_digest_after": "",
+                  "state_digest_before": ""
+                }
+              ],
+              "schema_version": "2.0",
+              "statistics": {
+                "conditions": {
+                  "instrumentation_gap_audit": {
+                    "metrics": {},
+                    "run_count": 3,
+                    "seeds": [
+                      101,
+                      102,
+                      103
+                    ]
+                  }
+                },
+                "formulas": {
+                  "difference": "Delta_x = mean(x_B) - mean(x_A)",
+                  "inter_spike_interval": "ISI_i = t_(i+1) - t_i",
+                  "mean": "mean(x) = (1/n) * sum_i x_i",
+                  "population_std": "sigma = sqrt((1/n) * sum_i (x_i - mean(x))^2)",
+                  "ratio": "R_x = mean(x_B) / mean(x_A), defined only when mean(x_A) != 0"
+                },
+                "generated_by": "deterministic_statistics_engine",
+                "run_count": 3,
+                "schema_version": "2.0"
+              }
+            },
+            "experiment_id": "EXP-BATCH-20260914074039-86",
+            "hypotheses": [
+              {
+                "created": "2026-09-09",
+                "evidence": [],
+                "hypothesis": "Ein gelerntes Gateway erhaelt Holdout-Leistung und verursacht keine vorab definierte Interferenzregression.",
+                "id": "H-GW-004-A",
+                "research_question": "RQ-GW-004",
+                "status": "untested",
+                "updated": "2026-09-09"
+              }
+            ],
+            "known_limitations": [
+              "Git provenance is dirty or unavailable.",
+              "No registered scientific evidence is linked to this experiment."
+            ],
+            "research_question": {
+              "answer": {
+                "confidence": "none",
+                "current": null,
+                "limitations": "Erfordert Holdout-Daten und vorab definierte Exklusionsregeln."
+              },
+              "created": "2026-09-09",
+              "domain": "Gateway Transfer and Interference",
+              "evidence": [],
+              "hypotheses": [
+                "H-GW-004-A"
+              ],
+              "id": "RQ-GW-004",
+              "literature": [],
+              "question": "Generalisiert ein gelerntes Gateway auf neue Inputs, ohne erworbene Faehigkeiten zu stoeren?",
+              "relevance": "Verbindet Transfer- und Interferenzkontrollen in einem getrennten Evaluationsfenster.",
+              "status": "open",
+              "updated": "2026-09-09"
+            }
+          }
+        },
+        "provenance": {
+          "prompt_sha256": "b7c33c379df6156d3ac19f2e43252fcaa8d98679a3fc1705aa057921c993da39",
+          "research_packet_digest": "b38384b4a28a523ea8cc521fbab286100dafe5b498278e7ff1a7a345dbbb686a",
+          "prompt_protocol_version": "research_assistant_v1",
+          "assistant_schema_version": "1.2",
+          "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+          "model_self_confidence": "0.05"
+        },
+        "epistemic_status": {
+          "evidence": false,
+          "interpretation_only": true,
+          "human_review_required": true
+        },
+        "review": {
+          "status": "pending",
+          "reviewer": null,
+          "reviewed_at": null,
+          "disposition": null
+        },
+        "generated_at": "2026-09-14T09:05:10.033352+00:00"
+      }
+    }
+  },
+  "provenance": {
+    "research_packet_digest": "69b884ae3da1919943e7315d026ed3fd80cd6e44b69d01e398d2f44cfcb0be78",
+    "source": {
+      "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+      "experiment_status": "completed",
+      "evidence_mode": "not_reported",
+      "git_dirty": "True",
+      "source_freeze_sha": "287dbd252d618ab7c669a5a9a232d3de89b0022bd3042b2516c5ca8f83834830",
+      "configuration_path": "F:\\Brain-5D\\configs\\learning_experiment.yaml",
+      "configuration_sha256": "6f6cd457caf6216c286fee47ef03b529a0b496ed2dd53ee96b85d3b51e7b3a1c",
+      "experiment_manifest_digest": "c7a246da55b613e2c753ed6d967a585c2a9bd2366fdd7f09c737e067ce667c94",
+      "data_ids": "NOT_AVAILABLE",
+      "evid_ids": "NOT_AVAILABLE",
+      "protocol_id": "NOT_AVAILABLE",
+      "protocol_digest": "134b5d2e83f15a416382bce583d210738f8fd3ffad1a6ad848cf505a05ec8e4c",
+      "data_digest": "f0cd0b658be4a5bfe701dc418b83db3a63424b3834d24132680af5698f93dfd7",
+      "evid_digests": "[]"
+    }
+  },
+  "analysis_ids": [
+    "AIAR-scientific_analyst-20260914090351323809-b38384b4",
+    "AIAR-critical_reviewer-20260914090428993303-b38384b4",
+    "AIAR-scientific_writer-20260914090510033352-b38384b4"
+  ],
+  "supersedes": null,
+  "content_digest": "b72849d04393ffc142fa9822eb70f77067a181a7f99beaa15bd48ae60b7c299e",
+  "markdown_digest": "3abb82ad4658350ffbe4824bed17eb02e2ef59a45890a1e738e6f510c52c96e6"
+}

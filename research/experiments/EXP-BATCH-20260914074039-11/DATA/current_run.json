@@ -1,0 +1,11 @@
+{
+  "last_archived_run": 2,
+  "raw_artifact": {
+    "format": "json.gz",
+    "path": "DATA/raw/run-0002-registered_pair_timing_curve-seed-103.json.gz",
+    "sha256": "ab80c935900107190bf4fdc946a33f603b1dd1efb29b5b8c63765d281185f143",
+    "size_bytes": 862,
+    "uncompressed_bytes": 2941
+  },
+  "status": "idle"
+}

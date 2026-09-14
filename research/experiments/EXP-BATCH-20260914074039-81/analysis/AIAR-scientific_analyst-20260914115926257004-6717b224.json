@@ -1,0 +1,174 @@
+{
+  "analysis_id": "AIAR-scientific_analyst-20260914115926257004-6717b224",
+  "role": "scientific_analyst",
+  "model": {
+    "provider": "ollama",
+    "model_name": "qwen2.5-coder:7b",
+    "model_digest": "not_reported",
+    "quantization": "not_reported",
+    "context_length": "unknown",
+    "temperature": 0.0,
+    "top_p": 1.0,
+    "seed": "not_reported",
+    "backend_version": "unknown"
+  },
+  "inputs": {
+    "experiment_id": "EXP-BATCH-20260914074039-81",
+    "packet_digest": "6717b224f0b259fc9598437a864f8f6f38b66ace26d21200d2beb40ed9ab5d63"
+  },
+  "output": {
+    "experiment_id": "EXP-BATCH-20260914074039-81",
+    "run_count": 15,
+    "seeds": [
+      20001,
+      20002,
+      20003
+    ],
+    "metrics": {
+      "n1024": {
+        "construction_seconds": {
+          "mean": 0.02091763335435341,
+          "std": 0.002647631962674431
+        },
+        "events_processed": {
+          "mean": 3610.6666666666665,
+          "std": 409.6578518172886
+        },
+        "neuron_updates_per_second": {
+          "mean": 543760.9902746787,
+          "std": 38950.69299378198
+        },
+        "synapses": {
+          "mean": 4096.0,
+          "std": 0.0
+        },
+        "ticks_per_second": {
+          "mean": 531.0165920651159,
+          "std": 38.037786126740215
+        },
+        "total_spikes": {
+          "mean": 1035.3333333333333,
+          "std": 120.63811816982042
+        }
+      },
+      "n128": {
+        "construction_seconds": {
+          "mean": 0.003566999997322758,
+          "std": 0.00047714987177280635
+        },
+        "events_processed": {
+          "mean": 1292.0,
+          "std": 52.78257288158659
+        },
+        "neuron_updates_per_second": {
+          "mean": 535454.9726013447,
+          "std": 78536.776894117
+        },
+        "synapses": {
+          "mean": 512.0,
+          "std": 0.0
+        },
+        "ticks_per_second": {
+          "mean": 4183.241973448005,
+          "std": 613.5685694852891
+        },
+        "total_spikes": {
+          "mean": 329.6666666666667,
+          "std": 13.02134998974974
+        }
+      },
+      "n25000": {
+        "construction_seconds": {
+          "mean": 1.2572563333281626,
+          "std": 0.3568097014968306
+        },
+        "events_processed": {
+          "mean": 4973.0,
+          "std": 106.86751923136734
+        },
+        "neuron_updates_per_second": {
+          "mean": 388929.05594243156,
+          "std": 15470.784408761638
+        },
+        "synapses": {
+          "mean": 100000.0,
+          "std": 0.0
+        },
+        "ticks_per_second": {
+          "mean": 15.557162237697263,
+          "std": 0.6188313763504656
+        },
+        "total_spikes": {
+          "mean": 1504.6666666666667,
+          "std": 37.11543554312081
+        }
+      },
+      "n5000": {
+        "construction_seconds": {
+          "mean": 0.5358134999793643,
+          "std": 0.45516029829401006
+        },
+        "events_processed": {
+          "mean": 4580.333333333333,
+          "std": 321.0039805914493
+        },
+        "neuron_updates_per_second": {
+          "mean": 502966.15403687704,
+          "std": 42859.85041945589
+        },
+        "synapses": {
+          "mean": 20000.0,
+          "std": 0.0
+        },
+        "ticks_per_second": {
+          "mean": 100.5932308073754,
+          "std": 8.571970083891184
+        },
+        "total_spikes": {
+          "mean": 1376.0,
+          "std": 100.7869039111729
+        }
+      }
+    },
+    "formulas": {
+      "difference": "Delta_x = mean(x_B) - mean(x_A)",
+      "inter_spike_interval": "ISI_i = t_(i+1) - t_i",
+      "mean": "mean(x) = (1/n) * sum_i x_i",
+      "population_std": "sigma = sqrt((1/n) * sum_i (x_i - mean(x))^2)",
+      "ratio": "R_x = mean(x_B) / mean(x_A), defined only when mean(x_A) != 0"
+    },
+    "generated_by": "deterministic_statistics_engine",
+    "schema_version": "2.0",
+    "assessment": "Die Analyse konnte nicht vollstaendig schema-konform erzeugt werden. Das Modell hat das erforderliche assessment-Feld nicht geliefert.",
+    "observations": [],
+    "methodological_concerns": [
+      "Die vom Modell ausgegebene confidence war schemawidrig oder ausserhalb des Bereichs 0..1. Sie wurde fuer die AIRR-Provenienz konservativ auf 0.0 gesetzt; der Originalwert bleibt als confidence_original erhalten."
+    ],
+    "alternative_explanations": [],
+    "recommended_experiments": [],
+    "requested_evidence": [],
+    "effect_direction": "not_determined",
+    "confidence_original": null,
+    "confidence": 0.0
+  },
+  "provenance": {
+    "prompt_sha256": "e12d6d84f4cf5c330a1046faec8ba933aa50aa2dd9867712ef0b036a691130b9",
+    "research_packet_digest": "6717b224f0b259fc9598437a864f8f6f38b66ace26d21200d2beb40ed9ab5d63",
+    "prompt_protocol_version": "research_assistant_v1",
+    "assistant_schema_version": "1.2",
+    "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+    "model_self_confidence": "0.0"
+  },
+  "epistemic_status": {
+    "evidence": false,
+    "interpretation_only": true,
+    "human_review_required": true
+  },
+  "review": {
+    "status": "pending",
+    "reviewer": null,
+    "reviewed_at": null,
+    "disposition": null
+  },
+  "generated_at": "2026-09-14T11:59:26.257004+00:00"
+}

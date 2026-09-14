@@ -1,0 +1,1116 @@
+{
+  "report_id": "AIRR-2026-0001",
+  "experiment_id": "EXP-BATCH-20260914074039-11",
+  "research_question_id": "RQ-STDP-001",
+  "hypothesis_ids": [
+    "H-STDP-001-A"
+  ],
+  "claim_ids": [
+    "CLAIM-STDP-001"
+  ],
+  "generated_at": "2026-09-14T11:22:43.581930+00:00",
+  "report_schema_version": "1.0",
+  "report_protocol_version": "PROTOCOL-AIRR-001",
+  "generated_by": "artificial_intelligence",
+  "ai_generated": true,
+  "scientific_evidence": false,
+  "human_review_required": true,
+  "status": "review_pending",
+  "content": {
+    "identification": {
+      "experiment": "EXP-BATCH-20260914074039-11",
+      "research_question": "Erzeugt pair-based STDP unter definierten Pre/Post-Zeitabständen eine asymmetrische Gewichtsanpassung?",
+      "hypotheses": [
+        {
+          "id": "H-STDP-001-A",
+          "research_question": "RQ-STDP-001",
+          "hypothesis": "Pair-based STDP erzeugt unter definierten Pre/Post-Zeitabständen eine asymmetrische Gewichtsanpassung (LTP bei Δt > 0, LTD bei Δt < 0).",
+          "status": "untested",
+          "evidence": [],
+          "created": "2026-08-23",
+          "updated": "2026-08-23"
+        }
+      ],
+      "date": "2026-09-14",
+      "source_sha": "8e096931a779b2d2eb4d010eb20154150b07bbf2"
+    },
+    "executive_summary": "Die Hypothese H-STDP-001-A wird durch die experimentellen Ergebnisse unterstützt, jedoch sind statistische Tests nicht durchgeführt worden. Die Ergebnisse sind deterministisch und zeigen eine asymmetrische Gewichtsanpassung bei definierten Pre/Post-Zeitabständen.",
+    "research_question": {
+      "id": "RQ-STDP-001",
+      "domain": "STDP",
+      "question": "Erzeugt pair-based STDP unter definierten Pre/Post-Zeitabständen eine asymmetrische Gewichtsanpassung?",
+      "relevance": "Fundamentale STDP-Eigenschaft, die in Brain-5D verifiziert werden muss.",
+      "literature": [
+        "SRC-SONG-ABBOTT-2000",
+        "SRC-BI-POO-1998"
+      ],
+      "hypotheses": [
+        "H-STDP-001-A"
+      ],
+      "evidence": [],
+      "status": "open",
+      "answer": {
+        "current": null,
+        "confidence": "none",
+        "limitations": null
+      },
+      "created": "2026-08-23",
+      "updated": "2026-08-23"
+    },
+    "experimental_design": {
+      "experiment_id": "EXP-BATCH-20260914074039-11",
+      "research_question": "RQ-STDP-001",
+      "hypothesis": "H-STDP-001-A",
+      "title": "Experiment workflow: stdp_pair_timing_registered_v1",
+      "conditions": "Registered protocol conditions",
+      "ticks": 1000,
+      "ticks_contract": "minimum requested observation window",
+      "seeds": [
+        101,
+        102,
+        103
+      ],
+      "protocol": "stdp_pair_timing_registered_v1",
+      "resolved_runner": "run_stdp_pair_registered",
+      "tick_validation": {
+        "status": "NOT_APPLICABLE",
+        "mode": "protocol_defined_internal_trials",
+        "requested_ticks": 1000
+      },
+      "notes": "",
+      "execution": "registered experiment_suite runner",
+      "assistant_policy": "AI is post-hoc interpretation only.",
+      "epistemic_layers": {
+        "ui_state": "operator/dashboard progress only; not a scientific result",
+        "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+        "evid": "not_created; requires semantic validation, clean freeze and human review",
+        "interpretation": "post-hoc AI or human interpretation; never execution input"
+      }
+    },
+    "data_basis": {
+      "data": {
+        "ai_input_policy": "compact_only_raw_on_explicit_deterministic_extract",
+        "generated_by": "deterministic_research_data_v2",
+        "limits": {
+          "ai_packet_max_bytes": 1000000,
+          "run_summary_max_bytes": 5000000,
+          "sequence_preview_items": 16
+        },
+        "raw_index": {
+          "path": "DATA/runs_index.json",
+          "run_count": 3,
+          "sha256": "0aeb1ded04016f2b7b9080d38f9641a1f276cf1b4cee34c4404928d0b324e8b6"
+        },
+        "run_count": 3,
+        "run_preview": [
+          {
+            "_raw_artifact": {
+              "format": "json.gz",
+              "path": "DATA/raw/run-0000-registered_pair_timing_curve-seed-101.json.gz",
+              "sha256": "110b9681b4fefd63525e89bdd2e5371d2123bfe8d4dad42824f1a447668fb8c1",
+              "size_bytes": 861,
+              "uncompressed_bytes": 2941
+            },
+            "condition": "registered_pair_timing_curve",
+            "experiment_id": "EXP-BATCH-20260914074039-11",
+            "metrics": {
+              "automatic_evidence_promotion": false,
+              "conditions": {
+                "independent_runs_per_condition": 0,
+                "initial_weight": 0.5,
+                "parameters": {
+                  "a_minus": 0.12,
+                  "a_plus": 0.1,
+                  "max_weight": 1.0,
+                  "min_weight": 0.0,
+                  "tau_minus": 20.0,
+                  "tau_plus": 20.0
+                },
+                "repeated_evaluations_per_condition": 10
+              },
+              "direct_test_of_hypothesis": true,
+              "measurements": [
+                {
+                  "delta_t_ms": -50,
+                  "independent_runs": 0,
+                  "max_delta_weight": -0.009850199834867845,
+                  "mean_delta_weight": -0.009850199834867845,
+                  "min_delta_weight": -0.009850199834867845,
+                  "repeated_evaluations": 10
+                },
+                {
+                  "delta_t_ms": -20,
+                  "independent_runs": 0,
+                  "max_delta_weight": -0.04414553294057311,
+                  "mean_delta_weight": -0.04414553294057311,
+                  "min_delta_weight": -0.04414553294057311,
+                  "repeated_evaluations": 10
+                },
+                {
+                  "delta_t_ms": -10,
+                  "independent_runs": 0,
+                  "max_delta_weight": -0.07278367916551598,
+                  "mean_delta_weight": -0.07278367916551598,
+                  "min_delta_weight": -0.07278367916551598,
+                  "repeated_evaluations": 10
+                },
+                {
+                  "delta_t_ms": -5,
+                  "independent_runs": 0,
+                  "max_delta_weight": -0.09345609396856858,
+                  "mean_delta_weight": -0.09345609396856858,
+                  "min_delta_weight": -0.09345609396856858,
+                  "repeated_evaluations": 10
+                },
+                {
+                  "delta_t_ms": -1,
+                  "independent_runs": 0,
+                  "max_delta_weight": -0.11414753094008567,
+                  "mean_delta_weight": -0.11414753094008567,
+                  "min_delta_weight": -0.11414753094008567,
+                  "repeated_evaluations": 10
+                },
+                {
+                  "delta_t_ms": 0,
+                  "independent_runs": 0,
+                  "max_delta_weight": 0.0,
+                  "mean_delta_weight": 0.0,
+                  "min_delta_weight": 0.0,
+                  "repeated_evaluations": 10
+                },
+                {
+                  "delta_t_ms": 1,
+                  "independent_runs": 0,
+                  "max_delta_weight": 0.09512294245007147,
+                  "mean_delta_weight": 0.09512294245007147,
+                  "min_delta_weight": 0.09512294245007147,
+                  "repeated_evaluations": 10
+                },
+                {
+                  "delta_t_ms": 5,
+                  "independent_runs": 0,
+                  "max_delta_weight": 0.0778800783071405,
+                  "mean_delta_weight": 0.0778800783071405,
+                  "min_delta_weight": 0.0778800783071405,
+                  "repeated_evaluations": 10
+                },
+                {
+                  "delta_t_ms": 10,
+                  "independent_runs": 0,
+                  "max_delta_weight": 0.0606530659712633,
+                  "mean_delta_weight": 0.0606530659712633,
+                  "min_delta_weight": 0.0606530659712633,
+                  "repeated_evaluations": 10
+                },
+                {
+                  "delta_t_ms": 20,
+                  "independent_runs": 0,
+                  "max_delta_weight": 0.036787944117144256,
+                  "mean_delta_weight": 0.036787944117144256,
+                  "min_delta_weight": 0.036787944117144256,
+                  "repeated_evaluations": 10
+                },
+                {
+                  "delta_t_ms": 50,
+                  "independent_runs": 0,
+                  "max_delta_weight": 0.008208499862389917,
+                  "mean_delta_weight": 0.008208499862389917,
+                  "min_delta_weight": 0.008208499862389917,
+                  "repeated_evaluations": 10
+                }
+              ],
+              "protocol": "stdp_pair_timing_v1",
+              "replication_note": "The isolated curve is deterministic; repeated seed labels do not create statistical independence and must not be treated as n>1.",
+              "scientific_evidence": false,
+              "seed": 42,
+              "summary": {
+                "conditions": 11,
+                "deterministic_identity": true,
+                "hypothesis_supported": true,
+                "independent_runs": 0,
+                "mean_ltd": -0.06687660736992224,
+                "mean_ltp": 0.05573050614160189,
+                "repeated_evaluations": 110,
+                "total_replications": 110,
+                "zero_delta_weight": 0.0
+              }
+            },
+            "runtime_error": null,
+            "seed": 101,
+            "state_digest_after": "",
+            "state_digest_before": ""
+          },
+          {
+            "_raw_artifact": {
+              "format": "json.gz",
+              "path": "DATA/raw/run-0001-registered_pair_timing_curve-seed-102.json.gz",
+              "sha256": "b4c94ecff0466b66c7ad83211ace203c5feacc31cd9bc6e13e57f7a75c3ebd67",
+              "size_bytes": 861,
+              "uncompressed_bytes": 2941
+            },
+            "condition": "registered_pair_timing_curve",
+            "experiment_id": "EXP-BATCH-20260914074039-11",
+            "metrics": {
+              "automatic_evidence_promotion": false,
+              "conditions": {
+                "independent_runs_per_condition": 0,
+                "initial_weight": 0.5,
+                "parameters": {
+                  "a_minus": 0.12,
+                  "a_plus": 0.1,
+                  "max_weight": 1.0,
+                  "min_weight": 0.0,
+                  "tau_minus": 20.0,
+                  "tau_plus": 20.0
+                },
+                "repeated_evaluations_per_condition": 10
+              },
+              "direct_test_of_hypothesis": true,
+              "measurements": [
+                {
+                  "delta_t_ms": -50,
+                  "independent_runs": 0,
+                  "max_delta_weight": -0.009850199834867845,
+                  "mean_delta_weight": -0.009850199834867845,
+                  "min_delta_weight": -0.009850199834867845,
+                  "repeated_evaluations": 10
+                },
+                {
+                  "delta_t_ms": -20,
+                  "independent_runs": 0,
+                  "max_delta_weight": -0.04414553294057311,
+                  "mean_delta_weight": -0.04414553294057311,
+                  "min_delta_weight": -0.04414553294057311,
+                  "repeated_evaluations": 10
+                },
+                {
+                  "delta_t_ms": -10,
+                  "independent_runs": 0,
+                  "max_delta_weight": -0.07278367916551598,
+                  "mean_delta_weight": -0.07278367916551598,
+                  "min_delta_weight": -0.07278367916551598,
+                  "repeated_evaluations": 10
+                },
+                {
+                  "delta_t_ms": -5,
+                  "independent_runs": 0,
+                  "max_delta_weight": -0.09345609396856858,
+                  "mean_delta_weight": -0.09345609396856858,
+                  "min_delta_weight": -0.09345609396856858,
+                  "repeated_evaluations": 10
+                },
+                {
+                  "delta_t_ms": -1,
+                  "independent_runs": 0,
+                  "max_delta_weight": -0.11414753094008567,
+                  "mean_delta_weight": -0.11414753094008567,
+                  "min_delta_weight": -0.11414753094008567,
+                  "repeated_evaluations": 10
+                },
+                {
+                  "delta_t_ms": 0,
+                  "independent_runs": 0,
+                  "max_delta_weight": 0.0,
+                  "mean_delta_weight": 0.0,
+                  "min_delta_weight": 0.0,
+                  "repeated_evaluations": 10
+                },
+                {
+                  "delta_t_ms": 1,
+                  "independent_runs": 0,
+                  "max_delta_weight": 0.09512294245007147,
+                  "mean_delta_weight": 0.09512294245007147,
+                  "min_delta_weight": 0.09512294245007147,
+                  "repeated_evaluations": 10
+                },
+                {
+                  "delta_t_ms": 5,
+                  "independent_runs": 0,
+                  "max_delta_weight": 0.0778800783071405,
+                  "mean_delta_weight": 0.0778800783071405,
+                  "min_delta_weight": 0.0778800783071405,
+                  "repeated_evaluations": 10
+                },
+                {
+                  "delta_t_ms": 10,
+                  "independent_runs": 0,
+                  "max_delta_weight": 0.0606530659712633,
+                  "mean_delta_weight": 0.0606530659712633,
+                  "min_delta_weight": 0.0606530659712633,
+                  "repeated_evaluations": 10
+                },
+                {
+                  "delta_t_ms": 20,
+                  "independent_runs": 0,
+                  "max_delta_weight": 0.036787944117144256,
+                  "mean_delta_weight": 0.036787944117144256,
+                  "min_delta_weight": 0.036787944117144256,
+                  "repeated_evaluations": 10
+                },
+                {
+                  "delta_t_ms": 50,
+                  "independent_runs": 0,
+                  "max_delta_weight": 0.008208499862389917,
+                  "mean_delta_weight": 0.008208499862389917,
+                  "min_delta_weight": 0.008208499862389917,
+                  "repeated_evaluations": 10
+                }
+              ],
+              "protocol": "stdp_pair_timing_v1",
+              "replication_note": "The isolated curve is deterministic; repeated seed labels do not create statistical independence and must not be treated as n>1.",
+              "scientific_evidence": false,
+              "seed": 42,
+              "summary": {
+                "conditions": 11,
+                "deterministic_identity": true,
+                "hypothesis_supported": true,
+                "independent_runs": 0,
+                "mean_ltd": -0.06687660736992224,
+                "mean_ltp": 0.05573050614160189,
+                "repeated_evaluations": 110,
+                "total_replications": 110,
+                "zero_delta_weight": 0.0
+              }
+            },
+            "runtime_error": null,
+            "seed": 102,
+            "state_digest_after": "",
+            "state_digest_before": ""
+          },
+          {
+            "_raw_artifact": {
+              "format": "json.gz",
+              "path": "DATA/raw/run-0002-registered_pair_timing_curve-seed-103.json.gz",
+              "sha256": "ab80c935900107190bf4fdc946a33f603b1dd1efb29b5b8c63765d281185f143",
+              "size_bytes": 862,
+              "uncompressed_bytes": 2941
+            },
+            "condition": "registered_pair_timing_curve",
+            "experiment_id": "EXP-BATCH-20260914074039-11",
+            "metrics": {
+              "automatic_evidence_promotion": false,
+              "conditions": {
+                "independent_runs_per_condition": 0,
+                "initial_weight": 0.5,
+                "parameters": {
+                  "a_minus": 0.12,
+                  "a_plus": 0.1,
+                  "max_weight": 1.0,
+                  "min_weight": 0.0,
+                  "tau_minus": 20.0,
+                  "tau_plus": 20.0
+                },
+                "repeated_evaluations_per_condition": 10
+              },
+              "direct_test_of_hypothesis": true,
+              "measurements": [
+                {
+                  "delta_t_ms": -50,
+                  "independent_runs": 0,
+                  "max_delta_weight": -0.009850199834867845,
+                  "mean_delta_weight": -0.009850199834867845,
+                  "min_delta_weight": -0.009850199834867845,
+                  "repeated_evaluations": 10
+                },
+                {
+                  "delta_t_ms": -20,
+                  "independent_runs": 0,
+                  "max_delta_weight": -0.04414553294057311,
+                  "mean_delta_weight": -0.04414553294057311,
+                  "min_delta_weight": -0.04414553294057311,
+                  "repeated_evaluations": 10
+                },
+                {
+                  "delta_t_ms": -10,
+                  "independent_runs": 0,
+                  "max_delta_weight": -0.07278367916551598,
+                  "mean_delta_weight": -0.07278367916551598,
+                  "min_delta_weight": -0.07278367916551598,
+                  "repeated_evaluations": 10
+                },
+                {
+                  "delta_t_ms": -5,
+                  "independent_runs": 0,
+                  "max_delta_weight": -0.09345609396856858,
+                  "mean_delta_weight": -0.09345609396856858,
+                  "min_delta_weight": -0.09345609396856858,
+                  "repeated_evaluations": 10
+                },
+                {
+                  "delta_t_ms": -1,
+                  "independent_runs": 0,
+                  "max_delta_weight": -0.11414753094008567,
+                  "mean_delta_weight": -0.11414753094008567,
+                  "min_delta_weight": -0.11414753094008567,
+                  "repeated_evaluations": 10
+                },
+                {
+                  "delta_t_ms": 0,
+                  "independent_runs": 0,
+                  "max_delta_weight": 0.0,
+                  "mean_delta_weight": 0.0,
+                  "min_delta_weight": 0.0,
+                  "repeated_evaluations": 10
+                },
+                {
+                  "delta_t_ms": 1,
+                  "independent_runs": 0,
+                  "max_delta_weight": 0.09512294245007147,
+                  "mean_delta_weight": 0.09512294245007147,
+                  "min_delta_weight": 0.09512294245007147,
+                  "repeated_evaluations": 10
+                },
+                {
+                  "delta_t_ms": 5,
+                  "independent_runs": 0,
+                  "max_delta_weight": 0.0778800783071405,
+                  "mean_delta_weight": 0.0778800783071405,
+                  "min_delta_weight": 0.0778800783071405,
+                  "repeated_evaluations": 10
+                },
+                {
+                  "delta_t_ms": 10,
+                  "independent_runs": 0,
+                  "max_delta_weight": 0.0606530659712633,
+                  "mean_delta_weight": 0.0606530659712633,
+                  "min_delta_weight": 0.0606530659712633,
+                  "repeated_evaluations": 10
+                },
+                {
+                  "delta_t_ms": 20,
+                  "independent_runs": 0,
+                  "max_delta_weight": 0.036787944117144256,
+                  "mean_delta_weight": 0.036787944117144256,
+                  "min_delta_weight": 0.036787944117144256,
+                  "repeated_evaluations": 10
+                },
+                {
+                  "delta_t_ms": 50,
+                  "independent_runs": 0,
+                  "max_delta_weight": 0.008208499862389917,
+                  "mean_delta_weight": 0.008208499862389917,
+                  "min_delta_weight": 0.008208499862389917,
+                  "repeated_evaluations": 10
+                }
+              ],
+              "protocol": "stdp_pair_timing_v1",
+              "replication_note": "The isolated curve is deterministic; repeated seed labels do not create statistical independence and must not be treated as n>1.",
+              "scientific_evidence": false,
+              "seed": 42,
+              "summary": {
+                "conditions": 11,
+                "deterministic_identity": true,
+                "hypothesis_supported": true,
+                "independent_runs": 0,
+                "mean_ltd": -0.06687660736992224,
+                "mean_ltp": 0.05573050614160189,
+                "repeated_evaluations": 110,
+                "total_replications": 110,
+                "zero_delta_weight": 0.0
+              }
+            },
+            "runtime_error": null,
+            "seed": 103,
+            "state_digest_after": "",
+            "state_digest_before": ""
+          }
+        ],
+        "schema_version": "2.0",
+        "statistics": {
+          "conditions": {
+            "registered_pair_timing_curve": {
+              "metrics": {
+                "seed": {
+                  "max": 42.0,
+                  "mean": 42.0,
+                  "median": 42.0,
+                  "min": 42.0,
+                  "n": 3,
+                  "std": 0.0
+                }
+              },
+              "run_count": 3,
+              "seeds": [
+                101,
+                102,
+                103
+              ]
+            }
+          },
+          "formulas": {
+            "difference": "Delta_x = mean(x_B) - mean(x_A)",
+            "inter_spike_interval": "ISI_i = t_(i+1) - t_i",
+            "mean": "mean(x) = (1/n) * sum_i x_i",
+            "population_std": "sigma = sqrt((1/n) * sum_i (x_i - mean(x))^2)",
+            "ratio": "R_x = mean(x_B) / mean(x_A), defined only when mean(x_A) != 0"
+          },
+          "generated_by": "deterministic_statistics_engine",
+          "run_count": 3,
+          "schema_version": "2.0"
+        }
+      },
+      "evid": [],
+      "literature": [
+        {
+          "source_id": "SRC-SONG-ABBOTT-2000",
+          "authors": [
+            "Sen Song",
+            "Kenneth D. Miller",
+            "Larry F. Abbott"
+          ],
+          "title": "Competitive Hebbian learning through spike-timing-dependent synaptic plasticity",
+          "year": 2000,
+          "journal": "Nature Neuroscience",
+          "doi": "10.1038/78829",
+          "topic": [
+            "stdp",
+            "plasticity"
+          ],
+          "claims": [
+            "STDP can produce competitive synaptic modification."
+          ],
+          "brain5d_questions": [
+            "RQ-SNN-004",
+            "RQ-SNN-005",
+            "RQ-STDP-001",
+            "RQ-STDP-002"
+          ],
+          "brain5d_relevance": "Fundamentale STDP-Referenz für Timing-abhängige Plastizität."
+        },
+        {
+          "source_id": "SRC-BI-POO-1998",
+          "authors": [
+            "Guo-Qiang Bi",
+            "Mu-ming Poo"
+          ],
+          "title": "Synaptic Modifications in Cultured Hippocampal Neurons: Dependence on Spike Timing, Synaptic Strength, and Postsynaptic Cell Type",
+          "year": 1998,
+          "journal": "Journal of Neuroscience",
+          "doi": "10.1523/JNEUROSCI.18-24-10464.1998",
+          "topic": [
+            "stdp",
+            "plasticity"
+          ],
+          "claims": [
+            "Spike timing determines the direction and magnitude of synaptic modification."
+          ],
+          "brain5d_questions": [
+            "RQ-STDP-001"
+          ],
+          "brain5d_relevance": "Biologische Evidenz für STDP-Mechanismen."
+        }
+      ]
+    },
+    "quantitative_results": {
+      "conditions": {
+        "registered_pair_timing_curve": {
+          "metrics": {
+            "seed": {
+              "max": 42.0,
+              "mean": 42.0,
+              "median": 42.0,
+              "min": 42.0,
+              "n": 3,
+              "std": 0.0
+            }
+          },
+          "run_count": 3,
+          "seeds": [
+            101,
+            102,
+            103
+          ]
+        }
+      },
+      "formulas": {
+        "difference": "Delta_x = mean(x_B) - mean(x_A)",
+        "inter_spike_interval": "ISI_i = t_(i+1) - t_i",
+        "mean": "mean(x) = (1/n) * sum_i x_i",
+        "population_std": "sigma = sqrt((1/n) * sum_i (x_i - mean(x))^2)",
+        "ratio": "R_x = mean(x_B) / mean(x_A), defined only when mean(x_A) != 0"
+      },
+      "generated_by": "deterministic_statistics_engine",
+      "run_count": 3,
+      "schema_version": "2.0"
+    },
+    "observations": [
+      {
+        "observation": "Die Daten zeigen eine asymmetrische Gewichtsanpassung bei definierten Pre/Post-Zeitabständen, wobei negative Delta_t-Werte eine LTD (Long-Term Depression) und positive Delta_t-Werte eine LTP (Long-Term Potentiation) erzeugen."
+      },
+      {
+        "observation": "Die Ergebnisse sind deterministisch und basieren auf einer festgelegten Seed-Verwaltung, wodurch keine statistische Unabhängigkeit zwischen den Runs besteht."
+      },
+      {
+        "observation": "Die Werte der Delta_t_ms sind konsistent und zeigen eine klare Tendenz zu asymmetrischen Gewichtsanpassungen, was die Hypothese H-STDP-001-A stürtzt."
+      },
+      {
+        "observation": "Die Wiederholungen der Experimente (repeated_evaluations) sind auf 10 pro Bedingung begrenzt, was eine ausreichende Reproduzierbarkeit gewährleistet, aber keine statistische Validierung bietet."
+      }
+    ],
+    "interpretation": {
+      "assessment": "Die Hypothese H-STDP-001-A wird durch die experimentellen Ergebnisse unterstützt, jedoch sind statistische Tests nicht durchgeführt worden. Die Ergebnisse sind deterministisch und zeigen eine asymmetrische Gewichtsanpassung bei definierten Pre/Post-Zeitabständen.",
+      "observations": [
+        {
+          "observation": "Die Daten zeigen eine asymmetrische Gewichtsanpassung bei definierten Pre/Post-Zeitabständen, wobei negative Delta_t-Werte eine LTD (Long-Term Depression) und positive Delta_t-Werte eine LTP (Long-Term Potentiation) erzeugen."
+        },
+        {
+          "observation": "Die Ergebnisse sind deterministisch und basieren auf einer festgelegten Seed-Verwaltung, wodurch keine statistische Unabhängigkeit zwischen den Runs besteht."
+        },
+        {
+          "observation": "Die Werte der Delta_t_ms sind konsistent und zeigen eine klare Tendenz zu asymmetrischen Gewichtsanpassungen, was die Hypothese H-STDP-001-A stürtzt."
+        },
+        {
+          "observation": "Die Wiederholungen der Experimente (repeated_evaluations) sind auf 10 pro Bedingung begrenzt, was eine ausreichende Reproduzierbarkeit gewährleistet, aber keine statistische Validierung bietet."
+        }
+      ],
+      "effect_direction": "Die asymmetrische Gewichtsanpassung zeigt eine klare Richtung: negative Delta_t-Werte führen zu einer LTD (abnehmender Gewichtswert), positive Delta_t-Werte führen zu einer LTP (erhöhter Gewichtswert).",
+      "methodological_concerns": [
+        {
+          "methodological_concern": "Die experimentellen Runs sind deterministisch und basieren auf einer festgelegten Seed-Verwaltung, was die statistische Unabhängigkeit zwischen den Runs beeinträchtigt."
+        },
+        {
+          "methodological_concern": "Die Wiederholungen der Experimente (repeated_evaluations) sind auf 10 pro Bedingung begrenzt, was eine ausreichende Reproduzierbarkeit gewährleistet, aber keine statistische Validierung bietet."
+        },
+        {
+          "methodological_concern": "Es fehlt eine statistische Analyse, um die Signifikanz der beobachteten Effekte zu bestätigen."
+        }
+      ],
+      "alternative_explanations": [
+        {
+          "alternative_explanation": "Die asymmetrische Gewichtsanpassung könnte auf andere Parameter wie a_minus und a_plus zurückzuführen sein, die in der Experimenteinstellung festgelegt sind."
+        },
+        {
+          "alternative_explanation": "Die Ergebnisse könnten aufgrund der deterministischen Natur der Experimente nicht vollständig auf reale biologische Prozesse übertragbar sein."
+        },
+        {
+          "alternative_explanation": "Die asymmetrische Gewichtsanpassung könnte auch durch andere neuronale Mechanismen, die nicht direkt in der Experimenteinstellung berücksichtigt werden, verursacht werden."
+        }
+      ],
+      "recommended_experiments": [
+        {
+          "recommended_experiment": "Eine statistische Analyse der Ergebnisse, um die Signifikanz der beobachteten Effekte zu bestätigen."
+        },
+        {
+          "recommended_experiment": "Ein Experiment mit variierenden Parametern wie a_minus und a_plus, um die Auswirkungen auf die asymmetrische Gewichtsanpassung zu untersuchen."
+        },
+        {
+          "recommended_experiment": "Ein Experiment mit einer größeren Anzahl unabhängiger Runs, um die statistische Validierung der Ergebnisse zu erhöhen."
+        },
+        {
+          "recommended_experiment": "Ein Experiment mit unterschiedlichen Seed-Werten, um die statistische Unabhängigkeit der Runs zu gewährleisten."
+        }
+      ],
+      "requested_evidence": [
+        {
+          "requested_evidence": "statistical_replication"
+        },
+        {
+          "requested_evidence": "independent_runs_with_statistical_independence"
+        },
+        {
+          "requested_evidence": "parametric_analysis_of_a_minus_and_a_plus_effects"
+        }
+      ],
+      "confidence": 0.75
+    },
+    "methodological_critique": [
+      {
+        "methodological_concern": "Die experimentellen Runs sind deterministisch und basieren auf einer festgelegten Seed-Verwaltung, was die statistische Unabhängigkeit zwischen den Runs beeinträchtigt."
+      },
+      {
+        "methodological_concern": "Die Wiederholungen der Experimente (repeated_evaluations) sind auf 10 pro Bedingung begrenzt, was eine ausreichende Reproduzierbarkeit gewährleistet, aber keine statistische Validierung bietet."
+      },
+      {
+        "methodological_concern": "Es fehlt eine statistische Analyse, um die Signifikanz der beobachteten Effekte zu bestätigen."
+      }
+    ],
+    "alternative_explanations": [
+      {
+        "alternative_explanation": "Die asymmetrische Gewichtsanpassung könnte auf andere Parameter wie a_minus und a_plus zurückzuführen sein, die in der Experimenteinstellung festgelegt sind."
+      },
+      {
+        "alternative_explanation": "Die Ergebnisse könnten aufgrund der deterministischen Natur der Experimente nicht vollständig auf reale biologische Prozesse übertragbar sein."
+      },
+      {
+        "alternative_explanation": "Die asymmetrische Gewichtsanpassung könnte auch durch andere neuronale Mechanismen, die nicht direkt in der Experimenteinstellung berücksichtigt werden, verursacht werden."
+      }
+    ],
+    "reproducibility": {
+      "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+      "experiment_status": "completed",
+      "evidence_mode": "not_reported",
+      "git_dirty": "True",
+      "source_freeze_sha": "f5be122309ecd96c9b2dcd9b2b1cf8de127aba72c41ba249605e81fec4d45a85",
+      "configuration_path": "F:\\Brain-5D\\configs\\learning_experiment.yaml",
+      "configuration_sha256": "6f6cd457caf6216c286fee47ef03b529a0b496ed2dd53ee96b85d3b51e7b3a1c",
+      "experiment_manifest_digest": "e8c7787fb6f7c9d20b4a423e52092104ac107219020a1a90c19a3e3dd5a4fd40",
+      "data_ids": "NOT_AVAILABLE",
+      "evid_ids": "NOT_AVAILABLE",
+      "protocol_id": "NOT_AVAILABLE",
+      "protocol_digest": "518daf629190eec7bebbe42f52bf15fa8afab5ac14cb543a4f6bfe6638c6cebb",
+      "data_digest": "2b91eb83ce4f45f615a8d73aeaff5431c237f761193f67e32e27f3c546cd31fe",
+      "evid_digests": "[]"
+    },
+    "epistemic_status": {
+      "implementation": "NOT_DETERMINED",
+      "experiment_data": "PRESENT",
+      "registered_evidence": "ABSENT",
+      "ai_interpretation": "PRESENT",
+      "human_review": "PENDING",
+      "claim_support": "NOT_DETERMINED",
+      "rq_status": "IN_PROGRESS"
+    },
+    "ai_confidence": 0.75,
+    "missing_evidence": [
+      {
+        "requested_evidence": "statistical_replication"
+      },
+      {
+        "requested_evidence": "independent_runs_with_statistical_independence"
+      },
+      {
+        "requested_evidence": "parametric_analysis_of_a_minus_and_a_plus_effects"
+      }
+    ],
+    "recommended_follow_up": [
+      {
+        "recommended_experiment": "Eine statistische Analyse der Ergebnisse, um die Signifikanz der beobachteten Effekte zu bestätigen."
+      },
+      {
+        "recommended_experiment": "Ein Experiment mit variierenden Parametern wie a_minus und a_plus, um die Auswirkungen auf die asymmetrische Gewichtsanpassung zu untersuchen."
+      },
+      {
+        "recommended_experiment": "Ein Experiment mit einer größeren Anzahl unabhängiger Runs, um die statistische Validierung der Ergebnisse zu erhöhen."
+      },
+      {
+        "recommended_experiment": "Ein Experiment mit unterschiedlichen Seed-Werten, um die statistische Unabhängigkeit der Runs zu gewährleisten."
+      }
+    ],
+    "conclusion": "Die Hypothese H-STDP-001-A wird durch die experimentellen Ergebnisse unterstützt, jedoch sind statistische Tests nicht durchgeführt worden. Die Ergebnisse sind deterministisch und zeigen eine asymmetrische Gewichtsanpassung bei definierten Pre/Post-Zeitabständen.",
+    "human_review": {
+      "status": "PENDING",
+      "reviewer": null,
+      "reviewed_at": null,
+      "disposition": null,
+      "comments": null
+    },
+    "aiar": {
+      "analyst": {
+        "analysis_id": "AIAR-scientific_analyst-20260914075815249134-e26c87cd",
+        "role": "scientific_analyst",
+        "model": {
+          "provider": "ollama",
+          "model_name": "qwen3:8b",
+          "model_digest": "not_reported",
+          "quantization": "not_reported",
+          "context_length": "unknown",
+          "temperature": 0.0,
+          "top_p": 0.9,
+          "seed": "not_reported",
+          "backend_version": "unknown"
+        },
+        "inputs": {
+          "experiment_id": "EXP-BATCH-20260914074039-11",
+          "packet_digest": "e26c87cd0d1cb76320ebaad53cf834189129ad06db68af56b82858935a125204"
+        },
+        "output": {
+          "assessment": "Die Hypothese H-STDP-001-A wird durch die experimentellen Ergebnisse unterstützt, jedoch sind statistische Tests nicht durchgeführt worden. Die Ergebnisse sind deterministisch und zeigen eine asymmetrische Gewichtsanpassung bei definierten Pre/Post-Zeitabständen.",
+          "observations": [
+            {
+              "observation": "Die Daten zeigen eine asymmetrische Gewichtsanpassung bei definierten Pre/Post-Zeitabständen, wobei negative Delta_t-Werte eine LTD (Long-Term Depression) und positive Delta_t-Werte eine LTP (Long-Term Potentiation) erzeugen."
+            },
+            {
+              "observation": "Die Ergebnisse sind deterministisch und basieren auf einer festgelegten Seed-Verwaltung, wodurch keine statistische Unabhängigkeit zwischen den Runs besteht."
+            },
+            {
+              "observation": "Die Werte der Delta_t_ms sind konsistent und zeigen eine klare Tendenz zu asymmetrischen Gewichtsanpassungen, was die Hypothese H-STDP-001-A stürtzt."
+            },
+            {
+              "observation": "Die Wiederholungen der Experimente (repeated_evaluations) sind auf 10 pro Bedingung begrenzt, was eine ausreichende Reproduzierbarkeit gewährleistet, aber keine statistische Validierung bietet."
+            }
+          ],
+          "effect_direction": "Die asymmetrische Gewichtsanpassung zeigt eine klare Richtung: negative Delta_t-Werte führen zu einer LTD (abnehmender Gewichtswert), positive Delta_t-Werte führen zu einer LTP (erhöhter Gewichtswert).",
+          "methodological_concerns": [
+            "Die experimentellen Runs sind deterministisch und basieren auf einer festgelegten Seed-Verwaltung, was die statistische Unabhängigkeit zwischen den Runs beeinträchtigt.",
+            "Die Wiederholungen der Experimente (repeated_evaluations) sind auf 10 pro Bedingung begrenzt, was eine ausreichende Reproduzierbarkeit gewährleistet, aber keine statistische Validierung bietet.",
+            "Es fehlt eine statistische Analyse, um die Signifikanz der beobachteten Effekte zu bestätigen."
+          ],
+          "alternative_explanations": [
+            "Die asymmetrische Gewichtsanpassung könnte auf andere Parameter wie a_minus und a_plus zurückzuführen sein, die in der Experimenteinstellung festgelegt sind.",
+            "Die Ergebnisse könnten aufgrund der deterministischen Natur der Experimente nicht vollständig auf reale biologische Prozesse übertragbar sein.",
+            "Die asymmetrische Gewichtsanpassung könnte auch durch andere neuronale Mechanismen, die nicht direkt in der Experimenteinstellung berücksichtigt werden, verursacht werden."
+          ],
+          "recommended_experiments": [
+            "Eine statistische Analyse der Ergebnisse, um die Signifikanz der beobachteten Effekte zu bestätigen.",
+            "Ein Experiment mit variierenden Parametern wie a_minus und a_plus, um die Auswirkungen auf die asymmetrische Gewichtsanpassung zu untersuchen.",
+            "Ein Experiment mit einer größeren Anzahl unabhängiger Runs, um die statistische Validierung der Ergebnisse zu erhöhen.",
+            "Ein Experiment mit unterschiedlichen Seed-Werten, um die statistische Unabhängigkeit der Runs zu gewährleisten."
+          ],
+          "requested_evidence": [
+            "statistical_replication",
+            "independent_runs_with_statistical_independence",
+            "parametric_analysis_of_a_minus_and_a_plus_effects"
+          ],
+          "confidence": 0.75
+        },
+        "provenance": {
+          "prompt_sha256": "ab105ebd9e41364a7e3fc7d2b0ebec780e2b1914cfef5b6a2f4974b57c7ef2e4",
+          "research_packet_digest": "e26c87cd0d1cb76320ebaad53cf834189129ad06db68af56b82858935a125204",
+          "prompt_protocol_version": "research_assistant_v1",
+          "assistant_schema_version": "1.2",
+          "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+          "model_self_confidence": "0.75"
+        },
+        "epistemic_status": {
+          "evidence": false,
+          "interpretation_only": true,
+          "human_review_required": true
+        },
+        "review": {
+          "status": "pending",
+          "reviewer": null,
+          "reviewed_at": null,
+          "disposition": null
+        },
+        "generated_at": "2026-09-14T07:58:15.249134+00:00"
+      },
+      "reviewer": {
+        "analysis_id": "AIAR-critical_reviewer-20260914112215751650-a4f0a6f1",
+        "role": "critical_reviewer",
+        "model": {
+          "provider": "ollama",
+          "model_name": "qwen2.5-coder:7b",
+          "model_digest": "not_reported",
+          "quantization": "not_reported",
+          "context_length": "unknown",
+          "temperature": 0.0,
+          "top_p": 1.0,
+          "seed": "not_reported",
+          "backend_version": "unknown"
+        },
+        "inputs": {
+          "experiment_id": "EXP-BATCH-20260914074039-11",
+          "packet_digest": "a4f0a6f15e50083662796736009ac34b036d6441f45e1355bcdea6ef43b1a460"
+        },
+        "output": {
+          "assessment": "Die Hypothese H-STDP-001-A wird durch die experimentellen Ergebnisse unterstützt, jedoch sind statistische Tests nicht durchgeführt worden. Die Ergebnisse sind deterministisch und zeigen eine asymmetrische Gewichtsanpassung bei definierten Pre/Post-Zeitabständen.",
+          "observations": [
+            {
+              "observation": "Die Daten zeigen eine asymmetrische Gewichtsanpassung bei definierten Pre/Post-Zeitabständen, wobei negative Delta_t-Werte eine LTD (Long-Term Depression) und positive Delta_t-Werte eine LTP (Long-Term Potentiation) erzeugen."
+            },
+            {
+              "observation": "Die Ergebnisse sind deterministisch und basieren auf einer festgelegten Seed-Verwaltung, wodurch keine statistische Unabhängigkeit zwischen den Runs besteht."
+            },
+            {
+              "observation": "Die Werte der Delta_t_ms sind konsistent und zeigen eine klare Tendenz zu asymmetrischen Gewichtsanpassungen, was die Hypothese H-STDP-001-A stürtzt."
+            },
+            {
+              "observation": "Die Wiederholungen der Experimente (repeated_evaluations) sind auf 10 pro Bedingung begrenzt, was eine ausreichende Reproduzierbarkeit gewährleistet, aber keine statistische Validierung bietet."
+            }
+          ],
+          "effect_direction": "Die asymmetrische Gewichtsanpassung zeigt eine klare Richtung: negative Delta_t-Werte führen zu einer LTD (abnehmender Gewichtswert), positive Delta_t-Werte führen zu einer LTP (erhöhter Gewichtswert).",
+          "methodological_concerns": [
+            {
+              "methodological_concern": "Die experimentellen Runs sind deterministisch und basieren auf einer festgelegten Seed-Verwaltung, was die statistische Unabhängigkeit zwischen den Runs beeinträchtigt."
+            },
+            {
+              "methodological_concern": "Die Wiederholungen der Experimente (repeated_evaluations) sind auf 10 pro Bedingung begrenzt, was eine ausreichende Reproduzierbarkeit gewährleistet, aber keine statistische Validierung bietet."
+            },
+            {
+              "methodological_concern": "Es fehlt eine statistische Analyse, um die Signifikanz der beobachteten Effekte zu bestätigen."
+            }
+          ],
+          "alternative_explanations": [
+            {
+              "alternative_explanation": "Die asymmetrische Gewichtsanpassung könnte auf andere Parameter wie a_minus und a_plus zurückzuführen sein, die in der Experimenteinstellung festgelegt sind."
+            },
+            {
+              "alternative_explanation": "Die Ergebnisse könnten aufgrund der deterministischen Natur der Experimente nicht vollständig auf reale biologische Prozesse übertragbar sein."
+            },
+            {
+              "alternative_explanation": "Die asymmetrische Gewichtsanpassung könnte auch durch andere neuronale Mechanismen, die nicht direkt in der Experimenteinstellung berücksichtigt werden, verursacht werden."
+            }
+          ],
+          "recommended_experiments": [
+            {
+              "recommended_experiment": "Eine statistische Analyse der Ergebnisse, um die Signifikanz der beobachteten Effekte zu bestätigen."
+            },
+            {
+              "recommended_experiment": "Ein Experiment mit variierenden Parametern wie a_minus und a_plus, um die Auswirkungen auf die asymmetrische Gewichtsanpassung zu untersuchen."
+            },
+            {
+              "recommended_experiment": "Ein Experiment mit einer größeren Anzahl unabhängiger Runs, um die statistische Validierung der Ergebnisse zu erhöhen."
+            },
+            {
+              "recommended_experiment": "Ein Experiment mit unterschiedlichen Seed-Werten, um die statistische Unabhängigkeit der Runs zu gewährleisten."
+            }
+          ],
+          "requested_evidence": [
+            {
+              "requested_evidence": "statistical_replication"
+            },
+            {
+              "requested_evidence": "independent_runs_with_statistical_independence"
+            },
+            {
+              "requested_evidence": "parametric_analysis_of_a_minus_and_a_plus_effects"
+            }
+          ],
+          "confidence": 0.75
+        },
+        "provenance": {
+          "prompt_sha256": "b98449715f3869d2f1a94d5cbdadacc70153fb6a6054745f7746257be7815cb2",
+          "research_packet_digest": "a4f0a6f15e50083662796736009ac34b036d6441f45e1355bcdea6ef43b1a460",
+          "prompt_protocol_version": "research_assistant_v1",
+          "assistant_schema_version": "1.2",
+          "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+          "model_self_confidence": "0.75"
+        },
+        "epistemic_status": {
+          "evidence": false,
+          "interpretation_only": true,
+          "human_review_required": true
+        },
+        "review": {
+          "status": "pending",
+          "reviewer": null,
+          "reviewed_at": null,
+          "disposition": null
+        },
+        "generated_at": "2026-09-14T11:22:15.751650+00:00"
+      },
+      "writer": {
+        "analysis_id": "AIAR-scientific_writer-20260914112243580518-a4f0a6f1",
+        "role": "scientific_writer",
+        "model": {
+          "provider": "ollama",
+          "model_name": "qwen2.5-coder:7b",
+          "model_digest": "not_reported",
+          "quantization": "not_reported",
+          "context_length": "unknown",
+          "temperature": 0.0,
+          "top_p": 1.0,
+          "seed": "not_reported",
+          "backend_version": "unknown"
+        },
+        "inputs": {
+          "experiment_id": "EXP-BATCH-20260914074039-11",
+          "packet_digest": "a4f0a6f15e50083662796736009ac34b036d6441f45e1355bcdea6ef43b1a460"
+        },
+        "output": {
+          "assessment": "Die Hypothese H-STDP-001-A wird durch die experimentellen Ergebnisse unterstützt, jedoch sind statistische Tests nicht durchgeführt worden. Die Ergebnisse sind deterministisch und zeigen eine asymmetrische Gewichtsanpassung bei definierten Pre/Post-Zeitabständen.",
+          "observations": [
+            {
+              "observation": "Die Daten zeigen eine asymmetrische Gewichtsanpassung bei definierten Pre/Post-Zeitabständen, wobei negative Delta_t-Werte eine LTD (Long-Term Depression) und positive Delta_t-Werte eine LTP (Long-Term Potentiation) erzeugen."
+            },
+            {
+              "observation": "Die Ergebnisse sind deterministisch und basieren auf einer festgelegten Seed-Verwaltung, wodurch keine statistische Unabhängigkeit zwischen den Runs besteht."
+            },
+            {
+              "observation": "Die Werte der Delta_t_ms sind konsistent und zeigen eine klare Tendenz zu asymmetrischen Gewichtsanpassungen, was die Hypothese H-STDP-001-A stürtzt."
+            },
+            {
+              "observation": "Die Wiederholungen der Experimente (repeated_evaluations) sind auf 10 pro Bedingung begrenzt, was eine ausreichende Reproduzierbarkeit gewährleistet, aber keine statistische Validierung bietet."
+            }
+          ],
+          "effect_direction": "Die asymmetrische Gewichtsanpassung zeigt eine klare Richtung: negative Delta_t-Werte führen zu einer LTD (abnehmender Gewichtswert), positive Delta_t-Werte führen zu einer LTP (erhöhter Gewichtswert).",
+          "methodological_concerns": [
+            {
+              "methodological_concern": "Die experimentellen Runs sind deterministisch und basieren auf einer festgelegten Seed-Verwaltung, was die statistische Unabhängigkeit zwischen den Runs beeinträchtigt."
+            },
+            {
+              "methodological_concern": "Die Wiederholungen der Experimente (repeated_evaluations) sind auf 10 pro Bedingung begrenzt, was eine ausreichende Reproduzierbarkeit gewährleistet, aber keine statistische Validierung bietet."
+            },
+            {
+              "methodological_concern": "Es fehlt eine statistische Analyse, um die Signifikanz der beobachteten Effekte zu bestätigen."
+            }
+          ],
+          "alternative_explanations": [
+            {
+              "alternative_explanation": "Die asymmetrische Gewichtsanpassung könnte auf andere Parameter wie a_minus und a_plus zurückzuführen sein, die in der Experimenteinstellung festgelegt sind."
+            },
+            {
+              "alternative_explanation": "Die Ergebnisse könnten aufgrund der deterministischen Natur der Experimente nicht vollständig auf reale biologische Prozesse übertragbar sein."
+            },
+            {
+              "alternative_explanation": "Die asymmetrische Gewichtsanpassung könnte auch durch andere neuronale Mechanismen, die nicht direkt in der Experimenteinstellung berücksichtigt werden, verursacht werden."
+            }
+          ],
+          "recommended_experiments": [
+            {
+              "recommended_experiment": "Eine statistische Analyse der Ergebnisse, um die Signifikanz der beobachteten Effekte zu bestätigen."
+            },
+            {
+              "recommended_experiment": "Ein Experiment mit variierenden Parametern wie a_minus und a_plus, um die Auswirkungen auf die asymmetrische Gewichtsanpassung zu untersuchen."
+            },
+            {
+              "recommended_experiment": "Ein Experiment mit einer größeren Anzahl unabhängiger Runs, um die statistische Validierung der Ergebnisse zu erhöhen."
+            },
+            {
+              "recommended_experiment": "Ein Experiment mit unterschiedlichen Seed-Werten, um die statistische Unabhängigkeit der Runs zu gewährleisten."
+            }
+          ],
+          "requested_evidence": [
+            {
+              "requested_evidence": "statistical_replication"
+            },
+            {
+              "requested_evidence": "independent_runs_with_statistical_independence"
+            },
+            {
+              "requested_evidence": "parametric_analysis_of_a_minus_and_a_plus_effects"
+            }
+          ],
+          "confidence": 0.75
+        },
+        "provenance": {
+          "prompt_sha256": "e54b14b3f503cf4d980c910efcb7faff33d793046e4950276bf2f435c740f045",
+          "research_packet_digest": "a4f0a6f15e50083662796736009ac34b036d6441f45e1355bcdea6ef43b1a460",
+          "prompt_protocol_version": "research_assistant_v1",
+          "assistant_schema_version": "1.2",
+          "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+          "model_self_confidence": "0.75"
+        },
+        "epistemic_status": {
+          "evidence": false,
+          "interpretation_only": true,
+          "human_review_required": true
+        },
+        "review": {
+          "status": "pending",
+          "reviewer": null,
+          "reviewed_at": null,
+          "disposition": null
+        },
+        "generated_at": "2026-09-14T11:22:43.580518+00:00"
+      }
+    }
+  },
+  "provenance": {
+    "research_packet_digest": "a4f0a6f15e50083662796736009ac34b036d6441f45e1355bcdea6ef43b1a460",
+    "source": {
+      "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+      "experiment_status": "completed",
+      "evidence_mode": "not_reported",
+      "git_dirty": "True",
+      "source_freeze_sha": "f5be122309ecd96c9b2dcd9b2b1cf8de127aba72c41ba249605e81fec4d45a85",
+      "configuration_path": "F:\\Brain-5D\\configs\\learning_experiment.yaml",
+      "configuration_sha256": "6f6cd457caf6216c286fee47ef03b529a0b496ed2dd53ee96b85d3b51e7b3a1c",
+      "experiment_manifest_digest": "e8c7787fb6f7c9d20b4a423e52092104ac107219020a1a90c19a3e3dd5a4fd40",
+      "data_ids": "NOT_AVAILABLE",
+      "evid_ids": "NOT_AVAILABLE",
+      "protocol_id": "NOT_AVAILABLE",
+      "protocol_digest": "518daf629190eec7bebbe42f52bf15fa8afab5ac14cb543a4f6bfe6638c6cebb",
+      "data_digest": "2b91eb83ce4f45f615a8d73aeaff5431c237f761193f67e32e27f3c546cd31fe",
+      "evid_digests": "[]"
+    }
+  },
+  "analysis_ids": [
+    "AIAR-scientific_analyst-20260914075815249134-e26c87cd",
+    "AIAR-critical_reviewer-20260914112215751650-a4f0a6f1",
+    "AIAR-scientific_writer-20260914112243580518-a4f0a6f1"
+  ],
+  "supersedes": null,
+  "content_digest": "10d55811168fc9b16ca48695dac1d8a1af7eff526e8247bae020825eab7694c6",
+  "markdown_digest": "81c6540dc01441376320e744e85b1e5bb6ab2c1b6bc932ab13c31dd170f84f2b"
+}

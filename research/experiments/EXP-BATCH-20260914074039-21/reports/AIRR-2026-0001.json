@@ -1,0 +1,659 @@
+{
+  "report_id": "AIRR-2026-0001",
+  "experiment_id": "EXP-BATCH-20260914074039-21",
+  "research_question_id": "RQ-STORAGE-003",
+  "hypothesis_ids": [
+    "H-STOR-003-A"
+  ],
+  "claim_ids": [],
+  "generated_at": "2026-09-14T11:27:10.780885+00:00",
+  "report_schema_version": "1.0",
+  "report_protocol_version": "PROTOCOL-AIRR-001",
+  "generated_by": "artificial_intelligence",
+  "ai_generated": true,
+  "scientific_evidence": false,
+  "human_review_required": true,
+  "status": "review_pending",
+  "content": {
+    "identification": {
+      "experiment": "EXP-BATCH-20260914074039-21",
+      "research_question": "Welche Speicherdichte erreicht das multidimensionale Modell?",
+      "hypotheses": [
+        {
+          "id": "H-STOR-003-A",
+          "research_question": "RQ-STORAGE-003",
+          "hypothesis": "Die Speicherdichte des .b5d-Formats skaliert sublinear mit der Neuronenzahl.",
+          "status": "untested",
+          "evidence": [],
+          "created": "2026-08-23",
+          "updated": "2026-08-23"
+        }
+      ],
+      "date": "2026-09-14",
+      "source_sha": "8e096931a779b2d2eb4d010eb20154150b07bbf2"
+    },
+    "executive_summary": "Die vorliegenden Daten zeigen keine direkten kausalen Messungen oder statistischen Tests zur Bestätigung der Hypothese. Die Experimente sind auf die Überprüfung der Vertragsbedingungen für die Speicherdichte beschränkt, ohne eine klare kausale Beziehung oder signifikante Ergebnisse zu ermitteln.",
+    "research_question": {
+      "id": "RQ-STORAGE-003",
+      "domain": "Storage",
+      "question": "Welche Speicherdichte erreicht das multidimensionale Modell?",
+      "relevance": "Skalierbarkeit des Speicherformats.",
+      "literature": [],
+      "hypotheses": [
+        "H-STOR-003-A"
+      ],
+      "evidence": [],
+      "status": "open",
+      "answer": {
+        "current": null,
+        "confidence": "none",
+        "limitations": null
+      },
+      "created": "2026-08-23",
+      "updated": "2026-08-23"
+    },
+    "experimental_design": {
+      "experiment_id": "EXP-BATCH-20260914074039-21",
+      "research_question": "RQ-STORAGE-003",
+      "hypothesis": "H-STOR-003-A",
+      "title": "Experiment workflow: storage_density_boundary_v1",
+      "conditions": "Registered protocol conditions",
+      "ticks": 1000,
+      "ticks_contract": "minimum requested observation window",
+      "seeds": [
+        101,
+        102,
+        103
+      ],
+      "protocol": "storage_density_boundary_v1",
+      "resolved_runner": "run_boundary_audit",
+      "tick_validation": {
+        "status": "NOT_APPLICABLE",
+        "mode": "protocol_defined_internal_trials",
+        "requested_ticks": 1000
+      },
+      "notes": "",
+      "execution": "registered experiment_suite runner",
+      "assistant_policy": "AI is post-hoc interpretation only.",
+      "epistemic_layers": {
+        "ui_state": "operator/dashboard progress only; not a scientific result",
+        "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+        "evid": "not_created; requires semantic validation, clean freeze and human review",
+        "interpretation": "post-hoc AI or human interpretation; never execution input"
+      }
+    },
+    "data_basis": {
+      "data": {
+        "ai_input_policy": "compact_only_raw_on_explicit_deterministic_extract",
+        "generated_by": "deterministic_research_data_v2",
+        "limits": {
+          "ai_packet_max_bytes": 1000000,
+          "run_summary_max_bytes": 5000000,
+          "sequence_preview_items": 16
+        },
+        "raw_index": {
+          "path": "DATA/runs_index.json",
+          "run_count": 3,
+          "sha256": "47ecc862d676e6644f58bff98e9e0b4241a9b54199832cbf66577f4cec80a75a"
+        },
+        "run_count": 3,
+        "run_preview": [
+          {
+            "_raw_artifact": {
+              "format": "json.gz",
+              "path": "DATA/raw/run-0000-instrumentation_gap_audit-seed-101.json.gz",
+              "sha256": "3d9f9a3e2df0d11522017d0ef8851f63368492c5cf0368485d19512da80cd6ac",
+              "size_bytes": 380,
+              "uncompressed_bytes": 481
+            },
+            "condition": "instrumentation_gap_audit",
+            "experiment_id": "EXP-BATCH-20260914074039-21",
+            "metrics": {
+              "audit_complete": true,
+              "automatic_evidence_promotion": false,
+              "claim_boundary": "No direct causal measurement is performed by this runner. Completion means only that the registered gap/boundary contract was executed and preserved for review.",
+              "direct_test_of_hypothesis": false,
+              "scientific_evidence": false
+            },
+            "runtime_error": null,
+            "seed": 101,
+            "state_digest_after": "",
+            "state_digest_before": ""
+          },
+          {
+            "_raw_artifact": {
+              "format": "json.gz",
+              "path": "DATA/raw/run-0001-instrumentation_gap_audit-seed-102.json.gz",
+              "sha256": "43c061a5f7b0b9af16577504f8b05ff4e6d8124cfc1f4c0d24fc13c1c355657d",
+              "size_bytes": 380,
+              "uncompressed_bytes": 481
+            },
+            "condition": "instrumentation_gap_audit",
+            "experiment_id": "EXP-BATCH-20260914074039-21",
+            "metrics": {
+              "audit_complete": true,
+              "automatic_evidence_promotion": false,
+              "claim_boundary": "No direct causal measurement is performed by this runner. Completion means only that the registered gap/boundary contract was executed and preserved for review.",
+              "direct_test_of_hypothesis": false,
+              "scientific_evidence": false
+            },
+            "runtime_error": null,
+            "seed": 102,
+            "state_digest_after": "",
+            "state_digest_before": ""
+          },
+          {
+            "_raw_artifact": {
+              "format": "json.gz",
+              "path": "DATA/raw/run-0002-instrumentation_gap_audit-seed-103.json.gz",
+              "sha256": "32685071241241262d6302e343660bddf2558d1b030a8d231d0c5b1003768ad9",
+              "size_bytes": 380,
+              "uncompressed_bytes": 481
+            },
+            "condition": "instrumentation_gap_audit",
+            "experiment_id": "EXP-BATCH-20260914074039-21",
+            "metrics": {
+              "audit_complete": true,
+              "automatic_evidence_promotion": false,
+              "claim_boundary": "No direct causal measurement is performed by this runner. Completion means only that the registered gap/boundary contract was executed and preserved for review.",
+              "direct_test_of_hypothesis": false,
+              "scientific_evidence": false
+            },
+            "runtime_error": null,
+            "seed": 103,
+            "state_digest_after": "",
+            "state_digest_before": ""
+          }
+        ],
+        "schema_version": "2.0",
+        "statistics": {
+          "conditions": {
+            "instrumentation_gap_audit": {
+              "metrics": {},
+              "run_count": 3,
+              "seeds": [
+                101,
+                102,
+                103
+              ]
+            }
+          },
+          "formulas": {
+            "difference": "Delta_x = mean(x_B) - mean(x_A)",
+            "inter_spike_interval": "ISI_i = t_(i+1) - t_i",
+            "mean": "mean(x) = (1/n) * sum_i x_i",
+            "population_std": "sigma = sqrt((1/n) * sum_i (x_i - mean(x))^2)",
+            "ratio": "R_x = mean(x_B) / mean(x_A), defined only when mean(x_A) != 0"
+          },
+          "generated_by": "deterministic_statistics_engine",
+          "run_count": 3,
+          "schema_version": "2.0"
+        }
+      },
+      "evid": [],
+      "literature": []
+    },
+    "quantitative_results": {
+      "conditions": {
+        "instrumentation_gap_audit": {
+          "metrics": {},
+          "run_count": 3,
+          "seeds": [
+            101,
+            102,
+            103
+          ]
+        }
+      },
+      "formulas": {
+        "difference": "Delta_x = mean(x_B) - mean(x_A)",
+        "inter_spike_interval": "ISI_i = t_(i+1) - t_i",
+        "mean": "mean(x) = (1/n) * sum_i x_i",
+        "population_std": "sigma = sqrt((1/n) * sum_i (x_i - mean(x))^2)",
+        "ratio": "R_x = mean(x_B) / mean(x_A), defined only when mean(x_A) != 0"
+      },
+      "generated_by": "deterministic_statistics_engine",
+      "run_count": 3,
+      "schema_version": "2.0"
+    },
+    "observations": [
+      "Die Experimente wurden mit drei verschiedenen Seeds (101, 102, 103) durchgeführt.",
+      "Die Metriken der Experimente zeigen, dass die Audit-Verfahren abgeschlossen wurden, aber keine direkten kausalen Tests durchgeführt wurden.",
+      "Die Speicherdichte wurde nicht gemessen oder analysiert, da keine kausalen Tests registriert sind."
+    ],
+    "interpretation": {
+      "assessment": "Die vorliegenden Daten zeigen keine direkten kausalen Messungen oder statistischen Tests zur Bestätigung der Hypothese. Die Experimente sind auf die Überprüfung der Vertragsbedingungen für die Speicherdichte beschränkt, ohne eine klare kausale Beziehung oder signifikante Ergebnisse zu ermitteln.",
+      "effect_direction": "Es wurden keine kausalen Effekte oder Richtungen gemessen.",
+      "methodological_concerns": [
+        "Fehlende direkte kausale Messung",
+        "Keine statistische Signifikanz getestet",
+        "Keine wissenschaftliche Evidenz verknüpft"
+      ],
+      "observations": [
+        "Die Experimente wurden mit drei verschiedenen Seeds (101, 102, 103) durchgeführt.",
+        "Die Metriken der Experimente zeigen, dass die Audit-Verfahren abgeschlossen wurden, aber keine direkten kausalen Tests durchgeführt wurden.",
+        "Die Speicherdichte wurde nicht gemessen oder analysiert, da keine kausalen Tests registriert sind."
+      ],
+      "alternative_explanations": [
+        "Die Speicherdichte könnte auf andere Weise beeinflusst werden, die nicht in den Experimenten berücksichtigt wurden.",
+        "Die Vertragsbedingungen könnten die Ergebnisse beeinflussen, ohne die tatsächliche Speicherdichte zu messen."
+      ],
+      "recommended_experiments": [
+        "Ein Experiment zur direkten Messung der Speicherdichte unter verschiedenen Neuronenzahlen.",
+        "Ein statistischer Test zur Bestimmung der Skalierung der Speicherdichte.",
+        "Ein Vergleich der Speicherdichte mit anderen Speicherformaten unter gleichen Bedingungen."
+      ],
+      "requested_evidence": [
+        "Messungen der Speicherdichte unter kontrollierten Bedingungen.",
+        "Statistische Analysen der Skal, der Speicherdichte.",
+        "Verknüpfung der Experimente mit wissenschaftlichen Evidenzen oder Literaturquellen."
+      ],
+      "confidence": 0.0,
+      "experiments": [
+        "EXP-BATCH-20260914074039-21"
+      ],
+      "research_question": "Welche Speicherdichte erreicht das multidimensionale Modell?"
+    },
+    "methodological_critique": [
+      "Fehlende direkte kausale Messung",
+      "Keine statistische Signifikanz getestet",
+      "Keine wissenschaftliche Evidenz verknüpft"
+    ],
+    "alternative_explanations": [
+      "Die Speicherdichte könnte auf andere Weise beeinflusst werden, die nicht in den Experimenten berücksichtigt wurden.",
+      "Die Vertragsbedingungen könnten die Ergebnisse beeinflussen, ohne die tatsächliche Speicherdichte zu messen."
+    ],
+    "reproducibility": {
+      "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+      "experiment_status": "completed",
+      "evidence_mode": "not_reported",
+      "git_dirty": "True",
+      "source_freeze_sha": "e8dfadf8106ca3d33b1b846282147f544f5c5b7b4947db2de3980c222931ff04",
+      "configuration_path": "F:\\Brain-5D\\configs\\learning_experiment.yaml",
+      "configuration_sha256": "6f6cd457caf6216c286fee47ef03b529a0b496ed2dd53ee96b85d3b51e7b3a1c",
+      "experiment_manifest_digest": "d780e436b27a10f762659a58bb873e806b33bbb95ffcde77492ec3c9e54f3d8c",
+      "data_ids": "NOT_AVAILABLE",
+      "evid_ids": "NOT_AVAILABLE",
+      "protocol_id": "NOT_AVAILABLE",
+      "protocol_digest": "7500c206cfade16de8e4840515af2e8dcb984427fb068a805d78cb117589d74d",
+      "data_digest": "0ba40330459d922219e063cf6e27c8efe2087fedc43368d3242b67445bafed8d",
+      "evid_digests": "[]"
+    },
+    "epistemic_status": {
+      "implementation": "NOT_DETERMINED",
+      "experiment_data": "PRESENT",
+      "registered_evidence": "ABSENT",
+      "ai_interpretation": "PRESENT",
+      "human_review": "PENDING",
+      "claim_support": "NOT_DETERMINED",
+      "rq_status": "IN_PROGRESS"
+    },
+    "ai_confidence": 0.0,
+    "missing_evidence": [
+      "Messungen der Speicherdichte unter kontrollierten Bedingungen.",
+      "Statistische Analysen der Skal, der Speicherdichte.",
+      "Verknüpfung der Experimente mit wissenschaftlichen Evidenzen oder Literaturquellen."
+    ],
+    "recommended_follow_up": [
+      "Ein Experiment zur direkten Messung der Speicherdichte unter verschiedenen Neuronenzahlen.",
+      "Ein statistischer Test zur Bestimmung der Skalierung der Speicherdichte.",
+      "Ein Vergleich der Speicherdichte mit anderen Speicherformaten unter gleichen Bedingungen."
+    ],
+    "conclusion": "Die vorliegenden Daten zeigen keine direkten kausalen Messungen oder statistischen Tests zur Bestätigung der Hypothese. Die Experimente sind auf die Überprüfung der Vertragsbedingungen für die Speicherdichte beschränkt, ohne eine klare kausale Beziehung oder signifikante Ergebnisse zu ermitteln.",
+    "human_review": {
+      "status": "PENDING",
+      "reviewer": null,
+      "reviewed_at": null,
+      "disposition": null,
+      "comments": null
+    },
+    "aiar": {
+      "analyst": {
+        "analysis_id": "AIAR-scientific_analyst-20260914081503460233-1ee18713",
+        "role": "scientific_analyst",
+        "model": {
+          "provider": "ollama",
+          "model_name": "qwen3:8b",
+          "model_digest": "not_reported",
+          "quantization": "not_reported",
+          "context_length": "unknown",
+          "temperature": 0.0,
+          "top_p": 0.9,
+          "seed": "not_reported",
+          "backend_version": "unknown"
+        },
+        "inputs": {
+          "experiment_id": "EXP-BATCH-20260914074039-21",
+          "packet_digest": "1ee18713b54d97c9aece263d57276273845d25b887959131bc3ad22b1ec0231e"
+        },
+        "output": {
+          "assessment": "Die vorliegenden Daten zeigen keine direkten kausalen Messungen oder statistischen Tests zur Bestätigung der Hypothese. Die Experimente sind auf die Überprüfung der Vertragsbedingungen für die Speicherdichte beschränkt, ohne eine klare kausale Beziehung oder signifikante Ergebnisse zu ermitteln.",
+          "observations": [
+            "Die Experimente wurden mit drei verschiedenen Seeds (101, 102, 103) durchgeführt.",
+            "Die Metriken der Experimente zeigen, dass die Audit-Verfahren abgeschlossen wurden, aber keine direkten kausalen Tests durchgeführt wurden.",
+            "Die Speicherdichte wurde nicht gemessen oder analysiert, da keine kausalen Tests registriert sind."
+          ],
+          "effect_direction": "Es wurden keine kausalen Effekte oder Richtungen gemessen.",
+          "methodological_concerns": [
+            "Fehlende direkte kausale Messung",
+            "Keine statistische Signifikanz getestet",
+            "Keine wissenschaftliche Evidenz verknüpft"
+          ],
+          "alternative_explanations": [
+            "Die Speicherdichte könnte auf andere Weise beeinflusst werden, die nicht in den Experimenten berücksichtigt wurden.",
+            "Die Vertragsbedingungen könnten die Ergebnisse beeinflussen, ohne die tatsächliche Speicherdichte zu messen."
+          ],
+          "recommended_experiments": [
+            "Ein Experiment zur direkten Messung der Speicherdichte unter verschiedenen Neuronenzahlen.",
+            "Ein statistischer Test zur Bestimmung der Skalierung der Speicherdichte.",
+            "Ein Vergleich der Speicherdichte mit anderen Speicherformaten unter gleichen Bedingungen."
+          ],
+          "requested_evidence": [
+            "Messungen der Speicherdichte unter kontrollierten Bedingungen.",
+            "Statistische Analysen der Skalierung der Speicherdichte.",
+            "Verknüpfung der Experimente mit wissenschaftlichen Evidenzen oder Literaturquellen."
+          ],
+          "confidence": 0.0
+        },
+        "provenance": {
+          "prompt_sha256": "307feeb2f4df815e3bb2bb4421fbb89294802549d6a3944808af3796e5615f44",
+          "research_packet_digest": "1ee18713b54d97c9aece263d57276273845d25b887959131bc3ad22b1ec0231e",
+          "prompt_protocol_version": "research_assistant_v1",
+          "assistant_schema_version": "1.2",
+          "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+          "model_self_confidence": "0.0"
+        },
+        "epistemic_status": {
+          "evidence": false,
+          "interpretation_only": true,
+          "human_review_required": true
+        },
+        "review": {
+          "status": "pending",
+          "reviewer": null,
+          "reviewed_at": null,
+          "disposition": null
+        },
+        "generated_at": "2026-09-14T08:15:03.460233+00:00"
+      },
+      "reviewer": {
+        "analysis_id": "AIAR-critical_reviewer-20260914081541011408-1ee18713",
+        "role": "critical_reviewer",
+        "model": {
+          "provider": "ollama",
+          "model_name": "qwen3:8b",
+          "model_digest": "not_reported",
+          "quantization": "not_reported",
+          "context_length": "unknown",
+          "temperature": 0.0,
+          "top_p": 0.9,
+          "seed": "not_reported",
+          "backend_version": "unknown"
+        },
+        "inputs": {
+          "experiment_id": "EXP-BATCH-20260914074039-21",
+          "packet_digest": "1ee18713b54d97c9aece263d57276273845d25b887959131bc3ad22b1ec0231e"
+        },
+        "output": {
+          "assessment": "Die vorliegenden Daten zeigen keine direkten kausalen Messungen oder statistischen Tests zur Bestätigung der Hypothese. Die Experimente sind auf die Überprüfung der Vertragsbedingungen für die Speicherdichte beschränkt, ohne eine klare kausale Beziehung oder signifikante Ergebnisse zu ermitteln.",
+          "observations": [
+            "Die Experimente wurden mit drei verschiedenen Seeds (101, 102, 103) durchgeführt.",
+            "Die Metriken der Experimente zeigen, dass die Audit-Verfahren abgeschlossen wurden, aber keine direkten kausalen Tests durchgeführt wurden.",
+            "Die Speicherdichte wurde nicht gemessen oder analysiert, da keine kausalen Tests registriert sind."
+          ],
+          "effect_direction": "Es wurden keine kausalen Effekte oder Richtungen gemessen.",
+          "methodological_concerns": [
+            "Fehlende direkte kausale Messung",
+            "Keine statistische Signifikanz getestet",
+            "Keine wissenschaftliche Evidenz verknüpft"
+          ],
+          "alternative_explanations": [
+            "Die Speicherdichte könnte auf andere Weise beeinflusst werden, die nicht in den Experimenten berücksichtigt wurden.",
+            "Die Vertragsbedingungen könnten die Ergebnisse beeinflussen, ohne die tatsächliche Speicherdichte zu messen."
+          ],
+          "recommended_experiments": [
+            "Ein Experiment zur direkten Messung der Speicherdichte unter verschiedenen Neuronenzahlen.",
+            "Ein statistischer Test zur Bestimmung der Skalierung der Speicherdichte.",
+            "Ein Vergleich der Speicherdichte mit anderen Speicherformaten unter gleichen Bedingungen."
+          ],
+          "requested_evidence": [
+            "Messungen der Speicherdichte unter kontrollierten Bedingungen.",
+            "Statistische Analysen der Skalierung der Speicherdichte.",
+            "Verknüpfung der Experimente mit wissenschaftlichen Evidenzen oder Literaturquellen."
+          ],
+          "confidence": 0.0,
+          "research_question": "Welche Speicherdichte erreicht das multidimensionale Modell?",
+          "hypothesis": "Die Speicherdichte des .b5d-Formats skaliert sublinear mit der Neuronenzahl.",
+          "experiment_id": "EXP-BATCH-20260914074039-21",
+          "research_packet_digest": "1ee18713b54d97c9aece263d57276273845d25b887959131bc3ad22b1ec0231e",
+          "data": {
+            "ai_input_policy": "compact_only_raw_on_explicit_deterministic_extract",
+            "generated_by": "deterministic_research_data_v2",
+            "limits": {
+              "ai_packet_max_bytes": 1000000,
+              "run_summary_max_bytes": 5000000,
+              "sequence_preview_items": 16
+            },
+            "raw_index": {
+              "path": "DATA/runs_index.json",
+              "run_count": 3,
+              "sha256": "47ecc862d676e6644f58bff98e9e0b4241a9b54199832cbf66577f4cec80a75a"
+            },
+            "run_count": 3,
+            "run_preview": [
+              {
+                "_raw_artifact": {
+                  "format": "json.gz",
+                  "path": "DATA/raw/run-0000-instrumentation_gap_audit-seed-101.json.gz",
+                  "sha256": "3d9f9a3e2df0d11522017d0ef8851f63368492c5cf0368485d19512da80cd6ac",
+                  "size_bytes": 380,
+                  "uncompressed_bytes": 481
+                },
+                "condition": "instrumentation_gap_audit",
+                "experiment_id": "EXP-BATCH-20260914074039-21",
+                "metrics": {
+                  "audit_complete": true,
+                  "automatic_evidence_promotion": false,
+                  "claim_boundary": "No direct causal measurement is performed by this runner. Completion means only that the registered gap/boundary contract was executed and preserved for review.",
+                  "direct_test_of_hypothesis": false,
+                  "scientific_evidence": false
+                },
+                "runtime_error": null,
+                "seed": 101,
+                "state_digest_after": "",
+                "state_digest_before": ""
+              },
+              {
+                "_raw_artifact": {
+                  "format": "json.gz",
+                  "path": "DATA/raw/run-0001-instrumentation_gap_audit-seed-102.json.gz",
+                  "sha256": "43c061a5f7b0b9af16577504f8b05ff4e6d8124cfc1f4c0d24fc13c1c355657d",
+                  "size_bytes": 380,
+                  "uncompressed_bytes": 481
+                },
+                "condition": "instrumentation_gap_audit",
+                "experiment_id": "EXP-BATCH-20260914074039-21",
+                "metrics": {
+                  "audit_complete": true,
+                  "automatic_evidence_promotion": false,
+                  "claim_boundary": "No direct causal measurement is performed by this runner. Completion means only that the registered gap/boundary contract was executed and preserved for review.",
+                  "direct_test_of_hypothesis": false,
+                  "scientific_evidence": false
+                },
+                "runtime_error": null,
+                "seed": 102,
+                "state_digest_after": "",
+                "state_digest_before": ""
+              },
+              {
+                "_raw_artifact": {
+                  "format": "json.gz",
+                  "path": "DATA/raw/run-0002-instrumentation_gap_audit-seed-103.json.gz",
+                  "sha256": "32685071241241262d6302e343660bddf2558d1b030a8d231d0c5b1003768ad9",
+                  "size_bytes": 380,
+                  "uncompressed_bytes": 481
+                },
+                "condition": "instrumentation_gap_audit",
+                "experiment_id": "EXP-BATCH-20260914074039-21",
+                "metrics": {
+                  "audit_complete": true,
+                  "automatic_evidence_promotion": false,
+                  "claim_boundary": "No direct causal measurement is performed by this runner. Completion means only that the registered gap/boundary contract was executed and preserved for review.",
+                  "direct_test_of_hypothesis": false,
+                  "scientific_evidence": false
+                },
+                "runtime_error": null,
+                "seed": 103,
+                "state_digest_after": "",
+                "state_digest_before": ""
+              }
+            ],
+            "schema_version": "2.0",
+            "statistics": {
+              "conditions": {
+                "instrumentation_gap_audit": {
+                  "metrics": {},
+                  "run_count": 3,
+                  "seeds": [
+                    101,
+                    102,
+                    103
+                  ]
+                }
+              },
+              "formulas": {
+                "difference": "Delta_x = mean(x_B) - mean(x_A)",
+                "inter_spike_interval": "ISI_i = t_(i+1) - t_i",
+                "mean": "mean(x) = (1/n) * sum_i x_i",
+                "population_std": "sigma = sqrt((1/n) * sum_i (x_i - mean(x))^2)",
+                "ratio": "R_x = mean(x_B) / mean(x_A), defined only when mean(x_A) != 0"
+              },
+              "generated_by": "deterministic_statistics_engine",
+              "run_count": 3,
+              "schema_version": "2.0"
+            }
+          }
+        },
+        "provenance": {
+          "prompt_sha256": "5e668d55e4e1145b871ebe8f0333797ba3dccd5054bd535a824ad5ddb1be7142",
+          "research_packet_digest": "1ee18713b54d97c9aece263d57276273845d25b887959131bc3ad22b1ec0231e",
+          "prompt_protocol_version": "research_assistant_v1",
+          "assistant_schema_version": "1.2",
+          "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+          "model_self_confidence": "0.0"
+        },
+        "epistemic_status": {
+          "evidence": false,
+          "interpretation_only": true,
+          "human_review_required": true
+        },
+        "review": {
+          "status": "pending",
+          "reviewer": null,
+          "reviewed_at": null,
+          "disposition": null
+        },
+        "generated_at": "2026-09-14T08:15:41.011408+00:00"
+      },
+      "writer": {
+        "analysis_id": "AIAR-scientific_writer-20260914081555379031-1ee18713",
+        "role": "scientific_writer",
+        "model": {
+          "provider": "ollama",
+          "model_name": "qwen3:8b",
+          "model_digest": "not_reported",
+          "quantization": "not_reported",
+          "context_length": "unknown",
+          "temperature": 0.0,
+          "top_p": 0.9,
+          "seed": "not_reported",
+          "backend_version": "unknown"
+        },
+        "inputs": {
+          "experiment_id": "EXP-BATCH-20260914074039-21",
+          "packet_digest": "1ee18713b54d97c9aece263d57276273845d25b887959131bc3ad22b1ec0231e"
+        },
+        "output": {
+          "assessment": "Die vorliegenden Daten zeigen keine direkten kausalen Messungen oder statistischen Tests zur Bestätigung der Hypothese. Die Experimente sind auf die Überprüfung der Vertragsbedingungen für die Speicherdichte beschränkt, ohne eine klare kausale Beziehung oder signifikante Ergebnisse zu ermitteln.",
+          "effect_direction": "Es wurden keine kausalen Effekte oder Richtungen gemessen.",
+          "methodological_concerns": [
+            "Fehlende direkte kausale Messung",
+            "Keine statistische Signifikanz getestet",
+            "Keine wissenschaftliche Evidenz verknüpft"
+          ],
+          "observations": [
+            "Die Experimente wurden mit drei verschiedenen Seeds (101, 102, 103) durchgeführt.",
+            "Die Metriken der Experimente zeigen, dass die Audit-Verfahren abgeschlossen wurden, aber keine direkten kausalen Tests durchgeführt wurden.",
+            "Die Speicherdichte wurde nicht gemessen oder analysiert, da keine kausalen Tests registriert sind."
+          ],
+          "alternative_explanations": [
+            "Die Speicherdichte könnte auf andere Weise beeinflusst werden, die nicht in den Experimenten berücksichtigt wurden.",
+            "Die Vertragsbedingungen könnten die Ergebnisse beeinflussen, ohne die tatsächliche Speicherdichte zu messen."
+          ],
+          "recommended_experiments": [
+            "Ein Experiment zur direkten Messung der Speicherdichte unter verschiedenen Neuronenzahlen.",
+            "Ein statistischer Test zur Bestimmung der Skalierung der Speicherdichte.",
+            "Ein Vergleich der Speicherdichte mit anderen Speicherformaten unter gleichen Bedingungen."
+          ],
+          "requested_evidence": [
+            "Messungen der Speicherdichte unter kontrollierten Bedingungen.",
+            "Statistische Analysen der Skal, der Speicherdichte.",
+            "Verknüpfung der Experimente mit wissenschaftlichen Evidenzen oder Literaturquellen."
+          ],
+          "confidence": 0.0,
+          "experiments": [
+            "EXP-BATCH-20260914074039-21"
+          ],
+          "research_question": "Welche Speicherdichte erreicht das multidimensionale Modell?"
+        },
+        "provenance": {
+          "prompt_sha256": "706fe6d069cfae7b34574d88759424a323e9fef3934492b37e1bb098b375c3c3",
+          "research_packet_digest": "1ee18713b54d97c9aece263d57276273845d25b887959131bc3ad22b1ec0231e",
+          "prompt_protocol_version": "research_assistant_v1",
+          "assistant_schema_version": "1.2",
+          "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+          "model_self_confidence": "0.0"
+        },
+        "epistemic_status": {
+          "evidence": false,
+          "interpretation_only": true,
+          "human_review_required": true
+        },
+        "review": {
+          "status": "pending",
+          "reviewer": null,
+          "reviewed_at": null,
+          "disposition": null
+        },
+        "generated_at": "2026-09-14T08:15:55.379031+00:00"
+      }
+    }
+  },
+  "provenance": {
+    "research_packet_digest": "214719d9f685d1ed0a07cb8dcaf440b7c27757298087d39aa4567e89194acf36",
+    "source": {
+      "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+      "experiment_status": "completed",
+      "evidence_mode": "not_reported",
+      "git_dirty": "True",
+      "source_freeze_sha": "e8dfadf8106ca3d33b1b846282147f544f5c5b7b4947db2de3980c222931ff04",
+      "configuration_path": "F:\\Brain-5D\\configs\\learning_experiment.yaml",
+      "configuration_sha256": "6f6cd457caf6216c286fee47ef03b529a0b496ed2dd53ee96b85d3b51e7b3a1c",
+      "experiment_manifest_digest": "d780e436b27a10f762659a58bb873e806b33bbb95ffcde77492ec3c9e54f3d8c",
+      "data_ids": "NOT_AVAILABLE",
+      "evid_ids": "NOT_AVAILABLE",
+      "protocol_id": "NOT_AVAILABLE",
+      "protocol_digest": "7500c206cfade16de8e4840515af2e8dcb984427fb068a805d78cb117589d74d",
+      "data_digest": "0ba40330459d922219e063cf6e27c8efe2087fedc43368d3242b67445bafed8d",
+      "evid_digests": "[]"
+    }
+  },
+  "analysis_ids": [
+    "AIAR-scientific_analyst-20260914081503460233-1ee18713",
+    "AIAR-critical_reviewer-20260914081541011408-1ee18713",
+    "AIAR-scientific_writer-20260914081555379031-1ee18713"
+  ],
+  "supersedes": null,
+  "content_digest": "94c2d0454928f32bf98087516cb4fe52c6197416a0bb62661208597dbba7eb58",
+  "markdown_digest": "af6eca88a94e4514dd79b62f86aa3f2b155ebea3796b898c519a5a36fe99c705"
+}

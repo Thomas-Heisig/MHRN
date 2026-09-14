@@ -1,0 +1,577 @@
+{
+  "report_id": "AIRR-2026-0001",
+  "experiment_id": "EXP-BATCH-20260914074039-22",
+  "research_question_id": "RQ-STORAGE-004",
+  "hypothesis_ids": [
+    "H-STOR-004-A"
+  ],
+  "claim_ids": [],
+  "generated_at": "2026-09-14T11:27:10.981750+00:00",
+  "report_schema_version": "1.0",
+  "report_protocol_version": "PROTOCOL-AIRR-001",
+  "generated_by": "artificial_intelligence",
+  "ai_generated": true,
+  "scientific_evidence": false,
+  "human_review_required": true,
+  "status": "review_pending",
+  "content": {
+    "identification": {
+      "experiment": "EXP-BATCH-20260914074039-22",
+      "research_question": "Wie verhält sich das .b5d-Format bei 5.000, 50.000, 500.000, 5 Mio., 50 Mio. und 312,5 Mio. Neuronen?",
+      "hypotheses": [
+        {
+          "id": "H-STOR-004-A",
+          "research_question": "RQ-STORAGE-004",
+          "hypothesis": "Das .b5d-Format skaliert auf mindestens 50 Millionen Neuronen ohne Leistungseinbruch.",
+          "status": "untested",
+          "evidence": [],
+          "created": "2026-08-23",
+          "updated": "2026-08-23"
+        }
+      ],
+      "date": "2026-09-14",
+      "source_sha": "8e096931a779b2d2eb4d010eb20154150b07bbf2"
+    },
+    "executive_summary": "Die vorliegenden Daten zeigen keine direkten kausalen Messungen oder statistischen Tests zur Validierung der Hypothese. Die Experimente sind auf die Ausführung des Vertrags zur Überprüfung der Lücken und Grenzen beschränkt, ohne wissenschaftliche Evidenz oder Hypothesentests.",
+    "research_question": {
+      "id": "RQ-STORAGE-004",
+      "domain": "Storage",
+      "question": "Wie verhält sich das .b5d-Format bei 5.000, 50.000, 500.000, 5 Mio., 50 Mio. und 312,5 Mio. Neuronen?",
+      "relevance": "Extrapolation der theoretischen Skalierbarkeit.",
+      "literature": [],
+      "hypotheses": [
+        "H-STOR-004-A"
+      ],
+      "evidence": [],
+      "status": "open",
+      "answer": {
+        "current": null,
+        "confidence": "none",
+        "limitations": null
+      },
+      "created": "2026-08-23",
+      "updated": "2026-08-23"
+    },
+    "experimental_design": {
+      "experiment_id": "EXP-BATCH-20260914074039-22",
+      "research_question": "RQ-STORAGE-004",
+      "hypothesis": "H-STOR-004-A",
+      "title": "Experiment workflow: storage_scale_boundary_v1",
+      "conditions": "Registered protocol conditions",
+      "ticks": 1000,
+      "ticks_contract": "minimum requested observation window",
+      "seeds": [
+        101,
+        102,
+        103
+      ],
+      "protocol": "storage_scale_boundary_v1",
+      "resolved_runner": "run_boundary_audit",
+      "tick_validation": {
+        "status": "NOT_APPLICABLE",
+        "mode": "protocol_defined_internal_trials",
+        "requested_ticks": 1000
+      },
+      "notes": "",
+      "execution": "registered experiment_suite runner",
+      "assistant_policy": "AI is post-hoc interpretation only.",
+      "epistemic_layers": {
+        "ui_state": "operator/dashboard progress only; not a scientific result",
+        "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+        "evid": "not_created; requires semantic validation, clean freeze and human review",
+        "interpretation": "post-hoc AI or human interpretation; never execution input"
+      }
+    },
+    "data_basis": {
+      "data": {
+        "ai_input_policy": "compact_only_raw_on_explicit_deterministic_extract",
+        "generated_by": "deterministic_research_data_v2",
+        "limits": {
+          "ai_packet_max_bytes": 1000000,
+          "run_summary_max_bytes": 5000000,
+          "sequence_preview_items": 16
+        },
+        "raw_index": {
+          "path": "DATA/runs_index.json",
+          "run_count": 3,
+          "sha256": "5165a7855ba5930186cc4cc6998dfa9f21497ac720212696c40bc8a148e30651"
+        },
+        "run_count": 3,
+        "run_preview": [
+          {
+            "_raw_artifact": {
+              "format": "json.gz",
+              "path": "DATA/raw/run-0000-instrumentation_gap_audit-seed-101.json.gz",
+              "sha256": "f9328dd9a811b78c941277379ccfe97cdfe77e6c2e7fd30fc3424bc66928540e",
+              "size_bytes": 380,
+              "uncompressed_bytes": 481
+            },
+            "condition": "instrumentation_gap_audit",
+            "experiment_id": "EXP-BATCH-20260914074039-22",
+            "metrics": {
+              "audit_complete": true,
+              "automatic_evidence_promotion": false,
+              "claim_boundary": "No direct causal measurement is performed by this runner. Completion means only that the registered gap/boundary contract was executed and preserved for review.",
+              "direct_test_of_hypothesis": false,
+              "scientific_evidence": false
+            },
+            "runtime_error": null,
+            "seed": 101,
+            "state_digest_after": "",
+            "state_digest_before": ""
+          },
+          {
+            "_raw_artifact": {
+              "format": "json.gz",
+              "path": "DATA/raw/run-0001-instrumentation_gap_audit-seed-102.json.gz",
+              "sha256": "c4d4cbd2e7a1ee059e99c26d80ae28912bd22ad8683073c92ce9d0016941a0e1",
+              "size_bytes": 380,
+              "uncompressed_bytes": 481
+            },
+            "condition": "instrumentation_gap_audit",
+            "experiment_id": "EXP-BATCH-20260914074039-22",
+            "metrics": {
+              "audit_complete": true,
+              "automatic_evidence_promotion": false,
+              "claim_boundary": "No direct causal measurement is performed by this runner. Completion means only that the registered gap/boundary contract was executed and preserved for review.",
+              "direct_test_of_hypothesis": false,
+              "scientific_evidence": false
+            },
+            "runtime_error": null,
+            "seed": 102,
+            "state_digest_after": "",
+            "state_digest_before": ""
+          },
+          {
+            "_raw_artifact": {
+              "format": "json.gz",
+              "path": "DATA/raw/run-0002-instrumentation_gap_audit-seed-103.json.gz",
+              "sha256": "f890419024ddd7ade51f9a9de8b77bc026794ff7b8fa8ee672d98bcec3bfd6be",
+              "size_bytes": 380,
+              "uncompressed_bytes": 481
+            },
+            "condition": "instrumentation_gap_audit",
+            "experiment_id": "EXP-BATCH-20260914074039-22",
+            "metrics": {
+              "audit_complete": true,
+              "automatic_evidence_promotion": false,
+              "claim_boundary": "No direct causal measurement is performed by this runner. Completion means only that the registered gap/boundary contract was executed and preserved for review.",
+              "direct_test_of_hypothesis": false,
+              "scientific_evidence": false
+            },
+            "runtime_error": null,
+            "seed": 103,
+            "state_digest_after": "",
+            "state_digest_before": ""
+          }
+        ],
+        "schema_version": "2.0",
+        "statistics": {
+          "conditions": {
+            "instrumentation_gap_audit": {
+              "metrics": {},
+              "run_count": 3,
+              "seeds": [
+                101,
+                102,
+                103
+              ]
+            }
+          },
+          "formulas": {
+            "difference": "Delta_x = mean(x_B) - mean(x_A)",
+            "inter_spike_interval": "ISI_i = t_(i+1) - t_i",
+            "mean": "mean(x) = (1/n) * sum_i x_i",
+            "population_std": "sigma = sqrt((1/n) * sum_i (x_i - mean(x))^2)",
+            "ratio": "R_x = mean(x_B) / mean(x_A), defined only when mean(x_A) != 0"
+          },
+          "generated_by": "deterministic_statistics_engine",
+          "run_count": 3,
+          "schema_version": "2.0"
+        }
+      },
+      "evid": [],
+      "literature": []
+    },
+    "quantitative_results": {
+      "conditions": {
+        "instrumentation_gap_audit": {
+          "metrics": {},
+          "run_count": 3,
+          "seeds": [
+            101,
+            102,
+            103
+          ]
+        }
+      },
+      "formulas": {
+        "difference": "Delta_x = mean(x_B) - mean(x_A)",
+        "inter_spike_interval": "ISI_i = t_(i+1) - t_i",
+        "mean": "mean(x) = (1/n) * sum_i x_i",
+        "population_std": "sigma = sqrt((1/n) * sum_i (x_i - mean(x))^2)",
+        "ratio": "R_x = mean(x_B) / mean(x_A), defined only when mean(x_A) != 0"
+      },
+      "generated_by": "deterministic_statistics_engine",
+      "run_count": 3,
+      "schema_version": "2.0"
+    },
+    "observations": [
+      "Die Experimente wurden mit drei verschiedenen Seeds (101, 102, 103) durchgeführt.",
+      "Die Metriken der Experimente zeigen, dass die Audits abgeschlossen wurden, aber keine direkten kausalen Messungen durchgeführt wurden.",
+      "Die statistischen Formeln sind definiert, aber keine Berechnungen oder Interpretationen wurden durchgeführt.",
+      "Die Forschungsfragen und Hypothesen sind vorhanden, aber keine experimentellen Tests wurden durchgeführt.",
+      "Die bekannten Einschränkungen umfassen fehlende wissenschaftliche Evidenz und unklare Git-Provenance."
+    ],
+    "interpretation": {
+      "assessment": "Die vorliegenden Daten zeigen keine direkten kausalen Messungen oder statistischen Tests zur Validierung der Hypothese. Die Experimente sind auf die Ausführung des Vertrags zur Überprüfung der Lücken und Grenzen beschränkt, ohne wissenschaftliche Evidenz oder Hypothesentests.",
+      "observations": [
+        "Die Experimente wurden mit drei verschiedenen Seeds (101, 102, 103) durchgeführt.",
+        "Die Metriken der Experimente zeigen, dass die Audits abgeschlossen wurden, aber keine direkten kausalen Messungen durchgeführt wurden.",
+        "Die statistischen Formeln sind definiert, aber keine Berechnungen oder Interpretationen wurden durchgeführt.",
+        "Die Forschungsfragen und Hypothesen sind vorhanden, aber keine experimentellen Tests wurden durchgeführt.",
+        "Die bekannten Einschränkungen umfassen fehlende wissenschaftliche Evidenz und unklare Git-Provenance."
+      ],
+      "effect_direction": "Keine kausale Richtung wurde gemessen oder interpretiert.",
+      "methodological_concerns": [
+        "Fehlende wissenschaftliche Evidenz",
+        "Keine direkten Hypothesentests",
+        "Unklare Git-Provenance",
+        "Eingeschränkte Experimentaldesign"
+      ],
+      "alternative_explanations": [
+        "Die Audits wurden erfolgreich durchgeführt, aber keine kausalen Effekte wurden gemessen.",
+        "Die Metriken sind beschreibend, aber keine inferenziellen Analysen wurden durchgeführt.",
+        "Die Forschungsfragen sind formuliert, aber keine experimentellen Tests wurden durchgeführt.",
+        "Die Einschränkungen beeinflussen die Validierung der Hypothese."
+      ],
+      "recommended_experiments": [
+        "Durchführung von Hypothesentests mit wissenschaftlicher Evidenz",
+        "Erstellung von statistischen Analysen zur Validierung der Skalierbarkeit",
+        "Dokumentation der Git-Provenance und der experimentellen Designentscheidungen",
+        "Erstellung von inferenziellen Analysen zur Validierung der Hypothese"
+      ],
+      "requested_evidence": [
+        "Wissenschaftliche Evidenz, die die Hypothese unterstützt",
+        "Statistische Analysen zur Validierung der Skalierbarkeit",
+        "Dokumentation der Git-Provenance und der experimentellen Designentscheidungen",
+        "Ergebnisse von Hypothesentests"
+      ],
+      "confidence": 0.0,
+      "research_question": "Wie verhält sich das .b5d-Format bei 5.000, 50.000, 500.000, 5 Mio., 50 Mio. und 312,5 Mio. Neuronen?"
+    },
+    "methodological_critique": [
+      "Fehlende wissenschaftliche Evidenz",
+      "Keine direkten Hypothesentests",
+      "Unklare Git-Provenance",
+      "Eingeschränkte Experimentaldesign"
+    ],
+    "alternative_explanations": [
+      "Die Audits wurden erfolgreich durchgeführt, aber keine kausalen Effekte wurden gemessen.",
+      "Die Metriken sind beschreibend, aber keine inferenziellen Analysen wurden durchgeführt.",
+      "Die Forschungsfragen sind formuliert, aber keine experimentellen Tests wurden durchgeführt.",
+      "Die Einschränkungen beeinflussen die Validierung der Hypothese."
+    ],
+    "reproducibility": {
+      "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+      "experiment_status": "completed",
+      "evidence_mode": "not_reported",
+      "git_dirty": "True",
+      "source_freeze_sha": "8e2917baa67e8538203066580e8da87997995a1e682a6a43573cfe45bacd4085",
+      "configuration_path": "F:\\Brain-5D\\configs\\learning_experiment.yaml",
+      "configuration_sha256": "6f6cd457caf6216c286fee47ef03b529a0b496ed2dd53ee96b85d3b51e7b3a1c",
+      "experiment_manifest_digest": "620d6e1b5051a910780b0f599af724eed318cc62383a611ef1c8394dd55eb428",
+      "data_ids": "NOT_AVAILABLE",
+      "evid_ids": "NOT_AVAILABLE",
+      "protocol_id": "NOT_AVAILABLE",
+      "protocol_digest": "8f65ba0304a25de8e399633385a2afdcaf3990f4a9c1bed74fe6741a70e432fe",
+      "data_digest": "ef95ab4fcd5c13695e09ff7ac563bfb0ce8092446679d7ec65337f04b57e23e7",
+      "evid_digests": "[]"
+    },
+    "epistemic_status": {
+      "implementation": "NOT_DETERMINED",
+      "experiment_data": "PRESENT",
+      "registered_evidence": "ABSENT",
+      "ai_interpretation": "PRESENT",
+      "human_review": "PENDING",
+      "claim_support": "NOT_DETERMINED",
+      "rq_status": "IN_PROGRESS"
+    },
+    "ai_confidence": 0.0,
+    "missing_evidence": [
+      "Wissenschaftliche Evidenz, die die Hypothese unterstützt",
+      "Statistische Analysen zur Validierung der Skalierbarkeit",
+      "Dokumentation der Git-Provenance und der experimentellen Designentscheidungen",
+      "Ergebnisse von Hypothesentests"
+    ],
+    "recommended_follow_up": [
+      "Durchführung von Hypothesentests mit wissenschaftlicher Evidenz",
+      "Erstellung von statistischen Analysen zur Validierung der Skalierbarkeit",
+      "Dokumentation der Git-Provenance und der experimentellen Designentscheidungen",
+      "Erstellung von inferenziellen Analysen zur Validierung der Hypothese"
+    ],
+    "conclusion": "Die vorliegenden Daten zeigen keine direkten kausalen Messungen oder statistischen Tests zur Validierung der Hypothese. Die Experimente sind auf die Ausführung des Vertrags zur Überprüfung der Lücken und Grenzen beschränkt, ohne wissenschaftliche Evidenz oder Hypothesentests.",
+    "human_review": {
+      "status": "PENDING",
+      "reviewer": null,
+      "reviewed_at": null,
+      "disposition": null,
+      "comments": null
+    },
+    "aiar": {
+      "analyst": {
+        "analysis_id": "AIAR-scientific_analyst-20260914081608649218-b7da450e",
+        "role": "scientific_analyst",
+        "model": {
+          "provider": "ollama",
+          "model_name": "qwen3:8b",
+          "model_digest": "not_reported",
+          "quantization": "not_reported",
+          "context_length": "unknown",
+          "temperature": 0.0,
+          "top_p": 0.9,
+          "seed": "not_reported",
+          "backend_version": "unknown"
+        },
+        "inputs": {
+          "experiment_id": "EXP-BATCH-20260914074039-22",
+          "packet_digest": "b7da450ed11041866d87b93accf1395748da06a8f35fb92fe8d49fd69c20f35e"
+        },
+        "output": {
+          "assessment": "Die vorliegenden Daten zeigen keine direkten kausalen Messungen oder statistischen Tests zur Validierung der Hypothese. Die Experimente sind auf die Ausführung des Vertrags zur Überprüfung der Lücken und Grenzen beschränkt, ohne wissenschaftliche Evidenz oder Hypothesentests.",
+          "observations": [
+            "Die Experimente wurden mit drei verschiedenen Seeds (101, 102, 103) durchgeführt.",
+            "Die Metriken der Experimente zeigen, dass die Audits abgeschlossen wurden, aber keine direkten kausalen Messungen durchgeführt wurden.",
+            "Die statistischen Formeln sind definiert, aber keine Berechnungen oder Interpretationen wurden durchgeführt.",
+            "Die Forschungsfragen und Hypothesen sind vorhanden, aber keine experimentellen Tests wurden durchgeführt.",
+            "Die bekannten Einschränkungen umfassen fehlende wissenschaftliche Evidenz und unklare Git-Provenance."
+          ],
+          "effect_direction": "Keine kausale Richtung wurde gemessen oder interpretiert.",
+          "methodological_concerns": [
+            "Fehlende wissenschaftliche Evidenz",
+            "Keine direkten Hypothesentests",
+            "Unklare Git-Provenance",
+            "Eingeschränkte Experimentaldesign"
+          ],
+          "alternative_explanations": [
+            "Die Audits wurden erfolgreich durchgeführt, aber keine kausalen Effekte wurden gemessen.",
+            "Die Metriken sind beschreibend, aber keine inferenziellen Analysen wurden durchgeführt.",
+            "Die Forschungsfragen sind formuliert, aber keine experimentellen Tests wurden durchgeführt.",
+            "Die Einschränkungen beeinflussen die Validierung der Hypothese."
+          ],
+          "recommended_experiments": [
+            "Durchführung von Hypothesentests mit wissenschaftlicher Evidenz",
+            "Erstellung von statistischen Analysen zur Validierung der Skalierbarkeit",
+            "Dokumentation der Git-Provenance und der experimentellen Designentscheidungen",
+            "Erstellung von inferenziellen Analysen zur Validierung der Hypothese"
+          ],
+          "requested_evidence": [
+            "Wissenschaftliche Evidenz, die die Hypothese unterstützt",
+            "Statistische Analysen zur Validierung der Skalierbarkeit",
+            "Dokumentation der Git-Provenance und der experimentellen Designentscheidungen",
+            "Ergebnisse von Hypothesentests"
+          ],
+          "confidence": 0.0
+        },
+        "provenance": {
+          "prompt_sha256": "05592726ddbbabe926ec6f522ee52258edb046fa853bf64d070a79fc54fde842",
+          "research_packet_digest": "b7da450ed11041866d87b93accf1395748da06a8f35fb92fe8d49fd69c20f35e",
+          "prompt_protocol_version": "research_assistant_v1",
+          "assistant_schema_version": "1.2",
+          "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+          "model_self_confidence": "0.0"
+        },
+        "epistemic_status": {
+          "evidence": false,
+          "interpretation_only": true,
+          "human_review_required": true
+        },
+        "review": {
+          "status": "pending",
+          "reviewer": null,
+          "reviewed_at": null,
+          "disposition": null
+        },
+        "generated_at": "2026-09-14T08:16:08.649218+00:00"
+      },
+      "reviewer": {
+        "analysis_id": "AIAR-critical_reviewer-20260914081706786744-b7da450e",
+        "role": "critical_reviewer",
+        "model": {
+          "provider": "ollama",
+          "model_name": "qwen3:8b",
+          "model_digest": "not_reported",
+          "quantization": "not_reported",
+          "context_length": "unknown",
+          "temperature": 0.0,
+          "top_p": 0.9,
+          "seed": "not_reported",
+          "backend_version": "unknown"
+        },
+        "inputs": {
+          "experiment_id": "EXP-BATCH-20260914074039-22",
+          "packet_digest": "b7da450ed11041866d87b93accf1395748da06a8f35fb92fe8d49fd69c20f35e"
+        },
+        "output": {
+          "assessment": "Die vorliegenden Daten zeigen keine direkten kausalen Messungen oder statistischen Tests zur Validierung der Hypothese. Die Experimente sind auf die Ausführung des Vertrags zur Überprüfung der Lücken und Grenzen beschränkt, ohne wissenschaftliche Evidenz oder Hypothesentests.",
+          "confidence": 0.0,
+          "effect_direction": "Keine kausale Richtung wurde gemessen oder interpretiert.",
+          "methodological_concerns": [
+            "Fehlende wissenschaftliche Evidenz",
+            "Keine direkten Hypothesentests",
+            "Unklare Git-Provenance",
+            "Eingeschränkte Experimentaldesign"
+          ],
+          "observations": [
+            "Die Experimente wurden mit drei verschiedenen Seeds (101, 102, 103) durchgeführt.",
+            "Die Metriken der Experimente zeigen, dass die Audits abgeschlossen wurden, aber keine direkten kausalen Messungen durchgeführt wurden.",
+            "Die statistischen Formeln sind definiert, aber keine Berechnungen oder Interpretationen wurden durchgeführt.",
+            "Die Forschungsfragen und Hypothesen sind vorhanden, aber keine experimentellen Tests wurden durchgeführt.",
+            "Die bekannten Einschränkungen umfassen fehlende wissenschaftliche Evidenz und unklare Git-Provenance."
+          ],
+          "alternative_explanations": [
+            "Die Audits wurden erfolgreich durchgeführt, aber keine kausalen Effekte wurden gemessen.",
+            "Die Metriken sind beschreibend, aber keine inferenziellen Analysen wurden durchgeführt.",
+            "Die Forschungsfragen sind formuliert, aber keine experimentellen Tests wurden durchgeführt.",
+            "Die Einschränkungen beeinflussen die Validierung der Hypothese."
+          ],
+          "recommended_experiments": [
+            "Durchführung von Hypothesentests mit wissenschaftlicher Evidenz",
+            "Erstellung von statistischen Analysen zur Validierung der Skalierbarkeit",
+            "Dokumentation der Git-Provenance und der experimentellen Designentscheidungen",
+            "Erstellung von inferenziellen Analysen zur Validierung der Hypothese"
+          ],
+          "requested_evidence": [
+            "Wissenschaftliche Evidenz, die die Hypothese unterstützt",
+            "Statistische Analysen zur Validierung der Skalierbarkeit",
+            "Dokumentation der Git-Provenance und der experimentellen Designentscheidungen",
+            "Ergebnisse von Hypothesentests"
+          ]
+        },
+        "provenance": {
+          "prompt_sha256": "61f783bf53a240cb534445c9f4bde11c83c9aa7ba22b68f688da07a71bdf0632",
+          "research_packet_digest": "b7da450ed11041866d87b93accf1395748da06a8f35fb92fe8d49fd69c20f35e",
+          "prompt_protocol_version": "research_assistant_v1",
+          "assistant_schema_version": "1.2",
+          "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+          "model_self_confidence": "0.0"
+        },
+        "epistemic_status": {
+          "evidence": false,
+          "interpretation_only": true,
+          "human_review_required": true
+        },
+        "review": {
+          "status": "pending",
+          "reviewer": null,
+          "reviewed_at": null,
+          "disposition": null
+        },
+        "generated_at": "2026-09-14T08:17:06.786744+00:00"
+      },
+      "writer": {
+        "analysis_id": "AIAR-scientific_writer-20260914081724493280-b7da450e",
+        "role": "scientific_writer",
+        "model": {
+          "provider": "ollama",
+          "model_name": "qwen3:8b",
+          "model_digest": "not_reported",
+          "quantization": "not_reported",
+          "context_length": "unknown",
+          "temperature": 0.0,
+          "top_p": 0.9,
+          "seed": "not_reported",
+          "backend_version": "unknown"
+        },
+        "inputs": {
+          "experiment_id": "EXP-BATCH-20260914074039-22",
+          "packet_digest": "b7da450ed11041866d87b93accf1395748da06a8f35fb92fe8d49fd69c20f35e"
+        },
+        "output": {
+          "assessment": "Die vorliegenden Daten zeigen keine direkten kausalen Messungen oder statistischen Tests zur Validierung der Hypothese. Die Experimente sind auf die Ausführung des Vertrags zur Überprüfung der Lücken und Grenzen beschränkt, ohne wissenschaftliche Evidenz oder Hypothesentests.",
+          "observations": [
+            "Die Experimente wurden mit drei verschiedenen Seeds (101, 102, 103) durchgeführt.",
+            "Die Metriken der Experimente zeigen, dass die Audits abgeschlossen wurden, aber keine direkten kausalen Messungen durchgeführt wurden.",
+            "Die statistischen Formeln sind definiert, aber keine Berechnungen oder Interpretationen wurden durchgeführt.",
+            "Die Forschungsfragen und Hypothesen sind vorhanden, aber keine experimentellen Tests wurden durchgeführt.",
+            "Die bekannten Einschränkungen umfassen fehlende wissenschaftliche Evidenz und unklare Git-Provenance."
+          ],
+          "effect_direction": "Keine kausale Richtung wurde gemessen oder interpretiert.",
+          "methodological_concerns": [
+            "Fehlende wissenschaftliche Evidenz",
+            "Keine direkten Hypothesentests",
+            "Unklare Git-Provenance",
+            "Eingeschränkte Experimentaldesign"
+          ],
+          "alternative_explanations": [
+            "Die Audits wurden erfolgreich durchgeführt, aber keine kausalen Effekte wurden gemessen.",
+            "Die Metriken sind beschreibend, aber keine inferenziellen Analysen wurden durchgeführt.",
+            "Die Forschungsfragen sind formuliert, aber keine experimentellen Tests wurden durchgeführt.",
+            "Die Einschränkungen beeinflussen die Validierung der Hypothese."
+          ],
+          "recommended_experiments": [
+            "Durchführung von Hypothesentests mit wissenschaftlicher Evidenz",
+            "Erstellung von statistischen Analysen zur Validierung der Skalierbarkeit",
+            "Dokumentation der Git-Provenance und der experimentellen Designentscheidungen",
+            "Erstellung von inferenziellen Analysen zur Validierung der Hypothese"
+          ],
+          "requested_evidence": [
+            "Wissenschaftliche Evidenz, die die Hypothese unterstützt",
+            "Statistische Analysen zur Validierung der Skalierbarkeit",
+            "Dokumentation der Git-Provenance und der experimentellen Designentscheidungen",
+            "Ergebnisse von Hypothesentests"
+          ],
+          "confidence": 0.0,
+          "research_question": "Wie verhält sich das .b5d-Format bei 5.000, 50.000, 500.000, 5 Mio., 50 Mio. und 312,5 Mio. Neuronen?"
+        },
+        "provenance": {
+          "prompt_sha256": "5875c9781ea9707d5e446f6b8fec52e9db43ee2a84d226ad4effb177716bcef3",
+          "research_packet_digest": "b7da450ed11041866d87b93accf1395748da06a8f35fb92fe8d49fd69c20f35e",
+          "prompt_protocol_version": "research_assistant_v1",
+          "assistant_schema_version": "1.2",
+          "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+          "model_self_confidence": "0.0"
+        },
+        "epistemic_status": {
+          "evidence": false,
+          "interpretation_only": true,
+          "human_review_required": true
+        },
+        "review": {
+          "status": "pending",
+          "reviewer": null,
+          "reviewed_at": null,
+          "disposition": null
+        },
+        "generated_at": "2026-09-14T08:17:24.493280+00:00"
+      }
+    }
+  },
+  "provenance": {
+    "research_packet_digest": "dc9e5796cc5e73196c1cd46bb06fb67829564221912c9207882ac50e4aaf376d",
+    "source": {
+      "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+      "experiment_status": "completed",
+      "evidence_mode": "not_reported",
+      "git_dirty": "True",
+      "source_freeze_sha": "8e2917baa67e8538203066580e8da87997995a1e682a6a43573cfe45bacd4085",
+      "configuration_path": "F:\\Brain-5D\\configs\\learning_experiment.yaml",
+      "configuration_sha256": "6f6cd457caf6216c286fee47ef03b529a0b496ed2dd53ee96b85d3b51e7b3a1c",
+      "experiment_manifest_digest": "620d6e1b5051a910780b0f599af724eed318cc62383a611ef1c8394dd55eb428",
+      "data_ids": "NOT_AVAILABLE",
+      "evid_ids": "NOT_AVAILABLE",
+      "protocol_id": "NOT_AVAILABLE",
+      "protocol_digest": "8f65ba0304a25de8e399633385a2afdcaf3990f4a9c1bed74fe6741a70e432fe",
+      "data_digest": "ef95ab4fcd5c13695e09ff7ac563bfb0ce8092446679d7ec65337f04b57e23e7",
+      "evid_digests": "[]"
+    }
+  },
+  "analysis_ids": [
+    "AIAR-scientific_analyst-20260914081608649218-b7da450e",
+    "AIAR-critical_reviewer-20260914081706786744-b7da450e",
+    "AIAR-scientific_writer-20260914081724493280-b7da450e"
+  ],
+  "supersedes": null,
+  "content_digest": "54264674c7a9e3d3603a24aa061af7e0bf14f536e3cca166d6e90bc39208165d",
+  "markdown_digest": "78eeab187762f6f2788f62623ca67d473c9bbcbf06997d7eec7da7d411d1cd2b"
+}

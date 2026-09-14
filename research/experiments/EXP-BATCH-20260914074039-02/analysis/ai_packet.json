@@ -1,0 +1,216 @@
+{
+  "ai_input_policy": "compact_only_raw_on_explicit_deterministic_extract",
+  "generated_by": "deterministic_research_data_v2",
+  "limits": {
+    "ai_packet_max_bytes": 1000000,
+    "run_summary_max_bytes": 5000000,
+    "sequence_preview_items": 16
+  },
+  "raw_index": {
+    "path": "DATA/runs_index.json",
+    "run_count": 3,
+    "sha256": "ddb34c6e2d47002d38b4116b41145d4793b79f9b9cddbea03e93919dc98dc040"
+  },
+  "run_count": 3,
+  "run_preview": [
+    {
+      "_raw_artifact": {
+        "format": "json.gz",
+        "path": "DATA/raw/run-0000-same_seed_tonic_replica_pair-seed-101.json.gz",
+        "sha256": "19e7de6ef959d8b9a87ee1df19dde593e6da4cd7561475af6325c637b6550b92",
+        "size_bytes": 466,
+        "uncompressed_bytes": 845
+      },
+      "condition": "same_seed_tonic_replica_pair",
+      "experiment_id": "EXP-BATCH-20260914074039-02",
+      "metrics": {
+        "automatic_evidence_promotion": false,
+        "direct_test_of_hypothesis": true,
+        "replicas": [
+          {
+            "replica": "a",
+            "source_neuron": 0,
+            "spike_count": 6,
+            "spike_ticks": [
+              3,
+              30,
+              78,
+              140,
+              194,
+              242
+            ],
+            "state_digest_after": "b3deee8d65914f4edc2ab33dff820f352f946f315aee492bc57eb2320b9fc24f"
+          },
+          {
+            "replica": "b",
+            "source_neuron": 0,
+            "spike_count": 6,
+            "spike_ticks": [
+              3,
+              30,
+              78,
+              140,
+              194,
+              242
+            ],
+            "state_digest_after": "b3deee8d65914f4edc2ab33dff820f352f946f315aee492bc57eb2320b9fc24f"
+          }
+        ],
+        "scientific_evidence": false,
+        "spike_sequence_identical": true,
+        "ticks_requested": 256,
+        "tonic_current": 10.0
+      },
+      "runtime_error": null,
+      "seed": 101,
+      "state_digest_after": "b3deee8d65914f4edc2ab33dff820f352f946f315aee492bc57eb2320b9fc24f",
+      "state_digest_before": "1771a5db39762c3f7493abcddc6e461322470687395291a7b18bfb719f8ac27f"
+    },
+    {
+      "_raw_artifact": {
+        "format": "json.gz",
+        "path": "DATA/raw/run-0001-same_seed_tonic_replica_pair-seed-102.json.gz",
+        "sha256": "efc7742cd59554fafa5ec77b3dcaaf768189aa5096aec5d06a28321021689861",
+        "size_bytes": 463,
+        "uncompressed_bytes": 845
+      },
+      "condition": "same_seed_tonic_replica_pair",
+      "experiment_id": "EXP-BATCH-20260914074039-02",
+      "metrics": {
+        "automatic_evidence_promotion": false,
+        "direct_test_of_hypothesis": true,
+        "replicas": [
+          {
+            "replica": "a",
+            "source_neuron": 0,
+            "spike_count": 6,
+            "spike_ticks": [
+              3,
+              30,
+              78,
+              140,
+              194,
+              242
+            ],
+            "state_digest_after": "1888d6a60e22dcd36a824447ea3064c86013cdccd7c7643df714cdb063879408"
+          },
+          {
+            "replica": "b",
+            "source_neuron": 0,
+            "spike_count": 6,
+            "spike_ticks": [
+              3,
+              30,
+              78,
+              140,
+              194,
+              242
+            ],
+            "state_digest_after": "1888d6a60e22dcd36a824447ea3064c86013cdccd7c7643df714cdb063879408"
+          }
+        ],
+        "scientific_evidence": false,
+        "spike_sequence_identical": true,
+        "ticks_requested": 256,
+        "tonic_current": 10.0
+      },
+      "runtime_error": null,
+      "seed": 102,
+      "state_digest_after": "1888d6a60e22dcd36a824447ea3064c86013cdccd7c7643df714cdb063879408",
+      "state_digest_before": "dea90be4cc96ecd982339529935b2286e82c20cf45e76d435b23c29953c97dbe"
+    },
+    {
+      "_raw_artifact": {
+        "format": "json.gz",
+        "path": "DATA/raw/run-0002-same_seed_tonic_replica_pair-seed-103.json.gz",
+        "sha256": "ae9ec4c59eee7f9b0cc4a08ecd2c9d55ebde8523a94c8e11c6010ffd77989058",
+        "size_bytes": 463,
+        "uncompressed_bytes": 845
+      },
+      "condition": "same_seed_tonic_replica_pair",
+      "experiment_id": "EXP-BATCH-20260914074039-02",
+      "metrics": {
+        "automatic_evidence_promotion": false,
+        "direct_test_of_hypothesis": true,
+        "replicas": [
+          {
+            "replica": "a",
+            "source_neuron": 0,
+            "spike_count": 6,
+            "spike_ticks": [
+              3,
+              30,
+              78,
+              140,
+              194,
+              242
+            ],
+            "state_digest_after": "9f28b1822c8261534fdb25c4adb6a4232e341630514dabdb4d6447fd5a1b9ac2"
+          },
+          {
+            "replica": "b",
+            "source_neuron": 0,
+            "spike_count": 6,
+            "spike_ticks": [
+              3,
+              30,
+              78,
+              140,
+              194,
+              242
+            ],
+            "state_digest_after": "9f28b1822c8261534fdb25c4adb6a4232e341630514dabdb4d6447fd5a1b9ac2"
+          }
+        ],
+        "scientific_evidence": false,
+        "spike_sequence_identical": true,
+        "ticks_requested": 256,
+        "tonic_current": 10.0
+      },
+      "runtime_error": null,
+      "seed": 103,
+      "state_digest_after": "9f28b1822c8261534fdb25c4adb6a4232e341630514dabdb4d6447fd5a1b9ac2",
+      "state_digest_before": "9de84571ead9f21e68a65636aba8ca24658f562322755aa7c976905a4682bf6e"
+    }
+  ],
+  "schema_version": "2.0",
+  "statistics": {
+    "conditions": {
+      "same_seed_tonic_replica_pair": {
+        "metrics": {
+          "ticks_requested": {
+            "max": 256.0,
+            "mean": 256.0,
+            "median": 256.0,
+            "min": 256.0,
+            "n": 3,
+            "std": 0.0
+          },
+          "tonic_current": {
+            "max": 10.0,
+            "mean": 10.0,
+            "median": 10.0,
+            "min": 10.0,
+            "n": 3,
+            "std": 0.0
+          }
+        },
+        "run_count": 3,
+        "seeds": [
+          101,
+          102,
+          103
+        ]
+      }
+    },
+    "formulas": {
+      "difference": "Delta_x = mean(x_B) - mean(x_A)",
+      "inter_spike_interval": "ISI_i = t_(i+1) - t_i",
+      "mean": "mean(x) = (1/n) * sum_i x_i",
+      "population_std": "sigma = sqrt((1/n) * sum_i (x_i - mean(x))^2)",
+      "ratio": "R_x = mean(x_B) / mean(x_A), defined only when mean(x_A) != 0"
+    },
+    "run_count": 3,
+    "schema_version": "2.0"
+  }
+}

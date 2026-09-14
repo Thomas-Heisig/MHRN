@@ -1,0 +1,597 @@
+{
+  "report_id": "AIRR-2026-0001",
+  "experiment_id": "EXP-BATCH-20260914074039-88",
+  "research_question_id": "RQ-GW-006",
+  "hypothesis_ids": [
+    "H-GW-006-A"
+  ],
+  "claim_ids": [],
+  "generated_at": "2026-09-14T12:04:13.627710+00:00",
+  "report_schema_version": "1.0",
+  "report_protocol_version": "PROTOCOL-AIRR-001",
+  "generated_by": "artificial_intelligence",
+  "ai_generated": true,
+  "scientific_evidence": false,
+  "human_review_required": true,
+  "status": "review_pending",
+  "content": {
+    "identification": {
+      "experiment": "EXP-BATCH-20260914074039-88",
+      "research_question": "Verbessert bidirektionale Gateway-Kopplung die Leistung gegenueber reiner Feedforward-Kopplung?",
+      "hypotheses": [
+        {
+          "id": "H-GW-006-A",
+          "research_question": "RQ-GW-006",
+          "hypothesis": "Ein explizit begrenzter bidirektionaler Gateway-Contract verbessert den primaeren Outcome gegenueber Feedforward-Kopplung ohne Stabilitaetsverletzung.",
+          "status": "untested",
+          "evidence": [],
+          "created": "2026-09-09",
+          "updated": "2026-09-09"
+        }
+      ],
+      "date": "2026-09-14",
+      "source_sha": "8e096931a779b2d2eb4d010eb20154150b07bbf2"
+    },
+    "executive_summary": "Die vorliegenden Daten zeigen keine direkten kausalen Messungen oder statistischen Signifikanztests. Die Experimente sind auf die Ausführung von Vertragsbedingungen und die Prüfung von Grenzen beschränkt.",
+    "research_question": {
+      "id": "RQ-GW-006",
+      "domain": "Closed-Loop Gateway",
+      "question": "Verbessert bidirektionale Gateway-Kopplung die Leistung gegenueber reiner Feedforward-Kopplung?",
+      "relevance": "Macht Feedback-Contracts, Limits und Stabilitaetspruefungen explizit.",
+      "literature": [],
+      "hypotheses": [
+        "H-GW-006-A"
+      ],
+      "evidence": [],
+      "status": "open",
+      "answer": {
+        "current": null,
+        "confidence": "none",
+        "limitations": "Keine rekursiven Feedback-Loops ohne separaten Contract und Rollback-Regeln."
+      },
+      "created": "2026-09-09",
+      "updated": "2026-09-09"
+    },
+    "experimental_design": {
+      "experiment_id": "EXP-BATCH-20260914074039-88",
+      "research_question": "RQ-GW-006",
+      "hypothesis": "H-GW-006-A",
+      "title": "Experiment workflow: gateway_closed_loop_boundary_v1",
+      "conditions": "Registered protocol conditions",
+      "ticks": 1000,
+      "ticks_contract": "minimum requested observation window",
+      "seeds": [
+        101,
+        102,
+        103
+      ],
+      "protocol": "gateway_closed_loop_boundary_v1",
+      "resolved_runner": "run_boundary_audit",
+      "tick_validation": {
+        "status": "NOT_APPLICABLE",
+        "mode": "protocol_defined_internal_trials",
+        "requested_ticks": 1000
+      },
+      "notes": "",
+      "execution": "registered experiment_suite runner",
+      "assistant_policy": "AI is post-hoc interpretation only.",
+      "epistemic_layers": {
+        "ui_state": "operator/dashboard progress only; not a scientific result",
+        "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+        "evid": "not_created; requires semantic validation, clean freeze and human review",
+        "interpretation": "post-hoc AI or human interpretation; never execution input"
+      }
+    },
+    "data_basis": {
+      "data": {
+        "ai_input_policy": "compact_only_raw_on_explicit_deterministic_extract",
+        "generated_by": "deterministic_research_data_v2",
+        "limits": {
+          "ai_packet_max_bytes": 1000000,
+          "run_summary_max_bytes": 5000000,
+          "sequence_preview_items": 16
+        },
+        "raw_index": {
+          "path": "DATA/runs_index.json",
+          "run_count": 3,
+          "sha256": "9e0ca4a21f991ee0d939d228ac101a99f0ffcc03c210036f8ad2b1185b54e7a2"
+        },
+        "run_count": 3,
+        "run_preview": [
+          {
+            "_raw_artifact": {
+              "format": "json.gz",
+              "path": "DATA/raw/run-0000-instrumentation_gap_audit-seed-101.json.gz",
+              "sha256": "1bb272c2a00edb9bf6c25a7e65e27a505153948a17bc0e443faf063c8d885b3c",
+              "size_bytes": 380,
+              "uncompressed_bytes": 481
+            },
+            "condition": "instrumentation_gap_audit",
+            "experiment_id": "EXP-BATCH-20260914074039-88",
+            "metrics": {
+              "audit_complete": true,
+              "automatic_evidence_promotion": false,
+              "claim_boundary": "No direct causal measurement is performed by this runner. Completion means only that the registered gap/boundary contract was executed and preserved for review.",
+              "direct_test_of_hypothesis": false,
+              "scientific_evidence": false
+            },
+            "runtime_error": null,
+            "seed": 101,
+            "state_digest_after": "",
+            "state_digest_before": ""
+          },
+          {
+            "_raw_artifact": {
+              "format": "json.gz",
+              "path": "DATA/raw/run-0001-instrumentation_gap_audit-seed-102.json.gz",
+              "sha256": "5210247858f98dbb4f13647abf227628dff235feb33cf908facacc001baf6404",
+              "size_bytes": 380,
+              "uncompressed_bytes": 481
+            },
+            "condition": "instrumentation_gap_audit",
+            "experiment_id": "EXP-BATCH-20260914074039-88",
+            "metrics": {
+              "audit_complete": true,
+              "automatic_evidence_promotion": false,
+              "claim_boundary": "No direct causal measurement is performed by this runner. Completion means only that the registered gap/boundary contract was executed and preserved for review.",
+              "direct_test_of_hypothesis": false,
+              "scientific_evidence": false
+            },
+            "runtime_error": null,
+            "seed": 102,
+            "state_digest_after": "",
+            "state_digest_before": ""
+          },
+          {
+            "_raw_artifact": {
+              "format": "json.gz",
+              "path": "DATA/raw/run-0002-instrumentation_gap_audit-seed-103.json.gz",
+              "sha256": "6f6a9f33d7fb3ea797e0082dc16a9c40461d0e5faac9e84f6da37d6b9360f34a",
+              "size_bytes": 380,
+              "uncompressed_bytes": 481
+            },
+            "condition": "instrumentation_gap_audit",
+            "experiment_id": "EXP-BATCH-20260914074039-88",
+            "metrics": {
+              "audit_complete": true,
+              "automatic_evidence_promotion": false,
+              "claim_boundary": "No direct causal measurement is performed by this runner. Completion means only that the registered gap/boundary contract was executed and preserved for review.",
+              "direct_test_of_hypothesis": false,
+              "scientific_evidence": false
+            },
+            "runtime_error": null,
+            "seed": 103,
+            "state_digest_after": "",
+            "state_digest_before": ""
+          }
+        ],
+        "schema_version": "2.0",
+        "statistics": {
+          "conditions": {
+            "instrumentation_gap_audit": {
+              "metrics": {},
+              "run_count": 3,
+              "seeds": [
+                101,
+                102,
+                103
+              ]
+            }
+          },
+          "formulas": {
+            "difference": "Delta_x = mean(x_B) - mean(x_A)",
+            "inter_spike_interval": "ISI_i = t_(i+1) - t_i",
+            "mean": "mean(x) = (1/n) * sum_i x_i",
+            "population_std": "sigma = sqrt((1/n) * sum_i (x_i - mean(x))^2)",
+            "ratio": "R_x = mean(x_B) / mean(x_A), defined only when mean(x_A) != 0"
+          },
+          "generated_by": "deterministic_statistics_engine",
+          "run_count": 3,
+          "schema_version": "2.0"
+        }
+      },
+      "evid": [],
+      "literature": []
+    },
+    "quantitative_results": {
+      "conditions": {
+        "instrumentation_gap_audit": {
+          "metrics": {},
+          "run_count": 3,
+          "seeds": [
+            101,
+            102,
+            103
+          ]
+        }
+      },
+      "formulas": {
+        "difference": "Delta_x = mean(x_B) - mean(x_A)",
+        "inter_spike_interval": "ISI_i = t_(i+1) - t_i",
+        "mean": "mean(x) = (1/n) * sum_i x_i",
+        "population_std": "sigma = sqrt((1/n) * sum_i (x_i - mean(x))^2)",
+        "ratio": "R_x = mean(x_B) / mean(x_A), defined only when mean(x_A) != 0"
+      },
+      "generated_by": "deterministic_statistics_engine",
+      "run_count": 3,
+      "schema_version": "2.0"
+    },
+    "observations": [
+      "Die Experimente wurden mit drei verschiedenen Seeds (101, 102, 103) durchgeführt.",
+      "Die Audit-Status aller Runs ist 'audit_complete' und keine Fehler wurden gemeldet.",
+      "Die Metriken zeigen keine direkten kausalen Tests oder wissenschaftlichen Beweise.",
+      "Die Vertragsbedingungen sind auf 'instrumentation_gap_audit' festgelegt und wurden vollständig ausgeführt.",
+      "Die statistischen Formeln sind definiert, aber keine Berechnungen wurden durchgeführt oder interpretiert.",
+      "Die Forschungsfragen und Hypothesen sind nicht getestet und bleiben offengelegt."
+    ],
+    "interpretation": {
+      "assessment": "Die vorliegenden Daten zeigen keine direkten kausalen Messungen oder statistischen Signifikanztests. Die Experimente sind auf die Ausführung von Vertragsbedingungen und die Prüfung von Grenzen beschränkt.",
+      "observations": [
+        "Die Experimente wurden mit drei verschiedenen Seeds (101, 102, 103) durchgeführt.",
+        "Die Audit-Status aller Runs ist 'audit_complete' und keine Fehler wurden gemeldet.",
+        "Die Metriken zeigen keine direkten kausalen Tests oder wissenschaftlichen Beweise.",
+        "Die Vertragsbedingungen sind auf 'instrumentation_gap_audit' festgelegt und wurden vollständig ausgeführt.",
+        "Die statistischen Formeln sind definiert, aber keine Berechnungen wurden durchgeführt oder interpretiert.",
+        "Die Forschungsfragen und Hypothesen sind nicht getestet und bleiben offengelegt."
+      ],
+      "effect_direction": "Es wurden keine messbaren Effekte oder Richtungen der Wirkung identifiziert, da keine statistischen Tests durchgeführt wurden.",
+      "methodological_concerns": [
+        "Keine wissenschaftlichen Beweise oder inferenziellen Analysen wurden registriert.",
+        "Die Forschungsfragen und Hypothesen wurden nicht getestet.",
+        "Die Daten sind rein deskriptiv und keine kausalen Schlussfolgerungen können gezogen werden.",
+        "Die Git-Provenance ist unvollständig oder nicht verfügbar.",
+        "Es gibt keine rekursiven Feedback-Loops ohne separaten Contract und Rollback-Regeln.",
+        "Die Experimente sind auf die Ausführung von Vertragsbedingungen beschränkt und keine direkten kausalen Messungen wurden durchgeführt."
+      ],
+      "alternative_explanations": [
+        "Die Ergebnisse könnten aufgrund der begrenzten Experimente und der fehlenden inferenziellen Analysen nicht vollständig interpretiert werden.",
+        "Die Vertragsbedingungen könnten die Ergebnisse beeinflussen, aber keine kausalen Tests wurden durchgeführt.",
+        "Die fehlende wissenschaftliche Evidenz und die begrenzten Experimente könnten die Interpretation der Ergebnisse beeinträchtigen."
+      ],
+      "recommended_experiments": [
+        "Durchführung von inferenziellen Analysen, um statistische Signifikanz zu testen.",
+        "Erstellung von wissenschaftlichen Beweisen und Validierung der Ergebnisse durch menschliche Überprüfung.",
+        "Erweiterung der Experimente, um rekursive Feedback-Loops mit separaten Contracts und Rollback-Regeln zu testen.",
+        "Durchführung von kausalen Tests, um die Wirkung der bidirektionalen Gateway-Kopplung zu bewerten.",
+        "Erhöhung der Datenmenge und der Experimente, um die Robustheit der Ergebnisse zu prüfen."
+      ],
+      "requested_evidence": [
+        "Registrierte wissenschaftliche Beweise und inferenzielle Analysen.",
+        "Detaillierte statistische Berechnungen und Interpretationen der Formeln.",
+        "Validierung der Vertragsbedingungen und der Grenzen durch menschliche Überprüfung.",
+        "Dokumentation der Git-Provenance und der Datenherkunft.",
+        "Erklärung der rekursiven Feedback-Loops und der verwendeten Contracts und Rollback-Regeln."
+      ],
+      "confidence": 0.0,
+      "research_question": "Verbessert bidirektionale Gateway-Kopplung die Leistung gegenüber reiner Feedforward-Kopplung?"
+    },
+    "methodological_critique": [
+      "Keine wissenschaftlichen Beweise oder inferenziellen Analysen wurden registriert.",
+      "Die Forschungsfragen und Hypothesen wurden nicht getestet.",
+      "Die Daten sind rein deskriptiv und keine kausalen Schlussfolgerungen können gezogen werden.",
+      "Die Git-Provenance ist unvollständig oder nicht verfügbar.",
+      "Es gibt keine rekursiven Feedback-Loops ohne separaten Contract und Rollback-Regeln.",
+      "Die Experimente sind auf die Ausführung von Vertragsbedingungen beschränkt und keine direkten kausalen Messungen wurden durchgeführt."
+    ],
+    "alternative_explanations": [
+      "Die Ergebnisse könnten aufgrund der begrenzten Experimente und der fehlenden inferenziellen Analysen nicht vollständig interpretiert werden.",
+      "Die Vertragsbedingungen könnten die Ergebnisse beeinflussen, aber keine kausalen Tests wurden durchgeführt.",
+      "Die fehlende wissenschaftliche Evidenz und die begrenzten Experimente könnten die Interpretation der Ergebnisse beeinträchtigen."
+    ],
+    "reproducibility": {
+      "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+      "experiment_status": "completed",
+      "evidence_mode": "not_reported",
+      "git_dirty": "True",
+      "source_freeze_sha": "a68ecb595b37284426b47c80fe59a8d5440325504bbba8b097f3a458a9017573",
+      "configuration_path": "F:\\Brain-5D\\configs\\learning_experiment.yaml",
+      "configuration_sha256": "6f6cd457caf6216c286fee47ef03b529a0b496ed2dd53ee96b85d3b51e7b3a1c",
+      "experiment_manifest_digest": "9c6c0ec9e592b3f3ca4176eb82c040662974331cb44143a4fc73ae585e558071",
+      "data_ids": "NOT_AVAILABLE",
+      "evid_ids": "NOT_AVAILABLE",
+      "protocol_id": "NOT_AVAILABLE",
+      "protocol_digest": "a4a596ec15be0d420418ce5710ded759cd2d650c87e9df8088db25413e4bbee5",
+      "data_digest": "3227a7505b05857c4f0ab697c001a465cc6ea8374752b411b9f9332eb1a7246f",
+      "evid_digests": "[]"
+    },
+    "epistemic_status": {
+      "implementation": "NOT_DETERMINED",
+      "experiment_data": "PRESENT",
+      "registered_evidence": "ABSENT",
+      "ai_interpretation": "PRESENT",
+      "human_review": "PENDING",
+      "claim_support": "NOT_DETERMINED",
+      "rq_status": "IN_PROGRESS"
+    },
+    "ai_confidence": 0.0,
+    "missing_evidence": [
+      "Registrierte wissenschaftliche Beweise und inferenzielle Analysen.",
+      "Detaillierte statistische Berechnungen und Interpretationen der Formeln.",
+      "Validierung der Vertragsbedingungen und der Grenzen durch menschliche Überprüfung.",
+      "Dokumentation der Git-Provenance und der Datenherkunft.",
+      "Erklärung der rekursiven Feedback-Loops und der verwendeten Contracts und Rollback-Regeln."
+    ],
+    "recommended_follow_up": [
+      "Durchführung von inferenziellen Analysen, um statistische Signifikanz zu testen.",
+      "Erstellung von wissenschaftlichen Beweisen und Validierung der Ergebnisse durch menschliche Überprüfung.",
+      "Erweiterung der Experimente, um rekursive Feedback-Loops mit separaten Contracts und Rollback-Regeln zu testen.",
+      "Durchführung von kausalen Tests, um die Wirkung der bidirektionalen Gateway-Kopplung zu bewerten.",
+      "Erhöhung der Datenmenge und der Experimente, um die Robustheit der Ergebnisse zu prüfen."
+    ],
+    "conclusion": "Die vorliegenden Daten zeigen keine direkten kausalen Messungen oder statistischen Signifikanztests. Die Experimente sind auf die Ausführung von Vertragsbedingungen und die Prüfung von Grenzen beschränkt.",
+    "human_review": {
+      "status": "PENDING",
+      "reviewer": null,
+      "reviewed_at": null,
+      "disposition": null,
+      "comments": null
+    },
+    "aiar": {
+      "analyst": {
+        "analysis_id": "AIAR-scientific_analyst-20260914090605645243-726a5143",
+        "role": "scientific_analyst",
+        "model": {
+          "provider": "ollama",
+          "model_name": "qwen3:8b",
+          "model_digest": "not_reported",
+          "quantization": "not_reported",
+          "context_length": "unknown",
+          "temperature": 0.0,
+          "top_p": 0.9,
+          "seed": "not_reported",
+          "backend_version": "unknown"
+        },
+        "inputs": {
+          "experiment_id": "EXP-BATCH-20260914074039-88",
+          "packet_digest": "726a5143054e68f3a26ab8226c1dd7741068dc173e54257c1a9c9ec6c8a8eb9d"
+        },
+        "output": {
+          "assessment": "Die vorliegenden Daten zeigen keine direkten kausalen Messungen oder statistischen Signifikanztests. Die Experimente sind auf die Ausführung von Vertragsbedingungen und die Prüfung von Grenzen beschränkt.",
+          "observations": [
+            "Die Experimente wurden mit drei verschiedenen Seeds (101, 102, 103) durchgeführt.",
+            "Die Audit-Status aller Runs ist 'audit_complete' und keine Fehler wurden gemeldet.",
+            "Die Metriken zeigen keine direkten kausalen Tests oder wissenschaftlichen Beweise.",
+            "Die Vertragsbedingungen sind auf 'instrumentation_gap_audit' festgelegt und wurden vollständig ausgeführt.",
+            "Die statistischen Formeln sind definiert, aber keine Berechnungen wurden durchgeführt oder interpretiert.",
+            "Die Forschungsfragen und Hypothesen sind nicht getestet und bleiben offengelegt."
+          ],
+          "effect_direction": "Es wurden keine messbaren Effekte oder Richtungen der Wirkung identifiziert, da keine statistischen Tests durchgeführt wurden.",
+          "methodological_concerns": [
+            "Keine wissenschaftlichen Beweise oder inferenziellen Analysen wurden registriert.",
+            "Die Forschungsfragen und Hypothesen wurden nicht getestet.",
+            "Die Daten sind rein deskriptiv und keine kausalen Schlussfolgerungen können gezogen werden.",
+            "Die Git-Provenance ist unvollständig oder nicht verfügbar.",
+            "Es gibt keine rekursiven Feedback-Loops ohne separaten Contract und Rollback-Regeln.",
+            "Die Experimente sind auf die Ausführung von Vertragsbedingungen beschränkt und keine direkten kausalen Messungen wurden durchgeführt."
+          ],
+          "alternative_explanations": [
+            "Die Ergebnisse könnten aufgrund der begrenzten Experimente und der fehlenden inferenziellen Analysen nicht vollständig interpretiert werden.",
+            "Die Vertragsbedingungen könnten die Ergebnisse beeinflussen, aber keine kausalen Tests wurden durchgeführt.",
+            "Die fehlende wissenschaftliche Evidenz und die begrenzten Experimente könnten die Interpretation der Ergebnisse beeinträchtigen."
+          ],
+          "recommended_experiments": [
+            "Durchführung von inferenziellen Analysen, um statistische Signifikanz zu testen.",
+            "Erstellung von wissenschaftlichen Beweisen und Validierung der Ergebnisse durch menschliche Überprüfung.",
+            "Erweiterung der Experimente, um rekursive Feedback-Loops mit separaten Contracts und Rollback-Regeln zu testen.",
+            "Durchführung von kausalen Tests, um die Wirkung der bidirektionalen Gateway-Kopplung zu bewerten.",
+            "Erhöhung der Datenmenge und der Experimente, um die Robustheit der Ergebnisse zu prüfen."
+          ],
+          "requested_evidence": [
+            "Registrierte wissenschaftliche Beweise und inferenzielle Analysen.",
+            "Detaillierte statistische Berechnungen und Interpretationen der Formeln.",
+            "Validierung der Vertragsbedingungen und der Grenzen durch menschliche Überprüfung.",
+            "Dokumentation der Git-Provenance und der Datenherkunft.",
+            "Erklärung der rekursiven Feedback-Loops und der verwendeten Contracts und Rollback-Regeln."
+          ],
+          "confidence": 0.0
+        },
+        "provenance": {
+          "prompt_sha256": "aabd503790f048874f89ca7faaf0ae25cc2ae7e550ef3d97ba2b63c7504447ca",
+          "research_packet_digest": "726a5143054e68f3a26ab8226c1dd7741068dc173e54257c1a9c9ec6c8a8eb9d",
+          "prompt_protocol_version": "research_assistant_v1",
+          "assistant_schema_version": "1.2",
+          "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+          "model_self_confidence": "0.0"
+        },
+        "epistemic_status": {
+          "evidence": false,
+          "interpretation_only": true,
+          "human_review_required": true
+        },
+        "review": {
+          "status": "pending",
+          "reviewer": null,
+          "reviewed_at": null,
+          "disposition": null
+        },
+        "generated_at": "2026-09-14T09:06:05.645243+00:00"
+      },
+      "reviewer": {
+        "analysis_id": "AIAR-critical_reviewer-20260914090626570002-726a5143",
+        "role": "critical_reviewer",
+        "model": {
+          "provider": "ollama",
+          "model_name": "qwen3:8b",
+          "model_digest": "not_reported",
+          "quantization": "not_reported",
+          "context_length": "unknown",
+          "temperature": 0.0,
+          "top_p": 0.9,
+          "seed": "not_reported",
+          "backend_version": "unknown"
+        },
+        "inputs": {
+          "experiment_id": "EXP-BATCH-20260914074039-88",
+          "packet_digest": "726a5143054e68f3a26ab8226c1dd7741068dc173e54257c1a9c9ec6c8a8eb9d"
+        },
+        "output": {
+          "assessment": "Die vorliegenden Daten zeigen keine direkten kausalen Messungen oder statistischen Signifikanztests. Die Experimente sind auf die Ausführung von Vertragsbedingungen und die Prüfung von Grenzen beschränkt.",
+          "observations": [
+            "Die Experimente wurden mit drei verschiedenen Seeds (101, 102, 103) durchgeführt.",
+            "Die Audit-Status aller Runs ist 'audit_complete' und keine Fehler wurden gemeldet.",
+            "Die Metriken zeigen keine direkten kausalen Tests oder wissenschaftlichen Beweise.",
+            "Die Vertragsbedingungen sind auf 'instrumentation_gap_audit' festgelegt und wurden vollständig ausgeführt.",
+            "Die statistischen Formeln sind definiert, aber keine Berechnungen wurden durchgeführt oder interpretiert.",
+            "Die Forschungsfragen und Hypothesen sind nicht getestet und bleiben offengelegt."
+          ],
+          "effect_direction": "Es wurden keine messbaren Effekte oder Richtungen der Wirkung identifiziert, da keine statistischen Tests durchgeführt wurden.",
+          "methodological_concerns": [
+            "Keine wissenschaftlichen Beweise oder inferenziellen Analysen wurden registriert.",
+            "Die Forschungsfragen und Hypothesen wurden nicht getestet.",
+            "Die Daten sind rein deskriptiv und keine kausalen Schlussfolgerungen können gezogen werden.",
+            "Die Git-Provenance ist unvollständig oder nicht verfügbar.",
+            "Es gibt keine rekursiven Feedback-Loops ohne separaten Contract und Rollback-Regeln.",
+            "Die Experimente sind auf die Ausführung von Vertragsbedingungen beschränkt und keine direkten kausalen Messungen wurden durchgeführt."
+          ],
+          "alternative_explanations": [
+            "Die Ergebnisse könnten aufgrund der begrenzten Experimente und der fehlenden inferenziellen Analysen nicht vollständig interpretiert werden.",
+            "Die Vertragsbedingungen könnten die Ergebnisse beeinflussen, aber keine kausalen Tests wurden durchgeführt.",
+            "Die fehlende wissenschaftliche Evidenz und die begrenzten Experimente könnten die Interpretation der Ergebnisse beeinträchtigen."
+          ],
+          "recommended_experiments": [
+            "Durchführung von inferenziellen Analysen, um statistische Signifikanz zu testen.",
+            "Erstellung von wissenschaftlichen Beweisen und Validierung der Ergebnisse durch menschliche Überprüfung.",
+            "Erweiterung der Experimente, um rekursive Feedback-Loops mit separaten Contracts und Roll,back-Regeln zu testen.",
+            "Durchführung von kausalen Tests, um die Wirkung der bidirektionalen Gateway-Kopplung zu bewerten.",
+            "Erhöhung der Datenmenge und der Experimente, um die Robustheit der Ergebnisse zu prüfen."
+          ],
+          "requested_evidence": [
+            "Registrierte wissenschaftliche Beweise und inferenzielle Analysen.",
+            "Detaillierte statistische Berechnungen und Interpretationen der Formeln.",
+            "Validierung der Vertragsbedingungen und der Grenzen durch menschliche Überprüfung.",
+            "Dokumentation der Git-Provenance und der Datenherkunft.",
+            "Erklärung der rekursiven Feedback-Loops und der verwendeten Contracts und Rollback-Regeln."
+          ],
+          "confidence": 0.0
+        },
+        "provenance": {
+          "prompt_sha256": "6e3c29405143666e4d8150ad22af3c9959ce0d06ff97bce02a1b1ef4268b1029",
+          "research_packet_digest": "726a5143054e68f3a26ab8226c1dd7741068dc173e54257c1a9c9ec6c8a8eb9d",
+          "prompt_protocol_version": "research_assistant_v1",
+          "assistant_schema_version": "1.2",
+          "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+          "model_self_confidence": "0.0"
+        },
+        "epistemic_status": {
+          "evidence": false,
+          "interpretation_only": true,
+          "human_review_required": true
+        },
+        "review": {
+          "status": "pending",
+          "reviewer": null,
+          "reviewed_at": null,
+          "disposition": null
+        },
+        "generated_at": "2026-09-14T09:06:26.570002+00:00"
+      },
+      "writer": {
+        "analysis_id": "AIAR-scientific_writer-20260914090648660495-726a5143",
+        "role": "scientific_writer",
+        "model": {
+          "provider": "ollama",
+          "model_name": "qwen3:8b",
+          "model_digest": "not_reported",
+          "quantization": "not_reported",
+          "context_length": "unknown",
+          "temperature": 0.0,
+          "top_p": 0.9,
+          "seed": "not_reported",
+          "backend_version": "unknown"
+        },
+        "inputs": {
+          "experiment_id": "EXP-BATCH-20260914074039-88",
+          "packet_digest": "726a5143054e68f3a26ab8226c1dd7741068dc173e54257c1a9c9ec6c8a8eb9d"
+        },
+        "output": {
+          "assessment": "Die vorliegenden Daten zeigen keine direkten kausalen Messungen oder statistischen Signifikanztests. Die Experimente sind auf die Ausführung von Vertragsbedingungen und die Prüfung von Grenzen beschränkt.",
+          "observations": [
+            "Die Experimente wurden mit drei verschiedenen Seeds (101, 102, 103) durchgeführt.",
+            "Die Audit-Status aller Runs ist 'audit_complete' und keine Fehler wurden gemeldet.",
+            "Die Metriken zeigen keine direkten kausalen Tests oder wissenschaftlichen Beweise.",
+            "Die Vertragsbedingungen sind auf 'instrumentation_gap_audit' festgelegt und wurden vollständig ausgeführt.",
+            "Die statistischen Formeln sind definiert, aber keine Berechnungen wurden durchgeführt oder interpretiert.",
+            "Die Forschungsfragen und Hypothesen sind nicht getestet und bleiben offengelegt."
+          ],
+          "effect_direction": "Es wurden keine messbaren Effekte oder Richtungen der Wirkung identifiziert, da keine statistischen Tests durchgeführt wurden.",
+          "methodological_concerns": [
+            "Keine wissenschaftlichen Beweise oder inferenziellen Analysen wurden registriert.",
+            "Die Forschungsfragen und Hypothesen wurden nicht getestet.",
+            "Die Daten sind rein deskriptiv und keine kausalen Schlussfolgerungen können gezogen werden.",
+            "Die Git-Provenance ist unvollständig oder nicht verfügbar.",
+            "Es gibt keine rekursiven Feedback-Loops ohne separaten Contract und Rollback-Regeln.",
+            "Die Experimente sind auf die Ausführung von Vertragsbedingungen beschränkt und keine direkten kausalen Messungen wurden durchgeführt."
+          ],
+          "alternative_explanations": [
+            "Die Ergebnisse könnten aufgrund der begrenzten Experimente und der fehlenden inferenziellen Analysen nicht vollständig interpretiert werden.",
+            "Die Vertragsbedingungen könnten die Ergebnisse beeinflussen, aber keine kausalen Tests wurden durchgeführt.",
+            "Die fehlende wissenschaftliche Evidenz und die begrenzten Experimente könnten die Interpretation der Ergebnisse beeinträchtigen."
+          ],
+          "recommended_experiments": [
+            "Durchführung von inferenziellen Analysen, um statistische Signifikanz zu testen.",
+            "Erstellung von wissenschaftlichen Beweisen und Validierung der Ergebnisse durch menschliche Überprüfung.",
+            "Erweiterung der Experimente, um rekursive Feedback-Loops mit separaten Contracts und Rollback-Regeln zu testen.",
+            "Durchführung von kausalen Tests, um die Wirkung der bidirektionalen Gateway-Kopplung zu bewerten.",
+            "Erhöhung der Datenmenge und der Experimente, um die Robustheit der Ergebnisse zu prüfen."
+          ],
+          "requested_evidence": [
+            "Registrierte wissenschaftliche Beweise und inferenzielle Analysen.",
+            "Detaillierte statistische Berechnungen und Interpretationen der Formeln.",
+            "Validierung der Vertragsbedingungen und der Grenzen durch menschliche Überprüfung.",
+            "Dokumentation der Git-Provenance und der Datenherkunft.",
+            "Erklärung der rekursiven Feedback-Loops und der verwendeten Contracts und Rollback-Regeln."
+          ],
+          "confidence": 0.0,
+          "research_question": "Verbessert bidirektionale Gateway-Kopplung die Leistung gegenüber reiner Feedforward-Kopplung?"
+        },
+        "provenance": {
+          "prompt_sha256": "391941de5dd088ec496645363190d7d8a4a23d14b9dd41133e5954f6fa5633df",
+          "research_packet_digest": "726a5143054e68f3a26ab8226c1dd7741068dc173e54257c1a9c9ec6c8a8eb9d",
+          "prompt_protocol_version": "research_assistant_v1",
+          "assistant_schema_version": "1.2",
+          "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+          "model_self_confidence": "0.0"
+        },
+        "epistemic_status": {
+          "evidence": false,
+          "interpretation_only": true,
+          "human_review_required": true
+        },
+        "review": {
+          "status": "pending",
+          "reviewer": null,
+          "reviewed_at": null,
+          "disposition": null
+        },
+        "generated_at": "2026-09-14T09:06:48.660495+00:00"
+      }
+    }
+  },
+  "provenance": {
+    "research_packet_digest": "566382b44767d56d0aa35c3afbc419659775ae3c099515c8b3de479271ade790",
+    "source": {
+      "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+      "experiment_status": "completed",
+      "evidence_mode": "not_reported",
+      "git_dirty": "True",
+      "source_freeze_sha": "a68ecb595b37284426b47c80fe59a8d5440325504bbba8b097f3a458a9017573",
+      "configuration_path": "F:\\Brain-5D\\configs\\learning_experiment.yaml",
+      "configuration_sha256": "6f6cd457caf6216c286fee47ef03b529a0b496ed2dd53ee96b85d3b51e7b3a1c",
+      "experiment_manifest_digest": "9c6c0ec9e592b3f3ca4176eb82c040662974331cb44143a4fc73ae585e558071",
+      "data_ids": "NOT_AVAILABLE",
+      "evid_ids": "NOT_AVAILABLE",
+      "protocol_id": "NOT_AVAILABLE",
+      "protocol_digest": "a4a596ec15be0d420418ce5710ded759cd2d650c87e9df8088db25413e4bbee5",
+      "data_digest": "3227a7505b05857c4f0ab697c001a465cc6ea8374752b411b9f9332eb1a7246f",
+      "evid_digests": "[]"
+    }
+  },
+  "analysis_ids": [
+    "AIAR-scientific_analyst-20260914090605645243-726a5143",
+    "AIAR-critical_reviewer-20260914090626570002-726a5143",
+    "AIAR-scientific_writer-20260914090648660495-726a5143"
+  ],
+  "supersedes": null,
+  "content_digest": "09968e448bf1df21f09ce96ebdacd7275d461b20bc85b5f14b81d6923d5e1ff8",
+  "markdown_digest": "2fa73fff0332b1a78533347a9cb251a8e0385734f6b0ed395cf9bab2c894d4b6"
+}

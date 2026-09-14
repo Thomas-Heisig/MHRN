@@ -1,0 +1,499 @@
+{
+  "conditions": {
+    "learning_off": {
+      "metrics": {
+        "acquisition_reward_weight_updates": {
+          "max": 0.0,
+          "mean": 0.0,
+          "median": 0.0,
+          "min": 0.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "actual_test_episodes": {
+          "max": 40.0,
+          "mean": 40.0,
+          "median": 40.0,
+          "min": 40.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "evaluation_ticks_per_episode": {
+          "max": 12.0,
+          "mean": 12.0,
+          "median": 12.0,
+          "min": 12.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "false_positive_rate": {
+          "max": 0.0,
+          "mean": 0.0,
+          "median": 0.0,
+          "min": 0.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "initial_weight": {
+          "max": 0.07458133627728285,
+          "mean": 0.05587455838745313,
+          "median": 0.06024941521849152,
+          "min": 0.03765152848250282,
+          "n": 10,
+          "std": 0.012179940796312183
+        },
+        "presynaptic_count_per_class": {
+          "max": 52.0,
+          "mean": 47.8,
+          "median": 49.0,
+          "min": 44.0,
+          "n": 10,
+          "std": 3.026549190084311
+        },
+        "probe_trained_population_weight_delta": {
+          "max": 0.0,
+          "mean": 0.0,
+          "median": 0.0,
+          "min": 0.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "probe_trained_population_weight_mean": {
+          "max": 0.07458133627728285,
+          "mean": 0.05587455838745313,
+          "median": 0.06024941521849152,
+          "min": 0.03765152848250282,
+          "n": 10,
+          "std": 0.012179940796312183
+        },
+        "test_accuracy": {
+          "max": 0.5,
+          "mean": 0.5,
+          "median": 0.5,
+          "min": 0.5,
+          "n": 10,
+          "std": 0.0
+        },
+        "true_positive_rate": {
+          "max": 0.0,
+          "mean": 0.0,
+          "median": 0.0,
+          "min": 0.0,
+          "n": 10,
+          "std": 0.0
+        }
+      },
+      "run_count": 10,
+      "seeds": [
+        20001,
+        20002,
+        20003,
+        20004,
+        20005,
+        20006,
+        20007,
+        20008,
+        20009,
+        20010
+      ]
+    },
+    "learning_on": {
+      "metrics": {
+        "acquisition_reward_weight_updates": {
+          "max": 624.0,
+          "mean": 573.6,
+          "median": 588.0,
+          "min": 528.0,
+          "n": 10,
+          "std": 36.31859028101174
+        },
+        "actual_test_episodes": {
+          "max": 40.0,
+          "mean": 40.0,
+          "median": 40.0,
+          "min": 40.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "evaluation_ticks_per_episode": {
+          "max": 12.0,
+          "mean": 12.0,
+          "median": 12.0,
+          "min": 12.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "false_positive_rate": {
+          "max": 0.0,
+          "mean": 0.0,
+          "median": 0.0,
+          "min": 0.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "initial_weight": {
+          "max": 0.07458133627728285,
+          "mean": 0.05587455838745313,
+          "median": 0.06024941521849152,
+          "min": 0.03765152848250282,
+          "n": 10,
+          "std": 0.012179940796312183
+        },
+        "presynaptic_count_per_class": {
+          "max": 52.0,
+          "mean": 47.8,
+          "median": 49.0,
+          "min": 44.0,
+          "n": 10,
+          "std": 3.026549190084311
+        },
+        "probe_trained_population_weight_delta": {
+          "max": 0.46728046984284305,
+          "mean": 0.467280469842843,
+          "median": 0.467280469842843,
+          "min": 0.46728046984284294,
+          "n": 10,
+          "std": 4.2998752849492583e-17
+        },
+        "probe_trained_population_weight_mean": {
+          "max": 0.5418618061201258,
+          "mean": 0.5231550282302961,
+          "median": 0.5275298850613346,
+          "min": 0.5049319983253457,
+          "n": 10,
+          "std": 0.012179940796312193
+        },
+        "test_accuracy": {
+          "max": 1.0,
+          "mean": 0.7849999999999999,
+          "median": 0.85,
+          "min": 0.575,
+          "n": 10,
+          "std": 0.13883443376914822
+        },
+        "true_positive_rate": {
+          "max": 1.0,
+          "mean": 0.5700000000000001,
+          "median": 0.7,
+          "min": 0.15,
+          "n": 10,
+          "std": 0.2776688675382964
+        }
+      },
+      "run_count": 10,
+      "seeds": [
+        20001,
+        20002,
+        20003,
+        20004,
+        20005,
+        20006,
+        20007,
+        20008,
+        20009,
+        20010
+      ]
+    },
+    "sham_replay": {
+      "metrics": {
+        "acquisition_reward_weight_updates": {
+          "max": 0.0,
+          "mean": 0.0,
+          "median": 0.0,
+          "min": 0.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "actual_test_episodes": {
+          "max": 40.0,
+          "mean": 40.0,
+          "median": 40.0,
+          "min": 40.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "evaluation_ticks_per_episode": {
+          "max": 12.0,
+          "mean": 12.0,
+          "median": 12.0,
+          "min": 12.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "false_positive_rate": {
+          "max": 0.0,
+          "mean": 0.0,
+          "median": 0.0,
+          "min": 0.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "initial_weight": {
+          "max": 0.07458133627728285,
+          "mean": 0.05587455838745313,
+          "median": 0.06024941521849152,
+          "min": 0.03765152848250282,
+          "n": 10,
+          "std": 0.012179940796312183
+        },
+        "presynaptic_count_per_class": {
+          "max": 52.0,
+          "mean": 47.8,
+          "median": 49.0,
+          "min": 44.0,
+          "n": 10,
+          "std": 3.026549190084311
+        },
+        "probe_trained_population_weight_delta": {
+          "max": 0.0,
+          "mean": 0.0,
+          "median": 0.0,
+          "min": 0.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "probe_trained_population_weight_mean": {
+          "max": 0.07458133627728285,
+          "mean": 0.05587455838745313,
+          "median": 0.06024941521849152,
+          "min": 0.03765152848250282,
+          "n": 10,
+          "std": 0.012179940796312183
+        },
+        "test_accuracy": {
+          "max": 0.5,
+          "mean": 0.5,
+          "median": 0.5,
+          "min": 0.5,
+          "n": 10,
+          "std": 0.0
+        },
+        "true_positive_rate": {
+          "max": 0.0,
+          "mean": 0.0,
+          "median": 0.0,
+          "min": 0.0,
+          "n": 10,
+          "std": 0.0
+        }
+      },
+      "run_count": 10,
+      "seeds": [
+        20001,
+        20002,
+        20003,
+        20004,
+        20005,
+        20006,
+        20007,
+        20008,
+        20009,
+        20010
+      ]
+    },
+    "weight_reset": {
+      "metrics": {
+        "acquisition_reward_weight_updates": {
+          "max": 624.0,
+          "mean": 573.6,
+          "median": 588.0,
+          "min": 528.0,
+          "n": 10,
+          "std": 36.31859028101174
+        },
+        "actual_test_episodes": {
+          "max": 40.0,
+          "mean": 40.0,
+          "median": 40.0,
+          "min": 40.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "evaluation_ticks_per_episode": {
+          "max": 12.0,
+          "mean": 12.0,
+          "median": 12.0,
+          "min": 12.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "false_positive_rate": {
+          "max": 0.0,
+          "mean": 0.0,
+          "median": 0.0,
+          "min": 0.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "initial_weight": {
+          "max": 0.07458133627728285,
+          "mean": 0.05587455838745313,
+          "median": 0.06024941521849152,
+          "min": 0.03765152848250282,
+          "n": 10,
+          "std": 0.012179940796312183
+        },
+        "presynaptic_count_per_class": {
+          "max": 52.0,
+          "mean": 47.8,
+          "median": 49.0,
+          "min": 44.0,
+          "n": 10,
+          "std": 3.026549190084311
+        },
+        "probe_trained_population_weight_delta": {
+          "max": 0.0,
+          "mean": 0.0,
+          "median": 0.0,
+          "min": 0.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "probe_trained_population_weight_mean": {
+          "max": 0.07458133627728285,
+          "mean": 0.05587455838745313,
+          "median": 0.06024941521849152,
+          "min": 0.03765152848250282,
+          "n": 10,
+          "std": 0.012179940796312183
+        },
+        "test_accuracy": {
+          "max": 0.5,
+          "mean": 0.5,
+          "median": 0.5,
+          "min": 0.5,
+          "n": 10,
+          "std": 0.0
+        },
+        "true_positive_rate": {
+          "max": 0.0,
+          "mean": 0.0,
+          "median": 0.0,
+          "min": 0.0,
+          "n": 10,
+          "std": 0.0
+        }
+      },
+      "run_count": 10,
+      "seeds": [
+        20001,
+        20002,
+        20003,
+        20004,
+        20005,
+        20006,
+        20007,
+        20008,
+        20009,
+        20010
+      ]
+    },
+    "weight_shuffle": {
+      "metrics": {
+        "acquisition_reward_weight_updates": {
+          "max": 624.0,
+          "mean": 573.6,
+          "median": 588.0,
+          "min": 528.0,
+          "n": 10,
+          "std": 36.31859028101174
+        },
+        "actual_test_episodes": {
+          "max": 40.0,
+          "mean": 40.0,
+          "median": 40.0,
+          "min": 40.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "evaluation_ticks_per_episode": {
+          "max": 12.0,
+          "mean": 12.0,
+          "median": 12.0,
+          "min": 12.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "false_positive_rate": {
+          "max": 0.0,
+          "mean": 0.0,
+          "median": 0.0,
+          "min": 0.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "initial_weight": {
+          "max": 0.07458133627728285,
+          "mean": 0.05587455838745313,
+          "median": 0.06024941521849152,
+          "min": 0.03765152848250282,
+          "n": 10,
+          "std": 0.012179940796312183
+        },
+        "presynaptic_count_per_class": {
+          "max": 52.0,
+          "mean": 47.8,
+          "median": 49.0,
+          "min": 44.0,
+          "n": 10,
+          "std": 3.026549190084311
+        },
+        "probe_trained_population_weight_delta": {
+          "max": 0.26059872356620084,
+          "mean": 0.2338022515142831,
+          "median": 0.23571703700961188,
+          "min": 0.19116019220843572,
+          "n": 10,
+          "std": 0.020381849948045833
+        },
+        "probe_trained_population_weight_mean": {
+          "max": 0.3227641992463745,
+          "mean": 0.2896768099017363,
+          "median": 0.2878979970769919,
+          "min": 0.2657415284857186,
+          "n": 10,
+          "std": 0.01700673005176698
+        },
+        "test_accuracy": {
+          "max": 0.5,
+          "mean": 0.5,
+          "median": 0.5,
+          "min": 0.5,
+          "n": 10,
+          "std": 0.0
+        },
+        "true_positive_rate": {
+          "max": 0.0,
+          "mean": 0.0,
+          "median": 0.0,
+          "min": 0.0,
+          "n": 10,
+          "std": 0.0
+        }
+      },
+      "run_count": 10,
+      "seeds": [
+        20001,
+        20002,
+        20003,
+        20004,
+        20005,
+        20006,
+        20007,
+        20008,
+        20009,
+        20010
+      ]
+    }
+  },
+  "formulas": {
+    "difference": "Delta_x = mean(x_B) - mean(x_A)",
+    "inter_spike_interval": "ISI_i = t_(i+1) - t_i",
+    "mean": "mean(x) = (1/n) * sum_i x_i",
+    "population_std": "sigma = sqrt((1/n) * sum_i (x_i - mean(x))^2)",
+    "ratio": "R_x = mean(x_B) / mean(x_A), defined only when mean(x_A) != 0"
+  },
+  "generated_by": "deterministic_statistics_engine",
+  "run_count": 50,
+  "schema_version": "2.0"
+}

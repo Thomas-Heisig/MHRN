@@ -1,0 +1,572 @@
+{
+  "report_id": "AIRR-2026-0001",
+  "experiment_id": "EXP-BATCH-20260914074039-12",
+  "research_question_id": "RQ-STDP-002",
+  "hypothesis_ids": [
+    "H-STDP-002-A"
+  ],
+  "claim_ids": [],
+  "generated_at": "2026-09-14T11:22:43.717211+00:00",
+  "report_schema_version": "1.0",
+  "report_protocol_version": "PROTOCOL-AIRR-001",
+  "generated_by": "artificial_intelligence",
+  "ai_generated": true,
+  "scientific_evidence": false,
+  "human_review_required": true,
+  "status": "review_pending",
+  "content": {
+    "identification": {
+      "experiment": "EXP-BATCH-20260914074039-12",
+      "research_question": "Bleiben STDP-getriebene Gewichte unter Dauerstimulation stabil oder oszillieren/explodieren sie?",
+      "hypotheses": [
+        {
+          "id": "H-STDP-002-A",
+          "research_question": "RQ-STDP-002",
+          "hypothesis": "STDP-getriebene Gewichte konvergieren unter Dauerstimulation zu einer stabilen Verteilung.",
+          "status": "untested",
+          "evidence": [],
+          "created": "2026-08-23",
+          "updated": "2026-08-23"
+        }
+      ],
+      "date": "2026-09-14",
+      "source_sha": "8e096931a779b2d2eb4d010eb20154150b07bbf2"
+    },
+    "executive_summary": "Die experimentellen Ergebnisse zeigen keine direkte kausale Messung, da der Runner lediglich die Vertragsbedingungen für die Lücken/ Grenzen-Prüfung ausführt und bewahrt. Die Stabilität der STDP-gesteuerten Gewichte unter Dauerstimulation wurde nicht direkt getestet.",
+    "research_question": {
+      "id": "RQ-STDP-002",
+      "domain": "STDP",
+      "question": "Bleiben STDP-getriebene Gewichte unter Dauerstimulation stabil oder oszillieren/explodieren sie?",
+      "relevance": "Stabilität ist Voraussetzung für längerfristiges Lernen.",
+      "literature": [
+        "SRC-SONG-ABBOTT-2000"
+      ],
+      "hypotheses": [
+        "H-STDP-002-A"
+      ],
+      "evidence": [],
+      "status": "open",
+      "answer": {
+        "current": null,
+        "confidence": "none",
+        "limitations": null
+      },
+      "created": "2026-08-23",
+      "updated": "2026-08-23"
+    },
+    "experimental_design": {
+      "experiment_id": "EXP-BATCH-20260914074039-12",
+      "research_question": "RQ-STDP-002",
+      "hypothesis": "H-STDP-002-A",
+      "title": "Experiment workflow: stdp_long_stability_boundary_v1",
+      "conditions": "Registered protocol conditions",
+      "ticks": 1000,
+      "ticks_contract": "minimum requested observation window",
+      "seeds": [
+        101,
+        102,
+        103
+      ],
+      "protocol": "stdp_long_stability_boundary_v1",
+      "resolved_runner": "run_boundary_audit",
+      "tick_validation": {
+        "status": "NOT_APPLICABLE",
+        "mode": "protocol_defined_internal_trials",
+        "requested_ticks": 1000
+      },
+      "notes": "",
+      "execution": "registered experiment_suite runner",
+      "assistant_policy": "AI is post-hoc interpretation only.",
+      "epistemic_layers": {
+        "ui_state": "operator/dashboard progress only; not a scientific result",
+        "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+        "evid": "not_created; requires semantic validation, clean freeze and human review",
+        "interpretation": "post-hoc AI or human interpretation; never execution input"
+      }
+    },
+    "data_basis": {
+      "data": {
+        "ai_input_policy": "compact_only_raw_on_explicit_deterministic_extract",
+        "generated_by": "deterministic_research_data_v2",
+        "limits": {
+          "ai_packet_max_bytes": 1000000,
+          "run_summary_max_bytes": 5000000,
+          "sequence_preview_items": 16
+        },
+        "raw_index": {
+          "path": "DATA/runs_index.json",
+          "run_count": 3,
+          "sha256": "2e60d5068329eb862420522a9632d3a2aa6cc10d92cc8d7dd5116a66f6a4ed4d"
+        },
+        "run_count": 3,
+        "run_preview": [
+          {
+            "_raw_artifact": {
+              "format": "json.gz",
+              "path": "DATA/raw/run-0000-instrumentation_gap_audit-seed-101.json.gz",
+              "sha256": "cc8767b7bfb3bebb3abbb5a31a3a2648fad12b63cbafad558c5f810dee76e836",
+              "size_bytes": 380,
+              "uncompressed_bytes": 481
+            },
+            "condition": "instrumentation_gap_audit",
+            "experiment_id": "EXP-BATCH-20260914074039-12",
+            "metrics": {
+              "audit_complete": true,
+              "automatic_evidence_promotion": false,
+              "claim_boundary": "No direct causal measurement is performed by this runner. Completion means only that the registered gap/boundary contract was executed and preserved for review.",
+              "direct_test_of_hypothesis": false,
+              "scientific_evidence": false
+            },
+            "runtime_error": null,
+            "seed": 101,
+            "state_digest_after": "",
+            "state_digest_before": ""
+          },
+          {
+            "_raw_artifact": {
+              "format": "json.gz",
+              "path": "DATA/raw/run-0001-instrumentation_gap_audit-seed-102.json.gz",
+              "sha256": "1f7f196d370743bb8a1e4a5f5810472c213391dbe874be948eb8929ebf2a4178",
+              "size_bytes": 380,
+              "uncompressed_bytes": 481
+            },
+            "condition": "instrumentation_gap_audit",
+            "experiment_id": "EXP-BATCH-20260914074039-12",
+            "metrics": {
+              "audit_complete": true,
+              "automatic_evidence_promotion": false,
+              "claim_boundary": "No direct causal measurement is performed by this runner. Completion means only that the registered gap/boundary contract was executed and preserved for review.",
+              "direct_test_of_hypothesis": false,
+              "scientific_evidence": false
+            },
+            "runtime_error": null,
+            "seed": 102,
+            "state_digest_after": "",
+            "state_digest_before": ""
+          },
+          {
+            "_raw_artifact": {
+              "format": "json.gz",
+              "path": "DATA/raw/run-0002-instrumentation_gap_audit-seed-103.json.gz",
+              "sha256": "8569f25474992df5ec61819f1f10b2a1c6b27ab7f4dc81f1856c98d450711099",
+              "size_bytes": 380,
+              "uncompressed_bytes": 481
+            },
+            "condition": "instrumentation_gap_audit",
+            "experiment_id": "EXP-BATCH-20260914074039-12",
+            "metrics": {
+              "audit_complete": true,
+              "automatic_evidence_promotion": false,
+              "claim_boundary": "No direct causal measurement is performed by this runner. Completion means only that the registered gap/boundary contract was executed and preserved for review.",
+              "direct_test_of_hypothesis": false,
+              "scientific_evidence": false
+            },
+            "runtime_error": null,
+            "seed": 103,
+            "state_digest_after": "",
+            "state_digest_before": ""
+          }
+        ],
+        "schema_version": "2.0",
+        "statistics": {
+          "conditions": {
+            "instrumentation_gap_audit": {
+              "metrics": {},
+              "run_count": 3,
+              "seeds": [
+                101,
+                102,
+                103
+              ]
+            }
+          },
+          "formulas": {
+            "difference": "Delta_x = mean(x_B) - mean(x_A)",
+            "inter_spike_interval": "ISI_i = t_(i+1) - t_i",
+            "mean": "mean(x) = (1/n) * sum_i x_i",
+            "population_std": "sigma = sqrt((1/n) * sum_i (x_i - mean(x))^2)",
+            "ratio": "R_x = mean(x_B) / mean(x_A), defined only when mean(x_A) != 0"
+          },
+          "generated_by": "deterministic_statistics_engine",
+          "run_count": 3,
+          "schema_version": "2.0"
+        }
+      },
+      "evid": [],
+      "literature": [
+        {
+          "source_id": "SRC-SONG-ABBOTT-2000",
+          "authors": [
+            "Sen Song",
+            "Kenneth D. Miller",
+            "Larry F. Abbott"
+          ],
+          "title": "Competitive Hebbian learning through spike-timing-dependent synaptic plasticity",
+          "year": 2000,
+          "journal": "Nature Neuroscience",
+          "doi": "10.1038/78829",
+          "topic": [
+            "stdp",
+            "plasticity"
+          ],
+          "claims": [
+            "STDP can produce competitive synaptic modification."
+          ],
+          "brain5d_questions": [
+            "RQ-SNN-004",
+            "RQ-SNN-005",
+            "RQ-STDP-001",
+            "RQ-STDP-002"
+          ],
+          "brain5d_relevance": "Fundamentale STDP-Referenz für Timing-abhängige Plastizität."
+        }
+      ]
+    },
+    "quantitative_results": {
+      "conditions": {
+        "instrumentation_gap_audit": {
+          "metrics": {},
+          "run_count": 3,
+          "seeds": [
+            101,
+            102,
+            103
+          ]
+        }
+      },
+      "formulas": {
+        "difference": "Delta_x = mean(x_B) - mean(x_A)",
+        "inter_spike_interval": "ISI_i = t_(i+1) - t_i",
+        "mean": "mean(x) = (1/n) * sum_i x_i",
+        "population_std": "sigma = sqrt((1/n) * sum_i (x_i - mean(x))^2)",
+        "ratio": "R_x = mean(x_B) / mean(x_A), defined only when mean(x_A) != 0"
+      },
+      "generated_by": "deterministic_statistics_engine",
+      "run_count": 3,
+      "schema_version": "2.0"
+    },
+    "observations": [
+      "Die Experimente wurden mit drei verschiedenen Seeds (101, 102, 103) durchgeführt.",
+      "Die Metriken der Runs zeigen, dass die Audit-Prüfung abgeschlossen wurde, aber keine direkte Hypothesentests durchgeführt wurden.",
+      "Die statistischen Formeln sind definiert, aber keine numerischen Ergebnisse sind vorhanden, um Unterschiede oder Verhältnisse zu berechnen."
+    ],
+    "interpretation": {
+      "assessment": "Die experimentellen Ergebnisse zeigen keine direkte kausale Messung, da der Runner lediglich die Vertragsbedingungen für die Lücken/ Grenzen-Prüfung ausführt und bewahrt. Die Stabilität der STDP-gesteuerten Gewichte unter Dauerstimulation wurde nicht direkt getestet.",
+      "observations": [
+        "Die Experimente wurden mit drei verschiedenen Seeds (101, 102, 103) durchgeführt.",
+        "Die Metriken der Runs zeigen, dass die Audit-Prüfung abgeschlossen wurde, aber keine direkte Hypothesentests durchgeführt wurden.",
+        "Die statistischen Formeln sind definiert, aber keine numerischen Ergebnisse sind vorhanden, um Unterschiede oder Verhältnisse zu berechnen."
+      ],
+      "effect_direction": "Es gibt keine Beobachtung von Effektrichtung, da keine kausale Analyse durchgeführt wurde.",
+      "methodological_concerns": [
+        "Keine registrierte wissenschaftliche Evidenz ist mit diesem Experiment verknüpft.",
+        "Die Git-Provenance ist schmutzig oder nicht verfügbar.",
+        "Die Experimente sind auf die Vertragsbedingungen für die Lücken/ Grenzen-Prüfung beschränkt, keine direkte Hypothesentests wurden durchgeführt."
+      ],
+      "alternative_explanations": [
+        "Die Stabilität der Gewichte unter Dauerstimulation kann auf andere Faktoren wie Netzwerkarchitektur oder externen Störungen zurückzuführen sein.",
+        "Die fehlende direkte kausale Messung bedeutet, dass andere Faktoren die Ergebnisse beeinflussen könnten, die nicht im Experiment berücksichtigt wurden."
+      ],
+      "recommended_experiments": [
+        "Ein Experiment, das direkt die Stabilität der Gewichte unter Dauerstimulation testet, sollte durchgeführt werden.",
+        "Ein Experiment, das die Auswirkungen von Netzwerkarchitektur oder externen Störungen auf die Gewichtsstabilität untersucht.",
+        "Ein Experiment, das die langfristige Stabilität der Gewichte unter verschiedenen Stimulationsbedingungen vergleicht."
+      ],
+      "requested_evidence": [
+        "Registrierte wissenschaftliche Evidenz, die die Stabilität der STDP-gesteuerten Gewichte unter Dauerstimulation belegt.",
+        "Detaillierte statistische Analysen der Runs, die numerische Ergebnisse für Unterschiede oder Verhältnisse bereitstellen.",
+        "Evidenz für die Auswirkungen von Netzwerkarchitektur oder externen Störungen auf die Gewichtsstabilität."
+      ],
+      "confidence": 0.0,
+      "research_question": "Bleiben STDP-getriebene Gewichte unter Dauerstimulation stabil oder oszillieren/explodieren sie?"
+    },
+    "methodological_critique": [
+      "Keine registrierte wissenschaftliche Evidenz ist mit diesem Experiment verknüpft.",
+      "Die Git-Provenance ist schmutzig oder nicht verfügbar.",
+      "Die Experimente sind auf die Vertragsbedingungen für die Lücken/ Grenzen-Prüfung beschränkt, keine direkte Hypothesentests wurden durchgeführt."
+    ],
+    "alternative_explanations": [
+      "Die Stabilität der Gewichte unter Dauerstimulation kann auf andere Faktoren wie Netzwerkarchitektur oder externen Störungen zurückzuführen sein.",
+      "Die fehlende direkte kausale Messung bedeutet, dass andere Faktoren die Ergebnisse beeinflussen könnten, die nicht im Experiment berücksichtigt wurden."
+    ],
+    "reproducibility": {
+      "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+      "experiment_status": "completed",
+      "evidence_mode": "not_reported",
+      "git_dirty": "True",
+      "source_freeze_sha": "b6c91c3d463bbab8591dd3e353ad2ef984e5e273b252263419b8c20bcdc5ab36",
+      "configuration_path": "F:\\Brain-5D\\configs\\learning_experiment.yaml",
+      "configuration_sha256": "6f6cd457caf6216c286fee47ef03b529a0b496ed2dd53ee96b85d3b51e7b3a1c",
+      "experiment_manifest_digest": "1f794f8ed705cf70b11595bc79bc7f28b493987fb12261659c0a072e44591f9f",
+      "data_ids": "NOT_AVAILABLE",
+      "evid_ids": "NOT_AVAILABLE",
+      "protocol_id": "NOT_AVAILABLE",
+      "protocol_digest": "2dfba61e69ce636c378f72411a7b86d7fa509184d33fcbbdb86341a9d7bcd36c",
+      "data_digest": "4078f74c6c76d1d66813455d5c21656081e289cefef11a4b07416c8be0fd2c8a",
+      "evid_digests": "[]"
+    },
+    "epistemic_status": {
+      "implementation": "NOT_DETERMINED",
+      "experiment_data": "PRESENT",
+      "registered_evidence": "ABSENT",
+      "ai_interpretation": "PRESENT",
+      "human_review": "PENDING",
+      "claim_support": "NOT_DETERMINED",
+      "rq_status": "IN_PROGRESS"
+    },
+    "ai_confidence": 0.0,
+    "missing_evidence": [
+      "Registrierte wissenschaftliche Evidenz, die die Stabilität der STDP-gesteuerten Gewichte unter Dauerstimulation belegt.",
+      "Detaillierte statistische Analysen der Runs, die numerische Ergebnisse für Unterschiede oder Verhältnisse bereitstellen.",
+      "Evidenz für die Auswirkungen von Netzwerkarchitektur oder externen Störungen auf die Gewichtsstabilität."
+    ],
+    "recommended_follow_up": [
+      "Ein Experiment, das direkt die Stabilität der Gewichte unter Dauerstimulation testet, sollte durchgeführt werden.",
+      "Ein Experiment, das die Auswirkungen von Netzwerkarchitektur oder externen Störungen auf die Gewichtsstabilität untersucht.",
+      "Ein Experiment, das die langfristige Stabilität der Gewichte unter verschiedenen Stimulationsbedingungen vergleicht."
+    ],
+    "conclusion": "Die experimentellen Ergebnisse zeigen keine direkte kausale Messung, da der Runner lediglich die Vertragsbedingungen für die Lücken/ Grenzen-Prüfung ausführt und bewahrt. Die Stabilität der STDP-gesteuerten Gewichte unter Dauerstimulation wurde nicht direkt getestet.",
+    "human_review": {
+      "status": "PENDING",
+      "reviewer": null,
+      "reviewed_at": null,
+      "disposition": null,
+      "comments": null
+    },
+    "aiar": {
+      "analyst": {
+        "analysis_id": "AIAR-scientific_analyst-20260914080022713727-8c9c9048",
+        "role": "scientific_analyst",
+        "model": {
+          "provider": "ollama",
+          "model_name": "qwen3:8b",
+          "model_digest": "not_reported",
+          "quantization": "not_reported",
+          "context_length": "unknown",
+          "temperature": 0.0,
+          "top_p": 0.9,
+          "seed": "not_reported",
+          "backend_version": "unknown"
+        },
+        "inputs": {
+          "experiment_id": "EXP-BATCH-20260914074039-12",
+          "packet_digest": "8c9c9048883ca64e1cf272cd4f83e831bacad3f46bdcc01c4bde9969f76c8b01"
+        },
+        "output": {
+          "assessment": "Die experimentellen Ergebnisse zeigen keine direkte kausale Messung, da der Runner lediglich die Vertragsbedingungen für die Lücken/ Grenzen-Prüfung ausführt und bewahrt. Die Stabilität der STDP-gesteuerten Gewichte unter Dauerstimulation wurde nicht direkt getestet.",
+          "observations": [
+            "Die Experimente wurden mit drei verschiedenen Seeds (101, 102, 103) durchgeführt.",
+            "Die Metriken der Runs zeigen, dass die Audit-Prüfung abgeschlossen wurde, aber keine direkte Hypothesentests durchgeführt wurden.",
+            "Die statistischen Formeln sind definiert, aber keine numerischen Ergebnisse sind vorhanden, um Unterschiede oder Verhältnisse zu berechnen."
+          ],
+          "effect_direction": "Es gibt keine Beobachtung von Effektrichtung, da keine kausale Analyse durchgeführt wurde.",
+          "methodological_concerns": [
+            "Keine registrierte wissenschaftliche Evidenz ist mit diesem Experiment verknüpft.",
+            "Die Git-Provenance ist schmutzig oder nicht verfügbar.",
+            "Die Experimente sind auf die Vertragsbedingungen für die Lücken/ Grenzen-Prüfung beschränkt, keine direkte Hypothesentests wurden durchgeführt."
+          ],
+          "alternative_explanations": [
+            "Die Stabilität der Gewichte unter Dauerstimulation kann auf andere Faktoren wie Netzwerkarchitektur oder externen Störungen zurückzuführen sein.",
+            "Die fehlende direkte kausale Messung bedeutet, dass andere Faktoren die Ergebnisse beeinflussen könnten, die nicht im Experiment berücksichtigt wurden."
+          ],
+          "recommended_experiments": [
+            "Ein Experiment, das direkt die Stabilität der Gewichte unter Dauerstimulation testet, sollte durchgeführt werden.",
+            "Ein Experiment, das die Auswirkungen von Netzwerkarchitektur oder externen Störungen auf die Gewichtsstabilität untersucht.",
+            "Ein Experiment, das die langfristige Stabilität der Gewichte unter verschiedenen Stimulationsbedingungen vergleicht."
+          ],
+          "requested_evidence": [
+            "Registrierte wissenschaftliche Evidenz, die die Stabilität der STDP-gesteuerten Gewichte unter Dauerstimulation belegt.",
+            "Detaillierte statistische Analysen der Runs, die numerische Ergebnisse für Unterschiede oder Verhältnisse bereitstellen.",
+            "Evidenz für die Auswirkungen von Netzwerkarchitektur oder externen Störungen auf die Gewichtsstabilität."
+          ],
+          "confidence": 0.0
+        },
+        "provenance": {
+          "prompt_sha256": "f9460c2ec8e514733eab24f2d6afd041943ee5b6cac2e145f1ef4e973ee39561",
+          "research_packet_digest": "8c9c9048883ca64e1cf272cd4f83e831bacad3f46bdcc01c4bde9969f76c8b01",
+          "prompt_protocol_version": "research_assistant_v1",
+          "assistant_schema_version": "1.2",
+          "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+          "model_self_confidence": "0.0"
+        },
+        "epistemic_status": {
+          "evidence": false,
+          "interpretation_only": true,
+          "human_review_required": true
+        },
+        "review": {
+          "status": "pending",
+          "reviewer": null,
+          "reviewed_at": null,
+          "disposition": null
+        },
+        "generated_at": "2026-09-14T08:00:22.713727+00:00"
+      },
+      "reviewer": {
+        "analysis_id": "AIAR-critical_reviewer-20260914080041505758-8c9c9048",
+        "role": "critical_reviewer",
+        "model": {
+          "provider": "ollama",
+          "model_name": "qwen3:8b",
+          "model_digest": "not_reported",
+          "quantization": "not_reported",
+          "context_length": "unknown",
+          "temperature": 0.0,
+          "top_p": 0.9,
+          "seed": "not_reported",
+          "backend_version": "unknown"
+        },
+        "inputs": {
+          "experiment_id": "EXP-BATCH-20260914074039-12",
+          "packet_digest": "8c9c9048883ca64e1cf272cd4f83e831bacad3f46bdcc01c4bde9969f76c8b01"
+        },
+        "output": {
+          "assessment": "Die experimentellen Ergebnisse zeigen keine direkte kausale Messung, da der Runner lediglich die Vertragsbedingungen für die Lücken/ Grenzen-Prüfung ausführt und bewahrt. Die Stabilität der STDP-gesteuerten Gewichte unter Dauerstimulation wurde nicht direkt getestet.",
+          "observations": [
+            "Die Experimente wurden mit drei verschiedenen Seeds (101, 102, 103) durchgeführt.",
+            "Die Metriken der Runs zeigen, dass die Audit-Prüfung abgeschlossen wurde, aber keine direkte Hypothesentests durchgeführt wurden.",
+            "Die statistischen Formeln sind definiert, aber keine numerischen Ergebnisse sind vorhanden, um Unterschiede oder Verhältnisse zu berechnen."
+          ],
+          "effect_direction": "Es gibt keine Beobachtung von Effektrichtung, da keine kausale Analyse durchgeführt wurde.",
+          "methodological_concerns": [
+            "Keine registrierte wissenschaftliche Evidenz ist mit diesem Experiment verknüpft.",
+            "Die Git-Provenance ist schmutzig oder nicht verfügbar.",
+            "Die Experimente sind auf die Vertragsbedingungen für die Lücken/ Grenzen-Prüfung beschränkt, keine direkte Hypothesentests wurden durchgeführt."
+          ],
+          "alternative_explanations": [
+            "Die Stabilität der Gewichte unter Dauerstimulation kann auf andere Faktoren wie Netzwerkarchitektur oder externen Störungen zurückzuführen sein.",
+            "Die fehlende direkte kausale Messung bedeutet, dass andere Faktoren die Ergebnisse beeinflussen könnten, die nicht im Experiment berücksichtigt wurden."
+          ],
+          "recommended_experiments": [
+            "Ein Experiment, das direkt die Stabilität der Gewichte unter Dauerstimulation testet, sollte durchgeführt werden.",
+            "Ein Experiment, das die Auswirkungen von Netzwerkarchitektur oder externen Störungen auf die Gewichtsstabilität untersucht.",
+            "Ein Experiment, das die langfristige Stabilität der Gewichte unter verschiedenen Stimulationsbedingungen vergleicht."
+          ],
+          "requested_evidence": [
+            "Registrierte wissenschaftliche Evidenz, die die Stabilität der STDP-gesteuerten Gewichte unter Dauerstimulation belegt.",
+            "Detaillierte statistische Analysen der Runs, die numerische Ergebnisse für Unterschiede oder Verhältnisse bereitstellen.",
+            "Evidenz für die Auswirkungen von Netzwerkarchitektur oder externen Störungen auf die Gewichtsstabilität."
+          ],
+          "confidence": 0.0,
+          "research_question": "Bleiben STDP-getriebene Gewichte unter Dauerstimulation stabil oder oszillieren/explodieren sie?"
+        },
+        "provenance": {
+          "prompt_sha256": "4361bfc3dbcffba69c8fd481c7403983d6d48e0652e4a49c58becd1ff7ae3d72",
+          "research_packet_digest": "8c9c9048883ca64e1cf272cd4f83e831bacad3f46bdcc01c4bde9969f76c8b01",
+          "prompt_protocol_version": "research_assistant_v1",
+          "assistant_schema_version": "1.2",
+          "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+          "model_self_confidence": "0.0"
+        },
+        "epistemic_status": {
+          "evidence": false,
+          "interpretation_only": true,
+          "human_review_required": true
+        },
+        "review": {
+          "status": "pending",
+          "reviewer": null,
+          "reviewed_at": null,
+          "disposition": null
+        },
+        "generated_at": "2026-09-14T08:00:41.505758+00:00"
+      },
+      "writer": {
+        "analysis_id": "AIAR-scientific_writer-20260914080101496567-8c9c9048",
+        "role": "scientific_writer",
+        "model": {
+          "provider": "ollama",
+          "model_name": "qwen3:8b",
+          "model_digest": "not_reported",
+          "quantization": "not_reported",
+          "context_length": "unknown",
+          "temperature": 0.0,
+          "top_p": 0.9,
+          "seed": "not_reported",
+          "backend_version": "unknown"
+        },
+        "inputs": {
+          "experiment_id": "EXP-BATCH-20260914074039-12",
+          "packet_digest": "8c9c9048883ca64e1cf272cd4f83e831bacad3f46bdcc01c4bde9969f76c8b01"
+        },
+        "output": {
+          "assessment": "Die experimentellen Ergebnisse zeigen keine direkte kausale Messung, da der Runner lediglich die Vertragsbedingungen für die Lücken/ Grenzen-Prüfung ausführt und bewahrt. Die Stabilität der STDP-gesteuerten Gewichte unter Dauerstimulation wurde nicht direkt getestet.",
+          "observations": [
+            "Die Experimente wurden mit drei verschiedenen Seeds (101, 102, 103) durchgeführt.",
+            "Die Metriken der Runs zeigen, dass die Audit-Prüfung abgeschlossen wurde, aber keine direkte Hypothesentests durchgeführt wurden.",
+            "Die statistischen Formeln sind definiert, aber keine numerischen Ergebnisse sind vorhanden, um Unterschiede oder Verhältnisse zu berechnen."
+          ],
+          "effect_direction": "Es gibt keine Beobachtung von Effektrichtung, da keine kausale Analyse durchgeführt wurde.",
+          "methodological_concerns": [
+            "Keine registrierte wissenschaftliche Evidenz ist mit diesem Experiment verknüpft.",
+            "Die Git-Provenance ist schmutzig oder nicht verfügbar.",
+            "Die Experimente sind auf die Vertragsbedingungen für die Lücken/ Grenzen-Prüfung beschränkt, keine direkte Hypothesentests wurden durchgeführt."
+          ],
+          "alternative_explanations": [
+            "Die Stabilität der Gewichte unter Dauerstimulation kann auf andere Faktoren wie Netzwerkarchitektur oder externen Störungen zurückzuführen sein.",
+            "Die fehlende direkte kausale Messung bedeutet, dass andere Faktoren die Ergebnisse beeinflussen könnten, die nicht im Experiment berücksichtigt wurden."
+          ],
+          "recommended_experiments": [
+            "Ein Experiment, das direkt die Stabilität der Gewichte unter Dauerstimulation testet, sollte durchgeführt werden.",
+            "Ein Experiment, das die Auswirkungen von Netzwerkarchitektur oder externen Störungen auf die Gewichtsstabilität untersucht.",
+            "Ein Experiment, das die langfristige Stabilität der Gewichte unter verschiedenen Stimulationsbedingungen vergleicht."
+          ],
+          "requested_evidence": [
+            "Registrierte wissenschaftliche Evidenz, die die Stabilität der STDP-gesteuerten Gewichte unter Dauerstimulation belegt.",
+            "Detaillierte statistische Analysen der Runs, die numerische Ergebnisse für Unterschiede oder Verhältnisse bereitstellen.",
+            "Evidenz für die Auswirkungen von Netzwerkarchitektur oder externen Störungen auf die Gewichtsstabilität."
+          ],
+          "confidence": 0.0,
+          "research_question": "Bleiben STDP-getriebene Gewichte unter Dauerstimulation stabil oder oszillieren/explodieren sie?"
+        },
+        "provenance": {
+          "prompt_sha256": "1f1bd4c0ce46a4648932ff05d58869f68b1f4c81480b99d775a39ef7be7db68d",
+          "research_packet_digest": "8c9c9048883ca64e1cf272cd4f83e831bacad3f46bdcc01c4bde9969f76c8b01",
+          "prompt_protocol_version": "research_assistant_v1",
+          "assistant_schema_version": "1.2",
+          "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+          "model_self_confidence": "0.0"
+        },
+        "epistemic_status": {
+          "evidence": false,
+          "interpretation_only": true,
+          "human_review_required": true
+        },
+        "review": {
+          "status": "pending",
+          "reviewer": null,
+          "reviewed_at": null,
+          "disposition": null
+        },
+        "generated_at": "2026-09-14T08:01:01.496567+00:00"
+      }
+    }
+  },
+  "provenance": {
+    "research_packet_digest": "e623fd53079d349ab995068b3d2060722ba81e4fb79e4332205601e440bd0835",
+    "source": {
+      "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+      "experiment_status": "completed",
+      "evidence_mode": "not_reported",
+      "git_dirty": "True",
+      "source_freeze_sha": "b6c91c3d463bbab8591dd3e353ad2ef984e5e273b252263419b8c20bcdc5ab36",
+      "configuration_path": "F:\\Brain-5D\\configs\\learning_experiment.yaml",
+      "configuration_sha256": "6f6cd457caf6216c286fee47ef03b529a0b496ed2dd53ee96b85d3b51e7b3a1c",
+      "experiment_manifest_digest": "1f794f8ed705cf70b11595bc79bc7f28b493987fb12261659c0a072e44591f9f",
+      "data_ids": "NOT_AVAILABLE",
+      "evid_ids": "NOT_AVAILABLE",
+      "protocol_id": "NOT_AVAILABLE",
+      "protocol_digest": "2dfba61e69ce636c378f72411a7b86d7fa509184d33fcbbdb86341a9d7bcd36c",
+      "data_digest": "4078f74c6c76d1d66813455d5c21656081e289cefef11a4b07416c8be0fd2c8a",
+      "evid_digests": "[]"
+    }
+  },
+  "analysis_ids": [
+    "AIAR-scientific_analyst-20260914080022713727-8c9c9048",
+    "AIAR-critical_reviewer-20260914080041505758-8c9c9048",
+    "AIAR-scientific_writer-20260914080101496567-8c9c9048"
+  ],
+  "supersedes": null,
+  "content_digest": "1810bdcfbef19ac42e5ea1e63c819ffb0eea283d805701aeea2f012137f6eb5a",
+  "markdown_digest": "0c5a8888443ca64e86d70def242bb93533709217454331a0718d02cda9d72f9e"
+}

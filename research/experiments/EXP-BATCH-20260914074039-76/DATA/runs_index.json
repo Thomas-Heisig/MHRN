@@ -1,0 +1,127 @@
+{
+  "run_count": 12,
+  "runs": [
+    {
+      "condition": "closed_loop",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0000-closed_loop-seed-101.json.gz",
+      "run_index": 0,
+      "seed": 101,
+      "sha256": "e336df5af2aa40627d5d5d72882773f22707d51b3f634b69e294877bbb0bd0d6",
+      "size_bytes": 31651,
+      "uncompressed_bytes": 179699
+    },
+    {
+      "condition": "disconnected_motor",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0001-disconnected_motor-seed-101.json.gz",
+      "run_index": 1,
+      "seed": 101,
+      "sha256": "2c5a48134766ef4175c1b59d4fa317b1c654eae0739fb0485b2dddbd2c71cd9a",
+      "size_bytes": 17703,
+      "uncompressed_bytes": 154612
+    },
+    {
+      "condition": "controller_only",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0002-controller_only-seed-101.json.gz",
+      "run_index": 2,
+      "seed": 101,
+      "sha256": "100cfd8e08e8b4fd974735ec8888600d6d2da9173e7cc9876365044e569a1c61",
+      "size_bytes": 31421,
+      "uncompressed_bytes": 180463
+    },
+    {
+      "condition": "shuffled_motor",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0003-shuffled_motor-seed-101.json.gz",
+      "run_index": 3,
+      "seed": 101,
+      "sha256": "e5a857d9ac88bc2ac5242e4c0e7470b67b5a8eaf4e787f4f58b930cf19c99a16",
+      "size_bytes": 32449,
+      "uncompressed_bytes": 181014
+    },
+    {
+      "condition": "closed_loop",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0004-closed_loop-seed-102.json.gz",
+      "run_index": 4,
+      "seed": 102,
+      "sha256": "a5917eed4b610521cab31ed0508b7ba23738ffc247f69c3432ec960e8b35bdb4",
+      "size_bytes": 31689,
+      "uncompressed_bytes": 179740
+    },
+    {
+      "condition": "disconnected_motor",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0005-disconnected_motor-seed-102.json.gz",
+      "run_index": 5,
+      "seed": 102,
+      "sha256": "9c4c9bd6c434dc803c4f34412a135f5c85af2c43915ea072b7d62b6e2d6e6a59",
+      "size_bytes": 17703,
+      "uncompressed_bytes": 154732
+    },
+    {
+      "condition": "controller_only",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0006-controller_only-seed-102.json.gz",
+      "run_index": 6,
+      "seed": 102,
+      "sha256": "4f1ef3fbc2ec7cc60f2732637514bfcbb2f18ae10fd41a1fdfe23c366831a0bb",
+      "size_bytes": 31517,
+      "uncompressed_bytes": 180627
+    },
+    {
+      "condition": "shuffled_motor",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0007-shuffled_motor-seed-102.json.gz",
+      "run_index": 7,
+      "seed": 102,
+      "sha256": "26129ed53fcf6c63fb3e71b6370f01fb257d5ac1718726fbcfb29e7ffb75de99",
+      "size_bytes": 32330,
+      "uncompressed_bytes": 180854
+    },
+    {
+      "condition": "closed_loop",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0008-closed_loop-seed-103.json.gz",
+      "run_index": 8,
+      "seed": 103,
+      "sha256": "2132bdb0d5a41d34356abc4ac0651837293be104e5c65e1d433449f5cce86f6b",
+      "size_bytes": 31659,
+      "uncompressed_bytes": 179704
+    },
+    {
+      "condition": "disconnected_motor",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0009-disconnected_motor-seed-103.json.gz",
+      "run_index": 9,
+      "seed": 103,
+      "sha256": "175491db6bb1405f1b37e54b5b07426fb2760a28fd30d324d2ee759851479cd4",
+      "size_bytes": 17561,
+      "uncompressed_bytes": 154040
+    },
+    {
+      "condition": "controller_only",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0010-controller_only-seed-103.json.gz",
+      "run_index": 10,
+      "seed": 103,
+      "sha256": "3b5683376d8a56305e684972df6fefebafd4a0e02890e1bd1ae5981d47ef2664",
+      "size_bytes": 31351,
+      "uncompressed_bytes": 180383
+    },
+    {
+      "condition": "shuffled_motor",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0011-shuffled_motor-seed-103.json.gz",
+      "run_index": 11,
+      "seed": 103,
+      "sha256": "5565763414bbbc149f5f7848a40acf81be4e36d749819ec10405e12b16b8e376",
+      "size_bytes": 32617,
+      "uncompressed_bytes": 181726
+    }
+  ],
+  "schema_version": "2.0",
+  "storage_policy": "immutable_raw_runs_plus_compact_current_experiment"
+}

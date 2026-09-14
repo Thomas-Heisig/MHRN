@@ -1,0 +1,113 @@
+{
+  "conditions": {
+    "fast_medium_slow": {
+      "metrics": {
+        "ticks_executed": {
+          "max": 256.0,
+          "mean": 256.0,
+          "median": 256.0,
+          "min": 256.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "ticks_requested": {
+          "max": 256.0,
+          "mean": 256.0,
+          "median": 256.0,
+          "min": 256.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "total_spikes": {
+          "max": 0.0,
+          "mean": 0.0,
+          "median": 0.0,
+          "min": 0.0,
+          "n": 3,
+          "std": 0.0
+        }
+      },
+      "run_count": 3,
+      "seeds": [
+        101,
+        102,
+        103
+      ]
+    }
+  },
+  "formulas": {
+    "difference": "Delta_x = mean(x_B) - mean(x_A)",
+    "inter_spike_interval": "ISI_i = t_(i+1) - t_i",
+    "mean": "mean(x) = (1/n) * sum_i x_i",
+    "population_std": "sigma = sqrt((1/n) * sum_i (x_i - mean(x))^2)",
+    "ratio": "R_x = mean(x_B) / mean(x_A), defined only when mean(x_A) != 0"
+  },
+  "generated_by": "deterministic_statistics_engine",
+  "run_count": 3,
+  "schema_version": "2.0",
+  "temporal_horizons": {
+    "fast": {
+      "discrepancy": {
+        "max": 0.9520109699251881,
+        "mean": 0.010332735657627138,
+        "median": 0.001015673479059842,
+        "min": 3.2804570229435136e-05,
+        "n": 762,
+        "std": 0.06777922679693099
+      },
+      "nonzero_comparisons": 762,
+      "nonzero_discrepancy": {
+        "max": 0.9520109699251881,
+        "mean": 0.010332735657627138,
+        "median": 0.001015673479059842,
+        "min": 3.2804570229435136e-05,
+        "n": 762,
+        "std": 0.06777922679693099
+      },
+      "nonzero_fraction": 1.0,
+      "reference_comparisons": 762
+    },
+    "medium": {
+      "discrepancy": {
+        "max": 1.1589411090588584,
+        "mean": 0.015003297172414654,
+        "median": 0.0020320762274034605,
+        "min": 6.744354320176171e-05,
+        "n": 756,
+        "std": 0.08187728442108107
+      },
+      "nonzero_comparisons": 756,
+      "nonzero_discrepancy": {
+        "max": 1.1589411090588584,
+        "mean": 0.015003297172414654,
+        "median": 0.0020320762274034605,
+        "min": 6.744354320176171e-05,
+        "n": 756,
+        "std": 0.08187728442108107
+      },
+      "nonzero_fraction": 1.0,
+      "reference_comparisons": 756
+    },
+    "slow": {
+      "discrepancy": {
+        "max": 1.1784193297739733,
+        "mean": 0.018427562253113025,
+        "median": 0.0030499379894521894,
+        "min": 0.00010401945866552371,
+        "n": 750,
+        "std": 0.08339859391088252
+      },
+      "nonzero_comparisons": 750,
+      "nonzero_discrepancy": {
+        "max": 1.1784193297739733,
+        "mean": 0.018427562253113025,
+        "median": 0.0030499379894521894,
+        "min": 0.00010401945866552371,
+        "n": 750,
+        "std": 0.08339859391088252
+      },
+      "nonzero_fraction": 1.0,
+      "reference_comparisons": 750
+    }
+  }
+}

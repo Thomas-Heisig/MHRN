@@ -1,0 +1,11 @@
+{
+  "last_archived_run": 179,
+  "raw_artifact": {
+    "format": "json.gz",
+    "path": "DATA/raw/run-0179-sham_replay_drive_1.15-seed-120.json.gz",
+    "sha256": "38b29f70dd91bf5b45bc53e71895c18c0ac68beff1cbc0e8f086a16ffa4ad332",
+    "size_bytes": 473,
+    "uncompressed_bytes": 901
+  },
+  "status": "idle"
+}

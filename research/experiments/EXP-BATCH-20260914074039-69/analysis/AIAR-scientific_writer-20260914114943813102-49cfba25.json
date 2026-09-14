@@ -1,0 +1,213 @@
+{
+  "analysis_id": "AIAR-scientific_writer-20260914114943813102-49cfba25",
+  "role": "scientific_writer",
+  "model": {
+    "provider": "ollama",
+    "model_name": "qwen2.5-coder:7b",
+    "model_digest": "not_reported",
+    "quantization": "not_reported",
+    "context_length": "unknown",
+    "temperature": 0.0,
+    "top_p": 1.0,
+    "seed": "not_reported",
+    "backend_version": "unknown"
+  },
+  "inputs": {
+    "experiment_id": "EXP-BATCH-20260914074039-69",
+    "packet_digest": "49cfba2566fa7925e5eb6dcfc0371ff8a086a5186691d54a1f2819361b7c1e70"
+  },
+  "output": {
+    "id": "H-EMB-002-A",
+    "question": "Welchen messbaren Beitrag leisten korrekte, fehlende, verzoegerte und zeitlich verschobene propriozeptive Rueckmeldungen zur Gelenkregelung?",
+    "status": "untested",
+    "created": "2026-09-09",
+    "updated": "2026-09-09",
+    "evidence": [],
+    "literature_sources": [
+      {
+        "title": "A Drosophila computational brain model reveals sensorimotor processing",
+        "journal": "Nature",
+        "year": 2024,
+        "doi": "10.1038/s41586-024-07763-9",
+        "url": "https://www.nature.com/articles/s41586-024-07763-9"
+      },
+      {
+        "title": "NeuroMechFly v2: simulating embodied sensorimotor control in adult Drosophila",
+        "journal": "Nature Methods",
+        "year": 2024,
+        "doi": "10.1038/s41592-024-02497-y",
+        "url": "https://www.nature.com/articles/s41592-024-02497-y"
+      },
+      {
+        "title": "How the Eon Team Produced a Virtual Embodied Fly",
+        "url": "https://eon.systems/updates/embodied-brain-emulation"
+      }
+    ],
+    "formulas": {
+      "difference": "Delta_x = mean(x_B) - mean(x_A)",
+      "inter_spike_interval": "ISI_i = t_(i+1) - t_i",
+      "mean": "mean(x) = (1/n) * sum_i x_i",
+      "population_std": "sigma = sqrt((1/n) * sum_i (x_i - mean(x))^2)",
+      "ratio": "R_x = mean(x_B) / mean(x_A), defined only when mean(x_A) != 0"
+    },
+    "metrics": {
+      "activated_neuron_count": {
+        "max": 6.0,
+        "mean": 6.0,
+        "median": 6.0,
+        "min": 6.0,
+        "n": 3,
+        "std": 0.0
+      },
+      "donor_ticks_overhead": {
+        "max": 600.0,
+        "mean": 600.0,
+        "median": 600.0,
+        "min": 600.0,
+        "n": 3,
+        "std": 0.0
+      },
+      "execution_batch_ticks": {
+        "max": 1.0,
+        "mean": 1.0,
+        "median": 1.0,
+        "min": 1.0,
+        "n": 3,
+        "std": 0.0
+      },
+      "integrity_contact_count": {
+        "max": 119.0,
+        "mean": 109.0,
+        "median": 107.0,
+        "min": 101.0,
+        "n": 3,
+        "std": 7.483314773547883
+      },
+      "modelled_absolute_work_j": {
+        "max": 0.01647923658076351,
+        "mean": 0.016122340343894686,
+        "median": 0.01603572430128248,
+        "min": 0.015852060149638064,
+        "n": 3,
+        "std": 0.0002632670672760052
+      },
+      "neural_dt_ms": {
+        "max": 1.0,
+        "mean": 1.0,
+        "median": 1.0,
+        "min": 1.0,
+        "n": 3,
+        "std": 0.0
+      },
+      "nonzero_action_ticks": {
+        "max": 597.0,
+        "mean": 593.0,
+        "median": 595.0,
+        "min": 587.0,
+        "n": 3,
+        "std": 4.320493798938574
+      },
+      "physics_period_ticks": {
+        "max": 1.0,
+        "mean": 1.0,
+        "median": 1.0,
+        "min": 1.0,
+        "n": 3,
+        "std": 0.0
+      },
+      "sensor_period_ticks": {
+        "max": 1.0,
+        "mean": 1.0,
+        "median": 1.0,
+        "min": 1.0,
+        "n": 3,
+        "std": 0.0
+      },
+      "synaptic_events_delivered": {
+        "max": 102.0,
+        "mean": 99.33333333333333,
+        "median": 100.0,
+        "min": 96.0,
+        "n": 3,
+        "std": 2.494438257849294
+      },
+      "ticks_executed": {
+        "max": 600.0,
+        "mean": 600.0,
+        "median": 600.0,
+        "min": 600.0,
+        "n": 3,
+        "std": 0.0
+      },
+      "ticks_requested": {
+        "max": 600.0,
+        "mean": 600.0,
+        "median": 600.0,
+        "min": 600.0,
+        "n": 3,
+        "std": 0.0
+      },
+      "torque_saturation_count": {
+        "max": 25.0,
+        "mean": 15.0,
+        "median": 12.0,
+        "min": 8.0,
+        "n": 3,
+        "std": 7.2571803523590805
+      },
+      "total_spikes": {
+        "max": 102.0,
+        "mean": 99.33333333333333,
+        "median": 100.0,
+        "min": 96.0,
+        "n": 3,
+        "std": 2.494438257849294
+      },
+      "tracking_rmse_rad": {
+        "max": 0.5080171697469651,
+        "mean": 0.485493665450786,
+        "median": 0.47686267664581194,
+        "min": 0.47160114995958086,
+        "n": 3,
+        "std": 0.0160707207907731
+      }
+    },
+    "run_count": 3,
+    "seeds": [
+      101,
+      102,
+      103
+    ],
+    "assessment": "Die Analyse konnte nicht vollstaendig schema-konform erzeugt werden. Das Modell hat das erforderliche assessment-Feld nicht geliefert.",
+    "observations": [],
+    "methodological_concerns": [
+      "Die vom Modell ausgegebene confidence war schemawidrig oder ausserhalb des Bereichs 0..1. Sie wurde fuer die AIRR-Provenienz konservativ auf 0.0 gesetzt; der Originalwert bleibt als confidence_original erhalten."
+    ],
+    "alternative_explanations": [],
+    "recommended_experiments": [],
+    "requested_evidence": [],
+    "effect_direction": "not_determined",
+    "confidence_original": null,
+    "confidence": 0.0
+  },
+  "provenance": {
+    "prompt_sha256": "d5c89835575d054cb59890ae76e55ac58e37e1736ca545a8d92d4f1562b8563f",
+    "research_packet_digest": "49cfba2566fa7925e5eb6dcfc0371ff8a086a5186691d54a1f2819361b7c1e70",
+    "prompt_protocol_version": "research_assistant_v1",
+    "assistant_schema_version": "1.2",
+    "git_commit": "8e096931a779b2d2eb4d010eb20154150b07bbf2",
+    "model_self_confidence": "0.0"
+  },
+  "epistemic_status": {
+    "evidence": false,
+    "interpretation_only": true,
+    "human_review_required": true
+  },
+  "review": {
+    "status": "pending",
+    "reviewer": null,
+    "reviewed_at": null,
+    "disposition": null
+  },
+  "generated_at": "2026-09-14T11:49:43.813102+00:00"
+}

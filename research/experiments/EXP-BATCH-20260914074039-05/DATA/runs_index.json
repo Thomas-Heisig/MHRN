@@ -1,0 +1,37 @@
+{
+  "run_count": 3,
+  "runs": [
+    {
+      "condition": "productive_reward_stdp",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0000-productive_reward_stdp-seed-101.json.gz",
+      "run_index": 0,
+      "seed": 101,
+      "sha256": "273eadff0004cebbc8fe9f8790dd1da1a8544edee514d42bb65ab790ad2fe446",
+      "size_bytes": 512,
+      "uncompressed_bytes": 916
+    },
+    {
+      "condition": "productive_reward_stdp",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0001-productive_reward_stdp-seed-102.json.gz",
+      "run_index": 1,
+      "seed": 102,
+      "sha256": "b46a774a116777e19a9ebf38af776e7d1edf1907543725c643475a2af5fa766e",
+      "size_bytes": 512,
+      "uncompressed_bytes": 916
+    },
+    {
+      "condition": "productive_reward_stdp",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0002-productive_reward_stdp-seed-103.json.gz",
+      "run_index": 2,
+      "seed": 103,
+      "sha256": "4193df86689f37ea13e968c587c3d217543ba149e76430971966e5c29c8e5fad",
+      "size_bytes": 513,
+      "uncompressed_bytes": 916
+    }
+  ],
+  "schema_version": "2.0",
+  "storage_policy": "immutable_raw_runs_plus_compact_current_experiment"
+}
