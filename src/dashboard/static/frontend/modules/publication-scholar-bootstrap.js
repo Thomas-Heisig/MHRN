@@ -11,7 +11,10 @@ export function initPublicationScholarTools() {
 
   const loadRootData = () => {
     if (!rootDataPromise) {
-      rootDataPromise = fetch("/api/publication/current", { headers: { Accept: "application/json" }, cache: "no-store" })
+      rootDataPromise = fetch("/api/publication/current", {
+        headers: { Accept: "application/json" },
+        cache: "no-cache",
+      })
         .then((response) => {
           if (!response.ok) throw new Error(`HTTP ${response.status}`);
           return response.json();
@@ -35,13 +38,32 @@ export function initPublicationScholarTools() {
     proxy.remove();
   };
 
+  let enhanceScheduled = false;
+  let lastReader = null;
+
+  const consolidateSpeechControls = (reader) => {
+    const canonicalMount = reader.querySelector("#pub-reader-speech-mount");
+    const enhancedMount = reader.querySelector(".pub-scholar-speech");
+    const enhancedControls = enhancedMount?.querySelector(".speech-reader-controls");
+    if (!canonicalMount || !enhancedControls) return;
+
+    /* The base Publication Reader and Scholar layer both use the same TTS
+       service. Keep the richer Scholar controls, but mount them in the one
+       canonical speech slot instead of presenting two independent button sets. */
+    canonicalMount.replaceChildren(enhancedControls);
+    enhancedMount.remove();
+  };
+
   const enhance = async () => {
+    enhanceScheduled = false;
     const reader = container.querySelector(".publication-reader");
     const article = container.querySelector("#pub-reader-article");
-    if (!reader || !article || reader.dataset.scholarEnhanced === "true") return;
-    reader.dataset.scholarEnhanced = "true";
+    if (!reader || !article || reader === lastReader || reader.dataset.scholarEnhanced === "true") return;
+
+    reader.dataset.scholarEnhanced = "loading";
     const rootData = await loadRootData();
     if (!reader.isConnected || !article.isConnected) return;
+
     enhancePublicationScholarReader(container, {
       rootData,
       view: {
@@ -50,15 +72,25 @@ export function initPublicationScholarTools() {
       },
       openDocument,
     });
+    consolidateSpeechControls(reader);
+    reader.dataset.scholarEnhanced = "true";
+    lastReader = reader;
   };
 
-  const observer = new MutationObserver(() => queueMicrotask(enhance));
-  observer.observe(container, { childList: true, subtree: true });
-  queueMicrotask(enhance);
+  const scheduleEnhance = () => {
+    if (enhanceScheduled) return;
+    enhanceScheduled = true;
+    requestAnimationFrame(() => void enhance());
+  };
+
+  /* renderReader() replaces the publication panel's direct child. Watching the
+     entire subtree caused enhancement work to wake up for speech highlights,
+     selection UI, TOC changes and other tiny mutations. */
+  const observer = new MutationObserver(scheduleEnhance);
+  observer.observe(container, { childList: true });
+  scheduleEnhance();
 
   // Fix the publication -> canonical File Viewer bridge in capture phase.
-  // The original reader referenced window.selectRoute, while the router's public
-  // contract is window.MHRNWorkspaceArchitecture.selectRoute.
   container.addEventListener("click", async (event) => {
     const button = event.target.closest('[data-pub-action="open-file"]');
     if (!button) return;
