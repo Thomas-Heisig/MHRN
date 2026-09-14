@@ -21,6 +21,7 @@ import { initSystemInfo } from "./modules/system-info.js";
 import { initSnapshotHistory } from "./modules/snapshot-history.js";
 import { initReviewLink } from "./modules/review-link.js";
 import { initOverviewSubtabs } from "./modules/overview-subtabs.js";
+import { initPublicationPanel } from "./modules/publication-panel.js";
 import { initResearchSubtabs } from "./modules/research-subtabs.js";
 import { initNeuronModelScience } from "./modules/neuron-model-science.js";
 import { initRuntimeNeuron } from "./modules/runtime-neuron.js";
@@ -56,6 +57,7 @@ function init() {
   initSnapshotHistory();
   initReviewLink();
   initOverviewSubtabs();
+  initPublicationPanel();
   initResearchSubtabs();
   initNeuronModelScience();
   initRuntimeNeuron();

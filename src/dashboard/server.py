@@ -740,6 +740,14 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
                 return
 
             # ----------------------------------------------------------------
+            # Current scientific publication
+            # ----------------------------------------------------------------
+
+            if path == "/api/publication/current":
+                self._serve_current_publication()
+                return
+
+            # ----------------------------------------------------------------
             # Runtime Errors (dedicated endpoint, Phase 5)
             # ----------------------------------------------------------------
 
@@ -2109,6 +2117,84 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
                     "source": "releases/current.json",
                     "error": str(exc),
                 }
+            )
+
+    def _serve_current_publication(self) -> None:
+        """Serve the current scientific publication README and metadata."""
+        import hashlib
+
+        repo_root = Path(__file__).resolve().parents[2]
+        pub_root = repo_root / "research" / "publications"
+
+        # Find the latest recursive-epistemics publication directory
+        candidates = sorted(
+            (d for d in pub_root.iterdir()
+             if d.is_dir() and "recursive-epistemics" in d.name),
+            key=lambda d: d.name,
+            reverse=True,
+        )
+        if not candidates:
+            self._send_json(
+                {"error": "No recursive-epistemics publication found."},
+                HTTPStatus.NOT_FOUND,
+            )
+            return
+
+        latest = candidates[0]
+        readme_path = latest / "README.md"
+        if not readme_path.exists():
+            self._send_json(
+                {"error": f"README.md not found in {latest.name}."},
+                HTTPStatus.NOT_FOUND,
+            )
+            return
+
+        try:
+            content = readme_path.read_text(encoding="utf-8")
+            digest = hashlib.sha256(content.encode("utf-8")).hexdigest()
+
+            # Extract edition from directory name (e.g. "v1.5")
+            edition = "unknown"
+            if "_v" in latest.name:
+                edition = latest.name.split("_v")[-1]
+
+            # Also look for a FORSCHUNGSBERICHT.md (separate research report)
+            forschungsbericht = None
+            for fb_name in ("FORSCHUNGSBERICHT.md", "Forschungsbericht.md"):
+                fb_path = latest / fb_name
+                if fb_path.exists():
+                    fb_content = fb_path.read_text(encoding="utf-8")
+                    forschungsbericht = {
+                        "path": str(fb_path.relative_to(repo_root)).replace("\\", "/"),
+                        "sha256": hashlib.sha256(fb_content.encode("utf-8")).hexdigest(),
+                    }
+                    break
+
+            # Collect available export formats
+            exports = []
+            for ext in (".pdf", ".docx"):
+                for f in latest.iterdir():
+                    if f.suffix == ext and f.stem.startswith("MHRN"):
+                        exports.append({
+                            "format": ext.lstrip("."),
+                            "path": str(f.relative_to(repo_root)).replace("\\", "/"),
+                            "size_bytes": f.stat().st_size,
+                        })
+
+            self._send_json({
+                "publication": latest.name,
+                "title": "Recursive Epistemics in Embodied Spiking Neural Architectures",
+                "edition": edition,
+                "readme_path": str(readme_path.relative_to(repo_root)).replace("\\", "/"),
+                "sha256": digest,
+                "content": content,
+                "forschungsbericht": forschungsbericht,
+                "exports": exports,
+            })
+        except Exception as exc:
+            self._send_json(
+                {"error": str(exc)},
+                HTTPStatus.INTERNAL_SERVER_ERROR,
             )
 
     def _serve_release_timeline(self) -> None:

@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>MHRN Operator Dashboard</title>
   <link rel="stylesheet" href="/styles.css">
-  <link rel="stylesheet" href="/frontend/styles/index.css?v=research-workbench-20260912">
-  <link rel="stylesheet" href="/frontend/styles/shell.css?v=research-workbench-20260912">
+  <link rel="stylesheet" href="/frontend/styles/index.css?v=publication-tab-20260914">
+  <link rel="stylesheet" href="/frontend/styles/shell.css?v=publication-tab-20260914">
 </head>
 <body>
 
@@ -60,6 +60,7 @@
         <button class="overview-subtab" type="button" role="tab" data-subtab="structure" aria-selected="false">📐 Struktur</button>
         <button class="overview-subtab" type="button" role="tab" data-subtab="snapshot" aria-selected="false">📸 Snapshot</button>
         <button class="overview-subtab" type="button" role="tab" data-subtab="sysinfo" aria-selected="false">⚙ System Info</button>
+        <button class="overview-subtab" type="button" role="tab" data-subtab="publication" aria-selected="false">📖 Publikation</button>
       </nav>
 
       <!-- Sub-Tab: Vitals (Aktivität + Regulation + Core-Metriken) -->
@@ -107,6 +108,13 @@
 
       <!-- Sub-Tab: System Info (Konfiguration + Zustand) -->
       <div class="overview-subpanel" data-subpanel="sysinfo" role="tabpanel" hidden></div>
+
+      <!-- Sub-Tab: Publikation (aktuelle wissenschaftliche Hauptarbeit) -->
+      <div class="overview-subpanel" data-subpanel="publication" role="tabpanel" hidden>
+        <div id="publication-panel">
+          <div class="publication-loading">Lade aktuelle Publikation …</div>
+        </div>
+      </div>
     </section>
 
     <!-- ========================================================== -->
@@ -950,6 +958,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-graphviz/5.0.2/d3-graphviz.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="https://cdn.jsdelivr.net/npm/plantuml-encoder@1.4.0/dist/plantuml-encoder.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script type="module" src="/formula-renderer.js"></script>
-  <script type="module" src="/app.js?v=research-workbench-20260912"></script>
+  <script type="module" src="/app.js?v=publication-tab-20260914"></script>
 </body>
 </html>

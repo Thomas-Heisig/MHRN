@@ -35,6 +35,7 @@ const AREAS = Object.freeze({
       ["organs", "Organe", "overview", "overview", "organs"], ["memory", "Gedächtnis", "overview", "overview", "memory"],
       ["structure", "Struktur", "overview", "overview", "structure"], ["snapshot", "Snapshot", "overview", "overview", "snapshot"],
       ["sysinfo", "System Info", "overview", "overview", "sysinfo"],
+      ["publikation", "Publikation", "overview", "overview", "publication"],
     ],
   },
   science: {
