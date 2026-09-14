@@ -26,6 +26,22 @@ Die Stage-4-Untergrenze wird als **aggregierter Topologievertrag** beschrieben:
 
 Diese Zahlen materialisieren nicht zehn Millionen Python-Edge-Objekte. `dynamic_scale_execution_verified=false` bleibt deshalb Bestandteil des maschinenlesbaren Vertrags. Ein vollständiger dynamischer Lauf dieser Größenordnung ist eine separate Scaling-/Performance-Frage und darf nicht aus dem Stage-4-Vertrag abgeleitet werden.
 
+## Forschungsfragen- und Experiment-Traceability
+
+Die Stage-4-Implementierung wird nicht aus einer einzelnen Kennzahl abgeleitet. Die spezifischen MSBA-Forschungsfragen bilden unterschiedliche kausale bzw. technische Teilfragen ab:
+
+| Forschungsfrage | Stage-4-Bezug | Aktueller Datensatz |
+|---|---|---|
+| `RQ-MSBA-E01` | Vergleich von Audio, Vision und Digital unter matched tasks und Ressourcenmetriken | `EXP-BATCH-20260914074039-90` |
+| `RQ-MSBA-E02` | adaptive gegenüber fixer/zufälliger Ressourcenallokation | `EXP-BATCH-20260914074039-91` |
+| `RQ-MSBA-E03` | visueller ROI/Foveation-Pfad und Ressourcensteuerung | `EXP-BATCH-20260914074039-92` |
+| `RQ-MSBA-E04` | exakte digitale Payload-/Checksum-Integrität | `EXP-BATCH-20260914074039-93` |
+| `RQ-MSBA-E05` | kontrollierter Modalitätsverlust und Kompensation | `EXP-BATCH-20260914074039-94` |
+
+Die übergeordneten Fragen `RQ9` (multimodale Grounding-/Signalintegration ohne versteckten LLM-Primärlerner) und `RQ11` (emergente funktionale Organisation) sind mit Stage 4 verbunden, werden durch Stage 4 aber **nicht geschlossen**. Insbesondere beweist ein technisch vorhandenes spezialisiertes Areal weder emergente Organisation noch einen generellen Vorteil gegenüber einer unspezialisierten Vergleichsarchitektur.
+
+Damit ist die Forschungslogik zweistufig: `RQ-MSBA-E01` bis `E05` prüfen die unmittelbar implementierten Modalitäts-/Gateway-Eigenschaften; `RQ9` und `RQ11` bleiben breitere wissenschaftliche Programme für spätere kausale und unabhängige Tests.
+
 ## Bereits vorhandene Versuchsdaten
 
 Die Implementierung bindet die jüngste MSBA-Serie als DATA-Grundlage ein:
@@ -43,7 +59,7 @@ Die Serie verwendet die Seeds 101, 102 und 103. Die aufgezeichneten Daten zeigen
 - E04: in den gespeicherten Bedingungen wurden keine Checksum- oder Exact-Payload-Mismatches registriert;
 - E05: die adaptive Referenzkompensation zeigt im gespeicherten Datensatz eine höhere Task-Recovery als die feste Allokation.
 
-Diese Aussagen beschreiben die vorhandenen **DATA-Artefakte**. Sie sind weder allgemeine Leistungsbehauptungen noch automatische EVID-Promotion.
+Diese Aussagen beschreiben die vorhandenen **DATA-Artefakte**. Sie sind weder allgemeine Leistungsbehauptungen noch automatische EVID-Promotion. `RQ-MSBA-E02` und die vollständige inferentielle Interpretation aller fünf Fragen bleiben ebenfalls dem menschlichen Review-/EVID-Prozess unterworfen.
 
 ## Full-Stack-Integration
 
@@ -66,6 +82,8 @@ Stage 4 darf technisch als abgeschlossen gelten, wenn der Referenzrunner und die
 - dass produktive externe neuronale Areale freigeschaltet wurden;
 - dass Gateway-Plastizität außerhalb preregistrierter Experimente erlaubt ist;
 - dass E01–E05 automatisch wissenschaftliche EVID geworden sind;
-- dass biologische Modalitätsareale nachgebildet oder biologisch validiert wären.
+- dass biologische Modalitätsareale nachgebildet oder biologisch validiert wären;
+- dass `RQ9` oder `RQ11` durch die Engineering-Verifikation beantwortet wären;
+- dass ein kausaler Vorteil modalitätsspezifischer Areale gegenüber einer matched unspezialisierten Kontrollarchitektur bereits gezeigt wäre.
 
 Produktive Aktivierung bleibt `LOCKED`. Wissenschaftliche Promotion benötigt weiterhin den bestehenden Review-/EVID-Prozess.
