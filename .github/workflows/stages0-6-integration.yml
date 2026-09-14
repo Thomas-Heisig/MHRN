@@ -1,0 +1,78 @@
+name: Stage 0-6 integration verification
+on:
+  push:
+    branches: [integration/stages0-6-20260914]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: stages0-6-integration
+  cancel-in-progress: false
+jobs:
+  integration:
+    if: github.ref == 'refs/heads/integration/stages0-6-20260914'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - name: Preserve both development histories on the integration branch only
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git merge --no-edit 68fb1a312e835ca90d1891dc006ff5900c44cbf9
+          git merge --no-edit 82bd5236d7db6d0252b7f5c9641023152b1d5edc
+          git diff --check
+          git push origin HEAD:integration/stages0-6-20260914
+          echo "Combined commit: $(git rev-parse HEAD)" >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.13'
+          cache: pip
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install repository dependencies
+        run: |
+          python -m pip install -e '.[dev,docs]' build
+          npm ci
+      - name: Inspect actual Stage 0-6 criteria and publication sources
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from src.dashboard.development_timeline import build_development_timeline
+          report = build_development_timeline(Path('.'))
+          print('STAGE_AUDIT_START')
+          print(json.dumps({k: report[k] for k in ('current_stage','stage_floor','stage_next','engineering_score','verification_score','scientific_evidence_score')}, indent=2))
+          for stage in report['stages']:
+              if stage['stage'] <= 6:
+                  print(json.dumps(stage, ensure_ascii=False, indent=2))
+          print('STAGE_AUDIT_END')
+          print('PUBLICATION_AND_RUNNER_PATHS')
+          for root in ('research/publications','research/specifications','scripts','.github/workflows'):
+              for path in sorted(Path(root).glob('*')):
+                  if path.is_file():
+                      print(path)
+          PY
+      - name: Collect full Python regression results
+        run: python -m pytest -q -m 'not slow' --tb=short --junitxml=integration-results.xml
+      - name: Verify formatting and typing
+        if: always()
+        run: |
+          python -m black --check src tests scripts
+          python -m ruff check src tests scripts
+          python -m mypy src/
+          python -m pyright
+      - name: Verify frontend contracts
+        if: always()
+        run: node --test tests/frontend/*.test.mjs
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: stages0-6-integration-results
+          path: integration-results.xml
+          retention-days: 14
