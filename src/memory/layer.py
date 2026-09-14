@@ -99,7 +99,9 @@ class MemoryWorldModel:
                         prediction.source,
                         prediction.predicted_state,
                         observation.state,
-                        self.world_model.error(prediction.predicted_state, observation.state),
+                        self.world_model.error(
+                            prediction.predicted_state, observation.state
+                        ),
                         prediction.uncertainty,
                     )
                 )
@@ -128,7 +130,13 @@ class MemoryWorldModel:
             "world_model": self.world_model.state_dict(),
             "memory": self.store.state_dict(),
         }
-        unsigned = json.dumps(state, sort_keys=True, separators=(",", ":"), ensure_ascii=True, allow_nan=False)
+        unsigned = json.dumps(
+            state,
+            sort_keys=True,
+            separators=(",", ":"),
+            ensure_ascii=True,
+            allow_nan=False,
+        )
         state["integrity_digest"] = hashlib.sha256(unsigned.encode("utf-8")).hexdigest()
         return state
 
@@ -136,9 +144,17 @@ class MemoryWorldModel:
         destination = path or self.persistence_path
         if destination is None:
             raise MemoryWorldModelError("coupled persistence path is not configured")
-        payload = json.dumps(self.state_dict(), sort_keys=True, separators=(",", ":"), ensure_ascii=True, allow_nan=False).encode("utf-8")
+        payload = json.dumps(
+            self.state_dict(),
+            sort_keys=True,
+            separators=(",", ":"),
+            ensure_ascii=True,
+            allow_nan=False,
+        ).encode("utf-8")
         destination.parent.mkdir(parents=True, exist_ok=True)
-        fd, temporary = tempfile.mkstemp(prefix=f".{destination.name}.", dir=str(destination.parent))
+        fd, temporary = tempfile.mkstemp(
+            prefix=f".{destination.name}.", dir=str(destination.parent)
+        )
         try:
             with os.fdopen(fd, "wb") as stream:
                 stream.write(payload)
@@ -155,11 +171,24 @@ class MemoryWorldModel:
         try:
             state = json.loads(path.read_text(encoding="utf-8"))
             if not isinstance(state, dict) or state.get("schema_version") != 2:
-                raise MemoryWorldModelError("unsupported coupled state schema; retain legacy file and rebuild from a provenance-bound replay")
+                raise MemoryWorldModelError(
+                    "unsupported coupled state schema; retain legacy file and rebuild from a provenance-bound replay"
+                )
             unsigned = dict(state)
             digest = unsigned.pop("integrity_digest", None)
-            expected = hashlib.sha256(json.dumps(unsigned, sort_keys=True, separators=(",", ":"), ensure_ascii=True, allow_nan=False).encode("utf-8")).hexdigest()
-            if state.get("owner") != "memory.world_model.integration" or digest != expected:
+            expected = hashlib.sha256(
+                json.dumps(
+                    unsigned,
+                    sort_keys=True,
+                    separators=(",", ":"),
+                    ensure_ascii=True,
+                    allow_nan=False,
+                ).encode("utf-8")
+            ).hexdigest()
+            if (
+                state.get("owner") != "memory.world_model.integration"
+                or digest != expected
+            ):
                 raise MemoryWorldModelError("coupled state integrity check failed")
             previous = state.get("previous_observation")
             if previous is not None and (
@@ -176,12 +205,18 @@ class MemoryWorldModel:
                 enabled=_boolean(state["enabled"], "enabled"),
                 persistence_path=path,
                 _episode_id=str(state["episode_id"]),
-                prediction_enabled=_boolean(state["prediction_enabled"], "prediction_enabled"),
-                learning_enabled=_boolean(state["learning_enabled"], "learning_enabled"),
+                prediction_enabled=_boolean(
+                    state["prediction_enabled"], "prediction_enabled"
+                ),
+                learning_enabled=_boolean(
+                    state["learning_enabled"], "learning_enabled"
+                ),
                 _previous=copy.deepcopy(previous),
                 last_error_components=copy.deepcopy(state.get("last_error_components")),
             )
         except MemoryWorldModelError:
             raise
         except (OSError, KeyError, TypeError, ValueError) as error:
-            raise MemoryWorldModelError("coupled state could not be restored") from error
+            raise MemoryWorldModelError(
+                "coupled state could not be restored"
+            ) from error

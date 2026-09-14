@@ -22,14 +22,18 @@ def action():
 
 
 def predict(model, label="A", sensor="sensor"):
-    return model.predict(frame(label, sensor), action(), target_tick=2, persistence_state=None)
+    return model.predict(
+        frame(label, sensor), action(), target_tick=2, persistence_state=None
+    )
 
 
 @pytest.mark.parametrize("value", [True, False, "true", "false", "hello", None])
 def test_categorical_type_survives_prediction_and_sorted_roundtrip(value):
     model = TransitionWorldModel()
     model.update(frame(), action(), EnvironmentObservation(2, {"value": value}))
-    restored = TransitionWorldModel.from_state_dict(json.loads(json.dumps(model.state_dict(), sort_keys=True)))
+    restored = TransitionWorldModel.from_state_dict(
+        json.loads(json.dumps(model.state_dict(), sort_keys=True))
+    )
     for item in (model, restored):
         result = predict(item).predicted_state["value"]
         assert type(result) is type(value)
@@ -56,12 +60,16 @@ def test_fifo_continuation_after_sorted_serialization_at_capacity():
     continuous = TransitionWorldModel(max_contexts=2)
     for name in ("Z", "A"):
         continuous.update(frame(name), action(), EnvironmentObservation(2, {"x": 1.0}))
-    restored = TransitionWorldModel.from_state_dict(json.loads(json.dumps(continuous.state_dict(), sort_keys=True)))
+    restored = TransitionWorldModel.from_state_dict(
+        json.loads(json.dumps(continuous.state_dict(), sort_keys=True))
+    )
     for name in ("B", "C", "D", "A"):
         for model in (continuous, restored):
             model.update(frame(name), action(), EnvironmentObservation(3, {"x": 2.0}))
         assert continuous.state_dict() == restored.state_dict()
-        assert [predict(continuous, key) for key in ("Z", "A", "B")] == [predict(restored, key) for key in ("Z", "A", "B")]
+        assert [predict(continuous, key) for key in ("Z", "A", "B")] == [
+            predict(restored, key) for key in ("Z", "A", "B")
+        ]
 
 
 def test_reads_do_not_change_fifo_or_model_state():
@@ -82,12 +90,17 @@ def test_invalid_update_does_not_evict_or_partially_mutate_context(invalid):
     model.update(frame(), action(), EnvironmentObservation(2, {"x": 1.0}))
     before = copy.deepcopy(model.state_dict())
     with pytest.raises(ValueError):
-        model.update(frame("B"), action(), EnvironmentObservation(2, {"ok": 2.0, "bad": invalid}))
+        model.update(
+            frame("B"), action(), EnvironmentObservation(2, {"ok": 2.0, "bad": invalid})
+        )
     assert model.state_dict() == before
 
 
 def test_separate_error_units_and_explicit_missing_coverage():
-    errors = compare_prediction({"x": 2.0, "matched": True}, {"x": 5.0, "matched": False, "absent": 1, "metadata": []})
+    errors = compare_prediction(
+        {"x": 2.0, "matched": True},
+        {"x": 5.0, "matched": False, "absent": 1, "metadata": []},
+    )
     assert errors.numeric_absolute == {"x": 3.0}
     assert errors.categorical_mismatch == {"matched": 1.0}
     assert errors.missing_fields == ("absent",)
@@ -103,7 +116,10 @@ def test_no_cross_sensor_or_cross_actuator_statistics():
     model.update(frame(), action(), EnvironmentObservation(2, {"x": 1.0}))
     assert predict(model, sensor="foreign").source == "persistence_reference"
     other = replace(action(), actuator_id="other")
-    assert model.predict(frame(), other, target_tick=2, persistence_state=None).source == "persistence_reference"
+    assert (
+        model.predict(frame(), other, target_tick=2, persistence_state=None).source
+        == "persistence_reference"
+    )
 
 
 @pytest.mark.parametrize("capacity", [0, -1, True, 1.5])
@@ -114,7 +130,9 @@ def test_capacity_requires_positive_integer(capacity):
 
 def test_legacy_restore_fails_explicitly_instead_of_guessing_lost_information():
     with pytest.raises(ValueError, match="replay-based rebuild"):
-        TransitionWorldModel.from_state_dict({"model_version": 1, "max_contexts": 2, "contexts": {}})
+        TransitionWorldModel.from_state_dict(
+            {"model_version": 1, "max_contexts": 2, "contexts": {}}
+        )
 
 
 def test_corrupt_order_is_rejected():

@@ -31,7 +31,9 @@ class _TransitionStats:
     count: int = 0
     numeric_sum: dict[str, float] = field(default_factory=dict[str, float])
     numeric_count: dict[str, int] = field(default_factory=dict[str, int])
-    categorical: dict[str, Counter[str]] = field(default_factory=dict[str, Counter[str]])
+    categorical: dict[str, Counter[str]] = field(
+        default_factory=dict[str, Counter[str]]
+    )
 
 
 def _positive_int(value: Any, name: str) -> int:
@@ -65,15 +67,30 @@ class TransitionWorldModel:
             "action": None if action is None else action.action,
             "action_payload": None if action is None else action.payload,
         }
-        return json.dumps(value, sort_keys=True, separators=(",", ":"), ensure_ascii=True, allow_nan=False)
+        return json.dumps(
+            value,
+            sort_keys=True,
+            separators=(",", ":"),
+            ensure_ascii=True,
+            allow_nan=False,
+        )
 
     def predict(
-        self, frame: SensorFrame, action: ActionCommand | None, *, target_tick: int,
+        self,
+        frame: SensorFrame,
+        action: ActionCommand | None,
+        *,
+        target_tick: int,
         persistence_state: dict[str, Any] | None,
     ) -> WorldPrediction:
         stats = self._contexts.get(self._context(frame, action))
         if stats is None:
-            return WorldPrediction(copy.deepcopy(persistence_state), 1.0, "persistence_reference", target_tick)
+            return WorldPrediction(
+                copy.deepcopy(persistence_state),
+                1.0,
+                "persistence_reference",
+                target_tick,
+            )
         predicted: dict[str, Any] = {
             name: total / stats.numeric_count[name]
             for name, total in stats.numeric_sum.items()
@@ -81,10 +98,14 @@ class TransitionWorldModel:
         for name, values in stats.categorical.items():
             label = min(values, key=lambda item: (-values[item], item))
             predicted[name] = json.loads(label)
-        return WorldPrediction(predicted, 1.0 / (1.0 + stats.count), "adaptive_transition", target_tick)
+        return WorldPrediction(
+            predicted, 1.0 / (1.0 + stats.count), "adaptive_transition", target_tick
+        )
 
     def update(
-        self, frame: SensorFrame, action: ActionCommand | None,
+        self,
+        frame: SensorFrame,
+        action: ActionCommand | None,
         observation: EnvironmentObservation,
     ) -> None:
         key = self._context(frame, action)
@@ -111,12 +132,16 @@ class TransitionWorldModel:
         self._contexts[key] = candidate
 
     @staticmethod
-    def error(predicted: dict[str, Any] | None, actual: dict[str, Any] | None) -> float | None:
+    def error(
+        predicted: dict[str, Any] | None, actual: dict[str, Any] | None
+    ) -> float | None:
         """Legacy mixed-unit compatibility value; use error_components in studies."""
         return compare_prediction(predicted, actual).legacy_mean_error
 
     @staticmethod
-    def error_components(predicted: dict[str, Any] | None, actual: dict[str, Any] | None) -> dict[str, Any]:
+    def error_components(
+        predicted: dict[str, Any] | None, actual: dict[str, Any] | None
+    ) -> dict[str, Any]:
         return compare_prediction(predicted, actual).to_dict()
 
     def state_dict(self) -> dict[str, Any]:
@@ -130,7 +155,9 @@ class TransitionWorldModel:
                     "count": stats.count,
                     "numeric_sum": dict(stats.numeric_sum),
                     "numeric_count": dict(stats.numeric_count),
-                    "categorical": {name: dict(values) for name, values in stats.categorical.items()},
+                    "categorical": {
+                        name: dict(values) for name, values in stats.categorical.items()
+                    },
                 }
                 for key, stats in self._contexts.items()
             },
@@ -139,7 +166,9 @@ class TransitionWorldModel:
     @classmethod
     def from_state_dict(cls, state: dict[str, Any]) -> "TransitionWorldModel":
         if state.get("model_version") != cls.model_version:
-            raise ValueError("unsupported world model version; legacy v1 needs a replay-based rebuild because category types and FIFO order were not preserved")
+            raise ValueError(
+                "unsupported world model version; legacy v1 needs a replay-based rebuild because category types and FIFO order were not preserved"
+            )
         try:
             model = cls(max_contexts=state["max_contexts"])
             contexts = state["contexts"]
@@ -148,18 +177,32 @@ class TransitionWorldModel:
                 raise ValueError("world model contexts and order have invalid types")
             if not all(isinstance(key, str) for key in order):
                 raise ValueError("context order must contain string keys")
-            if len(order) != len(contexts) or set(order) != set(contexts) or len(order) > model.max_contexts:
+            if (
+                len(order) != len(contexts)
+                or set(order) != set(contexts)
+                or len(order) > model.max_contexts
+            ):
                 raise ValueError("context order or capacity is invalid")
             for key in order:
                 item = contexts[key]
                 stats = _TransitionStats(count=_positive_int(item["count"], "count"))
-                sums, counts, categories = item["numeric_sum"], item["numeric_count"], item["categorical"]
-                if not all(isinstance(value, dict) for value in (sums, counts, categories)):
+                sums, counts, categories = (
+                    item["numeric_sum"],
+                    item["numeric_count"],
+                    item["categorical"],
+                )
+                if not all(
+                    isinstance(value, dict) for value in (sums, counts, categories)
+                ):
                     raise ValueError("invalid transition statistics")
                 if set(sums) != set(counts) or set(sums) & set(categories):
                     raise ValueError("inconsistent transition fields")
                 for name, value in sums.items():
-                    if not isinstance(name, str) or not is_number(value) or not math.isfinite(value):
+                    if (
+                        not isinstance(name, str)
+                        or not is_number(value)
+                        or not math.isfinite(value)
+                    ):
                         raise ValueError("invalid numeric sum")
                     count = _positive_int(counts[name], "field count")
                     if count > stats.count:
@@ -167,11 +210,18 @@ class TransitionWorldModel:
                     stats.numeric_sum[name] = float(value)
                     stats.numeric_count[name] = count
                 for name, values in categories.items():
-                    if not isinstance(name, str) or not isinstance(values, dict) or not values:
+                    if (
+                        not isinstance(name, str)
+                        or not isinstance(values, dict)
+                        or not values
+                    ):
                         raise ValueError("invalid categorical statistics")
                     bucket: Counter[str] = Counter()
                     for label, value in values.items():
-                        if not isinstance(label, str) or _category(json.loads(label)) != label:
+                        if (
+                            not isinstance(label, str)
+                            or _category(json.loads(label)) != label
+                        ):
                             raise ValueError("invalid typed category")
                         bucket[label] = _positive_int(value, "category count")
                     if sum(bucket.values()) > stats.count:

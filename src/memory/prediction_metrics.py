@@ -59,7 +59,9 @@ def compare_prediction(
     if actual is None:
         return PredictionErrors(numeric, categorical, (), (), 0)
     for key, observed in actual.items():
-        if not (observed is None or isinstance(observed, (str, bool)) or is_number(observed)):
+        if not (
+            observed is None or isinstance(observed, (str, bool)) or is_number(observed)
+        ):
             unsupported.append(key)
             continue
         if is_number(observed) and not math.isfinite(observed):
@@ -73,13 +75,22 @@ def compare_prediction(
             if not math.isfinite(difference):
                 raise ValueError("prediction error must be finite")
             numeric[key] = difference
-        elif expected is None or isinstance(expected, (str, bool)) or is_number(expected):
+        elif (
+            expected is None or isinstance(expected, (str, bool)) or is_number(expected)
+        ):
             if is_number(expected) and not math.isfinite(expected):
                 raise ValueError("predicted numeric state must be finite")
-            categorical[key] = 0.0 if type(expected) is type(observed) and expected == observed else 1.0
+            categorical[key] = (
+                0.0
+                if type(expected) is type(observed) and expected == observed
+                else 1.0
+            )
         else:
             missing.append(key)
     return PredictionErrors(
-        numeric, categorical, tuple(sorted(missing)), tuple(sorted(unsupported)),
+        numeric,
+        categorical,
+        tuple(sorted(missing)),
+        tuple(sorted(unsupported)),
         len(actual) - len(unsupported),
     )

@@ -16,7 +16,12 @@ from src.memory.world_model import TransitionWorldModel
 
 
 def make_layer(**kwargs):
-    return MemoryWorldModel(MemoryStore(run_id="stage6-test"), TransitionWorldModel(max_contexts=2), "stage6-test", **kwargs)
+    return MemoryWorldModel(
+        MemoryStore(run_id="stage6-test"),
+        TransitionWorldModel(max_contexts=2),
+        "stage6-test",
+        **kwargs,
+    )
 
 
 def cycle(layer, tick, label="A"):
@@ -28,7 +33,9 @@ def cycle(layer, tick, label="A"):
     return prediction
 
 
-@pytest.mark.parametrize("read,write,infer,learn", itertools.product((False, True), repeat=4))
+@pytest.mark.parametrize(
+    "read,write,infer,learn", itertools.product((False, True), repeat=4)
+)
 def test_all_four_controls_are_independent(read, write, infer, learn):
     layer = make_layer(prediction_enabled=infer, learning_enabled=learn)
     layer.store.set_controls(read_enabled=read, write_enabled=write)
@@ -47,8 +54,14 @@ def test_persistence_uses_only_previous_observation_and_clears_on_episode_reset(
     assert cycle(layer, 1).predicted_state is None
     frame = SensorFrame("sensor", 2, "digital", {"label": "new"})
     action = ActionCommand("actuator", 2, "right")
-    assert layer.predict(frame, action, 2).predicted_state == {"x": 1.0, "matched": True}
-    assert layer.predict(replace(frame, sensor_id="foreign"), action, 2).predicted_state is None
+    assert layer.predict(frame, action, 2).predicted_state == {
+        "x": 1.0,
+        "matched": True,
+    }
+    assert (
+        layer.predict(replace(frame, sensor_id="foreign"), action, 2).predicted_state
+        is None
+    )
     layer.reset_episode("new-episode")
     assert layer.predict(frame, action, 2).predicted_state is None
 
@@ -98,8 +111,15 @@ def test_composition_exposes_predictor_controls_without_reusing_memory_flags():
     config = {
         "experience": {
             "enabled": True,
-            "sensor": {"provider": "deterministic_trace", "trace": [{"cpu_percent": 1.0}]},
-            "memory": {"enabled": True, "prediction_enabled": False, "learning_enabled": False},
+            "sensor": {
+                "provider": "deterministic_trace",
+                "trace": [{"cpu_percent": 1.0}],
+            },
+            "memory": {
+                "enabled": True,
+                "prediction_enabled": False,
+                "learning_enabled": False,
+            },
         }
     }
     engine = build_experience_subsystem(config, object(), object())
