@@ -3,9 +3,14 @@
 const VOICE_STORAGE_KEY = "mhrn.speech.voices.v2";
 const RATE_STORAGE_KEY = "mhrn.speech.rate.v2";
 const NATURAL_NAMES = {
-  de: ["katja", "conrad"],
-  en: ["jenny", "aria", "guy", "ryan", "sonia"],
+  de: ["katja", "conrad", "amala", "bernd", "christa", "detlef", "elke", "fiona"],
+  en: ["jenny", "aria", "guy", "ryan", "sonia", "davis", "amber", "ashley", "emma", "brian", "christopher", "eric", "jacob", "nancy", "sara"],
+  fr: ["henri", "charlotte", "remi", "josephine"],
+  es: ["elvira", "dalia", "alvaro", "marisol"],
+  it: ["diego", "isabella", "imelda", "cosimo"],
 };
+
+const NATURAL_KEYWORDS = /natural|neural|online|premium|enhanced|wavenet|studio|ultra/i;
 
 let activeSession = null;
 
@@ -60,7 +65,12 @@ function splitSpeechText(value, limit = 260) {
 }
 
 function baseLang(lang) {
-  return String(lang || "de-DE").toLowerCase().startsWith("en") ? "en" : "de";
+  const l = String(lang || "de-DE").toLowerCase();
+  if (l.startsWith("en")) return "en";
+  if (l.startsWith("fr")) return "fr";
+  if (l.startsWith("es")) return "es";
+  if (l.startsWith("it")) return "it";
+  return "de";
 }
 
 export function detectSpeechLanguage(value, fallback = "de-DE") {
@@ -114,10 +124,12 @@ function voiceScore(voice, lang) {
   let score = 0;
   if (baseLang(voiceLang) === wanted) score += 100;
   if (voiceLang === String(lang || "").toLowerCase()) score += 25;
-  if (/natural|neural|online/.test(name)) score += 60;
+  if (NATURAL_KEYWORDS.test(name)) score += 60;
   if (NATURAL_NAMES[wanted]?.some((candidate) => name.includes(candidate))) score += 55;
   if (/microsoft/.test(name)) score += 22;
   if (/google/.test(name)) score += 18;
+  if (/apple|siri/.test(name)) score += 15;
+  if (/amazon|alexa/.test(name)) score += 14;
   if (voice.default) score += 8;
   if (voice.localService) score += 4;
   return score;
@@ -235,7 +247,7 @@ function voiceOptionMarkup(lang, selectedName) {
   const voices = listSpeechVoices(lang).sort((left, right) => voiceScore(right, lang) - voiceScore(left, lang));
   if (!voices.length) return '<option value="">Keine passende Stimme gefunden</option>';
   return voices.map((voice) => {
-    const quality = /natural|neural|online/i.test(voice.name) || NATURAL_NAMES[baseLang(lang)]?.some((name) => voice.name.toLowerCase().includes(name)) ? " ★" : "";
+    const quality = NATURAL_KEYWORDS.test(voice.name) || NATURAL_NAMES[baseLang(lang)]?.some((name) => voice.name.toLowerCase().includes(name)) ? " ★" : "";
     return `<option value="${escapeAttribute(voice.name)}"${voice.name === selectedName ? " selected" : ""}>${escapeText(voice.name)} · ${escapeText(voice.lang)}${quality}</option>`;
   }).join("");
 }
@@ -268,8 +280,11 @@ export function createSpeechControls(mount, getText, {
     ${showVoiceOptions ? `<details class="speech-reader-options"><summary>Stimmen</summary><div class="speech-reader-options-panel">
       <label>Deutsch<select class="speech-reader-voice" data-speech-lang="de-DE"></select></label>
       <label>English<select class="speech-reader-voice" data-speech-lang="en-US"></select></label>
+      <label>Français<select class="speech-reader-voice" data-speech-lang="fr-FR"></select></label>
+      <label>Español<select class="speech-reader-voice" data-speech-lang="es-ES"></select></label>
+      <label>Italiano<select class="speech-reader-voice" data-speech-lang="it-IT"></select></label>
       <label>Tempo<input class="speech-reader-rate" type="range" min="0.7" max="1.25" step="0.05" value="${getStoredRate()}"><output>${getStoredRate().toFixed(2)}×</output></label>
-      <small>★ bevorzugt natürliche/neuronale Systemstimmen. Unter Windows werden insbesondere Katja/Conrad (DE) und Jenny/Aria/Guy/Ryan/Sonia (EN) priorisiert.</small>
+      <small>★ bevorzugt natürliche/neuronale Systemstimmen. Unter Windows werden insbesondere Katja/Conrad/Amala/Bernd (DE), Jenny/Aria/Guy/Ryan/Davis/Amber/Emma/Brian (EN), Henri/Charlotte (FR), Elvira/Alvaro (ES) und Diego/Isabella (IT) priorisiert.</small>
     </div></details>` : ""}
     <span class="speech-reader-status" role="status" aria-live="polite"></span>`;
   mount.append(controls);
