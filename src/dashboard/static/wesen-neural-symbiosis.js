@@ -77,6 +77,7 @@ function ensurePanel() {
       <article><header><strong>Network areas</strong><span id="wesen-symbiosis-area-count">0</span></header><div id="wesen-symbiosis-areas" class="wesen-symbiosis-list"></div></article>
       <article><header><strong>Pipelines</strong><span id="wesen-symbiosis-pipeline-count">0</span></header><div id="wesen-symbiosis-pipelines" class="wesen-symbiosis-list"></div></article>
       <article><header><strong>MSBA pathways</strong><span>3 MODALITIES</span></header><div id="wesen-msba-pathways" class="wesen-symbiosis-list"></div></article>
+      <article><header><strong>Stage 4 · Specialized areas</strong><span id="wesen-stage4-scale">ENGINEERING CONTRACT</span></header><div id="wesen-stage4-areas" class="wesen-symbiosis-list"></div></article>
       <article><header><strong>Energy homeostasis</strong><span>FAIL-CLOSED</span></header><div class="wesen-symbiosis-gateway">
         <div><span>Accounting</span><strong>energy units / estimated / measured</strong></div>
         <div><span>Soft allocation</span><strong>disabled by default</strong></div>
@@ -124,6 +125,8 @@ function renderPanel() {
   const status = document.getElementById("wesen-symbiosis-status");
   const topology = document.getElementById("wesen-symbiosis-topology");
   const topologyCount = document.getElementById("wesen-symbiosis-topology-count");
+  const stage4Areas = document.getElementById("wesen-stage4-areas");
+  const stage4Scale = document.getElementById("wesen-stage4-scale");
   if (!areas || !pipelines || !msba || !areaCount || !pipelineCount) return;
   const gateway = lastSymbiosis?.gateway || {};
   const experimentMode = lastExperimentMode?.current_mode === "experiment";
@@ -158,6 +161,11 @@ function renderPanel() {
     return `<div class="wesen-symbiosis-item ${ok ? "reachable" : "unreachable"}"><span class="wesen-symbiosis-dot"></span><div><strong>${escapeHtml(pipeline.label)}</strong><small>${escapeHtml(pipeline.kind)} · ${ok ? "endpoint reachable" : "endpoint unavailable"} · disabled</small></div></div>`;
   }).join("");
   msba.innerHTML = MSBA.map(([name, path, coords, plasticity, throttle]) => `<div class="wesen-symbiosis-item"><span class="wesen-symbiosis-dot"></span><div><strong>${escapeHtml(name)} · ${escapeHtml(path)}</strong><small>${escapeHtml(coords)} · ${escapeHtml(plasticity)} · throttle: ${escapeHtml(throttle)}</small></div></div>`).join("");
+  const specialized = lastSymbiosis?.specialized_areas || {};
+  const specializedRows = Array.isArray(specialized.areas) ? specialized.areas : [];
+  const scale = specialized.topology || {};
+  if (stage4Scale) stage4Scale.textContent = `${Number(scale.total_neuron_budget || 0).toLocaleString("de-DE")} N · ${Number(scale.total_synapse_budget || 0).toLocaleString("de-DE")} S · ${scale.dynamic_scale_execution_verified ? "DYNAMIC VERIFIED" : "AGGREGATED"}`;
+  if (stage4Areas) stage4Areas.innerHTML = specializedRows.length ? specializedRows.map((area) => `<div class="wesen-symbiosis-item"><span class="wesen-symbiosis-dot"></span><div><strong>${escapeHtml(area.name)} · ${escapeHtml(area.modality)}</strong><small>${Number(area.neuron_budget || 0).toLocaleString("de-DE")} neurons · ${Number(area.synapse_budget || 0).toLocaleString("de-DE")} synapses · ${escapeHtml(area.pathway)} · ${escapeHtml(area.plasticity_rule)}</small></div></div>`).join("") : '<div class="wesen-symbiosis-item"><div><strong>Stage-4 contract unavailable</strong><small>Backend has not published specialized area data.</small></div></div>';
 }
 
 async function refreshConnections() {

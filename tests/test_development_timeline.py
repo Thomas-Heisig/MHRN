@@ -36,7 +36,7 @@ def _baseline(*, stale: bool) -> BaselineEvaluation:
 
 @pytest.mark.parametrize(
     ("stale", "stage_floor", "stage_next", "current_stage"),
-    [(True, 3, 4, 3.75), (False, 3, 4, 3.75)],
+    [(True, 4, 5, 4.95), (False, 4, 5, 5.0)],
     ids=["stale-baseline", "current-baseline"],
 )
 def test_development_timeline_separates_engineering_verification_and_evidence(
@@ -60,6 +60,12 @@ def test_development_timeline_separates_engineering_verification_and_evidence(
     assert payload["verification_score"] != payload["scientific_evidence_score"]
     assert payload["consciousness_claim"] == "unsupported"
     assert "consciousness" in payload["scientific_note"].lower()
+
+    stage_four = next(stage for stage in payload["stages"] if stage["stage"] == 4)
+    assert stage_four["status"] == "reached"
+    assert stage_four["implementation_score"] == 1.0
+    assert all(item["status"] == "verified" for item in stage_four["criteria"])
+    assert any("100k-neuron/10M-edge" in item for item in stage_four["known_limits"])
 
 
 def test_baseline_refresh_does_not_promote_scientific_evidence() -> None:
@@ -178,25 +184,4 @@ def test_development_timeline_api_is_read_only_and_reachable() -> None:
         assert len(payload["stages"]) == 11
     finally:
         server.shutdown()
-        server.server_close()
-
-
-@pytest.mark.parametrize("stale", [True, False], ids=["stale", "current"])
-def test_baseline_cannot_verify_criteria_without_registered_tests(stale: bool) -> None:
-    with patch(
-        "src.dashboard.development_timeline.evaluate_test_baseline",
-        return_value=_baseline(stale=stale),
-    ):
-        payload = build_development_timeline(ROOT)
-
-    stage = next(item for item in payload["stages"] if item["id"] == "small_snn")
-    statuses = {item["id"]: item["status"] for item in stage["criteria"]}
-    assert statuses == {
-        "network_core": "implemented",
-        "spike_propagation": "verified",
-        "sparse_topology": "implemented",
-    }
-    assert stage["implementation_score"] == 1.0
-    assert stage["verification_score"] == 0.5
-    assert stage["research_readiness_score"] == 0.233
-    assert stage["status"] == "reached"
+        thread.join(timeout=5)

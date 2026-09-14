@@ -15,6 +15,16 @@ MHRN / Multi-Scale Homeostatic Recurrence Network. Publication: Recursive Episte
 
 # MHRN Current TODO
 
+## 2026-09-14 Stage 4 specialized neural areas
+
+- [x] Add explicit audio, vision and digital specialized-area contracts with distinct adapter and plasticity rules.
+- [x] Add an aggregated 100k-neuron / 10M-synapse lower-bound topology contract without pretending full dynamic execution.
+- [x] Connect the existing E01-E05 MSBA runner/data programme to the Stage-4 engineering verification.
+- [x] Publish Stage-4 area state through the Neural Symbiosis API and both integrated/public frontend surfaces.
+- [x] Add deterministic Stage-4 tests and generated engineering verification.
+- [ ] Scientific EVID promotion, independent review and dynamically materialized large-scale multimodal benchmarks remain separate research work.
+
+
 **Canonical TODO for `main`**  
 **Baseline:** `mhrn-core 0.6.0a3`
 **Updated:** 2026-09-13

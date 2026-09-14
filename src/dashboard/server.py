@@ -56,6 +56,7 @@ from src.embodiment import (
     GatewayState,
     NeuralSymbiosisCatalog,
     SensorActivationService,
+    specialized_area_contract,
 )
 from src.learning import (
     LearningDataPartition,
@@ -1760,19 +1761,27 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
         )
 
     def _send_neural_symbiosis(self) -> None:
-        """Serve the catalog and the separately governed gateway runtime."""
+        """Serve catalog, Stage-4 areas and separately governed gateway runtime."""
         catalog = NeuralSymbiosisCatalog().to_json([])
         gateway = self.dashboard_server.gateway_runtime.status()
+        specialized = specialized_area_contract()
         self._send_json(
             {
                 "name": "Neural Symbiosis",
                 "status": "implemented_experimental",
                 "maturity_level": self._gateway_maturity(gateway),
                 "catalog": catalog,
+                "specialized_areas": specialized,
                 "gateway": gateway,
                 "productive_gateway": {
                     "available": False,
                     "reason": "experimental_validation_incomplete",
+                },
+                "scientific_boundary": {
+                    "stage4_engineering_contract": "implemented",
+                    "dynamic_100k_10m_execution_verified": False,
+                    "automatic_evidence_promotion": False,
+                    "productive_activation_enabled": False,
                 },
             }
         )
@@ -2128,8 +2137,11 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
 
         # Find the latest recursive-epistemics publication directory
         candidates = sorted(
-            (d for d in pub_root.iterdir()
-             if d.is_dir() and "recursive-epistemics" in d.name),
+            (
+                d
+                for d in pub_root.iterdir()
+                if d.is_dir() and "recursive-epistemics" in d.name
+            ),
             key=lambda d: d.name,
             reverse=True,
         )
@@ -2166,7 +2178,9 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
                     fb_content = fb_path.read_text(encoding="utf-8")
                     forschungsbericht = {
                         "path": str(fb_path.relative_to(repo_root)).replace("\\", "/"),
-                        "sha256": hashlib.sha256(fb_content.encode("utf-8")).hexdigest(),
+                        "sha256": hashlib.sha256(
+                            fb_content.encode("utf-8")
+                        ).hexdigest(),
                     }
                     break
 
@@ -2175,22 +2189,30 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
             for ext in (".pdf", ".docx"):
                 for f in latest.iterdir():
                     if f.suffix == ext and f.stem.startswith("MHRN"):
-                        exports.append({
-                            "format": ext.lstrip("."),
-                            "path": str(f.relative_to(repo_root)).replace("\\", "/"),
-                            "size_bytes": f.stat().st_size,
-                        })
+                        exports.append(
+                            {
+                                "format": ext.lstrip("."),
+                                "path": str(f.relative_to(repo_root)).replace(
+                                    "\\", "/"
+                                ),
+                                "size_bytes": f.stat().st_size,
+                            }
+                        )
 
-            self._send_json({
-                "publication": latest.name,
-                "title": "Recursive Epistemics in Embodied Spiking Neural Architectures",
-                "edition": edition,
-                "readme_path": str(readme_path.relative_to(repo_root)).replace("\\", "/"),
-                "sha256": digest,
-                "content": content,
-                "forschungsbericht": forschungsbericht,
-                "exports": exports,
-            })
+            self._send_json(
+                {
+                    "publication": latest.name,
+                    "title": "Recursive Epistemics in Embodied Spiking Neural Architectures",
+                    "edition": edition,
+                    "readme_path": str(readme_path.relative_to(repo_root)).replace(
+                        "\\", "/"
+                    ),
+                    "sha256": digest,
+                    "content": content,
+                    "forschungsbericht": forschungsbericht,
+                    "exports": exports,
+                }
+            )
         except Exception as exc:
             self._send_json(
                 {"error": str(exc)},
