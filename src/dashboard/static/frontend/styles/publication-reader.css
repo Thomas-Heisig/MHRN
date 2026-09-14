@@ -1,0 +1,495 @@
+/*
+ * Publication / Dissertation Reader v3
+ *
+ * This sheet intentionally uses a strong #tab-publication scope. The legacy
+ * dashboard styles contain element-level rules for `main`, `article`, buttons
+ * and sticky headers. The reader contains a nested <main>, so an unscoped
+ * `main { margin-left: 210px; ... }` otherwise applies a second sidebar offset.
+ *
+ * Keep geometry here. The JS reader may still inject legacy cosmetic rules,
+ * but this scoped layer is the canonical layout contract.
+ */
+
+#tab-publication {
+  --pub-app-offset: 66px;
+  --pub-toolbar-height: 50px;
+  --pub-rail-width: clamp(250px, 20vw, 320px);
+  --pub-reader-gap: 0px;
+}
+
+#tab-publication > .workspace-header {
+  display: none;
+}
+
+#tab-publication #publication-panel {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+}
+
+#tab-publication #publication-panel *,
+#tab-publication #publication-panel *::before,
+#tab-publication #publication-panel *::after {
+  box-sizing: border-box;
+}
+
+#tab-publication #publication-panel .publication-reader {
+  position: relative;
+  display: block;
+  width: 100%;
+  max-width: none;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  color: var(--pub-text, var(--ink, #18202b));
+  background: var(--pub-surface, var(--paper-2, #fff));
+  border: 1px solid var(--pub-border, var(--rule, #d9dee7));
+  border-radius: 12px;
+  overflow: clip;
+  contain: layout style;
+}
+
+/* The progress strip does not participate in sticky geometry. */
+#tab-publication #publication-panel .pub-reader-progress {
+  position: absolute;
+  inset: 0 0 auto 0;
+  z-index: 40;
+  height: 3px;
+  pointer-events: none;
+}
+
+/* The hero is deliberately NOT sticky. A second sticky header was the source
+ * of text sliding underneath the reader chrome. */
+#tab-publication #publication-panel .pub-reader-hero,
+#tab-publication #publication-panel .pub-scholar-reader .pub-reader-hero {
+  position: relative;
+  top: auto;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 16px;
+  align-items: center;
+  margin: 0;
+  padding: 16px 18px 13px;
+  border: 0;
+  border-bottom: 1px solid var(--pub-border, var(--rule, #d9dee7));
+  border-radius: 0;
+  box-shadow: none;
+  background: var(--pub-surface, var(--paper-2, #fff));
+}
+
+#tab-publication #publication-panel .pub-reader-hero h1,
+#tab-publication #publication-panel .pub-scholar-reader .pub-reader-hero h1 {
+  max-width: none;
+  margin: 0;
+  font-size: clamp(1.15rem, 1.65vw, 1.55rem);
+  line-height: 1.18;
+}
+
+#tab-publication #publication-panel .pub-reader-primary-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 6px;
+}
+
+/* One sticky tool row only. No blur/backdrop-filter: those caused expensive
+ * repaints while scrolling long manuscripts in Electron/Chromium. */
+#tab-publication #publication-panel .pub-reader-toolbar,
+#tab-publication #publication-panel .pub-scholar-reader .pub-reader-toolbar {
+  position: sticky;
+  top: var(--pub-app-offset);
+  z-index: 35;
+  display: grid;
+  grid-template-columns: auto auto minmax(120px, 1fr) minmax(210px, 360px) auto;
+  gap: 8px;
+  align-items: center;
+  width: 100%;
+  min-height: var(--pub-toolbar-height);
+  margin: 0;
+  padding: 7px 10px;
+  border: 0;
+  border-bottom: 1px solid var(--pub-border, var(--rule, #d9dee7));
+  background: var(--pub-surface, var(--paper-2, #fff));
+  backdrop-filter: none;
+  box-shadow: 0 1px 0 color-mix(in srgb, var(--pub-border, #d9dee7) 75%, transparent);
+}
+
+#tab-publication #publication-panel .pub-reader-history,
+#tab-publication #publication-panel .pub-reader-speech,
+#tab-publication #publication-panel .pub-scholar-modes {
+  min-width: 0;
+  margin: 0;
+}
+
+#tab-publication #publication-panel .pub-reader-location {
+  min-width: 80px;
+  overflow: hidden;
+}
+
+#tab-publication #publication-panel .pub-reader-search {
+  min-width: 0;
+  width: 100%;
+}
+
+/* Scholar tooling used to append a second speech-control group at the opposite
+ * end of the toolbar. Bootstrap now moves the enhanced controls into the
+ * canonical speech mount; this selector prevents a flash before that move. */
+#tab-publication #publication-panel .pub-scholar-speech {
+  display: none !important;
+}
+
+#tab-publication #publication-panel #pub-reader-speech-mount {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+
+#tab-publication #publication-panel #pub-reader-speech-mount .speech-reader-controls {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  min-width: 0;
+  margin: 0;
+  white-space: nowrap;
+}
+
+#tab-publication #publication-panel #pub-reader-speech-mount .speech-reader-start,
+#tab-publication #publication-panel #pub-reader-speech-mount .speech-reader-pause,
+#tab-publication #publication-panel #pub-reader-speech-mount .speech-reader-stop,
+#tab-publication #publication-panel #pub-reader-speech-mount .speech-reader-options > summary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  min-height: 32px;
+  width: auto;
+  height: 32px;
+  margin: 0;
+  padding: 0 9px;
+  border: 1px solid var(--pub-border, var(--rule, #d9dee7));
+  border-radius: 7px;
+  background: var(--pub-surface, var(--paper-2, #fff));
+  color: inherit;
+  font: inherit;
+  font-size: .75rem;
+  line-height: 1;
+}
+
+#tab-publication #publication-panel #pub-reader-speech-mount .speech-reader-status {
+  min-width: 0;
+  margin: 0 0 0 2px;
+  font-size: .68rem;
+  color: var(--pub-muted, var(--ink-3, #667085));
+}
+
+#tab-publication #publication-panel #pub-reader-speech-mount .speech-reader-options {
+  position: relative;
+  margin: 0;
+}
+
+#tab-publication #publication-panel #pub-reader-speech-mount .speech-reader-options > summary {
+  list-style: none;
+  cursor: pointer;
+}
+
+#tab-publication #publication-panel #pub-reader-speech-mount .speech-reader-options-panel {
+  position: absolute;
+  top: calc(100% + 7px);
+  left: 0;
+  right: auto;
+  z-index: 80;
+  display: grid;
+  gap: 10px;
+  width: min(440px, 72vw);
+  padding: 12px;
+  border: 1px solid var(--pub-border, var(--rule, #d9dee7));
+  border-radius: 10px;
+  background: var(--pub-surface, var(--paper-2, #fff));
+  box-shadow: 0 12px 30px rgb(0 0 0 / .16);
+}
+
+#tab-publication #publication-panel #pub-reader-speech-mount .speech-reader-options-panel label {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+  font-size: .73rem;
+}
+
+#tab-publication #publication-panel #pub-reader-speech-mount select,
+#tab-publication #publication-panel #pub-reader-speech-mount input[type="range"] {
+  max-width: 100%;
+}
+
+/* Canonical two-column geometry: rail touches the document with no phantom
+ * margin. This also defeats the global dashboard `main { margin-left:210px }`
+ * rule for the nested .pub-reader-document element. */
+#tab-publication #publication-panel .pub-reader-layout,
+#tab-publication #publication-panel .pub-scholar-reader .pub-reader-layout {
+  display: grid;
+  grid-template-columns: var(--pub-rail-width) minmax(0, 1fr);
+  column-gap: var(--pub-reader-gap);
+  align-items: start;
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: var(--pub-surface, var(--paper-2, #fff));
+}
+
+#tab-publication #publication-panel aside.pub-reader-toc,
+#tab-publication #publication-panel .pub-scholar-reader .pub-reader-toc {
+  position: sticky;
+  top: calc(var(--pub-app-offset) + var(--pub-toolbar-height));
+  align-self: start;
+  width: 100%;
+  max-width: none;
+  max-height: calc(100vh - var(--pub-app-offset) - var(--pub-toolbar-height) - 8px);
+  margin: 0;
+  padding: 13px 10px 18px;
+  overflow: auto;
+  border: 0;
+  border-right: 1px solid var(--pub-border, var(--rule, #d9dee7));
+  background: color-mix(in srgb, var(--pub-surface, #fff) 96%, var(--pub-soft, #f4f6f8));
+  scrollbar-gutter: stable;
+}
+
+/* Critical reset: styles.css applies its page-level `main` rule to this nested
+ * main too. Keep every page-shell offset out of the reader document. */
+#tab-publication #publication-panel main.pub-reader-document,
+#tab-publication #publication-panel .pub-scholar-reader main.pub-reader-document {
+  position: relative !important;
+  inset: auto !important;
+  z-index: auto !important;
+  display: block !important;
+  width: 100% !important;
+  max-width: none !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: visible;
+  background: var(--pub-surface, var(--paper-2, #fff));
+}
+
+#tab-publication #publication-panel .pub-reader-document-banner {
+  width: 100%;
+  margin: 0;
+  padding: 9px 18px;
+}
+
+#tab-publication #publication-panel article.pub-reader-article,
+#tab-publication #publication-panel .pub-scholar-reader article.pub-reader-article,
+#tab-publication #publication-panel .pub-scholar-reader[data-reading-width="full"] article.pub-reader-article {
+  display: block;
+  width: 100%;
+  max-width: none;
+  min-width: 0;
+  margin: 0;
+  padding: 24px clamp(20px, 2.5vw, 40px) 70px;
+  overflow: visible;
+  overflow-wrap: anywhere;
+  word-break: normal;
+  hyphens: auto;
+  font-size: clamp(.95rem, .25vw + .9rem, 1.04rem);
+  line-height: 1.72;
+  scroll-padding-top: calc(var(--pub-app-offset) + var(--pub-toolbar-height) + 12px);
+}
+
+#tab-publication #publication-panel .pub-scholar-reader[data-reading-width="focus"] article.pub-reader-article {
+  width: min(100%, 1080px);
+  max-width: 1080px;
+  margin-inline: auto;
+}
+
+#tab-publication #publication-panel .pub-reader-article [data-pub-heading] {
+  scroll-margin-top: calc(var(--pub-app-offset) + var(--pub-toolbar-height) + 14px);
+}
+
+#tab-publication #publication-panel .pub-reader-article > :first-child {
+  margin-top: 0;
+}
+
+#tab-publication #publication-panel .pub-reader-article img,
+#tab-publication #publication-panel .pub-reader-article table,
+#tab-publication #publication-panel .pub-reader-article pre,
+#tab-publication #publication-panel .pub-reader-article .pub-table-wrap {
+  max-width: 100%;
+}
+
+#tab-publication #publication-panel .pub-reader-article pre,
+#tab-publication #publication-panel .pub-table-wrap {
+  overflow: auto;
+}
+
+#tab-publication #publication-panel .pub-scholar-chapters {
+  margin: 0 0 12px;
+  padding: 0 0 12px;
+  border-bottom: 1px solid var(--pub-border, var(--rule, #d9dee7));
+}
+
+#tab-publication #publication-panel .pub-scholar-chapter-list {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 2px !important;
+  max-height: 44vh;
+  overflow: auto;
+}
+
+#tab-publication #publication-panel .pub-scholar-chapter-list button {
+  display: grid;
+  grid-template-columns: 26px minmax(0, 1fr);
+  gap: 7px;
+  align-items: start;
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  padding: 6px 7px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--pub-muted, var(--ink-3, #667085));
+  text-align: left;
+  cursor: pointer;
+}
+
+#tab-publication #publication-panel .pub-scholar-chapter-list button:hover,
+#tab-publication #publication-panel .pub-scholar-chapter-list button.active {
+  background: var(--pub-soft, color-mix(in srgb, #999 8%, transparent));
+  color: var(--pub-text, var(--ink, #18202b));
+}
+
+#tab-publication #publication-panel .pub-scholar-chapter-list button.active {
+  box-shadow: inset 3px 0 0 var(--pub-accent, var(--accent, #275df5));
+}
+
+#tab-publication #publication-panel .pub-reader-bottom-nav {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 10px;
+  margin-top: 52px;
+  padding-top: 18px;
+  border-top: 1px solid var(--pub-border, var(--rule, #d9dee7));
+}
+
+#tab-publication #publication-panel .pub-reader-bottom-nav button,
+#tab-publication #publication-panel .pub-reader-finished {
+  min-width: 0;
+  padding: 12px 14px;
+  border: 1px solid var(--pub-border, var(--rule, #d9dee7));
+  border-radius: 9px;
+  background: var(--pub-surface, var(--paper-2, #fff));
+  color: inherit;
+  text-align: left;
+}
+
+#tab-publication #publication-panel .pub-reader-bottom-nav button[data-direction="next"] {
+  text-align: right;
+}
+
+#tab-publication #publication-panel .pub-selection-assistant {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 120;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  gap: 8px;
+  align-items: center;
+  width: min(680px, calc(100vw - 36px));
+  padding: 10px;
+  border: 1px solid var(--pub-border, var(--rule, #d9dee7));
+  border-radius: 10px;
+  background: var(--pub-surface, var(--paper-2, #fff));
+  box-shadow: 0 16px 40px rgb(0 0 0 / .18);
+}
+
+#tab-publication #publication-panel .pub-selection-assistant[hidden] {
+  display: none !important;
+}
+
+#tab-publication #publication-panel .pub-speech-active {
+  outline: 2px solid color-mix(in srgb, var(--pub-accent, #275df5) 28%, transparent);
+  outline-offset: 3px;
+  background: color-mix(in srgb, var(--pub-accent, #275df5) 7%, transparent);
+  border-radius: 4px;
+}
+
+/* Responsive: collapse only when there really is not enough room. */
+@media (max-width: 1180px) {
+  #tab-publication { --pub-rail-width: clamp(220px, 24vw, 280px); }
+  #tab-publication #publication-panel .pub-reader-toolbar,
+  #tab-publication #publication-panel .pub-scholar-reader .pub-reader-toolbar {
+    grid-template-columns: auto auto minmax(0, 1fr) minmax(190px, 290px);
+  }
+  #tab-publication #publication-panel .pub-scholar-modes { grid-column: 1 / -1; }
+}
+
+@media (max-width: 900px) {
+  #tab-publication { --pub-rail-width: 100%; }
+  #tab-publication #publication-panel .pub-reader-layout,
+  #tab-publication #publication-panel .pub-scholar-reader .pub-reader-layout {
+    display: block;
+  }
+  #tab-publication #publication-panel aside.pub-reader-toc,
+  #tab-publication #publication-panel .pub-scholar-reader .pub-reader-toc {
+    position: relative;
+    top: auto;
+    max-height: 44vh;
+    border-right: 0;
+    border-bottom: 1px solid var(--pub-border, var(--rule, #d9dee7));
+  }
+  #tab-publication #publication-panel .pub-reader-toolbar,
+  #tab-publication #publication-panel .pub-scholar-reader .pub-reader-toolbar {
+    grid-template-columns: auto minmax(0, 1fr);
+    top: var(--pub-app-offset);
+  }
+  #tab-publication #publication-panel .pub-reader-location,
+  #tab-publication #publication-panel .pub-reader-search,
+  #tab-publication #publication-panel .pub-scholar-modes {
+    grid-column: 1 / -1;
+  }
+  #tab-publication #publication-panel .pub-reader-hero {
+    grid-template-columns: 1fr;
+  }
+  #tab-publication #publication-panel .pub-reader-primary-actions {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 620px) {
+  #tab-publication #publication-panel article.pub-reader-article,
+  #tab-publication #publication-panel .pub-scholar-reader article.pub-reader-article {
+    padding: 18px 15px 56px;
+  }
+  #tab-publication #publication-panel .pub-reader-toolbar,
+  #tab-publication #publication-panel .pub-scholar-reader .pub-reader-toolbar {
+    position: relative;
+    top: auto;
+  }
+  #tab-publication #publication-panel .pub-reader-bottom-nav {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media print {
+  #tab-publication #publication-panel .pub-reader-toolbar,
+  #tab-publication #publication-panel .pub-reader-toc,
+  #tab-publication #publication-panel .pub-reader-primary-actions,
+  #tab-publication #publication-panel .pub-selection-assistant,
+  #tab-publication #publication-panel .pub-reader-bottom-nav {
+    display: none !important;
+  }
+  #tab-publication #publication-panel .pub-reader-layout {
+    display: block;
+  }
+  #tab-publication #publication-panel main.pub-reader-document,
+  #tab-publication #publication-panel article.pub-reader-article {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+}
