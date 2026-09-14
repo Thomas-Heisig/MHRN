@@ -47,7 +47,9 @@ def patch_server() -> None:
     path = "src/dashboard/server.py"
     text = read(path)
     import_anchor = "    SensorActivationService,\n)\n"
-    import_replacement = "    SensorActivationService,\n    specialized_area_contract,\n)\n"
+    import_replacement = (
+        "    SensorActivationService,\n    specialized_area_contract,\n)\n"
+    )
     text = replace_once(text, import_anchor, import_replacement, label="server import")
 
     start = text.index("    def _send_neural_symbiosis(self) -> None:\n")
@@ -62,9 +64,14 @@ def patch_server() -> None:
 def patch_timeline() -> None:
     path = "src/dashboard/development_timeline.py"
     text = read(path)
-    start = text.index('        StageSpec(\n            4,\n            "specialized_neural_areas",')
-    end = text.index('        StageSpec(\n            5,\n            "integrated_artificial_nervous_system",', start)
-    block = '''        StageSpec(
+    start = text.index(
+        '        StageSpec(\n            4,\n            "specialized_neural_areas",'
+    )
+    end = text.index(
+        '        StageSpec(\n            5,\n            "integrated_artificial_nervous_system",',
+        start,
+    )
+    block = """        StageSpec(
             4,
             "specialized_neural_areas",
             "Spezialisierte neuronale Areale",
@@ -137,7 +144,7 @@ def patch_timeline() -> None:
             ),
             (
                 "tests/test_msba.py",
-                "tests/test_signal_processing.py",
+                "tests/test_signal_processing_contracts.py",
                 "tests/test_gateway_runtime.py",
                 "tests/test_msba_experiment_runner.py",
                 "tests/test_stage4_specialized_neural_areas.py",
@@ -175,7 +182,7 @@ def patch_timeline() -> None:
                 "Benchmark dynamically materialized multimodal networks separately at increasing scale.",
             ),
         ),
-'''
+"""
     text = text[:start] + block + text[end:]
     write(path, text)
 
@@ -184,18 +191,28 @@ def patch_wesen_frontend() -> None:
     path = "src/dashboard/static/wesen-neural-symbiosis.js"
     text = read(path)
     article_anchor = '      <article><header><strong>MSBA pathways</strong><span>3 MODALITIES</span></header><div id="wesen-msba-pathways" class="wesen-symbiosis-list"></div></article>\n'
-    article = article_anchor + '      <article><header><strong>Stage 4 · Specialized areas</strong><span id="wesen-stage4-scale">ENGINEERING CONTRACT</span></header><div id="wesen-stage4-areas" class="wesen-symbiosis-list"></div></article>\n'
+    article = (
+        article_anchor
+        + '      <article><header><strong>Stage 4 · Specialized areas</strong><span id="wesen-stage4-scale">ENGINEERING CONTRACT</span></header><div id="wesen-stage4-areas" class="wesen-symbiosis-list"></div></article>\n'
+    )
     text = replace_once(text, article_anchor, article, label="Wesen Stage-4 article")
     variable_anchor = '  const topologyCount = document.getElementById("wesen-symbiosis-topology-count");\n'
-    variable = variable_anchor + '  const stage4Areas = document.getElementById("wesen-stage4-areas");\n  const stage4Scale = document.getElementById("wesen-stage4-scale");\n'
-    text = replace_once(text, variable_anchor, variable, label="Wesen Stage-4 variables")
+    variable = (
+        variable_anchor
+        + '  const stage4Areas = document.getElementById("wesen-stage4-areas");\n  const stage4Scale = document.getElementById("wesen-stage4-scale");\n'
+    )
+    text = replace_once(
+        text, variable_anchor, variable, label="Wesen Stage-4 variables"
+    )
     render_anchor = '  msba.innerHTML = MSBA.map(([name, path, coords, plasticity, throttle]) => `<div class="wesen-symbiosis-item"><span class="wesen-symbiosis-dot"></span><div><strong>${escapeHtml(name)} · ${escapeHtml(path)}</strong><small>${escapeHtml(coords)} · ${escapeHtml(plasticity)} · throttle: ${escapeHtml(throttle)}</small></div></div>`).join("");\n'
-    render = render_anchor + '''  const specialized = lastSymbiosis?.specialized_areas || {};
+    render = (
+        render_anchor + """  const specialized = lastSymbiosis?.specialized_areas || {};
   const specializedRows = Array.isArray(specialized.areas) ? specialized.areas : [];
   const scale = specialized.topology || {};
   if (stage4Scale) stage4Scale.textContent = `${Number(scale.total_neuron_budget || 0).toLocaleString("de-DE")} N · ${Number(scale.total_synapse_budget || 0).toLocaleString("de-DE")} S · ${scale.dynamic_scale_execution_verified ? "DYNAMIC VERIFIED" : "AGGREGATED"}`;
   if (stage4Areas) stage4Areas.innerHTML = specializedRows.length ? specializedRows.map((area) => `<div class="wesen-symbiosis-item"><span class="wesen-symbiosis-dot"></span><div><strong>${escapeHtml(area.name)} · ${escapeHtml(area.modality)}</strong><small>${Number(area.neuron_budget || 0).toLocaleString("de-DE")} neurons · ${Number(area.synapse_budget || 0).toLocaleString("de-DE")} synapses · ${escapeHtml(area.pathway)} · ${escapeHtml(area.plasticity_rule)}</small></div></div>`).join("") : '<div class="wesen-symbiosis-item"><div><strong>Stage-4 contract unavailable</strong><small>Backend has not published specialized area data.</small></div></div>';
-'''
+"""
+    )
     text = replace_once(text, render_anchor, render, label="Wesen Stage-4 render")
     write(path, text)
 
@@ -204,7 +221,7 @@ def patch_public_msba_frontend() -> None:
     path = "src/dashboard/static/msba/msba.js"
     text = read(path)
     insert_anchor = "function renderGateway(gateway, productiveGateway) {\n"
-    function = '''function renderSpecializedAreas(specialized) {
+    function = """function renderSpecializedAreas(specialized) {
   let root = byId("stage4-area-list");
   if (!root) {
     const areaList = byId("area-list");
@@ -226,8 +243,10 @@ def patch_public_msba_frontend() -> None:
 }
 
 function renderGateway(gateway, productiveGateway) {
-'''
-    text = replace_once(text, insert_anchor, function, label="public MSBA Stage-4 renderer")
+"""
+    text = replace_once(
+        text, insert_anchor, function, label="public MSBA Stage-4 renderer"
+    )
     refresh_anchor = "    renderAreas(symbiosis.catalog || {});\n    renderGateway(symbiosis.gateway || {}, symbiosis.productive_gateway || {});\n"
     refresh = "    renderAreas(symbiosis.catalog || {});\n    renderSpecializedAreas(symbiosis.specialized_areas || {});\n    renderGateway(symbiosis.gateway || {}, symbiosis.productive_gateway || {});\n"
     text = replace_once(text, refresh_anchor, refresh, label="public MSBA refresh")
@@ -239,7 +258,7 @@ def patch_research_docs() -> None:
     text = read(path)
     marker = "<!-- stage4-specialized-areas -->"
     if marker not in text:
-        preface = f'''{marker}
+        preface = f"""{marker}
 ## Stage 4 — Spezialisierte neuronale Areale
 
 Der technische Stage-4-Vertrag ist auf `feature/stage4-specialized-neural-areas`
@@ -251,7 +270,7 @@ Topologievertrag und ausdrücklich kein behaupteter dynamischer Großskalierungs
 Details: `research/stage4_specialized_neural_areas.md` und
 `research/generated/verification/specialized_neural_areas_reference_alpha3.json`.
 
-'''
+"""
         text = preface + text
         write(path, text)
 
@@ -259,7 +278,7 @@ Details: `research/stage4_specialized_neural_areas.md` und
     text = read(path)
     marker = "## 2026-09-14 Stage 4 specialized neural areas"
     if marker not in text:
-        section = '''## 2026-09-14 Stage 4 specialized neural areas
+        section = """## 2026-09-14 Stage 4 specialized neural areas
 
 - [x] Add explicit audio, vision and digital specialized-area contracts with distinct adapter and plasticity rules.
 - [x] Add an aggregated 100k-neuron / 10M-synapse lower-bound topology contract without pretending full dynamic execution.
@@ -268,7 +287,7 @@ Details: `research/stage4_specialized_neural_areas.md` und
 - [x] Add deterministic Stage-4 tests and generated engineering verification.
 - [ ] Scientific EVID promotion, independent review and dynamically materialized large-scale multimodal benchmarks remain separate research work.
 
-'''
+"""
         anchor = "# MHRN Current TODO\n"
         if anchor not in text:
             raise RuntimeError("TODO anchor missing")

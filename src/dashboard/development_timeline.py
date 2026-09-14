@@ -433,46 +433,101 @@ def _stage_specs() -> tuple[StageSpec, ...]:
                 CriterionSpec(
                     "modality_pathways",
                     "Typed modality pathways",
-                    paths=("src/signal_processing", "src/embodiment/msba.py"),
+                    paths=(
+                        "src/signal_processing",
+                        "src/embodiment/msba.py",
+                        "src/embodiment/specialized_areas.py",
+                    ),
+                    tests=("tests/test_stage4_specialized_neural_areas.py",),
+                    verification=(
+                        "research/generated/verification/specialized_neural_areas_reference_alpha3.json",
+                    ),
                 ),
                 CriterionSpec(
                     "neural_symbiosis_gateway",
                     "Neural Symbiosis gateway",
                     paths=(
                         "src/embodiment/neural_symbiosis.py",
+                        "src/embodiment/peripheral_adapters.py",
                         "src/experiments/msba_lab.py",
+                    ),
+                    tests=(
+                        "tests/test_gateway_runtime.py",
+                        "tests/test_msba_experiment_runner.py",
+                    ),
+                    verification=(
+                        "research/generated/verification/specialized_neural_areas_reference_alpha3.json",
                     ),
                 ),
                 CriterionSpec(
                     "provenance_bound_treatments",
-                    "Provenance-bound treatments",
+                    "Provenance-bound treatments and matched controls",
                     paths=(
                         "src/embodiment/msba.py",
+                        "src/embodiment/peripheral_adapters.py",
                         "src/research/experiment_recorder.py",
+                    ),
+                    tests=("tests/test_msba_experiment_runner.py",),
+                    verification=(
+                        "research/generated/verification/specialized_neural_areas_reference_alpha3.json",
                     ),
                 ),
                 CriterionSpec(
-                    "scaled_area_network", "Scaled area interconnection", planned=True
+                    "scaled_area_network",
+                    "Aggregated Stage-4 area scale contract",
+                    paths=("src/embodiment/specialized_areas.py",),
+                    tests=("tests/test_stage4_specialized_neural_areas.py",),
+                    verification=(
+                        "research/generated/verification/specialized_neural_areas_reference_alpha3.json",
+                    ),
                 ),
             ),
             (
                 "src/signal_processing",
                 "src/embodiment/msba.py",
                 "src/embodiment/neural_symbiosis.py",
+                "src/embodiment/peripheral_adapters.py",
+                "src/embodiment/specialized_areas.py",
             ),
             (
                 "tests/test_msba.py",
-                "tests/test_signal_processing.py",
+                "tests/test_signal_processing_contracts.py",
                 "tests/test_gateway_runtime.py",
                 "tests/test_msba_experiment_runner.py",
+                "tests/test_stage4_specialized_neural_areas.py",
+                "tests/test_dashboard_embodiment_routes.py",
             ),
-            ("src/experiments/msba_lab.py",),
-            ("RQ9", "RQ11", "RQ-MSBA-E01"),
             (
-                "Current pathways are contracts and experiment boundaries, not a productive scaled multimodal brain.",
+                "src/experiments/msba_lab.py",
+                "scripts/run_stage4_reference.py",
+                "research/experiments/EXP-BATCH-20260914074039-90",
+                "research/experiments/EXP-BATCH-20260914074039-91",
+                "research/experiments/EXP-BATCH-20260914074039-92",
+                "research/experiments/EXP-BATCH-20260914074039-93",
+                "research/experiments/EXP-BATCH-20260914074039-94",
             ),
-            ("R4 Neural Symbiosis / MSBA experimental gateway program",),
-            ("Execute matched modality and gateway controls.",),
+            (
+                "RQ9",
+                "RQ11",
+                "RQ-MSBA-E01",
+                "RQ-MSBA-E02",
+                "RQ-MSBA-E03",
+                "RQ-MSBA-E04",
+                "RQ-MSBA-E05",
+            ),
+            (
+                "The Stage-4 lower-bound scale is an aggregated topology budget; a dynamically executed 100k-neuron/10M-edge multimodal SNN is not claimed.",
+                "Peripheral adapters and plasticity remain experiment-only; productive activation stays locked.",
+                "Recorded E01-E05 runs are DATA and are not automatically promoted to EVID.",
+            ),
+            (
+                "R4 scientific evidence promotion and independent review remain separate from scoped engineering completion.",
+                "Large dynamic multimodal scaling remains a performance/scaling study rather than a Stage-4 contract prerequisite.",
+            ),
+            (
+                "Run independent confirmatory review of E01-E05 before any EVID promotion.",
+                "Benchmark dynamically materialized multimodal networks separately at increasing scale.",
+            ),
         ),
         StageSpec(
             5,

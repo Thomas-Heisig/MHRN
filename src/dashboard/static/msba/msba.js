@@ -87,6 +87,27 @@ function renderAreas(catalog) {
   }).join("");
 }
 
+function renderSpecializedAreas(specialized) {
+  let root = byId("stage4-area-list");
+  if (!root) {
+    const areaList = byId("area-list");
+    const parent = areaList?.parentElement;
+    if (parent) {
+      root = document.createElement("div");
+      root.id = "stage4-area-list";
+      root.className = "area-grid";
+      const title = document.createElement("h3");
+      title.textContent = "Stage 4 · Spezialisierte Areale";
+      parent.insertAdjacentElement("afterend", title);
+      title.insertAdjacentElement("afterend", root);
+    }
+  }
+  if (!root) return;
+  const rows = Array.isArray(specialized?.areas) ? specialized.areas : [];
+  const topology = specialized?.topology || {};
+  root.innerHTML = rows.map((area) => `<article class="area-card"><header><h3>${escapeHtml(area.name)}</h3><span class="kind">${escapeHtml(area.modality)}</span></header><p>${escapeHtml(area.pathway)} · ${escapeHtml(area.plasticity_rule)}</p><p>${Number(area.neuron_budget || 0).toLocaleString("de-DE")} Neuronen · ${Number(area.synapse_budget || 0).toLocaleString("de-DE")} Synapsen</p></article>`).join("") + `<article class="area-card"><header><h3>Scale boundary</h3><span class="kind">${topology.lower_bound_satisfied ? "LOWER BOUND" : "INCOMPLETE"}</span></header><p>${Number(topology.total_neuron_budget || 0).toLocaleString("de-DE")} Neuronen · ${Number(topology.total_synapse_budget || 0).toLocaleString("de-DE")} Synapsen</p><p>${topology.dynamic_scale_execution_verified ? "dynamic execution verified" : "aggregated topology contract; dynamic scale execution not claimed"}</p></article>`;
+}
+
 function renderGateway(gateway, productiveGateway) {
   const topology = gateway?.topology || {};
   const stateRoot = byId("gateway-state");
@@ -174,6 +195,7 @@ async function refresh() {
     renderConnections(connections);
     renderPipelines(symbiosis.catalog || {}, connections);
     renderAreas(symbiosis.catalog || {});
+    renderSpecializedAreas(symbiosis.specialized_areas || {});
     renderGateway(symbiosis.gateway || {}, symbiosis.productive_gateway || {});
     text("last-refresh", `aktualisiert ${new Date().toLocaleString("de-DE")}`);
   } catch (error) {
