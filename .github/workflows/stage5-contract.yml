@@ -1,0 +1,48 @@
+name: Stage 5 contract
+
+on:
+  push:
+    branches: [feature/stage5-integrated-nervous-system-20260914]
+  pull_request:
+    branches: [main]
+    paths:
+      - src/embodiment/**
+      - src/experience/**
+      - tests/test_stage5_*.py
+      - .github/workflows/stage5-contract.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  integration:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.13'
+      - name: Install runtime and scoped validation tools
+        run: python -m pip install -e . pytest black==26.5.1 ruff==0.16.7
+      - name: Verify real integration and existing regressions
+        run: >-
+          python -m pytest -q
+          tests/test_stage5_loop_contract.py
+          tests/test_stage5_integration.py
+          tests/test_embodiment_safety.py
+          tests/test_experience_engine.py
+          tests/test_memory_layer.py
+          tests/test_embodiment_lab.py
+          --junitxml=stage5-results.xml
+      - name: Check changed Python sources
+        run: |
+          python -m black --check src/embodiment/loop_contract.py src/embodiment/controlled.py src/experience/engine.py tests/test_stage5_loop_contract.py tests/test_stage5_integration.py
+          python -m ruff check src/embodiment/loop_contract.py src/embodiment/controlled.py src/experience/engine.py tests/test_stage5_loop_contract.py tests/test_stage5_integration.py
+      - name: Publish verification context
+        if: always()
+        run: |
+          echo '### Stage 5 engineering contract' >> "$GITHUB_STEP_SUMMARY"
+          echo "Commit: $GITHUB_SHA" >> "$GITHUB_STEP_SUMMARY"
+          echo 'Contract/regression checks only. No automatic DATA-to-EVID promotion.' >> "$GITHUB_STEP_SUMMARY"

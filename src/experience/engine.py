@@ -1,12 +1,14 @@
-"""Experience Engine v0 for controlled learning-loop experiments."""
+"""Experience Engine for controlled, single-consumption learning loops."""
 
 from __future__ import annotations
 
+import math
 from collections.abc import Callable, Mapping
 from dataclasses import dataclass, field
 from typing import Any
 
 from src.embodiment.controlled import ControlledEmbodimentAgent
+from src.embodiment.loop_contract import CycleContract, valid_tick
 from src.embodiment.models import ActionCommand, EnvironmentObservation, SensorFrame
 from src.embodiment.sensor import SensorAdapter
 from src.embodiment.task_outcome import TaskOutcome, TaskOutcomeVerifier
@@ -36,6 +38,7 @@ class ExperienceEngine:
 
     Rewards are accepted only from environment observations. No language
     model, configuration value, or decoder output can write a reward.
+    A consumed cycle cannot be retried after a downstream observer fails.
     """
 
     sensor: SensorAdapter
@@ -50,39 +53,75 @@ class ExperienceEngine:
     last_step: ExperienceStep | None = None
     _pending_frame: SensorFrame | None = None
     _pending_prediction: Any = None
+    _cycle: CycleContract = field(default_factory=CycleContract, init=False)
 
     def reset(self, seed: int | None = None) -> EnvironmentObservation:
-        """Reset the controlled environment and clear the last cycle."""
+        """Reset the environment and episode-local cycle state, not safety stops."""
 
-        self.last_step = None
-        self._pending_frame = None
-        self._pending_prediction = None
+        self._abort_cycle()
         observation = self.embodiment.reset(seed)
+        self.last_step = None
+        self._cycle.reset()
         if self.memory is not None:
             self.memory.reset_episode(f"episode-{self.embodiment.episode}")
         return observation
+
+    def _abort_cycle(self) -> None:
+        self._cycle.abort()
+        self._pending_frame = None
+        self._pending_prediction = None
 
     def step(self, tick: int) -> ExperienceStep:
         """Run one complete sensor, network, action, feedback and reward step."""
 
         self.prepare(tick)
-        result = self.network.step()
+        try:
+            result = self.network.step()
+        except Exception:
+            self._abort_cycle()
+            raise
         return self.complete(tick, result)
 
     def prepare(self, tick: int) -> SensorFrame:
-        """Sample and encode input before an existing runtime tick."""
+        """Validate and encode input before exactly one existing runtime tick."""
 
-        if not self.sensor.active:
-            raise RuntimeError("experience sensor is inactive")
-        frame = self.sensor.sample(tick)
-        self.network.inject_current_batch(dict(self.encoder(frame)))
-        self._pending_frame = frame
-        return frame
+        self._cycle.begin(tick)
+        try:
+            if not self.sensor.active:
+                raise RuntimeError("experience sensor is inactive")
+            frame = self.sensor.sample(tick)
+            if (
+                not valid_tick(frame.tick)
+                or frame.tick != tick
+                or frame.sensor_id != self.sensor.sensor_id
+                or frame.modality != self.sensor.modality
+            ):
+                raise ValueError("sensor frame identity or tick mismatch")
+            currents = dict(self.encoder(frame))
+            if any(
+                type(neuron_id) is not int
+                or neuron_id < 0
+                or isinstance(value, bool)
+                or not math.isfinite(value)
+                for neuron_id, value in currents.items()
+            ):
+                raise ValueError(
+                    "encoder currents must have valid IDs and finite values"
+                )
+            self.network.inject_current_batch(currents)
+            self._pending_frame = frame
+            return frame
+        except Exception:
+            self._abort_cycle()
+            raise
 
     def complete(self, tick: int, result: Any) -> ExperienceStep:
-        """Decode feedback after an existing runtime tick has completed."""
+        """Consume before side effects; late failures cannot replay an action."""
 
+        self._cycle.consume(tick)
         frame = self._pending_frame
+        self._pending_frame = None
+        self._pending_prediction = None
         if frame is None or frame.tick != tick:
             raise RuntimeError("complete() requires a matching prepare() call")
         observation = None
@@ -95,8 +134,11 @@ class ExperienceEngine:
             )
         else:
             action = decoded
-        if self.memory is not None:
-            self._pending_prediction = self.memory.predict(frame, action, tick)
+        if action is not None and (not valid_tick(action.tick) or action.tick != tick):
+            raise ValueError("action tick must match the prepared cycle")
+        prediction = (
+            None if self.memory is None else self.memory.predict(frame, action, tick)
+        )
         if action is not None:
             observation = self.embodiment.step(action)
         outcome = (
@@ -105,18 +147,16 @@ class ExperienceEngine:
             else self.outcome_verifier.verify(observation)
         )
         reward = outcome.reward
+        if not math.isfinite(reward):
+            raise ValueError("environment reward must be finite")
         if self.learning is not None and observation is not None:
             self.learning.set_reward(reward, tick)
         record = ExperienceStep(tick, frame, action, observation, reward, outcome)
         if self.memory is not None:
-            self.memory.complete(
-                frame, action, observation, tick, self._pending_prediction
-            )
-        if self.behavior_profile is not None and outcome is not None:
+            self.memory.complete(frame, action, observation, tick, prediction)
+        if self.behavior_profile is not None:
             self.behavior_profile.update(success=outcome.success, tick=tick)
         self.last_step = record
-        self._pending_frame = None
-        self._pending_prediction = None
         return record
 
     def attach_runtime(self, runtime: Any) -> None:

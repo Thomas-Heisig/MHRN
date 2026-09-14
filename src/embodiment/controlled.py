@@ -8,6 +8,7 @@ from .actuator import ActuatorAdapter
 from .audit import ActionAuditTrail
 from .connections import ConnectionDescriptor
 from .environment import EnvironmentAdapter
+from .loop_contract import DispatchBudget, valid_tick
 from .models import (
     ActionCommand,
     ActionReceipt,
@@ -28,7 +29,9 @@ class ControlledSensorAdapter:
 
     def sample(self, tick: int) -> SensorFrame | None:
         if (
-            not self.descriptor.available
+            not valid_tick(tick)
+            or self.sensor.sensor_id != self.descriptor.connection_id
+            or not self.descriptor.available
             or not self.descriptor.authorized
             or not self.descriptor.active
             or not self.sensor.active
@@ -36,12 +39,25 @@ class ControlledSensorAdapter:
             return None
         if self.sensor.modality not in self.descriptor.modalities:
             return None
-        return self.sensor.sample(tick)
+        frame = self.sensor.sample(tick)
+        if (
+            frame.tick != tick
+            or not valid_tick(frame.tick)
+            or frame.sensor_id != self.sensor.sensor_id
+            or frame.modality != self.sensor.modality
+        ):
+            return None
+        return frame
 
 
 @dataclass(slots=True)
 class ControlledEmbodimentAgent:
-    """Execute only authorized, capable and rate-limited external actions."""
+    """Execute only authorized, capable and rate-limited external actions.
+
+    Dispatch is serialized by the owning runtime. An attempted dispatch consumes
+    budget even on rejection or failure. Unknown effects latch the emergency stop;
+    neither software retry nor reset is permission to clear that stop.
+    """
 
     environment: EnvironmentAdapter
     actuator: ActuatorAdapter
@@ -55,20 +71,29 @@ class ControlledEmbodimentAgent:
     last_observation: EnvironmentObservation | None = None
     last_action: ActionCommand | None = None
     _approved_override_ticks: set[int] = field(default_factory=set[int])
-    _calls_by_tick: dict[int, int] = field(default_factory=dict[int, int])
     last_receipt: ActionReceipt | None = None
     _command_sequence: int = 0
+    max_pending_overrides: int = 128
+    _dispatch_budget: DispatchBudget = field(default_factory=DispatchBudget, init=False)
 
     def __post_init__(self) -> None:
-        if self.max_actions_per_tick <= 0:
-            raise ValueError("max_actions_per_tick must be positive")
+        self._dispatch_budget.denial(0, self.max_actions_per_tick)
+        if (
+            type(self.max_pending_overrides) is not int
+            or self.max_pending_overrides <= 0
+        ):
+            raise ValueError("max_pending_overrides must be a positive integer")
 
     def reset(self, seed: int | None = None) -> EnvironmentObservation:
+        observation = self.environment.reset(seed)
         self.episode += 1
         self.episode_reward = 0.0
         self.last_action = None
-        self.last_observation = self.environment.reset(seed)
-        return self.last_observation
+        self.last_receipt = None
+        self.last_observation = observation
+        self._dispatch_budget.reset()
+        self._approved_override_ticks.clear()
+        return observation
 
     def emergency_stop(self) -> None:
         self._emergency_stopped = True
@@ -81,6 +106,15 @@ class ControlledEmbodimentAgent:
     def approve_override(self, tick: int, *, human_approved: bool) -> None:
         if not human_approved:
             raise PermissionError("human approval is required for override")
+        if not valid_tick(tick):
+            raise ValueError("override tick must be a non-negative integer")
+        if self._dispatch_budget.tick is not None and tick < self._dispatch_budget.tick:
+            raise ValueError("cannot approve an expired override tick")
+        if (
+            tick not in self._approved_override_ticks
+            and len(self._approved_override_ticks) >= self.max_pending_overrides
+        ):
+            raise ValueError("pending override capacity exceeded")
         self._approved_override_ticks.add(tick)
 
     def step(self, command: ActionCommand) -> EnvironmentObservation | None:
@@ -105,43 +139,70 @@ class ControlledEmbodimentAgent:
                 reason=reason,
             )
             return None
-        actuator_result: ActuatorResult = self.actuator.apply(command)
-        if not actuator_result.accepted:
+        self._dispatch_budget.reserve(command.tick, self.max_actions_per_tick)
+        self._approved_override_ticks = {
+            tick for tick in self._approved_override_ticks if tick >= command.tick
+        }
+        accepted = False
+        phase = "actuator_error"
+        try:
+            actuator_result = self.actuator.apply(command)
+            accepted = actuator_result.accepted
             self.last_receipt = ActionReceipt(
                 command_id,
-                False,
+                accepted,
                 True,
                 False,
-                True,
-                error=actuator_result.message or "actuator rejected command",
-                effect_observed=False,
+                not accepted,
+                error=None if accepted else actuator_result.message,
+                effect_observed=None if accepted else False,
             )
-        else:
-            self.last_receipt = ActionReceipt(command_id, True, True, False, False)
-        self.audit.append(
-            self.descriptor.connection_id,
-            command,
-            actuator_result,
-            accepted=actuator_result.accepted,
-            reason="accepted" if actuator_result.accepted else actuator_result.message,
-        )
-        if not actuator_result.accepted:
-            return None
-        self._calls_by_tick[command.tick] = self._calls_by_tick.get(command.tick, 0) + 1
-        observation = self.environment.step(command)
-        self.last_receipt = ActionReceipt(
-            command_id,
-            True,
-            True,
-            True,
-            False,
-            latency=max(0, observation.tick - command.tick),
-            effect_observed=True,
-        )
-        self.last_action = command
-        self.last_observation = observation
-        self.episode_reward += observation.reward
-        return observation
+            phase = "audit_error"
+            self.audit.append(
+                self.descriptor.connection_id,
+                command,
+                actuator_result,
+                accepted=accepted,
+                reason="accepted" if accepted else actuator_result.message,
+            )
+            if not accepted:
+                return None
+            phase = "feedback_error"
+            observation = self.environment.step(command)
+            self.last_receipt = ActionReceipt(
+                command_id,
+                True,
+                True,
+                True,
+                False,
+                latency=max(0, observation.tick - command.tick),
+                effect_observed=True,
+            )
+            self.last_action = command
+            self.last_observation = observation
+            self.episode_reward += observation.reward
+            return observation
+        except Exception as error:
+            self.emergency_stop()
+            reason = f"{phase}:{type(error).__name__}"
+            self.last_receipt = ActionReceipt(
+                command_id,
+                accepted,
+                True,
+                False,
+                True,
+                error=reason,
+                effect_observed=None,
+            )
+            if phase != "audit_error":
+                self.audit.append(
+                    self.descriptor.connection_id,
+                    command,
+                    ActuatorResult(False, reason),
+                    accepted=False,
+                    reason=reason,
+                )
+            raise
 
     def metrics(self) -> EmbodimentMetrics:
         """Expose only feedback returned by the controlled environment."""
@@ -166,6 +227,11 @@ class ControlledEmbodimentAgent:
     def _authorize(self, command: ActionCommand) -> tuple[ActuatorResult | None, str]:
         if self._emergency_stopped:
             return ActuatorResult(False, "emergency stop active"), "emergency_stop"
+        if (
+            command.actuator_id != self.descriptor.connection_id
+            or command.actuator_id != self.actuator.actuator_id
+        ):
+            return ActuatorResult(False, "actuator target mismatch"), "target_mismatch"
         if not self.descriptor.available or not self.descriptor.authorized:
             return ActuatorResult(False, "actuator is not authorized"), "unauthorized"
         if not self.descriptor.active or not self.actuator.active:
@@ -175,11 +241,12 @@ class ControlledEmbodimentAgent:
                 ActuatorResult(False, "capability is not granted"),
                 "capability_denied",
             )
+        reason = self._dispatch_budget.denial(command.tick, self.max_actions_per_tick)
+        if reason is not None:
+            return ActuatorResult(False, reason), reason
         if (
             self.require_human_override
             and command.tick not in self._approved_override_ticks
         ):
             return ActuatorResult(False, "human override required"), "override_required"
-        if self._calls_by_tick.get(command.tick, 0) >= self.max_actions_per_tick:
-            return ActuatorResult(False, "rate limit exceeded"), "rate_limited"
         return None, ""
