@@ -762,7 +762,7 @@ function wireSpeechControls(container) {
   const article = container.querySelector("#pub-reader-article");
   if (!mount || !article) return;
   const getText = () => article.innerText || article.textContent || "";
-  createSpeechControls(mount, getText, { label: "Publikation vorlesen" });
+  createSpeechControls(mount, getText, { label: "Publikation vorlesen", showVoiceOptions: true });
 }
 
 function showToast(container, message, isError = false) {
