@@ -33,7 +33,7 @@ DEFAULT_OUTPUT = (
 TEST_PATHS = (
     "tests/test_stage4_specialized_neural_areas.py",
     "tests/test_msba.py",
-    "tests/test_signal_processing.py",
+    "tests/test_signal_processing_contracts.py",
     "tests/test_neural_symbiosis.py",
     "tests/test_gateway_runtime.py",
     "tests/test_msba_experiment_runner.py",
