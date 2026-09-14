@@ -5,6 +5,8 @@ import { displayValue, memorySummary, predictionRows } from "./cognition-contrac
 let timer = null;
 let refreshing = false;
 let writing = false;
+let controlRevision = 0;
+let refreshRequested = false;
 const escape = (value) => displayValue(value).replace(/[&<>"']/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[char]));
 const row = (name, value) => `<dt>${escape(name)}</dt><dd>${escape(value)}</dd>`;
 
@@ -47,6 +49,8 @@ function renderMemory(panel, payload) {
     <p>Speicherschalter steuern nicht das Pr\u00e4diktorlernen.</p>`;
   node.querySelectorAll("[data-control]").forEach((input) => input.addEventListener("change", async () => {
     writing = true;
+    controlRevision += 1;
+    panel.querySelectorAll("[data-prediction-export]").forEach((button) => { button.disabled = true; });
     node.querySelectorAll("input").forEach((control) => { control.disabled = true; });
     const body = { read_enabled: memory.readEnabled, write_enabled: memory.writeEnabled, [input.dataset.control]: input.checked };
     try {
@@ -91,9 +95,12 @@ function renderWorld(panel, model, predictions) {
 
 async function refresh(force = false) {
   const panel = ensurePanel();
-  if (!panel || refreshing || writing || document.hidden) return;
+  if (!panel || document.hidden) return;
+  if (refreshing || writing) { refreshRequested ||= force; return; }
   if (!force && panel.getClientRects().length === 0) return;
+  refreshRequested = false;
   refreshing = true;
+  const revision = controlRevision;
   try {
     const results = await Promise.allSettled([
       apiGet("/api/cognition/state"),
@@ -101,6 +108,8 @@ async function refresh(force = false) {
       apiGet("/api/cognition/world-model"),
       apiGet("/api/cognition/predictions?limit=20"),
     ]);
+    // A poll started before a control write must not restore stale data.
+    if (revision !== controlRevision || writing) return;
     const [state, memory, model, predictions] = results;
     if (state.status === "fulfilled") renderState(panel, state.value);
     else {
@@ -110,7 +119,10 @@ async function refresh(force = false) {
     if (memory.status === "fulfilled" && !writing) renderMemory(panel, memory.value);
     else if (memory.status !== "fulfilled") panel.querySelector("[data-memory]").textContent = "Ged\u00e4chtnisdaten nicht verf\u00fcgbar.";
     renderWorld(panel, model.status === "fulfilled" ? model.value : null, predictions.status === "fulfilled" ? predictions.value : null);
-  } finally { refreshing = false; }
+  } finally {
+    refreshing = false;
+    if (refreshRequested) { refreshRequested = false; void refresh(true); }
+  }
 }
 
 export function initCognition() {

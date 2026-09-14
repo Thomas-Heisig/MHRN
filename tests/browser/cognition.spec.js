@@ -53,3 +53,40 @@ test('cognition does not retain an active badge or confirmed write after a faile
   await expect(panel.locator('#cognition-state-badge')).toHaveText('unavailable');
   await page.request.post(`${base}/__test__/cognition`, { data: { available: false } });
 });
+
+
+test('a delayed pre-write poll cannot restore enabled memory reads or old exports', async ({ page }) => {
+  const base = 'http://127.0.0.1:4174';
+  await page.request.post(`${base}/__test__/cognition`, { data: { available: true } });
+  await page.goto(base);
+  await selectRoute(page, 'wesen', 'cognition');
+  const panel = page.locator('#mhrn-cognition');
+  await expect(panel.locator('[data-prediction-export]')).toBeVisible();
+  let release;
+  let announce;
+  const held = new Promise(resolve => { release = resolve; });
+  const received = new Promise(resolve => { announce = resolve; });
+  let first = true;
+  await page.route('**/api/cognition/memory', async route => {
+    if (!first) { await route.continue(); return; }
+    first = false;
+    const response = await route.fetch();
+    announce();
+    await held;
+    await route.fulfill({ response });
+  });
+  try {
+    await panel.locator('[data-refresh]').click();
+    await received;
+    await panel.locator('#cognition-read-enabled').uncheck();
+    await expect(panel.locator('[data-message]')).toContainText('best\u00e4tigt');
+    release();
+    await expect(panel.locator('[data-prediction-export]')).toHaveCount(0);
+    await expect(panel.locator('#cognition-read-enabled')).not.toBeChecked();
+    await expect(panel.locator('[data-world]')).toContainText('nicht verf\u00fcgbar');
+  } finally {
+    release();
+    await page.unroute('**/api/cognition/memory');
+    await page.request.post(`${base}/__test__/cognition`, { data: { available: false } });
+  }
+});
