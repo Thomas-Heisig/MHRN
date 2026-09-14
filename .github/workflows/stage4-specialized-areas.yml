@@ -37,7 +37,14 @@ jobs:
           python -m ruff check --fix src/embodiment/specialized_areas.py src/embodiment/__init__.py src/dashboard/server.py src/dashboard/development_timeline.py scripts/apply_stage4_integration.py scripts/run_stage4_reference.py tests/test_stage4_specialized_neural_areas.py tests/test_stage4_frontend_contract.py
 
       - name: Run Stage-4 engineering reference
-        run: python scripts/run_stage4_reference.py
+        run: |
+          set +e
+          python scripts/run_stage4_reference.py
+          rc=$?
+          if [ -f research/generated/verification/specialized_neural_areas_reference_alpha3.json ]; then
+            cat research/generated/verification/specialized_neural_areas_reference_alpha3.json
+          fi
+          exit $rc
 
       - name: Run Stage-4 frontend and timeline contract tests
         run: python -m pytest tests/test_stage4_frontend_contract.py tests/test_development_timeline.py tests/test_backend_frontend_coverage.py -q
