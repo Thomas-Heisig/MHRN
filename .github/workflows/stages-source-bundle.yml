@@ -1,0 +1,28 @@
+name: Integration source snapshot
+on:
+  push:
+    branches: [integration/stages0-6-20260914]
+    paths: [.github/workflows/stages-source-bundle.yml]
+permissions:
+  contents: read
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 1
+      - name: Archive only tracked source, without credentials or working data
+        run: |
+          git archive --format=tar HEAD -o mhrn-source.tar
+          git rev-parse HEAD > source-commit.txt
+          sha256sum mhrn-source.tar > source-sha256.txt
+      - uses: actions/upload-artifact@v7
+        with:
+          name: integration-source-snapshot
+          path: |
+            mhrn-source.tar
+            source-commit.txt
+            source-sha256.txt
+          retention-days: 1
