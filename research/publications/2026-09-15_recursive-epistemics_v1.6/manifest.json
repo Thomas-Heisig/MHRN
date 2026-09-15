@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "edition": "1.6",
+  "date": "2026-09-15",
+  "title": "Recursive Epistemics in Embodied Spiking Neural Architectures",
+  "author": "Thomas Heisig",
+  "edition_kind": "integrated_scientific_revision",
+  "source_branch": "feature/scientific-progress-integrity-20260915",
+  "base_commit": "14b5066c9f8eac9c7522d59966b9e81c29226c56",
+  "inherited_empirical_edition": "2026-09-13_recursive-epistemics_v1.5",
+  "inherited_campaign": "EXP-EMP-20260913-A3",
+  "historical_data_modified": false,
+  "accepted_evidence": false,
+  "automatic_evidence_promotion": false,
+  "human_scientific_review": "pending",
+  "external_similarity_review": "required_before_formal_submission",
+  "scope": [
+    "separate engineering and scientific maturity for stages 0-10",
+    "integrate Stage 4/5/6 scientific interpretation",
+    "formalize mechanism-versus-infrastructure claim boundary",
+    "formalize research integrity, attribution and text-recycling controls",
+    "preserve v1.5 as frozen empirical baseline"
+  ],
+  "files": [
+    "README.md",
+    "MANUSCRIPT.md",
+    "FORSCHUNGSBERICHT.md",
+    "SCIENTIFIC_STAGE_MATRIX.md",
+    "INTEGRITY_AND_ATTRIBUTION.md",
+    "REFERENCES.md",
+    "manifest.json"
+  ]
+}

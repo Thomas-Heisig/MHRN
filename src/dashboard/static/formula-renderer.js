@@ -1,5 +1,7 @@
 "use strict";
 
+import "./scientific-progress.js";
+
 /**
  * Scientific formula renderer for dynamically opened Markdown files and the
  * dissertation/publication reader.

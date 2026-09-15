@@ -1,0 +1,200 @@
+{
+  "schema_version": 1,
+  "as_of": "2026-09-15",
+  "as_of_commit": "14b5066c9f8eac9c7522d59966b9e81c29226c56",
+  "title": "MHRN scientific maturity timeline",
+  "scope_note": "Scientific maturity is intentionally separate from engineering maturity. Scores summarize registered questions, frozen protocols, collected DATA, human-reviewed EVID, independent replication and attribution. They do not measure intelligence, consciousness or biological equivalence.",
+  "integrity_note": "Repository checks reduce attribution and text-recycling risk but cannot certify plagiarism-freedom. External similarity review and human source verification remain pre-submission requirements.",
+  "status_scale": {
+    "met": 1.0,
+    "partial": 0.5,
+    "open": 0.0,
+    "not_applicable": null
+  },
+  "weights": {
+    "research_question": 0.15,
+    "protocol": 0.20,
+    "data": 0.20,
+    "reviewed_evidence": 0.20,
+    "independent_replication": 0.15,
+    "attribution": 0.10
+  },
+  "stages": [
+    {
+      "stage": 0,
+      "name": "Einzelne Nervenzelle",
+      "score": 0.50,
+      "status": "active",
+      "claim_boundary": "Deterministische Einzelzell-Referenzen sind Modell- und Softwarevalidierung, kein Nachweis biologischer Gleichwertigkeit.",
+      "criteria": [
+        {"id":"research_question","status":"partial","label":"Explizite Forschungsfrage/Hypothese","sources":["research/registry/questions.yaml","research/registry/hypotheses.yaml"]},
+        {"id":"protocol","status":"met","label":"Reproduzierbarer Einzelzell-Vertrag","sources":["tests/test_single_neuron_contract.py","research/generated/verification/single_neuron_reference.json"]},
+        {"id":"data","status":"met","label":"Quellengebundene Referenzdaten","sources":["research/generated/verification/single_neuron_reference.json"]},
+        {"id":"reviewed_evidence","status":"open","label":"Menschlich freigegebene EVID","sources":[]},
+        {"id":"independent_replication","status":"partial","label":"Externer/ unabhängiger Vergleich","sources":["src/research/empirical_evaluation.py"]},
+        {"id":"attribution","status":"met","label":"Modell- und Quellenattribution","sources":["research/publications/2026-09-13_recursive-epistemics_v1.5/FORSCHUNGSBERICHT.md"]}
+      ],
+      "next_scientific_steps":["Explizite RQ/Hypothese für Einzelzell-Konformität registrieren.","Unabhängige Replikation mit eingefrorenem Protokoll dokumentieren.","EVID nur nach menschlicher Prüfung promoten."]
+    },
+    {
+      "stage": 1,
+      "name": "Kleines SNN",
+      "score": 0.30,
+      "status": "active",
+      "claim_boundary": "Korrekte Spike-Ausbreitung in kleinen Netzen zeigt technische Funktion, nicht kognitive Leistung oder Skalierbarkeit.",
+      "criteria": [
+        {"id":"research_question","status":"partial","label":"Explizite Forschungsfrage/Hypothese","sources":["research/registry/questions.yaml"]},
+        {"id":"protocol","status":"partial","label":"Forschungsprotokoll über den Softwarevertrag hinaus","sources":["tests/test_small_snn_contract.py"]},
+        {"id":"data","status":"partial","label":"Forschungs-DATA statt nur Verifikation","sources":["research/generated/verification/small_snn_reference.json"]},
+        {"id":"reviewed_evidence","status":"open","label":"Menschlich freigegebene EVID","sources":[]},
+        {"id":"independent_replication","status":"open","label":"Unabhängige Replikation","sources":[]},
+        {"id":"attribution","status":"met","label":"Methoden- und Modellattribution","sources":["research/publications/2026-09-13_recursive-epistemics_v1.5/FORSCHUNGSBERICHT.md"]}
+      ],
+      "next_scientific_steps":["Kleine-Netzwerk-Baseline als eigene RQ/Hypothese präregistrieren.","Task-basierte Kontrollarme ergänzen.","Unabhängige Replikation planen."]
+    },
+    {
+      "stage": 2,
+      "name": "Stabiles rekurrentes SNN",
+      "score": 0.65,
+      "status": "advanced",
+      "claim_boundary": "Stabile deterministische Runs stützen Stabilität im geprüften Bereich; sie sind kein Nachweis von Gedächtnis oder Kognition.",
+      "criteria": [
+        {"id":"research_question","status":"met","label":"Registrierte Forschungsfragen","sources":["research/registry/questions.yaml","RQ-SNN-001"]},
+        {"id":"protocol","status":"met","label":"Long-run/Determinismus-Protokolle","sources":["research/protocols","tests/test_recurrent_snn_contract.py"]},
+        {"id":"data","status":"met","label":"Ausgeführte quellengebundene DATA","sources":["research/experiments/EXP-BATCH-20260908200906-01"]},
+        {"id":"reviewed_evidence","status":"partial","label":"Wissenschaftliche Auswertung mit enger Claim-Grenze","sources":["research/experiments/EXP-BATCH-20260908200906-01/reports/AIRR-2026-0001.json"]},
+        {"id":"independent_replication","status":"open","label":"Unabhängige Replikation","sources":[]},
+        {"id":"attribution","status":"met","label":"Methoden-/Quellenbindung","sources":["research/publications/2026-09-13_recursive-epistemics_v1.5/FORSCHUNGSBERICHT.md"]}
+      ],
+      "next_scientific_steps":["Task-relevante Rekurrenz-Ablation gegen feed-forward/yoked controls durchführen.","Skalierung getrennt von Stabilität prüfen.","Unabhängige Replikation registrieren."]
+    },
+    {
+      "stage": 3,
+      "name": "Plastisches Nervengewebe",
+      "score": 0.55,
+      "status": "advanced",
+      "claim_boundary": "STDP, Drei-Faktor-Lernen, Homöostase und Strukturplastizität sind implementierte Mechanismen; ihre wissenschaftliche Wirksamkeit bleibt interventions- und EVID-gebunden.",
+      "criteria": [
+        {"id":"research_question","status":"met","label":"Registrierte RQ/Hypothesen","sources":["RQ1","RQ3","RQ5","RQ10"]},
+        {"id":"protocol","status":"met","label":"Kontrollierte Lern- und Ablationsprotokolle","sources":["src/experiments/learning_lab.py","scripts/run_stage3_reference.py"]},
+        {"id":"data","status":"met","label":"Ausgeführte DATA / Referenzen","sources":["research/generated/verification/plastic_neural_tissue_reference_alpha3.json"]},
+        {"id":"reviewed_evidence","status":"open","label":"Promotete menschlich geprüfte EVID","sources":[]},
+        {"id":"independent_replication","status":"open","label":"Unabhängige Replikation","sources":[]},
+        {"id":"attribution","status":"met","label":"Mechanismus-Attribution","sources":["research/publications/2026-09-13_recursive-epistemics_v1.5/FORSCHUNGSBERICHT.md"]}
+      ],
+      "next_scientific_steps":["Präregistrierte learning-on/off-, sham- und information-destroyed Kontrollen ausführen.","Held-out Generalisierung statt Gewichtsänderung als Endpunkt prüfen.","R2-Evidenzschluss mit externer Prüfung abschließen."]
+    },
+    {
+      "stage": 4,
+      "name": "Spezialisierte neuronale Areale",
+      "score": 0.55,
+      "status": "advanced",
+      "claim_boundary": "Modality-specific pathways und Gateway-Verträge sind technisch vorhanden; E01-E05 bleiben DATA bis zur unabhängigen wissenschaftlichen Prüfung.",
+      "criteria": [
+        {"id":"research_question","status":"met","label":"MSBA-Forschungsfragen registriert","sources":["RQ-MSBA-E01","RQ-MSBA-E02","RQ-MSBA-E03","RQ-MSBA-E04","RQ-MSBA-E05"]},
+        {"id":"protocol","status":"met","label":"Matched-control Protokolle","sources":["src/experiments/msba_lab.py"]},
+        {"id":"data","status":"met","label":"E01-E05 DATA vorhanden","sources":["research/experiments/EXP-BATCH-20260914074039-90","research/experiments/EXP-BATCH-20260914074039-94"]},
+        {"id":"reviewed_evidence","status":"open","label":"Unabhängig geprüfte EVID-Promotion","sources":[]},
+        {"id":"independent_replication","status":"open","label":"Unabhängige Replikation","sources":[]},
+        {"id":"attribution","status":"met","label":"Literatur-/Methodenattribution","sources":["research/publications/2026-09-14_stage4-specialized-areas_v1.5-addendum"]}
+      ],
+      "next_scientific_steps":["E01-E05 unabhängig reviewen und nur freigegebene Claims promoten.","Dynamisch materialisierte multimodale Netzwerke getrennt skalieren.","Codec/Gateway-Beitrag durch Frozen/Random/Shuffle-Ablationen isolieren."]
+    },
+    {
+      "stage": 5,
+      "name": "Integriertes künstliches Nervensystem",
+      "score": 0.55,
+      "status": "advanced",
+      "claim_boundary": "Der geschlossene Regelkreis ist in einer synthetischen deterministischen Umgebung belegt; reale Embodiment- oder biologische Interozeptionsclaims sind nicht gedeckt.",
+      "criteria": [
+        {"id":"research_question","status":"met","label":"Embodiment-RQ/Hypothesen registriert","sources":["RQ-EMB-001","RQ6","RQ7","RQ8","RQ9"]},
+        {"id":"protocol","status":"met","label":"Closed-loop Referenzprotokoll","sources":["research/experiments/EXP-STAGE5-20260914-INTEGRATED-NERVOUS-SYSTEM"]},
+        {"id":"data","status":"met","label":"Closed-loop DATA vorhanden","sources":["research/experiments/EXP-STAGE5-20260914-INTEGRATED-NERVOUS-SYSTEM"]},
+        {"id":"reviewed_evidence","status":"open","label":"Promotete EVID","sources":[]},
+        {"id":"independent_replication","status":"open","label":"Unabhängige closed-loop Replikation","sources":[]},
+        {"id":"attribution","status":"met","label":"Quellen-/Grenzenattribution","sources":["research/publications/2026-09-14_stage5-integrated-nervous-system_v1.5-addendum"]}
+      ],
+      "next_scientific_steps":["Matched-disturbance, yoked replay und interrupted-feedback Kontrollen ausführen.","H-EMB-001-B präregistriert testen.","Reale Adapter als separaten safety-gated Studienzweig behandeln."]
+    },
+    {
+      "stage": 6,
+      "name": "Gedächtnis und Weltmodell",
+      "score": 0.40,
+      "status": "active",
+      "claim_boundary": "Working/episodic foundations und Ein-Schritt-Vorhersage sind keine Semantization, kein hierarchisches Predictive Coding und kein generatives Weltmodell.",
+      "criteria": [
+        {"id":"research_question","status":"met","label":"Memory/World-model RQ registriert","sources":["RQ-MEM-002","RQ-WM-001"]},
+        {"id":"protocol","status":"partial","label":"Mechanismus-spezifische confirmatory Protokolle","sources":["research/experiments/EXP-EMP-20260910/016-memory_delayed_information_v1","research/experiments/EXP-EMP-20260910/017-world_model_prediction_v1"]},
+        {"id":"data","status":"partial","label":"SNN-involved confirmatory DATA","sources":["research/experiments/EXP-EMP-20260910/016-memory_delayed_information_v1","research/experiments/EXP-EMP-20260910/017-world_model_prediction_v1"]},
+        {"id":"reviewed_evidence","status":"open","label":"Menschlich freigegebene EVID","sources":[]},
+        {"id":"independent_replication","status":"open","label":"Unabhängige Replikation","sources":[]},
+        {"id":"attribution","status":"met","label":"Related-work/Claim-Grenzen dokumentiert","sources":["research/publications/2026-09-15_stage6-memory-world-model_v1.5-addendum"]}
+      ],
+      "next_scientific_steps":["Semanticization als expliziten Mechanismus mit Replay/Konsolidierung und Ablationen definieren.","Prediction Error neuronalen Mechanismus statt Telemetrie implementieren und testen.","Mehrschrittiges aktionskonditioniertes Weltmodell gegen reine Beobachtungsprädiktion testen.","Confirmatory SNN-involved DATA und unabhängige Replikation erzeugen."]
+    },
+    {
+      "stage": 7,
+      "name": "Selbstmodell und verkörperte Identität",
+      "score": 0.28,
+      "status": "early",
+      "claim_boundary": "Versionierte technische Identität und Behavior State sind Grundlagen, aber kein kausales Selbstmodell und kein Bewusstseinsnachweis.",
+      "criteria": [
+        {"id":"research_question","status":"partial","label":"Selbstmodell-spezifische RQ","sources":["RQ-PROFILE-001","RQ6","RQ7"]},
+        {"id":"protocol","status":"partial","label":"Kausale self/other Interventionsprotokolle","sources":["research/experiments/EXP-EMP-20260910/018-behavior_profile_control_v1"]},
+        {"id":"data","status":"partial","label":"Kausale Selbstmodell-DATA","sources":["research/experiments/EXP-EMP-20260910/018-behavior_profile_control_v1"]},
+        {"id":"reviewed_evidence","status":"open","label":"Promotete EVID","sources":[]},
+        {"id":"independent_replication","status":"open","label":"Unabhängige Replikation","sources":[]},
+        {"id":"attribution","status":"partial","label":"Explizite Related-work-Zuordnung","sources":["research/frontiers/STAGES_8_10_FOUNDATIONS.md"]}
+      ],
+      "next_scientific_steps":["Observer-only self-versus-external action attribution präregistrieren.","Coupled-state restore als notwendige technische Vorbedingung schließen.","Begriffe Selbstmodell/Selbst ausschließlich operational verwenden."]
+    },
+    {
+      "stage": 8,
+      "name": "Autonome lebenslange Entwicklung",
+      "score": 0.23,
+      "status": "planned",
+      "claim_boundary": "Interferenz-Screens und Forschungsplanung sind keine Evidenz für autonomes lebenslanges Lernen.",
+      "criteria": [
+        {"id":"research_question","status":"met","label":"Continual-learning RQ registriert","sources":["RQ-LIFE-001","RQ-GEN-001","RQ-REPL-001"]},
+        {"id":"protocol","status":"partial","label":"Präregistrierbare Retention-/Interferenzprotokolle","sources":["research/experiments/STAGES_8_10_EXPERIMENT_BACKLOG.md"]},
+        {"id":"data","status":"partial","label":"Vorläufer-DATA","sources":["research/experiments/EXP-LIFE-0001-R1"]},
+        {"id":"reviewed_evidence","status":"open","label":"Promotete EVID","sources":[]},
+        {"id":"independent_replication","status":"open","label":"Unabhängige Replikation","sources":[]},
+        {"id":"attribution","status":"partial","label":"Related-work-Mapping","sources":["research/frontiers/STAGES_8_10_FOUNDATIONS.md"]}
+      ],
+      "next_scientific_steps":["Shared-network continual-learning protocol ohne Learned-State-Reset ausführen.","Replay/Consolidation und Stabilitäts-Plastizitäts-Gating getrennt abladieren.","Resource-matched Baselines und unabhängige Replikation verlangen."]
+    },
+    {
+      "stage": 9,
+      "name": "Hochintegrierte künstliche Kognition",
+      "score": 0.15,
+      "status": "planned",
+      "claim_boundary": "Architektur- und Experimententwürfe sind keine beobachtete integrierte Kognition.",
+      "criteria": [
+        {"id":"research_question","status":"met","label":"Kognitions-RQ registriert","sources":["RQ-CNS-103","RQ-CNS-105","RQ-CNS-110","RQ-MEM-002","RQ-WM-001"]},
+        {"id":"protocol","status":"partial","label":"Operationalisierte, kontrastierende Protokolle","sources":["research/experiments/STAGES_8_10_EXPERIMENT_BACKLOG.md"]},
+        {"id":"data","status":"open","label":"Stage-9 confirmatory DATA","sources":[]},
+        {"id":"reviewed_evidence","status":"open","label":"Promotete EVID","sources":[]},
+        {"id":"independent_replication","status":"open","label":"Unabhängige Replikation","sources":[]},
+        {"id":"attribution","status":"partial","label":"Related-work-Mapping","sources":["research/frontiers/STAGES_8_10_FOUNDATIONS.md"]}
+      ],
+      "next_scientific_steps":["Attention, planning, multimodale Integration und Konsolidierung einzeln operationalisieren.","Matched-budget Ablationen definieren.","Keine Fähigkeit aus UI-/Telemetrieintegration ableiten."]
+    },
+    {
+      "stage": 10,
+      "name": "Bewusstseinsforschung",
+      "score": 0.13,
+      "status": "frontier",
+      "claim_boundary": "Diese Stufe ist ausschließlich eine Forschungs- und Governance-Frontier. Kein Score begründet Bewusstsein, Sentienz oder moralischen Status.",
+      "criteria": [
+        {"id":"research_question","status":"met","label":"Operationale Frontier-RQ registriert","sources":["RQ-CNS-101","RQ-CNS-108","RQ-CNS-109","RQ-EPI-101","RQ-WEL-101"]},
+        {"id":"protocol","status":"partial","label":"Ethik-/Abbruch-/Interventionsrahmen","sources":["research/protocols/COGNITION_CONSCIOUSNESS.md","research/ethics/AI_WELFARE_POLICY.md"]},
+        {"id":"data","status":"open","label":"Claim-relevante DATA","sources":[]},
+        {"id":"reviewed_evidence","status":"open","label":"Promotete EVID","sources":[]},
+        {"id":"independent_replication","status":"open","label":"Unabhängige adversariale Replikation","sources":[]},
+        {"id":"attribution","status":"partial","label":"Theorie-/Related-work-Mapping","sources":["research/frontiers/STAGES_8_10_FOUNDATIONS.md"]}
+      ],
+      "next_scientific_steps":["Kontrastierende operationalisierte Vorhersagen präregistrieren.","Ethik- und Stop-Governance vor Experimenten extern prüfen.","Unabhängige adversariale Replikation als Mindestbedingung festschreiben."]
+    }
+  ]
+}

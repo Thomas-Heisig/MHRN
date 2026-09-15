@@ -1,74 +1,29 @@
-# Rekursive Epistemik - aktuelle Fassung 1.5
+# Rekursive Epistemik – aktuelle Fassung 1.6
 
-[Dissertationsmanuskript und Forschungsarbeit](2026-09-13_recursive-epistemics_v1.5/README.md). Vollstaendige Ausgabe, aktuelle quellgebundene Messbilanz, menschliches Review ausstehend.
+[Aktuelle integrierte wissenschaftliche Fassung](2026-09-15_recursive-epistemics_v1.6/README.md) · 15. September 2026.
 
-## Nachtrag vom 15. September 2026
+Fassung 1.6 führt technische und wissenschaftliche Entwicklung über die Stufen 0–10 getrennt, integriert den aktuellen Stage-4/5/6-Stand und verankert Forschungsintegrität, Related Work, Attribution und Eigenversionsprovenienz. Sie erzeugt keine neue historische EVID und bewahrt Fassung 1.5 als eingefrorene empirische Basis.
 
-[Stage 6 — Gedächtnis und Weltmodell](2026-09-15_stage6-memory-world-model_v1.5-addendum/README.md) erweitert Dissertation und Forschungsarbeit 1.5 um neuronale Episoden, semantische Prototypen, Replay-/Ablationsverträge, einen von Reward getrennten Prediction-Error-Pfad, aktionskonditionierte Mehrschrittvorhersage sowie die Offline-Prüfung von Entscheidungsnutzen. Die Anhänge enthalten die neue Experimentmatrix, aktuelle Literatur und Reproduzierbarkeits-/EVID-Regeln. `RQ-MEM-002` und `RQ-WM-001` bleiben offen; keine automatische EVID-Freigabe und keine Behauptung eines bereits nachgewiesenen neuronalen Weltmodells.
+- [Integriertes Manuskript 1.6](2026-09-15_recursive-epistemics_v1.6/MANUSCRIPT.md)
+- [Forschungsarbeit 1.6](2026-09-15_recursive-epistemics_v1.6/FORSCHUNGSBERICHT.md)
+- [Wissenschaftliche Stage-Matrix 0–10](2026-09-15_recursive-epistemics_v1.6/SCIENTIFIC_STAGE_MATRIX.md)
+- [Integrität und Attribution](2026-09-15_recursive-epistemics_v1.6/INTEGRITY_AND_ATTRIBUTION.md)
+- [Literaturbasis](2026-09-15_recursive-epistemics_v1.6/REFERENCES.md)
 
-## Nachträge vom 14. September 2026
+## Empirische Basis und Nachträge
 
-[Stages 0-6: Integration, Referenzgedaechtnis und offene Grenzen](2026-09-14_stages0-6-integration_v1.5-addendum/README.md) ergaenzt Dissertation und Forschungsarbeit 1.5 um den gemeinsamen Branchstand, die typgetreue Vorhersagemethodik, Lesesperren und den expliziten Referenz-Wiederaufbau. Keine neue EVID-Freigabe; historische Manuskripte und Binarexporte bleiben unveraendert.
+[Fassung 1.5](2026-09-13_recursive-epistemics_v1.5/README.md) bleibt die vollständige eingefrorene Messausgabe zur Kampagne `EXP-EMP-20260913-A3`.
 
-[Stage 5 — integriertes künstliches Nervensystem](2026-09-14_stage5-integrated-nervous-system_v1.5-addendum/README.md) ergänzt Fassung 1.5 um Sensorik, digitale Interozeption, autorisierte Aktorik, Feedbackschleifen und Ressourcenhaushalt als gemeinsamen Full-Stack-/E2E-Vertrag. Die Stage-5-Referenz bleibt DATA, `H-EMB-001-B` bleibt offen, Real-Device-/Langzeitbehauptungen und automatische EVID-Freigabe sind ausgeschlossen.
+[Stage 6 — Gedächtnis und Weltmodell](2026-09-15_stage6-memory-world-model_v1.5-addendum/README.md) dokumentiert die nachfolgende Stage-6-Implementierung und deren Grenzen. Die 1.6 ordnet diese Arbeit in die neue wissenschaftliche Reifematrix ein.
 
-[Stage 4 — spezialisierte neuronale Areale](2026-09-14_stage4-specialized-areas_v1.5-addendum/README.md) ergänzt Fassung 1.5 um den nach ihrem Redaktionsstand verifizierten Full-Stack-/Experimentstand. Die Originalfassung, ihre Kampagnenprovenienz und ihre Binärexporte bleiben unverändert. Der Nachtrag dokumentiert Audio-, Vision- und Digitalpfade, `RQ-MSBA-E01` bis `E05`, die E01–E05-DATA-Serie sowie die Grenzen der aggregierten 100k/10M-Topologiebehauptung. Keine automatische EVID-Freigabe.
+[Stages 0–6 Integrationsnachtrag](2026-09-14_stages0-6-integration_v1.5-addendum/README.md) · [Stage 5](2026-09-14_stage5-integrated-nervous-system_v1.5-addendum/README.md) · [Stage 4](2026-09-14_stage4-specialized-areas_v1.5-addendum/README.md).
 
-<details><summary>Historischer Publikationsindex</summary>
+## Integritätsregel
 
-# Recursive Epistemics in Embodied Spiking Neural Architectures
+Publikationsrevisionen schreiben kanonische Forschungsregister, historische DATA, EVID-Entscheidungen oder veröffentlichte Checksummen nicht rückwirkend um. Eigene Vorfassungen bleiben zitierbar und werden als Vorarbeiten behandelt. Repository-Prüfungen reduzieren Attribution-/Plagiatsrisiken, zertifizieren aber keine Plagiatsfreiheit.
 
-## Fassung 1.4: Explorative Messdaten, negative Befunde und Grenzen
+## Historische Ausgaben
 
-Thomas Heisig, 10. September 2026. KI-unterstuetzte wissenschaftliche Abhandlung; keine EVID-Freigabe, kein externer Ethikbeschluss. Kapitel 0-56 bleiben datierte historische Uebernahmen aus 1.3; Kapitel 57-60 aktualisieren den Messstand.
+[Fassung 1.4](2026-09-10_recursive-epistemics_v1.4/README.md) · [Fassung 1.3](2026-09-08_recursive-epistemics_v1.3/README.md) · [Fassung 1.2](2026-09-07_ki-die-geliehene-intelligenz_v1.2/README.md) · [Fassung 1.1](2026-09-07_ki-die-geliehene-intelligenz_v1.1/README.md) · [Lesefassung 1.0](reader/README.md).
 
-[Aktuelle Fassung 1.4](2026-09-10_recursive-epistemics_v1.4/README.md) - [Messdaten und Auswertung](../experiments/EXP-EMP-20260910/ANALYSIS.md)
-
-<details><summary>Historischer Index bis 1.3 (damaliger Stand)</summary>
-
-# Recursive Epistemics
-
-## Rekursive Epistemik
-
-**Recursive Epistemics in Embodied Spiking Neural Architectures: A Framework for Delegated Agency and Multi-Scale Recurrence**
-
-*Rekursive Epistemik in verkörperten spikenden neuronalen Architekturen: Ein Framework für delegierte Handlungsmacht und mehrskalige Rekurrenz*
-
-Thomas Heisig · MHRN · Edition 1.3 · 8 September 2026.
-
-[Die vollständige aktuelle wissenschaftliche Abhandlung lesen](2026-09-08_recursive-epistemics_v1.3/README.md)
-
-Die kapitelweise Edition 1.3 ist die redaktionelle Single Source of Truth. Sie führt alle Kapitel der Fassung 1.2 unter der neuen Benennung fort. Umfang, empirische Grenzen und Ethikregeln bleiben erhalten. Die Titeländerung ist kein neuer Funktions- oder Bewusstseinsnachweis. Die unveränderten Word-Dateien früherer Ausgaben bleiben historische Artefakte; ein aktueller DOCX-Export wird hier nicht behauptet.
-
-[Benennung und Kontinuität](../../NAMING.md) · [Kognitionsprüfungen](../protocols/COGNITION_CONSCIOUSNESS.md) · [Wohlfahrt und Abschaltdilemma](../ethics/AI_WELFARE_POLICY.md) · [Kritikregister](../critique/CONSCIOUSNESS_CRITIQUE.md)
-
-## Historical editions / Historische Ausgaben
-
-[Fassung 1.2](2026-09-07_ki-die-geliehene-intelligenz_v1.2/README.md) · [Fassung 1.1](2026-09-07_ki-die-geliehene-intelligenz_v1.1/README.md) · [Lesefassung 1.0](reader/README.md) · [Word-Datei 1.0](2026-09-07_ki-die-geliehene-intelligenz/wissenschaftliche_abhandlung.docx) · [Originalpaket](archives/Brain5D_Wissenschaftliche_Abhandlung_2026-09-07.zip).
-
-Alte Titel und Dateinamen bleiben absichtlich zitierbar. Kanonische Forschungsregister, präregistrierte Protokolle und DATA/EVID werden durch eine Publikationsrevision nicht umgeschrieben. [Katalog](catalog.json).
-
-## Verification / Prüfung
-
-```bash
-python scripts/publication_bundle.py
-python scripts/publication_revision.py
-python scripts/publication_cognition.py
-python scripts/publication_naming.py
-```
-
-## Forschungszusatz vom 9. September 2026
-
-[Connectomics, Koerperkreislauf und kontrollierte MHRN-Versuche](2026-09-09_connectome-embodiment_supplement/README.md) ergaenzt Edition 1.3, ohne historische Kapitel zu ersetzen. Neun neue Fragen, zwoelf Hypothesen, sechs ausfuehrbare Entwicklungsprotokolle und sechs gesperrte Forschungsentwuerfe. KI-generiert; keine neue akzeptierte EVID und kein aktualisierter Word-Export behauptet.
-
-## 2026-09-10: Externe Begutachtung und Evaluationsgrenzen
-
-[Integrationszusatz: Probanden, Fachpruefer und Ethik](../external_review/INTEGRATION.md)
-verbindet das versionierte Erhebungsinstrument mit kritikpunktbezogenen
-Abschlusskriterien. Der Zusatz dokumentiert technische Integration, keine
-vorliegende externe Ethikfreigabe oder akzeptierte Kognitions-EVID.
-Fruehere veroeffentlichte Fassungen bleiben unveraendert.
-
-</details>
-
-</details>
+[Katalog](catalog.json) · [Forschungsintegrität](../INTEGRITY_AND_ATTRIBUTION.md) · [Related Work](../RELATED_WORK.md)

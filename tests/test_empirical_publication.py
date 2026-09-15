@@ -23,9 +23,16 @@ def test_one_current_edition_and_no_evidence_promotion() -> None:
     )
     current = [item for item in catalogue["publications"] if item.get("current")]
     assert len(current) == 1
-    assert current[0]["version"] == "1.5"
+    assert current[0]["version"] == "1.6"
     assert catalogue["current_publication_id"] == current[0]["id"]
     assert catalogue["current_publication"] == current[0]["id"]
+    assert current[0]["automatic_evidence_promotion"] is False
+    assert current[0]["inherits_empirical_edition"] == (
+        "PUB-RECURSIVE-EPISTEMICS-20260913-V1.5"
+    )
+
+    # The empirical edition remains immutable and independently verifiable even
+    # after a newer interpretive/integrative edition becomes current.
     manifest: dict[str, Any] = json.loads(
         (ROOT / "research/publications" / EDITION / "manifest.json").read_text(
             encoding="utf-8"
@@ -35,6 +42,17 @@ def test_one_current_edition_and_no_evidence_promotion() -> None:
     assert manifest["accepted_evidence"] is False
     assert manifest["human_review"] == "pending"
     assert manifest["automatic_evidence_promotion"] is False
+
+    v16: dict[str, Any] = json.loads(
+        (
+            ROOT
+            / "research/publications/2026-09-15_recursive-epistemics_v1.6/manifest.json"
+        ).read_text(encoding="utf-8")
+    )
+    assert v16["inherited_empirical_edition"] == "2026-09-13_recursive-epistemics_v1.5"
+    assert v16["historical_data_modified"] is False
+    assert v16["accepted_evidence"] is False
+    assert v16["automatic_evidence_promotion"] is False
 
 
 def test_negative_and_failed_original_observations_remain_visible() -> None:

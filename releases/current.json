@@ -3,11 +3,11 @@
   "version": "0.6.0-alpha.3",
   "pep440": "0.6.0a3",
   "status": "development",
-  "title": "Source-bound Scientific Audit and Publication Reconciliation",
+  "title": "Dual-Axis Engineering and Scientific Maturity",
   "parent": "v0.5.0-alpha.7",
   "gate": "open",
-  "as_of": "2026-09-13",
-  "milestone_status": "stage3_engineering_reached",
+  "as_of": "2026-09-15",
+  "milestone_status": "stage3_engineering_reached_scientific_maturity_separate",
   "release_blockers": 0,
   "scope": [
     "compatibility contract for runtime state, snapshots and resumable runs",
@@ -15,29 +15,50 @@
     "bounded telemetry and storage compaction",
     "deterministic pause/resume/restart identity",
     "migration and rollback tests for persisted-state schema changes",
-    "bounded memory, observation-only prediction and operational behavior profile foundation",
+    "bounded memory, prediction and operational behavior-profile foundations",
     "Wesen telemetry and fail-closed sensor and experimental Gateway lifecycle controls",
     "scoped Stage-3 plastic neural tissue verification with explicit scientific-evidence separation",
-    "planned research foundations, experiment backlog, literature provenance and frontend placeholder contracts for stages 8-10 without maturity promotion"
+    "Stage-4 and Stage-5 full-stack engineering contracts with DATA/EVID separation",
+    "Stage-6 memory/world-model mechanisms and registered experimental programme",
+    "separate scientific maturity timeline for stages 0-10",
+    "research integrity, attribution and source-verification gate",
+    "integrated Recursive Epistemics publication edition 1.6 with edition 1.5 retained as immutable empirical baseline"
   ],
   "completed": [
     "v0.6 compatibility, benchmark, storage, determinism and migration foundation",
     "bounded working and episodic memory with independent read/write controls",
-    "one-step observation-only prediction with later error and uncertainty records",
-    "atomic versioned memory/world-model state and bounded retention",
+    "prediction and world-model candidate infrastructure with explicit claim boundaries",
+    "atomic versioned memory/world-model state and bounded retention where covered by the current contracts",
     "operational Behavior Profile with bounded auditable updates",
     "cognition telemetry, backend-confirmed controls and fail-closed lifecycle checks",
     "Stage-2 stable recurrent SNN engineering contract closed with deterministic long-run and restore/replay verification",
     "Stage-3 STDP, three-factor plasticity, homeostasis, structural plasticity and adaptive-state persistence reference integrated",
-    "registered exploratory delayed-information and one-step world-model component controls executed with immutable campaign artifacts",
-    "Stages 8-10 research foundation, experiment backlog, frontier literature and planned-only frontend placeholder contract integrated"
+    "Stage-4 specialized neural areas and Stage-5 integrated nervous-system engineering contracts integrated",
+    "registered Stage-6 DATA/protocol work integrated without automatic EVID promotion",
+    "scientific maturity manifest for stages 0-10 added with explicit weights, claim boundaries and next scientific steps",
+    "Release workspace exposes engineering and scientific progress as two separate timelines",
+    "research integrity and attribution contracts added, including source quarantine and external pre-submission similarity-review requirement",
+    "publication edition 1.6 registered as current interpretive/integrative edition while edition 1.5 remains the historical empirical baseline"
   ],
   "open": [
-    "connect coupled cognition state to the canonical snapshot/checkpoint boundary",
-    "prove pause/resume equivalence for coupled cognition state",
-    "add explicit File Viewer drill-down for the existing registered cognition campaign artifacts, including bounded inspection of compressed raw-run data",
+    "complete human scientific review and explicit EVID promotion decisions where justified",
+    "independently replicate the central Stage-2 through Stage-6 claims before stronger scientific wording",
+    "close Stage-6 semanticization through replay/consolidation with matched controls",
+    "implement and ablate a neuronally defined prediction-error mechanism before claiming predictive coding",
+    "validate multi-step action-conditioned world-model dynamics and decision benefit against reactive and corrupted-model controls",
+    "connect all claim-relevant coupled cognition state to the canonical checkpoint boundary and prove pause/resume identity",
+    "perform external text/code similarity and source audit before formal manuscript submission",
     "generate the immutable v0.6 release record after the exact source-freeze gate is green"
   ],
-  "research_boundary": "Stage-2/3 engineering completion, Stage-6/7 component foundations, frontier planning and a green engineering gate do not constitute scientific evidence; controlled SNN-involved experiments, held-out evaluation, review and replication remain open.",
-  "note": "Alpha.3 reconciles execution, documentation and source-bound engineering verification. Publication edition 1.5 is separate from software versioning. The development milestone and human scientific review remain open; no accepted EVID is manufactured."
+  "scientific_maturity": {
+    "separate_from_engineering": true,
+    "manifest": "src/dashboard/static/scientific-progress.json",
+    "roadmap": "docs/08-roadmap/SCIENTIFIC_MATURITY_ROADMAP.md",
+    "integrity_gate": "docs/05-quality/RESEARCH_INTEGRITY_GATE.md",
+    "publication": "research/publications/2026-09-15_recursive-epistemics_v1.6/README.md",
+    "automatic_evidence_promotion": false,
+    "consciousness_metric": false
+  },
+  "research_boundary": "Engineering implementation, technical verification, UI/API availability and DATA collection are not equivalent to scientific EVID. Scientific maturity is tracked independently through registered questions, frozen protocols, source-bound DATA, human-reviewed EVID, independent replication and attribution. No stage score establishes AGI, consciousness, sentience or biological equivalence.",
+  "note": "Alpha.3 now reports engineering and scientific progress independently. Recursive Epistemics 1.6 is the current integrative scientific edition and explicitly inherits the immutable empirical baseline 1.5; no historical DATA or EVID decision is rewritten."
 }
