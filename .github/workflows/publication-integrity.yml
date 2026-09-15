@@ -44,8 +44,8 @@ jobs:
         run: python scripts/publication_bundle.py
       - name: Install project test tools
         run: python -m pip install -e '.[dev,docs]'
-      - name: Declare every docs and research file
-        run: python scripts/audit_document_governance.py
+      - name: Declare and review every docs and research file
+        run: python scripts/audit_document_governance.py --strict-review
       - name: Scientific maturity and attribution gate
         run: python scripts/check_scientific_maturity_integrity.py
       - name: Publication integration regression tests
