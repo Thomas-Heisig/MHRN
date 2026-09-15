@@ -76,6 +76,17 @@
       "primary_outcomes": ["utility_ratio", "achieved_utility", "recommendations"],
       "snn_involved": false,
       "claim_scope": "offline_decision_benefit_data_only"
+    },
+    {
+      "id": "s6_nwm_001_v1",
+      "experiment_id": "S6-NWM-001",
+      "research_question": "RQ-WM-001",
+      "hypothesis": "H-WM-001-A",
+      "runner": "run_s6_nwm_001",
+      "conditions": ["spiking_trained", "spiking_untrained", "spiking_target_shuffled", "statistical_reference"],
+      "primary_outcomes": ["exact_accuracy", "prediction_coverage", "mean_latency_steps", "mean_correct_weight_margin"],
+      "snn_involved": true,
+      "claim_scope": "experimental_exact_context_neural_world_model_data_only"
     }
   ]
 }

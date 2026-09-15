@@ -1,13 +1,13 @@
 # Stage 6: memory and world-model contracts
 
-Status: engineering Blocks 1–7 implemented or under scoped verification; Stage 6 is **not scientifically complete** and no new accepted EVID is asserted.
-Current merged technical baseline: `0ba372bc348fdb7731afea0ad09f5216207ed758` (PR #88, Blocks 1–6 on `main`).
-Current continuation branch: `feature/stage6-decision-benefit-dissertation-20260915` (Block 7 and dissertation addendum).
-Parent questions: `RQ-MEM-002` and `RQ-WM-001`, both still open with zero accepted evidence.
+Status: the Stage-6 engineering programme now includes executable functional protocols and an experimental spiking transition candidate. Stage 6 is **not scientifically complete** and no new accepted EVID is asserted.
+
+Merged baseline before this continuation: PR #90 / `c3f8ab745eb501b062ef3a8858f52529e99e61e8`.
+Parent questions: `RQ-MEM-002` and `RQ-WM-001`, both still open.
 
 ## 1. Scope and epistemic boundary
 
-Stage 6 contains six distinguishable research objects:
+Stage 6 keeps six research objects distinct:
 
 1. temporal traces,
 2. episodic representation and recall,
@@ -16,162 +16,173 @@ Stage 6 contains six distinguishable research objects:
 5. prediction and prediction error,
 6. action-conditioned world modelling.
 
-These objects are related but are not synonyms. In particular:
+The following equivalences are explicitly forbidden:
 
-- episodic memory is not replay,
-- replay is not semantic memory,
-- semantic memory is not a world model,
-- environmental prediction error is not reward,
-- a multistep statistical rollout is not evidence of planning,
-- alternative-action model rollouts are not by themselves causal counterfactual evidence,
-- a passing software test is not scientific evidence.
+- episodic memory ≠ replay,
+- replay ≠ semantic memory,
+- semantic memory ≠ world model,
+- environmental prediction error ≠ reward,
+- statistical transition model ≠ neural world model,
+- exact-context spiking association ≠ generalizing world model,
+- replay reactivation ≠ biological sleep,
+- offline recommendation ≠ actuation authority,
+- passing software tests or DATA ≠ accepted scientific EVID.
 
-Multiple time scales are compatible with Complementary Learning Systems hypotheses, not proof that MHRN reproduces hippocampal/neocortical anatomy or function. No Stage-6 component authorizes LLM-to-core writes, external actuation, safety-stop clearance, consciousness claims or EVID promotion.
+No Stage-6 component authorizes LLM-to-core writes, external actuation, emergency-stop clearance, consciousness claims or automatic evidence promotion.
 
-## 2. Block status
+## 2. Current technical programme
 
-| Block | Contract | Current technical status | Scientific status |
-| --- | --- | --- | --- |
-| 1 | typed prediction/error metrics and deterministic one-step predictor | implemented and regression-tested | reference DATA/engineering only |
-| 2 | independent episodic read/write and predictor inference/learning controls | implemented and regression-tested | ablation infrastructure only |
-| 3 | neural episodic representation and partial-cue retrieval from SNN spike patterns | implemented and regression-tested | task benefit after delay/distractors not yet demonstrated |
-| 4 | semantic prototypes and bounded replay conditions | implemented and regression-tested | held-out semantization and replay benefit still unproven |
-| 5 | environmental prediction-error plasticity separate from reward | merged via PR #87 | functional mechanism; no biological localization/effect evidence |
-| 6 | action-conditioned multistep statistical world-model baseline | merged via PR #88; 16/16 scoped regressions + Black/Ruff/Mypy/Pyright passed | `statistical_multistep_reference_not_neural_evidence` |
-| 7 | frozen offline decision-benefit evaluator for matched candidate horizons | implemented on continuation branch; scoped verification required before merge | recommendation is research output, never actuation authority |
+| Area | Implemented contract | Current scientific boundary |
+| --- | --- | --- |
+| Typed prediction/error | deterministic one-step reference, per-field error components, coverage | engineering reference only |
+| Memory controls | independent episodic read/write and predictor inference/learning | ablation infrastructure only |
+| Neural episodes | sparse real-SNN patterns, context binding, partial-cue retrieval | no hippocampal equivalence claim |
+| Semantic prototypes | support across independent episodes and held-out protocol | no human-semantic equivalence claim |
+| Replay | ordered/shuffled/no-replay/equal-budget-awake, with real SNN reinjection | controlled reactivation, not biological sleep |
+| Prediction error | eligibility-based PE plasticity independent from reward API | functional separation, not biological localization |
+| Statistical world model | action-conditioned one-step and bounded multistep rollout | `statistical_multistep_reference_not_neural_evidence` |
+| Offline decision benefit | frozen equal-horizon candidate scoring | research recommendation, no actuation authority |
+| Continuation integrity | Stage-6 state hash-bound to existing RuntimeBundle manifest | integrity contract, not complete pause/resume proof |
+| Spiking transition candidate | exact-context STDP context→next-state association via real SNN spikes | experimental neural candidate, no unknown-state generalization |
 
-## 3. One-step reference predictor
+## 3. Neural episodic and semantic memory
 
-The original bounded transition predictor remains a technical baseline. Its contracts include:
+`NeuralEpisodicMemory` records sparse spike patterns from real network results and binds them to run, episode, tick, sensor and modality. Retrieval uses sparse overlap and can be independently disabled from writing.
 
-| Boundary | Requirement |
-| --- | --- |
-| Categories | preserve bool, string and null without confusing typed values |
-| Numeric fields | per-field observation counts; reject nonfinite accumulation |
-| Context | include sensor and actuator identity |
-| Continuation | serialize FIFO order explicitly |
-| Inference | prediction is read-only |
-| Errors | separate numeric absolute error, categorical mismatch, missing/unsupported targets and coverage |
-| Ablations | episodic read/write and predictor inference/learning are independently switchable |
-| Persistence reference | previous observed state is separate from episodic retrieval |
-| UI | counts and predictions use canonical API fields; unknown is not zero |
+`S6-EPI-001` removes the key weakness of the historical delayed-information component screen: the target is encoded in neural spike identity, not read back from stored answer payload. Real distractor neurons fire between encoding and query. Read-off, write-off and episode-shuffle conditions are explicit.
 
-`error()` is a legacy mixed-unit scalar and is not accuracy. New studies must use separated metrics, state the field scales and report prediction coverage. Support-based uncertainty remains heuristic rather than calibrated probability.
+`SemanticMemory` accumulates support only across independent episodes. `S6-SEM-001` separates training and held-out episodes and includes label-shuffle and no-semantic controls. A successful software run establishes that the protocol is executable, not that semantic memory has been scientifically demonstrated.
 
-## 4. Neural episodic representation
+## 4. Replay and consolidation
 
-`NeuralEpisodicMemory` stores sparse spike patterns derived from real network step results and binds them to run, episode, tick, sensor and modality metadata. Partial-cue retrieval uses explicit overlap/coverage criteria and memory capacity is bounded. Read and write controls are separate.
-
-This implementation establishes an inspectable neural-event contract, not functional episodic-memory evidence. `RQ-MEM-002` still requires a delay+distractor task in which the target cannot be answered by directly reading stored sensor payload. A memory-specific lesion must remove any claimed benefit.
-
-## 5. Semantic prototypes
-
-`SemanticMemory` accumulates prototype support over **independent episodes**. Duplicate traces from one episode cannot inflate support. This prevents a trivial within-episode repetition from masquerading as cross-episode abstraction.
-
-The remaining scientific test is held-out generalization: training/prototype episodes and evaluation episodes must be disjoint. Recognition of memorized training patterns is not sufficient evidence of semantic memory.
-
-## 6. Replay and consolidation
-
-`EpisodicReplayScheduler` provides bounded `off`, `ordered` and `shuffled` replay plans and deduplicates episode contributions. Replay can feed the semantic consolidation reference path.
-
-This is not yet biological sleep and does not currently reinject spike sequences into a running SNN. A replay claim requires at minimum:
+`S6-RPL-001` now reinjects stored episodic spike patterns into a real SNN. The protocol compares:
 
 - no replay,
 - ordered replay,
-- shuffled replay,
-- equal-budget additional awake training,
+- time-shuffled replay,
+- equal-budget additional awake reactivation.
 
-with update/activity/resource budgets recorded. A result that beats no-replay but not equal-budget awake training does not support a strong consolidation claim.
+SNN-step budgets are recorded and matched. A strong consolidation claim would require ordered replay to provide a retained functional benefit beyond both no-replay and equal-budget-awake controls. Reinjecting patterns is not equivalent to modelling biological sleep physiology.
 
-## 7. Prediction error independent from reward
+## 5. Prediction error remains distinct from reward
 
-`PredictionErrorPlasticity` applies an environmental prediction-error signal to existing eligibility traces using its own configuration and statistics. It does not call or alias `LearningEngine.set_reward()`.
+`PredictionErrorPlasticity` applies environmental error to existing eligibility traces using an independent configuration and statistics. It does not alias or call the reward API.
 
-Required scientific conditions include prediction error `correct`, `disabled` and `shuffled`, crossed independently with reward `on/off`. Reward counters and values must demonstrate that PE manipulations did not silently alter the reward pathway. This functional separation does not decide whether biological error is represented by dedicated neurons, dendritic compartments or another mechanism.
+`S6-PE-001` crosses PE `correct`, `disabled`, and `shuffled` with reward `on/off`. Reward-call counters are part of the protocol so that PE manipulation cannot silently become a reward manipulation.
 
-## 8. Action-conditioned multistep reference model
+## 6. Statistical world-model reference
 
-`ActionConditionedWorldModel` implements a bounded discrete contract:
+`ActionConditionedWorldModel` remains a transparent bounded reference:
 
 `state + action -> next_state`
 
-It supports deterministic majority prediction, support-derived heuristic uncertainty, fixed-budget action-sequence rollouts, explicit early termination on unknown transitions, alternative-action comparison and deterministic persistence/restore.
+It supports deterministic transition selection, bounded action-sequence rollouts, unknown-transition termination and versioned persistence. `S6-WM-001` evaluates frozen multistep predictions against shuffled, persistence and no-model controls. `S6-WM-002` evaluates whether correct frozen rollouts improve an offline utility score against disabled, shuffled and persistence conditions.
 
-Its scientific marker is deliberately:
+The statistical model remains explicitly non-neural and must not be renamed as evidence of a learned spiking world model.
 
-`statistical_multistep_reference_not_neural_evidence`
+## 7. Experimental spiking transition candidate
 
-It is therefore a comparison model for future spiking/state-space implementations. It must not be described as a demonstrated neural world model, planning mechanism or causal world understanding.
+`SpikingTransitionWorldModel` introduces the first Stage-6 transition mechanism in which the association itself is represented by real SNN synaptic weights.
 
-## 9. Offline decision-benefit evaluation
+Current mechanism:
 
-`OfflineDecisionEvaluator` compares fixed, equal-horizon action-sequence candidates using a frozen multistep model. It:
+- one explicit context neuron per discrete `(state_key, action_key)`,
+- one output neuron per known next state,
+- context→output synapses initialized at zero,
+- teacher-forced context-before-target spike timing,
+- existing Pair-STDP through `LearningEngine`,
+- inference by stimulating only the known context neuron,
+- prediction only when a registered output neuron actually spikes,
+- no `LearningEngine.update()` during inference or inference cooldown,
+- before/after synaptic-weight guard around inference,
+- unknown contexts return no prediction instead of guessing.
 
-- rejects mismatched candidate horizons,
-- excludes incomplete/unknown rollouts from selection,
-- rejects nonfinite scores,
-- applies deterministic tie-breaking,
-- verifies that evaluation did not mutate model state,
-- returns `DecisionRecommendation`, never `ActionCommand`.
+Scientific marker:
 
-The evaluator's marker is:
+`experimental_exact_context_neural_candidate`
 
-`offline_reference_evaluator_not_actuation_authority`
+`S6-NWM-001` compares:
 
-This creates the technical substrate for a stronger world-model test: whether correct frozen predictions improve offline choice quality relative to disabled, shuffled and persistence controls. The evaluator itself is not evidence of such a benefit.
+- trained spiking candidate,
+- untrained spiking control,
+- target-shuffled spiking control,
+- statistical reference.
 
-## 10. Persistence and compatibility
+Primary outcomes are exact accuracy, prediction coverage, output latency and correct-target synaptic weight margin.
 
-The one-step transition state uses `model_version=2`; coupled memory/world-model state uses `schema_version=2`. Legacy v1 predictor states did not preserve category types or FIFO order and therefore cannot be assumed to restore exactly. They must be retained with provenance and rebuilt into a new destination from original typed observations in known chronological order, or treated as historical/non-equivalent state.
+This can support only a bounded claim that an exact discrete transition can be encoded by learned SNN synapses and recalled through output spikes. It does **not** demonstrate distributed state representation, unseen-state generalization, recursive neural multistep prediction, planning or causal world understanding.
 
-The multistep reference model has its own explicit versioned state and validates context order, capacity and canonical next-state encodings during restore.
+## 8. Protocol governance and preregistration
 
-Canonical runtime-checkpoint coupling remains a separate full-stack closure item; successful component persistence tests do not prove restart-safe external effects.
+Stage 6 deliberately uses several orthogonal operational protocols for the same RQ. The historical global registry assumes at most one operational protocol per question, so Stage 6 uses a dedicated one-to-many registry rather than rewriting historical campaign semantics.
 
-## 11. Required Stage-6 experiments
+Dedicated files:
 
-The dissertation addendum dated 2026-09-15 defines the current preregistration matrix:
+- `research/protocols/STAGE6_OPERATIONAL_PROTOCOLS.json`
+- `research/preregistrations/operational/stage6_bundle_v1.json`
+- `src/research/stage6_protocol_registry.py`
+- `scripts/run_stage6_operational.py`
 
-- `S6-EPI-001` — neural delay+distractor recall,
-- `S6-SEM-001` — held-out semantization,
-- `S6-RPL-001` — replay/no-replay/shuffled/equal-budget-awake comparison,
-- `S6-PE-001` — prediction-error × reward factorial ablation,
-- `S6-WM-001` — frozen held-out multistep prediction,
-- `S6-WM-002` — offline decision benefit,
-- `S6-NWM-001` — future neural/spiking world model versus statistical reference.
+Registered protocols:
 
-A confirmatory campaign should use independent seeds as statistical units, preregistered primary outcomes, held-out task splits, code/config hashes, uncertainty intervals, explicit exclusion rules and retained null/negative results. A target of at least 20 independent initialization seeds is the default unless a power analysis justifies another number.
+- `S6-EPI-001`
+- `S6-SEM-001`
+- `S6-RPL-001`
+- `S6-PE-001`
+- `S6-WM-001`
+- `S6-WM-002`
+- `S6-NWM-001`
 
-## 12. Literature and dissertation linkage
+The frozen bundle requires at least three unique seeds for the engineering DATA run, retains negative/null results, binds source/protocol/preregistration hashes, and has `automatic_evidence_promotion=false`. The default confirmatory target remains at least 20 independent initialization seeds unless a power analysis justifies another design.
 
-The dated dissertation supplement is:
+## 9. Persistence and continuation
+
+The older `RuntimeBundle` remains historically unchanged. `Stage6StateBundle` adds a versioned supplement that SHA-256-binds:
+
+- exact RuntimeBundle manifest bytes,
+- `NeuralEpisodicMemory`,
+- `SemanticMemory`,
+- `ActionConditionedWorldModel`,
+- Stage-6 run identity and state-file hashes.
+
+This proves integrity of the associated continuation state. It does not yet prove bit-identical coupled pause/resume behaviour of every Stage-6 mechanism, especially the new spiking transition candidate and any external effects.
+
+## 10. Empirical DATA handling
+
+The operational runner executes all seven protocols under one source revision and writes `scientific_evidence=false`. A separate deterministic analysis script aggregates descriptive means/minima/maxima while retaining the source DATA, protocol and preregistration hashes.
+
+A versioned three-seed snapshot is an engineering/exploratory DATA artifact. It must not close `RQ-MEM-002` or `RQ-WM-001`. Confirmatory interpretation requires the larger independent-seed campaign, uncertainty estimates, retained failures, preregistered decision rules and human scientific review.
+
+## 11. Remaining Stage-6 research closures
+
+The highest-priority remaining scientific work is now:
+
+1. execute the larger confirmatory multi-seed campaign rather than treating the three-seed engineering snapshot as confirmation;
+2. sweep episodic delay length, distractor strength, capacity and interference regimes;
+3. test whether replay improves later retention/generalization beyond equal-budget awake reactivation;
+4. quantify PE main effects and PE×reward interactions across independent seeds;
+5. replace the exact-context world-model encoder with distributed state representation;
+6. test generalization to unseen but structurally related states/actions;
+7. implement recursive neural multistep rollouts and compare them with the statistical reference;
+8. test decision benefit of the neural model itself, not only the statistical reference;
+9. prove deterministic coupled pause/resume equivalence including all Stage-6 state;
+10. obtain independent/human review before any EVID promotion.
+
+Until these requirements are addressed, Stage 6 remains an active research stage rather than a completed scientific result.
+
+## 12. Dissertation linkage
+
+Current additive supplement:
 
 `research/publications/2026-09-15_stage6-memory-world-model_v1.5-addendum/`
 
-It contains:
+Key appendices:
 
-- Stage-6 claim boundaries and implementation map,
-- a preregisterable experiment/ablation matrix,
-- a literature synthesis covering complementary learning systems, spiking semantization, replay, predictive coding and world models,
-- reproducibility and EVID-promotion rules.
+- A — contracts and claim boundaries,
+- B — experiment/ablation matrix,
+- C — literature synthesis,
+- D — reproducibility and EVID rules,
+- E — functional protocols and continuation bundle,
+- F — experimental spiking transition-model candidate.
 
-The curated bibliography is:
-
-`research/literature/stage6_memory_world_model.bib`
-
-Historical dissertation files and binary exports remain immutable. The supplement is an additive scientific revision, not a retroactive rewrite of old claims or evidence.
-
-## 13. Remaining implementation work
-
-The highest-priority engineering/research closures are now:
-
-1. implement and register the real SNN delay+distractor episodic task without payload-answer leakage;
-2. add held-out semantic-generalization harness and episode-shuffle control;
-3. connect replay to a controlled SNN reactivation experiment, keeping an equal-budget awake comparator;
-4. provide registered PE correct/disabled/shuffled × reward on/off experiment execution;
-5. create frozen multistep held-out and offline decision-benefit protocols with immutable train/test splits;
-6. implement an actual spiking/state-space world-model candidate and compare it against the statistical reference;
-7. couple Stage-6 state to canonical runtime checkpoints and expose per-field research metrics in full-stack diagnostics;
-8. regenerate research catalogs only from the source registries after any new RQ/H definitions rather than editing generated files by hand.
-
-Until those experiments are executed and independently reviewed, Stage 6 remains an active research stage rather than a completed scientific result.
+Historical dissertation files and binary exports remain immutable. The supplement is an additive revision, not a retroactive rewrite of old evidence.

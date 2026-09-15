@@ -1,0 +1,77 @@
+name: Stage 6 neural world model
+
+on:
+  push:
+    branches: [feature/stage6-neural-world-model-registry-20260915]
+    paths:
+      - src/memory/spiking_world_model.py
+      - tests/test_spiking_world_model.py
+      - src/research/stage6_neural_world_model_experiment.py
+      - tests/test_stage6_neural_world_model_experiment.py
+      - src/research/stage6_protocol_registry.py
+      - tests/test_stage6_protocol_registry.py
+      - research/protocols/STAGE6_OPERATIONAL_PROTOCOLS.json
+      - research/preregistrations/operational/stage6_bundle_v1.json
+      - scripts/run_stage6_operational.py
+      - scripts/analyze_stage6_data.py
+      - .github/workflows/stage6-neural-world-model.yml
+
+permissions:
+  contents: write
+
+jobs:
+  stage6-neural-world-model:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.13"
+          cache: pip
+      - name: Install project
+        run: python -m pip install -e ".[dev]"
+      - name: Apply pinned analyzer formatting
+        run: |
+          python -m black scripts/analyze_stage6_data.py
+          if ! git diff --quiet -- scripts/analyze_stage6_data.py; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add scripts/analyze_stage6_data.py
+            git commit -m "style(stage6): format DATA analyzer"
+            git push origin HEAD:feature/stage6-neural-world-model-registry-20260915
+          fi
+      - name: Neural world-model regressions
+        run: >-
+          python -m pytest -q
+          tests/test_spiking_world_model.py
+          tests/test_stage6_neural_world_model_experiment.py
+          tests/test_stage6_protocol_registry.py
+          tests/test_stage6_registered_experiments.py
+          tests/test_multistep_world_model.py
+          tests/test_world_model_evaluation.py
+      - name: Execute frozen Stage-6 DATA bundle
+        run: |
+          python scripts/run_stage6_operational.py --seeds 101,102,103 --output /tmp/stage6-data.json
+          python scripts/analyze_stage6_data.py /tmp/stage6-data.json --json-output /tmp/stage6-summary.json --markdown-output /tmp/stage6-analysis.md
+      - name: Formatting and lint
+        run: |
+          python -m black --check src/memory/spiking_world_model.py src/research/stage6_neural_world_model_experiment.py src/research/stage6_protocol_registry.py tests/test_spiking_world_model.py tests/test_stage6_neural_world_model_experiment.py tests/test_stage6_protocol_registry.py scripts/run_stage6_operational.py scripts/analyze_stage6_data.py
+          python -m ruff check src/memory/spiking_world_model.py src/research/stage6_neural_world_model_experiment.py src/research/stage6_protocol_registry.py tests/test_spiking_world_model.py tests/test_stage6_neural_world_model_experiment.py tests/test_stage6_protocol_registry.py scripts/run_stage6_operational.py scripts/analyze_stage6_data.py
+      - name: Strict typing
+        run: |
+          python -m mypy src/memory/spiking_world_model.py src/research/stage6_neural_world_model_experiment.py src/research/stage6_protocol_registry.py
+          python -m pyright src/memory/spiking_world_model.py src/research/stage6_neural_world_model_experiment.py src/research/stage6_protocol_registry.py
+      - name: Capture validated Stage-6 DATA snapshot
+        run: |
+          mkdir -p research/experiments/STAGE6-EMP-20260915
+          cp /tmp/stage6-data.json research/experiments/STAGE6-EMP-20260915/DATA.json
+          cp /tmp/stage6-summary.json research/experiments/STAGE6-EMP-20260915/SUMMARY.json
+          cp /tmp/stage6-analysis.md research/experiments/STAGE6-EMP-20260915/ANALYSIS.md
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research/experiments/STAGE6-EMP-20260915
+          if ! git diff --cached --quiet --; then
+            git commit -m "data(stage6): capture validated three-seed functional snapshot"
+            git push origin HEAD:feature/stage6-neural-world-model-registry-20260915
+          fi

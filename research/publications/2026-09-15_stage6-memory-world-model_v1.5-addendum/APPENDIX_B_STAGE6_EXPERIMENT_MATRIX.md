@@ -2,61 +2,80 @@
 
 ## B.1 Leitprinzip
 
-Jeder Versuch muss den behaupteten Mechanismus isolieren. Gleiche Seeds, gleiche Trainings-/Interaktionsbudgets und identische Auswertungsfenster sind Pflicht, soweit die jeweilige Behandlung dies zulässt. Ein erfolgreicher Lauf erzeugt DATA. EVID entsteht erst nach den registrierten Promotionskriterien.
+Jeder Versuch muss den behaupteten Mechanismus isolieren. Gleiche Seeds, kontrollierte Trainings-/Interaktionsbudgets und identische Auswertungsfenster sind Pflicht, soweit die Behandlung dies zulässt. Ein erfolgreicher Lauf erzeugt DATA. EVID entsteht erst nach registrierten Promotionskriterien und menschlicher wissenschaftlicher Prüfung.
 
-## B.2 Experimentmatrix
+## B.2 Implementierte Experimentmatrix
 
-| ID | Ziel | Hauptbedingungen | Primäre Messgrößen | EVID-relevanter Befund |
+| ID | Ziel | Hauptbedingungen | Primäre Messgrößen | Status / EVID-relevanter Befund |
 |---|---|---|---|---|
-| `S6-EPI-001` | neuronaler episodischer Recall nach Delay | memory-on; read-off; shuffled-cue | Recall-Genauigkeit, Cue-Abdeckung, Aufgabenleistung über Delay | Vorteil nach Distraktoren, der bei speicherspezifischer Läsion verschwindet |
-| `S6-SEM-001` | Cross-Episode-Semantisierung | semantic-on; episode-only; shuffled episode labels | held-out Klassifikation/Ähnlichkeit, Prototype-Support | Generalisierung auf nicht zur Prototypbildung verwendete Episoden |
-| `S6-RPL-001` | Replay/Konsolidierung | off; ordered; shuffled; extra-awake mit gleichem Budget | Retention, Interferenz, held-out Generalisierung | Replay-spezifischer Vorteil gegenüber no-replay und equal-budget awake |
-| `S6-PE-001` | Prediction Error als eigener Lernfaktor | PE correct/disabled/shuffled × reward on/off | Aufgabenleistung, Gewichtsdifferenz, Lernkurve | PE-Effekt unabhängig vom Reward-Pfad; Shuffle zerstört gerichteten Vorteil |
-| `S6-WM-001` | Mehrschritt-Vorhersage | frozen adaptive; persistence; disabled; shuffled transitions | N-step error, coverage, unknown rate | geringerer held-out Mehrschrittfehler ohne Lernen im Testfenster |
-| `S6-WM-002` | Entscheidungsnutzen | correct frozen model; disabled; shuffled model; persistence | Auswahlgenauigkeit, Regret, Erfolgsrate, Coverage | bessere Entscheidung auf zurückgehaltenen Episoden bei gleichem Kandidatenbudget |
-| `S6-NWM-001` | neuronales Weltmodell | künftiges spiking state-space model vs statistische Baseline | N-step error, task utility, Spike-/State-Diagnostik | neuronaler Zustand trägt prädiktive Information und funktionalen Nutzen |
+| `S6-EPI-001` | neuronaler episodischer Recall nach Delay | intact; read-off; write-off; episode-shuffle | Accuracy, Retrievals, Distraktor-Spikes | **implementiert**; Vorteil nach Distraktoren muss gegenüber Lesion/Shuffle bestehen |
+| `S6-SEM-001` | Cross-Episode-Semantisierung | intact; label-shuffle; no-semantic | held-out Accuracy, Matches, mature concepts | **implementiert**; Generalisierung auf disjunkte Episoden erforderlich |
+| `S6-RPL-001` | Replay/Reaktivierung | no-replay; ordered; shuffled; equal-budget-awake | Reaktivierungsfidelity, mature concepts, Budgetgleichheit | **implementiert**; Replay-spezifischer späterer Retentions-/Generalisierungsvorteil bleibt stärkere Schwelle |
+| `S6-PE-001` | Prediction Error als eigener Lernfaktor | PE correct/disabled/shuffled × reward on/off | Gewichtsdifferenz, PE-Updates, Reward Calls | **implementiert**; PE-Effekt muss vom Reward-Pfad getrennt bleiben |
+| `S6-WM-001` | Mehrschritt-Vorhersage der statistischen Referenz | frozen-correct; frozen-shuffled; persistence; no-model | exact final-state rate, mean absolute final-state error, coverage | **implementiert**; frozen Referenz, nicht neuronale Evidenz |
+| `S6-WM-002` | offline Entscheidungsnutzen der statistischen Referenz | correct; disabled; shuffled; persistence | Utility Ratio, Utility, Recommendations | **implementiert**; keine Aktor-Autorität |
+| `S6-NWM-001` | erster spikender Übergangsmodell-Kandidat | spiking-trained; spiking-untrained; target-shuffled; statistical-reference | exact accuracy, coverage, latency, weight margin | **implementiert**; exact-context STDP-Assoziator, keine unbekannte Zustands-Generalisation |
 
 ## B.3 `S6-EPI-001` — Delay + Distraktor
 
-**Frage:** Bleibt aufgabenrelevante Information in einer neuronalen Episode über Distraktoren nutzbar?
+Ein Schlüssel und die Zielklasse werden als reale SNN-Spikes kodiert. Danach folgen reale Distraktor-Spikes. Beim Abruf wird nur der Schlüssel erneut stimuliert. Die Antwort wird aus den Spike-IDs der abgerufenen neuronalen Episode dekodiert.
 
-**Design:** Ein Cue wird durch das reale SNN kodiert. Danach folgen vorab registrierte Distraktorintervalle. Der Probe-Cue enthält nur einen Teil des ursprünglichen sparse Musters. Die Zielvariable darf nicht aus `EpisodeRecord.frame_payload` direkt als Antwort gelesen werden.
+**Verbotene Leakage-Pfade:**
+- Zielwert aus `frame_payload`,
+- Zielwert aus `actual_state`,
+- direkte Datenbankabfrage nach der korrekten Trial-ID als Antwortmechanismus.
 
-**Kontrollen:**
-- vollständiger Memory-Pfad,
-- Read-Läsion bei unverändertem Write-Pfad,
-- Cue-Shuffle innerhalb desselben Seeds,
-- optional Write-Läsion als separate Mechanismuskontrolle.
+**Kontrollen:** intact, read-off, write-off und episode-shuffle.
 
 ## B.4 `S6-SEM-001` — Held-out Semantik
 
-Trainingsepisoden und Testepisoden müssen disjunkt sein. Die zentrale Frage lautet nicht, ob ein gespeicherter Trainingsvektor wiedergefunden wird, sondern ob ein über mehrere Episoden gebildeter Prototyp neue Exemplare derselben Struktur besser erfasst als Kontrollen.
+Trainingsepisoden und Testepisoden sind disjunkt. Ein semantischer Prototyp muss neue neuronale Exemplare besser klassifizieren als label-shuffle und no-semantic. Ein positiver Engineering-Lauf ist noch kein Nachweis menschlicher oder biologischer Semantik.
 
-## B.5 `S6-RPL-001` — Konsolidierung
+## B.5 `S6-RPL-001` — Replay und Reaktivierung
 
-Replay muss gegen **gleich budgetiertes zusätzliches Wachtraining** verglichen werden. Andernfalls wäre ein beobachteter Vorteil lediglich durch zusätzliche Updates erklärbar. `shuffled` kontrolliert die Informationsstruktur, `off` das Fehlen von Replay.
+Gespeicherte Episodenmuster werden tatsächlich erneut in ein SNN injiziert. Geordnetes Replay wird gegen No-Replay, zeitlich gemischtes Replay und `equal_budget_awake` verglichen. Das SNN-Schrittbudget wird explizit protokolliert.
+
+Die aktuelle Reaktivierung ist **kein Schlafmodell**. Für einen stärkeren Konsolidierungsbefund muss Replay zusätzlich eine spätere Retention oder Generalisierung gegenüber der gleich budgetierten Wachkontrolle verbessern.
 
 ## B.6 `S6-PE-001` — Prediction Error unabhängig von Reward
 
-Prediction Error und Reward werden faktoriell getrennt. Für jede PE-Bedingung wird derselbe Reward-Zustand verwendet. Ein PE-Effekt gilt nur als mechanistisch interpretierbar, wenn Reward-Zähler und Reward-Signal nicht verdeckt verändert werden.
+Prediction Error und Reward sind faktoriell getrennt. Der Prediction-Error-Pfad verwendet Eligibility-Traces, ruft jedoch nicht `LearningEngine.set_reward()` auf. Reward Calls werden als eigene Messgröße protokolliert.
 
-## B.7 `S6-WM-001/002` — Frozen Evaluation
+Ein gerichteter PE-Befund ist nur interpretierbar, wenn die deaktivierte und gemischte PE-Kontrolle sowie Reward on/off denselben übrigen Versuchsvertrag behalten.
 
-Training und Evaluation sind strikt getrennt. Im Evaluationsfenster ist `learning_enabled=false`; das Modell wird eingefroren. Jede Behandlung erhält dieselben Initialzustände, Kandidatenfolgen, Horizonte und Auswertungsbudgets.
+## B.7 `S6-WM-001/002` — eingefrorene statistische Referenz
 
-Der neue `OfflineDecisionEvaluator` darf lediglich Modellrollouts bewerten. Seine Empfehlung darf in dieser Experimentstufe keine reale Aktorik auslösen. Zunächst wird offline gegen die bekannten späteren Outcomes verglichen.
+`S6-WM-001` prüft mehrere Übergangsschritte unter eingefrorener Evaluation. `S6-WM-002` bewertet alternative Modellrollouts ausschließlich offline. Die Ausgabe des Evaluators ist eine Forschungs-Empfehlung, kein `ActionCommand`.
 
-## B.8 Statistik und Replikation
+Diese beiden Protokolle messen die Leistungsfähigkeit einer transparenten statistischen Referenz und dürfen nicht als neuronales Weltmodell bezeichnet werden.
 
-Für confirmatorische Promotion wird eine vorab registrierte Seedzahl benötigt; als Standardziel gelten mindestens 20 unabhängige Initialisierungsseeds, sofern eine Poweranalyse keine andere Zahl begründet. Berichtet werden mindestens Effektgröße, Konfidenzintervall, Einzel-Seed-Verteilung und negative/null Befunde. Mehrere Messgrößen werden vorab als primär oder sekundär markiert.
+## B.8 `S6-NWM-001` — spikender Übergangsassoziator
 
-## B.9 Abbruch- und Negativkriterien
+Der neue Kandidat besitzt ein Kontextneuron je diskretem Zustand/Aktion-Paar und Ausgangsneuronen für Folgezustände. Kontext→Ausgangsgewichte werden über den vorhandenen Pair-STDP-Pfad trainiert. Bei der Inferenz wird ausschließlich das Kontextneuron stimuliert; die Vorhersage wird nur aus realen Ausgangsspikes dekodiert. Lernen ist während Inferenz und Inferenz-Cooldown deaktiviert.
 
-Ein Versuch wird nicht als positiver Nachweis gewertet, wenn:
+Kontrollen:
+- trainierter spikender Kandidat,
+- untrainierter spikender Kandidat,
+- spikender Kandidat mit falscher Zielzuordnung,
+- statistische Referenz.
 
-- Train/Test-Leakage vorliegt,
-- eine Kontrolle weniger Compute-/Update-Budget erhält,
-- während frozen evaluation weiter gelernt wird,
-- ein unbekannter Modellzustand stillschweigend als korrekte Vorhersage zählt,
+Der Versuch prüft **exact-context neuronale Übergangsassoziation**. Er prüft noch keine Generalisation auf unbekannte Zustände, keine verteilte Zustandsrepräsentation und keine rekursive neuronale Mehrschrittvorhersage.
+
+## B.9 Preregistrierung, Statistik und Replikation
+
+Alle sieben Protokolle liegen im dedizierten 1:n-Stage-6-Registry-Vertrag und im eingefrorenen Bundle `stage6_bundle_v1.json`. Der Engineering-Snapshot verwendet drei eindeutige Seeds. Für eine confirmatorische Promotion gilt als Standardziel mindestens 20 unabhängige Initialisierungsseeds, sofern eine Poweranalyse keine andere Zahl begründet.
+
+Berichtet werden mindestens Einzel-Seed-Verteilungen, Effektgrößen beziehungsweise relevante Kontraste, Unsicherheitsintervalle und negative/null Befunde. Die drei Seeds des Engineering-Snapshots dienen der Reproduzierbarkeits- und Pipelineprüfung und schließen keine Forschungsfrage.
+
+## B.10 Abbruch- und Negativkriterien
+
+Ein Versuch wird nicht als positiver wissenschaftlicher Nachweis gewertet, wenn:
+
+- Train/Test- oder Ziel-Leakage vorliegt,
+- eine Kontrollbedingung ein systematisch anderes Budget erhält, ohne dass dies Teil der Manipulation ist,
+- während einer als frozen deklarierten Evaluation weiter gelernt wird,
+- ein unbekannter Zustand stillschweigend als korrekte Vorhersage zählt,
 - Reward und Prediction Error nicht getrennt protokolliert sind,
-- ausschließlich technische Unit-Tests anstelle eines aufgabenbezogenen Outcomes vorliegen.
+- der spikende Weltmodell-Kandidat nur bekannte IDs nachschlägt, ohne dass die Vorhersage als Netzwerkspike entsteht,
+- ausschließlich technische Unit-Tests statt aufgabenbezogener Outcomes vorliegen,
+- oder DATA ohne registrierte menschliche Prüfung zu EVID hochgestuft werden.
