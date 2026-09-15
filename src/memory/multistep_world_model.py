@@ -29,7 +29,9 @@ def _canonical(value: object) -> str:
             allow_nan=False,
         )
     except (TypeError, ValueError) as error:
-        raise MultistepWorldModelError("state and action values must be finite JSON") from error
+        raise MultistepWorldModelError(
+            "state and action values must be finite JSON"
+        ) from error
 
 
 def _state(value: object, name: str) -> dict[str, Any]:
@@ -135,9 +137,7 @@ class ActionConditionedWorldModel:
         terminated = False
         for index, action in enumerate(actions, start=1):
             predicted, support, uncertainty = self.predict(current, action)
-            steps.append(
-                RolloutStep(index, action, predicted, support, uncertainty)
-            )
+            steps.append(RolloutStep(index, action, predicted, support, uncertainty))
             if predicted is None:
                 terminated = True
                 break
@@ -189,20 +189,30 @@ class ActionConditionedWorldModel:
                     raise MultistepWorldModelError("invalid transition context")
                 counts: Counter[str] = Counter()
                 for label, count in contexts[key].items():
-                    if not isinstance(label, str) or type(count) is not int or count <= 0:
+                    if (
+                        not isinstance(label, str)
+                        or type(count) is not int
+                        or count <= 0
+                    ):
                         raise MultistepWorldModelError("invalid transition count")
                     decoded = json.loads(label)
                     if _canonical(_state(decoded, "stored next_state")) != label:
-                        raise MultistepWorldModelError("non-canonical stored next_state")
+                        raise MultistepWorldModelError(
+                            "non-canonical stored next_state"
+                        )
                     counts[label] = count
                 if not counts:
-                    raise MultistepWorldModelError("transition context may not be empty")
+                    raise MultistepWorldModelError(
+                        "transition context may not be empty"
+                    )
                 model._contexts[key] = counts
             return model
         except (KeyError, TypeError, json.JSONDecodeError) as error:
             if isinstance(error, MultistepWorldModelError):
                 raise
-            raise MultistepWorldModelError("malformed multistep world-model state") from error
+            raise MultistepWorldModelError(
+                "malformed multistep world-model state"
+            ) from error
 
 
 __all__ = [
