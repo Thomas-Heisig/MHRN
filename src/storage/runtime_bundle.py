@@ -19,7 +19,11 @@ from typing import Any
 
 from src.memory.layer import MemoryWorldModel, MemoryWorldModelError
 
-from .checkpoint import RuntimeCheckpoint, read_runtime_checkpoint, write_runtime_checkpoint
+from .checkpoint import (
+    RuntimeCheckpoint,
+    read_runtime_checkpoint,
+    write_runtime_checkpoint,
+)
 
 
 class RuntimeBundleError(ValueError):
