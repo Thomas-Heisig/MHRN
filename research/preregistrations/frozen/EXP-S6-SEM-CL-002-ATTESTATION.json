@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "experiment_id": "EXP-S6-SEM-CL-002",
+  "status": "pre_execution_freeze_attested",
+  "attestation_date": "2026-09-15",
+  "base_preregistration_merge_sha": "6701e34e6da53405493f50093c1d5efe46f0496f",
+  "amendment_a1_merge_sha": "b478d655c23d3cc451a69476172ef02dc9e55fc7",
+  "runner_freeze_merge_sha": "e0e5a50a93cd8b4ed5d537e5b4fee05df48fd2ac",
+  "runner_freeze_head_sha": "1d9ac2bd56f00f7021ef313d28a34598b5eb4b73",
+  "freeze_manifest_path": "research/preregistrations/frozen/EXP-S6-SEM-CL-002-FREEZE.json",
+  "freeze_manifest_git_blob_sha": "8c5825de6a73a90f37b30a936937502e659c68cf",
+  "freeze_manifest": {
+    "execution_authorized": false,
+    "generated_before_empirical_run": true,
+    "hash_algorithm": "SHA-256",
+    "source_hash_count": 7
+  },
+  "pre_execution_validation": {
+    "synthetic_test_count": 19,
+    "synthetic_tests_passed": true,
+    "execution_without_authorization_blocked": true,
+    "freeze_manifest_generated": true,
+    "black_check_passed": true,
+    "ruff_check_passed": true,
+    "empirical_mnist_execution_performed": false
+  },
+  "workflow_provenance": {
+    "freeze_workflow_run_id": 35005860598,
+    "validated_head_before_manifest_commit": "267180a918876565d53cf5f3428918b047b64cea",
+    "final_manifest_commit": "1d9ac2bd56f00f7021ef313d28a34598b5eb4b73",
+    "scientific_validation_steps_passed": true,
+    "final_push_step_status": "failed_due_to_non_fast_forward_race_after_parallel_branch_update",
+    "push_failure_changes_validation_outcome": false,
+    "note": "The final push failure occurred only after synthetic tests, unauthorized-execution blocking, manifest generation, Black and Ruff had passed. The normalized sources and manifest were nevertheless committed to the branch by the parallel update and then merged unchanged."
+  },
+  "source_sha256": {
+    "research/preregistrations/amendments/EXP-S6-SEM-CL-002-A1.json": "ec4cdba651a9ac3b7e1bae4f85585bd991a3140d19e0dd503a34ffe13fe1d63b",
+    "research/preregistrations/operational/EXP-S6-SEM-CL-002.json": "52d19e47873032d52a66944b3aee5ff52e778fd9f29a864fb4fa54c5342d4a17",
+    "scripts/run_semantization_split_mnist_cl002.py": "172930f7b86daeef764867959f24b5f04a5473509c61c6af678dd9d1020608c0",
+    "src/memory/neural_episodic.py": "9365fe13e623614a8697b027433d34a69c10f864c99319851c7062078951939f",
+    "src/memory/semantic.py": "01bb586f77f512368ed4bbd9379a262b15f4518f94fa2df9db8d2143a2c0c1c5",
+    "src/research/continual_semantization.py": "3d1fbc58d0c38cde6714d68606bd85f1b73e7663d8472af79a280c6838084f6a",
+    "src/research/continual_semantization_controls.py": "7d1f2ef1aaa1b7abebce2a91d0c68f9ee69d499a8ff359535d45e9b638c960bb"
+  },
+  "execution_authorized": false,
+  "automatic_evidence_promotion": false,
+  "human_review_required": true
+}
