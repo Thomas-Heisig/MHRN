@@ -8,7 +8,12 @@ from .neural_episodic import (
     NeuralRecallMatch,
     spike_ids_from_result,
 )
-from .semantic import SemanticConcept, SemanticMatch, SemanticMemory, SemanticMemoryError
+from .semantic import (
+    SemanticConcept,
+    SemanticMatch,
+    SemanticMemory,
+    SemanticMemoryError,
+)
 from .store import EpisodeRecord, MemoryStore, MemoryStoreError, PredictionRecord
 from .world_model import TransitionWorldModel, WorldPrediction
 
