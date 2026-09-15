@@ -32,12 +32,9 @@ jobs:
       - name: Install package
         run: python -m pip install -e '.[dev]'
       - name: Normalize frozen Python sources
-        run: >-
-          python -m black
-          src/research/continual_semantization_controls.py
-          scripts/run_semantization_split_mnist_cl002.py
-          scripts/generate_cl002_freeze_manifest.py
-          tests/test_continual_semantization_controls.py
+        run: |
+          python -m black src/research/continual_semantization_controls.py scripts/run_semantization_split_mnist_cl002.py scripts/generate_cl002_freeze_manifest.py tests/test_continual_semantization_controls.py
+          python -m ruff check --fix src/research/continual_semantization_controls.py scripts/run_semantization_split_mnist_cl002.py scripts/generate_cl002_freeze_manifest.py tests/test_continual_semantization_controls.py
       - name: Synthetic CL-002 tests only
         run: >-
           python -m pytest -q
