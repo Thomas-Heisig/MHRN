@@ -30,7 +30,9 @@ def _load_overrides() -> dict[str, dict[str, Any]]:
     payload = json.loads(OVERRIDES.read_text(encoding="utf-8"))
     overrides = payload.get("overrides")
     if not isinstance(overrides, dict):
-        raise ValueError("document governance overrides must contain an object named overrides")
+        raise ValueError(
+            "document governance overrides must contain an object named overrides"
+        )
     return {str(key).rstrip("/"): dict(value) for key, value in overrides.items()}
 
 
@@ -44,12 +46,21 @@ def _base(path: str) -> dict[str, Any]:
         "mutability": "editable",
         "citation": "cite_exact_path_and_revision",
         "evidence_role": "not_evidence_by_itself",
-        "rationale": "Rule-classified repository documentation; exact scientific authority depends on referenced DATA/EVID.",
+        "rationale": (
+            "Rule-classified repository documentation; exact scientific authority "
+            "depends on referenced DATA/EVID."
+        ),
     }
 
 
-def _apply_prefix_override(path: str, item: dict[str, Any], overrides: dict[str, dict[str, Any]]) -> None:
-    matches = [prefix for prefix in overrides if path == prefix or path.startswith(prefix + "/")]
+def _apply_prefix_override(
+    path: str,
+    item: dict[str, Any],
+    overrides: dict[str, dict[str, Any]],
+) -> None:
+    matches = [
+        prefix for prefix in overrides if path == prefix or path.startswith(prefix + "/")
+    ]
     if not matches:
         return
     prefix = max(matches, key=len)
@@ -62,19 +73,66 @@ def _research_rule(path: str, item: dict[str, Any]) -> None:
     parts = path.split("/")
     top = parts[1] if len(parts) > 1 else ""
 
-    if top in {"registry", "schemas", "protocols", "ethics", "critique", "literature", "specifications"}:
-        mapping = {
-            "registry": ("registry", "normative_research_registry", "research_definition_not_evidence_by_itself"),
-            "schemas": ("schema", "normative_schema", "contract_not_evidence"),
-            "protocols": ("protocol", "normative_protocol_or_method", "protocol_not_result"),
-            "ethics": ("ethics_policy", "normative_ethics_context", "policy_not_evidence"),
-            "critique": ("critique", "critical_analysis", "interpretation_only"),
-            "literature": ("literature", "source_index", "external_source_provenance"),
-            "specifications": ("specification", "normative_design_contract", "contract_not_evidence"),
-        }
-        kind, authority, evidence_role = mapping[top]
+    normative = {
+        "registry": (
+            "registry",
+            "normative_research_registry",
+            "research_definition_not_evidence_by_itself",
+        ),
+        "schemas": ("schema", "normative_schema", "contract_not_evidence"),
+        "protocols": (
+            "protocol",
+            "normative_protocol_or_method",
+            "protocol_not_result",
+        ),
+        "ethics": (
+            "ethics_policy",
+            "normative_ethics_context",
+            "policy_not_evidence",
+        ),
+        "critique": ("critique", "critical_analysis", "interpretation_only"),
+        "literature": (
+            "literature",
+            "source_index",
+            "external_source_provenance",
+        ),
+        "specifications": (
+            "specification",
+            "normative_design_contract",
+            "contract_not_evidence",
+        ),
+        "preregistrations": (
+            "preregistration",
+            "frozen_or_versioned_experiment_plan",
+            "preregistration_not_result",
+        ),
+        "benchmarks": (
+            "benchmark",
+            "benchmark_reference_or_method",
+            "benchmark_definition_not_evidence_by_itself",
+        ),
+        "prompts": (
+            "analysis_prompt",
+            "analysis_method_configuration",
+            "prompt_not_evidence",
+        ),
+        "frontiers": (
+            "frontier_programme",
+            "research_planning",
+            "planning_only",
+        ),
+    }
+    if top in normative:
+        kind, authority, evidence_role = normative[top]
         item.update(kind=kind, authority=authority, evidence_role=evidence_role)
         item["classification_rule"] = f"research-zone:{top}"
+        if top == "preregistrations":
+            item.update(
+                mutability="immutable_after_registration_or_versioned_replacement",
+                citation="cite_preregistration_id_and_revision",
+            )
+        elif top == "frontiers":
+            item.update(citation="cite_as_planning_not_result")
     elif top == "experiments":
         item.update(
             kind="experiment",
@@ -83,9 +141,31 @@ def _research_rule(path: str, item: dict[str, Any]) -> None:
             mutability="append_only_or_immutable_after_completion",
             citation="cite_experiment_id_path_digest",
             evidence_role="data_or_review_state_as_declared_by_manifest",
-            rationale="Experimental artifact; execution and DATA do not automatically imply accepted EVID.",
+            rationale=(
+                "Experimental artifact; execution and DATA do not automatically "
+                "imply accepted EVID."
+            ),
         )
         item["classification_rule"] = "research-zone:experiments"
+    elif top == "workflows":
+        item.update(
+            kind="experiment_workflow",
+            status="experimental",
+            authority="workflow_execution_record",
+            mutability="append_only_or_immutable_after_completion",
+            citation="cite_workflow_or_experiment_id_and_revision",
+            evidence_role="workflow_record_not_evidence_by_itself",
+        )
+        item["classification_rule"] = "research-zone:workflows"
+    elif top == "proposals":
+        item.update(
+            kind="research_proposal",
+            status="experimental",
+            authority="proposal_only",
+            citation="cite_as_proposal_not_result",
+            evidence_role="proposal_not_evidence",
+        )
+        item["classification_rule"] = "research-zone:proposals"
     elif top == "generated":
         item.update(
             kind="generated",
@@ -99,14 +179,22 @@ def _research_rule(path: str, item: dict[str, Any]) -> None:
     elif top == "publications":
         item.update(
             kind="publication",
-            status="historical" if "2026-09-15_recursive-epistemics_v1.7" not in path else "current_wip",
+            status=(
+                "historical"
+                if "2026-09-15_recursive-epistemics_v1.7" not in path
+                else "current_wip"
+            ),
             authority="publication_interpretation",
             citation="cite_with_edition",
             evidence_role="interpretation_only",
         )
         item["classification_rule"] = "research-zone:publications"
     elif top in {"external_review", "reviews"}:
-        item.update(kind="review", authority="human_or_external_review_record", evidence_role="review_state")
+        item.update(
+            kind="review",
+            authority="human_or_external_review_record",
+            evidence_role="review_state",
+        )
         item["classification_rule"] = f"research-zone:{top}"
     elif top in {"data", "datasets", "raw", "artifacts"}:
         item.update(
@@ -119,14 +207,31 @@ def _research_rule(path: str, item: dict[str, Any]) -> None:
         )
         item["classification_rule"] = f"research-zone:{top}"
     else:
-        item.update(kind="research_document", authority="research_context", evidence_role="interpretation_or_navigation")
+        item.update(
+            kind="research_document",
+            authority="research_context",
+            evidence_role="interpretation_or_navigation",
+        )
         item["classification_rule"] = "research-zone:top-level-context"
 
-    if "/archive" in lower or "/archives" in lower or lower.endswith((".zip", ".tar", ".gz")):
-        item.update(status="archive", mutability="immutable", citation="cite_archive_and_digest")
+    if "/archive" in lower or "/archives" in lower or lower.endswith(
+        (".zip", ".tar", ".gz")
+    ):
+        item.update(
+            status="archive",
+            mutability="immutable",
+            citation="cite_archive_and_digest",
+        )
         item["classification_rule"] += "+archive"
-    if any(token in lower for token in ("historical", "legacy", "deprecated", "superseded")):
-        item.update(status="historical", authority="historical_context", evidence_role="historical_only")
+    if any(
+        token in lower
+        for token in ("historical", "legacy", "deprecated", "superseded")
+    ):
+        item.update(
+            status="historical",
+            authority="historical_context",
+            evidence_role="historical_only",
+        )
         item["classification_rule"] += "+historical-name"
 
 
@@ -135,32 +240,142 @@ def _docs_rule(path: str, item: dict[str, Any]) -> None:
     parts = path.split("/")
     top = parts[1] if len(parts) > 1 else ""
     zone_map = {
-        "00-governance": ("governance", "normative_document_governance", "policy_not_evidence"),
-        "01-overview": ("overview", "current_project_overview", "context_not_evidence"),
-        "02-architecture": ("architecture", "current_architecture_documentation", "design_contract_not_evidence"),
-        "03-usage": ("usage", "operator_documentation", "not_evidence"),
-        "04-api": ("api", "technical_contract_documentation", "contract_not_evidence"),
-        "05-quality": ("quality_policy", "normative_quality_contract", "quality_contract_not_evidence"),
-        "06-development": ("development", "engineering_process", "process_not_evidence"),
-        "07-operations": ("operations", "operational_documentation", "not_evidence"),
-        "08-roadmap": ("roadmap", "planning", "planning_only"),
-        "09-research": ("research_documentation", "research_context", "interpretation_only"),
+        "00-governance": (
+            "governance",
+            "normative_document_governance",
+            "policy_not_evidence",
+            "current",
+        ),
+        "01-guides": (
+            "guide",
+            "operator_or_developer_guidance",
+            "not_evidence",
+            "current",
+        ),
+        "02-architecture": (
+            "architecture",
+            "current_architecture_documentation",
+            "design_contract_not_evidence",
+            "current",
+        ),
+        "03-dashboard": (
+            "dashboard_contract",
+            "technical_interface_documentation",
+            "contract_not_evidence",
+            "current",
+        ),
+        "04-integration": (
+            "integration_record",
+            "historical_integration_context",
+            "historical_only",
+            "historical",
+        ),
+        "05-quality": (
+            "quality_policy",
+            "normative_quality_contract",
+            "quality_contract_not_evidence",
+            "current",
+        ),
+        "06-research": (
+            "research_documentation",
+            "research_context",
+            "interpretation_only",
+            "current",
+        ),
+        "07-changelog": (
+            "changelog",
+            "historical_change_record",
+            "historical_only",
+            "historical",
+        ),
+        "08-roadmap": (
+            "roadmap",
+            "planning",
+            "planning_only",
+            "current",
+        ),
+        "09-sprints": (
+            "sprint_record",
+            "historical_planning_record",
+            "historical_only",
+            "historical",
+        ),
+        "10-releases": (
+            "release_record",
+            "historical_release_provenance",
+            "historical_only",
+            "historical",
+        ),
+        "11-readme": (
+            "historical_readme",
+            "historical_context",
+            "historical_only",
+            "historical",
+        ),
+        "12-updates": (
+            "update_record",
+            "historical_change_record",
+            "historical_only",
+            "historical",
+        ),
+        "99-archive": (
+            "archive",
+            "archived_context",
+            "historical_only",
+            "archive",
+        ),
     }
     if top in zone_map:
-        kind, authority, evidence_role = zone_map[top]
-        item.update(kind=kind, authority=authority, evidence_role=evidence_role)
+        kind, authority, evidence_role, status = zone_map[top]
+        item.update(
+            kind=kind,
+            authority=authority,
+            evidence_role=evidence_role,
+            status=status,
+        )
         item["classification_rule"] = f"docs-zone:{top}"
+        if status == "archive":
+            item.update(mutability="immutable", citation="cite_archive_and_digest")
+        elif status == "historical":
+            item.update(citation="cite_with_version_or_date")
     else:
-        item.update(kind="documentation", authority="project_documentation", evidence_role="not_evidence_by_itself")
+        item.update(
+            kind="documentation",
+            authority="project_documentation",
+            evidence_role="not_evidence_by_itself",
+        )
         item["classification_rule"] = "docs-zone:top-level-context"
 
     if top == "08-roadmap":
         item.update(citation="cite_as_planning_not_result")
-    if any(token in lower for token in ("historical", "legacy", "deprecated", "superseded", "migration")):
-        item.update(status="historical", authority="historical_context", evidence_role="historical_only")
-        item["classification_rule"] += "+historical-name"
-    if "alpha" in lower and top not in {"05-quality", "08-roadmap"}:
-        item.update(citation="cite_with_version_and_date")
+    if top == "06-research" and "/old/" in lower:
+        item.update(
+            status="historical",
+            authority="historical_research_context",
+            evidence_role="historical_only",
+            citation="cite_as_historical_draft",
+        )
+        item["classification_rule"] += "+old"
+    if top in {"01-guides", "03-dashboard", "06-research"} and any(
+        token in lower
+        for token in (
+            "v040",
+            "v050",
+            "v0.5",
+            "alpha4",
+            "alpha5",
+            "alpha7",
+            "brain-5d",
+            "geliehene_intelligenz",
+        )
+    ):
+        item.update(
+            status="historical",
+            authority="historical_versioned_context",
+            evidence_role="historical_only",
+            citation="cite_with_version_and_date",
+        )
+        item["classification_rule"] += "+versioned-history"
 
 
 def classify(path: str, overrides: dict[str, dict[str, Any]]) -> dict[str, Any]:
@@ -173,11 +388,14 @@ def classify(path: str, overrides: dict[str, dict[str, Any]]) -> dict[str, Any]:
         raise ValueError(f"path outside governance scope: {path}")
     _apply_prefix_override(path, item, overrides)
     item.setdefault("classification_rule", "base")
-    item["review_required"] = item["classification_rule"].endswith("top-level-context")
+    item["review_required"] = "top-level-context" in item["classification_rule"]
     return item
 
 
-def inventory(domain: str, overrides: dict[str, dict[str, Any]]) -> list[dict[str, Any]]:
+def inventory(
+    domain: str,
+    overrides: dict[str, dict[str, Any]],
+) -> list[dict[str, Any]]:
     base = ROOT / domain
     files = []
     for file in sorted(path for path in base.rglob("*") if path.is_file()):
@@ -189,8 +407,28 @@ def inventory(domain: str, overrides: dict[str, dict[str, Any]]) -> list[dict[st
 
 
 def _validate(items: list[dict[str, Any]], errors: list[str]) -> None:
-    required = {"path", "domain", "kind", "status", "authority", "mutability", "citation", "evidence_role", "rationale", "classification_rule"}
-    valid_status = {"current", "current_wip", "frozen", "historical", "generated", "experimental", "superseded", "archive"}
+    required = {
+        "path",
+        "domain",
+        "kind",
+        "status",
+        "authority",
+        "mutability",
+        "citation",
+        "evidence_role",
+        "rationale",
+        "classification_rule",
+    }
+    valid_status = {
+        "current",
+        "current_wip",
+        "frozen",
+        "historical",
+        "generated",
+        "experimental",
+        "superseded",
+        "archive",
+    }
     paths: set[str] = set()
     for item in items:
         missing = required - set(item)
@@ -211,24 +449,40 @@ def _write(domain: str, items: list[dict[str, Any]]) -> None:
         "file_count": len(items),
         "status": dict(sorted(Counter(str(item["status"]) for item in items).items())),
         "kind": dict(sorted(Counter(str(item["kind"]) for item in items).items())),
-        "authority": dict(sorted(Counter(str(item["authority"]) for item in items).items())),
+        "authority": dict(
+            sorted(Counter(str(item["authority"]) for item in items).items())
+        ),
         "review_required": sum(bool(item.get("review_required")) for item in items),
     }
     payload = {
         "schema_version": 1,
         "generated_by": "scripts/audit_document_governance.py",
         "scope": domain,
-        "warning": "Classification describes document role; it does not promote DATA to EVID or certify scientific validity.",
+        "warning": (
+            "Classification describes document role; it does not promote DATA "
+            "to EVID or certify scientific validity."
+        ),
         "summary": summary,
         "files": items,
     }
-    OUTPUTS[domain].write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    OUTPUTS[domain].write_text(
+        json.dumps(payload, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+    )
 
 
 def main() -> int:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--write", action="store_true", help="materialize complete per-file catalogues")
-    parser.add_argument("--strict-review", action="store_true", help="fail if generic top-level contextual files remain")
+    parser.add_argument(
+        "--write",
+        action="store_true",
+        help="materialize complete per-file catalogues",
+    )
+    parser.add_argument(
+        "--strict-review",
+        action="store_true",
+        help="fail if generic top-level contextual files remain",
+    )
     args = parser.parse_args()
 
     overrides = _load_overrides()
@@ -247,7 +501,10 @@ def main() -> int:
 
     for domain, items in all_items.items():
         counts = Counter(str(item["status"]) for item in items)
-        print(f"{domain}: {len(items)} files declared; status={dict(sorted(counts.items()))}")
+        print(
+            f"{domain}: {len(items)} files declared; "
+            f"status={dict(sorted(counts.items()))}"
+        )
     if errors:
         print("Document governance audit: FAILED")
         for error in errors:
