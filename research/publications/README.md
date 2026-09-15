@@ -2,6 +2,10 @@
 
 [Dissertationsmanuskript und Forschungsarbeit](2026-09-13_recursive-epistemics_v1.5/README.md). Vollstaendige Ausgabe, aktuelle quellgebundene Messbilanz, menschliches Review ausstehend.
 
+## Nachtrag vom 15. September 2026
+
+[Stage 6 — Gedächtnis und Weltmodell](2026-09-15_stage6-memory-world-model_v1.5-addendum/README.md) erweitert Dissertation und Forschungsarbeit 1.5 um neuronale Episoden, semantische Prototypen, Replay-/Ablationsverträge, einen von Reward getrennten Prediction-Error-Pfad, aktionskonditionierte Mehrschrittvorhersage sowie die Offline-Prüfung von Entscheidungsnutzen. Die Anhänge enthalten die neue Experimentmatrix, aktuelle Literatur und Reproduzierbarkeits-/EVID-Regeln. `RQ-MEM-002` und `RQ-WM-001` bleiben offen; keine automatische EVID-Freigabe und keine Behauptung eines bereits nachgewiesenen neuronalen Weltmodells.
+
 ## Nachträge vom 14. September 2026
 
 [Stages 0-6: Integration, Referenzgedaechtnis und offene Grenzen](2026-09-14_stages0-6-integration_v1.5-addendum/README.md) ergaenzt Dissertation und Forschungsarbeit 1.5 um den gemeinsamen Branchstand, die typgetreue Vorhersagemethodik, Lesesperren und den expliziten Referenz-Wiederaufbau. Keine neue EVID-Freigabe; historische Manuskripte und Binarexporte bleiben unveraendert.
