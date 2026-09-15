@@ -30,7 +30,9 @@ class PredictionErrorSignal:
         if isinstance(self.value, bool) or not math.isfinite(self.value):
             raise PredictionErrorPlasticityError("prediction error must be finite")
         if type(self.tick) is not int or self.tick < 0:
-            raise PredictionErrorPlasticityError("prediction-error tick must be >= 0")
+            raise PredictionErrorPlasticityError(
+                "prediction-error tick must be >= 0"
+            )
         if not self.source.strip():
             raise PredictionErrorPlasticityError("prediction-error source is required")
 
@@ -46,9 +48,13 @@ class PredictionErrorPlasticityConfig:
 
     def __post_init__(self) -> None:
         if self.learning_rate < 0.0 or not math.isfinite(self.learning_rate):
-            raise PredictionErrorPlasticityError("learning_rate must be finite and >= 0")
+            raise PredictionErrorPlasticityError(
+                "learning_rate must be finite and >= 0"
+            )
         if self.trace_epsilon < 0.0 or not math.isfinite(self.trace_epsilon):
-            raise PredictionErrorPlasticityError("trace_epsilon must be finite and >= 0")
+            raise PredictionErrorPlasticityError(
+                "trace_epsilon must be finite and >= 0"
+            )
 
 
 @dataclass(frozen=True, slots=True)
