@@ -12,6 +12,7 @@ import copy
 import math
 from collections.abc import Callable, Sequence
 from dataclasses import dataclass
+from typing import Any
 
 from .multistep_world_model import (
     ActionConditionedWorldModel,
@@ -81,7 +82,7 @@ class OfflineDecisionEvaluator:
 
     def evaluate(
         self,
-        initial_state: dict[str, object],
+        initial_state: dict[str, Any],
         candidates: Sequence[ActionSequenceCandidate],
     ) -> DecisionRecommendation:
         """Score complete known rollouts under equal horizons and deterministic ties."""
