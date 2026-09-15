@@ -28,16 +28,18 @@ jobs:
 
           path = Path("src/research/continual_semantization.py")
           text = path.read_text(encoding="utf-8")
-          old = '''        history = [
+          old = """        history = [
               float(row[task_index])
               for row in accuracy_rows[task_index:]
               if row[task_index] is not None
-          ]'''.replace("              ", "            ")
-          new = '''        history: list[float] = []
+          ]"""
+          old = old.replace("              ", "            ")
+          new = """        history: list[float] = []
           for row in accuracy_rows[task_index:]:
               value = row[task_index]
               if value is not None:
-                  history.append(float(value))'''
+                  history.append(float(value))"""
+          new = new.replace("          for", "        for").replace("              value", "            value").replace("              if", "            if").replace("                  history", "                history")
           if old not in text:
               raise SystemExit("expected forgetting-history block not found")
           path.write_text(text.replace(old, new, 1), encoding="utf-8")
