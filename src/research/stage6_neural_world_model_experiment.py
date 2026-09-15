@@ -69,9 +69,11 @@ def run_s6_nwm_001(
                         max_steps=1,
                     )
                     final = rollout.final_state
-                    predicted = None if final is None else int(final["position"])
-                    predictions += int(predicted is not None)
-                    exact += int(predicted == _next(position, action))
+                    statistical_prediction = (
+                        None if final is None else int(final["position"])
+                    )
+                    predictions += int(statistical_prediction is not None)
+                    exact += int(statistical_prediction == _next(position, action))
                 after = _digest(statistical.state_dict())
                 learned_weight_margin = None
             else:
@@ -97,12 +99,14 @@ def run_s6_nwm_001(
                 margins: list[float] = []
                 for position, action in contexts:
                     prediction = spiking.predict(_context(position, action))
-                    predicted = prediction.predicted_state
-                    predictions += int(predicted is not None)
+                    spiking_prediction = prediction.predicted_state
+                    predictions += int(spiking_prediction is not None)
                     output_spikes += len(prediction.output_spike_ids)
                     if prediction.latency_steps is not None:
                         latencies.append(prediction.latency_steps)
-                    exact += int(predicted == _state(_next(position, action)))
+                    exact += int(
+                        spiking_prediction == _state(_next(position, action))
+                    )
                     weights = spiking.synaptic_weights(_context(position, action))
                     if weights:
                         correct_weight = weights.get(
