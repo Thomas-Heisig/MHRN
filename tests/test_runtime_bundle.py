@@ -84,14 +84,19 @@ def test_runtime_bundle_roundtrip_binds_checkpoint_and_cognition(tmp_path) -> No
 
     assert restored.checkpoint == checkpoint
     assert restored.cognition.state_dict() == cognition.state_dict()
-    assert restored.cognition.persistence_path == manifest.parent / "runtime.cognition.json"
+    assert (
+        restored.cognition.persistence_path
+        == manifest.parent / "runtime.cognition.json"
+    )
 
 
 def test_runtime_bundle_rejects_modified_cognition_bytes(tmp_path) -> None:
     checkpoint = capture_runtime_checkpoint(_Network())  # type: ignore[arg-type]
     manifest = write_runtime_bundle(tmp_path / "bundle", checkpoint, _cognition())
     cognition_path = manifest.parent / "runtime.cognition.json"
-    cognition_path.write_text(cognition_path.read_text(encoding="utf-8") + " ", encoding="utf-8")
+    cognition_path.write_text(
+        cognition_path.read_text(encoding="utf-8") + " ", encoding="utf-8"
+    )
 
     with pytest.raises(RuntimeBundleError, match="cognition state hash mismatch"):
         read_runtime_bundle(manifest)
