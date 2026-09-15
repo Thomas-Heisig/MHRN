@@ -12,6 +12,30 @@ function percent(value) {
   return `${Math.round(Math.max(0, Math.min(1, Number(value) || 0)) * 100)}%`;
 }
 
+function setVisible(element, visible) {
+  if (!element) return;
+  element.hidden = !visible;
+  element.classList.toggle("mhrn-route-hidden", !visible);
+  element.classList.toggle("mhrn-route-focus-hidden", !visible);
+  element.setAttribute("aria-hidden", String(!visible));
+  element.style.display = visible ? "" : "none";
+  element.inert = !visible;
+}
+
+function showScientificReleaseView(panel) {
+  const root = document.getElementById("tab-gate");
+  if (!root || !panel) return;
+  root.querySelectorAll("[data-release-view]").forEach((candidate) => setVisible(candidate, candidate === panel));
+  root.querySelectorAll('.mhrn-context-nav[data-area="release"] button').forEach((button) => {
+    const active = button.dataset.scienceReleaseRoute === "true";
+    button.classList.toggle("active", active);
+    button.setAttribute("aria-selected", String(active));
+  });
+  root.querySelectorAll('[data-workspace-views="release"] [data-workspace-view]').forEach((button) => {
+    button.classList.toggle("active", button.dataset.workspaceView === "science");
+  });
+}
+
 function injectStyles() {
   if (document.getElementById("mhrn-scientific-progress-styles")) return;
   const style = document.createElement("style");
@@ -38,6 +62,24 @@ function injectStyles() {
   document.head.appendChild(style);
 }
 
+function ensureRoutedScienceNavigation(panel) {
+  const nav = document.querySelector('.mhrn-context-nav[data-area="release"]');
+  if (!nav) return false;
+  let button = nav.querySelector('[data-science-release-route="true"]');
+  if (!button) {
+    button = document.createElement("button");
+    button.type = "button";
+    button.setAttribute("role", "tab");
+    button.dataset.scienceReleaseRoute = "true";
+    button.textContent = "Wissenschaft";
+    button.title = "Wissenschaftliche Reife der Stufen 0–10";
+    const development = nav.querySelector('[data-area-route="development"]');
+    if (development?.nextSibling) nav.insertBefore(button, development.nextSibling); else nav.append(button);
+    button.addEventListener("click", () => showScientificReleaseView(panel));
+  }
+  return true;
+}
+
 function ensureReleaseView() {
   const nav = document.querySelector('[data-workspace-views="release"]');
   const board = document.querySelector(".release-board");
@@ -62,10 +104,17 @@ function ensureReleaseView() {
     panel.hidden = true;
     board.append(panel);
   }
+  if (!button.dataset.scienceRouteBound) {
+    button.dataset.scienceRouteBound = "true";
+    button.addEventListener("click", () => showScientificReleaseView(panel));
+  }
 
-  // The legacy workspace router already handles data-workspace-view buttons that
-  // point at a matching data-release-view panel. This keeps the second timeline
-  // first-class without duplicating routing state.
+  if (!ensureRoutedScienceNavigation(panel)) {
+    const observer = new MutationObserver(() => {
+      if (ensureRoutedScienceNavigation(panel)) observer.disconnect();
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+  }
   return panel;
 }
 
