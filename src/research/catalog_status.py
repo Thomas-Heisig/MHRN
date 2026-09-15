@@ -20,6 +20,7 @@ CATALOG_FACET_FIELDS = (
     "evidence_status",
     "experiment_progress",
 )
+SAFETY_QUESTION_PREFIXES = ("RQ-SAFE-",)
 
 
 def _record(path: Path) -> dict[str, Any]:
@@ -70,7 +71,9 @@ def question_facets(root: Path, registry: ResearchRegistry) -> list[dict[str, An
         progress = counts[question.id]
         is_operational = question.id in operational
         blocked_design = not is_operational and (
-            question.id.startswith(PREFIXES) or question.id in PROTECTED_QUESTIONS
+            question.id.startswith(PREFIXES)
+            or question.id.startswith(SAFETY_QUESTION_PREFIXES)
+            or question.id in PROTECTED_QUESTIONS
         )
         state = "not_run"
         if progress:

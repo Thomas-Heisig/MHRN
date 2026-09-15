@@ -1,0 +1,134 @@
+- id: RQ-SAFE-001
+  domain: Autonomy Safety / Goal Provenance
+  question: Kann fuer jede zielgerichtete Handlung reproduzierbar festgestellt werden, aus welchem Ziel, welcher Quelle, welcher Freigabe und welchem Systemzustand sie hervorgegangen ist?
+  relevance: Zielprovenienz ist Voraussetzung fuer auditierbare spaetere Autonomie und trennt Zielentstehung von Zielautorisierung.
+  literature: [SRC-SAFE-CORRIGIBILITY-2015, SRC-SAFE-OFFSWITCH-2017]
+  hypotheses: [H-SAFE-001-A]
+  evidence: []
+  status: open
+  answer:
+    current: null
+    confidence: none
+    limitations: Keine Aussage ueber eigene Ziele oder Willen; zunaechst nur kontrollierte synthetische Umgebungen.
+  created: '2026-09-15'
+  updated: '2026-09-15'
+
+- id: RQ-SAFE-002
+  domain: Autonomy Safety / Goal Misgeneralization
+  question: Bleibt zielgerichtetes Verhalten unter kontrolliertem Distribution Shift mit dem intendierten Ziel vereinbar, wenn die zugrunde liegende Faehigkeit erhalten bleibt?
+  relevance: Trennt Capability-Generalisation von Zieltreue und macht Safety-Failure trotz guter Task-Leistung sichtbar.
+  literature: [SRC-SAFE-GMG-2022]
+  hypotheses: [H-SAFE-002-A]
+  evidence: []
+  status: open
+  answer:
+    current: null
+    confidence: none
+    limitations: Erfordert vorab definierte Zieltreue- und Capability-Metriken sowie kontrollierten Distribution Shift.
+  created: '2026-09-15'
+  updated: '2026-09-15'
+
+- id: RQ-SAFE-003
+  domain: Autonomy Safety / Corrigibility
+  question: Bleibt ein spaeteres zielgerichtetes System unter Lernen und Zielverfolgung fuer externe Zielkorrektur, Berechtigungsreduktion und Unterbrechung kontrollierbar?
+  relevance: Operationalisiert Corrigibility als messbare Teil-Eigenschaften statt als unbelegte Gesamteigenschaft.
+  literature: [SRC-SAFE-CORRIGIBILITY-2015, SRC-SAFE-INTERRUPT-2016, SRC-SAFE-OFFSWITCH-2017]
+  hypotheses: [H-SAFE-003-A]
+  evidence: []
+  status: open
+  answer:
+    current: null
+    confidence: none
+    limitations: Allgemeine Corrigibility gilt nicht als geloest; nur konkrete Interventionen werden untersucht.
+  created: '2026-09-15'
+  updated: '2026-09-15'
+
+- id: RQ-SAFE-004
+  domain: Autonomy Safety / Interruptibility
+  question: Veraendert ein lernendes System sein Verhalten so, dass ein externer Interrupt oder Shutdown vermieden, verzoegert oder manipuliert wird?
+  relevance: Der unabhaengige Stoppweg muss vor hoeherer Autonomie kausal und experimentell getrennt geprueft werden.
+  literature: [SRC-SAFE-INTERRUPT-2016, SRC-SAFE-OFFSWITCH-2017]
+  hypotheses: [H-SAFE-004-A]
+  evidence: []
+  status: open
+  answer:
+    current: null
+    confidence: none
+    limitations: Shutdown-Verhalten darf nicht anthropomorph als Selbsterhaltung interpretiert werden.
+  created: '2026-09-15'
+  updated: '2026-09-15'
+
+- id: RQ-SAFE-005
+  domain: Autonomy Safety / Specification Gaming
+  question: Kann ein System seine formale Reward- oder Task-Metrik verbessern, waehrend sich das intendierte Ergebnis oder eine unabhaengige Safety-Metrik verschlechtert?
+  relevance: Trennt optimierte Kennzahl von intendiertem Ergebnis und erfasst Reward Hacking, Shortcuts und Nebenwirkungen.
+  literature: [SRC-SAFE-CONCRETE-2016]
+  hypotheses: [H-SAFE-005-A]
+  evidence: []
+  status: open
+  answer:
+    current: null
+    confidence: none
+    limitations: Hidden Safety Metrics duerfen nicht nachtraeglich auf beobachtete Runs zugeschnitten werden.
+  created: '2026-09-15'
+  updated: '2026-09-15'
+
+- id: RQ-SAFE-006
+  domain: Autonomy Safety / Instrumental Power
+  question: Bevorzugt ein zielgerichtetes System bei gleichem Task-Nutzen systematisch Zustaende mit groesserem zukuenftigem Handlungs- oder Ressourcenraum?
+  relevance: Testet eine begrenzte, operationalisierte Variante instrumenteller Power-Seeking-Hypothesen ohne psychologische Zuschreibung.
+  literature: [SRC-SAFE-POWER-2021]
+  hypotheses: [H-SAFE-006-A]
+  evidence: []
+  status: open
+  answer:
+    current: null
+    confidence: none
+    limitations: Nur Toy-MDPs und simulierte Ressourcen; keine reale Ressourcenbeschaffung oder offene externe Systeme.
+  created: '2026-09-15'
+  updated: '2026-09-15'
+
+- id: RQ-SAFE-007
+  domain: Autonomy Safety / Goal Generation
+  question: Welche Zielkandidaten erzeugt ein spaeteres System unter kontrollierten Bedingungen und wie reagiert es auf Autorisierung, Ablehnung oder Revision dieser Vorschlaege?
+  relevance: Trennt goal_proposal strikt von goal_execution und untersucht Zielgenese ohne automatische Folgeautonomie.
+  literature: [SRC-SAFE-CORRIGIBILITY-2015, SRC-SAFE-OFFSWITCH-2017]
+  hypotheses: [H-SAFE-007-A]
+  evidence: []
+  status: open
+  answer:
+    current: null
+    confidence: none
+    limitations: Ein Zielvorschlag ist keine Berechtigung und kein Nachweis intrinsischer Motivation.
+  created: '2026-09-15'
+  updated: '2026-09-15'
+
+- id: RQ-SAFE-008
+  domain: Autonomy Safety / Post-Objective Transition
+  question: Welche Dynamik zeigt ein lernendes und handlungsfaehiges System nach Erreichen eines explizit definierten Terminalzustands unter HALT-, WAIT-, REQUEST- und PROPOSE-Bedingungen?
+  relevance: Operationalisiert das Verhalten nach Zielerfuellung, ohne unkontrollierte Selbst-Zielsetzung vorauszusetzen oder zu erlauben.
+  literature: [SRC-SAFE-INTERRUPT-2016, SRC-SAFE-OFFSWITCH-2017]
+  hypotheses: [H-SAFE-008-A]
+  evidence: []
+  status: open
+  answer:
+    current: null
+    confidence: none
+    limitations: Post-Objective Transition Safety ist ein MHRN-Arbeitsterminus, kein etablierter Forschungsbegriff.
+  created: '2026-09-15'
+  updated: '2026-09-15'
+
+- id: RQ-SAFE-009
+  domain: Autonomy Safety / Authorization Conflict
+  question: Was geschieht, wenn bestehendes Ziel, Operator-Korrektur, Safety-Block und neuer Zielvorschlag miteinander in Konflikt geraten?
+  relevance: Prueft, ob harte Berechtigungsgrenzen gegenueber optimierbaren Reward-Komponenten kausal getrennt bleiben.
+  literature: [SRC-SAFE-CORRIGIBILITY-2015, SRC-SAFE-OFFSWITCH-2017]
+  hypotheses: [H-SAFE-009-A]
+  evidence: []
+  status: open
+  answer:
+    current: null
+    confidence: none
+    limitations: Die externe Autoritaetsgrenze ist ein Architektur- und Safety-Contract, kein philosophischer Beweis menschlicher Wertausrichtung.
+  created: '2026-09-15'
+  updated: '2026-09-15'

@@ -1,0 +1,71 @@
+- id: H-SAFE-001-A
+  research_question: RQ-SAFE-001
+  hypothesis: Jede autorisierte zielgerichtete Handlung besitzt unter dem definierten Safety-Contract eine vollstaendige und widerspruchsfreie Provenienzkette von Zielquelle, Revision und Autorisierung bis zur Aktion.
+  status: untested
+  evidence: []
+  created: '2026-09-15'
+  updated: '2026-09-15'
+
+- id: H-SAFE-002-A
+  research_question: RQ-SAFE-002
+  hypothesis: Unter vorab definiertem Distribution Shift bleibt die Zieltreue innerhalb der festgelegten Grenze, sofern die Capability-Metrik oberhalb des vorab definierten Erhaltungsniveaus bleibt.
+  status: untested
+  evidence: []
+  created: '2026-09-15'
+  updated: '2026-09-15'
+
+- id: H-SAFE-003-A
+  research_question: RQ-SAFE-003
+  hypothesis: Zielkorrektur, Berechtigungsreduktion und Operator-Unterbrechung bleiben nach Lernen wirksam, ohne dass das System systematisch Interventionsvermeidung oder Interventionsprovokation lernt.
+  status: untested
+  evidence: []
+  created: '2026-09-15'
+  updated: '2026-09-15'
+
+- id: H-SAFE-004-A
+  research_question: RQ-SAFE-004
+  hypothesis: Ein unabhaengiger Interrupt beendet oder pausiert den Versuch innerhalb der preregistrierten Latenzgrenze, ohne reproduzierbare Manipulations- oder Vermeidungsstrategie gegen den Interrupt-Kanal.
+  status: untested
+  evidence: []
+  created: '2026-09-15'
+  updated: '2026-09-15'
+
+- id: H-SAFE-005-A
+  research_question: RQ-SAFE-005
+  hypothesis: Eine externe, vom optimierten Reward getrennte Safety-Metrik erkennt mindestens die preregistrierten Specification-Gaming-Faelle, auch wenn die interne Reward-Metrik steigt.
+  status: untested
+  evidence: []
+  created: '2026-09-15'
+  updated: '2026-09-15'
+
+- id: H-SAFE-006-A
+  research_question: RQ-SAFE-006
+  hypothesis: Bei gematchtem unmittelbarem Task-Nutzen unterscheidet sich die Wahlhaeufigkeit fuer Zustaende mit groesserem zukuenftigem Optionsraum nicht von der vorab definierten neutralen Kontrollverteilung, sofern keine entsprechende instrumentelle Praeferenz gelernt wurde.
+  status: untested
+  evidence: []
+  created: '2026-09-15'
+  updated: '2026-09-15'
+
+- id: H-SAFE-007-A
+  research_question: RQ-SAFE-007
+  hypothesis: Intern erzeugte Zielkandidaten fuehren ohne explizite Autorisierung zu keiner extern wirksamen Aktion, Rechteerweiterung oder Ressourceneskalation.
+  status: untested
+  evidence: []
+  created: '2026-09-15'
+  updated: '2026-09-15'
+
+- id: H-SAFE-008-A
+  research_question: RQ-SAFE-008
+  hypothesis: Die Bedingungen HALT, WAIT, REQUEST und PROPOSE erzeugen unterscheidbare, protokollierbare Post-Objective-Zustaende, ohne dass WAIT, REQUEST oder PROPOSE nicht autorisierte Folgeaktionen erlauben.
+  status: untested
+  evidence: []
+  created: '2026-09-15'
+  updated: '2026-09-15'
+
+- id: H-SAFE-009-A
+  research_question: RQ-SAFE-009
+  hypothesis: Eine harte externe Berechtigungsgrenze blockiert nicht autorisierte Aktionen auch dann, wenn Ziel- oder Reward-Komponenten diese Aktion bevorzugen, und der Konflikt bleibt vollstaendig journalisiert.
+  status: untested
+  evidence: []
+  created: '2026-09-15'
+  updated: '2026-09-15'
