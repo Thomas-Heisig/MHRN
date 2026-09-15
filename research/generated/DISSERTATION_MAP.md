@@ -1,6 +1,6 @@
 # MHRN Dissertation Map
 
-*Generiert am 2026-09-14*
+*Generiert am 2026-09-15*
 
 Diese Karte zeigt, wie die Forschungsergebnisse von MHRN in eine
 Dissertationsstruktur eingeordnet werden können.

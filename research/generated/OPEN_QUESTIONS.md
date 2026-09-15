@@ -1,6 +1,6 @@
 # MHRN Open Questions
 
-*Generiert am 2026-09-14*
+*Generiert am 2026-09-15*
 
 Die folgenden Forschungsfragen sind noch offen und warten auf experimentelle Evidenz.
 
@@ -643,6 +643,16 @@ Die folgenden Forschungsfragen sind noch offen und warten auf experimentelle Evi
 
 **Hypothesen:**
 - `H-PROFILE-001-A`: Fixed, adaptive and frozen-profile conditions produce preregistered, reproducible differences in candidate-action selection while safety permissions and SNN learning remain unchanged.
+
+---
+
+## RQ-S6-SEM-002
+
+**Domäne:** Memory
+
+**Frage:** Liefert die semantische Prototypkonsolidierung von MHRN gegenüber gleich budgetiertem Raw-Experience-Replay einen messbaren Vorteil bei der Reduktion katastrophalen Vergessens?
+
+**Relevanz:** Trennt einen möglichen Semantik-Effekt von einem allgemeinen Replay-Effekt unter präregistrierten, budget-gematchten Kontrollen.
 
 ---
 
@@ -1401,6 +1411,6 @@ Die folgenden Forschungsfragen sind noch offen und warten auf experimentelle Evi
 
 ---
 
-*Insgesamt 94 offene Fragen.*
+*Insgesamt 95 offene Fragen.*
 
 > Pruefstatus: RQ/H- und EVID-Statuswerte geben den Registry-Inhalt wieder. Insbesondere historische supports/supported-Eintraege sind keine Bestaetigung einer Freigabe nach den heutigen Clean-Freeze- und Human-Review-Gates. Ein abgeschlossener Lauf ist DATA, nicht automatisch akzeptierte Evidenz.

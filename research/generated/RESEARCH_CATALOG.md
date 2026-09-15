@@ -1,10 +1,10 @@
 # MHRN Research Catalog
 
-*Generiert am 2026-09-14*
+*Generiert am 2026-09-15*
 
 ## Übersicht
 
-- **Forschungsfragen:** 94
+- **Forschungsfragen:** 95
 - **Hypothesen:** 97
 - **Claims:** 8
 - **Literaturquellen:** 50
@@ -899,6 +899,15 @@
 
 **Hypothesen:**
 - `H-MEM-002-A`: Memory-on improves delayed-information task performance over matched Memory-off, while SNN state, plasticity, seed and execution budget remain unchanged. *(untested)*
+
+---
+
+### RQ-S6-SEM-002
+
+**Frage:** Liefert die semantische Prototypkonsolidierung von MHRN gegenüber gleich budgetiertem Raw-Experience-Replay einen messbaren Vorteil bei der Reduktion katastrophalen Vergessens?
+
+**Status:** open
+**Relevanz:** Trennt einen möglichen Semantik-Effekt von einem allgemeinen Replay-Effekt unter präregistrierten, budget-gematchten Kontrollen.
 
 ---
 

@@ -1,6 +1,6 @@
 # MHRN Evidence Matrix
 
-*Generiert am 2026-09-14*
+*Generiert am 2026-09-15*
 
 | Forschungsfrage | Hypothese | Literatur | Experimente | Evidenz | Antwort |
 |----------------|-----------|-----------|-------------|---------|---------|
@@ -50,6 +50,7 @@
 | `RQ-MEM-002` | `H-MEM-002-A` | 0 | — | — | offen |
 | `RQ-WM-001` | `H-WM-001-A` | 0 | — | — | offen |
 | `RQ-PROFILE-001` | `H-PROFILE-001-A` | 0 | — | — | offen |
+| `RQ-S6-SEM-002` | — | 0 | — | — | offen |
 | `RQ-CNS-101` | `H-CNS-101-A` | 4 | — | — | offen |
 | `RQ-CNS-102` | `H-CNS-102-A` | 1 | — | — | offen |
 | `RQ-CNS-103` | `H-CNS-103-A` | 1 | — | — | offen |
