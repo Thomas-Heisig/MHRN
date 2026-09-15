@@ -104,9 +104,7 @@ def run_s6_nwm_001(
                     output_spikes += len(prediction.output_spike_ids)
                     if prediction.latency_steps is not None:
                         latencies.append(prediction.latency_steps)
-                    exact += int(
-                        spiking_prediction == _state(_next(position, action))
-                    )
+                    exact += int(spiking_prediction == _state(_next(position, action)))
                     weights = spiking.synaptic_weights(_context(position, action))
                     if weights:
                         correct_weight = weights.get(
