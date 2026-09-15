@@ -11,6 +11,7 @@
 - **[Aktuelles Vollmanuskript 1.7](MANUSCRIPT.md)** — kanonischer Publication-Viewer-Einstieg
 - [Forschungsbericht 1.7](FORSCHUNGSBERICHT.md)
 - [Worte des Autors](AUTHOR_POSITION.md)
+- [Autor und Schaffensart](AUTHOR_AND_CREATION_PRACTICE.md) — kanonische Selbstauskunft zu Hintergrund, Motivation, Arbeitsweise, KI-Assistenz, Bias-Risiken und Verantwortung
 - [Beitrags- und Neuheitsmatrix](CONTRIBUTION_MAP.md)
 - [Scientific Stage Matrix](SCIENTIFIC_STAGE_MATRIX.md)
 - [Integrität und Attribution](INTEGRITY_AND_ATTRIBUTION.md)
@@ -33,6 +34,7 @@ Fassung 1.7 führt die laufende Arbeit vollständig weiter, ohne frühere empiri
 - direkte Viewer-Bindung an das aktuelle `MANUSCRIPT.md` statt an eine reine Indexseite;
 - ausführlich integrierte Stage-0–10-Darstellung;
 - Autorposition zu kumulativer Wissenschaft, freiem Wissenstransfer und Attribution;
+- kanonische Selbstauskunft `AUTHOR_AND_CREATION_PRACTICE.md` zu beruflichem Hintergrund, Motivation, assistierter Einzelautorschaft, KI-Nutzung, Verantwortung und methodischen Bias-Risiken;
 - explizite Neuheitsunsicherheit für potenzielle MHRN-Beiträge;
 - klare Trennung von Quellenübernahme, Synthese, Eigenentwicklung und ungeklärter Prior Art;
 - fortgeschriebene Stage-6-Grenzen für Semantization, Predictive Coding und World Models;
