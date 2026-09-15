@@ -50,8 +50,8 @@ class SpikingTransitionWorldModel:
 
     Learning is teacher-forced: the context neuron spikes before the observed
     next-state output neuron. The existing LearningEngine then changes synaptic
-    weights through pair STDP. During ``predict`` the LearningEngine is not
-    updated, so inference cannot change synaptic weights.
+    weights through pair STDP. During ``predict`` the LearningEngine is never
+    updated, including post-inference cooldown, so inference cannot learn.
     """
 
     scientific_status = "experimental_exact_context_neural_candidate"
@@ -158,10 +158,11 @@ class SpikingTransitionWorldModel:
             self.network.connect(neuron_id, output_id, 0.0, 1)
         return neuron_id
 
-    def _cooldown(self) -> None:
+    def _cooldown(self, *, learning: bool) -> None:
         for _ in range(self.cooldown_steps):
             result = self.network.step()
-            self.learning.update(result)
+            if learning:
+                self.learning.update(result)
 
     def observe(
         self,
@@ -182,7 +183,7 @@ class SpikingTransitionWorldModel:
             self.learning.update(self.network.step())
             self.network.inject_current(output_id, 100.0)
             self.learning.update(self.network.step())
-            self._cooldown()
+            self._cooldown(learning=True)
 
     def predict(self, context: SpikingContext) -> SpikingWorldPrediction:
         """Return the first learned next-state output that actually spikes."""
@@ -206,7 +207,7 @@ class SpikingTransitionWorldModel:
                 all_output_spikes.extend(outputs)
                 latency = step
                 break
-        self._cooldown()
+        self._cooldown(learning=False)
         after = self.synaptic_weights(context)
         if after != before:
             raise SpikingWorldModelError("inference changed synaptic weights")
