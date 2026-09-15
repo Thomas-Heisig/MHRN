@@ -14,6 +14,7 @@ from src.embodiment.sensor import SensorAdapter
 from src.embodiment.task_outcome import TaskOutcome, TaskOutcomeVerifier
 from src.learning.learning_engine import LearningEngine
 from src.memory import MemoryWorldModel
+from src.memory.neural_episodic import NeuralEpisodicMemory
 from src.profiles import BehaviorProfile
 
 Encoder = Callable[[SensorFrame], Mapping[int, float]]
@@ -49,6 +50,7 @@ class ExperienceEngine:
     learning: LearningEngine | None = None
     outcome_verifier: TaskOutcomeVerifier = field(default_factory=TaskOutcomeVerifier)
     memory: MemoryWorldModel | None = None
+    neural_memory: NeuralEpisodicMemory | None = None
     behavior_profile: BehaviorProfile | None = None
     last_step: ExperienceStep | None = None
     _pending_frame: SensorFrame | None = None
@@ -62,8 +64,11 @@ class ExperienceEngine:
         observation = self.embodiment.reset(seed)
         self.last_step = None
         self._cycle.reset()
+        episode_id = f"episode-{self.embodiment.episode}"
         if self.memory is not None:
-            self.memory.reset_episode(f"episode-{self.embodiment.episode}")
+            self.memory.reset_episode(episode_id)
+        if self.neural_memory is not None:
+            self.neural_memory.reset_episode(episode_id)
         return observation
 
     def _abort_cycle(self) -> None:
@@ -154,6 +159,8 @@ class ExperienceEngine:
         record = ExperienceStep(tick, frame, action, observation, reward, outcome)
         if self.memory is not None:
             self.memory.complete(frame, action, observation, tick, prediction)
+        if self.neural_memory is not None:
+            self.neural_memory.record(result, frame, observation)
         if self.behavior_profile is not None:
             self.behavior_profile.update(success=outcome.success, tick=tick)
         self.last_step = record
