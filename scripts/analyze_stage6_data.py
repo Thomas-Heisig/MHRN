@@ -76,9 +76,9 @@ def aggregate(data_path: Path) -> dict[str, Any]:
         "protocol_sha256": cast(dict[str, Any], data.get("source", {})).get(
             "protocol_sha256"
         ),
-        "preregistration_sha256": cast(
-            dict[str, Any], data.get("source", {})
-        ).get("preregistration_sha256"),
+        "preregistration_sha256": cast(dict[str, Any], data.get("source", {})).get(
+            "preregistration_sha256"
+        ),
         "seeds": data.get("seeds"),
         "scientific_evidence": False,
         "automatic_evidence_promotion": False,
