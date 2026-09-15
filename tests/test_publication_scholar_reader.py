@@ -101,7 +101,7 @@ def test_publication_display_math_is_typeset_without_dashboard_card_chrome() -> 
     refinements = _read(STYLES / "publication-reader-voice-math.css")
 
     display_block = re.search(
-        r'\.pub-reader-article mjx-container\[display="true"\]\s*\{([^}]]+)\}',
+        r'\.pub-reader-article mjx-container\[display="true"\]\s*\{([^}]+)\}',
         refinements,
         re.S,
     )
