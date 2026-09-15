@@ -2,15 +2,28 @@
 
 **Stand:** 15. September 2026
 
-Dieses Dokument ist der kurze Einstieg in den aktuellen wissenschaftlichen Zustand des Repositories. Historische DATA und Publikationsstände bleiben in ihren datierten Verzeichnissen unverändert.
+Dieses Dokument ist der kurze Einstieg in den aktuellen wissenschaftlichen Zustand. Historische DATA, EVID-Entscheidungen und frozen Publikationen bleiben in ihren datierten Verzeichnissen unverändert.
 
 ## Aktuelle Publikation
 
-- **Recursive Epistemics / Rekursive Epistemik, Fassung 1.6**
-- Einstieg: `research/publications/2026-09-15_recursive-epistemics_v1.6/README.md`
-- empirische Basis: Fassung 1.5 / `EXP-EMP-20260913-A3`
+- **Recursive Epistemics / Rekursive Epistemik, Fassung 1.7 — current WIP**
+- Viewer-Einstieg: `research/publications/2026-09-15_recursive-epistemics_v1.7/MANUSCRIPT.md`
+- unmittelbarer Vorgänger: Fassung 1.6
+- frozen empirical baseline: Fassung 1.5 / `EXP-EMP-20260913-A3`
 - menschliches wissenschaftliches Review: ausstehend
+- unabhängige Replikation: unvollständig
 - automatische EVID-Promotion: deaktiviert
+
+Stabile Links:
+
+- `research/publications/CURRENT.md`
+- `research/publications/FROZEN_V1.5.md`
+
+## Dokumentgovernance
+
+`docs/` und `research/` werden ab 1.7 als wissenschaftliche Informationsarchitektur behandelt. Jede reale Datei wird durch `scripts/audit_document_governance.py` nach Typ, Status, Autorität, Mutabilität, Zitierregel und Evidenzrolle klassifiziert. Hochautoritative Pfade besitzen explizite Overrides in `research/document_governance_overrides.json`.
+
+Historische Dateien werden nicht bloß zur optischen Bereinigung verschoben, wenn dadurch Digests oder Reproduzierbarkeit beschädigt würden.
 
 ## Zwei Entwicklungsachsen
 
@@ -37,9 +50,9 @@ Der Score ist eine Projektsteuerungsheuristik und keine Kognitions-, Intelligenz
 
 ## Aktueller Schwerpunkt
 
-Stage 6 – Gedächtnis und Weltmodell.
+Stage 6 — Gedächtnis und Weltmodell.
 
-Die Infrastruktur und erste Mechanismen sind vorhanden; offen bleiben insbesondere:
+Die Infrastruktur und Mechanismuskandidaten sind vorhanden; offen bleiben insbesondere:
 
 - experimentell belastbare Semantization durch Replay/Konsolidierung,
 - neuronale und abladierbare Prediction-Error-Dynamik,
@@ -48,11 +61,22 @@ Die Infrastruktur und erste Mechanismen sind vorhanden; offen bleiben insbesonde
 - confirmatory SNN-involved DATA,
 - menschliche EVID-Entscheidung und unabhängige Replikation.
 
+## Potenzielle Beiträge / Neuheitsstatus
+
+Fassung 1.7 markiert drei Kandidaten für eine gezielte Prior-Art-Prüfung:
+
+1. Logical Identity / Physical Slot / Synaptic Reduction / Execution Scheduling;
+2. Proposal → Approval → Mutation → Journal → Undo;
+3. Content Gateway / Compute Backend.
+
+Dies sind dokumentierbare MHRN-Mechanismen beziehungsweise Architekturentscheidungen. Ihre externe wissenschaftliche Neuheit ist **nicht festgestellt**.
+
 ## Integrität
 
 - `research/INTEGRITY_AND_ATTRIBUTION.md`
 - `research/RELATED_WORK.md`
 - `docs/05-quality/RESEARCH_INTEGRITY_GATE.md`
+- `docs/00-governance/DOCUMENT_GOVERNANCE.md`
 - `docs/08-roadmap/SCIENTIFIC_MATURITY_ROADMAP.md`
 
-Diese Instrumente reduzieren Fehlattribution und unmarkiertes Text-Recycling. Sie zertifizieren keine Plagiatsfreiheit; vor formaler externer Einreichung bleiben menschliche Quellenprüfung und geeignete externe Similarity-Prüfung erforderlich.
+Diese Instrumente reduzieren Fehlattribution und unmarkiertes Text-Recycling. Sie zertifizieren keine Plagiatsfreiheit oder Neuheit; vor formaler externer Einreichung bleiben menschliche Quellenprüfung, Prior-Art-Prüfung und geeignete externe Similarity-Prüfung erforderlich.
