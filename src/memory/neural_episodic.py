@@ -14,7 +14,11 @@ from collections.abc import Mapping, Sequence
 from dataclasses import dataclass
 from typing import Any, cast
 
-from src.embodiment.models import EnvironmentObservation, SensorFrame
+from src.embodiment.models import (
+    JSONValue,
+    EnvironmentObservation,
+    SensorFrame,
+)
 
 NEURAL_EPISODIC_SCHEMA_VERSION = 1
 NEURAL_EPISODIC_OWNER = "memory.neural_episodic"
@@ -62,12 +66,12 @@ def spike_ids_from_result(result: object) -> tuple[int, ...]:
     if isinstance(raw, (str, bytes)) or not isinstance(raw, Sequence):
         raise NeuralEpisodicMemoryError("network spike pattern must be a sequence")
     values: set[int] = set()
-    for value in raw:
+    for value in cast(Sequence[object], raw):
         if type(value) is not int or value < 0:
             raise NeuralEpisodicMemoryError(
                 "network spike IDs must be non-negative integers"
             )
-        values.add(value)
+        values.add(cast(int, value))
     return tuple(sorted(values))
 
 
@@ -81,8 +85,8 @@ class NeuralEpisode:
     sensor_id: str
     modality: str
     spike_ids: tuple[int, ...]
-    frame_payload: dict[str, Any]
-    actual_state: dict[str, Any] | None
+    frame_payload: JSONValue
+    actual_state: dict[str, JSONValue] | None
 
     def to_dict(self) -> dict[str, Any]:
         return {
@@ -125,6 +129,8 @@ class NeuralEpisodicMemory:
             raise NeuralEpisodicMemoryError(
                 "retention_ticks must be a positive integer"
             )
+        if type(read_enabled) is not bool or type(write_enabled) is not bool:
+            raise NeuralEpisodicMemoryError("memory controls must be booleans")
         self.run_id = run_id
         self.capacity = capacity
         self.retention_ticks = retention_ticks
@@ -162,11 +168,11 @@ class NeuralEpisodicMemory:
             sensor_id=frame.sensor_id,
             modality=frame.modality,
             spike_ids=pattern,
-            frame_payload=cast(dict[str, Any], _json_copy(frame.payload)),
+            frame_payload=cast(JSONValue, _json_copy(frame.payload)),
             actual_state=(
                 None
                 if observation is None
-                else cast(dict[str, Any], _json_copy(observation.state))
+                else cast(dict[str, JSONValue], _json_copy(observation.state))
             ),
         )
         self._episodes.append(trace)
@@ -249,18 +255,22 @@ class NeuralEpisodicMemory:
             "integrity_digest"
         ) != _digest(state):
             raise NeuralEpisodicMemoryError("neural episodic integrity check failed")
+        read_enabled = state.get("read_enabled")
+        write_enabled = state.get("write_enabled")
+        if type(read_enabled) is not bool or type(write_enabled) is not bool:
+            raise NeuralEpisodicMemoryError("memory controls must be booleans")
         memory = cls(
             run_id=str(state["run_id"]),
             capacity=int(state["capacity"]),
             retention_ticks=int(state["retention_ticks"]),
-            read_enabled=bool(state["read_enabled"]),
-            write_enabled=bool(state["write_enabled"]),
+            read_enabled=cast(bool, read_enabled),
+            write_enabled=cast(bool, write_enabled),
         )
         memory._episode_id = str(state["episode_id"])
         raw_episodes = state.get("episodes")
         if not isinstance(raw_episodes, list):
             raise NeuralEpisodicMemoryError("episodes must be a list")
-        for raw in raw_episodes:
+        for raw in cast(list[object], raw_episodes):
             if not isinstance(raw, dict):
                 raise NeuralEpisodicMemoryError("episode entry must be an object")
             item = cast(dict[str, Any], raw)
@@ -273,16 +283,18 @@ class NeuralEpisodicMemory:
                     sensor_id=str(item["sensor_id"]),
                     modality=str(item["modality"]),
                     spike_ids=spikes,
-                    frame_payload=cast(dict[str, Any], item["frame_payload"]),
+                    frame_payload=cast(JSONValue, item["frame_payload"]),
                     actual_state=(
                         None
                         if item["actual_state"] is None
-                        else cast(dict[str, Any], item["actual_state"])
+                        else cast(dict[str, JSONValue], item["actual_state"])
                     ),
                 )
             )
         if len(memory._episodes) > memory.capacity:
-            raise NeuralEpisodicMemoryError("stored episodes exceed configured capacity")
+            raise NeuralEpisodicMemoryError(
+                "stored episodes exceed configured capacity"
+            )
         if any(item.run_id != memory.run_id for item in memory._episodes):
             raise NeuralEpisodicMemoryError("stored episode run identity mismatch")
         return memory
