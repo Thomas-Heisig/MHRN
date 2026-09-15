@@ -1,5 +1,13 @@
 """Bounded memory and observation-only world-model contracts."""
 
+from .episodic_replay import (
+    EpisodicReplayError,
+    EpisodicReplayScheduler,
+    ReplayConsolidationResult,
+    ReplayMode,
+    ReplayPlan,
+    consolidate_replay,
+)
 from .layer import MemoryWorldModel, MemoryWorldModelError
 from .neural_episodic import (
     NeuralEpisode,
@@ -19,6 +27,8 @@ from .world_model import TransitionWorldModel, WorldPrediction
 
 __all__ = [
     "EpisodeRecord",
+    "EpisodicReplayError",
+    "EpisodicReplayScheduler",
     "MemoryStore",
     "MemoryStoreError",
     "MemoryWorldModel",
@@ -28,11 +38,15 @@ __all__ = [
     "NeuralEpisodicMemoryError",
     "NeuralRecallMatch",
     "PredictionRecord",
+    "ReplayConsolidationResult",
+    "ReplayMode",
+    "ReplayPlan",
     "SemanticConcept",
     "SemanticMatch",
     "SemanticMemory",
     "SemanticMemoryError",
     "TransitionWorldModel",
     "WorldPrediction",
+    "consolidate_replay",
     "spike_ids_from_result",
 ]
