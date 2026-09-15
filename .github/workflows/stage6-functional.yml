@@ -1,0 +1,50 @@
+name: Stage 6 functional experiments
+
+on:
+  push:
+    branches: [feature/stage6-s6-epi-001-neural-delay-20260915]
+    paths:
+      - src/research/stage6_experiments.py
+      - src/storage/stage6_bundle.py
+      - tests/test_stage6_registered_experiments.py
+      - tests/test_stage6_bundle.py
+      - research/protocols/STAGE6_OPERATIONAL_PROTOCOLS.json
+      - research/preregistrations/operational/stage6_bundle_v1.json
+      - scripts/run_stage6_operational.py
+      - .github/workflows/stage6-functional.yml
+
+permissions:
+  contents: read
+
+jobs:
+  stage6-functional:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.13"
+          cache: pip
+      - name: Install project
+        run: python -m pip install -e ".[dev]"
+      - name: Functional regressions
+        run: >-
+          python -m pytest -q
+          tests/test_stage6_registered_experiments.py
+          tests/test_stage6_bundle.py
+          tests/test_neural_episodic_memory.py
+          tests/test_semantic_memory.py
+          tests/test_episodic_replay.py
+          tests/test_prediction_error_plasticity.py
+          tests/test_multistep_world_model.py
+          tests/test_world_model_evaluation.py
+          tests/test_runtime_bundle.py
+      - name: Formatting and lint
+        run: |
+          python -m black --check src/research/stage6_experiments.py src/storage/stage6_bundle.py tests/test_stage6_registered_experiments.py tests/test_stage6_bundle.py scripts/run_stage6_operational.py
+          python -m ruff check src/research/stage6_experiments.py src/storage/stage6_bundle.py tests/test_stage6_registered_experiments.py tests/test_stage6_bundle.py scripts/run_stage6_operational.py
+      - name: Strict typing
+        run: |
+          python -m mypy src/research/stage6_experiments.py src/storage/stage6_bundle.py
+          python -m pyright src/research/stage6_experiments.py src/storage/stage6_bundle.py

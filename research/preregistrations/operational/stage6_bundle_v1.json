@@ -1,0 +1,74 @@
+{
+  "schema_version": "1.0",
+  "bundle_id": "PREREG-STAGE6-V1",
+  "program": "stage6-memory-world-model-v1",
+  "authority": "DATA_ONLY_HUMAN_REVIEW_REQUIRED",
+  "freeze": {
+    "status": "FROZEN",
+    "immutable_after_first_run": true,
+    "human_review_required": true,
+    "frozen_at": "2026-09-15"
+  },
+  "seed_strategy": {
+    "minimum_independent_seeds": 3,
+    "default_seeds": [101, 102, 103],
+    "confirmatory_target": 20,
+    "rule": "independent initialization seeds are the statistical units"
+  },
+  "stopping_rule": "execute every declared condition for every declared seed; retain failures and null results",
+  "inclusion_criteria": [
+    "all preregistered conditions execute without target leakage",
+    "all numeric outputs are finite where defined",
+    "source revision and protocol hashes are retained"
+  ],
+  "exclusion_criteria": [
+    "runtime corruption or malformed state",
+    "target leakage into the evaluation path",
+    "condition budget mismatch where budget matching is a protocol requirement"
+  ],
+  "analysis_policy": {
+    "evidence_promotion": "never automatic",
+    "primary_unit": "seed",
+    "report_negative_results": true,
+    "uncertainty_required_for_confirmatory_claims": true
+  },
+  "protocols": {
+    "s6_epi_001_v1": {
+      "conditions": ["intact", "read_off", "write_off", "episode_shuffle"],
+      "primary_outcomes": ["accuracy", "retrievals", "distractor_spikes"],
+      "success_direction": "intact recall should exceed lesion/shuffle controls without payload access"
+    },
+    "s6_sem_001_v1": {
+      "conditions": ["intact", "label_shuffle", "no_semantic"],
+      "primary_outcomes": ["accuracy", "matched_holdout", "mature_concepts"],
+      "success_direction": "held-out intact generalization should exceed shuffled/no-semantic controls"
+    },
+    "s6_rpl_001_v1": {
+      "conditions": ["no_replay", "ordered", "shuffled", "equal_budget_awake"],
+      "primary_outcomes": ["mean_reactivation_fidelity", "mature_concepts", "budget_matched"],
+      "success_direction": "ordered replay requires benefit beyond no-replay and equal-budget awake controls for a strong consolidation claim"
+    },
+    "s6_pe_001_v1": {
+      "conditions": [
+        "pe_correct__reward_off",
+        "pe_correct__reward_on",
+        "pe_disabled__reward_off",
+        "pe_disabled__reward_on",
+        "pe_shuffled__reward_off",
+        "pe_shuffled__reward_on"
+      ],
+      "primary_outcomes": ["weight_delta", "prediction_error_updates", "reward_calls"],
+      "success_direction": "prediction-error effects must remain separable from reward calls"
+    },
+    "s6_wm_001_v1": {
+      "conditions": ["frozen_correct", "frozen_shuffled", "persistence", "no_model"],
+      "primary_outcomes": ["exact_final_state_rate", "mean_absolute_final_state_error", "completed_rollouts"],
+      "success_direction": "frozen correct model should outperform shuffled and persistence references on held-out rollouts"
+    },
+    "s6_wm_002_v1": {
+      "conditions": ["correct", "disabled", "shuffled", "persistence"],
+      "primary_outcomes": ["utility_ratio", "achieved_utility", "recommendations"],
+      "success_direction": "correct frozen model recommendations should improve offline utility without actuation authority"
+    }
+  }
+}
