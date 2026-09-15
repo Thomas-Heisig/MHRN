@@ -43,14 +43,10 @@ def test_offline_evaluator_selects_higher_scored_complete_rollout() -> None:
     evaluator = OfflineDecisionEvaluator(model, _utility_score, max_steps=2)
     candidates = (
         ActionSequenceCandidate("left-path", (_action("left"), _action("advance"))),
-        ActionSequenceCandidate(
-            "right-path", (_action("right"), _action("advance"))
-        ),
+        ActionSequenceCandidate("right-path", (_action("right"), _action("advance"))),
     )
 
-    recommendation = evaluator.evaluate(
-        {"node": "start", "utility": 0}, candidates
-    )
+    recommendation = evaluator.evaluate({"node": "start", "utility": 0}, candidates)
 
     assert recommendation.selected_label == "left-path"
     assert recommendation.scientific_status == (
@@ -116,9 +112,7 @@ def test_candidate_horizons_must_be_matched() -> None:
             {"node": "start", "utility": 0},
             (
                 ActionSequenceCandidate("short", (_action("left"),)),
-                ActionSequenceCandidate(
-                    "long", (_action("left"), _action("advance"))
-                ),
+                ActionSequenceCandidate("long", (_action("left"), _action("advance"))),
             ),
         )
 
@@ -138,9 +132,7 @@ def test_duplicate_candidate_labels_are_rejected() -> None:
 
 def test_invalid_scores_are_rejected() -> None:
     model = _trained_model()
-    candidate = ActionSequenceCandidate(
-        "known", (_action("left"), _action("advance"))
-    )
+    candidate = ActionSequenceCandidate("known", (_action("left"), _action("advance")))
 
     for value in (math.nan, math.inf, True):
         evaluator = OfflineDecisionEvaluator(model, lambda _: value)  # type: ignore[arg-type]
