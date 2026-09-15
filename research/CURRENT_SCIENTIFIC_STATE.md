@@ -2,28 +2,15 @@
 
 **Stand:** 15. September 2026
 
-Dieses Dokument ist der kurze Einstieg in den aktuellen wissenschaftlichen Zustand. Historische DATA, EVID-Entscheidungen und frozen Publikationen bleiben in ihren datierten Verzeichnissen unverändert.
+Dieses Dokument ist der kurze Einstieg in den aktuellen wissenschaftlichen Zustand des Repositories. Historische DATA und Publikationsstände bleiben in ihren datierten Verzeichnissen unverändert.
 
 ## Aktuelle Publikation
 
-- **Recursive Epistemics / Rekursive Epistemik, Fassung 1.7 — current WIP**
-- Viewer-Einstieg: `research/publications/2026-09-15_recursive-epistemics_v1.7/MANUSCRIPT.md`
-- unmittelbarer Vorgänger: Fassung 1.6
-- frozen empirical baseline: Fassung 1.5 / `EXP-EMP-20260913-A3`
+- **Recursive Epistemics / Rekursive Epistemik, Fassung 1.6**
+- Einstieg: `research/publications/2026-09-15_recursive-epistemics_v1.6/README.md`
+- empirische Basis: Fassung 1.5 / `EXP-EMP-20260913-A3`
 - menschliches wissenschaftliches Review: ausstehend
-- unabhängige Replikation: unvollständig
 - automatische EVID-Promotion: deaktiviert
-
-Stabile Links:
-
-- `research/publications/CURRENT.md`
-- `research/publications/FROZEN_V1.5.md`
-
-## Dokumentgovernance
-
-`docs/` und `research/` werden ab 1.7 als wissenschaftliche Informationsarchitektur behandelt. Jede reale Datei wird durch `scripts/audit_document_governance.py` nach Typ, Status, Autorität, Mutabilität, Zitierregel und Evidenzrolle klassifiziert. Hochautoritative Pfade besitzen explizite Overrides in `research/document_governance_overrides.json`.
-
-Historische Dateien werden nicht bloß zur optischen Bereinigung verschoben, wenn dadurch Digests oder Reproduzierbarkeit beschädigt würden.
 
 ## Zwei Entwicklungsachsen
 
@@ -50,42 +37,31 @@ Der Score ist eine Projektsteuerungsheuristik und keine Kognitions-, Intelligenz
 
 ## Aktueller Schwerpunkt
 
-Stage 6 — Gedächtnis und Weltmodell.
+Stage 6 – Gedächtnis und Weltmodell.
 
-Seit dem aktuellen `main` liegt mit `EXP-S6-SEM-CL-001` ein **positiver, präregistrierter Mechanismusbefund** zur semantischen Prototypkonsolidierung mit begrenztem Replay auf Split-MNIST vor. Gegenüber der gematchten Bedingung ohne semantischen Speicher stieg die finale mittlere Genauigkeit von 0,1883 auf 0,4093 (Δ +0,2210), während das mittlere Forgetting von 0,9764 auf 0,6975 sank (Reduktion 0,2789). Beide präregistrierten Primärkriterien bestanden; automatische EVID-Promotion bleibt deaktiviert und menschliches Review ist weiterhin erforderlich.
+### Semantization / Continual Learning
 
-Der Befund ist bewusst eng begrenzt: Er isoliert einen Semantization-/Consolidation-Mechanismus mit spike-kodierter Repräsentation und einfachem Online-Readout. Er belegt weder eine Überlegenheit des vollständigen rekurrenten MHRN-SNN noch biologische Äquivalenz, Generalisierung über Split-MNIST, Neuheit des allgemeinen Semantization-Konzepts oder ein validiertes generatives Weltmodell.
+- `EXP-S6-SEM-CL-001`: positiver präregistrierter Mechanismusbefund gegenüber einer naiven Online-Baseline ohne Replay. Unter seinem eigenen eingefrorenen Protokoll verbesserten semantische Konsolidierung plus begrenztes Replay finale Accuracy und Vergessen deutlich.
+- `EXP-S6-SEM-CL-002`: präregistrierter, vollständig gepaarter Negativbefund für die spezifischere Hypothese eines Vorteils semantischer Prototypen gegenüber gleich objekt- und updatebudgetiertem Raw-Replay. Alle drei konjunktiven Erfolgskriterien verfehlten die vorab festgelegten Mindestwirkungen. H1 gilt unter diesem Protokoll als falsifiziert.
+- Der kleine B3-vs-B4-Accuracy-Unterschied in CL-002 ist statistisch positiv, aber mit rund 0,18 Prozentpunkten weit unter der präregistrierten Mindestwirkung von 3 Prozentpunkten und daher kein positiver konfirmatorischer Semantikbefund.
+- CL-002 beweist nicht rückwirkend, dass CL-001 „nur Replay“ war, weil die Replay-/Updateregime beider Experimente verschieden sind. Belastbar ist derzeit nur: Ein spezifischer Vorteil semantischer Verdichtung gegenüber Raw-Replay ist nicht nachgewiesen.
 
-Offen bleiben insbesondere:
+Die DATA/EVID-Trennung bleibt erhalten. CL-002 liegt als DATA unter `research/experiments/EXP-S6-SEM-CL-002/results/`; die menschliche Projektinterpretation liegt unter `research/experiments/EXP-S6-SEM-CL-002/EVID.md` und `EVID.json`.
 
-- unabhängige Replikation von `EXP-S6-SEM-CL-001`,
-- budget-gematchter Vergleich gegen Raw-Exemplar-Replay und etablierte Continual-Learning-Baselines,
-- Replay- und Prototyp-Ablationen sowie schwierigere Benchmarks,
-- end-to-end Prüfung mit dem rekurrenten MHRN-SNN,
+Weitere offene Stage-6-Punkte sind insbesondere:
+
+- Replikation und Dosis-/Budget-Ablation der Semantization, ohne CL-002 post hoc zu verändern,
 - neuronale und abladierbare Prediction-Error-Dynamik,
 - mehrschrittiges aktionskonditioniertes Weltmodell,
 - gekoppelte Persistenz/Restore-Identität,
-- confirmatory SNN-involved DATA,
-- menschliche EVID-Entscheidung und unabhängige Replikation.
-
-Die **pre-execution Präregistrierung** `EXP-S6-SEM-CL-002` einschließlich Amendment A1 ist im aktuellen Integrationsstand eingefroren. Sie definiert den nächsten kontrollierten Vergleich, ist aber **noch kein Ergebnis und keine EVID**. Ohne separat dokumentierte Ausführungsautorisierung darf sie weder ausgeführt noch als bestätigender Befund behandelt werden.
-
-## Potenzielle Beiträge / Neuheitsstatus
-
-Fassung 1.7 markiert drei Kandidaten für eine gezielte Prior-Art-Prüfung:
-
-1. Logical Identity / Physical Slot / Synaptic Reduction / Execution Scheduling;
-2. Proposal → Approval → Mutation → Journal → Undo;
-3. Content Gateway / Compute Backend.
-
-Dies sind dokumentierbare MHRN-Mechanismen beziehungsweise Architekturentscheidungen. Ihre externe wissenschaftliche Neuheit ist **nicht festgestellt**.
+- Vergleich gegen einen echten Standard-SNN-Continual-Learning-Baseline-Stack,
+- unabhängige externe Replikation.
 
 ## Integrität
 
 - `research/INTEGRITY_AND_ATTRIBUTION.md`
 - `research/RELATED_WORK.md`
 - `docs/05-quality/RESEARCH_INTEGRITY_GATE.md`
-- `docs/00-governance/DOCUMENT_GOVERNANCE.md`
 - `docs/08-roadmap/SCIENTIFIC_MATURITY_ROADMAP.md`
 
-Diese Instrumente reduzieren Fehlattribution und unmarkiertes Text-Recycling. Sie zertifizieren keine Plagiatsfreiheit oder Neuheit; vor formaler externer Einreichung bleiben menschliche Quellenprüfung, Prior-Art-Prüfung und geeignete externe Similarity-Prüfung erforderlich.
+Diese Instrumente reduzieren Fehlattribution und unmarkiertes Text-Recycling. Sie zertifizieren keine Plagiatsfreiheit; vor formaler externer Einreichung bleiben menschliche Quellenprüfung und geeignete externe Similarity-Prüfung erforderlich.
