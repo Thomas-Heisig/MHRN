@@ -69,6 +69,11 @@
       "conditions": ["correct", "disabled", "shuffled", "persistence"],
       "primary_outcomes": ["utility_ratio", "achieved_utility", "recommendations"],
       "success_direction": "correct frozen model recommendations should improve offline utility without actuation authority"
+    },
+    "s6_nwm_001_v1": {
+      "conditions": ["spiking_trained", "spiking_untrained", "spiking_target_shuffled", "statistical_reference"],
+      "primary_outcomes": ["exact_accuracy", "prediction_coverage", "mean_latency_steps", "mean_correct_weight_margin"],
+      "success_direction": "the trained spiking associator should exceed untrained and target-shuffled neural controls while remaining explicitly exact-context and separately reported from the statistical reference"
     }
   }
 }
