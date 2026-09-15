@@ -11,8 +11,8 @@ from typing import Any
 
 from src.research.continual_semantization import load_mnist
 from src.research.continual_semantization_controls import (
-    CL002Config,
     EXPERIMENT_ID,
+    CL002Config,
     run_experiment,
     write_result_bundle,
 )

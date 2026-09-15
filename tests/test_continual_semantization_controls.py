@@ -6,11 +6,11 @@ import pytest
 
 from src.memory import NeuralEpisode, SemanticMemory
 from src.research.continual_semantization_controls import (
+    CONDITIONS,
+    SEEDS,
     CL002Config,
     CL002SeedResult,
-    CONDITIONS,
     ReplayObject,
-    SEEDS,
     condition_order,
     random_objects_matching_semantic,
     raw_objects_for_task,

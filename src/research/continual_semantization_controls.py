@@ -20,10 +20,10 @@ import numpy as np
 
 from src.memory import NeuralEpisode, SemanticMemory
 from src.research.continual_semantization import (
+    TASKS,
     MnistBundle,
     OnlineSoftmaxReadout,
     SplitMnistConfig,
-    TASKS,
     image_to_spike_ids,
 )
 
