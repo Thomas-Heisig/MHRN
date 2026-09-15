@@ -120,12 +120,17 @@ def _download(url: str, target: Path) -> None:
         return
     parsed = urllib.parse.urlparse(url)
     if parsed.scheme != "https" or parsed.netloc != "storage.googleapis.com":
-        raise ValueError("MNIST downloads require the canonical Google Storage HTTPS host")
+        raise ValueError(
+            "MNIST downloads require the canonical Google Storage HTTPS host"
+        )
     temporary = target.with_suffix(target.suffix + ".part")
     request = urllib.request.Request(url, headers={"User-Agent": "MHRN-research/1"})
-    with urllib.request.urlopen(  # nosec B310 - scheme and host are allowlisted above.
-        request, timeout=120
-    ) as response, temporary.open("wb") as output:
+    with (
+        urllib.request.urlopen(  # nosec B310 - scheme and host are allowlisted above.
+            request, timeout=120
+        ) as response,
+        temporary.open("wb") as output,
+    ):
         while True:
             chunk = response.read(1024 * 1024)
             if not chunk:
@@ -253,7 +258,9 @@ def _sample_indices(
 ) -> np.ndarray:
     available = np.flatnonzero(labels == label)
     if count > len(available):
-        raise ValueError(f"requested {count} examples for label {label}, only {len(available)}")
+        raise ValueError(
+            f"requested {count} examples for label {label}, only {len(available)}"
+        )
     selected = rng.choice(available, size=count, replace=False)
     return np.asarray(selected, dtype=np.int64)
 
@@ -428,11 +435,11 @@ def _run_condition(
     final_values = [float(value) for value in final_row if value is not None]
     forgetting_values: list[float] = []
     for task_index in range(len(TASKS) - 1):
-        history = [
-            float(row[task_index])
-            for row in accuracy_rows[task_index:]
-            if row[task_index] is not None
-        ]
+        history: list[float] = []
+        for row in accuracy_rows[task_index:]:
+            value = row[task_index]
+            if value is not None:
+                history.append(float(value))
         forgetting_values.append(max(history) - history[-1])
     mature = semantic.mature_concepts if condition == "semantic_replay" else ()
     return SeedResult(
@@ -473,9 +480,7 @@ def _exact_sign_flip_p(values: Sequence[float]) -> float:
         rng = np.random.default_rng(20260915)
         signs = rng.choice((-1.0, 1.0), size=(100000, n))
         permuted = np.abs((signs * array).mean(axis=1))
-        return float(
-            (np.count_nonzero(permuted >= observed) + 1) / (len(permuted) + 1)
-        )
+        return float((np.count_nonzero(permuted >= observed) + 1) / (len(permuted) + 1))
     exceed = 0
     total = 1 << n
     for mask in range(total):
@@ -504,8 +509,7 @@ def summarize_results(
         for seed in seeds
     ]
     forgetting_reduction = [
-        baseline_by_seed[seed].mean_forgetting
-        - semantic_by_seed[seed].mean_forgetting
+        baseline_by_seed[seed].mean_forgetting - semantic_by_seed[seed].mean_forgetting
         for seed in seeds
     ]
     accuracy_ci = _bootstrap_ci(
@@ -530,9 +534,7 @@ def summarize_results(
     classification = (
         "preregistered_positive_result"
         if primary_success
-        else "negative_result"
-        if negative
-        else "null_or_inconclusive_result"
+        else "negative_result" if negative else "null_or_inconclusive_result"
     )
     return {
         "paired_seeds": seeds,

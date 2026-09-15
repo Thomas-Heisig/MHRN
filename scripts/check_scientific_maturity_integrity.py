@@ -117,9 +117,7 @@ def main() -> int:
     catalog = load_json("research/publications/catalog.json")
     publications = catalog.get("publications", [])
     current = [
-        item
-        for item in publications
-        if isinstance(item, dict) and item.get("current")
+        item for item in publications if isinstance(item, dict) and item.get("current")
     ]
     require(
         len(current) == 1,
@@ -144,8 +142,7 @@ def main() -> int:
             "current publication must not auto-promote evidence",
         )
         require(
-            item.get("predecessor")
-            == "PUB-RECURSIVE-EPISTEMICS-20260915-V1.6",
+            item.get("predecessor") == "PUB-RECURSIVE-EPISTEMICS-20260915-V1.6",
             "edition 1.7 predecessor mismatch",
         )
         require(
@@ -240,8 +237,7 @@ def main() -> int:
     )
     require(
         isinstance(scope, dict)
-        and scope.get("candidate_contribution_novelty")
-        == "requires_prior_art_review",
+        and scope.get("candidate_contribution_novelty") == "requires_prior_art_review",
         "novelty uncertainty boundary missing",
     )
     require(
@@ -277,12 +273,10 @@ def main() -> int:
     integrity_path = ROOT / "research/INTEGRITY_AND_ATTRIBUTION.md"
     integrity = integrity_path.read_text(encoding="utf-8").lower()
     related = (ROOT / "research/RELATED_WORK.md").read_text(encoding="utf-8")
-    manuscript = (ROOT / V17 / "MANUSCRIPT.md").read_text(
-        encoding="utf-8"
-    ).lower()
-    author_position = (ROOT / V17 / "AUTHOR_POSITION.md").read_text(
-        encoding="utf-8"
-    ).lower()
+    manuscript = (ROOT / V17 / "MANUSCRIPT.md").read_text(encoding="utf-8").lower()
+    author_position = (
+        (ROOT / V17 / "AUTHOR_POSITION.md").read_text(encoding="utf-8").lower()
+    )
     plain_integrity = integrity.replace("**", "").replace("__", "")
     require(
         "does not certify" in plain_integrity,

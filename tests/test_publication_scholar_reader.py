@@ -61,8 +61,9 @@ def test_publication_restores_late_windows_and_microsoft_voices() -> None:
     assert "width: 100%" in refinements
 
 
-def test_publication_scholar_reader_has_persistent_navigation_and_reading_flow(
-) -> None:
+def test_publication_scholar_reader_has_persistent_navigation_and_reading_flow() -> (
+    None
+):
     scholar = _read(MODULES / "publication-scholar-tools.js")
     layout = _read(STYLES / "publication-reader.css")
 
@@ -135,8 +136,9 @@ def test_selected_dissertation_text_can_be_sent_to_existing_research_ai() -> Non
     assert "requestSubmit" in bootstrap
 
 
-def test_reader_normalizes_explicit_markdown_anchors_without_enabling_raw_html(
-) -> None:
+def test_reader_normalizes_explicit_markdown_anchors_without_enabling_raw_html() -> (
+    None
+):
     polish = _read(MODULES / "publication-reader-polish.js")
     frontend = _read(STATIC / "frontend" / "index.js")
     styles = _read(STYLES / "publication-reader-polish.css")
@@ -159,8 +161,7 @@ def test_ask_ai_selection_assistant_is_relocated_outside_contained_reader() -> N
     assert "panel.append(assistant)" in polish
     assert 'assistant.dataset.floatingSelectionAssistant = "true"' in polish
     assert (
-        '> .pub-selection-assistant[data-floating-selection-assistant="true"]'
-        in styles
+        '> .pub-selection-assistant[data-floating-selection-assistant="true"]' in styles
     )
     assert "position: fixed !important" in styles
     assert "top: calc(var(--pub-app-offset" in styles
@@ -193,14 +194,12 @@ def test_frontend_initializes_scholar_tools_after_publication_reader() -> None:
     frontend = _read(STATIC / "frontend" / "index.js")
 
     assert (
-        'import { initPublicationScholarTools } from '
-        '"./modules/publication-scholar-bootstrap.js";'
-        in frontend
+        "import { initPublicationScholarTools } from "
+        '"./modules/publication-scholar-bootstrap.js";' in frontend
     )
     assert (
-        'import { initPublicationReaderPolish } from '
-        '"./modules/publication-reader-polish.js";'
-        in frontend
+        "import { initPublicationReaderPolish } from "
+        '"./modules/publication-reader-polish.js";' in frontend
     )
     assert (
         frontend.index("initPublicationPanel();")

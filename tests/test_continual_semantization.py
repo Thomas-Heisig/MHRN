@@ -69,7 +69,9 @@ def test_paired_conditions_use_equal_readout_update_budget() -> None:
         by_seed.setdefault(int(run["seed"]), {})[str(run["condition"])] = run
     assert set(by_seed) == {7, 11}
     for pair in by_seed.values():
-        assert pair["baseline"]["update_count"] == pair["semantic_replay"]["update_count"]
+        assert (
+            pair["baseline"]["update_count"] == pair["semantic_replay"]["update_count"]
+        )
         assert int(pair["semantic_replay"]["replay_update_count"]) > 0
     assert result["summary"]["automatic_evidence_promotion"] is False
     assert result["summary"]["human_review_required"] is True

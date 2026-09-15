@@ -59,7 +59,9 @@ def _apply_prefix_override(
     overrides: dict[str, dict[str, Any]],
 ) -> None:
     matches = [
-        prefix for prefix in overrides if path == prefix or path.startswith(prefix + "/")
+        prefix
+        for prefix in overrides
+        if path == prefix or path.startswith(prefix + "/")
     ]
     if not matches:
         return
@@ -214,8 +216,10 @@ def _research_rule(path: str, item: dict[str, Any]) -> None:
         )
         item["classification_rule"] = "research-zone:top-level-context"
 
-    if "/archive" in lower or "/archives" in lower or lower.endswith(
-        (".zip", ".tar", ".gz")
+    if (
+        "/archive" in lower
+        or "/archives" in lower
+        or lower.endswith((".zip", ".tar", ".gz"))
     ):
         item.update(
             status="archive",
@@ -224,8 +228,7 @@ def _research_rule(path: str, item: dict[str, Any]) -> None:
         )
         item["classification_rule"] += "+archive"
     if any(
-        token in lower
-        for token in ("historical", "legacy", "deprecated", "superseded")
+        token in lower for token in ("historical", "legacy", "deprecated", "superseded")
     ):
         item.update(
             status="historical",
@@ -441,7 +444,9 @@ def _validate(items: list[dict[str, Any]], errors: list[str]) -> None:
             errors.append(f"duplicate catalogue path: {path}")
         paths.add(path)
         if item.get("evidence_role") == "accepted_evidence" and "EVID" not in path:
-            errors.append(f"{path}: accepted evidence may not be inferred from location")
+            errors.append(
+                f"{path}: accepted evidence may not be inferred from location"
+            )
 
 
 def _write(domain: str, items: list[dict[str, Any]]) -> None:
@@ -495,7 +500,9 @@ def main() -> int:
         if args.strict_review:
             for item in items:
                 if item.get("review_required"):
-                    errors.append(f"{item['path']}: requires explicit governance review")
+                    errors.append(
+                        f"{item['path']}: requires explicit governance review"
+                    )
         if args.write:
             _write(domain, items)
 

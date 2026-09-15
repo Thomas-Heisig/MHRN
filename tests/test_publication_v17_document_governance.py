@@ -59,12 +59,8 @@ def test_v17_contains_complete_current_working_set() -> None:
 
 
 def test_frozen_v15_and_v16_predecessor_remain_reachable() -> None:
-    frozen = (
-        ROOT / "research/publications/FROZEN_V1.5.md"
-    ).read_text(encoding="utf-8")
-    current = (
-        ROOT / "research/publications/CURRENT.md"
-    ).read_text(encoding="utf-8")
+    frozen = (ROOT / "research/publications/FROZEN_V1.5.md").read_text(encoding="utf-8")
+    current = (ROOT / "research/publications/CURRENT.md").read_text(encoding="utf-8")
     assert "2026-09-13_recursive-epistemics_v1.5/MANUSCRIPT.md" in frozen
     assert "2026-09-15_recursive-epistemics_v1.7/MANUSCRIPT.md" in current
     assert "2026-09-15_recursive-epistemics_v1.6" in current
