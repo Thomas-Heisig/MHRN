@@ -39,14 +39,23 @@ Der Score ist eine Projektsteuerungsheuristik und keine Kognitions-, Intelligenz
 
 Stage 6 – Gedächtnis und Weltmodell.
 
-Die Infrastruktur und erste Mechanismen sind vorhanden; offen bleiben insbesondere:
+### Semantization / Continual Learning
 
-- experimentell belastbare Semantization durch Replay/Konsolidierung,
+- `EXP-S6-SEM-CL-001`: positiver präregistrierter Mechanismusbefund gegenüber einer naiven Online-Baseline ohne Replay. Unter seinem eigenen eingefrorenen Protokoll verbesserten semantische Konsolidierung plus begrenztes Replay finale Accuracy und Vergessen deutlich.
+- `EXP-S6-SEM-CL-002`: präregistrierter, vollständig gepaarter Negativbefund für die spezifischere Hypothese eines Vorteils semantischer Prototypen gegenüber gleich objekt- und updatebudgetiertem Raw-Replay. Alle drei konjunktiven Erfolgskriterien verfehlten die vorab festgelegten Mindestwirkungen. H1 gilt unter diesem Protokoll als falsifiziert.
+- Der kleine B3-vs-B4-Accuracy-Unterschied in CL-002 ist statistisch positiv, aber mit rund 0,18 Prozentpunkten weit unter der präregistrierten Mindestwirkung von 3 Prozentpunkten und daher kein positiver konfirmatorischer Semantikbefund.
+- CL-002 beweist nicht rückwirkend, dass CL-001 „nur Replay“ war, weil die Replay-/Updateregime beider Experimente verschieden sind. Belastbar ist derzeit nur: Ein spezifischer Vorteil semantischer Verdichtung gegenüber Raw-Replay ist nicht nachgewiesen.
+
+Die DATA/EVID-Trennung bleibt erhalten. CL-002 liegt als DATA unter `research/experiments/EXP-S6-SEM-CL-002/results/`; die menschliche Projektinterpretation liegt unter `research/experiments/EXP-S6-SEM-CL-002/EVID.md` und `EVID.json`.
+
+Weitere offene Stage-6-Punkte sind insbesondere:
+
+- Replikation und Dosis-/Budget-Ablation der Semantization, ohne CL-002 post hoc zu verändern,
 - neuronale und abladierbare Prediction-Error-Dynamik,
 - mehrschrittiges aktionskonditioniertes Weltmodell,
 - gekoppelte Persistenz/Restore-Identität,
-- confirmatory SNN-involved DATA,
-- menschliche EVID-Entscheidung und unabhängige Replikation.
+- Vergleich gegen einen echten Standard-SNN-Continual-Learning-Baseline-Stack,
+- unabhängige externe Replikation.
 
 ## Integrität
 
