@@ -1,0 +1,69 @@
+name: CL-003 Runner Freeze
+
+on:
+  push:
+    branches:
+      - research/exp-s6-sem-cl-003-runner-freeze-20260915
+    paths-ignore:
+      - research/preregistrations/frozen/EXP-S6-SEM-CL-003-FREEZE.json
+  pull_request:
+    branches:
+      - main
+    paths:
+      - src/research/continual_semantization_dose.py
+      - scripts/run_semantization_split_mnist_cl003.py
+      - scripts/generate_cl003_freeze_manifest.py
+      - tests/test_continual_semantization_dose.py
+      - research/preregistrations/EXP-S6-SEM-CL-003.md
+      - research/preregistrations/operational/EXP-S6-SEM-CL-003.json
+
+permissions:
+  contents: write
+
+jobs:
+  freeze:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref || github.ref_name }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Install package
+        run: python -m pip install -e '.[dev]'
+      - name: Normalize frozen Python sources
+        run: |
+          python -m black src/research/continual_semantization_dose.py scripts/run_semantization_split_mnist_cl003.py scripts/generate_cl003_freeze_manifest.py tests/test_continual_semantization_dose.py
+          python -m ruff check --fix src/research/continual_semantization_dose.py scripts/run_semantization_split_mnist_cl003.py scripts/generate_cl003_freeze_manifest.py tests/test_continual_semantization_dose.py
+      - name: Synthetic CL-003 tests only
+        run: >-
+          python -m pytest -q
+          tests/test_continual_semantization_dose.py
+          tests/test_continual_semantization_controls.py
+          tests/test_semantic_memory.py
+      - name: Confirm empirical execution is blocked
+        run: |
+          test ! -f research/preregistrations/authorizations/EXP-S6-SEM-CL-003.json
+          if python scripts/run_semantization_split_mnist_cl003.py --output /tmp/forbidden-cl003; then
+            echo "CL-003 unexpectedly executed without authorization" >&2
+            exit 1
+          fi
+      - name: Generate SHA-256 freeze manifest
+        run: python scripts/generate_cl003_freeze_manifest.py
+      - name: Verify formatting and lint
+        run: |
+          python -m black --check src/research/continual_semantization_dose.py scripts/run_semantization_split_mnist_cl003.py scripts/generate_cl003_freeze_manifest.py tests/test_continual_semantization_dose.py
+          python -m ruff check src/research/continual_semantization_dose.py scripts/run_semantization_split_mnist_cl003.py scripts/generate_cl003_freeze_manifest.py tests/test_continual_semantization_dose.py
+      - name: Commit normalized sources and freeze manifest on branch pushes
+        if: github.event_name == 'push'
+        run: |
+          if git diff --quiet -- src/research/continual_semantization_dose.py scripts/run_semantization_split_mnist_cl003.py scripts/generate_cl003_freeze_manifest.py tests/test_continual_semantization_dose.py research/preregistrations/frozen/EXP-S6-SEM-CL-003-FREEZE.json; then
+            echo "Frozen sources and manifest unchanged"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/research/continual_semantization_dose.py scripts/run_semantization_split_mnist_cl003.py scripts/generate_cl003_freeze_manifest.py tests/test_continual_semantization_dose.py research/preregistrations/frozen/EXP-S6-SEM-CL-003-FREEZE.json
+          git commit -m "research: normalize and freeze CL-003 sources"
+          git push
