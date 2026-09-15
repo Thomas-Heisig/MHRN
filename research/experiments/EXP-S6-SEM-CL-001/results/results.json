@@ -1,0 +1,1046 @@
+{
+  "baseline": "identical rate-coded spiking representation + online softmax readout; no semantic memory",
+  "benchmark": "Split-MNIST",
+  "config": {
+    "bootstrap_samples": 20000,
+    "effect_threshold_accuracy": 0.03,
+    "effect_threshold_forgetting": 0.05,
+    "learning_rate": 0.025,
+    "pooling": 4,
+    "replay_fraction": 0.2,
+    "seeds": [
+      101,
+      102,
+      103,
+      104,
+      105,
+      106,
+      107,
+      108,
+      109,
+      110
+    ],
+    "semantic_match_threshold": 0.25,
+    "semantic_max_concepts": 128,
+    "semantic_min_episode_support": 8,
+    "semantic_prototype_support": 0.3,
+    "test_per_class": 200,
+    "thresholds": [
+      0.2,
+      0.4,
+      0.6,
+      0.8
+    ],
+    "train_per_class": 1000
+  },
+  "dataset_sha256": {
+    "test_images": "8d422c7b0a1c1c79245a5bcf07fe86e33eeafee792b84584aec276f5a2dbc4e6",
+    "test_labels": "f7ae60f92e00ec6debd23a6088c31dbd2371eca3ffa0defaefb259924204aec6",
+    "train_images": "440fcabf73cc546fa21475e81ea370265605f56be210a4024d2ca8f203523609",
+    "train_labels": "3552534a0a558bbed6aed32b30c495cca23d567ec52cac8be1a0730e8010255c"
+  },
+  "experiment_id": "EXP-S6-SEM-CL-001",
+  "mechanism": "MHRN SemanticMemory prototype consolidation + bounded replay",
+  "runs": [
+    {
+      "condition": "baseline",
+      "final_average_accuracy": 0.188,
+      "mean_forgetting": 0.968125,
+      "replay_update_count": 0,
+      "seed": 101,
+      "semantic_concepts": 0,
+      "semantic_prototype_spikes": 0,
+      "task_accuracy_matrix": [
+        [
+          0.995,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.0025,
+          0.935,
+          null,
+          null,
+          null
+        ],
+        [
+          0.0,
+          0.0,
+          0.9675,
+          null,
+          null
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.98,
+          null
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.005,
+          0.935
+        ]
+      ],
+      "update_count": 10000
+    },
+    {
+      "condition": "baseline",
+      "final_average_accuracy": 0.187,
+      "mean_forgetting": 0.9724999999999999,
+      "replay_update_count": 0,
+      "seed": 102,
+      "semantic_concepts": 0,
+      "semantic_prototype_spikes": 0,
+      "task_accuracy_matrix": [
+        [
+          0.995,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.005,
+          0.9325,
+          null,
+          null,
+          null
+        ],
+        [
+          0.0,
+          0.0,
+          0.975,
+          null,
+          null
+        ],
+        [
+          0.0,
+          0.0,
+          0.0025,
+          0.9875,
+          null
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.935
+        ]
+      ],
+      "update_count": 10000
+    },
+    {
+      "condition": "baseline",
+      "final_average_accuracy": 0.19149999999999998,
+      "mean_forgetting": 0.9793750000000001,
+      "replay_update_count": 0,
+      "seed": 103,
+      "semantic_concepts": 0,
+      "semantic_prototype_spikes": 0,
+      "task_accuracy_matrix": [
+        [
+          0.9925,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.0,
+          0.9625,
+          null,
+          null,
+          null
+        ],
+        [
+          0.0,
+          0.0,
+          0.975,
+          null,
+          null
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.99,
+          null
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0025,
+          0.955
+        ]
+      ],
+      "update_count": 10000
+    },
+    {
+      "condition": "baseline",
+      "final_average_accuracy": 0.189,
+      "mean_forgetting": 0.9775,
+      "replay_update_count": 0,
+      "seed": 104,
+      "semantic_concepts": 0,
+      "semantic_prototype_spikes": 0,
+      "task_accuracy_matrix": [
+        [
+          0.9975,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.0025,
+          0.95,
+          null,
+          null,
+          null
+        ],
+        [
+          0.0,
+          0.0,
+          0.975,
+          null,
+          null
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.9875,
+          null
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.945
+        ]
+      ],
+      "update_count": 10000
+    },
+    {
+      "condition": "baseline",
+      "final_average_accuracy": 0.1885,
+      "mean_forgetting": 0.9768749999999999,
+      "replay_update_count": 0,
+      "seed": 105,
+      "semantic_concepts": 0,
+      "semantic_prototype_spikes": 0,
+      "task_accuracy_matrix": [
+        [
+          0.9975,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.0,
+          0.955,
+          null,
+          null,
+          null
+        ],
+        [
+          0.0,
+          0.0,
+          0.9675,
+          null,
+          null
+        ],
+        [
+          0.0,
+          0.0,
+          0.0025,
+          0.9875,
+          null
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.9425
+        ]
+      ],
+      "update_count": 10000
+    },
+    {
+      "condition": "baseline",
+      "final_average_accuracy": 0.188,
+      "mean_forgetting": 0.98125,
+      "replay_update_count": 0,
+      "seed": 106,
+      "semantic_concepts": 0,
+      "semantic_prototype_spikes": 0,
+      "task_accuracy_matrix": [
+        [
+          1.0,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.01,
+          0.965,
+          null,
+          null,
+          null
+        ],
+        [
+          0.0,
+          0.0,
+          0.9775,
+          null,
+          null
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.9825,
+          null
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.94
+        ]
+      ],
+      "update_count": 10000
+    },
+    {
+      "condition": "baseline",
+      "final_average_accuracy": 0.1875,
+      "mean_forgetting": 0.97125,
+      "replay_update_count": 0,
+      "seed": 107,
+      "semantic_concepts": 0,
+      "semantic_prototype_spikes": 0,
+      "task_accuracy_matrix": [
+        [
+          0.9925,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.0125,
+          0.9425,
+          null,
+          null,
+          null
+        ],
+        [
+          0.0,
+          0.0,
+          0.965,
+          null,
+          null
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.985,
+          null
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.9375
+        ]
+      ],
+      "update_count": 10000
+    },
+    {
+      "condition": "baseline",
+      "final_average_accuracy": 0.189,
+      "mean_forgetting": 0.984375,
+      "replay_update_count": 0,
+      "seed": 108,
+      "semantic_concepts": 0,
+      "semantic_prototype_spikes": 0,
+      "task_accuracy_matrix": [
+        [
+          0.995,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.0,
+          0.975,
+          null,
+          null,
+          null
+        ],
+        [
+          0.0,
+          0.0,
+          0.975,
+          null,
+          null
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.9925,
+          null
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.945
+        ]
+      ],
+      "update_count": 10000
+    },
+    {
+      "condition": "baseline",
+      "final_average_accuracy": 0.187,
+      "mean_forgetting": 0.98125,
+      "replay_update_count": 0,
+      "seed": 109,
+      "semantic_concepts": 0,
+      "semantic_prototype_spikes": 0,
+      "task_accuracy_matrix": [
+        [
+          1.0,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.0,
+          0.965,
+          null,
+          null,
+          null
+        ],
+        [
+          0.0,
+          0.0,
+          0.97,
+          null,
+          null
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.99,
+          null
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.935
+        ]
+      ],
+      "update_count": 10000
+    },
+    {
+      "condition": "baseline",
+      "final_average_accuracy": 0.187,
+      "mean_forgetting": 0.9712500000000001,
+      "replay_update_count": 0,
+      "seed": 110,
+      "semantic_concepts": 0,
+      "semantic_prototype_spikes": 0,
+      "task_accuracy_matrix": [
+        [
+          0.9975,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.0025,
+          0.935,
+          null,
+          null,
+          null
+        ],
+        [
+          0.0,
+          0.0,
+          0.9725,
+          null,
+          null
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.98,
+          null
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.935
+        ]
+      ],
+      "update_count": 10000
+    },
+    {
+      "condition": "semantic_replay",
+      "final_average_accuracy": 0.3795,
+      "mean_forgetting": 0.723125,
+      "replay_update_count": 1600,
+      "seed": 101,
+      "semantic_concepts": 15,
+      "semantic_prototype_spikes": 445,
+      "task_accuracy_matrix": [
+        [
+          0.995,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.6325,
+          0.9225,
+          null,
+          null,
+          null
+        ],
+        [
+          0.345,
+          0.29,
+          0.9725,
+          null,
+          null
+        ],
+        [
+          0.35,
+          0.2475,
+          0.4375,
+          0.975,
+          null
+        ],
+        [
+          0.1675,
+          0.1925,
+          0.15,
+          0.4625,
+          0.925
+        ]
+      ],
+      "update_count": 10000
+    },
+    {
+      "condition": "semantic_replay",
+      "final_average_accuracy": 0.434,
+      "mean_forgetting": 0.6637500000000001,
+      "replay_update_count": 1600,
+      "seed": 102,
+      "semantic_concepts": 15,
+      "semantic_prototype_spikes": 447,
+      "task_accuracy_matrix": [
+        [
+          0.995,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.6325,
+          0.925,
+          null,
+          null,
+          null
+        ],
+        [
+          0.435,
+          0.415,
+          0.975,
+          null,
+          null
+        ],
+        [
+          0.3775,
+          0.4275,
+          0.415,
+          0.9875,
+          null
+        ],
+        [
+          0.2725,
+          0.3125,
+          0.185,
+          0.4575,
+          0.9425
+        ]
+      ],
+      "update_count": 10000
+    },
+    {
+      "condition": "semantic_replay",
+      "final_average_accuracy": 0.40449999999999997,
+      "mean_forgetting": 0.7056250000000001,
+      "replay_update_count": 1600,
+      "seed": 103,
+      "semantic_concepts": 11,
+      "semantic_prototype_spikes": 324,
+      "task_accuracy_matrix": [
+        [
+          0.9925,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.6675,
+          0.9675,
+          null,
+          null,
+          null
+        ],
+        [
+          0.47,
+          0.235,
+          0.965,
+          null,
+          null
+        ],
+        [
+          0.57,
+          0.2875,
+          0.38,
+          0.9775,
+          null
+        ],
+        [
+          0.395,
+          0.195,
+          0.095,
+          0.395,
+          0.9425
+        ]
+      ],
+      "update_count": 10000
+    },
+    {
+      "condition": "semantic_replay",
+      "final_average_accuracy": 0.426,
+      "mean_forgetting": 0.680625,
+      "replay_update_count": 1600,
+      "seed": 104,
+      "semantic_concepts": 13,
+      "semantic_prototype_spikes": 400,
+      "task_accuracy_matrix": [
+        [
+          0.9975,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.6775,
+          0.9575,
+          null,
+          null,
+          null
+        ],
+        [
+          0.47,
+          0.325,
+          0.975,
+          null,
+          null
+        ],
+        [
+          0.455,
+          0.3725,
+          0.3525,
+          0.9875,
+          null
+        ],
+        [
+          0.325,
+          0.1525,
+          0.22,
+          0.4975,
+          0.935
+        ]
+      ],
+      "update_count": 10000
+    },
+    {
+      "condition": "semantic_replay",
+      "final_average_accuracy": 0.379,
+      "mean_forgetting": 0.735,
+      "replay_update_count": 1600,
+      "seed": 105,
+      "semantic_concepts": 14,
+      "semantic_prototype_spikes": 432,
+      "task_accuracy_matrix": [
+        [
+          0.9975,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.6525,
+          0.95,
+          null,
+          null,
+          null
+        ],
+        [
+          0.42,
+          0.345,
+          0.9725,
+          null,
+          null
+        ],
+        [
+          0.4225,
+          0.3875,
+          0.445,
+          0.98,
+          null
+        ],
+        [
+          0.135,
+          0.19,
+          0.245,
+          0.39,
+          0.935
+        ]
+      ],
+      "update_count": 10000
+    },
+    {
+      "condition": "semantic_replay",
+      "final_average_accuracy": 0.42400000000000004,
+      "mean_forgetting": 0.6756249999999999,
+      "replay_update_count": 1600,
+      "seed": 106,
+      "semantic_concepts": 14,
+      "semantic_prototype_spikes": 413,
+      "task_accuracy_matrix": [
+        [
+          1.0,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.6925,
+          0.95,
+          null,
+          null,
+          null
+        ],
+        [
+          0.3625,
+          0.3225,
+          0.98,
+          null,
+          null
+        ],
+        [
+          0.48,
+          0.4025,
+          0.405,
+          0.9775,
+          null
+        ],
+        [
+          0.35,
+          0.2775,
+          0.1475,
+          0.43,
+          0.915
+        ]
+      ],
+      "update_count": 10000
+    },
+    {
+      "condition": "semantic_replay",
+      "final_average_accuracy": 0.384,
+      "mean_forgetting": 0.7275,
+      "replay_update_count": 1600,
+      "seed": 107,
+      "semantic_concepts": 12,
+      "semantic_prototype_spikes": 358,
+      "task_accuracy_matrix": [
+        [
+          0.9925,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.62,
+          0.9525,
+          null,
+          null,
+          null
+        ],
+        [
+          0.455,
+          0.305,
+          0.97,
+          null,
+          null
+        ],
+        [
+          0.485,
+          0.2775,
+          0.41,
+          0.98,
+          null
+        ],
+        [
+          0.2925,
+          0.155,
+          0.16,
+          0.3775,
+          0.935
+        ]
+      ],
+      "update_count": 10000
+    },
+    {
+      "condition": "semantic_replay",
+      "final_average_accuracy": 0.43,
+      "mean_forgetting": 0.68,
+      "replay_update_count": 1600,
+      "seed": 108,
+      "semantic_concepts": 14,
+      "semantic_prototype_spikes": 407,
+      "task_accuracy_matrix": [
+        [
+          0.995,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.6425,
+          0.9675,
+          null,
+          null,
+          null
+        ],
+        [
+          0.3475,
+          0.3875,
+          0.975,
+          null,
+          null
+        ],
+        [
+          0.4775,
+          0.475,
+          0.3875,
+          0.9875,
+          null
+        ],
+        [
+          0.315,
+          0.285,
+          0.1825,
+          0.4225,
+          0.945
+        ]
+      ],
+      "update_count": 10000
+    },
+    {
+      "condition": "semantic_replay",
+      "final_average_accuracy": 0.429,
+      "mean_forgetting": 0.6812500000000001,
+      "replay_update_count": 1600,
+      "seed": 109,
+      "semantic_concepts": 16,
+      "semantic_prototype_spikes": 460,
+      "task_accuracy_matrix": [
+        [
+          1.0,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.6525,
+          0.9675,
+          null,
+          null,
+          null
+        ],
+        [
+          0.4425,
+          0.375,
+          0.9675,
+          null,
+          null
+        ],
+        [
+          0.5425,
+          0.4475,
+          0.445,
+          0.9875,
+          null
+        ],
+        [
+          0.3875,
+          0.21,
+          0.16,
+          0.44,
+          0.9475
+        ]
+      ],
+      "update_count": 10000
+    },
+    {
+      "condition": "semantic_replay",
+      "final_average_accuracy": 0.4025,
+      "mean_forgetting": 0.7025000000000001,
+      "replay_update_count": 1600,
+      "seed": 110,
+      "semantic_concepts": 13,
+      "semantic_prototype_spikes": 376,
+      "task_accuracy_matrix": [
+        [
+          0.9975,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.6875,
+          0.935,
+          null,
+          null,
+          null
+        ],
+        [
+          0.3625,
+          0.2875,
+          0.97,
+          null,
+          null
+        ],
+        [
+          0.4825,
+          0.4125,
+          0.4525,
+          0.98,
+          null
+        ],
+        [
+          0.2525,
+          0.1575,
+          0.2175,
+          0.445,
+          0.94
+        ]
+      ],
+      "update_count": 10000
+    }
+  ],
+  "scenario": "class-incremental-single-head",
+  "summary": {
+    "accuracy_delta_bootstrap_95_ci": [
+      0.2076,
+      0.2338
+    ],
+    "accuracy_delta_mean": 0.221,
+    "accuracy_delta_sign_flip_p": 0.001953125,
+    "automatic_evidence_promotion": false,
+    "baseline_final_accuracy_mean": 0.18825,
+    "baseline_forgetting_mean": 0.9763749999999998,
+    "effect_threshold_accuracy": 0.03,
+    "effect_threshold_forgetting": 0.05,
+    "forgetting_reduction_bootstrap_95_ci": [
+      0.2620609375,
+      0.2946875
+    ],
+    "forgetting_reduction_mean": 0.27887499999999993,
+    "forgetting_reduction_sign_flip_p": 0.001953125,
+    "human_review_required": true,
+    "paired_seeds": [
+      101,
+      102,
+      103,
+      104,
+      105,
+      106,
+      107,
+      108,
+      109,
+      110
+    ],
+    "preregistered_primary_success": true,
+    "result_classification": "preregistered_positive_result",
+    "scientific_evidence": false,
+    "semantic_final_accuracy_mean": 0.40925,
+    "semantic_forgetting_mean": 0.6975000000000001
+  },
+  "tasks": [
+    [
+      0,
+      1
+    ],
+    [
+      2,
+      3
+    ],
+    [
+      4,
+      5
+    ],
+    [
+      6,
+      7
+    ],
+    [
+      8,
+      9
+    ]
+  ]
+}
