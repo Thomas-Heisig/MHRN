@@ -18,6 +18,7 @@ import json
 import math
 import random
 import struct
+import urllib.parse
 import urllib.request
 from dataclasses import asdict, dataclass
 from pathlib import Path
@@ -117,11 +118,14 @@ def _download(url: str, target: Path) -> None:
     target.parent.mkdir(parents=True, exist_ok=True)
     if target.exists():
         return
+    parsed = urllib.parse.urlparse(url)
+    if parsed.scheme != "https" or parsed.netloc != "storage.googleapis.com":
+        raise ValueError("MNIST downloads require the canonical Google Storage HTTPS host")
     temporary = target.with_suffix(target.suffix + ".part")
     request = urllib.request.Request(url, headers={"User-Agent": "MHRN-research/1"})
-    with urllib.request.urlopen(request, timeout=120) as response, temporary.open(
-        "wb"
-    ) as output:
+    with urllib.request.urlopen(  # nosec B310 - scheme and host are allowlisted above.
+        request, timeout=120
+    ) as response, temporary.open("wb") as output:
         while True:
             chunk = response.read(1024 * 1024)
             if not chunk:
