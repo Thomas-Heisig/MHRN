@@ -31,9 +31,20 @@ from .semantic import (
 )
 from .store import EpisodeRecord, MemoryStore, MemoryStoreError, PredictionRecord
 from .world_model import TransitionWorldModel, WorldPrediction
+from .world_model_evaluation import (
+    ActionSequenceCandidate,
+    CandidateEvaluation,
+    DecisionRecommendation,
+    OfflineDecisionEvaluator,
+    TrajectoryScorer,
+    WorldModelEvaluationError,
+)
 
 __all__ = [
     "ActionConditionedWorldModel",
+    "ActionSequenceCandidate",
+    "CandidateEvaluation",
+    "DecisionRecommendation",
     "EpisodeRecord",
     "EpisodicReplayError",
     "EpisodicReplayScheduler",
@@ -46,6 +57,7 @@ __all__ = [
     "NeuralEpisodicMemory",
     "NeuralEpisodicMemoryError",
     "NeuralRecallMatch",
+    "OfflineDecisionEvaluator",
     "PredictionRecord",
     "ReplayConsolidationResult",
     "ReplayMode",
@@ -57,7 +69,9 @@ __all__ = [
     "SemanticMemory",
     "SemanticMemoryError",
     "StateAction",
+    "TrajectoryScorer",
     "TransitionWorldModel",
+    "WorldModelEvaluationError",
     "WorldPrediction",
     "consolidate_replay",
     "spike_ids_from_result",
