@@ -2,13 +2,27 @@
 
 from __future__ import annotations
 
+import hashlib
+import json
 from typing import Any, Mapping
 
 from src.memory import ActionConditionedWorldModel, StateAction
 from src.memory.spiking_world_model import SpikingContext, SpikingTransitionWorldModel
-from src.research.stage6_experiments import Stage6Run, _digest
+from src.research.stage6_experiments import Stage6Run
 
 Config = Mapping[str, Any]
+
+
+def _digest(value: object) -> str:
+    raw = json.dumps(
+        value,
+        sort_keys=True,
+        separators=(",", ":"),
+        ensure_ascii=True,
+        allow_nan=False,
+        default=str,
+    ).encode("utf-8")
+    return hashlib.sha256(raw).hexdigest()
 
 
 def _next(position: int, action: str) -> int:
