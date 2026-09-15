@@ -1,0 +1,79 @@
+/* Publication reader final polish: explicit Markdown anchors and selection AI. */
+
+#tab-publication #publication-panel .pub-explicit-anchor {
+  display: block;
+  width: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  pointer-events: none;
+  scroll-margin-top: calc(var(--pub-app-offset) + var(--pub-toolbar-height) + 14px);
+}
+
+#tab-publication #publication-panel > .pub-selection-assistant[data-floating-selection-assistant="true"] {
+  position: fixed !important;
+  top: calc(var(--pub-app-offset, 66px) + var(--pub-toolbar-height, 50px) + 14px) !important;
+  right: 18px !important;
+  bottom: auto !important;
+  left: auto !important;
+  z-index: 1000 !important;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  gap: 8px;
+  align-items: center;
+  width: min(680px, calc(100vw - 36px));
+  max-height: min(34vh, 260px);
+  margin: 0 !important;
+  padding: 10px 11px;
+  overflow: auto;
+  border: 1px solid var(--pub-border, var(--rule, #d9dee7));
+  border-radius: 10px;
+  background: var(--pub-surface, var(--paper-2, #fff));
+  box-shadow: 0 12px 32px rgb(0 0 0 / .18);
+}
+
+#tab-publication #publication-panel > .pub-selection-assistant[data-floating-selection-assistant="true"][hidden] {
+  display: none !important;
+}
+
+#tab-publication #publication-panel > .pub-selection-assistant [data-pub-selection-ai] {
+  position: sticky;
+  top: 0;
+  min-height: 34px;
+  padding-inline: 12px;
+  border: 1px solid var(--pub-accent, var(--accent, #275df5));
+  border-radius: 8px;
+  background: var(--pub-accent, var(--accent, #275df5));
+  color: #fff;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 650;
+  white-space: nowrap;
+}
+
+#tab-publication #publication-panel > .pub-selection-assistant [data-pub-selection-ai]:hover,
+#tab-publication #publication-panel > .pub-selection-assistant [data-pub-selection-ai]:focus-visible {
+  filter: brightness(.96);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--pub-accent, #275df5) 18%, transparent);
+}
+
+@media (max-width: 760px) {
+  #tab-publication #publication-panel > .pub-selection-assistant[data-floating-selection-assistant="true"] {
+    top: auto !important;
+    right: 10px !important;
+    bottom: 10px !important;
+    width: calc(100vw - 20px);
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  #tab-publication #publication-panel > .pub-selection-assistant [data-pub-selection-clear] {
+    grid-column: 2;
+  }
+}
+
+@media print {
+  #tab-publication #publication-panel > .pub-selection-assistant {
+    display: none !important;
+  }
+}
