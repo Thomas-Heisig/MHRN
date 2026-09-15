@@ -15,8 +15,8 @@ from dataclasses import dataclass
 from typing import Any, cast
 
 from src.embodiment.models import (
-    JSONValue,
     EnvironmentObservation,
+    JSONValue,
     SensorFrame,
 )
 
@@ -71,7 +71,7 @@ def spike_ids_from_result(result: object) -> tuple[int, ...]:
             raise NeuralEpisodicMemoryError(
                 "network spike IDs must be non-negative integers"
             )
-        values.add(cast(int, value))
+        values.add(value)
     return tuple(sorted(values))
 
 
@@ -263,8 +263,8 @@ class NeuralEpisodicMemory:
             run_id=str(state["run_id"]),
             capacity=int(state["capacity"]),
             retention_ticks=int(state["retention_ticks"]),
-            read_enabled=cast(bool, read_enabled),
-            write_enabled=cast(bool, write_enabled),
+            read_enabled=read_enabled,
+            write_enabled=write_enabled,
         )
         memory._episode_id = str(state["episode_id"])
         raw_episodes = state.get("episodes")
