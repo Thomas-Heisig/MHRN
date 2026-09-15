@@ -32,11 +32,13 @@ jobs:
           tests/test_experience_engine.py
           tests/test_memory_layer.py
           tests/test_stage5_integration.py
-      - name: Formatting and lint
-        run: |
-          python -m black --check src/memory/neural_episodic.py src/memory/__init__.py src/experience/engine.py tests/test_neural_episodic_memory.py
-          python -m ruff check src/memory/neural_episodic.py src/memory/__init__.py src/experience/engine.py tests/test_neural_episodic_memory.py
+      - name: Black diagnostic
+        run: python -m black --diff --check src/memory/neural_episodic.py src/memory/__init__.py src/experience/engine.py tests/test_neural_episodic_memory.py
+      - name: Ruff diagnostic
+        if: always()
+        run: python -m ruff check src/memory/neural_episodic.py src/memory/__init__.py src/experience/engine.py tests/test_neural_episodic_memory.py
       - name: Strict typing
+        if: always()
         run: |
           python -m mypy src/memory/neural_episodic.py src/experience/engine.py
           python -m pyright src/memory/neural_episodic.py src/experience/engine.py
