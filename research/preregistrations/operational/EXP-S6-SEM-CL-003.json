@@ -1,0 +1,125 @@
+{
+  "schema_version": 1,
+  "experiment_id": "EXP-S6-SEM-CL-003",
+  "title": "Replay dose x representation at constant total update budget on Split-MNIST",
+  "status": "preregistered_not_executed",
+  "preregistered_date": "2026-09-15",
+  "predecessors": [
+    "EXP-S6-SEM-CL-001",
+    "EXP-S6-SEM-CL-002"
+  ],
+  "research_question": "Does a semantic-prototype advantage over raw replay depend on replay dose when total readout updates are held constant?",
+  "dataset": {
+    "name": "Split-MNIST",
+    "tasks": [[0,1],[2,3],[4,5],[6,7],[8,9]],
+    "train_per_class": 1000,
+    "test_per_class": 200
+  },
+  "seeds": [301,302,303,304,305,306,307,308,309,310,311,312],
+  "encoder": {
+    "pooling": 4,
+    "thresholds": [0.2,0.4,0.6,0.8],
+    "deterministic_sparse_spike_ids": true
+  },
+  "readout": {
+    "type": "OnlineSoftmaxReadout",
+    "learning_rate": 0.025,
+    "total_updates_per_seed_condition": 10000
+  },
+  "semantic_memory": {
+    "min_episode_support": 8,
+    "prototype_support": 0.30,
+    "match_threshold": 0.25,
+    "capacity_ceiling_per_task": 50,
+    "realized_count_rule": "R_t=min(50,mature_semantic_prototypes_for_task_t)"
+  },
+  "conditions": {
+    "R05": {"representation":"raw","replacement_fraction":0.05,"replay_slots_per_later_task":100},
+    "S05": {"representation":"semantic","replacement_fraction":0.05,"replay_slots_per_later_task":100},
+    "R20": {"representation":"raw","replacement_fraction":0.20,"replay_slots_per_later_task":400},
+    "S20": {"representation":"semantic","replacement_fraction":0.20,"replay_slots_per_later_task":400},
+    "X20": {"representation":"random_matched","replacement_fraction":0.20,"replay_slots_per_later_task":400},
+    "R40": {"representation":"raw","replacement_fraction":0.40,"replay_slots_per_later_task":800},
+    "S40": {"representation":"semantic","replacement_fraction":0.40,"replay_slots_per_later_task":800}
+  },
+  "update_budget": {
+    "task1_current_updates": 2000,
+    "later_task_total_slots_each": 2000,
+    "replay_replaces_current_updates": true,
+    "additional_replay_updates": false,
+    "total_updates_all_conditions": 10000,
+    "same_dose_raw_semantic_share_identical_replay_slot_positions": true,
+    "X20_shares_slots_with_R20_S20": true
+  },
+  "memory_matching": {
+    "raw_semantic_random_object_count_equal_per_seed_task": true,
+    "raw_selection": "ascending_original_MNIST_index_first_R_t_no_replacement",
+    "random_match_fields": ["task","label","feature_dimension","spike_count"],
+    "random_sample": "uniform_without_replacement",
+    "random_forbidden_information": ["semantic_spike_ids","raw_spike_ids","test_information"]
+  },
+  "replay_selection": {
+    "past_tasks_only": true,
+    "canonical_order": ["task_index","label","source_rank","spike_ids"],
+    "balanced_cyclic_schedule": true,
+    "maximum_usage_difference_per_task": 1
+  },
+  "condition_isolation": {
+    "deterministic_seed_based_condition_permutation": true,
+    "fresh_readout": true,
+    "fresh_memory": true,
+    "identical_dataset_indices_within_seed": true,
+    "identical_readout_initialization_within_seed": true,
+    "shared_trainable_state": false
+  },
+  "primary_endpoints": [
+    "final_average_accuracy",
+    "mean_forgetting"
+  ],
+  "confirmatory_contrasts": {
+    "C1": "S20_final_accuracy-R20_final_accuracy",
+    "C2": "R20_mean_forgetting-S20_mean_forgetting",
+    "C3": "S20_final_accuracy-X20_final_accuracy",
+    "C4": "(S20_final_accuracy-R20_final_accuracy)-(S05_final_accuracy-R05_final_accuracy)"
+  },
+  "H1_success_rule": {
+    "C1_minimum_mean": 0.03,
+    "C2_minimum_mean": 0.05,
+    "C3_minimum_mean": 0.03,
+    "all_lower_bootstrap_bounds_gt_zero": true,
+    "all_two_sided_exact_sign_flip_p_lt": 0.05,
+    "complete_paired_seeds_required": 12,
+    "conjunctive": true
+  },
+  "H2_success_rule": {
+    "C4_minimum_mean": 0.015,
+    "lower_bootstrap_bound_gt_zero": true,
+    "two_sided_exact_sign_flip_p_lt": 0.05,
+    "complete_paired_seeds_required": 12
+  },
+  "secondary_analysis": {
+    "contrast": "S40_vs_R40_accuracy_and_forgetting",
+    "status": "preregistered_secondary",
+    "minimum_effect": null,
+    "dose_table_5_20_40_descriptive": true,
+    "post_hoc_best_dose_selection_confirmatory": false
+  },
+  "statistics": {
+    "paired_bootstrap_resamples": 20000,
+    "bootstrap_ci": 0.95,
+    "paired_exact_two_sided_sign_flip": true,
+    "C1_C3_intersection_union_conjunctive_H1": true
+  },
+  "aborted_seed_policy": {
+    "persist_partial_data": true,
+    "automatic_rerun": false,
+    "replacement_seed": false,
+    "positive_H1_H2_require_complete_pairs": 12,
+    "incomplete_label": "incomplete_preregistered_run"
+  },
+  "pre_execution_freeze_required": true,
+  "synthetic_validation_only_before_execution": true,
+  "execution_authorized": false,
+  "automatic_evidence_promotion": false,
+  "human_review_required": true
+}
