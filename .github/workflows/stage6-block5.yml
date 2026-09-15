@@ -1,0 +1,39 @@
+name: Stage 6 block 5
+
+on:
+  push:
+    branches: [feature/stage6-prediction-error-20260915]
+    paths:
+      - src/learning/prediction_error.py
+      - src/learning/__init__.py
+      - tests/test_prediction_error_plasticity.py
+      - .github/workflows/stage6-block5.yml
+
+permissions:
+  contents: read
+
+jobs:
+  block5:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.13"
+          cache: pip
+      - name: Install project
+        run: python -m pip install -e ".[dev]"
+      - name: Prediction-error and reward separation regressions
+        run: >-
+          python -m pytest -q
+          tests/test_prediction_error_plasticity.py
+          tests/test_reward.py
+      - name: Formatting and lint
+        run: |
+          python -m black --check src/learning/prediction_error.py src/learning/__init__.py tests/test_prediction_error_plasticity.py
+          python -m ruff check src/learning/prediction_error.py src/learning/__init__.py tests/test_prediction_error_plasticity.py
+      - name: Strict typing
+        run: |
+          python -m mypy src/learning/prediction_error.py
+          python -m pyright src/learning/prediction_error.py
