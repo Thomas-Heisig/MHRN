@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "effective_date": "2026-09-08",
+  "effective_date": "2026-09-15",
   "project": {
     "short_name": "MHRN",
     "title_en": "Multi-Scale Homeostatic Recurrence Network",
@@ -14,9 +14,10 @@
     "short_title_de": "Rekursive Epistemik",
     "title_en": "Recursive Epistemics in Embodied Spiking Neural Architectures: A Framework for Delegated Agency and Multi-Scale Recurrence",
     "subtitle_de": "Rekursive Epistemik in verkörperten spikenden neuronalen Architekturen: Ein Framework für delegierte Handlungsmacht und mehrskalige Rekurrenz",
-    "edition": "1.5",
-    "path": "research/publications/2026-09-13_recursive-epistemics_v1.5",
-    "classification": "scientific_treatise_not_degree_or_peer_review_claim"
+    "edition": "1.6",
+    "path": "research/publications/2026-09-15_recursive-epistemics_v1.6",
+    "classification": "scientific_treatise_not_degree_or_peer_review_claim",
+    "empirical_baseline": "research/publications/2026-09-13_recursive-epistemics_v1.5"
   },
   "platforms": {
     "github_repository_id": 1335973891,
@@ -29,11 +30,7 @@
     "huggingface_space_legacy": "superdigger/Brain-5D-Space"
   },
   "compatibility": {
-    "historical_titles": [
-      "Brain-4D",
-      "Brain-5D",
-      "KI – Die geliehene Intelligenz"
-    ],
+    "historical_titles": ["Brain-4D", "Brain-5D", "KI – Die geliehene Intelligenz"],
     "unchanged_storage_format": ".b5d",
     "legacy_python_namespace": "src",
     "legacy_launcher": "scripts/brain5d_launcher.py",
@@ -48,6 +45,9 @@
     "renaming_is_new_evidence": false,
     "five_dimensions_describe": "the existing core neuron coordinate/address layout, not the full dynamical state space",
     "phenomenal_consciousness_claim": "not_established",
-    "epistemic_dependency_is_not_identical_to_delegation": true
+    "epistemic_dependency_is_not_identical_to_delegation": true,
+    "engineering_maturity_is_scientific_evidence": false,
+    "scientific_maturity_is_consciousness_metric": false,
+    "automatic_evidence_promotion": false
   }
 }
