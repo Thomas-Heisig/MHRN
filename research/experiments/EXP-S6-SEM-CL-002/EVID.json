@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "experiment_id": "EXP-S6-SEM-CL-002",
+  "review_date": "2026-09-15",
+  "evidence_status": "human_reviewed_project_evidence",
+  "confirmatory_hypothesis_H1": "falsified_under_protocol",
+  "result_classification": "negative_evidence_for_prototype_advantage",
+  "complete_paired_seeds": 9,
+  "primary_rule_passed": false,
+  "contrasts": {
+    "C1_accuracy_semantic_minus_raw": {
+      "mean": -0.00005555555555555583,
+      "minimum_effect": 0.03,
+      "bootstrap_95_ci": [-0.002224, 0.001722],
+      "sign_flip_p": 1.0,
+      "passed": false
+    },
+    "C2_forgetting_raw_minus_semantic": {
+      "mean": -0.00027777777777778425,
+      "minimum_effect": 0.05,
+      "bootstrap_95_ci": [-0.002986, 0.001944],
+      "sign_flip_p": 1.0,
+      "passed": false
+    },
+    "C3_accuracy_semantic_minus_random": {
+      "mean": 0.0017777777777777772,
+      "minimum_effect": 0.03,
+      "bootstrap_95_ci": [0.000833, 0.002944],
+      "sign_flip_p": 0.015625,
+      "passed": false,
+      "interpretation": "statistically_positive_but_below_preregistered_minimum_effect"
+    }
+  },
+  "combined_interpretation_with_CL001": {
+    "CL001_status": "positive_under_its_own_frozen_naive_baseline_protocol",
+    "CL002_status": "no_confirmatory_semantic_prototype_advantage_over_matched_raw_replay",
+    "allowed_claim": "The CL001 benefit cannot currently be attributed to a demonstrated superiority of semantic prototypes over raw replay.",
+    "prohibited_overclaim": "CL002 does not prove that CL001 was caused only by replay because the replay and update regimes differ."
+  },
+  "claim_boundaries": {
+    "semantic_memory_generally_useless": false,
+    "raw_replay_generally_superior": false,
+    "complete_recurrent_MHRN_vs_standard_SNN_resolved": false,
+    "biological_validity_resolved": false,
+    "generalization_beyond_split_mnist_resolved": false
+  },
+  "data_immutable": true,
+  "independent_external_replication": false,
+  "automatic_evidence_promotion_used": false,
+  "human_review_required_for_publication": true
+}
