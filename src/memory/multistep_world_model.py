@@ -206,7 +206,7 @@ class ActionConditionedWorldModel:
                     ):
                         raise MultistepWorldModelError("invalid transition count")
                     label = raw_label
-                    count = cast(int, raw_count)
+                    count = raw_count
                     decoded = json.loads(label)
                     if _canonical(_state(decoded, "stored next_state")) != label:
                         raise MultistepWorldModelError(
