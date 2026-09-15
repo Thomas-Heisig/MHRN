@@ -19,18 +19,10 @@ from src.research.continual_semantization_controls import (
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_AUTHORIZATION = (
-    ROOT
-    / "research"
-    / "preregistrations"
-    / "authorizations"
-    / "EXP-S6-SEM-CL-002.json"
+    ROOT / "research" / "preregistrations" / "authorizations" / "EXP-S6-SEM-CL-002.json"
 )
 DEFAULT_FREEZE = (
-    ROOT
-    / "research"
-    / "preregistrations"
-    / "frozen"
-    / "EXP-S6-SEM-CL-002-FREEZE.json"
+    ROOT / "research" / "preregistrations" / "frozen" / "EXP-S6-SEM-CL-002-FREEZE.json"
 )
 DEFAULT_OUTPUT = ROOT / "research" / "experiments" / EXPERIMENT_ID / "results"
 DEFAULT_CACHE = ROOT / ".cache" / "mnist"

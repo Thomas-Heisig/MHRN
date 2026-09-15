@@ -259,10 +259,7 @@ def _paired_sign_flip_p(values: Sequence[float]) -> float:
     total = 1 << n
     for mask in range(total):
         signs = np.fromiter(
-            (
-                1.0 if mask & (1 << index) else -1.0
-                for index in range(n)
-            ),
+            (1.0 if mask & (1 << index) else -1.0 for index in range(n)),
             dtype=np.float64,
             count=n,
         )
@@ -309,10 +306,7 @@ def summarize_confirmatory(
         b3[seed].final_average_accuracy - b2[seed].final_average_accuracy
         for seed in paired_seeds
     ]
-    c2 = [
-        b2[seed].mean_forgetting - b3[seed].mean_forgetting
-        for seed in paired_seeds
-    ]
+    c2 = [b2[seed].mean_forgetting - b3[seed].mean_forgetting for seed in paired_seeds]
     c3 = [
         b3[seed].final_average_accuracy - b4[seed].final_average_accuracy
         for seed in paired_seeds
@@ -351,9 +345,11 @@ def summarize_confirmatory(
     classification = (
         "preregistered_positive_semantic_effect"
         if passed
-        else "negative_evidence_for_prototype_advantage"
-        if b3_worse_b2
-        else "null_or_inconclusive_result"
+        else (
+            "negative_evidence_for_prototype_advantage"
+            if b3_worse_b2
+            else "null_or_inconclusive_result"
+        )
     )
     return {
         "paired_seeds": paired_seeds,
@@ -396,9 +392,7 @@ def _sample_indices(
     available = np.flatnonzero(labels == label)
     if count > len(available):
         raise ValueError("insufficient examples")
-    return np.asarray(
-        rng.choice(available, size=count, replace=False), dtype=np.int64
-    )
+    return np.asarray(rng.choice(available, size=count, replace=False), dtype=np.int64)
 
 
 def _task_indices(
@@ -447,9 +441,7 @@ def _metrics(
 
 
 def _finite_readout(readout: OnlineSoftmaxReadout) -> bool:
-    return bool(
-        np.isfinite(readout.weights).all() and np.isfinite(readout.bias).all()
-    )
+    return bool(np.isfinite(readout.weights).all() and np.isfinite(readout.bias).all())
 
 
 def run_seed(
@@ -531,9 +523,7 @@ def run_seed(
             )
         )
         if not (
-            len(raw_by_task[-1])
-            == len(semantic_by_task[-1])
-            == len(random_by_task[-1])
+            len(raw_by_task[-1]) == len(semantic_by_task[-1]) == len(random_by_task[-1])
         ):
             raise RuntimeError("realized memory budget mismatch")
 
@@ -630,9 +620,7 @@ def run_experiment(
 ) -> dict[str, Any]:
     require_execution_authorized(preregistration)
     runs = tuple(
-        item
-        for seed in config.seeds
-        for item in run_seed(data, config, seed=seed)
+        item for seed in config.seeds for item in run_seed(data, config, seed=seed)
     )
     return {
         "experiment_id": EXPERIMENT_ID,

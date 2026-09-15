@@ -9,11 +9,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT = (
-    ROOT
-    / "research"
-    / "preregistrations"
-    / "frozen"
-    / "EXP-S6-SEM-CL-002-FREEZE.json"
+    ROOT / "research" / "preregistrations" / "frozen" / "EXP-S6-SEM-CL-002-FREEZE.json"
 )
 BOUND_FILES = (
     "src/research/continual_semantization_controls.py",
