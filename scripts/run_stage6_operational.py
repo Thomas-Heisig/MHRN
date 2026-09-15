@@ -11,11 +11,13 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, cast
 
-from src.research.stage6_experiments import RUNNERS
+from src.research.stage6_experiments import RUNNERS as CORE_RUNNERS
+from src.research.stage6_neural_world_model_experiment import RUNNERS as NWM_RUNNERS
 
 ROOT = Path(__file__).resolve().parents[1]
 PROTOCOL_PATH = ROOT / "research/protocols/STAGE6_OPERATIONAL_PROTOCOLS.json"
 PREREG_PATH = ROOT / "research/preregistrations/operational/stage6_bundle_v1.json"
+RUNNERS = {**CORE_RUNNERS, **NWM_RUNNERS}
 
 
 def _load(path: Path) -> dict[str, Any]:
