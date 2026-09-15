@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "effective_date": "2026-09-15",
+  "description": "High-authority overrides for paths whose scientific role must never depend only on filename heuristics.",
+  "overrides": {
+    "research/publications/2026-09-13_recursive-epistemics_v1.5": {
+      "kind": "publication",
+      "status": "frozen",
+      "authority": "historical_empirical_baseline",
+      "mutability": "immutable",
+      "citation": "cite_with_edition_and_campaign",
+      "evidence_role": "interpretation_bound_to_frozen_empirical_campaign",
+      "rationale": "Frozen 1.5 empirical publication baseline; historical files and digests must remain unchanged."
+    },
+    "research/publications/2026-09-15_recursive-epistemics_v1.6": {
+      "kind": "publication",
+      "status": "superseded",
+      "authority": "historical_integrative_predecessor",
+      "mutability": "immutable",
+      "citation": "cite_with_edition",
+      "evidence_role": "interpretation_only",
+      "rationale": "Immediate predecessor to 1.7; retained for traceability."
+    },
+    "research/publications/2026-09-15_recursive-epistemics_v1.7": {
+      "kind": "publication",
+      "status": "current_wip",
+      "authority": "current_integrative_manuscript",
+      "mutability": "editable",
+      "citation": "cite_as_work_in_progress_with_version",
+      "evidence_role": "interpretation_only_no_automatic_evid",
+      "rationale": "Current continuously revised publication shown by the Publication Viewer."
+    },
+    "research/registry": {
+      "kind": "registry",
+      "status": "current",
+      "authority": "normative_research_registry",
+      "mutability": "editable_with_review",
+      "citation": "cite_exact_object_and_revision",
+      "evidence_role": "research_definition_not_evidence_by_itself",
+      "rationale": "Canonical RQ/H/claim/experiment registry definitions."
+    },
+    "research/schemas": {
+      "kind": "schema",
+      "status": "current",
+      "authority": "normative_schema",
+      "mutability": "editable_with_compatibility_review",
+      "citation": "cite_versioned_schema",
+      "evidence_role": "contract_not_evidence",
+      "rationale": "Machine-readable research contracts."
+    },
+    "research/experiments": {
+      "kind": "experiment",
+      "status": "experimental",
+      "authority": "experiment_artifact",
+      "mutability": "append_only_or_immutable_after_completion",
+      "citation": "cite_experiment_id_path_digest",
+      "evidence_role": "data_or_review_state_as_declared_by_manifest",
+      "rationale": "Experiment directories preserve execution provenance; completion does not imply accepted EVID."
+    },
+    "research/generated": {
+      "kind": "generated",
+      "status": "generated",
+      "authority": "generated_projection",
+      "mutability": "regenerable",
+      "citation": "cite_underlying_source_not_projection_when_possible",
+      "evidence_role": "projection_not_evidence_by_itself",
+      "rationale": "Derived reports and projections must point back to canonical sources."
+    },
+    "docs/05-quality": {
+      "kind": "quality_policy",
+      "status": "current",
+      "authority": "normative_quality_contract",
+      "mutability": "editable_with_review",
+      "citation": "cite_current_revision",
+      "evidence_role": "quality_contract_not_evidence",
+      "rationale": "Current quality and integrity requirements."
+    },
+    "docs/08-roadmap": {
+      "kind": "roadmap",
+      "status": "current",
+      "authority": "planning",
+      "mutability": "editable",
+      "citation": "cite_as_planning_not_result",
+      "evidence_role": "planning_only",
+      "rationale": "Roadmap/TODO material expresses plans and must not be read as achieved evidence."
+    }
+  }
+}
