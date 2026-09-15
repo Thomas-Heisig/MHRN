@@ -48,7 +48,12 @@ def test_stage6_does_not_overclaim_memory_or_world_model_maturity() -> None:
 
 
 def test_integrity_policy_refuses_false_plagiarism_certification() -> None:
-    text = INTEGRITY.read_text(encoding="utf-8").lower()
+    text = (
+        INTEGRITY.read_text(encoding="utf-8")
+        .lower()
+        .replace("**", "")
+        .replace("__", "")
+    )
     assert "does not certify" in text
     assert "similarity" in text
     assert "human source review" in text
