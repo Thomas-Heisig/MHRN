@@ -14,17 +14,30 @@ def test_v16_is_historical_predecessor_without_rewriting_v15_baseline() -> None:
     catalog = _json("research/publications/catalog.json")
     current = next(item for item in catalog["publications"] if item.get("current"))
     assert current["version"] == "1.7"
-    v16 = next(item for item in catalog["publications"] if item["id"] == "PUB-RECURSIVE-EPISTEMICS-20260915-V1.6")
+    v16 = next(
+        item
+        for item in catalog["publications"]
+        if item["id"] == "PUB-RECURSIVE-EPISTEMICS-20260915-V1.6"
+    )
     assert v16["current"] is False
     assert v16["edition_status"] == "historical_integrative_predecessor"
     assert v16["automatic_evidence_promotion"] is False
-    assert v16["inherits_empirical_edition"] == "PUB-RECURSIVE-EPISTEMICS-20260913-V1.5"
+    assert v16["inherits_empirical_edition"] == (
+        "PUB-RECURSIVE-EPISTEMICS-20260913-V1.5"
+    )
 
-    baseline = next(item for item in catalog["publications"] if item["id"] == "PUB-RECURSIVE-EPISTEMICS-20260913-V1.5")
+    baseline = next(
+        item
+        for item in catalog["publications"]
+        if item["id"] == "PUB-RECURSIVE-EPISTEMICS-20260913-V1.5"
+    )
     assert baseline["current"] is False
     assert baseline["edition_status"] == "frozen_empirical_baseline"
 
-    manifest = _json("research/publications/2026-09-15_recursive-epistemics_v1.6/manifest.json")
+    manifest = _json(
+        "research/publications/"
+        "2026-09-15_recursive-epistemics_v1.6/manifest.json"
+    )
     assert manifest["historical_data_modified"] is False
     assert manifest["inherited_campaign"] == "EXP-EMP-20260913-A3"
     assert manifest["accepted_evidence"] is False
@@ -50,7 +63,9 @@ def test_v16_scientific_stage_and_integrity_contracts_remain_available() -> None
 
 
 def test_release_frontend_has_first_class_scientific_timeline() -> None:
-    source = (ROOT / "src/dashboard/static/scientific-progress.js").read_text(encoding="utf-8")
+    source = (
+        ROOT / "src/dashboard/static/scientific-progress.js"
+    ).read_text(encoding="utf-8")
     assert 'button.dataset.workspaceView = "science"' in source
     assert 'panel.dataset.releaseView = "science"' in source
     assert 'button.dataset.scienceReleaseRoute = "true"' in source
@@ -62,7 +77,9 @@ def test_release_frontend_has_first_class_scientific_timeline() -> None:
 
 
 def test_integrity_gate_refuses_plagiarism_certification() -> None:
-    gate = (ROOT / "docs/05-quality/RESEARCH_INTEGRITY_GATE.md").read_text(encoding="utf-8").lower()
+    gate = (
+        ROOT / "docs/05-quality/RESEARCH_INTEGRITY_GATE.md"
+    ).read_text(encoding="utf-8").lower()
     assert "keine plagiatsfreiheit zertifizieren" in gate
     assert "textähnlichkeitsprüfung" in gate
     assert "eigenwiederverwendung" in gate
