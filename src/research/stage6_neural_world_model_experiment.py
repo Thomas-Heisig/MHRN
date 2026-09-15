@@ -48,7 +48,9 @@ def run_s6_nwm_001(
         "spiking_target_shuffled",
         "statistical_reference",
     )
-    contexts = tuple((position, action) for position in range(5) for action in ("left", "right"))
+    contexts = tuple(
+        (position, action) for position in range(5) for action in ("left", "right")
+    )
     runs: list[Stage6Run] = []
 
     for seed in seeds:
@@ -86,7 +88,9 @@ def run_s6_nwm_001(
                             target = 4 - target
                         spiking.observe(_context(position, action), _state(target))
                 before_weights = {
-                    f"{position}:{action}": spiking.synaptic_weights(_context(position, action))
+                    f"{position}:{action}": spiking.synaptic_weights(
+                        _context(position, action)
+                    )
                     for position, action in contexts
                 }
                 before = _digest(before_weights)
@@ -101,11 +105,19 @@ def run_s6_nwm_001(
                     exact += int(predicted == _state(_next(position, action)))
                     weights = spiking.synaptic_weights(_context(position, action))
                     if weights:
-                        correct_weight = weights.get(_state(_next(position, action)), 0.0)
-                        alternatives = [value for key, value in weights.items() if key != _state(_next(position, action))]
+                        correct_weight = weights.get(
+                            _state(_next(position, action)), 0.0
+                        )
+                        alternatives = [
+                            value
+                            for key, value in weights.items()
+                            if key != _state(_next(position, action))
+                        ]
                         margins.append(correct_weight - max(alternatives, default=0.0))
                 after_weights = {
-                    f"{position}:{action}": spiking.synaptic_weights(_context(position, action))
+                    f"{position}:{action}": spiking.synaptic_weights(
+                        _context(position, action)
+                    )
                     for position, action in contexts
                 }
                 after = _digest(after_weights)
@@ -128,7 +140,8 @@ def run_s6_nwm_001(
                         "mean_correct_weight_margin": learned_weight_margin,
                         "exact_context_encoder": True,
                         "held_out_context_generalization": False,
-                        "teacher_forced_training": condition.startswith("spiking_") and condition != "spiking_untrained",
+                        "teacher_forced_training": condition.startswith("spiking_")
+                        and condition != "spiking_untrained",
                         "snn_involved": condition.startswith("spiking_"),
                         "scientific_evidence": False,
                         "claim_scope": "experimental_exact_context_neural_world_model_data_only",

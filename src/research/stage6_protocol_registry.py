@@ -24,7 +24,9 @@ def _object(path: Path) -> dict[str, Any]:
     try:
         raw: object = json.loads(path.read_text(encoding="utf-8"))
     except (OSError, json.JSONDecodeError) as error:
-        raise Stage6ProtocolRegistryError(f"cannot read Stage-6 artifact: {path}") from error
+        raise Stage6ProtocolRegistryError(
+            f"cannot read Stage-6 artifact: {path}"
+        ) from error
     if not isinstance(raw, dict):
         raise Stage6ProtocolRegistryError(f"Stage-6 artifact must be an object: {path}")
     return cast(dict[str, Any], raw)
@@ -41,13 +43,19 @@ def stage6_protocols(research_root: Path) -> tuple[dict[str, Any], ...]:
     seen: set[str] = set()
     for raw in cast(list[object], values):
         if not isinstance(raw, dict):
-            raise Stage6ProtocolRegistryError("Stage-6 protocol entry must be an object")
+            raise Stage6ProtocolRegistryError(
+                "Stage-6 protocol entry must be an object"
+            )
         item = cast(dict[str, Any], raw)
         identifier = item.get("id")
         if not isinstance(identifier, str) or not identifier or identifier in seen:
-            raise Stage6ProtocolRegistryError("missing or duplicate Stage-6 protocol ID")
+            raise Stage6ProtocolRegistryError(
+                "missing or duplicate Stage-6 protocol ID"
+            )
         if not isinstance(item.get("research_question"), str):
-            raise Stage6ProtocolRegistryError("Stage-6 research_question must be a string")
+            raise Stage6ProtocolRegistryError(
+                "Stage-6 research_question must be a string"
+            )
         if not isinstance(item.get("hypothesis"), str):
             raise Stage6ProtocolRegistryError("Stage-6 hypothesis must be a string")
         seen.add(identifier)
@@ -73,7 +81,11 @@ def stage6_protocol_by_id(
     protocol_id: str,
 ) -> dict[str, Any] | None:
     return next(
-        (item for item in stage6_protocols(research_root) if item.get("id") == protocol_id),
+        (
+            item
+            for item in stage6_protocols(research_root)
+            if item.get("id") == protocol_id
+        ),
         None,
     )
 
@@ -84,7 +96,9 @@ def validate_stage6_bundle(research_root: Path) -> dict[str, Any]:
     protocol_document = _object(research_root / STAGE6_PROTOCOL_FILE)
     prereg = _object(research_root / STAGE6_PREREG_FILE)
     if protocol_document.get("automatic_evidence_promotion") is not False:
-        raise Stage6ProtocolRegistryError("automatic evidence promotion must be disabled")
+        raise Stage6ProtocolRegistryError(
+            "automatic evidence promotion must be disabled"
+        )
     freeze = prereg.get("freeze")
     if not isinstance(freeze, dict):
         raise Stage6ProtocolRegistryError("Stage-6 freeze object is missing")
@@ -92,11 +106,15 @@ def validate_stage6_bundle(research_root: Path) -> dict[str, Any]:
     if freeze_values.get("immutable_after_first_run") is not True:
         raise Stage6ProtocolRegistryError("Stage-6 preregistration must be immutable")
     if freeze_values.get("human_review_required") is not True:
-        raise Stage6ProtocolRegistryError("Stage-6 preregistration must require human review")
+        raise Stage6ProtocolRegistryError(
+            "Stage-6 preregistration must require human review"
+        )
 
     prereg_protocols = prereg.get("protocols")
     if not isinstance(prereg_protocols, dict):
-        raise Stage6ProtocolRegistryError("Stage-6 preregistration protocols are missing")
+        raise Stage6ProtocolRegistryError(
+            "Stage-6 preregistration protocols are missing"
+        )
     registered = {str(item["id"]): item for item in stage6_protocols(research_root)}
     frozen = cast(dict[str, Any], prereg_protocols)
     if set(registered) != set(frozen):
@@ -117,10 +135,7 @@ def validate_stage6_bundle(research_root: Path) -> dict[str, Any]:
         "questions": {
             question: len(stage6_protocols_for_question(research_root, question))
             for question in sorted(
-                {
-                    str(item["research_question"])
-                    for item in registered.values()
-                }
+                {str(item["research_question"]) for item in registered.values()}
             )
         },
         "automatic_evidence_promotion": False,
