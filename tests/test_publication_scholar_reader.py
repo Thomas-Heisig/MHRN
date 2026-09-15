@@ -32,7 +32,6 @@ def test_publication_uses_one_shared_speech_reader() -> None:
 def test_shared_speech_reader_is_bilingual_and_prefers_natural_voices() -> None:
     speech = _read(STATIC / "speech-reader.js")
 
-    # Keep required voices without rejecting compatible additions from main.
     expected = {
         "de": {"katja", "conrad"},
         "en": {"jenny", "aria", "guy", "ryan", "sonia"},
@@ -62,9 +61,7 @@ def test_publication_restores_late_windows_and_microsoft_voices() -> None:
     assert "width: 100%" in refinements
 
 
-def test_publication_scholar_reader_has_persistent_navigation_and_reading_flow() -> (
-    None
-):
+def test_publication_scholar_reader_has_persistent_navigation_and_reading_flow() -> None:
     scholar = _read(MODULES / "publication-scholar-tools.js")
     layout = _read(STYLES / "publication-reader.css")
 
@@ -112,6 +109,37 @@ def test_selected_dissertation_text_can_be_sent_to_existing_research_ai() -> Non
     assert "requestSubmit" in bootstrap
 
 
+def test_reader_normalizes_explicit_markdown_anchors_without_enabling_raw_html() -> None:
+    polish = _read(MODULES / "publication-reader-polish.js")
+    frontend = _read(STATIC / "frontend" / "index.js")
+    styles = _read(STYLES / "publication-reader-polish.css")
+
+    assert "RAW_MARKUP_PATTERN" in polish
+    assert "pub-explicit-anchor" in polish
+    assert "dataset.pubExplicitAnchor" in polish
+    assert 'createElement("span")' in polish
+    assert "innerHTML =" not in polish
+    assert "initPublicationReaderPolish();" in frontend
+    assert ".pub-explicit-anchor" in styles
+    assert "scroll-margin-top" in styles
+
+
+def test_ask_ai_selection_assistant_is_relocated_outside_contained_reader() -> None:
+    polish = _read(MODULES / "publication-reader-polish.js")
+    styles = _read(STYLES / "publication-reader-polish.css")
+    index_css = _read(STYLES / "index.css")
+
+    assert "panel.append(assistant)" in polish
+    assert 'assistant.dataset.floatingSelectionAssistant = "true"' in polish
+    assert '> .pub-selection-assistant[data-floating-selection-assistant="true"]' in styles
+    assert "position: fixed !important" in styles
+    assert "top: calc(var(--pub-app-offset" in styles
+    assert "[hidden]" in styles
+    assert "display: none !important" in styles
+    assert "[data-pub-selection-ai]:hover" in styles
+    assert index_css.rstrip().endswith('@import url("./publication-reader-polish.css");')
+
+
 def test_file_viewer_bridge_uses_public_workspace_router_contract() -> None:
     bootstrap = _read(MODULES / "publication-scholar-bootstrap.js")
 
@@ -136,9 +164,13 @@ def test_frontend_initializes_scholar_tools_after_publication_reader() -> None:
         'import { initPublicationScholarTools } from "./modules/publication-scholar-bootstrap.js";'
         in frontend
     )
+    assert (
+        'import { initPublicationReaderPolish } from "./modules/publication-reader-polish.js";'
+        in frontend
+    )
     assert frontend.index("initPublicationPanel();") < frontend.index(
         "initPublicationScholarTools();"
-    )
+    ) < frontend.index("initPublicationReaderPolish();")
 
 
 def test_reader_layout_is_scoped_and_resets_nested_main_sidebar_offset() -> None:
@@ -154,7 +186,7 @@ def test_reader_layout_is_scoped_and_resets_nested_main_sidebar_offset() -> None
     assert '@import url("./publication-reader-voice-math.css");' in index_css
     assert index_css.index("publication-reader.css") < index_css.index(
         "publication-reader-voice-math.css"
-    )
+    ) < index_css.index("publication-reader-polish.css")
 
 
 def test_reader_has_one_sticky_chrome_layer_and_contiguous_document_geometry() -> None:
