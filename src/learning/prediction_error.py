@@ -30,9 +30,7 @@ class PredictionErrorSignal:
         if isinstance(self.value, bool) or not math.isfinite(self.value):
             raise PredictionErrorPlasticityError("prediction error must be finite")
         if type(self.tick) is not int or self.tick < 0:
-            raise PredictionErrorPlasticityError(
-                "prediction-error tick must be >= 0"
-            )
+            raise PredictionErrorPlasticityError("prediction-error tick must be >= 0")
         if not self.source.strip():
             raise PredictionErrorPlasticityError("prediction-error source is required")
 
