@@ -40,6 +40,8 @@ jobs:
           tests/test_multistep_world_model.py
           tests/test_world_model_evaluation.py
           tests/test_runtime_bundle.py
+      - name: Black diff
+        run: python -m black --diff src/research/stage6_experiments.py tests/test_stage6_bundle.py scripts/run_stage6_operational.py
       - name: Formatting and lint
         run: |
           python -m black --check src/research/stage6_experiments.py src/storage/stage6_bundle.py tests/test_stage6_registered_experiments.py tests/test_stage6_bundle.py scripts/run_stage6_operational.py
