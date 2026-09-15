@@ -15,7 +15,7 @@ import os
 import tempfile
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any
+from typing import Any, cast
 
 from src.memory.layer import MemoryWorldModel, MemoryWorldModelError
 
@@ -118,11 +118,12 @@ def read_runtime_bundle(manifest_path: Path) -> RuntimeBundle:
     """Restore only when manifest, both files and cognition identity agree."""
 
     try:
-        raw = json.loads(manifest_path.read_text(encoding="utf-8"))
+        loaded: object = json.loads(manifest_path.read_text(encoding="utf-8"))
     except (OSError, json.JSONDecodeError) as error:
         raise RuntimeBundleError("runtime bundle manifest could not be read") from error
-    if not isinstance(raw, dict):
+    if not isinstance(loaded, dict):
         raise RuntimeBundleError("runtime bundle manifest must be an object")
+    raw = cast(dict[str, Any], loaded)
     if raw.get("schema_version") != 1 or raw.get("owner") != "mhrn.runtime_bundle":
         raise RuntimeBundleError("unsupported runtime bundle schema")
 
@@ -144,7 +145,10 @@ def read_runtime_bundle(manifest_path: Path) -> RuntimeBundle:
     cognition_file = raw.get("cognition_file")
     if not isinstance(runtime_file, str) or Path(runtime_file).name != runtime_file:
         raise RuntimeBundleError("invalid runtime checkpoint filename")
-    if not isinstance(cognition_file, str) or Path(cognition_file).name != cognition_file:
+    if (
+        not isinstance(cognition_file, str)
+        or Path(cognition_file).name != cognition_file
+    ):
         raise RuntimeBundleError("invalid cognition filename")
 
     runtime_path = manifest_path.parent / runtime_file
