@@ -97,7 +97,9 @@ class OfflineDecisionEvaluator:
             raise WorldModelEvaluationError("candidate horizons must be matched")
         horizon = next(iter(horizons))
         if horizon > self.max_steps:
-            raise WorldModelEvaluationError("candidate horizon exceeds evaluation budget")
+            raise WorldModelEvaluationError(
+                "candidate horizon exceeds evaluation budget"
+            )
 
         before = copy.deepcopy(self.model.state_dict())
         evaluations: list[CandidateEvaluation] = []
@@ -132,9 +134,13 @@ class OfflineDecisionEvaluator:
             )
 
         if self.model.state_dict() != before:
-            raise WorldModelEvaluationError("offline evaluation mutated the world model")
+            raise WorldModelEvaluationError(
+                "offline evaluation mutated the world model"
+            )
 
-        eligible = [item for item in evaluations if item.eligible and item.score is not None]
+        eligible = [
+            item for item in evaluations if item.eligible and item.score is not None
+        ]
         eligible.sort(key=lambda item: (-item.score, item.label))
         selected = eligible[0].label if eligible else None
         return DecisionRecommendation(selected, tuple(evaluations))
