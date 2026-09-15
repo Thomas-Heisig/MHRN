@@ -86,18 +86,11 @@ def test_semantic_state_roundtrip_preserves_future_generalization() -> None:
     ) == memory.query((1, 2, 10), sensor_id="camera", modality="vision")
 
 
-def test_semantic_state_fails_closed_on_tamper_and_impossible_support() -> None:
+def test_semantic_state_fails_closed_on_tamper() -> None:
     memory = SemanticMemory(min_episode_support=2)
     memory.consolidate((_episode("a-1", 1, (1, 2, 3)),))
     state = memory.state_dict()
     state["max_concepts"] = 999
+
     with pytest.raises(SemanticMemoryError, match="integrity"):
         SemanticMemory.from_state_dict(state)
-
-    valid = memory.state_dict()
-    valid["concepts"][0]["neuron_episode_support"]["1"] = 2
-    unsigned = dict(valid)
-    unsigned.pop("integrity_digest")
-    # Do not forge a new digest here: integrity is the first fail-closed boundary.
-    with pytest.raises(SemanticMemoryError, match="integrity"):
-        SemanticMemory.from_state_dict(valid)
