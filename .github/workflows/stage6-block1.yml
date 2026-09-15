@@ -1,0 +1,36 @@
+name: Stage 6 block 1
+
+on:
+  push:
+    branches: [feature/stage6-semantic-world-model-20260915]
+
+permissions:
+  contents: read
+
+jobs:
+  block1:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.13"
+          cache: pip
+      - name: Install project
+        run: python -m pip install -e ".[dev,docs]"
+      - name: Runtime bundle and existing checkpoint regressions
+        run: >-
+          python -m pytest -q
+          tests/test_runtime_bundle.py
+          tests/test_checkpoint_v4.py
+          tests/test_rng_persistence.py
+          tests/test_memory_layer.py
+          tests/test_stage6_memory_controls.py
+          tests/test_stage6_prediction_contract.py
+      - name: Lint and typing for block 1
+        run: |
+          python -m black --check src/storage/runtime_bundle.py tests/test_runtime_bundle.py
+          python -m ruff check src/storage/runtime_bundle.py tests/test_runtime_bundle.py
+          python -m mypy src/storage/runtime_bundle.py
+          python -m pyright src/storage/runtime_bundle.py
