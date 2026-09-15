@@ -52,14 +52,23 @@ Der Score ist eine Projektsteuerungsheuristik und keine Kognitions-, Intelligenz
 
 Stage 6 — Gedächtnis und Weltmodell.
 
-Die Infrastruktur und Mechanismuskandidaten sind vorhanden; offen bleiben insbesondere:
+Seit dem aktuellen `main` liegt mit `EXP-S6-SEM-CL-001` ein **positiver, präregistrierter Mechanismusbefund** zur semantischen Prototypkonsolidierung mit begrenztem Replay auf Split-MNIST vor. Gegenüber der gematchten Bedingung ohne semantischen Speicher stieg die finale mittlere Genauigkeit von 0,1883 auf 0,4093 (Δ +0,2210), während das mittlere Forgetting von 0,9764 auf 0,6975 sank (Reduktion 0,2789). Beide präregistrierten Primärkriterien bestanden; automatische EVID-Promotion bleibt deaktiviert und menschliches Review ist weiterhin erforderlich.
 
-- experimentell belastbare Semantization durch Replay/Konsolidierung,
+Der Befund ist bewusst eng begrenzt: Er isoliert einen Semantization-/Consolidation-Mechanismus mit spike-kodierter Repräsentation und einfachem Online-Readout. Er belegt weder eine Überlegenheit des vollständigen rekurrenten MHRN-SNN noch biologische Äquivalenz, Generalisierung über Split-MNIST, Neuheit des allgemeinen Semantization-Konzepts oder ein validiertes generatives Weltmodell.
+
+Offen bleiben insbesondere:
+
+- unabhängige Replikation von `EXP-S6-SEM-CL-001`,
+- budget-gematchter Vergleich gegen Raw-Exemplar-Replay und etablierte Continual-Learning-Baselines,
+- Replay- und Prototyp-Ablationen sowie schwierigere Benchmarks,
+- end-to-end Prüfung mit dem rekurrenten MHRN-SNN,
 - neuronale und abladierbare Prediction-Error-Dynamik,
 - mehrschrittiges aktionskonditioniertes Weltmodell,
 - gekoppelte Persistenz/Restore-Identität,
 - confirmatory SNN-involved DATA,
 - menschliche EVID-Entscheidung und unabhängige Replikation.
+
+Die Draft-Präregistrierung `EXP-S6-SEM-VS-RAW-001` bleibt als separater Forschungsstrang offen und darf vor ihrer expliziten Ausführungsautorisierung nicht als Ergebnis oder EVID behandelt werden.
 
 ## Potenzielle Beiträge / Neuheitsstatus
 
