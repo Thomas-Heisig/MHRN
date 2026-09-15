@@ -6,7 +6,12 @@ from pathlib import Path
 import pytest
 
 from src.embodiment.models import SensorFrame
-from src.memory import ActionConditionedWorldModel, NeuralEpisodicMemory, SemanticMemory, StateAction
+from src.memory import (
+    ActionConditionedWorldModel,
+    NeuralEpisodicMemory,
+    SemanticMemory,
+    StateAction,
+)
 from src.storage.stage6_bundle import (
     Stage6BundleError,
     read_stage6_bundle,
@@ -14,9 +19,13 @@ from src.storage.stage6_bundle import (
 )
 
 
-def _states(tmp_path: Path) -> tuple[Path, NeuralEpisodicMemory, SemanticMemory, ActionConditionedWorldModel]:
+def _states(
+    tmp_path: Path,
+) -> tuple[Path, NeuralEpisodicMemory, SemanticMemory, ActionConditionedWorldModel]:
     runtime_manifest = tmp_path / "runtime.bundle.json"
-    runtime_manifest.write_text('{"owner":"mhrn.runtime_bundle","runtime_tick":7}\n', encoding="utf-8")
+    runtime_manifest.write_text(
+        '{"owner":"mhrn.runtime_bundle","runtime_tick":7}\n', encoding="utf-8"
+    )
 
     neural = NeuralEpisodicMemory(run_id="stage6-bundle-test")
     neural.reset_episode("episode-1")
@@ -61,7 +70,9 @@ def test_stage6_bundle_rejects_modified_world_model_bytes(tmp_path: Path) -> Non
         world_model=world,
     )
     world_path = tmp_path / "stage6.world-model.json"
-    world_path.write_text(world_path.read_text(encoding="utf-8") + " ", encoding="utf-8")
+    world_path.write_text(
+        world_path.read_text(encoding="utf-8") + " ", encoding="utf-8"
+    )
 
     with pytest.raises(Stage6BundleError, match="world model hash mismatch"):
         read_stage6_bundle(manifest)

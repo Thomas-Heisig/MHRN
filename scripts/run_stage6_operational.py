@@ -61,7 +61,9 @@ def run_bundle(*, seeds: tuple[int, ...]) -> dict[str, Any]:
             raise ValueError(
                 f"condition mismatch for {protocol_id}: declared={sorted(declared)} actual={sorted(actual)}"
             )
-        if any(row["metrics"].get("scientific_evidence") is not False for row in output):
+        if any(
+            row["metrics"].get("scientific_evidence") is not False for row in output
+        ):
             raise ValueError(f"DATA-only boundary violated: {protocol_id}")
         rows[protocol_id] = output
 

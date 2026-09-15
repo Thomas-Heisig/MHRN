@@ -159,7 +159,9 @@ def run_s6_epi_001(
                 read_enabled=condition != "read_off",
                 write_enabled=condition != "write_off",
             )
-            before = _digest({"memory": memory.state_dict(), "tick": network.current_tick})
+            before = _digest(
+                {"memory": memory.state_dict(), "tick": network.current_tick}
+            )
             correct = 0
             retrievals = 0
             distractor_spikes = 0
@@ -306,7 +308,9 @@ def run_s6_sem_001(
                     )
                 )
                 _idle(network, 3)
-            updates = 0 if condition == "no_semantic" else semantic.consolidate(training)
+            updates = (
+                0 if condition == "no_semantic" else semantic.consolidate(training)
+            )
             correct = 0
             matched = 0
             heldout = ["A", "B"] * holdout_per_class
@@ -410,7 +414,9 @@ def run_s6_rpl_001(
                 prototype_support=0.6,
                 match_threshold=0.45,
             )
-            before = _digest({"semantic": semantic.state_dict(), "tick": network.current_tick})
+            before = _digest(
+                {"semantic": semantic.state_dict(), "tick": network.current_tick}
+            )
             if condition == "ordered":
                 selected = scheduler.plan(
                     source,
@@ -547,7 +553,9 @@ def run_s6_pe_001(
                     reward_calls = 1
                 pe_value = 1.0
                 if pe_mode == "shuffled":
-                    pe_value = -1.0 if random.Random(seed ^ 0xE770).random() < 0.5 else 1.0
+                    pe_value = (
+                        -1.0 if random.Random(seed ^ 0xE770).random() < 0.5 else 1.0
+                    )
                 pe_updates = modulator.apply(
                     PredictionErrorSignal(pe_value, post_result.tick)
                 )
@@ -628,12 +636,16 @@ def run_s6_wm_001(
     horizon = 3
     trials = 20
     for seed in seeds:
-        starts = [random.Random(seed * 313 + index).randrange(5) for index in range(trials)]
+        starts = [
+            random.Random(seed * 313 + index).randrange(5) for index in range(trials)
+        ]
         schedules = [
             tuple(
-                "right"
-                if random.Random(seed * 10000 + trial * 17 + step).random() < 0.5
-                else "left"
+                (
+                    "right"
+                    if random.Random(seed * 10000 + trial * 17 + step).random() < 0.5
+                    else "left"
+                )
                 for step in range(horizon)
             )
             for trial in range(trials)
