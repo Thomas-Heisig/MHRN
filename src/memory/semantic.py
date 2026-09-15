@@ -174,19 +174,29 @@ class SemanticMemory:
             pattern = tuple(sorted(neurons))
             if not pattern:
                 continue
+            already_seen = any(
+                concept.sensor_id == sensor_id
+                and concept.modality == modality
+                and episode_id in concept.episode_ids
+                for concept in self._concepts
+            )
+            if already_seen:
+                continue
             eligible = [
                 concept
                 for concept in self._concepts
-                if concept.sensor_id == sensor_id
-                and concept.modality == modality
-                and episode_id not in concept.episode_ids
+                if concept.sensor_id == sensor_id and concept.modality == modality
             ]
             scored = [
                 (_dice(pattern, self._prototype(concept)), concept.concept_id, concept)
                 for concept in eligible
             ]
             scored.sort(key=lambda item: (-item[0], item[1]))
-            target = scored[0][2] if scored and scored[0][0] >= self.match_threshold else None
+            target = (
+                scored[0][2]
+                if scored and scored[0][0] >= self.match_threshold
+                else None
+            )
             if target is None:
                 if len(self._concepts) >= self.max_concepts:
                     self._concepts.pop(0)
@@ -258,9 +268,9 @@ class SemanticMemory:
     def from_state_dict(cls, state: dict[str, Any]) -> "SemanticMemory":
         if state.get("schema_version") != SEMANTIC_SCHEMA_VERSION:
             raise SemanticMemoryError("unsupported semantic memory schema")
-        if state.get("owner") != SEMANTIC_OWNER or state.get("integrity_digest") != _digest(
-            state
-        ):
+        if state.get("owner") != SEMANTIC_OWNER or state.get(
+            "integrity_digest"
+        ) != _digest(state):
             raise SemanticMemoryError("semantic memory integrity check failed")
         memory = cls(
             max_concepts=int(state["max_concepts"]),
@@ -283,11 +293,15 @@ class SemanticMemory:
             if not isinstance(raw_support, dict) or not isinstance(raw_episodes, list):
                 raise SemanticMemoryError("invalid semantic support data")
             episode_ids = {str(value) for value in cast(list[object], raw_episodes)}
+            if not episode_ids:
+                raise SemanticMemoryError("semantic concept needs episode support")
             support: dict[int, int] = {}
             for key, value in cast(dict[object, object], raw_support).items():
                 neuron_id = int(str(key))
                 if type(value) is not int or value <= 0:
                     raise SemanticMemoryError("semantic support must be positive")
+                if value > len(episode_ids):
+                    raise SemanticMemoryError("semantic support exceeds episode count")
                 support[neuron_id] = value
             concept = _MutableConcept(
                 concept_id=int(item["concept_id"]),
