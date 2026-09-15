@@ -68,7 +68,7 @@ Offen bleiben insbesondere:
 - confirmatory SNN-involved DATA,
 - menschliche EVID-Entscheidung und unabhängige Replikation.
 
-Die Draft-Präregistrierung `EXP-S6-SEM-VS-RAW-001` bleibt als separater Forschungsstrang offen und darf vor ihrer expliziten Ausführungsautorisierung nicht als Ergebnis oder EVID behandelt werden.
+Die **pre-execution Präregistrierung** `EXP-S6-SEM-CL-002` einschließlich Amendment A1 ist im aktuellen Integrationsstand eingefroren. Sie definiert den nächsten kontrollierten Vergleich, ist aber **noch kein Ergebnis und keine EVID**. Ohne separat dokumentierte Ausführungsautorisierung darf sie weder ausgeführt noch als bestätigender Befund behandelt werden.
 
 ## Potenzielle Beiträge / Neuheitsstatus
 
