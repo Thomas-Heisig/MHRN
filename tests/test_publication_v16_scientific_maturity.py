@@ -65,8 +65,8 @@ def test_v16_contains_scientific_stage_and_integrity_contracts() -> None:
 
 def test_release_frontend_has_first_class_scientific_timeline() -> None:
     source = (ROOT / "src/dashboard/static/scientific-progress.js").read_text(encoding="utf-8")
-    assert 'data-workspace-view="science"' in source
-    assert 'data-release-view="science"' in source
+    assert 'button.dataset.workspaceView = "science"' in source
+    assert 'panel.dataset.releaseView = "science"' in source
     assert "Wissenschaftliche Timeline" in source
     assert "Technische Timeline" in source
     assert "reviewte EVID" in source
