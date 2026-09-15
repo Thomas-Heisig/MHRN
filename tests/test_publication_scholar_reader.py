@@ -96,6 +96,31 @@ def test_publication_formulas_use_shared_mathjax_renderer() -> None:
     assert ".pub-reader-article mjx-container" in refinements
 
 
+def test_publication_display_math_is_typeset_without_dashboard_card_chrome() -> None:
+    formula = _read(STATIC / "formula-renderer.js")
+    refinements = _read(STYLES / "publication-reader-voice-math.css")
+
+    display_block = re.search(
+        r'\.pub-reader-article mjx-container\[display="true"\]\s*\{([^}]]+)\}',
+        refinements,
+        re.S,
+    )
+    assert display_block is not None
+    css = display_block.group(1)
+    assert "border: 0" in css
+    assert "background: transparent" in css
+    assert "box-shadow: none" in css
+    assert "text-align: center" in css
+    assert "overflow-x: auto" in css
+
+    assert ".fm-math-fallback-display" in refinements
+    assert "background: transparent !important" in refinements
+    assert "box-shadow: none !important" in refinements
+    assert "border: 0;" in formula
+    assert "background: transparent;" in formula
+    assert "box-shadow: none;" in formula
+
+
 def test_selected_dissertation_text_can_be_sent_to_existing_research_ai() -> None:
     scholar = _read(MODULES / "publication-scholar-tools.js")
     bootstrap = _read(MODULES / "publication-scholar-bootstrap.js")
