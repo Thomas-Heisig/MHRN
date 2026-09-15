@@ -24,7 +24,7 @@
   year: 2016
   journal: Proceedings of the Thirty-Second Conference on Uncertainty in Artificial Intelligence
   publisher: AUAI Press
-  url: https://arxiv.org/abs/1611.08219
+  url: https://intelligence.org/files/Interruptibility.pdf
   topic: [safe interruptibility, reinforcement learning, shutdown]
   claims: []
   brain5d_questions: [RQ-SAFE-003, RQ-SAFE-004, RQ-SAFE-008]
