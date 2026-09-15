@@ -74,7 +74,7 @@ def test_author_position_distinguishes_cumulative_science_from_plagiarism() -> N
 
 def test_document_governance_declares_every_docs_and_research_file() -> None:
     result = subprocess.run(
-        [sys.executable, "scripts/audit_document_governance.py"],
+        [sys.executable, "scripts/audit_document_governance.py", "--strict-review"],
         cwd=ROOT,
         check=False,
         capture_output=True,
