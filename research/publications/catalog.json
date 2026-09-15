@@ -1,9 +1,27 @@
 {
   "schema_version": "1.0",
   "category": "publications",
-  "current_publication_id": "PUB-RECURSIVE-EPISTEMICS-20260913-V1.5",
-  "current_entrypoint": "publications/2026-09-13_recursive-epistemics_v1.5/README.md",
+  "current_publication_id": "PUB-RECURSIVE-EPISTEMICS-20260915-V1.6",
+  "current_entrypoint": "publications/2026-09-15_recursive-epistemics_v1.6/README.md",
   "publications": [
+    {
+      "id": "PUB-RECURSIVE-EPISTEMICS-20260915-V1.6",
+      "title": "Recursive Epistemics in Embodied Spiking Neural Architectures: A Framework for Delegated Agency and Multi-Scale Recurrence",
+      "author": "Thomas Heisig",
+      "type": "wissenschaftliche_abhandlung",
+      "version": "1.6",
+      "date": "2026-09-15",
+      "current": true,
+      "edition_status": "current",
+      "entrypoint": "publications/2026-09-15_recursive-epistemics_v1.6/README.md",
+      "reader": "publications/2026-09-15_recursive-epistemics_v1.6/README.md",
+      "snapshot": "publications/2026-09-15_recursive-epistemics_v1.6",
+      "manifest": "publications/2026-09-15_recursive-epistemics_v1.6/manifest.json",
+      "authority": "interpretation_only",
+      "read_only": true,
+      "automatic_evidence_promotion": false,
+      "inherits_empirical_edition": "PUB-RECURSIVE-EPISTEMICS-20260913-V1.5"
+    },
     {
       "id": "PUB-RECURSIVE-EPISTEMICS-20260913-V1.5",
       "title": "Recursive Epistemics in Embodied Spiking Neural Architectures: A Framework for Delegated Agency and Multi-Scale Recurrence",
@@ -11,8 +29,8 @@
       "type": "wissenschaftliche_abhandlung",
       "version": "1.5",
       "date": "2026-09-13",
-      "current": true,
-      "edition_status": "current",
+      "current": false,
+      "edition_status": "historical_empirical_baseline",
       "entrypoint": "publications/2026-09-13_recursive-epistemics_v1.5/README.md",
       "reader": "publications/2026-09-13_recursive-epistemics_v1.5/README.md",
       "snapshot": "publications/2026-09-13_recursive-epistemics_v1.5",
@@ -123,7 +141,7 @@
       "current": false
     }
   ],
-  "current_publication": "PUB-RECURSIVE-EPISTEMICS-20260913-V1.5",
+  "current_publication": "PUB-RECURSIVE-EPISTEMICS-20260915-V1.6",
   "supplements": [
     {
       "id": "SUP-CONNECTOME-EMBODIMENT-20260909",
