@@ -32,6 +32,8 @@ jobs:
           tests/test_multistep_world_model.py
           tests/test_memory_layer.py
           tests/test_runtime_bundle.py
+      - name: Black diff
+        run: python -m black --diff src/memory/multistep_world_model.py
       - name: Formatting and lint
         run: |
           python -m black --check src/memory/multistep_world_model.py src/memory/__init__.py tests/test_multistep_world_model.py
