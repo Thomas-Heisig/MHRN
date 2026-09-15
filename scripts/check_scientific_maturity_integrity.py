@@ -39,47 +39,57 @@ def main() -> int:
         isinstance(weights, dict),
         "scientific-progress weights must be an object",
     )
-    require(isinstance(stages, list), "scientific-progress stages must be a list")
+    require(
+        isinstance(stages, list),
+        "scientific-progress stages must be a list",
+    )
     if isinstance(weights, dict):
+        expected_weights = {
+            "research_question",
+            "protocol",
+            "data",
+            "reviewed_evidence",
+            "independent_replication",
+            "attribution",
+        }
         require(
-            set(weights)
-            == {
-                "research_question",
-                "protocol",
-                "data",
-                "reviewed_evidence",
-                "independent_replication",
-                "attribution",
-            },
+            set(weights) == expected_weights,
             "scientific-progress weights changed without contract update",
         )
+        total_weight = sum(float(value) for value in weights.values())
         require(
-            abs(sum(float(value) for value in weights.values()) - 1.0) < 1e-9,
+            abs(total_weight - 1.0) < 1e-9,
             "scientific-progress weights must sum to 1",
         )
+
     if isinstance(stages, list):
+        stage_numbers = [
+            stage.get("stage") for stage in stages if isinstance(stage, dict)
+        ]
         require(
-            [stage.get("stage") for stage in stages if isinstance(stage, dict)]
-            == list(range(11)),
+            stage_numbers == list(range(11)),
             "scientific-progress must cover stages 0 through 10 exactly once",
         )
         for stage in stages:
             if not isinstance(stage, dict):
                 errors.append("scientific-progress stage is not an object")
                 continue
+            stage_no = stage.get("stage")
             score = float(stage.get("score", -1))
             require(
                 0.0 <= score <= 1.0,
-                f"stage {stage.get('stage')} score out of range",
+                f"stage {stage_no} score out of range",
             )
             require(
                 bool(stage.get("claim_boundary")),
-                f"stage {stage.get('stage')} missing claim boundary",
+                f"stage {stage_no} missing claim boundary",
             )
+            criteria = stage.get("criteria")
             require(
-                isinstance(stage.get("criteria"), list) and bool(stage.get("criteria")),
-                f"stage {stage.get('stage')} missing scientific criteria",
+                isinstance(criteria, list) and bool(criteria),
+                f"stage {stage_no} missing scientific criteria",
             )
+
         stage6 = next(
             (
                 stage
@@ -111,10 +121,16 @@ def main() -> int:
         for item in publications
         if isinstance(item, dict) and item.get("current")
     ]
-    require(len(current) == 1, "publication catalog must have exactly one current edition")
+    require(
+        len(current) == 1,
+        "publication catalog must have exactly one current edition",
+    )
     if len(current) == 1:
         item = current[0]
-        require(item.get("version") == "1.7", "current publication must be edition 1.7")
+        require(
+            item.get("version") == "1.7",
+            "current publication must be edition 1.7",
+        )
         require(
             item.get("edition_status") == "current_wip",
             "edition 1.7 must be visibly marked current_wip",
@@ -128,7 +144,8 @@ def main() -> int:
             "current publication must not auto-promote evidence",
         )
         require(
-            item.get("predecessor") == "PUB-RECURSIVE-EPISTEMICS-20260915-V1.6",
+            item.get("predecessor")
+            == "PUB-RECURSIVE-EPISTEMICS-20260915-V1.6",
             "edition 1.7 predecessor mismatch",
         )
         require(
@@ -223,7 +240,8 @@ def main() -> int:
     )
     require(
         isinstance(scope, dict)
-        and scope.get("candidate_contribution_novelty") == "requires_prior_art_review",
+        and scope.get("candidate_contribution_novelty")
+        == "requires_prior_art_review",
         "novelty uncertainty boundary missing",
     )
     require(
@@ -256,11 +274,12 @@ def main() -> int:
             f"missing required scientific-integrity file: {path}",
         )
 
-    integrity = (ROOT / "research/INTEGRITY_AND_ATTRIBUTION.md").read_text(
+    integrity_path = ROOT / "research/INTEGRITY_AND_ATTRIBUTION.md"
+    integrity = integrity_path.read_text(encoding="utf-8").lower()
+    related = (ROOT / "research/RELATED_WORK.md").read_text(encoding="utf-8")
+    manuscript = (ROOT / V17 / "MANUSCRIPT.md").read_text(
         encoding="utf-8"
     ).lower()
-    related = (ROOT / "research/RELATED_WORK.md").read_text(encoding="utf-8")
-    manuscript = (ROOT / V17 / "MANUSCRIPT.md").read_text(encoding="utf-8").lower()
     author_position = (ROOT / V17 / "AUTHOR_POSITION.md").read_text(
         encoding="utf-8"
     ).lower()
@@ -286,7 +305,8 @@ def main() -> int:
         "current manuscript must expose novelty uncertainty",
     )
     require(
-        "freier wissenstransfer" in author_position and "attribution" in author_position,
+        "freier wissenstransfer" in author_position
+        and "attribution" in author_position,
         "author position must preserve the knowledge-transfer/attribution distinction",
     )
 
@@ -295,6 +315,7 @@ def main() -> int:
         for error in errors:
             print(f"- {error}")
         return 1
+
     print("Scientific maturity/integrity gate: PASS")
     print(
         "Internal consistency verified; no claim of plagiarism-freedom, novelty, "
