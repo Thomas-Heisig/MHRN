@@ -1,172 +1,111 @@
-<!-- alpha3-current-state -->
-## Wissenschaftlicher Stand: Alpha.3 / Publikationsfassung 1.5
+# MHRN Documentation — kanonischer Einstieg
 
-Kampagne `EXP-EMP-20260913-A3` auf Commit `531f12335ebeebd7242beb4ba0bd95e81b3dfb8e`.
+**Stand:** 15. September 2026  
+**Kanonischer Codezweig:** `main`  
+**Aktuelle wissenschaftliche Arbeitsfassung:** Recursive Epistemics **1.7 WIP**  
+**Dokumentgovernance:** [`00-governance/DOCUMENT_GOVERNANCE.md`](00-governance/DOCUMENT_GOVERNANCE.md)
 
-70 ausgewiesene Ausfuehrungen; Status `{'completed': 70}`; 2043 gespeicherte Datensaetze. 25 menschliche Vorlagen werden nicht als Experimente ausgegeben. Die Unterscheidung zwischen Simulation, Grenzaudit, Komponentenfunktion und menschlicher Entscheidung bestimmt die Reichweite aller Aussagen.
+Dieses README ist ausschließlich ein **aktueller Navigations- und Autoritätsindex**. Historische Testzahlen, Commitstände, Sprintberichte und frühere Publikationsstände gehören in versionierte/historische Dateien und werden hier nicht mehr als „current state“ wiederholt.
 
-Ein protokollierter Lauf, eine bestandene Softwarepruefung und eine wissenschaftliche Annahmeentscheidung bleiben verschiedene Objekte. Die Ausgabe dokumentiert auch verfehlte wissenschaftliche Erfolgskriterien.
+## Autorität und Lesereihenfolge
 
-Aktueller Einstieg: `research/publications/2026-09-13_recursive-epistemics_v1.5/README.md` (repository-relative). Detaillierte Architektur: `docs/02-architecture/SCIENTIFIC_CONTRACTS_ALPHA3.md`. Die nachfolgenden aelteren Statusabschnitte sind datierte Historie, keine aktuelle CI- oder EVID-Freigabe.
+Wenn Dokumente widersprechen, gilt:
 
-# MHRN Documentation
+1. Code, Schemas und maschinenlesbare Verträge auf `main`;
+2. aktuelle CI-/Verifikationsartefakte;
+3. source-bound Experiment-DATA und ausdrücklich akzeptierte EVID;
+4. kanonische Quality-/Architektur-/Methodendokumente;
+5. aktuelle WIP-Publikation;
+6. generierte Projektionen;
+7. historische, superseded und archivierte Dokumente.
 
-This directory contains both **current canonical documentation** and **historical/versioned records**. Historical Alpha, Sprint, Release and dated change documents remain traceability artifacts and must not be read as the current repository state.
+`test passed != experiment DATA != accepted EVID != interpretation`.
 
-## Source of truth
+## Aktuelle wissenschaftliche Fassung
 
-When documents disagree, use this order:
+- [Publication Current Pointer](../research/publications/CURRENT.md)
+- [Vollmanuskript 1.7](../research/publications/2026-09-15_recursive-epistemics_v1.7/MANUSCRIPT.md)
+- [Forschungsbericht 1.7](../research/publications/2026-09-15_recursive-epistemics_v1.7/FORSCHUNGSBERICHT.md)
+- [Vorgänger 1.6](../research/publications/2026-09-15_recursive-epistemics_v1.6/README.md)
+- [Frozen empirical baseline 1.5](../research/publications/FROZEN_V1.5.md)
 
-1. code, configuration schemas and machine-readable contracts on `main`;
-2. current CI and verification artifacts;
-3. experiment `DATA/` and accepted `EVID` records;
-4. the canonical documents listed below;
-5. historical/versioned documents;
-6. narrative or AI-generated interpretation.
+Der Publication Viewer folgt dem maschinenlesbaren `research/publications/catalog.json` und soll stets die aktuelle WIP-Fassung öffnen. Frozen/historical Editions bleiben separat zitierbar.
 
-Passing tests prove engineering behavior covered by those tests; they do not automatically establish a scientific claim.
+## Dokumentbereiche
 
-## Current baseline — 2026-09-13
+| Bereich | Rolle | typische Autorität |
+|---|---|---|
+| `00-governance/` | Dokument- und Informationsgovernance | normativ für Dokumentstatus |
+| `01-guides/` | Anleitungen | operativ, nicht wissenschaftliche Evidenz |
+| `02-architecture/` | Architektur-/Subsystemverträge | technischer Design-/Vertragsstand |
+| `03-dashboard/` | Dashboard, API, UI | technischer Interfacevertrag |
+| `04-integration/` | Integrationsnotizen | kontext-/versionsabhängig |
+| `05-quality/` | Quality, Integrity, Gates | normative Qualitätsregeln |
+| `06-research/` | Forschungspositionierung | Interpretation/Methodik |
+| `07-changelog/` | datierte Änderungen | historische Entwicklungsprovenienz |
+| `08-roadmap/` | Roadmap/TODO | Planung, niemals Ergebnisnachweis |
+| `09-sprints/` | Sprintstände | historisch/zeitgebunden |
+| `10-releases/` | Releaseakten | releasebezogene Provenienz |
+| `11-readme/` | frühere README-Blöcke | historisch |
+| `12-updates/` | Integrations-/Update-Snapshots | zeitgebunden |
+| `99-archive/` | Altmaterial | archiviert/historisch |
 
-- canonical branch: `main`
-- package version: `0.6.0a2`
-- latest local full-suite snapshot: **~1130 passed, 7 skipped, 26 pre-existing failures** (missing CSS files, sklearn dependency, platform-specific)
-- last recorded browser suite: **5 passed** with Chromium
-- current `main` HEAD: active development branch
-- Research Catalog / variable-projection-dimension merge: `85e7209509b348bf7912dde01d3d9ebb078a2e61`
-- latest fully completed pre-merge `main` CI baseline: **success** (run #598)
-- Python matrix: **3.11 / 3.12 / 3.13**
-- Black, Ruff, Pylint, Pre-Commit, Mypy, Pyright, Security, Scientific Integrity, wheel and Docker checks remain mandatory CI gates
-- **0 active release-blocking backlog items**
-- post-merge CI is authoritative for the merged baseline; do not describe it as fully green until the corresponding `main` run completes
-- GitHub `main` is canonical; the configured Hugging Face mirror is synchronized from this branch after repository changes
-- Live dashboard Space: https://huggingface.co/spaces/superdigger/Brain-5D-Space
-- historical experiment DATA/EVID remains unchanged by documentation or registry cleanup
+Jede einzelne Datei wird zusätzlich durch `scripts/audit_document_governance.py` maschinenlesbar klassifiziert.
 
-Historical `EXP-GEN-0009` to `EXP-GEN-0012` artifacts remain untouched. They recorded zero observable activity under the older probe contract. Current instrumentation measures published spike IDs plus tick, neuron and synaptic-event activity and persists those fields in new experiment DATA.
+## Kanonische aktuelle Dokumente
 
-## Canonical current documents
+### Governance / Qualität
 
-| Area | Canonical document |
-| --- | --- |
-| Project overview | [`../README.md`](../README.md) |
-| Architecture | [`02-architecture/ARCHITECTURE.md`](02-architecture/ARCHITECTURE.md) |
-| Adaptive Wesen body view | [`02-architecture/WESEN_ADAPTIVE_BODY.md`](02-architecture/WESEN_ADAPTIVE_BODY.md) |
-| Neural Symbiosis / multi-network embodiment | [`02-architecture/NEURAL_SYMBIOSIS.md`](02-architecture/NEURAL_SYMBIOSIS.md) |
-| Profile & Identitaet / technical Wesen profiles | [`02-architecture/PROFILE_IDENTITY.md`](02-architecture/PROFILE_IDENTITY.md) |
-| MSBA / modality-specific pathways and energy homeostasis | [`02-architecture/MSBA.md`](02-architecture/MSBA.md) |
-| Storage format | [`02-architecture/B5D_FORMAT.md`](02-architecture/B5D_FORMAT.md) |
-| Real-body embodiment | [`02-architecture/EMBODIMENT_REAL_BODY.md`](02-architecture/EMBODIMENT_REAL_BODY.md) |
-| Learning preparation | [`02-architecture/LEARNING_PREPARATION_STUDIO.md`](02-architecture/LEARNING_PREPARATION_STUDIO.md) |
-| Connectome-informed embodiment | [`02-architecture/CONNECTOME_EMBODIMENT.md`](02-architecture/CONNECTOME_EMBODIMENT.md) |
-| Dashboard | [`03-dashboard/DASHBOARD.md`](03-dashboard/DASHBOARD.md) |
-| API reference | [`03-dashboard/API_REFERENCE.md`](03-dashboard/API_REFERENCE.md) |
-| v0.6 acceptance contract | [`08-roadmap/V06_ACCEPTANCE.md`](08-roadmap/V06_ACCEPTANCE.md) |
-| Quality gate | [`05-quality/QUALITY_GATE.md`](05-quality/QUALITY_GATE.md) |
-| Research positioning & evidence program | [`06-research/RESEARCH_POSITIONING_AND_EVIDENCE_PROGRAM.md`](06-research/RESEARCH_POSITIONING_AND_EVIDENCE_PROGRAM.md) |
-| Development roadmap | [`08-roadmap/ROADMAP.md`](08-roadmap/ROADMAP.md) |
-| Current TODO | [`08-roadmap/TODO.md`](08-roadmap/TODO.md) |
-| Research roadmap | [`08-roadmap/RESEARCH_ROADMAP.md`](08-roadmap/RESEARCH_ROADMAP.md) |
-| Research/evidence system | [`../research/README.md`](../research/README.md) |
-| Security | [`../SECURITY.md`](../SECURITY.md) |
-| Contribution workflow | [`../CONTRIBUTING.md`](../CONTRIBUTING.md) |
+- [Document Governance](00-governance/DOCUMENT_GOVERNANCE.md)
+- [Research Integrity Gate](05-quality/RESEARCH_INTEGRITY_GATE.md)
+- [Quality Gate](05-quality/QUALITY_GATE.md)
 
-## Current research-registry contract
+### Architektur
 
-The normal research workflow loads canonical base registries plus deterministic fragments:
+- [Architecture](02-architecture/ARCHITECTURE.md)
+- [Scientific Contracts Alpha.3](02-architecture/SCIENTIFIC_CONTRACTS_ALPHA3.md) — versionsgebundener Vertrag, nicht alleinige Current-Übersicht
+- [Adaptive Wesen Body](02-architecture/WESEN_ADAPTIVE_BODY.md)
+- [Neural Symbiosis](02-architecture/NEURAL_SYMBIOSIS.md)
+- [MSBA](02-architecture/MSBA.md)
+- [Profile & Identity](02-architecture/PROFILE_IDENTITY.md)
+- [Real-body Embodiment](02-architecture/EMBODIMENT_REAL_BODY.md)
+- [Connectome-informed Embodiment](02-architecture/CONNECTOME_EMBODIMENT.md)
+- [Storage / B5D Format](02-architecture/B5D_FORMAT.md)
 
-- `research/registry/questions.yaml`
-- `research/registry/questions.*.yaml`
-- `research/registry/hypotheses.yaml`
-- `research/registry/hypotheses.*.yaml`
+### Roadmap
 
-Duplicate identifiers fail closed. MSBA questions/hypotheses are first-class entries rather than side documentation. The Experiment Workflow exposes them through a searchable Research Catalog and distinguishes questions with frozen/preregistered operational protocols from exploratory-only questions. Exploratory execution must not be confused with confirmatory evidence.
+- [Development Roadmap](08-roadmap/ROADMAP.md)
+- [Scientific Maturity Roadmap](08-roadmap/SCIENTIFIC_MATURITY_ROADMAP.md)
+- [Research Roadmap](08-roadmap/RESEARCH_ROADMAP.md)
+- [TODO](08-roadmap/TODO.md)
+- [v0.6 Acceptance](08-roadmap/V06_ACCEPTANCE.md)
 
-The repository-wide RQ/H audit reports references that are not represented in the canonical registry without rewriting historical sources. The workflow catalog API also publishes backend-owned `domain`, `status`, `evidence_status` and `experiment_progress` facets. Accepted canonical registry changes regenerate current catalog/evidence/open-question reports through the report workflow; experiment-owned historical reports are never rewritten.
+### Research
 
-## Current dashboard terminology
+- [Research canonical index](../research/README.md)
+- [Current Scientific State](../research/CURRENT_SCIENTIFIC_STATE.md)
+- [Integrity & Attribution](../research/INTEGRITY_AND_ATTRIBUTION.md)
+- [Related Work](../research/RELATED_WORK.md)
+- [Research Registry](../research/registry/)
+- [Research Schemas](../research/schemas/)
+- [Experiments](../research/experiments/)
 
-- **Overview** — summary/runtime context;
-- **Control** — explicit operator controls;
-- **Research** — research/evidence workflows and searchable Research Catalog;
-- **Settings** — configuration;
-- **Wesen** — adaptive primarily observational live machine-body visualization with explicit fail-closed sensor controls;
-- **Embodiment** — technical sensor/device/actuator/body-boundary surface;
-- **Neural Symbiosis** — observational multi-network/virtual-pipeline view inside `Wesen` with experiment-only lifecycle controls;
-- **MSBA** — modality-specific audio/vision/digital gateway contract plus resource/energy model inside Neural Symbiosis;
-- **Release/Gate** — footer-accessed release-readiness surface;
-- **Network** — no longer a primary user-facing workspace.
+## Wissenschaftliche Grenzen
 
-The shared browser read-aloud service supports natural German speech with start, pause, resume and stop controls in the File Viewer, expanded chat file cards and the latest Research Chat answer. Unsupported browsers leave the underlying text available and disable speech controls.
+- Engineering-Reife und Scientific Maturity sind getrennte Achsen.
+- Der 5D-Adressraum ist keine bewiesene Überlegenheitsbehauptung.
+- Gateway-/Pipeline-Erreichbarkeit ist kein erlerntes Tool Use.
+- technische Identität/Behavior Profile ist kein psychologisches Selbst.
+- Stage 6 besitzt Mechanismen und Kandidaten, aber noch keine abgeschlossene Semantization, kein etabliertes hierarchisches Predictive Coding und kein vollständig validiertes generatives Weltmodell.
+- Stage 10 erzeugt keinen Bewusstseinsclaim.
+- AI-generierte oder unbestätigte Quellen dürfen nicht als Autorität behandelt werden.
 
-`Wesen`, Neural Symbiosis and MSBA must never be described as proof of consciousness, self-awareness, causal tool use or learned sensor control. Reachability, recurrence, loopback, morphology, pipeline availability, energy allocation candidates and gateway candidates are engineering/observation state until a preregistered experiment produces reviewable DATA/EVID.
+## Historische Dokumente
 
-## Scientific boundary for Neural Symbiosis, MSBA and dimensions
+Historische Dokumente bleiben absichtlich im Repository, wenn sie für Provenienz, Digests, alte Links oder Reproduzierbarkeit benötigt werden. Ihr Vorhandensein bedeutet **nicht**, dass ihr Inhalt aktuell ist. Der Governance-Audit weist ihnen eine entsprechende Statusklasse zu.
 
-The multi-network layer is part of Embodiment, not a rewrite of the SNN core. Peripheral CNN/Transformer/RNN/GNN/memory/generative/custom networks and virtual systems such as logic or knowledge databases are connected only through explicit adapter/gateway contracts.
+Insbesondere gelten alte feste Testzahlen, frühere Branch-/Commitangaben, Alpha-/Sprint-Snapshots und ältere Publikationsversionen ausschließlich für ihren dokumentierten Zeitpunkt.
 
-MSBA specializes those gateway contracts by modality:
+## Pflege
 
-- audio: temporal-coherence features and candidate phase-weighted t-STDP;
-- vision: spatial multiplexing, fixed sparse target degree and candidate locality/information/resource structural growth;
-- digital: exact immutable payload outside the SNN, deterministic population representation and candidate meta-gating only;
-- resource pressure: normalized energy accounting, explicit estimate-vs-measurement provenance and deterministic NORMAL/CONSERVE/CRITICAL/SURVIVAL protection states.
-
-Current dimension rule:
-
-- MSBA/external projection spaces may declare **1–32 dimensions**;
-- the productive persisted SNN core remains **5D** for compatibility;
-- productive core >5D requires a separately versioned neuron-ID/storage representation, generalized spatial indexing, `.b5d` migration, canonical state/equivalence tests and preregistered experiments;
-- increased-dimensional projection experiments must not be mislabeled as productive-core N-D evidence.
-
-Current gateway rules:
-
-- open-set `NetworkAreaAdapter` contract;
-- framework-neutral peripheral implementations;
-- pipeline templates are disabled until explicitly instantiated;
-- Neural-Symbiosis and MSBA gateway learning/growth/allocation are disabled by default;
-- experiment-scoped gateway activation/lifecycle control is available only behind the existing research gates;
-- productive gateway activation remains locked;
-- gateway RNG belongs to an experiment runner and must be persisted;
-- endpoint reachability is not evidence of learned use;
-- fixed semantics are not imposed on the five MHRN axes;
-- measured joules are never inferred from normalized units without explicit calibration/provenance;
-- historical DATA/EVID is never rewritten to reflect new adapters.
-
-See [`02-architecture/NEURAL_SYMBIOSIS.md`](02-architecture/NEURAL_SYMBIOSIS.md) and [`02-architecture/MSBA.md`](02-architecture/MSBA.md).
-
-## Experiment-data compacting rule
-
-Large experiment series preserve raw observations in immutable/compressed artifacts. Bounded projections such as `runs.json` and `analysis/ai_packet.json` exist for UI/review/small-model consumption and must carry provenance back to the raw record. Compact files are not replacements for scientific raw DATA.
-
-## Directory map
-
-- `01-guides/` — operator/developer guides;
-- `02-architecture/` — architecture and subsystem contracts;
-- `03-dashboard/` — dashboard contracts and UI/API documentation;
-- `04-integration/` — integration notes and overlays;
-- `05-quality/` — quality and release-gate definitions;
-- `06-research/` — research notes and canonical research-positioning documents;
-- `07-changelog/` — dated change records;
-- `08-roadmap/` — current roadmap/TODO plus historical phase-specific roadmaps;
-- `09-sprints/` — time-boxed sprint records;
-- `10-releases/` — release checklists and notes;
-- `11-readme/` — historical README blocks;
-- `12-updates/` — update manifests and integration snapshots;
-- `99-archive/` — explicitly archived legacy material.
-
-## Historical-document rule
-
-A filename containing a previous version, `ALPHA*`, `SPRINT*`, `V0*`, `UPDATE*`, `RELEASE_*`, or an entry under `99-archive/` is historical unless a canonical current document links to it as an active contract. Old test counts, commit hashes, milestones and implementation status in those files are not current project metadata.
-
-Historical experiment DATA must not be silently rewritten when instrumentation improves. Corrections belong in code, canonical documentation and new versioned experiments.
-
-## Documentation maintenance
-
-Avoid copying fixed test counts or commit hashes into many current documents. Where a fixed number is useful, date it and treat it as a verified snapshot. Scientific conclusions must cite experiment/evidence artifacts, not README prose or dashboard state alone.
-
-**Current development policy:** `main` is canonical. Short-lived branches start from current `origin/main`, are verified before merge, and should be deleted after merge when repository tooling permits. A branch with no commits ahead of `main` contains nothing to integrate and must not be merged merely to make the branch list empty.
-
-## Full-stack File Viewer completion — 2026-09-08
-
-The repository File Viewer is the canonical renderer for Dashboard, Research and Chat file cards. It now includes bounded media metadata, bounded PDF metadata/text when local tools are available, optional local Graphviz/PlantUML-to-SVG conversion, DOCX page/section markers, RIS export with selectable citation styles, and a responsive split editor with live preview and optimistic-lock conflict diff. Scientific artifacts remain read-only and local converters never upload source material.
+Neue Dokumente unter `docs/` oder `research/` müssen durch die Governance-Regeln klassifizierbar sein. Änderungen triggern `Publication Integrity`. Wenn eine Datei wissenschaftlich autoritativ sein soll, muss ihre Rolle explizit im Governance-/Registry-System verankert werden; bloße Platzierung in einem prominenten Ordner reicht nicht.

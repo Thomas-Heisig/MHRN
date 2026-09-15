@@ -82,7 +82,9 @@ def test_duplicate_traces_from_same_episode_do_not_inflate_replay_budget() -> No
     assert plan.used_budget == 2
 
 
-def test_replay_can_form_semantic_concept_only_when_independent_support_is_replayed() -> None:
+def test_replay_can_form_semantic_concept_only_when_independent_support_is_replayed() -> (
+    None
+):
     scheduler = EpisodicReplayScheduler(max_events=4)
     semantic = SemanticMemory(
         min_episode_support=3,

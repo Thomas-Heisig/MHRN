@@ -4,22 +4,20 @@ on:
   push:
     branches: [main]
     paths:
-      - 'research/publications/**'
-      - 'research/INTEGRITY_AND_ATTRIBUTION.md'
-      - 'research/RELATED_WORK.md'
-      - 'research/CURRENT_SCIENTIFIC_STATE.md'
-      - 'docs/05-quality/RESEARCH_INTEGRITY_GATE.md'
-      - 'docs/08-roadmap/SCIENTIFIC_MATURITY_ROADMAP.md'
+      - 'docs/**'
+      - 'research/**'
       - 'releases/current.json'
       - 'project_identity.json'
       - 'src/dashboard/static/scientific-progress.json'
       - 'src/dashboard/static/scientific-progress.js'
       - 'scripts/check_scientific_maturity_integrity.py'
+      - 'scripts/audit_document_governance.py'
       - 'scripts/publication_bundle.py'
       - 'scripts/browser_server.py'
       - 'src/dashboard/**'
       - 'tests/test_publication_integration.py'
       - 'tests/test_publication_v16_scientific_maturity.py'
+      - 'tests/test_publication_v17_document_governance.py'
       - 'tests/test_scientific_progress_integrity.py'
       - 'tests/browser/publication.spec.js'
       - '.pre-commit-config.yaml'
@@ -42,10 +40,12 @@ jobs:
           python-version: '3.13'
       - name: Materialize publication LFS objects
         run: git lfs pull --include='research/publications/**' --exclude=''
-      - name: Verify original files, complete archive and complete reader
+      - name: Verify original files, complete archive and frozen reader history
         run: python scripts/publication_bundle.py
       - name: Install project test tools
         run: python -m pip install -e '.[dev,docs]'
+      - name: Declare and review every docs and research file
+        run: python scripts/audit_document_governance.py --strict-review
       - name: Scientific maturity and attribution gate
         run: python scripts/check_scientific_maturity_integrity.py
       - name: Publication integration regression tests
@@ -54,7 +54,8 @@ jobs:
           tests/test_publication_integration.py
           tests/test_dashboard_file_manager.py
           tests/test_publication_v16_scientific_maturity.py
+          tests/test_publication_v17_document_governance.py
           tests/test_scientific_progress_integrity.py
           -q
-      - name: Ensure verification does not rewrite scientific artifacts
-        run: git diff --exit-code -- research/publications
+      - name: Ensure verification does not rewrite frozen scientific artifacts
+        run: git diff --exit-code -- research/publications/2026-09-13_recursive-epistemics_v1.5 research/publications/2026-09-15_recursive-epistemics_v1.6

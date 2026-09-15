@@ -61,7 +61,9 @@ def test_publication_restores_late_windows_and_microsoft_voices() -> None:
     assert "width: 100%" in refinements
 
 
-def test_publication_scholar_reader_has_persistent_navigation_and_reading_flow() -> None:
+def test_publication_scholar_reader_has_persistent_navigation_and_reading_flow() -> (
+    None
+):
     scholar = _read(MODULES / "publication-scholar-tools.js")
     layout = _read(STYLES / "publication-reader.css")
 
@@ -134,7 +136,9 @@ def test_selected_dissertation_text_can_be_sent_to_existing_research_ai() -> Non
     assert "requestSubmit" in bootstrap
 
 
-def test_reader_normalizes_explicit_markdown_anchors_without_enabling_raw_html() -> None:
+def test_reader_normalizes_explicit_markdown_anchors_without_enabling_raw_html() -> (
+    None
+):
     polish = _read(MODULES / "publication-reader-polish.js")
     frontend = _read(STATIC / "frontend" / "index.js")
     styles = _read(STYLES / "publication-reader-polish.css")
@@ -156,13 +160,17 @@ def test_ask_ai_selection_assistant_is_relocated_outside_contained_reader() -> N
 
     assert "panel.append(assistant)" in polish
     assert 'assistant.dataset.floatingSelectionAssistant = "true"' in polish
-    assert '> .pub-selection-assistant[data-floating-selection-assistant="true"]' in styles
+    assert (
+        '> .pub-selection-assistant[data-floating-selection-assistant="true"]' in styles
+    )
     assert "position: fixed !important" in styles
     assert "top: calc(var(--pub-app-offset" in styles
     assert "[hidden]" in styles
     assert "display: none !important" in styles
     assert "[data-pub-selection-ai]:hover" in styles
-    assert index_css.rstrip().endswith('@import url("./publication-reader-polish.css");')
+    assert index_css.rstrip().endswith(
+        '@import url("./publication-reader-polish.css");'
+    )
 
 
 def test_file_viewer_bridge_uses_public_workspace_router_contract() -> None:
@@ -186,16 +194,18 @@ def test_frontend_initializes_scholar_tools_after_publication_reader() -> None:
     frontend = _read(STATIC / "frontend" / "index.js")
 
     assert (
-        'import { initPublicationScholarTools } from "./modules/publication-scholar-bootstrap.js";'
-        in frontend
+        "import { initPublicationScholarTools } from "
+        '"./modules/publication-scholar-bootstrap.js";' in frontend
     )
     assert (
-        'import { initPublicationReaderPolish } from "./modules/publication-reader-polish.js";'
-        in frontend
+        "import { initPublicationReaderPolish } from "
+        '"./modules/publication-reader-polish.js";' in frontend
     )
-    assert frontend.index("initPublicationPanel();") < frontend.index(
-        "initPublicationScholarTools();"
-    ) < frontend.index("initPublicationReaderPolish();")
+    assert (
+        frontend.index("initPublicationPanel();")
+        < frontend.index("initPublicationScholarTools();")
+        < frontend.index("initPublicationReaderPolish();")
+    )
 
 
 def test_reader_layout_is_scoped_and_resets_nested_main_sidebar_offset() -> None:
@@ -209,9 +219,11 @@ def test_reader_layout_is_scoped_and_resets_nested_main_sidebar_offset() -> None
     assert "--pub-reader-gap: 0px" in layout
     assert '@import url("./publication-reader.css");' in index_css
     assert '@import url("./publication-reader-voice-math.css");' in index_css
-    assert index_css.index("publication-reader.css") < index_css.index(
-        "publication-reader-voice-math.css"
-    ) < index_css.index("publication-reader-polish.css")
+    assert (
+        index_css.index("publication-reader.css")
+        < index_css.index("publication-reader-voice-math.css")
+        < index_css.index("publication-reader-polish.css")
+    )
 
 
 def test_reader_has_one_sticky_chrome_layer_and_contiguous_document_geometry() -> None:

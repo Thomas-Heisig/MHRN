@@ -43,3 +43,17 @@
     limitations: Profile effects require preregistered controls and must not alter safety or scientific gates.
   created: '2026-09-10'
   updated: '2026-09-10'
+- id: RQ-S6-SEM-002
+  domain: Memory
+  question: Liefert die semantische Prototypkonsolidierung von MHRN gegenüber gleich budgetiertem Raw-Experience-Replay einen messbaren Vorteil bei der Reduktion katastrophalen Vergessens?
+  relevance: Trennt einen möglichen Semantik-Effekt von einem allgemeinen Replay-Effekt unter präregistrierten, budget-gematchten Kontrollen.
+  literature: []
+  hypotheses: []
+  evidence: []
+  status: open
+  answer:
+    current: null
+    confidence: none
+    limitations: EXP-S6-SEM-CL-002 is preregistered but not executed; its contrast-based decision rules must not be treated as evidence before authorized execution and human review.
+  created: '2026-09-15'
+  updated: '2026-09-15'

@@ -1,0 +1,196 @@
+{
+  "schema_version": 1,
+  "effective_date": "2026-09-15",
+  "description": "High-authority overrides for paths whose scientific role must never depend only on filename heuristics. All remaining files are declared by explicit zone rules in scripts/audit_document_governance.py.",
+  "overrides": {
+    "docs/README.md": {
+      "kind": "documentation_index",
+      "status": "current",
+      "authority": "canonical_docs_navigation",
+      "mutability": "editable_with_review",
+      "citation": "navigation_only_cite_underlying_document",
+      "evidence_role": "navigation_not_evidence",
+      "rationale": "Canonical current entrypoint for docs; historical snapshots are intentionally not repeated here."
+    },
+    "research/README.md": {
+      "kind": "research_index",
+      "status": "current",
+      "authority": "canonical_research_navigation",
+      "mutability": "editable_with_review",
+      "citation": "navigation_only_cite_underlying_research_object",
+      "evidence_role": "navigation_not_evidence",
+      "rationale": "Canonical current entrypoint for research objects and scientific boundaries."
+    },
+    "research/CURRENT_SCIENTIFIC_STATE.md": {
+      "kind": "scientific_state",
+      "status": "current",
+      "authority": "current_scientific_state_summary",
+      "mutability": "editable_with_review",
+      "citation": "cite_current_revision_and_underlying_sources",
+      "evidence_role": "summary_not_evidence_by_itself",
+      "rationale": "Short current-state projection; underlying registry, DATA and EVID remain authoritative."
+    },
+    "research/INTEGRITY_AND_ATTRIBUTION.md": {
+      "kind": "integrity_policy",
+      "status": "current",
+      "authority": "normative_research_integrity_policy",
+      "mutability": "editable_with_review",
+      "citation": "cite_current_revision",
+      "evidence_role": "policy_not_evidence",
+      "rationale": "Canonical provenance, attribution, self-reuse and AI-source policy."
+    },
+    "research/RELATED_WORK.md": {
+      "kind": "related_work_register",
+      "status": "current",
+      "authority": "verified_and_quarantined_source_register",
+      "mutability": "editable_with_source_review",
+      "citation": "cite_primary_sources_not_register_when_possible",
+      "evidence_role": "literature_context_not_project_evidence",
+      "rationale": "Separates verified related work from candidate and quarantined references."
+    },
+    "research/document_governance_overrides.json": {
+      "kind": "governance_configuration",
+      "status": "current",
+      "authority": "normative_document_governance_configuration",
+      "mutability": "editable_with_review",
+      "citation": "cite_governance_policy_not_configuration",
+      "evidence_role": "governance_not_evidence",
+      "rationale": "Explicit high-authority exceptions consumed by the exhaustive document governance audit."
+    },
+    "research/generate_reports.py": {
+      "kind": "report_generator",
+      "status": "current",
+      "authority": "derived_report_tooling",
+      "mutability": "editable_with_tests",
+      "citation": "cite_generated_source_data_and_tool_revision",
+      "evidence_role": "tool_not_evidence",
+      "rationale": "Generates derived research projections; generated output cannot outrank its sources."
+    },
+    "research/EXP-RETRY-AIRR-2026-0001.execution.json": {
+      "kind": "experiment_execution_receipt",
+      "status": "experimental",
+      "authority": "execution_record",
+      "mutability": "immutable_after_execution",
+      "citation": "cite_experiment_id_path_and_digest",
+      "evidence_role": "execution_data_not_accepted_evidence_by_itself",
+      "rationale": "Loose legacy execution receipt retained in place for provenance rather than moved destructively."
+    },
+    "research/stage4_specialized_neural_areas.md": {
+      "kind": "stage_research_summary",
+      "status": "current",
+      "authority": "stage4_interpretive_summary",
+      "mutability": "editable_with_source_review",
+      "citation": "cite_underlying_experiments_and_current_revision",
+      "evidence_role": "interpretation_with_data_links_not_evidence_by_itself",
+      "rationale": "Current Stage-4 synthesis; experiment DATA and registry objects remain authoritative."
+    },
+    "research/stage5_integrated_nervous_system.md": {
+      "kind": "stage_research_summary",
+      "status": "current",
+      "authority": "stage5_interpretive_summary",
+      "mutability": "editable_with_source_review",
+      "citation": "cite_underlying_experiments_and_current_revision",
+      "evidence_role": "interpretation_with_data_links_not_evidence_by_itself",
+      "rationale": "Current Stage-5 synthesis; Full-Stack integration is separated from scientific EVID."
+    },
+    "research/publications/CURRENT.md": {
+      "kind": "publication_pointer",
+      "status": "current",
+      "authority": "canonical_current_publication_pointer",
+      "mutability": "editable_with_publication_revision",
+      "citation": "do_not_cite_pointer_cite_current_edition",
+      "evidence_role": "navigation_not_evidence",
+      "rationale": "Stable pointer that follows the current publication edition."
+    },
+    "research/publications/FROZEN_V1.5.md": {
+      "kind": "publication_pointer",
+      "status": "frozen",
+      "authority": "stable_frozen_empirical_baseline_pointer",
+      "mutability": "immutable_except_broken_link_repair",
+      "citation": "cite_frozen_edition_1.5",
+      "evidence_role": "navigation_to_frozen_empirical_baseline",
+      "rationale": "Permanent stable entrypoint to the immutable empirical edition 1.5."
+    },
+    "research/publications/2026-09-13_recursive-epistemics_v1.5": {
+      "kind": "publication",
+      "status": "frozen",
+      "authority": "historical_empirical_baseline",
+      "mutability": "immutable",
+      "citation": "cite_with_edition_and_campaign",
+      "evidence_role": "interpretation_bound_to_frozen_empirical_campaign",
+      "rationale": "Frozen 1.5 empirical publication baseline; historical files and digests must remain unchanged."
+    },
+    "research/publications/2026-09-15_recursive-epistemics_v1.6": {
+      "kind": "publication",
+      "status": "superseded",
+      "authority": "historical_integrative_predecessor",
+      "mutability": "immutable",
+      "citation": "cite_with_edition",
+      "evidence_role": "interpretation_only",
+      "rationale": "Immediate predecessor to 1.7; retained for traceability."
+    },
+    "research/publications/2026-09-15_recursive-epistemics_v1.7": {
+      "kind": "publication",
+      "status": "current_wip",
+      "authority": "current_integrative_manuscript",
+      "mutability": "versioned_editable_source_read_only_viewer",
+      "citation": "cite_as_work_in_progress_with_version",
+      "evidence_role": "interpretation_only_no_automatic_evid",
+      "rationale": "Current continuously revised publication shown read-only by the Publication Viewer."
+    },
+    "research/registry": {
+      "kind": "registry",
+      "status": "current",
+      "authority": "normative_research_registry",
+      "mutability": "editable_with_review",
+      "citation": "cite_exact_object_and_revision",
+      "evidence_role": "research_definition_not_evidence_by_itself",
+      "rationale": "Canonical RQ/H/claim/experiment registry definitions."
+    },
+    "research/schemas": {
+      "kind": "schema",
+      "status": "current",
+      "authority": "normative_schema",
+      "mutability": "editable_with_compatibility_review",
+      "citation": "cite_versioned_schema",
+      "evidence_role": "contract_not_evidence",
+      "rationale": "Machine-readable research contracts."
+    },
+    "research/experiments": {
+      "kind": "experiment",
+      "status": "experimental",
+      "authority": "experiment_artifact",
+      "mutability": "append_only_or_immutable_after_completion",
+      "citation": "cite_experiment_id_path_digest",
+      "evidence_role": "data_or_review_state_as_declared_by_manifest",
+      "rationale": "Experiment directories preserve execution provenance; completion does not imply accepted EVID."
+    },
+    "research/generated": {
+      "kind": "generated",
+      "status": "generated",
+      "authority": "generated_projection",
+      "mutability": "regenerable",
+      "citation": "cite_underlying_source_not_projection_when_possible",
+      "evidence_role": "projection_not_evidence_by_itself",
+      "rationale": "Derived reports and projections must point back to canonical sources."
+    },
+    "docs/05-quality": {
+      "kind": "quality_policy",
+      "status": "current",
+      "authority": "normative_quality_contract",
+      "mutability": "editable_with_review",
+      "citation": "cite_current_revision",
+      "evidence_role": "quality_contract_not_evidence",
+      "rationale": "Current quality and integrity requirements."
+    },
+    "docs/08-roadmap": {
+      "kind": "roadmap",
+      "status": "current",
+      "authority": "planning",
+      "mutability": "editable",
+      "citation": "cite_as_planning_not_result",
+      "evidence_role": "planning_only",
+      "rationale": "Roadmap/TODO material expresses plans and must not be read as achieved evidence."
+    }
+  }
+}

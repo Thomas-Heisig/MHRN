@@ -1,258 +1,117 @@
-<!-- stage4-specialized-areas -->
-## Stage 4 — Spezialisierte neuronale Areale
+# MHRN Research — kanonischer wissenschaftlicher Einstieg
 
-Der technische Stage-4-Vertrag ist auf `feature/stage4-specialized-neural-areas`
-als durchgängiger Audio-/Vision-/Digitalpfad ergänzt. Die E01–E05-Serie vom
-14.09.2026 wird als DATA-Grundlage referenziert; eine automatische EVID-Promotion
-findet nicht statt. Der 100k-Neuronen-/10M-Synapsen-Wert ist ein aggregierter
-Topologievertrag und ausdrücklich kein behaupteter dynamischer Großskalierungslauf.
+**Stand:** 15. September 2026  
+**Aktuelle wissenschaftliche Arbeitsfassung:** Recursive Epistemics **1.7 WIP**  
+**Frozen empirical baseline:** Recursive Epistemics **1.5**  
+**Grundregel:** `implementation test != DATA != reviewed EVID != interpretation`
 
-Details: `research/stage4_specialized_neural_areas.md` und
-`research/generated/verification/specialized_neural_areas_reference_alpha3.json`.
+Dieses README ist ab Fassung 1.7 ein **Navigations- und Autoritätsindex**. Frühere Statusblöcke, feste Testzahlen, Branchstände und zeitgebundene Forschungszusammenfassungen bleiben in ihren historischen Dokumenten erhalten, werden hier aber nicht mehr als aktueller Stand wiederholt.
 
-<!-- alpha3-current-state -->
-## Wissenschaftlicher Stand: Alpha.3 / Publikationsfassung 1.5
+## Aktuelle Publikation
 
-Kampagne `EXP-EMP-20260913-A3` auf Commit `531f12335ebeebd7242beb4ba0bd95e81b3dfb8e`.
+- [CURRENT](publications/CURRENT.md)
+- [Vollmanuskript 1.7](publications/2026-09-15_recursive-epistemics_v1.7/MANUSCRIPT.md)
+- [Forschungsbericht 1.7](publications/2026-09-15_recursive-epistemics_v1.7/FORSCHUNGSBERICHT.md)
+- [Worte des Autors](publications/2026-09-15_recursive-epistemics_v1.7/AUTHOR_POSITION.md)
+- [Beitrags-/Neuheitsmatrix](publications/2026-09-15_recursive-epistemics_v1.7/CONTRIBUTION_MAP.md)
+- [Frozen 1.5](publications/FROZEN_V1.5.md)
+- [Vorgänger 1.6](publications/2026-09-15_recursive-epistemics_v1.6/README.md)
+- [Publikationskatalog](publications/catalog.json)
 
-70 ausgewiesene Ausfuehrungen; Status `{'completed': 70}`; 2043 gespeicherte Datensaetze. 25 menschliche Vorlagen werden nicht als Experimente ausgegeben. Die Unterscheidung zwischen Simulation, Grenzaudit, Komponentenfunktion und menschlicher Entscheidung bestimmt die Reichweite aller Aussagen.
+Der Publication Viewer folgt `publications/catalog.json`. Ab 1.7 ist das direkte Reader-Ziel das aktuelle `MANUSCRIPT.md`.
 
-Ein protokollierter Lauf, eine bestandene Softwarepruefung und eine wissenschaftliche Annahmeentscheidung bleiben verschiedene Objekte. Die Ausgabe dokumentiert auch verfehlte wissenschaftliche Erfolgskriterien.
+## Aktueller wissenschaftlicher Status
 
-Aktueller Einstieg: `research/publications/2026-09-13_recursive-epistemics_v1.5/README.md` (repository-relative). Detaillierte Architektur: `docs/02-architecture/SCIENTIFIC_CONTRACTS_ALPHA3.md`. Die nachfolgenden aelteren Statusabschnitte sind datierte Historie, keine aktuelle CI- oder EVID-Freigabe.
+- [Current Scientific State](CURRENT_SCIENTIFIC_STATE.md)
+- [Scientific-Maturity-Manifest](../src/dashboard/static/scientific-progress.json)
+- [Scientific Maturity Roadmap](../docs/08-roadmap/SCIENTIFIC_MATURITY_ROADMAP.md)
+- [Research Integrity Gate](../docs/05-quality/RESEARCH_INTEGRITY_GATE.md)
+- [Integrity & Attribution](INTEGRITY_AND_ATTRIBUTION.md)
+- [Related Work](RELATED_WORK.md)
 
-## Naming update — 2026-09-08
+Engineering-Reife und wissenschaftliche Reife werden getrennt geführt. Kein Stage-Score ist eine Kognitions-, Intelligenz- oder Bewusstseinskennzahl.
 
-MHRN / Multi-Scale Homeostatic Recurrence Network. Publication: Recursive Epistemics / Rekursive Epistemik. [Migration and compatibility](../NAMING.md). Historical scientific artifacts remain unchanged. Platform completion is recorded separately from requested names.
+## Kanonische Forschungsobjekte
 
-# MHRN Scientific Evidence Framework (B5D-SEF)
+| Bereich | Rolle | Autorität |
+|---|---|---|
+| `registry/` | RQ, Hypothesen, Claims und verwandte Register | normativ für Forschungsdefinitionen |
+| `schemas/` | maschinenlesbare Forschungsverträge | normativ für Struktur/Validierung |
+| `protocols/` | Methoden-/Protokollverträge | normativ für jeweilige Ausführung |
+| `experiments/` | Ausführungsartefakte, DATA, Receipts, Reviews | experimentbezogen; nicht automatisch EVID |
+| `literature/` | strukturierte Literatur und Quellenprovenienz | Quellenindex |
+| `generated/` | generierte Reports/Projektionen | abgeleitet, nicht allein evidenztragend |
+| `specifications/` | technische/wissenschaftliche Spezifikationen | Design-/Methodenvertrag |
+| `ethics/` | Ethik-/Wohlfahrtsregeln | normative Forschungsgrenze |
+| `critique/` | Kritik, Gegenargumente, Limits | kritische Interpretation |
+| `external_review/` | externe/standardisierte Reviewstruktur | Reviewstatus, keine automatische EVID |
+| `publications/` | versionierte wissenschaftliche Fassungen | Interpretation mit Editionsprovenienz |
 
-Ein wissenschaftliches Evidenzsystem für MHRN, das technische Implementierung, Experimentdaten, akzeptierte Evidenz und Interpretation strikt trennt.
+Alle Dateien unter `research/` und `docs/` werden zusätzlich durch `scripts/audit_document_governance.py` klassifiziert. Hochautoritative Ausnahmen stehen in `document_governance_overrides.json`.
 
-## Aktueller technischer Stand — 2026-09-07
-
-Die Forschungsinfrastruktur auf `main` umfasst Scientific Integrity Gate, AI-Provenienz und Causal-Taint, Shadow-/Replay-Kontrollen, deterministische Statistics Engine, epistemischen Provenienzgraph, getrennte Operator-/Experiment-/Dev-Storage-Scopes sowie protocol-driven Science Runner.
-
-Aktueller Engineering-Snapshot:
-
-- der aktuelle lokale Fast-Suite-Snapshot umfasst **849 bestanden, 5 uebersprungen und 3 fehlgeschlagen**; 32 Slow-Tests wurden abgewaehlt;
-- die drei bekannten Fehler betreffen Windows-Zeilenenden sowie eine erwartete Fehlermeldung bei unsicheren Publikationspfaden; der lokale Snapshot ist daher nicht vollstaendig gruen;
-- der letzte aufgezeichnete Browser-Snapshot umfasst **5 bestandene Chromium-Tests**;
-- Research Catalog / variable-projection-dimension integration ist nach `main` gemergt;
-- Merge-Commit: `85e7209509b348bf7912dde01d3d9ebb078a2e61`;
-- der letzte vollständig abgeschlossene `main`-CI-Baseline-Lauf vor diesem Merge war #598 und erfolgreich;
-- die nachfolgenden `main`-CI-Läufe sind die maßgebliche Verifikation für den neuen Stand und dürfen erst nach Abschluss als grün bezeichnet werden;
-- Python 3.11, 3.12 und 3.13, Typprüfung, Format/Lint, Security, Scientific Integrity, Wheel und Docker bleiben verpflichtende Gates.
-
-Diese technischen Ergebnisse sind **kein wissenschaftlicher Wirksamkeitsnachweis**.
-
-Die aktuelle Dashboard-Oberflaeche bietet ausserdem einen gemeinsamen natuerlichen Vorlesemodus: Der File Viewer, aufgeklappte Chat-Dateikarten und die letzte Research-Chat-Antwort koennen ueber die deutsche Browser-Sprachsynthese vorgelesen, pausiert, fortgesetzt und angehalten werden. Markdown-Formatierung, Links und URLs werden fuer die Spracheingabe geglaettet; ohne Browser-Unterstuetzung bleibt der Text normal lesbar.
-
-## Forschungsfragen- und Hypothesen-Registry
-
-Der normale Forschungsworkflow lädt die Basiseinträge plus deterministische Registry-Fragmente:
-
-- `research/registry/questions.yaml` und `questions.*.yaml`;
-- `research/registry/hypotheses.yaml` und `hypotheses.*.yaml`.
-
-Doppelte IDs werden fail-closed abgelehnt. MSBA-Fragen und -Hypothesen sind dadurch normale, im Experiment Workflow erreichbare Forschungsobjekte. Die UI bietet einen durchsuchbaren Research Catalog statt einer einzigen langen Pulldown-Liste und unterscheidet `OPERATIONAL` von `EXPLORATORY`.
-
-Der Workflow-Katalog liefert die Facetten `domain`, `status`, `evidence_status` und `experiment_progress` aus dem Backend. Nach akzeptierten kanonischen Registry-Aenderungen werden die aktuellen Katalog-, Evidence- und Open-Question-Reports automatisch neu erzeugt; historische experiment-eigene Reports bleiben unveraendert.
-
-`OPERATIONAL` bedeutet, dass ein passender eingefrorener/preregistrierter Experimentvertrag existiert. `EXPLORATORY` darf einen protokollierten Lauf erzeugen, aber **keine bestätigende Evidenz vortäuschen oder automatisch nach EVID promoten**. Noch nicht operationalisierte RQ/H bleiben in TODO und Roadmap, bis Hypothese, Kontrollen, Stopping Rule, Preregistration und Runner vollständig vorhanden sind.
-
-Der Repository-Audit kann `RQ-*`- und `H-*`-Referenzen repo-weit gegen die kanonische Registry prüfen, ohne historische Dokumente umzuschreiben.
-
-## Wissenschaftliche Grundhierarchie
+## Forschungsworkflow
 
 ```text
-Implementierung
+Research Question
     ↓
-registrierte Forschungsfrage
+Hypothesis
     ↓
-Hypothese
+frozen / preregistered protocol
     ↓
-preregistriertes Experiment
+Experiment
     ↓
 DATA
     ↓
-statistische / methodische Auswertung
+analysis + limitations
     ↓
-Human Review
+human / independent review
     ↓
-EVID
+EVID decision
     ↓
-Claim-Status / Antwort
+bounded claim
 ```
 
-Kurzform:
+Explorative oder technische Läufe dürfen DATA erzeugen, aber keine bestätigende Evidenz vortäuschen. Boundary Audits prüfen Grenzen/Verträge und sind nicht automatisch direkte Tests einer inhaltlichen Hypothese.
 
-```text
-implementation test != experiment data != accepted evidence != interpretation
-```
+## Aktuelle priorisierte Forschung
 
-## Network-Impulse-Korrektur
+1. Stage 0: Modell-/Integrator-/Parameterablationen.
+2. Stage 2: unabhängige Replikation, Zielskalierung und Störungsrobustheit.
+3. Stage 3: held-out Multi-Seed-Plastizität, Ressourcen-/Langzeitstabilität.
+4. Stage 4: modality-specific vs. general matched controls, frozen/random/shuffle/lesion.
+5. Stage 5: Real-Device-/Closed-loop-, Sensor-Loss- und Actuator-No-Effect-Studien.
+6. Stage 6: Replay/Konsolidierung→Semantization, kausaler neuronaler Prediction Error, action-conditioned Mehrschritt-World-Model und Decision Benefit.
+7. Stage 7: self/other Interventionen und vollständige gekoppelte Checkpointäquivalenz.
+8. Dimensionsforschung: gematchte 2D/3D/4D/5D/6D/8D-Ablationen.
+9. Prior-Art-Prüfung potenzieller MHRN-Beiträge.
+10. externe Quellen-/Similarity-/Methodenprüfung vor formaler Einreichung.
 
-Die historischen `EXP-GEN-0009` bis `EXP-GEN-0012` bleiben unverändert. Sie dokumentieren korrekt, dass die damalige Output-orientierte Instrumentierung keine sichtbaren Spikes/Aktivierung aufgezeichnet hat.
+## Stage-6-Grenze
 
-Der aktuelle Probe-Vertrag erfasst zusätzlich:
+Working-/episodische Speichergrundlagen, semantische Kandidaten, Replay-Verträge und Prediction-/World-Model-Infrastruktur sind **keine** abgeschlossene Semantization, **kein** etabliertes hierarchisches Predictive Coding und **kein** vollständig validiertes generatives Weltmodell. Diese stärkeren Aussagen benötigen mechanismusspezifische Interventionen und Replikation.
 
-- ausgeführte Ticks;
-- alle publizierten Spike-IDs;
-- aktivierte Neuronen;
-- vollständige Spike-Sequenz und Sequenz-Digest;
-- ausgelieferte synaptische Events;
-- Ticks mit synaptischer Aktivität;
-- maximale Zahl gleichzeitig adressierter Synapsenstrom-Ziele;
-- Gesamtzahl der Synapsen;
-- erste/letzte Antwortlatenz;
-- Propagationstiefe;
-- Recurrent-/Return-Events und Return-Latenz;
-- State-Digests vor und nach dem Lauf.
+## 5D- und Skalierungsgrenze
 
-Wissenschaftlich korrekt ist ein **neues Multi-Seed-Experiment** auf der reparierten Instrumentierung, nicht das rückwirkende Umschreiben historischer DATA.
+Der 5D-Adressraum ist eine technische Repräsentation und offene Hypothese. Eine Überlegenheit ist nicht etabliert. Aggregierte Topologiegrößen sind nicht automatisch dynamische Großskalierungsexperimente. Dimensions- und Skalierungsclaims benötigen gematchte kontrollierte Läufe.
 
-## Experimentdaten und Kompaktierung
+## Gateway-/Embodiment-Grenze
 
-Große Runs dürfen nicht dadurch wissenschaftlich unbrauchbar werden, dass Dashboard oder kleine lokale KI-Modelle eine sehr große `runs.json` vollständig laden müssen.
+Endpoint- oder Pipeline-Erreichbarkeit ist kein erlerntes Tool Use. Sensor-Discovery ist keine Aktivierung. Content Gateway und Compute Backend werden getrennt behandelt, damit Informationsherkunft/Kausalität nicht mit Hardware-/Backendausführung vermischt wird.
 
-Daher gilt:
+## Forschungsintegrität
 
-1. Rohbeobachtungen bleiben in immutable/compressed Raw-Artefakten erhalten.
-2. `runs.json` darf eine bounded aktuelle Projektion enthalten.
-3. `analysis/ai_packet.json` enthält eine kompakte, für KI-Review geeignete Projektion.
-4. Jede Projektion muss auf Raw-Artefakt, Digest und Provenienz zurückverweisen.
-5. Kompaktierung darf keine Rohdaten löschen oder Evidenz ersetzen.
-6. AI-Berichte dürfen nur aus den ihnen tatsächlich bereitgestellten Daten Schlüsse ziehen.
+MHRN befürwortet kumulative, möglichst frei weiterverwendbare Wissenschaft. Daraus folgt eine strikte Herkunftspflicht: externe Methode, MHRN-Vorarbeit, eigene Transformation und ungeklärte Neuheit werden getrennt markiert. Unbestätigte Quellen bleiben quarantined. Interne Audits reduzieren Plagiats-/Attributionsrisiken, zertifizieren aber keine Plagiatsfreiheit.
 
-## Neural Symbiosis und MSBA als Forschungsbehandlung
+## Historische Daten und Publikationen
 
-`Neural Symbiosis` erweitert den Embodiment-Rand um offene periphere neuronale und virtuelle Areale. MSBA spezialisiert diese Grenze für Audio, Vision, Digitalpfade sowie Energie-/Ressourcensteuerung. Diese Ebenen sind **keine wissenschaftliche Evidenz an sich**.
+Historische DATA, EVID-Entscheidungen, veröffentlichte Digests und frozen Publikationen werden nicht rückwirkend an neue Instrumentierung oder Interpretation angepasst. Verbesserte Messung führt zu einem neuen Experiment.
 
-Mögliche Areale umfassen u. a. CNN, Vision Transformer, Transformer, LSTM/GRU/RNN, GNN, Modern Hopfield, Reservoir/ESN, MLP, VAE/GAN/Diffusion, Autoencoder, periphere SNNs, multimodale und neuro-symbolische Netzwerke sowie Custom Adapter. Virtuelle Systeme wie Logic Engines, Datenbanken, Knowledge Graphs oder externe Speicher können über explizite Adapter teilnehmen.
+- [Frozen 1.5](publications/FROZEN_V1.5.md)
+- [Publikationsarchiv](publications/README.md)
+- [Experimente](experiments/)
 
-MSBA/externe Projektionsräume dürfen aktuell **1–32 Dimensionen** deklarieren. Der produktive persistierte SNN-Core bleibt jedoch 5D. Eine echte Core-N-D-Erweiterung benötigt ein separates versioniertes Neuron-ID-/Storage-Format, `.b5d`-Migration, generalisierte Spatial-Indizes und 5D-Äquivalenztests. Projektions-N-D darf daher nicht als produktives Core-N-D-Evidenzresultat bezeichnet werden.
+## Dokumentgovernance
 
-Für wissenschaftliche Runs gelten zusätzliche Regeln:
+Siehe [Dokument- und Forschungsgovernance](../docs/00-governance/DOCUMENT_GOVERNANCE.md).
 
-- exakte Adapter-/Modell-/Framework-Version erfassen;
-- Modellartefakt und Hash erfassen;
-- Endpoint-Identität und Modalität erfassen;
-- Encoding/Decoding-Vertrag erfassen;
-- Gateway-Parameter und aktivierte Mechanismen erfassen;
-- RNG Seed/State persistieren;
-- Gateway-Zustand von Core-Synapsenzustand trennen;
-- Frozen-, Random-, Timing-Shuffle- und Information-Destroyed-Kontrollen vorsehen;
-- Pipeline-Erreichbarkeit niemals als gelerntes Tool Use interpretieren;
-- Gateway-Plastizität außerhalb eines expliziten preregistrierten Experimentpfads deaktiviert lassen.
-
-Der zunächst vorgeschlagene globale Homöostase-Reward
-
-\[
-R(t)=\frac{1}{N}\sum_i(\rho_{target}-\bar\rho_i)
-\]
-
-ist **keine validierte Standarddefinition**, weil gegenläufige Populationseffekte sich gegenseitig aufheben können. Künftige Experimente sollen signierte, absolute, quadratische und lokale Fehlermaße sowie getrennte Task-/Homöostase-Rewards vergleichen.
-
-## Empfohlener Forschungsablauf
-
-1. Forschungsfrage, Hypothesen, Bedingungen, Seeds, Metriken und Ausschlussregeln registrieren.
-2. Source Freeze und sauberen Git-Baum herstellen.
-3. Netzwerkmodus, AI-Exposure und periphere Modelle explizit deklarieren.
-4. Experiment unter `research/experiments/EXP-*/` ausführen.
-5. DATA-Artefakte mit Digest-Provenienz speichern.
-6. Prüfen, ob die Instrumentierung die hypothesenrelevanten Zustände tatsächlich beobachtet.
-7. Deterministische Statistik aus der Statistics Engine erzeugen.
-8. Limitationen und Ausschlüsse dokumentieren.
-9. EVID erst nach unabhängiger Wiederholung und Human Review registrieren.
-10. Historische negative oder unvollständige DATA niemals nachträglich an verbesserte Instrumentierung anpassen.
-
-## Unmittelbarer Forschungsbedarf
-
-### 1. Registry-Operationalisierung
-
-- [x] Alle 94 kanonischen Forschungsfragen besitzen einen eindeutigen operationalen Protokollvertrag. Direkt instrumentierbare Fragen verwenden registrierte Runner; methodische, ethische oder noch nicht kausal instrumentierte Fragen verwenden explizite `boundary_audit`-Verträge (`direct_test_of_hypothesis=false`, `scientific_evidence=false`).
-- Kontrollen, Stopping Rules, Outcomes und Preregistrations vor confirmatory execution einfrieren;
-- Audit als CI-Artefakt veröffentlichen;
-- aktuelle generierte Katalog-/Evidence-/Open-Question-Ansichten nach Registry-Änderungen neu erzeugen, historische Experimentberichte aber nicht umschreiben.
-
-### 2. Post-Repair Network-Impulse-Validierung
-
-- recurrence-off gegen recurrence-on;
-- mehrere unabhängige Seeds;
-- vollständige Spike-/Synapsen-/Tick-Metriken;
-- Reproduzierbarkeit/Determinismus prüfen;
-- Review vor möglicher EVID-Promotion.
-
-### 3. Closed-loop Embodiment EVID
-
-Die technische Closed-loop-Infrastruktur existiert. Erforderlich bleibt die kontrollierte Evidence-Promotion mit Replay/Open-Loop-, Sensor-Loss- und Actuator-No-Effect-Kontrollen.
-
-### 4. Neural Symbiosis / MSBA Gateway Experiments
-
-- experiment-only Runner Adapter;
-- frozen/random/shuffled Controls;
-- `RQ-MSBA-E01` bis `RQ-MSBA-E05` mit hypothesenspezifischen Protokollen durchführen;
-- noisy-area suppression;
-- sensor-lesion compensation;
-- alternative homeostatische Reward-/Error-Formulierungen;
-- Multi-Seed-Validierung vor Tool-Use-Claims.
-
-### 5. Dimensionsforschung
-
-- preregistrierten N-D-Projektions-Sweep implementieren;
-- dimension-shuffled/reduced/increased/topology-matched Kontrollen vergleichen;
-- produktives Core-N-D erst nach versionierter Storage-/ID-Migration untersuchen;
-- frühere 5D-Experimente nicht als N-D-Evidenz reinterpretieren.
-
-### 6. Runtime-/Zeitkalibrierung
-
-Target-Hz, Achieved-Hz, Real-Time-Ratio, `dt` und Tick-Kosten systematisch benchmarken. Pacing-Änderungen dürfen bei identischem `dt` und identischen Inputs nicht unbemerkt Simulationsergebnisse verändern.
-
-## Sechs feste Objekttypen
-
-| Typ | Beispiel | Bedeutung |
-|-----|----------|-----------|
-| `RQ` | `RQ-SNN-001` | Research Question |
-| `H` | `H-SNN-001-A` | Hypothese |
-| `EXP` | `EXP-2026-0001` | Experiment |
-| `EVID` | `EVID-2026-01` | Evidenz |
-| `SRC` | `SRC-IZHIKEVICH-2003` | Literaturquelle |
-| `CLAIM` | `CLAIM-SNN-001` | Wissenschaftliche Aussage |
-
-## Verzeichnisstruktur
-
-```text
-research/
-├── registry/           # YAML-Register und Fragmente
-├── experiments/        # Manifeste, DATA, Reports und Reviews
-├── literature/         # Literaturdatenbank
-├── generated/          # automatisch generierte Berichte
-└── schemas/            # JSON-Schemata
-```
-
-## Verifikation
-
-```bash
-python -m pytest -q
-python research/generate_reports.py
-python scripts/verify_network_activity.py
-```
-
-Technische Reports dürfen `implemented`, `integrated` oder `verified` tragen. `evidenced` ist ausschließlich für reproduzierbare, protokollierte und reviewte Forschungsergebnisse vorgesehen.
-
-## Wissenschaftliche Abhandlung und Publikationsarchiv
-
-[KI - Die geliehene Intelligenz: vollstaendige wissenschaftliche Abhandlung](publications/README.md)
-
-Die Research-Kategorie `publications` enthaelt Word, Markdown, Literatur, Forschungsfragen, Hypothesen, Ergebnisdarstellungen, Originalmanuskripte und alle Begleitdateien. Die kapitelweise Lesefassung ist im zentralen File Viewer vollstaendig zugaenglich. Datierte Originale bleiben unveraendert und schreibgeschuetzt; kanonische Register und Evidenzfreigaben werden nicht ersetzt.
-
-## Kognition, Bewusstseinskritik und vorsorgliche Ethik
-
-[Programm und Messgrenzen](protocols/COGNITION_CONSCIOUSNESS.md), [22 kanonische Fragen](registry/questions.cognition.yaml), [Hypothesen](registry/hypotheses.cognition.yaml), [38 Kritikthemen](critique/CONSCIOUSNESS_CRITIQUE.md), [Ethikrichtlinie](ethics/AI_WELFARE_POLICY.md), [Quellennutzung](literature/COGNITION_SOURCES.md), [aktuelle Abhandlung](publications/README.md). Die neue Batterie hat prospektive Entwürfe und getestete Instrumente, aber keine validierten nativen Adapter. Geschützte Starts und automatische EVID-Promotion sind blockiert; alte DATA/EVID bleiben unverändert.
-
-## Human Review Inbox
-
-The Research dashboard exposes an explicit Human Review Inbox through `GET /api/research/reviews`. It aggregates open AIRR and explicitly review-blocked artifacts. A reviewer must provide identity, decision and comments. Decisions are persisted only through the existing append-only review writers and therefore never rewrite the reviewed artifact or automatically create scientific evidence.
-
-The UI is intended to make review completion operationally simple without weakening epistemic controls: `accepted_as_interpretation` means the human accepts an interpretation record, not that a hypothesis or research question is confirmed. Evidence promotion remains a separate, explicit workflow.
+Neue Dateien müssen eine nachvollziehbare Rolle besitzen. Das Governance-Gate klassifiziert rekursiv jede reale Datei nach Status, Autorität, Mutabilität, Zitierregel und Evidenzrolle. Physische Verschiebungen historischer Artefakte erfolgen nur, wenn Provenienz und Referenzen erhalten bleiben.
