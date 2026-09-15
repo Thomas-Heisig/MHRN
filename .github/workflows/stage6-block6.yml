@@ -1,0 +1,42 @@
+name: Stage 6 block 6
+
+on:
+  push:
+    branches: [feature/stage6-multistep-world-model-20260915]
+    paths:
+      - src/memory/multistep_world_model.py
+      - src/memory/__init__.py
+      - tests/test_multistep_world_model.py
+      - tests/test_memory_layer.py
+      - tests/test_runtime_bundle.py
+      - .github/workflows/stage6-block6.yml
+
+permissions:
+  contents: read
+
+jobs:
+  block6:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.13"
+          cache: pip
+      - name: Install project
+        run: python -m pip install -e ".[dev]"
+      - name: Multistep world-model regressions
+        run: >-
+          python -m pytest -q
+          tests/test_multistep_world_model.py
+          tests/test_memory_layer.py
+          tests/test_runtime_bundle.py
+      - name: Formatting and lint
+        run: |
+          python -m black --check src/memory/multistep_world_model.py src/memory/__init__.py tests/test_multistep_world_model.py
+          python -m ruff check src/memory/multistep_world_model.py src/memory/__init__.py tests/test_multistep_world_model.py
+      - name: Strict typing
+        run: |
+          python -m mypy src/memory/multistep_world_model.py
+          python -m pyright src/memory/multistep_world_model.py

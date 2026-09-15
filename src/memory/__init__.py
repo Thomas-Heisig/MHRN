@@ -9,6 +9,13 @@ from .episodic_replay import (
     consolidate_replay,
 )
 from .layer import MemoryWorldModel, MemoryWorldModelError
+from .multistep_world_model import (
+    ActionConditionedWorldModel,
+    MultistepWorldModelError,
+    RolloutResult,
+    RolloutStep,
+    StateAction,
+)
 from .neural_episodic import (
     NeuralEpisode,
     NeuralEpisodicMemory,
@@ -26,6 +33,7 @@ from .store import EpisodeRecord, MemoryStore, MemoryStoreError, PredictionRecor
 from .world_model import TransitionWorldModel, WorldPrediction
 
 __all__ = [
+    "ActionConditionedWorldModel",
     "EpisodeRecord",
     "EpisodicReplayError",
     "EpisodicReplayScheduler",
@@ -33,6 +41,7 @@ __all__ = [
     "MemoryStoreError",
     "MemoryWorldModel",
     "MemoryWorldModelError",
+    "MultistepWorldModelError",
     "NeuralEpisode",
     "NeuralEpisodicMemory",
     "NeuralEpisodicMemoryError",
@@ -41,10 +50,13 @@ __all__ = [
     "ReplayConsolidationResult",
     "ReplayMode",
     "ReplayPlan",
+    "RolloutResult",
+    "RolloutStep",
     "SemanticConcept",
     "SemanticMatch",
     "SemanticMemory",
     "SemanticMemoryError",
+    "StateAction",
     "TransitionWorldModel",
     "WorldPrediction",
     "consolidate_replay",
