@@ -24,7 +24,9 @@ from src.memory.neural_episodic import (
 )
 
 
-def _frame(tick: int, *, sensor_id: str = "sensor", modality: str = "vision") -> SensorFrame:
+def _frame(
+    tick: int, *, sensor_id: str = "sensor", modality: str = "vision"
+) -> SensorFrame:
     return SensorFrame(sensor_id, tick, modality, {"cue": tick})
 
 
@@ -39,9 +41,7 @@ def test_partial_cue_recalls_matching_neural_episode_before_distractor() -> None
         {"spike_ids": (1, 2, 3, 4)}, _frame(1), _observation(1, "target")
     )
     memory.reset_episode("episode-b")
-    memory.record(
-        {"spike_ids": (8, 9, 10)}, _frame(2), _observation(2, "distractor")
-    )
+    memory.record({"spike_ids": (8, 9, 10)}, _frame(2), _observation(2, "distractor"))
 
     matches = memory.recall((1, 2), sensor_id="sensor", modality="vision")
 
@@ -65,7 +65,9 @@ def test_context_filter_prevents_cross_sensor_recall() -> None:
 def test_capacity_retention_and_restore_are_deterministic() -> None:
     memory = NeuralEpisodicMemory(run_id="run", capacity=2, retention_ticks=3)
     for tick in (1, 2, 5):
-        memory.record({"spike_ids": (tick,)}, _frame(tick), _observation(tick, str(tick)))
+        memory.record(
+            {"spike_ids": (tick,)}, _frame(tick), _observation(tick, str(tick))
+        )
 
     assert [item.tick for item in memory.episodes] == [5]
     restored = NeuralEpisodicMemory.from_state_dict(memory.state_dict())
