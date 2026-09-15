@@ -18,7 +18,7 @@
       "snapshot": "publications/2026-09-15_recursive-epistemics_v1.7",
       "manifest": "publications/2026-09-15_recursive-epistemics_v1.7/manifest.json",
       "authority": "interpretation_only_work_in_progress",
-      "read_only": false,
+      "read_only": true,
       "automatic_evidence_promotion": false,
       "predecessor": "PUB-RECURSIVE-EPISTEMICS-20260915-V1.6",
       "inherits_empirical_edition": "PUB-RECURSIVE-EPISTEMICS-20260913-V1.5",
