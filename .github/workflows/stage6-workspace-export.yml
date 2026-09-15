@@ -1,0 +1,30 @@
+name: Stage 6 source snapshot
+
+on:
+  push:
+    branches: [feature/stage6-semantic-world-model-20260915]
+    paths: [.github/workflows/stage6-workspace-export.yml]
+
+permissions:
+  contents: read
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Export source objects without credentials or working files
+        run: |
+          git bundle create "$RUNNER_TEMP/stage6-source.bundle" HEAD
+          git rev-parse HEAD > "$RUNNER_TEMP/stage6-source.txt"
+      - uses: actions/upload-artifact@v7
+        with:
+          name: stage6-source
+          path: |
+            ${{ runner.temp }}/stage6-source.bundle
+            ${{ runner.temp }}/stage6-source.txt
+          retention-days: 1

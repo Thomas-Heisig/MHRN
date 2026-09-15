@@ -1,0 +1,44 @@
+name: Stage 6 block 2
+
+on:
+  push:
+    branches: [feature/stage6-semantic-world-model-20260915]
+    paths:
+      - src/memory/neural_episodic.py
+      - src/memory/__init__.py
+      - src/experience/engine.py
+      - tests/test_neural_episodic_memory.py
+      - .github/workflows/stage6-block2.yml
+
+permissions:
+  contents: read
+
+jobs:
+  block2:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.13"
+          cache: pip
+      - name: Install project
+        run: python -m pip install -e ".[dev,docs]"
+      - name: Neural episodic and experience regressions
+        run: >-
+          python -m pytest -q
+          tests/test_neural_episodic_memory.py
+          tests/test_experience_engine.py
+          tests/test_memory_layer.py
+          tests/test_stage5_integration.py
+      - name: Black diagnostic
+        run: python -m black --diff --check src/memory/neural_episodic.py src/memory/__init__.py src/experience/engine.py tests/test_neural_episodic_memory.py
+      - name: Ruff diagnostic
+        if: always()
+        run: python -m ruff check src/memory/neural_episodic.py src/memory/__init__.py src/experience/engine.py tests/test_neural_episodic_memory.py
+      - name: Strict typing
+        if: always()
+        run: |
+          python -m mypy src/memory/neural_episodic.py src/experience/engine.py
+          python -m pyright src/memory/neural_episodic.py src/experience/engine.py
