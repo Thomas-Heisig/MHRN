@@ -52,6 +52,12 @@
 | Simões (2017) |  | RQ-CNS-103, RQ-CNS-105, RQ-CNS-111 | open |
 | Vladu (2026) |  | RQ-CNS-112, RQ-CNS-114 | open |
 | Vetcha (2026) |  | RQ-LIFE-001, RQ-GEN-001 | open |
+| Soares (2015) |  | RQ-SAFE-001, RQ-SAFE-003, RQ-SAFE-007, RQ-SAFE-009 | open |
+| Orseau (2016) |  | RQ-SAFE-003, RQ-SAFE-004, RQ-SAFE-008 | open |
+| Hadfield-Menell (2017) |  | RQ-SAFE-001, RQ-SAFE-003, RQ-SAFE-004, RQ-SAFE-007, RQ-SAFE-008, RQ-SAFE-009 | open |
+| Amodei (2016) |  | RQ-SAFE-002, RQ-SAFE-005 | open |
+| Turner (2021) |  | RQ-SAFE-006 | open |
+| Langosco (2022) |  | RQ-SAFE-002 | open |
 
 ---
 *Automatisch generiert am 2026-09-15*

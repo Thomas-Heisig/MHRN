@@ -99,6 +99,15 @@
 | `RQ-MSBA-E03` | `H-MSBA-E03-A` | 0 | — | — | offen |
 | `RQ-MSBA-E04` | `H-MSBA-E04-A` | 0 | — | — | offen |
 | `RQ-MSBA-E05` | `H-MSBA-E05-B`, `H-MSBA-E05-A` | 0 | — | — | offen |
+| `RQ-SAFE-001` | `H-SAFE-001-A` | 2 | — | — | offen |
+| `RQ-SAFE-002` | `H-SAFE-002-A` | 1 | — | — | offen |
+| `RQ-SAFE-003` | `H-SAFE-003-A` | 3 | — | — | offen |
+| `RQ-SAFE-004` | `H-SAFE-004-A` | 2 | — | — | offen |
+| `RQ-SAFE-005` | `H-SAFE-005-A` | 1 | — | — | offen |
+| `RQ-SAFE-006` | `H-SAFE-006-A` | 1 | — | — | offen |
+| `RQ-SAFE-007` | `H-SAFE-007-A` | 2 | — | — | offen |
+| `RQ-SAFE-008` | `H-SAFE-008-A` | 2 | — | — | offen |
+| `RQ-SAFE-009` | `H-SAFE-009-A` | 2 | — | — | offen |
 
 ## Zusammenfassung
 

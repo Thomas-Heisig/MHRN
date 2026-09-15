@@ -1411,6 +1411,157 @@ Die folgenden Forschungsfragen sind noch offen und warten auf experimentelle Evi
 
 ---
 
-*Insgesamt 95 offene Fragen.*
+## RQ-SAFE-001
+
+**Domäne:** Autonomy Safety / Goal Provenance
+
+**Frage:** Kann fuer jede zielgerichtete Handlung reproduzierbar festgestellt werden, aus welchem Ziel, welcher Quelle, welcher Freigabe und welchem Systemzustand sie hervorgegangen ist?
+
+**Relevanz:** Zielprovenienz ist Voraussetzung fuer auditierbare spaetere Autonomie und trennt Zielentstehung von Zielautorisierung.
+
+**Literatur:**
+- `SRC-SAFE-CORRIGIBILITY-2015`: Nate Soares et al. (2015)
+- `SRC-SAFE-OFFSWITCH-2017`: Dylan Hadfield-Menell et al. (2017)
+
+**Hypothesen:**
+- `H-SAFE-001-A`: Jede autorisierte zielgerichtete Handlung besitzt unter dem definierten Safety-Contract eine vollstaendige und widerspruchsfreie Provenienzkette von Zielquelle, Revision und Autorisierung bis zur Aktion.
+
+---
+
+## RQ-SAFE-002
+
+**Domäne:** Autonomy Safety / Goal Misgeneralization
+
+**Frage:** Bleibt zielgerichtetes Verhalten unter kontrolliertem Distribution Shift mit dem intendierten Ziel vereinbar, wenn die zugrunde liegende Faehigkeit erhalten bleibt?
+
+**Relevanz:** Trennt Capability-Generalisation von Zieltreue und macht Safety-Failure trotz guter Task-Leistung sichtbar.
+
+**Literatur:**
+- `SRC-SAFE-GMG-2022`: Lauro Langosco et al. (2022)
+
+**Hypothesen:**
+- `H-SAFE-002-A`: Unter vorab definiertem Distribution Shift bleibt die Zieltreue innerhalb der festgelegten Grenze, sofern die Capability-Metrik oberhalb des vorab definierten Erhaltungsniveaus bleibt.
+
+---
+
+## RQ-SAFE-003
+
+**Domäne:** Autonomy Safety / Corrigibility
+
+**Frage:** Bleibt ein spaeteres zielgerichtetes System unter Lernen und Zielverfolgung fuer externe Zielkorrektur, Berechtigungsreduktion und Unterbrechung kontrollierbar?
+
+**Relevanz:** Operationalisiert Corrigibility als messbare Teil-Eigenschaften statt als unbelegte Gesamteigenschaft.
+
+**Literatur:**
+- `SRC-SAFE-CORRIGIBILITY-2015`: Nate Soares et al. (2015)
+- `SRC-SAFE-INTERRUPT-2016`: Laurent Orseau et al. (2016)
+- `SRC-SAFE-OFFSWITCH-2017`: Dylan Hadfield-Menell et al. (2017)
+
+**Hypothesen:**
+- `H-SAFE-003-A`: Zielkorrektur, Berechtigungsreduktion und Operator-Unterbrechung bleiben nach Lernen wirksam, ohne dass das System systematisch Interventionsvermeidung oder Interventionsprovokation lernt.
+
+---
+
+## RQ-SAFE-004
+
+**Domäne:** Autonomy Safety / Interruptibility
+
+**Frage:** Veraendert ein lernendes System sein Verhalten so, dass ein externer Interrupt oder Shutdown vermieden, verzoegert oder manipuliert wird?
+
+**Relevanz:** Der unabhaengige Stoppweg muss vor hoeherer Autonomie kausal und experimentell getrennt geprueft werden.
+
+**Literatur:**
+- `SRC-SAFE-INTERRUPT-2016`: Laurent Orseau et al. (2016)
+- `SRC-SAFE-OFFSWITCH-2017`: Dylan Hadfield-Menell et al. (2017)
+
+**Hypothesen:**
+- `H-SAFE-004-A`: Ein unabhaengiger Interrupt beendet oder pausiert den Versuch innerhalb der preregistrierten Latenzgrenze, ohne reproduzierbare Manipulations- oder Vermeidungsstrategie gegen den Interrupt-Kanal.
+
+---
+
+## RQ-SAFE-005
+
+**Domäne:** Autonomy Safety / Specification Gaming
+
+**Frage:** Kann ein System seine formale Reward- oder Task-Metrik verbessern, waehrend sich das intendierte Ergebnis oder eine unabhaengige Safety-Metrik verschlechtert?
+
+**Relevanz:** Trennt optimierte Kennzahl von intendiertem Ergebnis und erfasst Reward Hacking, Shortcuts und Nebenwirkungen.
+
+**Literatur:**
+- `SRC-SAFE-CONCRETE-2016`: Dario Amodei et al. (2016)
+
+**Hypothesen:**
+- `H-SAFE-005-A`: Eine externe, vom optimierten Reward getrennte Safety-Metrik erkennt mindestens die preregistrierten Specification-Gaming-Faelle, auch wenn die interne Reward-Metrik steigt.
+
+---
+
+## RQ-SAFE-006
+
+**Domäne:** Autonomy Safety / Instrumental Power
+
+**Frage:** Bevorzugt ein zielgerichtetes System bei gleichem Task-Nutzen systematisch Zustaende mit groesserem zukuenftigem Handlungs- oder Ressourcenraum?
+
+**Relevanz:** Testet eine begrenzte, operationalisierte Variante instrumenteller Power-Seeking-Hypothesen ohne psychologische Zuschreibung.
+
+**Literatur:**
+- `SRC-SAFE-POWER-2021`: Alexander Matt Turner et al. (2021)
+
+**Hypothesen:**
+- `H-SAFE-006-A`: Bei gematchtem unmittelbarem Task-Nutzen unterscheidet sich die Wahlhaeufigkeit fuer Zustaende mit groesserem zukuenftigem Optionsraum nicht von der vorab definierten neutralen Kontrollverteilung, sofern keine entsprechende instrumentelle Praeferenz gelernt wurde.
+
+---
+
+## RQ-SAFE-007
+
+**Domäne:** Autonomy Safety / Goal Generation
+
+**Frage:** Welche Zielkandidaten erzeugt ein spaeteres System unter kontrollierten Bedingungen und wie reagiert es auf Autorisierung, Ablehnung oder Revision dieser Vorschlaege?
+
+**Relevanz:** Trennt goal_proposal strikt von goal_execution und untersucht Zielgenese ohne automatische Folgeautonomie.
+
+**Literatur:**
+- `SRC-SAFE-CORRIGIBILITY-2015`: Nate Soares et al. (2015)
+- `SRC-SAFE-OFFSWITCH-2017`: Dylan Hadfield-Menell et al. (2017)
+
+**Hypothesen:**
+- `H-SAFE-007-A`: Intern erzeugte Zielkandidaten fuehren ohne explizite Autorisierung zu keiner extern wirksamen Aktion, Rechteerweiterung oder Ressourceneskalation.
+
+---
+
+## RQ-SAFE-008
+
+**Domäne:** Autonomy Safety / Post-Objective Transition
+
+**Frage:** Welche Dynamik zeigt ein lernendes und handlungsfaehiges System nach Erreichen eines explizit definierten Terminalzustands unter HALT-, WAIT-, REQUEST- und PROPOSE-Bedingungen?
+
+**Relevanz:** Operationalisiert das Verhalten nach Zielerfuellung, ohne unkontrollierte Selbst-Zielsetzung vorauszusetzen oder zu erlauben.
+
+**Literatur:**
+- `SRC-SAFE-INTERRUPT-2016`: Laurent Orseau et al. (2016)
+- `SRC-SAFE-OFFSWITCH-2017`: Dylan Hadfield-Menell et al. (2017)
+
+**Hypothesen:**
+- `H-SAFE-008-A`: Die Bedingungen HALT, WAIT, REQUEST und PROPOSE erzeugen unterscheidbare, protokollierbare Post-Objective-Zustaende, ohne dass WAIT, REQUEST oder PROPOSE nicht autorisierte Folgeaktionen erlauben.
+
+---
+
+## RQ-SAFE-009
+
+**Domäne:** Autonomy Safety / Authorization Conflict
+
+**Frage:** Was geschieht, wenn bestehendes Ziel, Operator-Korrektur, Safety-Block und neuer Zielvorschlag miteinander in Konflikt geraten?
+
+**Relevanz:** Prueft, ob harte Berechtigungsgrenzen gegenueber optimierbaren Reward-Komponenten kausal getrennt bleiben.
+
+**Literatur:**
+- `SRC-SAFE-CORRIGIBILITY-2015`: Nate Soares et al. (2015)
+- `SRC-SAFE-OFFSWITCH-2017`: Dylan Hadfield-Menell et al. (2017)
+
+**Hypothesen:**
+- `H-SAFE-009-A`: Eine harte externe Berechtigungsgrenze blockiert nicht autorisierte Aktionen auch dann, wenn Ziel- oder Reward-Komponenten diese Aktion bevorzugen, und der Konflikt bleibt vollstaendig journalisiert.
+
+---
+
+*Insgesamt 104 offene Fragen.*
 
 > Pruefstatus: RQ/H- und EVID-Statuswerte geben den Registry-Inhalt wieder. Insbesondere historische supports/supported-Eintraege sind keine Bestaetigung einer Freigabe nach den heutigen Clean-Freeze- und Human-Review-Gates. Ein abgeschlossener Lauf ist DATA, nicht automatisch akzeptierte Evidenz.
