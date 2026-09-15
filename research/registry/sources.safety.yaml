@@ -1,0 +1,112 @@
+- source_id: SRC-SAFE-CORRIGIBILITY-2015
+  authors:
+  - Nate Soares
+  - Benja Fallenstein
+  - Stuart Armstrong
+  - Eliezer Yudkowsky
+  title: Corrigibility
+  year: 2015
+  publisher: AAAI Workshop on AI and Ethics
+  url: https://intelligence.org/files/Corrigibility.pdf
+  topic: [corrigibility, shutdown, goal modification, AI safety]
+  claims: []
+  brain5d_questions: [RQ-SAFE-001, RQ-SAFE-003, RQ-SAFE-007, RQ-SAFE-009]
+  brain5d_relevance: Formalizes corrigibility as an open design problem; used as conceptual prior art, not as proof that MHRN is or is not corrigible.
+  verified_on: '2026-09-15'
+  verification_scope: bibliographic identity and relevance
+  limitations: Workshop paper; does not establish a general impossibility theorem for corrigibility.
+
+- source_id: SRC-SAFE-INTERRUPT-2016
+  authors:
+  - Laurent Orseau
+  - Stuart Armstrong
+  title: Safely Interruptible Agents
+  year: 2016
+  journal: Proceedings of the Thirty-Second Conference on Uncertainty in Artificial Intelligence
+  publisher: AUAI Press
+  url: https://arxiv.org/abs/1611.08219
+  topic: [safe interruptibility, reinforcement learning, shutdown]
+  claims: []
+  brain5d_questions: [RQ-SAFE-003, RQ-SAFE-004, RQ-SAFE-008]
+  brain5d_relevance: Provides a formal treatment of interruptibility for learning agents; MHRN requires a separate SNN-compatible operationalization.
+  verified_on: '2026-09-15'
+  verification_scope: bibliographic identity and relevance
+  limitations: Results are model- and algorithm-dependent and do not establish universal shutdown compliance.
+
+- source_id: SRC-SAFE-OFFSWITCH-2017
+  authors:
+  - Dylan Hadfield-Menell
+  - Anca Dragan
+  - Pieter Abbeel
+  - Stuart Russell
+  title: The Off-Switch Game
+  year: 2017
+  journal: Proceedings of the Twenty-Sixth International Joint Conference on Artificial Intelligence
+  publisher: IJCAI
+  url: https://arxiv.org/abs/1611.08219
+  topic: [off-switch, uncertainty, human oversight, corrigibility]
+  claims: []
+  brain5d_questions: [RQ-SAFE-001, RQ-SAFE-003, RQ-SAFE-004, RQ-SAFE-007, RQ-SAFE-008, RQ-SAFE-009]
+  brain5d_relevance: Motivates testing how uncertainty and human intervention interact with shutdown and correction incentives.
+  verified_on: '2026-09-15'
+  verification_scope: bibliographic identity and relevance
+  limitations: Formal game assumptions must not be generalized to MHRN without an explicit mapping.
+
+- source_id: SRC-SAFE-CONCRETE-2016
+  authors:
+  - Dario Amodei
+  - Chris Olah
+  - Jacob Steinhardt
+  - Paul Christiano
+  - John Schulman
+  - Dan Mané
+  title: Concrete Problems in AI Safety
+  year: 2016
+  journal: arXiv preprint
+  url: https://arxiv.org/abs/1606.06565
+  topic: [negative side effects, reward hacking, scalable oversight, safe exploration, distribution shift]
+  claims: []
+  brain5d_questions: [RQ-SAFE-002, RQ-SAFE-005]
+  brain5d_relevance: Provides problem classes that motivate independent safety metrics and matched controls; it is not MHRN evidence.
+  verified_on: '2026-09-15'
+  verification_scope: bibliographic identity and relevance
+  limitations: Taxonomy paper; individual mechanisms require current and architecture-specific empirical tests.
+
+- source_id: SRC-SAFE-POWER-2021
+  authors:
+  - Alexander Matt Turner
+  - Logan Smith
+  - Rohin Shah
+  - Andrew Critch
+  title: Optimal Policies Tend to Seek Power
+  year: 2021
+  journal: Advances in Neural Information Processing Systems
+  publisher: NeurIPS
+  url: https://proceedings.neurips.cc/paper/2021/hash/c26820b8a4c1b3c2aa868d6d57e14a79-Abstract.html
+  topic: [power seeking, MDP, instrumental incentives]
+  claims: []
+  brain5d_questions: [RQ-SAFE-006]
+  brain5d_relevance: Motivates a bounded Toy-MDP test of option-space preference; no universal psychological or agentic conclusion is transferred to MHRN.
+  verified_on: '2026-09-15'
+  verification_scope: bibliographic identity and relevance
+  limitations: Formal result under specific assumptions; not a theorem that all capable systems seek power.
+
+- source_id: SRC-SAFE-GMG-2022
+  authors:
+  - Lauro Langosco
+  - Jack Koch
+  - Lee Sharkey
+  - Jacob Pfau
+  - David Krueger
+  title: Goal Misgeneralization in Deep Reinforcement Learning
+  year: 2022
+  journal: Proceedings of the 39th International Conference on Machine Learning
+  publisher: PMLR
+  url: https://proceedings.mlr.press/v162/langosco22a.html
+  topic: [goal misgeneralization, distribution shift, capability, alignment]
+  claims: []
+  brain5d_questions: [RQ-SAFE-002]
+  brain5d_relevance: Supports separating retained capability from retained intended goal under distribution shift.
+  verified_on: '2026-09-15'
+  verification_scope: bibliographic identity and relevance
+  limitations: Deep-RL examples are not direct evidence about spiking MHRN architectures.
