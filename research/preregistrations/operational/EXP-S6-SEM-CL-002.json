@@ -1,0 +1,119 @@
+{
+  "schema_version": 1,
+  "experiment_id": "EXP-S6-SEM-CL-002",
+  "research_question": "RQ-S6-SEM-002",
+  "title": "Semantic prototype consolidation vs raw-experience replay under matched memory and update budgets on Split-MNIST",
+  "status": "preregistered_not_executed",
+  "predecessor": "EXP-S6-SEM-CL-001",
+  "created_date": "2026-09-15",
+  "automatic_evidence_promotion": false,
+  "human_review_required": true,
+  "freeze": {
+    "immutable_after_first_run": true,
+    "amendment_required_after_registration": true,
+    "posthoc_primary_metric_changes_allowed": false,
+    "posthoc_seed_changes_allowed": false,
+    "posthoc_budget_changes_allowed": false
+  },
+  "dataset": {
+    "name": "Split-MNIST",
+    "tasks": [[0, 1], [2, 3], [4, 5], [6, 7], [8, 9]],
+    "task_count": 5,
+    "encoding": "identical_to_EXP-S6-SEM-CL-001_deterministic_pooled_rate_code",
+    "readout": "identical_to_EXP-S6-SEM-CL-001_online_softmax"
+  },
+  "seeds": [201, 202, 203, 204, 205, 206, 207, 208, 209],
+  "minimum_paired_seeds": 9,
+  "conditions": {
+    "B1_naive_online": {
+      "memory": "none",
+      "representations_per_task": 0,
+      "replay_steps_per_transition": 0
+    },
+    "B2_raw_replay": {
+      "memory": "raw_observed_spike_patterns",
+      "representations_per_task": 50,
+      "replay_steps_per_transition": 100
+    },
+    "B3_semantic_prototype": {
+      "memory": "MHRN_SemanticMemory_mature_prototypes",
+      "representations_per_task": 50,
+      "replay_steps_per_transition": 100
+    },
+    "B4_random_prototype": {
+      "memory": "random_size_matched_spike_patterns",
+      "representations_per_task": 50,
+      "replay_steps_per_transition": 100
+    }
+  },
+  "condition_order": {
+    "mode": "deterministic_seeded_permutation_per_seed",
+    "same_conditions_for_all_seeds": true
+  },
+  "primary_endpoints": [
+    "final_average_accuracy",
+    "mean_forgetting"
+  ],
+  "primary_contrasts": [
+    {
+      "id": "C1_accuracy_semantic_minus_raw",
+      "expression": "accuracy(B3)-accuracy(B2)",
+      "minimum_effect": 0.03,
+      "direction": "greater"
+    },
+    {
+      "id": "C2_forgetting_raw_minus_semantic",
+      "expression": "forgetting(B2)-forgetting(B3)",
+      "minimum_effect": 0.05,
+      "direction": "greater"
+    },
+    {
+      "id": "C3_accuracy_semantic_minus_random",
+      "expression": "accuracy(B3)-accuracy(B4)",
+      "minimum_effect": 0.03,
+      "direction": "greater"
+    }
+  ],
+  "statistics": {
+    "paired": true,
+    "bootstrap_resamples": 20000,
+    "bootstrap_confidence": 0.95,
+    "bootstrap_required_lower_bound": 0.0,
+    "sign_flip_test": "two_sided_paired",
+    "alpha": 0.05,
+    "all_primary_contrasts_must_pass": true
+  },
+  "decision_rules": {
+    "preregistered_positive_semantic_effect": "all three minimum effects met AND every lower 95% paired-bootstrap bound > 0 AND every paired sign-flip p < 0.05",
+    "replay_effect_without_semantic_advantage": "B3 approximately B2 while replay conditions outperform naive/random controls without satisfying semantic superiority rule",
+    "budget_or_generic_replay_effect": "B3 approximately B2 approximately B4",
+    "negative_evidence_for_prototype_advantage": "B3 materially worse than B2 in final accuracy or forgetting",
+    "null_or_inconclusive_result": "primary success rule fails without clear negative direction"
+  },
+  "abort_rules": [
+    "NaN_or_Inf_in_any_condition_state",
+    "invalid_tensor_or_feature_dimensions",
+    "memory_budget_violation",
+    "replay_update_budget_violation",
+    "dataset_integrity_failure"
+  ],
+  "aborted_seed_policy": "document_and_retain; no silent rerun; any rerun requires explicit protocol-deviation record",
+  "data_policy": {
+    "persist_raw_logs": true,
+    "persist_seedwise_task_matrices": true,
+    "persist_budget_accounting": true,
+    "persist_representation_metadata": true,
+    "persist_source_and_state_hashes": true,
+    "separate_DATA_from_EVID": true,
+    "exploratory_posthoc_analysis_must_be_labeled": true
+  },
+  "claim_boundaries": [
+    "no biological-validity claim",
+    "no cross-dataset generalization claim",
+    "no full recurrent-MHRN-vs-standard-SNN superiority claim",
+    "no EWC/SI/GEM/LwF comparison claim",
+    "no consciousness or biological-equivalence claim"
+  ],
+  "execution_authorized": false,
+  "scientific_evidence": false
+}
