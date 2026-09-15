@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "experiment_id": "EXP-S6-SEM-CL-002",
+  "status": "execution_authorized_after_pre_execution_freeze",
+  "authorization_date": "2026-09-15",
+  "execution_authorized": true,
+  "base_preregistration_merge_sha": "6701e34e6da53405493f50093c1d5efe46f0496f",
+  "amendment_a1_merge_sha": "b478d655c23d3cc451a69476172ef02dc9e55fc7",
+  "runner_freeze_merge_sha": "e0e5a50a93cd8b4ed5d537e5b4fee05df48fd2ac",
+  "freeze_attestation_merge_sha": "67e0c0d463293a410c8c461bc81b5321f149cc06",
+  "freeze_manifest_path": "research/preregistrations/frozen/EXP-S6-SEM-CL-002-FREEZE.json",
+  "freeze_manifest_git_blob_sha": "8c5825de6a73a90f37b30a936937502e659c68cf",
+  "authorized_source_sha256": {
+    "research/preregistrations/amendments/EXP-S6-SEM-CL-002-A1.json": "ec4cdba651a9ac3b7e1bae4f85585bd991a3140d19e0dd503a34ffe13fe1d63b",
+    "research/preregistrations/operational/EXP-S6-SEM-CL-002.json": "52d19e47873032d52a66944b3aee5ff52e778fd9f29a864fb4fa54c5342d4a17",
+    "scripts/run_semantization_split_mnist_cl002.py": "172930f7b86daeef764867959f24b5f04a5473509c61c6af678dd9d1020608c0",
+    "src/memory/neural_episodic.py": "9365fe13e623614a8697b027433d34a69c10f864c99319851c7062078951939f",
+    "src/memory/semantic.py": "01bb586f77f512368ed4bbd9379a262b15f4518f94fa2df9db8d2143a2c0c1c5",
+    "src/research/continual_semantization.py": "3d1fbc58d0c38cde6714d68606bd85f1b73e7663d8472af79a280c6838084f6a",
+    "src/research/continual_semantization_controls.py": "7d1f2ef1aaa1b7abebce2a91d0c68f9ee69d499a8ff359535d45e9b638c960bb"
+  },
+  "authorization_scope": {
+    "dataset": "Split-MNIST",
+    "seeds": [201, 202, 203, 204, 205, 206, 207, 208, 209],
+    "conditions": [
+      "B1_naive_online",
+      "B2_raw_replay",
+      "B3_semantic_prototype",
+      "B4_random_prototype"
+    ],
+    "empirical_run_count": 1,
+    "parameter_changes_allowed": false,
+    "source_changes_allowed": false,
+    "success_rule_changes_allowed": false,
+    "post_hoc_confirmatory_changes_allowed": false
+  },
+  "requirements_at_execution": [
+    "runner_must_verify_all_freeze_manifest_sha256_entries_before_loading_MNIST",
+    "results_must_be_persisted_regardless_of_positive_null_negative_outcome",
+    "aborted_seed_policy_from_A1_must_be_applied",
+    "automatic_DATA_to_EVID_promotion_must_remain_disabled"
+  ],
+  "first_empirical_run_has_occurred": false,
+  "automatic_evidence_promotion": false,
+  "human_review_required": true
+}
