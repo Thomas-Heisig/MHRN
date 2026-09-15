@@ -70,24 +70,58 @@
   background: var(--pub-soft, color-mix(in srgb, currentColor 6%, transparent));
 }
 
+/* Dissertation mathematics should read like typeset mathematics, not like a
+ * dashboard card. Block equations therefore use whitespace instead of chrome. */
 #tab-publication #publication-panel .pub-reader-article mjx-container[jax="SVG"] {
   color: var(--pub-text, var(--ink, #18202b));
 }
 
 #tab-publication #publication-panel .pub-reader-article mjx-container[display="true"] {
-  margin-block: 1.25rem 1.45rem !important;
-  padding: 1.1rem clamp(1rem, 2.3vw, 1.65rem);
-  border: 1px solid var(--pub-border, var(--rule, #d9dee7));
-  border-radius: 10px;
-  background: color-mix(in srgb, var(--pub-surface, #fff) 94%, var(--pub-accent, #275df5));
+  display: block;
+  width: 100%;
+  margin: 1.45rem 0 1.65rem !important;
+  padding: .2rem 0;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  text-align: center;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: thin;
 }
 
 #tab-publication #publication-panel .pub-reader-article mjx-container[display="true"] > svg {
+  display: inline-block;
+  width: auto;
+  max-width: none;
   margin-inline: auto;
+  vertical-align: middle;
 }
 
 #tab-publication #publication-panel .pub-reader-article mjx-container:not([display="true"]) {
-  margin-inline: .05em;
+  margin-inline: .04em;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  vertical-align: -.12em;
+}
+
+/* The no-CDN fallback follows the same visual contract: mathematical source
+ * remains readable, but never appears inside a card-like field. */
+#tab-publication #publication-panel .pub-reader-article .fm-math-fallback-display {
+  display: block;
+  width: 100%;
+  margin: 1.35rem 0 1.55rem;
+  padding: .15rem 0;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  overflow-x: auto;
+  text-align: center;
+  white-space: pre;
 }
 
 @media (max-width: 760px) {
@@ -102,5 +136,10 @@
   #tab-publication #publication-panel #pub-reader-speech-mount .speech-reader-options-panel label {
     grid-template-columns: 1fr;
     gap: 5px;
+  }
+
+  #tab-publication #publication-panel .pub-reader-article mjx-container[display="true"],
+  #tab-publication #publication-panel .pub-reader-article .fm-math-fallback-display {
+    margin-block: 1.15rem 1.3rem;
   }
 }

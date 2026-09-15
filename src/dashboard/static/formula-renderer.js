@@ -34,16 +34,14 @@ function injectFormulaStyles() {
     :is(.fm-markdown, .pub-reader-article) mjx-container[display="true"] {
       display: block;
       width: 100%;
-      margin: 1.2rem 0 1.35rem !important;
-      padding: 1rem clamp(.8rem, 2vw, 1.4rem);
-      border: 1px solid color-mix(in srgb, currentColor 15%, transparent);
-      border-radius: 10px;
-      background: color-mix(in srgb, currentColor 3.5%, transparent);
+      margin: 1.25rem 0 1.45rem !important;
+      padding: .15rem 0;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      box-shadow: none;
       text-align: center;
       scrollbar-width: thin;
-    }
-    .pub-reader-article mjx-container[display="true"] {
-      box-shadow: inset 3px 0 0 color-mix(in srgb, var(--pub-accent, #275df5) 36%, transparent);
     }
     :is(.fm-markdown, .pub-reader-article) mjx-container:not([display="true"]) {
       display: inline-block;
@@ -51,6 +49,9 @@ function injectFormulaStyles() {
       vertical-align: -.12em;
       overflow: visible;
       padding-inline: .06em;
+      border: 0;
+      background: transparent;
+      box-shadow: none;
     }
     :is(.fm-markdown, .pub-reader-article) .fm-math-fallback {
       font-family: "Cambria Math", "STIX Two Math", "Times New Roman", serif;
@@ -60,16 +61,14 @@ function injectFormulaStyles() {
     :is(.fm-markdown, .pub-reader-article) .fm-math-fallback-display {
       display: block;
       overflow-x: auto;
-      margin: 1rem 0 1.25rem;
-      padding: 0.95rem 1rem;
-      border: 1px solid color-mix(in srgb, currentColor 16%, transparent);
-      border-radius: 10px;
-      background: color-mix(in srgb, currentColor 4%, transparent);
+      margin: 1.15rem 0 1.35rem;
+      padding: .1rem 0;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      box-shadow: none;
       text-align: center;
       white-space: pre;
-    }
-    .pub-reader-article .fm-math-fallback-display {
-      box-shadow: inset 3px 0 0 color-mix(in srgb, var(--pub-accent, #275df5) 36%, transparent);
     }
   `;
   document.head.appendChild(style);
