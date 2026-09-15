@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "experiment_id": "EXP-S6-SEM-CL-002",
+  "amendment_id": "EXP-S6-SEM-CL-002-A1",
+  "status": "preregistered_pre_execution_amendment",
+  "created_date": "2026-09-15",
+  "empirical_run_before_amendment": false,
+  "changes_primary_hypothesis": false,
+  "changes_primary_endpoints": false,
+  "changes_seeds": false,
+  "changes_effect_thresholds": false,
+  "semantic_prototype": {
+    "implementation": "src.memory.semantic.SemanticMemory",
+    "min_episode_support": 8,
+    "prototype_support": 0.30,
+    "match_threshold": 0.25,
+    "sensor_id": "split-mnist-label-<label>",
+    "modality": "pooled_rate_code",
+    "selection_if_over_capacity": "ascending(label,concept_id) first 50",
+    "no_new_clustering_algorithm": true
+  },
+  "memory_budget": {
+    "capacity_per_task": 50,
+    "realized_count_rule": "R_t=min(50,number_of_mature_B3_prototypes_for_task_t)",
+    "B2_count_per_task": "R_t",
+    "B3_count_per_task": "R_t",
+    "B4_count_per_task": "R_t",
+    "maximum_total_capacity_after_five_tasks": 250,
+    "B2_selection": "ascending_original_MNIST_index_first_R_t_no_replacement"
+  },
+  "random_control": {
+    "one_to_one_with_B3": true,
+    "match_task": true,
+    "match_label": true,
+    "match_spike_count": true,
+    "match_feature_dimension": true,
+    "sample_spike_ids": "uniform_without_replacement_over_valid_feature_ids",
+    "rng_key": "seed,task_index,semantic_object_rank",
+    "forbidden_information": [
+      "B3_spike_ids",
+      "raw_example_spike_ids",
+      "test_information",
+      "semantic_similarity"
+    ]
+  },
+  "replay_budget": {
+    "updates_per_task_transition": 100,
+    "number_of_task_transitions": 4,
+    "maximum_replay_updates_per_seed": 400,
+    "distribution": "deterministic_even_quotient_plus_remainder_in_canonical_object_order",
+    "B2_B3_B4_equal": true,
+    "additional_to_current_task_updates": true,
+    "B1_replay_updates": 0
+  },
+  "condition_isolation": {
+    "fresh_readout_per_condition": true,
+    "fresh_memory_state_per_condition": true,
+    "identical_dataset_indices_within_seed": true,
+    "order": "deterministic_seed_derived_permutation"
+  },
+  "aborted_seed_policy": {
+    "persist_partial_data": true,
+    "automatic_rerun": false,
+    "replacement_seed": false,
+    "positive_confirmatory_result_requires_complete_paired_seed_count": 9,
+    "any_unresolved_abort_precludes_positive_confirmatory_result": true,
+    "remaining_seed_analysis_label": "incomplete_preregistered_run_or_exploratory",
+    "technical_rerun_requires_protocol_deviation_record_and_human_EVID_review": true
+  },
+  "pre_execution_freeze_requirements": [
+    "data_preparation",
+    "split_index_generation",
+    "spike_encoding",
+    "B1_B2_B3_B4_runner",
+    "budget_accounting",
+    "condition_permutation",
+    "primary_endpoint_calculation",
+    "paired_bootstrap_20000",
+    "paired_two_sided_sign_flip",
+    "conjunctive_success_rule",
+    "abort_and_missing_seed_logic"
+  ],
+  "analysis_validation_data": "synthetic_non_MNIST_non_CL001_non_CL002_only",
+  "execution_authorized": false,
+  "automatic_evidence_promotion": false,
+  "human_review_required": true
+}
