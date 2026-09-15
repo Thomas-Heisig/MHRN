@@ -42,7 +42,7 @@ def _digest(state: dict[str, Any]) -> str:
 
 
 def _ratio(value: float, name: str) -> float:
-    if isinstance(value, bool) or not isinstance(value, (int, float)):
+    if isinstance(value, bool):
         raise SemanticMemoryError(f"{name} must be numeric")
     result = float(value)
     if not 0.0 < result <= 1.0:
