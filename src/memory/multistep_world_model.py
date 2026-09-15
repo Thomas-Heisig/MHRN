@@ -12,7 +12,7 @@ import copy
 import json
 from collections import Counter
 from dataclasses import dataclass
-from typing import Any, Sequence
+from typing import Any, Sequence, cast
 
 
 class MultistepWorldModelError(ValueError):
@@ -35,10 +35,14 @@ def _canonical(value: object) -> str:
 
 
 def _state(value: object, name: str) -> dict[str, Any]:
-    if not isinstance(value, dict) or not all(isinstance(key, str) for key in value):
+    if not isinstance(value, dict):
         raise MultistepWorldModelError(f"{name} must be a string-keyed object")
-    _canonical(value)
-    return copy.deepcopy(value)
+    raw = cast(dict[object, object], value)
+    if not all(isinstance(key, str) for key in raw):
+        raise MultistepWorldModelError(f"{name} must be a string-keyed object")
+    typed = cast(dict[str, Any], value)
+    _canonical(typed)
+    return copy.deepcopy(typed)
 
 
 @dataclass(frozen=True, slots=True)
@@ -176,25 +180,33 @@ class ActionConditionedWorldModel:
             raise MultistepWorldModelError("unsupported multistep world-model version")
         try:
             model = cls(max_contexts=state["max_contexts"])
-            contexts = state["contexts"]
-            order = state["context_order"]
-            if not isinstance(contexts, dict) or not isinstance(order, list):
+            raw_contexts = state["contexts"]
+            raw_order = state["context_order"]
+            if not isinstance(raw_contexts, dict) or not isinstance(raw_order, list):
                 raise MultistepWorldModelError("invalid contexts or context order")
+            contexts = cast(dict[object, object], raw_contexts)
+            order = cast(list[object], raw_order)
             if len(order) != len(contexts) or set(order) != set(contexts):
                 raise MultistepWorldModelError("context order does not match contexts")
             if len(order) > model.max_contexts:
                 raise MultistepWorldModelError("stored contexts exceed capacity")
-            for key in order:
-                if not isinstance(key, str) or not isinstance(contexts[key], dict):
+            for raw_key in order:
+                if not isinstance(raw_key, str):
                     raise MultistepWorldModelError("invalid transition context")
+                raw_counts = contexts.get(raw_key)
+                if not isinstance(raw_counts, dict):
+                    raise MultistepWorldModelError("invalid transition context")
+                count_items = cast(dict[object, object], raw_counts)
                 counts: Counter[str] = Counter()
-                for label, count in contexts[key].items():
+                for raw_label, raw_count in count_items.items():
                     if (
-                        not isinstance(label, str)
-                        or type(count) is not int
-                        or count <= 0
+                        not isinstance(raw_label, str)
+                        or type(raw_count) is not int
+                        or raw_count <= 0
                     ):
                         raise MultistepWorldModelError("invalid transition count")
+                    label = raw_label
+                    count = cast(int, raw_count)
                     decoded = json.loads(label)
                     if _canonical(_state(decoded, "stored next_state")) != label:
                         raise MultistepWorldModelError(
@@ -205,7 +217,7 @@ class ActionConditionedWorldModel:
                     raise MultistepWorldModelError(
                         "transition context may not be empty"
                     )
-                model._contexts[key] = counts
+                model._contexts[raw_key] = counts
             return model
         except (KeyError, TypeError, json.JSONDecodeError) as error:
             if isinstance(error, MultistepWorldModelError):
