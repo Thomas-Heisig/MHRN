@@ -6,10 +6,10 @@ import pytest
 
 from src.research.continual_semantization_controls import ReplayObject
 from src.research.continual_semantization_dose import (
-    CL003Config,
-    CL003SeedResult,
     CONDITIONS,
     SEEDS,
+    CL003Config,
+    CL003SeedResult,
     balanced_replay_sequence,
     condition_order,
     replay_slot_mask,
@@ -85,7 +85,9 @@ def test_condition_order_is_deterministic_permutation() -> None:
 
 def test_balanced_replay_sequence_uses_objects_with_max_difference_one() -> None:
     objects = tuple(
-        ReplayObject(task_index=0, label=index % 2, spike_ids=(index,), source_rank=index)
+        ReplayObject(
+            task_index=0, label=index % 2, spike_ids=(index,), source_rank=index
+        )
         for index in range(7)
     )
     schedule = balanced_replay_sequence(objects, 400)
@@ -138,9 +140,7 @@ def test_h1_negative_h2_negative_on_equal_synthetic_conditions() -> None:
     results: list[CL003SeedResult] = []
     for seed in SEEDS:
         for condition in CONDITIONS:
-            results.append(
-                _result(seed, condition, accuracy=0.50, forgetting=0.50)
-            )
+            results.append(_result(seed, condition, accuracy=0.50, forgetting=0.50))
     summary = summarize_confirmatory(results)
     assert summary["H1_passed"] is False
     assert summary["H2_passed"] is False

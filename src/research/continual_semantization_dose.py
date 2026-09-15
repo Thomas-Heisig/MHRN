@@ -7,7 +7,6 @@ exists and all freeze-bound files match their SHA-256 manifest.
 
 from __future__ import annotations
 
-import hashlib
 import itertools
 import json
 import math
@@ -20,10 +19,10 @@ import numpy as np
 
 from src.memory import NeuralEpisode, SemanticMemory
 from src.research.continual_semantization import (
+    TASKS,
     MnistBundle,
     OnlineSoftmaxReadout,
     SplitMnistConfig,
-    TASKS,
     image_to_spike_ids,
 )
 from src.research.continual_semantization_controls import (
@@ -231,7 +230,9 @@ def _finite_readout(readout: OnlineSoftmaxReadout) -> bool:
     return bool(np.isfinite(readout.weights).all() and np.isfinite(readout.bias).all())
 
 
-def _canonical_pool(by_task: Sequence[Sequence[ReplayObject]]) -> tuple[ReplayObject, ...]:
+def _canonical_pool(
+    by_task: Sequence[Sequence[ReplayObject]],
+) -> tuple[ReplayObject, ...]:
     return tuple(
         sorted(
             itertools.chain.from_iterable(by_task),
@@ -358,8 +359,7 @@ def summarize_confirmatory(results: Sequence[CL003SeedResult]) -> dict[str, Any]
         for seed in paired_seeds
     ]
     c2 = [
-        metric("R20", seed, "mean_forgetting")
-        - metric("S20", seed, "mean_forgetting")
+        metric("R20", seed, "mean_forgetting") - metric("S20", seed, "mean_forgetting")
         for seed in paired_seeds
     ]
     c3 = [
@@ -384,8 +384,7 @@ def summarize_confirmatory(results: Sequence[CL003SeedResult]) -> dict[str, Any]
         for seed in paired_seeds
     ]
     s40_forgetting = [
-        metric("R40", seed, "mean_forgetting")
-        - metric("S40", seed, "mean_forgetting")
+        metric("R40", seed, "mean_forgetting") - metric("S40", seed, "mean_forgetting")
         for seed in paired_seeds
     ]
 
@@ -561,9 +560,7 @@ def run_seed(
             )
         )
         if not (
-            len(semantic_by_task[-1])
-            == len(raw_by_task[-1])
-            == len(random_by_task[-1])
+            len(semantic_by_task[-1]) == len(raw_by_task[-1]) == len(random_by_task[-1])
         ):
             raise RuntimeError("CL-003 memory budget mismatch")
 
@@ -677,9 +674,7 @@ def run_experiment(
 ) -> dict[str, Any]:
     require_execution_authorized(preregistration)
     runs = tuple(
-        item
-        for seed in config.seeds
-        for item in run_seed(data, config, seed=seed)
+        item for seed in config.seeds for item in run_seed(data, config, seed=seed)
     )
     return {
         "experiment_id": EXPERIMENT_ID,

@@ -11,26 +11,18 @@ from typing import Any
 
 from src.research.continual_semantization import load_mnist
 from src.research.continual_semantization_dose import (
-    CL003Config,
     EXPERIMENT_ID,
+    CL003Config,
     run_experiment,
     write_result_bundle,
 )
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_AUTHORIZATION = (
-    ROOT
-    / "research"
-    / "preregistrations"
-    / "authorizations"
-    / "EXP-S6-SEM-CL-003.json"
+    ROOT / "research" / "preregistrations" / "authorizations" / "EXP-S6-SEM-CL-003.json"
 )
 DEFAULT_FREEZE = (
-    ROOT
-    / "research"
-    / "preregistrations"
-    / "frozen"
-    / "EXP-S6-SEM-CL-003-FREEZE.json"
+    ROOT / "research" / "preregistrations" / "frozen" / "EXP-S6-SEM-CL-003-FREEZE.json"
 )
 DEFAULT_OUTPUT = ROOT / "research" / "experiments" / EXPERIMENT_ID / "results"
 DEFAULT_CACHE = ROOT / ".cache" / "mnist"
