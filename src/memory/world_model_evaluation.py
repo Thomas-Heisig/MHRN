@@ -62,6 +62,12 @@ class DecisionRecommendation:
 TrajectoryScorer = Callable[[RolloutResult], float]
 
 
+def _eligible_sort_key(item: CandidateEvaluation) -> tuple[float, str]:
+    if item.score is None:
+        raise WorldModelEvaluationError("eligible candidate is missing a score")
+    return (-item.score, item.label)
+
+
 class OfflineDecisionEvaluator:
     """Compare matched candidate rollouts without mutating or actuating the model."""
 
@@ -141,7 +147,7 @@ class OfflineDecisionEvaluator:
         eligible = [
             item for item in evaluations if item.eligible and item.score is not None
         ]
-        eligible.sort(key=lambda item: (-item.score, item.label))
+        eligible.sort(key=_eligible_sort_key)
         selected = eligible[0].label if eligible else None
         return DecisionRecommendation(selected, tuple(evaluations))
 
