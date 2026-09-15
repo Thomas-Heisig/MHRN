@@ -64,11 +64,12 @@ def test_related_work_quarantines_unverified_citations() -> None:
     assert "Spiking world model" in text
 
 
-def test_scientific_timeline_is_loaded_separately_from_formula_core() -> None:
+def test_scientific_timeline_is_loaded_without_replacing_formula_contract() -> None:
     loader = LOADER.read_text(encoding="utf-8")
     timeline = TIMELINE.read_text(encoding="utf-8")
-    assert 'import "./formula-renderer-core.js"' in loader
     assert 'import "./scientific-progress.js"' in loader
+    assert 'MATH_ROOT_SELECTOR = ".fm-markdown, .pub-reader-article"' in loader
+    assert 'processHtmlClass: "fm-markdown|pub-reader-article"' in loader
     assert "scientific-progress.json" in timeline
     assert "Wissenschaftliche Timeline" in timeline
     assert "keine Kognitionskennzahl" in timeline
