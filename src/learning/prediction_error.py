@@ -42,7 +42,6 @@ class PredictionErrorPlasticityConfig:
     enabled: bool = False
     learning_rate: float = 0.01
     trace_epsilon: float = 1e-12
-    reset_trace: bool = False
     clamp_weights: bool = True
 
     def __post_init__(self) -> None:
@@ -114,9 +113,6 @@ class PredictionErrorPlasticity:
                     synapse.weight = candidate
                     synapse.mark_dirty()
                     changed += 1
-                if self.config.reset_trace:
-                    state = self.learning._states[(pre_id, synapse.target_id)]
-                    state.eligibility.reset()
         self._signals_applied += 1
         self._weight_updates += changed
         return changed
