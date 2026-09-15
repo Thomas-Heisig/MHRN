@@ -28,9 +28,11 @@ jobs:
           tests/test_memory_layer.py
           tests/test_stage6_memory_controls.py
           tests/test_stage6_prediction_contract.py
-      - name: Lint and typing for block 1
+      - name: Black diagnostic
+        run: python -m black --diff --check src/storage/runtime_bundle.py tests/test_runtime_bundle.py
+      - name: Ruff and typing for block 1
+        if: always()
         run: |
-          python -m black --check src/storage/runtime_bundle.py tests/test_runtime_bundle.py
           python -m ruff check src/storage/runtime_bundle.py tests/test_runtime_bundle.py
           python -m mypy src/storage/runtime_bundle.py
           python -m pyright src/storage/runtime_bundle.py
