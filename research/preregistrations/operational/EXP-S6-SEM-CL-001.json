@@ -1,0 +1,50 @@
+{
+  "experiment_id": "EXP-S6-SEM-CL-001",
+  "title": "MHRN semantic prototype consolidation on Split-MNIST catastrophic forgetting",
+  "frozen_on": "2026-09-15",
+  "status": "preregistered_before_empirical_run",
+  "research_question": "Does MHRN semantic prototype consolidation with bounded replay reduce catastrophic forgetting on class-incremental Split-MNIST relative to the same spike-coded online learner without semantic memory?",
+  "mechanism_under_test": "SemanticMemory prototype consolidation plus bounded replay of mature prototypes",
+  "benchmark": {
+    "dataset": "MNIST",
+    "task": "Split-MNIST",
+    "scenario": "class-incremental single-head",
+    "task_sequence": [[0,1],[2,3],[4,5],[6,7],[8,9]],
+    "train_per_class": 1000,
+    "test_per_class": 200
+  },
+  "conditions": {
+    "baseline": "deterministic pooled rate-code spike representation plus online softmax readout; no semantic memory and no replay",
+    "semantic_replay": "same representation, readout, seed and total readout-update budget; 20% of later-task updates are replaced by replay of mature MHRN semantic prototypes from earlier tasks"
+  },
+  "matched_controls": [
+    "same MNIST task order",
+    "same train/test sample budgets",
+    "same input spike encoding",
+    "same online readout",
+    "same learning rate",
+    "same total readout updates per task",
+    "paired seeds"
+  ],
+  "seeds": [101,102,103,104,105,106,107,108,109,110],
+  "primary_endpoints": {
+    "final_average_accuracy": "mean accuracy over all five tasks after training task 5",
+    "mean_forgetting": "mean over tasks 1-4 of best historical accuracy minus final accuracy"
+  },
+  "effect_thresholds": {
+    "accuracy_delta": 0.03,
+    "forgetting_reduction": 0.05
+  },
+  "statistical_rule": "paired bootstrap 95% confidence interval and two-sided exact paired sign-flip test",
+  "positive_result_rule": "semantic_replay must improve final average accuracy by at least 0.03 and reduce mean forgetting by at least 0.05; for both paired deltas the bootstrap 95% lower bound must exceed zero and sign-flip p must be below 0.05",
+  "interpretation": {
+    "positive": "bounded positive evidence that this MHRN mechanism improves this benchmark under this protocol; not proof of general superiority or biological validity",
+    "null": "infrastructure result or insufficient evidence under this protocol",
+    "negative": "the mechanism harms at least one primary endpoint under this protocol and is scientifically informative"
+  },
+  "governance": {
+    "automatic_evidence_promotion": false,
+    "human_review_required": true,
+    "parameter_changes_after_first_empirical_run_require_new_experiment_id": true
+  }
+}
