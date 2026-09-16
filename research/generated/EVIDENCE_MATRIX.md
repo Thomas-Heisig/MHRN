@@ -49,6 +49,7 @@ RQ-Status und Claim-Status sind unterschiedliche wissenschaftliche Zustände und
 | `RQ-PERF-001` | open | `H-PERF-001-A` | — | — | 0 | — | — | offen |
 | `RQ-REC-002` | open | `H-REC-002-A` | — | — | 0 | — | — | offen |
 | `RQ-LIFE-001` | open | `H-LIFE-001-A` | — | — | 0 | — | — | offen |
+| `RQ-SNN-006` | open | `H-SNN-006-A` | — | — | 2 | — | — | offen |
 | `RQ-MEM-002` | open | `H-MEM-002-A` | — | — | 0 | — | — | offen |
 | `RQ-WM-001` | open | `H-WM-001-A` | — | — | 0 | — | — | offen |
 | `RQ-PROFILE-001` | open | `H-PROFILE-001-A` | — | — | 0 | — | — | offen |
@@ -120,8 +121,8 @@ RQ-Status und Claim-Status sind unterschiedliche wissenschaftliche Zustände und
 |-----------|--------|
 | answered | 1 |
 | in_progress | 1 |
-| open | 103 |
-| **Gesamt RQs** | **105** |
+| open | 104 |
+| **Gesamt RQs** | **106** |
 
 ### Claims (Claim-Status)
 

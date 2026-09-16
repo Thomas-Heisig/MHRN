@@ -4,8 +4,8 @@
 
 ## Übersicht
 
-- **Forschungsfragen:** 105
-- **Hypothesen:** 106
+- **Forschungsfragen:** 106
+- **Hypothesen:** 107
 - **Claims:** 8
 - **Literaturquellen:** 56
 
@@ -1483,6 +1483,22 @@
 **Literatur:**
 - `SRC-SONG-ABBOTT-2000`: Sen Song et al. (2000)
 - `SRC-BI-POO-1998`: Guo-Qiang Bi et al. (1998)
+
+---
+
+### RQ-SNN-006
+
+**Frage:** Bleibt die unter RQ-SNN-001 beobachtete Langzeitstabilitaet unter vorab definierten lokalen Variationen von synaptischem Gewicht und Tonic-Drive erhalten?
+
+**Status:** open
+**Relevanz:** Trennt die deterministische Stabilitaet einer festen Parameterisierung von lokaler Robustheit ueber tatsaechlich unterschiedliche, seed-gebundene Modellparameterisierungen.
+
+**Hypothesen:**
+- `H-SNN-006-A`: Alle zehn vorab registrierten, unterschiedlichen seed-gebundenen Parameterrealisierungen bleiben ueber 100.000 Ticks numerisch und topologisch stabil; unter gepaartem Tonic-Drive bleibt die post-burn-in Aktivitaet positiv mit CV und relativer Drift jeweils <= 0.25. *(untested)*
+
+**Literatur:**
+- `SRC-IZHIKEVICH-2003`: Eugene M. Izhikevich et al. (2003)
+- `SRC-GERSTNER-2014`: Wulfram Gerstner et al. (2014)
 
 ---
 

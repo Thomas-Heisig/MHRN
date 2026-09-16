@@ -607,6 +607,23 @@ Die folgenden Forschungsfragen sind noch offen und warten auf experimentelle Evi
 
 ---
 
+## RQ-SNN-006
+
+**Domäne:** Spiking Neural Networks
+
+**Frage:** Bleibt die unter RQ-SNN-001 beobachtete Langzeitstabilitaet unter vorab definierten lokalen Variationen von synaptischem Gewicht und Tonic-Drive erhalten?
+
+**Relevanz:** Trennt die deterministische Stabilitaet einer festen Parameterisierung von lokaler Robustheit ueber tatsaechlich unterschiedliche, seed-gebundene Modellparameterisierungen.
+
+**Literatur:**
+- `SRC-IZHIKEVICH-2003`: Eugene M. Izhikevich et al. (2003)
+- `SRC-GERSTNER-2014`: Wulfram Gerstner et al. (2014)
+
+**Hypothesen:**
+- `H-SNN-006-A`: Alle zehn vorab registrierten, unterschiedlichen seed-gebundenen Parameterrealisierungen bleiben ueber 100.000 Ticks numerisch und topologisch stabil; unter gepaartem Tonic-Drive bleibt die post-burn-in Aktivitaet positiv mit CV und relativer Drift jeweils <= 0.25.
+
+---
+
 ## RQ-MEM-002
 
 **Domäne:** Memory
@@ -1562,6 +1579,6 @@ Die folgenden Forschungsfragen sind noch offen und warten auf experimentelle Evi
 
 ---
 
-*Insgesamt 104 offene Fragen.*
+*Insgesamt 105 offene Fragen.*
 
 > Pruefstatus: RQ/H- und EVID-Statuswerte geben den Registry-Inhalt wieder. Insbesondere historische supports/supported-Eintraege sind keine Bestaetigung einer Freigabe nach den heutigen Clean-Freeze- und Human-Review-Gates. Ein abgeschlossener Lauf ist DATA, nicht automatisch akzeptierte Evidenz.
