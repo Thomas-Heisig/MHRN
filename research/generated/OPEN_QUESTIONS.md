@@ -646,16 +646,6 @@ Die folgenden Forschungsfragen sind noch offen und warten auf experimentelle Evi
 
 ---
 
-## RQ-S6-SEM-002
-
-**Domäne:** Memory
-
-**Frage:** Liefert die semantische Prototypkonsolidierung von MHRN gegenüber gleich budgetiertem Raw-Experience-Replay einen messbaren Vorteil bei der Reduktion katastrophalen Vergessens?
-
-**Relevanz:** Trennt einen möglichen Semantik-Effekt von einem allgemeinen Replay-Effekt unter präregistrierten, budget-gematchten Kontrollen.
-
----
-
 ## RQ-S6-SEM-003
 
 **Domäne:** Memory
@@ -1572,6 +1562,6 @@ Die folgenden Forschungsfragen sind noch offen und warten auf experimentelle Evi
 
 ---
 
-*Insgesamt 105 offene Fragen.*
+*Insgesamt 104 offene Fragen.*
 
 > Pruefstatus: RQ/H- und EVID-Statuswerte geben den Registry-Inhalt wieder. Insbesondere historische supports/supported-Eintraege sind keine Bestaetigung einer Freigabe nach den heutigen Clean-Freeze- und Human-Review-Gates. Ein abgeschlossener Lauf ist DATA, nicht automatisch akzeptierte Evidenz.

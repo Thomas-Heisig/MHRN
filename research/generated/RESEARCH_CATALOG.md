@@ -1066,8 +1066,14 @@
 
 **Frage:** Liefert die semantische Prototypkonsolidierung von MHRN gegenüber gleich budgetiertem Raw-Experience-Replay einen messbaren Vorteil bei der Reduktion katastrophalen Vergessens?
 
-**Status:** open
+**Status:** answered
 **Relevanz:** Trennt einen möglichen Semantik-Effekt von einem allgemeinen Replay-Effekt unter präregistrierten, budget-gematchten Kontrollen.
+
+**Aktuelle Antwort:**
+
+> Unter dem präregistrierten CL-002-Protokoll wurde kein konfirmatorischer Vorteil semantischer Prototypkonsolidierung gegenüber gleich objekt- und updatebudgetiertem Raw-Replay nachgewiesen; die menschliche Projekt-EVID klassifiziert H1 für dieses Protokoll als falsifiziert.
+
+*Konfidenz: medium*
 
 ---
 
@@ -1075,8 +1081,14 @@
 
 **Frage:** Hängt ein möglicher Vorteil semantischer Prototypkonsolidierung gegenüber Raw-Experience-Replay von der Replay-Dosis ab, wenn das Gesamt-Updatebudget über alle Bedingungen konstant gehalten wird?
 
-**Status:** open
+**Status:** in_progress
 **Relevanz:** Prüft die nach CL-002 offene mechanistische Alternative, ob ein möglicher Repräsentationsvorteil erst bei höherer Replay-Exposition sichtbar wird, ohne den negativen CL-002-Befund rückwirkend umzudeuten.
+
+**Aktuelle Antwort:**
+
+> Auf DATA-Ebene bestätigt CL-003 keinen präregistrierten Vorteil semantischer Verdichtung gegenüber Raw-Replay über die Dosen 5, 20 und 40 Prozent. C1, C2 und C4 verfehlen die Erfolgsregeln; C3 zeigt zugleich, dass die semantische Repräsentation gegenüber einem Random-Prototype-Control relevante nicht-zufällige Struktur trägt.
+
+*Konfidenz: low*
 
 ---
 
