@@ -11,9 +11,9 @@
     "scripts/run_semantization_split_mnist_cl003.py": "26ea717478526c4facc378acbdc1dd8ec2ed1a9fba1ed329312adcd96628928e",
     "src/memory/neural_episodic.py": "9365fe13e623614a8697b027433d34a69c10f864c99319851c7062078951939f",
     "src/memory/semantic.py": "01bb586f77f512368ed4bbd9379a262b15f4518f94fa2df9db8d2143a2c0c1c5",
-    "src/research/continual_semantization.py": "d1c517bb8bc97ed784b3e26d078149e29772f0c25156def3dcb0fa1176c99da5",
-    "src/research/continual_semantization_controls.py": "7d1f2ef1aaa1b7abebce2a91d0c68f9ee69d499a8ff359535d45e9b638c960bb",
-    "src/research/continual_semantization_dose.py": "677b762b97ec55e268a2629a1503b1423d06f13bf7feacaf64bcb32a84de1850"
+    "src/research/continual_semantization.py": "e6e1531d2cd8743a89a1f405ba476ef7e20ccac8c4aa7e707aa8a9fa64c5b379",
+    "src/research/continual_semantization_controls.py": "51ea011ca8c0b2ebf7e4d5b5098f44b3efd370a6d51243ea4c0498ffd26fe248",
+    "src/research/continual_semantization_dose.py": "68cb5763b19fe71f44bd426f5f192e097210aab1df1bf6e71d988c61b8605555"
   },
   "status": "pre_execution_source_freeze"
 }
