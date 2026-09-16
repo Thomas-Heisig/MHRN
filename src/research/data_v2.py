@@ -1,8 +1,8 @@
 """Research DATA v2: compact AI packets plus immutable compressed raw runs.
 
 The raw experiment observations remain available for audit, but the default
-Research Assistant path is intentionally bounded. `DATA/runs.json` is a compact
-projection for the current experiment, while each complete run is archived as an
+Research Assistant path is intentionally bounded. `DATA/runs_compact.json` is a
+versionable compact projection for the current experiment, while each complete run is archived as an
 immutable gzip member under `DATA/raw/` and indexed by SHA-256.
 """
 
@@ -124,7 +124,7 @@ def prepare_research_data_v2(
     data_dir = experiment_dir / "DATA"
     raw_dir = data_dir / "raw"
     analysis_dir = experiment_dir / "analysis"
-    runs_path = data_dir / "runs.json"
+    runs_path = data_dir / "runs_compact.json"
     index_path = data_dir / "runs_index.json"
     current_path = data_dir / "current_run.json"
     ai_packet_path = analysis_dir / "ai_packet.json"
@@ -188,9 +188,10 @@ def prepare_research_data_v2(
     ).encode("utf-8")
     if len(compact_bytes) > RUN_SUMMARY_MAX_BYTES:
         raise ValueError(
-            f"Compact DATA/runs.json would exceed {RUN_SUMMARY_MAX_BYTES} bytes; "
+            f"Compact DATA/runs_compact.json would exceed {RUN_SUMMARY_MAX_BYTES} bytes; "
             "increase deterministic aggregation instead of sending it to AI."
         )
+    _write_json(runs_path, summaries)
     runs[:] = summaries
 
     ai_packet = {

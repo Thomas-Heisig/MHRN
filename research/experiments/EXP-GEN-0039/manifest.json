@@ -1,0 +1,128 @@
+{
+  "ai_exposure": "none",
+  "ai_interactions": [],
+  "ai_protocol": {
+    "bump_reason": "initial registration",
+    "version": 1
+  },
+  "ai_reproducibility": "R0",
+  "artifacts": {
+    "ai_packet": "analysis/ai_packet.json",
+    "ai_packet_digest": "analysis/ai_packet_digest.json",
+    "current_run": "DATA/current_run.json",
+    "data": "DATA/runs_compact.json",
+    "data_index": "DATA/runs_index.json",
+    "preregistration": "preregistrations/PREREG-SNN-001.json",
+    "raw_run_index": "DATA/runs_index.json",
+    "report": "report.md",
+    "statistics": "analysis/statistics.json",
+    "workflow": "workflow.json"
+  },
+  "causal_card": {
+    "classification": "PURE",
+    "interaction_ids": [],
+    "roles": []
+  },
+  "causal_taint": "PURE",
+  "config": {
+    "path": "/home/runner/work/MHRN/MHRN/configs/learning_experiment.yaml",
+    "sha256": "6f6cd457caf6216c286fee47ef03b529a0b496ed2dd53ee96b85d3b51e7b3a1c"
+  },
+  "created_at": "2026-09-16T19:04:56.397479+00:00",
+  "data_partitions": [],
+  "epistemic_layers": {
+    "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+    "evid": "not_created; requires semantic validation, clean freeze and human review",
+    "interpretation": "post-hoc AI or human interpretation; never execution input",
+    "ui_state": "operator/dashboard progress only; not a scientific result"
+  },
+  "execution_contract": {
+    "hypothesis_id": "H-SNN-001-A",
+    "protocol": "sustained_activity_stability_v1",
+    "question_id": "RQ-SNN-001",
+    "resolved_runner": "run_sustained_stability",
+    "runtime_runner_bytecode_sha256": "5d72d56b50f32859bde16ee622629877e97a65c534109b5215a4dd20da46e025",
+    "runtime_summary_bytecode_sha256": "7776f8c84f3f096fbda136605a27d7cc7d84cf89eb6eb2959eac3bb3489cd123",
+    "source_runner_bytecode_sha256": "5d72d56b50f32859bde16ee622629877e97a65c534109b5215a4dd20da46e025",
+    "source_runtime_consistency": "MATCH",
+    "source_summary_bytecode_sha256": "7776f8c84f3f096fbda136605a27d7cc7d84cf89eb6eb2959eac3bb3489cd123",
+    "tick_validation": {
+      "mode": "minimum_per_run_with_control_and_treatment",
+      "observed_max": 100000,
+      "observed_min": 100000,
+      "requested_ticks": 100000,
+      "run_count": 20,
+      "status": "SATISFIED"
+    },
+    "ticks_requested": 100000
+  },
+  "experiment_id": "EXP-GEN-0039",
+  "experiment_status": "completed",
+  "git": {
+    "branch": "fix/exp-snn-001-evidence-pipeline-20260916",
+    "commit": "fa689378651d83c0d4a6e81a17751e3037db469a",
+    "dirty": false
+  },
+  "hypotheses": [
+    "H-SNN-001-A"
+  ],
+  "network_mode": "OFFLINE",
+  "provenance_digests": {
+    "code": "5a11ea288e7e695c2dcd456642b533cbb3e6daf38b72e150134e60e69059531f",
+    "config": "6f6cd457caf6216c286fee47ef03b529a0b496ed2dd53ee96b85d3b51e7b3a1c",
+    "data": "e63200cce7ca7790eaa7a90d1ff1f685c9db779e2ae3c152f010baacac72bcf2",
+    "prompt": "dd18e473908e7e75b1717c240bac221729ea38753abfd28b701b37b20d5f5e14"
+  },
+  "research_questions": [
+    "RQ-SNN-001"
+  ],
+  "research_run_mode": "CONFIRMATORY",
+  "results": {
+    "protocol": "sustained_activity_stability_v1",
+    "run_count": 20,
+    "runner": "run_sustained_stability",
+    "tick_contract": {
+      "mode": "minimum_per_run_with_control_and_treatment",
+      "observed_max": 100000,
+      "observed_min": 100000,
+      "requested_ticks": 100000,
+      "run_count": 20,
+      "status": "SATISFIED"
+    },
+    "ticks_requested": 100000
+  },
+  "runtime": {
+    "duration_seconds": 34.5996038830001
+  },
+  "runtime_errors": [],
+  "simulation": {
+    "protocol": "sustained_activity_stability_v1",
+    "seed": 42,
+    "seeds": [
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51
+    ],
+    "ticks": 100000
+  },
+  "software": {
+    "brain5d_version": "0.6.0a5",
+    "os": "Linux 6.17.0-1022-azure",
+    "python": "3.13.15"
+  },
+  "source_freeze_sha": "32873253718f5842090c0fc24f89b69887d5f753de58e36bbc671aa62dd05bd6",
+  "timestamp": "2026-09-16T19:04:56.397467",
+  "validity": {
+    "fatal_error_count": 0,
+    "reason": null,
+    "runtime_error_count": 0,
+    "valid": true
+  }
+}

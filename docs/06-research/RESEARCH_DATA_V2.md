@@ -13,7 +13,7 @@ For a new experiment `<EXP-ID>`:
 ```text
 research/experiments/<EXP-ID>/
 ├── DATA/
-│   ├── runs.json                 # compact projection of this experiment only
+│   ├── runs_compact.json         # bounded, versioned compact projection
 │   ├── runs_index.json           # immutable raw-run index + SHA-256
 │   ├── current_run.json          # bounded writer state; reset to idle after archive
 │   └── raw/
@@ -35,7 +35,7 @@ research/experiments/<EXP-ID>/
 3. Archive every complete run independently as compressed JSON under `DATA/raw/`.
 4. Record path, seed, condition, SHA-256 and byte sizes in `DATA/runs_index.json`.
 5. Replace long sequences in the review projection with deterministic head/tail/count representations.
-6. Write the compact experiment-local `DATA/runs.json`.
+6. Write the compact, versioned `DATA/runs_compact.json` (a local `DATA/runs.json` compatibility projection may also exist but remains ignored).
 7. Build `analysis/ai_packet.json` from deterministic statistics and bounded run previews.
 8. Write the packet digest and manifest references.
 9. The Research Assistant reads `ai_packet.json` by default and does not open raw run archives.
@@ -47,7 +47,7 @@ research/experiments/<EXP-ID>/
 Current implementation fails closed when:
 
 - `analysis/ai_packet.json` would exceed **1 MB**;
-- compact `DATA/runs.json` would exceed **5 MB**;
+- compact `DATA/runs_compact.json` would exceed **5 MB**;
 - a requested AI detail packet would exceed **1 MB**.
 
 A limit violation must be solved by stronger deterministic aggregation or a narrower detail request, never by silently feeding raw data to the model.
@@ -60,7 +60,7 @@ This keeps the AI read-only: it requests or receives a deterministic projection;
 
 ## Scientific integrity
 
-Raw observations are **not deleted** by compaction. Compression changes storage representation, not the measured content. The manifest/data digest includes the compact projection, raw index, AI packet metadata and compressed raw-run artifacts.
+Raw observations are **not deleted** by compaction. Compression changes storage representation, not the measured content. The manifest/data digest includes the versioned compact projection, raw index, AI packet metadata and compressed raw-run artifacts.
 
 Historical experiments are not rewritten to conform to DATA v2. The Research Assistant retains a bounded legacy fallback for experiments created before `analysis/ai_packet.json` existed.
 
