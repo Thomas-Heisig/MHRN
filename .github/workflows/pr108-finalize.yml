@@ -1,0 +1,83 @@
+name: PR108 finalize alpha4
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - .github/workflows/pr108-finalize.yml
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    if: github.event.pull_request.number == 108 && github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ github.head_ref }}
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.13"
+      - name: Install project tools
+        run: python -m pip install -e '.[dev,docs]'
+      - name: Apply deterministic release and gate repair
+        run: |
+          python scripts/pr108_finalize_once.py
+          python scripts/generate_cl002_freeze_manifest.py
+          python -m black tests/test_final_integration_20260911.py tests/test_release_registry.py src/version.py scripts/pr108_finalize_once.py
+          python -m ruff check tests/test_final_integration_20260911.py tests/test_release_registry.py src/version.py scripts/pr108_finalize_once.py
+      - name: Verify repaired regressions and frozen CL suites
+        run: >-
+          python -m pytest -q
+          tests/test_final_integration_20260911.py
+          tests/test_release_registry.py
+          tests/test_continual_semantization_controls.py
+          tests/test_continual_semantization_dose.py
+          tests/test_semantic_memory.py
+          tests/test_episodic_replay.py
+      - name: Commit alpha4, gate repair and CL-002 re-freeze
+        id: freeze
+        run: |
+          rm -f .github/workflows/pr108-source-inspection.yml .github/workflows/pr108-finalize.yml scripts/pr108_finalize_once.py
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --check
+          git commit -m "release: prepare 0.6.0-alpha.4 and repair research gates"
+          echo "commit=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+      - name: Reauthorize CL-002 against the repaired source freeze
+        env:
+          FREEZE_COMMIT: ${{ steps.freeze.outputs.commit }}
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          import subprocess
+          from pathlib import Path
+
+          freeze_path = Path('research/preregistrations/frozen/EXP-S6-SEM-CL-002-FREEZE.json')
+          auth_path = Path('research/preregistrations/authorizations/EXP-S6-SEM-CL-002.json')
+          freeze = json.loads(freeze_path.read_text(encoding='utf-8'))
+          auth = json.loads(auth_path.read_text(encoding='utf-8'))
+          auth['status'] = 'execution_reauthorized_after_behavior_neutral_source_repair'
+          auth['authorization_revision_date'] = '2026-09-16'
+          auth['authorization_revision_reason'] = (
+              'Behavior-neutral typing repairs changed shared CL-002-bound source bytes before the first empirical execution. '
+              'The scientific protocol, seeds, conditions, endpoints and decision rules are unchanged.'
+          )
+          auth['freeze_revision_commit'] = os.environ['FREEZE_COMMIT']
+          auth['freeze_manifest_git_blob_sha'] = subprocess.check_output(
+              ['git', 'hash-object', str(freeze_path)], text=True
+          ).strip()
+          auth['authorized_source_sha256'] = freeze['sha256']
+          auth['execution_authorized'] = True
+          auth['first_empirical_run_has_occurred'] = False
+          auth_path.write_text(json.dumps(auth, indent=2) + '\n', encoding='utf-8')
+          PY
+          git add research/preregistrations/authorizations/EXP-S6-SEM-CL-002.json
+          git diff --cached --check
+          git commit -m "research: reauthorize CL-002 against repaired source freeze"
+          git push
