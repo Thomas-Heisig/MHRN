@@ -43,8 +43,9 @@
   hypothesis: For Izhikevich-2003, matched one-step Brian2 transitions produce identical
     spike decisions and pre-reset/post-reset v/u states within maximum absolute error 1e-8
     for every frozen validation sample.
-  status: untested
-  evidence: []
+  status: supported
+  evidence:
+  - research/experiments/EXP-STAGE0-20260916-MODEL-CONFORMANCE-V2/DATA/confirmatory_result.json
   created: '2026-09-16'
   updated: '2026-09-16'
 - id: H-EVAL-006-B
@@ -52,8 +53,9 @@
   hypothesis: For lif-current-v1 with the canonical alternative-model setting refractory_ticks=0,
     matched Brian2 Euler transitions produce identical spike events and post-reset membrane
     states within maximum absolute error 1e-8 for every frozen validation seed.
-  status: untested
-  evidence: []
+  status: supported
+  evidence:
+  - research/experiments/EXP-STAGE0-20260916-MODEL-CONFORMANCE-V2/DATA/confirmatory_result.json
   created: '2026-09-16'
   updated: '2026-09-16'
 - id: H-EVAL-006-C
@@ -61,7 +63,8 @@
   hypothesis: Nonzero LIF refractory_ticks can be mapped to an explicitly documented Brian2
     refractory duration that yields the same clamp/update semantics; the mapping is an optional
     extension and is not assumed from equal numeric parameter values.
-  status: untested
-  evidence: []
+  status: supported
+  evidence:
+  - research/experiments/EXP-STAGE0-20260916-MODEL-CONFORMANCE-V2/DATA/confirmatory_result.json
   created: '2026-09-16'
   updated: '2026-09-16'
