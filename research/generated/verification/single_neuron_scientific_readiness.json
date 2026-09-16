@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "stage": 0,
+  "stage_id": "single_neuron",
+  "name": "Einzelne Nervenzelle",
+  "scope": "Scoped scientific readiness of the declared single-neuron primitive and selectable canonical models; not overall scientific maturity and not biological equivalence.",
+  "status": "passed",
+  "research_readiness_score": 1.0,
+  "research_readiness_percent": 100,
+  "as_of": "2026-09-16",
+  "proofs": {
+    "firing_rate_estimate_has_hz_semantics": true,
+    "homeostasis_operating_envelope_documented": true,
+    "triplet_flag_cannot_silently_claim_unimplemented_behavior": true,
+    "izhikevich_external_reference_conformance_confirmed": true,
+    "lif_external_reference_conformance_confirmed": true,
+    "lif_refractory_semantics_mapped": true,
+    "model_axis_registered_with_separate_hypotheses": true,
+    "historical_negative_preserved": true,
+    "confirmatory_protocol_frozen_before_validation": true,
+    "confirmatory_seeds_disjoint_from_diagnostic_seeds": true
+  },
+  "sources": [
+    "research/preregistrations/operational/single_neuron_conformance_v2.json",
+    "research/experiments/EXP-STAGE0-20260916-MODEL-CONFORMANCE-V2/DATA/confirmatory_result.json",
+    "research/experiments/EXP-STAGE0-20260916-MODEL-CONFORMANCE-V2/report.md",
+    "research/specifications/NEURON_MODEL_EXPERIMENT_AXIS.md",
+    "research/registry/questions.empirical.yaml",
+    "research/registry/hypotheses.empirical.yaml",
+    "tests/test_single_neuron_contract.py"
+  ],
+  "external_reference": {
+    "framework": "Brian2",
+    "version": "2.10.1",
+    "confirmatory_run_id": 35149828152,
+    "artifact_id": 10468901959,
+    "artifact_sha256": "1c7e430fa75edb02ef7bfbaacf86cc85699d7a9ab5a6154bb81ce2da7bb0c89c"
+  },
+  "maturity_boundary": {
+    "human_reviewed_evid_complete": false,
+    "independent_authorship_replication_complete": false,
+    "note": "These are scientific-maturity gates and intentionally do not reduce the scoped Stage-0 research-readiness result. They must remain visible and must not be inferred from Brian2 reference conformance."
+  }
+}
