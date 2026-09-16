@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "experiment_id": "EXP-S6-SEM-CL-003",
+  "execution_authorized": true,
+  "authorized_date": "2026-09-16",
+  "authorization_scope": "single preregistered empirical campaign using the frozen CL-003 protocol and its complete preregistered seed/condition set",
+  "freeze_manifest": "research/preregistrations/frozen/EXP-S6-SEM-CL-003-FREEZE.json",
+  "freeze_commit": "3348722d087c9ab238bfc839bd083c642454e1cd",
+  "research_question": "RQ-S6-SEM-003",
+  "seeds": [301, 302, 303, 304, 305, 306, 307, 308, 309, 310, 311, 312],
+  "conditions": ["R05", "S05", "R20", "S20", "X20", "R40", "S40"],
+  "automatic_evidence_promotion": false,
+  "human_review_required": true,
+  "authorization_constraints": [
+    "The runner must verify every SHA-256 entry from the referenced freeze manifest before loading empirical data.",
+    "Any freeze mismatch blocks execution and requires a new explicit freeze and authorization record before empirical rerun.",
+    "All preregistered seeds and conditions must be retained; aborted runs are handled only by the preregistered missing-data policy.",
+    "Execution produces DATA and a machine report only; it does not create EVID or change hypothesis/claim status automatically.",
+    "Any scientifically relevant protocol change requires a new experiment identifier rather than modification of this frozen campaign."
+  ],
+  "status": "authorized_not_executed"
+}
