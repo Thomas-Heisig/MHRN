@@ -1,0 +1,86 @@
+{
+  "preregistration_id": "PREREG-RQ-EVAL-006-V2",
+  "research_question_id": "RQ-EVAL-006",
+  "hypothesis_ids": [
+    "H-EVAL-006-A",
+    "H-EVAL-006-B",
+    "H-EVAL-006-C"
+  ],
+  "status": "FROZEN_BEFORE_CONFIRMATORY_EXECUTION",
+  "created": "2026-09-16",
+  "protocol": "single_neuron_conformance_v2",
+  "mode": "CONFIRMATORY",
+  "external_reference": {
+    "framework": "Brian2",
+    "version": "2.10.1",
+    "backend": "numpy",
+    "dt_ms": 1.0
+  },
+  "model_axis": {
+    "parameter": "neuron.model",
+    "default_model": "izhikevich-2003",
+    "optional_models": ["lif-current-v1"],
+    "rule": "Every eligible experiment that varies neuron.model must record the model id and complete NeuronConfig in its execution contract. Izhikevich remains the canonical default; LIF is an optional treatment arm and requires a model-specific hypothesis when inferential claims compare models."
+  },
+  "historical_v1": {
+    "hypothesis_id": "H-EVAL-003-A",
+    "disposition": "PRESERVED_NEGATIVE",
+    "note": "The 1000-tick free-running exact-trajectory comparison is retained unchanged. V2 does not overwrite it and does not reinterpret its 0/3 result as a pass."
+  },
+  "diagnostic_basis": {
+    "seeds": [20001, 20002, 20003],
+    "use_for_confirmation": false,
+    "observations": [
+      "Izhikevich local one-step transition conformance passed at errors far below 1e-8 while the long free-running trajectory amplified ~1e-10 differences into later spike-time divergence.",
+      "LIF with refractory_ticks=0 matched Brian2 exactly.",
+      "For nonzero LIF refractory settings at dt=1 ms, diagnostic mapping was MHRN refractory_ticks n -> Brian2 refractory (n+1) ms for n=1..3."
+    ]
+  },
+  "confirmatory_validation": {
+    "seeds": [21001, 21002, 21003],
+    "seed_overlap_with_diagnostic": false,
+    "izhikevich_samples_per_seed": 64,
+    "izhikevich_primary_endpoints": {
+      "spike_decisions_equal": true,
+      "max_abs_pre_reset_v_error_lte": 1e-8,
+      "max_abs_pre_reset_u_error_lte": 1e-8,
+      "max_abs_post_reset_v_error_lte": 1e-8,
+      "max_abs_post_reset_u_error_lte": 1e-8
+    },
+    "lif_default_primary_endpoints": {
+      "refractory_ticks": 0,
+      "brian2_refractory_ms": 0,
+      "spike_events_equal": true,
+      "max_abs_v_error_lte": 1e-8,
+      "ticks": 1000,
+      "cells": 5
+    },
+    "lif_refractory_secondary_endpoints": {
+      "tested_native_refractory_ticks": [1, 2, 3],
+      "expected_brian2_refractory_ms": [2, 3, 4],
+      "mapping_rule": "brian2_refractory_ms = native_refractory_ticks + 1 at dt_ms=1.0 for native values 1..3",
+      "spike_events_equal": true,
+      "max_abs_v_error_lte": 1e-8
+    },
+    "success_rule": "H-EVAL-006-A and H-EVAL-006-B require all three confirmatory seeds to satisfy every primary endpoint. H-EVAL-006-C is supported only if all three declared nonzero refractory mappings satisfy both equality endpoints in all three confirmatory seeds.",
+    "retry_rule": "No parameter, tolerance, mapping, seed or sample-count changes are permitted after confirmatory execution. A failure remains a DATA result and requires a separately versioned protocol."
+  },
+  "homeostasis_operating_envelope": {
+    "status": "DIAGNOSTIC_OPERATING_RANGE_NOT_UNIVERSAL_MODEL_CLAIM",
+    "tested_model": "lif-current-v1",
+    "dt_ms": 1.0,
+    "target_rate_hz": 10.0,
+    "firing_rate_tau_ms": 1000.0,
+    "homeostasis_learning_rate": 0.001,
+    "threshold_offset_limit_mv": [-10.0, 10.0],
+    "validated_diagnostic_input_currents": [16.0, 18.0, 20.0, 22.0, 25.0],
+    "observed_saturation_current": 30.0,
+    "interpretation": "The mechanism reached the 10 Hz target without actuator saturation for the listed diagnostic currents. At current 30 the +10 mV actuator bound saturated and the target was not reachable. This is an operating-envelope statement for the declared configuration, not a universal current threshold across neuron models."
+  },
+  "evidence_policy": {
+    "automatic_evid_promotion": false,
+    "human_review_required": true,
+    "independent_authorship_replication": false,
+    "interpretation_limit": "Brian2 is an external software reference implementation, not an independently authored replication of the MHRN study. A green run closes reference-conformance for this protocol but does not by itself satisfy an independent-replication maturity criterion."
+  }
+}
