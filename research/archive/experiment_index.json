@@ -1723,6 +1723,27 @@
       "original_path": "experiments/EXP-GEN-0040",
       "reason": "manuelle Archivierung"
     },
+    "EXP-GEN-0041": {
+      "archived_at": "2026-09-16T21:13:31.702849+00:00",
+      "experiment_id": "EXP-GEN-0041",
+      "manifest_sha256": "aa7daf39d6f7cfa5ffcefb91b0ce71091dd016208e6a43553d1cbb08c3ce5fcc",
+      "original_path": "experiments/EXP-GEN-0041",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-GEN-0042": {
+      "archived_at": "2026-09-16T21:13:26.089171+00:00",
+      "experiment_id": "EXP-GEN-0042",
+      "manifest_sha256": "4dae6351abf43dac0173f7f455bb51b8ab82fb949c6b706fd92ffd0c8195d380",
+      "original_path": "experiments/EXP-GEN-0042",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-GEN-0043": {
+      "archived_at": "2026-09-16T21:13:30.292462+00:00",
+      "experiment_id": "EXP-GEN-0043",
+      "manifest_sha256": "ebc79d9d95c87ece45eab1f5b03c6b9baeabef6532481370d3054eb98dc64fb1",
+      "original_path": "experiments/EXP-GEN-0043",
+      "reason": "manuelle Archivierung"
+    },
     "EXP-LEARN-20260903-2300": {
       "archived_at": "2026-09-16T13:44:12.166235+00:00",
       "experiment_id": "EXP-LEARN-20260903-2300",
