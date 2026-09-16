@@ -1,0 +1,43 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "EXP-GEN-0041",
+  "preregistration": "PREREG-SNN-006",
+  "automated_criteria_evaluation": "criteria_satisfied",
+  "human_review_status": "PENDING",
+  "scientific_evidence_promoted": false,
+  "registered_realizations": 10,
+  "unique_realizations": 10,
+  "run_count": 20,
+  "criteria_failures": [],
+  "observed_ranges": {
+    "weight_scale": [
+      0.9551587460107258,
+      1.0427718433104345
+    ],
+    "drive_scale": [
+      0.9601167254107486,
+      1.0457261619394445
+    ],
+    "tonic_post_burn_in_mean_spikes": [
+      234.3,
+      300.0
+    ],
+    "tonic_spike_cv": [
+      0.0,
+      0.020925972614094224
+    ],
+    "tonic_relative_drift": [
+      0.0,
+      0.03841229193341869
+    ]
+  },
+  "statistics_schema": "2.2",
+  "scope": "simulated three-neuron local parameter robustness only",
+  "limitations": [
+    "deterministic pseudo-random parameter realizations are not independent biological samples",
+    "fixed three-neuron topology",
+    "local +/-5% weight/drive parameter neighborhood only",
+    "continuous tonic drive tests driven stability, not autonomous persistence"
+  ],
+  "next_preregistered_target": "drive-removal persistence"
+}
