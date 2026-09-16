@@ -2,7 +2,7 @@
   "experiment_id": "EXP-STAGE0-20260916-MODEL-CONFORMANCE-V2",
   "data_class": "DATA",
   "mode": "CONFIRMATORY",
-  "preregistration_id": "PREREG-RQ-EVAL-006-V2",
+  "preregistration_id": "PREREG-EVAL-006-V2",
   "research_question_id": "RQ-EVAL-006",
   "hypothesis_ids": ["H-EVAL-006-A", "H-EVAL-006-B", "H-EVAL-006-C"],
   "execution": {
@@ -31,9 +31,9 @@
       "worst_max_abs_post_reset_u_error": 3.552713678800501e-15,
       "acceptance_threshold": 1e-8,
       "seed_results": [
-        {"seed":21001,"conformance_within_1e_8":true,"spike_decisions_equal":true,"max_abs_pre_reset_v_error":2.2737367544323206e-13,"max_abs_pre_reset_u_error":3.552713678800501e-15,"max_abs_post_reset_v_error":4.263256414560601e-14,"max_abs_post_reset_u_error":3.552713678800501e-15},
-        {"seed":21002,"conformance_within_1e_8":true,"spike_decisions_equal":true,"max_abs_pre_reset_v_error":4.547473508864641e-13,"max_abs_pre_reset_u_error":1.7763568394002505e-15,"max_abs_post_reset_v_error":4.263256414560601e-14,"max_abs_post_reset_u_error":3.552713678800501e-15},
-        {"seed":21003,"conformance_within_1e_8":true,"spike_decisions_equal":true,"max_abs_pre_reset_v_error":6.821210263296962e-13,"max_abs_pre_reset_u_error":2.6645352591003757e-15,"max_abs_post_reset_v_error":4.263256414560601e-14,"max_abs_post_reset_u_error":2.6645352591003757e-15}
+        {"seed": 21001, "conformance_within_1e_8": true, "spike_decisions_equal": true, "max_abs_pre_reset_v_error": 2.2737367544323206e-13, "max_abs_pre_reset_u_error": 3.552713678800501e-15, "max_abs_post_reset_v_error": 4.263256414560601e-14, "max_abs_post_reset_u_error": 3.552713678800501e-15},
+        {"seed": 21002, "conformance_within_1e_8": true, "spike_decisions_equal": true, "max_abs_pre_reset_v_error": 4.547473508864641e-13, "max_abs_pre_reset_u_error": 1.7763568394002505e-15, "max_abs_post_reset_v_error": 4.263256414560601e-14, "max_abs_post_reset_u_error": 3.552713678800501e-15},
+        {"seed": 21003, "conformance_within_1e_8": true, "spike_decisions_equal": true, "max_abs_pre_reset_v_error": 6.821210263296962e-13, "max_abs_pre_reset_u_error": 2.6645352591003757e-15, "max_abs_post_reset_v_error": 4.263256414560601e-14, "max_abs_post_reset_u_error": 2.6645352591003757e-15}
       ]
     },
     "H-EVAL-006-B": {
@@ -44,16 +44,16 @@
       "worst_max_abs_v_error": 7.105427357601002e-15,
       "acceptance_threshold": 1e-8,
       "seed_results": [
-        {"seed":21001,"native_spike_count":78,"brian2_spike_count":78,"spike_events_equal":true,"max_abs_v_error":7.105427357601002e-15},
-        {"seed":21002,"native_spike_count":71,"brian2_spike_count":71,"spike_events_equal":true,"max_abs_v_error":0.0},
-        {"seed":21003,"native_spike_count":73,"brian2_spike_count":73,"spike_events_equal":true,"max_abs_v_error":0.0}
+        {"seed": 21001, "native_spike_count": 78, "brian2_spike_count": 78, "spike_events_equal": true, "max_abs_v_error": 7.105427357601002e-15},
+        {"seed": 21002, "native_spike_count": 71, "brian2_spike_count": 71, "spike_events_equal": true, "max_abs_v_error": 0.0},
+        {"seed": 21003, "native_spike_count": 73, "brian2_spike_count": 73, "spike_events_equal": true, "max_abs_v_error": 0.0}
       ]
     },
     "H-EVAL-006-C": {
       "model": "lif-current-v1",
       "supported_by_protocol": true,
-      "mapping_dt_1ms": {"1":2,"2":3,"3":4},
-      "mapping_units": {"mhrn":"refractory_ticks","brian2":"ms"},
+      "mapping_dt_1ms": {"1": 2, "2": 3, "3": 4},
+      "mapping_units": {"mhrn": "refractory_ticks", "brian2": "ms"},
       "all_nine_mapping_runs_spike_equal": true,
       "worst_max_abs_v_error": 7.105427357601002e-15,
       "acceptance_threshold": 1e-8
