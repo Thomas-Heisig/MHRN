@@ -1,0 +1,4857 @@
+{
+  "automatic_evidence_promotion": false,
+  "benchmark": "Split-MNIST",
+  "config": {
+    "bootstrap_samples": 20000,
+    "capacity_per_task": 50,
+    "learning_rate": 0.025,
+    "pooling": 4,
+    "seeds": [
+      301,
+      302,
+      303,
+      304,
+      305,
+      306,
+      307,
+      308,
+      309,
+      310,
+      311,
+      312
+    ],
+    "test_per_class": 200,
+    "thresholds": [
+      0.2,
+      0.4,
+      0.6,
+      0.8
+    ],
+    "train_per_class": 1000
+  },
+  "dataset_sha256": {
+    "test_images": "8d422c7b0a1c1c79245a5bcf07fe86e33eeafee792b84584aec276f5a2dbc4e6",
+    "test_labels": "f7ae60f92e00ec6debd23a6088c31dbd2371eca3ffa0defaefb259924204aec6",
+    "train_images": "440fcabf73cc546fa21475e81ea370265605f56be210a4024d2ca8f203523609",
+    "train_labels": "3552534a0a558bbed6aed32b30c495cca23d567ec52cac8be1a0730e8010255c"
+  },
+  "experiment_id": "EXP-S6-SEM-CL-003",
+  "human_review_required": true,
+  "runs": [
+    {
+      "abort_reason": null,
+      "aborted": false,
+      "condition": "X20",
+      "current_task_updates": 8400,
+      "final_average_accuracy": 0.192,
+      "mean_forgetting": 0.97875,
+      "replay_updates": 1600,
+      "seed": 301,
+      "stored_by_task": [
+        3,
+        2,
+        3,
+        4,
+        3
+      ],
+      "task_accuracy_matrix": [
+        [
+          0.9975,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.02,
+          0.9625,
+          null,
+          null,
+          null
+        ],
+        [
+          0.0,
+          0.005,
+          0.975,
+          null,
+          null
+        ],
+        [
+          0.0,
+          0.0,
+          0.025,
+          0.98,
+          null
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.96
+        ]
+      ],
+      "total_updates": 10000
+    },
+    {
+      "abort_reason": null,
+      "aborted": false,
+      "condition": "R05",
+      "current_task_updates": 9600,
+      "final_average_accuracy": 0.26349999999999996,
+      "mean_forgetting": 0.8925000000000001,
+      "replay_updates": 400,
+      "seed": 301,
+      "stored_by_task": [
+        3,
+        2,
+        3,
+        4,
+        3
+      ],
+      "task_accuracy_matrix": [
+        [
+          0.9975,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.2675,
+          0.9725,
+          null,
+          null,
+          null
+        ],
+        [
+          0.2325,
+          0.2475,
+          0.97,
+          null,
+          null
+        ],
+        [
+          0.2025,
+          0.04,
+          0.05,
+          0.9775,
+          null
+        ],
+        [
+          0.06,
+          0.0375,
+          0.0,
+          0.25,
+          0.97
+        ]
+      ],
+      "total_updates": 10000
+    },
+    {
+      "abort_reason": null,
+      "aborted": false,
+      "condition": "S40",
+      "current_task_updates": 6800,
+      "final_average_accuracy": 0.33649999999999997,
+      "mean_forgetting": 0.788125,
+      "replay_updates": 3200,
+      "seed": 301,
+      "stored_by_task": [
+        3,
+        2,
+        3,
+        4,
+        3
+      ],
+      "task_accuracy_matrix": [
+        [
+          0.9975,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.61,
+          0.965,
+          null,
+          null,
+          null
+        ],
+        [
+          0.3825,
+          0.4875,
+          0.965,
+          null,
+          null
+        ],
+        [
+          0.3525,
+          0.24,
+          0.4775,
+          0.9675,
+          null
+        ],
+        [
+          0.09,
+          0.065,
+          0.035,
+          0.5525,
+          0.94
+        ]
+      ],
+      "total_updates": 10000
+    },
+    {
+      "abort_reason": null,
+      "aborted": false,
+      "condition": "S05",
+      "current_task_updates": 9600,
+      "final_average_accuracy": 0.282,
+      "mean_forgetting": 0.868125,
+      "replay_updates": 400,
+      "seed": 301,
+      "stored_by_task": [
+        3,
+        2,
+        3,
+        4,
+        3
+      ],
+      "task_accuracy_matrix": [
+        [
+          0.9975,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.4725,
+          0.9725,
+          null,
+          null,
+          null
+        ],
+        [
+          0.285,
+          0.2625,
+          0.9725,
+          null,
+          null
+        ],
+        [
+          0.1775,
+          0.15,
+          0.2575,
+          0.98,
+          null
+        ],
+        [
+          0.035,
+          0.045,
+          0.0125,
+          0.3575,
+          0.96
+        ]
+      ],
+      "total_updates": 10000
+    },
+    {
+      "abort_reason": null,
+      "aborted": false,
+      "condition": "R40",
+      "current_task_updates": 6800,
+      "final_average_accuracy": 0.329,
+      "mean_forgetting": 0.7899999999999999,
+      "replay_updates": 3200,
+      "seed": 301,
+      "stored_by_task": [
+        3,
+        2,
+        3,
+        4,
+        3
+      ],
+      "task_accuracy_matrix": [
+        [
+          0.9975,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.4175,
+          0.9625,
+          null,
+          null,
+          null
+        ],
+        [
+          0.2925,
+          0.3425,
+          0.96,
+          null,
+          null
+        ],
+        [
+          0.245,
+          0.0925,
+          0.1375,
+          0.96,
+          null
+        ],
+        [
+          0.16,
+          0.05,
+          0.015,
+          0.495,
+          0.925
+        ]
+      ],
+      "total_updates": 10000
+    },
+    {
+      "abort_reason": null,
+      "aborted": false,
+      "condition": "S20",
+      "current_task_updates": 8400,
+      "final_average_accuracy": 0.323,
+      "mean_forgetting": 0.81375,
+      "replay_updates": 1600,
+      "seed": 301,
+      "stored_by_task": [
+        3,
+        2,
+        3,
+        4,
+        3
+      ],
+      "task_accuracy_matrix": [
+        [
+          0.9975,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.55,
+          0.97,
+          null,
+          null,
+          null
+        ],
+        [
+          0.3125,
+          0.36,
+          0.975,
+          null,
+          null
+        ],
+        [
+          0.25,
+          0.185,
+          0.4075,
+          0.975,
+          null
+        ],
+        [
+          0.085,
+          0.075,
+          0.0325,
+          0.47,
+          0.9525
+        ]
+      ],
+      "total_updates": 10000
+    },
+    {
+      "abort_reason": null,
+      "aborted": false,
+      "condition": "R20",
+      "current_task_updates": 8400,
+      "final_average_accuracy": 0.314,
+      "mean_forgetting": 0.82375,
+      "replay_updates": 1600,
+      "seed": 301,
+      "stored_by_task": [
+        3,
+        2,
+        3,
+        4,
+        3
+      ],
+      "task_accuracy_matrix": [
+        [
+          0.9975,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.355,
+          0.97,
+          null,
+          null,
+          null
+        ],
+        [
+          0.2625,
+          0.2775,
+          0.9725,
+          null,
+          null
+        ],
+        [
+          0.23,
+          0.0725,
+          0.1,
+          0.9725,
+          null
+        ],
+        [
+          0.15,
+          0.0575,
+          0.005,
+          0.405,
+          0.9525
+        ]
+      ],
+      "total_updates": 10000
+    },
+    {
+      "abort_reason": null,
+      "aborted": false,
+      "condition": "R05",
+      "current_task_updates": 9600,
+      "final_average_accuracy": 0.302,
+      "mean_forgetting": 0.84125,
+      "replay_updates": 400,
+      "seed": 302,
+      "stored_by_task": [
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      "task_accuracy_matrix": [
+        [
+          0.995,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.3825,
+          0.9725,
+          null,
+          null,
+          null
+        ],
+        [
+          0.12,
+          0.155,
+          0.975,
+          null,
+          null
+        ],
+        [
+          0.1875,
+          0.095,
+          0.1375,
+          0.975,
+          null
+        ],
+        [
+          0.1525,
+          0.055,
+          0.0125,
+          0.3325,
+          0.9575
+        ]
+      ],
+      "total_updates": 10000
+    },
+    {
+      "abort_reason": null,
+      "aborted": false,
+      "condition": "R40",
+      "current_task_updates": 6800,
+      "final_average_accuracy": 0.404,
+      "mean_forgetting": 0.7100000000000001,
+      "replay_updates": 3200,
+      "seed": 302,
+      "stored_by_task": [
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      "task_accuracy_matrix": [
+        [
+          0.995,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.56,
+          0.9625,
+          null,
+          null,
+          null
+        ],
+        [
+          0.2475,
+          0.3225,
+          0.985,
+          null,
+          null
+        ],
+        [
+          0.3225,
+          0.1475,
+          0.3575,
+          0.9725,
+          null
+        ],
+        [
+          0.3425,
+          0.1175,
+          0.075,
+          0.54,
+          0.945
+        ]
+      ],
+      "total_updates": 10000
+    },
+    {
+      "abort_reason": null,
+      "aborted": false,
+      "condition": "S40",
+      "current_task_updates": 6800,
+      "final_average_accuracy": 0.38,
+      "mean_forgetting": 0.735,
+      "replay_updates": 3200,
+      "seed": 302,
+      "stored_by_task": [
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      "task_accuracy_matrix": [
+        [
+          0.995,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.54,
+          0.9575,
+          null,
+          null,
+          null
+        ],
+        [
+          0.225,
+          0.455,
+          0.9775,
+          null,
+          null
+        ],
+        [
+          0.3625,
+          0.3025,
+          0.5625,
+          0.9625,
+          null
+        ],
+        [
+          0.1375,
+          0.1425,
+          0.06,
+          0.6125,
+          0.9475
+        ]
+      ],
+      "total_updates": 10000
+    },
+    {
+      "abort_reason": null,
+      "aborted": false,
+      "condition": "R20",
+      "current_task_updates": 8400,
+      "final_average_accuracy": 0.362,
+      "mean_forgetting": 0.75875,
+      "replay_updates": 1600,
+      "seed": 302,
+      "stored_by_task": [
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      "task_accuracy_matrix": [
+        [
+          0.995,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.475,
+          0.97,
+          null,
+          null,
+          null
+        ],
+        [
+          0.1825,
+          0.2575,
+          0.9675,
+          null,
+          null
+        ],
+        [
+          0.27,
+          0.125,
+          0.2825,
+          0.965,
+          null
+        ],
+        [
+          0.2525,
+          0.0675,
+          0.0475,
+          0.495,
+          0.9475
+        ]
+      ],
+      "total_updates": 10000
+    },
+    {
+      "abort_reason": null,
+      "aborted": false,
+      "condition": "S20",
+      "current_task_updates": 8400,
+      "final_average_accuracy": 0.35,
+      "mean_forgetting": 0.776875,
+      "replay_updates": 1600,
+      "seed": 302,
+      "stored_by_task": [
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      "task_accuracy_matrix": [
+        [
+          0.995,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.4925,
+          0.97,
+          null,
+          null,
+          null
+        ],
+        [
+          0.105,
+          0.3425,
+          0.9725,
+          null,
+          null
+        ],
+        [
+          0.31,
+          0.23,
+          0.4,
+          0.9675,
+          null
+        ],
+        [
+          0.1125,
+          0.105,
+          0.0325,
+          0.5475,
+          0.9525
+        ]
+      ],
+      "total_updates": 10000
+    },
+    {
+      "abort_reason": null,
+      "aborted": false,
+      "condition": "S05",
+      "current_task_updates": 9600,
+      "final_average_accuracy": 0.305,
+      "mean_forgetting": 0.8374999999999999,
+      "replay_updates": 400,
+      "seed": 302,
+      "stored_by_task": [
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      "task_accuracy_matrix": [
+        [
+          0.995,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.45,
+          0.97,
+          null,
+          null,
+          null
+        ],
+        [
+          0.085,
+          0.225,
+          0.9775,
+          null,
+          null
+        ],
+        [
+          0.22,
+          0.1875,
+          0.2475,
+          0.975,
+          null
+        ],
+        [
+          0.045,
+          0.1,
+          0.01,
+          0.4125,
+          0.9575
+        ]
+      ],
+      "total_updates": 10000
+    },
+    {
+      "abort_reason": null,
+      "aborted": false,
+      "condition": "X20",
+      "current_task_updates": 8400,
+      "final_average_accuracy": 0.192,
+      "mean_forgetting": 0.9781250000000001,
+      "replay_updates": 1600,
+      "seed": 302,
+      "stored_by_task": [
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      "task_accuracy_matrix": [
+        [
+          0.995,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.0325,
+          0.9725,
+          null,
+          null,
+          null
+        ],
+        [
+          0.0,
+          0.005,
+          0.9775,
+          null,
+          null
+        ],
+        [
+          0.0,
+          0.0,
+          0.0025,
+          0.9725,
+          null
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.005,
+          0.955
+        ]
+      ],
+      "total_updates": 10000
+    },
+    {
+      "abort_reason": null,
+      "aborted": false,
+      "condition": "R40",
+      "current_task_updates": 6800,
+      "final_average_accuracy": 0.29100000000000004,
+      "mean_forgetting": 0.8275,
+      "replay_updates": 3200,
+      "seed": 303,
+      "stored_by_task": [
+        3,
+        3,
+        4,
+        3,
+        3
+      ],
+      "task_accuracy_matrix": [
+        [
+          1.0,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.5625,
+          0.9425,
+          null,
+          null,
+          null
+        ],
+        [
+          0.26,
+          0.5225,
+          0.9425,
+          null,
+          null
+        ],
+        [
+          0.2375,
+          0.2625,
+          0.3225,
+          0.9725,
+          null
+        ],
+        [
+          0.1375,
+          0.045,
+          0.0425,
+          0.3225,
+          0.9075
+        ]
+      ],
+      "total_updates": 10000
+    },
+    {
+      "abort_reason": null,
+      "aborted": false,
+      "condition": "R05",
+      "current_task_updates": 9600,
+      "final_average_accuracy": 0.259,
+      "mean_forgetting": 0.8775,
+      "replay_updates": 400,
+      "seed": 303,
+      "stored_by_task": [
+        3,
+        3,
+        4,
+        3,
+        3
+      ],
+      "task_accuracy_matrix": [
+        [
+          1.0,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.395,
+          0.9275,
+          null,
+          null,
+          null
+        ],
+        [
+          0.1325,
+          0.2875,
+          0.9625,
+          null,
+          null
+        ],
+        [
+          0.0675,
+          0.1175,
+          0.1375,
+          0.9775,
+          null
+        ],
+        [
+          0.075,
+          0.0425,
+          0.02,
+          0.22,
+          0.9375
+        ]
+      ],
+      "total_updates": 10000
+    },
+    {
+      "abort_reason": null,
+      "aborted": false,
+      "condition": "S20",
+      "current_task_updates": 8400,
+      "final_average_accuracy": 0.368,
+      "mean_forgetting": 0.73375,
+      "replay_updates": 1600,
+      "seed": 303,
+      "stored_by_task": [
+        3,
+        3,
+        4,
+        3,
+        3
+      ],
+      "task_accuracy_matrix": [
+        [
+          1.0,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.56,
+          0.9375,
+          null,
+          null,
+          null
+        ],
+        [
+          0.19,
+          0.4125,
+          0.96,
+          null,
+          null
+        ],
+        [
+          0.2175,
+          0.1875,
+          0.365,
+          0.965,
+          null
+        ],
+        [
+          0.1375,
+          0.145,
+          0.075,
+          0.57,
+          0.9125
+        ]
+      ],
+      "total_updates": 10000
+    },
+    {
+      "abort_reason": null,
+      "aborted": false,
+      "condition": "S40",
+      "current_task_updates": 6800,
+      "final_average_accuracy": 0.36950000000000005,
+      "mean_forgetting": 0.7312500000000001,
+      "replay_updates": 3200,
+      "seed": 303,
+      "stored_by_task": [
+        3,
+        3,
+        4,
+        3,
+        3
+      ],
+      "task_accuracy_matrix": [
+        [
+          1.0,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.63,
+          0.935,
+          null,
+          null,
+          null
+        ],
+        [
+          0.255,
+          0.5475,
+          0.9475,
+          null,
+          null
+        ],
+        [
+          0.2925,
+          0.1975,
+          0.4175,
+          0.975,
+          null
+        ],
+        [
+          0.135,
+          0.12,
+          0.0775,
+          0.6,
+          0.915
+        ]
+      ],
+      "total_updates": 10000
+    },
+    {
+      "abort_reason": null,
+      "aborted": false,
+      "condition": "S05",
+      "current_task_updates": 9600,
+      "final_average_accuracy": 0.30100000000000005,
+      "mean_forgetting": 0.8243750000000001,
+      "replay_updates": 400,
+      "seed": 303,
+      "stored_by_task": [
+        3,
+        3,
+        4,
+        3,
+        3
+      ],
+      "task_accuracy_matrix": [
+        [
+          1.0,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.46,
+          0.925,
+          null,
+          null,
+          null
+        ],
+        [
+          0.16,
+          0.325,
+          0.9675,
+          null,
+          null
+        ],
+        [
+          0.1325,
+          0.12,
+          0.215,
+          0.975,
+          null
+        ],
+        [
+          0.07,
+          0.09,
+          0.0325,
+          0.3775,
+          0.935
+        ]
+      ],
+      "total_updates": 10000
+    },
+    {
+      "abort_reason": null,
+      "aborted": false,
+      "condition": "R20",
+      "current_task_updates": 8400,
+      "final_average_accuracy": 0.28200000000000003,
+      "mean_forgetting": 0.8418749999999999,
+      "replay_updates": 1600,
+      "seed": 303,
+      "stored_by_task": [
+        3,
+        3,
+        4,
+        3,
+        3
+      ],
+      "task_accuracy_matrix": [
+        [
+          1.0,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.495,
+          0.935,
+          null,
+          null,
+          null
+        ],
+        [
+          0.2075,
+          0.3875,
+          0.9625,
+          null,
+          null
+        ],
+        [
+          0.1925,
+          0.21,
+          0.2825,
+          0.9675,
+          null
+        ],
+        [
+          0.1325,
+          0.0475,
+          0.04,
+          0.2775,
+          0.9125
+        ]
+      ],
+      "total_updates": 10000
+    },
+    {
+      "abort_reason": null,
+      "aborted": false,
+      "condition": "X20",
+      "current_task_updates": 8400,
+      "final_average_accuracy": 0.1905,
+      "mean_forgetting": 0.9675,
+      "replay_updates": 1600,
+      "seed": 303,
+      "stored_by_task": [
+        3,
+        3,
+        4,
+        3,
+        3
+      ],
+      "task_accuracy_matrix": [
+        [
+          1.0,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.09,
+          0.94,
+          null,
+          null,
+          null
+        ],
+        [
+          0.0,
+          0.01,
+          0.9625,
+          null,
+          null
+        ],
+        [
+          0.0,
+          0.0,
+          0.045,
+          0.9775,
+          null
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.01,
+          0.9425
+        ]
+      ],
+      "total_updates": 10000
+    },
+    {
+      "abort_reason": null,
+      "aborted": false,
+      "condition": "S40",
+      "current_task_updates": 6800,
+      "final_average_accuracy": 0.3685,
+      "mean_forgetting": 0.7424999999999999,
+      "replay_updates": 3200,
+      "seed": 304,
+      "stored_by_task": [
+        2,
+        3,
+        4,
+        3,
+        2
+      ],
+      "task_accuracy_matrix": [
+        [
+          0.995,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.6075,
+          0.9575,
+          null,
+          null,
+          null
+        ],
+        [
+          0.11,
+          0.445,
+          0.965,
+          null,
+          null
+        ],
+        [
+          0.225,
+          0.1525,
+          0.5625,
+          0.955,
+          null
+        ],
+        [
+          0.1875,
+          0.0575,
+          0.1125,
+          0.545,
+          0.94
+        ]
+      ],
+      "total_updates": 10000
+    },
+    {
+      "abort_reason": null,
+      "aborted": false,
+      "condition": "R40",
+      "current_task_updates": 6800,
+      "final_average_accuracy": 0.36450000000000005,
+      "mean_forgetting": 0.7462500000000001,
+      "replay_updates": 3200,
+      "seed": 304,
+      "stored_by_task": [
+        2,
+        3,
+        4,
+        3,
+        2
+      ],
+      "task_accuracy_matrix": [
+        [
+          0.995,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.4725,
+          0.9525,
+          null,
+          null,
+          null
+        ],
+        [
+          0.1175,
+          0.305,
+          0.98,
+          null,
+          null
+        ],
+        [
+          0.1425,
+          0.19,
+          0.335,
+          0.95,
+          null
+        ],
+        [
+          0.23,
+          0.065,
+          0.075,
+          0.5225,
+          0.93
+        ]
+      ],
+      "total_updates": 10000
+    },
+    {
+      "abort_reason": null,
+      "aborted": false,
+      "condition": "S05",
+      "current_task_updates": 9600,
+      "final_average_accuracy": 0.2805,
+      "mean_forgetting": 0.856875,
+      "replay_updates": 400,
+      "seed": 304,
+      "stored_by_task": [
+        2,
+        3,
+        4,
+        3,
+        2
+      ],
+      "task_accuracy_matrix": [
+        [
+          0.995,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.485,
+          0.9575,
+          null,
+          null,
+          null
+        ],
+        [
+          0.08,
+          0.2725,
+          0.98,
+          null,
+          null
+        ],
+        [
+          0.08,
+          0.15,
+          0.38,
+          0.9625,
+          null
+        ],
+        [
+          0.075,
+          0.03,
+          0.0425,
+          0.32,
+          0.935
+        ]
+      ],
+      "total_updates": 10000
+    },
+    {
+      "abort_reason": null,
+      "aborted": false,
+      "condition": "S20",
+      "current_task_updates": 8400,
+      "final_average_accuracy": 0.3295,
+      "mean_forgetting": 0.7925,
+      "replay_updates": 1600,
+      "seed": 304,
+      "stored_by_task": [
+        2,
+        3,
+        4,
+        3,
+        2
+      ],
+      "task_accuracy_matrix": [
+        [
+          0.995,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.575,
+          0.96,
+          null,
+          null,
+          null
+        ],
+        [
+          0.185,
+          0.4325,
+          0.97,
+          null,
+          null
+        ],
+        [
+          0.1525,
+          0.175,
+          0.5475,
+          0.955,
+          null
+        ],
+        [
+          0.1,
+          0.025,
+          0.095,
+          0.49,
+          0.9375
+        ]
+      ],
+      "total_updates": 10000
+    },
+    {
+      "abort_reason": null,
+      "aborted": false,
+      "condition": "X20",
+      "current_task_updates": 8400,
+      "final_average_accuracy": 0.191,
+      "mean_forgetting": 0.97375,
+      "replay_updates": 1600,
+      "seed": 304,
+      "stored_by_task": [
+        2,
+        3,
+        4,
+        3,
+        2
+      ],
+      "task_accuracy_matrix": [
+        [
+          0.995,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.005,
+          0.965,
+          null,
+          null,
+          null
+        ],
+        [
+          0.0,
+          0.0,
+          0.975,
+          null,
+          null
+        ],
+        [
+          0.0,
+          0.0,
+          0.0175,
+          0.9675,
+          null
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0075,
+          0.9475
+        ]
+      ],
+      "total_updates": 10000
+    },
+    {
+      "abort_reason": null,
+      "aborted": false,
+      "condition": "R20",
+      "current_task_updates": 8400,
+      "final_average_accuracy": 0.348,
+      "mean_forgetting": 0.77125,
+      "replay_updates": 1600,
+      "seed": 304,
+      "stored_by_task": [
+        2,
+        3,
+        4,
+        3,
+        2
+      ],
+      "task_accuracy_matrix": [
+        [
+          0.995,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.45,
+          0.96,
+          null,
+          null,
+          null
+        ],
+        [
+          0.1425,
+          0.285,
+          0.97,
+          null,
+          null
+        ],
+        [
+          0.11,
+          0.175,
+          0.28,
+          0.9625,
+          null
+        ],
+        [
+          0.18,
+          0.0675,
+          0.07,
+          0.485,
+          0.9375
+        ]
+      ],
+      "total_updates": 10000
+    },
+    {
+      "abort_reason": null,
+      "aborted": false,
+      "condition": "R05",
+      "current_task_updates": 9600,
+      "final_average_accuracy": 0.305,
+      "mean_forgetting": 0.8231249999999999,
+      "replay_updates": 400,
+      "seed": 304,
+      "stored_by_task": [
+        2,
+        3,
+        4,
+        3,
+        2
+      ],
+      "task_accuracy_matrix": [
+        [
+          0.995,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.405,
+          0.955,
+          null,
+          null,
+          null
+        ],
+        [
+          0.065,
+          0.165,
+          0.975,
+          null,
+          null
+        ],
+        [
+          0.0625,
+          0.125,
+          0.1375,
+          0.9625,
+          null
+        ],
+        [
+          0.125,
+          0.07,
+          0.045,
+          0.355,
+          0.93
+        ]
+      ],
+      "total_updates": 10000
+    },
+    {
+      "abort_reason": null,
+      "aborted": false,
+      "condition": "R40",
+      "current_task_updates": 6800,
+      "final_average_accuracy": 0.37,
+      "mean_forgetting": 0.7406250000000001,
+      "replay_updates": 3200,
+      "seed": 305,
+      "stored_by_task": [
+        2,
+        3,
+        2,
+        3,
+        2
+      ],
+      "task_accuracy_matrix": [
+        [
+          0.9975,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.375,
+          0.93,
+          null,
+          null,
+          null
+        ],
+        [
+          0.2875,
+          0.29,
+          0.9675,
+          null,
+          null
+        ],
+        [
+          0.2325,
+          0.3525,
+          0.3175,
+          0.9675,
+          null
+        ],
+        [
+          0.175,
+          0.1125,
+          0.0125,
+          0.6,
+          0.95
+        ]
+      ],
+      "total_updates": 10000
+    },
+    {
+      "abort_reason": null,
+      "aborted": false,
+      "condition": "X20",
+      "current_task_updates": 8400,
+      "final_average_accuracy": 0.189,
+      "mean_forgetting": 0.975,
+      "replay_updates": 1600,
+      "seed": 305,
+      "stored_by_task": [
+        2,
+        3,
+        2,
+        3,
+        2
+      ],
+      "task_accuracy_matrix": [
+        [
+          0.9975,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.0325,
+          0.945,
+          null,
+          null,
+          null
+        ],
+        [
+          0.0,
+          0.0025,
+          0.975,
+          null,
+          null
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.985,
+          null
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0025,
+          0.9425
+        ]
+      ],
+      "total_updates": 10000
+    },
+    {
+      "abort_reason": null,
+      "aborted": false,
+      "condition": "S40",
+      "current_task_updates": 6800,
+      "final_average_accuracy": 0.3855,
+      "mean_forgetting": 0.7262500000000001,
+      "replay_updates": 3200,
+      "seed": 305,
+      "stored_by_task": [
+        2,
+        3,
+        2,
+        3,
+        2
+      ],
+      "task_accuracy_matrix": [
+        [
+          0.9975,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.6075,
+          0.935,
+          null,
+          null,
+          null
+        ],
+        [
+          0.22,
+          0.4475,
+          0.9725,
+          null,
+          null
+        ],
+        [
+          0.225,
+          0.405,
+          0.5875,
+          0.985,
+          null
+        ],
+        [
+          0.1575,
+          0.1375,
+          0.0375,
+          0.6525,
+          0.9425
+        ]
+      ],
+      "total_updates": 10000
+    },
+    {
+      "abort_reason": null,
+      "aborted": false,
+      "condition": "S05",
+      "current_task_updates": 9600,
+      "final_average_accuracy": 0.29450000000000004,
+      "mean_forgetting": 0.84625,
+      "replay_updates": 400,
+      "seed": 305,
+      "stored_by_task": [
+        2,
+        3,
+        2,
+        3,
+        2
+      ],
+      "task_accuracy_matrix": [
+        [
+          0.9975,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.4725,
+          0.9475,
+          null,
+          null,
+          null
+        ],
+        [
+          0.16,
+          0.3225,
+          0.9725,
+          null,
+          null
+        ],
+        [
+          0.155,
+          0.3325,
+          0.41,
+          0.9875,
+          null
+        ],
+        [
+          0.06,
+          0.065,
+          0.0025,
+          0.3925,
+          0.9525
+        ]
+      ],
+      "total_updates": 10000
+    },
+    {
+      "abort_reason": null,
+      "aborted": false,
+      "condition": "S20",
+      "current_task_updates": 8400,
+      "final_average_accuracy": 0.346,
+      "mean_forgetting": 0.7775000000000001,
+      "replay_updates": 1600,
+      "seed": 305,
+      "stored_by_task": [
+        2,
+        3,
+        2,
+        3,
+        2
+      ],
+      "task_accuracy_matrix": [
+        [
+          0.9975,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.57,
+          0.9475,
+          null,
+          null,
+          null
+        ],
+        [
+          0.23,
+          0.42,
+          0.9675,
+          null,
+          null
+        ],
+        [
+          0.19,
+          0.3175,
+          0.525,
+          0.9875,
+          null
+        ],
+        [
+          0.1075,
+          0.1025,
+          0.0175,
+          0.5625,
+          0.94
+        ]
+      ],
+      "total_updates": 10000
+    },
+    {
+      "abort_reason": null,
+      "aborted": false,
+      "condition": "R05",
+      "current_task_updates": 9600,
+      "final_average_accuracy": 0.3015,
+      "mean_forgetting": 0.835625,
+      "replay_updates": 400,
+      "seed": 305,
+      "stored_by_task": [
+        2,
+        3,
+        2,
+        3,
+        2
+      ],
+      "task_accuracy_matrix": [
+        [
+          0.9975,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.32,
+          0.945,
+          null,
+          null,
+          null
+        ],
+        [
+          0.2,
+          0.165,
+          0.975,
+          null,
+          null
+        ],
+        [
+          0.15,
+          0.16,
+          0.2325,
+          0.9775,
+          null
+        ],
+        [
+          0.085,
+          0.065,
+          0.0075,
+          0.395,
+          0.955
+        ]
+      ],
+      "total_updates": 10000
+    },
+    {
+      "abort_reason": null,
+      "aborted": false,
+      "condition": "R20",
+      "current_task_updates": 8400,
+      "final_average_accuracy": 0.35,
+      "mean_forgetting": 0.77125,
+      "replay_updates": 1600,
+      "seed": 305,
+      "stored_by_task": [
+        2,
+        3,
+        2,
+        3,
+        2
+      ],
+      "task_accuracy_matrix": [
+        [
+          0.9975,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.3625,
+          0.9425,
+          null,
+          null,
+          null
+        ],
+        [
+          0.2575,
+          0.2725,
+          0.9675,
+          null,
+          null
+        ],
+        [
+          0.225,
+          0.24,
+          0.2475,
+          0.9775,
+          null
+        ],
+        [
+          0.1725,
+          0.085,
+          0.01,
+          0.5325,
+          0.95
+        ]
+      ],
+      "total_updates": 10000
+    },
+    {
+      "abort_reason": null,
+      "aborted": false,
+      "condition": "S40",
+      "current_task_updates": 6800,
+      "final_average_accuracy": 0.33899999999999997,
+      "mean_forgetting": 0.783125,
+      "replay_updates": 3200,
+      "seed": 306,
+      "stored_by_task": [
+        2,
+        2,
+        3,
+        3,
+        2
+      ],
+      "task_accuracy_matrix": [
+        [
+          0.9975,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.6025,
+          0.955,
+          null,
+          null,
+          null
+        ],
+        [
+          0.2225,
+          0.4675,
+          0.9625,
+          null,
+          null
+        ],
+        [
+          0.27,
+          0.2475,
+          0.56,
+          0.9625,
+          null
+        ],
+        [
+          0.11,
+          0.075,
+          0.04,
+          0.52,
+          0.95
+        ]
+      ],
+      "total_updates": 10000
+    },
+    {
+      "abort_reason": null,
+      "aborted": false,
+      "condition": "S05",
+      "current_task_updates": 9600,
+      "final_average_accuracy": 0.26949999999999996,
+      "mean_forgetting": 0.878125,
+      "replay_updates": 400,
+      "seed": 306,
+      "stored_by_task": [
+        2,
+        2,
+        3,
+        3,
+        2
+      ],
+      "task_accuracy_matrix": [
+        [
+          0.9975,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.435,
+          0.9575,
+          null,
+          null,
+          null
+        ],
+        [
+          0.145,
+          0.3125,
+          0.97,
+          null,
+          null
+        ],
+        [
+          0.1,
+          0.1675,
+          0.3075,
+          0.98,
+          null
+        ],
+        [
+          0.0475,
+          0.05,
+          0.015,
+          0.28,
+          0.955
+        ]
+      ],
+      "total_updates": 10000
+    },
+    {
+      "abort_reason": null,
+      "aborted": false,
+      "condition": "R20",
+      "current_task_updates": 8400,
+      "final_average_accuracy": 0.3515,
+      "mean_forgetting": 0.7725,
+      "replay_updates": 1600,
+      "seed": 306,
+      "stored_by_task": [
+        2,
+        2,
+        3,
+        3,
+        2
+      ],
+      "task_accuracy_matrix": [
+        [
+          0.9975,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.425,
+          0.955,
+          null,
+          null,
+          null
+        ],
+        [
+          0.2425,
+          0.2025,
+          0.97,
+          null,
+          null
+        ],
+        [
+          0.19,
+          0.0925,
+          0.1475,
+          0.975,
+          null
+        ],
+        [
+          0.13,
+          0.0425,
+          0.03,
+          0.605,
+          0.95
+        ]
+      ],
+      "total_updates": 10000
+    },
+    {
+      "abort_reason": null,
+      "aborted": false,
+      "condition": "X20",
+      "current_task_updates": 8400,
+      "final_average_accuracy": 0.193,
+      "mean_forgetting": 0.9731250000000001,
+      "replay_updates": 1600,
+      "seed": 306,
+      "stored_by_task": [
+        2,
+        2,
+        3,
+        3,
+        2
+      ],
+      "task_accuracy_matrix": [
+        [
+          0.9975,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.005,
+          0.9575,
+          null,
+          null,
+          null
+        ],
+        [
+          0.0,
+          0.0025,
+          0.9675,
+          null,
+          null
+        ],
+        [
+          0.0,
+          0.0,
+          0.0175,
+          0.9775,
+          null
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0075,
+          0.9575
+        ]
+      ],
+      "total_updates": 10000
+    },
+    {
+      "abort_reason": null,
+      "aborted": false,
+      "condition": "S20",
+      "current_task_updates": 8400,
+      "final_average_accuracy": 0.317,
+      "mean_forgetting": 0.8131249999999999,
+      "replay_updates": 1600,
+      "seed": 306,
+      "stored_by_task": [
+        2,
+        2,
+        3,
+        3,
+        2
+      ],
+      "task_accuracy_matrix": [
+        [
+          0.9975,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.53,
+          0.95,
+          null,
+          null,
+          null
+        ],
+        [
+          0.235,
+          0.41,
+          0.965,
+          null,
+          null
+        ],
+        [
+          0.145,
+          0.1975,
+          0.45,
+          0.975,
+          null
+        ],
+        [
+          0.0875,
+          0.065,
+          0.035,
+          0.4475,
+          0.95
+        ]
+      ],
+      "total_updates": 10000
+    },
+    {
+      "abort_reason": null,
+      "aborted": false,
+      "condition": "R40",
+      "current_task_updates": 6800,
+      "final_average_accuracy": 0.37,
+      "mean_forgetting": 0.745625,
+      "replay_updates": 3200,
+      "seed": 306,
+      "stored_by_task": [
+        2,
+        2,
+        3,
+        3,
+        2
+      ],
+      "task_accuracy_matrix": [
+        [
+          0.9975,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.5025,
+          0.96,
+          null,
+          null,
+          null
+        ],
+        [
+          0.255,
+          0.245,
+          0.9675,
+          null,
+          null
+        ],
+        [
+          0.265,
+          0.1425,
+          0.21,
+          0.97,
+          null
+        ],
+        [
+          0.19,
+          0.0375,
+          0.0375,
+          0.6475,
+          0.9375
+        ]
+      ],
+      "total_updates": 10000
+    },
+    {
+      "abort_reason": null,
+      "aborted": false,
+      "condition": "R05",
+      "current_task_updates": 9600,
+      "final_average_accuracy": 0.2935,
+      "mean_forgetting": 0.848125,
+      "replay_updates": 400,
+      "seed": 306,
+      "stored_by_task": [
+        2,
+        2,
+        3,
+        3,
+        2
+      ],
+      "task_accuracy_matrix": [
+        [
+          0.9975,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.3325,
+          0.96,
+          null,
+          null,
+          null
+        ],
+        [
+          0.145,
+          0.1575,
+          0.9725,
+          null,
+          null
+        ],
+        [
+          0.11,
+          0.065,
+          0.1,
+          0.975,
+          null
+        ],
+        [
+          0.07,
+          0.03,
+          0.02,
+          0.3925,
+          0.955
+        ]
+      ],
+      "total_updates": 10000
+    },
+    {
+      "abort_reason": null,
+      "aborted": false,
+      "condition": "X20",
+      "current_task_updates": 8400,
+      "final_average_accuracy": 0.188,
+      "mean_forgetting": 0.970625,
+      "replay_updates": 1600,
+      "seed": 307,
+      "stored_by_task": [
+        2,
+        2,
+        3,
+        3,
+        2
+      ],
+      "task_accuracy_matrix": [
+        [
+          1.0,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.035,
+          0.95,
+          null,
+          null,
+          null
+        ],
+        [
+          0.0,
+          0.01,
+          0.9575,
+          null,
+          null
+        ],
+        [
+          0.0,
+          0.0,
+          0.01,
+          0.9775,
+          null
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0025,
+          0.9375
+        ]
+      ],
+      "total_updates": 10000
+    },
+    {
+      "abort_reason": null,
+      "aborted": false,
+      "condition": "S05",
+      "current_task_updates": 9600,
+      "final_average_accuracy": 0.3,
+      "mean_forgetting": 0.829375,
+      "replay_updates": 400,
+      "seed": 307,
+      "stored_by_task": [
+        2,
+        2,
+        3,
+        3,
+        2
+      ],
+      "task_accuracy_matrix": [
+        [
+          1.0,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.4475,
+          0.945,
+          null,
+          null,
+          null
+        ],
+        [
+          0.1725,
+          0.245,
+          0.9575,
+          null,
+          null
+        ],
+        [
+          0.13,
+          0.1625,
+          0.3175,
+          0.9775,
+          null
+        ],
+        [
+          0.09,
+          0.035,
+          0.015,
+          0.4225,
+          0.9375
+        ]
+      ],
+      "total_updates": 10000
+    },
+    {
+      "abort_reason": null,
+      "aborted": false,
+      "condition": "S20",
+      "current_task_updates": 8400,
+      "final_average_accuracy": 0.35,
+      "mean_forgetting": 0.765625,
+      "replay_updates": 1600,
+      "seed": 307,
+      "stored_by_task": [
+        2,
+        2,
+        3,
+        3,
+        2
+      ],
+      "task_accuracy_matrix": [
+        [
+          1.0,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.545,
+          0.9475,
+          null,
+          null,
+          null
+        ],
+        [
+          0.185,
+          0.3425,
+          0.9575,
+          null,
+          null
+        ],
+        [
+          0.205,
+          0.2125,
+          0.3925,
+          0.975,
+          null
+        ],
+        [
+          0.1275,
+          0.0525,
+          0.035,
+          0.6025,
+          0.9325
+        ]
+      ],
+      "total_updates": 10000
+    },
+    {
+      "abort_reason": null,
+      "aborted": false,
+      "condition": "R05",
+      "current_task_updates": 9600,
+      "final_average_accuracy": 0.27649999999999997,
+      "mean_forgetting": 0.859375,
+      "replay_updates": 400,
+      "seed": 307,
+      "stored_by_task": [
+        2,
+        2,
+        3,
+        3,
+        2
+      ],
+      "task_accuracy_matrix": [
+        [
+          1.0,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.295,
+          0.9425,
+          null,
+          null,
+          null
+        ],
+        [
+          0.0,
+          0.1525,
+          0.96,
+          null,
+          null
+        ],
+        [
+          0.03,
+          0.1725,
+          0.1175,
+          0.9775,
+          null
+        ],
+        [
+          0.015,
+          0.01,
+          0.0025,
+          0.415,
+          0.94
+        ]
+      ],
+      "total_updates": 10000
+    },
+    {
+      "abort_reason": null,
+      "aborted": false,
+      "condition": "R40",
+      "current_task_updates": 6800,
+      "final_average_accuracy": 0.29050000000000004,
+      "mean_forgetting": 0.8331249999999999,
+      "replay_updates": 3200,
+      "seed": 307,
+      "stored_by_task": [
+        2,
+        2,
+        3,
+        3,
+        2
+      ],
+      "task_accuracy_matrix": [
+        [
+          1.0,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.4375,
+          0.94,
+          null,
+          null,
+          null
+        ],
+        [
+          0.005,
+          0.2975,
+          0.945,
+          null,
+          null
+        ],
+        [
+          0.0375,
+          0.2025,
+          0.2525,
+          0.9775,
+          null
+        ],
+        [
+          0.0225,
+          0.015,
+          0.015,
+          0.4775,
+          0.9225
+        ]
+      ],
+      "total_updates": 10000
+    },
+    {
+      "abort_reason": null,
+      "aborted": false,
+      "condition": "R20",
+      "current_task_updates": 8400,
+      "final_average_accuracy": 0.2835,
+      "mean_forgetting": 0.8474999999999999,
+      "replay_updates": 1600,
+      "seed": 307,
+      "stored_by_task": [
+        2,
+        2,
+        3,
+        3,
+        2
+      ],
+      "task_accuracy_matrix": [
+        [
+          1.0,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.3425,
+          0.94,
+          null,
+          null,
+          null
+        ],
+        [
+          0.0,
+          0.21,
+          0.9625,
+          null,
+          null
+        ],
+        [
+          0.045,
+          0.2025,
+          0.21,
+          0.9775,
+          null
+        ],
+        [
+          0.0225,
+          0.01,
+          0.01,
+          0.4475,
+          0.9275
+        ]
+      ],
+      "total_updates": 10000
+    },
+    {
+      "abort_reason": null,
+      "aborted": false,
+      "condition": "S40",
+      "current_task_updates": 6800,
+      "final_average_accuracy": 0.382,
+      "mean_forgetting": 0.723125,
+      "replay_updates": 3200,
+      "seed": 307,
+      "stored_by_task": [
+        2,
+        2,
+        3,
+        3,
+        2
+      ],
+      "task_accuracy_matrix": [
+        [
+          1.0,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.635,
+          0.9475,
+          null,
+          null,
+          null
+        ],
+        [
+          0.295,
+          0.3975,
+          0.9525,
+          null,
+          null
+        ],
+        [
+          0.3125,
+          0.2175,
+          0.4925,
+          0.965,
+          null
+        ],
+        [
+          0.175,
+          0.0775,
+          0.045,
+          0.675,
+          0.9375
+        ]
+      ],
+      "total_updates": 10000
+    },
+    {
+      "abort_reason": null,
+      "aborted": false,
+      "condition": "S05",
+      "current_task_updates": 9600,
+      "final_average_accuracy": 0.2935,
+      "mean_forgetting": 0.845625,
+      "replay_updates": 400,
+      "seed": 308,
+      "stored_by_task": [
+        3,
+        2,
+        2,
+        3,
+        2
+      ],
+      "task_accuracy_matrix": [
+        [
+          0.9975,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.5225,
+          0.955,
+          null,
+          null,
+          null
+        ],
+        [
+          0.165,
+          0.2075,
+          0.9675,
+          null,
+          null
+        ],
+        [
+          0.265,
+          0.2875,
+          0.35,
+          0.985,
+          null
+        ],
+        [
+          0.0625,
+          0.015,
+          0.0025,
+          0.4425,
+          0.945
+        ]
+      ],
+      "total_updates": 10000
+    },
+    {
+      "abort_reason": null,
+      "aborted": false,
+      "condition": "S20",
+      "current_task_updates": 8400,
+      "final_average_accuracy": 0.347,
+      "mean_forgetting": 0.77875,
+      "replay_updates": 1600,
+      "seed": 308,
+      "stored_by_task": [
+        3,
+        2,
+        2,
+        3,
+        2
+      ],
+      "task_accuracy_matrix": [
+        [
+          0.9975,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.555,
+          0.9575,
+          null,
+          null,
+          null
+        ],
+        [
+          0.2275,
+          0.2975,
+          0.9675,
+          null,
+          null
+        ],
+        [
+          0.3125,
+          0.345,
+          0.4925,
+          0.9875,
+          null
+        ],
+        [
+          0.1325,
+          0.05,
+          0.0075,
+          0.605,
+          0.94
+        ]
+      ],
+      "total_updates": 10000
+    },
+    {
+      "abort_reason": null,
+      "aborted": false,
+      "condition": "X20",
+      "current_task_updates": 8400,
+      "final_average_accuracy": 0.1935,
+      "mean_forgetting": 0.975,
+      "replay_updates": 1600,
+      "seed": 308,
+      "stored_by_task": [
+        3,
+        2,
+        2,
+        3,
+        2
+      ],
+      "task_accuracy_matrix": [
+        [
+          0.9975,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.1125,
+          0.96,
+          null,
+          null,
+          null
+        ],
+        [
+          0.0,
+          0.005,
+          0.9675,
+          null,
+          null
+        ],
+        [
+          0.0,
+          0.0,
+          0.02,
+          0.99,
+          null
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.015,
+          0.9525
+        ]
+      ],
+      "total_updates": 10000
+    },
+    {
+      "abort_reason": null,
+      "aborted": false,
+      "condition": "R20",
+      "current_task_updates": 8400,
+      "final_average_accuracy": 0.335,
+      "mean_forgetting": 0.7925000000000001,
+      "replay_updates": 1600,
+      "seed": 308,
+      "stored_by_task": [
+        3,
+        2,
+        2,
+        3,
+        2
+      ],
+      "task_accuracy_matrix": [
+        [
+          0.9975,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.6,
+          0.955,
+          null,
+          null,
+          null
+        ],
+        [
+          0.105,
+          0.2375,
+          0.9725,
+          null,
+          null
+        ],
+        [
+          0.165,
+          0.1275,
+          0.1925,
+          0.985,
+          null
+        ],
+        [
+          0.075,
+          0.035,
+          0.0175,
+          0.6125,
+          0.935
+        ]
+      ],
+      "total_updates": 10000
+    },
+    {
+      "abort_reason": null,
+      "aborted": false,
+      "condition": "R40",
+      "current_task_updates": 6800,
+      "final_average_accuracy": 0.367,
+      "mean_forgetting": 0.743125,
+      "replay_updates": 3200,
+      "seed": 308,
+      "stored_by_task": [
+        3,
+        2,
+        2,
+        3,
+        2
+      ],
+      "task_accuracy_matrix": [
+        [
+          0.9975,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.69,
+          0.945,
+          null,
+          null,
+          null
+        ],
+        [
+          0.1625,
+          0.295,
+          0.955,
+          null,
+          null
+        ],
+        [
+          0.1875,
+          0.175,
+          0.27,
+          0.9875,
+          null
+        ],
+        [
+          0.135,
+          0.08,
+          0.0225,
+          0.675,
+          0.9225
+        ]
+      ],
+      "total_updates": 10000
+    },
+    {
+      "abort_reason": null,
+      "aborted": false,
+      "condition": "R05",
+      "current_task_updates": 9600,
+      "final_average_accuracy": 0.3015,
+      "mean_forgetting": 0.83875,
+      "replay_updates": 400,
+      "seed": 308,
+      "stored_by_task": [
+        3,
+        2,
+        2,
+        3,
+        2
+      ],
+      "task_accuracy_matrix": [
+        [
+          0.9975,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.525,
+          0.9525,
+          null,
+          null,
+          null
+        ],
+        [
+          0.075,
+          0.1725,
+          0.975,
+          null,
+          null
+        ],
+        [
+          0.1325,
+          0.105,
+          0.12,
+          0.99,
+          null
+        ],
+        [
+          0.035,
+          0.0275,
+          0.0125,
+          0.485,
+          0.9475
+        ]
+      ],
+      "total_updates": 10000
+    },
+    {
+      "abort_reason": null,
+      "aborted": false,
+      "condition": "S40",
+      "current_task_updates": 6800,
+      "final_average_accuracy": 0.373,
+      "mean_forgetting": 0.7368750000000001,
+      "replay_updates": 3200,
+      "seed": 308,
+      "stored_by_task": [
+        3,
+        2,
+        2,
+        3,
+        2
+      ],
+      "task_accuracy_matrix": [
+        [
+          0.9975,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.5725,
+          0.945,
+          null,
+          null,
+          null
+        ],
+        [
+          0.275,
+          0.3725,
+          0.96,
+          null,
+          null
+        ],
+        [
+          0.465,
+          0.39,
+          0.5875,
+          0.9775,
+          null
+        ],
+        [
+          0.165,
+          0.0775,
+          0.0175,
+          0.6725,
+          0.9325
+        ]
+      ],
+      "total_updates": 10000
+    },
+    {
+      "abort_reason": null,
+      "aborted": false,
+      "condition": "R40",
+      "current_task_updates": 6800,
+      "final_average_accuracy": 0.304,
+      "mean_forgetting": 0.8193750000000001,
+      "replay_updates": 3200,
+      "seed": 309,
+      "stored_by_task": [
+        3,
+        3,
+        3,
+        3,
+        2
+      ],
+      "task_accuracy_matrix": [
+        [
+          0.9925,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.4825,
+          0.955,
+          null,
+          null,
+          null
+        ],
+        [
+          0.2925,
+          0.4575,
+          0.95,
+          null,
+          null
+        ],
+        [
+          0.28,
+          0.195,
+          0.41,
+          0.985,
+          null
+        ],
+        [
+          0.065,
+          0.075,
+          0.0375,
+          0.4275,
+          0.915
+        ]
+      ],
+      "total_updates": 10000
+    },
+    {
+      "abort_reason": null,
+      "aborted": false,
+      "condition": "S40",
+      "current_task_updates": 6800,
+      "final_average_accuracy": 0.3995,
+      "mean_forgetting": 0.7025,
+      "replay_updates": 3200,
+      "seed": 309,
+      "stored_by_task": [
+        3,
+        3,
+        3,
+        3,
+        2
+      ],
+      "task_accuracy_matrix": [
+        [
+          0.9925,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.4425,
+          0.9475,
+          null,
+          null,
+          null
+        ],
+        [
+          0.2975,
+          0.5975,
+          0.9575,
+          null,
+          null
+        ],
+        [
+          0.2875,
+          0.33,
+          0.5875,
+          0.98,
+          null
+        ],
+        [
+          0.2075,
+          0.1175,
+          0.0725,
+          0.67,
+          0.93
+        ]
+      ],
+      "total_updates": 10000
+    },
+    {
+      "abort_reason": null,
+      "aborted": false,
+      "condition": "S05",
+      "current_task_updates": 9600,
+      "final_average_accuracy": 0.30599999999999994,
+      "mean_forgetting": 0.8262499999999999,
+      "replay_updates": 400,
+      "seed": 309,
+      "stored_by_task": [
+        3,
+        3,
+        3,
+        3,
+        2
+      ],
+      "task_accuracy_matrix": [
+        [
+          0.9925,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.3325,
+          0.955,
+          null,
+          null,
+          null
+        ],
+        [
+          0.22,
+          0.44,
+          0.9575,
+          null,
+          null
+        ],
+        [
+          0.1575,
+          0.215,
+          0.2575,
+          0.985,
+          null
+        ],
+        [
+          0.0425,
+          0.0725,
+          0.015,
+          0.455,
+          0.945
+        ]
+      ],
+      "total_updates": 10000
+    },
+    {
+      "abort_reason": null,
+      "aborted": false,
+      "condition": "R20",
+      "current_task_updates": 8400,
+      "final_average_accuracy": 0.282,
+      "mean_forgetting": 0.849375,
+      "replay_updates": 1600,
+      "seed": 309,
+      "stored_by_task": [
+        3,
+        3,
+        3,
+        3,
+        2
+      ],
+      "task_accuracy_matrix": [
+        [
+          0.9925,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.42,
+          0.9525,
+          null,
+          null,
+          null
+        ],
+        [
+          0.2575,
+          0.3775,
+          0.9525,
+          null,
+          null
+        ],
+        [
+          0.2025,
+          0.185,
+          0.28,
+          0.9875,
+          null
+        ],
+        [
+          0.0075,
+          0.045,
+          0.02,
+          0.415,
+          0.9225
+        ]
+      ],
+      "total_updates": 10000
+    },
+    {
+      "abort_reason": null,
+      "aborted": false,
+      "condition": "S20",
+      "current_task_updates": 8400,
+      "final_average_accuracy": 0.34400000000000003,
+      "mean_forgetting": 0.7731250000000001,
+      "replay_updates": 1600,
+      "seed": 309,
+      "stored_by_task": [
+        3,
+        3,
+        3,
+        3,
+        2
+      ],
+      "task_accuracy_matrix": [
+        [
+          0.9925,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.41,
+          0.95,
+          null,
+          null,
+          null
+        ],
+        [
+          0.2975,
+          0.5225,
+          0.955,
+          null,
+          null
+        ],
+        [
+          0.2525,
+          0.275,
+          0.39,
+          0.9825,
+          null
+        ],
+        [
+          0.105,
+          0.0925,
+          0.04,
+          0.55,
+          0.9325
+        ]
+      ],
+      "total_updates": 10000
+    },
+    {
+      "abort_reason": null,
+      "aborted": false,
+      "condition": "R05",
+      "current_task_updates": 9600,
+      "final_average_accuracy": 0.2645,
+      "mean_forgetting": 0.875625,
+      "replay_updates": 400,
+      "seed": 309,
+      "stored_by_task": [
+        3,
+        3,
+        3,
+        3,
+        2
+      ],
+      "task_accuracy_matrix": [
+        [
+          0.9925,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.3625,
+          0.9575,
+          null,
+          null,
+          null
+        ],
+        [
+          0.1425,
+          0.315,
+          0.9575,
+          null,
+          null
+        ],
+        [
+          0.1675,
+          0.1475,
+          0.165,
+          0.9875,
+          null
+        ],
+        [
+          0.0,
+          0.025,
+          0.0075,
+          0.36,
+          0.93
+        ]
+      ],
+      "total_updates": 10000
+    },
+    {
+      "abort_reason": null,
+      "aborted": false,
+      "condition": "X20",
+      "current_task_updates": 8400,
+      "final_average_accuracy": 0.19049999999999997,
+      "mean_forgetting": 0.9700000000000001,
+      "replay_updates": 1600,
+      "seed": 309,
+      "stored_by_task": [
+        3,
+        3,
+        3,
+        3,
+        2
+      ],
+      "task_accuracy_matrix": [
+        [
+          0.9925,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.0325,
+          0.955,
+          null,
+          null,
+          null
+        ],
+        [
+          0.0,
+          0.0075,
+          0.9575,
+          null,
+          null
+        ],
+        [
+          0.0,
+          0.0,
+          0.0125,
+          0.9875,
+          null
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0125,
+          0.94
+        ]
+      ],
+      "total_updates": 10000
+    },
+    {
+      "abort_reason": null,
+      "aborted": false,
+      "condition": "S40",
+      "current_task_updates": 6800,
+      "final_average_accuracy": 0.33449999999999996,
+      "mean_forgetting": 0.770625,
+      "replay_updates": 3200,
+      "seed": 310,
+      "stored_by_task": [
+        2,
+        2,
+        3,
+        3,
+        2
+      ],
+      "task_accuracy_matrix": [
+        [
+          0.9925,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.6625,
+          0.8875,
+          null,
+          null,
+          null
+        ],
+        [
+          0.24,
+          0.42,
+          0.9675,
+          null,
+          null
+        ],
+        [
+          0.33,
+          0.1875,
+          0.4275,
+          0.9675,
+          null
+        ],
+        [
+          0.095,
+          0.0425,
+          0.04,
+          0.555,
+          0.94
+        ]
+      ],
+      "total_updates": 10000
+    },
+    {
+      "abort_reason": null,
+      "aborted": false,
+      "condition": "X20",
+      "current_task_updates": 8400,
+      "final_average_accuracy": 0.19,
+      "mean_forgetting": 0.9712500000000001,
+      "replay_updates": 1600,
+      "seed": 310,
+      "stored_by_task": [
+        2,
+        2,
+        3,
+        3,
+        2
+      ],
+      "task_accuracy_matrix": [
+        [
+          0.9925,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.045,
+          0.94,
+          null,
+          null,
+          null
+        ],
+        [
+          0.0,
+          0.0,
+          0.98,
+          null,
+          null
+        ],
+        [
+          0.0,
+          0.0,
+          0.0125,
+          0.9775,
+          null
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.005,
+          0.945
+        ]
+      ],
+      "total_updates": 10000
+    },
+    {
+      "abort_reason": null,
+      "aborted": false,
+      "condition": "S20",
+      "current_task_updates": 8400,
+      "final_average_accuracy": 0.3175,
+      "mean_forgetting": 0.810625,
+      "replay_updates": 1600,
+      "seed": 310,
+      "stored_by_task": [
+        2,
+        2,
+        3,
+        3,
+        2
+      ],
+      "task_accuracy_matrix": [
+        [
+          0.9925,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.61,
+          0.94,
+          null,
+          null,
+          null
+        ],
+        [
+          0.165,
+          0.37,
+          0.98,
+          null,
+          null
+        ],
+        [
+          0.1525,
+          0.145,
+          0.39,
+          0.97,
+          null
+        ],
+        [
+          0.075,
+          0.0375,
+          0.035,
+          0.4925,
+          0.9475
+        ]
+      ],
+      "total_updates": 10000
+    },
+    {
+      "abort_reason": null,
+      "aborted": false,
+      "condition": "R05",
+      "current_task_updates": 9600,
+      "final_average_accuracy": 0.2615,
+      "mean_forgetting": 0.879375,
+      "replay_updates": 400,
+      "seed": 310,
+      "stored_by_task": [
+        2,
+        2,
+        3,
+        3,
+        2
+      ],
+      "task_accuracy_matrix": [
+        [
+          0.9925,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.28,
+          0.9325,
+          null,
+          null,
+          null
+        ],
+        [
+          0.0,
+          0.14,
+          0.9825,
+          null,
+          null
+        ],
+        [
+          0.055,
+          0.0325,
+          0.17,
+          0.97,
+          null
+        ],
+        [
+          0.0775,
+          0.0175,
+          0.0075,
+          0.2575,
+          0.9475
+        ]
+      ],
+      "total_updates": 10000
+    },
+    {
+      "abort_reason": null,
+      "aborted": false,
+      "condition": "R20",
+      "current_task_updates": 8400,
+      "final_average_accuracy": 0.3085,
+      "mean_forgetting": 0.8218749999999999,
+      "replay_updates": 1600,
+      "seed": 310,
+      "stored_by_task": [
+        2,
+        2,
+        3,
+        3,
+        2
+      ],
+      "task_accuracy_matrix": [
+        [
+          0.9925,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.3525,
+          0.9425,
+          null,
+          null,
+          null
+        ],
+        [
+          0.0125,
+          0.2,
+          0.98,
+          null,
+          null
+        ],
+        [
+          0.0475,
+          0.03,
+          0.23,
+          0.9675,
+          null
+        ],
+        [
+          0.11,
+          0.03,
+          0.04,
+          0.415,
+          0.9475
+        ]
+      ],
+      "total_updates": 10000
+    },
+    {
+      "abort_reason": null,
+      "aborted": false,
+      "condition": "R40",
+      "current_task_updates": 6800,
+      "final_average_accuracy": 0.33449999999999996,
+      "mean_forgetting": 0.7693749999999999,
+      "replay_updates": 3200,
+      "seed": 310,
+      "stored_by_task": [
+        2,
+        2,
+        3,
+        3,
+        2
+      ],
+      "task_accuracy_matrix": [
+        [
+          0.9925,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.385,
+          0.885,
+          null,
+          null,
+          null
+        ],
+        [
+          0.0375,
+          0.2425,
+          0.9675,
+          null,
+          null
+        ],
+        [
+          0.0625,
+          0.04,
+          0.295,
+          0.9625,
+          null
+        ],
+        [
+          0.16,
+          0.05,
+          0.045,
+          0.475,
+          0.9425
+        ]
+      ],
+      "total_updates": 10000
+    },
+    {
+      "abort_reason": null,
+      "aborted": false,
+      "condition": "S05",
+      "current_task_updates": 9600,
+      "final_average_accuracy": 0.279,
+      "mean_forgetting": 0.859375,
+      "replay_updates": 400,
+      "seed": 310,
+      "stored_by_task": [
+        2,
+        2,
+        3,
+        3,
+        2
+      ],
+      "task_accuracy_matrix": [
+        [
+          0.9925,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.51,
+          0.935,
+          null,
+          null,
+          null
+        ],
+        [
+          0.0825,
+          0.2725,
+          0.9825,
+          null,
+          null
+        ],
+        [
+          0.1175,
+          0.1125,
+          0.2725,
+          0.9725,
+          null
+        ],
+        [
+          0.0425,
+          0.015,
+          0.0175,
+          0.37,
+          0.95
+        ]
+      ],
+      "total_updates": 10000
+    },
+    {
+      "abort_reason": null,
+      "aborted": false,
+      "condition": "S40",
+      "current_task_updates": 6800,
+      "final_average_accuracy": 0.35500000000000004,
+      "mean_forgetting": 0.76375,
+      "replay_updates": 3200,
+      "seed": 311,
+      "stored_by_task": [
+        2,
+        2,
+        3,
+        3,
+        2
+      ],
+      "task_accuracy_matrix": [
+        [
+          0.9975,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.6425,
+          0.9525,
+          null,
+          null,
+          null
+        ],
+        [
+          0.23,
+          0.4075,
+          0.9725,
+          null,
+          null
+        ],
+        [
+          0.2475,
+          0.2025,
+          0.5175,
+          0.9725,
+          null
+        ],
+        [
+          0.1525,
+          0.0375,
+          0.0375,
+          0.6125,
+          0.935
+        ]
+      ],
+      "total_updates": 10000
+    },
+    {
+      "abort_reason": null,
+      "aborted": false,
+      "condition": "X20",
+      "current_task_updates": 8400,
+      "final_average_accuracy": 0.192,
+      "mean_forgetting": 0.97875,
+      "replay_updates": 1600,
+      "seed": 311,
+      "stored_by_task": [
+        2,
+        2,
+        3,
+        3,
+        2
+      ],
+      "task_accuracy_matrix": [
+        [
+          0.9975,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.0675,
+          0.9725,
+          null,
+          null,
+          null
+        ],
+        [
+          0.0,
+          0.0,
+          0.975,
+          null,
+          null
+        ],
+        [
+          0.0,
+          0.0,
+          0.0225,
+          0.98,
+          null
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.01,
+          0.95
+        ]
+      ],
+      "total_updates": 10000
+    },
+    {
+      "abort_reason": null,
+      "aborted": false,
+      "condition": "S05",
+      "current_task_updates": 9600,
+      "final_average_accuracy": 0.2925,
+      "mean_forgetting": 0.8474999999999999,
+      "replay_updates": 400,
+      "seed": 311,
+      "stored_by_task": [
+        2,
+        2,
+        3,
+        3,
+        2
+      ],
+      "task_accuracy_matrix": [
+        [
+          0.9975,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.4875,
+          0.9675,
+          null,
+          null,
+          null
+        ],
+        [
+          0.1275,
+          0.2425,
+          0.9725,
+          null,
+          null
+        ],
+        [
+          0.0925,
+          0.175,
+          0.3325,
+          0.98,
+          null
+        ],
+        [
+          0.08,
+          0.025,
+          0.015,
+          0.4075,
+          0.935
+        ]
+      ],
+      "total_updates": 10000
+    },
+    {
+      "abort_reason": null,
+      "aborted": false,
+      "condition": "R05",
+      "current_task_updates": 9600,
+      "final_average_accuracy": 0.246,
+      "mean_forgetting": 0.9081250000000001,
+      "replay_updates": 400,
+      "seed": 311,
+      "stored_by_task": [
+        2,
+        2,
+        3,
+        3,
+        2
+      ],
+      "task_accuracy_matrix": [
+        [
+          0.9975,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.26,
+          0.97,
+          null,
+          null,
+          null
+        ],
+        [
+          0.015,
+          0.0675,
+          0.975,
+          null,
+          null
+        ],
+        [
+          0.05,
+          0.02,
+          0.11,
+          0.985,
+          null
+        ],
+        [
+          0.0975,
+          0.0025,
+          0.0325,
+          0.1625,
+          0.935
+        ]
+      ],
+      "total_updates": 10000
+    },
+    {
+      "abort_reason": null,
+      "aborted": false,
+      "condition": "R20",
+      "current_task_updates": 8400,
+      "final_average_accuracy": 0.2885,
+      "mean_forgetting": 0.8537500000000001,
+      "replay_updates": 1600,
+      "seed": 311,
+      "stored_by_task": [
+        2,
+        2,
+        3,
+        3,
+        2
+      ],
+      "task_accuracy_matrix": [
+        [
+          0.9975,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.31,
+          0.97,
+          null,
+          null,
+          null
+        ],
+        [
+          0.045,
+          0.095,
+          0.97,
+          null,
+          null
+        ],
+        [
+          0.0775,
+          0.035,
+          0.2525,
+          0.9775,
+          null
+        ],
+        [
+          0.12,
+          0.02,
+          0.0625,
+          0.2975,
+          0.9425
+        ]
+      ],
+      "total_updates": 10000
+    },
+    {
+      "abort_reason": null,
+      "aborted": false,
+      "condition": "R40",
+      "current_task_updates": 6800,
+      "final_average_accuracy": 0.311,
+      "mean_forgetting": 0.8175,
+      "replay_updates": 3200,
+      "seed": 311,
+      "stored_by_task": [
+        2,
+        2,
+        3,
+        3,
+        2
+      ],
+      "task_accuracy_matrix": [
+        [
+          0.9975,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.3525,
+          0.96,
+          null,
+          null,
+          null
+        ],
+        [
+          0.085,
+          0.19,
+          0.9675,
+          null,
+          null
+        ],
+        [
+          0.0725,
+          0.055,
+          0.275,
+          0.9725,
+          null
+        ],
+        [
+          0.1375,
+          0.0225,
+          0.055,
+          0.4125,
+          0.9275
+        ]
+      ],
+      "total_updates": 10000
+    },
+    {
+      "abort_reason": null,
+      "aborted": false,
+      "condition": "S20",
+      "current_task_updates": 8400,
+      "final_average_accuracy": 0.3375,
+      "mean_forgetting": 0.790625,
+      "replay_updates": 1600,
+      "seed": 311,
+      "stored_by_task": [
+        2,
+        2,
+        3,
+        3,
+        2
+      ],
+      "task_accuracy_matrix": [
+        [
+          0.9975,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.565,
+          0.9675,
+          null,
+          null,
+          null
+        ],
+        [
+          0.26,
+          0.34,
+          0.9725,
+          null,
+          null
+        ],
+        [
+          0.18,
+          0.2025,
+          0.4225,
+          0.975,
+          null
+        ],
+        [
+          0.115,
+          0.05,
+          0.03,
+          0.555,
+          0.9375
+        ]
+      ],
+      "total_updates": 10000
+    },
+    {
+      "abort_reason": null,
+      "aborted": false,
+      "condition": "S05",
+      "current_task_updates": 9600,
+      "final_average_accuracy": 0.3135,
+      "mean_forgetting": 0.8143750000000001,
+      "replay_updates": 400,
+      "seed": 312,
+      "stored_by_task": [
+        2,
+        2,
+        4,
+        3,
+        2
+      ],
+      "task_accuracy_matrix": [
+        [
+          0.9975,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.4475,
+          0.955,
+          null,
+          null,
+          null
+        ],
+        [
+          0.0725,
+          0.235,
+          0.9775,
+          null,
+          null
+        ],
+        [
+          0.08,
+          0.1875,
+          0.3425,
+          0.9675,
+          null
+        ],
+        [
+          0.0875,
+          0.0425,
+          0.05,
+          0.46,
+          0.9275
+        ]
+      ],
+      "total_updates": 10000
+    },
+    {
+      "abort_reason": null,
+      "aborted": false,
+      "condition": "S20",
+      "current_task_updates": 8400,
+      "final_average_accuracy": 0.35,
+      "mean_forgetting": 0.765625,
+      "replay_updates": 1600,
+      "seed": 312,
+      "stored_by_task": [
+        2,
+        2,
+        4,
+        3,
+        2
+      ],
+      "task_accuracy_matrix": [
+        [
+          0.9975,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.5675,
+          0.9575,
+          null,
+          null,
+          null
+        ],
+        [
+          0.1775,
+          0.3675,
+          0.9725,
+          null,
+          null
+        ],
+        [
+          0.165,
+          0.2,
+          0.4475,
+          0.965,
+          null
+        ],
+        [
+          0.1375,
+          0.08,
+          0.0675,
+          0.545,
+          0.92
+        ]
+      ],
+      "total_updates": 10000
+    },
+    {
+      "abort_reason": null,
+      "aborted": false,
+      "condition": "R20",
+      "current_task_updates": 8400,
+      "final_average_accuracy": 0.3135,
+      "mean_forgetting": 0.816875,
+      "replay_updates": 1600,
+      "seed": 312,
+      "stored_by_task": [
+        2,
+        2,
+        4,
+        3,
+        2
+      ],
+      "task_accuracy_matrix": [
+        [
+          0.9975,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.4125,
+          0.9575,
+          null,
+          null,
+          null
+        ],
+        [
+          0.225,
+          0.165,
+          0.9775,
+          null,
+          null
+        ],
+        [
+          0.1725,
+          0.0475,
+          0.3325,
+          0.9675,
+          null
+        ],
+        [
+          0.1925,
+          0.015,
+          0.005,
+          0.42,
+          0.935
+        ]
+      ],
+      "total_updates": 10000
+    },
+    {
+      "abort_reason": null,
+      "aborted": false,
+      "condition": "S40",
+      "current_task_updates": 6800,
+      "final_average_accuracy": 0.3995,
+      "mean_forgetting": 0.7025,
+      "replay_updates": 3200,
+      "seed": 312,
+      "stored_by_task": [
+        2,
+        2,
+        4,
+        3,
+        2
+      ],
+      "task_accuracy_matrix": [
+        [
+          0.9975,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.6225,
+          0.955,
+          null,
+          null,
+          null
+        ],
+        [
+          0.1925,
+          0.4525,
+          0.9675,
+          null,
+          null
+        ],
+        [
+          0.1325,
+          0.21,
+          0.485,
+          0.9675,
+          null
+        ],
+        [
+          0.1875,
+          0.1125,
+          0.115,
+          0.6625,
+          0.92
+        ]
+      ],
+      "total_updates": 10000
+    },
+    {
+      "abort_reason": null,
+      "aborted": false,
+      "condition": "R05",
+      "current_task_updates": 9600,
+      "final_average_accuracy": 0.272,
+      "mean_forgetting": 0.8706250000000001,
+      "replay_updates": 400,
+      "seed": 312,
+      "stored_by_task": [
+        2,
+        2,
+        4,
+        3,
+        2
+      ],
+      "task_accuracy_matrix": [
+        [
+          0.9975,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.3425,
+          0.955,
+          null,
+          null,
+          null
+        ],
+        [
+          0.155,
+          0.1125,
+          0.98,
+          null,
+          null
+        ],
+        [
+          0.0975,
+          0.0375,
+          0.2325,
+          0.975,
+          null
+        ],
+        [
+          0.0675,
+          0.0025,
+          0.0025,
+          0.3525,
+          0.935
+        ]
+      ],
+      "total_updates": 10000
+    },
+    {
+      "abort_reason": null,
+      "aborted": false,
+      "condition": "X20",
+      "current_task_updates": 8400,
+      "final_average_accuracy": 0.19049999999999997,
+      "mean_forgetting": 0.9725,
+      "replay_updates": 1600,
+      "seed": 312,
+      "stored_by_task": [
+        2,
+        2,
+        4,
+        3,
+        2
+      ],
+      "task_accuracy_matrix": [
+        [
+          0.9975,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.0025,
+          0.9575,
+          null,
+          null,
+          null
+        ],
+        [
+          0.0,
+          0.005,
+          0.975,
+          null,
+          null
+        ],
+        [
+          0.0,
+          0.0,
+          0.0225,
+          0.9725,
+          null
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0125,
+          0.94
+        ]
+      ],
+      "total_updates": 10000
+    },
+    {
+      "abort_reason": null,
+      "aborted": false,
+      "condition": "R40",
+      "current_task_updates": 6800,
+      "final_average_accuracy": 0.3275,
+      "mean_forgetting": 0.795,
+      "replay_updates": 3200,
+      "seed": 312,
+      "stored_by_task": [
+        2,
+        2,
+        4,
+        3,
+        2
+      ],
+      "task_accuracy_matrix": [
+        [
+          0.9975,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          0.4775,
+          0.9525,
+          null,
+          null,
+          null
+        ],
+        [
+          0.2475,
+          0.21,
+          0.975,
+          null,
+          null
+        ],
+        [
+          0.265,
+          0.1,
+          0.3575,
+          0.96,
+          null
+        ],
+        [
+          0.23,
+          0.0275,
+          0.0075,
+          0.44,
+          0.9325
+        ]
+      ],
+      "total_updates": 10000
+    }
+  ],
+  "scientific_evidence": false,
+  "source_hashes": {
+    "research/preregistrations/operational/EXP-S6-SEM-CL-003.json": "a97cd01f30a7d2a5a75aaea5d604e1d68df093c1bfb89a1f9e2fd8e33b75c96c",
+    "scripts/run_semantization_split_mnist_cl003.py": "26ea717478526c4facc378acbdc1dd8ec2ed1a9fba1ed329312adcd96628928e",
+    "src/memory/neural_episodic.py": "9365fe13e623614a8697b027433d34a69c10f864c99319851c7062078951939f",
+    "src/memory/semantic.py": "01bb586f77f512368ed4bbd9379a262b15f4518f94fa2df9db8d2143a2c0c1c5",
+    "src/research/continual_semantization.py": "e6e1531d2cd8743a89a1f405ba476ef7e20ccac8c4aa7e707aa8a9fa64c5b379",
+    "src/research/continual_semantization_controls.py": "51ea011ca8c0b2ebf7e4d5b5098f44b3efd370a6d51243ea4c0498ffd26fe248",
+    "src/research/continual_semantization_dose.py": "68cb5763b19fe71f44bd426f5f192e097210aab1df1bf6e71d988c61b8605555"
+  },
+  "summary": {
+    "H1_passed": false,
+    "H2_passed": false,
+    "automatic_evidence_promotion": false,
+    "complete_paired_seed_count": 12,
+    "contrasts": {
+      "C1_S20_minus_R20_accuracy": {
+        "bootstrap_95_ci": [
+          0.001915624999999994,
+          0.04250000000000001
+        ],
+        "mean": 0.021750000000000005,
+        "minimum_effect": 0.03,
+        "paired_differences": [
+          0.009000000000000008,
+          -0.01200000000000001,
+          0.08599999999999997,
+          -0.01849999999999996,
+          -0.0040000000000000036,
+          -0.034499999999999975,
+          0.0665,
+          0.011999999999999955,
+          0.062000000000000055,
+          0.009000000000000008,
+          0.049000000000000044,
+          0.03649999999999998
+        ],
+        "passed": false,
+        "sign_flip_p": 0.07275390625
+      },
+      "C2_R20_minus_S20_forgetting": {
+        "bootstrap_95_ci": [
+          0.0025000000000000204,
+          0.053541666666666626
+        ],
+        "mean": 0.027447916666666655,
+        "minimum_effect": 0.05,
+        "paired_differences": [
+          0.010000000000000009,
+          -0.018124999999999947,
+          0.10812499999999992,
+          -0.02124999999999999,
+          -0.006250000000000089,
+          -0.04062499999999991,
+          0.08187499999999992,
+          0.01375000000000004,
+          0.07624999999999993,
+          0.011249999999999871,
+          0.0631250000000001,
+          0.05125000000000002
+        ],
+        "passed": false,
+        "sign_flip_p": 0.07080078125
+      },
+      "C3_S20_minus_X20_accuracy": {
+        "bootstrap_95_ci": [
+          0.14020833333333332,
+          0.15741666666666668
+        ],
+        "mean": 0.1489583333333333,
+        "minimum_effect": 0.03,
+        "paired_differences": [
+          0.131,
+          0.15799999999999997,
+          0.1775,
+          0.1385,
+          0.15699999999999997,
+          0.124,
+          0.16199999999999998,
+          0.15349999999999997,
+          0.15350000000000005,
+          0.1275,
+          0.14550000000000002,
+          0.1595
+        ],
+        "passed": true,
+        "sign_flip_p": 0.00048828125
+      },
+      "C4_dose_interaction_accuracy": {
+        "bootstrap_95_ci": [
+          -0.0028749999999999796,
+          0.01895833333333331
+        ],
+        "mean": 0.007541666666666669,
+        "minimum_effect": 0.015,
+        "paired_differences": [
+          -0.009500000000000008,
+          -0.015000000000000013,
+          0.04399999999999993,
+          0.006000000000000005,
+          0.002999999999999947,
+          -0.010499999999999954,
+          0.04299999999999998,
+          0.019999999999999962,
+          0.02050000000000013,
+          -0.008500000000000008,
+          0.0025000000000000577,
+          -0.0050000000000000044
+        ],
+        "passed": false,
+        "sign_flip_p": 0.23828125
+      }
+    },
+    "dose_table": {
+      "05": {
+        "raw_minus_semantic_forgetting_mean": 0.018020833333333347,
+        "semantic_minus_raw_accuracy_mean": 0.014208333333333337
+      },
+      "20": {
+        "raw_minus_semantic_forgetting_mean": 0.027447916666666655,
+        "semantic_minus_raw_accuracy_mean": 0.021750000000000005
+      },
+      "40": {
+        "raw_minus_semantic_forgetting_mean": 0.03598958333333333,
+        "semantic_minus_raw_accuracy_mean": 0.029958333333333326
+      }
+    },
+    "human_review_required": true,
+    "paired_seeds": [
+      301,
+      302,
+      303,
+      304,
+      305,
+      306,
+      307,
+      308,
+      309,
+      310,
+      311,
+      312
+    ],
+    "result_classification": "H1_negative_H2_negative",
+    "scientific_evidence": false,
+    "secondary_40_percent": {
+      "R40_minus_S40_forgetting": {
+        "bootstrap_95_ci": [
+          0.007239583333333336,
+          0.06640755208333324
+        ],
+        "mean": 0.03598958333333333,
+        "minimum_effect": null,
+        "paired_differences": [
+          0.00187499999999996,
+          -0.02499999999999991,
+          0.09624999999999995,
+          0.003750000000000142,
+          0.014375000000000027,
+          -0.03749999999999998,
+          0.10999999999999988,
+          0.006249999999999978,
+          0.11687500000000006,
+          -0.0012500000000000844,
+          0.053749999999999964,
+          0.09250000000000003
+        ],
+        "passed": null,
+        "sign_flip_p": 0.0537109375
+      },
+      "S40_minus_R40_accuracy": {
+        "bootstrap_95_ci": [
+          0.006499999999999992,
+          0.054625000000000014
+        ],
+        "mean": 0.029958333333333326,
+        "minimum_effect": null,
+        "paired_differences": [
+          0.007499999999999951,
+          -0.02400000000000002,
+          0.07850000000000001,
+          0.003999999999999948,
+          0.015500000000000014,
+          -0.031000000000000028,
+          0.09149999999999997,
+          0.006000000000000005,
+          0.09550000000000003,
+          0.0,
+          0.04400000000000004,
+          0.07200000000000001
+        ],
+        "passed": null,
+        "sign_flip_p": 0.0478515625
+      }
+    }
+  }
+}

@@ -27,7 +27,8 @@
     "add contribution and novelty-uncertainty map",
     "classify every docs/research file through repository governance",
     "keep engineering maturity separate from scientific maturity",
-    "retain source quarantine and no automatic EVID promotion"
+    "retain source quarantine and no automatic EVID promotion",
+    "integrate the DATA-only Stage 6 balance of CL-001 through CL-003 without automatic EVID promotion"
   ],
   "files": [
     "README.md",
@@ -36,6 +37,7 @@
     "AUTHOR_POSITION.md",
     "CONTRIBUTION_MAP.md",
     "SCIENTIFIC_STAGE_MATRIX.md",
+    "STAGE6_CL001_CL003_BALANCE.md",
     "INTEGRITY_AND_ATTRIBUTION.md",
     "REFERENCES.md",
     "WORK_IN_PROGRESS.md",
@@ -47,7 +49,8 @@
     "consciousness": "not_established",
     "biological_equivalence": "not_established",
     "five_dimensional_superiority": "not_established",
-    "semantization": "not_yet_demonstrated_as_complete_mechanism",
+    "semantization": "empirically_narrowed_data_only_no_confirmed_advantage_over_matched_raw_replay",
+    "stage6_cl003_evidence_status": "data_persisted_pending_human_review",
     "hierarchical_predictive_coding": "not_yet_demonstrated",
     "validated_generative_world_model": "not_yet_demonstrated",
     "novelty_of_candidate_contributions": "requires_prior_art_review"
