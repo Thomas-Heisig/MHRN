@@ -7,7 +7,7 @@ on:
       - .github/workflows/pr108-finalize.yml
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   finalize:
@@ -18,6 +18,7 @@ jobs:
       - uses: actions/checkout@v7
         with:
           ref: ${{ github.head_ref }}
+          persist-credentials: false
       - uses: actions/setup-python@v7
         with:
           python-version: "3.13"
@@ -45,46 +46,32 @@ jobs:
           tests/test_continual_semantization_dose.py
           tests/test_semantic_memory.py
           tests/test_episodic_replay.py
-      - name: Commit alpha4, gate repair and CL-002 re-freeze
-        id: freeze
+      - name: Export exact tested final files
         run: |
-          rm -f .github/workflows/pr108-source-inspection.yml .github/workflows/pr108-finalize.yml scripts/pr108_finalize_once.py
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A
-          git diff --cached --check
-          git commit -m "release: prepare 0.6.0-alpha.4 and repair research gates"
-          echo "commit=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
-      - name: Reauthorize CL-002 against the repaired source freeze
-        env:
-          FREEZE_COMMIT: ${{ steps.freeze.outputs.commit }}
-        run: |
-          python - <<'PY'
-          import json
-          import os
-          import subprocess
-          from pathlib import Path
-
-          freeze_path = Path('research/preregistrations/frozen/EXP-S6-SEM-CL-002-FREEZE.json')
-          auth_path = Path('research/preregistrations/authorizations/EXP-S6-SEM-CL-002.json')
-          freeze = json.loads(freeze_path.read_text(encoding='utf-8'))
-          auth = json.loads(auth_path.read_text(encoding='utf-8'))
-          auth['status'] = 'execution_reauthorized_after_behavior_neutral_source_repair'
-          auth['authorization_revision_date'] = '2026-09-16'
-          auth['authorization_revision_reason'] = (
-              'Behavior-neutral typing repairs changed shared CL-002-bound source bytes before the first empirical execution. '
-              'The scientific protocol, seeds, conditions, endpoints and decision rules are unchanged.'
-          )
-          auth['freeze_revision_commit'] = os.environ['FREEZE_COMMIT']
-          auth['freeze_manifest_git_blob_sha'] = subprocess.check_output(
-              ['git', 'hash-object', str(freeze_path)], text=True
-          ).strip()
-          auth['authorized_source_sha256'] = freeze['sha256']
-          auth['execution_authorized'] = True
-          auth['first_empirical_run_has_occurred'] = False
-          auth_path.write_text(json.dumps(auth, indent=2) + '\n', encoding='utf-8')
-          PY
-          git add research/preregistrations/authorizations/EXP-S6-SEM-CL-002.json
-          git diff --cached --check
-          git commit -m "research: reauthorize CL-002 against repaired source freeze"
-          git push
+          mkdir -p pr108-final
+          for path in \
+            .github/workflows/cl002-runner-freeze.yml \
+            .github/workflows/cl003-runner-freeze.yml \
+            CHANGELOG.md \
+            HF_README.md \
+            README.md \
+            pyproject.toml \
+            releases/current.json \
+            research/preregistrations/frozen/EXP-S6-SEM-CL-002-FREEZE.json \
+            research/publications/2026-09-15_recursive-epistemics_v1.7/README.md \
+            src/version.py \
+            tests/test_final_integration_20260911.py \
+            tests/test_release_registry.py
+          do
+            cp --parents "$path" pr108-final/
+          done
+          printf '%s\n' \
+            '.github/workflows/pr108-source-inspection.yml' \
+            '.github/workflows/pr108-finalize.yml' \
+            'scripts/pr108_finalize_once.py' > pr108-final/deletions.txt
+          find pr108-final -type f -print0 | sort -z | xargs -0 sha256sum > pr108-final/sha256.txt
+      - uses: actions/upload-artifact@v7
+        with:
+          name: pr108-final-tree
+          path: pr108-final
+          retention-days: 7
