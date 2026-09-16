@@ -22,6 +22,7 @@ import hashlib
 import json
 import platform
 import subprocess
+import threading
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, cast
@@ -45,6 +46,11 @@ TEST_PATHS: list[str] = ["tests/"]
 _DIGEST_EXCLUDE_FILES: set[str] = {"tests/test_baseline.json"}
 _DIGEST_EXCLUDE_SUFFIXES: tuple[str, ...] = (".pyc", ".pyo")
 _DIGEST_EXCLUDE_DIRS: tuple[str, ...] = ("__pycache__",)
+
+
+_INSPECTION_CACHE_LOCK = threading.RLock()
+_INSPECTION_CACHE: dict[tuple[str, tuple[str, ...], str], "SourceTreeInspection"] = {}
+_INSPECTION_CACHE_MAX_ENTRIES = 32
 
 
 @dataclass(frozen=True, slots=True)
@@ -213,6 +219,61 @@ def _digest_bytes(path: Path, relative: str, text_paths: set[str]) -> bytes:
     if relative in text_paths or (relative not in text_paths and b"\0" not in data):
         return _canonical_text_bytes(data)
     return data
+
+
+def _source_state_fingerprint(repo_root: Path, paths: list[str]) -> str | None:
+    """Return a cheap content-bound key for one Git working-tree scope.
+
+    The key includes HEAD, the complete tracked diff against HEAD and relevant
+    untracked file bytes. It therefore changes for staged, unstaged and
+    untracked edits while avoiding a full clean-tree blob scan on every
+    dashboard poll.
+    """
+    head = _git_output(repo_root, ["rev-parse", "HEAD"])
+    if head is None:
+        return None
+    diff = _git_output(repo_root, ["diff", "--binary", "HEAD", "--", *paths])
+    if diff is None:
+        return None
+    untracked = _git_scope_paths(repo_root, paths, untracked=True)
+    hasher = hashlib.sha256()
+    hasher.update(head)
+    hasher.update(b"\0")
+    hasher.update(diff)
+    hasher.update(b"\0")
+    for relative in sorted(untracked):
+        path = repo_root / relative
+        if not _is_digest_file(path, repo_root):
+            continue
+        hasher.update(relative.encode("utf-8", "surrogateescape"))
+        hasher.update(b"\0")
+        try:
+            hasher.update(path.read_bytes())
+        except OSError:
+            hasher.update(b"<missing>")
+        hasher.update(b"\0")
+    return hasher.hexdigest()
+
+
+def _cached_source_tree_inspection(
+    repo_root: Path, paths: list[str] | None = None
+) -> SourceTreeInspection:
+    """Reuse an inspection only while its exact Git/content fingerprint matches."""
+    all_paths = paths if paths is not None else SCIENTIFIC_PATHS + TEST_PATHS
+    fingerprint = _source_state_fingerprint(repo_root, all_paths)
+    if fingerprint is None:
+        return inspect_source_tree(repo_root, all_paths)
+    key = (str(repo_root.resolve()), tuple(all_paths), fingerprint)
+    with _INSPECTION_CACHE_LOCK:
+        cached = _INSPECTION_CACHE.get(key)
+        if cached is not None:
+            return cached
+    inspection = inspect_source_tree(repo_root, all_paths)
+    with _INSPECTION_CACHE_LOCK:
+        if len(_INSPECTION_CACHE) >= _INSPECTION_CACHE_MAX_ENTRIES:
+            _INSPECTION_CACHE.clear()
+        _INSPECTION_CACHE[key] = inspection
+    return inspection
 
 
 def inspect_source_tree(
@@ -388,7 +449,7 @@ def compute_source_tree_digest(
     ``None`` if no files were found.
     """
     try:
-        return inspect_source_tree(repo_root, paths).digest
+        return _cached_source_tree_inspection(repo_root, paths).digest
     except (OSError, ValueError, subprocess.SubprocessError):
         return None
 
@@ -506,7 +567,7 @@ def evaluate_test_baseline(repo_root: Path) -> BaselineEvaluation:
     """
     baseline = read_test_baseline(repo_root)
     current_commit = current_git_head(repo_root)
-    inspection = inspect_source_tree(repo_root)
+    inspection = _cached_source_tree_inspection(repo_root)
     current_tree_digest = inspection.digest
 
     if baseline is None:
