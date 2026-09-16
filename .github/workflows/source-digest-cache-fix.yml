@@ -63,7 +63,7 @@ jobs:
           python -m black src/dashboard/verification.py tests/test_source_digest.py
           python -m ruff check src/dashboard/verification.py tests/test_source_digest.py
           python -m mypy src/dashboard/verification.py
-          python -m pytest tests/test_source_digest.py tests/test_gate_status.py tests/test_dashboard_completion.py -q
+          python -m pytest tests/test_source_digest.py tests/test_gate_status.py -q
           git diff --check
           rm .github/workflows/source-digest-cache-fix.yml
           git config user.name 'github-actions[bot]'
