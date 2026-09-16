@@ -1,6 +1,9 @@
 from __future__ import annotations
 
-from src.research.experiment_summary import _suite_integrity, build_descriptive_statistics
+from src.research.experiment_summary import (
+    _suite_integrity,
+    build_descriptive_statistics,
+)
 from src.research_assistant.models import normalize_output
 
 
@@ -68,8 +71,9 @@ def test_suite_integrity_does_not_treat_non_snn_metrics_as_missing_data() -> Non
     assert integrity["missing_statistics"] == []
     assert integrity["empty_statistics"] == []
     assert (
-        statistics["conditions"]["learning:learning_on"]["metrics"]
-        ["final_mean_weight"]["mean"]
+        statistics["conditions"]["learning:learning_on"]["metrics"][
+            "final_mean_weight"
+        ]["mean"]
         == 0.517
     )
 
@@ -97,8 +101,9 @@ def test_temporal_discrepancy_is_valid_even_when_spike_count_is_zero() -> None:
     )
 
     assert (
-        statistics["conditions"]["temporal:fast_medium_slow"]["metrics"]
-        ["total_spikes"]["mean"]
+        statistics["conditions"]["temporal:fast_medium_slow"]["metrics"][
+            "total_spikes"
+        ]["mean"]
         == 0.0
     )
     assert statistics["temporal_horizons"]["fast"]["discrepancy"]["mean"] == 0.75
