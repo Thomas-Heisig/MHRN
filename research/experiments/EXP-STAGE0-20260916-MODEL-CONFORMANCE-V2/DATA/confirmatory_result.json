@@ -1,0 +1,70 @@
+{
+  "experiment_id": "EXP-STAGE0-20260916-MODEL-CONFORMANCE-V2",
+  "data_class": "DATA",
+  "mode": "CONFIRMATORY",
+  "preregistration_id": "PREREG-RQ-EVAL-006-V2",
+  "research_question_id": "RQ-EVAL-006",
+  "hypothesis_ids": ["H-EVAL-006-A", "H-EVAL-006-B", "H-EVAL-006-C"],
+  "execution": {
+    "date": "2026-09-16",
+    "workflow_run_id": 35149828152,
+    "workflow_job_id": 104975033645,
+    "artifact_id": 10468901959,
+    "artifact_sha256": "1c7e430fa75edb02ef7bfbaacf86cc85699d7a9ab5a6154bb81ce2da7bb0c89c",
+    "head_commit": "e84ee7efa56a9bf8d341e661325f79c82530f7bb",
+    "python": "3.13.15",
+    "brian2": "2.10.1",
+    "backend": "numpy",
+    "dt_ms": 1.0
+  },
+  "diagnostic_seed_overlap": false,
+  "confirmatory_seeds": [21001, 21002, 21003],
+  "results": {
+    "H-EVAL-006-A": {
+      "model": "izhikevich-2003",
+      "supported_by_protocol": true,
+      "samples_per_seed": 64,
+      "spike_decisions_equal_all": true,
+      "worst_max_abs_pre_reset_v_error": 6.821210263296962e-13,
+      "worst_max_abs_pre_reset_u_error": 3.552713678800501e-15,
+      "worst_max_abs_post_reset_v_error": 4.263256414560601e-14,
+      "worst_max_abs_post_reset_u_error": 3.552713678800501e-15,
+      "acceptance_threshold": 1e-8,
+      "seed_results": [
+        {"seed":21001,"conformance_within_1e_8":true,"spike_decisions_equal":true,"max_abs_pre_reset_v_error":2.2737367544323206e-13,"max_abs_pre_reset_u_error":3.552713678800501e-15,"max_abs_post_reset_v_error":4.263256414560601e-14,"max_abs_post_reset_u_error":3.552713678800501e-15},
+        {"seed":21002,"conformance_within_1e_8":true,"spike_decisions_equal":true,"max_abs_pre_reset_v_error":4.547473508864641e-13,"max_abs_pre_reset_u_error":1.7763568394002505e-15,"max_abs_post_reset_v_error":4.263256414560601e-14,"max_abs_post_reset_u_error":3.552713678800501e-15},
+        {"seed":21003,"conformance_within_1e_8":true,"spike_decisions_equal":true,"max_abs_pre_reset_v_error":6.821210263296962e-13,"max_abs_pre_reset_u_error":2.6645352591003757e-15,"max_abs_post_reset_v_error":4.263256414560601e-14,"max_abs_post_reset_u_error":2.6645352591003757e-15}
+      ]
+    },
+    "H-EVAL-006-B": {
+      "model": "lif-current-v1",
+      "refractory_ticks": 0,
+      "supported_by_protocol": true,
+      "spike_events_equal_all": true,
+      "worst_max_abs_v_error": 7.105427357601002e-15,
+      "acceptance_threshold": 1e-8,
+      "seed_results": [
+        {"seed":21001,"native_spike_count":78,"brian2_spike_count":78,"spike_events_equal":true,"max_abs_v_error":7.105427357601002e-15},
+        {"seed":21002,"native_spike_count":71,"brian2_spike_count":71,"spike_events_equal":true,"max_abs_v_error":0.0},
+        {"seed":21003,"native_spike_count":73,"brian2_spike_count":73,"spike_events_equal":true,"max_abs_v_error":0.0}
+      ]
+    },
+    "H-EVAL-006-C": {
+      "model": "lif-current-v1",
+      "supported_by_protocol": true,
+      "mapping_dt_1ms": {"1":2,"2":3,"3":4},
+      "mapping_units": {"mhrn":"refractory_ticks","brian2":"ms"},
+      "all_nine_mapping_runs_spike_equal": true,
+      "worst_max_abs_v_error": 7.105427357601002e-15,
+      "acceptance_threshold": 1e-8
+    }
+  },
+  "primary_success": true,
+  "all_declared_hypotheses_pass": true,
+  "status": "passed",
+  "automatic_evid_promotion": false,
+  "human_review_required": true,
+  "independent_authorship_replication": false,
+  "historical_v1_disposition": "PRESERVED_NEGATIVE",
+  "interpretation_limit": "This DATA validates the declared MHRN single-neuron numerical contracts against an external Brian2 reference under the frozen V2 protocol. It is not biological equivalence and is not an independently authored replication."
+}
