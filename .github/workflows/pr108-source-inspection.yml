@@ -1,0 +1,34 @@
+name: PR108 source inspection
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - .github/workflows/pr108-source-inspection.yml
+
+permissions:
+  contents: read
+
+jobs:
+  source:
+    if: github.event.pull_request.number == 108 && github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+      - name: Capture exact tracked source without credentials or local state
+        run: |
+          git rev-parse HEAD > source-commit.txt
+          git archive --format=tar.gz --output=pr108-source.tar.gz HEAD
+          sha256sum pr108-source.tar.gz > source-sha256.txt
+      - uses: actions/upload-artifact@v7
+        with:
+          name: pr108-source
+          path: |
+            pr108-source.tar.gz
+            source-commit.txt
+            source-sha256.txt
+          retention-days: 7
