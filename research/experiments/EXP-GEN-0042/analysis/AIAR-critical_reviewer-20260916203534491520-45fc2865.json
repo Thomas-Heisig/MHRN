@@ -1,0 +1,52 @@
+{
+  "analysis_id": "AIAR-critical_reviewer-20260916203534491520-45fc2865",
+  "role": "critical_reviewer",
+  "model": {
+    "provider": "ollama",
+    "model_name": "qwen3:8b",
+    "model_digest": "not_reported",
+    "quantization": "not_reported",
+    "context_length": "unknown",
+    "temperature": 0.0,
+    "top_p": 0.9,
+    "seed": "not_reported",
+    "backend_version": "unknown"
+  },
+  "inputs": {
+    "experiment_id": "EXP-GEN-0042",
+    "packet_digest": "45fc286544e2a65c1814b320cca4bc43dbf481c51f7d6f6bf5d13a7b221ab040"
+  },
+  "output": {
+    "error": "Invalid JSON: Expecting value: line 1 column 1 (char 0)",
+    "assessment": "Die Analyse konnte nicht vollstaendig schema-konform erzeugt werden. Das Modell hat keine verwertbare Bewertung geliefert.",
+    "analysis_unavailable": true,
+    "confidence_original": null,
+    "confidence": 0.0,
+    "observations": [],
+    "methodological_concerns": [],
+    "alternative_explanations": [],
+    "recommended_experiments": [],
+    "requested_evidence": [],
+    "effect_direction": "not_determined"
+  },
+  "provenance": {
+    "prompt_sha256": "302aac0165c326da6fa41293080a1c87b2b1f4d336f2b41b04748d1f074a4b49",
+    "research_packet_digest": "45fc286544e2a65c1814b320cca4bc43dbf481c51f7d6f6bf5d13a7b221ab040",
+    "prompt_protocol_version": "research_assistant_v1",
+    "assistant_schema_version": "1.3",
+    "git_commit": "e702a017610f4b020a733031098083e29750bf91",
+    "model_self_confidence": "0.0"
+  },
+  "epistemic_status": {
+    "evidence": false,
+    "interpretation_only": true,
+    "human_review_required": true
+  },
+  "review": {
+    "status": "pending",
+    "reviewer": null,
+    "reviewed_at": null,
+    "disposition": null
+  },
+  "generated_at": "2026-09-16T20:35:34.491520+00:00"
+}

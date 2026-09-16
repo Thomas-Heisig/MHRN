@@ -1,0 +1,8 @@
+{
+  "report_id": "AIRR-2026-0001",
+  "review_status": "accepted_as_interpretation",
+  "reviewer": "Thomas Heisig",
+  "reviewed_at": "2026-09-16T20:39:39.415528+00:00",
+  "comments": "EXP-GEN-0042 ist methodisch sauber aufgesetzt – neue ID, neuer Commit, korrekte Trennung von EVID. Aber die Zahlen sind bit-identisch zu EXP-GEN-0037, was bedeutet, dass der Homeostase-Bug in diesem Lauf entweder nicht aktiv war oder nicht gefixt ist. Die entscheidende Frage ist nicht, ob das Experiment korrekt ausgeführt wurde, sondern ob es überhaupt etwas anderes testet als sein Vorgänger. Ohne geänderte Zahlen ist „Stabilität unter korrigiertem Code\" nicht belegt.",
+  "report_content_digest": "3b6a378ec27d2df1a53835dadfa4cf73756baadd0fa21ea2184b3d0555f7c039"
+}
