@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Thomas-Heisig/MHRN/research/schemas/research_object_mapping.schema.json",
+  "title": "MHRN minimal research object mapping",
+  "description": "Minimal provenance mapping shared by research questions, hypotheses, experiments, DATA, EVID, claims, implementation objects and publication references. This schema intentionally does not instantiate a repository-wide master matrix.",
+  "type": "object",
+  "required": [
+    "id",
+    "axis",
+    "stage",
+    "object_type",
+    "evidence_mode",
+    "parent_ids",
+    "publication_refs",
+    "status"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "axis": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Research axis, for example empirical-technical, epistemological-methodological, or philosophical-ethical."
+    },
+    "stage": {
+      "oneOf": [
+        {
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "type": "string",
+          "minLength": 1
+        }
+      ],
+      "description": "Stage or cross-stage scope. Kept permissive while the stage taxonomy is still evolving."
+    },
+    "object_type": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Research object class such as research_question, hypothesis, experiment, data, evidence, claim, implementation, or publication."
+    },
+    "evidence_mode": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Declared evidence role such as confirmatory, exploratory, methodological, theoretical, or none."
+    },
+    "parent_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "publication_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "status": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Status of this object only; statuses from different object types must not be conflated."
+    }
+  },
+  "additionalProperties": true
+}
