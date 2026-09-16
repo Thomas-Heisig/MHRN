@@ -1,0 +1,117 @@
+{
+  "schema_version": "1.0",
+  "preregistration_id": "PREREG-SNN-006",
+  "research_question": "RQ-SNN-006",
+  "hypothesis": "H-SNN-006-A",
+  "protocol_id": "sustained_activity_stability_v2",
+  "mode": "CONFIRMATORY",
+  "primary_outcomes": [
+    "post_burn_in_spike_cv",
+    "post_burn_in_spike_relative_drift",
+    "finite_state",
+    "topology_unchanged",
+    "robustness_stability_pass",
+    "realization_unique_across_registered_seeds"
+  ],
+  "secondary_outcomes": [
+    "post_burn_in_mean_spikes",
+    "active_window_fraction",
+    "neuron_v_min",
+    "neuron_v_max",
+    "weight_min",
+    "weight_max",
+    "realization_weight_scale",
+    "realization_drive_scale",
+    "realization_digest"
+  ],
+  "conditions": [
+    {
+      "id": "no_input_control",
+      "role": "paired_negative_control",
+      "description": "No external current; paired with the same seed-bound weight realization as treatment."
+    },
+    {
+      "id": "tonic_drive",
+      "role": "paired_stability_treatment",
+      "description": "Base current 50.0 scaled by the registered seed-bound drive realization."
+    }
+  ],
+  "seed_strategy": {
+    "minimum_independent_seeds": 10,
+    "seeds": [
+      101,
+      102,
+      103,
+      104,
+      105,
+      106,
+      107,
+      108,
+      109,
+      110
+    ],
+    "rule": "Legacy registry field minimum_independent_seeds denotes ten distinct deterministic seed-bound parameter realizations, not independent biological samples.",
+    "parameterization": {
+      "generator": "random.Random(seed ^ 0x5A81B17)",
+      "weight_scale": "uniform(0.95, 1.05)",
+      "drive_scale": "uniform(0.95, 1.05)",
+      "pairing": "control and tonic treatment share one seed-bound realization",
+      "uniqueness_requirement": "all ten parameter digests unique before execution"
+    }
+  },
+  "stopping_rule": "Complete 100000 ticks for both conditions and all ten registered realizations; retain any runtime, numerical, topology or contract failure.",
+  "inclusion_criteria": [
+    "100000 ticks executed per run",
+    "10000 tick burn-in excluded from primary stability statistics",
+    "1000 tick non-overlapping observation windows",
+    "exactly ten unique seed-bound parameter digests",
+    "paired control and tonic-drive run for every registered seed",
+    "source/runtime consistency match",
+    "clean frozen code and configuration provenance"
+  ],
+  "exclusion_criteria": [
+    "runtime error or incomplete tick budget",
+    "NaN or infinite membrane/weight value",
+    "unexpected neuron or synapse count change",
+    "missing raw trace or seed/condition record",
+    "duplicate parameter digest across registered seeds",
+    "dirty source tree or unreviewed protocol amendment"
+  ],
+  "analysis_plan": {
+    "stability_criteria": {
+      "tonic_drive_mean_spikes_per_window": "> 0",
+      "tonic_drive_post_burn_in_spike_cv": "<= 0.25",
+      "tonic_drive_post_burn_in_spike_relative_drift": "<= 0.25",
+      "all_runs_finite_state": true,
+      "all_runs_topology_unchanged": true,
+      "all_registered_realizations_unique": true
+    },
+    "descriptive_statistics": [
+      "per-realization tonic spike-window mean, CV and drift",
+      "paired control/treatment numerical stability",
+      "realization parameter ranges and digests",
+      "membrane and synaptic bounds"
+    ],
+    "inference_policy": "Support requires every registered run to satisfy execution, finiteness and topology criteria, all ten parameter digests to be unique, and every tonic-drive realization to satisfy activity, CV and drift thresholds. Failed realizations are retained. No biological or independent-sampling generalization is permitted.",
+    "planned_tests": []
+  },
+  "expected_failure_modes": [
+    "duplicate or ineffective seed parameterization",
+    "quiescent tonic-drive realization",
+    "rate drift or unstable activity under jitter",
+    "non-finite membrane or weight values",
+    "unexpected structural mutation",
+    "runtime interruption before 100000 ticks"
+  ],
+  "ai_treatment": {
+    "role": "interpretation_only",
+    "authority_boundary": "AI cannot alter seeds, jitter range, thresholds, exclusions or evidence status.",
+    "prompt_digest_required": true
+  },
+  "freeze": {
+    "immutable_after_first_run": true,
+    "human_review_required": true,
+    "status": "FROZEN",
+    "amendment_id": null
+  }
+}
