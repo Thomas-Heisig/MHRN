@@ -224,9 +224,7 @@ class ReportBuilder:
 
             h_text = ", ".join(f"`{h.id}`" for h in hypotheses) or "—"
             claims_text = ", ".join(f"`{c.id}`" for c in claims) or "—"
-            claim_status_text = (
-                ", ".join(f"`{c.id}`={c.status}" for c in claims) or "—"
-            )
+            claim_status_text = ", ".join(f"`{c.id}`={c.status}" for c in claims) or "—"
             s_text = str(len(sources))
             experiments = sorted(self._experiments_for_question(q.id))
             experiment_text = (
