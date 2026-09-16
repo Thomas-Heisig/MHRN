@@ -17,6 +17,7 @@ The network follows a tick-based simulation model where:
 
 from __future__ import annotations
 
+import logging
 import random
 import time
 from collections.abc import Callable
@@ -35,6 +36,9 @@ from .spatial_index import (
     validate_dims,
 )
 from .synapse import Synapse, SynapseConfig, create_synapse
+
+_LOGGER = logging.getLogger(__name__)
+
 
 # ============================================================================
 # Type Aliases
@@ -938,7 +942,7 @@ class NeuralNetwork:
             try:
                 hook(result)
             except Exception:
-                pass  # Hook errors are logged elsewhere
+                _LOGGER.exception("Post-step hook failed at tick %s", result.tick)
 
         return result
 
