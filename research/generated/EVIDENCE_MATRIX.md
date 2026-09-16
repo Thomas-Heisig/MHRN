@@ -91,6 +91,7 @@ RQ-Status und Claim-Status sind unterschiedliche wissenschaftliche Zustände und
 | `RQ-EVAL-003` | open | `H-EVAL-003-A` | — | — | 0 | — | — | offen |
 | `RQ-EVAL-004` | open | `H-EVAL-004-A` | — | — | 0 | — | — | offen |
 | `RQ-EVAL-005` | open | `H-EVAL-005-A` | — | — | 0 | — | — | offen |
+| `RQ-EVAL-006` | open | `H-EVAL-006-A`, `H-EVAL-006-B`, `H-EVAL-006-C` | — | — | 2 | — | — | offen |
 | `RQ-GW-001` | open | `H-GW-001-A` | — | — | 0 | — | — | offen |
 | `RQ-GW-002` | open | `H-GW-002-A` | — | — | 0 | — | — | offen |
 | `RQ-GW-003` | open | `H-GW-003-A` | — | — | 0 | — | — | offen |
@@ -121,8 +122,8 @@ RQ-Status und Claim-Status sind unterschiedliche wissenschaftliche Zustände und
 |-----------|--------|
 | answered | 1 |
 | in_progress | 1 |
-| open | 104 |
-| **Gesamt RQs** | **106** |
+| open | 105 |
+| **Gesamt RQs** | **107** |
 
 ### Claims (Claim-Status)
 
