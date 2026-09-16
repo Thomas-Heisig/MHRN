@@ -29,6 +29,10 @@ class SynapseConfig:
     ``meta_state`` is stored on :class:`Synapse`; lower values bias the
     pair-STDP kernel toward LTP and higher values bias it toward LTD. This is
     an explicit engineering convention, not a biological claim.
+
+    ``enable_triplet`` is a serialization-compatible reserved flag. A triplet
+    weight-update rule is not implemented yet, so plasticity operations fail
+    fast when the flag is enabled instead of silently behaving like pair-STDP.
     """
 
     a_plus: float = A_PLUS
@@ -117,6 +121,13 @@ class Synapse:
             self._config = SynapseConfig()
         return self._config
 
+    def _require_supported_stdp_mode(self) -> None:
+        if self.config.enable_triplet:
+            raise NotImplementedError(
+                "Triplet-STDP is reserved but not implemented; "
+                "disable enable_triplet or implement an explicit triplet rule"
+            )
+
     def set_config(self, config: SynapseConfig) -> None:
         if not config.w_min <= self.weight <= config.w_max:
             raise ValueError("Current weight is outside the requested config bounds")
@@ -150,20 +161,18 @@ class Synapse:
 
     def record_pre_spike(self, tick: int) -> None:
         """Record a pre-spike and accumulate post-before-pre eligibility."""
+        self._require_supported_stdp_mode()
         if self.last_post_spike >= 0 and tick > self.last_post_spike:
             self.eligibility += self._timing_kernel(self.last_post_spike - tick)
         self.last_pre_spike = tick
-        if self.config.enable_triplet:
-            self.pre_trace = 1.0
         self.mark_dirty()
 
     def record_post_spike(self, tick: int) -> None:
         """Record a post-spike and accumulate pre-before-post eligibility."""
+        self._require_supported_stdp_mode()
         if self.last_pre_spike >= 0 and tick > self.last_pre_spike:
             self.eligibility += self._timing_kernel(tick - self.last_pre_spike)
         self.last_post_spike = tick
-        if self.config.enable_triplet:
-            self.post_trace = 1.0
         self.mark_dirty()
 
     def decay_traces(self) -> None:
@@ -195,6 +204,7 @@ class Synapse:
 
     def compute_stdp_update(self, dt: float) -> float:
         """Compute one bounded pair-STDP update for ``dt = post - pre``."""
+        self._require_supported_stdp_mode()
         raw = self._timing_kernel(dt)
         if raw == 0.0:
             return 0.0
