@@ -5,6 +5,7 @@ and it does not change dashboard scores. It characterizes the current firing-rat
 homeostasis and Brian2 comparison paths so a confirmatory validation can be frozen
 without post-hoc parameter selection.
 """
+
 from __future__ import annotations
 
 import json
@@ -13,13 +14,20 @@ from typing import Any
 
 from src.core.compartment_neuron import CompartmentConfig
 from src.core.hh_neuron import HHConfig
-from src.core.neuron import NeuronConfig, NeuronModel, available_neuron_models, create_neuron
+from src.core.neuron import (
+    NeuronConfig,
+    NeuronModel,
+    available_neuron_models,
+    create_neuron,
+)
 from src.research.empirical_evaluation import run_brian2_conformance
 
 OUT = Path("stage0-science-diagnostic.json")
 
 
-def _homeostasis_probe(current: float, *, enabled: bool, ticks: int = 30_000) -> dict[str, Any]:
+def _homeostasis_probe(
+    current: float, *, enabled: bool, ticks: int = 30_000
+) -> dict[str, Any]:
     config = NeuronConfig(
         model=NeuronModel.LEAKY_INTEGRATE_AND_FIRE,
         dt_ms=1.0,
@@ -90,7 +98,9 @@ def main() -> None:
             "hh_and_compartment_classification": "stage0_plus_experimental_not_canonical_switch_contract",
         },
     }
-    OUT.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    OUT.write_text(
+        json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
     print(OUT.read_text(encoding="utf-8"))
 
 

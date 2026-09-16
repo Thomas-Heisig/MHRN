@@ -17,11 +17,11 @@
 - id: H-EVAL-003-A
   research_question: RQ-EVAL-003
   hypothesis: Spike events agree exactly and maximum absolute v/u discrepancy is at
-    most 1e-8 for every tested seed.
+    most 1e-8 for every tested seed in the historical 1000-tick free-running comparison.
   status: untested
   evidence: []
   created: '2026-09-10'
-  updated: '2026-09-10'
+  updated: '2026-09-16'
 - id: H-EVAL-004-A
   research_question: RQ-EVAL-004
   hypothesis: All declared 32-tick active sparse workloads complete with finite states;
@@ -38,3 +38,33 @@
   evidence: *id001
   created: '2026-09-10'
   updated: '2026-09-10'
+- id: H-EVAL-006-A
+  research_question: RQ-EVAL-006
+  hypothesis: For Izhikevich-2003, matched one-step Brian2 transitions produce identical
+    spike decisions and pre-reset/post-reset v/u states within maximum absolute error 1e-8
+    for every frozen validation sample.
+  status: supported
+  evidence:
+  - research/experiments/EXP-STAGE0-20260916-MODEL-CONFORMANCE-V2/DATA/confirmatory_result.json
+  created: '2026-09-16'
+  updated: '2026-09-16'
+- id: H-EVAL-006-B
+  research_question: RQ-EVAL-006
+  hypothesis: For lif-current-v1 with the canonical alternative-model setting refractory_ticks=0,
+    matched Brian2 Euler transitions produce identical spike events and post-reset membrane
+    states within maximum absolute error 1e-8 for every frozen validation seed.
+  status: supported
+  evidence:
+  - research/experiments/EXP-STAGE0-20260916-MODEL-CONFORMANCE-V2/DATA/confirmatory_result.json
+  created: '2026-09-16'
+  updated: '2026-09-16'
+- id: H-EVAL-006-C
+  research_question: RQ-EVAL-006
+  hypothesis: Nonzero LIF refractory_ticks can be mapped to an explicitly documented Brian2
+    refractory duration that yields the same clamp/update semantics; the mapping is an optional
+    extension and is not assumed from equal numeric parameter values.
+  status: supported
+  evidence:
+  - research/experiments/EXP-STAGE0-20260916-MODEL-CONFORMANCE-V2/DATA/confirmatory_result.json
+  created: '2026-09-16'
+  updated: '2026-09-16'

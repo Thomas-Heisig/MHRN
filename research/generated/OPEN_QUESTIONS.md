@@ -1238,10 +1238,10 @@ Die folgenden Forschungsfragen sind noch offen und warten auf experimentelle Evi
 
 **Frage:** Does native single-cell split-Euler dynamics agree with Brian2 under identical updates, currents and disabled adaptation?
 
-**Relevanz:** Bounded exploratory observation; preserves historical records and requires human evidence review.
+**Relevanz:** Historical free-running comparison retained as a scientific negative; its long-horizon exact-trajectory criterion is not reused as a local transition-equivalence claim.
 
 **Hypothesen:**
-- `H-EVAL-003-A`: Spike events agree exactly and maximum absolute v/u discrepancy is at most 1e-8 for every tested seed.
+- `H-EVAL-003-A`: Spike events agree exactly and maximum absolute v/u discrepancy is at most 1e-8 for every tested seed in the historical 1000-tick free-running comparison.
 
 ---
 
@@ -1268,6 +1268,25 @@ Die folgenden Forschungsfragen sind noch offen und warten auf experimentelle Evi
 
 **Hypothesen:**
 - `H-EVAL-005-A`: All declared 32-tick active sparse workloads complete with finite states; no linear-scaling or real-time claim.
+
+---
+
+## RQ-EVAL-006
+
+**Domäne:** Single-neuron model conformance
+
+**Frage:** Do the selectable MHRN single-neuron models reproduce their declared one-step transition, spike and reset semantics against a matched external Brian2 implementation?
+
+**Relevanz:** Separates membrane-model conformance from long-horizon numerical sensitivity and makes neuron model a reusable experimental treatment axis while retaining Izhikevich as default.
+
+**Literatur:**
+- `SRC-IZHIKEVICH-2003`: Eugene M. Izhikevich et al. (2003)
+- `SRC-GERSTNER-2014`: Wulfram Gerstner et al. (2014)
+
+**Hypothesen:**
+- `H-EVAL-006-A`: For Izhikevich-2003, matched one-step Brian2 transitions produce identical spike decisions and pre-reset/post-reset v/u states within maximum absolute error 1e-8 for every frozen validation sample.
+- `H-EVAL-006-B`: For lif-current-v1 with the canonical alternative-model setting refractory_ticks=0, matched Brian2 Euler transitions produce identical spike events and post-reset membrane states within maximum absolute error 1e-8 for every frozen validation seed.
+- `H-EVAL-006-C`: Nonzero LIF refractory_ticks can be mapped to an explicitly documented Brian2 refractory duration that yields the same clamp/update semantics; the mapping is an optional extension and is not assumed from equal numeric parameter values.
 
 ---
 
@@ -1579,6 +1598,6 @@ Die folgenden Forschungsfragen sind noch offen und warten auf experimentelle Evi
 
 ---
 
-*Insgesamt 105 offene Fragen.*
+*Insgesamt 106 offene Fragen.*
 
 > Pruefstatus: RQ/H- und EVID-Statuswerte geben den Registry-Inhalt wieder. Insbesondere historische supports/supported-Eintraege sind keine Bestaetigung einer Freigabe nach den heutigen Clean-Freeze- und Human-Review-Gates. Ein abgeschlossener Lauf ist DATA, nicht automatisch akzeptierte Evidenz.
