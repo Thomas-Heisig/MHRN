@@ -1,0 +1,41 @@
+name: Source-only AIRR fallback repair
+on:
+  push:
+    branches: [fix/exp-snn-001-evidence-pipeline-20260916]
+    paths: [.github/workflows/zz-airr-fix-source-only-20260916.yml]
+permissions:
+  contents: write
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+          ref: fix/exp-snn-001-evidence-pipeline-20260916
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.13"
+      - run: python -m pip install -e ".[dev,docs]"
+      - name: Patch and verify AIRR fallback
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path("src/research/experiment_summary.py")
+          text = p.read_text(encoding="utf-8")
+          old = '''    sections = (\n        ("Methodische Kritik", content.get("methodological_critique", [])),\n        ("Alternative Erklaerungen", content.get("alternative_explanations", [])),\n        (\n            "Fehlende Nachweise",\n            content.get("missing_evidence", []) or interpretation.get("requested_evidence", []),\n        ),\n        (\n            "Empfohlene Folgeexperimente",\n            content.get("recommended_follow_up", [])\n            or interpretation.get("recommended_experiments", []),\n        ),\n    )\n    for heading, values in sections:\n        lines.extend(["", f"### {heading}", ""])\n        if isinstance(values, list) and values:\n            lines.extend(f"- {value}" for value in values)\n        else:\n            lines.append("- Keine expliziten Angaben.")\n'''
+          new = '''    observations = interpretation.get("observations", [])\n    limitation_fallback: list[str] = []\n    if isinstance(observations, list):\n        for observation in observations:\n            if (\n                isinstance(observation, dict)\n                and str(observation.get("type", "")).strip().lower() == "limitations"\n                and observation.get("value")\n            ):\n                limitation_fallback.append(\n                    f"AIRR-Limitation dokumentieren: {observation['value']}"\n                )\n\n    missing_evidence = content.get("missing_evidence", [])\n    if not isinstance(missing_evidence, list) or not missing_evidence:\n        requested = interpretation.get("requested_evidence", [])\n        missing_evidence = requested if isinstance(requested, list) and requested else limitation_fallback\n\n    recommended = content.get("recommended_follow_up", [])\n    if not isinstance(recommended, list) or not recommended:\n        interpreted_recommended = interpretation.get("recommended_experiments", [])\n        recommended = interpreted_recommended if isinstance(interpreted_recommended, list) else []\n\n    sections = (\n        ("Methodische Kritik", content.get("methodological_critique", [])),\n        ("Alternative Erklaerungen", content.get("alternative_explanations", [])),\n        ("Fehlende Nachweise", missing_evidence),\n        ("Empfohlene Folgeexperimente", recommended),\n    )\n    for heading, values in sections:\n        lines.extend(["", f"### {heading}", ""])\n        if isinstance(values, list) and values:\n            lines.extend(f"- {value}" for value in values)\n        elif heading == "Empfohlene Folgeexperimente":\n            lines.append("- Keine expliziten Folgeexperimente im AIRR angegeben.")\n        else:\n            lines.append("- Keine expliziten Angaben.")\n'''
+          if old not in text:
+              raise SystemExit("AIRR section block did not match expected source")
+          p.write_text(text.replace(old, new, 1), encoding="utf-8")
+          PY
+          python -m black src/research/experiment_summary.py
+          python -m ruff check src/research/experiment_summary.py
+          python -m pytest -q tests/test_dashboard_experiment_workflow.py::test_summary_falls_back_from_empty_airr_lists_to_limitations
+      - name: Commit source only
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@users.noreply.github.com"
+          git add src/research/experiment_summary.py
+          git commit -m "Fix AIRR summary limitation fallback"
+          git push origin HEAD:fix/exp-snn-001-evidence-pipeline-20260916
