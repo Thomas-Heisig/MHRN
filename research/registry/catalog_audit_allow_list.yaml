@@ -27,8 +27,9 @@ historical_only:
   H-GW-06: "Neural Symbiosis design hypothesis without a canonical protocol."
   H-MSBA-E: "MSBA programme family shorthand, not a canonical hypothesis ID."
 
-# These identifiers intentionally exist only in tests that exercise rejection
-# and duplicate-detection paths. They are not research records.
+# These identifiers intentionally exist only in tests that exercise rejection,
+# duplicate detection and generated-report status separation. They are not
+# research records.
 test_fixtures:
   RQ-BASE-001: "Registry-fragment test fixture."
   RQ-BROWSER-001: "Browser test fixture."
@@ -37,11 +38,13 @@ test_fixtures:
   RQ-EXTRA-E01: "Registry-fragment test fixture."
   RQ-MISSING-001: "Catalog-audit negative test fixture."
   RQ-TEST-001: "Catalog-audit test fixture."
+  RQ-TEST-002: "Generated evidence-matrix status-separation regression fixture."
   H-BASE-001-A: "Registry-fragment test fixture."
   H-BROWSER-001-A: "Browser test fixture."
   H-EXTRA-E01-A: "Registry-fragment test fixture."
   H-MISSING-001: "Catalog-audit negative test fixture."
   H-TEST-001-A: "Catalog-audit test fixture."
+  H-TEST-002-A: "Generated evidence-matrix status-separation regression fixture."
 
 # Frozen manuscript proposals; accepted only inside publication files.
 publication_proposals:
