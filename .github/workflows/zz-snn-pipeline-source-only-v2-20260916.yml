@@ -1,0 +1,134 @@
+name: Source-only SNN evidence repair and replication
+on:
+  push:
+    branches: [fix/exp-snn-001-evidence-pipeline-20260916]
+    paths: [.github/workflows/zz-snn-pipeline-source-only-v2-20260916.yml]
+permissions:
+  contents: write
+jobs:
+  repair-replicate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+          ref: fix/exp-snn-001-evidence-pipeline-20260916
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.13"
+          cache: pip
+      - name: Install project
+        run: |
+          python -m pip install --upgrade pip setuptools wheel
+          python -m pip install -e ".[dev,docs]"
+      - name: Patch DATA and summary pipeline
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          def rx(path, old, new):
+              p=Path(path); t=p.read_text(encoding='utf-8')
+              if old not in t: raise SystemExit(f'missing patch anchor in {path}: {old[:100]!r}')
+              p.write_text(t.replace(old,new,1),encoding='utf-8')
+
+          rx('src/research/data_v2.py','Research Assistant path is intentionally bounded. `DATA/runs.json` is a compact\nprojection for the current experiment, while each complete run is archived as an','Research Assistant path is intentionally bounded. `DATA/runs_compact.json` is a\nversionable compact projection for the current experiment, while each complete run is archived as an')
+          rx('src/research/data_v2.py','    runs_path = data_dir / "runs.json"','    runs_path = data_dir / "runs_compact.json"')
+          rx('src/research/data_v2.py','            f"Compact DATA/runs.json would exceed {RUN_SUMMARY_MAX_BYTES} bytes; "','            f"Compact DATA/runs_compact.json would exceed {RUN_SUMMARY_MAX_BYTES} bytes; "')
+          rx('src/research/data_v2.py','        )\n    runs[:] = summaries\n\n    ai_packet = {','        )\n    _write_json(runs_path, summaries)\n    runs[:] = summaries\n\n    ai_packet = {')
+
+          rx('src/dashboard/experiment_workflow.py','# per-tick traces are then moved to compressed sidecars so runs.json remains\n        # reviewable without discarding raw observations.','# per-tick traces are then moved to compressed sidecars so the committed\n        # runs_compact.json remains reviewable without discarding raw observations.')
+          rx('src/dashboard/experiment_workflow.py','        recorder.record_artifact("data", "DATA/runs.json")','        recorder.record_artifact("data", "DATA/runs_compact.json")')
+          rx('src/dashboard/experiment_workflow.py','                    data_path,\n                    data_v2.raw_index_path,','                    data_v2.runs_path,\n                    data_v2.raw_index_path,')
+          rx('src/dashboard/experiment_workflow.py','                "Kompakte Run-Projektion: `DATA/runs.json`",','                "Versionierte kompakte Run-Projektion: `DATA/runs_compact.json`",')
+
+          rx('src/research/experiment_summary.py','    numeric_metric_names = sorted(known_numeric_metrics | discovered_numeric_metrics)\n\n    nested_paths = {','    numeric_metric_names = sorted(known_numeric_metrics | discovered_numeric_metrics)\n    boolean_metric_names = sorted(\n        {\n            str(name)\n            for run in runs\n            for name, value in (run.get("metrics") or {}).items()\n            if isinstance(value, bool)\n        }\n    )\n\n    nested_paths = {')
+          rx('src/research/experiment_summary.py','        for name, path in nested_paths.items():\n','        boolean_stats: dict[str, Any] = {}\n        for name in boolean_metric_names:\n            values = [\n                value\n                for run in condition_runs\n                for value in [(run.get("metrics") or {}).get(name)]\n                if isinstance(value, bool)\n            ]\n            if values:\n                true_count = sum(values)\n                boolean_stats[name] = {\n                    "n": len(values),\n                    "true_count": true_count,\n                    "false_count": len(values) - true_count,\n                    "true_fraction": true_count / len(values),\n                    "all_true": all(values),\n                }\n\n        for name, path in nested_paths.items():\n')
+          rx('src/research/experiment_summary.py','            "metrics": metric_stats,\n        }','            "metrics": metric_stats,\n            "boolean_metrics": boolean_stats,\n        }')
+          rx('src/research/experiment_summary.py','        "schema_version": "2.1",','        "schema_version": "2.2",')
+          rx('src/research/experiment_summary.py','        if not isinstance(payload, dict)\n        or not isinstance(payload.get("metrics"), dict)\n        or not payload.get("metrics")\n','        if not isinstance(payload, dict)\n        or (\n            (not isinstance(payload.get("metrics"), dict) or not payload.get("metrics"))\n            and (\n                not isinstance(payload.get("boolean_metrics"), dict)\n                or not payload.get("boolean_metrics")\n            )\n        )\n')
+          rx('src/research/experiment_summary.py','    raw_runs = _read_json(experiment_dir / "DATA" / "runs.json", [])\n','    runs_path = experiment_dir / "DATA" / "runs_compact.json"\n    if not runs_path.is_file():\n        runs_path = experiment_dir / "DATA" / "runs.json"\n    raw_runs = _read_json(runs_path, [])\n')
+          rx('src/research/experiment_summary.py','            f"- AIRR Markdown: [`reports/{report_id}.md`](reports/{report_id}.md)",\n            f"- AIRR JSON: [`reports/{report_id}.json`](reports/{report_id}.json)",','            f"- AIRR Markdown: `reports/{report_id}.md`",\n            f"- AIRR JSON: `reports/{report_id}.json`",')
+          rx('src/research/experiment_summary.py','            "- Mittelwert: $\\\\bar{x}=\\\\frac{1}{n}\\\\sum_{i=1}^{n}x_i$",\n            "- Populationsstandardabweichung: $\\\\sigma=\\\\sqrt{\\\\frac{1}{n}\\\\sum_{i=1}^{n}(x_i-\\\\bar{x})^2}$",\n            "- Absolute Differenz: $\\\\Delta_x=\\\\bar{x}_B-\\\\bar{x}_A$",\n            "- Verhältnis: $R_x=\\\\bar{x}_B/\\\\bar{x}_A$ fuer $\\\\bar{x}_A\\\\neq0$",\n            "- Inter-Spike-Intervall: $ISI_i=t_{i+1}-t_i$",','            "- Mittelwert: `mean(x) = (1/n) * sum_i x_i`",\n            "- Populationsstandardabweichung: `sigma = sqrt((1/n) * sum_i (x_i - mean(x))^2)`",\n            "- Absolute Differenz: `Delta_x = mean(x_B) - mean(x_A)`",\n            "- Verhältnis: `R_x = mean(x_B) / mean(x_A)` fuer `mean(x_A) != 0`",\n            "- Inter-Spike-Intervall: `ISI_i = t_(i+1) - t_i`",')
+          rx('src/research/experiment_summary.py','                    f"- `{metric}`: $\\\\Delta={_fmt(effect.get(\'absolute_difference\'))}$; $R={_fmt(effect.get(\'ratio\'))}$; Referenz `{effect.get(\'reference_condition\')}`, Vergleich `{effect.get(\'comparison_condition\')}`."\n','                    f"- `{metric}`: `absolute_difference={_fmt(effect.get(\'absolute_difference\'))}`; `ratio={_fmt(effect.get(\'ratio\'))}`; Referenz `{effect.get(\'reference_condition\')}`, Vergleich `{effect.get(\'comparison_condition\')}`."\n')
+          rx('src/research/experiment_summary.py','            f"Deterministische Statistikdatei: [`{statistics_path.relative_to(experiment_dir).as_posix()}`]({statistics_path.relative_to(experiment_dir).as_posix()})",','            f"Deterministische Statistikdatei: `{statistics_path.relative_to(experiment_dir).as_posix()}`",')
+          rx('src/research/experiment_summary.py','            relative = path.relative_to(experiment_dir).as_posix()\n            lines.append(f"- [{relative}]({relative})")','            relative = path.relative_to(experiment_dir).as_posix()\n            if relative == "DATA/runs.json":\n                continue\n            lines.append(f"- `{relative}`")')
+          rx('src/research/experiment_summary.py','        lines.append(\n            f"| {condition} | {\'; \'.join(extras) if extras else \'keine zusätzlichen numerischen Metriken\'} |"\n        )\n\n    effects = statistics.get("two_condition_effects", {})','        lines.append(\n            f"| {condition} | {\'; \'.join(extras) if extras else \'keine zusätzlichen numerischen Metriken\'} |"\n        )\n\n    boolean_rows: list[str] = []\n    for condition, payload in condition_statistics.items():\n        boolean_metrics = payload.get("boolean_metrics", {}) if isinstance(payload, dict) else {}\n        if not isinstance(boolean_metrics, dict):\n            continue\n        for name, values in sorted(boolean_metrics.items()):\n            if not isinstance(values, dict):\n                continue\n            boolean_rows.append(\n                f"| {condition} | `{name}` | {values.get(\'n\', 0)} | "\n                f"{values.get(\'true_count\', 0)} | {values.get(\'false_count\', 0)} | "\n                f"{values.get(\'all_true\', False)} |"\n            )\n    if boolean_rows:\n        lines.extend([\n            "",\n            "#### Primäre und weitere boolesche Endpunkte",\n            "",\n            "| Condition | Outcome | n | true | false | all_true |",\n            "| --- | --- | ---: | ---: | ---: | --- |",\n            *boolean_rows,\n        ])\n\n    effects = statistics.get("two_condition_effects", {})')
+
+          p=Path('docs/06-research/RESEARCH_DATA_V2.md'); t=p.read_text(encoding='utf-8')
+          t=t.replace('runs.json                 # compact projection of this experiment only','runs_compact.json         # bounded, versioned compact projection')
+          t=t.replace('Write the compact experiment-local `DATA/runs.json`.','Write the compact, versioned `DATA/runs_compact.json` (a local `DATA/runs.json` compatibility projection may also exist but remains ignored).')
+          t=t.replace('compact `DATA/runs.json` would exceed **5 MB**','compact `DATA/runs_compact.json` would exceed **5 MB**')
+          t=t.replace('includes the compact projection, raw index','includes the versioned compact projection, raw index')
+          p.write_text(t,encoding='utf-8')
+
+          rx('tests/test_dashboard_experiment_workflow.py','    assert manifest["artifacts"]["data"] == "DATA/runs.json"','    assert manifest["artifacts"]["data"] == "DATA/runs_compact.json"')
+          rx('tests/test_research_data_v2.py','    artifacts = prepare_research_data_v2(experiment, runs, statistics)\n    artifacts.runs_path.write_text(\n        json.dumps(runs, indent=2, sort_keys=True) + "\\n", encoding="utf-8"\n    )\n\n    index =','    artifacts = prepare_research_data_v2(experiment, runs, statistics)\n    assert artifacts.runs_path.name == "runs_compact.json"\n    assert artifacts.runs_path.is_file()\n    stored_runs = json.loads(artifacts.runs_path.read_text(encoding="utf-8"))\n    assert len(stored_runs) == 2\n\n    index =')
+
+          Path('tests/test_snn_evidence_pipeline_regressions.py').write_text('''from __future__ import annotations\nimport json\nfrom pathlib import Path\nfrom src.research.experiment_summary import build_descriptive_statistics, write_detailed_experiment_summary, write_statistics_artifact\n\ndef _runs():\n    base={"experiment_id":"EXP-TEST-SNN-EVID","seed":42,"runtime_error":None}\n    return [\n      {**base,"condition":"no_input_control","metrics":{"ticks_executed":100000,"post_burn_in_mean_spikes":0.0,"post_burn_in_spike_cv":0.0,"post_burn_in_spike_relative_drift":0.0,"finite_state":True,"topology_unchanged":True,"stability_pass":True}},\n      {**base,"condition":"tonic_drive","metrics":{"ticks_executed":100000,"post_burn_in_mean_spikes":300.0,"post_burn_in_spike_cv":0.0,"post_burn_in_spike_relative_drift":0.0,"finite_state":True,"topology_unchanged":True,"stability_pass":True}},\n    ]\n\ndef test_boolean_primary_outcomes_are_aggregated():\n    s=build_descriptive_statistics(_runs()); assert s["schema_version"]=="2.2"\n    b=s["conditions"]["tonic_drive"]["boolean_metrics"]\n    assert b["finite_state"]=={"n":1,"true_count":1,"false_count":0,"true_fraction":1.0,"all_true":True}\n    assert b["topology_unchanged"]["all_true"] is True\n    assert b["stability_pass"]["all_true"] is True\n\ndef test_summary_committed_data_and_visible_values(tmp_path: Path):\n    e=tmp_path/"experiments"/"EXP-TEST-SNN-EVID"; (e/"DATA").mkdir(parents=True)\n    (e/"DATA"/"runs_compact.json").write_text(json.dumps(_runs()),encoding="utf-8")\n    (e/"manifest.json").write_text(json.dumps({"experiment_status":"completed","research_questions":["RQ-SNN-001"],"hypotheses":["H-SNN-001-A"],"research_run_mode":"CONFIRMATORY","network_mode":"OFFLINE","simulation":{"ticks":100000,"seeds":[42],"protocol":"sustained_activity_stability_v1"},"results":{"run_count":2},"git":{"commit":"fixture","dirty":False},"artifacts":{"data":"DATA/runs_compact.json"}}),encoding="utf-8")\n    (e/"workflow.json").write_text(json.dumps({"title":"Sustained stability","conditions":"control; treatment","ticks":100000,"seeds":[42],"protocol":"sustained_activity_stability_v1"}),encoding="utf-8")\n    write_statistics_artifact(e,_runs()); write_detailed_experiment_summary(tmp_path,"EXP-TEST-SNN-EVID",{"status":"unavailable","reason":"fixture"})\n    s=(e/"summary.md").read_text(encoding="utf-8")\n    assert "Mittelwert: `mean(x) = (1/n) * sum_i x_i`" in s\n    assert "`absolute_difference=300`" in s\n    assert "Primäre und weitere boolesche Endpunkte" in s and "`finite_state`" in s\n    assert "Deterministische Statistikdatei: `analysis/statistics.json`" in s\n    assert "- `DATA/runs_compact.json`" in s and "DATA/runs.json" not in s\n''',encoding='utf-8')
+          PY
+          python -m black src/research/data_v2.py src/research/experiment_summary.py src/dashboard/experiment_workflow.py tests/test_research_data_v2.py tests/test_dashboard_experiment_workflow.py tests/test_snn_evidence_pipeline_regressions.py
+          python -m ruff check --fix src/research/data_v2.py src/research/experiment_summary.py src/dashboard/experiment_workflow.py tests/test_research_data_v2.py tests/test_dashboard_experiment_workflow.py tests/test_snn_evidence_pipeline_regressions.py
+          git diff --check
+      - name: Targeted regression gate
+        run: |
+          python -m pytest -q tests/test_research_data_v2.py tests/test_snn_evidence_pipeline_regressions.py tests/test_exp_gen_0036_regressions.py tests/test_scientific_execution_contract.py tests/test_dashboard_operational_protocol_routes.py tests/test_dashboard_experiment_workflow.py
+      - name: Commit pipeline repair source only
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@users.noreply.github.com"
+          git add src/research/data_v2.py src/research/experiment_summary.py src/dashboard/experiment_workflow.py docs/06-research/RESEARCH_DATA_V2.md tests/test_research_data_v2.py tests/test_dashboard_experiment_workflow.py tests/test_snn_evidence_pipeline_regressions.py
+          git commit -m "Fix SNN evidence artifacts and summary diagnostics"
+          git push origin HEAD:fix/exp-snn-001-evidence-pipeline-20260916
+          test -z "$(git status --porcelain)"
+      - name: Execute and validate EXP-GEN-0038
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from src.dashboard.experiment_workflow import ExperimentWorkflowService, write_experiment_summary
+          root=Path('research')
+          r=ExperimentWorkflowService(root).run_science({"experiment_id":"EXP-GEN-0038","question_id":"RQ-SNN-001","hypothesis_id":"H-SNN-001-A","title":"sustained_activity_stability_v1 — RQ-SNN-001 pipeline verification","conditions":"no_input_control (negative_control); tonic_drive (stability_treatment)","ticks":100000,"seeds":"42-51","notes":"Clean rerun after evidence-pipeline repair; no protocol or threshold changes.","protocol":"sustained_activity_stability_v1"})
+          e=root/'experiments'/'EXP-GEN-0038'; m=json.loads((e/'manifest.json').read_text()); s=json.loads((e/'analysis/statistics.json').read_text()); runs=json.loads((e/'DATA/runs_compact.json').read_text())
+          assert m['git']['dirty'] is False and m['artifacts']['data']=='DATA/runs_compact.json'; assert m['execution_contract']['tick_validation']['status']=='SATISFIED'; assert len(runs)==20 and s['schema_version']=='2.2'
+          for c in ('no_input_control','tonic_drive'):
+            for k in ('finite_state','topology_unchanged','stability_pass'):
+              b=s['conditions'][c]['boolean_metrics'][k]; assert b['n']==10 and b['false_count']==0 and b['all_true'] is True
+          t=s['conditions']['tonic_drive']['metrics']; assert t['post_burn_in_mean_spikes']['mean']>0; assert t['post_burn_in_spike_cv']['max']<=.25; assert t['post_burn_in_spike_relative_drift']['max']<=.25
+          v={"schema_version":"1.0","experiment_id":"EXP-GEN-0038","purpose":"post-repair pipeline verification","scientific_role":"confirmatory rerun under unchanged frozen preregistration","tick_contract":"SATISFIED","run_count":20,"primary_criteria":{"tonic_drive_mean_spikes_per_window_gt_0":True,"tonic_drive_post_burn_in_spike_cv_le_0_25":True,"tonic_drive_post_burn_in_spike_relative_drift_le_0_25":True,"all_runs_finite_state":True,"all_runs_topology_unchanged":True},"artifact_contract":{"committed_compact_projection":True,"boolean_outcomes_aggregated":True,"viewer_safe_plain_formulas":True,"viewer_safe_plain_artifact_paths":True},"evidence_promotion":"HUMAN_REVIEW_REQUIRED"}
+          (e/'analysis/PIPELINE-VERIFICATION.json').write_text(json.dumps(v,indent=2,sort_keys=True)+'\n')
+          write_experiment_summary(root,'EXP-GEN-0038',{"status":"unavailable","reason":"AI backend not configured in CI verification"})
+          q=(e/'summary.md').read_text(); assert 'Mittelwert: `mean(x) = (1/n) * sum_i x_i`' in q; assert '`absolute_difference=300`' in q; assert 'Primäre und weitere boolesche Endpunkte' in q; assert '- `DATA/runs_compact.json`' in q; assert 'DATA/runs.json' not in q
+          print(r['experiment_id'],r['result'])
+          PY
+          git diff --check
+      - name: Commit EXP-GEN-0038
+        run: |
+          git add research/experiments/EXP-GEN-0038
+          git commit -m "Record EXP-GEN-0038 SNN stability verification"
+          git push origin HEAD:fix/exp-snn-001-evidence-pipeline-20260916
+      - name: Execute, compare and validate EXP-GEN-0039
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from src.dashboard.experiment_workflow import ExperimentWorkflowService, write_experiment_summary
+          root=Path('research')
+          ExperimentWorkflowService(root).run_science({"experiment_id":"EXP-GEN-0039","question_id":"RQ-SNN-001","hypothesis_id":"H-SNN-001-A","title":"sustained_activity_stability_v1 — RQ-SNN-001 technical replication","conditions":"no_input_control (negative_control); tonic_drive (stability_treatment)","ticks":100000,"seeds":"42-51","notes":"Second clean execution to verify deterministic reproducibility; not counted as statistically independent evidence.","protocol":"sustained_activity_stability_v1"})
+          a=root/'experiments'/'EXP-GEN-0038'; b=root/'experiments'/'EXP-GEN-0039'; sa=json.loads((a/'analysis/statistics.json').read_text()); sb=json.loads((b/'analysis/statistics.json').read_text()); mb=json.loads((b/'manifest.json').read_text())
+          assert mb['git']['dirty'] is False and mb['artifacts']['data']=='DATA/runs_compact.json'; assert sa['conditions']==sb['conditions']; assert sa['two_condition_effects']==sb['two_condition_effects']
+          c={"schema_version":"1.0","reference":"EXP-GEN-0038","replication":"EXP-GEN-0039","conditions_identical":True,"two_condition_effects_identical":True,"interpretation":"technical deterministic replication; repeated seeds are not independent statistical replications","scientific_evidence":False,"human_review_required":True}
+          (b/'analysis/REPLICATION-COMPARISON.json').write_text(json.dumps(c,indent=2,sort_keys=True)+'\n'); write_experiment_summary(root,'EXP-GEN-0039',{"status":"unavailable","reason":"AI backend not configured in CI verification"})
+          q=(b/'summary.md').read_text(); assert 'DATA/runs.json' not in q and '- `analysis/REPLICATION-COMPARISON.json`' in q
+          PY
+          git diff --check
+      - name: Commit EXP-GEN-0039
+        run: |
+          git add research/experiments/EXP-GEN-0039
+          git commit -m "Record EXP-GEN-0039 deterministic SNN replication"
+          git push origin HEAD:fix/exp-snn-001-evidence-pipeline-20260916
+      - name: Final targeted gate
+        run: |
+          python -m pytest -q tests/test_research_data_v2.py tests/test_snn_evidence_pipeline_regressions.py tests/test_exp_gen_0036_regressions.py tests/test_scientific_execution_contract.py tests/test_dashboard_operational_protocol_routes.py tests/test_dashboard_experiment_workflow.py
+          python -m ruff check src/research/data_v2.py src/research/experiment_summary.py src/dashboard/experiment_workflow.py tests/test_snn_evidence_pipeline_regressions.py
+          python -m black --check src/research/data_v2.py src/research/experiment_summary.py src/dashboard/experiment_workflow.py tests/test_snn_evidence_pipeline_regressions.py
