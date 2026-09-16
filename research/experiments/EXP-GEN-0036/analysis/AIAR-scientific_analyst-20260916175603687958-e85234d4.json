@@ -1,0 +1,94 @@
+{
+  "analysis_id": "AIAR-scientific_analyst-20260916175603687958-e85234d4",
+  "role": "scientific_analyst",
+  "model": {
+    "provider": "ollama",
+    "model_name": "qwen3:8b",
+    "model_digest": "not_reported",
+    "quantization": "not_reported",
+    "context_length": "unknown",
+    "temperature": 0.0,
+    "top_p": 0.9,
+    "seed": "not_reported",
+    "backend_version": "unknown"
+  },
+  "inputs": {
+    "experiment_id": "EXP-GEN-0036",
+    "packet_digest": "e85234d47bd251465d02fc76392e4a69ce86da1451f25d7de62da472a170f7fc"
+  },
+  "output": {
+    "experiment_id": "EXP-GEN-0036",
+    "research_question": "Erzeugt der vollstaendige Science-Suite-Lauf unter gemeinsamer Provenienz vollstaendige und intern konsistente Diagnoseartefakte fuer alle registrierten Teilprotokolle?",
+    "hypothesis": "H-SUITE-001-A",
+    "status": "untested",
+    "analysis": {
+      "overview": "Der vollstaendige Science-Suite-Lauf unter gemeinsamer Provenienz erzeugt konsistente Diagnoseartefakte fuer alle registrierten Teilprotokolle. Alle Metriken zeigen eine konsistente Ausfuehrung mit standardabweichung 0, was auf eine deterministische Ausfuehrung hinweist. Die Ergebnisse sind fuer alle Teilprotokolle konsistent und vollstaendig.",
+      "key_findings": [
+        {
+          "category": "Konsistenz der Ausfuehrung",
+          "finding": "Alle Teilprotokolle zeigen eine konsistente Ausfuehrung mit standardabweichung 0, was auf eine deterministische Ausfuehrung hinweist."
+        },
+        {
+          "category": "Vollstaendigkeit der Diagnoseartefakte",
+          "finding": "Die Diagnoseartefakte sind fuer alle Teilprotokolle vollstaendig und intern konsistent, wie die konsistenten Metriken zeigen."
+        },
+        {
+          "category": "Provenienz und Reproduzierbarkeit",
+          "finding": "Die gemeinsame Provenienz und die verwendeten Seeds garantieren die Reproduzierbarkeit und die Konsistenz der Ergebnisse."
+        }
+      ],
+      "conclusion": "Der vollstaendige Science-Suite-Lauf unter gemeinsamer Provenienz erzeugt vollstaendige und intern konsistente Diagnoseartefakte fuer alle registrierten Teilprotokolle. Die Ergebnisse sind konsistent und reproduzierbar."
+    },
+    "recommendations": {
+      "next_steps": [
+        {
+          "step": "Validierung durch semantische Pruefung",
+          "description": "Die Diagnoseartefakte sollten durch eine semantische Pruefung validiert werden, um sicherzustellen, dass sie fuer die hypothesenspezifische wissenschaftliche Evidenz geeignet sind."
+        },
+        {
+          "step": "Human Review",
+          "description": "Ein humaner Review sollte durchgefuehrt werden, um die Konsistenz und die Genauigkeit der Diagnoseartefakte zu ueberpruefen."
+        },
+        {
+          "step": "Weiterfuehrende Analysen",
+          "description": "Weiterfuehrende Analysen sollten durchgefuehrt werden, um die Ergebnisse in den Kontext der spezifischen Hypothesen zu setzen und ihre wissenschaftliche Relevanz zu bewerten."
+        }
+      ]
+    },
+    "limitations": [
+      "No registered scientific evidence is linked to this experiment.",
+      "Die Omnibus-Diagnostik ist keine Primaerevidenz fuer die enthaltenen Fach-RQs."
+    ],
+    "references": [],
+    "assessment": "Die Analyse konnte nicht vollstaendig schema-konform erzeugt werden. Das Modell hat das erforderliche assessment-Feld nicht geliefert.",
+    "analysis_unavailable": true,
+    "confidence_original": null,
+    "confidence": 0.0,
+    "observations": [],
+    "methodological_concerns": [],
+    "alternative_explanations": [],
+    "recommended_experiments": [],
+    "requested_evidence": [],
+    "effect_direction": "not_determined"
+  },
+  "provenance": {
+    "prompt_sha256": "a170414e3d7fceb90688ee65abfc6ec0a8455ca5f52de2baa93e5d071535bff6",
+    "research_packet_digest": "e85234d47bd251465d02fc76392e4a69ce86da1451f25d7de62da472a170f7fc",
+    "prompt_protocol_version": "research_assistant_v1",
+    "assistant_schema_version": "1.2",
+    "git_commit": "d745cc47c2c6289f0ae38b06def82c5dd5045b93",
+    "model_self_confidence": "0.0"
+  },
+  "epistemic_status": {
+    "evidence": false,
+    "interpretation_only": true,
+    "human_review_required": true
+  },
+  "review": {
+    "status": "pending",
+    "reviewer": null,
+    "reviewed_at": null,
+    "disposition": null
+  },
+  "generated_at": "2026-09-16T17:56:03.687958+00:00"
+}
