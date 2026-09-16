@@ -1,0 +1,8 @@
+{
+  "report_id": "AIRR-2026-0001",
+  "review_status": "accepted_as_interpretation",
+  "reviewer": "Thomas Heisig",
+  "reviewed_at": "2026-09-16T19:35:36.134847+00:00",
+  "comments": "Technischer Experimentstatus: PASS\n\nAusführungs-/Integritätsstatus: PASS\n\nPräregistrierte Stabilitätsgrenzen: alle beobachteten Kriterien erfüllt.\n\nAussage, die wir sicher treffen dürfen:\n\nUnter der eingefrorenen getesteten MHRN-Konfiguration erzeugt das System bei konstantem Tonic Drive über 100.000 Ticks eine numerisch stabile, stationäre Spike-Dynamik ohne Drift, nicht-finite Zustände oder Strukturänderungen.\n\nWas ich noch nicht schreiben würde:\n\n„10 unabhängige Seeds bestätigen die Hypothese.“\n\nDafür muss der Seed tatsächlich eine relevante Anfangsbedingung oder stochastische Realisierung verändern.",
+  "report_content_digest": "d13f0ac1fe57a94100d6b0de3fc00f8c72c4639ecbc9160d74e8ea9fb7d5baf2"
+}
