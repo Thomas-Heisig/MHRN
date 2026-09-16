@@ -81,7 +81,9 @@ def test_evidence_matrix_keeps_rq_claim_and_experiment_status_separate(
     )
     (registry_dir / "sources.yaml").write_text("[]\n", encoding="utf-8")
 
-    matrix = ReportBuilder(ResearchRegistry(registry_dir).load_all()).build_evidence_matrix()
+    matrix = ReportBuilder(
+        ResearchRegistry(registry_dir).load_all()
+    ).build_evidence_matrix()
 
     assert "| Forschungsfrage | RQ-Status |" in matrix
     assert "| `RQ-TEST-002` | answered |" in matrix
