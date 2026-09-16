@@ -3,13 +3,14 @@
 **Status:** aktuelle fortgeschriebene Arbeitsfassung (`current_wip`)  
 **Datum:** 15. September 2026  
 **Autor:** Thomas Heisig  
-**Softwarelinie:** MHRN 0.6.0-alpha.3  
+**Softwarelinie:** MHRN 0.6.0-alpha.5  
 **Evidenzautorität:** Interpretation und Forschungsprogramm; keine automatische EVID-Promotion
 
 ## Direkt lesen
 
 - **[Aktuelles Vollmanuskript 1.7](MANUSCRIPT.md)** — kanonischer Publication-Viewer-Einstieg
 - [Forschungsbericht 1.7](FORSCHUNGSBERICHT.md)
+- **[Stage-6-Zwischenbilanz CL-001 bis CL-003](STAGE6_CL001_CL003_BALANCE.md)** — DATA-only, Human Review ausstehend; Semantization/Replay empirisch eingegrenzt
 - [Forschungsgetriebener Entwicklungsmodus](../../RESEARCH_DRIVEN_DEVELOPMENT.md) — verbindlicher Experiment-für-Experiment-Zyklus ab Edition 1.7
 - [Safety-Forschungsprogramm: Zielgenese, Korrigierbarkeit und Post-Objective Transition](SAFETY_AUTONOMY_RESEARCH.md)
 - [Worte des Autors](AUTHOR_POSITION.md)
@@ -47,6 +48,23 @@ Stages bleiben als Orientierungsrahmen erhalten, gelten wissenschaftlich aber ni
 
 Die vollständige Arbeitsregel ist in [`research/RESEARCH_DRIVEN_DEVELOPMENT.md`](../../RESEARCH_DRIVEN_DEVELOPMENT.md) kanonisch festgehalten.
 
+## Stage 6 — CL-001 bis CL-003
+
+Die aktuelle Arbeitsfassung behandelt CL-001, CL-002 und CL-003 gemeinsam als **empirische Eingrenzung**, nicht als pauschalen Erfolg oder Fehlschlag von Stage 6.
+
+Auf DATA-Ebene zeigt sich ein konsistentes Muster:
+
+- Semantik + Replay ist der No-Replay-Baseline überlegen;
+- semantische Verdichtung zeigt bei gematchtem Budget bislang keinen präregistriert bestätigten Zusatznutzen gegenüber Raw-Replay;
+- die semantische Repräsentation trägt dennoch relevante Struktur, weil sie im CL-003-Random-Prototype-Control klar besser abschneidet;
+- der deskriptive Dosis-Trend in CL-003 wird nicht als positiver Interaktionseffekt umgedeutet, weil C4 die präregistrierte Erfolgsregel nicht erfüllt.
+
+Die gegenwärtig zulässige Arbeitsinterpretation lautet daher: **Der bisher nachweisbare Beitrag liegt primär im Replay; die semantische Verdichtung erhält relevante Struktur, zeigt aber unter den bisher geprüften Bedingungen keinen bestätigten Zusatznutzen gegenüber gematchtem Raw-Replay.**
+
+CL-003 bleibt bis zur Human Review ausdrücklich `DATA`, nicht `EVID`. Aus diesem Ergebnis wird **kein CL-004 automatisch eröffnet**. Vor einer weiteren Variante ist zuerst die gemeinsame Stage-6-EVID-Prüfung und die daraus folgende Forschungsentscheidung erforderlich.
+
+Die vollständige DATA-only-Bilanz mit den präregistrierten Primärkontrasten C1–C4 steht in [`STAGE6_CL001_CL003_BALANCE.md`](STAGE6_CL001_CL003_BALANCE.md).
+
 ## Was 1.7 gegenüber 1.6 ergänzt
 
 - verbindlichen forschungsgetriebenen Experiment-für-Experiment-Zyklus statt nachträglicher Feature-Begründung;
@@ -61,6 +79,7 @@ Die vollständige Arbeitsregel ist in [`research/RESEARCH_DRIVEN_DEVELOPMENT.md`
 - explizite Neuheitsunsicherheit für potenzielle MHRN-Beiträge;
 - klare Trennung von Quellenübernahme, Synthese, Eigenentwicklung und ungeklärter Prior Art;
 - fortgeschriebene Stage-6-Grenzen für Semantization, Predictive Coding und World Models;
+- DATA-only-Zwischenbilanz CL-001 bis CL-003 mit der Eingrenzung „Replay-Beitrag nachweisbar, Semantization-Zusatznutzen gegenüber gematchtem Raw-Replay bislang nicht bestätigt“;
 - Governance-Audit, der alle Dateien in `docs/` und `research/` klassifiziert;
 - eigenständiges Safety-Forschungsprogramm für Zielprovenienz, Goal Misgeneralization, Corrigibility, Interruptibility, Specification Gaming, instrumentelle Optionsraumpräferenz, Zielvorschläge, Post-Objective Transition und Autorisierungskonflikte;
 - Registrierung von `RQ-SAFE-001` bis `RQ-SAFE-009` und `H-SAFE-001-A` bis `H-SAFE-009-A` als offene/untested Forschungsobjekte;
