@@ -22,7 +22,7 @@ jobs:
         with:
           python-version: "3.13"
       - name: Install project tools
-        run: python -m pip install -e '.[dev]'
+        run: python -m pip install -e '.[dev,docs]'
       - name: Apply behavior-neutral typing repairs
         run: |
           python - <<'PY'
@@ -30,10 +30,10 @@ jobs:
 
           path = Path('src/research/continual_semantization.py')
           text = path.read_text(encoding='utf-8')
-          old = '    mature = semantic.mature_concepts if condition == "semantic_replay" else ()\n'
-          new = '    mature = semantic.mature_concepts if condition == "semantic_replay" else []\n'
+          old = '''    for task_index in range(len(TASKS) - 1):\n        history: list[float] = []\n        for row in accuracy_rows[task_index:]:\n            value = row[task_index]\n            if value is not None:\n                history.append(float(value))\n'''
+          new = '''    for task_index in range(len(TASKS) - 1):\n        history: list[float] = []\n        for accuracy_row in accuracy_rows[task_index:]:\n            value = accuracy_row[task_index]\n            if value is not None:\n                history.append(float(value))\n'''
           if old not in text:
-              raise SystemExit('continual_semantization target not found')
+              raise SystemExit('continual_semantization narrowing target not found')
           path.write_text(text.replace(old, new, 1), encoding='utf-8')
 
           path = Path('src/research/continual_semantization_controls.py')
