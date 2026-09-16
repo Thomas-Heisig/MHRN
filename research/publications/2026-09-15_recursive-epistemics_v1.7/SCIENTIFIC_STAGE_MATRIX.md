@@ -10,7 +10,7 @@ Diese Matrix ist die lesbare Publikationsprojektion von `src/dashboard/static/sc
 | 3 | plastisches Nervengewebe | 55 % | Plastizitätscode ≠ nützliches/stabiles Lernen | held-out Multi-Seed-EVID, Langzeitressourcen |
 | 4 | spezialisierte Areale | 55 % | modality-specific Pfade ≠ bewiesener Spezialisierungsvorteil | matched/frozen/random/shuffle/lesion |
 | 5 | integriertes Nervensystem | 55 % | Full Stack ≠ adaptive closed-loop Evidenz | Real Device, Sensor Loss, Actuator No Effect |
-| 6 | Gedächtnis/Weltmodell | 40 % | keine abgeschlossene Semantization, kein hierarchisches Predictive Coding, kein validiertes generatives Weltmodell | Replay/Konsolidierung, neural Prediction Error, action-conditioned multistep model |
+| 6 | Gedächtnis/Weltmodell | 40 % | CL-001 bis CL-003 grenzen Semantization/Replay auf DATA-Ebene ein; Semantization-Zusatznutzen gegenüber gematchtem Raw-Replay nicht bestätigt; Human Review/EVID ausstehend; Predictive Coding und generatives Weltmodell weiter offen | CL-003 Human Review, gemeinsame CL-001–CL-003 EVID-Bilanz, danach Forschungsentscheidung statt automatischem CL-004 |
 | 7 | technische Identität/Selbstmodellgrundlage | 28 % | Profile/Lineage ≠ psychologisches Selbst | self/other Intervention, coupled checkpoint identity |
 | 8 | höhere Kognition | 23 % | Forschungsprogramm, keine starke Implementierungs-/EVID-Reife | Operationalisierung vor Claim |
 | 9 | Metakognition/soziale Frontier | 15 % | Planung/Literatur ≠ Mechanismus | definierte RQ/H/Experimente |
@@ -28,3 +28,5 @@ Diese Matrix ist die lesbare Publikationsprojektion von `src/dashboard/static/sc
 ## Interpretationsregel
 
 Der aggregierte Score ist nur ein Navigationssignal. Kein Stage gilt allein aufgrund eines Prozentwerts als wissenschaftlich bestätigt. Maßgeblich sind die zugrundeliegenden Kriterien, Claim-Grenzen, Experimente und Reviewentscheidungen.
+
+Für Stage 6 bedeutet der unveränderte Score von 40 % ausdrücklich nicht, dass die neuen CL-003-DATA ignoriert werden. Die DATA erhöhen die empirische Eingrenzung, aber ohne Human Review wird daraus keine automatische EVID-Promotion und kein rechnerischer Reifesprung abgeleitet.

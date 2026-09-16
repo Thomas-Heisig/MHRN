@@ -1,0 +1,11 @@
+{
+  "experiment_id": "EXP-S6-SEM-CL-003",
+  "execution_date": "2026-09-16",
+  "github_actions_run_id": 35080329458,
+  "artifact_id": 10439654162,
+  "artifact_digest": "sha256:a48b90a430b52038d2dd3c44d76c90805cce4d6d9c4e98a22d90001c7cc2efd9",
+  "results_json_sha256": "4e74021c0ef838371a3a01061ae1c2dcebb2031b54c15c6169e38c1972d06290",
+  "automatic_evidence_promotion": false,
+  "human_review_required": true,
+  "status": "data_persisted_pending_human_review"
+}
