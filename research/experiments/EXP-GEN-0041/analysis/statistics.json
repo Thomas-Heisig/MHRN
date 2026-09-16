@@ -1,0 +1,688 @@
+{
+  "conditions": {
+    "no_input_control": {
+      "boolean_metrics": {
+        "active_dynamics_pass": {
+          "all_true": false,
+          "false_count": 10,
+          "n": 10,
+          "true_count": 0,
+          "true_fraction": 0.0
+        },
+        "finite_state": {
+          "all_true": true,
+          "false_count": 0,
+          "n": 10,
+          "true_count": 10,
+          "true_fraction": 1.0
+        },
+        "numerical_stability_pass": {
+          "all_true": true,
+          "false_count": 0,
+          "n": 10,
+          "true_count": 10,
+          "true_fraction": 1.0
+        },
+        "paired_realization": {
+          "all_true": true,
+          "false_count": 0,
+          "n": 10,
+          "true_count": 10,
+          "true_fraction": 1.0
+        },
+        "realization_unique_across_registered_seeds": {
+          "all_true": true,
+          "false_count": 0,
+          "n": 10,
+          "true_count": 10,
+          "true_fraction": 1.0
+        },
+        "robustness_stability_pass": {
+          "all_true": true,
+          "false_count": 0,
+          "n": 10,
+          "true_count": 10,
+          "true_fraction": 1.0
+        },
+        "seed_effect_expected": {
+          "all_true": true,
+          "false_count": 0,
+          "n": 10,
+          "true_count": 10,
+          "true_fraction": 1.0
+        },
+        "topology_unchanged": {
+          "all_true": true,
+          "false_count": 0,
+          "n": 10,
+          "true_count": 10,
+          "true_fraction": 1.0
+        }
+      },
+      "metrics": {
+        "active_window_fraction": {
+          "max": 0.0,
+          "mean": 0.0,
+          "median": 0.0,
+          "min": 0.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "burn_in_ticks": {
+          "max": 10000.0,
+          "mean": 10000.0,
+          "median": 10000.0,
+          "min": 10000.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "drive_current": {
+          "max": 0.0,
+          "mean": 0.0,
+          "median": 0.0,
+          "min": 0.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "drive_scale": {
+          "max": 1.0457261619394445,
+          "mean": 1.016956932891958,
+          "median": 1.0261313926650097,
+          "min": 0.9601167254107486,
+          "n": 10,
+          "std": 0.02668522494232403
+        },
+        "effective_drive_current": {
+          "max": 0.0,
+          "mean": 0.0,
+          "median": 0.0,
+          "min": 0.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "neuron_v_max": {
+          "max": -70.00000000000009,
+          "mean": -70.00000000000009,
+          "median": -70.00000000000009,
+          "min": -70.00000000000009,
+          "n": 10,
+          "std": 0.0
+        },
+        "neuron_v_min": {
+          "max": -70.00000000000009,
+          "mean": -70.00000000000009,
+          "median": -70.00000000000009,
+          "min": -70.00000000000009,
+          "n": 10,
+          "std": 0.0
+        },
+        "parameter_jitter_fraction": {
+          "max": 0.05,
+          "mean": 0.05,
+          "median": 0.05,
+          "min": 0.05,
+          "n": 10,
+          "std": 0.0
+        },
+        "post_burn_in_mean_spikes": {
+          "max": 0.0,
+          "mean": 0.0,
+          "median": 0.0,
+          "min": 0.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "post_burn_in_spike_cv": {
+          "max": 0.0,
+          "mean": 0.0,
+          "median": 0.0,
+          "min": 0.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "post_burn_in_spike_relative_drift": {
+          "max": 0.0,
+          "mean": 0.0,
+          "median": 0.0,
+          "min": 0.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "post_burn_in_voltage_relative_drift": {
+          "max": 0.0,
+          "mean": 0.0,
+          "median": 0.0,
+          "min": 0.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "post_burn_in_window_count": {
+          "max": 90.0,
+          "mean": 90.0,
+          "median": 90.0,
+          "min": 90.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "realization_drive_scale": {
+          "max": 1.0457261619394445,
+          "mean": 1.016956932891958,
+          "median": 1.0261313926650097,
+          "min": 0.9601167254107486,
+          "n": 10,
+          "std": 0.02668522494232403
+        },
+        "realization_weight_scale": {
+          "max": 1.0427718433104345,
+          "mean": 0.9942172432650285,
+          "median": 0.9935794692799156,
+          "min": 0.9551587460107258,
+          "n": 10,
+          "std": 0.02823091263761509
+        },
+        "silent_window_fraction": {
+          "max": 1.0,
+          "mean": 1.0,
+          "median": 1.0,
+          "min": 1.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "ticks_executed": {
+          "max": 100000.0,
+          "mean": 100000.0,
+          "median": 100000.0,
+          "min": 100000.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "ticks_requested": {
+          "max": 100000.0,
+          "mean": 100000.0,
+          "median": 100000.0,
+          "min": 100000.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "total_spikes": {
+          "max": 0.0,
+          "mean": 0.0,
+          "median": 0.0,
+          "min": 0.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "weight_max": {
+          "max": 104.27718433104344,
+          "mean": 99.42172432650285,
+          "median": 99.35794692799155,
+          "min": 95.51587460107258,
+          "n": 10,
+          "std": 2.823091263761506
+        },
+        "weight_min": {
+          "max": 104.27718433104344,
+          "mean": 99.42172432650285,
+          "median": 99.35794692799155,
+          "min": 95.51587460107258,
+          "n": 10,
+          "std": 2.823091263761506
+        },
+        "weight_scale": {
+          "max": 1.0427718433104345,
+          "mean": 0.9942172432650285,
+          "median": 0.9935794692799156,
+          "min": 0.9551587460107258,
+          "n": 10,
+          "std": 0.02823091263761509
+        },
+        "window_ticks": {
+          "max": 1000.0,
+          "mean": 1000.0,
+          "median": 1000.0,
+          "min": 1000.0,
+          "n": 10,
+          "std": 0.0
+        }
+      },
+      "run_count": 10,
+      "seeds": [
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109,
+        110
+      ]
+    },
+    "tonic_drive": {
+      "boolean_metrics": {
+        "active_dynamics_pass": {
+          "all_true": true,
+          "false_count": 0,
+          "n": 10,
+          "true_count": 10,
+          "true_fraction": 1.0
+        },
+        "finite_state": {
+          "all_true": true,
+          "false_count": 0,
+          "n": 10,
+          "true_count": 10,
+          "true_fraction": 1.0
+        },
+        "numerical_stability_pass": {
+          "all_true": true,
+          "false_count": 0,
+          "n": 10,
+          "true_count": 10,
+          "true_fraction": 1.0
+        },
+        "paired_realization": {
+          "all_true": true,
+          "false_count": 0,
+          "n": 10,
+          "true_count": 10,
+          "true_fraction": 1.0
+        },
+        "realization_unique_across_registered_seeds": {
+          "all_true": true,
+          "false_count": 0,
+          "n": 10,
+          "true_count": 10,
+          "true_fraction": 1.0
+        },
+        "robustness_stability_pass": {
+          "all_true": true,
+          "false_count": 0,
+          "n": 10,
+          "true_count": 10,
+          "true_fraction": 1.0
+        },
+        "seed_effect_expected": {
+          "all_true": true,
+          "false_count": 0,
+          "n": 10,
+          "true_count": 10,
+          "true_fraction": 1.0
+        },
+        "topology_unchanged": {
+          "all_true": true,
+          "false_count": 0,
+          "n": 10,
+          "true_count": 10,
+          "true_fraction": 1.0
+        }
+      },
+      "metrics": {
+        "active_window_fraction": {
+          "max": 1.0,
+          "mean": 1.0,
+          "median": 1.0,
+          "min": 1.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "burn_in_ticks": {
+          "max": 10000.0,
+          "mean": 10000.0,
+          "median": 10000.0,
+          "min": 10000.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "drive_current": {
+          "max": 50.0,
+          "mean": 50.0,
+          "median": 50.0,
+          "min": 50.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "drive_scale": {
+          "max": 1.0457261619394445,
+          "mean": 1.016956932891958,
+          "median": 1.0261313926650097,
+          "min": 0.9601167254107486,
+          "n": 10,
+          "std": 0.02668522494232403
+        },
+        "effective_drive_current": {
+          "max": 52.28630809697222,
+          "mean": 50.8478466445979,
+          "median": 51.30656963325048,
+          "min": 48.00583627053743,
+          "n": 10,
+          "std": 1.334261247116201
+        },
+        "first_active_tick": {
+          "max": 2.0,
+          "mean": 2.0,
+          "median": 2.0,
+          "min": 2.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "last_active_tick": {
+          "max": 100000.0,
+          "mean": 99997.0,
+          "median": 99999.0,
+          "min": 99986.0,
+          "n": 10,
+          "std": 4.3127717305695645
+        },
+        "neuron_v_max": {
+          "max": 10.636571578748182,
+          "mean": -47.95759066743327,
+          "median": -61.814508626245456,
+          "min": -65.0,
+          "n": 10,
+          "std": 26.6812986042014
+        },
+        "neuron_v_min": {
+          "max": -90.36885596364164,
+          "mean": -94.5584522636769,
+          "median": -94.61162261498183,
+          "min": -98.69027557333737,
+          "n": 10,
+          "std": 2.046067408301423
+        },
+        "parameter_jitter_fraction": {
+          "max": 0.05,
+          "mean": 0.05,
+          "median": 0.05,
+          "min": 0.05,
+          "n": 10,
+          "std": 0.0
+        },
+        "post_burn_in_mean_spikes": {
+          "max": 300.0,
+          "mean": 269.98333333333335,
+          "median": 267.3277777777778,
+          "min": 234.3,
+          "n": 10,
+          "std": 17.926815041464117
+        },
+        "post_burn_in_spike_cv": {
+          "max": 0.020925972614094224,
+          "mean": 0.014746745050965116,
+          "median": 0.017964951073528676,
+          "min": 0.0,
+          "n": 10,
+          "std": 0.007493747750492372
+        },
+        "post_burn_in_spike_relative_drift": {
+          "max": 0.03841229193341869,
+          "mean": 0.013967872354797115,
+          "median": 0.009334797598243304,
+          "min": 0.0,
+          "n": 10,
+          "std": 0.013646240245240754
+        },
+        "post_burn_in_voltage_relative_drift": {
+          "max": 0.0017261849295886788,
+          "mean": 0.0005461816721481327,
+          "median": 0.00034807492324039383,
+          "min": 0.0,
+          "n": 10,
+          "std": 0.0005182217507493155
+        },
+        "post_burn_in_window_count": {
+          "max": 90.0,
+          "mean": 90.0,
+          "median": 90.0,
+          "min": 90.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "realization_drive_scale": {
+          "max": 1.0457261619394445,
+          "mean": 1.016956932891958,
+          "median": 1.0261313926650097,
+          "min": 0.9601167254107486,
+          "n": 10,
+          "std": 0.02668522494232403
+        },
+        "realization_weight_scale": {
+          "max": 1.0427718433104345,
+          "mean": 0.9942172432650285,
+          "median": 0.9935794692799156,
+          "min": 0.9551587460107258,
+          "n": 10,
+          "std": 0.02823091263761509
+        },
+        "silent_window_fraction": {
+          "max": 0.0,
+          "mean": 0.0,
+          "median": 0.0,
+          "min": 0.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "ticks_executed": {
+          "max": 100000.0,
+          "mean": 100000.0,
+          "median": 100000.0,
+          "min": 100000.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "ticks_requested": {
+          "max": 100000.0,
+          "mean": 100000.0,
+          "median": 100000.0,
+          "min": 100000.0,
+          "n": 10,
+          "std": 0.0
+        },
+        "total_spikes": {
+          "max": 30010.0,
+          "mean": 27015.3,
+          "median": 26754.0,
+          "min": 23430.0,
+          "n": 10,
+          "std": 1791.485140881721
+        },
+        "weight_max": {
+          "max": 104.27718433104344,
+          "mean": 99.42172432650285,
+          "median": 99.35794692799155,
+          "min": 95.51587460107258,
+          "n": 10,
+          "std": 2.823091263761506
+        },
+        "weight_min": {
+          "max": 104.27718433104344,
+          "mean": 99.42172432650285,
+          "median": 99.35794692799155,
+          "min": 95.51587460107258,
+          "n": 10,
+          "std": 2.823091263761506
+        },
+        "weight_scale": {
+          "max": 1.0427718433104345,
+          "mean": 0.9942172432650285,
+          "median": 0.9935794692799156,
+          "min": 0.9551587460107258,
+          "n": 10,
+          "std": 0.02823091263761509
+        },
+        "window_ticks": {
+          "max": 1000.0,
+          "mean": 1000.0,
+          "median": 1000.0,
+          "min": 1000.0,
+          "n": 10,
+          "std": 0.0
+        }
+      },
+      "run_count": 10,
+      "seeds": [
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109,
+        110
+      ]
+    }
+  },
+  "formulas": {
+    "difference": "Delta_x = mean(x_B) - mean(x_A)",
+    "inter_spike_interval": "ISI_i = t_(i+1) - t_i",
+    "mean": "mean(x) = (1/n) * sum_i x_i",
+    "population_std": "sigma = sqrt((1/n) * sum_i (x_i - mean(x))^2)",
+    "ratio": "R_x = mean(x_B) / mean(x_A), defined only when mean(x_A) != 0"
+  },
+  "generated_by": "deterministic_statistics_engine",
+  "run_count": 20,
+  "schema_version": "2.2",
+  "two_condition_effects": {
+    "active_window_fraction": {
+      "absolute_difference": 1.0,
+      "comparison_condition": "tonic_drive",
+      "ratio": null,
+      "reference_condition": "no_input_control"
+    },
+    "burn_in_ticks": {
+      "absolute_difference": 0.0,
+      "comparison_condition": "tonic_drive",
+      "ratio": 1.0,
+      "reference_condition": "no_input_control"
+    },
+    "drive_current": {
+      "absolute_difference": 50.0,
+      "comparison_condition": "tonic_drive",
+      "ratio": null,
+      "reference_condition": "no_input_control"
+    },
+    "drive_scale": {
+      "absolute_difference": 0.0,
+      "comparison_condition": "tonic_drive",
+      "ratio": 1.0,
+      "reference_condition": "no_input_control"
+    },
+    "effective_drive_current": {
+      "absolute_difference": 50.8478466445979,
+      "comparison_condition": "tonic_drive",
+      "ratio": null,
+      "reference_condition": "no_input_control"
+    },
+    "neuron_v_max": {
+      "absolute_difference": 22.042409332566812,
+      "comparison_condition": "tonic_drive",
+      "ratio": 0.6851084381061888,
+      "reference_condition": "no_input_control"
+    },
+    "neuron_v_min": {
+      "absolute_difference": -24.558452263676813,
+      "comparison_condition": "tonic_drive",
+      "ratio": 1.3508350323382396,
+      "reference_condition": "no_input_control"
+    },
+    "parameter_jitter_fraction": {
+      "absolute_difference": 0.0,
+      "comparison_condition": "tonic_drive",
+      "ratio": 1.0,
+      "reference_condition": "no_input_control"
+    },
+    "post_burn_in_mean_spikes": {
+      "absolute_difference": 269.98333333333335,
+      "comparison_condition": "tonic_drive",
+      "ratio": null,
+      "reference_condition": "no_input_control"
+    },
+    "post_burn_in_spike_cv": {
+      "absolute_difference": 0.014746745050965116,
+      "comparison_condition": "tonic_drive",
+      "ratio": null,
+      "reference_condition": "no_input_control"
+    },
+    "post_burn_in_spike_relative_drift": {
+      "absolute_difference": 0.013967872354797115,
+      "comparison_condition": "tonic_drive",
+      "ratio": null,
+      "reference_condition": "no_input_control"
+    },
+    "post_burn_in_voltage_relative_drift": {
+      "absolute_difference": 0.0005461816721481327,
+      "comparison_condition": "tonic_drive",
+      "ratio": null,
+      "reference_condition": "no_input_control"
+    },
+    "post_burn_in_window_count": {
+      "absolute_difference": 0.0,
+      "comparison_condition": "tonic_drive",
+      "ratio": 1.0,
+      "reference_condition": "no_input_control"
+    },
+    "realization_drive_scale": {
+      "absolute_difference": 0.0,
+      "comparison_condition": "tonic_drive",
+      "ratio": 1.0,
+      "reference_condition": "no_input_control"
+    },
+    "realization_weight_scale": {
+      "absolute_difference": 0.0,
+      "comparison_condition": "tonic_drive",
+      "ratio": 1.0,
+      "reference_condition": "no_input_control"
+    },
+    "silent_window_fraction": {
+      "absolute_difference": -1.0,
+      "comparison_condition": "tonic_drive",
+      "ratio": 0.0,
+      "reference_condition": "no_input_control"
+    },
+    "ticks_executed": {
+      "absolute_difference": 0.0,
+      "comparison_condition": "tonic_drive",
+      "ratio": 1.0,
+      "reference_condition": "no_input_control"
+    },
+    "ticks_requested": {
+      "absolute_difference": 0.0,
+      "comparison_condition": "tonic_drive",
+      "ratio": 1.0,
+      "reference_condition": "no_input_control"
+    },
+    "total_spikes": {
+      "absolute_difference": 27015.3,
+      "comparison_condition": "tonic_drive",
+      "ratio": null,
+      "reference_condition": "no_input_control"
+    },
+    "weight_max": {
+      "absolute_difference": 0.0,
+      "comparison_condition": "tonic_drive",
+      "ratio": 1.0,
+      "reference_condition": "no_input_control"
+    },
+    "weight_min": {
+      "absolute_difference": 0.0,
+      "comparison_condition": "tonic_drive",
+      "ratio": 1.0,
+      "reference_condition": "no_input_control"
+    },
+    "weight_scale": {
+      "absolute_difference": 0.0,
+      "comparison_condition": "tonic_drive",
+      "ratio": 1.0,
+      "reference_condition": "no_input_control"
+    },
+    "window_ticks": {
+      "absolute_difference": 0.0,
+      "comparison_condition": "tonic_drive",
+      "ratio": 1.0,
+      "reference_condition": "no_input_control"
+    }
+  }
+}

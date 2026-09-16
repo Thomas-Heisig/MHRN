@@ -449,9 +449,16 @@ class ExperimentWorkflowService:
         if hasattr(experiment_suite, runner_name):
             runner_module: ModuleType = experiment_suite
         else:
-            from src.research import followup_experiments
+            from src.research import followup_experiments, stability_followups
 
-            runner_module = followup_experiments
+            if hasattr(followup_experiments, runner_name):
+                runner_module = followup_experiments
+            elif hasattr(stability_followups, runner_name):
+                runner_module = stability_followups
+            else:
+                raise WorkflowValidationError(
+                    f"Registered runner '{runner_name}' is not implemented."
+                )
         runner = getattr(runner_module, runner_name)
         runner_source_value = getattr(runner_module, "__file__", None)
         if not isinstance(runner_source_value, str):
@@ -898,7 +905,7 @@ class ExperimentWorkflowService:
                 "observed_max": max(observed_ints),
             }
 
-        if runner_name == "run_sustained_stability":
+        if runner_name in {"run_sustained_stability", "run_sustained_stability_v2"}:
             observed_ints = [
                 value
                 for run in runs

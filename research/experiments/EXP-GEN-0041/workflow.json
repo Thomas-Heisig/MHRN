@@ -1,0 +1,40 @@
+{
+  "experiment_id": "EXP-GEN-0041",
+  "research_question": "RQ-SNN-006",
+  "hypothesis": "H-SNN-006-A",
+  "title": "sustained_activity_stability_v2 \u2014 seed-bound robustness",
+  "conditions": "paired no_input_control and tonic_drive across ten distinct seed-bound parameterizations",
+  "ticks": 100000,
+  "ticks_contract": "minimum requested observation window",
+  "seeds": [
+    101,
+    102,
+    103,
+    104,
+    105,
+    106,
+    107,
+    108,
+    109,
+    110
+  ],
+  "protocol": "sustained_activity_stability_v2",
+  "resolved_runner": "run_sustained_stability_v2",
+  "tick_validation": {
+    "status": "SATISFIED",
+    "mode": "minimum_per_run_with_control_and_treatment",
+    "requested_ticks": 100000,
+    "observed_min": 100000,
+    "observed_max": 100000,
+    "run_count": 20
+  },
+  "notes": "First execution after frozen PREREG-SNN-006; no post-hoc threshold or parameter changes.",
+  "execution": "registered experiment_suite runner",
+  "assistant_policy": "AI is post-hoc interpretation only.",
+  "epistemic_layers": {
+    "ui_state": "operator/dashboard progress only; not a scientific result",
+    "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+    "evid": "not_created; requires semantic validation, clean freeze and human review",
+    "interpretation": "post-hoc AI or human interpretation; never execution input"
+  }
+}

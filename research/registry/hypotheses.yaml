@@ -341,3 +341,11 @@
   evidence: []
   created: '2026-09-05'
   updated: '2026-09-05'
+
+- id: H-SNN-006-A
+  research_question: RQ-SNN-006
+  hypothesis: Alle zehn vorab registrierten, unterschiedlichen seed-gebundenen Parameterrealisierungen bleiben ueber 100.000 Ticks numerisch und topologisch stabil; unter gepaartem Tonic-Drive bleibt die post-burn-in Aktivitaet positiv mit CV und relativer Drift jeweils <= 0.25.
+  status: untested
+  evidence: []
+  created: '2026-09-16'
+  updated: '2026-09-16'

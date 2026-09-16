@@ -14,6 +14,7 @@ modify preregistrations.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import math
 import random
@@ -373,6 +374,96 @@ def run_parameter_robustness(
                 seed_effect_expected=True,
             )
         )
+    return runs
+
+
+def run_sustained_stability_v2(
+    config: Config,
+    seeds: tuple[int, ...] = tuple(range(101, 111)),
+    ticks: int = 100_000,
+    jitter_fraction: float = 0.05,
+) -> list[ScientificRun]:
+    """Confirm long-horizon stability across distinct seed-bound parameterizations.
+
+    Each registered seed deterministically generates one synaptic-weight scale and
+    one tonic-drive scale within +/- jitter_fraction. Control and treatment share
+    the same realization. Distinct digests prove that seed labels materially alter
+    the tested parameterization; they are not biological independent samples.
+    """
+    if not seeds:
+        raise ValueError("sustained stability v2 requires at least one seed")
+    if not 0.0 < jitter_fraction < 1.0:
+        raise ValueError("jitter_fraction must be between 0 and 1")
+
+    realizations: dict[int, tuple[float, float, str]] = {}
+    for seed in seeds:
+        rng = random.Random(seed ^ 0x5A81B17)
+        weight_scale = 1.0 + rng.uniform(-jitter_fraction, jitter_fraction)
+        drive_scale = 1.0 + rng.uniform(-jitter_fraction, jitter_fraction)
+        encoded = json.dumps(
+            {
+                "weight_scale": round(weight_scale, 12),
+                "drive_scale": round(drive_scale, 12),
+            },
+            sort_keys=True,
+            separators=(",", ":"),
+        ).encode("utf-8")
+        realizations[seed] = (
+            weight_scale,
+            drive_scale,
+            hashlib.sha256(encoded).hexdigest(),
+        )
+    if len({item[2] for item in realizations.values()}) != len(seeds):
+        raise ValueError("seed-bound parameterizations are not unique")
+
+    runs: list[ScientificRun] = []
+    for seed in seeds:
+        weight_scale, drive_scale, digest = realizations[seed]
+        for condition in ("no_input_control", "tonic_drive"):
+            base = _simulate_condition(
+                config,
+                experiment_id="EXP-SNN-STABILITY-V2",
+                condition=condition,
+                seed=seed,
+                ticks=ticks,
+                mode="none" if condition == "no_input_control" else "tonic",
+                drive_current=0.0 if condition == "no_input_control" else 50.0,
+                weight_scale=weight_scale,
+                drive_scale=drive_scale,
+                seed_effect_expected=True,
+            )
+            metrics = dict(base.metrics)
+            tonic_pass = (
+                float(metrics.get("post_burn_in_mean_spikes", 0.0)) > 0.0
+                and float(metrics.get("post_burn_in_spike_cv", 1.0)) <= 0.25
+                and float(metrics.get("post_burn_in_spike_relative_drift", 1.0)) <= 0.25
+            )
+            robustness_pass = bool(metrics.get("numerical_stability_pass")) and (
+                condition == "no_input_control" or tonic_pass
+            )
+            metrics.update(
+                {
+                    "parameter_jitter_fraction": jitter_fraction,
+                    "realization_weight_scale": weight_scale,
+                    "realization_drive_scale": drive_scale,
+                    "realization_digest": digest,
+                    "realization_unique_across_registered_seeds": True,
+                    "paired_realization": True,
+                    "robustness_stability_pass": robustness_pass,
+                    "independence_claim": "distinct_deterministic_parameterizations_not_independent_biological_samples",
+                }
+            )
+            runs.append(
+                ScientificRun(
+                    base.experiment_id,
+                    base.condition,
+                    base.seed,
+                    metrics,
+                    base.state_digest_before,
+                    base.state_digest_after,
+                    base.runtime_error,
+                )
+            )
     return runs
 
 
