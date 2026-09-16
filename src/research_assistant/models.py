@@ -88,7 +88,7 @@ class AIAnalysisRecord:
                 "prompt_sha256": hashlib.sha256(prompt.encode("utf-8")).hexdigest(),
                 "research_packet_digest": packet.digest,
                 "prompt_protocol_version": "research_assistant_v1",
-                "assistant_schema_version": "1.2",
+                "assistant_schema_version": "1.3",
                 "git_commit": packet.provenance.get("git_commit", "unknown"),
                 "model_self_confidence": str(float(normalized_output["confidence"])),
             },
@@ -111,10 +111,63 @@ def _analysis_list(value: Any) -> list[Any]:
     if not isinstance(value, list):
         return []
     values = cast(list[object], value)
-    result: list[Any] = []
-    for item in values:
-        result.append(item)
-    return result
+    return list(values)
+
+
+def _nonempty_text(value: object) -> str | None:
+    return value.strip() if isinstance(value, str) and value.strip() else None
+
+
+def _nested_mapping(value: object) -> dict[str, Any]:
+    return cast(dict[str, Any], value) if isinstance(value, dict) else {}
+
+
+def _adapt_nested_model_output(normalized: dict[str, Any]) -> bool:
+    """Map common structured LLM output into the canonical AIRR role schema.
+
+    Some local models obey the requested JSON-only contract but nest prose under
+    ``analysis`` and follow-up actions under ``recommendations``. Treat this as a
+    recoverable schema variation rather than falsely marking a substantive answer
+    as unavailable. The adaptation is deterministic and never promotes AI text to
+    scientific evidence.
+    """
+
+    adapted = False
+    analysis = _nested_mapping(normalized.get("analysis"))
+    recommendations = _nested_mapping(normalized.get("recommendations"))
+
+    if _nonempty_text(normalized.get("assessment")) is None:
+        assessment = (
+            _nonempty_text(analysis.get("conclusion"))
+            or _nonempty_text(analysis.get("overview"))
+            or _nonempty_text(normalized.get("conclusion"))
+            or _nonempty_text(normalized.get("executive_summary"))
+        )
+        if assessment is not None:
+            normalized["assessment"] = assessment
+            adapted = True
+
+    if not isinstance(normalized.get("observations"), list):
+        findings = analysis.get("key_findings")
+        if isinstance(findings, list):
+            normalized["observations"] = findings
+            adapted = True
+
+    if not isinstance(normalized.get("methodological_concerns"), list):
+        limitations = normalized.get("limitations")
+        if isinstance(limitations, list):
+            normalized["methodological_concerns"] = limitations
+            adapted = True
+
+    if not isinstance(normalized.get("recommended_experiments"), list):
+        next_steps = recommendations.get("next_steps")
+        if isinstance(next_steps, list):
+            normalized["recommended_experiments"] = next_steps
+            adapted = True
+
+    if adapted:
+        normalized["schema_adapted"] = True
+    return adapted
 
 
 def normalize_output(output: dict[str, Any]) -> dict[str, Any]:
@@ -127,34 +180,33 @@ def normalize_output(output: dict[str, Any]) -> dict[str, Any]:
     the repair is recorded as a methodological concern. A formatting defect must
     not destroy an otherwise auditable analyst/reviewer/writer chain.
 
-    Missing required fields are filled with safe defaults so that a model which
-    omits a key does not silently discard the entire analysis.
+    Nested but substantive model output is deterministically adapted to the
+    canonical AIRR role schema. Only a response without any usable assessment is
+    marked as unavailable.
     """
 
     normalized = dict(output)
+    _adapt_nested_model_output(normalized)
 
-    # ── Fill missing required fields with safe defaults ──
-    _ASSESSMENT_DEFAULT = (
+    assessment_default = (
         "Die Analyse konnte nicht vollstaendig schema-konform erzeugt werden. "
-        "Das Modell hat das erforderliche assessment-Feld nicht geliefert."
+        "Das Modell hat keine verwertbare Bewertung geliefert."
     )
-    if (
-        not isinstance(normalized.get("assessment"), str)
-        or not normalized["assessment"].strip()
-    ):
-        normalized["assessment"] = _ASSESSMENT_DEFAULT
+    if _nonempty_text(normalized.get("assessment")) is None:
+        normalized["assessment"] = assessment_default
         normalized["analysis_unavailable"] = True
         normalized["confidence_original"] = normalized.get("confidence")
         normalized["confidence"] = 0.0
-    for _list_field in (
+
+    for list_field in (
         "observations",
         "methodological_concerns",
         "alternative_explanations",
         "recommended_experiments",
         "requested_evidence",
     ):
-        if not isinstance(normalized.get(_list_field), list):
-            normalized[_list_field] = []
+        if not isinstance(normalized.get(list_field), list):
+            normalized[list_field] = []
     if not isinstance(normalized.get("effect_direction"), str):
         normalized["effect_direction"] = "not_determined"
 
@@ -185,9 +237,10 @@ def normalize_output(output: dict[str, Any]) -> dict[str, Any]:
     normalized["confidence"] = 0.0
     concerns = _analysis_list(normalized.get("methodological_concerns"))
     concerns.append(
-        "Die vom Modell ausgegebene confidence war schemawidrig oder ausserhalb "
-        "des Bereichs 0..1. Sie wurde fuer die AIRR-Provenienz konservativ auf "
-        "0.0 gesetzt; der Originalwert bleibt als confidence_original erhalten."
+        "Die vom Modell ausgegebene confidence war schemawidrig, fehlte oder lag "
+        "ausserhalb des Bereichs 0..1. Sie wurde fuer die AIRR-Provenienz "
+        "konservativ auf 0.0 gesetzt; der Originalwert bleibt als "
+        "confidence_original erhalten."
     )
     normalized["methodological_concerns"] = concerns
     return normalized

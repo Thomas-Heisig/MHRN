@@ -52,8 +52,8 @@ RQ-Status und Claim-Status sind unterschiedliche wissenschaftliche Zustände und
 | `RQ-MEM-002` | open | `H-MEM-002-A` | — | — | 0 | — | — | offen |
 | `RQ-WM-001` | open | `H-WM-001-A` | — | — | 0 | — | — | offen |
 | `RQ-PROFILE-001` | open | `H-PROFILE-001-A` | — | — | 0 | — | — | offen |
-| `RQ-S6-SEM-002` | open | — | — | — | 0 | — | — | offen |
-| `RQ-S6-SEM-003` | open | — | — | — | 0 | — | — | offen |
+| `RQ-S6-SEM-002` | answered | — | — | — | 0 | — | — | medium |
+| `RQ-S6-SEM-003` | in_progress | — | — | — | 0 | — | — | low |
 | `RQ-CNS-101` | open | `H-CNS-101-A` | — | — | 4 | — | — | offen |
 | `RQ-CNS-102` | open | `H-CNS-102-A` | — | — | 1 | — | — | offen |
 | `RQ-CNS-103` | open | `H-CNS-103-A` | — | — | 1 | — | — | offen |
@@ -118,7 +118,9 @@ RQ-Status und Claim-Status sind unterschiedliche wissenschaftliche Zustände und
 
 | RQ-Status | Anzahl |
 |-----------|--------|
-| open | 105 |
+| answered | 1 |
+| in_progress | 1 |
+| open | 103 |
 | **Gesamt RQs** | **105** |
 
 ### Claims (Claim-Status)

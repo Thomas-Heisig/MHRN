@@ -50,13 +50,16 @@
   literature: []
   hypotheses: []
   evidence: []
-  status: open
+  registry_status: registered
+  experiment_status: completed
+  evidence_status: moderate
+  status: answered
   answer:
-    current: null
-    confidence: none
-    limitations: EXP-S6-SEM-CL-002 is preregistered but not executed; its contrast-based decision rules must not be treated as evidence before authorized execution and human review.
+    current: Unter dem präregistrierten CL-002-Protokoll wurde kein konfirmatorischer Vorteil semantischer Prototypkonsolidierung gegenüber gleich objekt- und updatebudgetiertem Raw-Replay nachgewiesen; die menschliche Projekt-EVID klassifiziert H1 für dieses Protokoll als falsifiziert.
+    confidence: medium
+    limitations: Der Befund ist protokoll- und benchmarkgebunden, besitzt keine unabhängige externe Replikation und rechtfertigt weder die allgemeine Nutzlosigkeit von SemanticMemory noch eine generelle Überlegenheit von Raw-Replay. CL-002 beweist außerdem nicht rückwirkend, dass der CL-001-Effekt ausschließlich durch Replay verursacht wurde.
   created: '2026-09-15'
-  updated: '2026-09-15'
+  updated: '2026-09-16'
 - id: RQ-S6-SEM-003
   domain: Memory
   question: Hängt ein möglicher Vorteil semantischer Prototypkonsolidierung gegenüber Raw-Experience-Replay von der Replay-Dosis ab, wenn das Gesamt-Updatebudget über alle Bedingungen konstant gehalten wird?
@@ -64,10 +67,13 @@
   literature: []
   hypotheses: []
   evidence: []
-  status: open
+  registry_status: registered
+  experiment_status: completed
+  evidence_status: none
+  status: in_progress
   answer:
-    current: null
-    confidence: none
-    limitations: EXP-S6-SEM-CL-003 is preregistered, SHA-256-frozen and explicitly authorized but has not been executed. H1/H2/H0/H3, C1-C4 and the decision rules remain defined by the frozen preregistration; no DATA, EVID or hypothesis decision exists yet.
+    current: Auf DATA-Ebene bestätigt CL-003 keinen präregistrierten Vorteil semantischer Verdichtung gegenüber Raw-Replay über die Dosen 5, 20 und 40 Prozent. C1, C2 und C4 verfehlen die Erfolgsregeln; C3 zeigt zugleich, dass die semantische Repräsentation gegenüber einem Random-Prototype-Control relevante nicht-zufällige Struktur trägt.
+    confidence: low
+    limitations: CL-003 wurde genau einmal als autorisierte 84-Run-Kampagne ausgeführt, ist aber noch nicht human-reviewed EVID. Der deskriptive Semantic-minus-Raw-Trend darf wegen des negativen C4 nicht als bestätigter Dosis-Effekt gewertet werden. Vor einer neuen Semantikstudie muss nach der Human Review zuerst die dokumentierte A/B/C-Architekturentscheidung fallen; ein automatisches CL-004 ist ausgeschlossen.
   created: '2026-09-16'
   updated: '2026-09-16'

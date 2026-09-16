@@ -12,6 +12,26 @@ from statistics import fmean, median, pstdev
 from typing import Any
 
 
+_SUITE_REQUIRED_GROUPS = {
+    "ping",
+    "temporal",
+    "stdp",
+    "learning",
+    "time",
+    "5d",
+    "regulation",
+}
+
+_PRIMARY_SUMMARY_METRICS = {
+    "ticks_executed",
+    "total_spikes",
+    "delivered_synaptic_events",
+    "activated_neurons",
+    "recurrent_events",
+    "propagation_depth",
+}
+
+
 def _read_json(path: Path, default: Any) -> Any:
     try:
         return json.loads(path.read_text(encoding="utf-8"))
@@ -45,7 +65,7 @@ def build_descriptive_statistics(runs: list[dict[str, Any]]) -> dict[str, Any]:
     for run in runs:
         by_condition[str(run.get("condition", "unknown"))].append(run)
 
-    numeric_metric_names: tuple[str, ...] = (
+    known_numeric_metrics = {
         "ticks_executed",
         "total_spikes",
         "activated_neurons",
@@ -68,16 +88,46 @@ def build_descriptive_statistics(runs: list[dict[str, Any]]) -> dict[str, Any]:
         "train_trial_count",
         "validation_trial_count",
         "holdout_trial_count",
-    )
+    }
     discovered_numeric_metrics = {
         str(name)
         for run in runs
         for name, value in (run.get("metrics") or {}).items()
         if _number(value) is not None
     }
-    numeric_metric_names = tuple(
-        sorted(set(numeric_metric_names) | discovered_numeric_metrics)
-    )
+    numeric_metric_names = sorted(known_numeric_metrics | discovered_numeric_metrics)
+
+    nested_paths = {
+        "functional_activation": ("functional_state", "activation"),
+        "functional_safety": ("functional_state", "safety"),
+        "functional_valence": ("functional_state", "valence"),
+        "functional_uncertainty": ("functional_state", "uncertainty"),
+        "regulatory_continuity_risk": (
+            "regulatory_state",
+            "values",
+            "continuity_risk",
+        ),
+        "regulatory_energy_reserve": (
+            "regulatory_state",
+            "values",
+            "energy_reserve",
+        ),
+        "regulatory_resource_pressure": (
+            "regulatory_state",
+            "values",
+            "resource_pressure",
+        ),
+        "regulatory_sensory_integrity": (
+            "regulatory_state",
+            "values",
+            "sensory_integrity",
+        ),
+        "regulatory_thermal_margin": (
+            "regulatory_state",
+            "values",
+            "thermal_margin",
+        ),
+    }
 
     conditions: dict[str, Any] = {}
     for condition, condition_runs in sorted(by_condition.items()):
@@ -91,37 +141,7 @@ def build_descriptive_statistics(runs: list[dict[str, Any]]) -> dict[str, Any]:
             ]
             if values:
                 metric_stats[name] = _stats(values)
-        nested_paths = {
-            "functional_activation": ("functional_state", "activation"),
-            "functional_safety": ("functional_state", "safety"),
-            "functional_valence": ("functional_state", "valence"),
-            "functional_uncertainty": ("functional_state", "uncertainty"),
-            "regulatory_continuity_risk": (
-                "regulatory_state",
-                "values",
-                "continuity_risk",
-            ),
-            "regulatory_energy_reserve": (
-                "regulatory_state",
-                "values",
-                "energy_reserve",
-            ),
-            "regulatory_resource_pressure": (
-                "regulatory_state",
-                "values",
-                "resource_pressure",
-            ),
-            "regulatory_sensory_integrity": (
-                "regulatory_state",
-                "values",
-                "sensory_integrity",
-            ),
-            "regulatory_thermal_margin": (
-                "regulatory_state",
-                "values",
-                "thermal_margin",
-            ),
-        }
+
         for name, path in nested_paths.items():
             nested_values: list[float] = []
             for run in condition_runs:
@@ -133,6 +153,7 @@ def build_descriptive_statistics(runs: list[dict[str, Any]]) -> dict[str, Any]:
                     nested_values.append(value)
             if nested_values:
                 metric_stats[name] = _stats(nested_values)
+
         conditions[condition] = {
             "run_count": len(condition_runs),
             "seeds": sorted(
@@ -145,9 +166,8 @@ def build_descriptive_statistics(runs: list[dict[str, Any]]) -> dict[str, Any]:
             "metrics": metric_stats,
         }
 
-    temporal: dict[str, Any] = {}
-    horizon_values: dict[str, list[float]] = defaultdict(list)
-    horizon_reference_counts: dict[str, int] = defaultdict(int)
+    temporal_values: dict[str, list[float]] = defaultdict(list)
+    temporal_reference_counts: dict[str, int] = defaultdict(int)
     for run in runs:
         comparisons = (run.get("metrics") or {}).get("comparisons")
         if not isinstance(comparisons, list):
@@ -158,19 +178,19 @@ def build_descriptive_statistics(runs: list[dict[str, Any]]) -> dict[str, Any]:
             horizon = str(comparison.get("horizon", "unknown"))
             discrepancy = _number(comparison.get("discrepancy"))
             if discrepancy is not None:
-                horizon_values[horizon].append(discrepancy)
+                temporal_values[horizon].append(discrepancy)
             if comparison.get("reference_tick") is not None:
-                horizon_reference_counts[horizon] += 1
-    for horizon in sorted(set(horizon_values) | set(horizon_reference_counts)):
-        horizon_all = horizon_values[horizon]
-        nonzero = [value for value in horizon_all if value != 0.0]
+                temporal_reference_counts[horizon] += 1
+
+    temporal: dict[str, Any] = {}
+    for horizon in sorted(set(temporal_values) | set(temporal_reference_counts)):
+        all_values = temporal_values[horizon]
+        nonzero = [value for value in all_values if value != 0.0]
         temporal[horizon] = {
-            "discrepancy": _stats(horizon_all),
-            "reference_comparisons": horizon_reference_counts[horizon],
+            "discrepancy": _stats(all_values),
+            "reference_comparisons": temporal_reference_counts[horizon],
             "nonzero_comparisons": len(nonzero),
-            "nonzero_fraction": (
-                (len(nonzero) / len(horizon_all)) if horizon_all else 0.0
-            ),
+            "nonzero_fraction": len(nonzero) / len(all_values) if all_values else 0.0,
             "nonzero_discrepancy": _stats(nonzero),
         }
 
@@ -192,7 +212,7 @@ def build_descriptive_statistics(runs: list[dict[str, Any]]) -> dict[str, Any]:
 
     result: dict[str, Any] = {
         "generated_by": "deterministic_statistics_engine",
-        "schema_version": "2.0",
+        "schema_version": "2.1",
         "run_count": len(runs),
         "conditions": conditions,
         "formulas": {
@@ -264,16 +284,12 @@ def _semantic_status(
     if question_id == "RQ-REC-001":
         return classify(
             any(item.startswith("w0_") for item in plain)
-            and any(
-                item.startswith("w100_") or item.startswith("w125_") for item in plain
-            ),
+            and any(item.startswith("w100_") or item.startswith("w125_") for item in plain),
             "REC-001 erwartet eine registrierte Rekurrenz-Gewicht/Delay-Karte mit Nullkontrolle.",
         )
     if question_id == "RQ-REC-002":
         return classify(
-            {"loop_delay_1", "loop_delay_2", "loop_delay_4", "loop_delay_8"}.issubset(
-                plain
-            ),
+            {"loop_delay_1", "loop_delay_2", "loop_delay_4", "loop_delay_8"}.issubset(plain),
             "REC-002 erwartet die registrierte Loop-Delay-Leiter.",
         )
     if question_id == "RQ-GEN-001":
@@ -341,19 +357,8 @@ def _semantic_status(
             "5D erwartet die registrierten Dimensions-/Topologiebedingungen.",
         )
     if question_id == "RQ-SUITE-001":
-        required_groups = {
-            "ping",
-            "temporal",
-            "stdp",
-            "learning",
-            "time",
-            "5d",
-            "regulation",
-        }
         present_groups = {item.split(":", 1)[0] for item in conditions if ":" in item}
-        found = (
-            required_groups.issubset(present_groups) and protocol == "science_all_v1"
-        )
+        found = _SUITE_REQUIRED_GROUPS.issubset(present_groups) and protocol == "science_all_v1"
         return (
             "DIRECT_MATCH" if found else "MISMATCH",
             "SUITE erwartet science_all_v1 und PING, TEMP, STDP, Learning, TIME, 5D sowie Regulation unter gemeinsamer Provenienz.",
@@ -387,6 +392,138 @@ def _fmt(value: object) -> str:
     return str(value)
 
 
+def _suite_integrity(
+    runs: list[dict[str, Any]], statistics: dict[str, Any]
+) -> dict[str, Any]:
+    """Audit suite artifact completeness independently of report columns."""
+    raw_conditions = {str(run.get("condition", "unknown")) for run in runs}
+    statistics_conditions_value = statistics.get("conditions", {})
+    statistics_conditions: dict[str, Any] = (
+        statistics_conditions_value if isinstance(statistics_conditions_value, dict) else {}
+    )
+    present_groups = {
+        condition.split(":", 1)[0]
+        for condition in raw_conditions
+        if ":" in condition
+    }
+    missing_groups = sorted(_SUITE_REQUIRED_GROUPS - present_groups)
+    missing_statistics = sorted(raw_conditions - set(statistics_conditions))
+    empty_statistics = sorted(
+        condition
+        for condition, payload in statistics_conditions.items()
+        if not isinstance(payload, dict)
+        or not isinstance(payload.get("metrics"), dict)
+        or not payload.get("metrics")
+    )
+    runtime_error_count = sum(
+        run.get("runtime_error") not in (None, "", False) for run in runs
+    )
+    statistics_run_count = statistics.get("run_count")
+    run_count_matches = statistics_run_count == len(runs)
+    complete = (
+        not missing_groups
+        and not missing_statistics
+        and not empty_statistics
+        and runtime_error_count == 0
+        and run_count_matches
+    )
+    return {
+        "status": "COMPLETE_FOR_REGISTERED_GROUPS" if complete else "INCOMPLETE",
+        "raw_run_count": len(runs),
+        "statistics_run_count": statistics_run_count,
+        "run_count_matches": run_count_matches,
+        "raw_condition_count": len(raw_conditions),
+        "statistics_condition_count": len(statistics_conditions),
+        "present_groups": sorted(present_groups),
+        "missing_groups": missing_groups,
+        "missing_statistics": missing_statistics,
+        "empty_statistics": empty_statistics,
+        "runtime_error_count": runtime_error_count,
+    }
+
+
+def _mean_metrics(payload: object) -> dict[str, object]:
+    if not isinstance(payload, dict):
+        return {}
+    metrics = payload.get("metrics", {})
+    if not isinstance(metrics, dict):
+        return {}
+    result: dict[str, object] = {}
+    for name, stats in metrics.items():
+        if isinstance(stats, dict) and "mean" in stats:
+            result[str(name)] = stats.get("mean")
+    return result
+
+
+def _render_airr_sections(
+    lines: list[str], experiment_dir: Path, ai_report: dict[str, object]
+) -> None:
+    lines.extend(
+        [
+            "",
+            "## 8. AI Research Report",
+            "",
+            f"- AIRR Status: `{ai_report.get('status', 'unknown')}`",
+            "- Wissenschaftliche Evidenz durch KI: `false`",
+            "- Human Review: `PENDING`",
+        ]
+    )
+    if ai_report.get("status") != "generated" or not ai_report.get("report_id"):
+        if ai_report.get("status") == "failed":
+            lines.extend(
+                [
+                    "",
+                    f"AIRR-Fehler: `{ai_report.get('message', ai_report.get('reason', 'unknown'))}`. Die deterministische Datenauswertung oben bleibt davon unberuehrt.",
+                ]
+            )
+        return
+
+    report_id = str(ai_report["report_id"])
+    report = _read_json(experiment_dir / "reports" / f"{report_id}.json", {})
+    content = report.get("content", {}) if isinstance(report, dict) else {}
+    if not isinstance(content, dict):
+        content = {}
+    lines.extend(
+        [
+            f"- AIRR Markdown: [`reports/{report_id}.md`](reports/{report_id}.md)",
+            f"- AIRR JSON: [`reports/{report_id}.json`](reports/{report_id}.json)",
+            "",
+            "### 8.1 KI-Einschaetzung",
+            "",
+            str(
+                content.get(
+                    "executive_summary",
+                    content.get("conclusion", "Keine Einschätzung vorhanden."),
+                )
+            ),
+            "",
+            f"KI-Konfidenz: `{content.get('ai_confidence', 0.0)}` — dies ist keine statistische Konfidenz.",
+        ]
+    )
+    interpretation = content.get("interpretation", {})
+    if not isinstance(interpretation, dict):
+        interpretation = {}
+    sections = (
+        ("Methodische Kritik", content.get("methodological_critique", [])),
+        ("Alternative Erklaerungen", content.get("alternative_explanations", [])),
+        (
+            "Fehlende Nachweise",
+            content.get("missing_evidence", []) or interpretation.get("requested_evidence", []),
+        ),
+        (
+            "Empfohlene Folgeexperimente",
+            content.get("recommended_follow_up", [])
+            or interpretation.get("recommended_experiments", []),
+        ),
+    )
+    for heading, values in sections:
+        lines.extend(["", f"### {heading}", ""])
+        if isinstance(values, list) and values:
+            lines.extend(f"- {value}" for value in values)
+        else:
+            lines.append("- Keine expliziten Angaben.")
+
+
 def write_detailed_experiment_summary(
     research_root: Path, experiment_id: str, ai_report: dict[str, object]
 ) -> str:
@@ -413,24 +550,26 @@ def write_detailed_experiment_summary(
 
     simulation = manifest.get("simulation", {}) if isinstance(manifest, dict) else {}
     results = manifest.get("results", {}) if isinstance(manifest, dict) else {}
-    question_ids = (
-        manifest.get("research_questions", []) if isinstance(manifest, dict) else []
-    )
-    hypothesis_ids = (
-        manifest.get("hypotheses", []) if isinstance(manifest, dict) else []
-    )
+    question_ids = manifest.get("research_questions", []) if isinstance(manifest, dict) else []
+    hypothesis_ids = manifest.get("hypotheses", []) if isinstance(manifest, dict) else []
     question_id = (
         str(question_ids[0])
         if isinstance(question_ids, list) and question_ids
         else "NOT_AVAILABLE"
     )
-    conditions = {str(run.get("condition", "unknown")) for run in runs}
     protocol = str(
         simulation.get("protocol", workflow.get("protocol", "NOT_AVAILABLE"))
         if isinstance(simulation, dict)
         else workflow.get("protocol", "NOT_AVAILABLE")
     )
+    conditions = {str(run.get("condition", "unknown")) for run in runs}
     semantic_status, semantic_note = _semantic_status(question_id, protocol, conditions)
+    suite_integrity = (
+        _suite_integrity(runs, statistics)
+        if protocol == "science_all_v1" or question_id == "RQ-SUITE-001"
+        else None
+    )
+
     git_info = manifest.get("git", {}) if isinstance(manifest, dict) else {}
     git_dirty = bool(git_info.get("dirty")) if isinstance(git_info, dict) else True
     if semantic_status == "MISMATCH":
@@ -453,13 +592,11 @@ def write_detailed_experiment_summary(
         int(value)
         for run in runs
         for value in [(run.get("metrics") or {}).get("ticks_executed")]
-        if isinstance(value, int)
+        if isinstance(value, int) and not isinstance(value, bool)
     ]
     tick_contract = "NOT_APPLICABLE"
     if isinstance(requested_ticks, int) and actual_ticks:
-        tick_contract = (
-            "SATISFIED" if min(actual_ticks) >= requested_ticks else "VIOLATED"
-        )
+        tick_contract = "SATISFIED" if min(actual_ticks) >= requested_ticks else "VIOLATED"
 
     lines = [
         f"# {experiment_id}: Wissenschaftliche Zusammenfassung",
@@ -488,42 +625,64 @@ def write_detailed_experiment_summary(
         f"- Evidence Readiness: `{evidence_readiness}`",
         f"- Begründung: {semantic_note}",
         f"- Beobachtete Conditions: `{', '.join(sorted(conditions)) or 'keine'}`",
-        "",
-        "`DIRECT_MATCH` bezeichnet einen gezielten RQ-spezifischen Lauf. `CONTAINS_MATCH` bedeutet, dass die passende Teilstudie innerhalb einer Gesamtsuite enthalten ist; nur diese Teilstudie ist primaer fuer die registrierte RQ auszuwerten. `MISMATCH` blockiert die Nutzung als Evidenz fuer die registrierte Forschungsfrage, auch wenn die technische Ausfuehrung fehlerfrei war.",
-        "",
-        "## 3. Ausfuehrungsparameter",
-        "",
-        f"- Titel: {workflow.get('title', 'NOT_AVAILABLE')}",
-        f"- Bedingungen: {workflow.get('conditions', 'NOT_AVAILABLE')}",
-        f"- Notizen: {workflow.get('notes') or 'Keine.'}",
-        f"- Konfiguration: `{(manifest.get('config') or {}).get('path', 'NOT_AVAILABLE') if isinstance(manifest.get('config'), dict) else 'NOT_AVAILABLE'}`",
-        f"- Config SHA-256: `{(manifest.get('config') or {}).get('sha256', 'NOT_AVAILABLE') if isinstance(manifest.get('config'), dict) else 'NOT_AVAILABLE'}`",
-        f"- Git Commit: `{(manifest.get('git') or {}).get('commit', 'NOT_AVAILABLE') if isinstance(manifest.get('git'), dict) else 'NOT_AVAILABLE'}`",
-        f"- Git dirty: `{(manifest.get('git') or {}).get('dirty', 'NOT_AVAILABLE') if isinstance(manifest.get('git'), dict) else 'NOT_AVAILABLE'}`",
-        f"- Runtime: `{(manifest.get('runtime') or {}).get('duration_seconds', 'NOT_AVAILABLE') if isinstance(manifest.get('runtime'), dict) else 'NOT_AVAILABLE'}` s",
-        "",
-        "## 4. Deterministische Formeln",
-        "",
-        "Die im Bericht verwendeten deskriptiven Groessen sind:",
-        "",
-        "- Mittelwert: $\\bar{x}=\\frac{1}{n}\\sum_{i=1}^{n}x_i$",
-        "- Populationsstandardabweichung: $\\sigma=\\sqrt{\\frac{1}{n}\\sum_{i=1}^{n}(x_i-\\bar{x})^2}$",
-        "- Absolute Differenz: $\\Delta_x=\\bar{x}_B-\\bar{x}_A$",
-        "- Verhältnis: $R_x=\\bar{x}_B/\\bar{x}_A$ fuer $\\bar{x}_A\\neq0$",
-        "- Inter-Spike-Intervall: $ISI_i=t_{i+1}-t_i$",
-        "",
-        "Diese Formeln sind deskriptiv. Ohne registrierten Inferenztest, unabhaengige Stichprobenannahme und passende Versuchsplanung werden daraus keine Signifikanz- oder Kausalbehauptungen abgeleitet.",
-        "",
-        "## 5. Ergebnisse nach Bedingung",
-        "",
-        "| Condition | n | Seeds | Ticks mean | Spikes mean | Syn. events mean | Aktivierte Neuronen mean | Recurrent events mean | Propagation depth mean |",
-        "| --- | ---: | --- | ---: | ---: | ---: | ---: | ---: | ---: |",
     ]
-    for condition, payload in statistics.get("conditions", {}).items():
-        metrics = payload.get("metrics", {})
+    if suite_integrity is not None:
+        lines.extend(
+            [
+                f"- Suite-Artefaktintegrität: `{suite_integrity['status']}`",
+                f"- DATA/Statistik-Laufzahl: `{suite_integrity['raw_run_count']}` / `{suite_integrity['statistics_run_count']}`",
+                f"- DATA/Statistik-Conditions: `{suite_integrity['raw_condition_count']}` / `{suite_integrity['statistics_condition_count']}`",
+                f"- Registrierte Gruppen vorhanden: `{', '.join(suite_integrity['present_groups'])}`",
+                f"- Fehlende Gruppen: `{', '.join(suite_integrity['missing_groups']) or 'keine'}`",
+                f"- Conditions ohne Statistikblock: `{', '.join(suite_integrity['missing_statistics']) or 'keine'}`",
+                f"- Conditions ohne numerische Statistikmetriken: `{', '.join(suite_integrity['empty_statistics']) or 'keine'}`",
+                f"- Runtime-Fehlerläufe: `{suite_integrity['runtime_error_count']}`",
+            ]
+        )
+    lines.extend(
+        [
+            "",
+            "`DIRECT_MATCH` bezeichnet einen gezielten RQ-spezifischen Lauf. `CONTAINS_MATCH` bedeutet, dass die passende Teilstudie innerhalb einer Gesamtsuite enthalten ist; nur diese Teilstudie ist primaer fuer die registrierte RQ auszuwerten. `MISMATCH` blockiert die Nutzung als Evidenz fuer die registrierte Forschungsfrage, auch wenn die technische Ausfuehrung fehlerfrei war.",
+            "",
+            "## 3. Ausfuehrungsparameter",
+            "",
+            f"- Titel: {workflow.get('title', 'NOT_AVAILABLE')}",
+            f"- Bedingungen: {workflow.get('conditions', 'NOT_AVAILABLE')}",
+            f"- Notizen: {workflow.get('notes') or 'Keine.'}",
+            f"- Konfiguration: `{(manifest.get('config') or {}).get('path', 'NOT_AVAILABLE') if isinstance(manifest.get('config'), dict) else 'NOT_AVAILABLE'}`",
+            f"- Config SHA-256: `{(manifest.get('config') or {}).get('sha256', 'NOT_AVAILABLE') if isinstance(manifest.get('config'), dict) else 'NOT_AVAILABLE'}`",
+            f"- Git Commit: `{(manifest.get('git') or {}).get('commit', 'NOT_AVAILABLE') if isinstance(manifest.get('git'), dict) else 'NOT_AVAILABLE'}`",
+            f"- Git dirty: `{(manifest.get('git') or {}).get('dirty', 'NOT_AVAILABLE') if isinstance(manifest.get('git'), dict) else 'NOT_AVAILABLE'}`",
+            f"- Runtime: `{(manifest.get('runtime') or {}).get('duration_seconds', 'NOT_AVAILABLE') if isinstance(manifest.get('runtime'), dict) else 'NOT_AVAILABLE'}` s",
+            "",
+            "## 4. Deterministische Formeln",
+            "",
+            "Die im Bericht verwendeten deskriptiven Groessen sind:",
+            "",
+            "- Mittelwert: $\\bar{x}=\\frac{1}{n}\\sum_{i=1}^{n}x_i$",
+            "- Populationsstandardabweichung: $\\sigma=\\sqrt{\\frac{1}{n}\\sum_{i=1}^{n}(x_i-\\bar{x})^2}$",
+            "- Absolute Differenz: $\\Delta_x=\\bar{x}_B-\\bar{x}_A$",
+            "- Verhältnis: $R_x=\\bar{x}_B/\\bar{x}_A$ fuer $\\bar{x}_A\\neq0$",
+            "- Inter-Spike-Intervall: $ISI_i=t_{i+1}-t_i$",
+            "",
+            "Diese Formeln sind deskriptiv. Ohne registrierten Inferenztest, unabhaengige Stichprobenannahme und passende Versuchsplanung werden daraus keine Signifikanz- oder Kausalbehauptungen abgeleitet.",
+            "",
+            "## 5. Ergebnisse nach Bedingung",
+            "",
+            "| Condition | n | Seeds | Ticks mean | Spikes mean | Syn. events mean | Aktivierte Neuronen mean | Recurrent events mean | Propagation depth mean |",
+            "| --- | ---: | --- | ---: | ---: | ---: | ---: | ---: | ---: |",
+        ]
+    )
+
+    condition_statistics_value = statistics.get("conditions", {})
+    condition_statistics: dict[str, Any] = (
+        condition_statistics_value if isinstance(condition_statistics_value, dict) else {}
+    )
+    for condition, payload in condition_statistics.items():
+        metrics = payload.get("metrics", {}) if isinstance(payload, dict) else {}
 
         def mean_of(name: str) -> object:
-            item = metrics.get(name, {})
+            item = metrics.get(name, {}) if isinstance(metrics, dict) else {}
             return item.get("mean") if isinstance(item, dict) else None
 
         lines.append(
@@ -531,8 +690,8 @@ def write_detailed_experiment_summary(
             + " | ".join(
                 [
                     condition,
-                    str(payload.get("run_count", 0)),
-                    ",".join(map(str, payload.get("seeds", []))),
+                    str(payload.get("run_count", 0)) if isinstance(payload, dict) else "0",
+                    ",".join(map(str, payload.get("seeds", []))) if isinstance(payload, dict) else "",
                     _fmt(mean_of("ticks_executed")),
                     _fmt(mean_of("total_spikes")),
                     _fmt(mean_of("delivered_synaptic_events")),
@@ -544,19 +703,40 @@ def write_detailed_experiment_summary(
             + " |"
         )
 
+    lines.extend(
+        [
+            "",
+            "**Wichtig:** `—` bedeutet in dieser Tabelle ausschließlich, dass die jeweilige SNN-Metrik für diese Bedingung nicht definiert oder nicht erhoben wird. Es bedeutet **nicht**, dass für die Bedingung keine DATA vorliegen. Protokollspezifische Messwerte werden direkt darunter ausgewiesen.",
+            "",
+            "### 5.1 Protokollspezifische Metrikabdeckung",
+            "",
+            "| Condition | zusätzliche numerische Mittelwerte |",
+            "| --- | --- |",
+        ]
+    )
+    for condition, payload in condition_statistics.items():
+        means = _mean_metrics(payload)
+        extras = [
+            f"`{name}={_fmt(value)}`"
+            for name, value in sorted(means.items())
+            if name not in _PRIMARY_SUMMARY_METRICS
+        ]
+        lines.append(
+            f"| {condition} | {'; '.join(extras) if extras else 'keine zusätzlichen numerischen Metriken'} |"
+        )
+
     effects = statistics.get("two_condition_effects", {})
     if isinstance(effects, dict) and effects:
-        lines.extend(["", "### 5.1 Deskriptive Zwei-Bedingungs-Effekte", ""])
+        lines.extend(["", "### 5.2 Deskriptive Zwei-Bedingungs-Effekte", ""])
         for metric, effect in effects.items():
-            if not isinstance(effect, dict):
-                continue
-            lines.append(
-                f"- `{metric}`: $\\Delta={_fmt(effect.get('absolute_difference'))}$; $R={_fmt(effect.get('ratio'))}$; Referenz `{effect.get('reference_condition')}`, Vergleich `{effect.get('comparison_condition')}`."
-            )
+            if isinstance(effect, dict):
+                lines.append(
+                    f"- `{metric}`: $\\Delta={_fmt(effect.get('absolute_difference'))}$; $R={_fmt(effect.get('ratio'))}$; Referenz `{effect.get('reference_condition')}`, Vergleich `{effect.get('comparison_condition')}`."
+                )
 
     isi = statistics.get("inter_spike_intervals", {})
     if isinstance(isi, dict) and isi:
-        lines.extend(["", "### 5.2 Inter-Spike-Intervalle", ""])
+        lines.extend(["", "### 5.3 Inter-Spike-Intervalle", ""])
         for condition, stats in isi.items():
             if isinstance(stats, dict):
                 lines.append(
@@ -565,16 +745,18 @@ def write_detailed_experiment_summary(
 
     temporal = statistics.get("temporal_horizons", {})
     if isinstance(temporal, dict) and temporal:
-        lines.extend(["", "### 5.3 Temporal-State-Horizonte", ""])
+        lines.extend(
+            [
+                "",
+                "### 5.4 Temporal-State-Horizonte",
+                "",
+                "Die Diskrepanzwerte stammen aus Zustandsvergleichen gegen Referenzticks. Sie sind **keine Spike-Metrik** und koennen deshalb auch dann definiert sein, wenn `total_spikes = 0` ist. Ein solcher Lauf ist fuer Spike-basierte Aussagen quieszent, kann aber weiterhin den registrierten Zustandsvergleich ausfuehren.",
+                "",
+            ]
+        )
         for horizon, payload in temporal.items():
-            discrepancy = (
-                payload.get("discrepancy", {}) if isinstance(payload, dict) else {}
-            )
-            nonzero = (
-                payload.get("nonzero_discrepancy", {})
-                if isinstance(payload, dict)
-                else {}
-            )
+            discrepancy = payload.get("discrepancy", {}) if isinstance(payload, dict) else {}
+            nonzero = payload.get("nonzero_discrepancy", {}) if isinstance(payload, dict) else {}
             lines.append(
                 f"- `{horizon}`: Referenzvergleiche={payload.get('reference_comparisons', 0) if isinstance(payload, dict) else 0}; discrepancy mean={_fmt(discrepancy.get('mean') if isinstance(discrepancy, dict) else None)}, max={_fmt(discrepancy.get('max') if isinstance(discrepancy, dict) else None)}; nonzero={payload.get('nonzero_comparisons', 0) if isinstance(payload, dict) else 0} ({_fmt(payload.get('nonzero_fraction') if isinstance(payload, dict) else None)}); mean(nonzero)={_fmt(nonzero.get('mean') if isinstance(nonzero, dict) else None)}."
             )
@@ -590,9 +772,7 @@ def write_detailed_experiment_summary(
     )
     for run in runs:
         metrics_value = run.get("metrics")
-        run_metrics: dict[str, Any] = (
-            dict(metrics_value) if isinstance(metrics_value, dict) else {}
-        )
+        run_metrics = dict(metrics_value) if isinstance(metrics_value, dict) else {}
         lines.append(
             "| "
             + " | ".join(
@@ -619,115 +799,9 @@ def write_detailed_experiment_summary(
             "Identische Ausgaben ueber mehrere Seeds dokumentieren reproduzierbare Modelltrajektorien unter diesen Bedingungen. Sie sind nicht automatisch statistisch unabhaengige Replikate. State-Digests sind Integritaets-/Identitaetsmarker und keine metrischen Zustandsabstaende.",
             "",
             f"Deterministische Statistikdatei: [`{statistics_path.relative_to(experiment_dir).as_posix()}`]({statistics_path.relative_to(experiment_dir).as_posix()})",
-            "",
-            "## 8. AI Research Report",
-            "",
-            f"- AIRR Status: `{ai_report.get('status', 'unknown')}`",
-            "- Wissenschaftliche Evidenz durch KI: `false`",
-            "- Human Review: `PENDING`",
         ]
     )
-
-    if ai_report.get("status") == "generated" and ai_report.get("report_id"):
-        report_id = str(ai_report["report_id"])
-        report = _read_json(experiment_dir / "reports" / f"{report_id}.json", {})
-        content = report.get("content", {}) if isinstance(report, dict) else {}
-        lines.extend(
-            [
-                f"- AIRR Markdown: [`reports/{report_id}.md`](reports/{report_id}.md)",
-                f"- AIRR JSON: [`reports/{report_id}.json`](reports/{report_id}.json)",
-                "",
-                "### 8.1 KI-Einschaetzung",
-                "",
-                (
-                    str(
-                        content.get(
-                            "executive_summary",
-                            content.get("conclusion", "Keine Einschätzung vorhanden."),
-                        )
-                    )
-                    if isinstance(content, dict)
-                    else "Keine Einschätzung vorhanden."
-                ),
-                "",
-                f"KI-Konfidenz: `{content.get('ai_confidence', 0.0) if isinstance(content, dict) else 0.0}` — dies ist keine statistische Konfidenz.",
-            ]
-        )
-        interpretation = (
-            content.get("interpretation", {}) if isinstance(content, dict) else {}
-        )
-        if not isinstance(interpretation, dict):
-            interpretation = {}
-
-        methodological = (
-            content.get("methodological_critique", [])
-            if isinstance(content, dict)
-            else []
-        )
-        alternatives = (
-            content.get("alternative_explanations", [])
-            if isinstance(content, dict)
-            else []
-        )
-        missing = (
-            content.get("missing_evidence", []) if isinstance(content, dict) else []
-        )
-        if not isinstance(missing, list) or not missing:
-            missing = interpretation.get("requested_evidence", [])
-        if not isinstance(missing, list) or not missing:
-            limitations: list[str] = []
-            observation_sources = [interpretation.get("observations", [])]
-            if isinstance(content, dict):
-                observation_sources.append(content.get("observations", []))
-            for source in observation_sources:
-                if not isinstance(source, list):
-                    continue
-                for item in source:
-                    if not isinstance(item, dict):
-                        continue
-                    item_type = item.get("type")
-                    item_value = item.get("value")
-                    if (
-                        isinstance(item_type, str)
-                        and item_type.lower() in {"limitation", "limitations"}
-                        and isinstance(item_value, str)
-                        and item_value.strip()
-                    ):
-                        limitations.append(
-                            f"AIRR-Limitation dokumentieren: {item_value.strip()}"
-                        )
-            missing = limitations
-        if not isinstance(missing, list) or not missing:
-            missing = ["Keine expliziten zusätzlichen Nachweise im AIRR angegeben."]
-
-        follow_up = (
-            content.get("recommended_follow_up", [])
-            if isinstance(content, dict)
-            else []
-        )
-        if not isinstance(follow_up, list) or not follow_up:
-            follow_up = interpretation.get("recommended_experiments", [])
-        if not isinstance(follow_up, list) or not follow_up:
-            follow_up = ["Keine expliziten Folgeexperimente im AIRR angegeben."]
-
-        for heading, values in (
-            ("Methodische Kritik", methodological),
-            ("Alternative Erklaerungen", alternatives),
-            ("Fehlende Nachweise", missing),
-            ("Empfohlene Folgeexperimente", follow_up),
-        ):
-            lines.extend(["", f"### {heading}", ""])
-            if isinstance(values, list) and values:
-                lines.extend(f"- {value}" for value in values)
-            else:
-                lines.append("- Keine expliziten Angaben.")
-    elif ai_report.get("status") == "failed":
-        lines.extend(
-            [
-                "",
-                f"AIRR-Fehler: `{ai_report.get('message', ai_report.get('reason', 'unknown'))}`. Die deterministische Datenauswertung oben bleibt davon unberuehrt.",
-            ]
-        )
+    _render_airr_sections(lines, experiment_dir, ai_report)
 
     lines.extend(["", "## 9. Artefakte", ""])
     for path in sorted(experiment_dir.rglob("*")):

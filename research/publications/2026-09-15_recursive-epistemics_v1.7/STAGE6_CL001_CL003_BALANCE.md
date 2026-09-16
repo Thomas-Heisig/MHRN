@@ -58,15 +58,45 @@ Diese Aussage ist bis zur Human Review eine **MHRN-Interpretation der vorhandene
 
 Stage 6 wird damit nicht als „gelöst“ oder als vollständig abgeschlossen bezeichnet. Für den Teilkomplex Semantization/Replay ist jedoch die Formulierung **empirisch eingegrenzt** angemessen: Eine plausible stärkere Hypothese wurde durch zwei kontrollierte Folgeexperimente begrenzt, ohne negative Resultate umzudeuten.
 
-## Forschungsentscheidung vor einem CL-004
+## Verbindlicher Entscheidungs-Gate nach der CL-003-Human-Review
 
-Aus CL-003 wird **kein automatisches CL-004** erzeugt. Vor einer weiteren Variantenstudie sind zunächst erforderlich:
+Aus CL-003 wird **kein automatisches CL-004** erzeugt. Die Rollenfrage von `SemanticMemory` darf insbesondere nicht in eine offene Folge von Kompressions-, Generalisierungs-, Skalierungs- und Langzeitgedächtnisexperimenten übergehen, nur um nach einem negativen Resultat jeweils eine neue Rechtfertigung zu suchen.
 
-1. Human Review der CL-003-DATA und der präregistrierten Analyse;
-2. gemeinsame Stage-6-Bilanz von CL-001, CL-002 und CL-003;
-3. Entscheidung, ob semantische Verdichtung als eigenständiger Mechanismus unter neuen, theoretisch begründeten Ressourcen-/Kompressionsbedingungen weiter geprüft werden soll oder ob der Forschungsfokus auf Replay und andere Mechanismen verschoben wird.
+Nach der Human Review fällt deshalb **zuerst eine Architektur- und Forschungsentscheidung**. Zulässig sind genau drei Pfade:
 
-Ein neues Experiment darf erst aus einer danach explizit formulierten Forschungsfrage entstehen. Eine bloße Suche nach einer Bedingung, unter der die bisher nicht bestätigte Überlegenheit doch noch erscheint, wäre mit dem forschungsgetriebenen Entwicklungsmodus nicht vereinbar.
+### Option A — spezialisierte Nebenrolle, keine weitere Semantikprüfung
+
+`Raw-Replay` wird für diesen Teil von Stage 6 zur kanonischen Referenz. `SemanticMemory` bleibt als technisch vorhandener Mechanismuskandidat im Code, wird aber nicht als Kernmechanismus mit nachgewiesenem Zusatznutzen geführt. Für die aktuelle Stage-6-Linie wird keine weitere eigenständige Semantikstudie eröffnet.
+
+### Option B — genau eine alternative Rolle, genau ein konfirmatorisches Experiment
+
+Es wird **eine einzige** theoretisch begründete alternative Rolle ausgewählt, beispielsweise Ressourceneffizienz/Kompression. Vor jeder Implementierung werden eine neue RQ, die konkurrierenden Hypothesen, die Erfolgsgrenze und das Stopkriterium präregistriert. Der Ressourcenrahmen ist auf **eine Rolle, ein Experiment und nur die dafür notwendige minimale Instrumentierung** begrenzt.
+
+Ist dieses Experiment negativ beziehungsweise erfüllt die präregistrierte Rechtfertigungsgrenze nicht, folgt für diese Entscheidungslinie **Option A**. Es wird nicht unmittelbar auf eine zweite `SemanticMemory`-Rolle ausgewichen.
+
+### Option C — Rollenfrage parken
+
+Die Rollenfrage bleibt explizit offen, wird aber nicht weiterverfolgt, bis andere Stage-6-Mechanismen — insbesondere kausaler Prediction Error und World Model — wissenschaftlich weiter geklärt sind. Eine spätere Wiederaufnahme ist nur dann gerechtfertigt, wenn aus diesen Arbeiten eine konkrete funktionale Notwendigkeit für semantische Verdichtung entsteht; bloße Verfügbarkeit eines weiteren testbaren Szenarios reicht nicht.
+
+## Anti-Ausweichregel
+
+Die denkbaren Rollen von `SemanticMemory` sind **kein Forschungsbacklog**. Sie bilden einen Hypothesenraum, aus dem nach der CL-003-Human-Review entweder keine weitere Rolle, genau eine Rolle oder vorerst keine weitere Prüfung gewählt wird.
+
+Damit gilt:
+
+1. Human Review und EVID-Entscheidung zu CL-003 zuerst;
+2. danach Wahl A, B oder C;
+3. bei B maximal ein neues konfirmatorisches Rollenexperiment;
+4. keine serielle Rettung durch Wechsel zur jeweils nächsten Rolle;
+5. negative Ergebnisse dürfen zur Reduktion eines Mechanismus führen und müssen nicht durch neue Funktionsannahmen kompensiert werden.
+
+Ein neues Experiment darf erst aus einer danach explizit formulierten Forschungsfrage entstehen. Eine bloße Suche nach einer Bedingung, unter der die bisher nicht bestätigte Überlegenheit oder Notwendigkeit doch noch erscheint, wäre mit dem forschungsgetriebenen Entwicklungsmodus nicht vereinbar.
+
+## Bedeutung für das Projekt
+
+Die unmittelbare Konsequenz ist keine Entfernung von `SemanticMemory`, sondern eine Änderung seiner epistemischen Stellung. Bis zu einer anderslautenden, reviewten Evidenzentscheidung ist Raw-Replay der Referenzmechanismus für den untersuchten Continual-Learning-Teil von Stage 6; `SemanticMemory` ist ein technisch funktionsfähiger, aber hinsichtlich eines zusätzlichen Kernnutzens nicht abschließend gerechtfertigter Mechanismuskandidat.
+
+Damit wird MHRN in diesem Bereich von Feature-Akkumulation zu **empirischer Architekturselektion** gezwungen: Ein zusätzlicher Mechanismus bleibt nicht deshalb zentral, weil er implementiert ist oder theoretisch weitere Rollen haben könnte, sondern nur, wenn eine begrenzte Forschungsentscheidung seine Rolle trägt.
 
 ## Provenienz
 
