@@ -1,6 +1,6 @@
 # Current Scientific State
 
-**Stand:** 15. September 2026
+**Stand:** 16. September 2026
 
 Dieses Dokument ist der kurze Einstieg in den aktuellen wissenschaftlichen Zustand des Repositories. Historische DATA, EVID-Entscheidungen und eingefrorene Publikationsstände bleiben in ihren datierten Verzeichnissen unverändert.
 
@@ -10,7 +10,7 @@ Dieses Dokument ist der kurze Einstieg in den aktuellen wissenschaftlichen Zusta
 - Einstieg: `research/publications/2026-09-15_recursive-epistemics_v1.7/MANUSCRIPT.md`
 - unmittelbarer Vorgänger: Fassung 1.6
 - frozen empirical baseline: Fassung 1.5 / `EXP-EMP-20260913-A3`
-- menschliches wissenschaftliches Review: ausstehend
+- menschliches wissenschaftliches Review: für CL-003 ausstehend
 - unabhängige Replikation: unvollständig
 - automatische EVID-Promotion: deaktiviert
 
@@ -25,17 +25,34 @@ Stage 6 — Gedächtnis und Weltmodell.
 ### Semantization / Continual Learning
 
 - `EXP-S6-SEM-CL-001`: positiver präregistrierter Mechanismusbefund gegenüber einer naiven Online-Baseline ohne Replay unter seinem eigenen eingefrorenen Protokoll.
-- `EXP-S6-SEM-CL-002`: präregistrierter, vollständig gepaarter Negativbefund für die spezifischere Hypothese eines Vorteils semantischer Prototypen gegenüber gleich objekt- und updatebudgetiertem Raw-Replay. Alle drei konjunktiven Erfolgskriterien verfehlten die vorab festgelegten Mindestwirkungen; H1 gilt unter diesem Protokoll als falsifiziert.
-- Der kleine B3-vs-B4-Accuracy-Unterschied in CL-002 lag bei rund 0,18 Prozentpunkten und damit weit unter der präregistrierten Mindestwirkung von 3 Prozentpunkten. Er ist deshalb kein positiver konfirmatorischer Semantikbefund.
-- CL-002 beweist nicht rückwirkend, dass CL-001 ausschließlich durch Replay erklärt wird, weil die Replay- und Updateregime beider Experimente verschieden sind. Belastbar ist derzeit nur: Ein spezifischer Vorteil semantischer Verdichtung gegenüber Raw-Replay ist nicht nachgewiesen.
-- `EXP-S6-SEM-CL-003`: Runner, Freeze-Manifest und Dose-Response-Vorbereitung sind in `main` integriert. Das ist ein präparativer Stand, keine Experimentausführung und keine neue EVID.
+- `EXP-S6-SEM-CL-002`: präregistrierter, vollständig gepaarter Negativbefund für die spezifischere Hypothese eines Vorteils semantischer Prototypen gegenüber gleich objekt- und updatebudgetiertem Raw-Replay. Die menschliche Projekt-EVID klassifiziert H1 unter diesem Protokoll als falsifiziert.
+- CL-002 beweist nicht rückwirkend, dass CL-001 ausschließlich durch Replay erklärt wird, weil die Replay- und Updateregime beider Experimente verschieden sind. Belastbar ist: Ein spezifischer Vorteil semantischer Verdichtung gegenüber Raw-Replay wurde unter CL-002 nicht nachgewiesen.
+- `EXP-S6-SEM-CL-003`: am 16. September 2026 genau einmal als autorisierte, freeze- und hash-gebundene Kampagne mit 84 Runs = 12 Seeds × 7 Bedingungen ausgeführt. Die Runner-Klassifikation lautet `H1_negative_H2_negative`.
+- In CL-003 bestehen C1, C2 und C4 die präregistrierten Erfolgsregeln nicht. C3 (`S20 − X20`) besteht mit rund +14,9 Prozentpunkten und zeigt auf DATA-Ebene relevante, nicht-zufällige Struktur in der semantischen Repräsentation. Daraus folgt kein bestätigter Vorteil gegenüber Raw-Replay.
+- Der deskriptive Semantic-minus-Raw-Trend über 5 %, 20 % und 40 % Replay-Dosis wird nicht als bestätigter Dosis-Effekt interpretiert, weil C4 negativ bleibt.
 
-CL-002-DATA liegen unter `research/experiments/EXP-S6-SEM-CL-002/results/`; die menschliche Projektinterpretation liegt unter `research/experiments/EXP-S6-SEM-CL-002/EVID.md` und `EVID.json`.
+Die aktuelle DATA-only-Zwischenbilanz lautet deshalb:
+
+> Unter den bisher untersuchten Bedingungen liegt der nachweisbare Beitrag primär im Replay. Die semantische Verdichtung erhält relevante Struktur, zeigt aber bislang keinen präregistriert bestätigten Zusatznutzen gegenüber gematchtem Raw-Replay.
+
+Für CL-003 gilt weiterhin strikt: **DATA, nicht EVID**, bis die Human Review abgeschlossen ist. Die ausführliche Bilanz steht unter `research/publications/2026-09-15_recursive-epistemics_v1.7/STAGE6_CL001_CL003_BALANCE.md`.
+
+### Entscheidungsgate für SemanticMemory
+
+Aus CL-003 folgt kein automatisches CL-004. Nach der Human Review muss zuerst eine explizite Forschungs- und Architekturentscheidung fallen:
+
+- **A:** `SemanticMemory` auf eine spezialisierte Nebenrolle reduzieren; Raw-Replay bleibt Referenz; keine weitere Semantikprüfung.
+- **B:** genau **eine** alternative Rolle in genau **einem** neuen, präregistrierten konfirmatorischen Experiment prüfen; bei negativem Ergebnis folgt A.
+- **C:** Rollenfrage parken und zunächst andere Stage-6-Mechanismen wie kausalen Prediction Error und World Model untersuchen.
+
+Kompression, Generalisierung, Skalierung und Langzeitgedächtnis werden ausdrücklich **nicht** als automatische Experimentwarteschlange geführt. Eine serielle Rettung des Mechanismus durch jeweils neue Rollenannahmen ist nicht zulässig.
+
+Bis zu einer anderslautenden reviewten Evidenzentscheidung ist `SemanticMemory` ein technisch funktionsfähiger, hinsichtlich eines zusätzlichen Kernnutzens aber nicht abschließend gerechtfertigter Mechanismuskandidat. Für den untersuchten Continual-Learning-Teil von Stage 6 ist Raw-Replay die kanonische Referenz.
 
 Offen bleiben insbesondere:
 
-- Replikation und Dosis-/Budget-Ablation ohne post-hoc Änderung von CL-002,
-- kontrollierte Ausführung und Auswertung von CL-003 erst nach den vorgesehenen Freigaben,
+- Human Review und EVID-Entscheidung zu CL-003,
+- anschließende Wahl A/B/C für die Rollenfrage von `SemanticMemory`,
 - neuronale und abladierbare Prediction-Error-Dynamik,
 - mehrschrittiges aktionskonditioniertes Weltmodell,
 - gekoppelte Persistenz/Restore-Identität,

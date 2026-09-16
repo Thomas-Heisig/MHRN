@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "effective_date": "2026-09-15",
+  "effective_date": "2026-09-16",
   "description": "High-authority overrides for paths whose scientific role must never depend only on filename heuristics. All remaining files are declared by explicit zone rules in scripts/audit_document_governance.py.",
   "overrides": {
     "docs/README.md": {
@@ -74,6 +74,15 @@
       "citation": "cite_generated_source_data_and_tool_revision",
       "evidence_role": "tool_not_evidence",
       "rationale": "Generates derived research projections; generated output cannot outrank its sources."
+    },
+    "research/archive/experiment_index.json": {
+      "kind": "archive_metadata_index",
+      "status": "archive",
+      "authority": "archive_provenance_index",
+      "mutability": "append_only_via_archive_operation",
+      "citation": "cite_archived_experiment_manifest_and_digest_not_index_when_possible",
+      "evidence_role": "archive_metadata_not_evidence",
+      "rationale": "Metadata-only index of manually archived experiment paths and manifest digests; preserves traceability without promoting archived runs to evidence."
     },
     "research/EXP-RETRY-AIRR-2026-0001.execution.json": {
       "kind": "experiment_execution_receipt",

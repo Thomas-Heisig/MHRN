@@ -2,7 +2,7 @@
 
 ## Recursive Epistemics in Embodied Spiking Neural Architectures
 
-**Thomas Heisig · MHRN · Fassung 1.7 · fortgeschriebene Arbeitsfassung · 15. September 2026**
+**Thomas Heisig · MHRN · Fassung 1.7 · fortgeschriebene Arbeitsfassung · 16. September 2026**
 
 > **Versionshinweis.** Dies ist die aktuell fortgeschriebene `work in progress`-Fassung. Unmittelbare Vorgängerfassung ist [1.6](../2026-09-15_recursive-epistemics_v1.6/README.md). Die empirische Publikationsbasis [1.5](../FROZEN_V1.5.md) bleibt eingefroren und wird durch diese Revision nicht rückwirkend verändert.
 
@@ -34,7 +34,7 @@ Die Editionslinie lautet:
 
 - **1.5, 13.09.2026:** eingefrorene empirische Basis mit vollständiger damaliger Kampagnen- und Manuskriptprovenienz;
 - **1.6, 15.09.2026:** integrative Revision mit separater Scientific-Maturity-Achse, Integritäts-/Attributionsregeln und verschärften Stage-6-Claim-Grenzen;
-- **1.7, 15.09.2026:** fortgeschriebene Gesamtarbeitsfassung, die Haupt- und Nebenarbeiten, Governance, Neuheitsunsicherheit, Dokumentenordnung und laufende WIP-Änderungen in einem aktuellen Leserstand zusammenführt.
+- **1.7, ab 15.09.2026:** fortgeschriebene Gesamtarbeitsfassung, die Haupt- und Nebenarbeiten, Governance, Neuheitsunsicherheit, Dokumentenordnung und laufende WIP-Änderungen in einem aktuellen Leserstand zusammenführt.
 
 Historische DATA und EVID werden nicht auf den heutigen Codezustand umgedeutet. Eine ältere Messung bleibt eine Messung des damaligen Quellstands. Neue Instrumentierung rechtfertigt ein neues Experiment, nicht das Umschreiben alter Ergebnisse.
 
@@ -131,7 +131,7 @@ Aktueller konservativer Scientific-Maturity-Snapshot dieser Edition:
 | 3 | plastisches Nervengewebe | 55 % | held-out Learning-EVID und unabhängige Replikation offen |
 | 4 | spezialisierte neuronale Areale | 55 % | modality-specific DATA vorhanden, wissenschaftliche Mehrleistung noch nicht breit belegt |
 | 5 | integriertes künstliches Nervensystem | 55 % | Real-Device-/Closed-loop-EVID und Läsionskontrollen offen |
-| 6 | Gedächtnis und Weltmodell | 40 % | keine abgeschlossene Semantization, kein hierarchisches Predictive Coding, kein vollständiges generatives Weltmodell |
+| 6 | Gedächtnis und Weltmodell | 40 % | Semantization/Replay empirisch eingegrenzt; kausaler Prediction Error und vollständiges generatives Weltmodell offen |
 | 7 | technische Identität / Selbstmodellgrundlagen | 28 % | Identitätsverwaltung ist kein kausales Selbstmodell |
 | 8 | höhere Kognition | 23 % | überwiegend Forschungsprogramm |
 | 9 | metakognitive / soziale Frontier | 15 % | Implementierung/Evidenz nicht ausreichend |
@@ -230,9 +230,41 @@ Diese Komponenten sind **nicht gleichbedeutend** mit:
 
 Die stärkste derzeit zulässige Formulierung lautet: MHRN besitzt eine experimentierbare Gedächtnis-/Vorhersageinfrastruktur und mehrere Mechanismuskandidaten, deren wissenschaftliche Reichweite noch durch gezielte Interventionen bestimmt werden muss.
 
-## 13.3 Semantization
+## 13.3 Semantization und Replay — empirische Eingrenzung
 
-Die relevante Hypothese ist, dass wiederholte episodische Erfahrung, Replay und Konsolidierung zu einer gegenüber Einzelepisoden abstrakteren Repräsentation führen können. Ein semantischer Store als Datenstruktur reicht dafür nicht aus. Nötig sind Operationalisierungen von Generalisierung, episodischer Abhängigkeit und Transfer, dazu Replay-off, shuffled-replay und matched-exposure Kontrollen.
+Die ursprüngliche Arbeitsannahme war, dass wiederholte episodische Erfahrung, Replay und Konsolidierung zu einer gegenüber Einzelepisoden abstrakteren Repräsentation führen können und dass eine solche semantische Verdichtung einen eigenständigen Lernvorteil besitzen könnte. Die Experimente CL-001 bis CL-003 erlauben inzwischen eine deutlich engere Aussage.
+
+**CL-001** zeigte unter seinem eingefrorenen Protokoll einen Vorteil von Semantik + Replay gegenüber einer naiven No-Replay-Baseline. Dieser Befund zeigte, dass der kombinierte Mechanismus nützlich sein kann, trennte Replay und semantische Repräsentation aber nicht hinreichend voneinander.
+
+**CL-002** adressierte genau diese Trennung mit gleich budgetiertem Raw-Experience-Replay. Die menschlich reviewte Projekt-EVID bestätigt unter diesem Protokoll keinen konfirmatorischen Vorteil semantischer Prototypkonsolidierung gegenüber Raw-Replay; H1 gilt für CL-002 als falsifiziert. Daraus folgt ausdrücklich nicht, dass `SemanticMemory` allgemein nutzlos ist oder dass CL-001 ausschließlich durch Replay verursacht wurde.
+
+**CL-003** prüfte die verbleibende Dosisalternative in einer autorisierten, vorab freeze- und hash-gebundenen Kampagne mit 84 Runs = 12 Seeds × 7 Bedingungen. Auf DATA-Ebene bestehen C1, C2 und C4 die präregistrierten Erfolgsregeln nicht. Der deskriptive Semantic-minus-Raw-Accuracy-Unterschied wächst von etwa +1,42 Prozentpunkten bei 5 % über +2,18 Prozentpunkte bei 20 % auf +3,00 Prozentpunkte bei 40 %, darf aber wegen des negativen präregistrierten Interaktionstests C4 nicht als bestätigter Dosis-Effekt interpretiert werden.
+
+C3 (`S20 − X20`) ist dagegen klar positiv: Semantic liegt gegenüber dem Random-Prototype-Control um rund +14,9 Prozentpunkte höher. Die zulässige Aussage ist eng: **Die semantische Repräsentation trägt relevante, nicht-zufällige Struktur.** Daraus folgt jedoch kein bestätigter Zusatznutzen gegenüber gematchtem Raw-Replay.
+
+Die aktuelle DATA-only-Zwischenbilanz lautet deshalb:
+
+> **Unter den bisher untersuchten Bedingungen liegt der nachweisbare Beitrag primär im Replay. Die semantische Verdichtung erhält relevante Struktur, zeigt aber bislang keinen präregistriert bestätigten Zusatznutzen gegenüber gematchtem Raw-Replay.**
+
+CL-003 bleibt bis zur Human Review ausdrücklich `DATA`, nicht `EVID`. Die ausführliche Kontrast- und Provenienzbilanz steht in [STAGE6_CL001_CL003_BALANCE.md](STAGE6_CL001_CL003_BALANCE.md).
+
+### 13.3.1 Konsequenz für die Architektur
+
+Für den untersuchten Continual-Learning-Teil von Stage 6 wird Raw-Replay bis zu einer anderslautenden reviewten Evidenzentscheidung als **kanonische Referenz** behandelt. `SemanticMemory` bleibt technisch vorhanden, wird aber nicht mehr allein aufgrund seiner Existenz oder theoretisch denkbarer Rollen als zentraler Mechanismus behandelt. Seine epistemische Stellung ist die eines funktionsfähigen, hinsichtlich eines zusätzlichen Kernnutzens noch nicht abschließend gerechtfertigten Mechanismuskandidaten.
+
+Diese Neubewertung ist kein Entwicklungsfehler, sondern ein Ergebnis empirischer Architekturselektion: Ein zusätzlicher Mechanismus muss zeigen, welchen nachweisbaren Beitrag er gegenüber einer einfacheren Referenz leistet.
+
+### 13.3.2 Verbindliche Begrenzung der Rollenfrage
+
+Nach der CL-003-Human-Review beginnt **nicht automatisch** eine Serie weiterer Semantikexperimente. Kompression, Ressourceneffizienz, Generalisierung, Skalierung oder Langzeitgedächtnis sind mögliche Hypothesenräume, aber **kein automatischer Forschungsbacklog**.
+
+Nach der Human Review muss zuerst eine der folgenden drei Entscheidungen fallen:
+
+- **Option A:** `SemanticMemory` wird auf eine spezialisierte Nebenrolle reduziert; Raw-Replay bleibt Referenz; keine weitere eigenständige Semantikprüfung in der aktuellen Linie.
+- **Option B:** genau **eine** theoretisch begründete alternative Rolle wird in genau **einem** neuen präregistrierten konfirmatorischen Experiment geprüft. Forschungsfrage, konkurrierende Hypothesen, Erfolgsgrenze und Stopkriterium werden vor Implementierung und Ausführung fixiert. Bei negativem Ergebnis folgt Option A; es wird nicht unmittelbar auf eine zweite Rolle ausgewichen.
+- **Option C:** die Rollenfrage wird geparkt, bis Arbeiten an Prediction Error oder World Model eine konkrete funktionale Notwendigkeit für semantische Verdichtung erzeugen.
+
+Damit wird eine serielle „Rettung“ des Mechanismus ausgeschlossen. Negative Befunde dürfen zu einer Reduktion oder Dezentrierung eines Mechanismus führen. Die Frage lautet nicht, welche von beliebig vielen Rollen `SemanticMemory` noch erfüllen könnte, sondern ob das Projekt überhaupt genau eine weitere Rollenprüfung rechtfertigt.
 
 ## 13.4 Predictive Coding
 
@@ -311,6 +343,8 @@ MHRN betrachtet negative Ergebnisse als wissenschaftlich wertvoll. Beispiele fr�
 Die korrekte Reaktion auf verbesserte Instrumentierung ist ein neuer, quellengebundener Lauf. Historische DATA werden nicht „repariert“, um zu einer späteren Erwartung zu passen.
 
 Auch das Fehlen von unabhängiger Replikation ist ein Ergebnis über den Reifegrad der Evidenz und darf nicht durch interne Wiederholung semantisch ersetzt werden.
+
+Die CL-001–CL-003-Linie erweitert diese Regel um **empirische Architekturselektion**: Ein negativer Befund darf nicht automatisch durch eine Folge neuer Funktionsannahmen kompensiert werden. Wenn ein Mechanismus gegenüber einer einfacheren Referenz keinen Zusatznutzen zeigt, ist seine Dezentrierung oder Reduktion eine wissenschaftlich zulässige Konsequenz.
 
 ---
 
@@ -418,7 +452,7 @@ Die nächsten wissenschaftlich priorisierten Arbeiten sind:
 3. **Stage 3:** held-out Multi-Seed-Plastizitätsexperimente, Langzeitstabilität und Ressourceninteraktion.
 4. **Stage 4:** modality-specific vs. general matched controls, Läsion/Shuffle/Frozen.
 5. **Stage 5:** echte closed-loop Real-Device-/No-Effect-/Sensor-Loss-Studien.
-6. **Stage 6:** Replay/Konsolidierung→Semantization, kausaler neuronaler Prediction Error, Mehrschritt-/aktionskonditioniertes World Model und decision benefit.
+6. **Stage 6:** zuerst Human Review und EVID-Entscheidung zu CL-003, danach explizite A/B/C-Entscheidung zur Rolle von `SemanticMemory`; parallel beziehungsweise anschließend kausaler neuronaler Prediction Error, Mehrschritt-/aktionskonditioniertes World Model und decision benefit. Es existiert kein automatisches CL-004 und keine offene Warteschlange aus Semantik-Rettungsexperimenten.
 7. **Stage 7:** kausale self/other Unterscheidung und vollständige Checkpointäquivalenz.
 8. **Stages 8–10:** erst Operationalisierung/Definitionsarbeit, dann Implementierung; keine Fortschrittsbehauptung aus Planung.
 9. **Neuheitsprüfung:** Prior-Art-Recherche für die drei benannten Architektur-/Prozesskandidaten.
@@ -438,7 +472,10 @@ Die wichtigste methodische Verbesserung der Fassung 1.7 besteht daher nicht in e
 - übernommene und eigene Ideen werden getrennt;
 - potenzielle Beiträge werden von bewiesener Neuheit getrennt;
 - negative Befunde bleiben erhalten;
+- Mechanismen dürfen nach negativen oder begrenzenden Befunden dezentriert werden, statt durch unbegrenzt neue Rollenannahmen geschützt zu werden;
 - und die aktuelle Arbeitsfassung ist im Publication Viewer direkt sichtbar, während die empirische 1.5 eingefroren zitierbar bleibt.
+
+Die CL-001–CL-003-Linie ist dafür ein konkretes Beispiel: Replay bleibt als relevanter Beitrag bestehen, während der zusätzliche Kernnutzen semantischer Verdichtung gegenüber gematchtem Raw-Replay bislang nicht bestätigt ist. `SemanticMemory` wird deshalb nicht automatisch weiter zentriert. Nach der ausstehenden CL-003-Human-Review muss eine begrenzte Architekturentscheidung fallen.
 
 Damit wird die Arbeit nicht „kritikfrei“. Sie wird **kritikfähig**: Ein externer Leser soll erkennen können, was MHRN behauptet, worauf diese Aussage beruht, was noch offen ist und wo eine Widerlegung oder Replikation ansetzen kann.
 
@@ -447,6 +484,7 @@ Damit wird die Arbeit nicht „kritikfrei“. Sie wird **kritikfähig**: Ein ext
 # Anhang A — stabile Einstiege
 
 - [Aktuelle Edition 1.7](README.md)
+- [Stage-6-Zwischenbilanz CL-001 bis CL-003](STAGE6_CL001_CL003_BALANCE.md)
 - [Worte des Autors](AUTHOR_POSITION.md)
 - [Beitrags- und Neuheitsmatrix](CONTRIBUTION_MAP.md)
 - [Current-Pointer](../CURRENT.md)
