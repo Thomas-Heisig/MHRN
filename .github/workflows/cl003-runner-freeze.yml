@@ -4,16 +4,35 @@ on:
   push:
     branches:
       - research/exp-s6-sem-cl-003-runner-freeze-20260915
-    paths-ignore:
-      - research/preregistrations/frozen/EXP-S6-SEM-CL-003-FREEZE.json
+      - feature/research-driven-experiment-workflow-20260915
+    paths:
+      - .github/workflows/cl003-runner-freeze.yml
+      - src/research/continual_semantization.py
+      - src/research/continual_semantization_controls.py
+      - src/research/continual_semantization_dose.py
+      - src/memory/semantic.py
+      - src/memory/neural_episodic.py
+      - scripts/run_semantization_split_mnist_cl003.py
+      - scripts/generate_cl003_freeze_manifest.py
+      - tests/test_continual_semantization_dose.py
+      - tests/test_continual_semantization_controls.py
+      - tests/test_semantic_memory.py
+      - research/preregistrations/EXP-S6-SEM-CL-003.md
+      - research/preregistrations/operational/EXP-S6-SEM-CL-003.json
   pull_request:
     branches:
       - main
     paths:
+      - src/research/continual_semantization.py
+      - src/research/continual_semantization_controls.py
       - src/research/continual_semantization_dose.py
+      - src/memory/semantic.py
+      - src/memory/neural_episodic.py
       - scripts/run_semantization_split_mnist_cl003.py
       - scripts/generate_cl003_freeze_manifest.py
       - tests/test_continual_semantization_dose.py
+      - tests/test_continual_semantization_controls.py
+      - tests/test_semantic_memory.py
       - research/preregistrations/EXP-S6-SEM-CL-003.md
       - research/preregistrations/operational/EXP-S6-SEM-CL-003.json
 
@@ -65,5 +84,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add src/research/continual_semantization_dose.py scripts/run_semantization_split_mnist_cl003.py scripts/generate_cl003_freeze_manifest.py tests/test_continual_semantization_dose.py research/preregistrations/frozen/EXP-S6-SEM-CL-003-FREEZE.json
-          git commit -m "research: normalize and freeze CL-003 sources"
+          git commit -m "research: normalize and re-freeze CL-003 sources"
           git push
