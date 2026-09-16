@@ -4,15 +4,23 @@ This test deliberately distinguishes research readiness from overall scientific
 maturity. Human EVID promotion and independent authorship replication remain
 separate gates.
 """
+
 from __future__ import annotations
 
 import json
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-READINESS = ROOT / "research/generated/verification/single_neuron_scientific_readiness.json"
-DATA = ROOT / "research/experiments/EXP-STAGE0-20260916-MODEL-CONFORMANCE-V2/DATA/confirmatory_result.json"
-PREREG = ROOT / "research/preregistrations/operational/single_neuron_conformance_v2.json"
+READINESS = (
+    ROOT / "research/generated/verification/single_neuron_scientific_readiness.json"
+)
+DATA = (
+    ROOT
+    / "research/experiments/EXP-STAGE0-20260916-MODEL-CONFORMANCE-V2/DATA/confirmatory_result.json"
+)
+PREREG = (
+    ROOT / "research/preregistrations/operational/single_neuron_conformance_v2.json"
+)
 
 
 def _load(path: Path) -> dict[str, object]:

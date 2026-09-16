@@ -6,6 +6,7 @@ sub-nanoscopic floating-point differences to amplify chaotically across hundreds
 of recurrent state updates. Free-running spike robustness remains a distinct
 secondary outcome.
 """
+
 from __future__ import annotations
 
 import json
@@ -20,7 +21,9 @@ OUT = Path("stage0-conformance-v2.json")
 SEEDS = (20001, 20002, 20003)
 
 
-def _native_transition(v: float, u: float, current: float) -> tuple[float, float, bool, float, float]:
+def _native_transition(
+    v: float, u: float, current: float
+) -> tuple[float, float, bool, float, float]:
     cfg = NeuronConfig.isolated_reference(model=NeuronModel.IZHIKEVICH)
     nv, nu = integrate_membrane(
         NeuronModel.IZHIKEVICH,
@@ -35,18 +38,24 @@ def _native_transition(v: float, u: float, current: float) -> tuple[float, float
         lif_resistance=cfg.lif_resistance,
     )
     spiked = nv >= cfg.izhikevich_threshold
-    pv, pu = apply_spike_reset(
-        NeuronModel.IZHIKEVICH,
-        v=nv,
-        u=nu,
-        c=cfg.c,
-        d=cfg.d,
-        lif_reset=cfg.lif_reset,
-    ) if spiked else (nv, nu)
+    pv, pu = (
+        apply_spike_reset(
+            NeuronModel.IZHIKEVICH,
+            v=nv,
+            u=nu,
+            c=cfg.c,
+            d=cfg.d,
+            lif_reset=cfg.lif_reset,
+        )
+        if spiked
+        else (nv, nu)
+    )
     return nv, nu, spiked, pv, pu
 
 
-def _brian_transition(v: float, u: float, current: float) -> tuple[float, float, bool, float, float]:
+def _brian_transition(
+    v: float, u: float, current: float
+) -> tuple[float, float, bool, float, float]:
     import brian2 as brian
 
     brian.start_scope()
@@ -94,7 +103,9 @@ def _sample_states(seed: int, count: int = 64) -> list[tuple[float, float, float
         (29.9, -5.0, 20.0),
     ]
     while len(states) < count:
-        states.append((rng.uniform(-80, 29.9), rng.uniform(-25, 20), rng.uniform(-10, 80)))
+        states.append(
+            (rng.uniform(-80, 29.9), rng.uniform(-25, 20), rng.uniform(-10, 80))
+        )
     return states
 
 
@@ -133,13 +144,18 @@ def _izh_local(seed: int) -> dict[str, Any]:
         "max_abs_post_reset_v_error": max_post_v,
         "max_abs_post_reset_u_error": max_post_u,
         "spike_decisions_equal": spike_equal,
-        "conformance_within_1e_8": spike_equal and max(max_pre_v, max_pre_u, max_post_v, max_post_u) <= 1e-8,
+        "conformance_within_1e_8": spike_equal
+        and max(max_pre_v, max_pre_u, max_post_v, max_post_u) <= 1e-8,
         "first_failure": first_failure,
     }
 
 
-def _lif_native(currents: list[list[float]], refractory_ticks: int) -> tuple[list[list[float]], list[tuple[int, int]]]:
-    cfg = NeuronConfig.isolated_reference(model=NeuronModel.LEAKY_INTEGRATE_AND_FIRE, refractory_ticks=refractory_ticks)
+def _lif_native(
+    currents: list[list[float]], refractory_ticks: int
+) -> tuple[list[list[float]], list[tuple[int, int]]]:
+    cfg = NeuronConfig.isolated_reference(
+        model=NeuronModel.LEAKY_INTEGRATE_AND_FIRE, refractory_ticks=refractory_ticks
+    )
     cells = [create_neuron(i, config=cfg) for i in range(5)]
     states: list[list[float]] = []
     spikes: list[tuple[int, int]] = []
@@ -151,7 +167,9 @@ def _lif_native(currents: list[list[float]], refractory_ticks: int) -> tuple[lis
     return states, spikes
 
 
-def _lif_brian(currents: list[list[float]], refractory_ms: int) -> tuple[list[list[float]], list[tuple[int, int]]]:
+def _lif_brian(
+    currents: list[list[float]], refractory_ms: int
+) -> tuple[list[list[float]], list[tuple[int, int]]]:
     import brian2 as brian
     import numpy as np
 
@@ -178,37 +196,47 @@ def _lif_brian(currents: list[list[float]], refractory_ms: int) -> tuple[list[li
     spikes = brian.SpikeMonitor(group)
     net = brian.Network(group, states, spikes)
     net.run(len(currents) * brian.ms)
-    return states.v.T.tolist(), [(int(round(float(t / brian.ms))), int(i)) for t, i in zip(spikes.t, spikes.i)]
+    return states.v.T.tolist(), [
+        (int(round(float(t / brian.ms))), int(i)) for t, i in zip(spikes.t, spikes.i)
+    ]
 
 
 def _max_abs(left: list[list[float]], right: list[list[float]]) -> float:
-    return max(abs(a-b) for x, y in zip(left, right) for a, b in zip(x, y))
+    return max(abs(a - b) for x, y in zip(left, right) for a, b in zip(x, y))
 
 
 def _lif_mapping(seed: int) -> list[dict[str, Any]]:
     rng = random.Random(seed)
-    currents = [[2.0, 5.0, 10.0, 20.0, rng.choice((0.0, 10.0, 50.0))] for _ in range(1000)]
+    currents = [
+        [2.0, 5.0, 10.0, 20.0, rng.choice((0.0, 10.0, 50.0))] for _ in range(1000)
+    ]
     out: list[dict[str, Any]] = []
     for native_ticks in (0, 1, 2, 3):
         nv, ns = _lif_native(currents, native_ticks)
         for brian_ms in range(0, 6):
             bv, bs = _lif_brian(currents, brian_ms)
-            out.append({
-                "seed": seed,
-                "native_refractory_ticks": native_ticks,
-                "brian2_refractory_ms": brian_ms,
-                "spike_events_equal": ns == bs,
-                "max_abs_v_error": _max_abs(nv, bv),
-                "native_spike_count": len(ns),
-                "brian2_spike_count": len(bs),
-            })
+            out.append(
+                {
+                    "seed": seed,
+                    "native_refractory_ticks": native_ticks,
+                    "brian2_refractory_ms": brian_ms,
+                    "spike_events_equal": ns == bs,
+                    "max_abs_v_error": _max_abs(nv, bv),
+                    "native_spike_count": len(ns),
+                    "brian2_spike_count": len(bs),
+                }
+            )
     return out
 
 
 def main() -> None:
     izh = [_izh_local(seed) for seed in SEEDS]
     lif = [row for seed in SEEDS for row in _lif_mapping(seed)]
-    exact_mappings = [row for row in lif if row["spike_events_equal"] and row["max_abs_v_error"] <= 1e-8]
+    exact_mappings = [
+        row
+        for row in lif
+        if row["spike_events_equal"] and row["max_abs_v_error"] <= 1e-8
+    ]
     payload = {
         "status": "diagnostic_only_not_evidence",
         "protocol_candidate": "single_neuron_conformance_v2",
@@ -222,7 +250,9 @@ def main() -> None:
             "lif_primary_default": "refractory_ticks=0 is part of the canonical alternative-model conformance; nonzero refractory is an optional extension with separately mapped semantics",
         },
     }
-    OUT.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    OUT.write_text(
+        json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
     print(OUT.read_text(encoding="utf-8"))
 
 

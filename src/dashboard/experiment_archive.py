@@ -117,7 +117,9 @@ class ExperimentArchiveService:
                     "archive_mode": "metadata_only",
                     "canonical_path": f"experiments/{experiment_id}",
                     "available": (canonical / "manifest.json").is_file(),
-                    **({"manifest": manifest_data} if manifest_data is not None else {}),
+                    **(
+                        {"manifest": manifest_data} if manifest_data is not None else {}
+                    ),
                     **metadata,
                 }
             )
@@ -150,7 +152,11 @@ class ExperimentArchiveService:
                         "legacy": True,
                         "canonical_path": f"experiments/{directory.name}",
                         "available": True,
-                        **({"manifest": manifest_data} if manifest_data is not None else {}),
+                        **(
+                            {"manifest": manifest_data}
+                            if manifest_data is not None
+                            else {}
+                        ),
                         **legacy_metadata,
                     }
                 )

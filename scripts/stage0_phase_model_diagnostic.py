@@ -5,6 +5,7 @@ before reset and the state after reset, so a scheduler-phase mismatch cannot be
 mistaken for a membrane-model error. It also characterizes the optional LIF
 refractory extension without changing its semantics.
 """
+
 from __future__ import annotations
 
 import json
@@ -23,10 +24,7 @@ CELLS = 5
 
 def _currents(seed: int) -> list[list[float]]:
     rng = random.Random(seed)
-    return [
-        [2.0, 5.0, 10.0, 20.0, rng.choice((0.0, 10.0, 50.0))]
-        for _ in range(TICKS)
-    ]
+    return [[2.0, 5.0, 10.0, 20.0, rng.choice((0.0, 10.0, 50.0))] for _ in range(TICKS)]
 
 
 def _max_abs(left: list[list[float]], right: list[list[float]]) -> float:
@@ -144,7 +142,8 @@ def _brian2_izh(currents: list[list[float]]) -> dict[str, Any]:
         "post_v": post.v.T.tolist(),
         "post_u": post.u.T.tolist(),
         "spikes": [
-            (int(round(float(t / brian.ms))), int(i)) for t, i in zip(spikes.t, spikes.i)
+            (int(round(float(t / brian.ms))), int(i))
+            for t, i in zip(spikes.t, spikes.i)
         ],
         "version": str(brian.__version__),
     }
@@ -192,7 +191,8 @@ def _brian2_lif(currents: list[list[float]], refractory_ticks: int) -> dict[str,
     return {
         "post_v": states.v.T.tolist(),
         "spikes": [
-            (int(round(float(t / brian.ms))), int(i)) for t, i in zip(spikes.t, spikes.i)
+            (int(round(float(t / brian.ms))), int(i))
+            for t, i in zip(spikes.t, spikes.i)
         ],
         "version": str(brian.__version__),
     }
@@ -212,17 +212,27 @@ def main() -> None:
                 "pre_reset": {
                     "max_abs_v_error": _max_abs(native["pre_v"], brian["pre_v"]),
                     "max_abs_u_error": _max_abs(native["pre_u"], brian["pre_u"]),
-                    "first_v_mismatch_gt_1e_10": _first_state_mismatch(native["pre_v"], brian["pre_v"]),
-                    "first_u_mismatch_gt_1e_10": _first_state_mismatch(native["pre_u"], brian["pre_u"]),
+                    "first_v_mismatch_gt_1e_10": _first_state_mismatch(
+                        native["pre_v"], brian["pre_v"]
+                    ),
+                    "first_u_mismatch_gt_1e_10": _first_state_mismatch(
+                        native["pre_u"], brian["pre_u"]
+                    ),
                 },
                 "post_reset": {
                     "max_abs_v_error": _max_abs(native["post_v"], brian["post_v"]),
                     "max_abs_u_error": _max_abs(native["post_u"], brian["post_u"]),
-                    "first_v_mismatch_gt_1e_10": _first_state_mismatch(native["post_v"], brian["post_v"]),
-                    "first_u_mismatch_gt_1e_10": _first_state_mismatch(native["post_u"], brian["post_u"]),
+                    "first_v_mismatch_gt_1e_10": _first_state_mismatch(
+                        native["post_v"], brian["post_v"]
+                    ),
+                    "first_u_mismatch_gt_1e_10": _first_state_mismatch(
+                        native["post_u"], brian["post_u"]
+                    ),
                 },
                 "spike_events_equal": native["spikes"] == brian["spikes"],
-                "first_spike_mismatch": _first_spike_mismatch(native["spikes"], brian["spikes"]),
+                "first_spike_mismatch": _first_spike_mismatch(
+                    native["spikes"], brian["spikes"]
+                ),
                 "native_spike_count": len(native["spikes"]),
                 "brian2_spike_count": len(brian["spikes"]),
             }
@@ -235,10 +245,16 @@ def main() -> None:
                     "seed": seed,
                     "refractory_ticks": refractory_ticks,
                     "brian2_refractory_ms": float(refractory_ticks),
-                    "max_abs_v_error": _max_abs(native_lif["post_v"], brian_lif["post_v"]),
-                    "first_v_mismatch_gt_1e_10": _first_state_mismatch(native_lif["post_v"], brian_lif["post_v"]),
+                    "max_abs_v_error": _max_abs(
+                        native_lif["post_v"], brian_lif["post_v"]
+                    ),
+                    "first_v_mismatch_gt_1e_10": _first_state_mismatch(
+                        native_lif["post_v"], brian_lif["post_v"]
+                    ),
                     "spike_events_equal": native_lif["spikes"] == brian_lif["spikes"],
-                    "first_spike_mismatch": _first_spike_mismatch(native_lif["spikes"], brian_lif["spikes"]),
+                    "first_spike_mismatch": _first_spike_mismatch(
+                        native_lif["spikes"], brian_lif["spikes"]
+                    ),
                     "native_spike_count": len(native_lif["spikes"]),
                     "brian2_spike_count": len(brian_lif["spikes"]),
                 }
@@ -250,7 +266,9 @@ def main() -> None:
         "izhikevich": izh_runs,
         "lif": lif_runs,
     }
-    OUT.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    OUT.write_text(
+        json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
     print(OUT.read_text(encoding="utf-8"))
 
 

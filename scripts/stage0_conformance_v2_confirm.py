@@ -4,6 +4,7 @@ No adaptive retry or parameter tuning is allowed here. The validation seeds and
 criteria are frozen in research/preregistrations/operational/
 single_neuron_conformance_v2.json before execution.
 """
+
 from __future__ import annotations
 
 import importlib.util
@@ -17,7 +18,9 @@ CANDIDATE = Path("scripts/stage0_conformance_v2.py")
 
 
 def _load_candidate() -> Any:
-    spec = importlib.util.spec_from_file_location("stage0_conformance_candidate", CANDIDATE)
+    spec = importlib.util.spec_from_file_location(
+        "stage0_conformance_candidate", CANDIDATE
+    )
     if spec is None or spec.loader is None:
         raise RuntimeError("cannot load stage0_conformance_v2.py")
     module = importlib.util.module_from_spec(spec)
@@ -46,23 +49,20 @@ def main() -> None:
             brian_ms = int(row["brian2_refractory_ms"])
             if native_ticks == 0 and brian_ms == 0:
                 lif_default_rows.append(row)
-            if native_ticks in expected_mapping and brian_ms == expected_mapping[native_ticks]:
+            if (
+                native_ticks in expected_mapping
+                and brian_ms == expected_mapping[native_ticks]
+            ):
                 lif_refractory_rows.append(row)
 
-    lif_default_pass = (
-        len(lif_default_rows) == len(seeds)
-        and all(
-            row["spike_events_equal"] and row["max_abs_v_error"] <= 1e-8
-            for row in lif_default_rows
-        )
+    lif_default_pass = len(lif_default_rows) == len(seeds) and all(
+        row["spike_events_equal"] and row["max_abs_v_error"] <= 1e-8
+        for row in lif_default_rows
     )
     expected_secondary_count = len(seeds) * len(expected_mapping)
-    lif_refractory_pass = (
-        len(lif_refractory_rows) == expected_secondary_count
-        and all(
-            row["spike_events_equal"] and row["max_abs_v_error"] <= 1e-8
-            for row in lif_refractory_rows
-        )
+    lif_refractory_pass = len(lif_refractory_rows) == expected_secondary_count and all(
+        row["spike_events_equal"] and row["max_abs_v_error"] <= 1e-8
+        for row in lif_refractory_rows
     )
 
     payload = {
@@ -85,12 +85,16 @@ def main() -> None:
             "runs": lif_refractory_rows,
         },
         "primary_success": izh_pass and lif_default_pass,
-        "all_declared_hypotheses_pass": izh_pass and lif_default_pass and lif_refractory_pass,
+        "all_declared_hypotheses_pass": izh_pass
+        and lif_default_pass
+        and lif_refractory_pass,
         "automatic_evid_promotion": False,
         "human_review_required": True,
         "independent_authorship_replication": False,
     }
-    OUT.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    OUT.write_text(
+        json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
     print(OUT.read_text(encoding="utf-8"))
     if not payload["all_declared_hypotheses_pass"]:
         raise SystemExit("CONFIRMATORY_STAGE0_CONFORMANCE_FAILED")
