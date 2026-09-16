@@ -33,5 +33,5 @@ jobs:
           python -m pip install --upgrade pip setuptools wheel
           python -m pip install -e ".[dev,docs]"
 
-      - name: Execute frozen research cycle
-        run: python scripts/one_shot_snn_v2_cycle.py
+      - name: Resume frozen research cycle
+        run: python scripts/one_shot_snn_v2_resume.py
