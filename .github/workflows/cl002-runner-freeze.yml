@@ -14,7 +14,8 @@ on:
       - scripts/run_semantization_split_mnist_cl002.py
       - scripts/generate_cl002_freeze_manifest.py
       - tests/test_continual_semantization_controls.py
-      - research/preregistrations/**
+      - research/preregistrations/EXP-S6-SEM-CL-002.md
+      - research/preregistrations/operational/EXP-S6-SEM-CL-002.json
 
 permissions:
   contents: write
