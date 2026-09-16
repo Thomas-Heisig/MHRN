@@ -1,9 +1,9 @@
 {
   "schema_version": 2,
-  "version": "0.6.0-alpha.4",
-  "pep440": "0.6.0a4",
+  "version": "0.6.0-alpha.5",
+  "pep440": "0.6.0a5",
   "status": "development",
-  "title": "Research-Driven Experiment Cycle and Scientific Gate Hardening",
+  "title": "First Research-Driven Experiment Cycle",
   "parent": "v0.5.0-alpha.7",
   "gate": "open",
   "as_of": "2026-09-16",
@@ -44,6 +44,7 @@
     "CL-003 is SHA-256 frozen and explicitly authorized for one preregistered campaign without automatic EVID promotion"
   ],
   "open": [
+    "execute and review the first authorized CL-003 campaign",
     "complete human scientific review and explicit EVID promotion decisions where justified",
     "independently replicate central Stage-2 through Stage-6 claims",
     "close Stage-6 semanticization through replay/consolidation with matched controls",
@@ -70,5 +71,5 @@
     "novelty_claim": "requires_prior_art_review"
   },
   "research_boundary": "Engineering implementation, technical verification, UI/API availability and DATA collection are not equivalent to scientific EVID. Scientific maturity is tracked independently through registered questions, frozen protocols, source-bound DATA, human-reviewed EVID, independent replication and attribution. No stage score establishes AGI, consciousness, sentience or biological equivalence.",
-  "note": "Alpha.4 makes the experiment-by-experiment research cycle canonical, separates RQ and claim status in the evidence matrix, hardens freeze/authorization gates, and prepares the first authorized CL-003 execution. Historical DATA and EVID remain immutable; DATA do not become EVID without human review."
+  "note": "Alpha.5 starts the first complete research-driven experiment cycle after CI/gate hardening. CL-003 remains source-frozen and authorization-bound. Historical DATA and EVID remain immutable; DATA do not become EVID without human review."
 }
