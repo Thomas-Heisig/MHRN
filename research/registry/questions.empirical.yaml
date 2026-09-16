@@ -36,8 +36,8 @@
   domain: Empirical Evaluation
   question: Does native single-cell split-Euler dynamics agree with Brian2 under identical
     updates, currents and disabled adaptation?
-  relevance: Bounded exploratory observation; preserves historical records and requires
-    human evidence review.
+  relevance: Historical free-running comparison retained as a scientific negative; its
+    long-horizon exact-trajectory criterion is not reused as a local transition-equivalence claim.
   literature: []
   hypotheses:
   - H-EVAL-003-A
@@ -48,7 +48,7 @@
     confidence: none
     limitations: Protocol/data availability does not mean accepted EVID.
   created: '2026-09-10'
-  updated: '2026-09-10'
+  updated: '2026-09-16'
 - id: RQ-EVAL-004
   domain: Empirical Evaluation
   question: What throughput and sampled process memory arise in short active four-outgoing-edge
@@ -80,3 +80,24 @@
   answer: *id003
   created: '2026-09-10'
   updated: '2026-09-10'
+- id: RQ-EVAL-006
+  domain: Single-neuron model conformance
+  question: Do the selectable MHRN single-neuron models reproduce their declared one-step
+    transition, spike and reset semantics against a matched external Brian2 implementation?
+  relevance: Separates membrane-model conformance from long-horizon numerical sensitivity and
+    makes neuron model a reusable experimental treatment axis while retaining Izhikevich as default.
+  literature:
+  - SRC-IZHIKEVICH-2003
+  - SRC-GERSTNER-2014
+  hypotheses:
+  - H-EVAL-006-A
+  - H-EVAL-006-B
+  - H-EVAL-006-C
+  evidence: []
+  status: open
+  answer:
+    current: null
+    confidence: none
+    limitations: Model-specific DATA require human review before EVID promotion; changing neuron_model changes the treatment and must be recorded in the execution contract.
+  created: '2026-09-16'
+  updated: '2026-09-16'
