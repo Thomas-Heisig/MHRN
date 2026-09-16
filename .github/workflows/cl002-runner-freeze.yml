@@ -42,12 +42,15 @@ jobs:
           tests/test_continual_semantization_controls.py
           tests/test_semantic_memory.py
           tests/test_episodic_replay.py
-      - name: Confirm empirical execution is blocked
+      - name: Validate execution gate without producing empirical DATA
         run: |
-          test ! -f research/preregistrations/authorizations/EXP-S6-SEM-CL-002.json
-          if python scripts/run_semantization_split_mnist_cl002.py --output /tmp/forbidden-cl002; then
-            echo "CL-002 unexpectedly executed without authorization" >&2
-            exit 1
+          if test -f research/preregistrations/authorizations/EXP-S6-SEM-CL-002.json; then
+            python -c 'import importlib.util, pathlib; p=pathlib.Path("scripts/run_semantization_split_mnist_cl002.py"); s=importlib.util.spec_from_file_location("cl002_runner", p); assert s is not None and s.loader is not None; m=importlib.util.module_from_spec(s); s.loader.exec_module(m); a=m._require_authorization(m.DEFAULT_AUTHORIZATION); h=m._verify_freeze(m.DEFAULT_FREEZE); mapped=a.get("authorized_source_sha256"); assert a["execution_authorized"] is True and h and (mapped is None or mapped == h)'
+          else
+            if python scripts/run_semantization_split_mnist_cl002.py --output /tmp/forbidden-cl002; then
+              echo "CL-002 unexpectedly executed without authorization" >&2
+              exit 1
+            fi
           fi
       - name: Generate SHA-256 freeze manifest
         run: python scripts/generate_cl002_freeze_manifest.py
