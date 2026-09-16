@@ -55,9 +55,10 @@ def test_data_v2_archives_full_runs_and_bounds_ai_input(tmp_path: Path) -> None:
     statistics = build_descriptive_statistics(runs)
 
     artifacts = prepare_research_data_v2(experiment, runs, statistics)
-    artifacts.runs_path.write_text(
-        json.dumps(runs, indent=2, sort_keys=True) + "\n", encoding="utf-8"
-    )
+    assert artifacts.runs_path.name == "runs_compact.json"
+    assert artifacts.runs_path.is_file()
+    stored_runs = json.loads(artifacts.runs_path.read_text(encoding="utf-8"))
+    assert len(stored_runs) == 2
 
     index = json.loads(artifacts.raw_index_path.read_text(encoding="utf-8"))
     current = json.loads(artifacts.current_run_path.read_text(encoding="utf-8"))

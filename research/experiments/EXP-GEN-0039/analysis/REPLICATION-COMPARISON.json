@@ -1,0 +1,10 @@
+{
+  "conditions_identical": true,
+  "human_review_required": true,
+  "interpretation": "technical deterministic replication; repeated seeds are not independent statistical replications",
+  "reference": "EXP-GEN-0038",
+  "replication": "EXP-GEN-0039",
+  "schema_version": "1.0",
+  "scientific_evidence": false,
+  "two_condition_effects_identical": true
+}

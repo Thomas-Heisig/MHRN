@@ -398,7 +398,7 @@ def test_science_suite_publishes_all_artifacts_without_unconfigured_ai(
     )
     assert result["data_id"] == "DATA-EXP-PING-0001"
     assert manifest["experiment_status"] == "completed"
-    assert manifest["artifacts"]["data"] == "DATA/runs.json"
+    assert manifest["artifacts"]["data"] == "DATA/runs_compact.json"
     assert manifest["artifacts"]["workflow"] == "workflow.json"
     assert manifest["artifacts"]["report"] == "report.md"
     assert len(manifest["config"]["sha256"]) == 64

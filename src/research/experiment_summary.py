@@ -11,7 +11,6 @@ from pathlib import Path
 from statistics import fmean, median, pstdev
 from typing import Any
 
-
 _SUITE_REQUIRED_GROUPS = {
     "ping",
     "temporal",
@@ -96,6 +95,14 @@ def build_descriptive_statistics(runs: list[dict[str, Any]]) -> dict[str, Any]:
         if _number(value) is not None
     }
     numeric_metric_names = sorted(known_numeric_metrics | discovered_numeric_metrics)
+    boolean_metric_names = sorted(
+        {
+            str(name)
+            for run in runs
+            for name, value in (run.get("metrics") or {}).items()
+            if isinstance(value, bool)
+        }
+    )
 
     nested_paths = {
         "functional_activation": ("functional_state", "activation"),
@@ -142,6 +149,24 @@ def build_descriptive_statistics(runs: list[dict[str, Any]]) -> dict[str, Any]:
             if values:
                 metric_stats[name] = _stats(values)
 
+        boolean_stats: dict[str, Any] = {}
+        for name in boolean_metric_names:
+            values = [
+                value
+                for run in condition_runs
+                for value in [(run.get("metrics") or {}).get(name)]
+                if isinstance(value, bool)
+            ]
+            if values:
+                true_count = sum(values)
+                boolean_stats[name] = {
+                    "n": len(values),
+                    "true_count": true_count,
+                    "false_count": len(values) - true_count,
+                    "true_fraction": true_count / len(values),
+                    "all_true": all(values),
+                }
+
         for name, path in nested_paths.items():
             nested_values: list[float] = []
             for run in condition_runs:
@@ -164,6 +189,7 @@ def build_descriptive_statistics(runs: list[dict[str, Any]]) -> dict[str, Any]:
                 }
             ),
             "metrics": metric_stats,
+            "boolean_metrics": boolean_stats,
         }
 
     temporal_values: dict[str, list[float]] = defaultdict(list)
@@ -212,7 +238,7 @@ def build_descriptive_statistics(runs: list[dict[str, Any]]) -> dict[str, Any]:
 
     result: dict[str, Any] = {
         "generated_by": "deterministic_statistics_engine",
-        "schema_version": "2.1",
+        "schema_version": "2.2",
         "run_count": len(runs),
         "conditions": conditions,
         "formulas": {
@@ -284,12 +310,16 @@ def _semantic_status(
     if question_id == "RQ-REC-001":
         return classify(
             any(item.startswith("w0_") for item in plain)
-            and any(item.startswith("w100_") or item.startswith("w125_") for item in plain),
+            and any(
+                item.startswith("w100_") or item.startswith("w125_") for item in plain
+            ),
             "REC-001 erwartet eine registrierte Rekurrenz-Gewicht/Delay-Karte mit Nullkontrolle.",
         )
     if question_id == "RQ-REC-002":
         return classify(
-            {"loop_delay_1", "loop_delay_2", "loop_delay_4", "loop_delay_8"}.issubset(plain),
+            {"loop_delay_1", "loop_delay_2", "loop_delay_4", "loop_delay_8"}.issubset(
+                plain
+            ),
             "REC-002 erwartet die registrierte Loop-Delay-Leiter.",
         )
     if question_id == "RQ-GEN-001":
@@ -358,7 +388,10 @@ def _semantic_status(
         )
     if question_id == "RQ-SUITE-001":
         present_groups = {item.split(":", 1)[0] for item in conditions if ":" in item}
-        found = _SUITE_REQUIRED_GROUPS.issubset(present_groups) and protocol == "science_all_v1"
+        found = (
+            _SUITE_REQUIRED_GROUPS.issubset(present_groups)
+            and protocol == "science_all_v1"
+        )
         return (
             "DIRECT_MATCH" if found else "MISMATCH",
             "SUITE erwartet science_all_v1 und PING, TEMP, STDP, Learning, TIME, 5D sowie Regulation unter gemeinsamer Provenienz.",
@@ -399,12 +432,12 @@ def _suite_integrity(
     raw_conditions = {str(run.get("condition", "unknown")) for run in runs}
     statistics_conditions_value = statistics.get("conditions", {})
     statistics_conditions: dict[str, Any] = (
-        statistics_conditions_value if isinstance(statistics_conditions_value, dict) else {}
+        statistics_conditions_value
+        if isinstance(statistics_conditions_value, dict)
+        else {}
     )
     present_groups = {
-        condition.split(":", 1)[0]
-        for condition in raw_conditions
-        if ":" in condition
+        condition.split(":", 1)[0] for condition in raw_conditions if ":" in condition
     }
     missing_groups = sorted(_SUITE_REQUIRED_GROUPS - present_groups)
     missing_statistics = sorted(raw_conditions - set(statistics_conditions))
@@ -412,8 +445,13 @@ def _suite_integrity(
         condition
         for condition, payload in statistics_conditions.items()
         if not isinstance(payload, dict)
-        or not isinstance(payload.get("metrics"), dict)
-        or not payload.get("metrics")
+        or (
+            (not isinstance(payload.get("metrics"), dict) or not payload.get("metrics"))
+            and (
+                not isinstance(payload.get("boolean_metrics"), dict)
+                or not payload.get("boolean_metrics")
+            )
+        )
     )
     runtime_error_count = sum(
         run.get("runtime_error") not in (None, "", False) for run in runs
@@ -485,8 +523,8 @@ def _render_airr_sections(
         content = {}
     lines.extend(
         [
-            f"- AIRR Markdown: [`reports/{report_id}.md`](reports/{report_id}.md)",
-            f"- AIRR JSON: [`reports/{report_id}.json`](reports/{report_id}.json)",
+            f"- AIRR Markdown: `reports/{report_id}.md`",
+            f"- AIRR JSON: `reports/{report_id}.json`",
             "",
             "### 8.1 KI-Einschaetzung",
             "",
@@ -503,23 +541,47 @@ def _render_airr_sections(
     interpretation = content.get("interpretation", {})
     if not isinstance(interpretation, dict):
         interpretation = {}
+    observations = interpretation.get("observations", [])
+    limitation_fallback: list[str] = []
+    if isinstance(observations, list):
+        for observation in observations:
+            if (
+                isinstance(observation, dict)
+                and str(observation.get("type", "")).strip().lower() == "limitations"
+                and observation.get("value")
+            ):
+                limitation_fallback.append(
+                    f"AIRR-Limitation dokumentieren: {observation['value']}"
+                )
+
+    missing_evidence = content.get("missing_evidence", [])
+    if not isinstance(missing_evidence, list) or not missing_evidence:
+        requested = interpretation.get("requested_evidence", [])
+        missing_evidence = (
+            requested
+            if isinstance(requested, list) and requested
+            else limitation_fallback
+        )
+
+    recommended = content.get("recommended_follow_up", [])
+    if not isinstance(recommended, list) or not recommended:
+        interpreted_recommended = interpretation.get("recommended_experiments", [])
+        recommended = (
+            interpreted_recommended if isinstance(interpreted_recommended, list) else []
+        )
+
     sections = (
         ("Methodische Kritik", content.get("methodological_critique", [])),
         ("Alternative Erklaerungen", content.get("alternative_explanations", [])),
-        (
-            "Fehlende Nachweise",
-            content.get("missing_evidence", []) or interpretation.get("requested_evidence", []),
-        ),
-        (
-            "Empfohlene Folgeexperimente",
-            content.get("recommended_follow_up", [])
-            or interpretation.get("recommended_experiments", []),
-        ),
+        ("Fehlende Nachweise", missing_evidence),
+        ("Empfohlene Folgeexperimente", recommended),
     )
     for heading, values in sections:
         lines.extend(["", f"### {heading}", ""])
         if isinstance(values, list) and values:
             lines.extend(f"- {value}" for value in values)
+        elif heading == "Empfohlene Folgeexperimente":
+            lines.append("- Keine expliziten Folgeexperimente im AIRR angegeben.")
         else:
             lines.append("- Keine expliziten Angaben.")
 
@@ -531,7 +593,10 @@ def write_detailed_experiment_summary(
     experiment_dir = research_root / "experiments" / experiment_id
     manifest = _read_json(experiment_dir / "manifest.json", {})
     workflow = _read_json(experiment_dir / "workflow.json", {})
-    raw_runs = _read_json(experiment_dir / "DATA" / "runs.json", [])
+    runs_path = experiment_dir / "DATA" / "runs_compact.json"
+    if not runs_path.is_file():
+        runs_path = experiment_dir / "DATA" / "runs.json"
+    raw_runs = _read_json(runs_path, [])
     runs = (
         [item for item in raw_runs if isinstance(item, dict)]
         if isinstance(raw_runs, list)
@@ -550,8 +615,12 @@ def write_detailed_experiment_summary(
 
     simulation = manifest.get("simulation", {}) if isinstance(manifest, dict) else {}
     results = manifest.get("results", {}) if isinstance(manifest, dict) else {}
-    question_ids = manifest.get("research_questions", []) if isinstance(manifest, dict) else []
-    hypothesis_ids = manifest.get("hypotheses", []) if isinstance(manifest, dict) else []
+    question_ids = (
+        manifest.get("research_questions", []) if isinstance(manifest, dict) else []
+    )
+    hypothesis_ids = (
+        manifest.get("hypotheses", []) if isinstance(manifest, dict) else []
+    )
     question_id = (
         str(question_ids[0])
         if isinstance(question_ids, list) and question_ids
@@ -596,7 +665,9 @@ def write_detailed_experiment_summary(
     ]
     tick_contract = "NOT_APPLICABLE"
     if isinstance(requested_ticks, int) and actual_ticks:
-        tick_contract = "SATISFIED" if min(actual_ticks) >= requested_ticks else "VIOLATED"
+        tick_contract = (
+            "SATISFIED" if min(actual_ticks) >= requested_ticks else "VIOLATED"
+        )
 
     lines = [
         f"# {experiment_id}: Wissenschaftliche Zusammenfassung",
@@ -659,11 +730,11 @@ def write_detailed_experiment_summary(
             "",
             "Die im Bericht verwendeten deskriptiven Groessen sind:",
             "",
-            "- Mittelwert: $\\bar{x}=\\frac{1}{n}\\sum_{i=1}^{n}x_i$",
-            "- Populationsstandardabweichung: $\\sigma=\\sqrt{\\frac{1}{n}\\sum_{i=1}^{n}(x_i-\\bar{x})^2}$",
-            "- Absolute Differenz: $\\Delta_x=\\bar{x}_B-\\bar{x}_A$",
-            "- Verhältnis: $R_x=\\bar{x}_B/\\bar{x}_A$ fuer $\\bar{x}_A\\neq0$",
-            "- Inter-Spike-Intervall: $ISI_i=t_{i+1}-t_i$",
+            "- Mittelwert: `mean(x) = (1/n) * sum_i x_i`",
+            "- Populationsstandardabweichung: `sigma = sqrt((1/n) * sum_i (x_i - mean(x))^2)`",
+            "- Absolute Differenz: `Delta_x = mean(x_B) - mean(x_A)`",
+            "- Verhältnis: `R_x = mean(x_B) / mean(x_A)` fuer `mean(x_A) != 0`",
+            "- Inter-Spike-Intervall: `ISI_i = t_(i+1) - t_i`",
             "",
             "Diese Formeln sind deskriptiv. Ohne registrierten Inferenztest, unabhaengige Stichprobenannahme und passende Versuchsplanung werden daraus keine Signifikanz- oder Kausalbehauptungen abgeleitet.",
             "",
@@ -676,7 +747,9 @@ def write_detailed_experiment_summary(
 
     condition_statistics_value = statistics.get("conditions", {})
     condition_statistics: dict[str, Any] = (
-        condition_statistics_value if isinstance(condition_statistics_value, dict) else {}
+        condition_statistics_value
+        if isinstance(condition_statistics_value, dict)
+        else {}
     )
     for condition, payload in condition_statistics.items():
         metrics = payload.get("metrics", {}) if isinstance(payload, dict) else {}
@@ -690,8 +763,16 @@ def write_detailed_experiment_summary(
             + " | ".join(
                 [
                     condition,
-                    str(payload.get("run_count", 0)) if isinstance(payload, dict) else "0",
-                    ",".join(map(str, payload.get("seeds", []))) if isinstance(payload, dict) else "",
+                    (
+                        str(payload.get("run_count", 0))
+                        if isinstance(payload, dict)
+                        else "0"
+                    ),
+                    (
+                        ",".join(map(str, payload.get("seeds", [])))
+                        if isinstance(payload, dict)
+                        else ""
+                    ),
                     _fmt(mean_of("ticks_executed")),
                     _fmt(mean_of("total_spikes")),
                     _fmt(mean_of("delivered_synaptic_events")),
@@ -725,13 +806,40 @@ def write_detailed_experiment_summary(
             f"| {condition} | {'; '.join(extras) if extras else 'keine zusätzlichen numerischen Metriken'} |"
         )
 
+    boolean_rows: list[str] = []
+    for condition, payload in condition_statistics.items():
+        boolean_metrics = (
+            payload.get("boolean_metrics", {}) if isinstance(payload, dict) else {}
+        )
+        if not isinstance(boolean_metrics, dict):
+            continue
+        for name, values in sorted(boolean_metrics.items()):
+            if not isinstance(values, dict):
+                continue
+            boolean_rows.append(
+                f"| {condition} | `{name}` | {values.get('n', 0)} | "
+                f"{values.get('true_count', 0)} | {values.get('false_count', 0)} | "
+                f"{values.get('all_true', False)} |"
+            )
+    if boolean_rows:
+        lines.extend(
+            [
+                "",
+                "#### Primäre und weitere boolesche Endpunkte",
+                "",
+                "| Condition | Outcome | n | true | false | all_true |",
+                "| --- | --- | ---: | ---: | ---: | --- |",
+                *boolean_rows,
+            ]
+        )
+
     effects = statistics.get("two_condition_effects", {})
     if isinstance(effects, dict) and effects:
         lines.extend(["", "### 5.2 Deskriptive Zwei-Bedingungs-Effekte", ""])
         for metric, effect in effects.items():
             if isinstance(effect, dict):
                 lines.append(
-                    f"- `{metric}`: $\\Delta={_fmt(effect.get('absolute_difference'))}$; $R={_fmt(effect.get('ratio'))}$; Referenz `{effect.get('reference_condition')}`, Vergleich `{effect.get('comparison_condition')}`."
+                    f"- `{metric}`: `absolute_difference={_fmt(effect.get('absolute_difference'))}`; `ratio={_fmt(effect.get('ratio'))}`; Referenz `{effect.get('reference_condition')}`, Vergleich `{effect.get('comparison_condition')}`."
                 )
 
     isi = statistics.get("inter_spike_intervals", {})
@@ -755,8 +863,14 @@ def write_detailed_experiment_summary(
             ]
         )
         for horizon, payload in temporal.items():
-            discrepancy = payload.get("discrepancy", {}) if isinstance(payload, dict) else {}
-            nonzero = payload.get("nonzero_discrepancy", {}) if isinstance(payload, dict) else {}
+            discrepancy = (
+                payload.get("discrepancy", {}) if isinstance(payload, dict) else {}
+            )
+            nonzero = (
+                payload.get("nonzero_discrepancy", {})
+                if isinstance(payload, dict)
+                else {}
+            )
             lines.append(
                 f"- `{horizon}`: Referenzvergleiche={payload.get('reference_comparisons', 0) if isinstance(payload, dict) else 0}; discrepancy mean={_fmt(discrepancy.get('mean') if isinstance(discrepancy, dict) else None)}, max={_fmt(discrepancy.get('max') if isinstance(discrepancy, dict) else None)}; nonzero={payload.get('nonzero_comparisons', 0) if isinstance(payload, dict) else 0} ({_fmt(payload.get('nonzero_fraction') if isinstance(payload, dict) else None)}); mean(nonzero)={_fmt(nonzero.get('mean') if isinstance(nonzero, dict) else None)}."
             )
@@ -798,7 +912,7 @@ def write_detailed_experiment_summary(
             "",
             "Identische Ausgaben ueber mehrere Seeds dokumentieren reproduzierbare Modelltrajektorien unter diesen Bedingungen. Sie sind nicht automatisch statistisch unabhaengige Replikate. State-Digests sind Integritaets-/Identitaetsmarker und keine metrischen Zustandsabstaende.",
             "",
-            f"Deterministische Statistikdatei: [`{statistics_path.relative_to(experiment_dir).as_posix()}`]({statistics_path.relative_to(experiment_dir).as_posix()})",
+            f"Deterministische Statistikdatei: `{statistics_path.relative_to(experiment_dir).as_posix()}`",
         ]
     )
     _render_airr_sections(lines, experiment_dir, ai_report)
@@ -807,7 +921,9 @@ def write_detailed_experiment_summary(
     for path in sorted(experiment_dir.rglob("*")):
         if path.is_file() and path.name != "summary.md":
             relative = path.relative_to(experiment_dir).as_posix()
-            lines.append(f"- [{relative}]({relative})")
+            if relative == "DATA/runs.json":
+                continue
+            lines.append(f"- `{relative}`")
 
     lines.extend(
         [
