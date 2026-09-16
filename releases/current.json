@@ -41,15 +41,16 @@
     "publication 1.6 retained as historical integrative predecessor",
     "publication 1.5 retained as frozen empirical baseline with stable pointer",
     "research-driven experiment cycle is canonical from RQ through preregistration, DATA, human review and EVID",
-    "CL-003 is SHA-256 frozen and explicitly authorized for one preregistered campaign without automatic EVID promotion",
+    "CL-003 was SHA-256 frozen, explicitly authorized, and executed exactly once as the preregistered 84-run campaign",
+    "CL-003 DATA and provenance are integrated with automatic EVID promotion disabled and human review still required",
+    "Stage-6 CL-001 through CL-003 DATA-only balance is integrated as an empirically narrowed Semantization/Replay result",
     "canonical roadmap and test contracts are aligned with the alpha.5 development baseline",
     "content-bound source-tree verification cache preserves gate semantics while preventing duplicate full-tree scans"
   ],
   "open": [
-    "execute and review the first authorized CL-003 campaign",
-    "complete human scientific review and explicit EVID promotion decisions where justified",
+    "complete human scientific review of CL-003 and make an explicit EVID promotion decision",
+    "decide the post-review Stage-6 research direction before defining any CL-004",
     "independently replicate central Stage-2 through Stage-6 claims",
-    "close Stage-6 semanticization through replay/consolidation with matched controls",
     "implement and ablate a neuronally defined prediction-error mechanism before claiming predictive coding",
     "validate multi-step action-conditioned world-model dynamics and decision benefit",
     "connect all claim-relevant coupled cognition state to the canonical checkpoint boundary",
@@ -73,5 +74,5 @@
     "novelty_claim": "requires_prior_art_review"
   },
   "research_boundary": "Engineering implementation, technical verification, UI/API availability and DATA collection are not equivalent to scientific EVID. Scientific maturity is tracked independently through registered questions, frozen protocols, source-bound DATA, human-reviewed EVID, independent replication and attribution. No stage score establishes AGI, consciousness, sentience or biological equivalence.",
-  "note": "Alpha.5 starts the first complete research-driven experiment cycle after CI and gate hardening. CL-003 remains source-frozen and authorization-bound. Historical DATA and EVID remain immutable; DATA do not become EVID without human review."
+  "note": "Alpha.5 contains the first complete research-driven experiment cycle through persisted DATA. CL-003 was executed exactly once under its frozen authorization and yielded H1_negative_H2_negative while C3 showed non-random semantic structure. The result remains DATA pending human review; no automatic EVID promotion occurred."
 }
