@@ -1,3 +1,5 @@
+"""Regression coverage for firing-rate, plasticity-mode, and hook semantics."""
+
 from __future__ import annotations
 
 import logging
