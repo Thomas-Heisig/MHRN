@@ -1,0 +1,1875 @@
+{
+  "archive_mode": "metadata_only",
+  "experiments": {
+    "EXP-2026-0001": {
+      "archived_at": "2026-09-16T13:39:51.376807+00:00",
+      "experiment_id": "EXP-2026-0001",
+      "manifest_sha256": "b14b1099b67d57c6dcfc9080c6677f692448137dad0cb9dfd0536f295bda39cd",
+      "original_path": "experiments/EXP-2026-0001",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-5D-0001": {
+      "archived_at": "2026-09-16T13:43:43.764426+00:00",
+      "experiment_id": "EXP-5D-0001",
+      "manifest_sha256": "17cde4a889bfe9d35e4882565745574b495b24af6738714b02de1576b5696385",
+      "original_path": "experiments/EXP-5D-0001",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-5D-0001-v2": {
+      "archived_at": "2026-09-16T13:44:09.804823+00:00",
+      "experiment_id": "EXP-5D-0001-v2",
+      "manifest_sha256": "2d63805cca0221cf0bec972c69d3f9667417ed87b8c28d4210014df47869adca",
+      "original_path": "experiments/EXP-5D-0001-v2",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-5D-0001-v3": {
+      "archived_at": "2026-09-16T13:44:04.916725+00:00",
+      "experiment_id": "EXP-5D-0001-v3",
+      "manifest_sha256": "dda4649456e5428f7d2755663578935a7d9cbc9e2fb87e9cdd28381f93ca5202",
+      "original_path": "experiments/EXP-5D-0001-v3",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260906195229-01": {
+      "archived_at": "2026-09-16T13:48:02.848613+00:00",
+      "experiment_id": "EXP-BATCH-20260906195229-01",
+      "manifest_sha256": "d3266d66bcb95e98355cf5820ace8e6130746d0e9efeb24fd610653bdf1a17fe",
+      "original_path": "experiments/EXP-BATCH-20260906195229-01",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260906195506-01": {
+      "archived_at": "2026-09-16T13:47:59.321996+00:00",
+      "experiment_id": "EXP-BATCH-20260906195506-01",
+      "manifest_sha256": "91f381179fc760aae6d8749ab0730bddaf1b86972cea5f4cacb5d1cdc4d9672d",
+      "original_path": "experiments/EXP-BATCH-20260906195506-01",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260906195731-01": {
+      "archived_at": "2026-09-16T13:48:01.266000+00:00",
+      "experiment_id": "EXP-BATCH-20260906195731-01",
+      "manifest_sha256": "78f7d0d0a00b0dd13e2fe2261bf11afa3eeb27c39c92409b4ad37c01425037e7",
+      "original_path": "experiments/EXP-BATCH-20260906195731-01",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260906200118-01": {
+      "archived_at": "2026-09-16T13:47:48.685186+00:00",
+      "experiment_id": "EXP-BATCH-20260906200118-01",
+      "manifest_sha256": "ab52601e0a35d0f0881273be94ffb7714f54aed294f9c6689847af8d1198db87",
+      "original_path": "experiments/EXP-BATCH-20260906200118-01",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260906200118-02": {
+      "archived_at": "2026-09-16T13:47:56.266839+00:00",
+      "experiment_id": "EXP-BATCH-20260906200118-02",
+      "manifest_sha256": "059eaebbe3f8cef8b7b780ddda7efbf37909344a78dc46b3f16f6a8c51f3a1f6",
+      "original_path": "experiments/EXP-BATCH-20260906200118-02",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260906200118-03": {
+      "archived_at": "2026-09-16T13:47:58.025432+00:00",
+      "experiment_id": "EXP-BATCH-20260906200118-03",
+      "manifest_sha256": "7efa7a04705b040742a2156489578c930eb7c7c685b390578d6e778752852bdf",
+      "original_path": "experiments/EXP-BATCH-20260906200118-03",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260906200118-04": {
+      "archived_at": "2026-09-16T13:47:51.418280+00:00",
+      "experiment_id": "EXP-BATCH-20260906200118-04",
+      "manifest_sha256": "04e44e8bc782edea92415968adb4bb7b74a73f269f4bcde95350244aea3696b6",
+      "original_path": "experiments/EXP-BATCH-20260906200118-04",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260906200118-05": {
+      "archived_at": "2026-09-16T13:47:53.705228+00:00",
+      "experiment_id": "EXP-BATCH-20260906200118-05",
+      "manifest_sha256": "86df0f25d2be308488584ef6e237397be0e274c15ba95bc2c4b7bb4dbcd893b6",
+      "original_path": "experiments/EXP-BATCH-20260906200118-05",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260906200118-06": {
+      "archived_at": "2026-09-16T13:47:46.070709+00:00",
+      "experiment_id": "EXP-BATCH-20260906200118-06",
+      "manifest_sha256": "cb423d0e9f0a5c577e489efec9bdbbdaf64ac6cf45da78e416dc3087fe1c94c4",
+      "original_path": "experiments/EXP-BATCH-20260906200118-06",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260906200118-07": {
+      "archived_at": "2026-09-16T13:47:43.521185+00:00",
+      "experiment_id": "EXP-BATCH-20260906200118-07",
+      "manifest_sha256": "f11fa2c45df35e204e48fa40bd0354e4d92edb7912e217519bda07a7fdc03dd6",
+      "original_path": "experiments/EXP-BATCH-20260906200118-07",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260906200118-08": {
+      "archived_at": "2026-09-16T13:47:41.464950+00:00",
+      "experiment_id": "EXP-BATCH-20260906200118-08",
+      "manifest_sha256": "97b05b3b2d370f7afaf4f77fc574315e9681b15f460d6cde2cd7e49868e4137f",
+      "original_path": "experiments/EXP-BATCH-20260906200118-08",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260906200118-09": {
+      "archived_at": "2026-09-16T13:47:40.392570+00:00",
+      "experiment_id": "EXP-BATCH-20260906200118-09",
+      "manifest_sha256": "e92e1bb53c93c5ca63189346afd59768a0082d743ebf7d8339f72b1ae0234feb",
+      "original_path": "experiments/EXP-BATCH-20260906200118-09",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260906200118-10": {
+      "archived_at": "2026-09-16T13:47:39.520975+00:00",
+      "experiment_id": "EXP-BATCH-20260906200118-10",
+      "manifest_sha256": "6e8fea553da4f4624c875b1ac1175f7f27df59e80c17ce162ead3f5a9abf9551",
+      "original_path": "experiments/EXP-BATCH-20260906200118-10",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260906200118-11": {
+      "archived_at": "2026-09-16T13:47:32.200716+00:00",
+      "experiment_id": "EXP-BATCH-20260906200118-11",
+      "manifest_sha256": "211f2108db7beb06f3c9b82456514765e2cfb657aa542a4ea8a95986bd54f8b7",
+      "original_path": "experiments/EXP-BATCH-20260906200118-11",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260906200118-12": {
+      "archived_at": "2026-09-16T13:47:38.705385+00:00",
+      "experiment_id": "EXP-BATCH-20260906200118-12",
+      "manifest_sha256": "ce8fef2ff2675833112e4ee16cea26c389b9ee8d5a80b85089bdd2114bac3ae0",
+      "original_path": "experiments/EXP-BATCH-20260906200118-12",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260906200118-13": {
+      "archived_at": "2026-09-16T13:47:37.792850+00:00",
+      "experiment_id": "EXP-BATCH-20260906200118-13",
+      "manifest_sha256": "0b53d95db7403d0727251579dbaa0b9fd1c149c29630e468797b4155f4c1b25a",
+      "original_path": "experiments/EXP-BATCH-20260906200118-13",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260906200118-14": {
+      "archived_at": "2026-09-16T13:47:36.936314+00:00",
+      "experiment_id": "EXP-BATCH-20260906200118-14",
+      "manifest_sha256": "02c16893a1a6839b4f954a4afb9995a05c0a67b1e065ab186dd648f7c26742a7",
+      "original_path": "experiments/EXP-BATCH-20260906200118-14",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260906200118-15": {
+      "archived_at": "2026-09-16T13:47:23.369115+00:00",
+      "experiment_id": "EXP-BATCH-20260906200118-15",
+      "manifest_sha256": "57b69b36ed1d2155e22ae1e7321afeb924863988d6bd5a2b31d705e5db75037a",
+      "original_path": "experiments/EXP-BATCH-20260906200118-15",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260906200118-16": {
+      "archived_at": "2026-09-16T13:47:29.001412+00:00",
+      "experiment_id": "EXP-BATCH-20260906200118-16",
+      "manifest_sha256": "ad84310105b2be703ce3274ed3a09fab5d63b5caeffd094bacbc48eb954b5c7a",
+      "original_path": "experiments/EXP-BATCH-20260906200118-16",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260906200118-17": {
+      "archived_at": "2026-09-16T13:47:36.041109+00:00",
+      "experiment_id": "EXP-BATCH-20260906200118-17",
+      "manifest_sha256": "cde84a271c3c02b93c06f563977266284d926d93bebc546f706f0dc61748964e",
+      "original_path": "experiments/EXP-BATCH-20260906200118-17",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260906200118-18": {
+      "archived_at": "2026-09-16T13:47:26.868765+00:00",
+      "experiment_id": "EXP-BATCH-20260906200118-18",
+      "manifest_sha256": "4b8458fdd470a9ce0ee0e175abb37e58269d6f42d514d6bb8f24021a0bb5892c",
+      "original_path": "experiments/EXP-BATCH-20260906200118-18",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260906200118-19": {
+      "archived_at": "2026-09-16T13:47:35.129540+00:00",
+      "experiment_id": "EXP-BATCH-20260906200118-19",
+      "manifest_sha256": "17540b2834218397586f7d7bbdafb2ba8a57e8636eff865baf21fa53a77eb01b",
+      "original_path": "experiments/EXP-BATCH-20260906200118-19",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260906200118-20": {
+      "archived_at": "2026-09-16T13:47:24.536882+00:00",
+      "experiment_id": "EXP-BATCH-20260906200118-20",
+      "manifest_sha256": "2f8167515ce0a6438c1b543952d64ffa02d0f93ea5297f1cf50329ef8c58908e",
+      "original_path": "experiments/EXP-BATCH-20260906200118-20",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260906200118-21": {
+      "archived_at": "2026-09-16T13:47:21.208610+00:00",
+      "experiment_id": "EXP-BATCH-20260906200118-21",
+      "manifest_sha256": "2bad79d9a8816cf00594472627c2f7e1ab7b44ab22d7ee53fbd248026233e143",
+      "original_path": "experiments/EXP-BATCH-20260906200118-21",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260906200118-22": {
+      "archived_at": "2026-09-16T13:47:22.267881+00:00",
+      "experiment_id": "EXP-BATCH-20260906200118-22",
+      "manifest_sha256": "b8df32be1a67dcbaeaf161eca7bf17f728ea5135ca69ca70dbb53d256f98880a",
+      "original_path": "experiments/EXP-BATCH-20260906200118-22",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260906200118-23": {
+      "archived_at": "2026-09-16T13:47:31.264708+00:00",
+      "experiment_id": "EXP-BATCH-20260906200118-23",
+      "manifest_sha256": "4b27891d9044170a3b3e8f4b1b85930ace54d341850548556a789d63aa4cce76",
+      "original_path": "experiments/EXP-BATCH-20260906200118-23",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260906200118-24": {
+      "archived_at": "2026-09-16T13:47:33.412772+00:00",
+      "experiment_id": "EXP-BATCH-20260906200118-24",
+      "manifest_sha256": "b00bbe947da5d87f334a0169e66320771dcfbe2085030f87271defb4132a2bbf",
+      "original_path": "experiments/EXP-BATCH-20260906200118-24",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260906200118-25": {
+      "archived_at": "2026-09-16T13:47:18.609280+00:00",
+      "experiment_id": "EXP-BATCH-20260906200118-25",
+      "manifest_sha256": "41e455a04cef666ff1bfff72fa7d7f71aaab368ec6897ecd689886d71c2e7eb1",
+      "original_path": "experiments/EXP-BATCH-20260906200118-25",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260906200118-26": {
+      "archived_at": "2026-09-16T13:47:01.601271+00:00",
+      "experiment_id": "EXP-BATCH-20260906200118-26",
+      "manifest_sha256": "a25c1787cee6efbf0c7f1551c538bf89ee3d106d14884e0abef6d07607211f58",
+      "original_path": "experiments/EXP-BATCH-20260906200118-26",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260906200118-27": {
+      "archived_at": "2026-09-16T13:47:30.017708+00:00",
+      "experiment_id": "EXP-BATCH-20260906200118-27",
+      "manifest_sha256": "41b443826f2c1e6a6950367709b560ca4eee03ac25b62b0199267f4c9099be34",
+      "original_path": "experiments/EXP-BATCH-20260906200118-27",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260906200118-28": {
+      "archived_at": "2026-09-16T13:47:27.977595+00:00",
+      "experiment_id": "EXP-BATCH-20260906200118-28",
+      "manifest_sha256": "3008af19425e7f6b9a963a35d0869180e60254a642c11d45c4ff28a2613cbeed",
+      "original_path": "experiments/EXP-BATCH-20260906200118-28",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260906200118-29": {
+      "archived_at": "2026-09-16T13:47:20.225014+00:00",
+      "experiment_id": "EXP-BATCH-20260906200118-29",
+      "manifest_sha256": "2a859f37b83daa31daf584e14e3dc5e899ebbf842f86b5cae74d262221bcc91a",
+      "original_path": "experiments/EXP-BATCH-20260906200118-29",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260906200118-30": {
+      "archived_at": "2026-09-16T13:47:25.665090+00:00",
+      "experiment_id": "EXP-BATCH-20260906200118-30",
+      "manifest_sha256": "a7ce7367adb1858474fe4980bdab4a90ec18af02d6863e0d2d1f50d4422095c2",
+      "original_path": "experiments/EXP-BATCH-20260906200118-30",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260906200118-31": {
+      "archived_at": "2026-09-16T13:47:01.505993+00:00",
+      "experiment_id": "EXP-BATCH-20260906200118-31",
+      "manifest_sha256": "c09ae821ab19e766c909d1c10a7d97476dc426cd0d19c44bd4cc0052913ebcdf",
+      "original_path": "experiments/EXP-BATCH-20260906200118-31",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260906200118-32": {
+      "archived_at": "2026-09-16T13:47:19.185677+00:00",
+      "experiment_id": "EXP-BATCH-20260906200118-32",
+      "manifest_sha256": "bae6854eb33ddac66bbe4779dbb8126dbe3fe4fbe7744d41a56fd034696e2ce9",
+      "original_path": "experiments/EXP-BATCH-20260906200118-32",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260906200118-33": {
+      "archived_at": "2026-09-16T13:47:16.225365+00:00",
+      "experiment_id": "EXP-BATCH-20260906200118-33",
+      "manifest_sha256": "4511ae50a7da984dbee12baec15ab3a11f7feee345832311cd0471407061d2a8",
+      "original_path": "experiments/EXP-BATCH-20260906200118-33",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260906200118-34": {
+      "archived_at": "2026-09-16T13:47:15.178676+00:00",
+      "experiment_id": "EXP-BATCH-20260906200118-34",
+      "manifest_sha256": "53a348d29304a2e3c8ec26e63969f969256f476b557af7bc4e3beec25cd19c38",
+      "original_path": "experiments/EXP-BATCH-20260906200118-34",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260906200118-35": {
+      "archived_at": "2026-09-16T13:47:14.264241+00:00",
+      "experiment_id": "EXP-BATCH-20260906200118-35",
+      "manifest_sha256": "bf96a306f42d35e6e36430a43cce72c1b100ace98664e2aa411b255860e40f2c",
+      "original_path": "experiments/EXP-BATCH-20260906200118-35",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260906200118-36": {
+      "archived_at": "2026-09-16T13:47:00.441674+00:00",
+      "experiment_id": "EXP-BATCH-20260906200118-36",
+      "manifest_sha256": "cc0349dbd028e4831f7863a29241690241d01814ec7a708a28a608d239232f31",
+      "original_path": "experiments/EXP-BATCH-20260906200118-36",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260906200118-38": {
+      "archived_at": "2026-09-16T13:47:13.305307+00:00",
+      "experiment_id": "EXP-BATCH-20260906200118-38",
+      "manifest_sha256": "fe58bc0303c3fec005119323ae9efc25613ccfd6632b5711a5ab01df5d632b94",
+      "original_path": "experiments/EXP-BATCH-20260906200118-38",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260906200118-39": {
+      "archived_at": "2026-09-16T13:47:12.344249+00:00",
+      "experiment_id": "EXP-BATCH-20260906200118-39",
+      "manifest_sha256": "91db80d417099d8f794d908422f26072e8f9f3f5b936859aea8f06f19ae9608e",
+      "original_path": "experiments/EXP-BATCH-20260906200118-39",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260906200118-40": {
+      "archived_at": "2026-09-16T13:47:11.344242+00:00",
+      "experiment_id": "EXP-BATCH-20260906200118-40",
+      "manifest_sha256": "5b517ce1c3bef017d37ac2bee1e5f99786963e8e50ac5532f16e6876253f2b18",
+      "original_path": "experiments/EXP-BATCH-20260906200118-40",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260906200118-41": {
+      "archived_at": "2026-09-16T13:47:10.382958+00:00",
+      "experiment_id": "EXP-BATCH-20260906200118-41",
+      "manifest_sha256": "86b0503ecca380bb0d23085c1ab3ab92bfe757a736855d37d33bde73c17cce68",
+      "original_path": "experiments/EXP-BATCH-20260906200118-41",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260906200118-42": {
+      "archived_at": "2026-09-16T13:46:56.634330+00:00",
+      "experiment_id": "EXP-BATCH-20260906200118-42",
+      "manifest_sha256": "e1fd7bc4311b7f60cf1d1b2669b3bdd39af2acd281469be34ed6a9ee47d20c83",
+      "original_path": "experiments/EXP-BATCH-20260906200118-42",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260906200118-44": {
+      "archived_at": "2026-09-16T13:47:09.240567+00:00",
+      "experiment_id": "EXP-BATCH-20260906200118-44",
+      "manifest_sha256": "54b7b4278d0b321353e90fa39143a0376ec26f2dd7f3ef4d7e7a5c684330a1e6",
+      "original_path": "experiments/EXP-BATCH-20260906200118-44",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260906200118-45": {
+      "archived_at": "2026-09-16T13:47:08.152937+00:00",
+      "experiment_id": "EXP-BATCH-20260906200118-45",
+      "manifest_sha256": "760819dd0723d0fe0870e10fa036627257b84ee2b2efd1bc3ddc8d888981b64b",
+      "original_path": "experiments/EXP-BATCH-20260906200118-45",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260906200118-46": {
+      "archived_at": "2026-09-16T13:46:30.461876+00:00",
+      "experiment_id": "EXP-BATCH-20260906200118-46",
+      "manifest_sha256": "8e275f4637bde2640936d1db9ccb17bc809c0c9f35eaf4cf7d91d655791d14b4",
+      "original_path": "experiments/EXP-BATCH-20260906200118-46",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260906200118-47": {
+      "archived_at": "2026-09-16T13:46:48.476387+00:00",
+      "experiment_id": "EXP-BATCH-20260906200118-47",
+      "manifest_sha256": "d81aca94ebd6e56fdc5251eeed34b40cdb77d51545c1ac1e0c53d3a89169b34d",
+      "original_path": "experiments/EXP-BATCH-20260906200118-47",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260906200118-48": {
+      "archived_at": "2026-09-16T13:47:06.785707+00:00",
+      "experiment_id": "EXP-BATCH-20260906200118-48",
+      "manifest_sha256": "755e383a937fc2ed989a3fd46acb265a329adf54824af6b4a4eb2fd27869107e",
+      "original_path": "experiments/EXP-BATCH-20260906200118-48",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260908200906-01": {
+      "archived_at": "2026-09-16T13:46:34.425095+00:00",
+      "experiment_id": "EXP-BATCH-20260908200906-01",
+      "manifest_sha256": "5921689e83804388cecb1c3985275a89637993257c9f113d3b064da39097d484",
+      "original_path": "experiments/EXP-BATCH-20260908200906-01",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260908200906-02": {
+      "archived_at": "2026-09-16T13:46:46.804414+00:00",
+      "experiment_id": "EXP-BATCH-20260908200906-02",
+      "manifest_sha256": "1aaa0a71569e245e289fdbc27bcc14036c4358dd537e6724fc752d2742f7df51",
+      "original_path": "experiments/EXP-BATCH-20260908200906-02",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260908200906-03": {
+      "archived_at": "2026-09-16T13:46:32.456109+00:00",
+      "experiment_id": "EXP-BATCH-20260908200906-03",
+      "manifest_sha256": "1d5a1eb76fce3361a2175384e9a14674a77722860f1644883cf65dbb142f4008",
+      "original_path": "experiments/EXP-BATCH-20260908200906-03",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260908200906-04": {
+      "archived_at": "2026-09-16T13:46:40.722648+00:00",
+      "experiment_id": "EXP-BATCH-20260908200906-04",
+      "manifest_sha256": "2e7ab69ce425271276df1a49a460e840bd37b4a962b7d493f5ef7c013bafe31e",
+      "original_path": "experiments/EXP-BATCH-20260908200906-04",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260908200906-05": {
+      "archived_at": "2026-09-16T13:46:26.448165+00:00",
+      "experiment_id": "EXP-BATCH-20260908200906-05",
+      "manifest_sha256": "fa324760b01b5093d452d10f735e866de56801e3fa638651a870e04216570172",
+      "original_path": "experiments/EXP-BATCH-20260908200906-05",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260908200906-06": {
+      "archived_at": "2026-09-16T13:46:39.279744+00:00",
+      "experiment_id": "EXP-BATCH-20260908200906-06",
+      "manifest_sha256": "7bcc33df2fff25d3737104128761c33f46af94d932402e7d1fa94e950cff244f",
+      "original_path": "experiments/EXP-BATCH-20260908200906-06",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260908200906-07": {
+      "archived_at": "2026-09-16T13:46:17.946838+00:00",
+      "experiment_id": "EXP-BATCH-20260908200906-07",
+      "manifest_sha256": "18284122e9ac3a826cc2da545f314309dbe3051be5d15d6303db77c3f3729040",
+      "original_path": "experiments/EXP-BATCH-20260908200906-07",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260908200906-08": {
+      "archived_at": "2026-09-16T13:46:37.504221+00:00",
+      "experiment_id": "EXP-BATCH-20260908200906-08",
+      "manifest_sha256": "5d9707c7130377f686ba202d61a9ac8204a0a30de6a4739e5370d038de8040bc",
+      "original_path": "experiments/EXP-BATCH-20260908200906-08",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260908200906-09": {
+      "archived_at": "2026-09-16T13:46:35.374190+00:00",
+      "experiment_id": "EXP-BATCH-20260908200906-09",
+      "manifest_sha256": "389f7e9a1ed0c93e114307bc4d7f92b2f23b0a062c7b85d1ebc996045082966f",
+      "original_path": "experiments/EXP-BATCH-20260908200906-09",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260908200906-10": {
+      "archived_at": "2026-09-16T13:46:33.519952+00:00",
+      "experiment_id": "EXP-BATCH-20260908200906-10",
+      "manifest_sha256": "dae6f2baa742d9eb33fe8fea86ef8d51f07ff2efd11600d2cb884060a59158ee",
+      "original_path": "experiments/EXP-BATCH-20260908200906-10",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260908200906-11": {
+      "archived_at": "2026-09-16T13:46:13.550963+00:00",
+      "experiment_id": "EXP-BATCH-20260908200906-11",
+      "manifest_sha256": "7cc8e09fb38518805eca129332f186f76188bef321cc5f0012a065d4c9424565",
+      "original_path": "experiments/EXP-BATCH-20260908200906-11",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260908200906-12": {
+      "archived_at": "2026-09-16T13:46:31.151806+00:00",
+      "experiment_id": "EXP-BATCH-20260908200906-12",
+      "manifest_sha256": "cfd492c9a98b6fb094166a1496c1909c1e4c2a23bf40accb1586e51aae4c62a6",
+      "original_path": "experiments/EXP-BATCH-20260908200906-12",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260908200906-13": {
+      "archived_at": "2026-09-16T13:46:16.303718+00:00",
+      "experiment_id": "EXP-BATCH-20260908200906-13",
+      "manifest_sha256": "d4149774986d92e74e9e88c59186304226da19f71efc407cded558d02cb4480c",
+      "original_path": "experiments/EXP-BATCH-20260908200906-13",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260908200906-14": {
+      "archived_at": "2026-09-16T13:46:05.944641+00:00",
+      "experiment_id": "EXP-BATCH-20260908200906-14",
+      "manifest_sha256": "540485b9e029d5b62eb75fbdf306c1ebe4fbe43ea31097a45567c76301546181",
+      "original_path": "experiments/EXP-BATCH-20260908200906-14",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260908200906-15": {
+      "archived_at": "2026-09-16T13:46:07.281790+00:00",
+      "experiment_id": "EXP-BATCH-20260908200906-15",
+      "manifest_sha256": "ab28540d52e880b877f27dee79ca4a494bbd8834e4f0f7fa2eef7f4921206201",
+      "original_path": "experiments/EXP-BATCH-20260908200906-15",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260908200906-16": {
+      "archived_at": "2026-09-16T13:46:03.942674+00:00",
+      "experiment_id": "EXP-BATCH-20260908200906-16",
+      "manifest_sha256": "7522e5e47a22bc96053b4510c41ffe420fa68cc7a584e3b6c3417f8e5ae78209",
+      "original_path": "experiments/EXP-BATCH-20260908200906-16",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260908200906-17": {
+      "archived_at": "2026-09-16T13:46:24.513293+00:00",
+      "experiment_id": "EXP-BATCH-20260908200906-17",
+      "manifest_sha256": "776ea7afd699d61d29977b5043116d74d805d32fd0738727416f3679f4beed27",
+      "original_path": "experiments/EXP-BATCH-20260908200906-17",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260908200906-18": {
+      "archived_at": "2026-09-16T13:46:00.727894+00:00",
+      "experiment_id": "EXP-BATCH-20260908200906-18",
+      "manifest_sha256": "183d491dcba4e47c5651cceab6b85a23348e82f221a2e397a4a1d827bfdee2f4",
+      "original_path": "experiments/EXP-BATCH-20260908200906-18",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260908200906-19": {
+      "archived_at": "2026-09-16T13:46:13.940022+00:00",
+      "experiment_id": "EXP-BATCH-20260908200906-19",
+      "manifest_sha256": "9e4ce415aeeb8144b3bcd07ebe42399a63f6b7e688ba9a616a7363be22d7404e",
+      "original_path": "experiments/EXP-BATCH-20260908200906-19",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260908200906-20": {
+      "archived_at": "2026-09-16T13:46:13.612669+00:00",
+      "experiment_id": "EXP-BATCH-20260908200906-20",
+      "manifest_sha256": "a95282206d741e688691209928cd93cac9935c0646fd68f689cc2a4de5800376",
+      "original_path": "experiments/EXP-BATCH-20260908200906-20",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260908200906-21": {
+      "archived_at": "2026-09-16T13:46:10.802025+00:00",
+      "experiment_id": "EXP-BATCH-20260908200906-21",
+      "manifest_sha256": "0eec872357653ed90da2caff0aee2afa707a1adba66c51cbf8686ea59f8e74d0",
+      "original_path": "experiments/EXP-BATCH-20260908200906-21",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260908200906-22": {
+      "archived_at": "2026-09-16T13:46:04.832756+00:00",
+      "experiment_id": "EXP-BATCH-20260908200906-22",
+      "manifest_sha256": "cd3506f49fb62c0e74b8a68c10b9f34b024cf97453c348981c1bc97a807a37df",
+      "original_path": "experiments/EXP-BATCH-20260908200906-22",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260908200906-23": {
+      "archived_at": "2026-09-16T13:46:01.887435+00:00",
+      "experiment_id": "EXP-BATCH-20260908200906-23",
+      "manifest_sha256": "07cb9dc9d52314f3f5089b026593a64a04f54e94a966bd6aac750172983a43cd",
+      "original_path": "experiments/EXP-BATCH-20260908200906-23",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260908200906-24": {
+      "archived_at": "2026-09-16T13:45:59.108184+00:00",
+      "experiment_id": "EXP-BATCH-20260908200906-24",
+      "manifest_sha256": "f685071134b9ee5cf8cbda5168cf6fa8dc1f1635769f502cc2955671de1782fc",
+      "original_path": "experiments/EXP-BATCH-20260908200906-24",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260908200906-25": {
+      "archived_at": "2026-09-16T13:45:54.470723+00:00",
+      "experiment_id": "EXP-BATCH-20260908200906-25",
+      "manifest_sha256": "41bec78e103c6052943108b34a6f4fcc4d3794050e3d9aecde4bf68f12cb215c",
+      "original_path": "experiments/EXP-BATCH-20260908200906-25",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260908200906-26": {
+      "archived_at": "2026-09-16T13:45:59.298854+00:00",
+      "experiment_id": "EXP-BATCH-20260908200906-26",
+      "manifest_sha256": "9eb77bff5c24c3095f5d3021a188be9e05000897bd4570f11de2064eaa4d7646",
+      "original_path": "experiments/EXP-BATCH-20260908200906-26",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260909223705-04": {
+      "archived_at": "2026-09-16T13:46:08.910976+00:00",
+      "experiment_id": "EXP-BATCH-20260909223705-04",
+      "manifest_sha256": "f5daeb35e4cdbbedbf35786647312ec653a5e19ec1d8b89e7db44789b829a09d",
+      "original_path": "experiments/EXP-BATCH-20260909223705-04",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260909223705-05": {
+      "archived_at": "2026-09-16T13:45:59.670859+00:00",
+      "experiment_id": "EXP-BATCH-20260909223705-05",
+      "manifest_sha256": "851523fc957daf15a181db71d37c7421d7656c27225bf415be4baf3ab346706d",
+      "original_path": "experiments/EXP-BATCH-20260909223705-05",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260909223705-06": {
+      "archived_at": "2026-09-16T13:45:50.651665+00:00",
+      "experiment_id": "EXP-BATCH-20260909223705-06",
+      "manifest_sha256": "60106f75e0f2dbb0f8e4fc2c889f499f65e789718484ab75152c2b067c543fa7",
+      "original_path": "experiments/EXP-BATCH-20260909223705-06",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260909223705-07": {
+      "archived_at": "2026-09-16T13:45:55.962345+00:00",
+      "experiment_id": "EXP-BATCH-20260909223705-07",
+      "manifest_sha256": "75d8218435b8e24f14003a967160febd05bc8774ac7ea793e7a5d9df939a531f",
+      "original_path": "experiments/EXP-BATCH-20260909223705-07",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260909223705-08": {
+      "archived_at": "2026-09-16T13:45:22.069881+00:00",
+      "experiment_id": "EXP-BATCH-20260909223705-08",
+      "manifest_sha256": "a45857f016e78e4728521eea307fc4421e5f9beb7077c8898ea3ef404cd9e915",
+      "original_path": "experiments/EXP-BATCH-20260909223705-08",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260909223705-09": {
+      "archived_at": "2026-09-16T13:45:53.510764+00:00",
+      "experiment_id": "EXP-BATCH-20260909223705-09",
+      "manifest_sha256": "df2c80007d0d6fefca438c3db1e090f9d7654a312dfdb69efccd600a74a1d2b2",
+      "original_path": "experiments/EXP-BATCH-20260909223705-09",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260909223705-10": {
+      "archived_at": "2026-09-16T13:45:51.211505+00:00",
+      "experiment_id": "EXP-BATCH-20260909223705-10",
+      "manifest_sha256": "fde845fd395f38565c1113bd503301a60f36d6bc69445c6089695f2c171f23f5",
+      "original_path": "experiments/EXP-BATCH-20260909223705-10",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260909223705-11": {
+      "archived_at": "2026-09-16T13:45:59.136211+00:00",
+      "experiment_id": "EXP-BATCH-20260909223705-11",
+      "manifest_sha256": "f3d2b5bcd229c74127ffec620eef3597ac27a4857a08986fabaac3fdc42a013b",
+      "original_path": "experiments/EXP-BATCH-20260909223705-11",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260909223705-12": {
+      "archived_at": "2026-09-16T13:45:49.167105+00:00",
+      "experiment_id": "EXP-BATCH-20260909223705-12",
+      "manifest_sha256": "a585ae668583b243d2b5aea69eb601565570f47cca68920d907bbaf8b013e5f6",
+      "original_path": "experiments/EXP-BATCH-20260909223705-12",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260909223705-13": {
+      "archived_at": "2026-09-16T13:45:15.174577+00:00",
+      "experiment_id": "EXP-BATCH-20260909223705-13",
+      "manifest_sha256": "b941a84945906674211f523d430f86ab251612d345823db48e7e6087bc83929e",
+      "original_path": "experiments/EXP-BATCH-20260909223705-13",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260909223705-14": {
+      "archived_at": "2026-09-16T13:45:25.827178+00:00",
+      "experiment_id": "EXP-BATCH-20260909223705-14",
+      "manifest_sha256": "24301f6b05a74d86237e4aa4177a418f9615df6d9f2ca7d3f3939364cb5b50bc",
+      "original_path": "experiments/EXP-BATCH-20260909223705-14",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260909223705-15": {
+      "archived_at": "2026-09-16T13:45:14.213825+00:00",
+      "experiment_id": "EXP-BATCH-20260909223705-15",
+      "manifest_sha256": "16e60e74172410415a45e9195121b267f3bf5b6856d847dad3d0112290d758ea",
+      "original_path": "experiments/EXP-BATCH-20260909223705-15",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260909223705-16": {
+      "archived_at": "2026-09-16T13:45:20.566179+00:00",
+      "experiment_id": "EXP-BATCH-20260909223705-16",
+      "manifest_sha256": "aadc82406a49ef55facae4e096f5155748100d186e4cda0948d0bff6099921a2",
+      "original_path": "experiments/EXP-BATCH-20260909223705-16",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260909223705-17": {
+      "archived_at": "2026-09-16T13:45:46.115057+00:00",
+      "experiment_id": "EXP-BATCH-20260909223705-17",
+      "manifest_sha256": "3aaff388e08f665ddf20d336ba1466356498d7bca4c2859e9277460168977ed1",
+      "original_path": "experiments/EXP-BATCH-20260909223705-17",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260909223705-18": {
+      "archived_at": "2026-09-16T13:45:44.966796+00:00",
+      "experiment_id": "EXP-BATCH-20260909223705-18",
+      "manifest_sha256": "0ae147693b4088d1c1d51a31e5a26632903402e5bd02536c65e191c6b4bef8c0",
+      "original_path": "experiments/EXP-BATCH-20260909223705-18",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260909223705-19": {
+      "archived_at": "2026-09-16T13:45:16.392756+00:00",
+      "experiment_id": "EXP-BATCH-20260909223705-19",
+      "manifest_sha256": "5ce3550c4713af85b4fb6c8fa1fb84652996ccd63b5d4ecc120dd1774d1a6fa3",
+      "original_path": "experiments/EXP-BATCH-20260909223705-19",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260909223705-20": {
+      "archived_at": "2026-09-16T13:45:44.014025+00:00",
+      "experiment_id": "EXP-BATCH-20260909223705-20",
+      "manifest_sha256": "407876fe3bca7e883ac4e7cd29d8e7182701848996f70ae3ad87ae7ea2ea2565",
+      "original_path": "experiments/EXP-BATCH-20260909223705-20",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260909223705-21": {
+      "archived_at": "2026-09-16T13:45:08.422735+00:00",
+      "experiment_id": "EXP-BATCH-20260909223705-21",
+      "manifest_sha256": "26d73483a9c31e8673fe25c4f16246573d9d38cfc95578973851ecb0356b9d64",
+      "original_path": "experiments/EXP-BATCH-20260909223705-21",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260909223705-22": {
+      "archived_at": "2026-09-16T13:45:13.196820+00:00",
+      "experiment_id": "EXP-BATCH-20260909223705-22",
+      "manifest_sha256": "91a0b678ee95cf3484669ae1abd34db48521606cf4b13a84f0d5065134925db3",
+      "original_path": "experiments/EXP-BATCH-20260909223705-22",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260909223705-23": {
+      "archived_at": "2026-09-16T13:45:07.691102+00:00",
+      "experiment_id": "EXP-BATCH-20260909223705-23",
+      "manifest_sha256": "6a8841f78ad6e369e87cd495635bd99527232a41d6cc5cee5431eb6613bb7629",
+      "original_path": "experiments/EXP-BATCH-20260909223705-23",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260909223705-24": {
+      "archived_at": "2026-09-16T13:45:42.376803+00:00",
+      "experiment_id": "EXP-BATCH-20260909223705-24",
+      "manifest_sha256": "0f6fb23e543b726e9879dc3f5a18fc264b4a0ec6e66b0d033f63b35811729cdb",
+      "original_path": "experiments/EXP-BATCH-20260909223705-24",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260909223705-25": {
+      "archived_at": "2026-09-16T13:45:38.935520+00:00",
+      "experiment_id": "EXP-BATCH-20260909223705-25",
+      "manifest_sha256": "ede9672a360f9eedbf25fbd07dbedb873042f4856b28ef30550da3bc7a77128d",
+      "original_path": "experiments/EXP-BATCH-20260909223705-25",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260909223705-26": {
+      "archived_at": "2026-09-16T13:45:37.534973+00:00",
+      "experiment_id": "EXP-BATCH-20260909223705-26",
+      "manifest_sha256": "c63e2f0100d87d6d88fe3a765707573d654f51bf394cfb0df8cff732bb441006",
+      "original_path": "experiments/EXP-BATCH-20260909223705-26",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260909223705-27": {
+      "archived_at": "2026-09-16T13:45:09.135218+00:00",
+      "experiment_id": "EXP-BATCH-20260909223705-27",
+      "manifest_sha256": "f208df01aff7eaf22e0eeddfba15c343b7afd4ba45b5b7fd0324c3998ecf13fb",
+      "original_path": "experiments/EXP-BATCH-20260909223705-27",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260909223705-28": {
+      "archived_at": "2026-09-16T13:45:18.622177+00:00",
+      "experiment_id": "EXP-BATCH-20260909223705-28",
+      "manifest_sha256": "e66a42fba56a4d56f3ffd52e9d336b58c25d4fde8a32d1b5e45dcf7762a3e933",
+      "original_path": "experiments/EXP-BATCH-20260909223705-28",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260909223705-29": {
+      "archived_at": "2026-09-16T13:45:06.885444+00:00",
+      "experiment_id": "EXP-BATCH-20260909223705-29",
+      "manifest_sha256": "454cbdb849508b1345fac338207167382173bf13bbc5bbeeeb4e632866c57652",
+      "original_path": "experiments/EXP-BATCH-20260909223705-29",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260909223705-30": {
+      "archived_at": "2026-09-16T13:45:19.568294+00:00",
+      "experiment_id": "EXP-BATCH-20260909223705-30",
+      "manifest_sha256": "3c888f4fbf3841f9b4849ff80051eb33a155582f25d89423bab4ab9ba2a46017",
+      "original_path": "experiments/EXP-BATCH-20260909223705-30",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260909223705-31": {
+      "archived_at": "2026-09-16T13:45:12.449123+00:00",
+      "experiment_id": "EXP-BATCH-20260909223705-31",
+      "manifest_sha256": "a6a5a30c8bef60957f72911b6af357cf1e0281b2684c63ff8c95a372e82bf544",
+      "original_path": "experiments/EXP-BATCH-20260909223705-31",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260909223705-32": {
+      "archived_at": "2026-09-16T13:45:30.640395+00:00",
+      "experiment_id": "EXP-BATCH-20260909223705-32",
+      "manifest_sha256": "eb526a04cc4632114d87d6acce6bd57fb18e5c98327dfb05e9391b1b687009a2",
+      "original_path": "experiments/EXP-BATCH-20260909223705-32",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260909223705-33": {
+      "archived_at": "2026-09-16T13:45:10.037957+00:00",
+      "experiment_id": "EXP-BATCH-20260909223705-33",
+      "manifest_sha256": "ad5d82b4e8a13ef59158d869d2dc513a0e1e13104e6ff587953df1d4d2884880",
+      "original_path": "experiments/EXP-BATCH-20260909223705-33",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260909223705-34": {
+      "archived_at": "2026-09-16T13:45:35.951164+00:00",
+      "experiment_id": "EXP-BATCH-20260909223705-34",
+      "manifest_sha256": "6ffc666b4fd78a0184853fb452908435ccc23951b74753e47763d2a9bf137cb3",
+      "original_path": "experiments/EXP-BATCH-20260909223705-34",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260909223705-35": {
+      "archived_at": "2026-09-16T13:45:05.989240+00:00",
+      "experiment_id": "EXP-BATCH-20260909223705-35",
+      "manifest_sha256": "3e9296e9ad185a59f9b9b54f164e64ac0acdcaf61ed33a73f108840515ad731f",
+      "original_path": "experiments/EXP-BATCH-20260909223705-35",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260909223705-36": {
+      "archived_at": "2026-09-16T13:45:26.311614+00:00",
+      "experiment_id": "EXP-BATCH-20260909223705-36",
+      "manifest_sha256": "ff4ca3f8de39cbb282f65f9bc5e9dad2ee71591899374895d3c4f3d76ce89db0",
+      "original_path": "experiments/EXP-BATCH-20260909223705-36",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260909223705-37": {
+      "archived_at": "2026-09-16T13:45:18.639052+00:00",
+      "experiment_id": "EXP-BATCH-20260909223705-37",
+      "manifest_sha256": "5a75861a035487401d35e92670b12fa949728d287d7a581f3743aa2671967c95",
+      "original_path": "experiments/EXP-BATCH-20260909223705-37",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260909223705-38": {
+      "archived_at": "2026-09-16T13:45:18.727156+00:00",
+      "experiment_id": "EXP-BATCH-20260909223705-38",
+      "manifest_sha256": "1ee751f7a4ee1670f3cb9d593008f6f439e909009ee048b98ac2551c716648dc",
+      "original_path": "experiments/EXP-BATCH-20260909223705-38",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260909223705-39": {
+      "archived_at": "2026-09-16T13:43:13.954558+00:00",
+      "experiment_id": "EXP-BATCH-20260909223705-39",
+      "manifest_sha256": "a5ebaf3c6b3e64a662b5cf0469ce3a39db33c47b4609d3498b2abd6dd30f088b",
+      "original_path": "experiments/EXP-BATCH-20260909223705-39",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260909223705-40": {
+      "archived_at": "2026-09-16T13:43:09.499465+00:00",
+      "experiment_id": "EXP-BATCH-20260909223705-40",
+      "manifest_sha256": "856554b65751b368ddc3cde8087b7155b82c8300daa7a736f184dfd14057ef08",
+      "original_path": "experiments/EXP-BATCH-20260909223705-40",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260909223705-41": {
+      "archived_at": "2026-09-16T13:45:11.213681+00:00",
+      "experiment_id": "EXP-BATCH-20260909223705-41",
+      "manifest_sha256": "d543f365532e823b946e715109c4e05736e0260b49590d45e08095131beeef97",
+      "original_path": "experiments/EXP-BATCH-20260909223705-41",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260909223705-42": {
+      "archived_at": "2026-09-16T13:45:25.872923+00:00",
+      "experiment_id": "EXP-BATCH-20260909223705-42",
+      "manifest_sha256": "74d089e1c625aebede983f7009b4dd42f5300f93d64fccfb17425c8f456483f2",
+      "original_path": "experiments/EXP-BATCH-20260909223705-42",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260909223705-43": {
+      "archived_at": "2026-09-16T13:45:03.838717+00:00",
+      "experiment_id": "EXP-BATCH-20260909223705-43",
+      "manifest_sha256": "1d006aff1e93ee8d8fc490d74bdeddac4e7cc8514c0dcb59eaf75b2be95741cd",
+      "original_path": "experiments/EXP-BATCH-20260909223705-43",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260909223705-44": {
+      "archived_at": "2026-09-16T13:43:06.483514+00:00",
+      "experiment_id": "EXP-BATCH-20260909223705-44",
+      "manifest_sha256": "1b2a59d1e2e8755332194be75796e3ab3f4ac4c3b45ae8ddb6e8fd6022abde0c",
+      "original_path": "experiments/EXP-BATCH-20260909223705-44",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260909223705-45": {
+      "archived_at": "2026-09-16T13:43:18.362680+00:00",
+      "experiment_id": "EXP-BATCH-20260909223705-45",
+      "manifest_sha256": "8ddc7f664ae9c7eec49c572e0e7b0979c0a7e3e7d1fc06bae0a82083d39e4c1e",
+      "original_path": "experiments/EXP-BATCH-20260909223705-45",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260909223705-46": {
+      "archived_at": "2026-09-16T13:43:16.066568+00:00",
+      "experiment_id": "EXP-BATCH-20260909223705-46",
+      "manifest_sha256": "a74a0f5bea9453e9204c3ba34b205a0a34f903e3f264db4d2d4390b87e7bd8c7",
+      "original_path": "experiments/EXP-BATCH-20260909223705-46",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260909223705-69": {
+      "archived_at": "2026-09-16T13:43:11.778591+00:00",
+      "experiment_id": "EXP-BATCH-20260909223705-69",
+      "manifest_sha256": "030222aa623db75c1af5506441b9db049230966f285a6b5e56170b8fbadd60b5",
+      "original_path": "experiments/EXP-BATCH-20260909223705-69",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260909223705-71": {
+      "archived_at": "2026-09-16T13:43:07.522528+00:00",
+      "experiment_id": "EXP-BATCH-20260909223705-71",
+      "manifest_sha256": "9a4353f615f1c0032ae731048fe2ef69c88982c466e46eb82aaf8864e95ccf40",
+      "original_path": "experiments/EXP-BATCH-20260909223705-71",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260909223705-75": {
+      "archived_at": "2026-09-16T13:43:06.424745+00:00",
+      "experiment_id": "EXP-BATCH-20260909223705-75",
+      "manifest_sha256": "ac260dc3d3e051ca69f7b88fe0d6a824892d394043448f013ca26a523d542d55",
+      "original_path": "experiments/EXP-BATCH-20260909223705-75",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260909223705-76": {
+      "archived_at": "2026-09-16T13:43:01.137793+00:00",
+      "experiment_id": "EXP-BATCH-20260909223705-76",
+      "manifest_sha256": "fbbb83c647fc7d63bcd2a7054d9f5043dd7e774bf35a8673e9b9b9f9ae0f7da6",
+      "original_path": "experiments/EXP-BATCH-20260909223705-76",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260909223705-77": {
+      "archived_at": "2026-09-16T13:42:59.345727+00:00",
+      "experiment_id": "EXP-BATCH-20260909223705-77",
+      "manifest_sha256": "8e7578d55b09882a05258e85d3f08b58928ba7c455eeb2b341f4af3820c57b6d",
+      "original_path": "experiments/EXP-BATCH-20260909223705-77",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260909223705-78": {
+      "archived_at": "2026-09-16T13:42:57.493125+00:00",
+      "experiment_id": "EXP-BATCH-20260909223705-78",
+      "manifest_sha256": "5c746becb762e59022027e25ce76c209957bddfb3015768f0e2078c09a4e6a46",
+      "original_path": "experiments/EXP-BATCH-20260909223705-78",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260909223705-79": {
+      "archived_at": "2026-09-16T13:42:55.586094+00:00",
+      "experiment_id": "EXP-BATCH-20260909223705-79",
+      "manifest_sha256": "3ce5439c67870a6ebcb52e552e40af456663143d4842c727d79c2aa6b9997b8c",
+      "original_path": "experiments/EXP-BATCH-20260909223705-79",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260909223705-80": {
+      "archived_at": "2026-09-16T13:42:53.617872+00:00",
+      "experiment_id": "EXP-BATCH-20260909223705-80",
+      "manifest_sha256": "4baa87f3d726ae58daeed29b43ed62caba4d14c3873217cdf08ed48227422cfd",
+      "original_path": "experiments/EXP-BATCH-20260909223705-80",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260909223705-81": {
+      "archived_at": "2026-09-16T13:42:52.281836+00:00",
+      "experiment_id": "EXP-BATCH-20260909223705-81",
+      "manifest_sha256": "abc21c67efb1111eb7c0d9b77506852de9bd32e3e0faf0d4995aa26c947e23dd",
+      "original_path": "experiments/EXP-BATCH-20260909223705-81",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260909223705-82": {
+      "archived_at": "2026-09-16T13:42:46.578316+00:00",
+      "experiment_id": "EXP-BATCH-20260909223705-82",
+      "manifest_sha256": "5aa020339c6198c74fea740bdcdbb24aa53ea44ce519c3d638087b33a7ba421f",
+      "original_path": "experiments/EXP-BATCH-20260909223705-82",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260909223705-83": {
+      "archived_at": "2026-09-16T13:42:44.691125+00:00",
+      "experiment_id": "EXP-BATCH-20260909223705-83",
+      "manifest_sha256": "d9883c699124c77fac997fed7f0cb80fb5a5463d47fb13bf3d16d258bfa4ebc6",
+      "original_path": "experiments/EXP-BATCH-20260909223705-83",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260909223705-84": {
+      "archived_at": "2026-09-16T13:42:42.258469+00:00",
+      "experiment_id": "EXP-BATCH-20260909223705-84",
+      "manifest_sha256": "fb1ea7c71b95e7dd99d552180728dd4434a14ac9373956fe5d2ba4328eb5e6ae",
+      "original_path": "experiments/EXP-BATCH-20260909223705-84",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260909223705-85": {
+      "archived_at": "2026-09-16T13:42:37.983148+00:00",
+      "experiment_id": "EXP-BATCH-20260909223705-85",
+      "manifest_sha256": "af34de572d0f523cdd220a9925658c156cdd41bb1d9c523a74691c5a852a20fb",
+      "original_path": "experiments/EXP-BATCH-20260909223705-85",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260909223705-86": {
+      "archived_at": "2026-09-16T13:42:20.965706+00:00",
+      "experiment_id": "EXP-BATCH-20260909223705-86",
+      "manifest_sha256": "518e4841b996aecb6899d1db9e3849b3a159603181b10d7e4ae416f31b81f021",
+      "original_path": "experiments/EXP-BATCH-20260909223705-86",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260909223705-87": {
+      "archived_at": "2026-09-16T13:42:15.028596+00:00",
+      "experiment_id": "EXP-BATCH-20260909223705-87",
+      "manifest_sha256": "11628e9dbe986be7ab07c00b9740ab2cd48319013346b42bf4d2691e177a2d23",
+      "original_path": "experiments/EXP-BATCH-20260909223705-87",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260909223705-88": {
+      "archived_at": "2026-09-16T13:42:13.272721+00:00",
+      "experiment_id": "EXP-BATCH-20260909223705-88",
+      "manifest_sha256": "db8010312d3ef460068fc20bd7bd326f1fae3a8ce9930ccab15df519917cf55d",
+      "original_path": "experiments/EXP-BATCH-20260909223705-88",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260909223705-89": {
+      "archived_at": "2026-09-16T13:42:11.608763+00:00",
+      "experiment_id": "EXP-BATCH-20260909223705-89",
+      "manifest_sha256": "b112cff2637695a19a1b7d227cb0d8ba3fab7e63171e26dd638f2cf63c77397c",
+      "original_path": "experiments/EXP-BATCH-20260909223705-89",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260914074039-01": {
+      "archived_at": "2026-09-16T13:42:00.523511+00:00",
+      "experiment_id": "EXP-BATCH-20260914074039-01",
+      "manifest_sha256": "58963dcc7d3029dad1af33bb501c667f8e8484a2f4c1b4b4559fc2c05b0995d8",
+      "original_path": "experiments/EXP-BATCH-20260914074039-01",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260914074039-02": {
+      "archived_at": "2026-09-16T13:41:58.245843+00:00",
+      "experiment_id": "EXP-BATCH-20260914074039-02",
+      "manifest_sha256": "77d9ac6db6f99a5f21eebdf3f9facca67f091c1f0acd4585301cc5076de001d8",
+      "original_path": "experiments/EXP-BATCH-20260914074039-02",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260914074039-03": {
+      "archived_at": "2026-09-16T13:41:56.019130+00:00",
+      "experiment_id": "EXP-BATCH-20260914074039-03",
+      "manifest_sha256": "5d41cd64d7a16019e4afd33e9d154f0410e46fee3a5c13e19a1f00657433daf5",
+      "original_path": "experiments/EXP-BATCH-20260914074039-03",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260914074039-04": {
+      "archived_at": "2026-09-16T13:41:54.057703+00:00",
+      "experiment_id": "EXP-BATCH-20260914074039-04",
+      "manifest_sha256": "397cdcace86444df2c990c325c23d8709215897b15fc0b9d4e5c9d80e9615889",
+      "original_path": "experiments/EXP-BATCH-20260914074039-04",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260914074039-05": {
+      "archived_at": "2026-09-16T13:41:51.488837+00:00",
+      "experiment_id": "EXP-BATCH-20260914074039-05",
+      "manifest_sha256": "04a4ecfe2d4fa80e890b44566a0dcfd41167e47e00223942fd218b165fdfe4db",
+      "original_path": "experiments/EXP-BATCH-20260914074039-05",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260914074039-06": {
+      "archived_at": "2026-09-16T13:41:48.389452+00:00",
+      "experiment_id": "EXP-BATCH-20260914074039-06",
+      "manifest_sha256": "9080c23e6c5d40e58c8f86423049c293b751ac3518ee292f40c129e8fa916690",
+      "original_path": "experiments/EXP-BATCH-20260914074039-06",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260914074039-07": {
+      "archived_at": "2026-09-16T13:41:43.495841+00:00",
+      "experiment_id": "EXP-BATCH-20260914074039-07",
+      "manifest_sha256": "09271f4866e9177f87f3d3f07f71814fd297575cd3850fac31520626edbf7626",
+      "original_path": "experiments/EXP-BATCH-20260914074039-07",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260914074039-08": {
+      "archived_at": "2026-09-16T13:41:41.553967+00:00",
+      "experiment_id": "EXP-BATCH-20260914074039-08",
+      "manifest_sha256": "7c084c85ee3bfa1a100f663a2bef0b2babbfd2b996144ce60b78702c768458d2",
+      "original_path": "experiments/EXP-BATCH-20260914074039-08",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260914074039-09": {
+      "archived_at": "2026-09-16T13:41:39.729227+00:00",
+      "experiment_id": "EXP-BATCH-20260914074039-09",
+      "manifest_sha256": "d634b5616f894c818b6da211f8f405f4ed66a54360982c39b5692cc0f57555d8",
+      "original_path": "experiments/EXP-BATCH-20260914074039-09",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260914074039-10": {
+      "archived_at": "2026-09-16T13:41:37.944434+00:00",
+      "experiment_id": "EXP-BATCH-20260914074039-10",
+      "manifest_sha256": "01bc5ccde38e6234fb52be5eef2d1d268e65568e6ff6ea7ecaff59a4e97b2e0d",
+      "original_path": "experiments/EXP-BATCH-20260914074039-10",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260914074039-11": {
+      "archived_at": "2026-09-16T13:41:35.873070+00:00",
+      "experiment_id": "EXP-BATCH-20260914074039-11",
+      "manifest_sha256": "e8c7787fb6f7c9d20b4a423e52092104ac107219020a1a90c19a3e3dd5a4fd40",
+      "original_path": "experiments/EXP-BATCH-20260914074039-11",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260914074039-12": {
+      "archived_at": "2026-09-16T13:41:33.768804+00:00",
+      "experiment_id": "EXP-BATCH-20260914074039-12",
+      "manifest_sha256": "1f794f8ed705cf70b11595bc79bc7f28b493987fb12261659c0a072e44591f9f",
+      "original_path": "experiments/EXP-BATCH-20260914074039-12",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260914074039-13": {
+      "archived_at": "2026-09-16T13:41:31.072222+00:00",
+      "experiment_id": "EXP-BATCH-20260914074039-13",
+      "manifest_sha256": "7699521308323df0296ff8b0682278ee21b1e2121d16949e2518576f0bc8d3e0",
+      "original_path": "experiments/EXP-BATCH-20260914074039-13",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260914074039-14": {
+      "archived_at": "2026-09-16T13:41:29.849072+00:00",
+      "experiment_id": "EXP-BATCH-20260914074039-14",
+      "manifest_sha256": "3ce4b8db37d0b10ed7ae828d6d602bf7a9aed18e8469bb36318d12100e31c38f",
+      "original_path": "experiments/EXP-BATCH-20260914074039-14",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260914074039-15": {
+      "archived_at": "2026-09-16T13:41:25.007648+00:00",
+      "experiment_id": "EXP-BATCH-20260914074039-15",
+      "manifest_sha256": "85da342385ce05304f88cd46972aaa3926ee79e55b51347ebcc56cbc3863901f",
+      "original_path": "experiments/EXP-BATCH-20260914074039-15",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260914074039-16": {
+      "archived_at": "2026-09-16T13:41:22.797353+00:00",
+      "experiment_id": "EXP-BATCH-20260914074039-16",
+      "manifest_sha256": "25c9698f4a55a075dfe42b40332c729faf16abc3a9b171d83c4e68247c113970",
+      "original_path": "experiments/EXP-BATCH-20260914074039-16",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260914074039-17": {
+      "archived_at": "2026-09-16T13:41:14.854891+00:00",
+      "experiment_id": "EXP-BATCH-20260914074039-17",
+      "manifest_sha256": "42918f6938cdf0971bbebd3eee811442f0a3a585f09a410524d0964e5b4bd5ed",
+      "original_path": "experiments/EXP-BATCH-20260914074039-17",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260914074039-18": {
+      "archived_at": "2026-09-16T13:40:51.673263+00:00",
+      "experiment_id": "EXP-BATCH-20260914074039-18",
+      "manifest_sha256": "764ac772d6fe69837bc264919baa934048661aa0d18b755773a50fd2f7666a31",
+      "original_path": "experiments/EXP-BATCH-20260914074039-18",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260914074039-19": {
+      "archived_at": "2026-09-16T13:41:11.744627+00:00",
+      "experiment_id": "EXP-BATCH-20260914074039-19",
+      "manifest_sha256": "34a96d79e472a1816a41592c0b48095ecd8dc205c059d1304c9d1771026e6cec",
+      "original_path": "experiments/EXP-BATCH-20260914074039-19",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260914074039-20": {
+      "archived_at": "2026-09-16T13:41:06.750160+00:00",
+      "experiment_id": "EXP-BATCH-20260914074039-20",
+      "manifest_sha256": "4885028742cac877c1b6e73780fae939fad32fd997ba85a97925422146984778",
+      "original_path": "experiments/EXP-BATCH-20260914074039-20",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260914074039-21": {
+      "archived_at": "2026-09-16T13:40:49.562474+00:00",
+      "experiment_id": "EXP-BATCH-20260914074039-21",
+      "manifest_sha256": "d780e436b27a10f762659a58bb873e806b33bbb95ffcde77492ec3c9e54f3d8c",
+      "original_path": "experiments/EXP-BATCH-20260914074039-21",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260914074039-22": {
+      "archived_at": "2026-09-16T13:41:03.464676+00:00",
+      "experiment_id": "EXP-BATCH-20260914074039-22",
+      "manifest_sha256": "620d6e1b5051a910780b0f599af724eed318cc62383a611ef1c8394dd55eb428",
+      "original_path": "experiments/EXP-BATCH-20260914074039-22",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260914074039-23": {
+      "archived_at": "2026-09-16T13:41:00.858265+00:00",
+      "experiment_id": "EXP-BATCH-20260914074039-23",
+      "manifest_sha256": "4ea92b0edfa24ac8afaee4697334ecb0f34d9119b9d4acf92c54cdea8d417aba",
+      "original_path": "experiments/EXP-BATCH-20260914074039-23",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260914074039-24": {
+      "archived_at": "2026-09-16T13:40:56.693474+00:00",
+      "experiment_id": "EXP-BATCH-20260914074039-24",
+      "manifest_sha256": "79face0dac5d6ceae27d3b2e204adc3ebc41e215d9a1a677e6f47567be893c99",
+      "original_path": "experiments/EXP-BATCH-20260914074039-24",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260914074039-25": {
+      "archived_at": "2026-09-16T13:40:48.615543+00:00",
+      "experiment_id": "EXP-BATCH-20260914074039-25",
+      "manifest_sha256": "ffdb8e987ef28eb035bcc28933ecef46fb1516bd9db41f66ee8c4424a8309607",
+      "original_path": "experiments/EXP-BATCH-20260914074039-25",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260914074039-26": {
+      "archived_at": "2026-09-16T13:40:54.575337+00:00",
+      "experiment_id": "EXP-BATCH-20260914074039-26",
+      "manifest_sha256": "21cd8f2d53d84afeb2fab557674443f8b9eb27f42e4a729853958db1991fa371",
+      "original_path": "experiments/EXP-BATCH-20260914074039-26",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260914074039-27": {
+      "archived_at": "2026-09-16T13:40:44.860947+00:00",
+      "experiment_id": "EXP-BATCH-20260914074039-27",
+      "manifest_sha256": "fcaea59dfab0b4cd711fadc673e2fb72fe5c9a5a17c2f82d82cdf94b252d1800",
+      "original_path": "experiments/EXP-BATCH-20260914074039-27",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260914074039-28": {
+      "archived_at": "2026-09-16T13:40:40.486850+00:00",
+      "experiment_id": "EXP-BATCH-20260914074039-28",
+      "manifest_sha256": "b88bf5782067c4d20dc13bef44d38dfef2904da44ced41d03cc734d6522e999e",
+      "original_path": "experiments/EXP-BATCH-20260914074039-28",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260914074039-29": {
+      "archived_at": "2026-09-16T13:40:36.696180+00:00",
+      "experiment_id": "EXP-BATCH-20260914074039-29",
+      "manifest_sha256": "aa65bd8625824a2fec0a39d15e1194d66c111ff75c9408296cd274a360ed2be6",
+      "original_path": "experiments/EXP-BATCH-20260914074039-29",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260914074039-30": {
+      "archived_at": "2026-09-16T13:40:34.214707+00:00",
+      "experiment_id": "EXP-BATCH-20260914074039-30",
+      "manifest_sha256": "32cdc58568ac91de904e3c694529db8122a5397527e5c9fb8e39229ad714e2a3",
+      "original_path": "experiments/EXP-BATCH-20260914074039-30",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260914074039-31": {
+      "archived_at": "2026-09-16T13:40:31.759244+00:00",
+      "experiment_id": "EXP-BATCH-20260914074039-31",
+      "manifest_sha256": "36b97662eff3232e74f769afd63bc1d1b445a94648ab1086b2525ddce3e1f5d4",
+      "original_path": "experiments/EXP-BATCH-20260914074039-31",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260914074039-32": {
+      "archived_at": "2026-09-16T13:40:29.681324+00:00",
+      "experiment_id": "EXP-BATCH-20260914074039-32",
+      "manifest_sha256": "f51773cb49c1ba0fd7361fec2dc7e93fbac1516dfb52c7f133efc94be61931ff",
+      "original_path": "experiments/EXP-BATCH-20260914074039-32",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260914074039-33": {
+      "archived_at": "2026-09-16T13:40:26.526917+00:00",
+      "experiment_id": "EXP-BATCH-20260914074039-33",
+      "manifest_sha256": "a0d2ba7633d0a601afa0100a9f1a19ecf161dca3eb366df7a7e709355f841919",
+      "original_path": "experiments/EXP-BATCH-20260914074039-33",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260914074039-34": {
+      "archived_at": "2026-09-16T13:40:24.318207+00:00",
+      "experiment_id": "EXP-BATCH-20260914074039-34",
+      "manifest_sha256": "70bb0b994a2d59cd4804b1fa1d3a0ac29786eccdc15b9d47269bd89332d96e5d",
+      "original_path": "experiments/EXP-BATCH-20260914074039-34",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260914074039-35": {
+      "archived_at": "2026-09-16T13:40:22.277946+00:00",
+      "experiment_id": "EXP-BATCH-20260914074039-35",
+      "manifest_sha256": "a23e4fb356b254b3b5d076b8a95bcd938becdd92d76119c3ac8514187f71dad9",
+      "original_path": "experiments/EXP-BATCH-20260914074039-35",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260914074039-36": {
+      "archived_at": "2026-09-16T13:40:19.469133+00:00",
+      "experiment_id": "EXP-BATCH-20260914074039-36",
+      "manifest_sha256": "f09de0f9e95e5c35b440aaeb656706b5d9dcfce1ffb1b60a71210879d2d16ed4",
+      "original_path": "experiments/EXP-BATCH-20260914074039-36",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260914074039-37": {
+      "archived_at": "2026-09-16T13:40:16.214549+00:00",
+      "experiment_id": "EXP-BATCH-20260914074039-37",
+      "manifest_sha256": "d46776f0ae21f84d017f81284dbed7d4eae53ea00622b6c70dde60045517d8b5",
+      "original_path": "experiments/EXP-BATCH-20260914074039-37",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260914074039-38": {
+      "archived_at": "2026-09-16T13:40:14.209326+00:00",
+      "experiment_id": "EXP-BATCH-20260914074039-38",
+      "manifest_sha256": "6931027b39bd075ce47574cf768fb0e5c276c9654049de39ed7ef8c04f4d4883",
+      "original_path": "experiments/EXP-BATCH-20260914074039-38",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260914074039-39": {
+      "archived_at": "2026-09-16T13:40:11.021894+00:00",
+      "experiment_id": "EXP-BATCH-20260914074039-39",
+      "manifest_sha256": "3a995d47e953cbec3e755f6ebf8313dc48ef762337cbf47d9731e84b508acd59",
+      "original_path": "experiments/EXP-BATCH-20260914074039-39",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260914074039-40": {
+      "archived_at": "2026-09-16T13:40:08.878602+00:00",
+      "experiment_id": "EXP-BATCH-20260914074039-40",
+      "manifest_sha256": "d739d3fa073739c8a38133931418a9b09891d7404a43ee6d6d251c9fb54cadb1",
+      "original_path": "experiments/EXP-BATCH-20260914074039-40",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260914074039-41": {
+      "archived_at": "2026-09-16T13:40:06.274461+00:00",
+      "experiment_id": "EXP-BATCH-20260914074039-41",
+      "manifest_sha256": "cb1d8fa7c9d5a86059d98e773916d6a3bf878cdbbb104a668770173045d0b138",
+      "original_path": "experiments/EXP-BATCH-20260914074039-41",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260914074039-42": {
+      "archived_at": "2026-09-16T13:40:03.794041+00:00",
+      "experiment_id": "EXP-BATCH-20260914074039-42",
+      "manifest_sha256": "6714088f45f156a44de6bcb671a6f4c1256d192b3393d1bf86fbdabc19afafb5",
+      "original_path": "experiments/EXP-BATCH-20260914074039-42",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260914074039-43": {
+      "archived_at": "2026-09-16T13:40:00.560210+00:00",
+      "experiment_id": "EXP-BATCH-20260914074039-43",
+      "manifest_sha256": "df2ae1116ed6214ea27a311e792ddc8960e9db8f865963c6e3f1b4f2de8d62d3",
+      "original_path": "experiments/EXP-BATCH-20260914074039-43",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260914074039-69": {
+      "archived_at": "2026-09-16T13:39:43.925636+00:00",
+      "experiment_id": "EXP-BATCH-20260914074039-69",
+      "manifest_sha256": "a99bcdd903f8a3bfc5dcd924fbfe2dc9f16c8668f48c3209409f096242793844",
+      "original_path": "experiments/EXP-BATCH-20260914074039-69",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260914074039-71": {
+      "archived_at": "2026-09-16T13:39:23.375744+00:00",
+      "experiment_id": "EXP-BATCH-20260914074039-71",
+      "manifest_sha256": "edc40ecd2c1dfcf8b6566988fcc1442df07c5c13c0ab145c63648c1650f5f3cf",
+      "original_path": "experiments/EXP-BATCH-20260914074039-71",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260914074039-75": {
+      "archived_at": "2026-09-16T13:39:41.365318+00:00",
+      "experiment_id": "EXP-BATCH-20260914074039-75",
+      "manifest_sha256": "9b40e19a6247bb7550c2a783e1296278ef18f482a0bd7655672a4b95a7e8b9c4",
+      "original_path": "experiments/EXP-BATCH-20260914074039-75",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260914074039-76": {
+      "archived_at": "2026-09-16T13:39:38.911099+00:00",
+      "experiment_id": "EXP-BATCH-20260914074039-76",
+      "manifest_sha256": "20c5d43a674988215dbe98da9048b4130930b85e3d2b4fd01663367da3c413fa",
+      "original_path": "experiments/EXP-BATCH-20260914074039-76",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260914074039-77": {
+      "archived_at": "2026-09-16T13:39:36.318803+00:00",
+      "experiment_id": "EXP-BATCH-20260914074039-77",
+      "manifest_sha256": "e7ccd66b6ac4ee4e5e9c93ade3c43bd146f16533902ea3a1b1b3343c444a0be0",
+      "original_path": "experiments/EXP-BATCH-20260914074039-77",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260914074039-78": {
+      "archived_at": "2026-09-16T13:39:10.492786+00:00",
+      "experiment_id": "EXP-BATCH-20260914074039-78",
+      "manifest_sha256": "92f0d9d22b2a75e284b706d4bd1ff230e1d069b44af0226f90a10cf84c17ae00",
+      "original_path": "experiments/EXP-BATCH-20260914074039-78",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260914074039-81": {
+      "archived_at": "2026-09-16T13:39:33.419846+00:00",
+      "experiment_id": "EXP-BATCH-20260914074039-81",
+      "manifest_sha256": "09343e9733c8f43324a1ad76936db7c4270d24943b9826d6470bcf59fc199c62",
+      "original_path": "experiments/EXP-BATCH-20260914074039-81",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260914074039-82": {
+      "archived_at": "2026-09-16T13:39:00.046591+00:00",
+      "experiment_id": "EXP-BATCH-20260914074039-82",
+      "manifest_sha256": "19fc72a35345e23c990630e33235493f7fdc6d09975d439dc2dd558df08dcd91",
+      "original_path": "experiments/EXP-BATCH-20260914074039-82",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260914074039-83": {
+      "archived_at": "2026-09-16T13:39:27.619085+00:00",
+      "experiment_id": "EXP-BATCH-20260914074039-83",
+      "manifest_sha256": "912adf0e58951bdb090fd553a6be2a3b5db8e510faaf6378156f6090e095906a",
+      "original_path": "experiments/EXP-BATCH-20260914074039-83",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260914074039-84": {
+      "archived_at": "2026-09-16T13:38:58.580229+00:00",
+      "experiment_id": "EXP-BATCH-20260914074039-84",
+      "manifest_sha256": "6660adfc9c228fa09ec861ff5dbcfacb957ed12e757a88c836fea5609fbb0cdd",
+      "original_path": "experiments/EXP-BATCH-20260914074039-84",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260914074039-85": {
+      "archived_at": "2026-09-16T13:39:19.454504+00:00",
+      "experiment_id": "EXP-BATCH-20260914074039-85",
+      "manifest_sha256": "4b2b803cd660dccbbd94c284c4349756c3cceff9befc9c22b764873cd2415b8e",
+      "original_path": "experiments/EXP-BATCH-20260914074039-85",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260914074039-86": {
+      "archived_at": "2026-09-16T13:39:16.148568+00:00",
+      "experiment_id": "EXP-BATCH-20260914074039-86",
+      "manifest_sha256": "c7a246da55b613e2c753ed6d967a585c2a9bd2366fdd7f09c737e067ce667c94",
+      "original_path": "experiments/EXP-BATCH-20260914074039-86",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260914074039-87": {
+      "archived_at": "2026-09-16T13:39:13.339052+00:00",
+      "experiment_id": "EXP-BATCH-20260914074039-87",
+      "manifest_sha256": "68eb7b4372b92032ad36fc022528c66ea4a6d26539fc744cff8ac36552305a67",
+      "original_path": "experiments/EXP-BATCH-20260914074039-87",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260914074039-88": {
+      "archived_at": "2026-09-16T13:39:06.456240+00:00",
+      "experiment_id": "EXP-BATCH-20260914074039-88",
+      "manifest_sha256": "9c6c0ec9e592b3f3ca4176eb82c040662974331cb44143a4fc73ae585e558071",
+      "original_path": "experiments/EXP-BATCH-20260914074039-88",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260914074039-89": {
+      "archived_at": "2026-09-16T13:38:52.525045+00:00",
+      "experiment_id": "EXP-BATCH-20260914074039-89",
+      "manifest_sha256": "5e1405fc3fc1a7356b5e17abe42e44198ebef83b793d18c3273097c0d94818a0",
+      "original_path": "experiments/EXP-BATCH-20260914074039-89",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260914074039-90": {
+      "archived_at": "2026-09-16T13:38:46.340120+00:00",
+      "experiment_id": "EXP-BATCH-20260914074039-90",
+      "manifest_sha256": "058cac47bd7585b8c5bc2dd82c407450ef25c22230ab6e268bbbaf59e39b8eb7",
+      "original_path": "experiments/EXP-BATCH-20260914074039-90",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260914074039-91": {
+      "archived_at": "2026-09-16T13:38:43.823062+00:00",
+      "experiment_id": "EXP-BATCH-20260914074039-91",
+      "manifest_sha256": "62d7b87bc1fd84e6eaff4562423ed961f0c5276b2104da62d97919d5976f0890",
+      "original_path": "experiments/EXP-BATCH-20260914074039-91",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260914074039-92": {
+      "archived_at": "2026-09-16T13:38:41.099575+00:00",
+      "experiment_id": "EXP-BATCH-20260914074039-92",
+      "manifest_sha256": "c1284933ae3835a681096300fb7103abefd31f77290b541211e5164faaeb9892",
+      "original_path": "experiments/EXP-BATCH-20260914074039-92",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260914074039-93": {
+      "archived_at": "2026-09-16T13:38:35.415542+00:00",
+      "experiment_id": "EXP-BATCH-20260914074039-93",
+      "manifest_sha256": "07908b55fe8e20ff60d08e64faf6c689699c33056f467fb29e53acc1f2ae2c63",
+      "original_path": "experiments/EXP-BATCH-20260914074039-93",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-20260914074039-94": {
+      "archived_at": "2026-09-16T13:38:32.754558+00:00",
+      "experiment_id": "EXP-BATCH-20260914074039-94",
+      "manifest_sha256": "cb785ca49f36113463ed0e0b5bb6ef2eb67832f1e4cb7b4eaf85ec98eadfcf1d",
+      "original_path": "experiments/EXP-BATCH-20260914074039-94",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-DET-0001": {
+      "archived_at": "2026-09-16T13:43:34.571183+00:00",
+      "experiment_id": "EXP-DET-0001",
+      "manifest_sha256": "c5f86d81dad075c8d372eda140387927df1833651740193203f6e4ea419545a6",
+      "original_path": "experiments/EXP-DET-0001",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-EMB-0001": {
+      "archived_at": "2026-09-16T13:44:02.052450+00:00",
+      "experiment_id": "EXP-EMB-0001",
+      "manifest_sha256": "1da0342ec04bdc930440a06499b2ff3d7279a765d902b5a03642b073f22f098c",
+      "original_path": "experiments/EXP-EMB-0001",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-EMP-20260910": {
+      "archived_at": "2026-09-16T13:42:09.146248+00:00",
+      "experiment_id": "EXP-EMP-20260910",
+      "manifest_sha256": "248f5b04860ebea5312008152fc171e9ac4fba3650c27874e90e2cbc37f22a00",
+      "original_path": "experiments/EXP-EMP-20260910",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-EMP-20260910-SCALE-V2": {
+      "archived_at": "2026-09-16T13:42:06.264621+00:00",
+      "experiment_id": "EXP-EMP-20260910-SCALE-V2",
+      "manifest_sha256": "025419b88ace10e7c57b46d19a71f0a38819b6270cee750d94091efee1adabd6",
+      "original_path": "experiments/EXP-EMP-20260910-SCALE-V2",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-GEN-0001": {
+      "archived_at": "2026-09-16T13:43:23.372581+00:00",
+      "experiment_id": "EXP-GEN-0001",
+      "manifest_sha256": "01d14233657229e2ccda2dfc981f6100e569fd7b1ae3ac247015df9b4fca1651",
+      "original_path": "experiments/EXP-GEN-0001",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-GEN-0002": {
+      "archived_at": "2026-09-16T13:43:39.451040+00:00",
+      "experiment_id": "EXP-GEN-0002",
+      "manifest_sha256": "3203cb64879bccbcadc3b6669754b87bbe4146768859a774326d521ad612ae57",
+      "original_path": "experiments/EXP-GEN-0002",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-GEN-0003": {
+      "archived_at": "2026-09-16T13:43:30.468485+00:00",
+      "experiment_id": "EXP-GEN-0003",
+      "manifest_sha256": "d12a6de0c778df01b82c9501e12a830857e34dbb4fc5b98a906d68614c45467a",
+      "original_path": "experiments/EXP-GEN-0003",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-GEN-0005": {
+      "archived_at": "2026-09-16T13:44:35.566850+00:00",
+      "experiment_id": "EXP-GEN-0005",
+      "manifest_sha256": "7d0368a7b80401fee7c8722655834dfa552990d2d8f084ba50e0817585c32274",
+      "original_path": "experiments/EXP-GEN-0005",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-GEN-0006": {
+      "archived_at": "2026-09-16T13:43:53.516008+00:00",
+      "experiment_id": "EXP-GEN-0006",
+      "manifest_sha256": "2eb4217e6339e1c5b27b98cecf860ae6355a9702240ec506c44814ba72f3f7cc",
+      "original_path": "experiments/EXP-GEN-0006",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-GEN-0007": {
+      "archived_at": "2026-09-16T13:44:28.428842+00:00",
+      "experiment_id": "EXP-GEN-0007",
+      "manifest_sha256": "e95e56a854100e13e03e6980b16bcad6f3d97af110602063da7a0147d2536a44",
+      "original_path": "experiments/EXP-GEN-0007",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-GEN-0008": {
+      "archived_at": "2026-09-16T13:44:28.019049+00:00",
+      "experiment_id": "EXP-GEN-0008",
+      "manifest_sha256": "44965296e0f5c9919aaf259af4c28e3190fc2cf4155c723be2a3b9552d1e9d33",
+      "original_path": "experiments/EXP-GEN-0008",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-GEN-0009": {
+      "archived_at": "2026-09-16T13:44:20.192497+00:00",
+      "experiment_id": "EXP-GEN-0009",
+      "manifest_sha256": "6ef9a060b01e7720913cf95610cef6903330ad926bb114566c6dfbb78c49d503",
+      "original_path": "experiments/EXP-GEN-0009",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-GEN-0010": {
+      "archived_at": "2026-09-16T13:44:16.196648+00:00",
+      "experiment_id": "EXP-GEN-0010",
+      "manifest_sha256": "fb13f02b9e444eb60e973830c72b49cbdab2f76be36adde0d5025fabafa448c9",
+      "original_path": "experiments/EXP-GEN-0010",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-GEN-0011": {
+      "archived_at": "2026-09-16T13:44:33.965378+00:00",
+      "experiment_id": "EXP-GEN-0011",
+      "manifest_sha256": "922cc0acd04ece2d83d374e772cbcf37885a4ec3d084a672f0cfd0b640fbdc1d",
+      "original_path": "experiments/EXP-GEN-0011",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-GEN-0012": {
+      "archived_at": "2026-09-16T13:44:31.815699+00:00",
+      "experiment_id": "EXP-GEN-0012",
+      "manifest_sha256": "e72aee55f172b1b7cdb179018a5ffec91aa9325070b7aad555e61091ad35819d",
+      "original_path": "experiments/EXP-GEN-0012",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-GEN-0013": {
+      "archived_at": "2026-09-16T13:44:44.158155+00:00",
+      "experiment_id": "EXP-GEN-0013",
+      "manifest_sha256": "f99d2399cb021077d7aed08cd759a828fa4fba24a2b1574ce2a625fccf683a3f",
+      "original_path": "experiments/EXP-GEN-0013",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-GEN-0014": {
+      "archived_at": "2026-09-16T13:44:42.148542+00:00",
+      "experiment_id": "EXP-GEN-0014",
+      "manifest_sha256": "002935ab5890a1a62a98e2c61ab3207e80b9aa94fb6eef9c9a3a733cd3728f57",
+      "original_path": "experiments/EXP-GEN-0014",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-GEN-0015": {
+      "archived_at": "2026-09-16T13:44:27.997281+00:00",
+      "experiment_id": "EXP-GEN-0015",
+      "manifest_sha256": "77ed06e186eb725333553390e9a33002c518ad73a9478e7e27190369a9bba245",
+      "original_path": "experiments/EXP-GEN-0015",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-GEN-0016": {
+      "archived_at": "2026-09-16T13:43:54.996480+00:00",
+      "experiment_id": "EXP-GEN-0016",
+      "manifest_sha256": "76f778e30ea44672092bd1be05a3f20e522539a19c0d83e91716af4954189203",
+      "original_path": "experiments/EXP-GEN-0016",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-GEN-0017": {
+      "archived_at": "2026-09-16T13:44:41.593592+00:00",
+      "experiment_id": "EXP-GEN-0017",
+      "manifest_sha256": "4a04ab6ab85099f28564536fd6f869063b5fae16fa078eaaa89ee7db167edb9a",
+      "original_path": "experiments/EXP-GEN-0017",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-GEN-0018": {
+      "archived_at": "2026-09-16T13:44:41.295976+00:00",
+      "experiment_id": "EXP-GEN-0018",
+      "manifest_sha256": "adde0a220a3ef20d830b477180a7ad599af91bbacfc5af92a8dccbf9c20301d6",
+      "original_path": "experiments/EXP-GEN-0018",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-GEN-0019": {
+      "archived_at": "2026-09-16T13:44:30.284524+00:00",
+      "experiment_id": "EXP-GEN-0019",
+      "manifest_sha256": "38170d63b2f3f61a5be9e8f857769c490c55210d53a052e70283417d3fee1f1c",
+      "original_path": "experiments/EXP-GEN-0019",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-GEN-0020": {
+      "archived_at": "2026-09-16T13:44:39.763044+00:00",
+      "experiment_id": "EXP-GEN-0020",
+      "manifest_sha256": "0045f57efe1ea1bbdf0a186bdb887c75d613efee83e5f896fe9f09e53775c111",
+      "original_path": "experiments/EXP-GEN-0020",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-GEN-0021": {
+      "archived_at": "2026-09-16T13:44:28.054127+00:00",
+      "experiment_id": "EXP-GEN-0021",
+      "manifest_sha256": "afae2845f0a09ab0867c12dbcf14d4a2cc8c5a7d7db492eaa269bb7ef51492ed",
+      "original_path": "experiments/EXP-GEN-0021",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-GEN-0022": {
+      "archived_at": "2026-09-16T13:44:51.028865+00:00",
+      "experiment_id": "EXP-GEN-0022",
+      "manifest_sha256": "99e0cd6ccaf11c11e3f6144971107e90f9294c74b579c44d838af50c38ce2c85",
+      "original_path": "experiments/EXP-GEN-0022",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-GEN-0023": {
+      "archived_at": "2026-09-16T13:44:58.529806+00:00",
+      "experiment_id": "EXP-GEN-0023",
+      "manifest_sha256": "1cf1ba24af288fcac715f28c3bcf69461af42a270a0f68239a141e70ce0e14c3",
+      "original_path": "experiments/EXP-GEN-0023",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-GEN-0024": {
+      "archived_at": "2026-09-16T13:44:57.730309+00:00",
+      "experiment_id": "EXP-GEN-0024",
+      "manifest_sha256": "80cbee2c08984ccdc8083ddde225b4ce8419c38fab4bd4bfb12c0c8878d6497a",
+      "original_path": "experiments/EXP-GEN-0024",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-GEN-0025": {
+      "archived_at": "2026-09-16T13:44:57.718981+00:00",
+      "experiment_id": "EXP-GEN-0025",
+      "manifest_sha256": "165f9f4bcc6d7b613a0b7d8c3168d469a9d83beb25b10aa97c5669b22fd79cb3",
+      "original_path": "experiments/EXP-GEN-0025",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-GEN-0026": {
+      "archived_at": "2026-09-16T13:44:49.565135+00:00",
+      "experiment_id": "EXP-GEN-0026",
+      "manifest_sha256": "ab6e6a521d0e297a372f5ab3c9af14737a1925146723e5eab8c88bf6f27dd904",
+      "original_path": "experiments/EXP-GEN-0026",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-GEN-0027": {
+      "archived_at": "2026-09-16T13:44:49.552120+00:00",
+      "experiment_id": "EXP-GEN-0027",
+      "manifest_sha256": "72a16c2c72d73a180a5fa5f4f8af2efcce8d84a53304acc71b1ded4b853ac5f0",
+      "original_path": "experiments/EXP-GEN-0027",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-GEN-0028": {
+      "archived_at": "2026-09-16T13:44:49.501039+00:00",
+      "experiment_id": "EXP-GEN-0028",
+      "manifest_sha256": "47777566caf18aced3df458fcd09a227bf783f38339db71e6c621d3602705676",
+      "original_path": "experiments/EXP-GEN-0028",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-GEN-0029": {
+      "archived_at": "2026-09-16T13:44:46.178515+00:00",
+      "experiment_id": "EXP-GEN-0029",
+      "manifest_sha256": "55479855fbbb751783623a615bf5ea3e2797680416109fc3815253953eb3967d",
+      "original_path": "experiments/EXP-GEN-0029",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-GEN-0030": {
+      "archived_at": "2026-09-16T13:48:04.025397+00:00",
+      "experiment_id": "EXP-GEN-0030",
+      "manifest_sha256": "525e908530aded80f4868754e3993250bb43cf647be75ef0934bbcd5c6aabed6",
+      "original_path": "experiments/EXP-GEN-0030",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-GEN-0031": {
+      "archived_at": "2026-09-16T13:44:45.241560+00:00",
+      "experiment_id": "EXP-GEN-0031",
+      "manifest_sha256": "0782cbdfe20b58ba3725276a01f2bf24e664755e5dc71167fdeaf98d4ae965e6",
+      "original_path": "experiments/EXP-GEN-0031",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-GEN-0032": {
+      "archived_at": "2026-09-16T13:47:49.365355+00:00",
+      "experiment_id": "EXP-GEN-0032",
+      "manifest_sha256": "3d32c40bac05182ba5eaf9b3202e1f1a7b691faf18ad818b32915e9041a3b128",
+      "original_path": "experiments/EXP-GEN-0032",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-GEN-0033": {
+      "archived_at": "2026-09-16T13:47:48.751536+00:00",
+      "experiment_id": "EXP-GEN-0033",
+      "manifest_sha256": "8a8e9ceea6e7d0d21e9aeea112786ba785141f6744a2137537857a2126f30ef3",
+      "original_path": "experiments/EXP-GEN-0033",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-GEN-0033-R1": {
+      "archived_at": "2026-09-16T13:47:52.562613+00:00",
+      "experiment_id": "EXP-GEN-0033-R1",
+      "manifest_sha256": "019bed7af9c17e9528fa0815732a0de6c735002cb70a8852a72e720a4c1a2626",
+      "original_path": "experiments/EXP-GEN-0033-R1",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-GEN-0034": {
+      "archived_at": "2026-09-16T13:46:38.426232+00:00",
+      "experiment_id": "EXP-GEN-0034",
+      "manifest_sha256": "591e52b00f7af5aa8c69557dc5002d97c24417ee24cb0d72e05eca31dc369ee7",
+      "original_path": "experiments/EXP-GEN-0034",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-GEN-0035": {
+      "archived_at": "2026-09-16T13:42:03.794054+00:00",
+      "experiment_id": "EXP-GEN-0035",
+      "manifest_sha256": "76a171ff3d0a6f78ac726006f079d885310cfa60da23cbc373439aead0de5223",
+      "original_path": "experiments/EXP-GEN-0035",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-LEARN-20260903-2300": {
+      "archived_at": "2026-09-16T13:44:12.166235+00:00",
+      "experiment_id": "EXP-LEARN-20260903-2300",
+      "manifest_sha256": "0a6c6b35c86b2b1f80d7f392dc4a563afaef1e0a434733c5ecbeb5610cfe9618",
+      "original_path": "experiments/EXP-LEARN-20260903-2300",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-LEARN-20260903-2330": {
+      "archived_at": "2026-09-16T13:44:07.766555+00:00",
+      "experiment_id": "EXP-LEARN-20260903-2330",
+      "manifest_sha256": "66ee69d17cbb2a4e33ee88bb2d917a2f6e8ae2437d6a406a6924eb7a1a6bcc8b",
+      "original_path": "experiments/EXP-LEARN-20260903-2330",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-LIFE-0001-R1": {
+      "archived_at": "2026-09-16T13:46:46.236983+00:00",
+      "experiment_id": "EXP-LIFE-0001-R1",
+      "manifest_sha256": "38c2e68b0e3b9f2ceff5729db0f86d2c9635e6474d56cab86aa867771d69bc7c",
+      "original_path": "experiments/EXP-LIFE-0001-R1",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-PING-0001": {
+      "archived_at": "2026-09-16T13:44:00.364279+00:00",
+      "experiment_id": "EXP-PING-0001",
+      "manifest_sha256": "58968b5f1668b9a94da9c66c8755ac7ec422d7db3be0615b2876cc5b4f1c808a",
+      "original_path": "experiments/EXP-PING-0001",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-PING-0001-v2": {
+      "archived_at": "2026-09-16T13:43:56.797630+00:00",
+      "experiment_id": "EXP-PING-0001-v2",
+      "manifest_sha256": "26753e0cdf150566024cfa82e4974e6258b7d3c5124a7b597d7ce76bf67a83ee",
+      "original_path": "experiments/EXP-PING-0001-v2",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-PING-0001-v3": {
+      "archived_at": "2026-09-16T13:43:52.834455+00:00",
+      "experiment_id": "EXP-PING-0001-v3",
+      "manifest_sha256": "9f39e59ff897eea4c61d3674957d16317e12787e54504d0920520de243772425",
+      "original_path": "experiments/EXP-PING-0001-v3",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-REC-0001-R1": {
+      "archived_at": "2026-09-16T13:47:04.033196+00:00",
+      "experiment_id": "EXP-REC-0001-R1",
+      "manifest_sha256": "9bfd5d61da2f2a0d95a5d36c3aff670a9b34aeb2188a70c9379975e39d09dd69",
+      "original_path": "experiments/EXP-REC-0001-R1",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-REG-0001": {
+      "archived_at": "2026-09-16T13:43:58.675471+00:00",
+      "experiment_id": "EXP-REG-0001",
+      "manifest_sha256": "8214142739aec1aa70f9f44e0da20f068316870751b9ba36afda4a635ad28ec7",
+      "original_path": "experiments/EXP-REG-0001",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-REG-0002-R1": {
+      "archived_at": "2026-09-16T13:46:30.441032+00:00",
+      "experiment_id": "EXP-REG-0002-R1",
+      "manifest_sha256": "2737a808d91a75ce3e62f94c489097f97ecb3ed44b81ff7d0687638737018db4",
+      "original_path": "experiments/EXP-REG-0002-R1",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-REPL-0001-R1": {
+      "archived_at": "2026-09-16T13:47:05.249147+00:00",
+      "experiment_id": "EXP-REPL-0001-R1",
+      "manifest_sha256": "5b1de312b28d83488eb08cf57ad436e7e3d912044bd009666c8c358edbe36042",
+      "original_path": "experiments/EXP-REPL-0001-R1",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-RETRY-AIRR-2026-0001-01": {
+      "archived_at": "2026-09-16T13:46:03.057443+00:00",
+      "experiment_id": "EXP-RETRY-AIRR-2026-0001-01",
+      "manifest_sha256": "12c19ae4bcd7d125a7bb964a8c62d482e28c7ba5c252bb99fe39c016689e49b3",
+      "original_path": "experiments/EXP-RETRY-AIRR-2026-0001-01",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-RETRY-AIRR-2026-0001-02": {
+      "archived_at": "2026-09-16T13:45:52.335694+00:00",
+      "experiment_id": "EXP-RETRY-AIRR-2026-0001-02",
+      "manifest_sha256": "da69684ccaf3bfaba55c91958bf051ca01c633fa418629107e005e7c4430407d",
+      "original_path": "experiments/EXP-RETRY-AIRR-2026-0001-02",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-SNN-001": {
+      "archived_at": "2026-09-16T13:47:54.737813+00:00",
+      "experiment_id": "EXP-SNN-001",
+      "manifest_sha256": "d39205d0775245b95a245c4d70ea84b05ae4cee27e4684dc5fb57821a66b8fce",
+      "original_path": "experiments/EXP-SNN-001",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-SNN-001-R1": {
+      "archived_at": "2026-09-16T13:44:57.054420+00:00",
+      "experiment_id": "EXP-SNN-001-R1",
+      "manifest_sha256": "3fc72796739889481c65ee8d18dc7cb539714acb3e2bd1b200c916132ff43ddd",
+      "original_path": "experiments/EXP-SNN-001-R1",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-SNN-001-R2": {
+      "archived_at": "2026-09-16T13:44:56.915660+00:00",
+      "experiment_id": "EXP-SNN-001-R2",
+      "manifest_sha256": "3be6498aa409948dd04c6bebbeb1ea0bc611a01fa6a7fc133f2b7b01367048f1",
+      "original_path": "experiments/EXP-SNN-001-R2",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-SNN-001-R3": {
+      "archived_at": "2026-09-16T13:46:54.544946+00:00",
+      "experiment_id": "EXP-SNN-001-R3",
+      "manifest_sha256": "513375a98665acc0a1fb4492663e7e4db8efb29e0c77a2bef9c16757c3c59912",
+      "original_path": "experiments/EXP-SNN-001-R3",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-SNN-001-R5": {
+      "archived_at": "2026-09-16T13:46:36.310756+00:00",
+      "experiment_id": "EXP-SNN-001-R5",
+      "manifest_sha256": "09d18d4da16c57de31163f212341249828ba4b1737cfe07c8a6cd52cc7322002",
+      "original_path": "experiments/EXP-SNN-001-R5",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-SNN-002-R1": {
+      "archived_at": "2026-09-16T13:47:02.826140+00:00",
+      "experiment_id": "EXP-SNN-002-R1",
+      "manifest_sha256": "398edb3c1f434d20a8a09e10fec9f03f7c405945a847ad514ebd77ad5db82535",
+      "original_path": "experiments/EXP-SNN-002-R1",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-SNN-002-R2": {
+      "archived_at": "2026-09-16T13:46:29.143300+00:00",
+      "experiment_id": "EXP-SNN-002-R2",
+      "manifest_sha256": "04665f0b3a5772a0df8029fdbb6ac1a8302dd1a08d24bc0488ea10d8abf7beeb",
+      "original_path": "experiments/EXP-SNN-002-R2",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-STAGE5-20260914-INTEGRATED-NERVOUS-SYSTEM": {
+      "archived_at": "2026-09-16T13:38:19.702116+00:00",
+      "experiment_id": "EXP-STAGE5-20260914-INTEGRATED-NERVOUS-SYSTEM",
+      "manifest_sha256": "80ef29f489f12a67837613eee690c4d1e768ea64d747a48fc6b6a15394f1cc60",
+      "original_path": "experiments/EXP-STAGE5-20260914-INTEGRATED-NERVOUS-SYSTEM",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-STDP-0001": {
+      "archived_at": "2026-09-16T13:43:41.209767+00:00",
+      "experiment_id": "EXP-STDP-0001",
+      "manifest_sha256": "946487200df0b779de72dbd56c9ec5aeb2cd0a37f58773b680bd708a299db0ec",
+      "original_path": "experiments/EXP-STDP-0001",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-STDP-0001a": {
+      "archived_at": "2026-09-16T13:43:36.375938+00:00",
+      "experiment_id": "EXP-STDP-0001a",
+      "manifest_sha256": "d0bf09b24389974f413fb6eddb2ba2d7c92965b1ddc3d066fbde9c21ceed939d",
+      "original_path": "experiments/EXP-STDP-0001a",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-STDP-0002": {
+      "archived_at": "2026-09-16T13:44:14.156525+00:00",
+      "experiment_id": "EXP-STDP-0002",
+      "manifest_sha256": "8ad6aac15e6c264599a59f4586879f2210ea06d991ad515a6e476420a657c0b6",
+      "original_path": "experiments/EXP-STDP-0002",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-STOR-0001": {
+      "archived_at": "2026-09-16T13:43:25.716180+00:00",
+      "experiment_id": "EXP-STOR-0001",
+      "manifest_sha256": "cb8b6190e36d3793f72fd2e16a4404e3739508b5ee803cc8ed7929efeb565b40",
+      "original_path": "experiments/EXP-STOR-0001",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-TEMP-0001": {
+      "archived_at": "2026-09-16T13:43:51.656822+00:00",
+      "experiment_id": "EXP-TEMP-0001",
+      "manifest_sha256": "8c8fc6cf7a4743dea48f00fc762c2d0cab577cbefbf0443828e905b037b78a1f",
+      "original_path": "experiments/EXP-TEMP-0001",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-TIME-0001": {
+      "archived_at": "2026-09-16T13:43:45.772244+00:00",
+      "experiment_id": "EXP-TIME-0001",
+      "manifest_sha256": "50453b07d0622b8ebe815d3f59798c034233a5979db777f932144a69fc36da56",
+      "original_path": "experiments/EXP-TIME-0001",
+      "reason": "manuelle Archivierung"
+    }
+  },
+  "schema_version": 2
+}
