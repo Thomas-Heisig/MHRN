@@ -78,6 +78,7 @@ class NeuronConfig:
     trace_decay: float = 0.95
     trace_increment: float = 1.0
     target_rate_hz: float = 10.0
+    firing_rate_tau_ms: float = 1000.0
     homeostasis_learning_rate: float = 0.001
     enable_threshold_adaptation: bool = True
     enable_energy_dynamics: bool = True
@@ -88,6 +89,8 @@ class NeuronConfig:
         object.__setattr__(self, "model", coerce_neuron_model(self.model))
         if self.dt_ms <= 0.0:
             raise ValueError("dt_ms must be > 0")
+        if self.firing_rate_tau_ms <= 0.0:
+            raise ValueError("firing_rate_tau_ms must be > 0")
         if self.lif_tau_m_ms <= 0.0:
             raise ValueError("lif_tau_m_ms must be > 0")
         if self.refractory_ticks < 0:
@@ -308,6 +311,7 @@ class Neuron:
         self._record_currents(input_current, external_current, synaptic_current)
         if tick <= self._refractory_until_tick:
             self.v = self._reset_potential()
+            self._update_firing_rate(spiked=False, tick=tick)
             self._finish_tick(tick)
             return False
         self.v, self.u = integrate_membrane(
@@ -334,11 +338,8 @@ class Neuron:
             )
             self.spike_counter += 1
             self.last_spike_tick = tick
-            self._spike_count_window += 1
             if self.config.enable_energy_dynamics:
                 self.energy = max(0.0, self.energy - self.spike_cost)
-            dt = tick - self._last_update_tick if self._last_update_tick > 0 else 1
-            self._update_firing_rate(dt)
             if self.config.enable_threshold_adaptation:
                 self.threshold_adaptation += self.config.threshold_adaptation_rate
             if self.config.enable_traces:
@@ -346,6 +347,7 @@ class Neuron:
                 self.post_trace += self.config.trace_increment
             if self.config.refractory_ticks > 0:
                 self._refractory_until_tick = tick + self.config.refractory_ticks
+        self._update_firing_rate(spiked=spiked, tick=tick)
         self._finish_tick(tick)
         return spiked
 
@@ -363,14 +365,23 @@ class Neuron:
         self.pre_trace = 0.0
         self.post_trace = 0.0
 
-    def _update_firing_rate(self, dt: int) -> None:
-        alpha = 1.0 / (10.0 + dt)
-        rate = self._spike_count_window / max(1, dt)
+    def _update_firing_rate(self, *, spiked: bool, tick: int) -> None:
+        """Update a low-pass firing-rate estimate in Hz once per simulated tick."""
+        elapsed_ticks = (
+            max(1, tick - self._last_update_tick) if self._has_stepped else 1
+        )
+        elapsed_ms = elapsed_ticks * self.config.dt_ms
+        alpha = 1.0 - math.exp(-elapsed_ms / self.config.firing_rate_tau_ms)
+        instantaneous_rate_hz = 1000.0 / elapsed_ms if spiked else 0.0
         self.firing_rate_estimate = (
             1.0 - alpha
-        ) * self.firing_rate_estimate + alpha * rate
-        if dt > 100:
+        ) * self.firing_rate_estimate + alpha * instantaneous_rate_hz
+
+        window_ticks = max(1, int(round(1000.0 / self.config.dt_ms)))
+        if tick % window_ticks == 0:
             self._spike_count_window = 0
+        if spiked:
+            self._spike_count_window += 1
 
     def _apply_homeostasis(self) -> None:
         error = self.firing_rate_estimate - self.config.target_rate_hz
