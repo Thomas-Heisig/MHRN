@@ -1,4 +1,4 @@
-"""Confirmatory runner for PREREG-RQ-EVAL-006-V2.
+"""Confirmatory runner for PREREG-EVAL-006-V2.
 
 No adaptive retry or parameter tuning is allowed here. The validation seeds and
 criteria are frozen in research/preregistrations/operational/
