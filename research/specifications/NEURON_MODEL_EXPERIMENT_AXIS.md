@@ -58,7 +58,7 @@ At `dt_ms=1.0`, diagnostic mapping for the optional refractory extension is:
 | 2 | 3 ms |
 | 3 | 4 ms |
 
-The nonzero mapping remains subject to the frozen confirmatory protocol `PREREG-RQ-EVAL-006-V2`.
+The nonzero mapping remains subject to the frozen confirmatory protocol `PREREG-EVAL-006-V2`.
 
 ## Evidence boundary
 
