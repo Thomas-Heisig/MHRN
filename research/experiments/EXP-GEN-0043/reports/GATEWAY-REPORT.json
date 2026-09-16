@@ -1,0 +1,462 @@
+{
+  "experiment_id": "EXP-GEN-0043",
+  "gateway": {
+    "condition": "frozen",
+    "experiment_id": "EXP-GEN-0043",
+    "gateway_id": "GW-AUDIO-SNN-001",
+    "gateway_plasticity_allowed": false,
+    "journal": [],
+    "journal_bounded": true,
+    "last_error": null,
+    "limits": {
+      "max_edges": 10000,
+      "max_events_per_tick": 10000,
+      "max_latency_ms": 1000.0,
+      "max_memory_bytes": 67108864,
+      "max_queue_depth": 10000,
+      "max_spikes_per_tick": 10000,
+      "max_structural_changes_window": 256,
+      "max_weight_delta_window": 100.0
+    },
+    "metrics": {
+      "cpu_time_ms": 0.0,
+      "dropped_events": 0,
+      "estimated_energy": 0.0,
+      "gateway_events": 0,
+      "latency_ms": 0.0,
+      "measured_energy": 0.0,
+      "plasticity_updates": 0,
+      "queue_depth": 0,
+      "spikes": 0,
+      "structural_changes": 0,
+      "synaptic_operations": 0,
+      "throttled_ticks": 0
+    },
+    "productive_gateway": {
+      "available": false,
+      "reason": "experimental_validation_incomplete"
+    },
+    "resource_mode": "normal",
+    "scientific_boundary": {
+      "ai_interpretation_is_non_evidentiary": true,
+      "canonical_core_mutation": false,
+      "direct_llm_write": false,
+      "experiment_only": true,
+      "gateway_activity_is_not_learning_evidence": true
+    },
+    "seed": 101,
+    "state": "active_frozen",
+    "topology": {
+      "creation_source": "experiment",
+      "edge_records": [
+        {
+          "delay_ms": 0.0,
+          "source_channel": 0,
+          "target_channel": 0,
+          "weight": 0.5
+        },
+        {
+          "delay_ms": 2.0,
+          "source_channel": 1,
+          "target_channel": 1,
+          "weight": 0.5
+        },
+        {
+          "delay_ms": 0.0,
+          "source_channel": 2,
+          "target_channel": 2,
+          "weight": 0.5
+        },
+        {
+          "delay_ms": 2.0,
+          "source_channel": 3,
+          "target_channel": 3,
+          "weight": 0.5
+        },
+        {
+          "delay_ms": 0.0,
+          "source_channel": 4,
+          "target_channel": 4,
+          "weight": 0.5
+        },
+        {
+          "delay_ms": 2.0,
+          "source_channel": 5,
+          "target_channel": 5,
+          "weight": 0.5
+        },
+        {
+          "delay_ms": 0.0,
+          "source_channel": 6,
+          "target_channel": 6,
+          "weight": 0.5
+        },
+        {
+          "delay_ms": 2.0,
+          "source_channel": 7,
+          "target_channel": 7,
+          "weight": 0.5
+        },
+        {
+          "delay_ms": 0.0,
+          "source_channel": 0,
+          "target_channel": 0,
+          "weight": 0.5
+        },
+        {
+          "delay_ms": 2.0,
+          "source_channel": 1,
+          "target_channel": 1,
+          "weight": 0.5
+        },
+        {
+          "delay_ms": 0.0,
+          "source_channel": 2,
+          "target_channel": 2,
+          "weight": 0.5
+        },
+        {
+          "delay_ms": 2.0,
+          "source_channel": 3,
+          "target_channel": 3,
+          "weight": 0.5
+        },
+        {
+          "delay_ms": 0.0,
+          "source_channel": 4,
+          "target_channel": 4,
+          "weight": 0.5
+        },
+        {
+          "delay_ms": 2.0,
+          "source_channel": 5,
+          "target_channel": 5,
+          "weight": 0.5
+        },
+        {
+          "delay_ms": 0.0,
+          "source_channel": 6,
+          "target_channel": 6,
+          "weight": 0.5
+        },
+        {
+          "delay_ms": 2.0,
+          "source_channel": 7,
+          "target_channel": 7,
+          "weight": 0.5
+        },
+        {
+          "delay_ms": 0.0,
+          "source_channel": 0,
+          "target_channel": 0,
+          "weight": 0.5
+        },
+        {
+          "delay_ms": 2.0,
+          "source_channel": 1,
+          "target_channel": 1,
+          "weight": 0.5
+        },
+        {
+          "delay_ms": 0.0,
+          "source_channel": 2,
+          "target_channel": 2,
+          "weight": 0.5
+        },
+        {
+          "delay_ms": 2.0,
+          "source_channel": 3,
+          "target_channel": 3,
+          "weight": 0.5
+        },
+        {
+          "delay_ms": 0.0,
+          "source_channel": 4,
+          "target_channel": 4,
+          "weight": 0.5
+        },
+        {
+          "delay_ms": 2.0,
+          "source_channel": 5,
+          "target_channel": 5,
+          "weight": 0.5
+        },
+        {
+          "delay_ms": 0.0,
+          "source_channel": 6,
+          "target_channel": 6,
+          "weight": 0.5
+        },
+        {
+          "delay_ms": 2.0,
+          "source_channel": 7,
+          "target_channel": 7,
+          "weight": 0.5
+        },
+        {
+          "delay_ms": 0.0,
+          "source_channel": 0,
+          "target_channel": 0,
+          "weight": 0.5
+        },
+        {
+          "delay_ms": 2.0,
+          "source_channel": 1,
+          "target_channel": 1,
+          "weight": 0.5
+        },
+        {
+          "delay_ms": 0.0,
+          "source_channel": 2,
+          "target_channel": 2,
+          "weight": 0.5
+        },
+        {
+          "delay_ms": 2.0,
+          "source_channel": 3,
+          "target_channel": 3,
+          "weight": 0.5
+        },
+        {
+          "delay_ms": 0.0,
+          "source_channel": 4,
+          "target_channel": 4,
+          "weight": 0.5
+        },
+        {
+          "delay_ms": 2.0,
+          "source_channel": 5,
+          "target_channel": 5,
+          "weight": 0.5
+        },
+        {
+          "delay_ms": 0.0,
+          "source_channel": 6,
+          "target_channel": 6,
+          "weight": 0.5
+        },
+        {
+          "delay_ms": 2.0,
+          "source_channel": 7,
+          "target_channel": 7,
+          "weight": 0.5
+        },
+        {
+          "delay_ms": 0.0,
+          "source_channel": 0,
+          "target_channel": 0,
+          "weight": 0.5
+        },
+        {
+          "delay_ms": 2.0,
+          "source_channel": 1,
+          "target_channel": 1,
+          "weight": 0.5
+        },
+        {
+          "delay_ms": 0.0,
+          "source_channel": 2,
+          "target_channel": 2,
+          "weight": 0.5
+        },
+        {
+          "delay_ms": 2.0,
+          "source_channel": 3,
+          "target_channel": 3,
+          "weight": 0.5
+        },
+        {
+          "delay_ms": 0.0,
+          "source_channel": 4,
+          "target_channel": 4,
+          "weight": 0.5
+        },
+        {
+          "delay_ms": 2.0,
+          "source_channel": 5,
+          "target_channel": 5,
+          "weight": 0.5
+        },
+        {
+          "delay_ms": 0.0,
+          "source_channel": 6,
+          "target_channel": 6,
+          "weight": 0.5
+        },
+        {
+          "delay_ms": 2.0,
+          "source_channel": 7,
+          "target_channel": 7,
+          "weight": 0.5
+        },
+        {
+          "delay_ms": 0.0,
+          "source_channel": 0,
+          "target_channel": 0,
+          "weight": 0.5
+        },
+        {
+          "delay_ms": 2.0,
+          "source_channel": 1,
+          "target_channel": 1,
+          "weight": 0.5
+        },
+        {
+          "delay_ms": 0.0,
+          "source_channel": 2,
+          "target_channel": 2,
+          "weight": 0.5
+        },
+        {
+          "delay_ms": 2.0,
+          "source_channel": 3,
+          "target_channel": 3,
+          "weight": 0.5
+        },
+        {
+          "delay_ms": 0.0,
+          "source_channel": 4,
+          "target_channel": 4,
+          "weight": 0.5
+        },
+        {
+          "delay_ms": 2.0,
+          "source_channel": 5,
+          "target_channel": 5,
+          "weight": 0.5
+        },
+        {
+          "delay_ms": 0.0,
+          "source_channel": 6,
+          "target_channel": 6,
+          "weight": 0.5
+        },
+        {
+          "delay_ms": 2.0,
+          "source_channel": 7,
+          "target_channel": 7,
+          "weight": 0.5
+        },
+        {
+          "delay_ms": 0.0,
+          "source_channel": 0,
+          "target_channel": 0,
+          "weight": 0.5
+        },
+        {
+          "delay_ms": 2.0,
+          "source_channel": 1,
+          "target_channel": 1,
+          "weight": 0.5
+        },
+        {
+          "delay_ms": 0.0,
+          "source_channel": 2,
+          "target_channel": 2,
+          "weight": 0.5
+        },
+        {
+          "delay_ms": 2.0,
+          "source_channel": 3,
+          "target_channel": 3,
+          "weight": 0.5
+        },
+        {
+          "delay_ms": 0.0,
+          "source_channel": 4,
+          "target_channel": 4,
+          "weight": 0.5
+        },
+        {
+          "delay_ms": 2.0,
+          "source_channel": 5,
+          "target_channel": 5,
+          "weight": 0.5
+        },
+        {
+          "delay_ms": 0.0,
+          "source_channel": 6,
+          "target_channel": 6,
+          "weight": 0.5
+        },
+        {
+          "delay_ms": 2.0,
+          "source_channel": 7,
+          "target_channel": 7,
+          "weight": 0.5
+        },
+        {
+          "delay_ms": 0.0,
+          "source_channel": 0,
+          "target_channel": 0,
+          "weight": 0.5
+        },
+        {
+          "delay_ms": 2.0,
+          "source_channel": 1,
+          "target_channel": 1,
+          "weight": 0.5
+        },
+        {
+          "delay_ms": 0.0,
+          "source_channel": 2,
+          "target_channel": 2,
+          "weight": 0.5
+        },
+        {
+          "delay_ms": 2.0,
+          "source_channel": 3,
+          "target_channel": 3,
+          "weight": 0.5
+        },
+        {
+          "delay_ms": 0.0,
+          "source_channel": 4,
+          "target_channel": 4,
+          "weight": 0.5
+        },
+        {
+          "delay_ms": 2.0,
+          "source_channel": 5,
+          "target_channel": 5,
+          "weight": 0.5
+        },
+        {
+          "delay_ms": 0.0,
+          "source_channel": 6,
+          "target_channel": 6,
+          "weight": 0.5
+        },
+        {
+          "delay_ms": 2.0,
+          "source_channel": 7,
+          "target_channel": 7,
+          "weight": 0.5
+        }
+      ],
+      "edges": 64,
+      "experiment_id": "EXP-GEN-0043",
+      "gateway_id": "GW-AUDIO-SNN-001",
+      "generation": 0,
+      "modality": "audio",
+      "plasticity_rule": "none",
+      "provenance": "1c560a13b3178542d063bab35b5fd2412c4933101b55807cbfa0f3ef7deb6acd",
+      "seed": 101,
+      "source_area": "audio_encoder",
+      "source_channels": 8,
+      "target_area": "mhrn_core",
+      "target_channels": 8
+    }
+  },
+  "generated_at": "2026-09-16T20:59:16+00:00",
+  "human_review_required": true,
+  "preregistration": null,
+  "report_type": "gateway_experiment",
+  "scientific_boundary": {
+    "ai_interpretation_is_non_evidentiary": true,
+    "canonical_core_mutation": false,
+    "experiment_only": true,
+    "gateway_activity_is_not_learning_evidence": true
+  },
+  "scientific_evidence": false
+}

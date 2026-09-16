@@ -1,0 +1,8 @@
+{
+  "report_id": "AIRR-2026-0001",
+  "review_status": "accepted_as_interpretation",
+  "reviewer": "Thomas Heisig",
+  "reviewed_at": "2026-09-16T21:03:03.066140+00:00",
+  "comments": "EXP-GEN-0043 zeigt zwei Probleme, die vor jedem weiteren Experiment geklärt werden müssen: Zwei verschiedene Experimente unter einer ID und identische Zahlen trotz geändertem Commit. Ohne die Antwort auf „ist der Hz-Fix in 1c1f66c5 aktiv und wirksam?\" ist jedes weitere Stability-Experiment eine Wiederholung. Und der Gateway-Bericht gehört als eigene Experiment-Klasse registriert – nicht als EXP-GEN-*.",
+  "report_content_digest": "fe93ce6e41a3b493a6ea758c14abd24374a70066f7c5e368c6d81d653a5a39cd"
+}
