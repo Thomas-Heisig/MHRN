@@ -41,7 +41,8 @@
     "publication 1.6 retained as historical integrative predecessor",
     "publication 1.5 retained as frozen empirical baseline with stable pointer",
     "research-driven experiment cycle is canonical from RQ through preregistration, DATA, human review and EVID",
-    "CL-003 is SHA-256 frozen and explicitly authorized for one preregistered campaign without automatic EVID promotion"
+    "CL-003 is SHA-256 frozen and explicitly authorized for one preregistered campaign without automatic EVID promotion",
+    "canonical roadmap and test contracts are aligned with the alpha.5 development baseline"
   ],
   "open": [
     "execute and review the first authorized CL-003 campaign",
@@ -71,5 +72,5 @@
     "novelty_claim": "requires_prior_art_review"
   },
   "research_boundary": "Engineering implementation, technical verification, UI/API availability and DATA collection are not equivalent to scientific EVID. Scientific maturity is tracked independently through registered questions, frozen protocols, source-bound DATA, human-reviewed EVID, independent replication and attribution. No stage score establishes AGI, consciousness, sentience or biological equivalence.",
-  "note": "Alpha.5 starts the first complete research-driven experiment cycle after CI/gate hardening. CL-003 remains source-frozen and authorization-bound. Historical DATA and EVID remain immutable; DATA do not become EVID without human review."
+  "note": "Alpha.5 starts the first complete research-driven experiment cycle after CI and gate hardening. CL-003 remains source-frozen and authorization-bound. Historical DATA and EVID remain immutable; DATA do not become EVID without human review."
 }
