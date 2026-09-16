@@ -65,13 +65,13 @@ from src.learning import (
     LearningPreparationService,
     LearningSourceRef,
 )
-from src.research.protocol_registry import OPERATIONAL_RUNNERS
 from src.profiles import (
     ProfileCompatibilityError,
     ProfileError,
     ProfileNotFoundError,
     ProfileService,
 )
+from src.research.protocol_registry import OPERATIONAL_RUNNERS
 from src.research_assistant import (
     AIRRPipeline,
     AnalysisBackend,
