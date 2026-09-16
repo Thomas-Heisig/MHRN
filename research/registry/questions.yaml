@@ -678,3 +678,21 @@
     limitations: Der erste Runner ist ein Vorläufer-Screen; echte Catastrophic-Forgetting-Evidenz erfordert ein gemeinsames fortlaufend trainiertes Netzwerk.
   created: '2026-09-05'
   updated: '2026-09-05'
+
+- id: RQ-SNN-006
+  domain: Spiking Neural Networks
+  question: Bleibt die unter RQ-SNN-001 beobachtete Langzeitstabilitaet unter vorab definierten lokalen Variationen von synaptischem Gewicht und Tonic-Drive erhalten?
+  relevance: Trennt die deterministische Stabilitaet einer festen Parameterisierung von lokaler Robustheit ueber tatsaechlich unterschiedliche, seed-gebundene Modellparameterisierungen.
+  literature:
+  - SRC-IZHIKEVICH-2003
+  - SRC-GERSTNER-2014
+  hypotheses:
+  - H-SNN-006-A
+  evidence: []
+  status: open
+  answer:
+    current: null
+    confidence: none
+    limitations: null
+  created: '2026-09-16'
+  updated: '2026-09-16'
