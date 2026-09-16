@@ -59,7 +59,7 @@ jobs:
           tests = tests.replace(marker, regression + marker, 1)
           test_path.write_text(tests, encoding='utf-8')
           PY
-          python -m pip install -e '.[dev]'
+          python -m pip install -e '.[dev,docs]'
           python -m black src/dashboard/verification.py tests/test_source_digest.py
           python -m ruff check src/dashboard/verification.py tests/test_source_digest.py
           python -m mypy src/dashboard/verification.py
