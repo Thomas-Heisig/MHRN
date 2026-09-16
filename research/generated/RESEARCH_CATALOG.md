@@ -1,10 +1,10 @@
 # MHRN Research Catalog
 
-*Generiert am 2026-09-15*
+*Generiert am 2026-09-16*
 
 ## Übersicht
 
-- **Forschungsfragen:** 104
+- **Forschungsfragen:** 105
 - **Hypothesen:** 106
 - **Claims:** 8
 - **Literaturquellen:** 56
@@ -1068,6 +1068,15 @@
 
 **Status:** open
 **Relevanz:** Trennt einen möglichen Semantik-Effekt von einem allgemeinen Replay-Effekt unter präregistrierten, budget-gematchten Kontrollen.
+
+---
+
+### RQ-S6-SEM-003
+
+**Frage:** Hängt ein möglicher Vorteil semantischer Prototypkonsolidierung gegenüber Raw-Experience-Replay von der Replay-Dosis ab, wenn das Gesamt-Updatebudget über alle Bedingungen konstant gehalten wird?
+
+**Status:** open
+**Relevanz:** Prüft die nach CL-002 offene mechanistische Alternative, ob ein möglicher Repräsentationsvorteil erst bei höherer Replay-Exposition sichtbar wird, ohne den negativen CL-002-Befund rückwirkend umzudeuten.
 
 ---
 
