@@ -257,10 +257,14 @@ test("Release workspace renders the documentation timeline", async ({ page }) =>
   // The redesigned shell separates chronological releases from maturity.
   await expect(page.locator('[data-release-view="development"]')).toBeHidden();
 
-  for (const view of ["releases", "preview", "timeline", "development", "documents", "gate"]) {
+  for (const view of ["releases", "preview", "timeline", "development", "science", "documents", "gate"]) {
     await selectRoute(page, "release", view);
     await expect(page.locator(`[data-release-view="${view}"]`)).toBeVisible();
   }
+
+  await selectRoute(page, "release", "science");
+  await expect(page.locator("#scientific-progress-timeline")).toBeVisible();
+  await expect(page.locator("#scientific-progress-timeline")).toContainText("Wissenschaftliche Timeline");
 
   await selectRoute(page, "release", "development");
   await expect(page.locator("#development-timeline-track .dev-node-marker-tech")).toContainText("hier");

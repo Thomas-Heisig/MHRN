@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-09-16 — Separate Release views for engineering and science
+
+- Added Wissenschaft to the central Release route registry beside Entwicklung.
+- Fixed the scientific maturity timeline so it opens as its own Release view.
+- Added a browser regression test proving that both views remain independently
+  visible and navigable.
+
 ## 2026-09-16 — Gateway experiment documentation and reports
 
 - Expanded the Gateway Experiment panel with condition semantics, Plastic's

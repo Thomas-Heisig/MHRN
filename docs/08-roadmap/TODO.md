@@ -15,6 +15,11 @@ MHRN / Multi-Scale Homeostatic Recurrence Network. Publication: Recursive Episte
 
 # MHRN Current TODO
 
+## 2026-09-16 Release navigation
+
+- [x] Expose Entwicklung and Wissenschaft as separate Release routes.
+- [x] Add browser coverage for opening the scientific maturity timeline.
+
 ## 2026-09-16 Gateway experiment reporting
 
 - [x] Explain Gateway conditions and the Plastic preregistration guard in the frontend.

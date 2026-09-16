@@ -83,7 +83,8 @@ const AREAS = Object.freeze({
     routes: [
       ["overview", "Übersicht", "gate"], ["gate", "Gate", "gate", "release", "gate"], ["releases", "Releases", "gate", "release", "releases"],
       ["preview", "Vorschau", "gate", "release", "preview"], ["timeline", "Timeline", "gate", "release", "timeline"],
-      ["development", "Entwicklung", "gate", "release", "development"], ["documents", "Roadmap", "gate", "release", "documents"],
+      ["development", "Entwicklung", "gate", "release", "development"], ["science", "Wissenschaft", "gate", "release", "science"],
+      ["documents", "Roadmap", "gate", "release", "documents"],
     ],
   },
   settings: {

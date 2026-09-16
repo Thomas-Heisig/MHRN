@@ -65,7 +65,7 @@ function injectStyles() {
 function ensureRoutedScienceNavigation(panel) {
   const nav = document.querySelector('.mhrn-context-nav[data-area="release"]');
   if (!nav) return false;
-  let button = nav.querySelector('[data-science-release-route="true"]');
+  let button = nav.querySelector('[data-area-route="science"], [data-science-release-route="true"]');
   if (!button) {
     button = document.createElement("button");
     button.type = "button";
@@ -76,7 +76,11 @@ function ensureRoutedScienceNavigation(panel) {
     const development = nav.querySelector('[data-area-route="development"]');
     if (development?.nextSibling) nav.insertBefore(button, development.nextSibling); else nav.append(button);
     button.addEventListener("click", () => showScientificReleaseView(panel));
+  } else if (button.dataset.areaRoute === "science" && !button.dataset.scienceRouteBound) {
+    button.dataset.scienceRouteBound = "true";
+    button.addEventListener("click", () => showScientificReleaseView(panel));
   }
+  button.dataset.scienceReleaseRoute = "true";
   return true;
 }
 

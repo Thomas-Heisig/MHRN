@@ -4,6 +4,13 @@
 **Baseline:** `mhrn-core 0.6.0a5`
 **Updated:** 2026-09-16
 
+## 2026-09-16 Release navigation separation
+
+- Registered Wissenschaft as a first-class Release route next to Entwicklung.
+- The scientific maturity timeline now opens through the central workspace
+	router instead of relying only on a late-injected special button.
+- Entwicklung and Wissenschaft render as separate Release views.
+
 ## 2026-09-16 Gateway experiment report boundary
 
 - Documented Frozen, Random, Shuffle and Plastic directly in the dashboard's

@@ -68,6 +68,7 @@ def test_release_frontend_has_first_class_scientific_timeline() -> None:
     assert 'button.dataset.workspaceView = "science"' in source
     assert 'panel.dataset.releaseView = "science"' in source
     assert 'button.dataset.scienceReleaseRoute = "true"' in source
+    assert '[data-area-route="science"]' in source
     assert '.mhrn-context-nav[data-area="release"]' in source
     assert "showScientificReleaseView" in source
     assert "Wissenschaftliche Timeline" in source
