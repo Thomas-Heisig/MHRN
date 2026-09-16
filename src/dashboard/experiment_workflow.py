@@ -572,8 +572,8 @@ class ExperimentWorkflowService:
                 )
             gateway_state_path = persist_boundary_state(output_dir, serialized_runs)
         # Compute statistics from the complete in-memory observations first. Large
-        # per-tick traces are then moved to compressed sidecars so runs.json remains
-        # reviewable without discarding raw observations.
+        # per-tick traces are then moved to compressed sidecars so the committed
+        # runs_compact.json remains reviewable without discarding raw observations.
         statistics_path = write_statistics_artifact(output_dir, serialized_runs)
         statistics_payload = json.loads(statistics_path.read_text(encoding="utf-8"))
         data_v2 = prepare_research_data_v2(
@@ -635,7 +635,7 @@ class ExperimentWorkflowService:
             seeds=list(effective_seeds),
             protocol=workflow.protocol,
         )
-        recorder.record_artifact("data", "DATA/runs.json")
+        recorder.record_artifact("data", "DATA/runs_compact.json")
         if gateway_state_path is not None:
             recorder.record_artifact("gateway_state", "DATA/gateway_state.json")
         recorder.record_artifact("data_index", "DATA/runs_index.json")
@@ -696,7 +696,7 @@ class ExperimentWorkflowService:
             prompt_digest=hashlib.sha256(b"NO_PROMPT").hexdigest(),
             data_digest=_sha256_files(
                 [
-                    data_path,
+                    data_v2.runs_path,
                     data_v2.raw_index_path,
                     data_v2.ai_packet_path,
                     data_v2.ai_packet_digest_path,
@@ -1297,7 +1297,7 @@ class ExperimentWorkflowService:
                 f"Runs: {run_count}; Dauer: {duration:.6f} s",
                 "",
                 "## Daten und Statistik",
-                "Kompakte Run-Projektion: `DATA/runs.json`",
+                "Versionierte kompakte Run-Projektion: `DATA/runs_compact.json`",
                 "Unveränderlicher Rohdatenindex: `DATA/runs_index.json`",
                 "KI-Eingabepaket: `analysis/ai_packet.json` (hart begrenzt)",
                 "Deterministische deskriptive Statistik: `analysis/statistics.json`",

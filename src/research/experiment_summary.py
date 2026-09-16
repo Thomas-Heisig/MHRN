@@ -95,6 +95,14 @@ def build_descriptive_statistics(runs: list[dict[str, Any]]) -> dict[str, Any]:
         if _number(value) is not None
     }
     numeric_metric_names = sorted(known_numeric_metrics | discovered_numeric_metrics)
+    boolean_metric_names = sorted(
+        {
+            str(name)
+            for run in runs
+            for name, value in (run.get("metrics") or {}).items()
+            if isinstance(value, bool)
+        }
+    )
 
     nested_paths = {
         "functional_activation": ("functional_state", "activation"),
@@ -141,6 +149,24 @@ def build_descriptive_statistics(runs: list[dict[str, Any]]) -> dict[str, Any]:
             if values:
                 metric_stats[name] = _stats(values)
 
+        boolean_stats: dict[str, Any] = {}
+        for name in boolean_metric_names:
+            values = [
+                value
+                for run in condition_runs
+                for value in [(run.get("metrics") or {}).get(name)]
+                if isinstance(value, bool)
+            ]
+            if values:
+                true_count = sum(values)
+                boolean_stats[name] = {
+                    "n": len(values),
+                    "true_count": true_count,
+                    "false_count": len(values) - true_count,
+                    "true_fraction": true_count / len(values),
+                    "all_true": all(values),
+                }
+
         for name, path in nested_paths.items():
             nested_values: list[float] = []
             for run in condition_runs:
@@ -163,6 +189,7 @@ def build_descriptive_statistics(runs: list[dict[str, Any]]) -> dict[str, Any]:
                 }
             ),
             "metrics": metric_stats,
+            "boolean_metrics": boolean_stats,
         }
 
     temporal_values: dict[str, list[float]] = defaultdict(list)
@@ -211,7 +238,7 @@ def build_descriptive_statistics(runs: list[dict[str, Any]]) -> dict[str, Any]:
 
     result: dict[str, Any] = {
         "generated_by": "deterministic_statistics_engine",
-        "schema_version": "2.1",
+        "schema_version": "2.2",
         "run_count": len(runs),
         "conditions": conditions,
         "formulas": {
@@ -418,8 +445,13 @@ def _suite_integrity(
         condition
         for condition, payload in statistics_conditions.items()
         if not isinstance(payload, dict)
-        or not isinstance(payload.get("metrics"), dict)
-        or not payload.get("metrics")
+        or (
+            (not isinstance(payload.get("metrics"), dict) or not payload.get("metrics"))
+            and (
+                not isinstance(payload.get("boolean_metrics"), dict)
+                or not payload.get("boolean_metrics")
+            )
+        )
     )
     runtime_error_count = sum(
         run.get("runtime_error") not in (None, "", False) for run in runs
@@ -491,8 +523,8 @@ def _render_airr_sections(
         content = {}
     lines.extend(
         [
-            f"- AIRR Markdown: [`reports/{report_id}.md`](reports/{report_id}.md)",
-            f"- AIRR JSON: [`reports/{report_id}.json`](reports/{report_id}.json)",
+            f"- AIRR Markdown: `reports/{report_id}.md`",
+            f"- AIRR JSON: `reports/{report_id}.json`",
             "",
             "### 8.1 KI-Einschaetzung",
             "",
@@ -561,7 +593,10 @@ def write_detailed_experiment_summary(
     experiment_dir = research_root / "experiments" / experiment_id
     manifest = _read_json(experiment_dir / "manifest.json", {})
     workflow = _read_json(experiment_dir / "workflow.json", {})
-    raw_runs = _read_json(experiment_dir / "DATA" / "runs.json", [])
+    runs_path = experiment_dir / "DATA" / "runs_compact.json"
+    if not runs_path.is_file():
+        runs_path = experiment_dir / "DATA" / "runs.json"
+    raw_runs = _read_json(runs_path, [])
     runs = (
         [item for item in raw_runs if isinstance(item, dict)]
         if isinstance(raw_runs, list)
@@ -695,11 +730,11 @@ def write_detailed_experiment_summary(
             "",
             "Die im Bericht verwendeten deskriptiven Groessen sind:",
             "",
-            "- Mittelwert: $\\bar{x}=\\frac{1}{n}\\sum_{i=1}^{n}x_i$",
-            "- Populationsstandardabweichung: $\\sigma=\\sqrt{\\frac{1}{n}\\sum_{i=1}^{n}(x_i-\\bar{x})^2}$",
-            "- Absolute Differenz: $\\Delta_x=\\bar{x}_B-\\bar{x}_A$",
-            "- Verhältnis: $R_x=\\bar{x}_B/\\bar{x}_A$ fuer $\\bar{x}_A\\neq0$",
-            "- Inter-Spike-Intervall: $ISI_i=t_{i+1}-t_i$",
+            "- Mittelwert: `mean(x) = (1/n) * sum_i x_i`",
+            "- Populationsstandardabweichung: `sigma = sqrt((1/n) * sum_i (x_i - mean(x))^2)`",
+            "- Absolute Differenz: `Delta_x = mean(x_B) - mean(x_A)`",
+            "- Verhältnis: `R_x = mean(x_B) / mean(x_A)` fuer `mean(x_A) != 0`",
+            "- Inter-Spike-Intervall: `ISI_i = t_(i+1) - t_i`",
             "",
             "Diese Formeln sind deskriptiv. Ohne registrierten Inferenztest, unabhaengige Stichprobenannahme und passende Versuchsplanung werden daraus keine Signifikanz- oder Kausalbehauptungen abgeleitet.",
             "",
@@ -771,13 +806,40 @@ def write_detailed_experiment_summary(
             f"| {condition} | {'; '.join(extras) if extras else 'keine zusätzlichen numerischen Metriken'} |"
         )
 
+    boolean_rows: list[str] = []
+    for condition, payload in condition_statistics.items():
+        boolean_metrics = (
+            payload.get("boolean_metrics", {}) if isinstance(payload, dict) else {}
+        )
+        if not isinstance(boolean_metrics, dict):
+            continue
+        for name, values in sorted(boolean_metrics.items()):
+            if not isinstance(values, dict):
+                continue
+            boolean_rows.append(
+                f"| {condition} | `{name}` | {values.get('n', 0)} | "
+                f"{values.get('true_count', 0)} | {values.get('false_count', 0)} | "
+                f"{values.get('all_true', False)} |"
+            )
+    if boolean_rows:
+        lines.extend(
+            [
+                "",
+                "#### Primäre und weitere boolesche Endpunkte",
+                "",
+                "| Condition | Outcome | n | true | false | all_true |",
+                "| --- | --- | ---: | ---: | ---: | --- |",
+                *boolean_rows,
+            ]
+        )
+
     effects = statistics.get("two_condition_effects", {})
     if isinstance(effects, dict) and effects:
         lines.extend(["", "### 5.2 Deskriptive Zwei-Bedingungs-Effekte", ""])
         for metric, effect in effects.items():
             if isinstance(effect, dict):
                 lines.append(
-                    f"- `{metric}`: $\\Delta={_fmt(effect.get('absolute_difference'))}$; $R={_fmt(effect.get('ratio'))}$; Referenz `{effect.get('reference_condition')}`, Vergleich `{effect.get('comparison_condition')}`."
+                    f"- `{metric}`: `absolute_difference={_fmt(effect.get('absolute_difference'))}`; `ratio={_fmt(effect.get('ratio'))}`; Referenz `{effect.get('reference_condition')}`, Vergleich `{effect.get('comparison_condition')}`."
                 )
 
     isi = statistics.get("inter_spike_intervals", {})
@@ -850,7 +912,7 @@ def write_detailed_experiment_summary(
             "",
             "Identische Ausgaben ueber mehrere Seeds dokumentieren reproduzierbare Modelltrajektorien unter diesen Bedingungen. Sie sind nicht automatisch statistisch unabhaengige Replikate. State-Digests sind Integritaets-/Identitaetsmarker und keine metrischen Zustandsabstaende.",
             "",
-            f"Deterministische Statistikdatei: [`{statistics_path.relative_to(experiment_dir).as_posix()}`]({statistics_path.relative_to(experiment_dir).as_posix()})",
+            f"Deterministische Statistikdatei: `{statistics_path.relative_to(experiment_dir).as_posix()}`",
         ]
     )
     _render_airr_sections(lines, experiment_dir, ai_report)
@@ -859,7 +921,9 @@ def write_detailed_experiment_summary(
     for path in sorted(experiment_dir.rglob("*")):
         if path.is_file() and path.name != "summary.md":
             relative = path.relative_to(experiment_dir).as_posix()
-            lines.append(f"- [{relative}]({relative})")
+            if relative == "DATA/runs.json":
+                continue
+            lines.append(f"- `{relative}`")
 
     lines.extend(
         [
