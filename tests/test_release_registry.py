@@ -22,23 +22,27 @@ def test_current_release_matches_canonical_development_version() -> None:
         project = tomllib.load(stream)["project"]
     current = _release("current.json")
 
-    assert project["version"] == "0.6.0a3"
-    assert current["version"] == "0.6.0-alpha.3"
+    assert project["version"] == "0.6.0a4"
+    assert current["version"] == "0.6.0-alpha.4"
     assert current["pep440"] == project["version"]
     assert current["status"] == "development"
     assert current["parent"] == "v0.5.0-alpha.7"
-    assert current["as_of"] == "2026-09-13"
-    assert current["milestone_status"] == "stage3_engineering_reached"
+    assert current["as_of"] == "2026-09-16"
+    assert (
+        current["milestone_status"]
+        == "stage3_engineering_reached_scientific_maturity_separate"
+    )
     assert current["release_blockers"] == 0
-    assert len(current["open"]) == 4
-    assert len(current["scope"]) == 9
-    assert any("stages 8-10" in item for item in current["scope"])
-    assert any("File Viewer drill-down" in item for item in current["open"])
+    assert current["open"]
+    assert current["scope"]
+    assert any("Stage-6 memory/world-model" in item for item in current["scope"])
+    assert any("Stage-6 semanticization" in item for item in current["open"])
     assert not any(
         "add registered delayed-information control runs" in item
         for item in current["open"]
     )
-    assert "scientific evidence" in current["research_boundary"]
+    assert "scientific EVID" in current["research_boundary"]
+    assert current["scientific_maturity"]["automatic_evidence_promotion"] is False
 
 
 def test_alpha6_release_preserves_verified_historical_boundary() -> None:
