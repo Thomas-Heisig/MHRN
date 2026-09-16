@@ -1,7 +1,7 @@
 # EXP-STAGE0-20260916-MODEL-CONFORMANCE-V2
 
 **Status:** confirmatory DATA complete  
-**Preregistration:** `PREREG-RQ-EVAL-006-V2`  
+**Preregistration:** `PREREG-EVAL-006-V2`  
 **RQ:** `RQ-EVAL-006`  
 **Hypotheses:** `H-EVAL-006-A`, `H-EVAL-006-B`, `H-EVAL-006-C`
 
