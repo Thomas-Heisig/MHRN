@@ -1,0 +1,22 @@
+{
+  "artifact_contract": {
+    "boolean_outcomes_aggregated": true,
+    "committed_compact_projection": true,
+    "viewer_safe_plain_artifact_paths": true,
+    "viewer_safe_plain_formulas": true
+  },
+  "evidence_promotion": "HUMAN_REVIEW_REQUIRED",
+  "experiment_id": "EXP-GEN-0038",
+  "primary_criteria": {
+    "all_runs_finite_state": true,
+    "all_runs_topology_unchanged": true,
+    "tonic_drive_mean_spikes_per_window_gt_0": true,
+    "tonic_drive_post_burn_in_spike_cv_le_0_25": true,
+    "tonic_drive_post_burn_in_spike_relative_drift_le_0_25": true
+  },
+  "purpose": "post-repair pipeline verification",
+  "run_count": 20,
+  "schema_version": "1.0",
+  "scientific_role": "confirmatory rerun under unchanged frozen preregistration",
+  "tick_contract": "SATISFIED"
+}
