@@ -7,7 +7,7 @@
 
 [![CI](https://github.com/Thomas-Heisig/MHRN/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Thomas-Heisig/MHRN/actions/workflows/ci.yml)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-blue.svg)](https://www.python.org/)
-[![Version](https://img.shields.io/badge/version-0.6.0a3-orange.svg)](pyproject.toml)
+[![Version](https://img.shields.io/badge/version-0.6.0a4-orange.svg)](pyproject.toml)
 [![Publication](https://img.shields.io/badge/publication-1.7_WIP-blue.svg)](research/publications/CURRENT.md)
 [![License: MIT](https://img.shields.io/badge/license-MIT-yellow.svg)](LICENSE)
 
@@ -19,12 +19,12 @@ The sparse **5D SNN remains the primary adaptive system**. Language models, rese
 
 ---
 
-## Current state — 15 September 2026
+## Current state — 16 September 2026
 
 | Area | Current state |
 | --- | --- |
 | Canonical branch | `main` |
-| Package | `mhrn-core 0.6.0a3` / `0.6.0-alpha.3` |
+| Package | `mhrn-core 0.6.0a4` / `0.6.0-alpha.4` |
 | Release status | development; gate open; no active release blocker, final source-freeze/release closure still pending |
 | Engineering | Stage 2 recurrent contract closed at its scoped engineering boundary; Stage 3 plastic neural tissue reached; Stage 4/5 engineering contracts integrated; Stage 6 mechanisms and research programme active |
 | Scientific focus | Stage 6 — memory, continual learning, semantization, prediction error and world-model validation |
@@ -41,7 +41,7 @@ The present scientific focus is deliberately narrower than the implemented featu
 
 - **`EXP-S6-SEM-CL-001`** produced a positive preregistered mechanism result against its own naive online/no-replay baseline.
 - **`EXP-S6-SEM-CL-002`** produced a preregistered paired **negative result** for the more specific claim that semantic prototypes outperform matched raw replay under that protocol. The preregistered H1 success criteria were not met.
-- **`EXP-S6-SEM-CL-003`** has its runner, freeze manifest and dose-response preparation integrated, but it has **not** been executed as a new confirmatory experiment and creates no new EVID by its mere presence.
+- **`EXP-S6-SEM-CL-003`** was executed on 16 September 2026 under its frozen authorization. The persisted machine result is `H1_negative_H2_negative`; DATA remain pending Human Review and are not EVID.
 
 The bounded conclusion is therefore not “semantic memory established”, but that the current implementation has memory/replay/semantic-candidate mechanisms while the stronger semantization and world-model claims remain open to controlled testing and replication.
 
@@ -296,7 +296,7 @@ Citation metadata: [`CITATION.cff`](CITATION.cff).
   author  = {Thomas Heisig},
   title   = {Multi-Scale Homeostatic Recurrence Network (MHRN)},
   year    = {2026},
-  version = {0.6.0a3},
+  version = {0.6.0a4},
   url     = {https://github.com/Thomas-Heisig/MHRN},
   license = {MIT}
 }

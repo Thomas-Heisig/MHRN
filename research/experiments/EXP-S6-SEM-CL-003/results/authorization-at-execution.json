@@ -40,11 +40,5 @@
     "Execution produces DATA and a machine report only; it does not create EVID or change hypothesis/claim status automatically.",
     "Any scientifically relevant protocol change requires a new experiment identifier rather than modification of this frozen campaign."
   ],
-  "status": "executed_data_pending_human_review",
-  "first_empirical_run_has_occurred": true,
-  "execution_date": "2026-09-16",
-  "execution_commit": "d299483df4c4975414cd3a0ec866f91d7b1a08c1",
-  "execution_workflow_run_id": 35080329458,
-  "results_path": "research/experiments/EXP-S6-SEM-CL-003/results/results.json",
-  "results_sha256": "4e74021c0ef838371a3a01061ae1c2dcebb2031b54c15c6169e38c1972d06290"
+  "status": "authorized_not_executed"
 }

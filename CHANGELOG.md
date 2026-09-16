@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.6.0-alpha.4 - 2026-09-16
+
+Research-driven development becomes the canonical MHRN workflow. RQ and Claim status are separated, CL-002/CL-003 freeze gates are authorization-aware, CL-003 was executed once under its frozen protocol, and its DATA remain pending Human Review without automatic EVID promotion.
+
 ## 0.6.0-alpha.3 - 2026-09-13
 
 Source-bound scientific audit and publication reconciliation. Fix recursive document cache dispatch; fail closed for skipped Stage-3 verification groups; bind frontend checks to loaded assets and the canonical router; record experiment environments, validate DATA receipts and distinguish conceptual/boundary audits from simulation studies. Historical DATA and publication editions remain immutable. Publication edition 1.5 and the research report are separate from software release readiness; no automatic EVID promotion. Exact-commit CI remains authoritative.

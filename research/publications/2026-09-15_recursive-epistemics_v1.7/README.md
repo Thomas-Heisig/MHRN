@@ -3,7 +3,7 @@
 **Status:** aktuelle fortgeschriebene Arbeitsfassung (`current_wip`)  
 **Datum:** 15. September 2026  
 **Autor:** Thomas Heisig  
-**Softwarelinie:** MHRN 0.6.0-alpha.3  
+**Softwarelinie:** MHRN 0.6.0-alpha.4
 **Evidenzautorität:** Interpretation und Forschungsprogramm; keine automatische EVID-Promotion
 
 ## Direkt lesen
