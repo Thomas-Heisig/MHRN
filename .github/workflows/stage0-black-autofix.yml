@@ -16,6 +16,7 @@ jobs:
       - uses: actions/checkout@v7
         with:
           ref: science/stage0-model-conformance-v2-20260916
+          fetch-depth: 0
       - uses: actions/setup-python@v7
         with:
           python-version: "3.13"
@@ -40,4 +41,5 @@ jobs:
           fi
           git add scripts/stage0_conformance_v2_confirm.py scripts/stage0_scientific_diagnostic.py scripts/stage0_conformance_v2.py scripts/stage0_phase_model_diagnostic.py tests/test_single_neuron_scientific_readiness.py src/dashboard/experiment_archive.py src/dashboard/server.py tests/test_dashboard_embodiment_routes.py
           git commit -m "style: apply Black to CI-reported files"
+          git pull --rebase origin science/stage0-model-conformance-v2-20260916
           git push origin HEAD:science/stage0-model-conformance-v2-20260916
