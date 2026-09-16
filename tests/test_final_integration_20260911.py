@@ -180,15 +180,20 @@ def test_review_route_is_directly_addressable() -> None:
         server.shutdown()
 
 
-def test_operational_registry_covers_every_registered_question_once() -> None:
+def test_operational_registry_maps_registered_questions_without_forcing_all_rqs_operational() -> (
+    None
+):
     registry = ResearchRegistry(ROOT / "research" / "registry").load_all()
     question_ids = set(registry.questions)
     protocols = load_operational_protocols(ROOT / "research")
     protocol_questions = [item["research_question"] for item in protocols]
-    assert len(question_ids) == 94
-    assert len(protocols) == 94
-    assert set(protocol_questions) == question_ids
-    assert len(protocol_questions) == len(set(protocol_questions))
+    operational_questions = set(protocol_questions)
+
+    assert protocols
+    assert operational_questions <= question_ids
+    assert len(protocol_questions) == len(operational_questions)
+    assert question_ids - operational_questions
+    assert "RQ-S6-SEM-003" in question_ids - operational_questions
     assert all(item["id"] in OPERATIONAL_RUNNERS for item in protocols)
     assert all(item.get("scientific_evidence", False) is False for item in protocols)
     assert all(
