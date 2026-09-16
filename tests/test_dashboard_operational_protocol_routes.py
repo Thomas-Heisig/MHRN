@@ -25,7 +25,9 @@ class _FakeScienceService:
         }
 
 
-def _request(server: DashboardServer, body: dict[str, object]) -> tuple[int, dict[str, object]]:
+def _request(
+    server: DashboardServer, body: dict[str, object]
+) -> tuple[int, dict[str, object]]:
     host, port = server.server_address[:2]
     connection = HTTPConnection(str(host), int(port), timeout=5)
     try:
@@ -42,7 +44,13 @@ def _request(server: DashboardServer, body: dict[str, object]) -> tuple[int, dic
         connection.close()
 
 
-def test_single_run_accepts_registered_sustained_activity_protocol(monkeypatch: Any) -> None:
+def test_single_run_accepts_registered_sustained_activity_protocol(
+    monkeypatch: Any,
+) -> None:
+    assert (
+        server_module.OPERATIONAL_RUNNERS["sustained_activity_stability_v1"]
+        == "run_sustained_stability"
+    )
     monkeypatch.setattr(server_module, "ExperimentWorkflowService", _FakeScienceService)
     server = DashboardServer(
         ("127.0.0.1", 0),
