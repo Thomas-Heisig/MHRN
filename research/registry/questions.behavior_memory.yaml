@@ -57,3 +57,17 @@
     limitations: EXP-S6-SEM-CL-002 is preregistered but not executed; its contrast-based decision rules must not be treated as evidence before authorized execution and human review.
   created: '2026-09-15'
   updated: '2026-09-15'
+- id: RQ-S6-SEM-003
+  domain: Memory
+  question: Hängt ein möglicher Vorteil semantischer Prototypkonsolidierung gegenüber Raw-Experience-Replay von der Replay-Dosis ab, wenn das Gesamt-Updatebudget über alle Bedingungen konstant gehalten wird?
+  relevance: Prüft die nach CL-002 offene mechanistische Alternative, ob ein möglicher Repräsentationsvorteil erst bei höherer Replay-Exposition sichtbar wird, ohne den negativen CL-002-Befund rückwirkend umzudeuten.
+  literature: []
+  hypotheses: []
+  evidence: []
+  status: open
+  answer:
+    current: null
+    confidence: none
+    limitations: EXP-S6-SEM-CL-003 is preregistered, SHA-256-frozen and explicitly authorized but has not been executed. H1/H2/H0/H3, C1-C4 and the decision rules remain defined by the frozen preregistration; no DATA, EVID or hypothesis decision exists yet.
+  created: '2026-09-16'
+  updated: '2026-09-16'

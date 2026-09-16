@@ -436,8 +436,8 @@ def _run_condition(
     forgetting_values: list[float] = []
     for task_index in range(len(TASKS) - 1):
         history: list[float] = []
-        for row in accuracy_rows[task_index:]:
-            value = row[task_index]
+        for accuracy_row in accuracy_rows[task_index:]:
+            value = accuracy_row[task_index]
             if value is not None:
                 history.append(float(value))
         forgetting_values.append(max(history) - history[-1])

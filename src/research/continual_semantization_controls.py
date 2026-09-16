@@ -14,7 +14,7 @@ import math
 import random
 from dataclasses import asdict, dataclass
 from pathlib import Path
-from typing import Any, Sequence
+from typing import Any, Sequence, cast
 
 import numpy as np
 
@@ -102,7 +102,7 @@ def sha256_bytes(payload: bytes) -> str:
 
 
 def load_preregistration(path: Path) -> dict[str, Any]:
-    return json.loads(path.read_text(encoding="utf-8"))
+    return cast(dict[str, Any], json.loads(path.read_text(encoding="utf-8")))
 
 
 def require_execution_authorized(preregistration: dict[str, Any]) -> None:
@@ -431,11 +431,11 @@ def _metrics(
     final = [float(value) for value in rows[-1] if value is not None]
     forgetting: list[float] = []
     for task_index in range(len(TASKS) - 1):
-        history = [
-            float(row[task_index])
-            for row in rows[task_index:]
-            if row[task_index] is not None
-        ]
+        history: list[float] = []
+        for row in rows[task_index:]:
+            value = row[task_index]
+            if value is not None:
+                history.append(float(value))
         forgetting.append(max(history) - history[-1])
     return float(np.mean(final)), float(np.mean(forgetting))
 

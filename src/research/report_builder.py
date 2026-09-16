@@ -12,6 +12,7 @@ Produces:
 from __future__ import annotations
 
 import json
+from collections import Counter
 from datetime import datetime
 from pathlib import Path
 from typing import Any
@@ -89,6 +90,20 @@ class ReportBuilder:
             for ev in self._evidence_records.values()
             if ev.claim_id == claim_id
         }
+
+    def _experiments_for_question(self, question_id: str) -> set[str]:
+        """Return experiment IDs linked to a question without treating claims as experiments."""
+        hypotheses = self.registry.hypotheses_for_question(question_id)
+        hypothesis_ids = {h.id for h in hypotheses}
+        claims = self.registry.claims_for_question(question_id)
+        claim_ids = {c.id for c in claims}
+        result = {experiment for claim in claims for experiment in claim.experiments}
+        for ev in self._evidence_records.values():
+            if not ev.experiment_id:
+                continue
+            if ev.hypothesis_id in hypothesis_ids or ev.claim_id in claim_ids:
+                result.add(ev.experiment_id)
+        return result
 
     def build_research_catalog(self) -> str:
         """Generate a complete research catalog."""
@@ -190,14 +205,16 @@ class ReportBuilder:
         return "\n".join(lines)
 
     def build_evidence_matrix(self) -> str:
-        """Generate an evidence matrix showing status per question."""
+        """Generate the evidence matrix with RQ and claim status kept separate."""
         lines = [
             "# MHRN Evidence Matrix",
             "",
             f"*Generiert am {datetime.now().strftime('%Y-%m-%d')}*",
             "",
-            "| Forschungsfrage | Hypothese | Literatur | Experimente | Evidenz | Antwort |",
-            "|----------------|-----------|-----------|-------------|---------|---------|",
+            "RQ-Status und Claim-Status sind unterschiedliche wissenschaftliche Zustände und werden nicht gegenseitig abgeleitet.",
+            "",
+            "| Forschungsfrage | RQ-Status | Hypothese | Claims | Claim-Status | Literatur | Experimente | Evidenz | Antwort |",
+            "|----------------|-----------|-----------|--------|--------------|-----------|-------------|---------|---------|",
         ]
 
         for q in self.registry.questions.values():
@@ -206,8 +223,15 @@ class ReportBuilder:
             claims = self.registry.claims_for_question(q.id)
 
             h_text = ", ".join(f"`{h.id}`" for h in hypotheses) or "—"
+            claims_text = ", ".join(f"`{c.id}`" for c in claims) or "—"
+            claim_status_text = ", ".join(f"`{c.id}`={c.status}" for c in claims) or "—"
             s_text = str(len(sources))
-            c_text = ", ".join(f"`{c.id}`" for c in claims) if claims else "—"
+            experiments = sorted(self._experiments_for_question(q.id))
+            experiment_text = (
+                ", ".join(f"`{experiment}`" for experiment in experiments)
+                if experiments
+                else "—"
+            )
             question_evidence = sorted(self._evidence_for_question(q.id))
             ev_text = (
                 ", ".join(f"`{e}`" for e in question_evidence)
@@ -217,35 +241,44 @@ class ReportBuilder:
             answer_text = q.answer.confidence if q.answer.current else "offen"
 
             lines.append(
-                f"| `{q.id}` | {h_text} | {s_text} | {c_text} | {ev_text} | {answer_text} |"
+                f"| `{q.id}` | {q.status} | {h_text} | {claims_text} | {claim_status_text} | "
+                f"{s_text} | {experiment_text} | {ev_text} | {answer_text} |"
             )
 
-        supported = sum(
-            1 for c in self.registry.claims.values() if c.status == "supported"
-        )
-        refuted = sum(1 for c in self.registry.claims.values() if c.status == "refuted")
-        untested = sum(
-            1 for c in self.registry.claims.values() if c.status == "untested"
-        )
-        inconclusive = sum(
-            1 for c in self.registry.claims.values() if c.status == "inconclusive"
-        )
+        rq_status_counts = Counter(q.status for q in self.registry.questions.values())
+        claim_status_counts = Counter(c.status for c in self.registry.claims.values())
 
         lines.extend(
             [
                 "",
                 "## Zusammenfassung",
                 "",
-                "| Status | Anzahl |",
-                "|--------|--------|",
-                f"| ✅ Supported | {supported} |",
-                f"| ❌ Refuted | {refuted} |",
-                f"| 🔄 Inconclusive | {inconclusive} |",
-                f"| ⬜ Untested | {untested} |",
-                f"| **Gesamt** | **{len(self.registry.claims)}** |",
+                "### Forschungsfragen (RQ-Status)",
+                "",
+                "| RQ-Status | Anzahl |",
+                "|-----------|--------|",
+            ]
+        )
+        for status, count in sorted(rq_status_counts.items()):
+            lines.append(f"| {status} | {count} |")
+        lines.extend(
+            [
+                f"| **Gesamt RQs** | **{len(self.registry.questions)}** |",
+                "",
+                "### Claims (Claim-Status)",
+                "",
+                "| Claim-Status | Anzahl |",
+                "|--------------|--------|",
+            ]
+        )
+        for status, count in sorted(claim_status_counts.items()):
+            lines.append(f"| {status} | {count} |")
+        lines.extend(
+            [
+                f"| **Gesamt Claims** | **{len(self.registry.claims)}** |",
                 "",
                 "---",
-                "*Automatisch generiert — Theorie, Beobachtung und Interpretation sind strikt getrennt.*",
+                "*Automatisch generiert — RQ-Status, Claim-Status, DATA und EVID bleiben getrennte Ebenen.*",
             ]
         )
 

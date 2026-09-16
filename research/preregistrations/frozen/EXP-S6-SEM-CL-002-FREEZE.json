@@ -12,8 +12,8 @@
     "scripts/run_semantization_split_mnist_cl002.py": "172930f7b86daeef764867959f24b5f04a5473509c61c6af678dd9d1020608c0",
     "src/memory/neural_episodic.py": "9365fe13e623614a8697b027433d34a69c10f864c99319851c7062078951939f",
     "src/memory/semantic.py": "01bb586f77f512368ed4bbd9379a262b15f4518f94fa2df9db8d2143a2c0c1c5",
-    "src/research/continual_semantization.py": "3d1fbc58d0c38cde6714d68606bd85f1b73e7663d8472af79a280c6838084f6a",
-    "src/research/continual_semantization_controls.py": "7d1f2ef1aaa1b7abebce2a91d0c68f9ee69d499a8ff359535d45e9b638c960bb"
+    "src/research/continual_semantization.py": "e6e1531d2cd8743a89a1f405ba476ef7e20ccac8c4aa7e707aa8a9fa64c5b379",
+    "src/research/continual_semantization_controls.py": "51ea011ca8c0b2ebf7e4d5b5098f44b3efd370a6d51243ea4c0498ffd26fe248"
   },
   "status": "pre_execution_source_freeze"
 }

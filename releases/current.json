@@ -1,12 +1,12 @@
 {
   "schema_version": 2,
-  "version": "0.6.0-alpha.3",
-  "pep440": "0.6.0a3",
+  "version": "0.6.0-alpha.4",
+  "pep440": "0.6.0a4",
   "status": "development",
-  "title": "Dual-Axis Engineering, Scientific Maturity and Document Governance",
+  "title": "Research-Driven Experiment Cycle and Scientific Gate Hardening",
   "parent": "v0.5.0-alpha.7",
   "gate": "open",
-  "as_of": "2026-09-15",
+  "as_of": "2026-09-16",
   "milestone_status": "stage3_engineering_reached_scientific_maturity_separate",
   "release_blockers": 0,
   "scope": [
@@ -39,7 +39,9 @@
     "document governance classifies every docs/research file by role and scientific authority",
     "publication 1.7 registered as current WIP manuscript",
     "publication 1.6 retained as historical integrative predecessor",
-    "publication 1.5 retained as frozen empirical baseline with stable pointer"
+    "publication 1.5 retained as frozen empirical baseline with stable pointer",
+    "research-driven experiment cycle is canonical from RQ through preregistration, DATA, human review and EVID",
+    "CL-003 is SHA-256 frozen and explicitly authorized for one preregistered campaign without automatic EVID promotion"
   ],
   "open": [
     "complete human scientific review and explicit EVID promotion decisions where justified",
@@ -68,5 +70,5 @@
     "novelty_claim": "requires_prior_art_review"
   },
   "research_boundary": "Engineering implementation, technical verification, UI/API availability and DATA collection are not equivalent to scientific EVID. Scientific maturity is tracked independently through registered questions, frozen protocols, source-bound DATA, human-reviewed EVID, independent replication and attribution. No stage score establishes AGI, consciousness, sentience or biological equivalence.",
-  "note": "Alpha.3 now reports engineering and scientific progress independently and governs docs/research files explicitly. Recursive Epistemics 1.7 is the current living manuscript; 1.6 is its predecessor and 1.5 remains the frozen empirical baseline. No historical DATA or EVID decision is rewritten."
+  "note": "Alpha.4 makes the experiment-by-experiment research cycle canonical, separates RQ and claim status in the evidence matrix, hardens freeze/authorization gates, and prepares the first authorized CL-003 execution. Historical DATA and EVID remain immutable; DATA do not become EVID without human review."
 }

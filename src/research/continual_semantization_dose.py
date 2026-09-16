@@ -217,11 +217,11 @@ def _metrics(rows: Sequence[tuple[float | None, ...]]) -> tuple[float, float]:
     final = [float(value) for value in rows[-1] if value is not None]
     forgetting: list[float] = []
     for task_index in range(len(TASKS) - 1):
-        history = [
-            float(row[task_index])
-            for row in rows[task_index:]
-            if row[task_index] is not None
-        ]
+        history: list[float] = []
+        for row in rows[task_index:]:
+            value = row[task_index]
+            if value is not None:
+                history.append(float(value))
         forgetting.append(max(history) - history[-1])
     return float(np.mean(final)), float(np.mean(forgetting))
 
