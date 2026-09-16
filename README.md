@@ -19,7 +19,7 @@ The sparse **5D SNN remains the primary adaptive system**. Language models, rese
 
 ---
 
-## Current state — 15 September 2026
+## Current state — 16 September 2026
 
 | Area | Current state |
 | --- | --- |
@@ -41,11 +41,11 @@ The present scientific focus is deliberately narrower than the implemented featu
 
 - **`EXP-S6-SEM-CL-001`** produced a positive preregistered mechanism result against its own naive online/no-replay baseline.
 - **`EXP-S6-SEM-CL-002`** produced a preregistered paired **negative result** for the more specific claim that semantic prototypes outperform matched raw replay under that protocol. The preregistered H1 success criteria were not met.
-- **`EXP-S6-SEM-CL-003`** has its runner, freeze manifest and dose-response preparation integrated, but it has **not** been executed as a new confirmatory experiment and creates no new EVID by its mere presence.
+- **`EXP-S6-SEM-CL-003`** was executed exactly once under its frozen authorization as 84 runs (12 seeds × 7 conditions). The preregistered classification is `H1_negative_H2_negative`: no confirmed Semantic-over-Raw advantage and no confirmed dose interaction. C3 (`S20 − X20`) is positive at about +14.9 percentage points and shows that the semantic representation carries non-random task-relevant structure. The complete result remains **DATA pending human review**, not accepted EVID.
 
-The bounded conclusion is therefore not “semantic memory established”, but that the current implementation has memory/replay/semantic-candidate mechanisms while the stronger semantization and world-model claims remain open to controlled testing and replication.
+The bounded DATA-level conclusion is therefore: **Replay contributes to the observed benefit; under the matched CL-002/CL-003 conditions semantic compression has not shown a preregistered additional advantage over Raw-Replay, although the semantic representation itself carries relevant structure.** Stage 6 is not declared solved; the Semantization/Replay subquestion is treated as **empirically narrowed** pending Human Review.
 
-See [`research/CURRENT_SCIENTIFIC_STATE.md`](research/CURRENT_SCIENTIFIC_STATE.md) for the current scientific interpretation and limitations.
+See [`research/CURRENT_SCIENTIFIC_STATE.md`](research/CURRENT_SCIENTIFIC_STATE.md) for the current scientific interpretation and limitations, and [`research/publications/2026-09-15_recursive-epistemics_v1.7/STAGE6_CL001_CL003_BALANCE.md`](research/publications/2026-09-15_recursive-epistemics_v1.7/STAGE6_CL001_CL003_BALANCE.md) for the DATA-only Stage-6 balance.
 
 ---
 
@@ -262,9 +262,9 @@ For the live directory taxonomy, use [`docs/README.md`](docs/README.md) and [`re
 
 Major open items include:
 
+- human scientific review of CL-003 and an explicit EVID decision;
+- a deliberate post-review Stage-6 research decision before any CL-004 is defined;
 - independent replication of central Stage 2–6 findings;
-- CL-003 execution only under its frozen authorization/protocol chain;
-- replay/consolidation and semantization studies with matched controls;
 - neuronally defined and ablatable prediction-error mechanisms;
 - multi-step action-conditioned world-model dynamics and decision benefit;
 - complete coupled-state checkpoint/restore identity for claim-relevant cognition state;
