@@ -15,6 +15,13 @@ MHRN / Multi-Scale Homeostatic Recurrence Network. Publication: Recursive Episte
 
 # MHRN Current TODO
 
+## 2026-09-16 Gateway experiment reporting
+
+- [x] Explain Gateway conditions and the Plastic preregistration guard in the frontend.
+- [x] Generate JSON state and Markdown report artifacts for Gateway activations.
+- [x] Preserve the boundary that Gateway activity and reports are not scientific evidence.
+- [ ] Add preregistration registry lookup and independent multi-seed execution for Plastic runs.
+
 ## 2026-09-16 Experiment archive results viewer
 
 - [x] Add result-viewing buttons (Report, Summary, Statistics, Raw Data) on every experiment library item — active and archived.

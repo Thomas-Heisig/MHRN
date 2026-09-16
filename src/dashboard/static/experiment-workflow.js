@@ -63,13 +63,25 @@ export class ExperimentWorkflowPanel extends BaseExperimentWorkflowPanel {
       </div>
       <section class="research-gateway-experiment" aria-label="Gateway Experiment">
         <div class="research-review-head"><strong>Gateway Experiment</strong><span class="gate-badge pending">EXPERIMENTAL</span></div>
+        <p class="research-gateway-intro">Dieses Experiment untersucht nur die periphere Gateway-Projektion. Der kanonische 5D-SNN-Core bleibt unveraendert; Aktivitaet, Plastizitaet und ein erzeugter Bericht sind kein Lern- oder Evidenznachweis.</p>
         <div class="research-gateway-controls">
           <label>Experiment ID<input id="workflow-gateway-experiment-id" type="text" placeholder="EXP-GW-..." autocomplete="off"></label>
           <label>Condition<select id="workflow-gateway-condition"><option value="frozen">Frozen</option><option value="random">Random</option><option value="shuffle">Shuffle</option><option value="plastic">Plastic</option></select></label>
           <label>Seed<input id="workflow-gateway-seed" type="number" value="101"></label>
           <button id="workflow-gateway-activate" type="button">Gateway aktivieren</button>
         </div>
-        <small id="workflow-gateway-message">Plastic erfordert eine registrierte, eingefrorene Preregistration; produktive Gateway-Plastizität bleibt gesperrt.</small>
+        <details class="research-gateway-documentation">
+          <summary>Versuchsbedingungen und Guard oeffnen</summary>
+          <ul>
+            <li><strong>Frozen</strong>: feste Ausgangstopologie als Kontrollbedingung.</li>
+            <li><strong>Random</strong>: deterministische Zufallsgewichte fuer den angegebenen Seed.</li>
+            <li><strong>Shuffle</strong>: deterministische Zielkanal-Permutation fuer den angegebenen Seed.</li>
+            <li><strong>Plastic</strong>: nur mit registrierter, eingefrorener Preregistration, Human Review und mindestens drei unabhaengigen Seeds.</li>
+          </ul>
+          <p>Die Preregistration muss mindestens Forschungsfrage, Hypothese, Protocol-ID, alle vier Bedingungen, Seed-Strategie, Stop-, Ein-/Ausschlusskriterien, primaere Outcomes, KI-Grenzen und einen Freeze-Block enthalten. Fuer Plastic muss der Freeze-Block unveraenderlich nach dem ersten Lauf und Human Review verpflichtend machen.</p>
+          <label>Preregistration JSON (nur fuer registrierte/frozen Protokolle)<textarea id="workflow-gateway-preregistration" rows="6" placeholder='{"research_question":"RQ-GW-...","hypothesis":"...","protocol_id":"...","conditions":[{"id":"frozen"},{"id":"random"},{"id":"shuffle"},{"id":"plastic"}],"seed_strategy":{"minimum_independent_seeds":3},"stopping_rule":"...","inclusion_criteria":["..."],"exclusion_criteria":["..."],"primary_outcomes":["..."],"ai_authority_boundaries":["no core mutation"],"freeze":{"status":"FROZEN","immutable_after_first_run":true,"human_review_required":true}}'></textarea></label>
+        </details>
+        <div class="research-gateway-report-row"><small id="workflow-gateway-message">Produktive Gateway-Plastizitaet bleibt gesperrt. Erst Aktivierung und danach Berichtserzeugung sind moeglich.</small><button id="workflow-gateway-report" type="button" disabled>Bericht erzeugen</button></div>
       </section>`;
     host.insertAdjacentElement("beforebegin", catalog);
     for (const [field, label] of Object.entries({domain: "Domain", status: "Status", evidence_status: "Evidenzpruefung", experiment_progress: "Versuchsfortschritt"})) {
@@ -108,9 +120,10 @@ export class ExperimentWorkflowPanel extends BaseExperimentWorkflowPanel {
       .research-review-card textarea{width:100%;min-height:72px;margin:8px 0;resize:vertical}
       .research-review-meta{font-size:.78rem;opacity:.75}.research-review-empty{opacity:.75;font-style:italic}
       .research-gateway-experiment{margin-top:14px;padding-top:12px;border-top:1px solid var(--border-color,#30363d)}
+      .research-gateway-intro{max-width:850px;line-height:1.45}.research-gateway-documentation{margin:10px 0;padding:10px;border:1px solid var(--border-color,#30363d);border-radius:8px}.research-gateway-documentation summary{cursor:pointer;font-weight:700}.research-gateway-documentation ul{margin:8px 0;padding-left:20px}.research-gateway-documentation p{max-width:850px;line-height:1.4}.research-gateway-documentation textarea{display:block;width:100%;margin-top:5px;font-family:var(--font-mono,monospace);font-size:.8rem}
       .research-gateway-controls{display:flex;gap:10px;align-items:end;flex-wrap:wrap;margin:8px 0}
       .research-gateway-controls label{display:grid;gap:4px;min-width:140px}.research-gateway-controls input,.research-gateway-controls select{min-width:120px}
-      .research-gateway-controls button{cursor:pointer}.research-gateway-experiment small{display:block;opacity:.78}
+      .research-gateway-controls button,.research-gateway-report-row button{cursor:pointer}.research-gateway-experiment small{display:block;opacity:.78}.research-gateway-report-row{display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap}.research-gateway-report-row button{margin-left:auto}
     `;
     document.head.appendChild(style);
 
@@ -119,6 +132,7 @@ export class ExperimentWorkflowPanel extends BaseExperimentWorkflowPanel {
     byId("workflow-review-refresh")?.addEventListener("click", () => this._loadReviewInbox());
     byId("workflow-review-list")?.addEventListener("click", (event) => this._handleReviewAction(event));
     byId("workflow-gateway-activate")?.addEventListener("click", () => this._activateGateway());
+    byId("workflow-gateway-report")?.addEventListener("click", () => this._generateGatewayReport());
     this._loadReviewInbox();
     byId("workflow-projection-dimensions")?.addEventListener("change", (event) => {
       const value = Math.max(1, Math.min(32, Number(event.target.value) || 5));
@@ -129,6 +143,8 @@ export class ExperimentWorkflowPanel extends BaseExperimentWorkflowPanel {
 
   async _activateGateway() {
     const message = byId("workflow-gateway-message");
+    const activateButton = byId("workflow-gateway-activate");
+    const reportButton = byId("workflow-gateway-report");
     const experimentId = (byId("workflow-gateway-experiment-id")?.value || "").trim();
     const condition = byId("workflow-gateway-condition")?.value || "frozen";
     const seed = Number(byId("workflow-gateway-seed")?.value || 101);
@@ -136,18 +152,63 @@ export class ExperimentWorkflowPanel extends BaseExperimentWorkflowPanel {
       if (message) message.textContent = "Experiment ID und ganzzahliger Seed sind erforderlich.";
       return;
     }
+    const rawPreregistration = (byId("workflow-gateway-preregistration")?.value || "").trim();
+    let preregistration;
+    if (rawPreregistration) {
+      try {
+        preregistration = JSON.parse(rawPreregistration);
+        if (!preregistration || typeof preregistration !== "object" || Array.isArray(preregistration)) throw new Error("Objekt erwartet");
+      } catch (error) {
+        if (message) message.textContent = `Preregistration JSON ist ungueltig: ${error.message || error}`;
+        return;
+      }
+    } else if (condition === "plastic") {
+      if (message) message.textContent = "Plastic ist ohne registrierte, eingefrorene Preregistration blockiert.";
+      return;
+    }
+    if (activateButton) { activateButton.disabled = true; activateButton.textContent = "Pruefe …"; }
     try {
       const response = await fetch(`/api/experiments/${encodeURIComponent(experimentId)}/gateway/activate`, {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({ condition, seed, experiment_mode: true }),
+        body: JSON.stringify({ condition, seed, experiment_mode: true, ...(preregistration ? { preregistration } : {}) }),
       });
       const payload = await response.json();
       if (!response.ok) throw new Error(payload.error || `HTTP ${response.status}`);
-      if (message) message.textContent = `Gateway ${condition} aktiv: ${payload.gateway.state}. Productive: LOCKED.`;
+      this.gatewayExperimentId = experimentId;
+      this.gatewayPreregistration = preregistration || null;
+      if (reportButton) reportButton.disabled = false;
+      if (message) message.textContent = `Gateway ${condition} aktiv: ${payload.gateway.state}. Produktiv: GESPERRT. Bericht kann jetzt erzeugt werden.`;
       document.dispatchEvent(new CustomEvent("mhrn:gateway-status-updated", { detail: payload }));
     } catch (error) {
       if (message) message.textContent = `Gateway-Start blockiert: ${error.message || error}`;
+    } finally {
+      if (activateButton) { activateButton.disabled = false; activateButton.textContent = "Gateway aktivieren"; }
+    }
+  }
+
+  async _generateGatewayReport() {
+    const message = byId("workflow-gateway-message");
+    const button = byId("workflow-gateway-report");
+    if (!this.gatewayExperimentId) {
+      if (message) message.textContent = "Erst ein Gateway-Experiment aktivieren.";
+      return;
+    }
+    if (button) { button.disabled = true; button.textContent = "Erzeuge …"; }
+    try {
+      const response = await fetch(`/api/experiments/${encodeURIComponent(this.gatewayExperimentId)}/gateway/report`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({ preregistration: this.gatewayPreregistration }),
+      });
+      const payload = await response.json();
+      if (!response.ok) throw new Error(payload.error || `HTTP ${response.status}`);
+      if (message) message.textContent = `Gateway-Bericht erstellt. Evidenzstatus: nicht evidenzbildend.`;
+      await this._openArtifact(payload.report);
+    } catch (error) {
+      if (message) message.textContent = `Bericht konnte nicht erstellt werden: ${error.message || error}`;
+    } finally {
+      if (button) { button.disabled = false; button.textContent = "Bericht erzeugen"; }
     }
   }
 

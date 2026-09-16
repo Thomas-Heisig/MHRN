@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026-09-16 — Gateway experiment documentation and reports
+
+- Expanded the Gateway Experiment panel with condition semantics, Plastic's
+  frozen-preregistration requirements, seed/review requirements and the
+  non-evidentiary boundary.
+- Added Gateway report generation after activation. It writes a Markdown
+  report, JSON report and bounded gateway state under the experiment directory.
+- Gateway manifests and reports explicitly keep productive Gateway access
+  locked and scientific evidence false.
+
 ## 2026-09-16 — Experiment archive results viewer
 
 - Added result-viewing buttons (Report, Summary, Statistics, Raw Data) directly

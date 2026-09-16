@@ -9,6 +9,7 @@ from types import SimpleNamespace
 from typing import Any, cast
 
 from src.dashboard.models import DashboardSnapshot, SystemMetrics
+from src.dashboard.research_source import ResearchSource
 from src.dashboard.server import DashboardServer
 from src.dashboard.state import DashboardStateStore
 from src.embodiment import (
@@ -430,5 +431,55 @@ def test_neural_symbiosis_gateway_status_and_experiment_guard() -> None:
         assert accepted_status == 200
         assert accepted["gateway"]["state"] == "active_frozen"
         assert accepted["gateway"]["productive_gateway"]["available"] is False
+    finally:
+        _stop(server, thread)
+
+
+def test_gateway_report_is_written_as_non_evidentiary_artifact(tmp_path) -> None:
+    research_root = tmp_path / "research"
+    research_root.mkdir()
+    server = DashboardServer(
+        ("127.0.0.1", 0),
+        DashboardStateStore(),
+        heatmaps=None,
+        research_source=ResearchSource(research_root),
+    )
+    thread = Thread(target=server.serve_forever, daemon=True)
+    thread.start()
+    host, port = server.server_address[:2]
+    try:
+        activation_status, activation = _post(
+            host,
+            port,
+            "/api/experiments/EXP-GW-REPORT/gateway/activate",
+            {"condition": "frozen", "seed": 101, "experiment_mode": True},
+        )
+        assert activation_status == 200
+        assert activation["gateway"]["state"] == "active_frozen"
+
+        report_status, report = _post(
+            host,
+            port,
+            "/api/experiments/EXP-GW-REPORT/gateway/report",
+            {},
+        )
+        assert report_status == 201
+        assert report["scientific_evidence"] is False
+        assert report["report"] == (
+            "experiments/EXP-GW-REPORT/reports/GATEWAY-REPORT.md"
+        )
+        assert (
+            research_root / report["report"]
+        ).is_file()
+        assert (
+            research_root / "experiments/EXP-GW-REPORT/DATA/gateway_state.json"
+        ).is_file()
+        manifest = json.loads(
+            (
+                research_root / "experiments/EXP-GW-REPORT/manifest.json"
+            ).read_text(encoding="utf-8")
+        )
+        assert manifest["record_kind"] == "gateway_experiment"
+        assert manifest["scientific_evidence"] is False
     finally:
         _stop(server, thread)

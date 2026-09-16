@@ -1843,6 +1843,136 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
             )
         self._send_json({"experiments": experiments, "count": len(experiments)})
 
+    def _write_gateway_report(
+        self, experiment_id: str, body: Mapping[str, object]
+    ) -> dict[str, JSONValue]:
+        """Persist a bounded gateway report without promoting it to evidence."""
+        source = self._require_research_source()
+        if (
+            not experiment_id
+            or Path(experiment_id).name != experiment_id
+            or "/" in experiment_id
+            or "\\" in experiment_id
+            or experiment_id in {".", ".."}
+        ):
+            raise InvalidRequestError("invalid gateway experiment id")
+
+        gateway = self.dashboard_server.gateway_runtime.status()
+        if gateway.get("experiment_id") != experiment_id:
+            raise InvalidRequestError(
+                "gateway report requires the currently activated experiment"
+            )
+        preregistration_value = body.get("preregistration")
+        preregistration: JSONValue = (
+            cast(JSONValue, dict(cast(Mapping[str, object], preregistration_value)))
+            if isinstance(preregistration_value, Mapping)
+            else None
+        )
+        generated_at = datetime.datetime.now(datetime.UTC).replace(
+            microsecond=0
+        ).isoformat()
+        experiment_dir = source.root() / "experiments" / experiment_id
+        report_dir = experiment_dir / "reports"
+        data_dir = experiment_dir / "DATA"
+        report_dir.mkdir(parents=True, exist_ok=True)
+        data_dir.mkdir(parents=True, exist_ok=True)
+
+        report_payload: dict[str, JSONValue] = {
+            "report_type": "gateway_experiment",
+            "experiment_id": experiment_id,
+            "generated_at": generated_at,
+            "gateway": cast(JSONValue, gateway),
+            "preregistration": preregistration,
+            "scientific_evidence": False,
+            "human_review_required": True,
+            "scientific_boundary": {
+                "experiment_only": True,
+                "canonical_core_mutation": False,
+                "gateway_activity_is_not_learning_evidence": True,
+                "ai_interpretation_is_non_evidentiary": True,
+            },
+        }
+        json_path = report_dir / "GATEWAY-REPORT.json"
+        markdown_path = report_dir / "GATEWAY-REPORT.md"
+        state_path = data_dir / "gateway_state.json"
+        json_path.write_text(
+            json.dumps(report_payload, indent=2, sort_keys=True) + "\n",
+            encoding="utf-8",
+        )
+        state_path.write_text(
+            json.dumps(gateway, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+        )
+        topology = gateway.get("topology")
+        metrics = gateway.get("metrics")
+        markdown = "\n".join(
+            [
+                f"# {experiment_id}: Gateway-Experimentbericht",
+                "",
+                "Dieser Bericht dokumentiert die technische Gateway-Aktivierung. Er ist ein DATA-/Interpretationsartefakt und kein Nachweis, dass der kanonische SNN-Core gelernt hat.",
+                "",
+                "## Status",
+                "",
+                f"- Erzeugt: `{generated_at}`",
+                f"- Zustand: `{gateway.get('state', 'unknown')}`",
+                f"- Bedingung: `{gateway.get('condition', 'unknown')}`",
+                f"- Seed: `{gateway.get('seed', 'unknown')}`",
+                f"- Gateway: `{gateway.get('gateway_id', 'unknown')}`",
+                f"- Produktives Gateway: `GESPERRT`",
+                f"- Wissenschaftliche Evidenz: `NEIN`",
+                "",
+                "## Technische Beobachtung",
+                "",
+                f"- Topologie: `{json.dumps(topology, sort_keys=True)}`",
+                f"- Metriken: `{json.dumps(metrics, sort_keys=True)}`",
+                "- Der kanonische 5D-SNN-Core wurde durch diesen Gateway-Pfad nicht mutiert.",
+                "",
+                "## Governance",
+                "",
+                "- Plastic benoetigt eine registrierte, eingefrorene Preregistration, Human Review und mindestens drei unabhaengige Seeds.",
+                "- Eine Preregistration bindet Versuchsfrage, Hypothese, Bedingungen, Seeds, Stopregel, Outcomes und KI-Grenzen vor dem Lauf.",
+                "- Dieser Bericht ersetzt keine wissenschaftliche Auswertung und keine Human Review.",
+                "",
+            ]
+        )
+        markdown_path.write_text(markdown, encoding="utf-8")
+
+        manifest_path = experiment_dir / "manifest.json"
+        if not manifest_path.is_file():
+            manifest = {
+                "record_kind": "gateway_experiment",
+                "experiment_id": experiment_id,
+                "created_at": generated_at,
+                "experiment_status": "gateway_activated",
+                "research_run_mode": "gateway_runtime",
+                "simulation": {
+                    "protocol": "gateway_runtime_v1",
+                    "condition": gateway.get("condition"),
+                    "seed": gateway.get("seed"),
+                },
+                "results": {"run_count": 0},
+                "artifacts": {
+                    "report": "reports/GATEWAY-REPORT.md",
+                    "report_json": "reports/GATEWAY-REPORT.json",
+                    "data_index": "DATA/gateway_state.json",
+                },
+                "scientific_evidence": False,
+                "human_review_required": True,
+            }
+            manifest_path.write_text(
+                json.dumps(manifest, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+
+        root = source.root()
+        return {
+            "ok": True,
+            "report": str(markdown_path.relative_to(root)).replace("\\", "/"),
+            "report_json": str(json_path.relative_to(root)).replace("\\", "/"),
+            "data": str(state_path.relative_to(root)).replace("\\", "/"),
+            "scientific_evidence": False,
+            "human_review_required": True,
+        }
+
     def _gateway_action(self, path: str, body: dict[str, object]) -> None:
         """Dispatch only experiment-scoped gateway lifecycle actions."""
         parts = [unquote(part) for part in path.split("/") if part]
@@ -1855,6 +1985,11 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
             return
         experiment_id = parts[2]
         action = parts[4]
+        if action == "report":
+            self._send_json(
+                self._write_gateway_report(experiment_id, body), HTTPStatus.CREATED
+            )
+            return
         runtime = self.dashboard_server.gateway_runtime
         if action == "activate":
             condition_value = body.get("condition", GatewayCondition.FROZEN.value)

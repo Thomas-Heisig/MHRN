@@ -4,6 +4,15 @@
 **Baseline:** `mhrn-core 0.6.0a5`
 **Updated:** 2026-09-16
 
+## 2026-09-16 Gateway experiment report boundary
+
+- Documented Frozen, Random, Shuffle and Plastic directly in the dashboard's
+	Gateway Experiment surface, including the fail-closed Plastic prerequisites.
+- Gateway activations can now write a JSON state artifact and a Markdown
+	report under the experiment directory; the generated manifest remains
+	explicitly non-evidentiary and requires Human Review.
+- Productive Gateway activation and scientific EVID promotion remain locked.
+
 
 ## 2026-09-16 Experiment archive results viewer
 
