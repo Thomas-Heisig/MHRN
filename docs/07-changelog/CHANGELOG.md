@@ -1,5 +1,23 @@
 # Changelog
 
+## 2026-09-16 — Experiment archive results viewer
+
+- Added result-viewing buttons (Report, Summary, Statistics, Raw Data) directly
+  on each experiment library item in the "Experimentreihen & Archiv" panel,
+  for both active and archived experiments.
+- Buttons are built from the `manifest.artifacts` paths, so every past
+  experiment with a manifest can be inspected — not only just-finished runs.
+- Clicking a result button opens the artifact in the file viewer with the
+  research source pre-selected, reusing the existing `_openArtifact` pipeline.
+- Added `_installPastExperimentPopupActions()` so the file viewer header shows
+  Report/Summary/Statistics/Raw Index switch buttons for past experiments,
+  mirroring the popup already available for just-completed runs.
+- Cached loaded experiment collections (`_cachedActiveItems`,
+  `_cachedArchivedItems`) so popup artifact paths can be resolved without an
+  extra API round-trip.
+- Added CSS for `.experiment-library-results` and `.exp-open-btn` in
+  `workspace-architecture.css`.
+
 ## 2026-09-13 — Deterministic frontend tab routing
 
 - Rewrote `workspace-router.js` with a central `setRouteElementVisibility()` function

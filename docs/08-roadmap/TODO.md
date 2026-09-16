@@ -15,6 +15,14 @@ MHRN / Multi-Scale Homeostatic Recurrence Network. Publication: Recursive Episte
 
 # MHRN Current TODO
 
+## 2026-09-16 Experiment archive results viewer
+
+- [x] Add result-viewing buttons (Report, Summary, Statistics, Raw Data) on every experiment library item — active and archived.
+- [x] Open past experiment artifacts in the file viewer via the existing `_openArtifact` pipeline.
+- [x] Install popup artifact-switch buttons in the file viewer header for past experiments.
+- [ ] Consider adding a dedicated experiment detail view with all artifacts, human review status and provenance in one panel.
+
+
 ## 2026-09-14 Stage 4 specialized neural areas
 
 - [x] Add explicit audio, vision and digital specialized-area contracts with distinct adapter and plasticity rules.

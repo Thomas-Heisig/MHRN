@@ -2,8 +2,20 @@
 
 **Canonical roadmap for current `main`**  
 **Baseline:** `mhrn-core 0.6.0a5`
-**Updated:** 2026-09-13
+**Updated:** 2026-09-16
 
+
+## 2026-09-16 Experiment archive results viewer
+
+- Extended the "Experimentreihen & Archiv" panel so every past experiment —
+  active or archived — shows result-viewing buttons (Report, Summary,
+  Statistics, Raw Data) built from its `manifest.artifacts` paths.
+- Previously only just-finished runs exposed result buttons; past experiments
+  could only be archived/restored. Now any experiment with a manifest can be
+  inspected directly from the library.
+- The file viewer header gains Report/Summary/Statistics/Raw Index switch
+  buttons for past experiments, matching the popup already available for
+  completed runs.
 
 ## 2026-09-13 Stage 2 closure and Stage 3 plastic neural tissue
 

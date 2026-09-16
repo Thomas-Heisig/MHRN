@@ -470,6 +470,9 @@ export class ExperimentWorkflowPanel {
       const activeItems = Array.isArray(activePayload.experiments) ? activePayload.experiments : [];
       const archivedItems = Array.isArray(archivedPayload.experiments) ? archivedPayload.experiments : [];
       const seriesItems = Array.isArray(seriesPayload.series) ? seriesPayload.series : [];
+      // Cache for popup artifact lookup
+      this._cachedActiveItems = activeItems;
+      this._cachedArchivedItems = archivedItems;
       const seriesCount = byId("workflow-series-count");
       const activeCount = byId("workflow-active-count");
       const archivedCount = byId("workflow-archived-count");
@@ -524,12 +527,22 @@ export class ExperimentWorkflowPanel {
     const created = item.created_at || manifest.created_at || manifest.timestamp || "";
     const meta = [question, created].filter(Boolean).join(" · ");
     const statusClass = status === "completed" ? "exp-status-ok" : status === "running" || status === "active" ? "exp-status-active" : "exp-status-pending";
+    const expId = escapeHtml(item.experiment_id || item.id);
+    const artifacts = (manifest.artifacts && typeof manifest.artifacts === "object") ? manifest.artifacts : {};
+    // Build result-viewing buttons from manifest artifact paths
+    const resultButtons = [];
+    if (artifacts.report) resultButtons.push(`<button type="button" class="btn-small exp-open-btn" data-experiment-open="report" data-experiment-id="${expId}" data-artifact-path="${escapeHtml(artifacts.report)}" title="Wissenschaftlicher Bericht">📄 Bericht</button>`);
+    if (artifacts.summary) resultButtons.push(`<button type="button" class="btn-small exp-open-btn" data-experiment-open="summary" data-experiment-id="${expId}" data-artifact-path="${escapeHtml(artifacts.summary)}" title="Zusammenfassung">📋 Zusammenfassung</button>`);
+    if (artifacts.statistics) resultButtons.push(`<button type="button" class="btn-small exp-open-btn" data-experiment-open="statistics" data-experiment-id="${expId}" data-artifact-path="${escapeHtml(artifacts.statistics)}" title="Statistik">📊 Statistik</button>`);
+    if (artifacts.data_index || artifacts.raw_run_index) resultButtons.push(`<button type="button" class="btn-small exp-open-btn" data-experiment-open="raw" data-experiment-id="${expId}" data-artifact-path="${escapeHtml(artifacts.data_index || artifacts.raw_run_index)}" title="Rohdaten-Index">🗂 Rohdaten</button>`);
+    const resultActions = resultButtons.length ? `<div class="experiment-library-results">${resultButtons.join("")}</div>` : "";
     const action = archived
       ? `<button type="button" class="btn-small" data-experiment-action="restore" data-experiment-id="${escapeHtml(item.experiment_id)}">↶ Wiederherstellen</button>`
       : `<button type="button" class="btn-small" data-experiment-action="archive" data-experiment-id="${escapeHtml(item.id)}">▣ Archivieren</button>`;
     return `<article class="experiment-library-item ${archived ? "is-archived" : ""}">
       <div class="exp-item-header"><strong>${escapeHtml(item.experiment_id || item.id)}</strong><span class="exp-status-badge ${statusClass}">${escapeHtml(status)}</span></div>
       <small class="exp-item-meta">${escapeHtml(meta)}</small>
+      ${resultActions}
       <div class="experiment-library-item-actions">${action}</div>
     </article>`;
   }
@@ -546,13 +559,24 @@ export class ExperimentWorkflowPanel {
   }
 
   async _handleExperimentLibraryAction(event) {
-    const button = event.target.closest?.("[data-experiment-action], [data-series-report]");
+    const button = event.target.closest?.("[data-experiment-action], [data-series-report], [data-experiment-open]");
     if (!button) return;
     const experimentId = button.dataset.experimentId;
     const action = button.dataset.experimentAction;
     const seriesReport = button.dataset.seriesReport;
+    const openKind = button.dataset.experimentOpen;
     if (seriesReport) {
       await this._openArtifact(seriesReport);
+      return;
+    }
+    // Open a past experiment's result artifact (report, summary, statistics, raw data)
+    if (openKind) {
+      const artifactPath = button.dataset.artifactPath;
+      if (!experimentId || !artifactPath) return;
+      const fullPath = `experiments/${experimentId}/${artifactPath}`;
+      await this._openArtifact(fullPath);
+      // Install popup actions so the viewer can switch between this experiment's artifacts
+      this._installPastExperimentPopupActions(experimentId);
       return;
     }
     if (!experimentId || !action) return;
@@ -782,8 +806,8 @@ export class ExperimentWorkflowPanel {
   }
 
   _installExperimentPopupActions(path) {
-    const viewer = byId("fm-viewer");
-    const header = viewer?.querySelector(".fm-file-header-actions");
+    const viewer = byId("fm-dialog-viewer") || byId("fm-viewer");
+    const header = viewer?.querySelector(".file-renderer-actions");
     if (!viewer || !header || header.querySelector("[data-experiment-popup-actions]")) return;
     const group = document.createElement("span");
     group.dataset.experimentPopupActions = "true";
@@ -801,6 +825,48 @@ export class ExperimentWorkflowPanel {
         if (target && target !== path) this._openArtifact(target);
       });
     });
+  }
+
+  _installPastExperimentPopupActions(experimentId) {
+    const viewer = byId("fm-dialog-viewer") || byId("fm-viewer");
+    const header = viewer?.querySelector(".file-renderer-actions");
+    if (!viewer || !header) return;
+    // Remove any previous popup actions group
+    header.querySelector("[data-experiment-popup-actions]")?.remove();
+    // Find the manifest for this experiment from the loaded collections
+    const manifest = this._findManifestForExperiment(experimentId);
+    if (!manifest || !manifest.artifacts) return;
+    const artifacts = manifest.artifacts;
+    const buttons = [];
+    if (artifacts.report) buttons.push({ kind: "report", label: "Report", path: artifacts.report });
+    if (artifacts.summary) buttons.push({ kind: "summary", label: "Summary", path: artifacts.summary });
+    if (artifacts.statistics) buttons.push({ kind: "statistics", label: "Statistics", path: artifacts.statistics });
+    if (artifacts.data_index || artifacts.raw_run_index) buttons.push({ kind: "raw", label: "Raw Index", path: artifacts.data_index || artifacts.raw_run_index });
+    if (!buttons.length) return;
+    const group = document.createElement("span");
+    group.dataset.experimentPopupActions = "true";
+    group.className = "workflow-popup-actions";
+    group.innerHTML = buttons.map(btn => `<button type="button" class="fm-file-action-btn" data-popup-artifact="${escapeHtml(btn.kind)}" data-popup-path="${escapeHtml(btn.path)}">${escapeHtml(btn.label)}</button>`).join("");
+    header.prepend(group);
+    group.querySelectorAll("[data-popup-artifact]").forEach(button => {
+      button.addEventListener("click", () => {
+        const artifactPath = button.dataset.popupPath;
+        if (!artifactPath) return;
+        const fullPath = `experiments/${experimentId}/${artifactPath}`;
+        if (fullPath !== this.currentViewerPath) this._openArtifact(fullPath);
+      });
+    });
+  }
+
+  _findManifestForExperiment(experimentId) {
+    // Search cached experiment collections for the matching manifest
+    const lists = [this._cachedActiveItems, this._cachedArchivedItems];
+    for (const list of lists) {
+      if (!Array.isArray(list)) continue;
+      const found = list.find(item => (item.experiment_id || item.id) === experimentId);
+      if (found && found.manifest) return found.manifest;
+    }
+    return null;
   }
 
   async _completeHumanReview() {

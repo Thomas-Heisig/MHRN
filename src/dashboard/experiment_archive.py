@@ -91,12 +91,25 @@ class ExperimentArchiveService:
         """Return metadata-archived experiment IDs without touching artifacts."""
         return frozenset(self._load_index())
 
+    @staticmethod
+    def _load_manifest(directory: Path) -> dict[str, Any] | None:
+        """Load manifest.json from a directory if present and valid."""
+        manifest_path = directory / "manifest.json"
+        if not manifest_path.is_file():
+            return None
+        try:
+            data: object = json.loads(manifest_path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            return None
+        return cast(dict[str, Any], data) if isinstance(data, dict) else None
+
     def list_archived(self) -> list[dict[str, Any]]:
         """List metadata-only entries plus discoverable legacy moved archives."""
         records = self._load_index()
         items: list[dict[str, Any]] = []
         for experiment_id, metadata in sorted(records.items(), reverse=True):
             canonical = self.experiments / experiment_id
+            manifest_data = self._load_manifest(canonical)
             items.append(
                 {
                     "experiment_id": experiment_id,
@@ -104,6 +117,7 @@ class ExperimentArchiveService:
                     "archive_mode": "metadata_only",
                     "canonical_path": f"experiments/{experiment_id}",
                     "available": (canonical / "manifest.json").is_file(),
+                    **({"manifest": manifest_data} if manifest_data is not None else {}),
                     **metadata,
                 }
             )
@@ -127,6 +141,7 @@ class ExperimentArchiveService:
                             legacy_metadata = cast(dict[str, Any], loaded)
                     except (OSError, json.JSONDecodeError):
                         legacy_metadata = {}
+                manifest_data = self._load_manifest(directory)
                 items.append(
                     {
                         "experiment_id": directory.name,
@@ -135,6 +150,7 @@ class ExperimentArchiveService:
                         "legacy": True,
                         "canonical_path": f"experiments/{directory.name}",
                         "available": True,
+                        **({"manifest": manifest_data} if manifest_data is not None else {}),
                         **legacy_metadata,
                     }
                 )
