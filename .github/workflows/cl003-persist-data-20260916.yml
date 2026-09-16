@@ -94,6 +94,9 @@ jobs:
           replace('HF_README.md', 'version = {0.6.0a3}', 'version = {0.6.0a4}')
           replace('research/publications/2026-09-15_recursive-epistemics_v1.7/README.md', '**Softwarelinie:** MHRN 0.6.0-alpha.3', '**Softwarelinie:** MHRN 0.6.0-alpha.4')
 
+          edition = Path('research/publications/2026-09-15_recursive-epistemics_v1.7/README.md')
+          edition.write_text(edition.read_text(encoding='utf-8').replace('**Softwarelinie:** MHRN 0.6.0-alpha.4  \n', '**Softwarelinie:** MHRN 0.6.0-alpha.4\n'), encoding='utf-8')
+
           p = Path('README.md')
           text = p.read_text(encoding='utf-8')
           text = text.replace('**`EXP-S6-SEM-CL-003`** has its runner, freeze manifest and dose-response preparation integrated, but it has **not** been executed as a new confirmatory experiment and creates no new EVID by its mere presence.', '**`EXP-S6-SEM-CL-003`** was executed on 16 September 2026 under its frozen authorization. The persisted machine result is `H1_negative_H2_negative`; DATA remain pending Human Review and are not EVID.')
