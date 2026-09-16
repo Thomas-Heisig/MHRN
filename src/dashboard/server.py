@@ -65,6 +65,7 @@ from src.learning import (
     LearningPreparationService,
     LearningSourceRef,
 )
+from src.research.protocol_registry import OPERATIONAL_RUNNERS
 from src.profiles import (
     ProfileCompatibilityError,
     ProfileError,
@@ -4318,7 +4319,7 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
             "science_all_v1",
             "science_time_v1",
             "science_5d_v1",
-        }:
+        } or protocol in OPERATIONAL_RUNNERS:
             runtime_result = ExperimentWorkflowService(
                 source.root(), self.dashboard_server.research_ai_backend
             ).run_science(body)
