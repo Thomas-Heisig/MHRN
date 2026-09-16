@@ -11,8 +11,8 @@ import json
 from pathlib import Path
 from typing import Any
 
-from src.core.compartment_neuron import CompartmentNeuronConfig
-from src.core.hh_neuron import HodgkinHuxleyConfig
+from src.core.compartment_neuron import CompartmentConfig
+from src.core.hh_neuron import HHConfig
 from src.core.neuron import NeuronConfig, NeuronModel, available_neuron_models, create_neuron
 from src.research.empirical_evaluation import run_brian2_conformance
 
@@ -85,8 +85,8 @@ def main() -> None:
         "brian2_conformance": brian2,
         "model_scope": {
             "canonical_stage0_models": canonical_models,
-            "hh_default_enabled": HodgkinHuxleyConfig().enabled,
-            "compartment_default_enabled": CompartmentNeuronConfig().enabled,
+            "hh_default_enabled": HHConfig().enabled,
+            "compartment_default_enabled": CompartmentConfig().enabled,
             "hh_and_compartment_classification": "stage0_plus_experimental_not_canonical_switch_contract",
         },
     }
