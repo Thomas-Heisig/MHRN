@@ -42,7 +42,8 @@
     "publication 1.5 retained as frozen empirical baseline with stable pointer",
     "research-driven experiment cycle is canonical from RQ through preregistration, DATA, human review and EVID",
     "CL-003 is SHA-256 frozen and explicitly authorized for one preregistered campaign without automatic EVID promotion",
-    "canonical roadmap and test contracts are aligned with the alpha.5 development baseline"
+    "canonical roadmap and test contracts are aligned with the alpha.5 development baseline",
+    "content-bound source-tree verification cache preserves gate semantics while preventing duplicate full-tree scans"
   ],
   "open": [
     "execute and review the first authorized CL-003 campaign",
