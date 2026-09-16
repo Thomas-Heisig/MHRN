@@ -18,7 +18,6 @@ from src.version import MHRN_VERSION
 def test_create_digest_revision_lineage_and_snapshot_binding(tmp_path: Path) -> None:
     service = ProfileService(tmp_path / "profiles")
     profile = service.create(name="Wesen Alpha")
-    assert MHRN_VERSION == "0.6.0a3"
     assert service.runtime_version == MHRN_VERSION
     assert profile["runtime"]["runtime_version"] == MHRN_VERSION
     assert profile["provenance"]["runtime_version"] == MHRN_VERSION

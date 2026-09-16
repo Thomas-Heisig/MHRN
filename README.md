@@ -7,7 +7,7 @@
 
 [![CI](https://github.com/Thomas-Heisig/MHRN/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Thomas-Heisig/MHRN/actions/workflows/ci.yml)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-blue.svg)](https://www.python.org/)
-[![Version](https://img.shields.io/badge/version-0.6.0a3-orange.svg)](pyproject.toml)
+[![Version](https://img.shields.io/badge/version-0.6.0a5-orange.svg)](pyproject.toml)
 [![Publication](https://img.shields.io/badge/publication-1.7_WIP-blue.svg)](research/publications/CURRENT.md)
 [![License: MIT](https://img.shields.io/badge/license-MIT-yellow.svg)](LICENSE)
 
@@ -24,7 +24,7 @@ The sparse **5D SNN remains the primary adaptive system**. Language models, rese
 | Area | Current state |
 | --- | --- |
 | Canonical branch | `main` |
-| Package | `mhrn-core 0.6.0a3` / `0.6.0-alpha.3` |
+| Package | `mhrn-core 0.6.0a5` / `0.6.0-alpha.5` |
 | Release status | development; gate open; no active release blocker, final source-freeze/release closure still pending |
 | Engineering | Stage 2 recurrent contract closed at its scoped engineering boundary; Stage 3 plastic neural tissue reached; Stage 4/5 engineering contracts integrated; Stage 6 mechanisms and research programme active |
 | Scientific focus | Stage 6 — memory, continual learning, semantization, prediction error and world-model validation |
@@ -296,7 +296,7 @@ Citation metadata: [`CITATION.cff`](CITATION.cff).
   author  = {Thomas Heisig},
   title   = {Multi-Scale Homeostatic Recurrence Network (MHRN)},
   year    = {2026},
-  version = {0.6.0a3},
+  version = {0.6.0a5},
   url     = {https://github.com/Thomas-Heisig/MHRN},
   license = {MIT}
 }

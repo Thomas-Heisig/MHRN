@@ -77,6 +77,19 @@ def test_relevant_untracked_file_is_reported(tmp_path: Path) -> None:
     assert "src/untracked.py" in inspection.mismatching_files
 
 
+def test_cached_digest_invalidates_when_tracked_content_changes(tmp_path: Path) -> None:
+    source = tmp_path / "src" / "module.py"
+    source.parent.mkdir()
+    source.write_text("value = 1\n", encoding="utf-8")
+    _git_repo(tmp_path)
+    first = compute_source_tree_digest(tmp_path, ["src/"])
+    assert first is not None
+    source.write_text("value = 2\n", encoding="utf-8")
+    second = compute_source_tree_digest(tmp_path, ["src/"])
+    assert second is not None
+    assert second != first
+
+
 def test_relevant_dirty_file_is_reported(tmp_path: Path) -> None:
     source = tmp_path / "src" / "module.py"
     source.parent.mkdir()

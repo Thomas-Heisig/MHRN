@@ -1,7 +1,7 @@
 # MHRN Development Roadmap
 
 **Canonical roadmap for current `main`**  
-**Baseline:** `mhrn-core 0.6.0a3`
+**Baseline:** `mhrn-core 0.6.0a5`
 **Updated:** 2026-09-13
 
 
