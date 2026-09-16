@@ -1,0 +1,58 @@
+name: One-shot SNN protocol routing fix
+
+on:
+  push:
+    branches:
+      - fix/exp-gen-0036-diagnostics-airr-20260916
+
+permissions:
+  contents: write
+
+jobs:
+  patch-routing:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: fix/exp-gen-0036-diagnostics-airr-20260916
+          fetch-depth: 0
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.13'
+      - name: Patch single-run protocol routing and add regression test
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          server = Path('src/dashboard/server.py')
+          text = server.read_text(encoding='utf-8')
+
+          import_anchor = "from src.profiles import (\n"
+          import_block = "from src.research.protocol_registry import OPERATIONAL_RUNNERS\n"
+          if import_block not in text:
+              pos = text.index(import_anchor)
+              text = text[:pos] + import_block + text[pos:]
+
+          old = '''        if protocol in {\n            "science_suite_v1",\n            "science_all_v1",\n            "science_time_v1",\n            "science_5d_v1",\n        }:\n'''
+          new = '''        if protocol in {\n            "science_suite_v1",\n            "science_all_v1",\n            "science_time_v1",\n            "science_5d_v1",\n        } or protocol in OPERATIONAL_RUNNERS:\n'''
+          if old not in text:
+              raise SystemExit('expected single-run science protocol whitelist block not found')
+          text = text.replace(old, new, 1)
+          server.write_text(text, encoding='utf-8')
+
+          test = Path('tests/test_dashboard_operational_protocol_routes.py')
+          test.write_text('''from __future__ import annotations\n\nimport json\nfrom http.client import HTTPConnection\nfrom pathlib import Path\nfrom threading import Thread\nfrom typing import Any\n\nimport src.dashboard.server as server_module\nfrom src.dashboard.research_source import ResearchSource\nfrom src.dashboard.server import DashboardServer\nfrom src.dashboard.state import DashboardStateStore\n\n\nclass _FakeScienceService:\n    def __init__(self, *_args: Any, **_kwargs: Any) -> None:\n        pass\n\n    def run_science(self, body: dict[str, object]) -> dict[str, object]:\n        return {\n            "experiment_id": str(body.get("experiment_id") or "EXP-ROUTE-SNN-001"),\n            "manifest": "experiments/EXP-ROUTE-SNN-001/manifest.json",\n            "report": "experiments/EXP-ROUTE-SNN-001/report.md",\n            "result": {"runner": "run_sustained_stability"},\n        }\n\n\ndef _request(server: DashboardServer, body: dict[str, object]) -> tuple[int, dict[str, object]]:\n    host, port = server.server_address[:2]\n    connection = HTTPConnection(str(host), int(port), timeout=5)\n    try:\n        payload = json.dumps(body)\n        connection.request(\n            "POST",\n            "/api/experiment/workflow/run",\n            payload,\n            {"Content-Type": "application/json"},\n        )\n        response = connection.getresponse()\n        return response.status, json.loads(response.read().decode("utf-8"))\n    finally:\n        connection.close()\n\n\ndef test_single_run_accepts_registered_sustained_activity_protocol(monkeypatch: Any) -> None:\n    monkeypatch.setattr(server_module, "ExperimentWorkflowService", _FakeScienceService)\n    server = DashboardServer(\n        ("127.0.0.1", 0),\n        DashboardStateStore(),\n        None,\n        research_source=ResearchSource(Path("research")),\n    )\n    thread = Thread(target=server.serve_forever, daemon=True)\n    thread.start()\n    try:\n        status, response = _request(\n            server,\n            {\n                "experiment_id": "EXP-ROUTE-SNN-001",\n                "question_id": "RQ-SNN-001",\n                "hypothesis_id": "H-SNN-001-A",\n                "title": "Sustained activity stability",\n                "conditions": "registered",\n                "ticks": 100000,\n                "seeds": "42-51",\n                "notes": "routing regression",\n                "protocol": "sustained_activity_stability_v1",\n            },\n        )\n        assert status == 200, response\n        assert response["ok"] is True\n        assert response["result"] == {"runner": "run_sustained_stability"}\n    finally:\n        server.shutdown()\n        server.server_close()\n\n\ndef test_single_run_still_rejects_unknown_protocol(monkeypatch: Any) -> None:\n    monkeypatch.setattr(server_module, "ExperimentWorkflowService", _FakeScienceService)\n    server = DashboardServer(\n        ("127.0.0.1", 0),\n        DashboardStateStore(),\n        None,\n        research_source=ResearchSource(Path("research")),\n    )\n    thread = Thread(target=server.serve_forever, daemon=True)\n    thread.start()\n    try:\n        status, response = _request(\n            server,\n            {\n                "experiment_id": "EXP-ROUTE-UNKNOWN",\n                "protocol": "definitely_unknown_protocol_v1",\n            },\n        )\n        assert status == 400\n        assert "Unknown experiment protocol" in str(response.get("error"))\n    finally:\n        server.shutdown()\n        server.server_close()\n''', encoding='utf-8')
+          PY
+      - name: Run routing and protocol tests
+        run: |
+          python -m pip install -e '.[dev]'
+          pytest -q tests/test_dashboard_operational_protocol_routes.py tests/test_sustained_stability_protocol.py tests/test_exp21_operational_protocols.py
+      - name: Commit source fix and remove one-shot workflow
+        run: |
+          rm .github/workflows/zz-one-shot-fix-snn-routing.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/dashboard/server.py tests/test_dashboard_operational_protocol_routes.py .github/workflows/zz-one-shot-fix-snn-routing.yml
+          git commit -m "fix: route registered operational protocols through science runner"
+          git push origin HEAD:fix/exp-gen-0036-diagnostics-airr-20260916
