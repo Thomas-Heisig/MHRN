@@ -27,6 +27,13 @@ jobs:
         run: |
           python scripts/pr108_finalize_once.py
           python scripts/generate_cl002_freeze_manifest.py
+          python - <<'PY'
+          from pathlib import Path
+          path = Path('research/publications/2026-09-15_recursive-epistemics_v1.7/README.md')
+          text = path.read_text(encoding='utf-8')
+          text = text.replace('**Softwarelinie:** MHRN 0.6.0-alpha.4  \n', '**Softwarelinie:** MHRN 0.6.0-alpha.4\n')
+          path.write_text(text, encoding='utf-8')
+          PY
           python -m black tests/test_final_integration_20260911.py tests/test_release_registry.py src/version.py scripts/pr108_finalize_once.py
           python -m ruff check tests/test_final_integration_20260911.py tests/test_release_registry.py src/version.py scripts/pr108_finalize_once.py
       - name: Verify repaired regressions and frozen CL suites
