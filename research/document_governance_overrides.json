@@ -39,6 +39,15 @@
       "evidence_role": "policy_not_evidence",
       "rationale": "Canonical provenance, attribution, self-reuse and AI-source policy."
     },
+    "research/RESEARCH_DRIVEN_DEVELOPMENT.md": {
+      "kind": "research_governance_policy",
+      "status": "current",
+      "authority": "normative_research_development_policy",
+      "mutability": "editable_with_review",
+      "citation": "cite_current_revision",
+      "evidence_role": "policy_not_evidence",
+      "rationale": "Canonical research-driven lifecycle binding research questions, hypotheses, experiment freezes, implementation provenance, human review, EVID and publication updates."
+    },
     "research/RELATED_WORK.md": {
       "kind": "related_work_register",
       "status": "current",
