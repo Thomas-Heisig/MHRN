@@ -1688,6 +1688,48 @@
       "original_path": "experiments/EXP-GEN-0035",
       "reason": "manuelle Archivierung"
     },
+    "EXP-GEN-0036": {
+      "archived_at": "2026-09-16T20:10:20.008371+00:00",
+      "experiment_id": "EXP-GEN-0036",
+      "manifest_sha256": "d2def62e5130b83c7c68a99a3fcc2cbd505752b38cb9ab599cdc9a90b7a07e58",
+      "original_path": "experiments/EXP-GEN-0036",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-GEN-0037": {
+      "archived_at": "2026-09-16T20:10:18.576134+00:00",
+      "experiment_id": "EXP-GEN-0037",
+      "manifest_sha256": "b4855ff30ed6db5beb0325c05a5fdfac96a65f0a83fce8518f1e3bed34f4107e",
+      "original_path": "experiments/EXP-GEN-0037",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-GEN-0038": {
+      "archived_at": "2026-09-16T20:10:14.335319+00:00",
+      "experiment_id": "EXP-GEN-0038",
+      "manifest_sha256": "70f7c3fc5964acefcfe38fd95aea2188ff10473487b11b9b47117808efd4d6c5",
+      "original_path": "experiments/EXP-GEN-0038",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-GEN-0039": {
+      "archived_at": "2026-09-16T20:10:16.319292+00:00",
+      "experiment_id": "EXP-GEN-0039",
+      "manifest_sha256": "350bc5b2578d02930c36fedc1477aa120804b4301ddce87807bb4aaf002aa781",
+      "original_path": "experiments/EXP-GEN-0039",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-GEN-0040": {
+      "archived_at": "2026-09-16T20:10:10.462099+00:00",
+      "experiment_id": "EXP-GEN-0040",
+      "manifest_sha256": "5c546b47883175581ea83f93281cd42752fab800bfe6bb678eec08478836ae65",
+      "original_path": "experiments/EXP-GEN-0040",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-GEN-0041": {
+      "archived_at": "2026-09-16T20:10:00.471640+00:00",
+      "experiment_id": "EXP-GEN-0041",
+      "manifest_sha256": "aa7daf39d6f7cfa5ffcefb91b0ce71091dd016208e6a43553d1cbb08c3ce5fcc",
+      "original_path": "experiments/EXP-GEN-0041",
+      "reason": "manuelle Archivierung"
+    },
     "EXP-LEARN-20260903-2300": {
       "archived_at": "2026-09-16T13:44:12.166235+00:00",
       "experiment_id": "EXP-LEARN-20260903-2300",
