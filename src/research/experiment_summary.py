@@ -11,7 +11,6 @@ from pathlib import Path
 from statistics import fmean, median, pstdev
 from typing import Any
 
-
 _SUITE_REQUIRED_GROUPS = {
     "ping",
     "temporal",
@@ -284,12 +283,16 @@ def _semantic_status(
     if question_id == "RQ-REC-001":
         return classify(
             any(item.startswith("w0_") for item in plain)
-            and any(item.startswith("w100_") or item.startswith("w125_") for item in plain),
+            and any(
+                item.startswith("w100_") or item.startswith("w125_") for item in plain
+            ),
             "REC-001 erwartet eine registrierte Rekurrenz-Gewicht/Delay-Karte mit Nullkontrolle.",
         )
     if question_id == "RQ-REC-002":
         return classify(
-            {"loop_delay_1", "loop_delay_2", "loop_delay_4", "loop_delay_8"}.issubset(plain),
+            {"loop_delay_1", "loop_delay_2", "loop_delay_4", "loop_delay_8"}.issubset(
+                plain
+            ),
             "REC-002 erwartet die registrierte Loop-Delay-Leiter.",
         )
     if question_id == "RQ-GEN-001":
@@ -358,7 +361,10 @@ def _semantic_status(
         )
     if question_id == "RQ-SUITE-001":
         present_groups = {item.split(":", 1)[0] for item in conditions if ":" in item}
-        found = _SUITE_REQUIRED_GROUPS.issubset(present_groups) and protocol == "science_all_v1"
+        found = (
+            _SUITE_REQUIRED_GROUPS.issubset(present_groups)
+            and protocol == "science_all_v1"
+        )
         return (
             "DIRECT_MATCH" if found else "MISMATCH",
             "SUITE erwartet science_all_v1 und PING, TEMP, STDP, Learning, TIME, 5D sowie Regulation unter gemeinsamer Provenienz.",
@@ -399,12 +405,12 @@ def _suite_integrity(
     raw_conditions = {str(run.get("condition", "unknown")) for run in runs}
     statistics_conditions_value = statistics.get("conditions", {})
     statistics_conditions: dict[str, Any] = (
-        statistics_conditions_value if isinstance(statistics_conditions_value, dict) else {}
+        statistics_conditions_value
+        if isinstance(statistics_conditions_value, dict)
+        else {}
     )
     present_groups = {
-        condition.split(":", 1)[0]
-        for condition in raw_conditions
-        if ":" in condition
+        condition.split(":", 1)[0] for condition in raw_conditions if ":" in condition
     }
     missing_groups = sorted(_SUITE_REQUIRED_GROUPS - present_groups)
     missing_statistics = sorted(raw_conditions - set(statistics_conditions))
@@ -503,23 +509,47 @@ def _render_airr_sections(
     interpretation = content.get("interpretation", {})
     if not isinstance(interpretation, dict):
         interpretation = {}
+    observations = interpretation.get("observations", [])
+    limitation_fallback: list[str] = []
+    if isinstance(observations, list):
+        for observation in observations:
+            if (
+                isinstance(observation, dict)
+                and str(observation.get("type", "")).strip().lower() == "limitations"
+                and observation.get("value")
+            ):
+                limitation_fallback.append(
+                    f"AIRR-Limitation dokumentieren: {observation['value']}"
+                )
+
+    missing_evidence = content.get("missing_evidence", [])
+    if not isinstance(missing_evidence, list) or not missing_evidence:
+        requested = interpretation.get("requested_evidence", [])
+        missing_evidence = (
+            requested
+            if isinstance(requested, list) and requested
+            else limitation_fallback
+        )
+
+    recommended = content.get("recommended_follow_up", [])
+    if not isinstance(recommended, list) or not recommended:
+        interpreted_recommended = interpretation.get("recommended_experiments", [])
+        recommended = (
+            interpreted_recommended if isinstance(interpreted_recommended, list) else []
+        )
+
     sections = (
         ("Methodische Kritik", content.get("methodological_critique", [])),
         ("Alternative Erklaerungen", content.get("alternative_explanations", [])),
-        (
-            "Fehlende Nachweise",
-            content.get("missing_evidence", []) or interpretation.get("requested_evidence", []),
-        ),
-        (
-            "Empfohlene Folgeexperimente",
-            content.get("recommended_follow_up", [])
-            or interpretation.get("recommended_experiments", []),
-        ),
+        ("Fehlende Nachweise", missing_evidence),
+        ("Empfohlene Folgeexperimente", recommended),
     )
     for heading, values in sections:
         lines.extend(["", f"### {heading}", ""])
         if isinstance(values, list) and values:
             lines.extend(f"- {value}" for value in values)
+        elif heading == "Empfohlene Folgeexperimente":
+            lines.append("- Keine expliziten Folgeexperimente im AIRR angegeben.")
         else:
             lines.append("- Keine expliziten Angaben.")
 
@@ -550,8 +580,12 @@ def write_detailed_experiment_summary(
 
     simulation = manifest.get("simulation", {}) if isinstance(manifest, dict) else {}
     results = manifest.get("results", {}) if isinstance(manifest, dict) else {}
-    question_ids = manifest.get("research_questions", []) if isinstance(manifest, dict) else []
-    hypothesis_ids = manifest.get("hypotheses", []) if isinstance(manifest, dict) else []
+    question_ids = (
+        manifest.get("research_questions", []) if isinstance(manifest, dict) else []
+    )
+    hypothesis_ids = (
+        manifest.get("hypotheses", []) if isinstance(manifest, dict) else []
+    )
     question_id = (
         str(question_ids[0])
         if isinstance(question_ids, list) and question_ids
@@ -596,7 +630,9 @@ def write_detailed_experiment_summary(
     ]
     tick_contract = "NOT_APPLICABLE"
     if isinstance(requested_ticks, int) and actual_ticks:
-        tick_contract = "SATISFIED" if min(actual_ticks) >= requested_ticks else "VIOLATED"
+        tick_contract = (
+            "SATISFIED" if min(actual_ticks) >= requested_ticks else "VIOLATED"
+        )
 
     lines = [
         f"# {experiment_id}: Wissenschaftliche Zusammenfassung",
@@ -676,7 +712,9 @@ def write_detailed_experiment_summary(
 
     condition_statistics_value = statistics.get("conditions", {})
     condition_statistics: dict[str, Any] = (
-        condition_statistics_value if isinstance(condition_statistics_value, dict) else {}
+        condition_statistics_value
+        if isinstance(condition_statistics_value, dict)
+        else {}
     )
     for condition, payload in condition_statistics.items():
         metrics = payload.get("metrics", {}) if isinstance(payload, dict) else {}
@@ -690,8 +728,16 @@ def write_detailed_experiment_summary(
             + " | ".join(
                 [
                     condition,
-                    str(payload.get("run_count", 0)) if isinstance(payload, dict) else "0",
-                    ",".join(map(str, payload.get("seeds", []))) if isinstance(payload, dict) else "",
+                    (
+                        str(payload.get("run_count", 0))
+                        if isinstance(payload, dict)
+                        else "0"
+                    ),
+                    (
+                        ",".join(map(str, payload.get("seeds", [])))
+                        if isinstance(payload, dict)
+                        else ""
+                    ),
                     _fmt(mean_of("ticks_executed")),
                     _fmt(mean_of("total_spikes")),
                     _fmt(mean_of("delivered_synaptic_events")),
@@ -755,8 +801,14 @@ def write_detailed_experiment_summary(
             ]
         )
         for horizon, payload in temporal.items():
-            discrepancy = payload.get("discrepancy", {}) if isinstance(payload, dict) else {}
-            nonzero = payload.get("nonzero_discrepancy", {}) if isinstance(payload, dict) else {}
+            discrepancy = (
+                payload.get("discrepancy", {}) if isinstance(payload, dict) else {}
+            )
+            nonzero = (
+                payload.get("nonzero_discrepancy", {})
+                if isinstance(payload, dict)
+                else {}
+            )
             lines.append(
                 f"- `{horizon}`: Referenzvergleiche={payload.get('reference_comparisons', 0) if isinstance(payload, dict) else 0}; discrepancy mean={_fmt(discrepancy.get('mean') if isinstance(discrepancy, dict) else None)}, max={_fmt(discrepancy.get('max') if isinstance(discrepancy, dict) else None)}; nonzero={payload.get('nonzero_comparisons', 0) if isinstance(payload, dict) else 0} ({_fmt(payload.get('nonzero_fraction') if isinstance(payload, dict) else None)}); mean(nonzero)={_fmt(nonzero.get('mean') if isinstance(nonzero, dict) else None)}."
             )
