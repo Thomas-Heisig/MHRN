@@ -334,6 +334,17 @@ def _semantic_status(
             {"recurrence_off", "recurrence_on"}.issubset(plain),
             "REPL-001 erwartet beide Rekurrenzarme mit unabhängiger Seedstrategie.",
         )
+    if question_id == "RQ-DET-001":
+        expected = {
+            "recurrence_off_replica_a",
+            "recurrence_off_replica_b",
+            "recurrence_on_replica_a",
+            "recurrence_on_replica_b",
+        }
+        return classify(
+            protocol == "deterministic_replica_v1" and expected.issubset(plain),
+            "RQ-DET-001 erwartet je Seed identische Replica-Paare fuer recurrence_off und recurrence_on unter deterministic_replica_v1.",
+        )
     if question_id == "RQ-5D-005":
         return classify(
             {"1d", "2d", "3d", "5d"}.issubset(plain),
@@ -825,13 +836,20 @@ def write_detailed_experiment_summary(
         lines.extend(
             [
                 "",
-                "#### Primäre und weitere boolesche Endpunkte",
+                "#### Boolesche Endpunkte und operative Telemetrie",
                 "",
                 "| Condition | Outcome | n | true | false | all_true |",
                 "| --- | --- | ---: | ---: | ---: | --- |",
                 *boolean_rows,
             ]
         )
+        if any("`stopped_on_quiescence`" in row for row in boolean_rows):
+            lines.extend(
+                [
+                    "",
+                    "**Telemetrie-Hinweis:** `stopped_on_quiescence` ist kein Erfolgs- oder Evidenzkriterium. `false` bedeutet ausschließlich, dass der Probe-Lauf nicht vor `max_ticks` wegen Quieszenz beendet wurde. Bei Fixed-Window-Protokollen mit `min_ticks == max_ticks` ist `false` konstruktionsbedingt zu erwarten; daraus folgt nicht, dass innerhalb oder am Ende des Beobachtungsfensters niemals Quieszenz auftrat.",
+                ]
+            )
 
     effects = statistics.get("two_condition_effects", {})
     if isinstance(effects, dict) and effects:
