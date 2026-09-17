@@ -1,3 +1,6 @@
+<!-- edition-1.8-implementation -->
+> **Fortschreibung 17.09.2026:** Auf ausdruecklichen Autorenauftrag wird die elfteilige Zielstruktur bereits als **1.8 WIP** implementiert. Diese Entscheidung ersetzt die fruehere zeitliche Bedingung 'erst ab 2.0', nicht die Erhaltungs-, Provenienz- und Evidenzregeln. Die urspruengliche Planung bleibt nachfolgend erhalten.
+
 # Migration zur Publikationsstruktur 2.0
 
 **Status:** current planning document  

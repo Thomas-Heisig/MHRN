@@ -1,0 +1,1652 @@
+{
+  "baseline_commit": "2df926898033802fb41a3d1da5693f911b66ae1e",
+  "historical_publications_byte_identical": true,
+  "protected_files": [
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz/CITATION.cff",
+      "sha256": "e53b5a1f6c5b5c81e6e34a9f704fa3f765c54ac7102f19429569feca50126f41"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz/README.md",
+      "sha256": "92ecab62734c6dfb07091f53666f0650ac2a81cc1f2f1f628820154711e5516a"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz/SHA256SUMS.txt",
+      "sha256": "cdfd0d07764b6d4d69bb33feb08cd86ddce8a4ed7b3f2860417a417141d94f7a"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz/abbildungen/K1_image1.png",
+      "sha256": "75495dcd4a156383ad9166145f23e7a5e0a8964d50b45187225c0f3e0a59d18e"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz/abbildungen/K1_image2.png",
+      "sha256": "f5d03de8e955a5de6a39e2189142c78cfd83fa76debeea1df6fa433712575f46"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz/abbildungen/K1_image3.png",
+      "sha256": "394d419d16b76e4be9291ca1a9468fc255eb3e9a886bcc9e667d726625742f14"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz/abbildungen/K1_image4.png",
+      "sha256": "2d9822c355aa44edf6e0a74a1d09e09bc2c44ea79d8720d173e72fe89061dde7"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz/abbildungen/K3_image1.png",
+      "sha256": "63ecc4ea5bb2f123990cf2977cb69bc8d23a0b4e815904ad5efc5f30eb3169c6"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz/abbildungen/K3_image2.png",
+      "sha256": "4db4665fc602963066924a8b1006abfe0573b8b7c2fd40efe0e5947f7f1385c4"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz/abbildungen/K3_image3.png",
+      "sha256": "d644ed6d2d5da3b80ca0a5a45ef7ad010fed9f99767fc586de7a93b7438f7557"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz/abbildungen/K3_image4.png",
+      "sha256": "44f38d386e8090a5ee6e035995fea26a9cd9d933031c0c5fbf19bc810129bcea"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz/abbildungen/K3_image5.png",
+      "sha256": "be139429a3630b1524f5f098d5671a2e8100ec432d21262e3ab944db9a1c75e4"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz/abbildungen/K3_image6.png",
+      "sha256": "36ec894debe0f8feefd201b01d356b0dc0f572f94c5ac88f55dc9e1c2fe831c5"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz/abbildungen/K3_image7.png",
+      "sha256": "01248e4266ad03ecd65deceae95fbce8b73b8129b901bca206fc0834097a1a85"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz/abbildungen/K3_image8.png",
+      "sha256": "18e9cf781eeabb3330cd6d62b6a6982ba7b291f6e208f667a9ba40cefc98bae4"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz/ergebnisatlas.md",
+      "sha256": "66faaf17f23fcc4278d0ad7d00ab3ebfc9f5a70ffe0e9028f7b36fc32a0b525d"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz/evidenzregister.json",
+      "sha256": "45779fe52cfbc3a278170fbd332209d8c2e52dc6f80a96455a3f937c6931dc6c"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz/forschungsfragen_hypothesen.json",
+      "sha256": "19ff02e89bb314a1de4aa4798269a65ebb443789573b8f46838fae339f0c64d3"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz/literatur.bib",
+      "sha256": "4dd88a325f2d1a337d7d9cc8422c8e01e066b4c86b19f7819cf4d8639270e68a"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz/literatur.csl.json",
+      "sha256": "dc95f0c344afdc4e7d8b3e5ad95c7324208f2d54b50e2b1b0e1a7f68b93ba9f7"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz/literatur.json",
+      "sha256": "4f6f30e66b5ed238edadaabea411edcf07098180bb442ea92a6dacdf6aa7bfc0"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz/literatur_annotiert.md",
+      "sha256": "402282bd0fac0a68fe1056f2cf13ae74aabba951c747aab43ad8a83ee780a05c"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz/materialien/formeln.json",
+      "sha256": "32d4e98a7aac4099afe006035ffa4ddd996f870179be69efebfcda739bd53820"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz/materialien/formeln.tex",
+      "sha256": "9d108b34a410f038280f9ff277d909167ace69ccf0008707f4ca3683d137f6cd"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz/materialien/integrationsmatrix.json",
+      "sha256": "3497c899ffbf77e84e38acd68539c3088ce44abbb23bb1a99ae2cea0a7202f87"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz/materialien/msba_hypothesen_transkript.json",
+      "sha256": "c0294693e63ad10b9063cd40bdd779b9c3709b6f900b7a8d3b4896b31ec8bc80"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz/materialien/paket_metadaten.json",
+      "sha256": "aa0098cffd0f0e35fc33ca8aec1dbbe86853a3ab6e4c86fb17d33f6f229b074d"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz/materialien/qualitaetspruefung.json",
+      "sha256": "0821e65641acb941202864e8291f0844f5548c6bd9043817f2a3f62741e444fd"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz/originale/Brain-5D_Scientific_Framework_v0.2(1).docx",
+      "sha256": "1377f631bc4017a9856eb3294892a7707e485f83faf7ae6636f0367f35a9e6ea"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz/originale/KI_Die_geliehene_Intelligenz_Dissertation(1).docx",
+      "sha256": "42e43749f7faa69a5c7f48da7bd48f480499e8b5fe18ec87a2b5c4bcf53928e6"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz/originale/KI_Die_geliehene_Intelligenz_Kontrollverlust_Embodiment_Dissertationsbasis.docx",
+      "sha256": "c9ef2942fa86b97d73b1b86e6c1456e0d81a6d5e8efe385501f6ab386941998b"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz/pruefsummen_pruefen.py",
+      "sha256": "b18996000d6b737cbad5c0c8a6d82ca3eb9b0b37ccd34f8693cab60714b96b53"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz/quellenmanifest.json",
+      "sha256": "b863b9819b70fabea326f73d492b2901580eac946fe38eb328db5a0822a1a40c"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz/rechercheprotokoll.md",
+      "sha256": "1064c66c6d77a2be3b74bc823eeb82661037d9380445ad9fcae38592f1db9157"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz/redaktionelle_entscheidungen.md",
+      "sha256": "dbe5277e5e45a957307766b5ed743293820e6dfa3f3d46301cad7fcbb303409f"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz/repository_quellen.json",
+      "sha256": "773d04f29ace1a35bf23560c7f7fd8c10991624432d55b045056504fa942250c"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz/reproduktion/auswertung.json",
+      "sha256": "03143054e5aee1b80bd0da71b747039efcc345b87f90f6a8615eee4808afd856"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz/reproduktion/auswertung.py",
+      "sha256": "39a711f0c27679c2f507bc95016b60985a10bd86e794172ff641aac3535acdef"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz/reproduktion/berichtsdaten.json",
+      "sha256": "b16e64d1e9c33b431b151b2e6756fdd3843988ece331fcf15e72212b4472ed0e"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz/wissenschaftliche_abhandlung.docx",
+      "sha256": "23a905a72fbdf396b8e9f25827497b125a5c33301d30c0b2f221f1b5953faad5"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz/wissenschaftliche_abhandlung.md",
+      "sha256": "98a40536bbbd6a9fa9bab740bccb28baba6a09893b6993fab2650ef3f0d2ae7b"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.1/README.md",
+      "sha256": "d13d53ce3209b6a433ffd00c8e7f151bec68c07e48d45b34e912d842c1797dff"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.1/literatur_revision.bib",
+      "sha256": "f8d4660f11500d3130ad77e3091360c0a86b10ca88eb644433b6f39152a49716"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.1/manifest.json",
+      "sha256": "1401cde3a253bb7626ef601b5b6f5c5bbaaa282d5b88f047a0feee462ab99df7"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.1/methodenpruefung.json",
+      "sha256": "b4aec2c2088d09b48f1d25f5c6d41f84389f44508bc5edd6938a516818b70769"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.1/methodenpruefung.py",
+      "sha256": "c17e8207ff001c2f3d072946844d6517a13cfe569edf4141cfa7dd14ab6916c5"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.1/section-000.md",
+      "sha256": "90cf836761080c34c6bec459d0a6dd7800685ca18372a23f4903147ac74d5a01"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.1/section-001.md",
+      "sha256": "345191a4f46ac4f5a5e99def28e909298d654da787f75ae81f248f908199abef"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.1/section-002.md",
+      "sha256": "5094ce196c49bfd0f7c1618f43899a56897c0d2bb850038c94d5b1e20ab4e0b0"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.1/section-003.md",
+      "sha256": "18ca819dfd6ab556311f014dff45f8624fac34194e12a429bb90f99f59a977f6"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.1/section-004.md",
+      "sha256": "0c7b71f2e6d97c6edaae2643776a07a0b833e6c00cbe6c123ddc64a95b48ea74"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.1/section-005.md",
+      "sha256": "e3f30350c2a8bdea36c066641a76fe22e13c01ad3bb1b814f7d47228f5705b16"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.1/section-006.md",
+      "sha256": "11b30ef7bcdc075ea6da94b27cc85af155c2af75ba3941e59938245fb149652a"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.1/section-007.md",
+      "sha256": "4177df8c133746ffd72da60bfba986f8e2fe6c64da14c3ef074e0175b9209c70"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.1/section-008.md",
+      "sha256": "c92209492a2c7de0e0e6ffbd60f7856ff2b258b1e3d05d51fe4792bc839d8b80"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.1/section-009.md",
+      "sha256": "3039f05f79d54898c2ac7865c743ed0e15657938f116fef05220573481e8d4d0"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.1/section-010.md",
+      "sha256": "391153b181dd84aea6a7a5f27b44f386089f42f5386a2bb7b2fc62c4c12ac8e7"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.1/section-011.md",
+      "sha256": "1d7cd3808c0ad06af9062472167bbac4de20189bf33e4600041a54371127d2b5"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.1/section-012.md",
+      "sha256": "bb60231bb45e961c26aa45a1d25ad43eaaae55a9d6243f1bf22c1b80572b2ee2"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.1/section-013.md",
+      "sha256": "74567fad898f8ab1d709e5c4003c61856134ce5c64f4ff8a8b9fc8e7d5008a88"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.1/section-014.md",
+      "sha256": "e0a593e260e6bd0d5e4480a251605df8478d01cfe8188cef520d147b9e846658"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.1/section-015.md",
+      "sha256": "4100ccc2d6fba55c2d1c52dfd19d2834ee71705706994aea74e8a280ad2fde93"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.1/section-016.md",
+      "sha256": "2f7c895fe1feae236c68c914a9c943aed1b89276d3b8db5e778654a5169a44e8"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.1/section-017.md",
+      "sha256": "1fb1dbfd39ab6c41f799f2ed4d7e12e92d67a2841ad770292a51adc7220ce952"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.1/section-018.md",
+      "sha256": "042fdc0ccaea114b5352247c9176c15628bcafe5486bb387ec8db05dafafe09a"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.1/section-019.md",
+      "sha256": "723ca043438aab6091af7be66c58524c4c42536e4ecb14ebd36c2c774cb28630"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.1/section-020.md",
+      "sha256": "8271a7ecbd4658fccfe05e2fb37190cc5b01bdee7696079314dc9eaf66ee9edb"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.1/section-021.md",
+      "sha256": "81e1c5da2b723932ce4060d50b8e4fc261312d108b70f5bdb3fccd2235d6216e"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.1/section-022.md",
+      "sha256": "d003bda83ea62604c6269693fdff8b7f9845859873d827b03383173998e53df3"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.1/section-023.md",
+      "sha256": "1f9d21aab1d53579633374cb9fafb7b6c0076cb17188aded27ae8090423e41df"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.1/section-024.md",
+      "sha256": "b15e1b611145a8d3897bdc5c28357db9b57e9740270647234dfe756f0eda9c05"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.1/section-025.md",
+      "sha256": "a7baebd5f61d731de8ba888a1112ca116dfd05b5279091540b1683716e10cf5a"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.1/section-026.md",
+      "sha256": "266d36eedbf4975c0b1b9bd9bc67cd7fce4036e98c292b32b2ea66f3fa411ce7"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.1/section-027.md",
+      "sha256": "6f8400d1a9b7cccc4d0e71da42793de32f0eeef7feb7751c7e526868e21c0fb0"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.1/section-028.md",
+      "sha256": "efd4345e28bd19779dc594fe2e4d88b942b9d6bb15df07156006dcc73c8ba38b"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.1/section-029.md",
+      "sha256": "7f6f12904e19d22211cadf029b27216c12e408f4725cd43abf5ed9718e1fc0d4"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.1/section-030.md",
+      "sha256": "1a6010aa28884fc12db57384b1c8c47c0df9c58c28221405cd08f029ca8cc542"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.1/section-031.md",
+      "sha256": "a25827932cc8c51a25b3c60bbafbc22a6ef0b6da1bd3b1d7044836db96ad3072"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.1/section-032.md",
+      "sha256": "08f723e057b79742204d87b17b47e009ed17b115d36272f9329dec3bae9466e9"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.1/section-033.md",
+      "sha256": "402dc6e31780d26f98bbb925fa6aace075624a076add1c03d01187aaaac58d79"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.1/section-034.md",
+      "sha256": "79382cf2fab6a74caf3b3f9dabdc8394c3817f0e3628a498233850d2e89e824e"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.1/section-035.md",
+      "sha256": "3d7e95a1e86c1e4ff1cdf533a19d0266cdd3655ee83cf92533642f31e62277e9"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.1/section-036.md",
+      "sha256": "844fc1eeddbdaf300d4578b3e4a4b5b2d2050b36de2c02841f5496dc90eda3f6"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.1/section-037.md",
+      "sha256": "3159344c5b30d67bc5f33cd4a04c2dc65aca2213ed773067c6dbff2ec32e5513"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.1/section-038.md",
+      "sha256": "1025bdd11377c63a1ec399c1f550c0d6b44e78fb9a32cbe63d10792df6a2328d"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.1/section-039.md",
+      "sha256": "5630d2df96b0e0687adfaca7704c441d5f5443f070fa6774ad3a926b9a921045"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.1/section-040.md",
+      "sha256": "2788ef91150183f51b5c5356e4c973fbc506cc01273d6009ddfaeccceca43ec6"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.1/section-041.md",
+      "sha256": "eacc3ae3839d03a5f1e6cff361ffa0c5949a5e320ea9cbe8aef901fd9b36d986"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.1/section-042.md",
+      "sha256": "b0518d62dae11adc2e10d351965a8d40ab71583c29ef6a5d246929cd4a2de8c0"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.1/section-043.md",
+      "sha256": "81b6978bbc7f3a83337330cbdc433eef693145ea49f14989e837cac6fb23a208"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.1/section-044.md",
+      "sha256": "79bbb1df5fab49e700a2b75337f0cbba86892f31980364d0911af0a032f657cd"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.1/section-045.md",
+      "sha256": "94933abb063570d3597b0dfbc765ab9a96a26fc9c8a32500a8da672e44a9c5f1"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.1/section-046.md",
+      "sha256": "c9b13c47c4308e23498bf4e13931a1022c867b0644d7f9a7318c6e13ee9d6d3b"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.1/section-047.md",
+      "sha256": "30fc0832a0c32444d27f6572076319a947b6ee1f2af4f621b4429ef214f78388"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.1/section-048.md",
+      "sha256": "7d23c49b87ddb9cf1fe396c1356a976d92219c7a86a88333154ab03ebd934929"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.1/section-049.md",
+      "sha256": "4a06e55910b6f2e8faed7368909b91c68a5179a87e51774b00481308a16ecb3f"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.1/section-050.md",
+      "sha256": "6c0affa6c4e6e09ff0f1e64847a390194d793590aa82fceae76f2d5e05966bd5"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.2/README.md",
+      "sha256": "781a4e877c8e54d882cd820114d17f9163f6a6707ec5cc63f55babee03a84a75"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.2/literatur_revision.bib",
+      "sha256": "f8d4660f11500d3130ad77e3091360c0a86b10ca88eb644433b6f39152a49716"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.2/manifest.json",
+      "sha256": "c772db3a807d333c1876c87c95c9bb18c9467d0a07c9be5e6754a616e7514154"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.2/methodenpruefung.json",
+      "sha256": "b4aec2c2088d09b48f1d25f5c6d41f84389f44508bc5edd6938a516818b70769"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.2/methodenpruefung.py",
+      "sha256": "c17e8207ff001c2f3d072946844d6517a13cfe569edf4141cfa7dd14ab6916c5"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.2/section-000.md",
+      "sha256": "d7d9fc762f48efd2bc1316d0a459bbc8e25056e0a4679f808625f3e052c99553"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.2/section-001.md",
+      "sha256": "6c12fd62e655ea93a6a6147b1232de92615d7047e9b88dec951044bdae92e2ce"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.2/section-002.md",
+      "sha256": "02ba1c0447414c244b31823dd8174d82b1aa285d45053196ce261fcf749c38da"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.2/section-003.md",
+      "sha256": "5c34ee2f1bab9a2fbcd2bfc399dcd4250506258fa015a61457ef0069e8cbebd1"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.2/section-004.md",
+      "sha256": "8f8e93dfa1463348f4c04e892e05dcc87636e6ed592817c154f8f0c288e279af"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.2/section-005.md",
+      "sha256": "e3f30350c2a8bdea36c066641a76fe22e13c01ad3bb1b814f7d47228f5705b16"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.2/section-006.md",
+      "sha256": "65f6f1f87d72c89d5d58d2bd355676f707984d59cfeead5b84183f7fcbf8b9c1"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.2/section-007.md",
+      "sha256": "4177df8c133746ffd72da60bfba986f8e2fe6c64da14c3ef074e0175b9209c70"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.2/section-008.md",
+      "sha256": "c92209492a2c7de0e0e6ffbd60f7856ff2b258b1e3d05d51fe4792bc839d8b80"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.2/section-009.md",
+      "sha256": "3039f05f79d54898c2ac7865c743ed0e15657938f116fef05220573481e8d4d0"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.2/section-010.md",
+      "sha256": "391153b181dd84aea6a7a5f27b44f386089f42f5386a2bb7b2fc62c4c12ac8e7"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.2/section-011.md",
+      "sha256": "1d7cd3808c0ad06af9062472167bbac4de20189bf33e4600041a54371127d2b5"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.2/section-012.md",
+      "sha256": "bb60231bb45e961c26aa45a1d25ad43eaaae55a9d6243f1bf22c1b80572b2ee2"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.2/section-013.md",
+      "sha256": "74567fad898f8ab1d709e5c4003c61856134ce5c64f4ff8a8b9fc8e7d5008a88"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.2/section-014.md",
+      "sha256": "80a8a006653102df78316f7b81247a967248500f7da62f1267de5e479ab52f03"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.2/section-015.md",
+      "sha256": "a26aaae1af794968f1f8f1d21ee374bbf40709b857286e397d06d4b58186cd62"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.2/section-016.md",
+      "sha256": "2f7c895fe1feae236c68c914a9c943aed1b89276d3b8db5e778654a5169a44e8"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.2/section-017.md",
+      "sha256": "2ed2a8bf791e42bfa2a10bbb40afa2d21caad168201da0c9799d8b11f239b9a3"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.2/section-018.md",
+      "sha256": "042fdc0ccaea114b5352247c9176c15628bcafe5486bb387ec8db05dafafe09a"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.2/section-019.md",
+      "sha256": "a1cd7bc77c154d1f8c7dd3ec24c14246a89f716f373b92027d4d50db0881363d"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.2/section-020.md",
+      "sha256": "8271a7ecbd4658fccfe05e2fb37190cc5b01bdee7696079314dc9eaf66ee9edb"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.2/section-021.md",
+      "sha256": "81e1c5da2b723932ce4060d50b8e4fc261312d108b70f5bdb3fccd2235d6216e"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.2/section-022.md",
+      "sha256": "d003bda83ea62604c6269693fdff8b7f9845859873d827b03383173998e53df3"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.2/section-023.md",
+      "sha256": "1f9d21aab1d53579633374cb9fafb7b6c0076cb17188aded27ae8090423e41df"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.2/section-024.md",
+      "sha256": "b15e1b611145a8d3897bdc5c28357db9b57e9740270647234dfe756f0eda9c05"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.2/section-025.md",
+      "sha256": "a7baebd5f61d731de8ba888a1112ca116dfd05b5279091540b1683716e10cf5a"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.2/section-026.md",
+      "sha256": "c728c93eb7ed9c1650de17dbf1f77e0eed9662b89bdf157fac144ad22e75c44f"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.2/section-027.md",
+      "sha256": "6f8400d1a9b7cccc4d0e71da42793de32f0eeef7feb7751c7e526868e21c0fb0"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.2/section-028.md",
+      "sha256": "efd4345e28bd19779dc594fe2e4d88b942b9d6bb15df07156006dcc73c8ba38b"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.2/section-029.md",
+      "sha256": "7f6f12904e19d22211cadf029b27216c12e408f4725cd43abf5ed9718e1fc0d4"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.2/section-030.md",
+      "sha256": "1a6010aa28884fc12db57384b1c8c47c0df9c58c28221405cd08f029ca8cc542"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.2/section-031.md",
+      "sha256": "a25827932cc8c51a25b3c60bbafbc22a6ef0b6da1bd3b1d7044836db96ad3072"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.2/section-032.md",
+      "sha256": "08f723e057b79742204d87b17b47e009ed17b115d36272f9329dec3bae9466e9"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.2/section-033.md",
+      "sha256": "93d294f5799649bafbff50d571659f03b05bef34584ad476acbf2b4a42283fa8"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.2/section-034.md",
+      "sha256": "79382cf2fab6a74caf3b3f9dabdc8394c3817f0e3628a498233850d2e89e824e"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.2/section-035.md",
+      "sha256": "3d7e95a1e86c1e4ff1cdf533a19d0266cdd3655ee83cf92533642f31e62277e9"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.2/section-036.md",
+      "sha256": "844fc1eeddbdaf300d4578b3e4a4b5b2d2050b36de2c02841f5496dc90eda3f6"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.2/section-037.md",
+      "sha256": "3159344c5b30d67bc5f33cd4a04c2dc65aca2213ed773067c6dbff2ec32e5513"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.2/section-038.md",
+      "sha256": "1025bdd11377c63a1ec399c1f550c0d6b44e78fb9a32cbe63d10792df6a2328d"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.2/section-039.md",
+      "sha256": "902514a81d668138dc0f7eedc1b965ea83d8dfd88135d1ee36633c4f99d7fae5"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.2/section-040.md",
+      "sha256": "09112ac1c244c2ec70127fb65767f56aac1094f46da45ea43f4c617cb9653d4a"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.2/section-041.md",
+      "sha256": "eacc3ae3839d03a5f1e6cff361ffa0c5949a5e320ea9cbe8aef901fd9b36d986"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.2/section-042.md",
+      "sha256": "b0518d62dae11adc2e10d351965a8d40ab71583c29ef6a5d246929cd4a2de8c0"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.2/section-043.md",
+      "sha256": "81b6978bbc7f3a83337330cbdc433eef693145ea49f14989e837cac6fb23a208"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.2/section-044.md",
+      "sha256": "79bbb1df5fab49e700a2b75337f0cbba86892f31980364d0911af0a032f657cd"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.2/section-045.md",
+      "sha256": "94933abb063570d3597b0dfbc765ab9a96a26fc9c8a32500a8da672e44a9c5f1"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.2/section-046.md",
+      "sha256": "c9b13c47c4308e23498bf4e13931a1022c867b0644d7f9a7318c6e13ee9d6d3b"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.2/section-047.md",
+      "sha256": "30fc0832a0c32444d27f6572076319a947b6ee1f2af4f621b4429ef214f78388"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.2/section-048.md",
+      "sha256": "7d23c49b87ddb9cf1fe396c1356a976d92219c7a86a88333154ab03ebd934929"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.2/section-049.md",
+      "sha256": "4a06e55910b6f2e8faed7368909b91c68a5179a87e51774b00481308a16ecb3f"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.2/section-050.md",
+      "sha256": "6c0affa6c4e6e09ff0f1e64847a390194d793590aa82fceae76f2d5e05966bd5"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.2/section-051.md",
+      "sha256": "a12d7725b937ac5904cc39423adc660e2ed29fe95f5c517cfe0939c0f83fd981"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.2/section-052.md",
+      "sha256": "ae0f2dc4f4c6404b70fe6990fc9ce60e3e7f8168a364a2f48ef0d3c7bf9a9a77"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.2/section-053.md",
+      "sha256": "b96ffb57fab11913d6e7181f3b32310fdbcb5a587a88364a4af69e23ce7c1862"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.2/section-054.md",
+      "sha256": "7592b34d34f61beb3ab8e65b6b1c07a1a7ae648a60ca3a59e2a3c9f289e77ac7"
+    },
+    {
+      "path": "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.2/section-055.md",
+      "sha256": "6e9ab4e034fa914ba85891da2de19236423f07ea124dc34cb0ebdabb84b04edd"
+    },
+    {
+      "path": "research/publications/2026-09-08_recursive-epistemics_v1.3/CITATION.bib",
+      "sha256": "461736590738f1b5d2e83dc1d3b554925bec21f4c35e87ce0c6eca2719382076"
+    },
+    {
+      "path": "research/publications/2026-09-08_recursive-epistemics_v1.3/CITATION.cff",
+      "sha256": "df849cd21304d25c50b51b2b1bad0f346b0963eb4600a6df5722ba95f02973af"
+    },
+    {
+      "path": "research/publications/2026-09-08_recursive-epistemics_v1.3/README.md",
+      "sha256": "6e50cce46250b66547e97e33445db60de10281eeedc9b6671376044c38dfb368"
+    },
+    {
+      "path": "research/publications/2026-09-08_recursive-epistemics_v1.3/literatur_revision.bib",
+      "sha256": "f8d4660f11500d3130ad77e3091360c0a86b10ca88eb644433b6f39152a49716"
+    },
+    {
+      "path": "research/publications/2026-09-08_recursive-epistemics_v1.3/manifest.json",
+      "sha256": "9400cfab84458e97de4a4a0b5fc0f7bc27d23a13baebf5143df96f858b2a9179"
+    },
+    {
+      "path": "research/publications/2026-09-08_recursive-epistemics_v1.3/methodenpruefung.json",
+      "sha256": "b4aec2c2088d09b48f1d25f5c6d41f84389f44508bc5edd6938a516818b70769"
+    },
+    {
+      "path": "research/publications/2026-09-08_recursive-epistemics_v1.3/methodenpruefung.py",
+      "sha256": "c17e8207ff001c2f3d072946844d6517a13cfe569edf4141cfa7dd14ab6916c5"
+    },
+    {
+      "path": "research/publications/2026-09-08_recursive-epistemics_v1.3/section-000.md",
+      "sha256": "e8593d127d3283b00ae1cc5f19db418fa942b336f7a9ac8873d9deeda5409ee5"
+    },
+    {
+      "path": "research/publications/2026-09-08_recursive-epistemics_v1.3/section-001.md",
+      "sha256": "f064659ce80ae5549ac0970b5003e21bad834291f27e4e5cd8fe1adfe30e0872"
+    },
+    {
+      "path": "research/publications/2026-09-08_recursive-epistemics_v1.3/section-002.md",
+      "sha256": "f0bb0a2f7b81dc821563510abae178bf9c90f03c78e17a5896112ceb21b727ff"
+    },
+    {
+      "path": "research/publications/2026-09-08_recursive-epistemics_v1.3/section-003.md",
+      "sha256": "779620fd8b91975ba6c0f386b2dc6569c8ff67ffc308aa2c80b0e913b521d41b"
+    },
+    {
+      "path": "research/publications/2026-09-08_recursive-epistemics_v1.3/section-004.md",
+      "sha256": "4d07cf8d0d661245adb9ad4e4d9ca4163394968fac5bb512b4a6a5a4a02a601e"
+    },
+    {
+      "path": "research/publications/2026-09-08_recursive-epistemics_v1.3/section-005.md",
+      "sha256": "ebfc634577151107fa0b2132b034034a1e6b954c9714283cc444caa14c46fc16"
+    },
+    {
+      "path": "research/publications/2026-09-08_recursive-epistemics_v1.3/section-006.md",
+      "sha256": "d8e619b8191ff89cd6bc434736a70b7671a59b15b10265bdb88977a5a4342a7b"
+    },
+    {
+      "path": "research/publications/2026-09-08_recursive-epistemics_v1.3/section-007.md",
+      "sha256": "4177df8c133746ffd72da60bfba986f8e2fe6c64da14c3ef074e0175b9209c70"
+    },
+    {
+      "path": "research/publications/2026-09-08_recursive-epistemics_v1.3/section-008.md",
+      "sha256": "c92209492a2c7de0e0e6ffbd60f7856ff2b258b1e3d05d51fe4792bc839d8b80"
+    },
+    {
+      "path": "research/publications/2026-09-08_recursive-epistemics_v1.3/section-009.md",
+      "sha256": "d020834c961c4a89a532a7474d14929cceb8de9875a83dd6394d16aa5bd79cec"
+    },
+    {
+      "path": "research/publications/2026-09-08_recursive-epistemics_v1.3/section-010.md",
+      "sha256": "391153b181dd84aea6a7a5f27b44f386089f42f5386a2bb7b2fc62c4c12ac8e7"
+    },
+    {
+      "path": "research/publications/2026-09-08_recursive-epistemics_v1.3/section-011.md",
+      "sha256": "1d7cd3808c0ad06af9062472167bbac4de20189bf33e4600041a54371127d2b5"
+    },
+    {
+      "path": "research/publications/2026-09-08_recursive-epistemics_v1.3/section-012.md",
+      "sha256": "bb60231bb45e961c26aa45a1d25ad43eaaae55a9d6243f1bf22c1b80572b2ee2"
+    },
+    {
+      "path": "research/publications/2026-09-08_recursive-epistemics_v1.3/section-013.md",
+      "sha256": "acb439e3bc04bcf028e27583aff3bfcfbc9e3089cddcaed57f622234de67f85c"
+    },
+    {
+      "path": "research/publications/2026-09-08_recursive-epistemics_v1.3/section-014.md",
+      "sha256": "80a8a006653102df78316f7b81247a967248500f7da62f1267de5e479ab52f03"
+    },
+    {
+      "path": "research/publications/2026-09-08_recursive-epistemics_v1.3/section-015.md",
+      "sha256": "6d4dc9adcfbbeeef6b38966c30392b1904071faa07448ffc6581b195e289c91c"
+    },
+    {
+      "path": "research/publications/2026-09-08_recursive-epistemics_v1.3/section-016.md",
+      "sha256": "2f7c895fe1feae236c68c914a9c943aed1b89276d3b8db5e778654a5169a44e8"
+    },
+    {
+      "path": "research/publications/2026-09-08_recursive-epistemics_v1.3/section-017.md",
+      "sha256": "8f2b130730341aea5c2b6dc597d7c46b69a9a7c6b96ec82099865a8958e13cb8"
+    },
+    {
+      "path": "research/publications/2026-09-08_recursive-epistemics_v1.3/section-018.md",
+      "sha256": "04f282e7951757f0c994666244e1d1d831e30cd535dba519c07cf17d26a77a62"
+    },
+    {
+      "path": "research/publications/2026-09-08_recursive-epistemics_v1.3/section-019.md",
+      "sha256": "86b648e3e79712b571cc184e25d8b32a78910ee2f9e6f5cea1f8ab10e93919c8"
+    },
+    {
+      "path": "research/publications/2026-09-08_recursive-epistemics_v1.3/section-020.md",
+      "sha256": "e4be32128333cce31bced6086a8fec0efeaf55bf441033740af7ec937bf3785d"
+    },
+    {
+      "path": "research/publications/2026-09-08_recursive-epistemics_v1.3/section-021.md",
+      "sha256": "1c04c20eafcc50ff1d65941c2172f810f6684b3c31263a097d7a58a8a55186e8"
+    },
+    {
+      "path": "research/publications/2026-09-08_recursive-epistemics_v1.3/section-022.md",
+      "sha256": "dddc05fb1d179517644ba2f6c91b5e7e4aa4ebbc294f3b4321b13de37886f908"
+    },
+    {
+      "path": "research/publications/2026-09-08_recursive-epistemics_v1.3/section-023.md",
+      "sha256": "39dfb408696b2661407797f2e2a98c96d43b8bedc3c8a2e8b5e4c84da61601e0"
+    },
+    {
+      "path": "research/publications/2026-09-08_recursive-epistemics_v1.3/section-024.md",
+      "sha256": "49fbab75a4053088dc82cbda92e13aa23e260eb8abc8a6616891ca4719dec3d8"
+    },
+    {
+      "path": "research/publications/2026-09-08_recursive-epistemics_v1.3/section-025.md",
+      "sha256": "96d78fd65899fe28c5767d5e1ab7eec1faf93ca4a7c6bc18c266be06dfffdc59"
+    },
+    {
+      "path": "research/publications/2026-09-08_recursive-epistemics_v1.3/section-026.md",
+      "sha256": "c728c93eb7ed9c1650de17dbf1f77e0eed9662b89bdf157fac144ad22e75c44f"
+    },
+    {
+      "path": "research/publications/2026-09-08_recursive-epistemics_v1.3/section-027.md",
+      "sha256": "6f8400d1a9b7cccc4d0e71da42793de32f0eeef7feb7751c7e526868e21c0fb0"
+    },
+    {
+      "path": "research/publications/2026-09-08_recursive-epistemics_v1.3/section-028.md",
+      "sha256": "f8095f2b1b747e01201c99e036bdf4dbe8991d21722460186aa74182ac4f71b5"
+    },
+    {
+      "path": "research/publications/2026-09-08_recursive-epistemics_v1.3/section-029.md",
+      "sha256": "7f6f12904e19d22211cadf029b27216c12e408f4725cd43abf5ed9718e1fc0d4"
+    },
+    {
+      "path": "research/publications/2026-09-08_recursive-epistemics_v1.3/section-030.md",
+      "sha256": "15a5775f0a9fe996e97a60b83b761d081aa53d28dc4cb5bc3984137c9b8bfddf"
+    },
+    {
+      "path": "research/publications/2026-09-08_recursive-epistemics_v1.3/section-031.md",
+      "sha256": "a25827932cc8c51a25b3c60bbafbc22a6ef0b6da1bd3b1d7044836db96ad3072"
+    },
+    {
+      "path": "research/publications/2026-09-08_recursive-epistemics_v1.3/section-032.md",
+      "sha256": "7a18333af71bb3a55b61659ceb8f171ae5c6b7ad4070de413465fd69afb4d71d"
+    },
+    {
+      "path": "research/publications/2026-09-08_recursive-epistemics_v1.3/section-033.md",
+      "sha256": "fc81a32e9ac8538632d63442edf01c137d2db287a525b58384a2019b49e710de"
+    },
+    {
+      "path": "research/publications/2026-09-08_recursive-epistemics_v1.3/section-034.md",
+      "sha256": "2b8c8c07e92164ba2a6e899522c2d06f4318036930b1083a3e75a0c371e6a13b"
+    },
+    {
+      "path": "research/publications/2026-09-08_recursive-epistemics_v1.3/section-035.md",
+      "sha256": "3d7e95a1e86c1e4ff1cdf533a19d0266cdd3655ee83cf92533642f31e62277e9"
+    },
+    {
+      "path": "research/publications/2026-09-08_recursive-epistemics_v1.3/section-036.md",
+      "sha256": "87cfad9b9846c03943b2e20de391442a94174a9441bb04f33f31afa12a0c04bd"
+    },
+    {
+      "path": "research/publications/2026-09-08_recursive-epistemics_v1.3/section-037.md",
+      "sha256": "899fe3b3b953aae3cd2a04162c487829d0610d478932ac9581d3a05e32a95c00"
+    },
+    {
+      "path": "research/publications/2026-09-08_recursive-epistemics_v1.3/section-038.md",
+      "sha256": "1025bdd11377c63a1ec399c1f550c0d6b44e78fb9a32cbe63d10792df6a2328d"
+    },
+    {
+      "path": "research/publications/2026-09-08_recursive-epistemics_v1.3/section-039.md",
+      "sha256": "a73a1a6c941fbd51173f860c29e8bded38e02cbec49020927825a5a36457c552"
+    },
+    {
+      "path": "research/publications/2026-09-08_recursive-epistemics_v1.3/section-040.md",
+      "sha256": "b675b19a1b2801704bf14a9f9a2cd0d97a07847c35d2d3001bdbb26ca27f6c66"
+    },
+    {
+      "path": "research/publications/2026-09-08_recursive-epistemics_v1.3/section-041.md",
+      "sha256": "06ce6870a7951d1daebea54af812ef2a760134589a3b4f14061964ab111ce12d"
+    },
+    {
+      "path": "research/publications/2026-09-08_recursive-epistemics_v1.3/section-042.md",
+      "sha256": "cc44477d211172492b893ee9bdf49ae3869aa3519a63108663ccc055d563c3f2"
+    },
+    {
+      "path": "research/publications/2026-09-08_recursive-epistemics_v1.3/section-043.md",
+      "sha256": "81b6978bbc7f3a83337330cbdc433eef693145ea49f14989e837cac6fb23a208"
+    },
+    {
+      "path": "research/publications/2026-09-08_recursive-epistemics_v1.3/section-044.md",
+      "sha256": "79bbb1df5fab49e700a2b75337f0cbba86892f31980364d0911af0a032f657cd"
+    },
+    {
+      "path": "research/publications/2026-09-08_recursive-epistemics_v1.3/section-045.md",
+      "sha256": "94933abb063570d3597b0dfbc765ab9a96a26fc9c8a32500a8da672e44a9c5f1"
+    },
+    {
+      "path": "research/publications/2026-09-08_recursive-epistemics_v1.3/section-046.md",
+      "sha256": "87ad555264d789008fa5f4f683f67212bb5becb2805b4c46f2e3f3ea998a8b32"
+    },
+    {
+      "path": "research/publications/2026-09-08_recursive-epistemics_v1.3/section-047.md",
+      "sha256": "22fe21472520954c26be8c7b9c2966e584e44bdfaeb2d0f1236fc809b3071232"
+    },
+    {
+      "path": "research/publications/2026-09-08_recursive-epistemics_v1.3/section-048.md",
+      "sha256": "7d23c49b87ddb9cf1fe396c1356a976d92219c7a86a88333154ab03ebd934929"
+    },
+    {
+      "path": "research/publications/2026-09-08_recursive-epistemics_v1.3/section-049.md",
+      "sha256": "4a06e55910b6f2e8faed7368909b91c68a5179a87e51774b00481308a16ecb3f"
+    },
+    {
+      "path": "research/publications/2026-09-08_recursive-epistemics_v1.3/section-050.md",
+      "sha256": "755d644976c4c98e0f23295e3e45fe03b33ec6c75022dc26a6f00b84f70f8c2f"
+    },
+    {
+      "path": "research/publications/2026-09-08_recursive-epistemics_v1.3/section-051.md",
+      "sha256": "157942725d0517a7c5bb067be905ddb451198a8eea5804562ebf0763b77d16e1"
+    },
+    {
+      "path": "research/publications/2026-09-08_recursive-epistemics_v1.3/section-052.md",
+      "sha256": "ae0f2dc4f4c6404b70fe6990fc9ce60e3e7f8168a364a2f48ef0d3c7bf9a9a77"
+    },
+    {
+      "path": "research/publications/2026-09-08_recursive-epistemics_v1.3/section-053.md",
+      "sha256": "b81fbb0b0211474211722e14151297b47ed57ac7fa5755f113ac8220b118e5eb"
+    },
+    {
+      "path": "research/publications/2026-09-08_recursive-epistemics_v1.3/section-054.md",
+      "sha256": "7592b34d34f61beb3ab8e65b6b1c07a1a7ae648a60ca3a59e2a3c9f289e77ac7"
+    },
+    {
+      "path": "research/publications/2026-09-08_recursive-epistemics_v1.3/section-055.md",
+      "sha256": "b2207ad67a23b8f6f5c24941f751ef944c46bf515e18df9f61a43769578fb8ce"
+    },
+    {
+      "path": "research/publications/2026-09-08_recursive-epistemics_v1.3/section-056.md",
+      "sha256": "a8d44150aa9500d17fee2be73da14d7e0e34177ce04f7fd7f17348fcb7bd5526"
+    },
+    {
+      "path": "research/publications/2026-09-09_connectome-embodiment_supplement/README.md",
+      "sha256": "50f7e3d8b959e4e3a321c000e9afdd34bdc9d1d868d310e3d568506a0e3091e7"
+    },
+    {
+      "path": "research/publications/2026-09-09_connectome-embodiment_supplement/manifest.json",
+      "sha256": "b7f0425b7deddbf715e58adad46b071e5fc2e0568577158cdee348f72d771ae6"
+    },
+    {
+      "path": "research/publications/2026-09-09_connectome-embodiment_supplement/references.bib",
+      "sha256": "d9a76e2f3f8191570c57b8533644367c143425c76d8cff3731f5b32c76f6dfe6"
+    },
+    {
+      "path": "research/publications/2026-09-10_recursive-epistemics_v1.4/CITATION.bib",
+      "sha256": "f201830e74d5bdbaf68744e000982142e10e0d0cf3482623b30623ebf69c307f"
+    },
+    {
+      "path": "research/publications/2026-09-10_recursive-epistemics_v1.4/CITATION.cff",
+      "sha256": "a7121cb2d3ba13c243ffeeb89bbc3bc6cf12b942916cf9fdc3d92205ead90047"
+    },
+    {
+      "path": "research/publications/2026-09-10_recursive-epistemics_v1.4/MANUSCRIPT.md",
+      "sha256": "aff49902af18d027ba7db6fc693a75c9681111a77257b797aeadfab9e79d7d54"
+    },
+    {
+      "path": "research/publications/2026-09-10_recursive-epistemics_v1.4/README.md",
+      "sha256": "a8b7e01290515bc29db19d5051ef9449bd3c5a9cb8371495256af6329bd20345"
+    },
+    {
+      "path": "research/publications/2026-09-10_recursive-epistemics_v1.4/literatur_revision.bib",
+      "sha256": "f8d4660f11500d3130ad77e3091360c0a86b10ca88eb644433b6f39152a49716"
+    },
+    {
+      "path": "research/publications/2026-09-10_recursive-epistemics_v1.4/manifest.json",
+      "sha256": "b655b872367290f893d6f826011fab5da3dc34e1cd8d89bae657337a239ce2bf"
+    },
+    {
+      "path": "research/publications/2026-09-10_recursive-epistemics_v1.4/methodenpruefung.json",
+      "sha256": "b4aec2c2088d09b48f1d25f5c6d41f84389f44508bc5edd6938a516818b70769"
+    },
+    {
+      "path": "research/publications/2026-09-10_recursive-epistemics_v1.4/methodenpruefung.py",
+      "sha256": "c17e8207ff001c2f3d072946844d6517a13cfe569edf4141cfa7dd14ab6916c5"
+    },
+    {
+      "path": "research/publications/2026-09-10_recursive-epistemics_v1.4/section-000.md",
+      "sha256": "e8593d127d3283b00ae1cc5f19db418fa942b336f7a9ac8873d9deeda5409ee5"
+    },
+    {
+      "path": "research/publications/2026-09-10_recursive-epistemics_v1.4/section-001.md",
+      "sha256": "f064659ce80ae5549ac0970b5003e21bad834291f27e4e5cd8fe1adfe30e0872"
+    },
+    {
+      "path": "research/publications/2026-09-10_recursive-epistemics_v1.4/section-002.md",
+      "sha256": "f0bb0a2f7b81dc821563510abae178bf9c90f03c78e17a5896112ceb21b727ff"
+    },
+    {
+      "path": "research/publications/2026-09-10_recursive-epistemics_v1.4/section-003.md",
+      "sha256": "779620fd8b91975ba6c0f386b2dc6569c8ff67ffc308aa2c80b0e913b521d41b"
+    },
+    {
+      "path": "research/publications/2026-09-10_recursive-epistemics_v1.4/section-004.md",
+      "sha256": "4d07cf8d0d661245adb9ad4e4d9ca4163394968fac5bb512b4a6a5a4a02a601e"
+    },
+    {
+      "path": "research/publications/2026-09-10_recursive-epistemics_v1.4/section-005.md",
+      "sha256": "ebfc634577151107fa0b2132b034034a1e6b954c9714283cc444caa14c46fc16"
+    },
+    {
+      "path": "research/publications/2026-09-10_recursive-epistemics_v1.4/section-006.md",
+      "sha256": "d8e619b8191ff89cd6bc434736a70b7671a59b15b10265bdb88977a5a4342a7b"
+    },
+    {
+      "path": "research/publications/2026-09-10_recursive-epistemics_v1.4/section-007.md",
+      "sha256": "4177df8c133746ffd72da60bfba986f8e2fe6c64da14c3ef074e0175b9209c70"
+    },
+    {
+      "path": "research/publications/2026-09-10_recursive-epistemics_v1.4/section-008.md",
+      "sha256": "c92209492a2c7de0e0e6ffbd60f7856ff2b258b1e3d05d51fe4792bc839d8b80"
+    },
+    {
+      "path": "research/publications/2026-09-10_recursive-epistemics_v1.4/section-009.md",
+      "sha256": "d020834c961c4a89a532a7474d14929cceb8de9875a83dd6394d16aa5bd79cec"
+    },
+    {
+      "path": "research/publications/2026-09-10_recursive-epistemics_v1.4/section-010.md",
+      "sha256": "391153b181dd84aea6a7a5f27b44f386089f42f5386a2bb7b2fc62c4c12ac8e7"
+    },
+    {
+      "path": "research/publications/2026-09-10_recursive-epistemics_v1.4/section-011.md",
+      "sha256": "1d7cd3808c0ad06af9062472167bbac4de20189bf33e4600041a54371127d2b5"
+    },
+    {
+      "path": "research/publications/2026-09-10_recursive-epistemics_v1.4/section-012.md",
+      "sha256": "bb60231bb45e961c26aa45a1d25ad43eaaae55a9d6243f1bf22c1b80572b2ee2"
+    },
+    {
+      "path": "research/publications/2026-09-10_recursive-epistemics_v1.4/section-013.md",
+      "sha256": "acb439e3bc04bcf028e27583aff3bfcfbc9e3089cddcaed57f622234de67f85c"
+    },
+    {
+      "path": "research/publications/2026-09-10_recursive-epistemics_v1.4/section-014.md",
+      "sha256": "80a8a006653102df78316f7b81247a967248500f7da62f1267de5e479ab52f03"
+    },
+    {
+      "path": "research/publications/2026-09-10_recursive-epistemics_v1.4/section-015.md",
+      "sha256": "6d4dc9adcfbbeeef6b38966c30392b1904071faa07448ffc6581b195e289c91c"
+    },
+    {
+      "path": "research/publications/2026-09-10_recursive-epistemics_v1.4/section-016.md",
+      "sha256": "2f7c895fe1feae236c68c914a9c943aed1b89276d3b8db5e778654a5169a44e8"
+    },
+    {
+      "path": "research/publications/2026-09-10_recursive-epistemics_v1.4/section-017.md",
+      "sha256": "8f2b130730341aea5c2b6dc597d7c46b69a9a7c6b96ec82099865a8958e13cb8"
+    },
+    {
+      "path": "research/publications/2026-09-10_recursive-epistemics_v1.4/section-018.md",
+      "sha256": "04f282e7951757f0c994666244e1d1d831e30cd535dba519c07cf17d26a77a62"
+    },
+    {
+      "path": "research/publications/2026-09-10_recursive-epistemics_v1.4/section-019.md",
+      "sha256": "86b648e3e79712b571cc184e25d8b32a78910ee2f9e6f5cea1f8ab10e93919c8"
+    },
+    {
+      "path": "research/publications/2026-09-10_recursive-epistemics_v1.4/section-020.md",
+      "sha256": "e4be32128333cce31bced6086a8fec0efeaf55bf441033740af7ec937bf3785d"
+    },
+    {
+      "path": "research/publications/2026-09-10_recursive-epistemics_v1.4/section-021.md",
+      "sha256": "1c04c20eafcc50ff1d65941c2172f810f6684b3c31263a097d7a58a8a55186e8"
+    },
+    {
+      "path": "research/publications/2026-09-10_recursive-epistemics_v1.4/section-022.md",
+      "sha256": "dddc05fb1d179517644ba2f6c91b5e7e4aa4ebbc294f3b4321b13de37886f908"
+    },
+    {
+      "path": "research/publications/2026-09-10_recursive-epistemics_v1.4/section-023.md",
+      "sha256": "39dfb408696b2661407797f2e2a98c96d43b8bedc3c8a2e8b5e4c84da61601e0"
+    },
+    {
+      "path": "research/publications/2026-09-10_recursive-epistemics_v1.4/section-024.md",
+      "sha256": "49fbab75a4053088dc82cbda92e13aa23e260eb8abc8a6616891ca4719dec3d8"
+    },
+    {
+      "path": "research/publications/2026-09-10_recursive-epistemics_v1.4/section-025.md",
+      "sha256": "96d78fd65899fe28c5767d5e1ab7eec1faf93ca4a7c6bc18c266be06dfffdc59"
+    },
+    {
+      "path": "research/publications/2026-09-10_recursive-epistemics_v1.4/section-026.md",
+      "sha256": "c728c93eb7ed9c1650de17dbf1f77e0eed9662b89bdf157fac144ad22e75c44f"
+    },
+    {
+      "path": "research/publications/2026-09-10_recursive-epistemics_v1.4/section-027.md",
+      "sha256": "6f8400d1a9b7cccc4d0e71da42793de32f0eeef7feb7751c7e526868e21c0fb0"
+    },
+    {
+      "path": "research/publications/2026-09-10_recursive-epistemics_v1.4/section-028.md",
+      "sha256": "f8095f2b1b747e01201c99e036bdf4dbe8991d21722460186aa74182ac4f71b5"
+    },
+    {
+      "path": "research/publications/2026-09-10_recursive-epistemics_v1.4/section-029.md",
+      "sha256": "7f6f12904e19d22211cadf029b27216c12e408f4725cd43abf5ed9718e1fc0d4"
+    },
+    {
+      "path": "research/publications/2026-09-10_recursive-epistemics_v1.4/section-030.md",
+      "sha256": "15a5775f0a9fe996e97a60b83b761d081aa53d28dc4cb5bc3984137c9b8bfddf"
+    },
+    {
+      "path": "research/publications/2026-09-10_recursive-epistemics_v1.4/section-031.md",
+      "sha256": "a25827932cc8c51a25b3c60bbafbc22a6ef0b6da1bd3b1d7044836db96ad3072"
+    },
+    {
+      "path": "research/publications/2026-09-10_recursive-epistemics_v1.4/section-032.md",
+      "sha256": "7a18333af71bb3a55b61659ceb8f171ae5c6b7ad4070de413465fd69afb4d71d"
+    },
+    {
+      "path": "research/publications/2026-09-10_recursive-epistemics_v1.4/section-033.md",
+      "sha256": "fc81a32e9ac8538632d63442edf01c137d2db287a525b58384a2019b49e710de"
+    },
+    {
+      "path": "research/publications/2026-09-10_recursive-epistemics_v1.4/section-034.md",
+      "sha256": "2b8c8c07e92164ba2a6e899522c2d06f4318036930b1083a3e75a0c371e6a13b"
+    },
+    {
+      "path": "research/publications/2026-09-10_recursive-epistemics_v1.4/section-035.md",
+      "sha256": "3d7e95a1e86c1e4ff1cdf533a19d0266cdd3655ee83cf92533642f31e62277e9"
+    },
+    {
+      "path": "research/publications/2026-09-10_recursive-epistemics_v1.4/section-036.md",
+      "sha256": "87cfad9b9846c03943b2e20de391442a94174a9441bb04f33f31afa12a0c04bd"
+    },
+    {
+      "path": "research/publications/2026-09-10_recursive-epistemics_v1.4/section-037.md",
+      "sha256": "899fe3b3b953aae3cd2a04162c487829d0610d478932ac9581d3a05e32a95c00"
+    },
+    {
+      "path": "research/publications/2026-09-10_recursive-epistemics_v1.4/section-038.md",
+      "sha256": "1025bdd11377c63a1ec399c1f550c0d6b44e78fb9a32cbe63d10792df6a2328d"
+    },
+    {
+      "path": "research/publications/2026-09-10_recursive-epistemics_v1.4/section-039.md",
+      "sha256": "a73a1a6c941fbd51173f860c29e8bded38e02cbec49020927825a5a36457c552"
+    },
+    {
+      "path": "research/publications/2026-09-10_recursive-epistemics_v1.4/section-040.md",
+      "sha256": "b675b19a1b2801704bf14a9f9a2cd0d97a07847c35d2d3001bdbb26ca27f6c66"
+    },
+    {
+      "path": "research/publications/2026-09-10_recursive-epistemics_v1.4/section-041.md",
+      "sha256": "06ce6870a7951d1daebea54af812ef2a760134589a3b4f14061964ab111ce12d"
+    },
+    {
+      "path": "research/publications/2026-09-10_recursive-epistemics_v1.4/section-042.md",
+      "sha256": "cc44477d211172492b893ee9bdf49ae3869aa3519a63108663ccc055d563c3f2"
+    },
+    {
+      "path": "research/publications/2026-09-10_recursive-epistemics_v1.4/section-043.md",
+      "sha256": "81b6978bbc7f3a83337330cbdc433eef693145ea49f14989e837cac6fb23a208"
+    },
+    {
+      "path": "research/publications/2026-09-10_recursive-epistemics_v1.4/section-044.md",
+      "sha256": "79bbb1df5fab49e700a2b75337f0cbba86892f31980364d0911af0a032f657cd"
+    },
+    {
+      "path": "research/publications/2026-09-10_recursive-epistemics_v1.4/section-045.md",
+      "sha256": "94933abb063570d3597b0dfbc765ab9a96a26fc9c8a32500a8da672e44a9c5f1"
+    },
+    {
+      "path": "research/publications/2026-09-10_recursive-epistemics_v1.4/section-046.md",
+      "sha256": "87ad555264d789008fa5f4f683f67212bb5becb2805b4c46f2e3f3ea998a8b32"
+    },
+    {
+      "path": "research/publications/2026-09-10_recursive-epistemics_v1.4/section-047.md",
+      "sha256": "22fe21472520954c26be8c7b9c2966e584e44bdfaeb2d0f1236fc809b3071232"
+    },
+    {
+      "path": "research/publications/2026-09-10_recursive-epistemics_v1.4/section-048.md",
+      "sha256": "7d23c49b87ddb9cf1fe396c1356a976d92219c7a86a88333154ab03ebd934929"
+    },
+    {
+      "path": "research/publications/2026-09-10_recursive-epistemics_v1.4/section-049.md",
+      "sha256": "4a06e55910b6f2e8faed7368909b91c68a5179a87e51774b00481308a16ecb3f"
+    },
+    {
+      "path": "research/publications/2026-09-10_recursive-epistemics_v1.4/section-050.md",
+      "sha256": "755d644976c4c98e0f23295e3e45fe03b33ec6c75022dc26a6f00b84f70f8c2f"
+    },
+    {
+      "path": "research/publications/2026-09-10_recursive-epistemics_v1.4/section-051.md",
+      "sha256": "157942725d0517a7c5bb067be905ddb451198a8eea5804562ebf0763b77d16e1"
+    },
+    {
+      "path": "research/publications/2026-09-10_recursive-epistemics_v1.4/section-052.md",
+      "sha256": "ae0f2dc4f4c6404b70fe6990fc9ce60e3e7f8168a364a2f48ef0d3c7bf9a9a77"
+    },
+    {
+      "path": "research/publications/2026-09-10_recursive-epistemics_v1.4/section-053.md",
+      "sha256": "b81fbb0b0211474211722e14151297b47ed57ac7fa5755f113ac8220b118e5eb"
+    },
+    {
+      "path": "research/publications/2026-09-10_recursive-epistemics_v1.4/section-054.md",
+      "sha256": "7592b34d34f61beb3ab8e65b6b1c07a1a7ae648a60ca3a59e2a3c9f289e77ac7"
+    },
+    {
+      "path": "research/publications/2026-09-10_recursive-epistemics_v1.4/section-055.md",
+      "sha256": "b2207ad67a23b8f6f5c24941f751ef944c46bf515e18df9f61a43769578fb8ce"
+    },
+    {
+      "path": "research/publications/2026-09-10_recursive-epistemics_v1.4/section-056.md",
+      "sha256": "a8d44150aa9500d17fee2be73da14d7e0e34177ce04f7fd7f17348fcb7bd5526"
+    },
+    {
+      "path": "research/publications/2026-09-10_recursive-epistemics_v1.4/section-057.md",
+      "sha256": "e323a0224132585e95940a361254c2f06ba3b6741e21b239cc89fc20afa069ee"
+    },
+    {
+      "path": "research/publications/2026-09-10_recursive-epistemics_v1.4/section-058.md",
+      "sha256": "45375e1b17260d22617d1eb31b7f51e6863f28280e214e4abe1545496bd8a34d"
+    },
+    {
+      "path": "research/publications/2026-09-10_recursive-epistemics_v1.4/section-059.md",
+      "sha256": "984387da183f4ec80d37bb29273f45e0539f7de7814de857bcca342e9f666ff1"
+    },
+    {
+      "path": "research/publications/2026-09-10_recursive-epistemics_v1.4/section-060.md",
+      "sha256": "7b94fae8160da00b68987619194fe9db08a6b276b97b34eb163b888a3182a545"
+    },
+    {
+      "path": "research/publications/2026-09-13_recursive-epistemics_v1.5/CITATION.bib",
+      "sha256": "95e397bc53111e21c90f12be59698048908cc9f39f449567a85b4788b8e17af7"
+    },
+    {
+      "path": "research/publications/2026-09-13_recursive-epistemics_v1.5/CITATION.cff",
+      "sha256": "afa0d5ab05c82e91d5de3ec261525abc762e38625c4e79589340fa6ae1a70ca5"
+    },
+    {
+      "path": "research/publications/2026-09-13_recursive-epistemics_v1.5/FORSCHUNGSBERICHT.md",
+      "sha256": "c543e0b3712db0fde72fb1fe6f7534688eac3974418c7def032c59a26fae404d"
+    },
+    {
+      "path": "research/publications/2026-09-13_recursive-epistemics_v1.5/MANUSCRIPT.md",
+      "sha256": "5cf0a6ff9aedacf39033661ab3aee7fbdeaf143eeb3739f308989c2f9c375804"
+    },
+    {
+      "path": "research/publications/2026-09-13_recursive-epistemics_v1.5/MHRN_Dissertationsmanuskript_v1.5.docx",
+      "sha256": "2526641b547088400943eb6cce03e3a9796bdfabdadb6969aa67fada379f95bb"
+    },
+    {
+      "path": "research/publications/2026-09-13_recursive-epistemics_v1.5/MHRN_Dissertationsmanuskript_v1.5.pdf",
+      "sha256": "56bfcda1c4c76e00ee13c69d6626e30dd85bf2eb430e5d6593b83f3648a3a907"
+    },
+    {
+      "path": "research/publications/2026-09-13_recursive-epistemics_v1.5/MHRN_Forschungsbericht_v1.5.docx",
+      "sha256": "5cc41fc6c640860ee6793bd3da6cecd6dd4667a6280ebc124b26fe484002269b"
+    },
+    {
+      "path": "research/publications/2026-09-13_recursive-epistemics_v1.5/MHRN_Forschungsbericht_v1.5.pdf",
+      "sha256": "233a43f6a7ebdf4dfb80bed6b915888e8931e051a2e755f80d0ce3119e2e4b00"
+    },
+    {
+      "path": "research/publications/2026-09-13_recursive-epistemics_v1.5/README.md",
+      "sha256": "b2106923483c232676327d1d775d087d09bd135b03d6e0d6d24697201487b5f7"
+    },
+    {
+      "path": "research/publications/2026-09-13_recursive-epistemics_v1.5/literatur_revision.bib",
+      "sha256": "f8d4660f11500d3130ad77e3091360c0a86b10ca88eb644433b6f39152a49716"
+    },
+    {
+      "path": "research/publications/2026-09-13_recursive-epistemics_v1.5/manifest.json",
+      "sha256": "7b08f0d8591db4e5f685b995a659aecf2c1f80730160719f19dd45cf3da181a0"
+    },
+    {
+      "path": "research/publications/2026-09-13_recursive-epistemics_v1.5/methodenpruefung.json",
+      "sha256": "b4aec2c2088d09b48f1d25f5c6d41f84389f44508bc5edd6938a516818b70769"
+    },
+    {
+      "path": "research/publications/2026-09-13_recursive-epistemics_v1.5/methodenpruefung.py",
+      "sha256": "c17e8207ff001c2f3d072946844d6517a13cfe569edf4141cfa7dd14ab6916c5"
+    },
+    {
+      "path": "research/publications/2026-09-13_recursive-epistemics_v1.5/section-000.md",
+      "sha256": "e8593d127d3283b00ae1cc5f19db418fa942b336f7a9ac8873d9deeda5409ee5"
+    },
+    {
+      "path": "research/publications/2026-09-13_recursive-epistemics_v1.5/section-001.md",
+      "sha256": "f064659ce80ae5549ac0970b5003e21bad834291f27e4e5cd8fe1adfe30e0872"
+    },
+    {
+      "path": "research/publications/2026-09-13_recursive-epistemics_v1.5/section-002.md",
+      "sha256": "f0bb0a2f7b81dc821563510abae178bf9c90f03c78e17a5896112ceb21b727ff"
+    },
+    {
+      "path": "research/publications/2026-09-13_recursive-epistemics_v1.5/section-003.md",
+      "sha256": "779620fd8b91975ba6c0f386b2dc6569c8ff67ffc308aa2c80b0e913b521d41b"
+    },
+    {
+      "path": "research/publications/2026-09-13_recursive-epistemics_v1.5/section-004.md",
+      "sha256": "4d07cf8d0d661245adb9ad4e4d9ca4163394968fac5bb512b4a6a5a4a02a601e"
+    },
+    {
+      "path": "research/publications/2026-09-13_recursive-epistemics_v1.5/section-005.md",
+      "sha256": "ebfc634577151107fa0b2132b034034a1e6b954c9714283cc444caa14c46fc16"
+    },
+    {
+      "path": "research/publications/2026-09-13_recursive-epistemics_v1.5/section-006.md",
+      "sha256": "d8e619b8191ff89cd6bc434736a70b7671a59b15b10265bdb88977a5a4342a7b"
+    },
+    {
+      "path": "research/publications/2026-09-13_recursive-epistemics_v1.5/section-007.md",
+      "sha256": "4177df8c133746ffd72da60bfba986f8e2fe6c64da14c3ef074e0175b9209c70"
+    },
+    {
+      "path": "research/publications/2026-09-13_recursive-epistemics_v1.5/section-008.md",
+      "sha256": "c92209492a2c7de0e0e6ffbd60f7856ff2b258b1e3d05d51fe4792bc839d8b80"
+    },
+    {
+      "path": "research/publications/2026-09-13_recursive-epistemics_v1.5/section-009.md",
+      "sha256": "d020834c961c4a89a532a7474d14929cceb8de9875a83dd6394d16aa5bd79cec"
+    },
+    {
+      "path": "research/publications/2026-09-13_recursive-epistemics_v1.5/section-010.md",
+      "sha256": "391153b181dd84aea6a7a5f27b44f386089f42f5386a2bb7b2fc62c4c12ac8e7"
+    },
+    {
+      "path": "research/publications/2026-09-13_recursive-epistemics_v1.5/section-011.md",
+      "sha256": "1d7cd3808c0ad06af9062472167bbac4de20189bf33e4600041a54371127d2b5"
+    },
+    {
+      "path": "research/publications/2026-09-13_recursive-epistemics_v1.5/section-012.md",
+      "sha256": "bb60231bb45e961c26aa45a1d25ad43eaaae55a9d6243f1bf22c1b80572b2ee2"
+    },
+    {
+      "path": "research/publications/2026-09-13_recursive-epistemics_v1.5/section-013.md",
+      "sha256": "acb439e3bc04bcf028e27583aff3bfcfbc9e3089cddcaed57f622234de67f85c"
+    },
+    {
+      "path": "research/publications/2026-09-13_recursive-epistemics_v1.5/section-014.md",
+      "sha256": "80a8a006653102df78316f7b81247a967248500f7da62f1267de5e479ab52f03"
+    },
+    {
+      "path": "research/publications/2026-09-13_recursive-epistemics_v1.5/section-015.md",
+      "sha256": "6d4dc9adcfbbeeef6b38966c30392b1904071faa07448ffc6581b195e289c91c"
+    },
+    {
+      "path": "research/publications/2026-09-13_recursive-epistemics_v1.5/section-016.md",
+      "sha256": "2f7c895fe1feae236c68c914a9c943aed1b89276d3b8db5e778654a5169a44e8"
+    },
+    {
+      "path": "research/publications/2026-09-13_recursive-epistemics_v1.5/section-017.md",
+      "sha256": "8f2b130730341aea5c2b6dc597d7c46b69a9a7c6b96ec82099865a8958e13cb8"
+    },
+    {
+      "path": "research/publications/2026-09-13_recursive-epistemics_v1.5/section-018.md",
+      "sha256": "04f282e7951757f0c994666244e1d1d831e30cd535dba519c07cf17d26a77a62"
+    },
+    {
+      "path": "research/publications/2026-09-13_recursive-epistemics_v1.5/section-019.md",
+      "sha256": "86b648e3e79712b571cc184e25d8b32a78910ee2f9e6f5cea1f8ab10e93919c8"
+    },
+    {
+      "path": "research/publications/2026-09-13_recursive-epistemics_v1.5/section-020.md",
+      "sha256": "e4be32128333cce31bced6086a8fec0efeaf55bf441033740af7ec937bf3785d"
+    },
+    {
+      "path": "research/publications/2026-09-13_recursive-epistemics_v1.5/section-021.md",
+      "sha256": "1c04c20eafcc50ff1d65941c2172f810f6684b3c31263a097d7a58a8a55186e8"
+    },
+    {
+      "path": "research/publications/2026-09-13_recursive-epistemics_v1.5/section-022.md",
+      "sha256": "dddc05fb1d179517644ba2f6c91b5e7e4aa4ebbc294f3b4321b13de37886f908"
+    },
+    {
+      "path": "research/publications/2026-09-13_recursive-epistemics_v1.5/section-023.md",
+      "sha256": "39dfb408696b2661407797f2e2a98c96d43b8bedc3c8a2e8b5e4c84da61601e0"
+    },
+    {
+      "path": "research/publications/2026-09-13_recursive-epistemics_v1.5/section-024.md",
+      "sha256": "49fbab75a4053088dc82cbda92e13aa23e260eb8abc8a6616891ca4719dec3d8"
+    },
+    {
+      "path": "research/publications/2026-09-13_recursive-epistemics_v1.5/section-025.md",
+      "sha256": "96d78fd65899fe28c5767d5e1ab7eec1faf93ca4a7c6bc18c266be06dfffdc59"
+    },
+    {
+      "path": "research/publications/2026-09-13_recursive-epistemics_v1.5/section-026.md",
+      "sha256": "c728c93eb7ed9c1650de17dbf1f77e0eed9662b89bdf157fac144ad22e75c44f"
+    },
+    {
+      "path": "research/publications/2026-09-13_recursive-epistemics_v1.5/section-027.md",
+      "sha256": "6f8400d1a9b7cccc4d0e71da42793de32f0eeef7feb7751c7e526868e21c0fb0"
+    },
+    {
+      "path": "research/publications/2026-09-13_recursive-epistemics_v1.5/section-028.md",
+      "sha256": "f8095f2b1b747e01201c99e036bdf4dbe8991d21722460186aa74182ac4f71b5"
+    },
+    {
+      "path": "research/publications/2026-09-13_recursive-epistemics_v1.5/section-029.md",
+      "sha256": "7f6f12904e19d22211cadf029b27216c12e408f4725cd43abf5ed9718e1fc0d4"
+    },
+    {
+      "path": "research/publications/2026-09-13_recursive-epistemics_v1.5/section-030.md",
+      "sha256": "15a5775f0a9fe996e97a60b83b761d081aa53d28dc4cb5bc3984137c9b8bfddf"
+    },
+    {
+      "path": "research/publications/2026-09-13_recursive-epistemics_v1.5/section-031.md",
+      "sha256": "a25827932cc8c51a25b3c60bbafbc22a6ef0b6da1bd3b1d7044836db96ad3072"
+    },
+    {
+      "path": "research/publications/2026-09-13_recursive-epistemics_v1.5/section-032.md",
+      "sha256": "7a18333af71bb3a55b61659ceb8f171ae5c6b7ad4070de413465fd69afb4d71d"
+    },
+    {
+      "path": "research/publications/2026-09-13_recursive-epistemics_v1.5/section-033.md",
+      "sha256": "fc81a32e9ac8538632d63442edf01c137d2db287a525b58384a2019b49e710de"
+    },
+    {
+      "path": "research/publications/2026-09-13_recursive-epistemics_v1.5/section-034.md",
+      "sha256": "2b8c8c07e92164ba2a6e899522c2d06f4318036930b1083a3e75a0c371e6a13b"
+    },
+    {
+      "path": "research/publications/2026-09-13_recursive-epistemics_v1.5/section-035.md",
+      "sha256": "3d7e95a1e86c1e4ff1cdf533a19d0266cdd3655ee83cf92533642f31e62277e9"
+    },
+    {
+      "path": "research/publications/2026-09-13_recursive-epistemics_v1.5/section-036.md",
+      "sha256": "87cfad9b9846c03943b2e20de391442a94174a9441bb04f33f31afa12a0c04bd"
+    },
+    {
+      "path": "research/publications/2026-09-13_recursive-epistemics_v1.5/section-037.md",
+      "sha256": "899fe3b3b953aae3cd2a04162c487829d0610d478932ac9581d3a05e32a95c00"
+    },
+    {
+      "path": "research/publications/2026-09-13_recursive-epistemics_v1.5/section-038.md",
+      "sha256": "1025bdd11377c63a1ec399c1f550c0d6b44e78fb9a32cbe63d10792df6a2328d"
+    },
+    {
+      "path": "research/publications/2026-09-13_recursive-epistemics_v1.5/section-039.md",
+      "sha256": "a73a1a6c941fbd51173f860c29e8bded38e02cbec49020927825a5a36457c552"
+    },
+    {
+      "path": "research/publications/2026-09-13_recursive-epistemics_v1.5/section-040.md",
+      "sha256": "b675b19a1b2801704bf14a9f9a2cd0d97a07847c35d2d3001bdbb26ca27f6c66"
+    },
+    {
+      "path": "research/publications/2026-09-13_recursive-epistemics_v1.5/section-041.md",
+      "sha256": "06ce6870a7951d1daebea54af812ef2a760134589a3b4f14061964ab111ce12d"
+    },
+    {
+      "path": "research/publications/2026-09-13_recursive-epistemics_v1.5/section-042.md",
+      "sha256": "cc44477d211172492b893ee9bdf49ae3869aa3519a63108663ccc055d563c3f2"
+    },
+    {
+      "path": "research/publications/2026-09-13_recursive-epistemics_v1.5/section-043.md",
+      "sha256": "81b6978bbc7f3a83337330cbdc433eef693145ea49f14989e837cac6fb23a208"
+    },
+    {
+      "path": "research/publications/2026-09-13_recursive-epistemics_v1.5/section-044.md",
+      "sha256": "79bbb1df5fab49e700a2b75337f0cbba86892f31980364d0911af0a032f657cd"
+    },
+    {
+      "path": "research/publications/2026-09-13_recursive-epistemics_v1.5/section-045.md",
+      "sha256": "94933abb063570d3597b0dfbc765ab9a96a26fc9c8a32500a8da672e44a9c5f1"
+    },
+    {
+      "path": "research/publications/2026-09-13_recursive-epistemics_v1.5/section-046.md",
+      "sha256": "87ad555264d789008fa5f4f683f67212bb5becb2805b4c46f2e3f3ea998a8b32"
+    },
+    {
+      "path": "research/publications/2026-09-13_recursive-epistemics_v1.5/section-047.md",
+      "sha256": "22fe21472520954c26be8c7b9c2966e584e44bdfaeb2d0f1236fc809b3071232"
+    },
+    {
+      "path": "research/publications/2026-09-13_recursive-epistemics_v1.5/section-048.md",
+      "sha256": "7d23c49b87ddb9cf1fe396c1356a976d92219c7a86a88333154ab03ebd934929"
+    },
+    {
+      "path": "research/publications/2026-09-13_recursive-epistemics_v1.5/section-049.md",
+      "sha256": "4a06e55910b6f2e8faed7368909b91c68a5179a87e51774b00481308a16ecb3f"
+    },
+    {
+      "path": "research/publications/2026-09-13_recursive-epistemics_v1.5/section-050.md",
+      "sha256": "755d644976c4c98e0f23295e3e45fe03b33ec6c75022dc26a6f00b84f70f8c2f"
+    },
+    {
+      "path": "research/publications/2026-09-13_recursive-epistemics_v1.5/section-051.md",
+      "sha256": "157942725d0517a7c5bb067be905ddb451198a8eea5804562ebf0763b77d16e1"
+    },
+    {
+      "path": "research/publications/2026-09-13_recursive-epistemics_v1.5/section-052.md",
+      "sha256": "ae0f2dc4f4c6404b70fe6990fc9ce60e3e7f8168a364a2f48ef0d3c7bf9a9a77"
+    },
+    {
+      "path": "research/publications/2026-09-13_recursive-epistemics_v1.5/section-053.md",
+      "sha256": "b81fbb0b0211474211722e14151297b47ed57ac7fa5755f113ac8220b118e5eb"
+    },
+    {
+      "path": "research/publications/2026-09-13_recursive-epistemics_v1.5/section-054.md",
+      "sha256": "7592b34d34f61beb3ab8e65b6b1c07a1a7ae648a60ca3a59e2a3c9f289e77ac7"
+    },
+    {
+      "path": "research/publications/2026-09-13_recursive-epistemics_v1.5/section-055.md",
+      "sha256": "b2207ad67a23b8f6f5c24941f751ef944c46bf515e18df9f61a43769578fb8ce"
+    },
+    {
+      "path": "research/publications/2026-09-13_recursive-epistemics_v1.5/section-056.md",
+      "sha256": "a8d44150aa9500d17fee2be73da14d7e0e34177ce04f7fd7f17348fcb7bd5526"
+    },
+    {
+      "path": "research/publications/2026-09-13_recursive-epistemics_v1.5/section-057.md",
+      "sha256": "e323a0224132585e95940a361254c2f06ba3b6741e21b239cc89fc20afa069ee"
+    },
+    {
+      "path": "research/publications/2026-09-13_recursive-epistemics_v1.5/section-058.md",
+      "sha256": "45375e1b17260d22617d1eb31b7f51e6863f28280e214e4abe1545496bd8a34d"
+    },
+    {
+      "path": "research/publications/2026-09-13_recursive-epistemics_v1.5/section-059.md",
+      "sha256": "984387da183f4ec80d37bb29273f45e0539f7de7814de857bcca342e9f666ff1"
+    },
+    {
+      "path": "research/publications/2026-09-13_recursive-epistemics_v1.5/section-060.md",
+      "sha256": "7b94fae8160da00b68987619194fe9db08a6b276b97b34eb163b888a3182a545"
+    },
+    {
+      "path": "research/publications/2026-09-13_recursive-epistemics_v1.5/section-061.md",
+      "sha256": "6d9cf32b87d139999fa9d68b369ce083b451b2acb840fcd546ca020ce4da07e7"
+    },
+    {
+      "path": "research/publications/2026-09-13_recursive-epistemics_v1.5/section-062.md",
+      "sha256": "e0b0aba0df28e54a10a8ef1c5a88ed92d29639d2e214f36ef082b0372b0c45a7"
+    },
+    {
+      "path": "research/publications/2026-09-13_recursive-epistemics_v1.5/section-063.md",
+      "sha256": "50e40df66c441cfb4563587ace67f72057f17e45039fa7d5c02810bf26b57d9f"
+    },
+    {
+      "path": "research/publications/2026-09-13_recursive-epistemics_v1.5/section-064.md",
+      "sha256": "9ca3931650fe94707868dd5d4e4f3d84dfb9e1a8c05005e918797876094b59ce"
+    },
+    {
+      "path": "research/publications/2026-09-13_recursive-epistemics_v1.5/section-065.md",
+      "sha256": "1ecde12b87ed25b98bc1981b2569763c45667942386490324d234110a321910b"
+    },
+    {
+      "path": "research/publications/2026-09-13_recursive-epistemics_v1.5/section-066.md",
+      "sha256": "eccdc7289d71ca95086a687c7f4d5605fa5ece0c045aaad1c22fb415db7cdc64"
+    },
+    {
+      "path": "research/publications/2026-09-13_recursive-epistemics_v1.5/section-067.md",
+      "sha256": "92cff565721277d669421f7022da5152169ae33734016d526a1bbee7fbaac6a5"
+    },
+    {
+      "path": "research/publications/2026-09-13_recursive-epistemics_v1.5/section-068.md",
+      "sha256": "01206211f2c25a8fd27f0903e19204840a09f10c717ccce9cc2281e5cef7e8e3"
+    },
+    {
+      "path": "research/publications/2026-09-13_stages-8-10-frontier-supplement/README.md",
+      "sha256": "7790df69f0f21bfb37eb24008ac408d5d8fe530365d57400e4eb9cc731ae8b2c"
+    },
+    {
+      "path": "research/publications/2026-09-14_stage4-specialized-areas_v1.5-addendum/README.md",
+      "sha256": "2ddb504aa725bc8711cb1e5de5f83a1dd37c549cb57d94e87f38a5ae96e1e349"
+    },
+    {
+      "path": "research/publications/2026-09-14_stage5-integrated-nervous-system_v1.5-addendum/README.md",
+      "sha256": "bdfba08ccd8330ea5876e0dbe5faba7868bd2dbc3a484692d703d0729bf95b59"
+    },
+    {
+      "path": "research/publications/2026-09-14_stages0-6-integration_v1.5-addendum/README.md",
+      "sha256": "493e5bb3e7b2db1c9650595bdb8fea02e1918d9319106e2c52a76e44538317b7"
+    },
+    {
+      "path": "research/publications/2026-09-15_recursive-epistemics_v1.6/FORSCHUNGSBERICHT.md",
+      "sha256": "37b026ca204c78488df3d7a496c52edf0ed72b2ae4ccfc3abb7e47359e157326"
+    },
+    {
+      "path": "research/publications/2026-09-15_recursive-epistemics_v1.6/INTEGRITY_AND_ATTRIBUTION.md",
+      "sha256": "eadbf3492cd28dd50725f092e5a138e0deacb67b2c208ff3a79bbdd4658bbb9a"
+    },
+    {
+      "path": "research/publications/2026-09-15_recursive-epistemics_v1.6/MANUSCRIPT.md",
+      "sha256": "60786cd727b1d91a5f9cf50ad36a08bc9aae602ea14b96df1407449622e310f0"
+    },
+    {
+      "path": "research/publications/2026-09-15_recursive-epistemics_v1.6/README.md",
+      "sha256": "ba1ec86d3f81ce0b618862ef72d41d5893998c99243675c3917907f1d6b0c17d"
+    },
+    {
+      "path": "research/publications/2026-09-15_recursive-epistemics_v1.6/REFERENCES.md",
+      "sha256": "06eff5d54210169ebcac3d0f5114fa9e1581196804a9fb1ce5a08ba2e774af0e"
+    },
+    {
+      "path": "research/publications/2026-09-15_recursive-epistemics_v1.6/SCIENTIFIC_STAGE_MATRIX.md",
+      "sha256": "544a750d06f751c2ea0c218b470b02b1eac8c07c1dcc9729f4fc65f1d9b8d989"
+    },
+    {
+      "path": "research/publications/2026-09-15_recursive-epistemics_v1.6/manifest.json",
+      "sha256": "8cbff6e705b5dd99ff18694f9b0464959ff226a4695f365c19f02fb144ad2cf7"
+    },
+    {
+      "path": "research/publications/2026-09-15_recursive-epistemics_v1.7/AUTHOR_AND_CREATION_PRACTICE.md",
+      "sha256": "9165a2b67fb31fd77e6dccd0da7df4225407c913bbf352b52be6ec7399156603"
+    },
+    {
+      "path": "research/publications/2026-09-15_recursive-epistemics_v1.7/AUTHOR_POSITION.md",
+      "sha256": "c87c7c1280400c5b51fdc7f554c3fa3e5a522d6cb12305b1ab7655681437e5f2"
+    },
+    {
+      "path": "research/publications/2026-09-15_recursive-epistemics_v1.7/CONTRIBUTION_MAP.md",
+      "sha256": "297b0dd24c3885da2822a88367e4c9b69684b9235d426a6e80f4b1ca5ff35c6c"
+    },
+    {
+      "path": "research/publications/2026-09-15_recursive-epistemics_v1.7/FORSCHUNGSBERICHT.md",
+      "sha256": "0be23900de20f6b22469c26306725d61bf118c3fff647e52c71d7f81cd7546d6"
+    },
+    {
+      "path": "research/publications/2026-09-15_recursive-epistemics_v1.7/INTEGRITY_AND_ATTRIBUTION.md",
+      "sha256": "76e38730b65b51f407d1f723f6dc059db0b7fcf26469259df56e58421a1776d5"
+    },
+    {
+      "path": "research/publications/2026-09-15_recursive-epistemics_v1.7/MANUSCRIPT.md",
+      "sha256": "1d25cb8f58aa34dae594d033bbc7d5a9a07f0e08feedc1f707224a2e5e1262b7"
+    },
+    {
+      "path": "research/publications/2026-09-15_recursive-epistemics_v1.7/README.md",
+      "sha256": "34b33f20494fb6259a07296a50dd8205f8790b982d3763a02475922e12bdd52c"
+    },
+    {
+      "path": "research/publications/2026-09-15_recursive-epistemics_v1.7/REFERENCES.md",
+      "sha256": "83cd9c324f49f283199654f324bfff721a9cc35005d89ab1ffa761a5489773a2"
+    },
+    {
+      "path": "research/publications/2026-09-15_recursive-epistemics_v1.7/SAFETY_AUTONOMY_RESEARCH.md",
+      "sha256": "d015ee1e79bbaa63c8a2faaa28523ef30f6d99b99790d0134877aab252e02ac1"
+    },
+    {
+      "path": "research/publications/2026-09-15_recursive-epistemics_v1.7/SCIENTIFIC_STAGE_MATRIX.md",
+      "sha256": "a32f0a2c724ef270fe513af3b4f560394d22cafb4d58c66f53e680aef9c2f7d2"
+    },
+    {
+      "path": "research/publications/2026-09-15_recursive-epistemics_v1.7/STAGE6_CL001_CL003_BALANCE.md",
+      "sha256": "c9e6e155a7194ceaca2e94b0a97960e727e3f3848a4cf44a9a062cb6e5b82bf4"
+    },
+    {
+      "path": "research/publications/2026-09-15_recursive-epistemics_v1.7/WORK_IN_PROGRESS.md",
+      "sha256": "1197c2fb01f3d4a476cc753a1adfa2f9274df5ee1fbe0a7826daa10f2231380e"
+    },
+    {
+      "path": "research/publications/2026-09-15_recursive-epistemics_v1.7/manifest.json",
+      "sha256": "231354e1deccd530b4f1cac3b75b891fc509d784e4aeedc88fc163c79d159427"
+    },
+    {
+      "path": "research/publications/2026-09-15_scientific-maturity-integrity-addendum/README.md",
+      "sha256": "2f88f9d54f1f8264ff96b0c7820380caeb28c24c89a34644358c71b649968096"
+    },
+    {
+      "path": "research/publications/2026-09-15_semantic-vs-raw-replay-negative/MANUSCRIPT.md",
+      "sha256": "58695cad4e59634abfe29ac93f99311473d9ba98579ea9a07e2dc955e0cdc7d7"
+    },
+    {
+      "path": "research/publications/2026-09-15_semantic-vs-raw-replay-negative/METHODS_AND_DEVIATIONS.md",
+      "sha256": "5e0538f177860ea70e03ed27fea24c40c64f176dea27c23d1cd1e746ab129e08"
+    },
+    {
+      "path": "research/publications/2026-09-15_semantic-vs-raw-replay-negative/README.md",
+      "sha256": "767059c7a658cf39d209104df6e83b8f361b79efc0da36fef49f95d3fbb9e3d9"
+    },
+    {
+      "path": "research/publications/2026-09-15_stage6-memory-world-model_v1.5-addendum/APPENDIX_A_STAGE6_CONTRACTS.md",
+      "sha256": "427fdbdda7f580b535dddd793aed2c8acdbcff96e179616dd1cce028d3b18581"
+    },
+    {
+      "path": "research/publications/2026-09-15_stage6-memory-world-model_v1.5-addendum/APPENDIX_B_STAGE6_EXPERIMENT_MATRIX.md",
+      "sha256": "872834608e81d9ba28f81b5e6478efb027c4693d4332464a8e45c60eddb72f57"
+    },
+    {
+      "path": "research/publications/2026-09-15_stage6-memory-world-model_v1.5-addendum/APPENDIX_C_STAGE6_LITERATURE_NOTES.md",
+      "sha256": "44816c3e131a798ab5bed789ced1c6122af872d16e1d037eca6a17e9788a7131"
+    },
+    {
+      "path": "research/publications/2026-09-15_stage6-memory-world-model_v1.5-addendum/APPENDIX_D_REPRODUCIBILITY.md",
+      "sha256": "c374c98919069a9594f7fff03392ffa932860a9dc73e02c85bfa9128875e9628"
+    },
+    {
+      "path": "research/publications/2026-09-15_stage6-memory-world-model_v1.5-addendum/APPENDIX_E_FUNCTIONAL_PROTOCOLS.md",
+      "sha256": "dad6d059fc73266b8cb37e66d704c2f6cb5a5af982276ec860c9ea53b711e460"
+    },
+    {
+      "path": "research/publications/2026-09-15_stage6-memory-world-model_v1.5-addendum/APPENDIX_F_SPIKING_WORLD_MODEL.md",
+      "sha256": "80c82847b9cf110abc4ad78ee76cccaa3f696c1348dd780b0d451b8c37c1ff7a"
+    },
+    {
+      "path": "research/publications/2026-09-15_stage6-memory-world-model_v1.5-addendum/README.md",
+      "sha256": "6395f6778242760fcbd9faf31633a5a366df2dd5f3c3959b117ce746887f5e77"
+    }
+  ],
+  "historical_data_reinterpreted": false,
+  "limitation": "Byte preservation does not certify completeness of interpretation."
+}

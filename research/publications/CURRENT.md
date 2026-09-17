@@ -1,11 +1,9 @@
-# Aktuelle wissenschaftliche Fassung
+# Aktuelle wissenschaftliche Arbeitsfassung
 
-Der kanonische Current-Pointer wird zusätzlich maschinenlesbar in `catalog.json` geführt.
+**Recursive Epistemics / Rekursive Epistemik 1.8 - current_wip**
 
-**Aktuelle fortgeschriebene Arbeitsfassung:** [Recursive Epistemics 1.7 — Vollmanuskript](2026-09-15_recursive-epistemics_v1.7/MANUSCRIPT.md)
+[Gesamtmanuskript](2026-09-17_recursive-epistemics_v1.8/MANUSCRIPT.md) | [Kapitel und Register](2026-09-17_recursive-epistemics_v1.8/README.md)
 
-**Unmittelbare Vorgängerfassung:** [1.6](2026-09-15_recursive-epistemics_v1.6/README.md)
+Edition 1.8 setzt die fuer 2.0 geplante elfteilige Struktur bereits als Arbeitsfassung um. Das ist weder ein Software-Release 2.0 noch eine neue Evidenzentscheidung.
 
-**Eingefrorene empirische Basis:** [Frozen 1.5](FROZEN_V1.5.md)
-
-Die Current-Fassung ist `work in progress`. Änderungen an der Interpretation oder Struktur sind möglich; historische DATA-, EVID- und Publikationsartefakte bleiben unverändert. Der Publication Viewer soll immer diesem Current-Stand folgen.
+[Vorgaenger 1.7](2026-09-15_recursive-epistemics_v1.7/README.md) | [Frozen empirical baseline 1.5](FROZEN_V1.5.md)

@@ -149,12 +149,12 @@
     },
     "research/publications/2026-09-15_recursive-epistemics_v1.7": {
       "kind": "publication",
-      "status": "current_wip",
-      "authority": "current_integrative_manuscript",
-      "mutability": "versioned_editable_source_read_only_viewer",
-      "citation": "cite_as_work_in_progress_with_version",
-      "evidence_role": "interpretation_only_no_automatic_evid",
-      "rationale": "Current continuously revised publication shown read-only by the Publication Viewer."
+      "status": "historical",
+      "authority": "publication_interpretation",
+      "mutability": "immutable_historical_snapshot",
+      "citation": "cite_edition_path_and_git_revision",
+      "evidence_role": "interpretation_not_automatic_evidence",
+      "rationale": "Edition 1.7 predecessor retained unchanged."
     },
     "research/registry": {
       "kind": "registry",
@@ -209,6 +209,24 @@
       "citation": "cite_as_planning_not_result",
       "evidence_role": "planning_only",
       "rationale": "Roadmap/TODO material expresses plans and must not be read as achieved evidence."
+    },
+    "research/publications/2026-09-17_recursive-epistemics_v1.8": {
+      "kind": "publication",
+      "status": "current_wip",
+      "authority": "publication_interpretation",
+      "mutability": "editable",
+      "citation": "cite_edition_path_and_git_revision",
+      "evidence_role": "interpretation_not_automatic_evidence",
+      "rationale": "Current edition 1.8; structure change does not promote evidence."
+    },
+    "research/publications/2026-09-17_recursive-epistemics_v1.8/registers": {
+      "kind": "generated",
+      "status": "generated",
+      "authority": "generated_projection",
+      "mutability": "regenerable",
+      "citation": "cite_underlying_source_and_revision",
+      "evidence_role": "projection_not_evidence_by_itself",
+      "rationale": "Deterministic publication projections, not canonical EVID."
     }
   }
 }

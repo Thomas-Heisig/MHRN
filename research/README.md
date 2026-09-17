@@ -1,3 +1,6 @@
+<!-- publication-current-1.8 -->
+> Aktuelle wissenschaftliche Arbeitsfassung: [Edition 1.8](publications/2026-09-17_recursive-epistemics_v1.8/MANUSCRIPT.md). Registry, DATA und EVID behalten ihre getrennten Autoritaeten.
+
 # MHRN Research — kanonischer wissenschaftlicher Einstieg
 
 **Stand:** 15. September 2026  

@@ -1,3 +1,6 @@
+<!-- publication-current-1.8 -->
+> Current WIP: [Edition 1.8](2026-09-17_recursive-epistemics_v1.8/MANUSCRIPT.md). Frozen 1.5 und alle Vorgaenger bleiben erreichbar.
+
 # Rekursive Epistemik — aktuelle Arbeitsfassung 1.7
 
 **Current WIP:** [Vollmanuskript 1.7](2026-09-15_recursive-epistemics_v1.7/MANUSCRIPT.md) · 15. September 2026  

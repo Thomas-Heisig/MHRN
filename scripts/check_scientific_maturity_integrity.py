@@ -13,6 +13,7 @@ from pathlib import Path
 from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
+V18 = "research/publications/2026-09-17_recursive-epistemics_v1.8"
 V17 = "research/publications/2026-09-15_recursive-epistemics_v1.7"
 V16 = "research/publications/2026-09-15_recursive-epistemics_v1.6"
 V15 = "research/publications/2026-09-13_recursive-epistemics_v1.5"
@@ -126,24 +127,24 @@ def main() -> int:
     if len(current) == 1:
         item = current[0]
         require(
-            item.get("version") == "1.7",
-            "current publication must be edition 1.7",
+            item.get("version") == "1.8",
+            "current publication must be edition 1.8",
         )
         require(
             item.get("edition_status") == "current_wip",
             "edition 1.7 must be visibly marked current_wip",
         )
         require(
-            item.get("entrypoint", "").endswith("v1.7/MANUSCRIPT.md"),
-            "Publication Viewer must open the current v1.7 manuscript",
+            item.get("entrypoint", "").endswith("v1.8/MANUSCRIPT.md"),
+            "Publication Viewer must open the current v1.8 manuscript",
         )
         require(
             item.get("automatic_evidence_promotion") is False,
             "current publication must not auto-promote evidence",
         )
         require(
-            item.get("predecessor") == "PUB-RECURSIVE-EPISTEMICS-20260915-V1.6",
-            "edition 1.7 predecessor mismatch",
+            item.get("predecessor") == "PUB-RECURSIVE-EPISTEMICS-20260915-V1.7",
+            "edition 1.8 predecessor mismatch",
         )
         require(
             item.get("inherits_empirical_edition")
@@ -217,7 +218,7 @@ def main() -> int:
     scope = identity.get("scientific_scope", {})
     governance = identity.get("document_governance", {})
     require(
-        isinstance(publication, dict) and publication.get("edition") == "1.7",
+        isinstance(publication, dict) and publication.get("edition") == "1.8",
         "project identity publication edition mismatch",
     )
     require(
@@ -255,6 +256,7 @@ def main() -> int:
         "docs/08-roadmap/SCIENTIFIC_MATURITY_ROADMAP.md",
         "research/document_governance_overrides.json",
         "scripts/audit_document_governance.py",
+        f"{V18}/MANUSCRIPT.md",
         f"{V17}/MANUSCRIPT.md",
         f"{V17}/FORSCHUNGSBERICHT.md",
         f"{V17}/AUTHOR_POSITION.md",
@@ -273,7 +275,7 @@ def main() -> int:
     integrity_path = ROOT / "research/INTEGRITY_AND_ATTRIBUTION.md"
     integrity = integrity_path.read_text(encoding="utf-8").lower()
     related = (ROOT / "research/RELATED_WORK.md").read_text(encoding="utf-8")
-    manuscript = (ROOT / V17 / "MANUSCRIPT.md").read_text(encoding="utf-8").lower()
+    manuscript = (ROOT / V18 / "MANUSCRIPT.md").read_text(encoding="utf-8").lower()
     author_position = (
         (ROOT / V17 / "AUTHOR_POSITION.md").read_text(encoding="utf-8").lower()
     )

@@ -1,3 +1,6 @@
+<!-- publication-current-1.8 -->
+> Aktuelle wissenschaftliche Arbeitsfassung: [Edition 1.8](../research/publications/2026-09-17_recursive-epistemics_v1.8/MANUSCRIPT.md). Aeltere Editionsangaben dokumentieren ihren damaligen Stand.
+
 # MHRN Documentation — kanonischer Einstieg
 
 **Stand:** 15. September 2026  
