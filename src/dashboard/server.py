@@ -1868,9 +1868,9 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
             if isinstance(preregistration_value, Mapping)
             else None
         )
-        generated_at = datetime.datetime.now(datetime.UTC).replace(
-            microsecond=0
-        ).isoformat()
+        generated_at = (
+            datetime.datetime.now(datetime.UTC).replace(microsecond=0).isoformat()
+        )
         experiment_dir = source.root() / "experiments" / experiment_id
         report_dir = experiment_dir / "reports"
         data_dir = experiment_dir / "DATA"
@@ -1917,8 +1917,8 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
                 f"- Bedingung: `{gateway.get('condition', 'unknown')}`",
                 f"- Seed: `{gateway.get('seed', 'unknown')}`",
                 f"- Gateway: `{gateway.get('gateway_id', 'unknown')}`",
-                f"- Produktives Gateway: `GESPERRT`",
-                f"- Wissenschaftliche Evidenz: `NEIN`",
+                "- Produktives Gateway: `GESPERRT`",
+                "- Wissenschaftliche Evidenz: `NEIN`",
                 "",
                 "## Technische Beobachtung",
                 "",

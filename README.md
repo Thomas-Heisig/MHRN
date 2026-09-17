@@ -1,3 +1,17 @@
+<!-- publication-current-1.8 -->
+## Scientific publication: edition 1.8 WIP
+
+The eleven-part structure planned for publication 2.0 is implemented now as **edition 1.8 WIP**, independently of the MHRN software version. It integrates the reconstructed prehistory, architecture, empirical programme, engineering, epistemology, attribution, ethics, recursive epistemics and open research.
+
+- [Current manuscript](research/publications/2026-09-17_recursive-epistemics_v1.8/MANUSCRIPT.md)
+- [Research questions and hypotheses](research/publications/2026-09-17_recursive-epistemics_v1.8/RESEARCH_REGISTER.md)
+- [Complete baseline source inventory](research/publications/2026-09-17_recursive-epistemics_v1.8/SOURCE_INDEX.md)
+- [Unabridged 1.7 source volume](research/publications/2026-09-17_recursive-epistemics_v1.8/LEGACY_V17.md)
+- [Prior research map](research/publications/2026-09-17_recursive-epistemics_v1.8/PRIOR_WORK_MAP.md)
+- [Extension and citation contract](research/publications/2026-09-17_recursive-epistemics_v1.8/EXTENDING.md)
+
+Historical publication bytes and empirical artifacts are preserved. Reconstructed chat history remains S4 until original messages are source-bound.
+
 # Multi-Scale Homeostatic Recurrence Network (MHRN)
 
 ## Mehrskaliges homöostatisches Rekurrenznetzwerk

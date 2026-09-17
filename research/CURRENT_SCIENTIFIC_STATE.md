@@ -1,81 +1,81 @@
 # Current Scientific State
 
-**Stand:** 16. September 2026
+**Stand:** 17. September 2026
 
-Dieses Dokument ist der kurze Einstieg in den aktuellen wissenschaftlichen Zustand des Repositories. Historische DATA, EVID-Entscheidungen und eingefrorene Publikationsstände bleiben in ihren datierten Verzeichnissen unverändert.
+Dieses Dokument ist der kurze Einstieg in den aktuellen wissenschaftlichen Zustand. Historische DATA, EVID-Entscheidungen und eingefrorene Publikationen bleiben unverändert in ihren datierten Verzeichnissen.
 
 ## Aktuelle Publikation
 
-- **Recursive Epistemics / Rekursive Epistemik, Fassung 1.7 — current WIP**
-- Einstieg: `research/publications/2026-09-15_recursive-epistemics_v1.7/MANUSCRIPT.md`
-- unmittelbarer Vorgänger: Fassung 1.6
-- frozen empirical baseline: Fassung 1.5 / `EXP-EMP-20260913-A3`
+- **Recursive Epistemics / Rekursive Epistemik, Edition 1.8 — current WIP**
+- Einstieg: `research/publications/2026-09-17_recursive-epistemics_v1.8/MANUSCRIPT.md`
+- unmittelbarer Vorgänger: Edition 1.7
+- frozen empirical baseline: Edition 1.5 / `EXP-EMP-20260913-A3`
+- 1.8 nutzt die für 2.0 geplante elfteilige Struktur, ohne Softwareversion oder Evidenzstatus hochzustufen
 - menschliches wissenschaftliches Review: für CL-003 ausstehend
 - unabhängige Replikation: unvollständig
 - automatische EVID-Promotion: deaktiviert
 
-## Dokumentgovernance
+## Forschungs- und Dokumentgovernance
 
-Ab Fassung 1.7 werden `docs/` und `research/` durch `scripts/audit_document_governance.py` nach Typ, Status, Autorität, Mutabilität, Zitierregel und Evidenzrolle geprüft. Engineering-Reife bleibt von wissenschaftlicher Evidenz getrennt.
+`docs/` und `research/` werden durch `scripts/audit_document_governance.py` nach Typ, Status, Autorität, Mutabilität, Zitierregel und Evidenzrolle geprüft. Edition 1.8 ergänzt einen deterministischen Publikationsbuilder, vollständiges gepinntes Datei-/Abschnittsinventar, Research-Object-Projektionen, Creation-/Edition-/Experimentgenealogien, Vorgängerforschungs-Mapping und Quellenmetadaten. Diese Projektionen ersetzen keine Primärartefakte und zertifizieren keine semantische Vollständigkeit.
 
-## Aktueller Schwerpunkt
-
-Stage 6 — Gedächtnis und Weltmodell.
+## Aktueller Schwerpunkt: Stage 6
 
 ### Semantization / Continual Learning
 
-- `EXP-S6-SEM-CL-001`: positiver präregistrierter Mechanismusbefund gegenüber einer naiven Online-Baseline ohne Replay unter seinem eigenen eingefrorenen Protokoll.
-- `EXP-S6-SEM-CL-002`: präregistrierter, vollständig gepaarter Negativbefund für die spezifischere Hypothese eines Vorteils semantischer Prototypen gegenüber gleich objekt- und updatebudgetiertem Raw-Replay. Die menschliche Projekt-EVID klassifiziert H1 unter diesem Protokoll als falsifiziert.
-- CL-002 beweist nicht rückwirkend, dass CL-001 ausschließlich durch Replay erklärt wird, weil die Replay- und Updateregime beider Experimente verschieden sind. Belastbar ist: Ein spezifischer Vorteil semantischer Verdichtung gegenüber Raw-Replay wurde unter CL-002 nicht nachgewiesen.
-- `EXP-S6-SEM-CL-003`: am 16. September 2026 genau einmal als autorisierte, freeze- und hash-gebundene Kampagne mit 84 Runs = 12 Seeds × 7 Bedingungen ausgeführt. Die Runner-Klassifikation lautet `H1_negative_H2_negative`.
-- In CL-003 bestehen C1, C2 und C4 die präregistrierten Erfolgsregeln nicht. C3 (`S20 − X20`) besteht mit rund +14,9 Prozentpunkten und zeigt auf DATA-Ebene relevante, nicht-zufällige Struktur in der semantischen Repräsentation. Daraus folgt kein bestätigter Vorteil gegenüber Raw-Replay.
-- Der deskriptive Semantic-minus-Raw-Trend über 5 %, 20 % und 40 % Replay-Dosis wird nicht als bestätigter Dosis-Effekt interpretiert, weil C4 negativ bleibt.
+- `EXP-S6-SEM-CL-001`: positiver Mechanismusbefund gegenüber No-Replay unter seinem eingefrorenen Protokoll.
+- `EXP-S6-SEM-CL-002`: kein bestätigter Vorteil semantischer Prototypen gegenüber gematchtem Raw-Replay; H1 wurde unter diesem Protokoll in der menschlichen Projekt-EVID als falsifiziert klassifiziert.
+- `EXP-S6-SEM-CL-003`: genau einmal autorisierte, freeze- und hash-gebundene Kampagne mit 84 Runs = 12 Seeds × 7 Bedingungen; Runner-Klassifikation `H1_negative_H2_negative`.
+- C1, C2 und C4 erfüllen die präregistrierten Erfolgsregeln nicht. C3 (`S20 − X20`) ist positiv und zeigt relevante nicht-zufällige Struktur, aber keinen bestätigten Vorteil gegenüber Raw-Replay.
 
-Die aktuelle DATA-only-Zwischenbilanz lautet deshalb:
+Die aktuelle DATA-only-Zwischenbilanz lautet:
 
 > Unter den bisher untersuchten Bedingungen liegt der nachweisbare Beitrag primär im Replay. Die semantische Verdichtung erhält relevante Struktur, zeigt aber bislang keinen präregistriert bestätigten Zusatznutzen gegenüber gematchtem Raw-Replay.
 
-Für CL-003 gilt weiterhin strikt: **DATA, nicht EVID**, bis die Human Review abgeschlossen ist. Die ausführliche Bilanz steht unter `research/publications/2026-09-15_recursive-epistemics_v1.7/STAGE6_CL001_CL003_BALANCE.md`.
+CL-003 bleibt **DATA, nicht EVID**, bis die Human Review abgeschlossen ist. Die historische Detailbilanz bleibt unter `research/publications/2026-09-15_recursive-epistemics_v1.7/STAGE6_CL001_CL003_BALANCE.md` erreichbar und wird von 1.8 nicht umgeschrieben.
 
 ### Entscheidungsgate für SemanticMemory
 
-Aus CL-003 folgt kein automatisches CL-004. Nach der Human Review muss zuerst eine explizite Forschungs- und Architekturentscheidung fallen:
+Aus CL-003 folgt kein automatisches CL-004. Nach Human Review gilt weiterhin:
 
-- **A:** `SemanticMemory` auf eine spezialisierte Nebenrolle reduzieren; Raw-Replay bleibt Referenz; keine weitere Semantikprüfung.
-- **B:** genau **eine** alternative Rolle in genau **einem** neuen, präregistrierten konfirmatorischen Experiment prüfen; bei negativem Ergebnis folgt A.
-- **C:** Rollenfrage parken und zunächst andere Stage-6-Mechanismen wie kausalen Prediction Error und World Model untersuchen.
+- **A:** spezialisierte Nebenrolle; Raw-Replay bleibt Referenz; keine weitere Semantikprüfung.
+- **B:** genau eine theoretisch begründete alternative Rolle in genau einem neuen präregistrierten konfirmatorischen Experiment; bei negativem Ergebnis folgt A.
+- **C:** Rollenfrage parken, bis Prediction Error oder World Model eine konkrete funktionale Notwendigkeit erzeugen.
 
-Kompression, Generalisierung, Skalierung und Langzeitgedächtnis werden ausdrücklich **nicht** als automatische Experimentwarteschlange geführt. Eine serielle Rettung des Mechanismus durch jeweils neue Rollenannahmen ist nicht zulässig.
+Eine serielle Rettung durch immer neue Rollenannahmen ist nicht zulässig.
 
-Bis zu einer anderslautenden reviewten Evidenzentscheidung ist `SemanticMemory` ein technisch funktionsfähiger, hinsichtlich eines zusätzlichen Kernnutzens aber nicht abschließend gerechtfertigter Mechanismuskandidat. Für den untersuchten Continual-Learning-Teil von Stage 6 ist Raw-Replay die kanonische Referenz.
+## Weitere priorisierte Forschung
 
-Offen bleiben insbesondere:
-
-- Human Review und EVID-Entscheidung zu CL-003,
-- anschließende Wahl A/B/C für die Rollenfrage von `SemanticMemory`,
-- neuronale und abladierbare Prediction-Error-Dynamik,
-- mehrschrittiges aktionskonditioniertes Weltmodell,
-- gekoppelte Persistenz/Restore-Identität,
-- Vergleich gegen einen echten Standard-SNN-Continual-Learning-Baseline-Stack,
-- end-to-end Prüfung mit dem rekurrenten MHRN-SNN,
-- unabhängige externe Replikation.
+- Stage 0: Modell-/Integrator-/Parameterkonformität und externe Referenzreplikation.
+- Stages 2/3: Rekurrenz, Störungsrobustheit, held-out Plastizität, Langzeit-/Ressourcenstabilität.
+- Stage 4: modality-specific vs. general controls, Cross-Modal-Transfer, Läsion/Shuffle/Frozen.
+- Stage 5: Closed Loop, Real Device, Sensor Loss und Actuator No Effect unter Safety-Gates.
+- Stage 6: neuronaler Prediction Error, Mehrschritt-/action-conditioned World Model, decision benefit.
+- Spiegel-/Handlungsprädiktion: Stage-4/5/6-Querschnitt; Stage 7 erst bei kausaler Self/Other-Differenzierung.
+- 5D: gematchte Dimensions-/Geometrieablation; keine etablierte Überlegenheit.
+- biophysikalische Detailmodelle: nur als fragegetriebene Varianten/Ablationen.
+- Safety: Zielprovenienz, Misgeneralization, Corrigibility, Interruptibility, Specification Gaming und Post-Objective Transition.
+- Prior Art, unabhängige Replikation und externer Quellen-/Similarity-Audit.
 
 ## Potenzielle Beiträge / Neuheitsstatus
 
-Fassung 1.7 führt drei Kandidaten für gezielte Prior-Art-Prüfung:
+Edition 1.8 behandelt unter anderem folgende Punkte als **Kandidaten**, nicht als bewiesene Neuheit:
 
 1. Logical Identity / Physical Slot / Synaptic Reduction / Execution Scheduling;
 2. Proposal → Approval → Mutation → Journal → Undo;
-3. Content Gateway / Compute Backend.
+3. Content Gateway / Compute Backend;
+4. source-bound DATA/EVID-Grenzen;
+5. rekursive Epistemik als explizit provenance- und gatewayorientierte Verbindung von Forschungsobjekt und Forschungsprozess.
 
-Dies sind dokumentierte MHRN-Mechanismen beziehungsweise Architekturentscheidungen. Ihre externe wissenschaftliche Neuheit ist nicht festgestellt.
+Die externe wissenschaftliche Neuheit bleibt `requires_prior_art_review`.
 
 ## Integrität
 
+- `research/publications/2026-09-17_recursive-epistemics_v1.8/REFERENCES.md`
+- `research/publications/2026-09-17_recursive-epistemics_v1.8/EXTENDING.md`
 - `research/INTEGRITY_AND_ATTRIBUTION.md`
 - `research/RELATED_WORK.md`
 - `docs/05-quality/RESEARCH_INTEGRITY_GATE.md`
 - `docs/00-governance/DOCUMENT_GOVERNANCE.md`
-- `docs/08-roadmap/SCIENTIFIC_MATURITY_ROADMAP.md`
 
-Vor formaler externer Einreichung bleiben menschliche Quellenprüfung, Prior-Art-Prüfung und geeignete externe Similarity-Prüfung erforderlich.
+Vor formaler externer Einreichung bleiben menschliche Quellenprüfung, systematische Prior-Art-Prüfung, externe Similarity-Prüfung und fachliche Review erforderlich.

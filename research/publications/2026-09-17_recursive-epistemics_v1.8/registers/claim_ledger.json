@@ -1,0 +1,113 @@
+{
+  "authority": "publication_synthesis_not_canonical_evidence_registry",
+  "claims": [
+    {
+      "id": "SYN-18-001",
+      "axis": "epistemological_methodological",
+      "topic": "research genealogy",
+      "phase": "reconstructed_prephase_to_current",
+      "provenance_class": "S4",
+      "status": "methodological_claim",
+      "interpretation": "methodological",
+      "statement": "Persistent state and the attribution of learning are recurrent concerns across the recovered early cube, assistant and MHRN discussions.",
+      "revision_criterion": "Original dated messages or code contradict the reconstruction, or a sampled corpus shows selective omission.",
+      "source_refs": [
+        "PW-NEUROGENESIS-2025",
+        "PW-CHAT-TOOLS-2026",
+        "PW-FRAMEWORK-02"
+      ]
+    },
+    {
+      "id": "SYN-18-002",
+      "axis": "empirical_technical",
+      "topic": "semantization versus replay",
+      "phase": "evidence_oriented_MHRN",
+      "provenance_class": "S1",
+      "status": "DATA_interpretation_pending_review",
+      "interpretation": "methodological",
+      "statement": "The CL-001–003 line does not establish a preregistered Semantic-over-matched-Raw advantage; the positive random-prototype contrast has a narrower scope.",
+      "revision_criterion": "Human review or a valid source-bound reanalysis changes the interpretation; an authorized independent protocol may establish a differently scoped result.",
+      "source_refs": [
+        "research/publications/2026-09-15_recursive-epistemics_v1.7/STAGE6_CL001_CL003_BALANCE.md",
+        "research/experiments/EXP-S6-SEM-CL-003/results/runner-summary.json"
+      ]
+    },
+    {
+      "id": "SYN-18-003",
+      "axis": "empirical_technical",
+      "topic": "causal ownership of learning",
+      "phase": "current",
+      "provenance_class": "S1",
+      "status": "open",
+      "interpretation": "methodological",
+      "statement": "Read-only/proposal-only language interfaces make attribution testable but do not themselves prove that a task is learned by the neural core.",
+      "revision_criterion": "A component-isolation study establishes or refutes a narrowly defined core contribution.",
+      "source_refs": [
+        "PW-FRAMEWORK-02",
+        "research/publications/2026-09-15_recursive-epistemics_v1.7/MANUSCRIPT.md"
+      ]
+    },
+    {
+      "id": "SYN-18-004",
+      "axis": "epistemological_methodological",
+      "topic": "recursive epistemics",
+      "phase": "current",
+      "provenance_class": "S3",
+      "status": "argumentative_claim",
+      "interpretation": "argumentative",
+      "statement": "Object-level and research-process gateways can be compared structurally without equating neural learning, human justification and normative authority.",
+      "revision_criterion": "A comparative process analysis finds no explanatory value beyond generic input-validation pipelines or demonstrates category errors.",
+      "source_refs": [
+        "PW-BORROWED-20260818",
+        "docs/06-research/RECURSIVE_EPISTEMICS.md"
+      ]
+    },
+    {
+      "id": "SYN-18-005",
+      "axis": "philosophical_ethical",
+      "topic": "control and welfare",
+      "phase": "future_frontier",
+      "provenance_class": "S3",
+      "status": "argumentative_claim",
+      "interpretation": "argumentative",
+      "statement": "Expanded autonomy warrants stronger external interruption and authorization tests while welfare uncertainty must remain separately documented.",
+      "revision_criterion": "Explicitly defended alternative normative premises or new relevant evidence justify revising the precautionary arrangement.",
+      "source_refs": [
+        "research/publications/2026-09-15_recursive-epistemics_v1.7/SAFETY_AUTONOMY_RESEARCH.md",
+        "BUTLIN2023",
+        "ORSEAU2016"
+      ]
+    },
+    {
+      "id": "SYN-18-006",
+      "axis": "epistemological_methodological",
+      "topic": "lossless publication infrastructure",
+      "phase": "edition_1.8",
+      "provenance_class": "S1",
+      "status": "implemented_pending_verification",
+      "interpretation": "methodological",
+      "statement": "A pinned file census, heading inventory, source volume and typed research projections make omissions and status conflation auditable.",
+      "revision_criterion": "Deletion, hash mismatch, unmapped source, dangling link or status promotion is detected; semantic completeness is never inferred from byte preservation.",
+      "source_refs": [
+        "scripts/build_publication_edition.py",
+        "edition.json",
+        "EXTENDING.md"
+      ]
+    },
+    {
+      "id": "SYN-18-007",
+      "axis": "empirical_technical",
+      "topic": "5D geometry",
+      "phase": "Brain-5D_to_current",
+      "provenance_class": "S1",
+      "status": "open",
+      "interpretation": "methodological",
+      "statement": "Five coordinate axes remain a testable representation choice, not an established functional advantage or biological dimension count.",
+      "revision_criterion": "Matched dimensional, graph, metric and resource controls establish a specific and replicable advantage or constrain the hypothesis.",
+      "source_refs": [
+        "PW-FRAMEWORK-02",
+        "research/publications/2026-09-15_recursive-epistemics_v1.7/MANUSCRIPT.md"
+      ]
+    }
+  ]
+}

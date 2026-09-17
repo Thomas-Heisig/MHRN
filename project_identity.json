@@ -14,11 +14,11 @@
     "short_title_de": "Rekursive Epistemik",
     "title_en": "Recursive Epistemics in Embodied Spiking Neural Architectures: A Framework for Delegated Agency and Multi-Scale Recurrence",
     "subtitle_de": "Rekursive Epistemik in verkörperten spikenden neuronalen Architekturen: Ein Framework für delegierte Handlungsmacht und mehrskalige Rekurrenz",
-    "edition": "1.7",
+    "edition": "1.8",
     "edition_status": "current_wip",
-    "path": "research/publications/2026-09-15_recursive-epistemics_v1.7",
-    "viewer_entrypoint": "research/publications/2026-09-15_recursive-epistemics_v1.7/MANUSCRIPT.md",
-    "predecessor": "research/publications/2026-09-15_recursive-epistemics_v1.6",
+    "path": "research/publications/2026-09-17_recursive-epistemics_v1.8",
+    "viewer_entrypoint": "research/publications/2026-09-17_recursive-epistemics_v1.8/MANUSCRIPT.md",
+    "predecessor": "research/publications/2026-09-15_recursive-epistemics_v1.7",
     "empirical_baseline": "research/publications/2026-09-13_recursive-epistemics_v1.5",
     "frozen_baseline_pointer": "research/publications/FROZEN_V1.5.md",
     "classification": "scientific_treatise_work_in_progress_not_degree_or_peer_review_claim"
@@ -34,7 +34,11 @@
     "huggingface_space_legacy": "superdigger/Brain-5D-Space"
   },
   "compatibility": {
-    "historical_titles": ["Brain-4D", "Brain-5D", "KI – Die geliehene Intelligenz"],
+    "historical_titles": [
+      "Brain-4D",
+      "Brain-5D",
+      "KI – Die geliehene Intelligenz"
+    ],
     "unchanged_storage_format": ".b5d",
     "legacy_python_namespace": "src",
     "legacy_launcher": "scripts/brain5d_launcher.py",
@@ -57,7 +61,10 @@
     "free_knowledge_transfer_requires_attribution": true
   },
   "document_governance": {
-    "scope": ["docs", "research"],
+    "scope": [
+      "docs",
+      "research"
+    ],
     "policy": "docs/00-governance/DOCUMENT_GOVERNANCE.md",
     "overrides": "research/document_governance_overrides.json",
     "audit": "scripts/audit_document_governance.py"

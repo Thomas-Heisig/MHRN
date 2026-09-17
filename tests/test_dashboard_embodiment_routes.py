@@ -468,16 +468,14 @@ def test_gateway_report_is_written_as_non_evidentiary_artifact(tmp_path) -> None
         assert report["report"] == (
             "experiments/EXP-GW-REPORT/reports/GATEWAY-REPORT.md"
         )
-        assert (
-            research_root / report["report"]
-        ).is_file()
+        assert (research_root / report["report"]).is_file()
         assert (
             research_root / "experiments/EXP-GW-REPORT/DATA/gateway_state.json"
         ).is_file()
         manifest = json.loads(
-            (
-                research_root / "experiments/EXP-GW-REPORT/manifest.json"
-            ).read_text(encoding="utf-8")
+            (research_root / "experiments/EXP-GW-REPORT/manifest.json").read_text(
+                encoding="utf-8"
+            )
         )
         assert manifest["record_kind"] == "gateway_experiment"
         assert manifest["scientific_evidence"] is False

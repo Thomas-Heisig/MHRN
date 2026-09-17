@@ -1,0 +1,49 @@
+name: Publication structure
+
+on:
+  push:
+    branches: [main, "docs/edition-1-8-modular"]
+    paths:
+      - "research/publications/**"
+      - "research/registry/**"
+      - "scripts/*publication*.py"
+      - "tests/test_publication_edition.py"
+      - "project_identity.json"
+      - ".github/workflows/publication-structure.yml"
+  pull_request:
+    paths:
+      - "research/publications/**"
+      - "research/registry/**"
+      - "scripts/*publication*.py"
+      - "tests/test_publication_edition.py"
+      - "project_identity.json"
+      - ".github/workflows/publication-structure.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: publication-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Install project
+        run: python -m pip install -e ".[dev]"
+      - name: Verify deterministic edition build
+        run: python scripts/build_publication_edition.py --check
+      - name: Verify scientific integrity contract
+        run: python scripts/check_scientific_maturity_integrity.py
+      - name: Verify document governance
+        run: python scripts/audit_document_governance.py
+      - name: Run publication regression tests
+        run: python -m pytest tests/test_publication_edition.py tests/test_publication_reader.py tests/test_publication_scholar_reader.py tests/test_publication_integration.py -q

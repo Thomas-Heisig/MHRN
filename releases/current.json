@@ -23,7 +23,7 @@
     "separate scientific maturity timeline for stages 0-10",
     "research integrity, attribution and source-verification gate",
     "repository-wide docs/research file governance",
-    "Recursive Epistemics 1.7 current WIP with 1.6 predecessor and frozen 1.5 empirical baseline"
+    "Recursive Epistemics 1.8 current WIP with 1.7 predecessor and frozen 1.5 empirical baseline"
   ],
   "completed": [
     "v0.6 compatibility, benchmark, storage, determinism and migration foundation",
@@ -37,8 +37,8 @@
     "Release workspace exposes engineering and scientific progress as two separate timelines",
     "research integrity and attribution contracts added with source quarantine",
     "document governance classifies every docs/research file by role and scientific authority",
-    "publication 1.7 registered as current WIP manuscript",
-    "publication 1.6 retained as historical integrative predecessor",
+    "publication 1.8 registered as current WIP manuscript using the eleven-part 2.0 target structure",
+    "publication 1.7 retained as historical integrative predecessor",
     "publication 1.5 retained as frozen empirical baseline with stable pointer",
     "research-driven experiment cycle is canonical from RQ through preregistration, DATA, human review and EVID",
     "CL-003 was SHA-256 frozen, explicitly authorized, and executed exactly once as the preregistered 84-run campaign",
@@ -48,7 +48,7 @@
     "content-bound source-tree verification cache preserves gate semantics while preventing duplicate full-tree scans"
   ],
   "open": [
-    "complete human scientific review of CL-003 and make an explicit EVID promotion decision",
+    "complete human scientific review of Stage-6 semanticization/replay CL-003 DATA and make an explicit EVID promotion decision",
     "decide the post-review Stage-6 research direction before defining any CL-004",
     "independently replicate central Stage-2 through Stage-6 claims",
     "implement and ablate a neuronally defined prediction-error mechanism before claiming predictive coding",
@@ -65,14 +65,14 @@
     "integrity_gate": "docs/05-quality/RESEARCH_INTEGRITY_GATE.md",
     "document_governance": "docs/00-governance/DOCUMENT_GOVERNANCE.md",
     "document_governance_audit": "scripts/audit_document_governance.py",
-    "publication": "research/publications/2026-09-15_recursive-epistemics_v1.7/MANUSCRIPT.md",
+    "publication": "research/publications/2026-09-17_recursive-epistemics_v1.8/MANUSCRIPT.md",
     "publication_status": "current_wip",
-    "predecessor_publication": "research/publications/2026-09-15_recursive-epistemics_v1.6/README.md",
+    "predecessor_publication": "research/publications/2026-09-15_recursive-epistemics_v1.7/MANUSCRIPT.md",
     "frozen_empirical_baseline": "research/publications/FROZEN_V1.5.md",
     "automatic_evidence_promotion": false,
     "consciousness_metric": false,
     "novelty_claim": "requires_prior_art_review"
   },
   "research_boundary": "Engineering implementation, technical verification, UI/API availability and DATA collection are not equivalent to scientific EVID. Scientific maturity is tracked independently through registered questions, frozen protocols, source-bound DATA, human-reviewed EVID, independent replication and attribution. No stage score establishes AGI, consciousness, sentience or biological equivalence.",
-  "note": "Alpha.5 contains the first complete research-driven experiment cycle through persisted DATA. CL-003 was executed exactly once under its frozen authorization and yielded H1_negative_H2_negative while C3 showed non-random semantic structure. The result remains DATA pending human review; no automatic EVID promotion occurred."
+  "note": "Alpha.5 contains the first complete research-driven experiment cycle through persisted DATA. CL-003 was executed exactly once under its frozen authorization and yielded H1_negative_H2_negative while C3 showed non-random semantic structure. The result remains DATA pending human review; no automatic EVID promotion occurred. Publication edition 1.8 reorganizes and extends the scientific work without changing that evidence status."
 }
