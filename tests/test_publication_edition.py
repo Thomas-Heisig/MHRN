@@ -39,12 +39,12 @@ def repository(tmp_path: Path) -> Path:
     write(
         tmp_path,
         "research/registry/questions.yaml",
-        "- id: RQ-FIXTURE-001\n  status: open\n  hypotheses: [H-FIXTURE-001-A]\n  question: Test?\n",
+        "- id: RQ-TEST-002\n  status: open\n  hypotheses: [H-TEST-002-A]\n  question: Test?\n",
     )
     write(
         tmp_path,
         "research/registry/hypotheses.yaml",
-        "- id: H-FIXTURE-001-A\n  status: untested\n  question: RQ-FIXTURE-001\n",
+        "- id: H-TEST-002-A\n  status: untested\n  question: RQ-TEST-002\n",
     )
     write(tmp_path, "research/publications/catalog.json", '{"publications": []}')
     write(tmp_path, "docs/unclassified.md", "# Retained idea\n\nNot discarded.\n")
@@ -113,9 +113,9 @@ def test_registry_projection_preserves_source_object(repository: Path) -> None:
     original = yaml.safe_load(
         (repository / "research/registry/questions.yaml").read_text(encoding="utf-8")
     )[0]
-    assert by_id["RQ-FIXTURE-001"]["source_object"] == original
-    assert by_id["RQ-FIXTURE-001"]["status"] == "open"
-    assert by_id["H-FIXTURE-001-A"]["parent_ids"] == ["RQ-FIXTURE-001"]
+    assert by_id["RQ-TEST-002"]["source_object"] == original
+    assert by_id["RQ-TEST-002"]["status"] == "open"
+    assert by_id["H-TEST-002-A"]["parent_ids"] == ["RQ-TEST-002"]
 
 
 def test_inventory_retains_unclassified_source_and_heading(repository: Path) -> None:
