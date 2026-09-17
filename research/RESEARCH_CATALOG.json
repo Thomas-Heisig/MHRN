@@ -4,11 +4,11 @@
   "scope": "research",
   "warning": "Classification describes document role; it does not promote DATA to EVID or certify scientific validity.",
   "summary": {
-    "file_count": 8425,
+    "file_count": 8424,
     "status": {
       "archive": 2,
       "current": 177,
-      "current_wip": 28,
+      "current_wip": 27,
       "experimental": 7700,
       "frozen": 83,
       "generated": 55,
@@ -31,7 +31,7 @@
       "literature": 11,
       "preregistration": 71,
       "protocol": 14,
-      "publication": 491,
+      "publication": 490,
       "publication_pointer": 2,
       "registry": 42,
       "related_work_register": 1,
@@ -70,7 +70,7 @@
       "normative_research_registry": 42,
       "normative_schema": 9,
       "proposal_only": 1,
-      "publication_interpretation": 402,
+      "publication_interpretation": 401,
       "research_planning": 1,
       "source_index": 11,
       "stable_frozen_empirical_baseline_pointer": 1,
@@ -107486,19 +107486,6 @@
       "evidence_role": "interpretation_only",
       "rationale": "Rule-classified repository documentation; exact scientific authority depends on referenced DATA/EVID.",
       "classification_rule": "research-zone:publications",
-      "review_required": false
-    },
-    {
-      "path": "research/publications/2026-09-17_recursive-epistemics_v1.8/BUILD_FAILURE.txt",
-      "domain": "research",
-      "kind": "publication",
-      "status": "current_wip",
-      "authority": "publication_interpretation",
-      "mutability": "editable",
-      "citation": "cite_edition_path_and_git_revision",
-      "evidence_role": "interpretation_not_automatic_evidence",
-      "rationale": "Current edition 1.8; structure change does not promote evidence.",
-      "classification_rule": "override:research/publications/2026-09-17_recursive-epistemics_v1.8",
       "review_required": false
     },
     {
