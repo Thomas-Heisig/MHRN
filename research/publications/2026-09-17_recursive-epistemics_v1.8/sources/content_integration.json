@@ -1,0 +1,208 @@
+{
+  "schema_version": "1.0",
+  "edition": "1.8",
+  "purpose": "Semantic integration ledger for scientifically material MHRN prior work and canonical docs/research sources. This complements the complete baseline file inventory; it does not promote DATA to EVID and does not claim that every tracked implementation/UI/build artifact belongs in manuscript prose.",
+  "raw_data_policy": "Source-bound experimental DATA remain authoritative in their experiment directories. Edition 1.8 integrates their scientifically material results, controls, limitations and status without copying or rewriting every raw JSON/CSV/log row into the narrative.",
+  "entries": [
+    {
+      "id": "CORPUS-NEUROGENESIS",
+      "title": "NeuroGenesis / pre-repository reconstructed lineage",
+      "source_paths": ["research/publications/2026-09-17_recursive-epistemics_v1.8/sources/chat_reconstruction.json"],
+      "source_role": "S4 historical reconstruction",
+      "manuscript_parts": ["I", "II", "III", "V", "VIII", "XI"],
+      "integration_status": "semantically_integrated_with_provenance_limit",
+      "integration_mode": "genealogy_and_design-lineage_synthesis",
+      "boundaries": "No recovered summary is promoted to a verbatim primary transcript or priority proof."
+    },
+    {
+      "id": "CORPUS-BRAIN5D",
+      "title": "Brain-5D Scientific Framework v0.2 and Brain-5D predecessor programme",
+      "source_paths": ["docs/06-research/Brain-5D_Scientific_Framework_v0.2.docx", "research/publications/2026-09-17_recursive-epistemics_v1.8/sources/prior_work.json"],
+      "source_role": "historical research framework / MHRN prior work",
+      "manuscript_parts": ["I", "II", "III", "IV", "V", "VI", "VIII", "X", "XI"],
+      "integration_status": "semantically_integrated_with_lfs_limit",
+      "integration_mode": "research-programme_and_architecture_synthesis",
+      "boundaries": "Repository DOCX is an LFS pointer; unavailable equations are not reconstructed as literal transcriptions. Historical E0-E3 labels are not auto-mapped to current EVID."
+    },
+    {
+      "id": "CORPUS-BORROWED-INTELLIGENCE",
+      "title": "KI – Die geliehene Intelligenz, public editions and theory manuscript",
+      "source_paths": ["docs/06-research/KI_Die_geliehene_Intelligenz_Dissertation.docx", "research/publications/2026-09-07_ki-die-geliehene-intelligenz/", "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.1/", "research/publications/2026-09-07_ki-die-geliehene-intelligenz_v1.2/"],
+      "source_role": "MHRN theoretical prior work",
+      "manuscript_parts": ["I", "II", "VI", "VII", "VIII", "IX", "X", "XI"],
+      "integration_status": "semantically_integrated_revised",
+      "integration_mode": "theory_preservation_plus_operational_reformulation",
+      "boundaries": "Theory and scenario constructs are retained as arguments, taxonomies and stress tests, not converted into MHRN experimental findings, forecasts, legal advice or present capability claims."
+    },
+    {
+      "id": "CORPUS-MASTER-PROMPT",
+      "title": "Master prompt / working instructions for the borrowed-intelligence project",
+      "source_paths": ["research/publications/2026-09-17_recursive-epistemics_v1.8/sources/prior_work.json"],
+      "source_role": "process artifact / AI-assisted working instruction",
+      "manuscript_parts": ["VI", "VII", "VIII", "IX", "XI"],
+      "integration_status": "semantically_integrated_as_method_provenance",
+      "integration_mode": "method_and_source-quality_lineage",
+      "boundaries": "A workflow instruction is not independent scientific authority."
+    },
+    {
+      "id": "CORPUS-EDITIONS-1-0-1-7",
+      "title": "MHRN / Recursive Epistemics editions 1.0–1.7 and supplements",
+      "source_paths": ["research/publications/"],
+      "source_role": "versioned MHRN prior work",
+      "manuscript_parts": ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI"],
+      "integration_status": "semantically_integrated_with_full_v17_preservation",
+      "integration_mode": "historical_synthesis_plus_legacy_source_volume",
+      "boundaries": "Historical bytes, contemporaneous labels and old DATA/EVID decisions remain unchanged; Edition 1.8 may reinterpret only in a new, provenance-labelled synthesis layer."
+    },
+    {
+      "id": "CORPUS-ARCHITECTURE",
+      "title": "Canonical MHRN architecture and scientific contracts",
+      "source_paths": ["docs/02-architecture/ARCHITECTURE.md", "docs/02-architecture/SCIENTIFIC_CONTRACTS_ALPHA3.md"],
+      "source_role": "current technical/scientific architecture contracts",
+      "manuscript_parts": ["III", "IV", "V", "VIII", "X", "XI"],
+      "integration_status": "semantically_integrated",
+      "integration_mode": "system_boundary_formalism_and_claim_limits",
+      "boundaries": "Implemented architecture is not itself empirical EVID."
+    },
+    {
+      "id": "CORPUS-NEURAL-SYMBIOSIS",
+      "title": "Neural Symbiosis — Embodied Multi-Network Interface",
+      "source_paths": ["docs/02-architecture/NEURAL_SYMBIOSIS.md"],
+      "source_role": "experimental architecture contract",
+      "manuscript_parts": ["III", "IV", "V", "VIII", "XI"],
+      "integration_status": "semantically_integrated",
+      "integration_mode": "peripheral_network_gateway_boundary_and_research_programme",
+      "boundaries": "Reachability, registered adapters and candidate plasticity do not establish learned tool/area use; productive gateway activation remains locked outside registered experiments."
+    },
+    {
+      "id": "CORPUS-MSBA",
+      "title": "MSBA — modalitaets-spezifische synaptische Bahn-Architektur",
+      "source_paths": ["docs/02-architecture/MSBA.md", "research/registry/questions.msba.yaml", "research/registry/hypotheses.msba.yaml", "research/registry/msba_experiments.yaml"],
+      "source_role": "Stage-4 architecture and research programme",
+      "manuscript_parts": ["III", "IV", "V", "X", "XI"],
+      "integration_status": "semantically_integrated_with_data_summary",
+      "integration_mode": "architecture_plus_E01-E05_result_synthesis",
+      "boundaries": "Projection dimensionality is separate from productive 5D core dimensionality; modeled energy is not physical measurement."
+    },
+    {
+      "id": "CORPUS-WESEN-EMBODIMENT",
+      "title": "Wesen, real-body embodiment and technical body boundary",
+      "source_paths": ["docs/02-architecture/WESEN_ADAPTIVE_BODY.md", "docs/02-architecture/EMBODIMENT_REAL_BODY.md"],
+      "source_role": "observational body/embodiment contracts",
+      "manuscript_parts": ["III", "V", "VIII", "XI"],
+      "integration_status": "semantically_integrated",
+      "integration_mode": "observability_interoception_body-boundary_and_self-model_limits",
+      "boundaries": "Body-like rendering, technical interoception and delayed mirrors are not biological homology, psychological selfhood or consciousness evidence."
+    },
+    {
+      "id": "CORPUS-PROFILE-IDENTITY",
+      "title": "Profile & Identitaet",
+      "source_paths": ["docs/02-architecture/PROFILE_IDENTITY.md"],
+      "source_role": "implemented technical identity/profile contract",
+      "manuscript_parts": ["III", "V", "VIII", "XI"],
+      "integration_status": "semantically_integrated",
+      "integration_mode": "technical_identity_state-separation_and_lineage",
+      "boundaries": "A persistent profile and lineage are not evidence of psychological identity, personality, subjective continuity or consciousness."
+    },
+    {
+      "id": "CORPUS-CONNECTOME",
+      "title": "Connectome-informed embodiment and neural-tissue extensions",
+      "source_paths": ["docs/02-architecture/CONNECTOME_EMBODIMENT.md", "docs/05-quality/CONNECTOME_INTEGRATION.md"],
+      "source_role": "design/reference integration and quality boundary",
+      "manuscript_parts": ["III", "IV", "V", "X", "XI"],
+      "integration_status": "semantically_integrated_as_bounded_design_lineage",
+      "integration_mode": "connectome-informed_design_without_biological_replication_claim",
+      "boundaries": "Connectome-informed topology/design is not whole-brain replication or biological equivalence."
+    },
+    {
+      "id": "CORPUS-PERSISTENCE",
+      "title": "B5D storage, deterministic restore and scientific-state persistence",
+      "source_paths": ["docs/02-architecture/B5D_FORMAT.md", "docs/02-architecture/DETERMINISTIC_RESTORE.md"],
+      "source_role": "persistence and reproducibility contracts",
+      "manuscript_parts": ["III", "V", "VI", "X"],
+      "integration_status": "semantically_integrated",
+      "integration_mode": "scientific_state_boundary_and_restore_semantics",
+      "boundaries": "Successful serialization/load is weaker than causal-state-complete deterministic continuation of the coupled system."
+    },
+    {
+      "id": "CORPUS-CURRENT-SCIENCE",
+      "title": "Current scientific state, integrity and related work",
+      "source_paths": ["research/CURRENT_SCIENTIFIC_STATE.md", "research/INTEGRITY_AND_ATTRIBUTION.md", "research/RELATED_WORK.md"],
+      "source_role": "current synthesis, integrity policy and mechanism provenance",
+      "manuscript_parts": ["IV", "VI", "VII", "X", "XI"],
+      "integration_status": "semantically_integrated",
+      "integration_mode": "status_limits_integrity_and_verified_related-work_synthesis",
+      "boundaries": "Verified external literature supports background propositions, not MHRN mechanism efficacy; quarantined leads remain excluded from citation-ready claims."
+    },
+    {
+      "id": "CORPUS-REGISTRY-PROTOCOLS",
+      "title": "Research registry, schemas, protocols and preregistrations",
+      "source_paths": ["research/registry/", "research/schemas/", "research/protocols/", "research/preregistrations/"],
+      "source_role": "normative research definitions and execution contracts",
+      "manuscript_parts": ["IV", "V", "VI", "VII", "XI"],
+      "integration_status": "integrated_by_projection_and_method_synthesis",
+      "integration_mode": "full_registry_projection_plus_bounded_narrative_summary",
+      "boundaries": "The manuscript does not duplicate every machine-readable object; RESEARCH_REGISTER.md preserves canonical registry objects without status promotion."
+    },
+    {
+      "id": "CORPUS-EXPERIMENT-DATA",
+      "title": "Source-bound experiment corpus and DATA",
+      "source_paths": ["research/experiments/"],
+      "source_role": "primary MHRN execution artifacts and DATA",
+      "manuscript_parts": ["III", "IV", "V", "VI", "X", "XI"],
+      "integration_status": "source_bound_data_integrated_by_result_synthesis",
+      "integration_mode": "key_results_controls_limits_and_status_in_prose_raw_data_preserved_in_place",
+      "boundaries": "Raw DATA are not copied, normalized away or rewritten into the manuscript. DATA remain DATA unless the explicit review/EVID path changes status."
+    },
+    {
+      "id": "CORPUS-STAGE4-6",
+      "title": "Stage 4, Stage 5 and Stage 6 research dossiers",
+      "source_paths": ["research/stage4_specialized_neural_areas.md", "research/experiments/", "research/specifications/"],
+      "source_role": "stage-specific research synthesis and experiment lineage",
+      "manuscript_parts": ["III", "IV", "X", "XI"],
+      "integration_status": "semantically_integrated_with_primary-data_boundary",
+      "integration_mode": "stage_findings_and_open-claim_synthesis",
+      "boundaries": "Stage labels and UI maturity do not substitute for claim-specific DATA/EVID."
+    },
+    {
+      "id": "CORPUS-MIRROR",
+      "title": "Mirror mechanisms and action prediction report",
+      "source_paths": ["research/publications/2026-09-17_recursive-epistemics_v1.8/sources/prior_work.json"],
+      "source_role": "planning and literature synthesis",
+      "manuscript_parts": ["III", "IV", "XI"],
+      "integration_status": "semantically_integrated_as_open_research_programme",
+      "integration_mode": "stage4-6_prediction_programme_stage7_only_after_self-other_validation",
+      "boundaries": "No executed MHRN mirror-neuron experiment and no empathy/intention-reading claim."
+    },
+    {
+      "id": "CORPUS-AI-WORKBENCH",
+      "title": "python-chat-system, Kernschmied and local/external AI research tooling",
+      "source_paths": ["research/publications/2026-09-17_recursive-epistemics_v1.8/sources/prior_work.json"],
+      "source_role": "operational tooling ancestry",
+      "manuscript_parts": ["II", "V", "VI", "VII", "IX"],
+      "integration_status": "semantically_integrated_as_tooling_lineage",
+      "integration_mode": "provider-isolation_persistence_and_AI-provenance_methodology",
+      "boundaries": "Tooling persistence and LLM assistance are not evidence of neural retention or MHRN cognition."
+    },
+    {
+      "id": "CORPUS-ETHICS-CRITIQUE-REVIEW",
+      "title": "Ethics, critique and external-review framework",
+      "source_paths": ["research/ethics/", "research/critique/", "research/external_review/", "docs/05-quality/RESEARCH_INTEGRITY_GATE.md"],
+      "source_role": "normative and critical governance corpus",
+      "manuscript_parts": ["VI", "VII", "VIII", "IX", "XI"],
+      "integration_status": "semantically_integrated",
+      "integration_mode": "governance_counterargument_stop-rule_and_review-boundary_synthesis",
+      "boundaries": "Normative analysis, planned review and welfare precaution are not empirical capability findings."
+    },
+    {
+      "id": "CORPUS-HISTORICAL-OPERATIONS",
+      "title": "Changelogs, roadmaps, sprints, releases, updates and archives",
+      "source_paths": ["docs/07-changelog/", "docs/08-roadmap/", "docs/09-sprints/", "docs/10-releases/", "docs/12-updates/", "docs/99-archive/"],
+      "source_role": "historical/operational provenance",
+      "manuscript_parts": ["II", "V", "XI"],
+      "integration_status": "provenance_retained_selectively_synthesized",
+      "integration_mode": "development_history_without_adopting_stale_current-state_claims",
+      "boundaries": "Historical implementation notes and plans are not automatically current architecture or scientific evidence."
+    }
+  ]
+}
