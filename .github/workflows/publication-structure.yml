@@ -44,7 +44,22 @@ jobs:
       - name: Activate edition pointers
         run: python scripts/activate_publication_18.py
       - name: Build edition 1.8
-        run: python scripts/build_publication_edition.py --write
+        id: build
+        continue-on-error: true
+        run: python scripts/build_publication_edition.py --write > /tmp/publication-build.log 2>&1
+      - name: Persist build diagnostic
+        if: steps.build.outcome == 'failure'
+        run: |
+          cp /tmp/publication-build.log research/publications/2026-09-17_recursive-epistemics_v1.8/BUILD_FAILURE.txt
+          git add research/publications/2026-09-17_recursive-epistemics_v1.8/BUILD_FAILURE.txt
+          if ! git diff --cached --quiet; then
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git commit -m 'chore(publication): persist edition 1.8 build diagnostic'
+            git push origin HEAD:docs/edition-1-8-modular
+          fi
+          cat /tmp/publication-build.log
+          exit 1
       - name: Generate document governance catalogs
         run: python scripts/audit_document_governance.py --write
       - name: Verify deterministic edition build
@@ -55,7 +70,8 @@ jobs:
         run: python -m pytest tests/test_publication_edition.py tests/test_publication_reader.py tests/test_publication_scholar_reader.py tests/test_publication_integration.py -q
       - name: Commit materialized publication
         run: |
-          git add research/publications/2026-09-17_recursive-epistemics_v1.8 research/publications/catalog.json research/publications/CURRENT.md research/publications/README.md project_identity.json README.md docs/README.md research/README.md docs/08-roadmap/V2_PUBLICATION_STRUCTURE_MIGRATION.md research/document_governance_overrides.json docs/DOCUMENT_CATALOG.json research/RESEARCH_CATALOG.json scripts/build_publication_edition.py scripts/activate_publication_18.py scripts/check_scientific_maturity_integrity.py tests/test_publication_edition.py
+          rm -f research/publications/2026-09-17_recursive-epistemics_v1.8/BUILD_FAILURE.txt
+          git add -A research/publications/2026-09-17_recursive-epistemics_v1.8 research/publications/catalog.json research/publications/CURRENT.md research/publications/README.md project_identity.json README.md docs/README.md research/README.md docs/08-roadmap/V2_PUBLICATION_STRUCTURE_MIGRATION.md research/document_governance_overrides.json docs/DOCUMENT_CATALOG.json research/RESEARCH_CATALOG.json scripts/build_publication_edition.py scripts/activate_publication_18.py scripts/check_scientific_maturity_integrity.py tests/test_publication_edition.py
           if ! git diff --cached --quiet; then
             git config user.name 'github-actions[bot]'
             git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
