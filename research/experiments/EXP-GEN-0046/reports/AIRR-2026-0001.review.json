@@ -1,0 +1,8 @@
+{
+  "report_id": "AIRR-2026-0001",
+  "review_status": "accepted_as_interpretation",
+  "reviewer": "Thomas Heisig",
+  "reviewed_at": "2026-09-17T19:11:53.548441+00:00",
+  "comments": "er Test bestätigt Determinismus für recurrence_off und recurrence_on über alle drei Seeds. Drei Dinge fehlen, damit daraus EVID wird: git dirty: false (neuer Lauf), eine Registry-Regel für RQ-DET-001 (damit NOT_AUTOMATICALLY_CLASSIFIED nicht mehr blockt), und eine Klärung von stopped_on_quiescence (warum es nie eintritt). Der Lauf selbst ist wissenschaftlich valide – die Zuordnung und der Provenienz-Rahmen sind es noch nicht.",
+  "report_content_digest": "00f43e9ed66e43dd364e8f551506a5f9a3b8c79d11deb69adb31bc05e5e3804c"
+}
