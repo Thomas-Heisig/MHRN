@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Activate publication edition 1.8 without changing software or evidence state."""
+
 from __future__ import annotations
 
 import json
@@ -41,7 +42,11 @@ def main() -> None:
     by_id = {item.get("id"): item for item in publications if isinstance(item, dict)}
     if OLD_ID not in by_id:
         raise ValueError("Expected edition 1.7 predecessor is missing")
-    current = [item.get("id") for item in publications if isinstance(item, dict) and item.get("current")]
+    current = [
+        item.get("id")
+        for item in publications
+        if isinstance(item, dict) and item.get("current")
+    ]
     if current not in ([OLD_ID], [NEW_ID]):
         raise ValueError(f"Unexpected current publication: {current}")
 
@@ -209,10 +214,15 @@ def main() -> None:
     )
     required_marker = '        f"{V17}/MANUSCRIPT.md",'
     if required_marker in text and 'f"{V18}/MANUSCRIPT.md"' not in text:
-        text = text.replace(required_marker, '        f"{V18}/MANUSCRIPT.md",\n' + required_marker)
+        text = text.replace(
+            required_marker, '        f"{V18}/MANUSCRIPT.md",\n' + required_marker
+        )
     manuscript_marker = '    manuscript = (ROOT / V17 / "MANUSCRIPT.md").read_text(encoding="utf-8").lower()'
     if manuscript_marker in text:
-        text = text.replace(manuscript_marker, '    manuscript = (ROOT / V18 / "MANUSCRIPT.md").read_text(encoding="utf-8").lower()')
+        text = text.replace(
+            manuscript_marker,
+            '    manuscript = (ROOT / V18 / "MANUSCRIPT.md").read_text(encoding="utf-8").lower()',
+        )
     checker.write_text(text, encoding="utf-8")
 
     (ROOT / NEW / "CITATION.md").write_text(
@@ -224,7 +234,9 @@ def main() -> None:
         "Peer Review. Die Software wird unabhaengig ueber CITATION.cff im Repository-Root zitiert.\n",
         encoding="utf-8",
     )
-    print("Publication 1.8 activated; software version and evidence registries unchanged.")
+    print(
+        "Publication 1.8 activated; software version and evidence registries unchanged."
+    )
 
 
 if __name__ == "__main__":

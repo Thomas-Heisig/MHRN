@@ -29,7 +29,9 @@ def test_v18_is_current_wip_and_v17_is_predecessor() -> None:
         "PUB-RECURSIVE-EPISTEMICS-20260913-V1.5"
     )
     assert current["automatic_evidence_promotion"] is False
-    predecessor = next(item for item in catalog["publications"] if item["id"] == current["predecessor"])
+    predecessor = next(
+        item for item in catalog["publications"] if item["id"] == current["predecessor"]
+    )
     assert predecessor["current"] is False
 
 
@@ -46,11 +48,25 @@ def test_v18_contains_modular_2_0_structure_and_registers() -> None:
         "manifest.json",
     ):
         assert (V18 / name).is_file(), name
-    edition = _json("research/publications/2026-09-17_recursive-epistemics_v1.8/edition.json")
+    edition = _json(
+        "research/publications/2026-09-17_recursive-epistemics_v1.8/edition.json"
+    )
     assert [part["id"] for part in edition["parts"]] == [
-        "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI"
+        "I",
+        "II",
+        "III",
+        "IV",
+        "V",
+        "VI",
+        "VII",
+        "VIII",
+        "IX",
+        "X",
+        "XI",
     ]
-    manifest = _json("research/publications/2026-09-17_recursive-epistemics_v1.8/manifest.json")
+    manifest = _json(
+        "research/publications/2026-09-17_recursive-epistemics_v1.8/manifest.json"
+    )
     assert manifest["historical_data_modified"] is False
     assert manifest["accepted_evidence"] is False
     assert manifest["automatic_evidence_promotion"] is False
@@ -64,7 +80,10 @@ def test_frozen_v15_and_historical_predecessors_remain_reachable() -> None:
     assert "2026-09-17_recursive-epistemics_v1.8/MANUSCRIPT.md" in current
     assert "2026-09-15_recursive-epistemics_v1.7" in current
     assert (V17 / "MANUSCRIPT.md").is_file()
-    assert (ROOT / "research/publications/2026-09-15_recursive-epistemics_v1.6/MANUSCRIPT.md").is_file()
+    assert (
+        ROOT
+        / "research/publications/2026-09-15_recursive-epistemics_v1.6/MANUSCRIPT.md"
+    ).is_file()
 
 
 def test_v17_author_position_remains_historical_source() -> None:
