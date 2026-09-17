@@ -1,0 +1,212 @@
+{
+  "analysis_id": "AIAR-scientific_writer-20260917191509777402-80f33caf",
+  "role": "scientific_writer",
+  "model": {
+    "provider": "ollama",
+    "model_name": "qwen3:8b",
+    "model_digest": "not_reported",
+    "quantization": "not_reported",
+    "context_length": "unknown",
+    "temperature": 0.0,
+    "top_p": 0.9,
+    "seed": "not_reported",
+    "backend_version": "unknown"
+  },
+  "inputs": {
+    "experiment_id": "EXP-GEN-0047",
+    "packet_digest": "80f33caf2bdc5643ade6f67d5fc639bf8c8fffa4f2fa37a9ccfd68e4a401743b"
+  },
+  "output": {
+    "experiment_status": "completed",
+    "protocol": "topology_propagation_v1",
+    "run_count": 18,
+    "seeds_used": [
+      101,
+      102,
+      103
+    ],
+    "ticks_requested": 256,
+    "ticks_executed": 256,
+    "total_runs": 18,
+    "dimensions": [
+      "1d",
+      "2d",
+      "3d",
+      "5d",
+      "5d_shuffled",
+      "random_graph"
+    ],
+    "metrics_summary": {
+      "activated_neurons": {
+        "mean": 3.0,
+        "std": 0.0,
+        "min": 3.0,
+        "max": 3.0
+      },
+      "delivered_synaptic_events": {
+        "mean": 2.0,
+        "std": 0.0,
+        "min": 2.0,
+        "max": 2.0
+      },
+      "first_response_latency": {
+        "mean": 2.0,
+        "std": 0.0,
+        "min": 2.0,
+        "max": 2.0
+      },
+      "last_response_latency": {
+        "mean": 2.0,
+        "std": 0.0,
+        "min": 2.0,
+        "max": 2.0
+      },
+      "peak_spike_rate": {
+        "mean": 1.0,
+        "std": 0.0,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "propagation_depth": {
+        "mean": 1.0,
+        "std": 0.0,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "synaptic_activity_ticks": {
+        "mean": 2.0,
+        "std": 0.0,
+        "min": 2.0,
+        "max": 2.0
+      },
+      "total_spikes": {
+        "mean": 3.0,
+        "std": 0.0,
+        "min": 3.0,
+        "max": 3.0
+      },
+      "total_synapses": {
+        "mean": 2.0,
+        "std": 0.0,
+        "min": 2.0,
+        "max": 2.0
+      },
+      "inter_spike_intervals": {
+        "mean": 1.0,
+        "std": 0.0,
+        "min": 1.0,
+        "max": 1.0
+      }
+    },
+    "topology_comparison": {
+      "random_graph": {
+        "first_response_latency": 1.0,
+        "propagation_depth": 1.0,
+        "peak_spike_rate": 1.0,
+        "synaptic_activity_ticks": 2.0,
+        "total_spikes": 3.0,
+        "total_synapses": 2.0
+      },
+      "5d_shuffled": {
+        "first_response_latency": 2.0,
+        "propagation_depth": 1.0,
+        "peak_spike_rate": 1.0,
+        "synaptic_activity_ticks": 2.0,
+        "total_spikes": 3.0,
+        "total_synapses": 2.0
+      },
+      "5d": {
+        "first_response_latency": 2.0,
+        "propagation_depth": 1.0,
+        "peak_spike_rate": 1.0,
+        "synaptic_activity_ticks": 2.0,
+        "total_spikes": 3.0,
+        "total_synapses": 2.0
+      },
+      "3d": {
+        "first_response_latency": 2.0,
+        "propagation_depth": 1.0,
+        "peak_spike_rate": 1.0,
+        "synaptic_activity_ticks": 2.0,
+        "total_spikes": 3.0,
+        "total_synapses": 2.0
+      },
+      "2d": {
+        "first_response_latency": 2.0,
+        "propagation_depth": 1.0,
+        "peak_spike_rate": 1.0,
+        "synaptic_activity_ticks": 2.0,
+        "total_spikes": 3.0,
+        "total_synapses": 2.0
+      },
+      "1d": {
+        "first_response_latency": 2.0,
+        "propagation_depth": 1.0,
+        "peak_spike_rate": 1.0,
+        "synaptic_activity_ticks": 2.0,
+        "total_spikes": 3.0,
+        "total_synapses": 2.0
+      }
+    },
+    "key_findings": {
+      "uniform_metrics": {
+        "activated_neurons": "All topologies showed 3 activated neurons.",
+        "delivered_synaptic_events": "All topologies delivered 2 synaptic events.",
+        "total_spikes": "All topologies generated 3 spikes.",
+        "total_synapses": "All topologies had 2 synapses."
+      },
+      "latency_patterns": {
+        "random_graph": "First response latency was 1 tick, significantly lower than other topologies.",
+        "others": "All other topologies had a first response latency of 2 ticks."
+      },
+      "propagation_depth": {
+        "all_topologies": "Propagation depth was 1 tick across all topologies."
+      },
+      "spike_rate": {
+        "all_topologies": "Peak spike rate was 1.0 across all topologies."
+      },
+      "synaptic_activity": {
+        "all_topologies": "Synaptic activity spanned 2 ticks."
+      }
+    },
+    "limitations": [
+      "No scientific evidence is linked to this experiment.",
+      "All metrics were identical across topologies, making direct comparison difficult."
+    ],
+    "conclusion": "The experiment did not find significant differences in propagation latency or reach between topologies. All metrics were uniform across 1d, 2d, 3d, 5d, 5d_shuffled, and random_graph configurations. This suggests that under the given conditions, the topology may not significantly affect propagation behavior.",
+    "assessment": "The experiment did not find significant differences in propagation latency or reach between topologies. All metrics were uniform across 1d, 2d, 3d, 5d, 5d_shuffled, and random_graph configurations. This suggests that under the given conditions, the topology may not significantly affect propagation behavior.",
+    "methodological_concerns": [
+      "No scientific evidence is linked to this experiment.",
+      "All metrics were identical across topologies, making direct comparison difficult.",
+      "Die vom Modell ausgegebene confidence war schemawidrig, fehlte oder lag ausserhalb des Bereichs 0..1. Sie wurde fuer die AIRR-Provenienz konservativ auf 0.0 gesetzt; der Originalwert bleibt als confidence_original erhalten."
+    ],
+    "schema_adapted": true,
+    "observations": [],
+    "alternative_explanations": [],
+    "recommended_experiments": [],
+    "requested_evidence": [],
+    "effect_direction": "not_determined",
+    "confidence_original": null,
+    "confidence": 0.0
+  },
+  "provenance": {
+    "prompt_sha256": "7062f26155b82f58e59ab45883442dec76bc40227d7dbefadc62bd394d3556f0",
+    "research_packet_digest": "80f33caf2bdc5643ade6f67d5fc639bf8c8fffa4f2fa37a9ccfd68e4a401743b",
+    "prompt_protocol_version": "research_assistant_v1",
+    "assistant_schema_version": "1.3",
+    "git_commit": "5e726a7450061b25a2e82b53db1f56b6ac6c4e8d",
+    "model_self_confidence": "0.0"
+  },
+  "epistemic_status": {
+    "evidence": false,
+    "interpretation_only": true,
+    "human_review_required": true
+  },
+  "review": {
+    "status": "pending",
+    "reviewer": null,
+    "reviewed_at": null,
+    "disposition": null
+  },
+  "generated_at": "2026-09-17T19:15:09.777402+00:00"
+}

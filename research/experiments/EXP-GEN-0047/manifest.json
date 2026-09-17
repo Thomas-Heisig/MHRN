@@ -1,0 +1,131 @@
+{
+  "ai_exposure": "none",
+  "ai_interactions": [],
+  "ai_protocol": {
+    "bump_reason": "initial registration",
+    "version": 1
+  },
+  "ai_reproducibility": "R0",
+  "artifacts": {
+    "ai_packet": "analysis/ai_packet.json",
+    "ai_packet_digest": "analysis/ai_packet_digest.json",
+    "ai_report_json": "experiments/EXP-GEN-0047/reports/AIRR-2026-0001.json",
+    "ai_report_markdown": "experiments/EXP-GEN-0047/reports/AIRR-2026-0001.md",
+    "current_run": "DATA/current_run.json",
+    "data": "DATA/runs_compact.json",
+    "data_index": "DATA/runs_index.json",
+    "preregistration": "preregistrations/operational/catalog_completion_v1.json",
+    "raw_run_index": "DATA/runs_index.json",
+    "report": "report.md",
+    "statistics": "analysis/statistics.json",
+    "workflow": "workflow.json"
+  },
+  "causal_card": {
+    "classification": "PURE",
+    "interaction_ids": [],
+    "roles": []
+  },
+  "causal_taint": "PURE",
+  "config": {
+    "path": "F:\\Brain-5D\\configs\\learning_experiment.yaml",
+    "sha256": "6f6cd457caf6216c286fee47ef03b529a0b496ed2dd53ee96b85d3b51e7b3a1c"
+  },
+  "created_at": "2026-09-17T19:12:48.341661+00:00",
+  "data_partitions": [],
+  "epistemic_layers": {
+    "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+    "evid": "not_created; requires semantic validation, clean freeze and human review",
+    "interpretation": "post-hoc AI or human interpretation; never execution input",
+    "ui_state": "operator/dashboard progress only; not a scientific result"
+  },
+  "execution_contract": {
+    "hypothesis_id": "H-SNN-003-B",
+    "protocol": "topology_propagation_v1",
+    "question_id": "RQ-SNN-003",
+    "resolved_runner": "run_5d",
+    "runtime_runner_bytecode_sha256": "e22ce037e9a577f24d60f60ee2c9d8f5a506ecc6506aec5859b8e48770b7e0a6",
+    "runtime_summary_bytecode_sha256": "7776f8c84f3f096fbda136605a27d7cc7d84cf89eb6eb2959eac3bb3489cd123",
+    "source_runner_bytecode_sha256": "e22ce037e9a577f24d60f60ee2c9d8f5a506ecc6506aec5859b8e48770b7e0a6",
+    "source_runtime_consistency": "MATCH",
+    "source_summary_bytecode_sha256": "7776f8c84f3f096fbda136605a27d7cc7d84cf89eb6eb2959eac3bb3489cd123",
+    "tick_validation": {
+      "mode": "minimum_per_run",
+      "observed_max": 256,
+      "observed_min": 256,
+      "requested_ticks": 256,
+      "status": "SATISFIED"
+    },
+    "ticks_requested": 256
+  },
+  "execution_semantics": {
+    "automatic_evidence_promotion": false,
+    "claim_scope": "direct_technical_measurement_not_automatic_evidence",
+    "direct_test_of_hypothesis": true,
+    "external_review": "external_review/INTEGRATION.md",
+    "human_assessment": "not_recorded",
+    "kind": "functional_experiment",
+    "scientific_evidence": false,
+    "snn_involved": true
+  },
+  "experiment_id": "EXP-GEN-0047",
+  "experiment_status": "completed",
+  "git": {
+    "branch": "main",
+    "commit": "5e726a7450061b25a2e82b53db1f56b6ac6c4e8d",
+    "dirty": false
+  },
+  "hypotheses": [
+    "H-SNN-003-B"
+  ],
+  "network_mode": "OFFLINE",
+  "provenance_digests": {
+    "code": "5a11ea288e7e695c2dcd456642b533cbb3e6daf38b72e150134e60e69059531f",
+    "config": "6f6cd457caf6216c286fee47ef03b529a0b496ed2dd53ee96b85d3b51e7b3a1c",
+    "data": "cd0287f410220432a0238d3f79f92f318aeeedea42ee168d95106ae5c05879b9",
+    "prompt": "dd18e473908e7e75b1717c240bac221729ea38753abfd28b701b37b20d5f5e14"
+  },
+  "research_questions": [
+    "RQ-SNN-003"
+  ],
+  "research_run_mode": "EXPLORATORY",
+  "results": {
+    "protocol": "topology_propagation_v1",
+    "run_count": 18,
+    "runner": "run_5d",
+    "tick_contract": {
+      "mode": "minimum_per_run",
+      "observed_max": 256,
+      "observed_min": 256,
+      "requested_ticks": 256,
+      "status": "SATISFIED"
+    },
+    "ticks_requested": 256
+  },
+  "runtime": {
+    "duration_seconds": 0.06011580000631511
+  },
+  "runtime_errors": [],
+  "simulation": {
+    "protocol": "topology_propagation_v1",
+    "seed": 101,
+    "seeds": [
+      101,
+      102,
+      103
+    ],
+    "ticks": 256
+  },
+  "software": {
+    "brain5d_version": "0.6.0a5",
+    "os": "Windows 11",
+    "python": "3.13.14"
+  },
+  "source_freeze_sha": "79f2278df9661804daf1e2f38d2351f9e4a361fc6325755d7df3852d3d0204a8",
+  "timestamp": "2026-09-17T21:12:48.341652",
+  "validity": {
+    "fatal_error_count": 0,
+    "reason": null,
+    "runtime_error_count": 0,
+    "valid": true
+  }
+}

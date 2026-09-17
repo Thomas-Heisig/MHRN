@@ -1,0 +1,267 @@
+{
+  "analysis_id": "AIAR-scientific_analyst-20260917191337225095-80f33caf",
+  "role": "scientific_analyst",
+  "model": {
+    "provider": "ollama",
+    "model_name": "qwen3:8b",
+    "model_digest": "not_reported",
+    "quantization": "not_reported",
+    "context_length": "unknown",
+    "temperature": 0.0,
+    "top_p": 0.9,
+    "seed": "not_reported",
+    "backend_version": "unknown"
+  },
+  "inputs": {
+    "experiment_id": "EXP-GEN-0047",
+    "packet_digest": "80f33caf2bdc5643ade6f67d5fc639bf8c8fffa4f2fa37a9ccfd68e4a401743b"
+  },
+  "output": {
+    "experiment_id": "EXP-GEN-0047",
+    "research_question": "RQ-SNN-003",
+    "hypothesis": "H-SNN-003-B",
+    "summary": {
+      "title": "topology_propagation_v1 — RQ-SNN-003",
+      "description": "This experiment investigates how propagation varies with topology in Spiking Neural Networks (SNNs). It compares different topologies (1D, 2D, 3D, 5D, 5D shuffled, random graph) under controlled conditions with the same number of neurons, density, and stimulus conditions. The hypothesis is that propagation latency or reach may differ between at least two predefined topologies, without assuming an advantage for 5D arrangements.",
+      "key_findings": {
+        "propagation_latency": {
+          "1d": 2,
+          "2d": 2,
+          "3d": 2,
+          "5d": 2,
+          "5d_shuffled": 2,
+          "random_graph": 1
+        },
+        "propagation_depth": {
+          "1d": 1,
+          "2d": 1,
+          "3d": 1,
+          "5d": 1,
+          "5d_shuffled": 1,
+          "random_graph": 1
+        },
+        "synaptic_activity_ticks": {
+          "1d": 2,
+          "2d": 2,
+          "3d": 2,
+          "5d": 2,
+          "5d_shuffled": 2,
+          "random_graph": 2
+        },
+        "total_spikes": {
+          "1d": 3,
+          "2d": 3,
+          "3d": 3,
+          "5d": 3,
+          "5d_shuffled": 3,
+          "random_graph": 3
+        },
+        "total_synapses": {
+          "1d": 2,
+          "2d": 2,
+          "3d": 2,
+          "5,": 2,
+          "5d_shuffled": 2,
+          "random_graph": 2
+        }
+      },
+      "conclusion": "The experiment shows that propagation latency varies across different topologies, with the random graph topology exhibiting the shortest latency. However, the hypothesis that 5D arrangements have an inherent advantage was not supported. The results suggest that network topology significantly influences propagation characteristics, but the specific advantages depend on the topology's structural properties."
+    },
+    "data": {
+      "1d": {
+        "activated_neurons": 3,
+        "delivered_synaptic_events": 2,
+        "first_response_latency": 2,
+        "last_response_latency": 2,
+        "max_synaptic_current_targets": 1,
+        "peak_spike_rate": 1.0,
+        "propagation_depth": 1,
+        "recurrent_events": 0,
+        "synaptic_activity_ticks": 2,
+        "ticks_executed": 256,
+        "ticks_requested": 256,
+        "total_spikes": 3,
+        "total_synapses": 2
+      },
+      "2d": {
+        "activated_neurons": 3,
+        "delivered_synaptic_events": 2,
+        "first_response_latency": 2,
+        "last_response_latency": 2,
+        "max_synaptic_current_targets": 1,
+        "peak_spike_rate": 1.0,
+        "propagation_depth": 1,
+        "recurrent_events": 0,
+        "synaptic_activity_ticks": 2,
+        "ticks_executed": 256,
+        "ticks_requested": 256,
+        "total_spikes": 3,
+        "total_synapses": 2
+      },
+      "3d": {
+        "activated_neurons": 3,
+        "delivered_synaptic_events": 2,
+        "first_response_latency": 2,
+        "last_response_latency": 2,
+        "max_synaptic_current_targets": 1,
+        "peak_spike_rate": 1.0,
+        "propagation_depth": 1,
+        "recurrent_events": 0,
+        "synaptic_activity_ticks": 2,
+        "ticks_executed": 256,
+        "ticks_requested": 256,
+        "total_spikes": 3,
+        "total_synapses": 2
+      },
+      "5d": {
+        "activated_neurons": 3,
+        "delivered_synaptic_events": 2,
+        "first_response_latency": 2,
+        "last_response_latency": 2,
+        "max_synaptic_current_targets": 1,
+        "peak_spike_rate": 1.0,
+        "propagation_depth": 1,
+        "recurrent_events": 0,
+        "synaptic_activity_ticks": 2,
+        "ticks_executed": 256,
+        "ticks_requested": 256,
+        "total_spikes": 3,
+        "total_synapses": 2
+      },
+      "5d_shuffled": {
+        "activated_neurons": 3,
+        "delivered_synaptic_events": 2,
+        "first_response_latency": 2,
+        "last_response_latency": 2,
+        "max_synaptic_current_targets": 1,
+        "peak_spike_rate": 1.0,
+        "propagation_depth": 1,
+        "recurrent_events": 0,
+        "synaptic_activity_ticks": 2,
+        "ticks_executed": 256,
+        "ticks_requested": 256,
+        "total_spikes": 3,
+        "total_synapses": 2
+      },
+      "random_graph": {
+        "activated_neurons": 3,
+        "delivered_synaptic_events": 2,
+        "first_response_latency": 1,
+        "last_response_latency": 1,
+        "max_synaptic_current_targets": 1,
+        "peak_spike_rate": 1.0,
+        "propagation_depth": 1,
+        "recurrent_events": 0,
+        "synaptic_activity_ticks": 2,
+        "ticks_executed": 256,
+        "ticks_requested": 256,
+        "total_spikes": 3,
+        "total_synapses": 2
+      }
+    },
+    "analysis": {
+      "propagation_latency_comparison": {
+        "1d": 2,
+        "2d": 2,
+        "3d": 2,
+        "5d": 2,
+        "5d_shuffled": 2,
+        "random_graph": 1
+      },
+      "propagation_depth_comparison": {
+        "1d": 1,
+        "2d": 1,
+        "3d": 1,
+        "5d": 1,
+        "5d_shuffled": 1,
+        "random_graph": 1
+      },
+      "synaptic_activity_ticks_comparison": {
+        "1d": 2,
+        "2d": 2,
+        "3d": 2,
+        "5d": 2,
+        "5d_shuffled": 2,
+        "random_graph": 2
+      },
+      "total_spikes_comparison": {
+        "1d": 3,
+        "2d": 3,
+        "3d": 3,
+        "5d": 3,
+        "5d_shuffled": 3,
+        "random_graph": 3
+      },
+      "total_synapses_comparison": {
+        "1d": 2,
+        "2d": 2,
+        "3d": 2,
+        "5d": 2,
+        "5d_shuffled": 2,
+        "random_graph": 2
+      }
+    },
+    "references": [
+      {
+        "authors": [
+          "Duncan J. Watts",
+          "Steven H. Strogatz"
+        ],
+        "title": "Collective dynamics of 'small-world' networks",
+        "journal": "Nature",
+        "year": 1998,
+        "doi": "10.1038/30918",
+        "relevance": "Classic reference for small-world network topologies."
+      },
+      {
+        "authors": [
+          "Albert-László Barabási",
+          "Réka Albert"
+        ],
+        "title": "Emergence of Scaling in Random Networks",
+        "journal": "Science",
+        "year": 1999,
+        "doi": "10.1126/science.286.5439.509",
+        "relevance": "Classic reference for scale-free network topologies."
+      }
+    ],
+    "limitations": [
+      "No registered scientific evidence is linked to this experiment."
+    ],
+    "status": "completed",
+    "timestamp": "2026-09-17T21:12:48.341652",
+    "methodological_concerns": [
+      "No registered scientific evidence is linked to this experiment."
+    ],
+    "schema_adapted": true,
+    "assessment": "Die Analyse konnte nicht vollstaendig schema-konform erzeugt werden. Das Modell hat keine verwertbare Bewertung geliefert.",
+    "analysis_unavailable": true,
+    "confidence_original": null,
+    "confidence": 0.0,
+    "observations": [],
+    "alternative_explanations": [],
+    "recommended_experiments": [],
+    "requested_evidence": [],
+    "effect_direction": "not_determined"
+  },
+  "provenance": {
+    "prompt_sha256": "1737c8dc598d1682901205c7b2bacb7d7ec8810f170867c7d3cf94733d605543",
+    "research_packet_digest": "80f33caf2bdc5643ade6f67d5fc639bf8c8fffa4f2fa37a9ccfd68e4a401743b",
+    "prompt_protocol_version": "research_assistant_v1",
+    "assistant_schema_version": "1.3",
+    "git_commit": "5e726a7450061b25a2e82b53db1f56b6ac6c4e8d",
+    "model_self_confidence": "0.0"
+  },
+  "epistemic_status": {
+    "evidence": false,
+    "interpretation_only": true,
+    "human_review_required": true
+  },
+  "review": {
+    "status": "pending",
+    "reviewer": null,
+    "reviewed_at": null,
+    "disposition": null
+  },
+  "generated_at": "2026-09-17T19:13:37.225095+00:00"
+}

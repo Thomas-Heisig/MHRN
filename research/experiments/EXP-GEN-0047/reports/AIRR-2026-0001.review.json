@@ -1,0 +1,8 @@
+{
+  "report_id": "AIRR-2026-0001",
+  "review_status": "accepted_as_interpretation",
+  "reviewer": "Thomas Heisig",
+  "reviewed_at": "2026-09-17T19:17:59.156396+00:00",
+  "comments": "EXP-GEN-0047 ist sauber ausgeführt und der AIRR hat korrekt „keine signifikanten Unterschiede\" erkannt – aber das Experiment ist unterpowert für H-SNN-003-B. Bei 3 Neuronen und 2 Synapsen kann Topologie keinen messbaren Effekt zeigen. Der random_graph-Latenzunterschied ist kein Befund, sondern ein Sampling-Artefakt. Vor dem nächsten Lauf muss die Registry-Regel für RQ-SNN-003 geklärt sein, und das Netzwerk muss groß genug werden, dass die Frage überhaupt testbar ist.",
+  "report_content_digest": "9bfdcbf6d564bf8128154105a590e2e5c5bb1c51943b3071439a960558cc595a"
+}
