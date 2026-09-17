@@ -23,17 +23,24 @@ def _backend(_prompt: str) -> tuple[dict[str, Any], dict[str, str | float]]:
     )
 
 
-def _fixture(root: Path, *, conditions: list[str], protocol: str) -> None:
+def _fixture(
+    root: Path,
+    *,
+    conditions: list[str],
+    protocol: str,
+    question_id: str = "RQ-SNN-002",
+    hypothesis_id: str = "H-SNN-002-A",
+) -> None:
     experiment = root / "experiments" / "EXP-AIRR-SEM"
     analysis = experiment / "analysis"
     analysis.mkdir(parents=True)
     (root / "registry" / "evidence").mkdir(parents=True)
     (root / "registry" / "questions.yaml").write_text(
-        "- id: RQ-SNN-002\n  question: Reproducible spike sequences?\n",
+        f"- id: {question_id}\n  question: Registered test question?\n",
         encoding="utf-8",
     )
     (root / "registry" / "hypotheses.yaml").write_text(
-        "- id: H-SNN-002-A\n  research_question: RQ-SNN-002\n  hypothesis: Reproducible.\n",
+        f"- id: {hypothesis_id}\n  research_question: {question_id}\n  hypothesis: Registered hypothesis.\n",
         encoding="utf-8",
     )
     (root / "registry" / "claims.yaml").write_text("[]\n", encoding="utf-8")
@@ -44,8 +51,8 @@ def _fixture(root: Path, *, conditions: list[str], protocol: str) -> None:
         json.dumps(
             {
                 "experiment_status": "completed",
-                "research_questions": ["RQ-SNN-002"],
-                "hypotheses": ["H-SNN-002-A"],
+                "research_questions": [question_id],
+                "hypotheses": [hypothesis_id],
                 "artifacts": {"workflow": "workflow.json"},
                 "git": {"commit": "abc123", "dirty": False},
             }
@@ -99,3 +106,23 @@ def test_airr_preserves_interpretive_confidence_for_direct_match(
     epistemic = report.content["epistemic_status"]
     assert epistemic["semantic_alignment"] == "DIRECT_MATCH"
     assert epistemic["confidence_gate"] == "PASSED"
+
+
+def test_airr_blocks_snn003_interpretation_when_v1_design_is_inadequate(
+    tmp_path: Path,
+) -> None:
+    _fixture(
+        tmp_path,
+        conditions=["1d", "2d", "3d", "5d", "5d_shuffled", "random_graph"],
+        protocol="topology_propagation_v1",
+        question_id="RQ-SNN-003",
+        hypothesis_id="H-SNN-003-B",
+    )
+    report = AIRRPipeline(tmp_path).analyze("EXP-AIRR-SEM", _backend)
+    epistemic = report.content["epistemic_status"]
+    assert epistemic["semantic_alignment"] == "DIRECT_MATCH"
+    assert epistemic["design_adequacy"] == "INADEQUATE_TO_TEST_HYPOTHESIS"
+    assert epistemic["confidence_gate"] == "FORCED_ZERO_DESIGN_INADEQUACY"
+    assert report.content["ai_confidence"] == 0.0
+    assert "nicht testadäquat" in report.content["executive_summary"]
+    assert report.content["aiar"]["writer"]["output"]["confidence"] == 0.95

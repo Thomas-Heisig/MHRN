@@ -19,6 +19,29 @@ _SUITE_REQUIRED_GROUPS = {
 }
 
 
+def classify_design_adequacy(question_id: str, protocol: str) -> tuple[str, str]:
+    """Classify known protocol-level adequacy limits independently of semantics.
+
+    A semantic match only says that the intended registered conditions are
+    present. It does not imply that the implemented design has enough structure,
+    activity or causal coupling to test the hypothesis.
+    """
+    if question_id == "RQ-SNN-003" and protocol == "topology_propagation_v1":
+        return (
+            "INADEQUATE_TO_TEST_HYPOTHESIS",
+            "topology_propagation_v1 verwendet eine feste Drei-Neuronen-Kette mit zwei Synapsen. Die Dimensionskoordinaten werden variiert, aber die wesentlichen Kanten, Gewichte und Delays sind fest vorgegeben. Das Design ist daher nicht hinreichend sensitiv, um H-SNN-003-B als Topologie-/Geometriehypothese zu testen; identische Ausgaben sind kein Nullbefund gegen einen Topologieeffekt.",
+        )
+    if question_id == "RQ-SNN-003":
+        return (
+            "REQUIRES_EXPLICIT_REVIEW",
+            "Für RQ-SNN-003 muss die Testadäquanz separat von der Condition-Semantik geprüft werden. Erforderlich sind insbesondere ausreichend große Netzwerke, gematchte Dichte/Größe, ein expliziter geometrischer Kopplungsmechanismus, regionale Stimulation und verteilungsbasierte Propagationsmetriken.",
+        )
+    return (
+        "NOT_ASSESSED",
+        "Für diese Forschungsfrage ist keine automatische Designadäquanz-Regel registriert.",
+    )
+
+
 def classify_semantic_status(
     question_id: str, protocol: str, conditions: set[str]
 ) -> tuple[str, str]:
@@ -136,6 +159,18 @@ def classify_semantic_status(
         return classify(
             tonic_replica_pair or recurrence_replica_pair,
             "RQ-DET-001 erwartet gepaarte Replikate mit identischem Seed, Input und Ausgangszustand. Zulässig sind die isolierte Tonic-Replikapaar-Bedingung oder explizite A/B-Replikate beider Rekurrenzarme.",
+        )
+    if question_id == "RQ-SNN-003":
+        return classify(
+            {
+                "1d",
+                "2d",
+                "3d",
+                "5d",
+                "5d_shuffled",
+                "random_graph",
+            }.issubset(plain),
+            "RQ-SNN-003 erwartet 1d, 2d, 3d, 5d, 5d_shuffled und random_graph unter gematchter Versuchsführung. Diese Regel prüft ausschließlich die semantische Condition-Zuordnung; die Testadäquanz des konkreten Protokolls wird separat bewertet.",
         )
     if question_id == "RQ-SNN-002":
         return classify(

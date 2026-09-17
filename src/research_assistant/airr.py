@@ -9,7 +9,10 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, cast
 
-from src.research.semantic_contracts import classify_semantic_status
+from src.research.semantic_contracts import (
+    classify_design_adequacy,
+    classify_semantic_status,
+)
 
 from .assistant import AnalysisBackend, ResearchAssistant
 from .models import AIAnalysisRecord, ResearchPacket
@@ -238,6 +241,18 @@ def _role_prompt(
     role: str, packet: ResearchPacket, analyses: tuple[AIAnalysisRecord, ...]
 ) -> str:
     context = [record.to_dict() for record in analyses]
+    design_status, design_note = _packet_design_adequacy(packet)
+    design_instruction = (
+        "Deterministic design-adequacy gate: "
+        f"{design_status}. {design_note} "
+        "Treat the experiment as not test-adequate/underpowered for the registered "
+        "hypothesis. Do not interpret uniform outcomes as evidence that topology "
+        "has no effect, and do not promote an isolated latency difference to a "
+        "topology effect. State that a larger preregistered follow-up with an "
+        "explicit geometry-to-connectivity/delay mechanism is required.\n"
+        if design_status == "INADEQUATE_TO_TEST_HYPOTHESIS"
+        else ""
+    )
     review_instruction = (
         "Actively attempt to falsify the analyst and list confounders, leakage, "
         "dependence, missing controls, and mismatched statistics.\n"
@@ -261,27 +276,33 @@ def _role_prompt(
         "analysis and its deterministic result. If the packet contains only descriptive "
         "statistics, describe differences only as descriptive effects or differences and "
         "state that statistical significance was not tested.\n"
+        + design_instruction
         + review_instruction
         + f"Prior role outputs: {json.dumps(context, sort_keys=True)}\n"
         + f"ResearchPacket: {packet.to_json()}"
     )
 
 
-def _packet_semantic_status(packet: ResearchPacket) -> tuple[str, str]:
-    """Resolve deterministic RQ/protocol/condition alignment from packet data."""
-    question_id = str(packet.research_question.get("id", "NOT_AVAILABLE"))
+def _packet_protocol(packet: ResearchPacket) -> str:
+    """Resolve the protocol identifier from canonical packet/manifest fields."""
     protocol_payload = packet.protocol if isinstance(packet.protocol, dict) else {}
     simulation = (
         packet.manifest.get("simulation", {})
         if isinstance(packet.manifest.get("simulation"), dict)
         else {}
     )
-    protocol = str(
+    return str(
         protocol_payload.get("protocol")
         or simulation.get("protocol")
         or packet.manifest.get("protocol_id")
         or "NOT_AVAILABLE"
     )
+
+
+def _packet_semantic_status(packet: ResearchPacket) -> tuple[str, str]:
+    """Resolve deterministic RQ/protocol/condition alignment from packet data."""
+    question_id = str(packet.research_question.get("id", "NOT_AVAILABLE"))
+    protocol = _packet_protocol(packet)
 
     conditions: set[str] = set()
     data = packet.data if isinstance(packet.data, dict) else {}
@@ -302,6 +323,12 @@ def _packet_semantic_status(packet: ResearchPacket) -> tuple[str, str]:
     return classify_semantic_status(question_id, protocol, conditions)
 
 
+def _packet_design_adequacy(packet: ResearchPacket) -> tuple[str, str]:
+    """Resolve protocol-level design adequacy independently of condition semantics."""
+    question_id = str(packet.research_question.get("id", "NOT_AVAILABLE"))
+    return classify_design_adequacy(question_id, _packet_protocol(packet))
+
+
 def _build_report(
     packet: ResearchPacket,
     analyst: AIAnalysisRecord,
@@ -315,16 +342,27 @@ def _build_report(
     claims = [str(item.get("id")) for item in packet.claims if item.get("id")]
     manifest = packet.manifest
     semantic_status, semantic_note = _packet_semantic_status(packet)
+    design_status, design_note = _packet_design_adequacy(packet)
     raw_confidence = writer.output.get("confidence", 0.0)
     model_confidence = (
         float(raw_confidence)
         if isinstance(raw_confidence, (int, float)) and not isinstance(raw_confidence, bool)
         else 0.0
     )
-    confidence_blocked = semantic_status == "MISMATCH"
+    semantic_blocked = semantic_status == "MISMATCH"
+    design_blocked = design_status == "INADEQUATE_TO_TEST_HYPOTHESIS"
+    confidence_blocked = semantic_blocked or design_blocked
     reported_confidence = 0.0 if confidence_blocked else model_confidence
-    confidence_gate = (
-        "FORCED_ZERO_SEMANTIC_MISMATCH" if confidence_blocked else "PASSED"
+    if semantic_blocked:
+        confidence_gate = "FORCED_ZERO_SEMANTIC_MISMATCH"
+    elif design_blocked:
+        confidence_gate = "FORCED_ZERO_DESIGN_INADEQUACY"
+    else:
+        confidence_gate = "PASSED"
+    guarded_assessment = (
+        "Das Experiment ist technisch auswertbar, aber das registrierte v1-Design ist für H-SNN-003-B nicht testadäquat. Gleichförmige Ergebnisse dürfen nicht als Nullbefund gegen einen Topologieeffekt interpretiert werden; einzelne Latenzabweichungen sind unter diesem Design ebenfalls kein belastbarer Topologiebefund."
+        if design_blocked
+        else str(writer.output.get("assessment", "NOT_AVAILABLE"))
     )
     content = {
         "identification": {
@@ -336,7 +374,7 @@ def _build_report(
             "date": datetime.now(timezone.utc).date().isoformat(),
             "source_sha": packet.provenance.get("git_commit", "NOT_AVAILABLE"),
         },
-        "executive_summary": writer.output.get("assessment", "NOT_AVAILABLE"),
+        "executive_summary": guarded_assessment,
         "research_question": packet.research_question,
         "experimental_design": packet.protocol or manifest.get("conditions", {}),
         "data_basis": _data_basis(packet),
@@ -356,12 +394,14 @@ def _build_report(
             "rq_status": "IN_PROGRESS",
             "semantic_alignment": semantic_status,
             "semantic_note": semantic_note,
+            "design_adequacy": design_status,
+            "design_note": design_note,
             "confidence_gate": confidence_gate,
         },
         "ai_confidence": reported_confidence,
         "missing_evidence": writer.output.get("requested_evidence", []),
         "recommended_follow_up": writer.output.get("recommended_experiments", []),
-        "conclusion": writer.output.get("assessment", "NOT_AVAILABLE"),
+        "conclusion": guarded_assessment,
         "human_review": {
             "status": "PENDING",
             "reviewer": None,
