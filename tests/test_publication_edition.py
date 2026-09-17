@@ -165,6 +165,7 @@ def test_active_catalog_and_identity_are_consistent() -> None:
     assert (ROOT / identity["viewer_entrypoint"]).is_file()
     assert publication.materialize(ROOT, check=True)["result"] == "PASS"
 
+
 def test_material_prior_work_content_integration_is_declared(repository: Path) -> None:
     outputs = publication.build(repository)
     ledger = json.loads(outputs["registers/content_integration.json"])

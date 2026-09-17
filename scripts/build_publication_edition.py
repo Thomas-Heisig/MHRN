@@ -329,16 +329,40 @@ def build(root: Path = ROOT):
             raise ValueError("The publication builder cannot accept evidence")
     prior = load(root, EDITION + "/sources/prior_work.json")
     content_integration = load(root, EDITION + "/sources/content_integration.json")
-    required_corpus_ids = {"CORPUS-BRAIN5D", "CORPUS-BORROWED-INTELLIGENCE", "CORPUS-ARCHITECTURE", "CORPUS-NEURAL-SYMBIOSIS", "CORPUS-MSBA", "CORPUS-WESEN-EMBODIMENT", "CORPUS-CURRENT-SCIENCE", "CORPUS-EXPERIMENT-DATA"}
+    required_corpus_ids = {
+        "CORPUS-BRAIN5D",
+        "CORPUS-BORROWED-INTELLIGENCE",
+        "CORPUS-ARCHITECTURE",
+        "CORPUS-NEURAL-SYMBIOSIS",
+        "CORPUS-MSBA",
+        "CORPUS-WESEN-EMBODIMENT",
+        "CORPUS-CURRENT-SCIENCE",
+        "CORPUS-EXPERIMENT-DATA",
+    }
     corpus_ids = {item["id"] for item in content_integration.get("entries", [])}
     if not required_corpus_ids.issubset(corpus_ids):
-        raise ValueError("Content integration ledger misses required material prior-work families")
+        raise ValueError(
+            "Content integration ledger misses required material prior-work families"
+        )
     for item in content_integration["entries"]:
-        for field in ("id", "title", "source_paths", "source_role", "manuscript_parts", "integration_status", "integration_mode", "boundaries"):
+        for field in (
+            "id",
+            "title",
+            "source_paths",
+            "source_role",
+            "manuscript_parts",
+            "integration_status",
+            "integration_mode",
+            "boundaries",
+        ):
             if not item.get(field):
-                raise ValueError(f"Incomplete content integration entry: {item.get('id')} / {field}")
+                raise ValueError(
+                    f"Incomplete content integration entry: {item.get('id')} / {field}"
+                )
         if any(part not in ROMAN for part in item["manuscript_parts"]):
-            raise ValueError(f"Invalid manuscript part in content integration entry: {item['id']}")
+            raise ValueError(
+                f"Invalid manuscript part in content integration entry: {item['id']}"
+            )
     baseline, source_texts = pinned_sources(root, config["baseline_commit"])
     legacy = {p: b for p, b in source_texts.items() if p.startswith(PREVIOUS + "/")}
     inventory = []
