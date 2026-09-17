@@ -39,17 +39,20 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.13"
-      - run: python -m pip install -e ".[dev]"
-      - name: Activate and generate edition 1.8
-        run: |
-          python scripts/activate_publication_18.py
-          python scripts/build_publication_edition.py --write
-          python scripts/audit_document_governance.py --write
-      - name: Verify before committing generated outputs
-        run: |
-          python scripts/build_publication_edition.py --check
-          python scripts/check_scientific_maturity_integrity.py
-          python -m pytest tests/test_publication_edition.py tests/test_publication_reader.py tests/test_publication_scholar_reader.py tests/test_publication_integration.py -q
+      - name: Install project
+        run: python -m pip install -e ".[dev]"
+      - name: Activate edition pointers
+        run: python scripts/activate_publication_18.py
+      - name: Build edition 1.8
+        run: python scripts/build_publication_edition.py --write
+      - name: Generate document governance catalogs
+        run: python scripts/audit_document_governance.py --write
+      - name: Verify deterministic edition build
+        run: python scripts/build_publication_edition.py --check
+      - name: Verify scientific integrity contract
+        run: python scripts/check_scientific_maturity_integrity.py
+      - name: Run publication regression tests
+        run: python -m pytest tests/test_publication_edition.py tests/test_publication_reader.py tests/test_publication_scholar_reader.py tests/test_publication_integration.py -q
       - name: Commit materialized publication
         run: |
           git add research/publications/2026-09-17_recursive-epistemics_v1.8 research/publications/catalog.json research/publications/CURRENT.md research/publications/README.md project_identity.json README.md docs/README.md research/README.md docs/08-roadmap/V2_PUBLICATION_STRUCTURE_MIGRATION.md research/document_governance_overrides.json docs/DOCUMENT_CATALOG.json research/RESEARCH_CATALOG.json scripts/build_publication_edition.py scripts/activate_publication_18.py scripts/check_scientific_maturity_integrity.py tests/test_publication_edition.py
