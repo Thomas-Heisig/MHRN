@@ -1,0 +1,8 @@
+{
+  "report_id": "AIRR-2026-0001",
+  "review_status": "accepted_as_interpretation",
+  "reviewer": "Thomas Heisig",
+  "reviewed_at": "2026-09-16T21:21:33.637722+00:00",
+  "comments": "Drei Commits, drei Läufe, identische Zahlen – das bedeutet: Der Fix ist nicht aktiv in dieser Konfiguration. Bevor ein viertes Experiment mit demselben Ergebnis läuft, muss enable_homeostasis in learning_experiment.yaml geprüft werden. Wenn aus: das Protokoll testet die Homeostase nicht, egal wie oft es läuft.",
+  "report_content_digest": "1661fc6efd9a95982c2876907187623c1b95a87da40d73b4b6a4016a4c8db8bc"
+}

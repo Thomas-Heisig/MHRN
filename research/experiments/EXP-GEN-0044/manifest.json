@@ -1,0 +1,130 @@
+{
+  "ai_exposure": "none",
+  "ai_interactions": [],
+  "ai_protocol": {
+    "bump_reason": "initial registration",
+    "version": 1
+  },
+  "ai_reproducibility": "R0",
+  "artifacts": {
+    "ai_packet": "analysis/ai_packet.json",
+    "ai_packet_digest": "analysis/ai_packet_digest.json",
+    "ai_report_json": "experiments/EXP-GEN-0044/reports/AIRR-2026-0001.json",
+    "ai_report_markdown": "experiments/EXP-GEN-0044/reports/AIRR-2026-0001.md",
+    "current_run": "DATA/current_run.json",
+    "data": "DATA/runs_compact.json",
+    "data_index": "DATA/runs_index.json",
+    "preregistration": "preregistrations/PREREG-SNN-001.json",
+    "raw_run_index": "DATA/runs_index.json",
+    "report": "report.md",
+    "statistics": "analysis/statistics.json",
+    "workflow": "workflow.json"
+  },
+  "causal_card": {
+    "classification": "PURE",
+    "interaction_ids": [],
+    "roles": []
+  },
+  "causal_taint": "PURE",
+  "config": {
+    "path": "F:\\Brain-5D\\configs\\learning_experiment.yaml",
+    "sha256": "6f6cd457caf6216c286fee47ef03b529a0b496ed2dd53ee96b85d3b51e7b3a1c"
+  },
+  "created_at": "2026-09-16T21:17:03.905927+00:00",
+  "data_partitions": [],
+  "epistemic_layers": {
+    "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+    "evid": "not_created; requires semantic validation, clean freeze and human review",
+    "interpretation": "post-hoc AI or human interpretation; never execution input",
+    "ui_state": "operator/dashboard progress only; not a scientific result"
+  },
+  "execution_contract": {
+    "hypothesis_id": "H-SNN-001-A",
+    "protocol": "sustained_activity_stability_v1",
+    "question_id": "RQ-SNN-001",
+    "resolved_runner": "run_sustained_stability",
+    "runtime_runner_bytecode_sha256": "5d72d56b50f32859bde16ee622629877e97a65c534109b5215a4dd20da46e025",
+    "runtime_summary_bytecode_sha256": "7776f8c84f3f096fbda136605a27d7cc7d84cf89eb6eb2959eac3bb3489cd123",
+    "source_runner_bytecode_sha256": "5d72d56b50f32859bde16ee622629877e97a65c534109b5215a4dd20da46e025",
+    "source_runtime_consistency": "MATCH",
+    "source_summary_bytecode_sha256": "7776f8c84f3f096fbda136605a27d7cc7d84cf89eb6eb2959eac3bb3489cd123",
+    "tick_validation": {
+      "mode": "minimum_per_run_with_control_and_treatment",
+      "observed_max": 100000,
+      "observed_min": 100000,
+      "requested_ticks": 100000,
+      "run_count": 20,
+      "status": "SATISFIED"
+    },
+    "ticks_requested": 100000
+  },
+  "experiment_id": "EXP-GEN-0044",
+  "experiment_status": "completed",
+  "git": {
+    "branch": "main",
+    "commit": "8322b2c47e10ef834aab2e4f3547d1a6ceccbde2",
+    "dirty": false
+  },
+  "hypotheses": [
+    "H-SNN-001-A"
+  ],
+  "network_mode": "OFFLINE",
+  "provenance_digests": {
+    "code": "5a11ea288e7e695c2dcd456642b533cbb3e6daf38b72e150134e60e69059531f",
+    "config": "6f6cd457caf6216c286fee47ef03b529a0b496ed2dd53ee96b85d3b51e7b3a1c",
+    "data": "e9503a81600b6376ebc5961bf6430ed6b73d29a65728a5367cd018991540dd3a",
+    "prompt": "dd18e473908e7e75b1717c240bac221729ea38753abfd28b701b37b20d5f5e14"
+  },
+  "research_questions": [
+    "RQ-SNN-001"
+  ],
+  "research_run_mode": "CONFIRMATORY",
+  "results": {
+    "protocol": "sustained_activity_stability_v1",
+    "run_count": 20,
+    "runner": "run_sustained_stability",
+    "tick_contract": {
+      "mode": "minimum_per_run_with_control_and_treatment",
+      "observed_max": 100000,
+      "observed_min": 100000,
+      "requested_ticks": 100000,
+      "run_count": 20,
+      "status": "SATISFIED"
+    },
+    "ticks_requested": 100000
+  },
+  "runtime": {
+    "duration_seconds": 16.447315999999773
+  },
+  "runtime_errors": [],
+  "simulation": {
+    "protocol": "sustained_activity_stability_v1",
+    "seed": 42,
+    "seeds": [
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51
+    ],
+    "ticks": 100000
+  },
+  "software": {
+    "brain5d_version": "0.6.0a5",
+    "os": "Windows 11",
+    "python": "3.13.14"
+  },
+  "source_freeze_sha": "7d650b1717a44bb89670c3418b2a5f5ee524998ef333ff2ea34dc1853ceb29c2",
+  "timestamp": "2026-09-16T23:17:03.905919",
+  "validity": {
+    "fatal_error_count": 0,
+    "reason": null,
+    "runtime_error_count": 0,
+    "valid": true
+  }
+}

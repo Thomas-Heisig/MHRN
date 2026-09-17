@@ -1,0 +1,60 @@
+{
+  "analysis_id": "AIAR-critical_reviewer-20260916211841761760-8bbc246a",
+  "role": "critical_reviewer",
+  "model": {
+    "provider": "ollama",
+    "model_name": "qwen3:8b",
+    "model_digest": "not_reported",
+    "quantization": "not_reported",
+    "context_length": "unknown",
+    "temperature": 0.0,
+    "top_p": 0.9,
+    "seed": "not_reported",
+    "backend_version": "unknown"
+  },
+  "inputs": {
+    "experiment_id": "EXP-GEN-0044",
+    "packet_digest": "8bbc246a7cd9423fe4d23b7793f2671dc89376fa9639413279c1fa6a9e37fe1d"
+  },
+  "output": {
+    "confidence": 0.0,
+    "current": "Yes, Brain-5D can generate stable spike dynamics over long simulation times.",
+    "limitations": [
+      "No registered scientific evidence is linked to this experiment.",
+      "Results are based on deterministic simulations with fixed parameters."
+    ],
+    "methodological_concerns": [
+      "No registered scientific evidence is linked to this experiment.",
+      "Results are based on deterministic simulations with fixed parameters."
+    ],
+    "schema_adapted": true,
+    "assessment": "Die Analyse konnte nicht vollstaendig schema-konform erzeugt werden. Das Modell hat keine verwertbare Bewertung geliefert.",
+    "analysis_unavailable": true,
+    "confidence_original": 0.0,
+    "observations": [],
+    "alternative_explanations": [],
+    "recommended_experiments": [],
+    "requested_evidence": [],
+    "effect_direction": "not_determined"
+  },
+  "provenance": {
+    "prompt_sha256": "b799745820beef5d2ac8560d580d68ef7c38bdbfcf7058fab548b22c9dc31fb0",
+    "research_packet_digest": "8bbc246a7cd9423fe4d23b7793f2671dc89376fa9639413279c1fa6a9e37fe1d",
+    "prompt_protocol_version": "research_assistant_v1",
+    "assistant_schema_version": "1.3",
+    "git_commit": "8322b2c47e10ef834aab2e4f3547d1a6ceccbde2",
+    "model_self_confidence": "0.0"
+  },
+  "epistemic_status": {
+    "evidence": false,
+    "interpretation_only": true,
+    "human_review_required": true
+  },
+  "review": {
+    "status": "pending",
+    "reviewer": null,
+    "reviewed_at": null,
+    "disposition": null
+  },
+  "generated_at": "2026-09-16T21:18:41.761760+00:00"
+}
