@@ -1,0 +1,49 @@
+name: Finalize edition 1.8 once
+
+on:
+  push:
+    branches: ["docs/edition-1-8-modular"]
+    paths:
+      - ".github/workflows/fix-edition-18-final-once.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Install project
+        run: python -m pip install -e ".[dev,docs]"
+      - name: Apply canonical lint fixes
+        run: |
+          python -m ruff check scripts/build_publication_edition.py src/dashboard/server.py --fix
+          python -m black scripts/build_publication_edition.py src/dashboard/server.py tests/test_publication_edition.py
+      - name: Rebuild deterministic edition outputs
+        run: |
+          python scripts/build_publication_edition.py --write
+          python scripts/audit_document_governance.py --write
+      - name: Verify final publication contracts
+        run: |
+          python -m black --check scripts/build_publication_edition.py src/dashboard/server.py tests/test_publication_edition.py
+          python -m ruff check scripts/build_publication_edition.py src/dashboard/server.py tests/test_publication_edition.py
+          python scripts/build_publication_edition.py --check
+          python scripts/check_scientific_maturity_integrity.py
+          python scripts/generate_catalog_audit_report.py
+          python -m pytest tests/test_publication_edition.py -q
+      - name: Commit fixes and regenerated projections
+        run: |
+          git add scripts/build_publication_edition.py src/dashboard/server.py tests/test_publication_edition.py research/publications/2026-09-17_recursive-epistemics_v1.8 docs/DOCUMENT_CATALOG.json research/RESEARCH_CATALOG.json research/generated/CATALOG_AUDIT_REPORT.md research/generated/CATALOG_AUDIT_REPORT.json
+          if ! git diff --cached --quiet; then
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git commit -m 'fix(publication): satisfy final lint and catalog integrity gates'
+            git push origin HEAD:docs/edition-1-8-modular
+          fi
