@@ -80,6 +80,13 @@ Fehler in Reports, Baselines, Testadäquanz und AI-Schema-Normalisierung führte
 
 Dieser Beitrag ist methodisch, nicht neuronaler Natur. Er erklärt jedoch, warum spätere Experimente eine höhere epistemische Qualität besitzen als frühe Feature-Demonstrationen.
 
+### Ergebnis H — Same-Seed-Reproduzierbarkeit ist nun als eigene DATA-Linie dokumentiert
+
+`EXP-GEN-0045` und `EXP-GEN-0046` ergänzen die bisherige Determinismusargumentation um explizite Replikaprotokolle. Im Tonic-Spike-Protokoll waren die Spike-Sequenzen in allen drei Same-Seed-Paaren identisch. Im Recurrence-Protokoll reproduzierten A/B-Paare über drei Seeds jeweils dieselben deskriptiven Trajektorien; zugleich blieb der große Off/On-Unterschied stabil sichtbar.
+
+**Zulässiger Claim:** Für die registrierten kleinen Protokolle sind Same-Seed-Trajektorien beziehungsweise Replikapaare technisch reproduzierbar, und der deskriptive Recurrence-off/on-Unterschied wird in EXP-GEN-0046 erneut beobachtet.  
+**Nicht zulässig:** daraus bereits unabhängige Replikation, allgemeine Determinismusgarantie, statistische Unabhängigkeit der identischen Trajektorien oder bestätigte EVID abzuleiten. EXP-GEN-0046 bleibt bis semantischer Zuordnung und Human Review DATA-only.
+
 ## 47.2 Was durch die bisherigen Ergebnisse geschwächt oder verworfen wurde
 
 Eine vollständige Synthese muss nicht nur die positiven Ergebnisse nennen.

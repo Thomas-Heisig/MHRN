@@ -48,6 +48,12 @@ LIF-Refraktärzeiten zeigten exemplarisch, dass zwei Systeme denselben Zahlenwer
 
 Der AIRR-Pfad hatte verwertbare verschachtelte Analysefelder, erwartete aber ein flaches `assessment`. Dadurch wurde vorhandene Analyse fälschlich als nicht verfügbar normalisiert und die Konfidenz auf 0 gesetzt. Der Fix war ein Schemafix, keine Änderung der DATA. Die methodische Konsequenz ist dauerhaft: AI-Outputs benötigen deterministische Schemaadapter und bleiben Interpretation, niemals automatische EVID.
 
+### Semantisches Gate als reale Blockade: EXP-GEN-0046
+
+Der aktuelle Determinismuslauf demonstriert, warum die Statusarchitektur praktisch notwendig ist. Obwohl EXP-GEN-0046 technisch vollständig ausgeführt wurde, der Tick-Vertrag erfüllt ist und reproduzierbare Metriken vorliegen, lautet die semantische Zuordnung `NOT_AUTOMATICALLY_CLASSIFIED`. Die Evidence Readiness bleibt dadurch `BLOCKED_UNCLASSIFIED_SEMANTICS`.
+
+Das ist kein Defekt, sondern gewünschtes Verhalten: Ein technisch erfolgreicher Lauf darf nicht allein wegen konsistenter Zahlen zu EVID werden. Erst eine registrierte semantische Zuordnung und Human Review dürfen die nächste Statusstufe öffnen. Auch der erzeugte AIRR bleibt `evidence=false`, `interpretation_only=true` und `human_review_required=true`.
+
 ## 24.2 Engineering und Scientific Maturity als getrennte Achsen
 
 Eine der wichtigsten infrastrukturellen Erkenntnisse ist, dass „fertig gebaut“ und „wissenschaftlich getragen“ unterschiedliche Zustände sind. Stage 4 kann technisch vollständig integrierte Audio-/Vision-/Digitalpfade besitzen und trotzdem wissenschaftlich offene Fragen zu funktionaler Mehrleistung haben. Stage 5 kann einen grünen Closed-Loop-Vertrag besitzen und trotzdem keine Realwelt-Generalisation belegen. Stage 0 kann für einen eng definierten Readiness-Scope 100 % erreichen, während Human-EVID und unabhängige Replikation weiterhin offen bleiben.

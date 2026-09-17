@@ -38,6 +38,16 @@ Stage 1 benötigt vor allem eine stärkere Forschungsbasis jenseits technischer 
 
 Skalierung, Stabilität und funktionaler Nutzen bleiben getrennte Fragen.
 
+#### Reproduzierbarkeit und Determinismus — nächstes Gate
+
+Die EXP-GEN-0045/0046-DATA schließen die Frage nicht vollständig. Als nächste Schritte sind erforderlich:
+
+- semantische Zuordnungsregel für `RQ-DET-001` registrieren und EXP-GEN-0046 human reviewen;
+- Same-Seed-Reproduzierbarkeit von echter unabhängiger Replikation getrennt halten;
+- zusätzliche Seeds, Eingangsregime, Netzwerkgrößen und Restart/Restore-Bedingungen prüfen;
+- deterministische Identität, numerische Toleranz und statistische Reproduzierbarkeit als getrennte Klassen auswerten;
+- AIRR-Interpretation nicht als EVID verwenden, solange Human Review und semantisches Gate offen sind.
+
 ### Stage 3 — plastisches Nervengewebe
 
 Die Mechanismen sind technisch vorhanden; offen sind vor allem die wissenschaftlichen Wirkungen und Interaktionen:
