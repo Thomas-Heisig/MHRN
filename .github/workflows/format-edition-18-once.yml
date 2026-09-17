@@ -1,0 +1,35 @@
+name: Format edition 1.8 once
+
+on:
+  push:
+    branches: ["docs/edition-1-8-modular"]
+    paths:
+      - ".github/workflows/format-edition-18-once.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  format:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - run: python -m pip install black==26.5.1
+      - name: Format files reported by canonical CI
+        run: |
+          python -m black scripts/activate_publication_18.py scripts/build_publication_edition.py src/dashboard/server.py tests/test_dashboard_embodiment_routes.py tests/test_publication_edition.py tests/test_publication_v17_document_governance.py
+      - name: Commit formatter output
+        run: |
+          git add scripts/activate_publication_18.py scripts/build_publication_edition.py src/dashboard/server.py tests/test_dashboard_embodiment_routes.py tests/test_publication_edition.py tests/test_publication_v17_document_governance.py
+          if ! git diff --cached --quiet; then
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git commit -m 'style: apply canonical Black formatting'
+            git push origin HEAD:docs/edition-1-8-modular
+          fi
