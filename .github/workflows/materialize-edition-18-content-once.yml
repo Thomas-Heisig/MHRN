@@ -25,7 +25,7 @@ jobs:
       - name: Install project
         run: python -m pip install -e ".[dev]"
       - name: Rebuild Edition 1.8
-        run: python scripts/build_publication_edition.py
+        run: python scripts/build_publication_edition.py --write
       - name: Verify deterministic rebuild
         run: python scripts/build_publication_edition.py --check
       - name: Verify scientific integrity
