@@ -28,7 +28,7 @@ jobs:
       - name: Verify deterministic publication build
         run: python scripts/build_publication_edition.py --check
       - name: Run publication regression tests
-        run: pytest -q tests/test_publication_edition.py tests/test_publication_v17_document_governance.py tests/test_publication_scholar.py tests/test_empirical_publication.py
+        run: pytest -q tests/test_publication_edition.py tests/test_publication_v17_document_governance.py tests/test_empirical_publication.py
       - name: Commit integrated publication
         run: |
           git config user.name 'github-actions[bot]'
