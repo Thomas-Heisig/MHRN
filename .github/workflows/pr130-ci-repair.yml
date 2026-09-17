@@ -1,0 +1,34 @@
+name: PR 130 CI repair
+
+on:
+  push:
+    branches:
+      - docs/edition-1-8-corpus-integration
+
+permissions:
+  contents: write
+
+jobs:
+  repair:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Install tools
+        run: pip install black==26.5.1 pyright==1.1.414
+      - name: Apply typing repair
+        run: python scripts/one_shot_fix_pr130_ci.py
+      - name: Format CI-reported files
+        run: python -m black scripts/build_publication_edition.py src/research/experiment_summary.py src/research_assistant/airr.py tests/test_airr_semantic_gating.py tests/test_publication_edition.py
+      - name: Verify Pyright
+        run: python -m pyright
+      - name: Commit repairs
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add scripts/build_publication_edition.py src/research/experiment_summary.py src/research_assistant/airr.py tests/test_airr_semantic_gating.py tests/test_publication_edition.py
+          git commit -m 'fix(ci): format publication and AIRR semantic gating code'
+          git push
