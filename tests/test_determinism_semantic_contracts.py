@@ -1,6 +1,9 @@
 from __future__ import annotations
 
-from src.research.semantic_contracts import classify_semantic_status
+from src.research.semantic_contracts import (
+    classify_design_adequacy,
+    classify_semantic_status,
+)
 
 
 def test_det_001_accepts_same_seed_tonic_replica_pair() -> None:
@@ -44,3 +47,23 @@ def test_snn_002_keeps_registered_recurrence_contract() -> None:
         {"recurrence_off", "recurrence_on"},
     )
     assert status == "DIRECT_MATCH"
+
+
+def test_snn_003_accepts_registered_topology_conditions() -> None:
+    status, note = classify_semantic_status(
+        "RQ-SNN-003",
+        "topology_propagation_v1",
+        {"1d", "2d", "3d", "5d", "5d_shuffled", "random_graph"},
+    )
+    assert status == "DIRECT_MATCH"
+    assert "Testadäquanz" in note
+
+
+def test_snn_003_v1_is_semantically_matched_but_design_inadequate() -> None:
+    status, note = classify_design_adequacy(
+        "RQ-SNN-003",
+        "topology_propagation_v1",
+    )
+    assert status == "INADEQUATE_TO_TEST_HYPOTHESIS"
+    assert "Drei-Neuronen-Kette" in note
+    assert "kein Nullbefund" in note
