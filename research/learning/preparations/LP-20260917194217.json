@@ -1,0 +1,33 @@
+{
+  "ai_interaction_id": null,
+  "authority": "proposal_only",
+  "baseline_protocol": "raw_replay_full_budget",
+  "controls": [
+    "no_replay",
+    "random_prototype_10pct",
+    "learning_off"
+  ],
+  "digest": "0d47182d05f2d65d44957a1242f770a3576518c9034b7b014cf8ae4f06333d11",
+  "evaluation_protocol": "holdout_after_sequential_tasks",
+  "executed": false,
+  "exposure_protocol": "semantic_prototype_replay_10pct_budget",
+  "objective": {
+    "description": "Pr\u00fcfen, ob semantische Prototypkonsolidierung bei 10 % des Raw-Replay-Speicherbudgets dieselbe Retention erreicht wie Raw-Replay bei vollem Budget.",
+    "evaluation_question": "Retains semantic prototype replay the same task performance when storage budget is reduced by factor 10?",
+    "objective_id": "OBJ-MEM-COMPRESSION-001",
+    "success_metric": "retention_ratio_at_1_10_storage \u2265 0.95 der Raw-Replay-Retention"
+  },
+  "origin": "human",
+  "plan_id": "LP-20260917194217",
+  "rationale": "",
+  "sources": [
+    {
+      "digest": "sha256-Digest der CL-002- und CL-003-DATA-Artefakte",
+      "origin": "environment",
+      "partition": "train",
+      "source_id": "SRC-CL-002-003",
+      "trust": "UNKNOWN"
+    }
+  ],
+  "stopping_rule": "fixed episodes"
+}
