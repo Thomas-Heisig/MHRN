@@ -5,7 +5,7 @@ test.use({ baseURL: 'http://127.0.0.1:4174' });
 
 for (const port of [4174, 4175]) {
  for (const popup of [true, false]) {
-  test(`publication ${port} ${popup ? "popup" : "inline"}: current v1.7 and frozen v1.5 remain separately reachable`, async ({ page }) => {
+  test(`publication ${port} ${popup ? "popup" : "inline"}: current v1.8 and frozen v1.5 remain separately reachable`, async ({ page }) => {
     const errors = [];
     page.on('pageerror', error => errors.push(error.message));
     await page.goto(`http://127.0.0.1:${port}/`);
@@ -15,18 +15,18 @@ for (const port of [4174, 4175]) {
     const viewer = page.locator(popup ? '#fm-dialog-viewer' : '#fm-viewer');
     await expect(viewer).toBeVisible();
     await expect(viewer).toHaveAttribute('data-render-state', 'ready');
-    await expect(viewer).toContainText('Arbeitsfassung 1.7');
+    await expect(viewer).toContainText('Edition 1.8');
 
     const prefix = `http://127.0.0.1:${port}/api/files/preview/`;
     const catalogue = JSON.parse((await (await page.request.get(prefix + encodeURIComponent('publications/catalog.json') + '?source=research')).json()).content);
     const current = catalogue.publications.filter(item => item.current);
     expect(current).toHaveLength(1);
-    expect(current[0].version).toBe('1.7');
+    expect(current[0].version).toBe('1.8');
     expect(current[0].edition_status).toBe('current_wip');
     expect(current[0].authority).toBe('interpretation_only_work_in_progress');
     expect(current[0].automatic_evidence_promotion).toBe(false);
-    expect(current[0].entrypoint).toContain('v1.7/MANUSCRIPT.md');
-    expect(current[0].predecessor).toBe('PUB-RECURSIVE-EPISTEMICS-20260915-V1.6');
+    expect(current[0].entrypoint).toContain('v1.8/MANUSCRIPT.md');
+    expect(current[0].predecessor).toBe('PUB-RECURSIVE-EPISTEMICS-20260915-V1.7');
     expect(current[0].inherits_empirical_edition).toBe('PUB-RECURSIVE-EPISTEMICS-20260913-V1.5');
 
     const currentManuscript = await page.request.get(prefix + encodeURIComponent(current[0].entrypoint) + '?source=research');
@@ -35,16 +35,18 @@ for (const port of [4174, 4175]) {
     expect(currentDescriptor.truncated).toBe(false);
     expect(currentDescriptor.read_only).toBe(true);
     expect(currentDescriptor.editable).toBe(false);
-    expect(currentDescriptor.content).toContain('fortgeschriebene Arbeitsfassung');
+    expect(currentDescriptor.content).toContain('Edition 1.8');
     expect(currentDescriptor.content).toContain('Frozen 1.5');
     expect(currentDescriptor.content).toContain('Stage 6');
 
     const currentManifest = JSON.parse((await (await page.request.get(prefix + encodeURIComponent(current[0].manifest) + '?source=research')).json()).content);
-    expect(currentManifest.edition).toBe('1.7');
+    expect(currentManifest.version).toBe('1.8');
     expect(currentManifest.edition_status).toBe('current_wip');
     expect(currentManifest.viewer_entrypoint).toBe('MANUSCRIPT.md');
+    expect(currentManifest.historical_data_modified).toBe(false);
     expect(currentManifest.accepted_evidence).toBe(false);
     expect(currentManifest.automatic_evidence_promotion).toBe(false);
+    expect(currentManifest.semantic_completeness_certified).toBe(false);
 
     const frozen = catalogue.publications.find(item => item.id === catalogue.frozen_empirical_baseline);
     expect(frozen.version).toBe('1.5');

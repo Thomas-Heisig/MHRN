@@ -10,10 +10,11 @@ def _json(path: str) -> dict:
     return json.loads((ROOT / path).read_text(encoding="utf-8"))
 
 
-def test_v16_is_historical_predecessor_without_rewriting_v15_baseline() -> None:
+def test_v16_is_historical_without_rewriting_v15_baseline() -> None:
     catalog = _json("research/publications/catalog.json")
     current = next(item for item in catalog["publications"] if item.get("current"))
-    assert current["version"] == "1.7"
+    assert current["version"] == "1.8"
+    assert current["predecessor"] == "PUB-RECURSIVE-EPISTEMICS-20260915-V1.7"
     v16 = next(
         item
         for item in catalog["publications"]
@@ -35,7 +36,7 @@ def test_v16_is_historical_predecessor_without_rewriting_v15_baseline() -> None:
     assert baseline["edition_status"] == "frozen_empirical_baseline"
 
     manifest = _json(
-        "research/publications/" "2026-09-15_recursive-epistemics_v1.6/manifest.json"
+        "research/publications/2026-09-15_recursive-epistemics_v1.6/manifest.json"
     )
     assert manifest["historical_data_modified"] is False
     assert manifest["inherited_campaign"] == "EXP-EMP-20260913-A3"
