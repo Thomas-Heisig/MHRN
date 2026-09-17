@@ -36,3 +36,38 @@ Butlin, P., Long, R., Elmoznino, E., Bengio, Y., Birch, J., Constant, A., et al.
 
 Originalquelle: https://arxiv.org/abs/2308.08708  
 Prüfumfang: primary_metadata_and_abstract_checked; geprüft am 2026-09-17. Primary preprint metadata and abstract checked; used as a consciousness-indicator framework reference, not as a detector or verdict for MHRN.
+
+<a id="ref-DALBA2025"></a>
+
+D'Alba, F., et al. (2025). Semantization of memories in a hippocampal-cortical spiking neural network. Neurocomputing, 640, 130323. https://doi.org/10.1016/j.neucom.2025.130323
+
+Originalquelle: https://doi.org/10.1016/j.neucom.2025.130323  
+Prüfumfang: primary_metadata_and_abstract_checked; geprüft am 2026-09-15. Verified related-work record; supports external semantization/replay precedent, not MHRN efficacy.
+
+<a id="ref-SHI2025"></a>
+
+Shi, Y., et al. (2025). Hybrid neural networks for continual learning inspired by corticohippocampal circuits. Nature Communications, 16, 1272. https://doi.org/10.1038/s41467-025-56405-9
+
+Originalquelle: https://doi.org/10.1038/s41467-025-56405-9  
+Prüfumfang: primary_metadata_and_abstract_checked; geprüft am 2026-09-15. Verified related-work record; supports complementary continual-learning precedent only.
+
+<a id="ref-NDRI2026"></a>
+
+N'dri, A., et al. (2026). Predictive coding with spiking neural networks: A survey. Neural Networks, 196, 108371. https://doi.org/10.1016/j.neunet.2025.108371
+
+Originalquelle: https://doi.org/10.1016/j.neunet.2025.108371  
+Prüfumfang: primary_metadata_and_abstract_checked; geprüft am 2026-09-15. Verified related-work record; supports predictive-coding taxonomy, not a claim that MHRN implements predictive coding.
+
+<a id="ref-SUN2025"></a>
+
+Sun, Y., et al. (2025). Spiking world model with multicompartment neurons for model-based reinforcement learning. Proceedings of the National Academy of Sciences, 122(50), e2513319122. https://doi.org/10.1073/pnas.2513319122
+
+Originalquelle: https://doi.org/10.1073/pnas.2513319122  
+Prüfumfang: primary_metadata_and_abstract_checked; geprüft am 2026-09-15. Verified related-work record; provides a stronger external world-model/control precedent only.
+
+<a id="ref-DONG2026"></a>
+
+Dong, X., & He, H. (2026). Astrocyte-gated multi-timescale plasticity for online continual learning in deep spiking neural networks. Frontiers in Neuroscience, 19. https://doi.org/10.3389/fnins.2025.1768235
+
+Originalquelle: https://doi.org/10.3389/fnins.2025.1768235  
+Prüfumfang: primary_metadata_and_abstract_checked; geprüft am 2026-09-15. Verified related-work record; supports an external multi-timescale continual-learning mechanism precedent only.

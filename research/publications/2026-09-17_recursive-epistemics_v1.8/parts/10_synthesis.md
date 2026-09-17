@@ -155,3 +155,32 @@ Diese Punkte sind **Kandidatenbeiträge**. Ob und in welchem Umfang sie gegenüb
 - rekursive Epistemik als methodische Synthese des Forschungsobjekts und seiner eigenen Entstehung.
 
 Damit wird die elfteilige Struktur von einer Hülle zu einer tatsächlichen Synthese der bisherigen Schaffens- und Forschungszeit.
+
+## 47.7 Quelleninventar ist nicht Inhaltsintegration
+
+Der Audit dieser Edition hat eine wichtige eigene Korrektur erzeugt. Ein vollständiger `SOURCE_INDEX` kann belegen, dass Dateien am Basiscommit inventarisiert und erhalten wurden; er kann **nicht** belegen, dass ihre wissenschaftlich relevanten Gedanken im Haupttext verarbeitet sind. Dasselbe gilt für eine automatische Teilzuordnung nach Pfadregeln.
+
+Edition 1.8 führt deshalb zusätzlich ein semantisches **Content-Integration-Ledger**. Für wissenschaftlich materielle Vorarbeiten und kanonische Dokumentfamilien wird angegeben, welche Rolle die Quelle besitzt, in welchen Teilen ihre Kernaussagen verarbeitet werden, welcher Integrationsmodus gilt und welche Grenzen erhalten bleiben. Dieses Ledger umfasst unter anderem NeuroGenesis, Brain-5D, „KI – Die geliehene Intelligenz“, die Editionslinie 1.0–1.7, Architektur-/Scientific-Contracts, Neural Symbiosis, MSBA, Wesen/Embodiment, Profile & Identity, Connectome-Arbeit, Persistenz, Registry/Protokolle, Experiment-DATA, Stage-Dossiers, AI-Tooling sowie Ethics/Critique/Review.
+
+Dabei bedeutet **integriert** nicht „jede Datei wortwörtlich in das Manuskript kopiert“. Rohdaten bleiben source-bound Primärartefakte; maschinenlesbare Registryobjekte bleiben im Research Register; historische Texte bleiben als Vorarbeiten erhalten. Die Gesamtarbeit übernimmt deren wissenschaftlich materielle Ergebnisse, Argumente, Gegenargumente, Grenzen und Entwicklungskonsequenzen in die neue Synthese.
+
+## 47.8 Was die Corpus-Integration zusätzlich sichtbar macht
+
+Die vertiefte Integration verändert die Gesamtinterpretation an mehreren Stellen:
+
+- Brain-5D ist nicht nur ein Namensvorgänger, sondern die genealogische Quelle für 5D-Adressierung, Wachstums-/Persistenzfragen, Trennung externer Sprachintelligenz und neuronalen Kerns sowie frühe Erkenntnis-/Ethikfragen.
+- „Geliehene Intelligenz“ liefert nicht nur ein Schlagwort, sondern das Fünf-Achsen-Modell `I=(M,E,G,Z,X)`, genealogische Distanz, rekursive Technogenese und Ko-Kognition als belastungstestbare Theorieelemente.
+- Neural Symbiosis und MSBA zeigen, dass Hybridität in MHRN über explizite Gateway-Grenzen statt durch heimliche Vermischung von SNN, LLM und peripheren Modellen organisiert wird.
+- Wesen/Real-Body macht „keine Fantasiedaten“ zu einer allgemeinen Provenienzregel: beobachtete, abgeleitete und dargestellte Zustände bleiben getrennt.
+- Profile & Identity liefert eine reproduzierbare technische Identitäts-/Lineageschicht, gerade indem sie sich von psychologischem Selbst und subjektiver Kontinuität abgrenzt.
+- Related Work verschärft Stage 6: externe Semantization-, Predictive-Coding-, World-Model- und Multi-Zeitskalen-Arbeiten definieren stärkere Vergleichspunkte, ohne MHRN-Ergebnisse zu ersetzen.
+
+Damit wird Edition 1.8 weniger zu einer Zusammenfassung einzelner Experimente und stärker zu einer **Gesamtarbeit über Forschungsobjekt, Schaffensgenealogie und die Methodik ihrer kontrollierten Verbindung**.
+
+## 47.9 Neue methodische Erkenntnis: semantischer Match ist nicht Testadäquanz
+
+Die jüngsten Determinismus- und Topologieentscheidungen schärfen eine zentrale Lehre von MHRN: **Semantische Zuordnung, technische Reproduzierbarkeit und Hypothesentestadäquanz sind drei verschiedene Prüfungen.** Ein Experiment kann die richtigen registrierten Conditions besitzen und byte-/metrisch reproduzierbar laufen, während sein Mechanismus dennoch nicht sensitiv genug ist, die Zielhypothese zu beantworten.
+
+`EXP-GEN-0047` ist dafür das Referenzbeispiel. Die korrekte Schlussfolgerung lautet nicht „Topologie hat keinen Effekt“, sondern „dieser v1-Aufbau macht Topologie nicht ausreichend kausal wirksam, um den Effekt zu testen“. Damit wird ein scheinbarer Nullbefund in eine Designkorrektur überführt, ohne DATA umzuschreiben.
+
+Analog zeigt die Determinismus-Registry-Korrektur, dass ein technisch passender Befund durch falsche historische RQ-Zuordnung nicht nachträglich zu EVID umetikettiert werden darf. Die wissenschaftlich stärkere Lösung ist, historische Provenienz zu erhalten und den prospektiven Vertrag zu reparieren.

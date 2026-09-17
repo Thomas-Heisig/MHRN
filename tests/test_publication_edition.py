@@ -164,3 +164,28 @@ def test_active_catalog_and_identity_are_consistent() -> None:
     assert "research/" + current[0]["entrypoint"] == identity["viewer_entrypoint"]
     assert (ROOT / identity["viewer_entrypoint"]).is_file()
     assert publication.materialize(ROOT, check=True)["result"] == "PASS"
+
+def test_material_prior_work_content_integration_is_declared(repository: Path) -> None:
+    outputs = publication.build(repository)
+    ledger = json.loads(outputs["registers/content_integration.json"])
+    by_id = {item["id"]: item for item in ledger["entries"]}
+    for identifier in (
+        "CORPUS-BRAIN5D",
+        "CORPUS-BORROWED-INTELLIGENCE",
+        "CORPUS-ARCHITECTURE",
+        "CORPUS-NEURAL-SYMBIOSIS",
+        "CORPUS-MSBA",
+        "CORPUS-WESEN-EMBODIMENT",
+        "CORPUS-CURRENT-SCIENCE",
+        "CORPUS-EXPERIMENT-DATA",
+    ):
+        assert identifier in by_id
+        assert by_id[identifier]["manuscript_parts"]
+        assert by_id[identifier]["integration_status"]
+    manifest = json.loads(outputs["manifest.json"])
+    assert manifest["material_prior_work_coverage_declared"] is True
+    assert manifest["semantic_completeness_certified"] is False
+    assert manifest["accepted_evidence"] is False
+    assert "Geliehene Intelligenz" in outputs["MANUSCRIPT.md"]
+    assert "Neural Symbiosis" in outputs["MANUSCRIPT.md"]
+    assert "I=(M,E,G,Z,X)" in outputs["MANUSCRIPT.md"]
