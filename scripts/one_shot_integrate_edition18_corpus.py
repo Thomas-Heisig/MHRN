@@ -3,7 +3,8 @@
 
 This script is intentionally idempotent. It edits publication source parts and the
 publication builder, then lets the canonical builder materialize derived outputs.
-It never edits historical DATA/EVID or promotes evidence status.
+It never edits historical DATA/EVID or promotes evidence status. The workflow uses
+only existing publication regression suites before committing generated outputs.
 """
 from __future__ import annotations
 
@@ -250,11 +251,8 @@ replace_once(builder, '    history = []\n', '''    content_map = [\n        "# S
 replace_once(builder, '        "PRIOR_WORK_MAP.md": "\\n".join(prior_map),\n        "registers/prior_work.json": json_text(prior),', '        "PRIOR_WORK_MAP.md": "\\n".join(prior_map),\n        "CONTENT_INTEGRATION.md": "\\n".join(content_map),\n        "registers/content_integration.json": json_text(content_integration),\n        "registers/prior_work.json": json_text(prior),')
 replace_once(builder, '        "sources/prior_work.json",\n        "EXTENDING.md",', '        "sources/prior_work.json",\n        "sources/content_integration.json",\n        "EXTENDING.md",')
 replace_once(builder, '            "semantic_completeness_certified": False,\n        }\n    )', '            "semantic_completeness_certified": False,\n            "material_prior_work_coverage_declared": True,\n            "content_integration_entries": len(content_integration["entries"]),\n            "content_integration_ledger": "CONTENT_INTEGRATION.md",\n        }\n    )')
-
-# README link is updated after outputs exist by replacing the generated template literal.
 replace_once(builder, '[Gesamtmanuskript](MANUSCRIPT.md) · [RQs/Hypothesen](RESEARCH_REGISTER.md) · [Quellenindex](SOURCE_INDEX.md) · [Quellenband 1.7](LEGACY_V17.md) · [Vorforschung](PRIOR_WORK_MAP.md) · [Literatur](REFERENCES.md) · [Erweiterungsvertrag](EXTENDING.md) · [Manifest](manifest.json)', '[Gesamtmanuskript](MANUSCRIPT.md) · [RQs/Hypothesen](RESEARCH_REGISTER.md) · [Quellenindex](SOURCE_INDEX.md) · [Corpus-Integration](CONTENT_INTEGRATION.md) · [Quellenband 1.7](LEGACY_V17.md) · [Vorforschung](PRIOR_WORK_MAP.md) · [Literatur](REFERENCES.md) · [Erweiterungsvertrag](EXTENDING.md) · [Manifest](manifest.json)')
 
-# Regression test for corpus integration.
 tests = ROOT / "tests/test_publication_edition.py"
 append_once(tests, "def test_material_prior_work_content_integration_is_declared", r'''
 def test_material_prior_work_content_integration_is_declared(repository: Path) -> None:
