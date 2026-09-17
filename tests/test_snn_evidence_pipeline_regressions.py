@@ -8,6 +8,8 @@ from src.research.experiment_summary import (
     write_detailed_experiment_summary,
     write_statistics_artifact,
 )
+from src.research.network_probe import NetworkImpulseProbe
+from src.research.semantic_contracts import classify_semantic_status
 
 
 def _runs():
@@ -42,6 +44,21 @@ def _runs():
     ]
 
 
+class _AlwaysQuiescentRuntime:
+    def inject_current_batch(self, currents):
+        self.currents = dict(currents)
+
+    def step(self):
+        return {
+            "spike_ids": (),
+            "output_spike_ids": (),
+            "delivered_events": 0,
+            "synaptic_current_targets": 0,
+            "total_synapses": 0,
+            "quiescent": True,
+        }
+
+
 def test_boolean_primary_outcomes_are_aggregated():
     s = build_descriptive_statistics(_runs())
     assert s["schema_version"] == "2.2"
@@ -55,6 +72,32 @@ def test_boolean_primary_outcomes_are_aggregated():
     }
     assert b["topology_unchanged"]["all_true"] is True
     assert b["stability_pass"]["all_true"] is True
+
+
+def test_rq_det_001_accepts_registered_recurrence_replica_pairs():
+    status, note = classify_semantic_status(
+        "RQ-DET-001",
+        "deterministic_replica_v1",
+        {
+            "recurrence_off_replica_a",
+            "recurrence_off_replica_b",
+            "recurrence_on_replica_a",
+            "recurrence_on_replica_b",
+        },
+    )
+    assert status == "DIRECT_MATCH"
+    assert "gepaarte Replikate" in note
+
+
+def test_fixed_window_probe_does_not_report_quiescence_early_stop():
+    signature = NetworkImpulseProbe(
+        source_neuron=0,
+        current=1.0,
+        max_ticks=3,
+        min_ticks=3,
+    ).run(_AlwaysQuiescentRuntime())
+    assert signature.ticks_executed == 3
+    assert signature.stopped_on_quiescence is False
 
 
 def test_summary_committed_data_and_visible_values(tmp_path: Path):
