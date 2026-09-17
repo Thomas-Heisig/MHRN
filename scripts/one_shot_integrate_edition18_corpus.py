@@ -61,7 +61,7 @@ Der implementierte Profile-&-Identity-Vertrag speichert Konfiguration, Fähigkei
 )
 
 append_once(
-    ED / "parts/04_empirical_program.md",
+    ED / "parts/04_empirical_programme.md",
     "## 19.6 Neural-Symbiosis- und MSBA-Forschungsprogramm",
     r'''
 ## 19.6 Neural-Symbiosis- und MSBA-Forschungsprogramm
@@ -227,131 +227,36 @@ Das Ziel lautet daher nicht „jeder Bytewert steht im Manuskript“, sondern: *
 ''',
 )
 
-# Add verified related-work references to the edition-local source list.
 refs_path = ED / "sources/references.json"
 refs = json.loads(refs_path.read_text(encoding="utf-8"))
 by_id = {x["id"]: x for x in refs}
 extra = [
-    {
-        "id": "DALBA2025",
-        "label": "D'Alba et al., 2025",
-        "apa": "D'Alba, F., et al. (2025). Semantization of memories in a hippocampal-cortical spiking neural network. Neurocomputing, 640, 130323. https://doi.org/10.1016/j.neucom.2025.130323",
-        "bib_author": "D'Alba, F. and others",
-        "title": "Semantization of memories in a hippocampal-cortical spiking neural network",
-        "year": 2025,
-        "doi": "10.1016/j.neucom.2025.130323",
-        "url": "https://doi.org/10.1016/j.neucom.2025.130323",
-        "verification": "primary_metadata_and_abstract_checked",
-        "checked_on": "2026-09-15",
-        "scope": "Verified related-work record; supports external semantization/replay precedent, not MHRN efficacy."
-    },
-    {
-        "id": "SHI2025",
-        "label": "Shi et al., 2025",
-        "apa": "Shi, Y., et al. (2025). Hybrid neural networks for continual learning inspired by corticohippocampal circuits. Nature Communications, 16, 1272. https://doi.org/10.1038/s41467-025-56405-9",
-        "bib_author": "Shi, Y. and others",
-        "title": "Hybrid neural networks for continual learning inspired by corticohippocampal circuits",
-        "year": 2025,
-        "doi": "10.1038/s41467-025-56405-9",
-        "url": "https://doi.org/10.1038/s41467-025-56405-9",
-        "verification": "primary_metadata_and_abstract_checked",
-        "checked_on": "2026-09-15",
-        "scope": "Verified related-work record; supports complementary continual-learning precedent only."
-    },
-    {
-        "id": "NDRI2026",
-        "label": "N'dri et al., 2026",
-        "apa": "N'dri, A., et al. (2026). Predictive coding with spiking neural networks: A survey. Neural Networks, 196, 108371. https://doi.org/10.1016/j.neunet.2025.108371",
-        "bib_author": "N'dri, A. and others",
-        "title": "Predictive coding with spiking neural networks: A survey",
-        "year": 2026,
-        "doi": "10.1016/j.neunet.2025.108371",
-        "url": "https://doi.org/10.1016/j.neunet.2025.108371",
-        "verification": "primary_metadata_and_abstract_checked",
-        "checked_on": "2026-09-15",
-        "scope": "Verified related-work record; supports predictive-coding taxonomy, not a claim that MHRN implements predictive coding."
-    },
-    {
-        "id": "SUN2025",
-        "label": "Sun et al., 2025",
-        "apa": "Sun, Y., et al. (2025). Spiking world model with multicompartment neurons for model-based reinforcement learning. Proceedings of the National Academy of Sciences, 122(50), e2513319122. https://doi.org/10.1073/pnas.2513319122",
-        "bib_author": "Sun, Y. and others",
-        "title": "Spiking world model with multicompartment neurons for model-based reinforcement learning",
-        "year": 2025,
-        "doi": "10.1073/pnas.2513319122",
-        "url": "https://doi.org/10.1073/pnas.2513319122",
-        "verification": "primary_metadata_and_abstract_checked",
-        "checked_on": "2026-09-15",
-        "scope": "Verified related-work record; provides a stronger external world-model/control precedent only."
-    },
-    {
-        "id": "DONG2026",
-        "label": "Dong & He, 2026",
-        "apa": "Dong, X., & He, H. (2026). Astrocyte-gated multi-timescale plasticity for online continual learning in deep spiking neural networks. Frontiers in Neuroscience, 19. https://doi.org/10.3389/fnins.2025.1768235",
-        "bib_author": "Dong, X. and He, H.",
-        "title": "Astrocyte-gated multi-timescale plasticity for online continual learning in deep spiking neural networks",
-        "year": 2026,
-        "doi": "10.3389/fnins.2025.1768235",
-        "url": "https://doi.org/10.3389/fnins.2025.1768235",
-        "verification": "primary_metadata_and_abstract_checked",
-        "checked_on": "2026-09-15",
-        "scope": "Verified related-work record; supports an external multi-timescale continual-learning mechanism precedent only."
-    }
+    {"id":"DALBA2025","label":"D'Alba et al., 2025","apa":"D'Alba, F., et al. (2025). Semantization of memories in a hippocampal-cortical spiking neural network. Neurocomputing, 640, 130323. https://doi.org/10.1016/j.neucom.2025.130323","bib_author":"D'Alba, F. and others","title":"Semantization of memories in a hippocampal-cortical spiking neural network","year":2025,"doi":"10.1016/j.neucom.2025.130323","url":"https://doi.org/10.1016/j.neucom.2025.130323","verification":"primary_metadata_and_abstract_checked","checked_on":"2026-09-15","scope":"Verified related-work record; supports external semantization/replay precedent, not MHRN efficacy."},
+    {"id":"SHI2025","label":"Shi et al., 2025","apa":"Shi, Y., et al. (2025). Hybrid neural networks for continual learning inspired by corticohippocampal circuits. Nature Communications, 16, 1272. https://doi.org/10.1038/s41467-025-56405-9","bib_author":"Shi, Y. and others","title":"Hybrid neural networks for continual learning inspired by corticohippocampal circuits","year":2025,"doi":"10.1038/s41467-025-56405-9","url":"https://doi.org/10.1038/s41467-025-56405-9","verification":"primary_metadata_and_abstract_checked","checked_on":"2026-09-15","scope":"Verified related-work record; supports complementary continual-learning precedent only."},
+    {"id":"NDRI2026","label":"N'dri et al., 2026","apa":"N'dri, A., et al. (2026). Predictive coding with spiking neural networks: A survey. Neural Networks, 196, 108371. https://doi.org/10.1016/j.neunet.2025.108371","bib_author":"N'dri, A. and others","title":"Predictive coding with spiking neural networks: A survey","year":2026,"doi":"10.1016/j.neunet.2025.108371","url":"https://doi.org/10.1016/j.neunet.2025.108371","verification":"primary_metadata_and_abstract_checked","checked_on":"2026-09-15","scope":"Verified related-work record; supports predictive-coding taxonomy, not a claim that MHRN implements predictive coding."},
+    {"id":"SUN2025","label":"Sun et al., 2025","apa":"Sun, Y., et al. (2025). Spiking world model with multicompartment neurons for model-based reinforcement learning. Proceedings of the National Academy of Sciences, 122(50), e2513319122. https://doi.org/10.1073/pnas.2513319122","bib_author":"Sun, Y. and others","title":"Spiking world model with multicompartment neurons for model-based reinforcement learning","year":2025,"doi":"10.1073/pnas.2513319122","url":"https://doi.org/10.1073/pnas.2513319122","verification":"primary_metadata_and_abstract_checked","checked_on":"2026-09-15","scope":"Verified related-work record; provides a stronger external world-model/control precedent only."},
+    {"id":"DONG2026","label":"Dong & He, 2026","apa":"Dong, X., & He, H. (2026). Astrocyte-gated multi-timescale plasticity for online continual learning in deep spiking neural networks. Frontiers in Neuroscience, 19. https://doi.org/10.3389/fnins.2025.1768235","bib_author":"Dong, X. and He, H.","title":"Astrocyte-gated multi-timescale plasticity for online continual learning in deep spiking neural networks","year":2026,"doi":"10.3389/fnins.2025.1768235","url":"https://doi.org/10.3389/fnins.2025.1768235","verification":"primary_metadata_and_abstract_checked","checked_on":"2026-09-15","scope":"Verified related-work record; supports an external multi-timescale continual-learning mechanism precedent only."}
 ]
 for item in extra:
     if item["id"] not in by_id:
         refs.append(item)
 refs_path.write_text(json.dumps(refs, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
-# Extend deterministic builder with semantic content-integration outputs.
 builder = ROOT / "scripts/build_publication_edition.py"
-replace_once(
-    builder,
-    '    "PRIOR_WORK_MAP.md",\n    "registers/prior_work.json",',
-    '    "PRIOR_WORK_MAP.md",\n    "CONTENT_INTEGRATION.md",\n    "registers/content_integration.json",\n    "registers/prior_work.json",',
-)
-replace_once(
-    builder,
-    '    prior = load(root, EDITION + "/sources/prior_work.json")\n    baseline, source_texts = pinned_sources(root, config["baseline_commit"])',
-    '''    prior = load(root, EDITION + "/sources/prior_work.json")\n    content_integration = load(root, EDITION + "/sources/content_integration.json")\n    required_corpus_ids = {\n        "CORPUS-BRAIN5D",\n        "CORPUS-BORROWED-INTELLIGENCE",\n        "CORPUS-ARCHITECTURE",\n        "CORPUS-NEURAL-SYMBIOSIS",\n        "CORPUS-MSBA",\n        "CORPUS-WESEN-EMBODIMENT",\n        "CORPUS-CURRENT-SCIENCE",\n        "CORPUS-EXPERIMENT-DATA",\n    }\n    corpus_ids = {item["id"] for item in content_integration.get("entries", [])}\n    if not required_corpus_ids.issubset(corpus_ids):\n        raise ValueError("Content integration ledger misses required material prior-work families")\n    for item in content_integration["entries"]:\n        for field in ("id", "title", "source_paths", "source_role", "manuscript_parts", "integration_status", "integration_mode", "boundaries"):\n            if not item.get(field):\n                raise ValueError(f"Incomplete content integration entry: {item.get('id')} / {field}")\n        if any(part not in ROMAN for part in item["manuscript_parts"]):\n            raise ValueError(f"Invalid manuscript part in content integration entry: {item['id']}")\n    baseline, source_texts = pinned_sources(root, config["baseline_commit"])''',
-)
-replace_once(
-    builder,
-    '        "[Alle Forschungsfragen und Hypothesen](RESEARCH_REGISTER.md) · [Quellenindex](SOURCE_INDEX.md) · [Ungekürzter Quellenband 1.7](LEGACY_V17.md) · [Weitere Vorarbeiten](PRIOR_WORK_MAP.md) · [Literatur](REFERENCES.md) · [Prüfmanifest](manifest.json).\\n",',
-    '        "[Alle Forschungsfragen und Hypothesen](RESEARCH_REGISTER.md) · [Quellenindex](SOURCE_INDEX.md) · [Semantische Corpus-Integration](CONTENT_INTEGRATION.md) · [Ungekürzter Quellenband 1.7](LEGACY_V17.md) · [Weitere Vorarbeiten](PRIOR_WORK_MAP.md) · [Literatur](REFERENCES.md) · [Prüfmanifest](manifest.json).\\n",',
-)
-replace_once(
-    builder,
-    '    history = []\n',
-    '''    content_map = [\n        "# Semantische Integration der Vorarbeiten und des Forschungs-Corpus\\n",\n        "Dieses Ledger ergänzt den vollständigen Quellenindex. Es beantwortet nicht nur, ob eine Datei erhalten ist, sondern welche wissenschaftlich materielle Rolle bekannte Vorarbeiten und kanonische Dokumentfamilien in Edition 1.8 besitzen. `integriert` bedeutet nicht, dass Raw DATA oder maschinenlesbare Register dupliziert werden; Primärartefakte bleiben an ihrem autoritativen Ort.\\n",\n        f"Raw-DATA-Regel: {content_integration['raw_data_policy']}\\n",\n    ]\n    for item in content_integration["entries"]:\n        content_map += [\n            f"## {item['id']} — {item['title']}\\n",\n            f"Rolle: `{item['source_role']}`  \\nStatus: `{item['integration_status']}`  \\nModus: `{item['integration_mode']}`  \\nTeile: {', '.join(item['manuscript_parts'])}\\n",\n            "Quellpfade: " + "; ".join(f"`{p}`" for p in item["source_paths"]) + "\\n",\n            f"Grenze: {item['boundaries']}\\n",\n        ]\n    history = []\n''',
-)
-replace_once(
-    builder,
-    '        "PRIOR_WORK_MAP.md": "\\n".join(prior_map),\n        "registers/prior_work.json": json_text(prior),',
-    '        "PRIOR_WORK_MAP.md": "\\n".join(prior_map),\n        "CONTENT_INTEGRATION.md": "\\n".join(content_map),\n        "registers/content_integration.json": json_text(content_integration),\n        "registers/prior_work.json": json_text(prior),',
-)
-replace_once(
-    builder,
-    '            f"- [Teil {p[\'id\']} — {p[\'title\']}]({p[\'file\']})" for p in config["parts"]\n        )\n        + "\\n\\n[Vorgänger 1.7](../2026-09-15_recursive-epistemics_v1.7/README.md); [Frozen 1.5](../FROZEN_V1.5.md). Strukturmigration ist kein empirisches Ergebnis.\\n",',
-    '            f"- [Teil {p[\'id\']} — {p[\'title\']}]({p[\'file\']})" for p in config["parts"]\n        )\n        + "\\n\\n[Semantische Corpus-Integration](CONTENT_INTEGRATION.md) · [Vorgänger 1.7](../2026-09-15_recursive-epistemics_v1.7/README.md) · [Frozen 1.5](../FROZEN_V1.5.md). Strukturmigration ist kein empirisches Ergebnis.\\n",',
-)
-replace_once(
-    builder,
-    '        "sources/prior_work.json",\n        "EXTENDING.md",',
-    '        "sources/prior_work.json",\n        "sources/content_integration.json",\n        "EXTENDING.md",',
-)
-replace_once(
-    builder,
-    '            "semantic_completeness_certified": False,\n        }\n    )',
-    '            "semantic_completeness_certified": False,\n            "material_prior_work_coverage_declared": True,\n            "content_integration_entries": len(content_integration["entries"]),\n            "content_integration_ledger": "CONTENT_INTEGRATION.md",\n        }\n    )',
-)
+replace_once(builder, '    "PRIOR_WORK_MAP.md",\n    "registers/prior_work.json",', '    "PRIOR_WORK_MAP.md",\n    "CONTENT_INTEGRATION.md",\n    "registers/content_integration.json",\n    "registers/prior_work.json",')
+replace_once(builder, '    prior = load(root, EDITION + "/sources/prior_work.json")\n    baseline, source_texts = pinned_sources(root, config["baseline_commit"])', '''    prior = load(root, EDITION + "/sources/prior_work.json")\n    content_integration = load(root, EDITION + "/sources/content_integration.json")\n    required_corpus_ids = {"CORPUS-BRAIN5D", "CORPUS-BORROWED-INTELLIGENCE", "CORPUS-ARCHITECTURE", "CORPUS-NEURAL-SYMBIOSIS", "CORPUS-MSBA", "CORPUS-WESEN-EMBODIMENT", "CORPUS-CURRENT-SCIENCE", "CORPUS-EXPERIMENT-DATA"}\n    corpus_ids = {item["id"] for item in content_integration.get("entries", [])}\n    if not required_corpus_ids.issubset(corpus_ids):\n        raise ValueError("Content integration ledger misses required material prior-work families")\n    for item in content_integration["entries"]:\n        for field in ("id", "title", "source_paths", "source_role", "manuscript_parts", "integration_status", "integration_mode", "boundaries"):\n            if not item.get(field):\n                raise ValueError(f"Incomplete content integration entry: {item.get('id')} / {field}")\n        if any(part not in ROMAN for part in item["manuscript_parts"]):\n            raise ValueError(f"Invalid manuscript part in content integration entry: {item['id']}")\n    baseline, source_texts = pinned_sources(root, config["baseline_commit"])''')
+replace_once(builder, '        "[Alle Forschungsfragen und Hypothesen](RESEARCH_REGISTER.md) · [Quellenindex](SOURCE_INDEX.md) · [Ungekürzter Quellenband 1.7](LEGACY_V17.md) · [Weitere Vorarbeiten](PRIOR_WORK_MAP.md) · [Literatur](REFERENCES.md) · [Prüfmanifest](manifest.json).\\n",', '        "[Alle Forschungsfragen und Hypothesen](RESEARCH_REGISTER.md) · [Quellenindex](SOURCE_INDEX.md) · [Semantische Corpus-Integration](CONTENT_INTEGRATION.md) · [Ungekürzter Quellenband 1.7](LEGACY_V17.md) · [Weitere Vorarbeiten](PRIOR_WORK_MAP.md) · [Literatur](REFERENCES.md) · [Prüfmanifest](manifest.json).\\n",')
+replace_once(builder, '    history = []\n', '''    content_map = [\n        "# Semantische Integration der Vorarbeiten und des Forschungs-Corpus\\n",\n        "Dieses Ledger ergänzt den vollständigen Quellenindex. Es beantwortet nicht nur, ob eine Datei erhalten ist, sondern welche wissenschaftlich materielle Rolle bekannte Vorarbeiten und kanonische Dokumentfamilien in Edition 1.8 besitzen. `integriert` bedeutet nicht, dass Raw DATA oder maschinenlesbare Register dupliziert werden; Primärartefakte bleiben an ihrem autoritativen Ort.\\n",\n        f"Raw-DATA-Regel: {content_integration['raw_data_policy']}\\n",\n    ]\n    for item in content_integration["entries"]:\n        content_map += [\n            f"## {item['id']} — {item['title']}\\n",\n            f"Rolle: `{item['source_role']}`  \\nStatus: `{item['integration_status']}`  \\nModus: `{item['integration_mode']}`  \\nTeile: {', '.join(item['manuscript_parts'])}\\n",\n            "Quellpfade: " + "; ".join(f"`{p}`" for p in item["source_paths"]) + "\\n",\n            f"Grenze: {item['boundaries']}\\n",\n        ]\n    history = []\n''')
+replace_once(builder, '        "PRIOR_WORK_MAP.md": "\\n".join(prior_map),\n        "registers/prior_work.json": json_text(prior),', '        "PRIOR_WORK_MAP.md": "\\n".join(prior_map),\n        "CONTENT_INTEGRATION.md": "\\n".join(content_map),\n        "registers/content_integration.json": json_text(content_integration),\n        "registers/prior_work.json": json_text(prior),')
+replace_once(builder, '        "sources/prior_work.json",\n        "EXTENDING.md",', '        "sources/prior_work.json",\n        "sources/content_integration.json",\n        "EXTENDING.md",')
+replace_once(builder, '            "semantic_completeness_certified": False,\n        }\n    )', '            "semantic_completeness_certified": False,\n            "material_prior_work_coverage_declared": True,\n            "content_integration_entries": len(content_integration["entries"]),\n            "content_integration_ledger": "CONTENT_INTEGRATION.md",\n        }\n    )')
 
-# Regression tests for the new semantic integration contract.
+# README link is updated after outputs exist by replacing the generated template literal.
+replace_once(builder, '[Gesamtmanuskript](MANUSCRIPT.md) · [RQs/Hypothesen](RESEARCH_REGISTER.md) · [Quellenindex](SOURCE_INDEX.md) · [Quellenband 1.7](LEGACY_V17.md) · [Vorforschung](PRIOR_WORK_MAP.md) · [Literatur](REFERENCES.md) · [Erweiterungsvertrag](EXTENDING.md) · [Manifest](manifest.json)', '[Gesamtmanuskript](MANUSCRIPT.md) · [RQs/Hypothesen](RESEARCH_REGISTER.md) · [Quellenindex](SOURCE_INDEX.md) · [Corpus-Integration](CONTENT_INTEGRATION.md) · [Quellenband 1.7](LEGACY_V17.md) · [Vorforschung](PRIOR_WORK_MAP.md) · [Literatur](REFERENCES.md) · [Erweiterungsvertrag](EXTENDING.md) · [Manifest](manifest.json)')
+
+# Regression test for corpus integration.
 tests = ROOT / "tests/test_publication_edition.py"
-append_once(
-    tests,
-    "def test_material_prior_work_content_integration_is_declared",
-    r'''
+append_once(tests, "def test_material_prior_work_content_integration_is_declared", r'''
 def test_material_prior_work_content_integration_is_declared(repository: Path) -> None:
     outputs = publication.build(repository)
     ledger = json.loads(outputs["registers/content_integration.json"])
@@ -376,7 +281,6 @@ def test_material_prior_work_content_integration_is_declared(repository: Path) -
     assert "Geliehene Intelligenz" in outputs["MANUSCRIPT.md"]
     assert "Neural Symbiosis" in outputs["MANUSCRIPT.md"]
     assert "I=(M,E,G,Z,X)" in outputs["MANUSCRIPT.md"]
-''',
-)
+''')
 
 print("Edition 1.8 corpus integration sources updated")
