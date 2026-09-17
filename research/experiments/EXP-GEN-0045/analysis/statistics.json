@@ -1,0 +1,70 @@
+{
+  "conditions": {
+    "same_seed_tonic_replica_pair": {
+      "boolean_metrics": {
+        "automatic_evidence_promotion": {
+          "all_true": false,
+          "false_count": 3,
+          "n": 3,
+          "true_count": 0,
+          "true_fraction": 0.0
+        },
+        "direct_test_of_hypothesis": {
+          "all_true": true,
+          "false_count": 0,
+          "n": 3,
+          "true_count": 3,
+          "true_fraction": 1.0
+        },
+        "scientific_evidence": {
+          "all_true": false,
+          "false_count": 3,
+          "n": 3,
+          "true_count": 0,
+          "true_fraction": 0.0
+        },
+        "spike_sequence_identical": {
+          "all_true": true,
+          "false_count": 0,
+          "n": 3,
+          "true_count": 3,
+          "true_fraction": 1.0
+        }
+      },
+      "metrics": {
+        "ticks_requested": {
+          "max": 256.0,
+          "mean": 256.0,
+          "median": 256.0,
+          "min": 256.0,
+          "n": 3,
+          "std": 0.0
+        },
+        "tonic_current": {
+          "max": 10.0,
+          "mean": 10.0,
+          "median": 10.0,
+          "min": 10.0,
+          "n": 3,
+          "std": 0.0
+        }
+      },
+      "run_count": 3,
+      "seeds": [
+        101,
+        102,
+        103
+      ]
+    }
+  },
+  "formulas": {
+    "difference": "Delta_x = mean(x_B) - mean(x_A)",
+    "inter_spike_interval": "ISI_i = t_(i+1) - t_i",
+    "mean": "mean(x) = (1/n) * sum_i x_i",
+    "population_std": "sigma = sqrt((1/n) * sum_i (x_i - mean(x))^2)",
+    "ratio": "R_x = mean(x_B) / mean(x_A), defined only when mean(x_A) != 0"
+  },
+  "generated_by": "deterministic_statistics_engine",
+  "run_count": 3,
+  "schema_version": "2.2"
+}

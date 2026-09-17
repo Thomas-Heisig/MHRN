@@ -1,0 +1,8 @@
+{
+  "report_id": "AIRR-2026-0001",
+  "review_status": "accepted_as_interpretation",
+  "reviewer": "Thomas Heisig",
+  "reviewed_at": "2026-09-17T19:04:34.253028+00:00",
+  "comments": "Der Lauf ist wissenschaftlich valide und beantwortet die Frage, die RQ-SNN-002 stellt – aber die Registry erwartet andere Conditions. Das ist eine Registry-Protokoll-Inkonsistenz, kein Fehler des Runners. Der Lauf gehört zu RQ-DET-001 (Determinismus bei gleichem Seed), und RQ-SNN-002 braucht einen eigenen Lauf mit recurrence_off/recurrence_on. Zusätzlich: Die AIRR-Konfidenz 0.95 trotz Evidenzblockade ist ein Pipeline-Bug, der behoben werden muss.",
+  "report_content_digest": "d575f6f603e232b0c88a84117dc8981111db5c0b1893fa078c205e2ce67178ab"
+}

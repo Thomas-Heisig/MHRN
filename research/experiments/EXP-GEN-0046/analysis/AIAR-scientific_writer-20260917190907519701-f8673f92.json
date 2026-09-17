@@ -1,0 +1,155 @@
+{
+  "analysis_id": "AIAR-scientific_writer-20260917190907519701-f8673f92",
+  "role": "scientific_writer",
+  "model": {
+    "provider": "ollama",
+    "model_name": "qwen3:8b",
+    "model_digest": "not_reported",
+    "quantization": "not_reported",
+    "context_length": "unknown",
+    "temperature": 0.0,
+    "top_p": 0.9,
+    "seed": "not_reported",
+    "backend_version": "unknown"
+  },
+  "inputs": {
+    "experiment_id": "EXP-GEN-0046",
+    "packet_digest": "f8673f9215d0da9c9a1ea478e99c858ce2397e6f12bac901ed03de46aec6fa7e"
+  },
+  "output": {
+    "experiment_id": "EXP-GEN-0046",
+    "research_question": "RQ-DET-001",
+    "hypothesis": "H-SNN-003-A",
+    "status": "supported",
+    "evidence": [
+      "EVID-2026-03",
+      "EVID-2026-05",
+      "EVID-2026-07",
+      "EVID-2026-09",
+      "EVID-2026-11",
+      "EVID-2026-13",
+      "EVID-2026-15"
+    ],
+    "analysis": {
+      "determinism": {
+        "confirmed": true,
+        "metrics": {
+          "activated_neurons": 3,
+          "delivered_synaptic_events": 33,
+          "first_response_latency": 2,
+          "last_response_latency": 62,
+          "peak_spike_rate": 1.0,
+          "propagation_depth": 61,
+          "recurrent_events": 10,
+          "return_latency": 3,
+          "total_spikes": 33,
+          "total_synapses": 3
+        },
+        "inter_spike_intervals": {
+          "recurrence_off_replica_a": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "recurrence_off_replica_b": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "recurrence_on_replica_a": {
+            "mean": 1.9375,
+            "std": 0.5555
+          },
+          "recurrence_on_replica_b": {
+            "mean": 1.9375,
+            "std": 0.5555
+          }
+        }
+      },
+      "statistics": {
+        "run_count": 12,
+        "seeds": [
+          101,
+          102,
+          103
+        ],
+        "conditions": {
+          "recurrence_off_replica_a": {
+            "run_count": 3,
+            "seeds": [
+              101,
+              102,
+              103
+            ]
+          },
+          "recurrence_off_replica_b": {
+            "run_count": 3,
+            "seeds": [
+              101,
+              102,
+              103
+            ]
+          },
+          "recurrence_on_replica_a": {
+            "run_count": 3,
+            "seeds": [
+              101,
+              102,
+              103
+            ]
+          },
+          "recurrence_on_replica_b": {
+            "run_count": 3,
+            "seeds": [
+              101,
+              102,
+              103
+            ]
+          }
+        }
+      },
+      "software": {
+        "brain5d_version": "0.6.0a5",
+        "os": "Windows 11",
+        "python": "3.13.14"
+      },
+      "provenance": {
+        "configuration_path": "F:\\Brain-5D\\configs\\learning_experiment.yaml",
+        "configuration_sha2,56": "6f6cd457caf6216c286fee47ef03b529a0b496ed2dd53ee96b85d3b51e7b3a1c",
+        "git_commit": "ad2c71424bea71dceb820c10c860b7cc9cb772c7",
+        "git_dirty": true
+      }
+    },
+    "conclusion": "Die Spikefolge ist bei gleichem Seed, Input und Anfangszustand deterministisch identisch. Dies wird durch die konsistenten Metriken und die reproduzierbaren Ergebnisse unter den gleichen Bedingungen bestätigt.",
+    "assessment": "Die Spikefolge ist bei gleichem Seed, Input und Anfangszustand deterministisch identisch. Dies wird durch die konsistenten Metriken und die reproduzierbaren Ergebnisse unter den gleichen Bedingungen bestätigt.",
+    "schema_adapted": true,
+    "observations": [],
+    "methodological_concerns": [
+      "Die vom Modell ausgegebene confidence war schemawidrig, fehlte oder lag ausserhalb des Bereichs 0..1. Sie wurde fuer die AIRR-Provenienz konservativ auf 0.0 gesetzt; der Originalwert bleibt als confidence_original erhalten."
+    ],
+    "alternative_explanations": [],
+    "recommended_experiments": [],
+    "requested_evidence": [],
+    "effect_direction": "not_determined",
+    "confidence_original": null,
+    "confidence": 0.0
+  },
+  "provenance": {
+    "prompt_sha256": "3b60ce56abf07c5084e62452d85f38bdfe64a1591bf2c0f3e0f41688dcf98aab",
+    "research_packet_digest": "f8673f9215d0da9c9a1ea478e99c858ce2397e6f12bac901ed03de46aec6fa7e",
+    "prompt_protocol_version": "research_assistant_v1",
+    "assistant_schema_version": "1.3",
+    "git_commit": "ad2c71424bea71dceb820c10c860b7cc9cb772c7",
+    "model_self_confidence": "0.0"
+  },
+  "epistemic_status": {
+    "evidence": false,
+    "interpretation_only": true,
+    "human_review_required": true
+  },
+  "review": {
+    "status": "pending",
+    "reviewer": null,
+    "reviewed_at": null,
+    "disposition": null
+  },
+  "generated_at": "2026-09-17T19:09:07.519701+00:00"
+}

@@ -1,0 +1,766 @@
+{
+  "report_id": "AIRR-2026-0001",
+  "experiment_id": "EXP-GEN-0045",
+  "research_question_id": "RQ-SNN-002",
+  "hypothesis_ids": [
+    "H-SNN-002-A"
+  ],
+  "claim_ids": [],
+  "generated_at": "2026-09-17T19:01:34.050271+00:00",
+  "report_schema_version": "1.0",
+  "report_protocol_version": "PROTOCOL-AIRR-001",
+  "generated_by": "artificial_intelligence",
+  "ai_generated": true,
+  "scientific_evidence": false,
+  "human_review_required": true,
+  "status": "review_pending",
+  "content": {
+    "identification": {
+      "experiment": "EXP-GEN-0045",
+      "research_question": "Kann das eingesetzte Neuronenmodell bei konstantem Input reproduzierbare Spikefolgen erzeugen?",
+      "hypotheses": [
+        {
+          "id": "H-SNN-002-A",
+          "research_question": "RQ-SNN-002",
+          "hypothesis": "Das Izhikevich-Neuronenmodell erzeugt bei identischem Input reproduzierbare Spikefolgen.",
+          "status": "untested",
+          "evidence": [],
+          "created": "2026-08-23",
+          "updated": "2026-08-23"
+        }
+      ],
+      "date": "2026-09-17",
+      "source_sha": "ad2c71424bea71dceb820c10c860b7cc9cb772c7"
+    },
+    "executive_summary": "Das Izhikevich-Neuronenmodell erzeugt bei identischem Input reproduzierbare Spikefolgen, wie aus den identischen Spike-sequenzen in allen drei Experimenten hervorgeht.",
+    "research_question": {
+      "id": "RQ-SNN-002",
+      "domain": "Spiking Neural Networks",
+      "question": "Kann das eingesetzte Neuronenmodell bei konstantem Input reproduzierbare Spikefolgen erzeugen?",
+      "relevance": "Basis für deterministische Reproduzierbarkeit aller Experimente.",
+      "literature": [
+        "SRC-IZHIKEVICH-2003",
+        "SRC-GERSTNER-2014"
+      ],
+      "hypotheses": [
+        "H-SNN-002-A"
+      ],
+      "evidence": [],
+      "status": "open",
+      "answer": {
+        "current": null,
+        "confidence": "none",
+        "limitations": null
+      },
+      "created": "2026-08-23",
+      "updated": "2026-08-23"
+    },
+    "experimental_design": {
+      "experiment_id": "EXP-GEN-0045",
+      "research_question": "RQ-SNN-002",
+      "hypothesis": "H-SNN-002-A",
+      "title": "tonic_spike_reproducibility_v1 — RQ-SNN-002",
+      "conditions": "registered_protocol_conditions",
+      "ticks": 256,
+      "ticks_contract": "minimum requested observation window",
+      "seeds": [
+        101,
+        102,
+        103
+      ],
+      "protocol": "tonic_spike_reproducibility_v1",
+      "resolved_runner": "run_tonic_spike_reproducibility",
+      "tick_validation": {
+        "status": "NOT_APPLICABLE",
+        "mode": "protocol_defined_internal_trials",
+        "requested_ticks": 256
+      },
+      "notes": "",
+      "execution": "registered experiment_suite runner",
+      "assistant_policy": "AI is post-hoc interpretation only.",
+      "epistemic_layers": {
+        "ui_state": "operator/dashboard progress only; not a scientific result",
+        "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+        "evid": "not_created; requires semantic validation, clean freeze and human review",
+        "interpretation": "post-hoc AI or human interpretation; never execution input"
+      }
+    },
+    "data_basis": {
+      "data": {
+        "ai_input_policy": "compact_only_raw_on_explicit_deterministic_extract",
+        "generated_by": "deterministic_research_data_v2",
+        "limits": {
+          "ai_packet_max_bytes": 1000000,
+          "run_summary_max_bytes": 5000000,
+          "sequence_preview_items": 16
+        },
+        "raw_index": {
+          "path": "DATA/runs_index.json",
+          "run_count": 3,
+          "sha256": "662143eb0a9f663bae0f3181973ed78e95090cc51cda5e1094d6daf4778864f7"
+        },
+        "run_count": 3,
+        "run_preview": [
+          {
+            "_raw_artifact": {
+              "format": "json.gz",
+              "path": "DATA/raw/run-0000-same_seed_tonic_replica_pair-seed-101.json.gz",
+              "sha256": "ed0bfd6074637dd3ae6290fcb4d0a723b735a1759c20c722f34f8390bf93a192",
+              "size_bytes": 449,
+              "uncompressed_bytes": 830
+            },
+            "condition": "same_seed_tonic_replica_pair",
+            "experiment_id": "EXP-GEN-0045",
+            "metrics": {
+              "automatic_evidence_promotion": false,
+              "direct_test_of_hypothesis": true,
+              "replicas": [
+                {
+                  "replica": "a",
+                  "source_neuron": 0,
+                  "spike_count": 6,
+                  "spike_ticks": [
+                    3,
+                    30,
+                    78,
+                    140,
+                    194,
+                    242
+                  ],
+                  "state_digest_after": "247ca50a2547d272bc8ede5532ea925cc9157b0c737444d74dcfaf5feefa733f"
+                },
+                {
+                  "replica": "b",
+                  "source_neuron": 0,
+                  "spike_count": 6,
+                  "spike_ticks": [
+                    3,
+                    30,
+                    78,
+                    140,
+                    194,
+                    242
+                  ],
+                  "state_digest_after": "247ca50a2547d272bc8ede5532ea925cc9157b0c737444d74dcfaf5feefa733f"
+                }
+              ],
+              "scientific_evidence": false,
+              "spike_sequence_identical": true,
+              "ticks_requested": 256,
+              "tonic_current": 10.0
+            },
+            "runtime_error": null,
+            "seed": 101,
+            "state_digest_after": "247ca50a2547d272bc8ede5532ea925cc9157b0c737444d74dcfaf5feefa733f",
+            "state_digest_before": "1771a5db39762c3f7493abcddc6e461322470687395291a7b18bfb719f8ac27f"
+          },
+          {
+            "_raw_artifact": {
+              "format": "json.gz",
+              "path": "DATA/raw/run-0001-same_seed_tonic_replica_pair-seed-102.json.gz",
+              "sha256": "87c1e6eb44459588033f1f9009408cc99f096669b0dd853b23f15b50c473fff7",
+              "size_bytes": 448,
+              "uncompressed_bytes": 830
+            },
+            "condition": "same_seed_tonic_replica_pair",
+            "experiment_id": "EXP-GEN-0045",
+            "metrics": {
+              "automatic_evidence_promotion": false,
+              "direct_test_of_hypothesis": true,
+              "replicas": [
+                {
+                  "replica": "a",
+                  "source_neuron": 0,
+                  "spike_count": 6,
+                  "spike_ticks": [
+                    3,
+                    30,
+                    78,
+                    140,
+                    194,
+                    242
+                  ],
+                  "state_digest_after": "c825753d235dc1b9b84041567359f5b6b71a21cf1b59941eac660eafa3c4f59b"
+                },
+                {
+                  "replica": "b",
+                  "source_neuron": 0,
+                  "spike_count": 6,
+                  "spike_ticks": [
+                    3,
+                    30,
+                    78,
+                    140,
+                    194,
+                    242
+                  ],
+                  "state_digest_after": "c825753d235dc1b9b84041567359f5b6b71a21cf1b59941eac660eafa3c4f59b"
+                }
+              ],
+              "scientific_evidence": false,
+              "spike_sequence_identical": true,
+              "ticks_requested": 256,
+              "tonic_current": 10.0
+            },
+            "runtime_error": null,
+            "seed": 102,
+            "state_digest_after": "c825753d235dc1b9b84041567359f5b6b71a21cf1b59941eac660eafa3c4f59b",
+            "state_digest_before": "dea90be4cc96ecd982339529935b2286e82c20cf45e76d435b23c29953c97dbe"
+          },
+          {
+            "_raw_artifact": {
+              "format": "json.gz",
+              "path": "DATA/raw/run-0002-same_seed_tonic_replica_pair-seed-103.json.gz",
+              "sha256": "1a4b5b717bebef996c6bc7cb16691676aa70d90266e7dafd58181476aa258820",
+              "size_bytes": 449,
+              "uncompressed_bytes": 830
+            },
+            "condition": "same_seed_tonic_replica_pair",
+            "experiment_id": "EXP-GEN-0045",
+            "metrics": {
+              "automatic_evidence_promotion": false,
+              "direct_test_of_hypothesis": true,
+              "replicas": [
+                {
+                  "replica": "a",
+                  "source_neuron": 0,
+                  "spike_count": 6,
+                  "spike_ticks": [
+                    3,
+                    30,
+                    78,
+                    140,
+                    194,
+                    242
+                  ],
+                  "state_digest_after": "f3fbcf17be2a2d35e359c65e5c724ffd02ad5852dec757c04b928320ca29a28f"
+                },
+                {
+                  "replica": "b",
+                  "source_neuron": 0,
+                  "spike_count": 6,
+                  "spike_ticks": [
+                    3,
+                    30,
+                    78,
+                    140,
+                    194,
+                    242
+                  ],
+                  "state_digest_after": "f3fbcf17be2a2d35e359c65e5c724ffd02ad5852dec757c04b928320ca29a28f"
+                }
+              ],
+              "scientific_evidence": false,
+              "spike_sequence_identical": true,
+              "ticks_requested": 256,
+              "tonic_current": 10.0
+            },
+            "runtime_error": null,
+            "seed": 103,
+            "state_digest_after": "f3fbcf17be2a2d35e359c65e5c724ffd02ad5852dec757c04b928320ca29a28f",
+            "state_digest_before": "9de84571ead9f21e68a65636aba8ca24658f562322755aa7c976905a4682bf6e"
+          }
+        ],
+        "schema_version": "2.0",
+        "statistics": {
+          "conditions": {
+            "same_seed_tonic_replica_pair": {
+              "boolean_metrics": {
+                "automatic_evidence_promotion": {
+                  "all_true": false,
+                  "false_count": 3,
+                  "n": 3,
+                  "true_count": 0,
+                  "true_fraction": 0.0
+                },
+                "direct_test_of_hypothesis": {
+                  "all_true": true,
+                  "false_count": 0,
+                  "n": 3,
+                  "true_count": 3,
+                  "true_fraction": 1.0
+                },
+                "scientific_evidence": {
+                  "all_true": false,
+                  "false_count": 3,
+                  "n": 3,
+                  "true_count": 0,
+                  "true_fraction": 0.0
+                },
+                "spike_sequence_identical": {
+                  "all_true": true,
+                  "false_count": 0,
+                  "n": 3,
+                  "true_count": 3,
+                  "true_fraction": 1.0
+                }
+              },
+              "metrics": {
+                "ticks_requested": {
+                  "max": 256.0,
+                  "mean": 256.0,
+                  "median": 256.0,
+                  "min": 256.0,
+                  "n": 3,
+                  "std": 0.0
+                },
+                "tonic_current": {
+                  "max": 10.0,
+                  "mean": 10.0,
+                  "median": 10.0,
+                  "min": 10.0,
+                  "n": 3,
+                  "std": 0.0
+                }
+              },
+              "run_count": 3,
+              "seeds": [
+                101,
+                102,
+                103
+              ]
+            }
+          },
+          "formulas": {
+            "difference": "Delta_x = mean(x_B) - mean(x_A)",
+            "inter_spike_interval": "ISI_i = t_(i+1) - t_i",
+            "mean": "mean(x) = (1/n) * sum_i x_i",
+            "population_std": "sigma = sqrt((1/n) * sum_i (x_i - mean(x))^2)",
+            "ratio": "R_x = mean(x_B) / mean(x_A), defined only when mean(x_A) != 0"
+          },
+          "generated_by": "deterministic_statistics_engine",
+          "run_count": 3,
+          "schema_version": "2.2"
+        }
+      },
+      "evid": [],
+      "literature": [
+        {
+          "source_id": "SRC-IZHIKEVICH-2003",
+          "authors": [
+            "Eugene M. Izhikevich"
+          ],
+          "title": "Simple model of spiking neurons",
+          "year": 2003,
+          "journal": "IEEE Transactions on Neural Networks",
+          "doi": "10.1109/TNN.2003.820440",
+          "topic": [
+            "neuron_model",
+            "spiking",
+            "snn_dynamics"
+          ],
+          "claims": [
+            "Simple spiking models can reproduce multiple cortical firing patterns."
+          ],
+          "brain5d_questions": [
+            "RQ-SNN-001",
+            "RQ-SNN-002",
+            "RQ-DET-001"
+          ],
+          "brain5d_relevance": "Referenz für Neuronendynamik und Parametrisierung der Izhikevich-Neuronen in Brain-5D."
+        },
+        {
+          "source_id": "SRC-GERSTNER-2014",
+          "authors": [
+            "Wulfram Gerstner",
+            "Werner M. Kistler",
+            "Richard Naud",
+            "Liam Paninski"
+          ],
+          "title": "Neuronal Dynamics: From Single Neurons to Networks and Models of Cognition",
+          "year": 2014,
+          "publisher": "Cambridge University Press",
+          "topic": [
+            "neuron_model",
+            "spiking",
+            "snn_dynamics",
+            "plasticity"
+          ],
+          "claims": [
+            "Spiking neural networks can model cognitive processes."
+          ],
+          "brain5d_questions": [
+            "RQ-SNN-001",
+            "RQ-SNN-002"
+          ],
+          "brain5d_relevance": "Standardreferenz für SNN-Theorie und Dynamik."
+        }
+      ]
+    },
+    "quantitative_results": {
+      "conditions": {
+        "same_seed_tonic_replica_pair": {
+          "boolean_metrics": {
+            "automatic_evidence_promotion": {
+              "all_true": false,
+              "false_count": 3,
+              "n": 3,
+              "true_count": 0,
+              "true_fraction": 0.0
+            },
+            "direct_test_of_hypothesis": {
+              "all_true": true,
+              "false_count": 0,
+              "n": 3,
+              "true_count": 3,
+              "true_fraction": 1.0
+            },
+            "scientific_evidence": {
+              "all_true": false,
+              "false_count": 3,
+              "n": 3,
+              "true_count": 0,
+              "true_fraction": 0.0
+            },
+            "spike_sequence_identical": {
+              "all_true": true,
+              "false_count": 0,
+              "n": 3,
+              "true_count": 3,
+              "true_fraction": 1.0
+            }
+          },
+          "metrics": {
+            "ticks_requested": {
+              "max": 256.0,
+              "mean": 256.0,
+              "median": 256.0,
+              "min": 256.0,
+              "n": 3,
+              "std": 0.0
+            },
+            "tonic_current": {
+              "max": 10.0,
+              "mean": 10.0,
+              "median": 10.0,
+              "min": 10.0,
+              "n": 3,
+              "std": 0.0
+            }
+          },
+          "run_count": 3,
+          "seeds": [
+            101,
+            102,
+            103
+          ]
+        }
+      },
+      "formulas": {
+        "difference": "Delta_x = mean(x_B) - mean(x_A)",
+        "inter_spike_interval": "ISI_i = t_(i+1) - t_i",
+        "mean": "mean(x) = (1/n) * sum_i x_i",
+        "population_std": "sigma = sqrt((1/n) * sum_i (x_i - mean(x))^2)",
+        "ratio": "R_x = mean(x_B) / mean(x_A), defined only when mean(x_A) != 0"
+      },
+      "generated_by": "deterministic_statistics_engine",
+      "run_count": 3,
+      "schema_version": "2.2"
+    },
+    "observations": [
+      "Die Spike-sequenzen der Reproduktionen sind identisch.",
+      "Die Parameter wie tonic_current und ticks_requested sind in allen Experimenten konsistent.",
+      "Die state_digest_before und state_digest_after sind in allen Fällen konsistent und zeigen keine signifikanten Abweichungen."
+    ],
+    "interpretation": {
+      "assessment": "Das Izhikevich-Neuronenmodell erzeugt bei identischem Input reproduzierbare Spikefolgen, wie aus den identischen Spike-sequenzen in allen drei Experimenten hervorgeht.",
+      "effect_direction": "Das Modell erzeugt bei identischem Input reproduzierbare Spikefolgen.",
+      "observations": [
+        "Die Spike-sequenzen der Reproduktionen sind identisch.",
+        "Die Parameter wie tonic_current und ticks_requested sind in allen Experimenten konsistent.",
+        "Die state_digest_before und state_digest_after sind in allen Fällen konsistent und zeigen keine signifikanten Abweichungen."
+      ],
+      "methodological_concerns": [
+        "Die experimentellen Daten sind vollständig und konsistent, aber es fehlen statistische Tests zur Bestätigung der Reproduzierbarkeit.",
+        "Die Verknüpfung der state_digests könnte eine zusätzliche Validierung der Determinismus-Eigenschaft erfordern."
+      ],
+      "alternative_explanations": [
+        "Die Reproduzierbarkeit könnte auf die deterministische Natur der Izhikevich-Gleichungen zurückzuführen sein, nicht auf externe Faktoren.",
+        "Die verwendete Software oder die Implementierung könnte die deterministische Reaktion beeinflussen."
+      ],
+      "recommended_experiments": [
+        "Ein Test mit variierenden Initialbedingungen, um die Robustheit der Reproduzierbarkeit zu überprüfen.",
+        "Ein Vergleich mit anderen Neuronenmodellen, um die spezifische Determinismus-Eigenschaft des Izhikevich-Modells zu validieren."
+      ],
+      "requested_evidence": [
+        "Eine detaillierte Analyse der Izhikevich-Gleichungen, um die deterministische Natur des Modells zu bestätigen.",
+        "Ein Nachweis der Implementierungskonsistenz der Software, um externe Einflüsse auszuschließen."
+      ],
+      "confidence": 0.95
+    },
+    "methodological_critique": [
+      "Die experimentellen Daten sind vollständig und konsistent, aber es fehlen statistische Tests zur Bestätigung der Reproduzierbarkeit.",
+      "Die Verknüpfung der state_digests könnte eine zusätzliche Validierung der Determinismus-Eigenschaft erfordern."
+    ],
+    "alternative_explanations": [
+      "Die Reproduzierbarkeit könnte auf die deterministische Natur der Izhikevich-Gleichungen zurückzuführen sein, nicht auf externe Faktoren.",
+      "Die verwendete Software oder die Implement, "
+    ],
+    "reproducibility": {
+      "git_commit": "ad2c71424bea71dceb820c10c860b7cc9cb772c7",
+      "experiment_status": "completed",
+      "evidence_mode": "not_reported",
+      "git_dirty": "False",
+      "source_freeze_sha": "bb67bd31ea2e19893cf23d536680ef4b361cb14480113c1965abc1b955a5eec5",
+      "configuration_path": "F:\\Brain-5D\\configs\\learning_experiment.yaml",
+      "configuration_sha256": "6f6cd457caf6216c286fee47ef03b529a0b496ed2dd53ee96b85d3b51e7b3a1c",
+      "experiment_manifest_digest": "254f53f2ce9ed1e8b97b66c296eb4d1322e0fcd43dc0b6775d9294f073fdb249",
+      "data_ids": "NOT_AVAILABLE",
+      "evid_ids": "NOT_AVAILABLE",
+      "protocol_id": "NOT_AVAILABLE",
+      "protocol_digest": "6c0ca10779e2c7e74665c2d66d36a4a20651b8b9d8ab4a310d02fe3190fb89a1",
+      "data_digest": "7555c189c4d34d17b0604b417f6f0af35e03f3a21c14c9446f8965d295a7307b",
+      "evid_digests": "[]"
+    },
+    "epistemic_status": {
+      "implementation": "NOT_DETERMINED",
+      "experiment_data": "PRESENT",
+      "registered_evidence": "ABSENT",
+      "ai_interpretation": "PRESENT",
+      "human_review": "PENDING",
+      "claim_support": "NOT_DETERMINED",
+      "rq_status": "IN_PROGRESS"
+    },
+    "ai_confidence": 0.95,
+    "missing_evidence": [
+      "Eine detaillierte Analyse der Izhikevich-Gleichungen, um die deterministische Natur des Modells zu bestätigen.",
+      "Ein Nachweis der Implementierungskonsistenz der Software, um externe Einflüsse auszuschließen."
+    ],
+    "recommended_follow_up": [
+      "Ein Test mit variierenden Initialbedingungen, um die Robustheit der Reproduzierbarkeit zu überprüfen.",
+      "Ein Vergleich mit anderen Neuronenmodellen, um die spezifische Determinismus-Eigenschaft des Izhikevich-Modells zu validieren."
+    ],
+    "conclusion": "Das Izhikevich-Neuronenmodell erzeugt bei identischem Input reproduzierbare Spikefolgen, wie aus den identischen Spike-sequenzen in allen drei Experimenten hervorgeht.",
+    "human_review": {
+      "status": "PENDING",
+      "reviewer": null,
+      "reviewed_at": null,
+      "disposition": null,
+      "comments": null
+    },
+    "aiar": {
+      "analyst": {
+        "analysis_id": "AIAR-scientific_analyst-20260917185950670763-d7ce9950",
+        "role": "scientific_analyst",
+        "model": {
+          "provider": "ollama",
+          "model_name": "qwen3:8b",
+          "model_digest": "not_reported",
+          "quantization": "not_reported",
+          "context_length": "unknown",
+          "temperature": 0.0,
+          "top_p": 0.9,
+          "seed": "not_reported",
+          "backend_version": "unknown"
+        },
+        "inputs": {
+          "experiment_id": "EXP-GEN-0045",
+          "packet_digest": "d7ce9950e2b7c5cde0c8832c05fae43952a0db38f3e5e6e88e74c3fbf256691a"
+        },
+        "output": {
+          "assessment": "Die experimentellen Ergebnisse zeigen, dass das Izhikevich-Neuronenmodell unter identischen Eingabeparametern reproduzierbare Spikefolgen erzeugt. Die Spike-sequenzen der Reproduktionen sind identisch, was auf eine deterministische Reaktion des Modells hinweist.",
+          "observations": [
+            "Die Spike-sequenzen der Reproduktionen sind identisch.",
+            "Die Parameter wie tonic_current und ticks_requested sind in allen Experimenten konsistent.",
+            "Die state_digest_before und state_digest_after sind in allen Fällen konsistent und zeigen keine signifikanten Abweichungen."
+          ],
+          "effect_direction": "Das Modell erzeugt bei identischem Input reproduzierbare Spikefolgen.",
+          "methodological_concerns": [
+            "Die experimentellen Daten sind vollständig und konsistent, aber es fehlen statistische Tests zur Bestätigung der Reproduzierbarkeit.",
+            "Die Verknüpfung der state_digests könnte eine zusätzliche Validierung der Determinismus-Eigenschaft erfordern."
+          ],
+          "alternative_explanations": [
+            "Die Reproduzierbarkeit könnte auf die deterministische Natur der Izhikevich-Gleichungen zurückzuführen sein, nicht auf externe Faktoren.",
+            "Die verwendete Software oder die Implementierung könnte die deterministische Reaktion beeinflussen."
+          ],
+          "recommended_experiments": [
+            "Ein Test mit variierenden Initialbedingungen, um die Robustheit der Reproduzierbarkeit zu überprüfen.",
+            "Ein Vergleich mit anderen Neuronenmodellen, um die spezifische Determinismus-Eigenschaft des Izhikevich-Modells zu validieren."
+          ],
+          "requested_evidence": [
+            "Eine detaillierte Analyse der Izhikevich-Gleichungen, um die deterministische Natur des Modells zu bestätigen.",
+            "Ein Nachweis der Implementierungskonsistenz der Software, um externe Einflüsse auszuschließen."
+          ],
+          "confidence": 0.95
+        },
+        "provenance": {
+          "prompt_sha256": "6932c9707007f2ea1bde1b82788c6f4359567ef4ae5e4c2dd3af354a08fbe9d9",
+          "research_packet_digest": "d7ce9950e2b7c5cde0c8832c05fae43952a0db38f3e5e6e88e74c3fbf256691a",
+          "prompt_protocol_version": "research_assistant_v1",
+          "assistant_schema_version": "1.3",
+          "git_commit": "ad2c71424bea71dceb820c10c860b7cc9cb772c7",
+          "model_self_confidence": "0.95"
+        },
+        "epistemic_status": {
+          "evidence": false,
+          "interpretation_only": true,
+          "human_review_required": true
+        },
+        "review": {
+          "status": "pending",
+          "reviewer": null,
+          "reviewed_at": null,
+          "disposition": null
+        },
+        "generated_at": "2026-09-17T18:59:50.670763+00:00"
+      },
+      "reviewer": {
+        "analysis_id": "AIAR-critical_reviewer-20260917190034649986-d7ce9950",
+        "role": "critical_reviewer",
+        "model": {
+          "provider": "ollama",
+          "model_name": "qwen3:8b",
+          "model_digest": "not_reported",
+          "quantization": "not_reported",
+          "context_length": "unknown",
+          "temperature": 0.0,
+          "top_p": 0.9,
+          "seed": "not_reported",
+          "backend_version": "unknown"
+        },
+        "inputs": {
+          "experiment_id": "EXP-GEN-0045",
+          "packet_digest": "d7ce9950e2b7c5cde0c8832c05fae43952a0db38f3e5e6e88e74c3fbf256691a"
+        },
+        "output": {
+          "assessment": "Das Izhikevich-Neuronenmodell erzeugt bei identischem Input reproduzierbare Spikefolgen, wie aus den identischen Spike-sequenzen in allen drei Experimenten hervorgeht.",
+          "observations": [
+            "Die Spike-sequenzen der Reproduktionen sind identisch.",
+            "Die Parameter wie tonic_current und ticks_requested sind in allen Experimenten konsistent.",
+            "Die state_digest_before und state_digest_after sind in allen Fällen konsistent und zeigen keine signifikanten Abweichungen."
+          ],
+          "effect_direction": "Das Modell erzeugt bei identischem Input reproduzierbare Spikefolgen.",
+          "methodological_concerns": [
+            "Die experimentellen Daten sind vollständig und konsistent, aber es fehlen statistische Tests zur Bestätigung der Reproduzierbarkeit.",
+            "Die Verknüpfung der state_digests könnte eine zusätzliche Validierung der Determinismus-Eigenschaft erfordern."
+          ],
+          "alternative_explanations": [
+            "Die Reproduzierbarkeit könnte auf die deterministische Natur der Izhikevich-Gleichungen zurückzuführen sein, nicht auf externe Faktoren.",
+            "Die verwendete Software oder die Implement, "
+          ],
+          "recommended_experiments": [
+            "Ein Test mit variierenden Initialbedingungen, um die Robustheit der Reproduzierbarkeit zu überprüfen.",
+            "Ein Vergleich mit anderen Neuronenmodellen, um die spezifische Determinismus-Eigenschaft des Izhikevich-Modells zu validieren."
+          ],
+          "requested_evidence": [
+            "Eine detaillierte Analyse der Izhikevich-Gleichungen, um die deterministische Natur des Modells zu bestätigen.",
+            "Ein Nachweis der Implementierungskonsistenz der Software, um externe Einflüsse auszuschließen."
+          ],
+          "confidence": 0.95
+        },
+        "provenance": {
+          "prompt_sha256": "e9a2b0b96430f6d7eb8cc05b3d6d06d879fc5d4642238f6f30247574f83b10e4",
+          "research_packet_digest": "d7ce9950e2b7c5cde0c8832c05fae43952a0db38f3e5e6e88e74c3fbf256691a",
+          "prompt_protocol_version": "research_assistant_v1",
+          "assistant_schema_version": "1.3",
+          "git_commit": "ad2c71424bea71dceb820c10c860b7cc9cb772c7",
+          "model_self_confidence": "0.95"
+        },
+        "epistemic_status": {
+          "evidence": false,
+          "interpretation_only": true,
+          "human_review_required": true
+        },
+        "review": {
+          "status": "pending",
+          "reviewer": null,
+          "reviewed_at": null,
+          "disposition": null
+        },
+        "generated_at": "2026-09-17T19:00:34.649986+00:00"
+      },
+      "writer": {
+        "analysis_id": "AIAR-scientific_writer-20260917190134048951-d7ce9950",
+        "role": "scientific_writer",
+        "model": {
+          "provider": "ollama",
+          "model_name": "qwen3:8b",
+          "model_digest": "not_reported",
+          "quantization": "not_reported",
+          "context_length": "unknown",
+          "temperature": 0.0,
+          "top_p": 0.9,
+          "seed": "not_reported",
+          "backend_version": "unknown"
+        },
+        "inputs": {
+          "experiment_id": "EXP-GEN-0045",
+          "packet_digest": "d7ce9950e2b7c5cde0c8832c05fae43952a0db38f3e5e6e88e74c3fbf256691a"
+        },
+        "output": {
+          "assessment": "Das Izhikevich-Neuronenmodell erzeugt bei identischem Input reproduzierbare Spikefolgen, wie aus den identischen Spike-sequenzen in allen drei Experimenten hervorgeht.",
+          "effect_direction": "Das Modell erzeugt bei identischem Input reproduzierbare Spikefolgen.",
+          "observations": [
+            "Die Spike-sequenzen der Reproduktionen sind identisch.",
+            "Die Parameter wie tonic_current und ticks_requested sind in allen Experimenten konsistent.",
+            "Die state_digest_before und state_digest_after sind in allen Fällen konsistent und zeigen keine signifikanten Abweichungen."
+          ],
+          "methodological_concerns": [
+            "Die experimentellen Daten sind vollständig und konsistent, aber es fehlen statistische Tests zur Bestätigung der Reproduzierbarkeit.",
+            "Die Verknüpfung der state_digests könnte eine zusätzliche Validierung der Determinismus-Eigenschaft erfordern."
+          ],
+          "alternative_explanations": [
+            "Die Reproduzierbarkeit könnte auf die deterministische Natur der Izhikevich-Gleichungen zurückzuführen sein, nicht auf externe Faktoren.",
+            "Die verwendete Software oder die Implementierung könnte die deterministische Reaktion beeinflussen."
+          ],
+          "recommended_experiments": [
+            "Ein Test mit variierenden Initialbedingungen, um die Robustheit der Reproduzierbarkeit zu überprüfen.",
+            "Ein Vergleich mit anderen Neuronenmodellen, um die spezifische Determinismus-Eigenschaft des Izhikevich-Modells zu validieren."
+          ],
+          "requested_evidence": [
+            "Eine detaillierte Analyse der Izhikevich-Gleichungen, um die deterministische Natur des Modells zu bestätigen.",
+            "Ein Nachweis der Implementierungskonsistenz der Software, um externe Einflüsse auszuschließen."
+          ],
+          "confidence": 0.95
+        },
+        "provenance": {
+          "prompt_sha256": "151cb211dc8d598b854881148d6671b7d0a135fb8bf8b6cfb757761fdc781f83",
+          "research_packet_digest": "d7ce9950e2b7c5cde0c8832c05fae43952a0db38f3e5e6e88e74c3fbf256691a",
+          "prompt_protocol_version": "research_assistant_v1",
+          "assistant_schema_version": "1.3",
+          "git_commit": "ad2c71424bea71dceb820c10c860b7cc9cb772c7",
+          "model_self_confidence": "0.95"
+        },
+        "epistemic_status": {
+          "evidence": false,
+          "interpretation_only": true,
+          "human_review_required": true
+        },
+        "review": {
+          "status": "pending",
+          "reviewer": null,
+          "reviewed_at": null,
+          "disposition": null
+        },
+        "generated_at": "2026-09-17T19:01:34.048951+00:00"
+      }
+    }
+  },
+  "provenance": {
+    "research_packet_digest": "d7ce9950e2b7c5cde0c8832c05fae43952a0db38f3e5e6e88e74c3fbf256691a",
+    "source": {
+      "git_commit": "ad2c71424bea71dceb820c10c860b7cc9cb772c7",
+      "experiment_status": "completed",
+      "evidence_mode": "not_reported",
+      "git_dirty": "False",
+      "source_freeze_sha": "bb67bd31ea2e19893cf23d536680ef4b361cb14480113c1965abc1b955a5eec5",
+      "configuration_path": "F:\\Brain-5D\\configs\\learning_experiment.yaml",
+      "configuration_sha256": "6f6cd457caf6216c286fee47ef03b529a0b496ed2dd53ee96b85d3b51e7b3a1c",
+      "experiment_manifest_digest": "254f53f2ce9ed1e8b97b66c296eb4d1322e0fcd43dc0b6775d9294f073fdb249",
+      "data_ids": "NOT_AVAILABLE",
+      "evid_ids": "NOT_AVAILABLE",
+      "protocol_id": "NOT_AVAILABLE",
+      "protocol_digest": "6c0ca10779e2c7e74665c2d66d36a4a20651b8b9d8ab4a310d02fe3190fb89a1",
+      "data_digest": "7555c189c4d34d17b0604b417f6f0af35e03f3a21c14c9446f8965d295a7307b",
+      "evid_digests": "[]"
+    }
+  },
+  "analysis_ids": [
+    "AIAR-scientific_analyst-20260917185950670763-d7ce9950",
+    "AIAR-critical_reviewer-20260917190034649986-d7ce9950",
+    "AIAR-scientific_writer-20260917190134048951-d7ce9950"
+  ],
+  "supersedes": null,
+  "content_digest": "d575f6f603e232b0c88a84117dc8981111db5c0b1893fa078c205e2ce67178ab",
+  "markdown_digest": "2e6dcdfc9e7926bfb64018fb98585c2158d9bd20208ea06073a0e0a4bb3ba7dd"
+}

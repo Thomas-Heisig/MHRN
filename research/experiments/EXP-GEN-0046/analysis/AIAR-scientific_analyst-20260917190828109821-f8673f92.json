@@ -1,0 +1,177 @@
+{
+  "analysis_id": "AIAR-scientific_analyst-20260917190828109821-f8673f92",
+  "role": "scientific_analyst",
+  "model": {
+    "provider": "ollama",
+    "model_name": "qwen3:8b",
+    "model_digest": "not_reported",
+    "quantization": "not_reported",
+    "context_length": "unknown",
+    "temperature": 0.0,
+    "top_p": 0.9,
+    "seed": "not_reported",
+    "backend_version": "unknown"
+  },
+  "inputs": {
+    "experiment_id": "EXP-GEN-0046",
+    "packet_digest": "f8673f9215d0da9c9a1ea478e99c858ce2397e6f12bac901ed03de46aec6fa7e"
+  },
+  "output": {
+    "experiment_id": "EXP-GEN-0046",
+    "research_question": "RQ-DET-001",
+    "hypothesis": "H-SNN-003-A",
+    "status": "supported",
+    "evidence": [
+      "EVID-2026-03",
+      "EVID-2026-05",
+      "EVID-2026-07",
+      "EVID-2026-09",
+      "EVID-2026-11",
+      "EVID-2026-13",
+      "EVID-2026-15"
+    ],
+    "analysis": {
+      "determinism": {
+        "confirmed": true,
+        "metrics": {
+          "activated_neurons": 3,
+          "delivered_synaptic_events": 33,
+          "first_response_latency": 2,
+          "last_response_latency": 62,
+          "peak_spike_rate": 1.0,
+          "propagation_depth": 61,
+          "recurrent_events": 10,
+          "return_latency": 3,
+          "total_spikes": 33,
+          "total_synapses": 3
+        },
+        "inter_spike_intervals": {
+          "recurrence_off_replica_a": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "recurrence_off_replica_b": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "recurrence_on_replica_a": {
+            "mean": 1.9375,
+            "std": 0.5555
+          },
+          "recurrence_on_replica_b": {
+            "mean": 1.9375,
+            "std": 0.5555
+          }
+        },
+        "statistics": {
+          "run_count": 12,
+          "seeds": [
+            101,
+            102,
+            103
+          ],
+          "conditions": {
+            "recurrence_off_replica_a": {
+              "run_count": 3,
+              "seeds": [
+                101,
+                102,
+                103
+              ]
+            },
+            "recurrence_off_replica_b": {
+              "run_count": 3,
+              "seeds": [
+                101,
+                102,
+                103
+              ]
+            },
+            "recurrence_on_replica_a": {
+              "run_count": 3,
+              "seeds": [
+                101,
+                102,
+                103
+              ]
+            },
+            "recurrence_on_replica_b": {
+              "run_count": 3,
+              "seeds": [
+                101,
+                102,
+                103
+              ]
+            }
+          }
+        }
+      },
+      "limitations": [
+        "Git provenance is dirty or unavailable.",
+        "No registered scientific evidence is linked to this experiment."
+      ],
+      "literature": [
+        {
+          "title": "Simple model of spiking neurons",
+          "authors": [
+            "Eugene M. Izhikevich"
+          ],
+          "year": 2003,
+          "journal": "IEEE Transactions on Neural Networks",
+          "doi": "10.1109/TNN.2003.820440",
+          "source_id": "SRC-IZHIKEVICH-2003",
+          "topic": [
+            "neuron_model",
+            "spiking",
+            "snn_dynamics"
+          ],
+          "brain5d_questions": [
+            "RQ-SNN-001",
+            "RQ-SNN-002",
+            "RQ-DET-001"
+          ],
+          "claims": [
+            "Simple spiking models can reproduce multiple cortical firing patterns."
+          ]
+        }
+      ]
+    },
+    "software": {
+      "brain5d_version": "0.6.0a5",
+      "os": "Windows 11",
+      "python": "3.13.14"
+    },
+    "experiment_status": "completed",
+    "timestamp": "2026-09-17T21:07:59.769562",
+    "assessment": "Die Analyse konnte nicht vollstaendig schema-konform erzeugt werden. Das Modell hat keine verwertbare Bewertung geliefert.",
+    "analysis_unavailable": true,
+    "confidence_original": null,
+    "confidence": 0.0,
+    "observations": [],
+    "methodological_concerns": [],
+    "alternative_explanations": [],
+    "recommended_experiments": [],
+    "requested_evidence": [],
+    "effect_direction": "not_determined"
+  },
+  "provenance": {
+    "prompt_sha256": "4107f69c51671b21b72d0a2de8dcd2e1c18d6a8e2ed79446838d00e6afc310c2",
+    "research_packet_digest": "f8673f9215d0da9c9a1ea478e99c858ce2397e6f12bac901ed03de46aec6fa7e",
+    "prompt_protocol_version": "research_assistant_v1",
+    "assistant_schema_version": "1.3",
+    "git_commit": "ad2c71424bea71dceb820c10c860b7cc9cb772c7",
+    "model_self_confidence": "0.0"
+  },
+  "epistemic_status": {
+    "evidence": false,
+    "interpretation_only": true,
+    "human_review_required": true
+  },
+  "review": {
+    "status": "pending",
+    "reviewer": null,
+    "reviewed_at": null,
+    "disposition": null
+  },
+  "generated_at": "2026-09-17T19:08:28.109821+00:00"
+}
