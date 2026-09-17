@@ -23,3 +23,67 @@ Interne Similarity-Prüfungen reduzieren Risiken, zertifizieren aber keine Plagi
 ## 33. AI-Assistenz und Verantwortlichkeit
 
 KI-Systeme können Formulierungen, Code, Literaturkandidaten oder Gegenargumente erzeugen. Verantwortung für die veröffentlichte Fassung bleibt beim menschlichen Autor. Wo ein konkreter AI-Vorschlag für die Genealogie relevant ist, wird er als Prozessartefakt bezeichnet und nicht durch nachträgliche Autorschaftsvereinfachung verdeckt.
+
+## 33.1 Eigene Vorarbeiten sind Quelle, nicht „neuer“ Text
+
+Die Editionslinie 1.0–1.8 enthält erhebliche Eigenwiederverwendung. Das ist wissenschaftlich zulässig, wenn Herkunft und Veränderung sichtbar bleiben. Edition 1.8 behandelt ältere eigene Manuskripte deshalb als **MHRN prior work** und nicht als neue Primärleistung allein durch Umordnung.
+
+Der ungekürzte 1.7-Quellenband in `LEGACY_V17.md` erfüllt genau diese Funktion: Er bewahrt den historischen Text, während 1.8 die Erkenntnisse in eine neue Struktur überführt. Die neue Leistung liegt in der aktualisierten Synthese, den zusätzlichen Befunden, den Korrekturen und der neuen Provenienzstruktur — nicht darin, ältere eigene Sätze als erstmals entstandene Erkenntnis auszugeben.
+
+## 33.2 Kumulative Forschung braucht stärkere Attribution, nicht schwächere
+
+Die in den Vorgängerarbeiten formulierte Position, Forschung sei grundsätzlich kumulativ, wird in 1.8 präzisiert. Je stärker ein Projekt auf bestehende Modelle, Bibliotheken, Theorien und AI-Werkzeuge zurückgreift, desto wichtiger werden vier Ebenen der Zuschreibung:
+
+1. **externe Theorie oder Methode** — etwa Izhikevich, STDP, CLS, Predictive Coding oder Safe Interruptibility;
+2. **eigene frühere Arbeit** — ältere MHRN-/Brain-5D-Fassungen und Experimente;
+3. **Werkzeugbeitrag** — AI-generierter Code, Recherchehilfe oder Formulierung;
+4. **aktuelle Eigenleistung** — konkrete Integration, Hypothese, Experiment, Review oder Synthese dieser Edition.
+
+Damit wird verhindert, dass „kumulativ“ zu einer Ausrede für unklare Herkunft wird.
+
+## 33.3 Der Quellenstatus ist Teil des Claims
+
+Eine Literaturangabe ist nicht nur bibliografische Dekoration. Für MHRN ist relevant, **was tatsächlich geprüft wurde**. Metadaten können Titel, Autor, Jahr und DOI bestätigen; ein Abstract kann den groben Gegenstand bestätigen; erst die Primärlektüre kann stärkere inhaltliche Aussagen tragen.
+
+Diese Differenz wird in 1.8 als Quellenstatus dokumentiert. Nicht bestätigte Literatur bleibt quarantänisiert. Frühere plausible, aber nicht hinreichend verifizierte Hinweise werden nicht aufgrund ihrer Passgenauigkeit übernommen.
+
+## 33.4 KI-generierte Kritik ist wertvoll, aber nicht unabhängig
+
+AI-Reviewer haben im Projekt mehrfach nützliche Fehler identifiziert oder Gegenargumente erzeugt. Gleichzeitig zeigte die AIRR-Pipeline, dass AI-Ausgaben selbst Schema- und Interpretationsfehler enthalten können. Daraus folgt eine doppelte Regel:
+
+- KI-Kritik ist ein legitimes **Prüfwerkzeug** und kann neue Human-Review-Fragen erzeugen.
+- Sie ist keine unabhängige Replikation und keine automatische EVID-Instanz.
+
+Ein AI-Review, das einen Lauf korrekt kritisiert, stärkt die Methodik; es verändert aber den Evidenzstatus erst dann, wenn die Kritik auf Primärartefakte zurückgeführt und als menschliche oder formal definierte Reviewentscheidung verarbeitet wurde.
+
+## 33.5 Negative Ergebnisse gehören zur Autorschaft
+
+Autorschaft bedeutet in dieser Arbeit nicht nur, positive Ergebnisse zu vertreten. Die CL-002-Falsifikation, die negative CL-003-Primärkontraste, die nicht testadäquate 5D-v1-Studie und der historische Stage-0-Langzeit-Negativbefund bleiben Teil der Forschungsleistung.
+
+Eine wissenschaftliche Arbeit wird hier nicht dadurch „erfolgreich“, dass jede frühe Idee bestätigt wird. Sie ist dann belastbarer, wenn sie sichtbar macht, welche Annahmen aufgegeben, reduziert oder neu operationalisiert werden mussten.
+
+## 33.6 Neuheitskandidaten und ihre Prüfpflicht
+
+Die folgenden Kombinationen werden als potenzielle Beiträge weiterverfolgt, aber nicht als bewiesene Neuheit ausgegeben:
+
+- Logical Identity / Physical Slot / Synaptic Reduction / Execution Scheduling;
+- Proposal → Approval → Mutation → Journal → Undo;
+- Content Gateway / Compute Backend;
+- source-bound DATA/EVID-Trennung in einem integrierten Forschungs-/Engineeringworkflow;
+- getrennte Engineering- und Scientific-Maturity-Achsen;
+- rekursive Epistemik als explizite Verbindung von Objekt-Gateways und Forschungsprozess-Gateways.
+
+Für jeden Kandidaten ist ein eigener Prior-Art-Pfad nötig. Eine gute interne Kombination kann wissenschaftlich nützlich sein, auch wenn sich später zeigt, dass ähnliche Strukturen bereits existieren.
+
+## 33.7 Integrität als laufender Prozess
+
+Integrität wird nicht einmalig durch ein Manifest „erledigt“. Vor externer Einreichung bleiben mindestens offen:
+
+- systematischer Prior-Art-Review;
+- menschliche Quellenprüfung wichtiger Argumente;
+- externe Similarity-Prüfung für Text und gegebenenfalls Code;
+- unabhängige fachliche Reviews;
+- klare Kennzeichnung eigener Übersetzungen und wiederverwendeter Eigenpassagen;
+- Prüfung von Lizenzen und Nutzungsrechten für fremde Abbildungen, Tabellen, Daten und Code.
+
+Edition 1.8 macht diese offenen Punkte sichtbar, statt aus internen Audits ein Zertifikat abzuleiten.
