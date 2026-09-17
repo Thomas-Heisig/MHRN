@@ -31,7 +31,7 @@
     "research/publications/2026-09-17_recursive-epistemics_v1.8/sources/prior_work.json": "3ab784c2161c42807a898d476926a95e4082272c30b6e9b7f2bada467d2b6806",
     "research/publications/2026-09-17_recursive-epistemics_v1.8/sources/content_integration.json": "762b8905d2d395ef3d8f4b0793872ded84f9edc2c1c152ad38a8f4382935b912",
     "research/publications/2026-09-17_recursive-epistemics_v1.8/EXTENDING.md": "c64a48f5d8d15062307d8617b7c980ec4d922f262c568b7a63cb6d985ac5e777",
-    "scripts/build_publication_edition.py": "bc0e0fcc9d0e6f4b9fc6d0c9a1d3700e4ff0facbe10b3c593c45d63822998d0d"
+    "scripts/build_publication_edition.py": "73fb443fc360ab114d70dad9708da57ccd394877823901c1941283d409d464ae"
   },
   "output_sha256": {
     "MANUSCRIPT.md": "880c5684a814317ef5c90a1114ca8f0274ab4abb2f850deb549985fe42400612",
