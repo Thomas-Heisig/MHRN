@@ -40,12 +40,9 @@ jobs:
         with:
           python-version: "3.13"
       - run: python -m pip install -e ".[dev]"
-      - name: Activate, format and generate edition 1.8
+      - name: Activate and generate edition 1.8
         run: |
           python scripts/activate_publication_18.py
-          python -m black scripts/build_publication_edition.py scripts/activate_publication_18.py tests/test_publication_edition.py
-          python -m ruff check scripts/build_publication_edition.py scripts/activate_publication_18.py tests/test_publication_edition.py --fix
-          python -m black scripts/build_publication_edition.py scripts/activate_publication_18.py tests/test_publication_edition.py
           python scripts/build_publication_edition.py --write
           python scripts/audit_document_governance.py --write
       - name: Verify before committing generated outputs

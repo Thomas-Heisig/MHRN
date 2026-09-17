@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "version": "1.8",
+  "date": "2026-09-17",
+  "baseline_commit": "2df926898033802fb41a3d1da5693f911b66ae1e",
+  "structure_target": "2.0",
+  "status": "current_wip",
+  "parts": [
+    {"id":"I","title":"Nullpunkt, Autor und Entstehungsbedingungen","file":"parts/01_origin.md"},
+    {"id":"II","title":"Schaffensgeschichte und Architekturgenese","file":"parts/02_genealogy.md"},
+    {"id":"III","title":"Forschungsobjekt MHRN","file":"parts/03_research_object.md"},
+    {"id":"IV","title":"Empirisches Forschungsprogramm","file":"parts/04_empirical_programme.md"},
+    {"id":"V","title":"Wissenschaftliche Infrastruktur und Engineering","file":"parts/05_infrastructure.md"},
+    {"id":"VI","title":"Epistemologie und Methodik der Schaffensgeschichte","file":"parts/06_epistemology.md"},
+    {"id":"VII","title":"Integrität, Autorschaft und kumulative Wissenschaft","file":"parts/07_integrity.md"},
+    {"id":"VIII","title":"Philosophie, Ethik und Sicherheit","file":"parts/08_ethics_safety.md"},
+    {"id":"IX","title":"Rekursive Epistemik","file":"parts/09_recursive_epistemics.md"},
+    {"id":"X","title":"Synthese und revidierbare Beiträge","file":"parts/10_synthesis.md"},
+    {"id":"XI","title":"Offene Forschungslandschaft","file":"parts/11_open_landscape.md"}
+  ],
+  "routing_rules": [
+    {"pattern":"AUTHOR|creation|genesis|Der_weg|old/|Brain-4D|NeuroGenesis","parts":["I","II","VI"]},
+    {"pattern":"publications/20|CHANGELOG|roadmap|releases/","parts":["II","X","XI"]},
+    {"pattern":"src/|architecture|NEURAL|BIOPHYSICAL|connectome|embodiment|memory|world.model|symbiosis|gateway|neuron|synapse|plasticity|homeostasis","parts":["III","V"]},
+    {"pattern":"experiments/|preregistrations/|protocols/|registry/|evidence/|empirical|EVIDENCE|STAGE6|CL00","parts":["IV","XI"]},
+    {"pattern":"tests/|scripts/|\\.github/|storage|persist|CUDA|runtime|dashboard|viewer|schemas/|configs/|quality|generated/","parts":["V"]},
+    {"pattern":"epistem|creation|provenance|method|research.driven","parts":["VI","IX"]},
+    {"pattern":"INTEGRITY|ATTRIBUTION|RELATED_WORK|REFERENCES|literature/|CITATION|review|governance|sources","parts":["VII"]},
+    {"pattern":"ethic|safe|welfare|conscious|philosoph|agency|kontroll|geliehene|autonom","parts":["VIII","IX"]},
+    {"pattern":"CONTRIBUTION|CURRENT_SCIENTIFIC|synthesis|SYNTHESIS","parts":["X"]},
+    {"pattern":"frontier|TODO|WORK_IN_PROGRESS|OPEN|proposal","parts":["XI"]}
+  ],
+  "experiment_relations": [
+    {"from":"EXP-S6-SEM-CL-001","to":"EXP-S6-SEM-CL-002","relation":"question_refinement_matched_raw_replay","authority":"editorial_relation_not_run_parentage"},
+    {"from":"EXP-S6-SEM-CL-002","to":"EXP-S6-SEM-CL-003","relation":"question_refinement_preregistered_dose_control","authority":"editorial_relation_not_run_parentage"}
+  ],
+  "no_automatic_experiment_execution": true,
+  "no_automatic_evidence_promotion": true
+}
