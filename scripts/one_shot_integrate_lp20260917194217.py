@@ -14,6 +14,39 @@ def append_once(path: Path, marker: str, text: str) -> None:
         path.write_text(current.rstrip() + "\n\n" + text.strip() + "\n", encoding="utf-8")
 
 
+# Explicitly classify the preparation artifacts. Approval remains proposal authority;
+# neither file is execution DATA or scientific EVID.
+overrides_path = ROOT / "research/document_governance_overrides.json"
+governance = json.loads(overrides_path.read_text(encoding="utf-8"))
+overrides = governance["overrides"]
+proposal_overrides = {
+    "research/learning/preparations/LP-20260917194217.json": {
+        "kind": "learning_proposal",
+        "status": "current",
+        "authority": "proposal_only",
+        "mutability": "versioned_replacement_only",
+        "citation": "cite_plan_id_and_revision_as_proposal",
+        "evidence_role": "proposal_not_evidence",
+        "rationale": "Human-origin Stage-6 compression proposal; executed=false and therefore neither DATA nor EVID."
+    },
+    "research/learning/preparations/LP-20260917194217-approved.json": {
+        "kind": "approved_learning_proposal",
+        "status": "current",
+        "authority": "approved_proposal_only",
+        "mutability": "versioned_replacement_only",
+        "citation": "cite_plan_id_approval_and_revision_as_proposal",
+        "evidence_role": "approval_not_execution_or_evidence",
+        "rationale": "Human approval records permission to proceed with preparation; runtime_authority=none and executed=false preserve the non-evidence boundary."
+    }
+}
+governance_changed = False
+for path, entry in proposal_overrides.items():
+    if overrides.get(path) != entry:
+        overrides[path] = entry
+        governance_changed = True
+if governance_changed:
+    overrides_path.write_text(json.dumps(governance, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
 ledger_path = ED / "sources/content_integration.json"
 ledger = json.loads(ledger_path.read_text(encoding="utf-8"))
 if not any(x.get("id") == "CORPUS-LP-20260917194217" for x in ledger["entries"]):
