@@ -3,10 +3,16 @@
 
 from __future__ import annotations
 
-import argparse, hashlib, json, os, re, subprocess
+import argparse
+import hashlib
+import json
+import os
+import re
+import subprocess
 from pathlib import Path, PurePosixPath
 from typing import Any
 from urllib.parse import quote, unquote, urlsplit
+
 import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
