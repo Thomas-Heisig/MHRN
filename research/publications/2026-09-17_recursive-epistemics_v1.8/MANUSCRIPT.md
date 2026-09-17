@@ -465,6 +465,14 @@ Die einzige deskriptive Abweichung des v1-Laufs — eine um einen Tick frühere 
 
 Für `topology_propagation_v2` gilt deshalb ein stärkerer prospektiver Vertrag: mindestens 1.000 Neuronen pro Condition, im Mittel mindestens zehn eingehende Synapsen, gematchte globale Struktur/Parameter/Stimulusenergie, explizite Kopplung von Geometriedistanz an Konnektivitätswahrscheinlichkeit und/oder Delay, die sechs genannten Kontrollen einschließlich degree-/density-matched Random Graph, multi-neuronaler Input, First-Arrival-/Reach-Verteilungen als Primärgrößen, Activity-Adequacy-Gate, mehrere unabhängige Seeds, vorab eingefrorene Inferenzregel und clean-tree Provenienz. Diese Werte sind Mindestschwellen für die nächste Testgeneration, keine Behauptung allgemeiner Suffizienz.
 
+## 19.9 Genehmigter Stage-6-Kompressionsvorschlag
+
+Mit `LP-20260917194217` liegt ein **genehmigter, aber nicht ausgeführter** human-origin Lernvorschlag vor. Die Forschungsfrage ist enger als der bisherige CL-003-Vergleich: Kann semantische Prototypkonsolidierung bei **10 % des Raw-Replay-Speicherbudgets** mindestens 95 % der Retention eines Raw-Replay-Baselines mit vollem Speicherbudget erreichen?
+
+Der Vorschlag bindet `semantic_prototype_replay_10pct_budget` gegen `raw_replay_full_budget` und nennt als Kontrollen `no_replay`, `random_prototype_10pct` und `learning_off`. Die Evaluation soll auf Holdout-Daten nach sequentiellen Tasks erfolgen. Die Erfolgsmetrik ist `retention_ratio_at_1_10_storage >= 0.95` der Raw-Replay-Retention.
+
+Der aktuelle Status ist strikt prospektiv: `authority=proposal_only`, `executed=false`, `runtime_authority=none`. Die menschliche Genehmigung autorisiert daher weder eine Ergebnisbehauptung noch DATA/EVID. Vor einer wissenschaftlich tragfähigen Ausführung müssen die referenzierten CL-002-/CL-003-Quellen digestscharf gebunden, die noch als `UNKNOWN` markierte Source-Trust-Einstufung geklärt und der Ausführungs-/Freeze-Vertrag entsprechend dem Research-Driven-Development-Prozess fixiert werden.
+
 
 ---
 
@@ -1215,6 +1223,12 @@ Die jüngsten Determinismus- und Topologieentscheidungen schärfen eine zentrale
 
 Analog zeigt die Determinismus-Registry-Korrektur, dass ein technisch passender Befund durch falsche historische RQ-Zuordnung nicht nachträglich zu EVID umetikettiert werden darf. Die wissenschaftlich stärkere Lösung ist, historische Provenienz zu erhalten und den prospektiven Vertrag zu reparieren.
 
+## 47.10 Neue Richtung nach CL-003: Kompression statt bloßer Gleichheit
+
+Der genehmigte Vorschlag `LP-20260917194217` zeigt eine methodisch sinnvollere Anschlussfrage an CL-003. Nachdem SemanticMemory im bisherigen matched-budget-Vergleich keinen bestätigten additiven Vorteil gegenüber Raw Replay gezeigt hat, verschiebt sich die nächste prüfbare These von „ist semantisches Replay generell besser?“ zu einer **Ressourcen-/Kompressionsfrage**: Kann eine semantisch verdichtete Repräsentation bei einem Zehntel des Speicherbudgets nahezu dieselbe Retention erreichen?
+
+Das ist derzeit keine Erkenntnis, sondern eine genehmigte Forschungsrichtung. Ihr Wert liegt gerade darin, dass sie eine mögliche Stärke von semantischer Verdichtung dort prüft, wo sie theoretisch plausibler wäre: nicht als pauschaler Leistungsbonus bei gleichem Budget, sondern als Trade-off zwischen Retention und Speicherbedarf.
+
 
 ---
 
@@ -1486,6 +1500,12 @@ Das Ziel lautet daher nicht „jeder Bytewert steht im Manuskript“, sondern: *
 Aus den aktuellen Entscheidungen entstehen zwei klar begrenzte nächste Schritte. Für `RQ-DET-001` ist ein clean-tree-Replikationslauf erforderlich, bevor ein durch Dirty-Tree-Provenienz blockiertes Artefakt regulär in Richtung EVID geprüft werden kann. Eine semantische Reklassifikation allein entfernt den Provenienzblock nicht.
 
 Für `H-SNN-003-B` muss `topology_propagation_v2` **vor Ausführung** präregistriert werden. Der neue Aufbau muss Topologie durch Konstruktion auf Dynamik wirken lassen und zunächst ein Activity-Adequacy-Gate bestehen. Scheitert dieses Gate, ist der Hypothesentest `NOT_TESTED`, nicht negativ. Erst danach dürfen vorab definierte Vergleiche zwischen 1D/2D/3D/5D, `5d_shuffled` und einem degree-/density-matched `random_graph` interpretiert werden. Dabei wird ausdrücklich kein 5D-Vorteil vorausgesetzt; die Hypothese verlangt zunächst nur einen belastbaren Unterschied zwischen mindestens zwei Topologiebedingungen.
+
+## 58.3 LP-20260917194217: offene Kompressionsprüfung
+
+`LP-20260917194217` ist als nächster möglicher Stage-6-Zyklus vorbereitet und genehmigt, aber **noch nicht ausgeführt**. Der geplante Primärvergleich ist `semantic_prototype_replay_10pct_budget` gegen `raw_replay_full_budget`; die Erfolgsgrenze liegt bei mindestens 95 % der Raw-Replay-Retention bei Faktor-10-Speicherreduktion. `no_replay`, `random_prototype_10pct` und `learning_off` dienen als Kontrollen.
+
+Vor Ausführung sind Source-Digests, Trust-Status, Freeze, Seed-/Taskplan und Analysevertrag zu vervollständigen. Bis dahin bleibt der Eintrag Forschungsplanung und darf im Viewer nicht wie ein Ergebnis oder laufendes Experiment erscheinen.
 
 
 ---

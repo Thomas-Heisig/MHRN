@@ -234,3 +234,14 @@ Teile: IV, VI, X, XI
 Quellpfade: `research/decisions/2026-09-17_determinism_registry_airr_alignment.md`; `research/decisions/2026-09-17_snn003_topology_propagation_v1_adequacy.md`
 
 Grenze: Historical DATA/manifests remain immutable; semantic alignment does not erase provenance blocks, and test inadequacy is neither confirmation nor refutation of the target hypothesis.
+
+## CORPUS-LP-20260917194217 — Approved Stage-6 compression learning proposal LP-20260917194217
+
+Rolle: `approved human-origin proposal; not executed`  
+Status: `semantically_integrated_as_proposal_only`  
+Modus: `prospective_stage6_compression_hypothesis_and_controls`  
+Teile: IV, X, XI
+
+Quellpfade: `research/learning/preparations/LP-20260917194217.json`; `research/learning/preparations/LP-20260917194217-approved.json`
+
+Grenze: authority=proposal_only, executed=false, runtime_authority=none; approval is not execution, DATA or EVID.

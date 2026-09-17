@@ -184,3 +184,9 @@ Die jüngsten Determinismus- und Topologieentscheidungen schärfen eine zentrale
 `EXP-GEN-0047` ist dafür das Referenzbeispiel. Die korrekte Schlussfolgerung lautet nicht „Topologie hat keinen Effekt“, sondern „dieser v1-Aufbau macht Topologie nicht ausreichend kausal wirksam, um den Effekt zu testen“. Damit wird ein scheinbarer Nullbefund in eine Designkorrektur überführt, ohne DATA umzuschreiben.
 
 Analog zeigt die Determinismus-Registry-Korrektur, dass ein technisch passender Befund durch falsche historische RQ-Zuordnung nicht nachträglich zu EVID umetikettiert werden darf. Die wissenschaftlich stärkere Lösung ist, historische Provenienz zu erhalten und den prospektiven Vertrag zu reparieren.
+
+## 47.10 Neue Richtung nach CL-003: Kompression statt bloßer Gleichheit
+
+Der genehmigte Vorschlag `LP-20260917194217` zeigt eine methodisch sinnvollere Anschlussfrage an CL-003. Nachdem SemanticMemory im bisherigen matched-budget-Vergleich keinen bestätigten additiven Vorteil gegenüber Raw Replay gezeigt hat, verschiebt sich die nächste prüfbare These von „ist semantisches Replay generell besser?“ zu einer **Ressourcen-/Kompressionsfrage**: Kann eine semantisch verdichtete Repräsentation bei einem Zehntel des Speicherbudgets nahezu dieselbe Retention erreichen?
+
+Das ist derzeit keine Erkenntnis, sondern eine genehmigte Forschungsrichtung. Ihr Wert liegt gerade darin, dass sie eine mögliche Stärke von semantischer Verdichtung dort prüft, wo sie theoretisch plausibler wäre: nicht als pauschaler Leistungsbonus bei gleichem Budget, sondern als Trade-off zwischen Retention und Speicherbedarf.

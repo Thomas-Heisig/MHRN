@@ -415,6 +415,23 @@
       "integration_status": "semantically_integrated_without_evidence_promotion",
       "integration_mode": "registry_semantics_adequacy_and_prospective_design_synthesis",
       "boundaries": "Historical DATA/manifests remain immutable; semantic alignment does not erase provenance blocks, and test inadequacy is neither confirmation nor refutation of the target hypothesis."
+    },
+    {
+      "id": "CORPUS-LP-20260917194217",
+      "title": "Approved Stage-6 compression learning proposal LP-20260917194217",
+      "source_paths": [
+        "research/learning/preparations/LP-20260917194217.json",
+        "research/learning/preparations/LP-20260917194217-approved.json"
+      ],
+      "source_role": "approved human-origin proposal; not executed",
+      "manuscript_parts": [
+        "IV",
+        "X",
+        "XI"
+      ],
+      "integration_status": "semantically_integrated_as_proposal_only",
+      "integration_mode": "prospective_stage6_compression_hypothesis_and_controls",
+      "boundaries": "authority=proposal_only, executed=false, runtime_authority=none; approval is not execution, DATA or EVID."
     }
   ]
 }
