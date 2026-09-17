@@ -1,0 +1,11 @@
+{
+  "last_archived_run": 2,
+  "raw_artifact": {
+    "format": "json.gz",
+    "path": "DATA/raw/run-0002-same_seed_tonic_replica_pair-seed-103.json.gz",
+    "sha256": "1a4b5b717bebef996c6bc7cb16691676aa70d90266e7dafd58181476aa258820",
+    "size_bytes": 449,
+    "uncompressed_bytes": 830
+  },
+  "status": "idle"
+}

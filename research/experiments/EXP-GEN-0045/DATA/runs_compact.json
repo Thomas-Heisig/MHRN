@@ -1,0 +1,161 @@
+[
+  {
+    "_raw_artifact": {
+      "format": "json.gz",
+      "path": "DATA/raw/run-0000-same_seed_tonic_replica_pair-seed-101.json.gz",
+      "sha256": "ed0bfd6074637dd3ae6290fcb4d0a723b735a1759c20c722f34f8390bf93a192",
+      "size_bytes": 449,
+      "uncompressed_bytes": 830
+    },
+    "condition": "same_seed_tonic_replica_pair",
+    "experiment_id": "EXP-GEN-0045",
+    "metrics": {
+      "automatic_evidence_promotion": false,
+      "direct_test_of_hypothesis": true,
+      "replicas": [
+        {
+          "replica": "a",
+          "source_neuron": 0,
+          "spike_count": 6,
+          "spike_ticks": [
+            3,
+            30,
+            78,
+            140,
+            194,
+            242
+          ],
+          "state_digest_after": "247ca50a2547d272bc8ede5532ea925cc9157b0c737444d74dcfaf5feefa733f"
+        },
+        {
+          "replica": "b",
+          "source_neuron": 0,
+          "spike_count": 6,
+          "spike_ticks": [
+            3,
+            30,
+            78,
+            140,
+            194,
+            242
+          ],
+          "state_digest_after": "247ca50a2547d272bc8ede5532ea925cc9157b0c737444d74dcfaf5feefa733f"
+        }
+      ],
+      "scientific_evidence": false,
+      "spike_sequence_identical": true,
+      "ticks_requested": 256,
+      "tonic_current": 10.0
+    },
+    "runtime_error": null,
+    "seed": 101,
+    "state_digest_after": "247ca50a2547d272bc8ede5532ea925cc9157b0c737444d74dcfaf5feefa733f",
+    "state_digest_before": "1771a5db39762c3f7493abcddc6e461322470687395291a7b18bfb719f8ac27f"
+  },
+  {
+    "_raw_artifact": {
+      "format": "json.gz",
+      "path": "DATA/raw/run-0001-same_seed_tonic_replica_pair-seed-102.json.gz",
+      "sha256": "87c1e6eb44459588033f1f9009408cc99f096669b0dd853b23f15b50c473fff7",
+      "size_bytes": 448,
+      "uncompressed_bytes": 830
+    },
+    "condition": "same_seed_tonic_replica_pair",
+    "experiment_id": "EXP-GEN-0045",
+    "metrics": {
+      "automatic_evidence_promotion": false,
+      "direct_test_of_hypothesis": true,
+      "replicas": [
+        {
+          "replica": "a",
+          "source_neuron": 0,
+          "spike_count": 6,
+          "spike_ticks": [
+            3,
+            30,
+            78,
+            140,
+            194,
+            242
+          ],
+          "state_digest_after": "c825753d235dc1b9b84041567359f5b6b71a21cf1b59941eac660eafa3c4f59b"
+        },
+        {
+          "replica": "b",
+          "source_neuron": 0,
+          "spike_count": 6,
+          "spike_ticks": [
+            3,
+            30,
+            78,
+            140,
+            194,
+            242
+          ],
+          "state_digest_after": "c825753d235dc1b9b84041567359f5b6b71a21cf1b59941eac660eafa3c4f59b"
+        }
+      ],
+      "scientific_evidence": false,
+      "spike_sequence_identical": true,
+      "ticks_requested": 256,
+      "tonic_current": 10.0
+    },
+    "runtime_error": null,
+    "seed": 102,
+    "state_digest_after": "c825753d235dc1b9b84041567359f5b6b71a21cf1b59941eac660eafa3c4f59b",
+    "state_digest_before": "dea90be4cc96ecd982339529935b2286e82c20cf45e76d435b23c29953c97dbe"
+  },
+  {
+    "_raw_artifact": {
+      "format": "json.gz",
+      "path": "DATA/raw/run-0002-same_seed_tonic_replica_pair-seed-103.json.gz",
+      "sha256": "1a4b5b717bebef996c6bc7cb16691676aa70d90266e7dafd58181476aa258820",
+      "size_bytes": 449,
+      "uncompressed_bytes": 830
+    },
+    "condition": "same_seed_tonic_replica_pair",
+    "experiment_id": "EXP-GEN-0045",
+    "metrics": {
+      "automatic_evidence_promotion": false,
+      "direct_test_of_hypothesis": true,
+      "replicas": [
+        {
+          "replica": "a",
+          "source_neuron": 0,
+          "spike_count": 6,
+          "spike_ticks": [
+            3,
+            30,
+            78,
+            140,
+            194,
+            242
+          ],
+          "state_digest_after": "f3fbcf17be2a2d35e359c65e5c724ffd02ad5852dec757c04b928320ca29a28f"
+        },
+        {
+          "replica": "b",
+          "source_neuron": 0,
+          "spike_count": 6,
+          "spike_ticks": [
+            3,
+            30,
+            78,
+            140,
+            194,
+            242
+          ],
+          "state_digest_after": "f3fbcf17be2a2d35e359c65e5c724ffd02ad5852dec757c04b928320ca29a28f"
+        }
+      ],
+      "scientific_evidence": false,
+      "spike_sequence_identical": true,
+      "ticks_requested": 256,
+      "tonic_current": 10.0
+    },
+    "runtime_error": null,
+    "seed": 103,
+    "state_digest_after": "f3fbcf17be2a2d35e359c65e5c724ffd02ad5852dec757c04b928320ca29a28f",
+    "state_digest_before": "9de84571ead9f21e68a65636aba8ca24658f562322755aa7c976905a4682bf6e"
+  }
+]

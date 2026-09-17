@@ -1,0 +1,101 @@
+{
+  "experiment_id": "EXP-GEN-0046",
+  "experiment_status": "completed",
+  "ai_exposure": "none",
+  "ai_reproducibility": "R0",
+  "ai_protocol": {
+    "version": 1,
+    "bump_reason": "initial registration"
+  },
+  "causal_taint": "PURE",
+  "ai_interactions": [],
+  "causal_card": {
+    "classification": "PURE",
+    "interaction_ids": [],
+    "roles": []
+  },
+  "timestamp": "2026-09-17T21:07:59.769562",
+  "created_at": "2026-09-17T19:07:59.769574+00:00",
+  "git": {
+    "commit": "ad2c71424bea71dceb820c10c860b7cc9cb772c7",
+    "dirty": true,
+    "branch": "main"
+  },
+  "software": {
+    "python": "3.13.14",
+    "os": "Windows 11",
+    "brain5d_version": "0.6.0a5"
+  },
+  "simulation": {
+    "seed": 101,
+    "ticks": 256,
+    "seeds": [
+      101,
+      102,
+      103
+    ],
+    "protocol": "deterministic_replica_v1"
+  },
+  "artifacts": {
+    "data": "DATA/runs_compact.json",
+    "data_index": "DATA/runs_index.json",
+    "ai_packet": "analysis/ai_packet.json",
+    "ai_packet_digest": "analysis/ai_packet_digest.json",
+    "statistics": "analysis/statistics.json",
+    "workflow": "workflow.json",
+    "report": "report.md"
+  },
+  "research_questions": [
+    "RQ-DET-001"
+  ],
+  "hypotheses": [
+    "H-SNN-003-A"
+  ],
+  "config": {
+    "path": "F:\\Brain-5D\\configs\\learning_experiment.yaml",
+    "sha256": "6f6cd457caf6216c286fee47ef03b529a0b496ed2dd53ee96b85d3b51e7b3a1c"
+  },
+  "validity": {
+    "valid": true,
+    "reason": null,
+    "runtime_error_count": 0,
+    "fatal_error_count": 0
+  },
+  "runtime_errors": [],
+  "research_run_mode": "EXPLORATORY",
+  "data_partitions": [],
+  "network_mode": "OFFLINE",
+  "execution_semantics": {
+    "kind": "functional_experiment",
+    "snn_involved": true,
+    "direct_test_of_hypothesis": true,
+    "scientific_evidence": false,
+    "automatic_evidence_promotion": false,
+    "human_assessment": "not_recorded",
+    "claim_scope": "direct_technical_measurement_not_automatic_evidence",
+    "external_review": "external_review/INTEGRATION.md"
+  },
+  "results": {
+    "run_count": 12,
+    "protocol": "deterministic_replica_v1",
+    "runner": "run_ping_v2",
+    "ticks_requested": 256,
+    "tick_contract": {
+      "status": "SATISFIED",
+      "mode": "minimum_per_run",
+      "requested_ticks": 256,
+      "observed_min": 256,
+      "observed_max": 256
+    }
+  },
+  "provenance_digests": {
+    "code": "5a11ea288e7e695c2dcd456642b533cbb3e6daf38b72e150134e60e69059531f",
+    "config": "6f6cd457caf6216c286fee47ef03b529a0b496ed2dd53ee96b85d3b51e7b3a1c",
+    "prompt": "dd18e473908e7e75b1717c240bac221729ea38753abfd28b701b37b20d5f5e14",
+    "data": "d5391fe6cb9ab2aad2582a97c390f295aeffe3a545ae595bb4bfcc487215ed71"
+  },
+  "source_freeze_sha": "c36344d170ac7fa14b5cec7846f768cf10d144240992139aa80d0a54212d6c4b",
+  "runtime": {
+    "duration_seconds": 0.04422879999037832
+  }
+}
