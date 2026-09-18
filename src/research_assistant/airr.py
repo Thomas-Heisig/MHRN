@@ -607,11 +607,12 @@ def write_artifact_review(
             existing = json.loads(review_path.read_text(encoding="utf-8"))
         except (OSError, json.JSONDecodeError):
             existing = None
-        existing_reviewer = (
-            str(existing.get("reviewer", "")).strip().casefold()
-            if isinstance(existing, dict)
-            else ""
-        )
+        existing_reviewer = ""
+        if isinstance(existing, dict):
+            existing_payload = cast(dict[str, Any], existing)
+            reviewer_value = existing_payload.get("reviewer")
+            if isinstance(reviewer_value, str):
+                existing_reviewer = reviewer_value.strip().casefold()
         if existing_reviewer in {
             "ai",
             "artificial intelligence",
