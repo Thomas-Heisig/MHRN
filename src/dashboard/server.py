@@ -2298,11 +2298,7 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
             publications = cast(list[object], publications_object)
 
             current_id_object = catalog.get("current_publication_id")
-            current_id = (
-                current_id_object
-                if isinstance(current_id_object, str)
-                else ""
-            )
+            current_id = current_id_object if isinstance(current_id_object, str) else ""
             if not current_id:
                 fallback_id = catalog.get("current_publication")
                 current_id = fallback_id if isinstance(fallback_id, str) else ""
@@ -2446,9 +2442,7 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
                 folder = snapshot_path / folder_name
                 if not folder.is_dir():
                     continue
-                for path in sorted(
-                    item for item in folder.iterdir() if item.is_file()
-                ):
+                for path in sorted(item for item in folder.iterdir() if item.is_file()):
                     descriptor = add_document(path, role="attachment")
                     if descriptor is not None:
                         attachments.append(descriptor)
