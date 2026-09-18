@@ -1,0 +1,39 @@
+name: One-shot Edition 1.8 branch materializer
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/oneshot-edition18-20260918.yml
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout research branch
+        uses: actions/checkout@v4
+        with:
+          ref: docs/edition-1-8-current-state-20260918
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Install project
+        run: python -m pip install -e ".[dev,docs]"
+      - name: Rebuild Edition 1.8
+        run: |
+          python scripts/build_publication_edition.py --write
+          python scripts/build_publication_edition.py --check
+      - name: Commit generated outputs
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research/publications/2026-09-17_recursive-epistemics_v1.8
+          if git diff --cached --quiet; then
+            exit 0
+          fi
+          git commit -m "docs(publication): materialize 18 September scientific state"
+          git push origin HEAD:docs/edition-1-8-current-state-20260918
