@@ -2285,24 +2285,33 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
         catalog_path = pub_root / "catalog.json"
 
         try:
-            catalog_raw = json.loads(catalog_path.read_text(encoding="utf-8"))
-            if not isinstance(catalog_raw, dict):
+            catalog_object: object = json.loads(
+                catalog_path.read_text(encoding="utf-8")
+            )
+            if not isinstance(catalog_object, dict):
                 raise ValueError("Publication catalog must be a JSON object.")
+            catalog = cast(dict[str, object], catalog_object)
 
-            publications_raw = catalog_raw.get("publications")
-            if not isinstance(publications_raw, list):
+            publications_object = catalog.get("publications")
+            if not isinstance(publications_object, list):
                 raise ValueError("Publication catalog has no publications list.")
+            publications = cast(list[object], publications_object)
 
-            current_id = catalog_raw.get("current_publication_id")
-            if not isinstance(current_id, str) or not current_id:
-                fallback_id = catalog_raw.get("current_publication")
+            current_id_object = catalog.get("current_publication_id")
+            current_id = (
+                current_id_object
+                if isinstance(current_id_object, str)
+                else ""
+            )
+            if not current_id:
+                fallback_id = catalog.get("current_publication")
                 current_id = fallback_id if isinstance(fallback_id, str) else ""
 
-            current_item: dict[str, Any] | None = None
-            for item_raw in publications_raw:
+            current_item: dict[str, object] | None = None
+            for item_raw in publications:
                 if not isinstance(item_raw, dict):
                     continue
-                item = cast(dict[str, Any], item_raw)
+                item = cast(dict[str, object], item_raw)
                 if current_id and item.get("id") == current_id:
                     current_item = item
                     break
@@ -2437,7 +2446,9 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
                 folder = snapshot_path / folder_name
                 if not folder.is_dir():
                     continue
-                for path in sorted(item for item in folder.iterdir() if item.is_file()):
+                for path in sorted(
+                    item for item in folder.iterdir() if item.is_file()
+                ):
                     descriptor = add_document(path, role="attachment")
                     if descriptor is not None:
                         attachments.append(descriptor)
