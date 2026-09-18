@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "as_of": "2026-09-18",
-  "as_of_commit": "48641cbe5b86c9e66e8b8866dbbfdcb328d13bd6",
+  "as_of_commit": "c6d1a57d88b82a611bb50221312f4771ffac24f4",
   "title": "MHRN scientific maturity timeline",
   "scope_note": "Scientific maturity is intentionally separate from engineering maturity. Scores summarize registered questions, frozen protocols, collected DATA, human-reviewed EVID, independent replication and attribution. They do not measure intelligence, consciousness or biological equivalence.",
   "integrity_note": "Repository checks reduce attribution and text-recycling risk but cannot certify plagiarism-freedom. External similarity review and human source verification remain pre-submission requirements.",
@@ -63,16 +63,18 @@
         {
           "id": "reviewed_evidence",
           "status": "partial",
-          "label": "Human Review positiv abgeschlossen; kanonische EVID-Promotion ausstehend",
+          "label": "Human Review des historischen V2 positiv; EvidenceEngine-konformer Promotion-Lauf liegt als DATA vor und wartet auf separaten Human Review/EVID-Entscheid",
           "sources": [
             "research/experiments/EXP-STAGE0-20260916-MODEL-CONFORMANCE-V2/human_scientific_review.json",
-            "research/experiments/EXP-STAGE0-20260916-MODEL-CONFORMANCE-V2/EVIDENCE_PROMOTION_STATUS.json"
+            "research/experiments/EXP-STAGE0-20260918-MODEL-CONFORMANCE-V2-PROMO-R1/manifest.json",
+            "research/experiments/EXP-STAGE0-20260918-MODEL-CONFORMANCE-V2-PROMO-R1/DATA/confirmatory_result.json",
+            "research/experiments/EXP-STAGE0-20260918-MODEL-CONFORMANCE-V2-PROMO-R1/review_request.json"
           ]
         },
         {
           "id": "independent_replication",
           "status": "partial",
-          "label": "Externer Brian2-Referenzvergleich, aber keine unabhängig autorisierte Replikation",
+          "label": "Externer Brian2-Referenzvergleich und interne Promotion-Replikation vorhanden; keine unabhängig autorisierte Replikation",
           "sources": [
             "research/preregistrations/operational/single_neuron_conformance_v2.json",
             "research/experiments/EXP-STAGE0-20260916-MODEL-CONFORMANCE-V2/DATA/confirmatory_result.json",
@@ -92,10 +94,10 @@
         }
       ],
       "next_scientific_steps": [
-        "Promotion-eligible Stage-0-Replikationslauf unter dem aktuellen EvidenceEngine-Provenienzvertrag vor Ausführung einfrieren und ausführen.",
-        "Nur nach positivem promotion-eligible Lauf den scoped Claim separat als EVID registrieren; independent_authorship_replication bleibt false.",
-        "Unabhängige Replikation separat definieren und außerhalb derselben Autoren-/Toolkette durchführen.",
-        "Source-bound DATA und prohibited interpretations unverändert lassen."
+        "Human Review von EXP-STAGE0-20260918-MODEL-CONFORMANCE-V2-PROMO-R1 anhand des gemergten review_request.json durchführen.",
+        "Nur bei supports_scoped_claim den scoped CLAIM-EVAL-006 anschließend in einem separaten Schritt kanonisch als EVID registrieren; automatische Promotion bleibt verboten.",
+        "Nach EVID-Promotion würde Stage 0 auf 92,5 % steigen; independent_authorship_replication bleibt dabei false.",
+        "Unabhängige Replikation separat definieren und außerhalb derselben Autoren-/Toolkette durchführen; erst sie kann die verbleibenden 7,5 % schließen."
       ],
       "criterion_contracts": {
         "reviewed_evidence": {
