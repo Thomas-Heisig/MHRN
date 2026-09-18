@@ -1,0 +1,61 @@
+.learning-prep-plans { grid-column: 1 / -1; }
+.learning-prep-help { margin: 0 0 .75rem; color: var(--ink-3); font-size: .8rem; }
+.learning-prep-boundary { display: flex; gap: .75rem; align-items: flex-start; margin: .75rem 0 1rem; padding: .7rem .8rem; border: 1px solid var(--amber); border-radius: var(--r-md); background: color-mix(in srgb, var(--amber) 8%, var(--paper-2)); }
+.learning-prep-boundary strong { white-space: nowrap; }
+.learning-plan-group { border: 1px solid var(--rule); border-radius: var(--r-md); padding: .8rem; background: var(--paper); margin-bottom: .8rem; }
+.learning-plan-group-head { display: flex; justify-content: space-between; align-items: flex-start; gap: .75rem; margin-bottom: .65rem; }
+.learning-plan-group-head h4 { margin: .1rem 0 0; font-size: 1rem; }
+.learning-plan-state-stack { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: .35rem; }
+.learning-status-pill { display: inline-flex; align-items: center; padding: .18rem .45rem; border-radius: 999px; font: 700 .65rem/1 var(--font-mono); text-transform: uppercase; letter-spacing: .04em; border: 1px solid var(--rule-2); }
+.learning-status-pill.proposal { background: var(--accent-wash); color: var(--accent); }
+.learning-status-pill.approved, .learning-status-pill.provenance-ok { background: var(--moss-wash); color: var(--moss); }
+.learning-status-pill.provenance-broken { background: color-mix(in srgb, var(--crimson) 10%, var(--paper-2)); color: var(--crimson); border-color: color-mix(in srgb, var(--crimson) 40%, var(--rule)); }
+.learning-artifact-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: .6rem; }
+.learning-artifact { border: 1px solid var(--rule); border-radius: var(--r-sm); background: var(--paper-2); padding: .65rem; }
+.learning-artifact > header { display: flex; justify-content: space-between; gap: .5rem; }
+.learning-artifact > header > div { display: flex; flex-direction: column; gap: .1rem; }
+.learning-artifact > header small { color: var(--ink-4); }
+.learning-artifact p { margin: .55rem 0; color: var(--ink-2); }
+.learning-artifact-meta { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: .25rem .55rem; margin: 0; font-size: .76rem; }
+.learning-artifact-meta dt { color: var(--ink-4); }
+.learning-artifact-meta dd { margin: 0; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+.learning-artifact-meta code, .learning-source-audit code { font-size: .68rem; }
+.learning-provenance-alert { display: flex; flex-wrap: wrap; gap: .45rem .75rem; margin-top: .65rem; padding: .5rem .6rem; border-radius: var(--r-sm); border: 1px solid var(--rule); font-size: .78rem; }
+.learning-provenance-alert.valid { background: var(--moss-wash); }
+.learning-provenance-alert.invalid { background: color-mix(in srgb, var(--crimson) 8%, var(--paper-2)); border-color: color-mix(in srgb, var(--crimson) 40%, var(--rule)); }
+.learning-source-audit { list-style: none; padding: 0; margin: .45rem 0 0; display: flex; flex-direction: column; gap: .3rem; }
+.learning-source-audit li { display: grid; grid-template-columns: minmax(150px, 1fr) minmax(220px, 1.4fr) auto; align-items: center; gap: .5rem; padding: .45rem .5rem; border: 1px solid var(--rule); border-radius: var(--r-sm); background: var(--paper-2); }
+.learning-source-audit li > span:first-child { display: flex; flex-direction: column; }
+.learning-source-audit small { color: var(--ink-4); }
+.learning-source-audit li.invalid { border-color: color-mix(in srgb, var(--crimson) 40%, var(--rule)); }
+.learning-digest-state { font: 700 .62rem/1 var(--font-mono); white-space: nowrap; }
+.learning-source-audit li.valid .learning-digest-state { color: var(--moss); }
+.learning-source-audit li.invalid .learning-digest-state { color: var(--crimson); }
+.learning-workflow-wrap { margin-top: .7rem; }
+.learning-workflow-wrap h5 { margin: 0 0 .45rem; font-size: .82rem; }
+.learning-workflow { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: .35rem; }
+.learning-workflow li { display: flex; align-items: center; gap: .4rem; min-width: 0; padding: .45rem; border: 1px solid var(--rule); border-radius: var(--r-sm); background: var(--paper-2); }
+.learning-workflow li > span:last-child { display: flex; min-width: 0; flex-direction: column; }
+.learning-workflow li strong { font-size: .72rem; }
+.learning-workflow li small { color: var(--ink-4); font-size: .62rem; }
+.learning-workflow-dot { width: .55rem; height: .55rem; border-radius: 50%; flex: 0 0 auto; background: var(--ink-4); }
+.learning-workflow li.done .learning-workflow-dot { background: var(--moss); }
+.learning-workflow li.current .learning-workflow-dot { background: var(--accent); }
+.learning-workflow li.blocked { border-color: color-mix(in srgb, var(--crimson) 45%, var(--rule)); }
+.learning-workflow li.blocked .learning-workflow-dot { background: var(--crimson); }
+.learning-workflow li.locked { opacity: .65; }
+.learning-plan-actions { display: flex; flex-wrap: wrap; gap: .45rem; margin-top: .65rem; }
+.learning-sources-editor { border: 1px solid var(--rule); border-radius: var(--r-md); padding: .65rem; background: var(--paper); }
+.learning-sources-editor-head { display: flex; align-items: flex-start; justify-content: space-between; gap: .75rem; margin-bottom: .55rem; }
+.learning-sources-editor-head > div { display: flex; flex-direction: column; gap: .15rem; }
+.learning-sources-editor-head small { color: var(--ink-4); }
+.learning-source-list { display: flex; flex-direction: column; gap: .55rem; }
+.learning-source-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .5rem; margin: 0; padding: .6rem; border: 1px solid var(--rule); border-radius: var(--r-sm); }
+.learning-source-row legend { padding: 0 .25rem; color: var(--ink-3); font-size: .72rem; font-weight: 700; }
+.learning-source-remove { justify-self: start; }
+.learning-digest-invalid { border-color: var(--crimson) !important; outline: 1px solid color-mix(in srgb, var(--crimson) 50%, transparent); }
+@media (max-width: 760px) {
+  .learning-source-audit li { grid-template-columns: 1fr; }
+  .learning-source-row { grid-template-columns: 1fr; }
+  .learning-prep-boundary { flex-direction: column; }
+}
