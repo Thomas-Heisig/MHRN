@@ -1,0 +1,8 @@
+{
+  "artifact_path": "experiments/EXP-S1-TOPO-V2-20260918/review_request.json",
+  "review_status": "accepted_as_interpretation",
+  "reviewer": "Thomas Heisig",
+  "reviewed_at": "2026-09-18T17:00:52.478657+00:00",
+  "comments": "Die drei Artefakte sind sauber, konsistent und korrekt begrenzt. Das Experiment ist methodisch gut gemacht: Präregistrierung, Activity-Gate, getrennte Seeds, gepaarte Tests, Holm-Korrektur, vollständige Integritätsprüfungen, reproduzierbarer Verifier.",
+  "artifact_content_digest": "e6629e31f8c288bc7e20af1fb434ae8c694de1236fa8ce0f8d95856599e08acb"
+}
