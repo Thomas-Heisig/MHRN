@@ -2320,7 +2320,9 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
 
             entrypoint_path = (research_root / entrypoint_rel).resolve()
             if not entrypoint_path.is_relative_to(pub_root.resolve()):
-                raise ValueError("Current publication entrypoint escapes publications/.")
+                raise ValueError(
+                    "Current publication entrypoint escapes publications/."
+                )
             if not entrypoint_path.is_file():
                 raise FileNotFoundError(
                     f"Current publication entrypoint not found: {entrypoint_rel}"
@@ -2333,7 +2335,10 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
                 else str(Path(entrypoint_rel).parent).replace("\\", "/")
             )
             snapshot_path = (research_root / snapshot_rel).resolve()
-            if not snapshot_path.is_relative_to(pub_root.resolve()) or not snapshot_path.is_dir():
+            if (
+                not snapshot_path.is_relative_to(pub_root.resolve())
+                or not snapshot_path.is_dir()
+            ):
                 raise ValueError("Current publication snapshot is invalid.")
 
             content = entrypoint_path.read_text(encoding="utf-8")
@@ -2459,7 +2464,10 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
             predecessor_id = current_item.get("predecessor")
             if isinstance(predecessor_id, str) and predecessor_id:
                 for item_raw in publications_raw:
-                    if not isinstance(item_raw, dict) or item_raw.get("id") != predecessor_id:
+                    if (
+                        not isinstance(item_raw, dict)
+                        or item_raw.get("id") != predecessor_id
+                    ):
                         continue
                     predecessor_entry = item_raw.get("entrypoint")
                     if isinstance(predecessor_entry, str):
@@ -2502,7 +2510,9 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
                     "publication_id": current_item.get("id"),
                     "title": current_item.get("title")
                     or "Recursive Epistemics / Rekursive Epistemik",
-                    "document_title": markdown_title(entrypoint_path, "Gesamtmanuskript"),
+                    "document_title": markdown_title(
+                        entrypoint_path, "Gesamtmanuskript"
+                    ),
                     "author": current_item.get("author"),
                     "date": current_item.get("date"),
                     "edition": current_item.get("version"),

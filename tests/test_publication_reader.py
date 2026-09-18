@@ -48,7 +48,9 @@ def test_publication_reader_has_navigation_search_toc_and_accessible_states() ->
         assert token in reader
 
 
-def test_publication_reader_uses_canonical_entrypoint_and_complete_document_map() -> None:
+def test_publication_reader_uses_canonical_entrypoint_and_complete_document_map() -> (
+    None
+):
     reader = _read("frontend/modules/publication-reader.js")
     server = (ROOT / "src" / "dashboard" / "server.py").read_text(encoding="utf-8")
 
