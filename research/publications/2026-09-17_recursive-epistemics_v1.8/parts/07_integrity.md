@@ -12,9 +12,17 @@ Eigene Vorarbeiten werden mit Edition, Pfad und Git-Revision zitiert. Historisch
 
 ## 31. Prior Art und Neuheit
 
-MHRN verwendet etablierte neuronale Modelle, STDP, Three-Factor Learning, Homeostase, graphische Nullmodelle, Replay und Gedächtnistheorien. Beispielsweise sind Izhikevich-Neuronen [@IZHIKEVICH2003], Drei-Faktor-Regeln [@FREMAUX2016] und Complementary Learning Systems [@MCCLELLAND1995] etablierte Vorarbeiten. Die Neuheit einer MHRN-Kombination folgt daraus weder positiv noch negativ automatisch.
+MHRN verwendet etablierte neuronale Modelle, STDP, Three-Factor Learning, Homeostase, graphische Nullmodelle, Replay und Gedächtnistheorien. Beispielsweise sind Izhikevich-Neuronen ([@IZHIKEVICH2003]), timingabhängige synaptische Plastizität ([@BI_POO1998]), Drei-Faktor-Regeln ([@FREMAUX2016]), homeostatisches synaptisches Scaling ([@TURRIGIANO1998]; [@TURRIGIANO2008]) und Complementary Learning Systems ([@MCCLELLAND1995]) etablierte Vorarbeiten. Die Neuheit einer MHRN-Kombination folgt daraus weder positiv noch negativ automatisch.
 
 Kandidaten wie die Vierertrennung von Identität/Slot/Reduktion/Scheduling, Proposal→Approval→Mutation→Journal→Undo, Content Gateway versus Compute Backend oder source-bound DATA/EVID-Grenzen bleiben Kandidaten, bis ein belastbarer Prior-Art-Review erfolgt.
+
+### 31.1 Zitierstandard und Quellenklassen
+
+Edition 1.8 verwendet Autor-Jahr-Zitation nach APA 7 ([@APA2020]). Externe Behauptungen sollen **direkt am tragenden Satz** belegt werden. Wo eine ursprüngliche Forschungsarbeit verfügbar und passend ist, wird sie als Primärliteratur bevorzugt; Review-, Survey- und Synthesearbeiten werden als Sekundärliteratur gekennzeichnet. Diese Trennung folgt auch der allgemeinen Empfehlung, Originalforschungsquellen möglichst direkt zu referenzieren und die Tragfähigkeit jeder Referenz für die zugehörige Aussage zu prüfen ([@ICMJE2026]).
+
+Das maschinenlesbare Literaturregister unterscheidet daher vier Klassen: `primary`, `secondary`, `guideline` und `standard`. **Primärliteratur** trägt ursprüngliche empirische, methodische oder theoretische Befunde; **Sekundärliteratur** trägt Review, Survey oder Synthese; **Richtlinien und Standards** regeln Darstellung, Autorenschaft oder Beitragsbeschreibung, erzeugen aber keine Evidenz für MHRN-Mechanismen.
+
+Im Fließtext darf `et al.` nach APA-Konvention zur Verkürzung von Mehrfachautorenschaften verwendet werden; im Literaturverzeichnis werden bei den hier erfassten Arbeiten die vollständigen Autorenlisten ausgegeben. Ein Literaturzitat belegt nur den externen Satz, neben dem es steht. Es kann weder MHRN-DATA erzeugen noch ein internes Experiment ersetzen.
 
 ## 32. Similarity und Quellenquarantäne
 
@@ -22,7 +30,7 @@ Interne Similarity-Prüfungen reduzieren Risiken, zertifizieren aber keine Plagi
 
 ## 33. AI-Assistenz und Verantwortlichkeit
 
-KI-Systeme können Formulierungen, Code, Literaturkandidaten oder Gegenargumente erzeugen. Verantwortung für die veröffentlichte Fassung bleibt beim menschlichen Autor. Wo ein konkreter AI-Vorschlag für die Genealogie relevant ist, wird er als Prozessartefakt bezeichnet und nicht durch nachträgliche Autorschaftsvereinfachung verdeckt.
+KI-Systeme können Formulierungen, Code, Literaturkandidaten oder Gegenargumente erzeugen. Verantwortung für die veröffentlichte Fassung bleibt beim menschlichen Autor; AI-Systeme werden nicht als Autoren oder Primärquellen geführt ([@ICMJE2026]). Wo ein konkreter AI-Vorschlag für die Genealogie relevant ist, wird er als Prozessartefakt bezeichnet und nicht durch nachträgliche Autorschaftsvereinfachung verdeckt.
 
 ## 33.1 Eigene Vorarbeiten sind Quelle, nicht „neuer“ Text
 
