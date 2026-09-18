@@ -15,8 +15,8 @@
   "input_sha256": {
     "research/publications/2026-09-17_recursive-epistemics_v1.8/parts/01_origin.md": "9275b89b6aa48e1c24cd28f0a4a38d25112e147cd77058c063e3e9aceb68dd74",
     "research/publications/2026-09-17_recursive-epistemics_v1.8/parts/02_genealogy.md": "2f7cf90d1b9c42f2e0416b9cfe0491ecc2ecf6efe9e379ecc2a64dbb760cfbaa",
-    "research/publications/2026-09-17_recursive-epistemics_v1.8/parts/03_research_object.md": "cf2fd67799b5cda7e32491bd33147d9aa17e628fe2fe718032cb35ea5b76dade",
-    "research/publications/2026-09-17_recursive-epistemics_v1.8/parts/04_empirical_programme.md": "5407a707284909ee1c515a92f8fcb999cda447e2bb8653b206fb635f7252957b",
+    "research/publications/2026-09-17_recursive-epistemics_v1.8/parts/03_research_object.md": "102093cfb9f70a1793294209b4d2ec5d9cc52b353182b4cc1e5310987fb78d7c",
+    "research/publications/2026-09-17_recursive-epistemics_v1.8/parts/04_empirical_programme.md": "ca0ec24697dab40a4cb7e9e955b716fa2fa237900c462e4b6e989b33498f042c",
     "research/publications/2026-09-17_recursive-epistemics_v1.8/parts/05_infrastructure.md": "20cfef2ce60e1fff6b1513c2eebd41db2b0439be84b7afa0ef0d482999c16e56",
     "research/publications/2026-09-17_recursive-epistemics_v1.8/parts/06_epistemology.md": "29aeb6e8d3957c3f8c9d1beebf9e26d4aec85d123d5f4e8f0d578b4716c160e7",
     "research/publications/2026-09-17_recursive-epistemics_v1.8/parts/07_integrity.md": "454577065fd2f1325de4634d2aa77d2b5b7e56fd23ebf0d6e1e17c1323dccc2b",
@@ -34,7 +34,7 @@
     "scripts/build_publication_edition.py": "73fb443fc360ab114d70dad9708da57ccd394877823901c1941283d409d464ae"
   },
   "output_sha256": {
-    "MANUSCRIPT.md": "78016e26108bd48f1dd40910eb44d70b1476e03ea12c3c896ed2b1be959d425b",
+    "MANUSCRIPT.md": "ad3290a33b026f3257072a820f198dd6c74ed855d0c598071a3ee79de53ed9da",
     "README.md": "b2601fa9aedb21a1ee1f8b858c2b5e2802d3a57593ec981562266837893adce8",
     "REFERENCES.md": "a7592fd0bbe1792d4d282b626962b6a5ee8d48fb193936b472bfbe48b2654efc",
     "references.bib": "1e3e9917a51689e53b48f871bf2e5bf5f90eeab2b90440e3e87f2d46d3586118",

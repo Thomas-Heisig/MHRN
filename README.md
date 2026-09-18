@@ -22,7 +22,7 @@ Historical publication bytes and empirical artifacts are preserved. Reconstructe
 [![CI](https://github.com/Thomas-Heisig/MHRN/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Thomas-Heisig/MHRN/actions/workflows/ci.yml)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-blue.svg)](https://www.python.org/)
 [![Version](https://img.shields.io/badge/version-0.6.0a5-orange.svg)](pyproject.toml)
-[![Publication](https://img.shields.io/badge/publication-1.7_WIP-blue.svg)](research/publications/CURRENT.md)
+[![Publication](https://img.shields.io/badge/publication-1.8_WIP-blue.svg)](research/publications/CURRENT.md)
 [![License: MIT](https://img.shields.io/badge/license-MIT-yellow.svg)](LICENSE)
 
 MHRN is an experimental research framework for studying recurrent spiking neural networks, plasticity, self-organization, embodiment, memory and world-model mechanisms under explicit provenance and evidence boundaries.
@@ -42,8 +42,8 @@ The sparse **5D SNN remains the primary adaptive system**. Language models, rese
 | Release status | development; gate open; no active release blocker, final source-freeze/release closure still pending |
 | Engineering | Stage 2 recurrent contract closed at its scoped engineering boundary; Stage 3 plastic neural tissue reached; Stage 4/5 engineering contracts integrated; Stage 6 mechanisms and research programme active |
 | Scientific focus | Stage 6 — memory, continual learning, semantization, prediction error and world-model validation |
-| Current manuscript | **Recursive Epistemics / Rekursive Epistemik 1.7 — WIP** |
-| Publication lineage | 1.7 current WIP → 1.6 predecessor → 1.5 frozen empirical baseline |
+| Current manuscript | **Recursive Epistemics / Rekursive Epistemik 1.8 — WIP** |
+| Publication lineage | 1.8 current WIP → 1.7 predecessor → 1.5 frozen empirical baseline |
 | Evidence policy | `implementation test != DATA != reviewed EVID != interpretation` |
 | Document governance | all `docs/` and `research/` files are classified by role, status, authority, mutability, citation rule and evidence role |
 
@@ -59,7 +59,7 @@ The present scientific focus is deliberately narrower than the implemented featu
 
 The bounded DATA-level conclusion is therefore: **Replay contributes to the observed benefit; under the matched CL-002/CL-003 conditions semantic compression has not shown a preregistered additional advantage over Raw-Replay, although the semantic representation itself carries relevant structure.** Stage 6 is not declared solved; the Semantization/Replay subquestion is treated as **empirically narrowed** pending Human Review.
 
-See [`research/CURRENT_SCIENTIFIC_STATE.md`](research/CURRENT_SCIENTIFIC_STATE.md) for the current scientific interpretation and limitations, and [`research/publications/2026-09-15_recursive-epistemics_v1.7/STAGE6_CL001_CL003_BALANCE.md`](research/publications/2026-09-15_recursive-epistemics_v1.7/STAGE6_CL001_CL003_BALANCE.md) for the DATA-only Stage-6 balance.
+See [`research/CURRENT_SCIENTIFIC_STATE.md`](research/CURRENT_SCIENTIFIC_STATE.md) for the current scientific interpretation and limitations. The historical DATA-only Stage-6 balance incorporated into Edition 1.8 remains preserved at [`research/publications/2026-09-15_recursive-epistemics_v1.7/STAGE6_CL001_CL003_BALANCE.md`](research/publications/2026-09-15_recursive-epistemics_v1.7/STAGE6_CL001_CL003_BALANCE.md).
 
 ---
 

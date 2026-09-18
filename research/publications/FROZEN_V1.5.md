@@ -11,6 +11,6 @@ Diese Datei ist der **stabile, nicht wechselnde Einstieg** in die eingefrorene e
 **Rolle:** `frozen empirical baseline`  
 **Mutabilität:** immutable  
 **EVID:** keine automatische Promotion  
-**Nachfolger:** 1.6 (integrative Revision), 1.7 (aktuelle WIP-Fortschreibung)
+**Nachfolger:** 1.6 (integrative Revision), 1.7 (historischer integrativer Vorgänger), 1.8 (aktuelle WIP-Fortschreibung)
 
 Spätere Fassungen dürfen Ergebnisse und Grenzen der 1.5 interpretieren, ergänzen oder korrigierend einordnen, aber die eingefrorenen Dateien, Kampagnenartefakte und Digests der 1.5 nicht rückwirkend ändern.
