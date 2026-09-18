@@ -51,8 +51,13 @@ def registry_data() -> dict[str, list[dict[str, object]]]:
     are flat lists of entries.
     """
     data: dict[str, list[dict[str, object]]] = {}
-    for yaml_file in REGISTRY_DIR.glob("*.yaml"):
-        key = yaml_file.stem  # e.g. "questions", "hypotheses"
+    family_prefixes = ("questions", "hypotheses", "sources")
+    for yaml_file in sorted(REGISTRY_DIR.glob("*.yaml")):
+        stem = yaml_file.stem
+        key = next(
+            (prefix for prefix in family_prefixes if stem == prefix or stem.startswith(f"{prefix}.")),
+            stem,
+        )
         with open(yaml_file, encoding="utf-8") as f:
             loaded: Any = yaml.safe_load(f)
         if loaded is None:
@@ -60,7 +65,10 @@ def registry_data() -> dict[str, list[dict[str, object]]]:
         # methods.yaml has a root mapping with a 'methods' list.
         if key == "methods" and isinstance(loaded, dict):
             loaded = cast(dict[str, Any], loaded).get("methods", [])
-        data[key] = loaded if isinstance(loaded, list) else []
+        if isinstance(loaded, list):
+            data.setdefault(key, []).extend(loaded)
+        else:
+            data.setdefault(key, [])
     return data
 
 
