@@ -78,3 +78,44 @@ def test_scientific_timeline_is_loaded_without_replacing_formula_contract() -> N
     assert "scientific-progress.json" in timeline
     assert "Wissenschaftliche Timeline" in timeline
     assert "keine Kognitionskennzahl" in timeline
+
+
+def test_stage0_score_matches_current_weighted_evidence_state() -> None:
+    data = _manifest()
+    stage0 = next(stage for stage in data["stages"] if stage["stage"] == 0)
+    weights = data["weights"]
+    scale = data["status_scale"]
+
+    expected = 0.0
+    for criterion in stage0["criteria"]:
+        status_value = scale[criterion["status"]]
+        assert status_value is not None
+        expected += float(weights[criterion["id"]]) * float(status_value)
+
+    assert abs(float(stage0["score"]) - expected) < 1e-12
+    assert abs(float(stage0["score"]) - 0.725) < 1e-12
+
+    by_id = {criterion["id"]: criterion for criterion in stage0["criteria"]}
+    assert by_id["research_question"]["status"] == "met"
+    assert by_id["protocol"]["status"] == "met"
+    assert by_id["data"]["status"] == "met"
+    assert by_id["reviewed_evidence"]["status"] == "open"
+    assert by_id["independent_replication"]["status"] == "partial"
+    assert by_id["attribution"]["status"] == "met"
+
+
+def test_stage0_keeps_scoped_readiness_separate_from_total_maturity() -> None:
+    readiness = json.loads(
+        (
+            ROOT
+            / "research/generated/verification/single_neuron_scientific_readiness.json"
+        ).read_text(encoding="utf-8")
+    )
+    stage0 = next(stage for stage in _manifest()["stages"] if stage["stage"] == 0)
+    assert readiness["research_readiness_percent"] == 100
+    assert float(stage0["score"]) < 1.0
+    assert readiness["maturity_boundary"]["human_reviewed_evid_complete"] is False
+    assert (
+        readiness["maturity_boundary"]["independent_authorship_replication_complete"]
+        is False
+    )
