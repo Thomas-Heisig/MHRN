@@ -30,16 +30,18 @@ jobs:
       - name: Verify frozen Stage-1 DATA
         run: python scripts/verify_stage1_topology_v2.py
 
-      - name: Test report and publication boundaries
-        run: |
-          python -m pytest tests/test_research_report_generation.py tests/test_publication_edition.py tests/test_review_inbox.py -q
+      - name: Test report boundary
+        run: python -m pytest tests/test_research_report_generation.py tests/test_review_inbox.py -q
 
       - name: Rebuild current research reports
         run: python research/generate_reports.py
 
       - name: Rebuild Edition 1.8
+        run: python scripts/build_publication_edition.py --write
+
+      - name: Verify generated publication
         run: |
-          python scripts/build_publication_edition.py --write
+          python -m pytest tests/test_publication_edition.py tests/test_research_report_generation.py tests/test_review_inbox.py -q
           python scripts/build_publication_edition.py --check
 
       - name: Commit generated outputs
