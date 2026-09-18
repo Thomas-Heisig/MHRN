@@ -1,5 +1,7 @@
 # Wissenschaftliche Abhandlung: vollstaendige Lesefassung
 
+> **Historische Lesefassung 1.0.** Diese Ansicht dokumentiert die Fassung vom 7. September 2026 und ist nicht die aktuelle Arbeitsfassung. Die aktuelle Edition ist über [CURRENT.md](../CURRENT.md) erreichbar.
+
 ## KI - Die geliehene Intelligenz
 
 Thomas Heisig. Fassung vom 7. September 2026. Theoretische Synthese und artefaktbasierte Sekundaerauswertung; keine automatische Evidenzfreigabe.
