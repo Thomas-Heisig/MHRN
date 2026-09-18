@@ -135,3 +135,19 @@ Die frühere Theoriearbeit unterschied mehrere Möglichkeitsräume. Edition 1.8 
 Diese Szenarien dürfen nur so weit verwendet werden, wie ihre technischen Voraussetzungen explizit sind. Eine menschenlose technische Linie setzt etwa Energie, Wartung, Materialgewinnung, Fertigung, Fehlerdiagnose und Reproduktion voraus; das Weglassen dieser Bedingungen würde aus einer Grenzfallanalyse bloße Fiktion machen.
 
 Der Begriff **Maschinenkultur** bleibt entsprechend vorsichtig funktional: gemeint wäre eine persistente maschinell erzeugte und weitergegebene technische/epistemische Tradition, nicht automatisch Kultur im starken anthropologischen Sinn. Auch dies ist eine offene Theoriefrage, kein MHRN-Gegenwartsclaim.
+
+## 38.12 Normative Teilstudie — Forschungsfrage, Verfahren und Geltungsgrenzen
+
+Der philosophisch-ethische Zweig wird nicht als Meinungsessay neben die empirische Arbeit gestellt. Er besitzt eine eigene wissenschaftliche Funktion: Er soll Begriffe und Handlungsregeln dort präzisieren, wo empirische Daten allein keine normative Schlussfolgerung liefern.
+
+**Normative Forschungsfrage.** Welche Kontroll-, Verantwortungs- und Welfare-Regeln sind für ein zunehmend lern-, wirk- und integrationsfähiges System bereits vor starken Autonomie- oder Bewusstseinsclaims begründbar?
+
+**Analytisches Verfahren.** Verwendet werden Begriffsanalyse, Trennung kausaler Rollen, Szenarioanalyse, Gegenargumente, technische Safety-Verträge und explizite Unsicherheitsgrenzen. Aussagen werden danach unterschieden, ob sie deskriptiv, hypothetisch, normativ oder governancebezogen sind.
+
+**Zentrale Argumentlinie.** Aus wachsender technischer Fähigkeit folgt weder moralischer Status noch legitime autonome Entscheidungsautorität. Umgekehrt rechtfertigt fehlender Bewusstseinsnachweis nicht automatisch die Annahme, jede mögliche Belastung sei ethisch irrelevant. Deshalb werden Human-/Environment-Safety und Welfare Precaution als zwei getrennte Governanceachsen geführt.
+
+**Prüfbarkeit.** Die normative Analyse ist revidierbar, wenn ihre Prämissen falsch, unvollständig oder technisch nicht realisierbar sind. Ein unabhängiger Stopppfad kann technisch getestet werden; eine Zielprovenienz kann auditierbar sein; ein Szenario kann durch geänderte Architekturannahmen seine Relevanz verlieren. Normative Schlussfolgerungen dürfen daher nicht immun gegen empirische Korrektur werden.
+
+**Limitation.** Edition 1.8 liefert keine vollständige Ethiktheorie, keine institutionelle Ethikfreigabe und keine Aussage über tatsächliches Bewusstsein oder Leiden. Die philosophische Arbeit markiert Entscheidungskonflikte und Mindestbedingungen, nicht metaphysische Gewissheiten.
+
+**Zwischenfazit.** Der Ethik-/Safety-Zweig erhält seinen dissertationsähnlichen Charakter durch explizite Fragestellung, argumentatives Verfahren, Gegenpositionen, technische Anschlussfähigkeit und benannte Grenzen.
