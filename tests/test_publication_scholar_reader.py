@@ -246,3 +246,12 @@ def test_scholar_bootstrap_does_not_watch_entire_reader_subtree() -> None:
     assert "subtree: true" not in bootstrap
     assert "requestAnimationFrame(() => void enhance())" in bootstrap
     assert 'cache: "no-cache"' in bootstrap
+
+
+def test_scholar_navigation_prefers_explicit_api_document_map() -> None:
+    scholar = _read(MODULES / "publication-scholar-tools.js")
+
+    assert "Array.isArray(rootData?.documents)" in scholar
+    assert 'item.kind === "reader"' in scholar
+    assert "rootData?.entrypoint_path" in scholar
+    assert 'role: item.role || "document"' in scholar
