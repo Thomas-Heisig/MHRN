@@ -1,0 +1,189 @@
+{
+  "schema_version": 1,
+  "preregistration_id": "PREREG-S1-TOPO-V3-R1-TIME-RESOLVED",
+  "stage": 1,
+  "research_question": "RQ-SNN-003",
+  "hypothesis": "H-SNN-003-B",
+  "protocol": "topology_propagation_v3_r1_time_resolved_replication",
+  "mode": "CONFIRMATORY_INTERNAL_REPLICATION_AFTER_ANALYSIS_FAMILY_CORRECTION",
+  "execution_authorized": true,
+  "scientific_evidence": false,
+  "automatic_evidence_promotion": false,
+  "predecessor_experiment": "EXP-S1-TOPO-V3-20260918",
+  "design_rationale": "V3 executed successfully but its runner applied Holm correction separately within each primary endpoint (5 tests + 5 tests), while the preregistration required one Holm family across all 10 time-resolved endpoint/contrast tests. V3 DATA are preserved and not treated as a valid confirmatory analysis. R1 fixes only this analysis-family implementation, uses fresh evaluation seeds, and otherwise preserves the frozen design and endpoint semantics.",
+  "conditions": {
+    "1d": [
+      64,
+      1,
+      1,
+      1,
+      1
+    ],
+    "2d": [
+      8,
+      8,
+      1,
+      1,
+      1
+    ],
+    "3d": [
+      4,
+      4,
+      4,
+      1,
+      1
+    ],
+    "5d": [
+      4,
+      2,
+      2,
+      2,
+      2
+    ],
+    "5d_shuffled": [
+      4,
+      2,
+      2,
+      2,
+      2
+    ],
+    "random_graph": [
+      4,
+      2,
+      2,
+      2,
+      2
+    ]
+  },
+  "matched_budgets": {
+    "neuron_count": 64,
+    "out_degree_cap": 4,
+    "edge_count_rule": "sum_i min(4, N-i-1), identical for all conditions",
+    "expected_edge_count": 246,
+    "delay_ticks": 1,
+    "stimulus_input_labels": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "output_labels": [
+      60,
+      61,
+      62,
+      63
+    ],
+    "stimulus_current": 100,
+    "stimulus_ticks": 1,
+    "evaluation_ticks": 128,
+    "synaptic_weight": 55
+  },
+  "provenance": {
+    "fixed_weight_source": "EXP-S1-TOPO-V2-20260918 preregistered activity calibration selected 55.0 before V2 evaluation",
+    "internal_replication_only": true,
+    "independent_external_replication": false,
+    "seed_overlap_forbidden_with_v2": true,
+    "analysis_correction": "R1 corrects the primary multiple-testing family to one Holm correction across all 10 preregistered time-resolved tests.",
+    "supersedes_for_confirmatory_interpretation": "EXP-S1-TOPO-V3-20260918"
+  },
+  "evaluation": {
+    "seeds": [
+      6201,
+      6202,
+      6203,
+      6204,
+      6205,
+      6206,
+      6207,
+      6208,
+      6209,
+      6210,
+      6211,
+      6212,
+      6213,
+      6214,
+      6215,
+      6216,
+      6217,
+      6218,
+      6219,
+      6220
+    ],
+    "primary_endpoints": [
+      "activation_auc_0_32",
+      "half_activation_latency_censored"
+    ],
+    "replication_endpoint": "first_output_latency_censored",
+    "descriptive_endpoints": [
+      "final_active_fraction",
+      "output_reach_fraction",
+      "total_spikes",
+      "delivered_events",
+      "last_activity_tick"
+    ],
+    "primary_contrasts": [
+      [
+        "1d",
+        "2d"
+      ],
+      [
+        "2d",
+        "3d"
+      ],
+      [
+        "3d",
+        "5d"
+      ],
+      [
+        "5d",
+        "5d_shuffled"
+      ],
+      [
+        "5d",
+        "random_graph"
+      ]
+    ],
+    "low_dimensional_ceiling_resolution_contrasts": [
+      [
+        "1d",
+        "2d"
+      ],
+      [
+        "2d",
+        "3d"
+      ]
+    ],
+    "paired_by_seed": true,
+    "primary_test": "exact two-sided paired sign test on non-zero differences",
+    "primary_multiple_testing": "Single Holm correction across all 10 primary time-resolved endpoint/contrast tests",
+    "replication_test": "exact two-sided paired sign test on non-zero first-output-latency differences",
+    "replication_multiple_testing": "Holm correction across the 5 replication contrasts",
+    "effect_interval": "deterministic paired bootstrap 95% CI for the median difference, 5000 resamples",
+    "alpha": 0.05,
+    "auc_window_ticks": 32,
+    "half_activation_threshold": 0.5,
+    "censor_sentinel": 129,
+    "endpoint_definitions": {
+      "activation_auc_0_32": "Sum over ticks 0..31 inclusive of cumulative_unique_active_neurons(t)/64, evaluated after each network.step(). This is a discrete cumulative-activation area measure, not a continuous-time integral.",
+      "half_activation_latency_censored": "First zero-based tick at which cumulative_unique_active_neurons(t)/64 >= 0.5; if never reached within the 128-tick evaluation window, encode 129.",
+      "first_output_latency_censored": "First zero-based tick with any spike in output labels 60..63; if absent within 128 ticks, encode 129."
+    }
+  },
+  "decision_rule": {
+    "ceiling_resolution_supported": "At least one preregistered low-dimensional contrast (1d->2d or 2d->3d) is significant after Holm correction for activation_auc_0_32 or half_activation_latency_censored and its bootstrap CI excludes zero.",
+    "replication_supported": "All five first_output_latency_censored contrasts have the same negative right-minus-left direction observed in V2, Holm-adjusted p < 0.05, and bootstrap CI excluding zero.",
+    "supported_within_protocol": "design integrity PASS AND the single-family Holm analysis across all 10 primary tests yields ceiling_resolution_supported AND replication_supported.",
+    "partial_support": "design integrity PASS and exactly one of ceiling_resolution_supported or replication_supported is true.",
+    "no_detected_support": "design integrity PASS and neither criterion is met.",
+    "not_tested": "execution or integrity failure occurs."
+  },
+  "interpretation_boundary": "This R1 protocol corrects the V3 primary multiple-testing implementation and is an internal preregistered Stage-1 replication/robustness test of RQ-SNN-003/H-SNN-003-B. It does not constitute independent external replication, does not test a 5D advantage, does not establish scaling, cognition or biological equivalence, and creates DATA rather than EVID.",
+  "local_review": {
+    "verification_command": "python scripts/verify_stage1_topology_v3_r1.py",
+    "raw_data_paths": [
+      "research/experiments/EXP-S1-TOPO-V3-R1-20260918/data/evaluation.json"
+    ],
+    "statistics_path": "research/experiments/EXP-S1-TOPO-V3-R1-20260918/analysis/statistics.json",
+    "report_path": "research/experiments/EXP-S1-TOPO-V3-R1-20260918/report.md"
+  }
+}
