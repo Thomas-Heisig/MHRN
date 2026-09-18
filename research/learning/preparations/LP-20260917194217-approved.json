@@ -1,7 +1,7 @@
 {
   "approval_note": "",
   "approved_by": "Thomas Heisig",
-  "digest": "d24210d7e2f83994bc3365cde2010cb865bb6e1d23839e710c5b43bea7232b10",
+  "digest": "81483a717410943404127c139a16a952838eb8eb3c2d3b8eca0e9a0efeed34b4",
   "executed": false,
   "proposal": {
     "ai_interaction_id": null,
@@ -12,26 +12,33 @@
       "random_prototype_10pct",
       "learning_off"
     ],
-    "digest": "0d47182d05f2d65d44957a1242f770a3576518c9034b7b014cf8ae4f06333d11",
+    "digest": "1cb37a225390974ae9279b271bcde714733f2018fb6f9254d5728996cd0daa38",
     "evaluation_protocol": "holdout_after_sequential_tasks",
     "executed": false,
     "exposure_protocol": "semantic_prototype_replay_10pct_budget",
     "objective": {
-      "description": "Pr\u00fcfen, ob semantische Prototypkonsolidierung bei 10 % des Raw-Replay-Speicherbudgets dieselbe Retention erreicht wie Raw-Replay bei vollem Budget.",
+      "description": "Prüfen, ob semantische Prototypkonsolidierung bei 10 % des Raw-Replay-Speicherbudgets dieselbe Retention erreicht wie Raw-Replay bei vollem Budget.",
       "evaluation_question": "Retains semantic prototype replay the same task performance when storage budget is reduced by factor 10?",
       "objective_id": "OBJ-MEM-COMPRESSION-001",
-      "success_metric": "retention_ratio_at_1_10_storage \u2265 0.95 der Raw-Replay-Retention"
+      "success_metric": "retention_ratio_at_1_10_storage ≥ 0.95 der Raw-Replay-Retention"
     },
     "origin": "human",
     "plan_id": "LP-20260917194217",
     "rationale": "",
     "sources": [
       {
-        "digest": "sha256-Digest der CL-002- und CL-003-DATA-Artefakte",
+        "digest": "c7b1124256fd8018839a8c5c29b30493b68d16bc223d0a3258bcbaca55b1752e",
         "origin": "environment",
         "partition": "train",
-        "source_id": "SRC-CL-002-003",
-        "trust": "UNKNOWN"
+        "source_id": "CL-002-EVID",
+        "trust": "VERIFIED"
+      },
+      {
+        "digest": "4e74021c0ef838371a3a01061ae1c2dcebb2031b54c15c6169e38c1972d06290",
+        "origin": "environment",
+        "partition": "train",
+        "source_id": "CL-003-DATA",
+        "trust": "VERIFIED"
       }
     ],
     "stopping_rule": "fixed episodes"
