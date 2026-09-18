@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "experiment_id": "EXP-STAGE0-20260918-MODEL-CONFORMANCE-V2-PROMO-R1",
+  "stage": 0,
+  "research_question": "RQ-EVAL-006",
+  "hypotheses": [
+    "H-EVAL-006-A",
+    "H-EVAL-006-B",
+    "H-EVAL-006-C"
+  ],
+  "claim_id": "CLAIM-EVAL-006",
+  "preregistration_id": "PREREG-EVAL-006-V2-PROMO-R1",
+  "parent_preregistration_id": "PREREG-EVAL-006-V2",
+  "protocol": "single_neuron_conformance_v2",
+  "replication_class": "INTERNAL_PROMOTION_REPLICATION",
+  "result_status": "SUPPORTED_WITHIN_PREREGISTERED_PROTOCOL",
+  "human_review_status": "PENDING",
+  "scientific_evidence": false,
+  "automatic_evidence_promotion": false,
+  "independent_authorship_replication": false,
+  "evidence_engine_eligibility": {
+    "experiment_status": "completed",
+    "validity": {
+      "valid": true,
+      "reason": null,
+      "runtime_error_count": 0,
+      "fatal_error_count": 0
+    },
+    "git": {
+      "commit": "0376142b16a092c674653ee61c10d8137671eacf",
+      "dirty": false,
+      "branch": "experiment/stage0-promotion-r1-20260918"
+    },
+    "provenance_digests": {
+      "code": "4d86e76e52a20fae0cbae49c1fd598d9e01fbe6344a17a50d8ddb6ebba14e1a7",
+      "config": "76642fc2d9e6fc5e8dd4947ba5b5172de1cd53d1a920788834234edeab5e28a0",
+      "prompt": "f88122f125edb150c2dcdb51c50088e88d33c9bfad38c12aa3cb7a9256bf5c26",
+      "data": "06f5e550685c2c4dba351f9d79f29df13883dceae492a8ad3c1f3df55ddbf241"
+    },
+    "source_freeze_sha": "36764dde292a3934523b21c5d9559319a0d8c9a8763c9ab3dc1c5cbbc246e850",
+    "confirmatory_lock": {
+      "protocol_digest": "49d5a12e2e3d2e68a94788b6e1fd6c7279aa1fe7e81058cc71a07fa2c9fb1def",
+      "prompt_digest": "f88122f125edb150c2dcdb51c50088e88d33c9bfad38c12aa3cb7a9256bf5c26",
+      "analysis_digest": "0173bbdb455ee954b09cc61a9e7e0929c4d6796e488b80a1ee92d15cd2d972ff",
+      "locked": true
+    }
+  },
+  "review_scope": [
+    "confirm that PREREG-EVAL-006-V2-PROMO-R1 was frozen before scientific execution",
+    "confirm seeds 22001-22003 were predeclared and disjoint from diagnostic and original confirmatory seeds",
+    "confirm H-EVAL-006-A local Izhikevich transition/threshold/reset result under unchanged 1e-8 tolerance",
+    "confirm H-EVAL-006-B lif-current-v1 result with refractory_ticks=0 under unchanged 1e-8 tolerance",
+    "confirm H-EVAL-006-C remains a semantic mapping claim (1/2/3 native ticks -> 2/3/4 ms Brian2 at dt=1 ms)",
+    "confirm original V1 1000-tick negative remains untouched",
+    "confirm current EvidenceEngine provenance contract is satisfied",
+    "confirm this internal promotion replication is not independent authorship replication"
+  ],
+  "allowed_interpretation": "The promotion replication reproduced the scoped V2 model-contract result on predeclared new seeds under the current EvidenceEngine provenance contract. A positive human review may make CLAIM-EVAL-006 eligible for separate canonical EVID registration.",
+  "prohibited_interpretations": [
+    "biological equivalence",
+    "universal long-horizon trajectory identity",
+    "independent replication",
+    "automatic EVID promotion",
+    "generalization to untested neuron models or parameter regimes",
+    "reinterpretation or deletion of the preserved V1 1000-tick negative"
+  ],
+  "required_human_decision": "supports_scoped_claim | rejects_scoped_claim | requests_revision",
+  "post_review_rule": "Even if supports_scoped_claim, EVID registration is a separate action. independent_authorship_replication remains false.",
+  "source_data_mutated": false,
+  "workflow": {
+    "run_id": 35378668441,
+    "job_id": 105709371217,
+    "artifact_id": "10561591190",
+    "artifact_sha256": "a9abdb867d7db1fd8cad0d66e53e7f22caf17f287cce647ef75ead67d7a286ba"
+  }
+}
