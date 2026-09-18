@@ -7,9 +7,8 @@
   literature: []
   hypotheses:
   - H-EVAL-001-A
-  evidence:
-  - EVID-2026-18
-  status: inconclusive
+  evidence: []
+  status: open
   answer:
     current: null
     confidence: none
