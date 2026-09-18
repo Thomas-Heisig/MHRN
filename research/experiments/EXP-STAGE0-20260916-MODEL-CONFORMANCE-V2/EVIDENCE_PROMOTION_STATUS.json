@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "experiment_id": "EXP-STAGE0-20260916-MODEL-CONFORMANCE-V2",
+  "human_review_status": "COMPLETED_SUPPORTS_SCOPED_CLAIM",
+  "evidence_promotion_status": "BLOCKED_LEGACY_PROVENANCE_CONTRACT",
+  "scientific_evidence": false,
+  "automatic_evidence_promotion": false,
+  "verified_execution": {
+    "workflow_run_id": 35149828152,
+    "workflow_job_id": 104975033645,
+    "workflow_conclusion": "success",
+    "frozen_execution_commit": "e84ee7efa56a9bf8d341e661325f79c82530f7bb",
+    "artifact_id": 10468901959,
+    "artifact_sha256": "1c7e430fa75edb02ef7bfbaacf86cc85699d7a9ab5a6154bb81ce2da7bb0c89c",
+    "brian2": "2.10.1",
+    "python": "3.13.15"
+  },
+  "missing_for_current_evidence_engine": [
+    "experiment manifest.json with experiment_status=completed",
+    "validity.valid=true with zero runtime/fatal errors",
+    "recorded git.dirty=false",
+    "provenance_digests",
+    "source_freeze_sha matching the provenance digest"
+  ],
+  "integrity_rule": "The successful historical run is not rewritten into the newer manifest schema. A promotion-eligible rerun must freeze and record the current provenance contract before execution.",
+  "independent_replication_complete": false
+}
