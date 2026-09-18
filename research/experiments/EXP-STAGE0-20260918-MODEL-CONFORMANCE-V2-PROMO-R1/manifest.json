@@ -1,0 +1,92 @@
+{
+  "experiment_id": "EXP-STAGE0-20260918-MODEL-CONFORMANCE-V2-PROMO-R1",
+  "experiment_status": "completed",
+  "ai_exposure": "none",
+  "ai_reproducibility": "R0",
+  "ai_protocol": {
+    "version": 1,
+    "bump_reason": "initial registration"
+  },
+  "causal_taint": "PURE",
+  "ai_interactions": [],
+  "causal_card": {
+    "classification": "PURE",
+    "interaction_ids": [],
+    "roles": []
+  },
+  "timestamp": "2026-09-18T18:12:49.676328",
+  "created_at": "2026-09-18T18:12:49.676339+00:00",
+  "git": {
+    "commit": "0376142b16a092c674653ee61c10d8137671eacf",
+    "dirty": false,
+    "branch": "experiment/stage0-promotion-r1-20260918"
+  },
+  "software": {
+    "python": "3.13.15",
+    "os": "Linux 6.17.0-1022-azure",
+    "brain5d_version": "0.6.0a5"
+  },
+  "simulation": {
+    "seeds": [
+      22001,
+      22002,
+      22003
+    ],
+    "dt_ms": 1
+  },
+  "artifacts": {
+    "confirmatory_data": "DATA/confirmatory_result.json",
+    "report": "report.md",
+    "preregistration": "research/preregistrations/operational/single_neuron_conformance_v2_promotion_r1.json"
+  },
+  "research_questions": [
+    "RQ-EVAL-006"
+  ],
+  "hypotheses": [
+    "H-EVAL-006-A",
+    "H-EVAL-006-B",
+    "H-EVAL-006-C"
+  ],
+  "config": {
+    "path": "research/preregistrations/operational/single_neuron_conformance_v2_promotion_r1.json",
+    "sha256": "76642fc2d9e6fc5e8dd4947ba5b5172de1cd53d1a920788834234edeab5e28a0"
+  },
+  "validity": {
+    "valid": true,
+    "reason": null,
+    "runtime_error_count": 0,
+    "fatal_error_count": 0
+  },
+  "runtime_errors": [],
+  "research_run_mode": "REPLICATION",
+  "data_partitions": [
+    "SCIENTIFIC_HOLDOUT"
+  ],
+  "network_mode": "OFFLINE",
+  "confirmatory_lock": {
+    "protocol_digest": "49d5a12e2e3d2e68a94788b6e1fd6c7279aa1fe7e81058cc71a07fa2c9fb1def",
+    "prompt_digest": "f88122f125edb150c2dcdb51c50088e88d33c9bfad38c12aa3cb7a9256bf5c26",
+    "analysis_digest": "0173bbdb455ee954b09cc61a9e7e0929c4d6796e488b80a1ee92d15cd2d972ff",
+    "locked": true
+  },
+  "provenance_digests": {
+    "code": "4d86e76e52a20fae0cbae49c1fd598d9e01fbe6344a17a50d8ddb6ebba14e1a7",
+    "config": "76642fc2d9e6fc5e8dd4947ba5b5172de1cd53d1a920788834234edeab5e28a0",
+    "prompt": "f88122f125edb150c2dcdb51c50088e88d33c9bfad38c12aa3cb7a9256bf5c26",
+    "data": "06f5e550685c2c4dba351f9d79f29df13883dceae492a8ad3c1f3df55ddbf241"
+  },
+  "source_freeze_sha": "36764dde292a3934523b21c5d9559319a0d8c9a8763c9ab3dc1c5cbbc246e850",
+  "results": {
+    "protocol": "single_neuron_conformance_v2",
+    "replication_class": "INTERNAL_PROMOTION_REPLICATION",
+    "result_status": "SUPPORTED_WITHIN_PREREGISTERED_PROTOCOL",
+    "all_declared_hypotheses_pass": true,
+    "automatic_evidence_promotion": false,
+    "scientific_evidence": false,
+    "human_review_required": true,
+    "independent_authorship_replication": false
+  },
+  "runtime": {
+    "duration_seconds": 22.364484189999985
+  }
+}

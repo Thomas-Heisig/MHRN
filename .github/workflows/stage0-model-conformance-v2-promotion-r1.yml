@@ -1,0 +1,42 @@
+name: Stage-0 promotion replication R1
+
+on:
+  push:
+    branches:
+      - experiment/stage0-promotion-r1-20260918
+    paths:
+      - research/preregistrations/operational/single_neuron_conformance_v2_promotion_r1.json
+      - scripts/stage0_conformance_v2_promotion_r1.py
+      - scripts/stage0_conformance_v2.py
+      - src/**
+      - .github/workflows/stage0-model-conformance-v2-promotion-r1.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  promotion-replication:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.13"
+      - name: Install empirical baseline
+        run: python -m pip install -e '.[dev,empirical]'
+      - name: Verify clean frozen source
+        run: |
+          test -z "$(git status --porcelain)"
+          python -m pytest tests/test_single_neuron_contract.py tests/test_experiment_validity.py -q
+      - name: Execute promotion-eligible replication
+        run: python scripts/stage0_conformance_v2_promotion_r1.py
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: stage0-promotion-replication-r1
+          path: research/experiments/EXP-STAGE0-20260918-MODEL-CONFORMANCE-V2-PROMO-R1
+          retention-days: 90

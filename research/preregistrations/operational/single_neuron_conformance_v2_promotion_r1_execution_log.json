@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "preregistration_id": "PREREG-EVAL-006-V2-PROMO-R1",
+  "experiment_id": "EXP-STAGE0-20260918-MODEL-CONFORMANCE-V2-PROMO-R1",
+  "attempts": [
+    {
+      "attempt": 1,
+      "workflow_run_id": 35378350438,
+      "freeze_commit": "edb25282ef54f6bf7c10c480f054baa5e676a566",
+      "phase": "PRE_EXECUTION_VALIDATION",
+      "scientific_execution_started": false,
+      "data_created": false,
+      "conclusion": "PRECHECK_FAILED",
+      "reason": "pytest was not installed by the empirical-only optional dependency set; the frozen scientific runner was skipped.",
+      "protocol_changed": false,
+      "seeds_changed": false,
+      "tolerances_changed": false,
+      "interpretation": "Infrastructure/preflight failure only; not scientific DATA and not a hypothesis result."
+    },
+    {
+      "attempt": 2,
+      "workflow_run_id": 35378668441,
+      "workflow_job_id": 105709371217,
+      "freeze_commit": "0376142b16a092c674653ee61c10d8137671eacf",
+      "phase": "SCIENTIFIC_EXECUTION",
+      "scientific_execution_started": true,
+      "data_created": true,
+      "conclusion": "SUCCESS",
+      "result_status": "SUPPORTED_WITHIN_PREREGISTERED_PROTOCOL",
+      "all_declared_hypotheses_pass": true,
+      "source_freeze_sha": "36764dde292a3934523b21c5d9559319a0d8c9a8763c9ab3dc1c5cbbc246e850",
+      "artifact_id": "10561591190",
+      "artifact_sha256": "a9abdb867d7db1fd8cad0d66e53e7f22caf17f287cce647ef75ead67d7a286ba",
+      "automatic_evidence_promotion": false,
+      "independent_authorship_replication": false,
+      "protocol_changed": false,
+      "seeds": [
+        22001,
+        22002,
+        22003
+      ],
+      "tolerance": 1e-8
+    }
+  ]
+}
