@@ -93,13 +93,13 @@ def test_stage0_score_matches_current_weighted_evidence_state() -> None:
         expected += float(weights[criterion["id"]]) * float(status_value)
 
     assert abs(float(stage0["score"]) - expected) < 1e-12
-    assert abs(float(stage0["score"]) - 0.725) < 1e-12
+    assert abs(float(stage0["score"]) - 0.825) < 1e-12
 
     by_id = {criterion["id"]: criterion for criterion in stage0["criteria"]}
     assert by_id["research_question"]["status"] == "met"
     assert by_id["protocol"]["status"] == "met"
     assert by_id["data"]["status"] == "met"
-    assert by_id["reviewed_evidence"]["status"] == "open"
+    assert by_id["reviewed_evidence"]["status"] == "partial"
     assert by_id["independent_replication"]["status"] == "partial"
     assert by_id["attribution"]["status"] == "met"
 
@@ -119,3 +119,24 @@ def test_stage0_keeps_scoped_readiness_separate_from_total_maturity() -> None:
         readiness["maturity_boundary"]["independent_authorship_replication_complete"]
         is False
     )
+
+
+def test_stage0_human_review_is_complete_but_evid_promotion_remains_blocked() -> None:
+    review = json.loads(
+        (
+            ROOT
+            / "research/experiments/EXP-STAGE0-20260916-MODEL-CONFORMANCE-V2/human_scientific_review.json"
+        ).read_text(encoding="utf-8")
+    )
+    promotion = json.loads(
+        (
+            ROOT
+            / "research/experiments/EXP-STAGE0-20260916-MODEL-CONFORMANCE-V2/EVIDENCE_PROMOTION_STATUS.json"
+        ).read_text(encoding="utf-8")
+    )
+    assert review["review_status"] == "completed"
+    assert review["decision"] == "supports_scoped_claim"
+    assert review["review_points"]["independent_replication"]["decision"] == "remains_open"
+    assert promotion["scientific_evidence"] is False
+    assert promotion["evidence_promotion_status"] == "BLOCKED_LEGACY_PROVENANCE_CONTRACT"
+    assert promotion["independent_replication_complete"] is False
