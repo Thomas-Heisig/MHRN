@@ -39,3 +39,5 @@ jobs:
           fi
           git commit -m "docs(publication): materialize reader paths and research offshoots"
           git push origin HEAD:research/edition18-reader-paths-offshoots-20260918
+
+# rematerialize after provenance correction
