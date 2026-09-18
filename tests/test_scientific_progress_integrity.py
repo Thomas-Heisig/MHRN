@@ -93,13 +93,13 @@ def test_stage0_score_matches_current_weighted_evidence_state() -> None:
         expected += float(weights[criterion["id"]]) * float(status_value)
 
     assert abs(float(stage0["score"]) - expected) < 1e-12
-    assert abs(float(stage0["score"]) - 0.825) < 1e-12
+    assert abs(float(stage0["score"]) - 0.925) < 1e-12
 
     by_id = {criterion["id"]: criterion for criterion in stage0["criteria"]}
     assert by_id["research_question"]["status"] == "met"
     assert by_id["protocol"]["status"] == "met"
     assert by_id["data"]["status"] == "met"
-    assert by_id["reviewed_evidence"]["status"] == "partial"
+    assert by_id["reviewed_evidence"]["status"] == "met"
     assert by_id["independent_replication"]["status"] == "partial"
     assert by_id["attribution"]["status"] == "met"
 
@@ -114,7 +114,7 @@ def test_stage0_keeps_scoped_readiness_separate_from_total_maturity() -> None:
     stage0 = next(stage for stage in _manifest()["stages"] if stage["stage"] == 0)
     assert readiness["research_readiness_percent"] == 100
     assert float(stage0["score"]) < 1.0
-    assert readiness["maturity_boundary"]["human_reviewed_evid_complete"] is False
+    assert readiness["maturity_boundary"]["human_reviewed_evid_complete"] is True
     assert (
         readiness["maturity_boundary"]["independent_authorship_replication_complete"]
         is False
@@ -142,14 +142,30 @@ def test_stage0_human_review_is_complete_but_evid_promotion_remains_blocked() ->
     assert promotion["independent_replication_complete"] is False
 
 
-def test_stage0_partial_reviewed_evidence_is_explicitly_split() -> None:
+def test_stage0_reviewed_evidence_is_met_after_canonical_promotion() -> None:
     stage0 = next(stage for stage in _manifest()["stages"] if stage["stage"] == 0)
     by_id = {criterion["id"]: criterion for criterion in stage0["criteria"]}
     reviewed = by_id["reviewed_evidence"]
     independent = by_id["independent_replication"]
-    assert reviewed["status"] == "partial"
+    evidence = json.loads(
+        (ROOT / "research/registry/evidence/EVID-2026-18.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    promotion = json.loads(
+        (
+            ROOT
+            / "research/experiments/EXP-STAGE0-20260918-MODEL-CONFORMANCE-V2-PROMO-R1/EVIDENCE_PROMOTION_STATUS.json"
+        ).read_text(encoding="utf-8")
+    )
+    assert reviewed["status"] == "met"
     assert "Human Review" in reviewed["label"]
-    assert "EVID" in reviewed["label"]
+    assert "EvidenceEngine" in reviewed["label"]
+    assert evidence["claim_id"] == "CLAIM-EVAL-006"
+    assert evidence["status"] == "supports"
+    assert promotion["evidence_id"] == "EVID-2026-18"
+    assert promotion["evidence_promotion_status"] == "COMPLETED"
+    assert promotion["independent_replication_complete"] is False
     assert independent["status"] == "partial"
     assert "keine unabhängig autorisierte Replikation" in independent["label"]
 

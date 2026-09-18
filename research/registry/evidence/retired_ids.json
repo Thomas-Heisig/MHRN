@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "retired_evidence_ids": [
+    {
+      "evidence_id": "EVID-2026-17",
+      "status": "retired",
+      "retired_on": "2026-09-18",
+      "reason": "Withdrawn because the originating EXP-STDP-0001 run had a dirty Git tree and was not eligible for scientific evidence under the current validity contract. The identifier remains reserved and must not be reused.",
+      "source": "research/experiments/EXP-STDP-0001/report.md"
+    }
+  ]
+}

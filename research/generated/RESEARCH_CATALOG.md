@@ -1407,7 +1407,7 @@
 
 **Frage:** Do the selectable MHRN single-neuron models reproduce their declared one-step transition, spike and reset semantics against a matched external Brian2 implementation?
 
-**Status:** open
+**Status:** inconclusive
 **Relevanz:** Separates membrane-model conformance from long-horizon numerical sensitivity and makes neuron model a reusable experimental treatment axis while retaining Izhikevich as default.
 
 **Hypothesen:**

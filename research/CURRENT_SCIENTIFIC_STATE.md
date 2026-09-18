@@ -30,19 +30,19 @@ Der eng definierte `single_neuron_scientific_readiness`-Vertrag steht weiterhin 
 - RQ/H: **met** = 15 %;
 - eingefrorenes Protokoll: **met** = 20 %;
 - source-bound DATA: **met** = 20 %;
-- Human-reviewed EVID: **partial** = 10 % von 20 % (Human Review positiv abgeschlossen; kanonische EVID-Promotion noch offen);
+- Human-reviewed EVID: **met** = 20 % von 20 % (Human Review und kanonische EvidenceEngine-Promotion über `EVID-2026-18` abgeschlossen);
 - externer Referenzvergleich / unabhängige Replikation: **partial** = 7,5 % von 15 %;
 - Attribution: **met** = 10 %.
 
 Die Human Review des scoped Claims ist inzwischen abgeschlossen und unterstützt die enge Konformitätsaussage. Eine EVID-Promotion wurde trotzdem **nicht** erzwungen: Der historische Stage-0-Lauf besitzt kein EvidenceEngine-kompatibles `manifest.json` mit aufgezeichneter Validity, Clean-Tree-Status, `provenance_digests` und `source_freeze_sha`. Diese fehlenden historischen Provenienzfelder werden nicht rückwirkend erfunden.
 
-Damit beträgt die aktuelle **Gesamt-Scientific-Maturity von Stage 0 = 82,5 %**. Der Human Review ist positiv abgeschlossen, aber die kanonische EVID-Promotion bleibt wegen des fehlenden aktuellen EvidenceEngine-Provenienzvertrags des historischen Laufs blockiert. Das 20-%-Kriterium `reviewed_evidence` steht deshalb auf `partial`: 10 Prozentpunkte für die abgeschlossene menschliche Prüfarbeit, 10 Prozentpunkte bleiben bis zur regelkonformen EVID-Registrierung offen. Das unabhängige Replikationskriterium bleibt separat `partial` und trägt weiterhin nur 7,5 von 15 Prozentpunkten.
+Damit beträgt die aktuelle **Gesamt-Scientific-Maturity von Stage 0 = 92,5 %**. Der historische V2-Lauf bleibt wegen seines alten Provenienzvertrags selbst nicht promotion-eligible; diese Lücke wurde jedoch prospektiv durch `EXP-STAGE0-20260918-MODEL-CONFORMANCE-V2-PROMO-R1` geschlossen. Nach dokumentiertem Human Review wurde der scoped Claim über den aktuellen EvidenceEngine-Pfad als `EVID-2026-18` registriert. Das 20-%-Kriterium `reviewed_evidence` steht damit auf `met`. Das unabhängige Replikationskriterium bleibt separat `partial` und trägt weiterhin nur 7,5 von 15 Prozentpunkten.
 
 Die Human Review ist unter `research/experiments/EXP-STAGE0-20260916-MODEL-CONFORMANCE-V2/human_scientific_review.json` dokumentiert. Der separate Status `EVIDENCE_PROMOTION_STATUS.json` hält fest, dass der Review den scoped Claim unterstützt, die EVID-Promotion wegen der fehlenden historischen EvidenceEngine-Provenienz aber blockiert bleibt. Weder Review noch spätere Promotion dürfen biologische Gleichwertigkeit oder unabhängige Replikation erzeugen.
 
 Diese formale Provenienzlücke wurde inzwischen **prospektiv** adressiert, nicht rückwirkend repariert: `EXP-STAGE0-20260918-MODEL-CONFORMANCE-V2-PROMO-R1` wurde unter `PREREG-EVAL-006-V2-PROMO-R1` mit den vorab deklarierten neuen Seeds `22001–22003` ausgeführt. Der wissenschaftliche Lauf am Freeze-Commit `0376142b16a092c674653ee61c10d8137671eacf` war clean-tree, `validity.valid=true`, ohne Runtime-/Fatal-Fehler und mit vollständigen `provenance_digests` sowie `source_freeze_sha=36764dde292a3934523b21c5d9559319a0d8c9a8763c9ab3dc1c5cbbc246e850`. Alle drei eingefrorenen Hypothesenbedingungen bestanden; der maximale Izhikevich-Lokalfehler betrug `4.5474735088646412e-13`, der maximale LIF-Fehler `7.1054273576010019e-15`.
 
-Der Lauf ist trotzdem **noch kein EVID**: `automatic_evidence_promotion=false`, `scientific_evidence=false` und `independent_authorship_replication=false`. Der ursprüngliche `review_request.json` bleibt als Request-Artefakt auf `PENDING`; die append-only Sidecar-Datei `review_request.json.review.json` dokumentiert inzwischen den Human Review durch Thomas Heisig vom 18.09.2026. Die kanonische EVID-Promotion bleibt ein separater, noch offener Schritt; Stage 0 bleibt daher bei **82,5 %**.
+Der Promotion-Lauf selbst bleibt als ausgeführte DATA unverändert; seine automatische Promotion ist weiterhin deaktiviert. Der Human Review durch Thomas Heisig vom 18.09.2026 wurde zusätzlich in das vom EvidenceEngine verlangte kanonische `human_review.json` abgebildet. Die anschließende getrennte Promotion erzeugte `EVID-2026-18` für `CLAIM-EVAL-006`. Diese Registrierung ändert weder die historische V1-Negativspur noch die Unabhängigkeitsgrenze: `independent_authorship_replication=false` bleibt bestehen.
 
 ## Aktueller Schwerpunkt: Stage 6
 

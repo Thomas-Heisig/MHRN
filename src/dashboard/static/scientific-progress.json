@@ -23,7 +23,7 @@
     {
       "stage": 0,
       "name": "Einzelne Nervenzelle",
-      "score": 0.825,
+      "score": 0.925,
       "status": "advanced",
       "claim_boundary": "Die eingefrorene Stage-0-Konformitätsstudie stützt den numerischen Modellvertrag für Izhikevich-2003 und lif-current-v1 im deklarierten Operating Envelope. Das ist Modell-/Softwarekonformität, keine biologische Gleichwertigkeit, keine allgemeine Langzeittrajektorien-Identität und keine unabhängige Replikation.",
       "criteria": [
@@ -62,13 +62,13 @@
         },
         {
           "id": "reviewed_evidence",
-          "status": "partial",
-          "label": "Human Review des historischen V2 positiv; EvidenceEngine-konformer Promotion-Lauf liegt als DATA vor und wartet auf separaten Human Review/EVID-Entscheid",
+          "status": "met",
+          "label": "Human Review und kanonische EvidenceEngine-Promotion für den scoped Stage-0-Claim abgeschlossen",
           "sources": [
             "research/experiments/EXP-STAGE0-20260916-MODEL-CONFORMANCE-V2/human_scientific_review.json",
             "research/experiments/EXP-STAGE0-20260918-MODEL-CONFORMANCE-V2-PROMO-R1/manifest.json",
-            "research/experiments/EXP-STAGE0-20260918-MODEL-CONFORMANCE-V2-PROMO-R1/DATA/confirmatory_result.json",
-            "research/experiments/EXP-STAGE0-20260918-MODEL-CONFORMANCE-V2-PROMO-R1/review_request.json"
+            "research/experiments/EXP-STAGE0-20260918-MODEL-CONFORMANCE-V2-PROMO-R1/human_review.json",
+            "research/registry/evidence/EVID-2026-18.json"
           ]
         },
         {
@@ -94,10 +94,9 @@
         }
       ],
       "next_scientific_steps": [
-        "Human Review von EXP-STAGE0-20260918-MODEL-CONFORMANCE-V2-PROMO-R1 anhand des gemergten review_request.json durchführen.",
-        "Nur bei supports_scoped_claim den scoped CLAIM-EVAL-006 anschließend in einem separaten Schritt kanonisch als EVID registrieren; automatische Promotion bleibt verboten.",
-        "Nach EVID-Promotion würde Stage 0 auf 92,5 % steigen; independent_authorship_replication bleibt dabei false.",
-        "Unabhängige Replikation separat definieren und außerhalb derselben Autoren-/Toolkette durchführen; erst sie kann die verbleibenden 7,5 % schließen."
+        "Kanonische EVID-Promotion für CLAIM-EVAL-006 ist mit EVID-2026-18 abgeschlossen.",
+        "Unabhängige Replikation separat definieren und außerhalb derselben Autoren-/Toolkette durchführen; erst sie kann die verbleibenden 7,5 % schließen.",
+        "Die Stage-0-Aussage weiterhin strikt auf den präregistrierten V2-Modellvertrag begrenzen; keine biologische Gleichwertigkeit oder universelle Langzeittrajektorienidentität ableiten."
       ],
       "criterion_contracts": {
         "reviewed_evidence": {
