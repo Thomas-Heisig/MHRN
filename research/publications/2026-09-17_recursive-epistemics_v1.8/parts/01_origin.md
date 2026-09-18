@@ -1,5 +1,17 @@
 # Teil I — Nullpunkt, Autor und Entstehungsbedingungen
 
+## Lesepfade durch Edition 1.8
+
+Edition 1.8 ist eine Gesamtarbeit und kein linear zu lesendes Einzelpaper. Die elf Teile folgen unterschiedlichen Evidenz- und Argumentationsregeln. Externe Leser können deshalb mit einem disziplinspezifischen Pfad beginnen und anschließend in die Querverweise, Register und Primärartefakte wechseln. Diese Lesepfade sind **Orientierung, keine fachliche Zuständigkeitsgrenze**.
+
+| Perspektive | Empfohlener Einstieg | Schwerpunkt |
+| --- | --- | --- |
+| **Informatik / Engineering** | Teil II → III → IV → V → XI | Architekturgenese, Implementationsverträge, Experimente, Reproduzierbarkeit, offene technische Prüfungen |
+| **Neurowissenschaft / Kognition** | Teil II → III → IV → VI → VIII | Modellgrenzen, neuronale Mechanismen, experimentelle Operationalisierung, biologische Plausibilität und Übertragungsgrenzen |
+| **Philosophie / Ethik / Safety** | Teil I → VII → VIII → IX → X | Autorposition, Integrität, normative Grenzen, rekursive Epistemik und revidierbare Gesamtclaims |
+| **Schnelle Gesamtübersicht** | Teil I → X → XI | Entstehungsbedingungen, gegenwärtig tragfähige Aussagen und offene Forschungslandschaft |
+
+Wer einen empirischen Claim prüfen will, sollte nicht beim Fließtext enden: Teil IV führt zu den Experimentartefakten; `RESEARCH_REGISTER.md` verbindet Forschungsfragen und Hypothesen; `SOURCE_INDEX.md` und `CONTENT_INTEGRATION.md` dokumentieren Quellenbestand und semantische Einbindung. `DATA`, Human Review und `EVID` bleiben getrennte Autoritätsebenen.
 ## 1. Forschungsgegenstand vor dem Repository
 
 Die 1.8-Fassung setzt nicht mit einem vermeintlich fertigen MHRN an. Sie behandelt die Entstehung selbst als Forschungsgegenstand. Die frühesten in dieser Revision wiedergewonnenen Spuren stammen aus Gesprächen über einen persistenten neuronalen Würfel, dynamische Verbindungen, entwicklungsähnliche Schichten, Mutation, Speicherung über Neustarts hinweg und die Trennung zwischen einem lernenden Kern und nachladbaren Funktionen. Diese Spuren werden als **rekonstruierte Vorphase** geführt. Sie belegen weder, dass dies die erste Idee überhaupt war, noch dass die beschriebenen Mechanismen damals schon implementiert waren.
