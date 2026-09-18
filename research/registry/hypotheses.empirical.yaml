@@ -46,7 +46,6 @@
   status: supported
   evidence:
   - research/experiments/EXP-STAGE0-20260916-MODEL-CONFORMANCE-V2/DATA/confirmatory_result.json
-  - EVID-2026-17
   created: '2026-09-16'
   updated: '2026-09-16'
 - id: H-EVAL-006-B
@@ -57,7 +56,6 @@
   status: supported
   evidence:
   - research/experiments/EXP-STAGE0-20260916-MODEL-CONFORMANCE-V2/DATA/confirmatory_result.json
-  - EVID-2026-17
   created: '2026-09-16'
   updated: '2026-09-16'
 - id: H-EVAL-006-C
@@ -68,6 +66,5 @@
   status: supported
   evidence:
   - research/experiments/EXP-STAGE0-20260916-MODEL-CONFORMANCE-V2/DATA/confirmatory_result.json
-  - EVID-2026-17
   created: '2026-09-16'
   updated: '2026-09-16'
