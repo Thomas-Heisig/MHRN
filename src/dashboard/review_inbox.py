@@ -87,12 +87,19 @@ def build_review_inbox(research_root: Path) -> dict[str, Any]:
         )
 
     for target in sorted(experiments.glob("*/**/*")):
-        if not target.is_file() or target.name.endswith(".review.json"):
+        if (
+            not target.is_file()
+            or target.name.endswith(".review.json")
+            or target.name.endswith(".human-review.json")
+        ):
             continue
         if target.suffix.lower() not in {".md", ".json"}:
             continue
-        review_path = target.with_name(f"{target.name}.review.json")
-        if review_path.is_file() and _is_human_review(review_path):
+        review_paths = (
+            target.with_name(f"{target.name}.human-review.json"),
+            target.with_name(f"{target.name}.review.json"),
+        )
+        if any(path.is_file() and _is_human_review(path) for path in review_paths):
             completed += 1
             continue
         payload = _json(target) if target.suffix.lower() == ".json" else None

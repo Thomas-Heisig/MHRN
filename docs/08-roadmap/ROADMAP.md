@@ -9,8 +9,7 @@
 - The review inbox now distinguishes real human decisions from AI-authored
 	review artifacts and detects DATA-only result artifacts such as CL-003.
 - The current open queue contains `EXP-GEN-0041`,
-	`EXP-S1-TOPO-V3-R1-20260918`, `EXP-S6-SEM-CL-003` and
-	`EXP-STAGE0-20260918-MODEL-CONFORMANCE-V2-PROMO-R1`.
+	`EXP-S1-TOPO-V3-R1-20260918` and `EXP-S6-SEM-CL-003`.
 - CL-003 has a bounded human-review candidate; no human decision or automatic
 	DATA-to-EVID promotion is created by the repository.
 

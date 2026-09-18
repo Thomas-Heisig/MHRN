@@ -54,6 +54,17 @@ def test_review_and_airr_frontend_match_backend_contracts() -> None:
     assert "encodeURIComponent(reportId)" in tools
 
 
+def test_central_review_inbox_is_actionable() -> None:
+    router = (STATIC / "frontend" / "workspace-router.js").read_text(encoding="utf-8")
+    assert 'data-review-reviewer' in router
+    assert 'data-review-comments' in router
+    assert 'data-review-decision="accepted_as_interpretation"' in router
+    assert 'data-review-decision="rejected"' in router
+    assert 'method: "POST"' in router
+    assert "item.review_endpoint" in router
+    assert "artifact_path: item.artifact_path" in router
+
+
 def test_learning_preparation_matches_guarded_nonexecuting_schema() -> None:
     source = (STATIC / "frontend" / "modules" / "learning-prep.js").read_text(
         encoding="utf-8"

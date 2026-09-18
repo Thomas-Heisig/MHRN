@@ -589,6 +589,12 @@ async function readJson(url) {
   return payload;
 }
 
+function escapeHtml(value) {
+  const node = document.createElement("div");
+  node.textContent = value == null ? "" : String(value);
+  return node.innerHTML;
+}
+
 function kv(data, limit = 16) {
   return Object.entries(data || {}).filter(([, v]) => v !== null && v !== undefined).slice(0, limit).map(([k, v]) => `<div><span>${k}</span><strong>${typeof v === "object" ? JSON.stringify(v).slice(0, 180) : String(v).slice(0, 180)}</strong></div>`).join("") || "<p>Keine Daten.</p>";
 }
@@ -616,9 +622,52 @@ async function refreshSettings() {
   }
 }
 
-function reviewItem(item) {
+function reviewItem(item, index) {
   const path = item.artifact_path || "";
-  return `<article class="mhrn-review-item"><header><strong>${item.title || item.report_id || path || "Review"}</strong><span>${[item.kind, item.experiment_id, item.research_question_id].filter(Boolean).join(" · ")}</span></header><p>${item.summary || "Human review erforderlich."}</p>${path ? `<button type="button" data-review-path="${path}">Im File Viewer öffnen</button>` : ""}</article>`;
+  const meta = [item.kind, item.experiment_id, item.research_question_id, item.hypothesis_id, item.result_status].filter(Boolean).join(" · ");
+  return `<article class="mhrn-review-item" data-review-index="${index}">
+    <header><strong>${escapeHtml(item.title || item.report_id || path || "Review")}</strong><span>${escapeHtml(meta)}</span></header>
+    <p>${escapeHtml(item.summary || "Human Review erforderlich.")}</p>
+    ${path ? `<button type="button" data-review-path="${escapeHtml(path)}">Im File Viewer öffnen</button>` : ""}
+    <div class="mhrn-review-decision">
+      <label>Reviewer<input type="text" data-review-reviewer autocomplete="name" placeholder="Name der prüfenden Person"></label>
+      <label>Begründung<textarea data-review-comments rows="4" placeholder="Prüfung, Befund und Begründung" required></textarea></label>
+      <div class="mhrn-action-row">
+        <button type="button" data-review-decision="accepted_as_interpretation">Interpretation akzeptieren</button>
+        <button type="button" data-review-decision="rejected">Ablehnen</button>
+      </div>
+      <small>Die Entscheidung erzeugt keine automatische EVID-Promotion.</small>
+    </div>
+  </article>`;
+}
+
+async function submitReview(item, card, button) {
+  const reviewer = (card.querySelector("[data-review-reviewer]")?.value || "").trim();
+  const comments = (card.querySelector("[data-review-comments]")?.value || "").trim();
+  if (!reviewer || !comments) {
+    window.alert("Reviewer und Review-Kommentar sind Pflicht.");
+    return;
+  }
+  const review_status = button.dataset.reviewDecision;
+  const body = item.kind === "artifact"
+    ? { artifact_path: item.artifact_path, reviewer, comments, review_status }
+    : { reviewer, comments, review_status };
+  button.disabled = true;
+  try {
+    const response = await fetch(item.review_endpoint, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify(body),
+    });
+    const payload = await response.json();
+    if (!response.ok) throw new Error(payload.error || payload.message || `HTTP ${response.status}`);
+    document.dispatchEvent(new CustomEvent("mhrn:research-review-completed", { detail: payload }));
+    await refreshReview();
+  } catch (error) {
+    window.alert(`Review konnte nicht gespeichert werden: ${error.message || error}`);
+  } finally {
+    button.disabled = false;
+  }
 }
 
 async function refreshReview() {
@@ -633,6 +682,11 @@ async function refreshReview() {
     list.querySelectorAll("[data-review-path]").forEach((button) => button.addEventListener("click", () => {
       document.dispatchEvent(new CustomEvent("brain5d:open-file", { detail: { source: "research", path: button.dataset.reviewPath } }));
       selectRoute("files", "browse");
+    }));
+    list.querySelectorAll("[data-review-decision]").forEach((button) => button.addEventListener("click", () => {
+      const card = button.closest("[data-review-index]");
+      const item = items[Number(card?.dataset.reviewIndex)];
+      if (card && item) submitReview(item, card, button);
     }));
   } catch (error) {
     if (byId("review-inbox-list")) byId("review-inbox-list").textContent = `Nicht verfügbar: ${error.message}`;

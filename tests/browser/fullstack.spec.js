@@ -164,16 +164,21 @@ test('canonical file viewer: split editor live preview and stale-write conflict 
   await expect(host.locator('.file-renderer-body')).toContainText('Live Preview');
 });
 
-test('research review inbox completes an append-only human review', async ({ page }) => {
+test('central research review inbox exposes human review actions', async ({ page }) => {
   await page.goto('http://127.0.0.1:4174/');
-  await selectLabStage(page, 'question');
-  await selectResearchView(page, 'review');
-  await expect(page.locator('#workflow-review-inbox')).toBeVisible();
+  await selectRoute(page, 'review', 'inbox');
+  await expect(page.locator('#review-inbox-list')).toBeVisible();
   const inboxResponse = await page.request.get('/api/research/reviews');
   expect(inboxResponse.ok()).toBeTruthy();
   const inbox = await inboxResponse.json();
   expect(Array.isArray(inbox.items)).toBeTruthy();
-  await expect(page.locator('#workflow-review-count')).toContainText('offen');
+  await expect(page.locator('#review-open-count')).toHaveText(String(inbox.open ?? 0));
+  if (inbox.items.length) {
+    await expect(page.locator('#review-inbox-list [data-review-reviewer]').first()).toBeVisible();
+    await expect(page.locator('#review-inbox-list [data-review-comments]').first()).toBeVisible();
+    await expect(page.locator('#review-inbox-list [data-review-decision="accepted_as_interpretation"]').first()).toBeVisible();
+    await expect(page.locator('#review-inbox-list [data-review-decision="rejected"]').first()).toBeVisible();
+  }
 });
 
 test('external review: subtab, public readiness and central viewer without private responses', async ({ page }) => {
