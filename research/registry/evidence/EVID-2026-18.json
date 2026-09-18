@@ -1,0 +1,41 @@
+{
+  "evidence_id": "EVID-2026-18",
+  "experiment_id": "EXP-STAGE0-20260918-MODEL-CONFORMANCE-V2-PROMO-R1",
+  "claim_id": "CLAIM-EVAL-006",
+  "hypothesis_id": "H-EVAL-006-A",
+  "result_summary": "The preregistered Stage-0 promotion replication reproduced the scoped V2 single-neuron conformance result on predeclared seeds 22001-22003 under the current EvidenceEngine provenance contract. All declared H-EVAL-006-A/B/C protocol endpoints passed. This evidence is limited to the declared model-contract scope and is not independent authorship replication.",
+  "effect_size": {},
+  "statistical_significance": {},
+  "evidence_mode": "deterministic_verification",
+  "verification": {
+    "source_freeze_sha": "36764dde292a3934523b21c5d9559319a0d8c9a8763c9ab3dc1c5cbbc246e850",
+    "preregistration_id": "PREREG-EVAL-006-V2-PROMO-R1",
+    "replication_class": "INTERNAL_PROMOTION_REPLICATION",
+    "all_declared_hypotheses_pass": true,
+    "clean_git_tree": true,
+    "independent_authorship_replication": false,
+    "human_review": {
+      "experiment_id": "EXP-STAGE0-20260918-MODEL-CONFORMANCE-V2-PROMO-R1",
+      "reviewer": "Thomas Heisig",
+      "decision": "supports",
+      "comments": "Kanonische EvidenceEngine-Abbildung des am 18.09.2026 dokumentierten Human Reviews; scoped CLAIM-EVAL-006 accepted, independent replication remains open.",
+      "reviewed_at": "2026-09-18T18:37:59.173075+00:00"
+    }
+  },
+  "status": "supports",
+  "limitations": "Internal promotion replication within the frozen V2 operating envelope. No biological equivalence, no universal long-horizon trajectory identity, no generalization to untested neuron models or parameter regimes, and no independent authorship replication.",
+  "artifacts": {
+    "figures": [],
+    "data_files": [
+      "research/experiments/EXP-STAGE0-20260918-MODEL-CONFORMANCE-V2-PROMO-R1/DATA/confirmatory_result.json",
+      "research/experiments/EXP-STAGE0-20260918-MODEL-CONFORMANCE-V2-PROMO-R1/manifest.json",
+      "research/experiments/EXP-STAGE0-20260918-MODEL-CONFORMANCE-V2-PROMO-R1/human_review.json"
+    ]
+  },
+  "generated": "2026-09-18T19:05:00+00:00",
+  "experiment_validity": {
+    "valid": true,
+    "runtime_error_count": 0,
+    "fatal_error_count": 0
+  }
+}
