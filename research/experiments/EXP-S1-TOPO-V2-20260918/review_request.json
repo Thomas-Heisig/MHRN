@@ -13,11 +13,14 @@
   "review_scope": [
     "preregistration and activity-gate compliance",
     "raw calibration and evaluation data",
-    "paired sign-test and Holm correction",
-    "bootstrap confidence intervals",
-    "matched neuron and edge budgets",
+    "paired exact sign-test and Holm correction as the primary inferential procedure",
+    "bootstrap confidence intervals as descriptive median-difference intervals",
+    "active_fraction saturation at 1.0 for 1d/2d/3d and its consequence for endpoint discrimination",
+    "first_output_latency_censored semantics: 128-tick window, sentinel 129 only for missing output, and whether any evaluation run was actually censored",
+    "matched 64-neuron and 246-edge budgets across all evaluation conditions",
+    "faster first-output latency of 5d_shuffled/random_graph relative to 5d",
     "claim boundary between H-SNN-003-B and H-5D-005-A",
-    "manuscript and registry integration"
+    "manuscript, registry and evidence-matrix integration"
   ],
   "artifacts": {
     "report": "experiments/EXP-S1-TOPO-V2-20260918/report.md",
@@ -40,5 +43,15 @@
   },
   "interpretation_boundary": "The 64-neuron result supports topology-sensitive propagation within the preregistered Stage-1 regime. It does not establish 5D superiority and does not satisfy the separate >=1000-neuron test programme for H-5D-005-A.",
   "required_human_decision": "accepted_as_interpretation | rejected",
-  "note": "Review completion may accept or reject the interpretation. It must not rewrite source-bound DATA or automatically create EVID."
+  "note": "Review completion may accept or reject the interpretation. It must not rewrite source-bound DATA or automatically create EVID.",
+  "methodological_review_notes": {
+    "status": "PENDING_HUMAN_ASSESSMENT",
+    "active_fraction": "1d, 2d and 3d have median active_fraction 1.0. Treat the zero contrasts as endpoint saturation within this operating envelope, not as proof of topological equality.",
+    "latency_censoring": "The evaluation window is 128 ticks and the censor sentinel is 129. The reviewer should verify the raw DATA for censored runs; a latency of 19 is not itself censor-boundary behavior.",
+    "inference": "The preregistered exact paired sign test with Holm correction carries primary inference. Bootstrap intervals summarize paired median differences and may be degenerate for discrete identical differences.",
+    "topology_budget": "All evaluation conditions use 64 neurons and 246 edges, so observed effects must not be described as simple global density/sparsity effects.",
+    "five_d_boundary": "5d_shuffled and random_graph reach output earlier than regular 5d in this regime; no 5D superiority interpretation is permitted.",
+    "robustness_question": "A lower-activity follow-up regime may test robustness of active_fraction discrimination, but is not automatically required to preserve the existing preregistered DATA result."
+  },
+  "schema_versioning_note": "analysis/statistics.json is frozen source-bound DATA and is not rewritten post hoc. Future analysis artifact generators should include an explicit schema_version field."
 }
