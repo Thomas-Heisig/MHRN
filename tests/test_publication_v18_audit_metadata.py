@@ -100,7 +100,7 @@ def test_branch_context_is_preserved_before_cleanup() -> None:
 
 
 def test_historical_reader_is_explicitly_separated_from_current_viewer() -> None:
-    notice = (ROOT / "research/publications/reader/HISTORICAL_NOTICE.md").read_text(encoding="utf-8")
+    notice = (ROOT / "research/publications/HISTORICAL_READER.md").read_text(encoding="utf-8")
     legacy = (ROOT / "research/publications/reader/README.md").read_text(encoding="utf-8")
     assert "7. September 2026" in notice
     assert "catalog.json" in notice

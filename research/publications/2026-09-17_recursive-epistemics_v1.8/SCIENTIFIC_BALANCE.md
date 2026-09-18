@@ -61,7 +61,7 @@ Daher lautet die belastbare Formulierung: **Nach dem aktuellen Manifest ist kein
 
 ## 4. Reader- und Versionsgrenze
 
-Der aktive Publication Viewer folgt `research/publications/catalog.json` und öffnet Edition 1.8. Der Ordner `research/publications/reader/` gehört zur historischen Lesefassung vom 7. September 2026 und wird aus Provenienzgründen nicht als aktueller Reader umgeschrieben. Siehe [historischen Reader-Hinweis](../reader/HISTORICAL_NOTICE.md).
+Der aktive Publication Viewer folgt `research/publications/catalog.json` und öffnet Edition 1.8. Der Ordner `research/publications/reader/` gehört zur historischen Lesefassung vom 7. September 2026 und wird aus Provenienzgründen nicht als aktueller Reader umgeschrieben. Siehe [historischen Reader-Hinweis](../HISTORICAL_READER.md).
 
 ## 5. Branch- und Zitierprovenienz
 
