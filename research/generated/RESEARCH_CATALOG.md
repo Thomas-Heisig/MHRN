@@ -1,6 +1,6 @@
 # MHRN Research Catalog
 
-*Generiert am 2026-09-16*
+*Generiert am 2026-09-18*
 
 ## Übersicht
 
@@ -1461,6 +1461,12 @@
 
 **Status:** open
 **Relevanz:** Grundlegendes Verständnis der Signalausbreitung in multidimensionalen SNNs.
+
+**Aktuelle Antwort:**
+
+> EXP-S1-TOPO-V2-20260918 liefert DATA-seitige Unterstützung dafür, dass die konkrete Topologie im präregistrierten 64-Neuronen-Stage-1-Regime die Propagationsdynamik beeinflusst; Human Review und EVID-Entscheidung stehen aus.
+
+*Konfidenz: data_supported_review_pending*
 
 **Hypothesen:**
 - `H-SNN-003-B`: Unter gleicher Neuronenzahl, Dichte und Stimulusbedingung unterscheiden sich Propagationslatenz oder -reichweite zwischen mindestens zwei vorab definierten Topologien; ein Vorteil einer 5D-Anordnung wird nicht vorausgesetzt. *(untested)*

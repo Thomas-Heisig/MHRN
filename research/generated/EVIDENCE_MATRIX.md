@@ -1,6 +1,6 @@
 # MHRN Evidence Matrix
 
-*Generiert am 2026-09-16*
+*Generiert am 2026-09-18*
 
 RQ-Status und Claim-Status sind unterschiedliche wissenschaftliche Zustände und werden nicht gegenseitig abgeleitet.
 
@@ -9,7 +9,7 @@ RQ-Status und Claim-Status sind unterschiedliche wissenschaftliche Zustände und
 | `RQ-SNN-001` | open | `H-SNN-001-A` | — | — | 2 | — | — | offen |
 | `RQ-SNN-002` | open | `H-SNN-002-A` | — | — | 2 | — | — | offen |
 | `RQ-DET-001` | open | `H-SNN-003-A` | `CLAIM-DET-001` | `CLAIM-DET-001`=inconclusive | 1 | `EXP-DET-0001` | `EVID-2026-01`, `EVID-2026-03`, `EVID-2026-05`, `EVID-2026-07`, `EVID-2026-09`, `EVID-2026-11`, `EVID-2026-13`, `EVID-2026-15` | offen |
-| `RQ-SNN-003` | open | `H-SNN-003-B` | — | — | 2 | — | — | offen |
+| `RQ-SNN-003` | open | `H-SNN-003-B` | — | — | 2 | — | — | data_supported_review_pending |
 | `RQ-SNN-004` | open | `H-SNN-004-A` | `CLAIM-SNN-001` | `CLAIM-SNN-001`=untested | 2 | — | — | offen |
 | `RQ-SNN-005` | open | `H-SNN-005-A` | — | — | 2 | — | — | offen |
 | `RQ-PING-001` | open | `H-PING-001-A` | — | — | 0 | — | — | offen |
