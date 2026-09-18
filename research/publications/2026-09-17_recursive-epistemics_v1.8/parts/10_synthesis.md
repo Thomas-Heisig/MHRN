@@ -190,3 +190,13 @@ Analog zeigt die Determinismus-Registry-Korrektur, dass ein technisch passender 
 Der genehmigte Vorschlag `LP-20260917194217` zeigt eine methodisch sinnvollere Anschlussfrage an CL-003. Nachdem SemanticMemory im bisherigen matched-budget-Vergleich keinen bestätigten additiven Vorteil gegenüber Raw Replay gezeigt hat, verschiebt sich die nächste prüfbare These von „ist semantisches Replay generell besser?“ zu einer **Ressourcen-/Kompressionsfrage**: Kann eine semantisch verdichtete Repräsentation bei einem Zehntel des Speicherbudgets nahezu dieselbe Retention erreichen?
 
 Das ist derzeit keine Erkenntnis, sondern eine genehmigte Forschungsrichtung. Ihr Wert liegt gerade darin, dass sie eine mögliche Stärke von semantischer Verdichtung dort prüft, wo sie theoretisch plausibler wäre: nicht als pauschaler Leistungsbonus bei gleichem Budget, sondern als Trade-off zwischen Retention und Speicherbedarf.
+
+## 47.11 Review-induzierte Synthese: stärkere Wissenschaft durch engere Aussagen
+
+Die jüngsten Human Reviews verändern die Gesamtbilanz nicht durch einen weiteren positiven Claim, sondern durch präzisere Grenzen.
+
+Erstens ist der Determinismusbefund für `RQ-DET-001` jetzt semantisch besser eingeordnet: die Same-Seed-Replica-Paare stimmen im getesteten Protokoll überein. Gleichzeitig bleibt der historische Dirty-Tree-Lauf von einer Evidenzpromotion ausgeschlossen. Damit trennt die Arbeit erstmals explizit **Befundstärke** von **Provenienzstärke**.
+
+Zweitens wird `EXP-GEN-0047` nicht mehr als scheinbarer Topologie-Nullbefund gelesen. Die wissenschaftlich stärkere Aussage lautet, dass `topology_propagation_v1` die Zielhypothese nicht angemessen operationalisiert hat. Das ist keine Schwächung der Forschung, sondern eine Reduktion von Fehlinterpretation: ein inadäquates Design wird als Designproblem markiert, nicht als Widerlegung einer Hypothese.
+
+Drittens ergibt sich daraus eine übergreifende Reiferegel für MHRN: **ein Experiment darf erst dann eine Hypothese tragen, wenn semantische Zuordnung, kausale Wirksamkeit des manipulierten Faktors, Aktivitätsadäquanz, Provenienz und vorab definierte Auswertung gleichzeitig ausreichend sind.** Diese Regel ist inzwischen selbst ein Ergebnis der Schaffensgeschichte, weil sie aus konkreten Fehlklassifikationen und Reviews hervorgegangen ist.

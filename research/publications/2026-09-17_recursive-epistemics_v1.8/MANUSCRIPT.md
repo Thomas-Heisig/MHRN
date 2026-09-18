@@ -473,6 +473,18 @@ Der Vorschlag bindet `semantic_prototype_replay_10pct_budget` gegen `raw_replay_
 
 Der aktuelle Status ist strikt prospektiv: `authority=proposal_only`, `executed=false`, `runtime_authority=none`. Die menschliche Genehmigung autorisiert daher weder eine Ergebnisbehauptung noch DATA/EVID. Vor einer wissenschaftlich tragfähigen Ausführung müssen die referenzierten CL-002-/CL-003-Quellen digestscharf gebunden, die noch als `UNKNOWN` markierte Source-Trust-Einstufung geklärt und der Ausführungs-/Freeze-Vertrag entsprechend dem Research-Driven-Development-Prozess fixiert werden.
 
+## 19.4 Aktuelle Human Reviews: Determinismus und Testadäquanz
+
+Die aktuelle Review-Linie schärft zwei bereits ausgeführte Experimente, ohne historische DATA umzuschreiben.
+
+Für `RQ-DET-001 / H-SNN-003-A` wurde der historische Lauf `EXP-BATCH-20260914074039-03` menschlich post-hoc geprüft. Die vier Replica-Bedingungen sind nach dem heutigen semantischen Vertrag ein `DIRECT_MATCH`: innerhalb jeder Recurrence-Konfiguration stimmen Replica A und B für die Seeds 101, 102 und 103 in den aufgezeichneten Antwortsummen überein. Ohne Rekurrenz wurden je Lauf 3 Spikes, 2 synaptische Ereignisse, 0 recurrent events und propagation depth 1 beobachtet; mit Rekurrenz 33 Spikes, 33 synaptische Ereignisse, 10 recurrent events und propagation depth 61. Das ist ein positiver Determinismusbefund **innerhalb des getesteten Same-Seed-Protokolls**.
+
+Die wissenschaftliche Grenze bleibt jedoch bestehen: der historische Lauf wurde mit `git dirty: true` erzeugt. Die nachträgliche semantische Korrektur beseitigt diesen Provenienzblock nicht. Deshalb bleibt eine clean-tree-Replikation mit eingefrorenen Source-/Config-Hashes Voraussetzung für eine reguläre EVID-Prüfung. Auch `stopped_on_quiescence=false` ist hier kein Fehlschlag: im festen Beobachtungsfenster bedeutet das Feld lediglich, dass der Lauf nicht vorzeitig wegen Quieszenz beendet wurde.
+
+Für `RQ-SNN-003 / H-SNN-003-B` wurde `EXP-GEN-0047` ebenfalls methodisch neu eingeordnet. Die sechs Bedingungen `1d`, `2d`, `3d`, `5d`, `5d_shuffled` und `random_graph` sind semantisch die beabsichtigten Bedingungen und damit `DIRECT_MATCH`. Trotzdem ist `topology_propagation_v1` als `INADEQUATE_TO_TEST_HYPOTHESIS` klassifiziert. Der Aufbau verwendete nur drei Neuronen und zwei Feed-forward-Synapsen; bei den nicht-randomisierten Bedingungen blieben Gewichte, Delays und explizite Kette gleich, während die Koordinaten die Dynamik nicht hinreichend beeinflussten. Die identischen Kernantworten — 3 Spikes, 2 synaptische Ereignisse, 3 aktivierte Neuronen, 0 recurrent events, depth 1 — dürfen daher **nicht** als Evidenz dafür gelesen werden, dass Topologie oder Dimensionalität keinen Effekt besitzen. Der Einzelunterschied der first-response latency im Random-Graph-Arm ist zudem mit einer geänderten Kantenanordnung konfundiert.
+
+Aus beiden Reviews folgt ein allgemeiner methodischer Vertrag: **semantischer Match, technische Reproduzierbarkeit, Testadäquanz, Provenienz und EVID sind getrennte Prüfachsen**. Ein `DIRECT_MATCH` kann wissenschaftlich blockiert bleiben; ein technisch sauberer Lauf kann für die Zielhypothese `NOT_TESTED` sein; und eine nachträgliche Registry-Korrektur darf weder Dirty-Tree-Provenienz noch unzureichendes Versuchsdesign rückwirkend heilen.
+
 
 ---
 
@@ -1229,6 +1241,16 @@ Der genehmigte Vorschlag `LP-20260917194217` zeigt eine methodisch sinnvollere A
 
 Das ist derzeit keine Erkenntnis, sondern eine genehmigte Forschungsrichtung. Ihr Wert liegt gerade darin, dass sie eine mögliche Stärke von semantischer Verdichtung dort prüft, wo sie theoretisch plausibler wäre: nicht als pauschaler Leistungsbonus bei gleichem Budget, sondern als Trade-off zwischen Retention und Speicherbedarf.
 
+## 47.11 Review-induzierte Synthese: stärkere Wissenschaft durch engere Aussagen
+
+Die jüngsten Human Reviews verändern die Gesamtbilanz nicht durch einen weiteren positiven Claim, sondern durch präzisere Grenzen.
+
+Erstens ist der Determinismusbefund für `RQ-DET-001` jetzt semantisch besser eingeordnet: die Same-Seed-Replica-Paare stimmen im getesteten Protokoll überein. Gleichzeitig bleibt der historische Dirty-Tree-Lauf von einer Evidenzpromotion ausgeschlossen. Damit trennt die Arbeit erstmals explizit **Befundstärke** von **Provenienzstärke**.
+
+Zweitens wird `EXP-GEN-0047` nicht mehr als scheinbarer Topologie-Nullbefund gelesen. Die wissenschaftlich stärkere Aussage lautet, dass `topology_propagation_v1` die Zielhypothese nicht angemessen operationalisiert hat. Das ist keine Schwächung der Forschung, sondern eine Reduktion von Fehlinterpretation: ein inadäquates Design wird als Designproblem markiert, nicht als Widerlegung einer Hypothese.
+
+Drittens ergibt sich daraus eine übergreifende Reiferegel für MHRN: **ein Experiment darf erst dann eine Hypothese tragen, wenn semantische Zuordnung, kausale Wirksamkeit des manipulierten Faktors, Aktivitätsadäquanz, Provenienz und vorab definierte Auswertung gleichzeitig ausreichend sind.** Diese Regel ist inzwischen selbst ein Ergebnis der Schaffensgeschichte, weil sie aus konkreten Fehlklassifikationen und Reviews hervorgegangen ist.
+
 
 ---
 
@@ -1506,6 +1528,14 @@ Für `H-SNN-003-B` muss `topology_propagation_v2` **vor Ausführung** präregist
 `LP-20260917194217` ist als nächster möglicher Stage-6-Zyklus vorbereitet und genehmigt, aber **noch nicht ausgeführt**. Der geplante Primärvergleich ist `semantic_prototype_replay_10pct_budget` gegen `raw_replay_full_budget`; die Erfolgsgrenze liegt bei mindestens 95 % der Raw-Replay-Retention bei Faktor-10-Speicherreduktion. `no_replay`, `random_prototype_10pct` und `learning_off` dienen als Kontrollen.
 
 Vor Ausführung sind Source-Digests, Trust-Status, Freeze, Seed-/Taskplan und Analysevertrag zu vervollständigen. Bis dahin bleibt der Eintrag Forschungsplanung und darf im Viewer nicht wie ein Ergebnis oder laufendes Experiment erscheinen.
+
+## 58.4 Aktueller Review-Stand und unmittelbar nächste Replikationen
+
+Nach dem jüngsten Human Review ist die offene Determinismusfrage enger als zuvor. `RQ-DET-001 / H-SNN-003-A` hat im historischen `deterministic_replica_v1`-Datensatz einen positiven Same-Seed-Replica-Befund und ist semantisch `DIRECT_MATCH`. Offen ist nicht mehr die Frage, ob die registrierten Replica-Bedingungen zur RQ gehören, sondern ob derselbe Befund in einem **clean-tree, hash-gebundenen Replikationslauf** wiederholt wird. Erst danach ist eine reguläre Human-EVID-Entscheidung sinnvoll.
+
+Für `H-SNN-003-B` ist der nächste Schritt ebenfalls klarer: `EXP-GEN-0047` gilt nicht als negativer Befund, sondern als `INADEQUATE_TO_TEST_HYPOTHESIS`. `topology_propagation_v2` muss daher vor Ausführung mindestens folgende Merkmale einfrieren: mindestens 1.000 Neuronen pro Bedingung, im Mittel mindestens 10 eingehende Synapsen pro Neuron, degree-/density-matched Vergleiche, explizite Kopplung von Geometrie an Konnektivitätswahrscheinlichkeit und/oder Delay, Multi-Neuron-Stimulus, Activity-Adequacy-Gate, vorab definierte first-arrival-/reach-Endpunkte, unabhängige Seeds sowie saubere Source-/Graph-Provenienz. Diese Schwellen sind Mindestanforderungen für die nächste Testgeneration, keine universellen Suffizienzkriterien.
+
+Damit sind die nächsten beiden methodischen Schritte **Replikation** und **Testadäquanz**, nicht weitere Interpretation derselben historischen DATA.
 
 
 ---

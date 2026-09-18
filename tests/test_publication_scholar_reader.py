@@ -168,9 +168,11 @@ def test_ask_ai_selection_assistant_is_relocated_outside_contained_reader() -> N
     assert "[hidden]" in styles
     assert "display: none !important" in styles
     assert "[data-pub-selection-ai]:hover" in styles
-    assert index_css.rstrip().endswith(
-        '@import url("./publication-reader-polish.css");'
-    )
+    polish_import = '@import url("./publication-reader-polish.css");'
+    learning_prep_import = '@import url("./learning-prep.css");'
+    assert polish_import in index_css
+    assert learning_prep_import in index_css
+    assert index_css.index(polish_import) < index_css.index(learning_prep_import)
 
 
 def test_file_viewer_bridge_uses_public_workspace_router_contract() -> None:

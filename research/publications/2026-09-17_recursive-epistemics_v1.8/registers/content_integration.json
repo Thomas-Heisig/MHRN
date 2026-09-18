@@ -403,7 +403,8 @@
       "title": "Accepted scientific-method decisions and adequacy rulings",
       "source_paths": [
         "research/decisions/2026-09-17_determinism_registry_airr_alignment.md",
-        "research/decisions/2026-09-17_snn003_topology_propagation_v1_adequacy.md"
+        "research/decisions/2026-09-17_snn003_topology_propagation_v1_adequacy.md",
+        "research/experiments/EXP-BATCH-20260914074039-03/review-20260917.md"
       ],
       "source_role": "accepted methodological interpretation and prospective design constraint",
       "manuscript_parts": [
@@ -413,8 +414,8 @@
         "XI"
       ],
       "integration_status": "semantically_integrated_without_evidence_promotion",
-      "integration_mode": "registry_semantics_adequacy_and_prospective_design_synthesis",
-      "boundaries": "Historical DATA/manifests remain immutable; semantic alignment does not erase provenance blocks, and test inadequacy is neither confirmation nor refutation of the target hypothesis."
+      "integration_mode": "registry_semantics_adequacy_human_review_and_prospective_design_synthesis",
+      "boundaries": "Historical DATA/manifests remain immutable; semantic alignment does not erase provenance blocks, Human Review does not auto-promote EVID, and test inadequacy is neither confirmation nor refutation of the target hypothesis."
     },
     {
       "id": "CORPUS-LP-20260917194217",
@@ -432,6 +433,26 @@
       "integration_status": "semantically_integrated_as_proposal_only",
       "integration_mode": "prospective_stage6_compression_hypothesis_and_controls",
       "boundaries": "authority=proposal_only, executed=false, runtime_authority=none; approval is not execution, DATA or EVID."
+    },
+    {
+      "id": "CORPUS-CURRENT-HUMAN-REVIEWS",
+      "title": "Current human reviews of determinism and topology test adequacy",
+      "source_paths": [
+        "research/experiments/EXP-BATCH-20260914074039-03/review-20260917.md",
+        "research/decisions/2026-09-17_determinism_registry_airr_alignment.md",
+        "research/decisions/2026-09-17_snn003_topology_propagation_v1_adequacy.md",
+        "research/experiments/EXP-GEN-0047/summary.md"
+      ],
+      "source_role": "human methodological review and current interpretation boundary",
+      "manuscript_parts": [
+        "IV",
+        "VI",
+        "X",
+        "XI"
+      ],
+      "integration_status": "semantically_integrated_without_evidence_promotion",
+      "integration_mode": "review_consequences_provenance_gate_and_test-adequacy_synthesis",
+      "boundaries": "RQ-DET-001 remains blocked from EVID by dirty-tree provenance pending clean rerun; EXP-GEN-0047 is not a topology-null result and remains inadequate to test H-SNN-003-B."
     }
   ]
 }
