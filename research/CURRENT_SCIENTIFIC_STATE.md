@@ -19,6 +19,23 @@ Dieses Dokument ist der kurze Einstieg in den aktuellen wissenschaftlichen Zusta
 
 `docs/` und `research/` werden durch `scripts/audit_document_governance.py` nach Typ, Status, Autorität, Mutabilität, Zitierregel und Evidenzrolle geprüft. Edition 1.8 ergänzt einen deterministischen Publikationsbuilder, vollständiges gepinntes Datei-/Abschnittsinventar, Research-Object-Projektionen, Creation-/Edition-/Experimentgenealogien, Vorgängerforschungs-Mapping und Quellenmetadaten. Diese Projektionen ersetzen keine Primärartefakte und zertifizieren keine semantische Vollständigkeit.
 
+## Stage 0 — korrigierter wissenschaftlicher Reifestand
+
+Die bisherige Scientific-Timeline-Projektion von 50 % war gegenüber dem aktuellen Repository veraltet. Für die Einzelzell-Konformität existieren inzwischen `RQ-EVAL-006` sowie die drei expliziten Hypothesen `H-EVAL-006-A/B/C`, ein vor der Ausführung eingefrorenes konfirmatorisches Protokoll (`PREREG-EVAL-006-V2`) und quellengebundene Confirmatory-DATA aus `EXP-STAGE0-20260916-MODEL-CONFORMANCE-V2`.
+
+Der eng definierte `single_neuron_scientific_readiness`-Vertrag steht weiterhin auf **100 %**. Dieser Wert beschreibt nur die Erfüllung seines scoped Readiness-Vertrags. Für die breitere Scientific-Maturity-Timeline gelten zusätzlich Human-EVID und unabhängige Replikation. Nach dem kanonischen Gewichtungsmodell ergibt sich aktuell:
+
+- RQ/H: **met** = 15 %;
+- eingefrorenes Protokoll: **met** = 20 %;
+- source-bound DATA: **met** = 20 %;
+- Human-EVID: **open** = 0 %;
+- externer Referenzvergleich / unabhängige Replikation: **partial** = 7,5 % von 15 %;
+- Attribution: **met** = 10 %.
+
+Damit beträgt die aktuelle **Gesamt-Scientific-Maturity von Stage 0 = 72,5 %**. Die Differenz zu 100 % ist nicht fehlende Softwarearbeit, sondern die bewusst offene wissenschaftliche Reifeschicht: menschliche EVID-Entscheidung und unabhängig autorisierte Replikation.
+
+Eine formale Review-Anforderung liegt unter `research/experiments/EXP-STAGE0-20260916-MODEL-CONFORMANCE-V2/review_request.json`. Sie darf den scoped numerischen Konformitätsclaim akzeptieren, ablehnen oder zur Revision zurückgeben, aber weder biologische Gleichwertigkeit noch unabhängige Replikation erzeugen.
+
 ## Aktueller Schwerpunkt: Stage 6
 
 ### Semantization / Continual Learning
