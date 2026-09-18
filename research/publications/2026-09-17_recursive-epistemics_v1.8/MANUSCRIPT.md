@@ -889,6 +889,7 @@ Die Arbeit versteht Revidierbarkeit daher nicht als Schwäche, sondern als expli
 ---
 
 <a id="part-vii"></a>
+
 # Teil VII — Integrität, Autorschaft und kumulative Wissenschaft
 
 ## 29. Kumulative Wissenschaft, Plagiat und Provenienz
@@ -1614,9 +1615,11 @@ Für eine tragende wissenschaftliche Aussage sollen künftig mindestens folgende
 
 Erst diese Kette macht kumulative, AI-assistierte Wissenschaft zugleich **offen, nachprüfbar und zurechenbar**.
 
+
 ---
 
 <a id="part-viii"></a>
+
 # Teil VIII — Philosophie, Ethik und Sicherheit
 
 ## 34. Normative Ebene und Forschungsarchitektur
@@ -2255,6 +2258,7 @@ Der Ethik-/Safety-Zweig ist erst dann inhaltlich abgeschlossen, wenn für jede r
 10. unabhängige Prüfung dort, wo starke normative, Safety- oder Bewusstseinsclaims betroffen wären.
 
 Damit wird Teil VIII wieder das, was die Vorgängerforschung bereits angelegt hatte: **ein eigenständiger, erweiterbarer Forschungszweig zu Agency, Kontrolle, Zielgenese, Selbstmodell, Verantwortung, Bewusstsein, Welfare und rekursiver Technogenese — nicht nur eine verkürzte Ethikzusammenfassung.**
+
 
 ---
 

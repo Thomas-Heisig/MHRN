@@ -15,7 +15,7 @@
       "status": "untested",
       "source_path": "research/registry/claims.yaml",
       "source_pointer": "/2",
-      "source_sha256": "a396f9e0e2dc49d9db8f505ce1604acfae9308ccf316ca8a281f129ad3517fbb",
+      "source_sha256": "dc91384fbf9d898b7790648726aa955dfadfd6eb23e83cb1e47666ef54f3625f",
       "source_object": {
         "id": "CLAIM-5D-001",
         "claim": "Die fünfdimensionale Organisation verbessert die Robustheit gegenüber lokalen Strukturverlusten.",
@@ -50,7 +50,7 @@
       "status": "untested",
       "source_path": "research/registry/claims.yaml",
       "source_pointer": "/3",
-      "source_sha256": "a396f9e0e2dc49d9db8f505ce1604acfae9308ccf316ca8a281f129ad3517fbb",
+      "source_sha256": "dc91384fbf9d898b7790648726aa955dfadfd6eb23e83cb1e47666ef54f3625f",
       "source_object": {
         "id": "CLAIM-5D-002",
         "claim": "5D-Netzwerke zeigen eine höhere Informationskapazität als niedrigdimensionale Netzwerke gleicher Neuronenzahl.",
@@ -85,7 +85,7 @@
       "status": "untested",
       "source_path": "research/registry/claims.yaml",
       "source_pointer": "/7",
-      "source_sha256": "a396f9e0e2dc49d9db8f505ce1604acfae9308ccf316ca8a281f129ad3517fbb",
+      "source_sha256": "dc91384fbf9d898b7790648726aa955dfadfd6eb23e83cb1e47666ef54f3625f",
       "source_object": {
         "id": "CLAIM-AIR-001",
         "claim": "Ein standardisiertes ResearchPacket verbessert die Identifikation vorab definierter methodischer Fehler gegenüber einem unstrukturierten Experimentbericht.",
@@ -120,7 +120,7 @@
       "status": "inconclusive",
       "source_path": "research/registry/claims.yaml",
       "source_pointer": "/5",
-      "source_sha256": "a396f9e0e2dc49d9db8f505ce1604acfae9308ccf316ca8a281f129ad3517fbb",
+      "source_sha256": "dc91384fbf9d898b7790648726aa955dfadfd6eb23e83cb1e47666ef54f3625f",
       "source_object": {
         "id": "CLAIM-DET-001",
         "claim": "Brain-5D erzeugt bei identischem Seed, Input und Anfangszustand deterministisch identische Spike-Abfolgen und Netzwerkzustände.",
@@ -161,6 +161,47 @@
       }
     },
     {
+      "id": "CLAIM-EVAL-006",
+      "axis": "not_declared_in_source",
+      "stage": null,
+      "object_type": "claim",
+      "evidence_mode": "source_registry_projection_not_evidence",
+      "parent_ids": [],
+      "publication_refs": [
+        "IV",
+        "XI"
+      ],
+      "status": "inconclusive",
+      "source_path": "research/registry/claims.yaml",
+      "source_pointer": "/8",
+      "source_sha256": "dc91384fbf9d898b7790648726aa955dfadfd6eb23e83cb1e47666ef54f3625f",
+      "source_object": {
+        "id": "CLAIM-EVAL-006",
+        "claim": "Unter dem eingefrorenen V2-Protokoll konformieren die deklarierten MHRN-Einzelzellverträge für Izhikevich-2003, lif-current-v1 und das separat klassifizierte Refractory-Semantik-Mapping mit der gematchten Brian2-2.10.1-Referenz innerhalb der präregistrierten Toleranzen.",
+        "research_question": "RQ-EVAL-006",
+        "hypothesis": "H-EVAL-006-A",
+        "evidence": [],
+        "experiments": [
+          "EXP-STAGE0-20260916-MODEL-CONFORMANCE-V2",
+          "EXP-STAGE0-20260918-MODEL-CONFORMANCE-V2-PROMO-R1"
+        ],
+        "sources": [
+          "SRC-IZHIKEVICH-2003",
+          "SRC-GERSTNER-2014"
+        ],
+        "status": "inconclusive",
+        "confidence": "low",
+        "required_evidence": [
+          "preregistered_model_conformance",
+          "human_scientific_review",
+          "evidence_engine_provenance"
+        ],
+        "minimum_runs": 1,
+        "created": "2026-09-18",
+        "updated": "2026-09-18"
+      }
+    },
+    {
       "id": "CLAIM-SELF-001",
       "axis": "not_declared_in_source",
       "stage": null,
@@ -174,7 +215,7 @@
       "status": "untested",
       "source_path": "research/registry/claims.yaml",
       "source_pointer": "/6",
-      "source_sha256": "a396f9e0e2dc49d9db8f505ce1604acfae9308ccf316ca8a281f129ad3517fbb",
+      "source_sha256": "dc91384fbf9d898b7790648726aa955dfadfd6eb23e83cb1e47666ef54f3625f",
       "source_object": {
         "id": "CLAIM-SELF-001",
         "claim": "In Brain-5D entstehen spontan funktionale Module ohne explizite Programmierung.",
@@ -209,7 +250,7 @@
       "status": "untested",
       "source_path": "research/registry/claims.yaml",
       "source_pointer": "/0",
-      "source_sha256": "a396f9e0e2dc49d9db8f505ce1604acfae9308ccf316ca8a281f129ad3517fbb",
+      "source_sha256": "dc91384fbf9d898b7790648726aa955dfadfd6eb23e83cb1e47666ef54f3625f",
       "source_object": {
         "id": "CLAIM-SNN-001",
         "claim": "Pair-based STDP erzeugt unter definierten Pre/Post-Zeitabständen eine asymmetrische Gewichtsanpassung.",
@@ -243,7 +284,7 @@
       "status": "untested",
       "source_path": "research/registry/claims.yaml",
       "source_pointer": "/1",
-      "source_sha256": "a396f9e0e2dc49d9db8f505ce1604acfae9308ccf316ca8a281f129ad3517fbb",
+      "source_sha256": "dc91384fbf9d898b7790648726aa955dfadfd6eb23e83cb1e47666ef54f3625f",
       "source_object": {
         "id": "CLAIM-STDP-001",
         "claim": "Pair-based STDP erzeugt unter definierten Pre/Post-Zeitabständen eine asymmetrische Gewichtsanpassung.",
@@ -280,7 +321,7 @@
       "status": "inconclusive",
       "source_path": "research/registry/claims.yaml",
       "source_pointer": "/4",
-      "source_sha256": "a396f9e0e2dc49d9db8f505ce1604acfae9308ccf316ca8a281f129ad3517fbb",
+      "source_sha256": "dc91384fbf9d898b7790648726aa955dfadfd6eb23e83cb1e47666ef54f3625f",
       "source_object": {
         "id": "CLAIM-STOR-001",
         "claim": "Das .b5d-Format ermöglicht verlustfreie Serialisierung und Deserialisierung des vollständigen Netzwerkzustands.",

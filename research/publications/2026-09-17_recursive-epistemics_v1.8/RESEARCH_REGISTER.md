@@ -125,6 +125,38 @@ Typ: `claim`; Quellstatus: `inconclusive`; Quelle: [research/registry/claims.yam
 }
 ```
 
+## CLAIM-EVAL-006
+
+Typ: `claim`; Quellstatus: `inconclusive`; Quelle: [research/registry/claims.yaml](../../registry/claims.yaml), JSON-Pointer `/8`.
+
+```json
+{
+  "id": "CLAIM-EVAL-006",
+  "claim": "Unter dem eingefrorenen V2-Protokoll konformieren die deklarierten MHRN-Einzelzellverträge für Izhikevich-2003, lif-current-v1 und das separat klassifizierte Refractory-Semantik-Mapping mit der gematchten Brian2-2.10.1-Referenz innerhalb der präregistrierten Toleranzen.",
+  "research_question": "RQ-EVAL-006",
+  "hypothesis": "H-EVAL-006-A",
+  "evidence": [],
+  "experiments": [
+    "EXP-STAGE0-20260916-MODEL-CONFORMANCE-V2",
+    "EXP-STAGE0-20260918-MODEL-CONFORMANCE-V2-PROMO-R1"
+  ],
+  "sources": [
+    "SRC-IZHIKEVICH-2003",
+    "SRC-GERSTNER-2014"
+  ],
+  "status": "inconclusive",
+  "confidence": "low",
+  "required_evidence": [
+    "preregistered_model_conformance",
+    "human_scientific_review",
+    "evidence_engine_provenance"
+  ],
+  "minimum_runs": 1,
+  "created": "2026-09-18",
+  "updated": "2026-09-18"
+}
+```
+
 ## CLAIM-SELF-001
 
 Typ: `claim`; Quellstatus: `untested`; Quelle: [research/registry/claims.yaml](../../registry/claims.yaml), JSON-Pointer `/6`.
