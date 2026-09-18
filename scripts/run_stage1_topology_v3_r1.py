@@ -436,7 +436,7 @@ def render_report(
 
 def main() -> int:
     prereg = read_json(PREREG)
-    if prereg["protocol"] != "topology_propagation_v3_time_resolved_replication":
+    if prereg["protocol"] != "topology_propagation_v3_r1_time_resolved_replication":
         raise RuntimeError("unexpected protocol")
     if prereg.get("execution_authorized") is not True:
         raise RuntimeError("execution not authorized")
