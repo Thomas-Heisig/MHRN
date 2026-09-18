@@ -32,11 +32,36 @@ EVIDENCE_DIR.mkdir(exist_ok=True)
 
 
 def _next_evidence_id() -> str:
-    """Generate the next evidence ID: EVID-{YYYY}-{NN}."""
+    """Generate a monotonic evidence ID without reusing retired identifiers."""
     year = datetime.now().year
-    existing = list(EVIDENCE_DIR.glob(f"EVID-{year}-*.json"))
-    n = len(existing) + 1
-    return f"EVID-{year}-{n:02d}"
+    prefix = f"EVID-{year}-"
+    used_numbers: list[int] = []
+
+    for path in EVIDENCE_DIR.glob(f"{prefix}*.json"):
+        suffix = path.stem.removeprefix(prefix)
+        if suffix.isdigit():
+            used_numbers.append(int(suffix))
+
+    retired_path = EVIDENCE_DIR / "retired_ids.json"
+    if retired_path.is_file():
+        try:
+            retired_raw: object = json.loads(retired_path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            retired_raw = {}
+        if isinstance(retired_raw, dict):
+            retired = cast(dict[str, object], retired_raw).get("retired_evidence_ids", [])
+            if isinstance(retired, list):
+                for item in retired:
+                    if not isinstance(item, dict):
+                        continue
+                    evidence_id = cast(dict[str, object], item).get("evidence_id")
+                    if isinstance(evidence_id, str) and evidence_id.startswith(prefix):
+                        suffix = evidence_id.removeprefix(prefix)
+                        if suffix.isdigit():
+                            used_numbers.append(int(suffix))
+
+    n = max(used_numbers, default=0) + 1
+    return f"{prefix}{n:02d}"
 
 
 _INVALID_EVIDENCE_STATUSES = frozenset(
@@ -336,15 +361,18 @@ class EvidenceEngine:
         # Update claim
         claim = self.registry.claims.get(claim_id)
         if claim:
-            claim.evidence.append(evidence_id)
-            claim.experiments.append(experiment_id)
+            if evidence_id not in claim.evidence:
+                claim.evidence.append(evidence_id)
+            if experiment_id not in claim.experiments:
+                claim.experiments.append(experiment_id)
             self._update_claim_status(claim)
             self.registry.save_claims()
 
         # Update hypothesis
         hypothesis = self.registry.hypotheses.get(hypothesis_id)
         if hypothesis:
-            hypothesis.evidence.append(evidence_id)
+            if evidence_id not in hypothesis.evidence:
+                hypothesis.evidence.append(evidence_id)
             self._update_hypothesis_status(hypothesis)
             self.registry.save_hypotheses()
 
