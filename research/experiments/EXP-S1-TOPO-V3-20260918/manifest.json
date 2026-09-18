@@ -1,0 +1,97 @@
+{
+  "artifacts_sha256": {
+    "config": "6f6cd457caf6216c286fee47ef03b529a0b496ed2dd53ee96b85d3b51e7b3a1c",
+    "evaluation_data": "2a5c223612fcfb29c5e1ce11a4cc6aafe8ea256a79163f1f798dbfe39216a46b",
+    "preregistration": "73b07b6266e7a80852bf29be243a1e6932022190b81453cc4fb9fcd7dec6cf5c",
+    "runner_source": "bcdb64f76aaa73e05f8b5f1aee954b9efc3cc970f8ac5620c83a997c43402a4c",
+    "statistics": "a48df41845d848e4920e0b4c607e2583670893ab851c50acbfd218d13b347502"
+  },
+  "automatic_evidence_promotion": false,
+  "claim_boundary": "This protocol is an internal preregistered Stage-1 replication/robustness test of RQ-SNN-003/H-SNN-003-B. It does not constitute independent external replication, does not test a 5D advantage, does not establish scaling, cognition or biological equivalence, and creates DATA rather than EVID.",
+  "design": {
+    "conditions": [
+      "1d",
+      "2d",
+      "3d",
+      "5d",
+      "5d_shuffled",
+      "random_graph"
+    ],
+    "evaluation_seeds": [
+      6101,
+      6102,
+      6103,
+      6104,
+      6105,
+      6106,
+      6107,
+      6108,
+      6109,
+      6110,
+      6111,
+      6112,
+      6113,
+      6114,
+      6115,
+      6116,
+      6117,
+      6118,
+      6119,
+      6120
+    ],
+    "primary_contrasts": [
+      [
+        "1d",
+        "2d"
+      ],
+      [
+        "2d",
+        "3d"
+      ],
+      [
+        "3d",
+        "5d"
+      ],
+      [
+        "5d",
+        "5d_shuffled"
+      ],
+      [
+        "5d",
+        "random_graph"
+      ]
+    ],
+    "primary_endpoints": [
+      "activation_auc_0_32",
+      "half_activation_latency_censored"
+    ],
+    "replication_endpoint": "first_output_latency_censored",
+    "synaptic_weight": 55.0
+  },
+  "experiment_id": "EXP-S1-TOPO-V3-20260918",
+  "experiment_status": "completed",
+  "hypothesis": "H-SNN-003-B",
+  "protocol": "topology_propagation_v3_time_resolved_replication",
+  "research_question": "RQ-SNN-003",
+  "results": {
+    "ceiling_resolution_supported": true,
+    "design_integrity_passed": true,
+    "evaluation_run_count": 120,
+    "replication_supported": true,
+    "status": "SUPPORTED_WITHIN_PREREGISTERED_PROTOCOL"
+  },
+  "schema_version": 1,
+  "scientific_evidence": false,
+  "software": {
+    "github_run_id": "35373695463",
+    "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
+    "python": "3.13.15 (main, Aug  6 2026, 02:15:18) [GCC 13.3.0]"
+  },
+  "source_freeze": {
+    "branch": "experiment/stage1-topology-v3-time-resolved-20260918",
+    "commit": "4bd92e6d9d1e830292f9e4fbbbebdcb8e54493b3",
+    "dirty_before_execution": false,
+    "status_before_execution": []
+  },
+  "stage": 1
+}
