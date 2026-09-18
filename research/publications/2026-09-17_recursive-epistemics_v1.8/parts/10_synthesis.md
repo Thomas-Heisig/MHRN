@@ -226,3 +226,66 @@ Erstens ist der Determinismusbefund für `RQ-DET-001` jetzt semantisch besser ei
 Zweitens wird `EXP-GEN-0047` nicht mehr als scheinbarer Topologie-Nullbefund gelesen. Die wissenschaftlich stärkere Aussage lautet, dass `topology_propagation_v1` die Zielhypothese nicht angemessen operationalisiert hat. Das ist keine Schwächung der Forschung, sondern eine Reduktion von Fehlinterpretation: ein inadäquates Design wird als Designproblem markiert, nicht als Widerlegung einer Hypothese.
 
 Drittens ergibt sich daraus eine übergreifende Reiferegel für MHRN: **ein Experiment darf erst dann eine Hypothese tragen, wenn semantische Zuordnung, kausale Wirksamkeit des manipulierten Faktors, Aktivitätsadäquanz, Provenienz und vorab definierte Auswertung gleichzeitig ausreichend sind.** Diese Regel ist inzwischen selbst ein Ergebnis der Schaffensgeschichte, weil sie aus konkreten Fehlklassifikationen und Reviews hervorgegangen ist.
+
+## 47.12 General Discussion
+
+Die vorherigen Abschnitte bilanzieren einzelne Ergebnisse. Eine dissertationsähnliche Gesamtarbeit benötigt darüber hinaus eine **General Discussion**, in der die Teilstudien gemeinsam auf die Leitfrage zurückbezogen werden.
+
+### 47.12.1 Rückbezug auf die zentrale Leitfrage
+
+Die bisherige Forschung spricht dafür, dass eine evolvierende SNN-Architektur wissenschaftlich kontrollierbar bleibt, wenn technische Implementierung, kausale Intervention, DATA, Review, EVID und Claim als getrennte Zustände behandelt werden. Diese Aussage ist stärker durch die **Korrekturen** des Projekts gestützt als durch eine einzelne positive Demonstration: SemanticMemory wurde nach stärkeren Kontrollen eingegrenzt; 5D-v1 wurde nicht zum Nullbefund erklärt; Dirty-Tree-Provenienz blockiert Evidenzpromotion; synthetisches Embodiment wird nicht als Realwelt-Autonomie ausgegeben.
+
+Damit beantwortet die Arbeit ihre Leitfrage bislang nicht mit „MHRN funktioniert als vollständige kognitive Architektur“, sondern enger: **MHRN ist zu einem Forschungsrahmen geworden, in dem stärkere Behauptungen zunehmend an explizite Bedingungen gebunden und durch negative Ergebnisse revidierbar werden.**
+
+### 47.12.2 Zusammenhang der empirischen Teilstudien
+
+Die Teilstudien bilden keine unabhängige Sammlung. Basale Determinismusarbeit begrenzt, welche Unterschiede überhaupt als Mechanismuseffekt interpretierbar sind. Rekurrenz- und Topologiearbeit bestimmt, welche Dynamik aus Netzwerkstruktur stammt. Plastizitätsstudien fragen, ob veränderbare Gewichte funktional relevant werden. MSBA und Embodiment erweitern den Kausalraum auf Modalitäten und Wirkung. Gedächtnis-/Replay-Studien prüfen schließlich, ob über Zeit erhaltene Leistung wirklich einer spezifischen Repräsentation oder nur Wiederholung zuzuschreiben ist.
+
+Diese Kette erzeugt eine kumulative Logik: Jede spätere kognitive Behauptung setzt mehrere frühere methodische Verträge voraus.
+
+### 47.12.3 Theoretische Implikationen
+
+Drei theoretische Konsequenzen sind derzeit tragfähig genug, um als Arbeitspositionen festgehalten zu werden:
+
+1. **Architektur ist kein Beweis ihrer Funktion.** Ein Modulname oder technischer Pfad besitzt keine wissenschaftliche Bedeutung ohne passende Intervention und Kontrolle.
+2. **Negative Evidenz ist architekturbildend.** Wenn ein komplexerer Mechanismus keinen Zusatznutzen gegenüber einer einfacheren Referenz zeigt, muss die Theorie enger werden oder der Mechanismus eine neue, separat prüfbare Rolle erhalten.
+3. **Kausalität und Provenienz sind gekoppelt.** Ein Effekt ist wissenschaftlich schwächer, wenn unklar bleibt, welche Version, Konfiguration, Quelle oder Entscheidung ihn erzeugt hat.
+
+Diese Positionen verbinden die empirische und epistemologische Achse der Arbeit.
+
+### 47.12.4 Methodischer Beitrag
+
+Der methodische Eigenanteil der Gesamtarbeit liegt vor allem in der Integration von Research Software Engineering und wissenschaftlicher Governance: RQ/H-Register, Präregistrierung, source-bound DATA, Human Review, EVID-Status, Hash-/Clean-Tree-Provenienz, dokumentierte Testadäquanz und ein Viewer, der diese Grenzen sichtbar hält.
+
+Diese Infrastruktur ist nicht automatisch neu gegenüber der gesamten Wissenschaftspraxis. Ihr möglicher Beitrag liegt in der **konkreten Zusammenführung innerhalb eines evolvierenden neuronalen Forschungsframeworks** und in der Tatsache, dass Architekturentscheidungen direkt an den Ausgang von Experimenten gebunden werden.
+
+### 47.12.5 Limitationen und interne Validität
+
+Die wichtigsten internen Grenzen sind:
+
+- mehrere frühe Studien waren explorativ, diagnostisch oder für stärkere Claims unterpowert;
+- nicht jede historische RQ/H-Zuordnung war semantisch sauber;
+- einige wichtige Läufe besitzen Provenienzblöcke wie `git dirty`;
+- die 5D-v1-Manipulation war nicht testadäquat;
+- mehrere Stage-Scores stammen aus Engineeringkriterien und dürfen nicht als Fähigkeitsskalen gelesen werden;
+- der nächste SemanticMemory-Kompressionstest besitzt noch keinen final eingefrorenen RQ/H-/Analysevertrag.
+
+Diese Punkte begrenzen Claims, entwerten aber nicht automatisch die zugrunde liegenden DATA.
+
+### 47.12.6 Externe Validität und Generalisierbarkeit
+
+Die meisten Experimente laufen in synthetischen, deterministischen oder stark kontrollierten Umgebungen. Daraus folgt keine direkte Übertragbarkeit auf biologische Nervensysteme, reale Robotik, offene Weltumgebungen oder allgemeine Kognition. Ebenso stammen Entwicklung, Ausführung und ein großer Teil der Reviewarbeit aus derselben Autor-/Toolkette.
+
+Externe Validität erfordert deshalb künftig mindestens drei zusätzliche Ebenen: unabhängige Replikation, alternative Implementierungen/Umgebungen und fachlich externe Kritik. Erst damit kann aus einem gut kontrollierten Projektbefund ein stärker generalisierbarer wissenschaftlicher Beitrag werden.
+
+### 47.12.7 Forscherposition und mögliche Verzerrungen
+
+Die Nähe des Autors zum System ermöglicht schnelle Fehlerkorrektur und tiefe Kenntnis der Artefakte, erhöht aber Risiken von Bestätigungsbias, Selektionsbias und nachträglicher Kohärenzbildung. KI-Unterstützung verstärkt zugleich Such- und Synthesekapazität und erzeugt neue Abhängigkeits- und Quellenrisiken.
+
+Die Antwort der Arbeit darauf ist keine Behauptung von Neutralität, sondern **sichtbare Gegenmaßnahmen**: Frozen Designs, negative Ergebnisse, Quarantäne unbestätigter Quellen, klare Statusgrenzen, historische Provenienz und das Offenlassen nicht beantworteter Fragen.
+
+### 47.12.8 Gesamtschlussfolgerung
+
+Der stärkste Beitrag von Edition 1.8 liegt damit noch nicht in einer bestätigten Theorie allgemeiner Intelligenz oder eines 5D-Gehirns. Er liegt in einer **empirisch selektierten, revidierbaren Forschungsarchitektur**, deren einzelne Mechanismen zunehmend getrennt geprüft werden und deren eigener Forschungsprozess Gegenstand methodischer Kontrolle geworden ist.
+
+Der Dissertationscharakter entsteht gerade aus dieser Verbindung: historische Problemgenese, theoretischer Rahmen, operationalisierte Teilfragen, Methoden, Teilstudien, negative und positive Resultate, General Discussion, Limitationen und eine explizite Forschungsagenda bilden ein zusammenhängendes Argument statt einer Sammlung von Features.
