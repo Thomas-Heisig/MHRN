@@ -237,14 +237,14 @@ Grenze: Historical DATA/manifests remain immutable; semantic alignment does not 
 
 ## CORPUS-LP-20260917194217 — Approved Stage-6 compression learning proposal LP-20260917194217
 
-Rolle: `approved human-origin proposal; not executed`  
+Rolle: `historical approved proposal plus source-bound revision requiring reapproval; neither executed`  
 Status: `semantically_integrated_as_proposal_only`  
-Modus: `prospective_stage6_compression_hypothesis_and_controls`  
+Modus: `prospective_stage6_compression_hypothesis_source-binding_revision_and_controls`  
 Teile: IV, X, XI
 
-Quellpfade: `research/learning/preparations/LP-20260917194217.json`; `research/learning/preparations/LP-20260917194217-approved.json`
+Quellpfade: `research/learning/preparations/LP-20260917194217.json`; `research/learning/preparations/LP-20260917194217-approved.json`; `research/learning/preparations/LP-20260917194217-R1.json`
 
-Grenze: authority=proposal_only, executed=false, runtime_authority=none; CL-002-EVID and CL-003-DATA are SHA-256-bound with VERIFIED trust, while execution authorization/freeze/seed-task/analysis contracts remain prospective; approval is not execution, DATA or EVID.
+Grenze: Original LP-20260917194217 and its approval remain unchanged; R1 records exact CL-002-EVID and CL-003-DATA SHA-256 digests with VERIFIED trust but requires explicit new Human Approval before any execution authorization. All artifacts remain executed=false; approval/source binding are not DATA or EVID.
 
 ## CORPUS-CURRENT-HUMAN-REVIEWS — Current human reviews of determinism and topology test adequacy
 
