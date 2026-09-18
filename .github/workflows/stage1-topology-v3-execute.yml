@@ -1,0 +1,43 @@
+name: Execute Stage-1 topology v3
+
+on:
+  push:
+    branches:
+      - experiment/stage1-topology-v3-time-resolved-20260918
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  execute:
+    if: ${{ !contains(github.event.head_commit.message || '', '[stage1-v3-data]') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+          ref: ${{ github.ref_name }}
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.13"
+
+      - name: Install project
+        run: python -m pip install -e '.[dev]'
+
+      - name: Execute preregistered Stage-1 v3
+        run: python scripts/run_stage1_topology_v3.py
+
+      - name: Verify source-bound DATA
+        run: python scripts/verify_stage1_topology_v3.py
+
+      - name: Commit DATA artifacts
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research/experiments/EXP-S1-TOPO-V3-20260918
+          git commit -m "research(stage1): add topology v3 DATA [stage1-v3-data]"
+          git push origin HEAD:${{ github.ref_name }}
