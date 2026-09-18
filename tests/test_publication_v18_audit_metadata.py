@@ -204,3 +204,27 @@ def test_scientific_balance_has_explicit_5d_and_compression_roadmaps() -> None:
     assert "Präregistrierungsvorbereitung" in balance
 
 # fmt: on
+
+def test_publication_keeps_dissertation_research_architecture() -> None:
+    manuscript = (EDITION / "MANUSCRIPT.md").read_text(encoding="utf-8")
+    required = (
+        "Forschungsproblem, Leitfrage und dissertationsähnliche Gesamtarchitektur",
+        "Übergeordnetes Forschungsproblem",
+        "Zentrale Leitfrage",
+        "Arbeitsleitthese",
+        "Teilstudie A — Basale Dynamik, Referenzkonformität und Determinismus",
+        "Teilstudie B — Rekurrenz, Topologie und 5D-Geometrie",
+        "Teilstudie C — Plastizität, Lernen und adaptive Stabilität",
+        "Teilstudie D — Spezialisierte Pfade, Neural Symbiosis und MSBA",
+        "Teilstudie E — Kontrolliertes synthetisches Embodiment",
+        "Teilstudie F — Gedächtnis, Replay, semantische Verdichtung und Weltmodell",
+        "Epistemologische Teilstudie — Forschungsprozess als Untersuchungsgegenstand",
+        "Normative Teilstudie — Forschungsfrage, Verfahren und Geltungsgrenzen",
+        "Theorieentwicklungsstudie — Rekursive Epistemik als prüfbare Arbeitshypothese",
+        "General Discussion",
+        "Limitationen und interne Validität",
+        "Externe Validität und Generalisierbarkeit",
+        "Forschungsagenda und Abschlusskriterien der Teilstudien",
+    )
+    for item in required:
+        assert item in manuscript
