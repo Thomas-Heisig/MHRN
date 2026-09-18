@@ -132,6 +132,30 @@ def main() -> int:
         if not recomputed_integrity["pass"]:
             fail("design integrity did not pass", errors)
 
+    censor_sentinel = int(prereg["matched_budgets"]["evaluation_ticks"]) + 1
+    endpoint_diagnostics: dict[str, Any] = {}
+    for condition in CONDITIONS:
+        rows = [row for row in evaluation if str(row["condition"]) == condition]
+        active_values = sorted({float(row["active_fraction"]) for row in rows})
+        latency_values = sorted(
+            {int(row["first_output_latency_censored"]) for row in rows}
+        )
+        censored_count = 0
+        for row in rows:
+            latency = row.get("first_output_latency")
+            censored = int(row["first_output_latency_censored"])
+            if latency is None:
+                censored_count += 1
+                if censored != censor_sentinel:
+                    fail(f"censor sentinel mismatch: {condition}", errors)
+            elif censored != int(latency):
+                fail(f"uncensored latency mismatch: {condition}", errors)
+        endpoint_diagnostics[condition] = {
+            "active_fraction_unique_values": active_values,
+            "first_output_latency_censored_unique_values": latency_values,
+            "censored_output_runs": censored_count,
+        }
+
     candidates = [float(v) for v in prereg["calibration"]["candidate_synaptic_weights"]]
     recomputed_gates: list[dict[str, Any]] = []
     selected: float | None = None
@@ -167,6 +191,11 @@ def main() -> int:
         "chosen_synaptic_weight": chosen_weight,
         "calibration_runs": len(calibration),
         "evaluation_runs": len(evaluation),
+        "censor_sentinel": censor_sentinel,
+        "endpoint_diagnostics": endpoint_diagnostics,
+        "total_censored_output_runs": sum(
+            int(item["censored_output_runs"]) for item in endpoint_diagnostics.values()
+        ),
         "source_freeze": manifest["source_freeze"].get("commit"),
         "errors": errors,
     }

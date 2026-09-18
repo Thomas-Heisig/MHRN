@@ -43,7 +43,9 @@ class ReportBuilder:
     def __init__(self, registry: ResearchRegistry):
         self.registry = registry
         self._evidence_records: dict[str, EvidenceRecord] = {}
+        self._experiment_links: dict[str, set[str]] = {}
         self._load_evidence_records()
+        self._load_experiment_links()
 
     def _load_evidence_records(self) -> None:
         """Load all EVID-*.json files from the evidence directory."""
@@ -58,6 +60,47 @@ class ReportBuilder:
                     self._evidence_records[ev.evidence_id] = ev
             except Exception:
                 continue
+
+    def _load_experiment_links(self) -> None:
+        """Index source-bound experiment manifests as DATA links, never as EVID."""
+        self._experiment_links = {}
+        experiments_dir = self.registry.registry_dir.parent / "experiments"
+        if not experiments_dir.is_dir():
+            return
+        for manifest_path in sorted(experiments_dir.glob("*/manifest.json")):
+            try:
+                raw = json.loads(manifest_path.read_text(encoding="utf-8"))
+            except (OSError, json.JSONDecodeError):
+                continue
+            if not isinstance(raw, dict):
+                continue
+            data = raw
+            experiment_id = str(data.get("experiment_id") or manifest_path.parent.name)
+            question_ids: set[str] = set()
+            direct_question = data.get("research_question")
+            if isinstance(direct_question, str) and direct_question:
+                question_ids.add(direct_question)
+            direct_questions = data.get("research_questions")
+            if isinstance(direct_questions, list):
+                question_ids.update(
+                    str(value) for value in direct_questions if isinstance(value, str) and value
+                )
+            hypothesis_ids: set[str] = set()
+            direct_hypothesis = data.get("hypothesis")
+            if isinstance(direct_hypothesis, str) and direct_hypothesis:
+                hypothesis_ids.add(direct_hypothesis)
+            direct_hypotheses = data.get("hypotheses")
+            if isinstance(direct_hypotheses, list):
+                hypothesis_ids.update(
+                    str(value) for value in direct_hypotheses if isinstance(value, str) and value
+                )
+            for hypothesis_id in hypothesis_ids:
+                hypothesis = self.registry.hypotheses.get(hypothesis_id)
+                if hypothesis is not None:
+                    question_ids.add(hypothesis.research_question)
+            for question_id in question_ids:
+                if question_id in self.registry.questions:
+                    self._experiment_links.setdefault(question_id, set()).add(experiment_id)
 
     def _evidence_for_question(self, question_id: str) -> set[str]:
         """Return all evidence IDs linked to a research question.
@@ -97,7 +140,8 @@ class ReportBuilder:
         hypothesis_ids = {h.id for h in hypotheses}
         claims = self.registry.claims_for_question(question_id)
         claim_ids = {c.id for c in claims}
-        result = {experiment for claim in claims for experiment in claim.experiments}
+        result = set(self._experiment_links.get(question_id, set()))
+        result.update(experiment for claim in claims for experiment in claim.experiments)
         for ev in self._evidence_records.values():
             if not ev.experiment_id:
                 continue
