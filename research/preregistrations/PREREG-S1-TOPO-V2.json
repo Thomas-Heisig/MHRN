@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "preregistration_id": "PREREG-S1-TOPO-V2",
+  "stage": 1,
+  "research_question": "RQ-SNN-003",
+  "hypothesis": "H-SNN-003-B",
+  "protocol": "topology_propagation_v2",
+  "mode": "CONFIRMATORY_AFTER_INDEPENDENT_ACTIVITY_CALIBRATION",
+  "execution_authorized": true,
+  "scientific_evidence": false,
+  "automatic_evidence_promotion": false,
+  "design_rationale": "The v1 protocol used three neurons and two explicitly fixed feed-forward synapses, so dimensional coordinates barely affected the causal transfer mechanism. V2 makes topology causal by constructing matched-size directed graphs from geometry while holding node count, edge-count schedule, synaptic weight, delay, stimulus, neuron model and evaluation window fixed.",
+  "conditions": {
+    "1d": [64, 1, 1, 1, 1],
+    "2d": [8, 8, 1, 1, 1],
+    "3d": [4, 4, 4, 1, 1],
+    "5d": [4, 2, 2, 2, 2],
+    "5d_shuffled": [4, 2, 2, 2, 2],
+    "random_graph": [4, 2, 2, 2, 2]
+  },
+  "matched_budgets": {
+    "neuron_count": 64,
+    "out_degree_cap": 4,
+    "edge_count_rule": "sum_i min(4, N-i-1), identical for all conditions",
+    "delay_ticks": 1,
+    "stimulus_input_labels": [0, 1, 2, 3],
+    "output_labels": [60, 61, 62, 63],
+    "stimulus_current": 100.0,
+    "stimulus_ticks": 1,
+    "evaluation_ticks": 128
+  },
+  "topology_mechanism": {
+    "rank_constraint": "edges are directed from lower canonical label to higher canonical label to keep the small-network propagation test acyclic and prevent recurrence from confounding Stage 1",
+    "geometric_conditions": "for each source label, connect to the nearest future labels under normalized Euclidean distance; seed is used only to break exact distance ties deterministically",
+    "5d_shuffled": "shuffle the 5D coordinate-to-label assignment before geometric edge construction while keeping labels, node count, edge-count schedule, weights, delays and stimulus fixed",
+    "random_graph": "sample future targets uniformly without replacement with the identical out-degree schedule"
+  },
+  "calibration": {
+    "purpose": "activity adequacy only; not a hypothesis test",
+    "seeds": [1101, 1102, 1103, 1104],
+    "candidate_synaptic_weights": [55.0, 65.0, 75.0, 85.0, 100.0],
+    "selection_rule": "choose the lowest candidate weight for which every condition has median active_fraction >= 0.25, median output_reach_fraction >= 0.25, and median delivered_events >= 32",
+    "forbidden_selection_inputs": ["between-condition effect size", "p-value", "hypothesis support", "direction of 5D effect"]
+  },
+  "evaluation": {
+    "seeds": [2101, 2102, 2103, 2104, 2105, 2106, 2107, 2108, 2109, 2110, 2111, 2112, 2113, 2114, 2115, 2116, 2117, 2118, 2119, 2120],
+    "primary_endpoints": ["active_fraction", "first_output_latency_censored"],
+    "secondary_endpoints": ["output_reach_fraction", "total_spikes", "delivered_events", "last_activity_tick"],
+    "primary_contrasts": [
+      ["1d", "2d"],
+      ["2d", "3d"],
+      ["3d", "5d"],
+      ["5d", "5d_shuffled"],
+      ["5d", "random_graph"]
+    ],
+    "paired_by_seed": true,
+    "test": "exact two-sided paired sign test on non-zero differences",
+    "multiple_testing": "Holm correction across all primary endpoint/contrast tests",
+    "effect_interval": "deterministic paired bootstrap 95% CI for the median difference, 5000 resamples",
+    "alpha": 0.05
+  },
+  "activity_adequacy_gate": {
+    "status_rule": "PASS only when the preregistered calibration selection rule yields a weight; otherwise evaluation is not executed and the hypothesis remains NOT_TESTED"
+  },
+  "decision_rule": {
+    "supported_within_protocol": "activity gate PASS and at least one preregistered primary contrast/end-point has Holm-adjusted p < 0.05 and bootstrap CI excluding zero",
+    "no_detected_difference": "activity gate PASS but the supported_within_protocol rule is not met",
+    "not_tested": "activity gate FAIL or an execution/integrity error occurs"
+  },
+  "claim_boundary": "This protocol tests RQ-SNN-003/H-SNN-003-B for a 64-neuron Stage-1 topology-sensitive propagation regime. It is not evidence for RQ-5D-005/H-5D-005-A, does not test a 5D advantage, does not establish scaling, cognition, biological equivalence or independent replication, and creates DATA rather than EVID.",
+  "local_review": {
+    "verification_command": "python scripts/verify_stage1_topology_v2.py",
+    "raw_data_paths": [
+      "research/experiments/EXP-S1-TOPO-V2-20260918/data/calibration.json",
+      "research/experiments/EXP-S1-TOPO-V2-20260918/data/evaluation.json"
+    ]
+  }
+}
