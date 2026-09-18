@@ -323,7 +323,7 @@ Stage 8 enthält Continual-Learning- und Interferenzprogramme sowie Vorläufer-D
 
 Der Human Review klassifizierte `RQ-5D-005` deshalb für diesen Teilversuch als **NOT TESTED** hinsichtlich eines genuinen Geometrieeffekts. Künftige 5D-Prüfungen müssen vorab definieren, über welchen Mechanismus Dimension wirken darf — etwa Nachbarschaft, distanzabhängige Konnektivität, Delays oder Plastizität — und benötigen Aktivitäts-Adequanz, matched topology/degree, Shuffle- und Random-Graph-Kontrollen. Das ist ein wichtiger Erkenntnisfortschritt: Ein ungeeignetes Experiment darf nicht als Nullbefund gegen eine Hypothese interpretiert werden.
 
-## 13.2 Periphere Netze, Neural Symbiosis und MSBA
+## 13.3 Periphere Netze, Neural Symbiosis und MSBA
 
 Die kanonische Architektur enthält neben dem SNN-Kern eine explizite periphere Multi-Netz-Grenze. **Neural Symbiosis** bezeichnet dabei keine zweite Intelligenz im Kern, sondern eine Embodiment-Schicht, in der spezialisierte neuronale oder virtuelle Verarbeitungssysteme über deklarierte Gateways an den SNN angebunden werden können. Der offene Adaptervertrag kann unter anderem CNN-, Vision-Transformer-, Transformer-, RNN-/LSTM-/GRU-, GNN-, Reservoir-, Hopfield-, VAE-, Autoencoder-, multimodale und neuro-symbolische Komponenten beschreiben. Ebenso können Datenbanken, Wissensgraphen, Retrieval-, Logik- oder externe Speicherdienste als virtuelle Areale auftreten.
 
@@ -339,7 +339,7 @@ Eine besonders wichtige Korrektur betrifft Dimensionalität. Der MSBA-Projektion
 
 Auch Ressourcenangaben bleiben typisiert: `normalized_energy_units`, kalibrierte Schätzungen in Joule und tatsächlich gemessene Joule sind drei verschiedene Größen. Die Stage-4-E01–E05-DATA dürfen deshalb modellierte Energieunterschiede zeigen, ohne daraus physikalisch gemessene Energieeffizienz abzuleiten.
 
-## 13.3 Wesen, reale Körpergrenze und technische Identität
+## 13.4 Wesen, reale Körpergrenze und technische Identität
 
 Die Vorgängerarbeiten entwickelten mit **Wesen** eine maschinen-native Körperdarstellung. Wissenschaftlich relevant ist daran nicht die visuelle Anthropomorphie, sondern die harte Trennung von beobachtetem Zustand und Interpretation. Die Körpergrenze wird aus tatsächlich erkannten Verbindungen, Host-Ressourcen und Embodiment-Endpunkten aufgebaut. Nicht vorhandene Temperatur-, Lüfter-, Sensor- oder Aktorwerte bleiben unbekannt; es werden keine plausibel wirkenden Ersatzdaten erfunden. `available` ist ausdrücklich nicht gleich `authorized` und nicht gleich `active`.
 
@@ -449,7 +449,7 @@ Für `SemanticMemory` bedeutet dies: Ein negativer Zusatznutzen gegenüber Raw-R
 
 Damit wird der Forschungsprozess selbst selektiv: Nicht jede technisch mögliche Erweiterung erhält automatisch einen Platz im Kern.
 
-## 19.6 Neural-Symbiosis- und MSBA-Forschungsprogramm
+## 19.4 Neural-Symbiosis- und MSBA-Forschungsprogramm
 
 Die Architekturarbeit an Neural Symbiosis erzeugt ein eigenes falsifizierbares Programm, dessen Hypothesen nicht mit der bloßen Existenz der Pipeline verwechselt werden dürfen. Relevante Fragen sind beispielsweise, ob task-relevante periphere Areale gegenüber informationsgematchten irrelevanten Kontrollen stärkeren effektiven Gateway-Einfluss erwerben, ob verrauschte Areale selektiv unterdrückt werden, ob Gateway-Struktur nach Kontrolle roher Aktivität mit prädiktiver Information variiert und ob nach Sensorläsion adaptive Umleitung gegenüber Frozen- oder Random-Kontrollen tatsächlich Leistung erhält.
 
@@ -457,13 +457,13 @@ Für solche Studien sind mindestens Frozen-, Random-, Shuffle-/Timing- und infor
 
 Das MSBA-Programm E01–E05 operationalisiert einen Teil dieses Raums bereits für Audio, Vision und Digital. Die bisherigen synthetischen DATA werden in Teil III und X bilanziert; ihre stärkere wissenschaftliche Prüfung verlangt weiterhin spezialisierte-vs.-generalistische matched controls, Cross-Modal-Transfer, Läsionsstudien, reale Ressourcenmessung und unabhängige Review. Increased-dimensional MSBA-Projektionen müssen außerdem strukturierte, reduzierte, randomisierte und geshuffelte Mappingkontrollen enthalten und dürfen nicht als Kerndimensionalitätsstudie ausgegeben werden.
 
-## 19.7 Externe Mechanismusvorarbeiten für Stage 6
+## 19.5 Externe Mechanismusvorarbeiten für Stage 6
 
 Die kanonische Related-Work-Arbeit präzisiert mehrere externe Referenzlinien. Arbeiten zu hippocampal-kortikaler Semantization und continual learning motivieren Replay-/Konsolidierungsfragen, ohne einen MHRN-SemanticMemory-Mechanismus zu validieren [D'Alba et al., 2025](REFERENCES.md#ref-DALBA2025) [Shi et al., 2025](REFERENCES.md#ref-SHI2025). Eine aktuelle SNN-Predictive-Coding-Übersicht zeigt, dass Prediction Error auf unterschiedliche Weise neuronal repräsentiert werden kann; ein Telemetriefeld gleichen Namens ist daher noch kein Predictive-Coding-Mechanismus [N'dri et al., 2026](REFERENCES.md#ref-NDRI2026). Spiking-World-Model-Arbeit mit expliziter modellbasierter Kontrolle setzt eine deutlich stärkere Referenz als ein passiver One-Step-Predictor [Sun et al., 2025](REFERENCES.md#ref-SUN2025). Multi-Zeitskalen-Plastizität mit astrozyteninspiriertem Gating zeigt einen externen Mechanismuskandidaten für Stabilitäts-/Plastizitätsfragen, ist aber kein Wirksamkeitsnachweis der MHRN-Regelung [Dong & He, 2026](REFERENCES.md#ref-DONG2026).
 
 Diese Literatur wird in 1.8 bewusst als **externer Präzedenz-/Vergleichsraum** integriert. Sie kann die Form einer MHRN-Forschungsfrage verbessern, aber weder DATA erzeugen noch eine interne Hypothese bestätigen.
 
-## 19.8 Determinismus-Registry, AIRR und Testadäquanz
+## 19.6 Determinismus-Registry, AIRR und Testadäquanz
 
 Zwei Entscheidungen vom 17. September 2026 präzisieren die Verwendung der jüngsten SNN-DATA. Erstens bleibt der historische Lauf `EXP-BATCH-20260914074039-02` unverändert `RQ-SNN-002` zugeordnet. Seine beobachtete Condition `same_seed_tonic_replica_pair` ist für diese historische Registrierung ein semantischer Mismatch und darf nicht post hoc umetikettiert werden. Der technische Befund kann als Determinismusdiagnostik zitiert werden, aber nur gemeinsam mit dieser Provenienzgrenze.
 
@@ -477,7 +477,7 @@ Die einzige deskriptive Abweichung des v1-Laufs — eine um einen Tick frühere 
 
 Für `topology_propagation_v2` gilt deshalb ein stärkerer prospektiver Vertrag: mindestens 1.000 Neuronen pro Condition, im Mittel mindestens zehn eingehende Synapsen, gematchte globale Struktur/Parameter/Stimulusenergie, explizite Kopplung von Geometriedistanz an Konnektivitätswahrscheinlichkeit und/oder Delay, die sechs genannten Kontrollen einschließlich degree-/density-matched Random Graph, multi-neuronaler Input, First-Arrival-/Reach-Verteilungen als Primärgrößen, Activity-Adequacy-Gate, mehrere unabhängige Seeds, vorab eingefrorene Inferenzregel und clean-tree Provenienz. Diese Werte sind Mindestschwellen für die nächste Testgeneration, keine Behauptung allgemeiner Suffizienz.
 
-## 19.9 Genehmigter Stage-6-Kompressionsvorschlag
+## 19.7 Genehmigter Stage-6-Kompressionsvorschlag
 
 Mit `LP-20260917194217` liegt ein **genehmigter, aber nicht ausgeführter** human-origin Lernvorschlag vor. Die Forschungsfrage ist enger als der bisherige CL-003-Vergleich: Kann semantische Prototypkonsolidierung bei **10 % des Raw-Replay-Speicherbudgets** mindestens 95 % der Retention eines Raw-Replay-Baselines mit vollem Speicherbudget erreichen?
 
@@ -485,7 +485,7 @@ Der Vorschlag bindet `semantic_prototype_replay_10pct_budget` gegen `raw_replay_
 
 Der aktuelle Status ist strikt prospektiv. Das historisch genehmigte `LP-20260917194217` bleibt als Originalartefakt unverändert und besitzt weiterhin `executed=false` sowie keine Runtime-Autorität. Die fehlende Quellbindung wurde **nicht** in dieses genehmigte Artefakt hineingeschrieben. Stattdessen liegt mit `LP-20260917194217-R1` eine neue `proposal_only`-Revision vor: `CL-002-EVID` → SHA-256 `c7b1124256fd8018839a8c5c29b30493b68d16bc223d0a3258bcbaca55b1752e` und `CL-003-DATA` → SHA-256 `4e74021c0ef838371a3a01061ae1c2dcebb2031b54c15c6169e38c1972d06290`; beide Source-Trust-Einstufungen stehen auf `VERIFIED`. Diese Inhaltsänderung erfordert eine **neue explizite Human Approval**; die historische Genehmigung wird nicht übertragen. Vor einer wissenschaftlich tragfähigen Ausführung bleiben außerdem Seed-/Taskplan, Analysevertrag, Ausführungsautorisation und Freeze entsprechend dem Research-Driven-Development-Prozess verbindlich zu fixieren.
 
-## 19.4 Aktuelle Human Reviews: Determinismus und Testadäquanz
+## 19.8 Aktuelle Human Reviews: Determinismus und Testadäquanz
 
 Die aktuelle Review-Linie schärft zwei bereits ausgeführte Experimente, ohne historische DATA umzuschreiben.
 
