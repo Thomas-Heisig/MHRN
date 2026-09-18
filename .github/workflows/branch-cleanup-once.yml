@@ -2,6 +2,9 @@ name: One-time branch cleanup
 # trigger cleanup after workflow registration
 
 on:
+  pull_request:
+    branches:
+      - main
   push:
     branches:
       - main
