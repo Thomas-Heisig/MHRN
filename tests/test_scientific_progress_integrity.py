@@ -93,13 +93,13 @@ def test_stage0_score_matches_current_weighted_evidence_state() -> None:
         expected += float(weights[criterion["id"]]) * float(status_value)
 
     assert abs(float(stage0["score"]) - expected) < 1e-12
-    assert abs(float(stage0["score"]) - 0.825) < 1e-12
+    assert abs(float(stage0["score"]) - 0.925) < 1e-12
 
     by_id = {criterion["id"]: criterion for criterion in stage0["criteria"]}
     assert by_id["research_question"]["status"] == "met"
     assert by_id["protocol"]["status"] == "met"
     assert by_id["data"]["status"] == "met"
-    assert by_id["reviewed_evidence"]["status"] == "partial"
+    assert by_id["reviewed_evidence"]["status"] == "met"
     assert by_id["independent_replication"]["status"] == "partial"
     assert by_id["attribution"]["status"] == "met"
 
