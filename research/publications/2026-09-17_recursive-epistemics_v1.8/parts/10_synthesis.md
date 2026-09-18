@@ -108,10 +108,12 @@ Dieser Beitrag ist methodisch, nicht neuronaler Natur. Er erklärt jedoch, warum
 
 ### Ergebnis I — Topologie beeinflusst die Propagation im präregistrierten Stage-1-Regime
 
-`EXP-S1-TOPO-V2-20260918` ersetzt den inadäquaten v1-Aufbau nicht rückwirkend, sondern liefert eine neue, vor Ausführung präregistrierte Prüfung von `RQ-SNN-003 / H-SNN-003-B`. Das Activity-Adequacy-Gate bestand bei Gewicht 55.0; anschließend wurden 120 Evaluationsläufe mit 64 Neuronen und identischem 246-Kanten-Budget über 20 gepaarte Seeds ausgeführt. Mehrere vorab definierte Unterschiede in aktiver Reichweite und First-Output-Latenz blieben nach Holm-Korrektur signifikant und zeigten Bootstrap-Intervalle außerhalb null.
+`EXP-S1-TOPO-V2-20260918` ersetzt den inadäquaten v1-Aufbau nicht rückwirkend, sondern liefert eine neue, vor Ausführung präregistrierte Prüfung von `RQ-SNN-003 / H-SNN-003-B`. Das Activity-Adequacy-Gate bestand bei Gewicht 55.0; anschließend wurden 120 Evaluationsläufe mit 64 Neuronen und identischem 246-Kanten-Budget über 20 gepaarte Seeds ausgeführt. Die identische Kantenanzahl über alle Bedingungen verhindert eine einfache Erklärung durch unterschiedliche globale Netzwerkdichte.
 
-**Zulässiger Claim:** Die konkrete Topologie beeinflusst innerhalb dieses kontrollierten Small-SNN-Operating-Envelope die Propagationsdynamik.  
-**Nicht zulässig:** daraus 5D-Überlegenheit, Skalierbarkeit, biologische Äquivalenz oder `H-5D-005-A` abzuleiten. `5d_shuffled` und `random_graph` erreichten den Output in diesem Aufbau teilweise früher; das spricht gegen eine einfache monotone „mehr Dimensionen = besser“-Lesart. Der Lauf bleibt bis Human Review DATA-only.
+Der Befund ist endpoint-spezifisch. `active_fraction` sättigt für 1d, 2d und 3d bei 1,0 und kann diese Bedingungen im gewählten Regime nicht unterscheiden; die Null-Differenzen sind daher als Ceiling-/Messbereichsgrenze und nicht als Gleichheitsnachweis zu lesen. Die First-Output-Latenz unterscheidet dagegen alle fünf präregistrierten Primärkontraste. Obwohl der Endpunkt `first_output_latency_censored` heißt, trat in den Evaluationsdaten keine tatsächliche Zensierung auf: bei 128 Ticks wäre nur ein ausbleibender Output mit 129 kodiert. Die exakten gepaarten Sign-Tests mit Holm-Korrektur tragen die primäre Inferenz; degenerierte Bootstrap-Intervalle bei identischen gepaarten Differenzen sind beschreibend und kein zusätzlicher unabhängiger Evidenzbeitrag.
+
+**Zulässiger Claim:** Die konkrete Topologie beeinflusst innerhalb dieses kontrollierten Small-SNN-Operating-Envelope bei gematchtem Neuronen- und Kantenbudget die Propagationsdynamik.  
+**Nicht zulässig:** daraus 5D-Überlegenheit, Skalierbarkeit, biologische Äquivalenz oder `H-5D-005-A` abzuleiten. `5d_shuffled` und `random_graph` erreichten den Output in diesem Aufbau früher; das spricht gegen eine einfache monotone „mehr Dimensionen = besser“-Lesart. Der Lauf bleibt bis Human Review DATA-only.
 
 ### Ergebnis H — Same-Seed-Reproduzierbarkeit ist nun als eigene DATA-Linie dokumentiert
 
