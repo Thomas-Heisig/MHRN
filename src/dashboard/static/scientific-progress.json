@@ -23,7 +23,7 @@
     {
       "stage": 0,
       "name": "Einzelne Nervenzelle",
-      "score": 0.825,
+      "score": 0.925,
       "status": "advanced",
       "claim_boundary": "Die eingefrorene Stage-0-Konformitätsstudie stützt den numerischen Modellvertrag für Izhikevich-2003 und lif-current-v1 im deklarierten Operating Envelope. Das ist Modell-/Softwarekonformität, keine biologische Gleichwertigkeit, keine allgemeine Langzeittrajektorien-Identität und keine unabhängige Replikation.",
       "criteria": [
@@ -62,11 +62,11 @@
         },
         {
           "id": "reviewed_evidence",
-          "status": "partial",
-          "label": "Human Review abgeschlossen; kanonische EVID-Promotion noch blockiert",
+          "status": "met",
+          "label": "Human-reviewed EVID für scoped Stage-0-Konformitätsclaim",
           "sources": [
-            "research/experiments/EXP-STAGE0-20260916-MODEL-CONFORMANCE-V2/human_scientific_review.json",
-            "research/experiments/EXP-STAGE0-20260916-MODEL-CONFORMANCE-V2/EVIDENCE_PROMOTION_STATUS.json"
+            "research/registry/evidence/EVID-2026-17.json",
+            "research/experiments/EXP-STAGE0-20260916-MODEL-CONFORMANCE-V2/human_scientific_review.json"
           ]
         },
         {
@@ -92,10 +92,9 @@
         }
       ],
       "next_scientific_steps": [
-        "Promotion-eligible Stage-0-Replikationslauf mit dem aktuellen EvidenceEngine-Provenienzvertrag vor Ausführung einfrieren und ausführen.",
-        "Danach den bereits positiv human-reviewten scoped Konformitätsclaim über den kanonischen EvidenceEngine als EVID registrieren.",
-        "Unabhängig autorisierte Replikation außerhalb derselben Autoren-/Toolkette durchführen.",
-        "Biologische Gleichwertigkeit, universelle Langzeittrajektorienidentität und ungeprüfte Modell-/Parameterregime weiterhin ausdrücklich ausschließen."
+        "Unabhängige Replikation mit vorab definierter Unabhängigkeitsdefinition planen und außerhalb derselben Autoren-/Toolkette durchführen.",
+        "Brian2-Referenzvergleich nicht als unabhängige Replikation zählen.",
+        "Scoped Claim-Grenzen für biologische Gleichwertigkeit, Langzeittrajektorien und ungeprüfte Parameterregime beibehalten."
       ]
     },
     {
