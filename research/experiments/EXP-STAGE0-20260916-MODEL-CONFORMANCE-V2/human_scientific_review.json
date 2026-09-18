@@ -37,9 +37,10 @@
   },
   "evidence_decision": {
     "review_supports_evidence_promotion_in_principle": true,
-    "promotion_completed": false,
-    "promotion_block": "legacy_run_missing_current_evidence_engine_manifest_contract",
-    "note": "Die Review ist positiv. Die kanonische EVID-Promotion bleibt dennoch blockiert, weil der historische Experimentordner kein EvidenceEngine-kompatibles manifest.json mit validity, clean-tree state, provenance_digests und source_freeze_sha enthält. Fehlende historische Provenienzwerte werden nicht rückwirkend erfunden."
+    "promotion_completed": true,
+    "promotion_block": null,
+    "note": "The scoped claim was promoted to EVID after the completed human review. Independent replication remains open and is not implied by this promotion.",
+    "evidence_id": "EVID-2026-17"
   },
   "data_mutated": false
 }
