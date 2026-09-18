@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import hashlib
+import json
 from pathlib import Path
 
 import pytest
@@ -229,3 +231,41 @@ def test_preparation_persistence_keeps_proposal_and_approval_separate(
     assert approved_path.name == "LP-PERSIST-001-approved.json"
     assert len(service.list_plans()) == 2
     assert service.load_proposal("LP-PERSIST-001").digest == proposal.digest
+
+
+def test_repository_stage6_compression_plan_binds_real_source_digests() -> None:
+    root = Path(__file__).resolve().parents[1]
+    preparations = root / "research" / "learning" / "preparations"
+    service = LearningPreparationService(preparations)
+    proposal = service.load_proposal("LP-20260917194217")
+    stored = json.loads(
+        (preparations / "LP-20260917194217.json").read_text(encoding="utf-8")
+    )
+
+    assert proposal.digest == stored["digest"]
+    sources = {source.source_id: source for source in proposal.sources}
+    expected_paths = {
+        "CL-002-EVID": root / "research" / "experiments" / "EXP-S6-SEM-CL-002" / "EVID.json",
+        "CL-003-DATA": root
+        / "research"
+        / "experiments"
+        / "EXP-S6-SEM-CL-003"
+        / "results"
+        / "results.json",
+    }
+    assert set(sources) == set(expected_paths)
+    for source_id, path in expected_paths.items():
+        assert sources[source_id].trust == "VERIFIED"
+        assert sources[source_id].digest == hashlib.sha256(path.read_bytes()).hexdigest()
+
+    approved_payload = json.loads(
+        (preparations / "LP-20260917194217-approved.json").read_text(encoding="utf-8")
+    )
+    approved = service.approve(
+        proposal,
+        approved_by=str(approved_payload["approved_by"]),
+        approval_note=str(approved_payload["approval_note"]),
+    )
+    assert approved.digest == approved_payload["digest"]
+    assert approved.to_dict()["runtime_authority"] == "none"
+    assert approved.to_dict()["executed"] is False
