@@ -1,0 +1,105 @@
+{
+  "artifacts_sha256": {
+    "calibration_data": "5d0e3b3a2fca750a535d6ed0820719faf7a060cc43bc48a54acc407d912991bc",
+    "calibration_gate": "2e053796bb8cc42832a9ce67443567bbe125c1482bfb4952fba489085545be7d",
+    "config": "6f6cd457caf6216c286fee47ef03b529a0b496ed2dd53ee96b85d3b51e7b3a1c",
+    "evaluation_data": "d2ff36ccd85e4b9bbdc94e441339a86927e5fb89ef59ec157e4efbf318937e14",
+    "preregistration": "c8911a9a664387e4c3d36cd7fb59585ea749dc77b0829db06bcfe3af45081d2d",
+    "runner_source": "36ae3c1a0bd5d57b3e91874ff91ccc49aa754db9da81c1e65b96bef2a91d2a71",
+    "statistics": "85f36349c247b193f27eec41a766f489798727aeaecf25cd900bc6dee8176f23"
+  },
+  "automatic_evidence_promotion": false,
+  "claim_boundary": "This protocol tests RQ-SNN-003/H-SNN-003-B for a 64-neuron Stage-1 topology-sensitive propagation regime. It is not evidence for RQ-5D-005/H-5D-005-A, does not test a 5D advantage, does not establish scaling, cognition, biological equivalence or independent replication, and creates DATA rather than EVID.",
+  "design": {
+    "calibration_seeds": [
+      1101,
+      1102,
+      1103,
+      1104
+    ],
+    "chosen_synaptic_weight": 55.0,
+    "conditions": [
+      "1d",
+      "2d",
+      "3d",
+      "5d",
+      "5d_shuffled",
+      "random_graph"
+    ],
+    "evaluation_seeds": [
+      2101,
+      2102,
+      2103,
+      2104,
+      2105,
+      2106,
+      2107,
+      2108,
+      2109,
+      2110,
+      2111,
+      2112,
+      2113,
+      2114,
+      2115,
+      2116,
+      2117,
+      2118,
+      2119,
+      2120
+    ],
+    "primary_contrasts": [
+      [
+        "1d",
+        "2d"
+      ],
+      [
+        "2d",
+        "3d"
+      ],
+      [
+        "3d",
+        "5d"
+      ],
+      [
+        "5d",
+        "5d_shuffled"
+      ],
+      [
+        "5d",
+        "random_graph"
+      ]
+    ],
+    "primary_endpoints": [
+      "active_fraction",
+      "first_output_latency_censored"
+    ]
+  },
+  "experiment_id": "EXP-S1-TOPO-V2-20260918",
+  "experiment_status": "completed",
+  "hypothesis": "H-SNN-003-B",
+  "protocol": "topology_propagation_v2",
+  "research_question": "RQ-SNN-003",
+  "results": {
+    "activity_gate_passed": true,
+    "any_primary_difference": true,
+    "calibration_run_count": 24,
+    "design_integrity_passed": true,
+    "evaluation_run_count": 120,
+    "status": "SUPPORTED_WITHIN_PREREGISTERED_PROTOCOL"
+  },
+  "schema_version": 1,
+  "scientific_evidence": false,
+  "software": {
+    "github_run_id": "35350472926",
+    "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
+    "python": "3.13.15 (main, Aug  6 2026, 02:15:18) [GCC 13.3.0]"
+  },
+  "source_freeze": {
+    "branch": "experiment/stage1-topology-propagation-v2-20260918",
+    "commit": "2f81bce18e57e2ec835d387a470ce1ca4e5b38c2",
+    "dirty_before_execution": false,
+    "status_before_execution": []
+  },
+  "stage": 1
+}

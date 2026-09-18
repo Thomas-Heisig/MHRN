@@ -1,0 +1,62 @@
+[
+  {
+    "conditions": {
+      "1d": {
+        "active_fraction_median": 1.0,
+        "delivered_events_median": 1536.0,
+        "first_output_latency_censored_median": 19.0,
+        "n": 4,
+        "output_reach_fraction_median": 1.0,
+        "pass": true,
+        "total_spikes_median": 401.0
+      },
+      "2d": {
+        "active_fraction_median": 1.0,
+        "delivered_events_median": 1382.0,
+        "first_output_latency_censored_median": 9.0,
+        "n": 4,
+        "output_reach_fraction_median": 1.0,
+        "pass": true,
+        "total_spikes_median": 370.0
+      },
+      "3d": {
+        "active_fraction_median": 1.0,
+        "delivered_events_median": 987.5,
+        "first_output_latency_censored_median": 6.0,
+        "n": 4,
+        "output_reach_fraction_median": 1.0,
+        "pass": true,
+        "total_spikes_median": 267.5
+      },
+      "5d": {
+        "active_fraction_median": 0.8984375,
+        "delivered_events_median": 645.5,
+        "first_output_latency_censored_median": 5.0,
+        "n": 4,
+        "output_reach_fraction_median": 1.0,
+        "pass": true,
+        "total_spikes_median": 181.0
+      },
+      "5d_shuffled": {
+        "active_fraction_median": 0.71875,
+        "delivered_events_median": 581.5,
+        "first_output_latency_censored_median": 2.0,
+        "n": 4,
+        "output_reach_fraction_median": 1.0,
+        "pass": true,
+        "total_spikes_median": 169.0
+      },
+      "random_graph": {
+        "active_fraction_median": 0.7734375,
+        "delivered_events_median": 556.5,
+        "first_output_latency_censored_median": 2.5,
+        "n": 4,
+        "output_reach_fraction_median": 1.0,
+        "pass": true,
+        "total_spikes_median": 165.0
+      }
+    },
+    "pass": true,
+    "weight": 55.0
+  }
+]
