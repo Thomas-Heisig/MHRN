@@ -1549,6 +1549,25 @@ Teil VIII fragt stärker:
 
 Die kanonischen Fragen `RQ-ETH-001`, `RQ-ETH-002` und `RQ-EPIST-001` verbinden beide Teile. Ihre Behandlung bleibt begrifflich und provenanceorientiert; generische Runtime-Metriken dürfen ihre Beantwortung nicht simulieren.
 
+### 33.18a Verdichtung von RQ-ETH-001: Beitrag, Kanonisierung und Verantwortung
+
+Die frühere Leitfrage „Wer ist der Autor — Mensch, Modell oder System?“ wird in Edition 1.8 als genealogische Ausgangsfrage bewahrt, aber analytisch verdichtet. Für die weitere Forschung sind mindestens vier Ebenen strikt auseinanderzuhalten:
+
+1. **epistemischer Beitrag** — wer verändert Frage, Methode, Analyse, Evidenzbewertung oder Schlussfolgerung materiell;
+2. **Generierung/Transformation** — wer erzeugt Text, Code, Analyse oder Varianten;
+3. **Kanonisierung** — wer entscheidet nach Prüfung über Übernahme, Revision, Evidenzstatus und Veröffentlichung;
+4. **formale Autorenschaft und Verantwortung** — wer wissenschaftlich Rechenschaft übernehmen kann.
+
+Daraus folgt keine Gleichung „materieller Beitrag = Autorenschaft“. Ebenso wenig darf menschliche Letztverantwortung maschinelle Beiträge unsichtbar machen. Für MHRN wird deshalb eine **Contribution & Accountability Matrix** als Forschungsinstrument eingeführt.
+
+Die präzisierte kanonische Frage `RQ-ETH-001` lautet:
+
+> Wie verteilen sich epistemische Beiträge, Entscheidungsmacht, formale Autorenschaft und wissenschaftliche Verantwortung bei Human–AI-gestützter MHRN-Forschung?
+
+Die bestehende `H-ETH-001-A` bleibt aus Provenienzgründen als historischer Umbrella bestehen. Die operationalisierbaren Teilhypothesen `H-ETH-001-B` bis `H-ETH-001-E` prüfen rekonstruierbare Beitragsrollen, Kanonisierung, formale Verantwortungszuordnung und den Audit-Mehrwert eines mehrdimensionalen Modells.
+
+Das zugehörige Protokolldesign ist `research/protocols/RQ_ETH_001_PROVENANCE_STUDY.md`. Es ist noch nicht präregistriert und nicht zur konfirmatorischen Ausführung autorisiert. Frühere generische Runtime- und Boundary-Audit-Läufe werden dadurch nicht nachträglich zu Evidenz für die neuen Hypothesen.
+
 ## 33.19 Eigene Vorarbeiten sind Quelle, nicht „neuer“ Text
 
 Die Editionslinie 1.0–1.8 enthält erhebliche Eigenwiederverwendung. Edition 1.8 behandelt ältere Manuskripte deshalb als **MHRN prior work** und nicht als neue Primärleistung allein durch Umordnung.
@@ -1624,24 +1643,65 @@ Wo eine Frage normativ oder epistemologisch ist, wird sie nicht künstlich in ei
 
 ## 34.1 Autorenschaft, Verantwortung und Erkenntnishoheit
 
-### RQ-ETH-001 — Autorenschaft von MHRN-Erkenntnissen
+### RQ-ETH-001 — Epistemische Beiträge, Autorenschaft und Verantwortung in MHRN
 
-**Forschungsfrage:** Wer ist der Autor von MHRN-Erkenntnissen — Mensch, Modell oder System?
+**Kanonische Forschungsfrage:** Wie verteilen sich epistemische Beiträge, Entscheidungsmacht, formale Autorenschaft und wissenschaftliche Verantwortung bei Human–AI-gestützter MHRN-Forschung?
 
-**Registrierte Hypothese `H-ETH-001-A`:** Autorenschaft ist ein verteiltes Phänomen zwischen Mensch, Modell und System.
+Die frühere Fassung „Wer ist der Autor — Mensch, Modell oder System?“ bleibt als historische Ausgangsfrage erhalten, wird aber nicht mehr als hinreichend präzise Forschungsformulierung behandelt. Die Konsolidierung trennt fünf analytisch verschiedene Ebenen:
 
-Diese Hypothese ist nicht als metaphysische Behauptung zu lesen. Sie zerlegt vielmehr mindestens vier kausale Rollen:
+1. **Konzeptualisierung:** Wer formuliert Forschungsfrage, Ziel, Hypothese oder Erfolgsbedingung?
+2. **Generierung/Transformation:** Wer erzeugt Text, Code, Analyse, Hypothesenvorschlag oder methodische Variante?
+3. **Validierung:** Wer oder was prüft Quellen, Code, Messungen, Statistik oder Konsistenz?
+4. **Selektion/Kanonisierung:** Wer entscheidet, was übernommen, verworfen, geändert, als DATA/EVID behandelt oder veröffentlicht wird?
+5. **Formale Autorenschaft und Verantwortung:** Wer kann für die publizierte Aussage wissenschaftlich Rechenschaft übernehmen?
 
-1. **Problem- und Zielsetzung:** Wer legt die Forschungsfrage, Erfolgsbedingungen und Grenzen fest?
-2. **Transformation:** Welcher Akteur erzeugt Formulierungen, Code, Analysen oder Hypothesenvorschläge?
-3. **Selektion und Freigabe:** Wer entscheidet, welche Vorschläge verworfen, übernommen, ausgeführt oder veröffentlicht werden?
-4. **Verantwortung:** Wer trägt die wissenschaftliche, rechtliche und normative Verantwortung für die veröffentlichte oder operative Handlung?
+Damit gilt als zentrale Proposition:
 
-Ein Sprachmodell kann substanzielle Transformationsarbeit leisten, ohne deshalb automatisch wissenschaftlicher Letztautor oder Verantwortungsträger zu sein. Umgekehrt wäre es unzureichend, maschinelle Ko-Konstruktion zu verschweigen, wenn sie einen materiellen Beitrag zum Forschungsprozess geleistet hat.
+> Die Produktion wissenschaftlicher Erkenntnisse in einem Human–AI-Forschungssystem kann verteilt sein, ohne dass deshalb formale Autorenschaft und wissenschaftliche Verantwortung ebenfalls verteilt sein müssen.
 
-**Prüfbarkeit:** Die Frage wird über Provenienz, Versionsgeschichte, Prompt-/Tool-Logs, Reviewentscheidungen, Ausführungsfreigaben und publizierte Verantwortungszuordnung untersucht. Ein Runtime-Tick ist keine geeignete Messung für Autorschaft.
+#### Hypothesenstruktur
 
-**Claim-Grenze:** Aus maschineller Beteiligung folgt weder moralische Personenschaft noch autonome wissenschaftliche Verantwortung.
+**Legacy-Umbrella `H-ETH-001-A`:** Die Autorenschaft von Brain-5D-Erkenntnissen ist ein verteiltes Phänomen zwischen Mensch, Modell und System.
+
+Diese ID wird **nicht rückwirkend umdefiniert**, weil historische Explorations- und Audit-Artefakte darauf verweisen. Sie bleibt genealogisch erhalten.
+
+**`H-ETH-001-B` — rekonstruierbare Beiträge:** Vollständige Provenienzketten erlauben unabhängigen Kodierern, materielle epistemische Beiträge von Mensch, Modell und Software reproduzierbar definierten Rollen zuzuordnen.
+
+**`H-ETH-001-C` — Kanonisierung als eigene Handlung:** Kanonisierung ist von bloßer Generierung trennbar und lässt sich als Auswahl-, Prüf- oder Freigabeentscheidung identifizieren.
+
+**`H-ETH-001-D` — formale Verantwortung:** Unter gegenwärtigen Forschungsintegritäts- und Publikationsstandards verbleiben formale wissenschaftliche Autorenschaft und Verantwortung bei verantwortlichen natürlichen Personen, auch wenn KI-Systeme materiell beitragen. ICMJE koppelt Autorenschaft an Verantwortlichkeit und schließt KI-Systeme als Autoren aus; CRediT beschreibt Beiträge, entscheidet aber nicht selbst über Autorenschaft ([ICMJE, 2026](REFERENCES.md#ref-ICMJE2026); [NISO, 2022](REFERENCES.md#ref-CREDIT2022)).
+
+**`H-ETH-001-E` — Informationsgewinn der Matrix:** Eine mehrdimensionale Beitrags- und Verantwortungsmatrix erhöht die Audit-Vollständigkeit gegenüber einer binären Autor/Werkzeug-Klassifikation, ohne die Reproduzierbarkeit der Kodierung zu verschlechtern.
+
+#### MHRN Contribution & Accountability Matrix
+
+Für jede relevante Claim-Episode sollen mindestens `claim_id`, `event_id`, `actor_type`, `actor_version`, `role`, `input_ref`, `output_ref`, `material_contribution`, `decision_authority`, `disposition`, `evidence_ref`, `responsibility`, `timestamp` und optional ein Provenienz-Digest erfasst werden.
+
+Ein Beitrag gilt als **materiell**, wenn er Forschungsfrage, Hypothese, Methode, wissenschaftlich relevante Implementierung, Analyse, Interpretation, Evidenzbewertung oder Schlussfolgerung verändert. Reine Rechtschreibung, Formatierung und bedeutungserhaltende Oberflächenkorrekturen werden getrennt behandelt.
+
+#### Prüfmethode
+
+Primäre Untersuchungseinheit ist die **Claim-Episode**: der rekonstruierbare Weg einer wissenschaftlich relevanten Aussage vom ersten Auftreten bis zu Annahme, Revision, Verwerfung oder Veröffentlichung.
+
+Der Forschungsweg besteht aus:
+
+- Pilotkodierung heterogener Claim-Episoden;
+- zwei unabhängigen Kodierdurchläufen;
+- explizitem Codebook und Konfliktkatalog;
+- anschließend prospektiv eingefrorener Vergleichsstudie gegen eine binäre Autor/Werkzeug-Baseline;
+- separater Standardsanalyse für formale Autorenschaft und Verantwortung.
+
+Das operative Design liegt in [`research/protocols/RQ_ETH_001_PROVENANCE_STUDY.md`](../../protocols/RQ_ETH_001_PROVENANCE_STUDY.md). Es ist derzeit **Protokolldesign, nicht präregistriert und nicht zur konfirmatorischen Ausführung autorisiert**.
+
+#### Failure- und Revisionskriterien
+
+Das Modell muss revidiert werden, wenn relevante Claim-Episoden trotz hinreichender Logs nicht rekonstruierbar sind, unabhängige Kodierer die Rollen nicht zuverlässig unterscheiden können, materielle Beiträge nicht nicht-tautologisch operationalisiert werden können, Kanonisierung empirisch nicht von Generierung trennbar ist oder die mehrdimensionale Matrix keinen zusätzlichen auditierbaren Informationswert gegenüber der binären Baseline liefert.
+
+#### Evidenz- und Claim-Grenze
+
+Historische generische Runtime- und Boundary-Audit-Läufe zu `RQ-ETH-001` bleiben Provenienzartefakte, sind aber **keine direkte Evidenz** für `H-ETH-001-B` bis `H-ETH-001-E`.
+
+Aus maschineller Beteiligung folgt weder Bewusstsein noch moralische Personenschaft, Rechtspersönlichkeit, urheberrechtliche Autorenschaft oder autonome wissenschaftliche Verantwortung. Diese Fragen bleiben getrennten Rechts-, Ethik- und Bewusstseinsprogrammen vorbehalten.
 
 ### RQ-ETH-002 — Kontrolle und Verantwortung
 
