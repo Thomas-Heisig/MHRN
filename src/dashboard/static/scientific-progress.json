@@ -23,7 +23,7 @@
     {
       "stage": 0,
       "name": "Einzelne Nervenzelle",
-      "score": 0.725,
+      "score": 0.825,
       "status": "advanced",
       "claim_boundary": "Die eingefrorene Stage-0-Konformitätsstudie stützt den numerischen Modellvertrag für Izhikevich-2003 und lif-current-v1 im deklarierten Operating Envelope. Das ist Modell-/Softwarekonformität, keine biologische Gleichwertigkeit, keine allgemeine Langzeittrajektorien-Identität und keine unabhängige Replikation.",
       "criteria": [
@@ -62,10 +62,11 @@
         },
         {
           "id": "reviewed_evidence",
-          "status": "open",
-          "label": "Menschlich freigegebene EVID für den scoped Konformitätsclaim",
+          "status": "partial",
+          "label": "Human Review abgeschlossen; kanonische EVID-Promotion noch blockiert",
           "sources": [
-            "research/experiments/EXP-STAGE0-20260916-MODEL-CONFORMANCE-V2/review_request.json"
+            "research/experiments/EXP-STAGE0-20260916-MODEL-CONFORMANCE-V2/human_scientific_review.json",
+            "research/experiments/EXP-STAGE0-20260916-MODEL-CONFORMANCE-V2/EVIDENCE_PROMOTION_STATUS.json"
           ]
         },
         {
@@ -91,10 +92,10 @@
         }
       ],
       "next_scientific_steps": [
-        "Human Review des scoped Konformitätsclaims gegen Präregistrierung, DATA, historischen V1-Negativbefund und Claim-Grenzen abschließen.",
-        "Nur bei positiver Human Review einen expliziten EVID-Record für den eng definierten Stage-0-Konformitätsclaim anlegen.",
-        "Unabhängig autorisierte Replikation außerhalb derselben Autoren-/Toolkette mit eingefrorenem Protokoll durchführen.",
-        "Langzeittrajektorien-, biologische Gleichwertigkeits- oder universelle Modellclaims weiterhin ausdrücklich nicht aus der lokalen Brian2-Konformität ableiten."
+        "Promotion-eligible Stage-0-Replikationslauf mit dem aktuellen EvidenceEngine-Provenienzvertrag vor Ausführung einfrieren und ausführen.",
+        "Danach den bereits positiv human-reviewten scoped Konformitätsclaim über den kanonischen EvidenceEngine als EVID registrieren.",
+        "Unabhängig autorisierte Replikation außerhalb derselben Autoren-/Toolkette durchführen.",
+        "Biologische Gleichwertigkeit, universelle Langzeittrajektorienidentität und ungeprüfte Modell-/Parameterregime weiterhin ausdrücklich ausschließen."
       ]
     },
     {
