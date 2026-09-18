@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "experiment_id": "EXP-STAGE0-20260916-MODEL-CONFORMANCE-V2",
+  "stage": 0,
+  "research_question": "RQ-EVAL-006",
+  "hypotheses": [
+    "H-EVAL-006-A",
+    "H-EVAL-006-B",
+    "H-EVAL-006-C"
+  ],
+  "protocol": "single_neuron_conformance_v2",
+  "human_review_status": "PENDING",
+  "evidence_readiness": "BLOCKED_HUMAN_REVIEW_AND_INDEPENDENT_REPLICATION",
+  "scientific_evidence": false,
+  "automatic_evidence_promotion": false,
+  "result_status": "SUPPORTED_WITHIN_PREREGISTERED_PROTOCOL",
+  "review_scope": [
+    "confirmatory preregistration was frozen before execution",
+    "diagnostic seeds 20001-20003 are disjoint from confirmatory seeds 21001-21003",
+    "Izhikevich one-step transition, threshold and reset conformance against Brian2 2.10.1",
+    "LIF current-model conformance with refractory_ticks=0",
+    "nonzero LIF refractory semantic mapping",
+    "preservation of the historical 1000-tick free-running Izhikevich negative result",
+    "homeostasis statement limited to the declared diagnostic operating envelope",
+    "claim boundary: numerical/model conformance is not biological equivalence",
+    "Brian2 reference conformance is not an independently authored replication"
+  ],
+  "artifacts": {
+    "preregistration": "preregistrations/operational/single_neuron_conformance_v2.json",
+    "confirmatory_data": "experiments/EXP-STAGE0-20260916-MODEL-CONFORMANCE-V2/DATA/confirmatory_result.json",
+    "report": "experiments/EXP-STAGE0-20260916-MODEL-CONFORMANCE-V2/report.md",
+    "readiness": "generated/verification/single_neuron_scientific_readiness.json",
+    "model_axis": "specifications/NEURON_MODEL_EXPERIMENT_AXIS.md",
+    "questions": "registry/questions.empirical.yaml",
+    "hypotheses": "registry/hypotheses.empirical.yaml"
+  },
+  "allowed_interpretation": "Within the frozen V2 protocol, the declared MHRN Izhikevich-2003 local transition/reset contract and the declared LIF-current-v1 contract conform to the matched Brian2 reference within the preregistered tolerances. The historical long free-running negative remains valid.",
+  "prohibited_interpretations": [
+    "biological equivalence",
+    "universal long-horizon trajectory identity",
+    "independent replication",
+    "automatic EVID promotion",
+    "generalization to neuron models or parameter regimes not included in the frozen protocol"
+  ],
+  "required_human_decision": "supports_scoped_claim | rejects_scoped_claim | requests_revision",
+  "note": "A human decision may close the reviewed_evidence criterion for the scoped Stage-0 claim. It must not mark independent_replication as complete and must not rewrite source-bound DATA."
+}
