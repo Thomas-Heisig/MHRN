@@ -145,7 +145,7 @@ Planung und Forschungsfragen existieren; claim-relevante confirmatory DATA fehle
 
 ### Stage 10 — Bewusstseinsforschung
 
-Diese Stufe bleibt Forschungs- und Governance-Frontier. Vor jedem stärkeren Experiment sind kontrastierende, operationalisierte Vorhersagen, externe Ethik-/Stop-Governance und unabhängige adversariale Replikationsanforderungen nötig. Kein Stage-Score darf als Bewusstseins-, Sentienz- oder Moralstatusindikator verwendet werden.
+Diese Stufe bleibt Forschungs- und Governance-Frontier. Externe Synthesen können Bewusstseinstheorien in technische Indikatorrahmen übersetzen, ohne daraus eine automatische Bewusstseinsdetektion zu machen ([@BUTLIN2023]). Vor jedem stärkeren Experiment sind kontrastierende, operationalisierte Vorhersagen, externe Ethik-/Stop-Governance und unabhängige adversariale Replikationsanforderungen nötig. Kein Stage-Score darf als Bewusstseins-, Sentienz- oder Moralstatusindikator verwendet werden.
 
 ## 52. Biophysikalische Erweiterungen
 
@@ -183,7 +183,7 @@ Die wichtigsten offenen Safety-Stränge sind:
 - Zielprovenienz und Zieltransformation;
 - specification gaming;
 - goal misgeneralization;
-- Corrigibility und Safe Interruptibility;
+- Corrigibility und Safe Interruptibility als eigenständig zu prüfende Kontrollfrage ([@ORSEAU2016]);
 - Optionsraum-/Power-Seeking-Proxies;
 - Post-Objective Transition;
 - Capability-Gates und out-of-band Stopppfade;
