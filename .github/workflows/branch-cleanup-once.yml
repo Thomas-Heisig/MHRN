@@ -1,5 +1,5 @@
 name: One-time branch cleanup
-# cleanup execution trigger: PR 147 merge
+# cleanup execution trigger: final cleanup merge
 
 on:
   pull_request:
@@ -34,6 +34,7 @@ jobs:
             "research/edition18-integrity-full-integration-20260918-r3"
             "research/rq-eth-001-provenance-20260918"
             "research/rq-eth-001-provenance-20260918-v2"
+            "chore/branch-cleanup-trigger-20260918"
           )
           for branch in "${branches[@]}"; do
             if git ls-remote --exit-code --heads origin "refs/heads/$branch" >/dev/null 2>&1; then
