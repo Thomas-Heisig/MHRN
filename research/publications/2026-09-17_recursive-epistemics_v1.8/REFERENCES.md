@@ -161,3 +161,43 @@ Nosek, B. A., Ebersole, C. R., DeHaven, A. C., & Mellor, D. T. (2018). The prere
 Quellentyp: Sekundärliteratur – methodischer Fachbeitrag zur Präregistrierung  
 Originalquelle: https://doi.org/10.1073/pnas.1708274114  
 Prüfumfang: primary_text_checked; geprüft am 2026-09-18. Stützt die Trennung von Hypothesengenerierung und prospektiv fixierter Hypothesenprüfung.
+
+<a id="ref-SOARES2015"></a>
+
+Soares, N., Fallenstein, B., Armstrong, S., & Yudkowsky, E. (2015). Corrigibility. AAAI Workshop on AI and Ethics.
+
+Quellentyp: Primärliteratur – formale/konzeptionelle AI-Safety-Arbeit  
+Originalquelle: https://intelligence.org/files/Corrigibility.pdf  
+Prüfumfang: primary_metadata_and_abstract_checked; geprüft am 2026-09-15. Bibliographic identity and relevance checked in the MHRN safety source registry; used as conceptual prior art for corrigibility, not as proof about MHRN.
+
+<a id="ref-HADFIELD2017"></a>
+
+Hadfield-Menell, D., Dragan, A., Abbeel, P., & Russell, S. (2017). The off-switch game. Proceedings of the Twenty-Sixth International Joint Conference on Artificial Intelligence.
+
+Quellentyp: Primärliteratur – formale AI-Safety-Arbeit  
+Originalquelle: https://arxiv.org/abs/1611.08219  
+Prüfumfang: primary_metadata_and_abstract_checked; geprüft am 2026-09-15. Bibliographic identity and relevance checked in the MHRN safety source registry; formal assumptions are not generalized to MHRN without an explicit mapping.
+
+<a id="ref-AMODEI2016"></a>
+
+Amodei, D., Olah, C., Steinhardt, J., Christiano, P., Schulman, J., & Mané, D. (2016). Concrete problems in AI safety. arXiv:1606.06565.
+
+Quellentyp: Sekundärliteratur – AI-Safety-Taxonomie/Problemrahmen  
+Originalquelle: https://arxiv.org/abs/1606.06565  
+Prüfumfang: primary_metadata_and_abstract_checked; geprüft am 2026-09-15. Bibliographic identity and relevance checked in the MHRN safety source registry; used to motivate independent safety metrics, side-effect and specification-gaming tests.
+
+<a id="ref-TURNER2021"></a>
+
+Turner, A. M., Smith, L., Shah, R., & Critch, A. (2021). Optimal policies tend to seek power. Advances in Neural Information Processing Systems, 34.
+
+Quellentyp: Primärliteratur – formale MDP/AI-Safety-Arbeit  
+Originalquelle: https://proceedings.neurips.cc/paper/2021/hash/c26820b8a4c1b3c2aa868d6d57e14a79-Abstract.html  
+Prüfumfang: primary_metadata_and_abstract_checked; geprüft am 2026-09-15. Bibliographic identity and relevance checked in the MHRN safety source registry; formal results motivate bounded option-space tests and are not treated as a universal theorem about capable systems.
+
+<a id="ref-LANGOSCO2022"></a>
+
+Langosco, L., Koch, J., Sharkey, L., Pfau, J., & Krueger, D. (2022). Goal misgeneralization in deep reinforcement learning. Proceedings of the 39th International Conference on Machine Learning, 162.
+
+Quellentyp: Primärliteratur – empirische AI-Safety-/RL-Arbeit  
+Originalquelle: https://proceedings.mlr.press/v162/langosco22a.html  
+Prüfumfang: primary_metadata_and_abstract_checked; geprüft am 2026-09-15. Bibliographic identity and relevance checked in the MHRN safety source registry; deep-RL examples motivate capability-versus-goal-fidelity separation but are not direct evidence about MHRN.
