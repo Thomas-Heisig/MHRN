@@ -1298,13 +1298,16 @@ Skalierung, Stabilität und funktionaler Nutzen bleiben getrennte Fragen.
 
 #### Reproduzierbarkeit und Determinismus — nächstes Gate
 
-Die EXP-GEN-0045/0046-DATA schließen die Frage nicht vollständig. Als nächste Schritte sind erforderlich:
+Die semantische Zuordnung von `RQ-DET-001 / H-SNN-003-A` ist inzwischen geklärt. Der historische `deterministic_replica_v1`-Datensatz ist `DIRECT_MATCH`, und die A/B-Paare stimmen für drei Seeds innerhalb der beiden Rekurrenzbedingungen in den registrierten Antwortgrößen überein. Offen ist damit nicht mehr die Registry-Frage, sondern die **Provenienz- und Replikationsfrage**:
 
-- semantische Zuordnungsregel für `RQ-DET-001` registrieren und EXP-GEN-0046 human reviewen;
-- Same-Seed-Reproduzierbarkeit von echter unabhängiger Replikation getrennt halten;
-- zusätzliche Seeds, Eingangsregime, Netzwerkgrößen und Restart/Restore-Bedingungen prüfen;
-- deterministische Identität, numerische Toleranz und statistische Reproduzierbarkeit als getrennte Klassen auswerten;
-- AIRR-Interpretation nicht als EVID verwenden, solange Human Review und semantisches Gate offen sind.
+- clean-tree, hash-gebundene Replikation desselben vorab fixierten Protokolls;
+- Same-Seed-Reproduzierbarkeit weiterhin strikt von unabhängiger Replikation trennen;
+- zusätzliche Seeds, Eingangsregime, Netzwerkgrößen und Restart/Restore-Bedingungen als getrennte Erweiterungen prüfen;
+- deterministische Identität, numerische Toleranz und statistische Reproduzierbarkeit als unterschiedliche Klassen auswerten;
+- erst nach sauberer Provenienz und Human Review eine EVID-Entscheidung treffen;
+- AIRR bleibt Interpretation; semantischer `MISMATCH` erzwingt report-level `ai_confidence=0.0`, ohne den append-only Auditwert zu löschen.
+
+Der historische Dirty-Tree-Befund wird dadurch nicht rückwirkend aufgewertet.
 
 ### Stage 3 — plastisches Nervengewebe
 
@@ -1347,6 +1350,8 @@ Die CL-001–CL-003-Linie hat den Suchraum bereits verkleinert. Offen sind daher
 1. Human Review von CL-003 abschließen.
 2. Danach genau eine Entscheidung A/B/C treffen: Nebenrolle, genau eine theoretisch begründete Zusatzprüfung oder Parken bis zu funktionaler Notwendigkeit.
 3. Keine automatische CL-004-Serie und keine serielle Rollenrettung.
+
+Als eng begrenzte Anschlussfrage ist `LP-20260917194217` genehmigt, aber noch **nicht ausgeführt**. Der Vorschlag prüft nicht erneut einen pauschalen SemanticMemory-Vorteil, sondern einen Speicher-/Retentions-Trade-off: 10%-Budget der semantischen Prototypen gegenüber vollem Raw-Replay-Budget mit vorab definierter 95%-Retention-Schwelle. Bis Source-Digests, Trust, Freeze, Seeds, Tasks und Analysevertrag vollständig gebunden sind, bleibt dies Proposal-only und erzeugt weder DATA noch EVID.
 
 Unabhängig davon bleiben als zentrale Stage-6-Forschungsfragen:
 
