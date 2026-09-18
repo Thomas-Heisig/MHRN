@@ -2,8 +2,8 @@
   "schema_version": 1,
   "experiment_id": "EXP-STAGE0-20260916-MODEL-CONFORMANCE-V2",
   "human_review_status": "COMPLETED_SUPPORTS_SCOPED_CLAIM",
-  "evidence_promotion_status": "PROMOTED_SCOPED_EVID",
-  "scientific_evidence": true,
+  "evidence_promotion_status": "BLOCKED_LEGACY_PROVENANCE_CONTRACT",
+  "scientific_evidence": false,
   "automatic_evidence_promotion": false,
   "verified_execution": {
     "workflow_run_id": 35149828152,
@@ -15,7 +15,14 @@
     "brian2": "2.10.1",
     "python": "3.13.15"
   },
-  "integrity_rule": "The EVID record is bounded to the frozen V2 model-contract claim and the completed human review. No independent replication, biological equivalence or untested-regime generalization is inferred.",
+  "integrity_rule": "The positive human review does not substitute for the current EvidenceEngine provenance gate. A promotion-eligible internal replication must satisfy the provenance contract before EVID registration; it still does not count as independent replication.",
   "independent_replication_complete": false,
-  "evidence_id": "EVID-2026-17"
+  "missing_for_current_evidence_engine": [
+    "experiment manifest.json with experiment_status=completed",
+    "validity.valid=true with zero runtime/fatal errors",
+    "recorded git.dirty=false",
+    "provenance_digests",
+    "source_freeze_sha matching the provenance digest"
+  ],
+  "required_for_evid": "Separately frozen promotion-eligible replication under the current EvidenceEngine provenance contract, followed by a separate EVID registration step."
 }
