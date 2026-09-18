@@ -91,7 +91,7 @@ RQ-Status und Claim-Status sind unterschiedliche wissenschaftliche Zustände und
 | `RQ-EVAL-003` | open | `H-EVAL-003-A` | — | — | 0 | `EXP-EMP-20260910` | — | offen |
 | `RQ-EVAL-004` | open | `H-EVAL-004-A` | — | — | 0 | `EXP-BATCH-20260914074039-81`, `EXP-EMP-20260910` | — | offen |
 | `RQ-EVAL-005` | open | `H-EVAL-005-A` | — | — | 0 | `EXP-BATCH-20260914074039-82`, `EXP-EMP-20260910-SCALE-V2` | — | offen |
-| `RQ-EVAL-006` | open | `H-EVAL-006-A`, `H-EVAL-006-B`, `H-EVAL-006-C` | `CLAIM-EVAL-006` | `CLAIM-EVAL-006`=inconclusive | 2 | `EXP-STAGE0-20260916-MODEL-CONFORMANCE-V2` | — | Human Review supports scoped claim; EVID promotion pending EvidenceEngine-conformant replication; independent replication open |
+| `RQ-EVAL-006` | open | `H-EVAL-006-A`, `H-EVAL-006-B`, `H-EVAL-006-C` | `CLAIM-EVAL-006` | `CLAIM-EVAL-006`=inconclusive | 2 | `EXP-STAGE0-20260916-MODEL-CONFORMANCE-V2` | — | offen |
 | `RQ-GW-001` | open | `H-GW-001-A` | — | — | 0 | `EXP-BATCH-20260909223705-78`, `EXP-BATCH-20260914074039-83` | — | offen |
 | `RQ-GW-002` | open | `H-GW-002-A` | — | — | 0 | `EXP-BATCH-20260909223705-79`, `EXP-BATCH-20260914074039-84` | — | offen |
 | `RQ-GW-003` | open | `H-GW-003-A` | — | — | 0 | `EXP-BATCH-20260909223705-80`, `EXP-BATCH-20260914074039-85` | — | offen |
