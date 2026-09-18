@@ -160,4 +160,47 @@ def test_historical_reader_is_explicitly_separated_from_current_viewer() -> None
     assert "catalog.json" in notice
     assert "Edition 1.8" in notice
     assert "KI - Die geliehene Intelligenz" in legacy
+
+
+def test_publication_citations_are_claim_near_and_source_typed() -> None:
+    refs = json.loads((EDITION / "sources/references.json").read_text(encoding="utf-8"))
+    by_id = {row["id"]: row for row in refs}
+    required = {
+        "APA2020", "ICMJE2026", "CREDIT2022", "BI_POO1998",
+        "TURRIGIANO1998", "TURRIGIANO2008", "DIPELLEGRINO1992",
+        "RIZZOLATTI2004", "KILNER2007", "NOSEK2018",
+    }
+    assert required.issubset(by_id)
+    assert {row["source_class"] for row in refs} <= {
+        "primary", "secondary", "guideline", "standard",
+    }
+    assert all(row.get("source_type") for row in refs)
+    assert "et al." not in by_id["DALBA2025"]["apa"]
+    assert "et al." not in by_id["SHI2025"]["apa"]
+    assert "et al." not in by_id["NDRI2026"]["apa"]
+    assert "et al." not in by_id["SUN2025"]["apa"]
+
+    manuscript = (EDITION / "MANUSCRIPT.md").read_text(encoding="utf-8")
+    for label in (
+        "Bi & Poo, 1998", "Turrigiano et al., 1998",
+        "di Pellegrino et al., 1992", "Nosek et al., 2018",
+        "ICMJE, 2026", "NISO, 2022",
+    ):
+        assert label in manuscript
+    assert "Autor und wissenschaftlich verantwortliche Person" in manuscript
+    assert "Thomas Heisig" in manuscript
+
+
+def test_scientific_balance_has_explicit_5d_and_compression_roadmaps() -> None:
+    balance = (EDITION / "SCIENTIFIC_BALANCE.md").read_text(encoding="utf-8")
+    assert "H-5D-005-A" in balance
+    assert "kein Evidenzbeitrag – weder positiv noch negativ" in balance
+    assert "≥ 1.000 Neuronen pro Bedingung" in balance
+    assert "≥ 10 eingehende Synapsen pro Neuron" in balance
+    assert "distanzabhängige Konnektivitätswahrscheinlichkeit" in balance
+    assert "OBJ-MEM-COMPRESSION-001" in balance
+    assert "10 % des Raw-Replay-Speicherbudgets" in balance
+    assert "mindestens 95 % der Retention" in balance
+    assert "Präregistrierungsvorbereitung" in balance
+
 # fmt: on
