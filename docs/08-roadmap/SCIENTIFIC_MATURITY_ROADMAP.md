@@ -23,7 +23,7 @@ Eine Stufe kann technisch abgeschlossen sein und wissenschaftlich offen bleiben.
 
 **Ziel:** numerischen Modellvertrag gegen eine externe Referenzimplementierung und vorab definierte Ereignis-/Toleranzkriterien prüfen.
 
-**Aktueller Gesamt-Scientific-Maturity-Score:** **82,5 %** nach dem kanonischen Gewichtungsvertrag in `scientific-progress.json`.
+**Aktueller Gesamt-Scientific-Maturity-Score:** **92,5 %** nach dem kanonischen Gewichtungsvertrag in `scientific-progress.json`.
 
 Erfüllt:
 - `RQ-EVAL-006` und `H-EVAL-006-A/B/C` sind explizit registriert;
@@ -31,17 +31,17 @@ Erfüllt:
 - disjunkte Confirmatory-Seeds `21001–21003` wurden gegen Brian2 2.10.1 ausgeführt;
 - alle eingefrorenen Primärendpunkte für Izhikevich-2003 und `lif-current-v1` bestanden innerhalb der deklarierten Toleranzen;
 - der historische freie 1000-Tick-Izhikevich-Negativbefund bleibt unverändert erhalten;
-- Modell-, Quellen- und Literaturattribution sind dokumentiert.
+- Modell-, Quellen- und Literaturattribution sind dokumentiert;
+- der prospektive Promotion-Lauf `EXP-STAGE0-20260918-MODEL-CONFORMANCE-V2-PROMO-R1` erfüllt den aktuellen EvidenceEngine-Provenienzvertrag;
+- der Human Review des Promotion-Laufs ist kanonisch gebunden und `CLAIM-EVAL-006` wurde als `EVID-2026-18` registriert.
 
 Separat gilt der **scoped Stage-0 research-readiness contract = 100 %**. Dieser engere Readiness-Wert bedeutet nur, dass die dort definierten technischen und methodischen Voraussetzungen erfüllt sind; er ist nicht identisch mit der Gesamt-Scientific-Maturity.
 
 Offen:
-- Human Review des eng definierten Konformitätsclaims ist am 18. September 2026 abgeschlossen und unterstützt den scoped Claim;
-- die fehlenden historischen EvidenceEngine-Provenienzfelder wurden nicht rückwirkend erfunden;
-- stattdessen wurde `EXP-STAGE0-20260918-MODEL-CONFORMANCE-V2-PROMO-R1` prospektiv unter `PREREG-EVAL-006-V2-PROMO-R1` mit clean tree, vollständigen Provenienz-Digests und neuer Seedmenge `22001–22003` ausgeführt; alle eingefrorenen Bedingungen bestanden;
-- der neue Lauf bleibt DATA-only und wartet auf einen separaten Human Review; erst danach darf in einem eigenen Schritt eine kanonische EVID-Promotion erfolgen;
-- unabhängig autorisierte Replikation außerhalb derselben Autoren-/Toolkette;
+- unabhängig autorisierte Replikation außerhalb derselben Autoren-/Toolkette; sie ist die verbleibende 7,5-%-Lücke bis 100 %;
 - keine biologische Gleichwertigkeit, universelle Langzeittrajektorienidentität oder Generalisierung auf ungeprüfte Modelle/Parameter aus dem Brian2-Vergleich ableiten.
+
+Die fehlenden historischen EvidenceEngine-Provenienzfelder des V2-Laufs wurden nicht rückwirkend erfunden. Stattdessen wurde die Promotion prospektiv über den clean-tree Lauf mit neuen Seeds `22001–22003`, kanonischem Human Review und `EVID-2026-18` geschlossen.
 
 ## Stage 1 – Kleines SNN
 
