@@ -26,9 +26,15 @@ Der bisherige Lauf `EXP-GEN-0047` / `topology_propagation_v1` wird in Edition 1.
 
 Diese Offenheit ist eine zentrale Qualitätsgrenze der 1.8: Ein inadäquates oder zu schwaches Design wird nicht in einen werblichen Null- oder Positivbefund umgedeutet.
 
+### Stage-1-Topologiebefund: `H-SNN-003-B` und 5D strikt trennen
+
+Seit `EXP-S1-TOPO-V2-20260918` liegt für `RQ-SNN-003 / H-SNN-003-B` ein neuer präregistrierter DATA-Befund vor. In einem 64-Neuronen-/246-Kanten-Regime mit getrennten Kalibrier- und Evaluations-Seeds, Activity-Adequacy-Gate und vorab definierten Primärkontrasten unterscheiden sich mehrere Topologiebedingungen in aktiver Reichweite und/oder First-Output-Latenz. Der Laufstatus `SUPPORTED_WITHIN_PREREGISTERED_PROTOCOL` bedeutet hier: **Topologie beeinflusst die Propagationsdynamik innerhalb des untersuchten Small-SNN-Operating-Envelope.**
+
+Diese Aussage darf nicht in „5D ist überlegen“ umformuliert werden. Im Gegenteil erreichten `5d_shuffled` und `random_graph` den Output in diesem Aufbau teilweise früher als die reguläre 5D-Anordnung. Das neue Resultat stärkt deshalb den allgemeinen Topologieclaim, während der dimensionsspezifische 5D-Claim offen bleibt. Bis Human Review abgeschlossen ist, bleibt der Befund DATA-only.
+
 ### Konsequenz: `H-5D-005-A` bleibt open/untested
 
-Kanonisch bleibt `RQ-5D-005` **open** und `H-5D-005-A` **untested**. Der bisherige Test ist für diese dimensionsspezifische Hypothese **kein Evidenzbeitrag – weder positiv noch negativ**. `topology_propagation_v2` muss deshalb vor Ausführung mindestens folgende Testadäquanz einfrieren:
+Kanonisch bleibt `RQ-5D-005` **open** und `H-5D-005-A` **untested**. Weder `EXP-GEN-0047` noch das neue 64-Neuronen-Stage-1-Experiment sind für diese stärkere dimensionsspezifische Hypothese ein hinreichender Evidenzbeitrag. Die nächste **5D-spezifische** Prüfung muss mindestens folgende Testadäquanz einfrieren:
 
 - **≥ 1.000 Neuronen pro Bedingung**;
 - im Mittel **≥ 10 eingehende Synapsen pro Neuron**;
