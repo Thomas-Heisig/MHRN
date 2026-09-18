@@ -233,19 +233,36 @@ def test_preparation_persistence_keeps_proposal_and_approval_separate(
     assert service.load_proposal("LP-PERSIST-001").digest == proposal.digest
 
 
-def test_repository_stage6_compression_plan_binds_real_source_digests() -> None:
+def test_repository_stage6_source_binding_is_versioned_and_requires_reapproval() -> None:
     root = Path(__file__).resolve().parents[1]
     preparations = root / "research" / "learning" / "preparations"
     service = LearningPreparationService(preparations)
-    proposal = service.load_proposal("LP-20260917194217")
-    stored = json.loads(
+
+    original = service.load_proposal("LP-20260917194217")
+    original_stored = json.loads(
         (preparations / "LP-20260917194217.json").read_text(encoding="utf-8")
     )
+    original_approved = json.loads(
+        (preparations / "LP-20260917194217-approved.json").read_text(encoding="utf-8")
+    )
+    assert original.digest == original_stored["digest"]
+    assert original.digest == "0d47182d05f2d65d44957a1242f770a3576518c9034b7b014cf8ae4f06333d11"
+    assert original_approved["digest"] == "d24210d7e2f83994bc3365cde2010cb865bb6e1d23839e710c5b43bea7232b10"
 
-    assert proposal.digest == stored["digest"]
-    sources = {source.source_id: source for source in proposal.sources}
+    revision = service.load_proposal("LP-20260917194217-R1")
+    revision_stored = json.loads(
+        (preparations / "LP-20260917194217-R1.json").read_text(encoding="utf-8")
+    )
+    assert revision.digest == revision_stored["digest"]
+    assert "requires explicit human reapproval" in revision.rationale
+
+    sources = {source.source_id: source for source in revision.sources}
     expected_paths = {
-        "CL-002-EVID": root / "research" / "experiments" / "EXP-S6-SEM-CL-002" / "EVID.json",
+        "CL-002-EVID": root
+        / "research"
+        / "experiments"
+        / "EXP-S6-SEM-CL-002"
+        / "EVID.json",
         "CL-003-DATA": root
         / "research"
         / "experiments"
@@ -258,14 +275,6 @@ def test_repository_stage6_compression_plan_binds_real_source_digests() -> None:
         assert sources[source_id].trust == "VERIFIED"
         assert sources[source_id].digest == hashlib.sha256(path.read_bytes()).hexdigest()
 
-    approved_payload = json.loads(
-        (preparations / "LP-20260917194217-approved.json").read_text(encoding="utf-8")
-    )
-    approved = service.approve(
-        proposal,
-        approved_by=str(approved_payload["approved_by"]),
-        approval_note=str(approved_payload["approval_note"]),
-    )
-    assert approved.digest == approved_payload["digest"]
-    assert approved.to_dict()["runtime_authority"] == "none"
-    assert approved.to_dict()["executed"] is False
+    assert not (preparations / "LP-20260917194217-R1-approved.json").exists()
+    assert revision.authority == "proposal_only"
+    assert revision.to_dict()["executed"] is False
