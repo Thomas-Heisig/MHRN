@@ -266,7 +266,7 @@
     },
     "research/paper_offshoots": {
       "kind": "research_programme",
-      "status": "planning",
+      "status": "current",
       "authority": "proposal_and_programme_planning_only",
       "mutability": "editable_with_review",
       "citation": "cite_as_planning_not_result",
