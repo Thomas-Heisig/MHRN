@@ -9,7 +9,8 @@
   "seeds": "2101-2120",
   "completed": 1,
   "failed": 0,
-  "assessment_status": "HUMAN_REVIEW_REQUIRED",
+  "assessment_status": "HUMAN_REVIEW_COMPLETED",
+  "assessment_decision": "accepted_as_interpretation",
   "assessment_boundary": "Stage-1 topology DATA only; no automatic evidence promotion and no 5D superiority claim.",
   "results": [
     {

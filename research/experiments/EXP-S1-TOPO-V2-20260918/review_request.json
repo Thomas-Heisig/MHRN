@@ -5,7 +5,7 @@
   "research_question": "RQ-SNN-003",
   "hypothesis": "H-SNN-003-B",
   "protocol": "topology_propagation_v2",
-  "human_review_status": "PENDING",
+  "human_review_status": "COMPLETED",
   "evidence_readiness": "BLOCKED_HUMAN_REVIEW",
   "scientific_evidence": false,
   "automatic_evidence_promotion": false,
@@ -43,6 +43,7 @@
   },
   "interpretation_boundary": "The 64-neuron result supports topology-sensitive propagation within the preregistered Stage-1 regime. It does not establish 5D superiority and does not satisfy the separate >=1000-neuron test programme for H-5D-005-A.",
   "required_human_decision": "accepted_as_interpretation | rejected",
+  "human_review_decision": "accepted_as_interpretation",
   "note": "Review completion may accept or reject the interpretation. It must not rewrite source-bound DATA or automatically create EVID.",
   "methodological_review_notes": {
     "status": "PENDING_HUMAN_ASSESSMENT",

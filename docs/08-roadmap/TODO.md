@@ -3,7 +3,9 @@
 - [x] Die registrierte maschinelle Kampagne ausfuehren und alle Receipts/Negativbefunde bewahren.
 - [x] Vollstaendige Publikationsfassung 1.5 und eigenstaendige Forschungsarbeit erzeugen.
 - [x] Ausfuehrung, Grenzaudit und EVID-Freigabe getrennt dokumentieren.
-- [ ] Die 25 menschlichen Vorlagen sowie die wissenschaftlichen Ergebnisreviews bearbeiten.
+- [ ] Offene wissenschaftliche Human Reviews bearbeiten: `EXP-GEN-0041`,
+  `EXP-S1-TOPO-V3-R1-20260918`, `EXP-S6-SEM-CL-003` und
+  `EXP-STAGE0-20260918-MODEL-CONFORMANCE-V2-PROMO-R1`.
 - [ ] Direkte Messvertraege fuer die ausgewiesenen Grenzfragen und gekoppelte Kognitions-/Langzeitplastizitaetspruefungen vervollstaendigen.
 - [ ] Unabhaengige Replikation und konkrete EVID-Freigaben einholen.
 

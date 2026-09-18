@@ -1,0 +1,8 @@
+{
+  "artifact_path": "experiments/EXP-STAGE0-20260918-MODEL-CONFORMANCE-V2-PROMO-R1/review_request.json",
+  "review_status": "accepted_as_interpretation",
+  "reviewer": "Thomas Heisig",
+  "reviewed_at": "2026-09-18T18:37:59.173075+00:00",
+  "comments": "Die Provenienzkette ist vollständig: Freeze-Commit 0376142…, Source-Freeze-SHA 36764…, vier Digests (code, config, prompt, data), Confirmatory Lock mit protocol/prompt/analysis-Digest, Workflow-Run 35378668441, Artefakt-SHA a9abdb…. git.dirty: false, runtime_error_count: 0, fatal_error_count: 0, validity.valid: true.",
+  "artifact_content_digest": "8fd1b3c2c000b52faef31193080d1cdaefc61cfd5275f5ad08ed630b701b1fa6"
+}

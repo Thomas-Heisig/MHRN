@@ -11,7 +11,10 @@ Dieses Dokument ist der kurze Einstieg in den aktuellen wissenschaftlichen Zusta
 - unmittelbarer Vorgänger: Edition 1.7
 - frozen empirical baseline: Edition 1.5 / `EXP-EMP-20260913-A3`
 - 1.8 nutzt die für 2.0 geplante elfteilige Struktur, ohne Softwareversion oder Evidenzstatus hochzustufen
-- menschliches wissenschaftliches Review: für CL-003 ausstehend
+- offene menschliche wissenschaftliche Reviews: `EXP-GEN-0041`,
+  `EXP-S1-TOPO-V3-R1-20260918`, `EXP-S6-SEM-CL-003` und
+  `EXP-STAGE0-20260918-MODEL-CONFORMANCE-V2-PROMO-R1`
+- CL-003 besitzt jetzt einen begrenzten Review-Kandidaten; die Entscheidung ist weiterhin `PENDING`
 - unabhängige Replikation: unvollständig
 - automatische EVID-Promotion: deaktiviert
 
@@ -89,7 +92,7 @@ Für `active_fraction` liegt eine klare **Messbereichsgrenze im getesteten Regim
 
 Der Name `first_output_latency_censored` darf nicht als tatsächliche Zensierung der beobachteten 1d-Latenzen missverstanden werden. Das Präregistrat setzt ein Evaluationsfenster von 128 Ticks; nur ein vollständig ausbleibender Output wird mit dem Sentinel `129 = ticks + 1` kodiert. Die gespeicherten Evaluationsdaten enthalten keine solche Sentinel-Kodierung. Der 1d-Median von 19 Ticks ist daher ein beobachteter, nicht zensierter Wert. Die Latenzkontraste tragen in diesem Datensatz den breiteren und über alle fünf Primärkontraste konsistenten Unterschied.
 
-Alle sechs Bedingungen besitzen dasselbe globale Kantenbudget von 246. Unterschiede zwischen 1d/2d/3d/5d/`5d_shuffled`/`random_graph` sind deshalb **keine simple Dichte- oder Sparsity-Differenz**, sondern entstehen aus der unterschiedlichen Anordnung der gematchten Kanten unter den jeweiligen Konstruktionsregeln. Der zulässige Befund bleibt eng: **Die konkrete Netzwerktopologie beeinflusst in diesem kontrollierten 64-Neuronen-Regime die Propagationsdynamik.** Der Laufstatus lautet `SUPPORTED_WITHIN_PREREGISTERED_PROTOCOL`; der Lauf bleibt bis zur menschlichen Prüfung DATA und erzeugt keine automatische EVID-Promotion.
+Alle sechs Bedingungen besitzen dasselbe globale Kantenbudget von 246. Unterschiede zwischen 1d/2d/3d/5d/`5d_shuffled`/`random_graph` sind deshalb **keine simple Dichte- oder Sparsity-Differenz**, sondern entstehen aus der unterschiedlichen Anordnung der gematchten Kanten unter den jeweiligen Konstruktionsregeln. Der zulässige Befund bleibt eng: **Die konkrete Netzwerktopologie beeinflusst in diesem kontrollierten 64-Neuronen-Regime die Propagationsdynamik.** Der Laufstatus lautet `SUPPORTED_WITHIN_PREREGISTERED_PROTOCOL`; die begrenzte Interpretation ist human-reviewed akzeptiert, bleibt aber DATA und erzeugt keine automatische EVID-Promotion.
 
 Die anschließende interne Replikationslinie wurde bewusst als neue DATA erzeugt. `EXP-S1-TOPO-V3-20260918` führte zwar erfolgreich 120 Läufe aus und zeigte bereits dieselbe Richtung, musste aber für die konfirmatorische Interpretation verworfen werden, weil der Runner die Holm-Korrektur fälschlich in zwei Familien zu je fünf Tests statt in der präregistrierten einen Familie von zehn zeitaufgelösten Primärtests anwendete. Die Rohdaten und Originalstatistik bleiben unverändert als Auditspur erhalten.
 

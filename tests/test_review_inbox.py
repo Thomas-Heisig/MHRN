@@ -47,6 +47,113 @@ def test_review_inbox_never_promotes_evidence(tmp_path: Path) -> None:
     assert "scientific_evidence" not in inbox["items"][0]
 
 
+def test_review_inbox_does_not_close_on_ai_review(tmp_path: Path) -> None:
+    directory = tmp_path / "experiments" / "EXP-AI-REVIEW"
+    directory.mkdir(parents=True)
+    (directory / "review_request.json").write_text(
+        json.dumps(
+            {
+                "human_review_status": "PENDING",
+                "evidence_readiness": "BLOCKED_HUMAN_REVIEW",
+            }
+        ),
+        encoding="utf-8",
+    )
+    (directory / "review_request.json.review.json").write_text(
+        json.dumps(
+            {
+                "review_status": "accepted_as_interpretation",
+                "reviewer": "KI",
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    inbox = build_review_inbox(tmp_path)
+
+    assert inbox["open"] == 1
+    assert inbox["completed"] == 0
+    assert inbox["items"][0]["experiment_id"] == "EXP-AI-REVIEW"
+
+
+def test_review_inbox_lists_results_artifact_requiring_human_review(
+    tmp_path: Path,
+) -> None:
+    directory = tmp_path / "experiments" / "EXP-S6-SEM-CL-003" / "results"
+    directory.mkdir(parents=True)
+    (directory / "results.json").write_text(
+        json.dumps(
+            {
+                "experiment_id": "EXP-S6-SEM-CL-003",
+                "human_review_required": True,
+                "scientific_evidence": False,
+                "result_classification": "H1_negative_H2_negative",
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    inbox = build_review_inbox(tmp_path)
+
+    assert inbox["open"] == 1
+    item = inbox["items"][0]
+    assert item["experiment_id"] == "EXP-S6-SEM-CL-003"
+    assert item["artifact_path"].endswith("results/results.json")
+    assert item["result_status"] == "H1_negative_H2_negative"
+
+
+def test_review_inbox_skips_results_with_human_reviewed_evidence(tmp_path: Path) -> None:
+    experiment = tmp_path / "experiments" / "EXP-S6-SEM-CL-002"
+    results = experiment / "results"
+    results.mkdir(parents=True)
+    (results / "results.json").write_text(
+        json.dumps(
+            {
+                "human_review_required": True,
+                "scientific_evidence": False,
+                "evidence_status": "human_reviewed_project_evidence",
+            }
+        ),
+        encoding="utf-8",
+    )
+    (experiment / "EVID.json").write_text("{}", encoding="utf-8")
+
+    inbox = build_review_inbox(tmp_path)
+
+    assert inbox["open"] == 0
+
+
+def test_review_inbox_does_not_treat_ai_artifact_review_as_human(
+    tmp_path: Path,
+) -> None:
+    experiment = tmp_path / "experiments" / "EXP-GEN-0041" / "analysis"
+    experiment.mkdir(parents=True)
+    artifact = experiment / "PREREGISTERED-CRITERIA-EVALUATION.json"
+    artifact.write_text(
+        json.dumps(
+            {
+                "human_review_status": "PENDING",
+                "scientific_evidence_promoted": False,
+            }
+        ),
+        encoding="utf-8",
+    )
+    (experiment / "PREREGISTERED-CRITERIA-EVALUATION.json.review.json").write_text(
+        json.dumps(
+            {
+                "review_status": "accepted_as_interpretation",
+                "reviewer": "KI",
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    inbox = build_review_inbox(tmp_path)
+
+    assert inbox["open"] == 1
+    assert inbox["completed"] == 0
+
+
 def test_review_inbox_lists_source_bound_stage1_review_request(tmp_path: Path) -> None:
     directory = tmp_path / "experiments" / "EXP-S1-TOPO-V2-20260918"
     directory.mkdir(parents=True)

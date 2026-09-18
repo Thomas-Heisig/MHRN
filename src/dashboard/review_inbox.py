@@ -11,12 +11,35 @@ from pathlib import Path
 from typing import Any, cast
 
 
+_VALID_REVIEW_STATUSES = {"accepted_as_interpretation", "rejected"}
+_NON_HUMAN_REVIEWERS = {
+    "ai",
+    "artificial intelligence",
+    "artificial_intelligence",
+    "bot",
+    "ki",
+    "machine",
+    "system",
+}
+
+
 def _json(path: Path) -> dict[str, Any] | None:
     try:
         value = json.loads(path.read_text(encoding="utf-8"))
     except (OSError, json.JSONDecodeError):
         return None
     return cast(dict[str, Any], value) if isinstance(value, dict) else None
+
+
+def _is_human_review(path: Path) -> bool:
+    review = _json(path)
+    if not review or review.get("review_status") not in _VALID_REVIEW_STATUSES:
+        return False
+    reviewer = review.get("reviewer")
+    if not isinstance(reviewer, str) or not reviewer.strip():
+        return False
+    reviewer_kind = " ".join(reviewer.casefold().replace("_", " ").split())
+    return reviewer_kind not in _NON_HUMAN_REVIEWERS
 
 
 def build_review_inbox(research_root: Path) -> dict[str, Any]:
@@ -36,7 +59,7 @@ def build_review_inbox(research_root: Path) -> dict[str, Any]:
         experiment_id = report_path.parents[1].name
         report_id = str(report.get("report_id") or report_path.stem)
         review_path = report_path.with_name(f"{report_id}.review.json")
-        if review_path.is_file():
+        if review_path.is_file() and _is_human_review(review_path):
             completed += 1
             continue
         if report.get("human_review_required") is not True:
@@ -69,25 +92,39 @@ def build_review_inbox(research_root: Path) -> dict[str, Any]:
         if target.suffix.lower() not in {".md", ".json"}:
             continue
         review_path = target.with_name(f"{target.name}.review.json")
-        if review_path.is_file():
+        if review_path.is_file() and _is_human_review(review_path):
             completed += 1
             continue
         payload = _json(target) if target.suffix.lower() == ".json" else None
+        already_evidenced = bool(
+            isinstance(payload, dict)
+            and payload.get("evidence_status") == "human_reviewed_project_evidence"
+        ) or (target.name == "results.json" and target.parents[1].joinpath("EVID.json").is_file())
         explicit = bool(
             isinstance(payload, dict)
             and (
                 payload.get("human_review") == "PENDING"
                 or payload.get("human_review_status") in {"PENDING", "NOT_PERFORMED"}
                 or payload.get("evidence_readiness") == "BLOCKED_HUMAN_REVIEW"
+                or (
+                    target.name == "results.json"
+                    and payload.get("human_review_required") is True
+                    and payload.get("scientific_evidence") is False
+                )
             )
+            and not already_evidenced
         )
         if not explicit:
             continue
         relative = str(target.relative_to(root)).replace("\\", "/")
         experiment_id = target.relative_to(experiments).parts[0]
         research_question = (
-            str(payload.get("research_question"))
-            if isinstance(payload, dict) and payload.get("research_question")
+            str(
+                payload.get("research_question_id")
+                or payload.get("research_question")
+            )
+            if isinstance(payload, dict)
+            and (payload.get("research_question_id") or payload.get("research_question"))
             else None
         )
         hypothesis = (
@@ -96,14 +133,15 @@ def build_review_inbox(research_root: Path) -> dict[str, Any]:
             else None
         )
         result_status = (
-            str(payload.get("result_status"))
-            if isinstance(payload, dict) and payload.get("result_status")
+            str(payload.get("result_status") or payload.get("result_classification"))
+            if isinstance(payload, dict)
+            and (payload.get("result_status") or payload.get("result_classification"))
             else None
         )
         boundary = (
             str(payload.get("interpretation_boundary"))
             if isinstance(payload, dict) and payload.get("interpretation_boundary")
-            else "Explicit human review required by the artifact metadata."
+            else "DATA artifact requires human review; automatic EVID promotion is disabled."
         )
         items.append(
             {

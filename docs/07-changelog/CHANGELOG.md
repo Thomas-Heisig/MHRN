@@ -1,5 +1,16 @@
 # Changelog
 
+## 2026-09-18 - Human-review inbox integrity
+
+- Fixed the review inbox so an existing `.review.json` closes an item only
+  when it contains an accepted or rejected human decision.
+- AI-authored reviews such as `reviewer: KI` remain open, and DATA result
+  artifacts with an explicit human-review gate are now discoverable.
+- Added regression coverage for AI reviews, CL-003 DATA, and already reviewed
+  EVID artifacts.
+- Added the CL-003 human-review candidate without changing source DATA or
+  creating EVID.
+
 ## 2026-09-16 — Separate Release views for engineering and science
 
 - Added Wissenschaft to the central Release route registry beside Entwicklung.
