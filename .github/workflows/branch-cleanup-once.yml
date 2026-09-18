@@ -1,5 +1,5 @@
 name: One-time branch cleanup
-# trigger cleanup after workflow registration
+# cleanup execution trigger: PR 147 merge
 
 on:
   pull_request:
