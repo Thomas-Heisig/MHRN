@@ -658,6 +658,25 @@ Teil VIII fragt stärker:
 
 Die kanonischen Fragen `RQ-ETH-001`, `RQ-ETH-002` und `RQ-EPIST-001` verbinden beide Teile. Ihre Behandlung bleibt begrifflich und provenanceorientiert; generische Runtime-Metriken dürfen ihre Beantwortung nicht simulieren.
 
+### 33.18a Verdichtung von RQ-ETH-001: Beitrag, Kanonisierung und Verantwortung
+
+Die frühere Leitfrage „Wer ist der Autor — Mensch, Modell oder System?“ wird in Edition 1.8 als genealogische Ausgangsfrage bewahrt, aber analytisch verdichtet. Für die weitere Forschung sind mindestens vier Ebenen strikt auseinanderzuhalten:
+
+1. **epistemischer Beitrag** — wer verändert Frage, Methode, Analyse, Evidenzbewertung oder Schlussfolgerung materiell;
+2. **Generierung/Transformation** — wer erzeugt Text, Code, Analyse oder Varianten;
+3. **Kanonisierung** — wer entscheidet nach Prüfung über Übernahme, Revision, Evidenzstatus und Veröffentlichung;
+4. **formale Autorenschaft und Verantwortung** — wer wissenschaftlich Rechenschaft übernehmen kann.
+
+Daraus folgt keine Gleichung „materieller Beitrag = Autorenschaft“. Ebenso wenig darf menschliche Letztverantwortung maschinelle Beiträge unsichtbar machen. Für MHRN wird deshalb eine **Contribution & Accountability Matrix** als Forschungsinstrument eingeführt.
+
+Die präzisierte kanonische Frage `RQ-ETH-001` lautet:
+
+> Wie verteilen sich epistemische Beiträge, Entscheidungsmacht, formale Autorenschaft und wissenschaftliche Verantwortung bei Human–AI-gestützter MHRN-Forschung?
+
+Die bestehende `H-ETH-001-A` bleibt aus Provenienzgründen als historischer Umbrella bestehen. Die operationalisierbaren Teilhypothesen `H-ETH-001-B` bis `H-ETH-001-E` prüfen rekonstruierbare Beitragsrollen, Kanonisierung, formale Verantwortungszuordnung und den Audit-Mehrwert eines mehrdimensionalen Modells.
+
+Das zugehörige Protokolldesign ist `research/protocols/RQ_ETH_001_PROVENANCE_STUDY.md`. Es ist noch nicht präregistriert und nicht zur konfirmatorischen Ausführung autorisiert. Frühere generische Runtime- und Boundary-Audit-Läufe werden dadurch nicht nachträglich zu Evidenz für die neuen Hypothesen.
+
 ## 33.19 Eigene Vorarbeiten sind Quelle, nicht „neuer“ Text
 
 Die Editionslinie 1.0–1.8 enthält erhebliche Eigenwiederverwendung. Edition 1.8 behandelt ältere Manuskripte deshalb als **MHRN prior work** und nicht als neue Primärleistung allein durch Umordnung.

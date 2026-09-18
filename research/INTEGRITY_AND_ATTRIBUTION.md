@@ -128,3 +128,34 @@ For any release that changes scientific claims or mechanisms, maintain:
 ## 11. Non-guarantee statement
 
 Passing these controls means that documented integrity checks were completed. It does **not** mean that criticism is impossible or that plagiarism has been mathematically excluded. Scientific criticism remains part of the process; the project goal is to make claims traceable, bounded, falsifiable and properly attributed.
+
+## 12. RQ-ETH-001 contribution and accountability contract
+
+For Human–AI-assisted MHRN research, **contribution, generation, validation, selection/canonization, formal authorship and responsibility are separate dimensions**. A technical or linguistic contribution does not by itself establish authorship, personhood or responsibility.
+
+The canonical research question is `RQ-ETH-001`: *How are epistemic contributions, decision authority, formal authorship and scientific responsibility distributed in Human–AI-assisted MHRN research?*
+
+For every research-relevant claim episode, the project should be able to record at least:
+
+- `claim_id` and `event_id`,
+- `actor_type` and actor/model/software version,
+- role in conceptualization, generation/transformation, analysis, validation or selection,
+- input and output references,
+- whether the contribution is material to question, method, implementation, analysis, evidence assessment or conclusion,
+- decision authority and acceptance/rejection/revision state,
+- evidence/provenance reference,
+- responsible natural person,
+- timestamp and, where available, provenance digest.
+
+A contribution is **material** when it changes a research question, hypothesis, method, implementation, analysis, interpretation, evidence assessment or conclusion. Formatting, spelling correction and meaning-preserving surface rewriting are recorded separately.
+
+### Legacy boundary
+
+`H-ETH-001-A` retains its historical wording and identifier because existing experiment and audit artifacts already reference it. The 2026-09-18 consolidation therefore does **not** redefine that identifier retroactively. New propositions are registered as `H-ETH-001-B` through `H-ETH-001-E`.
+
+Historical generic runtime and boundary-audit runs remain provenance records, but they are not direct evidence for the new subhypotheses. Direct empirical testing requires claim-episode provenance, an explicit coding scheme and human/independent review.
+
+### Claim boundary
+
+This contract does not infer consciousness, moral personhood, legal personality, copyright authorship or autonomous scientific responsibility from machine participation. Those questions require separate legal, ethical or consciousness-specific analysis.
+
