@@ -181,3 +181,41 @@ def test_review_inbox_lists_source_bound_stage1_review_request(tmp_path: Path) -
     assert item["hypothesis_id"] == "H-SNN-003-B"
     assert item["result_status"] == "SUPPORTED_WITHIN_PREREGISTERED_PROTOCOL"
     assert "no 5D superiority" in item["summary"]
+
+
+def test_review_inbox_human_sidecar_closes_ai_reviewed_artifact(tmp_path: Path) -> None:
+    experiment = tmp_path / "experiments" / "EXP-AI-THEN-HUMAN"
+    experiment.mkdir(parents=True)
+    artifact = experiment / "review_request.json"
+    artifact.write_text(
+        json.dumps(
+            {
+                "human_review_status": "PENDING",
+                "evidence_readiness": "BLOCKED_HUMAN_REVIEW",
+            }
+        ),
+        encoding="utf-8",
+    )
+    (experiment / "review_request.json.review.json").write_text(
+        json.dumps(
+            {
+                "review_status": "accepted_as_interpretation",
+                "reviewer": "KI",
+            }
+        ),
+        encoding="utf-8",
+    )
+    (experiment / "review_request.json.human-review.json").write_text(
+        json.dumps(
+            {
+                "review_status": "accepted_as_interpretation",
+                "reviewer": "Thomas Heisig",
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    inbox = build_review_inbox(tmp_path)
+
+    assert inbox["open"] == 0
+    assert inbox["completed"] == 1
