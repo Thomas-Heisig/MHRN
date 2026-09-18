@@ -2276,91 +2276,257 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
             )
 
     def _serve_current_publication(self) -> None:
-        """Serve the current scientific publication README and metadata."""
+        """Serve the catalog-selected current publication and its complete reader map."""
         import hashlib
 
         repo_root = Path(__file__).resolve().parents[2]
-        pub_root = repo_root / "research" / "publications"
-
-        # Find the latest recursive-epistemics publication directory
-        candidates = sorted(
-            (
-                d
-                for d in pub_root.iterdir()
-                if d.is_dir() and "recursive-epistemics" in d.name
-            ),
-            key=lambda d: d.name,
-            reverse=True,
-        )
-        if not candidates:
-            self._send_json(
-                {"error": "No recursive-epistemics publication found."},
-                HTTPStatus.NOT_FOUND,
-            )
-            return
-
-        latest = candidates[0]
-        readme_path = latest / "README.md"
-        if not readme_path.exists():
-            self._send_json(
-                {"error": f"README.md not found in {latest.name}."},
-                HTTPStatus.NOT_FOUND,
-            )
-            return
+        research_root = repo_root / "research"
+        pub_root = research_root / "publications"
+        catalog_path = pub_root / "catalog.json"
 
         try:
-            content = readme_path.read_text(encoding="utf-8")
+            catalog_raw = json.loads(catalog_path.read_text(encoding="utf-8"))
+            if not isinstance(catalog_raw, dict):
+                raise ValueError("Publication catalog must be a JSON object.")
+
+            publications_raw = catalog_raw.get("publications")
+            if not isinstance(publications_raw, list):
+                raise ValueError("Publication catalog has no publications list.")
+
+            current_id = catalog_raw.get("current_publication_id")
+            if not isinstance(current_id, str) or not current_id:
+                fallback_id = catalog_raw.get("current_publication")
+                current_id = fallback_id if isinstance(fallback_id, str) else ""
+
+            current_item: dict[str, Any] | None = None
+            for item_raw in publications_raw:
+                if not isinstance(item_raw, dict):
+                    continue
+                item = cast(dict[str, Any], item_raw)
+                if current_id and item.get("id") == current_id:
+                    current_item = item
+                    break
+                if current_item is None and item.get("current") is True:
+                    current_item = item
+
+            if current_item is None:
+                raise ValueError("No current publication is declared in catalog.json.")
+
+            entrypoint_rel = current_item.get("entrypoint")
+            if not isinstance(entrypoint_rel, str) or not entrypoint_rel.startswith(
+                "publications/"
+            ):
+                raise ValueError("Current publication entrypoint is invalid.")
+
+            entrypoint_path = (research_root / entrypoint_rel).resolve()
+            if not entrypoint_path.is_relative_to(pub_root.resolve()):
+                raise ValueError("Current publication entrypoint escapes publications/.")
+            if not entrypoint_path.is_file():
+                raise FileNotFoundError(
+                    f"Current publication entrypoint not found: {entrypoint_rel}"
+                )
+
+            snapshot_rel_raw = current_item.get("snapshot")
+            snapshot_rel = (
+                snapshot_rel_raw
+                if isinstance(snapshot_rel_raw, str) and snapshot_rel_raw
+                else str(Path(entrypoint_rel).parent).replace("\\", "/")
+            )
+            snapshot_path = (research_root / snapshot_rel).resolve()
+            if not snapshot_path.is_relative_to(pub_root.resolve()) or not snapshot_path.is_dir():
+                raise ValueError("Current publication snapshot is invalid.")
+
+            content = entrypoint_path.read_text(encoding="utf-8")
             digest = hashlib.sha256(content.encode("utf-8")).hexdigest()
 
-            # Extract edition from directory name (e.g. "v1.5")
-            edition = "unknown"
-            if "_v" in latest.name:
-                edition = latest.name.split("_v")[-1]
+            def markdown_title(path: Path, fallback: str) -> str:
+                try:
+                    for line in path.read_text(encoding="utf-8").splitlines():
+                        if line.startswith("# "):
+                            return line[2:].strip() or fallback
+                except (OSError, UnicodeDecodeError):
+                    pass
+                return fallback
 
-            # Also look for a FORSCHUNGSBERICHT.md (separate research report)
-            forschungsbericht: dict[str, JSONValue] | None = None
-            for fb_name in ("FORSCHUNGSBERICHT.md", "Forschungsbericht.md"):
-                fb_path = latest / fb_name
-                if fb_path.exists():
-                    fb_content = fb_path.read_text(encoding="utf-8")
-                    forschungsbericht = {
-                        "path": str(fb_path.relative_to(repo_root)).replace("\\", "/"),
-                        "sha256": hashlib.sha256(
-                            fb_content.encode("utf-8")
-                        ).hexdigest(),
-                    }
+            def relative_research_path(path: Path) -> str:
+                return str(path.relative_to(research_root)).replace("\\", "/")
+
+            def document_descriptor(
+                path: Path,
+                *,
+                label: str | None = None,
+                role: str,
+            ) -> dict[str, JSONValue]:
+                relative = relative_research_path(path)
+                suffix = path.suffix.lower()
+                readable = suffix in {".md", ".markdown", ".txt"}
+                return {
+                    "label": label or markdown_title(path, path.name),
+                    "role": role,
+                    "source": "research",
+                    "path": relative,
+                    "kind": "reader" if readable else "file",
+                    "format": suffix.lstrip(".") or "file",
+                }
+
+            documents: list[dict[str, JSONValue]] = []
+            seen_paths: set[str] = set()
+
+            def add_document(
+                path: Path,
+                *,
+                label: str | None = None,
+                role: str,
+            ) -> dict[str, JSONValue] | None:
+                if not path.is_file():
+                    return None
+                descriptor = document_descriptor(path, label=label, role=role)
+                relative = cast(str, descriptor["path"])
+                if relative in seen_paths:
+                    return descriptor
+                seen_paths.add(relative)
+                documents.append(descriptor)
+                return descriptor
+
+            entrypoint_doc = add_document(
+                entrypoint_path,
+                label=markdown_title(entrypoint_path, "Gesamtmanuskript"),
+                role="entrypoint",
+            )
+
+            readme_path = snapshot_path / "README.md"
+            overview_doc = add_document(
+                readme_path,
+                label="Kapitel, Register und Publikationsübersicht",
+                role="overview",
+            )
+
+            chapters: list[dict[str, JSONValue]] = []
+            parts_root = snapshot_path / "parts"
+            if parts_root.is_dir():
+                for part_path in sorted(parts_root.glob("*.md")):
+                    descriptor = add_document(part_path, role="chapter")
+                    if descriptor is not None:
+                        chapters.append(descriptor)
+
+            preferred_attachments = (
+                "CONTENT_INTEGRATION.md",
+                "RESEARCH_REGISTER.md",
+                "SOURCE_INDEX.md",
+                "PRIOR_WORK_MAP.md",
+                "LEGACY_V17.md",
+                "REFERENCES.md",
+                "EXTENDING.md",
+                "CITATION.md",
+                "manifest.json",
+                "references.bib",
+                "edition.json",
+            )
+            attachments: list[dict[str, JSONValue]] = []
+            for name in preferred_attachments:
+                descriptor = add_document(snapshot_path / name, role="attachment")
+                if descriptor is not None:
+                    attachments.append(descriptor)
+
+            for folder_name in ("registers", "sources"):
+                folder = snapshot_path / folder_name
+                if not folder.is_dir():
+                    continue
+                for path in sorted(item for item in folder.iterdir() if item.is_file()):
+                    descriptor = add_document(path, role="attachment")
+                    if descriptor is not None:
+                        attachments.append(descriptor)
+
+            history: list[dict[str, JSONValue]] = []
+            current_pointer = add_document(
+                pub_root / "CURRENT.md",
+                label="Aktuelle Arbeitsfassung",
+                role="history",
+            )
+            if current_pointer is not None:
+                history.append(current_pointer)
+
+            frozen_pointer_raw = current_item.get("frozen_baseline_pointer")
+            if isinstance(frozen_pointer_raw, str) and frozen_pointer_raw:
+                frozen_pointer = add_document(
+                    research_root / frozen_pointer_raw,
+                    label="Frozen empirical baseline",
+                    role="history",
+                )
+                if frozen_pointer is not None:
+                    history.append(frozen_pointer)
+
+            predecessor_id = current_item.get("predecessor")
+            if isinstance(predecessor_id, str) and predecessor_id:
+                for item_raw in publications_raw:
+                    if not isinstance(item_raw, dict) or item_raw.get("id") != predecessor_id:
+                        continue
+                    predecessor_entry = item_raw.get("entrypoint")
+                    if isinstance(predecessor_entry, str):
+                        predecessor = add_document(
+                            research_root / predecessor_entry,
+                            label=f"Vorgänger {item_raw.get('version', predecessor_id)}",
+                            role="history",
+                        )
+                        if predecessor is not None:
+                            history.append(predecessor)
                     break
 
-            # Collect available export formats
             exports: list[JSONValue] = []
-            for ext in (".pdf", ".docx"):
-                for f in latest.iterdir():
-                    if f.suffix == ext and f.stem.startswith("MHRN"):
-                        exports.append(
-                            {
-                                "format": ext.lstrip("."),
-                                "path": str(f.relative_to(repo_root)).replace(
-                                    "\\", "/"
-                                ),
-                                "size_bytes": f.stat().st_size,
-                            }
-                        )
+            for path in sorted(snapshot_path.rglob("*")):
+                if not path.is_file() or path.suffix.lower() not in {".pdf", ".docx"}:
+                    continue
+                exports.append(
+                    {
+                        "format": path.suffix.lower().lstrip("."),
+                        "path": relative_research_path(path),
+                        "size_bytes": path.stat().st_size,
+                    }
+                )
+
+            forschungsbericht: dict[str, JSONValue] | None = None
+            for fb_name in ("FORSCHUNGSBERICHT.md", "Forschungsbericht.md"):
+                fb_path = snapshot_path / fb_name
+                if not fb_path.exists():
+                    continue
+                fb_content = fb_path.read_text(encoding="utf-8")
+                forschungsbericht = {
+                    "path": relative_research_path(fb_path),
+                    "sha256": hashlib.sha256(fb_content.encode("utf-8")).hexdigest(),
+                }
+                break
 
             self._send_json(
                 {
-                    "publication": latest.name,
-                    "title": "Recursive Epistemics in Embodied Spiking Neural Architectures",
-                    "edition": edition,
-                    "readme_path": str(readme_path.relative_to(repo_root)).replace(
-                        "\\", "/"
+                    "publication": snapshot_path.name,
+                    "publication_id": current_item.get("id"),
+                    "title": current_item.get("title")
+                    or "Recursive Epistemics / Rekursive Epistemik",
+                    "document_title": markdown_title(entrypoint_path, "Gesamtmanuskript"),
+                    "author": current_item.get("author"),
+                    "date": current_item.get("date"),
+                    "edition": current_item.get("version"),
+                    "edition_status": current_item.get("edition_status"),
+                    "authority": current_item.get("authority"),
+                    "entrypoint_path": relative_research_path(entrypoint_path),
+                    "readme_path": (
+                        relative_research_path(readme_path)
+                        if readme_path.is_file()
+                        else relative_research_path(entrypoint_path)
                     ),
                     "sha256": digest,
                     "content": content,
+                    "entrypoint": cast(JSONValue, entrypoint_doc),
+                    "overview": cast(JSONValue, overview_doc),
+                    "chapters": cast(JSONValue, chapters),
+                    "attachments": cast(JSONValue, attachments),
+                    "history": cast(JSONValue, history),
+                    "documents": cast(JSONValue, documents),
                     "forschungsbericht": forschungsbericht,
                     "exports": exports,
                 }
             )
-        except Exception as exc:
+        except (OSError, ValueError, json.JSONDecodeError) as exc:
             self._send_json(
                 {"error": str(exc)},
                 HTTPStatus.INTERNAL_SERVER_ERROR,
