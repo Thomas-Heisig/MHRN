@@ -1,4 +1,5 @@
 name: One-time branch cleanup
+# trigger cleanup after workflow registration
 
 on:
   push:
