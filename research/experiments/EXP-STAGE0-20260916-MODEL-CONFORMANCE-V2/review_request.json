@@ -10,8 +10,8 @@
   ],
   "protocol": "single_neuron_conformance_v2",
   "human_review_status": "COMPLETED",
-  "evidence_readiness": "EVID_ACCEPTED_INDEPENDENT_REPLICATION_OPEN",
-  "scientific_evidence": true,
+  "evidence_readiness": "BLOCKED_EVIDENCE_ENGINE_PROVENANCE",
+  "scientific_evidence": false,
   "automatic_evidence_promotion": false,
   "result_status": "SUPPORTED_WITHIN_PREREGISTERED_PROTOCOL",
   "review_scope": [
@@ -43,10 +43,9 @@
     "generalization to neuron models or parameter regimes not included in the frozen protocol"
   ],
   "required_human_decision": "supports_scoped_claim | rejects_scoped_claim | requests_revision",
-  "note": "A human decision may close the reviewed_evidence criterion for the scoped Stage-0 claim. It must not mark independent_replication as complete and must not rewrite source-bound DATA.",
+  "note": "Human Review supports the scoped claim. Canonical EVID promotion remains blocked until a promotion-eligible replication is executed under the current EvidenceEngine provenance contract. Independent replication remains a separate gate.",
   "human_review_decision": "supports_scoped_claim",
   "reviewed_at": "2026-09-18",
-  "evidence_id": "EVID-2026-17",
   "independent_replication": false,
   "review_findings": {
     "tolerance_pre_registered": true,
