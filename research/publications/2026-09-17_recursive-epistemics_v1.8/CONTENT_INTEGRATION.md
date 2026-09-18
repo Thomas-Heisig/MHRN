@@ -228,12 +228,12 @@ Grenze: Historical implementation notes and plans are not automatically current 
 
 Rolle: `accepted methodological interpretation and prospective design constraint`  
 Status: `semantically_integrated_without_evidence_promotion`  
-Modus: `registry_semantics_adequacy_and_prospective_design_synthesis`  
+Modus: `registry_semantics_adequacy_human_review_and_prospective_design_synthesis`  
 Teile: IV, VI, X, XI
 
-Quellpfade: `research/decisions/2026-09-17_determinism_registry_airr_alignment.md`; `research/decisions/2026-09-17_snn003_topology_propagation_v1_adequacy.md`
+Quellpfade: `research/decisions/2026-09-17_determinism_registry_airr_alignment.md`; `research/decisions/2026-09-17_snn003_topology_propagation_v1_adequacy.md`; `research/experiments/EXP-BATCH-20260914074039-03/review-20260917.md`
 
-Grenze: Historical DATA/manifests remain immutable; semantic alignment does not erase provenance blocks, and test inadequacy is neither confirmation nor refutation of the target hypothesis.
+Grenze: Historical DATA/manifests remain immutable; semantic alignment does not erase provenance blocks, Human Review does not auto-promote EVID, and test inadequacy is neither confirmation nor refutation of the target hypothesis.
 
 ## CORPUS-LP-20260917194217 — Approved Stage-6 compression learning proposal LP-20260917194217
 
@@ -245,3 +245,14 @@ Teile: IV, X, XI
 Quellpfade: `research/learning/preparations/LP-20260917194217.json`; `research/learning/preparations/LP-20260917194217-approved.json`
 
 Grenze: authority=proposal_only, executed=false, runtime_authority=none; approval is not execution, DATA or EVID.
+
+## CORPUS-CURRENT-HUMAN-REVIEWS — Current human reviews of determinism and topology test adequacy
+
+Rolle: `human methodological review and current interpretation boundary`  
+Status: `semantically_integrated_without_evidence_promotion`  
+Modus: `review_consequences_provenance_gate_and_test-adequacy_synthesis`  
+Teile: IV, VI, X, XI
+
+Quellpfade: `research/experiments/EXP-BATCH-20260914074039-03/review-20260917.md`; `research/decisions/2026-09-17_determinism_registry_airr_alignment.md`; `research/decisions/2026-09-17_snn003_topology_propagation_v1_adequacy.md`; `research/experiments/EXP-GEN-0047/summary.md`
+
+Grenze: RQ-DET-001 remains blocked from EVID by dirty-tree provenance pending clean rerun; EXP-GEN-0047 is not a topology-null result and remains inadequate to test H-SNN-003-B.
