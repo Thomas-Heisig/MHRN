@@ -176,7 +176,7 @@ def bibliography(refs):
     lookup = {}
     lines = [
         "# Literaturverzeichnis und Quellenstatus\n",
-        "Autor-Jahr-Zitation nach APA 7; Identifikations- und Leseumfang werden getrennt ausgewiesen. Keine Volltext-, Prioritäts- oder Plagiatszertifizierung.\n",
+        "Autor-Jahr-Zitation nach APA 7; Primärliteratur, Sekundärliteratur, Richtlinien und Standards werden getrennt gekennzeichnet. Identifikations- und Leseumfang werden zusätzlich ausgewiesen. Keine Volltext-, Prioritäts- oder Plagiatszertifizierung.\n",
     ]
     bib = []
     allowed = {
@@ -185,11 +185,14 @@ def bibliography(refs):
         "primary_text_checked",
         "official_guidance_checked",
     }
+    source_classes = {"primary", "secondary", "guideline", "standard"}
     for ref in refs:
         key = ref["id"]
         if (
             key in lookup
             or ref["verification"] not in allowed
+            or ref.get("source_class") not in source_classes
+            or not ref.get("source_type")
             or not ref["url"].startswith("https://")
         ):
             raise ValueError(f"Invalid reference: {key}")
@@ -197,7 +200,7 @@ def bibliography(refs):
         lines += [
             f'<a id="ref-{key}"></a>\n',
             ref["apa"] + "\n",
-            f"Originalquelle: {ref['url']}  \nPrüfumfang: {ref['verification']}; geprüft am {ref['checked_on']}. {ref['scope']}\n",
+            f"Quellentyp: {ref['source_type']}  \nOriginalquelle: {ref['url']}  \nPrüfumfang: {ref['verification']}; geprüft am {ref['checked_on']}. {ref['scope']}\n",
         ]
         fields = {
             "author": ref["bib_author"],
