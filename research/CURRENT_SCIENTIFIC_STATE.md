@@ -1,6 +1,6 @@
 # Current Scientific State
 
-**Stand:** 17. September 2026
+**Stand:** 18. September 2026
 
 Dieses Dokument ist der kurze Einstieg in den aktuellen wissenschaftlichen Zustand. Historische DATA, EVID-Entscheidungen und eingefrorene Publikationen bleiben unverändert in ihren datierten Verzeichnissen.
 
@@ -43,6 +43,38 @@ Aus CL-003 folgt kein automatisches CL-004. Nach Human Review gilt weiterhin:
 - **C:** Rollenfrage parken, bis Prediction Error oder World Model eine konkrete funktionale Notwendigkeit erzeugen.
 
 Eine serielle Rettung durch immer neue Rollenannahmen ist nicht zulässig.
+
+## Aktuelle Review- und Replikationslage
+
+### Determinismus / `RQ-DET-001`
+
+Der historische Lauf `EXP-BATCH-20260914074039-03` ist nach dem aktuellen semantischen Vertrag ein direkter Test von `RQ-DET-001 / H-SNN-003-A`. Für drei Seeds stimmen die A/B-Replikapaare innerhalb von `recurrence_off` und `recurrence_on` in den registrierten Antwortgrößen überein. Der Befund ist damit ein positiver Same-Seed-Determinismusbefund **innerhalb dieses kleinen Protokolls**.
+
+Er bleibt dennoch **nicht EVID**, weil der historische Lauf mit `git dirty: true` erzeugt wurde. Die semantische Korrektur heilt keine Provenienzlücke. Der nächste wissenschaftlich saubere Schritt ist deshalb ein clean-tree, hash-gebundener Replikationslauf mit denselben vorab fixierten Bedingungen und anschließender Human-EVID-Entscheidung.
+
+Zusätzlich gilt die AIRR-Regel: Bei semantischem `MISMATCH` wird öffentliches/report-level `ai_confidence` deterministisch auf `0.0` gesetzt; der ursprüngliche Modellwert bleibt nur im append-only Auditpfad erhalten. AIRR bleibt Interpretation, nicht Evidenzinstanz.
+
+### Topologie / `H-SNN-003-B`
+
+`EXP-GEN-0047` ist technisch reproduzierbar und enthält die sechs beabsichtigten Bedingungen `1d`, `2d`, `3d`, `5d`, `5d_shuffled` und `random_graph`. Der Versuch ist semantisch `DIRECT_MATCH`, aber methodisch als `INADEQUATE_TO_TEST_HYPOTHESIS` klassifiziert.
+
+Der Grund ist nicht ein fehlender Effekt, sondern ein unzureichender Mechanismus: drei Neuronen, zwei Feed-forward-Synapsen und bei den nicht-randomisierten Bedingungen eine im Wesentlichen gleiche explizite Kette. Die Koordinaten ändern sich, ohne die Dynamik ausreichend kausal zu verändern. Identische Resultate über 1D/2D/3D/5D sind daher **kein Topologie-Nullbefund** und widerlegen keinen 5D-Effekt.
+
+Für `topology_propagation_v2` gelten als Mindestanforderungen: mindestens 1.000 Neuronen je Bedingung, im Mittel mindestens 10 eingehende Synapsen, degree-/density-matched Kontrollen, explizite Kopplung von Geometrie an Konnektivität und/oder Delay, Multi-Neuron-Stimulus, Activity-Adequacy-Gate, vorab definierte first-arrival-/reach-Endpunkte, unabhängige Seeds und saubere Source-/Graph-Provenienz. Diese Werte sind operative Mindestschwellen der nächsten Testgeneration, keine universellen Suffizienzkriterien.
+
+### Stage-6-Kompressionshypothese
+
+`LP-20260917194217` ist human-origin, genehmigt und weiterhin **proposal-only**. Es wurde nicht ausgeführt und besitzt keine Runtime-Autorität. Geprüft werden soll, ob `semantic_prototype_replay_10pct_budget` bei einem Zehntel des Speicherbudgets mindestens 95 % der Retention von `raw_replay_full_budget` erreicht. Kontrollen sind `no_replay`, `random_prototype_10pct` und `learning_off`.
+
+Vor einer Ausführung müssen Source-Digests, Trust-Status, Seed-/Taskplan, Analysevertrag und Freeze vollständig gebunden sein. Approval ist keine Ausführung, DATA oder EVID.
+
+### Methodische Gesamtfolge
+
+Die jüngsten Reviews machen eine für MHRN zentrale Trennung verbindlich:
+
+`semantischer Match ≠ technische Reproduzierbarkeit ≠ Testadäquanz ≠ Provenienz ≠ EVID`.
+
+Ein Experiment kann korrekt registriert und technisch reproduzierbar sein und dennoch die Zielhypothese nicht beantworten. Umgekehrt kann ein positiver technischer Befund wegen mangelhafter Provenienz von einer Evidenzpromotion ausgeschlossen bleiben. Diese Trennung ist inzwischen Teil des kanonischen Forschungsprozesses.
 
 ## Weitere priorisierte Forschung
 
