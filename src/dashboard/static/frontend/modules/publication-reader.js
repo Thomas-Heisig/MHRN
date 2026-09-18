@@ -84,11 +84,11 @@ async function loadCurrentPublication(container, { force = false } = {}) {
     if (data.error) throw new Error(data.error);
     if (typeof data.content !== "string") throw new Error("Publikationsinhalt fehlt in der API-Antwort.");
 
-    const rootRef = sourceReference(data.readme_path || "publications/README.md", "research");
+    const rootRef = sourceReference(data.entrypoint_path || data.readme_path || "publications/CURRENT.md", "research");
     const rootView = {
       source: rootRef.source,
       path: rootRef.path,
-      title: data.title || firstHeading(data.content) || "Wissenschaftliche Publikation",
+      title: data.document_title || firstHeading(data.content) || data.title || "Wissenschaftliche Publikation",
       content: data.content,
       kind: "markdown",
       root: true,
@@ -144,10 +144,13 @@ function renderReader(container) {
       <header class="pub-reader-hero">
         <div class="pub-reader-identity">
           <span class="pub-reader-eyebrow">WISSENSCHAFTLICHE HAUPTARBEIT</span>
-          <h1>${escapeHtml(data.title || view.title)}</h1>
+          <h1>${escapeHtml(view.root ? (data.document_title || view.title) : view.title)}</h1>
+          ${view.root && data.title && data.title !== data.document_title ? `<p class="pub-reader-catalog-title">${escapeHtml(data.title)}</p>` : ""}
           <div class="pub-reader-badges" aria-label="Publikationsmetadaten">
             ${data.edition ? `<span>Edition ${escapeHtml(data.edition)}</span>` : ""}
             ${data.publication ? `<span>${escapeHtml(data.publication)}</span>` : ""}
+            ${data.author ? `<span>${escapeHtml(data.author)}</span>` : ""}
+            ${data.date ? `<span>${escapeHtml(data.date)}</span>` : ""}
             <span>${words.toLocaleString("de-DE")} Wörter</span>
             <span>ca. ${readMinutes} Min.</span>
           </div>
@@ -182,6 +185,7 @@ function renderReader(container) {
         <aside class="pub-reader-toc" aria-label="Inhaltsverzeichnis">
           <div class="pub-reader-toc-head"><strong>Inhalt</strong><span>${rendered.headings.length} Abschnitte</span></div>
           ${renderToc(rendered.headings)}
+          ${renderPublicationLibrary(data, view)}
           <div class="pub-reader-toc-meta">
             <button type="button" data-pub-action="copy-path">Pfad kopieren</button>
             ${safeDigest ? `<button type="button" data-pub-action="copy-digest">SHA-256 kopieren</button>` : ""}
@@ -216,6 +220,30 @@ function renderToc(headings) {
     <a href="#${escapeHtml(heading.id)}" data-pub-anchor="${escapeHtml(heading.slug)}" data-level="${heading.level}">
       <span>${escapeHtml(heading.text)}</span>
     </a>`).join("")}</nav>`;
+}
+
+function renderPublicationLibrary(data, view) {
+  const groups = [
+    ["Kapitel", Array.isArray(data.chapters) ? data.chapters : []],
+    ["Anhänge & Register", Array.isArray(data.attachments) ? data.attachments : []],
+    ["Editionen", Array.isArray(data.history) ? data.history : []],
+  ];
+  const currentKey = `${view.source}:${view.path}`;
+  const sections = groups.map(([title, items]) => {
+    if (!items.length) return "";
+    const buttons = items.map((item) => {
+      const source = item.source === "docs" ? "docs" : "research";
+      const path = stripResearchPrefix(String(item.path || ""));
+      const key = `${source}:${path}`;
+      const readable = item.kind === "reader" || READER_EXTENSIONS.test(path);
+      const attrs = readable
+        ? `data-pub-reader-link="${escapeHtml(path)}" data-pub-source="${escapeHtml(source)}"`
+        : `data-pub-file="${escapeHtml(path)}" data-pub-source="${escapeHtml(source)}"`;
+      return `<button type="button" class="pub-reader-library-item${key === currentKey ? " active" : ""}" ${attrs}${key === currentKey ? ' aria-current="page"' : ""}><strong>${escapeHtml(String(item.label || basename(path)))}</strong><span>${escapeHtml(String(item.format || item.role || ""))}</span></button>`;
+    }).join("");
+    return `<section class="pub-reader-library"><div class="pub-reader-toc-head"><strong>${escapeHtml(title)}</strong><span>${items.length}</span></div><div class="pub-reader-library-list">${buttons}</div></section>`;
+  }).join("");
+  return sections;
 }
 
 function renderReaderFooter(data, view) {
