@@ -287,3 +287,42 @@ Nach dem jüngsten Human Review ist die offene Determinismusfrage enger als zuvo
 Für `H-SNN-003-B` ist der nächste Schritt ebenfalls klarer: `EXP-GEN-0047` gilt nicht als negativer Befund, sondern als `INADEQUATE_TO_TEST_HYPOTHESIS`. `topology_propagation_v2` muss daher vor Ausführung mindestens folgende Merkmale einfrieren: mindestens 1.000 Neuronen pro Bedingung, im Mittel mindestens 10 eingehende Synapsen pro Neuron, degree-/density-matched Vergleiche, explizite Kopplung von Geometrie an Konnektivitätswahrscheinlichkeit und/oder Delay, Multi-Neuron-Stimulus, Activity-Adequacy-Gate, vorab definierte first-arrival-/reach-Endpunkte, unabhängige Seeds sowie saubere Source-/Graph-Provenienz. Diese Schwellen sind Mindestanforderungen für die nächste Testgeneration, keine universellen Suffizienzkriterien.
 
 Damit sind die nächsten beiden methodischen Schritte **Replikation** und **Testadäquanz**, nicht weitere Interpretation derselben historischen DATA.
+
+## 59. Forschungsagenda und Abschlusskriterien der Teilstudien
+
+Die offene Forschungslandschaft wird für die weitere Arbeit nicht als unsortierte TODO-Liste behandelt. Jeder Hauptzweig erhält ein **wissenschaftliches Abschlusskriterium**, das festlegt, welche nächste Evidenz tatsächlich nötig ist, bevor eine stärkere Aussage zulässig wird.
+
+| Teilstudie | Nächster entscheidender Prüfpunkt | Kriterium für stärkere Aussage |
+| --- | --- | --- |
+| **Basale Dynamik / Determinismus** | clean-tree, hash-gebundene Same-Seed-Replikation und externe Wiederholung | Reproduzierbarkeit muss über denselben internen Workflow hinaus bestätigt werden |
+| **Rekurrenz** | unabhängige Seeds, skalierte Netzwerke und klar getrennte Rekurrenzintervention | Effekt muss unter erweitertem Operating Envelope bestehen |
+| **Topologie / 5D** | präregistriertes `topology_propagation_v2` mit ≥1.000 Neuronen, ≥10 Inputs/Neuron und Geometrie-Dynamik-Kopplung | Activity-Adequacy-Gate erfüllt und vorab definierter Topologievergleich interpretierbar |
+| **Plastizität** | learning-on/off-, Sham-/Frozen- und Holdout-Designs mit unabhängigen Seeds | Gewichtsänderung muss einen funktionalen Lern-/Stabilitätsbeitrag gegenüber Kontrollen tragen |
+| **MSBA / spezialisierte Pfade** | kausale Ressourcen- und Lesionsexperimente unter streng gematchten Budgets | Spezialpfad muss über bloße Implementierbarkeit hinaus messbaren Zusatznutzen zeigen |
+| **Embodiment** | `H-EMB-001-B`: identische externe Störung, Closed Loop vs. yoked Replay vs. interrupted feedback | Feedback muss unter matched disturbance einen kausalen Vorteil zeigen |
+| **SemanticMemory / Kompression** | neue Human Approval und Präregistrierung für `OBJ-MEM-COMPRESSION-001` | 10%-Budget erreicht die vorab definierte Retentionsgrenze gegenüber Full Raw Replay |
+| **Weltmodell** | action-conditioned Mehrschrittvorhersage gegen reactive/no-model/corrupted-model | Modellinformation muss einen kausalen Entscheidungsnutzen liefern |
+| **Selbstmodell** | interventionelle Self/Other-Manipulationen | Selbstmodell muss funktional mehr leisten als Profil-/Metadatenidentität |
+| **Rekursive Epistemik** | Meta-Metriken zu Fehlklassifikationen, Statussprüngen und Revisionsqualität | Governance muss messbar bessere Forschungsentscheidungen erzeugen oder gegenüber einfacherer Alternative bestehen |
+| **Safety / Ethik** | operationalisierte Zielprovenienz-, Interruptibility- und Welfare-Gates | normative Regeln müssen technisch anschlussfähig und unter Gegenfällen revidierbar sein |
+
+### Priorisierungsregel
+
+Die Reihenfolge weiterer Forschung folgt nicht der visuellen Stage-Nummer, sondern dem wissenschaftlichen Informationsgewinn. Vorrang haben Experimente, die einen zentralen offenen Claim entscheiden, einen bekannten Confound beseitigen oder eine Architekturentscheidung irreversibel vereinfachen können.
+
+Daraus folgen gegenwärtig vier priorisierte Linien:
+
+1. **Präregistrierung von `OBJ-MEM-COMPRESSION-001`**, weil sie eine klar falsifizierbare Anschlussfrage an die negative CL-002/003-Linie darstellt.
+2. **`topology_propagation_v2`**, weil 5D ohne testadäquates Design wissenschaftlich offen bleiben muss.
+3. **clean-tree Determinismusreplikation**, weil vorhandene positive Same-Seed-Befunde durch Provenienzgrenzen blockiert sind.
+4. **`H-EMB-001-B`**, weil erst der matched-disturbance-Vergleich den Closed-Loop-Mechanismus stärker kausal isoliert.
+
+### Abschlusscharakter
+
+Eine spätere kanonische Hauptfassung darf keinen Zweig allein deshalb als „abgeschlossen“ markieren, weil Code, UI oder Dokumentation vollständig sind. Abschluss bedeutet in dieser Arbeit entweder:
+
+- eine Hypothese wurde unter adäquatem Design gestützt oder falsifiziert;
+- der Geltungsbereich wurde durch ein negatives Resultat belastbar begrenzt;
+- oder die Frage bleibt ausdrücklich offen, weil die notwendige Evidenz noch fehlt.
+
+Gerade diese dritte Möglichkeit gehört zum wissenschaftlichen Charakter der Arbeit. Eine Dissertation oder Monographie wird nicht dadurch stärker, dass jede Frage beantwortet erscheint, sondern dadurch, dass beantwortete, widerlegte und noch offene Fragen methodisch unterscheidbar bleiben.
