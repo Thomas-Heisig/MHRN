@@ -1,0 +1,120 @@
+{
+  "preregistration_id": "PREREG-EVAL-006-V2-PROMO-R1",
+  "parent_preregistration_id": "PREREG-EVAL-006-V2",
+  "experiment_id": "EXP-STAGE0-20260918-MODEL-CONFORMANCE-V2-PROMO-R1",
+  "research_question_id": "RQ-EVAL-006",
+  "hypothesis_ids": [
+    "H-EVAL-006-A",
+    "H-EVAL-006-B",
+    "H-EVAL-006-C"
+  ],
+  "claim_id": "CLAIM-EVAL-006",
+  "status": "FROZEN_BEFORE_PROMOTION_REPLICATION",
+  "created": "2026-09-18",
+  "protocol": "single_neuron_conformance_v2",
+  "mode": "REPLICATION",
+  "purpose": "EVIDENCE_ENGINE_PROMOTION_ELIGIBILITY_ONLY",
+  "external_reference": {
+    "framework": "Brian2",
+    "version": "2.10.1",
+    "backend": "numpy",
+    "dt_ms": 1
+  },
+  "source_protocol_invariants": {
+    "absolute_tolerance": 1e-8,
+    "izhikevich_samples_per_seed": 64,
+    "lif_ticks": 1000,
+    "lif_cells": 5,
+    "lif_default_refractory_ticks": 0,
+    "nonzero_refractory_mapping_rule": "brian2_refractory_ms = native_refractory_ticks + 1 at dt_ms=1.0 for native values 1..3",
+    "prohibited_changes": [
+      "tolerance",
+      "model equations",
+      "threshold/reset semantics",
+      "sample count",
+      "mapping rule",
+      "success rule"
+    ]
+  },
+  "replication_validation": {
+    "seeds": [
+      22001,
+      22002,
+      22003
+    ],
+    "seed_overlap_with_diagnostic": false,
+    "seed_overlap_with_original_confirmatory": false,
+    "original_confirmatory_seeds": [
+      21001,
+      21002,
+      21003
+    ],
+    "izhikevich_primary_endpoints": {
+      "spike_decisions_equal": true,
+      "max_abs_pre_reset_v_error_lte": 1e-8,
+      "max_abs_pre_reset_u_error_lte": 1e-8,
+      "max_abs_post_reset_v_error_lte": 1e-8,
+      "max_abs_post_reset_u_error_lte": 1e-8
+    },
+    "lif_default_primary_endpoints": {
+      "refractory_ticks": 0,
+      "brian2_refractory_ms": 0,
+      "spike_events_equal": true,
+      "max_abs_v_error_lte": 1e-8,
+      "ticks": 1000,
+      "cells": 5
+    },
+    "lif_refractory_secondary_endpoints": {
+      "tested_native_refractory_ticks": [
+        1,
+        2,
+        3
+      ],
+      "expected_brian2_refractory_ms": [
+        2,
+        3,
+        4
+      ],
+      "spike_events_equal": true,
+      "max_abs_v_error_lte": 1e-8
+    },
+    "success_rule": "All three replication seeds must satisfy all H-EVAL-006-A and H-EVAL-006-B primary endpoints; H-EVAL-006-C passes only if every declared mapping satisfies both equality endpoints in all three seeds.",
+    "retry_rule": "No data-dependent tuning, seed substitution, tolerance change or automatic retry is permitted. Failure is retained as DATA and requires a separately versioned preregistration."
+  },
+  "evidence_engine_contract": {
+    "experiment_manifest_required": true,
+    "experiment_status_required": "completed",
+    "validity_required": {
+      "valid": true,
+      "runtime_error_count": 0,
+      "fatal_error_count": 0
+    },
+    "clean_git_required": true,
+    "provenance_digests_required": [
+      "code",
+      "config",
+      "prompt",
+      "data"
+    ],
+    "source_freeze_sha_required": true,
+    "human_review_after_run_required": true,
+    "automatic_evidence_promotion": false,
+    "source_bound_data_immutable": true
+  },
+  "independence_boundary": {
+    "independent_authorship_replication": false,
+    "classification": "INTERNAL_PROMOTION_REPLICATION",
+    "reason": "Same MHRN repository, author/toolchain and Brian2 external reference. This run may close the formal EvidenceEngine promotion gate but cannot close the independent-replication maturity gate."
+  },
+  "claim_boundary": {
+    "allowed": "Under the frozen V2 protocol, the declared MHRN single-neuron model contracts conform to the matched Brian2 2.10.1 reference within preregistered tolerances if all frozen endpoints pass.",
+    "prohibited": [
+      "biological equivalence",
+      "universal long-horizon trajectory identity",
+      "independent replication",
+      "automatic EVID promotion",
+      "generalization to untested neuron models or parameter regimes",
+      "reinterpretation of the preserved V1 1000-tick negative"
+    ]
+  }
+}
