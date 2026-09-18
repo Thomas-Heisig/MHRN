@@ -1407,7 +1407,7 @@
 
 **Frage:** Do the selectable MHRN single-neuron models reproduce their declared one-step transition, spike and reset semantics against a matched external Brian2 implementation?
 
-**Status:** in_progress
+**Status:** open
 **Relevanz:** Separates membrane-model conformance from long-horizon numerical sensitivity and makes neuron model a reusable experimental treatment axis while retaining Izhikevich as default.
 
 **Hypothesen:**
@@ -1416,7 +1416,7 @@
 - `H-EVAL-006-C`: Nonzero LIF refractory_ticks can be mapped to an explicitly documented Brian2 refractory duration that yields the same clamp/update semantics; the mapping is an optional extension and is not assumed from equal numeric parameter values. *(supported)*
 
 **Claims:**
-- `CLAIM-EVAL-006`: Unter dem eingefrorenen V2-Protokoll konformieren die deklarierten MHRN-Einzelzellverträge für Izhikevich-2003, lif-current-v1 und das separat klassifizierte Refractory-Semantik-Mapping mit der gematchten Brian2-2.10.1-Referenz innerhalb der präregistrierten Toleranzen. *(supported, medium)* — Evidenz: EVID-2026-17
+- `CLAIM-EVAL-006`: Unter dem eingefrorenen V2-Protokoll konformieren die deklarierten MHRN-Einzelzellverträge für Izhikevich-2003, lif-current-v1 und das separat klassifizierte Refractory-Semantik-Mapping mit der gematchten Brian2-2.10.1-Referenz innerhalb der präregistrierten Toleranzen. *(inconclusive, low)* — Evidenz: EVID-2026-17
 
 **Literatur:**
 - `SRC-IZHIKEVICH-2003`: Eugene M. Izhikevich et al. (2003)
