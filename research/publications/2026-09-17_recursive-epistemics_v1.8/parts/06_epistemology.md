@@ -86,3 +86,19 @@ Präregistrierung trennt prospektive Hypothesenprüfung von nachträglicher Must
 Eine starke Aussage in MHRN nennt nicht nur, warum sie aktuell plausibel ist, sondern auch, wodurch sie sich ändern würde. Für 5D ist dies ein geometriesensitives matched-control Experiment. Für SemanticMemory ist es ein begrenzter, vorab begründeter Zusatznutzen gegenüber Raw-Replay. Für ein Weltmodell ist es Mehrschritt- und Entscheidungsnutzen unter geeigneten Kontrollen. Für ein Selbstmodell ist es kausale Self/Other-Differenzierung.
 
 Die Arbeit versteht Revidierbarkeit daher nicht als Schwäche, sondern als explizite Schnittstelle zwischen heutiger Synthese und zukünftiger Evidenz.
+
+## 28.6 Epistemologische Teilstudie — Forschungsprozess als Untersuchungsgegenstand
+
+**Forschungsfrage.** Unter welchen Bedingungen verbessert eine explizite Trennung von Quelle, Entscheidung, Ausführung, DATA, Review und EVID die wissenschaftliche Belastbarkeit eines schnell iterierenden, KI-assistierten Einzelforschungsprojekts?
+
+**Material.** Untersucht werden versionierte Commits, Präregistrierungen, DATA, Reviews, Registry-Transitionen, AI-Interpretationen, Publication Builds und dokumentierte Fehlklassifikationen. Die frühe Schaffensgeschichte wird nur dort einbezogen, wo ihre Provenienzklasse benannt werden kann.
+
+**Methode.** Die epistemologische Achse verwendet Provenienzanalyse, Entscheidungsrekonstruktion, Status-Transition-Audit, kontrafaktische Prozessprüfung und Revisionstracing. Sie fragt nicht, ob eine neuronale Hypothese wahr ist, sondern ob der Weg von Beobachtung zu Claim nachvollziehbar und revidierbar war.
+
+**Ergebnisstand.** Mehrere konkrete Fehler — fehlinterpretierte Reportspalten, unzureichende Baselines, semantische Registry-Mismatches, Dirty-Tree-Provenienz und die inadäquate 5D-v1-Testkonstruktion — führten zu dauerhaften Governance-Regeln. Die Prozessarchitektur wurde dadurch nachweisbar restriktiver.
+
+**Diskussion.** Dies stützt die Arbeitsthese, dass negative oder korrigierende Befunde nicht nur Sachwissen erzeugen, sondern die Methode selbst verändern können. Der methodische Beitrag liegt in der expliziten Verbindung von Softwarezustand, Forschungsstatus und Claim-Grenze.
+
+**Limitation.** Die meisten Prozessverbesserungen wurden innerhalb derselben Autoren- und Toolkette entworfen und bewertet. Eine geringere interne Fehlklassifikationsrate wäre erst dann stärker belegt, wenn sie über längere Zeiträume, unabhängige Reviewer oder externe Replikationsgruppen systematisch gemessen wird.
+
+**Zwischenfazit.** Rekursive Epistemik besitzt damit einen empirisch anschlussfähigen methodischen Kern: Nicht die Selbstbeschreibung „wir arbeiten sorgfältiger“, sondern überprüfbare Status-, Provenienz- und Revisionsereignisse bilden den Gegenstand.
