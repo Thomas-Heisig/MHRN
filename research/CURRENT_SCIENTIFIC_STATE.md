@@ -28,7 +28,7 @@ Der eng definierte `single_neuron_scientific_readiness`-Vertrag steht weiterhin 
 - RQ/H: **met** = 15 %;
 - eingefrorenes Protokoll: **met** = 20 %;
 - source-bound DATA: **met** = 20 %;
-- Human-EVID: **open** = 0 %;
+- Human-reviewed EVID: **partial** = 10 % von 20 % (Human Review positiv abgeschlossen; kanonische EVID-Promotion noch offen);
 - externer Referenzvergleich / unabhängige Replikation: **partial** = 7,5 % von 15 %;
 - Attribution: **met** = 10 %.
 
