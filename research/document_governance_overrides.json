@@ -272,6 +272,15 @@
       "citation": "cite_as_planning_not_result",
       "evidence_role": "planning_only_not_data_or_evidence",
       "rationale": "Candidate paper offshoots derived from Edition 1.8; naming a strand does not create DATA, EVID, novelty or publication status."
+    },
+    "research/learning/preparations/LP-20260917194217-R1.json": {
+      "kind": "learning_proposal_revision",
+      "status": "current",
+      "authority": "proposal_only_reapproval_required",
+      "mutability": "versioned_replacement_only",
+      "citation": "cite_revision_and_parent_plan_as_proposal",
+      "evidence_role": "proposal_not_evidence",
+      "rationale": "Source-bound revision of LP-20260917194217; exact CL-002-EVID and CL-003-DATA digests are recorded, but the historical approval does not transfer to changed proposal content and explicit human reapproval is required before execution authorization."
     }
   }
 }
