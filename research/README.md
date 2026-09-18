@@ -31,6 +31,7 @@ Der Publication Viewer folgt `publications/catalog.json`; das aktuelle Reader-Zi
 - [Research Integrity Gate](../docs/05-quality/RESEARCH_INTEGRITY_GATE.md)
 - [Integrity & Attribution](INTEGRITY_AND_ATTRIBUTION.md)
 - [Related Work](RELATED_WORK.md)
+- [Paper Offshoots — Kandidaten für eigenständige Fachbeiträge](paper_offshoots/README.md) — Planung, keine DATA/EVID
 
 Engineering-Reife und wissenschaftliche Reife werden getrennt geführt. Kein Stage-Score ist eine Kognitions-, Intelligenz- oder Bewusstseinskennzahl.
 
@@ -49,6 +50,7 @@ Engineering-Reife und wissenschaftliche Reife werden getrennt geführt. Kein Sta
 | `critique/` | Kritik, Gegenargumente, Limits | kritische Interpretation |
 | `external_review/` | externe/standardisierte Reviewstruktur | Reviewstatus, keine automatische EVID |
 | `publications/` | versionierte wissenschaftliche Fassungen | Interpretation mit Editionsprovenienz |
+| `paper_offshoots/` | begrenzte Kandidaten für eigenständige Fachbeiträge | Planung; keine DATA/EVID oder automatische Neuheitsbehauptung |
 
 Alle Dateien unter `research/` und `docs/` werden zusätzlich durch `scripts/audit_document_governance.py` klassifiziert.
 
