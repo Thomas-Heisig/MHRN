@@ -9,6 +9,10 @@ The eleven-part structure planned for publication 2.0 is implemented now as **ed
 - [Unabridged 1.7 source volume](research/publications/2026-09-17_recursive-epistemics_v1.8/LEGACY_V17.md)
 - [Prior research map](research/publications/2026-09-17_recursive-epistemics_v1.8/PRIOR_WORK_MAP.md)
 - [Extension and citation contract](research/publications/2026-09-17_recursive-epistemics_v1.8/EXTENDING.md)
+- [Scientific balance of Edition 1.8](research/publications/2026-09-17_recursive-epistemics_v1.8/SCIENTIFIC_BALANCE.md)
+- [Paper offshoots — six bounded publication strands](research/paper_offshoots/README.md)
+- [Edition and working-branch genealogy](research/publications/2026-09-17_recursive-epistemics_v1.8/EDITION_GENEALOGY.md)
+- [Publication-specific citation metadata](research/publications/2026-09-17_recursive-epistemics_v1.8/CITATION.cff)
 
 Historical publication bytes and empirical artifacts are preserved. Reconstructed chat history remains S4 until original messages are source-bound.
 
@@ -303,7 +307,8 @@ Current scientific publication pointer: [`research/publications/CURRENT.md`](res
 Publication archive: [`research/publications/README.md`](research/publications/README.md).  
 Change history: [`CHANGELOG.md`](CHANGELOG.md).  
 Contribution guide: [`CONTRIBUTING.md`](CONTRIBUTING.md).  
-Citation metadata: [`CITATION.cff`](CITATION.cff).
+Software citation metadata: [`CITATION.cff`](CITATION.cff).  
+Edition 1.8 publication citation metadata: [`research/publications/2026-09-17_recursive-epistemics_v1.8/CITATION.cff`](research/publications/2026-09-17_recursive-epistemics_v1.8/CITATION.cff).
 
 ```bibtex
 @software{heisig2026mhrn,
