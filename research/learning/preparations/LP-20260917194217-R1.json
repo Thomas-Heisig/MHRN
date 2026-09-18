@@ -1,0 +1,40 @@
+{
+  "ai_interaction_id": null,
+  "authority": "proposal_only",
+  "baseline_protocol": "raw_replay_full_budget",
+  "controls": [
+    "no_replay",
+    "random_prototype_10pct",
+    "learning_off"
+  ],
+  "digest": "a91fde4cd2ce378c869089dc83088747118240952b8593863b1b463750bbee8b",
+  "evaluation_protocol": "holdout_after_sequential_tasks",
+  "executed": false,
+  "exposure_protocol": "semantic_prototype_replay_10pct_budget",
+  "objective": {
+    "description": "Prüfen, ob semantische Prototypkonsolidierung bei 10 % des Raw-Replay-Speicherbudgets dieselbe Retention erreicht wie Raw-Replay bei vollem Budget.",
+    "evaluation_question": "Retains semantic prototype replay the same task performance when storage budget is reduced by factor 10?",
+    "objective_id": "OBJ-MEM-COMPRESSION-001",
+    "success_metric": "retention_ratio_at_1_10_storage ≥ 0.95 der Raw-Replay-Retention"
+  },
+  "origin": "human",
+  "plan_id": "LP-20260917194217-R1",
+  "rationale": "Source-provenance revision of LP-20260917194217. Exact CL-002 EVID and CL-003 DATA digests replace the placeholder source reference. This revision requires explicit human reapproval before any execution authorization.",
+  "sources": [
+    {
+      "digest": "c7b1124256fd8018839a8c5c29b30493b68d16bc223d0a3258bcbaca55b1752e",
+      "origin": "environment",
+      "partition": "train",
+      "source_id": "CL-002-EVID",
+      "trust": "VERIFIED"
+    },
+    {
+      "digest": "4e74021c0ef838371a3a01061ae1c2dcebb2031b54c15c6169e38c1972d06290",
+      "origin": "environment",
+      "partition": "train",
+      "source_id": "CL-003-DATA",
+      "trust": "VERIFIED"
+    }
+  ],
+  "stopping_rule": "fixed episodes"
+}
