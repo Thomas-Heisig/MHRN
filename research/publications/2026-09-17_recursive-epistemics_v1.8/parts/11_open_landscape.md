@@ -274,7 +274,7 @@ Für `H-SNN-003-B` muss `topology_propagation_v2` **vor Ausführung** präregist
 
 `LP-20260917194217` ist als nächster möglicher Stage-6-Zyklus vorbereitet und genehmigt, aber **noch nicht ausgeführt**. Der geplante Primärvergleich ist `semantic_prototype_replay_10pct_budget` gegen `raw_replay_full_budget`; die Erfolgsgrenze liegt bei mindestens 95 % der Raw-Replay-Retention bei Faktor-10-Speicherreduktion. `no_replay`, `random_prototype_10pct` und `learning_off` dienen als Kontrollen.
 
-Die Source-Digests und der Trust-Status sind inzwischen gebunden und verifiziert. Vor Ausführung sind weiterhin Freeze, Seed-/Taskplan, Analysevertrag und eine explizite Ausführungsautorisation zu vervollständigen. Bis dahin bleibt der Eintrag Forschungsplanung und darf im Viewer nicht wie ein Ergebnis oder laufendes Experiment erscheinen.
+Die konkrete Quellbindung liegt inzwischen in `LP-20260917194217-R1` vor. Diese Revision ist noch **nicht erneut human-approved**; die Approval des Originalplans wird nicht auf geänderten Proposal-Inhalt übertragen. Vor Ausführung sind daher R1-Human-Approval, Freeze, Seed-/Taskplan, Analysevertrag und eine explizite Ausführungsautorisation zu vervollständigen. Bis dahin bleibt der Eintrag Forschungsplanung und darf im Viewer nicht wie ein Ergebnis oder laufendes Experiment erscheinen.
 
 ## 58.4 Aktueller Review-Stand und unmittelbar nächste Replikationen
 
