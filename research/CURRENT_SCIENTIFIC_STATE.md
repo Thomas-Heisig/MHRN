@@ -32,9 +32,11 @@ Der eng definierte `single_neuron_scientific_readiness`-Vertrag steht weiterhin 
 - externer Referenzvergleich / unabhängige Replikation: **partial** = 7,5 % von 15 %;
 - Attribution: **met** = 10 %.
 
-Damit beträgt die aktuelle **Gesamt-Scientific-Maturity von Stage 0 = 72,5 %**. Die Differenz zu 100 % ist nicht fehlende Softwarearbeit, sondern die bewusst offene wissenschaftliche Reifeschicht: menschliche EVID-Entscheidung und unabhängig autorisierte Replikation.
+Die Human Review des scoped Claims ist inzwischen abgeschlossen und unterstützt die enge Konformitätsaussage. Eine EVID-Promotion wurde trotzdem **nicht** erzwungen: Der historische Stage-0-Lauf besitzt kein EvidenceEngine-kompatibles `manifest.json` mit aufgezeichneter Validity, Clean-Tree-Status, `provenance_digests` und `source_freeze_sha`. Diese fehlenden historischen Provenienzfelder werden nicht rückwirkend erfunden.
 
-Eine formale Review-Anforderung liegt unter `research/experiments/EXP-STAGE0-20260916-MODEL-CONFORMANCE-V2/review_request.json`. Sie darf den scoped numerischen Konformitätsclaim akzeptieren, ablehnen oder zur Revision zurückgeben, aber weder biologische Gleichwertigkeit noch unabhängige Replikation erzeugen.
+Damit beträgt die aktuelle **Gesamt-Scientific-Maturity von Stage 0 = 82,5 %**: Das 20-%-Kriterium „reviewed evidence“ steht nun auf `partial`, weil die Human Review abgeschlossen ist, die kanonische EVID-Registrierung aber noch blockiert bleibt. Die verbleibenden 17,5 % betreffen die zweite Hälfte dieses EVID-Gates (10 %) sowie die noch fehlende echte unabhängige Replikation (7,5 %).
+
+Die Human Review ist unter `research/experiments/EXP-STAGE0-20260916-MODEL-CONFORMANCE-V2/human_scientific_review.json` dokumentiert. Der separate Status `EVIDENCE_PROMOTION_STATUS.json` hält fest, dass der Review den scoped Claim unterstützt, die EVID-Promotion wegen der fehlenden historischen EvidenceEngine-Provenienz aber blockiert bleibt. Weder Review noch spätere Promotion dürfen biologische Gleichwertigkeit oder unabhängige Replikation erzeugen.
 
 ## Aktueller Schwerpunkt: Stage 6
 
