@@ -233,7 +233,9 @@ def test_preparation_persistence_keeps_proposal_and_approval_separate(
     assert service.load_proposal("LP-PERSIST-001").digest == proposal.digest
 
 
-def test_repository_stage6_source_binding_is_versioned_and_requires_reapproval() -> None:
+def test_repository_stage6_source_binding_is_versioned_and_requires_reapproval() -> (
+    None
+):
     root = Path(__file__).resolve().parents[1]
     preparations = root / "research" / "learning" / "preparations"
     service = LearningPreparationService(preparations)
@@ -246,8 +248,14 @@ def test_repository_stage6_source_binding_is_versioned_and_requires_reapproval()
         (preparations / "LP-20260917194217-approved.json").read_text(encoding="utf-8")
     )
     assert original.digest == original_stored["digest"]
-    assert original.digest == "0d47182d05f2d65d44957a1242f770a3576518c9034b7b014cf8ae4f06333d11"
-    assert original_approved["digest"] == "d24210d7e2f83994bc3365cde2010cb865bb6e1d23839e710c5b43bea7232b10"
+    assert (
+        original.digest
+        == "0d47182d05f2d65d44957a1242f770a3576518c9034b7b014cf8ae4f06333d11"
+    )
+    assert (
+        original_approved["digest"]
+        == "d24210d7e2f83994bc3365cde2010cb865bb6e1d23839e710c5b43bea7232b10"
+    )
 
     revision = service.load_proposal("LP-20260917194217-R1")
     revision_stored = json.loads(
@@ -273,7 +281,9 @@ def test_repository_stage6_source_binding_is_versioned_and_requires_reapproval()
     assert set(sources) == set(expected_paths)
     for source_id, path in expected_paths.items():
         assert sources[source_id].trust == "VERIFIED"
-        assert sources[source_id].digest == hashlib.sha256(path.read_bytes()).hexdigest()
+        assert (
+            sources[source_id].digest == hashlib.sha256(path.read_bytes()).hexdigest()
+        )
 
     assert not (preparations / "LP-20260917194217-R1-approved.json").exists()
     assert revision.authority == "proposal_only"
