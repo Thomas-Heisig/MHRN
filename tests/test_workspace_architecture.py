@@ -64,6 +64,12 @@ def test_learning_preparation_matches_guarded_nonexecuting_schema() -> None:
     assert "baseline_protocol" in source
     assert "evaluation_protocol" in source
     assert "approved_by" in source
+    assert "SHA256_RE" in source
+    assert "provenanceAudit" in source
+    assert "Korrigierte Revision anlegen" in source
+    assert "Präregistrierung" in source
+    assert "Runner-Freeze" in source
+    assert "Autorisierung" in source
     assert "learning_rate" not in source
 
 
@@ -99,6 +105,7 @@ def test_panels_have_minimize_standard_maximize_fullscreen_and_info() -> None:
 def test_workspace_and_review_css_are_loaded() -> None:
     index = (STATIC / "frontend" / "styles" / "index.css").read_text(encoding="utf-8")
     assert "workspace-architecture.css" in index
+    assert "learning-prep.css" in index
     review_css = STATIC / "review" / "review.css"
     assert review_css.is_file()
     assert "#f4efe6" in review_css.read_text(encoding="utf-8")
