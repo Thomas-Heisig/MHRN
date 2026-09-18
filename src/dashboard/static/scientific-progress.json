@@ -23,7 +23,7 @@
     {
       "stage": 0,
       "name": "Einzelne Nervenzelle",
-      "score": 0.925,
+      "score": 0.825,
       "status": "advanced",
       "claim_boundary": "Die eingefrorene Stage-0-Konformitätsstudie stützt den numerischen Modellvertrag für Izhikevich-2003 und lif-current-v1 im deklarierten Operating Envelope. Das ist Modell-/Softwarekonformität, keine biologische Gleichwertigkeit, keine allgemeine Langzeittrajektorien-Identität und keine unabhängige Replikation.",
       "criteria": [
@@ -62,17 +62,17 @@
         },
         {
           "id": "reviewed_evidence",
-          "status": "met",
-          "label": "Human-reviewed EVID für scoped Stage-0-Konformitätsclaim",
+          "status": "partial",
+          "label": "Human Review positiv abgeschlossen; kanonische EVID-Promotion ausstehend",
           "sources": [
-            "research/registry/evidence/EVID-2026-17.json",
-            "research/experiments/EXP-STAGE0-20260916-MODEL-CONFORMANCE-V2/human_scientific_review.json"
+            "research/experiments/EXP-STAGE0-20260916-MODEL-CONFORMANCE-V2/human_scientific_review.json",
+            "research/experiments/EXP-STAGE0-20260916-MODEL-CONFORMANCE-V2/EVIDENCE_PROMOTION_STATUS.json"
           ]
         },
         {
           "id": "independent_replication",
           "status": "partial",
-          "label": "Externer Referenzvergleich, aber keine unabhängig autorisierte Replikation",
+          "label": "Externer Brian2-Referenzvergleich, aber keine unabhängig autorisierte Replikation",
           "sources": [
             "research/preregistrations/operational/single_neuron_conformance_v2.json",
             "research/experiments/EXP-STAGE0-20260916-MODEL-CONFORMANCE-V2/DATA/confirmatory_result.json",
@@ -92,9 +92,10 @@
         }
       ],
       "next_scientific_steps": [
-        "Unabhängige Replikation mit vorab definierter Unabhängigkeitsdefinition planen und außerhalb derselben Autoren-/Toolkette durchführen.",
-        "Brian2-Referenzvergleich nicht als unabhängige Replikation zählen.",
-        "Scoped Claim-Grenzen für biologische Gleichwertigkeit, Langzeittrajektorien und ungeprüfte Parameterregime beibehalten."
+        "Promotion-eligible Stage-0-Replikationslauf unter dem aktuellen EvidenceEngine-Provenienzvertrag vor Ausführung einfrieren und ausführen.",
+        "Nur nach positivem promotion-eligible Lauf den scoped Claim separat als EVID registrieren; independent_authorship_replication bleibt false.",
+        "Unabhängige Replikation separat definieren und außerhalb derselben Autoren-/Toolkette durchführen.",
+        "Source-bound DATA und prohibited interpretations unverändert lassen."
       ]
     },
     {
