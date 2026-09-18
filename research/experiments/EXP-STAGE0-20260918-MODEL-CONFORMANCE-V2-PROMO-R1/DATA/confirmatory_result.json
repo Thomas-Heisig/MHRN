@@ -1,0 +1,180 @@
+{
+  "H-EVAL-006-A": {
+    "runs": [
+      {
+        "conformance_within_1e_8": true,
+        "first_failure": null,
+        "max_abs_post_reset_u_error": 1.7763568394002505e-15,
+        "max_abs_post_reset_v_error": 5.684341886080802e-14,
+        "max_abs_pre_reset_u_error": 1.7763568394002505e-15,
+        "max_abs_pre_reset_v_error": 2.2737367544323206e-13,
+        "samples": 64,
+        "seed": 22001,
+        "spike_decisions_equal": true
+      },
+      {
+        "conformance_within_1e_8": true,
+        "first_failure": null,
+        "max_abs_post_reset_u_error": 1.7763568394002505e-15,
+        "max_abs_post_reset_v_error": 4.263256414560601e-14,
+        "max_abs_pre_reset_u_error": 1.7763568394002505e-15,
+        "max_abs_pre_reset_v_error": 2.2737367544323206e-13,
+        "samples": 64,
+        "seed": 22002,
+        "spike_decisions_equal": true
+      },
+      {
+        "conformance_within_1e_8": true,
+        "first_failure": null,
+        "max_abs_post_reset_u_error": 3.552713678800501e-15,
+        "max_abs_post_reset_v_error": 4.263256414560601e-14,
+        "max_abs_pre_reset_u_error": 3.552713678800501e-15,
+        "max_abs_pre_reset_v_error": 4.547473508864641e-13,
+        "samples": 64,
+        "seed": 22003,
+        "spike_decisions_equal": true
+      }
+    ],
+    "supported_by_protocol": true
+  },
+  "H-EVAL-006-B": {
+    "runs": [
+      {
+        "brian2_refractory_ms": 0,
+        "brian2_spike_count": 74,
+        "max_abs_v_error": 0,
+        "native_refractory_ticks": 0,
+        "native_spike_count": 74,
+        "seed": 22001,
+        "spike_events_equal": true
+      },
+      {
+        "brian2_refractory_ms": 0,
+        "brian2_spike_count": 73,
+        "max_abs_v_error": 7.105427357601002e-15,
+        "native_refractory_ticks": 0,
+        "native_spike_count": 73,
+        "seed": 22002,
+        "spike_events_equal": true
+      },
+      {
+        "brian2_refractory_ms": 0,
+        "brian2_spike_count": 72,
+        "max_abs_v_error": 0,
+        "native_refractory_ticks": 0,
+        "native_spike_count": 72,
+        "seed": 22003,
+        "spike_events_equal": true
+      }
+    ],
+    "supported_by_protocol": true
+  },
+  "H-EVAL-006-C": {
+    "claim_type": "semantic_mapping",
+    "mapping": {
+      "1": 2,
+      "2": 3,
+      "3": 4
+    },
+    "runs": [
+      {
+        "brian2_refractory_ms": 2,
+        "brian2_spike_count": 72,
+        "max_abs_v_error": 0,
+        "native_refractory_ticks": 1,
+        "native_spike_count": 72,
+        "seed": 22001,
+        "spike_events_equal": true
+      },
+      {
+        "brian2_refractory_ms": 3,
+        "brian2_spike_count": 69,
+        "max_abs_v_error": 0,
+        "native_refractory_ticks": 2,
+        "native_spike_count": 69,
+        "seed": 22001,
+        "spike_events_equal": true
+      },
+      {
+        "brian2_refractory_ms": 4,
+        "brian2_spike_count": 67,
+        "max_abs_v_error": 0,
+        "native_refractory_ticks": 3,
+        "native_spike_count": 67,
+        "seed": 22001,
+        "spike_events_equal": true
+      },
+      {
+        "brian2_refractory_ms": 2,
+        "brian2_spike_count": 69,
+        "max_abs_v_error": 0,
+        "native_refractory_ticks": 1,
+        "native_spike_count": 69,
+        "seed": 22002,
+        "spike_events_equal": true
+      },
+      {
+        "brian2_refractory_ms": 3,
+        "brian2_spike_count": 68,
+        "max_abs_v_error": 0,
+        "native_refractory_ticks": 2,
+        "native_spike_count": 68,
+        "seed": 22002,
+        "spike_events_equal": true
+      },
+      {
+        "brian2_refractory_ms": 4,
+        "brian2_spike_count": 65,
+        "max_abs_v_error": 0,
+        "native_refractory_ticks": 3,
+        "native_spike_count": 65,
+        "seed": 22002,
+        "spike_events_equal": true
+      },
+      {
+        "brian2_refractory_ms": 2,
+        "brian2_spike_count": 70,
+        "max_abs_v_error": 0,
+        "native_refractory_ticks": 1,
+        "native_spike_count": 70,
+        "seed": 22003,
+        "spike_events_equal": true
+      },
+      {
+        "brian2_refractory_ms": 3,
+        "brian2_spike_count": 67,
+        "max_abs_v_error": 0,
+        "native_refractory_ticks": 2,
+        "native_spike_count": 67,
+        "seed": 22003,
+        "spike_events_equal": true
+      },
+      {
+        "brian2_refractory_ms": 4,
+        "brian2_spike_count": 65,
+        "max_abs_v_error": 0,
+        "native_refractory_ticks": 3,
+        "native_spike_count": 65,
+        "seed": 22003,
+        "spike_events_equal": true
+      }
+    ],
+    "supported_by_protocol": true
+  },
+  "all_declared_hypotheses_pass": true,
+  "automatic_evid_promotion": false,
+  "experiment_id": "EXP-STAGE0-20260918-MODEL-CONFORMANCE-V2-PROMO-R1",
+  "human_review_required": true,
+  "independent_authorship_replication": false,
+  "mode": "REPLICATION",
+  "parent_preregistration_id": "PREREG-EVAL-006-V2",
+  "preregistration_id": "PREREG-EVAL-006-V2-PROMO-R1",
+  "protocol": "single_neuron_conformance_v2",
+  "replication_class": "INTERNAL_PROMOTION_REPLICATION",
+  "seeds": [
+    22001,
+    22002,
+    22003
+  ],
+  "source_data_mutated": false
+}
