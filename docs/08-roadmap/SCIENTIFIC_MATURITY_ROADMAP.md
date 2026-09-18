@@ -37,8 +37,9 @@ Separat gilt der **scoped Stage-0 research-readiness contract = 100 %**. Dieser 
 
 Offen:
 - Human Review des eng definierten Konformitätsclaims ist am 18. September 2026 abgeschlossen und unterstützt den scoped Claim;
-- die kanonische EVID-Promotion bleibt dennoch blockiert, weil der historische Lauf noch kein EvidenceEngine-kompatibles `manifest.json` mit `validity`, `git.dirty=false`, `provenance_digests` und `source_freeze_sha` besitzt; diese historischen Provenienzwerte werden nicht rückwirkend erfunden;
-- deshalb ist vor EVID ein separat versionierter promotion-eligible Replikationslauf unter dem heutigen Provenienzvertrag erforderlich;
+- die fehlenden historischen EvidenceEngine-Provenienzfelder wurden nicht rückwirkend erfunden;
+- stattdessen wurde `EXP-STAGE0-20260918-MODEL-CONFORMANCE-V2-PROMO-R1` prospektiv unter `PREREG-EVAL-006-V2-PROMO-R1` mit clean tree, vollständigen Provenienz-Digests und neuer Seedmenge `22001–22003` ausgeführt; alle eingefrorenen Bedingungen bestanden;
+- der neue Lauf bleibt DATA-only und wartet auf einen separaten Human Review; erst danach darf in einem eigenen Schritt eine kanonische EVID-Promotion erfolgen;
 - unabhängig autorisierte Replikation außerhalb derselben Autoren-/Toolkette;
 - keine biologische Gleichwertigkeit, universelle Langzeittrajektorienidentität oder Generalisierung auf ungeprüfte Modelle/Parameter aus dem Brian2-Vergleich ableiten.
 
