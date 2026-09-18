@@ -121,7 +121,7 @@ Die zweite Entscheidung betrifft `EXP-GEN-0047` und `H-SNN-003-B`. Die sechs Con
 
 Die einzige deskriptive Abweichung des v1-Laufs — eine um einen Tick frühere First-Response-Latency im `random_graph` — ist konfundiert mit einer geänderten Kantenanordnung und darf nicht zum Dimensionseffekt hochgestuft werden. Auch `stopped_on_quiescence=false` ist kein Fehler: Der Runner setzt `min_ticks=max_ticks` und erzwingt damit das vollständige Beobachtungsfenster.
 
-Für `topology_propagation_v2` gilt deshalb ein stärkerer prospektiver Vertrag: mindestens 1.000 Neuronen pro Condition, im Mittel mindestens zehn eingehende Synapsen, gematchte globale Struktur/Parameter/Stimulusenergie, explizite Kopplung von Geometriedistanz an Konnektivitätswahrscheinlichkeit und/oder Delay, die sechs genannten Kontrollen einschließlich degree-/density-matched Random Graph, multi-neuronaler Input, First-Arrival-/Reach-Verteilungen als Primärgrößen, Activity-Adequacy-Gate, mehrere unabhängige Seeds, vorab eingefrorene Inferenzregel und clean-tree Provenienz. Diese Werte sind Mindestschwellen für die nächste Testgeneration, keine Behauptung allgemeiner Suffizienz.
+`topology_propagation_v2` wurde inzwischen als enger **Stage-1-Test von `H-SNN-003-B`** präregistriert und ausgeführt. Die stärkeren Schwellen von ≥1.000 Neuronen und ≥10 eingehenden Synapsen gehören nicht zu diesem allgemeinen Topologietest, sondern zur getrennten dimensionsspezifischen Prüfung `RQ-5D-005 / H-5D-005-A`. Diese Trennung verhindert, dass ein kleiner, testadäquater Topologiebefund nachträglich zu einem 5D-Vorteilsclaim erweitert wird.
 
 ## 19.7 Genehmigter Stage-6-Kompressionsvorschlag
 
@@ -173,15 +173,15 @@ Die bisherigen Experimente werden in Edition 1.8 nicht nur chronologisch bericht
 
 **RQ/H-Bezug.** `RQ-SNN-003 / H-SNN-003-B` adressiert Topologieeffekte ohne vorausgesetzten 5D-Vorteil. `RQ-5D-005 / H-5D-005-A` fragt enger nach einem dimensionsspezifischen Unterschied gegenüber topology-matched niedrigdimensionalen Einbettungen.
 
-**Methodik.** Recurrence-on/off dient als mechanistische Intervention. Für Topologie werden 1D/2D/3D/5D, `5d_shuffled` und `random_graph` verglichen. Die nächste Testgeneration verlangt explizite Geometrie-zu-Konnektivitäts-/Delay-Kopplung, Activity-Adequacy-Gate, unabhängige Seeds und degree-/density-matched Kontrollen.
+**Methodik.** Recurrence-on/off dient als mechanistische Intervention. Der nachfolgende Topologietest `EXP-S1-TOPO-V2-20260918` vergleicht 1D/2D/3D/5D, `5d_shuffled` und `random_graph` bei 64 Neuronen und identischem 246-Kanten-Budget. Gewichte, Delays und Stimulus werden gematcht; vier Kalibrier-Seeds sind von zwanzig Evaluations-Seeds getrennt. Das präregistrierte Activity-Adequacy-Gate darf nur Aktivierbarkeit, nicht Effektstärke, zur Gewichtswahl verwenden. Primärendpunkte sind `active_fraction` und zensierte First-Output-Latenz; gepaarte Sign-Tests werden über alle Primärkontraste Holm-korrigiert, Median-Differenzen erhalten deterministische Bootstrap-95%-Intervalle.
 
-**Befund.** Rekurrenz erzeugt im kleinen kontrollierten System einen klaren Dynamikunterschied. Die 5D-v1-Studie ist dagegen `INADEQUATE_TO_TEST_HYPOTHESIS`: Die Geometrie war nicht ausreichend kausal an die Dynamik gekoppelt.
+**Befund.** Das Activity-Gate bestand beim niedrigsten Kandidatengewicht 55.0. Alle 120 Evaluationsläufe waren vollständig; 64 Neuronen, 246 Kanten und das eingefrorene Gewicht waren in allen Armen erhalten. Mehrere präregistrierte Primärkontraste unterschieden sich signifikant. Beispielsweise lag die mediane Änderung der aktiven Netzwerkfraktion für 3D→5D bei -0,125 (Bootstrap-CI95 -0,15625 bis -0,1015625; Holm-p ≈ 1,91×10^-5). Bei der First-Output-Latenz lagen die Medianunterschiede 1D→2D bei -10 Ticks, 2D→3D bei -3 Ticks und 3D→5D bei -1 Tick. Der registrierte DATA-Status lautet `SUPPORTED_WITHIN_PREREGISTERED_PROTOCOL`.
 
-**Diskussion.** Das wichtigste Ergebnis dieses Zweigs ist deshalb teilweise methodisch: Ein technisch korrekt ausgeführter Vergleich kann wissenschaftlich `NOT_TESTED` bleiben.
+**Diskussion.** Damit besitzt `H-SNN-003-B` erstmals einen testadäquaten positiven Befund im untersuchten Stage-1-Regime: Topologie verändert die Propagationsdynamik. Der Effekt ist jedoch **kein monotones Dimensions- oder 5D-Vorteilsmuster**. `5d_shuffled` und `random_graph` erreichten den Output in diesem Design sogar früher als die reguläre 5D-Anordnung. Das unterstützt die allgemeine Topologiesensitivität, nicht die Überlegenheit einer bestimmten Dimensionalität.
 
-**Limitation.** Die bisherigen Topologien sind zu klein und zu schwach geometriesensitiv, um einen belastbaren Dimensionsclaim zu tragen.
+**Limitation.** 64 Neuronen und das deterministische vorwärtsgerichtete Konstrukt sind ein enger Small-SNN-Operating-Envelope. Der Lauf prüft weder Skalierung noch biologische Äquivalenz noch `H-5D-005-A`. Die stärkere 5D-Prüfung benötigt weiterhin ≥1.000 Neuronen, ≥10 mittlere Eingänge pro Neuron, explizit distanzabhängige Konnektivität und streng gematchte Dimensionskontrollen. Der aktuelle Lauf bleibt bis Human Review DATA-only.
 
-**Zwischenfazit.** Rekurrenz ist im getesteten Mechanismus wirksam; 5D bleibt offen und benötigt `topology_propagation_v2`.
+**Zwischenfazit.** Rekurrenz ist im getesteten Mechanismus wirksam; `H-SNN-003-B` ist im 64-Neuronen-Stage-1-Regime DATA-seitig gestützt. Die spezifische 5D-Hypothese bleibt offen.
 
 ### 19.9.3 Teilstudie C — Plastizität, Lernen und adaptive Stabilität
 
