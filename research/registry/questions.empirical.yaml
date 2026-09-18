@@ -94,8 +94,9 @@
   - H-EVAL-006-A
   - H-EVAL-006-B
   - H-EVAL-006-C
-  evidence: []
-  status: open
+  evidence:
+  - EVID-2026-18
+  status: inconclusive
   answer:
     current: null
     confidence: none
