@@ -18,8 +18,9 @@ for (const port of [4174, 4175]) {
     await expect(viewer).toContainText('Edition 1.8');
 
     const currentApiResponse = await page.request.get(`http://127.0.0.1:${port}/api/publication/current`);
-    expect(currentApiResponse.ok()).toBeTruthy();
-    const currentApi = await currentApiResponse.json();
+    const currentApiText = await currentApiResponse.text();
+    expect(currentApiResponse.ok(), currentApiText).toBeTruthy();
+    const currentApi = JSON.parse(currentApiText);
     expect(currentApi.edition).toBe('1.8');
     expect(currentApi.entrypoint_path).toContain('v1.8/MANUSCRIPT.md');
     expect(currentApi.document_title).toContain('Rekursive Epistemik');
