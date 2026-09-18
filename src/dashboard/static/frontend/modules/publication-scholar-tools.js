@@ -19,7 +19,7 @@ export function enhancePublicationScholarReader(container, {
   reader.classList.add("pub-scholar-reader");
   ensureScholarStyles();
 
-  const sequence = publicationSequence(rootData?.content || "", rootData?.readme_path || "publications/README.md");
+  const sequence = publicationSequence(rootData);
   injectChapterNavigator(toc, sequence, view, openDocument);
   injectSpeechControls(toolbar, article);
   injectModeControls(toolbar, reader);
@@ -169,7 +169,26 @@ function injectBottomNavigation(article, sequence, view, openDocument) {
   });
 }
 
-function publicationSequence(markdown, rootPath) {
+function publicationSequence(rootData) {
+  const explicit = Array.isArray(rootData?.documents) ? rootData.documents : [];
+  if (explicit.length) {
+    return explicit
+      .filter((item) => item && item.kind === "reader" && typeof item.path === "string")
+      .map((item) => {
+        const normalized = normalizePath(item.path);
+        const source = item.source === "docs" ? "docs" : "research";
+        const path = normalized.startsWith(`${source}/`) ? normalized.slice(source.length + 1) : normalized;
+        return {
+          source,
+          path,
+          label: item.label || basename(path),
+          role: item.role || "document",
+        };
+      });
+  }
+
+  const markdown = rootData?.content || "";
+  const rootPath = rootData?.entrypoint_path || rootData?.readme_path || "publications/CURRENT.md";
   const root = normalizeRoot(rootPath);
   const base = dirname(root);
   const seen = new Set();
@@ -188,7 +207,7 @@ function publicationSequence(markdown, rootPath) {
     const key = `${source}:${path}`;
     if (seen.has(key)) continue;
     seen.add(key);
-    items.push({ source, path, label: label || basename(path) });
+    items.push({ source, path, label: label || basename(path), role: "linked" });
   }
   return items;
 }
