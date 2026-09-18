@@ -42,7 +42,7 @@ Die Human Review ist unter `research/experiments/EXP-STAGE0-20260916-MODEL-CONFO
 
 Diese formale Provenienzlücke wurde inzwischen **prospektiv** adressiert, nicht rückwirkend repariert: `EXP-STAGE0-20260918-MODEL-CONFORMANCE-V2-PROMO-R1` wurde unter `PREREG-EVAL-006-V2-PROMO-R1` mit den vorab deklarierten neuen Seeds `22001–22003` ausgeführt. Der wissenschaftliche Lauf am Freeze-Commit `0376142b16a092c674653ee61c10d8137671eacf` war clean-tree, `validity.valid=true`, ohne Runtime-/Fatal-Fehler und mit vollständigen `provenance_digests` sowie `source_freeze_sha=36764dde292a3934523b21c5d9559319a0d8c9a8763c9ab3dc1c5cbbc246e850`. Alle drei eingefrorenen Hypothesenbedingungen bestanden; der maximale Izhikevich-Lokalfehler betrug `4.5474735088646412e-13`, der maximale LIF-Fehler `7.1054273576010019e-15`.
 
-Der Lauf ist trotzdem **noch kein EVID**: `automatic_evidence_promotion=false`, `scientific_evidence=false` und `independent_authorship_replication=false`. Der neue `review_request.json` steht auf `PENDING`. Bis dieser Lauf separat human-reviewed und danach gegebenenfalls in einem eigenen Schritt promotet wird, bleibt Stage 0 bei **82,5 %**.
+Der Lauf ist trotzdem **noch kein EVID**: `automatic_evidence_promotion=false`, `scientific_evidence=false` und `independent_authorship_replication=false`. Der ursprüngliche `review_request.json` bleibt als Request-Artefakt auf `PENDING`; die append-only Sidecar-Datei `review_request.json.review.json` dokumentiert inzwischen den Human Review durch Thomas Heisig vom 18.09.2026. Die kanonische EVID-Promotion bleibt ein separater, noch offener Schritt; Stage 0 bleibt daher bei **82,5 %**.
 
 ## Aktueller Schwerpunkt: Stage 6
 
