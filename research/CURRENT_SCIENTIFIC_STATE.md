@@ -62,11 +62,15 @@ Der Grund ist nicht ein fehlender Effekt, sondern ein unzureichender Mechanismus
 
 Für `topology_propagation_v2` gelten als Mindestanforderungen: mindestens 1.000 Neuronen je Bedingung, im Mittel mindestens 10 eingehende Synapsen, degree-/density-matched Kontrollen, explizite Kopplung von Geometrie an Konnektivität und/oder Delay, Multi-Neuron-Stimulus, Activity-Adequacy-Gate, vorab definierte first-arrival-/reach-Endpunkte, unabhängige Seeds und saubere Source-/Graph-Provenienz. Diese Werte sind operative Mindestschwellen der nächsten Testgeneration, keine universellen Suffizienzkriterien.
 
-### Stage-6-Kompressionshypothese
+### Stage-6-Kompressionshypothese — nächster vorbereiteter empirischer Schritt
 
-`LP-20260917194217` ist human-origin, genehmigt und weiterhin **proposal-only**. Es wurde nicht ausgeführt und besitzt keine Runtime-Autorität. Geprüft werden soll, ob `semantic_prototype_replay_10pct_budget` bei einem Zehntel des Speicherbudgets mindestens 95 % der Retention von `raw_replay_full_budget` erreicht. Kontrollen sind `no_replay`, `random_prototype_10pct` und `learning_off`.
+`LP-20260917194217 / OBJ-MEM-COMPRESSION-001` ist human-origin, genehmigt und weiterhin **proposal-only**. Es wurde nicht ausgeführt und besitzt keine Runtime-Autorität. Die neue Frage prüft **Kompression, nicht allgemeine Lernleistung**: `semantic_prototype_replay_10pct_budget` soll bei einem Zehntel des Speicherbudgets mindestens 95 % der Retention von `raw_replay_full_budget` erreichen. Kontrollen sind `no_replay`, `random_prototype_10pct` und `learning_off`.
+
+Die vorab festzulegende Rollenentscheidung lautet: Erfolg stützt eine begrenzte Kompressionsrolle von SemanticMemory unter diesem Protokoll; Misserfolg stützt diese Rolle nicht. Generalisierung, Langzeitgedächtnis und Weltmodell-Brücke bleiben davon getrennte spätere Hypothesen und dürfen den Kompressionstest nicht post hoc retten.
 
 Das historisch genehmigte `LP-20260917194217` bleibt unverändert: seine ursprüngliche Genehmigung enthält noch den damaligen Source-Platzhalter und darf nicht nachträglich umgeschrieben werden. Die Quellprovenienz ist stattdessen in der neuen Proposal-Revision `LP-20260917194217-R1` konkret gebunden: `CL-002-EVID` verweist auf das human-reviewte `EVID.json` mit SHA-256 `c7b1124256fd8018839a8c5c29b30493b68d16bc223d0a3258bcbaca55b1752e`; `CL-003-DATA` verweist auf `results.json` mit SHA-256 `4e74021c0ef838371a3a01061ae1c2dcebb2031b54c15c6169e38c1972d06290`. Beide Sources stehen dort auf `VERIFIED`. Weil sich der Proposal-Inhalt geändert hat, ist R1 **nicht durch die historische Approval gedeckt und benötigt eine neue explizite menschliche Genehmigung**. Vor einer Ausführung bleiben zusätzlich Seed-/Taskplan, Analysevertrag, Ausführungsautorisation und Freeze vollständig zu binden. Approval ist keine Ausführung, DATA oder EVID.
+
+Der nächste methodische Schritt ist die Präregistrierungsvorbereitung von R1. Vor einem `FROZEN`-Status sind kanonische RQ/H-Zuordnung, Speicherbudget-Definition, Seed-/Taskplan, Retentionsaggregation, Äquivalenz-/Inferenzregel, Ausschluss-/Failure-Regeln, Analysevertrag und Source-/Config-Hashes zu binden; R1-Human-Approval und Ausführungsautorisation bleiben separate Gates.
 
 ### Methodische Gesamtfolge
 
