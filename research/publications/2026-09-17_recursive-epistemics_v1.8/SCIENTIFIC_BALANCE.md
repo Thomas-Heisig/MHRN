@@ -12,7 +12,9 @@ Für `RQ-EVAL-006` wurde der Human Review am 18. September 2026 mit `supports_sc
 
 Die `1e-8`-Schwelle war vor Ausführung fixiert; die deutlich kleineren beobachteten Fehler ändern diese Entscheidungsgrenze nicht post hoc. V1 und V2 bleiben getrennte Aussagen: lokale Transition-Konformität hebt den historischen negativen 1000-Tick-Freilaufbefund nicht auf. `H-EVAL-006-C` ist ein Mapping-/Semantikclaim, kein dritter numerischer Konformitätsclaim.
 
-Die Scientific Maturity von Stage 0 beträgt **82,5 %**. Das Kriterium `reviewed_evidence` ist `partial`, weil das wissenschaftliche Urteil positiv abgeschlossen ist, die formale EVID-Registrierung jedoch einen promotion-eligible Replikationslauf unter dem heutigen EvidenceEngine-Provenienzvertrag verlangt. Dieser interne Promotion-Lauf ist **keine unabhängige Replikation**. Die separate 7,5-%-Lücke für Unabhängigkeit bleibt auch nach einer späteren EVID-Promotion offen.
+Die Scientific Maturity von Stage 0 beträgt **82,5 %**. Das Kriterium `reviewed_evidence` bleibt `partial`: Der historische Human Review ist positiv abgeschlossen, und inzwischen liegt mit `EXP-STAGE0-20260918-MODEL-CONFORMANCE-V2-PROMO-R1` auch ein **EvidenceEngine-konformer interner Promotion-Replikationslauf als DATA** vor. Er wurde auf neuen vorab deklarierten Seeds `22001–22003` mit unveränderter `1e-8`-Grenze ausgeführt; A/B/C bestanden, `git.dirty=false`, `validity.valid=true`, die vier Provenienz-Digests und ein `source_freeze_sha` sind vorhanden.
+
+Der Lauf erzeugt dennoch nicht selbst EVID. Sein eigener Review-Request steht auf `PENDING`, `automatic_evidence_promotion=false`, `scientific_evidence=false` und `independent_authorship_replication=false`. Erst ein separater positiver Human Review dieses Promotion-Laufs und eine danach getrennte kanonische EVID-Registrierung können die verbleibenden 10 Prozentpunkte des Human-EVID-Kriteriums schließen. Die separate 7,5-%-Lücke für echte unabhängige Replikation bleibt davon unberührt.
 
 ## 1. Claim-Ledger als wissenschaftliche Bilanz
 
