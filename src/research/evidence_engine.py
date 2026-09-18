@@ -45,11 +45,15 @@ def _next_evidence_id() -> str:
     retired_path = EVIDENCE_DIR / "retired_ids.json"
     if retired_path.is_file():
         try:
-            retired_raw: object = json.loads(\n                retired_path.read_text(encoding="utf-8")\n            )
+            retired_raw: object = json.loads(
+                retired_path.read_text(encoding="utf-8")
+            )
         except (OSError, json.JSONDecodeError):
             retired_raw = {}
         if isinstance(retired_raw, dict):
-            retired = cast(dict[str, object], retired_raw).get(\n                "retired_evidence_ids", []\n            )
+            retired = cast(dict[str, object], retired_raw).get(
+                "retired_evidence_ids", []
+            )
             if isinstance(retired, list):
                 retired_items = cast(list[object], retired)
                 for item in retired_items:
