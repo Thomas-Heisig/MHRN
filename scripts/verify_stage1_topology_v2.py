@@ -9,7 +9,7 @@ import sys
 from pathlib import Path
 from typing import Any
 
-from scripts.run_stage1_topology_v2 import (
+from run_stage1_topology_v2 import (
     CONDITIONS,
     analyze,
     calibration_gate,
