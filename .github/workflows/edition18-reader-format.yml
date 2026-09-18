@@ -1,0 +1,32 @@
+name: Format Edition 1.8 research tests
+on:
+  push:
+    branches:
+      - research/edition18-reader-paths-offshoots-20260918
+    paths:
+      - .github/workflows/edition18-reader-format.yml
+
+permissions:
+  contents: write
+
+jobs:
+  format:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: research/edition18-reader-paths-offshoots-20260918
+          fetch-depth: 0
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.13"
+      - run: python -m pip install black==26.5.1
+      - run: python -m black tests/test_learning_preparation.py
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add tests/test_learning_preparation.py
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "style(research): format learning preparation regression"
+          git push origin HEAD:research/edition18-reader-paths-offshoots-20260918
