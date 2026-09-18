@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "as_of": "2026-09-18",
-  "as_of_commit": "3aca6a7767d7b3c6b4ef4a6aef85141af8230346",
+  "as_of_commit": "48641cbe5b86c9e66e8b8866dbbfdcb328d13bd6",
   "title": "MHRN scientific maturity timeline",
   "scope_note": "Scientific maturity is intentionally separate from engineering maturity. Scores summarize registered questions, frozen protocols, collected DATA, human-reviewed EVID, independent replication and attribution. They do not measure intelligence, consciousness or biological equivalence.",
   "integrity_note": "Repository checks reduce attribution and text-recycling risk but cannot certify plagiarism-freedom. External similarity review and human source verification remain pre-submission requirements.",
@@ -96,7 +96,29 @@
         "Nur nach positivem promotion-eligible Lauf den scoped Claim separat als EVID registrieren; independent_authorship_replication bleibt false.",
         "Unabhängige Replikation separat definieren und außerhalb derselben Autoren-/Toolkette durchführen.",
         "Source-bound DATA und prohibited interpretations unverändert lassen."
-      ]
+      ],
+      "criterion_contracts": {
+        "reviewed_evidence": {
+          "weight": 0.2,
+          "partial_semantics": "Human scientific review completed with a scoped decision, but canonical EVID registration is not yet complete.",
+          "met_semantics": "Human scientific review completed and the scoped claim is registered through the canonical EvidenceEngine promotion path.",
+          "decomposition": {
+            "human_scientific_review_fraction": 0.5,
+            "canonical_evidence_engine_promotion_fraction": 0.5
+          },
+          "anti_gaming_rule": "A positive result alone cannot change this criterion. The partial state reflects completion of the human-review sub-gate, not result favorability."
+        },
+        "independent_replication": {
+          "weight": 0.15,
+          "partial_semantics": "External reference comparison exists, but no independently authored replication has been completed.",
+          "met_semantics": "A preregistered replication meeting the explicit independence definition has been completed and reviewed.",
+          "decomposition": {
+            "external_reference_comparison_fraction": 0.5,
+            "independent_authorship_replication_fraction": 0.5
+          },
+          "anti_conflation_rule": "An EvidenceEngine-conformant internal rerun can never satisfy the independent-authorship half of this criterion."
+        }
+      }
     },
     {
       "stage": 1,
