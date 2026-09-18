@@ -34,7 +34,7 @@ Der eng definierte `single_neuron_scientific_readiness`-Vertrag steht weiterhin 
 
 Die Human Review des scoped Claims ist inzwischen abgeschlossen und unterstützt die enge Konformitätsaussage. Eine EVID-Promotion wurde trotzdem **nicht** erzwungen: Der historische Stage-0-Lauf besitzt kein EvidenceEngine-kompatibles `manifest.json` mit aufgezeichneter Validity, Clean-Tree-Status, `provenance_digests` und `source_freeze_sha`. Diese fehlenden historischen Provenienzfelder werden nicht rückwirkend erfunden.
 
-Damit beträgt die aktuelle **Gesamt-Scientific-Maturity von Stage 0 = 82,5 %**: Das 20-%-Kriterium „reviewed evidence“ steht nun auf `partial`, weil die Human Review abgeschlossen ist, die kanonische EVID-Registrierung aber noch blockiert bleibt. Die verbleibenden 17,5 % betreffen die zweite Hälfte dieses EVID-Gates (10 %) sowie die noch fehlende echte unabhängige Replikation (7,5 %).
+Damit beträgt die aktuelle **Gesamt-Scientific-Maturity von Stage 0 = 92,5 %**. Der Human Review unterstützt den scoped Claim und `EVID-2026-17` ist registriert. Offen bleibt ausschließlich die zweite Hälfte des Replikationskriteriums: Brian2 ist eine externe Software-Referenz, aber keine unabhängig autorisierte Replikation.
 
 Die Human Review ist unter `research/experiments/EXP-STAGE0-20260916-MODEL-CONFORMANCE-V2/human_scientific_review.json` dokumentiert. Der separate Status `EVIDENCE_PROMOTION_STATUS.json` hält fest, dass der Review den scoped Claim unterstützt, die EVID-Promotion wegen der fehlenden historischen EvidenceEngine-Provenienz aber blockiert bleibt. Weder Review noch spätere Promotion dürfen biologische Gleichwertigkeit oder unabhängige Replikation erzeugen.
 
