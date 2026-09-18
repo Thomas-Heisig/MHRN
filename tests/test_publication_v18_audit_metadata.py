@@ -9,28 +9,37 @@ from pathlib import Path
 import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
-EDITION = ROOT / "research/publications/2026-09-17_recursive-epistemics_v1.8"
+PUBLICATIONS = ROOT / "research" / "publications"
+EDITION = PUBLICATIONS / "2026-09-17_recursive-epistemics_v1.8"
+EXPECTED_LINEAGE = (
+    "1.8 current WIP → 1.7 predecessor → "
+    "1.5 frozen empirical baseline"
+)
 
 
 def test_visible_publication_pointers_are_edition_18() -> None:
     root = (ROOT / "README.md").read_text(encoding="utf-8")
-    frozen = (ROOT / "research/publications/FROZEN_V1.5.md").read_text(
+    frozen = (PUBLICATIONS / "FROZEN_V1.5.md").read_text(
         encoding="utf-8"
     )
     assert "publication-1.8_WIP" in root
-    assert "1.8 current WIP → 1.7 predecessor → 1.5 frozen empirical baseline" in root
+    assert EXPECTED_LINEAGE in root
     assert "1.8 (aktuelle WIP-Fortschreibung)" in frozen
 
 
 def test_corrected_section_numbers_remain_unambiguous() -> None:
-    part3 = (EDITION / "parts/03_research_object.md").read_text(encoding="utf-8")
+    part3 = (EDITION / "parts/03_research_object.md").read_text(
+        encoding="utf-8"
+    )
     assert "## 13.2 Eine zentrale Revision" in part3
     assert "## 13.3 Periphere Netze" in part3
     assert "## 13.4 Wesen" in part3
     headings = re.findall(r"^## (13\.\d+) ", part3, flags=re.MULTILINE)
     assert len(headings) == len(set(headings))
 
-    part4 = (EDITION / "parts/04_empirical_programme.md").read_text(encoding="utf-8")
+    part4 = (EDITION / "parts/04_empirical_programme.md").read_text(
+        encoding="utf-8"
+    )
     headings4 = re.findall(r"^## (19\.\d+) ", part4, flags=re.MULTILINE)
     assert len(headings4) == len(set(headings4))
     for expected in ("19.4", "19.5", "19.6", "19.7", "19.8"):
@@ -38,15 +47,18 @@ def test_corrected_section_numbers_remain_unambiguous() -> None:
 
 
 def test_claim_ledger_is_exposed_as_scientific_balance() -> None:
-    ledger = json.loads(
-        (EDITION / "registers/claim_ledger.json").read_text(encoding="utf-8")
-    )
+    ledger_path = EDITION / "registers/claim_ledger.json"
+    ledger = json.loads(ledger_path.read_text(encoding="utf-8"))
     by_id = {row["id"]: row for row in ledger["claims"]}
     assert len(by_id) == 7
     assert by_id["SYN-18-007"]["status"] == "open"
-    assert by_id["SYN-18-002"]["status"] == "DATA_interpretation_pending_review"
+    assert by_id["SYN-18-002"]["status"] == (
+        "DATA_interpretation_pending_review"
+    )
 
-    balance = (EDITION / "SCIENTIFIC_BALANCE.md").read_text(encoding="utf-8")
+    balance = (EDITION / "SCIENTIFIC_BALANCE.md").read_text(
+        encoding="utf-8"
+    )
     for claim_id in by_id:
         assert claim_id in balance
     assert "semantic_completeness_certified = false" in balance
@@ -55,10 +67,11 @@ def test_claim_ledger_is_exposed_as_scientific_balance() -> None:
 
 
 def test_all_six_paper_offshoots_are_present_and_bounded() -> None:
-    offshoots = (ROOT / "research/paper_offshoots/README.md").read_text(
+    offshoot_path = ROOT / "research" / "paper_offshoots" / "README.md"
+    offshoots = offshoot_path.read_text(encoding="utf-8")
+    balance = (EDITION / "SCIENTIFIC_BALANCE.md").read_text(
         encoding="utf-8"
     )
-    balance = (EDITION / "SCIENTIFIC_BALANCE.md").read_text(encoding="utf-8")
     for number in range(1, 7):
         identifier = f"PO-{number:03d}"
         assert identifier in offshoots
@@ -67,10 +80,13 @@ def test_all_six_paper_offshoots_are_present_and_bounded() -> None:
 
 
 def test_publication_and_software_cff_share_identity_and_license() -> None:
-    software = yaml.safe_load((ROOT / "CITATION.cff").read_text(encoding="utf-8"))
-    publication = yaml.safe_load(
-        (EDITION / "CITATION.cff").read_text(encoding="utf-8")
+    software_text = (ROOT / "CITATION.cff").read_text(encoding="utf-8")
+    publication_text = (EDITION / "CITATION.cff").read_text(
+        encoding="utf-8"
     )
+    software = yaml.safe_load(software_text)
+    publication = yaml.safe_load(publication_text)
+
     assert publication["authors"] == software["authors"]
     assert publication["license"] == software["license"] == "MIT"
     assert publication["version"] == "1.8"
@@ -81,7 +97,8 @@ def test_publication_and_software_cff_share_identity_and_license() -> None:
 
 
 def test_manifest_completeness_boundary_is_not_overstated() -> None:
-    manifest = json.loads((EDITION / "manifest.json").read_text(encoding="utf-8"))
+    manifest_text = (EDITION / "manifest.json").read_text(encoding="utf-8")
+    manifest = json.loads(manifest_text)
     assert manifest["source_files"] == 9412
     assert manifest["indexed_sections"] == 18022
     assert manifest["complete_chat_archive_available"] is False
@@ -90,17 +107,40 @@ def test_manifest_completeness_boundary_is_not_overstated() -> None:
 
 
 def test_branch_context_is_preserved_before_cleanup() -> None:
-    genealogy = (EDITION / "EDITION_GENEALOGY.md").read_text(encoding="utf-8")
-    expected = {
-        "docs/edition-1-8-corpus-integration": "633a16e15db9c2a4f4754a440a947bad8f1ebee8",
-        "docs/edition-1-8-current-reviews-20260918": "7d5ca56a5deb19b16e1eccc91f0746b783160750",
-        "docs/edition-1-8-current-state-20260918": "9f167c5b301191209228f18484a4ad7630b3e2a5",
-        "feat/publication-reader-complete-v18-20260918": "87f1364c558bdf8eb7824a319c22ed53a103479d",
-        "fix/learning-prep-provenance-ui-20260917": "426cc5a6642281d6221d70555d4043c9701735b5",
-        "research/edition18-reader-paths-offshoots-20260918": "29aadee2b796117a88ee8cfaf7d9ee2b509fe7f7",
-        "fix/publication-18-consistency-20260918": "87d0260e56dd9306590a4b8d929b881f8dd6f0c8",
-    }
-    for name, sha in expected.items():
+    genealogy = (EDITION / "EDITION_GENEALOGY.md").read_text(
+        encoding="utf-8"
+    )
+    expected = [
+        (
+            "docs/edition-1-8-corpus-integration",
+            "633a16e15db9c2a4f4754a440a947bad8f1ebee8",
+        ),
+        (
+            "docs/edition-1-8-current-reviews-20260918",
+            "7d5ca56a5deb19b16e1eccc91f0746b783160750",
+        ),
+        (
+            "docs/edition-1-8-current-state-20260918",
+            "9f167c5b301191209228f18484a4ad7630b3e2a5",
+        ),
+        (
+            "feat/publication-reader-complete-v18-20260918",
+            "87f1364c558bdf8eb7824a319c22ed53a103479d",
+        ),
+        (
+            "fix/learning-prep-provenance-ui-20260917",
+            "426cc5a6642281d6221d70555d4043c9701735b5",
+        ),
+        (
+            "research/edition18-reader-paths-offshoots-20260918",
+            "29aadee2b796117a88ee8cfaf7d9ee2b509fe7f7",
+        ),
+        (
+            "fix/publication-18-consistency-20260918",
+            "87d0260e56dd9306590a4b8d929b881f8dd6f0c8",
+        ),
+    ]
+    for name, sha in expected:
         assert name in genealogy
         assert sha in genealogy
     assert "PR #136" in genealogy
@@ -108,10 +148,10 @@ def test_branch_context_is_preserved_before_cleanup() -> None:
 
 
 def test_historical_reader_is_explicitly_separated_from_current_viewer() -> None:
-    notice = (ROOT / "research/publications/HISTORICAL_READER.md").read_text(
+    notice = (PUBLICATIONS / "HISTORICAL_READER.md").read_text(
         encoding="utf-8"
     )
-    legacy = (ROOT / "research/publications/reader/README.md").read_text(
+    legacy = (PUBLICATIONS / "reader" / "README.md").read_text(
         encoding="utf-8"
     )
     assert "7. September 2026" in notice
