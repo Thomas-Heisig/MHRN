@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "experiment_id": "EXP-STAGE0-20260916-MODEL-CONFORMANCE-V2",
+  "review_type": "human_scientific_review",
+  "decision": "supports_scoped_claim",
+  "review_status": "completed",
+  "reviewed_at": "2026-09-18",
+  "reviewed_material": [
+    "research/preregistrations/operational/single_neuron_conformance_v2.json",
+    "research/experiments/EXP-STAGE0-20260916-MODEL-CONFORMANCE-V2/DATA/confirmatory_result.json",
+    "research/experiments/EXP-STAGE0-20260916-MODEL-CONFORMANCE-V2/report.md",
+    "research/experiments/EXP-STAGE0-20260916-MODEL-CONFORMANCE-V2/review_request.json",
+    "research/generated/verification/single_neuron_scientific_readiness.json"
+  ],
+  "scoped_claim": "Unter dem vor der Ausführung eingefrorenen V2-Protokoll konformieren die deklarierten MHRN-Einzelzell-Verträge (Izhikevich-2003 lokale Transition/Threshold/Reset, lif-current-v1 mit refractory_ticks=0 sowie das separat klassifizierte Refractory-Semantik-Mapping) mit der gematchten Brian2-2.10.1-Referenz innerhalb der präregistrierten Toleranzen.",
+  "review_points": {
+    "preregistered_tolerance": {
+      "decision": "accepted",
+      "finding": "Die 1e-8-Akzeptanzschwelle war vor der Confirmatory-Ausführung in PREREG-EVAL-006-V2 fixiert. Die beobachteten Fehler um 1e-13/1e-15 sind deutlich kleiner, rechtfertigen aber keine post-hoc Änderung des Erfolgsvertrags."
+    },
+    "v1_v2_reconciliation": {
+      "decision": "accepted",
+      "finding": "V1 prüft freie 1000-Tick-Trajektorienidentität; V2 lokale Ein-Schritt-Transition/Threshold/Reset-Konformität. Beide Aussagen sind logisch verschieden; der V1-Negativbefund bleibt erhalten."
+    },
+    "hypothesis_c_class": {
+      "decision": "accepted_with_classification",
+      "finding": "H-EVAL-006-C ist ein Semantik-/Mapping-Claim. Die validierte Zuordnung bei dt=1 ms lautet MHRN refractory_ticks 1/2/3 -> Brian2 2/3/4 ms. C wird nicht als dritte numerische Konformitätsaussage interpretiert."
+    },
+    "claim_scope": {
+      "decision": "accepted",
+      "finding": "Freigegeben ist ausschließlich der scoped Modell-/Numerikclaim. Ungeprüfte Modelle/Parameter, biologische Gleichwertigkeit, universelle Langzeittrajektorienidentität und darüber hinausgehende Generalisierung sind ausgeschlossen."
+    },
+    "independent_replication": {
+      "decision": "remains_open",
+      "finding": "Brian2 ist eine externe Software-Referenz, keine unabhängig autorisierte Replikation. Das Independent-Replication-Gate bleibt offen."
+    }
+  },
+  "evidence_decision": {
+    "review_supports_evidence_promotion_in_principle": true,
+    "promotion_completed": false,
+    "promotion_block": "legacy_run_missing_current_evidence_engine_manifest_contract",
+    "note": "Die Review ist positiv. Die kanonische EVID-Promotion bleibt dennoch blockiert, weil der historische Experimentordner kein EvidenceEngine-kompatibles manifest.json mit validity, clean-tree state, provenance_digests und source_freeze_sha enthält. Fehlende historische Provenienzwerte werden nicht rückwirkend erfunden."
+  },
+  "data_mutated": false
+}
