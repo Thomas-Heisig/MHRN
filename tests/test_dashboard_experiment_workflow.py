@@ -254,6 +254,39 @@ def test_human_review_can_be_attached_to_any_experiment_artifact(
     assert review["artifact_content_digest"]
 
 
+def test_human_review_preserves_existing_ai_artifact_review(tmp_path: Path) -> None:
+    artifact = tmp_path / "experiments" / "EXP-REVIEW-AI-0001" / "summary.md"
+    artifact.parent.mkdir(parents=True)
+    artifact.write_text("# Zusammenfassung\n", encoding="utf-8")
+    ai_review = artifact.with_name("summary.md.review.json")
+    ai_review.write_text(
+        json.dumps(
+            {
+                "review_status": "accepted_as_interpretation",
+                "reviewer": "KI",
+                "comments": "AI review only",
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    review_path = write_artifact_review(
+        tmp_path,
+        "experiments/EXP-REVIEW-AI-0001/summary.md",
+        {
+            "review_status": "accepted_as_interpretation",
+            "reviewer": "Thomas Heisig",
+            "comments": "Human review completed independently.",
+        },
+    )
+
+    assert review_path.name == "summary.md.human-review.json"
+    assert json.loads(ai_review.read_text(encoding="utf-8"))["reviewer"] == "KI"
+    human_review = json.loads(review_path.read_text(encoding="utf-8"))
+    assert human_review["reviewer"] == "Thomas Heisig"
+    assert human_review["review_status"] == "accepted_as_interpretation"
+
+
 def test_summary_falls_back_from_empty_airr_lists_to_limitations(
     tmp_path: Path,
 ) -> None:
