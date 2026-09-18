@@ -1285,7 +1285,7 @@ Die vertiefte Integration verändert die Gesamtinterpretation an mehreren Stelle
 - Neural Symbiosis und MSBA zeigen, dass Hybridität in MHRN über explizite Gateway-Grenzen statt durch heimliche Vermischung von SNN, LLM und peripheren Modellen organisiert wird.
 - Wesen/Real-Body macht „keine Fantasiedaten“ zu einer allgemeinen Provenienzregel: beobachtete, abgeleitete und dargestellte Zustände bleiben getrennt.
 - Profile & Identity liefert eine reproduzierbare technische Identitäts-/Lineageschicht, gerade indem sie sich von psychologischem Selbst und subjektiver Kontinuität abgrenzt.
-- Related Work verschärft Stage 6: externe Semantization-, Predictive-Coding-, World-Model- und Multi-Zeitskalen-Arbeiten definieren stärkere Vergleichspunkte, ohne MHRN-Ergebnisse zu ersetzen.
+- Related Work verschärft Stage 6: externe Semantization- und Continual-Learning-Arbeiten ([D'Alba et al., 2025](REFERENCES.md#ref-DALBA2025); [Shi et al., 2025](REFERENCES.md#ref-SHI2025)), Predictive-Coding-Synthesen ([N'dri et al., 2026](REFERENCES.md#ref-NDRI2026)), Spiking-World-Model-Arbeiten ([Sun et al., 2025](REFERENCES.md#ref-SUN2025)) und Multi-Zeitskalen-Plastizität ([Dong & He, 2026](REFERENCES.md#ref-DONG2026)) definieren stärkere Vergleichspunkte, ohne MHRN-Ergebnisse zu ersetzen.
 
 Damit wird Edition 1.8 weniger zu einer Zusammenfassung einzelner Experimente und stärker zu einer **Gesamtarbeit über Forschungsobjekt, Schaffensgenealogie und die Methodik ihrer kontrollierten Verbindung**.
 
@@ -1465,7 +1465,7 @@ Planung und Forschungsfragen existieren; claim-relevante confirmatory DATA fehle
 
 ### Stage 10 — Bewusstseinsforschung
 
-Diese Stufe bleibt Forschungs- und Governance-Frontier. Vor jedem stärkeren Experiment sind kontrastierende, operationalisierte Vorhersagen, externe Ethik-/Stop-Governance und unabhängige adversariale Replikationsanforderungen nötig. Kein Stage-Score darf als Bewusstseins-, Sentienz- oder Moralstatusindikator verwendet werden.
+Diese Stufe bleibt Forschungs- und Governance-Frontier. Externe Synthesen können Bewusstseinstheorien in technische Indikatorrahmen übersetzen, ohne daraus eine automatische Bewusstseinsdetektion zu machen ([Butlin et al., 2023](REFERENCES.md#ref-BUTLIN2023)). Vor jedem stärkeren Experiment sind kontrastierende, operationalisierte Vorhersagen, externe Ethik-/Stop-Governance und unabhängige adversariale Replikationsanforderungen nötig. Kein Stage-Score darf als Bewusstseins-, Sentienz- oder Moralstatusindikator verwendet werden.
 
 ## 52. Biophysikalische Erweiterungen
 
@@ -1503,7 +1503,7 @@ Die wichtigsten offenen Safety-Stränge sind:
 - Zielprovenienz und Zieltransformation;
 - specification gaming;
 - goal misgeneralization;
-- Corrigibility und Safe Interruptibility;
+- Corrigibility und Safe Interruptibility als eigenständig zu prüfende Kontrollfrage ([Orseau & Armstrong, 2016](REFERENCES.md#ref-ORSEAU2016));
 - Optionsraum-/Power-Seeking-Proxies;
 - Post-Objective Transition;
 - Capability-Gates und out-of-band Stopppfade;
