@@ -4,13 +4,15 @@
 
 MHRN ist ein Forschungsframework für rekurrente spikende Netzwerke mit explizitem Zeitverlauf, versionierten neuronalen und synaptischen Zuständen, Plastizitätsmechanismen, struktureller Veränderung, Homeostase, Persistenz, sensorischen/digitalen Gateways, Gedächtnis- und Vorhersagekandidaten sowie kontrollierten externen Werkzeugen. Das Framework untersucht nicht „Intelligenz“ als unteilbare Eigenschaft, sondern eine Folge operationalisierter Mechanismen und Funktionen.
 
-Izhikevich-artige Neuronen sind eine recheneffiziente Modellfamilie mit unterschiedlichen Spike- und Burstregimen [@IZHIKEVICH2003]. MHRN behandelt sie als austauschbare Dynamikklasse, nicht als biologisch vollständiges Neuron. LIF-, HH- oder Multi-Compartment-Varianten sind Ablations- oder Alternativmodelle; biologische Detailtreue wird nicht durch das bloße Hinzufügen von Kanalnamen erzeugt.
+Izhikevich-artige Neuronen sind eine recheneffiziente Modellfamilie mit unterschiedlichen Spike- und Burstregimen ([@IZHIKEVICH2003]). MHRN behandelt sie als austauschbare Dynamikklasse, nicht als biologisch vollständiges Neuron. LIF-, HH- oder Multi-Compartment-Varianten sind Ablations- oder Alternativmodelle; biologische Detailtreue wird nicht durch das bloße Hinzufügen von Kanalnamen erzeugt.
 
 ## 10. Rekurrenz, Plastizität und Homöostase
 
 Rekurrenz ist ein Mechanismus, dessen funktionale Bedeutung kontrolliert werden muss. Dass eine rekurrente Bedingung mehr synaptische Ereignisse erzeugt als eine feedforward-nahe Kontrolle, ist zunächst ein Netzwerkbefund und noch kein Beleg für Gedächtnis, 5D-Vorteil oder höhere Kognition.
 
-Für Plastizität trennt die Architektur lokale zeitabhängige Regeln, Eligibility und modulierte Drei-Faktor-Mechanismen. Drei-Faktor-Regeln sind theoretisch besonders relevant, wenn ein späteres modulatorisches Signal lokale Aktivität zeitlich überbrücken soll [@FREMAUX2016]. In MHRN wird ein solches Signal jedoch nicht automatisch „Dopamin“ genannt. Entscheidend ist die experimentell definierte Funktion.
+Für Plastizität trennt die Architektur lokale zeitabhängige Regeln, Eligibility und modulierte Drei-Faktor-Mechanismen. Der biologische Präzedenzfall enger spike-timing-abhängiger synaptischer Modifikation ist durch Primärliteratur belegt ([@BI_POO1998]); die Einordnung neuromodulierter Drei-Faktor-Regeln und zeitlicher Credit-Assignment-Fragen wird hier durch Sekundärliteratur gestützt ([@FREMAUX2016]). In MHRN wird ein modulatorisches Signal dennoch nicht automatisch „Dopamin“ genannt. Entscheidend ist die experimentell definierte Funktion.
+
+Auch **Homeostase** wird nicht allein aus der MHRN-Terminologie abgeleitet. Aktivitätsabhängiges synaptisches Scaling ist als biologischer Mechanismus in Primärliteratur beschrieben ([@TURRIGIANO1998]) und in einer späteren Review systematisch eingeordnet ([@TURRIGIANO2008]). MHRN übernimmt daraus keine biologische Gleichsetzung: seine Regulations- und Homeostasepfade müssen als technische Mechanismen separat operationalisiert und experimentell geprüft werden.
 
 ## 11. Geometrie und 5D
 
@@ -20,9 +22,9 @@ Edition 1.8 hält zusätzlich die frühere Idee lernbarer Metriken, dimensionsge
 
 ## 12. Gedächtnis, Replay und Weltmodell
 
-Ein gespeicherter Zustand ist nicht automatisch Gedächtnis. Gedächtnis wird über Retention, cue-abhängigen Recall, Spezifität und Generalisierung operationalisiert. Complementary-Learning-Systems-Modelle motivieren unterschiedliche schnelle und langsame Lernprozesse sowie interleaved learning [@MCCLELLAND1995], doch MHRN übernimmt daraus keine fertige biologische Zuordnung.
+Ein gespeicherter Zustand ist nicht automatisch Gedächtnis. Gedächtnis wird über Retention, cue-abhängigen Recall, Spezifität und Generalisierung operationalisiert. Complementary-Learning-Systems-Modelle motivieren unterschiedliche schnelle und langsame Lernprozesse sowie interleaved learning ([@MCCLELLAND1995]), doch MHRN übernimmt daraus keine fertige biologische Zuordnung.
 
-Ein One-Step-Predictor ist ebenfalls kein vollständiges Weltmodell. Stärkere Claims erfordern action conditioning, Mehrschrittrollouts, Unsicherheitskalibrierung, Out-of-Distribution-Prüfung und einen kausalen Entscheidungsnutzen gegenüber reaktiven/no-model/corrupted-model Kontrollen. Prediction Error muss, wenn er als neuronaler Mechanismus beansprucht wird, nachweisbar in Aktivität oder Lernen eingreifen.
+Ein One-Step-Predictor ist ebenfalls kein vollständiges Weltmodell. Eine aktuelle SNN-Predictive-Coding-Übersicht zeigt verschiedene mögliche neuronale Repräsentationen von Prediction Error ([@NDRI2026]); eine primäre Spiking-World-Model-Arbeit mit modellbasierter Kontrolle setzt zugleich eine stärkere externe Referenz als passive One-Step-Telemetrie ([@SUN2025]). Stärkere MHRN-Claims erfordern deshalb action conditioning, Mehrschrittrollouts, Unsicherheitskalibrierung, Out-of-Distribution-Prüfung und einen kausalen Entscheidungsnutzen gegenüber reaktiven/no-model/corrupted-model Kontrollen. Prediction Error muss, wenn er als neuronaler Mechanismus beansprucht wird, nachweisbar in Aktivität oder Lernen eingreifen.
 
 ## 13. Sprache, Wissen und externe Intelligenz
 
