@@ -1,0 +1,8 @@
+{
+  "artifact_path": "experiments/EXP-S1-TOPO-V3-R1-20260918/review_request.json",
+  "review_status": "accepted_as_interpretation",
+  "reviewer": "KI",
+  "reviewed_at": "2026-09-18T17:52:15.3595251Z",
+  "comments": "Die begrenzte Interpretation ist akzeptiert: R1 verwendet die korrigierte eine Holm-Familie über alle 10 zeitaufgelösten Primärtests, frische und von V2/V3 getrennte Seeds 6201-6220, sowie das gematchte 64-Neuronen-/246-Kanten-/Gewicht-55-Design. Der lokale Verifier meldet PASS; beide prospektiven Ceiling-Resolution-Kriterien und alle fünf V2-First-Output-Latenzrichtungen bestehen. Die Bootstrap-Intervalle werden nur deskriptiv interpretiert. Die Aussage bleibt auf topology-sensitive propagation und die Auflösung der terminalen active_fraction-Sättigung im deklarierten Stage-1-Betriebsbereich begrenzt. R1 ist interne Replikation, nicht unabhängige externe Replikation; es belegt keine 5D-Überlegenheit, kein Scaling, keine Kognition und keine biologische Gleichwertigkeit. Die Artefakte bleiben DATA, automatische EVID-Promotion ist ausgeschlossen, und source-bound DATA wird nicht umgeschrieben.",
+  "artifact_content_digest": "6a498b4d2e110afddca8ae64978e3c1ac16594dafb86f3dcd47f705aea00e864"
+}

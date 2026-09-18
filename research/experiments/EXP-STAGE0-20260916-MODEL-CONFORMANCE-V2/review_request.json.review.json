@@ -1,0 +1,8 @@
+{
+  "artifact_path": "experiments/EXP-STAGE0-20260916-MODEL-CONFORMANCE-V2/review_request.json",
+  "review_status": "accepted_as_interpretation",
+  "reviewer": "KI",
+  "reviewed_at": "2026-09-18T17:50:05.2017497Z",
+  "comments": "Die Review-Kriterien sind erfüllt und der scoped numerische Konformitätsclaim ist als Interpretation akzeptiert: Das Confirmatory-Protokoll war vor der Ausführung eingefroren, die Seeds 21001-21003 sind von den diagnostischen Seeds 20001-20003 disjunkt, alle drei Hypothesen erfüllen ihre deklarierten Endpunkte, die Izhikevich-Transition/Schwelle/Reset-Übereinstimmung sowie die LIF-Konformität für refractory_ticks=0 und die nichttriviale Refractory-Abbildung sind dokumentiert, und das historische 1000-Tick-V1-Negativergebnis bleibt erhalten. Die Homeostasis-Aussage ist auf den deklarierten diagnostischen Betriebsbereich begrenzt. Diese Entscheidung behauptet weder biologische Gleichwertigkeit noch universelle Langzeittrajektorien noch unabhängige Replikation. Brian2 bleibt eine externe Referenz; die DATA wird nicht zu EVID promoted und keine automatische EVID-Promotion ausgelöst.",
+  "artifact_content_digest": "55408614e29298cace59ffe63b1ff1ff6826ac1965f58454775bf5545222494a"
+}
