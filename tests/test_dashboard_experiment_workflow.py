@@ -621,3 +621,41 @@ def test_science_suite_generates_post_hoc_ai_report_with_explicit_backend(
     assert report["content"]["reproducibility"]["configuration_sha256"] != (
         "NOT_AVAILABLE"
     )
+
+
+def test_source_bound_stage1_manifest_is_normalized_for_dashboard_review(
+    tmp_path: Path,
+) -> None:
+    experiment = tmp_path / "experiments" / "EXP-S1-TOPO-V2-20260918"
+    (experiment / "analysis").mkdir(parents=True)
+    (experiment / "data").mkdir(parents=True)
+    manifest = {
+        "experiment_id": "EXP-S1-TOPO-V2-20260918",
+        "stage": 1,
+        "research_question": "RQ-SNN-003",
+        "hypothesis": "H-SNN-003-B",
+        "experiment_status": "completed",
+        "results": {"status": "SUPPORTED_WITHIN_PREREGISTERED_PROTOCOL"},
+    }
+    (experiment / "manifest.json").write_text(json.dumps(manifest), encoding="utf-8")
+    (experiment / "report.md").write_text("# report\n", encoding="utf-8")
+    (experiment / "analysis" / "statistics.json").write_text("{}\n", encoding="utf-8")
+    (experiment / "data" / "evaluation.json").write_text("[]\n", encoding="utf-8")
+    (experiment / "data" / "calibration.json").write_text("[]\n", encoding="utf-8")
+    (experiment / "review_request.json").write_text(
+        json.dumps({"human_review_status": "PENDING"}), encoding="utf-8"
+    )
+
+    item = ResearchSource(tmp_path).list_experiments()[0]
+    projected = cast(dict[str, Any], item["manifest"])
+
+    assert item["created_at"] == "2026-09-18"
+    assert projected["research_questions"] == ["RQ-SNN-003"]
+    assert projected["hypotheses"] == ["H-SNN-003-B"]
+    assert projected["scientific_status"] == "SUPPORTED_WITHIN_PREREGISTERED_PROTOCOL"
+    artifacts = cast(dict[str, Any], projected["artifacts"])
+    assert artifacts["report"] == "report.md"
+    assert artifacts["statistics"] == "analysis/statistics.json"
+    assert artifacts["raw_data"] == "data/evaluation.json"
+    assert artifacts["calibration"] == "data/calibration.json"
+    assert artifacts["review"] == "review_request.json"
