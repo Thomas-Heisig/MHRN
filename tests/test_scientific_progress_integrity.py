@@ -152,3 +152,26 @@ def test_stage0_partial_reviewed_evidence_is_explicitly_split() -> None:
     assert "EVID" in reviewed["label"]
     assert independent["status"] == "partial"
     assert "keine unabhängig autorisierte Replikation" in independent["label"]
+
+
+def test_stage0_partial_semantics_are_contractual_not_result_dependent() -> None:
+    stage0 = next(stage for stage in _manifest()["stages"] if stage["stage"] == 0)
+    contracts = stage0["criterion_contracts"]
+    reviewed = contracts["reviewed_evidence"]
+    replication = contracts["independent_replication"]
+
+    assert reviewed["decomposition"]["human_scientific_review_fraction"] == 0.5
+    assert (
+        reviewed["decomposition"]["canonical_evidence_engine_promotion_fraction"]
+        == 0.5
+    )
+    assert "not result favorability" in reviewed["anti_gaming_rule"]
+    assert (
+        replication["decomposition"]["external_reference_comparison_fraction"]
+        == 0.5
+    )
+    assert (
+        replication["decomposition"]["independent_authorship_replication_fraction"]
+        == 0.5
+    )
+    assert "can never satisfy" in replication["anti_conflation_rule"]
