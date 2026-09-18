@@ -48,6 +48,16 @@ Thomas Heisig wird in dieser Arbeit als Autor und Projektleiter geführt. KI-Sys
 
 Die Selbstauskunft des Autors ist eine Primärquelle für Motivation und Arbeitsweise, jedoch keine empirische Evidenz über neuronale Mechanismen. Persönliche Intuition kann Forschungsfragen erzeugen; sie darf keine Hypothese bestätigen. Umgekehrt wird die ungewöhnlich enge Mensch-KI-Arbeit nicht versteckt. Sie ist selbst Teil der epistemologischen Fragestellung dieser Arbeit: Was bedeutet Autorschaft, wenn externe kognitive Werkzeuge permanent an Suche, Gegenargument, Implementierung und Text beteiligt sind?
 
+### 2.1 Autorenschaft, Beitragsrollen und KI-Offenlegung
+
+**Autor und wissenschaftlich verantwortliche Person dieser Edition ist Thomas Heisig.** Autorenschaft bedeutet hier nicht nur Namensnennung, sondern Verantwortung für Auswahl, Prüfung, Interpretation und Begrenzung der veröffentlichten Aussagen. Externe Publikationsrichtlinien verbinden Autorenschaft ebenfalls mit Verantwortlichkeit und Rechenschaftspflicht; AI-Systeme werden deshalb nicht als Autoren geführt, weil sie diese Verantwortung nicht übernehmen können ([ICMJE, 2026](REFERENCES.md#ref-ICMJE2026)).
+
+Für die transparente Beschreibung menschlicher Beiträge wird ergänzend die CRediT-Taxonomie verwendet; sie beschreibt Beitragsrollen, entscheidet aber nicht selbst darüber, wer Autor ist ([NISO, 2022](REFERENCES.md#ref-CREDIT2022)). Für Thomas Heisig werden in Edition 1.8 derzeit folgende Rollen ausgewiesen: **Conceptualization, Methodology, Software, Investigation, Data curation, Formal analysis, Validation, Visualization, Project administration, Writing – original draft sowie Writing – review & editing**.
+
+KI-Systeme werden als Recherche-, Synthese-, Kritik-, Programmier- und Formulierungswerkzeuge offengelegt, nicht als Primärquelle, Autor oder Evidenzinstanz. Literaturangaben, Tatsachenbehauptungen und daraus abgeleitete wissenschaftliche Aussagen bleiben in menschlicher Verantwortung; bei einer externen Einreichung muss die konkrete Nutzung von AI-Werkzeugen zusätzlich nach den Regeln des Zieljournals offengelegt werden ([ICMJE, 2026](REFERENCES.md#ref-ICMJE2026)).
+
+Die wissenschaftliche Textschicht verwendet ein Autor-Jahr-System nach **APA 7** ([American Psychological Association, 2020](REFERENCES.md#ref-APA2020)). Primärliteratur wird für ursprüngliche empirische, methodische oder theoretische Befunde bevorzugt; Sekundärliteratur wird dort verwendet und als solche ausgewiesen, wo Review, Survey oder Synthese die Einordnung trägt.
+
 ## 3. Von Metaphern zu Operationen
 
 Frühe Begriffe wie „DNA“, „Traum“, „Fantasie“, „Emotion“ oder „Gehirn“ werden historisch erhalten, aber nicht rückwirkend biologisch aufgeladen. In der heutigen Terminologie werden sie nur dann verwendet, wenn eine messbare technische Entsprechung definiert ist. Offline-Replay ist nicht Schlaf. Ein Aktivierungs- oder Salienzparameter ist kein Gefühl. Parametervererbung ist keine biologische Genetik. Eine adressierte 5D-Struktur ist kein anatomisches Gehirn.
@@ -215,13 +225,15 @@ Die Schaffensgeschichte ist deshalb nicht nur die Geschichte eines SNN-Kerns. Si
 
 MHRN ist ein Forschungsframework für rekurrente spikende Netzwerke mit explizitem Zeitverlauf, versionierten neuronalen und synaptischen Zuständen, Plastizitätsmechanismen, struktureller Veränderung, Homeostase, Persistenz, sensorischen/digitalen Gateways, Gedächtnis- und Vorhersagekandidaten sowie kontrollierten externen Werkzeugen. Das Framework untersucht nicht „Intelligenz“ als unteilbare Eigenschaft, sondern eine Folge operationalisierter Mechanismen und Funktionen.
 
-Izhikevich-artige Neuronen sind eine recheneffiziente Modellfamilie mit unterschiedlichen Spike- und Burstregimen [Izhikevich, 2003](REFERENCES.md#ref-IZHIKEVICH2003). MHRN behandelt sie als austauschbare Dynamikklasse, nicht als biologisch vollständiges Neuron. LIF-, HH- oder Multi-Compartment-Varianten sind Ablations- oder Alternativmodelle; biologische Detailtreue wird nicht durch das bloße Hinzufügen von Kanalnamen erzeugt.
+Izhikevich-artige Neuronen sind eine recheneffiziente Modellfamilie mit unterschiedlichen Spike- und Burstregimen ([Izhikevich, 2003](REFERENCES.md#ref-IZHIKEVICH2003)). MHRN behandelt sie als austauschbare Dynamikklasse, nicht als biologisch vollständiges Neuron. LIF-, HH- oder Multi-Compartment-Varianten sind Ablations- oder Alternativmodelle; biologische Detailtreue wird nicht durch das bloße Hinzufügen von Kanalnamen erzeugt.
 
 ## 10. Rekurrenz, Plastizität und Homöostase
 
 Rekurrenz ist ein Mechanismus, dessen funktionale Bedeutung kontrolliert werden muss. Dass eine rekurrente Bedingung mehr synaptische Ereignisse erzeugt als eine feedforward-nahe Kontrolle, ist zunächst ein Netzwerkbefund und noch kein Beleg für Gedächtnis, 5D-Vorteil oder höhere Kognition.
 
-Für Plastizität trennt die Architektur lokale zeitabhängige Regeln, Eligibility und modulierte Drei-Faktor-Mechanismen. Drei-Faktor-Regeln sind theoretisch besonders relevant, wenn ein späteres modulatorisches Signal lokale Aktivität zeitlich überbrücken soll [Frémaux & Gerstner, 2016](REFERENCES.md#ref-FREMAUX2016). In MHRN wird ein solches Signal jedoch nicht automatisch „Dopamin“ genannt. Entscheidend ist die experimentell definierte Funktion.
+Für Plastizität trennt die Architektur lokale zeitabhängige Regeln, Eligibility und modulierte Drei-Faktor-Mechanismen. Der biologische Präzedenzfall enger spike-timing-abhängiger synaptischer Modifikation ist durch Primärliteratur belegt ([Bi & Poo, 1998](REFERENCES.md#ref-BI_POO1998)); die Einordnung neuromodulierter Drei-Faktor-Regeln und zeitlicher Credit-Assignment-Fragen wird hier durch Sekundärliteratur gestützt ([Frémaux & Gerstner, 2016](REFERENCES.md#ref-FREMAUX2016)). In MHRN wird ein modulatorisches Signal dennoch nicht automatisch „Dopamin“ genannt. Entscheidend ist die experimentell definierte Funktion.
+
+Auch **Homeostase** wird nicht allein aus der MHRN-Terminologie abgeleitet. Aktivitätsabhängiges synaptisches Scaling ist als biologischer Mechanismus in Primärliteratur beschrieben ([Turrigiano et al., 1998](REFERENCES.md#ref-TURRIGIANO1998)) und in einer späteren Review systematisch eingeordnet ([Turrigiano, 2008](REFERENCES.md#ref-TURRIGIANO2008)). MHRN übernimmt daraus keine biologische Gleichsetzung: seine Regulations- und Homeostasepfade müssen als technische Mechanismen separat operationalisiert und experimentell geprüft werden.
 
 ## 11. Geometrie und 5D
 
@@ -231,9 +243,9 @@ Edition 1.8 hält zusätzlich die frühere Idee lernbarer Metriken, dimensionsge
 
 ## 12. Gedächtnis, Replay und Weltmodell
 
-Ein gespeicherter Zustand ist nicht automatisch Gedächtnis. Gedächtnis wird über Retention, cue-abhängigen Recall, Spezifität und Generalisierung operationalisiert. Complementary-Learning-Systems-Modelle motivieren unterschiedliche schnelle und langsame Lernprozesse sowie interleaved learning [McClelland et al., 1995](REFERENCES.md#ref-MCCLELLAND1995), doch MHRN übernimmt daraus keine fertige biologische Zuordnung.
+Ein gespeicherter Zustand ist nicht automatisch Gedächtnis. Gedächtnis wird über Retention, cue-abhängigen Recall, Spezifität und Generalisierung operationalisiert. Complementary-Learning-Systems-Modelle motivieren unterschiedliche schnelle und langsame Lernprozesse sowie interleaved learning ([McClelland et al., 1995](REFERENCES.md#ref-MCCLELLAND1995)), doch MHRN übernimmt daraus keine fertige biologische Zuordnung.
 
-Ein One-Step-Predictor ist ebenfalls kein vollständiges Weltmodell. Stärkere Claims erfordern action conditioning, Mehrschrittrollouts, Unsicherheitskalibrierung, Out-of-Distribution-Prüfung und einen kausalen Entscheidungsnutzen gegenüber reaktiven/no-model/corrupted-model Kontrollen. Prediction Error muss, wenn er als neuronaler Mechanismus beansprucht wird, nachweisbar in Aktivität oder Lernen eingreifen.
+Ein One-Step-Predictor ist ebenfalls kein vollständiges Weltmodell. Eine aktuelle SNN-Predictive-Coding-Übersicht zeigt verschiedene mögliche neuronale Repräsentationen von Prediction Error ([N'dri et al., 2026](REFERENCES.md#ref-NDRI2026)); eine primäre Spiking-World-Model-Arbeit mit modellbasierter Kontrolle setzt zugleich eine stärkere externe Referenz als passive One-Step-Telemetrie ([Sun et al., 2025](REFERENCES.md#ref-SUN2025)). Stärkere MHRN-Claims erfordern deshalb action conditioning, Mehrschrittrollouts, Unsicherheitskalibrierung, Out-of-Distribution-Prüfung und einen kausalen Entscheidungsnutzen gegenüber reaktiven/no-model/corrupted-model Kontrollen. Prediction Error muss, wenn er als neuronaler Mechanismus beansprucht wird, nachweisbar in Aktivität oder Lernen eingreifen.
 
 ## 13. Sprache, Wissen und externe Intelligenz
 
@@ -376,7 +388,7 @@ Ein negatives Ergebnis ist kein defektes Experiment, wenn Protokoll, Instrumenti
 
 ## 18. Spiegelmechanismen und Handlungsvorhersage
 
-Die Arbeit zu Spiegelmechanismen wird als Stage-6-naher Forschungsstrang integriert. Der prüfbare Kern ist nicht das Etikett „Spiegelneuron“, sondern die Frage, ob Beobachtungs- und Ausführungsrepräsentationen partiell überlappen, ob Kontext und Zielrelevanz diese Überlappung modulieren und ob ein Prediction-Error-Mechanismus einen kausalen Zusatznutzen liefert. Stage 4 liefert sensorische Pfade, Stage 5 Eigenaktionen/Outcome, Stage 6 Vorhersage; Stage 7 Selbst/Fremd-Unterscheidung ist erst nach eigener Kausalprüfung zulässig.
+Die Arbeit zu Spiegelmechanismen wird als Stage-6-naher Forschungsstrang integriert. Der historische Primärbefund beobachtungs- und handlungsbezogener Aktivität in Affen-Prämotorkortex wird auf die ursprüngliche neurophysiologische Arbeit zurückgeführt ([di Pellegrino et al., 1992](REFERENCES.md#ref-DIPELLEGRINO1992)); die breitere Systemeinordnung wird durch Reviewliteratur ergänzt ([Rizzolatti & Craighero, 2004](REFERENCES.md#ref-RIZZOLATTI2004)). Eine Verbindung zu Prediction ist als theoretischer Predictive-Coding-Account diskutiert worden ([Kilner et al., 2007](REFERENCES.md#ref-KILNER2007)), darf für MHRN aber nicht als bereits gezeigter Mechanismus übernommen werden. Der prüfbare MHRN-Kern ist deshalb nicht das Etikett „Spiegelneuron“, sondern die Frage, ob Beobachtungs- und Ausführungsrepräsentationen partiell überlappen, ob Kontext und Zielrelevanz diese Überlappung modulieren und ob ein Prediction-Error-Mechanismus einen kausalen Zusatznutzen liefert. Stage 4 liefert sensorische Pfade, Stage 5 Eigenaktionen/Outcome, Stage 6 Vorhersage; Stage 7 Selbst/Fremd-Unterscheidung ist erst nach eigener Kausalprüfung zulässig.
 
 ## 19. Replikation
 
@@ -459,7 +471,7 @@ Das MSBA-Programm E01–E05 operationalisiert einen Teil dieses Raums bereits f�
 
 ## 19.5 Externe Mechanismusvorarbeiten für Stage 6
 
-Die kanonische Related-Work-Arbeit präzisiert mehrere externe Referenzlinien. Arbeiten zu hippocampal-kortikaler Semantization und continual learning motivieren Replay-/Konsolidierungsfragen, ohne einen MHRN-SemanticMemory-Mechanismus zu validieren [D'Alba et al., 2025](REFERENCES.md#ref-DALBA2025) [Shi et al., 2025](REFERENCES.md#ref-SHI2025). Eine aktuelle SNN-Predictive-Coding-Übersicht zeigt, dass Prediction Error auf unterschiedliche Weise neuronal repräsentiert werden kann; ein Telemetriefeld gleichen Namens ist daher noch kein Predictive-Coding-Mechanismus [N'dri et al., 2026](REFERENCES.md#ref-NDRI2026). Spiking-World-Model-Arbeit mit expliziter modellbasierter Kontrolle setzt eine deutlich stärkere Referenz als ein passiver One-Step-Predictor [Sun et al., 2025](REFERENCES.md#ref-SUN2025). Multi-Zeitskalen-Plastizität mit astrozyteninspiriertem Gating zeigt einen externen Mechanismuskandidaten für Stabilitäts-/Plastizitätsfragen, ist aber kein Wirksamkeitsnachweis der MHRN-Regelung [Dong & He, 2026](REFERENCES.md#ref-DONG2026).
+Die kanonische Related-Work-Arbeit präzisiert mehrere externe Referenzlinien. **Primärliteratur** zu hippocampal-kortikaler Semantization und continual learning motiviert Replay-/Konsolidierungsfragen, ohne einen MHRN-SemanticMemory-Mechanismus zu validieren ([D'Alba et al., 2025](REFERENCES.md#ref-DALBA2025); [Shi et al., 2025](REFERENCES.md#ref-SHI2025)). Eine aktuelle **Sekundärquelle/Survey** zu SNN-Predictive-Coding zeigt, dass Prediction Error auf unterschiedliche Weise neuronal repräsentiert werden kann; ein Telemetriefeld gleichen Namens ist daher noch kein Predictive-Coding-Mechanismus ([N'dri et al., 2026](REFERENCES.md#ref-NDRI2026)). Eine **Primärarbeit** zu einem Spiking World Model mit modellbasierter Kontrolle setzt eine deutlich stärkere Referenz als ein passiver One-Step-Predictor ([Sun et al., 2025](REFERENCES.md#ref-SUN2025)). Eine weitere **Primärarbeit** zu Multi-Zeitskalen-Plastizität mit astrozyteninspiriertem Gating zeigt einen externen Mechanismuskandidaten für Stabilitäts-/Plastizitätsfragen, ist aber kein Wirksamkeitsnachweis der MHRN-Regelung ([Dong & He, 2026](REFERENCES.md#ref-DONG2026)).
 
 Diese Literatur wird in 1.8 bewusst als **externer Präzedenz-/Vergleichsraum** integriert. Sie kann die Form einer MHRN-Forschungsfrage verbessern, aber weder DATA erzeugen noch eine interne Hypothese bestätigen.
 
@@ -479,11 +491,15 @@ Für `topology_propagation_v2` gilt deshalb ein stärkerer prospektiver Vertrag:
 
 ## 19.7 Genehmigter Stage-6-Kompressionsvorschlag
 
-Mit `LP-20260917194217` liegt ein **genehmigter, aber nicht ausgeführter** human-origin Lernvorschlag vor. Die Forschungsfrage ist enger als der bisherige CL-003-Vergleich: Kann semantische Prototypkonsolidierung bei **10 % des Raw-Replay-Speicherbudgets** mindestens 95 % der Retention eines Raw-Replay-Baselines mit vollem Speicherbudget erreichen?
+Mit `LP-20260917194217` liegt ein **genehmigter, aber nicht ausgeführter** human-origin Lernvorschlag vor. Die Forschungsfrage ist enger als der bisherige CL-003-Vergleich: Kann semantische Prototypkonsolidierung bei **10 % des Raw-Replay-Speicherbudgets** mindestens 95 % der Retention eines Raw-Replay-Baselines mit vollem Speicherbudget erreichen? Externe Gedächtnis- und Konsolidierungsarbeiten liefern hierfür einen theoretischen und mechanistischen Vergleichsraum ([McClelland et al., 1995](REFERENCES.md#ref-MCCLELLAND1995); [D'Alba et al., 2025](REFERENCES.md#ref-DALBA2025); [Shi et al., 2025](REFERENCES.md#ref-SHI2025)), aber die konkrete 10-%-/95-%-Entscheidungsgrenze ist eine **prospektive MHRN-Hypothese** und kein aus der Literatur übernommener Effekt.
 
-Der Vorschlag bindet `semantic_prototype_replay_10pct_budget` gegen `raw_replay_full_budget` und nennt als Kontrollen `no_replay`, `random_prototype_10pct` und `learning_off`. Die Evaluation soll auf Holdout-Daten nach sequentiellen Tasks erfolgen. Die Erfolgsmetrik ist `retention_ratio_at_1_10_storage >= 0.95` der Raw-Replay-Retention.
+Der Vorschlag bindet `semantic_prototype_replay_10pct_budget` gegen `raw_replay_full_budget` und nennt als Kontrollen `no_replay`, `random_prototype_10pct` und `learning_off`. Die Evaluation soll auf Holdout-Daten nach sequentiellen Tasks erfolgen. Die Erfolgsmetrik ist `retention_ratio_at_1_10_storage >= 0.95` der Raw-Replay-Retention. Damit prüft der nächste Zyklus **Kompression bei erhaltener Retention**, nicht eine allgemeine Überlegenheit der Lernleistung.
 
-Der aktuelle Status ist strikt prospektiv. Das historisch genehmigte `LP-20260917194217` bleibt als Originalartefakt unverändert und besitzt weiterhin `executed=false` sowie keine Runtime-Autorität. Die fehlende Quellbindung wurde **nicht** in dieses genehmigte Artefakt hineingeschrieben. Stattdessen liegt mit `LP-20260917194217-R1` eine neue `proposal_only`-Revision vor: `CL-002-EVID` → SHA-256 `c7b1124256fd8018839a8c5c29b30493b68d16bc223d0a3258bcbaca55b1752e` und `CL-003-DATA` → SHA-256 `4e74021c0ef838371a3a01061ae1c2dcebb2031b54c15c6169e38c1972d06290`; beide Source-Trust-Einstufungen stehen auf `VERIFIED`. Diese Inhaltsänderung erfordert eine **neue explizite Human Approval**; die historische Genehmigung wird nicht übertragen. Vor einer wissenschaftlich tragfähigen Ausführung bleiben außerdem Seed-/Taskplan, Analysevertrag, Ausführungsautorisation und Freeze entsprechend dem Research-Driven-Development-Prozess verbindlich zu fixieren.
+Die Entscheidungsfolge wird vor DATA festgelegt: **Erreicht** die semantische Prototypkonsolidierung die vorab fixierte Retentionsgrenze bei einem Zehntel des Speicherbudgets, ist damit eine begrenzte Kompressionsrolle von SemanticMemory unter genau diesem Protokoll gestützt. **Verfehlt** sie die Grenze, gilt diese Kompressionsrolle für den getesteten Mechanismus als nicht gestützt; Generalisierung, Langzeitgedächtnis oder eine Weltmodell-Brücke wären dann eigenständige spätere Forschungsfragen und dürfen nicht als nachträgliche Rettung desselben Tests verwendet werden.
+
+Der aktuelle Status ist strikt prospektiv. Das historisch genehmigte `LP-20260917194217` bleibt als Originalartefakt unverändert und besitzt weiterhin `executed=false` sowie keine Runtime-Autorität. Die fehlende Quellbindung wurde **nicht** in dieses genehmigte Artefakt hineingeschrieben. Stattdessen liegt mit `LP-20260917194217-R1` eine neue `proposal_only`-Revision vor: `CL-002-EVID` → SHA-256 `c7b1124256fd8018839a8c5c29b30493b68d16bc223d0a3258bcbaca55b1752e` und `CL-003-DATA` → SHA-256 `4e74021c0ef838371a3a01061ae1c2dcebb2031b54c15c6169e38c1972d06290`; beide Source-Trust-Einstufungen stehen auf `VERIFIED`. Diese Inhaltsänderung erfordert eine **neue explizite Human Approval**; die historische Genehmigung wird nicht übertragen.
+
+Der **nächste empirische Arbeitsschritt ist die Präregistrierung dieses Kompressionsvergleichs**, nicht seine Ausführung. Vor einem `FROZEN`-Status müssen mindestens die kanonische RQ/H-Zuordnung, die exakte Speicherbudget-Messung, Seed-/Taskplan, Retentionsaggregation und Inferenz-/Äquivalenzregel, Ausschluss- und Failure-Regeln, Analysevertrag, Source-/Config-Hashes sowie die R1-Human-Approval gebunden sein. Erst danach kann eine separate Ausführungsautorisation erteilt werden. Diese Trennung folgt der allgemeinen Präregistrierungslogik, Hypothese und Analyseplan vor Sichtung der Ergebnisdaten festzulegen ([Nosek et al., 2018](REFERENCES.md#ref-NOSEK2018)).
 
 ## 19.8 Aktuelle Human Reviews: Determinismus und Testadäquanz
 
@@ -682,7 +698,7 @@ Die frühe NeuroGenesis-/Brain-5D-Geschichte ist überwiegend rekonstruktiv. CL-
 
 Die Forschungsarbeit entsteht in einem schnell iterierenden Engineeringkontext. Gerade dort verhindert ein Freeze, dass neue Einsichten nach Sichtung der DATA unbemerkt Teil des ursprünglichen Erfolgsmaßstabs werden. CL-003 zeigte den Wert dieser Grenze: Der deskriptiv mit der Dosis wachsende Semantic-minus-Raw-Unterschied wäre verführerisch als positiver Dosisbefund formulierbar gewesen; der präregistrierte Interaktionstest C4 blieb jedoch negativ. Deshalb ist die stärkere Behauptung nicht zulässig.
 
-Präregistrierung wirkt in diesem Projekt damit nicht nur gegen klassische p-Hacking-Risiken, sondern gegen **architektonisches Nachrationalisieren**.
+Präregistrierung trennt prospektive Hypothesenprüfung von nachträglicher Musterdeutung; genau diese Funktion wird in der methodischen Literatur als zentraler Zweck beschrieben ([Nosek et al., 2018](REFERENCES.md#ref-NOSEK2018)). In diesem Projekt wirkt sie damit nicht nur gegen klassische p-Hacking-Risiken, sondern gegen **architektonisches Nachrationalisieren**.
 
 ## 28.5 Revidierbarkeit als Qualitätskriterium
 
@@ -709,9 +725,17 @@ Eigene Vorarbeiten werden mit Edition, Pfad und Git-Revision zitiert. Historisch
 
 ## 31. Prior Art und Neuheit
 
-MHRN verwendet etablierte neuronale Modelle, STDP, Three-Factor Learning, Homeostase, graphische Nullmodelle, Replay und Gedächtnistheorien. Beispielsweise sind Izhikevich-Neuronen [Izhikevich, 2003](REFERENCES.md#ref-IZHIKEVICH2003), Drei-Faktor-Regeln [Frémaux & Gerstner, 2016](REFERENCES.md#ref-FREMAUX2016) und Complementary Learning Systems [McClelland et al., 1995](REFERENCES.md#ref-MCCLELLAND1995) etablierte Vorarbeiten. Die Neuheit einer MHRN-Kombination folgt daraus weder positiv noch negativ automatisch.
+MHRN verwendet etablierte neuronale Modelle, STDP, Three-Factor Learning, Homeostase, graphische Nullmodelle, Replay und Gedächtnistheorien. Beispielsweise sind Izhikevich-Neuronen ([Izhikevich, 2003](REFERENCES.md#ref-IZHIKEVICH2003)), timingabhängige synaptische Plastizität ([Bi & Poo, 1998](REFERENCES.md#ref-BI_POO1998)), Drei-Faktor-Regeln ([Frémaux & Gerstner, 2016](REFERENCES.md#ref-FREMAUX2016)), homeostatisches synaptisches Scaling ([Turrigiano et al., 1998](REFERENCES.md#ref-TURRIGIANO1998); [Turrigiano, 2008](REFERENCES.md#ref-TURRIGIANO2008)) und Complementary Learning Systems ([McClelland et al., 1995](REFERENCES.md#ref-MCCLELLAND1995)) etablierte Vorarbeiten. Die Neuheit einer MHRN-Kombination folgt daraus weder positiv noch negativ automatisch.
 
 Kandidaten wie die Vierertrennung von Identität/Slot/Reduktion/Scheduling, Proposal→Approval→Mutation→Journal→Undo, Content Gateway versus Compute Backend oder source-bound DATA/EVID-Grenzen bleiben Kandidaten, bis ein belastbarer Prior-Art-Review erfolgt.
+
+### 31.1 Zitierstandard und Quellenklassen
+
+Edition 1.8 verwendet Autor-Jahr-Zitation nach APA 7 ([American Psychological Association, 2020](REFERENCES.md#ref-APA2020)). Externe Behauptungen sollen **direkt am tragenden Satz** belegt werden. Wo eine ursprüngliche Forschungsarbeit verfügbar und passend ist, wird sie als Primärliteratur bevorzugt; Review-, Survey- und Synthesearbeiten werden als Sekundärliteratur gekennzeichnet. Diese Trennung folgt auch der allgemeinen Empfehlung, Originalforschungsquellen möglichst direkt zu referenzieren und die Tragfähigkeit jeder Referenz für die zugehörige Aussage zu prüfen ([ICMJE, 2026](REFERENCES.md#ref-ICMJE2026)).
+
+Das maschinenlesbare Literaturregister unterscheidet daher vier Klassen: `primary`, `secondary`, `guideline` und `standard`. **Primärliteratur** trägt ursprüngliche empirische, methodische oder theoretische Befunde; **Sekundärliteratur** trägt Review, Survey oder Synthese; **Richtlinien und Standards** regeln Darstellung, Autorenschaft oder Beitragsbeschreibung, erzeugen aber keine Evidenz für MHRN-Mechanismen.
+
+Im Fließtext darf `et al.` nach APA-Konvention zur Verkürzung von Mehrfachautorenschaften verwendet werden; im Literaturverzeichnis werden bei den hier erfassten Arbeiten die vollständigen Autorenlisten ausgegeben. Ein Literaturzitat belegt nur den externen Satz, neben dem es steht. Es kann weder MHRN-DATA erzeugen noch ein internes Experiment ersetzen.
 
 ## 32. Similarity und Quellenquarantäne
 
@@ -719,7 +743,7 @@ Interne Similarity-Prüfungen reduzieren Risiken, zertifizieren aber keine Plagi
 
 ## 33. AI-Assistenz und Verantwortlichkeit
 
-KI-Systeme können Formulierungen, Code, Literaturkandidaten oder Gegenargumente erzeugen. Verantwortung für die veröffentlichte Fassung bleibt beim menschlichen Autor. Wo ein konkreter AI-Vorschlag für die Genealogie relevant ist, wird er als Prozessartefakt bezeichnet und nicht durch nachträgliche Autorschaftsvereinfachung verdeckt.
+KI-Systeme können Formulierungen, Code, Literaturkandidaten oder Gegenargumente erzeugen. Verantwortung für die veröffentlichte Fassung bleibt beim menschlichen Autor; AI-Systeme werden nicht als Autoren oder Primärquellen geführt ([ICMJE, 2026](REFERENCES.md#ref-ICMJE2026)). Wo ein konkreter AI-Vorschlag für die Genealogie relevant ist, wird er als Prozessartefakt bezeichnet und nicht durch nachträgliche Autorschaftsvereinfachung verdeckt.
 
 ## 33.1 Eigene Vorarbeiten sind Quelle, nicht „neuer“ Text
 
@@ -800,7 +824,7 @@ Die frühere Theorie der „geliehenen Intelligenz“ wird integriert, aber prä
 
 ## 35. Kontrolle und Unterbrechbarkeit
 
-Safe interruptibility behandelt die Frage, ob lernende Agenten menschliche Unterbrechungen zum Gegenstand unerwünschter Vermeidungsstrategien machen können [Orseau & Armstrong, 2016](REFERENCES.md#ref-ORSEAU2016). Für MHRN folgt daraus kein Nachweis vorhandener Gefährlichkeit. Es folgt ein Forschungsprogramm: unabhängiger Stopppfad, Capability-Gates, Sandbox, deny-by-default Aktorik, Zielprovenienz und Tests, die den Stopppfad selbst nicht vom zu kontrollierenden Lernmechanismus abhängig machen.
+Safe interruptibility behandelt die Frage, ob lernende Agenten menschliche Unterbrechungen zum Gegenstand unerwünschter Vermeidungsstrategien machen können ([Orseau & Armstrong, 2016](REFERENCES.md#ref-ORSEAU2016)). Für MHRN folgt daraus kein Nachweis vorhandener Gefährlichkeit. Es folgt ein Forschungsprogramm: unabhängiger Stopppfad, Capability-Gates, Sandbox, deny-by-default Aktorik, Zielprovenienz und Tests, die den Stopppfad selbst nicht vom zu kontrollierenden Lernmechanismus abhängig machen.
 
 Zielgenese, specification gaming, goal misgeneralization, Optionsraumpräferenz und Post-Objective Transition werden als offene Forschungsobjekte geführt. Geplante Safety-Experimente sind keine ausgeführten Ergebnisse.
 
@@ -810,7 +834,7 @@ Die frühere Unterscheidung zwischen Handlungsautonomie, Zielautonomie, normativ
 
 ## 37. Bewusstsein und Welfare Precaution
 
-Bewusstseinsforschung benötigt definierte Indikatoren und Grenzen. Theorien der Bewusstseinsforschung können in technische Indikatorrahmen übersetzt werden [Butlin et al., 2023](REFERENCES.md#ref-BUTLIN2023), doch solche Indikatoren sind keine automatische Bewusstseinsdetektion. Edition 1.8 behauptet weder Bewusstsein noch Sentienz oder Leiden.
+Bewusstseinsforschung benötigt definierte Indikatoren und Grenzen. Theorien der Bewusstseinsforschung können in technische Indikatorrahmen übersetzt werden ([Butlin et al., 2023](REFERENCES.md#ref-BUTLIN2023)), doch solche Indikatoren sind keine automatische Bewusstseinsdetektion. Edition 1.8 behauptet weder Bewusstsein noch Sentienz oder Leiden.
 
 Trotzdem kann unter Unsicherheit ein Vorsorgekonflikt entstehen: stärkere Unterbrechungs- und Kontrollmechanismen können aus Safety-Sicht wünschenswert sein, während ein hypothetisch moralisch relevantes System andere Schutzfragen aufwirft. Diese Konflikte werden explizit getrennt dokumentiert, statt über einen einzigen „Ethikscore“ aufgelöst.
 
@@ -1566,11 +1590,15 @@ Aus den aktuellen Entscheidungen entstehen zwei klar begrenzte nächste Schritte
 
 Für `H-SNN-003-B` muss `topology_propagation_v2` **vor Ausführung** präregistriert werden. Der neue Aufbau muss Topologie durch Konstruktion auf Dynamik wirken lassen und zunächst ein Activity-Adequacy-Gate bestehen. Scheitert dieses Gate, ist der Hypothesentest `NOT_TESTED`, nicht negativ. Erst danach dürfen vorab definierte Vergleiche zwischen 1D/2D/3D/5D, `5d_shuffled` und einem degree-/density-matched `random_graph` interpretiert werden. Dabei wird ausdrücklich kein 5D-Vorteil vorausgesetzt; die Hypothese verlangt zunächst nur einen belastbaren Unterschied zwischen mindestens zwei Topologiebedingungen.
 
+Für die **dimensionsspezifische** Registry-Frage gilt parallel: `RQ-5D-005` bleibt `open` und `H-5D-005-A` bleibt kanonisch `untested`. Der bisherige v1-Lauf ist für diese 5D-Hypothese **kein Evidenzbeitrag – weder positiv noch negativ**. Die nächste 5D-Prüfung muss mindestens **1.000 Neuronen pro Bedingung**, durchschnittlich **mindestens 10 eingehende Synapsen pro Neuron** und eine **explizit distanzabhängige Konnektivitätswahrscheinlichkeit** verwenden; Delay darf zusätzlich geometrieabhängig sein. Degree-/density-matched Kontrollen, Multi-Neuron-Stimulus, Activity-Adequacy-Gate, unabhängige Seeds und clean-tree Provenienz bleiben verpflichtend.
+
 ## 58.3 LP-20260917194217: offene Kompressionsprüfung
 
-`LP-20260917194217` ist als nächster möglicher Stage-6-Zyklus vorbereitet und genehmigt, aber **noch nicht ausgeführt**. Der geplante Primärvergleich ist `semantic_prototype_replay_10pct_budget` gegen `raw_replay_full_budget`; die Erfolgsgrenze liegt bei mindestens 95 % der Raw-Replay-Retention bei Faktor-10-Speicherreduktion. `no_replay`, `random_prototype_10pct` und `learning_off` dienen als Kontrollen.
+`LP-20260917194217 / OBJ-MEM-COMPRESSION-001` ist der **nächste vorbereitete empirische Stage-6-Zyklus**, aber noch nicht ausgeführt. Der geplante Primärvergleich ist `semantic_prototype_replay_10pct_budget` gegen `raw_replay_full_budget`; die Erfolgsgrenze liegt bei mindestens 95 % der Raw-Replay-Retention bei Faktor-10-Speicherreduktion. `no_replay`, `random_prototype_10pct` und `learning_off` dienen als Kontrollen. Die Frage betrifft damit **Speicherkompression bei erhaltener Retention**, nicht eine erneute allgemeine Lernleistungsbehauptung.
 
-Die konkrete Quellbindung liegt inzwischen in `LP-20260917194217-R1` vor. Diese Revision ist noch **nicht erneut human-approved**; die Approval des Originalplans wird nicht auf geänderten Proposal-Inhalt übertragen. Vor Ausführung sind daher R1-Human-Approval, Freeze, Seed-/Taskplan, Analysevertrag und eine explizite Ausführungsautorisation zu vervollständigen. Bis dahin bleibt der Eintrag Forschungsplanung und darf im Viewer nicht wie ein Ergebnis oder laufendes Experiment erscheinen.
+Die konkrete Quellbindung liegt inzwischen in `LP-20260917194217-R1` vor. Diese Revision ist noch **nicht erneut human-approved**; die Approval des Originalplans wird nicht auf geänderten Proposal-Inhalt übertragen. Der nächste methodische Schritt ist deshalb die **Präregistrierungsvorbereitung** mit kanonischer RQ/H-Bindung, exakter Speicherbudget-Definition, Seed-/Taskplan, Retentionsaggregation, vorab fixierter Inferenz-/Äquivalenzregel, Ausschlüssen/Failure-Regeln und Analysevertrag. Vor einem ausführungsfähigen Freeze bleiben R1-Human-Approval und eine separate Ausführungsautorisation erforderlich.
+
+Die Entscheidung ist prospektiv begrenzt: Ein positives Ergebnis stützt eine **Kompressionsrolle** von SemanticMemory unter dem registrierten Protokoll. Ein negatives Ergebnis beantwortet diese Kompressionsrolle für den getesteten Mechanismus negativ; Generalisierung, Langzeitgedächtnis oder Weltmodell-Brücke bleiben dann mögliche, aber **separat zu präregistrierende** Rollen und dürfen den Kompressionstest nicht post hoc umdeuten.
 
 ## 58.4 Aktueller Review-Stand und unmittelbar nächste Replikationen
 
