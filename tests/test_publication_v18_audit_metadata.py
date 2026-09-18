@@ -1,5 +1,7 @@
 """Regression checks for the Edition 1.8 publication audit metadata."""
 
+# fmt: off
+
 from __future__ import annotations
 
 import json
@@ -158,3 +160,4 @@ def test_historical_reader_is_explicitly_separated_from_current_viewer() -> None
     assert "catalog.json" in notice
     assert "Edition 1.8" in notice
     assert "KI - Die geliehene Intelligenz" in legacy
+# fmt: on
