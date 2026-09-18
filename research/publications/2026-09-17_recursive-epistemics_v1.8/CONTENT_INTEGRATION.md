@@ -278,3 +278,14 @@ Teile: IV, X, XI
 Quellpfade: `research/preregistrations/PREREG-S1-TOPO-V2.json`; `research/experiments/EXP-S1-TOPO-V2-20260918/manifest.json`; `research/experiments/EXP-S1-TOPO-V2-20260918/report.md`; `research/experiments/EXP-S1-TOPO-V2-20260918/analysis/statistics.json`; `research/experiments/EXP-S1-TOPO-V2-20260918/data/calibration.json`; `research/experiments/EXP-S1-TOPO-V2-20260918/data/evaluation.json`; `research/experiments/EXP-S1-TOPO-V2-20260918/review_request.json`; `research/workflows/SERIES-STAGE1-TOPOLOGY-V2-20260918.json`
 
 Grenze: Supports H-SNN-003-B only within the preregistered 64-neuron Stage-1 regime. No automatic EVID promotion, no 5D superiority claim, and no support for H-5D-005-A before the separate >=1000-neuron geometry-specific programme.
+
+## CORPUS-STAGE1-TOPOLOGY-V3-R1 — Corrected preregistered Stage-1 topology time-resolved internal replication
+
+Rolle: `source-bound corrected internal replication DATA package pending human review`  
+Status: `semantically_integrated_DATA_review_pending`  
+Modus: `analysis-correction_audit_time-resolved_results_internal-replication_limitations_and_claim-boundary`  
+Teile: IV, X, XI
+
+Quellpfade: `research/preregistrations/PREREG-S1-TOPO-V3-TIME-RESOLVED.json`; `research/experiments/EXP-S1-TOPO-V3-20260918/ANALYSIS_CORRECTION.md`; `research/preregistrations/PREREG-S1-TOPO-V3-R1-TIME-RESOLVED.json`; `research/experiments/EXP-S1-TOPO-V3-R1-20260918/manifest.json`; `research/experiments/EXP-S1-TOPO-V3-R1-20260918/report.md`; `research/experiments/EXP-S1-TOPO-V3-R1-20260918/analysis/statistics.json`; `research/experiments/EXP-S1-TOPO-V3-R1-20260918/data/evaluation.json`; `research/experiments/EXP-S1-TOPO-V3-R1-20260918/review_request.json`; `research/workflows/SERIES-STAGE1-TOPOLOGY-V3-R1-20260918.json`
+
+Grenze: R1 resolves the V2 terminal active_fraction ceiling with prospective time-resolved endpoints and internally replicates V2 latency directions. It is not independent external replication, creates no EVID, supports no 5D superiority claim, and does not test H-5D-005-A.

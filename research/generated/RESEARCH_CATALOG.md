@@ -1464,9 +1464,9 @@
 
 **Aktuelle Antwort:**
 
-> EXP-S1-TOPO-V2-20260918 liefert DATA-seitige Unterstützung dafür, dass die konkrete Topologie im präregistrierten 64-Neuronen-Stage-1-Regime die Propagationsdynamik beeinflusst; Human Review und EVID-Entscheidung stehen aus.
+> EXP-S1-TOPO-V2-20260918 und die korrigierte interne Replikation EXP-S1-TOPO-V3-R1-20260918 liefern DATA-seitige Unterstützung dafür, dass die konkrete Topologie im präregistrierten 64-Neuronen-/246-Kanten-Stage-1-Regime die Propagationsdynamik beeinflusst. R1 löst die terminale active_fraction-Sättigung von 1d/2d/3d durch prospektiv definierte zeitaufgelöste Endpunkte auf und repliziert alle fünf V2-First-Output-Latenzrichtungen auf neuen Seeds. Human Review und EVID-Entscheidung stehen aus.
 
-*Konfidenz: data_supported_review_pending*
+*Konfidenz: replicated_internal_data_review_pending*
 
 **Hypothesen:**
 - `H-SNN-003-B`: Unter gleicher Neuronenzahl, Dichte und Stimulusbedingung unterscheiden sich Propagationslatenz oder -reichweite zwischen mindestens zwei vorab definierten Topologien; ein Vorteil einer 5D-Anordnung wird nicht vorausgesetzt. *(untested)*

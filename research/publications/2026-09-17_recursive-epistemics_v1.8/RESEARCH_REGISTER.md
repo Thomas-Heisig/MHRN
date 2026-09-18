@@ -1758,9 +1758,9 @@ Typ: `research_question`; Quellstatus: `open`; Quelle: [research/registry/questi
   "evidence": [],
   "status": "open",
   "answer": {
-    "current": "EXP-S1-TOPO-V2-20260918 liefert DATA-seitige Unterstützung dafür, dass die konkrete Topologie im präregistrierten 64-Neuronen-Stage-1-Regime die Propagationsdynamik beeinflusst; Human Review und EVID-Entscheidung stehen aus.",
-    "confidence": "data_supported_review_pending",
-    "limitations": "Kein 5D-Vorteilsclaim; H-5D-005-A bleibt separat open/untested und erfordert das größere dimensionsspezifische Prüfprogramm."
+    "current": "EXP-S1-TOPO-V2-20260918 und die korrigierte interne Replikation EXP-S1-TOPO-V3-R1-20260918 liefern DATA-seitige Unterstützung dafür, dass die konkrete Topologie im präregistrierten 64-Neuronen-/246-Kanten-Stage-1-Regime die Propagationsdynamik beeinflusst. R1 löst die terminale active_fraction-Sättigung von 1d/2d/3d durch prospektiv definierte zeitaufgelöste Endpunkte auf und repliziert alle fünf V2-First-Output-Latenzrichtungen auf neuen Seeds. Human Review und EVID-Entscheidung stehen aus.",
+    "confidence": "replicated_internal_data_review_pending",
+    "limitations": "Interne Replikation ist keine unabhängige externe Replikation. Kein 5D-Vorteilsclaim; H-5D-005-A bleibt separat open/untested und erfordert das größere dimensionsspezifische Prüfprogramm."
   },
   "created": "2026-08-23",
   "updated": "2026-09-18"
