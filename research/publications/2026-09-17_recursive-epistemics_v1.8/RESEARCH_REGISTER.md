@@ -1758,12 +1758,12 @@ Typ: `research_question`; Quellstatus: `open`; Quelle: [research/registry/questi
   "evidence": [],
   "status": "open",
   "answer": {
-    "current": null,
-    "confidence": "none",
-    "limitations": null
+    "current": "EXP-S1-TOPO-V2-20260918 liefert DATA-seitige Unterstützung dafür, dass die konkrete Topologie im präregistrierten 64-Neuronen-Stage-1-Regime die Propagationsdynamik beeinflusst; Human Review und EVID-Entscheidung stehen aus.",
+    "confidence": "data_supported_review_pending",
+    "limitations": "Kein 5D-Vorteilsclaim; H-5D-005-A bleibt separat open/untested und erfordert das größere dimensionsspezifische Prüfprogramm."
   },
   "created": "2026-08-23",
-  "updated": "2026-08-23"
+  "updated": "2026-09-18"
 }
 ```
 

@@ -126,7 +126,6 @@ Die verbindliche Regel lautet deshalb: **Nähe erzeugt Fragen, nicht Antworten.*
 
 Gerade weil MHRN außerhalb institutioneller Forschungsstrukturen entstanden ist, muss die Arbeit ihre Grenzen expliziter machen: Was ist Selbstbeschreibung? Was ist externe Theorie? Was ist implementierter Mechanismus? Was ist DATA? Was wurde menschlich reviewt? Was ist noch offen? Diese Trennung ist nicht nur Dokumentationsstil, sondern ein Kompensationsmechanismus für fehlende institutionelle Selbstverständlichkeit.
 
-
 ## 4.6 Forschungsproblem, Leitfrage und dissertationsähnliche Gesamtarchitektur
 
 Edition 1.8 versteht sich als wissenschaftliche Monographie im Work-in-Progress-Status. Sie ist **keine eingereichte Dissertation und kein akademischer Gradanspruch**, übernimmt aber bewusst eine dissertationsähnliche Forschungslogik: Problemstellung, Forschungsstand, Forschungslücke, Leitfrage, Teilfragen, Methodik, Ergebnisse, Diskussion, Limitationen und revidierbare Schlussfolgerungen werden sichtbar getrennt.
@@ -165,6 +164,7 @@ Diese These ist kein vorweggenommenes Ergebnis. Sie wird daran gemessen, ob die 
 | **Ethik, Safety und Autonomie** | Welche Kontroll-, Ziel- und Welfare-Fragen entstehen bei zunehmender Wirk- und Lernfähigkeit? | normative Analyse, Szenarien, technische Safety-Verträge | keine Prognose, kein Bewusstseins- oder Sentienznachweis |
 
 Damit besitzt jeder Forschungszweig einen eigenen wissenschaftlichen Gegenstand. Teil IV behandelt die empirischen Zweige als Teilstudien; Teil VI die epistemologische Methodik; Teil VIII die normative Analyse; Teil IX die Theorieentwicklung; Teil X übernimmt die General Discussion; Teil XI formuliert Limitationen, offene Hypothesen und die priorisierte Forschungsagenda.
+
 
 ---
 
@@ -526,7 +526,7 @@ Die zweite Entscheidung betrifft `EXP-GEN-0047` und `H-SNN-003-B`. Die sechs Con
 
 Die einzige deskriptive Abweichung des v1-Laufs — eine um einen Tick frühere First-Response-Latency im `random_graph` — ist konfundiert mit einer geänderten Kantenanordnung und darf nicht zum Dimensionseffekt hochgestuft werden. Auch `stopped_on_quiescence=false` ist kein Fehler: Der Runner setzt `min_ticks=max_ticks` und erzwingt damit das vollständige Beobachtungsfenster.
 
-Für `topology_propagation_v2` gilt deshalb ein stärkerer prospektiver Vertrag: mindestens 1.000 Neuronen pro Condition, im Mittel mindestens zehn eingehende Synapsen, gematchte globale Struktur/Parameter/Stimulusenergie, explizite Kopplung von Geometriedistanz an Konnektivitätswahrscheinlichkeit und/oder Delay, die sechs genannten Kontrollen einschließlich degree-/density-matched Random Graph, multi-neuronaler Input, First-Arrival-/Reach-Verteilungen als Primärgrößen, Activity-Adequacy-Gate, mehrere unabhängige Seeds, vorab eingefrorene Inferenzregel und clean-tree Provenienz. Diese Werte sind Mindestschwellen für die nächste Testgeneration, keine Behauptung allgemeiner Suffizienz.
+`topology_propagation_v2` wurde inzwischen als enger **Stage-1-Test von `H-SNN-003-B`** präregistriert und ausgeführt. Die stärkeren Schwellen von ≥1.000 Neuronen und ≥10 eingehenden Synapsen gehören nicht zu diesem allgemeinen Topologietest, sondern zur getrennten dimensionsspezifischen Prüfung `RQ-5D-005 / H-5D-005-A`. Diese Trennung verhindert, dass ein kleiner, testadäquater Topologiebefund nachträglich zu einem 5D-Vorteilsclaim erweitert wird.
 
 ## 19.7 Genehmigter Stage-6-Kompressionsvorschlag
 
@@ -551,7 +551,6 @@ Die wissenschaftliche Grenze bleibt jedoch bestehen: der historische Lauf wurde 
 Für `RQ-SNN-003 / H-SNN-003-B` wurde `EXP-GEN-0047` ebenfalls methodisch neu eingeordnet. Die sechs Bedingungen `1d`, `2d`, `3d`, `5d`, `5d_shuffled` und `random_graph` sind semantisch die beabsichtigten Bedingungen und damit `DIRECT_MATCH`. Trotzdem ist `topology_propagation_v1` als `INADEQUATE_TO_TEST_HYPOTHESIS` klassifiziert. Der Aufbau verwendete nur drei Neuronen und zwei Feed-forward-Synapsen; bei den nicht-randomisierten Bedingungen blieben Gewichte, Delays und explizite Kette gleich, während die Koordinaten die Dynamik nicht hinreichend beeinflussten. Die identischen Kernantworten — 3 Spikes, 2 synaptische Ereignisse, 3 aktivierte Neuronen, 0 recurrent events, depth 1 — dürfen daher **nicht** als Evidenz dafür gelesen werden, dass Topologie oder Dimensionalität keinen Effekt besitzen. Der Einzelunterschied der first-response latency im Random-Graph-Arm ist zudem mit einer geänderten Kantenanordnung konfundiert.
 
 Aus beiden Reviews folgt ein allgemeiner methodischer Vertrag: **semantischer Match, technische Reproduzierbarkeit, Testadäquanz, Provenienz und EVID sind getrennte Prüfachsen**. Ein `DIRECT_MATCH` kann wissenschaftlich blockiert bleiben; ein technisch sauberer Lauf kann für die Zielhypothese `NOT_TESTED` sein; und eine nachträgliche Registry-Korrektur darf weder Dirty-Tree-Provenienz noch unzureichendes Versuchsdesign rückwirkend heilen.
-
 
 ## 19.9 Die empirischen Forschungszweige als eigenständige Teilstudien
 
@@ -579,15 +578,15 @@ Die bisherigen Experimente werden in Edition 1.8 nicht nur chronologisch bericht
 
 **RQ/H-Bezug.** `RQ-SNN-003 / H-SNN-003-B` adressiert Topologieeffekte ohne vorausgesetzten 5D-Vorteil. `RQ-5D-005 / H-5D-005-A` fragt enger nach einem dimensionsspezifischen Unterschied gegenüber topology-matched niedrigdimensionalen Einbettungen.
 
-**Methodik.** Recurrence-on/off dient als mechanistische Intervention. Für Topologie werden 1D/2D/3D/5D, `5d_shuffled` und `random_graph` verglichen. Die nächste Testgeneration verlangt explizite Geometrie-zu-Konnektivitäts-/Delay-Kopplung, Activity-Adequacy-Gate, unabhängige Seeds und degree-/density-matched Kontrollen.
+**Methodik.** Recurrence-on/off dient als mechanistische Intervention. Der nachfolgende Topologietest `EXP-S1-TOPO-V2-20260918` vergleicht 1D/2D/3D/5D, `5d_shuffled` und `random_graph` bei 64 Neuronen und identischem 246-Kanten-Budget. Gewichte, Delays und Stimulus werden gematcht; vier Kalibrier-Seeds sind von zwanzig Evaluations-Seeds getrennt. Das präregistrierte Activity-Adequacy-Gate darf nur Aktivierbarkeit, nicht Effektstärke, zur Gewichtswahl verwenden. Primärendpunkte sind `active_fraction` und zensierte First-Output-Latenz; gepaarte Sign-Tests werden über alle Primärkontraste Holm-korrigiert, Median-Differenzen erhalten deterministische Bootstrap-95%-Intervalle.
 
-**Befund.** Rekurrenz erzeugt im kleinen kontrollierten System einen klaren Dynamikunterschied. Die 5D-v1-Studie ist dagegen `INADEQUATE_TO_TEST_HYPOTHESIS`: Die Geometrie war nicht ausreichend kausal an die Dynamik gekoppelt.
+**Befund.** Das Activity-Gate bestand beim niedrigsten Kandidatengewicht 55.0. Alle 120 Evaluationsläufe waren vollständig; 64 Neuronen, 246 Kanten und das eingefrorene Gewicht waren in allen Armen erhalten. Mehrere präregistrierte Primärkontraste unterschieden sich signifikant. Beispielsweise lag die mediane Änderung der aktiven Netzwerkfraktion für 3D→5D bei -0,125 (Bootstrap-CI95 -0,15625 bis -0,1015625; Holm-p ≈ 1,91×10^-5). Bei der First-Output-Latenz lagen die Medianunterschiede 1D→2D bei -10 Ticks, 2D→3D bei -3 Ticks und 3D→5D bei -1 Tick. Der registrierte DATA-Status lautet `SUPPORTED_WITHIN_PREREGISTERED_PROTOCOL`.
 
-**Diskussion.** Das wichtigste Ergebnis dieses Zweigs ist deshalb teilweise methodisch: Ein technisch korrekt ausgeführter Vergleich kann wissenschaftlich `NOT_TESTED` bleiben.
+**Diskussion.** Damit besitzt `H-SNN-003-B` erstmals einen testadäquaten positiven Befund im untersuchten Stage-1-Regime: Topologie verändert die Propagationsdynamik. Der Effekt ist jedoch **kein monotones Dimensions- oder 5D-Vorteilsmuster**. `5d_shuffled` und `random_graph` erreichten den Output in diesem Design sogar früher als die reguläre 5D-Anordnung. Das unterstützt die allgemeine Topologiesensitivität, nicht die Überlegenheit einer bestimmten Dimensionalität.
 
-**Limitation.** Die bisherigen Topologien sind zu klein und zu schwach geometriesensitiv, um einen belastbaren Dimensionsclaim zu tragen.
+**Limitation.** 64 Neuronen und das deterministische vorwärtsgerichtete Konstrukt sind ein enger Small-SNN-Operating-Envelope. Der Lauf prüft weder Skalierung noch biologische Äquivalenz noch `H-5D-005-A`. Die stärkere 5D-Prüfung benötigt weiterhin ≥1.000 Neuronen, ≥10 mittlere Eingänge pro Neuron, explizit distanzabhängige Konnektivität und streng gematchte Dimensionskontrollen. Der aktuelle Lauf bleibt bis Human Review DATA-only.
 
-**Zwischenfazit.** Rekurrenz ist im getesteten Mechanismus wirksam; 5D bleibt offen und benötigt `topology_propagation_v2`.
+**Zwischenfazit.** Rekurrenz ist im getesteten Mechanismus wirksam; `H-SNN-003-B` ist im 64-Neuronen-Stage-1-Regime DATA-seitig gestützt. Die spezifische 5D-Hypothese bleibt offen.
 
 ### 19.9.3 Teilstudie C — Plastizität, Lernen und adaptive Stabilität
 
@@ -658,6 +657,7 @@ Die bisherigen Experimente werden in Edition 1.8 nicht nur chronologisch bericht
 Über alle empirischen Zweige hinweg entsteht ein wiederkehrendes Muster: **technische Verfügbarkeit ist der Beginn einer wissenschaftlichen Frage, nicht deren Antwort**. Ein Mechanismus wird erst dann Teil der tragfähigen Architekturposition, wenn sein kausaler Beitrag gegenüber einer geeigneten einfacheren Referenz sichtbar wird oder seine Spezialrolle durch einen eigenen, vorab begründeten Prüfvertrag getragen ist.
 
 Damit erhält Teil IV den Charakter einer kumulativen empirischen Dissertationseinheit: Die Teilstudien stehen nicht nebeneinander, sondern verändern wechselseitig die Architektur und die Bedingungen der jeweils nächsten Hypothese.
+
 
 ---
 
@@ -851,7 +851,6 @@ Eine starke Aussage in MHRN nennt nicht nur, warum sie aktuell plausibel ist, so
 
 Die Arbeit versteht Revidierbarkeit daher nicht als Schwäche, sondern als explizite Schnittstelle zwischen heutiger Synthese und zukünftiger Evidenz.
 
-
 ## 28.6 Epistemologische Teilstudie — Forschungsprozess als Untersuchungsgegenstand
 
 **Forschungsfrage.** Unter welchen Bedingungen verbessert eine explizite Trennung von Quelle, Entscheidung, Ausführung, DATA, Review und EVID die wissenschaftliche Belastbarkeit eines schnell iterierenden, KI-assistierten Einzelforschungsprojekts?
@@ -867,6 +866,7 @@ Die Arbeit versteht Revidierbarkeit daher nicht als Schwäche, sondern als expli
 **Limitation.** Die meisten Prozessverbesserungen wurden innerhalb derselben Autoren- und Toolkette entworfen und bewertet. Eine geringere interne Fehlklassifikationsrate wäre erst dann stärker belegt, wenn sie über längere Zeiträume, unabhängige Reviewer oder externe Replikationsgruppen systematisch gemessen wird.
 
 **Zwischenfazit.** Rekursive Epistemik besitzt damit einen empirisch anschlussfähigen methodischen Kern: Nicht die Selbstbeschreibung „wir arbeiten sorgfältiger“, sondern überprüfbare Status-, Provenienz- und Revisionsereignisse bilden den Gegenstand.
+
 
 ---
 
@@ -1113,7 +1113,6 @@ Diese Szenarien dürfen nur so weit verwendet werden, wie ihre technischen Vorau
 
 Der Begriff **Maschinenkultur** bleibt entsprechend vorsichtig funktional: gemeint wäre eine persistente maschinell erzeugte und weitergegebene technische/epistemische Tradition, nicht automatisch Kultur im starken anthropologischen Sinn. Auch dies ist eine offene Theoriefrage, kein MHRN-Gegenwartsclaim.
 
-
 ## 38.12 Normative Teilstudie — Forschungsfrage, Verfahren und Geltungsgrenzen
 
 Der philosophisch-ethische Zweig wird nicht als Meinungsessay neben die empirische Arbeit gestellt. Er besitzt eine eigene wissenschaftliche Funktion: Er soll Begriffe und Handlungsregeln dort präzisieren, wo empirische Daten allein keine normative Schlussfolgerung liefern.
@@ -1129,6 +1128,7 @@ Der philosophisch-ethische Zweig wird nicht als Meinungsessay neben die empirisc
 **Limitation.** Edition 1.8 liefert keine vollständige Ethiktheorie, keine institutionelle Ethikfreigabe und keine Aussage über tatsächliches Bewusstsein oder Leiden. Die philosophische Arbeit markiert Entscheidungskonflikte und Mindestbedingungen, nicht metaphysische Gewissheiten.
 
 **Zwischenfazit.** Der Ethik-/Safety-Zweig erhält seinen dissertationsähnlichen Charakter durch explizite Fragestellung, argumentatives Verfahren, Gegenpositionen, technische Anschlussfähigkeit und benannte Grenzen.
+
 
 ---
 
@@ -1256,7 +1256,6 @@ Aus den Vorgängerarbeiten lässt sich eine allgemeine Prüfregel ableiten: Je s
 
 „Geliehene Intelligenz“ wird damit in Edition 1.8 zu einer prüfbaren Herkunftsfrage: **Welche Ressource kam von wo, welche Zustandsänderung verursachte sie, und wer durfte diese Zustandsänderung autorisieren?**
 
-
 ## 42.12 Theorieentwicklungsstudie — Rekursive Epistemik als prüfbare Arbeitshypothese
 
 Rekursive Epistemik ist in dieser Arbeit nicht nur ein Titelbegriff. Sie wird als **Theoriehypothese über den Forschungsprozess** behandelt.
@@ -1274,6 +1273,7 @@ Rekursive Epistemik ist in dieser Arbeit nicht nur ein Titelbegriff. Sie wird al
 **Beitrag.** Der mögliche Eigenbeitrag liegt damit nicht in der Behauptung, Forschung müsse „reflexiv“ sein. Er liegt in der technischen und dokumentarischen Operationalisierung dieser Reflexivität als versionierte, prüfbare Prozessarchitektur.
 
 **Limitation.** Bislang fehlt eine unabhängige Vergleichsstudie zwischen Forschungsprozessen mit und ohne diese Governance. Rekursive Epistemik bleibt daher eine zunehmend präzisierte, aber weiterhin revidierbare Theorieposition.
+
 
 ---
 
@@ -1310,7 +1310,7 @@ Die folgende Matrix ist eine Leserhilfe, keine neue Prozentmetrik. Sie trennt de
 | Stage | Gegenwärtig belastbarer Stand | Wissenschaftlich offen / blockiert durch | Nächster legitimierter Schritt |
 | --- | --- | --- | --- |
 | **0 — einzelne Nervenzelle** | Scoped Izhikevich-/LIF-Referenzkonformität gegen Brian2 ist confirmatory DATA-seitig erfüllt. | Human-EVID-Entscheidung, unabhängige Replikation, breitere Integrator-/Parameter-/Langzeitprüfung. | Review und unabhängig autorisierte Replikation des eingefrorenen Vertrages. |
-| **1 — kleines SNN** | Technische Signalweitergabe und Netzwerkprimitive sind verifiziert. | Eigene präregistrierte Small-Network-RQ, task-basierte Kontrollen, Störungen, Generalisierung. | Kleine kausale Netzwerkstudie mit matched controls einfrieren. |
+| **1 — kleines SNN** | `EXP-S1-TOPO-V2-20260918` liefert einen präregistrierten DATA-Befund, dass Topologie im kontrollierten 64-Neuronen-Regime die Propagationsdynamik verändert; technische Netzwerkprimitive bleiben verifiziert. | Human Review, unabhängige Replikation, breitere Aufgaben-/Störungsregime; keine Ableitung eines 5D-Vorteils. | Human Review des source-bound DATA-Pakets abschließen und anschließend unabhängig replizieren; die separate 5D-Hypothese in größerem Design prüfen. |
 | **2 — stabile Rekurrenz** | Kleiner kontrollierter Recurrence-Effekt ist reproduzierbar beobachtet. | Breite Generalisierung; sauberer clean-tree Determinismus-/Replikationsnachweis. | Hash-gebundene clean-tree Replikation und größere getrennte Regime. |
 | **3 — plastisches Nervengewebe** | STDP, Eligibility, Drei-Faktor-Regeln, Homeostase und Strukturplastizität sind technisch vorhanden. | Held-out Nutzen, Interaktionen, Langzeitstabilität und Ressourcenwirkung. | Learning-on/off/Frozen/Sham-Kontrollen mit vorab definierten Task-Endpunkten. |
 | **4 — spezialisierte Areale** | Audio/Vision/Digital-Pfade und E01–E05 liefern enge synthetische DATA. | Generalistenvergleich, Cross-Modal-Transfer, Läsion/Shuffle/Frozen, reale Ressourcenmessung. | Matched spezialisierte-vs.-generalistische Ablationen. |
@@ -1386,6 +1386,13 @@ CL-001 bis CL-003 bilden die deutlichste Architekturselektion. Der zunächst pos
 Fehler in Reports, Baselines, Testadäquanz und AI-Schema-Normalisierung führten zu dauerhaften Prozessverträgen: Status-Trennung, Freeze/Authorization, source-bound DATA, Human Review, EVID-Gates, protokollspezifische Reports und Stop-Regeln.
 
 Dieser Beitrag ist methodisch, nicht neuronaler Natur. Er erklärt jedoch, warum spätere Experimente eine höhere epistemische Qualität besitzen als frühe Feature-Demonstrationen.
+
+### Ergebnis I — Topologie beeinflusst die Propagation im präregistrierten Stage-1-Regime
+
+`EXP-S1-TOPO-V2-20260918` ersetzt den inadäquaten v1-Aufbau nicht rückwirkend, sondern liefert eine neue, vor Ausführung präregistrierte Prüfung von `RQ-SNN-003 / H-SNN-003-B`. Das Activity-Adequacy-Gate bestand bei Gewicht 55.0; anschließend wurden 120 Evaluationsläufe mit 64 Neuronen und identischem 246-Kanten-Budget über 20 gepaarte Seeds ausgeführt. Mehrere vorab definierte Unterschiede in aktiver Reichweite und First-Output-Latenz blieben nach Holm-Korrektur signifikant und zeigten Bootstrap-Intervalle außerhalb null.
+
+**Zulässiger Claim:** Die konkrete Topologie beeinflusst innerhalb dieses kontrollierten Small-SNN-Operating-Envelope die Propagationsdynamik.  
+**Nicht zulässig:** daraus 5D-Überlegenheit, Skalierbarkeit, biologische Äquivalenz oder `H-5D-005-A` abzuleiten. `5d_shuffled` und `random_graph` erreichten den Output in diesem Aufbau teilweise früher; das spricht gegen eine einfache monotone „mehr Dimensionen = besser“-Lesart. Der Lauf bleibt bis Human Review DATA-only.
 
 ### Ergebnis H — Same-Seed-Reproduzierbarkeit ist nun als eigene DATA-Linie dokumentiert
 
@@ -1508,7 +1515,6 @@ Zweitens wird `EXP-GEN-0047` nicht mehr als scheinbarer Topologie-Nullbefund gel
 
 Drittens ergibt sich daraus eine übergreifende Reiferegel für MHRN: **ein Experiment darf erst dann eine Hypothese tragen, wenn semantische Zuordnung, kausale Wirksamkeit des manipulierten Faktors, Aktivitätsadäquanz, Provenienz und vorab definierte Auswertung gleichzeitig ausreichend sind.** Diese Regel ist inzwischen selbst ein Ergebnis der Schaffensgeschichte, weil sie aus konkreten Fehlklassifikationen und Reviews hervorgegangen ist.
 
-
 ## 47.12 General Discussion
 
 Die vorherigen Abschnitte bilanzieren einzelne Ergebnisse. Eine dissertationsähnliche Gesamtarbeit benötigt darüber hinaus eine **General Discussion**, in der die Teilstudien gemeinsam auf die Leitfrage zurückbezogen werden.
@@ -1572,6 +1578,7 @@ Der stärkste Beitrag von Edition 1.8 liegt damit noch nicht in einer bestätigt
 
 Der Dissertationscharakter entsteht gerade aus dieser Verbindung: historische Problemgenese, theoretischer Rahmen, operationalisierte Teilfragen, Methoden, Teilstudien, negative und positive Resultate, General Discussion, Limitationen und eine explizite Forschungsagenda bilden ein zusammenhängendes Argument statt einer Sammlung von Features.
 
+
 ---
 
 <a id="part-xi"></a>
@@ -1596,12 +1603,13 @@ Der scoped Readiness-Vertrag kann 100 % erreicht haben, ohne dass damit die gesa
 
 ### Stage 1 — kleines SNN
 
-Stage 1 benötigt vor allem eine stärkere Forschungsbasis jenseits technischer Signalweitergabe:
+Mit `EXP-S1-TOPO-V2-20260918` liegt nun eine präregistrierte Small-Network-Topologiestudie vor. Sie zeigt DATA-seitig, dass Topologie die Propagationsdynamik im kontrollierten 64-Neuronen-Regime beeinflusst. Offen bleiben:
 
-- eigene präregistrierte Small-Network-RQ/Hypothesen;
-- task-basierte Kontrollen statt nur Funktionsverifikation;
-- Störungs- und Topologievariationen;
-- unabhängige Replikation.
+- Human Review und eine mögliche spätere EVID-Entscheidung;
+- unabhängige Replikation außerhalb derselben Ausführungspipeline;
+- task-basierte Kontrollen und Störungsregime jenseits reiner Impulspropagation;
+- Skalierung und Generalisierung über den aktuellen Small-SNN-Operating-Envelope hinaus;
+- die getrennte dimensionsspezifische 5D-Hypothese.
 
 ### Stage 2 — stabile Rekurrenz
 
@@ -1842,13 +1850,13 @@ Die verbleibenden echten Bestandsgrenzen sind enger und konkret:
 
 Das Ziel lautet daher nicht „jeder Bytewert steht im Manuskript“, sondern: **jede bekannte wissenschaftlich materielle Vorarbeit hat eine nachvollziehbare Rolle in der Gesamtarbeit, während Primärartefakte an ihrem autoritativen Ort erhalten bleiben.**
 
-## 58.2 Topologie v2 und saubere Determinismus-Replikation
+## 58.2 Topologie v2 abgeschlossen; Review, Replikation und 5D-Prüfung getrennt
 
-Aus den aktuellen Entscheidungen entstehen zwei klar begrenzte nächste Schritte. Für `RQ-DET-001` ist ein clean-tree-Replikationslauf erforderlich, bevor ein durch Dirty-Tree-Provenienz blockiertes Artefakt regulär in Richtung EVID geprüft werden kann. Eine semantische Reklassifikation allein entfernt den Provenienzblock nicht.
+Für `RQ-DET-001` bleibt ein clean-tree-Replikationslauf erforderlich, bevor ein durch Dirty-Tree-Provenienz blockiertes Artefakt regulär in Richtung EVID geprüft werden kann. Eine semantische Reklassifikation allein entfernt den Provenienzblock nicht.
 
-Für `H-SNN-003-B` muss `topology_propagation_v2` **vor Ausführung** präregistriert werden. Der neue Aufbau muss Topologie durch Konstruktion auf Dynamik wirken lassen und zunächst ein Activity-Adequacy-Gate bestehen. Scheitert dieses Gate, ist der Hypothesentest `NOT_TESTED`, nicht negativ. Erst danach dürfen vorab definierte Vergleiche zwischen 1D/2D/3D/5D, `5d_shuffled` und einem degree-/density-matched `random_graph` interpretiert werden. Dabei wird ausdrücklich kein 5D-Vorteil vorausgesetzt; die Hypothese verlangt zunächst nur einen belastbaren Unterschied zwischen mindestens zwei Topologiebedingungen.
+Für `RQ-SNN-003 / H-SNN-003-B` wurde `topology_propagation_v2` inzwischen **vor Ausführung präregistriert, ausgeführt und source-bound archiviert**. Das Activity-Adequacy-Gate bestand; die 120 Evaluationsläufe erfüllen die registrierten 64-Neuronen-/246-Kanten-Budgets und zeigen mehrere Holm-korrigierte Primärunterschiede in Reichweite und Output-Latenz. Der wissenschaftliche Status ist `SUPPORTED_WITHIN_PREREGISTERED_PROTOCOL`, aber weiterhin DATA-only bis Human Review. Der nächste Schritt für diese Hypothese ist daher nicht eine weitere Interpretation desselben Datensatzes, sondern Review und anschließend unabhängige Replikation bzw. ein erweitertes Operating-Envelope.
 
-Für die **dimensionsspezifische** Registry-Frage gilt parallel: `RQ-5D-005` bleibt `open` und `H-5D-005-A` bleibt kanonisch `untested`. Der bisherige v1-Lauf ist für diese 5D-Hypothese **kein Evidenzbeitrag – weder positiv noch negativ**. Die nächste 5D-Prüfung muss mindestens **1.000 Neuronen pro Bedingung**, durchschnittlich **mindestens 10 eingehende Synapsen pro Neuron** und eine **explizit distanzabhängige Konnektivitätswahrscheinlichkeit** verwenden; Delay darf zusätzlich geometrieabhängig sein. Degree-/density-matched Kontrollen, Multi-Neuron-Stimulus, Activity-Adequacy-Gate, unabhängige Seeds und clean-tree Provenienz bleiben verpflichtend.
+Für die **dimensionsspezifische** Registry-Frage gilt parallel unverändert: `RQ-5D-005` bleibt `open` und `H-5D-005-A` bleibt kanonisch `untested`. Das 64-Neuronen-Stage-1-Experiment ist dafür kein hinreichender Nachweis. Die nächste 5D-Prüfung muss mindestens **1.000 Neuronen pro Bedingung**, durchschnittlich **mindestens 10 eingehende Synapsen pro Neuron** und eine **explizit distanzabhängige Konnektivitätswahrscheinlichkeit** verwenden; Delay darf zusätzlich geometrieabhängig sein. Degree-/density-matched Kontrollen, Multi-Neuron-Stimulus, Activity-Adequacy-Gate, unabhängige Seeds und clean-tree Provenienz bleiben verpflichtend.
 
 ## 58.3 LP-20260917194217: offene Kompressionsprüfung
 
@@ -1862,10 +1870,9 @@ Die Entscheidung ist prospektiv begrenzt: Ein positives Ergebnis stützt eine **
 
 Nach dem jüngsten Human Review ist die offene Determinismusfrage enger als zuvor. `RQ-DET-001 / H-SNN-003-A` hat im historischen `deterministic_replica_v1`-Datensatz einen positiven Same-Seed-Replica-Befund und ist semantisch `DIRECT_MATCH`. Offen ist nicht mehr die Frage, ob die registrierten Replica-Bedingungen zur RQ gehören, sondern ob derselbe Befund in einem **clean-tree, hash-gebundenen Replikationslauf** wiederholt wird. Erst danach ist eine reguläre Human-EVID-Entscheidung sinnvoll.
 
-Für `H-SNN-003-B` ist der nächste Schritt ebenfalls klarer: `EXP-GEN-0047` gilt nicht als negativer Befund, sondern als `INADEQUATE_TO_TEST_HYPOTHESIS`. `topology_propagation_v2` muss daher vor Ausführung mindestens folgende Merkmale einfrieren: mindestens 1.000 Neuronen pro Bedingung, im Mittel mindestens 10 eingehende Synapsen pro Neuron, degree-/density-matched Vergleiche, explizite Kopplung von Geometrie an Konnektivitätswahrscheinlichkeit und/oder Delay, Multi-Neuron-Stimulus, Activity-Adequacy-Gate, vorab definierte first-arrival-/reach-Endpunkte, unabhängige Seeds sowie saubere Source-/Graph-Provenienz. Diese Schwellen sind Mindestanforderungen für die nächste Testgeneration, keine universellen Suffizienzkriterien.
+Für `H-SNN-003-B` ist der nächste Schritt nun **Human Review und unabhängige Replikation** von `EXP-S1-TOPO-V2-20260918`. `EXP-GEN-0047` bleibt als inadäquater Vorgänger erhalten; die neue DATA darf ihn nicht rückwirkend umdeuten. Die ≥1.000-Neuronen-/≥10-In-Degree-Schwellen werden ausschließlich für die stärkere `H-5D-005-A`-Prüfung geführt.
 
-Damit sind die nächsten beiden methodischen Schritte **Replikation** und **Testadäquanz**, nicht weitere Interpretation derselben historischen DATA.
-
+Damit sind die nächsten methodischen Schritte **Review/Replikation für den Stage-1-Topologiebefund** und **Testadäquanz für den separaten 5D-Claim**.
 
 ## 59. Forschungsagenda und Abschlusskriterien der Teilstudien
 
@@ -1875,7 +1882,8 @@ Die offene Forschungslandschaft wird für die weitere Arbeit nicht als unsortier
 | --- | --- | --- |
 | **Basale Dynamik / Determinismus** | clean-tree, hash-gebundene Same-Seed-Replikation und externe Wiederholung | Reproduzierbarkeit muss über denselben internen Workflow hinaus bestätigt werden |
 | **Rekurrenz** | unabhängige Seeds, skalierte Netzwerke und klar getrennte Rekurrenzintervention | Effekt muss unter erweitertem Operating Envelope bestehen |
-| **Topologie / 5D** | präregistriertes `topology_propagation_v2` mit ≥1.000 Neuronen, ≥10 Inputs/Neuron und Geometrie-Dynamik-Kopplung | Activity-Adequacy-Gate erfüllt und vorab definierter Topologievergleich interpretierbar |
+| **Topologie / H-SNN-003-B** | Human Review und unabhängige Replikation von `EXP-S1-TOPO-V2-20260918` | Der Stage-1-Topologiebefund muss außerhalb derselben Ausführungslinie reproduzierbar bleiben |
+| **5D / H-5D-005-A** | separates präregistriertes Design mit ≥1.000 Neuronen, ≥10 Inputs/Neuron und distanzabhängiger Geometrie-Dynamik-Kopplung | Ein dimensionsspezifischer Effekt muss unter gematchten Ressourcen- und Graphkontrollen bestehen |
 | **Plastizität** | learning-on/off-, Sham-/Frozen- und Holdout-Designs mit unabhängigen Seeds | Gewichtsänderung muss einen funktionalen Lern-/Stabilitätsbeitrag gegenüber Kontrollen tragen |
 | **MSBA / spezialisierte Pfade** | kausale Ressourcen- und Lesionsexperimente unter streng gematchten Budgets | Spezialpfad muss über bloße Implementierbarkeit hinaus messbaren Zusatznutzen zeigen |
 | **Embodiment** | `H-EMB-001-B`: identische externe Störung, Closed Loop vs. yoked Replay vs. interrupted feedback | Feedback muss unter matched disturbance einen kausalen Vorteil zeigen |
@@ -1892,9 +1900,10 @@ Die Reihenfolge weiterer Forschung folgt nicht der visuellen Stage-Nummer, sonde
 Daraus folgen gegenwärtig vier priorisierte Linien:
 
 1. **Präregistrierung von `OBJ-MEM-COMPRESSION-001`**, weil sie eine klar falsifizierbare Anschlussfrage an die negative CL-002/003-Linie darstellt.
-2. **`topology_propagation_v2`**, weil 5D ohne testadäquates Design wissenschaftlich offen bleiben muss.
-3. **clean-tree Determinismusreplikation**, weil vorhandene positive Same-Seed-Befunde durch Provenienzgrenzen blockiert sind.
-4. **`H-EMB-001-B`**, weil erst der matched-disturbance-Vergleich den Closed-Loop-Mechanismus stärker kausal isoliert.
+2. **Human Review und unabhängige Replikation von `EXP-S1-TOPO-V2-20260918`**, damit der neue Stage-1-Topologiebefund nicht auf eine einzelne interne Ausführungslinie beschränkt bleibt.
+3. **separate `H-5D-005-A`-Präregistrierung**, weil der 64-Neuronen-Topologiebefund keinen 5D-Vorteil beantwortet.
+4. **clean-tree Determinismusreplikation**, weil vorhandene positive Same-Seed-Befunde durch Provenienzgrenzen blockiert sind.
+5. **`H-EMB-001-B`**, weil erst der matched-disturbance-Vergleich den Closed-Loop-Mechanismus stärker kausal isoliert.
 
 ### Abschlusscharakter
 
@@ -1905,6 +1914,7 @@ Eine spätere kanonische Hauptfassung darf keinen Zweig allein deshalb als „ab
 - oder die Frage bleibt ausdrücklich offen, weil die notwendige Evidenz noch fehlt.
 
 Gerade diese dritte Möglichkeit gehört zum wissenschaftlichen Charakter der Arbeit. Eine Dissertation oder Monographie wird nicht dadurch stärker, dass jede Frage beantwortet erscheint, sondern dadurch, dass beantwortete, widerlegte und noch offene Fragen methodisch unterscheidbar bleiben.
+
 
 ---
 

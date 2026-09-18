@@ -469,6 +469,29 @@
       "integration_status": "semantically_integrated_as_planning_only",
       "integration_mode": "reader_orientation_and_future_publication_decomposition",
       "boundaries": "The offshoot index names candidate research strands only; it creates no DATA, EVID, novelty claim, submission status or permission to reuse Edition 1.8 synthesis as empirical evidence."
+    },
+    {
+      "id": "CORPUS-STAGE1-TOPOLOGY-V2",
+      "title": "Preregistered Stage-1 topology propagation v2 DATA and review lineage",
+      "source_paths": [
+        "research/preregistrations/PREREG-S1-TOPO-V2.json",
+        "research/experiments/EXP-S1-TOPO-V2-20260918/manifest.json",
+        "research/experiments/EXP-S1-TOPO-V2-20260918/report.md",
+        "research/experiments/EXP-S1-TOPO-V2-20260918/analysis/statistics.json",
+        "research/experiments/EXP-S1-TOPO-V2-20260918/data/calibration.json",
+        "research/experiments/EXP-S1-TOPO-V2-20260918/data/evaluation.json",
+        "research/experiments/EXP-S1-TOPO-V2-20260918/review_request.json",
+        "research/workflows/SERIES-STAGE1-TOPOLOGY-V2-20260918.json"
+      ],
+      "source_role": "source-bound confirmatory Stage-1 DATA package pending human review",
+      "manuscript_parts": [
+        "IV",
+        "X",
+        "XI"
+      ],
+      "integration_status": "semantically_integrated_DATA_review_pending",
+      "integration_mode": "preregistration_design_results_statistics_limitations_and_claim-boundary_synthesis",
+      "boundaries": "Supports H-SNN-003-B only within the preregistered 64-neuron Stage-1 regime. No automatic EVID promotion, no 5D superiority claim, and no support for H-5D-005-A before the separate >=1000-neuron geometry-specific programme."
     }
   ]
 }

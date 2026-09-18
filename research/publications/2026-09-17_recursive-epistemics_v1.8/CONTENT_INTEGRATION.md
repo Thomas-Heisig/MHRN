@@ -267,3 +267,14 @@ Teile: X, XI
 Quellpfade: `research/paper_offshoots/README.md`
 
 Grenze: The offshoot index names candidate research strands only; it creates no DATA, EVID, novelty claim, submission status or permission to reuse Edition 1.8 synthesis as empirical evidence.
+
+## CORPUS-STAGE1-TOPOLOGY-V2 — Preregistered Stage-1 topology propagation v2 DATA and review lineage
+
+Rolle: `source-bound confirmatory Stage-1 DATA package pending human review`  
+Status: `semantically_integrated_DATA_review_pending`  
+Modus: `preregistration_design_results_statistics_limitations_and_claim-boundary_synthesis`  
+Teile: IV, X, XI
+
+Quellpfade: `research/preregistrations/PREREG-S1-TOPO-V2.json`; `research/experiments/EXP-S1-TOPO-V2-20260918/manifest.json`; `research/experiments/EXP-S1-TOPO-V2-20260918/report.md`; `research/experiments/EXP-S1-TOPO-V2-20260918/analysis/statistics.json`; `research/experiments/EXP-S1-TOPO-V2-20260918/data/calibration.json`; `research/experiments/EXP-S1-TOPO-V2-20260918/data/evaluation.json`; `research/experiments/EXP-S1-TOPO-V2-20260918/review_request.json`; `research/workflows/SERIES-STAGE1-TOPOLOGY-V2-20260918.json`
+
+Grenze: Supports H-SNN-003-B only within the preregistered 64-neuron Stage-1 regime. No automatic EVID promotion, no 5D superiority claim, and no support for H-5D-005-A before the separate >=1000-neuron geometry-specific programme.

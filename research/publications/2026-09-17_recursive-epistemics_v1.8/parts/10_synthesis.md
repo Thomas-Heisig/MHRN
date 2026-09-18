@@ -29,7 +29,7 @@ Die folgende Matrix ist eine Leserhilfe, keine neue Prozentmetrik. Sie trennt de
 | Stage | Gegenwärtig belastbarer Stand | Wissenschaftlich offen / blockiert durch | Nächster legitimierter Schritt |
 | --- | --- | --- | --- |
 | **0 — einzelne Nervenzelle** | Scoped Izhikevich-/LIF-Referenzkonformität gegen Brian2 ist confirmatory DATA-seitig erfüllt. | Human-EVID-Entscheidung, unabhängige Replikation, breitere Integrator-/Parameter-/Langzeitprüfung. | Review und unabhängig autorisierte Replikation des eingefrorenen Vertrages. |
-| **1 — kleines SNN** | Technische Signalweitergabe und Netzwerkprimitive sind verifiziert. | Eigene präregistrierte Small-Network-RQ, task-basierte Kontrollen, Störungen, Generalisierung. | Kleine kausale Netzwerkstudie mit matched controls einfrieren. |
+| **1 — kleines SNN** | `EXP-S1-TOPO-V2-20260918` liefert einen präregistrierten DATA-Befund, dass Topologie im kontrollierten 64-Neuronen-Regime die Propagationsdynamik verändert; technische Netzwerkprimitive bleiben verifiziert. | Human Review, unabhängige Replikation, breitere Aufgaben-/Störungsregime; keine Ableitung eines 5D-Vorteils. | Human Review des source-bound DATA-Pakets abschließen und anschließend unabhängig replizieren; die separate 5D-Hypothese in größerem Design prüfen. |
 | **2 — stabile Rekurrenz** | Kleiner kontrollierter Recurrence-Effekt ist reproduzierbar beobachtet. | Breite Generalisierung; sauberer clean-tree Determinismus-/Replikationsnachweis. | Hash-gebundene clean-tree Replikation und größere getrennte Regime. |
 | **3 — plastisches Nervengewebe** | STDP, Eligibility, Drei-Faktor-Regeln, Homeostase und Strukturplastizität sind technisch vorhanden. | Held-out Nutzen, Interaktionen, Langzeitstabilität und Ressourcenwirkung. | Learning-on/off/Frozen/Sham-Kontrollen mit vorab definierten Task-Endpunkten. |
 | **4 — spezialisierte Areale** | Audio/Vision/Digital-Pfade und E01–E05 liefern enge synthetische DATA. | Generalistenvergleich, Cross-Modal-Transfer, Läsion/Shuffle/Frozen, reale Ressourcenmessung. | Matched spezialisierte-vs.-generalistische Ablationen. |
@@ -105,6 +105,13 @@ CL-001 bis CL-003 bilden die deutlichste Architekturselektion. Der zunächst pos
 Fehler in Reports, Baselines, Testadäquanz und AI-Schema-Normalisierung führten zu dauerhaften Prozessverträgen: Status-Trennung, Freeze/Authorization, source-bound DATA, Human Review, EVID-Gates, protokollspezifische Reports und Stop-Regeln.
 
 Dieser Beitrag ist methodisch, nicht neuronaler Natur. Er erklärt jedoch, warum spätere Experimente eine höhere epistemische Qualität besitzen als frühe Feature-Demonstrationen.
+
+### Ergebnis I — Topologie beeinflusst die Propagation im präregistrierten Stage-1-Regime
+
+`EXP-S1-TOPO-V2-20260918` ersetzt den inadäquaten v1-Aufbau nicht rückwirkend, sondern liefert eine neue, vor Ausführung präregistrierte Prüfung von `RQ-SNN-003 / H-SNN-003-B`. Das Activity-Adequacy-Gate bestand bei Gewicht 55.0; anschließend wurden 120 Evaluationsläufe mit 64 Neuronen und identischem 246-Kanten-Budget über 20 gepaarte Seeds ausgeführt. Mehrere vorab definierte Unterschiede in aktiver Reichweite und First-Output-Latenz blieben nach Holm-Korrektur signifikant und zeigten Bootstrap-Intervalle außerhalb null.
+
+**Zulässiger Claim:** Die konkrete Topologie beeinflusst innerhalb dieses kontrollierten Small-SNN-Operating-Envelope die Propagationsdynamik.  
+**Nicht zulässig:** daraus 5D-Überlegenheit, Skalierbarkeit, biologische Äquivalenz oder `H-5D-005-A` abzuleiten. `5d_shuffled` und `random_graph` erreichten den Output in diesem Aufbau teilweise früher; das spricht gegen eine einfache monotone „mehr Dimensionen = besser“-Lesart. Der Lauf bleibt bis Human Review DATA-only.
 
 ### Ergebnis H — Same-Seed-Reproduzierbarkeit ist nun als eigene DATA-Linie dokumentiert
 

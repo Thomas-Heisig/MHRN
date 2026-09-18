@@ -18,12 +18,13 @@ Der scoped Readiness-Vertrag kann 100 % erreicht haben, ohne dass damit die gesa
 
 ### Stage 1 — kleines SNN
 
-Stage 1 benötigt vor allem eine stärkere Forschungsbasis jenseits technischer Signalweitergabe:
+Mit `EXP-S1-TOPO-V2-20260918` liegt nun eine präregistrierte Small-Network-Topologiestudie vor. Sie zeigt DATA-seitig, dass Topologie die Propagationsdynamik im kontrollierten 64-Neuronen-Regime beeinflusst. Offen bleiben:
 
-- eigene präregistrierte Small-Network-RQ/Hypothesen;
-- task-basierte Kontrollen statt nur Funktionsverifikation;
-- Störungs- und Topologievariationen;
-- unabhängige Replikation.
+- Human Review und eine mögliche spätere EVID-Entscheidung;
+- unabhängige Replikation außerhalb derselben Ausführungspipeline;
+- task-basierte Kontrollen und Störungsregime jenseits reiner Impulspropagation;
+- Skalierung und Generalisierung über den aktuellen Small-SNN-Operating-Envelope hinaus;
+- die getrennte dimensionsspezifische 5D-Hypothese.
 
 ### Stage 2 — stabile Rekurrenz
 
@@ -264,13 +265,13 @@ Die verbleibenden echten Bestandsgrenzen sind enger und konkret:
 
 Das Ziel lautet daher nicht „jeder Bytewert steht im Manuskript“, sondern: **jede bekannte wissenschaftlich materielle Vorarbeit hat eine nachvollziehbare Rolle in der Gesamtarbeit, während Primärartefakte an ihrem autoritativen Ort erhalten bleiben.**
 
-## 58.2 Topologie v2 und saubere Determinismus-Replikation
+## 58.2 Topologie v2 abgeschlossen; Review, Replikation und 5D-Prüfung getrennt
 
-Aus den aktuellen Entscheidungen entstehen zwei klar begrenzte nächste Schritte. Für `RQ-DET-001` ist ein clean-tree-Replikationslauf erforderlich, bevor ein durch Dirty-Tree-Provenienz blockiertes Artefakt regulär in Richtung EVID geprüft werden kann. Eine semantische Reklassifikation allein entfernt den Provenienzblock nicht.
+Für `RQ-DET-001` bleibt ein clean-tree-Replikationslauf erforderlich, bevor ein durch Dirty-Tree-Provenienz blockiertes Artefakt regulär in Richtung EVID geprüft werden kann. Eine semantische Reklassifikation allein entfernt den Provenienzblock nicht.
 
-Für `H-SNN-003-B` muss `topology_propagation_v2` **vor Ausführung** präregistriert werden. Der neue Aufbau muss Topologie durch Konstruktion auf Dynamik wirken lassen und zunächst ein Activity-Adequacy-Gate bestehen. Scheitert dieses Gate, ist der Hypothesentest `NOT_TESTED`, nicht negativ. Erst danach dürfen vorab definierte Vergleiche zwischen 1D/2D/3D/5D, `5d_shuffled` und einem degree-/density-matched `random_graph` interpretiert werden. Dabei wird ausdrücklich kein 5D-Vorteil vorausgesetzt; die Hypothese verlangt zunächst nur einen belastbaren Unterschied zwischen mindestens zwei Topologiebedingungen.
+Für `RQ-SNN-003 / H-SNN-003-B` wurde `topology_propagation_v2` inzwischen **vor Ausführung präregistriert, ausgeführt und source-bound archiviert**. Das Activity-Adequacy-Gate bestand; die 120 Evaluationsläufe erfüllen die registrierten 64-Neuronen-/246-Kanten-Budgets und zeigen mehrere Holm-korrigierte Primärunterschiede in Reichweite und Output-Latenz. Der wissenschaftliche Status ist `SUPPORTED_WITHIN_PREREGISTERED_PROTOCOL`, aber weiterhin DATA-only bis Human Review. Der nächste Schritt für diese Hypothese ist daher nicht eine weitere Interpretation desselben Datensatzes, sondern Review und anschließend unabhängige Replikation bzw. ein erweitertes Operating-Envelope.
 
-Für die **dimensionsspezifische** Registry-Frage gilt parallel: `RQ-5D-005` bleibt `open` und `H-5D-005-A` bleibt kanonisch `untested`. Der bisherige v1-Lauf ist für diese 5D-Hypothese **kein Evidenzbeitrag – weder positiv noch negativ**. Die nächste 5D-Prüfung muss mindestens **1.000 Neuronen pro Bedingung**, durchschnittlich **mindestens 10 eingehende Synapsen pro Neuron** und eine **explizit distanzabhängige Konnektivitätswahrscheinlichkeit** verwenden; Delay darf zusätzlich geometrieabhängig sein. Degree-/density-matched Kontrollen, Multi-Neuron-Stimulus, Activity-Adequacy-Gate, unabhängige Seeds und clean-tree Provenienz bleiben verpflichtend.
+Für die **dimensionsspezifische** Registry-Frage gilt parallel unverändert: `RQ-5D-005` bleibt `open` und `H-5D-005-A` bleibt kanonisch `untested`. Das 64-Neuronen-Stage-1-Experiment ist dafür kein hinreichender Nachweis. Die nächste 5D-Prüfung muss mindestens **1.000 Neuronen pro Bedingung**, durchschnittlich **mindestens 10 eingehende Synapsen pro Neuron** und eine **explizit distanzabhängige Konnektivitätswahrscheinlichkeit** verwenden; Delay darf zusätzlich geometrieabhängig sein. Degree-/density-matched Kontrollen, Multi-Neuron-Stimulus, Activity-Adequacy-Gate, unabhängige Seeds und clean-tree Provenienz bleiben verpflichtend.
 
 ## 58.3 LP-20260917194217: offene Kompressionsprüfung
 
@@ -284,9 +285,9 @@ Die Entscheidung ist prospektiv begrenzt: Ein positives Ergebnis stützt eine **
 
 Nach dem jüngsten Human Review ist die offene Determinismusfrage enger als zuvor. `RQ-DET-001 / H-SNN-003-A` hat im historischen `deterministic_replica_v1`-Datensatz einen positiven Same-Seed-Replica-Befund und ist semantisch `DIRECT_MATCH`. Offen ist nicht mehr die Frage, ob die registrierten Replica-Bedingungen zur RQ gehören, sondern ob derselbe Befund in einem **clean-tree, hash-gebundenen Replikationslauf** wiederholt wird. Erst danach ist eine reguläre Human-EVID-Entscheidung sinnvoll.
 
-Für `H-SNN-003-B` ist der nächste Schritt ebenfalls klarer: `EXP-GEN-0047` gilt nicht als negativer Befund, sondern als `INADEQUATE_TO_TEST_HYPOTHESIS`. `topology_propagation_v2` muss daher vor Ausführung mindestens folgende Merkmale einfrieren: mindestens 1.000 Neuronen pro Bedingung, im Mittel mindestens 10 eingehende Synapsen pro Neuron, degree-/density-matched Vergleiche, explizite Kopplung von Geometrie an Konnektivitätswahrscheinlichkeit und/oder Delay, Multi-Neuron-Stimulus, Activity-Adequacy-Gate, vorab definierte first-arrival-/reach-Endpunkte, unabhängige Seeds sowie saubere Source-/Graph-Provenienz. Diese Schwellen sind Mindestanforderungen für die nächste Testgeneration, keine universellen Suffizienzkriterien.
+Für `H-SNN-003-B` ist der nächste Schritt nun **Human Review und unabhängige Replikation** von `EXP-S1-TOPO-V2-20260918`. `EXP-GEN-0047` bleibt als inadäquater Vorgänger erhalten; die neue DATA darf ihn nicht rückwirkend umdeuten. Die ≥1.000-Neuronen-/≥10-In-Degree-Schwellen werden ausschließlich für die stärkere `H-5D-005-A`-Prüfung geführt.
 
-Damit sind die nächsten beiden methodischen Schritte **Replikation** und **Testadäquanz**, nicht weitere Interpretation derselben historischen DATA.
+Damit sind die nächsten methodischen Schritte **Review/Replikation für den Stage-1-Topologiebefund** und **Testadäquanz für den separaten 5D-Claim**.
 
 ## 59. Forschungsagenda und Abschlusskriterien der Teilstudien
 
@@ -296,7 +297,8 @@ Die offene Forschungslandschaft wird für die weitere Arbeit nicht als unsortier
 | --- | --- | --- |
 | **Basale Dynamik / Determinismus** | clean-tree, hash-gebundene Same-Seed-Replikation und externe Wiederholung | Reproduzierbarkeit muss über denselben internen Workflow hinaus bestätigt werden |
 | **Rekurrenz** | unabhängige Seeds, skalierte Netzwerke und klar getrennte Rekurrenzintervention | Effekt muss unter erweitertem Operating Envelope bestehen |
-| **Topologie / 5D** | präregistriertes `topology_propagation_v2` mit ≥1.000 Neuronen, ≥10 Inputs/Neuron und Geometrie-Dynamik-Kopplung | Activity-Adequacy-Gate erfüllt und vorab definierter Topologievergleich interpretierbar |
+| **Topologie / H-SNN-003-B** | Human Review und unabhängige Replikation von `EXP-S1-TOPO-V2-20260918` | Der Stage-1-Topologiebefund muss außerhalb derselben Ausführungslinie reproduzierbar bleiben |
+| **5D / H-5D-005-A** | separates präregistriertes Design mit ≥1.000 Neuronen, ≥10 Inputs/Neuron und distanzabhängiger Geometrie-Dynamik-Kopplung | Ein dimensionsspezifischer Effekt muss unter gematchten Ressourcen- und Graphkontrollen bestehen |
 | **Plastizität** | learning-on/off-, Sham-/Frozen- und Holdout-Designs mit unabhängigen Seeds | Gewichtsänderung muss einen funktionalen Lern-/Stabilitätsbeitrag gegenüber Kontrollen tragen |
 | **MSBA / spezialisierte Pfade** | kausale Ressourcen- und Lesionsexperimente unter streng gematchten Budgets | Spezialpfad muss über bloße Implementierbarkeit hinaus messbaren Zusatznutzen zeigen |
 | **Embodiment** | `H-EMB-001-B`: identische externe Störung, Closed Loop vs. yoked Replay vs. interrupted feedback | Feedback muss unter matched disturbance einen kausalen Vorteil zeigen |
@@ -313,9 +315,10 @@ Die Reihenfolge weiterer Forschung folgt nicht der visuellen Stage-Nummer, sonde
 Daraus folgen gegenwärtig vier priorisierte Linien:
 
 1. **Präregistrierung von `OBJ-MEM-COMPRESSION-001`**, weil sie eine klar falsifizierbare Anschlussfrage an die negative CL-002/003-Linie darstellt.
-2. **`topology_propagation_v2`**, weil 5D ohne testadäquates Design wissenschaftlich offen bleiben muss.
-3. **clean-tree Determinismusreplikation**, weil vorhandene positive Same-Seed-Befunde durch Provenienzgrenzen blockiert sind.
-4. **`H-EMB-001-B`**, weil erst der matched-disturbance-Vergleich den Closed-Loop-Mechanismus stärker kausal isoliert.
+2. **Human Review und unabhängige Replikation von `EXP-S1-TOPO-V2-20260918`**, damit der neue Stage-1-Topologiebefund nicht auf eine einzelne interne Ausführungslinie beschränkt bleibt.
+3. **separate `H-5D-005-A`-Präregistrierung**, weil der 64-Neuronen-Topologiebefund keinen 5D-Vorteil beantwortet.
+4. **clean-tree Determinismusreplikation**, weil vorhandene positive Same-Seed-Befunde durch Provenienzgrenzen blockiert sind.
+5. **`H-EMB-001-B`**, weil erst der matched-disturbance-Vergleich den Closed-Loop-Mechanismus stärker kausal isoliert.
 
 ### Abschlusscharakter
 

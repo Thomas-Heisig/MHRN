@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "experiment_id": "EXP-S1-TOPO-V2-20260918",
+  "stage": 1,
+  "research_question": "RQ-SNN-003",
+  "hypothesis": "H-SNN-003-B",
+  "protocol": "topology_propagation_v2",
+  "human_review_status": "PENDING",
+  "evidence_readiness": "BLOCKED_HUMAN_REVIEW",
+  "scientific_evidence": false,
+  "automatic_evidence_promotion": false,
+  "result_status": "SUPPORTED_WITHIN_PREREGISTERED_PROTOCOL",
+  "review_scope": [
+    "preregistration and activity-gate compliance",
+    "raw calibration and evaluation data",
+    "paired sign-test and Holm correction",
+    "bootstrap confidence intervals",
+    "matched neuron and edge budgets",
+    "claim boundary between H-SNN-003-B and H-5D-005-A",
+    "manuscript and registry integration"
+  ],
+  "artifacts": {
+    "report": "experiments/EXP-S1-TOPO-V2-20260918/report.md",
+    "statistics": "experiments/EXP-S1-TOPO-V2-20260918/analysis/statistics.json",
+    "calibration": "experiments/EXP-S1-TOPO-V2-20260918/data/calibration.json",
+    "raw_data": "experiments/EXP-S1-TOPO-V2-20260918/data/evaluation.json",
+    "manifest": "experiments/EXP-S1-TOPO-V2-20260918/manifest.json",
+    "preregistration": "preregistrations/PREREG-S1-TOPO-V2.json",
+    "verifier": "../scripts/verify_stage1_topology_v2.py"
+  },
+  "processing": {
+    "scientific_state": "CURRENT_SCIENTIFIC_STATE.md",
+    "manuscript": "publications/2026-09-17_recursive-epistemics_v1.8/MANUSCRIPT.md",
+    "empirical_programme": "publications/2026-09-17_recursive-epistemics_v1.8/parts/04_empirical_programme.md",
+    "synthesis": "publications/2026-09-17_recursive-epistemics_v1.8/parts/10_synthesis.md",
+    "open_landscape": "publications/2026-09-17_recursive-epistemics_v1.8/parts/11_open_landscape.md",
+    "scientific_balance": "publications/2026-09-17_recursive-epistemics_v1.8/SCIENTIFIC_BALANCE.md",
+    "research_register": "publications/2026-09-17_recursive-epistemics_v1.8/RESEARCH_REGISTER.md",
+    "content_integration": "publications/2026-09-17_recursive-epistemics_v1.8/CONTENT_INTEGRATION.md"
+  },
+  "interpretation_boundary": "The 64-neuron result supports topology-sensitive propagation within the preregistered Stage-1 regime. It does not establish 5D superiority and does not satisfy the separate >=1000-neuron test programme for H-5D-005-A.",
+  "required_human_decision": "accepted_as_interpretation | rejected",
+  "note": "Review completion may accept or reject the interpretation. It must not rewrite source-bound DATA or automatically create EVID."
+}

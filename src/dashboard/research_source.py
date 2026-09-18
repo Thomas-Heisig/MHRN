@@ -9,6 +9,7 @@ partially populated research tree never crashes the dashboard.
 from __future__ import annotations
 
 import json
+import re
 import time
 from dataclasses import dataclass
 from pathlib import Path
@@ -93,6 +94,95 @@ def classify_research_operation_status(manifest: dict[str, Any]) -> str:
     if taint == "OBSERVED" or exposure in {"observer_only", "semantic_interface"}:
         return "AI OBSERVING"
     return "UNKNOWN"
+
+
+def _experiment_date_from_id(experiment_id: str) -> str | None:
+    """Infer an ISO date only when the experiment ID carries YYYYMMDD explicitly."""
+    match = re.search(r"(20\d{6})(?:$|[-_])", experiment_id)
+    if match is None:
+        return None
+    raw = match.group(1)
+    return f"{raw[:4]}-{raw[4:6]}-{raw[6:8]}"
+
+
+def normalize_experiment_manifest(
+    directory: Path, manifest: dict[str, Any]
+) -> dict[str, Any]:
+    """Project heterogeneous immutable manifests into one dashboard read model.
+
+    The returned mapping is a copy. Canonical experiment files are never rewritten.
+    This keeps older workflow manifests and newer source-bound experiment packages
+    equally reviewable in the dashboard.
+    """
+    normalized = dict(manifest)
+    experiment_id = str(
+        normalized.get("experiment_id") or directory.name
+    )
+    normalized.setdefault("experiment_id", experiment_id)
+
+    if not isinstance(normalized.get("research_questions"), list):
+        question = normalized.get("research_question")
+        if isinstance(question, str) and question:
+            normalized["research_questions"] = [question]
+    if not isinstance(normalized.get("hypotheses"), list):
+        hypothesis = normalized.get("hypothesis")
+        if isinstance(hypothesis, str) and hypothesis:
+            normalized["hypotheses"] = [hypothesis]
+
+    if not normalized.get("created_at"):
+        timestamp = normalized.get("timestamp") or normalized.get("timestamp_utc")
+        if isinstance(timestamp, str) and timestamp:
+            normalized["created_at"] = timestamp
+        else:
+            inferred = _experiment_date_from_id(experiment_id)
+            if inferred is not None:
+                normalized["created_at"] = inferred
+
+    if not normalized.get("experiment_status"):
+        status = normalized.get("status")
+        if isinstance(status, str) and status:
+            normalized["experiment_status"] = status
+        elif isinstance(normalized.get("results"), dict):
+            result_status = cast(dict[str, Any], normalized["results"]).get("status")
+            if isinstance(result_status, str) and result_status:
+                normalized["experiment_status"] = (
+                    "completed"
+                    if result_status
+                    in {
+                        "SUPPORTED_WITHIN_PREREGISTERED_PROTOCOL",
+                        "NO_PREDEFINED_TOPOLOGY_DIFFERENCE_DETECTED",
+                    }
+                    else result_status.lower()
+                )
+
+    existing_artifacts = normalized.get("artifacts")
+    artifacts: dict[str, Any] = (
+        dict(cast(dict[str, Any], existing_artifacts))
+        if isinstance(existing_artifacts, dict)
+        else {}
+    )
+    inferred_artifacts = {
+        "report": "report.md",
+        "summary": "summary.md",
+        "statistics": "analysis/statistics.json",
+        "raw_data": "data/evaluation.json",
+        "calibration": "data/calibration.json",
+        "review": "review_request.json",
+        "manifest": "manifest.json",
+        "checksums": "checksums.sha256",
+    }
+    for key, relative in inferred_artifacts.items():
+        if key not in artifacts and (directory / relative).is_file():
+            artifacts[key] = relative
+    if artifacts:
+        normalized["artifacts"] = artifacts
+
+    results = normalized.get("results")
+    if isinstance(results, dict):
+        result_status = cast(dict[str, Any], results).get("status")
+        if isinstance(result_status, str) and result_status:
+            normalized.setdefault("scientific_status", result_status)
+    return normalized
 
 
 class ResearchSource:
@@ -332,9 +422,15 @@ class ResearchSource:
             )
             if entry.name in hidden and record_kind != "campaign_index":
                 continue
-            created_at = (
-                str(manifest_data.get("created_at") or manifest_data.get("timestamp"))
+            dashboard_manifest = (
+                normalize_experiment_manifest(entry, manifest_data)
                 if manifest_data is not None
+                else None
+            )
+            created_at = (
+                str(dashboard_manifest.get("created_at"))
+                if dashboard_manifest is not None
+                and dashboard_manifest.get("created_at")
                 else None
             )
             experiments.append(
@@ -352,7 +448,7 @@ class ResearchSource:
                     "id": entry.name,
                     "created_at": created_at,
                     "path": str(entry.relative_to(self._root)).replace("\\", "/"),
-                    "manifest": data,
+                    "manifest": dashboard_manifest if dashboard_manifest is not None else data,
                 }
             )
         experiments.sort(
