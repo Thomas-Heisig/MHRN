@@ -17,6 +17,29 @@ for (const port of [4174, 4175]) {
     await expect(viewer).toHaveAttribute('data-render-state', 'ready');
     await expect(viewer).toContainText('Edition 1.8');
 
+    const currentApiResponse = await page.request.get(`http://127.0.0.1:${port}/api/publication/current`);
+    expect(currentApiResponse.ok()).toBeTruthy();
+    const currentApi = await currentApiResponse.json();
+    expect(currentApi.edition).toBe('1.8');
+    expect(currentApi.entrypoint_path).toContain('v1.8/MANUSCRIPT.md');
+    expect(currentApi.document_title).toContain('Rekursive Epistemik');
+    expect(currentApi.content).toContain('## Inhaltsverzeichnis');
+    expect(currentApi.content).toContain('Teil XI');
+    expect(currentApi.content).toContain('# Anhang — Quellen und Vorarbeiten');
+    expect(currentApi.chapters).toHaveLength(11);
+    expect(currentApi.attachments.map(item => item.path)).toEqual(expect.arrayContaining([
+      expect.stringContaining('CONTENT_INTEGRATION.md'),
+      expect.stringContaining('RESEARCH_REGISTER.md'),
+      expect.stringContaining('SOURCE_INDEX.md'),
+      expect.stringContaining('REFERENCES.md'),
+      expect.stringContaining('manifest.json'),
+    ]));
+    expect(currentApi.history.map(item => item.label)).toEqual(expect.arrayContaining([
+      'Aktuelle Arbeitsfassung',
+      'Frozen empirical baseline',
+      'Vorgänger 1.7',
+    ]));
+
     const prefix = `http://127.0.0.1:${port}/api/files/preview/`;
     const catalogue = JSON.parse((await (await page.request.get(prefix + encodeURIComponent('publications/catalog.json') + '?source=research')).json()).content);
     const current = catalogue.publications.filter(item => item.current);
