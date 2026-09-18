@@ -6,6 +6,14 @@
 
 Diese Bilanz macht die offenen und tragfähigen Aussagen der Edition sichtbar. Sie ersetzt weder Human Review noch EVID-Entscheidungen und erzeugt keine neue Evidenz.
 
+### Stage 0 — scoped Einzelzell-Konformität als EVID
+
+Für `RQ-EVAL-006` wurde der Human Review am 18. September 2026 mit `supports_scoped_claim` abgeschlossen. `EVID-2026-17` stützt ausschließlich den eng präregistrierten Claim, dass die deklarierten MHRN-Einzelzellverträge für Izhikevich-2003, `lif-current-v1` und das separat behandelte Refractory-Semantik-Mapping unter dem eingefrorenen V2-Protokoll mit Brian2 2.10.1 innerhalb der vorab fixierten Toleranzen konformieren.
+
+Die `1e-8`-Schwelle war vor Ausführung fixiert; die deutlich kleineren beobachteten Fehler ändern diese Entscheidungsgrenze nicht post hoc. V1 und V2 bleiben getrennte Aussagen: lokale Transition-Konformität hebt den historischen negativen 1000-Tick-Freilaufbefund nicht auf. `H-EVAL-006-C` ist ein Mapping-/Semantikclaim, kein dritter numerischer Konformitätsclaim.
+
+Die Scientific Maturity von Stage 0 beträgt damit **92,5 %**. Die verbleibenden **7,5 %** gehören ausschließlich zur echten unabhängigen Replikation. Brian2 ist externe Software-Referenz, aber keine unabhängig autorisierte Replikation.
+
 ## 1. Claim-Ledger als wissenschaftliche Bilanz
 
 Der Claim-Ledger enthält sieben zentrale Syntheseclaims. Ihre Status sind nicht redaktionelle Hinweise, sondern die wissenschaftliche Grenze der Edition 1.8.
