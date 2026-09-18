@@ -263,6 +263,15 @@
       "citation": "cite_plan_id_approval_and_revision_as_proposal",
       "evidence_role": "approval_not_execution_or_evidence",
       "rationale": "Human approval records permission to proceed with preparation; runtime_authority=none and executed=false preserve the non-evidence boundary."
+    },
+    "research/paper_offshoots": {
+      "kind": "research_programme",
+      "status": "planning",
+      "authority": "proposal_and_programme_planning_only",
+      "mutability": "editable_with_review",
+      "citation": "cite_as_planning_not_result",
+      "evidence_role": "planning_only_not_data_or_evidence",
+      "rationale": "Candidate paper offshoots derived from Edition 1.8; naming a strand does not create DATA, EVID, novelty or publication status."
     }
   }
 }
