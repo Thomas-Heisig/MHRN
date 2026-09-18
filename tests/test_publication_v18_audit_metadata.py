@@ -14,7 +14,9 @@ EDITION = ROOT / "research/publications/2026-09-17_recursive-epistemics_v1.8"
 
 def test_visible_publication_pointers_are_edition_18() -> None:
     root = (ROOT / "README.md").read_text(encoding="utf-8")
-    frozen = (ROOT / "research/publications/FROZEN_V1.5.md").read_text(encoding="utf-8")
+    frozen = (ROOT / "research/publications/FROZEN_V1.5.md").read_text(
+        encoding="utf-8"
+    )
     assert "publication-1.8_WIP" in root
     assert "1.8 current WIP → 1.7 predecessor → 1.5 frozen empirical baseline" in root
     assert "1.8 (aktuelle WIP-Fortschreibung)" in frozen
@@ -36,7 +38,9 @@ def test_corrected_section_numbers_remain_unambiguous() -> None:
 
 
 def test_claim_ledger_is_exposed_as_scientific_balance() -> None:
-    ledger = json.loads((EDITION / "registers/claim_ledger.json").read_text(encoding="utf-8"))
+    ledger = json.loads(
+        (EDITION / "registers/claim_ledger.json").read_text(encoding="utf-8")
+    )
     by_id = {row["id"]: row for row in ledger["claims"]}
     assert len(by_id) == 7
     assert by_id["SYN-18-007"]["status"] == "open"
@@ -51,7 +55,9 @@ def test_claim_ledger_is_exposed_as_scientific_balance() -> None:
 
 
 def test_all_six_paper_offshoots_are_present_and_bounded() -> None:
-    offshoots = (ROOT / "research/paper_offshoots/README.md").read_text(encoding="utf-8")
+    offshoots = (ROOT / "research/paper_offshoots/README.md").read_text(
+        encoding="utf-8"
+    )
     balance = (EDITION / "SCIENTIFIC_BALANCE.md").read_text(encoding="utf-8")
     for number in range(1, 7):
         identifier = f"PO-{number:03d}"
@@ -62,7 +68,9 @@ def test_all_six_paper_offshoots_are_present_and_bounded() -> None:
 
 def test_publication_and_software_cff_share_identity_and_license() -> None:
     software = yaml.safe_load((ROOT / "CITATION.cff").read_text(encoding="utf-8"))
-    publication = yaml.safe_load((EDITION / "CITATION.cff").read_text(encoding="utf-8"))
+    publication = yaml.safe_load(
+        (EDITION / "CITATION.cff").read_text(encoding="utf-8")
+    )
     assert publication["authors"] == software["authors"]
     assert publication["license"] == software["license"] == "MIT"
     assert publication["version"] == "1.8"
@@ -100,8 +108,12 @@ def test_branch_context_is_preserved_before_cleanup() -> None:
 
 
 def test_historical_reader_is_explicitly_separated_from_current_viewer() -> None:
-    notice = (ROOT / "research/publications/HISTORICAL_READER.md").read_text(encoding="utf-8")
-    legacy = (ROOT / "research/publications/reader/README.md").read_text(encoding="utf-8")
+    notice = (ROOT / "research/publications/HISTORICAL_READER.md").read_text(
+        encoding="utf-8"
+    )
+    legacy = (ROOT / "research/publications/reader/README.md").read_text(
+        encoding="utf-8"
+    )
     assert "7. September 2026" in notice
     assert "catalog.json" in notice
     assert "Edition 1.8" in notice
