@@ -119,3 +119,21 @@ Das ist noch keine autonome technische Evolution. Es ist eine **rekursive Werkze
 Aus den Vorgängerarbeiten lässt sich eine allgemeine Prüfregel ableiten: Je stärker ein Ergebnis von ausgelagerten epistemischen Ressourcen abhängt, desto expliziter müssen Quelle, Transformationsschritt und Autorität dokumentiert werden. Das gilt für Retrieval ebenso wie für LLM-Synthese, Codegeneratoren, externe Decoder, periphere neuronale Netze und menschliche Reviews.
 
 „Geliehene Intelligenz“ wird damit in Edition 1.8 zu einer prüfbaren Herkunftsfrage: **Welche Ressource kam von wo, welche Zustandsänderung verursachte sie, und wer durfte diese Zustandsänderung autorisieren?**
+
+## 42.12 Theorieentwicklungsstudie — Rekursive Epistemik als prüfbare Arbeitshypothese
+
+Rekursive Epistemik ist in dieser Arbeit nicht nur ein Titelbegriff. Sie wird als **Theoriehypothese über den Forschungsprozess** behandelt.
+
+**Theoriefrage.** Verbessert ein Forschungsprozess seine wissenschaftliche Qualität, wenn er dieselben Prinzipien, die er vom Forschungsobjekt verlangt — kontrollierte Gateways, Zustandsprovenienz, explizite Autorisierung, Reversibilität und Fehlertrennung — auf seine eigene Wissensproduktion anwendet?
+
+**Begriffsapparat.** Die Theorie unterscheidet mindestens Objektzustand, Informationszugang, Änderungsautorität, wissenschaftlichen Status und veröffentlichen Claim. Auf Prozessebene entsprechen dem Quelle, Vorschlag, Entscheidung, Commit, Run/DATA, Review, EVID und Synthese.
+
+**Ableitung.** Die Theorie entstand nicht vollständig vor den Experimenten. Sie wurde aus wiederkehrenden Fehlerklassen verdichtet: ein Report wurde mit DATA verwechselt, technische Fertigstellung mit wissenschaftlicher Reife, semantischer Match mit Testadäquanz und KI-Kritik mit Evidenz. Die Theorie ist deshalb teilweise eine nachträgliche Synthese konkreter Prozesskorrekturen.
+
+**Prüfbare Erwartungen.** Wenn die Theorie nützlich ist, sollten explizite Prozess-Gates unter anderem zu weniger stillen Statussprüngen, besser rekonstruierbaren Claim-Änderungen, klarerer Behandlung negativer Resultate und geringerer Vermischung von Engineering- und Evidenzstatus führen. Diese Erwartungen können künftig als Meta-RQs operationalisiert werden.
+
+**Falsifikations- und Revisionsbedingungen.** Die Theorie wäre geschwächt, wenn dieselben Fehler trotz der Gates unverändert auftreten, wenn die Governance nur Dokumentationslast ohne erkennbare Qualitätswirkung erzeugt oder wenn ein einfacheres Prozessmodell dieselbe Transparenz mit geringerem Aufwand erreicht.
+
+**Beitrag.** Der mögliche Eigenbeitrag liegt damit nicht in der Behauptung, Forschung müsse „reflexiv“ sein. Er liegt in der technischen und dokumentarischen Operationalisierung dieser Reflexivität als versionierte, prüfbare Prozessarchitektur.
+
+**Limitation.** Bislang fehlt eine unabhängige Vergleichsstudie zwischen Forschungsprozessen mit und ohne diese Governance. Rekursive Epistemik bleibt daher eine zunehmend präzisierte, aber weiterhin revidierbare Theorieposition.
