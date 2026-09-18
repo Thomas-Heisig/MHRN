@@ -146,3 +146,109 @@ Die wissenschaftliche Grenze bleibt jedoch bestehen: der historische Lauf wurde 
 Für `RQ-SNN-003 / H-SNN-003-B` wurde `EXP-GEN-0047` ebenfalls methodisch neu eingeordnet. Die sechs Bedingungen `1d`, `2d`, `3d`, `5d`, `5d_shuffled` und `random_graph` sind semantisch die beabsichtigten Bedingungen und damit `DIRECT_MATCH`. Trotzdem ist `topology_propagation_v1` als `INADEQUATE_TO_TEST_HYPOTHESIS` klassifiziert. Der Aufbau verwendete nur drei Neuronen und zwei Feed-forward-Synapsen; bei den nicht-randomisierten Bedingungen blieben Gewichte, Delays und explizite Kette gleich, während die Koordinaten die Dynamik nicht hinreichend beeinflussten. Die identischen Kernantworten — 3 Spikes, 2 synaptische Ereignisse, 3 aktivierte Neuronen, 0 recurrent events, depth 1 — dürfen daher **nicht** als Evidenz dafür gelesen werden, dass Topologie oder Dimensionalität keinen Effekt besitzen. Der Einzelunterschied der first-response latency im Random-Graph-Arm ist zudem mit einer geänderten Kantenanordnung konfundiert.
 
 Aus beiden Reviews folgt ein allgemeiner methodischer Vertrag: **semantischer Match, technische Reproduzierbarkeit, Testadäquanz, Provenienz und EVID sind getrennte Prüfachsen**. Ein `DIRECT_MATCH` kann wissenschaftlich blockiert bleiben; ein technisch sauberer Lauf kann für die Zielhypothese `NOT_TESTED` sein; und eine nachträgliche Registry-Korrektur darf weder Dirty-Tree-Provenienz noch unzureichendes Versuchsdesign rückwirkend heilen.
+
+## 19.9 Die empirischen Forschungszweige als eigenständige Teilstudien
+
+Die bisherigen Experimente werden in Edition 1.8 nicht nur chronologisch berichtet. Für den dissertationsähnlichen Charakter der Gesamtarbeit werden die zentralen empirischen Zweige zusätzlich als **eigenständige Teilstudien** gelesen. Jede Teilstudie unterscheidet Forschungsproblem, RQ/H-Bindung, Design, Befund, Diskussion, Limitation und nächsten Prüfpunkt. Dadurch wird vermieden, dass ein technischer Stage-Fortschritt an die Stelle einer wissenschaftlichen Argumentation tritt.
+
+### 19.9.1 Teilstudie A — Basale Dynamik, Referenzkonformität und Determinismus
+
+**Forschungsproblem.** Ein deterministisch implementiertes Neuronenmodell ist nicht automatisch wissenschaftlich validiert. Zu unterscheiden sind lokale Gleichungs-/Resetsemantik, freie Langzeittrajektorie, Same-Seed-Reproduzierbarkeit und unabhängige Replikation.
+
+**RQ/H-Bezug.** Relevant sind insbesondere `RQ-SNN-002 / H-SNN-002-A` für reproduzierbare Spikefolgen sowie `RQ-DET-001 / H-SNN-003-A` für deterministische Zustands- und Replikationsverträge.
+
+**Methodik.** Verwendet werden Referenzvergleiche gegen externe Implementierungen, eingefrorene Inputs, Same-Seed-Replica-Paare, Zustandsdigests und getrennte Recurrence-Bedingungen. Technische Gleichheit und wissenschaftliche Replikation werden ausdrücklich nicht gleichgesetzt.
+
+**Befund.** Für die geprüften kleinen Protokolle liegen enge Referenzübereinstimmungen beziehungsweise identische Same-Seed-Ausgaben vor. Gleichzeitig zeigen historische Langzeit- und Dirty-Tree-Befunde, dass diese Aussage nicht auf beliebige Zeithorizonte, Netzwerkgrößen oder Umgebungen erweitert werden darf.
+
+**Diskussion.** Der wissenschaftliche Beitrag liegt weniger in einem pauschalen „deterministisch“, sondern in der Zerlegung des Begriffs in prüfbare Ebenen.
+
+**Limitation.** Die zentralen Läufe stammen aus derselben Projekt- und Toolkette. Unabhängige Replikation bleibt ausstehend.
+
+**Zwischenfazit.** Basale Reproduzierbarkeit ist für definierte Operating Envelopes gestützt; eine allgemeine Determinismusgarantie ist nicht gezeigt.
+
+### 19.9.2 Teilstudie B — Rekurrenz, Topologie und 5D-Geometrie
+
+**Forschungsproblem.** Rekurrenz und geometrische Einbettung können Netzwerkdynamik verändern, aber nur dann getrennt interpretiert werden, wenn Konnektivität, Grad, Delays, Stimulus und Aktivität ausreichend kontrolliert sind.
+
+**RQ/H-Bezug.** `RQ-SNN-003 / H-SNN-003-B` adressiert Topologieeffekte ohne vorausgesetzten 5D-Vorteil. `RQ-5D-005 / H-5D-005-A` fragt enger nach einem dimensionsspezifischen Unterschied gegenüber topology-matched niedrigdimensionalen Einbettungen.
+
+**Methodik.** Recurrence-on/off dient als mechanistische Intervention. Für Topologie werden 1D/2D/3D/5D, `5d_shuffled` und `random_graph` verglichen. Die nächste Testgeneration verlangt explizite Geometrie-zu-Konnektivitäts-/Delay-Kopplung, Activity-Adequacy-Gate, unabhängige Seeds und degree-/density-matched Kontrollen.
+
+**Befund.** Rekurrenz erzeugt im kleinen kontrollierten System einen klaren Dynamikunterschied. Die 5D-v1-Studie ist dagegen `INADEQUATE_TO_TEST_HYPOTHESIS`: Die Geometrie war nicht ausreichend kausal an die Dynamik gekoppelt.
+
+**Diskussion.** Das wichtigste Ergebnis dieses Zweigs ist deshalb teilweise methodisch: Ein technisch korrekt ausgeführter Vergleich kann wissenschaftlich `NOT_TESTED` bleiben.
+
+**Limitation.** Die bisherigen Topologien sind zu klein und zu schwach geometriesensitiv, um einen belastbaren Dimensionsclaim zu tragen.
+
+**Zwischenfazit.** Rekurrenz ist im getesteten Mechanismus wirksam; 5D bleibt offen und benötigt `topology_propagation_v2`.
+
+### 19.9.3 Teilstudie C — Plastizität, Lernen und adaptive Stabilität
+
+**Forschungsproblem.** Die Existenz von STDP-, Eligibility-, Drei-Faktor-, Homeostase- oder Strukturplastizitätscode beweist weder nützliches Lernen noch stabile Generalisierung.
+
+**RQ/H-Bezug.** `RQ-SNN-004 / H-SNN-004-A` adressiert die durch STDP verursachte Veränderung der Gewichtsmatrix; `RQ-SNN-005 / H-SNN-005-A` prüft einen funktionalen Lernvorteil gegenüber einem Netzwerk ohne STDP.
+
+**Methodik.** Erforderlich sind learning-on/off-, Frozen-, Sham-/informationszerstörte Kontrollen, gehaltene Testdaten, unabhängige Seeds sowie getrennte Messungen von Gewichtsänderung, Aufgabenleistung, Stabilität und Transfer.
+
+**Befund.** Mehrere Plastizitätsmechanismen sind technisch implementiert und diagnostisch instrumentiert. Daraus folgt noch kein abgeschlossener funktionaler Lernnachweis für die stärkeren Hypothesen.
+
+**Diskussion.** Dieser Zweig markiert exemplarisch die Differenz zwischen Mechanismusimplementierung und kausalem Nutzen. Eine Gewichtsänderung kann korrekt sein und trotzdem keine relevante Lernleistung erzeugen.
+
+**Limitation.** Die stärksten Learning-RQs sind noch nicht durch einen einheitlichen, ausreichend kontrollierten konfirmatorischen Vertrag abgeschlossen.
+
+**Zwischenfazit.** Plastizität ist ein implementierter Mechanismenraum, aber ihre funktionale Rolle bleibt hypothesenspezifisch zu prüfen.
+
+### 19.9.4 Teilstudie D — Spezialisierte Pfade, Neural Symbiosis und MSBA
+
+**Forschungsproblem.** Modalitätsspezifische Pfade können Kosten, Robustheit oder Integrität verändern; daraus folgt jedoch nicht automatisch emergente Spezialisierung oder biologische Arealhomologie.
+
+**RQ/H-Bezug.** Der Zweig wird durch `RQ-MSBA-E01` bis `RQ-MSBA-E05` in mehrere enge Teilfragen zerlegt.
+
+**Methodik.** Die registrierten synthetischen Designs prüfen modalitätsspezifische Kosten, adaptive Ressourcenallokation, visuelle ROI/Foveation, digitale Integrität und Recovery nach Modalitätsverlust.
+
+**Befund.** In mehreren Teilfragen liegen positive DATA innerhalb der modellierten synthetischen Bedingungen vor.
+
+**Diskussion.** Der Erkenntniswert liegt in der Zerlegung eines großen Multimodalitätsclaims in kleinere, direkt prüfbare Funktionen. Dadurch kann positive technische Evidenz bestehen, ohne daraus eine stärkere Theorie neuronaler Arealbildung abzuleiten.
+
+**Limitation.** Modellierte Kosten sind keine physikalischen Energiedaten; synthetische Recovery ist keine allgemeine Realweltrobustheit.
+
+**Zwischenfazit.** Spezialisierte Pfade sind technisch und teilweise experimentell gestützt; emergente Spezialisierung bleibt unbewiesen.
+
+### 19.9.5 Teilstudie E — Kontrolliertes synthetisches Embodiment
+
+**Forschungsproblem.** Eine technisch geschlossene Sensor–Aktor-Kette ist erst dann wissenschaftlich interessant, wenn Wirkung, Autorisierung, Feedback und Störung kausal getrennt werden.
+
+**RQ/H-Bezug.** `RQ-EMB-001` wird durch `H-EMB-001-A` und `H-EMB-001-B` operationalisiert.
+
+**Methodik.** Der Stage-5-Referenzversuch nutzt Sensorik, technische Interozeption, autorisierte/unauthorisierte Aktorpfade, Fehlerbedingungen, Open-Loop-Replay und Feedback in einer deterministischen synthetischen Umgebung.
+
+**Befund.** Die 360-Run-Kampagne liefert DATA-Support für `H-EMB-001-A` innerhalb des kontrollierten Settings. `H-EMB-001-B` ist durch diesen Vertrag nicht getestet.
+
+**Diskussion.** Der geschlossene Pfad zeigt eine begrenzte, kausal instrumentierbare Form verkörperter Interaktion. Gerade die noch offene B-Hypothese verhindert, dass aus dem Engineeringerfolg vorschnell allgemeine Anpassungs- oder Autonomieclaims entstehen.
+
+**Limitation.** Keine reale Hardware, keine Langzeitumgebung, keine unabhängige externe Replikation.
+
+**Zwischenfazit.** Synthetisches Embodiment ist demonstriert; Realwelt- und Störungsadaptivität bleiben offene Forschungsfragen.
+
+### 19.9.6 Teilstudie F — Gedächtnis, Replay, semantische Verdichtung und Weltmodell
+
+**Forschungsproblem.** Retention kann durch generisches Replay, semantische Verdichtung, Retrieval oder echte interne Modellbildung entstehen. Diese Ursachen müssen experimentell getrennt werden.
+
+**RQ/H-Bezug.** Historische Gedächtnisfragen liegen unter anderem in `RQ-MEM-001 / H-MEM-001-A`. Die CL-001–CL-003-Linie operationalisiert den stärkeren Vergleich zwischen Semantic+Replay, Raw Replay und Kontrollbedingungen. `OBJ-MEM-COMPRESSION-001` ist die nächste prospektive Spezialfrage, besitzt aber noch keine endgültig eingefrorene kanonische RQ/H-Bindung.
+
+**Methodik.** Verwendet werden No-Replay-, Raw-Replay-, Semantic-Prototype- und Random-Prototype-Kontrollen, Holdout-Daten, gepaarte Seeds und präregistrierte Erfolgsgrenzen. Für Weltmodellclaims sind zusätzlich action conditioning, Mehrschrittrollouts und corrupted/no-model Kontrollen erforderlich.
+
+**Befund.** Replay trägt die Retention robuster als die bisher behauptete semantische Zusatzleistung. Semantische Prototypen enthalten Struktur, aber ihr Mehrwert gegenüber gematchtem Raw Replay wurde in CL-002/003 nicht bestätigt.
+
+**Diskussion.** Der Zweig zeigt am deutlichsten, wie negative Evidenz Architektur selektiert. Statt SemanticMemory rhetorisch zu retten, wird eine engere Kompressionsfrage formuliert.
+
+**Limitation.** Die Kompressionshypothese ist noch nicht präregistriert und ausgeführt; ein kausales Weltmodell ist nicht gezeigt.
+
+**Zwischenfazit.** Replay ist derzeit die stärkere Referenz. Die nächste zulässige Frage betrifft Kompression bei erhaltener Retention, nicht eine erneute pauschale Überlegenheitsbehauptung.
+
+### 19.9.7 Teilstudienübergreifende Schlussfolgerung
+
+Über alle empirischen Zweige hinweg entsteht ein wiederkehrendes Muster: **technische Verfügbarkeit ist der Beginn einer wissenschaftlichen Frage, nicht deren Antwort**. Ein Mechanismus wird erst dann Teil der tragfähigen Architekturposition, wenn sein kausaler Beitrag gegenüber einer geeigneten einfacheren Referenz sichtbar wird oder seine Spezialrolle durch einen eigenen, vorab begründeten Prüfvertrag getragen ist.
+
+Damit erhält Teil IV den Charakter einer kumulativen empirischen Dissertationseinheit: Die Teilstudien stehen nicht nebeneinander, sondern verändern wechselseitig die Architektur und die Bedingungen der jeweils nächsten Hypothese.
