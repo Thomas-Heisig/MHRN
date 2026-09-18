@@ -137,9 +137,9 @@ def test_evidence_matrix_lists_manifest_linked_data_without_evid_promotion(
         ResearchRegistry(registry_dir).load_all()
     ).build_evidence_matrix()
 
-    row = next(line for line in matrix.splitlines() if line.startswith("| \`RQ-DATA-001\`"))
-    assert "\`EXP-DATA-001\`" in row
+    row = next(line for line in matrix.splitlines() if line.startswith("| `RQ-DATA-001`"))
+    assert "`EXP-DATA-001`" in row
     cells = [cell.strip() for cell in row.strip("|").split("|")]
-    assert cells[6] == "\`EXP-DATA-001\`"
+    assert cells[6] == "`EXP-DATA-001`"
     assert cells[7] == "—"
     assert cells[8] == "data_supported_review_pending"
