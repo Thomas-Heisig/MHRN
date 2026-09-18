@@ -242,6 +242,11 @@ class ResearchRegistry:
         self.claims: dict[str, Claim] = {}
         self.sources: dict[str, Source] = {}
 
+    @property
+    def registry_dir(self) -> Path:
+        """Return the canonical registry directory for read-only report tooling."""
+        return self._registry_dir
+
     def load_all(self) -> ResearchRegistry:
         """Load all canonical registry files from disk."""
         self.questions = self._load_yaml_family(
