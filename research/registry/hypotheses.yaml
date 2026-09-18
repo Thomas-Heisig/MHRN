@@ -349,3 +349,32 @@
   evidence: []
   created: '2026-09-16'
   updated: '2026-09-16'
+
+- id: H-ETH-001-B
+  research_question: RQ-ETH-001
+  hypothesis: Vollständige Provenienzketten erlauben unabhängigen Kodierern, materielle epistemische Beiträge von Mensch, Modell und Software reproduzierbar definierten Rollen zuzuordnen.
+  status: untested
+  evidence: []
+  created: '2026-09-18'
+  updated: '2026-09-18'
+- id: H-ETH-001-C
+  research_question: RQ-ETH-001
+  hypothesis: Kanonisierung ist eine von der bloßen Generierung trennbare epistemische Handlung und lässt sich in MHRN-Claim-Episoden als Auswahl-, Prüf- oder Freigabeentscheidung identifizieren.
+  status: untested
+  evidence: []
+  created: '2026-09-18'
+  updated: '2026-09-18'
+- id: H-ETH-001-D
+  research_question: RQ-ETH-001
+  hypothesis: Unter gegenwärtigen Forschungsintegritäts- und Publikationsstandards verbleiben formale wissenschaftliche Autorenschaft und Verantwortung bei verantwortlichen natürlichen Personen, auch wenn KI-Systeme materiell beitragen.
+  status: untested
+  evidence: []
+  created: '2026-09-18'
+  updated: '2026-09-18'
+- id: H-ETH-001-E
+  research_question: RQ-ETH-001
+  hypothesis: Eine mehrdimensionale Beitrags- und Verantwortungsmatrix erhöht bei denselben Claim-Episoden die Audit-Vollständigkeit gegenüber einer binären Autor-Werkzeug-Klassifikation, ohne die Reproduzierbarkeit der Kodierung zu verschlechtern.
+  status: untested
+  evidence: []
+  created: '2026-09-18'
+  updated: '2026-09-18'
