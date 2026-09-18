@@ -428,12 +428,16 @@ Die folgenden Forschungsfragen sind noch offen und warten auf experimentelle Evi
 
 **Domäne:** Ethics
 
-**Frage:** Wer ist der Autor von Brain-5D-Erkenntnissen — Mensch, Modell oder System?
+**Frage:** Wie verteilen sich epistemische Beiträge, Entscheidungsmacht, formale Autorenschaft und wissenschaftliche Verantwortung bei Human–AI-gestützter MHRN-Forschung?
 
-**Relevanz:** Grundsatzfrage zur Autorenschaft und Verantwortung in KI-gestützter Forschung.
+**Relevanz:** Trennt Beitragsprovenienz, Generierung, Kanonisierung, formale Autorenschaft und Verantwortung, statt maschinelle Beteiligung mit Autorenschaft gleichzusetzen.
 
 **Hypothesen:**
 - `H-ETH-001-A`: Die Autorenschaft von Brain-5D-Erkenntnissen ist ein verteiltes Phänomen zwischen Mensch, Modell und System.
+- `H-ETH-001-B`: Vollständige Provenienzketten erlauben unabhängigen Kodierern, materielle epistemische Beiträge von Mensch, Modell und Software reproduzierbar definierten Rollen zuzuordnen.
+- `H-ETH-001-C`: Kanonisierung ist eine von der bloßen Generierung trennbare epistemische Handlung und lässt sich in MHRN-Claim-Episoden als Auswahl-, Prüf- oder Freigabeentscheidung identifizieren.
+- `H-ETH-001-D`: Unter gegenwärtigen Forschungsintegritäts- und Publikationsstandards verbleiben formale wissenschaftliche Autorenschaft und Verantwortung bei verantwortlichen natürlichen Personen, auch wenn KI-Systeme materiell beitragen.
+- `H-ETH-001-E`: Eine mehrdimensionale Beitrags- und Verantwortungsmatrix erhöht bei denselben Claim-Episoden die Audit-Vollständigkeit gegenüber einer binären Autor-Werkzeug-Klassifikation, ohne die Reproduzierbarkeit der Kodierung zu verschlechtern.
 
 ---
 

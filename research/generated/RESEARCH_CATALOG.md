@@ -5,7 +5,7 @@
 ## Übersicht
 
 - **Forschungsfragen:** 107
-- **Hypothesen:** 110
+- **Hypothesen:** 114
 - **Claims:** 9
 - **Literaturquellen:** 56
 
@@ -748,13 +748,17 @@
 
 ### RQ-ETH-001
 
-**Frage:** Wer ist der Autor von Brain-5D-Erkenntnissen — Mensch, Modell oder System?
+**Frage:** Wie verteilen sich epistemische Beiträge, Entscheidungsmacht, formale Autorenschaft und wissenschaftliche Verantwortung bei Human–AI-gestützter MHRN-Forschung?
 
 **Status:** open
-**Relevanz:** Grundsatzfrage zur Autorenschaft und Verantwortung in KI-gestützter Forschung.
+**Relevanz:** Trennt Beitragsprovenienz, Generierung, Kanonisierung, formale Autorenschaft und Verantwortung, statt maschinelle Beteiligung mit Autorenschaft gleichzusetzen.
 
 **Hypothesen:**
 - `H-ETH-001-A`: Die Autorenschaft von Brain-5D-Erkenntnissen ist ein verteiltes Phänomen zwischen Mensch, Modell und System. *(untested)*
+- `H-ETH-001-B`: Vollständige Provenienzketten erlauben unabhängigen Kodierern, materielle epistemische Beiträge von Mensch, Modell und Software reproduzierbar definierten Rollen zuzuordnen. *(untested)*
+- `H-ETH-001-C`: Kanonisierung ist eine von der bloßen Generierung trennbare epistemische Handlung und lässt sich in MHRN-Claim-Episoden als Auswahl-, Prüf- oder Freigabeentscheidung identifizieren. *(untested)*
+- `H-ETH-001-D`: Unter gegenwärtigen Forschungsintegritäts- und Publikationsstandards verbleiben formale wissenschaftliche Autorenschaft und Verantwortung bei verantwortlichen natürlichen Personen, auch wenn KI-Systeme materiell beitragen. *(untested)*
+- `H-ETH-001-E`: Eine mehrdimensionale Beitrags- und Verantwortungsmatrix erhöht bei denselben Claim-Episoden die Audit-Vollständigkeit gegenüber einer binären Autor-Werkzeug-Klassifikation, ohne die Reproduzierbarkeit der Kodierung zu verschlechtern. *(untested)*
 
 ---
 
@@ -1411,16 +1415,18 @@
 **Relevanz:** Separates membrane-model conformance from long-horizon numerical sensitivity and makes neuron model a reusable experimental treatment axis while retaining Izhikevich as default.
 
 **Hypothesen:**
-- `H-EVAL-006-A`: For Izhikevich-2003, matched one-step Brian2 transitions produce identical spike decisions and pre-reset/post-reset v/u states within maximum absolute error 1e-8 for every frozen validation sample. *(supported)*
+- `H-EVAL-006-A`: For Izhikevich-2003, matched one-step Brian2 transitions produce identical spike decisions and pre-reset/post-reset v/u states within maximum absolute error 1e-8 for every frozen validation sample. *(supported)* — Evidenz: EVID-2026-18
 - `H-EVAL-006-B`: For lif-current-v1 with the canonical alternative-model setting refractory_ticks=0, matched Brian2 Euler transitions produce identical spike events and post-reset membrane states within maximum absolute error 1e-8 for every frozen validation seed. *(supported)*
 - `H-EVAL-006-C`: Nonzero LIF refractory_ticks can be mapped to an explicitly documented Brian2 refractory duration that yields the same clamp/update semantics; the mapping is an optional extension and is not assumed from equal numeric parameter values. *(supported)*
 
 **Claims:**
-- `CLAIM-EVAL-006`: Unter dem eingefrorenen V2-Protokoll konformieren die deklarierten MHRN-Einzelzellverträge für Izhikevich-2003, lif-current-v1 und das separat klassifizierte Refractory-Semantik-Mapping mit der gematchten Brian2-2.10.1-Referenz innerhalb der präregistrierten Toleranzen. *(inconclusive, low)*
+- `CLAIM-EVAL-006`: Unter dem eingefrorenen V2-Protokoll konformieren die deklarierten MHRN-Einzelzellverträge für Izhikevich-2003, lif-current-v1 und das separat klassifizierte Refractory-Semantik-Mapping mit der gematchten Brian2-2.10.1-Referenz innerhalb der präregistrierten Toleranzen. *(inconclusive, low)* — Evidenz: EVID-2026-18
 
 **Literatur:**
 - `SRC-IZHIKEVICH-2003`: Eugene M. Izhikevich et al. (2003)
 - `SRC-GERSTNER-2014`: Wulfram Gerstner et al. (2014)
+
+**Evidenzen:** EVID-2026-18
 
 ---
 

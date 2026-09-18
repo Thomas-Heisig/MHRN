@@ -101,10 +101,10 @@ Synaptisches Gedächtnis, Sensor-Aktor-Schleife, Language Organ
 
 ## Kapitel 8 – Autorenschaft und Epistemologie
 
-Verteilte Autorenschaft, Kontrollverlust, maschinelle Erkenntnis
+Epistemische Beiträge, Kanonisierung, Autorenschaft, Verantwortung und maschinelle Erkenntnis
 
 **Forschungsfragen:**
-- `RQ-ETH-001`: Wer ist der Autor von Brain-5D-Erkenntnissen — Mensch, Modell oder System?... *(open)*
+- `RQ-ETH-001`: Wie verteilen sich epistemische Beiträge, Entscheidungsmacht, formale Autorensch... *(open)*
 - `RQ-ETH-002`: Wo liegt die Kontrolle und Verantwortung bei Brain-5D-Experimenten?... *(open)*
 - `RQ-EPIST-001`: Was gilt als Erkenntnis des Systems Brain-5D im Unterschied zur Erkenntnis des F... *(open)*
 

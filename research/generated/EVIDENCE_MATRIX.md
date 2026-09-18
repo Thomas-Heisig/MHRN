@@ -35,7 +35,7 @@ RQ-Status und Claim-Status sind unterschiedliche wissenschaftliche Zustände und
 | `RQ-MEM-001` | open | `H-MEM-001-A` | — | — | 0 | `EXP-BATCH-20260906200118-27`, `EXP-BATCH-20260909223705-27`, `EXP-BATCH-20260914074039-27` | — | offen |
 | `RQ-EMB-001` | open | `H-EMB-001-A`, `H-EMB-001-B` | — | — | 0 | `EXP-BATCH-20260906200118-28`, `EXP-BATCH-20260909223705-28`, `EXP-BATCH-20260914074039-28`, `EXP-EMB-0001`, `EXP-EMP-20260910` | — | offen |
 | `RQ-LLM-001` | open | `H-LLM-001-A` | — | — | 0 | `EXP-BATCH-20260906200118-29`, `EXP-BATCH-20260909223705-29`, `EXP-BATCH-20260914074039-29` | — | offen |
-| `RQ-ETH-001` | open | `H-ETH-001-A` | — | — | 0 | `EXP-BATCH-20260906200118-30`, `EXP-BATCH-20260909223705-30`, `EXP-BATCH-20260914074039-30` | — | offen |
+| `RQ-ETH-001` | open | `H-ETH-001-A`, `H-ETH-001-B`, `H-ETH-001-C`, `H-ETH-001-D`, `H-ETH-001-E` | — | — | 0 | `EXP-BATCH-20260906200118-30`, `EXP-BATCH-20260909223705-30`, `EXP-BATCH-20260914074039-30` | — | offen |
 | `RQ-ETH-002` | open | `H-ETH-002-A` | — | — | 0 | `EXP-BATCH-20260906200118-31`, `EXP-BATCH-20260909223705-31`, `EXP-BATCH-20260914074039-31` | — | offen |
 | `RQ-EPIST-001` | open | `H-EPIST-001-A` | — | — | 0 | `EXP-BATCH-20260906200118-32`, `EXP-BATCH-20260909223705-32`, `EXP-BATCH-20260914074039-32` | — | offen |
 | `RQ-AIR-001` | open | `H-AIR-001-A` | `CLAIM-AIR-001` | `CLAIM-AIR-001`=untested | 0 | `EXP-BATCH-20260906200118-33`, `EXP-BATCH-20260909223705-33`, `EXP-BATCH-20260914074039-33` | — | offen |
@@ -122,7 +122,8 @@ RQ-Status und Claim-Status sind unterschiedliche wissenschaftliche Zustände und
 |-----------|--------|
 | answered | 1 |
 | in_progress | 1 |
-| open | 105 |
+| inconclusive | 1 |
+| open | 104 |
 | **Gesamt RQs** | **107** |
 
 ### Claims (Claim-Status)
