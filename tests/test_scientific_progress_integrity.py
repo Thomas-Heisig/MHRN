@@ -93,13 +93,13 @@ def test_stage0_score_matches_current_weighted_evidence_state() -> None:
         expected += float(weights[criterion["id"]]) * float(status_value)
 
     assert abs(float(stage0["score"]) - expected) < 1e-12
-    assert abs(float(stage0["score"]) - 0.925) < 1e-12
+    assert abs(float(stage0["score"]) - 0.825) < 1e-12
 
     by_id = {criterion["id"]: criterion for criterion in stage0["criteria"]}
     assert by_id["research_question"]["status"] == "met"
     assert by_id["protocol"]["status"] == "met"
     assert by_id["data"]["status"] == "met"
-    assert by_id["reviewed_evidence"]["status"] == "met"
+    assert by_id["reviewed_evidence"]["status"] == "partial"
     assert by_id["independent_replication"]["status"] == "partial"
     assert by_id["attribution"]["status"] == "met"
 
@@ -140,3 +140,15 @@ def test_stage0_human_review_is_complete_but_evid_promotion_remains_blocked() ->
     assert promotion["scientific_evidence"] is False
     assert promotion["evidence_promotion_status"] == "BLOCKED_LEGACY_PROVENANCE_CONTRACT"
     assert promotion["independent_replication_complete"] is False
+
+
+def test_stage0_partial_reviewed_evidence_is_explicitly_split() -> None:
+    stage0 = next(stage for stage in _manifest()["stages"] if stage["stage"] == 0)
+    by_id = {criterion["id"]: criterion for criterion in stage0["criteria"]}
+    reviewed = by_id["reviewed_evidence"]
+    independent = by_id["independent_replication"]
+    assert reviewed["status"] == "partial"
+    assert "Human Review" in reviewed["label"]
+    assert "EVID" in reviewed["label"]
+    assert independent["status"] == "partial"
+    assert "keine unabhängig autorisierte Replikation" in independent["label"]
