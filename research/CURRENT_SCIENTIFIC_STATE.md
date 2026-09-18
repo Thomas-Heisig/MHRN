@@ -12,8 +12,7 @@ Dieses Dokument ist der kurze Einstieg in den aktuellen wissenschaftlichen Zusta
 - frozen empirical baseline: Edition 1.5 / `EXP-EMP-20260913-A3`
 - 1.8 nutzt die für 2.0 geplante elfteilige Struktur, ohne Softwareversion oder Evidenzstatus hochzustufen
 - offene menschliche wissenschaftliche Reviews: `EXP-GEN-0041`,
-  `EXP-S1-TOPO-V3-R1-20260918`, `EXP-S6-SEM-CL-003` und
-  `EXP-STAGE0-20260918-MODEL-CONFORMANCE-V2-PROMO-R1`
+  `EXP-S1-TOPO-V3-R1-20260918` und `EXP-S6-SEM-CL-003`
 - CL-003 besitzt jetzt einen begrenzten Review-Kandidaten; die Entscheidung ist weiterhin `PENDING`
 - unabhängige Replikation: unvollständig
 - automatische EVID-Promotion: deaktiviert
