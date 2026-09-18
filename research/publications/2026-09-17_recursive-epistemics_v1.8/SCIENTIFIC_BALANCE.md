@@ -6,15 +6,15 @@
 
 Diese Bilanz macht die offenen und tragfähigen Aussagen der Edition sichtbar. Sie ersetzt weder Human Review noch EVID-Entscheidungen und erzeugt keine neue Evidenz.
 
-### Stage 0 — Human Review positiv, EVID-Promotion noch offen
+### Stage 0 — Human Review und EVID-Promotion abgeschlossen
 
 Für `RQ-EVAL-006` wurde der Human Review am 18. September 2026 mit `supports_scoped_claim` abgeschlossen. Der eng präregistrierte Claim ist inhaltlich positiv geprüft: Die deklarierten MHRN-Einzelzellverträge für Izhikevich-2003, `lif-current-v1` und das separat behandelte Refractory-Semantik-Mapping konformieren im historischen V2-Lauf mit Brian2 2.10.1 innerhalb der vorab fixierten Toleranzen.
 
 Die `1e-8`-Schwelle war vor Ausführung fixiert; die deutlich kleineren beobachteten Fehler ändern diese Entscheidungsgrenze nicht post hoc. V1 und V2 bleiben getrennte Aussagen: lokale Transition-Konformität hebt den historischen negativen 1000-Tick-Freilaufbefund nicht auf. `H-EVAL-006-C` ist ein Mapping-/Semantikclaim, kein dritter numerischer Konformitätsclaim.
 
-Die Scientific Maturity von Stage 0 beträgt **82,5 %**. Das Kriterium `reviewed_evidence` bleibt `partial`: Der historische Human Review ist positiv abgeschlossen, und inzwischen liegt mit `EXP-STAGE0-20260918-MODEL-CONFORMANCE-V2-PROMO-R1` auch ein **EvidenceEngine-konformer interner Promotion-Replikationslauf als DATA** vor. Er wurde auf neuen vorab deklarierten Seeds `22001–22003` mit unveränderter `1e-8`-Grenze ausgeführt; A/B/C bestanden, `git.dirty=false`, `validity.valid=true`, die vier Provenienz-Digests und ein `source_freeze_sha` sind vorhanden.
+Die Scientific Maturity von Stage 0 beträgt **92,5 %**. Das Kriterium `reviewed_evidence` steht auf `met`: Der historische Human Review ist positiv abgeschlossen; zusätzlich wurde `EXP-STAGE0-20260918-MODEL-CONFORMANCE-V2-PROMO-R1` auf neuen vorab deklarierten Seeds `22001–22003` unter dem aktuellen EvidenceEngine-Provenienzvertrag ausgeführt. A/B/C bestanden, `git.dirty=false`, `validity.valid=true`, die vier Provenienz-Digests und ein `source_freeze_sha` sind vorhanden.
 
-Der Lauf erzeugt dennoch nicht selbst EVID. Sein eigener Review-Request steht auf `PENDING`, `automatic_evidence_promotion=false`, `scientific_evidence=false` und `independent_authorship_replication=false`. Erst ein separater positiver Human Review dieses Promotion-Laufs und eine danach getrennte kanonische EVID-Registrierung können die verbleibenden 10 Prozentpunkte des Human-EVID-Kriteriums schließen. Die separate 7,5-%-Lücke für echte unabhängige Replikation bleibt davon unberührt.
+Der Human Review des Promotion-Laufs wurde kanonisch in `human_review.json` gebunden und der scoped Claim anschließend getrennt als `EVID-2026-18` registriert. Die automatische Promotion bleibt weiterhin deaktiviert; die Registrierung ist ein expliziter wissenschaftlicher Governance-Schritt. `independent_authorship_replication=false` bleibt unverändert. Damit verbleiben **7,5 Prozentpunkte** bis 100 %, die ausschließlich durch die separat definierte unabhängige Replikation geschlossen werden können.
 
 ## 1. Claim-Ledger als wissenschaftliche Bilanz
 
