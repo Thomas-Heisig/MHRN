@@ -1,6 +1,6 @@
 # MHRN Scientific Maturity Roadmap
 
-**Stand:** 15. September 2026  
+**Stand:** 18. September 2026  
 **Geltung:** Ergänzung zur technischen `ROADMAP.md`  
 **Maschinenlesbarer Vertrag:** `src/dashboard/static/scientific-progress.json`
 
@@ -21,13 +21,25 @@ Eine Stufe kann technisch abgeschlossen sein und wissenschaftlich offen bleiben.
 
 ## Stage 0 – Einzelne Nervenzelle
 
-**Ziel:** numerischen Modellvertrag gegen unabhängige Referenzimplementierung und vordefinierte Ereignis-/Toleranzkriterien prüfen.
+**Ziel:** numerischen Modellvertrag gegen eine externe Referenzimplementierung und vorab definierte Ereignis-/Toleranzkriterien prüfen.
+
+**Aktueller Gesamt-Scientific-Maturity-Score:** **72,5 %** nach dem kanonischen Gewichtungsvertrag in `scientific-progress.json`.
+
+Erfüllt:
+- `RQ-EVAL-006` und `H-EVAL-006-A/B/C` sind explizit registriert;
+- `PREREG-EVAL-006-V2` wurde vor der konfirmatorischen Ausführung eingefroren;
+- disjunkte Confirmatory-Seeds `21001–21003` wurden gegen Brian2 2.10.1 ausgeführt;
+- alle eingefrorenen Primärendpunkte für Izhikevich-2003 und `lif-current-v1` bestanden innerhalb der deklarierten Toleranzen;
+- der historische freie 1000-Tick-Izhikevich-Negativbefund bleibt unverändert erhalten;
+- Modell-, Quellen- und Literaturattribution sind dokumentiert.
+
+Separat gilt der **scoped Stage-0 research-readiness contract = 100 %**. Dieser engere Readiness-Wert bedeutet nur, dass die dort definierten technischen und methodischen Voraussetzungen erfüllt sind; er ist nicht identisch mit der Gesamt-Scientific-Maturity.
 
 Offen:
-- eigene RQ/Hypothese für die diskrete Einzelzell-Konformität registrieren,
-- unabhängige Replikation dokumentieren,
-- negative Konformitätsbefunde unverändert erhalten,
-- keine biologische Gleichwertigkeit aus Gleichungsähnlichkeit ableiten.
+- Human Review des eng definierten Konformitätsclaims; die Review-Anforderung liegt unter `research/experiments/EXP-STAGE0-20260916-MODEL-CONFORMANCE-V2/review_request.json`;
+- explizite EVID-Promotion nur nach positiver menschlicher Prüfung;
+- unabhängig autorisierte Replikation außerhalb derselben Autoren-/Toolkette;
+- keine biologische Gleichwertigkeit, universelle Langzeittrajektorienidentität oder Generalisierung auf ungeprüfte Modelle/Parameter aus dem Brian2-Vergleich ableiten.
 
 ## Stage 1 – Kleines SNN
 
