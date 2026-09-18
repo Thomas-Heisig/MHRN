@@ -46,3 +46,34 @@ def test_publication_reader_has_navigation_search_toc_and_accessible_states() ->
         "data-pub-heading",
     ):
         assert token in reader
+
+
+def test_publication_reader_uses_canonical_entrypoint_and_complete_document_map() -> None:
+    reader = _read("frontend/modules/publication-reader.js")
+    server = (ROOT / "src" / "dashboard" / "server.py").read_text(encoding="utf-8")
+
+    assert "data.entrypoint_path || data.readme_path" in reader
+    assert "renderPublicationLibrary(data, view)" in reader
+    assert '"Kapitel"' in reader
+    assert '"Anhänge & Register"' in reader
+    assert '"Editionen"' in reader
+    assert '"chapters": cast(JSONValue, chapters)' in server
+    assert '"attachments": cast(JSONValue, attachments)' in server
+    assert '"history": cast(JSONValue, history)' in server
+    assert '"documents": cast(JSONValue, documents)' in server
+    assert "current_publication_id" in server
+    assert "entrypoint_rel" in server
+
+
+def test_publication_reader_shows_title_author_date_and_edition_metadata() -> None:
+    reader = _read("frontend/modules/publication-reader.js")
+
+    for token in (
+        "data.document_title",
+        "data.title",
+        "data.author",
+        "data.date",
+        "data.edition",
+        "pub-reader-catalog-title",
+    ):
+        assert token in reader
