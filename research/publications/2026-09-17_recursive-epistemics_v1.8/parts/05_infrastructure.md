@@ -77,3 +77,17 @@ Diese Grenze ist besonders wichtig für spätere Stages: Ein UI-Feld „Self Mod
 Aus den Arbeiten an lokalen Chat-Systemen, Kernschmied und Provider-Adaptern wurde eine weitere Designregel übernommen: Provider müssen austauschbar sein, ohne dass der wissenschaftliche Status eines Artefakts vom Marken- oder Modellnamen abhängt. Wichtig sind Eingabe, Ausgabe, Version, Berechtigung, Provenienz und der Pfad, auf dem ein Ergebnis in Code oder Forschung eingeflossen ist.
 
 Ein lokales Modell kann Datenschutz und Reproduzierbarkeit verbessern; ein externes Modell kann Recherche- oder Codingqualität erhöhen. Beides ändert nicht die Grundregel: Kein Sprachmodell erhält allein durch Leistungsfähigkeit wissenschaftliche Autorität oder stillen Schreibzugriff auf den kausalen SNN-Kern.
+
+## 24.6 Gateways, exakte Digitaldaten und periphere Laufzeit
+
+Neural Symbiosis konkretisiert die Infrastrukturgrenze zwischen externen/peripheren Modellen und dem SNN. Der Gateway-Runtime besitzt eigene Zustände, Gewichte, Delays, RNG-Provenienz, Condition, Tick, Ressourcenmetriken und Strukturjournal. Dadurch kann ein Experiment Frozen/Random/Shuffle/Plastic kontrollieren, ohne den kanonischen Kernzustand heimlich umzudefinieren. Es existiert absichtlich kein allgemeiner produktiver „Plasticity on“-Schalter; wissenschaftliche Aktivierung muss über einen registrierten Experimentpfad erfolgen.
+
+Für digitale Pfade ist die Trennung von **exaktem Payload** und **neuronaler Projektion** fundamental. Prüfsummen, Sequenzen, Codec und Provenienz gehören zum exakten Symbolzustand außerhalb des SNN. Eine neuronale Population darf eine Approximation oder Repräsentation tragen, aber niemals nachträglich als Beweis verwendet werden, dass die ursprünglichen Bits selbst neuronal gespeichert oder unverändert rekonstruiert wurden.
+
+## 24.7 Körpertelemetrie als Datenprovenienz
+
+Die Real-Body-/Wesen-Arbeiten formulieren eine Infrastrukturregel, die über das Frontend hinausgeht: **Keine Fantasiedaten.** Fehlende Sensor- oder Hostwerte bleiben `UNKNOWN`; gemessene, abgeleitete und lediglich dargestellte Größen sind zu unterscheiden. Diese Regel ist dieselbe epistemische Disziplin, die später DATA von Report und EVID trennt. Eine scheinbar vollständige Oberfläche darf eine Messlücke nicht durch einen plausiblen Default verdecken.
+
+## 24.8 Technische Identität als reproduzierbare Konfiguration
+
+Profile & Identity ergänzt die Persistenzschicht um versionierte technische Konfiguration, Digest, Revision, Lineage und Snapshotbindung. Für Experimente können damit `profile_id`, Revision, Profil-Digest und Snapshot-Digest gemeinsam gebunden werden. Das verbessert Reproduzierbarkeit, ohne den Profilbegriff psychologisch aufzuladen. Ein Profil ist eine deklarierte technische Identität; der dynamische neuronale Zustand und der vollständige kausale Checkpoint bleiben getrennte Objekte.

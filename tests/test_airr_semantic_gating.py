@@ -60,8 +60,7 @@ def _fixture(
         encoding="utf-8",
     )
     runs = [
-        {"condition": condition, "seed": 101, "metrics": {}}
-        for condition in conditions
+        {"condition": condition, "seed": 101, "metrics": {}} for condition in conditions
     ]
     (analysis / "ai_packet.json").write_text(
         json.dumps({"run_preview": runs}), encoding="utf-8"

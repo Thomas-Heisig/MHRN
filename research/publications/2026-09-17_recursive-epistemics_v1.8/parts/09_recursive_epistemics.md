@@ -95,3 +95,27 @@ Edition 1.8 behandelt deshalb AI-Beiträge als Transformationsknoten, nicht als 
 Auch der Begriff selbst ist kein abgeschlossener theoretischer Triumph. Er ist derzeit eine **methodische Synthesehypothese**: Die Forschung wird robuster, wenn Objekt- und Prozess-Gateways gemeinsam modelliert und Statusänderungen explizit kontrolliert werden.
 
 Diese Hypothese kann durch Prior Art relativiert werden, durch externe Reviewer kritisiert werden oder sich als zu breit erweisen. Ihr wissenschaftlicher Wert hängt daher nicht davon ab, ob der Begriff neu ist, sondern ob die Operationalisierung zu klareren, reproduzierbareren Entscheidungen führt.
+
+## 42.8 Geliehene Intelligenz als konkrete Provenienzmatrix
+
+Die Theorie der geliehenen Intelligenz gewinnt in MHRN eine operative Form, wenn die abstrakten Herkunftsfragen auf einzelne Forschungsereignisse abgebildet werden. Für einen Claim können mindestens folgende Knoten unterschieden werden: menschliche Problemsetzung, externe Literatur, AI-generierter Vorschlag, AI-generierter Code, menschliche Auswahl, Commit, eingefrorenes Protokoll, Experiment, DATA, Review und Publikationssynthese. Erst diese Kette beantwortet, **welcher Anteil geliehen, transformiert, entschieden oder gemessen** wurde.
+
+Damit wird die frühere Theorie nicht auf eine philosophische Einleitung reduziert. Sie wirkt direkt auf die Forschungsmethodik: Derselbe AI-Ursprung darf nicht mehrfach als scheinbar unabhängige Bestätigung gezählt werden; Literaturautorität darf nicht als MHRN-Evidenz erscheinen; und ein menschlicher Auftrag an ein Modell ist nicht dasselbe wie der konkrete vom Modell vorgeschlagene Lösungsweg.
+
+## 42.9 Ko-Kognition als Systemgrenze
+
+Das Szenario symbiotischer Ko-Kognition ist für die reale Schaffenspraxis bereits methodisch relevant, ohne dass daraus starke Autonomieclaims folgen. Der Autor nutzt Modelle für Suche, Kritik, Code und Synthese; die Modelle nutzen menschlich formulierte Ziele, Auswahl und Rückmeldung. Die produktive Einheit kann daher zeitweise ein gekoppelter Mensch-Werkzeug-Prozess sein.
+
+Edition 1.8 trennt dennoch drei Grenzen: **kognitive Unterstützung**, **Entscheidungsautorität** und **wissenschaftliche Evidenz**. Ein Modell kann die kognitive Reichweite des Autors erweitern, ohne Autor der Hypothese zu sein; es kann einen Patch erzeugen, ohne ihn freigeben zu dürfen; und es kann DATA interpretieren, ohne EVID zu akzeptieren. Diese Trennung verhindert, dass Ko-Kognition mit Verantwortungsdiffusion verwechselt wird.
+
+## 42.10 Rekursive Technogenese als Forschungsprozess-Spiegel
+
+Die ältere Technogeneseformel beschreibt Generationen technischer Systeme. Im aktuellen Projekt existiert eine engere, beobachtbare Analogie: Werkzeuge und Modelle helfen, eine Forschungsinfrastruktur zu verändern, die wiederum festlegt, wie spätere Modelle, Experimente und Reviews eingesetzt werden. Ein AI-kritisiertes Reportingproblem kann zu einem neuen Schema führen; dieses Schema verändert, welche Fehler spätere AI-Reviews überhaupt sehen können.
+
+Das ist noch keine autonome technische Evolution. Es ist eine **rekursive Werkzeug-/Governance-Kette**, deren Provenienz beobachtbar ist. Genau hier verbindet sich die Vorgängerarbeit mit rekursiver Epistemik: Nicht die Metapher einer selbsterschaffenden Maschine ist der aktuelle Befund, sondern die messbare Rückwirkung von Werkzeugen auf die Bedingungen ihrer eigenen späteren Verwendung.
+
+## 42.11 Von der Herkunftsfrage zur Prüfregel
+
+Aus den Vorgängerarbeiten lässt sich eine allgemeine Prüfregel ableiten: Je stärker ein Ergebnis von ausgelagerten epistemischen Ressourcen abhängt, desto expliziter müssen Quelle, Transformationsschritt und Autorität dokumentiert werden. Das gilt für Retrieval ebenso wie für LLM-Synthese, Codegeneratoren, externe Decoder, periphere neuronale Netze und menschliche Reviews.
+
+„Geliehene Intelligenz“ wird damit in Edition 1.8 zu einer prüfbaren Herkunftsfrage: **Welche Ressource kam von wo, welche Zustandsänderung verursachte sie, und wer durfte diese Zustandsänderung autorisieren?**

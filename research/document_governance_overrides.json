@@ -227,6 +227,42 @@
       "citation": "cite_underlying_source_and_revision",
       "evidence_role": "projection_not_evidence_by_itself",
       "rationale": "Deterministic publication projections, not canonical EVID."
+    },
+    "research/decisions/2026-09-17_determinism_registry_airr_alignment.md": {
+      "kind": "scientific_method_decision",
+      "status": "current",
+      "authority": "accepted_implementation_and_method_decision",
+      "mutability": "versioned_replacement_only",
+      "citation": "cite_decision_path_and_revision_with_underlying_experiment",
+      "evidence_role": "methodological_interpretation_not_evidence_by_itself",
+      "rationale": "Accepted decision preserving historical provenance while aligning determinism registry semantics and AIRR confidence gating."
+    },
+    "research/decisions/2026-09-17_snn003_topology_propagation_v1_adequacy.md": {
+      "kind": "scientific_method_decision",
+      "status": "current",
+      "authority": "accepted_scientific_method_decision",
+      "mutability": "versioned_replacement_only",
+      "citation": "cite_decision_path_and_EXP-GEN-0047",
+      "evidence_role": "adequacy_interpretation_not_evidence_by_itself",
+      "rationale": "Accepted adequacy decision: EXP-GEN-0047 is technically valid and semantically matched but inadequate to test H-SNN-003-B; defines prospective v2 requirements."
+    },
+    "research/learning/preparations/LP-20260917194217.json": {
+      "kind": "learning_proposal",
+      "status": "current",
+      "authority": "proposal_only",
+      "mutability": "versioned_replacement_only",
+      "citation": "cite_plan_id_and_revision_as_proposal",
+      "evidence_role": "proposal_not_evidence",
+      "rationale": "Human-origin Stage-6 compression proposal; executed=false and therefore neither DATA nor EVID."
+    },
+    "research/learning/preparations/LP-20260917194217-approved.json": {
+      "kind": "approved_learning_proposal",
+      "status": "current",
+      "authority": "approved_proposal_only",
+      "mutability": "versioned_replacement_only",
+      "citation": "cite_plan_id_approval_and_revision_as_proposal",
+      "evidence_role": "approval_not_execution_or_evidence",
+      "rationale": "Human approval records permission to proceed with preparation; runtime_authority=none and executed=false preserve the non-evidence boundary."
     }
   }
 }

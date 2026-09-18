@@ -298,6 +298,7 @@ def _semantic_status(
     """Compatibility wrapper around the canonical deterministic classifier."""
     return classify_semantic_status(question_id, protocol, conditions)
 
+
 def _fmt(value: object) -> str:
     if isinstance(value, float):
         return f"{value:.6g}"
@@ -406,9 +407,7 @@ def _render_airr_sections(
     if not isinstance(content, dict):
         content = {}
     raw_ai_confidence = content.get("ai_confidence", 0.0)
-    visible_ai_confidence = (
-        0.0 if semantic_status == "MISMATCH" else raw_ai_confidence
-    )
+    visible_ai_confidence = 0.0 if semantic_status == "MISMATCH" else raw_ai_confidence
     confidence_gate_note = (
         " Semantik-Gate: MISMATCH erzwingt 0.0; der rohe Modellwert bleibt nur im AIAR-Audittrail."
         if semantic_status == "MISMATCH"

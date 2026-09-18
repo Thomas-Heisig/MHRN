@@ -2,7 +2,7 @@
 
 **current_wip; Interpretation und Forschungsprogramm; keine automatische EVID.**
 
-[Gesamtmanuskript](MANUSCRIPT.md) · [RQs/Hypothesen](RESEARCH_REGISTER.md) · [Quellenindex](SOURCE_INDEX.md) · [Quellenband 1.7](LEGACY_V17.md) · [Vorforschung](PRIOR_WORK_MAP.md) · [Literatur](REFERENCES.md) · [Erweiterungsvertrag](EXTENDING.md) · [Manifest](manifest.json)
+[Gesamtmanuskript](MANUSCRIPT.md) · [RQs/Hypothesen](RESEARCH_REGISTER.md) · [Quellenindex](SOURCE_INDEX.md) · [Corpus-Integration](CONTENT_INTEGRATION.md) · [Quellenband 1.7](LEGACY_V17.md) · [Vorforschung](PRIOR_WORK_MAP.md) · [Literatur](REFERENCES.md) · [Erweiterungsvertrag](EXTENDING.md) · [Manifest](manifest.json)
 
 - [Teil I — Nullpunkt, Autor und Entstehungsbedingungen](parts/01_origin.md)
 - [Teil II — Schaffensgeschichte und Architekturgenese](parts/02_genealogy.md)

@@ -285,11 +285,12 @@ def _role_prompt(
 
 def _packet_protocol(packet: ResearchPacket) -> str:
     """Resolve the protocol identifier from canonical packet/manifest fields."""
-    protocol_payload = packet.protocol if isinstance(packet.protocol, dict) else {}
-    simulation = (
-        packet.manifest.get("simulation", {})
-        if isinstance(packet.manifest.get("simulation"), dict)
-        else {}
+    protocol_payload: dict[str, Any] = (
+        packet.protocol if isinstance(packet.protocol, dict) else {}
+    )
+    simulation_raw: object = packet.manifest.get("simulation")
+    simulation: dict[str, Any] = (
+        cast(dict[str, Any], simulation_raw) if isinstance(simulation_raw, dict) else {}
     )
     return str(
         protocol_payload.get("protocol")
@@ -305,20 +306,27 @@ def _packet_semantic_status(packet: ResearchPacket) -> tuple[str, str]:
     protocol = _packet_protocol(packet)
 
     conditions: set[str] = set()
-    data = packet.data if isinstance(packet.data, dict) else {}
-    statistics = data.get("statistics")
-    if isinstance(statistics, dict):
-        statistics_conditions = statistics.get("conditions")
-        if isinstance(statistics_conditions, dict):
+    data: dict[str, Any] = packet.data if isinstance(packet.data, dict) else {}
+    statistics_raw: object = data.get("statistics")
+    if isinstance(statistics_raw, dict):
+        statistics = cast(dict[str, Any], statistics_raw)
+        statistics_conditions_raw: object = statistics.get("conditions")
+        if isinstance(statistics_conditions_raw, dict):
+            statistics_conditions = cast(dict[str, Any], statistics_conditions_raw)
             conditions.update(str(name) for name in statistics_conditions)
 
     for key in ("run_preview", "runs"):
-        values = data.get(key)
-        if not isinstance(values, list):
+        values_raw: object = data.get(key)
+        if not isinstance(values_raw, list):
             continue
-        for value in values:
-            if isinstance(value, dict) and value.get("condition") is not None:
-                conditions.add(str(value["condition"]))
+        values = cast(list[object], values_raw)
+        for value_raw in values:
+            if not isinstance(value_raw, dict):
+                continue
+            value = cast(dict[str, Any], value_raw)
+            condition = value.get("condition")
+            if condition is not None:
+                conditions.add(str(condition))
 
     return classify_semantic_status(question_id, protocol, conditions)
 
@@ -346,7 +354,8 @@ def _build_report(
     raw_confidence = writer.output.get("confidence", 0.0)
     model_confidence = (
         float(raw_confidence)
-        if isinstance(raw_confidence, (int, float)) and not isinstance(raw_confidence, bool)
+        if isinstance(raw_confidence, (int, float))
+        and not isinstance(raw_confidence, bool)
         else 0.0
     )
     semantic_blocked = semantic_status == "MISMATCH"

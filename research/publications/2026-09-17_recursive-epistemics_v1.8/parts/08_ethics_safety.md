@@ -91,3 +91,47 @@ Diese Stränge können in Konflikt geraten und dürfen nicht durch eine einzige 
 Die ältere Theorie der rekursiven Technogenese wird nicht als Zukunftsprognose übernommen. Sie dient als Szenarienrahmen für die Frage, welche Bedingungen nötig wären, damit maschinelle Systeme zunehmend an der Erzeugung ihrer eigenen technischen Nachfolger beteiligt sind.
 
 Für MHRN müssen dabei mindestens menschliche Selektion, AI-generierter Vorschlag, automatisch erzeugter Patch, autorisierte Mutation, tatsächlich laufender Nachfolger und autonome Replikation getrennt werden. Ein System, das Code vorschlägt, repliziert sich nicht. Ein CI-Workflow, der einen Commit erzeugt, besitzt keine Existenzautonomie. Erst durch diese begriffliche Trennung wird das Szenario wissenschaftlich analysierbar.
+
+## 38.8 Fünf Achsen statt der binären Kategorie „künstlich“
+
+Ein eigenständiger Theoriebeitrag der Vorgängerarbeit „KI – Die geliehene Intelligenz“ war der Vorschlag, Intelligenzformen nicht nur als biologisch versus künstlich zu beschreiben. Die ältere Notation lautet:
+
+\[
+I=(M,E,G,Z,X)
+\]
+
+Dabei bezeichnet `M` die materielle Realisierung, `E` die epistemische Herkunft, `G` die Entwicklungsgenealogie, `Z` die Zielautonomie und `X` die Existenz-/Ressourcenabhängigkeit. Edition 1.8 übernimmt dieses Modell als **analytische Taxonomie**, nicht als metrischen Intelligenzscore. Die Achsen dürfen weder unbesehen zu einer Rangordnung addiert noch als Entwicklungsstufen gelesen werden.
+
+Gerade MHRN zeigt den Nutzen dieser Trennung: Ein System kann elektronisch realisiert sein, aus menschlichen Daten und Normen lernen, teilweise AI-assistiert konstruiert werden, innerhalb enger Aktionsräume Entscheidungen treffen und trotzdem vollständig von menschlicher Hardware-, Energie- und Wartungsinfrastruktur abhängen. „Künstlich“, „autonom“, „unabhängig“ und „selbstlernend“ sind deshalb keine Synonyme.
+
+## 38.9 Genealogische Distanz und rekursive Technogenese
+
+Die Vorgängerarbeit beschrieb rekursive Technogenese abstrakt als Folge
+
+\[
+A_{n+1}=F(A_n,H,R,U),
+\]
+
+wobei ein vorausgehendes technisches System `A_n`, menschliche Beiträge `H`, Regel-/Institutionsbedingungen `R` und materielle Umwelt `U` gemeinsam die nächste Generation prägen. Edition 1.8 behält diese Gleichung ausschließlich als **Provenienzmodell**. Sie behauptet weder selbstständige Reproduktion noch eine historische Gesetzmäßigkeit.
+
+Daraus folgt der Begriff der **genealogischen Distanz**: relevant ist nicht nur die Zahl technischer Generationen, sondern wie sich unmittelbarer menschlicher Design-, Bewertungs- und Zielanteil gegenüber maschineller Ko-Konstruktion verschiebt. Ein AI-generierter Patch erhöht nicht automatisch Autonomie; ein CI-System reproduziert kein „Wesen“; und eine vom Menschen freigegebene Mutation bleibt eine andere Kausalklasse als selbstautorisierte Replikation. Das MHRN-Provenienzsystem liefert gerade die Kategorien, um diese Unterschiede später empirisch beziehungsweise historisch zu untersuchen.
+
+## 38.10 „Geliehen“ als relationale, nicht abwertende Kategorie
+
+Der stärkste Einwand gegen „geliehene Intelligenz“ lautet, dass auch menschliche Intelligenz Sprache, Kultur und Wissen von anderen übernimmt. Edition 1.8 akzeptiert diesen Einwand als Korrektur einer essentialistischen Lesart. „Geliehen“ bedeutet daher nicht minderwertig oder unecht. Jede Intelligenz besitzt eine Genealogie; die Forschungsfrage lautet, **wie Herkunft, Abhängigkeit, Transformation und Autorität verteilt sind und sich verändern**.
+
+Dadurch wird der Begriff zu einer relationalen Kategorie. Ein System kann originelle Kombinationen erzeugen und zugleich epistemisch von historischen Quellen abhängig bleiben. Ebenso kann ein Mensch maschinelle Such-, Gedächtnis- und Synthesefähigkeit nutzen. Die interessante Grenze liegt nicht bei einem metaphysischen Eigentum an Intelligenz, sondern bei der transparenten Kausalkette von Quelle, Transformation, Entscheidung und Verantwortung.
+
+## 38.11 Zukunftsszenarien als begriffliche Belastungstests
+
+Die frühere Theoriearbeit unterschied mehrere Möglichkeitsräume. Edition 1.8 bewahrt sie ausdrücklich **nicht als Prognosen und nicht als Wahrscheinlichkeiten**, sondern als Stress-Tests für Begriffe und Governance:
+
+1. **Instrumentelle Hochleistungs-KI:** hohe technische Leistung bei wirksamer menschlicher Ziel- und Letztentscheidung.
+2. **Symbiotische Ko-Kognition:** Menschen und Maschinen bilden reziproke epistemische Netze; beide Seiten externalisieren Teilfunktionen an die jeweils andere.
+3. **Delegative Zivilisation:** formale menschliche Autorität bleibt bestehen, während operative Kompetenz stark an technische Systeme delegiert wird.
+4. **Menschenarme oder menschenlose Maschinenordnung:** prüft, ob Begriffe wie künstliche Herkunft, Aufsicht, Eigentum oder Verantwortung ohne dauerhaft operative Menschen noch tragen.
+5. **Plurale Intelligenzökologie:** biologische, augmentierte, synthetische und rein maschinelle Systeme koexistieren ohne eine einzige homogene Kategorie „KI“.
+
+Diese Szenarien dürfen nur so weit verwendet werden, wie ihre technischen Voraussetzungen explizit sind. Eine menschenlose technische Linie setzt etwa Energie, Wartung, Materialgewinnung, Fertigung, Fehlerdiagnose und Reproduktion voraus; das Weglassen dieser Bedingungen würde aus einer Grenzfallanalyse bloße Fiktion machen.
+
+Der Begriff **Maschinenkultur** bleibt entsprechend vorsichtig funktional: gemeint wäre eine persistente maschinell erzeugte und weitergegebene technische/epistemische Tradition, nicht automatisch Kultur im starken anthropologischen Sinn. Auch dies ist eine offene Theoriefrage, kein MHRN-Gegenwartsclaim.

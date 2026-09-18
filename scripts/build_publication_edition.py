@@ -29,6 +29,8 @@ OUTPUTS = (
     "LEGACY_V17.md",
     "manifest.json",
     "PRIOR_WORK_MAP.md",
+    "CONTENT_INTEGRATION.md",
+    "registers/content_integration.json",
     "registers/prior_work.json",
     "registers/section_inventory.json",
     "registers/source_inventory.json",
@@ -326,6 +328,41 @@ def build(root: Path = ROOT):
         if claim["status"] == "accepted_EVID":
             raise ValueError("The publication builder cannot accept evidence")
     prior = load(root, EDITION + "/sources/prior_work.json")
+    content_integration = load(root, EDITION + "/sources/content_integration.json")
+    required_corpus_ids = {
+        "CORPUS-BRAIN5D",
+        "CORPUS-BORROWED-INTELLIGENCE",
+        "CORPUS-ARCHITECTURE",
+        "CORPUS-NEURAL-SYMBIOSIS",
+        "CORPUS-MSBA",
+        "CORPUS-WESEN-EMBODIMENT",
+        "CORPUS-CURRENT-SCIENCE",
+        "CORPUS-EXPERIMENT-DATA",
+    }
+    corpus_ids = {item["id"] for item in content_integration.get("entries", [])}
+    if not required_corpus_ids.issubset(corpus_ids):
+        raise ValueError(
+            "Content integration ledger misses required material prior-work families"
+        )
+    for item in content_integration["entries"]:
+        for field in (
+            "id",
+            "title",
+            "source_paths",
+            "source_role",
+            "manuscript_parts",
+            "integration_status",
+            "integration_mode",
+            "boundaries",
+        ):
+            if not item.get(field):
+                raise ValueError(
+                    f"Incomplete content integration entry: {item.get('id')} / {field}"
+                )
+        if any(part not in ROMAN for part in item["manuscript_parts"]):
+            raise ValueError(
+                f"Invalid manuscript part in content integration entry: {item['id']}"
+            )
     baseline, source_texts = pinned_sources(root, config["baseline_commit"])
     legacy = {p: b for p, b in source_texts.items() if p.startswith(PREVIOUS + "/")}
     inventory = []
@@ -392,7 +429,7 @@ def build(root: Path = ROOT):
         ]
     manuscript += [
         "# Anhang — Quellen und Vorarbeiten\n",
-        "[Alle Forschungsfragen und Hypothesen](RESEARCH_REGISTER.md) · [Quellenindex](SOURCE_INDEX.md) · [Ungekürzter Quellenband 1.7](LEGACY_V17.md) · [Weitere Vorarbeiten](PRIOR_WORK_MAP.md) · [Literatur](REFERENCES.md) · [Prüfmanifest](manifest.json).\n",
+        "[Alle Forschungsfragen und Hypothesen](RESEARCH_REGISTER.md) · [Quellenindex](SOURCE_INDEX.md) · [Semantische Corpus-Integration](CONTENT_INTEGRATION.md) · [Ungekürzter Quellenband 1.7](LEGACY_V17.md) · [Weitere Vorarbeiten](PRIOR_WORK_MAP.md) · [Literatur](REFERENCES.md) · [Prüfmanifest](manifest.json).\n",
         "Die Quellenbestandsaufnahme belegt referenzierte Datei-Erhaltung am angegebenen Commit, nicht die vollständige semantische Erfassung jeder Idee. Die außerhalb des Repositories rekonstruierte Vorgeschichte ist ausdrücklich unvollständig.\n",
     ]
     index = [
@@ -450,6 +487,18 @@ def build(root: Path = ROOT):
             prior_map.append(
                 f"- {mapping['topic']} → Teile {', '.join(mapping['parts'])}. Weiterführung: {mapping['continuation']}\n"
             )
+    content_map = [
+        "# Semantische Integration der Vorarbeiten und des Forschungs-Corpus\n",
+        "Dieses Ledger ergänzt den vollständigen Quellenindex. Es beantwortet nicht nur, ob eine Datei erhalten ist, sondern welche wissenschaftlich materielle Rolle bekannte Vorarbeiten und kanonische Dokumentfamilien in Edition 1.8 besitzen. `integriert` bedeutet nicht, dass Raw DATA oder maschinenlesbare Register dupliziert werden; Primärartefakte bleiben an ihrem autoritativen Ort.\n",
+        f"Raw-DATA-Regel: {content_integration['raw_data_policy']}\n",
+    ]
+    for item in content_integration["entries"]:
+        content_map += [
+            f"## {item['id']} — {item['title']}\n",
+            f"Rolle: `{item['source_role']}`  \nStatus: `{item['integration_status']}`  \nModus: `{item['integration_mode']}`  \nTeile: {', '.join(item['manuscript_parts'])}\n",
+            "Quellpfade: " + "; ".join(f"`{p}`" for p in item["source_paths"]) + "\n",
+            f"Grenze: {item['boundaries']}\n",
+        ]
     history = []
     for record in (
         git(
@@ -489,7 +538,7 @@ def build(root: Path = ROOT):
     current_id = "PUB-RECURSIVE-EPISTEMICS-20260917-V1.8"
     outputs = {
         "MANUSCRIPT.md": "\n".join(manuscript),
-        "README.md": "# Recursive Epistemics / Rekursive Epistemik — Edition 1.8\n\n**current_wip; Interpretation und Forschungsprogramm; keine automatische EVID.**\n\n[Gesamtmanuskript](MANUSCRIPT.md) · [RQs/Hypothesen](RESEARCH_REGISTER.md) · [Quellenindex](SOURCE_INDEX.md) · [Quellenband 1.7](LEGACY_V17.md) · [Vorforschung](PRIOR_WORK_MAP.md) · [Literatur](REFERENCES.md) · [Erweiterungsvertrag](EXTENDING.md) · [Manifest](manifest.json)\n\n"
+        "README.md": "# Recursive Epistemics / Rekursive Epistemik — Edition 1.8\n\n**current_wip; Interpretation und Forschungsprogramm; keine automatische EVID.**\n\n[Gesamtmanuskript](MANUSCRIPT.md) · [RQs/Hypothesen](RESEARCH_REGISTER.md) · [Quellenindex](SOURCE_INDEX.md) · [Corpus-Integration](CONTENT_INTEGRATION.md) · [Quellenband 1.7](LEGACY_V17.md) · [Vorforschung](PRIOR_WORK_MAP.md) · [Literatur](REFERENCES.md) · [Erweiterungsvertrag](EXTENDING.md) · [Manifest](manifest.json)\n\n"
         + "\n".join(
             f"- [Teil {p['id']} — {p['title']}]({p['file']})" for p in config["parts"]
         )
@@ -500,6 +549,8 @@ def build(root: Path = ROOT):
         "RESEARCH_REGISTER.md": "\n".join(register),
         "LEGACY_V17.md": "\n".join(legacy_text),
         "PRIOR_WORK_MAP.md": "\n".join(prior_map),
+        "CONTENT_INTEGRATION.md": "\n".join(content_map),
+        "registers/content_integration.json": json_text(content_integration),
         "registers/prior_work.json": json_text(prior),
         "registers/section_inventory.json": json_text(
             {
@@ -567,6 +618,7 @@ def build(root: Path = ROOT):
         "sources/chat_reconstruction.json",
         "sources/synthesis_claims.json",
         "sources/prior_work.json",
+        "sources/content_integration.json",
         "EXTENDING.md",
     ):
         inputs[EDITION + "/" + filename] = digest(
@@ -600,6 +652,9 @@ def build(root: Path = ROOT):
             "indexed_sections": len(sections),
             "complete_chat_archive_available": False,
             "semantic_completeness_certified": False,
+            "material_prior_work_coverage_declared": True,
+            "content_integration_entries": len(content_integration["entries"]),
+            "content_integration_ledger": "CONTENT_INTEGRATION.md",
         }
     )
     if set(outputs) != set(OUTPUTS):
