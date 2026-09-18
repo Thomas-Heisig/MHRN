@@ -9,9 +9,9 @@
     "H-EVAL-006-C"
   ],
   "protocol": "single_neuron_conformance_v2",
-  "human_review_status": "PENDING",
-  "evidence_readiness": "BLOCKED_HUMAN_REVIEW_AND_INDEPENDENT_REPLICATION",
-  "scientific_evidence": false,
+  "human_review_status": "COMPLETED",
+  "evidence_readiness": "EVID_ACCEPTED_INDEPENDENT_REPLICATION_OPEN",
+  "scientific_evidence": true,
   "automatic_evidence_promotion": false,
   "result_status": "SUPPORTED_WITHIN_PREREGISTERED_PROTOCOL",
   "review_scope": [
@@ -43,5 +43,16 @@
     "generalization to neuron models or parameter regimes not included in the frozen protocol"
   ],
   "required_human_decision": "supports_scoped_claim | rejects_scoped_claim | requests_revision",
-  "note": "A human decision may close the reviewed_evidence criterion for the scoped Stage-0 claim. It must not mark independent_replication as complete and must not rewrite source-bound DATA."
+  "note": "A human decision may close the reviewed_evidence criterion for the scoped Stage-0 claim. It must not mark independent_replication as complete and must not rewrite source-bound DATA.",
+  "human_review_decision": "supports_scoped_claim",
+  "reviewed_at": "2026-09-18",
+  "evidence_id": "EVID-2026-17",
+  "independent_replication": false,
+  "review_findings": {
+    "tolerance_pre_registered": true,
+    "v1_v2_reconciliation_clear": true,
+    "hypothesis_c_class": "semantic_mapping",
+    "scoped_claim_confirmed": true,
+    "independent_replication_remains_open": true
+  }
 }
