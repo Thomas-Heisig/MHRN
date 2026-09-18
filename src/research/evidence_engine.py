@@ -51,7 +51,8 @@ def _next_evidence_id() -> str:
         if isinstance(retired_raw, dict):
             retired = cast(dict[str, object], retired_raw).get(\n                "retired_evidence_ids", []\n            )
             if isinstance(retired, list):
-                for item in retired:
+                retired_items = cast(list[object], retired)
+                for item in retired_items:
                     if not isinstance(item, dict):
                         continue
                     evidence_id = cast(dict[str, object], item).get("evidence_id")
