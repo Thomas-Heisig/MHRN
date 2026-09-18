@@ -422,17 +422,18 @@
       "title": "Approved Stage-6 compression learning proposal LP-20260917194217",
       "source_paths": [
         "research/learning/preparations/LP-20260917194217.json",
-        "research/learning/preparations/LP-20260917194217-approved.json"
+        "research/learning/preparations/LP-20260917194217-approved.json",
+        "research/learning/preparations/LP-20260917194217-R1.json"
       ],
-      "source_role": "approved human-origin proposal; not executed",
+      "source_role": "historical approved proposal plus source-bound revision requiring reapproval; neither executed",
       "manuscript_parts": [
         "IV",
         "X",
         "XI"
       ],
       "integration_status": "semantically_integrated_as_proposal_only",
-      "integration_mode": "prospective_stage6_compression_hypothesis_and_controls",
-      "boundaries": "authority=proposal_only, executed=false, runtime_authority=none; approval is not execution, DATA or EVID."
+      "integration_mode": "prospective_stage6_compression_hypothesis_source-binding_revision_and_controls",
+      "boundaries": "Original LP-20260917194217 and its approval remain unchanged; R1 records exact CL-002-EVID and CL-003-DATA SHA-256 digests with VERIFIED trust but requires explicit new Human Approval before any execution authorization. All artifacts remain executed=false; approval/source binding are not DATA or EVID."
     },
     {
       "id": "CORPUS-CURRENT-HUMAN-REVIEWS",
@@ -453,6 +454,21 @@
       "integration_status": "semantically_integrated_without_evidence_promotion",
       "integration_mode": "review_consequences_provenance_gate_and_test-adequacy_synthesis",
       "boundaries": "RQ-DET-001 remains blocked from EVID by dirty-tree provenance pending clean rerun; EXP-GEN-0047 is not a topology-null result and remains inadequate to test H-SNN-003-B."
+    },
+    {
+      "id": "CORPUS-PAPER-OFFSHOOTS",
+      "title": "Candidate paper offshoots derived from Edition 1.8",
+      "source_paths": [
+        "research/paper_offshoots/README.md"
+      ],
+      "source_role": "bounded publication-strand planning",
+      "manuscript_parts": [
+        "X",
+        "XI"
+      ],
+      "integration_status": "semantically_integrated_as_planning_only",
+      "integration_mode": "reader_orientation_and_future_publication_decomposition",
+      "boundaries": "The offshoot index names candidate research strands only; it creates no DATA, EVID, novelty claim, submission status or permission to reuse Edition 1.8 synthesis as empirical evidence."
     }
   ]
 }

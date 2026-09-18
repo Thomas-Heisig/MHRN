@@ -93,7 +93,7 @@ Die CL-001–CL-003-Linie hat den Suchraum bereits verkleinert. Offen sind daher
 2. Danach genau eine Entscheidung A/B/C treffen: Nebenrolle, genau eine theoretisch begründete Zusatzprüfung oder Parken bis zu funktionaler Notwendigkeit.
 3. Keine automatische CL-004-Serie und keine serielle Rollenrettung.
 
-Als eng begrenzte Anschlussfrage ist `LP-20260917194217` genehmigt, aber noch **nicht ausgeführt**. Der Vorschlag prüft nicht erneut einen pauschalen SemanticMemory-Vorteil, sondern einen Speicher-/Retentions-Trade-off: 10%-Budget der semantischen Prototypen gegenüber vollem Raw-Replay-Budget mit vorab definierter 95%-Retention-Schwelle. Bis Source-Digests, Trust, Freeze, Seeds, Tasks und Analysevertrag vollständig gebunden sind, bleibt dies Proposal-only und erzeugt weder DATA noch EVID.
+Als eng begrenzte Anschlussfrage ist das historische `LP-20260917194217` genehmigt, aber noch **nicht ausgeführt**. Der Vorschlag prüft nicht erneut einen pauschalen SemanticMemory-Vorteil, sondern einen Speicher-/Retentions-Trade-off: 10%-Budget der semantischen Prototypen gegenüber vollem Raw-Replay-Budget mit vorab definierter 95%-Retention-Schwelle. Weil die ursprüngliche Approval noch einen Source-Platzhalter enthält, wurde sie nicht rückwirkend verändert. `LP-20260917194217-R1` bindet CL-002-EVID und CL-003-DATA nun per SHA-256 und `VERIFIED`-Trust, ist aber als geänderter Proposal-Inhalt **erneut genehmigungspflichtig**. Offen bleiben außerdem der eingefrorene Seed-/Taskplan, Analysevertrag, Ausführungsautorisation und Freeze. Bis diese Bedingungen erfüllt sind, erzeugt die Revision weder DATA noch EVID.
 
 Unabhängig davon bleiben als zentrale Stage-6-Forschungsfragen:
 
@@ -274,7 +274,7 @@ Für `H-SNN-003-B` muss `topology_propagation_v2` **vor Ausführung** präregist
 
 `LP-20260917194217` ist als nächster möglicher Stage-6-Zyklus vorbereitet und genehmigt, aber **noch nicht ausgeführt**. Der geplante Primärvergleich ist `semantic_prototype_replay_10pct_budget` gegen `raw_replay_full_budget`; die Erfolgsgrenze liegt bei mindestens 95 % der Raw-Replay-Retention bei Faktor-10-Speicherreduktion. `no_replay`, `random_prototype_10pct` und `learning_off` dienen als Kontrollen.
 
-Vor Ausführung sind Source-Digests, Trust-Status, Freeze, Seed-/Taskplan und Analysevertrag zu vervollständigen. Bis dahin bleibt der Eintrag Forschungsplanung und darf im Viewer nicht wie ein Ergebnis oder laufendes Experiment erscheinen.
+Die konkrete Quellbindung liegt inzwischen in `LP-20260917194217-R1` vor. Diese Revision ist noch **nicht erneut human-approved**; die Approval des Originalplans wird nicht auf geänderten Proposal-Inhalt übertragen. Vor Ausführung sind daher R1-Human-Approval, Freeze, Seed-/Taskplan, Analysevertrag und eine explizite Ausführungsautorisation zu vervollständigen. Bis dahin bleibt der Eintrag Forschungsplanung und darf im Viewer nicht wie ein Ergebnis oder laufendes Experiment erscheinen.
 
 ## 58.4 Aktueller Review-Stand und unmittelbar nächste Replikationen
 

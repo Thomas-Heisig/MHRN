@@ -22,6 +22,32 @@ Als Kandidaten, nicht als bewiesene Neuheit, bleiben insbesondere: die Trennung 
 
 Jeder dieser Kandidaten benötigt Prior-Art-Review. Die Publikation darf die Kombination beschreiben, ohne daraus automatisch einen Vorrang gegenüber vorhandenen SNN-, Agenten-, Workflow- oder Safety-Systemen abzuleiten.
 
+## 46.1 Was noch nicht fertig ist
+
+Die folgende Matrix ist eine Leserhilfe, keine neue Prozentmetrik. Sie trennt den vorhandenen technischen oder empirischen Stand von dem jeweils stärkeren wissenschaftlichen Anspruch, der noch offen ist.
+
+| Stage | Gegenwärtig belastbarer Stand | Wissenschaftlich offen / blockiert durch | Nächster legitimierter Schritt |
+| --- | --- | --- | --- |
+| **0 — einzelne Nervenzelle** | Scoped Izhikevich-/LIF-Referenzkonformität gegen Brian2 ist confirmatory DATA-seitig erfüllt. | Human-EVID-Entscheidung, unabhängige Replikation, breitere Integrator-/Parameter-/Langzeitprüfung. | Review und unabhängig autorisierte Replikation des eingefrorenen Vertrages. |
+| **1 — kleines SNN** | Technische Signalweitergabe und Netzwerkprimitive sind verifiziert. | Eigene präregistrierte Small-Network-RQ, task-basierte Kontrollen, Störungen, Generalisierung. | Kleine kausale Netzwerkstudie mit matched controls einfrieren. |
+| **2 — stabile Rekurrenz** | Kleiner kontrollierter Recurrence-Effekt ist reproduzierbar beobachtet. | Breite Generalisierung; sauberer clean-tree Determinismus-/Replikationsnachweis. | Hash-gebundene clean-tree Replikation und größere getrennte Regime. |
+| **3 — plastisches Nervengewebe** | STDP, Eligibility, Drei-Faktor-Regeln, Homeostase und Strukturplastizität sind technisch vorhanden. | Held-out Nutzen, Interaktionen, Langzeitstabilität und Ressourcenwirkung. | Learning-on/off/Frozen/Sham-Kontrollen mit vorab definierten Task-Endpunkten. |
+| **4 — spezialisierte Areale** | Audio/Vision/Digital-Pfade und E01–E05 liefern enge synthetische DATA. | Generalistenvergleich, Cross-Modal-Transfer, Läsion/Shuffle/Frozen, reale Ressourcenmessung. | Matched spezialisierte-vs.-generalistische Ablationen. |
+| **5 — integriertes Nervensystem** | Kontrollierter synthetischer Closed Loop ist demonstriert. | `H-EMB-001-B`, Real-Device-Übertragbarkeit, kausale Feedback-Wirkung. | Präregistrierter Closed-Loop-vs.-yoked/interrupted Vergleich unter Safety-Gates. |
+| **6 — Gedächtnis / Weltmodell** | Replay-Beitrag ist stärker getragen; SemanticMemory trägt Struktur, aber keinen bestätigten Zusatznutzen gegenüber matched Raw Replay. | CL-003 Human Review, Kompressionshypothese noch unausgeführt, Prediction Error und action-conditioned World Model offen. | Review abschließen; danach nur den jeweils vorab begründeten nächsten Zyklus ausführen. |
+| **7 — Selbstmodell / Identität** | Technische Profile, Zustände, Lineage und Restore-Verträge existieren. | Kausale Self/Other-Differenzierung und funktionaler Nutzen eines Selbstmodells. | Interventionelle Self/Other-Protokolle statt Identitätsmetadaten als Proxy. |
+| **8 — lebenslange Entwicklung** | Vorläufer zu Continual Learning und Persistenz existieren. | Starke autonome lebenslange Entwicklung ist nicht gezeigt. | Shared-network Langzeitprotokolle mit Ressourcen-matched Ablationen. |
+| **9 — integrierte Kognition** | Forschungsfragen und Komponentenprogramme existieren. | Claim-relevante confirmatory DATA für integrierte Kognition fehlen. | Einzelmechanismen operationalisieren, bevor sie kombiniert werden. |
+| **10 — Bewusstsein / starke subjektive Claims** | Nur Begriffs-, Safety- und Welfare-Grenzen sind formuliert. | Kein Messvertrag rechtfertigt derzeit Bewusstseins- oder Sentienzbehauptungen. | Keine Claim-Promotion; zuerst theoretisch und ethisch tragfähige Messkriterien entwickeln. |
+
+Diese Übersicht ersetzt weder Teil XI noch Registry und Experimentartefakte. Ihr Zweck ist, einem externen Reviewer auf einer Seite zu zeigen, **wo die Arbeit tatsächlich steht, was bereits gemessen wurde und welche stärkere Aussage noch nicht gerechtfertigt ist**.
+
+## 46.2 Ableitbare wissenschaftliche Nebenstränge
+
+Die Gesamtarbeit ist der Kontext, nicht das Format jedes späteren Fachbeitrags. Aus ihr werden daher kleinere, disziplinär enger prüfbare Paper-Stränge abgeleitet. Der kanonische Planungsindex liegt unter `research/paper_offshoots/README.md`. Er ist ausdrücklich **Forschungsplanung, keine Publikation und keine EVID**.
+
+Zum aktuellen Stand sind sechs Stränge hinreichend klar benennbar: empirische Grenzen semantischer Verdichtung; Content/Compute-Trennung und kontrollierte periphere neuronale Werkzeuge; Scientific Integrity und rekursive Epistemik in KI-assistierter Einzelforschung; Post-Objective-Transition/Corrigibility; Geometrie-zu-Dynamik-Kopplung für multidimensionale SNN-Topologien; sowie kontrolliertes synthetisches Embodiment. Jeder Strang muss seine eigene RQ, Quellenbasis, Zielgruppe, Claim-Grenze und gegebenenfalls eigene Präregistrierung besitzen.
+
 ## 47. Revision statt Abschluss
 
 Edition 1.8 ist kein Endpunkt. Ein guter Syntheseclaim nennt, was ihn ändern würde. Neue Replikation kann Stage-Reife erhöhen oder senken. Neue Prior Art kann einen Neuheitskandidaten in bekannte Praxis einordnen. Ein besseres Experiment kann einen bisherigen Nullbefund enger begrenzen oder bestätigen. Ein originales Chat-/Codeartefakt kann die Schaffensgeschichte korrigieren.
