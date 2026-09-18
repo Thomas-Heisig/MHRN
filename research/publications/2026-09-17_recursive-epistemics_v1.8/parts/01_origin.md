@@ -101,3 +101,42 @@ Die Vorgängerfassung dokumentiert die persönliche Motivation des Autors als Mi
 Die verbindliche Regel lautet deshalb: **Nähe erzeugt Fragen, nicht Antworten.** Persönliche Erfahrung, handwerkliche Systemintuition oder interdisziplinäre Analogien dürfen einen Suchraum öffnen; sie ersetzen weder neurowissenschaftliche Fachliteratur noch Statistik, Replikation, Ethikprüfung oder Peer Review.
 
 Gerade weil MHRN außerhalb institutioneller Forschungsstrukturen entstanden ist, muss die Arbeit ihre Grenzen expliziter machen: Was ist Selbstbeschreibung? Was ist externe Theorie? Was ist implementierter Mechanismus? Was ist DATA? Was wurde menschlich reviewt? Was ist noch offen? Diese Trennung ist nicht nur Dokumentationsstil, sondern ein Kompensationsmechanismus für fehlende institutionelle Selbstverständlichkeit.
+
+## 4.6 Forschungsproblem, Leitfrage und dissertationsähnliche Gesamtarchitektur
+
+Edition 1.8 versteht sich als wissenschaftliche Monographie im Work-in-Progress-Status. Sie ist **keine eingereichte Dissertation und kein akademischer Gradanspruch**, übernimmt aber bewusst eine dissertationsähnliche Forschungslogik: Problemstellung, Forschungsstand, Forschungslücke, Leitfrage, Teilfragen, Methodik, Ergebnisse, Diskussion, Limitationen und revidierbare Schlussfolgerungen werden sichtbar getrennt.
+
+### Übergeordnetes Forschungsproblem
+
+Das Grundproblem dieser Arbeit ist nicht allein der Bau eines größeren spikenden Systems. Es lautet: **Wie kann eine modular wachsende, verkörperbare spikende Architektur so untersucht werden, dass technische Existenz, kausaler Mechanismus, empirischer Nutzen, Provenienz und normative Reichweite nicht miteinander verwechselt werden?**
+
+Aus der bisherigen Schaffensgeschichte folgt eine zweite Ebene des Problems: Das Forschungsobjekt verändert sich während seiner Untersuchung. Neue Module können Hypothesen erzeugen, negative Resultate können Architektur reduzieren, KI-Werkzeuge können Recherche und Implementierung beschleunigen, und die Dokumentation selbst beeinflusst spätere Entscheidungen. Deshalb muss nicht nur das System, sondern auch der Forschungsprozess kontrollierbar und revidierbar sein.
+
+### Zentrale Leitfrage
+
+> **Wie lässt sich eine evolvierende spikende Forschungsarchitektur so entwickeln, operationalisieren und prüfen, dass behauptete Funktionalität und Lernkausalität durch explizite Kontrollen, Provenienz und revidierbare Evidenzverträge getragen werden, während stärkere kognitive, biologische oder normative Aussagen nur dort zugelassen werden, wo ihre eigenen Prüfbedingungen erfüllt sind?**
+
+Diese Leitfrage ist breiter als eine einzelne Hypothese. Sie wird durch mehrere Teilstudien beantwortet, die unterschiedliche Evidenzformen besitzen und deshalb nicht in einen gemeinsamen Erfolgswert gepresst werden.
+
+### Arbeitsleitthese
+
+Die leitende, revidierbare Arbeitsthese lautet:
+
+> **Wissenschaftliche Reife entsteht in MHRN nicht durch die Addition möglichst vieler Mechanismen, sondern durch deren empirische Selektion unter expliziten Kontroll-, Provenienz- und Evidenzbedingungen.**
+
+Diese These ist kein vorweggenommenes Ergebnis. Sie wird daran gemessen, ob die Forschungszweige tatsächlich zeigen, dass schwächere Erklärungen ausgeschlossen, negative Resultate architektonisch verarbeitet, offene Hypothesen offen gelassen und neue Funktionen erst nach geeigneten Vergleichsbedingungen wissenschaftlich aufgewertet werden.
+
+### Teilstudien und Forschungszweige
+
+| Forschungszweig | Wissenschaftliche Kernfrage | Primärer methodischer Zugriff | Gegenwärtige Grenze |
+| --- | --- | --- | --- |
+| **Basale neuronale Dynamik und Determinismus** | Sind definierte Einzelzell- und Netzwerktrajektorien unter kontrollierten Bedingungen reproduzierbar und referenzkonform? | Referenzvergleich, Same-Seed-Replikate, Zustands-/Hash-Provenienz | keine allgemeine Determinismus- oder biologische Äquivalenzbehauptung |
+| **Rekurrenz, Topologie und 5D** | Welche Netzwerkunterschiede sind kausal auf Rekurrenz beziehungsweise Geometrie zurückzuführen? | matched controls, Ablation, Topologie-/Delay-Kopplung, Activity-Adequacy-Gates | 5D-v1 war für den zentralen Geometrieclaim nicht testadäquat |
+| **Plastizität und adaptive Dynamik** | Verändern STDP, Drei-Faktor-Regeln, Homeostase und Strukturplastizität Lernen oder Stabilität gegenüber geeigneten Kontrollen? | learning-on/off, Sham, Frozen, Perturbation und gehaltene Testdaten | Implementierung ist nicht gleich funktionaler Lernnachweis |
+| **Spezialisierte Pfade und MSBA** | Liefern modalitätsspezifische und adaptive Pfade unter kontrollierten Ressourcenbedingungen messbaren technischen Nutzen? | E01–E05, synthetische Kosten-/Recovery-/Integritätsvergleiche | kein Nachweis emergenter Arealbildung oder allgemeiner Überlegenheit |
+| **Embodiment** | Kann eine Sensor–SNN–Aktor–Feedback-Kette zielgerichtete Wirkung unter kontrollierten Störungen erzeugen und kausal vom Open Loop getrennt werden? | Closed Loop, Fehlerarme, Yoked-/Interrupted-Controls | Realweltübertragbarkeit und `H-EMB-001-B` bleiben offen |
+| **Gedächtnis, Replay und Weltmodell** | Welche Retention stammt von Replay, semantischer Verdichtung oder einem tatsächlich kausal wirksamen Vorhersagemodell? | matched Replay, Random-Prototypes, Holdout, Kompressions- und Modellkontrollen | SemanticMemory-Zusatznutzen nicht bestätigt; Kompressionsfrage noch präregistrierungspflichtig |
+| **Epistemologie und Forschungsprozess** | Verbessern Provenienz-, Freeze-, Review- und EVID-Gates die Qualität der wissenschaftlichen Entscheidungen? | Prozessrekonstruktion, Status-Audit, Kontrafaktik, Revisionstracing | interne Verbesserung ist keine unabhängige externe Validierung |
+| **Ethik, Safety und Autonomie** | Welche Kontroll-, Ziel- und Welfare-Fragen entstehen bei zunehmender Wirk- und Lernfähigkeit? | normative Analyse, Szenarien, technische Safety-Verträge | keine Prognose, kein Bewusstseins- oder Sentienznachweis |
+
+Damit besitzt jeder Forschungszweig einen eigenen wissenschaftlichen Gegenstand. Teil IV behandelt die empirischen Zweige als Teilstudien; Teil VI die epistemologische Methodik; Teil VIII die normative Analyse; Teil IX die Theorieentwicklung; Teil X übernimmt die General Discussion; Teil XI formuliert Limitationen, offene Hypothesen und die priorisierte Forschungsagenda.
