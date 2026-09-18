@@ -166,8 +166,7 @@ test('canonical file viewer: split editor live preview and stale-write conflict 
 
 test('central research review inbox exposes human review actions', async ({ page }) => {
   await page.goto('http://127.0.0.1:4174/');
-  await selectLabStage(page, 'question');
-  await selectResearchView(page, 'review');
+  await selectRoute(page, 'review', 'inbox');
   await expect(page.locator('#review-inbox-list')).toBeVisible();
   const inboxResponse = await page.request.get('/api/research/reviews');
   expect(inboxResponse.ok()).toBeTruthy();
