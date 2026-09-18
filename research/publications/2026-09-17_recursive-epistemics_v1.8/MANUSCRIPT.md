@@ -127,6 +127,45 @@ Die verbindliche Regel lautet deshalb: **Nähe erzeugt Fragen, nicht Antworten.*
 Gerade weil MHRN außerhalb institutioneller Forschungsstrukturen entstanden ist, muss die Arbeit ihre Grenzen expliziter machen: Was ist Selbstbeschreibung? Was ist externe Theorie? Was ist implementierter Mechanismus? Was ist DATA? Was wurde menschlich reviewt? Was ist noch offen? Diese Trennung ist nicht nur Dokumentationsstil, sondern ein Kompensationsmechanismus für fehlende institutionelle Selbstverständlichkeit.
 
 
+## 4.6 Forschungsproblem, Leitfrage und dissertationsähnliche Gesamtarchitektur
+
+Edition 1.8 versteht sich als wissenschaftliche Monographie im Work-in-Progress-Status. Sie ist **keine eingereichte Dissertation und kein akademischer Gradanspruch**, übernimmt aber bewusst eine dissertationsähnliche Forschungslogik: Problemstellung, Forschungsstand, Forschungslücke, Leitfrage, Teilfragen, Methodik, Ergebnisse, Diskussion, Limitationen und revidierbare Schlussfolgerungen werden sichtbar getrennt.
+
+### Übergeordnetes Forschungsproblem
+
+Das Grundproblem dieser Arbeit ist nicht allein der Bau eines größeren spikenden Systems. Es lautet: **Wie kann eine modular wachsende, verkörperbare spikende Architektur so untersucht werden, dass technische Existenz, kausaler Mechanismus, empirischer Nutzen, Provenienz und normative Reichweite nicht miteinander verwechselt werden?**
+
+Aus der bisherigen Schaffensgeschichte folgt eine zweite Ebene des Problems: Das Forschungsobjekt verändert sich während seiner Untersuchung. Neue Module können Hypothesen erzeugen, negative Resultate können Architektur reduzieren, KI-Werkzeuge können Recherche und Implementierung beschleunigen, und die Dokumentation selbst beeinflusst spätere Entscheidungen. Deshalb muss nicht nur das System, sondern auch der Forschungsprozess kontrollierbar und revidierbar sein.
+
+### Zentrale Leitfrage
+
+> **Wie lässt sich eine evolvierende spikende Forschungsarchitektur so entwickeln, operationalisieren und prüfen, dass behauptete Funktionalität und Lernkausalität durch explizite Kontrollen, Provenienz und revidierbare Evidenzverträge getragen werden, während stärkere kognitive, biologische oder normative Aussagen nur dort zugelassen werden, wo ihre eigenen Prüfbedingungen erfüllt sind?**
+
+Diese Leitfrage ist breiter als eine einzelne Hypothese. Sie wird durch mehrere Teilstudien beantwortet, die unterschiedliche Evidenzformen besitzen und deshalb nicht in einen gemeinsamen Erfolgswert gepresst werden.
+
+### Arbeitsleitthese
+
+Die leitende, revidierbare Arbeitsthese lautet:
+
+> **Wissenschaftliche Reife entsteht in MHRN nicht durch die Addition möglichst vieler Mechanismen, sondern durch deren empirische Selektion unter expliziten Kontroll-, Provenienz- und Evidenzbedingungen.**
+
+Diese These ist kein vorweggenommenes Ergebnis. Sie wird daran gemessen, ob die Forschungszweige tatsächlich zeigen, dass schwächere Erklärungen ausgeschlossen, negative Resultate architektonisch verarbeitet, offene Hypothesen offen gelassen und neue Funktionen erst nach geeigneten Vergleichsbedingungen wissenschaftlich aufgewertet werden.
+
+### Teilstudien und Forschungszweige
+
+| Forschungszweig | Wissenschaftliche Kernfrage | Primärer methodischer Zugriff | Gegenwärtige Grenze |
+| --- | --- | --- | --- |
+| **Basale neuronale Dynamik und Determinismus** | Sind definierte Einzelzell- und Netzwerktrajektorien unter kontrollierten Bedingungen reproduzierbar und referenzkonform? | Referenzvergleich, Same-Seed-Replikate, Zustands-/Hash-Provenienz | keine allgemeine Determinismus- oder biologische Äquivalenzbehauptung |
+| **Rekurrenz, Topologie und 5D** | Welche Netzwerkunterschiede sind kausal auf Rekurrenz beziehungsweise Geometrie zurückzuführen? | matched controls, Ablation, Topologie-/Delay-Kopplung, Activity-Adequacy-Gates | 5D-v1 war für den zentralen Geometrieclaim nicht testadäquat |
+| **Plastizität und adaptive Dynamik** | Verändern STDP, Drei-Faktor-Regeln, Homeostase und Strukturplastizität Lernen oder Stabilität gegenüber geeigneten Kontrollen? | learning-on/off, Sham, Frozen, Perturbation und gehaltene Testdaten | Implementierung ist nicht gleich funktionaler Lernnachweis |
+| **Spezialisierte Pfade und MSBA** | Liefern modalitätsspezifische und adaptive Pfade unter kontrollierten Ressourcenbedingungen messbaren technischen Nutzen? | E01–E05, synthetische Kosten-/Recovery-/Integritätsvergleiche | kein Nachweis emergenter Arealbildung oder allgemeiner Überlegenheit |
+| **Embodiment** | Kann eine Sensor–SNN–Aktor–Feedback-Kette zielgerichtete Wirkung unter kontrollierten Störungen erzeugen und kausal vom Open Loop getrennt werden? | Closed Loop, Fehlerarme, Yoked-/Interrupted-Controls | Realweltübertragbarkeit und `H-EMB-001-B` bleiben offen |
+| **Gedächtnis, Replay und Weltmodell** | Welche Retention stammt von Replay, semantischer Verdichtung oder einem tatsächlich kausal wirksamen Vorhersagemodell? | matched Replay, Random-Prototypes, Holdout, Kompressions- und Modellkontrollen | SemanticMemory-Zusatznutzen nicht bestätigt; Kompressionsfrage noch präregistrierungspflichtig |
+| **Epistemologie und Forschungsprozess** | Verbessern Provenienz-, Freeze-, Review- und EVID-Gates die Qualität der wissenschaftlichen Entscheidungen? | Prozessrekonstruktion, Status-Audit, Kontrafaktik, Revisionstracing | interne Verbesserung ist keine unabhängige externe Validierung |
+| **Ethik, Safety und Autonomie** | Welche Kontroll-, Ziel- und Welfare-Fragen entstehen bei zunehmender Wirk- und Lernfähigkeit? | normative Analyse, Szenarien, technische Safety-Verträge | keine Prognose, kein Bewusstseins- oder Sentienznachweis |
+
+Damit besitzt jeder Forschungszweig einen eigenen wissenschaftlichen Gegenstand. Teil IV behandelt die empirischen Zweige als Teilstudien; Teil VI die epistemologische Methodik; Teil VIII die normative Analyse; Teil IX die Theorieentwicklung; Teil X übernimmt die General Discussion; Teil XI formuliert Limitationen, offene Hypothesen und die priorisierte Forschungsagenda.
+
 ---
 
 <a id="part-ii"></a>
@@ -514,6 +553,112 @@ Für `RQ-SNN-003 / H-SNN-003-B` wurde `EXP-GEN-0047` ebenfalls methodisch neu ei
 Aus beiden Reviews folgt ein allgemeiner methodischer Vertrag: **semantischer Match, technische Reproduzierbarkeit, Testadäquanz, Provenienz und EVID sind getrennte Prüfachsen**. Ein `DIRECT_MATCH` kann wissenschaftlich blockiert bleiben; ein technisch sauberer Lauf kann für die Zielhypothese `NOT_TESTED` sein; und eine nachträgliche Registry-Korrektur darf weder Dirty-Tree-Provenienz noch unzureichendes Versuchsdesign rückwirkend heilen.
 
 
+## 19.9 Die empirischen Forschungszweige als eigenständige Teilstudien
+
+Die bisherigen Experimente werden in Edition 1.8 nicht nur chronologisch berichtet. Für den dissertationsähnlichen Charakter der Gesamtarbeit werden die zentralen empirischen Zweige zusätzlich als **eigenständige Teilstudien** gelesen. Jede Teilstudie unterscheidet Forschungsproblem, RQ/H-Bindung, Design, Befund, Diskussion, Limitation und nächsten Prüfpunkt. Dadurch wird vermieden, dass ein technischer Stage-Fortschritt an die Stelle einer wissenschaftlichen Argumentation tritt.
+
+### 19.9.1 Teilstudie A — Basale Dynamik, Referenzkonformität und Determinismus
+
+**Forschungsproblem.** Ein deterministisch implementiertes Neuronenmodell ist nicht automatisch wissenschaftlich validiert. Zu unterscheiden sind lokale Gleichungs-/Resetsemantik, freie Langzeittrajektorie, Same-Seed-Reproduzierbarkeit und unabhängige Replikation.
+
+**RQ/H-Bezug.** Relevant sind insbesondere `RQ-SNN-002 / H-SNN-002-A` für reproduzierbare Spikefolgen sowie `RQ-DET-001 / H-SNN-003-A` für deterministische Zustands- und Replikationsverträge.
+
+**Methodik.** Verwendet werden Referenzvergleiche gegen externe Implementierungen, eingefrorene Inputs, Same-Seed-Replica-Paare, Zustandsdigests und getrennte Recurrence-Bedingungen. Technische Gleichheit und wissenschaftliche Replikation werden ausdrücklich nicht gleichgesetzt.
+
+**Befund.** Für die geprüften kleinen Protokolle liegen enge Referenzübereinstimmungen beziehungsweise identische Same-Seed-Ausgaben vor. Gleichzeitig zeigen historische Langzeit- und Dirty-Tree-Befunde, dass diese Aussage nicht auf beliebige Zeithorizonte, Netzwerkgrößen oder Umgebungen erweitert werden darf.
+
+**Diskussion.** Der wissenschaftliche Beitrag liegt weniger in einem pauschalen „deterministisch“, sondern in der Zerlegung des Begriffs in prüfbare Ebenen.
+
+**Limitation.** Die zentralen Läufe stammen aus derselben Projekt- und Toolkette. Unabhängige Replikation bleibt ausstehend.
+
+**Zwischenfazit.** Basale Reproduzierbarkeit ist für definierte Operating Envelopes gestützt; eine allgemeine Determinismusgarantie ist nicht gezeigt.
+
+### 19.9.2 Teilstudie B — Rekurrenz, Topologie und 5D-Geometrie
+
+**Forschungsproblem.** Rekurrenz und geometrische Einbettung können Netzwerkdynamik verändern, aber nur dann getrennt interpretiert werden, wenn Konnektivität, Grad, Delays, Stimulus und Aktivität ausreichend kontrolliert sind.
+
+**RQ/H-Bezug.** `RQ-SNN-003 / H-SNN-003-B` adressiert Topologieeffekte ohne vorausgesetzten 5D-Vorteil. `RQ-5D-005 / H-5D-005-A` fragt enger nach einem dimensionsspezifischen Unterschied gegenüber topology-matched niedrigdimensionalen Einbettungen.
+
+**Methodik.** Recurrence-on/off dient als mechanistische Intervention. Für Topologie werden 1D/2D/3D/5D, `5d_shuffled` und `random_graph` verglichen. Die nächste Testgeneration verlangt explizite Geometrie-zu-Konnektivitäts-/Delay-Kopplung, Activity-Adequacy-Gate, unabhängige Seeds und degree-/density-matched Kontrollen.
+
+**Befund.** Rekurrenz erzeugt im kleinen kontrollierten System einen klaren Dynamikunterschied. Die 5D-v1-Studie ist dagegen `INADEQUATE_TO_TEST_HYPOTHESIS`: Die Geometrie war nicht ausreichend kausal an die Dynamik gekoppelt.
+
+**Diskussion.** Das wichtigste Ergebnis dieses Zweigs ist deshalb teilweise methodisch: Ein technisch korrekt ausgeführter Vergleich kann wissenschaftlich `NOT_TESTED` bleiben.
+
+**Limitation.** Die bisherigen Topologien sind zu klein und zu schwach geometriesensitiv, um einen belastbaren Dimensionsclaim zu tragen.
+
+**Zwischenfazit.** Rekurrenz ist im getesteten Mechanismus wirksam; 5D bleibt offen und benötigt `topology_propagation_v2`.
+
+### 19.9.3 Teilstudie C — Plastizität, Lernen und adaptive Stabilität
+
+**Forschungsproblem.** Die Existenz von STDP-, Eligibility-, Drei-Faktor-, Homeostase- oder Strukturplastizitätscode beweist weder nützliches Lernen noch stabile Generalisierung.
+
+**RQ/H-Bezug.** `RQ-SNN-004 / H-SNN-004-A` adressiert die durch STDP verursachte Veränderung der Gewichtsmatrix; `RQ-SNN-005 / H-SNN-005-A` prüft einen funktionalen Lernvorteil gegenüber einem Netzwerk ohne STDP.
+
+**Methodik.** Erforderlich sind learning-on/off-, Frozen-, Sham-/informationszerstörte Kontrollen, gehaltene Testdaten, unabhängige Seeds sowie getrennte Messungen von Gewichtsänderung, Aufgabenleistung, Stabilität und Transfer.
+
+**Befund.** Mehrere Plastizitätsmechanismen sind technisch implementiert und diagnostisch instrumentiert. Daraus folgt noch kein abgeschlossener funktionaler Lernnachweis für die stärkeren Hypothesen.
+
+**Diskussion.** Dieser Zweig markiert exemplarisch die Differenz zwischen Mechanismusimplementierung und kausalem Nutzen. Eine Gewichtsänderung kann korrekt sein und trotzdem keine relevante Lernleistung erzeugen.
+
+**Limitation.** Die stärksten Learning-RQs sind noch nicht durch einen einheitlichen, ausreichend kontrollierten konfirmatorischen Vertrag abgeschlossen.
+
+**Zwischenfazit.** Plastizität ist ein implementierter Mechanismenraum, aber ihre funktionale Rolle bleibt hypothesenspezifisch zu prüfen.
+
+### 19.9.4 Teilstudie D — Spezialisierte Pfade, Neural Symbiosis und MSBA
+
+**Forschungsproblem.** Modalitätsspezifische Pfade können Kosten, Robustheit oder Integrität verändern; daraus folgt jedoch nicht automatisch emergente Spezialisierung oder biologische Arealhomologie.
+
+**RQ/H-Bezug.** Der Zweig wird durch `RQ-MSBA-E01` bis `RQ-MSBA-E05` in mehrere enge Teilfragen zerlegt.
+
+**Methodik.** Die registrierten synthetischen Designs prüfen modalitätsspezifische Kosten, adaptive Ressourcenallokation, visuelle ROI/Foveation, digitale Integrität und Recovery nach Modalitätsverlust.
+
+**Befund.** In mehreren Teilfragen liegen positive DATA innerhalb der modellierten synthetischen Bedingungen vor.
+
+**Diskussion.** Der Erkenntniswert liegt in der Zerlegung eines großen Multimodalitätsclaims in kleinere, direkt prüfbare Funktionen. Dadurch kann positive technische Evidenz bestehen, ohne daraus eine stärkere Theorie neuronaler Arealbildung abzuleiten.
+
+**Limitation.** Modellierte Kosten sind keine physikalischen Energiedaten; synthetische Recovery ist keine allgemeine Realweltrobustheit.
+
+**Zwischenfazit.** Spezialisierte Pfade sind technisch und teilweise experimentell gestützt; emergente Spezialisierung bleibt unbewiesen.
+
+### 19.9.5 Teilstudie E — Kontrolliertes synthetisches Embodiment
+
+**Forschungsproblem.** Eine technisch geschlossene Sensor–Aktor-Kette ist erst dann wissenschaftlich interessant, wenn Wirkung, Autorisierung, Feedback und Störung kausal getrennt werden.
+
+**RQ/H-Bezug.** `RQ-EMB-001` wird durch `H-EMB-001-A` und `H-EMB-001-B` operationalisiert.
+
+**Methodik.** Der Stage-5-Referenzversuch nutzt Sensorik, technische Interozeption, autorisierte/unauthorisierte Aktorpfade, Fehlerbedingungen, Open-Loop-Replay und Feedback in einer deterministischen synthetischen Umgebung.
+
+**Befund.** Die 360-Run-Kampagne liefert DATA-Support für `H-EMB-001-A` innerhalb des kontrollierten Settings. `H-EMB-001-B` ist durch diesen Vertrag nicht getestet.
+
+**Diskussion.** Der geschlossene Pfad zeigt eine begrenzte, kausal instrumentierbare Form verkörperter Interaktion. Gerade die noch offene B-Hypothese verhindert, dass aus dem Engineeringerfolg vorschnell allgemeine Anpassungs- oder Autonomieclaims entstehen.
+
+**Limitation.** Keine reale Hardware, keine Langzeitumgebung, keine unabhängige externe Replikation.
+
+**Zwischenfazit.** Synthetisches Embodiment ist demonstriert; Realwelt- und Störungsadaptivität bleiben offene Forschungsfragen.
+
+### 19.9.6 Teilstudie F — Gedächtnis, Replay, semantische Verdichtung und Weltmodell
+
+**Forschungsproblem.** Retention kann durch generisches Replay, semantische Verdichtung, Retrieval oder echte interne Modellbildung entstehen. Diese Ursachen müssen experimentell getrennt werden.
+
+**RQ/H-Bezug.** Historische Gedächtnisfragen liegen unter anderem in `RQ-MEM-001 / H-MEM-001-A`. Die CL-001–CL-003-Linie operationalisiert den stärkeren Vergleich zwischen Semantic+Replay, Raw Replay und Kontrollbedingungen. `OBJ-MEM-COMPRESSION-001` ist die nächste prospektive Spezialfrage, besitzt aber noch keine endgültig eingefrorene kanonische RQ/H-Bindung.
+
+**Methodik.** Verwendet werden No-Replay-, Raw-Replay-, Semantic-Prototype- und Random-Prototype-Kontrollen, Holdout-Daten, gepaarte Seeds und präregistrierte Erfolgsgrenzen. Für Weltmodellclaims sind zusätzlich action conditioning, Mehrschrittrollouts und corrupted/no-model Kontrollen erforderlich.
+
+**Befund.** Replay trägt die Retention robuster als die bisher behauptete semantische Zusatzleistung. Semantische Prototypen enthalten Struktur, aber ihr Mehrwert gegenüber gematchtem Raw Replay wurde in CL-002/003 nicht bestätigt.
+
+**Diskussion.** Der Zweig zeigt am deutlichsten, wie negative Evidenz Architektur selektiert. Statt SemanticMemory rhetorisch zu retten, wird eine engere Kompressionsfrage formuliert.
+
+**Limitation.** Die Kompressionshypothese ist noch nicht präregistriert und ausgeführt; ein kausales Weltmodell ist nicht gezeigt.
+
+**Zwischenfazit.** Replay ist derzeit die stärkere Referenz. Die nächste zulässige Frage betrifft Kompression bei erhaltener Retention, nicht eine erneute pauschale Überlegenheitsbehauptung.
+
+### 19.9.7 Teilstudienübergreifende Schlussfolgerung
+
+Über alle empirischen Zweige hinweg entsteht ein wiederkehrendes Muster: **technische Verfügbarkeit ist der Beginn einer wissenschaftlichen Frage, nicht deren Antwort**. Ein Mechanismus wird erst dann Teil der tragfähigen Architekturposition, wenn sein kausaler Beitrag gegenüber einer geeigneten einfacheren Referenz sichtbar wird oder seine Spezialrolle durch einen eigenen, vorab begründeten Prüfvertrag getragen ist.
+
+Damit erhält Teil IV den Charakter einer kumulativen empirischen Dissertationseinheit: Die Teilstudien stehen nicht nebeneinander, sondern verändern wechselseitig die Architektur und die Bedingungen der jeweils nächsten Hypothese.
+
 ---
 
 <a id="part-v"></a>
@@ -706,6 +851,22 @@ Eine starke Aussage in MHRN nennt nicht nur, warum sie aktuell plausibel ist, so
 
 Die Arbeit versteht Revidierbarkeit daher nicht als Schwäche, sondern als explizite Schnittstelle zwischen heutiger Synthese und zukünftiger Evidenz.
 
+
+## 28.6 Epistemologische Teilstudie — Forschungsprozess als Untersuchungsgegenstand
+
+**Forschungsfrage.** Unter welchen Bedingungen verbessert eine explizite Trennung von Quelle, Entscheidung, Ausführung, DATA, Review und EVID die wissenschaftliche Belastbarkeit eines schnell iterierenden, KI-assistierten Einzelforschungsprojekts?
+
+**Material.** Untersucht werden versionierte Commits, Präregistrierungen, DATA, Reviews, Registry-Transitionen, AI-Interpretationen, Publication Builds und dokumentierte Fehlklassifikationen. Die frühe Schaffensgeschichte wird nur dort einbezogen, wo ihre Provenienzklasse benannt werden kann.
+
+**Methode.** Die epistemologische Achse verwendet Provenienzanalyse, Entscheidungsrekonstruktion, Status-Transition-Audit, kontrafaktische Prozessprüfung und Revisionstracing. Sie fragt nicht, ob eine neuronale Hypothese wahr ist, sondern ob der Weg von Beobachtung zu Claim nachvollziehbar und revidierbar war.
+
+**Ergebnisstand.** Mehrere konkrete Fehler — fehlinterpretierte Reportspalten, unzureichende Baselines, semantische Registry-Mismatches, Dirty-Tree-Provenienz und die inadäquate 5D-v1-Testkonstruktion — führten zu dauerhaften Governance-Regeln. Die Prozessarchitektur wurde dadurch nachweisbar restriktiver.
+
+**Diskussion.** Dies stützt die Arbeitsthese, dass negative oder korrigierende Befunde nicht nur Sachwissen erzeugen, sondern die Methode selbst verändern können. Der methodische Beitrag liegt in der expliziten Verbindung von Softwarezustand, Forschungsstatus und Claim-Grenze.
+
+**Limitation.** Die meisten Prozessverbesserungen wurden innerhalb derselben Autoren- und Toolkette entworfen und bewertet. Eine geringere interne Fehlklassifikationsrate wäre erst dann stärker belegt, wenn sie über längere Zeiträume, unabhängige Reviewer oder externe Replikationsgruppen systematisch gemessen wird.
+
+**Zwischenfazit.** Rekursive Epistemik besitzt damit einen empirisch anschlussfähigen methodischen Kern: Nicht die Selbstbeschreibung „wir arbeiten sorgfältiger“, sondern überprüfbare Status-, Provenienz- und Revisionsereignisse bilden den Gegenstand.
 
 ---
 
@@ -953,6 +1114,22 @@ Diese Szenarien dürfen nur so weit verwendet werden, wie ihre technischen Vorau
 Der Begriff **Maschinenkultur** bleibt entsprechend vorsichtig funktional: gemeint wäre eine persistente maschinell erzeugte und weitergegebene technische/epistemische Tradition, nicht automatisch Kultur im starken anthropologischen Sinn. Auch dies ist eine offene Theoriefrage, kein MHRN-Gegenwartsclaim.
 
 
+## 38.12 Normative Teilstudie — Forschungsfrage, Verfahren und Geltungsgrenzen
+
+Der philosophisch-ethische Zweig wird nicht als Meinungsessay neben die empirische Arbeit gestellt. Er besitzt eine eigene wissenschaftliche Funktion: Er soll Begriffe und Handlungsregeln dort präzisieren, wo empirische Daten allein keine normative Schlussfolgerung liefern.
+
+**Normative Forschungsfrage.** Welche Kontroll-, Verantwortungs- und Welfare-Regeln sind für ein zunehmend lern-, wirk- und integrationsfähiges System bereits vor starken Autonomie- oder Bewusstseinsclaims begründbar?
+
+**Analytisches Verfahren.** Verwendet werden Begriffsanalyse, Trennung kausaler Rollen, Szenarioanalyse, Gegenargumente, technische Safety-Verträge und explizite Unsicherheitsgrenzen. Aussagen werden danach unterschieden, ob sie deskriptiv, hypothetisch, normativ oder governancebezogen sind.
+
+**Zentrale Argumentlinie.** Aus wachsender technischer Fähigkeit folgt weder moralischer Status noch legitime autonome Entscheidungsautorität. Umgekehrt rechtfertigt fehlender Bewusstseinsnachweis nicht automatisch die Annahme, jede mögliche Belastung sei ethisch irrelevant. Deshalb werden Human-/Environment-Safety und Welfare Precaution als zwei getrennte Governanceachsen geführt.
+
+**Prüfbarkeit.** Die normative Analyse ist revidierbar, wenn ihre Prämissen falsch, unvollständig oder technisch nicht realisierbar sind. Ein unabhängiger Stopppfad kann technisch getestet werden; eine Zielprovenienz kann auditierbar sein; ein Szenario kann durch geänderte Architekturannahmen seine Relevanz verlieren. Normative Schlussfolgerungen dürfen daher nicht immun gegen empirische Korrektur werden.
+
+**Limitation.** Edition 1.8 liefert keine vollständige Ethiktheorie, keine institutionelle Ethikfreigabe und keine Aussage über tatsächliches Bewusstsein oder Leiden. Die philosophische Arbeit markiert Entscheidungskonflikte und Mindestbedingungen, nicht metaphysische Gewissheiten.
+
+**Zwischenfazit.** Der Ethik-/Safety-Zweig erhält seinen dissertationsähnlichen Charakter durch explizite Fragestellung, argumentatives Verfahren, Gegenpositionen, technische Anschlussfähigkeit und benannte Grenzen.
+
 ---
 
 <a id="part-ix"></a>
@@ -1079,6 +1256,24 @@ Aus den Vorgängerarbeiten lässt sich eine allgemeine Prüfregel ableiten: Je s
 
 „Geliehene Intelligenz“ wird damit in Edition 1.8 zu einer prüfbaren Herkunftsfrage: **Welche Ressource kam von wo, welche Zustandsänderung verursachte sie, und wer durfte diese Zustandsänderung autorisieren?**
 
+
+## 42.12 Theorieentwicklungsstudie — Rekursive Epistemik als prüfbare Arbeitshypothese
+
+Rekursive Epistemik ist in dieser Arbeit nicht nur ein Titelbegriff. Sie wird als **Theoriehypothese über den Forschungsprozess** behandelt.
+
+**Theoriefrage.** Verbessert ein Forschungsprozess seine wissenschaftliche Qualität, wenn er dieselben Prinzipien, die er vom Forschungsobjekt verlangt — kontrollierte Gateways, Zustandsprovenienz, explizite Autorisierung, Reversibilität und Fehlertrennung — auf seine eigene Wissensproduktion anwendet?
+
+**Begriffsapparat.** Die Theorie unterscheidet mindestens Objektzustand, Informationszugang, Änderungsautorität, wissenschaftlichen Status und veröffentlichen Claim. Auf Prozessebene entsprechen dem Quelle, Vorschlag, Entscheidung, Commit, Run/DATA, Review, EVID und Synthese.
+
+**Ableitung.** Die Theorie entstand nicht vollständig vor den Experimenten. Sie wurde aus wiederkehrenden Fehlerklassen verdichtet: ein Report wurde mit DATA verwechselt, technische Fertigstellung mit wissenschaftlicher Reife, semantischer Match mit Testadäquanz und KI-Kritik mit Evidenz. Die Theorie ist deshalb teilweise eine nachträgliche Synthese konkreter Prozesskorrekturen.
+
+**Prüfbare Erwartungen.** Wenn die Theorie nützlich ist, sollten explizite Prozess-Gates unter anderem zu weniger stillen Statussprüngen, besser rekonstruierbaren Claim-Änderungen, klarerer Behandlung negativer Resultate und geringerer Vermischung von Engineering- und Evidenzstatus führen. Diese Erwartungen können künftig als Meta-RQs operationalisiert werden.
+
+**Falsifikations- und Revisionsbedingungen.** Die Theorie wäre geschwächt, wenn dieselben Fehler trotz der Gates unverändert auftreten, wenn die Governance nur Dokumentationslast ohne erkennbare Qualitätswirkung erzeugt oder wenn ein einfacheres Prozessmodell dieselbe Transparenz mit geringerem Aufwand erreicht.
+
+**Beitrag.** Der mögliche Eigenbeitrag liegt damit nicht in der Behauptung, Forschung müsse „reflexiv“ sein. Er liegt in der technischen und dokumentarischen Operationalisierung dieser Reflexivität als versionierte, prüfbare Prozessarchitektur.
+
+**Limitation.** Bislang fehlt eine unabhängige Vergleichsstudie zwischen Forschungsprozessen mit und ohne diese Governance. Rekursive Epistemik bleibt daher eine zunehmend präzisierte, aber weiterhin revidierbare Theorieposition.
 
 ---
 
@@ -1313,6 +1508,69 @@ Zweitens wird `EXP-GEN-0047` nicht mehr als scheinbarer Topologie-Nullbefund gel
 
 Drittens ergibt sich daraus eine übergreifende Reiferegel für MHRN: **ein Experiment darf erst dann eine Hypothese tragen, wenn semantische Zuordnung, kausale Wirksamkeit des manipulierten Faktors, Aktivitätsadäquanz, Provenienz und vorab definierte Auswertung gleichzeitig ausreichend sind.** Diese Regel ist inzwischen selbst ein Ergebnis der Schaffensgeschichte, weil sie aus konkreten Fehlklassifikationen und Reviews hervorgegangen ist.
 
+
+## 47.12 General Discussion
+
+Die vorherigen Abschnitte bilanzieren einzelne Ergebnisse. Eine dissertationsähnliche Gesamtarbeit benötigt darüber hinaus eine **General Discussion**, in der die Teilstudien gemeinsam auf die Leitfrage zurückbezogen werden.
+
+### 47.12.1 Rückbezug auf die zentrale Leitfrage
+
+Die bisherige Forschung spricht dafür, dass eine evolvierende SNN-Architektur wissenschaftlich kontrollierbar bleibt, wenn technische Implementierung, kausale Intervention, DATA, Review, EVID und Claim als getrennte Zustände behandelt werden. Diese Aussage ist stärker durch die **Korrekturen** des Projekts gestützt als durch eine einzelne positive Demonstration: SemanticMemory wurde nach stärkeren Kontrollen eingegrenzt; 5D-v1 wurde nicht zum Nullbefund erklärt; Dirty-Tree-Provenienz blockiert Evidenzpromotion; synthetisches Embodiment wird nicht als Realwelt-Autonomie ausgegeben.
+
+Damit beantwortet die Arbeit ihre Leitfrage bislang nicht mit „MHRN funktioniert als vollständige kognitive Architektur“, sondern enger: **MHRN ist zu einem Forschungsrahmen geworden, in dem stärkere Behauptungen zunehmend an explizite Bedingungen gebunden und durch negative Ergebnisse revidierbar werden.**
+
+### 47.12.2 Zusammenhang der empirischen Teilstudien
+
+Die Teilstudien bilden keine unabhängige Sammlung. Basale Determinismusarbeit begrenzt, welche Unterschiede überhaupt als Mechanismuseffekt interpretierbar sind. Rekurrenz- und Topologiearbeit bestimmt, welche Dynamik aus Netzwerkstruktur stammt. Plastizitätsstudien fragen, ob veränderbare Gewichte funktional relevant werden. MSBA und Embodiment erweitern den Kausalraum auf Modalitäten und Wirkung. Gedächtnis-/Replay-Studien prüfen schließlich, ob über Zeit erhaltene Leistung wirklich einer spezifischen Repräsentation oder nur Wiederholung zuzuschreiben ist.
+
+Diese Kette erzeugt eine kumulative Logik: Jede spätere kognitive Behauptung setzt mehrere frühere methodische Verträge voraus.
+
+### 47.12.3 Theoretische Implikationen
+
+Drei theoretische Konsequenzen sind derzeit tragfähig genug, um als Arbeitspositionen festgehalten zu werden:
+
+1. **Architektur ist kein Beweis ihrer Funktion.** Ein Modulname oder technischer Pfad besitzt keine wissenschaftliche Bedeutung ohne passende Intervention und Kontrolle.
+2. **Negative Evidenz ist architekturbildend.** Wenn ein komplexerer Mechanismus keinen Zusatznutzen gegenüber einer einfacheren Referenz zeigt, muss die Theorie enger werden oder der Mechanismus eine neue, separat prüfbare Rolle erhalten.
+3. **Kausalität und Provenienz sind gekoppelt.** Ein Effekt ist wissenschaftlich schwächer, wenn unklar bleibt, welche Version, Konfiguration, Quelle oder Entscheidung ihn erzeugt hat.
+
+Diese Positionen verbinden die empirische und epistemologische Achse der Arbeit.
+
+### 47.12.4 Methodischer Beitrag
+
+Der methodische Eigenanteil der Gesamtarbeit liegt vor allem in der Integration von Research Software Engineering und wissenschaftlicher Governance: RQ/H-Register, Präregistrierung, source-bound DATA, Human Review, EVID-Status, Hash-/Clean-Tree-Provenienz, dokumentierte Testadäquanz und ein Viewer, der diese Grenzen sichtbar hält.
+
+Diese Infrastruktur ist nicht automatisch neu gegenüber der gesamten Wissenschaftspraxis. Ihr möglicher Beitrag liegt in der **konkreten Zusammenführung innerhalb eines evolvierenden neuronalen Forschungsframeworks** und in der Tatsache, dass Architekturentscheidungen direkt an den Ausgang von Experimenten gebunden werden.
+
+### 47.12.5 Limitationen und interne Validität
+
+Die wichtigsten internen Grenzen sind:
+
+- mehrere frühe Studien waren explorativ, diagnostisch oder für stärkere Claims unterpowert;
+- nicht jede historische RQ/H-Zuordnung war semantisch sauber;
+- einige wichtige Läufe besitzen Provenienzblöcke wie `git dirty`;
+- die 5D-v1-Manipulation war nicht testadäquat;
+- mehrere Stage-Scores stammen aus Engineeringkriterien und dürfen nicht als Fähigkeitsskalen gelesen werden;
+- der nächste SemanticMemory-Kompressionstest besitzt noch keinen final eingefrorenen RQ/H-/Analysevertrag.
+
+Diese Punkte begrenzen Claims, entwerten aber nicht automatisch die zugrunde liegenden DATA.
+
+### 47.12.6 Externe Validität und Generalisierbarkeit
+
+Die meisten Experimente laufen in synthetischen, deterministischen oder stark kontrollierten Umgebungen. Daraus folgt keine direkte Übertragbarkeit auf biologische Nervensysteme, reale Robotik, offene Weltumgebungen oder allgemeine Kognition. Ebenso stammen Entwicklung, Ausführung und ein großer Teil der Reviewarbeit aus derselben Autor-/Toolkette.
+
+Externe Validität erfordert deshalb künftig mindestens drei zusätzliche Ebenen: unabhängige Replikation, alternative Implementierungen/Umgebungen und fachlich externe Kritik. Erst damit kann aus einem gut kontrollierten Projektbefund ein stärker generalisierbarer wissenschaftlicher Beitrag werden.
+
+### 47.12.7 Forscherposition und mögliche Verzerrungen
+
+Die Nähe des Autors zum System ermöglicht schnelle Fehlerkorrektur und tiefe Kenntnis der Artefakte, erhöht aber Risiken von Bestätigungsbias, Selektionsbias und nachträglicher Kohärenzbildung. KI-Unterstützung verstärkt zugleich Such- und Synthesekapazität und erzeugt neue Abhängigkeits- und Quellenrisiken.
+
+Die Antwort der Arbeit darauf ist keine Behauptung von Neutralität, sondern **sichtbare Gegenmaßnahmen**: Frozen Designs, negative Ergebnisse, Quarantäne unbestätigter Quellen, klare Statusgrenzen, historische Provenienz und das Offenlassen nicht beantworteter Fragen.
+
+### 47.12.8 Gesamtschlussfolgerung
+
+Der stärkste Beitrag von Edition 1.8 liegt damit noch nicht in einer bestätigten Theorie allgemeiner Intelligenz oder eines 5D-Gehirns. Er liegt in einer **empirisch selektierten, revidierbaren Forschungsarchitektur**, deren einzelne Mechanismen zunehmend getrennt geprüft werden und deren eigener Forschungsprozess Gegenstand methodischer Kontrolle geworden ist.
+
+Der Dissertationscharakter entsteht gerade aus dieser Verbindung: historische Problemgenese, theoretischer Rahmen, operationalisierte Teilfragen, Methoden, Teilstudien, negative und positive Resultate, General Discussion, Limitationen und eine explizite Forschungsagenda bilden ein zusammenhängendes Argument statt einer Sammlung von Features.
 
 ---
 
@@ -1608,6 +1866,45 @@ Für `H-SNN-003-B` ist der nächste Schritt ebenfalls klarer: `EXP-GEN-0047` gil
 
 Damit sind die nächsten beiden methodischen Schritte **Replikation** und **Testadäquanz**, nicht weitere Interpretation derselben historischen DATA.
 
+
+## 59. Forschungsagenda und Abschlusskriterien der Teilstudien
+
+Die offene Forschungslandschaft wird für die weitere Arbeit nicht als unsortierte TODO-Liste behandelt. Jeder Hauptzweig erhält ein **wissenschaftliches Abschlusskriterium**, das festlegt, welche nächste Evidenz tatsächlich nötig ist, bevor eine stärkere Aussage zulässig wird.
+
+| Teilstudie | Nächster entscheidender Prüfpunkt | Kriterium für stärkere Aussage |
+| --- | --- | --- |
+| **Basale Dynamik / Determinismus** | clean-tree, hash-gebundene Same-Seed-Replikation und externe Wiederholung | Reproduzierbarkeit muss über denselben internen Workflow hinaus bestätigt werden |
+| **Rekurrenz** | unabhängige Seeds, skalierte Netzwerke und klar getrennte Rekurrenzintervention | Effekt muss unter erweitertem Operating Envelope bestehen |
+| **Topologie / 5D** | präregistriertes `topology_propagation_v2` mit ≥1.000 Neuronen, ≥10 Inputs/Neuron und Geometrie-Dynamik-Kopplung | Activity-Adequacy-Gate erfüllt und vorab definierter Topologievergleich interpretierbar |
+| **Plastizität** | learning-on/off-, Sham-/Frozen- und Holdout-Designs mit unabhängigen Seeds | Gewichtsänderung muss einen funktionalen Lern-/Stabilitätsbeitrag gegenüber Kontrollen tragen |
+| **MSBA / spezialisierte Pfade** | kausale Ressourcen- und Lesionsexperimente unter streng gematchten Budgets | Spezialpfad muss über bloße Implementierbarkeit hinaus messbaren Zusatznutzen zeigen |
+| **Embodiment** | `H-EMB-001-B`: identische externe Störung, Closed Loop vs. yoked Replay vs. interrupted feedback | Feedback muss unter matched disturbance einen kausalen Vorteil zeigen |
+| **SemanticMemory / Kompression** | neue Human Approval und Präregistrierung für `OBJ-MEM-COMPRESSION-001` | 10%-Budget erreicht die vorab definierte Retentionsgrenze gegenüber Full Raw Replay |
+| **Weltmodell** | action-conditioned Mehrschrittvorhersage gegen reactive/no-model/corrupted-model | Modellinformation muss einen kausalen Entscheidungsnutzen liefern |
+| **Selbstmodell** | interventionelle Self/Other-Manipulationen | Selbstmodell muss funktional mehr leisten als Profil-/Metadatenidentität |
+| **Rekursive Epistemik** | Meta-Metriken zu Fehlklassifikationen, Statussprüngen und Revisionsqualität | Governance muss messbar bessere Forschungsentscheidungen erzeugen oder gegenüber einfacherer Alternative bestehen |
+| **Safety / Ethik** | operationalisierte Zielprovenienz-, Interruptibility- und Welfare-Gates | normative Regeln müssen technisch anschlussfähig und unter Gegenfällen revidierbar sein |
+
+### Priorisierungsregel
+
+Die Reihenfolge weiterer Forschung folgt nicht der visuellen Stage-Nummer, sondern dem wissenschaftlichen Informationsgewinn. Vorrang haben Experimente, die einen zentralen offenen Claim entscheiden, einen bekannten Confound beseitigen oder eine Architekturentscheidung irreversibel vereinfachen können.
+
+Daraus folgen gegenwärtig vier priorisierte Linien:
+
+1. **Präregistrierung von `OBJ-MEM-COMPRESSION-001`**, weil sie eine klar falsifizierbare Anschlussfrage an die negative CL-002/003-Linie darstellt.
+2. **`topology_propagation_v2`**, weil 5D ohne testadäquates Design wissenschaftlich offen bleiben muss.
+3. **clean-tree Determinismusreplikation**, weil vorhandene positive Same-Seed-Befunde durch Provenienzgrenzen blockiert sind.
+4. **`H-EMB-001-B`**, weil erst der matched-disturbance-Vergleich den Closed-Loop-Mechanismus stärker kausal isoliert.
+
+### Abschlusscharakter
+
+Eine spätere kanonische Hauptfassung darf keinen Zweig allein deshalb als „abgeschlossen“ markieren, weil Code, UI oder Dokumentation vollständig sind. Abschluss bedeutet in dieser Arbeit entweder:
+
+- eine Hypothese wurde unter adäquatem Design gestützt oder falsifiziert;
+- der Geltungsbereich wurde durch ein negatives Resultat belastbar begrenzt;
+- oder die Frage bleibt ausdrücklich offen, weil die notwendige Evidenz noch fehlt.
+
+Gerade diese dritte Möglichkeit gehört zum wissenschaftlichen Charakter der Arbeit. Eine Dissertation oder Monographie wird nicht dadurch stärker, dass jede Frage beantwortet erscheint, sondern dadurch, dass beantwortete, widerlegte und noch offene Fragen methodisch unterscheidbar bleiben.
 
 ---
 
