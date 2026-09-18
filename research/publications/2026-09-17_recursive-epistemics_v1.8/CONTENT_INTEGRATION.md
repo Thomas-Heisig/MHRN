@@ -244,7 +244,7 @@ Teile: IV, X, XI
 
 Quellpfade: `research/learning/preparations/LP-20260917194217.json`; `research/learning/preparations/LP-20260917194217-approved.json`
 
-Grenze: authority=proposal_only, executed=false, runtime_authority=none; approval is not execution, DATA or EVID.
+Grenze: authority=proposal_only, executed=false, runtime_authority=none; CL-002-EVID and CL-003-DATA are SHA-256-bound with VERIFIED trust, while execution authorization/freeze/seed-task/analysis contracts remain prospective; approval is not execution, DATA or EVID.
 
 ## CORPUS-CURRENT-HUMAN-REVIEWS — Current human reviews of determinism and topology test adequacy
 
@@ -256,3 +256,14 @@ Teile: IV, VI, X, XI
 Quellpfade: `research/experiments/EXP-BATCH-20260914074039-03/review-20260917.md`; `research/decisions/2026-09-17_determinism_registry_airr_alignment.md`; `research/decisions/2026-09-17_snn003_topology_propagation_v1_adequacy.md`; `research/experiments/EXP-GEN-0047/summary.md`
 
 Grenze: RQ-DET-001 remains blocked from EVID by dirty-tree provenance pending clean rerun; EXP-GEN-0047 is not a topology-null result and remains inadequate to test H-SNN-003-B.
+
+## CORPUS-PAPER-OFFSHOOTS — Candidate paper offshoots derived from Edition 1.8
+
+Rolle: `bounded publication-strand planning`  
+Status: `semantically_integrated_as_planning_only`  
+Modus: `reader_orientation_and_future_publication_decomposition`  
+Teile: X, XI
+
+Quellpfade: `research/paper_offshoots/README.md`
+
+Grenze: The offshoot index names candidate research strands only; it creates no DATA, EVID, novelty claim, submission status or permission to reuse Edition 1.8 synthesis as empirical evidence.

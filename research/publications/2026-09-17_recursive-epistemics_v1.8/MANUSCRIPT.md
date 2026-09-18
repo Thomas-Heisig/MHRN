@@ -24,6 +24,18 @@ Vorgänger: [1.7](../2026-09-15_recursive-epistemics_v1.7/README.md). Unverände
 
 # Teil I — Nullpunkt, Autor und Entstehungsbedingungen
 
+## Lesepfade durch Edition 1.8
+
+Edition 1.8 ist eine Gesamtarbeit und kein linear zu lesendes Einzelpaper. Die elf Teile folgen unterschiedlichen Evidenz- und Argumentationsregeln. Externe Leser können deshalb mit einem disziplinspezifischen Pfad beginnen und anschließend in die Querverweise, Register und Primärartefakte wechseln. Diese Lesepfade sind **Orientierung, keine fachliche Zuständigkeitsgrenze**.
+
+| Perspektive | Empfohlener Einstieg | Schwerpunkt |
+| --- | --- | --- |
+| **Informatik / Engineering** | Teil II → III → IV → V → XI | Architekturgenese, Implementationsverträge, Experimente, Reproduzierbarkeit, offene technische Prüfungen |
+| **Neurowissenschaft / Kognition** | Teil II → III → IV → VI → VIII | Modellgrenzen, neuronale Mechanismen, experimentelle Operationalisierung, biologische Plausibilität und Übertragungsgrenzen |
+| **Philosophie / Ethik / Safety** | Teil I → VII → VIII → IX → X | Autorposition, Integrität, normative Grenzen, rekursive Epistemik und revidierbare Gesamtclaims |
+| **Schnelle Gesamtübersicht** | Teil I → X → XI | Entstehungsbedingungen, gegenwärtig tragfähige Aussagen und offene Forschungslandschaft |
+
+Wer einen empirischen Claim prüfen will, sollte nicht beim Fließtext enden: Teil IV führt zu den Experimentartefakten; `RESEARCH_REGISTER.md` verbindet Forschungsfragen und Hypothesen; `SOURCE_INDEX.md` und `CONTENT_INTEGRATION.md` dokumentieren Quellenbestand und semantische Einbindung. `DATA`, Human Review und `EVID` bleiben getrennte Autoritätsebenen.
 ## 1. Forschungsgegenstand vor dem Repository
 
 Die 1.8-Fassung setzt nicht mit einem vermeintlich fertigen MHRN an. Sie behandelt die Entstehung selbst als Forschungsgegenstand. Die frühesten in dieser Revision wiedergewonnenen Spuren stammen aus Gesprächen über einen persistenten neuronalen Würfel, dynamische Verbindungen, entwicklungsähnliche Schichten, Mutation, Speicherung über Neustarts hinweg und die Trennung zwischen einem lernenden Kern und nachladbaren Funktionen. Diese Spuren werden als **rekonstruierte Vorphase** geführt. Sie belegen weder, dass dies die erste Idee überhaupt war, noch dass die beschriebenen Mechanismen damals schon implementiert waren.
@@ -471,7 +483,7 @@ Mit `LP-20260917194217` liegt ein **genehmigter, aber nicht ausgeführter** huma
 
 Der Vorschlag bindet `semantic_prototype_replay_10pct_budget` gegen `raw_replay_full_budget` und nennt als Kontrollen `no_replay`, `random_prototype_10pct` und `learning_off`. Die Evaluation soll auf Holdout-Daten nach sequentiellen Tasks erfolgen. Die Erfolgsmetrik ist `retention_ratio_at_1_10_storage >= 0.95` der Raw-Replay-Retention.
 
-Der aktuelle Status ist strikt prospektiv: `authority=proposal_only`, `executed=false`, `runtime_authority=none`. Die menschliche Genehmigung autorisiert daher weder eine Ergebnisbehauptung noch DATA/EVID. Vor einer wissenschaftlich tragfähigen Ausführung müssen die referenzierten CL-002-/CL-003-Quellen digestscharf gebunden, die noch als `UNKNOWN` markierte Source-Trust-Einstufung geklärt und der Ausführungs-/Freeze-Vertrag entsprechend dem Research-Driven-Development-Prozess fixiert werden.
+Der aktuelle Status ist strikt prospektiv: `authority=proposal_only`, `executed=false`, `runtime_authority=none`. Die menschliche Genehmigung autorisiert daher weder eine Ergebnisbehauptung noch DATA/EVID. Die referenzierten Quellen sind inzwischen digestscharf gebunden: `CL-002-EVID` → SHA-256 `c7b1124256fd8018839a8c5c29b30493b68d16bc223d0a3258bcbaca55b1752e` und `CL-003-DATA` → SHA-256 `4e74021c0ef838371a3a01061ae1c2dcebb2031b54c15c6169e38c1972d06290`; beide Source-Trust-Einstufungen stehen auf `VERIFIED`. Vor einer wissenschaftlich tragfähigen Ausführung bleiben Seed-/Taskplan, Analysevertrag, Ausführungsautorisation und Freeze entsprechend dem Research-Driven-Development-Prozess verbindlich zu fixieren.
 
 ## 19.4 Aktuelle Human Reviews: Determinismus und Testadäquanz
 
@@ -1072,6 +1084,32 @@ Als Kandidaten, nicht als bewiesene Neuheit, bleiben insbesondere: die Trennung 
 
 Jeder dieser Kandidaten benötigt Prior-Art-Review. Die Publikation darf die Kombination beschreiben, ohne daraus automatisch einen Vorrang gegenüber vorhandenen SNN-, Agenten-, Workflow- oder Safety-Systemen abzuleiten.
 
+## 46.1 Was noch nicht fertig ist
+
+Die folgende Matrix ist eine Leserhilfe, keine neue Prozentmetrik. Sie trennt den vorhandenen technischen oder empirischen Stand von dem jeweils stärkeren wissenschaftlichen Anspruch, der noch offen ist.
+
+| Stage | Gegenwärtig belastbarer Stand | Wissenschaftlich offen / blockiert durch | Nächster legitimierter Schritt |
+| --- | --- | --- | --- |
+| **0 — einzelne Nervenzelle** | Scoped Izhikevich-/LIF-Referenzkonformität gegen Brian2 ist confirmatory DATA-seitig erfüllt. | Human-EVID-Entscheidung, unabhängige Replikation, breitere Integrator-/Parameter-/Langzeitprüfung. | Review und unabhängig autorisierte Replikation des eingefrorenen Vertrages. |
+| **1 — kleines SNN** | Technische Signalweitergabe und Netzwerkprimitive sind verifiziert. | Eigene präregistrierte Small-Network-RQ, task-basierte Kontrollen, Störungen, Generalisierung. | Kleine kausale Netzwerkstudie mit matched controls einfrieren. |
+| **2 — stabile Rekurrenz** | Kleiner kontrollierter Recurrence-Effekt ist reproduzierbar beobachtet. | Breite Generalisierung; sauberer clean-tree Determinismus-/Replikationsnachweis. | Hash-gebundene clean-tree Replikation und größere getrennte Regime. |
+| **3 — plastisches Nervengewebe** | STDP, Eligibility, Drei-Faktor-Regeln, Homeostase und Strukturplastizität sind technisch vorhanden. | Held-out Nutzen, Interaktionen, Langzeitstabilität und Ressourcenwirkung. | Learning-on/off/Frozen/Sham-Kontrollen mit vorab definierten Task-Endpunkten. |
+| **4 — spezialisierte Areale** | Audio/Vision/Digital-Pfade und E01–E05 liefern enge synthetische DATA. | Generalistenvergleich, Cross-Modal-Transfer, Läsion/Shuffle/Frozen, reale Ressourcenmessung. | Matched spezialisierte-vs.-generalistische Ablationen. |
+| **5 — integriertes Nervensystem** | Kontrollierter synthetischer Closed Loop ist demonstriert. | `H-EMB-001-B`, Real-Device-Übertragbarkeit, kausale Feedback-Wirkung. | Präregistrierter Closed-Loop-vs.-yoked/interrupted Vergleich unter Safety-Gates. |
+| **6 — Gedächtnis / Weltmodell** | Replay-Beitrag ist stärker getragen; SemanticMemory trägt Struktur, aber keinen bestätigten Zusatznutzen gegenüber matched Raw Replay. | CL-003 Human Review, Kompressionshypothese noch unausgeführt, Prediction Error und action-conditioned World Model offen. | Review abschließen; danach nur den jeweils vorab begründeten nächsten Zyklus ausführen. |
+| **7 — Selbstmodell / Identität** | Technische Profile, Zustände, Lineage und Restore-Verträge existieren. | Kausale Self/Other-Differenzierung und funktionaler Nutzen eines Selbstmodells. | Interventionelle Self/Other-Protokolle statt Identitätsmetadaten als Proxy. |
+| **8 — lebenslange Entwicklung** | Vorläufer zu Continual Learning und Persistenz existieren. | Starke autonome lebenslange Entwicklung ist nicht gezeigt. | Shared-network Langzeitprotokolle mit Ressourcen-matched Ablationen. |
+| **9 — integrierte Kognition** | Forschungsfragen und Komponentenprogramme existieren. | Claim-relevante confirmatory DATA für integrierte Kognition fehlen. | Einzelmechanismen operationalisieren, bevor sie kombiniert werden. |
+| **10 — Bewusstsein / starke subjektive Claims** | Nur Begriffs-, Safety- und Welfare-Grenzen sind formuliert. | Kein Messvertrag rechtfertigt derzeit Bewusstseins- oder Sentienzbehauptungen. | Keine Claim-Promotion; zuerst theoretisch und ethisch tragfähige Messkriterien entwickeln. |
+
+Diese Übersicht ersetzt weder Teil XI noch Registry und Experimentartefakte. Ihr Zweck ist, einem externen Reviewer auf einer Seite zu zeigen, **wo die Arbeit tatsächlich steht, was bereits gemessen wurde und welche stärkere Aussage noch nicht gerechtfertigt ist**.
+
+## 46.2 Ableitbare wissenschaftliche Nebenstränge
+
+Die Gesamtarbeit ist der Kontext, nicht das Format jedes späteren Fachbeitrags. Aus ihr werden daher kleinere, disziplinär enger prüfbare Paper-Stränge abgeleitet. Der kanonische Planungsindex liegt unter `research/paper_offshoots/README.md`. Er ist ausdrücklich **Forschungsplanung, keine Publikation und keine EVID**.
+
+Zum aktuellen Stand sind sechs Stränge hinreichend klar benennbar: empirische Grenzen semantischer Verdichtung; Content/Compute-Trennung und kontrollierte periphere neuronale Werkzeuge; Scientific Integrity und rekursive Epistemik in KI-assistierter Einzelforschung; Post-Objective-Transition/Corrigibility; Geometrie-zu-Dynamik-Kopplung für multidimensionale SNN-Topologien; sowie kontrolliertes synthetisches Embodiment. Jeder Strang muss seine eigene RQ, Quellenbasis, Zielgruppe, Claim-Grenze und gegebenenfalls eigene Präregistrierung besitzen.
+
 ## 47. Revision statt Abschluss
 
 Edition 1.8 ist kein Endpunkt. Ein guter Syntheseclaim nennt, was ihn ändern würde. Neue Replikation kann Stage-Reife erhöhen oder senken. Neue Prior Art kann einen Neuheitskandidaten in bekannte Praxis einordnen. Ein besseres Experiment kann einen bisherigen Nullbefund enger begrenzen oder bestätigen. Ein originales Chat-/Codeartefakt kann die Schaffensgeschichte korrigieren.
@@ -1351,7 +1389,7 @@ Die CL-001–CL-003-Linie hat den Suchraum bereits verkleinert. Offen sind daher
 2. Danach genau eine Entscheidung A/B/C treffen: Nebenrolle, genau eine theoretisch begründete Zusatzprüfung oder Parken bis zu funktionaler Notwendigkeit.
 3. Keine automatische CL-004-Serie und keine serielle Rollenrettung.
 
-Als eng begrenzte Anschlussfrage ist `LP-20260917194217` genehmigt, aber noch **nicht ausgeführt**. Der Vorschlag prüft nicht erneut einen pauschalen SemanticMemory-Vorteil, sondern einen Speicher-/Retentions-Trade-off: 10%-Budget der semantischen Prototypen gegenüber vollem Raw-Replay-Budget mit vorab definierter 95%-Retention-Schwelle. Bis Source-Digests, Trust, Freeze, Seeds, Tasks und Analysevertrag vollständig gebunden sind, bleibt dies Proposal-only und erzeugt weder DATA noch EVID.
+Als eng begrenzte Anschlussfrage ist `LP-20260917194217` genehmigt, aber noch **nicht ausgeführt**. Der Vorschlag prüft nicht erneut einen pauschalen SemanticMemory-Vorteil, sondern einen Speicher-/Retentions-Trade-off: 10%-Budget der semantischen Prototypen gegenüber vollem Raw-Replay-Budget mit vorab definierter 95%-Retention-Schwelle. Die CL-002-EVID- und CL-003-DATA-Quellen sind inzwischen per SHA-256 gebunden und als `VERIFIED` eingestuft. Offen bleiben der eingefrorene Seed-/Taskplan, Analysevertrag, Ausführungsautorisation und Freeze. Bis diese Bedingungen erfüllt sind, bleibt dies Proposal-only und erzeugt weder DATA noch EVID.
 
 Unabhängig davon bleiben als zentrale Stage-6-Forschungsfragen:
 
@@ -1532,7 +1570,7 @@ Für `H-SNN-003-B` muss `topology_propagation_v2` **vor Ausführung** präregist
 
 `LP-20260917194217` ist als nächster möglicher Stage-6-Zyklus vorbereitet und genehmigt, aber **noch nicht ausgeführt**. Der geplante Primärvergleich ist `semantic_prototype_replay_10pct_budget` gegen `raw_replay_full_budget`; die Erfolgsgrenze liegt bei mindestens 95 % der Raw-Replay-Retention bei Faktor-10-Speicherreduktion. `no_replay`, `random_prototype_10pct` und `learning_off` dienen als Kontrollen.
 
-Vor Ausführung sind Source-Digests, Trust-Status, Freeze, Seed-/Taskplan und Analysevertrag zu vervollständigen. Bis dahin bleibt der Eintrag Forschungsplanung und darf im Viewer nicht wie ein Ergebnis oder laufendes Experiment erscheinen.
+Die Source-Digests und der Trust-Status sind inzwischen gebunden und verifiziert. Vor Ausführung sind weiterhin Freeze, Seed-/Taskplan, Analysevertrag und eine explizite Ausführungsautorisation zu vervollständigen. Bis dahin bleibt der Eintrag Forschungsplanung und darf im Viewer nicht wie ein Ergebnis oder laufendes Experiment erscheinen.
 
 ## 58.4 Aktueller Review-Stand und unmittelbar nächste Replikationen
 
