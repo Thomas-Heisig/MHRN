@@ -269,7 +269,9 @@ Das Ziel lautet daher nicht „jeder Bytewert steht im Manuskript“, sondern: *
 
 Für `RQ-DET-001` bleibt ein clean-tree-Replikationslauf erforderlich, bevor ein durch Dirty-Tree-Provenienz blockiertes Artefakt regulär in Richtung EVID geprüft werden kann. Eine semantische Reklassifikation allein entfernt den Provenienzblock nicht.
 
-Für `RQ-SNN-003 / H-SNN-003-B` wurde `topology_propagation_v2` inzwischen **vor Ausführung präregistriert, ausgeführt und source-bound archiviert**. Das Activity-Adequacy-Gate bestand; die 120 Evaluationsläufe erfüllen die registrierten 64-Neuronen-/246-Kanten-Budgets und zeigen mehrere Holm-korrigierte Primärunterschiede in Reichweite und Output-Latenz. Der wissenschaftliche Status ist `SUPPORTED_WITHIN_PREREGISTERED_PROTOCOL`, aber weiterhin DATA-only bis Human Review. Der nächste Schritt für diese Hypothese ist daher nicht eine weitere Interpretation desselben Datensatzes, sondern Review und anschließend unabhängige Replikation bzw. ein erweitertes Operating-Envelope.
+Für `RQ-SNN-003 / H-SNN-003-B` liegen inzwischen zwei gültige source-bound DATA-Linien vor. `EXP-S1-TOPO-V2-20260918` etablierte den ersten präregistrierten 64-Neuronen-/246-Kanten-Befund. Die korrigierte interne Replikation `EXP-S1-TOPO-V3-R1-20260918` verwendet neue Seeds und prospektive zeitaufgelöste Endpunkte: sie löst die terminale `active_fraction`-Sättigung für 1d/2d/3d auf und repliziert alle fünf First-Output-Latenzrichtungen aus V2. Ein erster V3-Lauf bleibt als Auditspur erhalten, wird wegen einer falsch implementierten Holm-Familie aber nicht konfirmatorisch interpretiert. Der Status der gültigen Linien bleibt `SUPPORTED_WITHIN_PREREGISTERED_PROTOCOL` auf DATA-Ebene bis Human Review.
+
+Der nächste Schritt für `H-SNN-003-B` ist jetzt **keine weitere interne Wiederholung derselben Pipeline**, sondern Human Review und anschließend eine unabhängig implementierte Replikation oder ein bewusst erweitertes Operating-Envelope.
 
 Für die **dimensionsspezifische** Registry-Frage gilt parallel unverändert: `RQ-5D-005` bleibt `open` und `H-5D-005-A` bleibt kanonisch `untested`. Das 64-Neuronen-Stage-1-Experiment ist dafür kein hinreichender Nachweis. Die nächste 5D-Prüfung muss mindestens **1.000 Neuronen pro Bedingung**, durchschnittlich **mindestens 10 eingehende Synapsen pro Neuron** und eine **explizit distanzabhängige Konnektivitätswahrscheinlichkeit** verwenden; Delay darf zusätzlich geometrieabhängig sein. Degree-/density-matched Kontrollen, Multi-Neuron-Stimulus, Activity-Adequacy-Gate, unabhängige Seeds und clean-tree Provenienz bleiben verpflichtend.
 
@@ -297,7 +299,7 @@ Die offene Forschungslandschaft wird für die weitere Arbeit nicht als unsortier
 | --- | --- | --- |
 | **Basale Dynamik / Determinismus** | clean-tree, hash-gebundene Same-Seed-Replikation und externe Wiederholung | Reproduzierbarkeit muss über denselben internen Workflow hinaus bestätigt werden |
 | **Rekurrenz** | unabhängige Seeds, skalierte Netzwerke und klar getrennte Rekurrenzintervention | Effekt muss unter erweitertem Operating Envelope bestehen |
-| **Topologie / H-SNN-003-B** | Human Review und unabhängige Replikation von `EXP-S1-TOPO-V2-20260918` | Der Stage-1-Topologiebefund muss außerhalb derselben Ausführungslinie reproduzierbar bleiben |
+| **Topologie / H-SNN-003-B** | Human Review von V2 und `EXP-S1-TOPO-V3-R1-20260918`, danach unabhängig implementierte Replikation | Der intern replizierte Stage-1-Topologiebefund muss außerhalb derselben Code-/Ausführungslinie reproduzierbar bleiben |
 | **5D / H-5D-005-A** | separates präregistriertes Design mit ≥1.000 Neuronen, ≥10 Inputs/Neuron und distanzabhängiger Geometrie-Dynamik-Kopplung | Ein dimensionsspezifischer Effekt muss unter gematchten Ressourcen- und Graphkontrollen bestehen |
 | **Plastizität** | learning-on/off-, Sham-/Frozen- und Holdout-Designs mit unabhängigen Seeds | Gewichtsänderung muss einen funktionalen Lern-/Stabilitätsbeitrag gegenüber Kontrollen tragen |
 | **MSBA / spezialisierte Pfade** | kausale Ressourcen- und Lesionsexperimente unter streng gematchten Budgets | Spezialpfad muss über bloße Implementierbarkeit hinaus messbaren Zusatznutzen zeigen |
@@ -315,7 +317,7 @@ Die Reihenfolge weiterer Forschung folgt nicht der visuellen Stage-Nummer, sonde
 Daraus folgen gegenwärtig vier priorisierte Linien:
 
 1. **Präregistrierung von `OBJ-MEM-COMPRESSION-001`**, weil sie eine klar falsifizierbare Anschlussfrage an die negative CL-002/003-Linie darstellt.
-2. **Human Review und unabhängige Replikation von `EXP-S1-TOPO-V2-20260918`**, damit der neue Stage-1-Topologiebefund nicht auf eine einzelne interne Ausführungslinie beschränkt bleibt.
+2. **Human Review von `EXP-S1-TOPO-V2-20260918` und `EXP-S1-TOPO-V3-R1-20260918`, anschließend unabhängige Replikation**, damit der intern replizierte Stage-1-Topologiebefund nicht auf dieselbe Code-/Ausführungslinie beschränkt bleibt.
 3. **separate `H-5D-005-A`-Präregistrierung**, weil der 64-Neuronen-Topologiebefund keinen 5D-Vorteil beantwortet.
 4. **clean-tree Determinismusreplikation**, weil vorhandene positive Same-Seed-Befunde durch Provenienzgrenzen blockiert sind.
 5. **`H-EMB-001-B`**, weil erst der matched-disturbance-Vergleich den Closed-Loop-Mechanismus stärker kausal isoliert.
