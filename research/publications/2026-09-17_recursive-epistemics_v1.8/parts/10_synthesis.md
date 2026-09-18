@@ -199,7 +199,7 @@ Die vertiefte Integration verändert die Gesamtinterpretation an mehreren Stelle
 - Neural Symbiosis und MSBA zeigen, dass Hybridität in MHRN über explizite Gateway-Grenzen statt durch heimliche Vermischung von SNN, LLM und peripheren Modellen organisiert wird.
 - Wesen/Real-Body macht „keine Fantasiedaten“ zu einer allgemeinen Provenienzregel: beobachtete, abgeleitete und dargestellte Zustände bleiben getrennt.
 - Profile & Identity liefert eine reproduzierbare technische Identitäts-/Lineageschicht, gerade indem sie sich von psychologischem Selbst und subjektiver Kontinuität abgrenzt.
-- Related Work verschärft Stage 6: externe Semantization-, Predictive-Coding-, World-Model- und Multi-Zeitskalen-Arbeiten definieren stärkere Vergleichspunkte, ohne MHRN-Ergebnisse zu ersetzen.
+- Related Work verschärft Stage 6: externe Semantization- und Continual-Learning-Arbeiten ([@DALBA2025]; [@SHI2025]), Predictive-Coding-Synthesen ([@NDRI2026]), Spiking-World-Model-Arbeiten ([@SUN2025]) und Multi-Zeitskalen-Plastizität ([@DONG2026]) definieren stärkere Vergleichspunkte, ohne MHRN-Ergebnisse zu ersetzen.
 
 Damit wird Edition 1.8 weniger zu einer Zusammenfassung einzelner Experimente und stärker zu einer **Gesamtarbeit über Forschungsobjekt, Schaffensgenealogie und die Methodik ihrer kontrollierten Verbindung**.
 
