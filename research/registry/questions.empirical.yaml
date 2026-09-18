@@ -93,9 +93,8 @@
   - H-EVAL-006-A
   - H-EVAL-006-B
   - H-EVAL-006-C
-  evidence:
-  - EVID-2026-17
-  status: in_progress
+  evidence: []
+  status: open
   answer:
     current: null
     confidence: none
