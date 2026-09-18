@@ -32,6 +32,14 @@ Seit `EXP-S1-TOPO-V2-20260918` liegt für `RQ-SNN-003 / H-SNN-003-B` ein neuer p
 
 Diese Aussage darf nicht in „5D ist überlegen“ umformuliert werden. Im Gegenteil erreichten `5d_shuffled` und `random_graph` den Output in diesem Aufbau früher als die reguläre 5D-Anordnung. Alle sechs Bedingungen besitzen dasselbe 246-Kanten-Budget; die Unterschiede sind daher nicht als bloßer Dichte-/Sparsity-Effekt zu beschreiben. Zugleich sättigt `active_fraction` für 1d/2d/3d bei 1,0, sodass dieser Endpunkt die drei Bedingungen im gewählten Regime nicht diskriminiert. Der Latenzendpunkt diskriminiert breiter; trotz seines Namens trat in der Evaluation keine tatsächliche Zensierung auf (Sentinel wäre 129 bei 128 Ticks). Das neue Resultat stärkt deshalb den allgemeinen Topologieclaim, während der dimensionsspezifische 5D-Claim offen bleibt. Bis Human Review abgeschlossen ist, bleibt der Befund DATA-only.
 
+### Interne Replikation: V3-R1 löst die V2-Ceiling-Grenze auf
+
+`EXP-S1-TOPO-V3-R1-20260918` übernimmt den V2-Operating-Envelope unverändert (64 Neuronen, 246 Kanten, Gewicht 55.0, 128 Ticks), verwendet aber neue Seeds und prospektiv definierte zeitaufgelöste Endpunkte. Ein davor ausgeführter V3-Lauf wird wegen einer falsch implementierten Holm-Familie **nicht** als konfirmatorische Analyse verwendet; seine DATA bleiben unverändert als Auditspur.
+
+Im korrigierten R1-Lauf steigt die mediane `activation_auc_0_32` von 22,15625 (1d) über 26,5703125 (2d) auf 28,0078125 (3d), während die Halbaktivierungslatenz von 10 über 6 auf 4 Ticks fällt. Die low-dimensionalen Kontraste sind nach einer gemeinsamen Holm-Korrektur über alle zehn Primärtests signifikant. Alle fünf V2-Kontraste der First-Output-Latenz replizieren auf den neuen Seeds in derselben Richtung.
+
+Damit ist die frühere `active_fraction=1.0`-Sättigung präziser einzuordnen: Sie begrenzt einen terminalen Endpunkt, verdeckt aber nicht die zeitliche Topologiedynamik. Der Status bleibt **interne DATA-Replikation pending Human Review**, nicht unabhängige EVID.
+
 ### Konsequenz: `H-5D-005-A` bleibt open/untested
 
 Kanonisch bleibt `RQ-5D-005` **open** und `H-5D-005-A` **untested**. Weder `EXP-GEN-0047` noch das neue 64-Neuronen-Stage-1-Experiment sind für diese stärkere dimensionsspezifische Hypothese ein hinreichender Evidenzbeitrag. Die nächste **5D-spezifische** Prüfung muss mindestens folgende Testadäquanz einfrieren:

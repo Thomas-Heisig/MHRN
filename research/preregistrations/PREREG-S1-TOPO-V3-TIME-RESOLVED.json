@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "preregistration_id": "PREREG-S1-TOPO-V3-TIME-RESOLVED",
+  "stage": 1,
+  "research_question": "RQ-SNN-003",
+  "hypothesis": "H-SNN-003-B",
+  "protocol": "topology_propagation_v3_time_resolved_replication",
+  "mode": "CONFIRMATORY_INTERNAL_REPLICATION_WITH_PROSPECTIVE_TIME_RESOLVED_ENDPOINTS",
+  "execution_authorized": true,
+  "scientific_evidence": false,
+  "automatic_evidence_promotion": false,
+  "predecessor_experiment": "EXP-S1-TOPO-V2-20260918",
+  "design_rationale": "V2 established a preregistered topology-sensitive DATA result but final active_fraction saturated at 1.0 for 1d/2d/3d. V3 preserves the V2 operating point and matched graph budgets while prospectively measuring time-resolved propagation so low-dimensional conditions can be compared before terminal saturation. No parameter is tuned on V3 evaluation DATA.",
+  "conditions": {
+    "1d": [
+      64,
+      1,
+      1,
+      1,
+      1
+    ],
+    "2d": [
+      8,
+      8,
+      1,
+      1,
+      1
+    ],
+    "3d": [
+      4,
+      4,
+      4,
+      1,
+      1
+    ],
+    "5d": [
+      4,
+      2,
+      2,
+      2,
+      2
+    ],
+    "5d_shuffled": [
+      4,
+      2,
+      2,
+      2,
+      2
+    ],
+    "random_graph": [
+      4,
+      2,
+      2,
+      2,
+      2
+    ]
+  },
+  "matched_budgets": {
+    "neuron_count": 64,
+    "out_degree_cap": 4,
+    "edge_count_rule": "sum_i min(4, N-i-1), identical for all conditions",
+    "expected_edge_count": 246,
+    "delay_ticks": 1,
+    "stimulus_input_labels": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "output_labels": [
+      60,
+      61,
+      62,
+      63
+    ],
+    "stimulus_current": 100,
+    "stimulus_ticks": 1,
+    "evaluation_ticks": 128,
+    "synaptic_weight": 55
+  },
+  "provenance": {
+    "fixed_weight_source": "EXP-S1-TOPO-V2-20260918 preregistered activity calibration selected 55.0 before V2 evaluation",
+    "internal_replication_only": true,
+    "independent_external_replication": false,
+    "seed_overlap_forbidden_with_v2": true
+  },
+  "evaluation": {
+    "seeds": [
+      6101,
+      6102,
+      6103,
+      6104,
+      6105,
+      6106,
+      6107,
+      6108,
+      6109,
+      6110,
+      6111,
+      6112,
+      6113,
+      6114,
+      6115,
+      6116,
+      6117,
+      6118,
+      6119,
+      6120
+    ],
+    "primary_endpoints": [
+      "activation_auc_0_32",
+      "half_activation_latency_censored"
+    ],
+    "replication_endpoint": "first_output_latency_censored",
+    "descriptive_endpoints": [
+      "final_active_fraction",
+      "output_reach_fraction",
+      "total_spikes",
+      "delivered_events",
+      "last_activity_tick"
+    ],
+    "primary_contrasts": [
+      [
+        "1d",
+        "2d"
+      ],
+      [
+        "2d",
+        "3d"
+      ],
+      [
+        "3d",
+        "5d"
+      ],
+      [
+        "5d",
+        "5d_shuffled"
+      ],
+      [
+        "5d",
+        "random_graph"
+      ]
+    ],
+    "low_dimensional_ceiling_resolution_contrasts": [
+      [
+        "1d",
+        "2d"
+      ],
+      [
+        "2d",
+        "3d"
+      ]
+    ],
+    "paired_by_seed": true,
+    "primary_test": "exact two-sided paired sign test on non-zero differences",
+    "primary_multiple_testing": "Holm correction across the 10 time-resolved endpoint/contrast tests",
+    "replication_test": "exact two-sided paired sign test on non-zero first-output-latency differences",
+    "replication_multiple_testing": "Holm correction across the 5 replication contrasts",
+    "effect_interval": "deterministic paired bootstrap 95% CI for the median difference, 5000 resamples",
+    "alpha": 0.05,
+    "auc_window_ticks": 32,
+    "half_activation_threshold": 0.5,
+    "censor_sentinel": 129,
+    "endpoint_definitions": {
+      "activation_auc_0_32": "Sum over ticks 0..31 inclusive of cumulative_unique_active_neurons(t)/64, evaluated after each network.step(). This is a discrete cumulative-activation area measure, not a continuous-time integral.",
+      "half_activation_latency_censored": "First zero-based tick at which cumulative_unique_active_neurons(t)/64 >= 0.5; if never reached within the 128-tick evaluation window, encode 129.",
+      "first_output_latency_censored": "First zero-based tick with any spike in output labels 60..63; if absent within 128 ticks, encode 129."
+    }
+  },
+  "decision_rule": {
+    "ceiling_resolution_supported": "At least one preregistered low-dimensional contrast (1d->2d or 2d->3d) is significant after Holm correction for activation_auc_0_32 or half_activation_latency_censored and its bootstrap CI excludes zero.",
+    "replication_supported": "All five first_output_latency_censored contrasts have the same negative right-minus-left direction observed in V2, Holm-adjusted p < 0.05, and bootstrap CI excluding zero.",
+    "supported_within_protocol": "design integrity PASS AND ceiling_resolution_supported AND replication_supported.",
+    "partial_support": "design integrity PASS and exactly one of ceiling_resolution_supported or replication_supported is true.",
+    "no_detected_support": "design integrity PASS and neither criterion is met.",
+    "not_tested": "execution or integrity failure occurs."
+  },
+  "interpretation_boundary": "This protocol is an internal preregistered Stage-1 replication/robustness test of RQ-SNN-003/H-SNN-003-B. It does not constitute independent external replication, does not test a 5D advantage, does not establish scaling, cognition or biological equivalence, and creates DATA rather than EVID.",
+  "local_review": {
+    "verification_command": "python scripts/verify_stage1_topology_v3.py",
+    "raw_data_paths": [
+      "research/experiments/EXP-S1-TOPO-V3-20260918/data/evaluation.json"
+    ],
+    "statistics_path": "research/experiments/EXP-S1-TOPO-V3-20260918/analysis/statistics.json",
+    "report_path": "research/experiments/EXP-S1-TOPO-V3-20260918/report.md"
+  }
+}

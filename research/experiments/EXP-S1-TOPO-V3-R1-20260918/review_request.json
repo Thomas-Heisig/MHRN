@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "experiment_id": "EXP-S1-TOPO-V3-R1-20260918",
+  "stage": 1,
+  "research_question": "RQ-SNN-003",
+  "hypothesis": "H-SNN-003-B",
+  "protocol": "topology_propagation_v3_r1_time_resolved_replication",
+  "human_review_status": "PENDING",
+  "evidence_readiness": "BLOCKED_HUMAN_REVIEW",
+  "scientific_evidence": false,
+  "automatic_evidence_promotion": false,
+  "result_status": "SUPPORTED_WITHIN_PREREGISTERED_PROTOCOL",
+  "supersedes_for_confirmatory_interpretation": "EXP-S1-TOPO-V3-20260918",
+  "predecessor_valid_data": "EXP-S1-TOPO-V2-20260918",
+  "review_scope": [
+    "R1 correction of one Holm family across all 10 time-resolved primary tests",
+    "fresh evaluation seeds 6201-6220 and disjointness from V2/V3",
+    "matched 64-neuron, 246-edge and weight-55 design",
+    "activation_auc_0_32 resolution of terminal active_fraction saturation",
+    "half_activation_latency_censored low-dimensional contrasts",
+    "replication of all five V2 first_output_latency_censored directions",
+    "bootstrap intervals as descriptive effect intervals",
+    "claim boundary between H-SNN-003-B and H-5D-005-A",
+    "DATA/EVID separation and manuscript integration"
+  ],
+  "artifacts": {
+    "report": "experiments/EXP-S1-TOPO-V3-R1-20260918/report.md",
+    "statistics": "experiments/EXP-S1-TOPO-V3-R1-20260918/analysis/statistics.json",
+    "raw_data": "experiments/EXP-S1-TOPO-V3-R1-20260918/data/evaluation.json",
+    "manifest": "experiments/EXP-S1-TOPO-V3-R1-20260918/manifest.json",
+    "preregistration": "preregistrations/PREREG-S1-TOPO-V3-R1-TIME-RESOLVED.json",
+    "verifier": "../scripts/verify_stage1_topology_v3_r1.py",
+    "superseded_v3_notice": "experiments/EXP-S1-TOPO-V3-20260918/ANALYSIS_CORRECTION.md"
+  },
+  "interpretation_boundary": "R1 supports topology-sensitive propagation and resolves the low-dimensional terminal active_fraction ceiling with prospectively defined time-resolved endpoints in the same 64-neuron/246-edge/weight-55 Stage-1 operating envelope. It is internal replication, not independent external replication; it is not evidence for 5D superiority or H-5D-005-A.",
+  "required_human_decision": "accepted_as_interpretation | rejected",
+  "note": "Human review may accept or reject the bounded interpretation. It must not rewrite source-bound DATA or automatically create EVID."
+}
