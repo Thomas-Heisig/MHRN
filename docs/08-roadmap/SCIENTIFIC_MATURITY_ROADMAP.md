@@ -23,7 +23,7 @@ Eine Stufe kann technisch abgeschlossen sein und wissenschaftlich offen bleiben.
 
 **Ziel:** numerischen Modellvertrag gegen eine externe Referenzimplementierung und vorab definierte Ereignis-/Toleranzkriterien prüfen.
 
-**Aktueller Gesamt-Scientific-Maturity-Score:** **72,5 %** nach dem kanonischen Gewichtungsvertrag in `scientific-progress.json`.
+**Aktueller Gesamt-Scientific-Maturity-Score:** **82,5 %** nach dem kanonischen Gewichtungsvertrag in `scientific-progress.json`.
 
 Erfüllt:
 - `RQ-EVAL-006` und `H-EVAL-006-A/B/C` sind explizit registriert;
@@ -36,8 +36,9 @@ Erfüllt:
 Separat gilt der **scoped Stage-0 research-readiness contract = 100 %**. Dieser engere Readiness-Wert bedeutet nur, dass die dort definierten technischen und methodischen Voraussetzungen erfüllt sind; er ist nicht identisch mit der Gesamt-Scientific-Maturity.
 
 Offen:
-- Human Review des eng definierten Konformitätsclaims; die Review-Anforderung liegt unter `research/experiments/EXP-STAGE0-20260916-MODEL-CONFORMANCE-V2/review_request.json`;
-- explizite EVID-Promotion nur nach positiver menschlicher Prüfung;
+- Human Review des eng definierten Konformitätsclaims ist am 18. September 2026 abgeschlossen und unterstützt den scoped Claim;
+- die kanonische EVID-Promotion bleibt dennoch blockiert, weil der historische Lauf noch kein EvidenceEngine-kompatibles `manifest.json` mit `validity`, `git.dirty=false`, `provenance_digests` und `source_freeze_sha` besitzt; diese historischen Provenienzwerte werden nicht rückwirkend erfunden;
+- deshalb ist vor EVID ein separat versionierter promotion-eligible Replikationslauf unter dem heutigen Provenienzvertrag erforderlich;
 - unabhängig autorisierte Replikation außerhalb derselben Autoren-/Toolkette;
 - keine biologische Gleichwertigkeit, universelle Langzeittrajektorienidentität oder Generalisierung auf ungeprüfte Modelle/Parameter aus dem Brian2-Vergleich ableiten.
 
