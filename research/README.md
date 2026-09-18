@@ -30,6 +30,7 @@ Der Publication Viewer folgt `publications/catalog.json`; das aktuelle Reader-Zi
 - [Scientific Maturity Roadmap](../docs/08-roadmap/SCIENTIFIC_MATURITY_ROADMAP.md)
 - [Research Integrity Gate](../docs/05-quality/RESEARCH_INTEGRITY_GATE.md)
 - [Integrity & Attribution](INTEGRITY_AND_ATTRIBUTION.md)
+- [RQ-ETH-001 Provenance Study](protocols/RQ_ETH_001_PROVENANCE_STUDY.md) — Beitrags-/Verantwortungsmatrix; Designstatus, noch nicht präregistriert
 - [Related Work](RELATED_WORK.md)
 - [Paper Offshoots — Kandidaten für eigenständige Fachbeiträge](paper_offshoots/README.md) — Planung, keine DATA/EVID
 - [Wissenschaftliche Bilanz Edition 1.8](publications/2026-09-17_recursive-epistemics_v1.8/SCIENTIFIC_BALANCE.md) — Claim-Ledger, Vollständigkeitsgrenze und offene wissenschaftliche Bilanz

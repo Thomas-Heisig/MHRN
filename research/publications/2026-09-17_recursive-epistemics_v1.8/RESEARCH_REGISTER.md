@@ -125,6 +125,38 @@ Typ: `claim`; Quellstatus: `inconclusive`; Quelle: [research/registry/claims.yam
 }
 ```
 
+## CLAIM-EVAL-006
+
+Typ: `claim`; Quellstatus: `inconclusive`; Quelle: [research/registry/claims.yaml](../../registry/claims.yaml), JSON-Pointer `/8`.
+
+```json
+{
+  "id": "CLAIM-EVAL-006",
+  "claim": "Unter dem eingefrorenen V2-Protokoll konformieren die deklarierten MHRN-Einzelzellverträge für Izhikevich-2003, lif-current-v1 und das separat klassifizierte Refractory-Semantik-Mapping mit der gematchten Brian2-2.10.1-Referenz innerhalb der präregistrierten Toleranzen.",
+  "research_question": "RQ-EVAL-006",
+  "hypothesis": "H-EVAL-006-A",
+  "evidence": [],
+  "experiments": [
+    "EXP-STAGE0-20260916-MODEL-CONFORMANCE-V2",
+    "EXP-STAGE0-20260918-MODEL-CONFORMANCE-V2-PROMO-R1"
+  ],
+  "sources": [
+    "SRC-IZHIKEVICH-2003",
+    "SRC-GERSTNER-2014"
+  ],
+  "status": "inconclusive",
+  "confidence": "low",
+  "required_evidence": [
+    "preregistered_model_conformance",
+    "human_scientific_review",
+    "evidence_engine_provenance"
+  ],
+  "minimum_runs": 1,
+  "created": "2026-09-18",
+  "updated": "2026-09-18"
+}
+```
+
 ## CLAIM-SELF-001
 
 Typ: `claim`; Quellstatus: `untested`; Quelle: [research/registry/claims.yaml](../../registry/claims.yaml), JSON-Pointer `/6`.
@@ -389,6 +421,70 @@ Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypothese
   "evidence": [],
   "created": "2026-08-23",
   "updated": "2026-08-23"
+}
+```
+
+## H-ETH-001-B
+
+Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/44`.
+
+```json
+{
+  "id": "H-ETH-001-B",
+  "research_question": "RQ-ETH-001",
+  "hypothesis": "Vollständige Provenienzketten erlauben unabhängigen Kodierern, materielle epistemische Beiträge von Mensch, Modell und Software reproduzierbar definierten Rollen zuzuordnen.",
+  "status": "untested",
+  "evidence": [],
+  "created": "2026-09-18",
+  "updated": "2026-09-18"
+}
+```
+
+## H-ETH-001-C
+
+Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/45`.
+
+```json
+{
+  "id": "H-ETH-001-C",
+  "research_question": "RQ-ETH-001",
+  "hypothesis": "Kanonisierung ist eine von der bloßen Generierung trennbare epistemische Handlung und lässt sich in MHRN-Claim-Episoden als Auswahl-, Prüf- oder Freigabeentscheidung identifizieren.",
+  "status": "untested",
+  "evidence": [],
+  "created": "2026-09-18",
+  "updated": "2026-09-18"
+}
+```
+
+## H-ETH-001-D
+
+Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/46`.
+
+```json
+{
+  "id": "H-ETH-001-D",
+  "research_question": "RQ-ETH-001",
+  "hypothesis": "Unter gegenwärtigen Forschungsintegritäts- und Publikationsstandards verbleiben formale wissenschaftliche Autorenschaft und Verantwortung bei verantwortlichen natürlichen Personen, auch wenn KI-Systeme materiell beitragen.",
+  "status": "untested",
+  "evidence": [],
+  "created": "2026-09-18",
+  "updated": "2026-09-18"
+}
+```
+
+## H-ETH-001-E
+
+Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/47`.
+
+```json
+{
+  "id": "H-ETH-001-E",
+  "research_question": "RQ-ETH-001",
+  "hypothesis": "Eine mehrdimensionale Beitrags- und Verantwortungsmatrix erhöht bei denselben Claim-Episoden die Audit-Vollständigkeit gegenüber einer binären Autor-Werkzeug-Klassifikation, ohne die Reproduzierbarkeit der Kodierung zu verschlechtern.",
+  "status": "untested",
+  "evidence": [],
+  "created": "2026-09-18",
+  "updated": "2026-09-18"
 }
 ```
 
@@ -1215,21 +1311,25 @@ Typ: `research_question`; Quellstatus: `open`; Quelle: [research/registry/questi
 {
   "id": "RQ-ETH-001",
   "domain": "Ethics",
-  "question": "Wer ist der Autor von Brain-5D-Erkenntnissen — Mensch, Modell oder System?",
-  "relevance": "Grundsatzfrage zur Autorenschaft und Verantwortung in KI-gestützter Forschung.",
+  "question": "Wie verteilen sich epistemische Beiträge, Entscheidungsmacht, formale Autorenschaft und wissenschaftliche Verantwortung bei Human–AI-gestützter MHRN-Forschung?",
+  "relevance": "Trennt Beitragsprovenienz, Generierung, Kanonisierung, formale Autorenschaft und Verantwortung, statt maschinelle Beteiligung mit Autorenschaft gleichzusetzen.",
   "literature": [],
   "hypotheses": [
-    "H-ETH-001-A"
+    "H-ETH-001-A",
+    "H-ETH-001-B",
+    "H-ETH-001-C",
+    "H-ETH-001-D",
+    "H-ETH-001-E"
   ],
   "evidence": [],
   "status": "open",
   "answer": {
     "current": null,
     "confidence": "none",
-    "limitations": null
+    "limitations": "Am 2026-09-18 aus der Legacy-Frage zur binären Autorenschaft präzisiert. Ältere Explorations- und Boundary-Audit-Artefakte beziehen sich auf die frühere Formulierung und sind keine direkte Evidenz für H-ETH-001-B bis H-ETH-001-E."
   },
   "created": "2026-08-23",
-  "updated": "2026-08-23"
+  "updated": "2026-09-18"
 }
 ```
 

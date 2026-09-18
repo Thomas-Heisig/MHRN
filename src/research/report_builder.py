@@ -464,7 +464,7 @@ class ReportBuilder:
             "Kapitel 8 – Autorenschaft und Epistemologie": {
                 "questions": ["RQ-ETH-001", "RQ-ETH-002", "RQ-EPIST-001"],
                 "sources": [],
-                "description": "Verteilte Autorenschaft, Kontrollverlust, maschinelle Erkenntnis",
+                "description": "Epistemische Beiträge, Kanonisierung, Autorenschaft, Verantwortung und maschinelle Erkenntnis",
             },
         }
 

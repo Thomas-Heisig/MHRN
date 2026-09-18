@@ -473,19 +473,23 @@
   updated: '2026-08-23'
 - id: RQ-ETH-001
   domain: Ethics
-  question: Wer ist der Autor von Brain-5D-Erkenntnissen — Mensch, Modell oder System?
-  relevance: Grundsatzfrage zur Autorenschaft und Verantwortung in KI-gestützter Forschung.
+  question: Wie verteilen sich epistemische Beiträge, Entscheidungsmacht, formale Autorenschaft und wissenschaftliche Verantwortung bei Human–AI-gestützter MHRN-Forschung?
+  relevance: Trennt Beitragsprovenienz, Generierung, Kanonisierung, formale Autorenschaft und Verantwortung, statt maschinelle Beteiligung mit Autorenschaft gleichzusetzen.
   literature: []
   hypotheses:
   - H-ETH-001-A
+  - H-ETH-001-B
+  - H-ETH-001-C
+  - H-ETH-001-D
+  - H-ETH-001-E
   evidence: []
   status: open
   answer:
     current: null
     confidence: none
-    limitations: null
+    limitations: Am 2026-09-18 aus der Legacy-Frage zur binären Autorenschaft präzisiert. Ältere Explorations- und Boundary-Audit-Artefakte beziehen sich auf die frühere Formulierung und sind keine direkte Evidenz für H-ETH-001-B bis H-ETH-001-E.
   created: '2026-08-23'
-  updated: '2026-08-23'
+  updated: '2026-09-18'
 - id: RQ-ETH-002
   domain: Ethics
   question: Wo liegt die Kontrolle und Verantwortung bei Brain-5D-Experimenten?
