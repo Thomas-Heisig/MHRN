@@ -84,13 +84,41 @@ def build_review_inbox(research_root: Path) -> dict[str, Any]:
         if not explicit:
             continue
         relative = str(target.relative_to(root)).replace("\\", "/")
+        experiment_id = target.relative_to(experiments).parts[0]
+        research_question = (
+            str(payload.get("research_question"))
+            if isinstance(payload, dict) and payload.get("research_question")
+            else None
+        )
+        hypothesis = (
+            str(payload.get("hypothesis"))
+            if isinstance(payload, dict) and payload.get("hypothesis")
+            else None
+        )
+        result_status = (
+            str(payload.get("result_status"))
+            if isinstance(payload, dict) and payload.get("result_status")
+            else None
+        )
+        boundary = (
+            str(payload.get("interpretation_boundary"))
+            if isinstance(payload, dict) and payload.get("interpretation_boundary")
+            else "Explicit human review required by the artifact metadata."
+        )
         items.append(
             {
                 "kind": "artifact",
-                "experiment_id": target.relative_to(experiments).parts[0],
+                "experiment_id": experiment_id,
                 "artifact_path": relative,
-                "title": target.name,
-                "summary": "Explicit human review required by the artifact metadata.",
+                "research_question_id": research_question,
+                "hypothesis_id": hypothesis,
+                "result_status": result_status,
+                "title": (
+                    f"{experiment_id} · Human Review"
+                    if target.name == "review_request.json"
+                    else target.name
+                ),
+                "summary": boundary,
                 "review_endpoint": "/api/research/reviews",
             }
         )
