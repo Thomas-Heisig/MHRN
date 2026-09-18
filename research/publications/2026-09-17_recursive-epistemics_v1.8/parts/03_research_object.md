@@ -44,6 +44,14 @@ Die Arbeit brachte zugleich eine wichtige negative Erkenntnis hervor: Der frühe
 
 Auch die LIF-Refraktärsemantik wurde explizit geklärt. Bei `dt=1 ms` entsprechen `refractory_ticks=1/2/3` in der validierten Zuordnung Brian2-Refraktärzeiten von `2/3/4 ms`; gleiche numerische Werte bedeuten also nicht automatisch gleiche Semantik. Für den 10-Hz-Homeostasecontroller wurde ein konfigurationsgebundener Arbeitsbereich dokumentiert: Eingangsströme 16–25 erreichten das Ziel ohne Aktuator-Sättigung, bei 30 wurde die +10-mV-Grenze erreicht. Dies ist ein Operating-Envelope-Befund, kein biologisches Universalgesetz.
 
+Die präregistrierte Akzeptanzschwelle von `1e-8` war **vor der Confirmatory-Ausführung eingefroren**. Dass die beobachteten Fehler mit ungefähr `6.82e-13` und `7.11e-15` mehrere Größenordnungen darunter liegen, ändert den Erfolgsvertrag nicht nachträglich. Der Abstand zur Schwelle ist ein Robustheitshinweis innerhalb dieses Laufs, keine nachträglich verschärfte Entscheidungsregel.
+
+Für externe Leser wird V1/V2 daher explizit als **zweistufige Aussage** behandelt: V1 prüfte die freie 1000-Tick-Trajektorienidentität und blieb negativ; V2 prüfte lokale Ein-Schritt-Transition, Threshold und Reset und fiel positiv aus. Diese Aussagen widersprechen einander nicht, weil nichtlineare freie Trajektorien mikroskopische numerische Differenzen über viele Schritte verstärken können.
+
+`H-EVAL-006-C` gehört zudem zu einer anderen Claim-Klasse als A und B. C ist ein **Semantik-/Mapping-Resultat**: Bei `dt=1 ms` entspricht `refractory_ticks=1/2/3` in der validierten Zuordnung Brian2-`2/3/4 ms`. Es wird nicht als dritte numerische Konformitätsaussage dargestellt.
+
+Der Human Review vom 18. September 2026 unterstützt ausschließlich den scoped Claim, dass die deklarierten V2-Einzelzellverträge unter dem eingefrorenen Protokoll mit der gematchten Brian2-2.10.1-Referenz innerhalb der präregistrierten Toleranzen konformieren. Ungeprüfte Modelle, andere Parameterregime, biologische Gleichwertigkeit, universelle Langzeittrajektorienidentität und unabhängige Replikation bleiben ausgeschlossen.
+
 Der zugehörige maschinenlesbare Readiness-Status weist für den **scoped Stage-0 research-readiness contract 100 %** aus. Diese 100 % bedeuten ausschließlich: die dort definierten Prüfpunkte sind erfüllt. Menschlich reviewte EVID und unabhängig autorisierte Replikation bleiben getrennte Reifegates und sind damit nicht automatisch abgeschlossen.
 
 ### Stage 1 — kleines SNN
