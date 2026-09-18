@@ -603,6 +603,28 @@ def write_artifact_review(
         raise ValueError("Human review comments are required")
     review_path = target.with_name(f"{target.name}.review.json")
     if review_path.exists():
+        try:
+            existing = json.loads(review_path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            existing = None
+        existing_reviewer = (
+            str(existing.get("reviewer", "")).strip().casefold()
+            if isinstance(existing, dict)
+            else ""
+        )
+        if existing_reviewer in {
+            "ai",
+            "artificial intelligence",
+            "artificial_intelligence",
+            "bot",
+            "ki",
+            "machine",
+            "system",
+        }:
+            review_path = target.with_name(f"{target.name}.human-review.json")
+        else:
+            raise FileExistsError(f"Human review already exists: {normalized}")
+    if review_path.exists():
         raise FileExistsError(f"Human review already exists: {normalized}")
     review_path.write_text(
         json.dumps(
