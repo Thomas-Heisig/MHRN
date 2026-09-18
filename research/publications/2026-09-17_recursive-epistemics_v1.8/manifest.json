@@ -39,7 +39,7 @@
     "REFERENCES.md": "15bf6ff93870efad1f1bf097a4cfeb7d0b316eb00ee07289f658385a5a2131e3",
     "references.bib": "24123da06d80e3d79b2e91567ad1f1bcf1fb1b9474df9c71543d906283697fd3",
     "SOURCE_INDEX.md": "3714ac2ffb355c8efe8f7bf4cd69e65e0895df96de1f41e73cb3caca17284cc1",
-    "RESEARCH_REGISTER.md": "3d9cb55f90b175e22688b11a8670e9d2cc2b319d6a2ba0497a2e454c52a9261d",
+    "RESEARCH_REGISTER.md": "4f4cb9522f2d659e9abe53a49450f5ce02136a13decd08252c957100540c3ee7",
     "LEGACY_V17.md": "127b0b0cef19b84e5cd8457a8e44bfeb32989385f49ccda65c217c053a47c14d",
     "PRIOR_WORK_MAP.md": "4a77f8e421e0b0e30d22871ef626994be9275f82edc2fedf07b3172611e50cc5",
     "CONTENT_INTEGRATION.md": "ab9986cb3bb8d9370a6dcc63cc3acbb58224716003c3884807070f2b1a8bcab6",
@@ -50,7 +50,7 @@
     "registers/creation_events.json": "f22f99c9d11d318d2f8821ed1eb7d38fe9c5f1f6a8f4e8202ede0c081df82ef5",
     "registers/edition_genealogy.json": "5ae763df6a2b7a8a8a0d0f4963c404b9f1b7f2c11d989f97429810e08d3d2a3b",
     "registers/experiment_genealogy.json": "d3f5e434be4aba8e30b4e27ab3a05a9ca3f7dc8dafde26ed324bd69d4011e83d",
-    "registers/research_objects.json": "302b43201bfd43eb74ec6227237061a27d6341a3d7cf621e195f96ced5912b1a",
+    "registers/research_objects.json": "cdf02402bc71b848809174f2740713ce94b642684bbe5bdfa2b095c50886979a",
     "registers/provenance.json": "faa0f63201a0b9bb965eda62c3041aab71ab4769f196f7a96d11b681789e421f",
     "registers/claim_ledger.json": "e30bd4519e8e8ec34765fc03cdd88f6a9c3eb4bbc8b45ae62651c53ba9a77648",
     "registers/preservation.json": "3ad838e9e6dbe330e722f46c5aa9526faa34be54d2533f2165f07bee3bbe20c6"
