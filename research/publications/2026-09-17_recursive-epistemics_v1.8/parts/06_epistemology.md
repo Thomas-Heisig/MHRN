@@ -79,7 +79,7 @@ Die frühe NeuroGenesis-/Brain-5D-Geschichte ist überwiegend rekonstruktiv. CL-
 
 Die Forschungsarbeit entsteht in einem schnell iterierenden Engineeringkontext. Gerade dort verhindert ein Freeze, dass neue Einsichten nach Sichtung der DATA unbemerkt Teil des ursprünglichen Erfolgsmaßstabs werden. CL-003 zeigte den Wert dieser Grenze: Der deskriptiv mit der Dosis wachsende Semantic-minus-Raw-Unterschied wäre verführerisch als positiver Dosisbefund formulierbar gewesen; der präregistrierte Interaktionstest C4 blieb jedoch negativ. Deshalb ist die stärkere Behauptung nicht zulässig.
 
-Präregistrierung wirkt in diesem Projekt damit nicht nur gegen klassische p-Hacking-Risiken, sondern gegen **architektonisches Nachrationalisieren**.
+Präregistrierung trennt prospektive Hypothesenprüfung von nachträglicher Musterdeutung; genau diese Funktion wird in der methodischen Literatur als zentraler Zweck beschrieben ([@NOSEK2018]). In diesem Projekt wirkt sie damit nicht nur gegen klassische p-Hacking-Risiken, sondern gegen **architektonisches Nachrationalisieren**.
 
 ## 28.5 Revidierbarkeit als Qualitätskriterium
 
