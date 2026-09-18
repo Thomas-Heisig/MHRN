@@ -2468,17 +2468,23 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
 
             predecessor_id = current_item.get("predecessor")
             if isinstance(predecessor_id, str) and predecessor_id:
-                for item_raw in publications_raw:
-                    if (
-                        not isinstance(item_raw, dict)
-                        or item_raw.get("id") != predecessor_id
-                    ):
+                for item_raw in publications:
+                    if not isinstance(item_raw, dict):
                         continue
-                    predecessor_entry = item_raw.get("entrypoint")
+                    predecessor_item = cast(dict[str, object], item_raw)
+                    if predecessor_item.get("id") != predecessor_id:
+                        continue
+                    predecessor_entry = predecessor_item.get("entrypoint")
                     if isinstance(predecessor_entry, str):
+                        predecessor_version = predecessor_item.get("version")
+                        predecessor_label = (
+                            predecessor_version
+                            if isinstance(predecessor_version, str)
+                            else predecessor_id
+                        )
                         predecessor = add_document(
                             research_root / predecessor_entry,
-                            label=f"Vorgänger {item_raw.get('version', predecessor_id)}",
+                            label=f"Vorgänger {predecessor_label}",
                             role="history",
                         )
                         if predecessor is not None:
@@ -2509,20 +2515,33 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
                 }
                 break
 
+            def optional_string(value: object) -> str | None:
+                return value if isinstance(value, str) else None
+
+            publication_id = optional_string(current_item.get("id"))
+            publication_title = (
+                optional_string(current_item.get("title"))
+                or "Recursive Epistemics / Rekursive Epistemik"
+            )
+            publication_author = optional_string(current_item.get("author"))
+            publication_date = optional_string(current_item.get("date"))
+            publication_version = optional_string(current_item.get("version"))
+            publication_status = optional_string(current_item.get("edition_status"))
+            publication_authority = optional_string(current_item.get("authority"))
+
             self._send_json(
                 {
                     "publication": snapshot_path.name,
-                    "publication_id": current_item.get("id"),
-                    "title": current_item.get("title")
-                    or "Recursive Epistemics / Rekursive Epistemik",
+                    "publication_id": publication_id,
+                    "title": publication_title,
                     "document_title": markdown_title(
                         entrypoint_path, "Gesamtmanuskript"
                     ),
-                    "author": current_item.get("author"),
-                    "date": current_item.get("date"),
-                    "edition": current_item.get("version"),
-                    "edition_status": current_item.get("edition_status"),
-                    "authority": current_item.get("authority"),
+                    "author": publication_author,
+                    "date": publication_date,
+                    "edition": publication_version,
+                    "edition_status": publication_status,
+                    "authority": publication_authority,
                     "entrypoint_path": relative_research_path(entrypoint_path),
                     "readme_path": (
                         relative_research_path(readme_path)
