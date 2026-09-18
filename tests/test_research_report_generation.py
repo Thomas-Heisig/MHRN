@@ -95,3 +95,51 @@ def test_evidence_matrix_keeps_rq_claim_and_experiment_status_separate(
     assert "### Claims (Claim-Status)" in matrix
     assert "| refuted | 1 |" in matrix
     assert "| **Gesamt Claims** | **1** |" in matrix
+
+
+def test_evidence_matrix_lists_manifest_linked_data_without_evid_promotion(
+    tmp_path: Path,
+) -> None:
+    registry_dir = tmp_path / "registry"
+    registry_dir.mkdir()
+    (registry_dir / "questions.yaml").write_text(
+        "- id: RQ-DATA-001\n"
+        "  domain: test\n"
+        "  question: Does source-bound DATA stay separate from EVID?\n"
+        "  relevance: integrity\n"
+        "  status: open\n"
+        "  hypotheses: [H-DATA-001-A]\n"
+        "  answer:\n"
+        "    current: A DATA result is pending human review.\n"
+        "    confidence: data_supported_review_pending\n",
+        encoding="utf-8",
+    )
+    (registry_dir / "hypotheses.yaml").write_text(
+        "- id: H-DATA-001-A\n"
+        "  research_question: RQ-DATA-001\n"
+        "  hypothesis: Topology changes a measured endpoint.\n"
+        "  status: untested\n"
+        "  evidence: []\n",
+        encoding="utf-8",
+    )
+    (registry_dir / "claims.yaml").write_text("[]\n", encoding="utf-8")
+    (registry_dir / "sources.yaml").write_text("[]\n", encoding="utf-8")
+
+    experiment = tmp_path / "experiments" / "EXP-DATA-001"
+    experiment.mkdir(parents=True)
+    (experiment / "manifest.json").write_text(
+        '{"experiment_id":"EXP-DATA-001","research_question":"RQ-DATA-001",'
+        '"hypothesis":"H-DATA-001-A","scientific_evidence":false}\n',
+        encoding="utf-8",
+    )
+
+    matrix = ReportBuilder(
+        ResearchRegistry(registry_dir).load_all()
+    ).build_evidence_matrix()
+
+    row = next(line for line in matrix.splitlines() if line.startswith("| \`RQ-DATA-001\`"))
+    assert "\`EXP-DATA-001\`" in row
+    cells = [cell.strip() for cell in row.strip("|").split("|")]
+    assert cells[6] == "\`EXP-DATA-001\`"
+    assert cells[7] == "—"
+    assert cells[8] == "data_supported_review_pending"
