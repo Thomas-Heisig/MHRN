@@ -9,7 +9,8 @@ function escapeHtml(value) {
 }
 
 function percent(value) {
-  return `${Math.round(Math.max(0, Math.min(1, Number(value) || 0)) * 100)}%`;
+  const pct = Math.round(Math.max(0, Math.min(1, Number(value) || 0)) * 1000) / 10;
+  return `${Number.isInteger(pct) ? pct.toFixed(0) : pct.toFixed(1)}%`;
 }
 
 function setVisible(element, visible) {
