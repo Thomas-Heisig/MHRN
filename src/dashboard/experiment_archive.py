@@ -18,6 +18,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, cast
 
+from .research_source import normalize_experiment_manifest
+
 
 class ExperimentArchiveError(ValueError):
     """Raised when an experiment archive operation is unsafe or invalid."""
@@ -110,6 +112,11 @@ class ExperimentArchiveService:
         for experiment_id, metadata in sorted(records.items(), reverse=True):
             canonical = self.experiments / experiment_id
             manifest_data = self._load_manifest(canonical)
+            dashboard_manifest = (
+                normalize_experiment_manifest(canonical, manifest_data)
+                if manifest_data is not None
+                else None
+            )
             items.append(
                 {
                     "experiment_id": experiment_id,
@@ -118,7 +125,9 @@ class ExperimentArchiveService:
                     "canonical_path": f"experiments/{experiment_id}",
                     "available": (canonical / "manifest.json").is_file(),
                     **(
-                        {"manifest": manifest_data} if manifest_data is not None else {}
+                        {"manifest": dashboard_manifest}
+                        if dashboard_manifest is not None
+                        else {}
                     ),
                     **metadata,
                 }
@@ -144,6 +153,11 @@ class ExperimentArchiveService:
                     except (OSError, json.JSONDecodeError):
                         legacy_metadata = {}
                 manifest_data = self._load_manifest(directory)
+                dashboard_manifest = (
+                    normalize_experiment_manifest(directory, manifest_data)
+                    if manifest_data is not None
+                    else None
+                )
                 items.append(
                     {
                         "experiment_id": directory.name,
@@ -153,8 +167,8 @@ class ExperimentArchiveService:
                         "canonical_path": f"experiments/{directory.name}",
                         "available": True,
                         **(
-                            {"manifest": manifest_data}
-                            if manifest_data is not None
+                            {"manifest": dashboard_manifest}
+                            if dashboard_manifest is not None
                             else {}
                         ),
                         **legacy_metadata,
