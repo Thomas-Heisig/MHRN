@@ -179,6 +179,7 @@ def test_material_prior_work_content_integration_is_declared(repository: Path) -
         "CORPUS-WESEN-EMBODIMENT",
         "CORPUS-CURRENT-SCIENCE",
         "CORPUS-EXPERIMENT-DATA",
+        "CORPUS-PAPER-OFFSHOOTS",
     ):
         assert identifier in by_id
         assert by_id[identifier]["manuscript_parts"]
@@ -190,3 +191,6 @@ def test_material_prior_work_content_integration_is_declared(repository: Path) -
     assert "Geliehene Intelligenz" in outputs["MANUSCRIPT.md"]
     assert "Neural Symbiosis" in outputs["MANUSCRIPT.md"]
     assert "I=(M,E,G,Z,X)" in outputs["MANUSCRIPT.md"]
+    assert "## Lesepfade durch Edition 1.8" in outputs["MANUSCRIPT.md"]
+    assert "## 46.1 Was noch nicht fertig ist" in outputs["MANUSCRIPT.md"]
+    assert "research/paper_offshoots/README.md" in outputs["MANUSCRIPT.md"]
