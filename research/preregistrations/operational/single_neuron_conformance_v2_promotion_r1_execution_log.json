@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "preregistration_id": "PREREG-EVAL-006-V2-PROMO-R1",
+  "experiment_id": "EXP-STAGE0-20260918-MODEL-CONFORMANCE-V2-PROMO-R1",
+  "attempts": [
+    {
+      "attempt": 1,
+      "workflow_run_id": 35378350438,
+      "freeze_commit": "edb25282ef54f6bf7c10c480f054baa5e676a566",
+      "phase": "PRE_EXECUTION_VALIDATION",
+      "scientific_execution_started": false,
+      "data_created": false,
+      "conclusion": "PRECHECK_FAILED",
+      "reason": "pytest was not installed by the empirical-only optional dependency set; the frozen scientific runner was skipped.",
+      "protocol_changed": false,
+      "seeds_changed": false,
+      "tolerances_changed": false,
+      "interpretation": "Infrastructure/preflight failure only; not scientific DATA and not a hypothesis result."
+    }
+  ]
+}
