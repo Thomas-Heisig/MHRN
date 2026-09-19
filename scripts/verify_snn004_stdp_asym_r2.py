@@ -26,7 +26,6 @@ def sha256(path: Path) -> str:
 
 
 def main() -> int:
-    prereg = read_json(PREREG)
     manifest = read_json(OUT / "manifest.json")
     stats = read_json(OUT / "analysis/statistics.json")
     review = read_json(OUT / "review_request.json")

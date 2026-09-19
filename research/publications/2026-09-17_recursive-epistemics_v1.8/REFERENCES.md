@@ -201,3 +201,43 @@ Langosco, L., Koch, J., Sharkey, L., Pfau, J., & Krueger, D. (2022). Goal misgen
 Quellentyp: Primärliteratur – empirische AI-Safety-/RL-Arbeit  
 Originalquelle: https://proceedings.mlr.press/v162/langosco22a.html  
 Prüfumfang: primary_metadata_and_abstract_checked; geprüft am 2026-09-15. Bibliographic identity and relevance checked in the MHRN safety source registry; deep-RL examples motivate capability-versus-goal-fidelity separation but are not direct evidence about MHRN.
+
+<a id="ref-MARKRAM1997"></a>
+
+Markram, H., Lübke, J., Frotscher, M., & Sakmann, B. (1997). Regulation of synaptic efficacy by coincidence of postsynaptic APs and EPSPs. Science, 275(5297), 213–215. https://doi.org/10.1126/science.275.5297.213
+
+Quellentyp: Primärliteratur – experimentelle STDP-Vorarbeit  
+Originalquelle: https://doi.org/10.1126/science.275.5297.213  
+Prüfumfang: primary_metadata_checked; geprüft am 2026-09-19. Historischer experimenteller Präzedenzfall timingabhängiger synaptischer Wirksamkeitsänderung; keine Evidenz für MHRN.
+
+<a id="ref-SONG2000"></a>
+
+Song, S., Miller, K. D., & Abbott, L. F. (2000). Competitive Hebbian learning through spike-timing-dependent synaptic plasticity. Nature Neuroscience, 3, 919–926. https://doi.org/10.1038/78829
+
+Quellentyp: Primärliteratur – computationelle STDP-Modellarbeit  
+Originalquelle: https://doi.org/10.1038/78829  
+Prüfumfang: primary_metadata_and_abstract_checked; geprüft am 2026-09-19. Ordnet die kompetitive pair-based STDP-Regel historisch und computationell ein; beweist keinen Lernnutzen oder MHRN-spezifischen Effekt.
+
+<a id="ref-IZHIKEVICH2006"></a>
+
+Izhikevich, E. M. (2006). Polychronization: Computation with spikes. Neural Computation, 18(2), 245–282. https://doi.org/10.1162/089976606775093882
+
+Quellentyp: Primärliteratur – axonale Delays, STDP und Polychronisierung  
+Originalquelle: https://doi.org/10.1162/089976606775093882  
+Prüfumfang: primary_metadata_and_abstract_checked; geprüft am 2026-09-19. Konzeptionelle Prior Art für die Interaktion von Leitungsverzögerungen und STDP; MHRN beansprucht weder Polychronisierung noch deren Neuheit.
+
+<a id="ref-MESZAROS2025"></a>
+
+Mészáros, B., Knight, J. C., & Nowotny, T. (2025). Efficient event-based delay learning in spiking neural networks. Nature Communications, 16, 10422. https://doi.org/10.1038/s41467-025-65394-8
+
+Quellentyp: Primärliteratur – lernbare Delays in SNNs  
+Originalquelle: https://doi.org/10.1038/s41467-025-65394-8  
+Prüfumfang: primary_metadata_and_abstract_checked; geprüft am 2026-09-19. Aktuelle Einordnung lernbarer Delays einschließlich rekurrenter SNNs; nicht mit dem engeren MHRN-Test fester Delay-Bedingungen gleichzusetzen.
+
+<a id="ref-GOLTZ2025"></a>
+
+Göltz, J., Weber, J., Kriener, L., Billaudelle, S., Lake, P., Schemmel, J., Payvand, M., & Petrovici, M. A. (2025). DelGrad: Exact event-based gradients for training delays and weights on spiking neuromorphic hardware. Nature Communications, 16, 8245. https://doi.org/10.1038/s41467-025-63120-y
+
+Quellentyp: Primärliteratur – gemeinsames Lernen von Delays und Gewichten  
+Originalquelle: https://doi.org/10.1038/s41467-025-63120-y  
+Prüfumfang: primary_metadata_and_abstract_checked; geprüft am 2026-09-19. Aktuelle Prior Art für ereignisbasiertes Co-Learning von Delays und Gewichten; keine direkte Evidenz für MHRN.

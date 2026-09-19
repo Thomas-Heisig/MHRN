@@ -99,24 +99,20 @@ def main() -> int:
         "clean_source_freeze": source["dirty_before_execution"] is False,
         "run_count": len(runs) == 80,
         "coverage": all(
-            (seed, condition) in by_key
-            for seed in seeds
-            for condition in CONDITIONS
+            (seed, condition) in by_key for seed in seeds for condition in CONDITIONS
         ),
         "runtime_errors_absent": all(row["runtime_error"] is None for row in runs),
         "holdout_episode_count": all(
             int(row["metrics"]["actual_test_episodes"]) == 40 for row in runs
         ),
         "evaluation_ticks": all(
-            int(row["metrics"]["evaluation_ticks_per_episode"]) == 12
-            for row in runs
+            int(row["metrics"]["evaluation_ticks_per_episode"]) == 12 for row in runs
         ),
         "teacher_absent_during_test": all(
             row["metrics"]["test_teacher_present"] is False for row in runs
         ),
         "learning_engine_detached_during_test": all(
-            row["metrics"]["test_learning_engine_attached"] is False
-            for row in runs
+            row["metrics"]["test_learning_engine_attached"] is False for row in runs
         ),
         "fresh_network_per_episode": all(
             row["metrics"]["fresh_network_per_test_episode"] is True for row in runs
@@ -174,15 +170,12 @@ def main() -> int:
     by_control = {row["control"]: row for row in comparisons}
     primary = by_control["learning_off"]
     mean_accuracy = {
-        condition: sum(values) / len(values)
-        for condition, values in accuracies.items()
+        condition: sum(values) / len(values) for condition, values in accuracies.items()
     }
 
     scientific_gates = {
         "primary_mean_difference": float(primary["mean_difference"]) >= 0.10,
-        "primary_ci_excludes_zero": float(
-            primary["bootstrap_percentile_95_ci"][0]
-        )
+        "primary_ci_excludes_zero": float(primary["bootstrap_percentile_95_ci"][0])
         > 0.0,
         "primary_holm_significant": float(primary["holm_adjusted_p"]) < 0.05,
         "learning_on_beats_all_control_means": all(
