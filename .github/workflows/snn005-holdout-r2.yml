@@ -1,0 +1,27 @@
+name: SNN-005 holdout R2
+
+on:
+  pull_request:
+    branches:
+      - fix/isolated-experiment-execution-20260919
+    paths:
+      - scripts/run_snn005_holdout_r2.py
+      - scripts/verify_snn005_holdout_r2.py
+      - research/preregistrations/PREREG-SNN005-HOLDOUT-R2.json
+      - .github/workflows/snn005-holdout-r2.yml
+      - .github/workflows/isolated-scientific-experiment.yml
+      - scripts/run_experiment_isolated.py
+  workflow_dispatch:
+
+jobs:
+  experiment:
+    uses: ./.github/workflows/isolated-scientific-experiment.yml
+    with:
+      runner: scripts/run_snn005_holdout_r2.py
+      verifier: scripts/verify_snn005_holdout_r2.py
+      experiment_id: EXP-SNN005-HOLDOUT-R2-20260919
+      regression_tests: >-
+        tests/test_empirical_evaluation.py
+        tests/test_stdp_integration.py
+        tests/test_gate_status.py
+        tests/test_source_digest.py

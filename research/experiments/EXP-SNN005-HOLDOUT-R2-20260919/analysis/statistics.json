@@ -1,0 +1,115 @@
+{
+  "claim_boundary": "A supported result would show only that the registered STDP-enabled synthetic association protocol achieves higher held-out classification accuracy than matched no-learning/sham/reset/shuffle controls within this simulator and task. It does not establish general intelligence, open-world learning, biological equivalence, human-like memory, scaling, a 5D advantage, external independent replication or human-reviewed EVID.",
+  "comparisons": [
+    {
+      "bootstrap_percentile_95_ci": [
+        0.19531249999999997,
+        0.3328125
+      ],
+      "bootstrap_resamples": 2000,
+      "bootstrap_seed": 910,
+      "control": "learning_off",
+      "degenerate_difference_variance": false,
+      "exact_two_sided_sign_flip_p": 3.0517578125e-05,
+      "holm_adjusted_p": 0.0001220703125,
+      "interpretation": "exploratory; no automatic hypothesis or EVID acceptance",
+      "mean_difference": 0.2640625,
+      "metric": "test_accuracy",
+      "n_seed_pairs": 16,
+      "paired_standardized_effect_dz": 1.7975197605953888,
+      "reference": "learning_on",
+      "unit": "independent_environment_and_initialization_seed"
+    },
+    {
+      "bootstrap_percentile_95_ci": [
+        0.19374999999999998,
+        0.33749999999999997
+      ],
+      "bootstrap_resamples": 2000,
+      "bootstrap_seed": 911,
+      "control": "sham_replay",
+      "degenerate_difference_variance": false,
+      "exact_two_sided_sign_flip_p": 3.0517578125e-05,
+      "holm_adjusted_p": 0.0001220703125,
+      "interpretation": "exploratory; no automatic hypothesis or EVID acceptance",
+      "mean_difference": 0.2640625,
+      "metric": "test_accuracy",
+      "n_seed_pairs": 16,
+      "paired_standardized_effect_dz": 1.7975197605953888,
+      "reference": "learning_on",
+      "unit": "independent_environment_and_initialization_seed"
+    },
+    {
+      "bootstrap_percentile_95_ci": [
+        0.1953125,
+        0.3375
+      ],
+      "bootstrap_resamples": 2000,
+      "bootstrap_seed": 912,
+      "control": "weight_reset",
+      "degenerate_difference_variance": false,
+      "exact_two_sided_sign_flip_p": 3.0517578125e-05,
+      "holm_adjusted_p": 0.0001220703125,
+      "interpretation": "exploratory; no automatic hypothesis or EVID acceptance",
+      "mean_difference": 0.2640625,
+      "metric": "test_accuracy",
+      "n_seed_pairs": 16,
+      "paired_standardized_effect_dz": 1.7975197605953888,
+      "reference": "learning_on",
+      "unit": "independent_environment_and_initialization_seed"
+    },
+    {
+      "bootstrap_percentile_95_ci": [
+        0.1953125,
+        0.3359375
+      ],
+      "bootstrap_resamples": 2000,
+      "bootstrap_seed": 913,
+      "control": "weight_shuffle",
+      "degenerate_difference_variance": false,
+      "exact_two_sided_sign_flip_p": 3.0517578125e-05,
+      "holm_adjusted_p": 0.0001220703125,
+      "interpretation": "exploratory; no automatic hypothesis or EVID acceptance",
+      "mean_difference": 0.2640625,
+      "metric": "test_accuracy",
+      "n_seed_pairs": 16,
+      "paired_standardized_effect_dz": 1.7975197605953888,
+      "reference": "learning_on",
+      "unit": "independent_environment_and_initialization_seed"
+    }
+  ],
+  "experiment_id": "EXP-SNN005-HOLDOUT-R2-20260919",
+  "integrity": {
+    "checks": {
+      "clean_source_freeze": true,
+      "coverage": true,
+      "evaluation_ticks": true,
+      "fresh_network_per_episode": true,
+      "holdout_episode_count": true,
+      "learning_engine_detached_during_test": true,
+      "matched_test_inputs_within_seed": true,
+      "run_count": true,
+      "runtime_errors_absent": true,
+      "teacher_absent_during_test": true,
+      "weights_frozen_during_test": true
+    },
+    "pass": true
+  },
+  "mean_accuracy": {
+    "learning_off": 0.5,
+    "learning_on": 0.7640625,
+    "sham_replay": 0.5,
+    "weight_reset": 0.5,
+    "weight_shuffle": 0.5
+  },
+  "schema_version": 1,
+  "scientific_gates": {
+    "all_control_contrasts_holm_significant": true,
+    "all_control_contrasts_positive": true,
+    "learning_on_beats_all_control_means": true,
+    "primary_ci_excludes_zero": true,
+    "primary_holm_significant": true,
+    "primary_mean_difference": true
+  },
+  "status": "SUPPORTED_WITHIN_PREREGISTERED_PROTOCOL"
+}
