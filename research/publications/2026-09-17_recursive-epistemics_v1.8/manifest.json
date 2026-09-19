@@ -13,7 +13,7 @@
   "automatic_evidence_promotion": false,
   "inherited_campaign": "EXP-EMP-20260913-A3",
   "input_sha256": {
-    "research/publications/2026-09-17_recursive-epistemics_v1.8/parts/01_origin.md": "fcdad18ea46ee91cd24dc09e19058fd067a14f65626988e37ae16d819b425730",
+    "research/publications/2026-09-17_recursive-epistemics_v1.8/parts/01_origin.md": "b817466ca51fdc9906063e5940e6ab53e578e36f00eb42169ae52eb38245d616",
     "research/publications/2026-09-17_recursive-epistemics_v1.8/parts/02_genealogy.md": "2f7cf90d1b9c42f2e0416b9cfe0491ecc2ecf6efe9e379ecc2a64dbb760cfbaa",
     "research/publications/2026-09-17_recursive-epistemics_v1.8/parts/03_research_object.md": "7a3b76b70542c5b63d542cf8f445a167e993998ebf43b3fc14c96b7379889d67",
     "research/publications/2026-09-17_recursive-epistemics_v1.8/parts/04_empirical_programme.md": "1bb0c9ddf85ae75c52ab96ba92cee1f2e22ca45ae152225f5e869fa3978a5519",
@@ -34,7 +34,7 @@
     "scripts/build_publication_edition.py": "eaf21d5a78370fac34d067e60e336216e9ea03f7309c39f7037b7c00f8aacde9"
   },
   "output_sha256": {
-    "MANUSCRIPT.md": "a2f2f3d56c8021d54fa83357142ddf0dd3116fa7a7102ac94d0e477b921561bf",
+    "MANUSCRIPT.md": "62e8bb8a3387ca8d3d14b766a3b383285c68e69960bb0f7d04e747726db5d7bf",
     "README.md": "b2601fa9aedb21a1ee1f8b858c2b5e2802d3a57593ec981562266837893adce8",
     "REFERENCES.md": "a774724e21dcd53f74f1bb558a47006c9e806c519cf38181634d9e9cc27833dc",
     "references.bib": "08f053b12bc7e26c66120bfeb61db71e1c7390536e8a2c970dbbf2dcf277aac6",
