@@ -116,17 +116,24 @@ class ExperimentArchiveService:
                 payload: object = json.loads(workflow.read_text(encoding="utf-8"))
             except (OSError, json.JSONDecodeError):
                 continue
-            if not isinstance(payload, dict) or not isinstance(
-                payload.get("results"), list
-            ):
+            if not isinstance(payload, dict):
                 continue
-            child_ids = [
-                str(item["experiment_id"])
-                for item in cast(list[object], payload["results"])
-                if isinstance(item, dict) and item.get("experiment_id")
-            ]
-            if child_ids and all(child_id in archived_children for child_id in child_ids):
-                result.add(str(payload.get("workflow_id") or workflow.stem))
+            payload_map = cast(dict[str, object], payload)
+            results = payload_map.get("results")
+            if not isinstance(results, list):
+                continue
+            child_ids: list[str] = []
+            for item in cast(list[object], results):
+                if not isinstance(item, dict):
+                    continue
+                item_map = cast(dict[str, object], item)
+                experiment_id = item_map.get("experiment_id")
+                if experiment_id:
+                    child_ids.append(str(experiment_id))
+            if child_ids and all(
+                child_id in archived_children for child_id in child_ids
+            ):
+                result.add(str(payload_map.get("workflow_id") or workflow.stem))
         return frozenset(result)
 
     @staticmethod
@@ -192,7 +199,9 @@ class ExperimentArchiveService:
         archived_children = self.archived_ids()
         indexed_series = self.archived_series_ids()
         if self.research_workflows.is_dir():
-            for workflow in sorted(self.research_workflows.glob("*.json"), reverse=True):
+            for workflow in sorted(
+                self.research_workflows.glob("*.json"), reverse=True
+            ):
                 series_id = workflow.stem
                 if series_id in indexed_series:
                     continue
@@ -316,12 +325,24 @@ class ExperimentArchiveService:
             raise ExperimentArchiveError(
                 f"experiment series is unreadable: {series_id}"
             ) from exc
-        if not isinstance(payload, dict) or not isinstance(payload.get("results"), list):
-            raise ExperimentArchiveError(f"experiment series has no results: {series_id}")
+        if not isinstance(payload, dict):
+            raise ExperimentArchiveError(
+                f"experiment series has no results: {series_id}"
+            )
+        payload_map = cast(dict[str, object], payload)
+        results = payload_map.get("results")
+        if not isinstance(results, list):
+            raise ExperimentArchiveError(
+                f"experiment series has no results: {series_id}"
+            )
         result_ids: list[str] = []
-        for result in cast(list[object], payload["results"]):
-            if isinstance(result, dict) and isinstance(result.get("experiment_id"), str):
-                result_ids.append(result["experiment_id"])
+        for result in cast(list[object], results):
+            if not isinstance(result, dict):
+                continue
+            result_map = cast(dict[str, object], result)
+            experiment_id = result_map.get("experiment_id")
+            if isinstance(experiment_id, str):
+                result_ids.append(experiment_id)
         return list(dict.fromkeys(result_ids))
 
     def archive_series(self, series_id: str, reason: str = "") -> dict[str, Any]:
