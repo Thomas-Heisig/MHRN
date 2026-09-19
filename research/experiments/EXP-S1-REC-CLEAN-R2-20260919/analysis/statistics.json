@@ -1,0 +1,364 @@
+{
+  "analysis": {
+    "gates": {
+      "delay_effect_present_every_seed": true,
+      "full_grid_every_seed": true,
+      "persistent_class_present_every_seed": true,
+      "recurrence_extends_response_every_seed": true,
+      "transient_class_present_every_seed": true,
+      "weight_effect_present_every_seed": true,
+      "zero_recurrence_controls_immediate": true
+    },
+    "per_seed": [
+      {
+        "control_immediate_decay": true,
+        "coverage_complete": true,
+        "delay_sensitive": true,
+        "has_persistent_recurrent_condition": true,
+        "has_transient_recurrent_condition": true,
+        "max_control_last_response_latency": 2,
+        "max_recurrent_last_response_latency": 255,
+        "observed_recurrent_classes": [
+          "persistent_to_window",
+          "transient"
+        ],
+        "recurrence_extends_response": true,
+        "seed": 7301,
+        "weight_sensitive": true
+      },
+      {
+        "control_immediate_decay": true,
+        "coverage_complete": true,
+        "delay_sensitive": true,
+        "has_persistent_recurrent_condition": true,
+        "has_transient_recurrent_condition": true,
+        "max_control_last_response_latency": 2,
+        "max_recurrent_last_response_latency": 255,
+        "observed_recurrent_classes": [
+          "persistent_to_window",
+          "transient"
+        ],
+        "recurrence_extends_response": true,
+        "seed": 7302,
+        "weight_sensitive": true
+      },
+      {
+        "control_immediate_decay": true,
+        "coverage_complete": true,
+        "delay_sensitive": true,
+        "has_persistent_recurrent_condition": true,
+        "has_transient_recurrent_condition": true,
+        "max_control_last_response_latency": 2,
+        "max_recurrent_last_response_latency": 255,
+        "observed_recurrent_classes": [
+          "persistent_to_window",
+          "transient"
+        ],
+        "recurrence_extends_response": true,
+        "seed": 7303,
+        "weight_sensitive": true
+      },
+      {
+        "control_immediate_decay": true,
+        "coverage_complete": true,
+        "delay_sensitive": true,
+        "has_persistent_recurrent_condition": true,
+        "has_transient_recurrent_condition": true,
+        "max_control_last_response_latency": 2,
+        "max_recurrent_last_response_latency": 255,
+        "observed_recurrent_classes": [
+          "persistent_to_window",
+          "transient"
+        ],
+        "recurrence_extends_response": true,
+        "seed": 7304,
+        "weight_sensitive": true
+      },
+      {
+        "control_immediate_decay": true,
+        "coverage_complete": true,
+        "delay_sensitive": true,
+        "has_persistent_recurrent_condition": true,
+        "has_transient_recurrent_condition": true,
+        "max_control_last_response_latency": 2,
+        "max_recurrent_last_response_latency": 255,
+        "observed_recurrent_classes": [
+          "persistent_to_window",
+          "transient"
+        ],
+        "recurrence_extends_response": true,
+        "seed": 7305,
+        "weight_sensitive": true
+      },
+      {
+        "control_immediate_decay": true,
+        "coverage_complete": true,
+        "delay_sensitive": true,
+        "has_persistent_recurrent_condition": true,
+        "has_transient_recurrent_condition": true,
+        "max_control_last_response_latency": 2,
+        "max_recurrent_last_response_latency": 255,
+        "observed_recurrent_classes": [
+          "persistent_to_window",
+          "transient"
+        ],
+        "recurrence_extends_response": true,
+        "seed": 7306,
+        "weight_sensitive": true
+      },
+      {
+        "control_immediate_decay": true,
+        "coverage_complete": true,
+        "delay_sensitive": true,
+        "has_persistent_recurrent_condition": true,
+        "has_transient_recurrent_condition": true,
+        "max_control_last_response_latency": 2,
+        "max_recurrent_last_response_latency": 255,
+        "observed_recurrent_classes": [
+          "persistent_to_window",
+          "transient"
+        ],
+        "recurrence_extends_response": true,
+        "seed": 7307,
+        "weight_sensitive": true
+      },
+      {
+        "control_immediate_decay": true,
+        "coverage_complete": true,
+        "delay_sensitive": true,
+        "has_persistent_recurrent_condition": true,
+        "has_transient_recurrent_condition": true,
+        "max_control_last_response_latency": 2,
+        "max_recurrent_last_response_latency": 255,
+        "observed_recurrent_classes": [
+          "persistent_to_window",
+          "transient"
+        ],
+        "recurrence_extends_response": true,
+        "seed": 7308,
+        "weight_sensitive": true
+      },
+      {
+        "control_immediate_decay": true,
+        "coverage_complete": true,
+        "delay_sensitive": true,
+        "has_persistent_recurrent_condition": true,
+        "has_transient_recurrent_condition": true,
+        "max_control_last_response_latency": 2,
+        "max_recurrent_last_response_latency": 255,
+        "observed_recurrent_classes": [
+          "persistent_to_window",
+          "transient"
+        ],
+        "recurrence_extends_response": true,
+        "seed": 7309,
+        "weight_sensitive": true
+      },
+      {
+        "control_immediate_decay": true,
+        "coverage_complete": true,
+        "delay_sensitive": true,
+        "has_persistent_recurrent_condition": true,
+        "has_transient_recurrent_condition": true,
+        "max_control_last_response_latency": 2,
+        "max_recurrent_last_response_latency": 255,
+        "observed_recurrent_classes": [
+          "persistent_to_window",
+          "transient"
+        ],
+        "recurrence_extends_response": true,
+        "seed": 7310,
+        "weight_sensitive": true
+      },
+      {
+        "control_immediate_decay": true,
+        "coverage_complete": true,
+        "delay_sensitive": true,
+        "has_persistent_recurrent_condition": true,
+        "has_transient_recurrent_condition": true,
+        "max_control_last_response_latency": 2,
+        "max_recurrent_last_response_latency": 255,
+        "observed_recurrent_classes": [
+          "persistent_to_window",
+          "transient"
+        ],
+        "recurrence_extends_response": true,
+        "seed": 7311,
+        "weight_sensitive": true
+      },
+      {
+        "control_immediate_decay": true,
+        "coverage_complete": true,
+        "delay_sensitive": true,
+        "has_persistent_recurrent_condition": true,
+        "has_transient_recurrent_condition": true,
+        "max_control_last_response_latency": 2,
+        "max_recurrent_last_response_latency": 255,
+        "observed_recurrent_classes": [
+          "persistent_to_window",
+          "transient"
+        ],
+        "recurrence_extends_response": true,
+        "seed": 7312,
+        "weight_sensitive": true
+      },
+      {
+        "control_immediate_decay": true,
+        "coverage_complete": true,
+        "delay_sensitive": true,
+        "has_persistent_recurrent_condition": true,
+        "has_transient_recurrent_condition": true,
+        "max_control_last_response_latency": 2,
+        "max_recurrent_last_response_latency": 255,
+        "observed_recurrent_classes": [
+          "persistent_to_window",
+          "transient"
+        ],
+        "recurrence_extends_response": true,
+        "seed": 7313,
+        "weight_sensitive": true
+      },
+      {
+        "control_immediate_decay": true,
+        "coverage_complete": true,
+        "delay_sensitive": true,
+        "has_persistent_recurrent_condition": true,
+        "has_transient_recurrent_condition": true,
+        "max_control_last_response_latency": 2,
+        "max_recurrent_last_response_latency": 255,
+        "observed_recurrent_classes": [
+          "persistent_to_window",
+          "transient"
+        ],
+        "recurrence_extends_response": true,
+        "seed": 7314,
+        "weight_sensitive": true
+      },
+      {
+        "control_immediate_decay": true,
+        "coverage_complete": true,
+        "delay_sensitive": true,
+        "has_persistent_recurrent_condition": true,
+        "has_transient_recurrent_condition": true,
+        "max_control_last_response_latency": 2,
+        "max_recurrent_last_response_latency": 255,
+        "observed_recurrent_classes": [
+          "persistent_to_window",
+          "transient"
+        ],
+        "recurrence_extends_response": true,
+        "seed": 7315,
+        "weight_sensitive": true
+      },
+      {
+        "control_immediate_decay": true,
+        "coverage_complete": true,
+        "delay_sensitive": true,
+        "has_persistent_recurrent_condition": true,
+        "has_transient_recurrent_condition": true,
+        "max_control_last_response_latency": 2,
+        "max_recurrent_last_response_latency": 255,
+        "observed_recurrent_classes": [
+          "persistent_to_window",
+          "transient"
+        ],
+        "recurrence_extends_response": true,
+        "seed": 7316,
+        "weight_sensitive": true
+      },
+      {
+        "control_immediate_decay": true,
+        "coverage_complete": true,
+        "delay_sensitive": true,
+        "has_persistent_recurrent_condition": true,
+        "has_transient_recurrent_condition": true,
+        "max_control_last_response_latency": 2,
+        "max_recurrent_last_response_latency": 255,
+        "observed_recurrent_classes": [
+          "persistent_to_window",
+          "transient"
+        ],
+        "recurrence_extends_response": true,
+        "seed": 7317,
+        "weight_sensitive": true
+      },
+      {
+        "control_immediate_decay": true,
+        "coverage_complete": true,
+        "delay_sensitive": true,
+        "has_persistent_recurrent_condition": true,
+        "has_transient_recurrent_condition": true,
+        "max_control_last_response_latency": 2,
+        "max_recurrent_last_response_latency": 255,
+        "observed_recurrent_classes": [
+          "persistent_to_window",
+          "transient"
+        ],
+        "recurrence_extends_response": true,
+        "seed": 7318,
+        "weight_sensitive": true
+      },
+      {
+        "control_immediate_decay": true,
+        "coverage_complete": true,
+        "delay_sensitive": true,
+        "has_persistent_recurrent_condition": true,
+        "has_transient_recurrent_condition": true,
+        "max_control_last_response_latency": 2,
+        "max_recurrent_last_response_latency": 255,
+        "observed_recurrent_classes": [
+          "persistent_to_window",
+          "transient"
+        ],
+        "recurrence_extends_response": true,
+        "seed": 7319,
+        "weight_sensitive": true
+      },
+      {
+        "control_immediate_decay": true,
+        "coverage_complete": true,
+        "delay_sensitive": true,
+        "has_persistent_recurrent_condition": true,
+        "has_transient_recurrent_condition": true,
+        "max_control_last_response_latency": 2,
+        "max_recurrent_last_response_latency": 255,
+        "observed_recurrent_classes": [
+          "persistent_to_window",
+          "transient"
+        ],
+        "recurrence_extends_response": true,
+        "seed": 7320,
+        "weight_sensitive": true
+      }
+    ],
+    "status": "SUPPORTED_WITHIN_PREREGISTERED_PROTOCOL",
+    "summary": {
+      "all_primary_gates_pass": true,
+      "observed_persistence_classes": [
+        "immediate_decay",
+        "persistent_to_window",
+        "transient"
+      ],
+      "run_count": 300,
+      "seed_count": 20,
+      "unique_state_after_digests": 260
+    }
+  },
+  "claim_boundary": "This experiment tests a small three-neuron SNN under the registered recurrence-weight and delay interventions and can support only the scoped claim that recurrence parameters change persistence/propagation classes in this deterministic operating envelope. It does not establish cognition, memory, biological equivalence, scaling, a 5D advantage, general recurrent-computation superiority, human-reviewed EVID, or independent replication.",
+  "experiment_id": "EXP-S1-REC-CLEAN-R2-20260919",
+  "inference_note": "No p-values or sampling-based confidence intervals are used. The runner is deterministic and the seeds are not assumed to be independent stochastic samples.",
+  "integrity": {
+    "checks": {
+      "clean_source_freeze": true,
+      "condition_grid": true,
+      "exact_coverage": true,
+      "fresh_seeds": true,
+      "run_count": true,
+      "runtime_errors_absent": true,
+      "seed_count": true,
+      "tick_contract": true
+    },
+    "pass": true
+  },
+  "schema_version": 1
+}

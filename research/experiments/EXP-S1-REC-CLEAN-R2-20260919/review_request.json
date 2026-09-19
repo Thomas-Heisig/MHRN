@@ -1,0 +1,20 @@
+{
+  "ai_review_does_not_satisfy_human_gate": true,
+  "automatic_evidence_promotion": false,
+  "experiment_id": "EXP-S1-REC-CLEAN-R2-20260919",
+  "human_review_status": "PENDING",
+  "hypothesis": "H-REC-001-A",
+  "independent_replication": false,
+  "interpretation_boundary": "This experiment tests a small three-neuron SNN under the registered recurrence-weight and delay interventions and can support only the scoped claim that recurrence parameters change persistence/propagation classes in this deterministic operating envelope. It does not establish cognition, memory, biological equivalence, scaling, a 5D advantage, general recurrent-computation superiority, human-reviewed EVID, or independent replication.",
+  "questions": [
+    "Was the R2 run executed from a clean source freeze with the complete registered 15-condition grid?",
+    "Do the zero-recurrence controls and recurrent treatment conditions support the registered transition claim without treating seeds as independent stochastic replicates?",
+    "Are the delay- and weight-sensitivity gates appropriate for H-REC-001-A?",
+    "Does the interpretation remain inside the small-SNN recurrence claim boundary?"
+  ],
+  "research_question": "RQ-REC-001",
+  "result_status": "SUPPORTED_WITHIN_PREREGISTERED_PROTOCOL",
+  "reviewer_type_required": "human",
+  "schema_version": 1,
+  "scientific_evidence": false
+}
