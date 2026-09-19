@@ -230,14 +230,6 @@
   evidence: []
   created: '2026-08-23'
   updated: '2026-08-23'
-- id: H-EMB-001-B
-  research_question: RQ-EMB-001
-  hypothesis: Unter einer identischen externen Stoerung unterscheiden sich tracking_rmse_rad und Sensorkonsequenzen
-    zwischen geschlossenem Kreis, yoked Replay und unterbrochener Rueckmeldung.
-  status: untested
-  evidence: []
-  created: '2026-09-09'
-  updated: '2026-09-09'
 - id: H-LLM-001-A
   research_question: RQ-LLM-001
   hypothesis: Ein Language Organ kann SNN-Zustände in sinnvolle natürliche Sprache
