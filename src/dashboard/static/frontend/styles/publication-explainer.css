@@ -1,0 +1,14 @@
+#tab-publication #publication-simple-panel { width: 100%; margin: 0; padding: 0; }
+#tab-publication .pub-simple-page { display: grid; gap: 16px; padding: 22px clamp(18px, 3vw, 42px) 70px; }
+#tab-publication .pub-simple-hero { padding: 22px; border: 1px solid var(--rule); border-left: 4px solid var(--accent); background: var(--paper-2); }
+#tab-publication .pub-simple-hero h1 { margin: 5px 0 10px; font: 700 clamp(1.5rem, 2.4vw, 2.35rem)/1.12 var(--font-display); }
+#tab-publication .pub-simple-hero p { max-width: 82ch; margin: 0; color: var(--ink-2); font-size: .88rem; line-height: 1.65; }
+#tab-publication .pub-simple-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+#tab-publication .pub-simple-grid article { padding: 18px; border: 1px solid var(--rule); background: var(--paper-2); }
+#tab-publication .pub-simple-grid h2 { margin: 0 0 9px; font: 700 1rem/1.25 var(--font-display); }
+#tab-publication .pub-simple-grid p { margin: 0; color: var(--ink-2); font-size: .79rem; line-height: 1.62; }
+#tab-publication .pub-simple-links { margin-top: 12px !important; }
+#tab-publication .pub-simple-page a { color: var(--accent-2); text-decoration: underline; text-underline-offset: 2px; }
+#tab-publication .pub-simple-boundary { padding: 16px 18px; border-left: 3px solid var(--moss); background: var(--moss-wash); color: var(--ink-2); font-size: .82rem; line-height: 1.6; }
+#tab-publication .pub-imprint-status.is-partial { color: var(--amber); background: var(--amber-wash); }
+@media (max-width: 900px) { #tab-publication .pub-simple-grid { grid-template-columns: 1fr; } }
