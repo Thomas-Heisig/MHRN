@@ -1,0 +1,16 @@
+{
+  "ai_review_does_not_satisfy_human_gate": true,
+  "automatic_evidence_promotion": false,
+  "experiment_id": "EXP-S1-TEMP-ORDER-V2-20260919",
+  "human_review_status": "PENDING",
+  "independent_replication": false,
+  "questions": [
+    "Does V2 genuinely distinguish forward, reverse and simultaneous order without the V1 schedule-collapse defect?",
+    "Is the identity-destroyed control sufficiently matched to isolate channel identity?",
+    "Are the paired nuisance realizations and inferential test appropriate for the scoped Stage-1 claim?",
+    "Does interpretation remain inside the registered claim boundary?"
+  ],
+  "reviewer_type_required": "human",
+  "schema_version": 1,
+  "scientific_evidence": false
+}

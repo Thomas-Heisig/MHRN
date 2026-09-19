@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "preregistration_id": "PREREG-S1-TEMP-ORDER-V2",
+  "stage": 1,
+  "research_question": "RQ-TEMP-002",
+  "hypothesis": "H-TEMP-002-A",
+  "protocol": "stage1_two_channel_temporal_order_v2",
+  "mode": "CONFIRMATORY_PROTOCOL_CORRECTION",
+  "execution_authorized": true,
+  "scientific_evidence": false,
+  "automatic_evidence_promotion": false,
+  "human_review_required": true,
+  "independent_replication": false,
+  "rationale": "The historical temporal_order_spiking_v1 protocol stored forward=(0,4) and reverse=(4,0), while its runner used membership testing (tick in schedule). This erases event identity/order and makes forward and reverse causally identical. V2 preserves historical artifacts and prospectively corrects the intervention by using two distinguishable input channels plus an information-destroyed control.",
+  "task": {
+    "network": "six-neuron acyclic dual-channel SNN",
+    "paths": [
+      "input_A -> hidden_A -> output_A",
+      "input_B -> hidden_B -> output_B"
+    ],
+    "neuron_count": 6,
+    "synapse_count": 4,
+    "synaptic_delay_ticks": 1,
+    "order_gap_ticks": 4,
+    "evaluation_ticks": 16,
+    "logical_orders": {
+      "forward": [[0, "A"], [4, "B"]],
+      "reverse": [[0, "B"], [4, "A"]],
+      "simultaneous": [[0, "A"], [0, "B"]]
+    },
+    "decoder": "forward if first output_A spike precedes first output_B spike; reverse if B precedes A; simultaneous if their first output spikes occur on the same tick"
+  },
+  "arms": {
+    "intact": "logical A/B event identity is preserved at the two physical input channels",
+    "identity_destroyed": "both logical A/B events are injected into physical input_A; event count, event times, per-event current and total injected charge are preserved, but channel identity is deliberately removed"
+  },
+  "seed_bound_nuisance_realizations": {
+    "purpose": "prospective paired robustness realizations; not independent external replication",
+    "xor_salt": 5359309,
+    "synaptic_weight_uniform": [100.0, 110.0],
+    "stimulus_current_uniform": [100.0, 110.0],
+    "matching_rule": "for a given seed, the same sampled weight and current are used for all arms and orders",
+    "forbidden_use": "parameters may not be selected from observed task outcomes"
+  },
+  "evaluation": {
+    "seeds": [7101, 7102, 7103, 7104, 7105, 7106, 7107, 7108, 7109, 7110, 7111, 7112, 7113, 7114, 7115, 7116, 7117, 7118, 7119, 7120],
+    "freshness_rule": "seeds are disjoint from TEMP-002 v1 seeds 101-120, Stage-1 topology V2 seeds 2101-2120 and Stage-1 topology V3-R1 seeds 6201-6220",
+    "primary_endpoint": "per-seed balanced order-decoding accuracy across forward and reverse trials",
+    "primary_contrast": "intact minus identity_destroyed, paired by seed",
+    "control_endpoint": "intact simultaneous-control success fraction",
+    "secondary_endpoints": [
+      "first output tick by channel",
+      "output gap error",
+      "total spikes",
+      "delivered synaptic events",
+      "state digests"
+    ]
+  },
+  "analysis": {
+    "alpha": 0.05,
+    "test": "exact two-sided paired sign test on per-seed intact-minus-identity-destroyed accuracy deltas",
+    "effect_interval": "deterministic paired bootstrap 95% CI for median accuracy delta, 5000 resamples",
+    "multiple_testing": "not applicable; exactly one primary inferential contrast",
+    "simultaneous_condition_role": "non-inferential task-adequacy control"
+  },
+  "decision_rule": {
+    "minimum_intact_order_accuracy": 0.95,
+    "maximum_identity_destroyed_order_accuracy": 0.55,
+    "minimum_intact_simultaneous_success_fraction": 0.95,
+    "minimum_paired_accuracy_delta": 0.40,
+    "supported_within_protocol": "all four directional/task gates pass, paired sign-test p < alpha, bootstrap CI excludes zero, and all design-integrity checks pass",
+    "no_predefined_support": "one or more preregistered task/inference gates fail despite intact design integrity",
+    "not_tested": "execution or design-integrity failure"
+  },
+  "integrity_constraints": [
+    "clean source tree before execution",
+    "exactly 20 fresh seed-bound paired realizations",
+    "exactly six runs per seed: two arms x three orders",
+    "six neurons and four synapses in every run",
+    "identical sampled weight/current across all six runs of a seed",
+    "identical event count and total injected charge across arms",
+    "historical temporal_order_spiking_v1 artifacts remain unchanged"
+  ],
+  "claim_boundary": "This Stage-1 task tests whether a small, acyclic six-neuron SNN preserves the temporal order of two distinguishable input channels at designated outputs and whether deliberately destroying channel identity removes that fixed decoding signal. It demonstrates at most scoped technical task function under the registered parameter range. It does not establish learning, memory, cognition, biological equivalence, scaling, 5D superiority, general temporal reasoning, human-reviewed EVID or independent replication.",
+  "review": {
+    "human_review_status": "PENDING_AFTER_EXECUTION",
+    "ai_review_does_not_satisfy_human_gate": true,
+    "automatic_promotion_forbidden": true
+  }
+}
