@@ -23,6 +23,12 @@ def test_publication_reader_keeps_markdown_inside_reader() -> None:
     assert "data-pub-reader-link" in reader
     assert "openReaderDocument" in reader
     assert "/api/files/preview/" in reader
+    assert "publicationFallbackHref" in reader
+    assert "/api/files/raw/" in reader
+    assert 'href="#" data-pub-reader-link' not in reader
+    assert 'href="#" data-pub-file' not in reader
+    assert "event.metaKey" in reader
+    assert "event.ctrlKey" in reader
 
 
 def test_publication_reader_resolves_cross_root_links_and_files() -> None:
