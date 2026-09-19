@@ -41,7 +41,7 @@ for (const port of [4174, 4175]) {
       'Vorgänger 1.7',
     ]));
 
-    await selectRoute(page, 'research', 'publication');
+    await selectRoute(page, 'publication');
     const publicationPanel = page.locator('#publication-panel');
     await expect(publicationPanel).toBeVisible();
     const readerLink = publicationPanel.locator('a[data-pub-reader-link]').first();
