@@ -116,5 +116,10 @@
       "status": "OUTREACH_TARGET"
     }
   ],
-  "epistemic_boundary": "Indexing, DOI assignment, downloads, citations, repository preservation, profile claiming and social dissemination do not by themselves create Human Review, accepted EVID or independent replication."
+  "epistemic_boundary": "Indexing, DOI assignment, downloads, citations, repository preservation, profile claiming and social dissemination do not by themselves create Human Review, accepted EVID or independent replication.",
+  "identity_disambiguation": {
+    "primary_key": "https://orcid.org/0009-0002-9589-1872",
+    "rule": "Match Thomas Heisig/MHRN records by ORCID and canonical repository, not by name alone.",
+    "known_name_collision_risk": true
+  }
 }
