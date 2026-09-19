@@ -24,9 +24,7 @@ def main() -> int:
     parser.add_argument("--verify-path", action="append", default=[])
     args = parser.parse_args()
 
-    root = Path(
-        _run(["git", "rev-parse", "--show-toplevel"], Path.cwd())
-    ).resolve()
+    root = Path(_run(["git", "rev-parse", "--show-toplevel"], Path.cwd())).resolve()
     status = _run(
         ["git", "status", "--porcelain", "--untracked-files=all"],
         root,
