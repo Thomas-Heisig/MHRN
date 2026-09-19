@@ -467,6 +467,19 @@ Die folgenden Forschungsfragen sind noch offen und warten auf experimentelle Evi
 
 ---
 
+## RQ-EPIST-002
+
+**Domäne:** Epistemology
+
+**Frage:** Unter welchen Bedingungen reduziert eine explizite Trennung von Quelle, Entscheidung, Ausfuehrung, DATA, Review, EVID und Claim epistemische Fehlklassifikationen in schnell iterierender, KI-assistierter MHRN-Forschung?
+
+**Relevanz:** Macht die epistemologisch-methodische Achse selbst prospektiv pruefbar, statt Prozessverbesserung aus einzelnen Korrekturereignissen abzuleiten.
+
+**Hypothesen:**
+- `H-EPIST-002-A`: Reviewer mit einem status- und provenienzgetrennten Claim-Paket weisen gegenueber einem inhaltlich aequivalenten abgeflachten Summary-Paket eine geringere Rate vorab definierter epistemischer Klassifikationsfehler auf.
+
+---
+
 ## RQ-AIR-001
 
 **Domäne:** AI-Assisted Research
@@ -1602,6 +1615,6 @@ Die folgenden Forschungsfragen sind noch offen und warten auf experimentelle Evi
 
 ---
 
-*Insgesamt 106 offene Fragen.*
+*Insgesamt 107 offene Fragen.*
 
 > Pruefstatus: RQ/H- und EVID-Statuswerte geben den Registry-Inhalt wieder. Insbesondere historische supports/supported-Eintraege sind keine Bestaetigung einer Freigabe nach den heutigen Clean-Freeze- und Human-Review-Gates. Ein abgeschlossener Lauf ist DATA, nicht automatisch akzeptierte Evidenz.

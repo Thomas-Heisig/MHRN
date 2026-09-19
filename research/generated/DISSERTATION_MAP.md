@@ -107,6 +107,7 @@ Epistemische Beiträge, Kanonisierung, Autorenschaft, Verantwortung und maschine
 - `RQ-ETH-001`: Wie verteilen sich epistemische Beiträge, Entscheidungsmacht, formale Autorensch... *(open)*
 - `RQ-ETH-002`: Wo liegt die Kontrolle und Verantwortung bei Brain-5D-Experimenten?... *(open)*
 - `RQ-EPIST-001`: Was gilt als Erkenntnis des Systems Brain-5D im Unterschied zur Erkenntnis des F... *(open)*
+- `RQ-EPIST-002`: Unter welchen Bedingungen reduziert eine explizite Trennung von Quelle, Entschei... *(open)*
 
 ---
 

@@ -4,8 +4,8 @@
 
 ## Übersicht
 
-- **Forschungsfragen:** 107
-- **Hypothesen:** 114
+- **Forschungsfragen:** 108
+- **Hypothesen:** 115
 - **Claims:** 9
 - **Literaturquellen:** 56
 
@@ -741,6 +741,18 @@
 
 **Hypothesen:**
 - `H-EPIST-001-A`: Systemerkenntnis und Forschererkenntnis sind in Brain-5D kategorial unterscheidbar. *(untested)*
+
+---
+
+### RQ-EPIST-002
+
+**Frage:** Unter welchen Bedingungen reduziert eine explizite Trennung von Quelle, Entscheidung, Ausfuehrung, DATA, Review, EVID und Claim epistemische Fehlklassifikationen in schnell iterierender, KI-assistierter MHRN-Forschung?
+
+**Status:** open
+**Relevanz:** Macht die epistemologisch-methodische Achse selbst prospektiv pruefbar, statt Prozessverbesserung aus einzelnen Korrekturereignissen abzuleiten.
+
+**Hypothesen:**
+- `H-EPIST-002-A`: Reviewer mit einem status- und provenienzgetrennten Claim-Paket weisen gegenueber einem inhaltlich aequivalenten abgeflachten Summary-Paket eine geringere Rate vorab definierter epistemischer Klassifikationsfehler auf. *(untested)*
 
 ---
 
