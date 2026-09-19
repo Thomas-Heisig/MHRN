@@ -4583,7 +4583,10 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
             {
                 "series": cast(
                     list[JSONValue],
-                    service.list_series(archive_service.archived_series_ids()),
+                    service.list_series(
+                        archive_service.archived_series_ids(),
+                        archive_service.archived_ids(),
+                    ),
                 )
             }
         )

@@ -15,7 +15,9 @@ class ExperimentOrganizerService:
         self.workflows = research_root / "workflows"
 
     def list_series(
-        self, archived_series_ids: frozenset[str] = frozenset()
+        self,
+        archived_series_ids: frozenset[str] = frozenset(),
+        archived_experiment_ids: frozenset[str] = frozenset(),
     ) -> list[dict[str, Any]]:
         """Return workflow series with independently assessable child results."""
         if not self.workflows.is_dir():
@@ -57,10 +59,28 @@ class ExperimentOrganizerService:
                 else "EXECUTION_REVIEW_REQUIRED"
             )
             series_id = str(data.get("workflow_id") or path.stem)
+            child_ids = [
+                str(item.get("experiment_id"))
+                for item in results
+                if item.get("experiment_id")
+            ]
+            archived_child_count = sum(
+                child_id in archived_experiment_ids for child_id in child_ids
+            )
+            explicitly_archived = series_id in archived_series_ids
             series.append(
                 {
                     "series_id": series_id,
-                    "archived": series_id in archived_series_ids,
+                    "archived": explicitly_archived,
+                    "archive_state": (
+                        "archived"
+                        if explicitly_archived
+                        else "partial"
+                        if archived_child_count
+                        else "active"
+                    ),
+                    "archived_child_count": archived_child_count,
+                    "child_count": len(child_ids),
                     "created_at": str(data.get("created_at") or ""),
                     "protocols": cast(list[Any], data.get("protocols", [])),
                     "requested_ticks": data.get("requested_ticks"),

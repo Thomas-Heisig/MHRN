@@ -122,7 +122,24 @@ class ExperimentArchiveService:
         records = self._load_index()
         items: list[dict[str, Any]] = []
         for experiment_id, metadata in sorted(records.items(), reverse=True):
-            if metadata.get("archive_type", "experiment") != "experiment":
+            archive_type = metadata.get("archive_type", "experiment")
+            if archive_type == "series":
+                series_id = str(metadata.get("series_id") or experiment_id)
+                workflow = self.research_workflows / f"{series_id}.json"
+                items.append(
+                    {
+                        "experiment_id": series_id,
+                        "series_id": series_id,
+                        "archived": True,
+                        "archive_type": "series",
+                        "archive_mode": "metadata_only",
+                        "canonical_path": f"workflows/{series_id}.json",
+                        "available": workflow.is_file(),
+                        **metadata,
+                    }
+                )
+                continue
+            if archive_type != "experiment":
                 continue
             canonical = self.experiments / experiment_id
             manifest_data = self._load_manifest(canonical)
