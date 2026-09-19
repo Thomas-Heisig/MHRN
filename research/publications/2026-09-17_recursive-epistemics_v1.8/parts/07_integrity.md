@@ -32,9 +32,9 @@ Die praktische Autorposition lautet:
 
 Freier Wissenstransfer und strikte Attribution sind damit keine Gegensätze. Je einfacher Wissen weitergegeben und verändert werden kann, desto wichtiger wird eine belastbare Provenienzkette.
 
-### 29.2 Fünf Provenienzklassen wissenschaftlicher Aussagen
+### 29.2 Fünf Herkunftsrollen wissenschaftlicher Aussagen
 
-Der repositoryweite Integritätsvertrag unterscheidet mindestens fünf Provenienzklassen:
+Der repositoryweite Integritätsvertrag unterscheidet mindestens fünf **Herkunftsrollen wissenschaftlicher Aussagen**. Diese Rollen beantworten die Frage, *woher der Aussageinhalt stammt beziehungsweise welche epistemische Funktion er hat*. Sie sind ausdrücklich nicht mit den S1–S4-Quellennäheklassen aus Teil VI identisch:
 
 1. **MHRN observation** — durch source-bound Experiment, Messung oder Verification-Artefakt erzeugt;
 2. **MHRN interpretation** — Schlussfolgerung aus Beobachtungen, mit expliziten Grenzen und ohne automatische EVID-Promotion;
