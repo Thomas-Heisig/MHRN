@@ -82,6 +82,14 @@ def test_public_orcid_identity_link_is_canonical_and_private_data_is_excluded() 
     }
     assert identity["platforms"]["osf"]["project_url"] == PROJECT_OSF_URI
     assert "news@thomas-heisig.de" not in json.dumps(zenodo)
+    imprint = json.loads((ROOT / "public_imprint.json").read_text(encoding="utf-8"))
+    serialized_imprint = json.dumps(imprint, ensure_ascii=False)
+    assert imprint["provider"]["name"] == "Thomas Heisig"
+    assert imprint["public_internet_ready"] is False
+    assert imprint["provider"]["postal_address"] is None
+    assert imprint["provider"]["email"] is None
+    assert "t_heisig@gmx.de" not in serialized_imprint
+    assert "news@thomas-heisig.de" not in serialized_imprint
 
 
 @pytest.mark.parametrize("new_value", ["", "0", "1", "custom"])

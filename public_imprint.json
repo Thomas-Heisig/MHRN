@@ -1,0 +1,89 @@
+{
+  "schema_version": "1.0",
+  "updated": "2026-09-19",
+  "status": "incomplete_for_public_internet",
+  "provider": {
+    "name": "Thomas Heisig",
+    "role": "Unabhängiger Forscher, Autor und Projektverantwortlicher",
+    "legal_entity": null,
+    "postal_address": null,
+    "email": null,
+    "phone": null,
+    "register": null,
+    "register_number": null,
+    "vat_id": null
+  },
+  "editorial_responsibility": {
+    "applicability": "if_journalistic_editorial_content_applies",
+    "name": "Thomas Heisig",
+    "postal_address": null
+  },
+  "project": {
+    "short_name": "MHRN",
+    "title": "Multi-Scale Homeostatic Recurrence Network",
+    "repository": "https://github.com/Thomas-Heisig/MHRN",
+    "orcid": "https://orcid.org/0009-0002-9589-1872",
+    "osf": "https://osf.io/p34uq/",
+    "software_license": "MIT",
+    "publication_status": "Recursive Epistemics 1.8 — current WIP",
+    "scientific_boundary": "Implementation, tests, DATA, indexing, DOI assignment and publication visibility do not automatically constitute reviewed EVID or independent replication."
+  },
+  "legal_references": [
+    {
+      "label": "§ 5 Digitale-Dienste-Gesetz (DDG)",
+      "url": "https://www.gesetze-im-internet.de/ddg/__5.html"
+    },
+    {
+      "label": "§ 18 Medienstaatsvertrag (MStV)",
+      "url": "https://www.gesetze-bayern.de/Content/Document/MStV-18"
+    }
+  ],
+  "privacy": {
+    "third_party_analytics_configured": false,
+    "browser_local_storage_used": true,
+    "browser_local_storage_purposes": [
+      "Darstellungs- und Accessibility-Einstellungen",
+      "Workspace-/Navigationszustand",
+      "File-Viewer- und Reader-Einstellungen",
+      "lokale Entwürfe und ausdrücklich lokal gespeicherte Notizen"
+    ],
+    "server_logging": "deployment_dependent",
+    "external_services": "Externe Dienste oder AI-Provider werden nur über konfigurierte Integrationen oder bewusst geöffnete externe Links angesprochen; deren eigene Datenschutzbedingungen gelten zusätzlich.",
+    "public_deployment_note": "Eine vollständige Datenschutzerklärung muss an die tatsächlich eingesetzte Hosting-, Log-, Proxy-, Analyse- und Provider-Konfiguration angepasst werden."
+  },
+  "content_and_licenses": {
+    "software": "MIT License; siehe LICENSE im Repository.",
+    "scientific_content": "Keine pauschale zusätzliche Content-Lizenz wird aus der Softwarelizenz abgeleitet. Für Publikationen, Daten und Fremdmaterial gelten die jeweils ausgewiesenen Rechte und Quellenangaben.",
+    "third_party_material": "Fremde Quellen, Abbildungen, Daten und Methoden bleiben ihren jeweiligen Rechteinhabern zugeordnet."
+  },
+  "contact_channels": [
+    {
+      "label": "GitHub Repository",
+      "url": "https://github.com/Thomas-Heisig/MHRN"
+    },
+    {
+      "label": "GitHub Issues",
+      "url": "https://github.com/Thomas-Heisig/MHRN/issues"
+    },
+    {
+      "label": "Security / vertrauliche Sicherheitsmeldungen",
+      "url": "https://github.com/Thomas-Heisig/MHRN/security"
+    },
+    {
+      "label": "ORCID",
+      "url": "https://orcid.org/0009-0002-9589-1872"
+    },
+    {
+      "label": "OSF",
+      "url": "https://osf.io/p34uq/"
+    }
+  ],
+  "required_before_public_internet": [
+    "Ladungsfähige Anschrift des Diensteanbieters eintragen.",
+    "Kontakt-E-Mail für schnelle elektronische Kontaktaufnahme eintragen.",
+    "Falls § 18 Abs. 2 MStV anwendbar ist: Anschrift des redaktionell Verantwortlichen eintragen.",
+    "Register-, Umsatzsteuer- oder Aufsichtsangaben ergänzen, sofern sie für den konkreten Diensteanbieter tatsächlich einschlägig sind.",
+    "Datenschutzhinweise an die reale Hosting-/Logging-/Provider-Konfiguration anpassen."
+  ],
+  "public_internet_ready": false
+}
