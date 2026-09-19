@@ -1,0 +1,646 @@
+{
+  "analysis": {
+    "gates": {
+      "every_treatment_differs_from_delay1": true,
+      "full_grid_every_seed": true,
+      "treatment_delays_not_all_identical": true
+    },
+    "per_seed": [
+      {
+        "at_least_two_treatments_distinct": true,
+        "control_signature": [
+          62,
+          10,
+          61
+        ],
+        "coverage_complete": true,
+        "each_treatment_differs_from_delay1": true,
+        "seed": 7501,
+        "treatment_signatures": {
+          "loop_delay_2": [
+            252,
+            33,
+            251
+          ],
+          "loop_delay_4": [
+            251,
+            28,
+            250
+          ],
+          "loop_delay_8": [
+            245,
+            20,
+            244
+          ]
+        },
+        "unique_treatment_signature_count": 3
+      },
+      {
+        "at_least_two_treatments_distinct": true,
+        "control_signature": [
+          62,
+          10,
+          61
+        ],
+        "coverage_complete": true,
+        "each_treatment_differs_from_delay1": true,
+        "seed": 7502,
+        "treatment_signatures": {
+          "loop_delay_2": [
+            252,
+            33,
+            251
+          ],
+          "loop_delay_4": [
+            251,
+            28,
+            250
+          ],
+          "loop_delay_8": [
+            245,
+            20,
+            244
+          ]
+        },
+        "unique_treatment_signature_count": 3
+      },
+      {
+        "at_least_two_treatments_distinct": true,
+        "control_signature": [
+          62,
+          10,
+          61
+        ],
+        "coverage_complete": true,
+        "each_treatment_differs_from_delay1": true,
+        "seed": 7503,
+        "treatment_signatures": {
+          "loop_delay_2": [
+            252,
+            33,
+            251
+          ],
+          "loop_delay_4": [
+            251,
+            28,
+            250
+          ],
+          "loop_delay_8": [
+            245,
+            20,
+            244
+          ]
+        },
+        "unique_treatment_signature_count": 3
+      },
+      {
+        "at_least_two_treatments_distinct": true,
+        "control_signature": [
+          62,
+          10,
+          61
+        ],
+        "coverage_complete": true,
+        "each_treatment_differs_from_delay1": true,
+        "seed": 7504,
+        "treatment_signatures": {
+          "loop_delay_2": [
+            252,
+            33,
+            251
+          ],
+          "loop_delay_4": [
+            251,
+            28,
+            250
+          ],
+          "loop_delay_8": [
+            245,
+            20,
+            244
+          ]
+        },
+        "unique_treatment_signature_count": 3
+      },
+      {
+        "at_least_two_treatments_distinct": true,
+        "control_signature": [
+          62,
+          10,
+          61
+        ],
+        "coverage_complete": true,
+        "each_treatment_differs_from_delay1": true,
+        "seed": 7505,
+        "treatment_signatures": {
+          "loop_delay_2": [
+            252,
+            33,
+            251
+          ],
+          "loop_delay_4": [
+            251,
+            28,
+            250
+          ],
+          "loop_delay_8": [
+            245,
+            20,
+            244
+          ]
+        },
+        "unique_treatment_signature_count": 3
+      },
+      {
+        "at_least_two_treatments_distinct": true,
+        "control_signature": [
+          62,
+          10,
+          61
+        ],
+        "coverage_complete": true,
+        "each_treatment_differs_from_delay1": true,
+        "seed": 7506,
+        "treatment_signatures": {
+          "loop_delay_2": [
+            252,
+            33,
+            251
+          ],
+          "loop_delay_4": [
+            251,
+            28,
+            250
+          ],
+          "loop_delay_8": [
+            245,
+            20,
+            244
+          ]
+        },
+        "unique_treatment_signature_count": 3
+      },
+      {
+        "at_least_two_treatments_distinct": true,
+        "control_signature": [
+          62,
+          10,
+          61
+        ],
+        "coverage_complete": true,
+        "each_treatment_differs_from_delay1": true,
+        "seed": 7507,
+        "treatment_signatures": {
+          "loop_delay_2": [
+            252,
+            33,
+            251
+          ],
+          "loop_delay_4": [
+            251,
+            28,
+            250
+          ],
+          "loop_delay_8": [
+            245,
+            20,
+            244
+          ]
+        },
+        "unique_treatment_signature_count": 3
+      },
+      {
+        "at_least_two_treatments_distinct": true,
+        "control_signature": [
+          62,
+          10,
+          61
+        ],
+        "coverage_complete": true,
+        "each_treatment_differs_from_delay1": true,
+        "seed": 7508,
+        "treatment_signatures": {
+          "loop_delay_2": [
+            252,
+            33,
+            251
+          ],
+          "loop_delay_4": [
+            251,
+            28,
+            250
+          ],
+          "loop_delay_8": [
+            245,
+            20,
+            244
+          ]
+        },
+        "unique_treatment_signature_count": 3
+      },
+      {
+        "at_least_two_treatments_distinct": true,
+        "control_signature": [
+          62,
+          10,
+          61
+        ],
+        "coverage_complete": true,
+        "each_treatment_differs_from_delay1": true,
+        "seed": 7509,
+        "treatment_signatures": {
+          "loop_delay_2": [
+            252,
+            33,
+            251
+          ],
+          "loop_delay_4": [
+            251,
+            28,
+            250
+          ],
+          "loop_delay_8": [
+            245,
+            20,
+            244
+          ]
+        },
+        "unique_treatment_signature_count": 3
+      },
+      {
+        "at_least_two_treatments_distinct": true,
+        "control_signature": [
+          62,
+          10,
+          61
+        ],
+        "coverage_complete": true,
+        "each_treatment_differs_from_delay1": true,
+        "seed": 7510,
+        "treatment_signatures": {
+          "loop_delay_2": [
+            252,
+            33,
+            251
+          ],
+          "loop_delay_4": [
+            251,
+            28,
+            250
+          ],
+          "loop_delay_8": [
+            245,
+            20,
+            244
+          ]
+        },
+        "unique_treatment_signature_count": 3
+      },
+      {
+        "at_least_two_treatments_distinct": true,
+        "control_signature": [
+          62,
+          10,
+          61
+        ],
+        "coverage_complete": true,
+        "each_treatment_differs_from_delay1": true,
+        "seed": 7511,
+        "treatment_signatures": {
+          "loop_delay_2": [
+            252,
+            33,
+            251
+          ],
+          "loop_delay_4": [
+            251,
+            28,
+            250
+          ],
+          "loop_delay_8": [
+            245,
+            20,
+            244
+          ]
+        },
+        "unique_treatment_signature_count": 3
+      },
+      {
+        "at_least_two_treatments_distinct": true,
+        "control_signature": [
+          62,
+          10,
+          61
+        ],
+        "coverage_complete": true,
+        "each_treatment_differs_from_delay1": true,
+        "seed": 7512,
+        "treatment_signatures": {
+          "loop_delay_2": [
+            252,
+            33,
+            251
+          ],
+          "loop_delay_4": [
+            251,
+            28,
+            250
+          ],
+          "loop_delay_8": [
+            245,
+            20,
+            244
+          ]
+        },
+        "unique_treatment_signature_count": 3
+      },
+      {
+        "at_least_two_treatments_distinct": true,
+        "control_signature": [
+          62,
+          10,
+          61
+        ],
+        "coverage_complete": true,
+        "each_treatment_differs_from_delay1": true,
+        "seed": 7513,
+        "treatment_signatures": {
+          "loop_delay_2": [
+            252,
+            33,
+            251
+          ],
+          "loop_delay_4": [
+            251,
+            28,
+            250
+          ],
+          "loop_delay_8": [
+            245,
+            20,
+            244
+          ]
+        },
+        "unique_treatment_signature_count": 3
+      },
+      {
+        "at_least_two_treatments_distinct": true,
+        "control_signature": [
+          62,
+          10,
+          61
+        ],
+        "coverage_complete": true,
+        "each_treatment_differs_from_delay1": true,
+        "seed": 7514,
+        "treatment_signatures": {
+          "loop_delay_2": [
+            252,
+            33,
+            251
+          ],
+          "loop_delay_4": [
+            251,
+            28,
+            250
+          ],
+          "loop_delay_8": [
+            245,
+            20,
+            244
+          ]
+        },
+        "unique_treatment_signature_count": 3
+      },
+      {
+        "at_least_two_treatments_distinct": true,
+        "control_signature": [
+          62,
+          10,
+          61
+        ],
+        "coverage_complete": true,
+        "each_treatment_differs_from_delay1": true,
+        "seed": 7515,
+        "treatment_signatures": {
+          "loop_delay_2": [
+            252,
+            33,
+            251
+          ],
+          "loop_delay_4": [
+            251,
+            28,
+            250
+          ],
+          "loop_delay_8": [
+            245,
+            20,
+            244
+          ]
+        },
+        "unique_treatment_signature_count": 3
+      },
+      {
+        "at_least_two_treatments_distinct": true,
+        "control_signature": [
+          62,
+          10,
+          61
+        ],
+        "coverage_complete": true,
+        "each_treatment_differs_from_delay1": true,
+        "seed": 7516,
+        "treatment_signatures": {
+          "loop_delay_2": [
+            252,
+            33,
+            251
+          ],
+          "loop_delay_4": [
+            251,
+            28,
+            250
+          ],
+          "loop_delay_8": [
+            245,
+            20,
+            244
+          ]
+        },
+        "unique_treatment_signature_count": 3
+      },
+      {
+        "at_least_two_treatments_distinct": true,
+        "control_signature": [
+          62,
+          10,
+          61
+        ],
+        "coverage_complete": true,
+        "each_treatment_differs_from_delay1": true,
+        "seed": 7517,
+        "treatment_signatures": {
+          "loop_delay_2": [
+            252,
+            33,
+            251
+          ],
+          "loop_delay_4": [
+            251,
+            28,
+            250
+          ],
+          "loop_delay_8": [
+            245,
+            20,
+            244
+          ]
+        },
+        "unique_treatment_signature_count": 3
+      },
+      {
+        "at_least_two_treatments_distinct": true,
+        "control_signature": [
+          62,
+          10,
+          61
+        ],
+        "coverage_complete": true,
+        "each_treatment_differs_from_delay1": true,
+        "seed": 7518,
+        "treatment_signatures": {
+          "loop_delay_2": [
+            252,
+            33,
+            251
+          ],
+          "loop_delay_4": [
+            251,
+            28,
+            250
+          ],
+          "loop_delay_8": [
+            245,
+            20,
+            244
+          ]
+        },
+        "unique_treatment_signature_count": 3
+      },
+      {
+        "at_least_two_treatments_distinct": true,
+        "control_signature": [
+          62,
+          10,
+          61
+        ],
+        "coverage_complete": true,
+        "each_treatment_differs_from_delay1": true,
+        "seed": 7519,
+        "treatment_signatures": {
+          "loop_delay_2": [
+            252,
+            33,
+            251
+          ],
+          "loop_delay_4": [
+            251,
+            28,
+            250
+          ],
+          "loop_delay_8": [
+            245,
+            20,
+            244
+          ]
+        },
+        "unique_treatment_signature_count": 3
+      },
+      {
+        "at_least_two_treatments_distinct": true,
+        "control_signature": [
+          62,
+          10,
+          61
+        ],
+        "coverage_complete": true,
+        "each_treatment_differs_from_delay1": true,
+        "seed": 7520,
+        "treatment_signatures": {
+          "loop_delay_2": [
+            252,
+            33,
+            251
+          ],
+          "loop_delay_4": [
+            251,
+            28,
+            250
+          ],
+          "loop_delay_8": [
+            245,
+            20,
+            244
+          ]
+        },
+        "unique_treatment_signature_count": 3
+      }
+    ],
+    "status": "SUPPORTED_WITHIN_PREREGISTERED_PROTOCOL",
+    "summary": {
+      "all_primary_gates_pass": true,
+      "condition_signatures": {
+        "loop_delay_1": [
+          [
+            62,
+            10,
+            61
+          ]
+        ],
+        "loop_delay_2": [
+          [
+            252,
+            33,
+            251
+          ]
+        ],
+        "loop_delay_4": [
+          [
+            251,
+            28,
+            250
+          ]
+        ],
+        "loop_delay_8": [
+          [
+            245,
+            20,
+            244
+          ]
+        ]
+      },
+      "run_count": 80,
+      "seed_count": 20,
+      "unique_primary_signatures": 4
+    }
+  },
+  "claim_boundary": "This experiment can support only the scoped claim that loop delay changes persistence/propagation metrics in the registered small deterministic recurrent SNN at recurrent weight 100 and a 256-tick observation window. It does not establish memory, cognition, biological equivalence, scaling, a 5D advantage, monotonic superiority of larger delays, human-reviewed EVID or independent replication.",
+  "experiment_id": "EXP-REC-002-CLEAN-R2-20260919",
+  "inference_note": "No p-values or sampling-based confidence intervals are used. Support is decided by preregistered deterministic within-seed contrasts.",
+  "integrity": {
+    "checks": {
+      "clean_source_freeze": true,
+      "condition_grid": true,
+      "exact_coverage": true,
+      "fixed_recurrent_weight": true,
+      "fresh_seeds": true,
+      "run_count": true,
+      "runtime_errors_absent": true,
+      "seed_count": true,
+      "tick_contract": true
+    },
+    "pass": true
+  },
+  "schema_version": 1
+}
