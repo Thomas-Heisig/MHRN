@@ -17,7 +17,7 @@ Wer einen empirischen Claim prüfen will, sollte nicht beim Fließtext enden: Te
 
 Die 1.8-Fassung setzt nicht mit einem vermeintlich fertigen MHRN an. Sie behandelt die Entstehung selbst als Forschungsgegenstand. Die **früheste derzeit rekonstruierte Spur** ist `CER-RECON-20250421-01` in der [Chat-Rekonstruktion](../sources/chat_reconstruction.json): ein lernender neuronaler Würfel sollte Zustand über Neustarts hinweg erhalten; nachladbare Funktionen sollten den lernenden Kern nicht unkontrolliert verändern. `CER-RECON-20250421-02` dokumentiert als weitere S4-Rekonstruktion Schichten, dynamische Verbindungen, Mutation sowie historische Traum-/Fantasie-Metaphern. `CER-RECON-20250421-03` trennt davon einen früheren KI-Vorschlag zu Koordinatenkodierung und SQLite-Speicher.
 
-Diese Einträge sind **Provenienzklasse S4**: rekonstruierte Gesprächszusammenfassungen ohne vollständiges Originaltranskript. Sie belegen weder den tatsächlichen ersten Gedanken noch wissenschaftliche Priorität, Implementierung oder Funktionsnachweis. Die gleiche Grenze ist im Vorgängerwerk `PW-NEUROGENESIS-2025` des [Prior-Work-Registers](../sources/prior_work.json) festgeschrieben.
+Diese Einträge gehören zur **Quellennäheklasse S4**: rekonstruierte Gesprächszusammenfassungen ohne vollständiges Originaltranskript. Sie belegen weder den tatsächlichen ersten Gedanken noch wissenschaftliche Priorität, Implementierung oder Funktionsnachweis. Die gleiche Grenze ist im Vorgängerwerk `PW-NEUROGENESIS-2025` des [Prior-Work-Registers](../sources/prior_work.json) festgeschrieben.
 
 Der historische Wert liegt deshalb nicht in einer Prioritätsbehauptung, sondern in der Problemkontinuität: Wie kann ein System Zustand behalten, ohne ein Sprachmodell oder eine Datenbank fälschlich als neuronales Gedächtnis zu zählen? Wie lässt sich Wachstum zulassen, ohne die Kausalität zu verlieren? Wie kann ein technisches System zugleich offen erweiterbar und wissenschaftlich prüfbar bleiben? Diese Fragen erscheinen später in strengeren Formen wieder: als Persistenzvertrag, Retrieval-Isolation, strukturelle Plastizität, Capability-Gates, Experimentregister und Evidenzgrenzen.
 
@@ -51,7 +51,7 @@ Diese Entmetaphorisierung ist kein Verlust der ursprünglichen Ideen. Sie macht 
 
 ## 4. Nullpunkt und rekonstruierte Vorgeschichte
 
-Edition 1.8 behauptet keinen exakt datierten „ersten Gedanken“. Für Zeiträume außerhalb des Git-Verlaufs stehen teilweise nur rekonstruierte Gesprächszusammenfassungen oder später wiedergefundene Dokumente zur Verfügung. Die [Chat-Rekonstruktion](../sources/chat_reconstruction.json) klassifiziert diese Einträge als S4, solange kein originales, datiertes Primärartefakt geprüft wurde. Wo Originalnachrichten oder Originaldateien fehlen, lautet die wissenschaftlich korrekte Aussage „rekonstruiert“ oder „nicht rekonstruierbar“, nicht eine erfundene Präzision.
+Edition 1.8 behauptet keinen exakt datierten „ersten Gedanken“. Für Zeiträume außerhalb des Git-Verlaufs stehen teilweise nur rekonstruierte Gesprächszusammenfassungen oder später wiedergefundene Dokumente zur Verfügung. Die [Chat-Rekonstruktion](../sources/chat_reconstruction.json) führt diese Einträge in der **Quellennäheklasse S4**, solange kein originales, datiertes Primärartefakt geprüft wurde. Wo Originalnachrichten oder Originaldateien fehlen, lautet die wissenschaftlich korrekte Aussage „rekonstruiert“ oder „nicht rekonstruierbar“, nicht eine erfundene Präzision.
 
 Damit ist Teil I bewusst erweiterbar. Neue Primärartefakte können die Chronologie verdichten oder korrigieren. Sie dürfen bestehende Versionen aber nicht stillschweigend überschreiben. Jede neue historische Zuordnung braucht Quelle, Datum beziehungsweise Datumsunsicherheit und eine Aussage darüber, ob sie Autoranforderung, KI-Vorschlag, Implementierung, Messung oder spätere Interpretation dokumentiert.
 
@@ -114,6 +114,31 @@ Die verbindliche Regel lautet deshalb: **Nähe erzeugt Fragen, nicht Antworten.*
 
 Gerade weil MHRN außerhalb institutioneller Forschungsstrukturen entstanden ist, muss die Arbeit die Ebenen explizit trennen: Selbstauskunft, externe Theorie, implementierter Mechanismus, `DATA`, Human Review, `EVID`, Claim und offene Frage. Diese Trennung ist keine Kompensation durch Rhetorik, sondern ein prüfbarer Governance-Vertrag.
 
+
+### 4.6 Parallele Theoriearbeit — „KI – Die geliehene Intelligenz“
+
+Neben der technischen NeuroGenesis-/Brain-5D-Linie entstand eine zweite, theoretisch-reflexive Forschungslinie. Das im Prior-Work-Register als `PW-BORROWED-20260818` geführte Manuskript **„KI – Die geliehene Intelligenz: Genealogie maschineller Kognition, rekursive Technogenese und die Transformation menschlicher Agency“** untersuchte nicht primär SNN-Leistung, sondern Herkunft von Intelligenz, epistemische Abhängigkeit, menschliche Handlungsmacht, Kontrolle, Autorenschaft, Verantwortung und mögliche Verschiebungen menschlicher Rollen in zunehmend maschinell mitgestalteten Entwicklungsprozessen.
+
+Teil I übernimmt daraus nur die **genealogische Funktion** der Theoriearbeit. Ihre Begriffe und Argumente werden nicht hier erneut entwickelt, sondern an ihren heutigen fachlichen Orten weitergeführt:
+
+| Historischer Theoriebeitrag | Heutige Fortsetzung |
+| --- | --- |
+| „geliehene Intelligenz“, epistemische Genealogie, Fünf-Achsen-Modell `I=(M,E,G,Z,X)`, genealogische Distanz | Teil VI, IX und X |
+| rekursive Technogenese, Rollenverschiebung, Ko-Kognition | Teil II, VIII und IX |
+| Hoheitsvektor, Kontrollvektor, Autonomierisikomodell | Teil VIII und XI |
+| asymmetrische Autorenschaft, Verantwortung, normative Regelhierarchie | Teil VII und VIII; operationalisiert insbesondere durch `RQ-ETH-001` |
+
+Diese Vorarbeit ist **Theorie- und Argumentationsarbeit, keine experimentelle MHRN-Evidenz**. Ihre historischen F1–F24, H1–H12 und GH1–GH6 bleiben in den versionierten Vorgängerfassungen erhalten; Edition 1.8 übernimmt ihre wissenschaftlich materiellen Problemfamilien, ohne die alten Kennungen stillschweigend in heutige Registry-IDs umzuschreiben.
+
+### 4.7 Konvergenz zweier Forschungsstränge
+
+Die heutige Gesamtarbeit entstand deshalb nicht aus einer einzigen linearen Entwicklung, sondern aus der Konvergenz zweier Stränge:
+
+1. **Technischer Strang:** NeuroGenesis → Brain-5D → MHRN. Leitend waren persistenter neuronaler Zustand, Plastizität, Topologie, Kausalitätsgrenzen, sensorisch-aktorische Kopplung und experimentelle Prüfbarkeit.
+2. **Reflexiver Strang:** „Geliehene Intelligenz“ → rekursive Technogenese / Agency- und Kontrollfragen → rekursive Epistemik. Leitend waren Herkunft von Wissen und Intelligenz, Autorschaft, Verantwortung, menschliche Entscheidungsmacht und hybride Ko-Kognition.
+
+Die Stränge beeinflussten einander, sind aber nicht evidenzgleich. Ein technischer MHRN-Lauf bestätigt keine gesellschafts- oder bewusstseinstheoretische These; umgekehrt begründet eine philosophische oder genealogische Argumentation keinen neuronalen Mechanismus. Ihre Verbindung besteht darin, dass MHRN zugleich **Forschungsobjekt** und **KI-assistiert hervorgebrachter Forschungsprozess** ist. Daraus entstanden die heutige Trennung von technischen Claims, Prozessgovernance, Beitragsprovenienz und normativen Grenzen.
+
 ## 5. Forschungsproblem und monographische Gesamtarchitektur
 
 Edition 1.8 versteht sich als wissenschaftliche Monographie im Work-in-Progress-Status. Sie ist **keine eingereichte Dissertation und kein akademischer Gradanspruch**. Die Struktur folgt einer monographischen Forschungslogik: Problemstellung, Forschungsstand, Forschungslücke, Leitfrage, Teilfragen, Methodik, Ergebnisse, Diskussion, Limitationen und revidierbare Schlussfolgerungen werden sichtbar getrennt.
@@ -129,6 +154,19 @@ Aus der Schaffensgeschichte folgt eine zweite Ebene: Das Forschungsobjekt verän
 > **Wie lässt sich eine evolvierende spikende Forschungsarchitektur so entwickeln, operationalisieren und prüfen, dass behauptete Funktionalität und Lernkausalität durch explizite Kontrollen, Provenienz und revidierbare Evidenzverträge getragen werden, während stärkere kognitive, biologische oder normative Aussagen nur dort zugelassen werden, wo ihre eigenen Prüfbedingungen erfüllt sind?**
 
 Diese Leitfrage ist eine **publikationsweite Leitfrage**, kein zusätzliches Objekt der kanonischen `RQ-*`-Registry. Sie bündelt mehrere registrierte Forschungsfragen mit unterschiedlichen Evidenzformen und darf deshalb nicht durch einen einzigen Lauf oder gemeinsamen Erfolgswert als „bestätigt“ behandelt werden.
+ 
+
+### 5.2.1 Historische technische Leitfrage und Kernhypothese
+
+Die heutige Leitfrage ersetzt nicht die technische Ausgangsfrage der Vorgängerfassungen. In Edition 1.5 wurde der technische Forschungsstrang noch enger formuliert:
+
+> **Unter welchen Randbedingungen kann ein räumlich und funktional strukturiertes, kontinuierlich plastisches Spiking-Netzwerk durch sensorisch-aktorische Interaktion persistente, abrufbare und generalisierbare interne Zustände ausbilden, ohne dass deren semantischer Inhalt direkt durch ein externes Sprachmodell in synaptische Gewichte oder Netzwerkstruktur geschrieben wird?**
+
+Dazu stand die historische Rahmenhypothese `CLAIM-CORE-001`:
+
+> Ein rekurrentes Spiking-Netzwerk mit räumlich-funktionaler Topologie, lokaler zeitabhängiger Plastizität, homeostatischer Regulation, struktureller Anpassung, Ressourcenbegrenzung und geschlossener sensorisch-aktorischer Rückkopplung kann unter geeigneten Randbedingungen persistente und funktional unterscheidbare interne Zustände ausbilden, ohne dass diese Zustände explizit durch ein externes symbolisches Modell gesetzt werden.
+
+Beide Formulierungen bleiben über die [Vorgängerfassung 1.5](../../2026-09-13_recursive-epistemics_v1.5/section-005.md) provenancegebunden erhalten. Sie sind **historische Forschungsrahmen**, keine aktuelle pauschale `EVID` und keine zusätzlichen heutigen Registryobjekte. Edition 1.8 zerlegt ihren Inhalt in engere, falsifizierbare Forschungszweige zu Dynamik, Topologie, Plastizität, Repräsentation, Gedächtnis, Embodiment, Attribution und Skalierung.
 
 ### 5.3 Publikationsweite Syntheseproposition
 
@@ -154,3 +192,23 @@ Teil I definiert die stabilen Forschungszweige und ihre Claim-Grenzen, **nicht d
 | **Ethik, Safety und Autonomie** | Welche Kontroll-, Ziel- und Welfare-Fragen entstehen bei zunehmender Wirk- und Lernfähigkeit? | normative Analyse, Szenarien, technische Safety-Verträge | Szenarien sind keine Prognosen; technische Zustände sind kein Bewusstseins- oder Sentienznachweis |
 
 Damit besitzt jeder Forschungszweig einen eigenen wissenschaftlichen Gegenstand und eigene Evidenzregeln. Teil IV behandelt die empirischen Teilstudien und ihren jeweiligen Stand; Teil VI die epistemologische Methodik; Teil VII Integrität und Autorenschaft; Teil VIII die normative Analyse; Teil IX die Theorieentwicklung; Teil X die General Discussion; Teil XI Limitationen, offene Hypothesen und die priorisierte Forschungsagenda.
+
+
+### 5.4.1 Genealogische Abbildung früherer Forschungsprogramme
+
+Die folgende Zuordnung ist eine **Routing-Tabelle**, keine rückwirkende Umnummerierung. Historische Kennungen bleiben in ihren Originaleditionen; aktuelle `RQ-*`- und `H-*`-Objekte entstehen nur über die heutige Registry.
+
+| Historische Familie | Wissenschaftlicher Kern | Heutige Fortsetzung |
+| --- | --- | --- |
+| Brain-5D `RQ1–RQ3` | Geometrie, Dynamik, Plastizität | basale Dynamik, Rekurrenz/Topologie/5D und Plastizitätsprogramme in Teil III/IV |
+| Brain-5D `RQ4–RQ6` | Repräsentation, Gedächtnis, Continual Learning | Repräsentations-, Replay-/SemanticMemory- und Stage-6-Programme in Teil IV/XI |
+| Brain-5D `RQ7–RQ10` | Embodiment, Language Organ, Emergenz, Skalierung | Embodiment-/Attributions-, Gateway-, Emergenz- und Scaling-Fragen in Teil III–V/XI |
+| „Geliehene Intelligenz“ `F1–F5 / H1–H3` | Modell-/Promptabhängigkeit, Entwurfsfingerabdrücke, Mehrmodell-Provenienz | AI-/Beitragsprovenienz und rekursive Epistemik in Teil VI/VII/IX; kein automatisches 1:1-Registry-Mapping |
+| `F6–F12 / H4–H6` | Kontrolle, Entscheidungshoheit, Autorenschaft, Verantwortung | insbesondere `RQ-ETH-001`, Teil VII/VIII/IX |
+| `F13–F23 / H7–H11` | Selbstorganisation, Agency, Embodiment, Grounding, moralischer Status und soziale Rückkopplung | Embodiment-Forschung sowie philosophisch-ethische Analyse in Teil VIII/IX/XI |
+| `F24 / H12` | menschliche Autorschaft unter KI-Mitstrukturierung und Ko-Kognition | `RQ-ETH-001`, `RQ-EPIST-002`, Teil VI/VII/IX |
+| `GH1–GH6` | Gegenhypothesen zu geliehener Intelligenz, Kontrolle, Embodiment, Ko-Kognition und normativer Architektur | als Gegenpositionen und Revisionsdruck in Teil VIII–X; keine automatische Promotion in die heutige Registry |
+
+Auch das siebenpunktige technische Beitragsprogramm der Vorgängerfassung — 5D-Geometrie, dynamischer Graph, Kausalitätsgrenzen, Trennung von Messung und Interpretation, reproduzierbarer Digitalzustand, Claim–Experiment–Evidence-Verknüpfung und Falsifikationsprogramm — wird deshalb nicht erneut als Liste von Neuheitsclaims geführt. Seine Bestandteile sind heute auf Teil III bis VII verteilt und dort mit strengeren Claim-Grenzen versehen.
+
+Damit bleibt die frühere Forschung **auffindbar und genealogisch wirksam**, ohne dass Teil I die fachliche Detailarbeit der späteren Teile dupliziert.
