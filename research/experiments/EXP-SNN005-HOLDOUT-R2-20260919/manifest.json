@@ -1,0 +1,206 @@
+{
+  "artifacts_sha256": {
+    "canonical_association_source": "47eeaebc0861d238aa8dacfe701e1c036a2a7050eb65a044d377af9ef6cf83c1",
+    "config": "6f6cd457caf6216c286fee47ef03b529a0b496ed2dd53ee96b85d3b51e7b3a1c",
+    "evaluation_data": "2ab16f4c9a31114914d078c337365de0b0e798efb43638716dd05d948b351d00",
+    "preregistration": "5fbd5ed81e3760e215694d075dea120e7a7ba97f0a56a61f073b0f3b6b6eef7a",
+    "runner_source": "669debeaacec38dd1ce213d590dc6a0b2b713d93ae92e225b5d114a5f4064aa9",
+    "statistics": "19b076dd18e543b985e9354e98e5722f621e28e9d22c68981ac646fb3173a7b2"
+  },
+  "automatic_evidence_promotion": false,
+  "claim_boundary": "A supported result would show only that the registered STDP-enabled synthetic association protocol achieves higher held-out classification accuracy than matched no-learning/sham/reset/shuffle controls within this simulator and task. It does not establish general intelligence, open-world learning, biological equivalence, human-like memory, scaling, a 5D advantage, external independent replication or human-reviewed EVID.",
+  "design": {
+    "conditions": [
+      "learning_on",
+      "learning_off",
+      "sham_replay",
+      "weight_reset",
+      "weight_shuffle"
+    ],
+    "evaluation_ticks_per_episode": 12,
+    "expected_run_count": 80,
+    "primary_control": "learning_off",
+    "primary_metric": "test_accuracy",
+    "primary_reference": "learning_on",
+    "runner": "src.research.empirical_evaluation.run_association_generalization",
+    "runs_per_seed": 5,
+    "secondary_controls": [
+      "sham_replay",
+      "weight_reset",
+      "weight_shuffle"
+    ],
+    "seed_count": 16,
+    "seeds": [
+      7601,
+      7602,
+      7603,
+      7604,
+      7605,
+      7606,
+      7607,
+      7608,
+      7609,
+      7610,
+      7611,
+      7612,
+      7613,
+      7614,
+      7615,
+      7616
+    ],
+    "test_constraints": [
+      "teacher absent during every test episode",
+      "LearningEngine detached during every test episode",
+      "fresh network per test episode",
+      "weights frozen throughout holdout evaluation",
+      "same held-out test-input digest across all five arms within each seed"
+    ],
+    "test_episodes_per_run": 40
+  },
+  "experiment_id": "EXP-SNN005-HOLDOUT-R2-20260919",
+  "experiment_status": "completed",
+  "human_review_status": "PENDING",
+  "hypothesis": "H-SNN-005-A",
+  "independent_replication": false,
+  "integrity": {
+    "checks": {
+      "clean_source_freeze": true,
+      "coverage": true,
+      "evaluation_ticks": true,
+      "fresh_network_per_episode": true,
+      "holdout_episode_count": true,
+      "learning_engine_detached_during_test": true,
+      "matched_test_inputs_within_seed": true,
+      "run_count": true,
+      "runtime_errors_absent": true,
+      "teacher_absent_during_test": true,
+      "weights_frozen_during_test": true
+    },
+    "pass": true
+  },
+  "protocol": "snn005_native_association_holdout_r2",
+  "research_question": "RQ-SNN-005",
+  "result_status": "SUPPORTED_WITHIN_PREREGISTERED_PROTOCOL",
+  "results": {
+    "comparisons": [
+      {
+        "bootstrap_percentile_95_ci": [
+          0.19531249999999997,
+          0.3328125
+        ],
+        "bootstrap_resamples": 2000,
+        "bootstrap_seed": 910,
+        "control": "learning_off",
+        "degenerate_difference_variance": false,
+        "exact_two_sided_sign_flip_p": 3.0517578125e-05,
+        "holm_adjusted_p": 0.0001220703125,
+        "interpretation": "exploratory; no automatic hypothesis or EVID acceptance",
+        "mean_difference": 0.2640625,
+        "metric": "test_accuracy",
+        "n_seed_pairs": 16,
+        "paired_standardized_effect_dz": 1.7975197605953888,
+        "reference": "learning_on",
+        "unit": "independent_environment_and_initialization_seed"
+      },
+      {
+        "bootstrap_percentile_95_ci": [
+          0.19374999999999998,
+          0.33749999999999997
+        ],
+        "bootstrap_resamples": 2000,
+        "bootstrap_seed": 911,
+        "control": "sham_replay",
+        "degenerate_difference_variance": false,
+        "exact_two_sided_sign_flip_p": 3.0517578125e-05,
+        "holm_adjusted_p": 0.0001220703125,
+        "interpretation": "exploratory; no automatic hypothesis or EVID acceptance",
+        "mean_difference": 0.2640625,
+        "metric": "test_accuracy",
+        "n_seed_pairs": 16,
+        "paired_standardized_effect_dz": 1.7975197605953888,
+        "reference": "learning_on",
+        "unit": "independent_environment_and_initialization_seed"
+      },
+      {
+        "bootstrap_percentile_95_ci": [
+          0.1953125,
+          0.3375
+        ],
+        "bootstrap_resamples": 2000,
+        "bootstrap_seed": 912,
+        "control": "weight_reset",
+        "degenerate_difference_variance": false,
+        "exact_two_sided_sign_flip_p": 3.0517578125e-05,
+        "holm_adjusted_p": 0.0001220703125,
+        "interpretation": "exploratory; no automatic hypothesis or EVID acceptance",
+        "mean_difference": 0.2640625,
+        "metric": "test_accuracy",
+        "n_seed_pairs": 16,
+        "paired_standardized_effect_dz": 1.7975197605953888,
+        "reference": "learning_on",
+        "unit": "independent_environment_and_initialization_seed"
+      },
+      {
+        "bootstrap_percentile_95_ci": [
+          0.1953125,
+          0.3359375
+        ],
+        "bootstrap_resamples": 2000,
+        "bootstrap_seed": 913,
+        "control": "weight_shuffle",
+        "degenerate_difference_variance": false,
+        "exact_two_sided_sign_flip_p": 3.0517578125e-05,
+        "holm_adjusted_p": 0.0001220703125,
+        "interpretation": "exploratory; no automatic hypothesis or EVID acceptance",
+        "mean_difference": 0.2640625,
+        "metric": "test_accuracy",
+        "n_seed_pairs": 16,
+        "paired_standardized_effect_dz": 1.7975197605953888,
+        "reference": "learning_on",
+        "unit": "independent_environment_and_initialization_seed"
+      }
+    ],
+    "mean_accuracy": {
+      "learning_off": 0.5,
+      "learning_on": 0.7640625,
+      "sham_replay": 0.5,
+      "weight_reset": 0.5,
+      "weight_shuffle": 0.5
+    },
+    "primary_comparison": {
+      "bootstrap_percentile_95_ci": [
+        0.19531249999999997,
+        0.3328125
+      ],
+      "bootstrap_resamples": 2000,
+      "bootstrap_seed": 910,
+      "control": "learning_off",
+      "degenerate_difference_variance": false,
+      "exact_two_sided_sign_flip_p": 3.0517578125e-05,
+      "holm_adjusted_p": 0.0001220703125,
+      "interpretation": "exploratory; no automatic hypothesis or EVID acceptance",
+      "mean_difference": 0.2640625,
+      "metric": "test_accuracy",
+      "n_seed_pairs": 16,
+      "paired_standardized_effect_dz": 1.7975197605953888,
+      "reference": "learning_on",
+      "unit": "independent_environment_and_initialization_seed"
+    }
+  },
+  "schema_version": 1,
+  "scientific_evidence": false,
+  "scientific_gates": {
+    "all_control_contrasts_holm_significant": true,
+    "all_control_contrasts_positive": true,
+    "learning_on_beats_all_control_means": true,
+    "primary_ci_excludes_zero": true,
+    "primary_holm_significant": true,
+    "primary_mean_difference": true
+  },
+  "source_freeze": {
+    "branch": "HEAD",
+    "commit": "71b90a4d95ed2e68385ac3f65cb36a39a1eea839",
+    "dirty_before_execution": false
+  },
+  "stage": 1
+}

@@ -1,0 +1,61 @@
+name: Persist SNN-005 verified bundle
+
+on:
+  pull_request:
+    branches:
+      - fix/isolated-experiment-execution-20260919
+    paths:
+      - .github/workflows/snn005-persist-verified-bundle.yml
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  persist:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: research/snn005-holdout-r2-20260919
+          fetch-depth: 0
+      - name: Download exact verified artifact
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh api             repos/Thomas-Heisig/MHRN/actions/artifacts/10590472981/zip             > "$RUNNER_TEMP/snn005.zip"
+          mkdir -p "$RUNNER_TEMP/snn005"
+          unzip -q "$RUNNER_TEMP/snn005.zip" -d "$RUNNER_TEMP/snn005"
+      - name: Validate artifact identity
+        run: |
+          test -f "$RUNNER_TEMP/snn005/EXP-SNN005-HOLDOUT-R2-20260919/manifest.json"
+          test -f "$RUNNER_TEMP/snn005/isolation_audit.json"
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          root = Path(__import__("os").environ["RUNNER_TEMP"]) / "snn005"
+          manifest = json.loads(
+              (root / "EXP-SNN005-HOLDOUT-R2-20260919/manifest.json")
+              .read_text(encoding="utf-8")
+          )
+          audit = json.loads((root / "isolation_audit.json").read_text(encoding="utf-8"))
+          assert manifest["experiment_id"] == "EXP-SNN005-HOLDOUT-R2-20260919"
+          assert manifest["result_status"] == "SUPPORTED_WITHIN_PREREGISTERED_PROTOCOL"
+          assert manifest["human_review_status"] == "PENDING"
+          assert audit["primary_checkout_clean_before"] is True
+          assert audit["primary_checkout_clean_after"] is True
+          PY
+      - name: Persist verified DATA only
+        run: |
+          target="research/experiments/EXP-SNN005-HOLDOUT-R2-20260919"
+          test ! -e "$target"
+          cp -a             "$RUNNER_TEMP/snn005/EXP-SNN005-HOLDOUT-R2-20260919"             "$target"
+          cp             "$RUNNER_TEMP/snn005/isolation_audit.json"             "$target/execution_isolation_audit.json"
+          git add "$target"
+          git diff --cached --check
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "research: persist verified SNN-005 holdout R2 DATA"
+          git pull --rebase origin research/snn005-holdout-r2-20260919
+          git push origin HEAD:research/snn005-holdout-r2-20260919
