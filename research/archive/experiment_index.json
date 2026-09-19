@@ -1744,6 +1744,34 @@
       "original_path": "experiments/EXP-GEN-0043",
       "reason": "manuelle Archivierung"
     },
+    "EXP-GEN-0044": {
+      "archived_at": "2026-09-19T07:59:51.021208+00:00",
+      "experiment_id": "EXP-GEN-0044",
+      "manifest_sha256": "b4ac1409b73257d69669b37ab8796f5fed734040d06d8061e95ca2550bf3994b",
+      "original_path": "experiments/EXP-GEN-0044",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-GEN-0045": {
+      "archived_at": "2026-09-19T07:59:52.686455+00:00",
+      "experiment_id": "EXP-GEN-0045",
+      "manifest_sha256": "2986da16b81a6c4ee5176428d3f46c3146e27e28c40df784c52736946f218bf2",
+      "original_path": "experiments/EXP-GEN-0045",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-GEN-0046": {
+      "archived_at": "2026-09-19T07:59:48.846505+00:00",
+      "experiment_id": "EXP-GEN-0046",
+      "manifest_sha256": "ab67e79129678da21f01d97aba865bd4b379f06746ce02e5d77acd48311ca7b1",
+      "original_path": "experiments/EXP-GEN-0046",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-GEN-0047": {
+      "archived_at": "2026-09-19T07:59:54.453978+00:00",
+      "experiment_id": "EXP-GEN-0047",
+      "manifest_sha256": "d2377427e14d0c14787a20c5f80f1e7a736be45fb6e8641298b3167bb3137cc7",
+      "original_path": "experiments/EXP-GEN-0047",
+      "reason": "manuelle Archivierung"
+    },
     "EXP-LEARN-20260903-2300": {
       "archived_at": "2026-09-16T13:44:12.166235+00:00",
       "experiment_id": "EXP-LEARN-20260903-2300",
@@ -1828,6 +1856,34 @@
       "original_path": "experiments/EXP-RETRY-AIRR-2026-0001-02",
       "reason": "manuelle Archivierung"
     },
+    "EXP-S1-TEMP-ORDER-V2-20260919": {
+      "archived_at": "2026-09-19T08:00:12.365646+00:00",
+      "experiment_id": "EXP-S1-TEMP-ORDER-V2-20260919",
+      "manifest_sha256": "98b8f90616d6b62b5a8a6b8d1950e708594abb0966787c6490a11d1ffdf4e0e2",
+      "original_path": "experiments/EXP-S1-TEMP-ORDER-V2-20260919",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-S1-TOPO-V2-20260918": {
+      "archived_at": "2026-09-19T08:00:08.341401+00:00",
+      "experiment_id": "EXP-S1-TOPO-V2-20260918",
+      "manifest_sha256": "7585bc922c73f83412ed79046e83b4b4b0af07a289ba265acea7c3d0519d76e2",
+      "original_path": "experiments/EXP-S1-TOPO-V2-20260918",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-S1-TOPO-V3-20260918": {
+      "archived_at": "2026-09-19T08:00:05.925468+00:00",
+      "experiment_id": "EXP-S1-TOPO-V3-20260918",
+      "manifest_sha256": "88a038698d14a6a61e29c58e9ee5bff03f4bc5357074ac75a7feb3ae8488a44a",
+      "original_path": "experiments/EXP-S1-TOPO-V3-20260918",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-S1-TOPO-V3-R1-20260918": {
+      "archived_at": "2026-09-19T08:00:04.125389+00:00",
+      "experiment_id": "EXP-S1-TOPO-V3-R1-20260918",
+      "manifest_sha256": "4e0e04005edf1219479de402876741343afc89061497f894559303fcceb59212",
+      "original_path": "experiments/EXP-S1-TOPO-V3-R1-20260918",
+      "reason": "manuelle Archivierung"
+    },
     "EXP-SNN-001": {
       "archived_at": "2026-09-16T13:47:54.737813+00:00",
       "experiment_id": "EXP-SNN-001",
@@ -1875,6 +1931,13 @@
       "experiment_id": "EXP-SNN-002-R2",
       "manifest_sha256": "04665f0b3a5772a0df8029fdbb6ac1a8302dd1a08d24bc0488ea10d8abf7beeb",
       "original_path": "experiments/EXP-SNN-002-R2",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-STAGE0-20260918-MODEL-CONFORMANCE-V2-PROMO-R1": {
+      "archived_at": "2026-09-19T08:00:09.901980+00:00",
+      "experiment_id": "EXP-STAGE0-20260918-MODEL-CONFORMANCE-V2-PROMO-R1",
+      "manifest_sha256": "17b32e4978512e6774a7e91739a2e9722d9aa8b2e5a313dd458ac7812f7e30b9",
+      "original_path": "experiments/EXP-STAGE0-20260918-MODEL-CONFORMANCE-V2-PROMO-R1",
       "reason": "manuelle Archivierung"
     },
     "EXP-STAGE5-20260914-INTEGRATED-NERVOUS-SYSTEM": {
