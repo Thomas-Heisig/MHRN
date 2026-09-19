@@ -73,7 +73,7 @@ Ab Version 2.0 soll das Gesamtwerk folgende Hauptteile verwenden:
 ### Teil VI — Epistemologie und Methodik der Schaffensgeschichte
 
 - drei gleichrangige Forschungsachsen mit unterschiedlichen Evidenzregeln
-- Provenienzklassen
+- S1–S4-Quellennäheklassen
 - Creation Event Register
 - AI-assisted research provenance
 - retrospektive Rekonstruktion vs. zeitgenössische Artefakte
@@ -114,7 +114,7 @@ Jeder Syntheseclaim muss mindestens ausweisen:
 - Forschungsachse,
 - Thema,
 - Entwicklungsphase,
-- Provenienzklasse,
+- Quellennäheklasse,
 - Evidenzstatus,
 - Interpretationsart (`confirmatory`, `methodological`, `argumentative`),
 - Revisionskriterium.
@@ -133,7 +133,7 @@ Jeder Syntheseclaim muss mindestens ausweisen:
 
 Ab sofort soll jeder neue größere Forschungsbaustein nach Möglichkeit anhand folgender Koordinaten klassifizierbar sein:
 
-`Aussage = Achse × Thema × Entwicklungsphase × Provenienz × Evidenzstatus`
+`Aussage = Achse × Thema × Entwicklungsphase × Quellennähe × Evidenzstatus × Interpretationsart`
 
 ### Achse
 
@@ -169,7 +169,9 @@ Mindestens:
 - aktuelle Edition
 - zukünftige Frontier
 
-### Provenienzklasse
+### Quellennäheklasse
+
+Das bestehende maschinenlesbare Feld kann aus Kompatibilitätsgründen weiterhin `provenance_class` heißen; semantisch bezeichnet S1–S4 die **Nähe zur ursprünglichen Quelle**, nicht die Wahrheit oder Evidenzstärke einer Aussage.
 
 - **S1:** harte/primäre Artefakte — Commits, Tags, PRs, frozen Preregistrierungen, DATA, Ergebnisse, Manifeste, Hashes
 - **S2:** zeitgenössische Prozessartefakte — Issues, Reviews, Chats, AI-Interaktionen, Arbeitsnotizen, Changelogs, Diffs
