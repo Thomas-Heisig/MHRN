@@ -92,8 +92,8 @@ def _report(payload: dict[str, Any], prereg: dict[str, Any]) -> str:
     max_lif = max(row["max_abs_v_error"] for row in b_rows)
     return (
         "# Stage-0 promotion replication R1\n\n"
-        f"**Experiment:** \`{EXPERIMENT_ID}\`  \n"
-        f"**Preregistration:** \`{prereg['preregistration_id']}\`  \n"
+        f"**Experiment:** \\`{EXPERIMENT_ID}\\`  \n"
+        f"**Preregistration:** \\`{prereg['preregistration_id']}\\`  \n"
         "**Mode:** internal promotion replication; DATA only  \n"
         "**Independent authorship replication:** false\n\n"
         "## Result\n\n"

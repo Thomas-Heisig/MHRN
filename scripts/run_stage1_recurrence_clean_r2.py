@@ -327,11 +327,11 @@ def main() -> int:
 
 Stage 1 small-SNN recurrence control / Stage-2 bridge.
 
-Research question: {prereg["research_question"]}  
-Hypothesis: {prereg["hypothesis"]}  
-Source freeze: {source["commit"]}  
-Clean before execution: true  
-Runs: {len(runs)}  
+Research question: {prereg["research_question"]}
+Hypothesis: {prereg["hypothesis"]}
+Source freeze: {source["commit"]}
+Clean before execution: true
+Runs: {len(runs)}
 Data role: DATA only; no automatic EVID promotion.
 
 ## Reason for R2

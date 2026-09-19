@@ -26,6 +26,7 @@ from run_stage1_topology_v2 import (
     sign_test_p,
     write_json,
 )
+
 from src.research.canonical_state import canonical_state_digest
 
 ROOT = Path(__file__).resolve().parents[1]

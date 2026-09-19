@@ -401,10 +401,10 @@ def main() -> int:
 
 Stage 1 - Kleines SNN
 
-Research question: RQ-TEMP-002  
-Hypothesis: H-TEMP-002-A  
-Source freeze: {source["commit"]}  
-Clean before execution: true  
+Research question: RQ-TEMP-002
+Hypothesis: H-TEMP-002-A
+Source freeze: {source["commit"]}
+Clean before execution: true
 Data role: DATA only; no automatic EVID promotion.
 
 ## Protocol correction
