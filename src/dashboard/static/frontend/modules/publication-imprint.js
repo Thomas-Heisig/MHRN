@@ -31,7 +31,14 @@ function renderImprint(data) {
   const privacy = data.privacy || {};
   const rights = data.content_and_licenses || {};
   const missing = data.required_before_public_internet || [];
-  const ready = Boolean(data.public_internet_ready);
+  const internetReady = Boolean(data.public_internet_ready);
+  const releaseReady = Boolean(data.public_release_ready);
+  const statusClass = internetReady ? "is-ready" : releaseReady ? "is-partial" : "is-incomplete";
+  const statusLabel = internetReady
+    ? "öffentliche Dashboard-Bereitstellung vollständig"
+    : releaseReady
+      ? "öffentliche Projektfreigabe möglich · Hosting-Datenschutz offen"
+      : "vor öffentlicher Bereitstellung vervollständigen";
 
   return `
     <section class="pub-imprint-page" aria-labelledby="pub-imprint-title">
@@ -41,13 +48,13 @@ function renderImprint(data) {
           <h1 id="pub-imprint-title">Impressum &amp; Rechtliche Hinweise</h1>
           <p>Transparente Anbieter-, Autoren-, Projekt-, Lizenz- und Datenschutzinformationen für MHRN und die Publikationsoberfläche.</p>
         </div>
-        <span class="pub-imprint-status ${ready ? "is-ready" : "is-incomplete"}">${ready ? "für öffentliche Bereitstellung vollständig" : "vor öffentlicher Bereitstellung vervollständigen"}</span>
+        <span class="pub-imprint-status ${statusClass}">${statusLabel}</span>
       </header>
 
-      ${!ready ? `
+      ${!internetReady ? `
         <section class="pub-imprint-warning" role="status">
-          <strong>Impressum noch nicht vollständig für eine öffentliche Internetpräsenz.</strong>
-          <p>Das Repository veröffentlicht bewusst keine private Anschrift oder private Kontakt-E-Mail. Vor einer öffentlichen Bereitstellung müssen die unten markierten Pflichtfelder mit den tatsächlich gültigen Angaben ergänzt werden.</p>
+          <strong>Anbieter- und Verantwortlichkeitsangaben sind vollständig hinterlegt.</strong>
+          <p>Für GitHub-/Zenodo-Veröffentlichungen sind die öffentlichen Identitäts- und Kontaktangaben vorhanden. Vor einer eigenständig öffentlich gehosteten Dashboard-Instanz müssen nur noch die tatsächlichen Hosting-, Proxy- und Logging-Datenschutzhinweise ergänzt werden.</p>
         </section>` : ""}
 
       <div class="pub-imprint-grid">
@@ -56,6 +63,7 @@ function renderImprint(data) {
           <dl>
             <div><dt>Name</dt><dd>${renderValue(provider.name)}</dd></div>
             <div><dt>Funktion</dt><dd>${renderValue(provider.role)}</dd></div>
+            <div><dt>Rechtsform</dt><dd>${renderValue(provider.legal_entity, "Privatperson")}</dd></div>
             <div><dt>Anschrift</dt><dd>${renderValue(provider.postal_address, "Pflichtfeld vor öffentlicher Bereitstellung")}</dd></div>
             <div><dt>E-Mail</dt><dd>${renderValue(provider.email, "Pflichtfeld vor öffentlicher Bereitstellung")}</dd></div>
             <div><dt>Telefon</dt><dd>${renderValue(provider.phone, "nur falls als Kontaktweg angegeben")}</dd></div>
@@ -94,6 +102,7 @@ function renderImprint(data) {
 
         <article>
           <h2>Datenschutz &amp; lokale Speicherung</h2>
+          <p>${escapeHtml(privacy.principle || "Datenschutz und Datensparsamkeit sind Projektprinzipien.")}</p>
           <p>Die Dashboard-Oberfläche verwendet Browser-LocalStorage für lokale Bedien- und Darstellungszustände. Drittanbieter-Analytics sind in der hinterlegten Projektkonfiguration nicht als aktiviert ausgewiesen.</p>
           ${renderList(privacy.browser_local_storage_purposes || [])}
           <p><strong>Server-Logging:</strong> ${escapeHtml(privacy.server_logging || "abhängig vom tatsächlichen Deployment")}</p>

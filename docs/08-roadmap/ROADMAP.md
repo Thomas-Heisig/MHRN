@@ -2,7 +2,18 @@
 
 **Canonical roadmap for current `main`**  
 **Baseline:** `mhrn-core 0.6.0a5`
-**Updated:** 2026-09-16
+**Updated:** 2026-09-19
+
+## 2026-09-19 Public Alpha.5 release candidate
+
+- Alpha.5 is a **technical pre-release candidate**, not scientific completion.
+- Publication is allowed only for the exact merged `main` source freeze after full CI and scientific/publication/DATA-integrity gates are green.
+- The Release preview separates **Entwicklung**, **Wissenschaft** and **Veröffentlichung**.
+- Public provider identity/contact data are documented; a self-hosted public dashboard remains deployment-privacy-pending until the actual hosting/proxy/logging stack is known.
+- Edition 1.8 states explicitly that AI-assisted research is both disclosed tooling and a **methodological research object**; AI remains neither author nor evidence authority.
+- Independent external replication is an explicit post-publication objective. The original author does not self-certify novelty or scientific value.
+- Zenodo/DOI status remains external: a DOI is recorded only after a concrete archive exists.
+
 
 ## 2026-09-19 Public ORCID authorship linking
 

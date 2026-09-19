@@ -35,20 +35,23 @@ The sparse **5D SNN remains the primary adaptive system**. Language models, rese
 
 > **Scientific boundary:** implementation, passing tests, dashboards, generated reports, registered protocols and completed experiment runs are not automatically scientific evidence. MHRN currently makes no claim of AGI, consciousness, sentience, biological equivalence or a demonstrated general advantage of the 5D address space.
 
+> **AI transparency:** AI assistants materially support research leads, critique, code, tests and text. Their use is explicitly documented and is itself part of MHRN's methodological research programme. AI output is not treated as authorship, source authority or scientific evidence; Thomas Heisig retains human responsibility for selection, approval and publication.
+
 ---
 
-## Current state — 16 September 2026
+## Current state — 19 September 2026
 
 | Area | Current state |
 | --- | --- |
 | Canonical branch | `main` |
 | Package | `mhrn-core 0.6.0a5` / `0.6.0-alpha.5` |
-| Release status | development; gate open; no active release blocker, final source-freeze/release closure still pending |
+| Release status | **Alpha.5 release candidate**; public pre-release only after the exact merged `main` source-freeze has fully green CI and release gates |
 | Engineering | Stage 2 recurrent contract closed at its scoped engineering boundary; Stage 3 plastic neural tissue reached; Stage 4/5 engineering contracts integrated; Stage 6 mechanisms and research programme active |
-| Scientific focus | Stage 6 — memory, continual learning, semantization, prediction error and world-model validation |
+| Scientific focus | Stage 6 — memory, continual learning, semantization, prediction error and world-model validation; independent external replication remains open |
 | Current manuscript | **Recursive Epistemics / Rekursive Epistemik 1.8 — WIP** |
 | Publication lineage | 1.8 current WIP → 1.7 predecessor → 1.5 frozen empirical baseline |
-| Evidence policy | `implementation test != DATA != reviewed EVID != interpretation` |
+| Evidence policy | `implementation/test != DATA != reviewed EVID != independent replication`; release/DOI do not promote evidence |
+| AI methodology | AI assistance is explicitly disclosed; the human-AI research process is itself a methodological research object while human authorship and responsibility remain separate |
 | Document governance | all `docs/` and `research/` files are classified by role, status, authority, mutability, citation rule and evidence role |
 
 The authoritative machine-readable release record is [`releases/current.json`](releases/current.json). Project identity and naming rules are in [`project_identity.json`](project_identity.json) and [`NAMING.md`](NAMING.md).
@@ -85,6 +88,8 @@ The internal documentation and experiment taxonomy is being refined. The links b
 - **Scientific maturity roadmap:** [`docs/08-roadmap/SCIENTIFIC_MATURITY_ROADMAP.md`](docs/08-roadmap/SCIENTIFIC_MATURITY_ROADMAP.md)
 - **Research roadmap:** [`docs/08-roadmap/RESEARCH_ROADMAP.md`](docs/08-roadmap/RESEARCH_ROADMAP.md)
 - **Current TODO:** [`docs/08-roadmap/TODO.md`](docs/08-roadmap/TODO.md)
+- **Privacy / Datenschutz:** [`PRIVACY.md`](PRIVACY.md)
+- **Public imprint metadata:** [`public_imprint.json`](public_imprint.json)
 
 The Publication Viewer follows the machine-readable publication catalog and should open the current WIP manuscript rather than a frozen predecessor.
 

@@ -1605,6 +1605,23 @@ Es beeinflusst damit den **Suchraum der Forschung**. MHRN bezeichnet diese Rolle
 
 Daraus folgt eine zusätzliche Provenienzpflicht: Nicht nur Daten, sondern auch Hypothesen-, Design- und Reviewpfade können modellabhängig sein.
 
+### 33.11a KI-Nutzung als methodisches Experiment der eigentlichen Arbeit
+
+Die KI-Unterstützung ist in MHRN nicht nur ein unsichtbares Werkzeug neben der „eigentlichen“ Forschung. **Ein Teil der eigentlichen Arbeit besteht gerade darin, die Zusammenarbeit zwischen menschlicher Zielsetzung, KI-generierten Vorschlägen, technischer Prüfung, Zurückweisung, Revision, Freigabe und wissenschaftlicher Verantwortung als nachvollziehbaren Forschungsprozess zu untersuchen.**
+
+Damit besitzt die Arbeit zwei ausdrücklich getrennte Ebenen:
+
+1. **Objektebene:** das MHRN-System selbst — spikendes Netzwerk, Plastizität, Topologie, Embodiment, Gedächtnis, Prediction und World Model;
+2. **Metaebene:** der Forschungsprozess — wie ein einzelner menschlicher Autor verteilte KI-Assistenz nutzt, ohne Quellenautorität, Evidenzentscheidung oder Letztverantwortung an diese Systeme abzugeben.
+
+Auf der Metaebene werden Übergaben, Fehler, verworfene Vorschläge, Freigaben und Provenienz zu prüfbaren Objekten. Dieses Vorgehen wird als **methodisches Experiment** verstanden: Es soll untersuchbar machen, ob KI-assistierte Forschung durch explizite Provenienz, fail-closed Gates, negative Befunde, Replikationsanforderungen und menschliche Letztverantwortung transparenter und falsifizierbarer organisiert werden kann. Dass der Prozess dokumentiert wird, beweist nicht, dass er bessere Wissenschaft erzeugt; genau diese Wirkung bleibt selbst eine offene Forschungsfrage.
+
+### 33.11b Externe Geltung statt Selbstzertifizierung
+
+MHRN trennt Veröffentlichbarkeit von wissenschaftlicher Geltung. Ein grüner CI-Lauf, ein GitHub-Release, ein DOI, ein interner Human Review oder eine projektinterne EVID-Registrierung können die Arbeit auffindbar und auditierbar machen; sie entscheiden nicht allein über Neuheit, Richtigkeit oder Bedeutung.
+
+Die Arbeit sucht deshalb ausdrücklich unabhängige externe Replikation und Kritik. Positive, negative und Null-Replikationen sind wissenschaftlich relevant. Der Autor bestimmt, was er veröffentlicht und verantwortet. **Den wissenschaftlichen Wert der Arbeit bestimmt er nicht allein.** Dieser entsteht — soweit er entsteht — erst im Zusammenspiel von nachvollziehbaren Befunden, Prior Art, Kritik, Replikation und weiterer Forschung.
+
 ### 33.12 Der geschlossene epistemische Regelkreis als Bias-Risiko
 
 KI kann im selben Projekt Gegenstand, Werkzeug, Hypothesengenerator, Codeproduzent, Evaluator und Textsystem sein.

@@ -25,13 +25,15 @@ def test_current_release_matches_canonical_development_version() -> None:
     assert project["version"] == "0.6.0a5"
     assert current["version"] == "0.6.0-alpha.5"
     assert current["pep440"] == project["version"]
-    assert current["status"] == "development"
+    assert current["status"] in {"development", "release_candidate"}
+    assert current.get("release_type") == "pre-release"
+    assert current.get("target_tag") == "v0.6.0-alpha.5"
     assert current["parent"] == "v0.5.0-alpha.7"
-    assert current["as_of"] == "2026-09-16"
-    assert (
-        current["milestone_status"]
-        == "stage3_engineering_reached_scientific_maturity_separate"
-    )
+    assert current["as_of"] == "2026-09-19"
+    assert current["milestone_status"] in {
+        "stage3_engineering_reached_scientific_maturity_separate",
+        "engineering_release_candidate_scientific_programme_active",
+    }
     assert current["release_blockers"] == 0
     assert current["open"]
     assert current["scope"]

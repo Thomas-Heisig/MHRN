@@ -113,7 +113,7 @@ function renderReleaseTree(releases, current) {
     <div class="release-cards">
       ${all.map((rel) => {
         const status = rel.status || 'unknown';
-        const isCurrent = status === 'development';
+        const isCurrent = status === 'development' || status === 'release_candidate';
         const isReleased = status === 'released';
         const statusClass = isReleased ? 'released' : isCurrent ? 'current' : status;
         const gate = rel.gate || '—';
@@ -132,7 +132,7 @@ function renderReleaseTree(releases, current) {
           <article class="release-card release-${statusClass}">
             <div class="release-card-top">
               <span class="release-version-badge release-version-${statusClass}">${escapeHtml(rel.version || 'unknown')}</span>
-              <span class="release-status-pill release-pill-${statusClass}">${isReleased ? 'Veröffentlicht' : isCurrent ? 'In Entwicklung' : status}</span>
+              <span class="release-status-pill release-pill-${statusClass}">${isReleased ? 'Veröffentlicht' : status === 'release_candidate' ? 'Release-Kandidat' : isCurrent ? 'In Entwicklung' : status}</span>
               ${isReleased ? `<span class="release-gate-pill release-gate-${gateClass}">Gate: ${gateLabel}</span>` : ''}
               <span class="release-date">${escapeHtml(rel.date || rel.as_of || '—')}</span>
             </div>
@@ -204,6 +204,9 @@ function renderCurrentReleasePreview(current) {
   const gate = current.gate || 'open';
   const gateClass = gate === 'passed' ? 'pass' : gate === 'failed' ? 'fail' : 'pending';
   const gateLabel = gate === 'passed' ? 'Bestanden' : gate === 'failed' ? 'Fehlgeschlagen' : 'Offen';
+  const developmentState = current.development_state || {};
+  const scientificState = current.scientific_state || {};
+  const publicationState = current.publication_state || {};
 
   // Aufklappbare Items
   const renderItems = (items, extraId) => {
@@ -257,6 +260,12 @@ function renderCurrentReleasePreview(current) {
           <span>Offen</span>
           <strong>${open.length}</strong>
         </div>
+      </div>
+
+      <div class="preview-state-axis" aria-label="Getrennte Release-Zustände">
+        <section><span>Entwicklung</span><strong>${escapeHtml(developmentState.status || current.status || 'unknown')}</strong><p>${escapeHtml(developmentState.summary || '')}</p></section>
+        <section><span>Wissenschaft</span><strong>${escapeHtml(scientificState.status || 'separat')}</strong><p>${escapeHtml(scientificState.summary || '')}</p></section>
+        <section><span>Veröffentlichung</span><strong>${escapeHtml(publicationState.github_release || 'not published')}</strong><p>Zenodo: ${escapeHtml(publicationState.zenodo || 'not verified')} · DOI: ${escapeHtml(publicationState.doi || 'noch nicht vergeben/verifiziert')}</p></section>
       </div>
 
       ${current.note || current.subtitle ? `<p class="preview-note">${escapeHtml(current.note || current.subtitle)}</p>` : ''}

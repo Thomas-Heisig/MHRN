@@ -122,7 +122,11 @@ def _release_entries(repo_root: Path) -> list[TimelineEntry]:
                 "title": f"{version} \u00b7 {title}",
                 "sources": ["RELEASE"],
                 "items": items,
-                "phase": "current" if status == "development" else "past",
+                "phase": (
+                    "current"
+                    if status in {"development", "release_candidate"}
+                    else "past"
+                ),
             }
         )
     try:
