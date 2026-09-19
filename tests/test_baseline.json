@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "tested_commit": "f40d4d20c69a71cc0a747fa108a3a883b0c58285",
+  "tested_commit": "29d1ca5732fc51182d537f505fee7fc860775607",
   "tested_tree_digest": "aff077317cab9fed4bd3883d0dc7c6f7e54fe8bf612597f316ff01edb34ffd37",
   "tree_digest_paths": [
     "src/",
@@ -12,7 +12,7 @@
   "tree_digest_excludes": [
     "tests/test_baseline.json"
   ],
-  "timestamp": "2026-09-19T10:02:10.604390+00:00",
+  "timestamp": "2026-09-19T10:11:46.831390+00:00",
   "python": "3.13.15",
   "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
   "source_unchanged_during_run": true,
