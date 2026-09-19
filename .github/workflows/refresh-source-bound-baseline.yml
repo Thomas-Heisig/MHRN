@@ -2,7 +2,7 @@ name: Refresh source-bound baseline
 
 on:
   push:
-    branches: [research/connectome-embodiment-20260909, fix/main-head-ci-verification-20260919]
+    branches: [research/connectome-embodiment-20260909]
     paths:
       - ".github/workflows/refresh-source-bound-baseline.yml"
   workflow_dispatch:
