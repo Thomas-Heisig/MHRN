@@ -4577,8 +4577,16 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
 
     def _serve_experiment_series(self) -> None:
         source = self._require_research_source()
+        archive_service = ExperimentArchiveService(source.root())
         service = ExperimentOrganizerService(source.root())
-        self._send_json({"series": cast(list[JSONValue], service.list_series())})
+        self._send_json(
+            {
+                "series": cast(
+                    list[JSONValue],
+                    service.list_series(archive_service.archived_series_ids()),
+                )
+            }
+        )
 
     def _serve_analysis_jobs(self) -> None:
         source = self._require_research_source()
@@ -4629,18 +4637,32 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
     def _archive_experiment(self, body: dict[str, object]) -> None:
         source = self._require_research_source()
         experiment_id = body.get("experiment_id")
+        series_id = body.get("series_id")
         action = str(body.get("action") or "archive")
-        if not isinstance(experiment_id, str) or not experiment_id:
-            raise InvalidRequestError("experiment_id is required")
+        if isinstance(series_id, str) and series_id:
+            target_id = series_id
+        elif isinstance(experiment_id, str) and experiment_id:
+            target_id = experiment_id
+        else:
+            raise InvalidRequestError("experiment_id or series_id is required")
         service = ExperimentArchiveService(source.root())
         try:
-            result = (
-                service.restore_experiment(experiment_id)
-                if action == "restore"
-                else service.archive_experiment(
-                    experiment_id, str(body.get("reason") or "")
+            if isinstance(series_id, str) and series_id:
+                result = (
+                    service.restore_series(target_id)
+                    if action == "restore_series"
+                    else service.archive_series(
+                        target_id, str(body.get("reason") or "")
+                    )
                 )
-            )
+            else:
+                result = (
+                    service.restore_experiment(target_id)
+                    if action == "restore"
+                    else service.archive_experiment(
+                        target_id, str(body.get("reason") or "")
+                    )
+                )
         except ExperimentArchiveError as exc:
             raise InvalidRequestError(str(exc)) from exc
         self._send_json(cast(dict[str, JSONValue], {"ok": True, **result}))

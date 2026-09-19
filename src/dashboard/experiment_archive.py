@@ -91,7 +91,19 @@ class ExperimentArchiveService:
 
     def archived_ids(self) -> frozenset[str]:
         """Return metadata-archived experiment IDs without touching artifacts."""
-        return frozenset(self._load_index())
+        return frozenset(
+            experiment_id
+            for experiment_id, metadata in self._load_index().items()
+            if metadata.get("archive_type", "experiment") == "experiment"
+        )
+
+    def archived_series_ids(self) -> frozenset[str]:
+        """Return metadata-archived workflow series IDs."""
+        return frozenset(
+            series_id
+            for series_id, metadata in self._load_index().items()
+            if metadata.get("archive_type") == "series"
+        )
 
     @staticmethod
     def _load_manifest(directory: Path) -> dict[str, Any] | None:
@@ -110,6 +122,8 @@ class ExperimentArchiveService:
         records = self._load_index()
         items: list[dict[str, Any]] = []
         for experiment_id, metadata in sorted(records.items(), reverse=True):
+            if metadata.get("archive_type", "experiment") != "experiment":
+                continue
             canonical = self.experiments / experiment_id
             manifest_data = self._load_manifest(canonical)
             dashboard_manifest = (
@@ -187,8 +201,16 @@ class ExperimentArchiveService:
             raise ExperimentArchiveError(f"experiment not found: {experiment_id}")
         records = self._load_index()
         if experiment_id in records:
+            existing = records[experiment_id]
+            if existing.get("archive_type", "experiment") == "experiment":
+                return {
+                    "archived": True,
+                    "already_archived": True,
+                    "archive_mode": "metadata_only",
+                    **existing,
+                }
             raise ExperimentArchiveError(
-                f"experiment already hidden from work view: {experiment_id}"
+                f"archive key is already used by a series: {experiment_id}"
             )
         if (self.legacy_archive / experiment_id).exists():
             raise ExperimentArchiveError(
@@ -206,11 +228,78 @@ class ExperimentArchiveService:
         self._write_index(records)
         return {"archived": True, "archive_mode": "metadata_only", **metadata}
 
+    @property
+    def research_workflows(self) -> Path:
+        return self.root / "workflows"
+
+    def _series_experiment_ids(self, series_id: str) -> list[str]:
+        workflow = self.research_workflows / f"{series_id}.json"
+        if not workflow.is_file():
+            raise ExperimentArchiveError(f"experiment series not found: {series_id}")
+        try:
+            payload: object = json.loads(workflow.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError) as exc:
+            raise ExperimentArchiveError(
+                f"experiment series is unreadable: {series_id}"
+            ) from exc
+        if not isinstance(payload, dict) or not isinstance(payload.get("results"), list):
+            raise ExperimentArchiveError(f"experiment series has no results: {series_id}")
+        result_ids: list[str] = []
+        for result in cast(list[object], payload["results"]):
+            if isinstance(result, dict) and isinstance(result.get("experiment_id"), str):
+                result_ids.append(result["experiment_id"])
+        return list(dict.fromkeys(result_ids))
+
+    def archive_series(self, series_id: str, reason: str = "") -> dict[str, Any]:
+        """Hide a workflow series and its child experiments from active views."""
+        series_id = self._validate_id(series_id)
+        records = self._load_index()
+        if series_id in records:
+            existing = records[series_id]
+            if existing.get("archive_type") == "series":
+                return {
+                    "archived": True,
+                    "already_archived": True,
+                    "archive_mode": "metadata_only",
+                    **existing,
+                }
+            raise ExperimentArchiveError(
+                f"archive key is already used by an experiment: {series_id}"
+            )
+
+        child_ids = self._series_experiment_ids(series_id)
+        owned_child_ids: list[str] = []
+        for child_id in child_ids:
+            records = self._load_index()
+            if child_id in records:
+                continue
+            if not (self.experiments / child_id / "manifest.json").is_file():
+                raise ExperimentArchiveError(f"experiment not found: {child_id}")
+            self.archive_experiment(child_id, reason or f"series {series_id}")
+            owned_child_ids.append(child_id)
+
+        records = self._load_index()
+        metadata = {
+            "archive_type": "series",
+            "series_id": series_id,
+            "experiment_id": series_id,
+            "archived_at": datetime.now(timezone.utc).isoformat(),
+            "reason": reason.strip() or "manual work-view series archive",
+            "original_path": f"workflows/{series_id}.json",
+            "child_experiment_ids": child_ids,
+            "owned_child_experiment_ids": owned_child_ids,
+        }
+        records[series_id] = metadata
+        self._write_index(records)
+        return {"archived": True, "archive_mode": "metadata_only", **metadata}
+
     def restore_experiment(self, experiment_id: str) -> dict[str, Any]:
         """Return an experiment to the active view, restoring legacy moves once."""
         experiment_id = self._validate_id(experiment_id)
         records = self._load_index()
         if experiment_id in records:
+            if records[experiment_id].get("archive_type") == "series":
+                return self.restore_series(experiment_id)
             canonical = self.experiments / experiment_id / "manifest.json"
             if not canonical.is_file():
                 raise ExperimentArchiveError(
@@ -245,4 +334,23 @@ class ExperimentArchiveService:
             "archived": False,
             "restored": True,
             "archive_mode": "legacy_moved",
+        }
+
+    def restore_series(self, series_id: str) -> dict[str, Any]:
+        """Restore a metadata-only series and children archived with it."""
+        series_id = self._validate_id(series_id)
+        records = self._load_index()
+        metadata = records.get(series_id)
+        if not metadata or metadata.get("archive_type") != "series":
+            raise ExperimentArchiveError(f"archived series not found: {series_id}")
+        for child_id in metadata.get("owned_child_experiment_ids", []):
+            if isinstance(child_id, str):
+                records.pop(child_id, None)
+        records.pop(series_id, None)
+        self._write_index(records)
+        return {
+            "series_id": series_id,
+            "archived": False,
+            "restored": True,
+            "archive_mode": "metadata_only",
         }

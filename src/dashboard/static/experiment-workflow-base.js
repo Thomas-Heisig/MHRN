@@ -542,7 +542,7 @@ export class ExperimentWorkflowPanel {
     const resultActions = resultButtons.length ? `<div class="experiment-library-results">${resultButtons.join("")}</div>` : "";
     const action = archived
       ? `<button type="button" class="btn-small" data-experiment-action="restore" data-experiment-id="${escapeHtml(item.experiment_id)}">↶ Wiederherstellen</button>`
-      : `<button type="button" class="btn-small" data-experiment-action="archive" data-experiment-id="${escapeHtml(item.id)}">▣ Archivieren</button>`;
+      : `<button type="button" class="btn-small" data-experiment-action="archive" data-experiment-id="${escapeHtml(item.experiment_id || item.id)}">▣ Archivieren</button>`;
     return `<article class="experiment-library-item ${archived ? "is-archived" : ""}">
       <div class="exp-item-header"><strong>${escapeHtml(item.experiment_id || item.id)}</strong><span class="exp-status-badge ${statusClass}">${escapeHtml(status)}</span></div>
       <small class="exp-item-meta">${escapeHtml(meta)}</small>
@@ -559,18 +559,39 @@ export class ExperimentWorkflowPanel {
     const reportButton = item.report
       ? `<button type="button" class="btn-small" data-series-report="${escapeHtml(item.report)}">Reihenbericht</button>`
       : "";
-    return `<details class="experiment-series-item"><summary><span><strong>${escapeHtml(item.series_id)}</strong><small>${escapeHtml(item.created_at || "")}</small></span><em class="series-status-${escapeHtml(item.status)}">${escapeHtml(item.status)} · ${escapeHtml(item.assessment_status)}</em></summary><div class="experiment-series-assessment"><div class="experiment-series-kpis"><span><small>Erfolgreich</small><strong>${Number(item.completed || 0)}</strong></span><span><small>Fehlgeschlagen</small><strong>${Number(item.failed || 0)}</strong></span><span><small>Ticks</small><strong>${escapeHtml(item.requested_ticks ?? "—")}</strong></span><span><small>Seeds</small><strong>${escapeHtml(item.seeds ?? "—")}</strong></span></div><p>${escapeHtml(item.assessment_boundary || "Technische Bewertung; Human Review erforderlich.")}</p><ul class="experiment-series-results">${resultRows}</ul>${reportButton}</div></details>`;
+    const archiveAction = item.archived
+      ? `<button type="button" class="btn-small" data-series-action="restore_series" data-series-id="${escapeHtml(item.series_id)}">↶ Reihe wiederherstellen</button>`
+      : `<button type="button" class="btn-small" data-series-action="archive_series" data-series-id="${escapeHtml(item.series_id)}">▣ Reihe archivieren</button>`;
+    return `<details class="experiment-series-item ${item.archived ? "is-archived" : ""}"><summary><span><strong>${escapeHtml(item.series_id)}</strong><small>${escapeHtml(item.created_at || "")}</small></span><em class="series-status-${escapeHtml(item.status)}">${escapeHtml(item.status)} · ${escapeHtml(item.assessment_status)}${item.archived ? " · archiviert" : ""}</em></summary><div class="experiment-series-assessment"><div class="experiment-series-kpis"><span><small>Erfolgreich</small><strong>${Number(item.completed || 0)}</strong></span><span><small>Fehlgeschlagen</small><strong>${Number(item.failed || 0)}</strong></span><span><small>Ticks</small><strong>${escapeHtml(item.requested_ticks ?? "—")}</strong></span><span><small>Seeds</small><strong>${escapeHtml(item.seeds ?? "—")}</strong></span></div><p>${escapeHtml(item.assessment_boundary || "Technische Bewertung; Human Review erforderlich.")}</p><ul class="experiment-series-results">${resultRows}</ul><div class="experiment-series-actions">${reportButton}${archiveAction}</div></div></details>`;
   }
 
   async _handleExperimentLibraryAction(event) {
-    const button = event.target.closest?.("[data-experiment-action], [data-series-report], [data-experiment-open]");
+    const button = event.target.closest?.("[data-experiment-action], [data-series-action], [data-series-report], [data-experiment-open]");
     if (!button) return;
     const experimentId = button.dataset.experimentId;
     const action = button.dataset.experimentAction;
+    const seriesAction = button.dataset.seriesAction;
+    const seriesId = button.dataset.seriesId;
     const seriesReport = button.dataset.seriesReport;
     const openKind = button.dataset.experimentOpen;
     if (seriesReport) {
       await this._openArtifact(seriesReport);
+      return;
+    }
+    if (seriesAction && seriesId) {
+      const reason = seriesAction === "archive_series" ? (window.prompt("Warum wird diese Experimentreihe archiviert?", "manuelle Reihenarchivierung") || "manuelle Reihenarchivierung") : "";
+      if (seriesAction === "archive_series" && !window.confirm(`${seriesId} archivieren? Die Artefakte bleiben unverändert.`)) return;
+      button.disabled = true;
+      try {
+        await fetchJson("/api/research/experiments/archive", {
+          method: "POST",
+          body: JSON.stringify({ series_id: seriesId, action: seriesAction, reason }),
+        });
+        await this._loadExperimentCollections();
+      } catch (error) {
+        window.alert(`Aktion fehlgeschlagen: ${error.message || error}`);
+        button.disabled = false;
+      }
       return;
     }
     // Open a past experiment's result artifact (report, summary, statistics, raw data)

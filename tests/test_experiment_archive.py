@@ -79,3 +79,51 @@ def test_legacy_moved_archive_remains_restoreable(tmp_path: Path) -> None:
     restored_dir = tmp_path / "experiments" / "EXP-LEGACY-0001"
     assert (restored_dir / "manifest.json").is_file()
     assert not (restored_dir / "archive.json").exists()
+
+
+def test_archiving_an_already_archived_experiment_is_idempotent(tmp_path: Path) -> None:
+    _write_experiment(tmp_path, "EXP-ARCHIVE-IDEMPOTENT")
+    service = ExperimentArchiveService(tmp_path)
+
+    first = service.archive_experiment("EXP-ARCHIVE-IDEMPOTENT")
+    second = service.archive_experiment("EXP-ARCHIVE-IDEMPOTENT")
+
+    assert first["archived"] is True
+    assert second["already_archived"] is True
+    assert service.archived_ids() == frozenset({"EXP-ARCHIVE-IDEMPOTENT"})
+
+
+def test_archive_and_restore_series_archives_children_without_moving_files(
+    tmp_path: Path,
+) -> None:
+    child_a, _ = _write_experiment(tmp_path, "EXP-SERIES-01")
+    child_b, _ = _write_experiment(tmp_path, "EXP-SERIES-02")
+    workflows = tmp_path / "workflows"
+    workflows.mkdir()
+    (workflows / "SERIES-0001.json").write_text(
+        json.dumps(
+            {
+                "workflow_id": "SERIES-0001",
+                "results": [
+                    {"experiment_id": "EXP-SERIES-01"},
+                    {"experiment_id": "EXP-SERIES-02"},
+                ],
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    service = ExperimentArchiveService(tmp_path)
+    archived = service.archive_series("SERIES-0001")
+
+    assert archived["archive_type"] == "series"
+    assert service.archived_series_ids() == frozenset({"SERIES-0001"})
+    assert child_a.is_dir() and child_b.is_dir()
+    assert service.archive_series("SERIES-0001")["already_archived"] is True
+
+    restored = service.restore_series("SERIES-0001")
+
+    assert restored["restored"] is True
+    assert service.archived_series_ids() == frozenset()
+    assert service.archived_ids() == frozenset()
+    assert child_a.is_dir() and child_b.is_dir()
