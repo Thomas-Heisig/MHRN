@@ -54,6 +54,7 @@
   "open": [
     "complete remaining human scientific reviews and make explicit EVID decisions without automatic promotion",
     "obtain independent external replication of central claims; positive, negative and null results are all admissible",
+    "continue Stage-6 semanticization controls, continual-learning evaluation, prediction-error and world-model validation under preregistered protocols",
     "continue prediction-error and world-model validation under preregistered controls",
     "complete systematic prior-art and external similarity/source review before formal manuscript submission",
     "record the external Zenodo DOI only after the archive actually exists; DOI assignment is not scientific review"
