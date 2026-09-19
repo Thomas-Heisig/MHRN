@@ -15,7 +15,7 @@
       "status": "untested",
       "source_path": "research/registry/claims.yaml",
       "source_pointer": "/2",
-      "source_sha256": "dc91384fbf9d898b7790648726aa955dfadfd6eb23e83cb1e47666ef54f3625f",
+      "source_sha256": "912a7ee6eb15aa2addc6756b68136e7c3306ea966697274068bdd0ae82f993b7",
       "source_object": {
         "id": "CLAIM-5D-001",
         "claim": "Die fünfdimensionale Organisation verbessert die Robustheit gegenüber lokalen Strukturverlusten.",
@@ -50,7 +50,7 @@
       "status": "untested",
       "source_path": "research/registry/claims.yaml",
       "source_pointer": "/3",
-      "source_sha256": "dc91384fbf9d898b7790648726aa955dfadfd6eb23e83cb1e47666ef54f3625f",
+      "source_sha256": "912a7ee6eb15aa2addc6756b68136e7c3306ea966697274068bdd0ae82f993b7",
       "source_object": {
         "id": "CLAIM-5D-002",
         "claim": "5D-Netzwerke zeigen eine höhere Informationskapazität als niedrigdimensionale Netzwerke gleicher Neuronenzahl.",
@@ -85,7 +85,7 @@
       "status": "untested",
       "source_path": "research/registry/claims.yaml",
       "source_pointer": "/7",
-      "source_sha256": "dc91384fbf9d898b7790648726aa955dfadfd6eb23e83cb1e47666ef54f3625f",
+      "source_sha256": "912a7ee6eb15aa2addc6756b68136e7c3306ea966697274068bdd0ae82f993b7",
       "source_object": {
         "id": "CLAIM-AIR-001",
         "claim": "Ein standardisiertes ResearchPacket verbessert die Identifikation vorab definierter methodischer Fehler gegenüber einem unstrukturierten Experimentbericht.",
@@ -120,7 +120,7 @@
       "status": "inconclusive",
       "source_path": "research/registry/claims.yaml",
       "source_pointer": "/5",
-      "source_sha256": "dc91384fbf9d898b7790648726aa955dfadfd6eb23e83cb1e47666ef54f3625f",
+      "source_sha256": "912a7ee6eb15aa2addc6756b68136e7c3306ea966697274068bdd0ae82f993b7",
       "source_object": {
         "id": "CLAIM-DET-001",
         "claim": "Brain-5D erzeugt bei identischem Seed, Input und Anfangszustand deterministisch identische Spike-Abfolgen und Netzwerkzustände.",
@@ -174,13 +174,15 @@
       "status": "inconclusive",
       "source_path": "research/registry/claims.yaml",
       "source_pointer": "/8",
-      "source_sha256": "dc91384fbf9d898b7790648726aa955dfadfd6eb23e83cb1e47666ef54f3625f",
+      "source_sha256": "912a7ee6eb15aa2addc6756b68136e7c3306ea966697274068bdd0ae82f993b7",
       "source_object": {
         "id": "CLAIM-EVAL-006",
         "claim": "Unter dem eingefrorenen V2-Protokoll konformieren die deklarierten MHRN-Einzelzellverträge für Izhikevich-2003, lif-current-v1 und das separat klassifizierte Refractory-Semantik-Mapping mit der gematchten Brian2-2.10.1-Referenz innerhalb der präregistrierten Toleranzen.",
         "research_question": "RQ-EVAL-006",
         "hypothesis": "H-EVAL-006-A",
-        "evidence": [],
+        "evidence": [
+          "EVID-2026-18"
+        ],
         "experiments": [
           "EXP-STAGE0-20260916-MODEL-CONFORMANCE-V2",
           "EXP-STAGE0-20260918-MODEL-CONFORMANCE-V2-PROMO-R1"
@@ -215,7 +217,7 @@
       "status": "untested",
       "source_path": "research/registry/claims.yaml",
       "source_pointer": "/6",
-      "source_sha256": "dc91384fbf9d898b7790648726aa955dfadfd6eb23e83cb1e47666ef54f3625f",
+      "source_sha256": "912a7ee6eb15aa2addc6756b68136e7c3306ea966697274068bdd0ae82f993b7",
       "source_object": {
         "id": "CLAIM-SELF-001",
         "claim": "In Brain-5D entstehen spontan funktionale Module ohne explizite Programmierung.",
@@ -250,7 +252,7 @@
       "status": "untested",
       "source_path": "research/registry/claims.yaml",
       "source_pointer": "/0",
-      "source_sha256": "dc91384fbf9d898b7790648726aa955dfadfd6eb23e83cb1e47666ef54f3625f",
+      "source_sha256": "912a7ee6eb15aa2addc6756b68136e7c3306ea966697274068bdd0ae82f993b7",
       "source_object": {
         "id": "CLAIM-SNN-001",
         "claim": "Pair-based STDP erzeugt unter definierten Pre/Post-Zeitabständen eine asymmetrische Gewichtsanpassung.",
@@ -284,7 +286,7 @@
       "status": "untested",
       "source_path": "research/registry/claims.yaml",
       "source_pointer": "/1",
-      "source_sha256": "dc91384fbf9d898b7790648726aa955dfadfd6eb23e83cb1e47666ef54f3625f",
+      "source_sha256": "912a7ee6eb15aa2addc6756b68136e7c3306ea966697274068bdd0ae82f993b7",
       "source_object": {
         "id": "CLAIM-STDP-001",
         "claim": "Pair-based STDP erzeugt unter definierten Pre/Post-Zeitabständen eine asymmetrische Gewichtsanpassung.",
@@ -321,7 +323,7 @@
       "status": "inconclusive",
       "source_path": "research/registry/claims.yaml",
       "source_pointer": "/4",
-      "source_sha256": "dc91384fbf9d898b7790648726aa955dfadfd6eb23e83cb1e47666ef54f3625f",
+      "source_sha256": "912a7ee6eb15aa2addc6756b68136e7c3306ea966697274068bdd0ae82f993b7",
       "source_object": {
         "id": "CLAIM-STOR-001",
         "claim": "Das .b5d-Format ermöglicht verlustfreie Serialisierung und Deserialisierung des vollständigen Netzwerkzustands.",
@@ -374,7 +376,7 @@
       "status": "untested",
       "source_path": "research/registry/hypotheses.yaml",
       "source_pointer": "/14",
-      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
+      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
       "source_object": {
         "id": "H-5D-001-A",
         "research_question": "RQ-5D-001",
@@ -399,7 +401,7 @@
       "status": "untested",
       "source_path": "research/registry/hypotheses.yaml",
       "source_pointer": "/15",
-      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
+      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
       "source_object": {
         "id": "H-5D-002-A",
         "research_question": "RQ-5D-002",
@@ -424,7 +426,7 @@
       "status": "untested",
       "source_path": "research/registry/hypotheses.yaml",
       "source_pointer": "/16",
-      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
+      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
       "source_object": {
         "id": "H-5D-003-A",
         "research_question": "RQ-5D-003",
@@ -449,7 +451,7 @@
       "status": "untested",
       "source_path": "research/registry/hypotheses.yaml",
       "source_pointer": "/17",
-      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
+      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
       "source_object": {
         "id": "H-5D-004-A",
         "research_question": "RQ-5D-004",
@@ -473,8 +475,8 @@
       ],
       "status": "untested",
       "source_path": "research/registry/hypotheses.yaml",
-      "source_pointer": "/37",
-      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
+      "source_pointer": "/38",
+      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
       "source_object": {
         "id": "H-5D-005-A",
         "research_question": "RQ-5D-005",
@@ -498,8 +500,8 @@
       ],
       "status": "untested",
       "source_path": "research/registry/hypotheses.yaml",
-      "source_pointer": "/32",
-      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
+      "source_pointer": "/33",
+      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
       "source_object": {
         "id": "H-AIR-001-A",
         "research_question": "RQ-AIR-001",
@@ -524,7 +526,7 @@
       "status": "untested",
       "source_path": "research/registry/hypotheses.yaml",
       "source_pointer": "/27",
-      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
+      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
       "source_object": {
         "id": "H-EMB-001-A",
         "research_question": "RQ-EMB-001",
@@ -533,6 +535,31 @@
         "evidence": [],
         "created": "2026-08-23",
         "updated": "2026-08-23"
+      }
+    },
+    {
+      "id": "H-EMB-001-B",
+      "axis": "not_declared_in_source",
+      "stage": null,
+      "object_type": "hypothesis",
+      "evidence_mode": "source_registry_projection_not_evidence",
+      "parent_ids": [],
+      "publication_refs": [
+        "IV",
+        "XI"
+      ],
+      "status": "untested",
+      "source_path": "research/registry/hypotheses.yaml",
+      "source_pointer": "/28",
+      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
+      "source_object": {
+        "id": "H-EMB-001-B",
+        "research_question": "RQ-EMB-001",
+        "hypothesis": "Unter einer identischen externen Stoerung unterscheiden sich tracking_rmse_rad und Sensorkonsequenzen zwischen geschlossenem Kreis, yoked Replay und unterbrochener Rueckmeldung.",
+        "status": "untested",
+        "evidence": [],
+        "created": "2026-09-09",
+        "updated": "2026-09-09"
       }
     },
     {
@@ -548,8 +575,8 @@
       ],
       "status": "untested",
       "source_path": "research/registry/hypotheses.yaml",
-      "source_pointer": "/31",
-      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
+      "source_pointer": "/32",
+      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
       "source_object": {
         "id": "H-EPIST-001-A",
         "research_question": "RQ-EPIST-001",
@@ -573,8 +600,8 @@
       ],
       "status": "untested",
       "source_path": "research/registry/hypotheses.yaml",
-      "source_pointer": "/29",
-      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
+      "source_pointer": "/30",
+      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
       "source_object": {
         "id": "H-ETH-001-A",
         "research_question": "RQ-ETH-001",
@@ -598,8 +625,8 @@
       ],
       "status": "untested",
       "source_path": "research/registry/hypotheses.yaml",
-      "source_pointer": "/44",
-      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
+      "source_pointer": "/45",
+      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
       "source_object": {
         "id": "H-ETH-001-B",
         "research_question": "RQ-ETH-001",
@@ -623,8 +650,8 @@
       ],
       "status": "untested",
       "source_path": "research/registry/hypotheses.yaml",
-      "source_pointer": "/45",
-      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
+      "source_pointer": "/46",
+      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
       "source_object": {
         "id": "H-ETH-001-C",
         "research_question": "RQ-ETH-001",
@@ -648,8 +675,8 @@
       ],
       "status": "untested",
       "source_path": "research/registry/hypotheses.yaml",
-      "source_pointer": "/46",
-      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
+      "source_pointer": "/47",
+      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
       "source_object": {
         "id": "H-ETH-001-D",
         "research_question": "RQ-ETH-001",
@@ -673,8 +700,8 @@
       ],
       "status": "untested",
       "source_path": "research/registry/hypotheses.yaml",
-      "source_pointer": "/47",
-      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
+      "source_pointer": "/48",
+      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
       "source_object": {
         "id": "H-ETH-001-E",
         "research_question": "RQ-ETH-001",
@@ -698,8 +725,8 @@
       ],
       "status": "untested",
       "source_path": "research/registry/hypotheses.yaml",
-      "source_pointer": "/30",
-      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
+      "source_pointer": "/31",
+      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
       "source_object": {
         "id": "H-ETH-002-A",
         "research_question": "RQ-ETH-002",
@@ -723,8 +750,8 @@
       ],
       "status": "untested",
       "source_path": "research/registry/hypotheses.yaml",
-      "source_pointer": "/35",
-      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
+      "source_pointer": "/36",
+      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
       "source_object": {
         "id": "H-GEN-001-A",
         "research_question": "RQ-GEN-001",
@@ -749,7 +776,7 @@
       "status": "untested",
       "source_path": "research/registry/hypotheses.yaml",
       "source_pointer": "/12",
-      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
+      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
       "source_object": {
         "id": "H-HOM-001-A",
         "research_question": "RQ-HOM-001",
@@ -774,7 +801,7 @@
       "status": "untested",
       "source_path": "research/registry/hypotheses.yaml",
       "source_pointer": "/13",
-      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
+      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
       "source_object": {
         "id": "H-HOM-002-A",
         "research_question": "RQ-HOM-002",
@@ -798,8 +825,8 @@
       ],
       "status": "untested",
       "source_path": "research/registry/hypotheses.yaml",
-      "source_pointer": "/42",
-      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
+      "source_pointer": "/43",
+      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
       "source_object": {
         "id": "H-LIFE-001-A",
         "research_question": "RQ-LIFE-001",
@@ -823,8 +850,8 @@
       ],
       "status": "untested",
       "source_path": "research/registry/hypotheses.yaml",
-      "source_pointer": "/28",
-      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
+      "source_pointer": "/29",
+      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
       "source_object": {
         "id": "H-LLM-001-A",
         "research_question": "RQ-LLM-001",
@@ -849,7 +876,7 @@
       "status": "untested",
       "source_path": "research/registry/hypotheses.yaml",
       "source_pointer": "/26",
-      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
+      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
       "source_object": {
         "id": "H-MEM-001-A",
         "research_question": "RQ-MEM-001",
@@ -873,8 +900,8 @@
       ],
       "status": "untested",
       "source_path": "research/registry/hypotheses.yaml",
-      "source_pointer": "/40",
-      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
+      "source_pointer": "/41",
+      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
       "source_object": {
         "id": "H-PERF-001-A",
         "research_question": "RQ-PERF-001",
@@ -899,7 +926,7 @@
       "status": "untested",
       "source_path": "research/registry/hypotheses.yaml",
       "source_pointer": "/6",
-      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
+      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
       "source_object": {
         "id": "H-PING-001-A",
         "research_question": "RQ-PING-001",
@@ -923,8 +950,8 @@
       ],
       "status": "untested",
       "source_path": "research/registry/hypotheses.yaml",
-      "source_pointer": "/34",
-      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
+      "source_pointer": "/35",
+      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
       "source_object": {
         "id": "H-REC-001-A",
         "research_question": "RQ-REC-001",
@@ -948,8 +975,8 @@
       ],
       "status": "untested",
       "source_path": "research/registry/hypotheses.yaml",
-      "source_pointer": "/41",
-      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
+      "source_pointer": "/42",
+      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
       "source_object": {
         "id": "H-REC-002-A",
         "research_question": "RQ-REC-002",
@@ -974,7 +1001,7 @@
       "status": "untested",
       "source_path": "research/registry/hypotheses.yaml",
       "source_pointer": "/9",
-      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
+      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
       "source_object": {
         "id": "H-REG-001-A",
         "research_question": "RQ-REG-001",
@@ -998,8 +1025,8 @@
       ],
       "status": "untested",
       "source_path": "research/registry/hypotheses.yaml",
-      "source_pointer": "/38",
-      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
+      "source_pointer": "/39",
+      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
       "source_object": {
         "id": "H-REG-002-A",
         "research_question": "RQ-REG-002",
@@ -1023,8 +1050,8 @@
       ],
       "status": "untested",
       "source_path": "research/registry/hypotheses.yaml",
-      "source_pointer": "/36",
-      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
+      "source_pointer": "/37",
+      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
       "source_object": {
         "id": "H-REPL-001-A",
         "research_question": "RQ-REPL-001",
@@ -1049,7 +1076,7 @@
       "status": "untested",
       "source_path": "research/registry/hypotheses.yaml",
       "source_pointer": "/22",
-      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
+      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
       "source_object": {
         "id": "H-SCALE-001-A",
         "research_question": "RQ-SCALE-001",
@@ -1074,7 +1101,7 @@
       "status": "untested",
       "source_path": "research/registry/hypotheses.yaml",
       "source_pointer": "/23",
-      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
+      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
       "source_object": {
         "id": "H-SELF-001-A",
         "research_question": "RQ-SELF-001",
@@ -1099,7 +1126,7 @@
       "status": "untested",
       "source_path": "research/registry/hypotheses.yaml",
       "source_pointer": "/24",
-      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
+      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
       "source_object": {
         "id": "H-SELF-002-A",
         "research_question": "RQ-SELF-002",
@@ -1124,7 +1151,7 @@
       "status": "untested",
       "source_path": "research/registry/hypotheses.yaml",
       "source_pointer": "/0",
-      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
+      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
       "source_object": {
         "id": "H-SNN-001-A",
         "research_question": "RQ-SNN-001",
@@ -1149,7 +1176,7 @@
       "status": "untested",
       "source_path": "research/registry/hypotheses.yaml",
       "source_pointer": "/1",
-      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
+      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
       "source_object": {
         "id": "H-SNN-002-A",
         "research_question": "RQ-SNN-002",
@@ -1174,7 +1201,7 @@
       "status": "supported",
       "source_path": "research/registry/hypotheses.yaml",
       "source_pointer": "/2",
-      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
+      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
       "source_object": {
         "id": "H-SNN-003-A",
         "research_question": "RQ-DET-001",
@@ -1207,7 +1234,7 @@
       "status": "untested",
       "source_path": "research/registry/hypotheses.yaml",
       "source_pointer": "/3",
-      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
+      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
       "source_object": {
         "id": "H-SNN-003-B",
         "research_question": "RQ-SNN-003",
@@ -1232,7 +1259,7 @@
       "status": "untested",
       "source_path": "research/registry/hypotheses.yaml",
       "source_pointer": "/4",
-      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
+      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
       "source_object": {
         "id": "H-SNN-004-A",
         "research_question": "RQ-SNN-004",
@@ -1257,7 +1284,7 @@
       "status": "untested",
       "source_path": "research/registry/hypotheses.yaml",
       "source_pointer": "/5",
-      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
+      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
       "source_object": {
         "id": "H-SNN-005-A",
         "research_question": "RQ-SNN-005",
@@ -1281,8 +1308,8 @@
       ],
       "status": "untested",
       "source_path": "research/registry/hypotheses.yaml",
-      "source_pointer": "/43",
-      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
+      "source_pointer": "/44",
+      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
       "source_object": {
         "id": "H-SNN-006-A",
         "research_question": "RQ-SNN-006",
@@ -1307,7 +1334,7 @@
       "status": "untested",
       "source_path": "research/registry/hypotheses.yaml",
       "source_pointer": "/10",
-      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
+      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
       "source_object": {
         "id": "H-STDP-001-A",
         "research_question": "RQ-STDP-001",
@@ -1332,7 +1359,7 @@
       "status": "untested",
       "source_path": "research/registry/hypotheses.yaml",
       "source_pointer": "/11",
-      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
+      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
       "source_object": {
         "id": "H-STDP-002-A",
         "research_question": "RQ-STDP-002",
@@ -1357,7 +1384,7 @@
       "status": "supported",
       "source_path": "research/registry/hypotheses.yaml",
       "source_pointer": "/18",
-      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
+      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
       "source_object": {
         "id": "H-STOR-001-A",
         "research_question": "RQ-STORAGE-001",
@@ -1390,7 +1417,7 @@
       "status": "untested",
       "source_path": "research/registry/hypotheses.yaml",
       "source_pointer": "/19",
-      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
+      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
       "source_object": {
         "id": "H-STOR-002-A",
         "research_question": "RQ-STORAGE-002",
@@ -1415,7 +1442,7 @@
       "status": "untested",
       "source_path": "research/registry/hypotheses.yaml",
       "source_pointer": "/20",
-      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
+      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
       "source_object": {
         "id": "H-STOR-003-A",
         "research_question": "RQ-STORAGE-003",
@@ -1440,7 +1467,7 @@
       "status": "untested",
       "source_path": "research/registry/hypotheses.yaml",
       "source_pointer": "/21",
-      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
+      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
       "source_object": {
         "id": "H-STOR-004-A",
         "research_question": "RQ-STORAGE-004",
@@ -1465,7 +1492,7 @@
       "status": "untested",
       "source_path": "research/registry/hypotheses.yaml",
       "source_pointer": "/25",
-      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
+      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
       "source_object": {
         "id": "H-STRUCT-001-A",
         "research_question": "RQ-STRUCT-001",
@@ -1489,8 +1516,8 @@
       ],
       "status": "untested",
       "source_path": "research/registry/hypotheses.yaml",
-      "source_pointer": "/33",
-      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
+      "source_pointer": "/34",
+      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
       "source_object": {
         "id": "H-SUITE-001-A",
         "research_question": "RQ-SUITE-001",
@@ -1515,7 +1542,7 @@
       "status": "untested",
       "source_path": "research/registry/hypotheses.yaml",
       "source_pointer": "/7",
-      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
+      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
       "source_object": {
         "id": "H-TEMP-001-A",
         "research_question": "RQ-TEMP-001",
@@ -1539,8 +1566,8 @@
       ],
       "status": "untested",
       "source_path": "research/registry/hypotheses.yaml",
-      "source_pointer": "/39",
-      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
+      "source_pointer": "/40",
+      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
       "source_object": {
         "id": "H-TEMP-002-A",
         "research_question": "RQ-TEMP-002",
@@ -1565,7 +1592,7 @@
       "status": "untested",
       "source_path": "research/registry/hypotheses.yaml",
       "source_pointer": "/8",
-      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
+      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
       "source_object": {
         "id": "H-TIME-001-A",
         "research_question": "RQ-TIME-001",
@@ -1590,7 +1617,7 @@
       "status": "open",
       "source_path": "research/registry/questions.yaml",
       "source_pointer": "/14",
-      "source_sha256": "135cdb67eb3da81f7faf6476575b35e3114397c448d9daeb7c0b3b023236c95d",
+      "source_sha256": "37cdcc4ffd1dc7d27d4852ff0d2153c691842902f8e1048a7d89c9b58f52641c",
       "source_object": {
         "id": "RQ-5D-001",
         "domain": "5D Topology",
@@ -1627,7 +1654,7 @@
       "status": "open",
       "source_path": "research/registry/questions.yaml",
       "source_pointer": "/15",
-      "source_sha256": "135cdb67eb3da81f7faf6476575b35e3114397c448d9daeb7c0b3b023236c95d",
+      "source_sha256": "37cdcc4ffd1dc7d27d4852ff0d2153c691842902f8e1048a7d89c9b58f52641c",
       "source_object": {
         "id": "RQ-5D-002",
         "domain": "5D Topology",
@@ -1662,7 +1689,7 @@
       "status": "open",
       "source_path": "research/registry/questions.yaml",
       "source_pointer": "/16",
-      "source_sha256": "135cdb67eb3da81f7faf6476575b35e3114397c448d9daeb7c0b3b023236c95d",
+      "source_sha256": "37cdcc4ffd1dc7d27d4852ff0d2153c691842902f8e1048a7d89c9b58f52641c",
       "source_object": {
         "id": "RQ-5D-003",
         "domain": "5D Topology",
@@ -1697,7 +1724,7 @@
       "status": "open",
       "source_path": "research/registry/questions.yaml",
       "source_pointer": "/17",
-      "source_sha256": "135cdb67eb3da81f7faf6476575b35e3114397c448d9daeb7c0b3b023236c95d",
+      "source_sha256": "37cdcc4ffd1dc7d27d4852ff0d2153c691842902f8e1048a7d89c9b58f52641c",
       "source_object": {
         "id": "RQ-5D-004",
         "domain": "5D Topology",
@@ -1732,7 +1759,7 @@
       "status": "open",
       "source_path": "research/registry/questions.yaml",
       "source_pointer": "/37",
-      "source_sha256": "135cdb67eb3da81f7faf6476575b35e3114397c448d9daeb7c0b3b023236c95d",
+      "source_sha256": "37cdcc4ffd1dc7d27d4852ff0d2153c691842902f8e1048a7d89c9b58f52641c",
       "source_object": {
         "id": "RQ-5D-005",
         "domain": "5D Topology",
@@ -1767,7 +1794,7 @@
       "status": "open",
       "source_path": "research/registry/questions.yaml",
       "source_pointer": "/32",
-      "source_sha256": "135cdb67eb3da81f7faf6476575b35e3114397c448d9daeb7c0b3b023236c95d",
+      "source_sha256": "37cdcc4ffd1dc7d27d4852ff0d2153c691842902f8e1048a7d89c9b58f52641c",
       "source_object": {
         "id": "RQ-AIR-001",
         "domain": "AI-Assisted Research",
@@ -1802,7 +1829,7 @@
       "status": "open",
       "source_path": "research/registry/questions.yaml",
       "source_pointer": "/2",
-      "source_sha256": "135cdb67eb3da81f7faf6476575b35e3114397c448d9daeb7c0b3b023236c95d",
+      "source_sha256": "37cdcc4ffd1dc7d27d4852ff0d2153c691842902f8e1048a7d89c9b58f52641c",
       "source_object": {
         "id": "RQ-DET-001",
         "domain": "Determinism",
@@ -1839,7 +1866,7 @@
       "status": "open",
       "source_path": "research/registry/questions.yaml",
       "source_pointer": "/27",
-      "source_sha256": "135cdb67eb3da81f7faf6476575b35e3114397c448d9daeb7c0b3b023236c95d",
+      "source_sha256": "37cdcc4ffd1dc7d27d4852ff0d2153c691842902f8e1048a7d89c9b58f52641c",
       "source_object": {
         "id": "RQ-EMB-001",
         "domain": "Embodiment",
@@ -1847,8 +1874,8 @@
         "relevance": "Embodiment erweitert Brain-5D von einer reinen Simulation zu einem interaktiven System.",
         "literature": [],
         "hypotheses": [
-          "H-EMB-001-B",
-          "H-EMB-001-A"
+          "H-EMB-001-A",
+          "H-EMB-001-B"
         ],
         "evidence": [],
         "status": "open",
@@ -1875,7 +1902,7 @@
       "status": "open",
       "source_path": "research/registry/questions.yaml",
       "source_pointer": "/31",
-      "source_sha256": "135cdb67eb3da81f7faf6476575b35e3114397c448d9daeb7c0b3b023236c95d",
+      "source_sha256": "37cdcc4ffd1dc7d27d4852ff0d2153c691842902f8e1048a7d89c9b58f52641c",
       "source_object": {
         "id": "RQ-EPIST-001",
         "domain": "Epistemology",
@@ -1910,7 +1937,7 @@
       "status": "open",
       "source_path": "research/registry/questions.yaml",
       "source_pointer": "/29",
-      "source_sha256": "135cdb67eb3da81f7faf6476575b35e3114397c448d9daeb7c0b3b023236c95d",
+      "source_sha256": "37cdcc4ffd1dc7d27d4852ff0d2153c691842902f8e1048a7d89c9b58f52641c",
       "source_object": {
         "id": "RQ-ETH-001",
         "domain": "Ethics",
@@ -1949,7 +1976,7 @@
       "status": "open",
       "source_path": "research/registry/questions.yaml",
       "source_pointer": "/30",
-      "source_sha256": "135cdb67eb3da81f7faf6476575b35e3114397c448d9daeb7c0b3b023236c95d",
+      "source_sha256": "37cdcc4ffd1dc7d27d4852ff0d2153c691842902f8e1048a7d89c9b58f52641c",
       "source_object": {
         "id": "RQ-ETH-002",
         "domain": "Ethics",
@@ -1984,7 +2011,7 @@
       "status": "open",
       "source_path": "research/registry/questions.yaml",
       "source_pointer": "/35",
-      "source_sha256": "135cdb67eb3da81f7faf6476575b35e3114397c448d9daeb7c0b3b023236c95d",
+      "source_sha256": "37cdcc4ffd1dc7d27d4852ff0d2153c691842902f8e1048a7d89c9b58f52641c",
       "source_object": {
         "id": "RQ-GEN-001",
         "domain": "Learning Generalization",
@@ -2019,7 +2046,7 @@
       "status": "open",
       "source_path": "research/registry/questions.yaml",
       "source_pointer": "/12",
-      "source_sha256": "135cdb67eb3da81f7faf6476575b35e3114397c448d9daeb7c0b3b023236c95d",
+      "source_sha256": "37cdcc4ffd1dc7d27d4852ff0d2153c691842902f8e1048a7d89c9b58f52641c",
       "source_object": {
         "id": "RQ-HOM-001",
         "domain": "Homeostasis",
@@ -2056,7 +2083,7 @@
       "status": "open",
       "source_path": "research/registry/questions.yaml",
       "source_pointer": "/13",
-      "source_sha256": "135cdb67eb3da81f7faf6476575b35e3114397c448d9daeb7c0b3b023236c95d",
+      "source_sha256": "37cdcc4ffd1dc7d27d4852ff0d2153c691842902f8e1048a7d89c9b58f52641c",
       "source_object": {
         "id": "RQ-HOM-002",
         "domain": "Homeostasis",
@@ -2093,7 +2120,7 @@
       "status": "open",
       "source_path": "research/registry/questions.yaml",
       "source_pointer": "/42",
-      "source_sha256": "135cdb67eb3da81f7faf6476575b35e3114397c448d9daeb7c0b3b023236c95d",
+      "source_sha256": "37cdcc4ffd1dc7d27d4852ff0d2153c691842902f8e1048a7d89c9b58f52641c",
       "source_object": {
         "id": "RQ-LIFE-001",
         "domain": "Lifelong Learning",
@@ -2128,7 +2155,7 @@
       "status": "open",
       "source_path": "research/registry/questions.yaml",
       "source_pointer": "/28",
-      "source_sha256": "135cdb67eb3da81f7faf6476575b35e3114397c448d9daeb7c0b3b023236c95d",
+      "source_sha256": "37cdcc4ffd1dc7d27d4852ff0d2153c691842902f8e1048a7d89c9b58f52641c",
       "source_object": {
         "id": "RQ-LLM-001",
         "domain": "Language Organ",
@@ -2163,7 +2190,7 @@
       "status": "open",
       "source_path": "research/registry/questions.yaml",
       "source_pointer": "/26",
-      "source_sha256": "135cdb67eb3da81f7faf6476575b35e3114397c448d9daeb7c0b3b023236c95d",
+      "source_sha256": "37cdcc4ffd1dc7d27d4852ff0d2153c691842902f8e1048a7d89c9b58f52641c",
       "source_object": {
         "id": "RQ-MEM-001",
         "domain": "Memory",
@@ -2198,7 +2225,7 @@
       "status": "open",
       "source_path": "research/registry/questions.yaml",
       "source_pointer": "/40",
-      "source_sha256": "135cdb67eb3da81f7faf6476575b35e3114397c448d9daeb7c0b3b023236c95d",
+      "source_sha256": "37cdcc4ffd1dc7d27d4852ff0d2153c691842902f8e1048a7d89c9b58f52641c",
       "source_object": {
         "id": "RQ-PERF-001",
         "domain": "Runtime Performance",
@@ -2233,7 +2260,7 @@
       "status": "open",
       "source_path": "research/registry/questions.yaml",
       "source_pointer": "/6",
-      "source_sha256": "135cdb67eb3da81f7faf6476575b35e3114397c448d9daeb7c0b3b023236c95d",
+      "source_sha256": "37cdcc4ffd1dc7d27d4852ff0d2153c691842902f8e1048a7d89c9b58f52641c",
       "source_object": {
         "id": "RQ-PING-001",
         "domain": "Network Dynamics",
@@ -2267,7 +2294,7 @@
       "status": "open",
       "source_path": "research/registry/questions.yaml",
       "source_pointer": "/34",
-      "source_sha256": "135cdb67eb3da81f7faf6476575b35e3114397c448d9daeb7c0b3b023236c95d",
+      "source_sha256": "37cdcc4ffd1dc7d27d4852ff0d2153c691842902f8e1048a7d89c9b58f52641c",
       "source_object": {
         "id": "RQ-REC-001",
         "domain": "Recurrent Dynamics",
@@ -2302,7 +2329,7 @@
       "status": "open",
       "source_path": "research/registry/questions.yaml",
       "source_pointer": "/41",
-      "source_sha256": "135cdb67eb3da81f7faf6476575b35e3114397c448d9daeb7c0b3b023236c95d",
+      "source_sha256": "37cdcc4ffd1dc7d27d4852ff0d2153c691842902f8e1048a7d89c9b58f52641c",
       "source_object": {
         "id": "RQ-REC-002",
         "domain": "Recurrent Dynamics",
@@ -2337,7 +2364,7 @@
       "status": "open",
       "source_path": "research/registry/questions.yaml",
       "source_pointer": "/9",
-      "source_sha256": "135cdb67eb3da81f7faf6476575b35e3114397c448d9daeb7c0b3b023236c95d",
+      "source_sha256": "37cdcc4ffd1dc7d27d4852ff0d2153c691842902f8e1048a7d89c9b58f52641c",
       "source_object": {
         "id": "RQ-REG-001",
         "domain": "Regulation",
@@ -2371,7 +2398,7 @@
       "status": "open",
       "source_path": "research/registry/questions.yaml",
       "source_pointer": "/38",
-      "source_sha256": "135cdb67eb3da81f7faf6476575b35e3114397c448d9daeb7c0b3b023236c95d",
+      "source_sha256": "37cdcc4ffd1dc7d27d4852ff0d2153c691842902f8e1048a7d89c9b58f52641c",
       "source_object": {
         "id": "RQ-REG-002",
         "domain": "Closed-loop Regulation",
@@ -2407,7 +2434,7 @@
       "status": "open",
       "source_path": "research/registry/questions.yaml",
       "source_pointer": "/36",
-      "source_sha256": "135cdb67eb3da81f7faf6476575b35e3114397c448d9daeb7c0b3b023236c95d",
+      "source_sha256": "37cdcc4ffd1dc7d27d4852ff0d2153c691842902f8e1048a7d89c9b58f52641c",
       "source_object": {
         "id": "RQ-REPL-001",
         "domain": "Replication",
@@ -2442,7 +2469,7 @@
       "status": "open",
       "source_path": "research/registry/questions.yaml",
       "source_pointer": "/22",
-      "source_sha256": "135cdb67eb3da81f7faf6476575b35e3114397c448d9daeb7c0b3b023236c95d",
+      "source_sha256": "37cdcc4ffd1dc7d27d4852ff0d2153c691842902f8e1048a7d89c9b58f52641c",
       "source_object": {
         "id": "RQ-SCALE-001",
         "domain": "Scaling",
@@ -2477,7 +2504,7 @@
       "status": "open",
       "source_path": "research/registry/questions.yaml",
       "source_pointer": "/23",
-      "source_sha256": "135cdb67eb3da81f7faf6476575b35e3114397c448d9daeb7c0b3b023236c95d",
+      "source_sha256": "37cdcc4ffd1dc7d27d4852ff0d2153c691842902f8e1048a7d89c9b58f52641c",
       "source_object": {
         "id": "RQ-SELF-001",
         "domain": "Self-Organization",
@@ -2514,7 +2541,7 @@
       "status": "open",
       "source_path": "research/registry/questions.yaml",
       "source_pointer": "/24",
-      "source_sha256": "135cdb67eb3da81f7faf6476575b35e3114397c448d9daeb7c0b3b023236c95d",
+      "source_sha256": "37cdcc4ffd1dc7d27d4852ff0d2153c691842902f8e1048a7d89c9b58f52641c",
       "source_object": {
         "id": "RQ-SELF-002",
         "domain": "Self-Organization",
@@ -2549,7 +2576,7 @@
       "status": "open",
       "source_path": "research/registry/questions.yaml",
       "source_pointer": "/0",
-      "source_sha256": "135cdb67eb3da81f7faf6476575b35e3114397c448d9daeb7c0b3b023236c95d",
+      "source_sha256": "37cdcc4ffd1dc7d27d4852ff0d2153c691842902f8e1048a7d89c9b58f52641c",
       "source_object": {
         "id": "RQ-SNN-001",
         "domain": "Spiking Neural Networks",
@@ -2587,7 +2614,7 @@
       "status": "open",
       "source_path": "research/registry/questions.yaml",
       "source_pointer": "/1",
-      "source_sha256": "135cdb67eb3da81f7faf6476575b35e3114397c448d9daeb7c0b3b023236c95d",
+      "source_sha256": "37cdcc4ffd1dc7d27d4852ff0d2153c691842902f8e1048a7d89c9b58f52641c",
       "source_object": {
         "id": "RQ-SNN-002",
         "domain": "Spiking Neural Networks",
@@ -2625,7 +2652,7 @@
       "status": "open",
       "source_path": "research/registry/questions.yaml",
       "source_pointer": "/3",
-      "source_sha256": "135cdb67eb3da81f7faf6476575b35e3114397c448d9daeb7c0b3b023236c95d",
+      "source_sha256": "37cdcc4ffd1dc7d27d4852ff0d2153c691842902f8e1048a7d89c9b58f52641c",
       "source_object": {
         "id": "RQ-SNN-003",
         "domain": "Spiking Neural Networks",
@@ -2663,7 +2690,7 @@
       "status": "open",
       "source_path": "research/registry/questions.yaml",
       "source_pointer": "/4",
-      "source_sha256": "135cdb67eb3da81f7faf6476575b35e3114397c448d9daeb7c0b3b023236c95d",
+      "source_sha256": "37cdcc4ffd1dc7d27d4852ff0d2153c691842902f8e1048a7d89c9b58f52641c",
       "source_object": {
         "id": "RQ-SNN-004",
         "domain": "Spiking Neural Networks",
@@ -2701,7 +2728,7 @@
       "status": "open",
       "source_path": "research/registry/questions.yaml",
       "source_pointer": "/5",
-      "source_sha256": "135cdb67eb3da81f7faf6476575b35e3114397c448d9daeb7c0b3b023236c95d",
+      "source_sha256": "37cdcc4ffd1dc7d27d4852ff0d2153c691842902f8e1048a7d89c9b58f52641c",
       "source_object": {
         "id": "RQ-SNN-005",
         "domain": "Spiking Neural Networks",
@@ -2739,7 +2766,7 @@
       "status": "open",
       "source_path": "research/registry/questions.yaml",
       "source_pointer": "/43",
-      "source_sha256": "135cdb67eb3da81f7faf6476575b35e3114397c448d9daeb7c0b3b023236c95d",
+      "source_sha256": "37cdcc4ffd1dc7d27d4852ff0d2153c691842902f8e1048a7d89c9b58f52641c",
       "source_object": {
         "id": "RQ-SNN-006",
         "domain": "Spiking Neural Networks",
@@ -2777,7 +2804,7 @@
       "status": "open",
       "source_path": "research/registry/questions.yaml",
       "source_pointer": "/10",
-      "source_sha256": "135cdb67eb3da81f7faf6476575b35e3114397c448d9daeb7c0b3b023236c95d",
+      "source_sha256": "37cdcc4ffd1dc7d27d4852ff0d2153c691842902f8e1048a7d89c9b58f52641c",
       "source_object": {
         "id": "RQ-STDP-001",
         "domain": "STDP",
@@ -2815,7 +2842,7 @@
       "status": "open",
       "source_path": "research/registry/questions.yaml",
       "source_pointer": "/11",
-      "source_sha256": "135cdb67eb3da81f7faf6476575b35e3114397c448d9daeb7c0b3b023236c95d",
+      "source_sha256": "37cdcc4ffd1dc7d27d4852ff0d2153c691842902f8e1048a7d89c9b58f52641c",
       "source_object": {
         "id": "RQ-STDP-002",
         "domain": "STDP",
@@ -2852,7 +2879,7 @@
       "status": "open",
       "source_path": "research/registry/questions.yaml",
       "source_pointer": "/18",
-      "source_sha256": "135cdb67eb3da81f7faf6476575b35e3114397c448d9daeb7c0b3b023236c95d",
+      "source_sha256": "37cdcc4ffd1dc7d27d4852ff0d2153c691842902f8e1048a7d89c9b58f52641c",
       "source_object": {
         "id": "RQ-STORAGE-001",
         "domain": "Storage",
@@ -2887,7 +2914,7 @@
       "status": "open",
       "source_path": "research/registry/questions.yaml",
       "source_pointer": "/19",
-      "source_sha256": "135cdb67eb3da81f7faf6476575b35e3114397c448d9daeb7c0b3b023236c95d",
+      "source_sha256": "37cdcc4ffd1dc7d27d4852ff0d2153c691842902f8e1048a7d89c9b58f52641c",
       "source_object": {
         "id": "RQ-STORAGE-002",
         "domain": "Storage",
@@ -2922,7 +2949,7 @@
       "status": "open",
       "source_path": "research/registry/questions.yaml",
       "source_pointer": "/20",
-      "source_sha256": "135cdb67eb3da81f7faf6476575b35e3114397c448d9daeb7c0b3b023236c95d",
+      "source_sha256": "37cdcc4ffd1dc7d27d4852ff0d2153c691842902f8e1048a7d89c9b58f52641c",
       "source_object": {
         "id": "RQ-STORAGE-003",
         "domain": "Storage",
@@ -2957,7 +2984,7 @@
       "status": "open",
       "source_path": "research/registry/questions.yaml",
       "source_pointer": "/21",
-      "source_sha256": "135cdb67eb3da81f7faf6476575b35e3114397c448d9daeb7c0b3b023236c95d",
+      "source_sha256": "37cdcc4ffd1dc7d27d4852ff0d2153c691842902f8e1048a7d89c9b58f52641c",
       "source_object": {
         "id": "RQ-STORAGE-004",
         "domain": "Storage",
@@ -2992,7 +3019,7 @@
       "status": "open",
       "source_path": "research/registry/questions.yaml",
       "source_pointer": "/25",
-      "source_sha256": "135cdb67eb3da81f7faf6476575b35e3114397c448d9daeb7c0b3b023236c95d",
+      "source_sha256": "37cdcc4ffd1dc7d27d4852ff0d2153c691842902f8e1048a7d89c9b58f52641c",
       "source_object": {
         "id": "RQ-STRUCT-001",
         "domain": "Structural Plasticity",
@@ -3027,7 +3054,7 @@
       "status": "open",
       "source_path": "research/registry/questions.yaml",
       "source_pointer": "/33",
-      "source_sha256": "135cdb67eb3da81f7faf6476575b35e3114397c448d9daeb7c0b3b023236c95d",
+      "source_sha256": "37cdcc4ffd1dc7d27d4852ff0d2153c691842902f8e1048a7d89c9b58f52641c",
       "source_object": {
         "id": "RQ-SUITE-001",
         "domain": "Research Infrastructure",
@@ -3062,7 +3089,7 @@
       "status": "open",
       "source_path": "research/registry/questions.yaml",
       "source_pointer": "/7",
-      "source_sha256": "135cdb67eb3da81f7faf6476575b35e3114397c448d9daeb7c0b3b023236c95d",
+      "source_sha256": "37cdcc4ffd1dc7d27d4852ff0d2153c691842902f8e1048a7d89c9b58f52641c",
       "source_object": {
         "id": "RQ-TEMP-001",
         "domain": "Temporal State",
@@ -3096,7 +3123,7 @@
       "status": "open",
       "source_path": "research/registry/questions.yaml",
       "source_pointer": "/39",
-      "source_sha256": "135cdb67eb3da81f7faf6476575b35e3114397c448d9daeb7c0b3b023236c95d",
+      "source_sha256": "37cdcc4ffd1dc7d27d4852ff0d2153c691842902f8e1048a7d89c9b58f52641c",
       "source_object": {
         "id": "RQ-TEMP-002",
         "domain": "Temporal Learning",
@@ -3131,7 +3158,7 @@
       "status": "open",
       "source_path": "research/registry/questions.yaml",
       "source_pointer": "/8",
-      "source_sha256": "135cdb67eb3da81f7faf6476575b35e3114397c448d9daeb7c0b3b023236c95d",
+      "source_sha256": "37cdcc4ffd1dc7d27d4852ff0d2153c691842902f8e1048a7d89c9b58f52641c",
       "source_object": {
         "id": "RQ-TIME-001",
         "domain": "Learning Timescale",
