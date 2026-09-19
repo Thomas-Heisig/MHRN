@@ -1,0 +1,120 @@
+{
+  "schema_version": "1.0",
+  "updated": "2026-09-19",
+  "canonical_repository": "https://github.com/Thomas-Heisig/MHRN",
+  "author": {
+    "name": "Thomas Heisig",
+    "orcid": "https://orcid.org/0009-0002-9589-1872"
+  },
+  "project_routes": {
+    "osf": "https://osf.io/p34uq/"
+  },
+  "status_definitions": {
+    "ACTIVE": "Public/canonical route represented in the repository.",
+    "CONFIGURED": "Repository metadata is ready; external activation or verification remains.",
+    "HARVEST_TARGET": "Expected to ingest metadata from DOI/ORCID ecosystems.",
+    "SUBMISSION_TARGET": "Requires a deliberate manuscript or reproducibility submission.",
+    "OPTIONAL_DISCOVERY": "Discovery/social layer; not scientific authority.",
+    "ARCHIVAL_TARGET": "Long-term preservation target.",
+    "OUTREACH_TARGET": "Human-facing scientific communication route."
+  },
+  "networks": [
+    {
+      "name": "GitHub",
+      "role": "canonical_source",
+      "status": "ACTIVE",
+      "url": "https://github.com/Thomas-Heisig/MHRN"
+    },
+    {
+      "name": "ORCID",
+      "role": "author_identity",
+      "status": "ACTIVE",
+      "url": "https://orcid.org/0009-0002-9589-1872"
+    },
+    {
+      "name": "OSF",
+      "role": "registration_preregistration",
+      "status": "ACTIVE",
+      "url": "https://osf.io/p34uq/"
+    },
+    {
+      "name": "Zenodo",
+      "role": "doi_archive",
+      "status": "CONFIGURED"
+    },
+    {
+      "name": "DataCite",
+      "role": "doi_metadata_graph",
+      "status": "HARVEST_TARGET"
+    },
+    {
+      "name": "OpenAIRE",
+      "role": "research_graph",
+      "status": "HARVEST_TARGET"
+    },
+    {
+      "name": "OpenAlex",
+      "role": "scholarly_graph",
+      "status": "HARVEST_TARGET"
+    },
+    {
+      "name": "Semantic Scholar",
+      "role": "paper_author_discovery",
+      "status": "OPTIONAL_DISCOVERY"
+    },
+    {
+      "name": "Google Scholar",
+      "role": "scholarly_search",
+      "status": "OPTIONAL_DISCOVERY"
+    },
+    {
+      "name": "Software Heritage",
+      "role": "source_preservation",
+      "status": "ARCHIVAL_TARGET"
+    },
+    {
+      "name": "arXiv",
+      "role": "preprint",
+      "status": "SUBMISSION_TARGET"
+    },
+    {
+      "name": "bioRxiv",
+      "role": "life_science_preprint",
+      "status": "SUBMISSION_TARGET",
+      "condition": "only_if_scope_fits"
+    },
+    {
+      "name": "NeuroLibre",
+      "role": "executable_reproducible_preprint",
+      "status": "SUBMISSION_TARGET",
+      "priority": "high"
+    },
+    {
+      "name": "Peer Community In",
+      "role": "preprint_recommendation_peer_review",
+      "status": "SUBMISSION_TARGET",
+      "condition": "matching_PCI_required"
+    },
+    {
+      "name": "HAL",
+      "role": "open_repository",
+      "status": "OPTIONAL_DISCOVERY"
+    },
+    {
+      "name": "ResearchGate",
+      "role": "researcher_social_discovery",
+      "status": "OPTIONAL_DISCOVERY"
+    },
+    {
+      "name": "Conferences and workshops",
+      "role": "poster_paper_outreach",
+      "status": "OUTREACH_TARGET"
+    },
+    {
+      "name": "Direct researcher outreach",
+      "role": "targeted_external_review_replication",
+      "status": "OUTREACH_TARGET"
+    }
+  ],
+  "epistemic_boundary": "Indexing, DOI assignment, downloads, citations, repository preservation, profile claiming and social dissemination do not by themselves create Human Review, accepted EVID or independent replication."
+}
