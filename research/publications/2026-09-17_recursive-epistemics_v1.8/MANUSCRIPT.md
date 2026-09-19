@@ -798,106 +798,211 @@ Profile & Identity ergänzt die Persistenzschicht um versionierte technische Kon
 
 ## 25. Drei Forschungsachsen
 
-Edition 1.8 führt drei gleichrangige, aber methodisch unterschiedliche Achsen: **empirisch-technisch**, **epistemologisch-methodisch** und **philosophisch-ethisch**. Gleichrangig bedeutet nicht, dass dieselben Evidenzregeln gelten. Ein Lauf kann einen empirischen Effekt prüfen. Eine Provenienzanalyse kann zeigen, wie eine Entscheidung entstand. Eine normative These muss durch begründete Prämissen, Gegenargumente und Folgerungen getragen werden. Keine Achse darf die andere imitieren.
+Edition 1.8 führt drei gleichrangige, aber methodisch unterschiedliche Achsen: **empirisch-technisch**, **epistemologisch-methodisch** und **philosophisch-ethisch**. Gleichrangig bedeutet nicht, dass dieselben Evidenzregeln gelten. Ein Lauf kann einen empirischen Effekt prüfen. Eine Provenienzanalyse kann rekonstruieren, wie eine Entscheidung zustande kam. Eine normative These muss durch explizite Prämissen, Gegenargumente und Folgerungen getragen werden. Keine Achse darf die andere imitieren.
 
-Die Aussagekoordinate lautet: `Achse × Thema × Entwicklungsphase × Provenienz × Evidenzstatus`. Sie ersetzt eindimensionale Kapitelnummern nicht, erweitert sie aber um die Frage, **was für eine Art Aussage** an welcher Stelle gemacht wird.
+Die Aussagekoordinate lautet:
 
-## 26. Provenienzklassen
+`Achse × Thema × Entwicklungsphase × Quellennähe × Evidenzstatus × Interpretationsart`.
 
-S1 umfasst harte Primärartefakte: Commits, Tags, frozen Preregistrierungen, DATA, Manifeste und Hashes. S2 umfasst zeitgenössische Prozessartefakte wie Issues, Reviews, Chats oder AI-Interaktionen. S3 umfasst zeitgenössische Selbstauskunft. S4 ist retrospektive Rekonstruktion. Bei Widerspruch hat das zeitgenössische Artefakt Vorrang; fehlende Dokumentation bleibt als Lücke sichtbar.
+Sie ersetzt Kapitelnummern nicht, ergänzt sie aber um die Frage, **welcher Typ von Aussage** vorliegt und mit welcher Art von Begründung er überhaupt geprüft werden kann. Ein S1-Artefakt kann beispielsweise sehr stark belegen, *dass* ein Lauf mit einem bestimmten Manifest stattgefunden hat; daraus folgt noch nicht automatisch, *welche Theorie* dieser Lauf trägt.
 
-Die außerhalb des Repositories wiedergewonnenen Chat-Zusammenfassungen sind in dieser Edition bewusst S4. Sie dürfen nicht zu scheinbar wörtlichen Zitaten oder Prioritätsbeweisen hochgestuft werden. Wenn später Originaltranskripte eingebunden werden, entstehen neue Provenienzeinträge, nicht heimliche Umschreibungen der alten Rekonstruktion.
+## 26. Quellennäheklassen S1–S4
+
+Die in Edition 1.8 bereits verwendeten Felder `provenance_class: S1…S4` werden inhaltlich als **Quellennäheklassen** verstanden. Diese Benennung verhindert eine Kollision mit den in Teil VII verwendeten Herkunftsrollen wissenschaftlicher Aussagen.
+
+| Klasse | Bedeutung | Typische Artefakte | Was die Klasse nicht garantiert |
+| --- | --- | --- | --- |
+| **S1** | source-bound Primärartefakt | Commits, Tags, frozen Preregistrierungen, DATA, Manifeste, Hashes | keine automatische Gültigkeit der Interpretation oder EVID-Promotion |
+| **S2** | zeitgenössisches Prozessartefakt | Issues, Reviews, Chats, AI-Interaktionen, Arbeitsnotizen, Diffs | keine unabhängige Bestätigung und nicht zwingend vollständige Entscheidungsrekonstruktion |
+| **S3** | zeitgenössische Selbstauskunft | Autorennotizen, Begründungen, Journale | keine externe Evidenz für den beschriebenen Sachverhalt |
+| **S4** | retrospektive Rekonstruktion | spätere Zusammenfassungen, wiedergewonnene Chat-Kontexte, Erinnerung | kein wörtliches Original, kein sicherer Entstehungszeitpunkt, kein Prioritätsbeweis |
+
+Die Klassen ordnen **Nähe zur ursprünglichen Quelle**, nicht epistemische Wahrheit. Ein S1-Datensatz kann aus einem inadäquaten Versuchsdesign stammen; ein S2-Human-Review kann eine korrekte Designkritik enthalten; eine S4-Rekonstruktion kann historisch plausibel sein, bleibt aber schwächer für Datums- oder Prioritätsbehauptungen.
+
+Bei Widerspruch zwischen zeitgenössischem source-bound Artefakt und späterer Rekonstruktion hat das zeitgenössische Artefakt für die Frage „was war damals dokumentiert?“ Vorrang. Für andere Fragen — etwa methodische Angemessenheit — entscheidet nicht die Quellennäheklasse allein, sondern die jeweils passende Prüfung.
+
+Die außerhalb des Repositories wiedergewonnenen Chat-Zusammenfassungen sind in [`chat_reconstruction.json`](sources/chat_reconstruction.json) bewusst S4. Wenn später Originaltranskripte eingebunden werden, entstehen neue Provenienzeinträge; die frühere S4-Rekonstruktion wird nicht stillschweigend in eine stärkere Quelle umgeschrieben.
 
 ## 27. KI-assistierte Forschung
 
-KI-Unterstützung erzeugt eine zusätzliche Provenienzdimension. Ein Vorschlag eines Assistenten ist nicht automatisch eine Idee des Autors; eine vom Autor verlangte Richtung ist nicht automatisch eine implementierte Funktion; ein generierter Patch ist nicht automatisch ein wissenschaftlicher Befund. Edition 1.8 trennt deshalb `user requirement`, `AI proposal`, `human decision`, `commit`, `run`, `review` und `publication synthesis`, soweit die Quellen dies erlauben.
+KI-Unterstützung erzeugt eine zusätzliche Beitrags- und Provenienzdimension. Ein Vorschlag eines Assistenten ist nicht automatisch eine Idee des Autors; eine vom Autor verlangte Richtung ist nicht automatisch eine implementierte Funktion; ein generierter Patch ist nicht automatisch ein wissenschaftlicher Befund.
 
-Die Arbeit nutzt KI zugleich als Gegenstand und Werkzeug. Das erhöht das Risiko rekursiver Bestätigungsfehler: Ein System könnte seine eigenen früheren Formulierungen wiederfinden und als externe Unterstützung missverstehen. Dagegen helfen Quellenklassen, Originalquellen, quarantänisierte Literatur und getrennte Human-Review-Gates.
+Seit der Verdichtung von `RQ-ETH-001` reicht deshalb die frühere lineare Kette `user requirement → AI proposal → human decision → commit → run → review → publication synthesis` allein nicht mehr aus. Sie wird als Ereignisfolge beibehalten, aber zusätzlich nach epistemischen Rollen codiert:
+
+- **Konzeptualisierung** — Forschungsfrage, Ziel, Hypothese, Erfolgs- oder Abbruchbedingung;
+- **Generierung/Transformation** — Text, Code, Analyse, Kontrollidee oder methodische Variante;
+- **Validierung** — Quellen-, Code-, Mess-, Statistik- oder Konsistenzprüfung;
+- **Selektion/Kanonisierung** — Übernahme, Revision, Verwerfung, DATA-/EVID-Zuordnung oder Veröffentlichung;
+- **Verantwortung** — natürliche Person, die für den veröffentlichten Claim Rechenschaft übernimmt.
+
+Das operative Beitragsmodell liegt in [`RQ_ETH_001_PROVENANCE_STUDY.md`](../../protocols/RQ_ETH_001_PROVENANCE_STUDY.md). Materieller epistemischer Beitrag, formale Autorenschaft und wissenschaftliche Verantwortung bleiben getrennte Variablen.
+
+Die Arbeit nutzt KI zugleich als Forschungsgegenstand und als Arbeitsinstrument. Das erhöht das Risiko **rekursiver Bestätigungsfehler**: Ein Modell kann frühere eigene Formulierungen wiederfinden, paraphrasieren und dadurch wie eine zweite Quelle wirken. Gegenmaßnahmen sind unter anderem source-bound Originalquellen, getrennte Quellennähe- und Herkunftsklassen, Literaturquarantäne bis zur Prüfung, AI-Provenienzfelder und menschliche Review-Gates. Eine Modellwiederholung zählt nicht als unabhängige Bestätigung.
 
 ## 28. Falsifikation von Entstehungs- und Prioritätsaussagen
 
-Auch Schaffensgeschichte muss revidierbar sein. Eine Behauptung wie „Idee X entstand zuerst am Datum Y“ ist nur zulässig, wenn das Artefakt den Inhalt tatsächlich trägt und ältere Quellen nicht widersprechen. Ein späteres Dokument kann die frühere Existenz einer Idee bezeugen, aber selten ihren exakten Entstehungszeitpunkt.
+Auch Schaffensgeschichte muss revidierbar sein. Eine Behauptung wie „Idee X entstand zuerst am Datum Y“ ist nur zulässig, wenn das Artefakt den Inhalt tatsächlich trägt und die untersuchte Quellenmenge keinen älteren widersprechenden Fund enthält. Selbst dann ist zwischen **frühestem dokumentierten Nachweis** und **tatsächlichem Entstehungszeitpunkt** zu unterscheiden.
 
-Edition 1.8 behauptet daher keine absolute Priorität für die rekonstruierten Vor-Repo-Ideen. Sie dokumentiert die **früheste derzeit wiedergewonnene Spur** und öffnet ein Register für Korrekturen.
+Edition 1.8 behauptet daher keine absolute Priorität für die rekonstruierten Vor-Repo-Ideen. Sie dokumentiert die **früheste derzeit wiedergewonnene Spur** innerhalb des tatsächlich geprüften Korpus. Neue ältere Primärartefakte revidieren die Chronologie additiv; sie machen die frühere Rekonstruktion nicht zu wissenschaftlichem Fehlverhalten.
 
-## 28.1 Epistemische Regeln, die aus konkreten Forschungsfehlern entstanden
+## 28.1 Epistemische Regeln aus konkreten Korrekturereignissen
 
-Die Methodik dieser Arbeit ist nicht nur theoretisch gesetzt. Mehrere Regeln wurden durch konkrete Fehlinterpretationen notwendig.
+Die Methodik dieser Arbeit ist nicht nur programmatisch gesetzt. Mehrere Regeln wurden durch konkrete Fehlinterpretationen oder stärkere Kontrollen notwendig. Diese Fälle sind **methodische Zeugen**: Sie zeigen, dass eine Regel als Reaktion auf dokumentierte Probleme eingeführt wurde. Sie beweisen noch nicht, dass die Regel die Fehlerquote künftig kausal reduziert.
 
 ### Ein negatives Resultat setzt Testadäquanz voraus
 
-Die 5D-v1-Teilstudie ist das klarste Beispiel. Identische Resultate über verschiedene Dimensionsbedingungen wären oberflächlich ein Nullbefund. Die Human Review zeigte jedoch, dass die Dimension die relevante Netzwerkdynamik kaum beeinflussen konnte. Die korrekte epistemische Klassifikation ist daher nicht „Hypothese widerlegt“, sondern „für den intendierten Geometrieeffekt nicht getestet“.
+Für `H-SNN-003-B` wurde `EXP-GEN-0047` zunächst leicht als Topologie-/Dimensions-Nullbefund lesbar. Die spätere methodische Entscheidung [`2026-09-17_snn003_topology_propagation_v1_adequacy.md`](../../decisions/2026-09-17_snn003_topology_propagation_v1_adequacy.md) klassifiziert den Lauf dagegen als **`INADEQUATE_TO_TEST_HYPOTHESIS`**: drei Neuronen und zwei Feed-forward-Synapsen ließen die Koordinatenmanipulation den behaupteten Mechanismus nicht hinreichend verändern.
 
-Daraus folgt die Regel: Vor jeder Bestätigung oder Falsifikation muss geprüft werden, ob das Design **sensitiv für den behaupteten Mechanismus** war.
+Die zulässige Schlussfolgerung ist daher nicht „5D/Topologie hat keinen Effekt“, sondern „dieses Design war für den intendierten Effekt nicht ausreichend sensitiv“.
+
+**Regel:** Vor Bestätigung, Nullbefund oder Falsifikation muss geprüft werden, ob die manipulierte Variable den behaupteten kausalen Mechanismus tatsächlich verändern konnte.
 
 ### DATA und Report sind verschiedene Objekte
 
-In `EXP-GEN-0036` existierten Runs und protokollspezifische Statistik, obwohl die Summary in mehreren universellen SNN-Spalten `—` zeigte. Eine erste Interpretation hielt dies für fehlende DATA. Die Review korrigierte diese Schlussfolgerung.
+Die Human Review [`EXP-GEN-0036/analysis/HUMAN-REVIEW-2026-09-16.md`](../../experiments/EXP-GEN-0036/analysis/HUMAN-REVIEW-2026-09-16.md) dokumentiert einen Reportingfehler: Gedankenstriche in universellen Summary-Spalten wurden zunächst als fehlende DATA gelesen, obwohl protokollspezifische Runs und Statistiken existierten.
 
-Daraus folgt: Reporting ist eine Transformation von DATA und kann selbst fehlerhaft sein. Wissenschaftliche Interpretation darf sich bei kritischen Punkten nicht allein auf eine Sekundärprojektion stützen, wenn Rohartefakte und Statistik verfügbar sind.
+**Regel:** Ein Report ist eine Transformation von DATA und damit ein eigenes fehlerfähiges Objekt. Bei claim-relevanten Unstimmigkeiten müssen source-bound Rohartefakte, protokollspezifische Statistik und Manifest vor der Interpretation geprüft werden.
 
 ### Eine positive Baseline-Differenz ist noch keine Mechanismusidentifikation
 
-CL-001 zeigte einen Vorteil von Semantic+Replay gegenüber No-Replay. Erst CL-002 mit gematchtem Raw-Replay machte sichtbar, dass dieser Befund die Rolle von Replay und semantischer Verdichtung nicht getrennt hatte. Der stärkere Kontrollarm veränderte die zulässige Theorie.
+`EXP-S6-SEM-CL-001` zeigte unter seinem Protokoll Semantic+Replay gegenüber No-Replay. Die stärkere Präregistrierung [`EXP-S6-SEM-CL-002.md`](../../preregistrations/EXP-S6-SEM-CL-002.md) führte gematchtes Raw-Replay ein. Unter dieser Kontrolle wurde kein konfirmatorischer Zusatznutzen semantischer Prototypen bestätigt. `CL-003` prüfte anschließend eine Dosisalternative; der präregistrierte Interaktionstest bestätigte keinen Dosis-Effekt, obwohl deskriptive Unterschiede verlockend stärker formuliert werden konnten.
 
-Daraus folgt: Die Qualität einer Hypothesenprüfung hängt nicht nur von Signifikanz oder Effektgröße ab, sondern davon, ob die **plausibelste alternative Erklärung** experimentell adressiert wird.
+**Regel:** Die Qualität einer Mechanismusbehauptung hängt nicht nur von Effektgröße oder Signifikanz ab, sondern davon, ob die plausibelste konkurrierende Erklärung durch einen geeigneten Kontrollarm adressiert wurde.
 
-### Externe Softwarekonformität ist nicht identisch mit unabhängiger Replikation
+### Referenzkonformität, Human Review und unabhängige Replikation sind getrennt
 
-Die Stage-0-V2-Prüfung gegen Brian2 ist ein starker Referenzvergleich. Sie bleibt jedoch durch MHRN formuliert, ausgeführt und interpretiert. Deshalb erfüllt sie nicht automatisch das Kriterium einer unabhängig autorisierten Replikation.
+Der Stage-0-Konformitätspfad illustriert drei verschiedene Autoritätsebenen. Der prospektive Lauf `EXP-STAGE0-20260918-MODEL-CONFORMANCE-V2-PROMO-R1` erfüllt den aktuellen Provenienzvertrag und wurde nach Human Review als `EVID-2026-18` für den eng begrenzten Claim registriert. Sein eigenes Resultatfeld hält zugleich `independent_authorship_replication=false` fest.
 
-Daraus folgt eine Trennung von Referenzkonformität, Human Review und unabhängiger Replikation.
+**Regel:** Referenzkonformität kann starke technische Evidenz sein; Human Review kann eine scoped Interpretation autorisieren; unabhängige Replikation bleibt dennoch ein eigenes Kriterium. Keine dieser Ebenen darf stellvertretend für die andere gezählt werden.
 
-## 28.2 Methodik der epistemologischen Achse
+## 28.2 Methodik der epistemologisch-methodischen Achse
 
-Die epistemologisch-methodische Achse benötigt eigene Prüfverfahren. Sie darf nicht nur kommentieren, wie Forschung „eigentlich“ funktionieren sollte. Für MHRN werden deshalb folgende Verfahren verwendet:
+Die epistemologisch-methodische Achse benötigt eigene Prüfverfahren. Sie darf nicht nur kommentieren, wie Forschung „eigentlich“ funktionieren sollte. Für MHRN werden deshalb sechs Verfahren unterschieden:
 
-1. **Provenienzanalyse:** Welche Quelle existierte wann und in welchem Status?
-2. **Entscheidungsrekonstruktion:** Welche Alternative wurde vor einer Implementierung oder Ausführung erwogen?
-3. **Status-Transition-Audit:** An welcher Stelle wechselte ein Objekt von Idee zu Spezifikation, DATA, Review oder EVID?
-4. **Kontrafaktische Prozessprüfung:** Welche andere Schlussfolgerung wäre entstanden, wenn eine stärkere Baseline oder ein anderes Reporting vorgelegen hätte?
-5. **Revisionstracing:** Welche konkrete Architektur- oder Methodikänderung folgte aus einem negativen oder korrigierten Befund?
-6. **AI-Provenienzprüfung:** Stammt ein Argument aus externer Literatur, einem Modellvorschlag, dem Autor, einer Messung oder einer späteren Synthese?
+1. **Provenienzanalyse:** Welche Quelle existierte zu welchem Zeitpunkt, mit welcher Quellennähe und welchem damaligen Status?
+2. **Entscheidungsrekonstruktion:** Welche Alternativen waren vor Implementierung, Ausführung oder Interpretation dokumentiert?
+3. **Status-Transition-Audit:** Wann wechselte ein Objekt zwischen Idee, Spezifikation, Präregistrierung, DATA, Review, EVID und Claim?
+4. **Kontrafaktische Prozessprüfung:** Welche Schlussfolgerung wäre unter einer stärkeren Baseline, anderer Projektion oder fehlendem Gate entstanden?
+5. **Revisionstracing:** Welche konkrete Architektur-, Registry- oder Methodikänderung folgte aus einem negativen oder korrigierten Befund?
+6. **AI-/Beitragsprovenienzprüfung:** Wer oder was erzeugte, prüfte, selektierte oder kanonisierte einen materiell relevanten Beitrag?
 
-Damit kann die Schaffensgeschichte selbst falsifizierbare Aussagen enthalten. Ein behaupteter Entscheidungsursprung kann durch einen älteren Commit widerlegt werden; eine vermeintlich menschliche Idee kann sich als zuvor dokumentierter AI-Vorschlag herausstellen; eine angeblich datengetriebene Architekturentscheidung kann sich als bereits vor den DATA festgelegt zeigen.
+Für jede Prozessbehauptung muss außerdem zwischen drei Ebenen unterschieden werden:
+
+- **deskriptiv:** ein Gate, Review oder Statuswechsel existierte;
+- **kausal-prozessual:** dieser Schritt veränderte eine Entscheidung oder verhinderte eine konkrete Fehlklassifikation;
+- **generalisierend:** die Methode senkt über Fälle hinweg die Fehlerquote oder verbessert Reproduzierbarkeit.
+
+Die erste Ebene kann häufig aus bestehenden Artefakten rekonstruiert werden. Die zweite benötigt eine belastbare Ereigniskette oder kontrafaktische Vergleichsmöglichkeit. Die dritte benötigt eine systematische Teilstudie und darf nicht allein aus einzelnen Anekdoten abgeleitet werden.
 
 ## 28.3 Explorativ, konfirmatorisch und rekonstruktiv
 
-MHRN unterscheidet drei Modi, die häufig vermischt werden:
+MHRN unterscheidet drei Forschungsmodi, die nicht miteinander verrechnet werden dürfen:
 
-- **explorativ:** Hypothesen- und Mechanismussuche; flexibel, aber nachträgliche Muster dürfen nicht als präregistriert ausgegeben werden;
-- **konfirmatorisch:** Endpunkte, Kontraste, Seeds, Ausschlüsse und Erfolgsregeln sind vor der Ausführung eingefroren;
-- **rekonstruktiv:** historische oder epistemische Rekonstruktion aus vorhandenen Artefakten; Aussagen hängen von Provenienzqualität und Vollständigkeit der Quellen ab.
+| Modus | Zweck | Vorab-Festlegung | Zulässige Schlussfolgerung |
+| --- | --- | --- | --- |
+| **explorativ** | Hypothesen-, Mechanismus- und Fehlersuche | flexibel, Änderungen müssen nachträglich kenntlich bleiben | Hypothesengenerierung, Diagnose, Designrevision |
+| **konfirmatorisch** | vorab definierte Hypothesenprüfung | Endpunkte, Kontraste, Seeds, Ausschlüsse und Erfolgsregeln vor Ausführung eingefroren | protokollgebundene Bestätigung, Nichtbestätigung oder Falsifikation |
+| **rekonstruktiv** | historische oder epistemische Rekonstruktion aus vorhandenen Artefakten | Korpus, Suchregel und Quellennähe möglichst explizit | Aussagen über dokumentierte Spuren und Prozessketten, begrenzt durch Quellenabdeckung |
 
-Die frühe NeuroGenesis-/Brain-5D-Geschichte ist überwiegend rekonstruktiv. CL-003 ist in seiner Ausführung konfirmatorisch angelegt. Viele Stage-8–10-Arbeiten sind derzeit explorativ beziehungsweise programmatisch. Diese Modi dürfen in der Synthese verbunden, aber nicht epistemisch gleichgestellt werden.
+Die frühe NeuroGenesis-/Brain-5D-Geschichte ist überwiegend rekonstruktiv. Die CL-003-Ausführung ist konfirmatorisch angelegt. Viele Frontier-Arbeiten sind explorativ oder programmatisch. Ein ursprünglich explorativer Befund kann eine spätere konfirmatorische Studie motivieren, wird dadurch aber nicht rückwirkend präregistriert.
 
-## 28.4 Präregistrierung schützt auch vor dem eigenen Entwicklungsdrang
+## 28.4 Präregistrierung schützt auch vor architektonischem Nachrationalisieren
 
-Die Forschungsarbeit entsteht in einem schnell iterierenden Engineeringkontext. Gerade dort verhindert ein Freeze, dass neue Einsichten nach Sichtung der DATA unbemerkt Teil des ursprünglichen Erfolgsmaßstabs werden. CL-003 zeigte den Wert dieser Grenze: Der deskriptiv mit der Dosis wachsende Semantic-minus-Raw-Unterschied wäre verführerisch als positiver Dosisbefund formulierbar gewesen; der präregistrierte Interaktionstest C4 blieb jedoch negativ. Deshalb ist die stärkere Behauptung nicht zulässig.
+Die Forschungsarbeit entsteht in einem schnell iterierenden Engineeringkontext. Ein Freeze schützt dort nicht nur vor klassischem p-Hacking, sondern auch davor, nach Sichtung der DATA neue Zielgrößen, Baselines oder Architekturrollen unbemerkt als ursprünglichen Erfolgsmaßstab auszugeben.
 
-Präregistrierung trennt prospektive Hypothesenprüfung von nachträglicher Musterdeutung; genau diese Funktion wird in der methodischen Literatur als zentraler Zweck beschrieben ([Nosek et al., 2018](REFERENCES.md#ref-NOSEK2018)). In diesem Projekt wirkt sie damit nicht nur gegen klassische p-Hacking-Risiken, sondern gegen **architektonisches Nachrationalisieren**.
+CL-003 ist ein konkretes Beispiel: Der deskriptiv mit der Dosis wachsende Semantic-minus-Raw-Unterschied hätte nachträglich als positiver Dosisbefund erzählt werden können. Der vorab definierte Interaktionstest C4 blieb jedoch negativ; deshalb ist die stärkere Behauptung nicht zulässig.
+
+Präregistrierung trennt prospektive Hypothesenprüfung von nachträglicher Musterdeutung; diese Funktion wird auch in der methodischen Literatur als zentraler Zweck beschrieben ([Nosek et al., 2018](REFERENCES.md#ref-NOSEK2018)). Für MHRN lautet die zusätzliche Regel: **Eine spätere bessere Erklärung darf den eingefrorenen ursprünglichen Erfolgsmaßstab nicht umschreiben.**
 
 ## 28.5 Revidierbarkeit als Qualitätskriterium
 
-Eine starke Aussage in MHRN nennt nicht nur, warum sie aktuell plausibel ist, sondern auch, wodurch sie sich ändern würde. Für 5D ist dies ein geometriesensitives matched-control Experiment. Für SemanticMemory ist es ein begrenzter, vorab begründeter Zusatznutzen gegenüber Raw-Replay. Für ein Weltmodell ist es Mehrschritt- und Entscheidungsnutzen unter geeigneten Kontrollen. Für ein Selbstmodell ist es kausale Self/Other-Differenzierung.
+Eine starke Aussage in MHRN nennt nicht nur, warum sie aktuell zulässig ist, sondern auch, welche Beobachtung oder methodische Kritik sie ändern würde. Revisionskriterien sind deshalb keine rhetorische Vorsicht, sondern Teil der Claim-Spezifikation.
 
-Die Arbeit versteht Revidierbarkeit daher nicht als Schwäche, sondern als explizite Schnittstelle zwischen heutiger Synthese und zukünftiger Evidenz.
+Beispiele:
 
-## 28.6 Epistemologische Teilstudie — Forschungsprozess als Untersuchungsgegenstand
+- ein 5D-/Topologieclaim verlangt geometriesensitive matched controls;
+- ein SemanticMemory-Zusatznutzen verlangt vorab begründeten Vorteil gegenüber gematchtem Raw-Replay;
+- ein Weltmodell verlangt über One-Step-Korrelation hinaus Mehrschritt- und Entscheidungsnutzen unter geeigneten Kontrollen;
+- ein Selbstmodell verlangt kausal relevante Self/Other-Differenzierung;
+- eine Prozessmethodik, die wissenschaftliche Fehlklassifikationen reduzieren soll, muss gegenüber einer einfacheren Darstellung messbaren Audit-Nutzen zeigen.
 
-**Forschungsfrage.** Unter welchen Bedingungen verbessert eine explizite Trennung von Quelle, Entscheidung, Ausführung, DATA, Review und EVID die wissenschaftliche Belastbarkeit eines schnell iterierenden, KI-assistierten Einzelforschungsprojekts?
+Damit verbindet Revidierbarkeit die aktuelle Synthese mit klaren zukünftigen Prüfbedingungen.
 
-**Material.** Untersucht werden versionierte Commits, Präregistrierungen, DATA, Reviews, Registry-Transitionen, AI-Interpretationen, Publication Builds und dokumentierte Fehlklassifikationen. Die frühe Schaffensgeschichte wird nur dort einbezogen, wo ihre Provenienzklasse benannt werden kann.
+## 28.6 RQ-EPIST-001 bleibt von der Prozessmethodik getrennt
 
-**Methode.** Die epistemologische Achse verwendet Provenienzanalyse, Entscheidungsrekonstruktion, Status-Transition-Audit, kontrafaktische Prozessprüfung und Revisionstracing. Sie fragt nicht, ob eine neuronale Hypothese wahr ist, sondern ob der Weg von Beobachtung zu Claim nachvollziehbar und revidierbar war.
+Die kanonische `RQ-EPIST-001` lautet weiterhin sinngemäß: **Was gilt als Erkenntnis des Systems MHRN im Unterschied zur Erkenntnis des Forschers?** Die historische Hypothese `H-EPIST-001-A` bleibt aus Provenienzgründen unverändert erhalten.
 
-**Ergebnisstand.** Mehrere konkrete Fehler — fehlinterpretierte Reportspalten, unzureichende Baselines, semantische Registry-Mismatches, Dirty-Tree-Provenienz und die inadäquate 5D-v1-Testkonstruktion — führten zu dauerhaften Governance-Regeln. Die Prozessarchitektur wurde dadurch nachweisbar restriktiver.
+Frühere generische `runtime_ticks_v1`- und `epistemic_boundary_audit_v1`-Läufe dürfen nicht rückwirkend als empirischer Nachweis dieser kategorialen Unterscheidung behandelt werden. Die vorhandenen Berichte stellen selbst fest, dass dafür spezifische Messung beziehungsweise menschlich-konzeptuelle Entscheidung erforderlich bleibt. `RQ-EPIST-001` bleibt daher **open / untested**.
 
-**Diskussion.** Dies stützt die Arbeitsthese, dass negative oder korrigierende Befunde nicht nur Sachwissen erzeugen, sondern die Methode selbst verändern können. Der methodische Beitrag liegt in der expliziten Verbindung von Softwarezustand, Forschungsstatus und Claim-Grenze.
+Die Frage, ob die **Forschungsprozess-Governance** Fehlklassifikationen reduziert, ist davon verschieden und erhält deshalb einen eigenen Forschungsgegenstand.
 
-**Limitation.** Die meisten Prozessverbesserungen wurden innerhalb derselben Autoren- und Toolkette entworfen und bewertet. Eine geringere interne Fehlklassifikationsrate wäre erst dann stärker belegt, wenn sie über längere Zeiträume, unabhängige Reviewer oder externe Replikationsgruppen systematisch gemessen wird.
+## 28.7 RQ-EPIST-002 — Prozessgovernance als prüfbarer Forschungsgegenstand
 
-**Zwischenfazit.** Rekursive Epistemik besitzt damit einen empirisch anschlussfähigen methodischen Kern: Nicht die Selbstbeschreibung „wir arbeiten sorgfältiger“, sondern überprüfbare Status-, Provenienz- und Revisionsereignisse bilden den Gegenstand.
+**Kanonische Forschungsfrage `RQ-EPIST-002`:**
+
+> Unter welchen Bedingungen reduziert eine explizite Trennung von Quelle, Entscheidung, Ausführung, DATA, Review, EVID und Claim epistemische Fehlklassifikationen in schnell iterierender, KI-assistierter MHRN-Forschung?
+
+**Hypothese `H-EPIST-002-A`:**
+
+> Reviewer, die ein status- und provenienzgetrenntes Claim-Paket erhalten, weisen gegenüber einem inhaltlich äquivalenten, aber abgeflachten Summary-Paket eine geringere Rate vorab definierter epistemischer Klassifikationsfehler auf.
+
+### Material und Einheit
+
+Die primäre Einheit ist eine **Claim-Episode**: von der ersten relevanten Beobachtung oder Behauptung bis zur letzten im Untersuchungsfenster dokumentierten Entscheidung. Kandidaten werden aus abgeschlossenen oder eingefrorenen MHRN-Fällen gezogen; laufende Fälle dürfen nur verwendet werden, wenn ihr Cut-off vor der Kodierung festgelegt wird.
+
+Die vier in §28.1 beschriebenen Fälle sind historische methodische Zeugen und dürfen die spätere Stichprobe informieren. Sie werden **nicht automatisch** als konfirmatorische Beobachtungen für `H-EPIST-002-A` gezählt.
+
+### Prospektives Vergleichsdesign
+
+Für dieselbe Claim-Episode werden zwei inhaltlich äquivalente Darstellungen erstellt:
+
+- **separiertes Paket:** Quelle, Ausführung, DATA, Report, Review, EVID und Claim-Grenze als getrennte Felder/Artefakte;
+- **abgeflachtes Paket:** gleiche inhaltliche Informationen in einer konventionellen zusammenhängenden Summary ohne explizite Statusachsen.
+
+Reviewer werden randomisiert oder in einem ausbalancierten Crossover-Design den Darstellungen zugewiesen. Reihenfolge und Episode müssen gegen Lerneffekte kontrolliert werden.
+
+### Primäre Endpunkte
+
+Vor einer Präregistrierung sind mindestens folgende Fehlerklassen operational zu fixieren:
+
+1. DATA fälschlich als EVID klassifiziert;
+2. Reportprojektion fälschlich als Roh-DATA behandelt;
+3. technische Reproduzierbarkeit mit Hypothesenbestätigung gleichgesetzt;
+4. Human Review mit unabhängiger Replikation gleichgesetzt;
+5. retrospektive Rekonstruktion als zeitgenössische Primärquelle behandelt;
+6. AI-Synthese als unabhängige externe Quelle gewertet;
+7. Claim-Reichweite über die dokumentierte Grenze hinaus erweitert.
+
+Primärer Outcome ist die **Fehlklassifikationsrate pro Reviewentscheidung**. Sekundär können Korrekturzeit, Inter-Rater-Übereinstimmung, unbegründete Claim-Erweiterungen und benötigte Rückfragen gemessen werden.
+
+### Referenz und Adjudikation
+
+Die „richtige“ Klassifikation darf nicht von demselben Summary abhängen, das getestet wird. Sie wird aus source-bound Primärartefakten durch ein vorab definiertes Adjudikationsverfahren erzeugt. Uneinigkeit der Adjudikatoren bleibt sichtbar und wird nicht durch Mehrheitsentscheid allein als objektive Wahrheit ausgegeben.
+
+### Failure- und Revisionskriterien
+
+`H-EPIST-002-A` muss verworfen oder enger gefasst werden, wenn:
+
+- die beiden Darstellungen nicht informationsäquivalent hergestellt werden können;
+- die Fehlerklassen keine ausreichende Inter-Rater-Reliabilität besitzen;
+- das separierte Paket keine niedrigere Fehlklassifikationsrate zeigt;
+- der Vorteil nur durch wesentlich höhere Bearbeitungszeit entsteht und nach vorab definierter Nutzenfunktion nicht trägt;
+- oder die Adjudikationsreferenz selbst nicht ausreichend source-bound und reproduzierbar ist.
+
+Das operative Design wird in [`RQ_EPIST_002_PROCESS_GOVERNANCE_STUDY.md`](../../protocols/RQ_EPIST_002_PROCESS_GOVERNANCE_STUDY.md) versioniert. Es ist zunächst **Protokolldesign, nicht präregistriert und nicht zur konfirmatorischen Ausführung autorisiert**.
+
+## 28.8 Gegenwärtiger Ergebnisstand der epistemologischen Achse
+
+Der aktuell belegbare Befund ist enger als „die Governance verbessert Wissenschaft“:
+
+1. Es existieren dokumentierte Korrekturereignisse, bei denen stärkere Kontrollen oder source-bound Prüfung die zulässige Interpretation verändert haben.
+2. Aus diesen Ereignissen wurden dauerhafte technische und dokumentarische Regeln abgeleitet.
+3. Die Prozessarchitektur ist dadurch **formal restriktiver und auditierbarer** geworden.
+4. Noch nicht gezeigt ist, dass diese Architektur über Fälle oder Reviewer hinweg die Fehlklassifikationsrate kausal senkt.
+
+Die bisherigen Fälle stützen damit die **Notwendigkeit einer Prozessstudie**, nicht bereits deren positives Ergebnis.
+
+**Zwischenfazit.** Rekursive Epistemik besitzt einen empirisch anschlussfähigen methodischen Kern, sobald ihre Selbstbeschreibung in prüfbare Ereignisse und Vergleichsdesigns übersetzt wird. Der wissenschaftliche Gegenstand ist dann nicht „wir arbeiten sorgfältiger“, sondern: Welche Status-, Provenienz- und Revisionsdarstellung führt unter kontrollierten Bedingungen zu welchen Entscheidungen?
 
 
 ---
@@ -938,9 +1043,9 @@ Die praktische Autorposition lautet:
 
 Freier Wissenstransfer und strikte Attribution sind damit keine Gegensätze. Je einfacher Wissen weitergegeben und verändert werden kann, desto wichtiger wird eine belastbare Provenienzkette.
 
-### 29.2 Fünf Provenienzklassen wissenschaftlicher Aussagen
+### 29.2 Fünf Herkunftsrollen wissenschaftlicher Aussagen
 
-Der repositoryweite Integritätsvertrag unterscheidet mindestens fünf Provenienzklassen:
+Der repositoryweite Integritätsvertrag unterscheidet mindestens fünf **Herkunftsrollen wissenschaftlicher Aussagen**. Diese Rollen beantworten die Frage, *woher der Aussageinhalt stammt beziehungsweise welche epistemische Funktion er hat*. Sie sind ausdrücklich nicht mit den S1–S4-Quellennäheklassen aus Teil VI identisch:
 
 1. **MHRN observation** — durch source-bound Experiment, Messung oder Verification-Artefakt erzeugt;
 2. **MHRN interpretation** — Schlussfolgerung aus Beobachtungen, mit expliziten Grenzen und ohne automatische EVID-Promotion;
