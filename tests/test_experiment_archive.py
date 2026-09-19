@@ -121,8 +121,7 @@ def test_archive_and_restore_series_archives_children_without_moving_files(
     assert service.archived_series_ids() == frozenset({"SERIES-0001"})
     listed = service.list_archived()
     assert any(
-        item.get("archive_type") == "series"
-        and item.get("series_id") == "SERIES-0001"
+        item.get("archive_type") == "series" and item.get("series_id") == "SERIES-0001"
         for item in listed
     )
     assert child_a.is_dir() and child_b.is_dir()
