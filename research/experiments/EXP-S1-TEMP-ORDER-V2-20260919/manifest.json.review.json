@@ -1,0 +1,8 @@
+{
+  "artifact_path": "experiments/EXP-S1-TEMP-ORDER-V2-20260919/manifest.json",
+  "review_status": "rejected",
+  "reviewer": "Thomas Heisig",
+  "reviewed_at": "2026-09-19T07:54:25.768012+00:00",
+  "comments": "Manifest Datei muss nicht geprüft werden",
+  "artifact_content_digest": "98b8f90616d6b62b5a8a6b8d1950e708594abb0966787c6490a11d1ffdf4e0e2"
+}
