@@ -749,6 +749,10 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
                 self._serve_current_publication()
                 return
 
+            if path == "/api/publication/imprint":
+                self._serve_publication_imprint()
+                return
+
             # ----------------------------------------------------------------
             # Runtime Errors (dedicated endpoint, Phase 5)
             # ----------------------------------------------------------------
@@ -2273,6 +2277,65 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
                     "source": "releases/current.json",
                     "error": str(exc),
                 }
+            )
+
+    def _serve_publication_imprint(self) -> None:
+        """Serve public project/imprint metadata without exposing private profile data."""
+        repo_root = Path(__file__).resolve().parents[2]
+        imprint_path = repo_root / "public_imprint.json"
+        identity_path = repo_root / "project_identity.json"
+
+        try:
+            imprint_object: object = json.loads(
+                imprint_path.read_text(encoding="utf-8")
+            )
+            if not isinstance(imprint_object, dict):
+                raise ValueError("public_imprint.json must contain a JSON object.")
+            imprint = cast(dict[str, Any], imprint_object)
+
+            identity_object: object = json.loads(
+                identity_path.read_text(encoding="utf-8")
+            )
+            if not isinstance(identity_object, dict):
+                raise ValueError("project_identity.json must contain a JSON object.")
+            identity = cast(dict[str, Any], identity_object)
+            authorship = identity.get("authorship", {})
+            author = (
+                cast(dict[str, Any], authorship).get("primary_author", {})
+                if isinstance(authorship, dict)
+                else {}
+            )
+            provider = imprint.get("provider", {})
+            if not isinstance(provider, dict):
+                raise ValueError("Imprint provider metadata must be an object.")
+            provider_data = cast(dict[str, Any], provider)
+
+            canonical_name = (
+                cast(dict[str, Any], author).get("display_name")
+                if isinstance(author, dict)
+                else None
+            )
+            if canonical_name and provider_data.get("name") != canonical_name:
+                raise ValueError("Imprint provider does not match canonical authorship.")
+
+            required_missing: list[str] = []
+            if not provider_data.get("postal_address"):
+                required_missing.append("postal_address")
+            if not provider_data.get("email"):
+                required_missing.append("email")
+
+            payload = dict(imprint)
+            payload["missing_required_fields"] = required_missing
+            payload["public_internet_ready"] = bool(
+                imprint.get("public_internet_ready")
+            ) and not required_missing
+            payload["source"] = "public_imprint.json"
+            payload["read_only"] = True
+            self._send_json(cast(dict[str, JSONValue], payload))
+        except (OSError, ValueError, json.JSONDecodeError) as exc:
+            self._send_json(
+                {"error": str(exc), "source": "public_imprint.json"},
+                HTTPStatus.SERVICE_UNAVAILABLE,
             )
 
     def _serve_current_publication(self) -> None:
