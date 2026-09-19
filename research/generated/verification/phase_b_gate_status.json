@@ -1,23 +1,23 @@
 {
   "schema_version": 1,
   "status": "verified",
-  "generated": "2026-09-08T17:09:01+00:00",
+  "generated": "2026-09-19T10:11:57+00:00",
   "source_freeze": {
-    "commit": "10932af1ec2708f5ef3a4b625b54fc60b068a68a",
-    "tested_tree_digest": "4c778b8826c75d9fc32c018a974c2adc404370fc7fa41d3d9c4854a6e506c78d"
+    "commit": "f40d4d20c69a71cc0a747fa108a3a883b0c58285",
+    "tested_tree_digest": "aff077317cab9fed4bd3883d0dc7c6f7e54fe8bf612597f316ff01edb34ffd37"
   },
   "baseline": {
-    "python": "3.13.14",
-    "passed": 1000,
+    "python": "3.13.15",
+    "passed": 1656,
     "failed": 0,
-    "skipped": 7,
+    "skipped": 2,
     "collection_errors": 0,
     "artifact": "tests/test_baseline.json"
   },
   "continuous_integration": {
-    "workflow": "Continuous Integration",
-    "run_id": 34252542260,
-    "head_sha": "10932af1ec2708f5ef3a4b625b54fc60b068a68a",
+    "workflow": "Continuous Integration #1630",
+    "run_id": 35436124700,
+    "head_sha": "f40d4d20c69a71cc0a747fa108a3a883b0c58285",
     "conclusion": "success"
   },
   "scientific_gate": {
@@ -38,9 +38,9 @@
   "release_readiness": "ready",
   "final_validation": {
     "command": "python scripts/generate_baseline.py",
-    "passed": 1000,
+    "passed": 1656,
     "failed": 0,
-    "skipped": 7
+    "skipped": 2
   },
   "verification_artifacts": [
     "research/generated/verification/restore_determinism.json",
