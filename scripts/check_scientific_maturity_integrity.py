@@ -273,9 +273,11 @@ def main() -> int:
             f"missing required scientific-integrity file: {path}",
         )
 
-    seed_contract = (ROOT / "research/specifications/SEED_DATA_CONTRACT.md").read_text(
-        encoding="utf-8"
-    ).lower()
+    seed_contract = (
+        (ROOT / "research/specifications/SEED_DATA_CONTRACT.md")
+        .read_text(encoding="utf-8")
+        .lower()
+    )
     for phrase in (
         "deterministischen",
         "gepaarte bedingungen",
