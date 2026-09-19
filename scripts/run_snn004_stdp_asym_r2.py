@@ -113,7 +113,8 @@ def main() -> int:
     integrity_checks = {
         "clean_source_freeze": source["dirty_before_execution"] is False,
         "protocol_id": result["protocol"] == "stdp_pair_timing_v1",
-        "initial_weight": float(result["conditions"]["initial_weight"]) == INITIAL_WEIGHT,
+        "initial_weight": float(result["conditions"]["initial_weight"])
+        == INITIAL_WEIGHT,
         "replications": int(
             result["conditions"]["repeated_evaluations_per_condition"]
         )
@@ -122,7 +123,8 @@ def main() -> int:
             result["conditions"]["independent_runs_per_condition"]
         )
         == 0,
-        "parameter_match": result["conditions"]["parameters"] == PARAMETERS.to_dict(),
+        "parameter_match": result["conditions"]["parameters"]
+        == PARAMETERS.to_dict(),
     }
     integrity = {"checks": integrity_checks, "pass": all(integrity_checks.values())}
 
