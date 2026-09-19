@@ -342,6 +342,34 @@ def test_experiments_are_listed_by_creation_date(tmp_path: Path) -> None:
     assert [item["id"] for item in experiments] == ["EXP-NEW", "EXP-OLD"]
 
 
+def test_archived_campaign_indexes_are_hidden_from_work_view(tmp_path: Path) -> None:
+    experiment_id = "EXP-EMP-20260910-SCALE-V2"
+    experiment_dir = tmp_path / "experiments" / experiment_id
+    experiment_dir.mkdir(parents=True)
+    (experiment_dir / "manifest.json").write_text(
+        json.dumps(
+            {
+                "record_kind": "campaign_index",
+                "experiment_status": "completed",
+            }
+        ),
+        encoding="utf-8",
+    )
+    archive_dir = tmp_path / "archive"
+    archive_dir.mkdir()
+    (archive_dir / "experiment_index.json").write_text(
+        json.dumps(
+            {
+                "archive_mode": "metadata_only",
+                "experiments": {experiment_id: {"archive_type": "experiment"}},
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    assert ResearchSource(tmp_path).list_experiments() == []
+
+
 def test_run_rejects_hypothesis_from_a_different_question(tmp_path: Path) -> None:
     _write_registry(tmp_path)
     service = ExperimentWorkflowService(tmp_path)

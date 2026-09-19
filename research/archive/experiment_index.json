@@ -1988,6 +1988,18 @@
       "manifest_sha256": "50453b07d0622b8ebe815d3f59798c034233a5979db777f932144a69fc36da56",
       "original_path": "experiments/EXP-TIME-0001",
       "reason": "manuelle Archivierung"
+    },
+    "SERIES-STAGE1-TOPOLOGY-V3-R1-20260918": {
+      "archive_type": "series",
+      "archived_at": "2026-09-19T19:37:49.386615+00:00",
+      "child_experiment_ids": [
+        "EXP-S1-TOPO-V3-R1-20260918"
+      ],
+      "experiment_id": "SERIES-STAGE1-TOPOLOGY-V3-R1-20260918",
+      "original_path": "workflows/SERIES-STAGE1-TOPOLOGY-V3-R1-20260918.json",
+      "owned_child_experiment_ids": [],
+      "reason": "manuelle Reihenarchivierung",
+      "series_id": "SERIES-STAGE1-TOPOLOGY-V3-R1-20260918"
     }
   },
   "schema_version": 2

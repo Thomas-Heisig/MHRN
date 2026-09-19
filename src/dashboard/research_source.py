@@ -390,12 +390,11 @@ class ResearchSource:
         return frozenset(str(key) for key in cast(dict[object, object], experiments))
 
     def list_experiments(self) -> list[dict[str, JSONValue]]:
-        """List experiments visible in the work view or retained for publication traceability.
+        """List experiments visible in the active work view.
 
-        Metadata-archived ordinary experiments are hidden from the active work view.
-        Published campaign indexes remain navigable even when archived because their
-        manifests carry the scientific validity/evidence boundary used by historical
-        publications. Keeping them visible does not promote them to evidence.
+        The archive index controls dashboard visibility for every experiment
+        record kind, including historical campaign indexes. Archiving changes
+        only this metadata view; canonical publication artifacts remain on disk.
         """
         directory = self._root / "experiments"
         if not directory.is_dir():
@@ -413,12 +412,7 @@ class ResearchSource:
             manifest_data = (
                 cast(dict[str, Any], data) if isinstance(data, dict) else None
             )
-            record_kind = (
-                str(manifest_data.get("record_kind", ""))
-                if manifest_data is not None
-                else ""
-            )
-            if entry.name in hidden and record_kind != "campaign_index":
+            if entry.name in hidden:
                 continue
             dashboard_manifest = (
                 normalize_experiment_manifest(entry, manifest_data)
