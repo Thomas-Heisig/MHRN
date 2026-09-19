@@ -280,11 +280,11 @@ def main() -> int:
 
     report = f"""# {EXP_ID}: REC-002 clean-tree R2
 
-Research question: {prereg["research_question"]}  
-Hypothesis: {prereg["hypothesis"]}  
-Source freeze: {source["commit"]}  
-Clean before execution: true  
-Runs: {len(runs)}  
+Research question: {prereg["research_question"]}
+Hypothesis: {prereg["hypothesis"]}
+Source freeze: {source["commit"]}
+Clean before execution: true
+Runs: {len(runs)}
 Data role: DATA only; no automatic EVID promotion.
 
 ## Reason for R2
