@@ -69,18 +69,21 @@ class ExperimentOrganizerService:
                 child_id in archived_experiment_ids for child_id in child_ids
             )
             explicitly_archived = series_id in archived_series_ids
-            inferred_archived = series_id in inferred_archived_series_ids
+            inferred_archived = (
+                series_id in inferred_archived_series_ids or archived_child_count > 0
+            )
+            fully_archived = archived_child_count == len(child_ids) and bool(child_ids)
             series.append(
                 {
                     "series_id": series_id,
                     "archived": explicitly_archived or inferred_archived,
                     "archive_recorded": explicitly_archived,
-                    "inferred_from_children": inferred_archived,
+                    "inferred_from_children": inferred_archived and not explicitly_archived,
                     "archive_state": (
                         "archived"
-                        if explicitly_archived or inferred_archived
+                        if explicitly_archived or fully_archived
                         else "partial"
-                        if archived_child_count
+                        if archived_child_count > 0
                         else "active"
                     ),
                     "archived_child_count": archived_child_count,

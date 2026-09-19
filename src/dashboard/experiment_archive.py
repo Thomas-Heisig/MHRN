@@ -197,9 +197,10 @@ class ExperimentArchiveService:
                 if series_id in indexed_series:
                     continue
                 child_ids = self._series_experiment_ids(series_id)
-                if not child_ids or not all(
+                archived_child_count = sum(
                     child_id in archived_children for child_id in child_ids
-                ):
+                )
+                if not child_ids or archived_child_count == 0:
                     continue
                 items.append(
                     {
@@ -209,6 +210,13 @@ class ExperimentArchiveService:
                         "archive_type": "series",
                         "archive_mode": "metadata_only",
                         "inferred_from_children": True,
+                        "archive_state": (
+                            "archived"
+                            if archived_child_count == len(child_ids)
+                            else "partial"
+                        ),
+                        "archived_child_count": archived_child_count,
+                        "child_count": len(child_ids),
                         "canonical_path": f"workflows/{series_id}.json",
                         "available": True,
                         "child_experiment_ids": child_ids,

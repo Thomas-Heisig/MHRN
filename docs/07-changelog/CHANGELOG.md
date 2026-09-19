@@ -9,6 +9,8 @@
 - Ein Frontend-ID-Fehler bei aktiven Experimenten wurde korrigiert.
 - Archivieren bleibt metadata-only; wissenschaftliche Artefakte werden nicht
   verschoben oder umgeschrieben.
+- Bereits teilweise archivierte Reihen erscheinen mit Kinderzähler und
+  `partial`-Status im Archiv statt weiter in der aktiven Reihenliste.
 
 ## 2026-09-18 - Human-review inbox integrity
 

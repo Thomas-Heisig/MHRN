@@ -162,7 +162,8 @@ def test_series_reports_partial_child_archiving(tmp_path: Path) -> None:
         archive.archived_series_ids(), archive.archived_ids()
     )[0]
 
-    assert series["archived"] is False
+    assert series["archived"] is True
     assert series["archive_state"] == "partial"
+    assert series["inferred_from_children"] is True
     assert series["archived_child_count"] == 1
     assert series["child_count"] == 2

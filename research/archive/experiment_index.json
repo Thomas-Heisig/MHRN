@@ -1821,6 +1821,13 @@
       "original_path": "experiments/EXP-REC-0001-R1",
       "reason": "manuelle Archivierung"
     },
+    "EXP-REC-002-CLEAN-R2-20260919": {
+      "archived_at": "2026-09-19T19:42:17.891409+00:00",
+      "experiment_id": "EXP-REC-002-CLEAN-R2-20260919",
+      "manifest_sha256": "a37afb593f3ec5390942df19aa68581aadfd4ee02f3309e37cc30b16d3dbe2d3",
+      "original_path": "experiments/EXP-REC-002-CLEAN-R2-20260919",
+      "reason": "manuelle Archivierung"
+    },
     "EXP-REG-0001": {
       "archived_at": "2026-09-16T13:43:58.675471+00:00",
       "experiment_id": "EXP-REG-0001",
@@ -1867,6 +1874,13 @@
       "experiment_id": "EXP-RETRY-AIRR-2026-0001-02",
       "manifest_sha256": "da69684ccaf3bfaba55c91958bf051ca01c633fa418629107e005e7c4430407d",
       "original_path": "experiments/EXP-RETRY-AIRR-2026-0001-02",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-S1-REC-CLEAN-R2-20260919": {
+      "archived_at": "2026-09-19T19:42:21.443904+00:00",
+      "experiment_id": "EXP-S1-REC-CLEAN-R2-20260919",
+      "manifest_sha256": "88845e9dff9cfc389245cd55e36694a77fef002e42188a6d478d43d03e4f3f28",
+      "original_path": "experiments/EXP-S1-REC-CLEAN-R2-20260919",
       "reason": "manuelle Archivierung"
     },
     "EXP-S1-TEMP-ORDER-V2-20260919": {
@@ -1944,6 +1958,13 @@
       "experiment_id": "EXP-SNN-002-R2",
       "manifest_sha256": "04665f0b3a5772a0df8029fdbb6ac1a8302dd1a08d24bc0488ea10d8abf7beeb",
       "original_path": "experiments/EXP-SNN-002-R2",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-SNN004-STDP-ASYM-R2-20260919": {
+      "archived_at": "2026-09-19T19:42:24.835961+00:00",
+      "experiment_id": "EXP-SNN004-STDP-ASYM-R2-20260919",
+      "manifest_sha256": "55a6ef353710e20f1c0e070e698675d9369c4f1b87a43c916e4ab98e5928d488",
+      "original_path": "experiments/EXP-SNN004-STDP-ASYM-R2-20260919",
       "reason": "manuelle Archivierung"
     },
     "EXP-STAGE0-20260918-MODEL-CONFORMANCE-V2-PROMO-R1": {

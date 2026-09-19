@@ -21,6 +21,8 @@
 	archiviert und gemeinsam wiederhergestellt werden.
 - Die kanonischen Experiment- und Workflow-Artefakte werden dabei nicht
 	verschoben oder verändert.
+- Reihen mit bereits archivierten Kindern werden als `partial` im Archiv
+	geführt und nicht mehr fälschlich in der aktiven Reihenliste angezeigt.
 
 ## 2026-09-16 Release navigation separation
 

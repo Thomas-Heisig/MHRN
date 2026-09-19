@@ -8,6 +8,9 @@ Die Dashboard-Archivierung ist metadata-only: Einzelne Experimente und
 Experimentreihen können aus der Arbeitsansicht ausgeblendet und wiederhergestellt
 werden, ohne kanonische DATA-, Manifest- oder Workflow-Artefakte zu verschieben
 oder wissenschaftlich umzuschreiben.
+Teilweise archivierte Reihen werden im Dashboard als `partial` mit archivierten
+und gesamten Kinderexperimenten ausgewiesen und aus der aktiven Reihenliste
+entfernt.
 
 ## Aktuelle Publikation
 
