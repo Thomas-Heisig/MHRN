@@ -242,12 +242,24 @@ class ExperimentArchiveService:
             raise ExperimentArchiveError(
                 f"experiment series is unreadable: {series_id}"
             ) from exc
-        if not isinstance(payload, dict) or not isinstance(payload.get("results"), list):
-            raise ExperimentArchiveError(f"experiment series has no results: {series_id}")
+        if not isinstance(payload, dict):
+            raise ExperimentArchiveError(
+                f"experiment series has no results: {series_id}"
+            )
+        payload_dict = cast(dict[str, object], payload)
+        results = payload_dict.get("results")
+        if not isinstance(results, list):
+            raise ExperimentArchiveError(
+                f"experiment series has no results: {series_id}"
+            )
         result_ids: list[str] = []
-        for result in cast(list[object], payload["results"]):
-            if isinstance(result, dict) and isinstance(result.get("experiment_id"), str):
-                result_ids.append(result["experiment_id"])
+        for result in cast(list[object], results):
+            if not isinstance(result, dict):
+                continue
+            result_dict = cast(dict[str, object], result)
+            experiment_id = result_dict.get("experiment_id")
+            if isinstance(experiment_id, str):
+                result_ids.append(experiment_id)
         return list(dict.fromkeys(result_ids))
 
     def archive_series(self, series_id: str, reason: str = "") -> dict[str, Any]:
