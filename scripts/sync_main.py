@@ -24,15 +24,15 @@ def main() -> int:
     parser.add_argument("--verify-path", action="append", default=[])
     args = parser.parse_args()
 
-    root = Path(_run(["git", "rev-parse", "--show-toplevel"], Path.cwd())).resolve()
+    root = Path(
+        _run(["git", "rev-parse", "--show-toplevel"], Path.cwd())
+    ).resolve()
     status = _run(
         ["git", "status", "--porcelain", "--untracked-files=all"],
         root,
     )
     if status:
-        raise RuntimeError(
-            "safe sync refuses to overwrite local changes:\n" + status
-        )
+        raise RuntimeError("safe sync refuses to overwrite local changes:\n" + status)
 
     subprocess.run(["git", "fetch", "origin", "main"], cwd=root, check=True)
     branch = _run(["git", "branch", "--show-current"], root)
