@@ -127,3 +127,37 @@ for (const port of [4174, 4175]) {
   });
  }
 }
+
+
+for (const port of [4174, 4175]) {
+  test(`publication ${port}: imprint/legal subtab exposes identity and incomplete-publication warning`, async ({ page }) => {
+    const errors = [];
+    page.on('pageerror', error => errors.push(error.message));
+    await page.goto(`http://127.0.0.1:${port}/`);
+
+    const response = await page.request.get(`http://127.0.0.1:${port}/api/publication/imprint`);
+    expect(response.ok()).toBeTruthy();
+    const imprint = await response.json();
+    expect(imprint.provider.name).toBe('Thomas Heisig');
+    expect(imprint.project.short_name).toBe('MHRN');
+    expect(imprint.project.orcid).toContain('0009-0002-9589-1872');
+    expect(imprint.read_only).toBe(true);
+    expect(imprint.public_internet_ready).toBe(false);
+    expect(imprint.missing_required_fields).toEqual(expect.arrayContaining(['postal_address', 'email']));
+    expect(JSON.stringify(imprint)).not.toContain('t_heisig@gmx.de');
+    expect(JSON.stringify(imprint)).not.toContain('news@thomas-heisig.de');
+
+    await page.evaluate(() => window.MHRNWorkspaceArchitecture?.selectRoute?.('publication', 'imprint'));
+    await expect(page.locator('body')).toHaveAttribute('data-current-area', 'publication');
+    await expect(page.locator('#publication-imprint-panel')).toBeVisible();
+    await expect(page.locator('#publication-imprint-panel')).toContainText('Impressum & Rechtliche Hinweise');
+    await expect(page.locator('#publication-imprint-panel')).toContainText('Thomas Heisig');
+    await expect(page.locator('#publication-imprint-panel')).toContainText('Pflichtfeld vor öffentlicher Bereitstellung');
+    await expect(page.locator('#publication-imprint-panel')).toContainText('0009-0002-9589-1872');
+
+    await page.evaluate(() => window.MHRNWorkspaceArchitecture?.selectRoute?.('publication', 'overview'));
+    await expect(page.locator('#publication-panel')).toBeVisible();
+    await expect(page.locator('#publication-imprint-panel')).toBeHidden();
+    expect(errors).toEqual([]);
+  });
+}
