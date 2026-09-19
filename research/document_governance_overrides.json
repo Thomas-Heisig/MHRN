@@ -299,6 +299,15 @@
       "citation": "cite_decision_path_and_RQ-TEMP-002",
       "evidence_role": "adequacy_interpretation_not_evidence_by_itself",
       "rationale": "Accepted adequacy decision preserving historical TEMP-002 DATA while ruling out the V1 forward/reverse arms as a confirmatory temporal-order test and defining the prospective V2 correction."
+    },
+    "research/decisions/2026-09-19_rec002_clean_r2_execution_audit.md": {
+      "kind": "scientific_execution_audit",
+      "status": "current",
+      "authority": "accepted_execution_provenance_record",
+      "mutability": "versioned_replacement_only",
+      "citation": "cite_decision_path_experiment_and_canonical_data_commit",
+      "evidence_role": "execution_provenance_not_evidence_by_itself",
+      "rationale": "Documents the gate-protected clean-tree execution, verified source-digest equality, canonical DATA commit and workflow-trigger recovery for EXP-REC-002-CLEAN-R2-20260919; explicitly does not create Human Review, EVID or independent replication."
     }
   }
 }
