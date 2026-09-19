@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "preregistration_id": "PREREG-SNN005-HOLDOUT-R2",
+  "research_question": "RQ-SNN-005",
+  "hypothesis": "H-SNN-005-A",
+  "protocol": "snn005_native_association_holdout_r2",
+  "mode": "CONFIRMATORY_INTERNAL_SIMULATION",
+  "execution_authorized": true,
+  "scientific_evidence": false,
+  "automatic_evidence_promotion": false,
+  "human_review_required": true,
+  "independent_replication": false,
+  "rationale": "RQ-SNN-005 asks whether STDP improves functional learning performance relative to no STDP. Earlier exploratory runs were incomplete or provenance-limited. This prospective run uses the existing native association holdout task with matched learning-off, sham-replay, post-acquisition weight-reset and weight-shuffle controls, fresh held-out test episodes, and frozen weights during evaluation.",
+  "design": {
+    "runner": "src.research.empirical_evaluation.run_association_generalization",
+    "conditions": [
+      "learning_on",
+      "learning_off",
+      "sham_replay",
+      "weight_reset",
+      "weight_shuffle"
+    ],
+    "seeds": [7601,7602,7603,7604,7605,7606,7607,7608,7609,7610,7611,7612,7613,7614,7615,7616],
+    "seed_count": 16,
+    "runs_per_seed": 5,
+    "expected_run_count": 80,
+    "test_episodes_per_run": 40,
+    "evaluation_ticks_per_episode": 12,
+    "primary_metric": "test_accuracy",
+    "primary_reference": "learning_on",
+    "primary_control": "learning_off",
+    "secondary_controls": [
+      "sham_replay",
+      "weight_reset",
+      "weight_shuffle"
+    ],
+    "test_constraints": [
+      "teacher absent during every test episode",
+      "LearningEngine detached during every test episode",
+      "fresh network per test episode",
+      "weights frozen throughout holdout evaluation",
+      "same held-out test-input digest across all five arms within each seed"
+    ]
+  },
+  "analysis_plan": {
+    "unit": "paired simulation seed",
+    "primary_contrast": "learning_on minus learning_off test_accuracy",
+    "robustness_family": [
+      "learning_on minus sham_replay",
+      "learning_on minus weight_reset",
+      "learning_on minus weight_shuffle"
+    ],
+    "test": "exact two-sided paired sign-flip over 16 seed-level accuracy differences",
+    "interval": "2000-resample paired percentile bootstrap 95% CI using the existing deterministic paired_summary implementation",
+    "multiplicity": "Holm adjustment across the four declared learning_on-control comparisons",
+    "alpha": 0.05,
+    "minimum_primary_mean_difference": 0.10,
+    "decision_rule": [
+      "all 80 runs and all 16x5 seed-condition cells must be present",
+      "all runs must contain exactly 40 holdout episodes and 12 ticks per episode",
+      "test teacher must be absent and test LearningEngine detached in every run",
+      "weights must be unchanged across every holdout evaluation",
+      "within each seed all five conditions must share the same test_input_digest",
+      "learning_on minus learning_off mean test_accuracy difference must be >= 0.10",
+      "the primary bootstrap 95% CI lower bound must be > 0",
+      "the Holm-adjusted primary sign-flip p-value must be < 0.05",
+      "learning_on mean accuracy must exceed each sham/reset/shuffle control mean accuracy",
+      "each robustness contrast must have positive mean difference and Holm-adjusted p < 0.05"
+    ]
+  },
+  "freshness_rule": "Seeds 7601-7616 are disjoint from the earlier native association seeds 20001-20010 and recent Stage-1/REC clean-run seed ranges.",
+  "integrity_constraints": [
+    "execute in the isolated experiment worktree",
+    "primary checkout remains clean before and after execution",
+    "scientific source digest must equal the currently verified digest before execution",
+    "no modification of src/, configs/, tests/, research/schemas/ or pyproject.toml",
+    "no outcome-based retries, seed replacement or parameter retuning",
+    "all scientific negatives are retained"
+  ],
+  "claim_boundary": "A supported result would show only that the registered STDP-enabled synthetic association protocol achieves higher held-out classification accuracy than matched no-learning/sham/reset/shuffle controls within this simulator and task. It does not establish general intelligence, open-world learning, biological equivalence, human-like memory, scaling, a 5D advantage, external independent replication or human-reviewed EVID.",
+  "review": {
+    "human_review_status": "PENDING_AFTER_EXECUTION",
+    "ai_review_does_not_satisfy_human_gate": true,
+    "automatic_promotion_forbidden": true
+  }
+}
