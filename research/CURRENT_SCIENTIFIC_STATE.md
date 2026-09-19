@@ -11,6 +11,8 @@ oder wissenschaftlich umzuschreiben.
 Teilweise archivierte Reihen werden im Dashboard als `partial` mit archivierten
 und gesamten Kinderexperimenten ausgewiesen und aus der aktiven Reihenliste
 entfernt.
+Das Archiv ist im Frontend standardmäßig geschlossen und bietet eine gemeinsame
+Suche für archivierte Reihen und Einzelexperimente.
 
 ## Aktuelle Publikation
 

@@ -11,6 +11,8 @@
   verschoben oder umgeschrieben.
 - Bereits teilweise archivierte Reihen erscheinen mit Kinderzähler und
   `partial`-Status im Archiv statt weiter in der aktiven Reihenliste.
+- Archivierte Reihen und Einzelexperimente sind in einer standardmäßig
+  geschlossenen, durchsuchbaren Archivfläche getrennt von aktiven Einträgen.
 
 ## 2026-09-18 - Human-review inbox integrity
 

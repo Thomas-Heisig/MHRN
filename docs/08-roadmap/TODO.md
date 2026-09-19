@@ -14,6 +14,7 @@
 - [x] Metadata-only Archivierung und Wiederherstellung für Experimentreihen ergänzen.
 - [x] Kanonische Experiment- und Workflow-Artefakte unverändert am Platz lassen.
 - [x] Teilweise archivierte Reihen im Archiv mit ihrem Kinderstatus ausweisen.
+- [x] Archivfrontend standardmäßig ausblenden und Reihen/Einzelexperimente gemeinsam durchsuchen.
 
 Aeltere offene Zaehler unten sind zeitgebundene Bestandsaufnahmen; der aktuelle Registerabgleich steht in research/generated/EXPERIMENT_COVERAGE_ALPHA3.json.
 

@@ -262,6 +262,66 @@
   padding: 8px 0;
   cursor: pointer;
 }
+.experiment-lab-panel .experiment-archive-section {
+  margin-top: 12px;
+  border-top: 3px double var(--rule-2, #b7ad9f);
+  background: color-mix(in srgb, var(--paper-2, #ebe4d8) 62%, transparent);
+}
+.experiment-lab-panel .experiment-archive-section > summary {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 11px 4px;
+  color: var(--accent, #b23a1a);
+  font: 700 .72rem/1.2 var(--font-mono, ui-monospace, monospace);
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+.experiment-lab-panel .experiment-archive-section[open] > summary {
+  border-bottom: 1px solid var(--rule-1, #d3cabd);
+}
+.experiment-archive-toolbar {
+  display: grid;
+  grid-template-columns: auto minmax(180px, 1fr) auto;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 4px;
+  border-bottom: 1px solid var(--rule-1, #d3cabd);
+}
+.experiment-archive-toolbar label {
+  color: var(--ink-3, #5f584f);
+  font: 700 .6rem/1.2 var(--font-mono, ui-monospace, monospace);
+  text-transform: uppercase;
+}
+.experiment-archive-toolbar input {
+  min-width: 0;
+  padding: 7px 9px;
+  border: 1px solid var(--rule-2, #b7ad9f);
+  border-radius: 2px;
+  background: var(--paper-1, #f4efe6);
+  color: var(--ink, #1a1714);
+  font: 600 .7rem/1.2 var(--font-ui, system-ui, sans-serif);
+}
+.experiment-archive-toolbar input:focus {
+  outline: 2px solid color-mix(in srgb, var(--accent, #b23a1a) 35%, transparent);
+  outline-offset: 1px;
+  border-color: var(--accent, #b23a1a);
+}
+.experiment-archive-toolbar span {
+  color: var(--ink-4, #746c62);
+  font: 600 .58rem/1.2 var(--font-mono, ui-monospace, monospace);
+  white-space: nowrap;
+}
+.experiment-archive-section .experiment-library-section-head {
+  padding: 10px 4px 4px;
+}
+.experiment-archive-section .experiment-library-section-head h4 {
+  margin: 0;
+  color: var(--ink-2, #3f3933);
+  font: 700 .65rem/1.2 var(--font-mono, ui-monospace, monospace);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
 
 .experiment-lab-panel .workflow-progress-row,
 .experiment-lab-panel .workflow-actions,
@@ -306,6 +366,7 @@
   .experiment-lab-panel .workflow-form-grid { grid-template-columns: 1fr; }
   .experiment-lab-panel .workflow-form-grid .workflow-wide { grid-column: auto; }
   .experiment-lab-boundary { align-items: start; flex-direction: column; gap: 6px; }
+  .experiment-archive-toolbar { grid-template-columns: 1fr; }
 }
 
 @media print {

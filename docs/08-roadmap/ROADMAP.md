@@ -23,6 +23,8 @@
 	verschoben oder verändert.
 - Reihen mit bereits archivierten Kindern werden als `partial` im Archiv
 	geführt und nicht mehr fälschlich in der aktiven Reihenliste angezeigt.
+- Das Archiv ist im Frontend standardmäßig geschlossen und durchsucht Reihen
+	und Einzelexperimente über eine gemeinsame Suchfunktion.
 
 ## 2026-09-16 Release navigation separation
 

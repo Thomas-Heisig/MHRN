@@ -191,14 +191,18 @@ export class ExperimentWorkflowPanel {
             <option value="status">Status</option>
           </select></label>
         </div>
-        <section class="experiment-series-section"><div class="experiment-library-section-head"><h4>Aktive Experimentreihen</h4><small>Jede Reihe ist separat technisch bewertbar.</small></div><div id="workflow-experiment-series" class="experiment-series-list"><p class="experiment-library-empty">Lade Reihen …</p></div><div class="experiment-library-section-head"><h4>Archivierte Experimentreihen</h4></div><div id="workflow-archived-series" class="experiment-series-list"><p class="experiment-library-empty">Keine archivierten Reihen.</p></div></section>
+        <section class="experiment-series-section"><div class="experiment-library-section-head"><h4>Aktive Experimentreihen</h4><small>Jede Reihe ist separat technisch bewertbar.</small></div><div id="workflow-experiment-series" class="experiment-series-list"><p class="experiment-library-empty">Lade Reihen …</p></div></section>
         <div class="experiment-library-grid">
           <section><h4>Aktive Experimente</h4><div id="workflow-active-experiments" class="experiment-library-list"><p class="experiment-library-empty">Lade Experimente …</p></div></section>
-          <details id="workflow-archive-section" class="experiment-archive-section"><summary><span>Archiv</span><span id="workflow-archive-summary-count">0 archiviert</span></summary><div id="workflow-archived-experiments" class="experiment-library-list"><p class="experiment-library-empty">Archiv ist leer.</p></div></details>
+          <details id="workflow-archive-section" class="experiment-archive-section"><summary><span>Archiv</span><span id="workflow-archive-summary-count">0 archiviert</span></summary><div class="experiment-archive-toolbar"><label for="workflow-archive-search">Archiv durchsuchen</label><input id="workflow-archive-search" type="search" placeholder="ID, Status oder Forschungsfrage" autocomplete="off"><span id="workflow-archive-search-count"></span></div><div class="experiment-library-section-head"><h4>Archivierte Reihen</h4></div><div id="workflow-archived-series" class="experiment-series-list"><p class="experiment-library-empty">Keine archivierten Reihen.</p></div><div class="experiment-library-section-head"><h4>Archivierte Einzelexperimente</h4></div><div id="workflow-archived-experiments" class="experiment-library-list"><p class="experiment-library-empty">Archiv ist leer.</p></div></details>
         </div>`;
       form.insertAdjacentElement("afterend", library);
       byId("workflow-series-open")?.addEventListener("click", () => this._openBatchWorkflow());
       byId("workflow-library-refresh")?.addEventListener("click", () => this._loadExperimentCollections());
+      byId("workflow-archive-search")?.addEventListener("input", (event) => {
+        this._archiveSearch = event.target.value || "";
+        this._applyArchiveSearch();
+      });
       library.addEventListener("click", (event) => this._handleExperimentLibraryAction(event));
 
       // View mode toggle
@@ -501,10 +505,35 @@ export class ExperimentWorkflowPanel {
       // Apply view mode
       active.dataset.expView = this._viewMode || "grid";
       archived.dataset.expView = this._viewMode || "grid";
+      this._archiveItems = { series: archivedSeriesItems, experiments: archivedExperimentItems };
+      const search = byId("workflow-archive-search");
+      if (search) search.value = this._archiveSearch || "";
+      this._applyArchiveSearch();
     } catch (error) {
       active.innerHTML = `<p class="experiment-library-empty">Experimentliste nicht verfügbar: ${escapeHtml(error.message || error)}</p>`;
       archived.innerHTML = `<p class="experiment-library-empty">Archiv nicht verfügbar: ${escapeHtml(error.message || error)}</p>`;
     }
+  }
+
+  _archiveItemText(item, kind) {
+    if (kind === "series") return JSON.stringify({ series_id: item.series_id, status: item.status, archive_state: item.archive_state, results: item.results });
+    return JSON.stringify({ experiment_id: item.experiment_id, status: item.manifest?.experiment_status || item.status, research_questions: item.manifest?.research_questions, hypotheses: item.manifest?.hypotheses });
+  }
+
+  _applyArchiveSearch() {
+    const archiveItems = this._archiveItems || { series: [], experiments: [] };
+    const query = String(this._archiveSearch || "").trim().toLocaleLowerCase();
+    const matches = (item, kind) => !query || this._archiveItemText(item, kind).toLocaleLowerCase().includes(query);
+    const seriesItems = archiveItems.series.filter((item) => matches(item, "series"));
+    const experimentItems = archiveItems.experiments.filter((item) => matches(item, "experiment"));
+    const archivedSeries = byId("workflow-archived-series");
+    const archivedExperiments = byId("workflow-archived-experiments");
+    if (archivedSeries) archivedSeries.innerHTML = seriesItems.length ? seriesItems.map((item) => this._experimentSeriesItem(item)).join("") : `<p class="experiment-library-empty">${query ? "Keine Reihen im Archiv gefunden." : "Keine archivierten Reihen."}</p>`;
+    if (archivedExperiments) archivedExperiments.innerHTML = experimentItems.length ? experimentItems.map((item) => this._experimentLibraryItem(item, true)).join("") : `<p class="experiment-library-empty">${query ? "Keine Einzelexperimente im Archiv gefunden." : "Archiv ist leer."}</p>`;
+    const count = byId("workflow-archive-search-count");
+    if (count) count.textContent = query ? `${seriesItems.length + experimentItems.length} Treffer` : `${archiveItems.series.length + archiveItems.experiments.length} Einträge`;
+    const section = byId("workflow-archive-section");
+    if (section && query) section.open = true;
   }
 
   _sortExperimentItems(mode) {
