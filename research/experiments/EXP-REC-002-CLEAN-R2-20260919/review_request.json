@@ -1,0 +1,20 @@
+{
+  "ai_review_does_not_satisfy_human_gate": true,
+  "automatic_evidence_promotion": false,
+  "experiment_id": "EXP-REC-002-CLEAN-R2-20260919",
+  "human_review_status": "PENDING",
+  "hypothesis": "H-REC-002-A",
+  "independent_replication": false,
+  "interpretation_boundary": "This experiment can support only the scoped claim that loop delay changes persistence/propagation metrics in the registered small deterministic recurrent SNN at recurrent weight 100 and a 256-tick observation window. It does not establish memory, cognition, biological equivalence, scaling, a 5D advantage, monotonic superiority of larger delays, human-reviewed EVID or independent replication.",
+  "questions": [
+    "Was the run executed on a clean source freeze with the complete 4-delay grid?",
+    "Does every treatment delay differ from delay 1 in at least one preregistered primary outcome?",
+    "Are at least two treatment-delay signatures distinct for every seed?",
+    "Does the interpretation avoid monotonic-superiority, memory, cognition, scaling and independent-replication claims?"
+  ],
+  "research_question": "RQ-REC-002",
+  "result_status": "SUPPORTED_WITHIN_PREREGISTERED_PROTOCOL",
+  "reviewer_type_required": "human",
+  "schema_version": 1,
+  "scientific_evidence": false
+}
