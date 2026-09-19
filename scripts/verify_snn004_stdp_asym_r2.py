@@ -50,7 +50,17 @@ def main() -> int:
     measurements = data["measurements"]
     assert len(measurements) == 11
     assert {int(row["delta_t_ms"]) for row in measurements} == {
-        -50, -20, -10, -5, -1, 0, 1, 5, 10, 20, 50
+        -50,
+        -20,
+        -10,
+        -5,
+        -1,
+        0,
+        1,
+        5,
+        10,
+        20,
+        50,
     }
     assert all(int(row["repeated_evaluations"]) == 10 for row in measurements)
 
@@ -63,14 +73,19 @@ def main() -> int:
         digest, relpath = line.split("  ", 1)
         assert sha256(OUT / relpath) == digest
 
-    print(json.dumps({
-        "experiment_id": EXP_ID,
-        "status": manifest["result_status"],
-        "integrity": True,
-        "primary_gates": manifest["primary_gates"],
-        "human_review_status": "PENDING",
-        "scientific_evidence": False,
-    }, sort_keys=True))
+    print(
+        json.dumps(
+            {
+                "experiment_id": EXP_ID,
+                "status": manifest["result_status"],
+                "integrity": True,
+                "primary_gates": manifest["primary_gates"],
+                "human_review_status": "PENDING",
+                "scientific_evidence": False,
+            },
+            sort_keys=True,
+        )
+    )
     return 0
 
 
