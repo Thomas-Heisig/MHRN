@@ -158,4 +158,3 @@ Historical generic runtime and boundary-audit runs remain provenance records, bu
 ### Claim boundary
 
 This contract does not infer consciousness, moral personhood, legal personality, copyright authorship or autonomous scientific responsibility from machine participation. Those questions require separate legal, ethical or consciousness-specific analysis.
-

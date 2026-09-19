@@ -45,9 +45,7 @@ def _next_evidence_id() -> str:
     retired_path = EVIDENCE_DIR / "retired_ids.json"
     if retired_path.is_file():
         try:
-            retired_raw: object = json.loads(
-                retired_path.read_text(encoding="utf-8")
-            )
+            retired_raw: object = json.loads(retired_path.read_text(encoding="utf-8"))
         except (OSError, json.JSONDecodeError):
             retired_raw = {}
         if isinstance(retired_raw, dict):

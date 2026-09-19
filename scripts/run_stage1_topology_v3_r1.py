@@ -26,10 +26,13 @@ from run_stage1_topology_v2 import (
     sign_test_p,
     write_json,
 )
+
 from src.research.canonical_state import canonical_state_digest
 
 ROOT = Path(__file__).resolve().parents[1]
-PREREG = ROOT / "research" / "preregistrations" / "PREREG-S1-TOPO-V3-R1-TIME-RESOLVED.json"
+PREREG = (
+    ROOT / "research" / "preregistrations" / "PREREG-S1-TOPO-V3-R1-TIME-RESOLVED.json"
+)
 CONFIG = ROOT / "configs" / "learning_experiment.yaml"
 EXP_ID = "EXP-S1-TOPO-V3-R1-20260918"
 OUT = ROOT / "research" / "experiments" / EXP_ID
@@ -149,7 +152,9 @@ def simulate(
         "active_output_neurons": len(active_outputs),
         "output_reach_fraction": len(active_outputs) / float(len(output_ids)),
         "first_output_latency": first_output,
-        "first_output_latency_censored": first_output if first_output is not None else censor,
+        "first_output_latency_censored": (
+            first_output if first_output is not None else censor
+        ),
         "last_activity_tick": last_activity,
         "total_spikes": total_spikes,
         "delivered_events": delivered_events,
@@ -205,19 +210,19 @@ def analyze_endpoint(
     endpoint: str,
     alpha: float,
 ) -> list[dict[str, Any]]:
-    lookup = {
-        (str(run["condition"]), int(run["seed"])): run
-        for run in evaluation
-    }
+    lookup = {(str(run["condition"]), int(run["seed"])): run for run in evaluation}
     seeds = sorted({int(run["seed"]) for run in evaluation})
     tests: list[dict[str, Any]] = []
     for left, right in PRIMARY_CONTRASTS:
         differences = [
-            float(lookup[(right, seed)][endpoint]) - float(lookup[(left, seed)][endpoint])
+            float(lookup[(right, seed)][endpoint])
+            - float(lookup[(left, seed)][endpoint])
             for seed in seeds
         ]
         boot_seed = int(
-            hashlib.sha256(f"{EXP_ID}:{endpoint}:{left}:{right}".encode()).hexdigest()[:12],
+            hashlib.sha256(f"{EXP_ID}:{endpoint}:{left}:{right}".encode()).hexdigest()[
+                :12
+            ],
             16,
         )
         tests.append(
@@ -229,7 +234,9 @@ def analyze_endpoint(
                 "nonzero_pairs": sum(abs(value) > 1e-12 for value in differences),
                 "median_difference": float(statistics.median(differences)),
                 "mean_difference": float(statistics.fmean(differences)),
-                "bootstrap_median_difference_ci95": bootstrap_ci(differences, boot_seed),
+                "bootstrap_median_difference_ci95": bootstrap_ci(
+                    differences, boot_seed
+                ),
                 "p_raw": sign_test_p(differences),
             }
         )
@@ -237,17 +244,16 @@ def analyze_endpoint(
     for row in tests:
         low, high = row["bootstrap_median_difference_ci95"]
         row["ci_excludes_zero"] = bool(low > 0.0 or high < 0.0)
-        row["significant"] = bool(float(row["p_holm"]) < alpha and row["ci_excludes_zero"])
+        row["significant"] = bool(
+            float(row["p_holm"]) < alpha and row["ci_excludes_zero"]
+        )
     return tests
 
 
 def analyze(evaluation: list[dict[str, Any]], prereg: dict[str, Any]) -> dict[str, Any]:
     alpha = float(prereg["evaluation"]["alpha"])
     primary_tests: list[dict[str, Any]] = []
-    lookup = {
-        (str(run["condition"]), int(run["seed"])): run
-        for run in evaluation
-    }
+    lookup = {(str(run["condition"]), int(run["seed"])): run for run in evaluation}
     seeds = sorted({int(run["seed"]) for run in evaluation})
     for endpoint in PRIMARY_ENDPOINTS:
         for left, right in PRIMARY_CONTRASTS:
@@ -268,9 +274,7 @@ def analyze(evaluation: list[dict[str, Any]], prereg: dict[str, Any]) -> dict[st
                     "contrast": [left, right],
                     "difference_definition": "right-minus-left",
                     "n_pairs": len(differences),
-                    "nonzero_pairs": sum(
-                        abs(value) > 1e-12 for value in differences
-                    ),
+                    "nonzero_pairs": sum(abs(value) > 1e-12 for value in differences),
                     "median_difference": float(statistics.median(differences)),
                     "mean_difference": float(statistics.fmean(differences)),
                     "bootstrap_median_difference_ci95": bootstrap_ci(
@@ -319,7 +323,9 @@ def analyze(evaluation: list[dict[str, Any]], prereg: dict[str, Any]) -> dict[st
     }
 
 
-def validate_design(prereg: dict[str, Any], evaluation: list[dict[str, Any]]) -> dict[str, Any]:
+def validate_design(
+    prereg: dict[str, Any], evaluation: list[dict[str, Any]]
+) -> dict[str, Any]:
     seeds = {int(v) for v in prereg["evaluation"]["seeds"]}
     expected_edges = int(prereg["matched_budgets"]["expected_edge_count"])
     old_seeds = set(range(2101, 2121))
@@ -331,9 +337,12 @@ def validate_design(prereg: dict[str, Any], evaluation: list[dict[str, Any]]) ->
         "evaluation_seed_set": {int(run["seed"]) for run in evaluation} == seeds,
         "v2_seed_disjoint": seeds.isdisjoint(old_seeds),
         "node_count_matched": all(int(run["node_count"]) == 64 for run in evaluation),
-        "edge_count_matched": all(int(run["edge_count"]) == expected_edges for run in evaluation),
+        "edge_count_matched": all(
+            int(run["edge_count"]) == expected_edges for run in evaluation
+        ),
         "weight_frozen": all(
-            float(run["synaptic_weight"]) == float(prereg["matched_budgets"]["synaptic_weight"])
+            float(run["synaptic_weight"])
+            == float(prereg["matched_budgets"]["synaptic_weight"])
             for run in evaluation
         ),
         "evaluation_ticks_matched": all(
@@ -341,7 +350,11 @@ def validate_design(prereg: dict[str, Any], evaluation: list[dict[str, Any]]) ->
             for run in evaluation
         ),
     }
-    return {"expected_edge_count": expected_edges, "checks": checks, "pass": all(checks.values())}
+    return {
+        "expected_edge_count": expected_edges,
+        "checks": checks,
+        "pass": all(checks.values()),
+    }
 
 
 def render_report(
@@ -508,7 +521,9 @@ def main() -> int:
             "status": analysis["status"],
             "evaluation_run_count": len(evaluation),
             "design_integrity_passed": bool(integrity["pass"]),
-            "ceiling_resolution_supported": bool(analysis["ceiling_resolution_supported"]),
+            "ceiling_resolution_supported": bool(
+                analysis["ceiling_resolution_supported"]
+            ),
             "replication_supported": bool(analysis["replication_supported"]),
         },
         "artifacts_sha256": artifact_hashes,
@@ -537,7 +552,9 @@ def main() -> int:
                 "experiment_id": EXP_ID,
                 "status": analysis["status"],
                 "evaluation_runs": len(evaluation),
-                "ceiling_resolution_supported": analysis["ceiling_resolution_supported"],
+                "ceiling_resolution_supported": analysis[
+                    "ceiling_resolution_supported"
+                ],
                 "replication_supported": analysis["replication_supported"],
                 "source_freeze": source["commit"],
             },

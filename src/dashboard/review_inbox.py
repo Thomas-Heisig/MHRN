@@ -10,7 +10,6 @@ import json
 from pathlib import Path
 from typing import Any, cast
 
-
 _VALID_REVIEW_STATUSES = {"accepted_as_interpretation", "rejected"}
 _NON_HUMAN_REVIEWERS = {
     "ai",
@@ -106,7 +105,10 @@ def build_review_inbox(research_root: Path) -> dict[str, Any]:
         already_evidenced = bool(
             isinstance(payload, dict)
             and payload.get("evidence_status") == "human_reviewed_project_evidence"
-        ) or (target.name == "results.json" and target.parents[1].joinpath("EVID.json").is_file())
+        ) or (
+            target.name == "results.json"
+            and target.parents[1].joinpath("EVID.json").is_file()
+        )
         explicit = bool(
             isinstance(payload, dict)
             and (
@@ -129,12 +131,11 @@ def build_review_inbox(research_root: Path) -> dict[str, Any]:
             continue
         relative = str(target.relative_to(root)).replace("\\", "/")
         research_question = (
-            str(
-                payload.get("research_question_id")
-                or payload.get("research_question")
-            )
+            str(payload.get("research_question_id") or payload.get("research_question"))
             if isinstance(payload, dict)
-            and (payload.get("research_question_id") or payload.get("research_question"))
+            and (
+                payload.get("research_question_id") or payload.get("research_question")
+            )
             else None
         )
         hypothesis = (

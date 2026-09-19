@@ -1,8 +1,8 @@
 """Regression contract for scoped Stage-0 scientific readiness.
 
 This test deliberately distinguishes research readiness from overall scientific
-maturity. Human EVID promotion and independent authorship replication remain
-separate gates.
+maturity. Scoped Human-reviewed EVID promotion is complete; independent
+authorship replication remains a separate incomplete gate.
 """
 
 from __future__ import annotations
@@ -52,11 +52,11 @@ def test_confirmatory_data_satisfy_both_selectable_models() -> None:
     assert results["H-EVAL-006-C"]["supported_by_protocol"] is True
 
 
-def test_readiness_does_not_forge_maturity_gates() -> None:
+def test_readiness_reflects_scoped_evid_without_forging_replication() -> None:
     readiness = _load(READINESS)
     boundary = readiness["maturity_boundary"]
     assert isinstance(boundary, dict)
-    assert boundary["human_reviewed_evid_complete"] is False
+    assert boundary["human_reviewed_evid_complete"] is True
     assert boundary["independent_authorship_replication_complete"] is False
 
 

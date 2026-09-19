@@ -194,7 +194,7 @@ def test_publication_citations_are_claim_near_and_source_typed() -> None:
 def test_scientific_balance_has_explicit_5d_and_compression_roadmaps() -> None:
     balance = (EDITION / "SCIENTIFIC_BALANCE.md").read_text(encoding="utf-8")
     assert "H-5D-005-A" in balance
-    assert "kein Evidenzbeitrag – weder positiv noch negativ" in balance
+    assert "Kanonisch bleibt `RQ-5D-005` **open** und `H-5D-005-A` **untested**." in balance
     assert "≥ 1.000 Neuronen pro Bedingung" in balance
     assert "≥ 10 eingehende Synapsen pro Neuron" in balance
     assert "distanzabhängige Konnektivitätswahrscheinlichkeit" in balance
@@ -205,20 +205,21 @@ def test_scientific_balance_has_explicit_5d_and_compression_roadmaps() -> None:
 
 # fmt: on
 
+
 def test_publication_keeps_dissertation_research_architecture() -> None:
     manuscript = (EDITION / "MANUSCRIPT.md").read_text(encoding="utf-8")
     required = (
-        "Forschungsproblem, Leitfrage und dissertationsähnliche Gesamtarchitektur",
+        "Forschungsproblem und monographische Gesamtarchitektur",
         "Übergeordnetes Forschungsproblem",
         "Zentrale Leitfrage",
-        "Arbeitsleitthese",
+        "Publikationsweite Syntheseproposition",
         "Teilstudie A — Basale Dynamik, Referenzkonformität und Determinismus",
         "Teilstudie B — Rekurrenz, Topologie und 5D-Geometrie",
         "Teilstudie C — Plastizität, Lernen und adaptive Stabilität",
         "Teilstudie D — Spezialisierte Pfade, Neural Symbiosis und MSBA",
         "Teilstudie E — Kontrolliertes synthetisches Embodiment",
         "Teilstudie F — Gedächtnis, Replay, semantische Verdichtung und Weltmodell",
-        "Epistemologische Teilstudie — Forschungsprozess als Untersuchungsgegenstand",
+        "RQ-EPIST-002 — Prozessgovernance als prüfbarer Forschungsgegenstand",
         "Normative Teilstudie — Forschungsfrage, Verfahren und Geltungsgrenzen",
         "Theorieentwicklungsstudie — Rekursive Epistemik als prüfbare Arbeitshypothese",
         "General Discussion",

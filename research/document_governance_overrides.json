@@ -281,6 +281,24 @@
       "citation": "cite_revision_and_parent_plan_as_proposal",
       "evidence_role": "proposal_not_evidence",
       "rationale": "Source-bound revision of LP-20260917194217; exact CL-002-EVID and CL-003-DATA digests are recorded, but the historical approval does not transfer to changed proposal content and explicit human reapproval is required before execution authorization."
+    },
+    "research/decisions/2026-09-19_stage1_temp_order_v2_execution-recovery.md": {
+      "kind": "scientific_execution_recovery_record",
+      "status": "current",
+      "authority": "accepted_execution_provenance_record",
+      "mutability": "versioned_replacement_only",
+      "citation": "cite_decision_path_experiment_and_canonical_data_commit",
+      "evidence_role": "execution_provenance_not_evidence_by_itself",
+      "rationale": "Documents a Git persistence-recovery execution and the canonical DATA commit for EXP-S1-TEMP-ORDER-V2-20260919; explicitly does not create independent replication, Human Review or EVID."
+    },
+    "research/decisions/2026-09-19_temp002_v1_order-encoding-adequacy.md": {
+      "kind": "scientific_method_decision",
+      "status": "current",
+      "authority": "accepted_scientific_method_decision",
+      "mutability": "versioned_replacement_only",
+      "citation": "cite_decision_path_and_RQ-TEMP-002",
+      "evidence_role": "adequacy_interpretation_not_evidence_by_itself",
+      "rationale": "Accepted adequacy decision preserving historical TEMP-002 DATA while ruling out the V1 forward/reverse arms as a confirmatory temporal-order test and defining the prospective V2 correction."
     }
   }
 }

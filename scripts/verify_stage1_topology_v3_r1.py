@@ -5,7 +5,6 @@ from __future__ import annotations
 
 import hashlib
 import json
-import sys
 from pathlib import Path
 from typing import Any
 
@@ -21,7 +20,9 @@ from run_stage1_topology_v3_r1 import (
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "research" / "experiments" / EXP_ID
-PREREG = ROOT / "research" / "preregistrations" / "PREREG-S1-TOPO-V3-R1-TIME-RESOLVED.json"
+PREREG = (
+    ROOT / "research" / "preregistrations" / "PREREG-S1-TOPO-V3-R1-TIME-RESOLVED.json"
+)
 CONFIG = ROOT / "configs" / "learning_experiment.yaml"
 RUNNER = ROOT / "scripts" / "run_stage1_topology_v3_r1.py"
 
@@ -48,7 +49,9 @@ def main() -> int:
 
     prereg = read_json(PREREG)
     manifest = read_json(OUT / "manifest.json")
-    evaluation_raw: Any = json.loads((OUT / "data" / "evaluation.json").read_text(encoding="utf-8"))
+    evaluation_raw: Any = json.loads(
+        (OUT / "data" / "evaluation.json").read_text(encoding="utf-8")
+    )
     if not isinstance(evaluation_raw, list):
         fail("evaluation data is not a list", errors)
         evaluation: list[dict[str, Any]] = []
@@ -133,7 +136,9 @@ def main() -> int:
         "experiment_id": EXP_ID,
         "result_status": recomputed_analysis["status"],
         "evaluation_runs": len(evaluation),
-        "ceiling_resolution_supported": recomputed_analysis["ceiling_resolution_supported"],
+        "ceiling_resolution_supported": recomputed_analysis[
+            "ceiling_resolution_supported"
+        ],
         "replication_supported": recomputed_analysis["replication_supported"],
         "diagnostics": diagnostics,
         "source_freeze": manifest.get("source_freeze", {}).get("commit"),

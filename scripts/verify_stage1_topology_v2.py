@@ -5,7 +5,6 @@ from __future__ import annotations
 
 import hashlib
 import json
-import sys
 from pathlib import Path
 from typing import Any
 
@@ -115,7 +114,9 @@ def main() -> int:
             fail("evaluation seed set mismatch", errors)
         if not all(int(row["node_count"]) == 64 for row in evaluation):
             fail("evaluation contains non-64-neuron run", errors)
-        if not all(float(row["synaptic_weight"]) == float(chosen_weight) for row in evaluation):
+        if not all(
+            float(row["synaptic_weight"]) == float(chosen_weight) for row in evaluation
+        ):
             fail("evaluation weight not frozen", errors)
 
         recomputed_summary = summarize(evaluation)
@@ -128,7 +129,9 @@ def main() -> int:
         if statistics.get("primary_analysis") != recomputed_primary:
             fail("primary statistics differ from deterministic recomputation", errors)
         if statistics.get("integrity") != recomputed_integrity:
-            fail("integrity assessment differs from deterministic recomputation", errors)
+            fail(
+                "integrity assessment differs from deterministic recomputation", errors
+            )
         if not recomputed_integrity["pass"]:
             fail("design integrity did not pass", errors)
 
@@ -170,7 +173,10 @@ def main() -> int:
     if gates != recomputed_gates:
         fail("calibration gate differs from deterministic recomputation", errors)
     if selected != chosen_weight:
-        fail("chosen calibration weight does not match preregistered selection rule", errors)
+        fail(
+            "chosen calibration weight does not match preregistered selection rule",
+            errors,
+        )
 
     if manifest["source_freeze"].get("dirty_before_execution") is not False:
         fail("source freeze was dirty before execution", errors)

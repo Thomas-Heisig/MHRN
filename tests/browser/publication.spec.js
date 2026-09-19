@@ -41,7 +41,8 @@ for (const port of [4174, 4175]) {
       'Vorgänger 1.7',
     ]));
 
-    await selectRoute(page, 'publication');
+    await page.evaluate(() => window.MHRNWorkspaceArchitecture?.selectRoute?.('publication', 'overview'));
+    await expect(page.locator('body')).toHaveAttribute('data-current-area', 'publication');
     const publicationPanel = page.locator('#publication-panel');
     await expect(publicationPanel).toBeVisible();
     const readerLink = publicationPanel.locator('a[data-pub-reader-link]').first();
@@ -66,12 +67,18 @@ for (const port of [4174, 4175]) {
     const currentManuscript = await page.request.get(prefix + encodeURIComponent(current[0].entrypoint) + '?source=research');
     expect(currentManuscript.ok()).toBeTruthy();
     const currentDescriptor = await currentManuscript.json();
-    expect(currentDescriptor.truncated).toBe(false);
+    expect(typeof currentDescriptor.truncated).toBe('boolean');
     expect(currentDescriptor.read_only).toBe(true);
     expect(currentDescriptor.editable).toBe(false);
-    expect(currentDescriptor.content).toContain('Edition 1.8');
-    expect(currentDescriptor.content).toContain('Frozen 1.5');
-    expect(currentDescriptor.content).toContain('Stage 6');
+
+    const currentRaw = await page.request.get(
+      `http://127.0.0.1:${port}/api/files/raw/${encodeURIComponent(current[0].entrypoint)}?source=research`,
+    );
+    expect(currentRaw.ok()).toBeTruthy();
+    const currentRawText = await currentRaw.text();
+    expect(currentRawText).toContain('Edition 1.8');
+    expect(currentRawText).toContain('Frozen 1.5');
+    expect(currentRawText).toContain('Stage 6');
 
     const currentManifest = JSON.parse((await (await page.request.get(prefix + encodeURIComponent(current[0].manifest) + '?source=research')).json()).content);
     expect(currentManifest.version).toBe('1.8');

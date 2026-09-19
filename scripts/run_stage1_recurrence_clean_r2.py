@@ -32,7 +32,9 @@ def read_json(path: Path) -> dict[str, Any]:
 
 def write_json(path: Path, value: Any) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(value, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    path.write_text(
+        json.dumps(value, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
 
 
 def sha256(path: Path) -> str:
@@ -96,7 +98,11 @@ def analyse(runs: list[dict[str, Any]], prereg: dict[str, Any]) -> dict[str, Any
         delay_sensitive = False
         for weight in (50, 75, 100, 125):
             values = {
-                int(by_condition[f"w{weight}_d{delay}"]["metrics"].get("last_response_latency", -1))
+                int(
+                    by_condition[f"w{weight}_d{delay}"]["metrics"].get(
+                        "last_response_latency", -1
+                    )
+                )
                 for delay in (1, 2, 4)
             }
             delay_sensitive = delay_sensitive or len(values) > 1
@@ -104,7 +110,11 @@ def analyse(runs: list[dict[str, Any]], prereg: dict[str, Any]) -> dict[str, Any
         weight_sensitive = False
         for delay in (1, 2, 4):
             values = {
-                int(by_condition[f"w{weight}_d{delay}"]["metrics"].get("last_response_latency", -1))
+                int(
+                    by_condition[f"w{weight}_d{delay}"]["metrics"].get(
+                        "last_response_latency", -1
+                    )
+                )
                 for weight in (50, 75, 100, 125)
             }
             weight_sensitive = weight_sensitive or len(values) > 1
@@ -115,7 +125,8 @@ def analyse(runs: list[dict[str, Any]], prereg: dict[str, Any]) -> dict[str, Any
                 "coverage_complete": set(by_condition) == expected_conditions,
                 "control_immediate_decay": control_immediate,
                 "has_transient_recurrent_condition": "transient" in treatment_classes,
-                "has_persistent_recurrent_condition": "persistent_to_window" in treatment_classes,
+                "has_persistent_recurrent_condition": "persistent_to_window"
+                in treatment_classes,
                 "max_control_last_response_latency": control_last,
                 "max_recurrent_last_response_latency": treatment_last,
                 "recurrence_extends_response": treatment_last > control_last,
@@ -154,10 +165,7 @@ def analyse(runs: list[dict[str, Any]], prereg: dict[str, Any]) -> dict[str, Any
             {str(row["state_digest_after"]) for row in runs}
         ),
         "observed_persistence_classes": sorted(
-            {
-                str(row["metrics"].get("persistence_class"))
-                for row in runs
-            }
+            {str(row["metrics"].get("persistence_class")) for row in runs}
         ),
     }
     status = (
@@ -204,7 +212,8 @@ def main() -> int:
         "clean_source_freeze": source["dirty_before_execution"] is False,
         "run_count": len(runs) == 300,
         "seed_count": {int(row["seed"]) for row in runs} == set(seeds),
-        "condition_grid": {str(row["condition"]) for row in runs} == expected_conditions,
+        "condition_grid": {str(row["condition"]) for row in runs}
+        == expected_conditions,
         "exact_coverage": all(
             sum(
                 int(row["seed"]) == seed and str(row["condition"]) == condition
@@ -318,11 +327,11 @@ def main() -> int:
 
 Stage 1 small-SNN recurrence control / Stage-2 bridge.
 
-Research question: {prereg["research_question"]}  
-Hypothesis: {prereg["hypothesis"]}  
-Source freeze: {source["commit"]}  
-Clean before execution: true  
-Runs: {len(runs)}  
+Research question: {prereg["research_question"]}
+Hypothesis: {prereg["hypothesis"]}
+Source freeze: {source["commit"]}
+Clean before execution: true
+Runs: {len(runs)}
 Data role: DATA only; no automatic EVID promotion.
 
 ## Reason for R2
