@@ -7,6 +7,7 @@ from pathlib import Path
 from typing import Any
 
 from src.dashboard.experiment_archive import ExperimentArchiveService
+from src.dashboard.experiment_organizer import ExperimentOrganizerService
 
 
 def _write_experiment(root: Path, experiment_id: str) -> tuple[Path, dict[str, Any]]:
@@ -118,6 +119,12 @@ def test_archive_and_restore_series_archives_children_without_moving_files(
 
     assert archived["archive_type"] == "series"
     assert service.archived_series_ids() == frozenset({"SERIES-0001"})
+    listed = service.list_archived()
+    assert any(
+        item.get("archive_type") == "series"
+        and item.get("series_id") == "SERIES-0001"
+        for item in listed
+    )
     assert child_a.is_dir() and child_b.is_dir()
     assert service.archive_series("SERIES-0001")["already_archived"] is True
 
@@ -127,3 +134,35 @@ def test_archive_and_restore_series_archives_children_without_moving_files(
     assert service.archived_series_ids() == frozenset()
     assert service.archived_ids() == frozenset()
     assert child_a.is_dir() and child_b.is_dir()
+
+
+def test_series_reports_partial_child_archiving(tmp_path: Path) -> None:
+    _write_experiment(tmp_path, "EXP-PARTIAL-01")
+    _write_experiment(tmp_path, "EXP-PARTIAL-02")
+    workflows = tmp_path / "workflows"
+    workflows.mkdir()
+    (workflows / "SERIES-PARTIAL.json").write_text(
+        json.dumps(
+            {
+                "workflow_id": "SERIES-PARTIAL",
+                "completed": 2,
+                "failed": 0,
+                "results": [
+                    {"experiment_id": "EXP-PARTIAL-01", "status": "completed"},
+                    {"experiment_id": "EXP-PARTIAL-02", "status": "completed"},
+                ],
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    archive = ExperimentArchiveService(tmp_path)
+    archive.archive_experiment("EXP-PARTIAL-01")
+    series = ExperimentOrganizerService(tmp_path).list_series(
+        archive.archived_series_ids(), archive.archived_ids()
+    )[0]
+
+    assert series["archived"] is False
+    assert series["archive_state"] == "partial"
+    assert series["archived_child_count"] == 1
+    assert series["child_count"] == 2
