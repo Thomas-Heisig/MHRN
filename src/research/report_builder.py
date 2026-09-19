@@ -83,8 +83,8 @@ class ReportBuilder:
             direct_questions = data.get("research_questions")
             if isinstance(direct_questions, list):
                 question_ids.update(
-                    str(value)
-                    for value in direct_questions
+                    value
+                    for value in cast(list[Any], direct_questions)
                     if isinstance(value, str) and value
                 )
             hypothesis_ids: set[str] = set()
@@ -94,8 +94,8 @@ class ReportBuilder:
             direct_hypotheses = data.get("hypotheses")
             if isinstance(direct_hypotheses, list):
                 hypothesis_ids.update(
-                    str(value)
-                    for value in direct_hypotheses
+                    value
+                    for value in cast(list[Any], direct_hypotheses)
                     if isinstance(value, str) and value
                 )
             for hypothesis_id in hypothesis_ids:
