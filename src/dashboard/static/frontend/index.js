@@ -26,6 +26,7 @@ import { initPublicationPanel } from "./modules/publication-reader.js";
 import { initPublicationScholarTools } from "./modules/publication-scholar-bootstrap.js";
 import { initPublicationReaderPolish } from "./modules/publication-reader-polish.js";
 import { initPublicationImprint } from "./modules/publication-imprint.js";
+import { initPublicationExplainer } from "./modules/publication-explainer.js";
 import { initResearchSubtabs } from "./modules/research-subtabs.js";
 import { initNeuronModelScience } from "./modules/neuron-model-science.js";
 import { initRuntimeNeuron } from "./modules/runtime-neuron.js";
@@ -66,6 +67,7 @@ function init() {
   initPublicationScholarTools();
   initPublicationReaderPolish();
   initPublicationImprint();
+  initPublicationExplainer();
   initResearchSubtabs();
   initNeuronModelScience();
   initRuntimeNeuron();
