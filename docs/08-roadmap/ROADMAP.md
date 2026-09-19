@@ -25,6 +25,13 @@
 	external record/DOI remains unverified until a concrete Zenodo record exists.
 - The public OSF project resource is linked as a research/provenance location.
 
+## 2026-09-20 Seed DATA provenance
+
+- Added the canonical [Seed DATA contract](../../research/specifications/SEED_DATA_CONTRACT.md)
+	for construction, usage, stored fields, paired comparisons and replication
+	limits.
+- Scientific Integrity and document-governance gates now require this contract.
+
 ## 2026-09-18 Human-review queue and inbox integrity
 
 - The review inbox now distinguishes real human decisions from AI-authored

@@ -26,6 +26,7 @@ Der Publication Viewer folgt `publications/catalog.json`; das aktuelle Reader-Zi
 ## Aktueller wissenschaftlicher Status
 
 - [Current Scientific State](CURRENT_SCIENTIFIC_STATE.md)
+- [Seed-Datenvertrag](specifications/SEED_DATA_CONTRACT.md) — Aufbau, Nutzung und Interpretation seed-gebundener DATA
 - [Scientific-Maturity-Manifest](../src/dashboard/static/scientific-progress.json)
 - [Scientific Maturity Roadmap](../docs/08-roadmap/SCIENTIFIC_MATURITY_ROADMAP.md)
 - [Research Integrity Gate](../docs/05-quality/RESEARCH_INTEGRITY_GATE.md)

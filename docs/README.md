@@ -84,6 +84,7 @@ Jede Datei wird zusätzlich durch `scripts/audit_document_governance.py` maschin
 ### Research
 - [Research canonical index](../research/README.md)
 - [Current Scientific State](../research/CURRENT_SCIENTIFIC_STATE.md)
+- [Seed-Datenvertrag](../research/specifications/SEED_DATA_CONTRACT.md)
 - [Integrity & Attribution](../research/INTEGRITY_AND_ATTRIBUTION.md)
 - [Related Work](../research/RELATED_WORK.md)
 - [Research Registry](../research/registry/)

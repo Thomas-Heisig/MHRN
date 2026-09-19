@@ -251,6 +251,7 @@ def main() -> int:
         "research/INTEGRITY_AND_ATTRIBUTION.md",
         "research/RELATED_WORK.md",
         "research/CURRENT_SCIENTIFIC_STATE.md",
+        "research/specifications/SEED_DATA_CONTRACT.md",
         "docs/00-governance/DOCUMENT_GOVERNANCE.md",
         "docs/05-quality/RESEARCH_INTEGRITY_GATE.md",
         "docs/08-roadmap/SCIENTIFIC_MATURITY_ROADMAP.md",
@@ -270,6 +271,20 @@ def main() -> int:
         require(
             (ROOT / path).is_file(),
             f"missing required scientific-integrity file: {path}",
+        )
+
+    seed_contract = (
+        ROOT / "research/specifications/SEED_DATA_CONTRACT.md"
+    ).read_text(encoding="utf-8").lower()
+    for phrase in (
+        "deterministischen",
+        "gepaarte bedingungen",
+        "seed-daten",
+        "keine unabhaengige externe replikation",
+    ):
+        require(
+            phrase in seed_contract,
+            f"seed data contract missing required boundary/content: {phrase}",
         )
 
     integrity_path = ROOT / "research/INTEGRITY_AND_ATTRIBUTION.md"

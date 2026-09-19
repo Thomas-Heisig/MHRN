@@ -80,6 +80,7 @@ The internal documentation and experiment taxonomy is being refined. The links b
 - **Machine-readable research-network registry:** [`research-network-registry.json`](research-network-registry.json)
 - **Independent replication call:** [`INDEPENDENT_REPLICATION.md`](INDEPENDENT_REPLICATION.md)
 - **Current scientific state:** [`research/CURRENT_SCIENTIFIC_STATE.md`](research/CURRENT_SCIENTIFIC_STATE.md)
+- **Seed DATA contract:** [`research/specifications/SEED_DATA_CONTRACT.md`](research/specifications/SEED_DATA_CONTRACT.md)
 - **Current publication pointer:** [`research/publications/CURRENT.md`](research/publications/CURRENT.md)
 - **Publication catalog / viewer source:** [`research/publications/catalog.json`](research/publications/catalog.json)
 - **Frozen empirical baseline 1.5:** [`research/publications/FROZEN_V1.5.md`](research/publications/FROZEN_V1.5.md)

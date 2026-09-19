@@ -24,6 +24,12 @@
 - [ ] Add a verified Zenodo record URL and DOI after the external record exists.
 - [x] Link the public OSF project as a research/provenance resource.
 
+## 2026-09-20 Seed DATA documentation
+
+- [x] Record seed construction and derived DATA fields in a canonical research specification.
+- [x] Link seed provenance documentation from README, Current Scientific State and the integrity gate.
+- [x] Distinguish paired deterministic repetitions from independent biological samples.
+
 Aeltere offene Zaehler unten sind zeitgebundene Bestandsaufnahmen; der aktuelle Registerabgleich steht in research/generated/EXPERIMENT_COVERAGE_ALPHA3.json.
 
 ## Naming update — 2026-09-08

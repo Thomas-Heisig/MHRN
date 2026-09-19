@@ -48,6 +48,12 @@ Das öffentliche OSF-Projekt ist als Forschungs-/Provenienzressource unter
 
 ## Forschungs- und Dokumentgovernance
 
+Der normative Vertrag fuer Aufbau, Nutzung und Interpretation seed-gebundener
+DATA steht unter
+[`research/specifications/SEED_DATA_CONTRACT.md`](specifications/SEED_DATA_CONTRACT.md).
+Er ist gemeinsam mit der jeweiligen Preregistration, Experiment-ID,
+Bedingung und den DATA-/Digest-Artefakten zu zitieren.
+
 `docs/` und `research/` werden durch `scripts/audit_document_governance.py` nach Typ, Status, Autorität, Mutabilität, Zitierregel und Evidenzrolle geprüft. Edition 1.8 ergänzt einen deterministischen Publikationsbuilder, vollständiges gepinntes Datei-/Abschnittsinventar, Research-Object-Projektionen, Creation-/Edition-/Experimentgenealogien, Vorgängerforschungs-Mapping und Quellenmetadaten. Diese Projektionen ersetzen keine Primärartefakte und zertifizieren keine semantische Vollständigkeit.
 
 ## Stage 0 — korrigierter wissenschaftlicher Reifestand

@@ -30,6 +30,15 @@
       "evidence_role": "summary_not_evidence_by_itself",
       "rationale": "Short current-state projection; underlying registry, DATA and EVID remain authoritative."
     },
+    "research/specifications/SEED_DATA_CONTRACT.md": {
+      "kind": "scientific_data_contract",
+      "status": "current",
+      "authority": "normative_seed_provenance_specification",
+      "mutability": "editable_with_source_review",
+      "citation": "cite_contract_with_experiment_preregistration_and_DATA",
+      "evidence_role": "method_contract_not_evidence",
+      "rationale": "Defines how deterministic seed inputs, derived seed-bound data, pairing, replication and interpretation limits are recorded across experiment protocols."
+    },
     "research/INTEGRITY_AND_ATTRIBUTION.md": {
       "kind": "integrity_policy",
       "status": "current",

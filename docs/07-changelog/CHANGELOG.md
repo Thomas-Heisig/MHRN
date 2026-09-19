@@ -11,6 +11,16 @@
 - Linked the public OSF project `https://osf.io/p34uq/` into project,
   citation, package and provenance metadata.
 
+## 2026-09-20 - Scientific seed DATA contract
+
+- Added a canonical seed-data specification covering seed construction,
+  derived parameter/data fields, paired conditions, replication semantics,
+  actual experiment examples and scientific interpretation limits.
+- Registered the specification in document governance and the Scientific
+  Integrity Gate.
+- Documented that deterministic seed repetitions, trials and repeated
+  component evaluations are not automatically independent biological samples.
+
 ## 2026-09-19 - Experiment- und Reihenarchiv
 
 - Einzelarchivierung ist idempotent und behandelt bereits archivierte
