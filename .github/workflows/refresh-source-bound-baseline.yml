@@ -36,6 +36,7 @@ jobs:
           python -m black --check src tests scripts
           python -m ruff check src tests scripts
           python scripts/generate_baseline.py
+          python scripts/generate_determinism_artifact.py
           python scripts/check_doc_consistency.py --check-tests
           python scripts/check_connectome_integrity.py
       - name: Preserve historical scientific records
