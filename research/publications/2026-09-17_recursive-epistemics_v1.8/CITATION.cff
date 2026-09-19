@@ -7,6 +7,7 @@ date-released: "2026-09-17"
 authors:
   - family-names: Heisig
     given-names: Thomas
+    orcid: "https://orcid.org/0009-0002-9589-1872"
 license: MIT
 repository: "https://github.com/Thomas-Heisig/MHRN/tree/main/research/publications/2026-09-17_recursive-epistemics_v1.8"
 url: "https://github.com/Thomas-Heisig/MHRN/blob/main/research/publications/2026-09-17_recursive-epistemics_v1.8/MANUSCRIPT.md"
@@ -16,6 +17,7 @@ preferred-citation:
   authors:
     - family-names: Heisig
       given-names: Thomas
+      orcid: "https://orcid.org/0009-0002-9589-1872"
   year: 2026
   version: "1.8"
   license: MIT
