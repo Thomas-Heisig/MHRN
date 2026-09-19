@@ -1,19 +1,10 @@
 name: SNN-004 STDP asymmetry R2
 
 on:
-  pull_request:
-    branches:
-      - main
-    paths:
-      - scripts/run_snn004_stdp_asym_r2.py
-      - scripts/verify_snn004_stdp_asym_r2.py
-      - research/preregistrations/PREREG-SNN004-STDP-ASYM-R2.json
-      - research/experiments/EXP-SNN004-STDP-ASYM-R2-20260919/**
-      - .github/workflows/snn004-stdp-asym-r2.yml
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   execute:
@@ -22,7 +13,6 @@ jobs:
     steps:
       - uses: actions/checkout@v7
         with:
-          ref: research/snn004-stdp-asym-r2-20260919
           fetch-depth: 0
       - uses: actions/setup-python@v7
         with:
@@ -57,14 +47,3 @@ jobs:
             python scripts/run_snn004_stdp_asym_r2.py
             python scripts/verify_snn004_stdp_asym_r2.py
           fi
-      - name: Persist DATA if generated
-        run: |
-          git add research/experiments/EXP-SNN004-STDP-ASYM-R2-20260919
-          if git diff --cached --quiet; then
-            exit 0
-          fi
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git commit -m "research: persist SNN-004 STDP asymmetry R2 DATA"
-          git pull --rebase origin research/snn004-stdp-asym-r2-20260919
-          git push origin HEAD:research/snn004-stdp-asym-r2-20260919
