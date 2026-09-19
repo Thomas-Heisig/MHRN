@@ -1,8 +1,17 @@
 # Current Scientific State
 
-**Stand:** 18. September 2026
+**Stand:** 19. September 2026
 
 Dieses Dokument ist der kurze Einstieg in den aktuellen wissenschaftlichen Zustand. Historische DATA, EVID-Entscheidungen und eingefrorene Publikationen bleiben unverändert in ihren datierten Verzeichnissen.
+
+## Methodischer Status der KI-Nutzung
+
+MHRN wird als **assistierte Einzelautorschaft mit verteilter KI-Unterstützung** entwickelt. KI-Systeme werden für Recherchehinweise, Gegenargumente, Strukturierung, Codeentwürfe, Tests, Fehlersuche und Review-Vorschläge eingesetzt. Diese Nutzung wird nicht nur offengelegt, sondern ist selbst Teil des methodischen Forschungsprogramms: Die Trennung von Vorschlag, Prüfung, Freigabe, Ausführung, Human Review, EVID und Veröffentlichung wird als prüfbarer Prozess behandelt.
+
+Die KI ist dabei weder wissenschaftlicher Autor noch Quellen- oder Evidenzautorität. Thomas Heisig trägt die menschliche Verantwortung für Auswahl, Freigabe, Behauptungen und Veröffentlichung.
+
+Die externe Geltung bleibt offen: interne Tests, Human Reviews, EVID-Registrierungen, GitHub-Releases und DOI-Zuweisungen ersetzen keine unabhängige Replikation oder externe fachliche Kritik. Der öffentliche Replikationsaufruf unter `INDEPENDENT_REPLICATION.md` ist daher ein zentraler nächster Schritt. Auch negative oder Null-Replikationen werden als wissenschaftlich relevante Ergebnisse akzeptiert.
+
 
 Die Dashboard-Archivierung ist metadata-only: Einzelne Experimente und
 Experimentreihen können aus der Arbeitsansicht ausgeblendet und wiederhergestellt
