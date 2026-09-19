@@ -522,6 +522,21 @@
     limitations: null
   created: '2026-08-23'
   updated: '2026-08-23'
+- id: RQ-EPIST-002
+  domain: Epistemology
+  question: Unter welchen Bedingungen reduziert eine explizite Trennung von Quelle, Entscheidung, Ausfuehrung, DATA, Review, EVID und Claim epistemische Fehlklassifikationen in schnell iterierender, KI-assistierter MHRN-Forschung?
+  relevance: Macht die epistemologisch-methodische Achse selbst prospektiv pruefbar, statt Prozessverbesserung aus einzelnen Korrekturereignissen abzuleiten.
+  literature: []
+  hypotheses:
+  - H-EPIST-002-A
+  evidence: []
+  status: open
+  answer:
+    current: null
+    confidence: none
+    limitations: Die historischen Korrekturfaelle motivieren das Design, sind aber keine konfirmatorische Evidenz fuer einen kausalen Governance-Nutzen. Das Vergleichsprotokoll ist noch nicht praeregistriert oder autorisiert.
+  created: '2026-09-19'
+  updated: '2026-09-19'
 - id: RQ-AIR-001
   domain: AI-Assisted Research
   question: Kann ein LLM-basierter Scientific Research Assistant methodische Fehler in Brain-5D-Experimenten anhand eines standardisierten ResearchPacket zuverlässig identifizieren?

@@ -348,7 +348,7 @@ Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypothese
 
 ## H-5D-005-A
 
-Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/37`.
+Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/38`.
 
 ```json
 {
@@ -364,7 +364,7 @@ Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypothese
 
 ## H-AIR-001-A
 
-Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/32`.
+Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/33`.
 
 ```json
 {
@@ -410,6 +410,22 @@ Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypothese
 }
 ```
 
+## H-EPIST-002-A
+
+Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/32`.
+
+```json
+{
+  "id": "H-EPIST-002-A",
+  "research_question": "RQ-EPIST-002",
+  "hypothesis": "Reviewer mit einem status- und provenienzgetrennten Claim-Paket weisen gegenueber einem inhaltlich aequivalenten abgeflachten Summary-Paket eine geringere Rate vorab definierter epistemischer Klassifikationsfehler auf.",
+  "status": "untested",
+  "evidence": [],
+  "created": "2026-09-19",
+  "updated": "2026-09-19"
+}
+```
+
 ## H-ETH-001-A
 
 Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/29`.
@@ -428,7 +444,7 @@ Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypothese
 
 ## H-ETH-001-B
 
-Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/44`.
+Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/45`.
 
 ```json
 {
@@ -444,7 +460,7 @@ Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypothese
 
 ## H-ETH-001-C
 
-Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/45`.
+Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/46`.
 
 ```json
 {
@@ -460,7 +476,7 @@ Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypothese
 
 ## H-ETH-001-D
 
-Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/46`.
+Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/47`.
 
 ```json
 {
@@ -476,7 +492,7 @@ Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypothese
 
 ## H-ETH-001-E
 
-Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/47`.
+Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/48`.
 
 ```json
 {
@@ -508,7 +524,7 @@ Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypothese
 
 ## H-GEN-001-A
 
-Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/35`.
+Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/36`.
 
 ```json
 {
@@ -556,7 +572,7 @@ Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypothese
 
 ## H-LIFE-001-A
 
-Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/42`.
+Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/43`.
 
 ```json
 {
@@ -604,7 +620,7 @@ Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypothese
 
 ## H-PERF-001-A
 
-Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/40`.
+Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/41`.
 
 ```json
 {
@@ -636,7 +652,7 @@ Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypothese
 
 ## H-REC-001-A
 
-Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/34`.
+Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/35`.
 
 ```json
 {
@@ -652,7 +668,7 @@ Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypothese
 
 ## H-REC-002-A
 
-Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/41`.
+Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/42`.
 
 ```json
 {
@@ -684,7 +700,7 @@ Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypothese
 
 ## H-REG-002-A
 
-Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/38`.
+Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/39`.
 
 ```json
 {
@@ -700,7 +716,7 @@ Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypothese
 
 ## H-REPL-001-A
 
-Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/36`.
+Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/37`.
 
 ```json
 {
@@ -868,7 +884,7 @@ Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypothese
 
 ## H-SNN-006-A
 
-Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/43`.
+Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/44`.
 
 ```json
 {
@@ -1004,7 +1020,7 @@ Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypothese
 
 ## H-SUITE-001-A
 
-Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/33`.
+Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/34`.
 
 ```json
 {
@@ -1036,7 +1052,7 @@ Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypothese
 
 ## H-TEMP-002-A
 
-Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/39`.
+Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/40`.
 
 ```json
 {
@@ -1174,7 +1190,7 @@ Typ: `research_question`; Quellstatus: `open`; Quelle: [research/registry/questi
 
 ## RQ-5D-005
 
-Typ: `research_question`; Quellstatus: `open`; Quelle: [research/registry/questions.yaml](../../registry/questions.yaml), JSON-Pointer `/37`.
+Typ: `research_question`; Quellstatus: `open`; Quelle: [research/registry/questions.yaml](../../registry/questions.yaml), JSON-Pointer `/38`.
 
 ```json
 {
@@ -1200,7 +1216,7 @@ Typ: `research_question`; Quellstatus: `open`; Quelle: [research/registry/questi
 
 ## RQ-AIR-001
 
-Typ: `research_question`; Quellstatus: `open`; Quelle: [research/registry/questions.yaml](../../registry/questions.yaml), JSON-Pointer `/32`.
+Typ: `research_question`; Quellstatus: `open`; Quelle: [research/registry/questions.yaml](../../registry/questions.yaml), JSON-Pointer `/33`.
 
 ```json
 {
@@ -1305,6 +1321,32 @@ Typ: `research_question`; Quellstatus: `open`; Quelle: [research/registry/questi
 }
 ```
 
+## RQ-EPIST-002
+
+Typ: `research_question`; Quellstatus: `open`; Quelle: [research/registry/questions.yaml](../../registry/questions.yaml), JSON-Pointer `/32`.
+
+```json
+{
+  "id": "RQ-EPIST-002",
+  "domain": "Epistemology",
+  "question": "Unter welchen Bedingungen reduziert eine explizite Trennung von Quelle, Entscheidung, Ausfuehrung, DATA, Review, EVID und Claim epistemische Fehlklassifikationen in schnell iterierender, KI-assistierter MHRN-Forschung?",
+  "relevance": "Macht die epistemologisch-methodische Achse selbst prospektiv pruefbar, statt Prozessverbesserung aus einzelnen Korrekturereignissen abzuleiten.",
+  "literature": [],
+  "hypotheses": [
+    "H-EPIST-002-A"
+  ],
+  "evidence": [],
+  "status": "open",
+  "answer": {
+    "current": null,
+    "confidence": "none",
+    "limitations": "Die historischen Korrekturfaelle motivieren das Design, sind aber keine konfirmatorische Evidenz fuer einen kausalen Governance-Nutzen. Das Vergleichsprotokoll ist noch nicht praeregistriert oder autorisiert."
+  },
+  "created": "2026-09-19",
+  "updated": "2026-09-19"
+}
+```
+
 ## RQ-ETH-001
 
 Typ: `research_question`; Quellstatus: `open`; Quelle: [research/registry/questions.yaml](../../registry/questions.yaml), JSON-Pointer `/29`.
@@ -1363,7 +1405,7 @@ Typ: `research_question`; Quellstatus: `open`; Quelle: [research/registry/questi
 
 ## RQ-GEN-001
 
-Typ: `research_question`; Quellstatus: `open`; Quelle: [research/registry/questions.yaml](../../registry/questions.yaml), JSON-Pointer `/35`.
+Typ: `research_question`; Quellstatus: `open`; Quelle: [research/registry/questions.yaml](../../registry/questions.yaml), JSON-Pointer `/36`.
 
 ```json
 {
@@ -1445,7 +1487,7 @@ Typ: `research_question`; Quellstatus: `open`; Quelle: [research/registry/questi
 
 ## RQ-LIFE-001
 
-Typ: `research_question`; Quellstatus: `open`; Quelle: [research/registry/questions.yaml](../../registry/questions.yaml), JSON-Pointer `/42`.
+Typ: `research_question`; Quellstatus: `open`; Quelle: [research/registry/questions.yaml](../../registry/questions.yaml), JSON-Pointer `/43`.
 
 ```json
 {
@@ -1523,7 +1565,7 @@ Typ: `research_question`; Quellstatus: `open`; Quelle: [research/registry/questi
 
 ## RQ-PERF-001
 
-Typ: `research_question`; Quellstatus: `open`; Quelle: [research/registry/questions.yaml](../../registry/questions.yaml), JSON-Pointer `/40`.
+Typ: `research_question`; Quellstatus: `open`; Quelle: [research/registry/questions.yaml](../../registry/questions.yaml), JSON-Pointer `/41`.
 
 ```json
 {
@@ -1574,7 +1616,7 @@ Typ: `research_question`; Quellstatus: `open`; Quelle: [research/registry/questi
 
 ## RQ-REC-001
 
-Typ: `research_question`; Quellstatus: `open`; Quelle: [research/registry/questions.yaml](../../registry/questions.yaml), JSON-Pointer `/34`.
+Typ: `research_question`; Quellstatus: `open`; Quelle: [research/registry/questions.yaml](../../registry/questions.yaml), JSON-Pointer `/35`.
 
 ```json
 {
@@ -1600,7 +1642,7 @@ Typ: `research_question`; Quellstatus: `open`; Quelle: [research/registry/questi
 
 ## RQ-REC-002
 
-Typ: `research_question`; Quellstatus: `open`; Quelle: [research/registry/questions.yaml](../../registry/questions.yaml), JSON-Pointer `/41`.
+Typ: `research_question`; Quellstatus: `open`; Quelle: [research/registry/questions.yaml](../../registry/questions.yaml), JSON-Pointer `/42`.
 
 ```json
 {
@@ -1651,7 +1693,7 @@ Typ: `research_question`; Quellstatus: `open`; Quelle: [research/registry/questi
 
 ## RQ-REG-002
 
-Typ: `research_question`; Quellstatus: `open`; Quelle: [research/registry/questions.yaml](../../registry/questions.yaml), JSON-Pointer `/38`.
+Typ: `research_question`; Quellstatus: `open`; Quelle: [research/registry/questions.yaml](../../registry/questions.yaml), JSON-Pointer `/39`.
 
 ```json
 {
@@ -1678,7 +1720,7 @@ Typ: `research_question`; Quellstatus: `open`; Quelle: [research/registry/questi
 
 ## RQ-REPL-001
 
-Typ: `research_question`; Quellstatus: `open`; Quelle: [research/registry/questions.yaml](../../registry/questions.yaml), JSON-Pointer `/36`.
+Typ: `research_question`; Quellstatus: `open`; Quelle: [research/registry/questions.yaml](../../registry/questions.yaml), JSON-Pointer `/37`.
 
 ```json
 {
@@ -1929,7 +1971,7 @@ Typ: `research_question`; Quellstatus: `open`; Quelle: [research/registry/questi
 
 ## RQ-SNN-006
 
-Typ: `research_question`; Quellstatus: `open`; Quelle: [research/registry/questions.yaml](../../registry/questions.yaml), JSON-Pointer `/43`.
+Typ: `research_question`; Quellstatus: `open`; Quelle: [research/registry/questions.yaml](../../registry/questions.yaml), JSON-Pointer `/44`.
 
 ```json
 {
@@ -2145,7 +2187,7 @@ Typ: `research_question`; Quellstatus: `open`; Quelle: [research/registry/questi
 
 ## RQ-SUITE-001
 
-Typ: `research_question`; Quellstatus: `open`; Quelle: [research/registry/questions.yaml](../../registry/questions.yaml), JSON-Pointer `/33`.
+Typ: `research_question`; Quellstatus: `open`; Quelle: [research/registry/questions.yaml](../../registry/questions.yaml), JSON-Pointer `/34`.
 
 ```json
 {
@@ -2196,7 +2238,7 @@ Typ: `research_question`; Quellstatus: `open`; Quelle: [research/registry/questi
 
 ## RQ-TEMP-002
 
-Typ: `research_question`; Quellstatus: `open`; Quelle: [research/registry/questions.yaml](../../registry/questions.yaml), JSON-Pointer `/39`.
+Typ: `research_question`; Quellstatus: `open`; Quelle: [research/registry/questions.yaml](../../registry/questions.yaml), JSON-Pointer `/40`.
 
 ```json
 {

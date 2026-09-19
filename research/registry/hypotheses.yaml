@@ -262,6 +262,13 @@
   evidence: []
   created: '2026-08-23'
   updated: '2026-08-23'
+- id: H-EPIST-002-A
+  research_question: RQ-EPIST-002
+  hypothesis: Reviewer mit einem status- und provenienzgetrennten Claim-Paket weisen gegenueber einem inhaltlich aequivalenten abgeflachten Summary-Paket eine geringere Rate vorab definierter epistemischer Klassifikationsfehler auf.
+  status: untested
+  evidence: []
+  created: '2026-09-19'
+  updated: '2026-09-19'
 - id: H-AIR-001-A
   research_question: RQ-AIR-001
   hypothesis: Ein Scientific Research Assistant mit strukturiertem ResearchPacket erkennt vorab definierte methodische Defekte mit höherem F1-Score als dasselbe Modell mit einem unstrukturierten Experimentbericht.
