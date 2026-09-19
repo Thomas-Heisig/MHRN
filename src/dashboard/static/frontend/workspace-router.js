@@ -112,11 +112,12 @@ const AREAS = Object.freeze({
   },
   publication: {
     number: "09", label: "Publikation", subtitle: "Wissenschaftliche Arbeit", owner: "publication",
-    purpose: "Aktuelle wissenschaftliche Hauptarbeit sowie Projektidentität, Impressum und rechtliche Transparenz.",
-    howto: ["Publikation für Manuskript und Anhänge nutzen.", "Impressum & Rechtliches zeigt Betreiber-, Autoren-, Lizenz- und Datenschutzangaben.", "Fehlende Pflichtfelder werden sichtbar als unvollständig markiert."],
+    purpose: "Aktuelle wissenschaftliche Hauptarbeit, eine verständliche Kurzfassung sowie Projektidentität, Impressum und rechtliche Transparenz.",
+    howto: ["Publikation für Manuskript und Anhänge nutzen.", "Einfach erklärt fasst Forschungsziel, Grenzen und KI-Nutzung ohne Fachsprache zusammen.", "Impressum & Rechtliches zeigt Betreiber-, Autoren-, Lizenz- und Datenschutzangaben."],
     contracts: ["/api/publication/current", "/api/publication/imprint"],
     routes: [
       ["overview", "Publikation", "publication", "publication", "reader"],
+      ["simple", "Einfach erklärt", "publication", "publication", "simple"],
       ["imprint", "Impressum & Rechtliches", "publication", "publication", "imprint"],
     ],
   },
@@ -289,7 +290,7 @@ function resetWorkspaceVisibility(workspace) {
 function showRouteContent(areaId, route) {
   const [id, label, workspace, action, arg] = route;
 
-  // Publication owns two direct subviews: reader and legal/imprint.
+  // Publication owns direct reader, plain-language and legal/imprint subviews.
   if (areaId === "publication") {
     const root = rootFor("publication");
     if (!root) return;
