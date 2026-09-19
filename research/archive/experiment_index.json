@@ -2016,7 +2016,7 @@
     },
     "SERIES-STAGE1-TOPOLOGY-V3-R1-20260918": {
       "archive_type": "series",
-      "archived_at": "2026-09-19T19:38:45.148657+00:00",
+      "archived_at": "2026-09-19T19:41:15.604722+00:00",
       "child_experiment_ids": [
         "EXP-S1-TOPO-V3-R1-20260918"
       ],

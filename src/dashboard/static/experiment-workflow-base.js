@@ -567,8 +567,10 @@ export class ExperimentWorkflowPanel {
     const archiveLabel = item.archive_state === "partial"
       ? ` · teilweise archiviert (${Number(item.archived_child_count || 0)}/${Number(item.child_count || 0)})`
       : item.archived ? " · archiviert" : "";
-    const archiveAction = item.archived
+    const archiveAction = item.archived && item.archive_recorded
       ? `<button type="button" class="btn-small" data-series-action="restore_series" data-series-id="${escapeHtml(item.series_id)}">↶ Reihe wiederherstellen</button>`
+      : item.inferred_from_children
+      ? `<button type="button" class="btn-small" data-series-action="archive_series" data-series-id="${escapeHtml(item.series_id)}">Archivstatus festhalten</button>`
       : `<button type="button" class="btn-small" data-series-action="archive_series" data-series-id="${escapeHtml(item.series_id)}">▣ Reihe archivieren</button>`;
     return `<details class="experiment-series-item ${item.archived ? "is-archived" : ""}"><summary><span><strong>${escapeHtml(item.series_id)}</strong><small>${escapeHtml(item.created_at || "")}</small></span><em class="series-status-${escapeHtml(item.status)}">${escapeHtml(item.status)} · ${escapeHtml(item.assessment_status)}${archiveLabel}</em></summary><div class="experiment-series-assessment"><div class="experiment-series-kpis"><span><small>Erfolgreich</small><strong>${Number(item.completed || 0)}</strong></span><span><small>Fehlgeschlagen</small><strong>${Number(item.failed || 0)}</strong></span><span><small>Ticks</small><strong>${escapeHtml(item.requested_ticks ?? "—")}</strong></span><span><small>Seeds</small><strong>${escapeHtml(item.seeds ?? "—")}</strong></span></div><p>${escapeHtml(item.assessment_boundary || "Technische Bewertung; Human Review erforderlich.")}</p><ul class="experiment-series-results">${resultRows}</ul><div class="experiment-series-actions">${reportButton}${archiveAction}</div></div></details>`;
   }

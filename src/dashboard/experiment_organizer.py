@@ -18,6 +18,7 @@ class ExperimentOrganizerService:
         self,
         archived_series_ids: frozenset[str] = frozenset(),
         archived_experiment_ids: frozenset[str] = frozenset(),
+        inferred_archived_series_ids: frozenset[str] = frozenset(),
     ) -> list[dict[str, Any]]:
         """Return workflow series with independently assessable child results."""
         if not self.workflows.is_dir():
@@ -68,13 +69,16 @@ class ExperimentOrganizerService:
                 child_id in archived_experiment_ids for child_id in child_ids
             )
             explicitly_archived = series_id in archived_series_ids
+            inferred_archived = series_id in inferred_archived_series_ids
             series.append(
                 {
                     "series_id": series_id,
-                    "archived": explicitly_archived,
+                    "archived": explicitly_archived or inferred_archived,
+                    "archive_recorded": explicitly_archived,
+                    "inferred_from_children": inferred_archived,
                     "archive_state": (
                         "archived"
-                        if explicitly_archived
+                        if explicitly_archived or inferred_archived
                         else "partial"
                         if archived_child_count
                         else "active"

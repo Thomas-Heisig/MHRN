@@ -4586,6 +4586,7 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
                     service.list_series(
                         archive_service.archived_series_ids(),
                         archive_service.archived_ids(),
+                        archive_service.fully_archived_series_ids(),
                     ),
                 )
             }

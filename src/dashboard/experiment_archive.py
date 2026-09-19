@@ -105,6 +105,30 @@ class ExperimentArchiveService:
             if metadata.get("archive_type") == "series"
         )
 
+    def fully_archived_series_ids(self) -> frozenset[str]:
+        """Return series whose every recorded child experiment is archived."""
+        archived_children = self.archived_ids()
+        result: set[str] = set(self.archived_series_ids())
+        if not self.research_workflows.is_dir():
+            return frozenset(result)
+        for workflow in self.research_workflows.glob("*.json"):
+            try:
+                payload: object = json.loads(workflow.read_text(encoding="utf-8"))
+            except (OSError, json.JSONDecodeError):
+                continue
+            if not isinstance(payload, dict) or not isinstance(
+                payload.get("results"), list
+            ):
+                continue
+            child_ids = [
+                str(item["experiment_id"])
+                for item in cast(list[object], payload["results"])
+                if isinstance(item, dict) and item.get("experiment_id")
+            ]
+            if child_ids and all(child_id in archived_children for child_id in child_ids):
+                result.add(str(payload.get("workflow_id") or workflow.stem))
+        return frozenset(result)
+
     @staticmethod
     def _load_manifest(directory: Path) -> dict[str, Any] | None:
         """Load manifest.json from a directory if present and valid."""
@@ -165,6 +189,31 @@ class ExperimentArchiveService:
             )
 
         indexed = set(records)
+        archived_children = self.archived_ids()
+        indexed_series = self.archived_series_ids()
+        if self.research_workflows.is_dir():
+            for workflow in sorted(self.research_workflows.glob("*.json"), reverse=True):
+                series_id = workflow.stem
+                if series_id in indexed_series:
+                    continue
+                child_ids = self._series_experiment_ids(series_id)
+                if not child_ids or not all(
+                    child_id in archived_children for child_id in child_ids
+                ):
+                    continue
+                items.append(
+                    {
+                        "experiment_id": series_id,
+                        "series_id": series_id,
+                        "archived": True,
+                        "archive_type": "series",
+                        "archive_mode": "metadata_only",
+                        "inferred_from_children": True,
+                        "canonical_path": f"workflows/{series_id}.json",
+                        "available": True,
+                        "child_experiment_ids": child_ids,
+                    }
+                )
         if self.legacy_archive.is_dir():
             for directory in sorted(self.legacy_archive.iterdir(), reverse=True):
                 if not directory.is_dir() or directory.name in indexed:
