@@ -1,0 +1,69 @@
+{
+  "artifacts_sha256": {
+    "config": "6f6cd457caf6216c286fee47ef03b529a0b496ed2dd53ee96b85d3b51e7b3a1c",
+    "evaluation_data": "d5ea4a30b9f6e861830b7d2ffc4c39fc1d8fde69e370ac820ffdc020443e4ef6",
+    "historical_v1_preregistration": "65e9f2638a4a28ef571bd98a1e2c70a491e75acf0ed3d9e5153c0747f7d8693a",
+    "preregistration": "1fdeeb9a559ef05944ffdddcc614ffc245fe9301dad982a0e9222e1f8de7c793",
+    "runner_source": "12a58e42a17dc0bb09fabb8dae8a9c29cf93fc91d7a5d8df5fdde434a36cf6d2",
+    "statistics": "b465b4d79a4213fc96ec287195f61040112014979f25ab6dbce59329999a48eb"
+  },
+  "automatic_evidence_promotion": false,
+  "claim_boundary": "This Stage-1 task tests whether a small, acyclic six-neuron SNN preserves the temporal order of two distinguishable input channels at designated outputs and whether deliberately destroying channel identity removes that fixed decoding signal. It demonstrates at most scoped technical task function under the registered parameter range. It does not establish learning, memory, cognition, biological equivalence, scaling, 5D superiority, general temporal reasoning, human-reviewed EVID or independent replication.",
+  "design": {
+    "arms": [
+      "intact",
+      "identity_destroyed"
+    ],
+    "edge_count": 4,
+    "node_count": 6,
+    "orders": [
+      "forward",
+      "reverse",
+      "simultaneous"
+    ],
+    "run_count": 120,
+    "seed_count": 20
+  },
+  "environment": {
+    "os_name": "posix",
+    "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
+    "python": "3.13.15 (main, Aug  6 2026, 02:15:18) [GCC 13.3.0]"
+  },
+  "experiment_id": "EXP-S1-TEMP-ORDER-V2-20260919",
+  "experiment_status": "completed",
+  "human_review_status": "PENDING",
+  "hypothesis": "H-TEMP-002-A",
+  "independent_replication": false,
+  "integrity": {
+    "checks": {
+      "coverage": true,
+      "fresh_seeds": true,
+      "network_budget": true,
+      "paired_parameters": true,
+      "run_count": true
+    },
+    "pass": true
+  },
+  "protocol": "stage1_two_channel_temporal_order_v2",
+  "research_question": "RQ-TEMP-002",
+  "result_status": "SUPPORTED_WITHIN_PREREGISTERED_PROTOCOL",
+  "results": {
+    "identity_destroyed_order_accuracy_median": 0.0,
+    "intact_order_accuracy_median": 1.0,
+    "intact_simultaneous_success_fraction": 1.0,
+    "paired_accuracy_delta_bootstrap_ci95": [
+      1.0,
+      1.0
+    ],
+    "paired_accuracy_delta_median": 1.0,
+    "paired_sign_test_p": 1.9073486328125e-06
+  },
+  "schema_version": 1,
+  "scientific_evidence": false,
+  "source_freeze": {
+    "branch": "research/stage1-temporal-order-v2-20260919",
+    "commit": "23549a0b75f7019a6146f8513bf6628505acb079",
+    "dirty_before_execution": false
+  },
+  "stage": 1
+}

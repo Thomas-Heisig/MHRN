@@ -1,0 +1,179 @@
+{
+  "analysis": {
+    "gates": {
+      "bootstrap_ci_excludes_zero": true,
+      "identity_destroyed_ceiling": true,
+      "intact_order_accuracy": true,
+      "paired_delta": true,
+      "paired_sign_test": true,
+      "simultaneous_control": true
+    },
+    "per_seed": [
+      {
+        "identity_destroyed_order_accuracy": 0.0,
+        "intact_order_accuracy": 1.0,
+        "intact_simultaneous_success": true,
+        "paired_accuracy_delta": 1.0,
+        "seed": 7101
+      },
+      {
+        "identity_destroyed_order_accuracy": 0.0,
+        "intact_order_accuracy": 1.0,
+        "intact_simultaneous_success": true,
+        "paired_accuracy_delta": 1.0,
+        "seed": 7102
+      },
+      {
+        "identity_destroyed_order_accuracy": 0.0,
+        "intact_order_accuracy": 1.0,
+        "intact_simultaneous_success": true,
+        "paired_accuracy_delta": 1.0,
+        "seed": 7103
+      },
+      {
+        "identity_destroyed_order_accuracy": 0.0,
+        "intact_order_accuracy": 1.0,
+        "intact_simultaneous_success": true,
+        "paired_accuracy_delta": 1.0,
+        "seed": 7104
+      },
+      {
+        "identity_destroyed_order_accuracy": 0.0,
+        "intact_order_accuracy": 1.0,
+        "intact_simultaneous_success": true,
+        "paired_accuracy_delta": 1.0,
+        "seed": 7105
+      },
+      {
+        "identity_destroyed_order_accuracy": 0.0,
+        "intact_order_accuracy": 1.0,
+        "intact_simultaneous_success": true,
+        "paired_accuracy_delta": 1.0,
+        "seed": 7106
+      },
+      {
+        "identity_destroyed_order_accuracy": 0.0,
+        "intact_order_accuracy": 1.0,
+        "intact_simultaneous_success": true,
+        "paired_accuracy_delta": 1.0,
+        "seed": 7107
+      },
+      {
+        "identity_destroyed_order_accuracy": 0.0,
+        "intact_order_accuracy": 1.0,
+        "intact_simultaneous_success": true,
+        "paired_accuracy_delta": 1.0,
+        "seed": 7108
+      },
+      {
+        "identity_destroyed_order_accuracy": 0.0,
+        "intact_order_accuracy": 1.0,
+        "intact_simultaneous_success": true,
+        "paired_accuracy_delta": 1.0,
+        "seed": 7109
+      },
+      {
+        "identity_destroyed_order_accuracy": 0.0,
+        "intact_order_accuracy": 1.0,
+        "intact_simultaneous_success": true,
+        "paired_accuracy_delta": 1.0,
+        "seed": 7110
+      },
+      {
+        "identity_destroyed_order_accuracy": 0.0,
+        "intact_order_accuracy": 1.0,
+        "intact_simultaneous_success": true,
+        "paired_accuracy_delta": 1.0,
+        "seed": 7111
+      },
+      {
+        "identity_destroyed_order_accuracy": 0.0,
+        "intact_order_accuracy": 1.0,
+        "intact_simultaneous_success": true,
+        "paired_accuracy_delta": 1.0,
+        "seed": 7112
+      },
+      {
+        "identity_destroyed_order_accuracy": 0.0,
+        "intact_order_accuracy": 1.0,
+        "intact_simultaneous_success": true,
+        "paired_accuracy_delta": 1.0,
+        "seed": 7113
+      },
+      {
+        "identity_destroyed_order_accuracy": 0.0,
+        "intact_order_accuracy": 1.0,
+        "intact_simultaneous_success": true,
+        "paired_accuracy_delta": 1.0,
+        "seed": 7114
+      },
+      {
+        "identity_destroyed_order_accuracy": 0.0,
+        "intact_order_accuracy": 1.0,
+        "intact_simultaneous_success": true,
+        "paired_accuracy_delta": 1.0,
+        "seed": 7115
+      },
+      {
+        "identity_destroyed_order_accuracy": 0.0,
+        "intact_order_accuracy": 1.0,
+        "intact_simultaneous_success": true,
+        "paired_accuracy_delta": 1.0,
+        "seed": 7116
+      },
+      {
+        "identity_destroyed_order_accuracy": 0.0,
+        "intact_order_accuracy": 1.0,
+        "intact_simultaneous_success": true,
+        "paired_accuracy_delta": 1.0,
+        "seed": 7117
+      },
+      {
+        "identity_destroyed_order_accuracy": 0.0,
+        "intact_order_accuracy": 1.0,
+        "intact_simultaneous_success": true,
+        "paired_accuracy_delta": 1.0,
+        "seed": 7118
+      },
+      {
+        "identity_destroyed_order_accuracy": 0.0,
+        "intact_order_accuracy": 1.0,
+        "intact_simultaneous_success": true,
+        "paired_accuracy_delta": 1.0,
+        "seed": 7119
+      },
+      {
+        "identity_destroyed_order_accuracy": 0.0,
+        "intact_order_accuracy": 1.0,
+        "intact_simultaneous_success": true,
+        "paired_accuracy_delta": 1.0,
+        "seed": 7120
+      }
+    ],
+    "status": "SUPPORTED_WITHIN_PREREGISTERED_PROTOCOL",
+    "summary": {
+      "identity_destroyed_order_accuracy_median": 0.0,
+      "intact_order_accuracy_median": 1.0,
+      "intact_simultaneous_success_fraction": 1.0,
+      "paired_accuracy_delta_bootstrap_ci95": [
+        1.0,
+        1.0
+      ],
+      "paired_accuracy_delta_median": 1.0,
+      "paired_sign_test_p": 1.9073486328125e-06
+    }
+  },
+  "claim_boundary": "This Stage-1 task tests whether a small, acyclic six-neuron SNN preserves the temporal order of two distinguishable input channels at designated outputs and whether deliberately destroying channel identity removes that fixed decoding signal. It demonstrates at most scoped technical task function under the registered parameter range. It does not establish learning, memory, cognition, biological equivalence, scaling, 5D superiority, general temporal reasoning, human-reviewed EVID or independent replication.",
+  "experiment_id": "EXP-S1-TEMP-ORDER-V2-20260919",
+  "integrity": {
+    "checks": {
+      "coverage": true,
+      "fresh_seeds": true,
+      "network_budget": true,
+      "paired_parameters": true,
+      "run_count": true
+    },
+    "pass": true
+  },
+  "schema_version": 1
+}
