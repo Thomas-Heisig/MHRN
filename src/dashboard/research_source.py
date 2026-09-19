@@ -412,11 +412,7 @@ class ResearchSource:
             manifest_data = (
                 cast(dict[str, Any], data) if isinstance(data, dict) else None
             )
-            is_campaign_index = (
-                manifest_data is not None
-                and manifest_data.get("record_kind") == "campaign_index"
-            )
-            if entry.name in hidden and not is_campaign_index:
+            if entry.name in hidden:
                 continue
             dashboard_manifest = (
                 normalize_experiment_manifest(entry, manifest_data)
