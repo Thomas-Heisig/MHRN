@@ -78,13 +78,12 @@ class ExperimentOrganizerService:
                     "series_id": series_id,
                     "archived": explicitly_archived or inferred_archived,
                     "archive_recorded": explicitly_archived,
-                    "inferred_from_children": inferred_archived and not explicitly_archived,
+                    "inferred_from_children": inferred_archived
+                    and not explicitly_archived,
                     "archive_state": (
                         "archived"
                         if explicitly_archived or fully_archived
-                        else "partial"
-                        if archived_child_count > 0
-                        else "active"
+                        else "partial" if archived_child_count > 0 else "active"
                     ),
                     "archived_child_count": archived_child_count,
                     "child_count": len(child_ids),
