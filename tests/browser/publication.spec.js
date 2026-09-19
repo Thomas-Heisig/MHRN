@@ -152,7 +152,15 @@ for (const port of [4174, 4175]) {
     await expect(page.locator('#publication-imprint-panel')).toBeVisible();
     await expect(page.locator('#publication-imprint-panel')).toContainText('Impressum & Rechtliche Hinweise');
     await expect(page.locator('#publication-imprint-panel')).toContainText('Thomas Heisig');
-    await expect(page.locator('#publication-imprint-panel')).toContainText('Pflichtfeld vor öffentlicher Bereitstellung');
+    await expect(page.locator('#publication-imprint-panel')).toContainText('Wolffsheide 10');
+    await expect(page.locator('#publication-imprint-panel')).toContainText('t_heisig@gmx.de');
+    await expect(page.locator('#publication-imprint-panel')).toContainText('Hosting-Datenschutz offen');
+
+    await page.evaluate(() => window.MHRNWorkspaceArchitecture?.selectRoute?.('publication', 'simple'));
+    await expect(page.locator('#publication-simple-panel')).toBeVisible();
+    await expect(page.locator('#publication-simple-panel')).toContainText('MHRN · EINFACH ERKLÄRT');
+    await expect(page.locator('#publication-simple-panel')).toContainText('methodischen Forschungsgegenstands');
+    await expect(page.locator('#publication-simple-panel')).toContainText('unabhängige externe Replikation');
     await expect(page.locator('#publication-imprint-panel')).toContainText('0009-0002-9589-1872');
 
     await page.evaluate(() => window.MHRNWorkspaceArchitecture?.selectRoute?.('publication', 'overview'));
