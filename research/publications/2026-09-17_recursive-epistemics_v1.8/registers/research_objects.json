@@ -376,7 +376,7 @@
       "status": "untested",
       "source_path": "research/registry/hypotheses.yaml",
       "source_pointer": "/14",
-      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
+      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
       "source_object": {
         "id": "H-5D-001-A",
         "research_question": "RQ-5D-001",
@@ -401,7 +401,7 @@
       "status": "untested",
       "source_path": "research/registry/hypotheses.yaml",
       "source_pointer": "/15",
-      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
+      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
       "source_object": {
         "id": "H-5D-002-A",
         "research_question": "RQ-5D-002",
@@ -426,7 +426,7 @@
       "status": "untested",
       "source_path": "research/registry/hypotheses.yaml",
       "source_pointer": "/16",
-      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
+      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
       "source_object": {
         "id": "H-5D-003-A",
         "research_question": "RQ-5D-003",
@@ -451,7 +451,7 @@
       "status": "untested",
       "source_path": "research/registry/hypotheses.yaml",
       "source_pointer": "/17",
-      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
+      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
       "source_object": {
         "id": "H-5D-004-A",
         "research_question": "RQ-5D-004",
@@ -475,8 +475,8 @@
       ],
       "status": "untested",
       "source_path": "research/registry/hypotheses.yaml",
-      "source_pointer": "/38",
-      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
+      "source_pointer": "/37",
+      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
       "source_object": {
         "id": "H-5D-005-A",
         "research_question": "RQ-5D-005",
@@ -500,8 +500,8 @@
       ],
       "status": "untested",
       "source_path": "research/registry/hypotheses.yaml",
-      "source_pointer": "/33",
-      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
+      "source_pointer": "/32",
+      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
       "source_object": {
         "id": "H-AIR-001-A",
         "research_question": "RQ-AIR-001",
@@ -526,7 +526,7 @@
       "status": "untested",
       "source_path": "research/registry/hypotheses.yaml",
       "source_pointer": "/27",
-      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
+      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
       "source_object": {
         "id": "H-EMB-001-A",
         "research_question": "RQ-EMB-001",
@@ -535,31 +535,6 @@
         "evidence": [],
         "created": "2026-08-23",
         "updated": "2026-08-23"
-      }
-    },
-    {
-      "id": "H-EMB-001-B",
-      "axis": "not_declared_in_source",
-      "stage": null,
-      "object_type": "hypothesis",
-      "evidence_mode": "source_registry_projection_not_evidence",
-      "parent_ids": [],
-      "publication_refs": [
-        "IV",
-        "XI"
-      ],
-      "status": "untested",
-      "source_path": "research/registry/hypotheses.yaml",
-      "source_pointer": "/28",
-      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
-      "source_object": {
-        "id": "H-EMB-001-B",
-        "research_question": "RQ-EMB-001",
-        "hypothesis": "Unter einer identischen externen Stoerung unterscheiden sich tracking_rmse_rad und Sensorkonsequenzen zwischen geschlossenem Kreis, yoked Replay und unterbrochener Rueckmeldung.",
-        "status": "untested",
-        "evidence": [],
-        "created": "2026-09-09",
-        "updated": "2026-09-09"
       }
     },
     {
@@ -575,8 +550,8 @@
       ],
       "status": "untested",
       "source_path": "research/registry/hypotheses.yaml",
-      "source_pointer": "/32",
-      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
+      "source_pointer": "/31",
+      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
       "source_object": {
         "id": "H-EPIST-001-A",
         "research_question": "RQ-EPIST-001",
@@ -600,8 +575,8 @@
       ],
       "status": "untested",
       "source_path": "research/registry/hypotheses.yaml",
-      "source_pointer": "/30",
-      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
+      "source_pointer": "/29",
+      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
       "source_object": {
         "id": "H-ETH-001-A",
         "research_question": "RQ-ETH-001",
@@ -625,8 +600,8 @@
       ],
       "status": "untested",
       "source_path": "research/registry/hypotheses.yaml",
-      "source_pointer": "/45",
-      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
+      "source_pointer": "/44",
+      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
       "source_object": {
         "id": "H-ETH-001-B",
         "research_question": "RQ-ETH-001",
@@ -650,8 +625,8 @@
       ],
       "status": "untested",
       "source_path": "research/registry/hypotheses.yaml",
-      "source_pointer": "/46",
-      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
+      "source_pointer": "/45",
+      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
       "source_object": {
         "id": "H-ETH-001-C",
         "research_question": "RQ-ETH-001",
@@ -675,8 +650,8 @@
       ],
       "status": "untested",
       "source_path": "research/registry/hypotheses.yaml",
-      "source_pointer": "/47",
-      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
+      "source_pointer": "/46",
+      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
       "source_object": {
         "id": "H-ETH-001-D",
         "research_question": "RQ-ETH-001",
@@ -700,8 +675,8 @@
       ],
       "status": "untested",
       "source_path": "research/registry/hypotheses.yaml",
-      "source_pointer": "/48",
-      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
+      "source_pointer": "/47",
+      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
       "source_object": {
         "id": "H-ETH-001-E",
         "research_question": "RQ-ETH-001",
@@ -725,8 +700,8 @@
       ],
       "status": "untested",
       "source_path": "research/registry/hypotheses.yaml",
-      "source_pointer": "/31",
-      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
+      "source_pointer": "/30",
+      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
       "source_object": {
         "id": "H-ETH-002-A",
         "research_question": "RQ-ETH-002",
@@ -750,8 +725,8 @@
       ],
       "status": "untested",
       "source_path": "research/registry/hypotheses.yaml",
-      "source_pointer": "/36",
-      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
+      "source_pointer": "/35",
+      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
       "source_object": {
         "id": "H-GEN-001-A",
         "research_question": "RQ-GEN-001",
@@ -776,7 +751,7 @@
       "status": "untested",
       "source_path": "research/registry/hypotheses.yaml",
       "source_pointer": "/12",
-      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
+      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
       "source_object": {
         "id": "H-HOM-001-A",
         "research_question": "RQ-HOM-001",
@@ -801,7 +776,7 @@
       "status": "untested",
       "source_path": "research/registry/hypotheses.yaml",
       "source_pointer": "/13",
-      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
+      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
       "source_object": {
         "id": "H-HOM-002-A",
         "research_question": "RQ-HOM-002",
@@ -825,8 +800,8 @@
       ],
       "status": "untested",
       "source_path": "research/registry/hypotheses.yaml",
-      "source_pointer": "/43",
-      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
+      "source_pointer": "/42",
+      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
       "source_object": {
         "id": "H-LIFE-001-A",
         "research_question": "RQ-LIFE-001",
@@ -850,8 +825,8 @@
       ],
       "status": "untested",
       "source_path": "research/registry/hypotheses.yaml",
-      "source_pointer": "/29",
-      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
+      "source_pointer": "/28",
+      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
       "source_object": {
         "id": "H-LLM-001-A",
         "research_question": "RQ-LLM-001",
@@ -876,7 +851,7 @@
       "status": "untested",
       "source_path": "research/registry/hypotheses.yaml",
       "source_pointer": "/26",
-      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
+      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
       "source_object": {
         "id": "H-MEM-001-A",
         "research_question": "RQ-MEM-001",
@@ -900,8 +875,8 @@
       ],
       "status": "untested",
       "source_path": "research/registry/hypotheses.yaml",
-      "source_pointer": "/41",
-      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
+      "source_pointer": "/40",
+      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
       "source_object": {
         "id": "H-PERF-001-A",
         "research_question": "RQ-PERF-001",
@@ -926,7 +901,7 @@
       "status": "untested",
       "source_path": "research/registry/hypotheses.yaml",
       "source_pointer": "/6",
-      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
+      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
       "source_object": {
         "id": "H-PING-001-A",
         "research_question": "RQ-PING-001",
@@ -950,8 +925,8 @@
       ],
       "status": "untested",
       "source_path": "research/registry/hypotheses.yaml",
-      "source_pointer": "/35",
-      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
+      "source_pointer": "/34",
+      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
       "source_object": {
         "id": "H-REC-001-A",
         "research_question": "RQ-REC-001",
@@ -975,8 +950,8 @@
       ],
       "status": "untested",
       "source_path": "research/registry/hypotheses.yaml",
-      "source_pointer": "/42",
-      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
+      "source_pointer": "/41",
+      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
       "source_object": {
         "id": "H-REC-002-A",
         "research_question": "RQ-REC-002",
@@ -1001,7 +976,7 @@
       "status": "untested",
       "source_path": "research/registry/hypotheses.yaml",
       "source_pointer": "/9",
-      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
+      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
       "source_object": {
         "id": "H-REG-001-A",
         "research_question": "RQ-REG-001",
@@ -1025,8 +1000,8 @@
       ],
       "status": "untested",
       "source_path": "research/registry/hypotheses.yaml",
-      "source_pointer": "/39",
-      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
+      "source_pointer": "/38",
+      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
       "source_object": {
         "id": "H-REG-002-A",
         "research_question": "RQ-REG-002",
@@ -1050,8 +1025,8 @@
       ],
       "status": "untested",
       "source_path": "research/registry/hypotheses.yaml",
-      "source_pointer": "/37",
-      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
+      "source_pointer": "/36",
+      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
       "source_object": {
         "id": "H-REPL-001-A",
         "research_question": "RQ-REPL-001",
@@ -1076,7 +1051,7 @@
       "status": "untested",
       "source_path": "research/registry/hypotheses.yaml",
       "source_pointer": "/22",
-      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
+      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
       "source_object": {
         "id": "H-SCALE-001-A",
         "research_question": "RQ-SCALE-001",
@@ -1101,7 +1076,7 @@
       "status": "untested",
       "source_path": "research/registry/hypotheses.yaml",
       "source_pointer": "/23",
-      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
+      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
       "source_object": {
         "id": "H-SELF-001-A",
         "research_question": "RQ-SELF-001",
@@ -1126,7 +1101,7 @@
       "status": "untested",
       "source_path": "research/registry/hypotheses.yaml",
       "source_pointer": "/24",
-      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
+      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
       "source_object": {
         "id": "H-SELF-002-A",
         "research_question": "RQ-SELF-002",
@@ -1151,7 +1126,7 @@
       "status": "untested",
       "source_path": "research/registry/hypotheses.yaml",
       "source_pointer": "/0",
-      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
+      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
       "source_object": {
         "id": "H-SNN-001-A",
         "research_question": "RQ-SNN-001",
@@ -1176,7 +1151,7 @@
       "status": "untested",
       "source_path": "research/registry/hypotheses.yaml",
       "source_pointer": "/1",
-      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
+      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
       "source_object": {
         "id": "H-SNN-002-A",
         "research_question": "RQ-SNN-002",
@@ -1201,7 +1176,7 @@
       "status": "supported",
       "source_path": "research/registry/hypotheses.yaml",
       "source_pointer": "/2",
-      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
+      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
       "source_object": {
         "id": "H-SNN-003-A",
         "research_question": "RQ-DET-001",
@@ -1234,7 +1209,7 @@
       "status": "untested",
       "source_path": "research/registry/hypotheses.yaml",
       "source_pointer": "/3",
-      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
+      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
       "source_object": {
         "id": "H-SNN-003-B",
         "research_question": "RQ-SNN-003",
@@ -1259,7 +1234,7 @@
       "status": "untested",
       "source_path": "research/registry/hypotheses.yaml",
       "source_pointer": "/4",
-      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
+      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
       "source_object": {
         "id": "H-SNN-004-A",
         "research_question": "RQ-SNN-004",
@@ -1284,7 +1259,7 @@
       "status": "untested",
       "source_path": "research/registry/hypotheses.yaml",
       "source_pointer": "/5",
-      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
+      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
       "source_object": {
         "id": "H-SNN-005-A",
         "research_question": "RQ-SNN-005",
@@ -1308,8 +1283,8 @@
       ],
       "status": "untested",
       "source_path": "research/registry/hypotheses.yaml",
-      "source_pointer": "/44",
-      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
+      "source_pointer": "/43",
+      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
       "source_object": {
         "id": "H-SNN-006-A",
         "research_question": "RQ-SNN-006",
@@ -1334,7 +1309,7 @@
       "status": "untested",
       "source_path": "research/registry/hypotheses.yaml",
       "source_pointer": "/10",
-      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
+      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
       "source_object": {
         "id": "H-STDP-001-A",
         "research_question": "RQ-STDP-001",
@@ -1359,7 +1334,7 @@
       "status": "untested",
       "source_path": "research/registry/hypotheses.yaml",
       "source_pointer": "/11",
-      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
+      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
       "source_object": {
         "id": "H-STDP-002-A",
         "research_question": "RQ-STDP-002",
@@ -1384,7 +1359,7 @@
       "status": "supported",
       "source_path": "research/registry/hypotheses.yaml",
       "source_pointer": "/18",
-      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
+      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
       "source_object": {
         "id": "H-STOR-001-A",
         "research_question": "RQ-STORAGE-001",
@@ -1417,7 +1392,7 @@
       "status": "untested",
       "source_path": "research/registry/hypotheses.yaml",
       "source_pointer": "/19",
-      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
+      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
       "source_object": {
         "id": "H-STOR-002-A",
         "research_question": "RQ-STORAGE-002",
@@ -1442,7 +1417,7 @@
       "status": "untested",
       "source_path": "research/registry/hypotheses.yaml",
       "source_pointer": "/20",
-      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
+      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
       "source_object": {
         "id": "H-STOR-003-A",
         "research_question": "RQ-STORAGE-003",
@@ -1467,7 +1442,7 @@
       "status": "untested",
       "source_path": "research/registry/hypotheses.yaml",
       "source_pointer": "/21",
-      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
+      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
       "source_object": {
         "id": "H-STOR-004-A",
         "research_question": "RQ-STORAGE-004",
@@ -1492,7 +1467,7 @@
       "status": "untested",
       "source_path": "research/registry/hypotheses.yaml",
       "source_pointer": "/25",
-      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
+      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
       "source_object": {
         "id": "H-STRUCT-001-A",
         "research_question": "RQ-STRUCT-001",
@@ -1516,8 +1491,8 @@
       ],
       "status": "untested",
       "source_path": "research/registry/hypotheses.yaml",
-      "source_pointer": "/34",
-      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
+      "source_pointer": "/33",
+      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
       "source_object": {
         "id": "H-SUITE-001-A",
         "research_question": "RQ-SUITE-001",
@@ -1542,7 +1517,7 @@
       "status": "untested",
       "source_path": "research/registry/hypotheses.yaml",
       "source_pointer": "/7",
-      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
+      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
       "source_object": {
         "id": "H-TEMP-001-A",
         "research_question": "RQ-TEMP-001",
@@ -1566,8 +1541,8 @@
       ],
       "status": "untested",
       "source_path": "research/registry/hypotheses.yaml",
-      "source_pointer": "/40",
-      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
+      "source_pointer": "/39",
+      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
       "source_object": {
         "id": "H-TEMP-002-A",
         "research_question": "RQ-TEMP-002",
@@ -1592,7 +1567,7 @@
       "status": "untested",
       "source_path": "research/registry/hypotheses.yaml",
       "source_pointer": "/8",
-      "source_sha256": "96701faac82b44163b68b9944c4c65f9da12bd7cf59fbf6f2ca19786f5eab2ea",
+      "source_sha256": "6a9ad3a8f04adb9274fdd6ef20bf648b3970b258f116c67b62d2b432b13b5a5c",
       "source_object": {
         "id": "H-TIME-001-A",
         "research_question": "RQ-TIME-001",
