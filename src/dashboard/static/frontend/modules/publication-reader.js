@@ -275,6 +275,9 @@ function renderReaderFooter(data, view) {
 }
 
 async function handleReaderClick(container, event) {
+  const modifiedNavigation = event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey;
+  if (modifiedNavigation) return;
+
   const actionNode = event.target.closest("[data-pub-action]");
   if (actionNode) {
     event.preventDefault();
@@ -589,9 +592,20 @@ function renderMarkdownLinkToken(token, view) {
   }
 
   if (resolved.kind === "anchor") return `<a href="#pub-${escapeHtml(resolved.anchor)}" data-pub-anchor="${escapeHtml(resolved.anchor)}">${renderPlainInline(label)}</a>`;
-  if (resolved.kind === "reader") return `<a href="#" data-pub-reader-link="${escapeHtml(resolved.path)}" data-pub-source="${escapeHtml(resolved.source)}"${resolved.anchor ? ` data-pub-target-anchor="${escapeHtml(resolved.anchor)}"` : ""}>${renderPlainInline(label)}</a>`;
-  if (resolved.kind === "file") return `<a href="#" data-pub-file="${escapeHtml(resolved.path)}" data-pub-source="${escapeHtml(resolved.source)}">${renderPlainInline(label)}</a>`;
+  if (resolved.kind === "reader") {
+    const href = publicationFallbackHref(resolved.source, resolved.path, resolved.anchor);
+    return `<a href="${escapeHtml(href)}" data-pub-reader-link="${escapeHtml(resolved.path)}" data-pub-source="${escapeHtml(resolved.source)}"${resolved.anchor ? ` data-pub-target-anchor="${escapeHtml(resolved.anchor)}"` : ""}>${renderPlainInline(label)}</a>`;
+  }
+  if (resolved.kind === "file") {
+    const href = publicationFallbackHref(resolved.source, resolved.path, resolved.anchor);
+    return `<a href="${escapeHtml(href)}" data-pub-file="${escapeHtml(resolved.path)}" data-pub-source="${escapeHtml(resolved.source)}">${renderPlainInline(label)}</a>`;
+  }
   return `<a href="${escapeHtml(resolved.href)}" target="_blank" rel="noopener noreferrer">${renderPlainInline(label)}</a>`;
+}
+
+function publicationFallbackHref(source, path, anchor = "") {
+  const href = `/api/files/raw/${encodeURIComponent(path)}?source=${encodeURIComponent(source)}`;
+  return anchor ? `${href}#${encodeURIComponent(anchor)}` : href;
 }
 
 export function resolvePublicationTarget(rawTarget, view) {

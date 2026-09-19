@@ -1,0 +1,86 @@
+{
+  "artifacts_sha256": {
+    "canonical_recurrence_runner": "f670a86f24506db59b8c6aa8f0b405571caad094e7566e099346e5055e51095d",
+    "config": "6f6cd457caf6216c286fee47ef03b529a0b496ed2dd53ee96b85d3b51e7b3a1c",
+    "evaluation_data": "7960945ab9c213eea65d8e7d106f92aca37f7f271d5c5df950a89142942968d1",
+    "parent_preregistration": "253a7e455ad0830267b87aa9c2cf113adb3851102c87de14fb4bb97dbee14a3a",
+    "preregistration": "7134d6aca3e75bbc9f1055521c77e4aeaf06da6f9482c22e632b2139d1afe487",
+    "runner_source": "180597b2d1cf9efe9ac582841f7470db297dec9582efd541248de22c85380a80",
+    "statistics": "f29de34c13c02137856d60509e2ca790dc14ee0b580366ad88622a53221c8da5"
+  },
+  "automatic_evidence_promotion": false,
+  "bridge_target_stage": 2,
+  "claim_boundary": "This experiment tests a small three-neuron SNN under the registered recurrence-weight and delay interventions and can support only the scoped claim that recurrence parameters change persistence/propagation classes in this deterministic operating envelope. It does not establish cognition, memory, biological equivalence, scaling, a 5D advantage, general recurrent-computation superiority, human-reviewed EVID, or independent replication.",
+  "design": {
+    "conditions_per_seed": 15,
+    "delays": [
+      1,
+      2,
+      4
+    ],
+    "run_count": 300,
+    "seed_count": 20,
+    "ticks": 256,
+    "weights": [
+      0.0,
+      50.0,
+      75.0,
+      100.0,
+      125.0
+    ]
+  },
+  "environment": {
+    "os_name": "posix",
+    "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
+    "python": "3.13.15 (main, Aug  6 2026, 02:15:18) [GCC 13.3.0]"
+  },
+  "experiment_id": "EXP-S1-REC-CLEAN-R2-20260919",
+  "experiment_status": "completed",
+  "human_review_status": "PENDING",
+  "hypothesis": "H-REC-001-A",
+  "independent_replication": false,
+  "integrity": {
+    "checks": {
+      "clean_source_freeze": true,
+      "condition_grid": true,
+      "exact_coverage": true,
+      "fresh_seeds": true,
+      "run_count": true,
+      "runtime_errors_absent": true,
+      "seed_count": true,
+      "tick_contract": true
+    },
+    "pass": true
+  },
+  "primary_gates": {
+    "delay_effect_present_every_seed": true,
+    "full_grid_every_seed": true,
+    "persistent_class_present_every_seed": true,
+    "recurrence_extends_response_every_seed": true,
+    "transient_class_present_every_seed": true,
+    "weight_effect_present_every_seed": true,
+    "zero_recurrence_controls_immediate": true
+  },
+  "protocol": "recurrence_map_clean_r2",
+  "research_question": "RQ-REC-001",
+  "result_status": "SUPPORTED_WITHIN_PREREGISTERED_PROTOCOL",
+  "results": {
+    "all_primary_gates_pass": true,
+    "observed_persistence_classes": [
+      "immediate_decay",
+      "persistent_to_window",
+      "transient"
+    ],
+    "run_count": 300,
+    "seed_count": 20,
+    "unique_state_after_digests": 260
+  },
+  "schema_version": 1,
+  "scientific_evidence": false,
+  "source_freeze": {
+    "branch": "research/stage1-recurrence-clean-r2-20260919",
+    "commit": "e3e2d63ff2ee1b73fbf37f77aebda2993e6b8fa5",
+    "dirty_before_execution": false
+  },
+  "stage": 1
+}
