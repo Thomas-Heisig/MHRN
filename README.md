@@ -73,6 +73,8 @@ The internal documentation and experiment taxonomy is being refined. The links b
 
 - **Documentation:** [`docs/README.md`](docs/README.md)
 - **Research:** [`research/README.md`](research/README.md)
+- **Open science / research networks:** [`OPEN_SCIENCE.md`](OPEN_SCIENCE.md)
+- **Independent replication call:** [`INDEPENDENT_REPLICATION.md`](INDEPENDENT_REPLICATION.md)
 - **Current scientific state:** [`research/CURRENT_SCIENTIFIC_STATE.md`](research/CURRENT_SCIENTIFIC_STATE.md)
 - **Current publication pointer:** [`research/publications/CURRENT.md`](research/publications/CURRENT.md)
 - **Publication catalog / viewer source:** [`research/publications/catalog.json`](research/publications/catalog.json)
@@ -309,6 +311,9 @@ Change history: [`CHANGELOG.md`](CHANGELOG.md).
 Contribution guide: [`CONTRIBUTING.md`](CONTRIBUTING.md).  
 Software citation metadata: [`CITATION.cff`](CITATION.cff).  
 Edition 1.8 publication citation metadata: [`research/publications/2026-09-17_recursive-epistemics_v1.8/CITATION.cff`](research/publications/2026-09-17_recursive-epistemics_v1.8/CITATION.cff).
+Machine-readable discovery metadata: [`codemeta.json`](codemeta.json).  
+Open-science routing and account-side publication checklist: [`OPEN_SCIENCE.md`](OPEN_SCIENCE.md).  
+Independent replication invitation: [`INDEPENDENT_REPLICATION.md`](INDEPENDENT_REPLICATION.md).
 
 ```bibtex
 @software{heisig2026mhrn,
