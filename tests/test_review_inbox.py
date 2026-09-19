@@ -219,3 +219,37 @@ def test_review_inbox_human_sidecar_closes_ai_reviewed_artifact(tmp_path: Path) 
 
     assert inbox["open"] == 0
     assert inbox["completed"] == 1
+
+
+def test_review_inbox_prefers_canonical_review_request_over_manifest(tmp_path: Path) -> None:
+    experiment = tmp_path / "experiments" / "EXP-CANONICAL"
+    experiment.mkdir(parents=True)
+    (experiment / "manifest.json").write_text(
+        json.dumps(
+            {
+                "human_review_status": "PENDING",
+                "scientific_evidence": False,
+                "result_status": "SUPPORTED_WITHIN_PREREGISTERED_PROTOCOL",
+            }
+        ),
+        encoding="utf-8",
+    )
+    (experiment / "review_request.json").write_text(
+        json.dumps(
+            {
+                "human_review_status": "PENDING",
+                "research_question": "RQ-TEST-002",
+                "hypothesis": "H-TEST-002-A",
+                "result_status": "SUPPORTED_WITHIN_PREREGISTERED_PROTOCOL",
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    inbox = build_review_inbox(tmp_path)
+
+    assert inbox["open"] == 1
+    item = inbox["items"][0]
+    assert item["experiment_id"] == "EXP-CANONICAL"
+    assert item["artifact_path"] == "experiments/EXP-CANONICAL/review_request.json"
+    assert item["title"] == "EXP-CANONICAL · Human Review"
