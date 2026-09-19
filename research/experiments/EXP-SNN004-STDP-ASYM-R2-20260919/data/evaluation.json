@@ -1,0 +1,118 @@
+{
+  "conditions": {
+    "independent_runs_per_condition": 0,
+    "initial_weight": 0.5,
+    "parameters": {
+      "a_minus": 0.12,
+      "a_plus": 0.1,
+      "max_weight": 1.0,
+      "min_weight": 0.0,
+      "tau_minus": 20.0,
+      "tau_plus": 20.0
+    },
+    "repeated_evaluations_per_condition": 10
+  },
+  "measurements": [
+    {
+      "delta_t_ms": -50,
+      "independent_runs": 0,
+      "max_delta_weight": -0.009850199834867845,
+      "mean_delta_weight": -0.009850199834867845,
+      "min_delta_weight": -0.009850199834867845,
+      "repeated_evaluations": 10
+    },
+    {
+      "delta_t_ms": -20,
+      "independent_runs": 0,
+      "max_delta_weight": -0.04414553294057311,
+      "mean_delta_weight": -0.04414553294057311,
+      "min_delta_weight": -0.04414553294057311,
+      "repeated_evaluations": 10
+    },
+    {
+      "delta_t_ms": -10,
+      "independent_runs": 0,
+      "max_delta_weight": -0.07278367916551598,
+      "mean_delta_weight": -0.07278367916551598,
+      "min_delta_weight": -0.07278367916551598,
+      "repeated_evaluations": 10
+    },
+    {
+      "delta_t_ms": -5,
+      "independent_runs": 0,
+      "max_delta_weight": -0.09345609396856858,
+      "mean_delta_weight": -0.09345609396856858,
+      "min_delta_weight": -0.09345609396856858,
+      "repeated_evaluations": 10
+    },
+    {
+      "delta_t_ms": -1,
+      "independent_runs": 0,
+      "max_delta_weight": -0.11414753094008567,
+      "mean_delta_weight": -0.11414753094008567,
+      "min_delta_weight": -0.11414753094008567,
+      "repeated_evaluations": 10
+    },
+    {
+      "delta_t_ms": 0,
+      "independent_runs": 0,
+      "max_delta_weight": 0.0,
+      "mean_delta_weight": 0.0,
+      "min_delta_weight": 0.0,
+      "repeated_evaluations": 10
+    },
+    {
+      "delta_t_ms": 1,
+      "independent_runs": 0,
+      "max_delta_weight": 0.09512294245007147,
+      "mean_delta_weight": 0.09512294245007147,
+      "min_delta_weight": 0.09512294245007147,
+      "repeated_evaluations": 10
+    },
+    {
+      "delta_t_ms": 5,
+      "independent_runs": 0,
+      "max_delta_weight": 0.0778800783071405,
+      "mean_delta_weight": 0.0778800783071405,
+      "min_delta_weight": 0.0778800783071405,
+      "repeated_evaluations": 10
+    },
+    {
+      "delta_t_ms": 10,
+      "independent_runs": 0,
+      "max_delta_weight": 0.0606530659712633,
+      "mean_delta_weight": 0.0606530659712633,
+      "min_delta_weight": 0.0606530659712633,
+      "repeated_evaluations": 10
+    },
+    {
+      "delta_t_ms": 20,
+      "independent_runs": 0,
+      "max_delta_weight": 0.036787944117144256,
+      "mean_delta_weight": 0.036787944117144256,
+      "min_delta_weight": 0.036787944117144256,
+      "repeated_evaluations": 10
+    },
+    {
+      "delta_t_ms": 50,
+      "independent_runs": 0,
+      "max_delta_weight": 0.008208499862389917,
+      "mean_delta_weight": 0.008208499862389917,
+      "min_delta_weight": 0.008208499862389917,
+      "repeated_evaluations": 10
+    }
+  ],
+  "protocol": "stdp_pair_timing_v1",
+  "seed": 42,
+  "summary": {
+    "conditions": 11,
+    "deterministic_identity": true,
+    "hypothesis_supported": true,
+    "independent_runs": 0,
+    "mean_ltd": -0.06687660736992224,
+    "mean_ltp": 0.05573050614160189,
+    "repeated_evaluations": 110,
+    "total_replications": 110,
+    "zero_delta_weight": 0.0
+  }
+}

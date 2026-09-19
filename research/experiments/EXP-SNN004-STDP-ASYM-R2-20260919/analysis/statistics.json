@@ -1,0 +1,65 @@
+{
+  "claim_boundary": "This experiment can support only the scoped implementation-level claim that the registered pair-based STDP rule produces signed and asymmetric weight changes across the fixed Pre/Post timing curve. It does not establish useful learning, task-performance improvement, network-level memory, biological equivalence, scaling, a 5D advantage, human-reviewed EVID or independent replication.",
+  "experiment_id": "EXP-SNN004-STDP-ASYM-R2-20260919",
+  "integrity": {
+    "checks": {
+      "clean_source_freeze": true,
+      "independent_runs_zero": true,
+      "initial_weight": true,
+      "parameter_match": true,
+      "protocol_id": true,
+      "replications": true
+    },
+    "pass": true
+  },
+  "mirror_checks": {
+    "1": {
+      "absolute_ltd_exceeds_ltp": true,
+      "negative_delta": -0.11414753094008567,
+      "positive_delta": 0.09512294245007147
+    },
+    "10": {
+      "absolute_ltd_exceeds_ltp": true,
+      "negative_delta": -0.07278367916551598,
+      "positive_delta": 0.0606530659712633
+    },
+    "20": {
+      "absolute_ltd_exceeds_ltp": true,
+      "negative_delta": -0.04414553294057311,
+      "positive_delta": 0.036787944117144256
+    },
+    "5": {
+      "absolute_ltd_exceeds_ltp": true,
+      "negative_delta": -0.09345609396856858,
+      "positive_delta": 0.0778800783071405
+    },
+    "50": {
+      "absolute_ltd_exceeds_ltp": true,
+      "negative_delta": -0.009850199834867845,
+      "positive_delta": 0.008208499862389917
+    }
+  },
+  "primary_gates": {
+    "complete_timing_grid": true,
+    "deterministic_identity": true,
+    "mean_direction_and_asymmetry": true,
+    "mirror_asymmetry": true,
+    "negative_dt_depresses": true,
+    "positive_dt_potentiates": true,
+    "replication_count": true,
+    "zero_dt_unchanged": true
+  },
+  "schema_version": 1,
+  "status": "SUPPORTED_WITHIN_PREREGISTERED_PROTOCOL",
+  "summary": {
+    "conditions": 11,
+    "deterministic_identity": true,
+    "hypothesis_supported": true,
+    "independent_runs": 0,
+    "mean_ltd": -0.06687660736992224,
+    "mean_ltp": 0.05573050614160189,
+    "repeated_evaluations": 110,
+    "total_replications": 110,
+    "zero_delta_weight": 0.0
+  }
+}

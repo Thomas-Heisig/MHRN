@@ -1,0 +1,70 @@
+name: SNN-004 STDP asymmetry R2
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - scripts/run_snn004_stdp_asym_r2.py
+      - scripts/verify_snn004_stdp_asym_r2.py
+      - research/preregistrations/PREREG-SNN004-STDP-ASYM-R2.json
+      - research/experiments/EXP-SNN004-STDP-ASYM-R2-20260919/**
+      - .github/workflows/snn004-stdp-asym-r2.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  execute:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: research/snn004-stdp-asym-r2-20260919
+          fetch-depth: 0
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.13'
+          cache: pip
+      - name: Install
+        run: python -m pip install -e '.[dev]'
+      - name: Prove scientific source digest unchanged
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from src.dashboard.verification import compute_source_tree_digest
+          root = Path(".").resolve()
+          artifact = json.loads((root / "research/generated/verification/phase_b_gate_status.json").read_text(encoding="utf-8"))
+          assert compute_source_tree_digest(root) == artifact["source_freeze"]["tested_tree_digest"]
+          PY
+      - name: Verify STDP and gate regressions
+        run: >-
+          python -m pytest -q
+          tests/test_stdp_pair_timing_protocol.py
+          tests/test_stdp_isolated.py
+          tests/test_stdp_integration.py
+          tests/test_gate_status.py
+          tests/test_source_digest.py
+      - name: Execute or verify canonical experiment
+        run: |
+          if [ -d research/experiments/EXP-SNN004-STDP-ASYM-R2-20260919 ]; then
+            python scripts/verify_snn004_stdp_asym_r2.py
+          else
+            test -z "$(git status --porcelain)"
+            python scripts/run_snn004_stdp_asym_r2.py
+            python scripts/verify_snn004_stdp_asym_r2.py
+          fi
+      - name: Persist DATA if generated
+        run: |
+          git add research/experiments/EXP-SNN004-STDP-ASYM-R2-20260919
+          if git diff --cached --quiet; then
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "research: persist SNN-004 STDP asymmetry R2 DATA"
+          git pull --rebase origin research/snn004-stdp-asym-r2-20260919
+          git push origin HEAD:research/snn004-stdp-asym-r2-20260919
