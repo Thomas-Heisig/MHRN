@@ -123,8 +123,11 @@ def build_review_inbox(research_root: Path) -> dict[str, Any]:
         )
         if not explicit:
             continue
-        relative = str(target.relative_to(root)).replace("\\", "/")
         experiment_id = target.relative_to(experiments).parts[0]
+        canonical_request = experiments / experiment_id / "review_request.json"
+        if canonical_request.is_file() and target != canonical_request:
+            continue
+        relative = str(target.relative_to(root)).replace("\\", "/")
         research_question = (
             str(
                 payload.get("research_question_id")
