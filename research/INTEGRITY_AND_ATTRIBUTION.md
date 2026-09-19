@@ -10,9 +10,9 @@ MHRN separates scientific progress from engineering progress. The same separatio
 
 This policy reduces plagiarism, text-recycling, citation, licensing and provenance risks. It does **not** certify that a manuscript is plagiarism-free. External similarity checking and human source review remain mandatory before submission.
 
-## 2. Mandatory provenance classes
+## 2. Mandatory claim-origin roles
 
-Every substantial scientific statement should be traceable to at least one of the following provenance classes:
+Every substantial scientific statement should be traceable to at least one of the following **claim-origin roles**. These roles classify the epistemic origin/function of a statement and are distinct from the S1-S4 source-proximity classes used by Edition 1.8 for historical/provenance reconstruction:
 
 1. **MHRN observation** — produced by a source-bound experiment or verification artifact.
 2. **MHRN interpretation** — inference from MHRN observations; must state limits and cannot be promoted automatically to EVID.
