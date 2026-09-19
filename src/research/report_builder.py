@@ -462,7 +462,7 @@ class ReportBuilder:
                 "description": "Synaptisches Gedächtnis, Sensor-Aktor-Schleife, Language Organ",
             },
             "Kapitel 8 – Autorenschaft und Epistemologie": {
-                "questions": ["RQ-ETH-001", "RQ-ETH-002", "RQ-EPIST-001"],
+                "questions": ["RQ-ETH-001", "RQ-ETH-002", "RQ-EPIST-001", "RQ-EPIST-002"],
                 "sources": [],
                 "description": "Epistemische Beiträge, Kanonisierung, Autorenschaft, Verantwortung und maschinelle Erkenntnis",
             },
