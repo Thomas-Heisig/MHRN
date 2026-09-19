@@ -1,0 +1,19 @@
+{
+  "ai_review_does_not_satisfy_human_gate": true,
+  "automatic_evidence_promotion": false,
+  "experiment_id": "EXP-SNN005-HOLDOUT-R2-20260919",
+  "human_review_status": "PENDING",
+  "hypothesis": "H-SNN-005-A",
+  "independent_replication": false,
+  "questions": [
+    "Are the five arms matched and are held-out test inputs identical within each seed?",
+    "Are teacher and LearningEngine absent during every evaluation episode?",
+    "Do the paired seed-level inference and Holm family match the preregistered analysis?",
+    "Does the interpretation remain limited to this synthetic association task?"
+  ],
+  "research_question": "RQ-SNN-005",
+  "result_status": "SUPPORTED_WITHIN_PREREGISTERED_PROTOCOL",
+  "reviewer_type_required": "human",
+  "schema_version": 1,
+  "scientific_evidence": false
+}
