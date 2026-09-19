@@ -36,43 +36,52 @@ Edition 1.8 ist eine Gesamtarbeit und kein linear zu lesendes Einzelpaper. Die e
 | **Schnelle Gesamtübersicht** | Teil I → X → XI | Entstehungsbedingungen, gegenwärtig tragfähige Aussagen und offene Forschungslandschaft |
 
 Wer einen empirischen Claim prüfen will, sollte nicht beim Fließtext enden: Teil IV führt zu den Experimentartefakten; `RESEARCH_REGISTER.md` verbindet Forschungsfragen und Hypothesen; `SOURCE_INDEX.md` und `CONTENT_INTEGRATION.md` dokumentieren Quellenbestand und semantische Einbindung. `DATA`, Human Review und `EVID` bleiben getrennte Autoritätsebenen.
+
 ## 1. Forschungsgegenstand vor dem Repository
 
-Die 1.8-Fassung setzt nicht mit einem vermeintlich fertigen MHRN an. Sie behandelt die Entstehung selbst als Forschungsgegenstand. Die frühesten in dieser Revision wiedergewonnenen Spuren stammen aus Gesprächen über einen persistenten neuronalen Würfel, dynamische Verbindungen, entwicklungsähnliche Schichten, Mutation, Speicherung über Neustarts hinweg und die Trennung zwischen einem lernenden Kern und nachladbaren Funktionen. Diese Spuren werden als **rekonstruierte Vorphase** geführt. Sie belegen weder, dass dies die erste Idee überhaupt war, noch dass die beschriebenen Mechanismen damals schon implementiert waren.
+Die 1.8-Fassung setzt nicht mit einem vermeintlich fertigen MHRN an. Sie behandelt die Entstehung selbst als Forschungsgegenstand. Die **früheste derzeit rekonstruierte Spur** ist `CER-RECON-20250421-01` in der [Chat-Rekonstruktion](sources/chat_reconstruction.json): ein lernender neuronaler Würfel sollte Zustand über Neustarts hinweg erhalten; nachladbare Funktionen sollten den lernenden Kern nicht unkontrolliert verändern. `CER-RECON-20250421-02` dokumentiert als weitere S4-Rekonstruktion Schichten, dynamische Verbindungen, Mutation sowie historische Traum-/Fantasie-Metaphern. `CER-RECON-20250421-03` trennt davon einen früheren KI-Vorschlag zu Koordinatenkodierung und SQLite-Speicher.
 
-Der historische Wert liegt in der Problemkontinuität: Wie kann ein System Wissen behalten, ohne dass ein externes Sprachmodell oder eine Datenbank fälschlich als neuronales Gedächtnis gezählt wird? Wie lässt sich Wachstum zulassen, ohne die Kausalität zu verlieren? Wie kann ein technisches System zugleich offen erweiterbar und wissenschaftlich prüfbar bleiben? Diese Fragen erscheinen später in deutlich strengeren Formen wieder: als Persistenzvertrag, Retrieval-Isolation, strukturelle Plastizität, Capability-Gates, Experimentregister und Evidenzgrenzen.
+Diese Einträge sind **Provenienzklasse S4**: rekonstruierte Gesprächszusammenfassungen ohne vollständiges Originaltranskript. Sie belegen weder den tatsächlichen ersten Gedanken noch wissenschaftliche Priorität, Implementierung oder Funktionsnachweis. Die gleiche Grenze ist im Vorgängerwerk `PW-NEUROGENESIS-2025` des [Prior-Work-Registers](sources/prior_work.json) festgeschrieben.
+
+Der historische Wert liegt deshalb nicht in einer Prioritätsbehauptung, sondern in der Problemkontinuität: Wie kann ein System Zustand behalten, ohne ein Sprachmodell oder eine Datenbank fälschlich als neuronales Gedächtnis zu zählen? Wie lässt sich Wachstum zulassen, ohne die Kausalität zu verlieren? Wie kann ein technisches System zugleich offen erweiterbar und wissenschaftlich prüfbar bleiben? Diese Fragen erscheinen später in strengeren Formen wieder: als Persistenzvertrag, Retrieval-Isolation, strukturelle Plastizität, Capability-Gates, Experimentregister und Evidenzgrenzen.
 
 ## 2. Autorposition
 
-Thomas Heisig wird in dieser Arbeit als Autor und Projektleiter geführt. KI-Systeme sind als Recherche-, Synthese-, Kritik-, Programmier- und Formulierungswerkzeuge dokumentiert, erhalten aber keine automatische Quellen- oder Autoritätsrolle. Entscheidend ist nicht, ob ein Satz mit menschlicher oder maschineller Hilfe formuliert wurde, sondern ob seine Herkunft, seine Prüfgrundlage und seine Entscheidungskette nachvollziehbar sind.
+Thomas Heisig wird in dieser Arbeit als Autor, Projektleiter und wissenschaftlich verantwortliche natürliche Person geführt. KI-Systeme können Recherche-, Kritik-, Generierungs-, Analyse-, Programmier- und Formulierungsbeiträge leisten. **Ob ein konkreter KI-Beitrag epistemisch materiell ist, ist von formaler Autorenschaft, Entscheidungsmacht und wissenschaftlicher Verantwortung getrennt zu beurteilen.** Genau diese Trennung ist Gegenstand von `RQ-ETH-001` und des [Provenienz- und Beitragsprotokolls](../../protocols/RQ_ETH_001_PROVENANCE_STUDY.md).
 
-Die Selbstauskunft des Autors ist eine Primärquelle für Motivation und Arbeitsweise, jedoch keine empirische Evidenz über neuronale Mechanismen. Persönliche Intuition kann Forschungsfragen erzeugen; sie darf keine Hypothese bestätigen. Umgekehrt wird die ungewöhnlich enge Mensch-KI-Arbeit nicht versteckt. Sie ist selbst Teil der epistemologischen Fragestellung dieser Arbeit: Was bedeutet Autorschaft, wenn externe kognitive Werkzeuge permanent an Suche, Gegenargument, Implementierung und Text beteiligt sind?
+Damit gilt ausdrücklich nicht mehr die vereinfachende Gleichung „KI = bloßes Werkzeug“. Ein Assistenzsystem kann beispielsweise eine Kontrollbedingung, einen methodischen Einwand oder eine Hypothesenvariante erzeugen, die den weiteren Forschungsweg materiell verändert. Daraus folgt jedoch weder automatische Quellenautorität noch formale wissenschaftliche Autorenschaft oder Verantwortung.
+
+Die Selbstauskunft des Autors ist eine Primärquelle für Motivation und Arbeitsweise, jedoch keine empirische Evidenz über neuronale Mechanismen. Persönliche Intuition kann Forschungsfragen erzeugen; sie darf keine Hypothese bestätigen. Die vollständige Selbstauskunft bleibt als versioniertes Provenienzartefakt in [`AUTHOR_AND_CREATION_PRACTICE.md`](../2026-09-15_recursive-epistemics_v1.7/AUTHOR_AND_CREATION_PRACTICE.md) erhalten und wird im Hauptmanuskript nur soweit zusammengefasst, wie sie die wissenschaftliche Methode betrifft.
 
 ### 2.1 Autorenschaft, Beitragsrollen und KI-Offenlegung
 
-**Autor und wissenschaftlich verantwortliche Person dieser Edition ist Thomas Heisig.** Autorenschaft bedeutet hier nicht nur Namensnennung, sondern Verantwortung für Auswahl, Prüfung, Interpretation und Begrenzung der veröffentlichten Aussagen. Externe Publikationsrichtlinien verbinden Autorenschaft ebenfalls mit Verantwortlichkeit und Rechenschaftspflicht; AI-Systeme werden deshalb nicht als Autoren geführt, weil sie diese Verantwortung nicht übernehmen können ([ICMJE, 2026](REFERENCES.md#ref-ICMJE2026)).
+**Autor und wissenschaftlich verantwortliche Person dieser Edition ist Thomas Heisig.** Autorenschaft bedeutet hier nicht nur Namensnennung, sondern Verantwortung für Auswahl, Prüfung, Interpretation, Begrenzung und Veröffentlichung wissenschaftlicher Aussagen. Externe Publikationsrichtlinien verbinden Autorenschaft ebenfalls mit Verantwortlichkeit und Rechenschaftspflicht; AI-Systeme werden deshalb nicht als Autoren geführt, weil sie diese Verantwortung nicht übernehmen können ([ICMJE, 2026](REFERENCES.md#ref-ICMJE2026)).
 
 Für die transparente Beschreibung menschlicher Beiträge wird ergänzend die CRediT-Taxonomie verwendet; sie beschreibt Beitragsrollen, entscheidet aber nicht selbst darüber, wer Autor ist ([NISO, 2022](REFERENCES.md#ref-CREDIT2022)). Für Thomas Heisig werden in Edition 1.8 derzeit folgende Rollen ausgewiesen: **Conceptualization, Methodology, Software, Investigation, Data curation, Formal analysis, Validation, Visualization, Project administration, Writing – original draft sowie Writing – review & editing**.
 
-KI-Systeme werden als Recherche-, Synthese-, Kritik-, Programmier- und Formulierungswerkzeuge offengelegt, nicht als Primärquelle, Autor oder Evidenzinstanz. Literaturangaben, Tatsachenbehauptungen und daraus abgeleitete wissenschaftliche Aussagen bleiben in menschlicher Verantwortung; bei einer externen Einreichung muss die konkrete Nutzung von AI-Werkzeugen zusätzlich nach den Regeln des Zieljournals offengelegt werden ([ICMJE, 2026](REFERENCES.md#ref-ICMJE2026)).
+Für KI-Systeme wird dagegen zwischen **Beitragsprovenienz** und **Autorschaft** unterschieden. Ein KI-System kann einen materiellen Beitrag zu Konzeptualisierung, Generierung/Transformation, Analyse oder Validierung leisten. Die Annahme, Revision, Verwerfung oder Kanonisierung einer wissenschaftlichen Aussage sowie die formale Verantwortung bleiben davon getrennt. Diese Unterscheidung wird in `RQ-ETH-001` mit Claim-Episoden und einer Contribution-&-Accountability-Matrix operationalisiert.
+
+Literaturangaben, Tatsachenbehauptungen und daraus abgeleitete wissenschaftliche Aussagen bleiben in menschlicher Verantwortung; bei einer externen Einreichung muss die konkrete Nutzung von AI-Werkzeugen zusätzlich nach den Regeln des Zieljournals offengelegt werden ([ICMJE, 2026](REFERENCES.md#ref-ICMJE2026)).
 
 Die wissenschaftliche Textschicht verwendet ein Autor-Jahr-System nach **APA 7** ([American Psychological Association, 2020](REFERENCES.md#ref-APA2020)). Primärliteratur wird für ursprüngliche empirische, methodische oder theoretische Befunde bevorzugt; Sekundärliteratur wird dort verwendet und als solche ausgewiesen, wo Review, Survey oder Synthese die Einordnung trägt.
 
 ## 3. Von Metaphern zu Operationen
 
-Frühe Begriffe wie „DNA“, „Traum“, „Fantasie“, „Emotion“ oder „Gehirn“ werden historisch erhalten, aber nicht rückwirkend biologisch aufgeladen. In der heutigen Terminologie werden sie nur dann verwendet, wenn eine messbare technische Entsprechung definiert ist. Offline-Replay ist nicht Schlaf. Ein Aktivierungs- oder Salienzparameter ist kein Gefühl. Parametervererbung ist keine biologische Genetik. Eine adressierte 5D-Struktur ist kein anatomisches Gehirn.
+Frühe Begriffe wie „DNA“, „Traum“, „Fantasie“, „Emotion“ oder „Gehirn“ werden historisch erhalten, aber nicht rückwirkend biologisch aufgeladen. Die S4-Rekonstruktion `CER-RECON-20250421-02` belegt ihre Verwendung als frühe Designmetaphern, nicht als biologische oder phänomenale Befunde. In der heutigen Terminologie werden solche Begriffe nur dann verwendet, wenn eine messbare technische Entsprechung definiert ist.
 
-Diese Entmetaphorisierung ist kein Verlust der ursprünglichen Ideen. Sie macht sie testbar. Der Weg von einer anschaulichen Analogie zu einer operationalisierten Variable wird als Teil der Schaffensgeschichte dokumentiert, damit spätere Leser unterscheiden können, was Inspiration, was Spezifikation, was Implementierung und was tatsächlich gemessener Befund war.
+Offline-Replay ist nicht Schlaf. Ein Aktivierungs- oder Salienzparameter ist kein Gefühl. Parametervererbung ist keine biologische Genetik. Eine adressierte 5D-Struktur ist kein anatomisches Gehirn.
 
-## 4. Nullpunkt als offene Grenze
+Diese Entmetaphorisierung ist kein Verlust der ursprünglichen Ideen. Sie macht sie prüfbar. Der Weg von einer anschaulichen Analogie zu einer operationalisierten Variable wird als Teil der Schaffensgeschichte dokumentiert, damit spätere Leser unterscheiden können, was Inspiration, Spezifikation, Implementierung, Messung und Interpretation war.
 
-Edition 1.8 behauptet keinen exakt datierten „ersten Gedanken“. Für Zeiträume außerhalb des Git-Verlaufs stehen teilweise nur Zusammenfassungen früherer Chats oder später wiedergefundene Dokumente zur Verfügung. Diese werden mit Provenienzklasse S4 gekennzeichnet. Wo Originalnachrichten oder Originaldateien fehlen, lautet die wissenschaftlich korrekte Aussage „rekonstruiert“ oder „nicht rekonstruierbar“, nicht eine erfundene Präzision.
+## 4. Nullpunkt und rekonstruierte Vorgeschichte
 
-Damit ist Teil I bewusst erweiterbar. Neue Primärartefakte können die Chronologie verdichten oder korrigieren. Sie dürfen aber nicht stillschweigend bestehende Versionen überschreiben. Jede neue historische Zuordnung braucht Quelle, Datum beziehungsweise Datumsunsicherheit und eine Aussage darüber, ob sie Autoranforderung, KI-Vorschlag, Implementierung, Messung oder spätere Interpretation dokumentiert.
+Edition 1.8 behauptet keinen exakt datierten „ersten Gedanken“. Für Zeiträume außerhalb des Git-Verlaufs stehen teilweise nur rekonstruierte Gesprächszusammenfassungen oder später wiedergefundene Dokumente zur Verfügung. Die [Chat-Rekonstruktion](sources/chat_reconstruction.json) klassifiziert diese Einträge als S4, solange kein originales, datiertes Primärartefakt geprüft wurde. Wo Originalnachrichten oder Originaldateien fehlen, lautet die wissenschaftlich korrekte Aussage „rekonstruiert“ oder „nicht rekonstruierbar“, nicht eine erfundene Präzision.
 
-## 4.1 Die ursprüngliche Problemfamilie
+Damit ist Teil I bewusst erweiterbar. Neue Primärartefakte können die Chronologie verdichten oder korrigieren. Sie dürfen bestehende Versionen aber nicht stillschweigend überschreiben. Jede neue historische Zuordnung braucht Quelle, Datum beziehungsweise Datumsunsicherheit und eine Aussage darüber, ob sie Autoranforderung, KI-Vorschlag, Implementierung, Messung oder spätere Interpretation dokumentiert.
 
-Die rekonstruierten Vorarbeiten zeigen keine einzelne „Ur-Idee“, sondern eine wiederkehrende Problemfamilie. Schon vor dem heutigen MHRN standen sechs Fragen nebeneinander:
+### 4.1 Die ursprüngliche Problemfamilie
+
+Die rekonstruierten Vorarbeiten zeigen keine einzelne „Ur-Idee“, sondern eine wiederkehrende Problemfamilie. Für die frühe Phase sind insbesondere `CER-RECON-20250421-01` bis `-03` sowie `PW-NEUROGENESIS-2025` die derzeitigen Herkunftsanker. Aus ihnen lassen sich sechs wiederkehrende Fragen rekonstruieren:
 
 1. Wie kann ein neuronales System **über Neustarts hinweg** einen wissenschaftlich definierten Zustand behalten?
 2. Wie kann ein Netzwerk **wachsen, sich verbinden und verändern**, ohne dass der Veränderungspfad unprüfbar wird?
@@ -81,11 +90,13 @@ Die rekonstruierten Vorarbeiten zeigen keine einzelne „Ur-Idee“, sondern ein
 5. Wie können Offline-Phasen, Replay und Rekombination genutzt werden, ohne Metaphern wie „Traum“ oder „Fantasie“ als empirische Tatsachen zu behandeln?
 6. Wie kann ein System modular erweiterbar bleiben, ohne dass jedes neue Modul automatisch Schreibrechte auf den kausalen Lernkern erhält?
 
-Diese Kontinuität erklärt einen großen Teil der späteren Architektur. Die heutige Trennung von Content Gateway, Compute Backend, neuronaler Persistenz, Retrieval-Isolation, Capability-Gates und struktureller Mutation ist keine nachträgliche ästhetische Ordnung. Sie ist eine Antwort auf Mehrdeutigkeiten, die bereits in der Vorphase sichtbar waren.
+Diese Kontinuität erklärt einen Teil der späteren Architektur, ohne eine lineare oder notwendige Entwicklung zu behaupten. Die heutige Trennung von Content Gateway, Compute Backend, neuronaler Persistenz, Retrieval-Isolation, Capability-Gates und struktureller Mutation kann genealogisch auf diese frühen Mehrdeutigkeiten bezogen werden; ihre heutige wissenschaftliche Gültigkeit muss jedoch jeweils separat durch Architekturverträge und Experimente getragen werden.
 
-## 4.2 Aus Brain-5D übernommene Forschungsräume
+### 4.2 Aus Brain-5D übernommene Forschungsräume
 
-Das Brain-5D Scientific Framework v0.2 verdichtete die frühe Ideenlandschaft zu einem expliziteren wissenschaftlichen Programm. Darin tauchten bereits mehrere Forschungsräume auf, die bis heute fortwirken:
+Das `PW-FRAMEWORK-02` zugeordnete **Brain-5D Scientific Framework v0.2** vom 16. August 2026 verdichtete die frühe Ideenlandschaft zu einem expliziteren wissenschaftlichen Programm. Das [Prior-Work-Register](sources/prior_work.json) hält zugleich fest, dass der im Repository sichtbare DOCX-Pfad als LFS-Objekt behandelt wird und historische Evidenzklassen nicht automatisch in heutige `EVID`-Entscheidungen überführt werden.
+
+Darin erscheinen Forschungsräume, die bis heute fortwirken:
 
 - mehrdimensionale Adress- und Geometriehypothesen;
 - unterschiedliche Neuronmodelle und Zeitskalen;
@@ -95,75 +106,78 @@ Das Brain-5D Scientific Framework v0.2 verdichtete die frühe Ideenlandschaft zu
 - Gedächtnis, Continual Learning, Replay, Vorhersage und Language Organ;
 - Storage, digitaler Zustand, Embodiment, Safety und Ressourcenskalierung.
 
-Edition 1.8 übernimmt diese Räume nicht als bereits bestätigte Theorie. Sie übernimmt sie als **Genealogie der Forschungsfragen**. Mehrere Begriffe wurden inzwischen eingeengt: „5D“ ist keine Naturbehauptung; „Digital Twin“ ist ohne physisches Gegenstück primär ein reproduzierbarer digitaler Zustand; „Language Organ“ ist kein autoritativer Lernkern; „Homeostase“ ist eine technische Regelklasse, solange biologische Homologie nicht gezeigt wurde.
+Edition 1.8 übernimmt diese Räume nicht als bestätigte Theorie, sondern als **Genealogie der Forschungsfragen**. Mehrere Begriffe wurden inzwischen eingeengt: „5D“ ist keine Naturbehauptung; „Digital Twin“ ist ohne physisches Gegenstück zunächst ein reproduzierbarer digitaler Zustand; „Language Organ“ ist kein autoritativer Lernkern; „Homeostase“ bezeichnet eine technische Regelklasse, solange biologische Homologie nicht gezeigt wurde.
 
-## 4.3 Die Schaffensart als methodischer Risikofaktor
+### 4.3 Die Schaffensart als methodischer Risikofaktor
 
-Die kanonische Selbstauskunft des Autors beschreibt einen stark parallelen, werkstattartigen Arbeitsmodus: Problem sichtbar machen, Randbedingungen benennen, Mechanismus isolieren, Eingriff definieren, ausführen, messen, Fehler dokumentieren, erst danach verallgemeinern. Dieser Modus hat die hohe Entwicklungsgeschwindigkeit ermöglicht, erzeugt aber ein spezifisches Risiko: **Struktur lässt sich schneller schließen als Empirie.**
+Die kanonische Selbstauskunft [`AUTHOR_AND_CREATION_PRACTICE.md`](../2026-09-15_recursive-epistemics_v1.7/AUTHOR_AND_CREATION_PRACTICE.md) beschreibt einen stark parallelen, werkstattartigen Arbeitsmodus: Problem sichtbar machen, Randbedingungen benennen, Mechanismus isolieren, einen testbaren Eingriff definieren, ausführen, messen, Abweichungen dokumentieren und erst danach verallgemeinern. Sie dokumentiert zugleich einen selbst beschriebenen Abschluss- und Ordnungsdrang. Beides ist **Selbstauskunft**, keine unabhängige psychologische oder wissenschaftliche Evidenz.
 
-Genau dieses Risiko ist in den Vorgängerarbeiten mehrfach sichtbar geworden. Ein technisch sauber gebautes Modul konnte im Frontend bereits vollständig erscheinen, obwohl seine wissenschaftliche Rolle erst teilweise geprüft war. Ein plausibles Semantikmodul konnte zentral wirken, bevor Raw-Replay als stärkere Kontrolle eingeführt wurde. Eine 5D-Bedingung konnte formal existieren, obwohl die Dynamik nicht ausreichend an die Geometrie gekoppelt war.
+Methodisch relevant ist das daraus abgeleitete Risiko: **Struktur lässt sich schneller schließen als Empirie.** Technisch vollständige Module, UI-Zustände oder plausible Architekturen können einen Reifegrad suggerieren, den die experimentelle Prüfung noch nicht trägt.
 
-Aus diesen Erfahrungen entstand eine methodische Selbstkorrektur: Engineering-Fertigstellung und Scientific Readiness werden getrennt; negative Ergebnisse dürfen Architektur reduzieren; UI-Prozentwerte sind keine Fähigkeitsscores; und eine neue Funktion erhält keinen wissenschaftlichen Status allein durch Integration.
+Die Antwort darauf ist eine methodische Selbstkorrektur: Engineering-Fertigstellung und Scientific Readiness werden getrennt; negative und Nullbefunde dürfen Architektur reduzieren; UI-Prozentwerte sind keine Fähigkeitsscores; eine neue Funktion erhält keinen wissenschaftlichen Status allein durch Integration. Die konkreten Fälle und aktuellen Evidenzstände werden nicht in Teil I fortgeschrieben, sondern in Teil IV, X und XI geführt.
 
-## 4.4 Mensch-KI-Zusammenarbeit als reale Entstehungsbedingung
+### 4.4 Mensch-KI-Zusammenarbeit als reale Entstehungsbedingung
 
-MHRN ist in einer Arbeitsweise entstanden, in der menschliche Zielsetzung, mehrere KI-Assistenten, Literaturrecherche, Codegenerierung, Review, Tests und Git-Provenienz eng verschränkt sind. Diese Konstellation wird nicht geglättet. Für die Entstehungsgeschichte ist gerade wichtig, zwischen unterschiedlichen Beitragsarten zu unterscheiden:
+MHRN ist in einer Arbeitsweise entstanden, in der menschliche Zielsetzung, mehrere KI-Assistenten, Literaturrecherche, Codegenerierung, Review, Tests und Git-Provenienz eng verschränkt sind. Diese Konstellation wird nicht geglättet. Seit der Verdichtung von `RQ-ETH-001` wird sie nicht mehr nur als „Mensch plus Werkzeuge“, sondern als Folge unterscheidbarer epistemischer Ereignisse beschrieben:
 
-- **Autoranforderung:** welche Richtung, Grenze oder Funktion der Mensch verlangt;
-- **KI-Vorschlag:** welche Lösung, Formulierung oder Hypothese ein Assistenzsystem anbietet;
-- **menschliche Entscheidung:** welche Variante angenommen, verändert oder verworfen wird;
-- **Commit:** was tatsächlich implementiert und versioniert wurde;
-- **Run/DATA:** was tatsächlich ausgeführt und gemessen wurde;
-- **Review:** welche Interpretation anschließend akzeptiert, eingeschränkt oder verworfen wurde.
+- **Konzeptualisierung:** Wer erzeugt oder verändert Forschungsfrage, Ziel, Hypothese oder Erfolgsbedingung?
+- **Generierung/Transformation:** Wer erzeugt Text, Code, Analyse, Kontrollidee oder methodische Variante?
+- **Validierung:** Wer oder was prüft Quelle, Code, Messung, Statistik oder Konsistenz?
+- **Selektion/Kanonisierung:** Wer entscheidet, was übernommen, revidiert, verworfen, als `DATA`/`EVID` behandelt oder veröffentlicht wird?
+- **Verantwortung:** Welche natürliche Person kann für die veröffentlichte Aussage wissenschaftlich Rechenschaft übernehmen?
 
-Diese Kette ist ein Teil der späteren Theorie rekursiver Epistemik. Die Arbeit untersucht nicht nur ein lernendes System; sie entsteht selbst in einem System aus Quellen, Werkzeugen, Reviews, Entscheidungen und Statusänderungen.
+Die operative Einheit dafür ist die **Claim-Episode**. Commits, Runs, Reviews und Freigaben sind dabei Provenienzartefakte innerhalb einer Episode, aber nicht mit epistemischer Rolle oder Autorenschaft gleichzusetzen. Das Design ist in [`RQ_ETH_001_PROVENANCE_STUDY.md`](../../protocols/RQ_ETH_001_PROVENANCE_STUDY.md) festgelegt; es ist derzeit Protokolldesign und kein bestätigter empirischer Befund.
 
-## 4.5 Persönliche Motivation und ihre wissenschaftliche Grenze
+Diese Kette ist zugleich ein Gegenstand rekursiver Epistemik: Die Arbeit untersucht nicht nur ein lernendes System, sondern entsteht selbst in einem System aus Quellen, Modellen, Werkzeugen, Prüfungen, Entscheidungen und Statusänderungen.
 
-Die Vorgängerfassung dokumentiert die persönliche Motivation des Autors als Mischung aus technischer Praxis, starkem Ordnungs- und Abschlussdrang sowie langfristigem Interesse an kognitiven Systemen und deren Veränderungen. Diese Motivation ist epistemisch relevant, weil sie erklärt, warum bestimmte Fragen verfolgt werden. Sie besitzt jedoch keine Beweiskraft für deren Antwort.
+### 4.5 Persönliche Motivation und ihre wissenschaftliche Grenze
 
-Die verbindliche Regel lautet deshalb: **Nähe erzeugt Fragen, nicht Antworten.** Persönliche Erfahrung, handwerkliche Systemintuition oder interdisziplinäre Analogien dürfen einen Suchraum öffnen; sie ersetzen weder neurowissenschaftliche Fachliteratur noch Statistik, Replikation, Ethikprüfung oder Peer Review.
+Die vollständige persönliche Selbstauskunft bleibt außerhalb des wissenschaftlichen Kerntexts versioniert. Für Teil I genügt die methodisch relevante Feststellung: Der Autor beschreibt persönliche Nähe zu kognitiven Fragen, technische Praxis, einen stark parallelisierten Arbeitsmodus sowie einen Abschluss- und Ordnungsdrang als Motivation und mögliche Bias-Quellen. Diese Angaben erklären, **warum** bestimmte Fragen verfolgt werden können; sie besitzen keine Beweiskraft für deren Antwort.
 
-Gerade weil MHRN außerhalb institutioneller Forschungsstrukturen entstanden ist, muss die Arbeit ihre Grenzen expliziter machen: Was ist Selbstbeschreibung? Was ist externe Theorie? Was ist implementierter Mechanismus? Was ist DATA? Was wurde menschlich reviewt? Was ist noch offen? Diese Trennung ist nicht nur Dokumentationsstil, sondern ein Kompensationsmechanismus für fehlende institutionelle Selbstverständlichkeit.
+Die verbindliche Regel lautet deshalb: **Nähe erzeugt Fragen, nicht Antworten.** Persönliche Erfahrung, Systemintuition oder interdisziplinäre Analogien dürfen einen Suchraum öffnen; sie ersetzen weder Fachliteratur, Statistik, Replikation, Ethikprüfung noch Peer Review.
 
-## 4.6 Forschungsproblem, Leitfrage und dissertationsähnliche Gesamtarchitektur
+Gerade weil MHRN außerhalb institutioneller Forschungsstrukturen entstanden ist, muss die Arbeit die Ebenen explizit trennen: Selbstauskunft, externe Theorie, implementierter Mechanismus, `DATA`, Human Review, `EVID`, Claim und offene Frage. Diese Trennung ist keine Kompensation durch Rhetorik, sondern ein prüfbarer Governance-Vertrag.
 
-Edition 1.8 versteht sich als wissenschaftliche Monographie im Work-in-Progress-Status. Sie ist **keine eingereichte Dissertation und kein akademischer Gradanspruch**, übernimmt aber bewusst eine dissertationsähnliche Forschungslogik: Problemstellung, Forschungsstand, Forschungslücke, Leitfrage, Teilfragen, Methodik, Ergebnisse, Diskussion, Limitationen und revidierbare Schlussfolgerungen werden sichtbar getrennt.
+## 5. Forschungsproblem und monographische Gesamtarchitektur
 
-### Übergeordnetes Forschungsproblem
+Edition 1.8 versteht sich als wissenschaftliche Monographie im Work-in-Progress-Status. Sie ist **keine eingereichte Dissertation und kein akademischer Gradanspruch**. Die Struktur folgt einer monographischen Forschungslogik: Problemstellung, Forschungsstand, Forschungslücke, Leitfrage, Teilfragen, Methodik, Ergebnisse, Diskussion, Limitationen und revidierbare Schlussfolgerungen werden sichtbar getrennt.
+
+### 5.1 Übergeordnetes Forschungsproblem
 
 Das Grundproblem dieser Arbeit ist nicht allein der Bau eines größeren spikenden Systems. Es lautet: **Wie kann eine modular wachsende, verkörperbare spikende Architektur so untersucht werden, dass technische Existenz, kausaler Mechanismus, empirischer Nutzen, Provenienz und normative Reichweite nicht miteinander verwechselt werden?**
 
-Aus der bisherigen Schaffensgeschichte folgt eine zweite Ebene des Problems: Das Forschungsobjekt verändert sich während seiner Untersuchung. Neue Module können Hypothesen erzeugen, negative Resultate können Architektur reduzieren, KI-Werkzeuge können Recherche und Implementierung beschleunigen, und die Dokumentation selbst beeinflusst spätere Entscheidungen. Deshalb muss nicht nur das System, sondern auch der Forschungsprozess kontrollierbar und revidierbar sein.
+Aus der Schaffensgeschichte folgt eine zweite Ebene: Das Forschungsobjekt verändert sich während seiner Untersuchung. Neue Module können neue Fragen erzeugen, negative Resultate können Architektur reduzieren, KI-Systeme können materielle epistemische Beiträge liefern, und die Dokumentation selbst beeinflusst spätere Entscheidungen. Deshalb muss nicht nur das System, sondern auch der Forschungsprozess kontrollierbar und revidierbar sein.
 
-### Zentrale Leitfrage
+### 5.2 Zentrale Leitfrage
 
 > **Wie lässt sich eine evolvierende spikende Forschungsarchitektur so entwickeln, operationalisieren und prüfen, dass behauptete Funktionalität und Lernkausalität durch explizite Kontrollen, Provenienz und revidierbare Evidenzverträge getragen werden, während stärkere kognitive, biologische oder normative Aussagen nur dort zugelassen werden, wo ihre eigenen Prüfbedingungen erfüllt sind?**
 
-Diese Leitfrage ist breiter als eine einzelne Hypothese. Sie wird durch mehrere Teilstudien beantwortet, die unterschiedliche Evidenzformen besitzen und deshalb nicht in einen gemeinsamen Erfolgswert gepresst werden.
+Diese Leitfrage ist eine **publikationsweite Leitfrage**, kein zusätzliches Objekt der kanonischen `RQ-*`-Registry. Sie bündelt mehrere registrierte Forschungsfragen mit unterschiedlichen Evidenzformen und darf deshalb nicht durch einen einzigen Lauf oder gemeinsamen Erfolgswert als „bestätigt“ behandelt werden.
 
-### Arbeitsleitthese
+### 5.3 Publikationsweite Syntheseproposition
 
-Die leitende, revidierbare Arbeitsthese lautet:
+Die leitende, revidierbare Syntheseproposition lautet:
 
 > **Wissenschaftliche Reife entsteht in MHRN nicht durch die Addition möglichst vieler Mechanismen, sondern durch deren empirische Selektion unter expliziten Kontroll-, Provenienz- und Evidenzbedingungen.**
 
-Diese These ist kein vorweggenommenes Ergebnis. Sie wird daran gemessen, ob die Forschungszweige tatsächlich zeigen, dass schwächere Erklärungen ausgeschlossen, negative Resultate architektonisch verarbeitet, offene Hypothesen offen gelassen und neue Funktionen erst nach geeigneten Vergleichsbedingungen wissenschaftlich aufgewertet werden.
+Diese Aussage ist **keine kanonische experimentelle `H-*`-Hypothese** und kein vorweggenommenes Ergebnis. Sie ist eine publikationsweite Syntheseproposition, deren Tragfähigkeit aus mehreren unabhängigen Forschungszweigen, Gegenbeispielen, Revisionen und Grenzen beurteilt wird. Sie muss revidiert werden, wenn die Forschungsarchitektur zwar formale Gates produziert, diese aber keine nachweisbare Verbesserung von Fehlersuche, Claim-Begrenzung, Reproduzierbarkeit oder Entscheidungsqualität bewirken.
 
-### Teilstudien und Forschungszweige
+### 5.4 Forschungszweige und Teilstudien
 
-| Forschungszweig | Wissenschaftliche Kernfrage | Primärer methodischer Zugriff | Gegenwärtige Grenze |
+Teil I definiert die stabilen Forschungszweige und ihre Claim-Grenzen, **nicht deren tagesaktuellen Ergebnisstatus**. Aktuelle Befunde, negative Resultate, offene Hypothesen und Präregistrierungen gehören in Teil IV, X, XI und die kanonischen Register.
+
+| Forschungszweig | Wissenschaftliche Kernfrage | Primärer methodischer Zugriff | Strukturelle Claim-Grenze |
 | --- | --- | --- | --- |
-| **Basale neuronale Dynamik und Determinismus** | Sind definierte Einzelzell- und Netzwerktrajektorien unter kontrollierten Bedingungen reproduzierbar und referenzkonform? | Referenzvergleich, Same-Seed-Replikate, Zustands-/Hash-Provenienz | keine allgemeine Determinismus- oder biologische Äquivalenzbehauptung |
-| **Rekurrenz, Topologie und 5D** | Welche Netzwerkunterschiede sind kausal auf Rekurrenz beziehungsweise Geometrie zurückzuführen? | matched controls, Ablation, Topologie-/Delay-Kopplung, Activity-Adequacy-Gates | 5D-v1 war für den zentralen Geometrieclaim nicht testadäquat |
-| **Plastizität und adaptive Dynamik** | Verändern STDP, Drei-Faktor-Regeln, Homeostase und Strukturplastizität Lernen oder Stabilität gegenüber geeigneten Kontrollen? | learning-on/off, Sham, Frozen, Perturbation und gehaltene Testdaten | Implementierung ist nicht gleich funktionaler Lernnachweis |
-| **Spezialisierte Pfade und MSBA** | Liefern modalitätsspezifische und adaptive Pfade unter kontrollierten Ressourcenbedingungen messbaren technischen Nutzen? | E01–E05, synthetische Kosten-/Recovery-/Integritätsvergleiche | kein Nachweis emergenter Arealbildung oder allgemeiner Überlegenheit |
-| **Embodiment** | Kann eine Sensor–SNN–Aktor–Feedback-Kette zielgerichtete Wirkung unter kontrollierten Störungen erzeugen und kausal vom Open Loop getrennt werden? | Closed Loop, Fehlerarme, Yoked-/Interrupted-Controls | Realweltübertragbarkeit und `H-EMB-001-B` bleiben offen |
-| **Gedächtnis, Replay und Weltmodell** | Welche Retention stammt von Replay, semantischer Verdichtung oder einem tatsächlich kausal wirksamen Vorhersagemodell? | matched Replay, Random-Prototypes, Holdout, Kompressions- und Modellkontrollen | SemanticMemory-Zusatznutzen nicht bestätigt; Kompressionsfrage noch präregistrierungspflichtig |
-| **Epistemologie und Forschungsprozess** | Verbessern Provenienz-, Freeze-, Review- und EVID-Gates die Qualität der wissenschaftlichen Entscheidungen? | Prozessrekonstruktion, Status-Audit, Kontrafaktik, Revisionstracing | interne Verbesserung ist keine unabhängige externe Validierung |
-| **Ethik, Safety und Autonomie** | Welche Kontroll-, Ziel- und Welfare-Fragen entstehen bei zunehmender Wirk- und Lernfähigkeit? | normative Analyse, Szenarien, technische Safety-Verträge | keine Prognose, kein Bewusstseins- oder Sentienznachweis |
+| **Basale neuronale Dynamik und Determinismus** | Sind definierte Einzelzell- und Netzwerktrajektorien unter kontrollierten Bedingungen reproduzierbar und referenzkonform? | Referenzvergleich, Same-Seed-Replikate, Zustands-/Hash-Provenienz | Reproduzierbarkeit gilt nur für geprüfte Konfigurationen und begründet keine biologische Äquivalenz |
+| **Rekurrenz, Topologie und 5D** | Welche Netzwerkunterschiede sind kausal auf Rekurrenz beziehungsweise Geometrie zurückzuführen? | matched controls, Ablation, Topologie-/Delay-Kopplung, Activity-Adequacy-Gates | Ein 5D-Claim verlangt aktivitätsadäquate und topology-matched Kontrollen; Dimensionalität allein ist kein Vorteil |
+| **Plastizität und adaptive Dynamik** | Verändern STDP, Drei-Faktor-Regeln, Homeostase und Strukturplastizität Lernen oder Stabilität gegenüber geeigneten Kontrollen? | learning-on/off, Sham, Frozen, Perturbation und gehaltene Testdaten | Implementierte Gewichtsänderung ist weder Lernnutzen noch Generalisierung |
+| **Spezialisierte Pfade und MSBA** | Liefern modalitätsspezifische und adaptive Pfade unter kontrollierten Ressourcenbedingungen messbaren technischen Nutzen? | kontrollierte Kosten-, Recovery-, Integritäts- und Ablationsvergleiche | Spezialisierung begründet weder emergente Hirnareale noch allgemeine Überlegenheit |
+| **Embodiment** | Kann eine Sensor–SNN–Aktor–Feedback-Kette zielgerichtete Wirkung unter kontrollierten Störungen erzeugen und kausal vom Open Loop getrennt werden? | Closed Loop, Yoked-/Interrupted-Controls, matched disturbances | Synthetischer Closed Loop ist kein Nachweis allgemeiner Autonomie, Kognition oder Realweltübertragbarkeit |
+| **Gedächtnis, Replay und Weltmodell** | Welche Retention stammt von Replay, semantischer Verdichtung oder einem tatsächlich kausal wirksamen Vorhersagemodell? | matched Replay, informationszerstörte Kontrollen, Holdout, Kompressions- und Modellkontrollen | Retrieval oder Verdichtung sind nicht automatisch neuronales Gedächtnis oder Weltmodell |
+| **Epistemologie und Forschungsprozess** | Verbessern Provenienz-, Freeze-, Review- und EVID-Gates die Qualität wissenschaftlicher Entscheidungen? | Prozessrekonstruktion, Status-Audit, Kontrafaktik, Revisionstracing | Interne Governance ist keine unabhängige externe Validierung |
+| **Ethik, Safety und Autonomie** | Welche Kontroll-, Ziel- und Welfare-Fragen entstehen bei zunehmender Wirk- und Lernfähigkeit? | normative Analyse, Szenarien, technische Safety-Verträge | Szenarien sind keine Prognosen; technische Zustände sind kein Bewusstseins- oder Sentienznachweis |
 
-Damit besitzt jeder Forschungszweig einen eigenen wissenschaftlichen Gegenstand. Teil IV behandelt die empirischen Zweige als Teilstudien; Teil VI die epistemologische Methodik; Teil VIII die normative Analyse; Teil IX die Theorieentwicklung; Teil X übernimmt die General Discussion; Teil XI formuliert Limitationen, offene Hypothesen und die priorisierte Forschungsagenda.
+Damit besitzt jeder Forschungszweig einen eigenen wissenschaftlichen Gegenstand und eigene Evidenzregeln. Teil IV behandelt die empirischen Teilstudien und ihren jeweiligen Stand; Teil VI die epistemologische Methodik; Teil VII Integrität und Autorenschaft; Teil VIII die normative Analyse; Teil IX die Theorieentwicklung; Teil X die General Discussion; Teil XI Limitationen, offene Hypothesen und die priorisierte Forschungsagenda.
 
 
 ---

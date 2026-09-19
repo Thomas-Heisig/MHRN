@@ -135,7 +135,9 @@ Typ: `claim`; Quellstatus: `inconclusive`; Quelle: [research/registry/claims.yam
   "claim": "Unter dem eingefrorenen V2-Protokoll konformieren die deklarierten MHRN-Einzelzellverträge für Izhikevich-2003, lif-current-v1 und das separat klassifizierte Refractory-Semantik-Mapping mit der gematchten Brian2-2.10.1-Referenz innerhalb der präregistrierten Toleranzen.",
   "research_question": "RQ-EVAL-006",
   "hypothesis": "H-EVAL-006-A",
-  "evidence": [\n    "EVID-2026-18"\n  ],
+  "evidence": [
+    "EVID-2026-18"
+  ],
   "experiments": [
     "EXP-STAGE0-20260916-MODEL-CONFORMANCE-V2",
     "EXP-STAGE0-20260918-MODEL-CONFORMANCE-V2-PROMO-R1"
@@ -1262,8 +1264,8 @@ Typ: `research_question`; Quellstatus: `open`; Quelle: [research/registry/questi
   "relevance": "Embodiment erweitert Brain-5D von einer reinen Simulation zu einem interaktiven System.",
   "literature": [],
   "hypotheses": [
-    "H-EMB-001-B",
-    "H-EMB-001-A"
+    "H-EMB-001-A",
+    "H-EMB-001-B"
   ],
   "evidence": [],
   "status": "open",
