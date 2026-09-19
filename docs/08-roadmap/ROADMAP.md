@@ -4,6 +4,16 @@
 **Baseline:** `mhrn-core 0.6.0a5`
 **Updated:** 2026-09-16
 
+## 2026-09-19 Public ORCID authorship linking
+
+- Canonical project, citation and author metadata now link Thomas Heisig to
+	ORCID `0009-0002-9589-1872`.
+- Runtime profile identity remains separate from public authorship identity.
+- Private ORCID contact data is not stored in the repository.
+- Zenodo release metadata now links the GitHub source and the same ORCID; the
+	external record/DOI remains unverified until a concrete Zenodo record exists.
+- The public OSF project resource is linked as a research/provenance location.
+
 ## 2026-09-18 Human-review queue and inbox integrity
 
 - The review inbox now distinguishes real human decisions from AI-authored

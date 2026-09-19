@@ -9,6 +9,17 @@
     "description_de": "Eine spikende neuronale Architektur mit topologischer Plastizität",
     "package_name": "mhrn-core"
   },
+  "authorship": {
+    "primary_author": {
+      "given_names": "Thomas",
+      "family_name": "Heisig",
+      "display_name": "Thomas Heisig",
+      "orcid": "0009-0002-9589-1872",
+      "orcid_uri": "https://orcid.org/0009-0002-9589-1872",
+      "identity_scope": "public authorship and provenance linking"
+    },
+    "private_contact_data": "not_stored"
+  },
   "publication": {
     "short_title_en": "Recursive Epistemics",
     "short_title_de": "Rekursive Epistemik",
@@ -31,7 +42,22 @@
     "huggingface_model_requested": "superdigger/MHRN",
     "huggingface_model_legacy": "superdigger/Brain-5D",
     "huggingface_space_requested": "superdigger/MHRN",
-    "huggingface_space_legacy": "superdigger/Brain-5D-Space"
+    "huggingface_space_legacy": "superdigger/Brain-5D-Space",
+    "zenodo": {
+      "integration": "github_release_archive",
+      "metadata_file": ".zenodo.json",
+      "source_repository": "https://github.com/Thomas-Heisig/MHRN",
+      "record_url": null,
+      "doi": null,
+      "status": "metadata_ready_record_not_verified",
+      "creator_orcid": "0009-0002-9589-1872"
+    },
+    "osf": {
+      "project_url": "https://osf.io/p34uq/",
+      "resource_type": "project_repository",
+      "creator_orcid": "0009-0002-9589-1872",
+      "status": "linked_public_resource"
+    }
   },
   "compatibility": {
     "historical_titles": [

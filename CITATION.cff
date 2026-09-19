@@ -7,5 +7,7 @@ version: "0.6.0a5"
 authors:
   - family-names: Heisig
     given-names: Thomas
+    orcid: "https://orcid.org/0009-0002-9589-1872"
 repository-code: "https://github.com/Thomas-Heisig/MHRN"
+url: "https://osf.io/p34uq/"
 license: MIT

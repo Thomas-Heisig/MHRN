@@ -14,6 +14,16 @@ entfernt.
 Das Archiv ist im Frontend standardmäßig geschlossen und bietet eine gemeinsame
 Suche für archivierte Reihen und Einzelexperimente.
 
+Die öffentliche Projektattribution ist mit ORCID `0009-0002-9589-1872` für
+Thomas Heisig verknüpft. Diese Autorenidentität ist von technischen Runtime-
+Profilen getrennt; private Kontaktdaten aus dem ORCID-Datensatz werden nicht
+gespeichert.
+Für GitHub-Release-Archive ist `.zenodo.json` mit derselben öffentlichen
+ORCID-Creator-Verknüpfung hinterlegt. Ein Zenodo-Record oder DOI gilt erst nach
+externer Prüfung als vorhanden und wird derzeit nicht behauptet.
+Das öffentliche OSF-Projekt ist als Forschungs-/Provenienzressource unter
+`https://osf.io/p34uq/` verknüpft.
+
 ## Aktuelle Publikation
 
 - **Recursive Epistemics / Rekursive Epistemik, Edition 1.8 — current WIP**

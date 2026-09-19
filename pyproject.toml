@@ -45,6 +45,7 @@ Repository = "https://github.com/Thomas-Heisig/MHRN"
 Documentation = "https://github.com/Thomas-Heisig/MHRN#readme"
 Changelog = "https://github.com/Thomas-Heisig/MHRN/blob/main/CHANGELOG.md"
 Issues = "https://github.com/Thomas-Heisig/MHRN/issues"
+OSF = "https://osf.io/p34uq/"
 
 [project.optional-dependencies]
 empirical = ["brian2==2.10.1"]

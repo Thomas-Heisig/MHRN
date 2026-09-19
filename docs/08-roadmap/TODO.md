@@ -16,6 +16,14 @@
 - [x] Teilweise archivierte Reihen im Archiv mit ihrem Kinderstatus ausweisen.
 - [x] Archivfrontend standardmäßig ausblenden und Reihen/Einzelexperimente gemeinsam durchsuchen.
 
+## 2026-09-19 Public identity linking
+
+- [x] Public ORCID authorship link in project, citation and provenance metadata.
+- [x] Keep private ORCID contact data out of the repository.
+- [x] Add GitHub-to-Zenodo release metadata with the public ORCID creator link.
+- [ ] Add a verified Zenodo record URL and DOI after the external record exists.
+- [x] Link the public OSF project as a research/provenance resource.
+
 Aeltere offene Zaehler unten sind zeitgebundene Bestandsaufnahmen; der aktuelle Registerabgleich steht in research/generated/EXPERIMENT_COVERAGE_ALPHA3.json.
 
 ## Naming update — 2026-09-08

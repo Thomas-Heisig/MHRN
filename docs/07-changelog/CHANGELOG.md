@@ -1,5 +1,16 @@
 # Changelog
 
+## 2026-09-19 - Public ORCID authorship linking
+
+- Added the public ORCID `0009-0002-9589-1872` for Thomas Heisig to the
+  canonical project identity, authors list and citation metadata.
+- Added `public_author_identity()` for consistent provenance linking.
+- Private ORCID contact data is intentionally not stored.
+- Added `.zenodo.json` for GitHub-release-to-Zenodo archiving with the same
+  ORCID creator link; no unverified Zenodo DOI is claimed.
+- Linked the public OSF project `https://osf.io/p34uq/` into project,
+  citation, package and provenance metadata.
+
 ## 2026-09-19 - Experiment- und Reihenarchiv
 
 - Einzelarchivierung ist idempotent und behandelt bereits archivierte

@@ -13,10 +13,16 @@ import pytest
 
 from scripts.publication_naming import export_markdown, verify
 from src.identity import (
+    AUTHOR_DISPLAY_NAME,
+    AUTHOR_ORCID,
+    AUTHOR_ORCID_URI,
+    PROJECT_OSF_URI,
     PROJECT_NAME,
     PROJECT_SUBTITLE_DE,
     PROJECT_TITLE,
     legacy_environment_aliases,
+    public_author_identity,
+    public_project_resources,
 )
 from src.version import (
     BRAIN5D_VERSION,
@@ -41,6 +47,41 @@ def test_current_identity_and_distribution() -> None:
     assert project["name"] == "mhrn-core"
     assert project["version"] == MHRN_VERSION == BRAIN5D_VERSION
     assert MHRN_VERSION_DISPLAY == BRAIN5D_VERSION_DISPLAY
+
+
+def test_public_orcid_identity_link_is_canonical_and_private_data_is_excluded() -> None:
+    identity: dict[str, Any] = json.loads(
+        (ROOT / "project_identity.json").read_text(encoding="utf-8")
+    )
+    author = identity["authorship"]["primary_author"]
+    assert AUTHOR_DISPLAY_NAME == author["display_name"] == "Thomas Heisig"
+    assert AUTHOR_ORCID == author["orcid"] == "0009-0002-9589-1872"
+    assert AUTHOR_ORCID_URI == author["orcid_uri"]
+    assert public_author_identity() == {
+        "display_name": "Thomas Heisig",
+        "given_names": "Thomas",
+        "family_name": "Heisig",
+        "orcid": "0009-0002-9589-1872",
+        "orcid_uri": "https://orcid.org/0009-0002-9589-1872",
+    }
+    serialized = json.dumps(identity, ensure_ascii=False)
+    assert "news@thomas-heisig.de" not in serialized
+    assert "t_heisig@gmx.de" not in serialized
+    citation = (ROOT / "CITATION.cff").read_text(encoding="utf-8")
+    assert "orcid: \"https://orcid.org/0009-0002-9589-1872\"" in citation
+    zenodo = json.loads((ROOT / ".zenodo.json").read_text(encoding="utf-8"))
+    assert zenodo["creators"] == [
+        {"name": "Thomas Heisig", "orcid": "0009-0002-9589-1872"}
+    ]
+    assert zenodo["related_identifiers"][0]["identifier"].endswith("/MHRN")
+    assert "doi" not in zenodo
+    assert PROJECT_OSF_URI == "https://osf.io/p34uq/"
+    assert public_project_resources() == {
+        "github": "https://github.com/Thomas-Heisig/MHRN",
+        "osf": "https://osf.io/p34uq/",
+    }
+    assert identity["platforms"]["osf"]["project_url"] == PROJECT_OSF_URI
+    assert "news@thomas-heisig.de" not in json.dumps(zenodo)
 
 
 @pytest.mark.parametrize("new_value", ["", "0", "1", "custom"])

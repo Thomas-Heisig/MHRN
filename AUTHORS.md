@@ -3,6 +3,8 @@
 ## Maintainer
 
 - **Thomas Heisig** — Project lead, architecture, core development
+	- ORCID: [0009-0002-9589-1872](https://orcid.org/0009-0002-9589-1872)
+		- OSF project: [osf.io/p34uq](https://osf.io/p34uq/)
 
 ## Contributors
 

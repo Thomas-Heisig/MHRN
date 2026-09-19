@@ -1,0 +1,32 @@
+{
+  "title": "Multi-Scale Homeostatic Recurrence Network (MHRN)",
+  "upload_type": "software",
+  "description": "MHRN is a spiking neural architecture with topological plasticity. GitHub main is the canonical source; this Zenodo metadata is used for release archiving and public authorship provenance.",
+  "creators": [
+    {
+      "name": "Thomas Heisig",
+      "orcid": "0009-0002-9589-1872"
+    }
+  ],
+  "access_right": "open",
+  "license": "MIT",
+  "language": "eng",
+  "keywords": [
+    "spiking neural networks",
+    "topological plasticity",
+    "homeostatic recurrence",
+    "MHRN"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/Thomas-Heisig/MHRN",
+      "relation": "isSupplementTo",
+      "resource_type": "software"
+    },
+    {
+      "identifier": "https://osf.io/p34uq/",
+      "relation": "isSupplementTo",
+      "resource_type": "other"
+    }
+  ]
+}

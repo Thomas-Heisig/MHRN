@@ -13,6 +13,22 @@ profile mutation remains **locked / future research**.
 A profile is a persistent technical identity. It is not evidence of a
 psychological identity, personality, subjective continuity or consciousness.
 
+## Public authorship identity
+
+Project authorship is linked separately from runtime profiles. The canonical
+public author record is Thomas Heisig with ORCID `0009-0002-9589-1872`, exposed
+through `src.identity.public_author_identity()`, `project_identity.json`,
+`AUTHORS.md` and `CITATION.cff`. Private contact data from the ORCID record is
+not copied into the repository.
+
+Zenodo release metadata is stored in `.zenodo.json` and uses the same public
+ORCID creator identifier. A Zenodo record URL or DOI is added only after the
+external record has been verified; no placeholder DOI is asserted.
+
+The public OSF project resource is linked as `https://osf.io/p34uq/` through
+`project_identity.json`, `pyproject.toml`, `CITATION.cff` and
+`src.identity.public_project_resources()`.
+
 ## Separation of state
 
 | Layer | Contents | Storage |
