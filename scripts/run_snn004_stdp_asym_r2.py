@@ -113,18 +113,19 @@ def main() -> int:
     integrity_checks = {
         "clean_source_freeze": source["dirty_before_execution"] is False,
         "protocol_id": result["protocol"] == "stdp_pair_timing_v1",
-        "initial_weight": float(result["conditions"]["initial_weight"])
-        == INITIAL_WEIGHT,
-        "replications": int(
-            result["conditions"]["repeated_evaluations_per_condition"]
-        )
-        == REPLICATIONS,
-        "independent_runs_zero": int(
-            result["conditions"]["independent_runs_per_condition"]
-        )
-        == 0,
-        "parameter_match": result["conditions"]["parameters"]
-        == PARAMETERS.to_dict(),
+        "initial_weight": (
+            float(result["conditions"]["initial_weight"]) == INITIAL_WEIGHT
+        ),
+        "replications": (
+            int(result["conditions"]["repeated_evaluations_per_condition"])
+            == REPLICATIONS
+        ),
+        "independent_runs_zero": (
+            int(result["conditions"]["independent_runs_per_condition"]) == 0
+        ),
+        "parameter_match": (
+            result["conditions"]["parameters"] == PARAMETERS.to_dict()
+        ),
     }
     integrity = {"checks": integrity_checks, "pass": all(integrity_checks.values())}
 
