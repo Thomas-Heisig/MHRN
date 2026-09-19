@@ -2299,22 +2299,21 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
             if not isinstance(identity_object, dict):
                 raise ValueError("project_identity.json must contain a JSON object.")
             identity = cast(dict[str, Any], identity_object)
-            authorship = identity.get("authorship", {})
-            author = (
-                cast(dict[str, Any], authorship).get("primary_author", {})
-                if isinstance(authorship, dict)
-                else {}
-            )
+            authorship_object = identity.get("authorship")
+            if not isinstance(authorship_object, dict):
+                raise ValueError("Canonical authorship metadata must be an object.")
+            authorship = cast(dict[str, Any], authorship_object)
+            author_object = authorship.get("primary_author")
+            if not isinstance(author_object, dict):
+                raise ValueError("Canonical primary_author metadata must be an object.")
+            author = cast(dict[str, Any], author_object)
+
             provider = imprint.get("provider", {})
             if not isinstance(provider, dict):
                 raise ValueError("Imprint provider metadata must be an object.")
             provider_data = cast(dict[str, Any], provider)
 
-            canonical_name = (
-                cast(dict[str, Any], author).get("display_name")
-                if isinstance(author, dict)
-                else None
-            )
+            canonical_name = author.get("display_name")
             if canonical_name and provider_data.get("name") != canonical_name:
                 raise ValueError("Imprint provider does not match canonical authorship.")
 
