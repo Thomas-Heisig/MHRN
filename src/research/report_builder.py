@@ -15,7 +15,7 @@ import json
 from collections import Counter
 from datetime import datetime
 from pathlib import Path
-from typing import Any
+from typing import Any, cast
 
 from .registry import REPO_ROOT, ResearchQuestion, ResearchRegistry
 
@@ -74,7 +74,7 @@ class ReportBuilder:
                 continue
             if not isinstance(raw, dict):
                 continue
-            data = raw
+            data = cast(dict[str, Any], raw)
             experiment_id = str(data.get("experiment_id") or manifest_path.parent.name)
             question_ids: set[str] = set()
             direct_question = data.get("research_question")
