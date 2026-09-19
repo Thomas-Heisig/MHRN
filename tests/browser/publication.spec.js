@@ -41,6 +41,16 @@ for (const port of [4174, 4175]) {
       'Vorgänger 1.7',
     ]));
 
+    await selectRoute(page, 'research', 'publication');
+    const publicationPanel = page.locator('#publication-panel');
+    await expect(publicationPanel).toBeVisible();
+    const readerLink = publicationPanel.locator('a[data-pub-reader-link]').first();
+    await expect(readerLink).toBeVisible();
+    const readerHref = await readerLink.getAttribute('href');
+    expect(readerHref).toBeTruthy();
+    expect(readerHref).not.toBe('#');
+    expect(readerHref).toContain('/api/files/raw/');
+
     const prefix = `http://127.0.0.1:${port}/api/files/preview/`;
     const catalogue = JSON.parse((await (await page.request.get(prefix + encodeURIComponent('publications/catalog.json') + '?source=research')).json()).content);
     const current = catalogue.publications.filter(item => item.current);
