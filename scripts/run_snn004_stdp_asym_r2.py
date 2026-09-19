@@ -87,19 +87,14 @@ def main() -> int:
             int(row["repeated_evaluations"]) == REPLICATIONS for row in rows
         ),
         "positive_dt_potentiates": all(
-            float(by_dt[dt]["mean_delta_weight"]) > 0
-            for dt in DELTA_T_MS
-            if dt > 0
+            float(by_dt[dt]["mean_delta_weight"]) > 0 for dt in DELTA_T_MS if dt > 0
         ),
         "negative_dt_depresses": all(
-            float(by_dt[dt]["mean_delta_weight"]) < 0
-            for dt in DELTA_T_MS
-            if dt < 0
+            float(by_dt[dt]["mean_delta_weight"]) < 0 for dt in DELTA_T_MS if dt < 0
         ),
         "zero_dt_unchanged": float(by_dt[0]["mean_delta_weight"]) == 0.0,
         "mirror_asymmetry": all(
-            bool(item["absolute_ltd_exceeds_ltp"])
-            for item in mirror_checks.values()
+            bool(item["absolute_ltd_exceeds_ltp"]) for item in mirror_checks.values()
         ),
         "deterministic_identity": bool(result["summary"]["deterministic_identity"]),
         "mean_direction_and_asymmetry": (
@@ -123,9 +118,7 @@ def main() -> int:
         "independent_runs_zero": (
             int(result["conditions"]["independent_runs_per_condition"]) == 0
         ),
-        "parameter_match": (
-            result["conditions"]["parameters"] == PARAMETERS.to_dict()
-        ),
+        "parameter_match": (result["conditions"]["parameters"] == PARAMETERS.to_dict()),
     }
     integrity = {"checks": integrity_checks, "pass": all(integrity_checks.values())}
 
