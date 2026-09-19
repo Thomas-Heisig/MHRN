@@ -6,6 +6,10 @@
 	- ORCID: [0009-0002-9589-1872](https://orcid.org/0009-0002-9589-1872)
 		- OSF project: [osf.io/p34uq](https://osf.io/p34uq/)
 
+## Identity disambiguation
+
+External scholarly services should match this project by **ORCID 0009-0002-9589-1872** together with the canonical repository `Thomas-Heisig/MHRN`, not by the name "Thomas Heisig" alone. This avoids accidental merging with namesake researchers.
+
 ## Contributors
 
 *This list is updated as contributions are received.*
