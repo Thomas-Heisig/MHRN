@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "preregistration_id": "PREREG-S1-REC-CLEAN-R2",
+  "parent_preregistration_id": "PREREG-REC-001",
+  "stage": 1,
+  "bridge_target_stage": 2,
+  "research_question": "RQ-REC-001",
+  "hypothesis": "H-REC-001-A",
+  "protocol": "recurrence_map_clean_r2",
+  "mode": "CONFIRMATORY_CLEAN_TREE_REPLICATION",
+  "execution_authorized": true,
+  "scientific_evidence": false,
+  "automatic_evidence_promotion": false,
+  "human_review_required": true,
+  "independent_replication": false,
+  "rationale": "Earlier recurrence_map_v1 executions directly matched RQ-REC-001 but their Evidence Readiness was blocked by a dirty source tree. R2 prospectively repeats the complete registered weight x delay intervention on a clean source freeze with fresh seeds and explicit decision gates. Historical DATA remain unchanged.",
+  "design": {
+    "runner": "src.research.followup_experiments.run_recurrence_map",
+    "ticks": 256,
+    "weights": [0.0, 50.0, 75.0, 100.0, 125.0],
+    "delays": [1, 2, 4],
+    "conditions_per_seed": 15,
+    "feedforward_control_conditions": ["w0_d1", "w0_d2", "w0_d4"],
+    "recurrent_treatment_conditions": [
+      "w50_d1", "w50_d2", "w50_d4",
+      "w75_d1", "w75_d2", "w75_d4",
+      "w100_d1", "w100_d2", "w100_d4",
+      "w125_d1", "w125_d2", "w125_d4"
+    ],
+    "control_note": "At recurrent_weight=0 no recurrent edge is created. The three zero-weight delay labels are intentionally retained as internal duplicate controls for protocol compatibility; they are not treated as independent observations."
+  },
+  "seeds": [7301,7302,7303,7304,7305,7306,7307,7308,7309,7310,7311,7312,7313,7314,7315,7316,7317,7318,7319,7320],
+  "seed_semantics": "Fresh seeds provide deterministic repeatability checks under the registered runner. Because this three-neuron construction contains no seed-dependent random topology, identical seed outputs are not interpreted as statistically independent replicates.",
+  "freshness_rule": "Seeds are disjoint from prior REC-001 seeds 42-61 and 101-120 and from the recent Stage-1 temporal/topology seed ranges.",
+  "primary_outcomes": [
+    "persistence_class",
+    "last_response_latency",
+    "recurrent_events",
+    "propagation_depth"
+  ],
+  "secondary_outcomes": [
+    "total_spikes",
+    "delivered_synaptic_events",
+    "first_response_latency",
+    "inter_spike_intervals",
+    "state_digest_before",
+    "state_digest_after"
+  ],
+  "analysis_plan": {
+    "inference_policy": "No p-values or sampling-based confidence intervals are used. The runner is deterministic and the seeds are not assumed to be independent stochastic samples.",
+    "primary_decision_gates": [
+      "Every seed must contain the full 15-condition grid and satisfy the 256-tick contract.",
+      "All zero-recurrence controls must have recurrent_events=0 and persistence_class=immediate_decay.",
+      "For every seed, at least one recurrent condition must be transient.",
+      "For every seed, at least one recurrent condition must be persistent_to_window.",
+      "For every seed, maximum recurrent last_response_latency must exceed maximum zero-recurrence last_response_latency.",
+      "For every seed, at least one nonzero recurrent weight must show a delay-dependent last_response_latency difference across d1/d2/d4.",
+      "For every seed, at least one fixed delay must show a weight-dependent last_response_latency difference across nonzero weights."
+    ],
+    "support_status": "SUPPORTED_WITHIN_PREREGISTERED_PROTOCOL only if all design-integrity checks and all primary decision gates pass.",
+    "failure_status": "NO_PREDEFINED_SUPPORT_DETECTED if execution is valid but one or more primary scientific gates fail.",
+    "integrity_failure_status": "NOT_TESTED_INTEGRITY_FAILURE if source freeze, coverage, tick contract, provenance, or runtime integrity fails."
+  },
+  "integrity_constraints": [
+    "clean source tree immediately before execution",
+    "exactly 300 runs: 20 seeds x 15 conditions",
+    "exactly the registered weight x delay grid",
+    "256 ticks requested and executed for every run",
+    "no runtime errors",
+    "historical REC-001 artifacts remain unchanged",
+    "automatic EVID promotion forbidden"
+  ],
+  "claim_boundary": "This experiment tests a small three-neuron SNN under the registered recurrence-weight and delay interventions and can support only the scoped claim that recurrence parameters change persistence/propagation classes in this deterministic operating envelope. It does not establish cognition, memory, biological equivalence, scaling, a 5D advantage, general recurrent-computation superiority, human-reviewed EVID, or independent replication.",
+  "review": {
+    "human_review_status": "PENDING_AFTER_EXECUTION",
+    "ai_review_does_not_satisfy_human_gate": true,
+    "automatic_promotion_forbidden": true
+  }
+}
