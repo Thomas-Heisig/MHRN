@@ -2,12 +2,12 @@
   "schema_version": 2,
   "version": "0.6.0-alpha.5",
   "pep440": "0.6.0a5",
-  "status": "development",
-  "title": "First Research-Driven Experiment Cycle",
+  "status": "release_candidate",
+  "title": "Public Alpha.5 Research Release Candidate",
   "parent": "v0.5.0-alpha.7",
-  "gate": "open",
-  "as_of": "2026-09-16",
-  "milestone_status": "stage3_engineering_reached_scientific_maturity_separate",
+  "gate": "awaiting_green_source_freeze",
+  "as_of": "2026-09-19",
+  "milestone_status": "engineering_release_candidate_scientific_programme_active",
   "release_blockers": 0,
   "scope": [
     "compatibility contract for runtime state, snapshots and resumable runs",
@@ -45,18 +45,18 @@
     "CL-003 DATA and provenance are integrated with automatic EVID promotion disabled and human review still required",
     "Stage-6 CL-001 through CL-003 DATA-only balance is integrated as an empirically narrowed Semantization/Replay result",
     "canonical roadmap and test contracts are aligned with the alpha.5 development baseline",
-    "content-bound source-tree verification cache preserves gate semantics while preventing duplicate full-tree scans"
+    "content-bound source-tree verification cache preserves gate semantics while preventing duplicate full-tree scans",
+    "public provider identity, postal address, contact email and editorial responsibility are explicitly documented",
+    "AI assistance is explicitly disclosed and the human-AI research process is positioned as a methodological research object",
+    "a non-technical publication view explains MHRN, evidence boundaries and replication needs",
+    "Alpha.5 release metadata separates development readiness, scientific state and publication state"
   ],
   "open": [
-    "complete human scientific review of Stage-6 semanticization/replay CL-003 DATA and make an explicit EVID promotion decision",
-    "decide the post-review Stage-6 research direction before defining any CL-004",
-    "independently replicate central Stage-2 through Stage-6 claims",
-    "implement and ablate a neuronally defined prediction-error mechanism before claiming predictive coding",
-    "validate multi-step action-conditioned world-model dynamics and decision benefit",
-    "connect all claim-relevant coupled cognition state to the canonical checkpoint boundary",
-    "complete systematic prior-art review for candidate MHRN contributions",
-    "perform external text/code similarity and source audit before formal manuscript submission",
-    "generate immutable v0.6 release record after exact source-freeze gate is green"
+    "complete remaining human scientific reviews and make explicit EVID decisions without automatic promotion",
+    "obtain independent external replication of central claims; positive, negative and null results are all admissible",
+    "continue prediction-error and world-model validation under preregistered controls",
+    "complete systematic prior-art and external similarity/source review before formal manuscript submission",
+    "record the external Zenodo DOI only after the archive actually exists; DOI assignment is not scientific review"
   ],
   "scientific_maturity": {
     "separate_from_engineering": true,
@@ -74,5 +74,30 @@
     "novelty_claim": "requires_prior_art_review"
   },
   "research_boundary": "Engineering implementation, technical verification, UI/API availability and DATA collection are not equivalent to scientific EVID. Scientific maturity is tracked independently through registered questions, frozen protocols, source-bound DATA, human-reviewed EVID, independent replication and attribution. No stage score establishes AGI, consciousness, sentience or biological equivalence.",
-  "note": "Alpha.5 contains the first complete research-driven experiment cycle through persisted DATA. CL-003 was executed exactly once under its frozen authorization and yielded H1_negative_H2_negative while C3 showed non-random semantic structure. The result remains DATA pending human review; no automatic EVID promotion occurred. Publication edition 1.8 reorganizes and extends the scientific work without changing that evidence status."
+  "note": "Alpha.5 ist ein technischer Pre-Release-Kandidat und eine öffentliche Forschungsfreigabe, keine Erklärung wissenschaftlicher Vollständigkeit. Die KI-assistierte Arbeitsweise ist offengelegt und selbst Teil der methodischen Untersuchung. Veröffentlichung, DOI und Sichtbarkeit erzeugen weder Human Review noch unabhängige Replikation.",
+  "target_tag": "v0.6.0-alpha.5",
+  "publish_requested": true,
+  "release_type": "pre-release",
+  "development_state": {
+    "status": "release_candidate",
+    "engineering": "implemented_and_verified_with_exact_main_ci_required_for_publication",
+    "summary": "Der Engineering-Scope von Alpha.5 ist releasefähig; veröffentlicht wird nur der exakte Source-Freeze, dessen main-CI und Release-Gates vollständig grün sind."
+  },
+  "scientific_state": {
+    "status": "active_research_not_scientifically_complete",
+    "publication": "Recursive Epistemics / Rekursive Epistemik 1.8 — current WIP",
+    "evidence": "DATA und scoped reviewed EVID koexistieren; keine pauschale wissenschaftliche Freigabe",
+    "external_replication": "requested_not_complete",
+    "ai_methodology": "explicitly_disclosed_and_itself_part_of_methodological_research",
+    "summary": "Technische Reife, wissenschaftliche Evidenz und externe Geltung bleiben getrennte Achsen. Unabhängige Replikation und externe Kritik sind ausdrücklich gesucht."
+  },
+  "publication_state": {
+    "github_release": "scheduled_after_green_exact_main_ci",
+    "zenodo": "archive_expected_only_if_repository_integration_is_enabled",
+    "doi": null,
+    "orcid": "0009-0002-9589-1872",
+    "release_type": "pre-release",
+    "public_imprint": "identity_and_contact_complete",
+    "hosted_dashboard_privacy": "deployment_specific_details_pending"
+  }
 }
