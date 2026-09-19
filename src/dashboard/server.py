@@ -2315,7 +2315,9 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
 
             canonical_name = author.get("display_name")
             if canonical_name and provider_data.get("name") != canonical_name:
-                raise ValueError("Imprint provider does not match canonical authorship.")
+                raise ValueError(
+                    "Imprint provider does not match canonical authorship."
+                )
 
             required_missing: list[str] = []
             if not provider_data.get("postal_address"):
@@ -2325,9 +2327,9 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
 
             payload = dict(imprint)
             payload["missing_required_fields"] = required_missing
-            payload["public_internet_ready"] = bool(
-                imprint.get("public_internet_ready")
-            ) and not required_missing
+            payload["public_internet_ready"] = (
+                bool(imprint.get("public_internet_ready")) and not required_missing
+            )
             payload["source"] = "public_imprint.json"
             payload["read_only"] = True
             self._send_json(cast(dict[str, JSONValue], payload))

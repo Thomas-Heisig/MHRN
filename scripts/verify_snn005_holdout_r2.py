@@ -63,9 +63,7 @@ def main() -> int:
         int(row["metrics"]["evaluation_ticks_per_episode"]) == 12 for row in runs
     )
     assert all(row["metrics"]["test_teacher_present"] is False for row in runs)
-    assert all(
-        row["metrics"]["test_learning_engine_attached"] is False for row in runs
-    )
+    assert all(row["metrics"]["test_learning_engine_attached"] is False for row in runs)
     assert all(
         row["metrics"]["weight_digest_before_test"]
         == row["metrics"]["weight_digest_after_test"]

@@ -68,7 +68,7 @@ def test_public_orcid_identity_link_is_canonical_and_private_data_is_excluded() 
     assert "news@thomas-heisig.de" not in serialized
     assert "t_heisig@gmx.de" not in serialized
     citation = (ROOT / "CITATION.cff").read_text(encoding="utf-8")
-    assert "orcid: \"https://orcid.org/0009-0002-9589-1872\"" in citation
+    assert 'orcid: "https://orcid.org/0009-0002-9589-1872"' in citation
     zenodo = json.loads((ROOT / ".zenodo.json").read_text(encoding="utf-8"))
     assert zenodo["creators"] == [
         {"name": "Thomas Heisig", "orcid": "0009-0002-9589-1872"}
