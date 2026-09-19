@@ -84,7 +84,7 @@ class ReportBuilder:
             if isinstance(direct_questions, list):
                 question_ids.update(
                     value
-                    for value in cast(list[Any], direct_questions)
+                    for value in cast(list[object], direct_questions)
                     if isinstance(value, str) and value
                 )
             hypothesis_ids: set[str] = set()
@@ -95,7 +95,7 @@ class ReportBuilder:
             if isinstance(direct_hypotheses, list):
                 hypothesis_ids.update(
                     value
-                    for value in cast(list[Any], direct_hypotheses)
+                    for value in cast(list[object], direct_hypotheses)
                     if isinstance(value, str) and value
                 )
             for hypothesis_id in hypothesis_ids:
