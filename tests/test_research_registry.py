@@ -31,10 +31,23 @@ ID_FIELDS = {
 }
 
 ID_PATTERNS = {
-    "questions": re.compile(r"^RQ-[A-Z0-9]+-[0-9]{3}$"),
-    "hypotheses": re.compile(r"^H-[A-Z0-9]+-[0-9]{3}-[A-Z]$"),
+    # Canonical RQ/H families include multi-segment domains (for example
+    # RQ-S6-SEM-002) and the established MSBA E-series (RQ-MSBA-E01).
+    "questions": re.compile(
+        r"^RQ-[A-Z0-9]+(?:-[A-Z0-9]+)*-(?:[0-9]{3}|E[0-9]{2})$"
+    ),
+    "hypotheses": re.compile(
+        r"^H-[A-Z0-9]+(?:-[A-Z0-9]+)*-(?:[0-9]{3}|E[0-9]{2})-[A-Z]$"
+    ),
     "claims": re.compile(r"^CLAIM-[A-Z0-9]+-[0-9]{3}$"),
-    "sources": re.compile(r"^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*-[0-9]{4}$"),
+    # Most literature IDs end in the publication year. The cognition source
+    # family and the connectome release source were introduced as stable,
+    # source-keyed identifiers and are already referenced by protocols and
+    # publications; preserve those provenance-bound namespaces.
+    "sources": re.compile(
+        r"^(?:SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*-[0-9]{4}|"
+        r"SRC-CNS-[A-Z0-9]+|SRC-CONN-[A-Z0-9]+-RELEASES)$"
+    ),
 }
 
 
@@ -150,24 +163,24 @@ class TestRegistryIdFormat:
     def test_question_ids_have_correct_format(
         self, registry_data: dict[str, list[RegistryEntry]]
     ) -> None:
-        """All question IDs must match RQ-{DOMAIN}-{NNN}."""
+        """Question IDs must match a canonical numeric or MSBA E-series form."""
         pattern = ID_PATTERNS["questions"]
         for entry in registry_data.get("questions", []):
             qid: str = entry.get("id", "")  # type: ignore[assignment]
             assert pattern.match(
                 qid
-            ), f"Question ID '{qid}' does not match pattern RQ-{{DOMAIN}}-{{NNN}}"
+            ), f"Question ID '{qid}' does not match a canonical RQ identifier pattern"
 
     def test_hypothesis_ids_have_correct_format(
         self, registry_data: dict[str, list[RegistryEntry]]
     ) -> None:
-        """All hypothesis IDs must match H-{DOMAIN}-{NNN}-{VARIANT}."""
+        """Hypothesis IDs must match a canonical numeric or MSBA E-series form."""
         pattern = ID_PATTERNS["hypotheses"]
         for entry in registry_data.get("hypotheses", []):
             hid: str = entry.get("id", "")  # type: ignore[assignment]
             assert pattern.match(
                 hid
-            ), f"Hypothesis ID '{hid}' does not match pattern H-{{DOMAIN}}-{{NNN}}-{{VARIANT}}"
+            ), f"Hypothesis ID '{hid}' does not match a canonical H identifier pattern"
 
     def test_claim_ids_have_correct_format(
         self, registry_data: dict[str, list[RegistryEntry]]
@@ -183,13 +196,13 @@ class TestRegistryIdFormat:
     def test_source_ids_have_correct_format(
         self, registry_data: dict[str, list[RegistryEntry]]
     ) -> None:
-        """All source IDs must match SRC-{AUTHOR}-{YEAR}."""
+        """Source IDs must match the year-based or declared source-family forms."""
         pattern = ID_PATTERNS["sources"]
         for entry in registry_data.get("sources", []):
             sid: str = entry.get("source_id", "")  # type: ignore[assignment]
             assert pattern.match(
                 sid
-            ), f"Source ID '{sid}' does not match pattern SRC-{{AUTHOR}}-{{YEAR}}"
+            ), f"Source ID '{sid}' does not match a canonical SRC identifier pattern"
 
 
 # ============================================================================
