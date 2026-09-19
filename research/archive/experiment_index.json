@@ -1842,6 +1842,19 @@
       "original_path": "experiments/EXP-REPL-0001-R1",
       "reason": "manuelle Archivierung"
     },
+    "EXP-RETRY-AIRR-2026-0001": {
+      "archive_type": "series",
+      "archived_at": "2026-09-19T19:38:32.848025+00:00",
+      "child_experiment_ids": [
+        "EXP-RETRY-AIRR-2026-0001-01",
+        "EXP-RETRY-AIRR-2026-0001-02"
+      ],
+      "experiment_id": "EXP-RETRY-AIRR-2026-0001",
+      "original_path": "workflows/EXP-RETRY-AIRR-2026-0001.json",
+      "owned_child_experiment_ids": [],
+      "reason": "manuelle Reihenarchivierung",
+      "series_id": "EXP-RETRY-AIRR-2026-0001"
+    },
     "EXP-RETRY-AIRR-2026-0001-01": {
       "archived_at": "2026-09-16T13:46:03.057443+00:00",
       "experiment_id": "EXP-RETRY-AIRR-2026-0001-01",
@@ -1989,9 +2002,21 @@
       "original_path": "experiments/EXP-TIME-0001",
       "reason": "manuelle Archivierung"
     },
+    "SERIES-STAGE1-TOPOLOGY-V2-20260918": {
+      "archive_type": "series",
+      "archived_at": "2026-09-19T19:38:38.330305+00:00",
+      "child_experiment_ids": [
+        "EXP-S1-TOPO-V2-20260918"
+      ],
+      "experiment_id": "SERIES-STAGE1-TOPOLOGY-V2-20260918",
+      "original_path": "workflows/SERIES-STAGE1-TOPOLOGY-V2-20260918.json",
+      "owned_child_experiment_ids": [],
+      "reason": "manuelle Reihenarchivierung",
+      "series_id": "SERIES-STAGE1-TOPOLOGY-V2-20260918"
+    },
     "SERIES-STAGE1-TOPOLOGY-V3-R1-20260918": {
       "archive_type": "series",
-      "archived_at": "2026-09-19T19:37:49.386615+00:00",
+      "archived_at": "2026-09-19T19:38:45.148657+00:00",
       "child_experiment_ids": [
         "EXP-S1-TOPO-V3-R1-20260918"
       ],
