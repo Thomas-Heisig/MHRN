@@ -10,6 +10,15 @@ on:
       - research/preregistrations/PREREG-S1-TEMP-ORDER-V2.json
       - research/decisions/2026-09-19_temp002_v1_order-encoding-adequacy.md
       - .github/workflows/stage1-temporal-order-v2.yml
+  pull_request:
+    branches:
+      - main
+    paths:
+      - scripts/run_stage1_temporal_order_v2.py
+      - scripts/verify_stage1_temporal_order_v2.py
+      - research/preregistrations/PREREG-S1-TEMP-ORDER-V2.json
+      - research/decisions/2026-09-19_temp002_v1_order-encoding-adequacy.md
+      - .github/workflows/stage1-temporal-order-v2.yml
   workflow_dispatch:
 
 permissions:
@@ -21,13 +30,13 @@ concurrency:
 
 jobs:
   execute:
-    if: github.ref == 'refs/heads/research/stage1-temporal-order-v2-20260919'
+    if: github.ref == 'refs/heads/research/stage1-temporal-order-v2-20260919' || github.head_ref == 'research/stage1-temporal-order-v2-20260919'
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v7
         with:
-          ref: ${{ github.ref_name }}
+          ref: research/stage1-temporal-order-v2-20260919
           fetch-depth: 0
       - uses: actions/setup-python@v7
         with:
