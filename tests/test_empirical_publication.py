@@ -78,12 +78,11 @@ def test_negative_and_failed_original_observations_remain_visible() -> None:
 
 def test_campaign_navigation_does_not_masquerade_as_evidence() -> None:
     source = ResearchSource(ROOT / "research")
-    entries = {item["id"]: item for item in source.list_experiments()}
     for name in CAMPAIGNS:
-        assert name in entries
-        metadata: dict[str, Any] = json.loads(
-            (ROOT / "research/experiments" / name / "manifest.json").read_text()
-        )
+        # Campaign manifests are canonical historical artifacts even when the
+        # metadata-only archive hides them from the active dashboard work view.
+        metadata = source.experiment_manifest(name)
+        assert metadata is not None
         assert metadata["record_kind"] == "campaign_index"
         assert metadata["validity"]["valid"] is False
         assert metadata["results"]["accepted_evidence"] is False
