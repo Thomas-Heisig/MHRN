@@ -1,0 +1,27 @@
+name: Black diff archive diagnostic
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - src/dashboard/experiment_organizer.py
+      - tests/test_experiment_archive.py
+      - .github/workflows/black-archive-diagnostic.yml
+
+permissions:
+  contents: read
+
+jobs:
+  diff:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.13'
+      - run: python -m pip install black==26.5.1
+      - run: >-
+          python -m black --diff
+          src/dashboard/experiment_organizer.py
+          tests/test_experiment_archive.py
