@@ -29,7 +29,7 @@ def test_current_release_matches_canonical_development_version() -> None:
     assert current.get("release_type") == "pre-release"
     assert current.get("target_tag") == "v0.6.0-alpha.5"
     assert current["parent"] == "v0.5.0-alpha.7"
-    assert current["as_of"] == "2026-09-16"
+    assert current["as_of"] == "2026-09-19"
     assert (
         current["milestone_status"]
         == "stage3_engineering_reached_scientific_maturity_separate"
