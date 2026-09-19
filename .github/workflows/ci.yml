@@ -61,7 +61,7 @@ jobs:
           python -m pip install -e ".[dev,docs]"
           python -m pip install pre-commit bandit
       - name: Black (src + tests + scripts)
-        run: python -m black --check src tests scripts
+        run: python -m black --check --diff src tests scripts
       - name: Ruff (fast linter + isort)
         run: python -m ruff check src/ tests/ scripts/
       - name: Pylint error diagnostics and quality threshold
