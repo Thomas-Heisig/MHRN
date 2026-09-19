@@ -1,0 +1,81 @@
+name: REC-002 clean R2
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - scripts/run_rec002_clean_r2.py
+      - scripts/verify_rec002_clean_r2.py
+      - research/preregistrations/PREREG-REC-002-CLEAN-R2.json
+      - research/experiments/EXP-REC-002-CLEAN-R2-20260919/**
+      - .github/workflows/rec002-clean-r2.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: rec002-clean-r2-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: false
+
+jobs:
+  execute:
+    if: github.head_ref == 'research/rec002-clean-r2-20260919' || github.ref == 'refs/heads/research/rec002-clean-r2-20260919'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: research/rec002-clean-r2-20260919
+          fetch-depth: 0
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.13'
+          cache: pip
+      - name: Install repository development environment
+        run: python -m pip install -e '.[dev,docs]'
+      - name: Prove scientific source digest is unchanged
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from src.dashboard.verification import compute_source_tree_digest
+          root = Path(".").resolve()
+          artifact = json.loads((root / "research/generated/verification/phase_b_gate_status.json").read_text(encoding="utf-8"))
+          expected = artifact["source_freeze"]["tested_tree_digest"]
+          current = compute_source_tree_digest(root)
+          print("verified gate digest:", expected)
+          print("branch source digest:", current)
+          assert current == expected, (current, expected)
+          PY
+      - name: Verify existing gate and recurrence contracts
+        run: >-
+          python -m pytest -q
+          tests/test_gate_status.py
+          tests/test_source_digest.py
+          tests/test_recurrence_map_contract.py
+          tests/test_research_registry.py
+      - name: Execute or verify canonical REC-002 R2
+        run: |
+          if [ -d research/experiments/EXP-REC-002-CLEAN-R2-20260919 ]; then
+            echo "Canonical DATA already present; verifying without re-execution."
+            python scripts/verify_rec002_clean_r2.py
+          else
+            test -z "$(git status --porcelain)"
+            echo "Source freeze: $(git rev-parse HEAD)"
+            python scripts/run_rec002_clean_r2.py
+            python scripts/verify_rec002_clean_r2.py
+          fi
+      - name: Persist new DATA if generated
+        run: |
+          git add research/experiments/EXP-REC-002-CLEAN-R2-20260919
+          if git diff --cached --quiet; then
+            echo "No new DATA to persist"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "research: persist REC-002 clean R2 DATA"
+          git pull --rebase origin research/rec002-clean-r2-20260919
+          git push origin HEAD:research/rec002-clean-r2-20260919
