@@ -1,22 +1,23 @@
 {
   "schema_version": "1.0",
   "updated": "2026-09-19",
-  "status": "incomplete_for_public_internet",
+  "status": "identity_complete_deployment_privacy_pending",
   "provider": {
     "name": "Thomas Heisig",
-    "role": "Unabhängiger Forscher, Autor und Projektverantwortlicher",
-    "legal_entity": null,
-    "postal_address": null,
-    "email": null,
+    "role": "Privater Betreiber, unabhängiger Forscher, Autor und Projektverantwortlicher",
+    "legal_entity": "Privatperson",
+    "postal_address": "Wolffsheide 10\n27777 Ganderkesee\nDeutschland",
+    "email": "t_heisig@gmx.de",
     "phone": null,
-    "register": null,
+    "register": "nicht einschlägig",
     "register_number": null,
-    "vat_id": null
+    "vat_id": null,
+    "supervisory_authority": null
   },
   "editorial_responsibility": {
-    "applicability": "if_journalistic_editorial_content_applies",
+    "applicability": "vorsorglich_benannt_falls_§18_abs_2_MStV_anwendbar",
     "name": "Thomas Heisig",
-    "postal_address": null
+    "postal_address": "Wolffsheide 10\n27777 Ganderkesee\nDeutschland"
   },
   "project": {
     "short_name": "MHRN",
@@ -47,9 +48,10 @@
       "File-Viewer- und Reader-Einstellungen",
       "lokale Entwürfe und ausdrücklich lokal gespeicherte Notizen"
     ],
-    "server_logging": "deployment_dependent",
+    "server_logging": "Die MHRN-Anwendung kann technische Request-/Fehlerlogs erzeugen. Zusätzliche Host-, Reverse-Proxy- oder Provider-Logs hängen vom späteren realen Deployment ab und müssen vor einer öffentlichen Dashboard-Bereitstellung mit Zweck, Umfang und Speicherdauer dokumentiert werden.",
     "external_services": "Externe Dienste oder AI-Provider werden nur über konfigurierte Integrationen oder bewusst geöffnete externe Links angesprochen; deren eigene Datenschutzbedingungen gelten zusätzlich.",
-    "public_deployment_note": "Eine vollständige Datenschutzerklärung muss an die tatsächlich eingesetzte Hosting-, Log-, Proxy-, Analyse- und Provider-Konfiguration angepasst werden."
+    "public_deployment_note": "Die öffentlichen Anbieter- und Kontaktangaben sind vollständig hinterlegt. Vor einer eigenständig gehosteten öffentlichen Dashboard-Instanz müssen realer Hosting-Provider, Serverstandort soweit erforderlich, Proxy-/TLS-Konfiguration, Logdaten, Speicherdauer, Rechtsgrundlage und gegebenenfalls Auftragsverarbeiter ergänzt werden.",
+    "principle": "Datensparsamkeit, lokale Verarbeitung wo möglich und keine stillschweigende Weitergabe an externe Dienste."
   },
   "content_and_licenses": {
     "software": "MIT License; siehe LICENSE im Repository.",
@@ -57,6 +59,10 @@
     "third_party_material": "Fremde Quellen, Abbildungen, Daten und Methoden bleiben ihren jeweiligen Rechteinhabern zugeordnet."
   },
   "contact_channels": [
+    {
+      "label": "E-Mail",
+      "url": "mailto:t_heisig@gmx.de"
+    },
     {
       "label": "GitHub Repository",
       "url": "https://github.com/Thomas-Heisig/MHRN"
@@ -79,11 +85,8 @@
     }
   ],
   "required_before_public_internet": [
-    "Ladungsfähige Anschrift des Diensteanbieters eintragen.",
-    "Kontakt-E-Mail für schnelle elektronische Kontaktaufnahme eintragen.",
-    "Falls § 18 Abs. 2 MStV anwendbar ist: Anschrift des redaktionell Verantwortlichen eintragen.",
-    "Register-, Umsatzsteuer- oder Aufsichtsangaben ergänzen, sofern sie für den konkreten Diensteanbieter tatsächlich einschlägig sind.",
-    "Datenschutzhinweise an die reale Hosting-/Logging-/Provider-Konfiguration anpassen."
+    "Deployment-spezifische Datenschutzhinweise für den tatsächlich verwendeten Hosting-/Proxy-/Logging-Stack ergänzen (Provider, Logumfang, Speicherdauer, Rechtsgrundlage und ggf. Auftragsverarbeitung)."
   ],
-  "public_internet_ready": false
+  "public_internet_ready": false,
+  "public_release_ready": true
 }
