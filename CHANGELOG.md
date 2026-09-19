@@ -6,6 +6,16 @@ Source-bound scientific audit and publication reconciliation. Fix recursive docu
 
 ## Unreleased
 
+### Public Alpha.5 release finalization — 2026-09-19
+
+- Complete public provider/contact and editorial-responsibility metadata while keeping deployment-specific hosting/privacy facts fail-closed until known.
+- Add a plain-language publication view ("Einfach erklärt") for non-specialist readers.
+- Disclose AI assistance explicitly and position the governed human-AI research workflow itself as a methodological research object, without assigning AI authorship or evidence authority.
+- Separate engineering release readiness, active scientific maturity and external publication/DOI state in the machine-readable release preview.
+- Prepare `v0.6.0-alpha.5` as a pre-release that can be published only from an exact green `main` source freeze.
+- Keep independent external replication, prior-art review and external scientific evaluation open after publication.
+
+
 ### Stage 0-6 preserved integration and Stage-6 reference hardening
 
 - Preserve the later Stage-5 and Stage-6A histories on the main baseline that includes Reader voices/math fixes.
