@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "preregistration_id": "PREREG-REC-002-CLEAN-R2",
+  "parent_preregistration_id": "PREREG-REC-002",
+  "research_question": "RQ-REC-002",
+  "hypothesis": "H-REC-002-A",
+  "protocol": "recurrence_scale_clean_r2",
+  "mode": "CONFIRMATORY_CLEAN_TREE_REPLICATION",
+  "execution_authorized": true,
+  "scientific_evidence": false,
+  "automatic_evidence_promotion": false,
+  "human_review_required": true,
+  "independent_replication": false,
+  "rationale": "The registered recurrence_scale_v1 design is a semantic DIRECT_MATCH for RQ-REC-002, but the latest 20-seed confirmatory run was provenance-blocked because the source tree was dirty. R2 prospectively repeats the same delay intervention on the current green source freeze with fresh seeds. Historical DATA remain unchanged.",
+  "design": {
+    "runner": "src.research.followup_experiments.run_recurrence_scale",
+    "ticks": 256,
+    "recurrent_weight": 100.0,
+    "delays": [1, 2, 4, 8],
+    "control_condition": "loop_delay_1",
+    "treatment_conditions": ["loop_delay_2", "loop_delay_4", "loop_delay_8"],
+    "network_scope": "registered three-neuron recurrent probe"
+  },
+  "seeds": [7501,7502,7503,7504,7505,7506,7507,7508,7509,7510,7511,7512,7513,7514,7515,7516,7517,7518,7519,7520],
+  "seed_semantics": "Fresh seeds are used as deterministic robustness repetitions. They are not assumed to be statistically independent stochastic samples when the registered network construction is seed-insensitive.",
+  "freshness_rule": "Seeds are disjoint from prior REC-002 seeds 101-120 and from recent Stage-1 clean-run seed ranges.",
+  "primary_outcomes": [
+    "last_response_latency",
+    "recurrent_events",
+    "propagation_depth"
+  ],
+  "secondary_outcomes": [
+    "total_spikes",
+    "delivered_synaptic_events",
+    "inter_spike_intervals",
+    "state_digest_before",
+    "state_digest_after"
+  ],
+  "analysis_plan": {
+    "inference_policy": "No p-values or sampling-based confidence intervals are used. Support is decided by preregistered deterministic within-seed contrasts.",
+    "primary_decision_gates": [
+      "All 80 registered runs are present with the complete four-delay grid for every seed.",
+      "Every run completes 256 ticks without runtime error.",
+      "For every seed, each treatment delay 2, 4 and 8 differs from delay 1 in at least one primary outcome.",
+      "For every seed, at least two treatment-delay signatures are distinct from each other in the vector (last_response_latency, recurrent_events, propagation_depth).",
+      "No monotonic direction is required because H-REC-002-A predicts a delay effect, not monotonic improvement."
+    ],
+    "support_status": "SUPPORTED_WITHIN_PREREGISTERED_PROTOCOL only if every integrity and primary scientific gate passes.",
+    "failure_status": "NO_PREDEFINED_SUPPORT_DETECTED if execution is valid but one or more preregistered scientific gates fail.",
+    "integrity_failure_status": "NOT_TESTED_INTEGRITY_FAILURE if source freeze, coverage, ticks, provenance or runtime integrity fails."
+  },
+  "integrity_constraints": [
+    "clean source tree before execution",
+    "exactly 80 runs: 20 seeds x 4 delays",
+    "recurrent weight fixed at 100.0",
+    "delays fixed to 1, 2, 4 and 8",
+    "256 ticks per run",
+    "no post-hoc seed or delay replacement",
+    "historical REC-002 artifacts remain unchanged",
+    "automatic EVID promotion forbidden"
+  ],
+  "claim_boundary": "This experiment can support only the scoped claim that loop delay changes persistence/propagation metrics in the registered small deterministic recurrent SNN at recurrent weight 100 and a 256-tick observation window. It does not establish memory, cognition, biological equivalence, scaling, a 5D advantage, monotonic superiority of larger delays, human-reviewed EVID or independent replication.",
+  "gate_protection": {
+    "source_digest_policy": "Do not modify src/, configs/, tests/, research/schemas/ or pyproject.toml in this experiment branch.",
+    "merge_policy": "Merge only after the experiment verifier and the repository pull-request CI are green."
+  },
+  "review": {
+    "human_review_status": "PENDING_AFTER_EXECUTION",
+    "ai_review_does_not_satisfy_human_gate": true,
+    "automatic_promotion_forbidden": true
+  }
+}
