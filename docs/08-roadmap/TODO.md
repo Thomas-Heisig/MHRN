@@ -8,6 +8,12 @@
 - [ ] Direkte Messvertraege fuer die ausgewiesenen Grenzfragen und gekoppelte Kognitions-/Langzeitplastizitaetspruefungen vervollstaendigen.
 - [ ] Unabhaengige Replikation und konkrete EVID-Freigaben einholen.
 
+## 2026-09-19 Experiment archive follow-up
+
+- [x] Einzelarchivierung idempotent machen.
+- [x] Metadata-only Archivierung und Wiederherstellung für Experimentreihen ergänzen.
+- [x] Kanonische Experiment- und Workflow-Artefakte unverändert am Platz lassen.
+
 Aeltere offene Zaehler unten sind zeitgebundene Bestandsaufnahmen; der aktuelle Registerabgleich steht in research/generated/EXPERIMENT_COVERAGE_ALPHA3.json.
 
 ## Naming update — 2026-09-08

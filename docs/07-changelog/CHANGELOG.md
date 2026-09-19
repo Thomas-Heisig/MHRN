@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026-09-19 - Experiment- und Reihenarchiv
+
+- Einzelarchivierung ist idempotent und behandelt bereits archivierte
+  Experimente als erfolgreichen Zielzustand.
+- Die Archivansicht unterstützt vollständige Experimentreihen inklusive
+  ihrer Kindexperimente sowie Wiederherstellung.
+- Ein Frontend-ID-Fehler bei aktiven Experimenten wurde korrigiert.
+- Archivieren bleibt metadata-only; wissenschaftliche Artefakte werden nicht
+  verschoben oder umgeschrieben.
+
 ## 2026-09-18 - Human-review inbox integrity
 
 - Fixed the review inbox so an existing `.review.json` closes an item only

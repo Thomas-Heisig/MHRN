@@ -13,6 +13,15 @@
 - CL-003 has a bounded human-review candidate; no human decision or automatic
 	DATA-to-EVID promotion is created by the repository.
 
+## 2026-09-19 Experiment- und Reihenarchiv
+
+- Einzelne Experimente lassen sich idempotent archivieren; bereits verborgene
+	Einträge erzeugen keinen Fehlalarm mehr.
+- Experimentreihen können inklusive ihrer Kindexperimente metadata-only
+	archiviert und gemeinsam wiederhergestellt werden.
+- Die kanonischen Experiment- und Workflow-Artefakte werden dabei nicht
+	verschoben oder verändert.
+
 ## 2026-09-16 Release navigation separation
 
 - Registered Wissenschaft as a first-class Release route next to Entwicklung.

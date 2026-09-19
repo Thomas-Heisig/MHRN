@@ -4,6 +4,11 @@
 
 Dieses Dokument ist der kurze Einstieg in den aktuellen wissenschaftlichen Zustand. Historische DATA, EVID-Entscheidungen und eingefrorene Publikationen bleiben unverändert in ihren datierten Verzeichnissen.
 
+Die Dashboard-Archivierung ist metadata-only: Einzelne Experimente und
+Experimentreihen können aus der Arbeitsansicht ausgeblendet und wiederhergestellt
+werden, ohne kanonische DATA-, Manifest- oder Workflow-Artefakte zu verschieben
+oder wissenschaftlich umzuschreiben.
+
 ## Aktuelle Publikation
 
 - **Recursive Epistemics / Rekursive Epistemik, Edition 1.8 — current WIP**
