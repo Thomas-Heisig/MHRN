@@ -1,0 +1,90 @@
+{
+  "artifacts_sha256": {
+    "canonical_stdp_pair_source": "e522aba94e2a3a6347a5f7fc0907ba141f7d487a8ea8aae7d32208c75db9531b",
+    "evaluation_data": "6e7208800ad9f607c966e6b974f49eb3f26042b3cc6cc09807909fb8697cda4e",
+    "preregistration": "8d532986676f54fd5e46d51d7602911ccb69ea1400cfc6eccad25b286a1afd52",
+    "runner_source": "531f8cc917bc4c1630b6690d4e9a6c24072af88de6994aface28cf2ebeff176f",
+    "statistics": "3cd1c68ea65edfe6b9cc97b9797f48dfe7ad3797ef5c2def1e56abf2fa902671"
+  },
+  "automatic_evidence_promotion": false,
+  "claim_boundary": "This experiment can support only the scoped implementation-level claim that the registered pair-based STDP rule produces signed and asymmetric weight changes across the fixed Pre/Post timing curve. It does not establish useful learning, task-performance improvement, network-level memory, biological equivalence, scaling, a 5D advantage, human-reviewed EVID or independent replication.",
+  "claim_id": "CLAIM-SNN-001",
+  "design": {
+    "delta_t_ms": [
+      -50,
+      -20,
+      -10,
+      -5,
+      -1,
+      0,
+      1,
+      5,
+      10,
+      20,
+      50
+    ],
+    "independent_runs_per_condition": 0,
+    "initial_weight": 0.5,
+    "repeated_evaluations_per_condition": 10,
+    "runner": "src.research.stdp_pair_timing.run_pair_timing_protocol",
+    "stdp_parameters": {
+      "a_minus": 0.12,
+      "a_plus": 0.1,
+      "tau_minus": 20.0,
+      "tau_plus": 20.0
+    },
+    "timing_semantics": {
+      "negative_delta_t": "post before pre; expected depression",
+      "positive_delta_t": "pre before post; expected potentiation",
+      "zero_delta_t": "simultaneous timing control; expected no weight change"
+    }
+  },
+  "experiment_id": "EXP-SNN004-STDP-ASYM-R2-20260919",
+  "experiment_status": "completed",
+  "gate_protection": {
+    "merge_policy": "Merge only after the experiment verifier and full pull-request CI are green.",
+    "source_digest_policy": "Do not modify src/, configs/, tests/, research/schemas/ or pyproject.toml."
+  },
+  "human_review_status": "PENDING",
+  "hypothesis": "H-SNN-004-A",
+  "independent_replication": false,
+  "integrity": {
+    "checks": {
+      "clean_source_freeze": true,
+      "independent_runs_zero": true,
+      "initial_weight": true,
+      "parameter_match": true,
+      "protocol_id": true,
+      "replications": true
+    },
+    "pass": true
+  },
+  "primary_gates": {
+    "complete_timing_grid": true,
+    "deterministic_identity": true,
+    "mean_direction_and_asymmetry": true,
+    "mirror_asymmetry": true,
+    "negative_dt_depresses": true,
+    "positive_dt_potentiates": true,
+    "replication_count": true,
+    "zero_dt_unchanged": true
+  },
+  "protocol": "snn004_stdp_pair_asymmetry_clean_r2",
+  "research_question": "RQ-SNN-004",
+  "result_status": "SUPPORTED_WITHIN_PREREGISTERED_PROTOCOL",
+  "results": {
+    "conditions": 11,
+    "mean_ltd": -0.06687660736992224,
+    "mean_ltp": 0.05573050614160189,
+    "repeated_evaluations": 110,
+    "zero_delta_weight": 0.0
+  },
+  "schema_version": 1,
+  "scientific_evidence": false,
+  "source_freeze": {
+    "branch": "research/snn004-stdp-asym-r2-20260919",
+    "commit": "821d2e0ecf823af3196bda782a69be8260a54943",
+    "dirty_before_execution": false
+  },
+  "stage": 1
+}

@@ -1,0 +1,20 @@
+{
+  "ai_review_does_not_satisfy_human_gate": true,
+  "automatic_evidence_promotion": false,
+  "claim_id": "CLAIM-SNN-001",
+  "experiment_id": "EXP-SNN004-STDP-ASYM-R2-20260919",
+  "human_review_status": "PENDING",
+  "hypothesis": "H-SNN-004-A",
+  "independent_replication": false,
+  "questions": [
+    "Does the registered timing curve directly test the scoped pair-based STDP asymmetry claim?",
+    "Are positive, negative and zero timing controls interpreted correctly?",
+    "Is the mirror-pair magnitude asymmetry appropriately tied to the frozen a_minus > a_plus parameterization?",
+    "Does the interpretation remain below any functional-learning, memory or biological-equivalence claim?"
+  ],
+  "research_question": "RQ-SNN-004",
+  "result_status": "SUPPORTED_WITHIN_PREREGISTERED_PROTOCOL",
+  "reviewer_type_required": "human",
+  "schema_version": 1,
+  "scientific_evidence": false
+}
