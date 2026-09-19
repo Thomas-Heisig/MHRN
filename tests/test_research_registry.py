@@ -33,9 +33,7 @@ ID_FIELDS = {
 ID_PATTERNS = {
     # Canonical RQ/H families include multi-segment domains (for example
     # RQ-S6-SEM-002) and the established MSBA E-series (RQ-MSBA-E01).
-    "questions": re.compile(
-        r"^RQ-[A-Z0-9]+(?:-[A-Z0-9]+)*-(?:[0-9]{3}|E[0-9]{2})$"
-    ),
+    "questions": re.compile(r"^RQ-[A-Z0-9]+(?:-[A-Z0-9]+)*-(?:[0-9]{3}|E[0-9]{2})$"),
     "hypotheses": re.compile(
         r"^H-[A-Z0-9]+(?:-[A-Z0-9]+)*-(?:[0-9]{3}|E[0-9]{2})-[A-Z]$"
     ),
@@ -68,7 +66,11 @@ def registry_data() -> dict[str, list[dict[str, object]]]:
     for yaml_file in sorted(REGISTRY_DIR.glob("*.yaml")):
         stem = yaml_file.stem
         key = next(
-            (prefix for prefix in family_prefixes if stem == prefix or stem.startswith(f"{prefix}.")),
+            (
+                prefix
+                for prefix in family_prefixes
+                if stem == prefix or stem.startswith(f"{prefix}.")
+            ),
             stem,
         )
         with open(yaml_file, encoding="utf-8") as f:

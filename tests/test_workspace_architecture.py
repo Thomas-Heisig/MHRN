@@ -56,8 +56,8 @@ def test_review_and_airr_frontend_match_backend_contracts() -> None:
 
 def test_central_review_inbox_is_actionable() -> None:
     router = (STATIC / "frontend" / "workspace-router.js").read_text(encoding="utf-8")
-    assert 'data-review-reviewer' in router
-    assert 'data-review-comments' in router
+    assert "data-review-reviewer" in router
+    assert "data-review-comments" in router
     assert 'data-review-decision="accepted_as_interpretation"' in router
     assert 'data-review-decision="rejected"' in router
     assert 'method: "POST"' in router

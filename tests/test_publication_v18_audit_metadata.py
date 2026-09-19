@@ -205,6 +205,7 @@ def test_scientific_balance_has_explicit_5d_and_compression_roadmaps() -> None:
 
 # fmt: on
 
+
 def test_publication_keeps_dissertation_research_architecture() -> None:
     manuscript = (EDITION / "MANUSCRIPT.md").read_text(encoding="utf-8")
     required = (

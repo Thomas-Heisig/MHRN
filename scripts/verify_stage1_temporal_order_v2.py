@@ -58,12 +58,19 @@ def main() -> int:
     for seed in seeds:
         rows = [r for r in runs if int(r["seed"]) == seed]
         assert len(rows) == 6
-        assert len({
-            (round(float(r["synaptic_weight"]), 12),
-             round(float(r["stimulus_current"]), 12),
-             round(float(r["total_injected_charge"]), 12))
-            for r in rows
-        }) == 1
+        assert (
+            len(
+                {
+                    (
+                        round(float(r["synaptic_weight"]), 12),
+                        round(float(r["stimulus_current"]), 12),
+                        round(float(r["total_injected_charge"]), 12),
+                    )
+                    for r in rows
+                }
+            )
+            == 1
+        )
 
     hashes = manifest["artifacts_sha256"]
     assert hashes["preregistration"] == sha256(PREREG)
@@ -74,15 +81,20 @@ def main() -> int:
         digest, relpath = line.split("  ", 1)
         assert sha256(OUT / relpath) == digest
 
-    print(json.dumps({
-        "experiment_id": EXP_ID,
-        "result_status": manifest["result_status"],
-        "run_count": len(runs),
-        "integrity": True,
-        "human_review_status": "PENDING",
-        "scientific_evidence": False,
-        "independent_replication": False,
-    }, sort_keys=True))
+    print(
+        json.dumps(
+            {
+                "experiment_id": EXP_ID,
+                "result_status": manifest["result_status"],
+                "run_count": len(runs),
+                "integrity": True,
+                "human_review_status": "PENDING",
+                "scientific_evidence": False,
+                "independent_replication": False,
+            },
+            sort_keys=True,
+        )
+    )
     return 0
 
 

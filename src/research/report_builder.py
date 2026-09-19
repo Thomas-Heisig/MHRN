@@ -83,7 +83,9 @@ class ReportBuilder:
             direct_questions = data.get("research_questions")
             if isinstance(direct_questions, list):
                 question_ids.update(
-                    str(value) for value in direct_questions if isinstance(value, str) and value
+                    str(value)
+                    for value in direct_questions
+                    if isinstance(value, str) and value
                 )
             hypothesis_ids: set[str] = set()
             direct_hypothesis = data.get("hypothesis")
@@ -92,7 +94,9 @@ class ReportBuilder:
             direct_hypotheses = data.get("hypotheses")
             if isinstance(direct_hypotheses, list):
                 hypothesis_ids.update(
-                    str(value) for value in direct_hypotheses if isinstance(value, str) and value
+                    str(value)
+                    for value in direct_hypotheses
+                    if isinstance(value, str) and value
                 )
             for hypothesis_id in hypothesis_ids:
                 hypothesis = self.registry.hypotheses.get(hypothesis_id)
@@ -100,7 +104,9 @@ class ReportBuilder:
                     question_ids.add(hypothesis.research_question)
             for question_id in question_ids:
                 if question_id in self.registry.questions:
-                    self._experiment_links.setdefault(question_id, set()).add(experiment_id)
+                    self._experiment_links.setdefault(question_id, set()).add(
+                        experiment_id
+                    )
 
     def _evidence_for_question(self, question_id: str) -> set[str]:
         """Return all evidence IDs linked to a research question.
@@ -141,7 +147,9 @@ class ReportBuilder:
         claims = self.registry.claims_for_question(question_id)
         claim_ids = {c.id for c in claims}
         result = set(self._experiment_links.get(question_id, set()))
-        result.update(experiment for claim in claims for experiment in claim.experiments)
+        result.update(
+            experiment for claim in claims for experiment in claim.experiments
+        )
         for ev in self._evidence_records.values():
             if not ev.experiment_id:
                 continue
@@ -462,7 +470,12 @@ class ReportBuilder:
                 "description": "Synaptisches Gedächtnis, Sensor-Aktor-Schleife, Language Organ",
             },
             "Kapitel 8 – Autorenschaft und Epistemologie": {
-                "questions": ["RQ-ETH-001", "RQ-ETH-002", "RQ-EPIST-001", "RQ-EPIST-002"],
+                "questions": [
+                    "RQ-ETH-001",
+                    "RQ-ETH-002",
+                    "RQ-EPIST-001",
+                    "RQ-EPIST-002",
+                ],
                 "sources": [],
                 "description": "Epistemische Beiträge, Kanonisierung, Autorenschaft, Verantwortung und maschinelle Erkenntnis",
             },

@@ -51,7 +51,9 @@ def read_json(path: Path) -> dict[str, Any]:
 
 def write_json(path: Path, value: Any) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(value, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    path.write_text(
+        json.dumps(value, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
 
 
 def sha256(path: Path) -> str:
@@ -85,7 +87,9 @@ def load_config() -> dict[str, Any]:
     return dict(value)
 
 
-def all_coords(shape: tuple[int, int, int, int, int]) -> list[tuple[int, int, int, int, int]]:
+def all_coords(
+    shape: tuple[int, int, int, int, int],
+) -> list[tuple[int, int, int, int, int]]:
     coords = list(itertools.product(*(range(size) for size in shape)))
     if len(coords) != 64:
         raise ValueError(f"shape {shape} must contain 64 coordinates")
@@ -105,7 +109,9 @@ def coordinate_score(
 def canonical_coords(
     shape: tuple[int, int, int, int, int],
 ) -> list[tuple[int, int, int, int, int]]:
-    return sorted(all_coords(shape), key=lambda coord: (coordinate_score(coord, shape), coord))
+    return sorted(
+        all_coords(shape), key=lambda coord: (coordinate_score(coord, shape), coord)
+    )
 
 
 def normalized_distance(
@@ -166,7 +172,12 @@ def build_network(
     condition: str,
     seed: int,
     weight: float,
-) -> tuple[NeuralNetwork, list[int], list[tuple[int, int, int, int, int]], list[tuple[int, int]]]:
+) -> tuple[
+    NeuralNetwork,
+    list[int],
+    list[tuple[int, int, int, int, int]],
+    list[tuple[int, int]],
+]:
     shape = shape_for(prereg, condition)
     coords = canonical_coords(shape)
     if condition == "5d_shuffled":
@@ -280,7 +291,9 @@ def simulate(
         "active_output_neurons": len(active_outputs),
         "output_reach_fraction": len(active_outputs) / float(len(output_ids)),
         "first_output_latency": first_output,
-        "first_output_latency_censored": first_output if first_output is not None else ticks + 1,
+        "first_output_latency_censored": (
+            first_output if first_output is not None else ticks + 1
+        ),
         "last_activity_tick": last_activity,
         "total_spikes": total_spikes,
         "delivered_events": delivered_events,
@@ -311,11 +324,19 @@ def summarize(runs: list[dict[str, Any]]) -> dict[str, Any]:
         rows = grouped[condition]
         summary[condition] = {
             "n": len(rows),
-            "active_fraction_median": median([float(row["active_fraction"]) for row in rows]),
-            "output_reach_fraction_median": median([float(row["output_reach_fraction"]) for row in rows]),
-            "first_output_latency_censored_median": median([float(row["first_output_latency_censored"]) for row in rows]),
+            "active_fraction_median": median(
+                [float(row["active_fraction"]) for row in rows]
+            ),
+            "output_reach_fraction_median": median(
+                [float(row["output_reach_fraction"]) for row in rows]
+            ),
+            "first_output_latency_censored_median": median(
+                [float(row["first_output_latency_censored"]) for row in rows]
+            ),
             "total_spikes_median": median([float(row["total_spikes"]) for row in rows]),
-            "delivered_events_median": median([float(row["delivered_events"]) for row in rows]),
+            "delivered_events_median": median(
+                [float(row["delivered_events"]) for row in rows]
+            ),
         }
     return summary
 
@@ -384,10 +405,7 @@ def holm(records: list[dict[str, Any]]) -> None:
 
 
 def analyze(evaluation: list[dict[str, Any]], alpha: float) -> dict[str, Any]:
-    lookup = {
-        (str(run["condition"]), int(run["seed"])): run
-        for run in evaluation
-    }
+    lookup = {(str(run["condition"]), int(run["seed"])): run for run in evaluation}
     seeds = sorted({int(run["seed"]) for run in evaluation})
     tests: list[dict[str, Any]] = []
     for endpoint in PRIMARY_ENDPOINTS:
@@ -410,7 +428,9 @@ def analyze(evaluation: list[dict[str, Any]], alpha: float) -> dict[str, Any]:
                     "nonzero_pairs": sum(abs(value) > 1e-12 for value in differences),
                     "median_difference": float(statistics.median(differences)),
                     "mean_difference": float(statistics.fmean(differences)),
-                    "bootstrap_median_difference_ci95": bootstrap_ci(differences, boot_seed),
+                    "bootstrap_median_difference_ci95": bootstrap_ci(
+                        differences, boot_seed
+                    ),
                     "p_raw": sign_test_p(differences),
                 }
             )
@@ -418,7 +438,9 @@ def analyze(evaluation: list[dict[str, Any]], alpha: float) -> dict[str, Any]:
     for row in tests:
         low, high = row["bootstrap_median_difference_ci95"]
         row["ci_excludes_zero"] = bool(low > 0.0 or high < 0.0)
-        row["significant"] = bool(float(row["p_holm"]) < alpha and row["ci_excludes_zero"])
+        row["significant"] = bool(
+            float(row["p_holm"]) < alpha and row["ci_excludes_zero"]
+        )
     return {
         "alpha": alpha,
         "test": "exact two-sided paired sign test",
@@ -440,7 +462,8 @@ def validate_design(
     checks = {
         "seed_sets_disjoint": calibration_seeds.isdisjoint(evaluation_seeds),
         "evaluation_condition_counts": all(
-            sum(run["condition"] == condition for run in evaluation) == len(evaluation_seeds)
+            sum(run["condition"] == condition for run in evaluation)
+            == len(evaluation_seeds)
             for condition in CONDITIONS
         ),
         "node_count_matched": all(int(run["node_count"]) == 64 for run in evaluation),
@@ -448,8 +471,12 @@ def validate_design(
             int(run["degree_summary"]["edge_count"]) == expected_edges
             for run in evaluation
         ),
-        "weight_frozen": all(float(run["synaptic_weight"]) == weight for run in evaluation),
-        "calibration_seed_scope": all(int(run["seed"]) in calibration_seeds for run in calibration),
+        "weight_frozen": all(
+            float(run["synaptic_weight"]) == weight for run in evaluation
+        ),
+        "calibration_seed_scope": all(
+            int(run["seed"]) in calibration_seeds for run in calibration
+        ),
     }
     return {
         "expected_edge_count": expected_edges,
@@ -655,7 +682,9 @@ def main() -> int:
             "evaluation_run_count": len(evaluation),
             "activity_gate_passed": chosen_weight is not None,
             "design_integrity_passed": bool(integrity and integrity["pass"]),
-            "any_primary_difference": bool(primary and primary["any_primary_difference"]),
+            "any_primary_difference": bool(
+                primary and primary["any_primary_difference"]
+            ),
         },
         "artifacts_sha256": artifact_hashes,
         "claim_boundary": prereg["claim_boundary"],

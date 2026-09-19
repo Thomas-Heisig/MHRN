@@ -136,9 +136,13 @@ def test_stage0_human_review_is_complete_but_evid_promotion_remains_blocked() ->
     )
     assert review["review_status"] == "completed"
     assert review["decision"] == "supports_scoped_claim"
-    assert review["review_points"]["independent_replication"]["decision"] == "remains_open"
+    assert (
+        review["review_points"]["independent_replication"]["decision"] == "remains_open"
+    )
     assert promotion["scientific_evidence"] is False
-    assert promotion["evidence_promotion_status"] == "BLOCKED_LEGACY_PROVENANCE_CONTRACT"
+    assert (
+        promotion["evidence_promotion_status"] == "BLOCKED_LEGACY_PROVENANCE_CONTRACT"
+    )
     assert promotion["independent_replication_complete"] is False
 
 
@@ -178,14 +182,10 @@ def test_stage0_partial_semantics_are_contractual_not_result_dependent() -> None
 
     assert reviewed["decomposition"]["human_scientific_review_fraction"] == 0.5
     assert (
-        reviewed["decomposition"]["canonical_evidence_engine_promotion_fraction"]
-        == 0.5
+        reviewed["decomposition"]["canonical_evidence_engine_promotion_fraction"] == 0.5
     )
     assert "not result favorability" in reviewed["anti_gaming_rule"]
-    assert (
-        replication["decomposition"]["external_reference_comparison_fraction"]
-        == 0.5
-    )
+    assert replication["decomposition"]["external_reference_comparison_fraction"] == 0.5
     assert (
         replication["decomposition"]["independent_authorship_replication_fraction"]
         == 0.5

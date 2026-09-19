@@ -16,10 +16,17 @@ from pathlib import Path
 from typing import Any
 
 from src.research.experiment_recorder import ExperimentRecorder
-from src.research_assistant.governance import DataPartition, NetworkMode, ResearchRunMode
+from src.research_assistant.governance import (
+    DataPartition,
+    NetworkMode,
+    ResearchRunMode,
+)
 
 ROOT = Path(__file__).resolve().parents[1]
-PREREG = ROOT / "research/preregistrations/operational/single_neuron_conformance_v2_promotion_r1.json"
+PREREG = (
+    ROOT
+    / "research/preregistrations/operational/single_neuron_conformance_v2_promotion_r1.json"
+)
 EXPERIMENT_ID = "EXP-STAGE0-20260918-MODEL-CONFORMANCE-V2-PROMO-R1"
 OUT_DIR = ROOT / "research/experiments" / EXPERIMENT_ID
 CANDIDATE = ROOT / "scripts/stage0_conformance_v2.py"
@@ -34,12 +41,18 @@ def _sha256_file(path: Path) -> str:
 
 
 def _canonical_digest(value: object) -> str:
-    raw = json.dumps(value, sort_keys=True, separators=(",", ":"), ensure_ascii=True).encode("utf-8")
+    raw = json.dumps(
+        value, sort_keys=True, separators=(",", ":"), ensure_ascii=True
+    ).encode("utf-8")
     return _sha256_bytes(raw)
 
 
 def _tracked_source_digest() -> str:
-    names = subprocess.check_output(["git", "ls-files", "-z"], cwd=ROOT).decode().split("\0")
+    names = (
+        subprocess.check_output(["git", "ls-files", "-z"], cwd=ROOT)
+        .decode()
+        .split("\0")
+    )
     prefixes = ("src/", "scripts/")
     selected: dict[str, str] = {}
     for name in names:
@@ -54,7 +67,9 @@ def _tracked_source_digest() -> str:
 
 
 def _load_candidate() -> Any:
-    spec = importlib.util.spec_from_file_location("stage0_conformance_candidate", CANDIDATE)
+    spec = importlib.util.spec_from_file_location(
+        "stage0_conformance_candidate", CANDIDATE
+    )
     if spec is None or spec.loader is None:
         raise RuntimeError("cannot load stage0_conformance_v2.py")
     module = importlib.util.module_from_spec(spec)
@@ -108,7 +123,9 @@ def main() -> None:
 
     recorder = ExperimentRecorder(EXPERIMENT_ID, output_dir=OUT_DIR, fail_fast=True)
     if recorder.manifest["git"].get("dirty") is not False:
-        raise RuntimeError("promotion replication requires a clean git tree before execution")
+        raise RuntimeError(
+            "promotion replication requires a clean git tree before execution"
+        )
 
     started = time.perf_counter()
     module = _load_candidate()
@@ -126,15 +143,20 @@ def main() -> None:
             brian_ms = int(row["brian2_refractory_ms"])
             if native_ticks == 0 and brian_ms == 0:
                 lif_default_rows.append(row)
-            if native_ticks in expected_mapping and brian_ms == expected_mapping[native_ticks]:
+            if (
+                native_ticks in expected_mapping
+                and brian_ms == expected_mapping[native_ticks]
+            ):
                 lif_refractory_rows.append(row)
 
     lif_default_pass = len(lif_default_rows) == len(seeds) and all(
-        row["spike_events_equal"] and row["max_abs_v_error"] <= 1e-8 for row in lif_default_rows
+        row["spike_events_equal"] and row["max_abs_v_error"] <= 1e-8
+        for row in lif_default_rows
     )
     expected_secondary_count = len(seeds) * len(expected_mapping)
     lif_refractory_pass = len(lif_refractory_rows) == expected_secondary_count and all(
-        row["spike_events_equal"] and row["max_abs_v_error"] <= 1e-8 for row in lif_refractory_rows
+        row["spike_events_equal"] and row["max_abs_v_error"] <= 1e-8
+        for row in lif_refractory_rows
     )
 
     payload: dict[str, Any] = {
@@ -146,14 +168,19 @@ def main() -> None:
         "replication_class": "INTERNAL_PROMOTION_REPLICATION",
         "seeds": list(seeds),
         "H-EVAL-006-A": {"supported_by_protocol": izh_pass, "runs": izh_rows},
-        "H-EVAL-006-B": {"supported_by_protocol": lif_default_pass, "runs": lif_default_rows},
+        "H-EVAL-006-B": {
+            "supported_by_protocol": lif_default_pass,
+            "runs": lif_default_rows,
+        },
         "H-EVAL-006-C": {
             "supported_by_protocol": lif_refractory_pass,
             "claim_type": "semantic_mapping",
             "mapping": {str(k): v for k, v in expected_mapping.items()},
             "runs": lif_refractory_rows,
         },
-        "all_declared_hypotheses_pass": izh_pass and lif_default_pass and lif_refractory_pass,
+        "all_declared_hypotheses_pass": izh_pass
+        and lif_default_pass
+        and lif_refractory_pass,
         "automatic_evid_promotion": False,
         "human_review_required": True,
         "independent_authorship_replication": False,
@@ -174,7 +201,9 @@ def main() -> None:
     code_digest = _tracked_source_digest()
     data_digest = _sha256_bytes(raw)
 
-    recorder.record_config(str(PREREG.relative_to(ROOT)).replace("\\", "/"), config_digest)
+    recorder.record_config(
+        str(PREREG.relative_to(ROOT)).replace("\\", "/"), config_digest
+    )
     recorder.record_research_links(
         research_questions=[prereg["research_question_id"]],
         hypotheses=list(prereg["hypothesis_ids"]),
@@ -191,7 +220,9 @@ def main() -> None:
     recorder.record_simulation_params(seeds=list(seeds), dt_ms=1.0)
     recorder.record_artifact("confirmatory_data", "DATA/confirmatory_result.json")
     recorder.record_artifact("report", "report.md")
-    recorder.record_artifact("preregistration", str(PREREG.relative_to(ROOT)).replace("\\", "/"))
+    recorder.record_artifact(
+        "preregistration", str(PREREG.relative_to(ROOT)).replace("\\", "/")
+    )
     recorder.record_provenance_digests(
         code_digest=code_digest,
         config_digest=config_digest,

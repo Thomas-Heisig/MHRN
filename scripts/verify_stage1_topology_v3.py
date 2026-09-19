@@ -48,7 +48,9 @@ def main() -> int:
 
     prereg = read_json(PREREG)
     manifest = read_json(OUT / "manifest.json")
-    evaluation_raw: Any = json.loads((OUT / "data" / "evaluation.json").read_text(encoding="utf-8"))
+    evaluation_raw: Any = json.loads(
+        (OUT / "data" / "evaluation.json").read_text(encoding="utf-8")
+    )
     if not isinstance(evaluation_raw, list):
         fail("evaluation data is not a list", errors)
         evaluation: list[dict[str, Any]] = []
@@ -133,7 +135,9 @@ def main() -> int:
         "experiment_id": EXP_ID,
         "result_status": recomputed_analysis["status"],
         "evaluation_runs": len(evaluation),
-        "ceiling_resolution_supported": recomputed_analysis["ceiling_resolution_supported"],
+        "ceiling_resolution_supported": recomputed_analysis[
+            "ceiling_resolution_supported"
+        ],
         "replication_supported": recomputed_analysis["replication_supported"],
         "diagnostics": diagnostics,
         "source_freeze": manifest.get("source_freeze", {}).get("commit"),

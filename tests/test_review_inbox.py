@@ -102,7 +102,9 @@ def test_review_inbox_lists_results_artifact_requiring_human_review(
     assert item["result_status"] == "H1_negative_H2_negative"
 
 
-def test_review_inbox_skips_results_with_human_reviewed_evidence(tmp_path: Path) -> None:
+def test_review_inbox_skips_results_with_human_reviewed_evidence(
+    tmp_path: Path,
+) -> None:
     experiment = tmp_path / "experiments" / "EXP-S6-SEM-CL-002"
     results = experiment / "results"
     results.mkdir(parents=True)
@@ -221,7 +223,9 @@ def test_review_inbox_human_sidecar_closes_ai_reviewed_artifact(tmp_path: Path) 
     assert inbox["completed"] == 1
 
 
-def test_review_inbox_prefers_canonical_review_request_over_manifest(tmp_path: Path) -> None:
+def test_review_inbox_prefers_canonical_review_request_over_manifest(
+    tmp_path: Path,
+) -> None:
     experiment = tmp_path / "experiments" / "EXP-CANONICAL"
     experiment.mkdir(parents=True)
     (experiment / "manifest.json").write_text(

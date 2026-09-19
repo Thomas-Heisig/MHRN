@@ -115,9 +115,7 @@ def normalize_experiment_manifest(
     equally reviewable in the dashboard.
     """
     normalized = dict(manifest)
-    experiment_id = str(
-        normalized.get("experiment_id") or directory.name
-    )
+    experiment_id = str(normalized.get("experiment_id") or directory.name)
     normalized.setdefault("experiment_id", experiment_id)
 
     if not isinstance(normalized.get("research_questions"), list):
@@ -448,7 +446,9 @@ class ResearchSource:
                     "id": entry.name,
                     "created_at": created_at,
                     "path": str(entry.relative_to(self._root)).replace("\\", "/"),
-                    "manifest": dashboard_manifest if dashboard_manifest is not None else data,
+                    "manifest": (
+                        dashboard_manifest if dashboard_manifest is not None else data
+                    ),
                 }
             )
         experiments.sort(
