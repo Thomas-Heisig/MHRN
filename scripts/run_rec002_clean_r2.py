@@ -156,12 +156,18 @@ def main() -> int:
     scientific_runs = run_recurrence_scale(config, seeds=seeds, ticks=256)
     runs = [serialise_run(run) for run in scientific_runs]
 
-    expected_conditions = {\n        "loop_delay_1",\n        "loop_delay_2",\n        "loop_delay_4",\n        "loop_delay_8",\n    }
+    expected_conditions = {
+        "loop_delay_1",
+        "loop_delay_2",
+        "loop_delay_4",
+        "loop_delay_8",
+    }
     integrity_checks = {
         "clean_source_freeze": source["dirty_before_execution"] is False,
         "run_count": len(runs) == 80,
         "seed_count": {int(row["seed"]) for row in runs} == set(seeds),
-        "condition_grid": {str(row["condition"]) for row in runs}\n        == expected_conditions,
+        "condition_grid": {str(row["condition"]) for row in runs}
+        == expected_conditions,
         "exact_coverage": all(
             sum(
                 int(row["seed"]) == seed and str(row["condition"]) == condition
