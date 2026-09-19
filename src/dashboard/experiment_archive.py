@@ -199,7 +199,9 @@ class ExperimentArchiveService:
         archived_children = self.archived_ids()
         indexed_series = self.archived_series_ids()
         if self.research_workflows.is_dir():
-            for workflow in sorted(self.research_workflows.glob("*.json"), reverse=True):
+            for workflow in sorted(
+                self.research_workflows.glob("*.json"), reverse=True
+            ):
                 series_id = workflow.stem
                 if series_id in indexed_series:
                     continue
