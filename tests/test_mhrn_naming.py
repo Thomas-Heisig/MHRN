@@ -49,7 +49,7 @@ def test_current_identity_and_distribution() -> None:
     assert MHRN_VERSION_DISPLAY == BRAIN5D_VERSION_DISPLAY
 
 
-def test_public_orcid_identity_link_is_canonical_and_private_data_is_excluded() -> None:
+def test_public_orcid_identity_and_deliberate_public_contact_are_separated() -> None:
     identity: dict[str, Any] = json.loads(
         (ROOT / "project_identity.json").read_text(encoding="utf-8")
     )
@@ -85,10 +85,13 @@ def test_public_orcid_identity_link_is_canonical_and_private_data_is_excluded() 
     imprint = json.loads((ROOT / "public_imprint.json").read_text(encoding="utf-8"))
     serialized_imprint = json.dumps(imprint, ensure_ascii=False)
     assert imprint["provider"]["name"] == "Thomas Heisig"
+    assert imprint["public_release_ready"] is True
     assert imprint["public_internet_ready"] is False
-    assert imprint["provider"]["postal_address"] is None
-    assert imprint["provider"]["email"] is None
-    assert "t_heisig@gmx.de" not in serialized_imprint
+    assert "Wolffsheide 10" in imprint["provider"]["postal_address"]
+    assert "27777 Ganderkesee" in imprint["provider"]["postal_address"]
+    assert imprint["provider"]["email"] == "t_heisig@gmx.de"
+    assert imprint["editorial_responsibility"]["name"] == "Thomas Heisig"
+    assert "t_heisig@gmx.de" in serialized_imprint
     assert "news@thomas-heisig.de" not in serialized_imprint
 
 
