@@ -74,6 +74,7 @@ The internal documentation and experiment taxonomy is being refined. The links b
 - **Documentation:** [`docs/README.md`](docs/README.md)
 - **Research:** [`research/README.md`](research/README.md)
 - **Open science / research networks:** [`OPEN_SCIENCE.md`](OPEN_SCIENCE.md)
+- **Machine-readable research-network registry:** [`research-network-registry.json`](research-network-registry.json)
 - **Independent replication call:** [`INDEPENDENT_REPLICATION.md`](INDEPENDENT_REPLICATION.md)
 - **Current scientific state:** [`research/CURRENT_SCIENTIFIC_STATE.md`](research/CURRENT_SCIENTIFIC_STATE.md)
 - **Current publication pointer:** [`research/publications/CURRENT.md`](research/publications/CURRENT.md)
