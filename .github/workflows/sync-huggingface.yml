@@ -1,13 +1,9 @@
 # ============================================================================
-# MHRN - GitHub -> Hugging Face publication fan-out
+# MHRN - incremental GitHub -> Hugging Face publication fan-out
 # ============================================================================
-# GitHub main remains canonical. Once HF_USERNAME and HF_TOKEN are configured
-# as repository Actions secrets, this workflow creates/updates:
-#   - <user>/MHRN               (software/source mirror)
-#   - <user>/MHRN-Space         (Docker Space)
-#   - <user>/MHRN-Research-Data (research/data mirror)
-# Missing account credentials remain an explicit "not configured" state and do
-# not make scientific or engineering CI fail.
+# GitHub main is canonical. HF mirrors are rolling discovery/runtime surfaces.
+# Large raw experiment blobs are deliberately excluded from rolling HF mirrors;
+# immutable experiment datasets belong in DOI-bearing archives.
 # ============================================================================
 
 name: Sync to Hugging Face
@@ -27,7 +23,7 @@ concurrency:
 jobs:
   sync:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 45
     env:
       HF_TOKEN: ${{ secrets.HF_TOKEN }}
       HF_USERNAME: superdigger
@@ -40,7 +36,7 @@ jobs:
         uses: actions/checkout@v7
         with:
           fetch-depth: 1
-          lfs: true
+          lfs: false
 
       - name: Resolve publication configuration
         id: hf
@@ -69,91 +65,139 @@ jobs:
         if: steps.hf.outputs.enabled == 'true'
         run: python -m pip install --disable-pip-version-check --no-cache-dir "huggingface_hub>=0.35,<2"
 
-      - name: Ensure public Hugging Face repositories exist
+      - name: Publish incremental snapshots
         if: steps.hf.outputs.enabled == 'true'
         shell: bash
         run: |
           python - <<'PY'
+          import json
           import os
+          import shutil
+          import tempfile
+          from pathlib import Path
+
           from huggingface_hub import HfApi
 
+          root = Path.cwd()
           token = os.environ["HF_TOKEN"]
           user = os.environ["HF_USERNAME"]
+          sha = os.environ["GITHUB_SHA"]
           api = HfApi(token=token)
 
+          targets = {
+              "source": (f"{user}/{os.environ['HF_REPO']}", "model"),
+              "space": (f"{user}/{os.environ['HF_SPACE_REPO']}", "space"),
+              "data": (f"{user}/{os.environ['HF_DATASET_REPO']}", "dataset"),
+          }
+
+          api.create_repo(targets["source"][0], repo_type="model", private=False, exist_ok=True)
           api.create_repo(
-              repo_id=f"{user}/{os.environ['HF_REPO']}",
-              repo_type="model",
-              private=False,
-              exist_ok=True,
-          )
-          api.create_repo(
-              repo_id=f"{user}/{os.environ['HF_SPACE_REPO']}",
+              targets["space"][0],
               repo_type="space",
               space_sdk="docker",
               private=False,
               exist_ok=True,
           )
-          api.create_repo(
-              repo_id=f"{user}/{os.environ['HF_DATASET_REPO']}",
-              repo_type="dataset",
-              private=False,
-              exist_ok=True,
-          )
+          api.create_repo(targets["data"][0], repo_type="dataset", private=False, exist_ok=True)
+
+          common_excludes = {
+              ".git", ".venv", "node_modules", "__pycache__", ".pytest_cache",
+              ".mypy_cache", ".ruff_cache",
+          }
+
+          def ignored(rel: Path) -> bool:
+              parts = rel.parts
+              if not parts:
+                  return False
+              if parts[0] in common_excludes:
+                  return True
+              s = rel.as_posix()
+              if "/DATA/raw/" in f"/{s}/":
+                  return True
+              if s.startswith("docs/99-archive/"):
+                  return True
+              if s.startswith("research/publications/archives/"):
+                  return True
+              return False
+
+          def copy_tree(dst: Path, *, research_only: bool = False) -> None:
+              base = root / "research" if research_only else root
+              for src in base.rglob("*"):
+                  if not src.is_file():
+                      continue
+                  rel = src.relative_to(root)
+                  if ignored(rel):
+                      continue
+                  if src.is_symlink():
+                      continue
+                  target = dst / rel
+                  target.parent.mkdir(parents=True, exist_ok=True)
+                  shutil.copy2(src, target)
+
+          with tempfile.TemporaryDirectory() as tmp:
+              tmp = Path(tmp)
+
+              source_dir = tmp / "source"
+              source_dir.mkdir()
+              copy_tree(source_dir)
+              shutil.copy2(root / "HF_MODEL_README.md", source_dir / "README.md")
+
+              space_dir = tmp / "space"
+              space_dir.mkdir()
+              copy_tree(space_dir)
+              shutil.copy2(root / "HF_README.md", space_dir / "README.md")
+
+              data_dir = tmp / "data"
+              data_dir.mkdir()
+              copy_tree(data_dir, research_only=True)
+              shutil.copy2(root / "HF_DATASET_README.md", data_dir / "README.md")
+              for name in ("LICENSE", "CITATION.cff", "research-network-registry.json"):
+                  shutil.copy2(root / name, data_dir / name)
+
+              manifest = {
+                  "canonical_repository": "https://github.com/Thomas-Heisig/MHRN",
+                  "canonical_sha": sha,
+                  "generated_by": ".github/workflows/sync-huggingface.yml",
+                  "rolling_mirror": True,
+                  "raw_experiment_data_included": False,
+                  "raw_data_policy": "Use canonical GitHub artefacts or dedicated DOI-bearing dataset deposits.",
+              }
+              for folder in (source_dir, space_dir, data_dir):
+                  (folder / "MIRROR_MANIFEST.json").write_text(
+                      json.dumps(manifest, indent=2) + "\n", encoding="utf-8"
+                  )
+
+              for key, folder in (
+                  ("source", source_dir),
+                  ("space", space_dir),
+                  ("data", data_dir),
+              ):
+                  repo_id, repo_type = targets[key]
+                  api.upload_folder(
+                      repo_id=repo_id,
+                      repo_type=repo_type,
+                      folder_path=str(folder),
+                      path_in_repo="",
+                      commit_message=f"Sync GitHub main {sha}",
+                      token=token,
+                      delete_patterns=["*"],
+                  )
+
+          print("Hugging Face mirrors synced for", sha)
           PY
 
-      - name: Publish source, Space and research-data snapshots
+      - name: Summarize publication targets
         if: steps.hf.outputs.enabled == 'true'
         shell: bash
         run: |
-          set -euo pipefail
-
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git config --global user.name "github-actions[bot]"
-
-          publish_snapshot() {
-            local dir="$1"
-            local remote="$2"
-            git -C "$dir" init --initial-branch=main
-            git -C "$dir" lfs install --local
-            git -C "$dir" config user.email "github-actions[bot]@users.noreply.github.com"
-            git -C "$dir" config user.name "github-actions[bot]"
-            git -C "$dir" remote add huggingface "$remote"
-            git -C "$dir" add --all --force
-            git -C "$dir" commit -m "Sync GitHub main ${GITHUB_SHA}"
-            git -C "$dir" push huggingface HEAD:main --force
-            git -C "$dir" lfs push --all huggingface HEAD
-          }
-
-          source_dir="$(mktemp -d)"
-          find . -mindepth 1 -maxdepth 1 ! -name .git -exec cp -a {} "$source_dir"/ \;
-          cp "$source_dir/HF_MODEL_README.md" "$source_dir/README.md"
-          sed -i "s/PLACEHOLDER_USERNAME/${HF_USERNAME}/g" "$source_dir/README.md"
-          cp "$source_dir/.huggingface/lfs.gitattributes" "$source_dir/.gitattributes"
-          publish_snapshot             "$source_dir"             "https://${HF_USERNAME}:${HF_TOKEN}@huggingface.co/${HF_USERNAME}/${HF_REPO}"
-
-          space_dir="$(mktemp -d)"
-          find . -mindepth 1 -maxdepth 1 ! -name .git -exec cp -a {} "$space_dir"/ \;
-          cp "$space_dir/HF_README.md" "$space_dir/README.md"
-          sed -i "s#https://huggingface.co/spaces/superdigger/Brain-5D-Space#https://huggingface.co/spaces/${HF_USERNAME}/${HF_SPACE_REPO}#g" "$space_dir/README.md"
-          cp "$space_dir/.huggingface/lfs.gitattributes" "$space_dir/.gitattributes"
-          publish_snapshot             "$space_dir"             "https://${HF_USERNAME}:${HF_TOKEN}@huggingface.co/spaces/${HF_USERNAME}/${HF_SPACE_REPO}"
-
-          data_dir="$(mktemp -d)"
-          mkdir -p "$data_dir/research"
-          cp -a research/. "$data_dir/research/"
-          cp HF_DATASET_README.md "$data_dir/README.md"
-          cp LICENSE CITATION.cff research-network-registry.json "$data_dir/"
-          cp .huggingface/lfs.gitattributes "$data_dir/.gitattributes"
-          publish_snapshot             "$data_dir"             "https://${HF_USERNAME}:${HF_TOKEN}@huggingface.co/datasets/${HF_USERNAME}/${HF_DATASET_REPO}"
-
           {
             echo "## Hugging Face publication"
             echo
             echo "Status: **SYNCED**"
             echo
-            echo "- Source: https://huggingface.co/${HF_USERNAME}/${HF_REPO}"
-            echo "- Space: https://huggingface.co/spaces/${HF_USERNAME}/${HF_SPACE_REPO}"
-            echo "- Research data: https://huggingface.co/datasets/${HF_USERNAME}/${HF_DATASET_REPO}"
-            echo "- Canonical GitHub SHA: \`${GITHUB_SHA}\`"
+            echo "- Source: https://huggingface.co/superdigger/MHRN"
+            echo "- Space: https://huggingface.co/spaces/superdigger/MHRN-Space"
+            echo "- Research data: https://huggingface.co/datasets/superdigger/MHRN-Research-Data"
+            echo "- Canonical GitHub SHA: `${GITHUB_SHA}`"
+            echo "- Rolling mirrors exclude raw experiment DATA blobs; citable raw DATA remains in canonical/DOI archives."
           } >> "$GITHUB_STEP_SUMMARY"
