@@ -50,6 +50,27 @@ jobs:
             echo "persisted=false" >> "$GITHUB_OUTPUT"
           fi
 
+      - name: Normalize known source formatting
+        if: steps.mode.outputs.persisted != 'true'
+        run: |
+          python -m black \
+            scripts/run_emb002a_proprioception_v3.py \
+            scripts/verify_emb002a_proprioception_v3.py \
+            src/dashboard/server.py \
+            tests/test_bilingual_science_ui.py \
+            tests/test_experiment_lab_workspace.py
+          git add \
+            scripts/run_emb002a_proprioception_v3.py \
+            scripts/verify_emb002a_proprioception_v3.py \
+            src/dashboard/server.py \
+            tests/test_bilingual_science_ui.py \
+            tests/test_experiment_lab_workspace.py
+          if ! git diff --cached --quiet; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git commit -m "style: restore Black-clean source before EMB-002-A V3"
+          fi
+
       - name: Check source formatting and lint
         run: |
           python -m black --check src tests scripts
