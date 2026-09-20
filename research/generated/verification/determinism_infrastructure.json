@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
   "status": "verified",
-  "test_run_head": "660e950af957e0f7301a467ba9295e2e0cb82d43",
-  "tested_commit": "660e950af957e0f7301a467ba9295e2e0cb82d43",
-  "tested_tree_digest": "2de83b433b158c264ddd208dc8689243fece2eead293f3e358b9178785d518ac",
+  "test_run_head": "ed290195dc078f68ad252eb2accca1f82aaa1873",
+  "tested_commit": "ed290195dc078f68ad252eb2accca1f82aaa1873",
+  "tested_tree_digest": "c6e64d9d4043e250071170efc11a3a64086c63d25a94f7e79d38fc913d094cdc",
   "scope": "restore_determinism",
   "scope_digest": "62281a2f6208f9eabd4334c8054e2a9cca066715523823ce232846bd65cefe1a",
-  "timestamp": "2026-09-20T07:32:01+0000",
+  "timestamp": "2026-09-20T11:11:30+0000",
   "python": "3.13.15",
   "test_files": [
     "tests/test_rng_persistence.py",
