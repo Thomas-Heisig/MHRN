@@ -32,9 +32,10 @@
       "automation": ".github/workflows/sync-huggingface.yml",
       "target_slug": "MHRN",
       "account_action_required": [
-        "HF_USERNAME",
         "HF_TOKEN"
-      ]
+      ],
+      "url": "https://huggingface.co/ThomasHeisig/MHRN",
+      "account": "ThomasHeisig"
     },
     {
       "name": "Hugging Face MHRN-Space",
@@ -43,9 +44,10 @@
       "automation": ".github/workflows/sync-huggingface.yml",
       "target_slug": "MHRN-Space",
       "account_action_required": [
-        "HF_USERNAME",
         "HF_TOKEN"
-      ]
+      ],
+      "url": "https://huggingface.co/spaces/ThomasHeisig/MHRN-Space",
+      "account": "ThomasHeisig"
     },
     {
       "name": "Hugging Face MHRN-Research-Data",
@@ -54,10 +56,11 @@
       "automation": ".github/workflows/sync-huggingface.yml",
       "target_slug": "MHRN-Research-Data",
       "account_action_required": [
-        "HF_USERNAME",
         "HF_TOKEN"
       ],
-      "immutable_doi_policy": "separate_experiment_deposits"
+      "immutable_doi_policy": "separate_experiment_deposits",
+      "url": "https://huggingface.co/datasets/ThomasHeisig/MHRN-Research-Data",
+      "account": "ThomasHeisig"
     },
     {
       "name": "ORCID",
@@ -69,12 +72,16 @@
       "name": "OSF",
       "role": "registration_preregistration",
       "status": "ACTIVE",
-      "url": "https://osf.io/p34uq/"
+      "url": "https://osf.io/p34uq/",
+      "connection_authorized_on": "2026-09-19"
     },
     {
       "name": "Zenodo",
       "role": "doi_archive",
-      "status": "CONFIGURED"
+      "status": "ACTIVE",
+      "url": "https://zenodo.org/",
+      "connection_authorized_on": "2026-09-19",
+      "note": "ORCID-linked external account access is authorized; repository/archive verification remains separate."
     },
     {
       "name": "DataCite",

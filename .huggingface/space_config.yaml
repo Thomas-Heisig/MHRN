@@ -1,10 +1,10 @@
 # ============================================================================
-# Brain-5D — Hugging Face Space Configuration
+# MHRN — Hugging Face Space Configuration
 # ============================================================================
 # Diese Konfiguration definiert einen optionalen Hugging Face Space,
-# der den Brain-5D Operator Dashboard als Web-App bereitstellt.
+# der das MHRN Operator Dashboard als Web-App bereitstellt.
 #
-# Space: https://huggingface.co/spaces/superdigger/Brain-5D-Space
+# Space: https://huggingface.co/spaces/ThomasHeisig/MHRN-Space
 # Dieses Space wird als separates Repository vom kanonischen GitHub-Branch gespeist.
 # ============================================================================
 

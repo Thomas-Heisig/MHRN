@@ -25,8 +25,8 @@ MHRN is an experimental research framework for recurrent spiking neural networks
 This Hugging Face repository is an **automatically generated mirror** of the canonical GitHub `main` branch:
 
 - Canonical source: https://github.com/Thomas-Heisig/MHRN
-- Interactive Space: https://huggingface.co/spaces/PLACEHOLDER_USERNAME/MHRN-Space
-- Research-data mirror: https://huggingface.co/datasets/PLACEHOLDER_USERNAME/MHRN-Research-Data
+- Interactive Space: https://huggingface.co/spaces/ThomasHeisig/MHRN-Space
+- Research-data mirror: https://huggingface.co/datasets/ThomasHeisig/MHRN-Research-Data
 
 The Hugging Face username is installation-specific; the canonical identity and source commit are always defined by GitHub.
 

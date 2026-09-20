@@ -45,6 +45,13 @@ for (const port of [4174, 4175]) {
     await expect(page.locator('body')).toHaveAttribute('data-current-area', 'publication');
     const publicationPanel = page.locator('#publication-panel');
     await expect(publicationPanel).toBeVisible();
+    const portalLinks = page.locator('.publication-network-links');
+    await expect(portalLinks).toBeVisible();
+    await expect(portalLinks.locator('[data-portal="orcid"]')).toHaveAttribute('href', 'https://orcid.org/0009-0002-9589-1872');
+    await expect(portalLinks.locator('[data-portal="osf"]')).toHaveAttribute('href', 'https://osf.io/p34uq/');
+    await expect(portalLinks.locator('[data-portal="hf-source"]')).toHaveAttribute('href', 'https://huggingface.co/ThomasHeisig/MHRN');
+    await expect(portalLinks.locator('[data-portal="hf-space"]')).toHaveAttribute('href', 'https://huggingface.co/spaces/ThomasHeisig/MHRN-Space');
+    await expect(portalLinks.locator('[data-portal="hf-data"]')).toHaveAttribute('href', 'https://huggingface.co/datasets/ThomasHeisig/MHRN-Research-Data');
     const readerLink = publicationPanel.locator('a[data-pub-reader-link]').first();
     await expect(readerLink).toBeVisible();
     const readerHref = await readerLink.getAttribute('href');
