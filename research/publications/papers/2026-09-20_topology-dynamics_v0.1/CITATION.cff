@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "Cite this topology working paper separately from the MHRN software."
+title: "Dimensional Embedding and Propagation Dynamics in Resource-Matched Recurrent Spiking Neural Networks"
+version: "0.1"
+authors:
+  - family-names: Heisig
+    given-names: Thomas
+    orcid: "https://orcid.org/0009-0002-9589-1872"
+repository: "https://github.com/Thomas-Heisig/MHRN"
+license: MIT
+preferred-citation:
+  type: unpublished
+  status: manuscript
+  title: "Dimensional Embedding and Propagation Dynamics in Resource-Matched Recurrent Spiking Neural Networks"
+  authors:
+    - family-names: Heisig
+      given-names: Thomas
+      orcid: "https://orcid.org/0009-0002-9589-1872"
+  year: 2026
+  version: "0.1"
