@@ -30,7 +30,7 @@ jobs:
     timeout-minutes: 30
     env:
       HF_TOKEN: ${{ secrets.HF_TOKEN }}
-      HF_USERNAME: ${{ secrets.HF_USERNAME }}
+      HF_USERNAME: superdigger
       HF_REPO: MHRN
       HF_SPACE_REPO: MHRN-Space
       HF_DATASET_REPO: MHRN-Research-Data
@@ -46,14 +46,14 @@ jobs:
         id: hf
         shell: bash
         run: |
-          if [ -z "${HF_USERNAME}" ] || [ -z "${HF_TOKEN}" ]; then
+          if [ -z "${HF_TOKEN}" ]; then
             echo "enabled=false" >> "$GITHUB_OUTPUT"
             {
               echo "## Hugging Face publication"
               echo
               echo "Status: **NOT CONFIGURED**"
               echo
-              echo "Add repository Actions secrets `HF_USERNAME` and `HF_TOKEN` to activate automatic publication."
+              echo "Add repository Actions secret `HF_TOKEN` to activate automatic publication."
             } >> "$GITHUB_STEP_SUMMARY"
             exit 0
           fi
