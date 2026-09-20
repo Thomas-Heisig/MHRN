@@ -10,9 +10,9 @@ Edition 1.8 ist der gemeinsame Kontext des Forschungsprogramms. Dieses Verzeichn
 | --- | --- | --- | --- | --- | --- |
 | **PO-001** | Empirische Grenzen semantischer Verdichtung im Continual Learning | `RQ-S6-SEM-002`, CL-001/002/003 | Continual Learning / Computational Neuroscience | `in_preparation` | CL-002/003 zeigen keinen bestätigten Semantic-over-Raw-Vorteil; Generalisierung über Split-MNIST hinaus ist offen. |
 | **PO-002** | Content/Compute-Trennung und kontrollierte periphere Werkzeuge in SNN-Architekturen | `RQ-GW-001`, Gateway-/Neural-Symbiosis-Programm | Informatik / Systems / Neuro-AI | `concept` | Gateway-Erreichbarkeit ist nicht gleich gelerntem Werkzeuggebrauch; produktive Aktivierung bleibt evidenzgebunden. |
-| **PO-003** | Scientific Integrity und rekursive Epistemik in KI-assistierter Einzelforschung | Edition 1.7/1.8, Research-Driven Development, DATA/EVID-Governance | Metawissenschaft / Research Software Engineering | `concept` | Prozessqualität ist ein methodischer Beitrag, keine neuronale Evidenz und kein Ersatz für externe Review/Replikation. |
+| **PO-003** | Scientific Integrity und rekursive Epistemik in KI-assistierter Einzelforschung | Edition 1.7/1.8, `RQ-EPIST-002`, `RQ-ETH-001` | Metawissenschaft / Research Integrity | `working_paper_protocol` → `PAPER-METHOD-001` | Prozessqualität ist ein methodischer Beitrag; die konfirmatorische Reviewer-Studie ist noch nicht ausgeführt. |
 | **PO-004** | Post-Objective Transition und Corrigibility in lernenden Systemen | `RQ-SAFE-008`, `H-SAFE-008-A`, `EXP-SAFE-END-001` | AI Safety / Ethik | `planned` | Der Strang ist prospektiv; HALT/WAIT/REQUEST/PROPOSE sind noch kein ausgeführter Sicherheitsbefund. |
-| **PO-005** | Geometrie-zu-Dynamik-Kopplung in multidimensionalen SNN-Topologien | `RQ-SNN-003`, `H-SNN-003-B`, 5D-v2 | SNN / Network Science | `design_required` | `EXP-GEN-0047` ist inadäquat für die Zielhypothese und weder positiver noch negativer 5D-Befund. |
+| **PO-005** | Geometrie-zu-Dynamik-Kopplung in multidimensionalen SNN-Topologien | `RQ-SNN-003`, `H-SNN-003-B`, V2 + V3-R1 | SNN / Network Science | `working_paper_data_based` → `PAPER-TOPO-001` | V2/R1 unterstützen Topologie→Dynamik im 64-Neuronen-Regime; kein allgemeiner 5D-Vorteil und keine externe Replikation. |
 | **PO-006** | Kontrolliertes synthetisches Embodiment mit autorisierten Sensor-Aktor-Pfaden | `RQ-EMB-001`, `H-EMB-001-A/B`, Stage-5-Referenz | Embodied AI / Robotics / SNN | `data_available_review_open` | Synthetischer Closed Loop ist keine Realwelt-Autonomie; `H-EMB-001-B` und Real-Device-Übertragbarkeit bleiben offen. |
 
 ## Auswahlregel
@@ -32,3 +32,14 @@ Vor einer Einreichung muss jeder Strang mindestens dokumentieren:
 ## Arbeitsregel
 
 Die Nebenstränge dürfen die Gesamtarbeit **nicht rückwirkend als Evidenzquelle verwenden**. Edition 1.8 liefert Kontext und Synthese; empirische Claims müssen auf die jeweiligen Experimente, Reviews und EVID-Artefakte zurückgeführt werden.
+
+
+## Hauptpublikationslinien
+
+Die aktuelle Publikationsstrategie bündelt drei eigenständige Paper-Objekte:
+
+- `PAPER-SW-001` — MHRN Research Software Paper; Software-/Methodenbeschreibung ohne empirische Claim-Promotion.
+- `PAPER-TOPO-001` — aus `PO-005`; DATA-basierte Topologie-/Propagationsarbeit.
+- `PAPER-METHOD-001` — aus `PO-003`; Methoden-/Protocol-Paper zur Evidenz- und Provenienztrennung.
+
+Andere Offshoots bleiben Forschungsoptionen und werden nicht automatisch zu Papers hochgestuft.
