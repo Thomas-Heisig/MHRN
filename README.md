@@ -14,7 +14,7 @@
 [![OSF](https://img.shields.io/badge/OSF-p34uq-2CB9F1?logo=osf&logoColor=white)](https://osf.io/p34uq/)
 [![Hugging Face](https://img.shields.io/badge/Hugging%20Face-ThomasHeisig%2FMHRN-FFD21E)](https://huggingface.co/ThomasHeisig/MHRN)
 <!-- zenodo-doi-badge:start -->
-[![Zenodo DOI](https://img.shields.io/badge/Zenodo-DOI_pending-lightgrey.svg?logo=zenodo)](https://zenodo.org/)
+[![DOI](https://zenodo.org/badge/1335973891.svg)](https://zenodo.org/badge/latestdoi/1335973891)
 <!-- zenodo-doi-badge:end -->
 
 MHRN is an experimental research framework for studying recurrent spiking neural networks, plasticity, self-organization, embodiment, memory and world-model mechanisms under explicit provenance and evidence boundaries.
@@ -36,7 +36,7 @@ The sparse **5D SNN remains the primary adaptive system**. Language models, rese
 | Hugging Face | [ThomasHeisig/MHRN](https://huggingface.co/ThomasHeisig/MHRN) | rolling source/discovery mirror |
 | Hugging Face Space | [ThomasHeisig/MHRN-Space](https://huggingface.co/spaces/ThomasHeisig/MHRN-Space) | public dashboard mirror |
 | Research-data mirror | [ThomasHeisig/MHRN-Research-Data](https://huggingface.co/datasets/ThomasHeisig/MHRN-Research-Data) | rolling discovery mirror; not an immutable DOI dataset |
-| Zenodo | [Zenodo](https://zenodo.org/) | DOI archive; **awaiting public DOI record for alpha.6** |
+| Zenodo | [Latest DOI / archived release](https://zenodo.org/badge/latestdoi/1335973891) | DOI archive for GitHub releases; badge resolves to the latest archived version once ingestion completes |
 
 The GitHub release `v0.6.0-alpha.6` is published from exact green source freeze `f7fcca273099baf47fff26327c6e7468afd9ce79`. The repository intentionally records a Zenodo DOI only after a real public Zenodo record exists. Once discovered, the DOI sync replaces the pending badge above with Zenodo's official DOI badge and records the DOI in the citation and publication metadata.
 
