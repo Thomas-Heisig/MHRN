@@ -2654,7 +2654,7 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
                         "de": {
                             "available": True,
                             "source_language": True,
-                            "path": relative_research_path(entrypoint_path),
+                            "path": relative_research_path(source_entrypoint_path),
                         },
                         "en": {
                             "available": english_translation_available,
