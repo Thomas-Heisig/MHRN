@@ -67,6 +67,7 @@ def test_publication_reader_uses_canonical_entrypoint_and_complete_document_map(
     assert '"Editionen"' in reader
     assert '"chapters": cast(JSONValue, chapters)' in server
     assert '"attachments": cast(JSONValue, attachments)' in server
+    assert '"papers": cast(JSONValue, papers)' in server
     assert '"history": cast(JSONValue, history)' in server
     assert '"documents": cast(JSONValue, documents)' in server
     assert "current_publication_id" in server
