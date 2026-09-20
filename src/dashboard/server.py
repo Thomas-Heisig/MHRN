@@ -2618,7 +2618,9 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
             publication_status = optional_string(current_item.get("edition_status"))
             publication_authority = optional_string(current_item.get("authority"))
             publication_subtitle = optional_string(current_item.get("subtitle"))
-            content_language = optional_string(current_item.get("content_language")) or "de"
+            content_language = (
+                optional_string(current_item.get("content_language")) or "de"
+            )
 
             self._send_json(
                 {
@@ -2648,7 +2650,9 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
                     "translation_fallback": bool(
                         requested_language == "en" and not english_translation_available
                     ),
-                    "source_entrypoint_path": relative_research_path(source_entrypoint_path),
+                    "source_entrypoint_path": relative_research_path(
+                        source_entrypoint_path
+                    ),
                     "ui_default_language": "en",
                     "language_variants": {
                         "de": {

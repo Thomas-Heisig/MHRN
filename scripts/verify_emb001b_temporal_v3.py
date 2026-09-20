@@ -66,15 +66,16 @@ def main() -> int:
     for seed in seeds:
         seed_rows = [rows[(seed, condition)] for condition in conditions]
         assert len({row["state_digest_before"] for row in seed_rows}) == 1
-        assert len(
-            {
-                json.dumps(row["initial_body_state"], sort_keys=True)
-                for row in seed_rows
-            }
-        ) == 1
-        assert len(
-            {json.dumps(row["graph"], sort_keys=True) for row in seed_rows}
-        ) == 1
+        assert (
+            len(
+                {
+                    json.dumps(row["initial_body_state"], sort_keys=True)
+                    for row in seed_rows
+                }
+            )
+            == 1
+        )
+        assert len({json.dumps(row["graph"], sort_keys=True) for row in seed_rows}) == 1
 
         exact = rows[(seed, "yoked_replay_exact")]
         shift20 = rows[(seed, "yoked_replay_shift20")]
@@ -89,9 +90,7 @@ def main() -> int:
     assert all(row["runtime_error"] is None for row in runs)
     assert all(int(row["ticks_requested"]) == 1000 for row in runs)
     assert all(int(row["ticks_executed"]) == 1000 for row in runs)
-    assert len(
-        {row["external_perturbation_schedule_sha256"] for row in runs}
-    ) == 1
+    assert len({row["external_perturbation_schedule_sha256"] for row in runs}) == 1
 
     hashes = manifest["artifacts_sha256"]
     assert hashes["preregistration"] == sha256(PREREG)
