@@ -1,0 +1,49 @@
+name: Build Zenodo Publication Bundle
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "research/publications/2026-09-17_recursive-epistemics_v1.8/**"
+      - ".github/workflows/build-zenodo-publication-bundle.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  bundle:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 1
+
+      - name: Build publication bundle
+        shell: bash
+        run: |
+          set -euo pipefail
+          src="research/publications/2026-09-17_recursive-epistemics_v1.8"
+          out="dist/recursive-epistemics-1.8-zenodo"
+          mkdir -p "$out"
+          for f in             MANUSCRIPT.md             README.md             RESEARCH_REGISTER.md             SOURCE_INDEX.md             SCIENTIFIC_BALANCE.md             REFERENCES.md             CITATION.cff             ZENODO_PREPRINT.json             ZENODO_UPLOAD.md             manifest.json             edition.json
+          do
+            test -f "$src/$f"
+            cp "$src/$f" "$out/$f"
+          done
+          {
+            echo "source_commit=$GITHUB_SHA"
+            echo "bundle=recursive-epistemics-1.8"
+            echo "resource_type=publication-preprint"
+            echo "author=Thomas Heisig"
+            echo "orcid=0009-0002-9589-1872"
+          } > "$out/BUNDLE_PROVENANCE.txt"
+          (cd dist && zip -r "recursive-epistemics-1.8-zenodo.zip" "recursive-epistemics-1.8-zenodo")
+
+      - name: Upload Zenodo-ready bundle
+        uses: actions/upload-artifact@v7
+        with:
+          name: recursive-epistemics-1.8-zenodo
+          path: dist/recursive-epistemics-1.8-zenodo.zip
+          if-no-files-found: error
+          retention-days: 30
