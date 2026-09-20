@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "updated": "2026-09-19",
+  "updated": "2026-09-20",
   "canonical_repository": "https://github.com/Thomas-Heisig/MHRN",
   "author": {
     "name": "Thomas Heisig",
@@ -24,6 +24,40 @@
       "role": "canonical_source",
       "status": "ACTIVE",
       "url": "https://github.com/Thomas-Heisig/MHRN"
+    },
+    {
+      "name": "Hugging Face MHRN",
+      "role": "rolling_source_mirror",
+      "status": "CONFIGURED",
+      "automation": ".github/workflows/sync-huggingface.yml",
+      "target_slug": "MHRN",
+      "account_action_required": [
+        "HF_USERNAME",
+        "HF_TOKEN"
+      ]
+    },
+    {
+      "name": "Hugging Face MHRN-Space",
+      "role": "public_dashboard_space",
+      "status": "CONFIGURED",
+      "automation": ".github/workflows/sync-huggingface.yml",
+      "target_slug": "MHRN-Space",
+      "account_action_required": [
+        "HF_USERNAME",
+        "HF_TOKEN"
+      ]
+    },
+    {
+      "name": "Hugging Face MHRN-Research-Data",
+      "role": "rolling_research_data_mirror",
+      "status": "CONFIGURED",
+      "automation": ".github/workflows/sync-huggingface.yml",
+      "target_slug": "MHRN-Research-Data",
+      "account_action_required": [
+        "HF_USERNAME",
+        "HF_TOKEN"
+      ],
+      "immutable_doi_policy": "separate_experiment_deposits"
     },
     {
       "name": "ORCID",
