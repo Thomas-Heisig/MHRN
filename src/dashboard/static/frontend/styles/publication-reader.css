@@ -669,3 +669,41 @@
     justify-items: start;
   }
 }
+
+
+#tab-publication .publication-object-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+#tab-publication .publication-object-card {
+  min-width: 0;
+  padding: 12px;
+  border: 1px solid var(--rule, #d9dee7);
+  border-radius: 10px;
+  background: var(--paper-2, #fff);
+}
+
+#tab-publication .publication-object-card h4 {
+  margin: 4px 0 6px;
+  font-size: .88rem;
+}
+
+#tab-publication .publication-object-card p {
+  margin: 0 0 9px;
+  color: var(--ink-3, #667085);
+  font-size: .72rem;
+  line-height: 1.45;
+}
+
+#tab-publication .publication-object-card a {
+  font-size: .72rem;
+  font-weight: 700;
+}
+
+@media (max-width: 900px) {
+  #tab-publication .publication-object-grid {
+    grid-template-columns: 1fr;
+  }
+}

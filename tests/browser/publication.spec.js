@@ -54,6 +54,9 @@ for (const port of [4174, 4175]) {
     await expect(portalLinks.locator('[data-portal="hf-source"]')).toHaveAttribute('href', 'https://huggingface.co/ThomasHeisig/MHRN');
     await expect(portalLinks.locator('[data-portal="hf-space"]')).toHaveAttribute('href', 'https://huggingface.co/spaces/ThomasHeisig/MHRN-Space');
     await expect(portalLinks.locator('[data-portal="hf-data"]')).toHaveAttribute('href', 'https://huggingface.co/datasets/ThomasHeisig/MHRN-Research-Data');
+    await expect(page.locator('[data-publication-object="software"]')).toContainText('MHRN v0.6.0-alpha.6');
+    await expect(page.locator('[data-publication-object="preprint"]')).toContainText('Recursive Epistemics');
+    await expect(page.locator('[data-publication-object="dataset"]')).toContainText('MHRN Experiment Data');
     const readerLink = publicationPanel.locator('[data-pub-reader-link]').first();
     await expect(readerLink).toBeVisible();
     const readerPath = await readerLink.getAttribute('data-pub-reader-link');
