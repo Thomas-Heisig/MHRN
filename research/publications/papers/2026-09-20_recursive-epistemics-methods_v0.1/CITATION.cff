@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "Cite this methods/protocol paper separately from the MHRN software and neuroscience papers."
+title: "Provenance-Separated Reporting for AI-Assisted Research: A Protocol for Testing Epistemic Misclassification"
+version: "0.1"
+authors:
+  - family-names: Heisig
+    given-names: Thomas
+    orcid: "https://orcid.org/0009-0002-9589-1872"
+repository: "https://github.com/Thomas-Heisig/MHRN"
+license: MIT
+preferred-citation:
+  type: unpublished
+  status: manuscript
+  title: "Provenance-Separated Reporting for AI-Assisted Research: A Protocol for Testing Epistemic Misclassification"
+  authors:
+    - family-names: Heisig
+      given-names: Thomas
+      orcid: "https://orcid.org/0009-0002-9589-1872"
+  year: 2026
+  version: "0.1"
