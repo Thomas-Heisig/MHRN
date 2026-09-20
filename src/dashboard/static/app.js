@@ -46,7 +46,7 @@ import { initHealthDrawer } from './health-drawer.js';
 import { consoleLog } from './console-log.js';
 import { ParameterInspector } from './parameter-inspector.js';
 import { ExperimentMode } from './experiment-mode.js';
-import { ExperimentWorkflowPanel } from './experiment-workflow.js?v=research-question-cards-20260920a';
+import { ExperimentWorkflowPanel } from './experiment-workflow.js?v=research-popup-20260920a';
 import { initExternalReview } from './external-review.js';
 import { renderOverviewCommandCenter, setupOverviewActions } from './overview-panel.js';
 import { SettingsPanel } from './settings-panel.js';

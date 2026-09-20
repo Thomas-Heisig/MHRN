@@ -213,10 +213,16 @@ test("question cards open complete detail and transfer to controlled run", async
   await card.click();
   const detail = page.locator("#workflow-research-detail");
   await expect(detail).toBeVisible();
+  await expect(detail).toHaveAttribute("open", "");
   await expect(detail).toContainText("RQ-BROWSER-001");
   await expect(detail).toContainText("The workflow is traceable");
   await expect(detail).toContainText("browser_protocol");
-  await expect(detail).toContainText("Gespeicherte Experimente");
+
+  const stored = page.locator("#workflow-rq-experiments");
+  await expect(stored).not.toHaveAttribute("open", "");
+  await expect(page.locator("#workflow-rq-experiment-list")).toContainText("aufklappen");
+  await stored.locator("summary").click();
+  await expect(stored).toHaveAttribute("open", "");
 
   await page.locator("#workflow-research-detail-use").click();
   await expect(page.locator('[data-lab-stage="run"]')).toBeVisible();

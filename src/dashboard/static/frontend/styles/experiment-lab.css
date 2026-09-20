@@ -418,17 +418,29 @@
 }
 
 .research-rq-detailbox {
-  display: grid;
-  gap: 14px;
-  margin-top: 14px;
-  padding: 16px;
+  width: min(960px, calc(100vw - 32px));
+  max-height: min(88vh, 920px);
+  margin: auto;
+  padding: 0;
+  overflow: hidden;
   border: 1px solid var(--accent, #b23a1a);
-  border-radius: 12px;
+  border-radius: 14px;
   background: var(--paper-1, #f4efe6);
-  box-shadow: 0 8px 24px color-mix(in srgb, var(--ink, #1a1714) 14%, transparent);
+  color: var(--ink, #1a1714);
+  box-shadow: 0 18px 48px color-mix(in srgb, var(--ink, #1a1714) 28%, transparent);
 }
 
-.research-rq-detailbox[hidden] { display: none !important; }
+.research-rq-detailbox::backdrop {
+  background: color-mix(in srgb, #000 46%, transparent);
+  backdrop-filter: blur(2px);
+}
+
+.research-rq-detailbox[open] {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+}
+
+.research-rq-detailbox:not([open]) { display: none; }
 
 .research-rq-detail-head,
 .research-rq-detail-actions,
@@ -440,6 +452,15 @@
   gap: 12px;
 }
 
+.research-rq-detail-head {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  padding: 16px 18px 12px;
+  border-bottom: 1px solid var(--rule-1, #d3cabd);
+  background: var(--paper-1, #f4efe6);
+}
+
 .research-rq-detail-head h4,
 .research-rq-detail-section h5 {
   margin: 3px 0 0;
@@ -449,6 +470,8 @@
   display: grid;
   gap: 14px;
   min-width: 0;
+  padding: 16px 18px;
+  overflow: auto;
 }
 
 .research-rq-detail-section {
@@ -544,15 +567,56 @@
 }
 
 .research-rq-detail-actions {
+  position: sticky;
+  bottom: 0;
+  z-index: 2;
   align-items: center;
-  padding-top: 12px;
+  padding: 12px 18px 16px;
   border-top: 1px solid var(--rule-1, #d3cabd);
+  background: var(--paper-1, #f4efe6);
 }
 
 .research-rq-detail-actions small {
   max-width: 70ch;
   color: var(--ink-3, #5f584f);
   line-height: 1.35;
+}
+
+.research-rq-experiments {
+  border: 1px solid var(--rule-1, #d3cabd);
+  background: color-mix(in srgb, var(--paper-2, #ebe4d8) 42%, transparent);
+}
+
+.research-rq-experiments > summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 11px 12px;
+  cursor: pointer;
+  font-weight: 700;
+  list-style: none;
+}
+
+.research-rq-experiments > summary::-webkit-details-marker { display: none; }
+
+.research-rq-experiments > summary::after {
+  content: "▾";
+  flex: 0 0 auto;
+  color: var(--accent, #b23a1a);
+  transition: transform 140ms ease;
+}
+
+.research-rq-experiments[open] > summary::after { transform: rotate(180deg); }
+
+.research-rq-experiments[open] > summary {
+  border-bottom: 1px solid var(--rule-1, #d3cabd);
+}
+
+.research-rq-experiment-list {
+  display: grid;
+  gap: 9px;
+  padding: 10px;
 }
 
 .experiment-lab-panel .experiment-library-item {

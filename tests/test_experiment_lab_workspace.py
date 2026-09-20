@@ -97,13 +97,17 @@ def test_question_stage_uses_structured_cards_and_detail_box() -> None:
     css = (STATIC / "frontend" / "styles" / "experiment-lab.css").read_text(
         encoding="utf-8"
     )
-    assert 'id="workflow-research-detail"' in workflow
+    assert '<dialog id="workflow-research-detail"' in workflow
     assert 'id="workflow-research-detail-use"' in workflow
+    assert 'id="workflow-rq-experiments"' in workflow
+    assert 'showModal' in workflow
     assert "_openResearchQuestionDetail" in workflow
     assert "_prepareResearchQuestionForExecution" in workflow
     assert "_loadResearchQuestionExperiments" in workflow
     assert 'window.MHRNExperimentLab.selectStage("run"' in workflow
     assert ".research-rq-detailbox" in css
+    assert ".research-rq-detailbox::backdrop" in css
+    assert ".research-rq-experiments" in css
     assert ".research-rq-facts" in css
     assert ".research-rq-hypothesis-list" in css
     assert ".research-rq-card.is-detail-open" in css
