@@ -124,9 +124,9 @@ def _release_entries(repo_root: Path) -> list[TimelineEntry]:
                 for item in cast(list[object], scope)
             )
         for field in ("subtitle", "note"):
-            value: object = data.get(field)
-            if isinstance(value, str) and value:
-                items.append({"text": value, "done": status == "released"})
+            field_value: object = data.get(field)
+            if isinstance(field_value, str) and field_value:
+                items.append({"text": field_value, "done": status == "released"})
         date: object = data.get("date")
         entries.append(
             {

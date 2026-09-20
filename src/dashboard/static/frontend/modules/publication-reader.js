@@ -10,6 +10,7 @@
 "use strict";
 
 import { createSpeechControls } from "../../speech-reader.js";
+import { getLanguage, getLocale, t } from "../core/i18n.js";
 
 const CURRENT_PUBLICATION_ENDPOINT = "/api/publication/current";
 const REPOSITORY_BLOB_ROOT = "https://github.com/Thomas-Heisig/MHRN/blob/main/";
@@ -46,6 +47,10 @@ export async function initPublicationPanel() {
     if ((areaActive || tabActive) && !state.rootData && !state.loading) loadCurrentPublication(container);
   };
 
+  document.addEventListener("mhrn:language-change", () => {
+    if (state.rootData && state.index >= 0) void loadCurrentPublication(container, { force: true });
+  });
+
   document.addEventListener("click", (event) => {
     if (event.target.closest('[data-mhrn-area="publication"]')) queueMicrotask(activate);
   });
@@ -69,10 +74,10 @@ async function loadCurrentPublication(container, { force = false } = {}) {
   const state = readerStates.get(container);
   if (!state || state.loading || (state.rootData && !force)) return;
   state.loading = true;
-  renderLoading(container, "Publikation wird geladen …");
+  renderLoading(container, getLanguage() === "de" ? "Publikation wird geladen …" : "Loading publication …");
 
   try {
-    const response = await fetch(CURRENT_PUBLICATION_ENDPOINT, {
+    const response = await fetch(`${CURRENT_PUBLICATION_ENDPOINT}?lang=${encodeURIComponent(getLanguage())}`, {
       headers: { Accept: "application/json" },
       cache: "no-store",
     });
@@ -88,7 +93,7 @@ async function loadCurrentPublication(container, { force = false } = {}) {
     const rootView = {
       source: rootRef.source,
       path: rootRef.path,
-      title: data.document_title || firstHeading(data.content) || data.title || "Wissenschaftliche Publikation",
+      title: data.document_title || firstHeading(data.content) || data.title || "Scientific Publication",
       content: data.content,
       kind: "markdown",
       root: true,
@@ -137,6 +142,23 @@ function renderReader(container) {
   const isRoot = state.index === 0;
   const sourceLabel = view.source === "docs" ? "docs" : "research";
   const safeDigest = typeof data.sha256 === "string" ? data.sha256 : "";
+  const uiLanguage = getLanguage();
+  const locale = getLocale();
+  const scientificTitle = uiLanguage === "de"
+    ? (data.document_title_de || data.document_title || view.title)
+    : (data.document_title_en || data.title || view.title);
+  const articleLanguage = String(data.content_language || "de").toLowerCase().startsWith("en") ? "en" : "de";
+  const translationAvailable = Boolean(data.language_variants?.[uiLanguage]?.available);
+  const languageNotice = uiLanguage === articleLanguage
+    ? ""
+    : `<aside class="publication-language-notice" role="note">
+        <strong>${escapeHtml(t("publication.translation.original"))}</strong>
+        <span>${escapeHtml(translationAvailable ? t("publication.translation.assisted") : (uiLanguage === "en" ? "The versioned English manuscript is not yet available. The German source is intentionally not mixed into English reading mode; switch to DE to read the canonical source." : ""))}</span>
+        <small>${escapeHtml(t("publication.translation.source"))}</small>
+      </aside>`;
+  const articleHtml = uiLanguage === "en" && articleLanguage !== "en" && !translationAvailable
+    ? `<section class="pub-reader-state" role="status"><strong>English manuscript translation required</strong><span>The canonical German source remains unchanged and can be read after switching to DE.</span></section>`
+    : rendered.html;
 
   container.innerHTML = `
     <section class="publication-reader" id="publication-reader" aria-label="Publication Reader">
@@ -144,15 +166,15 @@ function renderReader(container) {
       <header class="pub-reader-hero">
         <div class="pub-reader-identity">
           <span class="pub-reader-eyebrow">WISSENSCHAFTLICHE HAUPTARBEIT</span>
-          <h1>${escapeHtml(view.root ? (data.document_title || view.title) : view.title)}</h1>
+          <h1>${escapeHtml(view.root ? scientificTitle : view.title)}</h1>
           ${view.root && data.title && data.title !== data.document_title ? `<p class="pub-reader-catalog-title">${escapeHtml(data.title)}</p>` : ""}
           <div class="pub-reader-badges" aria-label="Publikationsmetadaten">
             ${data.edition ? `<span>Edition ${escapeHtml(data.edition)}</span>` : ""}
             ${data.publication ? `<span>${escapeHtml(data.publication)}</span>` : ""}
             ${data.author ? `<span>${escapeHtml(data.author)}</span>` : ""}
             ${data.date ? `<span>${escapeHtml(data.date)}</span>` : ""}
-            <span>${words.toLocaleString("de-DE")} Wörter</span>
-            <span>ca. ${readMinutes} Min.</span>
+            <span>${words.toLocaleString(locale)} ${uiLanguage === "de" ? "Wörter" : "words"}</span>
+            <span>${uiLanguage === "de" ? "ca." : "approx."} ${readMinutes} min</span>
           </div>
         </div>
         <div class="pub-reader-primary-actions">
@@ -193,13 +215,14 @@ function renderReader(container) {
         </aside>
 
         <main class="pub-reader-document">
+          ${languageNotice}
           ${!isRoot ? `
             <div class="pub-reader-document-banner">
               <div><span>VERKNÜPFTES DOKUMENT</span><strong>${escapeHtml(view.title)}</strong></div>
               <button type="button" data-pub-action="home">Zum Publikationsindex</button>
             </div>` : ""}
           <article class="pub-reader-article" id="pub-reader-article" data-source="${escapeHtml(view.source)}" data-path="${escapeHtml(view.path)}">
-            ${rendered.html}
+            ${articleHtml}
           </article>
         </main>
       </div>

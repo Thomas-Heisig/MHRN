@@ -23,7 +23,12 @@
       "predecessor": "PUB-RECURSIVE-EPISTEMICS-20260915-V1.7",
       "inherits_empirical_edition": "PUB-RECURSIVE-EPISTEMICS-20260913-V1.5",
       "stable_current_pointer": "publications/CURRENT.md",
-      "frozen_baseline_pointer": "publications/FROZEN_V1.5.md"
+      "frozen_baseline_pointer": "publications/FROZEN_V1.5.md",
+      "subtitle": "Rekursive Epistemik in verkörperten spikenden neuronalen Architekturen: Ein Framework für delegierte Handlungsmacht und mehrskalige Rekurrenz",
+      "content_language": "de",
+      "ui_default_language": "en",
+      "english_translation": "publications/2026-09-17_recursive-epistemics_v1.8/translations/en/MANUSCRIPT.md",
+      "language_policy": "English is the default scientific UI language; German is the canonical source language of Edition 1.8 until the versioned English translation is complete and human language reviewed."
     },
     {
       "id": "PUB-RECURSIVE-EPISTEMICS-20260915-V1.7",

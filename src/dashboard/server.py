@@ -746,7 +746,8 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
             # ----------------------------------------------------------------
 
             if path == "/api/publication/current":
-                self._serve_current_publication()
+                requested_language = query.get("lang", ["en"])[0]
+                self._serve_current_publication(requested_language)
                 return
 
             if path == "/api/publication/imprint":
@@ -2339,8 +2340,8 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
                 HTTPStatus.SERVICE_UNAVAILABLE,
             )
 
-    def _serve_current_publication(self) -> None:
-        """Serve the catalog-selected current publication and its complete reader map."""
+    def _serve_current_publication(self, requested_language: str = "en") -> None:
+        """Serve the current publication in the requested versioned language when available."""
         import hashlib
 
         repo_root = Path(__file__).resolve().parents[2]
@@ -2396,6 +2397,30 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
                 raise FileNotFoundError(
                     f"Current publication entrypoint not found: {entrypoint_rel}"
                 )
+
+            source_entrypoint_path = entrypoint_path
+            requested_language = (
+                "de" if str(requested_language).lower().startswith("de") else "en"
+            )
+            english_translation_rel_raw = current_item.get("english_translation")
+            english_translation_rel = (
+                english_translation_rel_raw
+                if isinstance(english_translation_rel_raw, str)
+                and english_translation_rel_raw
+                else None
+            )
+            english_translation_path = (
+                (research_root / english_translation_rel).resolve()
+                if english_translation_rel
+                else None
+            )
+            english_translation_available = bool(
+                english_translation_path is not None
+                and english_translation_path.is_relative_to(pub_root.resolve())
+                and english_translation_path.is_file()
+            )
+            if requested_language == "en" and english_translation_available:
+                entrypoint_path = cast(Path, english_translation_path)
 
             snapshot_rel_raw = current_item.get("snapshot")
             snapshot_rel = (
@@ -2592,15 +2617,60 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
             publication_version = optional_string(current_item.get("version"))
             publication_status = optional_string(current_item.get("edition_status"))
             publication_authority = optional_string(current_item.get("authority"))
+            publication_subtitle = optional_string(current_item.get("subtitle"))
+            content_language = optional_string(current_item.get("content_language")) or "de"
 
             self._send_json(
                 {
                     "publication": snapshot_path.name,
                     "publication_id": publication_id,
                     "title": publication_title,
+                    "subtitle": publication_subtitle,
                     "document_title": markdown_title(
                         entrypoint_path, "Gesamtmanuskript"
                     ),
+                    "document_title_en": publication_title,
+                    "document_title_de": (
+                        publication_subtitle
+                        or markdown_title(entrypoint_path, "Gesamtmanuskript")
+                    ),
+                    "content_language": (
+                        "en"
+                        if requested_language == "en" and english_translation_available
+                        else content_language
+                    ),
+                    "requested_language": requested_language,
+                    "served_language": (
+                        "en"
+                        if requested_language == "en" and english_translation_available
+                        else content_language
+                    ),
+                    "translation_fallback": bool(
+                        requested_language == "en" and not english_translation_available
+                    ),
+                    "source_entrypoint_path": relative_research_path(source_entrypoint_path),
+                    "ui_default_language": "en",
+                    "language_variants": {
+                        "de": {
+                            "available": True,
+                            "source_language": True,
+                            "path": relative_research_path(source_entrypoint_path),
+                        },
+                        "en": {
+                            "available": english_translation_available,
+                            "source_language": False,
+                            "path": (
+                                english_translation_rel
+                                if english_translation_available
+                                else None
+                            ),
+                            "review_status": (
+                                "pending_human_language_review"
+                                if english_translation_available
+                                else "translation_required"
+                            ),
+                        },
+                    },
                     "author": publication_author,
                     "date": publication_date,
                     "edition": publication_version,

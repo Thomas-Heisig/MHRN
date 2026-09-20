@@ -1,6 +1,7 @@
 "use strict";
 
 import { installPollingGovernor } from "./core/polling-governor.js";
+import { initI18n } from "./core/i18n.js";
 import { initStatusBar } from "./components/status-bar.js";
 import { initNotificationCenter } from "./components/notification-center.js";
 import { initPanelHelp } from "./components/help.js";
@@ -38,6 +39,7 @@ import { initExternalReview } from "../external-review.js";
 installPollingGovernor();
 
 function init() {
+  initI18n();
   initWorkspaceRouter();
   // The legacy bootstrap may have created this panel before its mount existed.
   // Idempotent reattachment keeps the original listeners and metadata request.
