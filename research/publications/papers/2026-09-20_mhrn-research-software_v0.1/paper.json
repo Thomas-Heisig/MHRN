@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0",
+  "id": "PAPER-SW-001",
+  "strand": "software",
+  "title": "MHRN: An Open Research Framework for Recurrent Spiking Neural Networks with Plasticity, Provenance, and Evidence-Aware Experimentation",
+  "author": "Thomas Heisig",
+  "orcid": "0009-0002-9589-1872",
+  "version": "0.1",
+  "date": "2026-09-20",
+  "status": "working_paper",
+  "target_class": "research_software",
+  "candidate_venues": [
+    "Journal of Open Source Software (JOSS)",
+    "Journal of Open Research Software (JORS)"
+  ],
+  "empirical_claims": false,
+  "automatic_evidence_promotion": false,
+  "source_release": "v0.6.0-alpha.6",
+  "source_freeze": "f7fcca273099baf47fff26327c6e7468afd9ce79",
+  "submission_ready": false,
+  "blockers": [
+    "target-specific eligibility check",
+    "formal prior-art/software comparison",
+    "external research-use evidence",
+    "human manuscript review"
+  ]
+}

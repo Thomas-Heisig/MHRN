@@ -1,0 +1,36 @@
+{
+  "schema_version": "1.0",
+  "id": "PAPER-TOPO-001",
+  "strand": "topology",
+  "title": "Dimensional Embedding and Propagation Dynamics in Resource-Matched Recurrent Spiking Neural Networks",
+  "author": "Thomas Heisig",
+  "orcid": "0009-0002-9589-1872",
+  "version": "0.1",
+  "date": "2026-09-20",
+  "status": "working_paper_data_based_review_open",
+  "research_questions": [
+    "RQ-SNN-003"
+  ],
+  "hypotheses": [
+    "H-SNN-003-B"
+  ],
+  "experiments": [
+    "EXP-S1-TOPO-V2-20260918",
+    "EXP-S1-TOPO-V3-R1-20260918"
+  ],
+  "evidence_role": "DATA_only_no_automatic_EVID",
+  "internal_replication": true,
+  "independent_replication": false,
+  "five_dimensional_advantage_claim": false,
+  "candidate_venues": [
+    "Neuromorphic Computing and Engineering",
+    "computational neuroscience / network science venue"
+  ],
+  "submission_ready": false,
+  "blockers": [
+    "human scientific review completion",
+    "formal prior-art review",
+    "external replication preferred",
+    "target journal adaptation"
+  ]
+}

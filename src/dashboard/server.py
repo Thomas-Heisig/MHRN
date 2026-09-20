@@ -2536,6 +2536,35 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
                     if descriptor is not None:
                         attachments.append(descriptor)
 
+            papers: list[dict[str, JSONValue]] = []
+            paper_records = catalog.get("papers")
+            if isinstance(paper_records, list):
+                for paper_raw in paper_records:
+                    if not isinstance(paper_raw, dict):
+                        continue
+                    paper_entry = paper_raw.get("entrypoint")
+                    if not isinstance(paper_entry, str) or not paper_entry.startswith("publications/"):
+                        continue
+                    paper_path = (research_root / paper_entry).resolve()
+                    if not paper_path.is_relative_to(pub_root.resolve()) or not paper_path.is_file():
+                        continue
+                    descriptor = add_document(
+                        paper_path,
+                        label=(
+                            paper_raw.get("short_title")
+                            if isinstance(paper_raw.get("short_title"), str)
+                            else paper_raw.get("title")
+                            if isinstance(paper_raw.get("title"), str)
+                            else paper_path.stem
+                        ),
+                        role="paper",
+                    )
+                    if descriptor is not None:
+                        descriptor["paper_id"] = cast(JSONValue, paper_raw.get("id"))
+                        descriptor["status"] = cast(JSONValue, paper_raw.get("status"))
+                        descriptor["paper_type"] = cast(JSONValue, paper_raw.get("type"))
+                        papers.append(descriptor)
+
             history: list[dict[str, JSONValue]] = []
             current_pointer = add_document(
                 pub_root / "CURRENT.md",
@@ -2692,6 +2721,7 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
                     "overview": cast(JSONValue, overview_doc),
                     "chapters": cast(JSONValue, chapters),
                     "attachments": cast(JSONValue, attachments),
+                    "papers": cast(JSONValue, papers),
                     "history": cast(JSONValue, history),
                     "documents": cast(JSONValue, documents),
                     "forschungsbericht": forschungsbericht,

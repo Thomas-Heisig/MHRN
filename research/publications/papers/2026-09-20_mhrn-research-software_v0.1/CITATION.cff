@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "Cite this working paper separately from the MHRN software DOI."
+title: "MHRN: An Open Research Framework for Recurrent Spiking Neural Networks with Plasticity, Provenance, and Evidence-Aware Experimentation"
+version: "0.1"
+authors:
+  - family-names: Heisig
+    given-names: Thomas
+    orcid: "https://orcid.org/0009-0002-9589-1872"
+repository: "https://github.com/Thomas-Heisig/MHRN"
+license: MIT
+preferred-citation:
+  type: unpublished
+  status: manuscript
+  title: "MHRN: An Open Research Framework for Recurrent Spiking Neural Networks with Plasticity, Provenance, and Evidence-Aware Experimentation"
+  authors:
+    - family-names: Heisig
+      given-names: Thomas
+      orcid: "https://orcid.org/0009-0002-9589-1872"
+  year: 2026
+  version: "0.1"

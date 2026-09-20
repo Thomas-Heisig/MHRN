@@ -6,6 +6,16 @@
 
 Edition 1.8 implementiert die für 2.0 vorgesehene elfteilige Gesamtstruktur bereits als erweiterbare 1.x-Arbeitsfassung. Sie integriert Vorgängerforschung und Forschungsprovenienz, ohne historische DATA/EVID umzuschreiben oder neue Evidenz durch Publikationsstruktur zu erzeugen.
 
+## Eigenständige Papers
+
+Diese Papers sind disziplinär getrennte Arbeitsfassungen. Sie sind **keine bloßen Kopien der Edition 1.8** und besitzen jeweils eigene Claim-Grenzen.
+
+- [**PAPER-SW-001 · MHRN Research Software Paper**](papers/2026-09-20_mhrn-research-software_v0.1/PAPER.md) — Software-/Methodenbeitrag; beschreibt Architektur, API, Reproduzierbarkeit und Open-Science-Workflow. Keine automatische wissenschaftliche Claim-Promotion.
+- [**PAPER-TOPO-001 · Dimensional Embedding and Propagation Dynamics**](papers/2026-09-20_topology-dynamics_v0.1/PAPER.md) — DATA-basierter SNN-/Topology-Working-Draft aus V2 und V3-R1; **kein allgemeiner 5D-Überlegenheitsclaim**.
+- [**PAPER-METHOD-001 · Provenance-Separated Reporting for AI-Assisted Research**](papers/2026-09-20_recursive-epistemics-methods_v0.1/PAPER.md) — Methoden-/Protocol-Paper zu rekursiver Epistemik; die konfirmatorische Reviewer-Studie ist noch nicht ausgeführt.
+
+Die drei Arbeiten zitieren Software, DATA und Gesamtmanuskript getrennt. Ein Paper darf keine offene Hypothese durch redaktionelle Verdichtung in EVID umwandeln.
+
 ## Edition 1.8 lesen
 
 - [Gesamtmanuskript](2026-09-17_recursive-epistemics_v1.8/MANUSCRIPT.md)

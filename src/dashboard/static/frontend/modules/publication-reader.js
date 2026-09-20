@@ -247,6 +247,7 @@ function renderToc(headings) {
 
 function renderPublicationLibrary(data, view) {
   const groups = [
+    ["Papers", Array.isArray(data.papers) ? data.papers : []],
     ["Kapitel", Array.isArray(data.chapters) ? data.chapters : []],
     ["Anhänge & Register", Array.isArray(data.attachments) ? data.attachments : []],
     ["Editionen", Array.isArray(data.history) ? data.history : []],
