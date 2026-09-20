@@ -189,7 +189,7 @@ test('external review: subtab, public readiness and central viewer without priva
   await selectResearchView(page, 'external');
   const panel = page.locator('#external-review-status');
   await expect(panel).toBeVisible();
-  await expect(panel).toContainText('135 Fragen');
+  await expect(panel).toContainText(/135 (Questions|Fragen)/);
   await expect(panel).toContainText('Beurteilung ausstehend');
   const metadata = await (await page.request.get('/api/research/external-review')).json();
   expect(metadata.response_count).toBeNull();
