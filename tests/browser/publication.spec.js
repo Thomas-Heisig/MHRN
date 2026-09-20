@@ -41,10 +41,11 @@ for (const port of [4174, 4175]) {
       'Vorgänger 1.7',
     ]));
 
-    await page.evaluate(() => window.MHRNWorkspaceArchitecture?.selectRoute?.('publication', 'overview'));
+    await page.evaluate(() => window.MHRNWorkspaceArchitecture?.selectRoute?.('publication', 'reader'));
     await expect(page.locator('body')).toHaveAttribute('data-current-area', 'publication');
     const publicationPanel = page.locator('#publication-panel');
     await expect(publicationPanel).toBeVisible();
+    await page.evaluate(() => window.MHRNWorkspaceArchitecture?.selectRoute?.('publication', 'openscience'));
     const portalLinks = page.locator('.publication-network-links');
     await expect(portalLinks).toBeVisible();
     await expect(portalLinks.locator('[data-portal="orcid"]')).toHaveAttribute('href', 'https://orcid.org/0009-0002-9589-1872');
@@ -54,6 +55,9 @@ for (const port of [4174, 4175]) {
     await expect(portalLinks.locator('[data-portal="hf-source"]')).toHaveAttribute('href', 'https://huggingface.co/ThomasHeisig/MHRN');
     await expect(portalLinks.locator('[data-portal="hf-space"]')).toHaveAttribute('href', 'https://huggingface.co/spaces/ThomasHeisig/MHRN-Space');
     await expect(portalLinks.locator('[data-portal="hf-data"]')).toHaveAttribute('href', 'https://huggingface.co/datasets/ThomasHeisig/MHRN-Research-Data');
+    await page.evaluate(() => window.MHRNWorkspaceArchitecture?.selectRoute?.('publication', 'reader'));
+    await expect(page.locator('#publication-panel')).toBeVisible();
+    await expect(portalLinks).toBeHidden();
     const readerLink = publicationPanel.locator('[data-pub-reader-link]').first();
     await expect(readerLink).toBeVisible();
     const readerPath = await readerLink.getAttribute('data-pub-reader-link');
@@ -165,14 +169,14 @@ for (const port of [4174, 4175]) {
     await expect(page.locator('#publication-imprint-panel')).toContainText('t_heisig@gmx.de');
     await expect(page.locator('#publication-imprint-panel')).toContainText('Hosting-Datenschutz offen');
 
-    await page.evaluate(() => window.MHRNWorkspaceArchitecture?.selectRoute?.('publication', 'simple'));
+    await page.evaluate(() => window.MHRNWorkspaceArchitecture?.selectRoute?.('publication', 'overview'));
     await expect(page.locator('#publication-simple-panel')).toBeVisible();
     await expect(page.locator('#publication-simple-panel')).toContainText('MHRN · EINFACH ERKLÄRT');
     await expect(page.locator('#publication-simple-panel')).toContainText('methodischen Forschungsgegenstands');
     await expect(page.locator('#publication-simple-panel')).toContainText('unabhängige externe Replikation');
     await expect(page.locator('#publication-imprint-panel')).toContainText('0009-0002-9589-1872');
 
-    await page.evaluate(() => window.MHRNWorkspaceArchitecture?.selectRoute?.('publication', 'overview'));
+    await page.evaluate(() => window.MHRNWorkspaceArchitecture?.selectRoute?.('publication', 'reader'));
     await expect(page.locator('#publication-panel')).toBeVisible();
     await expect(page.locator('#publication-imprint-panel')).toBeHidden();
     expect(errors).toEqual([]);

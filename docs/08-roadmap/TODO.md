@@ -41,6 +41,12 @@
 - [ ] Rerun the Hugging Face publication after the current LFS rate limit clears.
 - [x] Make experiment cards open a complete detail dialog with form prefill.
 
+## 2026-09-20 Publication navigation
+
+- [x] Move Open Science portals into a dedicated publication sub-tab.
+- [x] Keep the publication reader focused on manuscript content and attachments.
+- [x] Make „Einfach erklärt“ the first publication tab and keep the manuscript as a separate tab.
+
 Aeltere offene Zaehler unten sind zeitgebundene Bestandsaufnahmen; der aktuelle Registerabgleich steht in research/generated/EXPERIMENT_COVERAGE_ALPHA3.json.
 
 ## Naming update — 2026-09-08

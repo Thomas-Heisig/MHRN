@@ -1,5 +1,22 @@
 # Changelog
 
+## 2026-09-20 - Publikations-Einstieg über Einfach erklärt
+
+- „Einfach erklärt“ ist jetzt der erste und standardmäßige Tab unter
+  Publikation.
+- Der wissenschaftliche Manuskript-Reader bleibt als eigener Tab
+  „Publikation“ direkt danach erreichbar.
+
+## 2026-09-20 - Eigener Open-Science-Publikationstab
+
+- Open-Science-Portale wurden aus der Hauptpublikation herausgelöst und als
+  eigener Tab unter Publikation organisiert.
+- Der Publikations-Reader bleibt dadurch auf Manuskript, Kapitel und Anhänge
+  fokussiert; ORCID, OSF, Zenodo, Hugging Face und Discovery-Portale liegen
+  separat.
+- Browserabdeckung prüft die Trennung zwischen Publikations- und Open-Science-
+  Ansicht.
+
 ## 2026-09-20 - Hugging Face namespace update
 
 - Updated the GitHub Actions `HF_USERNAME` secret to `ThomasHeisig`.

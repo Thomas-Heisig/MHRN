@@ -4,6 +4,20 @@
 **Baseline:** `mhrn-core 0.6.0a6`
 **Updated:** 2026-09-19
 
+## 2026-09-20 Publikationsnavigation
+
+- „Einfach erklärt“ steht als Einstieg vorne, bevor der eigentliche
+	Publikationsreader geöffnet wird.
+- Manuskript, Open Science und rechtliche Informationen bleiben als getrennte
+	Publikationstabs erhalten.
+
+## 2026-09-20 Publikation und Open Science
+
+- Open Science ist jetzt ein eigener gleichrangiger Tab innerhalb der
+	Publikationsansicht.
+- Die Hauptpublikation bleibt als fokussierter Reader von Portal- und
+	Netzwerkmetadaten getrennt.
+
 ## 2026-09-20 Hugging Face identity
 
 - Current Hugging Face publication namespace: `ThomasHeisig`.
