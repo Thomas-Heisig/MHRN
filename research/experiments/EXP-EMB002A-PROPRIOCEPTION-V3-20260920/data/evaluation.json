@@ -1,0 +1,6242 @@
+[
+  {
+    "condition": "closed_loop",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB002A-PROPRIOCEPTION-V3-20260920",
+    "final_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.004848915003071018,
+      "omega_rad_s": 0.5812579861445085,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.22894220251536718,
+      "saturation_count": 21
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "d0fbe9c1df39374a76d3e3b432dc0f7bbe4bc8945cb8acb942f86dd3a89cba62",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": 0.010708930485476033,
+      "saturation_count": 0
+    },
+    "runtime_error": null,
+    "seed": 920001,
+    "sensor_tape_sha256": "17dc735623ff7f3688abd0549103a862dc4e7ac3cd1d387f65c8b2ba97184479",
+    "state_digest_after": "4bb029bb03a55ee8605a1816f6e5ba1667e5bbd94d72ecc4464024bd0703fd91",
+    "state_digest_before": "7f02c19a1ddbd5704b66626b0ef16428d60c2a3aa6b011a22dbe01409eae8bf4",
+    "synaptic_events_delivered": 54,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 54,
+    "tracking_rmse_rad": 0.1562276041648943
+  },
+  {
+    "condition": "delayed_proprioception",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB002A-PROPRIOCEPTION-V3-20260920",
+    "final_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.0051715308075573375,
+      "omega_rad_s": -3.1764264726061936e-05,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.24120896025460076,
+      "saturation_count": 34
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "d0fbe9c1df39374a76d3e3b432dc0f7bbe4bc8945cb8acb942f86dd3a89cba62",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": 0.010708930485476033,
+      "saturation_count": 0
+    },
+    "runtime_error": null,
+    "seed": 920001,
+    "sensor_tape_sha256": "e294c1b2f129c3c23fb9a54462c9ae1bfe877d9ce407fa83be6ca5711a35fd5c",
+    "state_digest_after": "458ac72d07665fe0ea447db324e30d9c268be0d16f5d914539f42522d7a29a68",
+    "state_digest_before": "7f02c19a1ddbd5704b66626b0ef16428d60c2a3aa6b011a22dbe01409eae8bf4",
+    "synaptic_events_delivered": 45,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 45,
+    "tracking_rmse_rad": 0.15876654871376075
+  },
+  {
+    "condition": "feedback_absent",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB002A-PROPRIOCEPTION-V3-20260920",
+    "final_body_state": {
+      "contact_count": 264,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.012805794958841618,
+      "omega_rad_s": -3.1186859804529083,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.597634670081505,
+      "saturation_count": 0
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "d0fbe9c1df39374a76d3e3b432dc0f7bbe4bc8945cb8acb942f86dd3a89cba62",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": 0.010708930485476033,
+      "saturation_count": 0
+    },
+    "runtime_error": null,
+    "seed": 920001,
+    "sensor_tape_sha256": "f2212c2bffc0e2a9da16caf73dac1dc0d00eae7eae213f8ab3ee5590edc20092",
+    "state_digest_after": "cce6a753211420101ab407a126ec634f2d18651f8d7e9047ee0c1259376c2844",
+    "state_digest_before": "7f02c19a1ddbd5704b66626b0ef16428d60c2a3aa6b011a22dbe01409eae8bf4",
+    "synaptic_events_delivered": 120,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 120,
+    "tracking_rmse_rad": 0.47686519465172705
+  },
+  {
+    "condition": "timing_shuffle",
+    "donor_tape_sha256": "17dc735623ff7f3688abd0549103a862dc4e7ac3cd1d387f65c8b2ba97184479",
+    "experiment_id": "EXP-EMB002A-PROPRIOCEPTION-V3-20260920",
+    "final_body_state": {
+      "contact_count": 424,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.020220841778911806,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.75,
+      "saturation_count": 28
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "d0fbe9c1df39374a76d3e3b432dc0f7bbe4bc8945cb8acb942f86dd3a89cba62",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": 0.010708930485476033,
+      "saturation_count": 0
+    },
+    "runtime_error": null,
+    "seed": 920001,
+    "sensor_tape_sha256": "507b24e0695ca1f061fe578b24bf930c27bd4368309c288b0905fe6196a69f9a",
+    "state_digest_after": "a343efcb352e4f2b84135d69dfc06540dc1e12f232cfad7e596268c9bead98e1",
+    "state_digest_before": "7f02c19a1ddbd5704b66626b0ef16428d60c2a3aa6b011a22dbe01409eae8bf4",
+    "synaptic_events_delivered": 186,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 186,
+    "tracking_rmse_rad": 0.4738519317667171
+  },
+  {
+    "condition": "closed_loop",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB002A-PROPRIOCEPTION-V3-20260920",
+    "final_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.004805531195254974,
+      "omega_rad_s": -5.873808973410314e-05,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.24805151581057513,
+      "saturation_count": 20
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "0457f876ba1815944e9a2d01641abcd0ed8da324e7e8f784f434b7256dca2759",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.02020702625716101,
+      "saturation_count": 0
+    },
+    "runtime_error": null,
+    "seed": 920002,
+    "sensor_tape_sha256": "469f4d3b587d14790b8cbdae5e394709fca648a1ed90bc5d3316568e683fca7b",
+    "state_digest_after": "751828a7978afced41e2aef865b2520e65a1906e7dc1bcf3e987a06c6c2d5487",
+    "state_digest_before": "96aad4d5ce64f7de6f80ac4eb42753bb2a7624f22fb59ac26a3e52526d401a36",
+    "synaptic_events_delivered": 48,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 48,
+    "tracking_rmse_rad": 0.1643642740367494
+  },
+  {
+    "condition": "delayed_proprioception",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB002A-PROPRIOCEPTION-V3-20260920",
+    "final_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.006145240398248328,
+      "omega_rad_s": 1.0776731913461062,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.25770028225775043,
+      "saturation_count": 31
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "0457f876ba1815944e9a2d01641abcd0ed8da324e7e8f784f434b7256dca2759",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.02020702625716101,
+      "saturation_count": 0
+    },
+    "runtime_error": null,
+    "seed": 920002,
+    "sensor_tape_sha256": "6231514b511d4509d0e3815b500b7bfddc8748bcbf6697c8e60e27a1db0650fa",
+    "state_digest_after": "9294e853ad854bc5a737d2fe9aeeaf03dbd6da5cc6dab27374c7eb0b7e59e0d6",
+    "state_digest_before": "96aad4d5ce64f7de6f80ac4eb42753bb2a7624f22fb59ac26a3e52526d401a36",
+    "synaptic_events_delivered": 60,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 60,
+    "tracking_rmse_rad": 0.16049542700267766
+  },
+  {
+    "condition": "feedback_absent",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB002A-PROPRIOCEPTION-V3-20260920",
+    "final_body_state": {
+      "contact_count": 254,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.012920799920311928,
+      "omega_rad_s": -3.118685979119941,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.594237148087,
+      "saturation_count": 0
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "0457f876ba1815944e9a2d01641abcd0ed8da324e7e8f784f434b7256dca2759",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.02020702625716101,
+      "saturation_count": 0
+    },
+    "runtime_error": null,
+    "seed": 920002,
+    "sensor_tape_sha256": "0f3a3ced5541b1dc00d47bb75bafe71c0bc0475c2fd5a8c8534880249a3387e1",
+    "state_digest_after": "5eff6416fb89fd9584c49592f602bf7124edff85bd7c4820f2458916ced5d64e",
+    "state_digest_before": "96aad4d5ce64f7de6f80ac4eb42753bb2a7624f22fb59ac26a3e52526d401a36",
+    "synaptic_events_delivered": 120,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 120,
+    "tracking_rmse_rad": 0.47569580674948764
+  },
+  {
+    "condition": "timing_shuffle",
+    "donor_tape_sha256": "469f4d3b587d14790b8cbdae5e394709fca648a1ed90bc5d3316568e683fca7b",
+    "experiment_id": "EXP-EMB002A-PROPRIOCEPTION-V3-20260920",
+    "final_body_state": {
+      "contact_count": 398,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.019716096605141994,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.75,
+      "saturation_count": 43
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "0457f876ba1815944e9a2d01641abcd0ed8da324e7e8f784f434b7256dca2759",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.02020702625716101,
+      "saturation_count": 0
+    },
+    "runtime_error": null,
+    "seed": 920002,
+    "sensor_tape_sha256": "207b0aa43e0bd9e13b899b243444f626c935c9a25bea49ae758c26c1d45dc47a",
+    "state_digest_after": "2a79d77f445b819be85030013c13ab4031fc900f8d200e8f5b7f75fe5cc685b0",
+    "state_digest_before": "96aad4d5ce64f7de6f80ac4eb42753bb2a7624f22fb59ac26a3e52526d401a36",
+    "synaptic_events_delivered": 180,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 181,
+    "tracking_rmse_rad": 0.4769450229006188
+  },
+  {
+    "condition": "closed_loop",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB002A-PROPRIOCEPTION-V3-20260920",
+    "final_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.004515056386914427,
+      "omega_rad_s": -0.10681625150867657,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.2658439156432949,
+      "saturation_count": 18
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "bd37f909c274e791b3d8f89e9eae810effe533c977b05af4d23e29961486ef7b",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": 0.007464645283516577,
+      "saturation_count": 0
+    },
+    "runtime_error": null,
+    "seed": 920003,
+    "sensor_tape_sha256": "cac2855ab73905e6000f6b4a09c5451626dfbb093c2e7baa19a666d493036716",
+    "state_digest_after": "f4b5ba81f98d5ed97b76dc2b3ac83e4bbcd93853b6b627aca7ae52323d020650",
+    "state_digest_before": "32665449bd6f778a0ca48a715bdedf01ab77716001a9e562ac5c77fe4d53e280",
+    "synaptic_events_delivered": 54,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 54,
+    "tracking_rmse_rad": 0.15609967656023707
+  },
+  {
+    "condition": "delayed_proprioception",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB002A-PROPRIOCEPTION-V3-20260920",
+    "final_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.005213087934684213,
+      "omega_rad_s": 0.9343154098714338,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.27127259069961585,
+      "saturation_count": 26
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "bd37f909c274e791b3d8f89e9eae810effe533c977b05af4d23e29961486ef7b",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": 0.007464645283516577,
+      "saturation_count": 0
+    },
+    "runtime_error": null,
+    "seed": 920003,
+    "sensor_tape_sha256": "b77584e36c05c8e1eeae3e9c53edc31b7d447f8e45ece81f7e64b88c85262f31",
+    "state_digest_after": "bf0a6b2ffa002f9dccf75e2d2e5fddf01b49d7ad1e098452ea56a7f8cc551974",
+    "state_digest_before": "32665449bd6f778a0ca48a715bdedf01ab77716001a9e562ac5c77fe4d53e280",
+    "synaptic_events_delivered": 54,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 54,
+    "tracking_rmse_rad": 0.16221174243022607
+  },
+  {
+    "condition": "feedback_absent",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB002A-PROPRIOCEPTION-V3-20260920",
+    "final_body_state": {
+      "contact_count": 263,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.012827943075999316,
+      "omega_rad_s": -3.1186859804529083,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.597634670081505,
+      "saturation_count": 0
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "bd37f909c274e791b3d8f89e9eae810effe533c977b05af4d23e29961486ef7b",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": 0.007464645283516577,
+      "saturation_count": 0
+    },
+    "runtime_error": null,
+    "seed": 920003,
+    "sensor_tape_sha256": "8ce9d0ca26815f4f906766bc508ce3eaf91df4c88c5dcd056e8457d2f8ca4884",
+    "state_digest_after": "99f3097be64c1e7038324cd5efd6f7809ffe1b92721db1ef27047089cd0da23f",
+    "state_digest_before": "32665449bd6f778a0ca48a715bdedf01ab77716001a9e562ac5c77fe4d53e280",
+    "synaptic_events_delivered": 120,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 120,
+    "tracking_rmse_rad": 0.4766593170369879
+  },
+  {
+    "condition": "timing_shuffle",
+    "donor_tape_sha256": "cac2855ab73905e6000f6b4a09c5451626dfbb093c2e7baa19a666d493036716",
+    "experiment_id": "EXP-EMB002A-PROPRIOCEPTION-V3-20260920",
+    "final_body_state": {
+      "contact_count": 415,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.019528768564112592,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.75,
+      "saturation_count": 28
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "bd37f909c274e791b3d8f89e9eae810effe533c977b05af4d23e29961486ef7b",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": 0.007464645283516577,
+      "saturation_count": 0
+    },
+    "runtime_error": null,
+    "seed": 920003,
+    "sensor_tape_sha256": "f9727e01668acb1e2dc893a6130ba8491aeb3d73a4a56dae036024527c0af0e8",
+    "state_digest_after": "6553c19e9a7b52f32bdba0aa7448107d66548b6036682a6eb871149e8dbb77cd",
+    "state_digest_before": "32665449bd6f778a0ca48a715bdedf01ab77716001a9e562ac5c77fe4d53e280",
+    "synaptic_events_delivered": 174,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 174,
+    "tracking_rmse_rad": 0.47881432370949606
+  },
+  {
+    "condition": "closed_loop",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB002A-PROPRIOCEPTION-V3-20260920",
+    "final_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.004862467389823686,
+      "omega_rad_s": -0.00010180521325565145,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.2589649542492099,
+      "saturation_count": 21
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "58fb2fa436f6d71119da40d17aac102f1431e706339642dac6def755c8240d3b",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": 0.04604985253672504,
+      "saturation_count": 0
+    },
+    "runtime_error": null,
+    "seed": 920004,
+    "sensor_tape_sha256": "b22613ec17604f9048b901f3fbf3d3defa4808a256954088af909382081b5ea6",
+    "state_digest_after": "86ca16a69739095695e0fc99c28e10358d75495c2f0e48334098012ea89d7d03",
+    "state_digest_before": "f93ac8bf234093eecf31e4c2aeb8cbed5c1d74e5d087ba5dfd7b027941deac57",
+    "synaptic_events_delivered": 51,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 51,
+    "tracking_rmse_rad": 0.15976298818257273
+  },
+  {
+    "condition": "delayed_proprioception",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB002A-PROPRIOCEPTION-V3-20260920",
+    "final_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.005431536671610293,
+      "omega_rad_s": -1.3609247016274151e-05,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.2273193172929307,
+      "saturation_count": 32
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "58fb2fa436f6d71119da40d17aac102f1431e706339642dac6def755c8240d3b",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": 0.04604985253672504,
+      "saturation_count": 0
+    },
+    "runtime_error": null,
+    "seed": 920004,
+    "sensor_tape_sha256": "a04961001ca7b185e5b67b9f24fbfabdf4f95bb9809fc17c719f06248a51ab39",
+    "state_digest_after": "96bb139309e13aba84bd1e1f0099a677a1aaae1d666a1da514c829038ab2e5d8",
+    "state_digest_before": "f93ac8bf234093eecf31e4c2aeb8cbed5c1d74e5d087ba5dfd7b027941deac57",
+    "synaptic_events_delivered": 51,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 51,
+    "tracking_rmse_rad": 0.15493070231557476
+  },
+  {
+    "condition": "feedback_absent",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB002A-PROPRIOCEPTION-V3-20260920",
+    "final_body_state": {
+      "contact_count": 276,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.012562442707528368,
+      "omega_rad_s": -3.118685979188272,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.597495173085313,
+      "saturation_count": 0
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "58fb2fa436f6d71119da40d17aac102f1431e706339642dac6def755c8240d3b",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": 0.04604985253672504,
+      "saturation_count": 0
+    },
+    "runtime_error": null,
+    "seed": 920004,
+    "sensor_tape_sha256": "06f30cfeac1ae20734d3167e6b048c1d58ae2770d3974a702efa050228995842",
+    "state_digest_after": "4f7d5351e45aaf69559c4e2429219e0262026e9fe4332bbe50854baf3324d48f",
+    "state_digest_before": "f93ac8bf234093eecf31e4c2aeb8cbed5c1d74e5d087ba5dfd7b027941deac57",
+    "synaptic_events_delivered": 120,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 120,
+    "tracking_rmse_rad": 0.47908555050975765
+  },
+  {
+    "condition": "timing_shuffle",
+    "donor_tape_sha256": "b22613ec17604f9048b901f3fbf3d3defa4808a256954088af909382081b5ea6",
+    "experiment_id": "EXP-EMB002A-PROPRIOCEPTION-V3-20260920",
+    "final_body_state": {
+      "contact_count": 403,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.01981151895270396,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.75,
+      "saturation_count": 31
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "58fb2fa436f6d71119da40d17aac102f1431e706339642dac6def755c8240d3b",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": 0.04604985253672504,
+      "saturation_count": 0
+    },
+    "runtime_error": null,
+    "seed": 920004,
+    "sensor_tape_sha256": "cd9097134fe840ce3724f73f23ab8167bfc6ce1389c13200a488c46d31df3a1a",
+    "state_digest_after": "aa4df9afdf8aacbf8295e2bf5a289800c17398ce94d47a944dad3ed88b5a9f71",
+    "state_digest_before": "f93ac8bf234093eecf31e4c2aeb8cbed5c1d74e5d087ba5dfd7b027941deac57",
+    "synaptic_events_delivered": 183,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 183,
+    "tracking_rmse_rad": 0.4714511013534765
+  },
+  {
+    "condition": "closed_loop",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB002A-PROPRIOCEPTION-V3-20260920",
+    "final_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.004776409326209643,
+      "omega_rad_s": -0.00010968227230013083,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.2625178318293974,
+      "saturation_count": 21
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "8e1d282240194afabbab78e09aef0f2c00bcdcbad54e4a0506e9385b1d1851b6",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": 0.044333380370869854,
+      "saturation_count": 0
+    },
+    "runtime_error": null,
+    "seed": 920005,
+    "sensor_tape_sha256": "92f360a71b0885890e591482f785f220b3772b92439f25dd8e8c4aa30dce1e29",
+    "state_digest_after": "ed9e837efcc36b7c0811d15451397898dfc85014b57d75a2d157aa4d363715e2",
+    "state_digest_before": "370ce077ca7216d5200b4569801798e994c7d2d78fcb905ec09a11a6abde42cb",
+    "synaptic_events_delivered": 51,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 51,
+    "tracking_rmse_rad": 0.1565099028165681
+  },
+  {
+    "condition": "delayed_proprioception",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB002A-PROPRIOCEPTION-V3-20260920",
+    "final_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.005485424394018501,
+      "omega_rad_s": -1.3079045286448651e-05,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.22776244342139748,
+      "saturation_count": 33
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "8e1d282240194afabbab78e09aef0f2c00bcdcbad54e4a0506e9385b1d1851b6",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": 0.044333380370869854,
+      "saturation_count": 0
+    },
+    "runtime_error": null,
+    "seed": 920005,
+    "sensor_tape_sha256": "e128abc67a72bcc533599736e85c41206e1c0602ba0bbec5ab6743c844335385",
+    "state_digest_after": "8c92ffc54f27982607a67d03c6c637dbd4390f77bd8b3d11452585c287be7d11",
+    "state_digest_before": "370ce077ca7216d5200b4569801798e994c7d2d78fcb905ec09a11a6abde42cb",
+    "synaptic_events_delivered": 51,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 51,
+    "tracking_rmse_rad": 0.1550775891535019
+  },
+  {
+    "condition": "feedback_absent",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB002A-PROPRIOCEPTION-V3-20260920",
+    "final_body_state": {
+      "contact_count": 277,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.01257955118727502,
+      "omega_rad_s": -3.1186859804529083,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.597634670081505,
+      "saturation_count": 0
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "8e1d282240194afabbab78e09aef0f2c00bcdcbad54e4a0506e9385b1d1851b6",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": 0.044333380370869854,
+      "saturation_count": 0
+    },
+    "runtime_error": null,
+    "seed": 920005,
+    "sensor_tape_sha256": "2576a430a36dfb5dba97ef079fdf091f25adb1cde0e9c13cf1dd858bed0a7dfb",
+    "state_digest_after": "7735c5d2e2e8380db91a9db984f08a828ff7ad9d8e0e5e0bdcebb6bcdf13cf76",
+    "state_digest_before": "370ce077ca7216d5200b4569801798e994c7d2d78fcb905ec09a11a6abde42cb",
+    "synaptic_events_delivered": 120,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 120,
+    "tracking_rmse_rad": 0.479078663766828
+  },
+  {
+    "condition": "timing_shuffle",
+    "donor_tape_sha256": "92f360a71b0885890e591482f785f220b3772b92439f25dd8e8c4aa30dce1e29",
+    "experiment_id": "EXP-EMB002A-PROPRIOCEPTION-V3-20260920",
+    "final_body_state": {
+      "contact_count": 395,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.01849617396240487,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.75,
+      "saturation_count": 20
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "8e1d282240194afabbab78e09aef0f2c00bcdcbad54e4a0506e9385b1d1851b6",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": 0.044333380370869854,
+      "saturation_count": 0
+    },
+    "runtime_error": null,
+    "seed": 920005,
+    "sensor_tape_sha256": "03850390b9479e7d9a47834b7ea0df29c40815df0f6c51ea721c42f792a9e10f",
+    "state_digest_after": "d1d6dc9d066fb52aaa284f680d6e694728cc5f50e6c591789d5d51acceb22e2a",
+    "state_digest_before": "370ce077ca7216d5200b4569801798e994c7d2d78fcb905ec09a11a6abde42cb",
+    "synaptic_events_delivered": 171,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 171,
+    "tracking_rmse_rad": 0.4805259044474464
+  },
+  {
+    "condition": "closed_loop",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB002A-PROPRIOCEPTION-V3-20260920",
+    "final_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.004753041157528403,
+      "omega_rad_s": -0.00011000626585031212,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.2608343067876988,
+      "saturation_count": 21
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "3104321b0bd8d53e7265d96cdd4e03bf05e8ea7a9c3e019b4c7c4be581bf0404",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": 0.04601692217091995,
+      "saturation_count": 0
+    },
+    "runtime_error": null,
+    "seed": 920006,
+    "sensor_tape_sha256": "0c777c6658fb7bed6cc1f77ffdcf227a0b6a7e4e97f880d0bc806f5363566ba5",
+    "state_digest_after": "ca7c0796a97e540558c19817e4583f7a2efd67fd18069198e0f77ea11f5a9c0a",
+    "state_digest_before": "ee50983707cdfef5a26b8c2b9e0e22a31c04105ba7c96e5b369cd02e307d2f1c",
+    "synaptic_events_delivered": 51,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 51,
+    "tracking_rmse_rad": 0.15743987835460538
+  },
+  {
+    "condition": "delayed_proprioception",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB002A-PROPRIOCEPTION-V3-20260920",
+    "final_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.00543108344012959,
+      "omega_rad_s": -1.7675807669757737e-05,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.22675767433444274,
+      "saturation_count": 32
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "3104321b0bd8d53e7265d96cdd4e03bf05e8ea7a9c3e019b4c7c4be581bf0404",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": 0.04601692217091995,
+      "saturation_count": 0
+    },
+    "runtime_error": null,
+    "seed": 920006,
+    "sensor_tape_sha256": "0f92f602b53a332be1fee2d60d8b96eae1d8b039e91734cb0d85cd1df5cbb2d0",
+    "state_digest_after": "0b8d7e5fe6b6a8e694938aeaea7fcaf3c4d01996eb330b12e585926175709c9c",
+    "state_digest_before": "ee50983707cdfef5a26b8c2b9e0e22a31c04105ba7c96e5b369cd02e307d2f1c",
+    "synaptic_events_delivered": 51,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 51,
+    "tracking_rmse_rad": 0.1556178495332019
+  },
+  {
+    "condition": "feedback_absent",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB002A-PROPRIOCEPTION-V3-20260920",
+    "final_body_state": {
+      "contact_count": 277,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.012574481486307463,
+      "omega_rad_s": -3.1186859804529083,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.597634670081505,
+      "saturation_count": 0
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "3104321b0bd8d53e7265d96cdd4e03bf05e8ea7a9c3e019b4c7c4be581bf0404",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": 0.04601692217091995,
+      "saturation_count": 0
+    },
+    "runtime_error": null,
+    "seed": 920006,
+    "sensor_tape_sha256": "78639bc4558e7059bade9ec2606d851ad82ff3e02381b7b37dfed4ae7353d839",
+    "state_digest_after": "276102e17388d108f3cc3601ef5801112fe32f79a927c1fde59f05d886d34ee8",
+    "state_digest_before": "ee50983707cdfef5a26b8c2b9e0e22a31c04105ba7c96e5b369cd02e307d2f1c",
+    "synaptic_events_delivered": 120,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 120,
+    "tracking_rmse_rad": 0.47919226892558087
+  },
+  {
+    "condition": "timing_shuffle",
+    "donor_tape_sha256": "0c777c6658fb7bed6cc1f77ffdcf227a0b6a7e4e97f880d0bc806f5363566ba5",
+    "experiment_id": "EXP-EMB002A-PROPRIOCEPTION-V3-20260920",
+    "final_body_state": {
+      "contact_count": 375,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.018857135777384477,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.75,
+      "saturation_count": 25
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "3104321b0bd8d53e7265d96cdd4e03bf05e8ea7a9c3e019b4c7c4be581bf0404",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": 0.04601692217091995,
+      "saturation_count": 0
+    },
+    "runtime_error": null,
+    "seed": 920006,
+    "sensor_tape_sha256": "8ce1728c42fa6c3e68d14281bf2931491c6daedd1123bfc5316bc0919c0c73e5",
+    "state_digest_after": "3cb049bcfd923a48a62a5db52692a34d0c2000a046068caaed37440756226f1a",
+    "state_digest_before": "ee50983707cdfef5a26b8c2b9e0e22a31c04105ba7c96e5b369cd02e307d2f1c",
+    "synaptic_events_delivered": 177,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 177,
+    "tracking_rmse_rad": 0.47012103903908686
+  },
+  {
+    "condition": "closed_loop",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB002A-PROPRIOCEPTION-V3-20260920",
+    "final_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.004829682624207354,
+      "omega_rad_s": -0.00010133841842484372,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.2616200315771633,
+      "saturation_count": 21
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "ba0649b7dabf924975057744b35ea871c907cdc3102a347521a8a81734e9ee8d",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.03422559191735107,
+      "saturation_count": 0
+    },
+    "runtime_error": null,
+    "seed": 920007,
+    "sensor_tape_sha256": "d617c077025e8be2505bd1593064954ef7211b922bd03a36cc6ed721246598dd",
+    "state_digest_after": "6845f1664ad5fcc58c235a674920792c9d36d6e096cbf9be4db8eb16ad7bfdfc",
+    "state_digest_before": "d1120a0032859e34885b24ea073c4e428e453e5f88d9f3de0a0680c78ff7a162",
+    "synaptic_events_delivered": 48,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 48,
+    "tracking_rmse_rad": 0.1616599529799128
+  },
+  {
+    "condition": "delayed_proprioception",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB002A-PROPRIOCEPTION-V3-20260920",
+    "final_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.005551244650752475,
+      "omega_rad_s": -1.4695652550794102e-05,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.22833063599392575,
+      "saturation_count": 33
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "ba0649b7dabf924975057744b35ea871c907cdc3102a347521a8a81734e9ee8d",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.03422559191735107,
+      "saturation_count": 0
+    },
+    "runtime_error": null,
+    "seed": 920007,
+    "sensor_tape_sha256": "83739fa83e283a1aa1e1bd4598cecffaabc94873fe10d174fc45b7a9cf3ab38d",
+    "state_digest_after": "8483742ab34a52fa896a10e4eb0d4a00d688a02b6c1158d141dd8417820df05c",
+    "state_digest_before": "d1120a0032859e34885b24ea073c4e428e453e5f88d9f3de0a0680c78ff7a162",
+    "synaptic_events_delivered": 48,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 48,
+    "tracking_rmse_rad": 0.16042087010272824
+  },
+  {
+    "condition": "feedback_absent",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB002A-PROPRIOCEPTION-V3-20260920",
+    "final_body_state": {
+      "contact_count": 249,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.012973866675274694,
+      "omega_rad_s": -3.118685979119941,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.594237148087,
+      "saturation_count": 0
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "ba0649b7dabf924975057744b35ea871c907cdc3102a347521a8a81734e9ee8d",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.03422559191735107,
+      "saturation_count": 0
+    },
+    "runtime_error": null,
+    "seed": 920007,
+    "sensor_tape_sha256": "c6b09dbfc1db27440fd0e2402a08752de8bfffff7e7bdbf550875b6243d4c820",
+    "state_digest_after": "d97707f0e421af5bedba0ac0d12e73ce259ee7a814e87312d174a75107570700",
+    "state_digest_before": "d1120a0032859e34885b24ea073c4e428e453e5f88d9f3de0a0680c78ff7a162",
+    "synaptic_events_delivered": 120,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 120,
+    "tracking_rmse_rad": 0.47490554515780664
+  },
+  {
+    "condition": "timing_shuffle",
+    "donor_tape_sha256": "d617c077025e8be2505bd1593064954ef7211b922bd03a36cc6ed721246598dd",
+    "experiment_id": "EXP-EMB002A-PROPRIOCEPTION-V3-20260920",
+    "final_body_state": {
+      "contact_count": 384,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.01999736035531988,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.75,
+      "saturation_count": 23
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "ba0649b7dabf924975057744b35ea871c907cdc3102a347521a8a81734e9ee8d",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.03422559191735107,
+      "saturation_count": 0
+    },
+    "runtime_error": null,
+    "seed": 920007,
+    "sensor_tape_sha256": "6324557f7c0382f4ea6e9017c3ee0e37250252aa1f191aa0eda00a091252b48b",
+    "state_digest_after": "939c42017e611689d7c5c08c58b143038d8f9ebf3411d68dafeebc52e5eeb805",
+    "state_digest_before": "d1120a0032859e34885b24ea073c4e428e453e5f88d9f3de0a0680c78ff7a162",
+    "synaptic_events_delivered": 177,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 177,
+    "tracking_rmse_rad": 0.49057657597450705
+  },
+  {
+    "condition": "closed_loop",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB002A-PROPRIOCEPTION-V3-20260920",
+    "final_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.00483087595991735,
+      "omega_rad_s": -0.00014475793559889363,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.26723735697551226,
+      "saturation_count": 21
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "80952b15758e16b4f9f64e15f8e7afdb5343817830b8555e6bcdf58d4ed47c44",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": 0.03800586393552906,
+      "saturation_count": 0
+    },
+    "runtime_error": null,
+    "seed": 920008,
+    "sensor_tape_sha256": "f468c49c2e081e87ffd360896d8c53254f649274cceb28ee4d310d4089f8528f",
+    "state_digest_after": "0bc02aadc8b1c3bd117fb2dab114d94e49920d1c79fa3cf5453385ece1b2f467",
+    "state_digest_before": "14f9170b723e9b5b951639e2e58ff864d23cb50e4296f9f0bc24b18a39cbad4c",
+    "synaptic_events_delivered": 51,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 51,
+    "tracking_rmse_rad": 0.15751413744672862
+  },
+  {
+    "condition": "delayed_proprioception",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB002A-PROPRIOCEPTION-V3-20260920",
+    "final_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.005557943187419163,
+      "omega_rad_s": -1.5213481638593757e-05,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.23264659300854454,
+      "saturation_count": 33
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "80952b15758e16b4f9f64e15f8e7afdb5343817830b8555e6bcdf58d4ed47c44",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": 0.03800586393552906,
+      "saturation_count": 0
+    },
+    "runtime_error": null,
+    "seed": 920008,
+    "sensor_tape_sha256": "ea72063286f1e79dab49b459cfa16d27e5e67b639d098f1b01e991463dc78877",
+    "state_digest_after": "af0054e420273c9fc220738f8f8dbcac79db72b4f611663e56cdf759eccd5363",
+    "state_digest_before": "14f9170b723e9b5b951639e2e58ff864d23cb50e4296f9f0bc24b18a39cbad4c",
+    "synaptic_events_delivered": 51,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 51,
+    "tracking_rmse_rad": 0.15489259446537706
+  },
+  {
+    "condition": "feedback_absent",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB002A-PROPRIOCEPTION-V3-20260920",
+    "final_body_state": {
+      "contact_count": 274,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.012597168766361359,
+      "omega_rad_s": -3.1186859804529083,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.597634670081505,
+      "saturation_count": 0
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "80952b15758e16b4f9f64e15f8e7afdb5343817830b8555e6bcdf58d4ed47c44",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": 0.03800586393552906,
+      "saturation_count": 0
+    },
+    "runtime_error": null,
+    "seed": 920008,
+    "sensor_tape_sha256": "d41fe79e79babaf22a3e41d27672991ebcd4a86d528f023355085858b6f48969",
+    "state_digest_after": "05af474ecbd5ad75f0a8e61dd6eb3a92083200b44cfa9657775ac6d40504bb94",
+    "state_digest_before": "14f9170b723e9b5b951639e2e58ff864d23cb50e4296f9f0bc24b18a39cbad4c",
+    "synaptic_events_delivered": 120,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 120,
+    "tracking_rmse_rad": 0.478653575611127
+  },
+  {
+    "condition": "timing_shuffle",
+    "donor_tape_sha256": "f468c49c2e081e87ffd360896d8c53254f649274cceb28ee4d310d4089f8528f",
+    "experiment_id": "EXP-EMB002A-PROPRIOCEPTION-V3-20260920",
+    "final_body_state": {
+      "contact_count": 456,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.020439020940743964,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.75,
+      "saturation_count": 27
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "80952b15758e16b4f9f64e15f8e7afdb5343817830b8555e6bcdf58d4ed47c44",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": 0.03800586393552906,
+      "saturation_count": 0
+    },
+    "runtime_error": null,
+    "seed": 920008,
+    "sensor_tape_sha256": "81ae05b5c550d4ca8f0d2ebc555eaf5692ac17246ab86fa8d84d5bd737a106ea",
+    "state_digest_after": "33f6030c957a1490c06926427376710b2a089b11f2782b594d40979b678bf4a5",
+    "state_digest_before": "14f9170b723e9b5b951639e2e58ff864d23cb50e4296f9f0bc24b18a39cbad4c",
+    "synaptic_events_delivered": 183,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 184,
+    "tracking_rmse_rad": 0.479365317248243
+  },
+  {
+    "condition": "closed_loop",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB002A-PROPRIOCEPTION-V3-20260920",
+    "final_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.0044182244252046,
+      "omega_rad_s": -0.00014535540474054946,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.2608836108609786,
+      "saturation_count": 16
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "872747ae86118a37b27d8aa1a1388a4b1a091a13814a4341cf66b21f8b9f00e5",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.015976644869082804,
+      "saturation_count": 0
+    },
+    "runtime_error": null,
+    "seed": 920009,
+    "sensor_tape_sha256": "044f31b204517226516610e5021e8273f48f52f5bf42f6a73892b77a5154c712",
+    "state_digest_after": "c8123d343f0da951d9e2cd77bdb571289449c448a87619b3d69926a02c25a37f",
+    "state_digest_before": "a4dd8ed29de4c5f2181a3ef8990c985f913d357e6518d718a51004882d873211",
+    "synaptic_events_delivered": 42,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 42,
+    "tracking_rmse_rad": 0.1576578739705856
+  },
+  {
+    "condition": "delayed_proprioception",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB002A-PROPRIOCEPTION-V3-20260920",
+    "final_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.006346990970255437,
+      "omega_rad_s": 1.1401764453888537,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.25538987549726805,
+      "saturation_count": 32
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "872747ae86118a37b27d8aa1a1388a4b1a091a13814a4341cf66b21f8b9f00e5",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.015976644869082804,
+      "saturation_count": 0
+    },
+    "runtime_error": null,
+    "seed": 920009,
+    "sensor_tape_sha256": "d2875026d0cf043b135748965a36de1cb57aff8f6e0c15de31db9f0b93f36636",
+    "state_digest_after": "91ce04c3a35d9bdbd9fdba36cf76611e587dc5121e9baf97a7a5e4690e6dbaa8",
+    "state_digest_before": "a4dd8ed29de4c5f2181a3ef8990c985f913d357e6518d718a51004882d873211",
+    "synaptic_events_delivered": 60,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 60,
+    "tracking_rmse_rad": 0.16392365433985373
+  },
+  {
+    "condition": "feedback_absent",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB002A-PROPRIOCEPTION-V3-20260920",
+    "final_body_state": {
+      "contact_count": 255,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.01290225731534626,
+      "omega_rad_s": -3.118685979119941,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.594237148087,
+      "saturation_count": 0
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "872747ae86118a37b27d8aa1a1388a4b1a091a13814a4341cf66b21f8b9f00e5",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.015976644869082804,
+      "saturation_count": 0
+    },
+    "runtime_error": null,
+    "seed": 920009,
+    "sensor_tape_sha256": "41b172607152f5a61e2ad7d17b31c8ed181f9e2e7984d7eb3436590a15e9f62e",
+    "state_digest_after": "8c1475b4658fc905bc30e2b50deaadcbf6057dad3a0e81deec6896f739269c50",
+    "state_digest_before": "a4dd8ed29de4c5f2181a3ef8990c985f913d357e6518d718a51004882d873211",
+    "synaptic_events_delivered": 120,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 120,
+    "tracking_rmse_rad": 0.47594196330511634
+  },
+  {
+    "condition": "timing_shuffle",
+    "donor_tape_sha256": "044f31b204517226516610e5021e8273f48f52f5bf42f6a73892b77a5154c712",
+    "experiment_id": "EXP-EMB002A-PROPRIOCEPTION-V3-20260920",
+    "final_body_state": {
+      "contact_count": 397,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.01916871928701284,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.75,
+      "saturation_count": 21
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "872747ae86118a37b27d8aa1a1388a4b1a091a13814a4341cf66b21f8b9f00e5",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.015976644869082804,
+      "saturation_count": 0
+    },
+    "runtime_error": null,
+    "seed": 920009,
+    "sensor_tape_sha256": "49ba4cf1cd97a40aecdad3b5310f2513581e7367619fd20d18e1b35e04ecf102",
+    "state_digest_after": "74708fdb9fbd44a7727b41db891dbdeab2befd97ff5aff189f976443ca76472d",
+    "state_digest_before": "a4dd8ed29de4c5f2181a3ef8990c985f913d357e6518d718a51004882d873211",
+    "synaptic_events_delivered": 165,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 165,
+    "tracking_rmse_rad": 0.47124018588133215
+  },
+  {
+    "condition": "closed_loop",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB002A-PROPRIOCEPTION-V3-20260920",
+    "final_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.004440055106160918,
+      "omega_rad_s": -0.00012414993325205522,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.2599772751180362,
+      "saturation_count": 16
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "c64b87e32c418613ff6e0b575df5f86bb6dbf377cb5c3b545166cf051d827511",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.015153492055769949,
+      "saturation_count": 0
+    },
+    "runtime_error": null,
+    "seed": 920010,
+    "sensor_tape_sha256": "2248154b2d4eb240307468c4176c8c1c26b2a8d495201ebf91a200fef324e5aa",
+    "state_digest_after": "59c077a78c0963c7203e9f4c2cd05778cc6e2c1948e97d6b0a2fc2556ec7a4a3",
+    "state_digest_before": "b556e4498184774ce8d31c2e83ae9bec8c7716031bd1ea09b24768ab67b4c693",
+    "synaptic_events_delivered": 42,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 42,
+    "tracking_rmse_rad": 0.1579349315871504
+  },
+  {
+    "condition": "delayed_proprioception",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB002A-PROPRIOCEPTION-V3-20260920",
+    "final_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.006042713184880792,
+      "omega_rad_s": 1.0693677937924182,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.24709245161978152,
+      "saturation_count": 32
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "c64b87e32c418613ff6e0b575df5f86bb6dbf377cb5c3b545166cf051d827511",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.015153492055769949,
+      "saturation_count": 0
+    },
+    "runtime_error": null,
+    "seed": 920010,
+    "sensor_tape_sha256": "d93a215e6b1323c3148f6af68155b9b4726e63a79aa8ccb66fb374c05b6178cd",
+    "state_digest_after": "1e8fedc45552517ce43eb7ada196bfef33ac55f02d12b63f1e63d1b26241cb2a",
+    "state_digest_before": "b556e4498184774ce8d31c2e83ae9bec8c7716031bd1ea09b24768ab67b4c693",
+    "synaptic_events_delivered": 54,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 54,
+    "tracking_rmse_rad": 0.16149256565855896
+  },
+  {
+    "condition": "feedback_absent",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB002A-PROPRIOCEPTION-V3-20260920",
+    "final_body_state": {
+      "contact_count": 255,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.012898514806302525,
+      "omega_rad_s": -3.118685979119941,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.594237148087,
+      "saturation_count": 0
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "c64b87e32c418613ff6e0b575df5f86bb6dbf377cb5c3b545166cf051d827511",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.015153492055769949,
+      "saturation_count": 0
+    },
+    "runtime_error": null,
+    "seed": 920010,
+    "sensor_tape_sha256": "59ca7515cf468fdec78e96ebeb7ff3c06d0069bbcfaf651014995161cdfbd32e",
+    "state_digest_after": "d3f289309b31da1d6fce2a0d88bf3ee42e09feca1fdb992654576a206a1afb38",
+    "state_digest_before": "b556e4498184774ce8d31c2e83ae9bec8c7716031bd1ea09b24768ab67b4c693",
+    "synaptic_events_delivered": 120,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 120,
+    "tracking_rmse_rad": 0.475990336393476
+  },
+  {
+    "condition": "timing_shuffle",
+    "donor_tape_sha256": "2248154b2d4eb240307468c4176c8c1c26b2a8d495201ebf91a200fef324e5aa",
+    "experiment_id": "EXP-EMB002A-PROPRIOCEPTION-V3-20260920",
+    "final_body_state": {
+      "contact_count": 404,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.019624433455067147,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.75,
+      "saturation_count": 30
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "c64b87e32c418613ff6e0b575df5f86bb6dbf377cb5c3b545166cf051d827511",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.015153492055769949,
+      "saturation_count": 0
+    },
+    "runtime_error": null,
+    "seed": 920010,
+    "sensor_tape_sha256": "523a51de526ad66636a319ede76a37ec9a7b8af0fb73f9e09a66f14b2d6d0530",
+    "state_digest_after": "325fcbb1730a839d05f44f595a59f408280588ff010b9118534e0bb71f5d6502",
+    "state_digest_before": "b556e4498184774ce8d31c2e83ae9bec8c7716031bd1ea09b24768ab67b4c693",
+    "synaptic_events_delivered": 178,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 178,
+    "tracking_rmse_rad": 0.4664311138379211
+  },
+  {
+    "condition": "closed_loop",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB002A-PROPRIOCEPTION-V3-20260920",
+    "final_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.00450040474149859,
+      "omega_rad_s": -7.105019449047698e-05,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.24257000647927182,
+      "saturation_count": 19
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "af00414ea556af94e6a596764d112ca4ad2183444b527e6af0e097ea9aa1deec",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.004674658132894763,
+      "saturation_count": 0
+    },
+    "runtime_error": null,
+    "seed": 920011,
+    "sensor_tape_sha256": "35bcd361bbacf2f26b47c4ce5145d2195ec23a96091c1e35305a4b2303da3351",
+    "state_digest_after": "310b39fa181ea5de1aaa2326543492dae4be73b9bc6d672d80af5f9653746aac",
+    "state_digest_before": "2d205504fb293e05ddc92a01fb4cdf97fb51cd045c3babc15049e095ce2b836a",
+    "synaptic_events_delivered": 42,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 42,
+    "tracking_rmse_rad": 0.1630610824084472
+  },
+  {
+    "condition": "delayed_proprioception",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB002A-PROPRIOCEPTION-V3-20260920",
+    "final_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.005878650972412117,
+      "omega_rad_s": 1.0817923742918507,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.2639788145493032,
+      "saturation_count": 29
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "af00414ea556af94e6a596764d112ca4ad2183444b527e6af0e097ea9aa1deec",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.004674658132894763,
+      "saturation_count": 0
+    },
+    "runtime_error": null,
+    "seed": 920011,
+    "sensor_tape_sha256": "1438225ce7632395ad3fa297c78b2cbe1b039e64b5b0f9ad83c1e8a2effa1407",
+    "state_digest_after": "10359a3c2b68c29d05d319462632c697cd8fad4ebfd3b6b43b3759e3a41c3a05",
+    "state_digest_before": "2d205504fb293e05ddc92a01fb4cdf97fb51cd045c3babc15049e095ce2b836a",
+    "synaptic_events_delivered": 54,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 54,
+    "tracking_rmse_rad": 0.15798897922450783
+  },
+  {
+    "condition": "feedback_absent",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB002A-PROPRIOCEPTION-V3-20260920",
+    "final_body_state": {
+      "contact_count": 259,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.012900939554142933,
+      "omega_rad_s": -3.1186859804529083,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.597634670081505,
+      "saturation_count": 0
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "af00414ea556af94e6a596764d112ca4ad2183444b527e6af0e097ea9aa1deec",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.004674658132894763,
+      "saturation_count": 0
+    },
+    "runtime_error": null,
+    "seed": 920011,
+    "sensor_tape_sha256": "c6a05a94dda3a7d26dd297385bf832663504c06494abf3b82f802bc460a78df4",
+    "state_digest_after": "bdbf8a0cc4b129b6d871e330817ab900da2968f735a899f1dcf877a598662864",
+    "state_digest_before": "2d205504fb293e05ddc92a01fb4cdf97fb51cd045c3babc15049e095ce2b836a",
+    "synaptic_events_delivered": 120,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 120,
+    "tracking_rmse_rad": 0.47590459689330983
+  },
+  {
+    "condition": "timing_shuffle",
+    "donor_tape_sha256": "35bcd361bbacf2f26b47c4ce5145d2195ec23a96091c1e35305a4b2303da3351",
+    "experiment_id": "EXP-EMB002A-PROPRIOCEPTION-V3-20260920",
+    "final_body_state": {
+      "contact_count": 363,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.01823221365654465,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.75,
+      "saturation_count": 22
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "af00414ea556af94e6a596764d112ca4ad2183444b527e6af0e097ea9aa1deec",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.004674658132894763,
+      "saturation_count": 0
+    },
+    "runtime_error": null,
+    "seed": 920011,
+    "sensor_tape_sha256": "412cc8d1056c44c41800bb0681dc13a0e92f2f03455d4686917a707e2d5d5469",
+    "state_digest_after": "ee864b226a6271e50cc3acea8c68ad051f868282c2f5852e276c2df33264035a",
+    "state_digest_before": "2d205504fb293e05ddc92a01fb4cdf97fb51cd045c3babc15049e095ce2b836a",
+    "synaptic_events_delivered": 171,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 171,
+    "tracking_rmse_rad": 0.46622175593136217
+  },
+  {
+    "condition": "closed_loop",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB002A-PROPRIOCEPTION-V3-20260920",
+    "final_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.004582774108215447,
+      "omega_rad_s": 0.6231032441459738,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.2634441896004251,
+      "saturation_count": 19
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "360cf9445d5b8b017d8eb851c7da36e4f8210059620719be9d9ec360286ff213",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": 0.009064074727523339,
+      "saturation_count": 0
+    },
+    "runtime_error": null,
+    "seed": 920012,
+    "sensor_tape_sha256": "1a805202a70badff9cfb7c3f416ac5beb876aeb511446b163c6692fea094ab6b",
+    "state_digest_after": "0125b350733f23e54a0360e760010cb0350f414db6b9300856083966b6cf9b46",
+    "state_digest_before": "373a755381f27e241978fc5e670081fbfdc49e03c676cb841a766c5288124734",
+    "synaptic_events_delivered": 54,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 54,
+    "tracking_rmse_rad": 0.15750951041090927
+  },
+  {
+    "condition": "delayed_proprioception",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB002A-PROPRIOCEPTION-V3-20260920",
+    "final_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.00516449954034613,
+      "omega_rad_s": -5.3646317923279094e-05,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.2539964894374141,
+      "saturation_count": 31
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "360cf9445d5b8b017d8eb851c7da36e4f8210059620719be9d9ec360286ff213",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": 0.009064074727523339,
+      "saturation_count": 0
+    },
+    "runtime_error": null,
+    "seed": 920012,
+    "sensor_tape_sha256": "74caf3577b9ed020de1c9112a82c44f1fa7d8586829bf043be181126d88c02e0",
+    "state_digest_after": "7e9a82482e791d40164ab6122135358ca5427b73594fe9fa217961d8e4be4dbf",
+    "state_digest_before": "373a755381f27e241978fc5e670081fbfdc49e03c676cb841a766c5288124734",
+    "synaptic_events_delivered": 45,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 45,
+    "tracking_rmse_rad": 0.1571763177796892
+  },
+  {
+    "condition": "feedback_absent",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB002A-PROPRIOCEPTION-V3-20260920",
+    "final_body_state": {
+      "contact_count": 264,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.01281706749449168,
+      "omega_rad_s": -3.1186859804529083,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.597634670081505,
+      "saturation_count": 0
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "360cf9445d5b8b017d8eb851c7da36e4f8210059620719be9d9ec360286ff213",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": 0.009064074727523339,
+      "saturation_count": 0
+    },
+    "runtime_error": null,
+    "seed": 920012,
+    "sensor_tape_sha256": "2b6fcb3f6a35c3bb74911e6f94b9510328a4c5513f634fdfce74b02930886378",
+    "state_digest_after": "d500d40bf73a5078c891e494863b5f0069bff86b95e8f0b8e83f01bdb0eb6b89",
+    "state_digest_before": "373a755381f27e241978fc5e670081fbfdc49e03c676cb841a766c5288124734",
+    "synaptic_events_delivered": 120,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 120,
+    "tracking_rmse_rad": 0.47676028249303604
+  },
+  {
+    "condition": "timing_shuffle",
+    "donor_tape_sha256": "1a805202a70badff9cfb7c3f416ac5beb876aeb511446b163c6692fea094ab6b",
+    "experiment_id": "EXP-EMB002A-PROPRIOCEPTION-V3-20260920",
+    "final_body_state": {
+      "contact_count": 377,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.018446005693195506,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.75,
+      "saturation_count": 13
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "360cf9445d5b8b017d8eb851c7da36e4f8210059620719be9d9ec360286ff213",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": 0.009064074727523339,
+      "saturation_count": 0
+    },
+    "runtime_error": null,
+    "seed": 920012,
+    "sensor_tape_sha256": "a04854fa12c4ec3be7247fe6482226c1a14ae1dcb9a13997a59e2a7b00a01a50",
+    "state_digest_after": "00236b06e8cceac9266ef2052f1064bdb0a9b92a07c5aace983d512e3b0015c1",
+    "state_digest_before": "373a755381f27e241978fc5e670081fbfdc49e03c676cb841a766c5288124734",
+    "synaptic_events_delivered": 171,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 171,
+    "tracking_rmse_rad": 0.47877213834381094
+  },
+  {
+    "condition": "closed_loop",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB002A-PROPRIOCEPTION-V3-20260920",
+    "final_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.004785957270351392,
+      "omega_rad_s": -7.9838927329018e-05,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.255304841970639,
+      "saturation_count": 19
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "c776c127ef4308c7353e0b638c1ee2054a39a50132b6079e2bf0ce9969676a76",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.02199789377867133,
+      "saturation_count": 0
+    },
+    "runtime_error": null,
+    "seed": 920013,
+    "sensor_tape_sha256": "e63493eb30b91cdf6e3475a4db0c28fb59e38ae386648b429dda8a3192ddceac",
+    "state_digest_after": "70bf201615a0b03d9e6765d86110b68acdea494bb2d4d05fb2b822b3d648fc22",
+    "state_digest_before": "02bb7e20cb8703c6538c5d6e1754467b0d1c879785eed0c5300475199cc8a843",
+    "synaptic_events_delivered": 48,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 48,
+    "tracking_rmse_rad": 0.16109317030232298
+  },
+  {
+    "condition": "delayed_proprioception",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB002A-PROPRIOCEPTION-V3-20260920",
+    "final_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.005829334638773772,
+      "omega_rad_s": -0.12385214246330437,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.2793716381426893,
+      "saturation_count": 32
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "c776c127ef4308c7353e0b638c1ee2054a39a50132b6079e2bf0ce9969676a76",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.02199789377867133,
+      "saturation_count": 0
+    },
+    "runtime_error": null,
+    "seed": 920013,
+    "sensor_tape_sha256": "d7063e294360299f4454e391fc7d6f6d53291b0fbb0a57e598107f7e23bb4240",
+    "state_digest_after": "af86a9a942ee94fea4a1bfb227beb8a467600767a8e95f627c3a63eeadf43d37",
+    "state_digest_before": "02bb7e20cb8703c6538c5d6e1754467b0d1c879785eed0c5300475199cc8a843",
+    "synaptic_events_delivered": 60,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 60,
+    "tracking_rmse_rad": 0.1636650823345622
+  },
+  {
+    "condition": "feedback_absent",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB002A-PROPRIOCEPTION-V3-20260920",
+    "final_body_state": {
+      "contact_count": 253,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.012928189812473257,
+      "omega_rad_s": -3.118685979119941,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.594237148087,
+      "saturation_count": 0
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "c776c127ef4308c7353e0b638c1ee2054a39a50132b6079e2bf0ce9969676a76",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.02199789377867133,
+      "saturation_count": 0
+    },
+    "runtime_error": null,
+    "seed": 920013,
+    "sensor_tape_sha256": "23b2e2b122e0a825123f4183be4d22361709a709a2290ef88c75fbeb948de7af",
+    "state_digest_after": "88c16c34472d0ed851028c0f9300c2ade4257da84b868e776354bb86f481380b",
+    "state_digest_before": "02bb7e20cb8703c6538c5d6e1754467b0d1c879785eed0c5300475199cc8a843",
+    "synaptic_events_delivered": 120,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 120,
+    "tracking_rmse_rad": 0.47559224399747596
+  },
+  {
+    "condition": "timing_shuffle",
+    "donor_tape_sha256": "e63493eb30b91cdf6e3475a4db0c28fb59e38ae386648b429dda8a3192ddceac",
+    "experiment_id": "EXP-EMB002A-PROPRIOCEPTION-V3-20260920",
+    "final_body_state": {
+      "contact_count": 409,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.02026842696843408,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.75,
+      "saturation_count": 32
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "c776c127ef4308c7353e0b638c1ee2054a39a50132b6079e2bf0ce9969676a76",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.02199789377867133,
+      "saturation_count": 0
+    },
+    "runtime_error": null,
+    "seed": 920013,
+    "sensor_tape_sha256": "105b4f6e5ae3df5137569c8fd3c43332037567129ef135560a8fe7b7e115170b",
+    "state_digest_after": "4a63db64958f216d143e46456df74461ce78ce384b558270270742903b265426",
+    "state_digest_before": "02bb7e20cb8703c6538c5d6e1754467b0d1c879785eed0c5300475199cc8a843",
+    "synaptic_events_delivered": 183,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 183,
+    "tracking_rmse_rad": 0.4693760348112096
+  },
+  {
+    "condition": "closed_loop",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB002A-PROPRIOCEPTION-V3-20260920",
+    "final_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.004415564081852197,
+      "omega_rad_s": -9.376992898965113e-05,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.2574223148203179,
+      "saturation_count": 16
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "7c506fc92190830dfd3228906faa2ef9c6bcbb69ba9f8c42a9dcd50cd9ff12ed",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.01090633649912437,
+      "saturation_count": 0
+    },
+    "runtime_error": null,
+    "seed": 920014,
+    "sensor_tape_sha256": "5fffb0ed968b4fbd46e2916d116758c02b84671e5ed94a7b2d06121442527727",
+    "state_digest_after": "59f0d419aa9565a80693740535f86ee6e2dd6d59aca80e38b044c83260c2f725",
+    "state_digest_before": "cf8713429a84160aaaad1c5b5957c9d0d00395fe944624878c8927f6b7ad071e",
+    "synaptic_events_delivered": 42,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 42,
+    "tracking_rmse_rad": 0.15735512896512646
+  },
+  {
+    "condition": "delayed_proprioception",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB002A-PROPRIOCEPTION-V3-20260920",
+    "final_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.005663833714943596,
+      "omega_rad_s": -0.9338153643300446,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.2686779464959378,
+      "saturation_count": 29
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "7c506fc92190830dfd3228906faa2ef9c6bcbb69ba9f8c42a9dcd50cd9ff12ed",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.01090633649912437,
+      "saturation_count": 0
+    },
+    "runtime_error": null,
+    "seed": 920014,
+    "sensor_tape_sha256": "9ee3447238356393b719a39794a52ce8d54459be66267263644fe56e41fdfc49",
+    "state_digest_after": "be1216a1dd1d278b6c668d49ed96847d4297da3b528366f4eba37544a73c6034",
+    "state_digest_before": "cf8713429a84160aaaad1c5b5957c9d0d00395fe944624878c8927f6b7ad071e",
+    "synaptic_events_delivered": 51,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 51,
+    "tracking_rmse_rad": 0.1607127174482647
+  },
+  {
+    "condition": "feedback_absent",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB002A-PROPRIOCEPTION-V3-20260920",
+    "final_body_state": {
+      "contact_count": 256,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.012878475855682546,
+      "omega_rad_s": -3.118685979119941,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.594237148087,
+      "saturation_count": 0
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "7c506fc92190830dfd3228906faa2ef9c6bcbb69ba9f8c42a9dcd50cd9ff12ed",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.01090633649912437,
+      "saturation_count": 0
+    },
+    "runtime_error": null,
+    "seed": 920014,
+    "sensor_tape_sha256": "26f4989c0d9c72f66a047be34f4b4424c576de01c66b432a31e7407e7baf1bc7",
+    "state_digest_after": "eb982ac7c00ee10fe11d8aca2d12bb018a122798d16d7f514be4f5157103a0c9",
+    "state_digest_before": "cf8713429a84160aaaad1c5b5957c9d0d00395fe944624878c8927f6b7ad071e",
+    "synaptic_events_delivered": 120,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 120,
+    "tracking_rmse_rad": 0.4762423793423365
+  },
+  {
+    "condition": "timing_shuffle",
+    "donor_tape_sha256": "5fffb0ed968b4fbd46e2916d116758c02b84671e5ed94a7b2d06121442527727",
+    "experiment_id": "EXP-EMB002A-PROPRIOCEPTION-V3-20260920",
+    "final_body_state": {
+      "contact_count": 414,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.01975258710162381,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.75,
+      "saturation_count": 40
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "7c506fc92190830dfd3228906faa2ef9c6bcbb69ba9f8c42a9dcd50cd9ff12ed",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.01090633649912437,
+      "saturation_count": 0
+    },
+    "runtime_error": null,
+    "seed": 920014,
+    "sensor_tape_sha256": "b8d5e21a7c2640f992a8a909b8b88eea8bd6da1b90d1007f27ce012a5995bc25",
+    "state_digest_after": "84289679392b86c57bf160f0a26f12bec96664e6822cb8866ab0feb3d66ebe0f",
+    "state_digest_before": "cf8713429a84160aaaad1c5b5957c9d0d00395fe944624878c8927f6b7ad071e",
+    "synaptic_events_delivered": 180,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 180,
+    "tracking_rmse_rad": 0.4753808916063517
+  },
+  {
+    "condition": "closed_loop",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB002A-PROPRIOCEPTION-V3-20260920",
+    "final_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.004689376083879198,
+      "omega_rad_s": -0.00010605044502226153,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.25713506643896816,
+      "saturation_count": 18
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "0a685943729589dfc7acb88fe2b4377b58fed3a0246621b36b1d1516a47ff87d",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.021435134742564768,
+      "saturation_count": 0
+    },
+    "runtime_error": null,
+    "seed": 920015,
+    "sensor_tape_sha256": "0c8c9b389cb61aa26fac0a8cc91ddb6c6270dd8e40efedc41baf9d675d7bf250",
+    "state_digest_after": "07548d008356fcdf7e724aa583024928494f6d51e31bddb850a9a56f8f07cd25",
+    "state_digest_before": "6ae1dd57a3ca927e21e709f8a9a00695be2f0ed717bfbdc352e1f89d5daa665a",
+    "synaptic_events_delivered": 48,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 48,
+    "tracking_rmse_rad": 0.1625762923465306
+  },
+  {
+    "condition": "delayed_proprioception",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB002A-PROPRIOCEPTION-V3-20260920",
+    "final_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.006073563185321271,
+      "omega_rad_s": 0.7379790423555725,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.27599068447462516,
+      "saturation_count": 31
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "0a685943729589dfc7acb88fe2b4377b58fed3a0246621b36b1d1516a47ff87d",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.021435134742564768,
+      "saturation_count": 0
+    },
+    "runtime_error": null,
+    "seed": 920015,
+    "sensor_tape_sha256": "29d80a282bd27e95a1dcd0574deb7fc3c2bf4a867f817c2742cf7c2d49483c05",
+    "state_digest_after": "1202d37e7cdcec7c29cb07e5250baf8ae28f714d3c00815fa339cab5d76955dc",
+    "state_digest_before": "6ae1dd57a3ca927e21e709f8a9a00695be2f0ed717bfbdc352e1f89d5daa665a",
+    "synaptic_events_delivered": 60,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 60,
+    "tracking_rmse_rad": 0.16082149400209497
+  },
+  {
+    "condition": "feedback_absent",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB002A-PROPRIOCEPTION-V3-20260920",
+    "final_body_state": {
+      "contact_count": 253,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.012925880662823182,
+      "omega_rad_s": -3.118685979119941,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.594237148087,
+      "saturation_count": 0
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "0a685943729589dfc7acb88fe2b4377b58fed3a0246621b36b1d1516a47ff87d",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.021435134742564768,
+      "saturation_count": 0
+    },
+    "runtime_error": null,
+    "seed": 920015,
+    "sensor_tape_sha256": "a990226715de8f5e7c7888a5f4992523df4b21e8df73c946c546e97278873349",
+    "state_digest_after": "8f2a89dd5a798676885807adbc127768445e0b43b5831d5d5b916be2f1ee96ff",
+    "state_digest_before": "6ae1dd57a3ca927e21e709f8a9a00695be2f0ed717bfbdc352e1f89d5daa665a",
+    "synaptic_events_delivered": 120,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 120,
+    "tracking_rmse_rad": 0.4756246672793692
+  },
+  {
+    "condition": "timing_shuffle",
+    "donor_tape_sha256": "0c8c9b389cb61aa26fac0a8cc91ddb6c6270dd8e40efedc41baf9d675d7bf250",
+    "experiment_id": "EXP-EMB002A-PROPRIOCEPTION-V3-20260920",
+    "final_body_state": {
+      "contact_count": 353,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.018649937080392483,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.75,
+      "saturation_count": 21
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "0a685943729589dfc7acb88fe2b4377b58fed3a0246621b36b1d1516a47ff87d",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.021435134742564768,
+      "saturation_count": 0
+    },
+    "runtime_error": null,
+    "seed": 920015,
+    "sensor_tape_sha256": "7d1968f20c5df804db2a5848177327646fe395840dcc707337a70ffe9ec3d6a6",
+    "state_digest_after": "6d7a8e27e2bd2b503e5bb44337bc3015955108584239cefef1b498031119a5cf",
+    "state_digest_before": "6ae1dd57a3ca927e21e709f8a9a00695be2f0ed717bfbdc352e1f89d5daa665a",
+    "synaptic_events_delivered": 171,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 171,
+    "tracking_rmse_rad": 0.4646771510744868
+  },
+  {
+    "condition": "closed_loop",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB002A-PROPRIOCEPTION-V3-20260920",
+    "final_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.004805368204991429,
+      "omega_rad_s": -0.5012944785446262,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.23194912810246793,
+      "saturation_count": 19
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "bdc542f88d466e0dbd2a5d588b490771f81662388c26413bceca353a7d5ce51d",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": 0.024525469785963178,
+      "saturation_count": 0
+    },
+    "runtime_error": null,
+    "seed": 920016,
+    "sensor_tape_sha256": "b074c6e01c51faa48fd9cb1cc17ea3557f9b356f600bf029b5e0f6e1f71ef9a4",
+    "state_digest_after": "dc04ca397f8cece720b803a1d38d75c4737f2a0d57dd19bbb5803edb2eb2ee25",
+    "state_digest_before": "da2d0608bb7ed7b29889d7f56ffbba6f50a0478efa34e1efdbebed176ca2f7e0",
+    "synaptic_events_delivered": 57,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 57,
+    "tracking_rmse_rad": 0.15369013792251962
+  },
+  {
+    "condition": "delayed_proprioception",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB002A-PROPRIOCEPTION-V3-20260920",
+    "final_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.005359180720503271,
+      "omega_rad_s": -2.6325138480945582e-05,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.24459637564505904,
+      "saturation_count": 32
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "bdc542f88d466e0dbd2a5d588b490771f81662388c26413bceca353a7d5ce51d",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": 0.024525469785963178,
+      "saturation_count": 0
+    },
+    "runtime_error": null,
+    "seed": 920016,
+    "sensor_tape_sha256": "e38962e722d83f8887abb4a329bc5fafe4daa0f18552311ce9d24c781056a863",
+    "state_digest_after": "5f6336dd67b397344e5df66028a2f60f0c6e1cef7f4ec9d919f29d377a803510",
+    "state_digest_before": "da2d0608bb7ed7b29889d7f56ffbba6f50a0478efa34e1efdbebed176ca2f7e0",
+    "synaptic_events_delivered": 45,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 45,
+    "tracking_rmse_rad": 0.15289944344282752
+  },
+  {
+    "condition": "feedback_absent",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB002A-PROPRIOCEPTION-V3-20260920",
+    "final_body_state": {
+      "contact_count": 268,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.01268409367212376,
+      "omega_rad_s": -3.118685979188272,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.597495173085313,
+      "saturation_count": 0
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "bdc542f88d466e0dbd2a5d588b490771f81662388c26413bceca353a7d5ce51d",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": 0.024525469785963178,
+      "saturation_count": 0
+    },
+    "runtime_error": null,
+    "seed": 920016,
+    "sensor_tape_sha256": "e234f0b91a445c6b2e5b16bc4d50263b883d1109b91247b66722939ab43cabbf",
+    "state_digest_after": "1655da8d5ad578e3092fc8e3d6e7d4787ab0e7a8bf78ecb283ff098c3a69e365",
+    "state_digest_before": "da2d0608bb7ed7b29889d7f56ffbba6f50a0478efa34e1efdbebed176ca2f7e0",
+    "synaptic_events_delivered": 120,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 120,
+    "tracking_rmse_rad": 0.47764965405330584
+  },
+  {
+    "condition": "timing_shuffle",
+    "donor_tape_sha256": "b074c6e01c51faa48fd9cb1cc17ea3557f9b356f600bf029b5e0f6e1f71ef9a4",
+    "experiment_id": "EXP-EMB002A-PROPRIOCEPTION-V3-20260920",
+    "final_body_state": {
+      "contact_count": 400,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.019166443424067023,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.75,
+      "saturation_count": 19
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "bdc542f88d466e0dbd2a5d588b490771f81662388c26413bceca353a7d5ce51d",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": 0.024525469785963178,
+      "saturation_count": 0
+    },
+    "runtime_error": null,
+    "seed": 920016,
+    "sensor_tape_sha256": "3c19656e66d2b6ea94fd313f4c65c756198814ed03120b8c6852ffbb0014c1cc",
+    "state_digest_after": "33ff6de8e52f95ca7fa9c41b2555e475da6fc3e4a0affa5ad35f2bd326c99a45",
+    "state_digest_before": "da2d0608bb7ed7b29889d7f56ffbba6f50a0478efa34e1efdbebed176ca2f7e0",
+    "synaptic_events_delivered": 183,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 183,
+    "tracking_rmse_rad": 0.47682116906213506
+  },
+  {
+    "condition": "closed_loop",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB002A-PROPRIOCEPTION-V3-20260920",
+    "final_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.004787950969853346,
+      "omega_rad_s": -0.00019931542383299147,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.263296186846354,
+      "saturation_count": 20
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "2a0d6846fb5c33875c30b06083d8d8bf5470a969d7748403952220a598a389ad",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.03504819310790497,
+      "saturation_count": 0
+    },
+    "runtime_error": null,
+    "seed": 920017,
+    "sensor_tape_sha256": "b7eae425b007a339fbae39944bdda502a19f66d84274240a2cf9e0c609acec70",
+    "state_digest_after": "9e507b10aa50e17155c7ecd3bec76d51cb37bd6f30c657b46aaddaa1dd13a403",
+    "state_digest_before": "0ed7985cc087f5a0b181b17e20e7ba3fc9bed2d17b82e3bd3163e63f5290be5b",
+    "synaptic_events_delivered": 48,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 48,
+    "tracking_rmse_rad": 0.1645036024644181
+  },
+  {
+    "condition": "delayed_proprioception",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB002A-PROPRIOCEPTION-V3-20260920",
+    "final_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.005635559014486448,
+      "omega_rad_s": -1.575377737459547e-05,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.2265579648754596,
+      "saturation_count": 34
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "2a0d6846fb5c33875c30b06083d8d8bf5470a969d7748403952220a598a389ad",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.03504819310790497,
+      "saturation_count": 0
+    },
+    "runtime_error": null,
+    "seed": 920017,
+    "sensor_tape_sha256": "363c3c4b3207095d25e8797c37ab7dcce02ce171dc00d0bc64913a76746d3dfe",
+    "state_digest_after": "9222e4f6748af7f724a7887b87c7856e1c960c0048eeee47de347e0120a61e38",
+    "state_digest_before": "0ed7985cc087f5a0b181b17e20e7ba3fc9bed2d17b82e3bd3163e63f5290be5b",
+    "synaptic_events_delivered": 48,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 48,
+    "tracking_rmse_rad": 0.16187225179149492
+  },
+  {
+    "condition": "feedback_absent",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB002A-PROPRIOCEPTION-V3-20260920",
+    "final_body_state": {
+      "contact_count": 248,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.012963563490762383,
+      "omega_rad_s": -3.11868597784119,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.5939188341423811,
+      "saturation_count": 0
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "2a0d6846fb5c33875c30b06083d8d8bf5470a969d7748403952220a598a389ad",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.03504819310790497,
+      "saturation_count": 0
+    },
+    "runtime_error": null,
+    "seed": 920017,
+    "sensor_tape_sha256": "c9418daeaa9029dede7f27566f5cc5c18e758ee6b692454981415e449f69ea81",
+    "state_digest_after": "6cafa6c59b721192e0da06f6d7619648a0795124c00d6163ea026e3aad7b4cfe",
+    "state_digest_before": "0ed7985cc087f5a0b181b17e20e7ba3fc9bed2d17b82e3bd3163e63f5290be5b",
+    "synaptic_events_delivered": 120,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 120,
+    "tracking_rmse_rad": 0.474808046366008
+  },
+  {
+    "condition": "timing_shuffle",
+    "donor_tape_sha256": "b7eae425b007a339fbae39944bdda502a19f66d84274240a2cf9e0c609acec70",
+    "experiment_id": "EXP-EMB002A-PROPRIOCEPTION-V3-20260920",
+    "final_body_state": {
+      "contact_count": 415,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.020142443652427358,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.75,
+      "saturation_count": 23
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "2a0d6846fb5c33875c30b06083d8d8bf5470a969d7748403952220a598a389ad",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.03504819310790497,
+      "saturation_count": 0
+    },
+    "runtime_error": null,
+    "seed": 920017,
+    "sensor_tape_sha256": "a30653f140a34c76d238badbd49894bb7929e2359935ce72e3c75310dbd9cd6b",
+    "state_digest_after": "590950b79a57ce0ec4f9e7bacf2cb39f7ba455de9681d4608bb523d2fca00fca",
+    "state_digest_before": "0ed7985cc087f5a0b181b17e20e7ba3fc9bed2d17b82e3bd3163e63f5290be5b",
+    "synaptic_events_delivered": 177,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 177,
+    "tracking_rmse_rad": 0.47402326425233543
+  },
+  {
+    "condition": "closed_loop",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB002A-PROPRIOCEPTION-V3-20260920",
+    "final_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.00480383540929153,
+      "omega_rad_s": -0.000251945418160437,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.26676479306335776,
+      "saturation_count": 20
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "6916b95c848691e4499f9c924b15082e2a382edbe4e4a6073f74bfb83cd3604c",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.038381531167532304,
+      "saturation_count": 0
+    },
+    "runtime_error": null,
+    "seed": 920018,
+    "sensor_tape_sha256": "e4fe44a091f2f5aaaddea929dd61eb647321a0e0a9aac286c0b0b35261d09410",
+    "state_digest_after": "108d1a3f59c363c91f25b303c19eb95eefde7f30bd71a8b0bab1c672db97ef3c",
+    "state_digest_before": "750cd5294d3d645e8354838f436a9fac1913bd9b53c7b6e3e6951ebacfafc411",
+    "synaptic_events_delivered": 48,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 48,
+    "tracking_rmse_rad": 0.16298044145858223
+  },
+  {
+    "condition": "delayed_proprioception",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB002A-PROPRIOCEPTION-V3-20260920",
+    "final_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.005615757248887044,
+      "omega_rad_s": -1.4656410969273393e-05,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.23128518002993229,
+      "saturation_count": 33
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "6916b95c848691e4499f9c924b15082e2a382edbe4e4a6073f74bfb83cd3604c",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.038381531167532304,
+      "saturation_count": 0
+    },
+    "runtime_error": null,
+    "seed": 920018,
+    "sensor_tape_sha256": "c797c9a23b7459a4f9c52afa98856bb319f242e79e974188b7bf0ef7304a88b7",
+    "state_digest_after": "c6066792d27a08f73eba07a39a02060f4045fcefb1dc64bc78f62aa529539445",
+    "state_digest_before": "750cd5294d3d645e8354838f436a9fac1913bd9b53c7b6e3e6951ebacfafc411",
+    "synaptic_events_delivered": 48,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 48,
+    "tracking_rmse_rad": 0.16000973784657596
+  },
+  {
+    "condition": "feedback_absent",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB002A-PROPRIOCEPTION-V3-20260920",
+    "final_body_state": {
+      "contact_count": 248,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.012987469433962263,
+      "omega_rad_s": -3.118685979119941,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.594237148087,
+      "saturation_count": 0
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "6916b95c848691e4499f9c924b15082e2a382edbe4e4a6073f74bfb83cd3604c",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.038381531167532304,
+      "saturation_count": 0
+    },
+    "runtime_error": null,
+    "seed": 920018,
+    "sensor_tape_sha256": "74b018c714e5d3495649529a18bb8be89643a5d5f789bd6376761f7df493b611",
+    "state_digest_after": "09f7ecf39938393d51a3213815b388a79b385f255138429bfb66bf3a47cf42b2",
+    "state_digest_before": "750cd5294d3d645e8354838f436a9fac1913bd9b53c7b6e3e6951ebacfafc411",
+    "synaptic_events_delivered": 120,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 120,
+    "tracking_rmse_rad": 0.4746793373244975
+  },
+  {
+    "condition": "timing_shuffle",
+    "donor_tape_sha256": "e4fe44a091f2f5aaaddea929dd61eb647321a0e0a9aac286c0b0b35261d09410",
+    "experiment_id": "EXP-EMB002A-PROPRIOCEPTION-V3-20260920",
+    "final_body_state": {
+      "contact_count": 387,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.019467106676132363,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.75,
+      "saturation_count": 39
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "6916b95c848691e4499f9c924b15082e2a382edbe4e4a6073f74bfb83cd3604c",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.038381531167532304,
+      "saturation_count": 0
+    },
+    "runtime_error": null,
+    "seed": 920018,
+    "sensor_tape_sha256": "e75361b936c00e871a0613eba2ca7ef338a5e27af87cbbbd5d1907a84197baad",
+    "state_digest_after": "362731e85cfc34bc3af29b385895653a2b3fb45c34e9889e5958a822bd39c838",
+    "state_digest_before": "750cd5294d3d645e8354838f436a9fac1913bd9b53c7b6e3e6951ebacfafc411",
+    "synaptic_events_delivered": 177,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 177,
+    "tracking_rmse_rad": 0.47656130901625615
+  },
+  {
+    "condition": "closed_loop",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB002A-PROPRIOCEPTION-V3-20260920",
+    "final_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.00486165505607184,
+      "omega_rad_s": -0.7987077191493179,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.23007739425455911,
+      "saturation_count": 19
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "528935435cc964c17c6d9c23b8312230d86a757e95bcb0baaf0e91a650b7c2a2",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": 0.0157536267497225,
+      "saturation_count": 0
+    },
+    "runtime_error": null,
+    "seed": 920019,
+    "sensor_tape_sha256": "1de0b65e4cb15cdb0ea62bf0d4f6f18d770a777cc0e1db5851838b49a07c40e4",
+    "state_digest_after": "1edd402a14f211c72be84fb231995b06ecd652b199ffce4560dbd80066ded329",
+    "state_digest_before": "0d6498de8bf675ffec27e7d786ebdd9c03df0748034281bda1b0fc29511d84a0",
+    "synaptic_events_delivered": 57,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 57,
+    "tracking_rmse_rad": 0.15294950301510027
+  },
+  {
+    "condition": "delayed_proprioception",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB002A-PROPRIOCEPTION-V3-20260920",
+    "final_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.00542289419249011,
+      "omega_rad_s": -3.4543512921973284e-05,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.24841456970087228,
+      "saturation_count": 32
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "528935435cc964c17c6d9c23b8312230d86a757e95bcb0baaf0e91a650b7c2a2",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": 0.0157536267497225,
+      "saturation_count": 0
+    },
+    "runtime_error": null,
+    "seed": 920019,
+    "sensor_tape_sha256": "3416fd21db3af62844efc3fc413d2de601ad004e9706d5c82de197a16a1313b9",
+    "state_digest_after": "382f8ace6d6a7753a51b1b897286f67639bf63cbd45e58f947e580bdfd09491c",
+    "state_digest_before": "0d6498de8bf675ffec27e7d786ebdd9c03df0748034281bda1b0fc29511d84a0",
+    "synaptic_events_delivered": 45,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 45,
+    "tracking_rmse_rad": 0.1551175078536414
+  },
+  {
+    "condition": "feedback_absent",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB002A-PROPRIOCEPTION-V3-20260920",
+    "final_body_state": {
+      "contact_count": 266,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.012768652942096323,
+      "omega_rad_s": -3.1186859804529083,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.597634670081505,
+      "saturation_count": 0
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "528935435cc964c17c6d9c23b8312230d86a757e95bcb0baaf0e91a650b7c2a2",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": 0.0157536267497225,
+      "saturation_count": 0
+    },
+    "runtime_error": null,
+    "seed": 920019,
+    "sensor_tape_sha256": "0f289dc104ce14780e5756d79616a1bb071f4dca9d3cc0ae0e179afd1d50b154",
+    "state_digest_after": "d4e027409dafa3a5ff2549796e949221b7f3aa6bad5a392b15117dfe8253955a",
+    "state_digest_before": "0d6498de8bf675ffec27e7d786ebdd9c03df0748034281bda1b0fc29511d84a0",
+    "synaptic_events_delivered": 120,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 120,
+    "tracking_rmse_rad": 0.47718808995148504
+  },
+  {
+    "condition": "timing_shuffle",
+    "donor_tape_sha256": "1de0b65e4cb15cdb0ea62bf0d4f6f18d770a777cc0e1db5851838b49a07c40e4",
+    "experiment_id": "EXP-EMB002A-PROPRIOCEPTION-V3-20260920",
+    "final_body_state": {
+      "contact_count": 389,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.01906364272760733,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.75,
+      "saturation_count": 23
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "528935435cc964c17c6d9c23b8312230d86a757e95bcb0baaf0e91a650b7c2a2",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": 0.0157536267497225,
+      "saturation_count": 0
+    },
+    "runtime_error": null,
+    "seed": 920019,
+    "sensor_tape_sha256": "6642b5dd37dfdcfff455cc0e7a384bc7d59c931e1bcc2ff58858e970f27cc3d7",
+    "state_digest_after": "dac66debbe20cff5b5484da15ff46eecdc3969f6d04f7428bdc2a83a68b0a549",
+    "state_digest_before": "0d6498de8bf675ffec27e7d786ebdd9c03df0748034281bda1b0fc29511d84a0",
+    "synaptic_events_delivered": 180,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 180,
+    "tracking_rmse_rad": 0.4749737531181841
+  },
+  {
+    "condition": "closed_loop",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB002A-PROPRIOCEPTION-V3-20260920",
+    "final_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.00483273668933129,
+      "omega_rad_s": -0.6135113127165526,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.23153610325060503,
+      "saturation_count": 20
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "c02f132802cf1eb5f4468c20e091b1a7ea9e1dfffc2d85ae6b32f598328bcfb1",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": 0.020625991934424118,
+      "saturation_count": 0
+    },
+    "runtime_error": null,
+    "seed": 920020,
+    "sensor_tape_sha256": "ac2d7937b422068585376b1cab4279c805184e840bdb72ca0367cbfa5bdec0df",
+    "state_digest_after": "1a706bb6b19980c40174c6995dc0551988fea56e49652fe357aa120612151914",
+    "state_digest_before": "e20d97a926764a480c2586b77a3dcfdb75c3d0d2990366b37ef078e6ac26c137",
+    "synaptic_events_delivered": 57,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 57,
+    "tracking_rmse_rad": 0.15372249405642777
+  },
+  {
+    "condition": "delayed_proprioception",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB002A-PROPRIOCEPTION-V3-20260920",
+    "final_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.005426939475219285,
+      "omega_rad_s": -5.339585007050361e-05,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.2571653821750339,
+      "saturation_count": 29
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "c02f132802cf1eb5f4468c20e091b1a7ea9e1dfffc2d85ae6b32f598328bcfb1",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": 0.020625991934424118,
+      "saturation_count": 0
+    },
+    "runtime_error": null,
+    "seed": 920020,
+    "sensor_tape_sha256": "ae30d83fffae588f8ecf076678a49031805aea0939cf24c81a1c9b129dbeda40",
+    "state_digest_after": "5372ff68b3483f80ddcf5e1b1740fe60db139a4c3ac6feed06235565ab65a3fa",
+    "state_digest_before": "e20d97a926764a480c2586b77a3dcfdb75c3d0d2990366b37ef078e6ac26c137",
+    "synaptic_events_delivered": 45,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 45,
+    "tracking_rmse_rad": 0.15326273247051386
+  },
+  {
+    "condition": "feedback_absent",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB002A-PROPRIOCEPTION-V3-20260920",
+    "final_body_state": {
+      "contact_count": 268,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.0127297010499073,
+      "omega_rad_s": -3.1186859804529083,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.597634670081505,
+      "saturation_count": 0
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "c02f132802cf1eb5f4468c20e091b1a7ea9e1dfffc2d85ae6b32f598328bcfb1",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": 0.020625991934424118,
+      "saturation_count": 0
+    },
+    "runtime_error": null,
+    "seed": 920020,
+    "sensor_tape_sha256": "76f42b2884bea031a97e1a7100127920375400ebbdfb39cee1b69d9ba1151adf",
+    "state_digest_after": "894b5a8ff7dece2cde28f2231af2935f68d0827bbdd5e75d6aa93fb287a53a21",
+    "state_digest_before": "e20d97a926764a480c2586b77a3dcfdb75c3d0d2990366b37ef078e6ac26c137",
+    "synaptic_events_delivered": 120,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 120,
+    "tracking_rmse_rad": 0.4775038640977343
+  },
+  {
+    "condition": "timing_shuffle",
+    "donor_tape_sha256": "ac2d7937b422068585376b1cab4279c805184e840bdb72ca0367cbfa5bdec0df",
+    "experiment_id": "EXP-EMB002A-PROPRIOCEPTION-V3-20260920",
+    "final_body_state": {
+      "contact_count": 403,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.019146526144594805,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.75,
+      "saturation_count": 19
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "c02f132802cf1eb5f4468c20e091b1a7ea9e1dfffc2d85ae6b32f598328bcfb1",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": 0.020625991934424118,
+      "saturation_count": 0
+    },
+    "runtime_error": null,
+    "seed": 920020,
+    "sensor_tape_sha256": "2b71ed0aecdb2f3ef46dec9a831cdcef120aa6cf5530201b28c9be37cbeca23b",
+    "state_digest_after": "6e9e86603e8117894079914faed40062e6ac4cb09a81a624bce6d500bad592c4",
+    "state_digest_before": "e20d97a926764a480c2586b77a3dcfdb75c3d0d2990366b37ef078e6ac26c137",
+    "synaptic_events_delivered": 180,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 180,
+    "tracking_rmse_rad": 0.4780696589260137
+  }
+]

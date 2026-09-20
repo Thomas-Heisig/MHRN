@@ -1,0 +1,279 @@
+{
+  "analysis_mode": "prospective_direct_descriptive",
+  "claim_boundary": "Prospective direct synthetic DATA for H-EMB-002-A in the fixed six-neuron joint fixture, using a fresh H-EMB-002-A seed set after the decision rule was frozen. This does not establish biological proprioception, learned body schema, real-device transfer, autonomy, consciousness, independent replication, or scientific EVID. Human Review remains required.",
+  "confirmatory_thresholds_applied": false,
+  "experiment_id": "EXP-EMB002A-PROPRIOCEPTION-V3-20260920",
+  "integrity": {
+    "checks": {
+      "all_seed_pairing_checks": true,
+      "all_ticks_complete": true,
+      "clean_source_freeze": true,
+      "coverage": true,
+      "run_count": true,
+      "runtime_errors_absent": true
+    },
+    "pass": true,
+    "per_seed": {
+      "920001": {
+        "feedback_absent_observation_is_zero": true,
+        "same_graph_fingerprint": true,
+        "same_initial_body_state": true,
+        "same_initial_neural_state": true,
+        "timing_shuffle_uses_same_seed_closed_loop_donor": true
+      },
+      "920002": {
+        "feedback_absent_observation_is_zero": true,
+        "same_graph_fingerprint": true,
+        "same_initial_body_state": true,
+        "same_initial_neural_state": true,
+        "timing_shuffle_uses_same_seed_closed_loop_donor": true
+      },
+      "920003": {
+        "feedback_absent_observation_is_zero": true,
+        "same_graph_fingerprint": true,
+        "same_initial_body_state": true,
+        "same_initial_neural_state": true,
+        "timing_shuffle_uses_same_seed_closed_loop_donor": true
+      },
+      "920004": {
+        "feedback_absent_observation_is_zero": true,
+        "same_graph_fingerprint": true,
+        "same_initial_body_state": true,
+        "same_initial_neural_state": true,
+        "timing_shuffle_uses_same_seed_closed_loop_donor": true
+      },
+      "920005": {
+        "feedback_absent_observation_is_zero": true,
+        "same_graph_fingerprint": true,
+        "same_initial_body_state": true,
+        "same_initial_neural_state": true,
+        "timing_shuffle_uses_same_seed_closed_loop_donor": true
+      },
+      "920006": {
+        "feedback_absent_observation_is_zero": true,
+        "same_graph_fingerprint": true,
+        "same_initial_body_state": true,
+        "same_initial_neural_state": true,
+        "timing_shuffle_uses_same_seed_closed_loop_donor": true
+      },
+      "920007": {
+        "feedback_absent_observation_is_zero": true,
+        "same_graph_fingerprint": true,
+        "same_initial_body_state": true,
+        "same_initial_neural_state": true,
+        "timing_shuffle_uses_same_seed_closed_loop_donor": true
+      },
+      "920008": {
+        "feedback_absent_observation_is_zero": true,
+        "same_graph_fingerprint": true,
+        "same_initial_body_state": true,
+        "same_initial_neural_state": true,
+        "timing_shuffle_uses_same_seed_closed_loop_donor": true
+      },
+      "920009": {
+        "feedback_absent_observation_is_zero": true,
+        "same_graph_fingerprint": true,
+        "same_initial_body_state": true,
+        "same_initial_neural_state": true,
+        "timing_shuffle_uses_same_seed_closed_loop_donor": true
+      },
+      "920010": {
+        "feedback_absent_observation_is_zero": true,
+        "same_graph_fingerprint": true,
+        "same_initial_body_state": true,
+        "same_initial_neural_state": true,
+        "timing_shuffle_uses_same_seed_closed_loop_donor": true
+      },
+      "920011": {
+        "feedback_absent_observation_is_zero": true,
+        "same_graph_fingerprint": true,
+        "same_initial_body_state": true,
+        "same_initial_neural_state": true,
+        "timing_shuffle_uses_same_seed_closed_loop_donor": true
+      },
+      "920012": {
+        "feedback_absent_observation_is_zero": true,
+        "same_graph_fingerprint": true,
+        "same_initial_body_state": true,
+        "same_initial_neural_state": true,
+        "timing_shuffle_uses_same_seed_closed_loop_donor": true
+      },
+      "920013": {
+        "feedback_absent_observation_is_zero": true,
+        "same_graph_fingerprint": true,
+        "same_initial_body_state": true,
+        "same_initial_neural_state": true,
+        "timing_shuffle_uses_same_seed_closed_loop_donor": true
+      },
+      "920014": {
+        "feedback_absent_observation_is_zero": true,
+        "same_graph_fingerprint": true,
+        "same_initial_body_state": true,
+        "same_initial_neural_state": true,
+        "timing_shuffle_uses_same_seed_closed_loop_donor": true
+      },
+      "920015": {
+        "feedback_absent_observation_is_zero": true,
+        "same_graph_fingerprint": true,
+        "same_initial_body_state": true,
+        "same_initial_neural_state": true,
+        "timing_shuffle_uses_same_seed_closed_loop_donor": true
+      },
+      "920016": {
+        "feedback_absent_observation_is_zero": true,
+        "same_graph_fingerprint": true,
+        "same_initial_body_state": true,
+        "same_initial_neural_state": true,
+        "timing_shuffle_uses_same_seed_closed_loop_donor": true
+      },
+      "920017": {
+        "feedback_absent_observation_is_zero": true,
+        "same_graph_fingerprint": true,
+        "same_initial_body_state": true,
+        "same_initial_neural_state": true,
+        "timing_shuffle_uses_same_seed_closed_loop_donor": true
+      },
+      "920018": {
+        "feedback_absent_observation_is_zero": true,
+        "same_graph_fingerprint": true,
+        "same_initial_body_state": true,
+        "same_initial_neural_state": true,
+        "timing_shuffle_uses_same_seed_closed_loop_donor": true
+      },
+      "920019": {
+        "feedback_absent_observation_is_zero": true,
+        "same_graph_fingerprint": true,
+        "same_initial_body_state": true,
+        "same_initial_neural_state": true,
+        "timing_shuffle_uses_same_seed_closed_loop_donor": true
+      },
+      "920020": {
+        "feedback_absent_observation_is_zero": true,
+        "same_graph_fingerprint": true,
+        "same_initial_body_state": true,
+        "same_initial_neural_state": true,
+        "timing_shuffle_uses_same_seed_closed_loop_donor": true
+      }
+    }
+  },
+  "mean_tracking_rmse_rad": {
+    "closed_loop": 0.15873062917251946,
+    "delayed_proprioception": 0.1585677903954817,
+    "feedback_absent": 0.4767010691953226,
+    "timing_shuffle": 0.47470998211504956
+  },
+  "p_values_computed": false,
+  "paired_comparisons": [
+    {
+      "confirmatory_threshold_applied": false,
+      "control": "delayed_proprioception",
+      "differences_control_minus_closed_loop": [
+        0.0025389445488664397,
+        -0.003868847034071754,
+        0.006112065869988997,
+        -0.004832285866997965,
+        -0.0014323136630662037,
+        -0.0018220288214034763,
+        -0.0012390828771845774,
+        -0.00262154298135156,
+        0.006265780369268142,
+        0.0035576340714085497,
+        -0.005072103183939358,
+        -0.0003331926312200584,
+        0.002571912032239221,
+        0.0033575884831382463,
+        -0.0017547983444356208,
+        -0.0007906944796921,
+        -0.002631350672923194,
+        -0.00297070361200627,
+        0.0021680048385411266,
+        -0.0004597615859139037
+      ],
+      "fraction_closed_loop_lower": 0.35,
+      "maximum_difference": 0.006265780369268142,
+      "mean_difference": -0.00016283877703776595,
+      "median_difference": -0.0010148886784383387,
+      "metric": "tracking_rmse_rad",
+      "minimum_difference": -0.005072103183939358,
+      "n_paired_seeds": 20,
+      "p_value": null,
+      "reference": "closed_loop",
+      "ties": 0
+    },
+    {
+      "confirmatory_threshold_applied": false,
+      "control": "feedback_absent",
+      "differences_control_minus_closed_loop": [
+        0.3206375904868327,
+        0.3113315327127382,
+        0.3205596404767508,
+        0.3193225623271849,
+        0.3225687609502599,
+        0.3217523905709755,
+        0.31324559217789383,
+        0.3211394381643984,
+        0.3182840893345308,
+        0.31805540480632555,
+        0.31284351448486264,
+        0.31925077208212677,
+        0.31449907369515295,
+        0.31888725037721,
+        0.3130483749328386,
+        0.3239595161307862,
+        0.31030444390158984,
+        0.31169889586591526,
+        0.32423858693638474,
+        0.3237813700413066
+      ],
+      "fraction_closed_loop_lower": 1.0,
+      "maximum_difference": 0.32423858693638474,
+      "mean_difference": 0.3179704400228032,
+      "median_difference": 0.31906901122966835,
+      "metric": "tracking_rmse_rad",
+      "minimum_difference": 0.31030444390158984,
+      "n_paired_seeds": 20,
+      "p_value": null,
+      "reference": "closed_loop",
+      "ties": 0
+    },
+    {
+      "confirmatory_threshold_applied": false,
+      "control": "timing_shuffle",
+      "differences_control_minus_closed_loop": [
+        0.3176243276018228,
+        0.3125807488638694,
+        0.322714647149259,
+        0.3116881131709038,
+        0.3240160016308783,
+        0.3126811606844815,
+        0.32891662299459423,
+        0.32185117980151434,
+        0.3135823119107466,
+        0.3084961822507707,
+        0.303160673522915,
+        0.32126262793290167,
+        0.30828286450888664,
+        0.3180257626412253,
+        0.3021008587279562,
+        0.32313103113961544,
+        0.30951966178791734,
+        0.3135808675576739,
+        0.3220242501030839,
+        0.3243471648695859
+      ],
+      "fraction_closed_loop_lower": 1.0,
+      "maximum_difference": 0.32891662299459423,
+      "mean_difference": 0.3159793529425301,
+      "median_difference": 0.3156033197562847,
+      "metric": "tracking_rmse_rad",
+      "minimum_difference": 0.3021008587279562,
+      "n_paired_seeds": 20,
+      "p_value": null,
+      "reference": "closed_loop",
+      "ties": 0
+    }
+  ],
+  "primary_data_support_rule_satisfied": false,
+  "result_status": "NOT_SUPPORTED_WITHIN_PREREGISTERED_DATA_RULE",
+  "schema_version": 1
+}

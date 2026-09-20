@@ -1,0 +1,19 @@
+{
+  "ai_review_does_not_satisfy_human_gate": true,
+  "automatic_evidence_promotion": false,
+  "experiment_id": "EXP-EMB002A-PROPRIOCEPTION-V3-20260920",
+  "human_review_status": "PENDING",
+  "hypothesis": "H-EMB-002-A",
+  "questions": [
+    "Was the 20-tick proprioceptive delay applied exactly as preregistered?",
+    "Were all four arms paired on the same initial neural/body state per seed?",
+    "Does the timing-shuffle arm use only the same-seed intact donor tape?",
+    "Do both primary contrasts satisfy the preregistered DATA-only support rule?",
+    "Is interpretation limited to the fixed synthetic six-neuron fixture?"
+  ],
+  "research_question": "RQ-EMB-002",
+  "result_status": "NOT_SUPPORTED_WITHIN_PREREGISTERED_DATA_RULE",
+  "reviewer_type_required": "human",
+  "schema_version": 1,
+  "scientific_evidence": false
+}

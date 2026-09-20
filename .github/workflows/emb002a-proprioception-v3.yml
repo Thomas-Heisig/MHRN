@@ -1,3 +1,4 @@
+# Persistence replay for missing experiment/review artifacts; scientific contract unchanged.
 name: EMB-002-A proprioception direct V3
 
 on:
@@ -56,12 +57,16 @@ jobs:
           python -m black \
             scripts/run_emb002a_proprioception_v3.py \
             scripts/verify_emb002a_proprioception_v3.py \
+            scripts/run_emb001b_temporal_v3.py \
+            scripts/verify_emb001b_temporal_v3.py \
             src/dashboard/server.py \
             tests/test_bilingual_science_ui.py \
             tests/test_experiment_lab_workspace.py
           git add \
             scripts/run_emb002a_proprioception_v3.py \
             scripts/verify_emb002a_proprioception_v3.py \
+            scripts/run_emb001b_temporal_v3.py \
+            scripts/verify_emb001b_temporal_v3.py \
             src/dashboard/server.py \
             tests/test_bilingual_science_ui.py \
             tests/test_experiment_lab_workspace.py
