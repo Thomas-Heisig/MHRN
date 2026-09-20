@@ -79,9 +79,13 @@
       "name": "Zenodo",
       "role": "doi_archive",
       "status": "ACTIVE",
-      "url": "https://zenodo.org/",
+      "url": "https://zenodo.org/badge/latestdoi/1335973891",
       "connection_authorized_on": "2026-09-19",
-      "note": "ORCID-linked external account access is authorized; repository/archive verification remains separate."
+      "note": "GitHub release v0.6.0-alpha.6 is published. The dynamic badge/latestdoi route is canonical until the concrete DOI is publicly resolvable and then recorded back into repository metadata.",
+      "badge_url": "https://zenodo.org/badge/1335973891.svg",
+      "github_repository_id": 1335973891,
+      "release": "v0.6.0-alpha.6",
+      "archive_status": "awaiting_public_doi_resolution"
     },
     {
       "name": "DataCite",
