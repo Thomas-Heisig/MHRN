@@ -16,6 +16,9 @@ for (const port of [4174, 4175]) {
     await expect(viewer).toBeVisible();
     await expect(viewer).toHaveAttribute('data-render-state', 'ready');
     await expect(viewer).toContainText('Edition 1.8');
+    await expect(viewer).toContainText('MHRN Research Software Paper');
+    await expect(viewer).toContainText('Topology & Propagation Dynamics');
+    await expect(viewer).toContainText('Recursive Epistemics Methods Paper');
 
     const currentApiResponse = await page.request.get(`http://127.0.0.1:${port}/api/publication/current`);
     const currentApiText = await currentApiResponse.text();
