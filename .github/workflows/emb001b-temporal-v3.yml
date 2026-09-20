@@ -9,6 +9,8 @@ on:
       - scripts/run_emb001b_temporal_v3.py
       - scripts/verify_emb001b_temporal_v3.py
       - research/preregistrations/PREREG-EMB001B-TEMPORAL-V3.json
+      - tests/test_bilingual_science_ui.py
+      - tests/test_dashboard_ui_integration.py
       - src/dashboard/release_timeline.py
       - tests/test_release_registry.py
       - .github/workflows/emb001b-temporal-v3.yml
