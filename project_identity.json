@@ -38,10 +38,10 @@
     "github_repository_id": 1335973891,
     "github_requested": "Thomas-Heisig/MHRN",
     "github_legacy": "Thomas-Heisig/Brain-5D",
-    "huggingface_namespace": "superdigger",
-    "huggingface_model_requested": "superdigger/MHRN",
+    "huggingface_namespace": "ThomasHeisig",
+    "huggingface_model_requested": "ThomasHeisig/MHRN",
     "huggingface_model_legacy": "superdigger/Brain-5D",
-    "huggingface_space_requested": "superdigger/MHRN",
+    "huggingface_space_requested": "ThomasHeisig/MHRN-Space",
     "huggingface_space_legacy": "superdigger/Brain-5D-Space",
     "zenodo": {
       "integration": "github_release_archive",

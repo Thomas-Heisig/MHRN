@@ -26,7 +26,7 @@ jobs:
     timeout-minutes: 45
     env:
       HF_TOKEN: ${{ secrets.HF_TOKEN }}
-      HF_USERNAME: superdigger
+      HF_USERNAME: ThomasHeisig
       HF_REPO: MHRN
       HF_SPACE_REPO: MHRN-Space
       HF_DATASET_REPO: MHRN-Research-Data
@@ -105,7 +105,15 @@ jobs:
               ".mypy_cache", ".ruff_cache",
           }
 
-          def ignored(rel: Path) -> bool:
+          def is_lfs_pointer(src: Path) -> bool:
+              try:
+                  with src.open("rb") as fh:
+                      head = fh.read(160)
+              except OSError:
+                  return False
+              return head.startswith(b"version https://git-lfs.github.com/spec/v1")
+
+          def ignored(rel: Path, src: Path) -> bool:
               parts = rel.parts
               if not parts:
                   return False
@@ -118,6 +126,8 @@ jobs:
                   return True
               if s.startswith("research/publications/archives/"):
                   return True
+              if is_lfs_pointer(src):
+                  return True
               return False
 
           def copy_tree(dst: Path, *, research_only: bool = False) -> None:
@@ -126,7 +136,7 @@ jobs:
                   if not src.is_file():
                       continue
                   rel = src.relative_to(root)
-                  if ignored(rel):
+                  if ignored(rel, src):
                       continue
                   if src.is_symlink():
                       continue
@@ -194,9 +204,9 @@ jobs:
             echo
             echo "Status: **SYNCED**"
             echo
-            echo "- Source: https://huggingface.co/superdigger/MHRN"
-            echo "- Space: https://huggingface.co/spaces/superdigger/MHRN-Space"
-            echo "- Research data: https://huggingface.co/datasets/superdigger/MHRN-Research-Data"
+            echo "- Source: https://huggingface.co/ThomasHeisig/MHRN"
+            echo "- Space: https://huggingface.co/spaces/ThomasHeisig/MHRN-Space"
+            echo "- Research data: https://huggingface.co/datasets/ThomasHeisig/MHRN-Research-Data"
             echo "- Canonical GitHub SHA: `${GITHUB_SHA}`"
             echo "- Rolling mirrors exclude raw experiment DATA blobs; citable raw DATA remains in canonical/DOI archives."
           } >> "$GITHUB_STEP_SUMMARY"
