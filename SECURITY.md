@@ -3,7 +3,7 @@
 ## Project status
 
 MHRN is an experimental research and engineering project. The current
-development line is `0.5.x`; it is not presented as a hardened internet-facing
+development line is `0.6.x`; it is not presented as a hardened internet-facing
 service.
 
 Security fixes are prioritized for the current development line. Historical
@@ -11,8 +11,8 @@ pre-0.5 versions are not actively maintained.
 
 | Version line | Status |
 | --- | --- |
-| 0.5.x | Current development line |
-| < 0.5 | Not actively supported |
+| 0.6.x | Current development line |
+| < 0.6 | Not actively supported |
 
 ## Reporting a vulnerability
 
@@ -68,3 +68,22 @@ For editable development installs:
 ```
 
 Review dependency changes before merging them.
+
+
+## Repository integrity
+
+The canonical `main` branch and published release tags are part of MHRN's
+scientific provenance. They must not be force-pushed, rewritten, or deleted as
+part of normal development.
+
+The intended protected workflow is:
+
+```text
+branch -> pull request -> required CI -> merge -> main
+```
+
+Direct pushes to `main` are deprecated. Release tags matching `v*` are
+intended to be immutable after publication.
+
+The repository protection baseline and required GitHub settings are documented
+in [docs/05-quality/GITHUB_REPOSITORY_SECURITY.md](docs/05-quality/GITHUB_REPOSITORY_SECURITY.md).
