@@ -545,3 +545,101 @@
   color: var(--pub-accent);
   text-transform: uppercase;
 }
+
+
+/* Open-science portal directory: persistent across Publication subviews. */
+#tab-publication .publication-network-links {
+  display: grid;
+  gap: 12px;
+  width: 100%;
+  margin: 0 0 14px;
+  padding: 14px;
+  border: 1px solid var(--rule, #d9dee7);
+  border-radius: 12px;
+  background: var(--paper-2, #fff);
+}
+
+#tab-publication .publication-network-links__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+#tab-publication .publication-network-links__head h3 {
+  margin: 2px 0 4px;
+  font-size: 1rem;
+}
+
+#tab-publication .publication-network-links__head p {
+  max-width: 900px;
+  margin: 0;
+  color: var(--ink-3, #667085);
+  font-size: .76rem;
+  line-height: 1.45;
+}
+
+#tab-publication .publication-network-links__identity {
+  flex: 0 0 auto;
+  padding: 6px 9px;
+  border: 1px solid var(--rule, #d9dee7);
+  border-radius: 999px;
+  color: var(--ink-2, #344054);
+  font-size: .7rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+#tab-publication .publication-network-links__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(185px, 1fr));
+  gap: 7px;
+}
+
+#tab-publication .publication-network-links__grid a {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+  padding: 9px 10px;
+  border: 1px solid var(--rule, #d9dee7);
+  border-radius: 9px;
+  color: inherit;
+  background: color-mix(in srgb, var(--paper-2, #fff) 88%, var(--paper-3, #f6f7f9));
+  text-decoration: none;
+}
+
+#tab-publication .publication-network-links__grid a:hover,
+#tab-publication .publication-network-links__grid a:focus-visible {
+  border-color: var(--accent, #275df5);
+  outline: none;
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent, #275df5) 16%, transparent);
+}
+
+#tab-publication .publication-network-links__grid strong {
+  overflow: hidden;
+  font-size: .76rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#tab-publication .publication-network-links__grid span {
+  overflow: hidden;
+  color: var(--ink-3, #667085);
+  font-size: .66rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@media (max-width: 760px) {
+  #tab-publication .publication-network-links__head {
+    display: grid;
+  }
+
+  #tab-publication .publication-network-links__identity {
+    justify-self: start;
+  }
+
+  #tab-publication .publication-network-links__grid {
+    grid-template-columns: repeat(auto-fit, minmax(155px, 1fr));
+  }
+}
