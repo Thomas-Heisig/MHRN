@@ -61,6 +61,17 @@ export class ExperimentWorkflowPanel extends BaseExperimentWorkflowPanel {
         <label class="research-catalog-check"><input id="workflow-research-operational" type="checkbox"> nur operational</label>
       </div>
       <div id="workflow-research-results" class="research-catalog-results" role="listbox" aria-label="Forschungsfragen"></div>
+      <section id="workflow-research-detail" class="research-rq-detailbox" hidden aria-live="polite" aria-labelledby="workflow-research-detail-title">
+        <div class="research-rq-detail-head">
+          <div><span class="workspace-kicker">DETAILANSICHT</span><h4 id="workflow-research-detail-title">Forschungsfrage</h4></div>
+          <button id="workflow-research-detail-close" type="button" class="icon-btn" aria-label="Detailansicht schließen" title="Detailansicht schließen">×</button>
+        </div>
+        <div id="workflow-research-detail-content" class="research-rq-detail-content"></div>
+        <div class="research-rq-detail-actions">
+          <small id="workflow-research-detail-note">Die Übergabe befüllt den kontrollierten Workflow; sie startet keinen Lauf automatisch.</small>
+          <button id="workflow-research-detail-use" type="button" class="btn-primary">Zur Ausführung übernehmen</button>
+        </div>
+      </section>
       <section id="workflow-review-inbox" class="research-review-inbox" aria-label="Offene Human Reviews">
         <div class="research-review-head"><strong>Review Inbox</strong><span id="workflow-review-count" class="gate-badge pending">lädt …</span></div>
         <p>Offene Human Reviews können hier nachvollziehbar abgeschlossen werden. Reviewer, Entscheidung und Kommentar sind Pflicht; ein Review erzeugt niemals automatisch wissenschaftliche Evidenz.</p>
@@ -118,14 +129,8 @@ export class ExperimentWorkflowPanel extends BaseExperimentWorkflowPanel {
       .research-catalog-controls{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:10px 0}
       .research-catalog-controls input[type=search]{flex:1 1 320px;min-width:220px}
       .research-catalog-check{display:flex!important;gap:7px;align-items:center!important;white-space:nowrap}
-      .research-catalog-results{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:8px;max-height:330px;overflow:auto;padding:2px}
-      .research-rq-card{appearance:none;text-align:left;border:1px solid var(--border-color,#30363d);border-radius:9px;padding:10px;background:transparent;color:inherit;cursor:pointer}
-      .research-rq-card:hover,.research-rq-card.is-selected{border-color:var(--accent,#58a6ff);background:rgba(88,166,255,.08)}
-      .research-rq-head{display:flex;gap:8px;justify-content:space-between;align-items:center;margin-bottom:6px}
-      .research-rq-card p{margin:0;font-size:.88rem;line-height:1.35}
       .research-rq-badge{font-size:.72rem;padding:2px 6px;border-radius:999px;border:1px solid currentColor;white-space:nowrap}
       .research-rq-badge.operational{color:#3fb950}.research-rq-badge.exploratory{color:#d29922}
-      .research-rq-foot{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:8px;color:var(--ink-3,#8b949e);font-size:.75rem}
       .experiment-run-summary{display:inline-flex;align-items:center;gap:5px;white-space:nowrap;font-family:var(--font-mono,monospace);font-size:.68rem}
       .experiment-run-summary small{opacity:.75;font-family:inherit}
       .experiment-run-status{font-weight:800;white-space:nowrap}.experiment-run-status.is-complete{color:#3fb950}.experiment-run-status.is-failed{color:#f85149}.experiment-run-status.is-running{color:#d29922}.experiment-run-status.is-empty{color:var(--ink-4,#6e7681)}
@@ -148,6 +153,8 @@ export class ExperimentWorkflowPanel extends BaseExperimentWorkflowPanel {
 
     byId("workflow-research-search")?.addEventListener("input", () => this._renderResearchCatalog());
     byId("workflow-research-operational")?.addEventListener("change", () => this._renderResearchCatalog());
+    byId("workflow-research-detail-close")?.addEventListener("click", () => this._closeResearchQuestionDetail());
+    byId("workflow-research-detail-use")?.addEventListener("click", () => this._prepareResearchQuestionForExecution(this.researchDetailQuestionId));
     byId("workflow-review-refresh")?.addEventListener("click", () => this._loadReviewInbox());
     byId("workflow-review-list")?.addEventListener("click", (event) => this._handleReviewAction(event));
     byId("workflow-gateway-activate")?.addEventListener("click", () => this._activateGateway());
@@ -334,6 +341,7 @@ export class ExperimentWorkflowPanel extends BaseExperimentWorkflowPanel {
     const search = (byId("workflow-research-search")?.value || "").trim().toLowerCase();
     const operationalOnly = Boolean(byId("workflow-research-operational")?.checked);
     const selected = this.elements.question?.value || "";
+    const detailOpen = this.researchDetailQuestionId || "";
     const facets = [...document.querySelectorAll("[data-catalog-facet]")];
     for (const select of facets) {
       const value = select.value;
@@ -360,16 +368,200 @@ export class ExperimentWorkflowPanel extends BaseExperimentWorkflowPanel {
       .map((question) => {
         const operational = this._isOperational(question.id);
         const hypotheses = this._matchingHypotheses(question.id);
-        return `<button type="button" class="research-rq-card ${selected === question.id ? "is-selected" : ""}" data-rq-id="${escapeHtml(question.id)}" role="option" aria-selected="${selected === question.id}">
-          <div class="research-rq-head"><strong>${escapeHtml(question.id)}</strong><span class="research-rq-badge ${operational ? "operational" : "exploratory"}">${operational ? "OPERATIONAL" : "EXPLORATORY"}</span></div>
-          <p>${escapeHtml(question.label)}</p>
-          <div class="research-rq-foot"><small>${hypotheses.length} Hypothese${hypotheses.length === 1 ? "" : "n"}</small>${renderRunStatus(question.experiment_counts)}</div>
+        const expanded = detailOpen === question.id;
+        const hypothesisRows = hypotheses.length
+          ? `<ul class="research-rq-hypothesis-list">${hypotheses.map((item) => `<li><strong>${escapeHtml(item.id)}</strong><span>${escapeHtml(item.label)}</span></li>`).join("")}</ul>`
+          : '<span class="research-rq-empty">Keine Hypothese im Katalog verknüpft.</span>';
+        return `<button type="button" class="research-rq-card ${selected === question.id ? "is-selected" : ""} ${expanded ? "is-detail-open" : ""}" data-rq-id="${escapeHtml(question.id)}" role="option" aria-selected="${selected === question.id}" aria-expanded="${expanded}" aria-controls="workflow-research-detail">
+          <span class="research-rq-head">
+            <span class="research-rq-identity"><strong>${escapeHtml(question.id)}</strong><small>${escapeHtml(question.status || "status unbekannt")}</small></span>
+            <span class="research-rq-badge ${operational ? "operational" : "exploratory"}">${operational ? "OPERATIONAL" : "EXPLORATORY"}</span>
+          </span>
+          <span class="research-rq-question">${escapeHtml(question.label)}</span>
+          <span class="research-rq-facts">
+            <span><small>Domain</small><strong>${escapeHtml(question.domain || "—")}</strong></span>
+            <span><small>Evidenz</small><strong>${escapeHtml(question.evidence_status || "none")}</strong></span>
+            <span><small>Fortschritt</small><strong>${escapeHtml(question.experiment_progress || "not_run")}</strong></span>
+            <span><small>Ausführung</small><strong>${escapeHtml(question.execution_status || (operational ? "Research Contract" : "exploratory"))}</strong></span>
+          </span>
+          <span class="research-rq-hypothesis-block"><small>Hypothesen</small>${hypothesisRows}</span>
+          <span class="research-rq-foot"><span>${renderRunStatus(question.experiment_counts)}</span><strong>Details öffnen →</strong></span>
         </button>`;
       })
       .join("");
     results.querySelectorAll("[data-rq-id]").forEach((button) => {
-      button.addEventListener("click", () => this._selectResearchQuestion(button.dataset.rqId));
+      button.addEventListener("click", () => this._openResearchQuestionDetail(button.dataset.rqId));
     });
+  }
+
+  _researchQuestionProtocols(questionId) {
+    return this.protocols.filter((item) => item.research_question === questionId);
+  }
+
+  _detailValue(value) {
+    if (value == null || value === "") return "—";
+    if (Array.isArray(value)) return value.length ? value.join(", ") : "—";
+    if (typeof value === "object") return JSON.stringify(value);
+    return String(value);
+  }
+
+  async _openResearchQuestionDetail(questionId) {
+    const question = this.questions.find((item) => item.id === questionId);
+    const detail = byId("workflow-research-detail");
+    const content = byId("workflow-research-detail-content");
+    const title = byId("workflow-research-detail-title");
+    const useButton = byId("workflow-research-detail-use");
+    const note = byId("workflow-research-detail-note");
+    if (!question || !detail || !content) return;
+
+    this.researchDetailQuestionId = questionId;
+    const hypotheses = this._matchingHypotheses(questionId);
+    const protocols = this._researchQuestionProtocols(questionId);
+    const detailFields = [
+      ["Domain", question.domain],
+      ["Registry-Status", question.status],
+      ["Operational", question.operational === true ? "ja" : "nein"],
+      ["Workflow auswählbar", question.workflow_selectable === false ? "nein" : "ja"],
+      ["Ausführungsstatus", question.execution_status],
+      ["Evidenzstatus", question.evidence_status],
+      ["Evidenz-IDs", question.evidence_ids],
+      ["Versuchsfortschritt", question.experiment_progress],
+      ["Manifest-Scan", question.manifest_scan_complete === false ? "unvollständig" : "vollständig"],
+      ["Bewusstseinsinferenz", question.consciousness_inference],
+    ];
+    const protocolMarkup = protocols.length
+      ? protocols.map((protocol) => `<article class="research-rq-protocol">
+          <div><strong>${escapeHtml(protocol.id)}</strong><span>${escapeHtml(protocol.label || "")}</span></div>
+          <dl>
+            <div><dt>Preregistration</dt><dd>${escapeHtml(this._detailValue(protocol.preregistration))}</dd></div>
+            <div><dt>Hypothese</dt><dd>${escapeHtml(this._detailValue(protocol.hypothesis))}</dd></div>
+            <div><dt>Seeds</dt><dd>${escapeHtml(this._detailValue(protocol.default_seed_expression || protocol.minimum_independent_seeds))}</dd></div>
+            <div><dt>Ticks</dt><dd>${escapeHtml(this._detailValue(protocol.default_ticks))}</dd></div>
+          </dl>
+        </article>`).join("")
+      : '<p class="research-rq-empty">Kein eigener eingefrorener Research Contract verknüpft; eine explorative Übergabe bleibt an die bestehenden Workflow-Guards gebunden.</p>';
+    const rawContext = { question, hypotheses, protocols };
+
+    if (title) title.textContent = `${question.id} · ${question.label}`;
+    content.innerHTML = `
+      <section class="research-rq-detail-section">
+        <span class="workspace-kicker">FORSCHUNGSFRAGE</span>
+        <p class="research-rq-detail-question">${escapeHtml(question.label)}</p>
+      </section>
+      <dl class="research-rq-detail-grid">
+        ${detailFields.map(([label, value]) => `<div><dt>${escapeHtml(label)}</dt><dd>${escapeHtml(this._detailValue(value))}</dd></div>`).join("")}
+      </dl>
+      <section class="research-rq-detail-section">
+        <h5>Hypothesen</h5>
+        ${hypotheses.length ? `<div class="research-rq-detail-hypotheses">${hypotheses.map((item) => `<article><strong>${escapeHtml(item.id)}</strong><p>${escapeHtml(item.label)}</p></article>`).join("")}</div>` : '<p class="research-rq-empty">Keine Hypothese verknüpft.</p>'}
+      </section>
+      <section class="research-rq-detail-section">
+        <h5>Research Contracts / Protokolle</h5>
+        <div class="research-rq-protocols">${protocolMarkup}</div>
+      </section>
+      <section class="research-rq-detail-section">
+        <div class="research-rq-experiment-head"><h5>Gespeicherte Experimente zu dieser Forschungsfrage</h5><span>${renderRunStatus(question.experiment_counts)}</span></div>
+        <div id="workflow-rq-experiment-list" class="research-rq-experiment-list"><p class="research-rq-empty">Experimente werden geladen …</p></div>
+      </section>
+      <details class="research-rq-raw">
+        <summary>Vollständige Katalogdaten anzeigen</summary>
+        <pre>${escapeHtml(JSON.stringify(rawContext, null, 2))}</pre>
+      </details>`;
+
+    const blocked = question.workflow_selectable === false;
+    if (useButton) useButton.disabled = blocked;
+    if (note) note.textContent = blocked
+      ? "Diese Forschungsfrage ist durch den Registry-/Governance-Vertrag für die Ausführung gesperrt."
+      : "Übernimmt Forschungsfrage, Hypothese und den passenden Workflow. Es wird noch kein Lauf gestartet.";
+    detail.hidden = false;
+    document.querySelectorAll("[data-rq-id]").forEach((button) => {
+      const expanded = button.dataset.rqId === questionId;
+      button.classList.toggle("is-detail-open", expanded);
+      button.setAttribute("aria-expanded", String(expanded));
+    });
+    await this._loadResearchQuestionExperiments(questionId);
+    detail.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  }
+
+  async _loadResearchQuestionExperiments(questionId) {
+    const root = byId("workflow-rq-experiment-list");
+    if (!root) return;
+    const read = async (url) => {
+      const response = await fetch(url, { headers: { Accept: "application/json", "Cache-Control": "no-store" } });
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      return response.json();
+    };
+    try {
+      const [activePayload, archivedPayload] = await Promise.all([
+        read("/api/research/experiments"),
+        read("/api/research/experiments/archive"),
+      ]);
+      const active = Array.isArray(activePayload.experiments) ? activePayload.experiments.map((item) => ({ ...item, _archive_state: "aktiv" })) : [];
+      const archived = Array.isArray(archivedPayload.experiments) ? archivedPayload.experiments.filter((item) => item.archive_type !== "series").map((item) => ({ ...item, _archive_state: "archiviert" })) : [];
+      const matches = [...active, ...archived].filter((item) => {
+        const manifest = item.manifest && typeof item.manifest === "object" ? item.manifest : {};
+        const questions = Array.isArray(manifest.research_questions)
+          ? manifest.research_questions
+          : [manifest.research_question].filter(Boolean);
+        return questions.includes(questionId);
+      });
+      if (!matches.length) {
+        root.innerHTML = '<p class="research-rq-empty">Keine gespeicherten Einzelexperimente für diese Forschungsfrage gefunden.</p>';
+        return;
+      }
+      root.innerHTML = matches.map((item) => {
+        const manifest = item.manifest && typeof item.manifest === "object" ? item.manifest : {};
+        const experimentId = item.experiment_id || item.id || "Experiment";
+        const hypotheses = Array.isArray(manifest.hypotheses) ? manifest.hypotheses : [manifest.hypothesis].filter(Boolean);
+        return `<article class="research-rq-experiment">
+          <div class="research-rq-experiment-summary">
+            <div><strong>${escapeHtml(experimentId)}</strong><small>${escapeHtml(item._archive_state)}</small></div>
+            <span>${escapeHtml(manifest.experiment_status || item.status || "unknown")}</span>
+          </div>
+          <dl>
+            <div><dt>Hypothese</dt><dd>${escapeHtml(this._detailValue(hypotheses))}</dd></div>
+            <div><dt>Protokoll</dt><dd>${escapeHtml(this._detailValue(manifest.protocol || manifest.protocol_id))}</dd></div>
+            <div><dt>Seeds</dt><dd>${escapeHtml(this._detailValue(manifest.seeds))}</dd></div>
+            <div><dt>Ticks</dt><dd>${escapeHtml(this._detailValue(manifest.ticks || manifest.requested_ticks))}</dd></div>
+          </dl>
+          <details><summary>Vollständige Experimentdaten</summary><pre>${escapeHtml(JSON.stringify(item, null, 2))}</pre></details>
+        </article>`;
+      }).join("");
+    } catch (error) {
+      root.innerHTML = `<p class="research-rq-empty">Experimentdaten konnten nicht geladen werden: ${escapeHtml(error.message || error)}</p>`;
+    }
+  }
+
+  _closeResearchQuestionDetail() {
+    this.researchDetailQuestionId = "";
+    const detail = byId("workflow-research-detail");
+    if (detail) detail.hidden = true;
+    document.querySelectorAll("[data-rq-id]").forEach((button) => {
+      button.classList.remove("is-detail-open");
+      button.setAttribute("aria-expanded", "false");
+    });
+  }
+
+  _prepareResearchQuestionForExecution(questionId) {
+    const question = this.questions.find((item) => item.id === questionId);
+    const note = byId("workflow-research-detail-note");
+    if (!question) return;
+    if (question.workflow_selectable === false) {
+      if (note) note.textContent = "Übergabe blockiert: Diese Forschungsfrage ist im Registry-/Governance-Vertrag nicht ausführbar.";
+      return;
+    }
+    this._selectResearchQuestion(questionId);
+    const hypotheses = this._matchingHypotheses(questionId);
+    if (this.elements.hypothesis && !this.elements.hypothesis.value && hypotheses[0]) {
+      this.elements.hypothesis.value = hypotheses[0].id;
+    }
+    if (this.elements.title && !this.elements.title.value) this.elements.title.value = question.label || question.id;
+    this._renderContract();
+    if (note) note.textContent = "In den kontrollierten Ausführungs-Workflow übernommen. Der Lauf wurde nicht automatisch gestartet.";
+    if (window.MHRNExperimentLab?.selectStage) {
+      window.MHRNExperimentLab.selectStage("run", { scroll: true });
+      window.setTimeout(() => this.elements.run?.focus(), 0);
+    }
   }
 
   _selectResearchQuestion(questionId) {
