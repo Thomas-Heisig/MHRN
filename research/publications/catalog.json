@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.1",
+  "schema_version": "1.2",
   "category": "publications",
   "current_publication_id": "PUB-RECURSIVE-EPISTEMICS-20260917-V1.8",
   "current_entrypoint": "publications/2026-09-17_recursive-epistemics_v1.8/MANUSCRIPT.md",
@@ -198,6 +198,67 @@
       "entrypoint": "publications/2026-09-09_connectome-embodiment_supplement/README.md",
       "manifest": "publications/2026-09-09_connectome-embodiment_supplement/manifest.json",
       "authority": "interpretation_and_design_only",
+      "automatic_evidence_promotion": false
+    }
+  ],
+  "papers": [
+    {
+      "id": "PAPER-SW-001",
+      "title": "MHRN: An Open Research Framework for Recurrent Spiking Neural Networks with Plasticity, Provenance, and Evidence-Aware Experimentation",
+      "short_title": "MHRN Research Software Paper",
+      "author": "Thomas Heisig",
+      "type": "research_software_paper",
+      "version": "0.1",
+      "date": "2026-09-20",
+      "status": "working_paper",
+      "entrypoint": "publications/papers/2026-09-20_mhrn-research-software_v0.1/PAPER.md",
+      "citation": "publications/papers/2026-09-20_mhrn-research-software_v0.1/CITATION.cff",
+      "metadata": "publications/papers/2026-09-20_mhrn-research-software_v0.1/paper.json",
+      "strand": "software",
+      "evidence_role": "software_description_no_empirical_claim_promotion",
+      "automatic_evidence_promotion": false
+    },
+    {
+      "id": "PAPER-TOPO-001",
+      "title": "Dimensional Embedding and Propagation Dynamics in Resource-Matched Recurrent Spiking Neural Networks",
+      "short_title": "Topology & Propagation Dynamics",
+      "author": "Thomas Heisig",
+      "type": "empirical_working_paper",
+      "version": "0.1",
+      "date": "2026-09-20",
+      "status": "working_paper_data_based_review_open",
+      "entrypoint": "publications/papers/2026-09-20_topology-dynamics_v0.1/PAPER.md",
+      "citation": "publications/papers/2026-09-20_topology-dynamics_v0.1/CITATION.cff",
+      "metadata": "publications/papers/2026-09-20_topology-dynamics_v0.1/paper.json",
+      "strand": "topology",
+      "research_questions": [
+        "RQ-SNN-003"
+      ],
+      "experiments": [
+        "EXP-S1-TOPO-V2-20260918",
+        "EXP-S1-TOPO-V3-R1-20260918"
+      ],
+      "evidence_role": "DATA_based_no_automatic_EVID",
+      "automatic_evidence_promotion": false
+    },
+    {
+      "id": "PAPER-METHOD-001",
+      "title": "Provenance-Separated Reporting for AI-Assisted Research: A Protocol for Testing Epistemic Misclassification",
+      "short_title": "Recursive Epistemics Methods Paper",
+      "author": "Thomas Heisig",
+      "type": "methods_protocol_paper",
+      "version": "0.1",
+      "date": "2026-09-20",
+      "status": "methods_protocol_working_paper",
+      "entrypoint": "publications/papers/2026-09-20_recursive-epistemics-methods_v0.1/PAPER.md",
+      "citation": "publications/papers/2026-09-20_recursive-epistemics-methods_v0.1/CITATION.cff",
+      "metadata": "publications/papers/2026-09-20_recursive-epistemics-methods_v0.1/paper.json",
+      "strand": "research_integrity",
+      "research_questions": [
+        "RQ-EPIST-002",
+        "RQ-ETH-001"
+      ],
+      "evidence_role": "protocol_design_no_confirmatory_results",
       "automatic_evidence_promotion": false
     }
   ]
