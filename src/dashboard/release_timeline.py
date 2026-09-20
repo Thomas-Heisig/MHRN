@@ -92,6 +92,18 @@ def _release_entries(repo_root: Path) -> list[TimelineEntry]:
         return []
     entries: list[TimelineEntry] = []
     known_versions: set[str] = set()
+    current_version: str | None = None
+    current_path = releases_dir / "current.json"
+    if current_path.is_file():
+        try:
+            current_raw: object = json.loads(current_path.read_text(encoding="utf-8"))
+        except (OSError, ValueError):
+            current_raw = None
+        if isinstance(current_raw, dict):
+            current_data = cast(dict[str, Any], current_raw)
+            value = current_data.get("version")
+            if isinstance(value, str) and value:
+                current_version = value
     for path in sorted(releases_dir.glob("*.json")):
         try:
             raw: object = json.loads(path.read_text(encoding="utf-8"))
@@ -124,7 +136,8 @@ def _release_entries(repo_root: Path) -> list[TimelineEntry]:
                 "items": items,
                 "phase": (
                     "current"
-                    if status in {"development", "release_candidate"}
+                    if version == current_version
+                    or status in {"development", "release_candidate"}
                     else "past"
                 ),
             }
