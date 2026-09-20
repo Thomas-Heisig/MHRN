@@ -15,6 +15,9 @@ This file is the public routing map for MHRN research visibility. GitHub `main` 
 | Service | Role | MHRN status | Required next action |
 | --- | --- | --- | --- |
 | GitHub | canonical code, protocols, experiment artefacts and version history | **ACTIVE** | keep `main` canonical and release only from green source freezes |
+| Hugging Face MHRN | rolling public source/model-card mirror | **CONFIGURED** | add `HF_USERNAME` and `HF_TOKEN`; workflow creates and synchronizes `MHRN` automatically |
+| Hugging Face MHRN-Space | rolling Docker dashboard/research UI mirror | **CONFIGURED** | same credentials; workflow creates and synchronizes `MHRN-Space` automatically |
+| Hugging Face MHRN-Research-Data | rolling research-tree discovery mirror | **CONFIGURED** | same credentials; workflow creates and synchronizes `MHRN-Research-Data`; immutable experiment DOIs remain separate |
 | ORCID | author identity and cross-service identity anchor | **ACTIVE in repository** — `0009-0002-9589-1872` | verify public ORCID record and authorize trusted auto-updates where desired |
 | OSF | project landing page; registrations/preregistrations | **ACTIVE in repository** — `https://osf.io/p34uq/` | use registrations for protocol freezes; do not rely on OSF Projects as the only long-term file store |
 | Zenodo | immutable software/data/preprint deposits and DOI minting | **CONFIGURED** — `.zenodo.json` + `CITATION.cff` present | enable/verify MHRN in Zenodo GitHub integration and publish DOI-bearing records |
@@ -42,6 +45,9 @@ This file is the public routing map for MHRN research visibility. GitHub `main` 
 - `research-network-registry.json`: machine-readable visibility/status registry.
 - `pyproject.toml`: package identity and project URLs.
 - `INDEPENDENT_REPLICATION.md`: public replication invitation.
+- `HF_MODEL_README.md`: generated Hugging Face source/model-card landing page.
+- `HF_DATASET_README.md`: generated rolling research-data mirror landing page.
+- `.github/workflows/sync-huggingface.yml`: self-provisioning Hugging Face publication fan-out from canonical `main`.
 - `.github/ISSUE_TEMPLATE/independent_replication.md`: structured intake for replication reports.
 
 ## Publication object model
