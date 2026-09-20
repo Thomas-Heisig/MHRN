@@ -8,6 +8,8 @@ on:
       - scripts/run_emb001b_matched_v2.py
       - scripts/verify_emb001b_matched_v2.py
       - research/preregistrations/PREREG-EMB001B-MATCHED-V2.json
+      - src/dashboard/release_timeline.py
+      - tests/test_release_registry.py
       - .github/workflows/emb001b-matched-v2.yml
   workflow_dispatch:
 
