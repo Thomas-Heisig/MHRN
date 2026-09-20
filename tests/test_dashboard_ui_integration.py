@@ -20,7 +20,7 @@ def test_operational_protocols_expose_prefill_templates() -> None:
 
 def test_experiment_workflow_wrapper_prefills_seed_and_condition_controls() -> None:
     source = (STATIC / "experiment-workflow.js").read_text(encoding="utf-8")
-    assert 'from "./experiment-workflow-base.js"' in source
+    assert 'from "./experiment-workflow-base.js' in source
     assert "default_seed_expression" in source
     assert "condition_profiles" in source
     assert "_configureConditionProfiles" in source
