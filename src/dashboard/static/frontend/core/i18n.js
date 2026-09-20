@@ -52,6 +52,7 @@ const PHRASE_PAIRS = Object.freeze([
   ["Quelle", "Source"],
   ["Grenze", "Boundary"],
   ["Frage", "Question"],
+  ["Fragen", "Questions"],
   ["Hypothese", "Hypothesis"],
   ["Versuchsplan", "Experimental Plan"],
   ["Ausführen", "Execute"],
@@ -215,16 +216,35 @@ function replacementTable(language) {
   return language === "de" ? EN_TO_DE : DE_TO_EN;
 }
 
-function translateFragment(value, language = currentLanguage) {
+function escapeRegExp(value) {
+  return String(value).replace(/[.*+?^$\{\}()|[\]\\]/g, "\\function translateFragment(value, language = currentLanguage) {
   let output = String(value ?? "");
   for (const [from, to] of replacementTable(language)) output = output.replaceAll(from, to);
+  return output;
+}");
+}
+
+function replaceWholePhrase(value, from, to) {
+  const escaped = escapeRegExp(from);
+  const startsWithWord = /^[\\p{L}\\p{N}_]/u.test(from);
+  const endsWithWord = /[\\p{L}\\p{N}_]$/u.test(from);
+  const prefix = startsWithWord ? "(?<![\\p{L}\\p{N}_])" : "";
+  const suffix = endsWithWord ? "(?![\\p{L}\\p{N}_])" : "";
+  return value.replace(new RegExp(`${prefix}${escaped}${suffix}`, "gu"), to);
+}
+
+function translateFragment(value, language = currentLanguage) {
+  let output = String(value ?? "");
+  for (const [from, to] of replacementTable(language)) {
+    output = replaceWholePhrase(output, from, to);
+  }
   return output;
 }
 
 function isExcluded(node) {
   const element = node.nodeType === Node.ELEMENT_NODE ? node : node.parentElement;
   return Boolean(element?.closest(
-    "script, style, code, pre, textarea, [data-i18n-skip], #pub-reader-article, .markdown-body, .fm-document-body, .file-content"
+    "script, style, code, pre, textarea, [data-i18n-skip], .project-title, .project-subtitle, #pub-reader-article, .markdown-body, .fm-document-body, .file-content"
   ));
 }
 
