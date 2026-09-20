@@ -61,17 +61,17 @@ export class ExperimentWorkflowPanel extends BaseExperimentWorkflowPanel {
         <label class="research-catalog-check"><input id="workflow-research-operational" type="checkbox"> nur operational</label>
       </div>
       <div id="workflow-research-results" class="research-catalog-results" role="listbox" aria-label="Forschungsfragen"></div>
-      <section id="workflow-research-detail" class="research-rq-detailbox" hidden aria-live="polite" aria-labelledby="workflow-research-detail-title">
+      <dialog id="workflow-research-detail" class="research-rq-detailbox" aria-live="polite" aria-modal="true" aria-labelledby="workflow-research-detail-title">
         <div class="research-rq-detail-head">
           <div><span class="workspace-kicker">DETAILANSICHT</span><h4 id="workflow-research-detail-title">Forschungsfrage</h4></div>
-          <button id="workflow-research-detail-close" type="button" class="icon-btn" aria-label="Detailansicht schließen" title="Detailansicht schließen">×</button>
+          <button id="workflow-research-detail-close" type="button" class="icon-btn" aria-label="Popup schließen" title="Popup schließen">×</button>
         </div>
         <div id="workflow-research-detail-content" class="research-rq-detail-content"></div>
         <div class="research-rq-detail-actions">
           <small id="workflow-research-detail-note">Die Übergabe befüllt den kontrollierten Workflow; sie startet keinen Lauf automatisch.</small>
           <button id="workflow-research-detail-use" type="button" class="btn-primary">Zur Ausführung übernehmen</button>
         </div>
-      </section>
+      </dialog>
       <section id="workflow-review-inbox" class="research-review-inbox" aria-label="Offene Human Reviews">
         <div class="research-review-head"><strong>Review Inbox</strong><span id="workflow-review-count" class="gate-badge pending">lädt …</span></div>
         <p>Offene Human Reviews können hier nachvollziehbar abgeschlossen werden. Reviewer, Entscheidung und Kommentar sind Pflicht; ein Review erzeugt niemals automatisch wissenschaftliche Evidenz.</p>
@@ -153,8 +153,13 @@ export class ExperimentWorkflowPanel extends BaseExperimentWorkflowPanel {
 
     byId("workflow-research-search")?.addEventListener("input", () => this._renderResearchCatalog());
     byId("workflow-research-operational")?.addEventListener("change", () => this._renderResearchCatalog());
+    const researchDetail = byId("workflow-research-detail");
     byId("workflow-research-detail-close")?.addEventListener("click", () => this._closeResearchQuestionDetail());
     byId("workflow-research-detail-use")?.addEventListener("click", () => this._prepareResearchQuestionForExecution(this.researchDetailQuestionId));
+    researchDetail?.addEventListener("close", () => this._syncResearchQuestionDetailClosed());
+    researchDetail?.addEventListener("click", (event) => {
+      if (event.target === researchDetail) this._closeResearchQuestionDetail();
+    });
     byId("workflow-review-refresh")?.addEventListener("click", () => this._loadReviewInbox());
     byId("workflow-review-list")?.addEventListener("click", (event) => this._handleReviewAction(event));
     byId("workflow-gateway-activate")?.addEventListener("click", () => this._activateGateway());
@@ -459,10 +464,10 @@ export class ExperimentWorkflowPanel extends BaseExperimentWorkflowPanel {
         <h5>Research Contracts / Protokolle</h5>
         <div class="research-rq-protocols">${protocolMarkup}</div>
       </section>
-      <section class="research-rq-detail-section">
-        <div class="research-rq-experiment-head"><h5>Gespeicherte Experimente zu dieser Forschungsfrage</h5><span>${renderRunStatus(question.experiment_counts)}</span></div>
-        <div id="workflow-rq-experiment-list" class="research-rq-experiment-list"><p class="research-rq-empty">Experimente werden geladen …</p></div>
-      </section>
+      <details id="workflow-rq-experiments" class="research-rq-experiments">
+        <summary><span>Gespeicherte Experimente zu dieser Forschungsfrage</span><span>${renderRunStatus(question.experiment_counts)}</span></summary>
+        <div id="workflow-rq-experiment-list" class="research-rq-experiment-list"><p class="research-rq-empty">Zum Anzeigen der gespeicherten Experimente aufklappen.</p></div>
+      </details>
       <details class="research-rq-raw">
         <summary>Vollständige Katalogdaten anzeigen</summary>
         <pre>${escapeHtml(JSON.stringify(rawContext, null, 2))}</pre>
@@ -473,14 +478,24 @@ export class ExperimentWorkflowPanel extends BaseExperimentWorkflowPanel {
     if (note) note.textContent = blocked
       ? "Diese Forschungsfrage ist durch den Registry-/Governance-Vertrag für die Ausführung gesperrt."
       : "Übernimmt Forschungsfrage, Hypothese und den passenden Workflow. Es wird noch kein Lauf gestartet.";
-    detail.hidden = false;
     document.querySelectorAll("[data-rq-id]").forEach((button) => {
       const expanded = button.dataset.rqId === questionId;
       button.classList.toggle("is-detail-open", expanded);
       button.setAttribute("aria-expanded", String(expanded));
     });
-    await this._loadResearchQuestionExperiments(questionId);
-    detail.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    const storedExperiments = byId("workflow-rq-experiments");
+    storedExperiments?.addEventListener("toggle", async () => {
+      if (!storedExperiments.open || storedExperiments.dataset.loaded === "true" || storedExperiments.dataset.loading === "true") return;
+      storedExperiments.dataset.loading = "true";
+      await this._loadResearchQuestionExperiments(questionId);
+      storedExperiments.dataset.loaded = "true";
+      delete storedExperiments.dataset.loading;
+    });
+    if (typeof detail.showModal === "function") {
+      if (!detail.open) detail.showModal();
+    } else {
+      detail.setAttribute("open", "");
+    }
   }
 
   async _loadResearchQuestionExperiments(questionId) {
@@ -532,14 +547,19 @@ export class ExperimentWorkflowPanel extends BaseExperimentWorkflowPanel {
     }
   }
 
-  _closeResearchQuestionDetail() {
+  _syncResearchQuestionDetailClosed() {
     this.researchDetailQuestionId = "";
-    const detail = byId("workflow-research-detail");
-    if (detail) detail.hidden = true;
     document.querySelectorAll("[data-rq-id]").forEach((button) => {
       button.classList.remove("is-detail-open");
       button.setAttribute("aria-expanded", "false");
     });
+  }
+
+  _closeResearchQuestionDetail() {
+    const detail = byId("workflow-research-detail");
+    if (detail?.open && typeof detail.close === "function") detail.close();
+    else detail?.removeAttribute("open");
+    this._syncResearchQuestionDetailClosed();
   }
 
   _prepareResearchQuestionForExecution(questionId) {
@@ -558,6 +578,7 @@ export class ExperimentWorkflowPanel extends BaseExperimentWorkflowPanel {
     if (this.elements.title && !this.elements.title.value) this.elements.title.value = question.label || question.id;
     this._renderContract();
     if (note) note.textContent = "In den kontrollierten Ausführungs-Workflow übernommen. Der Lauf wurde nicht automatisch gestartet.";
+    this._closeResearchQuestionDetail();
     if (window.MHRNExperimentLab?.selectStage) {
       window.MHRNExperimentLab.selectStage("run", { scroll: true });
       window.setTimeout(() => this.elements.run?.focus(), 0);
