@@ -294,7 +294,7 @@ test("Release workspace renders the documentation timeline", async ({ page }) =>
 
   await selectRoute(page, "release", "science");
   await expect(page.locator("#scientific-progress-timeline")).toBeVisible();
-  await expect(page.locator("#scientific-progress-timeline")).toContainText("Wissenschaftliche Timeline");
+  await expect(page.locator("#scientific-progress-timeline")).toContainText("Scientific Timeline");
 
   await selectRoute(page, "release", "development");
   await expect(page.locator("#development-timeline-track .dev-node-marker-tech")).toContainText("hier");
