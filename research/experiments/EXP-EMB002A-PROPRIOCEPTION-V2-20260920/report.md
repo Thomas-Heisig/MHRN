@@ -1,0 +1,150 @@
+# EXP-EMB002A-PROPRIOCEPTION-V2-20260920
+
+RQ-EMB-002 / H-EMB-002-A
+
+Status: **NOT_SUPPORTED_WITHIN_PREREGISTERED_DATA_RULE**
+Mode: **prospective direct synthetic DATA**
+
+Runs: 80
+Paired seeds: 20
+Ticks per run: 1000
+
+## Mean tracking RMSE
+
+{
+  "closed_loop": 0.15885313367641699,
+  "delayed_proprioception": 0.15881078263797216,
+  "feedback_absent": 0.4763865809025666,
+  "timing_shuffle": 0.47368862848399945
+}
+
+## Paired comparisons
+
+[
+  {
+    "confirmatory_threshold_applied": false,
+    "control": "delayed_proprioception",
+    "differences_control_minus_closed_loop": [
+      0.000839395769844764,
+      -0.0007179848853265947,
+      -0.0020572354476954824,
+      -0.0020274701832228847,
+      -0.0018268925697338123,
+      0.0038284997180455527,
+      -0.0016999166647929387,
+      -0.003225003224285622,
+      0.002186971760558487,
+      0.0030011142311690553,
+      0.0005770500295050329,
+      0.0013637298531188613,
+      -0.0032267225746037687,
+      -0.0004309119139008222,
+      -0.0015523138179865392,
+      0.0015032747639169564,
+      0.00017418585322359625,
+      -0.0017057517299161051,
+      0.0010782630001246463,
+      0.0030706972630613616
+    ],
+    "fraction_closed_loop_lower": 0.5,
+    "maximum_difference": 0.0038284997180455527,
+    "mean_difference": -4.2351038444812805e-05,
+    "median_difference": -0.00012836303033861296,
+    "metric": "tracking_rmse_rad",
+    "minimum_difference": -0.0032267225746037687,
+    "n_paired_seeds": 20,
+    "p_value": null,
+    "reference": "closed_loop",
+    "ties": 0
+  },
+  {
+    "confirmatory_threshold_applied": false,
+    "control": "feedback_absent",
+    "differences_control_minus_closed_loop": [
+      0.32294260365430666,
+      0.3192637263068282,
+      0.3216229247614103,
+      0.32169631927146436,
+      0.31087674918456876,
+      0.32379418282036154,
+      0.312089429347574,
+      0.32007087867865514,
+      0.317398388139279,
+      0.32466068414743054,
+      0.3190300653183724,
+      0.31329540248614696,
+      0.3111798427020912,
+      0.3124346182105029,
+      0.31263715565014905,
+      0.3200361709351722,
+      0.31224437264376265,
+      0.312703205931378,
+      0.32324326698867156,
+      0.31944895734486656
+    ],
+    "fraction_closed_loop_lower": 1.0,
+    "maximum_difference": 0.32466068414743054,
+    "mean_difference": 0.3175334472261496,
+    "median_difference": 0.3191468958126003,
+    "metric": "tracking_rmse_rad",
+    "minimum_difference": 0.31087674918456876,
+    "n_paired_seeds": 20,
+    "p_value": null,
+    "reference": "closed_loop",
+    "ties": 0
+  },
+  {
+    "confirmatory_threshold_applied": false,
+    "control": "timing_shuffle",
+    "differences_control_minus_closed_loop": [
+      0.3338658408801765,
+      0.30966258294119153,
+      0.3166951109030065,
+      0.3271434791120664,
+      0.30382387304742975,
+      0.3309741309646158,
+      0.3124140224514024,
+      0.3219939287074721,
+      0.3213912785227837,
+      0.31927696768884806,
+      0.31690008531627223,
+      0.30103948396359537,
+      0.30874128484117,
+      0.3104941402564471,
+      0.30802419248949287,
+      0.31776836347464327,
+      0.30281557332753284,
+      0.3080800278830727,
+      0.3155035638783653,
+      0.31010196550206404
+    ],
+    "fraction_closed_loop_lower": 1.0,
+    "maximum_difference": 0.3338658408801765,
+    "mean_difference": 0.31483549480758244,
+    "median_difference": 0.31395879316488384,
+    "metric": "tracking_rmse_rad",
+    "minimum_difference": 0.30103948396359537,
+    "n_paired_seeds": 20,
+    "p_value": null,
+    "reference": "closed_loop",
+    "ties": 0
+  }
+]
+
+## Integrity
+
+{
+  "all_seed_pairing_checks": true,
+  "all_ticks_complete": true,
+  "clean_source_freeze": true,
+  "coverage": true,
+  "run_count": true,
+  "runtime_errors_absent": true
+}
+
+## Boundary
+
+Prospective direct synthetic DATA for H-EMB-002-A in the fixed six-neuron joint fixture. This does not establish biological proprioception, learned body schema, real-device transfer, autonomy, consciousness, or scientific EVID. Human Review remains required.
+
+Human Review remains PENDING. No p-values were computed. No automatic EVID
+promotion or independent replication is claimed.
