@@ -90,3 +90,20 @@ def test_experiment_lab_is_loaded_by_frontend() -> None:
     )
     assert "initExperimentLab();" in frontend
     assert "experiment-lab.css" in styles
+
+
+def test_question_stage_uses_structured_cards_and_detail_box() -> None:
+    workflow = (STATIC / "experiment-workflow.js").read_text(encoding="utf-8")
+    css = (STATIC / "frontend" / "styles" / "experiment-lab.css").read_text(
+        encoding="utf-8"
+    )
+    assert 'id="workflow-research-detail"' in workflow
+    assert 'id="workflow-research-detail-use"' in workflow
+    assert "_openResearchQuestionDetail" in workflow
+    assert "_prepareResearchQuestionForExecution" in workflow
+    assert "_loadResearchQuestionExperiments" in workflow
+    assert 'window.MHRNExperimentLab.selectStage("run"' in workflow
+    assert ".research-rq-detailbox" in css
+    assert ".research-rq-facts" in css
+    assert ".research-rq-hypothesis-list" in css
+    assert ".research-rq-card.is-detail-open" in css
