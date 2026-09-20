@@ -355,3 +355,6 @@
   font-size: .72rem;
 }
 .publication-language-notice strong { display: block; margin-bottom: 3px; }
+
+body[data-ui-language="en"] .project-subtitle { display: none; }
+body[data-ui-language="de"] .project-title { display: none; }
