@@ -1,0 +1,18 @@
+# MHRN repository ownership
+# This file establishes the canonical human maintainer for change visibility.
+# Enforcement is provided by the GitHub branch/ruleset configuration.
+
+* @Thomas-Heisig
+
+/.github/ @Thomas-Heisig
+/src/ @Thomas-Heisig
+/research/ @Thomas-Heisig
+/docs/ @Thomas-Heisig
+/configs/ @Thomas-Heisig
+/tests/ @Thomas-Heisig
+
+/CITATION.cff @Thomas-Heisig
+/.zenodo.json @Thomas-Heisig
+/research-network-registry.json @Thomas-Heisig
+/project_identity.json @Thomas-Heisig
+/SECURITY.md @Thomas-Heisig
