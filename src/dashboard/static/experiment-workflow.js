@@ -12,6 +12,21 @@ function escapeHtml(value) {
   return div.innerHTML;
 }
 
+function renderRunStatus(counts = {}) {
+  const completed = Number(counts.completed || 0);
+  const failed = Number(counts.failed || 0);
+  const running = Number(counts.running || 0);
+  const total = completed + failed + running + Number(counts.not_started || 0);
+  if (!total) {
+    return '<span class="experiment-run-status is-empty" title="Noch nicht ausgeführt" aria-label="Noch nicht ausgeführt">— keine Läufe</span>';
+  }
+  const parts = [];
+  if (completed) parts.push(`<span class="experiment-run-status is-complete" title="${completed} erfolgreich abgeschlossen" aria-label="${completed} erfolgreich abgeschlossen">✓✓ ${completed}</span>`);
+  if (failed) parts.push(`<span class="experiment-run-status is-failed" title="${failed} fehlgeschlagen" aria-label="${failed} fehlgeschlagen">✕ ${failed}</span>`);
+  if (running) parts.push(`<span class="experiment-run-status is-running" title="${running} läuft gerade" aria-label="${running} läuft gerade">◷ ${running}</span>`);
+  return `<span class="experiment-run-summary" title="${total} Experimentläufe">${parts.join(" ")}<small>${total} Läufe</small></span>`;
+}
+
 const PROFILE_LABELS = Object.freeze({
   standard: "Registrierter Gesamtplan",
   controls: "Nur Kontrollen",
@@ -110,6 +125,10 @@ export class ExperimentWorkflowPanel extends BaseExperimentWorkflowPanel {
       .research-rq-card p{margin:0;font-size:.88rem;line-height:1.35}
       .research-rq-badge{font-size:.72rem;padding:2px 6px;border-radius:999px;border:1px solid currentColor;white-space:nowrap}
       .research-rq-badge.operational{color:#3fb950}.research-rq-badge.exploratory{color:#d29922}
+      .research-rq-foot{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:8px;color:var(--ink-3,#8b949e);font-size:.75rem}
+      .experiment-run-summary{display:inline-flex;align-items:center;gap:5px;white-space:nowrap;font-family:var(--font-mono,monospace);font-size:.68rem}
+      .experiment-run-summary small{opacity:.75;font-family:inherit}
+      .experiment-run-status{font-weight:800;white-space:nowrap}.experiment-run-status.is-complete{color:#3fb950}.experiment-run-status.is-failed{color:#f85149}.experiment-run-status.is-running{color:#d29922}.experiment-run-status.is-empty{color:var(--ink-4,#6e7681)}
       .research-dimension-control{display:flex;gap:12px;align-items:end;flex-wrap:wrap;margin-top:12px;padding-top:10px;border-top:1px solid var(--border-color,#30363d)}
       .research-dimension-control label{max-width:220px}.research-dimension-control small{max-width:680px;opacity:.8}
       .research-review-inbox{margin-top:14px;padding-top:12px;border-top:1px solid var(--border-color,#30363d)}
@@ -344,7 +363,7 @@ export class ExperimentWorkflowPanel extends BaseExperimentWorkflowPanel {
         return `<button type="button" class="research-rq-card ${selected === question.id ? "is-selected" : ""}" data-rq-id="${escapeHtml(question.id)}" role="option" aria-selected="${selected === question.id}">
           <div class="research-rq-head"><strong>${escapeHtml(question.id)}</strong><span class="research-rq-badge ${operational ? "operational" : "exploratory"}">${operational ? "OPERATIONAL" : "EXPLORATORY"}</span></div>
           <p>${escapeHtml(question.label)}</p>
-          <small>${hypotheses.length} Hypothese${hypotheses.length === 1 ? "" : "n"}</small>
+          <div class="research-rq-foot"><small>${hypotheses.length} Hypothese${hypotheses.length === 1 ? "" : "n"}</small>${renderRunStatus(question.experiment_counts)}</div>
         </button>`;
       })
       .join("");

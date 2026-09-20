@@ -251,6 +251,24 @@
   color: var(--ink, #1a1714);
 }
 
+  .experiment-lab-panel .exp-item-header {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .experiment-lab-panel .exp-run-indicator,
+  .experiment-lab-panel .series-run-indicator {
+    font: 800 .68rem/1 var(--font-mono, ui-monospace, monospace);
+    white-space: nowrap;
+  }
+
+  .experiment-lab-panel .exp-run-indicator .is-complete,
+  .experiment-lab-panel .series-run-indicator { color: var(--moss, #3fb950); }
+  .experiment-lab-panel .exp-run-indicator .is-failed { color: var(--crimson, #f85149); }
+  .experiment-lab-panel .exp-run-indicator .is-running { color: var(--amber, #d29922); }
+  .experiment-lab-panel .exp-run-indicator .is-empty { color: var(--ink-4, #746c62); }
+
 .experiment-lab-panel .experiment-library-grid {
   display: grid;
   grid-template-columns: minmax(0, 1fr);

@@ -13,6 +13,20 @@ function escapeHtml(value) {
   return div.innerHTML;
 }
 
+function renderExperimentRunStatus(status) {
+  const normalized = String(status || "unknown").toLowerCase();
+  if (normalized === "completed") {
+    return '<span class="experiment-run-status is-complete" title="Erfolgreich abgeschlossen" aria-label="Erfolgreich abgeschlossen">✓✓</span>';
+  }
+  if (normalized === "failed") {
+    return '<span class="experiment-run-status is-failed" title="Fehlgeschlagen" aria-label="Fehlgeschlagen">✕</span>';
+  }
+  if (["running", "active"].includes(normalized)) {
+    return '<span class="experiment-run-status is-running" title="Läuft gerade" aria-label="Läuft gerade">◷</span>';
+  }
+  return '<span class="experiment-run-status is-empty" title="Noch nicht ausgeführt" aria-label="Noch nicht ausgeführt">—</span>';
+}
+
 async function fetchJson(url, options = {}) {
   const response = await fetch(url, {
     ...options,
@@ -499,7 +513,9 @@ export class ExperimentWorkflowPanel {
       activeItems.sort(sortFn);
       archivedExperimentItems.sort(sortFn);
 
-      active.innerHTML = activeItems.length ? activeItems.map((item) => this._experimentLibraryItem(item, false)).join("") : '<p class="experiment-library-empty">Keine aktiven Experimente.</p>';
+        const seriesRuns = Number(item.completed || 0) + Number(item.failed || 0);
+        const seriesMark = item.completed ? "✓✓" : item.failed ? "✕" : "—";
+        active.innerHTML = activeItems.length ? activeItems.map((item) => this._experimentLibraryItem(item, false)).join("") : '<p class="experiment-library-empty">Keine aktiven Experimente.</p>';
       archived.innerHTML = archivedExperimentItems.length ? archivedExperimentItems.map((item) => this._experimentLibraryItem(item, true)).join("") : '<p class="experiment-library-empty">Archiv ist leer.</p>';
 
       // Apply view mode
@@ -578,7 +594,7 @@ export class ExperimentWorkflowPanel {
       ? `<button type="button" class="btn-small" data-experiment-action="restore" data-experiment-id="${escapeHtml(item.experiment_id)}">↶ Wiederherstellen</button>`
       : `<button type="button" class="btn-small" data-experiment-action="archive" data-experiment-id="${escapeHtml(item.experiment_id || item.id)}">▣ Archivieren</button>`;
     return `<article class="experiment-library-item ${archived ? "is-archived" : ""}">
-      <div class="exp-item-header"><strong>${escapeHtml(item.experiment_id || item.id)}</strong><span class="exp-status-badge ${statusClass}">${escapeHtml(status)}</span></div>
+      <div class="exp-item-header"><strong>${escapeHtml(item.experiment_id || item.id)}</strong><span class="exp-run-indicator">${renderExperimentRunStatus(status)}</span><span class="exp-status-badge ${statusClass}">${escapeHtml(status)}</span></div>
       <small class="exp-item-meta">${escapeHtml(meta)}</small>
       ${resultActions}
       <div class="experiment-library-item-actions">${action}</div>
@@ -588,7 +604,7 @@ export class ExperimentWorkflowPanel {
   _experimentSeriesItem(item) {
     const results = Array.isArray(item.results) ? item.results : [];
     const resultRows = results.length
-      ? results.map((result) => `<li><strong>${escapeHtml(result.protocol || result.experiment_id || "Experiment")}</strong><span>${escapeHtml(result.status || "unknown")}</span></li>`).join("")
+        ? results.map((result) => `<li><strong>${escapeHtml(result.protocol || result.experiment_id || "Experiment")}</strong><span>${escapeHtml(result.status || "unknown")}</span></li>`).join("")
       : "<li>Keine Teilresultate</li>";
     const reportButton = item.report
       ? `<button type="button" class="btn-small" data-series-report="${escapeHtml(item.report)}">Reihenbericht</button>`
