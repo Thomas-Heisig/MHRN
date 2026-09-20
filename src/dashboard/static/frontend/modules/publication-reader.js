@@ -153,9 +153,12 @@ function renderReader(container) {
     ? ""
     : `<aside class="publication-language-notice" role="note">
         <strong>${escapeHtml(t("publication.translation.original"))}</strong>
-        <span>${escapeHtml(translationAvailable ? t("publication.translation.assisted") : (uiLanguage === "en" ? "The English UI is active; the canonical manuscript is still the German source text until the versioned English translation is available." : ""))}</span>
+        <span>${escapeHtml(translationAvailable ? t("publication.translation.assisted") : (uiLanguage === "en" ? "The versioned English manuscript is not yet available. The German source is intentionally not mixed into English reading mode; switch to DE to read the canonical source." : ""))}</span>
         <small>${escapeHtml(t("publication.translation.source"))}</small>
       </aside>`;
+  const articleHtml = uiLanguage === "en" && articleLanguage !== "en" && !translationAvailable
+    ? `<section class="pub-reader-state" role="status"><strong>English manuscript translation required</strong><span>The canonical German source remains unchanged and can be read after switching to DE.</span></section>`
+    : rendered.html;
 
   container.innerHTML = `
     <section class="publication-reader" id="publication-reader" aria-label="Publication Reader">
@@ -219,7 +222,7 @@ function renderReader(container) {
               <button type="button" data-pub-action="home">Zum Publikationsindex</button>
             </div>` : ""}
           <article class="pub-reader-article" id="pub-reader-article" data-source="${escapeHtml(view.source)}" data-path="${escapeHtml(view.path)}">
-            ${rendered.html}
+            ${articleHtml}
           </article>
         </main>
       </div>
