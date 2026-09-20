@@ -100,7 +100,7 @@ def test_question_stage_uses_structured_cards_and_detail_box() -> None:
     assert '<dialog id="workflow-research-detail"' in workflow
     assert 'id="workflow-research-detail-use"' in workflow
     assert 'id="workflow-rq-experiments"' in workflow
-    assert 'showModal' in workflow
+    assert "showModal" in workflow
     assert "_openResearchQuestionDetail" in workflow
     assert "_prepareResearchQuestionForExecution" in workflow
     assert "_loadResearchQuestionExperiments" in workflow

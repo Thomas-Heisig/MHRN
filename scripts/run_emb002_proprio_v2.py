@@ -159,7 +159,9 @@ def delay_contract_holds(result: LoopResult, delay_ticks: int) -> bool:
     return True
 
 
-def timing_shuffle_contract_holds(seed: int, donor: LoopResult, result: LoopResult) -> bool:
+def timing_shuffle_contract_holds(
+    seed: int, donor: LoopResult, result: LoopResult
+) -> bool:
     ticks = len(donor.sensor_tape)
     if ticks != len(result.metrics["trace"]):
         return False
@@ -239,9 +241,7 @@ def main() -> int:
         for condition in CONDITIONS:
             result = seed_results[condition]
             raw[(seed, condition)] = result
-            serialized.append(
-                compact_run(condition, seed, result, perturbation_sha256)
-            )
+            serialized.append(compact_run(condition, seed, result, perturbation_sha256))
 
     rows = {(int(row["seed"]), str(row["condition"])): row for row in serialized}
     per_seed_integrity: dict[str, dict[str, bool]] = {}
@@ -434,7 +434,7 @@ def main() -> int:
                 "Does timing_shuffle use only the same seed's complete perturbation-exposed closed_loop donor tape?",
                 "Are initial neural state, body state and graph fingerprint matched within every seed?",
                 "Does the analysis keep feedback_absent and delayed_proprioception as the only primary H-EMB-002-A contrasts?",
-                "Does the interpretation remain limited to the synthetic six-neuron fixed-decoder embodiment fixture?"
+                "Does the interpretation remain limited to the synthetic six-neuron fixed-decoder embodiment fixture?",
             ],
         },
     )
