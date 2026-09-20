@@ -1,3 +1,47 @@
+# Multi-Scale Homeostatic Recurrence Network (MHRN)
+
+## Mehrskaliges homöostatisches Rekurrenznetzwerk
+
+**A Spiking Neural Architecture with Topological Plasticity**  
+*Eine spikende neuronale Architektur mit topologischer Plastizität*
+
+[![CI](https://github.com/Thomas-Heisig/MHRN/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Thomas-Heisig/MHRN/actions/workflows/ci.yml)
+[![Release](https://img.shields.io/github/v/release/Thomas-Heisig/MHRN?include_prereleases&label=release)](https://github.com/Thomas-Heisig/MHRN/releases/tag/v0.6.0-alpha.6)
+[![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-blue.svg)](https://www.python.org/)
+[![Publication](https://img.shields.io/badge/publication-1.8_WIP-blue.svg)](research/publications/CURRENT.md)
+[![License: MIT](https://img.shields.io/badge/license-MIT-yellow.svg)](LICENSE)
+[![ORCID](https://img.shields.io/badge/ORCID-0009--0002--9589--1872-A6CE39?logo=orcid&logoColor=white)](https://orcid.org/0009-0002-9589-1872)
+[![OSF](https://img.shields.io/badge/OSF-p34uq-2CB9F1?logo=osf&logoColor=white)](https://osf.io/p34uq/)
+[![Hugging Face](https://img.shields.io/badge/Hugging%20Face-ThomasHeisig%2FMHRN-FFD21E)](https://huggingface.co/ThomasHeisig/MHRN)
+<!-- zenodo-doi-badge:start -->
+[![Zenodo DOI](https://img.shields.io/badge/Zenodo-DOI_pending-lightgrey.svg?logo=zenodo)](https://zenodo.org/)
+<!-- zenodo-doi-badge:end -->
+
+MHRN is an experimental research framework for studying recurrent spiking neural networks, plasticity, self-organization, embodiment, memory and world-model mechanisms under explicit provenance and evidence boundaries.
+
+The sparse **5D SNN remains the primary adaptive system**. Language models, research assistants, peripheral neural networks and digital gateways are bounded components; they do not receive implicit authority over canonical neural state, reward, experiment DATA or accepted EVID.
+
+> **Scientific boundary:** implementation, passing tests, dashboards, generated reports, registered protocols, software releases and DOI assignment are not automatically scientific evidence. MHRN currently makes no claim of AGI, consciousness, sentience, biological equivalence or a demonstrated general advantage of the 5D address space.
+
+> **AI transparency:** AI assistants materially support research leads, critique, code, tests and text. Their use is explicitly documented and is itself part of MHRN's methodological research programme. AI output is not treated as authorship, source authority or scientific evidence; Thomas Heisig retains human responsibility for selection, approval and publication.
+
+## Research identity & open-science routes
+
+| Resource | Canonical route | Role |
+| --- | --- | --- |
+| Source | [GitHub · Thomas-Heisig/MHRN](https://github.com/Thomas-Heisig/MHRN) | canonical code, history and governed research artefacts |
+| Current software release | [v0.6.0-alpha.6](https://github.com/Thomas-Heisig/MHRN/releases/tag/v0.6.0-alpha.6) | immutable exact-green source freeze |
+| Author identity | [ORCID · 0009-0002-9589-1872](https://orcid.org/0009-0002-9589-1872) | persistent researcher identity |
+| Open Science Framework | [OSF · p34uq](https://osf.io/p34uq/) | project / open-science route |
+| Hugging Face | [ThomasHeisig/MHRN](https://huggingface.co/ThomasHeisig/MHRN) | rolling source/discovery mirror |
+| Hugging Face Space | [ThomasHeisig/MHRN-Space](https://huggingface.co/spaces/ThomasHeisig/MHRN-Space) | public dashboard mirror |
+| Research-data mirror | [ThomasHeisig/MHRN-Research-Data](https://huggingface.co/datasets/ThomasHeisig/MHRN-Research-Data) | rolling discovery mirror; not an immutable DOI dataset |
+| Zenodo | [Zenodo](https://zenodo.org/) | DOI archive; **awaiting public DOI record for alpha.6** |
+
+The GitHub release `v0.6.0-alpha.6` is published from exact green source freeze `f7fcca273099baf47fff26327c6e7468afd9ce79`. The repository intentionally records a Zenodo DOI only after a real public Zenodo record exists. Once discovered, the DOI sync replaces the pending badge above with Zenodo's official DOI badge and records the DOI in the citation and publication metadata.
+
+---
+
 <!-- publication-current-1.8 -->
 ## Scientific publication: edition 1.8 WIP
 
@@ -16,27 +60,6 @@ The eleven-part structure planned for publication 2.0 is implemented now as **ed
 
 Historical publication bytes and empirical artifacts are preserved. Reconstructed chat history remains S4 until original messages are source-bound.
 
-# Multi-Scale Homeostatic Recurrence Network (MHRN)
-
-## Mehrskaliges homöostatisches Rekurrenznetzwerk
-
-**A Spiking Neural Architecture with Topological Plasticity**  
-*Eine spikende neuronale Architektur mit topologischer Plastizität*
-
-[![CI](https://github.com/Thomas-Heisig/MHRN/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Thomas-Heisig/MHRN/actions/workflows/ci.yml)
-[![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-blue.svg)](https://www.python.org/)
-[![Version](https://img.shields.io/badge/version-0.6.0a6-orange.svg)](pyproject.toml)
-[![Publication](https://img.shields.io/badge/publication-1.8_WIP-blue.svg)](research/publications/CURRENT.md)
-[![License: MIT](https://img.shields.io/badge/license-MIT-yellow.svg)](LICENSE)
-
-MHRN is an experimental research framework for studying recurrent spiking neural networks, plasticity, self-organization, embodiment, memory and world-model mechanisms under explicit provenance and evidence boundaries.
-
-The sparse **5D SNN remains the primary adaptive system**. Language models, research assistants, peripheral neural networks and digital gateways are bounded components; they do not receive implicit authority over canonical neural state, reward, experiment DATA or accepted EVID.
-
-> **Scientific boundary:** implementation, passing tests, dashboards, generated reports, registered protocols and completed experiment runs are not automatically scientific evidence. MHRN currently makes no claim of AGI, consciousness, sentience, biological equivalence or a demonstrated general advantage of the 5D address space.
-
-> **AI transparency:** AI assistants materially support research leads, critique, code, tests and text. Their use is explicitly documented and is itself part of MHRN's methodological research programme. AI output is not treated as authorship, source authority or scientific evidence; Thomas Heisig retains human responsibility for selection, approval and publication.
-
 ---
 
 ## Current state — 20 September 2026
@@ -45,7 +68,7 @@ The sparse **5D SNN remains the primary adaptive system**. Language models, rese
 | --- | --- |
 | Canonical branch | `main` |
 | Package | `mhrn-core 0.6.0a6` / `0.6.0-alpha.6` |
-| Release status | **Alpha.6 release candidate**; public pre-release only after the exact merged `main` source-freeze has fully green CI and release gates |
+| Release status | **v0.6.0-alpha.6 released** from exact green source freeze `f7fcca273099baf47fff26327c6e7468afd9ce79`; Zenodo DOI pending external archive ingestion |
 | Engineering | Stage 2 recurrent contract closed at its scoped engineering boundary; Stage 3 plastic neural tissue reached; Stage 4/5 engineering contracts integrated; Stage 6 mechanisms and research programme active |
 | Scientific focus | Stage 6 — memory, continual learning, semantization, prediction error and world-model validation; independent external replication remains open |
 | Current manuscript | **Recursive Epistemics / Rekursive Epistemik 1.8 — WIP** |
@@ -327,7 +350,7 @@ Independent replication invitation: [`INDEPENDENT_REPLICATION.md`](INDEPENDENT_R
   author  = {Thomas Heisig},
   title   = {Multi-Scale Homeostatic Recurrence Network (MHRN)},
   year    = {2026},
-  version = {0.6.0a5},
+  version = {0.6.0a6},
   url     = {https://github.com/Thomas-Heisig/MHRN},
   license = {MIT}
 }
