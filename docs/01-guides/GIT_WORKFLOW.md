@@ -1,12 +1,15 @@
 # MHRN – Git-Arbeitsablauf
 
+> [!IMPORTANT]
+> **Protected workflow effective 20 September 2026:** `main` is no longer intended for direct pushes or history rewrites. Work on a feature/fix/research branch, open a Pull Request, wait for the required CI status, and merge through GitHub. Commands below that push directly to `main` or use `--force` are retained only as historical documentation and must not be used against the protected repository.
+
 ## Grundprinzip
 
 Für das Projekt **MHRN** gilt:
 
-* Der **lokale Arbeitsstand ist die Single Source of Truth**.
-* Der maßgebliche Branch ist immer **`main`**.
-* Änderungen werden grundsätzlich nach **`origin/main`** gepusht.
+* Der kanonische veröffentlichte Stand ist **`origin/main`**.
+* `main` wird über Pull Requests aktualisiert; lokale Arbeit erfolgt auf Feature-/Fix-/Research-Branches.
+* Direkte Pushes und Force-Pushes auf `main` gehören nicht zum normalen oder erlaubten geschützten Workflow.
 * `develop` wird im normalen Arbeitsablauf nicht benötigt.
 * Ein automatisches `git pull` vor dem Push wird vermieden.
 * Der Remote-Stand dient primär als Sicherung und Veröffentlichung des lokalen Projektstands.
@@ -17,8 +20,35 @@ Für das Projekt **MHRN** gilt:
 Repository:
 
 ```text
-https://github.com/Thomas-Heisig/Brain-5D
+https://github.com/Thomas-Heisig/MHRN
 ```
+
+---
+
+## Aktueller geschützter Standardworkflow
+
+```bash
+git fetch origin
+git switch -c feature/beschreibung origin/main
+# Änderungen durchführen und lokal prüfen
+git add -A
+git commit -m "Beschreibung der Änderung"
+git push -u origin feature/beschreibung
+```
+
+Danach auf GitHub einen Pull Request nach `main` öffnen. Merge erst, wenn der
+erforderliche Statuscheck `ci-status` grün ist.
+
+**Nicht verwenden:**
+
+```bash
+git push origin main
+git push --force origin main
+git push --force-with-lease origin main
+```
+
+Bereits veröffentlichte Commits werden über einen neuen Revert- oder Fix-PR
+korrigiert; die kanonische Historie wird nicht umgeschrieben.
 
 ---
 
@@ -1102,7 +1132,7 @@ oder entsprechend die konfigurierte SSH-Adresse.
 Falls nötig:
 
 ```bash
-git remote set-url origin https://github.com/Thomas-Heisig/Brain-5D.git
+git remote set-url origin https://github.com/Thomas-Heisig/MHRN.git
 ```
 
 Danach:
