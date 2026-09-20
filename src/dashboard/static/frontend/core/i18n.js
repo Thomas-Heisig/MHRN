@@ -217,11 +217,13 @@ function replacementTable(language) {
 }
 
 function escapeRegExp(value) {
-  return String(value).replace(/[.*+?^$\{\}()|[\]\\]/g, "\\function translateFragment(value, language = currentLanguage) {
+  return String(value).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function translateFragment(value, language = currentLanguage) {
   let output = String(value ?? "");
   for (const [from, to] of replacementTable(language)) output = output.replaceAll(from, to);
   return output;
-}");
 }
 
 function replaceWholePhrase(value, from, to) {
