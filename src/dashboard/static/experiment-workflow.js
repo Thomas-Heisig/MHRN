@@ -1,6 +1,6 @@
 "use strict";
 
-import { ExperimentWorkflowPanel as BaseExperimentWorkflowPanel } from "./experiment-workflow-base.js";
+import { ExperimentWorkflowPanel as BaseExperimentWorkflowPanel } from "./experiment-workflow-base.js?v=experiment-details-20260920a";
 
 function byId(id) {
   return document.getElementById(id);
