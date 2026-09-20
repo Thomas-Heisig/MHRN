@@ -48,7 +48,7 @@ export async function initPublicationPanel() {
   };
 
   document.addEventListener("mhrn:language-change", () => {
-    if (state.rootData && state.index >= 0) renderReader(container);
+    if (state.rootData && state.index >= 0) void loadCurrentPublication(container, { force: true });
   });
 
   document.addEventListener("click", (event) => {
@@ -77,7 +77,7 @@ async function loadCurrentPublication(container, { force = false } = {}) {
   renderLoading(container, getLanguage() === "de" ? "Publikation wird geladen …" : "Loading publication …");
 
   try {
-    const response = await fetch(CURRENT_PUBLICATION_ENDPOINT, {
+    const response = await fetch(`${CURRENT_PUBLICATION_ENDPOINT}?lang=${encodeURIComponent(getLanguage())}`, {
       headers: { Accept: "application/json" },
       cache: "no-store",
     });
