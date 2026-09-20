@@ -2,10 +2,10 @@
   "schema_version": 2,
   "version": "0.6.0-alpha.6",
   "pep440": "0.6.0a6",
-  "status": "release_candidate",
+  "status": "released",
   "title": "Public Alpha.6 Research Distribution Release",
   "parent": "v0.6.0-alpha.5",
-  "gate": "pending_exact_source_ci",
+  "gate": "passed",
   "as_of": "2026-09-20",
   "milestone_status": "engineering_release_candidate_scientific_programme_active",
   "release_blockers": 0,
@@ -79,12 +79,12 @@
   "research_boundary": "Engineering implementation, technical verification, UI/API availability and DATA collection are not equivalent to scientific EVID. Scientific maturity is tracked independently through registered questions, frozen protocols, source-bound DATA, human-reviewed EVID, independent replication and attribution. No stage score establishes AGI, consciousness, sentience or biological equivalence.",
   "note": "Alpha.6 is prepared as a technical pre-release for archival and distribution. Zenodo DOI assignment remains an archival identifier only and does not create Human Review, EVID, novelty, scientific validity or independent replication.",
   "target_tag": "v0.6.0-alpha.6",
-  "publish_requested": true,
+  "publish_requested": false,
   "release_type": "pre-release",
   "development_state": {
-    "status": "release_candidate",
-    "engineering": "awaiting_exact_green_source_freeze",
-    "summary": "Alpha.6 publication is requested and will only be tagged from the exact merged main commit after required release gates pass."
+    "status": "released",
+    "engineering": "released_from_exact_green_source_freeze",
+    "summary": "Alpha.6 was published from exact green source freeze f7fcca273099baf47fff26327c6e7468afd9ce79."
   },
   "scientific_state": {
     "status": "active_research_not_scientifically_complete",
@@ -95,18 +95,18 @@
     "summary": "Technische Reife, wissenschaftliche Evidenz und externe Geltung bleiben getrennte Achsen. Unabhängige Replikation und externe Kritik sind ausdrücklich gesucht."
   },
   "publication_state": {
-    "github_release": "pending_green_source_freeze",
-    "zenodo": "awaiting_github_release_archive",
+    "github_release": "published",
+    "zenodo": "awaiting_external_archive_verification",
     "doi": null,
     "orcid": "0009-0002-9589-1872",
     "release_type": "pre-release",
     "public_imprint": "identity_and_contact_complete",
     "hosted_dashboard_privacy": "deployment_specific_details_pending",
     "github_tag": "v0.6.0-alpha.6",
-    "source_freeze_commit": null
+    "source_freeze_commit": "f7fcca273099baf47fff26327c6e7468afd9ce79"
   },
   "date": "2026-09-20",
-  "tag": null,
-  "commit": null,
-  "source_freeze_commit": null
+  "tag": "v0.6.0-alpha.6",
+  "commit": "f7fcca273099baf47fff26327c6e7468afd9ce79",
+  "source_freeze_commit": "f7fcca273099baf47fff26327c6e7468afd9ce79"
 }
