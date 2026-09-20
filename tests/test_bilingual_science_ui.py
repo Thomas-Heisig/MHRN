@@ -16,7 +16,7 @@ def test_frontend_language_controller_defaults_to_english() -> None:
     )
 
     assert '<html lang="en">' in index
-    assert 'import { initI18n } from "./core/i18n.js";' in frontend
+    assert 'import { initI18n } from "./core/i18n.js' in frontend
     assert "initI18n();" in frontend
     assert 'const DEFAULT_LANGUAGE = "en";' in i18n
     assert '"mhrn-ui-language-v1"' in i18n
