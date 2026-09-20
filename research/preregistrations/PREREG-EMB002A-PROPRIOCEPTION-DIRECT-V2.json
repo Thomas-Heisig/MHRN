@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "preregistration_id": "PREREG-EMB002A-PROPRIOCEPTION-DIRECT-V2",
+  "research_question": "RQ-EMB-002",
+  "hypothesis": "H-EMB-002-A",
+  "protocol": "embodied_proprioception_direct_v2",
+  "mode": "PROSPECTIVE_DIRECT_DATA",
+  "execution_authorized": true,
+  "authorization_scope": "single DATA-only prospective execution; execution authorization is not human scientific review",
+  "human_review_required": true,
+  "scientific_evidence": false,
+  "automatic_evidence_promotion": false,
+  "independent_replication": false,
+  "design": {
+    "conditions": [
+      "closed_loop",
+      "delayed_proprioception",
+      "feedback_absent",
+      "timing_shuffle"
+    ],
+    "seeds": [
+      8301,8302,8303,8304,8305,8306,8307,8308,8309,8310,
+      8311,8312,8313,8314,8315,8316,8317,8318,8319,8320
+    ],
+    "ticks_per_run": 1000,
+    "delay_ticks": 20,
+    "inferential_unit": "paired_seed",
+    "primary_outcome": "tracking_rmse_rad",
+    "primary_comparisons": [
+      "delayed_proprioception minus closed_loop",
+      "feedback_absent minus closed_loop"
+    ],
+    "secondary_comparison": "timing_shuffle minus closed_loop",
+    "external_perturbation": true
+  },
+  "analysis_plan": {
+    "direction_convention": "positive control-minus-closed_loop difference means lower error under intact proprioception",
+    "report": [
+      "condition means",
+      "paired mean difference",
+      "paired median difference",
+      "paired minimum and maximum difference",
+      "fraction of paired seeds with lower closed_loop error"
+    ],
+    "direct_hypothesis_test": true,
+    "support_rule_for_data_label_only": "both primary paired mean differences are positive and both primary fractions_closed_loop_lower exceed 0.5",
+    "p_values": false,
+    "confirmatory_thresholds": false,
+    "outcome_dependent_stopping": false
+  },
+  "integrity_requirements": [
+    "clean source checkout before execution",
+    "all 80 registered condition-by-seed runs present",
+    "1000 executed ticks in every run",
+    "no runtime errors",
+    "same initial neural state within each seed",
+    "same initial body state within each seed",
+    "same graph fingerprint within each seed",
+    "timing_shuffle donor digest equals same-seed intact closed-loop sensor digest",
+    "feedback_absent observations are exactly zero"
+  ],
+  "stopping_rule": "Execute exactly 20 paired seeds across all four arms. Retain failures; no replacement seeds and no outcome-dependent stopping.",
+  "claim_boundary": "Prospective direct synthetic DATA for H-EMB-002-A in the fixed six-neuron joint fixture. This does not establish biological proprioception, learned body schema, real-device transfer, autonomy, consciousness, or scientific EVID. Human Review remains required."
+}
