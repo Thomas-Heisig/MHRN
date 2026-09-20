@@ -1,0 +1,162 @@
+name: Publish Alpha.6 after green main
+
+on:
+  workflow_run:
+    workflows: ["Continuous Integration"]
+    types: [completed]
+
+permissions:
+  contents: write
+  actions: read
+  checks: read
+
+concurrency:
+  group: publish-v0.6.0-alpha.6
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    if: github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event.workflow_run.head_sha }}
+
+      - name: Verify publication request
+        id: guard
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          data = json.loads(Path("releases/current.json").read_text(encoding="utf-8"))
+          active = (
+              data.get("version") == "0.6.0-alpha.6"
+              and data.get("target_tag") == "v0.6.0-alpha.6"
+              and data.get("publish_requested") is True
+              and data.get("status") == "release_candidate"
+          )
+          with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as fh:
+              fh.write(f"publish={'true' if active else 'false'}\n")
+          print("release publication requested:", active)
+          PY
+
+      - name: Wait for exact-source release gates
+        if: steps.guard.outputs.publish == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SOURCE_SHA: ${{ github.event.workflow_run.head_sha }}
+        shell: bash
+        run: |
+          required=(
+            "ci-status" "build" "docker"
+            "tests (3.11)" "tests (3.12)" "tests (3.13)"
+            "lint-format" "type-check" "security" "browser" "docs"
+            "scientific-integrity" "publication-integrity"
+            "empirical-data-integrity" "connectome-integrity"
+            "naming" "revision" "integration"
+          )
+          for attempt in {1..60}; do
+            payload="$(gh api "repos/$GITHUB_REPOSITORY/commits/$SOURCE_SHA/check-runs?per_page=100")"
+            waiting=0
+            failed=0
+            for name in "${required[@]}"; do
+              conclusion="$(jq -r --arg n "$name" '[.check_runs[] | select(.name == $n)] | last | .conclusion // empty' <<<"$payload")"
+              status="$(jq -r --arg n "$name" '[.check_runs[] | select(.name == $n)] | last | .status // empty' <<<"$payload")"
+              if [[ "$conclusion" == "failure" || "$conclusion" == "cancelled" || "$conclusion" == "timed_out" || "$conclusion" == "action_required" ]]; then
+                echo "::error::$name failed with $conclusion"
+                failed=1
+              elif [[ "$conclusion" != "success" ]]; then
+                echo "waiting: $name status=${status:-missing} conclusion=${conclusion:-missing}"
+                waiting=1
+              fi
+            done
+            [[ "$failed" -eq 0 ]] || exit 1
+            if [[ "$waiting" -eq 0 ]]; then
+              echo "All exact-source release gates passed for $SOURCE_SHA"
+              break
+            fi
+            [[ "$attempt" -lt 60 ]] || { echo "::error::Timed out waiting for release gates"; exit 1; }
+            sleep 10
+          done
+          test -z "$(git status --porcelain --untracked-files=all)"
+
+      - name: Create immutable GitHub pre-release
+        if: steps.guard.outputs.publish == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SOURCE_SHA: ${{ github.event.workflow_run.head_sha }}
+          TAG: v0.6.0-alpha.6
+        shell: bash
+        run: |
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            git fetch --tags origin
+            tag_sha="$(git rev-list -n 1 "$TAG" 2>/dev/null || true)"
+            [[ "$tag_sha" == "$SOURCE_SHA" ]] || {
+              echo "::error::Existing $TAG does not resolve to exact source freeze $SOURCE_SHA"
+              exit 1
+            }
+          else
+            gh release create "$TAG"               --target "$SOURCE_SHA"               --prerelease               --title "MHRN v0.6.0-alpha.6 — Public Research Alpha"               --notes-file docs/10-releases/RELEASE_NOTES_v060a6.md
+          fi
+
+      - name: Record published release metadata
+        if: steps.guard.outputs.publish == 'true'
+        env:
+          SOURCE_SHA: ${{ github.event.workflow_run.head_sha }}
+          TAG: v0.6.0-alpha.6
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          path = Path("releases/current.json")
+          data = json.loads(path.read_text(encoding="utf-8"))
+          data.update(
+              status="released",
+              gate="passed",
+              date="2026-09-20",
+              as_of="2026-09-20",
+              tag=os.environ["TAG"],
+              commit=os.environ["SOURCE_SHA"],
+              source_freeze_commit=os.environ["SOURCE_SHA"],
+              publish_requested=False,
+          )
+          publication = data.setdefault("publication_state", {})
+          publication.update(
+              github_release="published",
+              github_tag=os.environ["TAG"],
+              source_freeze_commit=os.environ["SOURCE_SHA"],
+              zenodo="awaiting_external_archive_verification",
+              doi=None,
+          )
+          rendered = json.dumps(data, ensure_ascii=False, indent=2) + "\n"
+          path.write_text(rendered, encoding="utf-8")
+          Path("releases/v0.6.0-alpha.6.json").write_text(rendered, encoding="utf-8")
+          PY
+          git config user.name "MHRN release automation"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add releases/current.json releases/v0.6.0-alpha.6.json
+          git diff --cached --check
+          git commit -m "release: record v0.6.0-alpha.6 publication"
+          git push origin HEAD:main
+
+      - name: Remove only branches already merged into main
+        if: steps.guard.outputs.publish == 'true'
+        shell: bash
+        run: |
+          git fetch origin '+refs/heads/*:refs/remotes/origin/*'
+          deleted=0
+          while IFS= read -r branch; do
+            [[ "$branch" == "main" || "$branch" == "gh-pages" ]] && continue
+            git show-ref --verify --quiet "refs/remotes/origin/$branch" || continue
+            if git merge-base --is-ancestor "refs/remotes/origin/$branch" "refs/remotes/origin/main"; then
+              echo "Deleting fully merged branch: $branch"
+              git push origin --delete "$branch"
+              deleted=$((deleted + 1))
+            fi
+          done < <(git for-each-ref --format='%(refname:strip=3)' refs/remotes/origin | sort)
+          echo "Deleted merged branches: $deleted"
