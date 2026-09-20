@@ -38,9 +38,7 @@ def test_current_publication_declares_language_provenance() -> None:
     assert current["ui_default_language"] == "en"
     assert current["content_language"] == "de"
     assert current["subtitle"].startswith("Rekursive Epistemik")
-    assert current["english_translation"].endswith(
-        "/translations/en/MANUSCRIPT.md"
-    )
+    assert current["english_translation"].endswith("/translations/en/MANUSCRIPT.md")
     assert "canonical source language" in current["language_policy"]
 
 
@@ -49,9 +47,9 @@ def test_publication_reader_never_promotes_translation_to_evidence() -> None:
         ROOT / "src/dashboard/static/frontend/modules/publication-reader.js"
     ).read_text(encoding="utf-8")
     server = (ROOT / "src/dashboard/server.py").read_text(encoding="utf-8")
-    i18n = (
-        ROOT / "src/dashboard/static/frontend/core/i18n.js"
-    ).read_text(encoding="utf-8")
+    i18n = (ROOT / "src/dashboard/static/frontend/core/i18n.js").read_text(
+        encoding="utf-8"
+    )
 
     assert "?lang=${encodeURIComponent(getLanguage())}" in reader
     assert "publication.translation.source" in reader

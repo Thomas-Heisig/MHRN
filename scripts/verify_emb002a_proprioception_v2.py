@@ -69,12 +69,16 @@ def main() -> int:
     for seed in seeds:
         seed_rows = [rows[(seed, condition)] for condition in conditions]
         assert len({row["state_digest_before"] for row in seed_rows}) == 1
-        assert len(
-            {json.dumps(row["initial_body_state"], sort_keys=True) for row in seed_rows}
-        ) == 1
-        assert len(
-            {json.dumps(row["graph"], sort_keys=True) for row in seed_rows}
-        ) == 1
+        assert (
+            len(
+                {
+                    json.dumps(row["initial_body_state"], sort_keys=True)
+                    for row in seed_rows
+                }
+            )
+            == 1
+        )
+        assert len({json.dumps(row["graph"], sort_keys=True) for row in seed_rows}) == 1
         assert (
             rows[(seed, "timing_shuffle")]["donor_tape_sha256"]
             == rows[(seed, "closed_loop")]["sensor_tape_sha256"]

@@ -85,7 +85,9 @@ def compact(condition: str, seed: int, result: LoopResult) -> dict[str, Any]:
     }
 
 
-def paired(rows: dict[tuple[int, str], dict[str, Any]], seeds: tuple[int, ...], control: str) -> dict[str, Any]:
+def paired(
+    rows: dict[tuple[int, str], dict[str, Any]], seeds: tuple[int, ...], control: str
+) -> dict[str, Any]:
     diffs = [
         float(rows[(seed, control)]["tracking_rmse_rad"])
         - float(rows[(seed, "closed_loop")]["tracking_rmse_rad"])
@@ -175,13 +177,10 @@ def main() -> int:
                 {digest(row["initial_body_state"]) for row in seed_rows}
             )
             == 1,
-            "same_graph_fingerprint": len(
-                {digest(row["graph"]) for row in seed_rows}
-            )
+            "same_graph_fingerprint": len({digest(row["graph"]) for row in seed_rows})
             == 1,
             "timing_shuffle_uses_same_seed_closed_loop_donor": (
-                shuffled.metrics.get("donor_tape_sha256")
-                == digest(closed.sensor_tape)
+                shuffled.metrics.get("donor_tape_sha256") == digest(closed.sensor_tape)
             ),
             "feedback_absent_observation_is_zero": all(
                 float(point["observed_q_rad"]) == 0.0
@@ -194,9 +193,7 @@ def main() -> int:
         "clean_source_freeze": source["dirty_before_execution"] is False,
         "run_count": len(serialized) == 80,
         "coverage": all(
-            (seed, condition) in rows
-            for seed in seeds
-            for condition in CONDITIONS
+            (seed, condition) in rows for seed in seeds for condition in CONDITIONS
         ),
         "runtime_errors_absent": all(
             row["runtime_error"] is None for row in serialized
@@ -308,8 +305,8 @@ def main() -> int:
                 "Were all four arms paired on the same initial neural/body state per seed?",
                 "Does the timing-shuffle arm use only the same-seed intact donor tape?",
                 "Do both primary contrasts satisfy the preregistered DATA-only support rule?",
-                "Is interpretation limited to the fixed synthetic six-neuron fixture?"
-            ]
+                "Is interpretation limited to the fixed synthetic six-neuron fixture?",
+            ],
         },
     )
     report = f"""# {EXP_ID}
