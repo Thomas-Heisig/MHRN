@@ -52,12 +52,11 @@ for (const port of [4174, 4175]) {
     await expect(portalLinks.locator('[data-portal="hf-source"]')).toHaveAttribute('href', 'https://huggingface.co/ThomasHeisig/MHRN');
     await expect(portalLinks.locator('[data-portal="hf-space"]')).toHaveAttribute('href', 'https://huggingface.co/spaces/ThomasHeisig/MHRN-Space');
     await expect(portalLinks.locator('[data-portal="hf-data"]')).toHaveAttribute('href', 'https://huggingface.co/datasets/ThomasHeisig/MHRN-Research-Data');
-    const readerLink = publicationPanel.locator('a[data-pub-reader-link]').first();
+    const readerLink = publicationPanel.locator('[data-pub-reader-link]').first();
     await expect(readerLink).toBeVisible();
-    const readerHref = await readerLink.getAttribute('href');
-    expect(readerHref).toBeTruthy();
-    expect(readerHref).not.toBe('#');
-    expect(readerHref).toContain('/api/files/raw/');
+    const readerPath = await readerLink.getAttribute('data-pub-reader-link');
+    expect(readerPath).toBeTruthy();
+    expect(readerPath).toContain('.md');
 
     const prefix = `http://127.0.0.1:${port}/api/files/preview/`;
     const catalogue = JSON.parse((await (await page.request.get(prefix + encodeURIComponent('publications/catalog.json') + '?source=research')).json()).content);

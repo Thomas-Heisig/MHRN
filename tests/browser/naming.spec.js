@@ -7,15 +7,22 @@ for (const width of [390, 1280]) {
     await expect(page).toHaveTitle(/MHRN/);
     await expect(page.locator('.project-title')).toHaveText('Multi-Scale Homeostatic Recurrence Network');
     await expect(page.locator('.project-subtitle')).toHaveText('Mehrskaliges homöostatisches Rekurrenznetzwerk');
+    await expect(page.locator('body')).toHaveAttribute('data-ui-language', 'en');
     await expect(page.locator('.project-title')).toBeVisible();
-    await expect(page.locator('.project-subtitle')).toBeVisible();
+    await expect(page.locator('.project-subtitle')).toBeHidden();
     const title = await page.locator('.project-title').boundingBox();
-    const subtitle = await page.locator('.project-subtitle').boundingBox();
     expect(title).not.toBeNull();
-    expect(subtitle).not.toBeNull();
     expect(title.x).toBeGreaterThanOrEqual(0);
     expect(title.x + title.width).toBeLessThanOrEqual(width);
-    expect(subtitle.y).toBeGreaterThanOrEqual(title.y + title.height);
+
+    await page.locator('[data-mhrn-language="de"]').click();
+    await expect(page.locator('body')).toHaveAttribute('data-ui-language', 'de');
+    await expect(page.locator('.project-title')).toBeHidden();
+    await expect(page.locator('.project-subtitle')).toBeVisible();
+    const subtitle = await page.locator('.project-subtitle').boundingBox();
+    expect(subtitle).not.toBeNull();
+    expect(subtitle.x).toBeGreaterThanOrEqual(0);
+    expect(subtitle.x + subtitle.width).toBeLessThanOrEqual(width);
     await page.screenshot({ path: testInfo.outputPath(`mhrn-${width}.png`), fullPage: true });
   });
 }
