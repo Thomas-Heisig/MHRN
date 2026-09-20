@@ -17,7 +17,7 @@ def _release(name: str) -> dict[str, Any]:
     )
 
 
-def test_current_release_matches_canonical_development_version() -> None:
+def test_current_release_matches_canonical_published_version() -> None:
     with (ROOT / "pyproject.toml").open("rb") as stream:
         project = tomllib.load(stream)["project"]
     current = _release("current.json")
@@ -25,7 +25,7 @@ def test_current_release_matches_canonical_development_version() -> None:
     assert project["version"] == "0.6.0a5"
     assert current["version"] == "0.6.0-alpha.5"
     assert current["pep440"] == project["version"]
-    assert current["status"] in {"development", "release_candidate"}
+    assert current["status"] == "released"
     assert current.get("release_type") == "pre-release"
     assert current.get("target_tag") == "v0.6.0-alpha.5"
     assert current["parent"] == "v0.5.0-alpha.7"
