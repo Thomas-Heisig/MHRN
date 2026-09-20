@@ -1,9 +1,13 @@
 # ============================================================================
-# Brain-5D — optional GitHub -> Hugging Face mirror
+# MHRN - GitHub -> Hugging Face publication fan-out
 # ============================================================================
-# The GitHub repository is canonical. The mirror runs after pushes to main only
-# when both HF_USERNAME and HF_TOKEN are configured as Actions secrets.
-# Missing mirror credentials are not a failure of Brain-5D itself.
+# GitHub main remains canonical. Once HF_USERNAME and HF_TOKEN are configured
+# as repository Actions secrets, this workflow creates/updates:
+#   - <user>/MHRN               (software/source mirror)
+#   - <user>/MHRN-Space         (Docker Space)
+#   - <user>/MHRN-Research-Data (research/data mirror)
+# Missing account credentials remain an explicit "not configured" state and do
+# not make scientific or engineering CI fail.
 # ============================================================================
 
 name: Sync to Hugging Face
@@ -13,55 +17,143 @@ on:
     branches: [main]
   workflow_dispatch:
 
+permissions:
+  contents: read
+
+concurrency:
+  group: huggingface-publication-main
+  cancel-in-progress: true
+
 jobs:
   sync:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      HF_TOKEN: ${{ secrets.HF_TOKEN }}
+      HF_USERNAME: ${{ secrets.HF_USERNAME }}
+      HF_REPO: MHRN
+      HF_SPACE_REPO: MHRN-Space
+      HF_DATASET_REPO: MHRN-Research-Data
+
     steps:
-      - name: Checkout GitHub Repository
+      - name: Checkout canonical GitHub source
         uses: actions/checkout@v7
         with:
-          fetch-depth: 0
+          fetch-depth: 1
           lfs: true
 
-      - name: Push to Hugging Face when configured
-        env:
-          HF_TOKEN: ${{ secrets.HF_TOKEN }}
-          HF_USERNAME: ${{ secrets.HF_USERNAME }}
-          HF_REPO: Brain-5D
-          HF_SPACE_REPO: Brain-5D-Space
+      - name: Resolve publication configuration
+        id: hf
+        shell: bash
         run: |
-          set -e
-
           if [ -z "${HF_USERNAME}" ] || [ -z "${HF_TOKEN}" ]; then
-            echo "::notice::Hugging Face mirror is not configured; skipping optional sync."
+            echo "enabled=false" >> "$GITHUB_OUTPUT"
+            {
+              echo "## Hugging Face publication"
+              echo
+              echo "Status: **NOT CONFIGURED**"
+              echo
+              echo "Add repository Actions secrets `HF_USERNAME` and `HF_TOKEN` to activate automatic publication."
+            } >> "$GITHUB_STEP_SUMMARY"
             exit 0
           fi
+          echo "enabled=true" >> "$GITHUB_OUTPUT"
+
+      - name: Set up Python
+        if: steps.hf.outputs.enabled == 'true'
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+
+      - name: Install Hugging Face client
+        if: steps.hf.outputs.enabled == 'true'
+        run: python -m pip install --disable-pip-version-check --no-cache-dir "huggingface_hub>=0.35,<2"
+
+      - name: Ensure public Hugging Face repositories exist
+        if: steps.hf.outputs.enabled == 'true'
+        shell: bash
+        run: |
+          python - <<'PY'
+          import os
+          from huggingface_hub import HfApi
+
+          token = os.environ["HF_TOKEN"]
+          user = os.environ["HF_USERNAME"]
+          api = HfApi(token=token)
+
+          api.create_repo(
+              repo_id=f"{user}/{os.environ['HF_REPO']}",
+              repo_type="model",
+              private=False,
+              exist_ok=True,
+          )
+          api.create_repo(
+              repo_id=f"{user}/{os.environ['HF_SPACE_REPO']}",
+              repo_type="space",
+              space_sdk="docker",
+              private=False,
+              exist_ok=True,
+          )
+          api.create_repo(
+              repo_id=f"{user}/{os.environ['HF_DATASET_REPO']}",
+              repo_type="dataset",
+              private=False,
+              exist_ok=True,
+          )
+          PY
+
+      - name: Publish source, Space and research-data snapshots
+        if: steps.hf.outputs.enabled == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
 
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git config --global user.name "github-actions[bot]"
 
-          # Hugging Face rejects binary blobs in older Git history. Publish a
-          # fresh source snapshot so every current binary passes the LFS filter.
-          mirror_dir="$(mktemp -d)"
-          find . -mindepth 1 -maxdepth 1 ! -name .git -exec cp -a {} "$mirror_dir"/ \;
-          if [ -f "$mirror_dir/HF_README.md" ]; then
-            cp "$mirror_dir/HF_README.md" "$mirror_dir/README.md"
-          fi
+          publish_snapshot() {
+            local dir="$1"
+            local remote="$2"
+            git -C "$dir" init --initial-branch=main
+            git -C "$dir" lfs install --local
+            git -C "$dir" config user.email "github-actions[bot]@users.noreply.github.com"
+            git -C "$dir" config user.name "github-actions[bot]"
+            git -C "$dir" remote add huggingface "$remote"
+            git -C "$dir" add --all --force
+            git -C "$dir" commit -m "Sync GitHub main ${GITHUB_SHA}"
+            git -C "$dir" push huggingface HEAD:main --force
+            git -C "$dir" lfs push --all huggingface HEAD
+          }
 
-          cp "$mirror_dir/.huggingface/lfs.gitattributes" "$mirror_dir/.gitattributes"
+          source_dir="$(mktemp -d)"
+          find . -mindepth 1 -maxdepth 1 ! -name .git -exec cp -a {} "$source_dir"/ \;
+          cp "$source_dir/HF_MODEL_README.md" "$source_dir/README.md"
+          sed -i "s/PLACEHOLDER_USERNAME/${HF_USERNAME}/g" "$source_dir/README.md"
+          cp "$source_dir/.huggingface/lfs.gitattributes" "$source_dir/.gitattributes"
+          publish_snapshot             "$source_dir"             "https://${HF_USERNAME}:${HF_TOKEN}@huggingface.co/${HF_USERNAME}/${HF_REPO}"
 
-          git -C "$mirror_dir" init --initial-branch=main
-          git -C "$mirror_dir" lfs install --local
-          git -C "$mirror_dir" config user.email "github-actions[bot]@users.noreply.github.com"
-          git -C "$mirror_dir" config user.name "github-actions[bot]"
-          git -C "$mirror_dir" remote add huggingface \
-            "https://${HF_USERNAME}:${HF_TOKEN}@huggingface.co/${HF_USERNAME}/${HF_REPO}"
-          git -C "$mirror_dir" remote add huggingface-space \
-            "https://${HF_USERNAME}:${HF_TOKEN}@huggingface.co/spaces/${HF_USERNAME}/${HF_SPACE_REPO}"
-          git -C "$mirror_dir" add --all --force
-          git -C "$mirror_dir" commit -m "Sync: mirror GitHub main"
+          space_dir="$(mktemp -d)"
+          find . -mindepth 1 -maxdepth 1 ! -name .git -exec cp -a {} "$space_dir"/ \;
+          cp "$space_dir/HF_README.md" "$space_dir/README.md"
+          sed -i "s#https://huggingface.co/spaces/superdigger/Brain-5D-Space#https://huggingface.co/spaces/${HF_USERNAME}/${HF_SPACE_REPO}#g" "$space_dir/README.md"
+          cp "$space_dir/.huggingface/lfs.gitattributes" "$space_dir/.gitattributes"
+          publish_snapshot             "$space_dir"             "https://${HF_USERNAME}:${HF_TOKEN}@huggingface.co/spaces/${HF_USERNAME}/${HF_SPACE_REPO}"
 
-          git -C "$mirror_dir" push huggingface HEAD:main --force
-          git -C "$mirror_dir" lfs push --all huggingface HEAD
-          git -C "$mirror_dir" push huggingface-space HEAD:main --force
-          git -C "$mirror_dir" lfs push --all huggingface-space HEAD
+          data_dir="$(mktemp -d)"
+          mkdir -p "$data_dir/research"
+          cp -a research/. "$data_dir/research/"
+          cp HF_DATASET_README.md "$data_dir/README.md"
+          cp LICENSE CITATION.cff research-network-registry.json "$data_dir/"
+          cp .huggingface/lfs.gitattributes "$data_dir/.gitattributes"
+          publish_snapshot             "$data_dir"             "https://${HF_USERNAME}:${HF_TOKEN}@huggingface.co/datasets/${HF_USERNAME}/${HF_DATASET_REPO}"
+
+          {
+            echo "## Hugging Face publication"
+            echo
+            echo "Status: **SYNCED**"
+            echo
+            echo "- Source: https://huggingface.co/${HF_USERNAME}/${HF_REPO}"
+            echo "- Space: https://huggingface.co/spaces/${HF_USERNAME}/${HF_SPACE_REPO}"
+            echo "- Research data: https://huggingface.co/datasets/${HF_USERNAME}/${HF_DATASET_REPO}"
+            echo "- Canonical GitHub SHA: \`${GITHUB_SHA}\`"
+          } >> "$GITHUB_STEP_SUMMARY"
