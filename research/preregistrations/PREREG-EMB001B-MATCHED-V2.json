@@ -1,0 +1,99 @@
+{
+  "schema_version": 1,
+  "preregistration_id": "PREREG-EMB001B-MATCHED-V2",
+  "research_question": "RQ-EMB-001",
+  "hypothesis": "H-EMB-001-B",
+  "protocol": "embodied_closed_loop_matched_disturbance_v2",
+  "mode": "PROSPECTIVE_EXPLORATORY_MATCHED_DISTURBANCE",
+  "execution_authorized": true,
+  "authorization_scope": "single DATA-only exploratory execution; execution authorization is not human scientific review",
+  "human_review_required": true,
+  "scientific_evidence": false,
+  "automatic_evidence_promotion": false,
+  "independent_replication": false,
+  "predecessor_protocol": "embodied_closed_loop_v1",
+  "design_rationale": "The earlier native screen used a donor tape generated without the registered external perturbation. V2 makes the matched-disturbance requirement explicit by using the actual perturbation-exposed closed-loop arm of each seed as the yoked sensor donor while applying the same external perturbation schedule to all three arms.",
+  "design": {
+    "conditions": [
+      "closed_loop",
+      "yoked_replay",
+      "feedback_absent"
+    ],
+    "seeds": [
+      8201,
+      8202,
+      8203,
+      8204,
+      8205,
+      8206,
+      8207,
+      8208,
+      8209,
+      8210,
+      8211,
+      8212,
+      8213,
+      8214,
+      8215,
+      8216,
+      8217,
+      8218,
+      8219,
+      8220
+    ],
+    "ticks_per_run": 1000,
+    "inferential_unit": "paired_seed",
+    "primary_outcome": "tracking_rmse_rad",
+    "secondary_outcomes": [
+      "sensor_path_rms_q_rad",
+      "sensor_path_mean_abs_q_rad",
+      "final_body_state",
+      "total_spikes",
+      "synaptic_events_delivered"
+    ],
+    "external_perturbation": {
+      "kind": "constant_external_torque_window",
+      "torque_nm": 0.003,
+      "start_tick_inclusive": 250,
+      "end_tick_exclusive": 500,
+      "identical_for_all_conditions": true
+    },
+    "yoked_replay_contract": "For every seed, yoked_replay consumes the complete sensor tape produced by that seed's actual closed_loop arm under the same external perturbation.",
+    "feedback_absent_contract": "Observed position and velocity are fixed to zero while the body still receives the identical external perturbation schedule."
+  },
+  "analysis_plan": {
+    "primary_comparisons": [
+      "yoked_replay minus closed_loop tracking_rmse_rad",
+      "feedback_absent minus closed_loop tracking_rmse_rad"
+    ],
+    "secondary_comparisons": [
+      "yoked_replay minus closed_loop sensor_path_rms_q_rad",
+      "feedback_absent minus closed_loop sensor_path_rms_q_rad"
+    ],
+    "direction_convention": "positive control-minus-closed_loop difference means lower error in closed_loop",
+    "report": [
+      "condition means",
+      "paired mean difference",
+      "paired median difference",
+      "paired minimum and maximum difference",
+      "fraction of paired seeds with lower closed_loop error"
+    ],
+    "p_values": false,
+    "confirmatory_thresholds": false,
+    "outcome_dependent_stopping": false
+  },
+  "integrity_requirements": [
+    "clean source checkout before execution",
+    "all 60 registered condition-by-seed runs present",
+    "1000 executed ticks in every run",
+    "no runtime errors",
+    "same initial neural state within each seed",
+    "same initial body state within each seed",
+    "same graph fingerprint within each seed",
+    "yoked donor sensor digest equals the actual closed_loop sensor digest for that seed",
+    "feedback_absent observed sensor values are exactly zero",
+    "identical registered perturbation schedule for all arms"
+  ],
+  "stopping_rule": "Execute exactly the preregistered 20 seeds and three conditions. Retain failures; no replacement seeds and no outcome-dependent stopping.",
+  "claim_boundary": "This is prospective exploratory synthetic DATA for the scoped H-EMB-001-B matched-disturbance comparison. It is not confirmatory EVID, not independent replication, not evidence of learned body schema, autonomy, consciousness, biological equivalence, real-device transfer, or 5D superiority. Human Review remains required."
+}
