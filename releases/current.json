@@ -1,12 +1,12 @@
 {
   "schema_version": 2,
-  "version": "0.6.0-alpha.5",
-  "pep440": "0.6.0a5",
-  "status": "released",
-  "title": "Public Alpha.5 Research Release Candidate",
-  "parent": "v0.5.0-alpha.7",
-  "gate": "passed",
-  "as_of": "2026-09-19",
+  "version": "0.6.0-alpha.6",
+  "pep440": "0.6.0a6",
+  "status": "release_candidate",
+  "title": "Public Alpha.6 Research Distribution Release",
+  "parent": "v0.6.0-alpha.5",
+  "gate": "pending_exact_source_ci",
+  "as_of": "2026-09-20",
   "milestone_status": "engineering_release_candidate_scientific_programme_active",
   "release_blockers": 0,
   "scope": [
@@ -49,7 +49,9 @@
     "public provider identity, postal address, contact email and editorial responsibility are explicitly documented",
     "AI assistance is explicitly disclosed and the human-AI research process is positioned as a methodological research object",
     "a non-technical publication view explains MHRN, evidence boundaries and replication needs",
-    "Alpha.5 release metadata separates development readiness, scientific state and publication state"
+    "Alpha.5 release metadata separates development readiness, scientific state and publication state",
+    "research-network publication links added across GitHub, ORCID, OSF, Zenodo, Hugging Face and discovery targets",
+    "Hugging Face namespace migrated to ThomasHeisig with rolling mirrors for source, Space and research data"
   ],
   "open": [
     "complete remaining human scientific reviews and make explicit EVID decisions without automatic promotion",
@@ -75,14 +77,14 @@
     "novelty_claim": "requires_prior_art_review"
   },
   "research_boundary": "Engineering implementation, technical verification, UI/API availability and DATA collection are not equivalent to scientific EVID. Scientific maturity is tracked independently through registered questions, frozen protocols, source-bound DATA, human-reviewed EVID, independent replication and attribution. No stage score establishes AGI, consciousness, sentience or biological equivalence.",
-  "note": "Alpha.5 ist als technischer Pre-Release veröffentlicht. Der wissenschaftliche Zustand bleibt davon getrennt: Edition 1.8 ist current WIP, unabhängige externe Replikation bleibt offen, und Release/DOI erzeugen weder Human Review noch wissenschaftliche EVID.",
-  "target_tag": "v0.6.0-alpha.5",
-  "publish_requested": false,
+  "note": "Alpha.6 is prepared as a technical pre-release for archival and distribution. Zenodo DOI assignment remains an archival identifier only and does not create Human Review, EVID, novelty, scientific validity or independent replication.",
+  "target_tag": "v0.6.0-alpha.6",
+  "publish_requested": true,
   "release_type": "pre-release",
   "development_state": {
-    "status": "released",
-    "engineering": "released_from_exact_green_source_freeze",
-    "summary": "Alpha.5 wurde als technischer Pre-Release vom exakt grün geprüften Source-Freeze 09b882de6db7f45efdec1b08f484b61476754e45 veröffentlicht."
+    "status": "release_candidate",
+    "engineering": "awaiting_exact_green_source_freeze",
+    "summary": "Alpha.6 publication is requested and will only be tagged from the exact merged main commit after required release gates pass."
   },
   "scientific_state": {
     "status": "active_research_not_scientifically_complete",
@@ -93,18 +95,18 @@
     "summary": "Technische Reife, wissenschaftliche Evidenz und externe Geltung bleiben getrennte Achsen. Unabhängige Replikation und externe Kritik sind ausdrücklich gesucht."
   },
   "publication_state": {
-    "github_release": "published",
-    "zenodo": "awaiting_external_archive_verification",
+    "github_release": "pending_green_source_freeze",
+    "zenodo": "awaiting_github_release_archive",
     "doi": null,
     "orcid": "0009-0002-9589-1872",
     "release_type": "pre-release",
     "public_imprint": "identity_and_contact_complete",
     "hosted_dashboard_privacy": "deployment_specific_details_pending",
-    "github_tag": "v0.6.0-alpha.5",
-    "source_freeze_commit": "09b882de6db7f45efdec1b08f484b61476754e45"
+    "github_tag": "v0.6.0-alpha.6",
+    "source_freeze_commit": null
   },
-  "date": "2026-09-19",
-  "tag": "v0.6.0-alpha.5",
-  "commit": "09b882de6db7f45efdec1b08f484b61476754e45",
-  "source_freeze_commit": "09b882de6db7f45efdec1b08f484b61476754e45"
+  "date": "2026-09-20",
+  "tag": null,
+  "commit": null,
+  "source_freeze_commit": null
 }
