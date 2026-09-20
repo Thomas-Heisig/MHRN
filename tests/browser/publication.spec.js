@@ -49,6 +49,8 @@ for (const port of [4174, 4175]) {
     await expect(portalLinks).toBeVisible();
     await expect(portalLinks.locator('[data-portal="orcid"]')).toHaveAttribute('href', 'https://orcid.org/0009-0002-9589-1872');
     await expect(portalLinks.locator('[data-portal="osf"]')).toHaveAttribute('href', 'https://osf.io/p34uq/');
+    await expect(portalLinks.locator('[data-portal="zenodo"]')).toHaveAttribute('href', 'https://zenodo.org/badge/latestdoi/1335973891');
+    await expect(page.locator('.publication-network-links__doi img')).toHaveAttribute('src', 'https://zenodo.org/badge/1335973891.svg');
     await expect(portalLinks.locator('[data-portal="hf-source"]')).toHaveAttribute('href', 'https://huggingface.co/ThomasHeisig/MHRN');
     await expect(portalLinks.locator('[data-portal="hf-space"]')).toHaveAttribute('href', 'https://huggingface.co/spaces/ThomasHeisig/MHRN-Space');
     await expect(portalLinks.locator('[data-portal="hf-data"]')).toHaveAttribute('href', 'https://huggingface.co/datasets/ThomasHeisig/MHRN-Research-Data');
