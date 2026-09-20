@@ -1,7 +1,7 @@
 "use strict";
 
 import { installPollingGovernor } from "./core/polling-governor.js";
-import { initI18n } from "./core/i18n.js";
+import { initI18n } from "./core/i18n.js?v=i18n-fix-20260920b";
 import { initStatusBar } from "./components/status-bar.js";
 import { initNotificationCenter } from "./components/notification-center.js";
 import { initPanelHelp } from "./components/help.js";

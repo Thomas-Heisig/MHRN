@@ -1,0 +1,205 @@
+- generic [active] [ref=e1]:
+  - navigation "MHRN Hauptnavigation" [ref=e2]:
+    - button "01 D Dashboard System & Operations" [ref=e3] [cursor=pointer]:
+      - generic [ref=e4]: "01"
+      - generic [ref=e5]: D
+      - generic [ref=e6]:
+        - strong [ref=e7]: Dashboard
+        - generic [ref=e8]: System & Operations
+    - button "02 W Science Evidence & Analysis" [ref=e9] [cursor=pointer]:
+      - generic [ref=e10]: "02"
+      - generic [ref=e11]: W
+      - generic [ref=e12]:
+        - strong [ref=e13]: Science
+        - generic [ref=e14]: Evidence & Analysis
+    - button "03 R Runtime & Wesen Körper & Verhalten" [ref=e15] [cursor=pointer]:
+      - generic [ref=e16]: "03"
+      - generic [ref=e17]: R
+      - generic [ref=e18]:
+        - strong [ref=e19]: Runtime & Wesen
+        - generic [ref=e20]: Körper & Verhalten
+    - button "04 C Control Steuerung & Parameter" [ref=e21] [cursor=pointer]:
+      - generic [ref=e22]: "04"
+      - generic [ref=e23]: C
+      - generic [ref=e24]:
+        - strong [ref=e25]: Control
+        - generic [ref=e26]: Steuerung & Parameter
+    - button "05 R Release Gate & Reife" [ref=e27] [cursor=pointer]:
+      - generic [ref=e28]: "05"
+      - generic [ref=e29]: R
+      - generic [ref=e30]:
+        - strong [ref=e31]: Release
+        - generic [ref=e32]: Gate & Reife
+    - button "06 S Settings App & Integrationen" [ref=e33] [cursor=pointer]:
+      - generic [ref=e34]: "06"
+      - generic [ref=e35]: S
+      - generic [ref=e36]:
+        - strong [ref=e37]: Settings
+        - generic [ref=e38]: App & Integrationen
+    - button "07 R Review Human Review & Prüfer" [ref=e39] [cursor=pointer]:
+      - generic [ref=e40]: "07"
+      - generic [ref=e41]: R
+      - generic [ref=e42]:
+        - strong [ref=e43]: Review
+        - generic [ref=e44]: Human Review & Prüfer
+    - button "08 D Fileen File Viewer & Explorer" [ref=e45] [cursor=pointer]:
+      - generic [ref=e46]: "08"
+      - generic [ref=e47]: D
+      - generic [ref=e48]:
+        - strong [ref=e49]: Fileen
+        - generic [ref=e50]: File Viewer & Explorer
+    - button "09 P Publication Scientific Work" [ref=e51] [cursor=pointer]:
+      - generic [ref=e52]: "09"
+      - generic [ref=e53]: P
+      - generic [ref=e54]:
+        - strong [ref=e55]: Publication
+        - generic [ref=e56]: Scientific Work
+  - banner [ref=e57]:
+    - generic [ref=e58]:
+      - text: M
+      - button "Back" [ref=e59] [cursor=pointer]: ←
+      - button "Overview" [ref=e60] [cursor=pointer]: ⌂
+      - generic [ref=e61]:
+        - paragraph [ref=e62]: MHRN
+        - paragraph [ref=e63]: Multi-Scale Homeostatic Recurrence Network
+        - heading "Operator Dashboard" [level=1] [ref=e64]
+    - generic [ref=e65]:
+      - group "Language" [ref=e66]:
+        - button "English" [pressed] [ref=e67] [cursor=pointer]: EN
+        - button "Deutsch" [ref=e68] [cursor=pointer]: DE
+      - button "Help" [ref=e69] [cursor=pointer]: "?"
+      - button "Dark oder Light Mode" [ref=e70] [cursor=pointer]: ◐
+      - button "Contrast Mode" [ref=e71] [cursor=pointer]: ◩
+      - button "Accessible Display" [ref=e72] [cursor=pointer]: A+
+      - button "Open Research Chat" [ref=e73] [cursor=pointer]: ✦ CHAT
+  - main [ref=e74]:
+    - generic [ref=e75]:
+      - generic [ref=e76]:
+        - generic [ref=e77]:
+          - text: OPERATOR
+          - heading "Dashboard" [level=2] [ref=e78]
+          - paragraph [ref=e79]: System State & Control — vitale Signe, Komponenten, Memory und Structure
+        - generic [ref=e80]:
+          - generic [ref=e81]:
+            - text: Status
+            - strong [ref=e82]: idle
+          - generic [ref=e83]:
+            - text: Tick
+            - strong [ref=e84]: "0"
+      - generic [ref=e85]:
+        - generic [ref=e86]: 01 · Dashboard
+        - generic [ref=e87]: /
+        - generic [ref=e88]: Overview
+        - generic [ref=e89]: "|"
+        - generic [ref=e90]: 6 Unterbereiche
+      - tablist [ref=e91]:
+        - tab "Overview" [selected] [ref=e92] [cursor=pointer]
+        - tab "Vitals" [ref=e93] [cursor=pointer]
+        - tab "Organs" [ref=e94] [cursor=pointer]
+        - tab "Memory" [ref=e95] [cursor=pointer]
+        - tab "Structure" [ref=e96] [cursor=pointer]
+        - tab "Snapshot" [ref=e97] [cursor=pointer]
+        - tab "System Info" [ref=e98] [cursor=pointer]
+      - generic [ref=e99]:
+        - generic [ref=e100]:
+          - article [ref=e101]:
+            - heading "How to" [level=3] [ref=e102]
+            - list [ref=e103]:
+              - listitem [ref=e104]: Health und Integration prüfen.
+              - listitem [ref=e105]: Passenden Untertab wählen.
+              - listitem [ref=e106]: Für Detailanalysen in Science, Runtime oder Control wechseln.
+          - article [ref=e107]:
+            - heading "Backend-Verträge" [level=3] [ref=e108]
+            - generic [ref=e109]:
+              - generic [ref=e110]:
+                - code [ref=e111]: /api/status
+                - generic [ref=e112]: prüfe …
+              - generic [ref=e113]:
+                - code [ref=e114]: /api/integration/status
+                - generic [ref=e115]: prüfe …
+              - generic [ref=e116]:
+                - code [ref=e117]: /api/snapshot-info
+                - generic [ref=e118]: prüfe …
+        - generic [ref=e119]:
+          - button "01 Vitals" [ref=e120] [cursor=pointer]:
+            - generic [ref=e121]: "01"
+            - strong [ref=e122]: Vitals
+          - button "02 Organs" [ref=e123] [cursor=pointer]:
+            - generic [ref=e124]: "02"
+            - strong [ref=e125]: Organs
+          - button "03 Memory" [ref=e126] [cursor=pointer]:
+            - generic [ref=e127]: "03"
+            - strong [ref=e128]: Memory
+          - button "04 Structure" [ref=e129] [cursor=pointer]:
+            - generic [ref=e130]: "04"
+            - strong [ref=e131]: Structure
+          - button "05 Snapshot" [ref=e132] [cursor=pointer]:
+            - generic [ref=e133]: "05"
+            - strong [ref=e134]: Snapshot
+          - button "06 System Info" [ref=e135] [cursor=pointer]:
+            - generic [ref=e136]: "06"
+            - strong [ref=e137]: System Info
+    - text: READ READ READ READ READ READ READ READ READ READ READ READ READ READ READ READ READ READ READ READ READ READ READ READ READ
+  - complementary [ref=e138]:
+    - generic [ref=e139]:
+      - heading "Health & Problems" [level=3] [ref=e140]
+      - button "Close" [ref=e141] [cursor=pointer]: ×
+    - generic [ref=e142]:
+      - generic [ref=e143]: "0"
+      - generic [ref=e144]: "0"
+      - generic [ref=e145]: "0"
+      - generic [ref=e146]: "0"
+    - generic [ref=e147]:
+      - heading "Problems" [level=4] [ref=e148]
+      - generic [ref=e149]: No problems detected.
+    - heading "Components" [level=4] [ref=e152]
+  - contentinfo [ref=e153]:
+    - generic [ref=e154]:
+      - generic [ref=e155]:
+        - text: MHRN
+        - emphasis [ref=e156]: vunknown
+      - group "Runtime-Steuerung" [ref=e157]:
+        - button "Runtime starten" [ref=e158] [cursor=pointer]: ▶
+        - button "Runtime pausieren" [ref=e159] [cursor=pointer]: Ⅱ
+        - button "Runtime stoppen" [ref=e160] [cursor=pointer]: ■
+      - emphasis [ref=e161]: ready
+      - generic "Experiment-Modus" [ref=e162]:
+        - button "🎮" [ref=e163] [cursor=pointer]
+        - button "🔬" [ref=e164] [cursor=pointer]
+        - button "🐛" [ref=e165] [cursor=pointer]
+      - generic [ref=e166]: ✓ operator
+    - generic [ref=e167]:
+      - generic [ref=e168]:
+        - generic [ref=e169]: RT
+        - strong [ref=e170]: idle
+      - generic [ref=e171]:
+        - generic [ref=e172]: T
+        - strong [ref=e173]: —
+      - generic [ref=e174]:
+        - generic [ref=e175]: CI
+        - strong [ref=e176]: —
+      - generic [ref=e177]:
+        - generic [ref=e178]: Gate
+        - strong [ref=e179]: —
+      - generic [ref=e180]:
+        - generic [ref=e181]: Act
+        - strong [ref=e182]: —
+      - generic [ref=e183]:
+        - generic [ref=e184]: Spk
+        - strong [ref=e185]: —
+      - generic [ref=e186]:
+        - generic [ref=e187]: Drk
+        - strong [ref=e188]: —
+      - generic "no current signal flow" [ref=e189]:
+        - generic [ref=e190]: I/O
+        - strong [ref=e191]: —/—
+      - generic [ref=e192]: Ready · no events
+      - generic [ref=e195]:
+        - generic [ref=e197]: Healthy
+        - button "Problems" [ref=e198] [cursor=pointer]
+      - button "Notifications" [ref=e200] [cursor=pointer]:
+        - text: ⚠
+        - generic [ref=e201]: "0"
+      - generic [ref=e202]:
+        - generic [ref=e203]: Age
+        - strong [ref=e204]: —

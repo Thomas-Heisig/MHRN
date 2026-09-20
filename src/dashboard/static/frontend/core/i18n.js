@@ -196,9 +196,23 @@ const EN_TO_DE = [...PHRASE_PAIRS].map(([de, en]) => [en, de]).sort((a, b) => b[
 
 const textOrigins = new WeakMap();
 const attributeOrigins = new WeakMap();
+const translationCache = new Map();
 let currentLanguage = DEFAULT_LANGUAGE;
 let mutating = false;
 let observer = null;
+let observerFrame = 0;
+
+const OBSERVER_OPTIONS = Object.freeze({
+  childList: true,
+  subtree: true,
+  characterData: true,
+  attributes: true,
+  attributeFilter: TRANSLATABLE_ATTRIBUTES,
+});
+
+function observeBody() {
+  if (observer && document.body) observer.observe(document.body, OBSERVER_OPTIONS);
+}
 
 function normalizeLanguage(value) {
   return String(value || "").toLowerCase().startsWith("de") ? "de" : "en";
@@ -230,10 +244,15 @@ function replaceWholePhrase(value, from, to) {
 }
 
 function translateFragment(value, language = currentLanguage) {
-  let output = String(value ?? "");
+  const source = String(value ?? "");
+  const cacheKey = `${language}\u0000${source}`;
+  const cached = translationCache.get(cacheKey);
+  if (cached !== undefined) return cached;
+  let output = source;
   for (const [from, to] of replacementTable(language)) {
     output = replaceWholePhrase(output, from, to);
   }
+  translationCache.set(cacheKey, output);
   return output;
 }
 
@@ -352,8 +371,18 @@ export function setLanguage(language, { persist = true, announce = true } = {}) 
     try { localStorage.setItem(STORAGE_KEY, next); } catch (_) {}
   }
 
-  translateTree(document.body);
-  syncLanguageSwitch();
+  if (changed) {
+    const activeObserver = observer;
+    activeObserver?.disconnect();
+    try {
+      translateTree(document.body);
+      syncLanguageSwitch();
+    } finally {
+      if (activeObserver && document.body) observeBody();
+    }
+  } else {
+    syncLanguageSwitch();
+  }
 
   if (changed && announce) {
     document.dispatchEvent(new CustomEvent("mhrn:language-change", {
@@ -373,28 +402,29 @@ export function initI18n() {
 
   if (!observer && document.body) {
     observer = new MutationObserver((records) => {
-      if (mutating) return;
-      for (const record of records) {
-        if (record.type === "characterData") {
-          textOrigins.delete(record.target);
-          translateTree(record.target);
-          continue;
+      if (mutating || observerFrame) return;
+      observerFrame = requestAnimationFrame(() => {
+        observerFrame = 0;
+        if (!observer || mutating) return;
+        observer.disconnect();
+        try {
+          for (const record of records) {
+            if (record.type === "characterData") {
+              textOrigins.delete(record.target);
+              translateTree(record.target);
+            } else if (record.type === "attributes") {
+              attributeOrigins.delete(record.target);
+              translateTree(record.target);
+            } else {
+              record.addedNodes.forEach((node) => translateTree(node));
+            }
+          }
+        } finally {
+          observeBody();
         }
-        if (record.type === "attributes") {
-          attributeOrigins.delete(record.target);
-          translateTree(record.target);
-          continue;
-        }
-        record.addedNodes.forEach((node) => translateTree(node));
-      }
+      });
     });
-    observer.observe(document.body, {
-      childList: true,
-      subtree: true,
-      characterData: true,
-      attributes: true,
-      attributeFilter: TRANSLATABLE_ATTRIBUTES,
-    });
+    observeBody();
   }
 
   window.MHRNI18n = {

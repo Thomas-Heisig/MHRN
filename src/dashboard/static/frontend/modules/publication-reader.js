@@ -10,7 +10,7 @@
 "use strict";
 
 import { createSpeechControls } from "../../speech-reader.js";
-import { getLanguage, getLocale, t } from "../core/i18n.js";
+import { getLanguage, getLocale, t } from "../core/i18n.js?v=i18n-fix-20260920b";
 
 const CURRENT_PUBLICATION_ENDPOINT = "/api/publication/current";
 const REPOSITORY_BLOB_ROOT = "https://github.com/Thomas-Heisig/MHRN/blob/main/";
