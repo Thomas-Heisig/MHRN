@@ -1,0 +1,208 @@
+name: EMB-002-A proprioception direct V2
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - scripts/run_emb002a_proprioception_v2.py
+      - scripts/verify_emb002a_proprioception_v2.py
+      - research/preregistrations/PREREG-EMB002A-PROPRIOCEPTION-DIRECT-V2.json
+      - .github/workflows/emb002a-proprioception-v2.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  verify-refresh-execute-persist:
+    if: >-
+      github.event_name != 'pull_request' ||
+      github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ github.head_ref || github.ref_name }}
+          fetch-depth: 0
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.13'
+          cache: pip
+      - name: Install repository development environment
+        run: python -m pip install -e '.[dev,docs]'
+      - name: Normalize experiment scripts
+        run: |
+          python -m black scripts/run_emb002a_proprioception_v2.py scripts/verify_emb002a_proprioception_v2.py
+          git add scripts/run_emb002a_proprioception_v2.py scripts/verify_emb002a_proprioception_v2.py
+          if ! git diff --cached --quiet; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git commit -m "style: format EMB-002-A experiment scripts"
+          fi
+      - name: Refresh verification honestly
+        run: |
+          python -m black --check src tests scripts
+          python -m ruff check src tests scripts
+          python scripts/generate_baseline.py
+          python scripts/generate_determinism_artifact.py
+          python scripts/check_doc_consistency.py --check-tests
+          python scripts/check_connectome_integrity.py
+          git diff --exit-code HEAD -- research/experiments research/registry/evidence research/publications
+          git add tests/test_baseline.json research/generated/verification
+          git diff --cached --check
+          if ! git diff --cached --quiet; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git commit -m "test: refresh source-bound verification for EMB-002-A"
+          fi
+      - name: Prove refreshed source digest
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from src.dashboard.verification import compute_source_tree_digest
+          root = Path(".").resolve()
+          baseline = json.loads((root / "tests/test_baseline.json").read_text(encoding="utf-8"))
+          current = compute_source_tree_digest(root)
+          assert baseline["full_collection"]["status"] == "passed"
+          assert baseline["full_suite"]["status"] == "passed"
+          assert baseline["full_suite"]["failed"] == 0
+          assert baseline["full_suite"]["errors"] == 0
+          assert current == baseline["tested_tree_digest"]
+          PY
+      - name: Verify experiment-specific regressions
+        run: >-
+          python -m pytest -q
+          tests/test_connectome_embodiment.py
+          tests/test_exp21_operational_protocols.py
+          tests/test_gate_status.py
+          tests/test_source_digest.py
+      - name: Publish verified gate and CI provenance
+        env:
+          VERIFY_RUN_ID: ${{ github.run_id }}
+          VERIFY_RUN_NUMBER: ${{ github.run_number }}
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          import subprocess
+          from datetime import datetime, timezone
+          from pathlib import Path
+          from src.dashboard.gate_status import GateStatusBuilder
+          from src.dashboard.verification import compute_source_tree_digest
+
+          root = Path(".").resolve()
+          baseline_path = root / "tests/test_baseline.json"
+          artifact_path = root / "research/generated/verification/phase_b_gate_status.json"
+          baseline = json.loads(baseline_path.read_text(encoding="utf-8"))
+          old = json.loads(artifact_path.read_text(encoding="utf-8"))
+          current_digest = compute_source_tree_digest(root)
+          assert current_digest == baseline["tested_tree_digest"]
+          status = GateStatusBuilder(repo_root=root).build(
+              ci_status={"status": "passed", "source": "emb002a_source_verification"}
+          )
+          scientific = status["scientific_gate"]
+          assert scientific["overall"] == "passed", scientific["overall"]
+
+          def summary(name):
+              items = scientific[name]["items"]
+              return {
+                  "passed": sum(item["status"] == "passed" for item in items),
+                  "total": len(items),
+              }
+
+          source_commit = subprocess.run(
+              ["git", "rev-parse", "HEAD"],
+              cwd=root,
+              check=True,
+              capture_output=True,
+              text=True,
+          ).stdout.strip()
+          suite = baseline["full_suite"]
+          artifact = {
+              "schema_version": 1,
+              "status": "verified",
+              "generated": datetime.now(timezone.utc).isoformat(),
+              "source_freeze": {
+                  "commit": source_commit,
+                  "tested_tree_digest": current_digest,
+              },
+              "baseline": {
+                  "python": baseline["python"],
+                  "passed": suite["passed"],
+                  "failed": suite["failed"],
+                  "skipped": suite["skipped"] + suite.get("xfailed", 0),
+                  "collection_errors": baseline["full_collection"]["collection_errors"],
+                  "artifact": "tests/test_baseline.json",
+              },
+              "continuous_integration": {
+                  "workflow": "EMB-002-A proprioception direct V2 #" + os.environ["VERIFY_RUN_NUMBER"],
+                  "run_id": int(os.environ["VERIFY_RUN_ID"]),
+                  "head_sha": source_commit,
+                  "conclusion": "success",
+              },
+              "scientific_gate": {
+                  "overall": "passed",
+                  "gate_a": summary("gate_a"),
+                  "gate_b": summary("gate_b"),
+                  "gate_c": summary("gate_c"),
+              },
+              "release_readiness": "ready",
+              "final_validation": {
+                  "command": "python scripts/generate_baseline.py",
+                  "passed": suite["passed"],
+                  "failed": suite["failed"],
+                  "skipped": suite["skipped"] + suite.get("xfailed", 0),
+              },
+              "verification_artifacts": old.get("verification_artifacts", []),
+              "limitations": old.get("limitations", []),
+          }
+          artifact_path.write_text(
+              json.dumps(artifact, indent=2, sort_keys=True) + "\n",
+              encoding="utf-8",
+          )
+          PY
+          git add research/generated/verification/phase_b_gate_status.json
+          git diff --cached --check
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "test: publish EMB-002-A source-bound CI provenance"
+      - name: Assert checkout clean before isolated execution
+        run: test -z "$(git status --porcelain --untracked-files=all)"
+      - name: Execute and verify in isolated worktree
+        run: |
+          python scripts/run_experiment_isolated.py             --runner scripts/run_emb002a_proprioception_v2.py             --verifier scripts/verify_emb002a_proprioception_v2.py             --experiment-id EXP-EMB002A-PROPRIOCEPTION-V2-20260920             --export-dir "$RUNNER_TEMP/emb002a"
+      - name: Validate verified DATA identity
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+          root = Path(os.environ["RUNNER_TEMP"]) / "emb002a"
+          manifest = json.loads(
+              (root / "EXP-EMB002A-PROPRIOCEPTION-V2-20260920/manifest.json").read_text(encoding="utf-8")
+          )
+          audit = json.loads((root / "isolation_audit.json").read_text(encoding="utf-8"))
+          assert manifest["experiment_id"] == "EXP-EMB002A-PROPRIOCEPTION-V2-20260920"
+          assert manifest["direct_test_of_hypothesis"] is True
+          assert manifest["human_review_status"] == "PENDING"
+          assert manifest["scientific_evidence"] is False
+          assert manifest["automatic_evidence_promotion"] is False
+          assert manifest["integrity"]["pass"] is True
+          assert audit["primary_checkout_clean_before"] is True
+          assert audit["primary_checkout_clean_after"] is True
+          PY
+      - name: Persist verified DATA
+        run: |
+          target="research/experiments/EXP-EMB002A-PROPRIOCEPTION-V2-20260920"
+          test ! -e "$target"
+          cp -a "$RUNNER_TEMP/emb002a/EXP-EMB002A-PROPRIOCEPTION-V2-20260920" "$target"
+          cp "$RUNNER_TEMP/emb002a/isolation_audit.json" "$target/execution_isolation_audit.json"
+          git add "$target"
+          git diff --cached --check
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "research: persist EMB-002-A proprioception V2 DATA"
+          git push origin "HEAD:${{ github.head_ref || github.ref_name }}"
