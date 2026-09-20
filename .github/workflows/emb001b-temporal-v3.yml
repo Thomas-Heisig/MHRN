@@ -1,0 +1,84 @@
+name: EMB-001-B temporal shift V3
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - scripts/run_emb001b_temporal_v3.py
+      - scripts/verify_emb001b_temporal_v3.py
+      - research/preregistrations/PREREG-EMB001B-TEMPORAL-V3.json
+      - .github/workflows/emb001b-temporal-v3.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  experiment:
+    uses: ./.github/workflows/isolated-scientific-experiment.yml
+    with:
+      runner: scripts/run_emb001b_temporal_v3.py
+      verifier: scripts/verify_emb001b_temporal_v3.py
+      experiment_id: EXP-EMB001B-TEMPORAL-V3-20260920
+      regression_tests: >-
+        tests/test_connectome_embodiment.py
+        tests/test_exp21_operational_protocols.py
+        tests/test_gate_status.py
+        tests/test_source_digest.py
+
+  persist:
+    needs: experiment
+    if: >-
+      github.event_name == 'pull_request' &&
+      github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+      - uses: actions/download-artifact@v7
+        with:
+          name: EXP-EMB001B-TEMPORAL-V3-20260920
+          path: ${{ runner.temp }}/emb001b-v3
+      - name: Validate verified DATA identity
+        run: |
+          test -f "$RUNNER_TEMP/emb001b-v3/EXP-EMB001B-TEMPORAL-V3-20260920/manifest.json"
+          test -f "$RUNNER_TEMP/emb001b-v3/isolation_audit.json"
+          python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
+          root = Path(os.environ["RUNNER_TEMP"]) / "emb001b-v3"
+          manifest = json.loads(
+              (root / "EXP-EMB001B-TEMPORAL-V3-20260920/manifest.json")
+              .read_text(encoding="utf-8")
+          )
+          audit = json.loads(
+              (root / "isolation_audit.json").read_text(encoding="utf-8")
+          )
+          assert manifest["experiment_id"] == "EXP-EMB001B-TEMPORAL-V3-20260920"
+          assert manifest["result_status"] == "COMPLETED_EXPLORATORY_DATA"
+          assert manifest["human_review_status"] == "PENDING"
+          assert manifest["scientific_evidence"] is False
+          assert manifest["automatic_evidence_promotion"] is False
+          assert manifest["integrity"]["pass"] is True
+          assert audit["primary_checkout_clean_before"] is True
+          assert audit["primary_checkout_clean_after"] is True
+          PY
+      - name: Persist verified DATA only
+        run: |
+          target="research/experiments/EXP-EMB001B-TEMPORAL-V3-20260920"
+          test ! -e "$target"
+          cp -a             "$RUNNER_TEMP/emb001b-v3/EXP-EMB001B-TEMPORAL-V3-20260920"             "$target"
+          cp             "$RUNNER_TEMP/emb001b-v3/isolation_audit.json"             "$target/execution_isolation_audit.json"
+          git add "$target"
+          git diff --cached --check
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "research: persist EMB-001-B temporal-shift V3 DATA"
+          git pull --rebase origin "${{ github.head_ref }}"
+          git push origin "HEAD:${{ github.head_ref }}"
