@@ -1,0 +1,37 @@
+{
+  "schema_version": "1.0",
+  "id": "PAPER-METHOD-001",
+  "strand": "research_integrity",
+  "title": "Provenance-Separated Reporting for AI-Assisted Research: A Protocol for Testing Epistemic Misclassification",
+  "author": "Thomas Heisig",
+  "orcid": "0009-0002-9589-1872",
+  "version": "0.1",
+  "date": "2026-09-20",
+  "status": "methods_protocol_working_paper",
+  "research_questions": [
+    "RQ-EPIST-002",
+    "RQ-ETH-001"
+  ],
+  "hypotheses": [
+    "H-EPIST-002-A",
+    "H-ETH-001-B",
+    "H-ETH-001-C",
+    "H-ETH-001-D",
+    "H-ETH-001-E"
+  ],
+  "confirmatory_data_available": false,
+  "preregistered": false,
+  "execution_authorized": false,
+  "candidate_venues": [
+    "Research Integrity and Peer Review",
+    "metascience / open-science venue"
+  ],
+  "submission_ready": false,
+  "blockers": [
+    "freeze codebook and sampling rule",
+    "preregister study",
+    "execute reviewer study",
+    "human review",
+    "external replication"
+  ]
+}
