@@ -643,3 +643,29 @@
     grid-template-columns: repeat(auto-fit, minmax(155px, 1fr));
   }
 }
+
+
+#tab-publication .publication-network-links__identity-stack {
+  display: grid;
+  justify-items: end;
+  gap: 7px;
+}
+
+#tab-publication .publication-network-links__doi {
+  display: inline-flex;
+  max-width: 100%;
+  border-radius: 4px;
+  text-decoration: none;
+}
+
+#tab-publication .publication-network-links__doi img {
+  display: block;
+  max-width: 100%;
+  height: 20px;
+}
+
+@media (max-width: 760px) {
+  #tab-publication .publication-network-links__identity-stack {
+    justify-items: start;
+  }
+}
