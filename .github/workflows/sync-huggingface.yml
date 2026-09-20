@@ -180,7 +180,6 @@ jobs:
                       path_in_repo="",
                       commit_message=f"Sync GitHub main {sha}",
                       token=token,
-                      delete_patterns=["*"],
                   )
 
           print("Hugging Face mirrors synced for", sha)
