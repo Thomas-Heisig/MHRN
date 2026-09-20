@@ -7,6 +7,8 @@ on:
       - scripts/run_emb002a_proprioception_v2.py
       - scripts/verify_emb002a_proprioception_v2.py
       - research/preregistrations/PREREG-EMB002A-PROPRIOCEPTION-DIRECT-V2.json
+      - tests/test_bilingual_science_ui.py
+      - tests/test_dashboard_ui_integration.py
       - .github/workflows/emb002a-proprioception-v2.yml
   workflow_dispatch:
 
