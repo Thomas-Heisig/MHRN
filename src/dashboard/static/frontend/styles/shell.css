@@ -311,3 +311,47 @@
 
 /* Workspace kicker */
 .workspace-kicker { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--accent); font-family: var(--font-mono); }
+
+
+/* Global EN/DE language switch. English is the scientific UI default. */
+.mhrn-language-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 2px;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  background: var(--paper-2);
+}
+.mhrn-language-switch-label {
+  padding: 0 6px;
+  font: 700 .55rem/1 var(--font-mono);
+  letter-spacing: .08em;
+  color: var(--ink-4);
+}
+.mhrn-language-switch button {
+  min-width: 34px;
+  min-height: 28px;
+  padding: 0 8px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink-3);
+  font: 700 .62rem/1 var(--font-mono);
+  cursor: pointer;
+}
+.mhrn-language-switch button:hover { background: var(--paper-3); color: var(--ink); }
+.mhrn-language-switch button.active {
+  background: var(--ink);
+  color: var(--paper);
+}
+.publication-language-notice {
+  margin: 0 0 14px;
+  padding: 10px 12px;
+  border: 1px solid var(--rule);
+  border-radius: var(--r-sm);
+  background: var(--paper-2);
+  color: var(--ink-2);
+  font-size: .72rem;
+}
+.publication-language-notice strong { display: block; margin-bottom: 3px; }
