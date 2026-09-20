@@ -201,6 +201,30 @@ test("batch dialog edits per-protocol options, reports completion, and updates f
   expect(batchResponse.body.protocol_options.browser_protocol).toEqual({ seeds: "21-23", ticks: 48 });
 });
 
+test("question cards open complete detail and transfer to controlled run", async ({ page }) => {
+  await openDashboard(page);
+  await selectLabStage(page, "question");
+
+  const card = page.locator('.research-rq-card[data-rq-id="RQ-BROWSER-001"]');
+  await expect(card).toBeVisible();
+  await expect(card).toContainText("Browser workflow contract");
+  await expect(card).toContainText("H-BROWSER-001-A");
+
+  await card.click();
+  const detail = page.locator("#workflow-research-detail");
+  await expect(detail).toBeVisible();
+  await expect(detail).toContainText("RQ-BROWSER-001");
+  await expect(detail).toContainText("The workflow is traceable");
+  await expect(detail).toContainText("browser_protocol");
+  await expect(detail).toContainText("Gespeicherte Experimente");
+
+  await page.locator("#workflow-research-detail-use").click();
+  await expect(page.locator('[data-lab-stage="run"]')).toBeVisible();
+  await expect(page.locator("#workflow-question")).toHaveValue("RQ-BROWSER-001");
+  await expect(page.locator("#workflow-hypothesis")).toHaveValue("H-BROWSER-001-A");
+  await expect(page.locator("#workflow-protocol")).toHaveValue("browser_protocol");
+});
+
 test("research help explains operational and exploratory status", async ({ page }) => {
   await openDashboard(page);
   await page.locator("#help-toggle").click();
