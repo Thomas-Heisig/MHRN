@@ -8,6 +8,7 @@ on:
       - scripts/run_emb002_proprio_v2.py
       - scripts/verify_emb002_proprio_v2.py
       - research/preregistrations/PREREG-EMB002-PROPRIO-V2.json
+      - tests/test_dashboard_ui_integration.py
       - .github/workflows/emb002-proprio-v2.yml
   workflow_dispatch:
 
