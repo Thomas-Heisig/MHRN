@@ -40,6 +40,19 @@ The sparse **5D SNN remains the primary adaptive system**. Language models, rese
 
 The GitHub release `v0.6.0-alpha.6` is published from exact green source freeze `f7fcca273099baf47fff26327c6e7468afd9ce79`. The repository intentionally records a Zenodo DOI only after a real public Zenodo record exists. Once discovered, the DOI sync replaces the pending badge above with Zenodo's official DOI badge and records the DOI in the citation and publication metadata.
 
+### Citation model
+
+MHRN deliberately separates three citable research objects:
+
+| Object | Type | Current state |
+| --- | --- | --- |
+| **MHRN v0.6.0-alpha.6** | Software | GitHub release published; Zenodo software DOI route active |
+| **Recursive Epistemics / Rekursive Epistemik 1.8** | Publication / preprint | separate Zenodo publication package prepared; DOI pending |
+| **MHRN research data** | Dataset(s) | rolling discovery mirror exists; immutable experiment DOI deposits remain separate |
+
+Use the **software DOI** when citing the implementation, the **publication DOI** when citing the scientific manuscript, and a **dataset DOI** when citing a frozen experiment dataset. A DOI on any layer does not promote DATA to accepted EVID.
+
+
 ---
 
 <!-- publication-current-1.8 -->
