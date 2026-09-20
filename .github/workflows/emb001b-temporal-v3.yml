@@ -1,3 +1,4 @@
+# Persistence replay for missing experiment/review artifacts; scientific contract unchanged.
 name: EMB-001-B temporal shift V3
 
 on:
