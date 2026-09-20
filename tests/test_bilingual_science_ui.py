@@ -8,8 +8,8 @@ ROOT = Path(__file__).resolve().parents[1]
 
 def test_frontend_language_controller_defaults_to_english() -> None:
     index = (ROOT / "src/dashboard/static/index.html").read_text(encoding="utf-8")
-    frontend = (ROOT / "src/dashboard/static/frontend/index.js").read_text(encoding="utf-8")
-    i18n = (ROOT / "src/dashboard/static/frontend/core/i18n.js").read_text(encoding="utf-8")
+    frontend = (ROOT / "src/dashboard/static/frontend/index.js").read_text(\n        encoding="utf-8"\n    )
+    i18n = (ROOT / "src/dashboard/static/frontend/core/i18n.js").read_text(\n        encoding="utf-8"\n    )
 
     assert '<html lang="en">' in index
     assert 'import { initI18n } from "./core/i18n.js";' in frontend
@@ -34,7 +34,7 @@ def test_current_publication_declares_language_provenance() -> None:
     assert current["ui_default_language"] == "en"
     assert current["content_language"] == "de"
     assert current["subtitle"].startswith("Rekursive Epistemik")
-    assert current["english_translation"].endswith("/translations/en/MANUSCRIPT.md")
+    assert current["english_translation"].endswith(\n        "/translations/en/MANUSCRIPT.md"\n    )
     assert "canonical source language" in current["language_policy"]
 
 
