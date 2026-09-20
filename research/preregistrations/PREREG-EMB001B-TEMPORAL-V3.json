@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "preregistration_id": "PREREG-EMB001B-TEMPORAL-V3",
+  "research_question": "RQ-EMB-001",
+  "hypothesis": "H-EMB-001-B",
+  "protocol": "embodied_closed_loop_temporal_shift_v3",
+  "mode": "PROSPECTIVE_EXPLORATORY_TEMPORAL_CAUSALITY",
+  "execution_authorized": true,
+  "authorization_scope": "single DATA-only exploratory execution; execution authorization is not human scientific review",
+  "human_review_required": true,
+  "scientific_evidence": false,
+  "automatic_evidence_promotion": false,
+  "independent_replication": false,
+  "predecessor_experiment": "EXP-EMB001B-MATCHED-V2-20260920",
+  "design_rationale": "The predecessor produced exact equality between closed_loop and exact yoked_replay on all 20 paired seeds. V3 therefore changes only temporal alignment of the same perturbation-exposed donor sensor content. Circular temporal shifts preserve the donor sensor-value multiset while breaking tick alignment. This is an exploratory causal-timing ablation, not a confirmatory rescue of H-EMB-001-B.",
+  "design": {
+    "conditions": [
+      "closed_loop",
+      "yoked_replay_exact",
+      "yoked_replay_shift20",
+      "yoked_replay_shift100",
+      "feedback_absent"
+    ],
+    "seeds": [
+      8301,
+      8302,
+      8303,
+      8304,
+      8305,
+      8306,
+      8307,
+      8308,
+      8309,
+      8310,
+      8311,
+      8312,
+      8313,
+      8314,
+      8315,
+      8316,
+      8317,
+      8318,
+      8319,
+      8320
+    ],
+    "ticks_per_run": 1000,
+    "inferential_unit": "paired_seed",
+    "primary_outcome": "tracking_rmse_rad",
+    "secondary_outcomes": [
+      "sensor_path_rms_q_rad",
+      "sensor_path_mean_abs_q_rad",
+      "final_body_state",
+      "total_spikes",
+      "synaptic_events_delivered"
+    ],
+    "temporal_shifts_ticks": [
+      20,
+      100
+    ],
+    "shift_rule": "circular_right_shift_of_same_seed_perturbed_closed_loop_sensor_tape",
+    "content_preservation_rule": "shifted donor tape must contain exactly the same sensor-pair multiset as the exact donor tape",
+    "external_perturbation": {
+      "kind": "constant_external_torque_window",
+      "torque_nm": 0.003,
+      "start_tick_inclusive": 250,
+      "end_tick_exclusive": 500,
+      "identical_for_all_conditions": true
+    }
+  },
+  "analysis_plan": {
+    "primary_comparisons": [
+      "yoked_replay_shift20 minus closed_loop tracking_rmse_rad",
+      "yoked_replay_shift100 minus closed_loop tracking_rmse_rad"
+    ],
+    "reference_comparisons": [
+      "yoked_replay_exact minus closed_loop tracking_rmse_rad",
+      "feedback_absent minus closed_loop tracking_rmse_rad"
+    ],
+    "secondary_comparisons": [
+      "all controls minus closed_loop sensor_path_rms_q_rad"
+    ],
+    "direction_convention": "positive control-minus-closed_loop difference means lower error in closed_loop",
+    "report": [
+      "condition means",
+      "paired mean difference",
+      "paired median difference",
+      "paired minimum and maximum difference",
+      "fraction of paired seeds with lower closed_loop error"
+    ],
+    "p_values": false,
+    "confirmatory_thresholds": false,
+    "outcome_dependent_stopping": false
+  },
+  "integrity_requirements": [
+    "clean source checkout before execution",
+    "all 100 registered condition-by-seed runs present",
+    "1000 executed ticks in every run",
+    "no runtime errors",
+    "same initial neural state within each seed",
+    "same initial body state within each seed",
+    "same graph fingerprint within each seed",
+    "exact yoked donor digest equals the actual perturbed closed-loop sensor digest for that seed",
+    "shifted donor tapes preserve the exact donor sensor-value multiset",
+    "shift20 and shift100 donor digests differ from the exact donor digest",
+    "feedback_absent observed sensor values are exactly zero",
+    "identical registered perturbation schedule for all arms"
+  ],
+  "stopping_rule": "Execute exactly the preregistered 20 seeds and five conditions. Retain failures; no replacement seeds and no outcome-dependent stopping.",
+  "claim_boundary": "This is prospective exploratory synthetic DATA testing temporal alignment within the scoped H-EMB-001-B programme. It is not confirmatory EVID, not independent replication, not evidence of learned body schema, autonomy, consciousness, biological equivalence, real-device transfer, or 5D superiority. Human Review remains required."
+}
