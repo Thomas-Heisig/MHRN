@@ -1,0 +1,43 @@
+{
+  "schema_version": "1.0",
+  "repository": "Thomas-Heisig/MHRN",
+  "as_of": "2026-09-20",
+  "observed": {
+    "visibility": "public",
+    "default_branch": "main",
+    "repository_rulesets": 0,
+    "web_commit_signoff_required": false
+  },
+  "desired_main_ruleset": {
+    "name": "Protect main",
+    "enforcement": "active",
+    "target": "main",
+    "require_pull_request": true,
+    "required_approvals": 0,
+    "require_code_owner_review": false,
+    "require_status_checks": [
+      "ci-status"
+    ],
+    "require_branch_up_to_date": true,
+    "require_conversation_resolution": true,
+    "block_force_pushes": true,
+    "restrict_deletions": true,
+    "require_signed_commits": false,
+    "bypass_policy": "repository_admin_only_initially; no GitHub Actions bypass"
+  },
+  "desired_release_tag_ruleset": {
+    "name": "Protect release tags",
+    "enforcement": "active",
+    "target_pattern": "v*",
+    "restrict_updates": true,
+    "restrict_deletions": true,
+    "block_force_pushes": true
+  },
+  "account_controls": [
+    "GitHub 2FA or passkey enabled",
+    "recovery codes stored offline",
+    "unused SSH keys and personal access tokens removed",
+    "GitHub Apps and OAuth grants reviewed periodically"
+  ],
+  "rationale": "Single-maintainer configuration: PR required with zero approvals avoids self-lockout while preventing ordinary direct pushes. ci-status is the always-running CI aggregate. Signed commits are deferred because non-merge API-created commits are currently unsigned."
+}
