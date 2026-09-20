@@ -1,0 +1,346 @@
+{
+  "analysis_mode": "preregistered_descriptive_exploratory",
+  "claim_boundary": "This is prospective exploratory synthetic DATA for the scoped H-EMB-001-B matched-disturbance comparison. It is not confirmatory EVID, not independent replication, not evidence of learned body schema, autonomy, consciousness, biological equivalence, real-device transfer, or 5D superiority. Human Review remains required.",
+  "confirmatory_thresholds_applied": false,
+  "experiment_id": "EXP-EMB001B-MATCHED-V2-20260920",
+  "integrity": {
+    "checks": {
+      "all_seed_pairing_checks": true,
+      "all_ticks_complete": true,
+      "clean_source_freeze": true,
+      "coverage": true,
+      "identical_perturbation_contract": true,
+      "run_count": true,
+      "runtime_errors_absent": true
+    },
+    "pass": true,
+    "per_seed": {
+      "8201": {
+        "complete_sensor_tapes": true,
+        "feedback_absent_observation_is_zero": true,
+        "same_graph_fingerprint": true,
+        "same_initial_body_state": true,
+        "same_initial_neural_state": true,
+        "yoked_uses_actual_perturbed_closed_loop_sensor_tape": true
+      },
+      "8202": {
+        "complete_sensor_tapes": true,
+        "feedback_absent_observation_is_zero": true,
+        "same_graph_fingerprint": true,
+        "same_initial_body_state": true,
+        "same_initial_neural_state": true,
+        "yoked_uses_actual_perturbed_closed_loop_sensor_tape": true
+      },
+      "8203": {
+        "complete_sensor_tapes": true,
+        "feedback_absent_observation_is_zero": true,
+        "same_graph_fingerprint": true,
+        "same_initial_body_state": true,
+        "same_initial_neural_state": true,
+        "yoked_uses_actual_perturbed_closed_loop_sensor_tape": true
+      },
+      "8204": {
+        "complete_sensor_tapes": true,
+        "feedback_absent_observation_is_zero": true,
+        "same_graph_fingerprint": true,
+        "same_initial_body_state": true,
+        "same_initial_neural_state": true,
+        "yoked_uses_actual_perturbed_closed_loop_sensor_tape": true
+      },
+      "8205": {
+        "complete_sensor_tapes": true,
+        "feedback_absent_observation_is_zero": true,
+        "same_graph_fingerprint": true,
+        "same_initial_body_state": true,
+        "same_initial_neural_state": true,
+        "yoked_uses_actual_perturbed_closed_loop_sensor_tape": true
+      },
+      "8206": {
+        "complete_sensor_tapes": true,
+        "feedback_absent_observation_is_zero": true,
+        "same_graph_fingerprint": true,
+        "same_initial_body_state": true,
+        "same_initial_neural_state": true,
+        "yoked_uses_actual_perturbed_closed_loop_sensor_tape": true
+      },
+      "8207": {
+        "complete_sensor_tapes": true,
+        "feedback_absent_observation_is_zero": true,
+        "same_graph_fingerprint": true,
+        "same_initial_body_state": true,
+        "same_initial_neural_state": true,
+        "yoked_uses_actual_perturbed_closed_loop_sensor_tape": true
+      },
+      "8208": {
+        "complete_sensor_tapes": true,
+        "feedback_absent_observation_is_zero": true,
+        "same_graph_fingerprint": true,
+        "same_initial_body_state": true,
+        "same_initial_neural_state": true,
+        "yoked_uses_actual_perturbed_closed_loop_sensor_tape": true
+      },
+      "8209": {
+        "complete_sensor_tapes": true,
+        "feedback_absent_observation_is_zero": true,
+        "same_graph_fingerprint": true,
+        "same_initial_body_state": true,
+        "same_initial_neural_state": true,
+        "yoked_uses_actual_perturbed_closed_loop_sensor_tape": true
+      },
+      "8210": {
+        "complete_sensor_tapes": true,
+        "feedback_absent_observation_is_zero": true,
+        "same_graph_fingerprint": true,
+        "same_initial_body_state": true,
+        "same_initial_neural_state": true,
+        "yoked_uses_actual_perturbed_closed_loop_sensor_tape": true
+      },
+      "8211": {
+        "complete_sensor_tapes": true,
+        "feedback_absent_observation_is_zero": true,
+        "same_graph_fingerprint": true,
+        "same_initial_body_state": true,
+        "same_initial_neural_state": true,
+        "yoked_uses_actual_perturbed_closed_loop_sensor_tape": true
+      },
+      "8212": {
+        "complete_sensor_tapes": true,
+        "feedback_absent_observation_is_zero": true,
+        "same_graph_fingerprint": true,
+        "same_initial_body_state": true,
+        "same_initial_neural_state": true,
+        "yoked_uses_actual_perturbed_closed_loop_sensor_tape": true
+      },
+      "8213": {
+        "complete_sensor_tapes": true,
+        "feedback_absent_observation_is_zero": true,
+        "same_graph_fingerprint": true,
+        "same_initial_body_state": true,
+        "same_initial_neural_state": true,
+        "yoked_uses_actual_perturbed_closed_loop_sensor_tape": true
+      },
+      "8214": {
+        "complete_sensor_tapes": true,
+        "feedback_absent_observation_is_zero": true,
+        "same_graph_fingerprint": true,
+        "same_initial_body_state": true,
+        "same_initial_neural_state": true,
+        "yoked_uses_actual_perturbed_closed_loop_sensor_tape": true
+      },
+      "8215": {
+        "complete_sensor_tapes": true,
+        "feedback_absent_observation_is_zero": true,
+        "same_graph_fingerprint": true,
+        "same_initial_body_state": true,
+        "same_initial_neural_state": true,
+        "yoked_uses_actual_perturbed_closed_loop_sensor_tape": true
+      },
+      "8216": {
+        "complete_sensor_tapes": true,
+        "feedback_absent_observation_is_zero": true,
+        "same_graph_fingerprint": true,
+        "same_initial_body_state": true,
+        "same_initial_neural_state": true,
+        "yoked_uses_actual_perturbed_closed_loop_sensor_tape": true
+      },
+      "8217": {
+        "complete_sensor_tapes": true,
+        "feedback_absent_observation_is_zero": true,
+        "same_graph_fingerprint": true,
+        "same_initial_body_state": true,
+        "same_initial_neural_state": true,
+        "yoked_uses_actual_perturbed_closed_loop_sensor_tape": true
+      },
+      "8218": {
+        "complete_sensor_tapes": true,
+        "feedback_absent_observation_is_zero": true,
+        "same_graph_fingerprint": true,
+        "same_initial_body_state": true,
+        "same_initial_neural_state": true,
+        "yoked_uses_actual_perturbed_closed_loop_sensor_tape": true
+      },
+      "8219": {
+        "complete_sensor_tapes": true,
+        "feedback_absent_observation_is_zero": true,
+        "same_graph_fingerprint": true,
+        "same_initial_body_state": true,
+        "same_initial_neural_state": true,
+        "yoked_uses_actual_perturbed_closed_loop_sensor_tape": true
+      },
+      "8220": {
+        "complete_sensor_tapes": true,
+        "feedback_absent_observation_is_zero": true,
+        "same_graph_fingerprint": true,
+        "same_initial_body_state": true,
+        "same_initial_neural_state": true,
+        "yoked_uses_actual_perturbed_closed_loop_sensor_tape": true
+      }
+    }
+  },
+  "mean_outcomes": {
+    "closed_loop": {
+      "sensor_path_mean_abs_q_rad": 0.2170174053774241,
+      "sensor_path_rms_q_rad": 0.23344570262372777,
+      "tracking_rmse_rad": 0.15956696734619097
+    },
+    "feedback_absent": {
+      "sensor_path_mean_abs_q_rad": 0.4602421456789143,
+      "sensor_path_rms_q_rad": 0.5258403789227928,
+      "tracking_rmse_rad": 0.47686393730529497
+    },
+    "yoked_replay": {
+      "sensor_path_mean_abs_q_rad": 0.2170174053774241,
+      "sensor_path_rms_q_rad": 0.23344570262372777,
+      "tracking_rmse_rad": 0.15956696734619097
+    }
+  },
+  "p_values_computed": false,
+  "paired_comparisons": [
+    {
+      "confirmatory_threshold_applied": false,
+      "control": "yoked_replay",
+      "differences_control_minus_closed_loop": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "fraction_closed_loop_lower": 0.0,
+      "maximum_difference": 0.0,
+      "mean_difference": 0.0,
+      "median_difference": 0.0,
+      "metric": "tracking_rmse_rad",
+      "minimum_difference": 0.0,
+      "n_paired_seeds": 20,
+      "p_value": null,
+      "reference": "closed_loop",
+      "ties": 20
+    },
+    {
+      "confirmatory_threshold_applied": false,
+      "control": "yoked_replay",
+      "differences_control_minus_closed_loop": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "fraction_closed_loop_lower": 0.0,
+      "maximum_difference": 0.0,
+      "mean_difference": 0.0,
+      "median_difference": 0.0,
+      "metric": "sensor_path_rms_q_rad",
+      "minimum_difference": 0.0,
+      "n_paired_seeds": 20,
+      "p_value": null,
+      "reference": "closed_loop",
+      "ties": 20
+    },
+    {
+      "confirmatory_threshold_applied": false,
+      "control": "feedback_absent",
+      "differences_control_minus_closed_loop": [
+        0.32287148659121034,
+        0.32085137546800213,
+        0.318504474449734,
+        0.31790349437865256,
+        0.32136640012520273,
+        0.3239812214923995,
+        0.30541757718183005,
+        0.3182523692800724,
+        0.3107329428856081,
+        0.317016808421695,
+        0.31082051631237406,
+        0.32265790041990666,
+        0.3105629071731596,
+        0.3218716765074505,
+        0.3096429681328656,
+        0.31916183109601903,
+        0.32024880786873233,
+        0.3136524699360205,
+        0.3199651443537158,
+        0.320457027107429
+      ],
+      "fraction_closed_loop_lower": 1.0,
+      "maximum_difference": 0.3239812214923995,
+      "mean_difference": 0.317296969959104,
+      "median_difference": 0.3188331527728765,
+      "metric": "tracking_rmse_rad",
+      "minimum_difference": 0.30541757718183005,
+      "n_paired_seeds": 20,
+      "p_value": null,
+      "reference": "closed_loop",
+      "ties": 0
+    },
+    {
+      "confirmatory_threshold_applied": false,
+      "control": "feedback_absent",
+      "differences_control_minus_closed_loop": [
+        0.29352150168773705,
+        0.2914285426363784,
+        0.2989670079234184,
+        0.29633803396779645,
+        0.29026130317823384,
+        0.29304305648919193,
+        0.2856677117375055,
+        0.2989852799523698,
+        0.2878169584544937,
+        0.29504123573873,
+        0.28800097644823663,
+        0.2952062289002878,
+        0.2871052457560778,
+        0.2909227739578354,
+        0.2865909355045087,
+        0.29991020018533304,
+        0.2919140811369379,
+        0.28701339554231287,
+        0.29005158154731625,
+        0.3001074752365985
+      ],
+      "fraction_closed_loop_lower": 1.0,
+      "maximum_difference": 0.3001074752365985,
+      "mean_difference": 0.292394676299065,
+      "median_difference": 0.2916713118866582,
+      "metric": "sensor_path_rms_q_rad",
+      "minimum_difference": 0.2856677117375055,
+      "n_paired_seeds": 20,
+      "p_value": null,
+      "reference": "closed_loop",
+      "ties": 0
+    }
+  ],
+  "schema_version": 1,
+  "status": "COMPLETED_EXPLORATORY_DATA"
+}

@@ -1,0 +1,9 @@
+{
+  "experiment_id": "EXP-EMB001B-MATCHED-V2-20260920",
+  "generated_data_confined_to_isolated_worktree": true,
+  "isolated_worktree_dirty_after_execution": true,
+  "primary_checkout_clean_after": true,
+  "primary_checkout_clean_before": true,
+  "schema_version": 1,
+  "source_freeze_commit": "3c451dfca095c2ebd4f6d40d33c1d93a36d39c11"
+}
