@@ -16,6 +16,8 @@ for (const port of [4174, 4175]) {
     await expect(page.locator('.research-rq-card')).toHaveCount(1);
     await page.locator('.research-rq-card').click();
     await expect(page.locator('#workflow-research-results')).toContainText('OPERATIONAL');
+    await page.locator('#workflow-research-detail-close').click();
+    await expect(page.locator('#workflow-research-detail')).toBeHidden();
     await page.locator('#workflow-research-operational').check();
     await expect(page.locator('.research-rq-card')).toHaveCount(1);
     await page.locator('#workflow-research-operational').uncheck();
