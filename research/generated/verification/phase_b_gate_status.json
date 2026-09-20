@@ -1,27 +1,32 @@
 {
-  "schema_version": 1,
-  "status": "verified",
-  "generated": "2026-09-19T10:11:57+00:00",
-  "source_freeze": {
-    "commit": "f40d4d20c69a71cc0a747fa108a3a883b0c58285",
-    "tested_tree_digest": "aff077317cab9fed4bd3883d0dc7c6f7e54fe8bf612597f316ff01edb34ffd37"
-  },
   "baseline": {
-    "python": "3.13.15",
-    "passed": 1656,
-    "failed": 0,
-    "skipped": 2,
+    "artifact": "tests/test_baseline.json",
     "collection_errors": 0,
-    "artifact": "tests/test_baseline.json"
+    "failed": 0,
+    "passed": 1661,
+    "python": "3.13.15",
+    "skipped": 2
   },
   "continuous_integration": {
-    "workflow": "Continuous Integration #1630",
-    "run_id": 35436124700,
-    "head_sha": "f40d4d20c69a71cc0a747fa108a3a883b0c58285",
-    "conclusion": "success"
+    "conclusion": "success",
+    "head_sha": "df5d58883c38542a20d4ba4fbc1fd2ed0b677140",
+    "run_id": 35496964361,
+    "workflow": "EMB-001-B matched disturbance V2 #7"
   },
+  "final_validation": {
+    "command": "python scripts/generate_baseline.py",
+    "failed": 0,
+    "passed": 1661,
+    "skipped": 2
+  },
+  "generated": "2026-09-20T07:32:16.424369+00:00",
+  "limitations": [
+    "Scientific evidence status remains independent from release engineering readiness.",
+    "External Hugging Face proxy smoke remains non-blocking operational follow-up."
+  ],
+  "release_readiness": "ready",
+  "schema_version": 1,
   "scientific_gate": {
-    "overall": "passed",
     "gate_a": {
       "passed": 22,
       "total": 22
@@ -33,24 +38,19 @@
     "gate_c": {
       "passed": 17,
       "total": 17
-    }
+    },
+    "overall": "passed"
   },
-  "release_readiness": "ready",
-  "final_validation": {
-    "command": "python scripts/generate_baseline.py",
-    "passed": 1656,
-    "failed": 0,
-    "skipped": 2
+  "source_freeze": {
+    "commit": "df5d58883c38542a20d4ba4fbc1fd2ed0b677140",
+    "tested_tree_digest": "2de83b433b158c264ddd208dc8689243fece2eead293f3e358b9178785d518ac"
   },
+  "status": "verified",
   "verification_artifacts": [
     "research/generated/verification/restore_determinism.json",
     "research/generated/verification/structural_e2e.json",
     "research/generated/verification/structural_live_loop.json",
     "research/generated/verification/single_listener.json",
     "research/generated/verification/determinism_infrastructure.json"
-  ],
-  "limitations": [
-    "Scientific evidence status remains independent from release engineering readiness.",
-    "External Hugging Face proxy smoke remains non-blocking operational follow-up."
   ]
 }
