@@ -25,7 +25,7 @@ Historical publication bytes and empirical artifacts are preserved. Reconstructe
 
 [![CI](https://github.com/Thomas-Heisig/MHRN/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Thomas-Heisig/MHRN/actions/workflows/ci.yml)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-blue.svg)](https://www.python.org/)
-[![Version](https://img.shields.io/badge/version-0.6.0a5-orange.svg)](pyproject.toml)
+[![Version](https://img.shields.io/badge/version-0.6.0a6-orange.svg)](pyproject.toml)
 [![Publication](https://img.shields.io/badge/publication-1.8_WIP-blue.svg)](research/publications/CURRENT.md)
 [![License: MIT](https://img.shields.io/badge/license-MIT-yellow.svg)](LICENSE)
 
@@ -39,13 +39,13 @@ The sparse **5D SNN remains the primary adaptive system**. Language models, rese
 
 ---
 
-## Current state — 19 September 2026
+## Current state — 20 September 2026
 
 | Area | Current state |
 | --- | --- |
 | Canonical branch | `main` |
-| Package | `mhrn-core 0.6.0a5` / `0.6.0-alpha.5` |
-| Release status | **Alpha.5 release candidate**; public pre-release only after the exact merged `main` source-freeze has fully green CI and release gates |
+| Package | `mhrn-core 0.6.0a6` / `0.6.0-alpha.6` |
+| Release status | **Alpha.6 release candidate**; public pre-release only after the exact merged `main` source-freeze has fully green CI and release gates |
 | Engineering | Stage 2 recurrent contract closed at its scoped engineering boundary; Stage 3 plastic neural tissue reached; Stage 4/5 engineering contracts integrated; Stage 6 mechanisms and research programme active |
 | Scientific focus | Stage 6 — memory, continual learning, semantization, prediction error and world-model validation; independent external replication remains open |
 | Current manuscript | **Recursive Epistemics / Rekursive Epistemik 1.8 — WIP** |
