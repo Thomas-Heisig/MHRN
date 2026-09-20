@@ -46,7 +46,10 @@ jobs:
       - name: Normalize new experiment scripts
         if: steps.existing.outputs.exists != 'true'
         run: |
-          python -m black scripts/run_emb002_proprio_v2.py scripts/verify_emb002_proprio_v2.py
+          python -m black \
+            scripts/run_emb002_proprio_v2.py \
+            scripts/verify_emb002_proprio_v2.py \
+            tests/test_experiment_lab_workspace.py
       - name: Refresh verification honestly when source freeze is stale
         if: steps.existing.outputs.exists != 'true'
         run: |
