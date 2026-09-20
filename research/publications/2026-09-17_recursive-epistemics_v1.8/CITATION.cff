@@ -1,7 +1,6 @@
 cff-version: 1.2.0
-message: "Cite Edition 1.8 using the manuscript metadata in preferred-citation; cite the MHRN software separately via the repository-root CITATION.cff."
-title: "Recursive Epistemics / Rekursive Epistemik — Edition 1.8 publication bundle"
-type: dataset
+message: "Cite Edition 1.8 as a scientific manuscript/preprint; cite the MHRN software separately via the repository-root CITATION.cff."
+title: "Rekursive Epistemik in verkörperten spikenden neuronalen Architekturen"
 version: "1.8"
 date-released: "2026-09-17"
 authors:
@@ -13,6 +12,7 @@ repository: "https://github.com/Thomas-Heisig/MHRN/tree/main/research/publicatio
 url: "https://github.com/Thomas-Heisig/MHRN/blob/main/research/publications/2026-09-17_recursive-epistemics_v1.8/MANUSCRIPT.md"
 preferred-citation:
   type: unpublished
+  status: preprint
   title: "Rekursive Epistemik in verkörperten spikenden neuronalen Architekturen"
   authors:
     - family-names: Heisig

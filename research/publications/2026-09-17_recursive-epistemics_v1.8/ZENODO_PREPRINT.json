@@ -1,0 +1,54 @@
+{
+  "schema_version": "1.0",
+  "record_kind": "publication",
+  "resource_type": "publication-preprint",
+  "publication_type": "preprint",
+  "title": "Rekursive Epistemik in verkörperten spikenden neuronalen Architekturen",
+  "subtitle": "Recursive Epistemics in Embodied Spiking Neural Architectures",
+  "version": "1.8",
+  "publication_date": "2026-09-17",
+  "status": "current_wip_preprint_candidate",
+  "creators": [
+    {
+      "name": "Thomas Heisig",
+      "given_name": "Thomas",
+      "family_name": "Heisig",
+      "orcid": "0009-0002-9589-1872"
+    }
+  ],
+  "language": "deu",
+  "license": "MIT",
+  "description": "Edition 1.8 is the current working scientific manuscript for the MHRN research programme. It documents architecture, empirical programme, engineering, epistemology, attribution, ethics and recursive epistemics. It is not peer reviewed and does not itself promote experiment DATA to accepted EVID.",
+  "keywords": [
+    "recursive epistemics",
+    "spiking neural networks",
+    "MHRN",
+    "reproducible research",
+    "research provenance",
+    "AI-assisted research",
+    "neural plasticity",
+    "embodied cognition"
+  ],
+  "canonical_manuscript": "https://github.com/Thomas-Heisig/MHRN/blob/main/research/publications/2026-09-17_recursive-epistemics_v1.8/MANUSCRIPT.md",
+  "canonical_repository": "https://github.com/Thomas-Heisig/MHRN",
+  "osf": "https://osf.io/p34uq/",
+  "related_objects": [
+    {
+      "kind": "software",
+      "relation": "is_documentation_for",
+      "title": "Multi-Scale Homeostatic Recurrence Network (MHRN)",
+      "url": "https://github.com/Thomas-Heisig/MHRN/releases/tag/v0.6.0-alpha.6",
+      "doi": null
+    },
+    {
+      "kind": "dataset",
+      "relation": "is_supplemented_by",
+      "title": "MHRN research datasets",
+      "url": "https://huggingface.co/datasets/ThomasHeisig/MHRN-Research-Data",
+      "doi": null
+    }
+  ],
+  "epistemic_boundary": "This publication record is a citation/archive object. Publication, indexing or DOI assignment does not constitute peer review, accepted EVID, novelty confirmation or independent replication.",
+  "doi": null,
+  "zenodo_record_url": null
+}
