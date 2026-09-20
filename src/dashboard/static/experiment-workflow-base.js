@@ -218,6 +218,12 @@ export class ExperimentWorkflowPanel {
         this._applyArchiveSearch();
       });
       library.addEventListener("click", (event) => this._handleExperimentLibraryAction(event));
+      library.addEventListener("keydown", (event) => {
+        if ((event.key === "Enter" || event.key === " ") && event.target.closest?.("[data-experiment-detail-id]") && !event.target.closest("button, a, input, select, textarea")) {
+          event.preventDefault();
+          this._handleExperimentLibraryAction(event);
+        }
+      });
 
       // View mode toggle
       library.querySelectorAll("[data-exp-view]").forEach((btn) => {
@@ -593,12 +599,87 @@ export class ExperimentWorkflowPanel {
     const action = archived
       ? `<button type="button" class="btn-small" data-experiment-action="restore" data-experiment-id="${escapeHtml(item.experiment_id)}">↶ Wiederherstellen</button>`
       : `<button type="button" class="btn-small" data-experiment-action="archive" data-experiment-id="${escapeHtml(item.experiment_id || item.id)}">▣ Archivieren</button>`;
-    return `<article class="experiment-library-item ${archived ? "is-archived" : ""}">
+    return `<article class="experiment-library-item ${archived ? "is-archived" : ""}" data-experiment-detail-id="${expId}" tabindex="0" role="button" aria-label="Details zu ${expId} öffnen">
       <div class="exp-item-header"><strong>${escapeHtml(item.experiment_id || item.id)}</strong><span class="exp-run-indicator">${renderExperimentRunStatus(status)}</span><span class="exp-status-badge ${statusClass}">${escapeHtml(status)}</span></div>
       <small class="exp-item-meta">${escapeHtml(meta)}</small>
       ${resultActions}
       <div class="experiment-library-item-actions">${action}</div>
     </article>`;
+  }
+
+  _findExperimentDetail(experimentId) {
+    return [...(this._cachedActiveItems || []), ...(this._cachedArchivedItems || [])]
+      .find((item) => String(item.experiment_id || item.id) === String(experimentId));
+  }
+
+  _ensureExperimentDetailsDialog() {
+    let dialog = byId("experiment-details-dialog");
+    if (dialog) return dialog;
+    dialog = document.createElement("dialog");
+    dialog.id = "experiment-details-dialog";
+    dialog.className = "experiment-details-dialog";
+    dialog.innerHTML = `<form method="dialog" class="experiment-details-frame"><header><div><span class="workspace-kicker">EXPERIMENT DETAIL</span><h2 data-detail-title>Experiment</h2></div><button type="submit" class="icon-btn" title="Schließen" aria-label="Schließen">×</button></header><div class="experiment-details-body"><div class="experiment-details-grid" data-detail-fields></div><details><summary>Vollständige gespeicherte Informationen</summary><pre data-detail-json></pre></details></div><footer><button type="button" class="btn-primary" data-detail-use>In Ausführung übernehmen</button><button type="submit" class="btn-secondary">Schließen</button></footer></form>`;
+    document.body.appendChild(dialog);
+    dialog.addEventListener("click", (event) => {
+      if (event.target === dialog) dialog.close();
+    });
+    dialog.querySelector("[data-detail-use]").addEventListener("click", () => {
+      const experimentId = dialog.dataset.experimentId;
+      const item = this._findExperimentDetail(experimentId);
+      if (item) this._useExperimentDetails(item);
+      dialog.close();
+    });
+    return dialog;
+  }
+
+  _openExperimentDetails(item) {
+    const dialog = this._ensureExperimentDetailsDialog();
+    const manifest = item.manifest && typeof item.manifest === "object" ? item.manifest : {};
+    const experimentId = String(item.experiment_id || item.id || "");
+    const questions = Array.isArray(manifest.research_questions) ? manifest.research_questions : [];
+    const hypotheses = Array.isArray(manifest.hypotheses) ? manifest.hypotheses : [];
+    const fields = [
+      ["Experiment", experimentId],
+      ["Status", manifest.experiment_status || item.status || "unknown"],
+      ["Forschungsfrage", questions.join(", ") || manifest.research_question || "—"],
+      ["Hypothesen", hypotheses.join(", ") || manifest.hypothesis || "—"],
+      ["Protokoll", manifest.protocol || manifest.protocol_id || "—"],
+      ["Seeds", Array.isArray(manifest.seeds) ? manifest.seeds.join(", ") : (manifest.seeds || "—")],
+      ["Ticks", manifest.ticks || manifest.requested_ticks || manifest.results?.requested_ticks || "—"],
+      ["Bedingungen", manifest.conditions || manifest.experimental_design?.conditions || "—"],
+      ["Erstellt", item.created_at || manifest.created_at || manifest.timestamp || "—"],
+      ["Evidenz", manifest.scientific_evidence === true ? "wissenschaftliche Evidenz markiert" : "keine automatische Evidenz"],
+    ];
+    dialog.dataset.experimentId = experimentId;
+    dialog.querySelector("[data-detail-title]").textContent = experimentId;
+    dialog.querySelector("[data-detail-fields]").innerHTML = fields.map(([label, value]) => `<div><dt>${escapeHtml(label)}</dt><dd>${escapeHtml(value)}</dd></div>`).join("");
+    dialog.querySelector("[data-detail-json]").textContent = JSON.stringify(item, null, 2);
+    if (typeof dialog.showModal === "function") dialog.showModal();
+    else dialog.setAttribute("open", "");
+  }
+
+  _useExperimentDetails(item) {
+    const manifest = item.manifest && typeof item.manifest === "object" ? item.manifest : {};
+    const questions = Array.isArray(manifest.research_questions) ? manifest.research_questions : [];
+    const hypotheses = Array.isArray(manifest.hypotheses) ? manifest.hypotheses : [];
+    const setValue = (control, value) => {
+      if (control && value != null && value !== "") control.value = Array.isArray(value) ? value.join(",") : String(value);
+    };
+    setValue(this.elements.experimentId, item.experiment_id || item.id);
+    setValue(this.elements.question, questions[0] || manifest.research_question);
+    this._renderHypotheses();
+    setValue(this.elements.hypothesis, hypotheses[0] || manifest.hypothesis);
+    setValue(this.elements.title, manifest.title || manifest.experiment_title || item.experiment_id || item.id);
+    setValue(this.elements.conditions, manifest.conditions || manifest.experimental_design?.conditions);
+    setValue(this.elements.seeds, manifest.seeds);
+    setValue(this.elements.ticks, manifest.ticks || manifest.requested_ticks);
+    setValue(this.elements.notes, manifest.notes || manifest.claim_boundary || "Übernommen aus bestehendem Experiment; vor Ausführung prüfen.");
+    setValue(this.elements.protocol, manifest.protocol || manifest.protocol_id);
+    this._alignProtocolWithQuestion();
+    this._applyProtocol();
+    this._renderContract();
+    this.elements.title?.scrollIntoView({ behavior: "smooth", block: "center" });
+    this.elements.title?.focus();
   }
 
   _experimentSeriesItem(item) {
@@ -622,6 +703,13 @@ export class ExperimentWorkflowPanel {
 
   async _handleExperimentLibraryAction(event) {
     const button = event.target.closest?.("[data-experiment-action], [data-series-action], [data-series-report], [data-experiment-open]");
+    const detailCard = event.target.closest?.("[data-experiment-detail-id]");
+    const interactive = event.target.closest?.("button, a, input, select, textarea");
+    if (!button && detailCard && !interactive) {
+      const item = this._findExperimentDetail(detailCard.dataset.experimentDetailId);
+      if (item) this._openExperimentDetails(item);
+      return;
+    }
     if (!button) return;
     const experimentId = button.dataset.experimentId;
     const action = button.dataset.experimentAction;
@@ -629,6 +717,11 @@ export class ExperimentWorkflowPanel {
     const seriesId = button.dataset.seriesId;
     const seriesReport = button.dataset.seriesReport;
     const openKind = button.dataset.experimentOpen;
+    if (detailCard && !interactive) {
+      const item = this._findExperimentDetail(detailCard.dataset.experimentDetailId);
+      if (item) this._openExperimentDetails(item);
+      return;
+    }
     if (seriesReport) {
       await this._openArtifact(seriesReport);
       return;

@@ -11,6 +11,8 @@
 - Einzel-Experimente zeigen abgeschlossen, fehlgeschlagen, laufend oder noch
 	nicht ausgeführt direkt in der Liste.
 - Statusmarker bleiben von DATA, Human Review und EVID getrennt.
+- Karten öffnen eine Detailansicht mit strukturierten Metadaten, vollständigem
+	Manifest und „In Ausführung übernehmen“.
 
 ## 2026-09-19 Public Alpha.5 release candidate
 

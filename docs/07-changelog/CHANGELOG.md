@@ -8,6 +8,8 @@
 - Einzelne Experimente zeigen ihren Laufstatus direkt neben der Experiment-ID.
 - Grüne Häkchen bedeuten ausschließlich technisch abgeschlossene Ausführung,
   niemals bestätigte wissenschaftliche Evidenz.
+- Experimentboxen öffnen jetzt ein lesbares Detailfenster mit vollständigen
+  gespeicherten Informationen und einer Übernahmeaktion ins Ausführungsformular.
 
 ## 2026-09-19 - Public ORCID authorship linking
 

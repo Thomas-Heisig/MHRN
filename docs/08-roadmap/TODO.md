@@ -34,6 +34,7 @@
 
 - [x] Show technical run counts and WhatsApp-like status markers in the RQ overview.
 - [x] Show per-experiment execution status without implying scientific evidence.
+- [x] Make experiment cards open a complete detail dialog with form prefill.
 
 Aeltere offene Zaehler unten sind zeitgebundene Bestandsaufnahmen; der aktuelle Registerabgleich steht in research/generated/EXPERIMENT_COVERAGE_ALPHA3.json.
 
