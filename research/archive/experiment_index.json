@@ -1967,6 +1967,13 @@
       "original_path": "experiments/EXP-SNN004-STDP-ASYM-R2-20260919",
       "reason": "manuelle Archivierung"
     },
+    "EXP-SNN005-HOLDOUT-R2-20260919": {
+      "archived_at": "2026-09-20T07:37:57.768964+00:00",
+      "experiment_id": "EXP-SNN005-HOLDOUT-R2-20260919",
+      "manifest_sha256": "a5c0fb82b3e5c1069211347fb10ec0ad638200f52a47a1f01fb7a207b1883a55",
+      "original_path": "experiments/EXP-SNN005-HOLDOUT-R2-20260919",
+      "reason": "manuelle Archivierung"
+    },
     "EXP-STAGE0-20260918-MODEL-CONFORMANCE-V2-PROMO-R1": {
       "archived_at": "2026-09-19T08:00:09.901980+00:00",
       "experiment_id": "EXP-STAGE0-20260918-MODEL-CONFORMANCE-V2-PROMO-R1",
