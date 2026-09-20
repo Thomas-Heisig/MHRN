@@ -1,0 +1,21 @@
+{
+  "ai_review_does_not_satisfy_human_gate": true,
+  "automatic_evidence_promotion": false,
+  "experiment_id": "EXP-EMB001B-TEMPORAL-V3-20260920",
+  "human_review_status": "PENDING",
+  "hypothesis": "H-EMB-001-B",
+  "independent_replication": false,
+  "questions": [
+    "Are all five arms exposed to the identical external perturbation schedule?",
+    "Do shifted replay arms preserve the exact donor sensor-value multiset while changing temporal order?",
+    "Are initial neural state, body state and graph fingerprint matched within every seed?",
+    "Does the exact yoked arm reproduce the predecessor null pattern without being promoted to EVID?",
+    "Does the analysis remain descriptive and exploratory without post-hoc confirmatory thresholds?",
+    "Does the interpretation remain limited to the synthetic six-neuron fixed-decoder embodiment fixture?"
+  ],
+  "research_question": "RQ-EMB-001",
+  "result_status": "COMPLETED_EXPLORATORY_DATA",
+  "reviewer_type_required": "human",
+  "schema_version": 1,
+  "scientific_evidence": false
+}
