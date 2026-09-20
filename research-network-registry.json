@@ -34,8 +34,8 @@
       "account_action_required": [
         "HF_TOKEN"
       ],
-      "url": "https://huggingface.co/superdigger/MHRN",
-      "account": "superdigger"
+      "url": "https://huggingface.co/ThomasHeisig/MHRN",
+      "account": "ThomasHeisig"
     },
     {
       "name": "Hugging Face MHRN-Space",
@@ -46,8 +46,8 @@
       "account_action_required": [
         "HF_TOKEN"
       ],
-      "url": "https://huggingface.co/spaces/superdigger/MHRN-Space",
-      "account": "superdigger"
+      "url": "https://huggingface.co/spaces/ThomasHeisig/MHRN-Space",
+      "account": "ThomasHeisig"
     },
     {
       "name": "Hugging Face MHRN-Research-Data",
@@ -59,8 +59,8 @@
         "HF_TOKEN"
       ],
       "immutable_doi_policy": "separate_experiment_deposits",
-      "url": "https://huggingface.co/datasets/superdigger/MHRN-Research-Data",
-      "account": "superdigger"
+      "url": "https://huggingface.co/datasets/ThomasHeisig/MHRN-Research-Data",
+      "account": "ThomasHeisig"
     },
     {
       "name": "ORCID",
