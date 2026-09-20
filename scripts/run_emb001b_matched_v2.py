@@ -166,8 +166,7 @@ def main() -> int:
         raise RuntimeError("unexpected frozen execution budget")
 
     perturbation_schedule = [
-        0.003 if ticks // 4 <= tick < ticks // 2 else 0.0
-        for tick in range(ticks)
+        0.003 if ticks // 4 <= tick < ticks // 2 else 0.0 for tick in range(ticks)
     ]
     perturbation_sha256 = digest_value(perturbation_schedule)
 
@@ -192,9 +191,7 @@ def main() -> int:
         for condition in CONDITIONS:
             result = seed_results[condition]
             raw[(seed, condition)] = result
-            serialized.append(
-                compact_run(condition, seed, result, perturbation_sha256)
-            )
+            serialized.append(compact_run(condition, seed, result, perturbation_sha256))
 
     rows = {(int(row["seed"]), str(row["condition"])): row for row in serialized}
     per_seed_integrity: dict[str, dict[str, bool]] = {}
@@ -236,9 +233,7 @@ def main() -> int:
         "clean_source_freeze": source["dirty_before_execution"] is False,
         "run_count": len(serialized) == len(seeds) * len(CONDITIONS),
         "coverage": all(
-            (seed, condition) in rows
-            for seed in seeds
-            for condition in CONDITIONS
+            (seed, condition) in rows for seed in seeds for condition in CONDITIONS
         ),
         "runtime_errors_absent": all(
             row["runtime_error"] is None for row in serialized
@@ -361,8 +356,8 @@ def main() -> int:
                 "Does yoked_replay use the actual perturbation-exposed closed_loop sensor tape from the same seed?",
                 "Are initial neural state, body state and graph fingerprint matched within every seed?",
                 "Does the analysis remain descriptive and exploratory without post-hoc confirmatory thresholds?",
-                "Does the interpretation remain limited to the synthetic six-neuron fixed-decoder embodiment fixture?"
-            ]
+                "Does the interpretation remain limited to the synthetic six-neuron fixed-decoder embodiment fixture?",
+            ],
         },
     )
 
@@ -410,10 +405,7 @@ were applied. No automatic EVID promotion or independent replication is claimed.
         "review_request.json": sha256(OUT / "review_request.json"),
     }
     (OUT / "checksums.sha256").write_text(
-        "".join(
-            f"{digest}  {path}\n"
-            for path, digest in sorted(checks.items())
-        ),
+        "".join(f"{digest}  {path}\n" for path, digest in sorted(checks.items())),
         encoding="utf-8",
     )
 
