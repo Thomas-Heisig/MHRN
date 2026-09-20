@@ -1,0 +1,21 @@
+{
+  "ai_review_does_not_satisfy_human_gate": true,
+  "automatic_evidence_promotion": false,
+  "experiment_id": "EXP-EMB002-PROPRIO-V2-20260920",
+  "human_review_status": "PENDING",
+  "hypothesis": "H-EMB-002-A",
+  "independent_replication": false,
+  "questions": [
+    "Are all four arms exposed to the identical external perturbation schedule?",
+    "Does delayed_proprioception implement exactly the preregistered 20-tick causal delay?",
+    "Does timing_shuffle use only the same seed's complete perturbation-exposed closed_loop donor tape?",
+    "Are initial neural state, body state and graph fingerprint matched within every seed?",
+    "Does the analysis keep feedback_absent and delayed_proprioception as the only primary H-EMB-002-A contrasts?",
+    "Does the interpretation remain limited to the synthetic six-neuron fixed-decoder embodiment fixture?"
+  ],
+  "research_question": "RQ-EMB-002",
+  "result_status": "COMPLETED_EXPLORATORY_DATA",
+  "reviewer_type_required": "human",
+  "schema_version": 1,
+  "scientific_evidence": false
+}
