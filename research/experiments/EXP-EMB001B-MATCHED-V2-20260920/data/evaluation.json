@@ -1,0 +1,5102 @@
+[
+  {
+    "activated_neuron_count": 6,
+    "closed_loop_state_sha256": "a55bff2e6a347710d69f74ae85d0164e33a119763b6fcab98e7991b3a262b61a",
+    "condition": "closed_loop",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB001B-MATCHED-V2-20260920",
+    "external_perturbation_schedule_sha256": "062395f8f122e25f7542966f7eb4fe04d5b07b5b0e7ae587a41c5c112822216f",
+    "final_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.004913495828493301,
+      "omega_rad_s": -0.03373391640447087,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.270734305971302,
+      "saturation_count": 20
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "84ef634b3aeb16d49dc3a7fa0a26b7a1e8eb25ee5026df4a3eed66a4135bbf43",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": 0.035411708957678936,
+      "saturation_count": 0
+    },
+    "motor_tape_sha256": "7f62e545e06f7fe3e25ee4e4938024a8bcd8f7b2d7db3a92a7a04e147df7e894",
+    "nonzero_action_ticks": 996,
+    "runtime_error": null,
+    "seed": 8201,
+    "sensor_path_mean_abs_q_rad": 0.22249355923380032,
+    "sensor_path_rms_q_rad": 0.23760547164196932,
+    "sensor_tape_sha256": "ef499a989412682b43e7f0932c633ec2739faab1e9ea2ca8be24f4405fade210",
+    "state_digest_after": "85d83044b39c829ffe00cf43296984bb03d103d27124f3c420bdc6d6bc6e5bf2",
+    "state_digest_before": "a43931313e55af7eb078526886a56f1b6ee111939994173c3faeb83a81001f7e",
+    "synaptic_events_delivered": 57,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 57,
+    "tracking_rmse_rad": 0.1556087389960386
+  },
+  {
+    "activated_neuron_count": 6,
+    "closed_loop_state_sha256": "a55bff2e6a347710d69f74ae85d0164e33a119763b6fcab98e7991b3a262b61a",
+    "condition": "yoked_replay",
+    "donor_tape_sha256": "ef499a989412682b43e7f0932c633ec2739faab1e9ea2ca8be24f4405fade210",
+    "experiment_id": "EXP-EMB001B-MATCHED-V2-20260920",
+    "external_perturbation_schedule_sha256": "062395f8f122e25f7542966f7eb4fe04d5b07b5b0e7ae587a41c5c112822216f",
+    "final_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.004913495828493301,
+      "omega_rad_s": -0.03373391640447087,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.270734305971302,
+      "saturation_count": 20
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "84ef634b3aeb16d49dc3a7fa0a26b7a1e8eb25ee5026df4a3eed66a4135bbf43",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": 0.035411708957678936,
+      "saturation_count": 0
+    },
+    "motor_tape_sha256": "7f62e545e06f7fe3e25ee4e4938024a8bcd8f7b2d7db3a92a7a04e147df7e894",
+    "nonzero_action_ticks": 996,
+    "runtime_error": null,
+    "seed": 8201,
+    "sensor_path_mean_abs_q_rad": 0.22249355923380032,
+    "sensor_path_rms_q_rad": 0.23760547164196932,
+    "sensor_tape_sha256": "ef499a989412682b43e7f0932c633ec2739faab1e9ea2ca8be24f4405fade210",
+    "state_digest_after": "85d83044b39c829ffe00cf43296984bb03d103d27124f3c420bdc6d6bc6e5bf2",
+    "state_digest_before": "a43931313e55af7eb078526886a56f1b6ee111939994173c3faeb83a81001f7e",
+    "synaptic_events_delivered": 57,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 57,
+    "tracking_rmse_rad": 0.1556087389960386
+  },
+  {
+    "activated_neuron_count": 6,
+    "closed_loop_state_sha256": "e5c4684f1dcd3aed93b90f0013c62e4671e649e928e234371ea2af22b4dabfc0",
+    "condition": "feedback_absent",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB001B-MATCHED-V2-20260920",
+    "external_perturbation_schedule_sha256": "062395f8f122e25f7542966f7eb4fe04d5b07b5b0e7ae587a41c5c112822216f",
+    "final_body_state": {
+      "contact_count": 273,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.012603782492291785,
+      "omega_rad_s": -3.1186859804529083,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.597634670081505,
+      "saturation_count": 0
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "84ef634b3aeb16d49dc3a7fa0a26b7a1e8eb25ee5026df4a3eed66a4135bbf43",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": 0.035411708957678936,
+      "saturation_count": 0
+    },
+    "motor_tape_sha256": "52c08ddaae033d18ef65758f6fc0a748d85288601df84902c379073f6271a986",
+    "nonzero_action_ticks": 996,
+    "runtime_error": null,
+    "seed": 8201,
+    "sensor_path_mean_abs_q_rad": 0.4674318220857649,
+    "sensor_path_rms_q_rad": 0.5311269733297064,
+    "sensor_tape_sha256": "cc8f423b4420fda88a6a0bffc5831ecd667aab0576b79d172ab138a2d962f88d",
+    "state_digest_after": "2a348aa7034f6d28a8a5ceb449f7ac843e93b5f0d4d38081b6c01b74b2929f55",
+    "state_digest_before": "a43931313e55af7eb078526886a56f1b6ee111939994173c3faeb83a81001f7e",
+    "synaptic_events_delivered": 120,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 120,
+    "tracking_rmse_rad": 0.47848022558724895
+  },
+  {
+    "activated_neuron_count": 6,
+    "closed_loop_state_sha256": "177ed792d3da9939152bdb53d5a087ff85d0dada91ad8f07a16c5e69ded1b097",
+    "condition": "closed_loop",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB001B-MATCHED-V2-20260920",
+    "external_perturbation_schedule_sha256": "062395f8f122e25f7542966f7eb4fe04d5b07b5b0e7ae587a41c5c112822216f",
+    "final_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.004779245612879095,
+      "omega_rad_s": -0.00012341710651428485,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.2598769084625023,
+      "saturation_count": 21
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "4e6676b9c6bbc5734ca163a94dc084ca29a462883f64166c77178dc022c0d25d",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": 0.0463172572969766,
+      "saturation_count": 0
+    },
+    "motor_tape_sha256": "293940f8cabd3ed34eaf7c4021035adecb718e13fa800ab3bcc722dd31d5b7ca",
+    "nonzero_action_ticks": 996,
+    "runtime_error": null,
+    "seed": 8202,
+    "sensor_path_mean_abs_q_rad": 0.22636205200545734,
+    "sensor_path_rms_q_rad": 0.24155584606926817,
+    "sensor_tape_sha256": "1b200f9f6458bb061bd69954c2f9a9d3abac84b80968ff159f0c82d9f3787313",
+    "state_digest_after": "d2b1fcb19cc5879d304d3599a04b39f342793d06cfbfedcad6dde82af785c06d",
+    "state_digest_before": "50c2442adc417dc16ed0073006c3d98889c532ea6b33dd5e4165e932f2a38ec5",
+    "synaptic_events_delivered": 51,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 51,
+    "tracking_rmse_rad": 0.1583613014262591
+  },
+  {
+    "activated_neuron_count": 6,
+    "closed_loop_state_sha256": "177ed792d3da9939152bdb53d5a087ff85d0dada91ad8f07a16c5e69ded1b097",
+    "condition": "yoked_replay",
+    "donor_tape_sha256": "1b200f9f6458bb061bd69954c2f9a9d3abac84b80968ff159f0c82d9f3787313",
+    "experiment_id": "EXP-EMB001B-MATCHED-V2-20260920",
+    "external_perturbation_schedule_sha256": "062395f8f122e25f7542966f7eb4fe04d5b07b5b0e7ae587a41c5c112822216f",
+    "final_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.004779245612879095,
+      "omega_rad_s": -0.00012341710651428485,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.2598769084625023,
+      "saturation_count": 21
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "4e6676b9c6bbc5734ca163a94dc084ca29a462883f64166c77178dc022c0d25d",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": 0.0463172572969766,
+      "saturation_count": 0
+    },
+    "motor_tape_sha256": "293940f8cabd3ed34eaf7c4021035adecb718e13fa800ab3bcc722dd31d5b7ca",
+    "nonzero_action_ticks": 996,
+    "runtime_error": null,
+    "seed": 8202,
+    "sensor_path_mean_abs_q_rad": 0.22636205200545734,
+    "sensor_path_rms_q_rad": 0.24155584606926817,
+    "sensor_tape_sha256": "1b200f9f6458bb061bd69954c2f9a9d3abac84b80968ff159f0c82d9f3787313",
+    "state_digest_after": "d2b1fcb19cc5879d304d3599a04b39f342793d06cfbfedcad6dde82af785c06d",
+    "state_digest_before": "50c2442adc417dc16ed0073006c3d98889c532ea6b33dd5e4165e932f2a38ec5",
+    "synaptic_events_delivered": 51,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 51,
+    "tracking_rmse_rad": 0.1583613014262591
+  },
+  {
+    "activated_neuron_count": 6,
+    "closed_loop_state_sha256": "a33921be173456bb56464a4e6da16db37c5c781df5b701912acf3cf2b1fef4a9",
+    "condition": "feedback_absent",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB001B-MATCHED-V2-20260920",
+    "external_perturbation_schedule_sha256": "062395f8f122e25f7542966f7eb4fe04d5b07b5b0e7ae587a41c5c112822216f",
+    "final_body_state": {
+      "contact_count": 277,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.012573577077946997,
+      "omega_rad_s": -3.1186859804529083,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.597634670081505,
+      "saturation_count": 0
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "4e6676b9c6bbc5734ca163a94dc084ca29a462883f64166c77178dc022c0d25d",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": 0.0463172572969766,
+      "saturation_count": 0
+    },
+    "motor_tape_sha256": "52c08ddaae033d18ef65758f6fc0a748d85288601df84902c379073f6271a986",
+    "nonzero_action_ticks": 996,
+    "runtime_error": null,
+    "seed": 8202,
+    "sensor_path_mean_abs_q_rad": 0.46999101181055614,
+    "sensor_path_rms_q_rad": 0.5329843887056466,
+    "sensor_tape_sha256": "16047613d6b62a8b05396967e4678f3a888494dfd65a4c31f64cd7a35fa2b48f",
+    "state_digest_after": "78d8e28579003b4fbb8e1ff36dd3d20bb93bee2a6cb89ecfb58498be628fa45f",
+    "state_digest_before": "50c2442adc417dc16ed0073006c3d98889c532ea6b33dd5e4165e932f2a38ec5",
+    "synaptic_events_delivered": 120,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 120,
+    "tracking_rmse_rad": 0.4792126768942612
+  },
+  {
+    "activated_neuron_count": 6,
+    "closed_loop_state_sha256": "1400f59913d4cf6fece9886e15d113bd1eedaaa520172bcc47b5d65ce5641153",
+    "condition": "closed_loop",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB001B-MATCHED-V2-20260920",
+    "external_perturbation_schedule_sha256": "062395f8f122e25f7542966f7eb4fe04d5b07b5b0e7ae587a41c5c112822216f",
+    "final_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.004491935292184819,
+      "omega_rad_s": -0.5011059335094813,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.22593099281131002,
+      "saturation_count": 19
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "27d90162ea09039437548696f27d6f5ae97d53987bb3a1a709c77cb8d286c179",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.0023574925270495525,
+      "saturation_count": 0
+    },
+    "motor_tape_sha256": "bb8f5413afdbffa609b31d90c9c9706848b86a6f46cd28a2189f76d3072335e5",
+    "nonzero_action_ticks": 996,
+    "runtime_error": null,
+    "seed": 8203,
+    "sensor_path_mean_abs_q_rad": 0.20936270046173214,
+    "sensor_path_rms_q_rad": 0.22562079666645035,
+    "sensor_tape_sha256": "0f79d19f1f825b7801201e2d79b2853bce82bc2286ecc1e191e0f37bc8263f3a",
+    "state_digest_after": "4922a411aaba2ad21fb036d98dab95ae7360d9e4d4d03d54725b0f7c0364abdc",
+    "state_digest_before": "ce0780b68432c5b804250b314ea95ae8bf5b917112ce27650c6c4b995eda1211",
+    "synaptic_events_delivered": 51,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 51,
+    "tracking_rmse_rad": 0.1575420714289763
+  },
+  {
+    "activated_neuron_count": 6,
+    "closed_loop_state_sha256": "1400f59913d4cf6fece9886e15d113bd1eedaaa520172bcc47b5d65ce5641153",
+    "condition": "yoked_replay",
+    "donor_tape_sha256": "0f79d19f1f825b7801201e2d79b2853bce82bc2286ecc1e191e0f37bc8263f3a",
+    "experiment_id": "EXP-EMB001B-MATCHED-V2-20260920",
+    "external_perturbation_schedule_sha256": "062395f8f122e25f7542966f7eb4fe04d5b07b5b0e7ae587a41c5c112822216f",
+    "final_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.004491935292184819,
+      "omega_rad_s": -0.5011059335094813,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.22593099281131002,
+      "saturation_count": 19
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "27d90162ea09039437548696f27d6f5ae97d53987bb3a1a709c77cb8d286c179",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.0023574925270495525,
+      "saturation_count": 0
+    },
+    "motor_tape_sha256": "bb8f5413afdbffa609b31d90c9c9706848b86a6f46cd28a2189f76d3072335e5",
+    "nonzero_action_ticks": 996,
+    "runtime_error": null,
+    "seed": 8203,
+    "sensor_path_mean_abs_q_rad": 0.20936270046173214,
+    "sensor_path_rms_q_rad": 0.22562079666645035,
+    "sensor_tape_sha256": "0f79d19f1f825b7801201e2d79b2853bce82bc2286ecc1e191e0f37bc8263f3a",
+    "state_digest_after": "4922a411aaba2ad21fb036d98dab95ae7360d9e4d4d03d54725b0f7c0364abdc",
+    "state_digest_before": "ce0780b68432c5b804250b314ea95ae8bf5b917112ce27650c6c4b995eda1211",
+    "synaptic_events_delivered": 51,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 51,
+    "tracking_rmse_rad": 0.1575420714289763
+  },
+  {
+    "activated_neuron_count": 6,
+    "closed_loop_state_sha256": "644ce00df420295c0474e666739c76c4f9b6290657babb114662bbd2b116c270",
+    "condition": "feedback_absent",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB001B-MATCHED-V2-20260920",
+    "external_perturbation_schedule_sha256": "062395f8f122e25f7542966f7eb4fe04d5b07b5b0e7ae587a41c5c112822216f",
+    "final_body_state": {
+      "contact_count": 260,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.01288807818781095,
+      "omega_rad_s": -3.1186859804529083,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.597634670081505,
+      "saturation_count": 0
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "27d90162ea09039437548696f27d6f5ae97d53987bb3a1a709c77cb8d286c179",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.0023574925270495525,
+      "saturation_count": 0
+    },
+    "motor_tape_sha256": "52c08ddaae033d18ef65758f6fc0a748d85288601df84902c379073f6271a986",
+    "nonzero_action_ticks": 996,
+    "runtime_error": null,
+    "seed": 8203,
+    "sensor_path_mean_abs_q_rad": 0.45827249814741317,
+    "sensor_path_rms_q_rad": 0.5245878045898688,
+    "sensor_tape_sha256": "7d99c2aa22e33a1ec58d156a815080f09c6e9c0d73ee9d186f8f7ebf4fc02cbb",
+    "state_digest_after": "6bd32d96ee2a0f47ed7d603e2d42bdf2dcf8fa776a5b15087c7892c417d38ad5",
+    "state_digest_before": "ce0780b68432c5b804250b314ea95ae8bf5b917112ce27650c6c4b995eda1211",
+    "synaptic_events_delivered": 120,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 120,
+    "tracking_rmse_rad": 0.4760465458787103
+  },
+  {
+    "activated_neuron_count": 6,
+    "closed_loop_state_sha256": "fa66f67271abeee4aba80f8e6bda8572befeb9e1fa7dacb9680f44f63a2e29e9",
+    "condition": "closed_loop",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB001B-MATCHED-V2-20260920",
+    "external_perturbation_schedule_sha256": "062395f8f122e25f7542966f7eb4fe04d5b07b5b0e7ae587a41c5c112822216f",
+    "final_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.00422890222994489,
+      "omega_rad_s": -0.0001198986464101082,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.25297439447636794,
+      "saturation_count": 12
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "e7205aa963953c56a4e8a8d9d72c00448c2ff301f0aaa7fef11c67906f858174",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.0015760589409766351,
+      "saturation_count": 0
+    },
+    "motor_tape_sha256": "9242ea85b0c705f247330339713019e939f05290c31ede1fd7f87f8c06d69624",
+    "nonzero_action_ticks": 996,
+    "runtime_error": null,
+    "seed": 8204,
+    "sensor_path_mean_abs_q_rad": 0.211704028127409,
+    "sensor_path_rms_q_rad": 0.2283864033959784,
+    "sensor_tape_sha256": "078201609c484476b66c939a430301fb6a3aaaca712f0f3e57fbc307d26e05ab",
+    "state_digest_after": "3990714baf494817ec08a33285e5b9011285626835878bc70f24982b92287462",
+    "state_digest_before": "35c58962b8ce3e4e841c1b4ad9fe7f219148bfd4dc34ca6036912fcc1f4ff3f6",
+    "synaptic_events_delivered": 42,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 42,
+    "tracking_rmse_rad": 0.1581914529561264
+  },
+  {
+    "activated_neuron_count": 6,
+    "closed_loop_state_sha256": "fa66f67271abeee4aba80f8e6bda8572befeb9e1fa7dacb9680f44f63a2e29e9",
+    "condition": "yoked_replay",
+    "donor_tape_sha256": "078201609c484476b66c939a430301fb6a3aaaca712f0f3e57fbc307d26e05ab",
+    "experiment_id": "EXP-EMB001B-MATCHED-V2-20260920",
+    "external_perturbation_schedule_sha256": "062395f8f122e25f7542966f7eb4fe04d5b07b5b0e7ae587a41c5c112822216f",
+    "final_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.00422890222994489,
+      "omega_rad_s": -0.0001198986464101082,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.25297439447636794,
+      "saturation_count": 12
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "e7205aa963953c56a4e8a8d9d72c00448c2ff301f0aaa7fef11c67906f858174",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.0015760589409766351,
+      "saturation_count": 0
+    },
+    "motor_tape_sha256": "9242ea85b0c705f247330339713019e939f05290c31ede1fd7f87f8c06d69624",
+    "nonzero_action_ticks": 996,
+    "runtime_error": null,
+    "seed": 8204,
+    "sensor_path_mean_abs_q_rad": 0.211704028127409,
+    "sensor_path_rms_q_rad": 0.2283864033959784,
+    "sensor_tape_sha256": "078201609c484476b66c939a430301fb6a3aaaca712f0f3e57fbc307d26e05ab",
+    "state_digest_after": "3990714baf494817ec08a33285e5b9011285626835878bc70f24982b92287462",
+    "state_digest_before": "35c58962b8ce3e4e841c1b4ad9fe7f219148bfd4dc34ca6036912fcc1f4ff3f6",
+    "synaptic_events_delivered": 42,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 42,
+    "tracking_rmse_rad": 0.1581914529561264
+  },
+  {
+    "activated_neuron_count": 6,
+    "closed_loop_state_sha256": "36badfcbfb4cb2df0b55985b7e5596729eb13616f5747ce9fb8182ef679d456e",
+    "condition": "feedback_absent",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB001B-MATCHED-V2-20260920",
+    "external_perturbation_schedule_sha256": "062395f8f122e25f7542966f7eb4fe04d5b07b5b0e7ae587a41c5c112822216f",
+    "final_body_state": {
+      "contact_count": 260,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.012883716241733895,
+      "omega_rad_s": -3.1186859804529083,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.597634670081505,
+      "saturation_count": 0
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "e7205aa963953c56a4e8a8d9d72c00448c2ff301f0aaa7fef11c67906f858174",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.0015760589409766351,
+      "saturation_count": 0
+    },
+    "motor_tape_sha256": "52c08ddaae033d18ef65758f6fc0a748d85288601df84902c379073f6271a986",
+    "nonzero_action_ticks": 996,
+    "runtime_error": null,
+    "seed": 8204,
+    "sensor_path_mean_abs_q_rad": 0.4584533283325712,
+    "sensor_path_rms_q_rad": 0.5247244373637748,
+    "sensor_tape_sha256": "ed80d8ff428dc5d2b8e75628b937a89567ee9e83917ea3a133f8250f04dc11ce",
+    "state_digest_after": "f211ee01629ac538c1247bba8587ed32bb71bcd87d3c36df21e9b1af9c5b7319",
+    "state_digest_before": "35c58962b8ce3e4e841c1b4ad9fe7f219148bfd4dc34ca6036912fcc1f4ff3f6",
+    "synaptic_events_delivered": 120,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 120,
+    "tracking_rmse_rad": 0.476094947334779
+  },
+  {
+    "activated_neuron_count": 6,
+    "closed_loop_state_sha256": "d44a2562509cfac5b256d0a0435b1fd30f5ae4db90b09402eae6c83b07744b62",
+    "condition": "closed_loop",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB001B-MATCHED-V2-20260920",
+    "external_perturbation_schedule_sha256": "062395f8f122e25f7542966f7eb4fe04d5b07b5b0e7ae587a41c5c112822216f",
+    "final_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.004755052567625154,
+      "omega_rad_s": -0.00015046804380095232,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.2635859577320706,
+      "saturation_count": 21
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "da905ae33edeba8096c56ae18c898846b37ce7eb68ec9ca064cc804ccf20be80",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": 0.042446168553952654,
+      "saturation_count": 0
+    },
+    "motor_tape_sha256": "3d5b9674a931aff9922090ee92559edfad4acba5b3f7892d8b23ffb010652220",
+    "nonzero_action_ticks": 996,
+    "runtime_error": null,
+    "seed": 8205,
+    "sensor_path_mean_abs_q_rad": 0.22667362511234274,
+    "sensor_path_rms_q_rad": 0.2420655480241246,
+    "sensor_tape_sha256": "2b8f046915b64c002f6594e9d6f38fbf94de4795bd5cec585e1a4befa36f193f",
+    "state_digest_after": "703a4c26b58add273608fbcad0f75f3044042f990710e6dc2dc0329aeae89b05",
+    "state_digest_before": "6b05803671dc11dc61e4743ff6aa1cd8dbe894eec9df97004f39de9442a78f19",
+    "synaptic_events_delivered": 51,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 51,
+    "tracking_rmse_rad": 0.1575849864133924
+  },
+  {
+    "activated_neuron_count": 6,
+    "closed_loop_state_sha256": "d44a2562509cfac5b256d0a0435b1fd30f5ae4db90b09402eae6c83b07744b62",
+    "condition": "yoked_replay",
+    "donor_tape_sha256": "2b8f046915b64c002f6594e9d6f38fbf94de4795bd5cec585e1a4befa36f193f",
+    "experiment_id": "EXP-EMB001B-MATCHED-V2-20260920",
+    "external_perturbation_schedule_sha256": "062395f8f122e25f7542966f7eb4fe04d5b07b5b0e7ae587a41c5c112822216f",
+    "final_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.004755052567625154,
+      "omega_rad_s": -0.00015046804380095232,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.2635859577320706,
+      "saturation_count": 21
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "da905ae33edeba8096c56ae18c898846b37ce7eb68ec9ca064cc804ccf20be80",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": 0.042446168553952654,
+      "saturation_count": 0
+    },
+    "motor_tape_sha256": "3d5b9674a931aff9922090ee92559edfad4acba5b3f7892d8b23ffb010652220",
+    "nonzero_action_ticks": 996,
+    "runtime_error": null,
+    "seed": 8205,
+    "sensor_path_mean_abs_q_rad": 0.22667362511234274,
+    "sensor_path_rms_q_rad": 0.2420655480241246,
+    "sensor_tape_sha256": "2b8f046915b64c002f6594e9d6f38fbf94de4795bd5cec585e1a4befa36f193f",
+    "state_digest_after": "703a4c26b58add273608fbcad0f75f3044042f990710e6dc2dc0329aeae89b05",
+    "state_digest_before": "6b05803671dc11dc61e4743ff6aa1cd8dbe894eec9df97004f39de9442a78f19",
+    "synaptic_events_delivered": 51,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 51,
+    "tracking_rmse_rad": 0.1575849864133924
+  },
+  {
+    "activated_neuron_count": 6,
+    "closed_loop_state_sha256": "30ddcde46f7a62ffa7f7693a464a7819e1979dca8b1100678e543dba07f2c73e",
+    "condition": "feedback_absent",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB001B-MATCHED-V2-20260920",
+    "external_perturbation_schedule_sha256": "062395f8f122e25f7542966f7eb4fe04d5b07b5b0e7ae587a41c5c112822216f",
+    "final_body_state": {
+      "contact_count": 276,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.012585013427675013,
+      "omega_rad_s": -3.1186859804529083,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.597634670081505,
+      "saturation_count": 0
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "da905ae33edeba8096c56ae18c898846b37ce7eb68ec9ca064cc804ccf20be80",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": 0.042446168553952654,
+      "saturation_count": 0
+    },
+    "motor_tape_sha256": "52c08ddaae033d18ef65758f6fc0a748d85288601df84902c379073f6271a986",
+    "nonzero_action_ticks": 996,
+    "runtime_error": null,
+    "seed": 8205,
+    "sensor_path_mean_abs_q_rad": 0.46908758181602433,
+    "sensor_path_rms_q_rad": 0.5323268512023585,
+    "sensor_tape_sha256": "bfaf6fe9d5a3133bf1da41ab96c6ab7cf87a6d887731f3b7be2ab6347e7afd10",
+    "state_digest_after": "323f7893ab92224119103b154a249295d8b136a001225e089b16e711a36fe065",
+    "state_digest_before": "6b05803671dc11dc61e4743ff6aa1cd8dbe894eec9df97004f39de9442a78f19",
+    "synaptic_events_delivered": 120,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 120,
+    "tracking_rmse_rad": 0.47895138653859515
+  },
+  {
+    "activated_neuron_count": 6,
+    "closed_loop_state_sha256": "277439d57a9d190f517a662fd219b86be50804218208560f1d45bc83772ad809",
+    "condition": "closed_loop",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB001B-MATCHED-V2-20260920",
+    "external_perturbation_schedule_sha256": "062395f8f122e25f7542966f7eb4fe04d5b07b5b0e7ae587a41c5c112822216f",
+    "final_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.0048065086727391345,
+      "omega_rad_s": -0.6961729177809188,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.23929046290162378,
+      "saturation_count": 20
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "4cdb7cad72243fbfb87d879e109aaa29ebea69ebc12212f94b813a5c1b7edcf5",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": 0.029557426689171357,
+      "saturation_count": 0
+    },
+    "motor_tape_sha256": "42a12fba22ed99cf11453ee1e73adf5e2007295b79d5332d8ebd15209bf16cc3",
+    "nonzero_action_ticks": 996,
+    "runtime_error": null,
+    "seed": 8206,
+    "sensor_path_mean_abs_q_rad": 0.22209122977735277,
+    "sensor_path_rms_q_rad": 0.23707908079795748,
+    "sensor_tape_sha256": "6516d2bfecba2823dfc41fd754cecacc10b72692870aa1bdc379307f2aa2940d",
+    "state_digest_after": "8a6d11991dcfc706f660ef582d86369b768b959b2eeac292677f7c8c48168925",
+    "state_digest_before": "332188ce470b19fc900eed6dadfe88c7148f929e3259111ca0fd46b753c54d5e",
+    "synaptic_events_delivered": 57,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 57,
+    "tracking_rmse_rad": 0.15410958216361684
+  },
+  {
+    "activated_neuron_count": 6,
+    "closed_loop_state_sha256": "277439d57a9d190f517a662fd219b86be50804218208560f1d45bc83772ad809",
+    "condition": "yoked_replay",
+    "donor_tape_sha256": "6516d2bfecba2823dfc41fd754cecacc10b72692870aa1bdc379307f2aa2940d",
+    "experiment_id": "EXP-EMB001B-MATCHED-V2-20260920",
+    "external_perturbation_schedule_sha256": "062395f8f122e25f7542966f7eb4fe04d5b07b5b0e7ae587a41c5c112822216f",
+    "final_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.0048065086727391345,
+      "omega_rad_s": -0.6961729177809188,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.23929046290162378,
+      "saturation_count": 20
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "4cdb7cad72243fbfb87d879e109aaa29ebea69ebc12212f94b813a5c1b7edcf5",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": 0.029557426689171357,
+      "saturation_count": 0
+    },
+    "motor_tape_sha256": "42a12fba22ed99cf11453ee1e73adf5e2007295b79d5332d8ebd15209bf16cc3",
+    "nonzero_action_ticks": 996,
+    "runtime_error": null,
+    "seed": 8206,
+    "sensor_path_mean_abs_q_rad": 0.22209122977735277,
+    "sensor_path_rms_q_rad": 0.23707908079795748,
+    "sensor_tape_sha256": "6516d2bfecba2823dfc41fd754cecacc10b72692870aa1bdc379307f2aa2940d",
+    "state_digest_after": "8a6d11991dcfc706f660ef582d86369b768b959b2eeac292677f7c8c48168925",
+    "state_digest_before": "332188ce470b19fc900eed6dadfe88c7148f929e3259111ca0fd46b753c54d5e",
+    "synaptic_events_delivered": 57,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 57,
+    "tracking_rmse_rad": 0.15410958216361684
+  },
+  {
+    "activated_neuron_count": 6,
+    "closed_loop_state_sha256": "ac97b844d74fe869b7224dc3fb0bda3d108567ad6e01843b84daee4768ed9cfd",
+    "condition": "feedback_absent",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB001B-MATCHED-V2-20260920",
+    "external_perturbation_schedule_sha256": "062395f8f122e25f7542966f7eb4fe04d5b07b5b0e7ae587a41c5c112822216f",
+    "final_body_state": {
+      "contact_count": 271,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.012648894370981989,
+      "omega_rad_s": -3.1186859804529083,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.597634670081505,
+      "saturation_count": 0
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "4cdb7cad72243fbfb87d879e109aaa29ebea69ebc12212f94b813a5c1b7edcf5",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": 0.029557426689171357,
+      "saturation_count": 0
+    },
+    "motor_tape_sha256": "52c08ddaae033d18ef65758f6fc0a748d85288601df84902c379073f6271a986",
+    "nonzero_action_ticks": 996,
+    "runtime_error": null,
+    "seed": 8206,
+    "sensor_path_mean_abs_q_rad": 0.4660389852609937,
+    "sensor_path_rms_q_rad": 0.5301221372871494,
+    "sensor_tape_sha256": "1fd720e049645749322c8b0870da4650f6f700c8f80514828e5982877ae24430",
+    "state_digest_after": "8e7baf212d460ff5449c899a5d2765e0cddb581d690e96c3aa95504405cc9ea0",
+    "state_digest_before": "332188ce470b19fc900eed6dadfe88c7148f929e3259111ca0fd46b753c54d5e",
+    "synaptic_events_delivered": 120,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 120,
+    "tracking_rmse_rad": 0.4780908036560163
+  },
+  {
+    "activated_neuron_count": 6,
+    "closed_loop_state_sha256": "6f0df1219ff0da3faa41b5c3dcb748cbdeba93898c78d968b6f36543dd611d2e",
+    "condition": "closed_loop",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB001B-MATCHED-V2-20260920",
+    "external_perturbation_schedule_sha256": "062395f8f122e25f7542966f7eb4fe04d5b07b5b0e7ae587a41c5c112822216f",
+    "final_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.004877465769009396,
+      "omega_rad_s": -7.196093052804255e-05,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.24244326739536584,
+      "saturation_count": 21
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "efdec8a4a0d8c213eec0b3275054c06e635c328482a0360aac941f73ea5032a8",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.016627396211549593,
+      "saturation_count": 0
+    },
+    "motor_tape_sha256": "cda2875e43b201941d31c156c537473b8b647eb02ccf989251b2ac9fcb8cf4e4",
+    "nonzero_action_ticks": 996,
+    "runtime_error": null,
+    "seed": 8207,
+    "sensor_path_mean_abs_q_rad": 0.21640571762224964,
+    "sensor_path_rms_q_rad": 0.2360650979194381,
+    "sensor_tape_sha256": "ca7e38b45c3e7f2c80d2af980bfe78677a800c3211a52ce1cff97d941b474e51",
+    "state_digest_after": "f648760dcfa49713af44b6be1e0fb9d979d9cab48655007130f6b90c93e1b8b2",
+    "state_digest_before": "c4085e2d9bcc151df99d6d6d3068519cf50792f940f22f4720838ffafb9b9a5e",
+    "synaptic_events_delivered": 48,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 48,
+    "tracking_rmse_rad": 0.17048639679290958
+  },
+  {
+    "activated_neuron_count": 6,
+    "closed_loop_state_sha256": "6f0df1219ff0da3faa41b5c3dcb748cbdeba93898c78d968b6f36543dd611d2e",
+    "condition": "yoked_replay",
+    "donor_tape_sha256": "ca7e38b45c3e7f2c80d2af980bfe78677a800c3211a52ce1cff97d941b474e51",
+    "experiment_id": "EXP-EMB001B-MATCHED-V2-20260920",
+    "external_perturbation_schedule_sha256": "062395f8f122e25f7542966f7eb4fe04d5b07b5b0e7ae587a41c5c112822216f",
+    "final_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.004877465769009396,
+      "omega_rad_s": -7.196093052804255e-05,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.24244326739536584,
+      "saturation_count": 21
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "efdec8a4a0d8c213eec0b3275054c06e635c328482a0360aac941f73ea5032a8",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.016627396211549593,
+      "saturation_count": 0
+    },
+    "motor_tape_sha256": "cda2875e43b201941d31c156c537473b8b647eb02ccf989251b2ac9fcb8cf4e4",
+    "nonzero_action_ticks": 996,
+    "runtime_error": null,
+    "seed": 8207,
+    "sensor_path_mean_abs_q_rad": 0.21640571762224964,
+    "sensor_path_rms_q_rad": 0.2360650979194381,
+    "sensor_tape_sha256": "ca7e38b45c3e7f2c80d2af980bfe78677a800c3211a52ce1cff97d941b474e51",
+    "state_digest_after": "f648760dcfa49713af44b6be1e0fb9d979d9cab48655007130f6b90c93e1b8b2",
+    "state_digest_before": "c4085e2d9bcc151df99d6d6d3068519cf50792f940f22f4720838ffafb9b9a5e",
+    "synaptic_events_delivered": 48,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 48,
+    "tracking_rmse_rad": 0.17048639679290958
+  },
+  {
+    "activated_neuron_count": 6,
+    "closed_loop_state_sha256": "fb4c8c8dd5ca18bb88ae686f7d8620d3c396d40eaa720f21ee6e0f2b1a280c84",
+    "condition": "feedback_absent",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB001B-MATCHED-V2-20260920",
+    "external_perturbation_schedule_sha256": "062395f8f122e25f7542966f7eb4fe04d5b07b5b0e7ae587a41c5c112822216f",
+    "final_body_state": {
+      "contact_count": 255,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.012905215991724468,
+      "omega_rad_s": -3.118685979119941,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.594237148087,
+      "saturation_count": 0
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "efdec8a4a0d8c213eec0b3275054c06e635c328482a0360aac941f73ea5032a8",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.016627396211549593,
+      "saturation_count": 0
+    },
+    "motor_tape_sha256": "08fa8d922a47ead4eb229d61f854c2333cfdb90d79224685f887cce466322f7c",
+    "nonzero_action_ticks": 996,
+    "runtime_error": null,
+    "seed": 8207,
+    "sensor_path_mean_abs_q_rad": 0.4545960016565326,
+    "sensor_path_rms_q_rad": 0.5217328096569436,
+    "sensor_tape_sha256": "da7801e04763c5b7ad5f11248aa011df3c6bb651f58b3027db48e6bb1d965de0",
+    "state_digest_after": "bb06ad2768d86ce993370e06d3d13e6a5d0e7227f4e87abf1da6f58704301127",
+    "state_digest_before": "c4085e2d9bcc151df99d6d6d3068519cf50792f940f22f4720838ffafb9b9a5e",
+    "synaptic_events_delivered": 120,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 120,
+    "tracking_rmse_rad": 0.4759039739747396
+  },
+  {
+    "activated_neuron_count": 6,
+    "closed_loop_state_sha256": "d7118be27a30194775829573aab7c0f7da92be994eb1e2bc12b7d87861fe0bcb",
+    "condition": "closed_loop",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB001B-MATCHED-V2-20260920",
+    "external_perturbation_schedule_sha256": "062395f8f122e25f7542966f7eb4fe04d5b07b5b0e7ae587a41c5c112822216f",
+    "final_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.004552462601070882,
+      "omega_rad_s": 0.10467715193383632,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.26850908325159617,
+      "saturation_count": 19
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "be26bea4345c7e770c8b70e207bc513705d86fab962aebb0f7e9c4ae476734fa",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": 0.006041455398705355,
+      "saturation_count": 0
+    },
+    "motor_tape_sha256": "775e2758863099788e88d651d58322ee5eeab4824508542835e0efc9ac4b4ed9",
+    "nonzero_action_ticks": 996,
+    "runtime_error": null,
+    "seed": 8208,
+    "sensor_path_mean_abs_q_rad": 0.21075719704205104,
+    "sensor_path_rms_q_rad": 0.22706553530122417,
+    "sensor_tape_sha256": "ce579004ba83072ff2b685e5a99f779e5c4038c27c870312ce1a17731168fa52",
+    "state_digest_after": "c724516555faeea5ab2bfe85157423c23301f4a71a56e41a328853b914efee86",
+    "state_digest_before": "bb58bcfd55c615454839125124c1c5af452bca134a4618c5bb6051ed0923f983",
+    "synaptic_events_delivered": 54,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 54,
+    "tracking_rmse_rad": 0.15831693831711977
+  },
+  {
+    "activated_neuron_count": 6,
+    "closed_loop_state_sha256": "d7118be27a30194775829573aab7c0f7da92be994eb1e2bc12b7d87861fe0bcb",
+    "condition": "yoked_replay",
+    "donor_tape_sha256": "ce579004ba83072ff2b685e5a99f779e5c4038c27c870312ce1a17731168fa52",
+    "experiment_id": "EXP-EMB001B-MATCHED-V2-20260920",
+    "external_perturbation_schedule_sha256": "062395f8f122e25f7542966f7eb4fe04d5b07b5b0e7ae587a41c5c112822216f",
+    "final_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.004552462601070882,
+      "omega_rad_s": 0.10467715193383632,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.26850908325159617,
+      "saturation_count": 19
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "be26bea4345c7e770c8b70e207bc513705d86fab962aebb0f7e9c4ae476734fa",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": 0.006041455398705355,
+      "saturation_count": 0
+    },
+    "motor_tape_sha256": "775e2758863099788e88d651d58322ee5eeab4824508542835e0efc9ac4b4ed9",
+    "nonzero_action_ticks": 996,
+    "runtime_error": null,
+    "seed": 8208,
+    "sensor_path_mean_abs_q_rad": 0.21075719704205104,
+    "sensor_path_rms_q_rad": 0.22706553530122417,
+    "sensor_tape_sha256": "ce579004ba83072ff2b685e5a99f779e5c4038c27c870312ce1a17731168fa52",
+    "state_digest_after": "c724516555faeea5ab2bfe85157423c23301f4a71a56e41a328853b914efee86",
+    "state_digest_before": "bb58bcfd55c615454839125124c1c5af452bca134a4618c5bb6051ed0923f983",
+    "synaptic_events_delivered": 54,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 54,
+    "tracking_rmse_rad": 0.15831693831711977
+  },
+  {
+    "activated_neuron_count": 6,
+    "closed_loop_state_sha256": "6bf1d076e272675bafefb8530381ce94ecd39b9356bd452c1011f67660fdbbfe",
+    "condition": "feedback_absent",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB001B-MATCHED-V2-20260920",
+    "external_perturbation_schedule_sha256": "062395f8f122e25f7542966f7eb4fe04d5b07b5b0e7ae587a41c5c112822216f",
+    "final_body_state": {
+      "contact_count": 263,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.012837208819031182,
+      "omega_rad_s": -3.1186859804529083,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.597634670081505,
+      "saturation_count": 0
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "be26bea4345c7e770c8b70e207bc513705d86fab962aebb0f7e9c4ae476734fa",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": 0.006041455398705355,
+      "saturation_count": 0
+    },
+    "motor_tape_sha256": "52c08ddaae033d18ef65758f6fc0a748d85288601df84902c379073f6271a986",
+    "nonzero_action_ticks": 996,
+    "runtime_error": null,
+    "seed": 8208,
+    "sensor_path_mean_abs_q_rad": 0.46032212634200925,
+    "sensor_path_rms_q_rad": 0.526050815253594,
+    "sensor_tape_sha256": "1b3e652711fe4fb02e6d1cf895c094f32f593e0a1d968c9a7aeeca34b069e857",
+    "state_digest_after": "81cd346e5d8fb401ae286e1ae60faeffbec9681b5332e00a312769a5e53ae772",
+    "state_digest_before": "bb58bcfd55c615454839125124c1c5af452bca134a4618c5bb6051ed0923f983",
+    "synaptic_events_delivered": 120,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 120,
+    "tracking_rmse_rad": 0.4765693075971922
+  },
+  {
+    "activated_neuron_count": 6,
+    "closed_loop_state_sha256": "cc2eff40848eb7ab8dab154dfe2a69f2f72bb7445b5803b4abfa11af4fa5c19c",
+    "condition": "closed_loop",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB001B-MATCHED-V2-20260920",
+    "external_perturbation_schedule_sha256": "062395f8f122e25f7542966f7eb4fe04d5b07b5b0e7ae587a41c5c112822216f",
+    "final_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.004603509614743225,
+      "omega_rad_s": -0.0002080204358897813,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.266548175405225,
+      "saturation_count": 15
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "6842bfdae42b859a1dc4eb978aa8a7fd6cad480f5a76cfe695d997cac0e29e96",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.02831510310587705,
+      "saturation_count": 0
+    },
+    "motor_tape_sha256": "566aa3df55c985d835d85b188152047165f82ce83382fbc9ba7c97c0b6d2f384",
+    "nonzero_action_ticks": 996,
+    "runtime_error": null,
+    "seed": 8209,
+    "sensor_path_mean_abs_q_rad": 0.21427460212540464,
+    "sensor_path_rms_q_rad": 0.23186657562927365,
+    "sensor_tape_sha256": "84a45c859bb70b4952581de2a4cb110270490d1dc34c098ad1e56fa3065ce19e",
+    "state_digest_after": "c7187f49bc1fe6599a8c71dd442a951dfef601438cd52f6f991ff98c72b24e96",
+    "state_digest_before": "d9fb5c30a23342fb3ede6a94a6611111c3cf55e0090fb75f1bb0f7794c76d548",
+    "synaptic_events_delivered": 48,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 48,
+    "tracking_rmse_rad": 0.16450050873656846
+  },
+  {
+    "activated_neuron_count": 6,
+    "closed_loop_state_sha256": "cc2eff40848eb7ab8dab154dfe2a69f2f72bb7445b5803b4abfa11af4fa5c19c",
+    "condition": "yoked_replay",
+    "donor_tape_sha256": "84a45c859bb70b4952581de2a4cb110270490d1dc34c098ad1e56fa3065ce19e",
+    "experiment_id": "EXP-EMB001B-MATCHED-V2-20260920",
+    "external_perturbation_schedule_sha256": "062395f8f122e25f7542966f7eb4fe04d5b07b5b0e7ae587a41c5c112822216f",
+    "final_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.004603509614743225,
+      "omega_rad_s": -0.0002080204358897813,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.266548175405225,
+      "saturation_count": 15
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "6842bfdae42b859a1dc4eb978aa8a7fd6cad480f5a76cfe695d997cac0e29e96",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.02831510310587705,
+      "saturation_count": 0
+    },
+    "motor_tape_sha256": "566aa3df55c985d835d85b188152047165f82ce83382fbc9ba7c97c0b6d2f384",
+    "nonzero_action_ticks": 996,
+    "runtime_error": null,
+    "seed": 8209,
+    "sensor_path_mean_abs_q_rad": 0.21427460212540464,
+    "sensor_path_rms_q_rad": 0.23186657562927365,
+    "sensor_tape_sha256": "84a45c859bb70b4952581de2a4cb110270490d1dc34c098ad1e56fa3065ce19e",
+    "state_digest_after": "c7187f49bc1fe6599a8c71dd442a951dfef601438cd52f6f991ff98c72b24e96",
+    "state_digest_before": "d9fb5c30a23342fb3ede6a94a6611111c3cf55e0090fb75f1bb0f7794c76d548",
+    "synaptic_events_delivered": 48,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 48,
+    "tracking_rmse_rad": 0.16450050873656846
+  },
+  {
+    "activated_neuron_count": 6,
+    "closed_loop_state_sha256": "6f1888c8f8ab8e7e7c277a3a0e1c57a00baf6d04af6ad4055dd4fb745dc7022e",
+    "condition": "feedback_absent",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB001B-MATCHED-V2-20260920",
+    "external_perturbation_schedule_sha256": "062395f8f122e25f7542966f7eb4fe04d5b07b5b0e7ae587a41c5c112822216f",
+    "final_body_state": {
+      "contact_count": 251,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.012952876227833341,
+      "omega_rad_s": -3.118685979119941,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.594237148087,
+      "saturation_count": 0
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "6842bfdae42b859a1dc4eb978aa8a7fd6cad480f5a76cfe695d997cac0e29e96",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.02831510310587705,
+      "saturation_count": 0
+    },
+    "motor_tape_sha256": "08fa8d922a47ead4eb229d61f854c2333cfdb90d79224685f887cce466322f7c",
+    "nonzero_action_ticks": 996,
+    "runtime_error": null,
+    "seed": 8209,
+    "sensor_path_mean_abs_q_rad": 0.45207578256516956,
+    "sensor_path_rms_q_rad": 0.5196835340837673,
+    "sensor_tape_sha256": "2862b184fc4a83afd98252ba00864493f159e1ff99c5a1e27c016b6665690709",
+    "state_digest_after": "c49f75ed42de1b6b56505b527fd7fda8e070084518869f1677b3d13806aec6ba",
+    "state_digest_before": "d9fb5c30a23342fb3ede6a94a6611111c3cf55e0090fb75f1bb0f7794c76d548",
+    "synaptic_events_delivered": 120,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 120,
+    "tracking_rmse_rad": 0.47523345162217656
+  },
+  {
+    "activated_neuron_count": 6,
+    "closed_loop_state_sha256": "8e36ce13f91e3e5452c50530644dfd9a9f8e812a75e25774e5191c8e8ba7956f",
+    "condition": "closed_loop",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB001B-MATCHED-V2-20260920",
+    "external_perturbation_schedule_sha256": "062395f8f122e25f7542966f7eb4fe04d5b07b5b0e7ae587a41c5c112822216f",
+    "final_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.004510644481824834,
+      "omega_rad_s": -0.0001092027735410002,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.25497903456381715,
+      "saturation_count": 19
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "6a854828b14c4baa32dbc908b41cd7980dd240c7254e266cea6b7d6860e9c81e",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.015775863794072045,
+      "saturation_count": 0
+    },
+    "motor_tape_sha256": "272883d7a7b51205c216f80f561f14f0657982d4edf6bf6ebc00fba33d37d321",
+    "nonzero_action_ticks": 996,
+    "runtime_error": null,
+    "seed": 8210,
+    "sensor_path_mean_abs_q_rad": 0.21046620295850135,
+    "sensor_path_rms_q_rad": 0.22684055338598494,
+    "sensor_tape_sha256": "4de55216fa8c9fec037f4ef6333e8e936686a0768b684035616b42fa3e100468",
+    "state_digest_after": "48be8422f31d663d0be102fb841f554161d80b1f78708a9f819f4f618da5964c",
+    "state_digest_before": "b0b4a8f3801931a0e86778810575e82443aec4870fca2cd049f8c7d638d63f30",
+    "synaptic_events_delivered": 42,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 42,
+    "tracking_rmse_rad": 0.15893692101830134
+  },
+  {
+    "activated_neuron_count": 6,
+    "closed_loop_state_sha256": "8e36ce13f91e3e5452c50530644dfd9a9f8e812a75e25774e5191c8e8ba7956f",
+    "condition": "yoked_replay",
+    "donor_tape_sha256": "4de55216fa8c9fec037f4ef6333e8e936686a0768b684035616b42fa3e100468",
+    "experiment_id": "EXP-EMB001B-MATCHED-V2-20260920",
+    "external_perturbation_schedule_sha256": "062395f8f122e25f7542966f7eb4fe04d5b07b5b0e7ae587a41c5c112822216f",
+    "final_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.004510644481824834,
+      "omega_rad_s": -0.0001092027735410002,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.25497903456381715,
+      "saturation_count": 19
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "6a854828b14c4baa32dbc908b41cd7980dd240c7254e266cea6b7d6860e9c81e",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.015775863794072045,
+      "saturation_count": 0
+    },
+    "motor_tape_sha256": "272883d7a7b51205c216f80f561f14f0657982d4edf6bf6ebc00fba33d37d321",
+    "nonzero_action_ticks": 996,
+    "runtime_error": null,
+    "seed": 8210,
+    "sensor_path_mean_abs_q_rad": 0.21046620295850135,
+    "sensor_path_rms_q_rad": 0.22684055338598494,
+    "sensor_tape_sha256": "4de55216fa8c9fec037f4ef6333e8e936686a0768b684035616b42fa3e100468",
+    "state_digest_after": "48be8422f31d663d0be102fb841f554161d80b1f78708a9f819f4f618da5964c",
+    "state_digest_before": "b0b4a8f3801931a0e86778810575e82443aec4870fca2cd049f8c7d638d63f30",
+    "synaptic_events_delivered": 42,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 42,
+    "tracking_rmse_rad": 0.15893692101830134
+  },
+  {
+    "activated_neuron_count": 6,
+    "closed_loop_state_sha256": "163ff1e0cda6c24a6c1e901495314aeb9d2ca9bc668932a70c590f1e58d5383b",
+    "condition": "feedback_absent",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB001B-MATCHED-V2-20260920",
+    "external_perturbation_schedule_sha256": "062395f8f122e25f7542966f7eb4fe04d5b07b5b0e7ae587a41c5c112822216f",
+    "final_body_state": {
+      "contact_count": 255,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.0129013444532666,
+      "omega_rad_s": -3.118685979119941,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.594237148087,
+      "saturation_count": 0
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "6a854828b14c4baa32dbc908b41cd7980dd240c7254e266cea6b7d6860e9c81e",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.015775863794072045,
+      "saturation_count": 0
+    },
+    "motor_tape_sha256": "08fa8d922a47ead4eb229d61f854c2333cfdb90d79224685f887cce466322f7c",
+    "nonzero_action_ticks": 996,
+    "runtime_error": null,
+    "seed": 8210,
+    "sensor_path_mean_abs_q_rad": 0.45478248725596016,
+    "sensor_path_rms_q_rad": 0.521881789124715,
+    "sensor_tape_sha256": "471e0917d5be156bd2fff3ec51cf3f4da7e04e575dc549b76f9008a2c4395726",
+    "state_digest_after": "c1c8988f703092767d8b4afd53e2a498c5e018bf735cddbe05a8d7ef2c943cd8",
+    "state_digest_before": "b0b4a8f3801931a0e86778810575e82443aec4870fca2cd049f8c7d638d63f30",
+    "synaptic_events_delivered": 120,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 120,
+    "tracking_rmse_rad": 0.4759537294399963
+  },
+  {
+    "activated_neuron_count": 6,
+    "closed_loop_state_sha256": "323c2349307b77866bc0889b6bfca5c65ca7fd8c92bf3962e67dff2eb7acece2",
+    "condition": "closed_loop",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB001B-MATCHED-V2-20260920",
+    "external_perturbation_schedule_sha256": "062395f8f122e25f7542966f7eb4fe04d5b07b5b0e7ae587a41c5c112822216f",
+    "final_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.0048187738244652506,
+      "omega_rad_s": -0.0001454156283290288,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.2616141025265537,
+      "saturation_count": 21
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "8e89d0c3fe16120a5fabcb880db99379b5e383a4c1d7eb7bcd83358c0f5e8f6e",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.034709432499890114,
+      "saturation_count": 0
+    },
+    "motor_tape_sha256": "d7f4fc38d688a772a55b7b0149abbd3265fe7c4204d34736487195387bae026d",
+    "nonzero_action_ticks": 996,
+    "runtime_error": null,
+    "seed": 8211,
+    "sensor_path_mean_abs_q_rad": 0.2128676634167601,
+    "sensor_path_rms_q_rad": 0.23056122438656293,
+    "sensor_tape_sha256": "5f7ec5ef66aefb5041cfbf7aafe8d7ac0d2d4211c68d467fd6c213735363b644",
+    "state_digest_after": "2ef5d32bf1f7706b51c186b708fc19f77aafc9acd08684cae667c38820e503bd",
+    "state_digest_before": "edba383696f201e3a596fa66191e8633b9d6aa136477d9f80167f2b18e07183b",
+    "synaptic_events_delivered": 48,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 48,
+    "tracking_rmse_rad": 0.16405842268707013
+  },
+  {
+    "activated_neuron_count": 6,
+    "closed_loop_state_sha256": "323c2349307b77866bc0889b6bfca5c65ca7fd8c92bf3962e67dff2eb7acece2",
+    "condition": "yoked_replay",
+    "donor_tape_sha256": "5f7ec5ef66aefb5041cfbf7aafe8d7ac0d2d4211c68d467fd6c213735363b644",
+    "experiment_id": "EXP-EMB001B-MATCHED-V2-20260920",
+    "external_perturbation_schedule_sha256": "062395f8f122e25f7542966f7eb4fe04d5b07b5b0e7ae587a41c5c112822216f",
+    "final_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.0048187738244652506,
+      "omega_rad_s": -0.0001454156283290288,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.2616141025265537,
+      "saturation_count": 21
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "8e89d0c3fe16120a5fabcb880db99379b5e383a4c1d7eb7bcd83358c0f5e8f6e",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.034709432499890114,
+      "saturation_count": 0
+    },
+    "motor_tape_sha256": "d7f4fc38d688a772a55b7b0149abbd3265fe7c4204d34736487195387bae026d",
+    "nonzero_action_ticks": 996,
+    "runtime_error": null,
+    "seed": 8211,
+    "sensor_path_mean_abs_q_rad": 0.2128676634167601,
+    "sensor_path_rms_q_rad": 0.23056122438656293,
+    "sensor_tape_sha256": "5f7ec5ef66aefb5041cfbf7aafe8d7ac0d2d4211c68d467fd6c213735363b644",
+    "state_digest_after": "2ef5d32bf1f7706b51c186b708fc19f77aafc9acd08684cae667c38820e503bd",
+    "state_digest_before": "edba383696f201e3a596fa66191e8633b9d6aa136477d9f80167f2b18e07183b",
+    "synaptic_events_delivered": 48,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 48,
+    "tracking_rmse_rad": 0.16405842268707013
+  },
+  {
+    "activated_neuron_count": 6,
+    "closed_loop_state_sha256": "11076b0ac4d6b47b4b479a2b9d455f7450d49859031009cab5f4bf2ad4e42ebc",
+    "condition": "feedback_absent",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB001B-MATCHED-V2-20260920",
+    "external_perturbation_schedule_sha256": "062395f8f122e25f7542966f7eb4fe04d5b07b5b0e7ae587a41c5c112822216f",
+    "final_body_state": {
+      "contact_count": 249,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.012975483735949872,
+      "omega_rad_s": -3.118685979119941,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.594237148087,
+      "saturation_count": 0
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "8e89d0c3fe16120a5fabcb880db99379b5e383a4c1d7eb7bcd83358c0f5e8f6e",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.034709432499890114,
+      "saturation_count": 0
+    },
+    "motor_tape_sha256": "08fa8d922a47ead4eb229d61f854c2333cfdb90d79224685f887cce466322f7c",
+    "nonzero_action_ticks": 996,
+    "runtime_error": null,
+    "seed": 8211,
+    "sensor_path_mean_abs_q_rad": 0.4507245566190823,
+    "sensor_path_rms_q_rad": 0.5185622008347995,
+    "sensor_tape_sha256": "cfa072c5dda1dc9059776af4df16de98e0f4d61dab28560540ab50d08fdea44d",
+    "state_digest_after": "9fe728a43b4215630abe562a89f030f94d4d89c724e823b29c2cf52239fa5be8",
+    "state_digest_before": "edba383696f201e3a596fa66191e8633b9d6aa136477d9f80167f2b18e07183b",
+    "synaptic_events_delivered": 120,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 120,
+    "tracking_rmse_rad": 0.47487893899944417
+  },
+  {
+    "activated_neuron_count": 6,
+    "closed_loop_state_sha256": "6b254eb08ca7e2852714a873b3fb24121e0ca7360514202206f4c86bfa6779b2",
+    "condition": "closed_loop",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB001B-MATCHED-V2-20260920",
+    "external_perturbation_schedule_sha256": "062395f8f122e25f7542966f7eb4fe04d5b07b5b0e7ae587a41c5c112822216f",
+    "final_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.004844087378164885,
+      "omega_rad_s": 0.5100657329414963,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.22665616038866868,
+      "saturation_count": 19
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "bb64f0e317ff346597a32371ff4f139ee27bbb5eb10568e2e5951b8d47159d95",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": 0.014469102202039966,
+      "saturation_count": 0
+    },
+    "motor_tape_sha256": "d833d59f27391065bef1266e66d632db97ecc5f8b94cbaaf23e38c3fe76adb02",
+    "nonzero_action_ticks": 996,
+    "runtime_error": null,
+    "seed": 8212,
+    "sensor_path_mean_abs_q_rad": 0.21699790690714207,
+    "sensor_path_rms_q_rad": 0.23230866651269635,
+    "sensor_tape_sha256": "fda5260e9d95d9dbb02b8e6fac02f315e02e0e8fab88a5a3104a2e000c352d7b",
+    "state_digest_after": "5b7a466d82902b6dcfc425584c77e60581b02eba786c223f7a8b5dad2466186e",
+    "state_digest_before": "bc75328c298e0c4bd65aef88d6bf1514bd70218205a8890ff453b94dc92d09e7",
+    "synaptic_events_delivered": 54,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 55,
+    "tracking_rmse_rad": 0.15444757877427545
+  },
+  {
+    "activated_neuron_count": 6,
+    "closed_loop_state_sha256": "6b254eb08ca7e2852714a873b3fb24121e0ca7360514202206f4c86bfa6779b2",
+    "condition": "yoked_replay",
+    "donor_tape_sha256": "fda5260e9d95d9dbb02b8e6fac02f315e02e0e8fab88a5a3104a2e000c352d7b",
+    "experiment_id": "EXP-EMB001B-MATCHED-V2-20260920",
+    "external_perturbation_schedule_sha256": "062395f8f122e25f7542966f7eb4fe04d5b07b5b0e7ae587a41c5c112822216f",
+    "final_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.004844087378164885,
+      "omega_rad_s": 0.5100657329414963,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.22665616038866868,
+      "saturation_count": 19
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "bb64f0e317ff346597a32371ff4f139ee27bbb5eb10568e2e5951b8d47159d95",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": 0.014469102202039966,
+      "saturation_count": 0
+    },
+    "motor_tape_sha256": "d833d59f27391065bef1266e66d632db97ecc5f8b94cbaaf23e38c3fe76adb02",
+    "nonzero_action_ticks": 996,
+    "runtime_error": null,
+    "seed": 8212,
+    "sensor_path_mean_abs_q_rad": 0.21699790690714207,
+    "sensor_path_rms_q_rad": 0.23230866651269635,
+    "sensor_tape_sha256": "fda5260e9d95d9dbb02b8e6fac02f315e02e0e8fab88a5a3104a2e000c352d7b",
+    "state_digest_after": "5b7a466d82902b6dcfc425584c77e60581b02eba786c223f7a8b5dad2466186e",
+    "state_digest_before": "bc75328c298e0c4bd65aef88d6bf1514bd70218205a8890ff453b94dc92d09e7",
+    "synaptic_events_delivered": 54,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 55,
+    "tracking_rmse_rad": 0.15444757877427545
+  },
+  {
+    "activated_neuron_count": 6,
+    "closed_loop_state_sha256": "5902a4c3541ddcc08fcd6403776392903543783db9935fd8af9658b7d70b3293",
+    "condition": "feedback_absent",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB001B-MATCHED-V2-20260920",
+    "external_perturbation_schedule_sha256": "062395f8f122e25f7542966f7eb4fe04d5b07b5b0e7ae587a41c5c112822216f",
+    "final_body_state": {
+      "contact_count": 266,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.012778407082342326,
+      "omega_rad_s": -3.1186859804529083,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.597634670081505,
+      "saturation_count": 0
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "bb64f0e317ff346597a32371ff4f139ee27bbb5eb10568e2e5951b8d47159d95",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": 0.014469102202039966,
+      "saturation_count": 0
+    },
+    "motor_tape_sha256": "52c08ddaae033d18ef65758f6fc0a748d85288601df84902c379073f6271a986",
+    "nonzero_action_ticks": 996,
+    "runtime_error": null,
+    "seed": 8212,
+    "sensor_path_mean_abs_q_rad": 0.4623925509176578,
+    "sensor_path_rms_q_rad": 0.5275148954129841,
+    "sensor_tape_sha256": "76fe1bdb9f04046801d3453bae94e17f159e807ac4c2e057360b0ee886f91c62",
+    "state_digest_after": "ea247b0e4f727d7c99e1c5d013e00e9c51c4548e548e4f7241fc881316b00f24",
+    "state_digest_before": "bc75328c298e0c4bd65aef88d6bf1514bd70218205a8890ff453b94dc92d09e7",
+    "synaptic_events_delivered": 120,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 120,
+    "tracking_rmse_rad": 0.4771054791941821
+  },
+  {
+    "activated_neuron_count": 6,
+    "closed_loop_state_sha256": "5e398b4498bd9b42e901a95dbbe8e3992a24979ad09d9eaffd5a3d406d0c01f2",
+    "condition": "closed_loop",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB001B-MATCHED-V2-20260920",
+    "external_perturbation_schedule_sha256": "062395f8f122e25f7542966f7eb4fe04d5b07b5b0e7ae587a41c5c112822216f",
+    "final_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.005104556135813857,
+      "omega_rad_s": -0.022493809862616513,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.27321546278775233,
+      "saturation_count": 20
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "6d7ee6b821b78060601b7334d51bd6d7cfc9cb95057c35cc1cd72faeaedf1105",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.047018436456977064,
+      "saturation_count": 0
+    },
+    "motor_tape_sha256": "1abaa637d1c74f80866db3a4b433bf84b57466e28c9fcd8e4ba792f075904a38",
+    "nonzero_action_ticks": 996,
+    "runtime_error": null,
+    "seed": 8213,
+    "sensor_path_mean_abs_q_rad": 0.21157277086996026,
+    "sensor_path_rms_q_rad": 0.22929876808205657,
+    "sensor_tape_sha256": "6da5d415bbbbc684bd65e34948d25c506661e696e1b194b346dd60d190854023",
+    "state_digest_after": "34bfd498583a1178eb01816eb170ddd94694d13861d0ed70e7305f4665092544",
+    "state_digest_before": "3c8492f541a3a494d35ec4e57e507e848ab910c970d3a622404cfab8abbf9839",
+    "synaptic_events_delivered": 54,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 54,
+    "tracking_rmse_rad": 0.16365901181588896
+  },
+  {
+    "activated_neuron_count": 6,
+    "closed_loop_state_sha256": "5e398b4498bd9b42e901a95dbbe8e3992a24979ad09d9eaffd5a3d406d0c01f2",
+    "condition": "yoked_replay",
+    "donor_tape_sha256": "6da5d415bbbbc684bd65e34948d25c506661e696e1b194b346dd60d190854023",
+    "experiment_id": "EXP-EMB001B-MATCHED-V2-20260920",
+    "external_perturbation_schedule_sha256": "062395f8f122e25f7542966f7eb4fe04d5b07b5b0e7ae587a41c5c112822216f",
+    "final_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.005104556135813857,
+      "omega_rad_s": -0.022493809862616513,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.27321546278775233,
+      "saturation_count": 20
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "6d7ee6b821b78060601b7334d51bd6d7cfc9cb95057c35cc1cd72faeaedf1105",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.047018436456977064,
+      "saturation_count": 0
+    },
+    "motor_tape_sha256": "1abaa637d1c74f80866db3a4b433bf84b57466e28c9fcd8e4ba792f075904a38",
+    "nonzero_action_ticks": 996,
+    "runtime_error": null,
+    "seed": 8213,
+    "sensor_path_mean_abs_q_rad": 0.21157277086996026,
+    "sensor_path_rms_q_rad": 0.22929876808205657,
+    "sensor_tape_sha256": "6da5d415bbbbc684bd65e34948d25c506661e696e1b194b346dd60d190854023",
+    "state_digest_after": "34bfd498583a1178eb01816eb170ddd94694d13861d0ed70e7305f4665092544",
+    "state_digest_before": "3c8492f541a3a494d35ec4e57e507e848ab910c970d3a622404cfab8abbf9839",
+    "synaptic_events_delivered": 54,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 54,
+    "tracking_rmse_rad": 0.16365901181588896
+  },
+  {
+    "activated_neuron_count": 6,
+    "closed_loop_state_sha256": "672c2ff55bb2ae1ec8f32519342277cc931cfd971ea947792e24dc4f562049de",
+    "condition": "feedback_absent",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB001B-MATCHED-V2-20260920",
+    "external_perturbation_schedule_sha256": "062395f8f122e25f7542966f7eb4fe04d5b07b5b0e7ae587a41c5c112822216f",
+    "final_body_state": {
+      "contact_count": 245,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.01304387512696776,
+      "omega_rad_s": -3.118685979119941,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.594237148087,
+      "saturation_count": 0
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "6d7ee6b821b78060601b7334d51bd6d7cfc9cb95057c35cc1cd72faeaedf1105",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.047018436456977064,
+      "saturation_count": 0
+    },
+    "motor_tape_sha256": "08fa8d922a47ead4eb229d61f854c2333cfdb90d79224685f887cce466322f7c",
+    "nonzero_action_ticks": 996,
+    "runtime_error": null,
+    "seed": 8213,
+    "sensor_path_mean_abs_q_rad": 0.4481708044085756,
+    "sensor_path_rms_q_rad": 0.5164040138381344,
+    "sensor_tape_sha256": "201d2c6365d735de86e4f944006a6eaf5af761b01bd98dd93e8ff88d9ab32cb9",
+    "state_digest_after": "16d3d9420015f4b5a97047c6c970be0308c93c16f115c5a9c174b801bcacafc0",
+    "state_digest_before": "3c8492f541a3a494d35ec4e57e507e848ab910c970d3a622404cfab8abbf9839",
+    "synaptic_events_delivered": 120,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 120,
+    "tracking_rmse_rad": 0.47422191898904853
+  },
+  {
+    "activated_neuron_count": 6,
+    "closed_loop_state_sha256": "fbc35cc8add1ff1232722c35135311f1a80a62eccaa89246992214105304c7e0",
+    "condition": "closed_loop",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB001B-MATCHED-V2-20260920",
+    "external_perturbation_schedule_sha256": "062395f8f122e25f7542966f7eb4fe04d5b07b5b0e7ae587a41c5c112822216f",
+    "final_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.004749724705427948,
+      "omega_rad_s": -0.00016918052856358507,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.2645677661384109,
+      "saturation_count": 21
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "5facddaf894a391798fcb6196c266ce24c163e19f491df1d6e8aa7afee7c73a8",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": 0.041494364133051256,
+      "saturation_count": 0
+    },
+    "motor_tape_sha256": "5d899fc2033cfb2edba74f909ae9e320bcbc76ada4ad1caeef5a67f269fcf2f6",
+    "nonzero_action_ticks": 996,
+    "runtime_error": null,
+    "seed": 8214,
+    "sensor_path_mean_abs_q_rad": 0.22602221319317578,
+    "sensor_path_rms_q_rad": 0.2412424552931409,
+    "sensor_tape_sha256": "a6d439dfc093a440ba7f15eb1ccea576569effe51f384ca7f25a7af0201eb43a",
+    "state_digest_after": "0813a26f9c555d75b2a2e913be35543467dc2fe78745500c496e10518ecf286e",
+    "state_digest_before": "1866fce5a9b8c391f42d6431c92d95ba1a9bbf67ff012e5a3bfacf4bf1ed151b",
+    "synaptic_events_delivered": 51,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 51,
+    "tracking_rmse_rad": 0.1570159413007092
+  },
+  {
+    "activated_neuron_count": 6,
+    "closed_loop_state_sha256": "fbc35cc8add1ff1232722c35135311f1a80a62eccaa89246992214105304c7e0",
+    "condition": "yoked_replay",
+    "donor_tape_sha256": "a6d439dfc093a440ba7f15eb1ccea576569effe51f384ca7f25a7af0201eb43a",
+    "experiment_id": "EXP-EMB001B-MATCHED-V2-20260920",
+    "external_perturbation_schedule_sha256": "062395f8f122e25f7542966f7eb4fe04d5b07b5b0e7ae587a41c5c112822216f",
+    "final_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.004749724705427948,
+      "omega_rad_s": -0.00016918052856358507,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.2645677661384109,
+      "saturation_count": 21
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "5facddaf894a391798fcb6196c266ce24c163e19f491df1d6e8aa7afee7c73a8",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": 0.041494364133051256,
+      "saturation_count": 0
+    },
+    "motor_tape_sha256": "5d899fc2033cfb2edba74f909ae9e320bcbc76ada4ad1caeef5a67f269fcf2f6",
+    "nonzero_action_ticks": 996,
+    "runtime_error": null,
+    "seed": 8214,
+    "sensor_path_mean_abs_q_rad": 0.22602221319317578,
+    "sensor_path_rms_q_rad": 0.2412424552931409,
+    "sensor_tape_sha256": "a6d439dfc093a440ba7f15eb1ccea576569effe51f384ca7f25a7af0201eb43a",
+    "state_digest_after": "0813a26f9c555d75b2a2e913be35543467dc2fe78745500c496e10518ecf286e",
+    "state_digest_before": "1866fce5a9b8c391f42d6431c92d95ba1a9bbf67ff012e5a3bfacf4bf1ed151b",
+    "synaptic_events_delivered": 51,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 51,
+    "tracking_rmse_rad": 0.1570159413007092
+  },
+  {
+    "activated_neuron_count": 6,
+    "closed_loop_state_sha256": "8f28775c7de9a4e5f427e9ea53b96bb01c5d881ea63bd0297dae68df9d28e9ee",
+    "condition": "feedback_absent",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB001B-MATCHED-V2-20260920",
+    "external_perturbation_schedule_sha256": "062395f8f122e25f7542966f7eb4fe04d5b07b5b0e7ae587a41c5c112822216f",
+    "final_body_state": {
+      "contact_count": 276,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.012587736315579402,
+      "omega_rad_s": -3.1186859804529083,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.597634670081505,
+      "saturation_count": 0
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "5facddaf894a391798fcb6196c266ce24c163e19f491df1d6e8aa7afee7c73a8",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": 0.041494364133051256,
+      "saturation_count": 0
+    },
+    "motor_tape_sha256": "52c08ddaae033d18ef65758f6fc0a748d85288601df84902c379073f6271a986",
+    "nonzero_action_ticks": 996,
+    "runtime_error": null,
+    "seed": 8214,
+    "sensor_path_mean_abs_q_rad": 0.46886485958153346,
+    "sensor_path_rms_q_rad": 0.5321652292509763,
+    "sensor_tape_sha256": "9700f194a9ebfb3d35e3203ffc10cbf4fb9734e61c699064d15662550f081c5e",
+    "state_digest_after": "21b3c3ee86a55bda04c74af382167b32c716adc33a0ab8e5d3de1ccaf3ac0181",
+    "state_digest_before": "1866fce5a9b8c391f42d6431c92d95ba1a9bbf67ff012e5a3bfacf4bf1ed151b",
+    "synaptic_events_delivered": 120,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 120,
+    "tracking_rmse_rad": 0.47888761780815975
+  },
+  {
+    "activated_neuron_count": 6,
+    "closed_loop_state_sha256": "9ea9f0ce2d2b184bb7ea87ef52bdf95f806d1b539ff79362a331f259d98c295e",
+    "condition": "closed_loop",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB001B-MATCHED-V2-20260920",
+    "external_perturbation_schedule_sha256": "062395f8f122e25f7542966f7eb4fe04d5b07b5b0e7ae587a41c5c112822216f",
+    "final_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.004535871038734668,
+      "omega_rad_s": -0.0002725009546889586,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.26442798704936327,
+      "saturation_count": 15
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "ec275e4cc78179a0d8552ab228f384b18548846b15780dd860ae184a0b44f842",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.023503284220673982,
+      "saturation_count": 0
+    },
+    "motor_tape_sha256": "3a858e7b16de8fc65e2dab3f71f1053fc12bd78e0938b5093fb113f3c2c5344b",
+    "nonzero_action_ticks": 996,
+    "runtime_error": null,
+    "seed": 8215,
+    "sensor_path_mean_abs_q_rad": 0.21586577801924522,
+    "sensor_path_rms_q_rad": 0.23393680443109138,
+    "sensor_tape_sha256": "56da69f954b0d3bd675d4a9e07c485143258188ddecdb21eb1b42ea1867a59e6",
+    "state_digest_after": "39d51a2612f029dc7d8225db92b43b33e0f741c530621b1dc2f2dd353e3a9e7d",
+    "state_digest_before": "e39d6483f4b9df057b7acddac0f519c7fe7b128aefe3b89f986522757c16b206",
+    "synaptic_events_delivered": 48,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 48,
+    "tracking_rmse_rad": 0.165863370220413
+  },
+  {
+    "activated_neuron_count": 6,
+    "closed_loop_state_sha256": "9ea9f0ce2d2b184bb7ea87ef52bdf95f806d1b539ff79362a331f259d98c295e",
+    "condition": "yoked_replay",
+    "donor_tape_sha256": "56da69f954b0d3bd675d4a9e07c485143258188ddecdb21eb1b42ea1867a59e6",
+    "experiment_id": "EXP-EMB001B-MATCHED-V2-20260920",
+    "external_perturbation_schedule_sha256": "062395f8f122e25f7542966f7eb4fe04d5b07b5b0e7ae587a41c5c112822216f",
+    "final_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.004535871038734668,
+      "omega_rad_s": -0.0002725009546889586,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.26442798704936327,
+      "saturation_count": 15
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "ec275e4cc78179a0d8552ab228f384b18548846b15780dd860ae184a0b44f842",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.023503284220673982,
+      "saturation_count": 0
+    },
+    "motor_tape_sha256": "3a858e7b16de8fc65e2dab3f71f1053fc12bd78e0938b5093fb113f3c2c5344b",
+    "nonzero_action_ticks": 996,
+    "runtime_error": null,
+    "seed": 8215,
+    "sensor_path_mean_abs_q_rad": 0.21586577801924522,
+    "sensor_path_rms_q_rad": 0.23393680443109138,
+    "sensor_tape_sha256": "56da69f954b0d3bd675d4a9e07c485143258188ddecdb21eb1b42ea1867a59e6",
+    "state_digest_after": "39d51a2612f029dc7d8225db92b43b33e0f741c530621b1dc2f2dd353e3a9e7d",
+    "state_digest_before": "e39d6483f4b9df057b7acddac0f519c7fe7b128aefe3b89f986522757c16b206",
+    "synaptic_events_delivered": 48,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 48,
+    "tracking_rmse_rad": 0.165863370220413
+  },
+  {
+    "activated_neuron_count": 6,
+    "closed_loop_state_sha256": "bcbb483649be7affe56b6c1d19241f5caa8bbb5d1815112366f5daf6f24c6c11",
+    "condition": "feedback_absent",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB001B-MATCHED-V2-20260920",
+    "external_perturbation_schedule_sha256": "062395f8f122e25f7542966f7eb4fe04d5b07b5b0e7ae587a41c5c112822216f",
+    "final_body_state": {
+      "contact_count": 253,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.012934366828903643,
+      "omega_rad_s": -3.118685979119941,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.594237148087,
+      "saturation_count": 0
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "ec275e4cc78179a0d8552ab228f384b18548846b15780dd860ae184a0b44f842",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.023503284220673982,
+      "saturation_count": 0
+    },
+    "motor_tape_sha256": "08fa8d922a47ead4eb229d61f854c2333cfdb90d79224685f887cce466322f7c",
+    "nonzero_action_ticks": 996,
+    "runtime_error": null,
+    "seed": 8215,
+    "sensor_path_mean_abs_q_rad": 0.45310520921834246,
+    "sensor_path_rms_q_rad": 0.5205277399356001,
+    "sensor_tape_sha256": "e416186fcd49ba0426a2c0626b452802b7110c522034ee9d85c34af2fb3eec24",
+    "state_digest_after": "fb2e77d2347546d054b528fd3a15cb421ee499ad9a58cf03ca9af3d964bdd8a3",
+    "state_digest_before": "e39d6483f4b9df057b7acddac0f519c7fe7b128aefe3b89f986522757c16b206",
+    "synaptic_events_delivered": 120,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 120,
+    "tracking_rmse_rad": 0.4755063383532786
+  },
+  {
+    "activated_neuron_count": 6,
+    "closed_loop_state_sha256": "9a1b022f3b09c3844224b8a603cec0380d9f68dd162746fc9875e5861c41537b",
+    "condition": "closed_loop",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB001B-MATCHED-V2-20260920",
+    "external_perturbation_schedule_sha256": "062395f8f122e25f7542966f7eb4fe04d5b07b5b0e7ae587a41c5c112822216f",
+    "final_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.004324988897122755,
+      "omega_rad_s": -2.0248648894581917e-05,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.2249996966922218,
+      "saturation_count": 18
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "223479a76a7029d29a28695d5d8905ba768a72255f54cdfbe219dbff180975b5",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": 0.0008749913727714581,
+      "saturation_count": 0
+    },
+    "motor_tape_sha256": "9f81e16ab473993a35211acda177c68a72a293f425bc8a73096e7de75c5fb2c0",
+    "nonzero_action_ticks": 996,
+    "runtime_error": null,
+    "seed": 8216,
+    "sensor_path_mean_abs_q_rad": 0.20924205837802287,
+    "sensor_path_rms_q_rad": 0.22524121638509814,
+    "sensor_tape_sha256": "8c2c5ded0b68f7f0f8c66d2cbc1b98070153521ceb920cb488c3065bbeb44b5b",
+    "state_digest_after": "3215075835ab1e426090af9e3107d0f45684fe65a84d5f6b2477ee85be8a3d75",
+    "state_digest_before": "9f525695622adf64d94d40a87227a598aafce850827d868292114f8985e070b6",
+    "synaptic_events_delivered": 42,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 42,
+    "tracking_rmse_rad": 0.15708458873666445
+  },
+  {
+    "activated_neuron_count": 6,
+    "closed_loop_state_sha256": "9a1b022f3b09c3844224b8a603cec0380d9f68dd162746fc9875e5861c41537b",
+    "condition": "yoked_replay",
+    "donor_tape_sha256": "8c2c5ded0b68f7f0f8c66d2cbc1b98070153521ceb920cb488c3065bbeb44b5b",
+    "experiment_id": "EXP-EMB001B-MATCHED-V2-20260920",
+    "external_perturbation_schedule_sha256": "062395f8f122e25f7542966f7eb4fe04d5b07b5b0e7ae587a41c5c112822216f",
+    "final_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.004324988897122755,
+      "omega_rad_s": -2.0248648894581917e-05,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.2249996966922218,
+      "saturation_count": 18
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "223479a76a7029d29a28695d5d8905ba768a72255f54cdfbe219dbff180975b5",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": 0.0008749913727714581,
+      "saturation_count": 0
+    },
+    "motor_tape_sha256": "9f81e16ab473993a35211acda177c68a72a293f425bc8a73096e7de75c5fb2c0",
+    "nonzero_action_ticks": 996,
+    "runtime_error": null,
+    "seed": 8216,
+    "sensor_path_mean_abs_q_rad": 0.20924205837802287,
+    "sensor_path_rms_q_rad": 0.22524121638509814,
+    "sensor_tape_sha256": "8c2c5ded0b68f7f0f8c66d2cbc1b98070153521ceb920cb488c3065bbeb44b5b",
+    "state_digest_after": "3215075835ab1e426090af9e3107d0f45684fe65a84d5f6b2477ee85be8a3d75",
+    "state_digest_before": "9f525695622adf64d94d40a87227a598aafce850827d868292114f8985e070b6",
+    "synaptic_events_delivered": 42,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 42,
+    "tracking_rmse_rad": 0.15708458873666445
+  },
+  {
+    "activated_neuron_count": 6,
+    "closed_loop_state_sha256": "915458af60909a56d64a8194ffdab080f9eab476bde706839ee701ee13298e2e",
+    "condition": "feedback_absent",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB001B-MATCHED-V2-20260920",
+    "external_perturbation_schedule_sha256": "062395f8f122e25f7542966f7eb4fe04d5b07b5b0e7ae587a41c5c112822216f",
+    "final_body_state": {
+      "contact_count": 261,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.01286936915056913,
+      "omega_rad_s": -3.1186859804529083,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.597634670081505,
+      "saturation_count": 0
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "223479a76a7029d29a28695d5d8905ba768a72255f54cdfbe219dbff180975b5",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": 0.0008749913727714581,
+      "saturation_count": 0
+    },
+    "motor_tape_sha256": "52c08ddaae033d18ef65758f6fc0a748d85288601df84902c379073f6271a986",
+    "nonzero_action_ticks": 996,
+    "runtime_error": null,
+    "seed": 8216,
+    "sensor_path_mean_abs_q_rad": 0.45904143661948676,
+    "sensor_path_rms_q_rad": 0.5251514165704312,
+    "sensor_tape_sha256": "def210671bfcaf728e273384f82d3e278f8ddac34ec4cb908a168e524a843b40",
+    "state_digest_after": "9d429e667d1c051ac62e0ac3201cc40b8e0ec9c2560e994103fc1af36f63f8a2",
+    "state_digest_before": "9f525695622adf64d94d40a87227a598aafce850827d868292114f8985e070b6",
+    "synaptic_events_delivered": 120,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 120,
+    "tracking_rmse_rad": 0.47624641983268345
+  },
+  {
+    "activated_neuron_count": 6,
+    "closed_loop_state_sha256": "875b8074311ef1eced729975b5eac71e7cd16e6fcfefc91d1bc6a8d42c55f620",
+    "condition": "closed_loop",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB001B-MATCHED-V2-20260920",
+    "external_perturbation_schedule_sha256": "062395f8f122e25f7542966f7eb4fe04d5b07b5b0e7ae587a41c5c112822216f",
+    "final_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.004790393377631308,
+      "omega_rad_s": -0.00010568651880563729,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.25763824282328535,
+      "saturation_count": 21
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "d547e701fd3216d82be2d891d8a1929644404fd4dfb4695ca399eb98379d5b84",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": 0.049057151579750366,
+      "saturation_count": 0
+    },
+    "motor_tape_sha256": "04b9357ecdc1f62c1f6a1b710faa4008f663242762577ac3650fd8b729344fcb",
+    "nonzero_action_ticks": 996,
+    "runtime_error": null,
+    "seed": 8217,
+    "sensor_path_mean_abs_q_rad": 0.22616301281449433,
+    "sensor_path_rms_q_rad": 0.2415342972653169,
+    "sensor_tape_sha256": "034351783ccb8cb7832f7a013cc2423e9fd63ec1ad837fc30467a4ced60d8ef1",
+    "state_digest_after": "e489bbbd26513b00d852f306724b0a9c94e1417d555f50ea3699901c6908b685",
+    "state_digest_before": "1bbb3f4387edd31cba164a33169b5f7ab216ef2f8e7619aa468c4d25299fe786",
+    "synaptic_events_delivered": 51,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 51,
+    "tracking_rmse_rad": 0.15914948820127958
+  },
+  {
+    "activated_neuron_count": 6,
+    "closed_loop_state_sha256": "875b8074311ef1eced729975b5eac71e7cd16e6fcfefc91d1bc6a8d42c55f620",
+    "condition": "yoked_replay",
+    "donor_tape_sha256": "034351783ccb8cb7832f7a013cc2423e9fd63ec1ad837fc30467a4ced60d8ef1",
+    "experiment_id": "EXP-EMB001B-MATCHED-V2-20260920",
+    "external_perturbation_schedule_sha256": "062395f8f122e25f7542966f7eb4fe04d5b07b5b0e7ae587a41c5c112822216f",
+    "final_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.004790393377631308,
+      "omega_rad_s": -0.00010568651880563729,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.25763824282328535,
+      "saturation_count": 21
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "d547e701fd3216d82be2d891d8a1929644404fd4dfb4695ca399eb98379d5b84",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": 0.049057151579750366,
+      "saturation_count": 0
+    },
+    "motor_tape_sha256": "04b9357ecdc1f62c1f6a1b710faa4008f663242762577ac3650fd8b729344fcb",
+    "nonzero_action_ticks": 996,
+    "runtime_error": null,
+    "seed": 8217,
+    "sensor_path_mean_abs_q_rad": 0.22616301281449433,
+    "sensor_path_rms_q_rad": 0.2415342972653169,
+    "sensor_tape_sha256": "034351783ccb8cb7832f7a013cc2423e9fd63ec1ad837fc30467a4ced60d8ef1",
+    "state_digest_after": "e489bbbd26513b00d852f306724b0a9c94e1417d555f50ea3699901c6908b685",
+    "state_digest_before": "1bbb3f4387edd31cba164a33169b5f7ab216ef2f8e7619aa468c4d25299fe786",
+    "synaptic_events_delivered": 51,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 51,
+    "tracking_rmse_rad": 0.15914948820127958
+  },
+  {
+    "activated_neuron_count": 6,
+    "closed_loop_state_sha256": "d9d768be3b62382a30081a2fa049b3d97cb3bf8c413d4e0946023b50533c68cb",
+    "condition": "feedback_absent",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB001B-MATCHED-V2-20260920",
+    "external_perturbation_schedule_sha256": "062395f8f122e25f7542966f7eb4fe04d5b07b5b0e7ae587a41c5c112822216f",
+    "final_body_state": {
+      "contact_count": 278,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.012564942226592863,
+      "omega_rad_s": -3.1186859804529083,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.597634670081505,
+      "saturation_count": 0
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "d547e701fd3216d82be2d891d8a1929644404fd4dfb4695ca399eb98379d5b84",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": 0.049057151579750366,
+      "saturation_count": 0
+    },
+    "motor_tape_sha256": "52c08ddaae033d18ef65758f6fc0a748d85288601df84902c379073f6271a986",
+    "nonzero_action_ticks": 996,
+    "runtime_error": null,
+    "seed": 8217,
+    "sensor_path_mean_abs_q_rad": 0.4706269835480363,
+    "sensor_path_rms_q_rad": 0.5334483784022548,
+    "sensor_tape_sha256": "cb3844dd2a2bb7a333931117ecc1129fa470316d51c509d7f2b85b8e2e189762",
+    "state_digest_after": "e9eba59001f8d6be8815b337e11d0530111c172077ca60147630dda565390bcf",
+    "state_digest_before": "1bbb3f4387edd31cba164a33169b5f7ab216ef2f8e7619aa468c4d25299fe786",
+    "synaptic_events_delivered": 120,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 120,
+    "tracking_rmse_rad": 0.4793982960700119
+  },
+  {
+    "activated_neuron_count": 6,
+    "closed_loop_state_sha256": "9e59d616a2c0ac7b79f303a04ab8b97dcb64a26e7dce71a3ff4fa4aaa9a57b0a",
+    "condition": "closed_loop",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB001B-MATCHED-V2-20260920",
+    "external_perturbation_schedule_sha256": "062395f8f122e25f7542966f7eb4fe04d5b07b5b0e7ae587a41c5c112822216f",
+    "final_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.004822340672051833,
+      "omega_rad_s": -6.844646860013066e-05,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.25233182091776524,
+      "saturation_count": 19
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "98005cebfc458694e5a31edf11b2099b04150f35332b37e62f41a44973ca386c",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.017607883417741867,
+      "saturation_count": 0
+    },
+    "motor_tape_sha256": "1bcefb34110ac55561a79e77d235caea72152dc20e625e291f28d1b109a98fd7",
+    "nonzero_action_ticks": 996,
+    "runtime_error": null,
+    "seed": 8218,
+    "sensor_path_mean_abs_q_rad": 0.21656545984203465,
+    "sensor_path_rms_q_rad": 0.23454762620250105,
+    "sensor_tape_sha256": "9b9ab7fd2861ad6b204a8063e3783f97303765bbee4dec3741ea2c4d28eab4a4",
+    "state_digest_after": "3d4fafe1c197720fe6d36d6ff39bbc964d4da17f2f6b37fa39820701476f809c",
+    "state_digest_before": "55fefdb71cd978cab1e6b1aca1d221946a163152fcabfd8c7cbe86c1b347d700",
+    "synaptic_events_delivered": 48,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 48,
+    "tracking_rmse_rad": 0.16219422372041106
+  },
+  {
+    "activated_neuron_count": 6,
+    "closed_loop_state_sha256": "9e59d616a2c0ac7b79f303a04ab8b97dcb64a26e7dce71a3ff4fa4aaa9a57b0a",
+    "condition": "yoked_replay",
+    "donor_tape_sha256": "9b9ab7fd2861ad6b204a8063e3783f97303765bbee4dec3741ea2c4d28eab4a4",
+    "experiment_id": "EXP-EMB001B-MATCHED-V2-20260920",
+    "external_perturbation_schedule_sha256": "062395f8f122e25f7542966f7eb4fe04d5b07b5b0e7ae587a41c5c112822216f",
+    "final_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.004822340672051833,
+      "omega_rad_s": -6.844646860013066e-05,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.25233182091776524,
+      "saturation_count": 19
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "98005cebfc458694e5a31edf11b2099b04150f35332b37e62f41a44973ca386c",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.017607883417741867,
+      "saturation_count": 0
+    },
+    "motor_tape_sha256": "1bcefb34110ac55561a79e77d235caea72152dc20e625e291f28d1b109a98fd7",
+    "nonzero_action_ticks": 996,
+    "runtime_error": null,
+    "seed": 8218,
+    "sensor_path_mean_abs_q_rad": 0.21656545984203465,
+    "sensor_path_rms_q_rad": 0.23454762620250105,
+    "sensor_tape_sha256": "9b9ab7fd2861ad6b204a8063e3783f97303765bbee4dec3741ea2c4d28eab4a4",
+    "state_digest_after": "3d4fafe1c197720fe6d36d6ff39bbc964d4da17f2f6b37fa39820701476f809c",
+    "state_digest_before": "55fefdb71cd978cab1e6b1aca1d221946a163152fcabfd8c7cbe86c1b347d700",
+    "synaptic_events_delivered": 48,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 48,
+    "tracking_rmse_rad": 0.16219422372041106
+  },
+  {
+    "activated_neuron_count": 6,
+    "closed_loop_state_sha256": "606af3dfe6b2a1436ca227601b0b59a1bb75f53645c3e46b111487cf95bb87a6",
+    "condition": "feedback_absent",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB001B-MATCHED-V2-20260920",
+    "external_perturbation_schedule_sha256": "062395f8f122e25f7542966f7eb4fe04d5b07b5b0e7ae587a41c5c112822216f",
+    "final_body_state": {
+      "contact_count": 254,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.012909573633219294,
+      "omega_rad_s": -3.118685979119941,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.594237148087,
+      "saturation_count": 0
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "98005cebfc458694e5a31edf11b2099b04150f35332b37e62f41a44973ca386c",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.017607883417741867,
+      "saturation_count": 0
+    },
+    "motor_tape_sha256": "08fa8d922a47ead4eb229d61f854c2333cfdb90d79224685f887cce466322f7c",
+    "nonzero_action_ticks": 996,
+    "runtime_error": null,
+    "seed": 8218,
+    "sensor_path_mean_abs_q_rad": 0.4543818871496594,
+    "sensor_path_rms_q_rad": 0.5215610217448139,
+    "sensor_tape_sha256": "a633e7413b33cac5315b4adaf305d384a4350f93f6fc0e4e0e545485e7ec227b",
+    "state_digest_after": "a1ec76221aec7be2f0c6203751ac04bca18df8d2c4ea2d0fafbc8db4d3656cf9",
+    "state_digest_before": "55fefdb71cd978cab1e6b1aca1d221946a163152fcabfd8c7cbe86c1b347d700",
+    "synaptic_events_delivered": 120,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 120,
+    "tracking_rmse_rad": 0.47584669365643156
+  },
+  {
+    "activated_neuron_count": 6,
+    "closed_loop_state_sha256": "0a04d5a9c4ff4c25e2cd5f1afc0ed8c82dc05d8d351489ce0ea91db7ed4ec16e",
+    "condition": "closed_loop",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB001B-MATCHED-V2-20260920",
+    "external_perturbation_schedule_sha256": "062395f8f122e25f7542966f7eb4fe04d5b07b5b0e7ae587a41c5c112822216f",
+    "final_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.004764521306262257,
+      "omega_rad_s": -0.00033166773676360846,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.26939764712419084,
+      "saturation_count": 20
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "92e3e7ff9aa5867401d3379d858bb2c762df4facf913118f629936af5cf212a0",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": 0.037050046240545226,
+      "saturation_count": 0
+    },
+    "motor_tape_sha256": "3ae71469d9697f5d0eba04635e18b897da7c93f89c554a134aa53eeda99bdeec",
+    "nonzero_action_ticks": 996,
+    "runtime_error": null,
+    "seed": 8219,
+    "sensor_path_mean_abs_q_rad": 0.2253347084310308,
+    "sensor_path_rms_q_rad": 0.24126431698170356,
+    "sensor_tape_sha256": "d431242c7f65b697f79eaa23d750f9c140d6177dc99485d6b6bee9328089f8ff",
+    "state_digest_after": "3310d78709f8531e8d0865427559a3d8b1d547c3e28885a866053e6ff152198e",
+    "state_digest_before": "7bb337eb17229da278dca4907e80aea3ad6a38427e5ad1e967537c5bbd84dbb5",
+    "synaptic_events_delivered": 51,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 51,
+    "tracking_rmse_rad": 0.15851534169698342
+  },
+  {
+    "activated_neuron_count": 6,
+    "closed_loop_state_sha256": "0a04d5a9c4ff4c25e2cd5f1afc0ed8c82dc05d8d351489ce0ea91db7ed4ec16e",
+    "condition": "yoked_replay",
+    "donor_tape_sha256": "d431242c7f65b697f79eaa23d750f9c140d6177dc99485d6b6bee9328089f8ff",
+    "experiment_id": "EXP-EMB001B-MATCHED-V2-20260920",
+    "external_perturbation_schedule_sha256": "062395f8f122e25f7542966f7eb4fe04d5b07b5b0e7ae587a41c5c112822216f",
+    "final_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.004764521306262257,
+      "omega_rad_s": -0.00033166773676360846,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.26939764712419084,
+      "saturation_count": 20
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "92e3e7ff9aa5867401d3379d858bb2c762df4facf913118f629936af5cf212a0",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": 0.037050046240545226,
+      "saturation_count": 0
+    },
+    "motor_tape_sha256": "3ae71469d9697f5d0eba04635e18b897da7c93f89c554a134aa53eeda99bdeec",
+    "nonzero_action_ticks": 996,
+    "runtime_error": null,
+    "seed": 8219,
+    "sensor_path_mean_abs_q_rad": 0.2253347084310308,
+    "sensor_path_rms_q_rad": 0.24126431698170356,
+    "sensor_tape_sha256": "d431242c7f65b697f79eaa23d750f9c140d6177dc99485d6b6bee9328089f8ff",
+    "state_digest_after": "3310d78709f8531e8d0865427559a3d8b1d547c3e28885a866053e6ff152198e",
+    "state_digest_before": "7bb337eb17229da278dca4907e80aea3ad6a38427e5ad1e967537c5bbd84dbb5",
+    "synaptic_events_delivered": 51,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 51,
+    "tracking_rmse_rad": 0.15851534169698342
+  },
+  {
+    "activated_neuron_count": 6,
+    "closed_loop_state_sha256": "ce3e76ad3a7919b171a0182374f5bfdbb9b60cbb7b6c9358f37ab0ab200d889c",
+    "condition": "feedback_absent",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB001B-MATCHED-V2-20260920",
+    "external_perturbation_schedule_sha256": "062395f8f122e25f7542966f7eb4fe04d5b07b5b0e7ae587a41c5c112822216f",
+    "final_body_state": {
+      "contact_count": 273,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.012587696919764657,
+      "omega_rad_s": -3.118685979188272,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.597495173085313,
+      "saturation_count": 0
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "92e3e7ff9aa5867401d3379d858bb2c762df4facf913118f629936af5cf212a0",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": 0.037050046240545226,
+      "saturation_count": 0
+    },
+    "motor_tape_sha256": "9bc71fd33acfaa9205dc92ddb27da65e0508ea31cb33fc6aa3f1ca566f1516a5",
+    "nonzero_action_ticks": 996,
+    "runtime_error": null,
+    "seed": 8219,
+    "sensor_path_mean_abs_q_rad": 0.4677462416119138,
+    "sensor_path_rms_q_rad": 0.5313158985290198,
+    "sensor_tape_sha256": "653f7a9149b47c6b2080fafe6632fcbdcc482f1c134a7e2323367fba345bc52b",
+    "state_digest_after": "bfb9bcda04c43b76e8a5642e06062327f372b2047b416b71f5356f33537e2103",
+    "state_digest_before": "7bb337eb17229da278dca4907e80aea3ad6a38427e5ad1e967537c5bbd84dbb5",
+    "synaptic_events_delivered": 120,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 120,
+    "tracking_rmse_rad": 0.47848048605069926
+  },
+  {
+    "activated_neuron_count": 6,
+    "closed_loop_state_sha256": "2cb4da573cfea7ca4348b71f03a5af1f712825938a7a934c46f0860dc2999fec",
+    "condition": "closed_loop",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB001B-MATCHED-V2-20260920",
+    "external_perturbation_schedule_sha256": "062395f8f122e25f7542966f7eb4fe04d5b07b5b0e7ae587a41c5c112822216f",
+    "final_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.0042901683888093055,
+      "omega_rad_s": -1.8015417760847125e-05,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.22597479296954415,
+      "saturation_count": 19
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "31e23df2b0c0a1e431b34ca1da181e2013c3073d4d0aeee1ef16a8043f6349fa",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.0003649161884491381,
+      "saturation_count": 0
+    },
+    "motor_tape_sha256": "884948935c9621349292a1ef0ecd459bb31b6bf06e9db37de5e9ceb8e4c81a3e",
+    "nonzero_action_ticks": 996,
+    "runtime_error": null,
+    "seed": 8220,
+    "sensor_path_mean_abs_q_rad": 0.20912562121031475,
+    "sensor_path_rms_q_rad": 0.2248277681027187,
+    "sensor_tape_sha256": "5a4ab759fd9a408b8bb99f60b42253ddcff14257d1102a6d20e74666b11d279d",
+    "state_digest_after": "abe74fa3dad9bdba320d4c03163c1956ddb9d2c984ec13962fbfe8d6f41b26a0",
+    "state_digest_before": "ccad98f0d06b7dd1ae8422cb9f092005655b9ce2c67792c3c23d23bdf0a3de87",
+    "synaptic_events_delivered": 42,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 42,
+    "tracking_rmse_rad": 0.15571248152081535
+  },
+  {
+    "activated_neuron_count": 6,
+    "closed_loop_state_sha256": "2cb4da573cfea7ca4348b71f03a5af1f712825938a7a934c46f0860dc2999fec",
+    "condition": "yoked_replay",
+    "donor_tape_sha256": "5a4ab759fd9a408b8bb99f60b42253ddcff14257d1102a6d20e74666b11d279d",
+    "experiment_id": "EXP-EMB001B-MATCHED-V2-20260920",
+    "external_perturbation_schedule_sha256": "062395f8f122e25f7542966f7eb4fe04d5b07b5b0e7ae587a41c5c112822216f",
+    "final_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.0042901683888093055,
+      "omega_rad_s": -1.8015417760847125e-05,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.22597479296954415,
+      "saturation_count": 19
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "31e23df2b0c0a1e431b34ca1da181e2013c3073d4d0aeee1ef16a8043f6349fa",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.0003649161884491381,
+      "saturation_count": 0
+    },
+    "motor_tape_sha256": "884948935c9621349292a1ef0ecd459bb31b6bf06e9db37de5e9ceb8e4c81a3e",
+    "nonzero_action_ticks": 996,
+    "runtime_error": null,
+    "seed": 8220,
+    "sensor_path_mean_abs_q_rad": 0.20912562121031475,
+    "sensor_path_rms_q_rad": 0.2248277681027187,
+    "sensor_tape_sha256": "5a4ab759fd9a408b8bb99f60b42253ddcff14257d1102a6d20e74666b11d279d",
+    "state_digest_after": "abe74fa3dad9bdba320d4c03163c1956ddb9d2c984ec13962fbfe8d6f41b26a0",
+    "state_digest_before": "ccad98f0d06b7dd1ae8422cb9f092005655b9ce2c67792c3c23d23bdf0a3de87",
+    "synaptic_events_delivered": 42,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 42,
+    "tracking_rmse_rad": 0.15571248152081535
+  },
+  {
+    "activated_neuron_count": 6,
+    "closed_loop_state_sha256": "1f6fbdf0e0d9de4a1a486ae1bb89a97a82b27a10e449e733cf8880787105955c",
+    "condition": "feedback_absent",
+    "donor_tape_sha256": null,
+    "experiment_id": "EXP-EMB001B-MATCHED-V2-20260920",
+    "external_perturbation_schedule_sha256": "062395f8f122e25f7542966f7eb4fe04d5b07b5b0e7ae587a41c5c112822216f",
+    "final_body_state": {
+      "contact_count": 261,
+      "elapsed_s": 1.0000000000000007,
+      "modelled_absolute_work_j": 0.012876654559307454,
+      "omega_rad_s": -3.1186859804529083,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.597634670081505,
+      "saturation_count": 0
+    },
+    "graph": {
+      "data_kind": "SYNTHETIC",
+      "degree_by_original_id": {
+        "0": [
+          0,
+          1
+        ],
+        "1": [
+          0,
+          1
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          2,
+          1
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "5": [
+          1,
+          1
+        ]
+      },
+      "edge_count": 6,
+      "graph_sha256": "31e23df2b0c0a1e431b34ca1da181e2013c3073d4d0aeee1ef16a8043f6349fa",
+      "node_count": 6,
+      "reciprocal_edge_fraction": 0.6666666666666666
+    },
+    "initial_body_state": {
+      "contact_count": 0,
+      "elapsed_s": 0.0,
+      "modelled_absolute_work_j": 0.0,
+      "omega_rad_s": 0.0,
+      "parameters": {
+        "damping_nm_s": 0.002,
+        "inertia_kg_m2": 5e-05,
+        "lower_rad": -0.75,
+        "torque_limit_nm": 0.015,
+        "upper_rad": 0.75
+      },
+      "q_rad": -0.0003649161884491381,
+      "saturation_count": 0
+    },
+    "motor_tape_sha256": "52c08ddaae033d18ef65758f6fc0a748d85288601df84902c379073f6271a986",
+    "nonzero_action_ticks": 996,
+    "runtime_error": null,
+    "seed": 8220,
+    "sensor_path_mean_abs_q_rad": 0.4587367586310042,
+    "sensor_path_rms_q_rad": 0.5249352433393172,
+    "sensor_tape_sha256": "cd12d7945ba95fae444ecb4716847594ca5870d5f0a7f20f46dda77d55308744",
+    "state_digest_after": "ea5dfc3d279cee3714f3ac67190f88af058f8416e43d6f40f96048e25a27c00a",
+    "state_digest_before": "ccad98f0d06b7dd1ae8422cb9f092005655b9ce2c67792c3c23d23bdf0a3de87",
+    "synaptic_events_delivered": 120,
+    "ticks_executed": 1000,
+    "ticks_requested": 1000,
+    "total_spikes": 120,
+    "tracking_rmse_rad": 0.47616950862824436
+  }
+]
