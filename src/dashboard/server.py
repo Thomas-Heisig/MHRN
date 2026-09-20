@@ -2592,15 +2592,57 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
             publication_version = optional_string(current_item.get("version"))
             publication_status = optional_string(current_item.get("edition_status"))
             publication_authority = optional_string(current_item.get("authority"))
+            publication_subtitle = optional_string(current_item.get("subtitle"))
+            content_language = optional_string(current_item.get("content_language")) or "de"
+            english_translation_rel = optional_string(current_item.get("english_translation"))
+            english_translation_path = (
+                (research_root / english_translation_rel).resolve()
+                if english_translation_rel
+                else None
+            )
+            english_translation_available = bool(
+                english_translation_path is not None
+                and english_translation_path.is_relative_to(pub_root.resolve())
+                and english_translation_path.is_file()
+            )
 
             self._send_json(
                 {
                     "publication": snapshot_path.name,
                     "publication_id": publication_id,
                     "title": publication_title,
+                    "subtitle": publication_subtitle,
                     "document_title": markdown_title(
                         entrypoint_path, "Gesamtmanuskript"
                     ),
+                    "document_title_en": publication_title,
+                    "document_title_de": (
+                        publication_subtitle
+                        or markdown_title(entrypoint_path, "Gesamtmanuskript")
+                    ),
+                    "content_language": content_language,
+                    "ui_default_language": "en",
+                    "language_variants": {
+                        "de": {
+                            "available": True,
+                            "source_language": True,
+                            "path": relative_research_path(entrypoint_path),
+                        },
+                        "en": {
+                            "available": english_translation_available,
+                            "source_language": False,
+                            "path": (
+                                english_translation_rel
+                                if english_translation_available
+                                else None
+                            ),
+                            "review_status": (
+                                "pending_human_language_review"
+                                if english_translation_available
+                                else "translation_required"
+                            ),
+                        },
+                    },
                     "author": publication_author,
                     "date": publication_date,
                     "edition": publication_version,
