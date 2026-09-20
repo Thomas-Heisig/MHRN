@@ -39,9 +39,7 @@ The package version describes software, not validated cognition. GitHub main is 
 
 ## Live dashboard Space
 
-The interactive operator and research dashboard is published separately as a Docker Space. The current Hugging Face Space still uses its legacy repository slug for continuity:
-
-https://huggingface.co/spaces/superdigger/Brain-5D-Space
+The interactive operator and research dashboard is published separately as a Docker Space. The canonical Hugging Face target is `MHRN-Space`; the exact account URL is created from the configured `HF_USERNAME` by the GitHub publication workflow.
 
 ## Capabilities
 
