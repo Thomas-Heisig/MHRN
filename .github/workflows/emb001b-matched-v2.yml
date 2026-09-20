@@ -15,34 +15,73 @@ permissions:
   contents: write
   actions: read
 
-jobs:
-  experiment:
-    uses: ./.github/workflows/isolated-scientific-experiment.yml
-    with:
-      runner: scripts/run_emb001b_matched_v2.py
-      verifier: scripts/verify_emb001b_matched_v2.py
-      experiment_id: EXP-EMB001B-MATCHED-V2-20260920
-      regression_tests: >-
-        tests/test_connectome_embodiment.py
-        tests/test_exp21_operational_protocols.py
-        tests/test_gate_status.py
-        tests/test_source_digest.py
+concurrency:
+  group: emb001b-matched-v2-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: false
 
-  persist:
-    needs: experiment
+jobs:
+  verify-refresh-execute-persist:
     if: >-
-      github.event_name == 'pull_request' &&
+      github.event_name != 'pull_request' ||
       github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
+    timeout-minutes: 35
     steps:
       - uses: actions/checkout@v7
         with:
-          ref: ${{ github.head_ref }}
+          ref: ${{ github.head_ref || github.ref_name }}
           fetch-depth: 0
-      - uses: actions/download-artifact@v7
+      - uses: actions/setup-python@v7
         with:
-          name: EXP-EMB001B-MATCHED-V2-20260920
-          path: ${{ runner.temp }}/emb001b
+          python-version: '3.13'
+          cache: pip
+      - name: Install repository development environment
+        run: python -m pip install -e '.[dev,docs]'
+      - name: Refresh verification honestly when source freeze is stale
+        run: |
+          python -m black --check src tests scripts
+          python -m ruff check src tests scripts
+          python scripts/generate_baseline.py
+          python scripts/generate_determinism_artifact.py
+          python scripts/check_doc_consistency.py --check-tests
+          python scripts/check_connectome_integrity.py
+          git diff --exit-code HEAD -- research/experiments research/registry/evidence research/publications
+          git add tests/test_baseline.json research/generated/verification
+          git diff --cached --check
+          if ! git diff --cached --quiet; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git commit -m "test: refresh genuinely executed source-bound verification"
+          fi
+      - name: Prove refreshed source digest
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from src.dashboard.verification import compute_source_tree_digest
+          root = Path(".").resolve()
+          artifact = json.loads(
+              (root / "research/generated/verification/phase_b_gate_status.json")
+              .read_text(encoding="utf-8")
+          )
+          current = compute_source_tree_digest(root)
+          expected = artifact["source_freeze"]["tested_tree_digest"]
+          print("current:", current)
+          print("verified:", expected)
+          assert current == expected
+          PY
+      - name: Verify experiment-specific regressions
+        run: >-
+          python -m pytest -q
+          tests/test_connectome_embodiment.py
+          tests/test_exp21_operational_protocols.py
+          tests/test_gate_status.py
+          tests/test_source_digest.py
+      - name: Assert checkout clean before isolated execution
+        run: test -z "$(git status --porcelain --untracked-files=all)"
+      - name: Execute and verify in isolated worktree
+        run: |
+          python scripts/run_experiment_isolated.py             --runner scripts/run_emb001b_matched_v2.py             --verifier scripts/verify_emb001b_matched_v2.py             --experiment-id EXP-EMB001B-MATCHED-V2-20260920             --export-dir "$RUNNER_TEMP/emb001b"
       - name: Validate verified DATA identity
         run: |
           test -f "$RUNNER_TEMP/emb001b/EXP-EMB001B-MATCHED-V2-20260920/manifest.json"
@@ -51,7 +90,6 @@ jobs:
           import json
           import os
           from pathlib import Path
-
           root = Path(os.environ["RUNNER_TEMP"]) / "emb001b"
           manifest = json.loads(
               (root / "EXP-EMB001B-MATCHED-V2-20260920/manifest.json")
@@ -65,10 +103,11 @@ jobs:
           assert manifest["human_review_status"] == "PENDING"
           assert manifest["scientific_evidence"] is False
           assert manifest["automatic_evidence_promotion"] is False
+          assert manifest["integrity"]["pass"] is True
           assert audit["primary_checkout_clean_before"] is True
           assert audit["primary_checkout_clean_after"] is True
           PY
-      - name: Persist verified DATA only
+      - name: Persist verified DATA and refreshed verification
         run: |
           target="research/experiments/EXP-EMB001B-MATCHED-V2-20260920"
           test ! -e "$target"
@@ -79,5 +118,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git commit -m "research: persist EMB-001-B matched-disturbance V2 DATA"
-          git pull --rebase origin "${{ github.head_ref }}"
-          git push origin "HEAD:${{ github.head_ref }}"
+          git status --short
+          git push origin "HEAD:${{ github.head_ref || github.ref_name }}"
