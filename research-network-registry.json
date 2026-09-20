@@ -166,5 +166,35 @@
     "primary_key": "https://orcid.org/0009-0002-9589-1872",
     "rule": "Match Thomas Heisig/MHRN records by ORCID and canonical repository, not by name alone.",
     "known_name_collision_risk": true
-  }
+  },
+  "citable_objects": [
+    {
+      "id": "mhrn-software-alpha6",
+      "kind": "software",
+      "title": "Multi-Scale Homeostatic Recurrence Network (MHRN)",
+      "version": "0.6.0-alpha.6",
+      "canonical_url": "https://github.com/Thomas-Heisig/MHRN/releases/tag/v0.6.0-alpha.6",
+      "zenodo_route": "https://zenodo.org/badge/latestdoi/1335973891",
+      "doi": null,
+      "status": "published_awaiting_concrete_doi_capture"
+    },
+    {
+      "id": "recursive-epistemics-1.8",
+      "kind": "publication-preprint",
+      "title": "Rekursive Epistemik in verkörperten spikenden neuronalen Architekturen",
+      "version": "1.8",
+      "canonical_path": "research/publications/2026-09-17_recursive-epistemics_v1.8/MANUSCRIPT.md",
+      "metadata_path": "research/publications/2026-09-17_recursive-epistemics_v1.8/ZENODO_PREPRINT.json",
+      "doi": null,
+      "status": "prepared_for_separate_zenodo_publication"
+    },
+    {
+      "id": "mhrn-research-data",
+      "kind": "dataset-family",
+      "title": "MHRN Research Data",
+      "canonical_url": "https://huggingface.co/datasets/ThomasHeisig/MHRN-Research-Data",
+      "doi": null,
+      "status": "rolling_mirror_only_immutable_deposits_pending"
+    }
+  ]
 }
