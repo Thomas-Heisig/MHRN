@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-09-20 - Hugging Face namespace update
+
+- Updated the GitHub Actions `HF_USERNAME` secret to `ThomasHeisig`.
+- Updated canonical project metadata to target `ThomasHeisig/MHRN` and
+  `ThomasHeisig/MHRN-Space`; historical `superdigger` identifiers remain
+  recorded as legacy provenance where applicable.
+
 ## 2026-09-20 - Experimentstatus in der Fragenübersicht
 
 - Forschungsfragen zeigen jetzt technische Laufzähler und kompakte

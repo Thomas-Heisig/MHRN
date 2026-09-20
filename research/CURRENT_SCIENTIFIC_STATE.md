@@ -33,6 +33,9 @@ externer Prüfung als vorhanden und wird derzeit nicht behauptet.
 Das öffentliche OSF-Projekt ist als Forschungs-/Provenienzressource unter
 `https://osf.io/p34uq/` verknüpft.
 
+Der aktuelle Hugging-Face-Publikationsnamespace ist `ThomasHeisig`; die
+historischen `superdigger`-Pfade bleiben als Legacy-Provenienz erhalten.
+
 ## Aktuelle Publikation
 
 - **Recursive Epistemics / Rekursive Epistemik, Edition 1.8 — current WIP**

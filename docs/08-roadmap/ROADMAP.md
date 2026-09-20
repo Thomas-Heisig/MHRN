@@ -4,6 +4,12 @@
 **Baseline:** `mhrn-core 0.6.0a5`
 **Updated:** 2026-09-19
 
+## 2026-09-20 Hugging Face identity
+
+- Current Hugging Face publication namespace: `ThomasHeisig`.
+- GitHub Actions uses the repository secrets `HF_USERNAME` and `HF_TOKEN`;
+	the token value is never stored in the repository.
+
 ## 2026-09-20 Experimentstatus in der Übersicht
 
 - Die Forschungsfragenübersicht zeigt technische Laufzähler und kompakte
