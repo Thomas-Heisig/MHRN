@@ -3,23 +3,23 @@
     "artifact": "tests/test_baseline.json",
     "collection_errors": 0,
     "failed": 0,
-    "passed": 1661,
+    "passed": 1665,
     "python": "3.13.15",
     "skipped": 2
   },
   "continuous_integration": {
     "conclusion": "success",
-    "head_sha": "df5d58883c38542a20d4ba4fbc1fd2ed0b677140",
-    "run_id": 35496964361,
-    "workflow": "EMB-001-B matched disturbance V2 #7"
+    "head_sha": "318b92a202b6bea593a215d6663839acbad931ef",
+    "run_id": 35504627429,
+    "workflow": "EMB-002-A proprioception direct V2 #3"
   },
   "final_validation": {
     "command": "python scripts/generate_baseline.py",
     "failed": 0,
-    "passed": 1661,
+    "passed": 1665,
     "skipped": 2
   },
-  "generated": "2026-09-20T07:32:16.424369+00:00",
+  "generated": "2026-09-20T10:20:27.883874+00:00",
   "limitations": [
     "Scientific evidence status remains independent from release engineering readiness.",
     "External Hugging Face proxy smoke remains non-blocking operational follow-up."
@@ -42,8 +42,8 @@
     "overall": "passed"
   },
   "source_freeze": {
-    "commit": "df5d58883c38542a20d4ba4fbc1fd2ed0b677140",
-    "tested_tree_digest": "2de83b433b158c264ddd208dc8689243fece2eead293f3e358b9178785d518ac"
+    "commit": "318b92a202b6bea593a215d6663839acbad931ef",
+    "tested_tree_digest": "c6e64d9d4043e250071170efc11a3a64086c63d25a94f7e79d38fc913d094cdc"
   },
   "status": "verified",
   "verification_artifacts": [
