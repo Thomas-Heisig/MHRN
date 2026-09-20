@@ -1,0 +1,107 @@
+{
+  "schema_version": 1,
+  "preregistration_id": "PREREG-EMB002-PROPRIO-V2",
+  "research_question": "RQ-EMB-002",
+  "hypothesis": "H-EMB-002-A",
+  "protocol": "embodied_proprioception_matched_v2",
+  "mode": "PROSPECTIVE_EXPLORATORY_PROPRIOCEPTION",
+  "execution_authorized": true,
+  "authorization_scope": "single DATA-only exploratory execution; execution authorization is not human scientific review",
+  "human_review_required": true,
+  "scientific_evidence": false,
+  "automatic_evidence_promotion": false,
+  "independent_replication": false,
+  "predecessor_protocol": "embodied_proprioception_v1",
+  "design_rationale": "Historical three-seed runs were development/exploratory screens. V2 prospectively uses fresh paired seeds, identical external perturbation across arms, an exact 20-tick delay check, and a same-seed perturbation-exposed closed-loop donor for the timing-shuffle control.",
+  "design": {
+    "conditions": [
+      "closed_loop",
+      "feedback_absent",
+      "delayed_proprioception",
+      "timing_shuffle"
+    ],
+    "seeds": [
+      8301,
+      8302,
+      8303,
+      8304,
+      8305,
+      8306,
+      8307,
+      8308,
+      8309,
+      8310,
+      8311,
+      8312,
+      8313,
+      8314,
+      8315,
+      8316,
+      8317,
+      8318,
+      8319,
+      8320
+    ],
+    "ticks_per_run": 1000,
+    "delay_ticks": 20,
+    "inferential_unit": "paired_seed",
+    "primary_outcome": "tracking_rmse_rad",
+    "secondary_outcomes": [
+      "sensor_path_rms_q_rad",
+      "sensor_path_mean_abs_q_rad",
+      "total_spikes",
+      "synaptic_events_delivered"
+    ],
+    "external_perturbation": {
+      "kind": "constant_external_torque_window",
+      "torque_nm": 0.003,
+      "start_tick_inclusive": 250,
+      "end_tick_exclusive": 500,
+      "identical_for_all_conditions": true
+    },
+    "primary_controls": [
+      "feedback_absent",
+      "delayed_proprioception"
+    ],
+    "timing_shuffle_contract": "For every seed, timing_shuffle consumes a deterministic permutation of the complete sensor tape produced by that seed's actual closed_loop arm under the same external perturbation.",
+    "delay_contract": "delayed_proprioception observes its own causal sensor stream delayed by exactly 20 ticks, clamped to tick zero before the delay horizon.",
+    "feedback_absent_contract": "Observed position and velocity are fixed to zero while the body still receives the identical external perturbation schedule."
+  },
+  "analysis_plan": {
+    "primary_comparisons": [
+      "feedback_absent minus closed_loop tracking_rmse_rad",
+      "delayed_proprioception minus closed_loop tracking_rmse_rad"
+    ],
+    "secondary_comparisons": [
+      "timing_shuffle minus closed_loop tracking_rmse_rad",
+      "each control minus closed_loop sensor_path_rms_q_rad"
+    ],
+    "direction_convention": "positive control-minus-closed_loop difference means lower error in intact closed_loop",
+    "report": [
+      "condition means",
+      "paired mean difference",
+      "paired median difference",
+      "paired minimum and maximum difference",
+      "fraction of paired seeds with lower closed_loop error"
+    ],
+    "p_values": false,
+    "confirmatory_thresholds": false,
+    "outcome_dependent_stopping": false
+  },
+  "integrity_requirements": [
+    "clean source checkout before execution",
+    "all 80 registered condition-by-seed runs present",
+    "1000 executed ticks in every run",
+    "no runtime errors",
+    "same initial neural state within each seed",
+    "same initial body state within each seed",
+    "same graph fingerprint within each seed",
+    "identical registered perturbation schedule for all arms",
+    "feedback_absent observed sensor values are exactly zero",
+    "delayed_proprioception observed sensor values match the exact 20-tick causal delay contract",
+    "timing_shuffle donor digest equals the actual closed_loop sensor digest for that seed",
+    "timing_shuffle observed sensor values match the deterministic registered permutation of that donor tape"
+  ],
+  "stopping_rule": "Execute exactly the preregistered 20 seeds and four conditions. Retain failures; no replacement seeds and no outcome-dependent stopping.",
+  "claim_boundary": "This is prospective exploratory synthetic DATA for the scoped H-EMB-002-A proprioception comparison. It is not confirmatory EVID, not independent replication, not evidence of learned body schema, autonomy, consciousness, biological equivalence, real-device transfer, or 5D superiority. Human Review remains required."
+}
