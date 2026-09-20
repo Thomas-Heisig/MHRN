@@ -1,0 +1,9 @@
+{
+  "experiment_id": "EXP-EMB001B-TEMPORAL-V3-20260920",
+  "generated_data_confined_to_isolated_worktree": true,
+  "isolated_worktree_dirty_after_execution": true,
+  "primary_checkout_clean_after": true,
+  "primary_checkout_clean_before": true,
+  "schema_version": 1,
+  "source_freeze_commit": "074adbc9a9182ddf9b7ec0de338fd2f28b26c8c9"
+}
