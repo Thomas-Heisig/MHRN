@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-09-20 - Experimentstatus in der Fragenübersicht
+
+- Forschungsfragen zeigen jetzt technische Laufzähler und kompakte
+  WhatsApp-artige Statusmarker für abgeschlossen, fehlgeschlagen, laufend und
+  noch nicht ausgeführt.
+- Einzelne Experimente zeigen ihren Laufstatus direkt neben der Experiment-ID.
+- Grüne Häkchen bedeuten ausschließlich technisch abgeschlossene Ausführung,
+  niemals bestätigte wissenschaftliche Evidenz.
+
 ## 2026-09-19 - Public ORCID authorship linking
 
 - Added the public ORCID `0009-0002-9589-1872` for Thomas Heisig to the

@@ -30,6 +30,11 @@
 - [x] Link seed provenance documentation from README, Current Scientific State and the integrity gate.
 - [x] Distinguish paired deterministic repetitions from independent biological samples.
 
+## 2026-09-20 Experiment status overview
+
+- [x] Show technical run counts and WhatsApp-like status markers in the RQ overview.
+- [x] Show per-experiment execution status without implying scientific evidence.
+
 Aeltere offene Zaehler unten sind zeitgebundene Bestandsaufnahmen; der aktuelle Registerabgleich steht in research/generated/EXPERIMENT_COVERAGE_ALPHA3.json.
 
 ## Naming update — 2026-09-08

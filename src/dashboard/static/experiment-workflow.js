@@ -21,7 +21,7 @@ function renderRunStatus(counts = {}) {
     return '<span class="experiment-run-status is-empty" title="Noch nicht ausgeführt" aria-label="Noch nicht ausgeführt">— keine Läufe</span>';
   }
   const parts = [];
-  if (completed) parts.push(`<span class="experiment-run-status is-complete" title="${completed} erfolgreich abgeschlossen" aria-label="${completed} erfolgreich abgeschlossen">✓✓ ${completed}</span>`);
+  if (completed) parts.push(`<span class="experiment-run-status is-complete" title="${completed} technisch abgeschlossen; kein Evidenzurteil" aria-label="${completed} technisch abgeschlossen; kein Evidenzurteil">✓✓ ${completed}</span>`);
   if (failed) parts.push(`<span class="experiment-run-status is-failed" title="${failed} fehlgeschlagen" aria-label="${failed} fehlgeschlagen">✕ ${failed}</span>`);
   if (running) parts.push(`<span class="experiment-run-status is-running" title="${running} läuft gerade" aria-label="${running} läuft gerade">◷ ${running}</span>`);
   return `<span class="experiment-run-summary" title="${total} Experimentläufe">${parts.join(" ")}<small>${total} Läufe</small></span>`;

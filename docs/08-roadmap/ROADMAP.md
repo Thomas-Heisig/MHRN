@@ -4,6 +4,14 @@
 **Baseline:** `mhrn-core 0.6.0a5`
 **Updated:** 2026-09-19
 
+## 2026-09-20 Experimentstatus in der Übersicht
+
+- Die Forschungsfragenübersicht zeigt technische Laufzähler und kompakte
+	Häkchenstatus aus dem Registry-/Manifest-Katalog.
+- Einzel-Experimente zeigen abgeschlossen, fehlgeschlagen, laufend oder noch
+	nicht ausgeführt direkt in der Liste.
+- Statusmarker bleiben von DATA, Human Review und EVID getrennt.
+
 ## 2026-09-19 Public Alpha.5 release candidate
 
 - Alpha.5 is a **technical pre-release candidate**, not scientific completion.

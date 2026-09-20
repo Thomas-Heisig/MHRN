@@ -16,7 +16,7 @@ function escapeHtml(value) {
 function renderExperimentRunStatus(status) {
   const normalized = String(status || "unknown").toLowerCase();
   if (normalized === "completed") {
-    return '<span class="experiment-run-status is-complete" title="Erfolgreich abgeschlossen" aria-label="Erfolgreich abgeschlossen">✓✓</span>';
+    return '<span class="experiment-run-status is-complete" title="Technisch abgeschlossen; kein Evidenzurteil" aria-label="Technisch abgeschlossen; kein Evidenzurteil">✓✓</span>';
   }
   if (normalized === "failed") {
     return '<span class="experiment-run-status is-failed" title="Fehlgeschlagen" aria-label="Fehlgeschlagen">✕</span>';
