@@ -8,7 +8,8 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
+  pull-requests: read
 
 jobs:
   repository-health:
@@ -58,13 +59,40 @@ jobs:
           if-no-files-found: error
           retention-days: 7
 
+      - name: Sync generated drift on internal develop PR
+        if: >-
+          github.event_name == 'pull_request' &&
+          github.base_ref == 'develop' &&
+          github.event.pull_request.head.repo.full_name == github.repository
+        env:
+          HEAD_REF: ${{ github.head_ref }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add -- research/generated
+          git diff --cached --check
+          if git diff --cached --quiet; then
+            echo "Generated research projections are current."
+            exit 0
+          fi
+          unexpected="$(git diff --cached --name-only | grep -v '^research/generated/' || true)"
+          if [ -n "$unexpected" ]; then
+            echo "$unexpected"
+            echo "::error::Generator attempted to stage files outside research/generated/."
+            exit 1
+          fi
+          git config user.name "MHRN generated-reports automation"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "chore: refresh generated research projections"
+          git push origin "HEAD:refs/heads/$HEAD_REF"
+
       - name: Verify no generated drift
         shell: bash
         run: |
           set -euo pipefail
           git diff --check
           if ! git diff --exit-code; then
-            echo "::error::Repository-derived files are stale. Regenerate and commit them on the working branch."
+            echo "::error::Repository-derived files are stale. Release branches must arrive with committed generated outputs."
             exit 1
           fi
 
