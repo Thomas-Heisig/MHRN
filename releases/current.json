@@ -1,29 +1,25 @@
 {
   "schema_version": 2,
-  "version": "0.6.0-alpha.6",
-  "pep440": "0.6.0a6",
-  "status": "released",
-  "title": "Public Alpha.6 Research Distribution Release",
-  "parent": "v0.6.0-alpha.5",
-  "gate": "passed",
-  "as_of": "2026-09-20",
-  "milestone_status": "engineering_release_candidate_scientific_programme_active",
+  "version": "0.6.0-alpha.7",
+  "pep440": "0.6.0a7",
+  "status": "release_candidate",
+  "title": "Public Alpha.7 Repository Hardening Release",
+  "parent": "v0.6.0-alpha.6",
+  "gate": "pending_release_pr",
+  "as_of": "2026-09-21",
+  "milestone_status": "public_repository_hardening_release_candidate",
   "release_blockers": 0,
   "scope": [
-    "compatibility contract for runtime state, snapshots and resumable runs",
-    "reproducible scaling benchmarks with explicit memory and tick-cost budgets",
-    "bounded telemetry and storage compaction",
-    "deterministic pause/resume/restart identity",
-    "migration and rollback tests for persisted-state schema changes",
-    "bounded memory, prediction and operational behavior-profile foundations",
-    "Wesen telemetry and fail-closed sensor and experimental Gateway lifecycle controls",
-    "Stage-3 plastic neural tissue verification with explicit scientific-evidence separation",
-    "Stage-4 and Stage-5 full-stack engineering contracts with DATA/EVID separation",
-    "Stage-6 memory/world-model mechanisms and registered experimental programme",
-    "separate scientific maturity timeline for stages 0-10",
-    "research integrity, attribution and source-verification gate",
-    "repository-wide docs/research file governance",
-    "Recursive Epistemics 1.8 current WIP with 1.7 predecessor and frozen 1.5 empirical baseline"
+    "release-only main with develop as the canonical integration branch",
+    "release/* -> main policy enforced by the Release Policy workflow",
+    "repository-health clean-tree and generated-drift gate",
+    "retirement of obsolete one-shot publication and maintenance workflows",
+    "visitor-facing repository cleanup and stable documentation entry points",
+    "Dependabot routed to develop instead of main",
+    "standalone software, topology and recursive-epistemics paper objects in the publication catalog",
+    "repository security baseline, CODEOWNERS and protected-branch guidance",
+    "MHRN identity cleanup across active CI and public repository surfaces",
+    "scientific DATA/EVID and replication boundaries preserved unchanged"
   ],
   "completed": [
     "v0.6 compatibility, benchmark, storage, determinism and migration foundation",
@@ -49,9 +45,17 @@
     "public provider identity, postal address, contact email and editorial responsibility are explicitly documented",
     "AI assistance is explicitly disclosed and the human-AI research process is positioned as a methodological research object",
     "a non-technical publication view explains MHRN, evidence boundaries and replication needs",
-    "Alpha.5 release metadata separates development readiness, scientific state and publication state",
     "research-network publication links added across GitHub, ORCID, OSF, Zenodo, Hugging Face and discovery targets",
-    "Hugging Face namespace migrated to ThomasHeisig with rolling mirrors for source, Space and research data"
+    "Hugging Face namespace migrated to ThomasHeisig with rolling mirrors for source, Space and research data",
+    "develop established as the active integration branch and verified fully green",
+    "main designated release-only in project governance and release-policy checks",
+    "repository-health gate verifies generated projections and a clean working tree",
+    "obsolete one-shot release/maintenance workflows removed from the active workflow set",
+    "stale local/root scratch artefacts removed from the public repository surface",
+    "Dependabot updates redirected to develop",
+    "public README, contribution guide, open-science routing and release checklist aligned with the branch model",
+    "three standalone paper strands registered and exposed through the Publication Reader",
+    "repository security baseline and CODEOWNERS integrated"
   ],
   "open": [
     "complete remaining human scientific reviews and make explicit EVID decisions without automatic promotion",
@@ -77,14 +81,16 @@
     "novelty_claim": "requires_prior_art_review"
   },
   "research_boundary": "Engineering implementation, technical verification, UI/API availability and DATA collection are not equivalent to scientific EVID. Scientific maturity is tracked independently through registered questions, frozen protocols, source-bound DATA, human-reviewed EVID, independent replication and attribution. No stage score establishes AGI, consciousness, sentience or biological equivalence.",
-  "note": "Alpha.6 is prepared as a technical pre-release for archival and distribution. Zenodo DOI assignment remains an archival identifier only and does not create Human Review, EVID, novelty, scientific validity or independent replication.",
-  "target_tag": "v0.6.0-alpha.6",
-  "publish_requested": false,
+  "note": "Alpha.7 is a repository-hardening and public-readiness pre-release. It changes branch/release governance, active workflow hygiene, publication discoverability and visitor-facing repository structure; it does not create new scientific EVID or independent replication.",
+  "target_tag": "v0.6.0-alpha.7",
+  "publish_requested": true,
   "release_type": "pre-release",
   "development_state": {
-    "status": "released",
-    "engineering": "released_from_exact_green_source_freeze",
-    "summary": "Alpha.6 was published from exact green source freeze f7fcca273099baf47fff26327c6e7468afd9ce79."
+    "status": "release_candidate",
+    "engineering": "candidate_from_exact_green_develop_freeze",
+    "integration_branch": "develop",
+    "integration_freeze_commit": "04f2cd76fa5d18c08a903f3e30aa275afdec31a6",
+    "summary": "Alpha.7 is prepared from an exact green develop integration state. The release tag is created only after the release PR merges to main and post-merge CI succeeds."
   },
   "scientific_state": {
     "status": "active_research_not_scientifically_complete",
@@ -95,18 +101,18 @@
     "summary": "Technische Reife, wissenschaftliche Evidenz und externe Geltung bleiben getrennte Achsen. Unabhängige Replikation und externe Kritik sind ausdrücklich gesucht."
   },
   "publication_state": {
-    "github_release": "published",
-    "zenodo": "awaiting_external_archive_verification",
+    "github_release": "pending_post_merge_green_main",
+    "github_tag": "v0.6.0-alpha.7",
+    "zenodo": "awaiting_github_release_archive",
     "doi": null,
     "orcid": "0009-0002-9589-1872",
     "release_type": "pre-release",
     "public_imprint": "identity_and_contact_complete",
     "hosted_dashboard_privacy": "deployment_specific_details_pending",
-    "github_tag": "v0.6.0-alpha.6",
-    "source_freeze_commit": "f7fcca273099baf47fff26327c6e7468afd9ce79"
+    "source_freeze_commit": null
   },
-  "date": "2026-09-20",
-  "tag": "v0.6.0-alpha.6",
-  "commit": "f7fcca273099baf47fff26327c6e7468afd9ce79",
-  "source_freeze_commit": "f7fcca273099baf47fff26327c6e7468afd9ce79"
+  "date": "2026-09-21",
+  "tag": null,
+  "commit": null,
+  "source_freeze_commit": null
 }
