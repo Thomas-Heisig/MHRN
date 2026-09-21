@@ -42,6 +42,22 @@ jobs:
           python research/generate_reports.py
           python scripts/generate_catalog_audit_report.py
 
+      - name: Upload generated research projections
+        uses: actions/upload-artifact@v7
+        with:
+          name: repository-generated-projections
+          path: |
+            research/generated/RESEARCH_CATALOG.md
+            research/generated/EVIDENCE_MATRIX.md
+            research/generated/OPEN_QUESTIONS.md
+            research/generated/CLAIM_REGISTER.md
+            research/generated/DISSERTATION_MAP.md
+            research/generated/LITERATURE_MATRIX.md
+            research/generated/CATALOG_AUDIT_REPORT.md
+            research/generated/CATALOG_AUDIT_REPORT.json
+          if-no-files-found: error
+          retention-days: 7
+
       - name: Verify no generated drift
         shell: bash
         run: |
