@@ -1,6 +1,7 @@
 cff-version: 1.2.0
 message: "Cite Edition 1.8 as a scientific manuscript/preprint; cite the MHRN software separately via the repository-root CITATION.cff."
 title: "Rekursive Epistemik in verkörperten spikenden neuronalen Architekturen"
+type: dataset
 version: "1.8"
 date-released: "2026-09-17"
 authors:

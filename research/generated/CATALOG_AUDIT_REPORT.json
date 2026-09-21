@@ -2,8 +2,8 @@
   "status": "clean",
   "audit": {
     "clean": false,
-    "question_reference_count": 4605,
-    "hypothesis_reference_count": 3303,
+    "question_reference_count": 4911,
+    "hypothesis_reference_count": 3607,
     "missing_questions": [
       "RQ-AI-DESIGN-001",
       "RQ-AI-EFF-001",
@@ -12,6 +12,7 @@
       "RQ-BROWSER-001",
       "RQ-BROWSER-002",
       "RQ-CAUSAL-001",
+      "RQ-DATA-001",
       "RQ-DUP-001",
       "RQ-EPI-1",
       "RQ-EXTRA-E01",
@@ -36,6 +37,7 @@
     "missing_hypotheses": [
       "H-BASE-001-A",
       "H-BROWSER-001-A",
+      "H-DATA-001-A",
       "H-EPI-1",
       "H-EXTRA-E01-A",
       "H-GW-01",
@@ -114,6 +116,8 @@
       "reason": "Research-positioning design question without a canonical protocol.",
       "references": [
         "docs/06-research/RESEARCH_POSITIONING_AND_EVIDENCE_PROGRAM.md",
+        "research/publications/2026-09-17_recursive-epistemics_v1.8/MANUSCRIPT.md",
+        "research/publications/2026-09-17_recursive-epistemics_v1.8/parts/07_integrity.md",
         "research/publications/2026-09-17_recursive-epistemics_v1.8/registers/section_inventory.json",
         "research/registry/catalog_audit_allow_list.yaml"
       ]
@@ -122,6 +126,8 @@
       "reason": "Research-positioning efficiency question without a canonical protocol.",
       "references": [
         "docs/06-research/RESEARCH_POSITIONING_AND_EVIDENCE_PROGRAM.md",
+        "research/publications/2026-09-17_recursive-epistemics_v1.8/MANUSCRIPT.md",
+        "research/publications/2026-09-17_recursive-epistemics_v1.8/parts/07_integrity.md",
         "research/publications/2026-09-17_recursive-epistemics_v1.8/registers/section_inventory.json",
         "research/registry/catalog_audit_allow_list.yaml"
       ]
@@ -168,6 +174,8 @@
       "references": [
         "docs/06-research/PHILOSOPHICAL_SELF_MODEL_AND_THINKING.md",
         "docs/08-roadmap/TODO_SELF_MODEL_THINKING.md",
+        "research/publications/2026-09-17_recursive-epistemics_v1.8/MANUSCRIPT.md",
+        "research/publications/2026-09-17_recursive-epistemics_v1.8/parts/08_ethics_safety.md",
         "research/publications/2026-09-17_recursive-epistemics_v1.8/registers/section_inventory.json",
         "research/registry/catalog_audit_allow_list.yaml",
         "research/registry/philosophical_questions_claims.yaml"
@@ -177,6 +185,8 @@
       "reason": "Philosophical design question kept in its dedicated source file.",
       "references": [
         "docs/06-research/PHILOSOPHICAL_SELF_MODEL_AND_THINKING.md",
+        "research/publications/2026-09-17_recursive-epistemics_v1.8/MANUSCRIPT.md",
+        "research/publications/2026-09-17_recursive-epistemics_v1.8/parts/08_ethics_safety.md",
         "research/publications/2026-09-17_recursive-epistemics_v1.8/registers/section_inventory.json",
         "research/registry/catalog_audit_allow_list.yaml",
         "research/registry/philosophical_questions_claims.yaml"
@@ -186,6 +196,8 @@
       "reason": "Philosophical design question kept in its dedicated source file.",
       "references": [
         "docs/06-research/PHILOSOPHICAL_SELF_MODEL_AND_THINKING.md",
+        "research/publications/2026-09-17_recursive-epistemics_v1.8/MANUSCRIPT.md",
+        "research/publications/2026-09-17_recursive-epistemics_v1.8/parts/08_ethics_safety.md",
         "research/publications/2026-09-17_recursive-epistemics_v1.8/registers/section_inventory.json",
         "research/registry/catalog_audit_allow_list.yaml",
         "research/registry/philosophical_questions_claims.yaml"
@@ -195,6 +207,8 @@
       "reason": "Philosophical design question kept in its dedicated source file.",
       "references": [
         "docs/06-research/PHILOSOPHICAL_SELF_MODEL_AND_THINKING.md",
+        "research/publications/2026-09-17_recursive-epistemics_v1.8/MANUSCRIPT.md",
+        "research/publications/2026-09-17_recursive-epistemics_v1.8/parts/08_ethics_safety.md",
         "research/publications/2026-09-17_recursive-epistemics_v1.8/registers/section_inventory.json",
         "research/registry/catalog_audit_allow_list.yaml",
         "research/registry/philosophical_questions_claims.yaml"
@@ -204,6 +218,8 @@
       "reason": "Philosophical design question kept in its dedicated source file.",
       "references": [
         "docs/06-research/PHILOSOPHICAL_SELF_MODEL_AND_THINKING.md",
+        "research/publications/2026-09-17_recursive-epistemics_v1.8/MANUSCRIPT.md",
+        "research/publications/2026-09-17_recursive-epistemics_v1.8/parts/08_ethics_safety.md",
         "research/publications/2026-09-17_recursive-epistemics_v1.8/registers/section_inventory.json",
         "research/registry/catalog_audit_allow_list.yaml",
         "research/registry/philosophical_questions_claims.yaml"
@@ -213,6 +229,8 @@
       "reason": "Philosophical design question kept in its dedicated source file.",
       "references": [
         "docs/06-research/PHILOSOPHICAL_SELF_MODEL_AND_THINKING.md",
+        "research/publications/2026-09-17_recursive-epistemics_v1.8/MANUSCRIPT.md",
+        "research/publications/2026-09-17_recursive-epistemics_v1.8/parts/08_ethics_safety.md",
         "research/publications/2026-09-17_recursive-epistemics_v1.8/registers/section_inventory.json",
         "research/registry/catalog_audit_allow_list.yaml",
         "research/registry/philosophical_questions_claims.yaml"
@@ -222,6 +240,8 @@
       "reason": "Philosophical design question kept in its dedicated source file.",
       "references": [
         "docs/06-research/PHILOSOPHICAL_SELF_MODEL_AND_THINKING.md",
+        "research/publications/2026-09-17_recursive-epistemics_v1.8/MANUSCRIPT.md",
+        "research/publications/2026-09-17_recursive-epistemics_v1.8/parts/08_ethics_safety.md",
         "research/publications/2026-09-17_recursive-epistemics_v1.8/registers/section_inventory.json",
         "research/registry/catalog_audit_allow_list.yaml",
         "research/registry/philosophical_questions_claims.yaml"
@@ -231,6 +251,8 @@
       "reason": "Philosophical design question kept in its dedicated source file.",
       "references": [
         "docs/06-research/PHILOSOPHICAL_SELF_MODEL_AND_THINKING.md",
+        "research/publications/2026-09-17_recursive-epistemics_v1.8/MANUSCRIPT.md",
+        "research/publications/2026-09-17_recursive-epistemics_v1.8/parts/08_ethics_safety.md",
         "research/publications/2026-09-17_recursive-epistemics_v1.8/registers/section_inventory.json",
         "research/registry/catalog_audit_allow_list.yaml",
         "research/registry/philosophical_questions_claims.yaml"
@@ -241,6 +263,8 @@
       "references": [
         "docs/06-research/PHILOSOPHICAL_SELF_MODEL_AND_THINKING.md",
         "docs/08-roadmap/TODO_SELF_MODEL_THINKING.md",
+        "research/publications/2026-09-17_recursive-epistemics_v1.8/MANUSCRIPT.md",
+        "research/publications/2026-09-17_recursive-epistemics_v1.8/parts/08_ethics_safety.md",
         "research/publications/2026-09-17_recursive-epistemics_v1.8/registers/section_inventory.json",
         "research/registry/catalog_audit_allow_list.yaml",
         "research/registry/philosophical_questions_claims.yaml"
@@ -268,6 +292,13 @@
       "references": [
         "research/registry/catalog_audit_allow_list.yaml",
         "tests/browser/dashboard.spec.js"
+      ]
+    },
+    "H-DATA-001-A": {
+      "reason": "Research-report generation test fixture.",
+      "references": [
+        "research/registry/catalog_audit_allow_list.yaml",
+        "tests/test_research_report_generation.py"
       ]
     },
     "H-EXTRA-E01-A": {
@@ -299,7 +330,8 @@
       "references": [
         "research/registry/catalog_audit_allow_list.yaml",
         "tests/test_publication_edition.py",
-        "tests/test_research_report_generation.py"
+        "tests/test_research_report_generation.py",
+        "tests/test_review_inbox.py"
       ]
     },
     "RQ-BASE-001": {
@@ -321,6 +353,13 @@
       "references": [
         "research/registry/catalog_audit_allow_list.yaml",
         "tests/browser/dashboard.spec.js"
+      ]
+    },
+    "RQ-DATA-001": {
+      "reason": "Research-report generation test fixture.",
+      "references": [
+        "research/registry/catalog_audit_allow_list.yaml",
+        "tests/test_research_report_generation.py"
       ]
     },
     "RQ-DUP-001": {
@@ -362,7 +401,8 @@
       "references": [
         "research/registry/catalog_audit_allow_list.yaml",
         "tests/test_publication_edition.py",
-        "tests/test_research_report_generation.py"
+        "tests/test_research_report_generation.py",
+        "tests/test_review_inbox.py"
       ]
     }
   },

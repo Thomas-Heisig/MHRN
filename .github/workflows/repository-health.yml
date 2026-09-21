@@ -1,0 +1,109 @@
+name: Repository Health Gate
+
+on:
+  pull_request:
+    branches: [develop, main]
+  push:
+    branches: [develop]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: read
+
+jobs:
+  repository-health:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.13"
+          cache: pip
+          cache-dependency-path: |
+            pyproject.toml
+            requirements.txt
+
+      - name: Install validation dependencies
+        run: |
+          python -m pip install --upgrade pip setuptools wheel
+          python -m pip install -e ".[dev,docs]"
+
+      - name: Documentation and scientific integrity
+        run: |
+          python scripts/check_doc_consistency.py --check-tests
+          python scripts/check_scientific_maturity_integrity.py
+
+      - name: Regenerate derived research projections
+        run: |
+          python research/generate_reports.py
+          python scripts/generate_catalog_audit_report.py
+
+      - name: Upload generated research projections
+        uses: actions/upload-artifact@v7
+        with:
+          name: repository-generated-projections
+          path: |
+            research/generated/RESEARCH_CATALOG.md
+            research/generated/EVIDENCE_MATRIX.md
+            research/generated/OPEN_QUESTIONS.md
+            research/generated/CLAIM_REGISTER.md
+            research/generated/DISSERTATION_MAP.md
+            research/generated/LITERATURE_MATRIX.md
+            research/generated/CATALOG_AUDIT_REPORT.md
+            research/generated/CATALOG_AUDIT_REPORT.json
+          if-no-files-found: error
+          retention-days: 7
+
+      - name: Sync generated drift on internal develop PR
+        if: >-
+          github.event_name == 'pull_request' &&
+          github.base_ref == 'develop' &&
+          github.event.pull_request.head.repo.full_name == github.repository
+        env:
+          HEAD_REF: ${{ github.head_ref }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add -- research/generated
+          git diff --cached --check
+          if git diff --cached --quiet; then
+            echo "Generated research projections are current."
+            exit 0
+          fi
+          unexpected="$(git diff --cached --name-only | grep -v '^research/generated/' || true)"
+          if [ -n "$unexpected" ]; then
+            echo "$unexpected"
+            echo "::error::Generator attempted to stage files outside research/generated/."
+            exit 1
+          fi
+          git config user.name "MHRN generated-reports automation"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "chore: refresh generated research projections"
+          git push origin "HEAD:refs/heads/$HEAD_REF"
+
+      - name: Verify no generated drift
+        shell: bash
+        run: |
+          set -euo pipefail
+          git diff --check
+          if ! git diff --exit-code; then
+            echo "::error::Repository-derived files are stale. Release branches must arrive with committed generated outputs."
+            exit 1
+          fi
+
+      - name: Verify clean tracked and untracked tree
+        shell: bash
+        run: |
+          set -euo pipefail
+          status="$(git status --porcelain --untracked-files=all)"
+          if [ -n "$status" ]; then
+            echo "$status"
+            echo "::error::Repository Health Gate requires a clean tree after all generators and checks."
+            exit 1
+          fi
+          echo "Repository tree is clean."

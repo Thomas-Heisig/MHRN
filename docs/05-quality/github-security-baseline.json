@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
   "repository": "Thomas-Heisig/MHRN",
-  "as_of": "2026-09-20",
+  "as_of": "2026-09-21",
   "observed": {
     "visibility": "public",
     "default_branch": "main",
@@ -16,14 +16,17 @@
     "required_approvals": 0,
     "require_code_owner_review": false,
     "require_status_checks": [
-      "ci-status"
+      "ci-status",
+      "release-policy",
+      "repository-health"
     ],
     "require_branch_up_to_date": true,
     "require_conversation_resolution": true,
     "block_force_pushes": true,
     "restrict_deletions": true,
     "require_signed_commits": false,
-    "bypass_policy": "repository_admin_only_initially; no GitHub Actions bypass"
+    "bypass_policy": "repository_admin_only_initially; no GitHub Actions bypass",
+    "release_only_source": "release/*"
   },
   "desired_release_tag_ruleset": {
     "name": "Protect release tags",
@@ -39,5 +42,19 @@
     "unused SSH keys and personal access tokens removed",
     "GitHub Apps and OAuth grants reviewed periodically"
   ],
-  "rationale": "Single-maintainer configuration: PR required with zero approvals avoids self-lockout while preventing ordinary direct pushes. ci-status is the always-running CI aggregate. Signed commits are deferred because non-merge API-created commits are currently unsigned."
+  "rationale": "Single-maintainer configuration: develop is the active integration branch; main is release-only and accepts release/* PRs only after CI, release-policy, and repository-health are green.",
+  "desired_develop_ruleset": {
+    "name": "Protect develop",
+    "enforcement": "active",
+    "target": "develop",
+    "require_pull_request": true,
+    "required_approvals": 0,
+    "require_status_checks": [
+      "ci-status",
+      "repository-health"
+    ],
+    "require_branch_up_to_date": true,
+    "block_force_pushes": true,
+    "restrict_deletions": true
+  }
 }
