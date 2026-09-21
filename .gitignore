@@ -83,3 +83,6 @@ noop
 
 # Local browser/test scratch
 *.local.json
+
+# Historical/local publication integration scratch output
+.publication-integration-result.json
