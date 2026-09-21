@@ -2570,9 +2570,15 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
                         role="paper",
                     )
                     if descriptor is not None:
-                        descriptor["paper_id"] = cast(JSONValue, paper.get("id"))
-                        descriptor["status"] = cast(JSONValue, paper.get("status"))
-                        descriptor["paper_type"] = cast(JSONValue, paper.get("type"))
+                        descriptor["paper_id"] = cast(
+                            JSONValue, paper.get("id")
+                        )
+                        descriptor["status"] = cast(
+                            JSONValue, paper.get("status")
+                        )
+                        descriptor["paper_type"] = cast(
+                            JSONValue, paper.get("type")
+                        )
                         papers.append(descriptor)
 
             history: list[dict[str, JSONValue]] = []
