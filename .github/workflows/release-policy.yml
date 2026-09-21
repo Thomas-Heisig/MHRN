@@ -1,0 +1,64 @@
+name: Release Policy
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened, ready_for_review, edited]
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  release-policy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Enforce release-only main
+        env:
+          HEAD_REF: ${{ github.head_ref }}
+          BASE_REF: ${{ github.base_ref }}
+          EVENT_PATH: ${{ github.event_path }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$BASE_REF" = "main"
+          case "$HEAD_REF" in
+            release/*) ;;
+            *)
+              echo "::error::main is release-only. Pull requests to main must originate from release/*; normal development targets develop."
+              exit 1
+              ;;
+          esac
+
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - name: Require release metadata
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f releases/current.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          data = json.loads(Path("releases/current.json").read_text(encoding="utf-8"))
+          status = str(data.get("status", ""))
+          target = str(data.get("target_tag", data.get("tag", "")))
+          version = str(data.get("version", ""))
+          if not version:
+              raise SystemExit("release metadata has no version")
+          if status not in {"release_candidate", "released"}:
+              raise SystemExit(f"release metadata status must be release_candidate or released, got {status!r}")
+          if target and not target.startswith("v"):
+              raise SystemExit(f"release tag must start with v, got {target!r}")
+          print(f"release policy metadata OK: version={version} status={status} target={target or 'pending'}")
+          PY
+
+      - name: Require clean generated diff
+        shell: bash
+        run: |
+          set -euo pipefail
+          git diff --check
+          test -z "$(git status --porcelain --untracked-files=all)"
