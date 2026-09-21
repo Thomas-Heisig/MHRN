@@ -52,7 +52,7 @@ jobs:
           sudo apt-get install -y pandoc libreoffice-writer fonts-liberation
           python -m pip install -e '.[dev,docs,browser,empirical]' pre-commit bandit build
           python -m playwright install --with-deps chromium
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
           node-version: '22'
           cache: npm
