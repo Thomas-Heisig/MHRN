@@ -1,0 +1,44 @@
+name: One-shot cleanup formatter
+
+on:
+  push:
+    branches: [chore/public-repository-cleanup-20260920]
+    paths:
+      - ".github/workflows/one-shot-cleanup-format.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  format:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ github.ref_name }}
+          fetch-depth: 0
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.13"
+      - name: Install pinned project formatter
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e ".[dev]"
+      - name: Format only the known cleanup target
+        run: python -m black src/dashboard/server.py
+      - name: Commit deterministic formatter output
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add -- src/dashboard/server.py
+          git diff --cached --check
+          unexpected="$(git diff --cached --name-only | grep -v '^src/dashboard/server.py$' || true)"
+          test -z "$unexpected"
+          if git diff --cached --quiet; then
+            echo "Already Black-formatted."
+            exit 0
+          fi
+          git config user.name "MHRN cleanup formatter"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "style: apply canonical Black formatting"
+          git push origin HEAD:${{ github.ref_name }}
