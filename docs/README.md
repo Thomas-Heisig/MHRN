@@ -1,7 +1,7 @@
 # MHRN Documentation — kanonischer Einstieg
 
 **Stand:** 17. September 2026  
-**Kanonischer Codezweig:** `main`  
+**Release-Zweig:** `main` · **Integrationszweig:** `develop`  
 **Aktuelle wissenschaftliche Arbeitsfassung:** Recursive Epistemics **1.8 WIP**  
 **Dokumentgovernance:** [`00-governance/DOCUMENT_GOVERNANCE.md`](00-governance/DOCUMENT_GOVERNANCE.md)
 
@@ -11,7 +11,7 @@ Dieses README ist ein aktueller Navigations- und Autoritätsindex. Historische T
 
 Wenn Dokumente widersprechen, gilt:
 
-1. Code, Schemas und maschinenlesbare Verträge auf `main`;
+1. Code, Schemas und maschinenlesbare Verträge auf `develop`; veröffentlichte Release-Snapshots auf `main`;
 2. aktuelle CI-/Verifikationsartefakte;
 3. source-bound Experiment-DATA und ausdrücklich akzeptierte EVID;
 4. kanonische Quality-/Architektur-/Methodendokumente;
