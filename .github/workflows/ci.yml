@@ -1,5 +1,5 @@
 # ============================================================================
-# Brain-5D — Continuous Integration
+# MHRN — Continuous Integration
 # ============================================================================
 # Runs on push/PR to main/develop, and weekly on Monday 06:00 UTC.
 #
@@ -413,12 +413,12 @@ jobs:
         with:
           context: .
           load: true
-          tags: brain5d:ci
+          tags: mhrn:ci
           cache-from: type=gha
           cache-to: type=gha,mode=max
       - name: Verify Docker image runs
         run: |
-          docker run --rm brain5d:ci python -c "
+          docker run --rm mhrn:ci python -c "
           from src.core.neuron import Neuron;
           from src.core.network import NeuralNetwork;
           from src.storage.b5d import B5DReader;
@@ -428,7 +428,7 @@ jobs:
       - name: Summary
         run: |
           echo "### Docker build passed" >> $GITHUB_STEP_SUMMARY
-          echo "Image: brain5d:ci" >> $GITHUB_STEP_SUMMARY
+          echo "Image: mhrn:ci" >> $GITHUB_STEP_SUMMARY
 
   docs:
     runs-on: ubuntu-latest
