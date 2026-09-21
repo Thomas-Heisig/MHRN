@@ -41,13 +41,31 @@ Use the feature-request template and explain:
 
 ## Pull requests
 
-1. Fork the repository and branch from `main`.
-2. Keep the change focused.
-3. Preserve backwards-compatible APIs where practical.
-4. Add or update tests.
-5. Update documentation for public behavior.
-6. Run the quality gates before submitting.
-7. Complete the pull-request template.
+1. Fork the repository and branch from `develop`.
+2. Open normal feature/fix/research pull requests against `develop`.
+3. Pull requests against `main` are reserved for explicit `release/*` branches.
+4. Keep the change focused.
+5. Preserve backwards-compatible APIs where practical.
+6. Add or update tests.
+7. Update documentation for public behavior.
+8. Run the quality gates before submitting.
+9. Complete the pull-request template.
+
+### Branch policy
+
+```text
+feature/*, fix/*, research/*, chore/*
+                ↓
+             develop
+                ↓
+            release/*
+                ↓
+              main
+```
+
+`main` is the public release line. It must remain releasable and is not a general development branch. Direct pushes and force-pushes to `main` are prohibited by project policy.
+
+The release path requires green CI, release-policy checks, applicable scientific/publication integrity checks, and a clean tracked tree before merge.
 
 ## Type-safety rules
 
@@ -86,7 +104,7 @@ The CI pipeline runs the same gates on every push/PR:
 | `build` | `python -m build` + verify | wheel |
 | `smoke` | Import/config smoke tests | `src/` + `configs/` |
 
-Alpha.5 introduced a strict Pyright-clean integration scope. Repository-wide
+The current 0.6.x line uses a strict Pyright-clean integration scope. Repository-wide
 strict Pyright still contains historical findings, therefore pull requests must
 at minimum keep all changed/new files free of new strict Pyright/Pylance errors.
 

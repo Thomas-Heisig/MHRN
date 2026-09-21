@@ -204,7 +204,7 @@ test('external review: stale success is cleared after failed status fetch', asyn
   await page.goto('http://127.0.0.1:4174/');
   await selectLabStage(page, 'question');
   await selectResearchView(page, 'external');
-  await expect(page.locator('#external-review-summary')).toContainText('135 Fragen');
+  await expect(page.locator('#external-review-summary')).toContainText(/135 (Questions|Fragen)/);
   await page.route('**/api/research/external-review', route => route.fulfill({ status: 503, body: '{}' }));
   await page.locator('#external-review-refresh').click();
   await expect(page.locator('#external-review-summary')).toContainText('Nicht verf\u00fcgbar');

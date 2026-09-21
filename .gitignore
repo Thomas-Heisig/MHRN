@@ -73,3 +73,14 @@ playwright-report/
 .mypy_cache/
 .pyright/
 .ruff_cache/
+
+# Local AI/editor/research-assistant state
+.lla-*.json
+.playwright-mcp/
+tmp/
+huggin.ps1
+noop
+
+# Local browser/test scratch
+*.local.json
+

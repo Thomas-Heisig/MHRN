@@ -2,7 +2,7 @@ name: Refresh current research reports
 
 on:
   push:
-    branches: [main]
+    branches: [develop]
     paths:
       - "research/registry/**"
       - "research/generate_reports.py"
@@ -43,5 +43,5 @@ jobs:
             git config user.name 'Brain-5D research reports'
             git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
             git commit -m 'docs: refresh current research reports'
-            git push origin HEAD:main
+            git push origin HEAD:develop
           )
