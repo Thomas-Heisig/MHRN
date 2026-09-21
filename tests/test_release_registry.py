@@ -25,7 +25,7 @@ def test_current_release_matches_canonical_published_version() -> None:
     assert project["version"] == "0.6.0a6"
     assert current["version"] == "0.6.0-alpha.6"
     assert current["pep440"] == project["version"]
-    assert current["status"] == "release_candidate"
+    assert current["status"] == "released"
     assert current.get("release_type") == "pre-release"
     assert current.get("target_tag") == "v0.6.0-alpha.6"
     assert current["parent"] == "v0.6.0-alpha.5"
