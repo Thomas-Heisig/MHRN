@@ -1,4 +1,4 @@
-# Dependabot dependency update automation for Brain-5D.
+# Dependabot dependency update automation for MHRN.
 #
 # Documentation:
 #   https://docs.github.com/code-security/dependabot/dependabot-version-updates
@@ -8,6 +8,7 @@ updates:
   # Python (pip) dependencies
   - package-ecosystem: "pip"
     directory: "/"
+    target-branch: "develop"
     schedule:
       interval: "weekly"
       day: "monday"
@@ -35,6 +36,7 @@ updates:
   # GitHub Actions
   - package-ecosystem: "github-actions"
     directory: "/"
+    target-branch: "develop"
     schedule:
       interval: "weekly"
       day: "monday"
