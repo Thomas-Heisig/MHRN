@@ -5,7 +5,8 @@
 **A Spiking Neural Architecture with Topological Plasticity**  
 *Eine spikende neuronale Architektur mit topologischer Plastizität*
 
-[![CI](https://github.com/Thomas-Heisig/MHRN/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Thomas-Heisig/MHRN/actions/workflows/ci.yml)
+[![Release CI](https://github.com/Thomas-Heisig/MHRN/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Thomas-Heisig/MHRN/actions/workflows/ci.yml)
+[![Develop CI](https://github.com/Thomas-Heisig/MHRN/actions/workflows/ci.yml/badge.svg?branch=develop)](https://github.com/Thomas-Heisig/MHRN/actions/workflows/ci.yml)
 [![Release](https://img.shields.io/github/v/release/Thomas-Heisig/MHRN?include_prereleases&label=release)](https://github.com/Thomas-Heisig/MHRN/releases/tag/v0.6.0-alpha.6)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-blue.svg)](https://www.python.org/)
 [![Publication](https://img.shields.io/badge/publication-1.8_WIP-blue.svg)](research/publications/CURRENT.md)
@@ -79,7 +80,8 @@ Historical publication bytes and empirical artifacts are preserved. Reconstructe
 
 | Area | Current state |
 | --- | --- |
-| Canonical branch | `main` |
+| Release branch | `main` — release-only, public frozen line |
+| Integration branch | `develop` — active development and research integration |
 | Package | `mhrn-core 0.6.0a6` / `0.6.0-alpha.6` |
 | Release status | **v0.6.0-alpha.6 released** from exact green source freeze `f7fcca273099baf47fff26327c6e7468afd9ce79`; Zenodo DOI pending external archive ingestion |
 | Engineering | Stage 2 recurrent contract closed at its scoped engineering boundary; Stage 3 plastic neural tissue reached; Stage 4/5 engineering contracts integrated; Stage 6 mechanisms and research programme active |
@@ -103,6 +105,31 @@ The present scientific focus is deliberately narrower than the implemented featu
 The bounded DATA-level conclusion is therefore: **Replay contributes to the observed benefit; under the matched CL-002/CL-003 conditions semantic compression has not shown a preregistered additional advantage over Raw-Replay, although the semantic representation itself carries relevant structure.** Stage 6 is not declared solved; the Semantization/Replay subquestion is treated as **empirically narrowed** pending Human Review.
 
 See [`research/CURRENT_SCIENTIFIC_STATE.md`](research/CURRENT_SCIENTIFIC_STATE.md) for the current scientific interpretation and limitations. The historical DATA-only Stage-6 balance incorporated into Edition 1.8 remains preserved at [`research/publications/2026-09-15_recursive-epistemics_v1.7/STAGE6_CL001_CL003_BALANCE.md`](research/publications/2026-09-15_recursive-epistemics_v1.7/STAGE6_CL001_CL003_BALANCE.md).
+
+---
+
+## Repository workflow
+
+MHRN uses a release-oriented branch model:
+
+```text
+feature / fix / research / chore
+            ↓
+          develop
+            ↓
+        release/*
+            ↓
+           main
+```
+
+- **`main`** contains only release-ready public states.
+- **`develop`** is the canonical integration branch for ongoing engineering, research tooling, documentation and publication work.
+- Normal pull requests target **`develop`**.
+- Only explicit **`release/*`** branches may target **`main`**.
+- Release merge requires green CI, the release-policy check, applicable integrity gates, and a clean tracked tree.
+- Force-pushes and history rewrites of `main` are outside project policy.
+
+See [Branching and release policy](docs/00-governance/BRANCHING_AND_RELEASE_POLICY.md).
 
 ---
 
