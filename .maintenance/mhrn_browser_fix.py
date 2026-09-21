@@ -35,11 +35,6 @@ def main() -> None:
     path = ROOT / ".maintenance/mhrn_prepare.py"
     text = path.read_text(encoding="utf-8").replace('if "workflow files are committed through" not in text:', 'if "Workflow files are committed through" not in text:')
     path.write_text(text, encoding="utf-8")
-    # The recorded old IDs are intentional until an owner confirms the rename.
-    path = ROOT / "huggin.ps1"
-    text = path.read_text(encoding="utf-8")
-    text = text.replace('https://github.com/Thomas-Heisig/MHRN', 'https://github.com/Thomas-Heisig/Brain-5D')
-    path.write_text(text, encoding="utf-8")
     print("Copied the real ethics state into the isolated fixture and corrected contextual navigation stacking.")
 
 
