@@ -7,7 +7,7 @@
 
 [![Release CI](https://github.com/Thomas-Heisig/MHRN/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Thomas-Heisig/MHRN/actions/workflows/ci.yml)
 [![Develop CI](https://github.com/Thomas-Heisig/MHRN/actions/workflows/ci.yml/badge.svg?branch=develop)](https://github.com/Thomas-Heisig/MHRN/actions/workflows/ci.yml)
-[![Release](https://img.shields.io/github/v/release/Thomas-Heisig/MHRN?include_prereleases&label=release)](https://github.com/Thomas-Heisig/MHRN/releases/tag/v0.6.0-alpha.6)
+[![Release](https://img.shields.io/github/v/release/Thomas-Heisig/MHRN?include_prereleases&label=release)](https://github.com/Thomas-Heisig/MHRN/releases/tag/v0.6.0-alpha.7)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-blue.svg)](https://www.python.org/)
 [![Publication](https://img.shields.io/badge/publication-1.8_WIP-blue.svg)](research/publications/CURRENT.md)
 [![License: MIT](https://img.shields.io/badge/license-MIT-yellow.svg)](LICENSE)
@@ -31,7 +31,7 @@ The sparse **5D SNN remains the primary adaptive system**. Language models, rese
 | Resource | Canonical route | Role |
 | --- | --- | --- |
 | Source | [GitHub · Thomas-Heisig/MHRN](https://github.com/Thomas-Heisig/MHRN) | canonical code, history and governed research artefacts |
-| Current software release | [v0.6.0-alpha.6](https://github.com/Thomas-Heisig/MHRN/releases/tag/v0.6.0-alpha.6) | immutable exact-green source freeze |
+| Current software release | [v0.6.0-alpha.7](https://github.com/Thomas-Heisig/MHRN/releases/tag/v0.6.0-alpha.7) | immutable exact-green source freeze |
 | Author identity | [ORCID · 0009-0002-9589-1872](https://orcid.org/0009-0002-9589-1872) | persistent researcher identity |
 | Open Science Framework | [OSF · p34uq](https://osf.io/p34uq/) | project / open-science route |
 | Hugging Face | [ThomasHeisig/MHRN](https://huggingface.co/ThomasHeisig/MHRN) | rolling source/discovery mirror |
@@ -39,7 +39,7 @@ The sparse **5D SNN remains the primary adaptive system**. Language models, rese
 | Research-data mirror | [ThomasHeisig/MHRN-Research-Data](https://huggingface.co/datasets/ThomasHeisig/MHRN-Research-Data) | rolling discovery mirror; not an immutable DOI dataset |
 | Zenodo | [Latest DOI / archived release](https://zenodo.org/badge/latestdoi/1335973891) | DOI archive for GitHub releases; badge resolves to the latest archived version once ingestion completes |
 
-The GitHub release `v0.6.0-alpha.6` is published from exact green source freeze `f7fcca273099baf47fff26327c6e7468afd9ce79`. The repository intentionally records a Zenodo DOI only after a real public Zenodo record exists. Once discovered, the DOI sync replaces the pending badge above with Zenodo's official DOI badge and records the DOI in the citation and publication metadata.
+The `v0.6.0-alpha.7` release is prepared from the exact green `develop` integration freeze `04f2cd76fa5d18c08a903f3e30aa275afdec31a6`; the immutable GitHub release tag is created only after the release PR has merged to `main` and the resulting `main` CI is green. The repository intentionally records a Zenodo DOI only after a real public Zenodo record exists. Once discovered, the DOI sync replaces the pending badge above with Zenodo's official DOI badge and records the DOI in the citation and publication metadata.
 
 ### Citation model
 
@@ -47,7 +47,7 @@ MHRN deliberately separates three citable research objects:
 
 | Object | Type | Current state |
 | --- | --- | --- |
-| **MHRN v0.6.0-alpha.6** | Software | GitHub release published; Zenodo software DOI route active |
+| **MHRN v0.6.0-alpha.7** | Software | GitHub release published; Zenodo software DOI route active |
 | **Recursive Epistemics / Rekursive Epistemik 1.8** | Publication / preprint | separate Zenodo publication package prepared; DOI pending |
 | **MHRN research data** | Dataset(s) | rolling discovery mirror exists; immutable experiment DOI deposits remain separate |
 
@@ -82,8 +82,8 @@ Historical publication bytes and empirical artifacts are preserved. Reconstructe
 | --- | --- |
 | Release branch | `main` — release-only, public frozen line |
 | Integration branch | `develop` — active development and research integration |
-| Package | `mhrn-core 0.6.0a6` / `0.6.0-alpha.6` |
-| Release status | **v0.6.0-alpha.6 released** from exact green source freeze `f7fcca273099baf47fff26327c6e7468afd9ce79`; Zenodo DOI pending external archive ingestion |
+| Package | `mhrn-core 0.6.0a7` / `0.6.0-alpha.6` |
+| Release status | **v0.6.0-alpha.7 release candidate** from green `develop` freeze `04f2cd76fa5d18c08a903f3e30aa275afdec31a6`; publication occurs only after the release PR and post-merge `main` CI are green |
 | Engineering | Stage 2 recurrent contract closed at its scoped engineering boundary; Stage 3 plastic neural tissue reached; Stage 4/5 engineering contracts integrated; Stage 6 mechanisms and research programme active |
 | Scientific focus | Stage 6 — memory, continual learning, semantization, prediction error and world-model validation; independent external replication remains open |
 | Current manuscript | **Recursive Epistemics / Rekursive Epistemik 1.8 — WIP** |
@@ -394,7 +394,7 @@ Independent replication invitation: [`INDEPENDENT_REPLICATION.md`](INDEPENDENT_R
   author  = {Thomas Heisig},
   title   = {Multi-Scale Homeostatic Recurrence Network (MHRN)},
   year    = {2026},
-  version = {0.6.0a6},
+  version = {0.6.0a7},
   url     = {https://github.com/Thomas-Heisig/MHRN},
   license = {MIT}
 }
