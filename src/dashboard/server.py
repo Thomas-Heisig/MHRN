@@ -2560,9 +2560,7 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
                     label = (
                         short_title
                         if isinstance(short_title, str)
-                        else title
-                        if isinstance(title, str)
-                        else paper_path.stem
+                        else title if isinstance(title, str) else paper_path.stem
                     )
                     descriptor = add_document(
                         paper_path,
