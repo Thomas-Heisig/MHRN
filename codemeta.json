@@ -6,7 +6,7 @@
   "description": "Experimental research framework for recurrent spiking neural networks, plasticity, self-organization, embodiment, memory and world-model mechanisms under explicit provenance, reproducibility and evidence boundaries.",
   "codeRepository": "https://github.com/Thomas-Heisig/MHRN",
   "url": "https://github.com/Thomas-Heisig/MHRN",
-  "version": "0.6.0a6",
+  "version": "0.6.0a7",
   "license": "https://spdx.org/licenses/MIT",
   "programmingLanguage": [
     "Python",
