@@ -76,7 +76,7 @@ Historical publication bytes and empirical artifacts are preserved. Reconstructe
 
 ---
 
-## Current state — 20 September 2026
+## Current state — 21 September 2026
 
 | Area | Current state |
 | --- | --- |
@@ -151,6 +151,7 @@ The internal documentation and experiment taxonomy is being refined. The links b
 - **Publication catalog / viewer source:** [`research/publications/catalog.json`](research/publications/catalog.json)
 - **Frozen empirical baseline 1.5:** [`research/publications/FROZEN_V1.5.md`](research/publications/FROZEN_V1.5.md)
 - **Current release record:** [`releases/current.json`](releases/current.json)
+- **Release checklist:** [`docs/10-releases/RELEASE_CHECKLIST.md`](docs/10-releases/RELEASE_CHECKLIST.md)
 - **Engineering roadmap:** [`docs/08-roadmap/ROADMAP.md`](docs/08-roadmap/ROADMAP.md)
 - **Scientific maturity roadmap:** [`docs/08-roadmap/SCIENTIFIC_MATURITY_ROADMAP.md`](docs/08-roadmap/SCIENTIFIC_MATURITY_ROADMAP.md)
 - **Research roadmap:** [`docs/08-roadmap/RESEARCH_ROADMAP.md`](docs/08-roadmap/RESEARCH_ROADMAP.md)
