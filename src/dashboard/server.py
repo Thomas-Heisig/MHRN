@@ -2537,32 +2537,42 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
                         attachments.append(descriptor)
 
             papers: list[dict[str, JSONValue]] = []
-            paper_records = catalog.get("papers")
-            if isinstance(paper_records, list):
+            paper_records_object = catalog.get("papers")
+            if isinstance(paper_records_object, list):
+                paper_records = cast(list[object], paper_records_object)
                 for paper_raw in paper_records:
                     if not isinstance(paper_raw, dict):
                         continue
-                    paper_entry = paper_raw.get("entrypoint")
-                    if not isinstance(paper_entry, str) or not paper_entry.startswith("publications/"):
+                    paper = cast(dict[str, object], paper_raw)
+                    paper_entry_object = paper.get("entrypoint")
+                    if not isinstance(
+                        paper_entry_object, str
+                    ) or not paper_entry_object.startswith("publications/"):
                         continue
-                    paper_path = (research_root / paper_entry).resolve()
-                    if not paper_path.is_relative_to(pub_root.resolve()) or not paper_path.is_file():
+                    paper_path = (research_root / paper_entry_object).resolve()
+                    if (
+                        not paper_path.is_relative_to(pub_root.resolve())
+                        or not paper_path.is_file()
+                    ):
                         continue
+                    short_title = paper.get("short_title")
+                    title = paper.get("title")
+                    label = (
+                        short_title
+                        if isinstance(short_title, str)
+                        else title
+                        if isinstance(title, str)
+                        else paper_path.stem
+                    )
                     descriptor = add_document(
                         paper_path,
-                        label=(
-                            paper_raw.get("short_title")
-                            if isinstance(paper_raw.get("short_title"), str)
-                            else paper_raw.get("title")
-                            if isinstance(paper_raw.get("title"), str)
-                            else paper_path.stem
-                        ),
+                        label=label,
                         role="paper",
                     )
                     if descriptor is not None:
-                        descriptor["paper_id"] = cast(JSONValue, paper_raw.get("id"))
-                        descriptor["status"] = cast(JSONValue, paper_raw.get("status"))
-                        descriptor["paper_type"] = cast(JSONValue, paper_raw.get("type"))
+                        descriptor["paper_id"] = cast(JSONValue, paper.get("id"))
+                        descriptor["status"] = cast(JSONValue, paper.get("status"))
+                        descriptor["paper_type"] = cast(JSONValue, paper.get("type"))
                         papers.append(descriptor)
 
             history: list[dict[str, JSONValue]] = []
