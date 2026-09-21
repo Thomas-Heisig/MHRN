@@ -22,14 +22,14 @@ def test_current_release_matches_canonical_published_version() -> None:
         project = tomllib.load(stream)["project"]
     current = _release("current.json")
 
-    assert project["version"] == "0.6.0a6"
-    assert current["version"] == "0.6.0-alpha.6"
+    assert project["version"] == "0.6.0a7"
+    assert current["version"] == "0.6.0-alpha.7"
     assert current["pep440"] == project["version"]
-    assert current["status"] == "released"
+    assert current["status"] == "release_candidate"
     assert current.get("release_type") == "pre-release"
-    assert current.get("target_tag") == "v0.6.0-alpha.6"
-    assert current["parent"] == "v0.6.0-alpha.5"
-    assert current["as_of"] == "2026-09-20"
+    assert current.get("target_tag") == "v0.6.0-alpha.7"
+    assert current["parent"] == "v0.6.0-alpha.6"
+    assert current["as_of"] == "2026-09-21"
     assert current["milestone_status"] in {
         "stage3_engineering_reached_scientific_maturity_separate",
         "engineering_release_candidate_scientific_programme_active",
