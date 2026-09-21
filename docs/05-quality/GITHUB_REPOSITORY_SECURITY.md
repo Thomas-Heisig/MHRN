@@ -25,7 +25,7 @@ Create a repository ruleset named **Protect main** targeting `main` with:
 - required approvals: **0** while Thomas Heisig is the sole maintainer;
 - do **not** require Code Owner approval yet, because a sole author cannot approve their own pull request;
 - **Require status checks to pass before merging**;
-- required status check: **`ci-status`**;
+- required status checks for release PRs: **`ci-status`**, **`release-policy`**, and **`repository-health`**;
 - require the branch to be up to date before merging;
 - require conversation resolution before merging;
 - **Block force pushes**;
@@ -68,11 +68,17 @@ The protected workflow is:
 ```text
 feature / fix / research branch
         ↓
-Pull Request
+Pull Request to develop
         ↓
-ci-status = success
+CI + repository-health = green
         ↓
-merge on GitHub
+develop
+        ↓
+release/* branch
+        ↓
+Pull Request to main
+        ↓
+ci-status + release-policy + repository-health = green
         ↓
 main
 ```
