@@ -156,7 +156,7 @@ MIT License — see `LICENSE`.
   author  = {Thomas Heisig},
   title   = {Multi-Scale Homeostatic Recurrence Network (MHRN)},
   year    = {2026},
-  version = {0.6.0a6},
+  version = {0.6.0a7},
   url     = {https://github.com/Thomas-Heisig/MHRN},
   license = {MIT}
 }
