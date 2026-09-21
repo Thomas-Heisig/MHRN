@@ -1,6 +1,6 @@
 # Open Science & Research Network Integration
 
-This file is the public routing map for MHRN research visibility. GitHub `main` is the canonical software and research source. External services are mirrors, registries, archives, review layers or discovery indexes; they must not silently change canonical DATA/EVID status.
+This file is the public routing map for MHRN research visibility. GitHub is the canonical software and research source: `develop` is the active integration line and `main` is the release-only public freeze line. External services are mirrors, registries, archives, review layers or discovery indexes; they must not silently change canonical DATA/EVID status.
 
 ## Status vocabulary
 
@@ -14,7 +14,7 @@ This file is the public routing map for MHRN research visibility. GitHub `main` 
 
 | Service | Role | MHRN status | Required next action |
 | --- | --- | --- | --- |
-| GitHub | canonical code, protocols, experiment artefacts and version history | **ACTIVE** | keep `main` canonical and release only from green source freezes |
+| GitHub | canonical code, protocols, experiment artefacts and version history | **ACTIVE** | integrate on `develop`; publish only green release freezes to `main` |
 | Hugging Face MHRN | rolling public source/model-card mirror | **CONFIGURED** | add `HF_USERNAME` and `HF_TOKEN`; workflow creates and synchronizes `MHRN` automatically |
 | Hugging Face MHRN-Space | rolling Docker dashboard/research UI mirror | **CONFIGURED** | same credentials; workflow creates and synchronizes `MHRN-Space` automatically |
 | Hugging Face MHRN-Research-Data | rolling research-tree discovery mirror | **CONFIGURED** | same credentials; workflow creates and synchronizes `MHRN-Research-Data`; immutable experiment DOIs remain separate |
@@ -47,7 +47,7 @@ This file is the public routing map for MHRN research visibility. GitHub `main` 
 - `INDEPENDENT_REPLICATION.md`: public replication invitation.
 - `HF_MODEL_README.md`: generated Hugging Face source/model-card landing page.
 - `HF_DATASET_README.md`: generated rolling research-data mirror landing page.
-- `.github/workflows/sync-huggingface.yml`: self-provisioning Hugging Face publication fan-out from canonical `main`.
+- `.github/workflows/sync-huggingface.yml`: self-provisioning Hugging Face publication fan-out from release-only `main`.
 - `.github/ISSUE_TEMPLATE/independent_replication.md`: structured intake for replication reports.
 
 ## Publication object model
