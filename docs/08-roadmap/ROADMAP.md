@@ -1,7 +1,7 @@
 # MHRN Development Roadmap
 
 **Canonical roadmap for active `develop`; `main` is release-only**  
-**Baseline:** `mhrn-core 0.6.0a6`
+**Baseline:** `mhrn-core 0.6.0a7`
 **Updated:** 2026-09-19
 
 ## 2026-09-20 Publikationsnavigation
