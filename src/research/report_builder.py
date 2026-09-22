@@ -13,7 +13,6 @@ from __future__ import annotations
 
 import json
 from collections import Counter
-from datetime import datetime
 from pathlib import Path
 from typing import Any, cast
 
@@ -21,6 +20,19 @@ from .registry import REPO_ROOT, ResearchQuestion, ResearchRegistry
 
 GENERATED_DIR = REPO_ROOT / "research" / "generated"
 EVIDENCE_DIR = REPO_ROOT / "research" / "registry" / "evidence"
+
+
+def _generated_on() -> str:
+    """Return the canonical release snapshot date for deterministic reports."""
+    release_path = REPO_ROOT / "releases" / "current.json"
+    try:
+        data = json.loads(release_path.read_text(encoding="utf-8"))
+        value = data.get("as_of")
+        if isinstance(value, str) and value.strip():
+            return value.strip()
+    except (OSError, json.JSONDecodeError):
+        pass
+    return "undated"
 
 
 class EvidenceRecord:
@@ -162,7 +174,7 @@ class ReportBuilder:
         lines = [
             "# MHRN Research Catalog",
             "",
-            f"*Generiert am {datetime.now().strftime('%Y-%m-%d')}*",
+            f"*Generiert am {_generated_on()}*",
             "",
             "## Übersicht",
             "",
@@ -261,7 +273,7 @@ class ReportBuilder:
         lines = [
             "# MHRN Evidence Matrix",
             "",
-            f"*Generiert am {datetime.now().strftime('%Y-%m-%d')}*",
+            f"*Generiert am {_generated_on()}*",
             "",
             "RQ-Status und Claim-Status sind unterschiedliche wissenschaftliche Zustände und werden nicht gegenseitig abgeleitet.",
             "",
@@ -341,7 +353,7 @@ class ReportBuilder:
         lines = [
             "# MHRN Open Questions",
             "",
-            f"*Generiert am {datetime.now().strftime('%Y-%m-%d')}*",
+            f"*Generiert am {_generated_on()}*",
             "",
             "Die folgenden Forschungsfragen sind noch offen und warten auf experimentelle Evidenz.",
             "",
@@ -388,7 +400,7 @@ class ReportBuilder:
         lines = [
             "# MHRN Claim Register",
             "",
-            f"*Generiert am {datetime.now().strftime('%Y-%m-%d')}*",
+            f"*Generiert am {_generated_on()}*",
             "",
             "| Claim | Status | Konfidenz | Evidenzen | Experimente |",
             "|-------|--------|-----------|-----------|-------------|",
@@ -484,7 +496,7 @@ class ReportBuilder:
         lines = [
             "# MHRN Dissertation Map",
             "",
-            f"*Generiert am {datetime.now().strftime('%Y-%m-%d')}*",
+            f"*Generiert am {_generated_on()}*",
             "",
             "Diese Karte zeigt, wie die Forschungsergebnisse von MHRN in eine",
             "Dissertationsstruktur eingeordnet werden können.",

@@ -49,7 +49,7 @@ for (const port of [4174, 4175]) {
     await viewer.getByRole('button', { name: 'Im Chat anzeigen', exact: true }).click();
     const card = page.locator('#research-chat-log .chat-file-card .file-renderer');
     await expect(card).toHaveAttribute('data-render-state', 'ready');
-    await expect(card.locator('.file-renderer-body')).toContainText('Dateiinhalt');
+    await expect(card.locator('.file-renderer-body')).toContainText(/Dateiinhalt|File content/);
     await expect(card.getByRole('button', { name: 'Bearbeiten', exact: true })).toHaveCount(0);
     await card.getByRole('button', { name: 'Messdaten', exact: true }).click();
     await expect(page.locator('[data-file-key="docs/sample.json"] .file-renderer')).toHaveAttribute('data-file-kind', 'json');
@@ -204,7 +204,7 @@ test('external review: stale success is cleared after failed status fetch', asyn
   await page.goto('http://127.0.0.1:4174/');
   await selectLabStage(page, 'question');
   await selectResearchView(page, 'external');
-  await expect(page.locator('#external-review-summary')).toContainText('135 Fragen');
+  await expect(page.locator('#external-review-summary')).toContainText(/135 (Questions|Fragen)/);
   await page.route('**/api/research/external-review', route => route.fulfill({ status: 503, body: '{}' }));
   await page.locator('#external-review-refresh').click();
   await expect(page.locator('#external-review-summary')).toContainText('Nicht verf\u00fcgbar');

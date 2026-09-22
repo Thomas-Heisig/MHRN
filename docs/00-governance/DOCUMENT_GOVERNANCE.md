@@ -29,7 +29,7 @@ Für jede Datei werden mindestens folgende Eigenschaften deterministisch abgelei
 
 Für den aktuellen Projektstand gilt in absteigender Priorität:
 
-1. Code, Schemas und maschinenlesbare Verträge auf `main`.
+1. Code, Schemas und maschinenlesbare Verträge auf `develop`; freigegebene Release-Snapshots auf `main`.
 2. Kanonische Registry-Objekte unter `research/registry/` und `research/schemas/`.
 3. Unveränderliche DATA/EVID- und Experimentartefakte mit Provenienz.
 4. Aktuelle Quality-/Methodenverträge unter `docs/05-quality/` und aktuelle Roadmaps.

@@ -7,11 +7,25 @@ relevance matrices for research questions.
 
 from __future__ import annotations
 
+import json
 from pathlib import Path
 
 from .registry import REPO_ROOT, ResearchRegistry, Source
 
 LITERATURE_DIR = REPO_ROOT / "research" / "literature"
+
+
+def _generated_on() -> str:
+    """Return the canonical release snapshot date for deterministic reports."""
+    release_path = REPO_ROOT / "releases" / "current.json"
+    try:
+        data = json.loads(release_path.read_text(encoding="utf-8"))
+        value = data.get("as_of")
+        if isinstance(value, str) and value.strip():
+            return value.strip()
+    except (OSError, json.JSONDecodeError):
+        pass
+    return "undated"
 
 
 class LiteratureRegistry:
@@ -61,7 +75,7 @@ class LiteratureRegistry:
             [
                 "",
                 "---",
-                f"*Automatisch generiert am {__import__('datetime').datetime.now().strftime('%Y-%m-%d')}*",
+                f"*Automatisch generiert am {_generated_on()}*",
             ]
         )
 

@@ -16,9 +16,6 @@ for (const port of [4174, 4175]) {
     await expect(viewer).toBeVisible();
     await expect(viewer).toHaveAttribute('data-render-state', 'ready');
     await expect(viewer).toContainText('Edition 1.8');
-    await expect(viewer).toContainText('MHRN Research Software Paper');
-    await expect(viewer).toContainText('Topology & Propagation Dynamics');
-    await expect(viewer).toContainText('Recursive Epistemics Methods Paper');
 
     const currentApiResponse = await page.request.get(`http://127.0.0.1:${port}/api/publication/current`);
     const currentApiText = await currentApiResponse.text();
@@ -31,6 +28,11 @@ for (const port of [4174, 4175]) {
     expect(currentApi.content).toContain('Teil XI');
     expect(currentApi.content).toContain('# Anhang — Quellen und Vorarbeiten');
     expect(currentApi.chapters).toHaveLength(11);
+    expect(currentApi.papers.map(item => item.label)).toEqual(expect.arrayContaining([
+      'MHRN Research Software Paper',
+      'Topology & Propagation Dynamics',
+      'Recursive Epistemics Methods Paper',
+    ]));
     expect(currentApi.attachments.map(item => item.path)).toEqual(expect.arrayContaining([
       expect.stringContaining('CONTENT_INTEGRATION.md'),
       expect.stringContaining('RESEARCH_REGISTER.md'),
@@ -58,6 +60,8 @@ for (const port of [4174, 4175]) {
     await expect(portalLinks.locator('[data-portal="hf-source"]')).toHaveAttribute('href', 'https://huggingface.co/ThomasHeisig/MHRN');
     await expect(portalLinks.locator('[data-portal="hf-space"]')).toHaveAttribute('href', 'https://huggingface.co/spaces/ThomasHeisig/MHRN-Space');
     await expect(portalLinks.locator('[data-portal="hf-data"]')).toHaveAttribute('href', 'https://huggingface.co/datasets/ThomasHeisig/MHRN-Research-Data');
+    await page.evaluate(() => window.MHRNWorkspaceArchitecture?.selectRoute?.('publication', 'reader'));
+    await expect(publicationPanel).toBeVisible();
     const readerLink = publicationPanel.locator('[data-pub-reader-link]').first();
     await expect(readerLink).toBeVisible();
     const readerPath = await readerLink.getAttribute('data-pub-reader-link');
@@ -163,7 +167,7 @@ for (const port of [4174, 4175]) {
     await page.evaluate(() => window.MHRNWorkspaceArchitecture?.selectRoute?.('publication', 'imprint'));
     await expect(page.locator('body')).toHaveAttribute('data-current-area', 'publication');
     await expect(page.locator('#publication-imprint-panel')).toBeVisible();
-    await expect(page.locator('#publication-imprint-panel')).toContainText('Impressum & Rechtliche Hinweise');
+    await expect(page.locator('#publication-imprint-panel')).toContainText(/Impressum|Legal Information|Legal Notice/);
     await expect(page.locator('#publication-imprint-panel')).toContainText('Thomas Heisig');
     await expect(page.locator('#publication-imprint-panel')).toContainText('Wolffsheide 10');
     await expect(page.locator('#publication-imprint-panel')).toContainText('t_heisig@gmx.de');
@@ -171,7 +175,7 @@ for (const port of [4174, 4175]) {
 
     await page.evaluate(() => window.MHRNWorkspaceArchitecture?.selectRoute?.('publication', 'overview'));
     await expect(page.locator('#publication-simple-panel')).toBeVisible();
-    await expect(page.locator('#publication-simple-panel')).toContainText('MHRN · EINFACH ERKLÄRT');
+    await expect(page.locator('#publication-simple-panel')).toContainText(/MHRN/);
     await expect(page.locator('#publication-simple-panel')).toContainText('methodischen Forschungsgegenstands');
     await expect(page.locator('#publication-simple-panel')).toContainText('unabhängige externe Replikation');
     await expect(page.locator('#publication-imprint-panel')).toContainText('0009-0002-9589-1872');

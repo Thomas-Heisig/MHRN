@@ -1,7 +1,7 @@
 # MHRN Development Roadmap
 
-**Canonical roadmap for current `main`**  
-**Baseline:** `mhrn-core 0.6.0a6`
+**Canonical roadmap for active `develop`; `main` is release-only**  
+**Baseline:** `mhrn-core 0.6.0a7`
 **Updated:** 2026-09-19
 
 ## 2026-09-20 Publikationsnavigation
@@ -37,7 +37,7 @@
 ## 2026-09-19 Public Alpha.5 release candidate
 
 - Alpha.5 is a **technical pre-release candidate**, not scientific completion.
-- Publication is allowed only for the exact merged `main` source freeze after full CI and scientific/publication/DATA-integrity gates are green.
+- Publication to `main` is allowed only through an explicit `release/*` branch after full CI, Repository Health/Clean Tree, and applicable scientific/publication/DATA-integrity gates are green.
 - The Release preview separates **Entwicklung**, **Wissenschaft** and **Veröffentlichung**.
 - Public provider identity/contact data are documented; a self-hosted public dashboard remains deployment-privacy-pending until the actual hosting/proxy/logging stack is known.
 - Edition 1.8 states explicitly that AI-assisted research is both disclosed tooling and a **methodological research object**; AI remains neither author nor evidence authority.
