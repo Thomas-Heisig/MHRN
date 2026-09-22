@@ -135,6 +135,7 @@ const PHRASE_PAIRS = Object.freeze([
   ["Plastizität", "Plasticity"],
   ["Wachstum und Umbau", "Growth and Remodeling"],
   ["Aktueller Snapshot", "Current Snapshot"],
+  ["Dateiinhalt", "File content"],
   ["Datei", "File"],
   ["Größe", "Size"],
   ["Netzwerk-Visualisierung", "Network Visualization"],
