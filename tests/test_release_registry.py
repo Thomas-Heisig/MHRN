@@ -33,11 +33,13 @@ def test_current_release_matches_canonical_published_version() -> None:
     assert current["milestone_status"] in {
         "stage3_engineering_reached_scientific_maturity_separate",
         "engineering_release_candidate_scientific_programme_active",
+        "public_repository_hardening_release_candidate",
     }
     assert current["release_blockers"] == 0
     assert current["open"]
     assert current["scope"]
-    assert any("Stage-6 memory/world-model" in item for item in current["scope"])
+    assert any("release-only main" in item for item in current["scope"])
+    assert any("repository-health" in item for item in current["scope"])
     assert any("Stage-6 semanticization" in item for item in current["open"])
     assert not any(
         "add registered delayed-information control runs" in item
