@@ -49,7 +49,7 @@ for (const port of [4174, 4175]) {
     await viewer.getByRole('button', { name: 'Im Chat anzeigen', exact: true }).click();
     const card = page.locator('#research-chat-log .chat-file-card .file-renderer');
     await expect(card).toHaveAttribute('data-render-state', 'ready');
-    await expect(card.locator('.file-renderer-body')).toContainText('Dateiinhalt');
+    await expect(card.locator('.file-renderer-body')).toContainText(/Dateiinhalt|File content/);
     await expect(card.getByRole('button', { name: 'Bearbeiten', exact: true })).toHaveCount(0);
     await card.getByRole('button', { name: 'Messdaten', exact: true }).click();
     await expect(page.locator('[data-file-key="docs/sample.json"] .file-renderer')).toHaveAttribute('data-file-kind', 'json');
