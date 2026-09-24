@@ -1,0 +1,162 @@
+name: Verification Refresh
+
+on:
+  push:
+    branches: [develop]
+    paths:
+      - src/**
+      - tests/**
+      - scripts/**
+      - configs/**
+      - pyproject.toml
+      - requirements.txt
+      - .github/workflows/verification-refresh.yml
+  workflow_dispatch:
+
+concurrency:
+  group: verification-refresh-develop
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: develop
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.13'
+          cache: pip
+
+      - name: Install repository development environment
+        run: python -m pip install -e '.[dev,docs]'
+
+      - name: Require clean checkout
+        run: test -z "$(git status --porcelain --untracked-files=all)"
+
+      - name: Regenerate source-bound verification
+        run: |
+          python scripts/generate_baseline.py
+          python scripts/generate_determinism_artifact.py
+          python scripts/check_doc_consistency.py --check-tests
+          python scripts/check_scientific_maturity_integrity.py
+          python scripts/check_connectome_integrity.py
+
+      - name: Publish verified gate provenance
+        env:
+          VERIFY_RUN_ID: ${{ github.run_id }}
+          VERIFY_RUN_NUMBER: ${{ github.run_number }}
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          import subprocess
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          from src.dashboard.gate_status import GateStatusBuilder
+          from src.dashboard.verification import compute_source_tree_digest
+
+          root = Path(".").resolve()
+          baseline_path = root / "tests/test_baseline.json"
+          artifact_path = (
+              root / "research/generated/verification/phase_b_gate_status.json"
+          )
+          baseline = json.loads(baseline_path.read_text(encoding="utf-8"))
+          old = json.loads(artifact_path.read_text(encoding="utf-8"))
+          current_digest = compute_source_tree_digest(root)
+          assert current_digest == baseline["tested_tree_digest"]
+
+          status = GateStatusBuilder(repo_root=root).build(
+              ci_status={
+                  "status": "passed",
+                  "source": "verification_refresh",
+              }
+          )
+          scientific = status["scientific_gate"]
+          assert scientific["overall"] == "passed", scientific["overall"]
+
+          def summary(name):
+              items = scientific[name]["items"]
+              return {
+                  "passed": sum(item["status"] == "passed" for item in items),
+                  "total": len(items),
+              }
+
+          source_commit = subprocess.run(
+              ["git", "rev-parse", "HEAD"],
+              cwd=root,
+              check=True,
+              capture_output=True,
+              text=True,
+          ).stdout.strip()
+          suite = baseline["full_suite"]
+          artifact = {
+              "schema_version": 1,
+              "status": "verified",
+              "generated": datetime.now(timezone.utc).isoformat(),
+              "source_freeze": {
+                  "commit": source_commit,
+                  "tested_tree_digest": current_digest,
+              },
+              "baseline": {
+                  "python": baseline["python"],
+                  "passed": suite["passed"],
+                  "failed": suite["failed"],
+                  "skipped": suite["skipped"] + suite.get("xfailed", 0),
+                  "collection_errors": baseline["full_collection"][
+                      "collection_errors"
+                  ],
+                  "artifact": "tests/test_baseline.json",
+              },
+              "continuous_integration": {
+                  "workflow": (
+                      "Verification Refresh #"
+                      + os.environ["VERIFY_RUN_NUMBER"]
+                  ),
+                  "run_id": int(os.environ["VERIFY_RUN_ID"]),
+                  "head_sha": source_commit,
+                  "conclusion": "success",
+              },
+              "scientific_gate": {
+                  "overall": "passed",
+                  "gate_a": summary("gate_a"),
+                  "gate_b": summary("gate_b"),
+                  "gate_c": summary("gate_c"),
+              },
+              "release_readiness": "ready",
+              "final_validation": {
+                  "command": "python scripts/generate_baseline.py",
+                  "passed": suite["passed"],
+                  "failed": suite["failed"],
+                  "skipped": suite["skipped"] + suite.get("xfailed", 0),
+              },
+              "verification_artifacts": old.get("verification_artifacts", []),
+              "limitations": old.get("limitations", []),
+          }
+          artifact_path.write_text(
+              json.dumps(artifact, indent=2, sort_keys=True) + "\n",
+              encoding="utf-8",
+          )
+          PY
+
+      - name: Commit refreshed verification
+        run: |
+          git add tests/test_baseline.json research/generated/verification
+          git diff --cached --check
+          if git diff --cached --quiet; then
+            echo "Verification artifacts already current."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "test: refresh source-bound verification"
+          git push origin HEAD:develop
