@@ -16,16 +16,13 @@ from src.research.connectome_embodiment import LoopResult, _simulate
 
 ROOT = Path(__file__).resolve().parents[1]
 PREREG = (
-    ROOT
-    / "research/preregistrations/PREREG-EMB002B-PROPRIOCEPTION-TRANSITION-V5.json"
+    ROOT / "research/preregistrations/PREREG-EMB002B-PROPRIOCEPTION-TRANSITION-V5.json"
 )
 CONFIG = ROOT / "configs/learning_experiment.yaml"
 EXP_ID = "EXP-EMB002B-TRANSITION-V5-20260924"
 OUT = ROOT / "research/experiments" / EXP_ID
 EXPECTED_DELAYS = (0, 50, 60, 70, 80, 90, 100)
-CONDITIONS = tuple(f"delay_{delay}" for delay in EXPECTED_DELAYS) + (
-    "feedback_absent",
-)
+CONDITIONS = tuple(f"delay_{delay}" for delay in EXPECTED_DELAYS) + ("feedback_absent",)
 
 
 def read_json(path: Path) -> dict[str, Any]:
@@ -76,9 +73,7 @@ def compact(
         "condition": condition,
         "seed": seed,
         "requested_delay_ticks": requested_delay_ticks,
-        "engine_proprioceptive_delay_ticks": int(
-            metrics["proprioceptive_delay_ticks"]
-        ),
+        "engine_proprioceptive_delay_ticks": int(metrics["proprioceptive_delay_ticks"]),
         "ticks_requested": int(metrics["ticks_requested"]),
         "ticks_executed": int(metrics["ticks_executed"]),
         "tracking_rmse_rad": float(metrics["tracking_rmse_rad"]),
@@ -191,9 +186,7 @@ def main() -> int:
         raw[(seed, "feedback_absent")] = absent
         serialized.append(compact("feedback_absent", seed, absent, None))
 
-    rows = {
-        (int(row["seed"]), str(row["condition"])): row for row in serialized
-    }
+    rows = {(int(row["seed"]), str(row["condition"])): row for row in serialized}
     per_seed: dict[str, dict[str, bool]] = {}
     for seed in seeds:
         seed_rows = [rows[(seed, condition)] for condition in CONDITIONS]
@@ -203,23 +196,13 @@ def main() -> int:
                 len({row["state_digest_before"] for row in seed_rows}) == 1
             ),
             "same_initial_body_state": (
-                len(
-                    {
-                        digest(row["initial_body_state"])
-                        for row in seed_rows
-                    }
-                )
-                == 1
+                len({digest(row["initial_body_state"]) for row in seed_rows}) == 1
             ),
             "same_graph_fingerprint": (
                 len({digest(row["graph"]) for row in seed_rows}) == 1
             ),
             "delay_metadata_exact": all(
-                int(
-                    rows[(seed, f"delay_{delay}")][
-                        "engine_proprioceptive_delay_ticks"
-                    ]
-                )
+                int(rows[(seed, f"delay_{delay}")]["engine_proprioceptive_delay_ticks"])
                 == delay
                 for delay in delays
             ),
@@ -238,9 +221,7 @@ def main() -> int:
         "clean_source_freeze": source["dirty_before_execution"] is False,
         "run_count": len(serialized) == 192,
         "coverage": all(
-            (seed, condition) in rows
-            for seed in seeds
-            for condition in CONDITIONS
+            (seed, condition) in rows for seed in seeds for condition in CONDITIONS
         ),
         "runtime_errors_absent": all(
             row["runtime_error"] is None for row in serialized
@@ -260,8 +241,7 @@ def main() -> int:
 
     means = {
         condition: statistics.fmean(
-            float(rows[(seed, condition)]["tracking_rmse_rad"])
-            for seed in seeds
+            float(rows[(seed, condition)]["tracking_rmse_rad"]) for seed in seeds
         )
         for condition in CONDITIONS
     }
@@ -285,13 +265,11 @@ def main() -> int:
         ),
         "delay_90_degraded": (
             comparisons["delay_90"]["mean_difference"] >= degradation_margin
-            and comparisons["delay_90"]["fraction_delay_0_lower"]
-            >= fraction_required
+            and comparisons["delay_90"]["fraction_delay_0_lower"] >= fraction_required
         ),
         "delay_100_degraded": (
             comparisons["delay_100"]["mean_difference"] >= degradation_margin
-            and comparisons["delay_100"]["fraction_delay_0_lower"]
-            >= fraction_required
+            and comparisons["delay_100"]["fraction_delay_0_lower"] >= fraction_required
         ),
     }
     assay_valid = (
@@ -303,10 +281,8 @@ def main() -> int:
         delay
         for delay in delays
         if delay > 0
-        and comparisons[f"delay_{delay}"]["mean_difference"]
-        >= degradation_margin
-        and comparisons[f"delay_{delay}"]["fraction_delay_0_lower"]
-        >= fraction_required
+        and comparisons[f"delay_{delay}"]["mean_difference"] >= degradation_margin
+        and comparisons[f"delay_{delay}"]["fraction_delay_0_lower"] >= fraction_required
     ]
     transition = {
         "earliest_registered_degraded_delay_ticks": (
@@ -357,9 +333,7 @@ def main() -> int:
         "research_question": "RQ-EMB-002",
         "hypothesis": "H-EMB-002-B",
         "protocol": prereg["protocol"],
-        "experiment_status": (
-            "completed" if integrity["pass"] else "not_tested"
-        ),
+        "experiment_status": ("completed" if integrity["pass"] else "not_tested"),
         "result_status": result_status,
         "direct_test_of_hypothesis": True,
         "derived_from_exploratory_v4": True,
