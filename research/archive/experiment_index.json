@@ -1443,8 +1443,15 @@
       "original_path": "experiments/EXP-EMB001B-TEMPORAL-V3-20260920",
       "reason": "manuelle Archivierung"
     },
+    "EXP-EMB002A-DELAY-SWEEP-V4-20260924": {
+      "archived_at": "2026-09-24T16:44:47.334805+00:00",
+      "experiment_id": "EXP-EMB002A-DELAY-SWEEP-V4-20260924",
+      "manifest_sha256": "09afe40f7d764e4a4c10a93d91781f9464653d51b47ce7a606a41845f698f315",
+      "original_path": "experiments/EXP-EMB002A-DELAY-SWEEP-V4-20260924",
+      "reason": "manuelle Archivierung"
+    },
     "EXP-EMB002A-PROPRIOCEPTION-V3-20260920": {
-      "archived_at": "2026-09-20T16:07:02.580633+00:00",
+      "archived_at": "2026-09-24T16:45:23.105394+00:00",
       "experiment_id": "EXP-EMB002A-PROPRIOCEPTION-V3-20260920",
       "manifest_sha256": "c7f5de754366f279b1bda4da7d97177b02e8953cb6c86d0bdb8e4ff17631d59c",
       "original_path": "experiments/EXP-EMB002A-PROPRIOCEPTION-V3-20260920",
