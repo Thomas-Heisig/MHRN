@@ -1,0 +1,19 @@
+{
+  "ai_review_does_not_satisfy_human_gate": true,
+  "automatic_evidence_promotion": false,
+  "experiment_id": "EXP-EMB002A-DELAY-SWEEP-V4-20260924",
+  "human_review_status": "PENDING",
+  "hypothesis": "H-EMB-002-A",
+  "questions": [
+    "Were seeds 924001-924020 fresh for this delay-sweep protocol?",
+    "Was each registered delay applied exactly and verified against its same-run sensor tape?",
+    "Were all seven arms paired on the same initial neural/body state and graph per seed?",
+    "Is the outcome interpreted as a descriptive timing-sensitivity curve rather than a post-hoc rescue of H-EMB-002-A?",
+    "Is interpretation limited to the fixed synthetic six-neuron fixture?"
+  ],
+  "research_question": "RQ-EMB-002",
+  "result_status": "COMPLETED_EXPLORATORY_DATA",
+  "reviewer_type_required": "human",
+  "schema_version": 1,
+  "scientific_evidence": false
+}
