@@ -9,6 +9,7 @@
   - SRC-CONN-EON-2026
   hypotheses:
   - H-EMB-002-A
+  - H-EMB-002-B
   evidence: []
   status: open
   answer:
@@ -16,7 +17,7 @@
     confidence: none
     limitations: Temporal shuffle uses a declared offline donor tape, not future online observations.
   created: '2026-09-09'
-  updated: '2026-09-09'
+  updated: '2026-09-24'
 - id: RQ-EMB-003
   domain: Connectome-Informed Embodiment
   question: Laesst sich eine unbekannte Sensor-Aktor-Zuordnung durch SNN-Plastizitaet erlernen, statt

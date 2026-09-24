@@ -14,6 +14,17 @@
   evidence: []
   created: '2026-09-09'
   updated: '2026-09-09'
+- id: H-EMB-002-B
+  research_question: RQ-EMB-002
+  hypothesis: In der festen synthetischen Sechs-Neuronen-Gelenk-Fixture bleiben 50 und 60 Ticks
+    propriozeptive Verzoegerung innerhalb eines vorab definierten Toleranzbands von +0,01 rad
+    mittlerer Tracking-RMSE gegenueber delay_0, waehrend 90 und 100 Ticks die mittlere RMSE
+    um mindestens +0,03 rad erhoehen und delay_0 in mindestens 90 Prozent der gepaarten Seeds
+    den niedrigeren Fehler aufweist.
+  status: untested
+  evidence: []
+  created: '2026-09-24'
+  updated: '2026-09-24'
 - id: H-EMB-003-A
   research_question: RQ-EMB-003
   hypothesis: Nach einem unbekannten Aktuatortausch verbessert aktivierte Dreifaktor-Plastizitaet den
