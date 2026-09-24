@@ -1457,6 +1457,13 @@
       "original_path": "experiments/EXP-EMB002A-PROPRIOCEPTION-V3-20260920",
       "reason": "manuelle Archivierung"
     },
+    "EXP-EMB002B-TRANSITION-V5-20260924": {
+      "archived_at": "2026-09-24T17:45:10.453340+00:00",
+      "experiment_id": "EXP-EMB002B-TRANSITION-V5-20260924",
+      "manifest_sha256": "b39d931c5d51180db36813348f2f739859841693d8eb27b4e064707b055dc1f8",
+      "original_path": "experiments/EXP-EMB002B-TRANSITION-V5-20260924",
+      "reason": "manuelle Archivierung"
+    },
     "EXP-EMP-20260910": {
       "archived_at": "2026-09-16T13:42:09.146248+00:00",
       "experiment_id": "EXP-EMP-20260910",
