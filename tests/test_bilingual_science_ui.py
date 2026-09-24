@@ -23,6 +23,8 @@ def test_frontend_language_controller_defaults_to_english() -> None:
     assert 'data-mhrn-language="en"' in i18n
     assert 'data-mhrn-language="de"' in i18n
     assert '"mhrn:language-change"' in i18n
+    assert 'const startsWithWord = /^[\\p{L}\\p{N}_]/u.test(from);' in i18n
+    assert 'const endsWithWord = /[\\p{L}\\p{N}_]$/u.test(from);' in i18n
 
 
 def test_current_publication_declares_language_provenance() -> None:
