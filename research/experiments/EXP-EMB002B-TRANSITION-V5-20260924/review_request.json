@@ -1,0 +1,20 @@
+{
+  "ai_review_does_not_satisfy_human_gate": true,
+  "automatic_evidence_promotion": false,
+  "experiment_id": "EXP-EMB002B-TRANSITION-V5-20260924",
+  "human_review_status": "PENDING",
+  "hypothesis": "H-EMB-002-B",
+  "questions": [
+    "Were seeds 925001-925024 fresh and disjoint from V3/V4?",
+    "Were all registered delays applied exactly and verified against their same-run sensor tapes?",
+    "Were all eight arms paired on the same initial neural/body state and graph per seed?",
+    "Were the +0.01 rad tolerance and +0.03 rad degradation margins frozen before V5 DATA?",
+    "Did both tolerance rules, both degradation rules and the feedback-absent assay-control rule pass?",
+    "Is any transition claim restricted to this synthetic six-neuron fixture and the registered delay grid?"
+  ],
+  "research_question": "RQ-EMB-002",
+  "result_status": "SUPPORTED_WITHIN_PREREGISTERED_PROTOCOL",
+  "reviewer_type_required": "human",
+  "schema_version": 1,
+  "scientific_evidence": false
+}
