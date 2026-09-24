@@ -12,8 +12,7 @@ ROOT = Path(__file__).resolve().parents[1]
 EXP_ID = "EXP-EMB002A-DELAY-SWEEP-V4-20260924"
 OUT = ROOT / "research/experiments" / EXP_ID
 PREREG = (
-    ROOT
-    / "research/preregistrations/PREREG-EMB002A-PROPRIOCEPTION-DELAY-SWEEP-V4.json"
+    ROOT / "research/preregistrations/PREREG-EMB002A-PROPRIOCEPTION-DELAY-SWEEP-V4.json"
 )
 EXPECTED_DELAYS = (0, 5, 20, 50, 100, 200)
 EXPECTED_CONDITIONS = {
@@ -73,9 +72,7 @@ def main() -> int:
     assert all(int(row["ticks_requested"]) == 1000 for row in runs)
     assert all(int(row["ticks_executed"]) == 1000 for row in runs)
 
-    rows = {
-        (int(row["seed"]), str(row["condition"])): row for row in runs
-    }
+    rows = {(int(row["seed"]), str(row["condition"])): row for row in runs}
     for seed in seeds:
         seed_rows = [rows[(seed, condition)] for condition in conditions]
         assert len({row["state_digest_before"] for row in seed_rows}) == 1
@@ -88,15 +85,7 @@ def main() -> int:
             )
             == 1
         )
-        assert (
-            len(
-                {
-                    json.dumps(row["graph"], sort_keys=True)
-                    for row in seed_rows
-                }
-            )
-            == 1
-        )
+        assert len({json.dumps(row["graph"], sort_keys=True) for row in seed_rows}) == 1
         for delay in delays:
             row = rows[(seed, f"delay_{delay}")]
             assert int(row["requested_delay_ticks"]) == delay
@@ -104,8 +93,7 @@ def main() -> int:
 
     integrity = manifest["integrity"]["per_seed"]
     assert all(
-        all(bool(value) for value in checks.values())
-        for checks in integrity.values()
+        all(bool(value) for value in checks.values()) for checks in integrity.values()
     )
 
     hashes = manifest["artifacts_sha256"]
@@ -116,9 +104,7 @@ def main() -> int:
         ROOT / "src/research/connectome_embodiment.py"
     )
 
-    for line in (OUT / "checksums.sha256").read_text(
-        encoding="utf-8"
-    ).splitlines():
+    for line in (OUT / "checksums.sha256").read_text(encoding="utf-8").splitlines():
         digest, relpath = line.split("  ", 1)
         assert sha256(OUT / relpath) == digest
 
@@ -130,9 +116,7 @@ def main() -> int:
                 "run_count": len(runs),
                 "integrity": True,
                 "means": manifest["results"]["mean_tracking_rmse_rad"],
-                "delay_response_curve": manifest["results"][
-                    "delay_response_curve"
-                ],
+                "delay_response_curve": manifest["results"]["delay_response_curve"],
                 "human_review_status": "PENDING",
                 "scientific_evidence": False,
             },
