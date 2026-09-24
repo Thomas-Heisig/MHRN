@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
-  "tested_commit": "d98010f178365d6f36999cc06474e427d9c9db1a",
-  "tested_tree_digest": "6888f38ad65ffa6d58fab350db04954d7b14475b9bd56d37db0340dec5b9aa10",
+  "tested_commit": "b0f3d20adfb4a4d2cdc78904de56c9113795a4fc",
+  "tested_tree_digest": "f8393956170a5454cac3415751166fd7993c37ac9993ad73d922e8cf80a30ffa",
   "tree_digest_paths": [
     "src/",
     "configs/",
@@ -12,7 +12,7 @@
   "tree_digest_excludes": [
     "tests/test_baseline.json"
   ],
-  "timestamp": "2026-09-24T17:16:24.098470+00:00",
+  "timestamp": "2026-09-24T18:09:31.836619+00:00",
   "python": "3.13.15",
   "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
   "source_unchanged_during_run": true,
@@ -114,7 +114,7 @@
     "src/dashboard/static/frontend/components/notification-center.js": "1be0242fb55ba40db527aae30f06af71791d66ec6c8595586d20e236d3950bbf",
     "src/dashboard/static/frontend/components/status-bar.js": "d83342b2808c6e18752a7e5e993b4ab19fe063a975aca318605cfb2e76337be9",
     "src/dashboard/static/frontend/core/api.js": "db4234501490c13ea9fb0b72e99d156d2ad210fe999cb6b801ffc267d1117ea4",
-    "src/dashboard/static/frontend/core/i18n.js": "1cf6a42e2d1631b1c4506824e2b841204490470cbec97ee60b1acf99d7e903e1",
+    "src/dashboard/static/frontend/core/i18n.js": "12da18faf01c09c1131da9a988c5dc4352fe465d074059b1ec6c1bd309be80ce",
     "src/dashboard/static/frontend/core/polling-governor.js": "b5bdd8f258b66e30830c73dac9050565a8069d20a007d0c9128ca115ed9a4c52",
     "src/dashboard/static/frontend/index.js": "8eddbc0945cc5872ae136a6c1643984414c76c703f3574bd5cbd2bd281c0fde1",
     "src/dashboard/static/frontend/modules/ai-report-tools.js": "0935c1eb5c9e75bb68c7bbc6b5cc9175930ac77ac9fd3bb0f6daf5f482b51559",

@@ -9,9 +9,9 @@
   },
   "continuous_integration": {
     "conclusion": "success",
-    "head_sha": "1f0cb2742e059d806cb161dc206860e12137cb8f",
-    "run_id": 36027349682,
-    "workflow": "EMB-002-A proprioception delay sweep V4 #1"
+    "head_sha": "b0f3d20adfb4a4d2cdc78904de56c9113795a4fc",
+    "run_id": 36038413587,
+    "workflow": "Verification Refresh #3"
   },
   "final_validation": {
     "command": "python scripts/generate_baseline.py",
@@ -19,7 +19,7 @@
     "passed": 1666,
     "skipped": 2
   },
-  "generated": "2026-09-24T16:31:28.987719+00:00",
+  "generated": "2026-09-24T18:09:48.819760+00:00",
   "limitations": [
     "Scientific evidence status remains independent from release engineering readiness.",
     "External Hugging Face proxy smoke remains non-blocking operational follow-up."
@@ -42,8 +42,8 @@
     "overall": "passed"
   },
   "source_freeze": {
-    "commit": "1f0cb2742e059d806cb161dc206860e12137cb8f",
-    "tested_tree_digest": "6888f38ad65ffa6d58fab350db04954d7b14475b9bd56d37db0340dec5b9aa10"
+    "commit": "b0f3d20adfb4a4d2cdc78904de56c9113795a4fc",
+    "tested_tree_digest": "f8393956170a5454cac3415751166fd7993c37ac9993ad73d922e8cf80a30ffa"
   },
   "status": "verified",
   "verification_artifacts": [
