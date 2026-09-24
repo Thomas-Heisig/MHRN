@@ -18,7 +18,7 @@ from src.dashboard.experiment_workflow import (
     WorkflowValidationError,
 )
 from src.embodiment.joint_world import JointParameters, JointWorld
-from src.research.connectome_embodiment import RUNNERS, run_protocol
+from src.research.connectome_embodiment import RUNNERS, _simulate, run_protocol
 from src.research.connectome_governance import (
     PROTECTED_HYPOTHESES,
     ConnectomeGovernanceError,
@@ -188,6 +188,31 @@ def test_batching_does_not_change_scientific_state() -> None:
         run.metrics["trace_sha256"] for run in repeated
     ]
 
+
+
+def test_proprioceptive_delay_parameter_is_explicit_and_deterministic() -> None:
+    cfg = config()
+    immediate = _simulate(
+        cfg, 1901, 80, "delayed_proprioception", delay_ticks=0, perturb=True
+    )
+    delayed = _simulate(
+        cfg, 1901, 80, "delayed_proprioception", delay_ticks=20, perturb=True
+    )
+    repeated = _simulate(
+        cfg, 1901, 80, "delayed_proprioception", delay_ticks=20, perturb=True
+    )
+
+    assert immediate.error is None
+    assert delayed.error is None
+    assert repeated.error is None
+    assert immediate.metrics["proprioceptive_delay_ticks"] == 0
+    assert delayed.metrics["proprioceptive_delay_ticks"] == 20
+    assert delayed.metrics["trace_sha256"] == repeated.metrics["trace_sha256"]
+
+    with pytest.raises(ValueError, match="delay_ticks"):
+        _simulate(cfg, 1901, 80, "delayed_proprioception", delay_ticks=-1)
+    with pytest.raises(ValueError, match="delay_ticks"):
+        _simulate(cfg, 1901, 80, "delayed_proprioception", delay_ticks=80)
 
 def test_motor_disconnect_and_donor_are_observable() -> None:
     runs = run_protocol("embodied_controller_attribution_v1", config(), ticks=120)

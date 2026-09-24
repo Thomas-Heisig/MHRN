@@ -83,7 +83,10 @@ def _simulate(
     *,
     donor: LoopResult | None = None,
     perturb: bool = True,
+    delay_ticks: int = 20,
 ) -> LoopResult:
+    if type(delay_ticks) is not int or delay_ticks < 0 or delay_ticks >= ticks:
+        raise ValueError("delay_ticks must be an integer in [0, ticks)")
     topology = (
         condition
         if condition
@@ -132,7 +135,7 @@ def _simulate(
                 if condition == "feedback_absent":
                     observed = (0.0, 0.0)
                 elif condition == "delayed_proprioception":
-                    observed = delayed[max(0, t - 20)]
+                    observed = delayed[max(0, t - delay_ticks)]
                 elif condition in {"yoked_replay", "timing_shuffle"}:
                     if donor is None or len(donor.sensor_tape) != ticks:
                         raise ValueError("Complete precomputed donor tape required")
@@ -233,6 +236,9 @@ def _simulate(
         "neural_dt_ms": 1.0,
         "physics_period_ticks": physics_period,
         "sensor_period_ticks": sensor_period,
+        "proprioceptive_delay_ticks": (
+            delay_ticks if condition == "delayed_proprioception" else 0
+        ),
         "execution_batch_ticks": batch,
         "graph": fingerprint,
         "data_kind": "SYNTHETIC",

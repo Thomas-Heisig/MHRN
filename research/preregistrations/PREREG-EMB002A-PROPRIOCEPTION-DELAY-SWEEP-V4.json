@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "preregistration_id": "PREREG-EMB002A-PROPRIOCEPTION-DELAY-SWEEP-V4",
+  "research_question": "RQ-EMB-002",
+  "hypothesis": "H-EMB-002-A",
+  "protocol": "embodied_proprioception_delay_sweep_v4",
+  "mode": "PROSPECTIVE_EXPLORATORY_DELAY_SWEEP",
+  "execution_authorized": true,
+  "authorization_scope": "single DATA-only prospective exploratory execution; execution authorization is not human scientific review",
+  "human_review_required": true,
+  "scientific_evidence": false,
+  "automatic_evidence_promotion": false,
+  "independent_replication": false,
+  "predecessor_experiment": "EXP-EMB002A-PROPRIOCEPTION-V3-20260920",
+  "predecessor_result_status": "NOT_SUPPORTED_WITHIN_PREREGISTERED_DATA_RULE",
+  "design_rationale": "The predecessor found essentially no tracking penalty at the preregistered 20-tick proprioceptive delay while feedback absence and timing shuffle were strongly worse. V4 therefore characterizes the delay-response curve with fresh seeds and fixed delays. It is a prospective exploratory sensitivity map, not a post-hoc rescue or redefinition of H-EMB-002-A.",
+  "design": {
+    "conditions": [
+      "delay_0",
+      "delay_5",
+      "delay_20",
+      "delay_50",
+      "delay_100",
+      "delay_200",
+      "feedback_absent"
+    ],
+    "delay_ticks": [
+      0,
+      5,
+      20,
+      50,
+      100,
+      200
+    ],
+    "seeds": [
+      924001,
+      924002,
+      924003,
+      924004,
+      924005,
+      924006,
+      924007,
+      924008,
+      924009,
+      924010,
+      924011,
+      924012,
+      924013,
+      924014,
+      924015,
+      924016,
+      924017,
+      924018,
+      924019,
+      924020
+    ],
+    "ticks_per_run": 1000,
+    "inferential_unit": "paired_seed",
+    "primary_outcome": "tracking_rmse_rad",
+    "baseline_condition": "delay_0",
+    "reference_condition": "feedback_absent",
+    "external_perturbation": true
+  },
+  "analysis_plan": {
+    "primary_characterization": "paired tracking-RMSE difference of each nonzero delay versus delay_0",
+    "secondary_characterization": [
+      "mean tracking RMSE by delay",
+      "adjacent mean-RMSE changes across the frozen delay grid",
+      "descriptive monotonicity of the mean delay-response curve",
+      "feedback_absent minus delay_0 reference contrast"
+    ],
+    "direction_convention": "positive control-minus-delay_0 difference means lower tracking error at delay_0",
+    "report": [
+      "condition means",
+      "paired mean difference",
+      "paired median difference",
+      "paired minimum and maximum difference",
+      "fraction of paired seeds with lower delay_0 error",
+      "adjacent delay-response summary"
+    ],
+    "p_values": false,
+    "confirmatory_thresholds": false,
+    "binary_support_rule": false,
+    "outcome_dependent_stopping": false
+  },
+  "integrity_requirements": [
+    "clean source checkout before execution",
+    "all 140 registered condition-by-seed runs present",
+    "1000 executed ticks in every run",
+    "no runtime errors",
+    "same initial neural state within each seed",
+    "same initial body state within each seed",
+    "same graph fingerprint within each seed",
+    "every delay arm records the exact preregistered delay",
+    "every delayed trace observes the same-run sensor tape at exactly t-delay with initial-value clamping",
+    "feedback_absent observations are exactly zero"
+  ],
+  "stopping_rule": "Execute exactly 20 paired seeds across all seven arms. Retain failures; no replacement seeds and no outcome-dependent stopping.",
+  "claim_boundary": "Prospective exploratory synthetic DATA characterizing proprioceptive timing sensitivity in the fixed six-neuron joint fixture after a prior 20-tick non-support result. This is not a redefinition or rescue of H-EMB-002-A, not confirmatory EVID, not independent replication, and does not establish biological proprioception, learned body schema, real-device transfer, autonomy, consciousness, or 5D superiority. Human Review remains required."
+}
