@@ -78,7 +78,7 @@ RQ-Status und Claim-Status sind unterschiedliche wissenschaftliche Zustände und
 | `RQ-WEL-101` | open | `H-WEL-101-A` | — | — | 1 | — | — | offen |
 | `RQ-WEL-102` | open | `H-WEL-102-A` | — | — | 2 | — | — | offen |
 | `RQ-WEL-103` | open | `H-WEL-103-A` | — | — | 4 | — | — | offen |
-| `RQ-EMB-002` | open | `H-EMB-002-A`, `H-EMB-002-B` | — | — | 3 | `EXP-BATCH-20260909223705-69`, `EXP-BATCH-20260914074039-69`, `EXP-EMB002A-DELAY-SWEEP-V4-20260924`, `EXP-EMB002A-PROPRIOCEPTION-V3-20260920`, `EXP-EMP-20260910` | — | offen |
+| `RQ-EMB-002` | open | `H-EMB-002-A`, `H-EMB-002-B` | — | — | 3 | `EXP-BATCH-20260909223705-69`, `EXP-BATCH-20260914074039-69`, `EXP-EMB002A-DELAY-SWEEP-V4-20260924`, `EXP-EMB002A-PROPRIOCEPTION-V3-20260920`, `EXP-EMB002B-TRANSITION-V5-20260924`, `EXP-EMP-20260910` | — | offen |
 | `RQ-EMB-003` | open | `H-EMB-003-A` | — | — | 3 | — | — | offen |
 | `RQ-EMB-004` | open | `H-EMB-004-A` | — | — | 3 | `EXP-BATCH-20260909223705-71`, `EXP-BATCH-20260914074039-71`, `EXP-EMP-20260910` | — | offen |
 | `RQ-EMB-007` | open | `H-EMB-007-A` | — | — | 3 | — | — | offen |
