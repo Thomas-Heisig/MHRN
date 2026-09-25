@@ -272,3 +272,22 @@ Unter dem unveränderten Maturity-Vertrag ergibt sich daraus **Stage 1 = 75 %**:
 Über alle empirischen Zweige hinweg entsteht ein wiederkehrendes Muster: **technische Verfügbarkeit ist der Beginn einer wissenschaftlichen Frage, nicht deren Antwort**. Ein Mechanismus wird erst dann Teil der tragfähigen Architekturposition, wenn sein kausaler Beitrag gegenüber einer geeigneten einfacheren Referenz sichtbar wird oder seine Spezialrolle durch einen eigenen, vorab begründeten Prüfvertrag getragen ist.
 
 Damit erhält Teil IV den Charakter einer kumulativen empirischen Dissertationseinheit: Die Teilstudien stehen nicht nebeneinander, sondern verändern wechselseitig die Architektur und die Bedingungen der jeweils nächsten Hypothese.
+
+
+### 19.9.8 Teilstudie G — Digitaler Sinn, Query-Handlung und Informationsnutzung
+
+**Forschungsproblem.** Ein digitaler Gateway ist wissenschaftlich erst dann mehr als eine Schnittstelle, wenn das SNN lernt, wann und welchen digitalen Kanal es nutzen soll und die resultierende Rückmeldung kausal für Verhalten verwendet.
+
+**Architektur.** Exakte Payloads verbleiben außerhalb des SNN. Ein deklarierter Codec erzeugt Spike-Repräsentationen. Query-Selektion ist eine Handlung des Netzes; die externe Antwort wird als sensorische Rückmeldung re-enkodiert. Ein `100 x 100`-PopulationLayout ist ein möglicher gemeinsamer experimenteller Query/Response-Raum, nicht bereits ein semantischer Vektorraum.
+
+**Prüfprogramm.**
+1. **Quellentransfer / RQ-GW-004:** Entwicklung mit Quelle A, Holdout-Test mit Quelle B bei gleichem Schema und neuen Inhalten.
+2. **Abfrage als Handlung / RQ-GW-006:** Query-Zeitpunkt oder Query-Pfad darf nicht vollständig hart verdrahtet sein; Vergleich mit forced-query, no-query, random-query und frozen-routing.
+3. **Modalitätsrouting / RQ-GW-002:** Audio, Vision und Digital werden unter gematchtem Budget gegeneinander bzw. gemeinsam angeboten; lernbares Routing wird gegen Frozen/Random/Shuffle geprüft.
+4. **Codec/Binding / RQ-GW-CODEC-001:** relationale strukturierte Information muss unter eigenem präregistrierten Codec-Test decodierbar bleiben.
+
+**Lifecycle und Credit Assignment.** Query, Wait, Response und Timeout werden als explizite kausale Phasen behandelt. Eligibility-/Reward-Mechanismen dürfen delayed credit assignment adressieren, müssen aber gegen feste Zeitsteuerung und triviale Query-Heuristiken kontrolliert werden.
+
+**Falsifikation.** Der Forschungsstrang trägt keinen Claim gelernten digitalen Sinnes, wenn Quellentransfer scheitert, Queries vollständig extern getaktet werden müssen oder Modalitätsrouting nur durch feste Verdrahtung funktioniert.
+
+**Claim-Grenze.** Architekturverfügbarkeit, Checksum-Integrität oder ein erreichbarer Tool-Endpunkt sind kein Nachweis gelernten Werkzeuggebrauchs, semantischen Bindings oder eines Vorteils gegenüber nicht-neuronalen Routing-Baselines.
