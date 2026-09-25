@@ -326,6 +326,15 @@
       "citation": "cite_decision_path_revision_and_underlying_stage1_experiments",
       "evidence_role": "maturity_and_evidence_boundary_interpretation_not_evidence_by_itself",
       "rationale": "Consolidates the current Stage-1 scientific maturity, binds V2 and V3-R1 as one internal topology DATA line, records completed human interpretation reviews, keeps EvidenceEngine promotion separate, and registers Temporal-Order V2 as a distinct functional DATA line."
+    },
+    "research/decisions/2026-09-25_digital_sensory_interface_integration.md": {
+      "kind": "scientific_architecture_decision",
+      "status": "current",
+      "authority": "accepted_cross_stage_architecture_and_research_programme_decision",
+      "mutability": "versioned_replacement_only",
+      "citation": "cite_decision_path_revision_and_linked_gateway_registry_objects",
+      "evidence_role": "architecture_and_prospective_programme_not_data_or_evidence",
+      "rationale": "Integrates the digital gateway as a sensorimotor modality across Stages 4-6, defines the 100x100 candidate interface profile and prospective RQ-GW-008..010 without creating DATA, EVID or a new stage."
     }
   }
 }
