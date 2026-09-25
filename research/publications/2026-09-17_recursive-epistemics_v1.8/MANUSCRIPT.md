@@ -694,7 +694,7 @@ Für die wissenschaftliche Reife wird V2 nicht isoliert betrachtet. `EXP-S1-TOPO
 
 Die Human Reviews beider gültigen Linien durch Thomas Heisig sind abgeschlossen und akzeptieren die begrenzte Interpretation. Damit ist das Human-Review-Subgate der Stage-1-Maturity erfüllt. Eine EVID-Promotion folgt daraus ausdrücklich nicht. Der aktuelle EvidenceEngine-Vertrag verlangt unter anderem `validity.valid=true`, Nullwerte für Runtime-/Fatal-Fehler, `git.dirty=false`, `provenance_digests`, einen passenden `source_freeze_sha`, einen kanonischen Claim und ein `human_review.json` mit `supports|refutes|inconclusive`. Die historischen V2/R1-Manifeste besitzen diese heutige Vertragsform nicht; ihre vorhandenen Human Reviews lauten `accepted_as_interpretation`. Fehlende historische Felder oder stärkere Entscheidungen werden nicht rückwirkend konstruiert. Der EVID-Pfad ist daher separat und prospektiv zu behandeln.
 
-Als zweite Stage-1-Funktionslinie wird `STAGE1-TEMPORAL-ORDER-LINE-002` geführt. `EXP-S1-TEMP-ORDER-V2-20260919` prüft `RQ-TEMP-002 / H-TEMP-002-A` in einem acyclischen Sechs-Neuronen-SNN. Über 20 Seeds und 120 Runs werden intakte Kanalidentität, identity-destroyed Kontrolle sowie simultane Kontrolle verglichen. Der intakte Arm erreicht im gespeicherten V2-Befund eine mediane Order Accuracy von 1,0, der identity-destroyed Arm 0,0; die simultane Kontrolle besteht. Der Lauf ist `SUPPORTED_WITHIN_PREREGISTERED_PROTOCOL`, bleibt aber DATA bis Human Review und einer gegebenenfalls später separat legitimierten EVID-Entscheidung. Er belegt keine Lern-, Gedächtnis-, Kognitions- oder Skalierungsleistung und ist keine unabhängige Replikation der Topologielinie.
+Als zweite Stage-1-Funktionslinie wird `STAGE1-TEMPORAL-ORDER-LINE-002` geführt. `EXP-S1-TEMP-ORDER-V2-20260919` prüft `RQ-TEMP-002 / H-TEMP-002-A` in einem acyclischen Sechs-Neuronen-SNN. Über 20 Seeds und 120 Runs werden intakte Kanalidentität, identity-destroyed Kontrolle sowie simultane Kontrolle verglichen. Der intakte Arm erreicht im gespeicherten V2-Befund eine mediane Order Accuracy von 1,0, der identity-destroyed Arm 0,0; die simultane Kontrolle besteht. Der Lauf ist `SUPPORTED_WITHIN_PREREGISTERED_PROTOCOL`. Der append-only Human Review durch Thomas Heisig ist mit `accepted_as_interpretation` abgeschlossen; der Lauf bleibt dennoch DATA bis zu einer gegebenenfalls später separat legitimierten EVID-Entscheidung. Er belegt keine Lern-, Gedächtnis-, Kognitions- oder Skalierungsleistung und ist keine unabhängige Replikation der Topologielinie.
 
 Unter dem unveränderten Maturity-Vertrag ergibt sich daraus **Stage 1 = 75 %**: RQ/H, Protokoll, DATA und Attribution sind `met`, `reviewed_evidence` ist wegen abgeschlossenem Human-Review-Subgate `partial`, und `independent_replication` bleibt `open`.
 
@@ -2654,7 +2654,7 @@ Die folgende Matrix ist eine Leserhilfe, keine neue Prozentmetrik. Sie trennt de
 | Stage | Gegenwärtig belastbarer Stand | Wissenschaftlich offen / blockiert durch | Nächster legitimierter Schritt |
 | --- | --- | --- | --- |
 | **0 — einzelne Nervenzelle** | Scoped Izhikevich-/LIF-Referenzkonformität gegen Brian2 ist confirmatory DATA-seitig erfüllt. | Human-EVID-Entscheidung, unabhängige Replikation, breitere Integrator-/Parameter-/Langzeitprüfung. | Review und unabhängig autorisierte Replikation des eingefrorenen Vertrages. |
-| **1 — kleines SNN** | Die kanonische Topologie-DATA-Linie aus `EXP-S1-TOPO-V2-20260918` + `EXP-S1-TOPO-V3-R1-20260918` ist präregistriert, intern repliziert und human-reviewed; `EXP-S1-TEMP-ORDER-V2-20260919` ergänzt eine getrennte task-basierte Funktionslinie. Scientific Maturity: 75 %. | Kanonische EVID-Promotion der Topologielinie, Human Review der Temporal-Order-Linie und **unabhängige externe** Replikation; keine Ableitung eines 5D-Vorteils. | Scoped Claim + prospektiven EvidenceEngine-kompatiblen Promotion-Pfad definieren, Temporal Order reviewen und anschließend unabhängig implementiert replizieren. |
+| **1 — kleines SNN** | Die kanonische Topologie-DATA-Linie aus `EXP-S1-TOPO-V2-20260918` + `EXP-S1-TOPO-V3-R1-20260918` ist präregistriert, intern repliziert und human-reviewed; `EXP-S1-TEMP-ORDER-V2-20260919` ergänzt eine getrennte, ebenfalls human-reviewte task-basierte Funktionslinie. Scientific Maturity: 75 %. | Kanonische EVID-Promotion beider scoped Funktionslinien und **unabhängige externe** Replikation; keine Ableitung eines 5D-Vorteils. | Scoped Claims + prospektive EvidenceEngine-kompatible Promotion-Pfade definieren und anschließend unabhängig implementiert replizieren. |
 | **2 — stabile Rekurrenz** | Kleiner kontrollierter Recurrence-Effekt ist reproduzierbar beobachtet. | Breite Generalisierung; sauberer clean-tree Determinismus-/Replikationsnachweis. | Hash-gebundene clean-tree Replikation und größere getrennte Regime. |
 | **3 — plastisches Nervengewebe** | STDP, Eligibility, Drei-Faktor-Regeln, Homeostase und Strukturplastizität sind technisch vorhanden. | Held-out Nutzen, Interaktionen, Langzeitstabilität und Ressourcenwirkung. | Learning-on/off/Frozen/Sham-Kontrollen mit vorab definierten Task-Endpunkten. |
 | **4 — spezialisierte Areale** | Audio/Vision/Digital-Pfade und E01–E05 liefern enge synthetische DATA. | Generalistenvergleich, Cross-Modal-Transfer, Läsion/Shuffle/Frozen, reale Ressourcenmessung. | Matched spezialisierte-vs.-generalistische Ablationen. |
@@ -2747,7 +2747,7 @@ Die interne Replikation `EXP-S1-TOPO-V3-R1-20260918` verschärft diesen Befund. 
 `EXP-S1-TEMP-ORDER-V2-20260919` ergänzt die Topologiestudien um eine task-basierte, information-destroying Kontrolle. Im acyclischen Sechs-Neuronen-Netz werden Forward-, Reverse- und Simultanfolgen bei gematchtem Ereignisbudget untersucht. Der intakte Kanalpfad erhält im registrierten V2-Datensatz die Reihenfolge (Median Accuracy 1,0), während die identity-destroyed Kontrolle auf 0,0 fällt; die Simultankontrolle bleibt vollständig erfolgreich. Die gepaarte Accuracy-Differenz beträgt im gespeicherten Bericht 1,0 mit CI [1,0;1,0] und Sign-Test p≈1,91×10^-6.
 
 **Zulässiger Claim:** Innerhalb dieses festen kleinen Netzwerk- und Decodervertrags trägt die Kanalidentität die registrierte zeitliche Ordnungsinformation, und ihre gezielte Zerstörung entfernt die Decodierbarkeit.  
-**Nicht zulässig:** Lernen, Gedächtnis, allgemeines zeitliches Reasoning, Kognition, Skalierbarkeit, EVID oder unabhängige Replikation abzuleiten. Der Human Review dieser zweiten Funktionslinie bleibt offen.
+**Nicht zulässig:** Lernen, Gedächtnis, allgemeines zeitliches Reasoning, Kognition, Skalierbarkeit, EVID oder unabhängige Replikation abzuleiten. Der Human Review durch Thomas Heisig ist mit `accepted_as_interpretation` abgeschlossen; diese Freigabe bleibt von einer kanonischen EVID-Promotion getrennt.
 
 ### Ergebnis H — Same-Seed-Reproduzierbarkeit ist nun als eigene DATA-Linie dokumentiert
 
@@ -2962,12 +2962,11 @@ Stage 1 wird nach der Konsolidierung mit **75 % Scientific Maturity** geführt. 
 
 Die Human Reviews autorisieren eine begrenzte Interpretation, aber keine automatische EVID-Promotion. Unter dem aktuellen EvidenceEngine-Vertrag fehlen den historischen V2/R1-Manifests die heutigen Validity-/Git-/Provenance-Felder; zusätzlich ist kein scoped Claim-ID registriert und die Reviews besitzen nicht das EvidenceEngine-`human_review.json`-Entscheidungsschema. Diese Lücken werden nicht rückwirkend konstruiert.
 
-Mit `EXP-S1-TEMP-ORDER-V2-20260919` existiert außerdem eine zweite task-basierte Funktionslinie mit identity-destroyed Kontrolle. Sie ist DATA-seitig innerhalb des präregistrierten Protokolls unterstützt, wartet aber noch auf Human Review.
+Mit `EXP-S1-TEMP-ORDER-V2-20260919` existiert außerdem eine zweite task-basierte Funktionslinie mit identity-destroyed Kontrolle. Sie ist DATA-seitig innerhalb des präregistrierten Protokolls unterstützt und ihr Human Review durch Thomas Heisig ist mit `accepted_as_interpretation` abgeschlossen. Sie ist funktional eigenständig, aber keine unabhängige Replikation der Topologielinie.
 
 Offen bleiben:
 
-- Human Review der Temporal-Order-V2-Linie;
-- scoped Claim und prospektiver EvidenceEngine-kompatibler Promotion-Pfad für die zentrale Topologielinie;
+- scoped Claims und prospektive EvidenceEngine-kompatible Promotion-Pfade für Topologie und Temporal Order;
 - unabhängige Replikation außerhalb derselben Autoren-/Code-/Ausführungspipeline;
 - Skalierung und Generalisierung über den aktuellen Small-SNN-Operating-Envelope hinaus;
 - die getrennte dimensionsspezifische `RQ-5D-005 / H-5D-005-A`-Prüfung.
@@ -3235,7 +3234,7 @@ Nach dem jüngsten Human Review ist die offene Determinismusfrage enger als zuvo
 
 Für `H-SNN-003-B` sind die Human Reviews der V2/R1-DATA-Linie abgeschlossen. Der nächste Schritt ist nun **separate EVID-Promotion unter aktuellem Vertrag und unabhängige Replikation**. `EXP-GEN-0047` bleibt als inadäquater Vorgänger erhalten; die neue DATA darf ihn nicht rückwirkend umdeuten. Die ≥1.000-Neuronen-/≥10-In-Degree-Schwellen werden ausschließlich für die stärkere `H-5D-005-A`-Prüfung geführt.
 
-Damit sind die nächsten methodischen Schritte **Review/Replikation für den Stage-1-Topologiebefund** und **Testadäquanz für den separaten 5D-Claim**.
+Damit sind die nächsten methodischen Schritte **separate EVID-Promotion und unabhängige Replikation für die human-reviewten Stage-1-Funktionslinien** sowie **Testadäquanz für den separaten 5D-Claim**.
 
 ## 59. Forschungsagenda und Abschlusskriterien der Teilstudien
 
