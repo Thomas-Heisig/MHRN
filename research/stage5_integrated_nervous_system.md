@@ -71,3 +71,18 @@ Stage 5 trägt zu den breiteren Embodiment-/Gateway-Fragen `RQ6`, `RQ7`, `RQ8` u
 ## Abschlusskriterium Stage 5
 
 Stage 5 kann als **Engineering-Stufe vollständig integriert** gelten, wenn der Stage-5-Workflow den Integrationsvertrag, die 360 kontrollierten Referenzläufe, die Frontend-Verträge und die Publikationsgrenzen reproduzierbar verifiziert. Die wissenschaftliche Evidenzpromotion und unabhängige Replikation bleiben davon getrennte offene Aufgaben.
+
+
+## Digital query as sensorimotor action
+
+The digital interface is integrated into Stage 5 using the same causal principle as other sensor–actor loops:
+
+```text
+neural state -> query action -> external system -> returned information -> sensory encoding -> neural state
+```
+
+A database, API, algorithm or LLM is therefore treated as part of the **external environment**, not as a hidden MHRN cognitive module. Exact query syntax is produced at the declared decoder/boundary; the returned result re-enters through the declared encoder.
+
+The action copy may be retained as an efference-copy signal, but it is not identical to an expected response. Response prediction requires a separate registered predictor and can later be tested against no-copy, shuffled-copy and delayed-copy controls.
+
+The first direct learning question is `RQ-GW-009 / H-GW-009-A`: whether MHRN learns when to request information under matched query/resource budgets rather than relying on a fixed request schedule. This is not yet an executed Stage-5 finding.
