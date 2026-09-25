@@ -109,7 +109,7 @@ Fest verdrahtetes Routing zählt nicht als Selbstorganisation.
 
 ### D — Binding/Codec
 
-**Mapping:** `RQ-GW-CODEC-001` (Architecture Proposal)
+**Mapping:** `RQ-GW-CODEC-001 / H-GW-CODEC-001-A` (kanonisch registriert, `open` / `untested`)
 
 Strukturierte Werte/Relationen müssen unter definiertem Codec decodierbar bleiben. Ein möglicher 100x100-/VSA-Pfad ist experimentell und darf erst nach eigener Präregistrierung als funktionale Bindungsrepräsentation gelten.
 
