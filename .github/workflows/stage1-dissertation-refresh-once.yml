@@ -1,0 +1,45 @@
+name: Stage1 Dissertation Refresh Once
+
+on:
+  push:
+    branches: [develop]
+    paths:
+      - .github/workflows/stage1-dissertation-refresh-once.yml
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: develop
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.13'
+          cache: pip
+
+      - name: Install project
+        run: python -m pip install -e '.[dev,docs]'
+
+      - name: Rebuild canonical dissertation and research projections
+        run: |
+          python scripts/build_publication_edition.py --write
+          python research/generate_reports.py
+          python scripts/generate_catalog_audit_report.py
+          python scripts/check_scientific_maturity_integrity.py
+
+      - name: Commit exact generated outputs and remove one-shot workflow
+        run: |
+          git add research/publications/2026-09-17_recursive-epistemics_v1.8 research/generated
+          git rm .github/workflows/stage1-dissertation-refresh-once.yml
+          git diff --cached --check
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "docs: refresh Stage-1 dissertation projections"
+          git push origin HEAD:develop
