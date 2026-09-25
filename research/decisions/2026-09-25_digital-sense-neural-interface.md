@@ -129,3 +129,8 @@ Nicht zulässig sind derzeit:
 - "die Interface-Architektur beweist allgemeine Intelligenz".
 
 Diese stärkeren Aussagen benötigen die oben definierten kontrollierten Experimente.
+
+
+## Publikationssynchronisation
+
+Die Edition-1.8-Projektion wurde nach dieser Integrationsentscheidung deterministisch neu erzeugt. `MANUSCRIPT.md`, Publikationsregister und Manifest sind damit aus denselben kanonischen Parts abgeleitet. Diese Synchronisation erzeugt keine neue DATA oder EVID.
