@@ -225,15 +225,13 @@ def test_stage1_review_and_evid_boundaries_remain_separate() -> None:
 
     assert reviewed["decomposition"]["human_scientific_review_fraction"] == 0.5
     assert (
-        reviewed["decomposition"]["canonical_evidence_engine_promotion_fraction"]
-        == 0.5
+        reviewed["decomposition"]["canonical_evidence_engine_promotion_fraction"] == 0.5
     )
     assert "cannot by itself create EVID" in reviewed["anti_gaming_rule"]
     assert "can never be counted" in independent["anti_conflation_rule"]
 
     decision = (
-        ROOT
-        / "research/decisions/2026-09-25_stage1_scientific_consolidation.md"
+        ROOT / "research/decisions/2026-09-25_stage1_scientific_consolidation.md"
     ).read_text(encoding="utf-8")
     assert "BLOCKED_CURRENT_EVIDENCE_ENGINE_CONTRACT" in decision
     assert "STAGE1-TOPOLOGY-LINE-001" in decision
