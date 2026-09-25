@@ -22,12 +22,11 @@ Stage 1 wird nach der Konsolidierung mit **75 % Scientific Maturity** geführt. 
 
 Die Human Reviews autorisieren eine begrenzte Interpretation, aber keine automatische EVID-Promotion. Unter dem aktuellen EvidenceEngine-Vertrag fehlen den historischen V2/R1-Manifests die heutigen Validity-/Git-/Provenance-Felder; zusätzlich ist kein scoped Claim-ID registriert und die Reviews besitzen nicht das EvidenceEngine-`human_review.json`-Entscheidungsschema. Diese Lücken werden nicht rückwirkend konstruiert.
 
-Mit `EXP-S1-TEMP-ORDER-V2-20260919` existiert außerdem eine zweite task-basierte Funktionslinie mit identity-destroyed Kontrolle. Sie ist DATA-seitig innerhalb des präregistrierten Protokolls unterstützt, wartet aber noch auf Human Review.
+Mit `EXP-S1-TEMP-ORDER-V2-20260919` existiert außerdem eine zweite task-basierte Funktionslinie mit identity-destroyed Kontrolle. Sie ist DATA-seitig innerhalb des präregistrierten Protokolls unterstützt und ihr Human Review durch Thomas Heisig ist mit `accepted_as_interpretation` abgeschlossen. Sie ist funktional eigenständig, aber keine unabhängige Replikation der Topologielinie.
 
 Offen bleiben:
 
-- Human Review der Temporal-Order-V2-Linie;
-- scoped Claim und prospektiver EvidenceEngine-kompatibler Promotion-Pfad für die zentrale Topologielinie;
+- scoped Claims und prospektive EvidenceEngine-kompatible Promotion-Pfade für Topologie und Temporal Order;
 - unabhängige Replikation außerhalb derselben Autoren-/Code-/Ausführungspipeline;
 - Skalierung und Generalisierung über den aktuellen Small-SNN-Operating-Envelope hinaus;
 - die getrennte dimensionsspezifische `RQ-5D-005 / H-5D-005-A`-Prüfung.
@@ -295,7 +294,7 @@ Nach dem jüngsten Human Review ist die offene Determinismusfrage enger als zuvo
 
 Für `H-SNN-003-B` sind die Human Reviews der V2/R1-DATA-Linie abgeschlossen. Der nächste Schritt ist nun **separate EVID-Promotion unter aktuellem Vertrag und unabhängige Replikation**. `EXP-GEN-0047` bleibt als inadäquater Vorgänger erhalten; die neue DATA darf ihn nicht rückwirkend umdeuten. Die ≥1.000-Neuronen-/≥10-In-Degree-Schwellen werden ausschließlich für die stärkere `H-5D-005-A`-Prüfung geführt.
 
-Damit sind die nächsten methodischen Schritte **Review/Replikation für den Stage-1-Topologiebefund** und **Testadäquanz für den separaten 5D-Claim**.
+Damit sind die nächsten methodischen Schritte **separate EVID-Promotion und unabhängige Replikation für die human-reviewten Stage-1-Funktionslinien** sowie **Testadäquanz für den separaten 5D-Claim**.
 
 ## 59. Forschungsagenda und Abschlusskriterien der Teilstudien
 
