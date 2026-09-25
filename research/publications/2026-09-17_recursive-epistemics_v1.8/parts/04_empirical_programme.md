@@ -274,7 +274,7 @@ Unter dem unveränderten Maturity-Vertrag ergibt sich daraus **Stage 1 = 75 %**:
 Damit erhält Teil IV den Charakter einer kumulativen empirischen Dissertationseinheit: Die Teilstudien stehen nicht nebeneinander, sondern verändern wechselseitig die Architektur und die Bedingungen der jeweils nächsten Hypothese.
 
 
-## 19.6 Digitaler Sinn — drei falsifizierbare Kernexperimente
+## 19.10 Digitaler Sinn — drei falsifizierbare Kernexperimente
 
 Aus der Interface-Integration folgen drei prospektive Haupttests.
 
