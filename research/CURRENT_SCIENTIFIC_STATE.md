@@ -218,6 +218,6 @@ Die vier offenen Prüfachsen sind:
 1. Quellentransfer -> `RQ-GW-004`;
 2. Query als gelernte Handlung -> `RQ-GW-006`;
 3. Modalitätsrouting -> `RQ-GW-002`;
-4. Codec/Binding -> `RQ-GW-CODEC-001` als Architekturfrage.
+4. Codec/Binding -> `RQ-GW-CODEC-001 / H-GW-CODEC-001-A`, kanonisch registriert als `open` / `untested`.
 
 Keiner dieser Punkte ist durch die Integrationsentscheidung bereits DATA oder EVID.
