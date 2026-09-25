@@ -1486,9 +1486,9 @@
 
 **Aktuelle Antwort:**
 
-> EXP-S1-TOPO-V2-20260918 und die korrigierte interne Replikation EXP-S1-TOPO-V3-R1-20260918 liefern DATA-seitige Unterstützung dafür, dass die konkrete Topologie im präregistrierten 64-Neuronen-/246-Kanten-Stage-1-Regime die Propagationsdynamik beeinflusst. R1 löst die terminale active_fraction-Sättigung von 1d/2d/3d durch prospektiv definierte zeitaufgelöste Endpunkte auf und repliziert alle fünf V2-First-Output-Latenzrichtungen auf neuen Seeds. Human Review und EVID-Entscheidung stehen aus.
+> EXP-S1-TOPO-V2-20260918 und EXP-S1-TOPO-V3-R1-20260918 bilden gemeinsam die kanonische Stage-1-Topologie-DATA-Linie. Beide Human Reviews durch Thomas Heisig akzeptieren die begrenzte Interpretation. Die DATA sind nicht als EVID promotet.
 
-*Konfidenz: replicated_internal_data_review_pending*
+*Konfidenz: replicated_internal_data_human_reviewed_evid_not_promoted*
 
 **Hypothesen:**
 - `H-SNN-003-B`: Unter gleicher Neuronenzahl, Dichte und Stimulusbedingung unterscheiden sich Propagationslatenz oder -reichweite zwischen mindestens zwei vorab definierten Topologien; ein Vorteil einer 5D-Anordnung wird nicht vorausgesetzt. *(untested)*
@@ -1627,6 +1627,12 @@
 
 **Status:** open
 **Relevanz:** EXP-GEN-0021 zeigte Temporal-State-Diskrepanzen ohne Spike-Aktivität.
+
+**Aktuelle Antwort:**
+
+> EXP-S1-TEMP-ORDER-V2-20260919 liefert präregistrierte Stage-1-DATA aus 120 Läufen über 20 Seeds mit identity-destroyed Kontrolle. Der Laufstatus ist SUPPORTED_WITHIN_PREREGISTERED_PROTOCOL. Human Review, EVID-Promotion und unabhängige Replikation stehen aus.
+
+*Konfidenz: preregistered_task_data_review_pending*
 
 **Hypothesen:**
 - `H-TEMP-002-A`: Forward-, Reverse- und Simultanfolgen erzeugen bei gleicher Ereignisanzahl unterscheidbare spike-basierte Antwortsignaturen. *(untested)*
