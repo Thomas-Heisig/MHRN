@@ -1630,9 +1630,9 @@
 
 **Aktuelle Antwort:**
 
-> EXP-S1-TEMP-ORDER-V2-20260919 liefert präregistrierte Stage-1-DATA aus 120 Läufen über 20 Seeds mit identity-destroyed Kontrolle. Der Laufstatus ist SUPPORTED_WITHIN_PREREGISTERED_PROTOCOL. Human Review, EVID-Promotion und unabhängige Replikation stehen aus.
+> EXP-S1-TEMP-ORDER-V2-20260919 liefert präregistrierte Stage-1-DATA aus 120 Läufen über 20 Seeds mit identity-destroyed Kontrolle. Der Laufstatus ist SUPPORTED_WITHIN_PREREGISTERED_PROTOCOL. Der Human Review durch Thomas Heisig ist mit accepted_as_interpretation abgeschlossen; EVID-Promotion und unabhängige Replikation stehen separat aus.
 
-*Konfidenz: preregistered_task_data_review_pending*
+*Konfidenz: preregistered_task_data_human_reviewed_evid_not_promoted*
 
 **Hypothesen:**
 - `H-TEMP-002-A`: Forward-, Reverse- und Simultanfolgen erzeugen bei gleicher Ereignisanzahl unterscheidbare spike-basierte Antwortsignaturen. *(untested)*
