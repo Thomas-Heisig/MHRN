@@ -2253,8 +2253,8 @@ Typ: `research_question`; Quellstatus: `open`; Quelle: [research/registry/questi
   "evidence": [],
   "status": "open",
   "answer": {
-    "current": "EXP-S1-TEMP-ORDER-V2-20260919 liefert präregistrierte Stage-1-DATA aus 120 Läufen über 20 Seeds mit identity-destroyed Kontrolle. Der Laufstatus ist SUPPORTED_WITHIN_PREREGISTERED_PROTOCOL. Human Review, EVID-Promotion und unabhängige Replikation stehen aus.",
-    "confidence": "preregistered_task_data_review_pending",
+    "current": "EXP-S1-TEMP-ORDER-V2-20260919 liefert präregistrierte Stage-1-DATA aus 120 Läufen über 20 Seeds mit identity-destroyed Kontrolle. Der Laufstatus ist SUPPORTED_WITHIN_PREREGISTERED_PROTOCOL. Der Human Review durch Thomas Heisig ist mit accepted_as_interpretation abgeschlossen; EVID-Promotion und unabhängige Replikation stehen separat aus.",
+    "confidence": "preregistered_task_data_human_reviewed_evid_not_promoted",
     "limitations": "Der Befund ist eine eng begrenzte Small-SNN-Funktionslinie. Er belegt weder Lernen, Gedächtnis, allgemeines zeitliches Schlussfolgern, Skalierbarkeit noch unabhängige Replikation und ist keine Replikation der Topologie-DATA-Linie."
   },
   "created": "2026-09-05",
