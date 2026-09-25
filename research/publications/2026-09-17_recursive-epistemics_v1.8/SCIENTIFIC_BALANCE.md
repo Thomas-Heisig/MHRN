@@ -40,7 +40,7 @@ Diese Offenheit ist eine zentrale Qualitätsgrenze der 1.8: Ein inadäquates ode
 
 Seit `EXP-S1-TOPO-V2-20260918` liegt für `RQ-SNN-003 / H-SNN-003-B` ein neuer präregistrierter DATA-Befund vor. In einem 64-Neuronen-/246-Kanten-Regime mit getrennten Kalibrier- und Evaluations-Seeds, Activity-Adequacy-Gate und vorab definierten Primärkontrasten unterscheiden sich mehrere Topologiebedingungen in aktiver Reichweite und/oder First-Output-Latenz. Der Laufstatus `SUPPORTED_WITHIN_PREREGISTERED_PROTOCOL` bedeutet hier: **Topologie beeinflusst die Propagationsdynamik innerhalb des untersuchten Small-SNN-Operating-Envelope.**
 
-Diese Aussage darf nicht in „5D ist überlegen“ umformuliert werden. Im Gegenteil erreichten `5d_shuffled` und `random_graph` den Output in diesem Aufbau früher als die reguläre 5D-Anordnung. Alle sechs Bedingungen besitzen dasselbe 246-Kanten-Budget; die Unterschiede sind daher nicht als bloßer Dichte-/Sparsity-Effekt zu beschreiben. Zugleich sättigt `active_fraction` für 1d/2d/3d bei 1,0, sodass dieser Endpunkt die drei Bedingungen im gewählten Regime nicht diskriminiert. Der Latenzendpunkt diskriminiert breiter; trotz seines Namens trat in der Evaluation keine tatsächliche Zensierung auf (Sentinel wäre 129 bei 128 Ticks). Das neue Resultat stärkt deshalb den allgemeinen Topologieclaim, während der dimensionsspezifische 5D-Claim offen bleibt. Bis Human Review abgeschlossen ist, bleibt der Befund DATA-only.
+Diese Aussage darf nicht in „5D ist überlegen“ umformuliert werden. Im Gegenteil erreichten `5d_shuffled` und `random_graph` den Output in diesem Aufbau früher als die reguläre 5D-Anordnung. Alle sechs Bedingungen besitzen dasselbe 246-Kanten-Budget; die Unterschiede sind daher nicht als bloßer Dichte-/Sparsity-Effekt zu beschreiben. Zugleich sättigt `active_fraction` für 1d/2d/3d bei 1,0, sodass dieser Endpunkt die drei Bedingungen im gewählten Regime nicht diskriminiert. Der Latenzendpunkt diskriminiert breiter; trotz seines Namens trat in der Evaluation keine tatsächliche Zensierung auf (Sentinel wäre 129 bei 128 Ticks). Das neue Resultat stärkt deshalb den allgemeinen Topologieclaim, während der dimensionsspezifische 5D-Claim offen bleibt. Der Human Review durch Thomas Heisig ist abgeschlossen und akzeptiert die begrenzte Interpretation; der Befund bleibt dennoch DATA-only, solange keine separate kanonische EVID-Promotion erfolgt.
 
 ### Interne Replikation: V3-R1 löst die V2-Ceiling-Grenze auf
 
@@ -48,7 +48,15 @@ Diese Aussage darf nicht in „5D ist überlegen“ umformuliert werden. Im Gege
 
 Im korrigierten R1-Lauf steigt die mediane `activation_auc_0_32` von 22,15625 (1d) über 26,5703125 (2d) auf 28,0078125 (3d), während die Halbaktivierungslatenz von 10 über 6 auf 4 Ticks fällt. Die low-dimensionalen Kontraste sind nach einer gemeinsamen Holm-Korrektur über alle zehn Primärtests signifikant. Alle fünf V2-Kontraste der First-Output-Latenz replizieren auf den neuen Seeds in derselben Richtung.
 
-Damit ist die frühere `active_fraction=1.0`-Sättigung präziser einzuordnen: Sie begrenzt einen terminalen Endpunkt, verdeckt aber nicht die zeitliche Topologiedynamik. Der Status bleibt **interne DATA-Replikation pending Human Review**, nicht unabhängige EVID.
+Damit ist die frühere `active_fraction=1.0`-Sättigung präziser einzuordnen: Sie begrenzt einen terminalen Endpunkt, verdeckt aber nicht die zeitliche Topologiedynamik. Der Status bleibt **human-reviewed interne DATA-Replikation ohne EVID-Promotion**, nicht unabhängige EVID.
+
+### Stage-1-Maturity und zweite Funktionslinie
+
+Die Scientific-Maturity-Projektion für Stage 1 wird nach der Konsolidierung auf **75 %** gesetzt. RQ/H, präregistrierte wissenschaftliche Protokolle, source-bound DATA und Attribution sind erfüllt. Das Kriterium `reviewed_evidence` steht auf `partial`: die Human-Review-Hälfte ist für die zentrale Topologielinie abgeschlossen, die kanonische EvidenceEngine-Promotion dagegen nicht. Die interne R1-Replikation erfüllt das unabhängige Replikationskriterium nicht.
+
+Die Promotion wurde separat gegen den aktuellen EvidenceEngine-Vertrag geprüft und ist für die historischen V2/R1-Artefakte **nicht direkt zulässig**: es fehlt ein kanonischer Claim; die Manifeste besitzen nicht die heutigen `validity`-, `git`-, `provenance_digests`- und `source_freeze_sha`-Felder; und die Human Reviews sind `accepted_as_interpretation`, nicht ein EvidenceEngine-`human_review.json` mit `supports|refutes|inconclusive`. Keine dieser Lücken wird rückwirkend erfunden.
+
+Als zweite Funktionslinie ergänzt `EXP-S1-TEMP-ORDER-V2-20260919` die Topologiebaseline. Die präregistrierte Sechs-Neuronen-Aufgabe enthält eine identity-destroyed Kontrolle und zeigt innerhalb des festen Decodervertrags eine vollständige Trennung zwischen intakter und zerstörter Kanalidentität. Diese DATA warten noch auf Human Review und sind keine unabhängige Replikation der Topologielinie.
 
 ### Konsequenz: `H-5D-005-A` bleibt open/untested
 
