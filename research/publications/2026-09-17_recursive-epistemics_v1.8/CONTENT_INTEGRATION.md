@@ -300,3 +300,14 @@ Teile: IV, X, XI
 Quellpfade: `research/preregistrations/PREREG-S1-TEMP-ORDER-V2.json`; `research/experiments/EXP-S1-TEMP-ORDER-V2-20260919/manifest.json`; `research/experiments/EXP-S1-TEMP-ORDER-V2-20260919/report.md`; `research/experiments/EXP-S1-TEMP-ORDER-V2-20260919/analysis/statistics.json`; `research/experiments/EXP-S1-TEMP-ORDER-V2-20260919/review_request.json`; `research/experiments/EXP-S1-TEMP-ORDER-V2-20260919/review_request.json.review.json`
 
 Grenze: The task shows bounded temporal-order decodability in a fixed six-neuron SNN. Human review accepts the bounded interpretation but does not create canonical EVID. It does not establish learning, memory, cognition, scaling, general temporal reasoning or independent replication, and it is not an independent replication of the topology line.
+
+## CORPUS-DIGITAL-SENSORY-INTERFACE — Digital sensory interface and learned information-use programme
+
+Rolle: `canonical architecture decision plus prospective cross-stage research programme`  
+Status: `semantically_integrated_as_architecture_and_untested_programme`  
+Modus: `digital_modality_query-action_source-transfer_routing_and_claim-boundary_synthesis`  
+Teile: II, III, IV, V, VII, X, XI
+
+Quellpfade: `research/decisions/2026-09-25_digital_sensory_interface_integration.md`; `docs/02-architecture/MHRN_GATAWAY_NEURAL_INTERFACE.md`; `research/registry/questions.gateway.yaml`; `research/registry/hypotheses.gateway.yaml`; `research/stage4_specialized_neural_areas.md`; `research/stage5_integrated_nervous_system.md`
+
+Grenze: The 100x100 bus is an architecture candidate. RQ-GW-008..010 are open/untested and create no DATA/EVID. External payloads/tools are environment/boundary systems, not hidden MHRN cognition.

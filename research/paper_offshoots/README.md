@@ -43,3 +43,6 @@ Die aktuelle Publikationsstrategie bündelt drei eigenständige Paper-Objekte:
 - `PAPER-METHOD-001` — aus `PO-003`; Methoden-/Protocol-Paper zur Evidenz- und Provenienztrennung.
 
 Andere Offshoots bleiben Forschungsoptionen und werden nicht automatisch zu Papers hochgestuft.
+
+
+| **PO-007** | Gelernte Nutzung digitaler Sinneskanäle in spikenden Systemen | `RQ-GW-008..010`, Gateway Neural Interface, MSBA/Stage 5 | Neuro-AI / Embodied AI / SNN | `research_programme` | 100×100-Bus ist Architektur-Kandidat; Binding, Quellentransfer, Query-Lernen und Routing sind ungetestet. |

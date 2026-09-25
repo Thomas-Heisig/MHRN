@@ -2073,3 +2073,69 @@ Welche Komponente durfte überhaupt lernen?
 ```
 
 Genau diese Nachvollziehbarkeit sollte der normative Kern des **MHRN Gateway Neural Interface** sein.
+
+
+# 44. Digital Sensory Bus Profile — 100 × 100
+
+The digital modality is treated as a **sensorimotor channel** inside the existing gateway contract. It is not a second cognitive core, RAG memory layer or privileged knowledge path.
+
+The first concrete profile is `DIGITAL-SENSORY-BUS-100X100-v0`:
+
+```text
+layout: GRID_2D
+shape: 100 x 100
+logical channels: 10,000
+query/response representation contract: shared
+execution status: architecture candidate
+```
+
+"Shared" means the same versioned logical address space may be used for efferent query patterns and afferent response patterns. It does not imply unlabelled simultaneous superposition or that the exact same physical neurons must carry both phases.
+
+The minimum causal lifecycle is:
+
+```text
+IDLE -> QUERY_EMIT -> WAIT_RESPONSE -> RESPONSE_ADMIT|TIMEOUT -> INTEGRATE -> IDLE
+```
+
+Each episode binds direction, correlation ID, layout hash, codec hash, query tick, response-admission tick/timeout, external source identity and provenance.
+
+A query is an **action**:
+
+```text
+SNN -> neural query/readout -> decoder -> Tool/API/DB/LLM
+    -> external response -> encoder -> SpikeFrame/SpikeFrameSet -> SNN
+```
+
+The decoder/encoder remain explicit conventional boundary components. Their existence is not hidden and does not count as neural learning.
+
+## 44.1 Efference copy is not the expected answer
+
+The efference copy is the internal copy of the emitted query/action. A predicted answer requires a separate predictor:
+
+```text
+query/action copy + context -> predicted response
+actual external response     -> actual response
+predicted vs actual          -> prediction error
+```
+
+Copying a query directly into a response lane must not be described as prediction.
+
+## 44.2 Memory boundary
+
+External payloads may remain outside the SNN and be re-observed when required. MHRN still requires transient neural state for temporal context and may retain learned structural/procedural state in weights, topology, routing, gating and predictive dynamics. Existing Stage-6 episodic/replay mechanisms remain separate research mechanisms.
+
+Thus the interface tests **learned information use**, not compulsory neural storage of all external content.
+
+## 44.3 Mandatory scientific gates
+
+A strong digital-sense claim requires separate tests of:
+
+1. relational/binding integrity under encode–neural–decode transformation;
+2. source transfer from development source A to unseen schema-compatible source B;
+3. learned query timing/selection against fixed, random and no-query controls;
+4. adaptive modality routing against fixed, random and temporal-shuffle controls;
+5. delayed request-specific credit without direct external synaptic writes.
+
+Canonical research objects: `RQ-GW-008..010` / `H-GW-008-A..010-A`.
+
+The 100 × 100 profile is not asserted to be optimal, sufficient for arbitrary symbolic binding, or a universal neural code.

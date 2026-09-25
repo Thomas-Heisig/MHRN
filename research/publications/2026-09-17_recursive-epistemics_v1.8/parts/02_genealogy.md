@@ -80,3 +80,12 @@ Mehrere scheinbar periphere Arbeiten haben die Kernarchitektur verändert:
 - Spiegelmechanismus-Recherche verband Stage 4, 5, 6 und 7 zu einem neuen Querschnitt aus Wahrnehmung, Eigenhandlung, Prediction und Self/Other-Differenzierung.
 
 Die Schaffensgeschichte ist deshalb nicht nur die Geschichte eines SNN-Kerns. Sie ist die Entstehung eines **Forschungssystems**, in dem technische Architektur und wissenschaftliche Governance zunehmend gemeinsam entworfen werden.
+
+
+### Wendepunkt G — Der digitale Pfad wird als Sinneskanal präzisiert
+
+Die zuvor getrennt diskutierten Themen Gateway, digitale Integrität, externe Werkzeuge und Gedächtnis wurden am 25. September 2026 in einer engeren Architekturentscheidung zusammengeführt. Der Digitalpfad bleibt Teil der vorhandenen MSBA-/Gateway-Architektur, wird aber ausdrücklich als **sensorimotorische Modalität** behandelt: eine Abfrage ist eine efferente Handlung, die externe Antwort ein neues afferentes Ereignis.
+
+Damit verschiebt sich nicht das MHRN-Neuronenmodell, sondern die wissenschaftliche Fragestellung. Externe Inhalte müssen nicht vollständig im SNN gespeichert werden; geprüft wird stattdessen, ob sich wiederverwendbare neuronale Strukturen für Informationszugriff, zeitlichen Kontext, Routing und Vorhersage ausbilden. Als erstes konkretes Interface-Profil wurde ein 100×100 großer gemeinsamer logischer Query-/Response-Adressraum als **Kandidat** festgelegt. Seine Bindungsfähigkeit, sein Nutzen und seine Lernbarkeit sind ausdrücklich offen.
+
+Die Integrationsentscheidung liegt in `research/decisions/2026-09-25_digital_sensory_interface_integration.md`.

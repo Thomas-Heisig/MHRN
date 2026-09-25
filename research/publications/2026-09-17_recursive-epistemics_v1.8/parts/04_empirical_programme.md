@@ -272,3 +272,18 @@ Unter dem unveränderten Maturity-Vertrag ergibt sich daraus **Stage 1 = 75 %**:
 Über alle empirischen Zweige hinweg entsteht ein wiederkehrendes Muster: **technische Verfügbarkeit ist der Beginn einer wissenschaftlichen Frage, nicht deren Antwort**. Ein Mechanismus wird erst dann Teil der tragfähigen Architekturposition, wenn sein kausaler Beitrag gegenüber einer geeigneten einfacheren Referenz sichtbar wird oder seine Spezialrolle durch einen eigenen, vorab begründeten Prüfvertrag getragen ist.
 
 Damit erhält Teil IV den Charakter einer kumulativen empirischen Dissertationseinheit: Die Teilstudien stehen nicht nebeneinander, sondern verändern wechselseitig die Architektur und die Bedingungen der jeweils nächsten Hypothese.
+
+
+## 19.10 Digitaler Sinn — drei falsifizierbare Kernexperimente
+
+Aus der Interface-Integration folgen drei prospektive Haupttests.
+
+**Quellentransfer (`RQ-GW-008`).** Entwicklung erfolgt mit Quelle A; die Holdout-Evaluation verwendet eine schema-kompatible Quelle B mit neuen Inhalten. Quelle A und ihre Entwicklungsinhalte sind im Test nicht verfügbar. Ein Erfolg muss gegenüber Source-ID-/No-Transfer-Kontrollen bestehen.
+
+**Query als Handlung (`RQ-GW-009`).** Die Zeitpunkte beziehungsweise Auswahl einer Informationsabfrage dürfen im Treatment nicht fest vorgegeben werden. Die lernende Query-Policy wird unter gleichem Query-/Ressourcenbudget gegen fixed-timing, random-query und no-query verglichen.
+
+**Modalitätsrouting (`RQ-GW-010`).** Die Aufgabenrelevanz von Audio, Vision und Digital wird kontrolliert gewechselt. Adaptives Routing wird gegen fixed, random und temporal-shuffle Routing unter gematchtem Gesamtbudget getestet.
+
+Voraussetzung vor diesen drei Tests ist ein gesonderter **Binding-/Repräsentationsgate**: strukturierte Rollen oder Relationen müssen Encode → neuronale Repräsentation → Decode ohne vorab definierte Rollenvertauschung überstehen. Ein 100×100-Array gilt nicht allein aufgrund seiner Größe als Lösung des Binding-Problems.
+
+Für verzögerte externe Antworten ist request-spezifischer Credit notwendig. Eligibility darf durch die Query-/Response-Korrelation gebunden werden; externe Tools oder Decoder dürfen jedoch keine direkten synaptischen Updates schreiben.

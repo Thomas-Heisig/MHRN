@@ -87,3 +87,14 @@ Stage 4 darf technisch als abgeschlossen gelten, wenn der Referenzrunner und die
 - dass ein kausaler Vorteil modalitätsspezifischer Areale gegenüber einer matched unspezialisierten Kontrollarchitektur bereits gezeigt wäre.
 
 Produktive Aktivierung bleibt `LOCKED`. Wissenschaftliche Promotion benötigt weiterhin den bestehenden Review-/EVID-Prozess.
+
+
+## Digital sensory interface profile
+
+The existing Digital pathway is now explicitly interpreted as a **digital sensory modality**. The canonical interface profile is documented in `docs/02-architecture/MHRN_GATAWAY_NEURAL_INTERFACE.md` and the integration decision `research/decisions/2026-09-25_digital_sensory_interface_integration.md`.
+
+The candidate `DIGITAL-SENSORY-BUS-100X100-v0` specifies a 100 × 100 / 10,000-channel logical population layout shared by query and response contracts. This is an architecture candidate only; it does not claim that arbitrary formulas, code or relational structures have already been bound successfully in spikes.
+
+Stage 4 owns the **transduction and modality pathway** part of this interface. Learned query selection belongs to Stage 5 closed-loop action, while delayed credit/prediction belongs to Stage 6. No new stage is introduced.
+
+The new cross-stage questions are `RQ-GW-008` (source transfer), `RQ-GW-009` (query as learned action) and `RQ-GW-010` (adaptive modality routing). They are prospective and untested.

@@ -47,3 +47,25 @@
   evidence: []
   created: '2026-09-09'
   updated: '2026-09-09'
+
+- id: H-GW-008-A
+  research_question: RQ-GW-008
+  hypothesis: Nach Entwicklung mit Quelle A behaelt ein eingefrorenes beziehungsweise strikt evaluativ betriebenes digitales Sensor-Gateway auf einer schema-kompatiblen Quelle B mit neuen Inhalten eine vorab definierte Mindestleistung gegenueber No-Transfer- und Source-ID-Kontrollen.
+  status: untested
+  evidence: []
+  created: '2026-09-25'
+  updated: '2026-09-25'
+- id: H-GW-009-A
+  research_question: RQ-GW-009
+  hypothesis: Ein lernender Query-Policy-Pfad erreicht unter gleichem Query- und Ressourcenbudget eine hoehere held-out Aufgabenleistung beziehungsweise geringere unnoetige Abfragen als fixed-timing, random-query und no-query Kontrollen.
+  status: untested
+  evidence: []
+  created: '2026-09-25'
+  updated: '2026-09-25'
+- id: H-GW-010-A
+  research_question: RQ-GW-010
+  hypothesis: Adaptives modalitaetsabhaengiges Routing verbessert unter wechselnder Informationsrelevanz die vorab definierte held-out Aufgabenmetrik gegenueber fixed, random und temporal-shuffle Routing bei gematchtem Gesamtbudget.
+  status: untested
+  evidence: []
+  created: '2026-09-25'
+  updated: '2026-09-25'

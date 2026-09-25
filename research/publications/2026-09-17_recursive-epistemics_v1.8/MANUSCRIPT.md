@@ -326,6 +326,15 @@ Mehrere scheinbar periphere Arbeiten haben die Kernarchitektur verändert:
 Die Schaffensgeschichte ist deshalb nicht nur die Geschichte eines SNN-Kerns. Sie ist die Entstehung eines **Forschungssystems**, in dem technische Architektur und wissenschaftliche Governance zunehmend gemeinsam entworfen werden.
 
 
+### Wendepunkt G — Der digitale Pfad wird als Sinneskanal präzisiert
+
+Die zuvor getrennt diskutierten Themen Gateway, digitale Integrität, externe Werkzeuge und Gedächtnis wurden am 25. September 2026 in einer engeren Architekturentscheidung zusammengeführt. Der Digitalpfad bleibt Teil der vorhandenen MSBA-/Gateway-Architektur, wird aber ausdrücklich als **sensorimotorische Modalität** behandelt: eine Abfrage ist eine efferente Handlung, die externe Antwort ein neues afferentes Ereignis.
+
+Damit verschiebt sich nicht das MHRN-Neuronenmodell, sondern die wissenschaftliche Fragestellung. Externe Inhalte müssen nicht vollständig im SNN gespeichert werden; geprüft wird stattdessen, ob sich wiederverwendbare neuronale Strukturen für Informationszugriff, zeitlichen Kontext, Routing und Vorhersage ausbilden. Als erstes konkretes Interface-Profil wurde ein 100×100 großer gemeinsamer logischer Query-/Response-Adressraum als **Kandidat** festgelegt. Seine Bindungsfähigkeit, sein Nutzen und seine Lernbarkeit sind ausdrücklich offen.
+
+Die Integrationsentscheidung liegt in `research/decisions/2026-09-25_digital_sensory_interface_integration.md`.
+
+
 ---
 
 <a id="part-iii"></a>
@@ -487,6 +496,19 @@ Die Vorgängerarbeiten entwickelten mit **Wesen** eine maschinen-native Körperd
 Maschinen-native Interozeption umfasst dort, wo das Betriebssystem Messwerte liefert, etwa CPU-/Speicherlast, Temperatur, Lüfter, Storage, Netzwerk und Kontinuitätsgrößen. Diese Größen können technische Regulationszustände beeinflussen, sind aber keine biologischen Stoffwechselhomologien und keine Empfindungsindikatoren. Ebenso ist die body-like Darstellung nur Präsentationssemantik.
 
 Der implementierte Profile-&-Identity-Vertrag speichert Konfiguration, Fähigkeiten, Grenzen, Provenienz, Revisionen, Lineage und Snapshot-Bindungen als technische Identität. Profil, `.b5d`-Snapshot, Runtime-Checkpoint, Registry und Lineage sind absichtlich getrennte Zustandsklassen. Daraus folgt **keine psychologische Identität, Persönlichkeit, subjektive Kontinuität oder Bewusstseinsbehauptung**. Genau diese Grenze ist für spätere Stage-7-Selbstmodellforschung zentral: Metadatenidentität ist eine technische Voraussetzung, kein kausales Selbstmodell.
+
+
+### Querschnitt Stage 4–6 — digitales neuronales Interface
+
+Das digitale neuronale Interface ist **keine zusätzliche Stage**. Es verbindet bestehende Ebenen:
+
+- Stage 4: Transduktion, Codec, PopulationLayout und digitaler Modalitätspfad;
+- Stage 5: Query als autorisierte Handlung und Antwort als sensorische Konsequenz;
+- Stage 6: Kontext, verzögerter Credit, Prediction Error und interne Zustandsmodelle.
+
+Das Kandidatenprofil `DIGITAL-SENSORY-BUS-100X100-v0` besitzt einen logischen 100×100-Adressraum mit 10.000 Kanälen für phasengetrennte Query-/Response-Repräsentationen. Die gleiche logische Geometrie bedeutet nicht, dass Query und Antwort gleichzeitig ungekennzeichnet dieselben physischen Neuronen belegen. Korrelations-ID, Richtung, Phase, Codec und Layout bleiben explizite Verträge.
+
+Die drei neuen offenen Forschungsobjekte sind `RQ-GW-008` (Quellentransfer), `RQ-GW-009` (Query als gelernte Handlung) und `RQ-GW-010` (adaptives Modalitätsrouting). Keine dieser Fragen ist durch die Architekturentscheidung beantwortet.
 
 
 ---
@@ -769,6 +791,21 @@ Unter dem unveränderten Maturity-Vertrag ergibt sich daraus **Stage 1 = 75 %**:
 Damit erhält Teil IV den Charakter einer kumulativen empirischen Dissertationseinheit: Die Teilstudien stehen nicht nebeneinander, sondern verändern wechselseitig die Architektur und die Bedingungen der jeweils nächsten Hypothese.
 
 
+## 19.10 Digitaler Sinn — drei falsifizierbare Kernexperimente
+
+Aus der Interface-Integration folgen drei prospektive Haupttests.
+
+**Quellentransfer (`RQ-GW-008`).** Entwicklung erfolgt mit Quelle A; die Holdout-Evaluation verwendet eine schema-kompatible Quelle B mit neuen Inhalten. Quelle A und ihre Entwicklungsinhalte sind im Test nicht verfügbar. Ein Erfolg muss gegenüber Source-ID-/No-Transfer-Kontrollen bestehen.
+
+**Query als Handlung (`RQ-GW-009`).** Die Zeitpunkte beziehungsweise Auswahl einer Informationsabfrage dürfen im Treatment nicht fest vorgegeben werden. Die lernende Query-Policy wird unter gleichem Query-/Ressourcenbudget gegen fixed-timing, random-query und no-query verglichen.
+
+**Modalitätsrouting (`RQ-GW-010`).** Die Aufgabenrelevanz von Audio, Vision und Digital wird kontrolliert gewechselt. Adaptives Routing wird gegen fixed, random und temporal-shuffle Routing unter gematchtem Gesamtbudget getestet.
+
+Voraussetzung vor diesen drei Tests ist ein gesonderter **Binding-/Repräsentationsgate**: strukturierte Rollen oder Relationen müssen Encode → neuronale Repräsentation → Decode ohne vorab definierte Rollenvertauschung überstehen. Ein 100×100-Array gilt nicht allein aufgrund seiner Größe als Lösung des Binding-Problems.
+
+Für verzögerte externe Antworten ist request-spezifischer Credit notwendig. Eligibility darf durch die Query-/Response-Korrelation gebunden werden; externe Tools oder Decoder dürfen jedoch keine direkten synaptischen Updates schreiben.
+
+
 ---
 
 <a id="part-v"></a>
@@ -866,6 +903,13 @@ Die Real-Body-/Wesen-Arbeiten formulieren eine Infrastrukturregel, die über das
 ## 24.8 Technische Identität als reproduzierbare Konfiguration
 
 Profile & Identity ergänzt die Persistenzschicht um versionierte technische Konfiguration, Digest, Revision, Lineage und Snapshotbindung. Für Experimente können damit `profile_id`, Revision, Profil-Digest und Snapshot-Digest gemeinsam gebunden werden. Das verbessert Reproduzierbarkeit, ohne den Profilbegriff psychologisch aufzuladen. Ein Profil ist eine deklarierte technische Identität; der dynamische neuronale Zustand und der vollständige kausale Checkpoint bleiben getrennte Objekte.
+
+
+## 24.4 Digitaler Sinn als auditierbare Boundary
+
+Das digitale Interface nutzt die bereits vorhandene Trennung `Payload != Neural Representation` und `Codec != GatewayTopology != GatewayLearning`. Für das 100×100-Kandidatenprofil müssen mindestens Layout-Hash, Codec-Hash, Richtung, Korrelations-ID, Query-Tick, Response-Tick/Timeout und externe Quellenprovenienz erhalten bleiben.
+
+Die exakte Query-Syntax und externe Payloads bleiben Boundary-Objekte. Encoder und Decoder sind damit explizite konventionelle Transduktionskomponenten und keine versteckten neuronalen Fähigkeiten. Wissenschaftlich gelernt werden dürfen beispielsweise Routing, Timing, Gateway-Einfluss und prädiktive Zustände; eine direkte externe Manipulation kanonischer SNN-Gewichte bleibt ausgeschlossen.
 
 
 ---
@@ -1828,6 +1872,15 @@ Für eine tragende wissenschaftliche Aussage sollen künftig mindestens folgende
 15. **Limitation:** Welche Unsicherheit bleibt ausdrücklich bestehen?
 
 Erst diese Kette macht kumulative, AI-assistierte Wissenschaft zugleich **offen, nachprüfbar und zurechenbar**.
+
+
+### 31.6 Neuheitskandidat — digitaler sensorimotorischer Gateway-Kreis
+
+Die Kombination aus digitaler Modalität, phasengetrenntem gemeinsamem logischem Query-/Response-Raum, Query als Handlung, Efferenzkopie, verzögertem Credit und Quellentransfer wird als **Neuheitskandidat**, nicht als Neuheitsclaim geführt.
+
+Bekannte Anschlussräume umfassen unter anderem sensorimotorische Kontingenz, Corollary Discharge/Efference Copy, Vector Symbolic Architectures, Hyperdimensional Computing, aktive Informationsbeschaffung und Tool-Use. Vor einer externen Neuheitsbehauptung ist deshalb ein systematischer Prior-Art-Vergleich erforderlich.
+
+Auch der Nutzen bleibt offen: Das Interface muss unter kontrollierten Bedingungen einen messbaren Vorteil gegenüber einfacheren festen oder nicht-neuronalen Routing-/Query-Baselines zeigen. Eine philosophische Präferenz für neuronale Verarbeitung reicht nicht aus.
 
 
 ---
@@ -2934,6 +2987,14 @@ Der stärkste Beitrag von Edition 1.8 liegt damit noch nicht in einer bestätigt
 Der Dissertationscharakter entsteht gerade aus dieser Verbindung: historische Problemgenese, theoretischer Rahmen, operationalisierte Teilfragen, Methoden, Teilstudien, negative und positive Resultate, General Discussion, Limitationen und eine explizite Forschungsagenda bilden ein zusammenhängendes Argument statt einer Sammlung von Features.
 
 
+### Ergebnis K — Digitaler Sinn ist als Forschungsprogramm integriert, nicht als Fähigkeit bewiesen
+
+MHRN behandelt digitale Datenquellen künftig konsistent mit der bestehenden Embodiment-Architektur als externe Umweltmodalität. Abfragen sind potenzielle Handlungen; Antworten kehren als sensorische Ereignisse zurück. Das 100×100-Profil konkretisiert einen gemeinsamen logischen Adressraum für diesen Kreis, ohne dessen Bindungs- oder Lernfähigkeit vorwegzunehmen.
+
+**Zulässiger aktueller Claim:** Die Architektur, Provenienzgrenzen und drei falsifizierbaren Forschungsfragen für Quellentransfer, gelernte Query-Auslösung und adaptives Modalitätsrouting sind kanonisch definiert.  
+**Nicht zulässig:** gelernter Tool-Gebrauch, erfolgreiche Quellentransfer-Generalisation, symbolisches Reasoning, universelle VSA-Funktion, agency oder Kognition als bereits gezeigt darzustellen.
+
+
 ---
 
 <a id="part-xi"></a>
@@ -3276,6 +3337,22 @@ Eine spätere kanonische Hauptfassung darf keinen Zweig allein deshalb als „ab
 - oder die Frage bleibt ausdrücklich offen, weil die notwendige Evidenz noch fehlt.
 
 Gerade diese dritte Möglichkeit gehört zum wissenschaftlichen Charakter der Arbeit. Eine Dissertation oder Monographie wird nicht dadurch stärker, dass jede Frage beantwortet erscheint, sondern dadurch, dass beantwortete, widerlegte und noch offene Fragen methodisch unterscheidbar bleiben.
+
+
+### Digitaler Sinn / Gateway Interface
+
+Offen sind insbesondere:
+
+- ein implementierter und reproduzierbarer 100×100-Interface-PoC;
+- Binding-/Rollenintegrität für strukturierte digitale Inhalte;
+- `RQ-GW-008`: Quellentransfer A→B mit neuen Inhalten;
+- `RQ-GW-009`: gelernte Query-Auslösung statt festem Zeitplan;
+- `RQ-GW-010`: adaptives Audio-/Vision-/Digital-Routing;
+- request-spezifischer verzögerter Credit;
+- Vergleich gegen einfachere nicht-neuronale/fixed Routing- und Tool-Use-Baselines;
+- Prior-Art-Prüfung zu VSA/HDC, active sensing, tool use, efference copy und shared representation spaces.
+
+Stage 6 wird dadurch nicht auf „externe Daten statt Gedächtnis“ reduziert. Transienter Kontext, gelernte Struktur und interne Vorhersagemodelle bleiben notwendig; externe Inhalte müssen lediglich nicht als vollständige Faktenspeicher im SNN repliziert werden.
 
 
 ---

@@ -336,3 +336,19 @@ Eine spätere kanonische Hauptfassung darf keinen Zweig allein deshalb als „ab
 - oder die Frage bleibt ausdrücklich offen, weil die notwendige Evidenz noch fehlt.
 
 Gerade diese dritte Möglichkeit gehört zum wissenschaftlichen Charakter der Arbeit. Eine Dissertation oder Monographie wird nicht dadurch stärker, dass jede Frage beantwortet erscheint, sondern dadurch, dass beantwortete, widerlegte und noch offene Fragen methodisch unterscheidbar bleiben.
+
+
+### Digitaler Sinn / Gateway Interface
+
+Offen sind insbesondere:
+
+- ein implementierter und reproduzierbarer 100×100-Interface-PoC;
+- Binding-/Rollenintegrität für strukturierte digitale Inhalte;
+- `RQ-GW-008`: Quellentransfer A→B mit neuen Inhalten;
+- `RQ-GW-009`: gelernte Query-Auslösung statt festem Zeitplan;
+- `RQ-GW-010`: adaptives Audio-/Vision-/Digital-Routing;
+- request-spezifischer verzögerter Credit;
+- Vergleich gegen einfachere nicht-neuronale/fixed Routing- und Tool-Use-Baselines;
+- Prior-Art-Prüfung zu VSA/HDC, active sensing, tool use, efference copy und shared representation spaces.
+
+Stage 6 wird dadurch nicht auf „externe Daten statt Gedächtnis“ reduziert. Transienter Kontext, gelernte Struktur und interne Vorhersagemodelle bleiben notwendig; externe Inhalte müssen lediglich nicht als vollständige Faktenspeicher im SNN repliziert werden.
