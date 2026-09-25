@@ -45,6 +45,8 @@ This line is scientifically useful because it contains an information-destroying
 
 The central machine-readable synthesis is `research/registry/stage1_baseline.json` (`STAGE1-SCIENTIFIC-BASELINE-20260925`). It binds the 75% maturity derivation, the linked V2/V3-R1 topology DATA line, the reviewed Temporal-Order functional line, the separate EVID-promotion assessment and the unchanged independence boundary in one canonical record.
 
+Deterministic publication projection for Edition 1.8 was regenerated after this consolidation so manuscript, research-object registry and publication manifest describe the same canonical state.
+
 ## Remaining Stage-1 work
 
 1. define scoped claim IDs and prospective EvidenceEngine-compatible promotion paths for the topology and Temporal-Order lines if EVID registration is desired;
