@@ -96,3 +96,18 @@
     limitations: Normalisierte Energieeinheiten sind keine gemessenen Joule.
   created: '2026-09-09'
   updated: '2026-09-09'
+
+- id: RQ-GW-CODEC-001
+  domain: Digital Neural Interface Codec and Binding
+  question: Kann ein explizit deklarierter neuronaler Codec strukturierte digitale Information unter kontrolliertem Ressourcenbudget so abbilden, dass relevante Werte und Relationen im SNN nutzbar und im Readout wieder unterscheidbar bleiben?
+  relevance: Trennt die bloße Erreichbarkeit digitaler Daten von einer testbaren neuronalen Repräsentations- und Binding-Leistung. Der optionale 100x100-Populationsraum ist nur ein Kandidat und kein vorweggenommener Semantik-Claim.
+  literature: []
+  hypotheses: [H-GW-CODEC-001-A]
+  evidence: []
+  status: open
+  answer:
+    current: null
+    confidence: none
+    limitations: Kein Binding-, VSA-, HDC-, Formel-, Code- oder Verstehensclaim ohne eigenes eingefrorenes Protokoll, geeignete Kontrollen und Human Review.
+  created: '2026-09-25'
+  updated: '2026-09-25'
