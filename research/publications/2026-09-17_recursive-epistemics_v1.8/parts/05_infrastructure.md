@@ -91,3 +91,10 @@ Die Real-Body-/Wesen-Arbeiten formulieren eine Infrastrukturregel, die über das
 ## 24.8 Technische Identität als reproduzierbare Konfiguration
 
 Profile & Identity ergänzt die Persistenzschicht um versionierte technische Konfiguration, Digest, Revision, Lineage und Snapshotbindung. Für Experimente können damit `profile_id`, Revision, Profil-Digest und Snapshot-Digest gemeinsam gebunden werden. Das verbessert Reproduzierbarkeit, ohne den Profilbegriff psychologisch aufzuladen. Ein Profil ist eine deklarierte technische Identität; der dynamische neuronale Zustand und der vollständige kausale Checkpoint bleiben getrennte Objekte.
+
+
+## 24.4 Digitaler Sinn als auditierbare Boundary
+
+Das digitale Interface nutzt die bereits vorhandene Trennung `Payload != Neural Representation` und `Codec != GatewayTopology != GatewayLearning`. Für das 100×100-Kandidatenprofil müssen mindestens Layout-Hash, Codec-Hash, Richtung, Korrelations-ID, Query-Tick, Response-Tick/Timeout und externe Quellenprovenienz erhalten bleiben.
+
+Die exakte Query-Syntax und externe Payloads bleiben Boundary-Objekte. Encoder und Decoder sind damit explizite konventionelle Transduktionskomponenten und keine versteckten neuronalen Fähigkeiten. Wissenschaftlich gelernt werden dürfen beispielsweise Routing, Timing, Gateway-Einfluss und prädiktive Zustände; eine direkte externe Manipulation kanonischer SNN-Gewichte bleibt ausgeschlossen.
