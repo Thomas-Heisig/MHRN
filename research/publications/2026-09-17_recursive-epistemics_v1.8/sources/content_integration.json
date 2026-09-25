@@ -528,17 +528,18 @@
         "research/experiments/EXP-S1-TEMP-ORDER-V2-20260919/manifest.json",
         "research/experiments/EXP-S1-TEMP-ORDER-V2-20260919/report.md",
         "research/experiments/EXP-S1-TEMP-ORDER-V2-20260919/analysis/statistics.json",
-        "research/experiments/EXP-S1-TEMP-ORDER-V2-20260919/review_request.json"
+        "research/experiments/EXP-S1-TEMP-ORDER-V2-20260919/review_request.json",
+        "research/experiments/EXP-S1-TEMP-ORDER-V2-20260919/review_request.json.review.json"
       ],
-      "source_role": "source-bound Stage-1 task DATA package pending human review",
+      "source_role": "source-bound Stage-1 task DATA package with completed human interpretation review",
       "manuscript_parts": [
         "IV",
         "X",
         "XI"
       ],
-      "integration_status": "semantically_integrated_DATA_review_pending",
+      "integration_status": "semantically_integrated_DATA_human_reviewed_no_EVID",
       "integration_mode": "preregistered_task_design_information-destroyed-control_results_claim-boundary",
-      "boundaries": "The task shows bounded temporal-order decodability in a fixed six-neuron SNN. It does not establish learning, memory, cognition, scaling, general temporal reasoning, EVID or independent replication."
+      "boundaries": "The task shows bounded temporal-order decodability in a fixed six-neuron SNN. Human review accepts the bounded interpretation but does not create canonical EVID. It does not establish learning, memory, cognition, scaling, general temporal reasoning or independent replication, and it is not an independent replication of the topology line."
     }
   ]
 }

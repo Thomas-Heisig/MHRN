@@ -1,0 +1,127 @@
+{
+  "schema_version": 1,
+  "baseline_id": "STAGE1-SCIENTIFIC-BASELINE-20260925",
+  "stage": 1,
+  "name": "Kleines SNN",
+  "as_of": "2026-09-25",
+  "authority": "canonical_stage_scientific_baseline",
+  "source_branch_basis": "develop",
+  "maturity": {
+    "score": 0.75,
+    "percent": 75,
+    "weighting_contract": {
+      "research_question": {
+        "weight": 0.15,
+        "status": "met",
+        "contribution": 0.15
+      },
+      "protocol": {
+        "weight": 0.2,
+        "status": "met",
+        "contribution": 0.2
+      },
+      "data": {
+        "weight": 0.2,
+        "status": "met",
+        "contribution": 0.2
+      },
+      "reviewed_evidence": {
+        "weight": 0.2,
+        "status": "partial",
+        "contribution": 0.1,
+        "decomposition": {
+          "human_scientific_review_fraction": 0.5,
+          "canonical_evidence_engine_promotion_fraction": 0.5
+        },
+        "human_review_subgate": "complete",
+        "canonical_evid_promotion_subgate": "open"
+      },
+      "independent_replication": {
+        "weight": 0.15,
+        "status": "open",
+        "contribution": 0
+      },
+      "attribution": {
+        "weight": 0.1,
+        "status": "met",
+        "contribution": 0.1
+      }
+    }
+  },
+  "central_data_line": {
+    "line_id": "STAGE1-TOPOLOGY-LINE-001",
+    "research_question": "RQ-SNN-003",
+    "hypothesis": "H-SNN-003-B",
+    "role": "central_stage1_baseline",
+    "evidence_class": "DATA",
+    "result_status": "SUPPORTED_WITHIN_PREREGISTERED_PROTOCOL",
+    "experiments": [
+      {
+        "experiment_id": "EXP-S1-TOPO-V2-20260918",
+        "role": "preregistered_primary_data",
+        "human_review": "research/experiments/EXP-S1-TOPO-V2-20260918/review_request.json.review.json",
+        "human_review_decision": "accepted_as_interpretation"
+      },
+      {
+        "experiment_id": "EXP-S1-TOPO-V3-R1-20260918",
+        "role": "corrected_preregistered_time_resolved_internal_replication",
+        "human_review": "research/experiments/EXP-S1-TOPO-V3-R1-20260918/review_request.json.human-review.json",
+        "human_review_decision": "accepted_as_interpretation"
+      }
+    ],
+    "audit_only_experiment": "EXP-S1-TOPO-V3-20260918",
+    "relationship": "V2 and V3-R1 form one coherent DATA line. R1 is an internal replication/extension with fresh seeds and corrected multiple-testing implementation; it is not independent scientific replication.",
+    "claim_boundary": "Topology-sensitive propagation is supported only in the preregistered 64-neuron/246-edge Small-SNN operating envelope. No 5D superiority, scaling, cognition, biological equivalence or independent replication is established."
+  },
+  "second_functional_line": {
+    "line_id": "STAGE1-TEMPORAL-ORDER-LINE-002",
+    "research_question": "RQ-TEMP-002",
+    "hypothesis": "H-TEMP-002-A",
+    "role": "independent_stage1_functional_line",
+    "independence_semantics": "Independent in functional question/task, not an independent replication of the topology claim.",
+    "evidence_class": "DATA",
+    "result_status": "SUPPORTED_WITHIN_PREREGISTERED_PROTOCOL",
+    "experiment_id": "EXP-S1-TEMP-ORDER-V2-20260919",
+    "human_review": "research/experiments/EXP-S1-TEMP-ORDER-V2-20260919/review_request.json.review.json",
+    "human_review_decision": "accepted_as_interpretation",
+    "key_result": {
+      "runs": 120,
+      "intact_order_accuracy_median": 1,
+      "identity_destroyed_order_accuracy_median": 0,
+      "simultaneous_control_success_fraction": 1,
+      "paired_accuracy_delta_median": 1,
+      "paired_delta_ci95": [
+        1,
+        1
+      ],
+      "exact_paired_sign_test_p": 0.0000019073486
+    },
+    "claim_boundary": "Scoped technical temporal-order function of a six-neuron acyclic SNN under the registered decoder/task. No learning, memory, cognition, scaling, biological equivalence, 5D advantage or independent replication is established."
+  },
+  "evid_promotion_assessment": {
+    "status": "BLOCKED_CURRENT_EVIDENCE_ENGINE_CONTRACT",
+    "scientific_evidence": false,
+    "automatic_evidence_promotion": false,
+    "scope": "Stage-1 topology and temporal-order DATA remain DATA after accepted interpretation reviews.",
+    "reasons": [
+      "No canonical Stage-1 claim ID is registered for EvidenceEngine promotion of these scoped results.",
+      "The historical experiment manifests predate the current promotion provenance contract and must not be retroactively rewritten.",
+      "The completed reviews are accepted_as_interpretation artifacts, not canonical EvidenceEngine human_review.json decisions in the supports/refutes/inconclusive schema."
+    ],
+    "required_next_step": "Define a separate scoped claim and prospective promotion-eligible execution/review path before any Stage-1 EVID registration."
+  },
+  "independent_replication": {
+    "complete": false,
+    "topology_v3_r1_counts_as_independent_replication": false,
+    "temporal_order_line_counts_as_topology_replication": false,
+    "requirement": "Independently controlled and independently authored/audited preregistered replication."
+  },
+  "stronger_claims_kept_separate": [
+    {
+      "research_question": "RQ-5D-005",
+      "hypothesis": "H-5D-005-A",
+      "status": "open_untested",
+      "note": "The Stage-1 baseline does not establish a 5D advantage."
+    }
+  ]
+}

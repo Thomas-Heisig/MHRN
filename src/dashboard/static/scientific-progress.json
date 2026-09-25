@@ -126,7 +126,7 @@
       "name": "Kleines SNN",
       "score": 0.75,
       "status": "advanced",
-      "claim_boundary": "Die zentrale Stage-1-DATA-Linie stützt Topologiesensitivität nur im präregistrierten Small-SNN-Operating-Envelope. Human Review autorisiert die begrenzte Interpretation, nicht automatisch EVID, Kognition, Skalierbarkeit oder einen 5D-Vorteil.",
+      "claim_boundary": "Die zentrale Stage-1-Topologielinie (V2 + V3-R1) und die getrennte Temporal-Order-Funktionslinie sind innerhalb ihrer präregistrierten Small-SNN-Operating-Envelopes human-reviewed DATA. Das ist weder kanonische EVID noch unabhängige Replikation und begründet keine Kognition, Skalierbarkeit oder 5D-Überlegenheit.",
       "criteria": [
         {
           "id": "research_question",
@@ -163,10 +163,12 @@
         {
           "id": "reviewed_evidence",
           "status": "partial",
-          "label": "Human Review der zentralen Topologielinie abgeschlossen; kanonische EvidenceEngine-Promotion separat offen",
+          "label": "Human Reviews der Topologie- und Temporal-Order-Linien abgeschlossen; kanonische EvidenceEngine-Promotion separat offen",
           "sources": [
             "research/experiments/EXP-S1-TOPO-V2-20260918/review_request.json.review.json",
             "research/experiments/EXP-S1-TOPO-V3-R1-20260918/review_request.json.human-review.json",
+            "research/experiments/EXP-S1-TEMP-ORDER-V2-20260919/review_request.json.review.json",
+            "research/registry/stage1_baseline.json",
             "research/decisions/2026-09-25_stage1_scientific_consolidation.md"
           ]
         },
@@ -176,6 +178,7 @@
           "label": "Interne R1-Replikation vorhanden; keine unabhängig autorisierte Replikation",
           "sources": [
             "INDEPENDENT_REPLICATION.md",
+            "research/registry/stage1_baseline.json",
             "research/decisions/2026-09-25_stage1_scientific_consolidation.md"
           ]
         },
@@ -190,14 +193,14 @@
         }
       ],
       "next_scientific_steps": [
-        "Temporal-Order-V2 menschlich reviewen und als zweite funktionale Stage-1-DATA-Linie abschließen.",
-        "Für H-SNN-003-B einen scoped Claim und einen prospektiven EvidenceEngine-kompatiblen Promotion-Pfad definieren; historische V2/R1-Manifeste nicht rückwirkend umschreiben.",
-        "Unabhängig implementierte Replikation der zentralen Stage-1-Topologielinie durchführen."
+        "Für die human-reviewte Topologie- und Temporal-Order-DATA jeweils einen scoped Claim und einen prospektiven EvidenceEngine-kompatiblen Promotion-Pfad definieren; historische Manifeste nicht rückwirkend umschreiben.",
+        "Unabhängig implementierte beziehungsweise unabhängig kontrollierte Replikation durchführen; weder V3-R1 noch Temporal Order als unabhängige Replikation der Topologielinie zählen.",
+        "Task-, Störungs- und Skalierungsregime erweitern; die stärkere 5D-Hypothese weiterhin separat prüfen."
       ],
       "criterion_contracts": {
         "reviewed_evidence": {
           "weight": 0.2,
-          "partial_semantics": "Human scientific review of the central Stage-1 topology interpretation is complete, but canonical EvidenceEngine EVID registration is not complete.",
+          "partial_semantics": "Human scientific review of the Stage-1 topology and Temporal-Order interpretations is complete, but canonical EvidenceEngine EVID registration is not complete.",
           "met_semantics": "Human scientific review is complete and a scoped Stage-1 claim is registered through the canonical EvidenceEngine promotion path.",
           "decomposition": {
             "human_scientific_review_fraction": 0.5,
