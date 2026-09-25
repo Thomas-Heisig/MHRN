@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "effective_date": "2026-09-16",
+  "effective_date": "2026-09-25",
   "description": "High-authority overrides for paths whose scientific role must never depend only on filename heuristics. All remaining files are declared by explicit zone rules in scripts/audit_document_governance.py.",
   "overrides": {
     "docs/README.md": {
@@ -317,6 +317,15 @@
       "citation": "cite_decision_path_experiment_and_canonical_data_commit",
       "evidence_role": "execution_provenance_not_evidence_by_itself",
       "rationale": "Documents the gate-protected clean-tree execution, verified source-digest equality, canonical DATA commit and workflow-trigger recovery for EXP-REC-002-CLEAN-R2-20260919; explicitly does not create Human Review, EVID or independent replication."
+    },
+    "research/decisions/2026-09-25_stage1_scientific_consolidation.md": {
+      "kind": "scientific_method_decision",
+      "status": "current",
+      "authority": "accepted_stage1_scientific_consolidation_decision",
+      "mutability": "versioned_replacement_only",
+      "citation": "cite_decision_path_revision_and_underlying_stage1_experiments",
+      "evidence_role": "maturity_and_evidence_boundary_interpretation_not_evidence_by_itself",
+      "rationale": "Consolidates the current Stage-1 scientific maturity, binds V2 and V3-R1 as one internal topology DATA line, records completed human interpretation reviews, keeps EvidenceEngine promotion separate, and registers Temporal-Order V2 as a distinct functional DATA line."
     }
   }
 }
