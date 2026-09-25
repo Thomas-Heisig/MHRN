@@ -181,3 +181,8 @@ Edition 1.8 treats the interface as a cross-stage architectural and research-pro
 - infrastructure: versioned codecs, layouts, correlation, lifecycle, provenance and deterministic decoder/encoder boundaries;
 - integrity: novelty and utility remain open until prior-art review and controlled experiments;
 - synthesis/open landscape: the digital interface is a candidate route for learned information use, not an established cognitive capability.
+
+
+## Integration verification
+
+The architecture decision is projected into the canonical Gateway registry, Stage-4/5 research dossiers and Edition 1.8. Generated research and publication projections are rebuilt deterministically; repository gates remain the authority for merge readiness.
