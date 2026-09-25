@@ -739,3 +739,12 @@ Für eine tragende wissenschaftliche Aussage sollen künftig mindestens folgende
 15. **Limitation:** Welche Unsicherheit bleibt ausdrücklich bestehen?
 
 Erst diese Kette macht kumulative, AI-assistierte Wissenschaft zugleich **offen, nachprüfbar und zurechenbar**.
+
+
+### 31.6 Neuheitskandidat — digitaler sensorimotorischer Gateway-Kreis
+
+Die Kombination aus digitaler Modalität, phasengetrenntem gemeinsamem logischem Query-/Response-Raum, Query als Handlung, Efferenzkopie, verzögertem Credit und Quellentransfer wird als **Neuheitskandidat**, nicht als Neuheitsclaim geführt.
+
+Bekannte Anschlussräume umfassen unter anderem sensorimotorische Kontingenz, Corollary Discharge/Efference Copy, Vector Symbolic Architectures, Hyperdimensional Computing, aktive Informationsbeschaffung und Tool-Use. Vor einer externen Neuheitsbehauptung ist deshalb ein systematischer Prior-Art-Vergleich erforderlich.
+
+Auch der Nutzen bleibt offen: Das Interface muss unter kontrollierten Bedingungen einen messbaren Vorteil gegenüber einfacheren festen oder nicht-neuronalen Routing-/Query-Baselines zeigen. Eine philosophische Präferenz für neuronale Verarbeitung reicht nicht aus.

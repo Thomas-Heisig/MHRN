@@ -204,3 +204,10 @@ Die externe wissenschaftliche Neuheit bleibt `requires_prior_art_review`.
 - `docs/00-governance/DOCUMENT_GOVERNANCE.md`
 
 Vor formaler externer Einreichung bleiben menschliche Quellenprüfung, systematische Prior-Art-Prüfung, externe Similarity-Prüfung und fachliche Review erforderlich.
+
+
+### Digital Sensory Interface
+
+Am 2026-09-25 wurde das vorhandene Gateway/MSBA-Programm um eine kanonische digitale Sinnesinterpretation präzisiert. Das MHRN-Kernmodell und die 11 Forschungsrichtungen bleiben unverändert. `DIGITAL-SENSORY-BUS-100X100-v0` ist ein Architektur-Kandidat mit 10.000 logischen Kanälen; es gibt noch keinen daraus abgeleiteten Capability-Claim.
+
+Neu registriert sind `RQ-GW-008/H-GW-008-A` (Quellentransfer), `RQ-GW-009/H-GW-009-A` (Query als gelernte Handlung) und `RQ-GW-010/H-GW-010-A` (adaptives Modalitätsrouting). Alle stehen auf `open/untested`. Maßgebliche Entscheidung: `research/decisions/2026-09-25_digital_sensory_interface_integration.md`.

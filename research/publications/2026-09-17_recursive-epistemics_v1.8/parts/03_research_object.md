@@ -155,3 +155,16 @@ Die Vorgängerarbeiten entwickelten mit **Wesen** eine maschinen-native Körperd
 Maschinen-native Interozeption umfasst dort, wo das Betriebssystem Messwerte liefert, etwa CPU-/Speicherlast, Temperatur, Lüfter, Storage, Netzwerk und Kontinuitätsgrößen. Diese Größen können technische Regulationszustände beeinflussen, sind aber keine biologischen Stoffwechselhomologien und keine Empfindungsindikatoren. Ebenso ist die body-like Darstellung nur Präsentationssemantik.
 
 Der implementierte Profile-&-Identity-Vertrag speichert Konfiguration, Fähigkeiten, Grenzen, Provenienz, Revisionen, Lineage und Snapshot-Bindungen als technische Identität. Profil, `.b5d`-Snapshot, Runtime-Checkpoint, Registry und Lineage sind absichtlich getrennte Zustandsklassen. Daraus folgt **keine psychologische Identität, Persönlichkeit, subjektive Kontinuität oder Bewusstseinsbehauptung**. Genau diese Grenze ist für spätere Stage-7-Selbstmodellforschung zentral: Metadatenidentität ist eine technische Voraussetzung, kein kausales Selbstmodell.
+
+
+### Querschnitt Stage 4–6 — digitales neuronales Interface
+
+Das digitale neuronale Interface ist **keine zusätzliche Stage**. Es verbindet bestehende Ebenen:
+
+- Stage 4: Transduktion, Codec, PopulationLayout und digitaler Modalitätspfad;
+- Stage 5: Query als autorisierte Handlung und Antwort als sensorische Konsequenz;
+- Stage 6: Kontext, verzögerter Credit, Prediction Error und interne Zustandsmodelle.
+
+Das Kandidatenprofil `DIGITAL-SENSORY-BUS-100X100-v0` besitzt einen logischen 100×100-Adressraum mit 10.000 Kanälen für phasengetrennte Query-/Response-Repräsentationen. Die gleiche logische Geometrie bedeutet nicht, dass Query und Antwort gleichzeitig ungekennzeichnet dieselben physischen Neuronen belegen. Korrelations-ID, Richtung, Phase, Codec und Layout bleiben explizite Verträge.
+
+Die drei neuen offenen Forschungsobjekte sind `RQ-GW-008` (Quellentransfer), `RQ-GW-009` (Query als gelernte Handlung) und `RQ-GW-010` (adaptives Modalitätsrouting). Keine dieser Fragen ist durch die Architekturentscheidung beantwortet.

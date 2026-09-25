@@ -1399,6 +1399,45 @@ Die folgenden Forschungsfragen sind noch offen und warten auf experimentelle Evi
 
 ---
 
+## RQ-GW-008
+
+**Domäne:** Digital Sensory Transfer
+
+**Frage:** Generalisiert ein gelerntes digitales Sensor-Gateway von einer Entwicklungsquelle auf eine schema-kompatible Holdout-Quelle mit neuen Inhalten, wenn die Entwicklungsquelle im Test nicht verfuegbar ist?
+
+**Relevanz:** Trennt gelernte Informationsnutzung von Inhaltsmemorierung und macht die digitale Sinnessemantik falsifizierbar.
+
+**Hypothesen:**
+- `H-GW-008-A`: Nach Entwicklung mit Quelle A behaelt ein eingefrorenes beziehungsweise strikt evaluativ betriebenes digitales Sensor-Gateway auf einer schema-kompatiblen Quelle B mit neuen Inhalten eine vorab definierte Mindestleistung gegenueber No-Transfer- und Source-ID-Kontrollen.
+
+---
+
+## RQ-GW-009
+
+**Domäne:** Digital Query Action
+
+**Frage:** Kann MHRN lernen, wann und ueber welchen digitalen Gateway-Pfad eine Informationsabfrage als Handlung ausgeloest werden soll, ohne fest programmierten Query-Zeitpunkt?
+
+**Relevanz:** Prueft, ob Informationsbeschaffung Teil der gelernten Sensor-Aktor-Schleife statt externer Ablaufsteuerung ist.
+
+**Hypothesen:**
+- `H-GW-009-A`: Ein lernender Query-Policy-Pfad erreicht unter gleichem Query- und Ressourcenbudget eine hoehere held-out Aufgabenleistung beziehungsweise geringere unnoetige Abfragen als fixed-timing, random-query und no-query Kontrollen.
+
+---
+
+## RQ-GW-010
+
+**Domäne:** Adaptive Modality Routing
+
+**Frage:** Lernt MHRN unter wechselnder Aufgabenrelevanz, Audio-, Vision- und Digitalpfade adaptiv zu priorisieren, statt auf festes, zufaelliges oder zeitlich geshuffeltes Routing angewiesen zu sein?
+
+**Relevanz:** Prueft selbstorganisierte Nutzung mehrerer Sinne als funktionale Erweiterung der bestehenden MSBA-Architektur.
+
+**Hypothesen:**
+- `H-GW-010-A`: Adaptives modalitaetsabhaengiges Routing verbessert unter wechselnder Informationsrelevanz die vorab definierte held-out Aufgabenmetrik gegenueber fixed, random und temporal-shuffle Routing bei gematchtem Gesamtbudget.
+
+---
+
 ## RQ-MSBA-E01
 
 **Domäne:** Multimodal Energy Efficiency
@@ -1616,6 +1655,6 @@ Die folgenden Forschungsfragen sind noch offen und warten auf experimentelle Evi
 
 ---
 
-*Insgesamt 107 offene Fragen.*
+*Insgesamt 110 offene Fragen.*
 
 > Pruefstatus: RQ/H- und EVID-Statuswerte geben den Registry-Inhalt wieder. Insbesondere historische supports/supported-Eintraege sind keine Bestaetigung einer Freigabe nach den heutigen Clean-Freeze- und Human-Review-Gates. Ein abgeschlossener Lauf ist DATA, nicht automatisch akzeptierte Evidenz.

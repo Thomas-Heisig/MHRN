@@ -307,3 +307,11 @@ Die Antwort der Arbeit darauf ist keine Behauptung von Neutralität, sondern **s
 Der stärkste Beitrag von Edition 1.8 liegt damit noch nicht in einer bestätigten Theorie allgemeiner Intelligenz oder eines 5D-Gehirns. Er liegt in einer **empirisch selektierten, revidierbaren Forschungsarchitektur**, deren einzelne Mechanismen zunehmend getrennt geprüft werden und deren eigener Forschungsprozess Gegenstand methodischer Kontrolle geworden ist.
 
 Der Dissertationscharakter entsteht gerade aus dieser Verbindung: historische Problemgenese, theoretischer Rahmen, operationalisierte Teilfragen, Methoden, Teilstudien, negative und positive Resultate, General Discussion, Limitationen und eine explizite Forschungsagenda bilden ein zusammenhängendes Argument statt einer Sammlung von Features.
+
+
+### Ergebnis K — Digitaler Sinn ist als Forschungsprogramm integriert, nicht als Fähigkeit bewiesen
+
+MHRN behandelt digitale Datenquellen künftig konsistent mit der bestehenden Embodiment-Architektur als externe Umweltmodalität. Abfragen sind potenzielle Handlungen; Antworten kehren als sensorische Ereignisse zurück. Das 100×100-Profil konkretisiert einen gemeinsamen logischen Adressraum für diesen Kreis, ohne dessen Bindungs- oder Lernfähigkeit vorwegzunehmen.
+
+**Zulässiger aktueller Claim:** Die Architektur, Provenienzgrenzen und drei falsifizierbaren Forschungsfragen für Quellentransfer, gelernte Query-Auslösung und adaptives Modalitätsrouting sind kanonisch definiert.  
+**Nicht zulässig:** gelernter Tool-Gebrauch, erfolgreiche Quellentransfer-Generalisation, symbolisches Reasoning, universelle VSA-Funktion, agency oder Kognition als bereits gezeigt darzustellen.
