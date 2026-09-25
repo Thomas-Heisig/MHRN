@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Run the prospective EMB-002-A proprioceptive delay sweep V4."""
+"""Run prospective transition-resolution DATA for H-EMB-002-B."""
 
 from __future__ import annotations
 
@@ -16,12 +16,12 @@ from src.research.connectome_embodiment import LoopResult, _simulate
 
 ROOT = Path(__file__).resolve().parents[1]
 PREREG = (
-    ROOT / "research/preregistrations/PREREG-EMB002A-PROPRIOCEPTION-DELAY-SWEEP-V4.json"
+    ROOT / "research/preregistrations/PREREG-EMB002B-PROPRIOCEPTION-TRANSITION-V5.json"
 )
 CONFIG = ROOT / "configs/learning_experiment.yaml"
-EXP_ID = "EXP-EMB002A-DELAY-SWEEP-V4-20260924"
+EXP_ID = "EXP-EMB002B-TRANSITION-V5-20260924"
 OUT = ROOT / "research/experiments" / EXP_ID
-EXPECTED_DELAYS = (0, 5, 20, 50, 100, 200)
+EXPECTED_DELAYS = (0, 50, 60, 70, 80, 90, 100)
 CONDITIONS = tuple(f"delay_{delay}" for delay in EXPECTED_DELAYS) + ("feedback_absent",)
 
 
@@ -114,7 +114,6 @@ def paired(
         ),
         "ties": sum(value == 0.0 for value in differences),
         "p_value": None,
-        "confirmatory_threshold_applied": False,
     }
 
 
@@ -135,7 +134,7 @@ def main() -> int:
     prereg = read_json(PREREG)
     if prereg.get("execution_authorized") is not True:
         raise RuntimeError("execution not authorized")
-    if prereg.get("mode") != "PROSPECTIVE_EXPLORATORY_DELAY_SWEEP":
+    if prereg.get("mode") != "PROSPECTIVE_TRANSITION_RESOLUTION":
         raise RuntimeError("unexpected preregistration mode")
     if OUT.exists():
         raise RuntimeError(f"output already exists: {OUT}")
@@ -152,12 +151,13 @@ def main() -> int:
 
     config = yaml.safe_load(CONFIG.read_text(encoding="utf-8"))
     design = prereg["design"]
+    plan = prereg["analysis_plan"]
     seeds = tuple(int(seed) for seed in design["seeds"])
     delays = tuple(int(delay) for delay in design["delay_ticks"])
     ticks = int(design["ticks_per_run"])
     if delays != EXPECTED_DELAYS:
         raise RuntimeError("unexpected frozen delay grid")
-    if ticks != 1000 or len(seeds) != 20 or len(set(seeds)) != 20:
+    if ticks != 1000 or len(seeds) != 24 or len(set(seeds)) != 24:
         raise RuntimeError("unexpected frozen execution budget")
 
     raw: dict[tuple[int, str], LoopResult] = {}
@@ -219,7 +219,7 @@ def main() -> int:
 
     checks = {
         "clean_source_freeze": source["dirty_before_execution"] is False,
-        "run_count": len(serialized) == 140,
+        "run_count": len(serialized) == 192,
         "coverage": all(
             (seed, condition) in rows for seed in seeds for condition in CONDITIONS
         ),
@@ -245,46 +245,62 @@ def main() -> int:
         )
         for condition in CONDITIONS
     }
-    comparisons = [
-        paired(rows, seeds, f"delay_{delay}") for delay in delays if delay != 0
-    ]
-    comparisons.append(paired(rows, seeds, "feedback_absent"))
-
-    adjacent: list[dict[str, Any]] = []
-    for left, right in zip(delays, delays[1:]):
-        left_mean = means[f"delay_{left}"]
-        right_mean = means[f"delay_{right}"]
-        adjacent.append(
-            {
-                "from_delay_ticks": left,
-                "to_delay_ticks": right,
-                "mean_rmse_change_rad": right_mean - left_mean,
-                "non_decreasing": right_mean >= left_mean,
-            }
-        )
-    curve = {
-        "delay_means": [
-            {
-                "delay_ticks": delay,
-                "mean_tracking_rmse_rad": means[f"delay_{delay}"],
-            }
-            for delay in delays
-        ],
-        "adjacent_steps": adjacent,
-        "non_decreasing_step_count": sum(
-            bool(item["non_decreasing"]) for item in adjacent
-        ),
-        "fully_non_decreasing": all(bool(item["non_decreasing"]) for item in adjacent),
-        "worst_delay_by_mean_rmse": max(
-            delays, key=lambda delay: means[f"delay_{delay}"]
-        ),
+    comparisons = {
+        condition: paired(rows, seeds, condition)
+        for condition in CONDITIONS
+        if condition != "delay_0"
     }
 
-    result_status = (
-        "COMPLETED_EXPLORATORY_DATA"
-        if integrity["pass"]
-        else "NOT_TESTED_INTEGRITY_FAILURE"
+    tolerance_margin = float(plan["tolerance_margin_rad"])
+    degradation_margin = float(plan["degradation_margin_rad"])
+    fraction_required = float(plan["degradation_fraction_required"])
+    assay_margin = float(plan["assay_control_margin_rad"])
+
+    primary_checks = {
+        "delay_50_within_tolerance": (
+            comparisons["delay_50"]["mean_difference"] <= tolerance_margin
+        ),
+        "delay_60_within_tolerance": (
+            comparisons["delay_60"]["mean_difference"] <= tolerance_margin
+        ),
+        "delay_90_degraded": (
+            comparisons["delay_90"]["mean_difference"] >= degradation_margin
+            and comparisons["delay_90"]["fraction_delay_0_lower"] >= fraction_required
+        ),
+        "delay_100_degraded": (
+            comparisons["delay_100"]["mean_difference"] >= degradation_margin
+            and comparisons["delay_100"]["fraction_delay_0_lower"] >= fraction_required
+        ),
+    }
+    assay_valid = (
+        comparisons["feedback_absent"]["mean_difference"] >= assay_margin
+        and comparisons["feedback_absent"]["fraction_delay_0_lower"] >= 0.95
     )
+
+    qualifying = [
+        delay
+        for delay in delays
+        if delay > 0
+        and comparisons[f"delay_{delay}"]["mean_difference"] >= degradation_margin
+        and comparisons[f"delay_{delay}"]["fraction_delay_0_lower"] >= fraction_required
+    ]
+    transition = {
+        "earliest_registered_degraded_delay_ticks": (
+            min(qualifying) if qualifying else None
+        ),
+        "qualifying_delays_ticks": qualifying,
+        "localization_only_delays": list(design["localization_only_delays"]),
+        "degradation_margin_rad": degradation_margin,
+        "fraction_required": fraction_required,
+    }
+
+    support = integrity["pass"] and assay_valid and all(primary_checks.values())
+    if not integrity["pass"]:
+        result_status = "NOT_TESTED_INTEGRITY_FAILURE"
+    elif support:
+        result_status = "SUPPORTED_WITHIN_PREREGISTERED_PROTOCOL"
+    else:
+        result_status = "NOT_SUPPORTED_WITHIN_PREREGISTERED_PROTOCOL"
 
     data_path = OUT / "data/evaluation.json"
     stats_path = OUT / "analysis/statistics.json"
@@ -294,15 +310,18 @@ def main() -> int:
         {
             "schema_version": 1,
             "experiment_id": EXP_ID,
-            "analysis_mode": "prospective_exploratory_delay_sweep",
+            "analysis_mode": "prospective_transition_resolution",
             "result_status": result_status,
             "integrity": integrity,
             "mean_tracking_rmse_rad": means,
             "paired_comparisons": comparisons,
-            "delay_response_curve": curve,
-            "binary_support_rule_applied": False,
+            "primary_checks": primary_checks,
+            "assay_valid": assay_valid,
+            "transition_localization": transition,
+            "support_rule_satisfied": support,
             "p_values_computed": False,
-            "confirmatory_thresholds_applied": False,
+            "confirmatory_thresholds_applied": True,
+            "thresholds_frozen_before_v5_data": True,
             "claim_boundary": prereg["claim_boundary"],
         },
     )
@@ -312,12 +331,12 @@ def main() -> int:
         "experiment_id": EXP_ID,
         "stage": 5,
         "research_question": "RQ-EMB-002",
-        "hypothesis": "H-EMB-002-A",
+        "hypothesis": "H-EMB-002-B",
         "protocol": prereg["protocol"],
         "experiment_status": ("completed" if integrity["pass"] else "not_tested"),
         "result_status": result_status,
-        "direct_test_of_hypothesis": False,
-        "characterization_after_prior_non_support": True,
+        "direct_test_of_hypothesis": True,
+        "derived_from_exploratory_v4": True,
         "scientific_evidence": False,
         "automatic_evidence_promotion": False,
         "human_review_status": "PENDING",
@@ -328,7 +347,10 @@ def main() -> int:
         "results": {
             "mean_tracking_rmse_rad": means,
             "paired_comparisons": comparisons,
-            "delay_response_curve": curve,
+            "primary_checks": primary_checks,
+            "assay_valid": assay_valid,
+            "transition_localization": transition,
+            "support_rule_satisfied": support,
         },
         "artifacts_sha256": {
             "preregistration": sha256(PREREG),
@@ -349,7 +371,7 @@ def main() -> int:
             "schema_version": 1,
             "experiment_id": EXP_ID,
             "research_question": "RQ-EMB-002",
-            "hypothesis": "H-EMB-002-A",
+            "hypothesis": "H-EMB-002-B",
             "reviewer_type_required": "human",
             "human_review_status": "PENDING",
             "scientific_evidence": False,
@@ -357,21 +379,22 @@ def main() -> int:
             "ai_review_does_not_satisfy_human_gate": True,
             "result_status": result_status,
             "questions": [
-                "Were seeds 924001-924020 fresh for this delay-sweep protocol?",
-                "Was each registered delay applied exactly and verified against its same-run sensor tape?",
-                "Were all seven arms paired on the same initial neural/body state and graph per seed?",
-                "Is the outcome interpreted as a descriptive timing-sensitivity curve rather than a post-hoc rescue of H-EMB-002-A?",
-                "Is interpretation limited to the fixed synthetic six-neuron fixture?",
+                "Were seeds 925001-925024 fresh and disjoint from V3/V4?",
+                "Were all registered delays applied exactly and verified against their same-run sensor tapes?",
+                "Were all eight arms paired on the same initial neural/body state and graph per seed?",
+                "Were the +0.01 rad tolerance and +0.03 rad degradation margins frozen before V5 DATA?",
+                "Did both tolerance rules, both degradation rules and the feedback-absent assay-control rule pass?",
+                "Is any transition claim restricted to this synthetic six-neuron fixture and the registered delay grid?",
             ],
         },
     )
 
     report = f"""# {EXP_ID}
 
-RQ-EMB-002 / H-EMB-002-A
+RQ-EMB-002 / H-EMB-002-B
 
 Status: **{result_status}**
-Mode: **prospective exploratory synthetic DATA delay sweep**
+Mode: **prospective transition-resolution synthetic DATA**
 
 Runs: {len(serialized)}
 Paired seeds: {len(seeds)}
@@ -382,13 +405,20 @@ Frozen delays: {list(delays)}
 
 {json.dumps(means, indent=2, sort_keys=True)}
 
+## Primary rule checks
+
+{json.dumps(primary_checks, indent=2, sort_keys=True)}
+
+Assay validity: {assay_valid}
+Support rule satisfied: {support}
+
 ## Paired comparisons versus delay_0
 
 {json.dumps(comparisons, indent=2, sort_keys=True)}
 
-## Delay-response curve
+## Transition localization
 
-{json.dumps(curve, indent=2, sort_keys=True)}
+{json.dumps(transition, indent=2, sort_keys=True)}
 
 ## Integrity
 
@@ -398,9 +428,9 @@ Frozen delays: {list(delays)}
 
 {prereg["claim_boundary"]}
 
-This follow-up is descriptive and intentionally has no binary support rule,
-p-values or confirmatory threshold. Human Review remains PENDING. No automatic
-EVID promotion or independent replication is claimed.
+No p-values were computed. The effect margins were frozen before V5 DATA.
+Human Review remains PENDING. No automatic EVID promotion or independent
+replication is claimed.
 """
     (OUT / "report.md").write_text(report, encoding="utf-8")
 
@@ -426,8 +456,9 @@ EVID promotion or independent replication is claimed.
                 "result_status": result_status,
                 "integrity": integrity["pass"],
                 "run_count": len(serialized),
-                "means": means,
-                "delay_response_curve": curve,
+                "primary_checks": primary_checks,
+                "assay_valid": assay_valid,
+                "transition_localization": transition,
                 "human_review_status": "PENDING",
                 "scientific_evidence": False,
             },

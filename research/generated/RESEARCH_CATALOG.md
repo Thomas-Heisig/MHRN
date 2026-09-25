@@ -5,7 +5,7 @@
 ## Übersicht
 
 - **Forschungsfragen:** 108
-- **Hypothesen:** 115
+- **Hypothesen:** 116
 - **Claims:** 9
 - **Literaturquellen:** 56
 
@@ -413,6 +413,7 @@
 
 **Hypothesen:**
 - `H-EMB-002-A`: Die mittlere quadratische Zielabweichung ist bei intakter Propriozeption niedriger als bei fehlender oder um 20 Ticks verzoegerter Propriozeption. *(untested)*
+- `H-EMB-002-B`: In der festen synthetischen Sechs-Neuronen-Gelenk-Fixture bleiben 50 und 60 Ticks propriozeptive Verzoegerung innerhalb eines vorab definierten Toleranzbands von +0,01 rad mittlerer Tracking-RMSE gegenueber delay_0, waehrend 90 und 100 Ticks die mittlere RMSE um mindestens +0,03 rad erhoehen und delay_0 in mindestens 90 Prozent der gepaarten Seeds den niedrigeren Fehler aufweist. *(untested)*
 
 **Literatur:**
 - `SRC-CONN-SHIU-2024`: Shiu, P. K. and others et al. (2024)

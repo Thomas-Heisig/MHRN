@@ -1,0 +1,9 @@
+{
+  "experiment_id": "EXP-EMB002A-DELAY-SWEEP-V4-20260924",
+  "generated_data_confined_to_isolated_worktree": true,
+  "isolated_worktree_dirty_after_execution": true,
+  "primary_checkout_clean_after": true,
+  "primary_checkout_clean_before": true,
+  "schema_version": 1,
+  "source_freeze_commit": "9c378b080e468506936aec23064d5962bd92bd3f"
+}

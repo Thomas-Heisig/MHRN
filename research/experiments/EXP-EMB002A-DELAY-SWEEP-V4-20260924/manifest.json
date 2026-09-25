@@ -1,0 +1,542 @@
+{
+  "artifacts_sha256": {
+    "canonical_embodiment_source": "12fba6312254b5abce9559a62b3b9c7a78b8648e3ba1d3bd3c19bc17586c67fb",
+    "config": "6f6cd457caf6216c286fee47ef03b529a0b496ed2dd53ee96b85d3b51e7b3a1c",
+    "evaluation_data": "565e3a79c9e77b5e80f766eced9207494ded0f025dfa634b90aa46e824f7cb50",
+    "preregistration": "5fb76e2f4afe62c14525ae24afac839d122a7a05cd3edba4ff26ca6a2e84a461",
+    "runner_source": "f479ef9d9efc54eea96badbd8f252f8c5f3e175af195eb392cc14f9fbcfb1fcd",
+    "statistics": "be3fa1e6a72d42aec118d3bdbd7b04c56178fc63c94697f839f0971e7be05ef5"
+  },
+  "automatic_evidence_promotion": false,
+  "characterization_after_prior_non_support": true,
+  "claim_boundary": "Prospective exploratory synthetic DATA characterizing proprioceptive timing sensitivity in the fixed six-neuron joint fixture after a prior 20-tick non-support result. This is not a redefinition or rescue of H-EMB-002-A, not confirmatory EVID, not independent replication, and does not establish biological proprioception, learned body schema, real-device transfer, autonomy, consciousness, or 5D superiority. Human Review remains required.",
+  "design": {
+    "baseline_condition": "delay_0",
+    "conditions": [
+      "delay_0",
+      "delay_5",
+      "delay_20",
+      "delay_50",
+      "delay_100",
+      "delay_200",
+      "feedback_absent"
+    ],
+    "delay_ticks": [
+      0,
+      5,
+      20,
+      50,
+      100,
+      200
+    ],
+    "external_perturbation": true,
+    "inferential_unit": "paired_seed",
+    "primary_outcome": "tracking_rmse_rad",
+    "reference_condition": "feedback_absent",
+    "seeds": [
+      924001,
+      924002,
+      924003,
+      924004,
+      924005,
+      924006,
+      924007,
+      924008,
+      924009,
+      924010,
+      924011,
+      924012,
+      924013,
+      924014,
+      924015,
+      924016,
+      924017,
+      924018,
+      924019,
+      924020
+    ],
+    "ticks_per_run": 1000
+  },
+  "direct_test_of_hypothesis": false,
+  "experiment_id": "EXP-EMB002A-DELAY-SWEEP-V4-20260924",
+  "experiment_status": "completed",
+  "human_review_status": "PENDING",
+  "hypothesis": "H-EMB-002-A",
+  "independent_replication": false,
+  "integrity": {
+    "checks": {
+      "all_seed_pairing_checks": true,
+      "all_ticks_complete": true,
+      "clean_source_freeze": true,
+      "coverage": true,
+      "run_count": true,
+      "runtime_errors_absent": true
+    },
+    "pass": true,
+    "per_seed": {
+      "924001": {
+        "delay_metadata_exact": true,
+        "delay_observation_alignment_exact": true,
+        "feedback_absent_observation_is_zero": true,
+        "same_graph_fingerprint": true,
+        "same_initial_body_state": true,
+        "same_initial_neural_state": true
+      },
+      "924002": {
+        "delay_metadata_exact": true,
+        "delay_observation_alignment_exact": true,
+        "feedback_absent_observation_is_zero": true,
+        "same_graph_fingerprint": true,
+        "same_initial_body_state": true,
+        "same_initial_neural_state": true
+      },
+      "924003": {
+        "delay_metadata_exact": true,
+        "delay_observation_alignment_exact": true,
+        "feedback_absent_observation_is_zero": true,
+        "same_graph_fingerprint": true,
+        "same_initial_body_state": true,
+        "same_initial_neural_state": true
+      },
+      "924004": {
+        "delay_metadata_exact": true,
+        "delay_observation_alignment_exact": true,
+        "feedback_absent_observation_is_zero": true,
+        "same_graph_fingerprint": true,
+        "same_initial_body_state": true,
+        "same_initial_neural_state": true
+      },
+      "924005": {
+        "delay_metadata_exact": true,
+        "delay_observation_alignment_exact": true,
+        "feedback_absent_observation_is_zero": true,
+        "same_graph_fingerprint": true,
+        "same_initial_body_state": true,
+        "same_initial_neural_state": true
+      },
+      "924006": {
+        "delay_metadata_exact": true,
+        "delay_observation_alignment_exact": true,
+        "feedback_absent_observation_is_zero": true,
+        "same_graph_fingerprint": true,
+        "same_initial_body_state": true,
+        "same_initial_neural_state": true
+      },
+      "924007": {
+        "delay_metadata_exact": true,
+        "delay_observation_alignment_exact": true,
+        "feedback_absent_observation_is_zero": true,
+        "same_graph_fingerprint": true,
+        "same_initial_body_state": true,
+        "same_initial_neural_state": true
+      },
+      "924008": {
+        "delay_metadata_exact": true,
+        "delay_observation_alignment_exact": true,
+        "feedback_absent_observation_is_zero": true,
+        "same_graph_fingerprint": true,
+        "same_initial_body_state": true,
+        "same_initial_neural_state": true
+      },
+      "924009": {
+        "delay_metadata_exact": true,
+        "delay_observation_alignment_exact": true,
+        "feedback_absent_observation_is_zero": true,
+        "same_graph_fingerprint": true,
+        "same_initial_body_state": true,
+        "same_initial_neural_state": true
+      },
+      "924010": {
+        "delay_metadata_exact": true,
+        "delay_observation_alignment_exact": true,
+        "feedback_absent_observation_is_zero": true,
+        "same_graph_fingerprint": true,
+        "same_initial_body_state": true,
+        "same_initial_neural_state": true
+      },
+      "924011": {
+        "delay_metadata_exact": true,
+        "delay_observation_alignment_exact": true,
+        "feedback_absent_observation_is_zero": true,
+        "same_graph_fingerprint": true,
+        "same_initial_body_state": true,
+        "same_initial_neural_state": true
+      },
+      "924012": {
+        "delay_metadata_exact": true,
+        "delay_observation_alignment_exact": true,
+        "feedback_absent_observation_is_zero": true,
+        "same_graph_fingerprint": true,
+        "same_initial_body_state": true,
+        "same_initial_neural_state": true
+      },
+      "924013": {
+        "delay_metadata_exact": true,
+        "delay_observation_alignment_exact": true,
+        "feedback_absent_observation_is_zero": true,
+        "same_graph_fingerprint": true,
+        "same_initial_body_state": true,
+        "same_initial_neural_state": true
+      },
+      "924014": {
+        "delay_metadata_exact": true,
+        "delay_observation_alignment_exact": true,
+        "feedback_absent_observation_is_zero": true,
+        "same_graph_fingerprint": true,
+        "same_initial_body_state": true,
+        "same_initial_neural_state": true
+      },
+      "924015": {
+        "delay_metadata_exact": true,
+        "delay_observation_alignment_exact": true,
+        "feedback_absent_observation_is_zero": true,
+        "same_graph_fingerprint": true,
+        "same_initial_body_state": true,
+        "same_initial_neural_state": true
+      },
+      "924016": {
+        "delay_metadata_exact": true,
+        "delay_observation_alignment_exact": true,
+        "feedback_absent_observation_is_zero": true,
+        "same_graph_fingerprint": true,
+        "same_initial_body_state": true,
+        "same_initial_neural_state": true
+      },
+      "924017": {
+        "delay_metadata_exact": true,
+        "delay_observation_alignment_exact": true,
+        "feedback_absent_observation_is_zero": true,
+        "same_graph_fingerprint": true,
+        "same_initial_body_state": true,
+        "same_initial_neural_state": true
+      },
+      "924018": {
+        "delay_metadata_exact": true,
+        "delay_observation_alignment_exact": true,
+        "feedback_absent_observation_is_zero": true,
+        "same_graph_fingerprint": true,
+        "same_initial_body_state": true,
+        "same_initial_neural_state": true
+      },
+      "924019": {
+        "delay_metadata_exact": true,
+        "delay_observation_alignment_exact": true,
+        "feedback_absent_observation_is_zero": true,
+        "same_graph_fingerprint": true,
+        "same_initial_body_state": true,
+        "same_initial_neural_state": true
+      },
+      "924020": {
+        "delay_metadata_exact": true,
+        "delay_observation_alignment_exact": true,
+        "feedback_absent_observation_is_zero": true,
+        "same_graph_fingerprint": true,
+        "same_initial_body_state": true,
+        "same_initial_neural_state": true
+      }
+    }
+  },
+  "protocol": "embodied_proprioception_delay_sweep_v4",
+  "research_question": "RQ-EMB-002",
+  "result_status": "COMPLETED_EXPLORATORY_DATA",
+  "results": {
+    "delay_response_curve": {
+      "adjacent_steps": [
+        {
+          "from_delay_ticks": 0,
+          "mean_rmse_change_rad": 0.0020595676883840563,
+          "non_decreasing": true,
+          "to_delay_ticks": 5
+        },
+        {
+          "from_delay_ticks": 5,
+          "mean_rmse_change_rad": -0.0024627624723301544,
+          "non_decreasing": false,
+          "to_delay_ticks": 20
+        },
+        {
+          "from_delay_ticks": 20,
+          "mean_rmse_change_rad": -0.006325642028980422,
+          "non_decreasing": false,
+          "to_delay_ticks": 50
+        },
+        {
+          "from_delay_ticks": 50,
+          "mean_rmse_change_rad": 0.07543194588243107,
+          "non_decreasing": true,
+          "to_delay_ticks": 100
+        },
+        {
+          "from_delay_ticks": 100,
+          "mean_rmse_change_rad": 0.11836029523002267,
+          "non_decreasing": true,
+          "to_delay_ticks": 200
+        }
+      ],
+      "delay_means": [
+        {
+          "delay_ticks": 0,
+          "mean_tracking_rmse_rad": 0.15906293541542377
+        },
+        {
+          "delay_ticks": 5,
+          "mean_tracking_rmse_rad": 0.16112250310380782
+        },
+        {
+          "delay_ticks": 20,
+          "mean_tracking_rmse_rad": 0.15865974063147767
+        },
+        {
+          "delay_ticks": 50,
+          "mean_tracking_rmse_rad": 0.15233409860249725
+        },
+        {
+          "delay_ticks": 100,
+          "mean_tracking_rmse_rad": 0.22776604448492832
+        },
+        {
+          "delay_ticks": 200,
+          "mean_tracking_rmse_rad": 0.346126339714951
+        }
+      ],
+      "fully_non_decreasing": false,
+      "non_decreasing_step_count": 3,
+      "worst_delay_by_mean_rmse": 200
+    },
+    "mean_tracking_rmse_rad": {
+      "delay_0": 0.15906293541542377,
+      "delay_100": 0.22776604448492832,
+      "delay_20": 0.15865974063147767,
+      "delay_200": 0.346126339714951,
+      "delay_5": 0.16112250310380782,
+      "delay_50": 0.15233409860249725,
+      "feedback_absent": 0.4767418388525086
+    },
+    "paired_comparisons": [
+      {
+        "confirmatory_threshold_applied": false,
+        "control": "delay_5",
+        "differences_control_minus_delay_0": [
+          0.001444744261502845,
+          0.0012469637040362358,
+          0.004147795388952297,
+          0.00014961014871295308,
+          0.003728481538050915,
+          0.0032336367208097017,
+          0.0016932429569433693,
+          -0.0008578042752536985,
+          0.0027182164509282347,
+          0.0051027178199750944,
+          0.0010097355069674796,
+          0.002651270192906008,
+          0.0012512889249980674,
+          0.000933436185806602,
+          -0.002965805565158769,
+          0.005360670649949856,
+          0.006774781090741672,
+          0.0017842722109961962,
+          0.003723078466389529,
+          -0.0019389786105732665
+        ],
+        "fraction_delay_0_lower": 0.85,
+        "maximum_difference": 0.006774781090741672,
+        "mean_difference": 0.002059567688384066,
+        "median_difference": 0.0017387575839697827,
+        "metric": "tracking_rmse_rad",
+        "minimum_difference": -0.002965805565158769,
+        "n_paired_seeds": 20,
+        "p_value": null,
+        "reference": "delay_0",
+        "ties": 0
+      },
+      {
+        "confirmatory_threshold_applied": false,
+        "control": "delay_20",
+        "differences_control_minus_delay_0": [
+          -0.0024476919303892675,
+          -0.0011452688358039032,
+          -0.0012387506230924217,
+          -0.000602334174849728,
+          -0.0003027371008435531,
+          -0.00022288796893435436,
+          -0.002033470860620279,
+          -0.00408931303313384,
+          0.001383219014255782,
+          -0.0035835084204142997,
+          -0.003062376086213181,
+          0.0038285795715914395,
+          0.004254751006467217,
+          0.002397153155612286,
+          0.0001779413369959737,
+          0.0041560275641858435,
+          0.0019200478621800576,
+          0.0008612127708938766,
+          -0.002460291500029105,
+          -0.00585419742678045
+        ],
+        "fraction_delay_0_lower": 0.4,
+        "maximum_difference": 0.004254751006467217,
+        "mean_difference": -0.0004031947839460953,
+        "median_difference": -0.0004525356378466405,
+        "metric": "tracking_rmse_rad",
+        "minimum_difference": -0.00585419742678045,
+        "n_paired_seeds": 20,
+        "p_value": null,
+        "reference": "delay_0",
+        "ties": 0
+      },
+      {
+        "confirmatory_threshold_applied": false,
+        "control": "delay_50",
+        "differences_control_minus_delay_0": [
+          -0.005711661258136935,
+          -0.007824573167295429,
+          -0.007653008187255089,
+          -0.012692120965890813,
+          -0.008259389185855254,
+          -0.009781439843332684,
+          -0.00895448766276824,
+          -0.005719953085426693,
+          -0.01500989309389908,
+          -0.004649104955972011,
+          -0.007509492532067841,
+          -0.0004927339342936099,
+          -0.005574078437890678,
+          -0.007510014257965686,
+          0.0003558345623846937,
+          -0.00561492780433262,
+          -0.004163578871760387,
+          -0.0060797676955880176,
+          -0.0034001833177893237,
+          -0.00833216256339478
+        ],
+        "fraction_delay_0_lower": 0.05,
+        "maximum_difference": 0.0003558345623846937,
+        "mean_difference": -0.006728836812926524,
+        "median_difference": -0.006794630113827929,
+        "metric": "tracking_rmse_rad",
+        "minimum_difference": -0.01500989309389908,
+        "n_paired_seeds": 20,
+        "p_value": null,
+        "reference": "delay_0",
+        "ties": 0
+      },
+      {
+        "confirmatory_threshold_applied": false,
+        "control": "delay_100",
+        "differences_control_minus_delay_0": [
+          0.0613024757003717,
+          0.04806520377099632,
+          0.05468055070915831,
+          0.07044780703744125,
+          0.075939074084907,
+          0.04000984938330285,
+          0.0854621841022131,
+          0.06392365882092868,
+          0.08145114344076751,
+          0.06866951870175306,
+          0.08425685085298881,
+          0.08237642228557063,
+          0.07101314764912775,
+          0.056684705696020465,
+          0.05961739418097081,
+          0.07850086619164545,
+          0.07792878806828832,
+          0.08202849596376813,
+          0.07078365704360334,
+          0.06092038770626737
+        ],
+        "fraction_delay_0_lower": 1.0,
+        "maximum_difference": 0.0854621841022131,
+        "mean_difference": 0.06870310906950454,
+        "median_difference": 0.0706157320405223,
+        "metric": "tracking_rmse_rad",
+        "minimum_difference": 0.04000984938330285,
+        "n_paired_seeds": 20,
+        "p_value": null,
+        "reference": "delay_0",
+        "ties": 0
+      },
+      {
+        "confirmatory_threshold_applied": false,
+        "control": "delay_200",
+        "differences_control_minus_delay_0": [
+          0.1761987660268431,
+          0.18441754940946234,
+          0.19116423045447342,
+          0.1903979282722987,
+          0.18543901486883088,
+          0.18590557770767066,
+          0.18112025591287823,
+          0.1809394233396292,
+          0.1864815985168866,
+          0.18748213699690958,
+          0.18500163783931362,
+          0.1937304409442131,
+          0.1918606535601311,
+          0.19260960980286157,
+          0.1928629211844001,
+          0.19047864183695754,
+          0.18846058987061967,
+          0.1841818022293746,
+          0.18963098715489232,
+          0.1829043200618986
+        ],
+        "fraction_delay_0_lower": 1.0,
+        "maximum_difference": 0.1937304409442131,
+        "mean_difference": 0.18706340429952723,
+        "median_difference": 0.18698186775689807,
+        "metric": "tracking_rmse_rad",
+        "minimum_difference": 0.1761987660268431,
+        "n_paired_seeds": 20,
+        "p_value": null,
+        "reference": "delay_0",
+        "ties": 0
+      },
+      {
+        "confirmatory_threshold_applied": false,
+        "control": "feedback_absent",
+        "differences_control_minus_delay_0": [
+          0.32083348030283165,
+          0.3226908186824292,
+          0.31183122466298185,
+          0.3194591957437406,
+          0.3132081182081785,
+          0.3220849445108963,
+          0.321253709219865,
+          0.3202534294729021,
+          0.3167543713239551,
+          0.3117947215074829,
+          0.3211125399362534,
+          0.31853912324064093,
+          0.31818622595630186,
+          0.3240234641490101,
+          0.32076301400774865,
+          0.31906971899625913,
+          0.31374272079875554,
+          0.31670795103184246,
+          0.31165724487956414,
+          0.30961205211005755
+        ],
+        "fraction_delay_0_lower": 1.0,
+        "maximum_difference": 0.3240234641490101,
+        "mean_difference": 0.3176789034370849,
+        "median_difference": 0.31880442111845003,
+        "metric": "tracking_rmse_rad",
+        "minimum_difference": 0.30961205211005755,
+        "n_paired_seeds": 20,
+        "p_value": null,
+        "reference": "delay_0",
+        "ties": 0
+      }
+    ]
+  },
+  "schema_version": 1,
+  "scientific_evidence": false,
+  "source_freeze": {
+    "branch": "HEAD",
+    "commit": "9c378b080e468506936aec23064d5962bd92bd3f",
+    "dirty_before_execution": false
+  },
+  "stage": 5
+}

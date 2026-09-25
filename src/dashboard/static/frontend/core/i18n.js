@@ -237,8 +237,8 @@ function escapeRegExp(value) {
 
 function replaceWholePhrase(value, from, to) {
   const escaped = escapeRegExp(from);
-  const startsWithWord = /^[\\p{L}\\p{N}_]/u.test(from);
-  const endsWithWord = /[\\p{L}\\p{N}_]$/u.test(from);
+  const startsWithWord = /^[\p{L}\p{N}_]/u.test(from);
+  const endsWithWord = /[\p{L}\p{N}_]$/u.test(from);
   const prefix = startsWithWord ? "(?<![\\p{L}\\p{N}_])" : "";
   const suffix = endsWithWord ? "(?![\\p{L}\\p{N}_])" : "";
   return value.replace(new RegExp(`${prefix}${escaped}${suffix}`, "gu"), to);

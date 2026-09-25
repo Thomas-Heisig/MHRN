@@ -1,0 +1,163 @@
+name: EMB-002-B proprioception transition V5
+
+on:
+  push:
+    branches: [develop]
+    paths:
+      - research/registry/questions.connectome.yaml
+      - research/registry/hypotheses.connectome.yaml
+      - scripts/run_emb002b_transition_v5.py
+      - scripts/verify_emb002b_transition_v5.py
+      - research/preregistrations/PREREG-EMB002B-PROPRIOCEPTION-TRANSITION-V5.json
+      - .github/workflows/emb002b-transition-v5.yml
+  workflow_dispatch:
+
+concurrency:
+  group: emb002b-transition-v5-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  verify-execute-persist:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ github.ref_name }}
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.13'
+          cache: pip
+
+      - name: Install repository development environment
+        run: python -m pip install -e '.[dev,docs]'
+
+      - name: Detect persisted DATA
+        id: mode
+        shell: bash
+        run: |
+          target="research/experiments/EXP-EMB002B-TRANSITION-V5-20260924"
+          if [ -e "$target" ]; then
+            echo "persisted=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "persisted=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Normalize experiment source formatting
+        if: steps.mode.outputs.persisted != 'true'
+        run: |
+          python -m black             scripts/run_emb002b_transition_v5.py             scripts/verify_emb002b_transition_v5.py
+          git add             scripts/run_emb002b_transition_v5.py             scripts/verify_emb002b_transition_v5.py
+          if ! git diff --cached --quiet; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git commit -m "style: normalize EMB-002-B transition V5"
+          fi
+
+      - name: Regenerate research projections
+        if: steps.mode.outputs.persisted != 'true'
+        run: |
+          python research/generate_reports.py
+          git add research/generated
+          git diff --cached --check
+          if ! git diff --cached --quiet; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git commit -m "docs: refresh research projections for EMB-002-B"
+          fi
+
+      - name: Check formatting and lint
+        run: |
+          python -m black --check src tests scripts
+          python -m ruff check src tests scripts
+
+      - name: Verify experiment-specific regressions
+        run: >-
+          python -m pytest -q
+          tests/test_connectome_embodiment.py
+          tests/test_research_report_generation.py
+          tests/test_gate_status.py
+          tests/test_source_digest.py
+
+      - name: Refresh source-bound verification
+        if: steps.mode.outputs.persisted != 'true'
+        run: |
+          python scripts/generate_baseline.py
+          python scripts/generate_determinism_artifact.py
+          python scripts/check_doc_consistency.py --check-tests
+          python scripts/check_connectome_integrity.py
+          git diff --exit-code HEAD -- research/experiments research/registry/evidence research/publications
+          git add tests/test_baseline.json research/generated/verification
+          git diff --cached --check
+          if ! git diff --cached --quiet; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git commit -m "test: refresh verification for EMB-002-B transition V5"
+          fi
+
+      - name: Assert checkout clean before isolated execution
+        if: steps.mode.outputs.persisted != 'true'
+        run: test -z "$(git status --porcelain --untracked-files=all)"
+
+      - name: Execute and verify in isolated worktree
+        if: steps.mode.outputs.persisted != 'true'
+        run: |
+          python scripts/run_experiment_isolated.py             --runner scripts/run_emb002b_transition_v5.py             --verifier scripts/verify_emb002b_transition_v5.py             --experiment-id EXP-EMB002B-TRANSITION-V5-20260924             --export-dir "$RUNNER_TEMP/emb002b-transition-v5"
+
+      - name: Validate verified DATA identity
+        if: steps.mode.outputs.persisted != 'true'
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
+          root = Path(os.environ["RUNNER_TEMP"]) / "emb002b-transition-v5"
+          manifest = json.loads(
+              (
+                  root
+                  / "EXP-EMB002B-TRANSITION-V5-20260924/manifest.json"
+              ).read_text(encoding="utf-8")
+          )
+          audit = json.loads(
+              (root / "isolation_audit.json").read_text(encoding="utf-8")
+          )
+          assert (
+              manifest["experiment_id"]
+              == "EXP-EMB002B-TRANSITION-V5-20260924"
+          )
+          assert manifest["hypothesis"] == "H-EMB-002-B"
+          assert manifest["human_review_status"] == "PENDING"
+          assert manifest["scientific_evidence"] is False
+          assert manifest["automatic_evidence_promotion"] is False
+          assert manifest["independent_replication"] is False
+          assert manifest["integrity"]["pass"] is True
+          assert audit["primary_checkout_clean_before"] is True
+          assert audit["primary_checkout_clean_after"] is True
+          PY
+
+      - name: Persist verified DATA
+        if: steps.mode.outputs.persisted != 'true'
+        run: |
+          target="research/experiments/EXP-EMB002B-TRANSITION-V5-20260924"
+          test ! -e "$target"
+          cp -a             "$RUNNER_TEMP/emb002b-transition-v5/EXP-EMB002B-TRANSITION-V5-20260924"             "$target"
+          cp             "$RUNNER_TEMP/emb002b-transition-v5/isolation_audit.json"             "$target/execution_isolation_audit.json"
+          git add "$target"
+          git diff --cached --check
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "research: persist EMB-002-B transition V5 DATA"
+          git push origin "HEAD:develop"
+
+      - name: Validate already persisted DATA read-only
+        if: steps.mode.outputs.persisted == 'true'
+        run: |
+          python scripts/verify_emb002b_transition_v5.py
+          test -z "$(git status --porcelain --untracked-files=all)"

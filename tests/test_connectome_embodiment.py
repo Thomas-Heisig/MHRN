@@ -189,7 +189,6 @@ def test_batching_does_not_change_scientific_state() -> None:
     ]
 
 
-
 def test_proprioceptive_delay_parameter_is_explicit_and_deterministic() -> None:
     cfg = config()
     immediate = _simulate(
@@ -213,6 +212,7 @@ def test_proprioceptive_delay_parameter_is_explicit_and_deterministic() -> None:
         _simulate(cfg, 1901, 80, "delayed_proprioception", delay_ticks=-1)
     with pytest.raises(ValueError, match="delay_ticks"):
         _simulate(cfg, 1901, 80, "delayed_proprioception", delay_ticks=80)
+
 
 def test_motor_disconnect_and_donor_are_observable() -> None:
     runs = run_protocol("embodied_controller_attribution_v1", config(), ticks=120)
