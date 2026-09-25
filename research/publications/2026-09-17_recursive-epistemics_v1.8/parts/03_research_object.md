@@ -62,7 +62,11 @@ Der zugehörige maschinenlesbare Readiness-Status weist für den **scoped Stage-
 
 ### Stage 1 — kleines SNN
 
-Stage 1 verfügt über einen technischen Small-SNN-Vertrag und Referenzartefakte zur Spike-Ausbreitung. Der wissenschaftliche Stand ist schwächer als die technische Reife: Die bisherigen Artefakte zeigen technische Funktion in kleinen Netzen, aber noch keine breite task-basierte Evidenz, Skalierbarkeit oder unabhängige Replikation. Der zentrale Übergang zu Stage 2 ist deshalb nicht „mehr Neuronen“, sondern die Frage, ob rekurrente Dynamik unter kontrollierten Interventionen einen kausal isolierbaren funktionalen Beitrag liefert.
+Stage 1 besitzt inzwischen mehr als den ursprünglichen technischen Small-SNN-Vertrag. Als zentrale wissenschaftliche Baseline gilt `RQ-SNN-003 / H-SNN-003-B` mit der gemeinsam geführten DATA-Linie aus `EXP-S1-TOPO-V2-20260918` und der korrigierten internen Replikation `EXP-S1-TOPO-V3-R1-20260918`. Beide Human Reviews durch Thomas Heisig sind abgeschlossen und akzeptieren die eng begrenzte Topologieinterpretation. Die Scientific-Maturity-Projektion beträgt damit 75 %: RQ/H, Protokoll, DATA und Attribution sind erfüllt; das Human-Review-Subgate ist abgeschlossen; kanonische EVID-Promotion und unabhängige Replikation bleiben offen.
+
+Davon getrennt bildet `RQ-TEMP-002 / H-TEMP-002-A` mit `EXP-S1-TEMP-ORDER-V2-20260919` eine zweite task-basierte Funktionslinie. Sie prüft in einem kleinen acyclischen Sechs-Neuronen-SNN die Erhaltung zweier Kanalidentitäten und zeitlicher Reihenfolge gegen eine information-destroyed Kontrolle. Diese Linie ist DATA-seitig innerhalb des präregistrierten Protokolls unterstützt, aber noch nicht human-reviewed und keine Replikation des Topologieclaims.
+
+Der zentrale Übergang zu Stage 2 ist deshalb weder „mehr Neuronen“ noch eine höhere Prozentzahl, sondern stärkerer Evidenzstatus: ein eigener scoped Claim und prospektiver EvidenceEngine-kompatibler Promotion-Pfad, Human Review der Temporal-Order-Linie sowie unabhängig implementierte Replikation. Keine dieser Linien belegt Kognition, Skalierbarkeit oder einen 5D-Vorteil.
 
 ### Stage 2 — stabile Rekurrenz
 

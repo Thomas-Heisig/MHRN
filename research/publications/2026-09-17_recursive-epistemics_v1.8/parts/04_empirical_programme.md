@@ -193,6 +193,16 @@ Die V2-First-Output-Latenz wird zusätzlich auf den frischen R1-Seeds repliziert
 
 **Zwischenfazit.** Rekurrenz ist im getesteten Mechanismus wirksam; `H-SNN-003-B` ist im 64-Neuronen-Stage-1-Regime DATA-seitig gestützt. Die spezifische 5D-Hypothese bleibt offen.
 
+#### Stage-1-Konsolidierung: Baseline, Reviewstatus und zweite Funktionslinie
+
+Für die wissenschaftliche Reife wird V2 nicht isoliert betrachtet. `EXP-S1-TOPO-V2-20260918` und `EXP-S1-TOPO-V3-R1-20260918` bilden gemeinsam die kanonische `STAGE1-TOPOLOGY-LINE-001`: V2 ist die erste präregistrierte testadäquate Topologiestudie; R1 ist die korrigierte interne Replikation mit neuen Seeds, prospektiven zeitaufgelösten Endpunkten und korrekter gemeinsamer Holm-Familie. Der erste V3-Lauf bleibt wegen der falsch implementierten Primärfamilie ausschließlich Auditspur. Diese Zusammenführung ist eine Forschungsstatusentscheidung, keine Umschreibung historischer DATA.
+
+Die Human Reviews beider gültigen Linien durch Thomas Heisig sind abgeschlossen und akzeptieren die begrenzte Interpretation. Damit ist das Human-Review-Subgate der Stage-1-Maturity erfüllt. Eine EVID-Promotion folgt daraus ausdrücklich nicht. Der aktuelle EvidenceEngine-Vertrag verlangt unter anderem `validity.valid=true`, Nullwerte für Runtime-/Fatal-Fehler, `git.dirty=false`, `provenance_digests`, einen passenden `source_freeze_sha`, einen kanonischen Claim und ein `human_review.json` mit `supports|refutes|inconclusive`. Die historischen V2/R1-Manifeste besitzen diese heutige Vertragsform nicht; ihre vorhandenen Human Reviews lauten `accepted_as_interpretation`. Fehlende historische Felder oder stärkere Entscheidungen werden nicht rückwirkend konstruiert. Der EVID-Pfad ist daher separat und prospektiv zu behandeln.
+
+Als zweite Stage-1-Funktionslinie wird `STAGE1-TEMPORAL-ORDER-LINE-002` geführt. `EXP-S1-TEMP-ORDER-V2-20260919` prüft `RQ-TEMP-002 / H-TEMP-002-A` in einem acyclischen Sechs-Neuronen-SNN. Über 20 Seeds und 120 Runs werden intakte Kanalidentität, identity-destroyed Kontrolle sowie simultane Kontrolle verglichen. Der intakte Arm erreicht im gespeicherten V2-Befund eine mediane Order Accuracy von 1,0, der identity-destroyed Arm 0,0; die simultane Kontrolle besteht. Der Lauf ist `SUPPORTED_WITHIN_PREREGISTERED_PROTOCOL`, bleibt aber DATA bis Human Review und einer gegebenenfalls später separat legitimierten EVID-Entscheidung. Er belegt keine Lern-, Gedächtnis-, Kognitions- oder Skalierungsleistung und ist keine unabhängige Replikation der Topologielinie.
+
+Unter dem unveränderten Maturity-Vertrag ergibt sich daraus **Stage 1 = 75 %**: RQ/H, Protokoll, DATA und Attribution sind `met`, `reviewed_evidence` ist wegen abgeschlossenem Human-Review-Subgate `partial`, und `independent_replication` bleibt `open`.
+
 ### 19.9.3 Teilstudie C — Plastizität, Lernen und adaptive Stabilität
 
 **Forschungsproblem.** Die Existenz von STDP-, Eligibility-, Drei-Faktor-, Homeostase- oder Strukturplastizitätscode beweist weder nützliches Lernen noch stabile Generalisierung.
