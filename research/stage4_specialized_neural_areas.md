@@ -87,3 +87,22 @@ Stage 4 darf technisch als abgeschlossen gelten, wenn der Referenzrunner und die
 - dass ein kausaler Vorteil modalitätsspezifischer Areale gegenüber einer matched unspezialisierten Kontrollarchitektur bereits gezeigt wäre.
 
 Produktive Aktivierung bleibt `LOCKED`. Wissenschaftliche Promotion benötigt weiterhin den bestehenden Review-/EVID-Prozess.
+
+
+## Digitaler Sinn als sensorische Modalität
+
+Die Digitalbahn wird in der Gesamtarchitektur nicht als externes Gedächtnis oder als zweiter kognitiver Kern behandelt. Sie ist eine zusätzliche Umwelt-/Sinnesmodalität. Exakte Nutzdaten bleiben außerhalb des SNN; wahrgenommen wird ihre deklarierte neuronale Projektion.
+
+Für künftige Versuche ist ein gemeinsamer `100 x 100`-PopulationLayout-Kandidat mit 10.000 logischen Kanälen zulässig. Dieses Raster ist ein experimenteller Projektions-/Readout-Raum, kein Beleg für VSA-Semantik, Binding oder gespeicherte Fakten.
+
+Die wissenschaftlich entscheidenden Anschlussprüfungen sind:
+
+- `RQ-GW-004`: Quellentransfer A -> B bei gleichem Interface-Schema und neuen Inhalten;
+- `RQ-GW-006`: Abfrage als gelernte Handlung innerhalb eines geschlossenen digitalen Wahrnehmungs-Handlungs-Kreises;
+- `RQ-GW-002`: erlerntes Modalitätsrouting zwischen Audio, Vision und Digital;
+- `RQ-GW-CODEC-001`: separate Architekturfrage zu Codec/Binding, insbesondere für relationale strukturierte Information.
+
+Query und Response dürfen denselben neuronalen Layout-Raum nutzen, müssen aber über Richtung, Phase, `correlation_id` und Provenienz auseinandergehalten werden. Ein Lifecycle-/Phase-Gate kann Query, Wait, Response und Timeout trennen; ob dieses Gate fest oder lernbar sein muss, ist selbst experimentell zu prüfen.
+
+Kanonische Integrationsentscheidung:
+`research/decisions/2026-09-25_digital-sense-neural-interface.md`.

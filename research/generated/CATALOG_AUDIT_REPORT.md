@@ -5,9 +5,9 @@
 The canonical ResearchRegistry remains authoritative. Historical/design references and test-only fixtures are listed with explicit reasons; an unknown missing identifier fails CI.
 
 ## Summary
-- Question references: 4938
-- Hypothesis references: 3643
-- Missing questions: 28
+- Question references: 4969
+- Hypothesis references: 3648
+- Missing questions: 27
 - Missing hypotheses: 24
 - Registry link issues: 0
 - Disallowed missing identifiers: 0
@@ -77,7 +77,6 @@ The canonical ResearchRegistry remains authoritative. Historical/design referenc
 ## Architecture proposals - not registered or executed
 
 - `H-GW-LLM-01`: Gateway language-organ design hypothesis; not preregistered, executed or evidence. Sources: `docs/02-architecture/MHRN_GATAWAY.md`, `research/registry/catalog_audit_allow_list.yaml`
-- `RQ-GW-CODEC-001`: Neural codec interface design question; implementation/validation remain pending. Sources: `docs/02-architecture/MHRN_GATAWAY_NEURAL_INTERFACE.md`, `research/registry/catalog_audit_allow_list.yaml`
 
 ## Failures
 

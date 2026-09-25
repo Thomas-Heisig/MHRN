@@ -15,15 +15,15 @@
   "input_sha256": {
     "research/publications/2026-09-17_recursive-epistemics_v1.8/parts/01_origin.md": "b817466ca51fdc9906063e5940e6ab53e578e36f00eb42169ae52eb38245d616",
     "research/publications/2026-09-17_recursive-epistemics_v1.8/parts/02_genealogy.md": "2f7cf90d1b9c42f2e0416b9cfe0491ecc2ecf6efe9e379ecc2a64dbb760cfbaa",
-    "research/publications/2026-09-17_recursive-epistemics_v1.8/parts/03_research_object.md": "5a67f2126395d5a25c58841069a5c9dad20d46747f62f83bfa30116901c9c3dd",
-    "research/publications/2026-09-17_recursive-epistemics_v1.8/parts/04_empirical_programme.md": "c50e6bba0bc52b486e2deb50895a2b10618d9a4ee58801942882b03180986056",
+    "research/publications/2026-09-17_recursive-epistemics_v1.8/parts/03_research_object.md": "7d54bb6465817395b13d2849433f0e76450466fe094f2f3b991ecc5631867aeb",
+    "research/publications/2026-09-17_recursive-epistemics_v1.8/parts/04_empirical_programme.md": "31fa796770b057fb7400b6566e33a0a785146a1348ca9c062414ecd9acd222bb",
     "research/publications/2026-09-17_recursive-epistemics_v1.8/parts/05_infrastructure.md": "20cfef2ce60e1fff6b1513c2eebd41db2b0439be84b7afa0ef0d482999c16e56",
     "research/publications/2026-09-17_recursive-epistemics_v1.8/parts/06_epistemology.md": "9cb93af030023287cff61993003b32e7d825bc8650d1afca6ea1c267dfbddfa2",
     "research/publications/2026-09-17_recursive-epistemics_v1.8/parts/07_integrity.md": "9bcb30fc6d54316ffea169e64641305fff2e1fb8cc466cb3f5f484584dd55483",
     "research/publications/2026-09-17_recursive-epistemics_v1.8/parts/08_ethics_safety.md": "a37b07493cac7aad9a67a9e027fe5b31cf64bd6879d52df971b7b4b7639e3f11",
     "research/publications/2026-09-17_recursive-epistemics_v1.8/parts/09_recursive_epistemics.md": "30bc513d87ba63426d364c102761e9f224dd6a9d7f1d11401165491d0e0c8052",
-    "research/publications/2026-09-17_recursive-epistemics_v1.8/parts/10_synthesis.md": "0fd2354344b82ca3a710778f6eb2f47beb5f2c78a78822470df400775ed0a166",
-    "research/publications/2026-09-17_recursive-epistemics_v1.8/parts/11_open_landscape.md": "c1fc35a1db89e30ca445e625ec2f31dba471015f11ac0d3fbd6d2aaa1621f928",
+    "research/publications/2026-09-17_recursive-epistemics_v1.8/parts/10_synthesis.md": "186482e73f925cccef6efddb100e8180a8e58d7fc32e6d4b6917f3be49362565",
+    "research/publications/2026-09-17_recursive-epistemics_v1.8/parts/11_open_landscape.md": "23312d0d0d0961faca3fa7f92bc03125bb7d667e525b87d8d4bca68d535f6e9f",
     "research/publications/2026-09-17_recursive-epistemics_v1.8/edition.json": "dca9dc789bd92aa41991dddc98ed8672d1f1af3f371ec4f79438e8e666d7eebf",
     "research/publications/2026-09-17_recursive-epistemics_v1.8/sources/references.json": "55e4c220427287a7093f2ccf21060123199768b2b8b82e59c1be3294391ef43c",
     "research/publications/2026-09-17_recursive-epistemics_v1.8/sources/chat_reconstruction.json": "9fc8029d19d0a9c882bb9b462e59469166d4caaa9815446d10f5d6b8ce900acb",
@@ -34,7 +34,7 @@
     "scripts/build_publication_edition.py": "eaf21d5a78370fac34d067e60e336216e9ea03f7309c39f7037b7c00f8aacde9"
   },
   "output_sha256": {
-    "MANUSCRIPT.md": "e0b269740c20d181d232ce5d1f47a9ace715fb3785aa01b075de2a4425cc8b6e",
+    "MANUSCRIPT.md": "ea8ae11a2626a11d9e5842a30e75a7c2cb39aea4fb7d1ce83442309fdb80add6",
     "README.md": "b2601fa9aedb21a1ee1f8b858c2b5e2802d3a57593ec981562266837893adce8",
     "REFERENCES.md": "0cf0d5c7e291a506439561c135e42c451b6209999a88261e1ec0d57581e8a706",
     "references.bib": "33915e73a68a98e4b6e445b39610fc6efee5e71f8ecc31add05e53c38a06a8a1",

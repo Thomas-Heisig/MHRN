@@ -4,8 +4,8 @@
 
 ## Übersicht
 
-- **Forschungsfragen:** 108
-- **Hypothesen:** 116
+- **Forschungsfragen:** 109
+- **Hypothesen:** 117
 - **Claims:** 9
 - **Literaturquellen:** 56
 
@@ -633,6 +633,20 @@
 
 **Hypothesen:**
 - `H-MSBA-E04-A`: Ressourcen-Drosselung reduziert die zugelassene Symbolrate, erzeugt aber keine Mutation der digitalen Payload oder ihrer Checksumme. *(untested)*
+
+---
+
+## Digital Neural Interface Codec and Binding
+
+### RQ-GW-CODEC-001
+
+**Frage:** Kann ein explizit deklarierter neuronaler Codec strukturierte digitale Information unter kontrolliertem Ressourcenbudget so abbilden, dass relevante Werte und Relationen im SNN nutzbar und im Readout wieder unterscheidbar bleiben?
+
+**Status:** open
+**Relevanz:** Trennt die bloße Erreichbarkeit digitaler Daten von einer testbaren neuronalen Repräsentations- und Binding-Leistung. Der optionale 100x100-Populationsraum ist nur ein Kandidat und kein vorweggenommener Semantik-Claim.
+
+**Hypothesen:**
+- `H-GW-CODEC-001-A`: Ein vorab deklarierter strukturierter neuronaler Codec erhaelt unter einem gematchten Ressourcenbudget die fuer die Zielaufgabe notwendigen Wert- und Relationsbindungen besser als eine informationzerstoerte beziehungsweise nicht-lokalitaetserhaltende Kontrollkodierung. *(untested)*
 
 ---
 

@@ -71,3 +71,26 @@ Stage 5 trägt zu den breiteren Embodiment-/Gateway-Fragen `RQ6`, `RQ7`, `RQ8` u
 ## Abschlusskriterium Stage 5
 
 Stage 5 kann als **Engineering-Stufe vollständig integriert** gelten, wenn der Stage-5-Workflow den Integrationsvertrag, die 360 kontrollierten Referenzläufe, die Frontend-Verträge und die Publikationsgrenzen reproduzierbar verifiziert. Die wissenschaftliche Evidenzpromotion und unabhängige Replikation bleiben davon getrennte offene Aufgaben.
+
+
+## Digitaler Closed Loop
+
+Der Stage-5-Vertrag wird um eine explizite digitale Sensor-Aktor-Analogie präzisiert:
+
+```text
+neuronale Aktivität
+-> Gateway-Aktion / Query-Selektion
+-> externer digitaler Prozess
+-> Antwort
+-> Codec / Spike-Repräsentation
+-> neuronale Aktivität
+```
+
+Die digitale Query zählt dabei als **Aktion**. Die externe Antwort zählt als **sensorische Rückmeldung**. Für kontrollierte Experimente darf das ausgehende Query-Muster als interner kausaler Kontext erhalten bleiben, sodass Erwartung und tatsächliche Rückmeldung getrennt ausgewertet werden können. Diese Beziehung ist funktional efference-copy-artig, jedoch keine Behauptung biologischer Gleichheit.
+
+Stage 5 gilt dadurch nicht automatisch als Nachweis gelernten Werkzeuggebrauchs. Ein solcher Claim benötigt mindestens eine Bedingung, in der Query-Zeitpunkt oder Query-Pfad nicht vollständig fest verdrahtet sind, sowie Frozen-/Random-/Shuffle- oder vergleichbare Baselines.
+
+Ein Lifecycle-/Phase-Vertrag für `QUERY -> WAIT -> RESPONSE|TIMEOUT` ist zulässig, um Selbst-/Antwort-Verwechslung, Latenz und delayed credit assignment explizit messbar zu machen.
+
+Kanonische Integrationsentscheidung:
+`research/decisions/2026-09-25_digital-sense-neural-interface.md`.

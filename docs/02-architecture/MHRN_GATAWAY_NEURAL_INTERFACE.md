@@ -2073,3 +2073,64 @@ Welche Komponente durfte überhaupt lernen?
 ```
 
 Genau diese Nachvollziehbarkeit sollte der normative Kern des **MHRN Gateway Neural Interface** sein.
+
+
+# 38. Digitaler Sinn und gemeinsamer neuronaler Query/Response-Raum
+
+## 38.1 Architekturposition
+
+Der digitale Gateway wird nicht als externer Gedächtniskern interpretiert, sondern als zusätzliche sensorische Umweltmodalität. Das bestehende MHRN-SNN bleibt der lernende neuronale Kern.
+
+```text
+SNN -> Gateway Action -> exact digital process -> response -> Codec -> SNN
+```
+
+Der exakte digitale Inhalt bleibt im Exact Boundary Plane. Nur die deklarierte neuronale Repräsentation tritt in den SNN-Kausalraum ein.
+
+## 38.2 100 x 100 PopulationLayout-Kandidat
+
+Für Experimente darf ein gemeinsames `GRID_2D` mit `100 x 100 = 10_000` logischen Kanälen verwendet werden. Es dient als gemeinsamer Projektions-/Readout-Raum für Query- und Response-Muster.
+
+Normative Grenzen:
+
+- keine Behauptung, dass 10.000 Kanäle 10.000 semantische Dimensionen darstellen;
+- keine automatische VSA-/HDC-Eigenschaft;
+- keine Faktenspeicherung als Zieldefinition;
+- Query und Response müssen trotz gemeinsamem Layout durch `direction`, `correlation_id`, Phase und Provenienz getrennt bleiben;
+- semantische bzw. relationale Bindung benötigt einen eigenen Codec- und Testvertrag.
+
+## 38.3 Query als Gateway-Aktion
+
+Das SNN muss keine SQL-, HTTP- oder Prompt-Syntax direkt erzeugen. Die neuronale Ebene wählt eine deklarierte Gateway-Aktion und gegebenenfalls neuronale Argumentpopulationen. Die exakte syntaktische Serialisierung gehört zum Tool-/Boundary-Plane.
+
+Damit bleibt die Forschungsfrage präzise: **lernt das SNN die Auswahl und Nutzung eines Informationskanals?** Nicht: kann es ohne Transduktionsschicht ein externes Protokoll byteweise sprechen?
+
+## 38.4 Query-Kontext / funktionale Efferenzkopie
+
+Das ausgehende Query-Muster darf in einem getrennten internen Zustand bis zur Response erhalten werden. Dadurch können erwartete und tatsächliche Rückmeldung verglichen sowie Prediction Error und delayed credit assignment untersucht werden.
+
+Die Bezeichnung `efference-copy-artig` beschreibt ausschließlich die funktionale Schleifenstruktur und keine biologische Homologie.
+
+## 38.5 Lifecycle-Gating
+
+Mindestens folgende Phasen sind für den experimentellen Vertrag zulässig:
+
+```text
+IDLE
+QUERY
+WAIT
+RESPONSE
+TIMEOUT
+```
+
+Das Phase-Gate verhindert, dass ein Netz sein eigenes Query-Muster im gemeinsamen Layout als externe Antwort klassifiziert. Ob die Übergänge fest, teilweise gelernt oder vollständig gelernt werden, ist eine unabhängige Variable.
+
+## 38.6 Forschungsabbildung
+
+- Quellentransfer -> `RQ-GW-004`;
+- Modalitätsrouting -> `RQ-GW-002`;
+- gelernter bidirektionaler Query/Response-Kreis -> `RQ-GW-006`;
+- Codec/Binding -> `RQ-GW-CODEC-001 / H-GW-CODEC-001-A` (kanonisch registriert; noch kein eingefrorenes Protokoll, keine DATA/EVID).
+
+Details und Claim-Grenzen:
+`research/decisions/2026-09-25_digital-sense-neural-interface.md`.

@@ -489,6 +489,27 @@ Maschinen-native Interozeption umfasst dort, wo das Betriebssystem Messwerte lie
 Der implementierte Profile-&-Identity-Vertrag speichert Konfiguration, Fähigkeiten, Grenzen, Provenienz, Revisionen, Lineage und Snapshot-Bindungen als technische Identität. Profil, `.b5d`-Snapshot, Runtime-Checkpoint, Registry und Lineage sind absichtlich getrennte Zustandsklassen. Daraus folgt **keine psychologische Identität, Persönlichkeit, subjektive Kontinuität oder Bewusstseinsbehauptung**. Genau diese Grenze ist für spätere Stage-7-Selbstmodellforschung zentral: Metadatenidentität ist eine technische Voraussetzung, kein kausales Selbstmodell.
 
 
+## 13.5 Digitaler Sinn statt externem Wissenskern
+
+Die Gesamtarchitektur präzisiert den digitalen Pfad als **sensorische Modalität**. Datenbanken, Werkzeuge, LLMs oder andere digitale Dienste werden dadurch nicht zum Gedächtnis des SNN und erhalten keine verdeckte kognitive Autorität. Sie sind Bestandteile der Umweltgrenze. Exakte Inhalte verbleiben im Boundary-/Tool-Plane; in das SNN gelangt ausschließlich eine deklarierte neuronale Repräsentation.
+
+Die Architektur folgt damit demselben abstrakten Kreis wie physisches Embodiment:
+
+```text
+neuronale Aktivität
+-> Handlung/Abfrage
+-> Umweltprozess
+-> Rückmeldung
+-> neuronale Aktivität
+```
+
+Die digitale Abfrage ist eine Aktion; die Antwort ist sensorische Rückmeldung. Ein ausgehendes Query-Muster kann als kausaler Kontext für einen späteren Erwartungs-/Antwortvergleich erhalten bleiben. Diese funktionale Analogie zu Efferenzkopie oder Corollary-Discharge ist ausdrücklich **keine biologische Identitätsbehauptung**.
+
+Als experimenteller Interface-Kandidat wird ein gemeinsamer `100 x 100`-PopulationLayout-Raum mit 10.000 logischen Kanälen zugelassen. Query und Response können denselben Layout-Raum verwenden, müssen aber durch Richtung, Phase, correlation_id und Provenienz getrennt bleiben. Das Raster ist kein Beleg für Hyperdimensional Computing, VSA, relationale Bindung oder semantisches Verständnis.
+
+Diese Präzisierung ändert die Stage-Struktur nicht. Stage 4 behandelt Digital als Modalität; Stage 5 behandelt Abfrage und Antwort als geschlossenen sensorimotorischen Kreis; Stage 6 untersucht weiterhin interne Zustandsmodelle, Working/Episodic Memory, Prediction Error und World Model. Externe Information kann interne Faktenspeicherung reduzieren, ersetzt aber nicht automatisch interne zeitliche Zustände oder Lernmechanismen.
+
+
 ---
 
 <a id="part-iv"></a>
@@ -767,6 +788,25 @@ Unter dem unveränderten Maturity-Vertrag ergibt sich daraus **Stage 1 = 75 %**:
 Über alle empirischen Zweige hinweg entsteht ein wiederkehrendes Muster: **technische Verfügbarkeit ist der Beginn einer wissenschaftlichen Frage, nicht deren Antwort**. Ein Mechanismus wird erst dann Teil der tragfähigen Architekturposition, wenn sein kausaler Beitrag gegenüber einer geeigneten einfacheren Referenz sichtbar wird oder seine Spezialrolle durch einen eigenen, vorab begründeten Prüfvertrag getragen ist.
 
 Damit erhält Teil IV den Charakter einer kumulativen empirischen Dissertationseinheit: Die Teilstudien stehen nicht nebeneinander, sondern verändern wechselseitig die Architektur und die Bedingungen der jeweils nächsten Hypothese.
+
+
+### 19.9.8 Teilstudie G — Digitaler Sinn, Query-Handlung und Informationsnutzung
+
+**Forschungsproblem.** Ein digitaler Gateway ist wissenschaftlich erst dann mehr als eine Schnittstelle, wenn das SNN lernt, wann und welchen digitalen Kanal es nutzen soll und die resultierende Rückmeldung kausal für Verhalten verwendet.
+
+**Architektur.** Exakte Payloads verbleiben außerhalb des SNN. Ein deklarierter Codec erzeugt Spike-Repräsentationen. Query-Selektion ist eine Handlung des Netzes; die externe Antwort wird als sensorische Rückmeldung re-enkodiert. Ein `100 x 100`-PopulationLayout ist ein möglicher gemeinsamer experimenteller Query/Response-Raum, nicht bereits ein semantischer Vektorraum.
+
+**Prüfprogramm.**
+1. **Quellentransfer / RQ-GW-004:** Entwicklung mit Quelle A, Holdout-Test mit Quelle B bei gleichem Schema und neuen Inhalten.
+2. **Abfrage als Handlung / RQ-GW-006:** Query-Zeitpunkt oder Query-Pfad darf nicht vollständig hart verdrahtet sein; Vergleich mit forced-query, no-query, random-query und frozen-routing.
+3. **Modalitätsrouting / RQ-GW-002:** Audio, Vision und Digital werden unter gematchtem Budget gegeneinander bzw. gemeinsam angeboten; lernbares Routing wird gegen Frozen/Random/Shuffle geprüft.
+4. **Codec/Binding / RQ-GW-CODEC-001:** relationale strukturierte Information muss unter eigenem präregistrierten Codec-Test decodierbar bleiben.
+
+**Lifecycle und Credit Assignment.** Query, Wait, Response und Timeout werden als explizite kausale Phasen behandelt. Eligibility-/Reward-Mechanismen dürfen delayed credit assignment adressieren, müssen aber gegen feste Zeitsteuerung und triviale Query-Heuristiken kontrolliert werden.
+
+**Falsifikation.** Der Forschungsstrang trägt keinen Claim gelernten digitalen Sinnes, wenn Quellentransfer scheitert, Queries vollständig extern getaktet werden müssen oder Modalitätsrouting nur durch feste Verdrahtung funktioniert.
+
+**Claim-Grenze.** Architekturverfügbarkeit, Checksum-Integrität oder ein erreichbarer Tool-Endpunkt sind kein Nachweis gelernten Werkzeuggebrauchs, semantischen Bindings oder eines Vorteils gegenüber nicht-neuronalen Routing-Baselines.
 
 
 ---
@@ -2934,6 +2974,17 @@ Der stärkste Beitrag von Edition 1.8 liegt damit noch nicht in einer bestätigt
 Der Dissertationscharakter entsteht gerade aus dieser Verbindung: historische Problemgenese, theoretischer Rahmen, operationalisierte Teilfragen, Methoden, Teilstudien, negative und positive Resultate, General Discussion, Limitationen und eine explizite Forschungsagenda bilden ein zusammenhängendes Argument statt einer Sammlung von Features.
 
 
+### Ergebnis E — Digitaler Informationszugriff wird als Sinnes-/Handlungskreis operationalisiert
+
+Die Gesamtarbeit behandelt digitale Informationsquellen nicht als externes Gedächtnis des SNN, sondern als Teil seiner Umweltgrenze. Exakte Inhalte bleiben außerhalb des neuronalen Kerns; das SNN erhält deklarierte Spike-Repräsentationen und kann über Gateway-Aktionen neue digitale Rückmeldungen auslösen.
+
+**Zulässige Architekturposition:** Digital kann wie Audio oder Vision als Modalität in einen geschlossenen Wahrnehmungs-Handlungs-Kreis eingebunden werden. Query-Selektion kann experimentell als Handlung und Response als sensorische Rückmeldung modelliert werden.
+
+**Nicht gezeigt:** dass MHRN Queries bereits autonom lernt, dass ein 100x100-Raum relationale Symbolik bindet, dass digitale Efferenzkopie biologisch identisch zur Motorik ist oder dass neuronales Routing RAG/klassische Tool-Policy-Systeme übertrifft.
+
+Der Wert der Verschiebung liegt deshalb nicht in einer neuen Leistungsbehauptung, sondern in einer klareren Falsifikationsstruktur: Quellentransfer, gelernte Query-Auslösung, Modalitätsrouting und Binding werden getrennte experimentelle Fragen statt implizite Eigenschaften des Gateway-Namens.
+
+
 ---
 
 <a id="part-xi"></a>
@@ -3276,6 +3327,20 @@ Eine spätere kanonische Hauptfassung darf keinen Zweig allein deshalb als „ab
 - oder die Frage bleibt ausdrücklich offen, weil die notwendige Evidenz noch fehlt.
 
 Gerade diese dritte Möglichkeit gehört zum wissenschaftlichen Charakter der Arbeit. Eine Dissertation oder Monographie wird nicht dadurch stärker, dass jede Frage beantwortet erscheint, sondern dadurch, dass beantwortete, widerlegte und noch offene Fragen methodisch unterscheidbar bleiben.
+
+
+## 58.6 Digitaler Sinn — offene Forschungsagenda
+
+Die Interface-Integration eröffnet einen eigenen, aber mit Stage 4–6 verbundenen Forschungsstrang. Priorität haben vier Entscheidungen:
+
+1. **Quellentransfer (`RQ-GW-004`)** — gleiche Interface-Struktur, andere Quelle und neue Inhalte;
+2. **Query als Handlung (`RQ-GW-006`)** — learned vs. forced/random/no-query unter identischem Informationsbudget;
+3. **Modalitätsrouting (`RQ-GW-002`)** — learned vs. frozen/random/shuffle bei Audio/Vision/Digital;
+4. **Binding/Codec (`RQ-GW-CODEC-001`)** — separate Präregistrierung für strukturierte Relationen und den optionalen 100x100-/VSA-Pfad.
+
+Vor positiver DATA dürfen weder selbstorganisierter Werkzeuggebrauch noch universeller gemeinsamer Repräsentationsraum behauptet werden. Der Decoder/Tool-Plane bleibt ein expliziter konventioneller Boundary-Baustein; wissenschaftlich geprüft wird, welche Teile der Auswahl, Nutzung, zeitlichen Erwartung und Rückkopplung tatsächlich vom neuronalen System gelernt werden.
+
+Dieser Strang erhält hohe Priorität, weil er eine direkte Falsifikation der These ermöglicht, MHRN müsse externes Faktenwissen intern memorieren: erfolgreiche Nutzung neuer Inhalte aus einer neuen Quelle bei erhaltener Aufgabenleistung würde eine gelernte Informationsnutzungsstrategie stützen; Scheitern würde die stärkere Interpretation begrenzen.
 
 
 ---

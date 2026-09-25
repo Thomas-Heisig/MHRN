@@ -47,3 +47,11 @@
   evidence: []
   created: '2026-09-09'
   updated: '2026-09-09'
+
+- id: H-GW-CODEC-001-A
+  research_question: RQ-GW-CODEC-001
+  hypothesis: Ein vorab deklarierter strukturierter neuronaler Codec erhaelt unter einem gematchten Ressourcenbudget die fuer die Zielaufgabe notwendigen Wert- und Relationsbindungen besser als eine informationzerstoerte beziehungsweise nicht-lokalitaetserhaltende Kontrollkodierung.
+  status: untested
+  evidence: []
+  created: '2026-09-25'
+  updated: '2026-09-25'

@@ -1399,6 +1399,19 @@ Die folgenden Forschungsfragen sind noch offen und warten auf experimentelle Evi
 
 ---
 
+## RQ-GW-CODEC-001
+
+**Domäne:** Digital Neural Interface Codec and Binding
+
+**Frage:** Kann ein explizit deklarierter neuronaler Codec strukturierte digitale Information unter kontrolliertem Ressourcenbudget so abbilden, dass relevante Werte und Relationen im SNN nutzbar und im Readout wieder unterscheidbar bleiben?
+
+**Relevanz:** Trennt die bloße Erreichbarkeit digitaler Daten von einer testbaren neuronalen Repräsentations- und Binding-Leistung. Der optionale 100x100-Populationsraum ist nur ein Kandidat und kein vorweggenommener Semantik-Claim.
+
+**Hypothesen:**
+- `H-GW-CODEC-001-A`: Ein vorab deklarierter strukturierter neuronaler Codec erhaelt unter einem gematchten Ressourcenbudget die fuer die Zielaufgabe notwendigen Wert- und Relationsbindungen besser als eine informationzerstoerte beziehungsweise nicht-lokalitaetserhaltende Kontrollkodierung.
+
+---
+
 ## RQ-MSBA-E01
 
 **Domäne:** Multimodal Energy Efficiency
@@ -1616,6 +1629,6 @@ Die folgenden Forschungsfragen sind noch offen und warten auf experimentelle Evi
 
 ---
 
-*Insgesamt 107 offene Fragen.*
+*Insgesamt 108 offene Fragen.*
 
 > Pruefstatus: RQ/H- und EVID-Statuswerte geben den Registry-Inhalt wieder. Insbesondere historische supports/supported-Eintraege sind keine Bestaetigung einer Freigabe nach den heutigen Clean-Freeze- und Human-Review-Gates. Ein abgeschlossener Lauf ist DATA, nicht automatisch akzeptierte Evidenz.
