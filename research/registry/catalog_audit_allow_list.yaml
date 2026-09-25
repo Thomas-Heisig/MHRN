@@ -62,4 +62,3 @@ publication_proposals:
 # Scope limited to architecture designs; use in executable records fails CI.
 architecture_proposals:
   H-GW-LLM-01: "Gateway language-organ design hypothesis; not preregistered, executed or evidence."
-  RQ-GW-CODEC-001: "Neural codec interface design question; implementation/validation remain pending."
