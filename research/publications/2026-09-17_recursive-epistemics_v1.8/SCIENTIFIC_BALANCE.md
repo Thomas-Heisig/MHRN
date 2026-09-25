@@ -52,11 +52,11 @@ Damit ist die frühere `active_fraction=1.0`-Sättigung präziser einzuordnen: S
 
 ### Stage-1-Maturity und zweite Funktionslinie
 
-Die Scientific-Maturity-Projektion für Stage 1 wird nach der Konsolidierung auf **75 %** gesetzt. RQ/H, präregistrierte wissenschaftliche Protokolle, source-bound DATA und Attribution sind erfüllt. Das Kriterium `reviewed_evidence` steht auf `partial`: die Human-Review-Hälfte ist für die zentrale Topologielinie abgeschlossen, die kanonische EvidenceEngine-Promotion dagegen nicht. Die interne R1-Replikation erfüllt das unabhängige Replikationskriterium nicht.
+Die Scientific-Maturity-Projektion für Stage 1 wird nach der Konsolidierung auf **75 %** gesetzt. RQ/H, präregistrierte wissenschaftliche Protokolle, source-bound DATA und Attribution sind erfüllt. Das Kriterium `reviewed_evidence` steht auf `partial`: die Human-Review-Hälfte ist für die zentrale Topologielinie **und** die getrennte Temporal-Order-Funktionslinie abgeschlossen, die kanonische EvidenceEngine-Promotion dagegen nicht. Die interne R1-Replikation erfüllt das unabhängige Replikationskriterium nicht.
 
 Die Promotion wurde separat gegen den aktuellen EvidenceEngine-Vertrag geprüft und ist für die historischen V2/R1-Artefakte **nicht direkt zulässig**: es fehlt ein kanonischer Claim; die Manifeste besitzen nicht die heutigen `validity`-, `git`-, `provenance_digests`- und `source_freeze_sha`-Felder; und die Human Reviews sind `accepted_as_interpretation`, nicht ein EvidenceEngine-`human_review.json` mit `supports|refutes|inconclusive`. Keine dieser Lücken wird rückwirkend erfunden.
 
-Als zweite Funktionslinie ergänzt `EXP-S1-TEMP-ORDER-V2-20260919` die Topologiebaseline. Die präregistrierte Sechs-Neuronen-Aufgabe enthält eine identity-destroyed Kontrolle und zeigt innerhalb des festen Decodervertrags eine vollständige Trennung zwischen intakter und zerstörter Kanalidentität. Diese DATA warten noch auf Human Review und sind keine unabhängige Replikation der Topologielinie.
+Als zweite Funktionslinie ergänzt `EXP-S1-TEMP-ORDER-V2-20260919` die Topologiebaseline. Die präregistrierte Sechs-Neuronen-Aufgabe enthält eine identity-destroyed Kontrolle und zeigt innerhalb des festen Decodervertrags eine vollständige Trennung zwischen intakter und zerstörter Kanalidentität. Der append-only Human Review durch Thomas Heisig wurde mit `accepted_as_interpretation` abgeschlossen. Die DATA bleiben ohne separate EvidenceEngine-Promotion weiterhin DATA und sind keine unabhängige Replikation der Topologielinie. Die kanonische Zusammenführung beider Funktionslinien steht in `research/registry/stage1_baseline.json`.
 
 ### Konsequenz: `H-5D-005-A` bleibt open/untested
 

@@ -236,3 +236,34 @@ def test_stage1_review_and_evid_boundaries_remain_separate() -> None:
     assert "BLOCKED_CURRENT_EVIDENCE_ENGINE_CONTRACT" in decision
     assert "STAGE1-TOPOLOGY-LINE-001" in decision
     assert "STAGE1-TEMPORAL-ORDER-LINE-002" in decision
+
+
+def test_stage1_canonical_baseline_binds_both_reviewed_functional_lines() -> None:
+    baseline = json.loads(
+        (ROOT / "research/registry/stage1_baseline.json").read_text(encoding="utf-8")
+    )
+    assert baseline["baseline_id"] == "STAGE1-SCIENTIFIC-BASELINE-20260925"
+    assert baseline["maturity"]["score"] == 0.75
+
+    topology = baseline["central_data_line"]
+    assert topology["line_id"] == "STAGE1-TOPOLOGY-LINE-001"
+    assert [item["experiment_id"] for item in topology["experiments"]] == [
+        "EXP-S1-TOPO-V2-20260918",
+        "EXP-S1-TOPO-V3-R1-20260918",
+    ]
+    assert all(
+        item["human_review_decision"] == "accepted_as_interpretation"
+        for item in topology["experiments"]
+    )
+
+    temporal = baseline["second_functional_line"]
+    assert temporal["line_id"] == "STAGE1-TEMPORAL-ORDER-LINE-002"
+    assert temporal["experiment_id"] == "EXP-S1-TEMP-ORDER-V2-20260919"
+    assert temporal["human_review_decision"] == "accepted_as_interpretation"
+    assert "not an independent replication" in temporal["independence_semantics"]
+
+    promotion = baseline["evid_promotion_assessment"]
+    assert promotion["status"] == "BLOCKED_CURRENT_EVIDENCE_ENGINE_CONTRACT"
+    assert promotion["scientific_evidence"] is False
+    assert promotion["automatic_evidence_promotion"] is False
+    assert baseline["independent_replication"]["complete"] is False
