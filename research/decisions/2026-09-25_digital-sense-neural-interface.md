@@ -134,3 +134,6 @@ Diese stärkeren Aussagen benötigen die oben definierten kontrollierten Experim
 ## Publikationssynchronisation
 
 Die Edition-1.8-Projektion wurde nach dieser Integrationsentscheidung deterministisch neu erzeugt. `MANUSCRIPT.md`, Publikationsregister und Manifest sind damit aus denselben kanonischen Parts abgeleitet. Diese Synchronisation erzeugt keine neue DATA oder EVID.
+
+
+Die Codec/Binding-Frage ist inzwischen kanonisch als `RQ-GW-CODEC-001 / H-GW-CODEC-001-A` registriert. Ihr Status bleibt `open` / `untested`; die Registrierung ist Forschungsstruktur, keine Ausführung oder Evidenz.
