@@ -307,3 +307,14 @@ Die Antwort der Arbeit darauf ist keine Behauptung von Neutralität, sondern **s
 Der stärkste Beitrag von Edition 1.8 liegt damit noch nicht in einer bestätigten Theorie allgemeiner Intelligenz oder eines 5D-Gehirns. Er liegt in einer **empirisch selektierten, revidierbaren Forschungsarchitektur**, deren einzelne Mechanismen zunehmend getrennt geprüft werden und deren eigener Forschungsprozess Gegenstand methodischer Kontrolle geworden ist.
 
 Der Dissertationscharakter entsteht gerade aus dieser Verbindung: historische Problemgenese, theoretischer Rahmen, operationalisierte Teilfragen, Methoden, Teilstudien, negative und positive Resultate, General Discussion, Limitationen und eine explizite Forschungsagenda bilden ein zusammenhängendes Argument statt einer Sammlung von Features.
+
+
+### Ergebnis E — Digitaler Informationszugriff wird als Sinnes-/Handlungskreis operationalisiert
+
+Die Gesamtarbeit behandelt digitale Informationsquellen nicht als externes Gedächtnis des SNN, sondern als Teil seiner Umweltgrenze. Exakte Inhalte bleiben außerhalb des neuronalen Kerns; das SNN erhält deklarierte Spike-Repräsentationen und kann über Gateway-Aktionen neue digitale Rückmeldungen auslösen.
+
+**Zulässige Architekturposition:** Digital kann wie Audio oder Vision als Modalität in einen geschlossenen Wahrnehmungs-Handlungs-Kreis eingebunden werden. Query-Selektion kann experimentell als Handlung und Response als sensorische Rückmeldung modelliert werden.
+
+**Nicht gezeigt:** dass MHRN Queries bereits autonom lernt, dass ein 100x100-Raum relationale Symbolik bindet, dass digitale Efferenzkopie biologisch identisch zur Motorik ist oder dass neuronales Routing RAG/klassische Tool-Policy-Systeme übertrifft.
+
+Der Wert der Verschiebung liegt deshalb nicht in einer neuen Leistungsbehauptung, sondern in einer klareren Falsifikationsstruktur: Quellentransfer, gelernte Query-Auslösung, Modalitätsrouting und Binding werden getrennte experimentelle Fragen statt implizite Eigenschaften des Gateway-Namens.

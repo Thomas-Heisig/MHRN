@@ -155,3 +155,24 @@ Die Vorgängerarbeiten entwickelten mit **Wesen** eine maschinen-native Körperd
 Maschinen-native Interozeption umfasst dort, wo das Betriebssystem Messwerte liefert, etwa CPU-/Speicherlast, Temperatur, Lüfter, Storage, Netzwerk und Kontinuitätsgrößen. Diese Größen können technische Regulationszustände beeinflussen, sind aber keine biologischen Stoffwechselhomologien und keine Empfindungsindikatoren. Ebenso ist die body-like Darstellung nur Präsentationssemantik.
 
 Der implementierte Profile-&-Identity-Vertrag speichert Konfiguration, Fähigkeiten, Grenzen, Provenienz, Revisionen, Lineage und Snapshot-Bindungen als technische Identität. Profil, `.b5d`-Snapshot, Runtime-Checkpoint, Registry und Lineage sind absichtlich getrennte Zustandsklassen. Daraus folgt **keine psychologische Identität, Persönlichkeit, subjektive Kontinuität oder Bewusstseinsbehauptung**. Genau diese Grenze ist für spätere Stage-7-Selbstmodellforschung zentral: Metadatenidentität ist eine technische Voraussetzung, kein kausales Selbstmodell.
+
+
+## 13.5 Digitaler Sinn statt externem Wissenskern
+
+Die Gesamtarchitektur präzisiert den digitalen Pfad als **sensorische Modalität**. Datenbanken, Werkzeuge, LLMs oder andere digitale Dienste werden dadurch nicht zum Gedächtnis des SNN und erhalten keine verdeckte kognitive Autorität. Sie sind Bestandteile der Umweltgrenze. Exakte Inhalte verbleiben im Boundary-/Tool-Plane; in das SNN gelangt ausschließlich eine deklarierte neuronale Repräsentation.
+
+Die Architektur folgt damit demselben abstrakten Kreis wie physisches Embodiment:
+
+```text
+neuronale Aktivität
+-> Handlung/Abfrage
+-> Umweltprozess
+-> Rückmeldung
+-> neuronale Aktivität
+```
+
+Die digitale Abfrage ist eine Aktion; die Antwort ist sensorische Rückmeldung. Ein ausgehendes Query-Muster kann als kausaler Kontext für einen späteren Erwartungs-/Antwortvergleich erhalten bleiben. Diese funktionale Analogie zu Efferenzkopie oder Corollary-Discharge ist ausdrücklich **keine biologische Identitätsbehauptung**.
+
+Als experimenteller Interface-Kandidat wird ein gemeinsamer `100 x 100`-PopulationLayout-Raum mit 10.000 logischen Kanälen zugelassen. Query und Response können denselben Layout-Raum verwenden, müssen aber durch Richtung, Phase, correlation_id und Provenienz getrennt bleiben. Das Raster ist kein Beleg für Hyperdimensional Computing, VSA, relationale Bindung oder semantisches Verständnis.
+
+Diese Präzisierung ändert die Stage-Struktur nicht. Stage 4 behandelt Digital als Modalität; Stage 5 behandelt Abfrage und Antwort als geschlossenen sensorimotorischen Kreis; Stage 6 untersucht weiterhin interne Zustandsmodelle, Working/Episodic Memory, Prediction Error und World Model. Externe Information kann interne Faktenspeicherung reduzieren, ersetzt aber nicht automatisch interne zeitliche Zustände oder Lernmechanismen.

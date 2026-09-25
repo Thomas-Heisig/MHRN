@@ -204,3 +204,20 @@ Die externe wissenschaftliche Neuheit bleibt `requires_prior_art_review`.
 - `docs/00-governance/DOCUMENT_GOVERNANCE.md`
 
 Vor formaler externer Einreichung bleiben menschliche Quellenprüfung, systematische Prior-Art-Prüfung, externe Similarity-Prüfung und fachliche Review erforderlich.
+
+
+## Digitaler Sinn / Neural Interface — Gesamtarbeitsintegration
+
+Mit der Entscheidung `research/decisions/2026-09-25_digital-sense-neural-interface.md` wird der bestehende Digitalpfad ausdrücklich als zusätzliche sensorische Umweltmodalität behandelt. Das MHRN-Kernmodell bleibt unverändert; neu präzisiert werden die experimentellen Verträge an der Grenze zwischen neuronaler Aktivität und exakten digitalen Prozessen.
+
+Die exakte Payload bleibt außerhalb des SNN. Das Netz verarbeitet eine deklarierte neuronale Repräsentation. Dauerhafte Faktenspeicherung in Synapsen ist **kein Architekturziel** des digitalen Sinnes; internes Working/Episodic Memory, Prediction Error und World Model bleiben dennoch eigenständige Stage-6-Mechanismen.
+
+Ein `100 x 100`-Array ist als experimenteller gemeinsamer PopulationLayout-Kandidat aufgenommen. Es ist weder bewiesene VSA noch bewiesenes Binding. Query und Response dürfen denselben Raum nutzen, benötigen aber Richtung, Phase, correlation_id und Provenienz.
+
+Die vier offenen Prüfachsen sind:
+1. Quellentransfer -> `RQ-GW-004`;
+2. Query als gelernte Handlung -> `RQ-GW-006`;
+3. Modalitätsrouting -> `RQ-GW-002`;
+4. Codec/Binding -> `RQ-GW-CODEC-001 / H-GW-CODEC-001-A`, kanonisch registriert als `open` / `untested`.
+
+Keiner dieser Punkte ist durch die Integrationsentscheidung bereits DATA oder EVID.
