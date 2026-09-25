@@ -2130,7 +2130,7 @@ Das Phase-Gate verhindert, dass ein Netz sein eigenes Query-Muster im gemeinsame
 - Quellentransfer -> `RQ-GW-004`;
 - Modalitätsrouting -> `RQ-GW-002`;
 - gelernter bidirektionaler Query/Response-Kreis -> `RQ-GW-006`;
-- Codec/Binding -> `RQ-GW-CODEC-001` (Architecture Proposal, noch keine kanonische Experiment-RQ).
+- Codec/Binding -> `RQ-GW-CODEC-001 / H-GW-CODEC-001-A` (kanonisch registriert; noch kein eingefrorenes Protokoll, keine DATA/EVID).
 
 Details und Claim-Grenzen:
 `research/decisions/2026-09-25_digital-sense-neural-interface.md`.
