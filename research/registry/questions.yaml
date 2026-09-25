@@ -63,19 +63,17 @@
   evidence: []
   status: open
   answer:
-    current: EXP-S1-TOPO-V2-20260918 und die korrigierte interne Replikation
-      EXP-S1-TOPO-V3-R1-20260918 liefern DATA-seitige Unterstützung dafür, dass
-      die konkrete Topologie im präregistrierten 64-Neuronen-/246-Kanten-Stage-1-Regime
-      die Propagationsdynamik beeinflusst. R1 löst die terminale active_fraction-Sättigung
-      von 1d/2d/3d durch prospektiv definierte zeitaufgelöste Endpunkte auf und repliziert
-      alle fünf V2-First-Output-Latenzrichtungen auf neuen Seeds. Human Review und
-      EVID-Entscheidung stehen aus.
-    confidence: replicated_internal_data_review_pending
-    limitations: Interne Replikation ist keine unabhängige externe Replikation. Kein
-      5D-Vorteilsclaim; H-5D-005-A bleibt separat open/untested und erfordert das
-      größere dimensionsspezifische Prüfprogramm.
+    current: EXP-S1-TOPO-V2-20260918 und EXP-S1-TOPO-V3-R1-20260918 bilden
+      gemeinsam die kanonische Stage-1-Topologie-DATA-Linie. Beide Human Reviews
+      durch Thomas Heisig akzeptieren die begrenzte Interpretation. Die DATA sind
+      nicht als EVID promotet.
+    confidence: replicated_internal_data_human_reviewed_evid_not_promoted
+    limitations: Interne Replikation ist keine unabhängige externe Replikation.
+      Die historischen V2/R1-Manifeste erfüllen den aktuellen EvidenceEngine-
+      Promotionsvertrag nicht vollständig und werden nicht rückwirkend umgeschrieben.
+      Kein 5D-Vorteilsclaim; H-5D-005-A bleibt separat open/untested.
   created: '2026-08-23'
-  updated: '2026-09-18'
+  updated: '2026-09-25'
 - id: RQ-SNN-004
   domain: Spiking Neural Networks
   question: Wie verändert STDP die synaptische Gewichtsmatrix?
@@ -655,11 +653,17 @@
   evidence: []
   status: open
   answer:
-    current: null
-    confidence: none
-    limitations: Eine Reihenfolgenabhängigkeit ist zunächst nur eine dynamische Differenz, kein Gedächtnisnachweis.
+    current: EXP-S1-TEMP-ORDER-V2-20260919 liefert präregistrierte Stage-1-DATA
+      aus 120 Läufen über 20 Seeds mit identity-destroyed Kontrolle. Der Laufstatus
+      ist SUPPORTED_WITHIN_PREREGISTERED_PROTOCOL. Human Review, EVID-Promotion und
+      unabhängige Replikation stehen aus.
+    confidence: preregistered_task_data_review_pending
+    limitations: Der Befund ist eine eng begrenzte Small-SNN-Funktionslinie.
+      Er belegt weder Lernen, Gedächtnis, allgemeines zeitliches Schlussfolgern,
+      Skalierbarkeit noch unabhängige Replikation und ist keine Replikation der
+      Topologie-DATA-Linie.
   created: '2026-09-05'
-  updated: '2026-09-05'
+  updated: '2026-09-25'
 - id: RQ-PERF-001
   domain: Runtime Performance
   question: Welche Subsysteme dominieren die Wall-Time wissenschaftlicher Läufe und welche Optimierungen erhöhen den Durchsatz bei erhaltener deterministischer Äquivalenz?
