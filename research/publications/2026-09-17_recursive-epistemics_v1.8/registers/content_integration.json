@@ -540,6 +540,31 @@
       "integration_status": "semantically_integrated_DATA_human_reviewed_no_EVID",
       "integration_mode": "preregistered_task_design_information-destroyed-control_results_claim-boundary",
       "boundaries": "The task shows bounded temporal-order decodability in a fixed six-neuron SNN. Human review accepts the bounded interpretation but does not create canonical EVID. It does not establish learning, memory, cognition, scaling, general temporal reasoning or independent replication, and it is not an independent replication of the topology line."
+    },
+    {
+      "id": "CORPUS-DIGITAL-SENSORY-INTERFACE",
+      "title": "Digital sensory interface and learned information-use programme",
+      "source_paths": [
+        "research/decisions/2026-09-25_digital_sensory_interface_integration.md",
+        "docs/02-architecture/MHRN_GATAWAY_NEURAL_INTERFACE.md",
+        "research/registry/questions.gateway.yaml",
+        "research/registry/hypotheses.gateway.yaml",
+        "research/stage4_specialized_neural_areas.md",
+        "research/stage5_integrated_nervous_system.md"
+      ],
+      "source_role": "canonical architecture decision plus prospective cross-stage research programme",
+      "manuscript_parts": [
+        "II",
+        "III",
+        "IV",
+        "V",
+        "VII",
+        "X",
+        "XI"
+      ],
+      "integration_status": "semantically_integrated_as_architecture_and_untested_programme",
+      "integration_mode": "digital_modality_query-action_source-transfer_routing_and_claim-boundary_synthesis",
+      "boundaries": "The 100x100 bus is an architecture candidate. RQ-GW-008..010 are open/untested and create no DATA/EVID. External payloads/tools are environment/boundary systems, not hidden MHRN cognition."
     }
   ]
 }

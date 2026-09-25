@@ -4,8 +4,8 @@
 
 ## Übersicht
 
-- **Forschungsfragen:** 108
-- **Hypothesen:** 116
+- **Forschungsfragen:** 111
+- **Hypothesen:** 119
 - **Claims:** 9
 - **Literaturquellen:** 56
 
@@ -131,6 +131,20 @@
 
 **Literatur:**
 - `SRC-CNS-MASK`: Michael A. Cohen and others et al. (2024)
+
+---
+
+## Adaptive Modality Routing
+
+### RQ-GW-010
+
+**Frage:** Lernt MHRN unter wechselnder Aufgabenrelevanz, Audio-, Vision- und Digitalpfade adaptiv zu priorisieren, statt auf festes, zufaelliges oder zeitlich geshuffeltes Routing angewiesen zu sein?
+
+**Status:** open
+**Relevanz:** Prueft selbstorganisierte Nutzung mehrerer Sinne als funktionale Erweiterung der bestehenden MSBA-Architektur.
+
+**Hypothesen:**
+- `H-GW-010-A`: Adaptives modalitaetsabhaengiges Routing verbessert unter wechselnder Informationsrelevanz die vorab definierte held-out Aufgabenmetrik gegenueber fixed, random und temporal-shuffle Routing bei gematchtem Gesamtbudget. *(untested)*
 
 ---
 
@@ -633,6 +647,34 @@
 
 **Hypothesen:**
 - `H-MSBA-E04-A`: Ressourcen-Drosselung reduziert die zugelassene Symbolrate, erzeugt aber keine Mutation der digitalen Payload oder ihrer Checksumme. *(untested)*
+
+---
+
+## Digital Query Action
+
+### RQ-GW-009
+
+**Frage:** Kann MHRN lernen, wann und ueber welchen digitalen Gateway-Pfad eine Informationsabfrage als Handlung ausgeloest werden soll, ohne fest programmierten Query-Zeitpunkt?
+
+**Status:** open
+**Relevanz:** Prueft, ob Informationsbeschaffung Teil der gelernten Sensor-Aktor-Schleife statt externer Ablaufsteuerung ist.
+
+**Hypothesen:**
+- `H-GW-009-A`: Ein lernender Query-Policy-Pfad erreicht unter gleichem Query- und Ressourcenbudget eine hoehere held-out Aufgabenleistung beziehungsweise geringere unnoetige Abfragen als fixed-timing, random-query und no-query Kontrollen. *(untested)*
+
+---
+
+## Digital Sensory Transfer
+
+### RQ-GW-008
+
+**Frage:** Generalisiert ein gelerntes digitales Sensor-Gateway von einer Entwicklungsquelle auf eine schema-kompatible Holdout-Quelle mit neuen Inhalten, wenn die Entwicklungsquelle im Test nicht verfuegbar ist?
+
+**Status:** open
+**Relevanz:** Trennt gelernte Informationsnutzung von Inhaltsmemorierung und macht die digitale Sinnessemantik falsifizierbar.
+
+**Hypothesen:**
+- `H-GW-008-A`: Nach Entwicklung mit Quelle A behaelt ein eingefrorenes beziehungsweise strikt evaluativ betriebenes digitales Sensor-Gateway auf einer schema-kompatiblen Quelle B mit neuen Inhalten eine vorab definierte Mindestleistung gegenueber No-Transfer- und Source-ID-Kontrollen. *(untested)*
 
 ---
 
