@@ -336,3 +336,17 @@ Eine spätere kanonische Hauptfassung darf keinen Zweig allein deshalb als „ab
 - oder die Frage bleibt ausdrücklich offen, weil die notwendige Evidenz noch fehlt.
 
 Gerade diese dritte Möglichkeit gehört zum wissenschaftlichen Charakter der Arbeit. Eine Dissertation oder Monographie wird nicht dadurch stärker, dass jede Frage beantwortet erscheint, sondern dadurch, dass beantwortete, widerlegte und noch offene Fragen methodisch unterscheidbar bleiben.
+
+
+## 58.6 Digitaler Sinn — offene Forschungsagenda
+
+Die Interface-Integration eröffnet einen eigenen, aber mit Stage 4–6 verbundenen Forschungsstrang. Priorität haben vier Entscheidungen:
+
+1. **Quellentransfer (`RQ-GW-004`)** — gleiche Interface-Struktur, andere Quelle und neue Inhalte;
+2. **Query als Handlung (`RQ-GW-006`)** — learned vs. forced/random/no-query unter identischem Informationsbudget;
+3. **Modalitätsrouting (`RQ-GW-002`)** — learned vs. frozen/random/shuffle bei Audio/Vision/Digital;
+4. **Binding/Codec (`RQ-GW-CODEC-001`)** — separate Präregistrierung für strukturierte Relationen und den optionalen 100x100-/VSA-Pfad.
+
+Vor positiver DATA dürfen weder selbstorganisierter Werkzeuggebrauch noch universeller gemeinsamer Repräsentationsraum behauptet werden. Der Decoder/Tool-Plane bleibt ein expliziter konventioneller Boundary-Baustein; wissenschaftlich geprüft wird, welche Teile der Auswahl, Nutzung, zeitlichen Erwartung und Rückkopplung tatsächlich vom neuronalen System gelernt werden.
+
+Dieser Strang erhält hohe Priorität, weil er eine direkte Falsifikation der These ermöglicht, MHRN müsse externes Faktenwissen intern memorieren: erfolgreiche Nutzung neuer Inhalte aus einer neuen Quelle bei erhaltener Aufgabenleistung würde eine gelernte Informationsnutzungsstrategie stützen; Scheitern würde die stärkere Interpretation begrenzen.
