@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
-  "tested_commit": "44fc2362f8723dca54cd993a1b80639f611c3486",
-  "tested_tree_digest": "f8393956170a5454cac3415751166fd7993c37ac9993ad73d922e8cf80a30ffa",
+  "tested_commit": "1333bcd98624c1886c8b57db5db2ff73c528b22a",
+  "tested_tree_digest": "f309f5d64a644fda574e43ef40d28bf4f2c406bce1ef1e7769c753a0bf4c95cf",
   "tree_digest_paths": [
     "src/",
     "configs/",
@@ -12,20 +12,20 @@
   "tree_digest_excludes": [
     "tests/test_baseline.json"
   ],
-  "timestamp": "2026-09-24T18:14:36.301346+00:00",
+  "timestamp": "2026-09-25T12:49:26.928968+00:00",
   "python": "3.13.15",
   "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
   "source_unchanged_during_run": true,
   "full_collection": {
     "status": "passed",
-    "collected": 1668,
+    "collected": 1670,
     "collection_errors": 0
   },
   "full_suite": {
     "command": "python -m pytest tests/ -q -ra --junitxml=<temporary-report>",
     "status": "passed",
     "exit_code": 0,
-    "passed": 1666,
+    "passed": 1668,
     "failed": 0,
     "errors": 0,
     "skipped": 2,
@@ -189,7 +189,7 @@
     "src/dashboard/static/review/model.js": "25dac6260e60194bb32f0201447232a78ba94c7ce45d60b4b3117cb0585cd010",
     "src/dashboard/static/review/review.css": "a1ecf4eab62165b7b8113abaabe4e32a3794ba5cbc42f366716df0c71fea1742",
     "src/dashboard/static/scientific-progress.js": "a7accedab858dc613418f5e4699f93336f5bd40eb6ec1f03774ba061018389bd",
-    "src/dashboard/static/scientific-progress.json": "ce6b075a28993ebc79e118c6bdf94529198168901fadf562dc178a7249415311",
+    "src/dashboard/static/scientific-progress.json": "7554c1a8be7f7cc11b138bc92a5d4342ccd1f250d0ba13f9e2be4acd97dd8d8a",
     "src/dashboard/static/settings-panel.js": "f623ce58a5305a775dd2385416a151cf10158482ee7336a7e7d13d2f29c05a04",
     "src/dashboard/static/speech-reader.js": "b4d585a6c57bb0d58e466e730f5f01588672499c965badb5db7cc1e6a61d38a9",
     "src/dashboard/static/state-store.js": "70fcbada1625e8618a07842dc4ec7c7d0ed55aef6656dc69520e61bf62cff371",
@@ -620,7 +620,7 @@
     "tests/test_scientific_audit_regressions.py": "f335932407220f9afb7bb0c0edb778d062c06d424afab4d5ec13340821ec8f57",
     "tests/test_scientific_execution_contract.py": "5a1725ac25491f4c26278714c655456090152fb9ef2e70b940e7cd89fe5a06ae",
     "tests/test_scientific_metrics.py": "c64c7c1b9c46dbdae825751a13e77024065eafcfc58073aeb00ae90bdd7cd193",
-    "tests/test_scientific_progress_integrity.py": "b78bb30d281e9a76b40285db3e4861da3992c442c015f07b1dda3ae769d057d8",
+    "tests/test_scientific_progress_integrity.py": "8c9e8fd0c1406cc18ca79fa1cffc2ade094855b8e9164a66861f38ab8e72b469",
     "tests/test_self_monitor.py": "c2e68811fdd635fbcd6d0d501dfe87fcded34abd6fd23996d3556790680b9e74",
     "tests/test_self_organization.py": "cf4a20fb28856e00279044fbadde3d342029ada40a07a09a59cafa0357a38d3e",
     "tests/test_self_organization_alpha4.py": "bcc5e127af46e6bf664dff61cb7915fddff64570023360e5b0feb567127fad03",
