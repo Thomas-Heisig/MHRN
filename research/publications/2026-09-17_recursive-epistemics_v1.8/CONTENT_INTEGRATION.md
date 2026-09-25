@@ -292,11 +292,11 @@ Grenze: R1 resolves the V2 terminal active_fraction ceiling with prospective tim
 
 ## CORPUS-STAGE1-TEMPORAL-ORDER-V2 — Preregistered Stage-1 temporal-order task with identity-destroyed control
 
-Rolle: `source-bound Stage-1 task DATA package pending human review`  
-Status: `semantically_integrated_DATA_review_pending`  
+Rolle: `source-bound Stage-1 task DATA package with completed human interpretation review`  
+Status: `semantically_integrated_DATA_human_reviewed_no_EVID`  
 Modus: `preregistered_task_design_information-destroyed-control_results_claim-boundary`  
 Teile: IV, X, XI
 
-Quellpfade: `research/preregistrations/PREREG-S1-TEMP-ORDER-V2.json`; `research/experiments/EXP-S1-TEMP-ORDER-V2-20260919/manifest.json`; `research/experiments/EXP-S1-TEMP-ORDER-V2-20260919/report.md`; `research/experiments/EXP-S1-TEMP-ORDER-V2-20260919/analysis/statistics.json`; `research/experiments/EXP-S1-TEMP-ORDER-V2-20260919/review_request.json`
+Quellpfade: `research/preregistrations/PREREG-S1-TEMP-ORDER-V2.json`; `research/experiments/EXP-S1-TEMP-ORDER-V2-20260919/manifest.json`; `research/experiments/EXP-S1-TEMP-ORDER-V2-20260919/report.md`; `research/experiments/EXP-S1-TEMP-ORDER-V2-20260919/analysis/statistics.json`; `research/experiments/EXP-S1-TEMP-ORDER-V2-20260919/review_request.json`; `research/experiments/EXP-S1-TEMP-ORDER-V2-20260919/review_request.json.review.json`
 
-Grenze: The task shows bounded temporal-order decodability in a fixed six-neuron SNN. It does not establish learning, memory, cognition, scaling, general temporal reasoning, EVID or independent replication.
+Grenze: The task shows bounded temporal-order decodability in a fixed six-neuron SNN. Human review accepts the bounded interpretation but does not create canonical EVID. It does not establish learning, memory, cognition, scaling, general temporal reasoning or independent replication, and it is not an independent replication of the topology line.
