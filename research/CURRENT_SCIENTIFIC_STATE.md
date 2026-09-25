@@ -43,7 +43,7 @@ historischen `superdigger`-Pfade bleiben als Legacy-Provenienz erhalten.
 - unmittelbarer Vorgänger: Edition 1.7
 - frozen empirical baseline: Edition 1.5 / `EXP-EMP-20260913-A3`
 - 1.8 nutzt die für 2.0 geplante elfteilige Struktur, ohne Softwareversion oder Evidenzstatus hochzustufen
-- offene menschliche wissenschaftliche Reviews: `EXP-GEN-0041`, `EXP-S1-TEMP-ORDER-V2-20260919` und `EXP-S6-SEM-CL-003`; die Human Reviews der Stage-1-Topologielinie V2 und V3-R1 sind abgeschlossen
+- offene menschliche wissenschaftliche Reviews: `EXP-GEN-0041` und `EXP-S6-SEM-CL-003`; die Human Reviews der Stage-1-Topologielinie V2/V3-R1 sowie der Temporal-Order-V2-Funktionslinie sind abgeschlossen
 - CL-003 besitzt jetzt einen begrenzten Review-Kandidaten; die Entscheidung ist weiterhin `PENDING`
 - unabhängige Replikation: unvollständig
 - automatische EVID-Promotion: deaktiviert
@@ -89,8 +89,9 @@ Nach dem unveränderten Gewichtungsvertrag ergibt sich für Stage 1 **75 %**: RQ
 
 Die separate EvidenceEngine-Prüfung bleibt blockiert: kein kanonischer Claim, historische Manifeste ohne heutige `validity`-/`git`-/`provenance_digests`-/`source_freeze_sha`-Felder und vorhandene Reviews mit `accepted_as_interpretation` statt EvidenceEngine-`supports|refutes|inconclusive`. Diese Lücken werden nicht rückwirkend erfunden.
 
-Als zweite getrennte Funktionslinie wird `STAGE1-TEMPORAL-ORDER-LINE-002` mit `RQ-TEMP-002 / H-TEMP-002-A` und `EXP-S1-TEMP-ORDER-V2-20260919` geführt. Der präregistrierte Sechs-Neuronen-Task umfasst 20 Seeds, 120 Runs und eine identity-destroyed Kontrolle. Der DATA-Status ist `SUPPORTED_WITHIN_PREREGISTERED_PROTOCOL`; Human Review, EVID und unabhängige Replikation bleiben offen.
+Als zweite getrennte Funktionslinie wird `STAGE1-TEMPORAL-ORDER-LINE-002` mit `RQ-TEMP-002 / H-TEMP-002-A` und `EXP-S1-TEMP-ORDER-V2-20260919` geführt. Der präregistrierte Sechs-Neuronen-Task umfasst 20 Seeds, 120 Runs und eine identity-destroyed Kontrolle. Der DATA-Status ist `SUPPORTED_WITHIN_PREREGISTERED_PROTOCOL`; der Human Review durch Thomas Heisig ist mit `accepted_as_interpretation` abgeschlossen. EVID-Promotion und unabhängige Replikation bleiben separat offen. Diese Linie ist funktional eigenständig, aber keine unabhängige Replikation der Topologielinie.
 
+Kanonische Maschinenbaseline: `research/registry/stage1_baseline.json` (`STAGE1-SCIENTIFIC-BASELINE-20260925`).  
 Kanonische Konsolidierungsentscheidung: `research/decisions/2026-09-25_stage1_scientific_consolidation.md`.
 
 ## Aktueller Schwerpunkt: Stage 6
