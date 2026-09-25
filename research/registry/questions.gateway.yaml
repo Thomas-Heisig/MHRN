@@ -96,3 +96,46 @@
     limitations: Normalisierte Energieeinheiten sind keine gemessenen Joule.
   created: '2026-09-09'
   updated: '2026-09-09'
+
+- id: RQ-GW-008
+  domain: Digital Sensory Transfer
+  question: Generalisiert ein gelerntes digitales Sensor-Gateway von einer Entwicklungsquelle auf eine schema-kompatible Holdout-Quelle mit neuen Inhalten, wenn die Entwicklungsquelle im Test nicht verfuegbar ist?
+  relevance: Trennt gelernte Informationsnutzung von Inhaltsmemorierung und macht die digitale Sinnessemantik falsifizierbar.
+  literature: []
+  hypotheses: [H-GW-008-A]
+  evidence: []
+  status: open
+  answer:
+    current: null
+    confidence: none
+    limitations: Ein erfolgreicher Transfer belegt nur die registrierte Schnittstellen- und Aufgabenklasse; er beweist weder allgemeinen Wissenstransfer noch Kognition.
+  created: '2026-09-25'
+  updated: '2026-09-25'
+- id: RQ-GW-009
+  domain: Digital Query Action
+  question: Kann MHRN lernen, wann und ueber welchen digitalen Gateway-Pfad eine Informationsabfrage als Handlung ausgeloest werden soll, ohne fest programmierten Query-Zeitpunkt?
+  relevance: Prueft, ob Informationsbeschaffung Teil der gelernten Sensor-Aktor-Schleife statt externer Ablaufsteuerung ist.
+  literature: []
+  hypotheses: [H-GW-009-A]
+  evidence: []
+  status: open
+  answer:
+    current: null
+    confidence: none
+    limitations: Der Decoder fuer exakte Query-Syntax bleibt eine deklarierte konventionelle Boundary-Komponente; gelernt werden Auswahl/Timing/neurale Repräsentation, nicht die Behauptung eines syntaxfreien Systems.
+  created: '2026-09-25'
+  updated: '2026-09-25'
+- id: RQ-GW-010
+  domain: Adaptive Modality Routing
+  question: Lernt MHRN unter wechselnder Aufgabenrelevanz, Audio-, Vision- und Digitalpfade adaptiv zu priorisieren, statt auf festes, zufaelliges oder zeitlich geshuffeltes Routing angewiesen zu sein?
+  relevance: Prueft selbstorganisierte Nutzung mehrerer Sinne als funktionale Erweiterung der bestehenden MSBA-Architektur.
+  literature: []
+  hypotheses: [H-GW-010-A]
+  evidence: []
+  status: open
+  answer:
+    current: null
+    confidence: none
+    limitations: Routinggewichte oder Aktivitaetsunterschiede allein genuegen nicht; ein Vorteil muss unter matched task/resource budgets und Holdout-Bedingungen gezeigt werden.
+  created: '2026-09-25'
+  updated: '2026-09-25'
