@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 from __future__ import annotations
+
 from src.research.meta_system import MetaSystem
 
 
