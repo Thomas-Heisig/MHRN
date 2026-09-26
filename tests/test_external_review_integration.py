@@ -9,8 +9,8 @@ from threading import Thread
 
 import pytest
 
-from src.dashboard.external_review import build_external_review_status
 from scripts.export_external_review_aggregate import build_aggregate
+from src.dashboard.external_review import build_external_review_status
 from src.dashboard.research_source import ResearchSource
 from src.dashboard.server import DashboardServer
 from src.dashboard.state import DashboardStateStore
