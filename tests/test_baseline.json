@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
-  "tested_commit": "a08bf28e56e0480e639776d2c86fe8bb8e626f01",
-  "tested_tree_digest": "c8da99ab4491b7199ede6f94d335378ffbb9cbc8932a278a772507706ca54faf",
+  "tested_commit": "e581905026f66ecd58ac03bd6270a77191f8d5ab",
+  "tested_tree_digest": "c09751d46d8ec13fc5a2ae51faa795b266a4e0269b1224144fe322dd2a10838f",
   "tree_digest_paths": [
     "src/",
     "configs/",
@@ -12,20 +12,20 @@
   "tree_digest_excludes": [
     "tests/test_baseline.json"
   ],
-  "timestamp": "2026-09-25T13:22:25.351354+00:00",
+  "timestamp": "2026-09-26T16:01:43.802213+00:00",
   "python": "3.13.15",
   "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
   "source_unchanged_during_run": true,
   "full_collection": {
     "status": "passed",
-    "collected": 1671,
+    "collected": 1672,
     "collection_errors": 0
   },
   "full_suite": {
     "command": "python -m pytest tests/ -q -ra --junitxml=<temporary-report>",
     "status": "passed",
     "exit_code": 0,
-    "passed": 1669,
+    "passed": 1670,
     "failed": 0,
     "errors": 0,
     "skipped": 2,
@@ -184,7 +184,7 @@
     "src/dashboard/static/review/admin.html": "5fc837120c521cff98ec96efd4358faa34453301deee092619c44f817b923f55",
     "src/dashboard/static/review/admin.js": "0865dd475fd46ed5767ab6f1f5aee1e43f62feb407bfb476cd234c4debdde73a",
     "src/dashboard/static/review/app.js": "2a010a5cdff64427e4969a620620f624809570bcb9f6ebae9840d85fa9d1b1cf",
-    "src/dashboard/static/review/index.html": "9d1291fea5a32ce1801ef4450ccb274da490d246472b698ccb0b23194982a881",
+    "src/dashboard/static/review/index.html": "1e4ccd7d59c8a3b2035b50a5b75eb0091fe48d55dc9d43adbee86233403866b7",
     "src/dashboard/static/review/instrument.js": "a7f678489a0cfe0b7ba17c765bbb12c5740a231b1638814de91dcbaa684299f6",
     "src/dashboard/static/review/model.js": "25dac6260e60194bb32f0201447232a78ba94c7ce45d60b4b3117cb0585cd010",
     "src/dashboard/static/review/review.css": "a1ecf4eab62165b7b8113abaabe4e32a3794ba5cbc42f366716df0c71fea1742",
@@ -596,7 +596,7 @@
     "tests/test_research_assistant_reporting_policy.py": "95bbb34e257626f6a32139a00001bdad1fe765016f55d89dbf28f734e5ee5f85",
     "tests/test_research_catalog_audit.py": "db54e577120e607c9432009b326c4b41fc8209c87376adb62f38ec1495ba6991",
     "tests/test_research_chat.py": "f1b603da41c0ddde71a6a2a820bd8e85a1371a9a310f32ae2d0e0ebb87bbbeae",
-    "tests/test_research_dashboard_routes.py": "8b951debc865f4bd705e9749bd0451209fe564581727e3e615a8409dd7e8fd61",
+    "tests/test_research_dashboard_routes.py": "7938c578d19142d3904ba1302be516d62f8f6610a6779a24e783edb9df945a45",
     "tests/test_research_data_v2.py": "2dace0f706d351c28a6efa70e372103a25e1f73cbc8946ad2f3fb9c9cfb7dce9",
     "tests/test_research_object_mapping_schema.py": "a1c8a045c54e528160ca72265150d5e655b2e7ea4f760c5f730cdff49628efde",
     "tests/test_research_question_maturity.py": "0820df6e854881a98e62e749440efb2b4881d602525f7875359b130f2597e16b",
