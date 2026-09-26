@@ -37,3 +37,8 @@ def test_render_is_deterministic_and_keeps_taxonomies_separate():
     assert a==b
     assert "Stage 0-10 is a maturity/development axis" in a["STAGE_MATRIX.md"]
     assert "not a research-direction taxonomy" in a["DISSERTATION_MAP.md"]
+
+def test_review_queue_is_descriptive_not_evidence():
+    rendered = MetaSystem(ROOT).render()
+    assert "REVIEW_QUEUE.md" in rendered
+    assert "not EVID" in rendered["REVIEW_QUEUE.md"]
