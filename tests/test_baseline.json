@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
-  "tested_commit": "6a78e7707dbefc0ae130d0c0a1b78bfd5d8de1f9",
-  "tested_tree_digest": "3df32e77b2e95da3a2ade9acc0ae9e007667a3e7457e02d869dee74dabb21531",
+  "tested_commit": "8160ca8b487b34ab6eea72bf110878bcc202cdcc",
+  "tested_tree_digest": "3336397d7cc71a5cdf7fbfda7d5f1f576dc67b4b0264e387fa0b05f104669257",
   "tree_digest_paths": [
     "src/",
     "configs/",
@@ -12,20 +12,20 @@
   "tree_digest_excludes": [
     "tests/test_baseline.json"
   ],
-  "timestamp": "2026-09-26T16:14:22.605919+00:00",
+  "timestamp": "2026-09-26T16:19:23.503817+00:00",
   "python": "3.13.15",
   "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
   "source_unchanged_during_run": true,
   "full_collection": {
     "status": "passed",
-    "collected": 1673,
+    "collected": 1679,
     "collection_errors": 0
   },
   "full_suite": {
     "command": "python -m pytest tests/ -q -ra --junitxml=<temporary-report>",
     "status": "passed",
     "exit_code": 0,
-    "passed": 1671,
+    "passed": 1677,
     "failed": 0,
     "errors": 0,
     "skipped": 2,
@@ -307,6 +307,7 @@
     "src/research/experiment_summary.py": "0eccef5fc59c6131b0b9263b6306f0137a30590b1a2354d0ba21725a3a8512dc",
     "src/research/followup_experiments.py": "f670a86f24506db59b8c6aa8f0b405571caad094e7566e099346e5055e51095d",
     "src/research/literature_registry.py": "c2a311a9a7d2e8a6660dae24847e77b2d0d8272fe7b26562108e7520480304f5",
+    "src/research/meta_system.py": "969cb19019366e3e843ce89e26d664283ef9d72cc8b4897cd32c9f5e5b7d99d8",
     "src/research/network_probe.py": "6fff43d0b162a2ada352e47c266abd8720012269518fb3e5acf26504d24bbbf9",
     "src/research/productive_learning.py": "85067057c0b0c1fdff398721c7966082742643fd2dcad9475bfe49ca3770d4d2",
     "src/research/productive_learning_worker.py": "9b51cbb25cbe6991ab55bf92ac9318f57f4f2d16b48e82fd7c1244437a1cfe0d",
@@ -552,6 +553,7 @@
     "tests/test_live_projection.py": "51b85e7b42d443f6b98360221c03f02edc38131622db10fba828132787c26d7e",
     "tests/test_manipulator.py": "045c26645a0936813250b807c6402e8d10b3551fe972758cf9d4dde473485a92",
     "tests/test_memory_layer.py": "2ee0a7826811981ca14d558df27ddc89bf018b0a0cdab8d7b0522104410b8e28",
+    "tests/test_meta_research_system.py": "2dda18d1ab0d63abf988918c09c7c88b12459b3da0d8bffe7d47b5a284cfd6dc",
     "tests/test_mhrn_naming.py": "6f2cfc8e4e268153af752a9229bec059957b0195ba8134d45a268499b03857d7",
     "tests/test_morphology_ledger.py": "ece7e21cb2c6aed8a46bba0890e31116deff2be785ab740288d4ec9a139ea77c",
     "tests/test_msba.py": "c181e3a52092a4271705f2d9274a392f0b7872495ab7df64200361d56fee853e",
