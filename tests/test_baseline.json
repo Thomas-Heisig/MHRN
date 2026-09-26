@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
-  "tested_commit": "8160ca8b487b34ab6eea72bf110878bcc202cdcc",
-  "tested_tree_digest": "3336397d7cc71a5cdf7fbfda7d5f1f576dc67b4b0264e387fa0b05f104669257",
+  "tested_commit": "dcec002878a30c210d3b8ea8cfa401283b268d1c",
+  "tested_tree_digest": "dcf81846537a45d30b35f70d71027eb2a58a11a80fcc2197d708bfd20c95519c",
   "tree_digest_paths": [
     "src/",
     "configs/",
@@ -12,7 +12,7 @@
   "tree_digest_excludes": [
     "tests/test_baseline.json"
   ],
-  "timestamp": "2026-09-26T16:19:23.503817+00:00",
+  "timestamp": "2026-09-26T16:23:53.335577+00:00",
   "python": "3.13.15",
   "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
   "source_unchanged_during_run": true,
@@ -481,7 +481,7 @@
     "tests/test_dashboard_completion.py": "aee4084789dc952ec2f158e6fbd61d5a6a8ecaa81a78b47ed7445704040811de",
     "tests/test_dashboard_control_api.py": "5a6167d21bb66ca97c393e4ad9643edda4568914dd2410891c5d35e9aaae96b0",
     "tests/test_dashboard_control_service.py": "d39ca8c8dfd40811487544c579773a4f5877d38de24c126a77925042d75ad2b1",
-    "tests/test_dashboard_disconnect_hardening.py": "5ef301ccd941b58c49ccabf60cc7f22d06f08fdefee00c0d2a33d34ed265a445",
+    "tests/test_dashboard_disconnect_hardening.py": "c81fc3c4a94d733bff1dab997f96968b7851446b5f2fd23172ddddf9fe60d596",
     "tests/test_dashboard_embodiment_frontend.py": "fee863fe3983232e91d99ee9e28135f6148fbc043865d50d0358f1f21eef51f9",
     "tests/test_dashboard_embodiment_routes.py": "617056daa4b154fa55dff4598013999e528395cbf5810d29dbdfc67bb528acad",
     "tests/test_dashboard_experience.py": "8ec0d90e0b5c5cf86a500c4699816b33f3558a5220d5f41a3a373bb9e2f7e21c",
@@ -527,7 +527,7 @@
     "tests/test_experiment_organizer.py": "3ee384fe18aea69939e97f3b3c1ead8aebae5a8f5e14435d9d034aca31efc27e",
     "tests/test_experiment_suite.py": "6b9fe182cdaed148082d7239b4121a6f9f665fda1f07570705afa85d23353f1b",
     "tests/test_experiment_validity.py": "2b56f4760c674568b66ea0c6710999897b12a78ffdf39442afc204f32f4ad1d9",
-    "tests/test_external_review_integration.py": "6acd418c9e5abac78ad54dc0c2c37eacd6077a3c11dfb623bf65111a2be39e22",
+    "tests/test_external_review_integration.py": "99a3178cbd182728bb4990642b354df920f937a9828a6c5442d91d9c5aea2bd3",
     "tests/test_failed_protocol_recovery_regression.py": "7b174829457cb1f1c956692d21ccd6092dcd11bc42678cd250a3f19aee6f2637",
     "tests/test_file_rendering.py": "0fc54b9fe1dbfce047b771b0a7e8fe99682ce8207fc00986b6c90dcd6664b445",
     "tests/test_final_integration_20260911.py": "3d2ca382a51346a340a6b86537b414800e628c8fbb3ac7f4d99312dc9fa533f1",
