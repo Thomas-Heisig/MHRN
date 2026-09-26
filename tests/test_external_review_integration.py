@@ -9,6 +9,7 @@ from threading import Thread
 
 import pytest
 
+from scripts.export_external_review_aggregate import build_aggregate
 from src.dashboard.external_review import build_external_review_status
 from src.dashboard.research_source import ResearchSource
 from src.dashboard.server import DashboardServer
@@ -71,6 +72,26 @@ def test_instrument_drift_fails_closed(tmp_path: Path) -> None:
     assert status["available"] is False
     assert "drift" in status["reason"]
     assert build_external_review_status(tmp_path / "missing")["available"] is False
+
+
+def test_review_aggregate_excludes_raw_response_fields() -> None:
+    aggregate = build_aggregate(
+        [
+            {
+                "response": {
+                    "participant_code": "private-code",
+                    "answers": {"B1": 3},
+                    "notes": {"B1": "private note"},
+                }
+            }
+        ]
+    )
+    serialized = json.dumps(aggregate)
+    assert aggregate["raw_answers_included"] is False
+    assert "private-code" not in serialized
+    assert "private note" not in serialized
+    assert "participant_code" not in serialized
+    assert '"notes"' not in serialized
 
 
 def test_review_readiness_api_is_read_only() -> None:

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "as_of": "2026-09-18",
-  "as_of_commit": "c6d1a57d88b82a611bb50221312f4771ffac24f4",
+  "as_of": "2026-09-25",
+  "as_of_commit": "f9d926a9209dc17a11fbe29c6c82074824f75aa0",
   "title": "MHRN scientific maturity timeline",
   "scope_note": "Scientific maturity is intentionally separate from engineering maturity. Scores summarize registered questions, frozen protocols, collected DATA, human-reviewed EVID, independent replication and attribution. They do not measure intelligence, consciousness or biological equivalence.",
   "integrity_note": "Repository checks reduce attribution and text-recycling risk but cannot certify plagiarism-freedom. External similarity review and human source verification remain pre-submission requirements.",
@@ -124,60 +124,97 @@
     {
       "stage": 1,
       "name": "Kleines SNN",
-      "score": 0.3,
-      "status": "active",
-      "claim_boundary": "Korrekte Spike-Ausbreitung in kleinen Netzen zeigt technische Funktion, nicht kognitive Leistung oder Skalierbarkeit.",
+      "score": 0.75,
+      "status": "advanced",
+      "claim_boundary": "Die zentrale Stage-1-Topologielinie (V2 + V3-R1) und die getrennte Temporal-Order-Funktionslinie sind innerhalb ihrer präregistrierten Small-SNN-Operating-Envelopes human-reviewed DATA. Das ist weder kanonische EVID noch unabhängige Replikation und begründet keine Kognition, Skalierbarkeit oder 5D-Überlegenheit.",
       "criteria": [
         {
           "id": "research_question",
-          "status": "partial",
-          "label": "Explizite Forschungsfrage/Hypothese",
+          "status": "met",
+          "label": "Explizite registrierte Stage-1-Forschungsfragen und Hypothesen",
           "sources": [
-            "research/registry/questions.yaml"
+            "research/registry/questions.yaml",
+            "RQ-SNN-003",
+            "H-SNN-003-B",
+            "RQ-TEMP-002",
+            "H-TEMP-002-A"
           ]
         },
         {
           "id": "protocol",
-          "status": "partial",
-          "label": "Forschungsprotokoll über den Softwarevertrag hinaus",
+          "status": "met",
+          "label": "Präregistrierte wissenschaftliche Small-SNN-Protokolle über den Softwarevertrag hinaus",
           "sources": [
-            "tests/test_small_snn_contract.py"
+            "research/preregistrations/PREREG-S1-TOPO-V2.json",
+            "research/preregistrations/PREREG-S1-TOPO-V3-R1-TIME-RESOLVED.json",
+            "research/preregistrations/PREREG-S1-TEMP-ORDER-V2.json"
           ]
         },
         {
           "id": "data",
-          "status": "partial",
-          "label": "Forschungs-DATA statt nur Verifikation",
+          "status": "met",
+          "label": "Source-bound Stage-1-DATA aus zentraler Topologielinie und task-basierter Temporal-Order-Linie",
           "sources": [
-            "research/generated/verification/small_snn_reference.json"
+            "research/experiments/EXP-S1-TOPO-V2-20260918",
+            "research/experiments/EXP-S1-TOPO-V3-R1-20260918",
+            "research/experiments/EXP-S1-TEMP-ORDER-V2-20260919"
           ]
         },
         {
           "id": "reviewed_evidence",
-          "status": "open",
-          "label": "Menschlich freigegebene EVID",
-          "sources": []
+          "status": "partial",
+          "label": "Human Reviews der Topologie- und Temporal-Order-Linien abgeschlossen; kanonische EvidenceEngine-Promotion separat offen",
+          "sources": [
+            "research/experiments/EXP-S1-TOPO-V2-20260918/review_request.json.review.json",
+            "research/experiments/EXP-S1-TOPO-V3-R1-20260918/review_request.json.human-review.json",
+            "research/experiments/EXP-S1-TEMP-ORDER-V2-20260919/review_request.json.review.json",
+            "research/registry/stage1_baseline.json",
+            "research/decisions/2026-09-25_stage1_scientific_consolidation.md"
+          ]
         },
         {
           "id": "independent_replication",
           "status": "open",
-          "label": "Unabhängige Replikation",
-          "sources": []
+          "label": "Interne R1-Replikation vorhanden; keine unabhängig autorisierte Replikation",
+          "sources": [
+            "INDEPENDENT_REPLICATION.md",
+            "research/registry/stage1_baseline.json",
+            "research/decisions/2026-09-25_stage1_scientific_consolidation.md"
+          ]
         },
         {
           "id": "attribution",
           "status": "met",
-          "label": "Methoden- und Modellattribution",
+          "label": "Methoden-, Modell-, Literatur- und Claim-Grenzen dokumentiert",
           "sources": [
-            "research/publications/2026-09-13_recursive-epistemics_v1.5/FORSCHUNGSBERICHT.md"
+            "research/publications/2026-09-17_recursive-epistemics_v1.8/parts/04_empirical_programme.md",
+            "research/publications/papers/2026-09-20_topology-dynamics_v0.1/PAPER.md"
           ]
         }
       ],
       "next_scientific_steps": [
-        "Kleine-Netzwerk-Baseline als eigene RQ/Hypothese präregistrieren.",
-        "Task-basierte Kontrollarme ergänzen.",
-        "Unabhängige Replikation planen."
-      ]
+        "Für die human-reviewte Topologie- und Temporal-Order-DATA jeweils einen scoped Claim und einen prospektiven EvidenceEngine-kompatiblen Promotion-Pfad definieren; historische Manifeste nicht rückwirkend umschreiben.",
+        "Unabhängig implementierte beziehungsweise unabhängig kontrollierte Replikation durchführen; weder V3-R1 noch Temporal Order als unabhängige Replikation der Topologielinie zählen.",
+        "Task-, Störungs- und Skalierungsregime erweitern; die stärkere 5D-Hypothese weiterhin separat prüfen."
+      ],
+      "criterion_contracts": {
+        "reviewed_evidence": {
+          "weight": 0.2,
+          "partial_semantics": "Human scientific review of the Stage-1 topology and Temporal-Order interpretations is complete, but canonical EvidenceEngine EVID registration is not complete.",
+          "met_semantics": "Human scientific review is complete and a scoped Stage-1 claim is registered through the canonical EvidenceEngine promotion path.",
+          "decomposition": {
+            "human_scientific_review_fraction": 0.5,
+            "canonical_evidence_engine_promotion_fraction": 0.5
+          },
+          "anti_gaming_rule": "A positive DATA result or accepted interpretation cannot by itself create EVID or complete this criterion."
+        },
+        "independent_replication": {
+          "weight": 0.15,
+          "partial_semantics": "A separately controlled external or independently authored replication contributes only when the explicit independence definition is satisfied.",
+          "met_semantics": "A preregistered replication meeting the explicit independence definition has been completed and reviewed.",
+          "anti_conflation_rule": "The V3-R1 internal replication and the separate Temporal-Order task can never be counted as independent replication of the topology claim."
+        }
+      }
     },
     {
       "stage": 2,

@@ -1,0 +1,21 @@
+- id: H-META-003-A
+  research_question: RQ-META-003
+  hypothesis: Bei eingefrorenem ResearchPacket unterscheiden sich Modelle und Modellversionen messbar in Fehlererkennung, Kontrollvorschlägen, Claim-Erweiterungen, Quellenfehlern und Revisionsvorschlägen; robuste Prozessbefunde müssen deshalb modellübergreifend oder als modellspezifisch ausgewiesen werden.
+  status: untested
+  evidence: []
+  created: '2026-09-26'
+  updated: '2026-09-26'
+- id: H-META-004-A
+  research_question: RQ-META-004
+  hypothesis: Eine explizite Source-Lineage-Kennzeichnung reduziert die Rate, mit der derivativ abhängige Quellen oder KI-Synthesen als unabhängige Bestätigung klassifiziert werden.
+  status: untested
+  evidence: []
+  created: '2026-09-26'
+  updated: '2026-09-26'
+- id: H-META-005-A
+  research_question: RQ-META-005
+  hypothesis: Eine status- und provenance-separierte Governance reduziert prädefinierte epistemische Fehlklassifikationen, ohne dass der Nutzen durch den präregistrierten Zeit- und Dokumentationsaufwand vollständig aufgehoben wird.
+  status: untested
+  evidence: []
+  created: '2026-09-26'
+  updated: '2026-09-26'

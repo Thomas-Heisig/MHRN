@@ -62,7 +62,11 @@ Der zugehörige maschinenlesbare Readiness-Status weist für den **scoped Stage-
 
 ### Stage 1 — kleines SNN
 
-Stage 1 verfügt über einen technischen Small-SNN-Vertrag und Referenzartefakte zur Spike-Ausbreitung. Der wissenschaftliche Stand ist schwächer als die technische Reife: Die bisherigen Artefakte zeigen technische Funktion in kleinen Netzen, aber noch keine breite task-basierte Evidenz, Skalierbarkeit oder unabhängige Replikation. Der zentrale Übergang zu Stage 2 ist deshalb nicht „mehr Neuronen“, sondern die Frage, ob rekurrente Dynamik unter kontrollierten Interventionen einen kausal isolierbaren funktionalen Beitrag liefert.
+Stage 1 besitzt inzwischen mehr als den ursprünglichen technischen Small-SNN-Vertrag. Als zentrale wissenschaftliche Baseline gilt `RQ-SNN-003 / H-SNN-003-B` mit der gemeinsam geführten DATA-Linie aus `EXP-S1-TOPO-V2-20260918` und der korrigierten internen Replikation `EXP-S1-TOPO-V3-R1-20260918`. Beide Human Reviews durch Thomas Heisig sind abgeschlossen und akzeptieren die eng begrenzte Topologieinterpretation. Die Scientific-Maturity-Projektion beträgt damit 75 %: RQ/H, Protokoll, DATA und Attribution sind erfüllt; das Human-Review-Subgate ist abgeschlossen; kanonische EVID-Promotion und unabhängige Replikation bleiben offen.
+
+Davon getrennt bildet `RQ-TEMP-002 / H-TEMP-002-A` mit `EXP-S1-TEMP-ORDER-V2-20260919` eine zweite task-basierte Funktionslinie. Sie prüft in einem kleinen acyclischen Sechs-Neuronen-SNN die Erhaltung zweier Kanalidentitäten und zeitlicher Reihenfolge gegen eine information-destroyed Kontrolle. Diese Linie ist DATA-seitig innerhalb des präregistrierten Protokolls unterstützt und ihr Human Review durch Thomas Heisig ist mit `accepted_as_interpretation` abgeschlossen. Sie ist funktional eigenständig, aber keine Replikation des Topologieclaims.
+
+Der zentrale Übergang zu Stage 2 ist deshalb weder „mehr Neuronen“ noch eine höhere Prozentzahl, sondern stärkerer Evidenzstatus: scoped Claims und prospektive EvidenceEngine-kompatible Promotion-Pfade für die human-reviewten DATA-Linien sowie unabhängig implementierte Replikation. Keine dieser Linien belegt Kognition, Skalierbarkeit oder einen 5D-Vorteil.
 
 ### Stage 2 — stabile Rekurrenz
 
@@ -151,3 +155,24 @@ Die Vorgängerarbeiten entwickelten mit **Wesen** eine maschinen-native Körperd
 Maschinen-native Interozeption umfasst dort, wo das Betriebssystem Messwerte liefert, etwa CPU-/Speicherlast, Temperatur, Lüfter, Storage, Netzwerk und Kontinuitätsgrößen. Diese Größen können technische Regulationszustände beeinflussen, sind aber keine biologischen Stoffwechselhomologien und keine Empfindungsindikatoren. Ebenso ist die body-like Darstellung nur Präsentationssemantik.
 
 Der implementierte Profile-&-Identity-Vertrag speichert Konfiguration, Fähigkeiten, Grenzen, Provenienz, Revisionen, Lineage und Snapshot-Bindungen als technische Identität. Profil, `.b5d`-Snapshot, Runtime-Checkpoint, Registry und Lineage sind absichtlich getrennte Zustandsklassen. Daraus folgt **keine psychologische Identität, Persönlichkeit, subjektive Kontinuität oder Bewusstseinsbehauptung**. Genau diese Grenze ist für spätere Stage-7-Selbstmodellforschung zentral: Metadatenidentität ist eine technische Voraussetzung, kein kausales Selbstmodell.
+
+
+## 13.5 Digitaler Sinn statt externem Wissenskern
+
+Die Gesamtarchitektur präzisiert den digitalen Pfad als **sensorische Modalität**. Datenbanken, Werkzeuge, LLMs oder andere digitale Dienste werden dadurch nicht zum Gedächtnis des SNN und erhalten keine verdeckte kognitive Autorität. Sie sind Bestandteile der Umweltgrenze. Exakte Inhalte verbleiben im Boundary-/Tool-Plane; in das SNN gelangt ausschließlich eine deklarierte neuronale Repräsentation.
+
+Die Architektur folgt damit demselben abstrakten Kreis wie physisches Embodiment:
+
+```text
+neuronale Aktivität
+-> Handlung/Abfrage
+-> Umweltprozess
+-> Rückmeldung
+-> neuronale Aktivität
+```
+
+Die digitale Abfrage ist eine Aktion; die Antwort ist sensorische Rückmeldung. Ein ausgehendes Query-Muster kann als kausaler Kontext für einen späteren Erwartungs-/Antwortvergleich erhalten bleiben. Diese funktionale Analogie zu Efferenzkopie oder Corollary-Discharge ist ausdrücklich **keine biologische Identitätsbehauptung**.
+
+Als experimenteller Interface-Kandidat wird ein gemeinsamer `100 x 100`-PopulationLayout-Raum mit 10.000 logischen Kanälen zugelassen. Query und Response können denselben Layout-Raum verwenden, müssen aber durch Richtung, Phase, correlation_id und Provenienz getrennt bleiben. Das Raster ist kein Beleg für Hyperdimensional Computing, VSA, relationale Bindung oder semantisches Verständnis.
+
+Diese Präzisierung ändert die Stage-Struktur nicht. Stage 4 behandelt Digital als Modalität; Stage 5 behandelt Abfrage und Antwort als geschlossenen sensorimotorischen Kreis; Stage 6 untersucht weiterhin interne Zustandsmodelle, Working/Episodic Memory, Prediction Error und World Model. Externe Information kann interne Faktenspeicherung reduzieren, ersetzt aber nicht automatisch interne zeitliche Zustände oder Lernmechanismen.

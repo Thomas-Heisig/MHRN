@@ -4,10 +4,10 @@
 
 ## Übersicht
 
-- **Forschungsfragen:** 108
-- **Hypothesen:** 116
+- **Forschungsfragen:** 112
+- **Hypothesen:** 120
 - **Claims:** 9
-- **Literaturquellen:** 56
+- **Literaturquellen:** 60
 
 ---
 
@@ -636,6 +636,20 @@
 
 ---
 
+## Digital Neural Interface Codec and Binding
+
+### RQ-GW-CODEC-001
+
+**Frage:** Kann ein explizit deklarierter neuronaler Codec strukturierte digitale Information unter kontrolliertem Ressourcenbudget so abbilden, dass relevante Werte und Relationen im SNN nutzbar und im Readout wieder unterscheidbar bleiben?
+
+**Status:** open
+**Relevanz:** Trennt die bloße Erreichbarkeit digitaler Daten von einer testbaren neuronalen Repräsentations- und Binding-Leistung. Der optionale 100x100-Populationsraum ist nur ein Kandidat und kein vorweggenommener Semantik-Claim.
+
+**Hypothesen:**
+- `H-GW-CODEC-001-A`: Ein vorab deklarierter strukturierter neuronaler Codec erhaelt unter einem gematchten Ressourcenbudget die fuer die Zielaufgabe notwendigen Wert- und Relationsbindungen besser als eine informationzerstoerte beziehungsweise nicht-lokalitaetserhaltende Kontrollkodierung. *(untested)*
+
+---
+
 ## Embodied causality
 
 ### RQ-CNS-113
@@ -1109,6 +1123,60 @@
 
 ---
 
+## Meta-Research / Governance Utility
+
+### RQ-META-005
+
+**Frage:** Reduziert die MHRN-Governance epistemische Fehler bei vertretbarem zusätzlichem Zeit- und Dokumentationsaufwand gegenüber informationsäquivalenten flacheren Workflows?
+
+**Status:** open
+**Relevanz:** Ergänzt reine Fehlerreduktion um Aufwand, Entscheidungslatenz und Auditkosten.
+
+**Hypothesen:**
+- `H-META-005-A`: Eine status- und provenance-separierte Governance reduziert prädefinierte epistemische Fehlklassifikationen, ohne dass der Nutzen durch den präregistrierten Zeit- und Dokumentationsaufwand vollständig aufgehoben wird. *(untested)*
+
+**Literatur:**
+- `SRC-ALLEA-2023`: ALLEA - All European Academies et al. (2023)
+- `SRC-DFG-AI-REVIEW-2026`: Deutsche Forschungsgemeinschaft et al. (2026)
+
+---
+
+## Meta-Research / Human-AI Methodology
+
+### RQ-META-003
+
+**Frage:** Wie robust sind methodische Forschungsbeiträge und Fehlerdiagnosen gegenüber dem verwendeten KI-Modell oder der Modellversion, wenn Forschungsfrage, Quellen, DATA und Claim-Kontext eingefroren sind?
+
+**Status:** open
+**Relevanz:** Trennt werkzeugabhängige Vorschläge von robusten Prozessbeiträgen, ohne KI-Ausgaben als Evidenz über die Fachhypothese zu behandeln.
+
+**Hypothesen:**
+- `H-META-003-A`: Bei eingefrorenem ResearchPacket unterscheiden sich Modelle und Modellversionen messbar in Fehlererkennung, Kontrollvorschlägen, Claim-Erweiterungen, Quellenfehlern und Revisionsvorschlägen; robuste Prozessbefunde müssen deshalb modellübergreifend oder als modellspezifisch ausgewiesen werden. *(untested)*
+
+**Literatur:**
+- `SRC-ICMJE-AI-2026`: International Committee of Medical Journal Editors et al. (2026)
+- `SRC-DFG-AI-REVIEW-2026`: Deutsche Forschungsgemeinschaft et al. (2026)
+
+---
+
+## Meta-Research / Provenance
+
+### RQ-META-004
+
+**Frage:** Unter welchen Bedingungen wird rekursive Quellenabhängigkeit fälschlich als unabhängige Unterstützung gezählt, und kann lineage-aware Provenienz diese Fehlklassifikation reduzieren?
+
+**Status:** open
+**Relevanz:** Verhindert zirkuläre Bestätigung, wenn mehrere Texte oder Synthesen auf dieselbe KI-, Quellen- oder Transformationslinie zurückgehen.
+
+**Hypothesen:**
+- `H-META-004-A`: Eine explizite Source-Lineage-Kennzeichnung reduziert die Rate, mit der derivativ abhängige Quellen oder KI-Synthesen als unabhängige Bestätigung klassifiziert werden. *(untested)*
+
+**Literatur:**
+- `SRC-ICMJE-AI-2026`: International Committee of Medical Journal Editors et al. (2026)
+- `SRC-ALLEA-2023`: ALLEA - All European Academies et al. (2023)
+
+---
+
 ## Metacognition
 
 ### RQ-CNS-106
@@ -1486,9 +1554,9 @@
 
 **Aktuelle Antwort:**
 
-> EXP-S1-TOPO-V2-20260918 und die korrigierte interne Replikation EXP-S1-TOPO-V3-R1-20260918 liefern DATA-seitige Unterstützung dafür, dass die konkrete Topologie im präregistrierten 64-Neuronen-/246-Kanten-Stage-1-Regime die Propagationsdynamik beeinflusst. R1 löst die terminale active_fraction-Sättigung von 1d/2d/3d durch prospektiv definierte zeitaufgelöste Endpunkte auf und repliziert alle fünf V2-First-Output-Latenzrichtungen auf neuen Seeds. Human Review und EVID-Entscheidung stehen aus.
+> EXP-S1-TOPO-V2-20260918 und EXP-S1-TOPO-V3-R1-20260918 bilden gemeinsam die kanonische Stage-1-Topologie-DATA-Linie. Beide Human Reviews durch Thomas Heisig akzeptieren die begrenzte Interpretation. Die DATA sind nicht als EVID promotet.
 
-*Konfidenz: replicated_internal_data_review_pending*
+*Konfidenz: replicated_internal_data_human_reviewed_evid_not_promoted*
 
 **Hypothesen:**
 - `H-SNN-003-B`: Unter gleicher Neuronenzahl, Dichte und Stimulusbedingung unterscheiden sich Propagationslatenz oder -reichweite zwischen mindestens zwei vorab definierten Topologien; ein Vorteil einer 5D-Anordnung wird nicht vorausgesetzt. *(untested)*
@@ -1627,6 +1695,12 @@
 
 **Status:** open
 **Relevanz:** EXP-GEN-0021 zeigte Temporal-State-Diskrepanzen ohne Spike-Aktivität.
+
+**Aktuelle Antwort:**
+
+> EXP-S1-TEMP-ORDER-V2-20260919 liefert präregistrierte Stage-1-DATA aus 120 Läufen über 20 Seeds mit identity-destroyed Kontrolle. Der Laufstatus ist SUPPORTED_WITHIN_PREREGISTERED_PROTOCOL. Der Human Review durch Thomas Heisig ist mit accepted_as_interpretation abgeschlossen; EVID-Promotion und unabhängige Replikation stehen separat aus.
+
+*Konfidenz: preregistered_task_data_human_reviewed_evid_not_promoted*
 
 **Hypothesen:**
 - `H-TEMP-002-A`: Forward-, Reverse- und Simultanfolgen erzeugen bei gleicher Ereignisanzahl unterscheidbare spike-basierte Antwortsignaturen. *(untested)*

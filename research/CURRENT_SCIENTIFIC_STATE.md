@@ -1,6 +1,6 @@
 # Current Scientific State
 
-**Stand:** 19. September 2026
+**Stand:** 25. September 2026
 
 Dieses Dokument ist der kurze Einstieg in den aktuellen wissenschaftlichen Zustand. Historische DATA, EVID-Entscheidungen und eingefrorene Publikationen bleiben unverändert in ihren datierten Verzeichnissen.
 
@@ -43,8 +43,7 @@ historischen `superdigger`-Pfade bleiben als Legacy-Provenienz erhalten.
 - unmittelbarer Vorgänger: Edition 1.7
 - frozen empirical baseline: Edition 1.5 / `EXP-EMP-20260913-A3`
 - 1.8 nutzt die für 2.0 geplante elfteilige Struktur, ohne Softwareversion oder Evidenzstatus hochzustufen
-- offene menschliche wissenschaftliche Reviews: `EXP-GEN-0041`,
-  `EXP-S1-TOPO-V3-R1-20260918` und `EXP-S6-SEM-CL-003`
+- offene menschliche wissenschaftliche Reviews: `EXP-GEN-0041` und `EXP-S6-SEM-CL-003`; die Human Reviews der Stage-1-Topologielinie V2/V3-R1 sowie der Temporal-Order-V2-Funktionslinie sind abgeschlossen
 - CL-003 besitzt jetzt einen begrenzten Review-Kandidaten; die Entscheidung ist weiterhin `PENDING`
 - unabhängige Replikation: unvollständig
 - automatische EVID-Promotion: deaktiviert
@@ -81,6 +80,19 @@ Die Human Review ist unter `research/experiments/EXP-STAGE0-20260916-MODEL-CONFO
 Diese formale Provenienzlücke wurde inzwischen **prospektiv** adressiert, nicht rückwirkend repariert: `EXP-STAGE0-20260918-MODEL-CONFORMANCE-V2-PROMO-R1` wurde unter `PREREG-EVAL-006-V2-PROMO-R1` mit den vorab deklarierten neuen Seeds `22001–22003` ausgeführt. Der wissenschaftliche Lauf am Freeze-Commit `0376142b16a092c674653ee61c10d8137671eacf` war clean-tree, `validity.valid=true`, ohne Runtime-/Fatal-Fehler und mit vollständigen `provenance_digests` sowie `source_freeze_sha=36764dde292a3934523b21c5d9559319a0d8c9a8763c9ab3dc1c5cbbc246e850`. Alle drei eingefrorenen Hypothesenbedingungen bestanden; der maximale Izhikevich-Lokalfehler betrug `4.5474735088646412e-13`, der maximale LIF-Fehler `7.1054273576010019e-15`.
 
 Der Promotion-Lauf selbst bleibt als ausgeführte DATA unverändert; seine automatische Promotion ist weiterhin deaktiviert. Der Human Review durch Thomas Heisig vom 18.09.2026 wurde zusätzlich in das vom EvidenceEngine verlangte kanonische `human_review.json` abgebildet. Die anschließende getrennte Promotion erzeugte `EVID-2026-18` für `CLAIM-EVAL-006`. Diese Registrierung ändert weder die historische V1-Negativspur noch die Unabhängigkeitsgrenze: `independent_authorship_replication=false` bleibt bestehen.
+
+## Stage 1 — konsolidierter wissenschaftlicher Reifestand
+
+Die frühere 30-%-Projektion war gegenüber dem aktuellen Repository veraltet. Die kanonische Stage-1-Baseline ist jetzt `RQ-SNN-003 / H-SNN-003-B` mit der verknüpften Topologie-DATA-Linie `STAGE1-TOPOLOGY-LINE-001`: `EXP-S1-TOPO-V2-20260918` als primärer präregistrierter Lauf und `EXP-S1-TOPO-V3-R1-20260918` als korrigierte interne Replikation mit neuen Seeds. Der fehlerhaft analysierte erste V3-Lauf bleibt unverändert als Auditspur.
+
+Nach dem unveränderten Gewichtungsvertrag ergibt sich für Stage 1 **75 %**: RQ/H 15 %, Protokoll 20 %, DATA 20 %, Human-Review-Subgate 10 % von 20 %, unabhängige Replikation 0 % und Attribution 10 %. Die beiden Human Reviews durch Thomas Heisig sind abgeschlossen und akzeptieren die begrenzte Interpretation. Das erzeugt keine EVID.
+
+Die separate EvidenceEngine-Prüfung bleibt blockiert: kein kanonischer Claim, historische Manifeste ohne heutige `validity`-/`git`-/`provenance_digests`-/`source_freeze_sha`-Felder und vorhandene Reviews mit `accepted_as_interpretation` statt EvidenceEngine-`supports|refutes|inconclusive`. Diese Lücken werden nicht rückwirkend erfunden.
+
+Als zweite getrennte Funktionslinie wird `STAGE1-TEMPORAL-ORDER-LINE-002` mit `RQ-TEMP-002 / H-TEMP-002-A` und `EXP-S1-TEMP-ORDER-V2-20260919` geführt. Der präregistrierte Sechs-Neuronen-Task umfasst 20 Seeds, 120 Runs und eine identity-destroyed Kontrolle. Der DATA-Status ist `SUPPORTED_WITHIN_PREREGISTERED_PROTOCOL`; der Human Review durch Thomas Heisig ist mit `accepted_as_interpretation` abgeschlossen. EVID-Promotion und unabhängige Replikation bleiben separat offen. Diese Linie ist funktional eigenständig, aber keine unabhängige Replikation der Topologielinie.
+
+Kanonische Maschinenbaseline: `research/registry/stage1_baseline.json` (`STAGE1-SCIENTIFIC-BASELINE-20260925`).  
+Kanonische Konsolidierungsentscheidung: `research/decisions/2026-09-25_stage1_scientific_consolidation.md`.
 
 ## Aktueller Schwerpunkt: Stage 6
 
@@ -192,3 +204,20 @@ Die externe wissenschaftliche Neuheit bleibt `requires_prior_art_review`.
 - `docs/00-governance/DOCUMENT_GOVERNANCE.md`
 
 Vor formaler externer Einreichung bleiben menschliche Quellenprüfung, systematische Prior-Art-Prüfung, externe Similarity-Prüfung und fachliche Review erforderlich.
+
+
+## Digitaler Sinn / Neural Interface — Gesamtarbeitsintegration
+
+Mit der Entscheidung `research/decisions/2026-09-25_digital-sense-neural-interface.md` wird der bestehende Digitalpfad ausdrücklich als zusätzliche sensorische Umweltmodalität behandelt. Das MHRN-Kernmodell bleibt unverändert; neu präzisiert werden die experimentellen Verträge an der Grenze zwischen neuronaler Aktivität und exakten digitalen Prozessen.
+
+Die exakte Payload bleibt außerhalb des SNN. Das Netz verarbeitet eine deklarierte neuronale Repräsentation. Dauerhafte Faktenspeicherung in Synapsen ist **kein Architekturziel** des digitalen Sinnes; internes Working/Episodic Memory, Prediction Error und World Model bleiben dennoch eigenständige Stage-6-Mechanismen.
+
+Ein `100 x 100`-Array ist als experimenteller gemeinsamer PopulationLayout-Kandidat aufgenommen. Es ist weder bewiesene VSA noch bewiesenes Binding. Query und Response dürfen denselben Raum nutzen, benötigen aber Richtung, Phase, correlation_id und Provenienz.
+
+Die vier offenen Prüfachsen sind:
+1. Quellentransfer -> `RQ-GW-004`;
+2. Query als gelernte Handlung -> `RQ-GW-006`;
+3. Modalitätsrouting -> `RQ-GW-002`;
+4. Codec/Binding -> `RQ-GW-CODEC-001 / H-GW-CODEC-001-A`, kanonisch registriert als `open` / `untested`.
+
+Keiner dieser Punkte ist durch die Integrationsentscheidung bereits DATA oder EVID.

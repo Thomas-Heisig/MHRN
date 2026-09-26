@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "status": "implemented_governance_projection",
+  "edition_path": "research/publications/2026-09-17_recursive-epistemics_v1.8",
+  "direction_registry": "research/registry/directions.yaml",
+  "axes": [
+    "research_direction",
+    "developmental_stage",
+    "research_axis",
+    "manuscript_part",
+    "publication",
+    "evidence_state"
+  ],
+  "invariants": [
+    "research directions are not developmental stages",
+    "research directions are not manuscript parts",
+    "implementation is not DATA",
+    "DATA is not EVID",
+    "Human Review is not independent replication",
+    "DOI is not peer review",
+    "AI synthesis is not independent external evidence",
+    "internal replication is not external independent replication"
+  ],
+  "execution_authorized": false,
+  "automatic_evidence_promotion": false
+}

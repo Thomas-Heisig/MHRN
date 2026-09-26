@@ -29,7 +29,7 @@ Die folgende Matrix ist eine Leserhilfe, keine neue Prozentmetrik. Sie trennt de
 | Stage | Gegenwärtig belastbarer Stand | Wissenschaftlich offen / blockiert durch | Nächster legitimierter Schritt |
 | --- | --- | --- | --- |
 | **0 — einzelne Nervenzelle** | Scoped Izhikevich-/LIF-Referenzkonformität gegen Brian2 ist confirmatory DATA-seitig erfüllt. | Human-EVID-Entscheidung, unabhängige Replikation, breitere Integrator-/Parameter-/Langzeitprüfung. | Review und unabhängig autorisierte Replikation des eingefrorenen Vertrages. |
-| **1 — kleines SNN** | `EXP-S1-TOPO-V2-20260918` und die korrigierte interne Replikation `EXP-S1-TOPO-V3-R1-20260918` zeigen DATA-seitig Topologiesensitivität im 64-Neuronen-/246-Kanten-Regime; R1 löst die V2-Endpunkt-Sättigung zeitaufgelöst auf und repliziert die First-Output-Richtung auf neuen Seeds. | Human Review, **unabhängige externe** Replikation, breitere Aufgaben-/Störungsregime; keine Ableitung eines 5D-Vorteils. | Human Review beider gültigen DATA-Linien abschließen und anschließend unabhängig implementiert replizieren; die separate 5D-Hypothese in größerem Design prüfen. |
+| **1 — kleines SNN** | Die kanonische Topologie-DATA-Linie aus `EXP-S1-TOPO-V2-20260918` + `EXP-S1-TOPO-V3-R1-20260918` ist präregistriert, intern repliziert und human-reviewed; `EXP-S1-TEMP-ORDER-V2-20260919` ergänzt eine getrennte, ebenfalls human-reviewte task-basierte Funktionslinie. Scientific Maturity: 75 %. | Kanonische EVID-Promotion beider scoped Funktionslinien und **unabhängige externe** Replikation; keine Ableitung eines 5D-Vorteils. | Scoped Claims + prospektive EvidenceEngine-kompatible Promotion-Pfade definieren und anschließend unabhängig implementiert replizieren. |
 | **2 — stabile Rekurrenz** | Kleiner kontrollierter Recurrence-Effekt ist reproduzierbar beobachtet. | Breite Generalisierung; sauberer clean-tree Determinismus-/Replikationsnachweis. | Hash-gebundene clean-tree Replikation und größere getrennte Regime. |
 | **3 — plastisches Nervengewebe** | STDP, Eligibility, Drei-Faktor-Regeln, Homeostase und Strukturplastizität sind technisch vorhanden. | Held-out Nutzen, Interaktionen, Langzeitstabilität und Ressourcenwirkung. | Learning-on/off/Frozen/Sham-Kontrollen mit vorab definierten Task-Endpunkten. |
 | **4 — spezialisierte Areale** | Audio/Vision/Digital-Pfade und E01–E05 liefern enge synthetische DATA. | Generalistenvergleich, Cross-Modal-Transfer, Läsion/Shuffle/Frozen, reale Ressourcenmessung. | Matched spezialisierte-vs.-generalistische Ablationen. |
@@ -115,7 +115,14 @@ Der Befund ist endpoint-spezifisch. `active_fraction` sättigt für 1d, 2d und 3
 Die interne Replikation `EXP-S1-TOPO-V3-R1-20260918` verschärft diesen Befund. Ein erster V3-Lauf wurde wegen einer falsch implementierten Holm-Familie nicht konfirmatorisch verwendet und bleibt als Auditspur erhalten. R1 verwendet neue Seeds und eine korrekt gemeinsame Holm-Korrektur über zehn zeitaufgelöste Primärtests. Obwohl die terminale `active_fraction` für 1d/2d/3d weiterhin 1,0 beträgt, unterscheiden sich die prospektiv definierten Zeitverläufe klar: Die mediane Aktivierungs-AUC (Ticks 0–31) beträgt 22,15625, 26,5703125 und 28,0078125; die Halbaktivierungslatenz 10, 6 und 4 Ticks. Beide low-dimensionalen Kontraste sind Holm-korrigiert signifikant. Zusätzlich replizieren alle fünf V2-First-Output-Latenzkontraste auf den neuen Seeds in derselben Richtung.
 
 **Zulässiger Claim:** Die konkrete Topologie beeinflusst innerhalb dieses kontrollierten Small-SNN-Operating-Envelope bei gematchtem Neuronen- und Kantenbudget die Propagationsdynamik; die Aussage ist nun auf einer zweiten, intern replizierten DATA-Linie mit zeitaufgelöster Auflösung der V2-Ceiling-Grenze gestützt.  
-**Nicht zulässig:** daraus unabhängige externe Replikation, 5D-Überlegenheit, Skalierbarkeit, biologische Äquivalenz oder `H-5D-005-A` abzuleiten. `5d_shuffled` und `random_graph` erreichen den Output weiterhin früher als reguläres 5d. Beide gültigen Linien bleiben bis Human Review DATA-only.
+**Nicht zulässig:** daraus unabhängige externe Replikation, 5D-Überlegenheit, Skalierbarkeit, biologische Äquivalenz oder `H-5D-005-A` abzuleiten. `5d_shuffled` und `random_graph` erreichen den Output weiterhin früher als reguläres 5d. Beide gültigen Topologielinien sind inzwischen human-reviewed als begrenzte Interpretation akzeptiert, bleiben aber DATA ohne kanonische EVID-Promotion.
+
+### Ergebnis J — Temporal Order bildet eine zweite Stage-1-Funktionslinie
+
+`EXP-S1-TEMP-ORDER-V2-20260919` ergänzt die Topologiestudien um eine task-basierte, information-destroying Kontrolle. Im acyclischen Sechs-Neuronen-Netz werden Forward-, Reverse- und Simultanfolgen bei gematchtem Ereignisbudget untersucht. Der intakte Kanalpfad erhält im registrierten V2-Datensatz die Reihenfolge (Median Accuracy 1,0), während die identity-destroyed Kontrolle auf 0,0 fällt; die Simultankontrolle bleibt vollständig erfolgreich. Die gepaarte Accuracy-Differenz beträgt im gespeicherten Bericht 1,0 mit CI [1,0;1,0] und Sign-Test p≈1,91×10^-6.
+
+**Zulässiger Claim:** Innerhalb dieses festen kleinen Netzwerk- und Decodervertrags trägt die Kanalidentität die registrierte zeitliche Ordnungsinformation, und ihre gezielte Zerstörung entfernt die Decodierbarkeit.  
+**Nicht zulässig:** Lernen, Gedächtnis, allgemeines zeitliches Reasoning, Kognition, Skalierbarkeit, EVID oder unabhängige Replikation abzuleiten. Der Human Review durch Thomas Heisig ist mit `accepted_as_interpretation` abgeschlossen; diese Freigabe bleibt von einer kanonischen EVID-Promotion getrennt.
 
 ### Ergebnis H — Same-Seed-Reproduzierbarkeit ist nun als eigene DATA-Linie dokumentiert
 
@@ -300,3 +307,14 @@ Die Antwort der Arbeit darauf ist keine Behauptung von Neutralität, sondern **s
 Der stärkste Beitrag von Edition 1.8 liegt damit noch nicht in einer bestätigten Theorie allgemeiner Intelligenz oder eines 5D-Gehirns. Er liegt in einer **empirisch selektierten, revidierbaren Forschungsarchitektur**, deren einzelne Mechanismen zunehmend getrennt geprüft werden und deren eigener Forschungsprozess Gegenstand methodischer Kontrolle geworden ist.
 
 Der Dissertationscharakter entsteht gerade aus dieser Verbindung: historische Problemgenese, theoretischer Rahmen, operationalisierte Teilfragen, Methoden, Teilstudien, negative und positive Resultate, General Discussion, Limitationen und eine explizite Forschungsagenda bilden ein zusammenhängendes Argument statt einer Sammlung von Features.
+
+
+### Ergebnis E — Digitaler Informationszugriff wird als Sinnes-/Handlungskreis operationalisiert
+
+Die Gesamtarbeit behandelt digitale Informationsquellen nicht als externes Gedächtnis des SNN, sondern als Teil seiner Umweltgrenze. Exakte Inhalte bleiben außerhalb des neuronalen Kerns; das SNN erhält deklarierte Spike-Repräsentationen und kann über Gateway-Aktionen neue digitale Rückmeldungen auslösen.
+
+**Zulässige Architekturposition:** Digital kann wie Audio oder Vision als Modalität in einen geschlossenen Wahrnehmungs-Handlungs-Kreis eingebunden werden. Query-Selektion kann experimentell als Handlung und Response als sensorische Rückmeldung modelliert werden.
+
+**Nicht gezeigt:** dass MHRN Queries bereits autonom lernt, dass ein 100x100-Raum relationale Symbolik bindet, dass digitale Efferenzkopie biologisch identisch zur Motorik ist oder dass neuronales Routing RAG/klassische Tool-Policy-Systeme übertrifft.
+
+Der Wert der Verschiebung liegt deshalb nicht in einer neuen Leistungsbehauptung, sondern in einer klareren Falsifikationsstruktur: Quellentransfer, gelernte Query-Auslösung, Modalitätsrouting und Binding werden getrennte experimentelle Fragen statt implizite Eigenschaften des Gateway-Namens.

@@ -4,6 +4,14 @@
 **Baseline:** `mhrn-core 0.6.0a7`
 **Updated:** 2026-09-19
 
+## 2026-09-26 External Review Deployment
+
+- Review-Fragebogen kann statisch über GitHub Pages oder als isolierter
+	Hugging-Face-Docker-Space bereitgestellt werden.
+- Online-Antworten bleiben außerhalb des Git-Repositories verschlüsselt.
+- Nur geprüfte, nicht-identifizierende Aggregate dürfen später veröffentlicht
+	werden.
+
 ## 2026-09-20 Publikationsnavigation
 
 - „Einfach erklärt“ steht als Einstieg vorne, bevor der eigentliche

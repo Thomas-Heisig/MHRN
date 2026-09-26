@@ -1,0 +1,5725 @@
+{
+  "authority": "read_only_projection",
+  "automatic_evidence_promotion": false,
+  "direction_bound_count": 0,
+  "direction_expected_count": 11,
+  "direction_status": "awaiting_canonical_source",
+  "papers": [
+    {
+      "declared_status": "working draft; not submitted; target-specific eligibility and review requirements remain open",
+      "doi": "not_inferred",
+      "independent_replication": "not_inferred",
+      "path": "research/publications/papers/2026-09-20_mhrn-research-software_v0.1/PAPER.md",
+      "peer_review": "not_verified_by_projection",
+      "questions": [],
+      "title": "MHRN: An Open Research Framework for Recurrent Spiking Neural Networks with Plasticity, Provenance, and Evidence-Aware Experimentation"
+    },
+    {
+      "declared_status": "methods and protocol paper; confirmatory study not yet executed",
+      "doi": "not_inferred",
+      "independent_replication": "not_inferred",
+      "path": "research/publications/papers/2026-09-20_recursive-epistemics-methods_v0.1/PAPER.md",
+      "peer_review": "not_verified_by_projection",
+      "questions": [
+        "RQ-EPIST-002",
+        "RQ-ETH-001"
+      ],
+      "title": "Provenance-Separated Reporting for AI-Assisted Research: A Protocol for Testing Epistemic Misclassification"
+    },
+    {
+      "declared_status": "DATA-based working draft; human review and external replication incomplete",
+      "doi": "not_inferred",
+      "independent_replication": "not_inferred",
+      "path": "research/publications/papers/2026-09-20_topology-dynamics_v0.1/PAPER.md",
+      "peer_review": "not_verified_by_projection",
+      "questions": [
+        "RQ-SNN-003"
+      ],
+      "title": "Dimensional Embedding and Propagation Dynamics in Resource-Matched Recurrent Spiking Neural Networks"
+    }
+  ],
+  "question_count": 112,
+  "questions": [
+    {
+      "claim_statuses": {
+        "CLAIM-5D-001": "untested"
+      },
+      "claims": [
+        "CLAIM-5D-001"
+      ],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "5D Topology",
+      "evidence_records": [],
+      "experiments": [
+        "EXP-5D-0001",
+        "EXP-5D-0001-v2",
+        "EXP-5D-0001-v3",
+        "EXP-BATCH-20260906200118-15",
+        "EXP-BATCH-20260908200906-15",
+        "EXP-BATCH-20260909223705-15",
+        "EXP-BATCH-20260914074039-15"
+      ],
+      "hypotheses": [
+        "H-5D-001-A"
+      ],
+      "hypothesis_statuses": {
+        "H-5D-001-A": "untested"
+      },
+      "literature": [
+        "SRC-IZHIKEVICH-2003"
+      ],
+      "manuscript_parts": [],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-5D-001",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "5D Topology",
+      "evidence_records": [],
+      "experiments": [
+        "EXP-BATCH-20260906200118-16",
+        "EXP-BATCH-20260908200906-16",
+        "EXP-BATCH-20260909223705-16",
+        "EXP-BATCH-20260914074039-16"
+      ],
+      "hypotheses": [
+        "H-5D-002-A"
+      ],
+      "hypothesis_statuses": {
+        "H-5D-002-A": "untested"
+      },
+      "literature": [],
+      "manuscript_parts": [],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-5D-002",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "5D Topology",
+      "evidence_records": [],
+      "experiments": [
+        "EXP-BATCH-20260906200118-17",
+        "EXP-BATCH-20260908200906-17",
+        "EXP-BATCH-20260909223705-17",
+        "EXP-BATCH-20260914074039-17"
+      ],
+      "hypotheses": [
+        "H-5D-003-A"
+      ],
+      "hypothesis_statuses": {
+        "H-5D-003-A": "untested"
+      },
+      "literature": [],
+      "manuscript_parts": [],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-5D-003",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {
+        "CLAIM-5D-002": "untested"
+      },
+      "claims": [
+        "CLAIM-5D-002"
+      ],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "5D Topology",
+      "evidence_records": [],
+      "experiments": [
+        "EXP-BATCH-20260906200118-18",
+        "EXP-BATCH-20260908200906-18",
+        "EXP-BATCH-20260909223705-18",
+        "EXP-BATCH-20260914074039-18"
+      ],
+      "hypotheses": [
+        "H-5D-004-A"
+      ],
+      "hypothesis_statuses": {
+        "H-5D-004-A": "untested"
+      },
+      "literature": [],
+      "manuscript_parts": [],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-5D-004",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "5D Topology",
+      "evidence_records": [],
+      "experiments": [
+        "EXP-BATCH-20260906200118-38",
+        "EXP-BATCH-20260909223705-38",
+        "EXP-BATCH-20260914074039-38",
+        "EXP-EMP-20260910"
+      ],
+      "hypotheses": [
+        "H-5D-005-A"
+      ],
+      "hypothesis_statuses": {
+        "H-5D-005-A": "untested"
+      },
+      "literature": [],
+      "manuscript_parts": [
+        "III",
+        "IV",
+        "X",
+        "XI"
+      ],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-5D-005",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {
+        "CLAIM-AIR-001": "untested"
+      },
+      "claims": [
+        "CLAIM-AIR-001"
+      ],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "AI-Assisted Research",
+      "evidence_records": [],
+      "experiments": [
+        "EXP-BATCH-20260906200118-33",
+        "EXP-BATCH-20260909223705-33",
+        "EXP-BATCH-20260914074039-33"
+      ],
+      "hypotheses": [
+        "H-AIR-001-A"
+      ],
+      "hypothesis_statuses": {
+        "H-AIR-001-A": "untested"
+      },
+      "literature": [],
+      "manuscript_parts": [
+        "VII"
+      ],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-AIR-001",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Consciousness methodology",
+      "evidence_records": [],
+      "experiments": [],
+      "hypotheses": [
+        "H-CNS-101-A"
+      ],
+      "hypothesis_statuses": {
+        "H-CNS-101-A": "untested"
+      },
+      "literature": [
+        "SRC-CNS-BUTLIN",
+        "SRC-CNS-COGITATE",
+        "SRC-CNS-GNWREPLY",
+        "SRC-CNS-SETH"
+      ],
+      "manuscript_parts": [
+        "VIII"
+      ],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-CNS-101",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.cognition.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Prediction and adaptation",
+      "evidence_records": [],
+      "experiments": [],
+      "hypotheses": [
+        "H-CNS-102-A"
+      ],
+      "hypothesis_statuses": {
+        "H-CNS-102-A": "untested"
+      },
+      "literature": [
+        "SRC-CNS-ODDBALL"
+      ],
+      "manuscript_parts": [],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-CNS-102",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.cognition.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Attention and discrimination",
+      "evidence_records": [],
+      "experiments": [],
+      "hypotheses": [
+        "H-CNS-103-A"
+      ],
+      "hypothesis_statuses": {
+        "H-CNS-103-A": "untested"
+      },
+      "literature": [
+        "SRC-CNS-ODDBALL"
+      ],
+      "manuscript_parts": [],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-CNS-103",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.cognition.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Hierarchical regularity",
+      "evidence_records": [],
+      "experiments": [],
+      "hypotheses": [
+        "H-CNS-104-A"
+      ],
+      "hypothesis_statuses": {
+        "H-CNS-104-A": "untested"
+      },
+      "literature": [
+        "SRC-CNS-ODDBALL"
+      ],
+      "manuscript_parts": [],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-CNS-104",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.cognition.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Working memory",
+      "evidence_records": [],
+      "experiments": [],
+      "hypotheses": [
+        "H-CNS-105-A"
+      ],
+      "hypothesis_statuses": {
+        "H-CNS-105-A": "untested"
+      },
+      "literature": [
+        "SRC-CNS-NEUROGYM"
+      ],
+      "manuscript_parts": [],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-CNS-105",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.cognition.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Metacognition",
+      "evidence_records": [],
+      "experiments": [],
+      "hypotheses": [
+        "H-CNS-106-A"
+      ],
+      "hypothesis_statuses": {
+        "H-CNS-106-A": "untested"
+      },
+      "literature": [
+        "SRC-CNS-META",
+        "SRC-CNS-NEUROGYM"
+      ],
+      "manuscript_parts": [],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-CNS-106",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.cognition.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Observation models",
+      "evidence_records": [],
+      "experiments": [],
+      "hypotheses": [
+        "H-CNS-107-A"
+      ],
+      "hypothesis_statuses": {
+        "H-CNS-107-A": "untested"
+      },
+      "literature": [
+        "SRC-CNS-LFP",
+        "SRC-CNS-EQUIV"
+      ],
+      "manuscript_parts": [],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-CNS-107",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.cognition.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Causal complexity",
+      "evidence_records": [],
+      "experiments": [],
+      "hypotheses": [
+        "H-CNS-108-A"
+      ],
+      "hypothesis_statuses": {
+        "H-CNS-108-A": "untested"
+      },
+      "literature": [
+        "SRC-CNS-PCI"
+      ],
+      "manuscript_parts": [],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-CNS-108",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.cognition.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Access and report",
+      "evidence_records": [],
+      "experiments": [],
+      "hypotheses": [
+        "H-CNS-109-A"
+      ],
+      "hypothesis_statuses": {
+        "H-CNS-109-A": "untested"
+      },
+      "literature": [
+        "SRC-CNS-MASK"
+      ],
+      "manuscript_parts": [],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-CNS-109",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.cognition.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Temporal attention",
+      "evidence_records": [],
+      "experiments": [],
+      "hypotheses": [
+        "H-CNS-110-A"
+      ],
+      "hypothesis_statuses": {
+        "H-CNS-110-A": "untested"
+      },
+      "literature": [
+        "SRC-CNS-BLINK"
+      ],
+      "manuscript_parts": [],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-CNS-110",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.cognition.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Executive control",
+      "evidence_records": [],
+      "experiments": [],
+      "hypotheses": [
+        "H-CNS-111-A"
+      ],
+      "hypothesis_statuses": {
+        "H-CNS-111-A": "untested"
+      },
+      "literature": [
+        "SRC-CNS-STOP",
+        "SRC-CNS-NEUROGYM"
+      ],
+      "manuscript_parts": [],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-CNS-111",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.cognition.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Multisensory integration",
+      "evidence_records": [],
+      "experiments": [],
+      "hypotheses": [
+        "H-CNS-112-A"
+      ],
+      "hypothesis_statuses": {
+        "H-CNS-112-A": "untested"
+      },
+      "literature": [
+        "SRC-CNS-NEUROGYM",
+        "SRC-CNS-BUTLIN"
+      ],
+      "manuscript_parts": [],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-CNS-112",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.cognition.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Embodied causality",
+      "evidence_records": [],
+      "experiments": [],
+      "hypotheses": [
+        "H-CNS-113-A"
+      ],
+      "hypothesis_statuses": {
+        "H-CNS-113-A": "untested"
+      },
+      "literature": [
+        "SRC-CNS-BUTLIN",
+        "SRC-CNS-SETH"
+      ],
+      "manuscript_parts": [],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-CNS-113",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.cognition.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Timescales and recurrence",
+      "evidence_records": [],
+      "experiments": [],
+      "hypotheses": [
+        "H-CNS-114-A"
+      ],
+      "hypothesis_statuses": {
+        "H-CNS-114-A": "untested"
+      },
+      "literature": [
+        "SRC-CNS-LSNN"
+      ],
+      "manuscript_parts": [],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-CNS-114",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.cognition.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Behavioral evaluation",
+      "evidence_records": [],
+      "experiments": [],
+      "hypotheses": [
+        "H-CNS-115-A"
+      ],
+      "hypothesis_statuses": {
+        "H-CNS-115-A": "untested"
+      },
+      "literature": [
+        "SRC-CNS-TURING"
+      ],
+      "manuscript_parts": [],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-CNS-115",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.cognition.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Generalization",
+      "evidence_records": [],
+      "experiments": [],
+      "hypotheses": [
+        "H-CNS-116-A"
+      ],
+      "hypothesis_statuses": {
+        "H-CNS-116-A": "untested"
+      },
+      "literature": [
+        "SRC-CNS-ARC"
+      ],
+      "manuscript_parts": [],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-CNS-116",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.cognition.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Geometry and scaling",
+      "evidence_records": [],
+      "experiments": [],
+      "hypotheses": [
+        "H-CNS-117-A"
+      ],
+      "hypothesis_statuses": {
+        "H-CNS-117-A": "untested"
+      },
+      "literature": [
+        "SRC-CNS-LSNN",
+        "SRC-CNS-NEURONS",
+        "SRC-CNS-EQUIV"
+      ],
+      "manuscript_parts": [],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-CNS-117",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.cognition.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Connectome-Informed Embodiment",
+      "evidence_records": [],
+      "experiments": [],
+      "hypotheses": [
+        "H-CONN-001-A"
+      ],
+      "hypothesis_statuses": {
+        "H-CONN-001-A": "untested"
+      },
+      "literature": [
+        "SRC-CONN-SHIU-2024",
+        "SRC-CONN-WANGCHEN-2024",
+        "SRC-CONN-EON-2026",
+        "SRC-CONN-DORKENWALD-2024",
+        "SRC-CONN-BERG-2026"
+      ],
+      "manuscript_parts": [],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-CONN-001",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.connectome.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Connectome-Informed Embodiment",
+      "evidence_records": [],
+      "experiments": [
+        "EXP-BATCH-20260909223705-75",
+        "EXP-BATCH-20260914074039-75",
+        "EXP-EMP-20260910"
+      ],
+      "hypotheses": [
+        "H-CONN-002-A"
+      ],
+      "hypothesis_statuses": {
+        "H-CONN-002-A": "untested"
+      },
+      "literature": [
+        "SRC-CONN-SHIU-2024",
+        "SRC-CONN-WANGCHEN-2024",
+        "SRC-CONN-EON-2026",
+        "SRC-CONN-DORKENWALD-2024",
+        "SRC-CONN-BERG-2026"
+      ],
+      "manuscript_parts": [],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-CONN-002",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.connectome.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {
+        "CLAIM-DET-001": "inconclusive"
+      },
+      "claims": [
+        "CLAIM-DET-001"
+      ],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Determinism",
+      "evidence_records": [
+        "EVID-2026-01",
+        "EVID-2026-03",
+        "EVID-2026-05",
+        "EVID-2026-07",
+        "EVID-2026-09",
+        "EVID-2026-11",
+        "EVID-2026-13",
+        "EVID-2026-15"
+      ],
+      "experiments": [
+        "EXP-2026-0001",
+        "EXP-BATCH-20260906200118-03",
+        "EXP-BATCH-20260908200906-03",
+        "EXP-BATCH-20260914074039-03",
+        "EXP-DET-0001",
+        "EXP-GEN-0023",
+        "EXP-GEN-0046"
+      ],
+      "hypotheses": [
+        "H-SNN-003-A"
+      ],
+      "hypothesis_statuses": {
+        "H-SNN-003-A": "supported"
+      },
+      "literature": [
+        "SRC-IZHIKEVICH-2003"
+      ],
+      "manuscript_parts": [
+        "III",
+        "IV",
+        "X",
+        "XI"
+      ],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-DET-001",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Embodiment",
+      "evidence_records": [],
+      "experiments": [
+        "EXP-BATCH-20260906200118-28",
+        "EXP-BATCH-20260909223705-28",
+        "EXP-BATCH-20260914074039-28",
+        "EXP-EMB-0001",
+        "EXP-EMB001B-MATCHED-V2-20260920",
+        "EXP-EMB001B-TEMPORAL-V3-20260920",
+        "EXP-EMP-20260910"
+      ],
+      "hypotheses": [
+        "H-EMB-001-A",
+        "H-EMB-001-B"
+      ],
+      "hypothesis_statuses": {
+        "H-EMB-001-A": "untested",
+        "H-EMB-001-B": "untested"
+      },
+      "literature": [],
+      "manuscript_parts": [
+        "IV"
+      ],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-EMB-001",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Connectome-Informed Embodiment",
+      "evidence_records": [],
+      "experiments": [
+        "EXP-BATCH-20260909223705-69",
+        "EXP-BATCH-20260914074039-69",
+        "EXP-EMB002A-DELAY-SWEEP-V4-20260924",
+        "EXP-EMB002A-PROPRIOCEPTION-V3-20260920",
+        "EXP-EMB002B-TRANSITION-V5-20260924",
+        "EXP-EMP-20260910"
+      ],
+      "hypotheses": [
+        "H-EMB-002-A",
+        "H-EMB-002-B"
+      ],
+      "hypothesis_statuses": {
+        "H-EMB-002-A": "untested",
+        "H-EMB-002-B": "untested"
+      },
+      "literature": [
+        "SRC-CONN-SHIU-2024",
+        "SRC-CONN-WANGCHEN-2024",
+        "SRC-CONN-EON-2026"
+      ],
+      "manuscript_parts": [],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-EMB-002",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.connectome.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Connectome-Informed Embodiment",
+      "evidence_records": [],
+      "experiments": [],
+      "hypotheses": [
+        "H-EMB-003-A"
+      ],
+      "hypothesis_statuses": {
+        "H-EMB-003-A": "untested"
+      },
+      "literature": [
+        "SRC-CONN-SHIU-2024",
+        "SRC-CONN-WANGCHEN-2024",
+        "SRC-CONN-EON-2026"
+      ],
+      "manuscript_parts": [],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-EMB-003",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.connectome.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Connectome-Informed Embodiment",
+      "evidence_records": [],
+      "experiments": [
+        "EXP-BATCH-20260909223705-71",
+        "EXP-BATCH-20260914074039-71",
+        "EXP-EMP-20260910"
+      ],
+      "hypotheses": [
+        "H-EMB-004-A"
+      ],
+      "hypothesis_statuses": {
+        "H-EMB-004-A": "untested"
+      },
+      "literature": [
+        "SRC-CONN-SHIU-2024",
+        "SRC-CONN-WANGCHEN-2024",
+        "SRC-CONN-EON-2026"
+      ],
+      "manuscript_parts": [],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-EMB-004",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.connectome.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Connectome-Informed Embodiment",
+      "evidence_records": [],
+      "experiments": [],
+      "hypotheses": [
+        "H-EMB-007-A"
+      ],
+      "hypothesis_statuses": {
+        "H-EMB-007-A": "untested"
+      },
+      "literature": [
+        "SRC-CONN-SHIU-2024",
+        "SRC-CONN-WANGCHEN-2024",
+        "SRC-CONN-EON-2026"
+      ],
+      "manuscript_parts": [],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-EMB-007",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.connectome.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Connectome-Informed Embodiment",
+      "evidence_records": [],
+      "experiments": [],
+      "hypotheses": [
+        "H-EMB-008-A"
+      ],
+      "hypothesis_statuses": {
+        "H-EMB-008-A": "untested"
+      },
+      "literature": [
+        "SRC-CONN-SHIU-2024",
+        "SRC-CONN-WANGCHEN-2024",
+        "SRC-CONN-EON-2026"
+      ],
+      "manuscript_parts": [],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-EMB-008",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.connectome.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Connectome-Informed Embodiment",
+      "evidence_records": [],
+      "experiments": [
+        "EXP-BATCH-20260909223705-76",
+        "EXP-BATCH-20260914074039-76",
+        "EXP-EMP-20260910"
+      ],
+      "hypotheses": [
+        "H-EMB-009-A"
+      ],
+      "hypothesis_statuses": {
+        "H-EMB-009-A": "untested"
+      },
+      "literature": [
+        "SRC-CONN-SHIU-2024",
+        "SRC-CONN-WANGCHEN-2024",
+        "SRC-CONN-EON-2026"
+      ],
+      "manuscript_parts": [],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-EMB-009",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.connectome.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Evidence governance",
+      "evidence_records": [],
+      "experiments": [],
+      "hypotheses": [
+        "H-EPI-101-A"
+      ],
+      "hypothesis_statuses": {
+        "H-EPI-101-A": "untested"
+      },
+      "literature": [
+        "SRC-CNS-COGITATE"
+      ],
+      "manuscript_parts": [
+        "VIII"
+      ],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-EPI-101",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.cognition.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Critical methodology",
+      "evidence_records": [],
+      "experiments": [],
+      "hypotheses": [
+        "H-EPI-102-A"
+      ],
+      "hypothesis_statuses": {
+        "H-EPI-102-A": "untested"
+      },
+      "literature": [
+        "SRC-CNS-BUTLIN",
+        "SRC-CNS-EQUIV"
+      ],
+      "manuscript_parts": [
+        "VIII"
+      ],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-EPI-102",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.cognition.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Epistemology",
+      "evidence_records": [],
+      "experiments": [
+        "EXP-BATCH-20260906200118-32",
+        "EXP-BATCH-20260909223705-32",
+        "EXP-BATCH-20260914074039-32"
+      ],
+      "hypotheses": [
+        "H-EPIST-001-A"
+      ],
+      "hypothesis_statuses": {
+        "H-EPIST-001-A": "untested"
+      },
+      "literature": [],
+      "manuscript_parts": [
+        "VI",
+        "VII",
+        "VIII"
+      ],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-EPIST-001",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [
+        "research_integrity",
+        "human_ai",
+        "process_governance"
+      ],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Epistemology",
+      "evidence_records": [],
+      "experiments": [],
+      "hypotheses": [
+        "H-EPIST-002-A"
+      ],
+      "hypothesis_statuses": {
+        "H-EPIST-002-A": "untested"
+      },
+      "literature": [],
+      "manuscript_parts": [
+        "I",
+        "VI",
+        "VII",
+        "IX"
+      ],
+      "papers": [
+        "research/publications/papers/2026-09-20_recursive-epistemics-methods_v0.1/PAPER.md"
+      ],
+      "research_axis": "epistemological_methodological",
+      "research_question": "RQ-EPIST-002",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [
+        "human_ai",
+        "authorship",
+        "accountability"
+      ],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Ethics",
+      "evidence_records": [],
+      "experiments": [
+        "EXP-BATCH-20260906200118-30",
+        "EXP-BATCH-20260909223705-30",
+        "EXP-BATCH-20260914074039-30"
+      ],
+      "hypotheses": [
+        "H-ETH-001-A",
+        "H-ETH-001-B",
+        "H-ETH-001-C",
+        "H-ETH-001-D",
+        "H-ETH-001-E"
+      ],
+      "hypothesis_statuses": {
+        "H-ETH-001-A": "untested",
+        "H-ETH-001-B": "untested",
+        "H-ETH-001-C": "untested",
+        "H-ETH-001-D": "untested",
+        "H-ETH-001-E": "untested"
+      },
+      "literature": [],
+      "manuscript_parts": [
+        "I",
+        "VI",
+        "VII",
+        "VIII",
+        "IX"
+      ],
+      "papers": [
+        "research/publications/papers/2026-09-20_recursive-epistemics-methods_v0.1/PAPER.md"
+      ],
+      "research_axis": "epistemological_methodological",
+      "research_question": "RQ-ETH-001",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Ethics",
+      "evidence_records": [],
+      "experiments": [
+        "EXP-BATCH-20260906200118-31",
+        "EXP-BATCH-20260909223705-31",
+        "EXP-BATCH-20260914074039-31"
+      ],
+      "hypotheses": [
+        "H-ETH-002-A"
+      ],
+      "hypothesis_statuses": {
+        "H-ETH-002-A": "untested"
+      },
+      "literature": [],
+      "manuscript_parts": [
+        "VII",
+        "VIII"
+      ],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-ETH-002",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Empirical Evaluation",
+      "evidence_records": [],
+      "experiments": [
+        "EXP-BATCH-20260914074039-78",
+        "EXP-EMP-20260910"
+      ],
+      "hypotheses": [
+        "H-EVAL-001-A"
+      ],
+      "hypothesis_statuses": {
+        "H-EVAL-001-A": "untested"
+      },
+      "literature": [],
+      "manuscript_parts": [],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-EVAL-001",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.empirical.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Empirical Evaluation",
+      "evidence_records": [],
+      "experiments": [
+        "EXP-EMP-20260910"
+      ],
+      "hypotheses": [
+        "H-EVAL-002-A"
+      ],
+      "hypothesis_statuses": {
+        "H-EVAL-002-A": "untested"
+      },
+      "literature": [],
+      "manuscript_parts": [],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-EVAL-002",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.empirical.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Empirical Evaluation",
+      "evidence_records": [],
+      "experiments": [
+        "EXP-EMP-20260910"
+      ],
+      "hypotheses": [
+        "H-EVAL-003-A"
+      ],
+      "hypothesis_statuses": {
+        "H-EVAL-003-A": "untested"
+      },
+      "literature": [],
+      "manuscript_parts": [],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-EVAL-003",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.empirical.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Empirical Evaluation",
+      "evidence_records": [],
+      "experiments": [
+        "EXP-BATCH-20260914074039-81",
+        "EXP-EMP-20260910"
+      ],
+      "hypotheses": [
+        "H-EVAL-004-A"
+      ],
+      "hypothesis_statuses": {
+        "H-EVAL-004-A": "untested"
+      },
+      "literature": [],
+      "manuscript_parts": [],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-EVAL-004",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.empirical.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Empirical Evaluation",
+      "evidence_records": [],
+      "experiments": [
+        "EXP-BATCH-20260914074039-82",
+        "EXP-EMP-20260910-SCALE-V2"
+      ],
+      "hypotheses": [
+        "H-EVAL-005-A"
+      ],
+      "hypothesis_statuses": {
+        "H-EVAL-005-A": "untested"
+      },
+      "literature": [],
+      "manuscript_parts": [],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-EVAL-005",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.empirical.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {
+        "CLAIM-EVAL-006": "inconclusive"
+      },
+      "claims": [
+        "CLAIM-EVAL-006"
+      ],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Single-neuron model conformance",
+      "evidence_records": [
+        "EVID-2026-18"
+      ],
+      "experiments": [
+        "EXP-STAGE0-20260916-MODEL-CONFORMANCE-V2",
+        "EXP-STAGE0-20260918-MODEL-CONFORMANCE-V2-PROMO-R1"
+      ],
+      "hypotheses": [
+        "H-EVAL-006-A",
+        "H-EVAL-006-B",
+        "H-EVAL-006-C"
+      ],
+      "hypothesis_statuses": {
+        "H-EVAL-006-A": "supported",
+        "H-EVAL-006-B": "supported",
+        "H-EVAL-006-C": "supported"
+      },
+      "literature": [
+        "SRC-IZHIKEVICH-2003",
+        "SRC-GERSTNER-2014"
+      ],
+      "manuscript_parts": [],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-EVAL-006",
+      "rq_status": "inconclusive",
+      "source_path": "research/registry/questions.empirical.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Learning Generalization",
+      "evidence_records": [],
+      "experiments": [
+        "EXP-BATCH-20260906200118-36",
+        "EXP-BATCH-20260909223705-36",
+        "EXP-BATCH-20260914074039-36",
+        "EXP-EMP-20260910"
+      ],
+      "hypotheses": [
+        "H-GEN-001-A"
+      ],
+      "hypothesis_statuses": {
+        "H-GEN-001-A": "untested"
+      },
+      "literature": [],
+      "manuscript_parts": [],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-GEN-001",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Gateway Learning",
+      "evidence_records": [],
+      "experiments": [
+        "EXP-BATCH-20260909223705-78",
+        "EXP-BATCH-20260914074039-83"
+      ],
+      "hypotheses": [
+        "H-GW-001-A"
+      ],
+      "hypothesis_statuses": {
+        "H-GW-001-A": "untested"
+      },
+      "literature": [],
+      "manuscript_parts": [],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-GW-001",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.gateway.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Modality-Specific Gateway Rules",
+      "evidence_records": [],
+      "experiments": [
+        "EXP-BATCH-20260909223705-79",
+        "EXP-BATCH-20260914074039-84"
+      ],
+      "hypotheses": [
+        "H-GW-002-A"
+      ],
+      "hypothesis_statuses": {
+        "H-GW-002-A": "untested"
+      },
+      "literature": [],
+      "manuscript_parts": [
+        "IV",
+        "XI"
+      ],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-GW-002",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.gateway.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Gateway Stability",
+      "evidence_records": [],
+      "experiments": [
+        "EXP-BATCH-20260909223705-80",
+        "EXP-BATCH-20260914074039-85"
+      ],
+      "hypotheses": [
+        "H-GW-003-A"
+      ],
+      "hypothesis_statuses": {
+        "H-GW-003-A": "untested"
+      },
+      "literature": [],
+      "manuscript_parts": [],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-GW-003",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.gateway.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Gateway Transfer and Interference",
+      "evidence_records": [],
+      "experiments": [
+        "EXP-BATCH-20260909223705-81",
+        "EXP-BATCH-20260914074039-86"
+      ],
+      "hypotheses": [
+        "H-GW-004-A"
+      ],
+      "hypothesis_statuses": {
+        "H-GW-004-A": "untested"
+      },
+      "literature": [],
+      "manuscript_parts": [
+        "IV",
+        "XI"
+      ],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-GW-004",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.gateway.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Gateway Structure",
+      "evidence_records": [],
+      "experiments": [
+        "EXP-BATCH-20260909223705-82",
+        "EXP-BATCH-20260914074039-87"
+      ],
+      "hypotheses": [
+        "H-GW-005-A"
+      ],
+      "hypothesis_statuses": {
+        "H-GW-005-A": "untested"
+      },
+      "literature": [],
+      "manuscript_parts": [],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-GW-005",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.gateway.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Closed-Loop Gateway",
+      "evidence_records": [],
+      "experiments": [
+        "EXP-BATCH-20260909223705-83",
+        "EXP-BATCH-20260914074039-88"
+      ],
+      "hypotheses": [
+        "H-GW-006-A"
+      ],
+      "hypothesis_statuses": {
+        "H-GW-006-A": "untested"
+      },
+      "literature": [],
+      "manuscript_parts": [
+        "IV",
+        "XI"
+      ],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-GW-006",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.gateway.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Gateway Resources",
+      "evidence_records": [],
+      "experiments": [
+        "EXP-BATCH-20260909223705-84",
+        "EXP-BATCH-20260914074039-89"
+      ],
+      "hypotheses": [
+        "H-GW-007-A"
+      ],
+      "hypothesis_statuses": {
+        "H-GW-007-A": "untested"
+      },
+      "literature": [],
+      "manuscript_parts": [],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-GW-007",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.gateway.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Digital Neural Interface Codec and Binding",
+      "evidence_records": [],
+      "experiments": [],
+      "hypotheses": [
+        "H-GW-CODEC-001-A"
+      ],
+      "hypothesis_statuses": {
+        "H-GW-CODEC-001-A": "untested"
+      },
+      "literature": [],
+      "manuscript_parts": [],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-GW-CODEC-001",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.gateway.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Homeostasis",
+      "evidence_records": [],
+      "experiments": [
+        "EXP-BATCH-20260906200118-13",
+        "EXP-BATCH-20260908200906-13",
+        "EXP-BATCH-20260909223705-13",
+        "EXP-BATCH-20260914074039-13"
+      ],
+      "hypotheses": [
+        "H-HOM-001-A"
+      ],
+      "hypothesis_statuses": {
+        "H-HOM-001-A": "untested"
+      },
+      "literature": [
+        "SRC-TURRIGIANO-2008"
+      ],
+      "manuscript_parts": [],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-HOM-001",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Homeostasis",
+      "evidence_records": [],
+      "experiments": [
+        "EXP-BATCH-20260906200118-14",
+        "EXP-BATCH-20260908200906-14",
+        "EXP-BATCH-20260909223705-14",
+        "EXP-BATCH-20260914074039-14"
+      ],
+      "hypotheses": [
+        "H-HOM-002-A"
+      ],
+      "hypothesis_statuses": {
+        "H-HOM-002-A": "untested"
+      },
+      "literature": [
+        "SRC-TURRIGIANO-2008"
+      ],
+      "manuscript_parts": [],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-HOM-002",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Lifelong Learning",
+      "evidence_records": [],
+      "experiments": [
+        "EXP-BATCH-20260909223705-43",
+        "EXP-BATCH-20260914074039-43",
+        "EXP-EMP-20260910",
+        "EXP-LIFE-0001-R1",
+        "EXP-RETRY-AIRR-2026-0001-02"
+      ],
+      "hypotheses": [
+        "H-LIFE-001-A"
+      ],
+      "hypothesis_statuses": {
+        "H-LIFE-001-A": "untested"
+      },
+      "literature": [],
+      "manuscript_parts": [],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-LIFE-001",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Language Organ",
+      "evidence_records": [],
+      "experiments": [
+        "EXP-BATCH-20260906200118-29",
+        "EXP-BATCH-20260909223705-29",
+        "EXP-BATCH-20260914074039-29"
+      ],
+      "hypotheses": [
+        "H-LLM-001-A"
+      ],
+      "hypothesis_statuses": {
+        "H-LLM-001-A": "untested"
+      },
+      "literature": [],
+      "manuscript_parts": [],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-LLM-001",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Memory",
+      "evidence_records": [],
+      "experiments": [
+        "EXP-BATCH-20260906200118-27",
+        "EXP-BATCH-20260909223705-27",
+        "EXP-BATCH-20260914074039-27"
+      ],
+      "hypotheses": [
+        "H-MEM-001-A"
+      ],
+      "hypothesis_statuses": {
+        "H-MEM-001-A": "untested"
+      },
+      "literature": [],
+      "manuscript_parts": [
+        "IV"
+      ],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-MEM-001",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Memory",
+      "evidence_records": [],
+      "experiments": [
+        "EXP-BATCH-20260909223705-44",
+        "EXP-EMP-20260910"
+      ],
+      "hypotheses": [
+        "H-MEM-002-A"
+      ],
+      "hypothesis_statuses": {
+        "H-MEM-002-A": "untested"
+      },
+      "literature": [],
+      "manuscript_parts": [],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-MEM-002",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.behavior_memory.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [
+        "human_ai",
+        "model_dependence"
+      ],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Meta-Research / Human-AI Methodology",
+      "evidence_records": [],
+      "experiments": [],
+      "hypotheses": [
+        "H-META-003-A"
+      ],
+      "hypothesis_statuses": {
+        "H-META-003-A": "untested"
+      },
+      "literature": [
+        "SRC-ICMJE-AI-2026",
+        "SRC-DFG-AI-REVIEW-2026"
+      ],
+      "manuscript_parts": [
+        "VI",
+        "IX",
+        "XI"
+      ],
+      "papers": [],
+      "research_axis": "epistemological_methodological",
+      "research_question": "RQ-META-003",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.meta.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [
+        "source_integrity",
+        "recursive_provenance"
+      ],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Meta-Research / Provenance",
+      "evidence_records": [],
+      "experiments": [],
+      "hypotheses": [
+        "H-META-004-A"
+      ],
+      "hypothesis_statuses": {
+        "H-META-004-A": "untested"
+      },
+      "literature": [
+        "SRC-ICMJE-AI-2026",
+        "SRC-ALLEA-2023"
+      ],
+      "manuscript_parts": [
+        "VI",
+        "VII",
+        "IX"
+      ],
+      "papers": [],
+      "research_axis": "epistemological_methodological",
+      "research_question": "RQ-META-004",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.meta.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [
+        "governance_cost",
+        "research_efficiency"
+      ],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Meta-Research / Governance Utility",
+      "evidence_records": [],
+      "experiments": [],
+      "hypotheses": [
+        "H-META-005-A"
+      ],
+      "hypothesis_statuses": {
+        "H-META-005-A": "untested"
+      },
+      "literature": [
+        "SRC-ALLEA-2023",
+        "SRC-DFG-AI-REVIEW-2026"
+      ],
+      "manuscript_parts": [
+        "V",
+        "VI",
+        "IX",
+        "XI"
+      ],
+      "papers": [],
+      "research_axis": "epistemological_methodological",
+      "research_question": "RQ-META-005",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.meta.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Multimodal Energy Efficiency",
+      "evidence_records": [],
+      "experiments": [],
+      "hypotheses": [
+        "H-MSBA-E01-A"
+      ],
+      "hypothesis_statuses": {
+        "H-MSBA-E01-A": "untested"
+      },
+      "literature": [],
+      "manuscript_parts": [],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-MSBA-E01",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.msba.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Adaptive Resource Allocation",
+      "evidence_records": [],
+      "experiments": [],
+      "hypotheses": [
+        "H-MSBA-E02-A"
+      ],
+      "hypothesis_statuses": {
+        "H-MSBA-E02-A": "untested"
+      },
+      "literature": [],
+      "manuscript_parts": [],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-MSBA-E02",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.msba.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Visual Resource Allocation",
+      "evidence_records": [],
+      "experiments": [],
+      "hypotheses": [
+        "H-MSBA-E03-A"
+      ],
+      "hypothesis_statuses": {
+        "H-MSBA-E03-A": "untested"
+      },
+      "literature": [],
+      "manuscript_parts": [],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-MSBA-E03",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.msba.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Digital Gateway Integrity",
+      "evidence_records": [],
+      "experiments": [],
+      "hypotheses": [
+        "H-MSBA-E04-A"
+      ],
+      "hypothesis_statuses": {
+        "H-MSBA-E04-A": "untested"
+      },
+      "literature": [],
+      "manuscript_parts": [],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-MSBA-E04",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.msba.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Multimodal Compensation",
+      "evidence_records": [],
+      "experiments": [],
+      "hypotheses": [
+        "H-MSBA-E05-A",
+        "H-MSBA-E05-B"
+      ],
+      "hypothesis_statuses": {
+        "H-MSBA-E05-A": "untested",
+        "H-MSBA-E05-B": "untested"
+      },
+      "literature": [],
+      "manuscript_parts": [],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-MSBA-E05",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.msba.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Runtime Performance",
+      "evidence_records": [],
+      "experiments": [
+        "EXP-BATCH-20260906200118-41",
+        "EXP-BATCH-20260909223705-41",
+        "EXP-BATCH-20260914074039-41",
+        "EXP-EMP-20260910"
+      ],
+      "hypotheses": [
+        "H-PERF-001-A"
+      ],
+      "hypothesis_statuses": {
+        "H-PERF-001-A": "untested"
+      },
+      "literature": [],
+      "manuscript_parts": [],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-PERF-001",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Network Dynamics",
+      "evidence_records": [],
+      "experiments": [
+        "EXP-BATCH-20260906200118-07",
+        "EXP-BATCH-20260908200906-07",
+        "EXP-BATCH-20260909223705-07",
+        "EXP-BATCH-20260914074039-07",
+        "EXP-GEN-0006",
+        "EXP-GEN-0007",
+        "EXP-GEN-0009",
+        "EXP-PING-0001",
+        "EXP-PING-0001-v2",
+        "EXP-PING-0001-v3"
+      ],
+      "hypotheses": [
+        "H-PING-001-A"
+      ],
+      "hypothesis_statuses": {
+        "H-PING-001-A": "untested"
+      },
+      "literature": [],
+      "manuscript_parts": [],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-PING-001",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Behavioral Profile",
+      "evidence_records": [],
+      "experiments": [
+        "EXP-BATCH-20260909223705-46",
+        "EXP-EMP-20260910"
+      ],
+      "hypotheses": [
+        "H-PROFILE-001-A"
+      ],
+      "hypothesis_statuses": {
+        "H-PROFILE-001-A": "untested"
+      },
+      "literature": [],
+      "manuscript_parts": [],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-PROFILE-001",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.behavior_memory.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Recurrent Dynamics",
+      "evidence_records": [],
+      "experiments": [
+        "EXP-BATCH-20260906200118-35",
+        "EXP-BATCH-20260909223705-35",
+        "EXP-BATCH-20260914074039-35",
+        "EXP-EMP-20260910",
+        "EXP-REC-0001-R1",
+        "EXP-S1-REC-CLEAN-R2-20260919"
+      ],
+      "hypotheses": [
+        "H-REC-001-A"
+      ],
+      "hypothesis_statuses": {
+        "H-REC-001-A": "untested"
+      },
+      "literature": [],
+      "manuscript_parts": [],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-REC-001",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Recurrent Dynamics",
+      "evidence_records": [],
+      "experiments": [
+        "EXP-BATCH-20260906200118-42",
+        "EXP-BATCH-20260909223705-42",
+        "EXP-BATCH-20260914074039-42",
+        "EXP-EMP-20260910",
+        "EXP-REC-002-CLEAN-R2-20260919"
+      ],
+      "hypotheses": [
+        "H-REC-002-A"
+      ],
+      "hypothesis_statuses": {
+        "H-REC-002-A": "untested"
+      },
+      "literature": [],
+      "manuscript_parts": [
+        "III"
+      ],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-REC-002",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Regulation",
+      "evidence_records": [],
+      "experiments": [
+        "EXP-BATCH-20260906200118-10",
+        "EXP-BATCH-20260908200906-10",
+        "EXP-BATCH-20260909223705-10",
+        "EXP-BATCH-20260914074039-10",
+        "EXP-REG-0001"
+      ],
+      "hypotheses": [
+        "H-REG-001-A"
+      ],
+      "hypothesis_statuses": {
+        "H-REG-001-A": "untested"
+      },
+      "literature": [],
+      "manuscript_parts": [],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-REG-001",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Closed-loop Regulation",
+      "evidence_records": [],
+      "experiments": [
+        "EXP-BATCH-20260906200118-39",
+        "EXP-BATCH-20260909223705-39",
+        "EXP-BATCH-20260914074039-39",
+        "EXP-EMP-20260910",
+        "EXP-REG-0002-R1"
+      ],
+      "hypotheses": [
+        "H-REG-002-A",
+        "H-REG-002-B"
+      ],
+      "hypothesis_statuses": {
+        "H-REG-002-A": "untested",
+        "H-REG-002-B": "untested"
+      },
+      "literature": [],
+      "manuscript_parts": [],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-REG-002",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Replication",
+      "evidence_records": [],
+      "experiments": [
+        "EXP-BATCH-20260909223705-37",
+        "EXP-BATCH-20260914074039-37",
+        "EXP-EMP-20260910",
+        "EXP-REPL-0001-R1",
+        "EXP-RETRY-AIRR-2026-0001-01"
+      ],
+      "hypotheses": [
+        "H-REPL-001-A"
+      ],
+      "hypothesis_statuses": {
+        "H-REPL-001-A": "untested"
+      },
+      "literature": [],
+      "manuscript_parts": [],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-REPL-001",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Memory",
+      "evidence_records": [],
+      "experiments": [],
+      "hypotheses": [],
+      "hypothesis_statuses": {},
+      "literature": [],
+      "manuscript_parts": [],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-S6-SEM-002",
+      "rq_status": "answered",
+      "source_path": "research/registry/questions.behavior_memory.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Memory",
+      "evidence_records": [],
+      "experiments": [],
+      "hypotheses": [],
+      "hypothesis_statuses": {},
+      "literature": [],
+      "manuscript_parts": [],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-S6-SEM-003",
+      "rq_status": "in_progress",
+      "source_path": "research/registry/questions.behavior_memory.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Autonomy Safety / Goal Provenance",
+      "evidence_records": [],
+      "experiments": [],
+      "hypotheses": [
+        "H-SAFE-001-A"
+      ],
+      "hypothesis_statuses": {
+        "H-SAFE-001-A": "untested"
+      },
+      "literature": [
+        "SRC-SAFE-CORRIGIBILITY-2015",
+        "SRC-SAFE-OFFSWITCH-2017"
+      ],
+      "manuscript_parts": [
+        "VIII"
+      ],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-SAFE-001",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.safety.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Autonomy Safety / Goal Misgeneralization",
+      "evidence_records": [],
+      "experiments": [],
+      "hypotheses": [
+        "H-SAFE-002-A"
+      ],
+      "hypothesis_statuses": {
+        "H-SAFE-002-A": "untested"
+      },
+      "literature": [
+        "SRC-SAFE-GMG-2022"
+      ],
+      "manuscript_parts": [
+        "VIII"
+      ],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-SAFE-002",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.safety.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Autonomy Safety / Corrigibility",
+      "evidence_records": [],
+      "experiments": [],
+      "hypotheses": [
+        "H-SAFE-003-A"
+      ],
+      "hypothesis_statuses": {
+        "H-SAFE-003-A": "untested"
+      },
+      "literature": [
+        "SRC-SAFE-CORRIGIBILITY-2015",
+        "SRC-SAFE-INTERRUPT-2016",
+        "SRC-SAFE-OFFSWITCH-2017"
+      ],
+      "manuscript_parts": [
+        "VIII"
+      ],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-SAFE-003",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.safety.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Autonomy Safety / Interruptibility",
+      "evidence_records": [],
+      "experiments": [],
+      "hypotheses": [
+        "H-SAFE-004-A"
+      ],
+      "hypothesis_statuses": {
+        "H-SAFE-004-A": "untested"
+      },
+      "literature": [
+        "SRC-SAFE-INTERRUPT-2016",
+        "SRC-SAFE-OFFSWITCH-2017"
+      ],
+      "manuscript_parts": [
+        "VIII"
+      ],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-SAFE-004",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.safety.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Autonomy Safety / Specification Gaming",
+      "evidence_records": [],
+      "experiments": [],
+      "hypotheses": [
+        "H-SAFE-005-A"
+      ],
+      "hypothesis_statuses": {
+        "H-SAFE-005-A": "untested"
+      },
+      "literature": [
+        "SRC-SAFE-CONCRETE-2016"
+      ],
+      "manuscript_parts": [
+        "VIII"
+      ],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-SAFE-005",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.safety.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Autonomy Safety / Instrumental Power",
+      "evidence_records": [],
+      "experiments": [],
+      "hypotheses": [
+        "H-SAFE-006-A"
+      ],
+      "hypothesis_statuses": {
+        "H-SAFE-006-A": "untested"
+      },
+      "literature": [
+        "SRC-SAFE-POWER-2021"
+      ],
+      "manuscript_parts": [
+        "VIII"
+      ],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-SAFE-006",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.safety.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Autonomy Safety / Goal Generation",
+      "evidence_records": [],
+      "experiments": [],
+      "hypotheses": [
+        "H-SAFE-007-A"
+      ],
+      "hypothesis_statuses": {
+        "H-SAFE-007-A": "untested"
+      },
+      "literature": [
+        "SRC-SAFE-CORRIGIBILITY-2015",
+        "SRC-SAFE-OFFSWITCH-2017"
+      ],
+      "manuscript_parts": [
+        "VIII"
+      ],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-SAFE-007",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.safety.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Autonomy Safety / Post-Objective Transition",
+      "evidence_records": [],
+      "experiments": [],
+      "hypotheses": [
+        "H-SAFE-008-A"
+      ],
+      "hypothesis_statuses": {
+        "H-SAFE-008-A": "untested"
+      },
+      "literature": [
+        "SRC-SAFE-INTERRUPT-2016",
+        "SRC-SAFE-OFFSWITCH-2017"
+      ],
+      "manuscript_parts": [
+        "VIII"
+      ],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-SAFE-008",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.safety.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Autonomy Safety / Authorization Conflict",
+      "evidence_records": [],
+      "experiments": [],
+      "hypotheses": [
+        "H-SAFE-009-A"
+      ],
+      "hypothesis_statuses": {
+        "H-SAFE-009-A": "untested"
+      },
+      "literature": [
+        "SRC-SAFE-CORRIGIBILITY-2015",
+        "SRC-SAFE-OFFSWITCH-2017"
+      ],
+      "manuscript_parts": [
+        "VIII"
+      ],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-SAFE-009",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.safety.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Scaling",
+      "evidence_records": [],
+      "experiments": [
+        "EXP-BATCH-20260906200118-23",
+        "EXP-BATCH-20260908200906-23",
+        "EXP-BATCH-20260909223705-23",
+        "EXP-BATCH-20260914074039-23"
+      ],
+      "hypotheses": [
+        "H-SCALE-001-A"
+      ],
+      "hypothesis_statuses": {
+        "H-SCALE-001-A": "untested"
+      },
+      "literature": [],
+      "manuscript_parts": [],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-SCALE-001",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {
+        "CLAIM-SELF-001": "untested"
+      },
+      "claims": [
+        "CLAIM-SELF-001"
+      ],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Self-Organization",
+      "evidence_records": [],
+      "experiments": [
+        "EXP-BATCH-20260906200118-24",
+        "EXP-BATCH-20260908200906-24",
+        "EXP-BATCH-20260909223705-24",
+        "EXP-BATCH-20260914074039-24"
+      ],
+      "hypotheses": [
+        "H-SELF-001-A"
+      ],
+      "hypothesis_statuses": {
+        "H-SELF-001-A": "untested"
+      },
+      "literature": [
+        "SRC-IZHIKEVICH-2003"
+      ],
+      "manuscript_parts": [],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-SELF-001",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Self-Organization",
+      "evidence_records": [],
+      "experiments": [
+        "EXP-BATCH-20260906200118-25",
+        "EXP-BATCH-20260908200906-25",
+        "EXP-BATCH-20260909223705-25",
+        "EXP-BATCH-20260914074039-25"
+      ],
+      "hypotheses": [
+        "H-SELF-002-A"
+      ],
+      "hypothesis_statuses": {
+        "H-SELF-002-A": "untested"
+      },
+      "literature": [],
+      "manuscript_parts": [],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-SELF-002",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Spiking Neural Networks",
+      "evidence_records": [],
+      "experiments": [
+        "EXP-2026-0001",
+        "EXP-BATCH-20260906195229-01",
+        "EXP-BATCH-20260906195506-01",
+        "EXP-BATCH-20260906195731-01",
+        "EXP-BATCH-20260906200118-01",
+        "EXP-BATCH-20260908200906-01",
+        "EXP-BATCH-20260914074039-01",
+        "EXP-EMP-20260910",
+        "EXP-GEN-0001",
+        "EXP-GEN-0002",
+        "EXP-GEN-0008",
+        "EXP-GEN-0010",
+        "EXP-GEN-0017",
+        "EXP-GEN-0019",
+        "EXP-GEN-0020",
+        "EXP-GEN-0021",
+        "EXP-GEN-0027",
+        "EXP-GEN-0028",
+        "EXP-GEN-0030",
+        "EXP-GEN-0031",
+        "EXP-GEN-0032",
+        "EXP-GEN-0037",
+        "EXP-GEN-0038",
+        "EXP-GEN-0039",
+        "EXP-GEN-0040",
+        "EXP-GEN-0042",
+        "EXP-GEN-0043",
+        "EXP-GEN-0044",
+        "EXP-SNN-001",
+        "EXP-SNN-001-R1",
+        "EXP-SNN-001-R2",
+        "EXP-SNN-001-R3",
+        "EXP-SNN-001-R5",
+        "EXP-STDP-0001a"
+      ],
+      "hypotheses": [
+        "H-SNN-001-A"
+      ],
+      "hypothesis_statuses": {
+        "H-SNN-001-A": "untested"
+      },
+      "literature": [
+        "SRC-IZHIKEVICH-2003",
+        "SRC-GERSTNER-2014"
+      ],
+      "manuscript_parts": [],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-SNN-001",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Spiking Neural Networks",
+      "evidence_records": [],
+      "experiments": [
+        "EXP-BATCH-20260906200118-02",
+        "EXP-BATCH-20260908200906-02",
+        "EXP-BATCH-20260914074039-02",
+        "EXP-GEN-0003",
+        "EXP-GEN-0011",
+        "EXP-GEN-0012",
+        "EXP-GEN-0022",
+        "EXP-GEN-0026",
+        "EXP-GEN-0029",
+        "EXP-GEN-0034",
+        "EXP-GEN-0035",
+        "EXP-GEN-0045",
+        "EXP-SNN-002-R1",
+        "EXP-SNN-002-R2"
+      ],
+      "hypotheses": [
+        "H-SNN-002-A"
+      ],
+      "hypothesis_statuses": {
+        "H-SNN-002-A": "untested"
+      },
+      "literature": [
+        "SRC-IZHIKEVICH-2003",
+        "SRC-GERSTNER-2014"
+      ],
+      "manuscript_parts": [
+        "III",
+        "IV"
+      ],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-SNN-002",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Spiking Neural Networks",
+      "evidence_records": [],
+      "experiments": [
+        "EXP-BATCH-20260906200118-04",
+        "EXP-BATCH-20260908200906-04",
+        "EXP-BATCH-20260909223705-04",
+        "EXP-BATCH-20260914074039-04",
+        "EXP-GEN-0047",
+        "EXP-S1-TOPO-V2-20260918",
+        "EXP-S1-TOPO-V3-20260918",
+        "EXP-S1-TOPO-V3-R1-20260918"
+      ],
+      "hypotheses": [
+        "H-SNN-003-B"
+      ],
+      "hypothesis_statuses": {
+        "H-SNN-003-B": "untested"
+      },
+      "literature": [
+        "SRC-WATTS-STROGATZ-1998",
+        "SRC-BARABASI-1999"
+      ],
+      "manuscript_parts": [
+        "III",
+        "IV",
+        "X",
+        "XI"
+      ],
+      "papers": [
+        "research/publications/papers/2026-09-20_topology-dynamics_v0.1/PAPER.md"
+      ],
+      "research_axis": "unclassified",
+      "research_question": "RQ-SNN-003",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {
+        "CLAIM-SNN-001": "untested"
+      },
+      "claims": [
+        "CLAIM-SNN-001"
+      ],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Spiking Neural Networks",
+      "evidence_records": [],
+      "experiments": [
+        "EXP-BATCH-20260906200118-05",
+        "EXP-BATCH-20260908200906-05",
+        "EXP-BATCH-20260909223705-05",
+        "EXP-BATCH-20260914074039-05",
+        "EXP-SNN004-STDP-ASYM-R2-20260919"
+      ],
+      "hypotheses": [
+        "H-SNN-004-A"
+      ],
+      "hypothesis_statuses": {
+        "H-SNN-004-A": "untested"
+      },
+      "literature": [
+        "SRC-SONG-ABBOTT-2000",
+        "SRC-BI-POO-1998"
+      ],
+      "manuscript_parts": [
+        "IV"
+      ],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-SNN-004",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Spiking Neural Networks",
+      "evidence_records": [],
+      "experiments": [
+        "EXP-BATCH-20260906200118-06",
+        "EXP-BATCH-20260908200906-06",
+        "EXP-BATCH-20260909223705-06",
+        "EXP-BATCH-20260914074039-06",
+        "EXP-LEARN-20260903-2300",
+        "EXP-LEARN-20260903-2330",
+        "EXP-SNN005-HOLDOUT-R2-20260919"
+      ],
+      "hypotheses": [
+        "H-SNN-005-A"
+      ],
+      "hypothesis_statuses": {
+        "H-SNN-005-A": "untested"
+      },
+      "literature": [
+        "SRC-SONG-ABBOTT-2000",
+        "SRC-BI-POO-1998"
+      ],
+      "manuscript_parts": [
+        "IV"
+      ],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-SNN-005",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Spiking Neural Networks",
+      "evidence_records": [],
+      "experiments": [
+        "EXP-GEN-0041"
+      ],
+      "hypotheses": [
+        "H-SNN-006-A"
+      ],
+      "hypothesis_statuses": {
+        "H-SNN-006-A": "untested"
+      },
+      "literature": [
+        "SRC-IZHIKEVICH-2003",
+        "SRC-GERSTNER-2014"
+      ],
+      "manuscript_parts": [],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-SNN-006",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {
+        "CLAIM-STDP-001": "untested"
+      },
+      "claims": [
+        "CLAIM-STDP-001"
+      ],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "STDP",
+      "evidence_records": [],
+      "experiments": [
+        "EXP-BATCH-20260906200118-11",
+        "EXP-BATCH-20260908200906-11",
+        "EXP-BATCH-20260909223705-11",
+        "EXP-BATCH-20260914074039-11",
+        "EXP-GEN-0005",
+        "EXP-STDP-0001",
+        "EXP-STDP-0002"
+      ],
+      "hypotheses": [
+        "H-STDP-001-A"
+      ],
+      "hypothesis_statuses": {
+        "H-STDP-001-A": "untested"
+      },
+      "literature": [
+        "SRC-SONG-ABBOTT-2000",
+        "SRC-BI-POO-1998"
+      ],
+      "manuscript_parts": [],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-STDP-001",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "STDP",
+      "evidence_records": [],
+      "experiments": [
+        "EXP-BATCH-20260906200118-12",
+        "EXP-BATCH-20260908200906-12",
+        "EXP-BATCH-20260909223705-12",
+        "EXP-BATCH-20260914074039-12"
+      ],
+      "hypotheses": [
+        "H-STDP-002-A"
+      ],
+      "hypothesis_statuses": {
+        "H-STDP-002-A": "untested"
+      },
+      "literature": [
+        "SRC-SONG-ABBOTT-2000"
+      ],
+      "manuscript_parts": [],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-STDP-002",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {
+        "CLAIM-STOR-001": "inconclusive"
+      },
+      "claims": [
+        "CLAIM-STOR-001"
+      ],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Storage",
+      "evidence_records": [
+        "EVID-2026-02",
+        "EVID-2026-04",
+        "EVID-2026-06",
+        "EVID-2026-08",
+        "EVID-2026-10",
+        "EVID-2026-12",
+        "EVID-2026-14",
+        "EVID-2026-16"
+      ],
+      "experiments": [
+        "EXP-BATCH-20260906200118-19",
+        "EXP-BATCH-20260908200906-19",
+        "EXP-BATCH-20260909223705-19",
+        "EXP-BATCH-20260914074039-19",
+        "EXP-STOR-0001"
+      ],
+      "hypotheses": [
+        "H-STOR-001-A"
+      ],
+      "hypothesis_statuses": {
+        "H-STOR-001-A": "supported"
+      },
+      "literature": [],
+      "manuscript_parts": [],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-STORAGE-001",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Storage",
+      "evidence_records": [],
+      "experiments": [
+        "EXP-BATCH-20260906200118-20",
+        "EXP-BATCH-20260908200906-20",
+        "EXP-BATCH-20260909223705-20",
+        "EXP-BATCH-20260914074039-20"
+      ],
+      "hypotheses": [
+        "H-STOR-002-A"
+      ],
+      "hypothesis_statuses": {
+        "H-STOR-002-A": "untested"
+      },
+      "literature": [],
+      "manuscript_parts": [],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-STORAGE-002",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Storage",
+      "evidence_records": [],
+      "experiments": [
+        "EXP-BATCH-20260906200118-21",
+        "EXP-BATCH-20260908200906-21",
+        "EXP-BATCH-20260909223705-21",
+        "EXP-BATCH-20260914074039-21"
+      ],
+      "hypotheses": [
+        "H-STOR-003-A"
+      ],
+      "hypothesis_statuses": {
+        "H-STOR-003-A": "untested"
+      },
+      "literature": [],
+      "manuscript_parts": [],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-STORAGE-003",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Storage",
+      "evidence_records": [],
+      "experiments": [
+        "EXP-BATCH-20260906200118-22",
+        "EXP-BATCH-20260908200906-22",
+        "EXP-BATCH-20260909223705-22",
+        "EXP-BATCH-20260914074039-22"
+      ],
+      "hypotheses": [
+        "H-STOR-004-A"
+      ],
+      "hypothesis_statuses": {
+        "H-STOR-004-A": "untested"
+      },
+      "literature": [],
+      "manuscript_parts": [],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-STORAGE-004",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Structural Plasticity",
+      "evidence_records": [],
+      "experiments": [
+        "EXP-BATCH-20260906200118-26",
+        "EXP-BATCH-20260908200906-26",
+        "EXP-BATCH-20260909223705-26",
+        "EXP-BATCH-20260914074039-26"
+      ],
+      "hypotheses": [
+        "H-STRUCT-001-A"
+      ],
+      "hypothesis_statuses": {
+        "H-STRUCT-001-A": "untested"
+      },
+      "literature": [],
+      "manuscript_parts": [],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-STRUCT-001",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Research Infrastructure",
+      "evidence_records": [],
+      "experiments": [
+        "EXP-BATCH-20260906200118-34",
+        "EXP-BATCH-20260909223705-34",
+        "EXP-BATCH-20260914074039-34",
+        "EXP-GEN-0024",
+        "EXP-GEN-0025",
+        "EXP-GEN-0033",
+        "EXP-GEN-0033-R1",
+        "EXP-GEN-0036"
+      ],
+      "hypotheses": [
+        "H-SUITE-001-A"
+      ],
+      "hypothesis_statuses": {
+        "H-SUITE-001-A": "untested"
+      },
+      "literature": [],
+      "manuscript_parts": [],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-SUITE-001",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Temporal State",
+      "evidence_records": [],
+      "experiments": [
+        "EXP-BATCH-20260906200118-08",
+        "EXP-BATCH-20260908200906-08",
+        "EXP-BATCH-20260909223705-08",
+        "EXP-BATCH-20260914074039-08",
+        "EXP-GEN-0013",
+        "EXP-GEN-0014",
+        "EXP-GEN-0015",
+        "EXP-GEN-0016",
+        "EXP-GEN-0018",
+        "EXP-TEMP-0001"
+      ],
+      "hypotheses": [
+        "H-TEMP-001-A"
+      ],
+      "hypothesis_statuses": {
+        "H-TEMP-001-A": "untested"
+      },
+      "literature": [],
+      "manuscript_parts": [],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-TEMP-001",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Temporal Learning",
+      "evidence_records": [],
+      "experiments": [
+        "EXP-BATCH-20260906200118-40",
+        "EXP-BATCH-20260909223705-40",
+        "EXP-BATCH-20260914074039-40",
+        "EXP-EMP-20260910",
+        "EXP-S1-TEMP-ORDER-V2-20260919"
+      ],
+      "hypotheses": [
+        "H-TEMP-002-A"
+      ],
+      "hypothesis_statuses": {
+        "H-TEMP-002-A": "untested"
+      },
+      "literature": [],
+      "manuscript_parts": [
+        "III",
+        "IV"
+      ],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-TEMP-002",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Learning Timescale",
+      "evidence_records": [],
+      "experiments": [
+        "EXP-BATCH-20260906200118-09",
+        "EXP-BATCH-20260908200906-09",
+        "EXP-BATCH-20260909223705-09",
+        "EXP-BATCH-20260914074039-09",
+        "EXP-TIME-0001"
+      ],
+      "hypotheses": [
+        "H-TIME-001-A"
+      ],
+      "hypothesis_statuses": {
+        "H-TIME-001-A": "untested"
+      },
+      "literature": [],
+      "manuscript_parts": [],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-TIME-001",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Connectome-Informed Embodiment",
+      "evidence_records": [],
+      "experiments": [
+        "EXP-BATCH-20260909223705-77",
+        "EXP-BATCH-20260914074039-77",
+        "EXP-EMP-20260910"
+      ],
+      "hypotheses": [
+        "H-TIME-002-A"
+      ],
+      "hypothesis_statuses": {
+        "H-TIME-002-A": "untested"
+      },
+      "literature": [
+        "SRC-CONN-SHIU-2024",
+        "SRC-CONN-WANGCHEN-2024",
+        "SRC-CONN-EON-2026"
+      ],
+      "manuscript_parts": [],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-TIME-002",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.connectome.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Safety and welfare governance",
+      "evidence_records": [],
+      "experiments": [],
+      "hypotheses": [
+        "H-WEL-101-A"
+      ],
+      "hypothesis_statuses": {
+        "H-WEL-101-A": "untested"
+      },
+      "literature": [
+        "SRC-CNS-WELFARE"
+      ],
+      "manuscript_parts": [
+        "VIII"
+      ],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-WEL-101",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.cognition.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "AI welfare under uncertainty",
+      "evidence_records": [],
+      "experiments": [],
+      "hypotheses": [
+        "H-WEL-102-A"
+      ],
+      "hypothesis_statuses": {
+        "H-WEL-102-A": "untested"
+      },
+      "literature": [
+        "SRC-CNS-WELFARE",
+        "SRC-CNS-BUTLIN"
+      ],
+      "manuscript_parts": [
+        "VIII"
+      ],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-WEL-102",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.cognition.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Identity law and moral status",
+      "evidence_records": [],
+      "experiments": [],
+      "hypotheses": [
+        "H-WEL-103-A"
+      ],
+      "hypothesis_statuses": {
+        "H-WEL-103-A": "untested"
+      },
+      "literature": [
+        "SRC-CNS-WELFARE",
+        "SRC-CNS-LAW211",
+        "SRC-CNS-LAW212",
+        "SRC-CNS-LAW103"
+      ],
+      "manuscript_parts": [
+        "VIII"
+      ],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-WEL-103",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.cognition.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "World Model",
+      "evidence_records": [],
+      "experiments": [
+        "EXP-BATCH-20260909223705-45",
+        "EXP-EMP-20260910"
+      ],
+      "hypotheses": [
+        "H-WM-001-A"
+      ],
+      "hypothesis_statuses": {
+        "H-WM-001-A": "untested"
+      },
+      "literature": [],
+      "manuscript_parts": [],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-WM-001",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.behavior_memory.yaml",
+      "stages": []
+    }
+  ],
+  "review_queue": [
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-2026-0001",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-5D-0001",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-5D-0001-v2",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-5D-0001-v3",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260906195229-01",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260906195506-01",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260906195731-01",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260906200118-01",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260906200118-02",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260906200118-03",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260906200118-04",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260906200118-05",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260906200118-06",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260906200118-07",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260906200118-08",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260906200118-09",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260906200118-10",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260906200118-11",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260906200118-12",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260906200118-13",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260906200118-14",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260906200118-15",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260906200118-16",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260906200118-17",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260906200118-18",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260906200118-19",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260906200118-20",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260906200118-21",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260906200118-22",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260906200118-23",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260906200118-24",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260906200118-25",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260906200118-26",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260906200118-27",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260906200118-28",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260906200118-29",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260906200118-30",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260906200118-31",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260906200118-32",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260906200118-33",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260906200118-34",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260906200118-35",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260906200118-36",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260906200118-38",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260906200118-39",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260906200118-40",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260906200118-41",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260906200118-42",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260906200118-44",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260906200118-45",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260906200118-46",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260906200118-47",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260906200118-48",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260908200906-01",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260908200906-02",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260908200906-03",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260908200906-04",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260908200906-05",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260908200906-06",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260908200906-07",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260908200906-08",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260908200906-09",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260908200906-10",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260908200906-11",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260908200906-12",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260908200906-13",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260908200906-14",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260908200906-15",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260908200906-16",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260908200906-17",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260908200906-18",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260908200906-19",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260908200906-20",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260908200906-21",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260908200906-22",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260908200906-23",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260908200906-24",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260908200906-25",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260908200906-26",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260909223705-04",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260909223705-05",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260909223705-06",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260909223705-07",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260909223705-08",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260909223705-09",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260909223705-10",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260909223705-11",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260909223705-12",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260909223705-13",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260909223705-14",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260909223705-15",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260909223705-16",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260909223705-17",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260909223705-18",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260909223705-19",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260909223705-20",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260909223705-21",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260909223705-22",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260909223705-23",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260909223705-24",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260909223705-25",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260909223705-26",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260909223705-27",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260909223705-28",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260909223705-29",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260909223705-30",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260909223705-31",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260909223705-32",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260909223705-33",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260909223705-34",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260909223705-35",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260909223705-36",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260909223705-37",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260909223705-38",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260909223705-39",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260909223705-40",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260909223705-41",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260909223705-42",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260909223705-43",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260909223705-44",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260909223705-45",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260909223705-46",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260909223705-69",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260909223705-71",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260909223705-75",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260909223705-76",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260909223705-77",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260909223705-78",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260909223705-79",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260909223705-80",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260909223705-81",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260909223705-82",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260909223705-83",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260909223705-84",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260909223705-85",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260909223705-86",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260909223705-87",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260909223705-88",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260909223705-89",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260914074039-01",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260914074039-02",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260914074039-03",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260914074039-04",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260914074039-05",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260914074039-06",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260914074039-07",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260914074039-08",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260914074039-09",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260914074039-10",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260914074039-11",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260914074039-12",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260914074039-13",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260914074039-14",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260914074039-15",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260914074039-16",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260914074039-17",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260914074039-18",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260914074039-19",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260914074039-20",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260914074039-21",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260914074039-22",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260914074039-23",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260914074039-24",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260914074039-25",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260914074039-26",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260914074039-27",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260914074039-28",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260914074039-29",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260914074039-30",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260914074039-31",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260914074039-32",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260914074039-33",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260914074039-34",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260914074039-35",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260914074039-36",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260914074039-37",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260914074039-38",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260914074039-39",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260914074039-40",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260914074039-41",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260914074039-42",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260914074039-43",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260914074039-69",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260914074039-71",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260914074039-75",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260914074039-76",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260914074039-77",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260914074039-78",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260914074039-81",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260914074039-82",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260914074039-83",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260914074039-84",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260914074039-85",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260914074039-86",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260914074039-87",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260914074039-88",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260914074039-89",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260914074039-90",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260914074039-91",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260914074039-92",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260914074039-93",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-20260914074039-94",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-DET-0001",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-EMB-0001",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-EMB001B-MATCHED-V2-20260920",
+      "manifest_review_status": "PENDING",
+      "reconciliation_state": "recorded_review_present_check_status_binding",
+      "review_artifacts": [
+        "research/experiments/EXP-EMB001B-MATCHED-V2-20260920/review_request.json",
+        "research/experiments/EXP-EMB001B-MATCHED-V2-20260920/review_request.json.review.json"
+      ]
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-EMB001B-TEMPORAL-V3-20260920",
+      "manifest_review_status": "PENDING",
+      "reconciliation_state": "recorded_review_present_check_status_binding",
+      "review_artifacts": [
+        "research/experiments/EXP-EMB001B-TEMPORAL-V3-20260920/review_request.json",
+        "research/experiments/EXP-EMB001B-TEMPORAL-V3-20260920/review_request.json.review.json"
+      ]
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-EMB002A-DELAY-SWEEP-V4-20260924",
+      "manifest_review_status": "PENDING",
+      "reconciliation_state": "recorded_review_present_check_status_binding",
+      "review_artifacts": [
+        "research/experiments/EXP-EMB002A-DELAY-SWEEP-V4-20260924/review_request.json",
+        "research/experiments/EXP-EMB002A-DELAY-SWEEP-V4-20260924/review_request.json.human-review.json",
+        "research/experiments/EXP-EMB002A-DELAY-SWEEP-V4-20260924/review_request.json.review.json"
+      ]
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-EMB002A-PROPRIOCEPTION-V3-20260920",
+      "manifest_review_status": "PENDING",
+      "reconciliation_state": "recorded_review_present_check_status_binding",
+      "review_artifacts": [
+        "research/experiments/EXP-EMB002A-PROPRIOCEPTION-V3-20260920/review_request.json",
+        "research/experiments/EXP-EMB002A-PROPRIOCEPTION-V3-20260920/review_request.json.review.json"
+      ]
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-EMB002B-TRANSITION-V5-20260924",
+      "manifest_review_status": "PENDING",
+      "reconciliation_state": "recorded_review_present_check_status_binding",
+      "review_artifacts": [
+        "research/experiments/EXP-EMB002B-TRANSITION-V5-20260924/review_request.json",
+        "research/experiments/EXP-EMB002B-TRANSITION-V5-20260924/review_request.json.review.json"
+      ]
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-EMP-20260910",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-EMP-20260910-SCALE-V2",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-GEN-0001",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-GEN-0002",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-GEN-0003",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-GEN-0005",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-GEN-0006",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-GEN-0007",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-GEN-0008",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-GEN-0009",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-GEN-0010",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-GEN-0011",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-GEN-0012",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-GEN-0013",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-GEN-0014",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-GEN-0015",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-GEN-0016",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-GEN-0017",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-GEN-0018",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-GEN-0019",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-GEN-0020",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-GEN-0021",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-GEN-0022",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-GEN-0023",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-GEN-0024",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-GEN-0025",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-GEN-0026",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-GEN-0027",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-GEN-0028",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-GEN-0029",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-GEN-0030",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-GEN-0031",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-GEN-0032",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-GEN-0033",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-GEN-0033-R1",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-GEN-0034",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-GEN-0035",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-GEN-0036",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-GEN-0037",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-GEN-0038",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-GEN-0039",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-GEN-0040",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-GEN-0041",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-GEN-0042",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-GEN-0043",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-GEN-0044",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-GEN-0045",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-GEN-0046",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-GEN-0047",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-LEARN-20260903-2300",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-LEARN-20260903-2330",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-LIFE-0001-R1",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-PING-0001",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-PING-0001-v2",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-PING-0001-v3",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-REC-0001-R1",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-REC-002-CLEAN-R2-20260919",
+      "manifest_review_status": "PENDING",
+      "reconciliation_state": "recorded_review_present_check_status_binding",
+      "review_artifacts": [
+        "research/experiments/EXP-REC-002-CLEAN-R2-20260919/review_request.json",
+        "research/experiments/EXP-REC-002-CLEAN-R2-20260919/review_request.json.review.json"
+      ]
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-REG-0001",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-REG-0002-R1",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-REPL-0001-R1",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-RETRY-AIRR-2026-0001-01",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-RETRY-AIRR-2026-0001-02",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-S1-REC-CLEAN-R2-20260919",
+      "manifest_review_status": "PENDING",
+      "reconciliation_state": "recorded_review_present_check_status_binding",
+      "review_artifacts": [
+        "research/experiments/EXP-S1-REC-CLEAN-R2-20260919/manifest.json.review.json",
+        "research/experiments/EXP-S1-REC-CLEAN-R2-20260919/review_request.json",
+        "research/experiments/EXP-S1-REC-CLEAN-R2-20260919/review_request.json.review.json"
+      ]
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-S1-TEMP-ORDER-V2-20260919",
+      "manifest_review_status": "PENDING",
+      "reconciliation_state": "recorded_review_present_check_status_binding",
+      "review_artifacts": [
+        "research/experiments/EXP-S1-TEMP-ORDER-V2-20260919/manifest.json.review.json",
+        "research/experiments/EXP-S1-TEMP-ORDER-V2-20260919/review_request.json",
+        "research/experiments/EXP-S1-TEMP-ORDER-V2-20260919/review_request.json.review.json"
+      ]
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-S1-TOPO-V2-20260918",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "recorded_review_present_check_status_binding",
+      "review_artifacts": [
+        "research/experiments/EXP-S1-TOPO-V2-20260918/review_request.json",
+        "research/experiments/EXP-S1-TOPO-V2-20260918/review_request.json.review.json"
+      ]
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-S1-TOPO-V3-20260918",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-S1-TOPO-V3-R1-20260918",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "recorded_review_present_check_status_binding",
+      "review_artifacts": [
+        "research/experiments/EXP-S1-TOPO-V3-R1-20260918/review_request.json",
+        "research/experiments/EXP-S1-TOPO-V3-R1-20260918/review_request.json.human-review.json",
+        "research/experiments/EXP-S1-TOPO-V3-R1-20260918/review_request.json.review.json"
+      ]
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-SNN-001",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-SNN-001-R1",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-SNN-001-R2",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-SNN-001-R3",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-SNN-001-R5",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-SNN-002-R1",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-SNN-002-R2",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-SNN004-STDP-ASYM-R2-20260919",
+      "manifest_review_status": "PENDING",
+      "reconciliation_state": "recorded_review_present_check_status_binding",
+      "review_artifacts": [
+        "research/experiments/EXP-SNN004-STDP-ASYM-R2-20260919/review_request.json",
+        "research/experiments/EXP-SNN004-STDP-ASYM-R2-20260919/review_request.json.review.json"
+      ]
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-SNN005-HOLDOUT-R2-20260919",
+      "manifest_review_status": "PENDING",
+      "reconciliation_state": "recorded_review_present_check_status_binding",
+      "review_artifacts": [
+        "research/experiments/EXP-SNN005-HOLDOUT-R2-20260919/review_request.json",
+        "research/experiments/EXP-SNN005-HOLDOUT-R2-20260919/review_request.json.review.json"
+      ]
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-STAGE0-20260918-MODEL-CONFORMANCE-V2-PROMO-R1",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "recorded_review_present_check_status_binding",
+      "review_artifacts": [
+        "research/experiments/EXP-STAGE0-20260918-MODEL-CONFORMANCE-V2-PROMO-R1/human_review.json",
+        "research/experiments/EXP-STAGE0-20260918-MODEL-CONFORMANCE-V2-PROMO-R1/review_request.json",
+        "research/experiments/EXP-STAGE0-20260918-MODEL-CONFORMANCE-V2-PROMO-R1/review_request.json.review.json"
+      ]
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-EMB-0001",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-STDP-0001",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-STDP-0001a",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-STDP-0002",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-STOR-0001",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-TEMP-0001",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-TIME-0001",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    }
+  ],
+  "schema_version": 1,
+  "scientific_evidence": false,
+  "studies": [
+    {
+      "conditions": [
+        "provenance_status_separated_packet",
+        "information_equivalent_flattened_packet"
+      ],
+      "ethics_gate": "research/ethics/HUMAN_REVIEWER_STUDY_GOVERNANCE.md",
+      "execution_authorized": false,
+      "hypothesis": "H-EPIST-002-A",
+      "next_state_requires": "human freeze decision and study-specific ethics/privacy record",
+      "preregistration_must_freeze": [
+        "sample_size_or_stopping_rule",
+        "episode_sampling",
+        "reviewer_sampling",
+        "packet_information_equivalence",
+        "error_scoring",
+        "adjudication_reference",
+        "repeated_measures_model",
+        "missing_data",
+        "multiplicity_policy",
+        "utility_rule",
+        "success_failure_threshold"
+      ],
+      "primary_outcome": "epistemic_misclassification_rate_per_review_decision",
+      "recursion_gate": "research/protocols/META_RECURSION_STOP_RULE.md",
+      "research_question": "RQ-EPIST-002",
+      "schema_version": 1,
+      "scientific_evidence": false,
+      "secondary_outcomes": [
+        "decision_time",
+        "inter_rater_agreement",
+        "unsupported_claim_extensions",
+        "clarification_requests",
+        "confidence_calibration",
+        "correction_latency"
+      ],
+      "status": "preregistration_ready_design_not_frozen",
+      "study_id": "META-STUDY-EPIST002-READINESS-20260926",
+      "unit": "claim_episode"
+    },
+    {
+      "codebook_fields": [
+        "actor_type",
+        "actor_version",
+        "role",
+        "material_contribution",
+        "decision_authority",
+        "disposition",
+        "responsibility",
+        "input_ref",
+        "output_ref",
+        "evidence_ref",
+        "timestamp"
+      ],
+      "ethics_gate": "research/ethics/HUMAN_REVIEWER_STUDY_GOVERNANCE.md",
+      "execution_authorized": false,
+      "hypotheses": [
+        "H-ETH-001-B",
+        "H-ETH-001-C",
+        "H-ETH-001-E"
+      ],
+      "outputs": [
+        "disagreement_catalogue",
+        "revised_codebook",
+        "unresolved_role_classes",
+        "explicit_exclusions",
+        "candidate_reliability_metric",
+        "candidate_thresholds_for_preregistration"
+      ],
+      "prohibited_claims": [
+        "confirmatory support",
+        "formal authorship entitlement",
+        "machine responsibility",
+        "EVID promotion"
+      ],
+      "required_independent_coding_passes": 2,
+      "research_question": "RQ-ETH-001",
+      "sampling_rule": {
+        "confirmatory_sampling": false,
+        "minimum_provenance_fields": [
+          "claim_or_rq",
+          "input_or_source",
+          "transformation_or_action",
+          "decision_or_disposition",
+          "responsible_human_or_role"
+        ],
+        "purpose": "heterogeneous provenance-complete episodes"
+      },
+      "schema_version": 1,
+      "scientific_evidence": false,
+      "status": "pilot_design_ready_not_executed",
+      "study_id": "META-PILOT-ETH001-CODEBOOK-20260926",
+      "unit": "claim_episode"
+    },
+    {
+      "execution_authorized": false,
+      "frozen_packet_fields": [
+        "research_question",
+        "source_set",
+        "DATA",
+        "claim_context",
+        "task_instruction"
+      ],
+      "hypothesis": "H-META-003-A",
+      "independent_variable": "model_or_model_version",
+      "outcomes": [
+        "detected_errors",
+        "proposed_controls",
+        "unsupported_claim_extensions",
+        "source_errors",
+        "revision_proposals"
+      ],
+      "research_question": "RQ-META-003",
+      "rule": "AI outputs are process observations only and never object-level scientific evidence.",
+      "schema_version": 1,
+      "scientific_evidence": false,
+      "status": "design_registered_not_preregistered",
+      "study_id": "META-STUDY-MODEL-DEPENDENCE-20260926"
+    },
+    {
+      "conditions": [
+        "lineage_visible",
+        "lineage_flattened"
+      ],
+      "execution_authorized": false,
+      "failure_rule": "No support if lineage visibility does not reduce the preregistered false-independence rate.",
+      "hypothesis": "H-META-004-A",
+      "lineage_contract": [
+        "primary_external_source",
+        "derived_project_summary",
+        "AI_transformation",
+        "report_projection",
+        "human_review",
+        "external_replication"
+      ],
+      "primary_outcome": "false_independence_classification_rate",
+      "research_question": "RQ-META-004",
+      "schema_version": 1,
+      "scientific_evidence": false,
+      "status": "design_registered_not_preregistered",
+      "study_id": "META-STUDY-SOURCE-RECURSION-20260926"
+    },
+    {
+      "anti_gaming_rule": "No post-hoc weighting after outcome inspection.",
+      "benefit_measures": [
+        "epistemic_errors_avoided",
+        "unsupported_claim_extensions_avoided",
+        "correction_latency_reduction"
+      ],
+      "cost_measures": [
+        "review_time",
+        "clarification_count",
+        "documentation_time",
+        "adjudication_time"
+      ],
+      "execution_authorized": false,
+      "hypothesis": "H-META-005-A",
+      "research_question": "RQ-META-005",
+      "schema_version": 1,
+      "scientific_evidence": false,
+      "status": "design_registered_not_preregistered",
+      "study_id": "META-STUDY-GOVERNANCE-COST-20260926",
+      "utility_rule_status": "must_be_frozen_before_execution"
+    }
+  ]
+}

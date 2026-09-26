@@ -133,7 +133,7 @@ def test_disconnect_during_send_response() -> None:
     try:
         _sock = _raw_request(
             host, port, "/api/status", close_after_bytes=50
-        )  # noqa: unused
+        )  # noqa: F841
         # Give the server a moment to process the disconnect
         import time
 

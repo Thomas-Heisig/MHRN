@@ -52,6 +52,10 @@
 | Simões (2017) |  | RQ-CNS-103, RQ-CNS-105, RQ-CNS-111 | open |
 | Vladu (2026) |  | RQ-CNS-112, RQ-CNS-114 | open |
 | Vetcha (2026) |  | RQ-LIFE-001, RQ-GEN-001 | open |
+| Editors (2026) |  | RQ-ETH-001, RQ-META-004 | open |
+| Organization (2022) |  | RQ-ETH-001 | open |
+| Academies (2023) |  | RQ-EPIST-002, RQ-ETH-001, RQ-META-004, RQ-META-005 | open |
+| Forschungsgemeinschaft (2026) |  | RQ-EPIST-002, RQ-ETH-001, RQ-META-003, RQ-META-005 | open |
 | Soares (2015) |  | RQ-SAFE-001, RQ-SAFE-003, RQ-SAFE-007, RQ-SAFE-009 | open |
 | Orseau (2016) |  | RQ-SAFE-003, RQ-SAFE-004, RQ-SAFE-008 | open |
 | Hadfield-Menell (2017) |  | RQ-SAFE-001, RQ-SAFE-003, RQ-SAFE-004, RQ-SAFE-007, RQ-SAFE-008, RQ-SAFE-009 | open |

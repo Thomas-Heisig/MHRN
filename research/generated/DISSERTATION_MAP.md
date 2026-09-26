@@ -1,115 +1,153 @@
-# MHRN Dissertation Map
+# MHRN Dissertation / Manuscript Routing Map
 
-*Generiert am 2026-09-21*
+This file follows current Recursive Epistemics Edition 1.8 Parts I-XI. It is an editorial/argument map, not a research-direction taxonomy and not a degree claim.
 
-Diese Karte zeigt, wie die Forschungsergebnisse von MHRN in eine
-Dissertationsstruktur eingeordnet werden können.
+## Teil I - Nullpunkt, Autor und Entstehungsbedingungen
 
-## Kapitel 1 – Theorie und Grundlagen
+Source: `research/publications/2026-09-17_recursive-epistemics_v1.8/parts/01_origin.md`
 
-Einführung in SNN-Theorie, Izhikevich-Modell, deterministische Dynamik
+| RQ | RQ status | Direction | Axis | Experiments | EVID records |
+| --- | --- | --- | --- | --- | --- |
+| RQ-EPIST-002 | open | unresolved | epistemological_methodological | unresolved | unresolved |
+| RQ-ETH-001 | open | unresolved | epistemological_methodological | EXP-BATCH-20260906200118-30, EXP-BATCH-20260909223705-30, EXP-BATCH-20260914074039-30 | unresolved |
 
-**Forschungsfragen:**
-- `RQ-SNN-001`: Kann Brain-5D stabile Spike-Dynamiken über lange Simulationszeiträume erzeugen?... *(open)*
-- `RQ-SNN-002`: Kann das eingesetzte Neuronenmodell bei konstantem Input reproduzierbare Spikefo... *(open)*
-- `RQ-DET-001`: Bleibt die Spikefolge bei gleichem Seed, Input und Zustand deterministisch?... *(open)*
+## Teil II - Schaffensgeschichte und Architekturgenese
 
-**Literatur:**
-- `SRC-IZHIKEVICH-2003`: Eugene M. Izhikevich et al. (2003)
-- `SRC-GERSTNER-2014`: Wulfram Gerstner et al. (2014)
-- `SRC-MAASS-1997`: Wolfgang Maass et al. (1997)
+Source: `research/publications/2026-09-17_recursive-epistemics_v1.8/parts/02_genealogy.md`
 
----
+| RQ | RQ status | Direction | Axis | Experiments | EVID records |
+| --- | --- | --- | --- | --- | --- |
 
-## Kapitel 2 – Plastizität und Lernen
+## Teil III - Forschungsobjekt MHRN
 
-STDP, Homeostase, Interaktion, Lernleistung
+Source: `research/publications/2026-09-17_recursive-epistemics_v1.8/parts/03_research_object.md`
 
-**Forschungsfragen:**
-- `RQ-SNN-004`: Wie verändert STDP die synaptische Gewichtsmatrix?... *(open)*
-- `RQ-SNN-005`: Verbessert STDP tatsächlich eine definierte Lernleistung?... *(open)*
-- `RQ-STDP-001`: Erzeugt pair-based STDP unter definierten Pre/Post-Zeitabständen eine asymmetris... *(open)*
-- `RQ-STDP-002`: Bleiben STDP-getriebene Gewichte unter Dauerstimulation stabil oder oszillieren/... *(open)*
-- `RQ-HOM-001`: Kann synaptische Homeostase die Feuerrate in einem SNN stabilisieren?... *(open)*
-- `RQ-HOM-002`: Wie interagiert Homeostase mit STDP? Wirken sie synergistisch oder antagonistisc... *(open)*
+| RQ | RQ status | Direction | Axis | Experiments | EVID records |
+| --- | --- | --- | --- | --- | --- |
+| RQ-5D-005 | open | unresolved | unclassified | EXP-BATCH-20260906200118-38, EXP-BATCH-20260909223705-38, EXP-BATCH-20260914074039-38, EXP-EMP-20260910 | unresolved |
+| RQ-DET-001 | open | unresolved | unclassified | EXP-2026-0001, EXP-BATCH-20260906200118-03, EXP-BATCH-20260908200906-03, EXP-BATCH-20260914074039-03, EXP-DET-0001, EXP-GEN-0023, EXP-GEN-0046 | EVID-2026-01, EVID-2026-03, EVID-2026-05, EVID-2026-07, EVID-2026-09, EVID-2026-11, EVID-2026-13, EVID-2026-15 |
+| RQ-REC-002 | open | unresolved | unclassified | EXP-BATCH-20260906200118-42, EXP-BATCH-20260909223705-42, EXP-BATCH-20260914074039-42, EXP-EMP-20260910, EXP-REC-002-CLEAN-R2-20260919 | unresolved |
+| RQ-SNN-002 | open | unresolved | unclassified | EXP-BATCH-20260906200118-02, EXP-BATCH-20260908200906-02, EXP-BATCH-20260914074039-02, EXP-GEN-0003, EXP-GEN-0011, EXP-GEN-0012, EXP-GEN-0022, EXP-GEN-0026, EXP-GEN-0029, EXP-GEN-0034, EXP-GEN-0035, EXP-GEN-0045, EXP-SNN-002-R1, EXP-SNN-002-R2 | unresolved |
+| RQ-SNN-003 | open | unresolved | unclassified | EXP-BATCH-20260906200118-04, EXP-BATCH-20260908200906-04, EXP-BATCH-20260909223705-04, EXP-BATCH-20260914074039-04, EXP-GEN-0047, EXP-S1-TOPO-V2-20260918, EXP-S1-TOPO-V3-20260918, EXP-S1-TOPO-V3-R1-20260918 | unresolved |
+| RQ-TEMP-002 | open | unresolved | unclassified | EXP-BATCH-20260906200118-40, EXP-BATCH-20260909223705-40, EXP-BATCH-20260914074039-40, EXP-EMP-20260910, EXP-S1-TEMP-ORDER-V2-20260919 | unresolved |
 
-**Literatur:**
-- `SRC-SONG-ABBOTT-2000`: Sen Song et al. (2000)
-- `SRC-BI-POO-1998`: Guo-Qiang Bi et al. (1998)
-- `SRC-TURRIGIANO-2008`: Gina G. Turrigiano et al. (2008)
-- `SRC-HEBB-1949`: Donald O. Hebb et al. (1949)
+## Teil IV - Empirisches Forschungsprogramm
 
----
+Source: `research/publications/2026-09-17_recursive-epistemics_v1.8/parts/04_empirical_programme.md`
 
-## Kapitel 3 – 5D-Raum und Topologie
+| RQ | RQ status | Direction | Axis | Experiments | EVID records |
+| --- | --- | --- | --- | --- | --- |
+| RQ-5D-005 | open | unresolved | unclassified | EXP-BATCH-20260906200118-38, EXP-BATCH-20260909223705-38, EXP-BATCH-20260914074039-38, EXP-EMP-20260910 | unresolved |
+| RQ-DET-001 | open | unresolved | unclassified | EXP-2026-0001, EXP-BATCH-20260906200118-03, EXP-BATCH-20260908200906-03, EXP-BATCH-20260914074039-03, EXP-DET-0001, EXP-GEN-0023, EXP-GEN-0046 | EVID-2026-01, EVID-2026-03, EVID-2026-05, EVID-2026-07, EVID-2026-09, EVID-2026-11, EVID-2026-13, EVID-2026-15 |
+| RQ-EMB-001 | open | unresolved | unclassified | EXP-BATCH-20260906200118-28, EXP-BATCH-20260909223705-28, EXP-BATCH-20260914074039-28, EXP-EMB-0001, EXP-EMB001B-MATCHED-V2-20260920, EXP-EMB001B-TEMPORAL-V3-20260920, EXP-EMP-20260910 | unresolved |
+| RQ-GW-002 | open | unresolved | unclassified | EXP-BATCH-20260909223705-79, EXP-BATCH-20260914074039-84 | unresolved |
+| RQ-GW-004 | open | unresolved | unclassified | EXP-BATCH-20260909223705-81, EXP-BATCH-20260914074039-86 | unresolved |
+| RQ-GW-006 | open | unresolved | unclassified | EXP-BATCH-20260909223705-83, EXP-BATCH-20260914074039-88 | unresolved |
+| RQ-MEM-001 | open | unresolved | unclassified | EXP-BATCH-20260906200118-27, EXP-BATCH-20260909223705-27, EXP-BATCH-20260914074039-27 | unresolved |
+| RQ-SNN-002 | open | unresolved | unclassified | EXP-BATCH-20260906200118-02, EXP-BATCH-20260908200906-02, EXP-BATCH-20260914074039-02, EXP-GEN-0003, EXP-GEN-0011, EXP-GEN-0012, EXP-GEN-0022, EXP-GEN-0026, EXP-GEN-0029, EXP-GEN-0034, EXP-GEN-0035, EXP-GEN-0045, EXP-SNN-002-R1, EXP-SNN-002-R2 | unresolved |
+| RQ-SNN-003 | open | unresolved | unclassified | EXP-BATCH-20260906200118-04, EXP-BATCH-20260908200906-04, EXP-BATCH-20260909223705-04, EXP-BATCH-20260914074039-04, EXP-GEN-0047, EXP-S1-TOPO-V2-20260918, EXP-S1-TOPO-V3-20260918, EXP-S1-TOPO-V3-R1-20260918 | unresolved |
+| RQ-SNN-004 | open | unresolved | unclassified | EXP-BATCH-20260906200118-05, EXP-BATCH-20260908200906-05, EXP-BATCH-20260909223705-05, EXP-BATCH-20260914074039-05, EXP-SNN004-STDP-ASYM-R2-20260919 | unresolved |
+| RQ-SNN-005 | open | unresolved | unclassified | EXP-BATCH-20260906200118-06, EXP-BATCH-20260908200906-06, EXP-BATCH-20260909223705-06, EXP-BATCH-20260914074039-06, EXP-LEARN-20260903-2300, EXP-LEARN-20260903-2330, EXP-SNN005-HOLDOUT-R2-20260919 | unresolved |
+| RQ-TEMP-002 | open | unresolved | unclassified | EXP-BATCH-20260906200118-40, EXP-BATCH-20260909223705-40, EXP-BATCH-20260914074039-40, EXP-EMP-20260910, EXP-S1-TEMP-ORDER-V2-20260919 | unresolved |
 
-Dimensionsablation, Signalpropagation, Modularität, Informationstheorie
+## Teil V - Wissenschaftliche Infrastruktur und Engineering
 
-**Forschungsfragen:**
-- `RQ-5D-001`: Hat die fünfdimensionale Anordnung einen messbaren Effekt auf die Netzwerkdynami... *(open)*
-- `RQ-5D-002`: Wie verändert Dimensionalität die Signalpropagation im Netzwerk?... *(open)*
-- `RQ-5D-003`: Entsteht in 5D eine andere Modularität als in niedrigeren Dimensionen?... *(open)*
-- `RQ-5D-004`: Sind zusätzliche Dimensionen informationstragend oder lediglich zusätzliche Koor... *(open)*
+Source: `research/publications/2026-09-17_recursive-epistemics_v1.8/parts/05_infrastructure.md`
 
----
+| RQ | RQ status | Direction | Axis | Experiments | EVID records |
+| --- | --- | --- | --- | --- | --- |
+| RQ-META-005 | open | unresolved | epistemological_methodological | unresolved | unresolved |
 
-## Kapitel 4 – Persistenz und Speicherung
+## Teil VI - Epistemologie und Methodik der Schaffensgeschichte
 
-.b5d-Format, verlustfreie Serialisierung, Speicherdichte, Skalierung
+Source: `research/publications/2026-09-17_recursive-epistemics_v1.8/parts/06_epistemology.md`
 
-**Forschungsfragen:**
-- `RQ-STORAGE-001`: Kann ein vollständiger neuronaler Zustand verlustfrei im .b5d-Modell gespeichert... *(open)*
-- `RQ-STORAGE-002`: Welche Informationen müssen gespeichert werden, damit ein Lauf kausal fortgesetz... *(open)*
-- `RQ-STORAGE-003`: Welche Speicherdichte erreicht das multidimensionale Modell?... *(open)*
-- `RQ-STORAGE-004`: Wie verhält sich das .b5d-Format bei 5.000, 50.000, 500.000, 5 Mio., 50 Mio. und... *(open)*
+| RQ | RQ status | Direction | Axis | Experiments | EVID records |
+| --- | --- | --- | --- | --- | --- |
+| RQ-EPIST-001 | open | unresolved | unclassified | EXP-BATCH-20260906200118-32, EXP-BATCH-20260909223705-32, EXP-BATCH-20260914074039-32 | unresolved |
+| RQ-EPIST-002 | open | unresolved | epistemological_methodological | unresolved | unresolved |
+| RQ-ETH-001 | open | unresolved | epistemological_methodological | EXP-BATCH-20260906200118-30, EXP-BATCH-20260909223705-30, EXP-BATCH-20260914074039-30 | unresolved |
+| RQ-META-003 | open | unresolved | epistemological_methodological | unresolved | unresolved |
+| RQ-META-004 | open | unresolved | epistemological_methodological | unresolved | unresolved |
+| RQ-META-005 | open | unresolved | epistemological_methodological | unresolved | unresolved |
 
----
+## Teil VII - Integrität, Autorschaft und kumulative Wissenschaft
 
-## Kapitel 5 – Selbstorganisation
+Source: `research/publications/2026-09-17_recursive-epistemics_v1.8/parts/07_integrity.md`
 
-Emergenz, Clusterbildung, Pruning, Sprouting
+| RQ | RQ status | Direction | Axis | Experiments | EVID records |
+| --- | --- | --- | --- | --- | --- |
+| RQ-AIR-001 | open | unresolved | unclassified | EXP-BATCH-20260906200118-33, EXP-BATCH-20260909223705-33, EXP-BATCH-20260914074039-33 | unresolved |
+| RQ-EPIST-001 | open | unresolved | unclassified | EXP-BATCH-20260906200118-32, EXP-BATCH-20260909223705-32, EXP-BATCH-20260914074039-32 | unresolved |
+| RQ-EPIST-002 | open | unresolved | epistemological_methodological | unresolved | unresolved |
+| RQ-ETH-001 | open | unresolved | epistemological_methodological | EXP-BATCH-20260906200118-30, EXP-BATCH-20260909223705-30, EXP-BATCH-20260914074039-30 | unresolved |
+| RQ-ETH-002 | open | unresolved | unclassified | EXP-BATCH-20260906200118-31, EXP-BATCH-20260909223705-31, EXP-BATCH-20260914074039-31 | unresolved |
+| RQ-META-004 | open | unresolved | epistemological_methodological | unresolved | unresolved |
 
-**Forschungsfragen:**
-- `RQ-SELF-001`: Entstehen in Brain-5D spontan funktionale Cluster oder Module?... *(open)*
-- `RQ-SELF-002`: Ist die beobachtete Selbstorganistion emergenter Natur oder durch die Architektu... *(open)*
-- `RQ-STRUCT-001`: Führt strukturelle Plastizität (Pruning/Sprouting) zu funktional verbesserten Ne... *(open)*
+## Teil VIII - Philosophie, Ethik und Sicherheit
 
----
+Source: `research/publications/2026-09-17_recursive-epistemics_v1.8/parts/08_ethics_safety.md`
 
-## Kapitel 6 – Skalierung
+| RQ | RQ status | Direction | Axis | Experiments | EVID records |
+| --- | --- | --- | --- | --- | --- |
+| RQ-CNS-101 | open | unresolved | unclassified | unresolved | unresolved |
+| RQ-EPI-101 | open | unresolved | unclassified | unresolved | unresolved |
+| RQ-EPI-102 | open | unresolved | unclassified | unresolved | unresolved |
+| RQ-EPIST-001 | open | unresolved | unclassified | EXP-BATCH-20260906200118-32, EXP-BATCH-20260909223705-32, EXP-BATCH-20260914074039-32 | unresolved |
+| RQ-ETH-001 | open | unresolved | epistemological_methodological | EXP-BATCH-20260906200118-30, EXP-BATCH-20260909223705-30, EXP-BATCH-20260914074039-30 | unresolved |
+| RQ-ETH-002 | open | unresolved | unclassified | EXP-BATCH-20260906200118-31, EXP-BATCH-20260909223705-31, EXP-BATCH-20260914074039-31 | unresolved |
+| RQ-SAFE-001 | open | unresolved | unclassified | unresolved | unresolved |
+| RQ-SAFE-002 | open | unresolved | unclassified | unresolved | unresolved |
+| RQ-SAFE-003 | open | unresolved | unclassified | unresolved | unresolved |
+| RQ-SAFE-004 | open | unresolved | unclassified | unresolved | unresolved |
+| RQ-SAFE-005 | open | unresolved | unclassified | unresolved | unresolved |
+| RQ-SAFE-006 | open | unresolved | unclassified | unresolved | unresolved |
+| RQ-SAFE-007 | open | unresolved | unclassified | unresolved | unresolved |
+| RQ-SAFE-008 | open | unresolved | unclassified | unresolved | unresolved |
+| RQ-SAFE-009 | open | unresolved | unclassified | unresolved | unresolved |
+| RQ-WEL-101 | open | unresolved | unclassified | unresolved | unresolved |
+| RQ-WEL-102 | open | unresolved | unclassified | unresolved | unresolved |
+| RQ-WEL-103 | open | unresolved | unclassified | unresolved | unresolved |
 
-Skalierung von 5k auf Millionen Neuronen
+## Teil IX - Rekursive Epistemik
 
-**Forschungsfragen:**
-- `RQ-SCALE-001`: Skaliert Brain-5D von 5.000 auf Millionen Neuronen ohne qualitative Dynamikverän... *(open)*
+Source: `research/publications/2026-09-17_recursive-epistemics_v1.8/parts/09_recursive_epistemics.md`
 
-**Literatur:**
-- `SRC-MARKRAM-2015`: Henry Markram et al. (2015)
+| RQ | RQ status | Direction | Axis | Experiments | EVID records |
+| --- | --- | --- | --- | --- | --- |
+| RQ-EPIST-002 | open | unresolved | epistemological_methodological | unresolved | unresolved |
+| RQ-ETH-001 | open | unresolved | epistemological_methodological | EXP-BATCH-20260906200118-30, EXP-BATCH-20260909223705-30, EXP-BATCH-20260914074039-30 | unresolved |
+| RQ-META-003 | open | unresolved | epistemological_methodological | unresolved | unresolved |
+| RQ-META-004 | open | unresolved | epistemological_methodological | unresolved | unresolved |
+| RQ-META-005 | open | unresolved | epistemological_methodological | unresolved | unresolved |
 
----
+## Teil X - Synthese und revidierbare Beiträge
 
-## Kapitel 7 – Gedächtnis und Embodiment
+Source: `research/publications/2026-09-17_recursive-epistemics_v1.8/parts/10_synthesis.md`
 
-Synaptisches Gedächtnis, Sensor-Aktor-Schleife, Language Organ
+| RQ | RQ status | Direction | Axis | Experiments | EVID records |
+| --- | --- | --- | --- | --- | --- |
+| RQ-5D-005 | open | unresolved | unclassified | EXP-BATCH-20260906200118-38, EXP-BATCH-20260909223705-38, EXP-BATCH-20260914074039-38, EXP-EMP-20260910 | unresolved |
+| RQ-DET-001 | open | unresolved | unclassified | EXP-2026-0001, EXP-BATCH-20260906200118-03, EXP-BATCH-20260908200906-03, EXP-BATCH-20260914074039-03, EXP-DET-0001, EXP-GEN-0023, EXP-GEN-0046 | EVID-2026-01, EVID-2026-03, EVID-2026-05, EVID-2026-07, EVID-2026-09, EVID-2026-11, EVID-2026-13, EVID-2026-15 |
+| RQ-SNN-003 | open | unresolved | unclassified | EXP-BATCH-20260906200118-04, EXP-BATCH-20260908200906-04, EXP-BATCH-20260909223705-04, EXP-BATCH-20260914074039-04, EXP-GEN-0047, EXP-S1-TOPO-V2-20260918, EXP-S1-TOPO-V3-20260918, EXP-S1-TOPO-V3-R1-20260918 | unresolved |
 
-**Forschungsfragen:**
-- `RQ-MEM-001`: Kann Brain-5D Informationen über synaptische Gewichte speichern und zuverlässig ... *(open)*
-- `RQ-EMB-001`: Kann Brain-5D in einer Sensor-Aktor-Schleife (Embodiment) sinnvoll agieren?... *(open)*
-- `RQ-LLM-001`: Kann ein Language Organ (SNM ↔ LLM) sinnvolle Kommunikation ermöglichen?... *(open)*
+## Teil XI - Offene Forschungslandschaft
 
----
+Source: `research/publications/2026-09-17_recursive-epistemics_v1.8/parts/11_open_landscape.md`
 
-## Kapitel 8 – Autorenschaft und Epistemologie
+| RQ | RQ status | Direction | Axis | Experiments | EVID records |
+| --- | --- | --- | --- | --- | --- |
+| RQ-5D-005 | open | unresolved | unclassified | EXP-BATCH-20260906200118-38, EXP-BATCH-20260909223705-38, EXP-BATCH-20260914074039-38, EXP-EMP-20260910 | unresolved |
+| RQ-DET-001 | open | unresolved | unclassified | EXP-2026-0001, EXP-BATCH-20260906200118-03, EXP-BATCH-20260908200906-03, EXP-BATCH-20260914074039-03, EXP-DET-0001, EXP-GEN-0023, EXP-GEN-0046 | EVID-2026-01, EVID-2026-03, EVID-2026-05, EVID-2026-07, EVID-2026-09, EVID-2026-11, EVID-2026-13, EVID-2026-15 |
+| RQ-GW-002 | open | unresolved | unclassified | EXP-BATCH-20260909223705-79, EXP-BATCH-20260914074039-84 | unresolved |
+| RQ-GW-004 | open | unresolved | unclassified | EXP-BATCH-20260909223705-81, EXP-BATCH-20260914074039-86 | unresolved |
+| RQ-GW-006 | open | unresolved | unclassified | EXP-BATCH-20260909223705-83, EXP-BATCH-20260914074039-88 | unresolved |
+| RQ-META-003 | open | unresolved | epistemological_methodological | unresolved | unresolved |
+| RQ-META-005 | open | unresolved | epistemological_methodological | unresolved | unresolved |
+| RQ-SNN-003 | open | unresolved | unclassified | EXP-BATCH-20260906200118-04, EXP-BATCH-20260908200906-04, EXP-BATCH-20260909223705-04, EXP-BATCH-20260914074039-04, EXP-GEN-0047, EXP-S1-TOPO-V2-20260918, EXP-S1-TOPO-V3-20260918, EXP-S1-TOPO-V3-R1-20260918 | unresolved |
 
-Epistemische Beiträge, Kanonisierung, Autorenschaft, Verantwortung und maschinelle Erkenntnis
+## Unmapped registered RQs
 
-**Forschungsfragen:**
-- `RQ-ETH-001`: Wie verteilen sich epistemische Beiträge, Entscheidungsmacht, formale Autorensch... *(open)*
-- `RQ-ETH-002`: Wo liegt die Kontrolle und Verantwortung bei Brain-5D-Experimenten?... *(open)*
-- `RQ-EPIST-001`: Was gilt als Erkenntnis des Systems Brain-5D im Unterschied zur Erkenntnis des F... *(open)*
-- `RQ-EPIST-002`: Unter welchen Bedingungen reduziert eine explizite Trennung von Quelle, Entschei... *(open)*
+RQ-5D-001, RQ-5D-002, RQ-5D-003, RQ-5D-004, RQ-CNS-102, RQ-CNS-103, RQ-CNS-104, RQ-CNS-105, RQ-CNS-106, RQ-CNS-107, RQ-CNS-108, RQ-CNS-109, RQ-CNS-110, RQ-CNS-111, RQ-CNS-112, RQ-CNS-113, RQ-CNS-114, RQ-CNS-115, RQ-CNS-116, RQ-CNS-117, RQ-CONN-001, RQ-CONN-002, RQ-EMB-002, RQ-EMB-003, RQ-EMB-004, RQ-EMB-007, RQ-EMB-008, RQ-EMB-009, RQ-EVAL-001, RQ-EVAL-002, RQ-EVAL-003, RQ-EVAL-004, RQ-EVAL-005, RQ-EVAL-006, RQ-GEN-001, RQ-GW-001, RQ-GW-003, RQ-GW-005, RQ-GW-007, RQ-GW-CODEC-001, RQ-HOM-001, RQ-HOM-002, RQ-LIFE-001, RQ-LLM-001, RQ-MEM-002, RQ-MSBA-E01, RQ-MSBA-E02, RQ-MSBA-E03, RQ-MSBA-E04, RQ-MSBA-E05, RQ-PERF-001, RQ-PING-001, RQ-PROFILE-001, RQ-REC-001, RQ-REG-001, RQ-REG-002, RQ-REPL-001, RQ-S6-SEM-002, RQ-S6-SEM-003, RQ-SCALE-001, RQ-SELF-001, RQ-SELF-002, RQ-SNN-001, RQ-SNN-006, RQ-STDP-001, RQ-STDP-002, RQ-STORAGE-001, RQ-STORAGE-002, RQ-STORAGE-003, RQ-STORAGE-004, RQ-STRUCT-001, RQ-SUITE-001, RQ-TEMP-001, RQ-TIME-001, RQ-TIME-002, RQ-WM-001
 
----
-
-
-> Pruefstatus: RQ/H- und EVID-Statuswerte geben den Registry-Inhalt wieder. Insbesondere historische supports/supported-Eintraege sind keine Bestaetigung einer Freigabe nach den heutigen Clean-Freeze- und Human-Review-Gates. Ein abgeschlossener Lauf ist DATA, nicht automatisch akzeptierte Evidenz.
+> Authority boundary: implementation != DATA != reviewed EVID != independent replication; Human Review != independent replication; DOI != peer review. This projection executes and promotes nothing.

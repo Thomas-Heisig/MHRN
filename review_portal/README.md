@@ -1,5 +1,10 @@
 # MHRN: externes Review-Portal
 
+Die Bereitstellungsvarianten und die Grenze zwischen öffentlichem Fragebogen,
+isoliertem Collector, verschlüsselter Speicherung und sicherem Aggregat-Export
+stehen in
+[`docs/04-integration/EXTERNAL_REVIEW_DEPLOYMENT.md`](../docs/04-integration/EXTERNAL_REVIEW_DEPLOYMENT.md).
+
 KI-unterstuetzte Implementierung, 2026-09-10. Vor einer echten Erhebung sind menschliche Abnahme, unabhaengige Administration sowie Datenschutz- und Sicherheitspruefung erforderlich. Die Seite behauptet weder institutionelle Freigabe noch psychometrische Validierung, Peer-Review oder Bewusstsein.
 
 ## Einfach oeffnen

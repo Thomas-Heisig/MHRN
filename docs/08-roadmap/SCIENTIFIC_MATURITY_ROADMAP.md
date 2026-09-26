@@ -45,12 +45,19 @@ Die fehlenden historischen EvidenceEngine-Provenienzfelder des V2-Laufs wurden n
 
 ## Stage 1 – Kleines SNN
 
-**Ziel:** Netzwerkmechanismen über task-basierte Interventionen statt nur Konnektivitäts-/Propagationstests untersuchen.
+**Aktueller Scientific-Maturity-Stand:** **75 %** nach dem kanonischen Gewichtungsvertrag.
+
+**Zentrale Baseline:** `RQ-SNN-003 / H-SNN-003-B` mit `EXP-S1-TOPO-V2-20260918` + `EXP-S1-TOPO-V3-R1-20260918` als gemeinsamer DATA-Linie. Beide Human Reviews durch Thomas Heisig sind abgeschlossen und akzeptieren die begrenzte Interpretation.
+
+**Zweite Funktionslinie:** `RQ-TEMP-002 / H-TEMP-002-A` mit `EXP-S1-TEMP-ORDER-V2-20260919` liefert präregistrierte task-basierte DATA mit identity-destroyed Kontrolle; Human Review steht hier noch aus.
+
+**EVID-Grenze:** Die historischen Topologie-DATA sind unter dem aktuellen EvidenceEngine-Vertrag nicht direkt promotion-eligible. Es fehlen ein kanonischer Claim sowie die heutigen Validity-/Git-/Provenance-Felder und ein EvidenceEngine-`human_review.json` mit `supports|refutes|inconclusive`. Historische Artefakte werden nicht rückwirkend umgeschrieben.
 
 Offen:
-- task-basierte RQ,
-- feed-forward/recurrent bzw. topology-destroyed Kontrollen,
-- unabhängige Replikation.
+- Human Review der Temporal-Order-V2-Linie,
+- scoped Claim + prospektiver EvidenceEngine-kompatibler Promotion-Pfad für die zentrale Topologielinie,
+- unabhängig implementierte Replikation,
+- getrennte größere Prüfung von `H-5D-005-A`.
 
 ## Stage 2 – Stabiles rekurrentes SNN
 

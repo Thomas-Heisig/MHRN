@@ -189,9 +189,19 @@ Die V2-First-Output-Latenz wird zusätzlich auf den frischen R1-Seeds repliziert
 
 **Diskussion.** Damit besitzt `H-SNN-003-B` erstmals einen testadäquaten positiven Befund im untersuchten Stage-1-Regime: Topologie verändert bei gleichem Neuronen- und Kantenbudget die Propagationsdynamik. Der Effekt ist jedoch **kein monotones Dimensions- oder 5D-Vorteilsmuster**. `5d_shuffled` und `random_graph` erreichten den Output in diesem Design früher als die reguläre 5D-Anordnung. Das unterstützt die allgemeine Topologiesensitivität, nicht die Überlegenheit einer bestimmten Dimensionalität.
 
-**Limitation.** 64 Neuronen, 246 Kanten, ein eingefrorenes Synapsengewicht und das deterministische vorwärtsgerichtete Konstrukt definieren einen engen Small-SNN-Operating-Envelope. Der Lauf prüft weder Skalierung noch biologische Äquivalenz noch `H-5D-005-A`. Wegen der `active_fraction`-Sättigung ist ein zusätzliches niedrigeres Aktivitätsregime eine sinnvolle spätere Robustheitsprüfung, aber **keine Voraussetzung**, um den bereits präregistriert positiven Latenz-/Topologiebefund als DATA zu dokumentieren. Die stärkere 5D-Prüfung benötigt weiterhin ≥1.000 Neuronen, ≥10 mittlere Eingänge pro Neuron, explizit distanzabhängige Konnektivität und streng gematchte Dimensionskontrollen. Der aktuelle Lauf bleibt bis Human Review DATA-only.
+**Limitation.** 64 Neuronen, 246 Kanten, ein eingefrorenes Synapsengewicht und das deterministische vorwärtsgerichtete Konstrukt definieren einen engen Small-SNN-Operating-Envelope. Der Lauf prüft weder Skalierung noch biologische Äquivalenz noch `H-5D-005-A`. Wegen der `active_fraction`-Sättigung ist ein zusätzliches niedrigeres Aktivitätsregime eine sinnvolle spätere Robustheitsprüfung, aber **keine Voraussetzung**, um den bereits präregistriert positiven Latenz-/Topologiebefund als DATA zu dokumentieren. Die stärkere 5D-Prüfung benötigt weiterhin ≥1.000 Neuronen, ≥10 mittlere Eingänge pro Neuron, explizit distanzabhängige Konnektivität und streng gematchte Dimensionskontrollen. Die begrenzten Interpretationen von V2 und V3-R1 sind human-reviewed akzeptiert; beide Läufe bleiben dennoch DATA-only, solange keine separate kanonische EVID-Promotion erfolgt.
 
 **Zwischenfazit.** Rekurrenz ist im getesteten Mechanismus wirksam; `H-SNN-003-B` ist im 64-Neuronen-Stage-1-Regime DATA-seitig gestützt. Die spezifische 5D-Hypothese bleibt offen.
+
+#### Stage-1-Konsolidierung: Baseline, Reviewstatus und zweite Funktionslinie
+
+Für die wissenschaftliche Reife wird V2 nicht isoliert betrachtet. `EXP-S1-TOPO-V2-20260918` und `EXP-S1-TOPO-V3-R1-20260918` bilden gemeinsam die kanonische `STAGE1-TOPOLOGY-LINE-001`: V2 ist die erste präregistrierte testadäquate Topologiestudie; R1 ist die korrigierte interne Replikation mit neuen Seeds, prospektiven zeitaufgelösten Endpunkten und korrekter gemeinsamer Holm-Familie. Der erste V3-Lauf bleibt wegen der falsch implementierten Primärfamilie ausschließlich Auditspur. Diese Zusammenführung ist eine Forschungsstatusentscheidung, keine Umschreibung historischer DATA.
+
+Die Human Reviews beider gültigen Linien durch Thomas Heisig sind abgeschlossen und akzeptieren die begrenzte Interpretation. Damit ist das Human-Review-Subgate der Stage-1-Maturity erfüllt. Eine EVID-Promotion folgt daraus ausdrücklich nicht. Der aktuelle EvidenceEngine-Vertrag verlangt unter anderem `validity.valid=true`, Nullwerte für Runtime-/Fatal-Fehler, `git.dirty=false`, `provenance_digests`, einen passenden `source_freeze_sha`, einen kanonischen Claim und ein `human_review.json` mit `supports|refutes|inconclusive`. Die historischen V2/R1-Manifeste besitzen diese heutige Vertragsform nicht; ihre vorhandenen Human Reviews lauten `accepted_as_interpretation`. Fehlende historische Felder oder stärkere Entscheidungen werden nicht rückwirkend konstruiert. Der EVID-Pfad ist daher separat und prospektiv zu behandeln.
+
+Als zweite Stage-1-Funktionslinie wird `STAGE1-TEMPORAL-ORDER-LINE-002` geführt. `EXP-S1-TEMP-ORDER-V2-20260919` prüft `RQ-TEMP-002 / H-TEMP-002-A` in einem acyclischen Sechs-Neuronen-SNN. Über 20 Seeds und 120 Runs werden intakte Kanalidentität, identity-destroyed Kontrolle sowie simultane Kontrolle verglichen. Der intakte Arm erreicht im gespeicherten V2-Befund eine mediane Order Accuracy von 1,0, der identity-destroyed Arm 0,0; die simultane Kontrolle besteht. Der Lauf ist `SUPPORTED_WITHIN_PREREGISTERED_PROTOCOL`. Der append-only Human Review durch Thomas Heisig ist mit `accepted_as_interpretation` abgeschlossen; der Lauf bleibt dennoch DATA bis zu einer gegebenenfalls später separat legitimierten EVID-Entscheidung. Er belegt keine Lern-, Gedächtnis-, Kognitions- oder Skalierungsleistung und ist keine unabhängige Replikation der Topologielinie.
+
+Unter dem unveränderten Maturity-Vertrag ergibt sich daraus **Stage 1 = 75 %**: RQ/H, Protokoll, DATA und Attribution sind `met`, `reviewed_evidence` ist wegen der abgeschlossenen Human-Review-Hälfte bei weiterhin offener kanonischer EVID-Promotion `partial`, und `independent_replication` bleibt `open`. Die maschinenlesbare Baseline `research/registry/stage1_baseline.json` bindet diese Ableitung sowie beide Funktionslinien kanonisch.
 
 ### 19.9.3 Teilstudie C — Plastizität, Lernen und adaptive Stabilität
 
@@ -262,3 +272,22 @@ Die V2-First-Output-Latenz wird zusätzlich auf den frischen R1-Seeds repliziert
 Über alle empirischen Zweige hinweg entsteht ein wiederkehrendes Muster: **technische Verfügbarkeit ist der Beginn einer wissenschaftlichen Frage, nicht deren Antwort**. Ein Mechanismus wird erst dann Teil der tragfähigen Architekturposition, wenn sein kausaler Beitrag gegenüber einer geeigneten einfacheren Referenz sichtbar wird oder seine Spezialrolle durch einen eigenen, vorab begründeten Prüfvertrag getragen ist.
 
 Damit erhält Teil IV den Charakter einer kumulativen empirischen Dissertationseinheit: Die Teilstudien stehen nicht nebeneinander, sondern verändern wechselseitig die Architektur und die Bedingungen der jeweils nächsten Hypothese.
+
+
+### 19.9.8 Teilstudie G — Digitaler Sinn, Query-Handlung und Informationsnutzung
+
+**Forschungsproblem.** Ein digitaler Gateway ist wissenschaftlich erst dann mehr als eine Schnittstelle, wenn das SNN lernt, wann und welchen digitalen Kanal es nutzen soll und die resultierende Rückmeldung kausal für Verhalten verwendet.
+
+**Architektur.** Exakte Payloads verbleiben außerhalb des SNN. Ein deklarierter Codec erzeugt Spike-Repräsentationen. Query-Selektion ist eine Handlung des Netzes; die externe Antwort wird als sensorische Rückmeldung re-enkodiert. Ein `100 x 100`-PopulationLayout ist ein möglicher gemeinsamer experimenteller Query/Response-Raum, nicht bereits ein semantischer Vektorraum.
+
+**Prüfprogramm.**
+1. **Quellentransfer / RQ-GW-004:** Entwicklung mit Quelle A, Holdout-Test mit Quelle B bei gleichem Schema und neuen Inhalten.
+2. **Abfrage als Handlung / RQ-GW-006:** Query-Zeitpunkt oder Query-Pfad darf nicht vollständig hart verdrahtet sein; Vergleich mit forced-query, no-query, random-query und frozen-routing.
+3. **Modalitätsrouting / RQ-GW-002:** Audio, Vision und Digital werden unter gematchtem Budget gegeneinander bzw. gemeinsam angeboten; lernbares Routing wird gegen Frozen/Random/Shuffle geprüft.
+4. **Codec/Binding / RQ-GW-CODEC-001:** relationale strukturierte Information muss unter eigenem präregistrierten Codec-Test decodierbar bleiben.
+
+**Lifecycle und Credit Assignment.** Query, Wait, Response und Timeout werden als explizite kausale Phasen behandelt. Eligibility-/Reward-Mechanismen dürfen delayed credit assignment adressieren, müssen aber gegen feste Zeitsteuerung und triviale Query-Heuristiken kontrolliert werden.
+
+**Falsifikation.** Der Forschungsstrang trägt keinen Claim gelernten digitalen Sinnes, wenn Quellentransfer scheitert, Queries vollständig extern getaktet werden müssen oder Modalitätsrouting nur durch feste Verdrahtung funktioniert.
+
+**Claim-Grenze.** Architekturverfügbarkeit, Checksum-Integrität oder ein erreichbarer Tool-Endpunkt sind kein Nachweis gelernten Werkzeuggebrauchs, semantischen Bindings oder eines Vorteils gegenüber nicht-neuronalen Routing-Baselines.

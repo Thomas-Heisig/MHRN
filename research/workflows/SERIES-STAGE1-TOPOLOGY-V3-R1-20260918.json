@@ -9,8 +9,8 @@
   "seeds": "6201-6220",
   "completed": 1,
   "failed": 0,
-  "assessment_status": "HUMAN_REVIEW_REQUIRED",
-  "assessment_boundary": "Internal Stage-1 replication DATA only; no automatic EVID promotion and no 5D superiority claim.",
+  "assessment_status": "HUMAN_REVIEW_COMPLETED",
+  "assessment_boundary": "Human-reviewed internal Stage-1 replication DATA only; no automatic EVID promotion and no 5D superiority claim.",
   "results": [
     {
       "protocol": "topology_propagation_v3_r1_time_resolved_replication",
@@ -22,7 +22,9 @@
       "report": "experiments/EXP-S1-TOPO-V3-R1-20260918/report.md",
       "statistics": "experiments/EXP-S1-TOPO-V3-R1-20260918/analysis/statistics.json",
       "raw_data": "experiments/EXP-S1-TOPO-V3-R1-20260918/data/evaluation.json",
-      "review": "experiments/EXP-S1-TOPO-V3-R1-20260918/review_request.json"
+      "review": "experiments/EXP-S1-TOPO-V3-R1-20260918/review_request.json.human-review.json"
     }
-  ]
+  ],
+  "assessment_decision": "accepted_as_interpretation",
+  "assessment_review_artifact": "experiments/EXP-S1-TOPO-V3-R1-20260918/review_request.json.human-review.json"
 }

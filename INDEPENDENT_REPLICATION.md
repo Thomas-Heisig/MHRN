@@ -10,7 +10,7 @@ The project distinguishes `implementation test != DATA != reviewed EVID != inter
 
 | Experiment | Research object | Frozen source / canonical DATA | Current bounded status |
 | --- | --- | --- | --- |
-| `EXP-S1-TEMP-ORDER-V2-20260919` | `RQ-TEMP-002` / `H-TEMP-002-A` | source `23549a0b75f7019a6146f8513bf6628505acb079`; DATA `aed8e70f9cf227ac07bcec900fc916dcae3a243e` | `SUPPORTED_WITHIN_PREREGISTERED_PROTOCOL`; Human Review pending; no independent replication |
+| `EXP-S1-TEMP-ORDER-V2-20260919` | `RQ-TEMP-002` / `H-TEMP-002-A` | source `23549a0b75f7019a6146f8513bf6628505acb079`; DATA `aed8e70f9cf227ac07bcec900fc916dcae3a243e` | `SUPPORTED_WITHIN_PREREGISTERED_PROTOCOL`; Human Review accepted as bounded interpretation; no EVID promotion; no independent replication |
 | `EXP-REC-002-CLEAN-R2-20260919` | `RQ-REC-002` / `H-REC-002-A` | source `947e64c757540ca12bbc5eaad012d5a800f05672`; DATA `df8da50f126f12bdaa9b6d943a6cc68268a42fba` | `SUPPORTED_WITHIN_PREREGISTERED_PROTOCOL`; Human Review pending; no independent replication |
 | `EXP-SNN004-STDP-ASYM-R2-20260919` | `RQ-SNN-004` / `H-SNN-004-A` | source `821d2e0ecf823af3196bda782a69be8260a54943`; DATA `c0fabb0a21dfc5823d102ccaf8726c6b90fd4532` | `SUPPORTED_WITHIN_PREREGISTERED_PROTOCOL`; Human Review pending; no independent replication |
 

@@ -231,7 +231,7 @@ Status: `semantically_integrated_without_evidence_promotion`
 Modus: `registry_semantics_adequacy_human_review_and_prospective_design_synthesis`  
 Teile: IV, VI, X, XI
 
-Quellpfade: `research/decisions/2026-09-17_determinism_registry_airr_alignment.md`; `research/decisions/2026-09-17_snn003_topology_propagation_v1_adequacy.md`; `research/experiments/EXP-BATCH-20260914074039-03/review-20260917.md`
+Quellpfade: `research/decisions/2026-09-17_determinism_registry_airr_alignment.md`; `research/decisions/2026-09-17_snn003_topology_propagation_v1_adequacy.md`; `research/experiments/EXP-BATCH-20260914074039-03/review-20260917.md`; `research/decisions/2026-09-25_stage1_scientific_consolidation.md`
 
 Grenze: Historical DATA/manifests remain immutable; semantic alignment does not erase provenance blocks, Human Review does not auto-promote EVID, and test inadequacy is neither confirmation nor refutation of the target hypothesis.
 
@@ -270,22 +270,33 @@ Grenze: The offshoot index names candidate research strands only; it creates no 
 
 ## CORPUS-STAGE1-TOPOLOGY-V2 — Preregistered Stage-1 topology propagation v2 DATA and review lineage
 
-Rolle: `source-bound confirmatory Stage-1 DATA package pending human review`  
-Status: `semantically_integrated_DATA_review_pending`  
+Rolle: `source-bound confirmatory Stage-1 DATA package with completed human interpretation review`  
+Status: `semantically_integrated_DATA_human_reviewed_no_EVID`  
 Modus: `preregistration_design_results_statistics_limitations_and_claim-boundary_synthesis`  
 Teile: IV, X, XI
 
-Quellpfade: `research/preregistrations/PREREG-S1-TOPO-V2.json`; `research/experiments/EXP-S1-TOPO-V2-20260918/manifest.json`; `research/experiments/EXP-S1-TOPO-V2-20260918/report.md`; `research/experiments/EXP-S1-TOPO-V2-20260918/analysis/statistics.json`; `research/experiments/EXP-S1-TOPO-V2-20260918/data/calibration.json`; `research/experiments/EXP-S1-TOPO-V2-20260918/data/evaluation.json`; `research/experiments/EXP-S1-TOPO-V2-20260918/review_request.json`; `research/workflows/SERIES-STAGE1-TOPOLOGY-V2-20260918.json`
+Quellpfade: `research/preregistrations/PREREG-S1-TOPO-V2.json`; `research/experiments/EXP-S1-TOPO-V2-20260918/manifest.json`; `research/experiments/EXP-S1-TOPO-V2-20260918/report.md`; `research/experiments/EXP-S1-TOPO-V2-20260918/analysis/statistics.json`; `research/experiments/EXP-S1-TOPO-V2-20260918/data/calibration.json`; `research/experiments/EXP-S1-TOPO-V2-20260918/data/evaluation.json`; `research/experiments/EXP-S1-TOPO-V2-20260918/review_request.json`; `research/workflows/SERIES-STAGE1-TOPOLOGY-V2-20260918.json`; `research/experiments/EXP-S1-TOPO-V2-20260918/review_request.json.review.json`
 
-Grenze: Supports H-SNN-003-B only within the preregistered 64-neuron Stage-1 regime. No automatic EVID promotion, no 5D superiority claim, and no support for H-5D-005-A before the separate >=1000-neuron geometry-specific programme.
+Grenze: Supports H-SNN-003-B only within the preregistered 64-neuron Stage-1 regime. Human review accepts the bounded interpretation but does not create canonical EVID, independent replication, a 5D superiority claim or support for H-5D-005-A.
 
 ## CORPUS-STAGE1-TOPOLOGY-V3-R1 — Corrected preregistered Stage-1 topology time-resolved internal replication
 
-Rolle: `source-bound corrected internal replication DATA package pending human review`  
-Status: `semantically_integrated_DATA_review_pending`  
+Rolle: `source-bound corrected internal replication DATA package with completed human interpretation review`  
+Status: `semantically_integrated_DATA_human_reviewed_no_EVID`  
 Modus: `analysis-correction_audit_time-resolved_results_internal-replication_limitations_and_claim-boundary`  
 Teile: IV, X, XI
 
-Quellpfade: `research/preregistrations/PREREG-S1-TOPO-V3-TIME-RESOLVED.json`; `research/experiments/EXP-S1-TOPO-V3-20260918/ANALYSIS_CORRECTION.md`; `research/preregistrations/PREREG-S1-TOPO-V3-R1-TIME-RESOLVED.json`; `research/experiments/EXP-S1-TOPO-V3-R1-20260918/manifest.json`; `research/experiments/EXP-S1-TOPO-V3-R1-20260918/report.md`; `research/experiments/EXP-S1-TOPO-V3-R1-20260918/analysis/statistics.json`; `research/experiments/EXP-S1-TOPO-V3-R1-20260918/data/evaluation.json`; `research/experiments/EXP-S1-TOPO-V3-R1-20260918/review_request.json`; `research/workflows/SERIES-STAGE1-TOPOLOGY-V3-R1-20260918.json`
+Quellpfade: `research/preregistrations/PREREG-S1-TOPO-V3-TIME-RESOLVED.json`; `research/experiments/EXP-S1-TOPO-V3-20260918/ANALYSIS_CORRECTION.md`; `research/preregistrations/PREREG-S1-TOPO-V3-R1-TIME-RESOLVED.json`; `research/experiments/EXP-S1-TOPO-V3-R1-20260918/manifest.json`; `research/experiments/EXP-S1-TOPO-V3-R1-20260918/report.md`; `research/experiments/EXP-S1-TOPO-V3-R1-20260918/analysis/statistics.json`; `research/experiments/EXP-S1-TOPO-V3-R1-20260918/data/evaluation.json`; `research/experiments/EXP-S1-TOPO-V3-R1-20260918/review_request.json`; `research/workflows/SERIES-STAGE1-TOPOLOGY-V3-R1-20260918.json`; `research/experiments/EXP-S1-TOPO-V3-R1-20260918/review_request.json.human-review.json`
 
-Grenze: R1 resolves the V2 terminal active_fraction ceiling with prospective time-resolved endpoints and internally replicates V2 latency directions. It is not independent external replication, creates no EVID, supports no 5D superiority claim, and does not test H-5D-005-A.
+Grenze: R1 resolves the V2 terminal active_fraction ceiling with prospective time-resolved endpoints and internally replicates V2 latency directions. Human review accepts the bounded interpretation; it is not independent external replication, creates no canonical EVID, supports no 5D superiority claim, and does not test H-5D-005-A.
+
+## CORPUS-STAGE1-TEMPORAL-ORDER-V2 — Preregistered Stage-1 temporal-order task with identity-destroyed control
+
+Rolle: `source-bound Stage-1 task DATA package with completed human interpretation review`  
+Status: `semantically_integrated_DATA_human_reviewed_no_EVID`  
+Modus: `preregistered_task_design_information-destroyed-control_results_claim-boundary`  
+Teile: IV, X, XI
+
+Quellpfade: `research/preregistrations/PREREG-S1-TEMP-ORDER-V2.json`; `research/experiments/EXP-S1-TEMP-ORDER-V2-20260919/manifest.json`; `research/experiments/EXP-S1-TEMP-ORDER-V2-20260919/report.md`; `research/experiments/EXP-S1-TEMP-ORDER-V2-20260919/analysis/statistics.json`; `research/experiments/EXP-S1-TEMP-ORDER-V2-20260919/review_request.json`; `research/experiments/EXP-S1-TEMP-ORDER-V2-20260919/review_request.json.review.json`
+
+Grenze: The task shows bounded temporal-order decodability in a fixed six-neuron SNN. Human review accepts the bounded interpretation but does not create canonical EVID. It does not establish learning, memory, cognition, scaling, general temporal reasoning or independent replication, and it is not an independent replication of the topology line.
