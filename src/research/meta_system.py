@@ -1,3 +1,4 @@
+# pyright: reportUnknownVariableType=false, reportUnknownArgumentType=false, reportUnknownMemberType=false
 """Deterministic projections for the MHRN research-system taxonomy.
 
 This module is descriptive only. It never executes studies, changes DATA/EVID status,
