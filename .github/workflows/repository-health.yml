@@ -57,6 +57,7 @@ jobs:
             research/generated/DIRECTION_MATRIX.md
             research/generated/STAGE_MATRIX.md
             research/generated/CROSSWALK.md
+            research/generated/REVIEW_QUEUE.md
             research/generated/PUBLICATION_STATE_MATRIX.md
             research/generated/META_RESEARCH_READINESS.md
             research/generated/META_RESEARCH_CROSSWALK.json
