@@ -36,7 +36,8 @@ jobs:
       - name: Documentation and scientific integrity
         run: |
           python scripts/check_doc_consistency.py --check-tests
-          python scripts/check_scientific_maturity_integrity.py\n          python scripts/check_meta_research_system.py
+          python scripts/check_scientific_maturity_integrity.py
+          python scripts/check_meta_research_system.py
 
       - name: Regenerate derived research projections
         run: |
@@ -53,6 +54,12 @@ jobs:
             research/generated/OPEN_QUESTIONS.md
             research/generated/CLAIM_REGISTER.md
             research/generated/DISSERTATION_MAP.md
+            research/generated/DIRECTION_MATRIX.md
+            research/generated/STAGE_MATRIX.md
+            research/generated/CROSSWALK.md
+            research/generated/PUBLICATION_STATE_MATRIX.md
+            research/generated/META_RESEARCH_READINESS.md
+            research/generated/META_RESEARCH_CROSSWALK.json
             research/generated/LITERATURE_MATRIX.md
             research/generated/CATALOG_AUDIT_REPORT.md
             research/generated/CATALOG_AUDIT_REPORT.json
