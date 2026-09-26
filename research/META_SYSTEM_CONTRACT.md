@@ -8,3 +8,5 @@ Canonical lifecycle:
 Hard separations: Implementation != DATA; DATA != EVID; Human Review != independent replication; DOI != peer review; AI analysis != scientific evidence; internal replication != external independent replication.
 
 The active digital-sensory work is routed through the existing digital/gateway direction and must not create a twelfth direction or a new stage merely by integration.
+
+Generated direction/stage/crosswalk projections are part of the repository-health drift contract and must remain reproducible from canonical registries.
