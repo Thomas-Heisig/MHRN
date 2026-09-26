@@ -1,6 +1,8 @@
-from pathlib import Path
 import json
+from pathlib import Path
+
 import yaml
+
 from src.research.meta_system import MetaSystem, validate_direction_registry
 
 ROOT = Path(__file__).resolve().parents[1]
