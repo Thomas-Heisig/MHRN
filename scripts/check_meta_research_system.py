@@ -16,10 +16,7 @@ def main() -> int:
     if len(cross["directions"]) != 11:
         errors.append("direction count is not 11")
 
-    rows = {
-        question["research_question"]: question
-        for question in cross["questions"]
-    }
+    rows = {question["research_question"]: question for question in cross["questions"]}
     for question_id in (
         "RQ-EPIST-002",
         "RQ-ETH-001",
