@@ -335,6 +335,24 @@
       "citation": "cite_decision_path_and_revision_with_gateway_registry_objects",
       "evidence_role": "architecture_and_method_interpretation_not_evidence_by_itself",
       "rationale": "Accepted integration decision treating digital information access as an additional sensory/environment modality while preserving exact-payload boundaries, explicit claim limits, and separate experimental validation for transfer, learned query action, modality routing and codec/binding."
+    },
+    "research/meta": {
+      "kind": "meta_research_programme",
+      "status": "current",
+      "authority": "prospective_method_and_study_design",
+      "mutability": "editable_with_review",
+      "citation": "cite_exact_meta_object_and_revision",
+      "evidence_role": "design_and_governance_not_data_or_evidence",
+      "rationale": "Canonical meta-research designs, recursion boundaries and human-review governance. Design readiness never authorizes execution, human participation or EVID promotion."
+    },
+    "research/META_SYSTEM_CONTRACT.md": {
+      "kind": "scientific_method_contract",
+      "status": "current",
+      "authority": "normative_research_structure_contract",
+      "mutability": "editable_with_review",
+      "citation": "cite_contract_path_and_revision",
+      "evidence_role": "methodological_contract_not_evidence_by_itself",
+      "rationale": "Separates the fixed 11-direction content map from Stage 0-10, manuscript Parts I-XI and the RQ/H/DATA/Review/EVID lifecycle."
     }
   }
 }
