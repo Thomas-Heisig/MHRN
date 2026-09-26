@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "expected_count": 11,
+  "status": "awaiting_canonical_source",
+  "identity_digest": null,
+  "human_decision_ref": null,
+  "invariant": "The existing eleven research directions must not be renamed, reordered, merged, split or expanded by automation.",
+  "forbidden_substitutes": [
+    "Stage 0-10",
+    "Recursive Epistemics Parts I-XI",
+    "historical 15-domain hierarchy",
+    "RQ domain names",
+    "paper strands"
+  ],
+  "activation_requires": [
+    "explicit canonical list of 11 names",
+    "original order",
+    "source reference",
+    "human governance decision"
+  ]
+}

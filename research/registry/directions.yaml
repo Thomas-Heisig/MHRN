@@ -1,0 +1,20 @@
+schema_version: 1
+expected_count: 11
+immutable_count: true
+status: awaiting_canonical_source
+authority: human_defined_research_map
+directions: []
+assignments: {}
+source_search:
+  repository_checked: true
+  prior_conversation_checked: true
+  result: exact_names_and_order_not_source_bound
+activation_rule: >-
+  Populate exactly 11 entries only from an explicit human-authored or otherwise
+  source-bound canonical list. Do not infer direction names from Stage 0-10,
+  manuscript Parts I-XI, historical 15-domain document hierarchies, RQ domains,
+  papers, or assistant summaries.
+change_rule: >-
+  Once activated and locked, IDs, names and order are immutable without an
+  explicit human governance decision that says the canonical 11-direction
+  research map itself is being revised.

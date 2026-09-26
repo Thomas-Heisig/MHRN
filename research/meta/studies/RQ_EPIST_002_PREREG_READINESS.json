@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "study_id": "META-STUDY-EPIST002-READINESS-20260926",
+  "research_question": "RQ-EPIST-002",
+  "hypothesis": "H-EPIST-002-A",
+  "status": "preregistration_ready_design_not_frozen",
+  "execution_authorized": false,
+  "scientific_evidence": false,
+  "unit": "claim_episode",
+  "conditions": [
+    "provenance_status_separated_packet",
+    "information_equivalent_flattened_packet"
+  ],
+  "primary_outcome": "epistemic_misclassification_rate_per_review_decision",
+  "secondary_outcomes": [
+    "decision_time",
+    "inter_rater_agreement",
+    "unsupported_claim_extensions",
+    "clarification_requests",
+    "confidence_calibration",
+    "correction_latency"
+  ],
+  "preregistration_must_freeze": [
+    "sample_size_or_stopping_rule",
+    "episode_sampling",
+    "reviewer_sampling",
+    "packet_information_equivalence",
+    "error_scoring",
+    "adjudication_reference",
+    "repeated_measures_model",
+    "missing_data",
+    "multiplicity_policy",
+    "utility_rule",
+    "success_failure_threshold"
+  ],
+  "ethics_gate": "research/ethics/HUMAN_REVIEWER_STUDY_GOVERNANCE.md",
+  "recursion_gate": "research/protocols/META_RECURSION_STOP_RULE.md",
+  "next_state_requires": "human freeze decision and study-specific ethics/privacy record"
+}

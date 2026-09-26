@@ -42,6 +42,7 @@ jobs:
         run: |
           python research/generate_reports.py
           python scripts/generate_catalog_audit_report.py
+          python scripts/check_meta_research_system.py
 
       - name: Upload generated research projections
         uses: actions/upload-artifact@v7
@@ -53,6 +54,13 @@ jobs:
             research/generated/OPEN_QUESTIONS.md
             research/generated/CLAIM_REGISTER.md
             research/generated/DISSERTATION_MAP.md
+            research/generated/DIRECTION_MATRIX.md
+            research/generated/STAGE_MATRIX.md
+            research/generated/CROSSWALK.md
+            research/generated/REVIEW_QUEUE.md
+            research/generated/PUBLICATION_STATE_MATRIX.md
+            research/generated/META_RESEARCH_READINESS.md
+            research/generated/META_RESEARCH_CROSSWALK.json
             research/generated/LITERATURE_MATRIX.md
             research/generated/CATALOG_AUDIT_REPORT.md
             research/generated/CATALOG_AUDIT_REPORT.json
