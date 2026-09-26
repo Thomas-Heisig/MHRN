@@ -66,9 +66,7 @@ def assign_direction(domain: str, directions: list[dict[str, Any]]) -> str:
 
 
 def manuscript_parts(question_ids: set[str]) -> dict[str, list[str]]:
-    edition_root = (
-        ROOT / "research/publications/2026-09-17_recursive-epistemics_v1.8"
-    )
+    edition_root = ROOT / "research/publications/2026-09-17_recursive-epistemics_v1.8"
     edition = json.loads((edition_root / "edition.json").read_text(encoding="utf-8"))
     result: dict[str, list[str]] = {qid: [] for qid in question_ids}
     for part in edition["parts"]:
@@ -109,18 +107,14 @@ def build_crosswalk() -> dict[str, Any]:
             {
                 "research_question": qid,
                 "domain": question["domain"],
-                "direction": assign_direction(
-                    str(question["domain"]), directions
-                ),
+                "direction": assign_direction(str(question["domain"]), directions),
                 "stages": sorted(set(stages[qid])),
                 "manuscript_parts": parts[qid],
                 "hypotheses": hypotheses_for_question,
                 "rq_status": question.get("status", "open"),
                 "literature": literature,
                 "missing_literature_refs": sorted(
-                    source_id
-                    for source_id in literature
-                    if source_id not in sources
+                    source_id for source_id in literature if source_id not in sources
                 ),
             }
         )
@@ -152,10 +146,7 @@ def _table(headers: list[str], rows: list[list[Any]]) -> str:
         "| " + " | ".join(headers) + " |",
         "| " + " | ".join(["---"] * len(headers)) + " |",
     ]
-    lines += [
-        "| " + " | ".join(cell(value) for value in row) + " |"
-        for row in rows
-    ]
+    lines += ["| " + " | ".join(cell(value) for value in row) + " |" for row in rows]
     return "\n".join(lines)
 
 
@@ -174,10 +165,7 @@ def render() -> dict[str, str]:
         "0-10 and Edition I-XI.\n\n"
         + _table(
             ["ID", "Direction", "Legacy label"],
-            [
-                [row["id"], row["title"], row["legacy_label"]]
-                for row in directions
-            ],
+            [[row["id"], row["title"], row["legacy_label"]] for row in directions],
         )
         + notice
     )
@@ -235,12 +223,8 @@ def render() -> dict[str, str]:
         + notice
     )
 
-    edition_root = (
-        ROOT / "research/publications/2026-09-17_recursive-epistemics_v1.8"
-    )
-    edition = json.loads(
-        (edition_root / "edition.json").read_text(encoding="utf-8")
-    )
+    edition_root = ROOT / "research/publications/2026-09-17_recursive-epistemics_v1.8"
+    edition = json.loads((edition_root / "edition.json").read_text(encoding="utf-8"))
     dissertation = [
         "# MHRN Dissertation / Manuscript Map",
         "",
