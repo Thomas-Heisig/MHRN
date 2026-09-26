@@ -1,0 +1,35 @@
+name: Temporary meta autofmt
+
+on:
+  push:
+    branches: [research/meta-system-consolidation-20260925]
+
+permissions:
+  contents: write
+
+jobs:
+  black:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.13"
+      - run: python -m pip install black==26.5.1
+      - name: Apply pinned formatter
+        run: |
+          python -m black src/research/meta_system.py scripts/check_meta_research_system.py tests/test_meta_research_system.py
+          git diff --check
+      - name: Commit formatter-only diff
+        env:
+          HEAD_REF: ${{ github.ref_name }}
+        run: |
+          set -euo pipefail
+          git add -- src/research/meta_system.py scripts/check_meta_research_system.py tests/test_meta_research_system.py
+          if git diff --cached --quiet; then exit 0; fi
+          git config user.name "MHRN formatter automation"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "style: apply pinned black formatter"
+          git push origin "HEAD:refs/heads/$HEAD_REF"
