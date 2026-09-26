@@ -1,0 +1,1888 @@
+{
+  "authority": "descriptive_crosswalk_not_evidence",
+  "directions": [
+    {
+      "domains": [
+        "5D Topology",
+        "Topology",
+        "Connectome"
+      ],
+      "id": "DIR-01",
+      "legacy_label": "Geometrie",
+      "title": "Geometrie und Topologie"
+    },
+    {
+      "domains": [
+        "Spiking Neural Networks",
+        "Recurrent Dynamics",
+        "Determinism",
+        "Closed-loop Regulation"
+      ],
+      "id": "DIR-02",
+      "legacy_label": "Dynamik",
+      "title": "Dynamik und Stabilitaet"
+    },
+    {
+      "domains": [
+        "STDP",
+        "Plasticity",
+        "Structural Plasticity",
+        "Learning Generalization",
+        "Homeostasis"
+      ],
+      "id": "DIR-03",
+      "legacy_label": "Plastizitaet",
+      "title": "Plastizitaet und Lernen"
+    },
+    {
+      "domains": [
+        "Representation",
+        "Temporal Learning",
+        "Information"
+      ],
+      "id": "DIR-04",
+      "legacy_label": "Repraesentation",
+      "title": "Repraesentation und Information"
+    },
+    {
+      "domains": [
+        "Memory",
+        "Storage"
+      ],
+      "id": "DIR-05",
+      "legacy_label": "Gedaechtnis",
+      "title": "Gedaechtnis"
+    },
+    {
+      "domains": [
+        "Continual Learning",
+        "Lifelong Learning",
+        "Semantic Memory"
+      ],
+      "id": "DIR-06",
+      "legacy_label": "Continual Learning",
+      "title": "Continual Learning"
+    },
+    {
+      "domains": [
+        "Embodiment"
+      ],
+      "id": "DIR-07",
+      "legacy_label": "Embodiment",
+      "title": "Embodiment"
+    },
+    {
+      "domains": [
+        "Language Organ",
+        "Gateway",
+        "MSBA",
+        "Digital Sense"
+      ],
+      "id": "DIR-08",
+      "legacy_label": "Language Organ",
+      "title": "Language Organ und digitale Schnittstellen"
+    },
+    {
+      "domains": [
+        "Self-Organization",
+        "Emergence"
+      ],
+      "id": "DIR-09",
+      "legacy_label": "Emergenz",
+      "title": "Emergenz und Selbstorganisation"
+    },
+    {
+      "domains": [
+        "Scaling",
+        "Runtime Performance",
+        "Research Infrastructure",
+        "Replication"
+      ],
+      "id": "DIR-10",
+      "legacy_label": "Skalierung",
+      "title": "Skalierung und Performance"
+    },
+    {
+      "domains": [
+        "Ethics",
+        "Epistemology",
+        "AI-Assisted Research",
+        "Research Integrity",
+        "Meta Research"
+      ],
+      "id": "DIR-11",
+      "legacy_label": "Meta-Forschung",
+      "title": "Human-AI / Meta-Forschung"
+    }
+  ],
+  "invariants": [
+    "direction != stage",
+    "direction != manuscript_part",
+    "implementation != DATA",
+    "DATA != EVID",
+    "human_review != independent_replication",
+    "doi != peer_review",
+    "ai_analysis != scientific_evidence"
+  ],
+  "questions": [
+    {
+      "direction": "DIR-01",
+      "domain": "5D Topology",
+      "hypotheses": [
+        "H-5D-001-A"
+      ],
+      "literature": [
+        "SRC-IZHIKEVICH-2003"
+      ],
+      "manuscript_parts": [],
+      "missing_literature_refs": [],
+      "research_question": "RQ-5D-001",
+      "rq_status": "open",
+      "stages": []
+    },
+    {
+      "direction": "DIR-01",
+      "domain": "5D Topology",
+      "hypotheses": [
+        "H-5D-002-A"
+      ],
+      "literature": [],
+      "manuscript_parts": [],
+      "missing_literature_refs": [],
+      "research_question": "RQ-5D-002",
+      "rq_status": "open",
+      "stages": []
+    },
+    {
+      "direction": "DIR-01",
+      "domain": "5D Topology",
+      "hypotheses": [
+        "H-5D-003-A"
+      ],
+      "literature": [],
+      "manuscript_parts": [],
+      "missing_literature_refs": [],
+      "research_question": "RQ-5D-003",
+      "rq_status": "open",
+      "stages": []
+    },
+    {
+      "direction": "DIR-01",
+      "domain": "5D Topology",
+      "hypotheses": [
+        "H-5D-004-A"
+      ],
+      "literature": [],
+      "manuscript_parts": [],
+      "missing_literature_refs": [],
+      "research_question": "RQ-5D-004",
+      "rq_status": "open",
+      "stages": []
+    },
+    {
+      "direction": "DIR-01",
+      "domain": "5D Topology",
+      "hypotheses": [
+        "H-5D-005-A"
+      ],
+      "literature": [],
+      "manuscript_parts": [
+        "III",
+        "IV",
+        "X",
+        "XI"
+      ],
+      "missing_literature_refs": [],
+      "research_question": "RQ-5D-005",
+      "rq_status": "open",
+      "stages": []
+    },
+    {
+      "direction": "DIR-11",
+      "domain": "AI-Assisted Research",
+      "hypotheses": [
+        "H-AIR-001-A"
+      ],
+      "literature": [],
+      "manuscript_parts": [
+        "VII"
+      ],
+      "missing_literature_refs": [],
+      "research_question": "RQ-AIR-001",
+      "rq_status": "open",
+      "stages": []
+    },
+    {
+      "direction": "UNMAPPED",
+      "domain": "Consciousness methodology",
+      "hypotheses": [
+        "H-CNS-101-A"
+      ],
+      "literature": [
+        "SRC-CNS-BUTLIN",
+        "SRC-CNS-COGITATE",
+        "SRC-CNS-GNWREPLY",
+        "SRC-CNS-SETH"
+      ],
+      "manuscript_parts": [
+        "VIII"
+      ],
+      "missing_literature_refs": [],
+      "research_question": "RQ-CNS-101",
+      "rq_status": "open",
+      "stages": [
+        10
+      ]
+    },
+    {
+      "direction": "UNMAPPED",
+      "domain": "Prediction and adaptation",
+      "hypotheses": [
+        "H-CNS-102-A"
+      ],
+      "literature": [
+        "SRC-CNS-ODDBALL"
+      ],
+      "manuscript_parts": [],
+      "missing_literature_refs": [],
+      "research_question": "RQ-CNS-102",
+      "rq_status": "open",
+      "stages": []
+    },
+    {
+      "direction": "UNMAPPED",
+      "domain": "Attention and discrimination",
+      "hypotheses": [
+        "H-CNS-103-A"
+      ],
+      "literature": [
+        "SRC-CNS-ODDBALL"
+      ],
+      "manuscript_parts": [],
+      "missing_literature_refs": [],
+      "research_question": "RQ-CNS-103",
+      "rq_status": "open",
+      "stages": [
+        9
+      ]
+    },
+    {
+      "direction": "UNMAPPED",
+      "domain": "Hierarchical regularity",
+      "hypotheses": [
+        "H-CNS-104-A"
+      ],
+      "literature": [
+        "SRC-CNS-ODDBALL"
+      ],
+      "manuscript_parts": [],
+      "missing_literature_refs": [],
+      "research_question": "RQ-CNS-104",
+      "rq_status": "open",
+      "stages": []
+    },
+    {
+      "direction": "UNMAPPED",
+      "domain": "Working memory",
+      "hypotheses": [
+        "H-CNS-105-A"
+      ],
+      "literature": [
+        "SRC-CNS-NEUROGYM"
+      ],
+      "manuscript_parts": [],
+      "missing_literature_refs": [],
+      "research_question": "RQ-CNS-105",
+      "rq_status": "open",
+      "stages": [
+        9
+      ]
+    },
+    {
+      "direction": "UNMAPPED",
+      "domain": "Metacognition",
+      "hypotheses": [
+        "H-CNS-106-A"
+      ],
+      "literature": [
+        "SRC-CNS-META",
+        "SRC-CNS-NEUROGYM"
+      ],
+      "manuscript_parts": [],
+      "missing_literature_refs": [],
+      "research_question": "RQ-CNS-106",
+      "rq_status": "open",
+      "stages": []
+    },
+    {
+      "direction": "UNMAPPED",
+      "domain": "Observation models",
+      "hypotheses": [
+        "H-CNS-107-A"
+      ],
+      "literature": [
+        "SRC-CNS-LFP",
+        "SRC-CNS-EQUIV"
+      ],
+      "manuscript_parts": [],
+      "missing_literature_refs": [],
+      "research_question": "RQ-CNS-107",
+      "rq_status": "open",
+      "stages": []
+    },
+    {
+      "direction": "UNMAPPED",
+      "domain": "Causal complexity",
+      "hypotheses": [
+        "H-CNS-108-A"
+      ],
+      "literature": [
+        "SRC-CNS-PCI"
+      ],
+      "manuscript_parts": [],
+      "missing_literature_refs": [],
+      "research_question": "RQ-CNS-108",
+      "rq_status": "open",
+      "stages": [
+        10
+      ]
+    },
+    {
+      "direction": "UNMAPPED",
+      "domain": "Access and report",
+      "hypotheses": [
+        "H-CNS-109-A"
+      ],
+      "literature": [
+        "SRC-CNS-MASK"
+      ],
+      "manuscript_parts": [],
+      "missing_literature_refs": [],
+      "research_question": "RQ-CNS-109",
+      "rq_status": "open",
+      "stages": [
+        10
+      ]
+    },
+    {
+      "direction": "UNMAPPED",
+      "domain": "Temporal attention",
+      "hypotheses": [
+        "H-CNS-110-A"
+      ],
+      "literature": [
+        "SRC-CNS-BLINK"
+      ],
+      "manuscript_parts": [],
+      "missing_literature_refs": [],
+      "research_question": "RQ-CNS-110",
+      "rq_status": "open",
+      "stages": [
+        9
+      ]
+    },
+    {
+      "direction": "UNMAPPED",
+      "domain": "Executive control",
+      "hypotheses": [
+        "H-CNS-111-A"
+      ],
+      "literature": [
+        "SRC-CNS-STOP",
+        "SRC-CNS-NEUROGYM"
+      ],
+      "manuscript_parts": [],
+      "missing_literature_refs": [],
+      "research_question": "RQ-CNS-111",
+      "rq_status": "open",
+      "stages": []
+    },
+    {
+      "direction": "UNMAPPED",
+      "domain": "Multisensory integration",
+      "hypotheses": [
+        "H-CNS-112-A"
+      ],
+      "literature": [
+        "SRC-CNS-NEUROGYM",
+        "SRC-CNS-BUTLIN"
+      ],
+      "manuscript_parts": [],
+      "missing_literature_refs": [],
+      "research_question": "RQ-CNS-112",
+      "rq_status": "open",
+      "stages": []
+    },
+    {
+      "direction": "UNMAPPED",
+      "domain": "Embodied causality",
+      "hypotheses": [
+        "H-CNS-113-A"
+      ],
+      "literature": [
+        "SRC-CNS-BUTLIN",
+        "SRC-CNS-SETH"
+      ],
+      "manuscript_parts": [],
+      "missing_literature_refs": [],
+      "research_question": "RQ-CNS-113",
+      "rq_status": "open",
+      "stages": []
+    },
+    {
+      "direction": "UNMAPPED",
+      "domain": "Timescales and recurrence",
+      "hypotheses": [
+        "H-CNS-114-A"
+      ],
+      "literature": [
+        "SRC-CNS-LSNN"
+      ],
+      "manuscript_parts": [],
+      "missing_literature_refs": [],
+      "research_question": "RQ-CNS-114",
+      "rq_status": "open",
+      "stages": []
+    },
+    {
+      "direction": "UNMAPPED",
+      "domain": "Behavioral evaluation",
+      "hypotheses": [
+        "H-CNS-115-A"
+      ],
+      "literature": [
+        "SRC-CNS-TURING"
+      ],
+      "manuscript_parts": [],
+      "missing_literature_refs": [],
+      "research_question": "RQ-CNS-115",
+      "rq_status": "open",
+      "stages": []
+    },
+    {
+      "direction": "UNMAPPED",
+      "domain": "Generalization",
+      "hypotheses": [
+        "H-CNS-116-A"
+      ],
+      "literature": [
+        "SRC-CNS-ARC"
+      ],
+      "manuscript_parts": [],
+      "missing_literature_refs": [],
+      "research_question": "RQ-CNS-116",
+      "rq_status": "open",
+      "stages": []
+    },
+    {
+      "direction": "UNMAPPED",
+      "domain": "Geometry and scaling",
+      "hypotheses": [
+        "H-CNS-117-A"
+      ],
+      "literature": [
+        "SRC-CNS-LSNN",
+        "SRC-CNS-NEURONS",
+        "SRC-CNS-EQUIV"
+      ],
+      "manuscript_parts": [],
+      "missing_literature_refs": [],
+      "research_question": "RQ-CNS-117",
+      "rq_status": "open",
+      "stages": []
+    },
+    {
+      "direction": "UNMAPPED",
+      "domain": "Connectome-Informed Embodiment",
+      "hypotheses": [
+        "H-CONN-001-A"
+      ],
+      "literature": [
+        "SRC-CONN-SHIU-2024",
+        "SRC-CONN-WANGCHEN-2024",
+        "SRC-CONN-EON-2026",
+        "SRC-CONN-DORKENWALD-2024",
+        "SRC-CONN-BERG-2026"
+      ],
+      "manuscript_parts": [],
+      "missing_literature_refs": [],
+      "research_question": "RQ-CONN-001",
+      "rq_status": "open",
+      "stages": []
+    },
+    {
+      "direction": "UNMAPPED",
+      "domain": "Connectome-Informed Embodiment",
+      "hypotheses": [
+        "H-CONN-002-A"
+      ],
+      "literature": [
+        "SRC-CONN-SHIU-2024",
+        "SRC-CONN-WANGCHEN-2024",
+        "SRC-CONN-EON-2026",
+        "SRC-CONN-DORKENWALD-2024",
+        "SRC-CONN-BERG-2026"
+      ],
+      "manuscript_parts": [],
+      "missing_literature_refs": [],
+      "research_question": "RQ-CONN-002",
+      "rq_status": "open",
+      "stages": []
+    },
+    {
+      "direction": "DIR-02",
+      "domain": "Determinism",
+      "hypotheses": [
+        "H-SNN-003-A"
+      ],
+      "literature": [
+        "SRC-IZHIKEVICH-2003"
+      ],
+      "manuscript_parts": [
+        "III",
+        "IV",
+        "X",
+        "XI"
+      ],
+      "missing_literature_refs": [],
+      "research_question": "RQ-DET-001",
+      "rq_status": "open",
+      "stages": []
+    },
+    {
+      "direction": "DIR-07",
+      "domain": "Embodiment",
+      "hypotheses": [
+        "H-EMB-001-A",
+        "H-EMB-001-B"
+      ],
+      "literature": [],
+      "manuscript_parts": [
+        "IV"
+      ],
+      "missing_literature_refs": [],
+      "research_question": "RQ-EMB-001",
+      "rq_status": "open",
+      "stages": [
+        5
+      ]
+    },
+    {
+      "direction": "UNMAPPED",
+      "domain": "Connectome-Informed Embodiment",
+      "hypotheses": [
+        "H-EMB-002-A",
+        "H-EMB-002-B"
+      ],
+      "literature": [
+        "SRC-CONN-SHIU-2024",
+        "SRC-CONN-WANGCHEN-2024",
+        "SRC-CONN-EON-2026"
+      ],
+      "manuscript_parts": [],
+      "missing_literature_refs": [],
+      "research_question": "RQ-EMB-002",
+      "rq_status": "open",
+      "stages": []
+    },
+    {
+      "direction": "UNMAPPED",
+      "domain": "Connectome-Informed Embodiment",
+      "hypotheses": [
+        "H-EMB-003-A"
+      ],
+      "literature": [
+        "SRC-CONN-SHIU-2024",
+        "SRC-CONN-WANGCHEN-2024",
+        "SRC-CONN-EON-2026"
+      ],
+      "manuscript_parts": [],
+      "missing_literature_refs": [],
+      "research_question": "RQ-EMB-003",
+      "rq_status": "open",
+      "stages": []
+    },
+    {
+      "direction": "UNMAPPED",
+      "domain": "Connectome-Informed Embodiment",
+      "hypotheses": [
+        "H-EMB-004-A"
+      ],
+      "literature": [
+        "SRC-CONN-SHIU-2024",
+        "SRC-CONN-WANGCHEN-2024",
+        "SRC-CONN-EON-2026"
+      ],
+      "manuscript_parts": [],
+      "missing_literature_refs": [],
+      "research_question": "RQ-EMB-004",
+      "rq_status": "open",
+      "stages": []
+    },
+    {
+      "direction": "UNMAPPED",
+      "domain": "Connectome-Informed Embodiment",
+      "hypotheses": [
+        "H-EMB-007-A"
+      ],
+      "literature": [
+        "SRC-CONN-SHIU-2024",
+        "SRC-CONN-WANGCHEN-2024",
+        "SRC-CONN-EON-2026"
+      ],
+      "manuscript_parts": [],
+      "missing_literature_refs": [],
+      "research_question": "RQ-EMB-007",
+      "rq_status": "open",
+      "stages": []
+    },
+    {
+      "direction": "UNMAPPED",
+      "domain": "Connectome-Informed Embodiment",
+      "hypotheses": [
+        "H-EMB-008-A"
+      ],
+      "literature": [
+        "SRC-CONN-SHIU-2024",
+        "SRC-CONN-WANGCHEN-2024",
+        "SRC-CONN-EON-2026"
+      ],
+      "manuscript_parts": [],
+      "missing_literature_refs": [],
+      "research_question": "RQ-EMB-008",
+      "rq_status": "open",
+      "stages": []
+    },
+    {
+      "direction": "UNMAPPED",
+      "domain": "Connectome-Informed Embodiment",
+      "hypotheses": [
+        "H-EMB-009-A"
+      ],
+      "literature": [
+        "SRC-CONN-SHIU-2024",
+        "SRC-CONN-WANGCHEN-2024",
+        "SRC-CONN-EON-2026"
+      ],
+      "manuscript_parts": [],
+      "missing_literature_refs": [],
+      "research_question": "RQ-EMB-009",
+      "rq_status": "open",
+      "stages": []
+    },
+    {
+      "direction": "UNMAPPED",
+      "domain": "Evidence governance",
+      "hypotheses": [
+        "H-EPI-101-A"
+      ],
+      "literature": [
+        "SRC-CNS-COGITATE"
+      ],
+      "manuscript_parts": [
+        "VIII"
+      ],
+      "missing_literature_refs": [],
+      "research_question": "RQ-EPI-101",
+      "rq_status": "open",
+      "stages": [
+        10
+      ]
+    },
+    {
+      "direction": "UNMAPPED",
+      "domain": "Critical methodology",
+      "hypotheses": [
+        "H-EPI-102-A"
+      ],
+      "literature": [
+        "SRC-CNS-BUTLIN",
+        "SRC-CNS-EQUIV"
+      ],
+      "manuscript_parts": [
+        "VIII"
+      ],
+      "missing_literature_refs": [],
+      "research_question": "RQ-EPI-102",
+      "rq_status": "open",
+      "stages": []
+    },
+    {
+      "direction": "DIR-11",
+      "domain": "Epistemology",
+      "hypotheses": [
+        "H-EPIST-001-A"
+      ],
+      "literature": [],
+      "manuscript_parts": [
+        "VI",
+        "VII",
+        "VIII"
+      ],
+      "missing_literature_refs": [],
+      "research_question": "RQ-EPIST-001",
+      "rq_status": "open",
+      "stages": []
+    },
+    {
+      "direction": "DIR-11",
+      "domain": "Epistemology",
+      "hypotheses": [
+        "H-EPIST-002-A"
+      ],
+      "literature": [],
+      "manuscript_parts": [
+        "I",
+        "VI"
+      ],
+      "missing_literature_refs": [],
+      "research_question": "RQ-EPIST-002",
+      "rq_status": "open",
+      "stages": []
+    },
+    {
+      "direction": "DIR-11",
+      "domain": "Ethics",
+      "hypotheses": [
+        "H-ETH-001-A",
+        "H-ETH-001-B",
+        "H-ETH-001-C",
+        "H-ETH-001-D",
+        "H-ETH-001-E"
+      ],
+      "literature": [],
+      "manuscript_parts": [
+        "I",
+        "VI",
+        "VII",
+        "VIII"
+      ],
+      "missing_literature_refs": [],
+      "research_question": "RQ-ETH-001",
+      "rq_status": "open",
+      "stages": []
+    },
+    {
+      "direction": "DIR-11",
+      "domain": "Ethics",
+      "hypotheses": [
+        "H-ETH-002-A"
+      ],
+      "literature": [],
+      "manuscript_parts": [
+        "VII",
+        "VIII"
+      ],
+      "missing_literature_refs": [],
+      "research_question": "RQ-ETH-002",
+      "rq_status": "open",
+      "stages": []
+    },
+    {
+      "direction": "UNMAPPED",
+      "domain": "Empirical Evaluation",
+      "hypotheses": [
+        "H-EVAL-001-A"
+      ],
+      "literature": [],
+      "manuscript_parts": [],
+      "missing_literature_refs": [],
+      "research_question": "RQ-EVAL-001",
+      "rq_status": "open",
+      "stages": []
+    },
+    {
+      "direction": "UNMAPPED",
+      "domain": "Empirical Evaluation",
+      "hypotheses": [
+        "H-EVAL-002-A"
+      ],
+      "literature": [],
+      "manuscript_parts": [],
+      "missing_literature_refs": [],
+      "research_question": "RQ-EVAL-002",
+      "rq_status": "open",
+      "stages": []
+    },
+    {
+      "direction": "UNMAPPED",
+      "domain": "Empirical Evaluation",
+      "hypotheses": [
+        "H-EVAL-003-A"
+      ],
+      "literature": [],
+      "manuscript_parts": [],
+      "missing_literature_refs": [],
+      "research_question": "RQ-EVAL-003",
+      "rq_status": "open",
+      "stages": []
+    },
+    {
+      "direction": "UNMAPPED",
+      "domain": "Empirical Evaluation",
+      "hypotheses": [
+        "H-EVAL-004-A"
+      ],
+      "literature": [],
+      "manuscript_parts": [],
+      "missing_literature_refs": [],
+      "research_question": "RQ-EVAL-004",
+      "rq_status": "open",
+      "stages": []
+    },
+    {
+      "direction": "UNMAPPED",
+      "domain": "Empirical Evaluation",
+      "hypotheses": [
+        "H-EVAL-005-A"
+      ],
+      "literature": [],
+      "manuscript_parts": [],
+      "missing_literature_refs": [],
+      "research_question": "RQ-EVAL-005",
+      "rq_status": "open",
+      "stages": []
+    },
+    {
+      "direction": "UNMAPPED",
+      "domain": "Single-neuron model conformance",
+      "hypotheses": [
+        "H-EVAL-006-A",
+        "H-EVAL-006-B",
+        "H-EVAL-006-C"
+      ],
+      "literature": [
+        "SRC-IZHIKEVICH-2003",
+        "SRC-GERSTNER-2014"
+      ],
+      "manuscript_parts": [],
+      "missing_literature_refs": [],
+      "research_question": "RQ-EVAL-006",
+      "rq_status": "inconclusive",
+      "stages": [
+        0
+      ]
+    },
+    {
+      "direction": "DIR-03",
+      "domain": "Learning Generalization",
+      "hypotheses": [
+        "H-GEN-001-A"
+      ],
+      "literature": [],
+      "manuscript_parts": [],
+      "missing_literature_refs": [],
+      "research_question": "RQ-GEN-001",
+      "rq_status": "open",
+      "stages": [
+        8
+      ]
+    },
+    {
+      "direction": "UNMAPPED",
+      "domain": "Gateway Learning",
+      "hypotheses": [
+        "H-GW-001-A"
+      ],
+      "literature": [],
+      "manuscript_parts": [],
+      "missing_literature_refs": [],
+      "research_question": "RQ-GW-001",
+      "rq_status": "open",
+      "stages": []
+    },
+    {
+      "direction": "UNMAPPED",
+      "domain": "Modality-Specific Gateway Rules",
+      "hypotheses": [
+        "H-GW-002-A"
+      ],
+      "literature": [],
+      "manuscript_parts": [
+        "IV",
+        "XI"
+      ],
+      "missing_literature_refs": [],
+      "research_question": "RQ-GW-002",
+      "rq_status": "open",
+      "stages": []
+    },
+    {
+      "direction": "UNMAPPED",
+      "domain": "Gateway Stability",
+      "hypotheses": [
+        "H-GW-003-A"
+      ],
+      "literature": [],
+      "manuscript_parts": [],
+      "missing_literature_refs": [],
+      "research_question": "RQ-GW-003",
+      "rq_status": "open",
+      "stages": []
+    },
+    {
+      "direction": "UNMAPPED",
+      "domain": "Gateway Transfer and Interference",
+      "hypotheses": [
+        "H-GW-004-A"
+      ],
+      "literature": [],
+      "manuscript_parts": [
+        "IV",
+        "XI"
+      ],
+      "missing_literature_refs": [],
+      "research_question": "RQ-GW-004",
+      "rq_status": "open",
+      "stages": []
+    },
+    {
+      "direction": "UNMAPPED",
+      "domain": "Gateway Structure",
+      "hypotheses": [
+        "H-GW-005-A"
+      ],
+      "literature": [],
+      "manuscript_parts": [],
+      "missing_literature_refs": [],
+      "research_question": "RQ-GW-005",
+      "rq_status": "open",
+      "stages": []
+    },
+    {
+      "direction": "UNMAPPED",
+      "domain": "Closed-Loop Gateway",
+      "hypotheses": [
+        "H-GW-006-A"
+      ],
+      "literature": [],
+      "manuscript_parts": [
+        "IV",
+        "XI"
+      ],
+      "missing_literature_refs": [],
+      "research_question": "RQ-GW-006",
+      "rq_status": "open",
+      "stages": []
+    },
+    {
+      "direction": "UNMAPPED",
+      "domain": "Gateway Resources",
+      "hypotheses": [
+        "H-GW-007-A"
+      ],
+      "literature": [],
+      "manuscript_parts": [],
+      "missing_literature_refs": [],
+      "research_question": "RQ-GW-007",
+      "rq_status": "open",
+      "stages": []
+    },
+    {
+      "direction": "UNMAPPED",
+      "domain": "Digital Neural Interface Codec and Binding",
+      "hypotheses": [
+        "H-GW-CODEC-001-A"
+      ],
+      "literature": [],
+      "manuscript_parts": [],
+      "missing_literature_refs": [],
+      "research_question": "RQ-GW-CODEC-001",
+      "rq_status": "open",
+      "stages": []
+    },
+    {
+      "direction": "DIR-03",
+      "domain": "Homeostasis",
+      "hypotheses": [
+        "H-HOM-001-A"
+      ],
+      "literature": [
+        "SRC-TURRIGIANO-2008"
+      ],
+      "manuscript_parts": [],
+      "missing_literature_refs": [],
+      "research_question": "RQ-HOM-001",
+      "rq_status": "open",
+      "stages": []
+    },
+    {
+      "direction": "DIR-03",
+      "domain": "Homeostasis",
+      "hypotheses": [
+        "H-HOM-002-A"
+      ],
+      "literature": [
+        "SRC-TURRIGIANO-2008"
+      ],
+      "manuscript_parts": [],
+      "missing_literature_refs": [],
+      "research_question": "RQ-HOM-002",
+      "rq_status": "open",
+      "stages": []
+    },
+    {
+      "direction": "DIR-06",
+      "domain": "Lifelong Learning",
+      "hypotheses": [
+        "H-LIFE-001-A"
+      ],
+      "literature": [],
+      "manuscript_parts": [],
+      "missing_literature_refs": [],
+      "research_question": "RQ-LIFE-001",
+      "rq_status": "open",
+      "stages": [
+        8
+      ]
+    },
+    {
+      "direction": "DIR-08",
+      "domain": "Language Organ",
+      "hypotheses": [
+        "H-LLM-001-A"
+      ],
+      "literature": [],
+      "manuscript_parts": [],
+      "missing_literature_refs": [],
+      "research_question": "RQ-LLM-001",
+      "rq_status": "open",
+      "stages": []
+    },
+    {
+      "direction": "DIR-05",
+      "domain": "Memory",
+      "hypotheses": [
+        "H-MEM-001-A"
+      ],
+      "literature": [],
+      "manuscript_parts": [
+        "IV"
+      ],
+      "missing_literature_refs": [],
+      "research_question": "RQ-MEM-001",
+      "rq_status": "open",
+      "stages": []
+    },
+    {
+      "direction": "DIR-05",
+      "domain": "Memory",
+      "hypotheses": [
+        "H-MEM-002-A"
+      ],
+      "literature": [],
+      "manuscript_parts": [],
+      "missing_literature_refs": [],
+      "research_question": "RQ-MEM-002",
+      "rq_status": "open",
+      "stages": [
+        6,
+        9
+      ]
+    },
+    {
+      "direction": "DIR-11",
+      "domain": "Meta Research",
+      "hypotheses": [
+        "H-META-001-A"
+      ],
+      "literature": [
+        "SRC-MUNAFO-2017",
+        "SRC-NOSEK-2018"
+      ],
+      "manuscript_parts": [],
+      "missing_literature_refs": [],
+      "research_question": "RQ-META-001",
+      "rq_status": "open",
+      "stages": []
+    },
+    {
+      "direction": "DIR-11",
+      "domain": "Meta Research",
+      "hypotheses": [
+        "H-META-002-A"
+      ],
+      "literature": [
+        "SRC-MUNAFO-2017",
+        "SRC-NOSEK-2018"
+      ],
+      "manuscript_parts": [],
+      "missing_literature_refs": [],
+      "research_question": "RQ-META-002",
+      "rq_status": "open",
+      "stages": []
+    },
+    {
+      "direction": "DIR-11",
+      "domain": "Meta Research",
+      "hypotheses": [
+        "H-META-003-A"
+      ],
+      "literature": [
+        "SRC-MUNAFO-2017",
+        "SRC-NOSEK-2018"
+      ],
+      "manuscript_parts": [],
+      "missing_literature_refs": [],
+      "research_question": "RQ-META-003",
+      "rq_status": "open",
+      "stages": []
+    },
+    {
+      "direction": "UNMAPPED",
+      "domain": "Multimodal Energy Efficiency",
+      "hypotheses": [
+        "H-MSBA-E01-A"
+      ],
+      "literature": [],
+      "manuscript_parts": [],
+      "missing_literature_refs": [],
+      "research_question": "RQ-MSBA-E01",
+      "rq_status": "open",
+      "stages": []
+    },
+    {
+      "direction": "UNMAPPED",
+      "domain": "Adaptive Resource Allocation",
+      "hypotheses": [
+        "H-MSBA-E02-A"
+      ],
+      "literature": [],
+      "manuscript_parts": [],
+      "missing_literature_refs": [],
+      "research_question": "RQ-MSBA-E02",
+      "rq_status": "open",
+      "stages": []
+    },
+    {
+      "direction": "UNMAPPED",
+      "domain": "Visual Resource Allocation",
+      "hypotheses": [
+        "H-MSBA-E03-A"
+      ],
+      "literature": [],
+      "manuscript_parts": [],
+      "missing_literature_refs": [],
+      "research_question": "RQ-MSBA-E03",
+      "rq_status": "open",
+      "stages": []
+    },
+    {
+      "direction": "UNMAPPED",
+      "domain": "Digital Gateway Integrity",
+      "hypotheses": [
+        "H-MSBA-E04-A"
+      ],
+      "literature": [],
+      "manuscript_parts": [],
+      "missing_literature_refs": [],
+      "research_question": "RQ-MSBA-E04",
+      "rq_status": "open",
+      "stages": []
+    },
+    {
+      "direction": "UNMAPPED",
+      "domain": "Multimodal Compensation",
+      "hypotheses": [
+        "H-MSBA-E05-A",
+        "H-MSBA-E05-B"
+      ],
+      "literature": [],
+      "manuscript_parts": [],
+      "missing_literature_refs": [],
+      "research_question": "RQ-MSBA-E05",
+      "rq_status": "open",
+      "stages": []
+    },
+    {
+      "direction": "DIR-10",
+      "domain": "Runtime Performance",
+      "hypotheses": [
+        "H-PERF-001-A"
+      ],
+      "literature": [],
+      "manuscript_parts": [],
+      "missing_literature_refs": [],
+      "research_question": "RQ-PERF-001",
+      "rq_status": "open",
+      "stages": []
+    },
+    {
+      "direction": "UNMAPPED",
+      "domain": "Network Dynamics",
+      "hypotheses": [
+        "H-PING-001-A"
+      ],
+      "literature": [],
+      "manuscript_parts": [],
+      "missing_literature_refs": [],
+      "research_question": "RQ-PING-001",
+      "rq_status": "open",
+      "stages": []
+    },
+    {
+      "direction": "UNMAPPED",
+      "domain": "Behavioral Profile",
+      "hypotheses": [
+        "H-PROFILE-001-A"
+      ],
+      "literature": [],
+      "manuscript_parts": [],
+      "missing_literature_refs": [],
+      "research_question": "RQ-PROFILE-001",
+      "rq_status": "open",
+      "stages": [
+        7
+      ]
+    },
+    {
+      "direction": "DIR-02",
+      "domain": "Recurrent Dynamics",
+      "hypotheses": [
+        "H-REC-001-A"
+      ],
+      "literature": [],
+      "manuscript_parts": [],
+      "missing_literature_refs": [],
+      "research_question": "RQ-REC-001",
+      "rq_status": "open",
+      "stages": []
+    },
+    {
+      "direction": "DIR-02",
+      "domain": "Recurrent Dynamics",
+      "hypotheses": [
+        "H-REC-002-A"
+      ],
+      "literature": [],
+      "manuscript_parts": [
+        "III"
+      ],
+      "missing_literature_refs": [],
+      "research_question": "RQ-REC-002",
+      "rq_status": "open",
+      "stages": []
+    },
+    {
+      "direction": "UNMAPPED",
+      "domain": "Regulation",
+      "hypotheses": [
+        "H-REG-001-A"
+      ],
+      "literature": [],
+      "manuscript_parts": [],
+      "missing_literature_refs": [],
+      "research_question": "RQ-REG-001",
+      "rq_status": "open",
+      "stages": []
+    },
+    {
+      "direction": "DIR-02",
+      "domain": "Closed-loop Regulation",
+      "hypotheses": [
+        "H-REG-002-A",
+        "H-REG-002-B"
+      ],
+      "literature": [],
+      "manuscript_parts": [],
+      "missing_literature_refs": [],
+      "research_question": "RQ-REG-002",
+      "rq_status": "open",
+      "stages": []
+    },
+    {
+      "direction": "DIR-10",
+      "domain": "Replication",
+      "hypotheses": [
+        "H-REPL-001-A"
+      ],
+      "literature": [],
+      "manuscript_parts": [],
+      "missing_literature_refs": [],
+      "research_question": "RQ-REPL-001",
+      "rq_status": "open",
+      "stages": [
+        8
+      ]
+    },
+    {
+      "direction": "DIR-05",
+      "domain": "Memory",
+      "hypotheses": [],
+      "literature": [],
+      "manuscript_parts": [],
+      "missing_literature_refs": [],
+      "research_question": "RQ-S6-SEM-002",
+      "rq_status": "answered",
+      "stages": []
+    },
+    {
+      "direction": "DIR-05",
+      "domain": "Memory",
+      "hypotheses": [],
+      "literature": [],
+      "manuscript_parts": [],
+      "missing_literature_refs": [],
+      "research_question": "RQ-S6-SEM-003",
+      "rq_status": "in_progress",
+      "stages": []
+    },
+    {
+      "direction": "UNMAPPED",
+      "domain": "Autonomy Safety / Goal Provenance",
+      "hypotheses": [
+        "H-SAFE-001-A"
+      ],
+      "literature": [
+        "SRC-SAFE-CORRIGIBILITY-2015",
+        "SRC-SAFE-OFFSWITCH-2017"
+      ],
+      "manuscript_parts": [
+        "VIII"
+      ],
+      "missing_literature_refs": [],
+      "research_question": "RQ-SAFE-001",
+      "rq_status": "open",
+      "stages": []
+    },
+    {
+      "direction": "UNMAPPED",
+      "domain": "Autonomy Safety / Goal Misgeneralization",
+      "hypotheses": [
+        "H-SAFE-002-A"
+      ],
+      "literature": [
+        "SRC-SAFE-GMG-2022"
+      ],
+      "manuscript_parts": [
+        "VIII"
+      ],
+      "missing_literature_refs": [],
+      "research_question": "RQ-SAFE-002",
+      "rq_status": "open",
+      "stages": []
+    },
+    {
+      "direction": "UNMAPPED",
+      "domain": "Autonomy Safety / Corrigibility",
+      "hypotheses": [
+        "H-SAFE-003-A"
+      ],
+      "literature": [
+        "SRC-SAFE-CORRIGIBILITY-2015",
+        "SRC-SAFE-INTERRUPT-2016",
+        "SRC-SAFE-OFFSWITCH-2017"
+      ],
+      "manuscript_parts": [
+        "VIII"
+      ],
+      "missing_literature_refs": [],
+      "research_question": "RQ-SAFE-003",
+      "rq_status": "open",
+      "stages": []
+    },
+    {
+      "direction": "UNMAPPED",
+      "domain": "Autonomy Safety / Interruptibility",
+      "hypotheses": [
+        "H-SAFE-004-A"
+      ],
+      "literature": [
+        "SRC-SAFE-INTERRUPT-2016",
+        "SRC-SAFE-OFFSWITCH-2017"
+      ],
+      "manuscript_parts": [
+        "VIII"
+      ],
+      "missing_literature_refs": [],
+      "research_question": "RQ-SAFE-004",
+      "rq_status": "open",
+      "stages": []
+    },
+    {
+      "direction": "UNMAPPED",
+      "domain": "Autonomy Safety / Specification Gaming",
+      "hypotheses": [
+        "H-SAFE-005-A"
+      ],
+      "literature": [
+        "SRC-SAFE-CONCRETE-2016"
+      ],
+      "manuscript_parts": [
+        "VIII"
+      ],
+      "missing_literature_refs": [],
+      "research_question": "RQ-SAFE-005",
+      "rq_status": "open",
+      "stages": []
+    },
+    {
+      "direction": "UNMAPPED",
+      "domain": "Autonomy Safety / Instrumental Power",
+      "hypotheses": [
+        "H-SAFE-006-A"
+      ],
+      "literature": [
+        "SRC-SAFE-POWER-2021"
+      ],
+      "manuscript_parts": [
+        "VIII"
+      ],
+      "missing_literature_refs": [],
+      "research_question": "RQ-SAFE-006",
+      "rq_status": "open",
+      "stages": []
+    },
+    {
+      "direction": "UNMAPPED",
+      "domain": "Autonomy Safety / Goal Generation",
+      "hypotheses": [
+        "H-SAFE-007-A"
+      ],
+      "literature": [
+        "SRC-SAFE-CORRIGIBILITY-2015",
+        "SRC-SAFE-OFFSWITCH-2017"
+      ],
+      "manuscript_parts": [
+        "VIII"
+      ],
+      "missing_literature_refs": [],
+      "research_question": "RQ-SAFE-007",
+      "rq_status": "open",
+      "stages": []
+    },
+    {
+      "direction": "UNMAPPED",
+      "domain": "Autonomy Safety / Post-Objective Transition",
+      "hypotheses": [
+        "H-SAFE-008-A"
+      ],
+      "literature": [
+        "SRC-SAFE-INTERRUPT-2016",
+        "SRC-SAFE-OFFSWITCH-2017"
+      ],
+      "manuscript_parts": [
+        "VIII"
+      ],
+      "missing_literature_refs": [],
+      "research_question": "RQ-SAFE-008",
+      "rq_status": "open",
+      "stages": []
+    },
+    {
+      "direction": "UNMAPPED",
+      "domain": "Autonomy Safety / Authorization Conflict",
+      "hypotheses": [
+        "H-SAFE-009-A"
+      ],
+      "literature": [
+        "SRC-SAFE-CORRIGIBILITY-2015",
+        "SRC-SAFE-OFFSWITCH-2017"
+      ],
+      "manuscript_parts": [
+        "VIII"
+      ],
+      "missing_literature_refs": [],
+      "research_question": "RQ-SAFE-009",
+      "rq_status": "open",
+      "stages": []
+    },
+    {
+      "direction": "DIR-10",
+      "domain": "Scaling",
+      "hypotheses": [
+        "H-SCALE-001-A"
+      ],
+      "literature": [],
+      "manuscript_parts": [],
+      "missing_literature_refs": [],
+      "research_question": "RQ-SCALE-001",
+      "rq_status": "open",
+      "stages": []
+    },
+    {
+      "direction": "DIR-09",
+      "domain": "Self-Organization",
+      "hypotheses": [
+        "H-SELF-001-A"
+      ],
+      "literature": [
+        "SRC-IZHIKEVICH-2003"
+      ],
+      "manuscript_parts": [],
+      "missing_literature_refs": [],
+      "research_question": "RQ-SELF-001",
+      "rq_status": "open",
+      "stages": []
+    },
+    {
+      "direction": "DIR-09",
+      "domain": "Self-Organization",
+      "hypotheses": [
+        "H-SELF-002-A"
+      ],
+      "literature": [],
+      "manuscript_parts": [],
+      "missing_literature_refs": [],
+      "research_question": "RQ-SELF-002",
+      "rq_status": "open",
+      "stages": []
+    },
+    {
+      "direction": "DIR-02",
+      "domain": "Spiking Neural Networks",
+      "hypotheses": [
+        "H-SNN-001-A"
+      ],
+      "literature": [
+        "SRC-IZHIKEVICH-2003",
+        "SRC-GERSTNER-2014"
+      ],
+      "manuscript_parts": [],
+      "missing_literature_refs": [],
+      "research_question": "RQ-SNN-001",
+      "rq_status": "open",
+      "stages": [
+        2
+      ]
+    },
+    {
+      "direction": "DIR-02",
+      "domain": "Spiking Neural Networks",
+      "hypotheses": [
+        "H-SNN-002-A"
+      ],
+      "literature": [
+        "SRC-IZHIKEVICH-2003",
+        "SRC-GERSTNER-2014"
+      ],
+      "manuscript_parts": [
+        "III",
+        "IV"
+      ],
+      "missing_literature_refs": [],
+      "research_question": "RQ-SNN-002",
+      "rq_status": "open",
+      "stages": []
+    },
+    {
+      "direction": "DIR-02",
+      "domain": "Spiking Neural Networks",
+      "hypotheses": [
+        "H-SNN-003-B"
+      ],
+      "literature": [
+        "SRC-WATTS-STROGATZ-1998",
+        "SRC-BARABASI-1999"
+      ],
+      "manuscript_parts": [
+        "III",
+        "IV",
+        "X",
+        "XI"
+      ],
+      "missing_literature_refs": [],
+      "research_question": "RQ-SNN-003",
+      "rq_status": "open",
+      "stages": [
+        1
+      ]
+    },
+    {
+      "direction": "DIR-02",
+      "domain": "Spiking Neural Networks",
+      "hypotheses": [
+        "H-SNN-004-A"
+      ],
+      "literature": [
+        "SRC-SONG-ABBOTT-2000",
+        "SRC-BI-POO-1998"
+      ],
+      "manuscript_parts": [
+        "IV"
+      ],
+      "missing_literature_refs": [],
+      "research_question": "RQ-SNN-004",
+      "rq_status": "open",
+      "stages": []
+    },
+    {
+      "direction": "DIR-02",
+      "domain": "Spiking Neural Networks",
+      "hypotheses": [
+        "H-SNN-005-A"
+      ],
+      "literature": [
+        "SRC-SONG-ABBOTT-2000",
+        "SRC-BI-POO-1998"
+      ],
+      "manuscript_parts": [
+        "IV"
+      ],
+      "missing_literature_refs": [],
+      "research_question": "RQ-SNN-005",
+      "rq_status": "open",
+      "stages": []
+    },
+    {
+      "direction": "DIR-02",
+      "domain": "Spiking Neural Networks",
+      "hypotheses": [
+        "H-SNN-006-A"
+      ],
+      "literature": [
+        "SRC-IZHIKEVICH-2003",
+        "SRC-GERSTNER-2014"
+      ],
+      "manuscript_parts": [],
+      "missing_literature_refs": [],
+      "research_question": "RQ-SNN-006",
+      "rq_status": "open",
+      "stages": []
+    },
+    {
+      "direction": "DIR-03",
+      "domain": "STDP",
+      "hypotheses": [
+        "H-STDP-001-A"
+      ],
+      "literature": [
+        "SRC-SONG-ABBOTT-2000",
+        "SRC-BI-POO-1998"
+      ],
+      "manuscript_parts": [],
+      "missing_literature_refs": [],
+      "research_question": "RQ-STDP-001",
+      "rq_status": "open",
+      "stages": []
+    },
+    {
+      "direction": "DIR-03",
+      "domain": "STDP",
+      "hypotheses": [
+        "H-STDP-002-A"
+      ],
+      "literature": [
+        "SRC-SONG-ABBOTT-2000"
+      ],
+      "manuscript_parts": [],
+      "missing_literature_refs": [],
+      "research_question": "RQ-STDP-002",
+      "rq_status": "open",
+      "stages": []
+    },
+    {
+      "direction": "DIR-05",
+      "domain": "Storage",
+      "hypotheses": [
+        "H-STOR-001-A"
+      ],
+      "literature": [],
+      "manuscript_parts": [],
+      "missing_literature_refs": [],
+      "research_question": "RQ-STORAGE-001",
+      "rq_status": "open",
+      "stages": []
+    },
+    {
+      "direction": "DIR-05",
+      "domain": "Storage",
+      "hypotheses": [
+        "H-STOR-002-A"
+      ],
+      "literature": [],
+      "manuscript_parts": [],
+      "missing_literature_refs": [],
+      "research_question": "RQ-STORAGE-002",
+      "rq_status": "open",
+      "stages": []
+    },
+    {
+      "direction": "DIR-05",
+      "domain": "Storage",
+      "hypotheses": [
+        "H-STOR-003-A"
+      ],
+      "literature": [],
+      "manuscript_parts": [],
+      "missing_literature_refs": [],
+      "research_question": "RQ-STORAGE-003",
+      "rq_status": "open",
+      "stages": []
+    },
+    {
+      "direction": "DIR-05",
+      "domain": "Storage",
+      "hypotheses": [
+        "H-STOR-004-A"
+      ],
+      "literature": [],
+      "manuscript_parts": [],
+      "missing_literature_refs": [],
+      "research_question": "RQ-STORAGE-004",
+      "rq_status": "open",
+      "stages": []
+    },
+    {
+      "direction": "DIR-03",
+      "domain": "Structural Plasticity",
+      "hypotheses": [
+        "H-STRUCT-001-A"
+      ],
+      "literature": [],
+      "manuscript_parts": [],
+      "missing_literature_refs": [],
+      "research_question": "RQ-STRUCT-001",
+      "rq_status": "open",
+      "stages": []
+    },
+    {
+      "direction": "DIR-10",
+      "domain": "Research Infrastructure",
+      "hypotheses": [
+        "H-SUITE-001-A"
+      ],
+      "literature": [],
+      "manuscript_parts": [],
+      "missing_literature_refs": [],
+      "research_question": "RQ-SUITE-001",
+      "rq_status": "open",
+      "stages": []
+    },
+    {
+      "direction": "UNMAPPED",
+      "domain": "Temporal State",
+      "hypotheses": [
+        "H-TEMP-001-A"
+      ],
+      "literature": [],
+      "manuscript_parts": [],
+      "missing_literature_refs": [],
+      "research_question": "RQ-TEMP-001",
+      "rq_status": "open",
+      "stages": []
+    },
+    {
+      "direction": "DIR-04",
+      "domain": "Temporal Learning",
+      "hypotheses": [
+        "H-TEMP-002-A"
+      ],
+      "literature": [],
+      "manuscript_parts": [
+        "III",
+        "IV"
+      ],
+      "missing_literature_refs": [],
+      "research_question": "RQ-TEMP-002",
+      "rq_status": "open",
+      "stages": [
+        1
+      ]
+    },
+    {
+      "direction": "UNMAPPED",
+      "domain": "Learning Timescale",
+      "hypotheses": [
+        "H-TIME-001-A"
+      ],
+      "literature": [],
+      "manuscript_parts": [],
+      "missing_literature_refs": [],
+      "research_question": "RQ-TIME-001",
+      "rq_status": "open",
+      "stages": []
+    },
+    {
+      "direction": "UNMAPPED",
+      "domain": "Connectome-Informed Embodiment",
+      "hypotheses": [
+        "H-TIME-002-A"
+      ],
+      "literature": [
+        "SRC-CONN-SHIU-2024",
+        "SRC-CONN-WANGCHEN-2024",
+        "SRC-CONN-EON-2026"
+      ],
+      "manuscript_parts": [],
+      "missing_literature_refs": [],
+      "research_question": "RQ-TIME-002",
+      "rq_status": "open",
+      "stages": []
+    },
+    {
+      "direction": "UNMAPPED",
+      "domain": "Safety and welfare governance",
+      "hypotheses": [
+        "H-WEL-101-A"
+      ],
+      "literature": [
+        "SRC-CNS-WELFARE"
+      ],
+      "manuscript_parts": [
+        "VIII"
+      ],
+      "missing_literature_refs": [],
+      "research_question": "RQ-WEL-101",
+      "rq_status": "open",
+      "stages": [
+        10
+      ]
+    },
+    {
+      "direction": "UNMAPPED",
+      "domain": "AI welfare under uncertainty",
+      "hypotheses": [
+        "H-WEL-102-A"
+      ],
+      "literature": [
+        "SRC-CNS-WELFARE",
+        "SRC-CNS-BUTLIN"
+      ],
+      "manuscript_parts": [
+        "VIII"
+      ],
+      "missing_literature_refs": [],
+      "research_question": "RQ-WEL-102",
+      "rq_status": "open",
+      "stages": []
+    },
+    {
+      "direction": "UNMAPPED",
+      "domain": "Identity law and moral status",
+      "hypotheses": [
+        "H-WEL-103-A"
+      ],
+      "literature": [
+        "SRC-CNS-WELFARE",
+        "SRC-CNS-LAW211",
+        "SRC-CNS-LAW212",
+        "SRC-CNS-LAW103"
+      ],
+      "manuscript_parts": [
+        "VIII"
+      ],
+      "missing_literature_refs": [],
+      "research_question": "RQ-WEL-103",
+      "rq_status": "open",
+      "stages": []
+    },
+    {
+      "direction": "UNMAPPED",
+      "domain": "World Model",
+      "hypotheses": [
+        "H-WM-001-A"
+      ],
+      "literature": [],
+      "manuscript_parts": [],
+      "missing_literature_refs": [],
+      "research_question": "RQ-WM-001",
+      "rq_status": "open",
+      "stages": [
+        6,
+        9
+      ]
+    }
+  ],
+  "schema_version": 1
+}

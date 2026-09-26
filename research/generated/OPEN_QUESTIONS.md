@@ -1412,6 +1412,57 @@ Die folgenden Forschungsfragen sind noch offen und warten auf experimentelle Evi
 
 ---
 
+## RQ-META-001
+
+**Domäne:** Meta Research
+
+**Frage:** Wie robust sind methodische Bewertungen und Revisionsvorschlaege gegenueber dem verwendeten KI-System oder der Modellversion bei eingefrorenem ResearchPacket?
+
+**Relevanz:** Trennt fachliche Evidenz von Werkzeugabhaengigkeit.
+
+**Literatur:**
+- `SRC-MUNAFO-2017`: Marcus R. Munafo et al. (2017)
+- `SRC-NOSEK-2018`: Brian A. Nosek et al. (2018)
+
+**Hypothesen:**
+- `H-META-001-A`: Bei identischem eingefrorenem ResearchPacket unterscheiden sich KI-Systeme messbar in Fehlklassifikationen, vorgeschlagenen Kontrollen, unbelegten Claim-Erweiterungen und Quellenfehlern.
+
+---
+
+## RQ-META-002
+
+**Domäne:** Meta Research
+
+**Frage:** Unter welchen Bedingungen wird eine gemeinsame oder abgeleitete KI-/Quellenherkunft faelschlich als unabhaengige Bestaetigung behandelt?
+
+**Relevanz:** Operationalisiert rekursive Quellenkontamination.
+
+**Literatur:**
+- `SRC-MUNAFO-2017`: Marcus R. Munafo et al. (2017)
+- `SRC-NOSEK-2018`: Brian A. Nosek et al. (2018)
+
+**Hypothesen:**
+- `H-META-002-A`: Ein expliziter Source-Lineage-Graph reduziert vorab definierte Faelle faelschlich angenommener Quellenunabhaengigkeit.
+
+---
+
+## RQ-META-003
+
+**Domäne:** Meta Research
+
+**Frage:** Welchen Zusatzaufwand verursacht provenance-separierte Governance und wie steht dieser zur Reduktion epistemischer Fehlklassifikationen?
+
+**Relevanz:** Macht Governance-Nutzen gegen Kosten pruefbar.
+
+**Literatur:**
+- `SRC-MUNAFO-2017`: Marcus R. Munafo et al. (2017)
+- `SRC-NOSEK-2018`: Brian A. Nosek et al. (2018)
+
+**Hypothesen:**
+- `H-META-003-A`: Provenance-separierte Governance reduziert epistemische Fehlklassifikationen bei einem vorab definierten vertretbaren Zusatzaufwand.
+
+---
+
 ## RQ-MSBA-E01
 
 **Domäne:** Multimodal Energy Efficiency
@@ -1629,6 +1680,6 @@ Die folgenden Forschungsfragen sind noch offen und warten auf experimentelle Evi
 
 ---
 
-*Insgesamt 108 offene Fragen.*
+*Insgesamt 111 offene Fragen.*
 
 > Pruefstatus: RQ/H- und EVID-Statuswerte geben den Registry-Inhalt wieder. Insbesondere historische supports/supported-Eintraege sind keine Bestaetigung einer Freigabe nach den heutigen Clean-Freeze- und Human-Review-Gates. Ein abgeschlossener Lauf ist DATA, nicht automatisch akzeptierte Evidenz.

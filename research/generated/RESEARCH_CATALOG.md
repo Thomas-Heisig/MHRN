@@ -4,10 +4,10 @@
 
 ## Übersicht
 
-- **Forschungsfragen:** 109
-- **Hypothesen:** 117
+- **Forschungsfragen:** 112
+- **Hypothesen:** 120
 - **Claims:** 9
-- **Literaturquellen:** 56
+- **Literaturquellen:** 58
 
 ---
 
@@ -1120,6 +1120,56 @@
 > Auf DATA-Ebene bestätigt CL-003 keinen präregistrierten Vorteil semantischer Verdichtung gegenüber Raw-Replay über die Dosen 5, 20 und 40 Prozent. C1, C2 und C4 verfehlen die Erfolgsregeln; C3 zeigt zugleich, dass die semantische Repräsentation gegenüber einem Random-Prototype-Control relevante nicht-zufällige Struktur trägt.
 
 *Konfidenz: low*
+
+---
+
+## Meta Research
+
+### RQ-META-001
+
+**Frage:** Wie robust sind methodische Bewertungen und Revisionsvorschlaege gegenueber dem verwendeten KI-System oder der Modellversion bei eingefrorenem ResearchPacket?
+
+**Status:** open
+**Relevanz:** Trennt fachliche Evidenz von Werkzeugabhaengigkeit.
+
+**Hypothesen:**
+- `H-META-001-A`: Bei identischem eingefrorenem ResearchPacket unterscheiden sich KI-Systeme messbar in Fehlklassifikationen, vorgeschlagenen Kontrollen, unbelegten Claim-Erweiterungen und Quellenfehlern. *(untested)*
+
+**Literatur:**
+- `SRC-MUNAFO-2017`: Marcus R. Munafo et al. (2017)
+- `SRC-NOSEK-2018`: Brian A. Nosek et al. (2018)
+
+---
+
+### RQ-META-002
+
+**Frage:** Unter welchen Bedingungen wird eine gemeinsame oder abgeleitete KI-/Quellenherkunft faelschlich als unabhaengige Bestaetigung behandelt?
+
+**Status:** open
+**Relevanz:** Operationalisiert rekursive Quellenkontamination.
+
+**Hypothesen:**
+- `H-META-002-A`: Ein expliziter Source-Lineage-Graph reduziert vorab definierte Faelle faelschlich angenommener Quellenunabhaengigkeit. *(untested)*
+
+**Literatur:**
+- `SRC-MUNAFO-2017`: Marcus R. Munafo et al. (2017)
+- `SRC-NOSEK-2018`: Brian A. Nosek et al. (2018)
+
+---
+
+### RQ-META-003
+
+**Frage:** Welchen Zusatzaufwand verursacht provenance-separierte Governance und wie steht dieser zur Reduktion epistemischer Fehlklassifikationen?
+
+**Status:** open
+**Relevanz:** Macht Governance-Nutzen gegen Kosten pruefbar.
+
+**Hypothesen:**
+- `H-META-003-A`: Provenance-separierte Governance reduziert epistemische Fehlklassifikationen bei einem vorab definierten vertretbaren Zusatzaufwand. *(untested)*
+
+**Literatur:**
+- `SRC-MUNAFO-2017`: Marcus R. Munafo et al. (2017)
+- `SRC-NOSEK-2018`: Brian A. Nosek et al. (2018)
 
 ---
 

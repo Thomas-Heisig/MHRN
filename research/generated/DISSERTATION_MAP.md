@@ -1,115 +1,71 @@
-# MHRN Dissertation Map
+# MHRN Dissertation / Manuscript Map
 
-*Generiert am 2026-09-21*
+Current Edition 1.8 argument structure; not the 11-direction taxonomy.
 
-Diese Karte zeigt, wie die Forschungsergebnisse von MHRN in eine
-Dissertationsstruktur eingeordnet werden können.
+## Teil I - Nullpunkt, Autor und Entstehungsbedingungen
 
-## Kapitel 1 – Theorie und Grundlagen
+Source: `parts/01_origin.md`
 
-Einführung in SNN-Theorie, Izhikevich-Modell, deterministische Dynamik
+Linked RQs: RQ-EPIST-002, RQ-ETH-001
 
-**Forschungsfragen:**
-- `RQ-SNN-001`: Kann Brain-5D stabile Spike-Dynamiken über lange Simulationszeiträume erzeugen?... *(open)*
-- `RQ-SNN-002`: Kann das eingesetzte Neuronenmodell bei konstantem Input reproduzierbare Spikefo... *(open)*
-- `RQ-DET-001`: Bleibt die Spikefolge bei gleichem Seed, Input und Zustand deterministisch?... *(open)*
+## Teil II - Schaffensgeschichte und Architekturgenese
 
-**Literatur:**
-- `SRC-IZHIKEVICH-2003`: Eugene M. Izhikevich et al. (2003)
-- `SRC-GERSTNER-2014`: Wulfram Gerstner et al. (2014)
-- `SRC-MAASS-1997`: Wolfgang Maass et al. (1997)
+Source: `parts/02_genealogy.md`
 
----
+Linked RQs: -
 
-## Kapitel 2 – Plastizität und Lernen
+## Teil III - Forschungsobjekt MHRN
 
-STDP, Homeostase, Interaktion, Lernleistung
+Source: `parts/03_research_object.md`
 
-**Forschungsfragen:**
-- `RQ-SNN-004`: Wie verändert STDP die synaptische Gewichtsmatrix?... *(open)*
-- `RQ-SNN-005`: Verbessert STDP tatsächlich eine definierte Lernleistung?... *(open)*
-- `RQ-STDP-001`: Erzeugt pair-based STDP unter definierten Pre/Post-Zeitabständen eine asymmetris... *(open)*
-- `RQ-STDP-002`: Bleiben STDP-getriebene Gewichte unter Dauerstimulation stabil oder oszillieren/... *(open)*
-- `RQ-HOM-001`: Kann synaptische Homeostase die Feuerrate in einem SNN stabilisieren?... *(open)*
-- `RQ-HOM-002`: Wie interagiert Homeostase mit STDP? Wirken sie synergistisch oder antagonistisc... *(open)*
+Linked RQs: RQ-5D-005, RQ-DET-001, RQ-REC-002, RQ-SNN-002, RQ-SNN-003, RQ-TEMP-002
 
-**Literatur:**
-- `SRC-SONG-ABBOTT-2000`: Sen Song et al. (2000)
-- `SRC-BI-POO-1998`: Guo-Qiang Bi et al. (1998)
-- `SRC-TURRIGIANO-2008`: Gina G. Turrigiano et al. (2008)
-- `SRC-HEBB-1949`: Donald O. Hebb et al. (1949)
+## Teil IV - Empirisches Forschungsprogramm
 
----
+Source: `parts/04_empirical_programme.md`
 
-## Kapitel 3 – 5D-Raum und Topologie
+Linked RQs: RQ-5D-005, RQ-DET-001, RQ-EMB-001, RQ-GW-002, RQ-GW-004, RQ-GW-006, RQ-MEM-001, RQ-SNN-002, RQ-SNN-003, RQ-SNN-004, RQ-SNN-005, RQ-TEMP-002
 
-Dimensionsablation, Signalpropagation, Modularität, Informationstheorie
+## Teil V - Wissenschaftliche Infrastruktur und Engineering
 
-**Forschungsfragen:**
-- `RQ-5D-001`: Hat die fünfdimensionale Anordnung einen messbaren Effekt auf die Netzwerkdynami... *(open)*
-- `RQ-5D-002`: Wie verändert Dimensionalität die Signalpropagation im Netzwerk?... *(open)*
-- `RQ-5D-003`: Entsteht in 5D eine andere Modularität als in niedrigeren Dimensionen?... *(open)*
-- `RQ-5D-004`: Sind zusätzliche Dimensionen informationstragend oder lediglich zusätzliche Koor... *(open)*
+Source: `parts/05_infrastructure.md`
 
----
+Linked RQs: -
 
-## Kapitel 4 – Persistenz und Speicherung
+## Teil VI - Epistemologie und Methodik der Schaffensgeschichte
 
-.b5d-Format, verlustfreie Serialisierung, Speicherdichte, Skalierung
+Source: `parts/06_epistemology.md`
 
-**Forschungsfragen:**
-- `RQ-STORAGE-001`: Kann ein vollständiger neuronaler Zustand verlustfrei im .b5d-Modell gespeichert... *(open)*
-- `RQ-STORAGE-002`: Welche Informationen müssen gespeichert werden, damit ein Lauf kausal fortgesetz... *(open)*
-- `RQ-STORAGE-003`: Welche Speicherdichte erreicht das multidimensionale Modell?... *(open)*
-- `RQ-STORAGE-004`: Wie verhält sich das .b5d-Format bei 5.000, 50.000, 500.000, 5 Mio., 50 Mio. und... *(open)*
+Linked RQs: RQ-EPIST-001, RQ-EPIST-002, RQ-ETH-001
 
----
+## Teil VII - Integrität, Autorschaft und kumulative Wissenschaft
 
-## Kapitel 5 – Selbstorganisation
+Source: `parts/07_integrity.md`
 
-Emergenz, Clusterbildung, Pruning, Sprouting
+Linked RQs: RQ-AIR-001, RQ-EPIST-001, RQ-ETH-001, RQ-ETH-002
 
-**Forschungsfragen:**
-- `RQ-SELF-001`: Entstehen in Brain-5D spontan funktionale Cluster oder Module?... *(open)*
-- `RQ-SELF-002`: Ist die beobachtete Selbstorganistion emergenter Natur oder durch die Architektu... *(open)*
-- `RQ-STRUCT-001`: Führt strukturelle Plastizität (Pruning/Sprouting) zu funktional verbesserten Ne... *(open)*
+## Teil VIII - Philosophie, Ethik und Sicherheit
 
----
+Source: `parts/08_ethics_safety.md`
 
-## Kapitel 6 – Skalierung
+Linked RQs: RQ-CNS-101, RQ-EPI-101, RQ-EPI-102, RQ-EPIST-001, RQ-ETH-001, RQ-ETH-002, RQ-SAFE-001, RQ-SAFE-002, RQ-SAFE-003, RQ-SAFE-004, RQ-SAFE-005, RQ-SAFE-006, RQ-SAFE-007, RQ-SAFE-008, RQ-SAFE-009, RQ-WEL-101, RQ-WEL-102, RQ-WEL-103
 
-Skalierung von 5k auf Millionen Neuronen
+## Teil IX - Rekursive Epistemik
 
-**Forschungsfragen:**
-- `RQ-SCALE-001`: Skaliert Brain-5D von 5.000 auf Millionen Neuronen ohne qualitative Dynamikverän... *(open)*
+Source: `parts/09_recursive_epistemics.md`
 
-**Literatur:**
-- `SRC-MARKRAM-2015`: Henry Markram et al. (2015)
+Linked RQs: -
 
----
+## Teil X - Synthese und revidierbare Beiträge
 
-## Kapitel 7 – Gedächtnis und Embodiment
+Source: `parts/10_synthesis.md`
 
-Synaptisches Gedächtnis, Sensor-Aktor-Schleife, Language Organ
+Linked RQs: RQ-5D-005, RQ-DET-001, RQ-SNN-003
 
-**Forschungsfragen:**
-- `RQ-MEM-001`: Kann Brain-5D Informationen über synaptische Gewichte speichern und zuverlässig ... *(open)*
-- `RQ-EMB-001`: Kann Brain-5D in einer Sensor-Aktor-Schleife (Embodiment) sinnvoll agieren?... *(open)*
-- `RQ-LLM-001`: Kann ein Language Organ (SNM ↔ LLM) sinnvolle Kommunikation ermöglichen?... *(open)*
+## Teil XI - Offene Forschungslandschaft
 
----
+Source: `parts/11_open_landscape.md`
 
-## Kapitel 8 – Autorenschaft und Epistemologie
+Linked RQs: RQ-5D-005, RQ-DET-001, RQ-GW-002, RQ-GW-004, RQ-GW-006, RQ-SNN-003
 
-Epistemische Beiträge, Kanonisierung, Autorenschaft, Verantwortung und maschinelle Erkenntnis
-
-**Forschungsfragen:**
-- `RQ-ETH-001`: Wie verteilen sich epistemische Beiträge, Entscheidungsmacht, formale Autorensch... *(open)*
-- `RQ-ETH-002`: Wo liegt die Kontrolle und Verantwortung bei Brain-5D-Experimenten?... *(open)*
-- `RQ-EPIST-001`: Was gilt als Erkenntnis des Systems Brain-5D im Unterschied zur Erkenntnis des F... *(open)*
-- `RQ-EPIST-002`: Unter welchen Bedingungen reduziert eine explizite Trennung von Quelle, Entschei... *(open)*
-
----
-
-
-> Pruefstatus: RQ/H- und EVID-Statuswerte geben den Registry-Inhalt wieder. Insbesondere historische supports/supported-Eintraege sind keine Bestaetigung einer Freigabe nach den heutigen Clean-Freeze- und Human-Review-Gates. Ein abgeschlossener Lauf ist DATA, nicht automatisch akzeptierte Evidenz.
+> Implementation != DATA != EVID; Human Review != independent replication; this projection performs no evidence promotion.
