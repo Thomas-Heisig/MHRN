@@ -1,0 +1,76 @@
+{
+  "RQ-EPIST-002": {
+    "research_axis": "epistemological_methodological",
+    "stage_applicability": "not_applicable",
+    "stages": [],
+    "manuscript_parts": [
+      "VI",
+      "VII",
+      "IX"
+    ],
+    "cross_cuts": [
+      "research_integrity",
+      "human_ai",
+      "process_governance"
+    ]
+  },
+  "RQ-ETH-001": {
+    "research_axis": "epistemological_methodological",
+    "stage_applicability": "not_applicable",
+    "stages": [],
+    "manuscript_parts": [
+      "VI",
+      "VII",
+      "VIII",
+      "IX"
+    ],
+    "cross_cuts": [
+      "human_ai",
+      "authorship",
+      "accountability"
+    ]
+  },
+  "RQ-META-003": {
+    "research_axis": "epistemological_methodological",
+    "stage_applicability": "not_applicable",
+    "stages": [],
+    "manuscript_parts": [
+      "VI",
+      "IX",
+      "XI"
+    ],
+    "cross_cuts": [
+      "human_ai",
+      "model_dependence"
+    ]
+  },
+  "RQ-META-004": {
+    "research_axis": "epistemological_methodological",
+    "stage_applicability": "not_applicable",
+    "stages": [],
+    "manuscript_parts": [
+      "VI",
+      "VII",
+      "IX"
+    ],
+    "cross_cuts": [
+      "source_integrity",
+      "recursive_provenance"
+    ]
+  },
+  "RQ-META-005": {
+    "research_axis": "epistemological_methodological",
+    "stage_applicability": "not_applicable",
+    "stages": [],
+    "manuscript_parts": [
+      "V",
+      "VI",
+      "IX",
+      "XI"
+    ],
+    "cross_cuts": [
+      "governance_cost",
+      "research_efficiency"
+    ]
+  }
+}

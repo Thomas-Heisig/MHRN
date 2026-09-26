@@ -335,6 +335,87 @@
       "citation": "cite_decision_path_and_revision_with_gateway_registry_objects",
       "evidence_role": "architecture_and_method_interpretation_not_evidence_by_itself",
       "rationale": "Accepted integration decision treating digital information access as an additional sensory/environment modality while preserving exact-payload boundaries, explicit claim limits, and separate experimental validation for transfer, learned query action, modality routing and codec/binding."
+    },
+    "research/META_SYSTEM_CONTRACT.md": {
+      "kind": "research_governance_policy",
+      "status": "current",
+      "authority": "normative_meta_system_integration_contract",
+      "mutability": "editable_with_review",
+      "citation": "cite_current_revision_as_governance_contract",
+      "evidence_role": "policy_not_data_or_evidence",
+      "rationale": "Defines the separation of research directions, developmental stages, manuscript structure, review, EVID and replication without creating scientific results."
+    },
+    "research/meta/PRIOR_ART_RECURSIVE_EPISTEMICS.md": {
+      "kind": "prior_art_review_programme",
+      "status": "current",
+      "authority": "prospective_source_review_programme",
+      "mutability": "editable_with_source_review",
+      "citation": "cite_verified_external_sources_and_current_programme_revision",
+      "evidence_role": "review_plan_not_novelty_evidence",
+      "rationale": "Defines the systematic prior-art work required before any novelty claim for Recursive Epistemics."
+    },
+    "research/meta/question_coordinates.json": {
+      "kind": "research_crosswalk_configuration",
+      "status": "current",
+      "authority": "descriptive_taxonomy_coordinates",
+      "mutability": "editable_with_review",
+      "citation": "cite_underlying_RQ_and_manuscript_sources",
+      "evidence_role": "mapping_not_data_or_evidence",
+      "rationale": "Stores explicit cross-axis coordinates while leaving unresolved canonical research-direction assignments unresolved."
+    },
+    "research/meta/studies/RQ_EPIST_002_PREREG_READINESS.json": {
+      "kind": "research_study_design",
+      "status": "current_wip",
+      "authority": "prospective_preregistration_readiness_design",
+      "mutability": "freeze_before_execution",
+      "citation": "cite_study_id_and_frozen_protocol_revision",
+      "evidence_role": "design_not_data_or_evidence",
+      "rationale": "Operationalizes preregistration readiness for RQ-EPIST-002; execution_authorized=false and scientific_evidence=false."
+    },
+    "research/meta/studies/RQ_ETH_001_CODEBOOK_PILOT.json": {
+      "kind": "research_study_design",
+      "status": "current_wip",
+      "authority": "prospective_codebook_pilot_design",
+      "mutability": "freeze_before_human_participation",
+      "citation": "cite_study_id_and_frozen_protocol_revision",
+      "evidence_role": "design_not_data_or_evidence",
+      "rationale": "Defines the RQ-ETH-001 codebook pilot preparation without fabricating coder participation, consent, ethics approval, DATA or EVID."
+    },
+    "research/meta/studies/RQ_META_003_MODEL_DEPENDENCE.json": {
+      "kind": "research_study_design",
+      "status": "current_wip",
+      "authority": "prospective_meta_research_design",
+      "mutability": "freeze_before_execution",
+      "citation": "cite_study_id_and_frozen_protocol_revision",
+      "evidence_role": "design_not_data_or_evidence",
+      "rationale": "Prospective model/tool-dependence study; AI outputs remain process data only and cannot become object-level evidence automatically."
+    },
+    "research/meta/studies/RQ_META_004_SOURCE_RECURSION.json": {
+      "kind": "research_study_design",
+      "status": "current_wip",
+      "authority": "prospective_meta_research_design",
+      "mutability": "freeze_before_execution",
+      "citation": "cite_study_id_and_frozen_protocol_revision",
+      "evidence_role": "design_not_data_or_evidence",
+      "rationale": "Prospective recursive-source-contamination study; no execution or evidence state is implied."
+    },
+    "research/meta/studies/RQ_META_005_GOVERNANCE_COST.json": {
+      "kind": "research_study_design",
+      "status": "current_wip",
+      "authority": "prospective_meta_research_design",
+      "mutability": "freeze_before_execution",
+      "citation": "cite_study_id_and_frozen_protocol_revision",
+      "evidence_role": "design_not_data_or_evidence",
+      "rationale": "Prospective governance-cost/utility study; thresholds and utility function remain pre-execution design objects."
+    },
+    "research/meta/system.json": {
+      "kind": "governance_configuration",
+      "status": "current",
+      "authority": "normative_meta_system_configuration",
+      "mutability": "editable_with_tests",
+      "citation": "cite_underlying_registry_and_protocol_sources",
+      "evidence_role": "configuration_not_data_or_evidence",
+      "rationale": "Machine-readable invariants for the meta-research projection; automatic execution and evidence promotion remain disabled."
     }
   }
 }

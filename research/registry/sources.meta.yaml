@@ -1,0 +1,59 @@
+- source_id: SRC-ICMJE-AI-2026
+  authors: [International Committee of Medical Journal Editors]
+  title: Recommendations for the Conduct, Reporting, Editing, and Publication of Scholarly Work in Medical Journals
+  year: 2026
+  publisher: ICMJE
+  doi: null
+  source_type: institutional_guidance
+  url: https://www.icmje.org/recommendations/
+  publication_date: '2026-01'
+  verified_on: '2026-09-26'
+  verification_scope: current recommendations and AI authorship/disclosure guidance
+  topic: [authorship, artificial_intelligence, accountability, publishing]
+  claims: []
+  brain5d_questions: [RQ-ETH-001, RQ-META-004]
+  brain5d_relevance: Human responsibility, disclosure and AI-source limits for scholarly work.
+- source_id: SRC-CREDIT-2022
+  authors: [National Information Standards Organization]
+  title: ANSI/NISO Z39.104-2022 CRediT Contributor Roles Taxonomy
+  year: 2022
+  publisher: NISO
+  doi: 10.3789/ansi.niso.z39.104-2022
+  source_type: standard
+  url: https://www.niso.org/publications/z39104-2022-credit
+  verified_on: '2026-09-26'
+  verification_scope: contributor-role taxonomy and structured contribution reporting
+  topic: [contributorship, authorship, provenance]
+  claims: []
+  brain5d_questions: [RQ-ETH-001]
+  brain5d_relevance: External baseline for contribution-role coding, not proof of MHRN claims.
+- source_id: SRC-ALLEA-2023
+  authors: [ALLEA - All European Academies]
+  title: The European Code of Conduct for Research Integrity - Revised Edition 2023
+  year: 2023
+  publisher: ALLEA
+  doi: 10.26356/ECOC
+  source_type: research_integrity_code
+  url: https://allea.org/code-of-conduct/
+  publication_date: '2023-06-23'
+  verified_on: '2026-09-26'
+  verification_scope: current listed European research-integrity reference edition
+  topic: [research_integrity, accountability, reproducibility]
+  claims: []
+  brain5d_questions: [RQ-EPIST-002, RQ-ETH-001, RQ-META-004, RQ-META-005]
+  brain5d_relevance: Normative research-integrity context for governance design.
+- source_id: SRC-DFG-AI-REVIEW-2026
+  authors: [Deutsche Forschungsgemeinschaft]
+  title: Artificial Intelligence in the Review Process
+  year: 2026
+  publisher: Deutsche Forschungsgemeinschaft
+  doi: null
+  source_type: institutional_guidance
+  url: https://www.dfg.de/en/news/news-topics/announcements-proposals/2026/ifr-26-18
+  publication_date: '2026'
+  verified_on: '2026-09-26'
+  verification_scope: current DFG position on AI use, confidentiality, transparency and reviewer responsibility
+  topic: [artificial_intelligence, peer_review, confidentiality, research_integrity]
+  claims: []
+  brain5d_questions: [RQ-EPIST-002, RQ-ETH-001, RQ-META-003, RQ-META-005]
+  brain5d_relevance: Current institutional context for AI-assisted review governance.

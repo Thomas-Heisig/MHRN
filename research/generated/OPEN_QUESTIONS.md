@@ -1412,6 +1412,57 @@ Die folgenden Forschungsfragen sind noch offen und warten auf experimentelle Evi
 
 ---
 
+## RQ-META-003
+
+**Domäne:** Meta-Research / Human-AI Methodology
+
+**Frage:** Wie robust sind methodische Forschungsbeiträge und Fehlerdiagnosen gegenüber dem verwendeten KI-Modell oder der Modellversion, wenn Forschungsfrage, Quellen, DATA und Claim-Kontext eingefroren sind?
+
+**Relevanz:** Trennt werkzeugabhängige Vorschläge von robusten Prozessbeiträgen, ohne KI-Ausgaben als Evidenz über die Fachhypothese zu behandeln.
+
+**Literatur:**
+- `SRC-ICMJE-AI-2026`: International Committee of Medical Journal Editors et al. (2026)
+- `SRC-DFG-AI-REVIEW-2026`: Deutsche Forschungsgemeinschaft et al. (2026)
+
+**Hypothesen:**
+- `H-META-003-A`: Bei eingefrorenem ResearchPacket unterscheiden sich Modelle und Modellversionen messbar in Fehlererkennung, Kontrollvorschlägen, Claim-Erweiterungen, Quellenfehlern und Revisionsvorschlägen; robuste Prozessbefunde müssen deshalb modellübergreifend oder als modellspezifisch ausgewiesen werden.
+
+---
+
+## RQ-META-004
+
+**Domäne:** Meta-Research / Provenance
+
+**Frage:** Unter welchen Bedingungen wird rekursive Quellenabhängigkeit fälschlich als unabhängige Unterstützung gezählt, und kann lineage-aware Provenienz diese Fehlklassifikation reduzieren?
+
+**Relevanz:** Verhindert zirkuläre Bestätigung, wenn mehrere Texte oder Synthesen auf dieselbe KI-, Quellen- oder Transformationslinie zurückgehen.
+
+**Literatur:**
+- `SRC-ICMJE-AI-2026`: International Committee of Medical Journal Editors et al. (2026)
+- `SRC-ALLEA-2023`: ALLEA - All European Academies et al. (2023)
+
+**Hypothesen:**
+- `H-META-004-A`: Eine explizite Source-Lineage-Kennzeichnung reduziert die Rate, mit der derivativ abhängige Quellen oder KI-Synthesen als unabhängige Bestätigung klassifiziert werden.
+
+---
+
+## RQ-META-005
+
+**Domäne:** Meta-Research / Governance Utility
+
+**Frage:** Reduziert die MHRN-Governance epistemische Fehler bei vertretbarem zusätzlichem Zeit- und Dokumentationsaufwand gegenüber informationsäquivalenten flacheren Workflows?
+
+**Relevanz:** Ergänzt reine Fehlerreduktion um Aufwand, Entscheidungslatenz und Auditkosten.
+
+**Literatur:**
+- `SRC-ALLEA-2023`: ALLEA - All European Academies et al. (2023)
+- `SRC-DFG-AI-REVIEW-2026`: Deutsche Forschungsgemeinschaft et al. (2026)
+
+**Hypothesen:**
+- `H-META-005-A`: Eine status- und provenance-separierte Governance reduziert prädefinierte epistemische Fehlklassifikationen, ohne dass der Nutzen durch den präregistrierten Zeit- und Dokumentationsaufwand vollständig aufgehoben wird.
+
+---
+
 ## RQ-MSBA-E01
 
 **Domäne:** Multimodal Energy Efficiency
@@ -1629,6 +1680,6 @@ Die folgenden Forschungsfragen sind noch offen und warten auf experimentelle Evi
 
 ---
 
-*Insgesamt 108 offene Fragen.*
+*Insgesamt 111 offene Fragen.*
 
 > Pruefstatus: RQ/H- und EVID-Statuswerte geben den Registry-Inhalt wieder. Insbesondere historische supports/supported-Eintraege sind keine Bestaetigung einer Freigabe nach den heutigen Clean-Freeze- und Human-Review-Gates. Ein abgeschlossener Lauf ist DATA, nicht automatisch akzeptierte Evidenz.

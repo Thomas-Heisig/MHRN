@@ -101,6 +101,9 @@ RQ-Status und Claim-Status sind unterschiedliche wissenschaftliche Zustände und
 | `RQ-GW-006` | open | `H-GW-006-A` | — | — | 0 | `EXP-BATCH-20260909223705-83`, `EXP-BATCH-20260914074039-88` | — | offen |
 | `RQ-GW-007` | open | `H-GW-007-A` | — | — | 0 | `EXP-BATCH-20260909223705-84`, `EXP-BATCH-20260914074039-89` | — | offen |
 | `RQ-GW-CODEC-001` | open | `H-GW-CODEC-001-A` | — | — | 0 | — | — | offen |
+| `RQ-META-003` | open | `H-META-003-A` | — | — | 2 | — | — | offen |
+| `RQ-META-004` | open | `H-META-004-A` | — | — | 2 | — | — | offen |
+| `RQ-META-005` | open | `H-META-005-A` | — | — | 2 | — | — | offen |
 | `RQ-MSBA-E01` | open | `H-MSBA-E01-A` | — | — | 0 | `EXP-BATCH-20260906200118-44`, `EXP-BATCH-20260909223705-85`, `EXP-BATCH-20260914074039-90`, `EXP-EMP-20260910` | — | offen |
 | `RQ-MSBA-E02` | open | `H-MSBA-E02-A` | — | — | 0 | `EXP-BATCH-20260906200118-45`, `EXP-BATCH-20260909223705-86`, `EXP-BATCH-20260914074039-91`, `EXP-EMP-20260910` | — | offen |
 | `RQ-MSBA-E03` | open | `H-MSBA-E03-A` | — | — | 0 | `EXP-BATCH-20260906200118-46`, `EXP-BATCH-20260909223705-87`, `EXP-BATCH-20260914074039-92`, `EXP-EMP-20260910` | — | offen |
@@ -125,8 +128,8 @@ RQ-Status und Claim-Status sind unterschiedliche wissenschaftliche Zustände und
 | answered | 1 |
 | in_progress | 1 |
 | inconclusive | 1 |
-| open | 106 |
-| **Gesamt RQs** | **109** |
+| open | 109 |
+| **Gesamt RQs** | **112** |
 
 ### Claims (Claim-Status)
 
