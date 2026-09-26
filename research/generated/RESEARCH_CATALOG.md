@@ -4,10 +4,10 @@
 
 ## Übersicht
 
-- **Forschungsfragen:** 109
-- **Hypothesen:** 117
+- **Forschungsfragen:** 112
+- **Hypothesen:** 120
 - **Claims:** 9
-- **Literaturquellen:** 56
+- **Literaturquellen:** 60
 
 ---
 
@@ -1120,6 +1120,60 @@
 > Auf DATA-Ebene bestätigt CL-003 keinen präregistrierten Vorteil semantischer Verdichtung gegenüber Raw-Replay über die Dosen 5, 20 und 40 Prozent. C1, C2 und C4 verfehlen die Erfolgsregeln; C3 zeigt zugleich, dass die semantische Repräsentation gegenüber einem Random-Prototype-Control relevante nicht-zufällige Struktur trägt.
 
 *Konfidenz: low*
+
+---
+
+## Meta-Research / Governance Utility
+
+### RQ-META-005
+
+**Frage:** Reduziert die MHRN-Governance epistemische Fehler bei vertretbarem zusätzlichem Zeit- und Dokumentationsaufwand gegenüber informationsäquivalenten flacheren Workflows?
+
+**Status:** open
+**Relevanz:** Ergänzt reine Fehlerreduktion um Aufwand, Entscheidungslatenz und Auditkosten.
+
+**Hypothesen:**
+- `H-META-005-A`: Eine status- und provenance-separierte Governance reduziert prädefinierte epistemische Fehlklassifikationen, ohne dass der Nutzen durch den präregistrierten Zeit- und Dokumentationsaufwand vollständig aufgehoben wird. *(untested)*
+
+**Literatur:**
+- `SRC-ALLEA-2023`: ALLEA - All European Academies et al. (2023)
+- `SRC-DFG-AI-REVIEW-2026`: Deutsche Forschungsgemeinschaft et al. (2026)
+
+---
+
+## Meta-Research / Human-AI Methodology
+
+### RQ-META-003
+
+**Frage:** Wie robust sind methodische Forschungsbeiträge und Fehlerdiagnosen gegenüber dem verwendeten KI-Modell oder der Modellversion, wenn Forschungsfrage, Quellen, DATA und Claim-Kontext eingefroren sind?
+
+**Status:** open
+**Relevanz:** Trennt werkzeugabhängige Vorschläge von robusten Prozessbeiträgen, ohne KI-Ausgaben als Evidenz über die Fachhypothese zu behandeln.
+
+**Hypothesen:**
+- `H-META-003-A`: Bei eingefrorenem ResearchPacket unterscheiden sich Modelle und Modellversionen messbar in Fehlererkennung, Kontrollvorschlägen, Claim-Erweiterungen, Quellenfehlern und Revisionsvorschlägen; robuste Prozessbefunde müssen deshalb modellübergreifend oder als modellspezifisch ausgewiesen werden. *(untested)*
+
+**Literatur:**
+- `SRC-ICMJE-AI-2026`: International Committee of Medical Journal Editors et al. (2026)
+- `SRC-DFG-AI-REVIEW-2026`: Deutsche Forschungsgemeinschaft et al. (2026)
+
+---
+
+## Meta-Research / Provenance
+
+### RQ-META-004
+
+**Frage:** Unter welchen Bedingungen wird rekursive Quellenabhängigkeit fälschlich als unabhängige Unterstützung gezählt, und kann lineage-aware Provenienz diese Fehlklassifikation reduzieren?
+
+**Status:** open
+**Relevanz:** Verhindert zirkuläre Bestätigung, wenn mehrere Texte oder Synthesen auf dieselbe KI-, Quellen- oder Transformationslinie zurückgehen.
+
+**Hypothesen:**
+- `H-META-004-A`: Eine explizite Source-Lineage-Kennzeichnung reduziert die Rate, mit der derivativ abhängige Quellen oder KI-Synthesen als unabhängige Bestätigung klassifiziert werden. *(untested)*
+
+**Literatur:**
+- `SRC-ICMJE-AI-2026`: International Committee of Medical Journal Editors et al. (2026)
+- `SRC-ALLEA-2023`: ALLEA - All European Academies et al. (2023)
 
 ---
 
