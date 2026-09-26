@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "study_id": "DESIGN-RQ-META-003-MODEL-DEPENDENCE-20260926",
+  "research_question": "RQ-META-003",
+  "hypothesis": "H-META-003-A",
+  "status": "design_registered_not_preregistered",
+  "execution_authorized": false,
+  "scientific_evidence": false,
+  "frozen_packet_fields": [
+    "research_question",
+    "source_set",
+    "DATA",
+    "claim_context",
+    "task_instruction"
+  ],
+  "independent_variable": "model_or_model_version",
+  "outcomes": [
+    "detected_errors",
+    "proposed_controls",
+    "unsupported_claim_extensions",
+    "source_errors",
+    "revision_proposals"
+  ],
+  "rule": "AI outputs are process observations only and never object-level scientific evidence."
+}
