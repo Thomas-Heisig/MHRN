@@ -4,6 +4,7 @@
 This module is descriptive only. It never executes studies, changes DATA/EVID status,
 or infers the names of the human-defined eleven research directions.
 """
+
 from __future__ import annotations
 
 import hashlib
@@ -26,7 +27,9 @@ AXES = {
 
 
 def _json_digest(value: Any) -> str:
-    payload = json.dumps(value, sort_keys=True, ensure_ascii=False, separators=(",", ":"))
+    payload = json.dumps(
+        value, sort_keys=True, ensure_ascii=False, separators=(",", ":")
+    )
     return hashlib.sha256(payload.encode("utf-8")).hexdigest()
 
 
@@ -37,9 +40,13 @@ def _read(path: Path) -> Any:
     return json.loads(text)
 
 
-def _registry_family(root: Path, stem: str, key: str = "id") -> dict[str, dict[str, Any]]:
+def _registry_family(
+    root: Path, stem: str, key: str = "id"
+) -> dict[str, dict[str, Any]]:
     registry = root / "research" / "registry"
-    paths = sorted(set(registry.glob(f"{stem}.yaml")) | set(registry.glob(f"{stem}.*.yaml")))
+    paths = sorted(
+        set(registry.glob(f"{stem}.yaml")) | set(registry.glob(f"{stem}.*.yaml"))
+    )
     merged: dict[str, dict[str, Any]] = {}
     for path in paths:
         data = _read(path) or []
@@ -55,15 +62,21 @@ def _registry_family(root: Path, stem: str, key: str = "id") -> dict[str, dict[s
 
 def validate_direction_registry(data: dict[str, Any], lock: dict[str, Any]) -> None:
     if data.get("expected_count") != 11 or lock.get("expected_count") != 11:
-        raise ValueError("The canonical research map must preserve exactly eleven directions.")
+        raise ValueError(
+            "The canonical research map must preserve exactly eleven directions."
+        )
     entries = data.get("directions") or []
     assignments = data.get("assignments") or {}
     if data.get("status") == "awaiting_canonical_source":
         if entries or assignments or lock.get("identity_digest") is not None:
-            raise ValueError("Unresolved direction names/order cannot carry invented identities.")
+            raise ValueError(
+                "Unresolved direction names/order cannot carry invented identities."
+            )
         return
     if data.get("status") != "source_bound" or len(entries) != 11:
-        raise ValueError("Activated direction registry requires exactly 11 source-bound entries.")
+        raise ValueError(
+            "Activated direction registry requires exactly 11 source-bound entries."
+        )
     identities = []
     ids: set[str] = set()
     for item in entries:
@@ -77,7 +90,9 @@ def validate_direction_registry(data: dict[str, Any], lock: dict[str, Any]) -> N
     if _json_digest(identities) != lock.get("identity_digest"):
         raise ValueError("Direction identities/order differ from the human-bound lock.")
     if not lock.get("human_decision_ref"):
-        raise ValueError("Activated direction registry requires a human governance reference.")
+        raise ValueError(
+            "Activated direction registry requires a human governance reference."
+        )
     unknown = set(assignments.values()) - ids
     if unknown:
         raise ValueError(f"Unknown direction assignments: {sorted(unknown)}")
@@ -154,7 +169,9 @@ class MetaSystem:
 
     def _evidence_index(self) -> dict[str, dict[str, Any]]:
         out: dict[str, dict[str, Any]] = {}
-        for path in sorted((self.root / "research/registry/evidence").glob("EVID-*.json")):
+        for path in sorted(
+            (self.root / "research/registry/evidence").glob("EVID-*.json")
+        ):
             try:
                 data = json.loads(path.read_text(encoding="utf-8"))
             except (OSError, json.JSONDecodeError):
@@ -164,7 +181,9 @@ class MetaSystem:
 
     def _paper_index(self) -> list[dict[str, Any]]:
         out = []
-        for path in sorted((self.root / "research/publications/papers").glob("*/PAPER.md")):
+        for path in sorted(
+            (self.root / "research/publications/papers").glob("*/PAPER.md")
+        ):
             text = path.read_text(encoding="utf-8")
             status = re.search(r"\*\*Status:\*\*\s*([^\n]+)", text)
             out.append(
@@ -172,7 +191,9 @@ class MetaSystem:
                     "path": path.relative_to(self.root).as_posix(),
                     "title": text.splitlines()[0].lstrip("# "),
                     "questions": sorted(set(RQ_RE.findall(text))),
-                    "declared_status": status.group(1).strip() if status else "not_declared",
+                    "declared_status": (
+                        status.group(1).strip() if status else "not_declared"
+                    ),
                     "peer_review": "not_verified_by_projection",
                     "doi": "not_inferred",
                     "independent_replication": "not_inferred",
@@ -238,10 +259,15 @@ class MetaSystem:
             evidence = sorted(
                 eid
                 for eid, item in self.evidence.items()
-                if item.get("hypothesis_id") in hypotheses or item.get("claim_id") in claims
+                if item.get("hypothesis_id") in hypotheses
+                or item.get("claim_id") in claims
             )
             explicit_stages = list(coordinate.get("stages") or [])
-            stages = [] if coordinate.get("stage_applicability") == "not_applicable" else explicit_stages
+            stages = (
+                []
+                if coordinate.get("stage_applicability") == "not_applicable"
+                else explicit_stages
+            )
             rows.append(
                 {
                     "research_question": qid,
@@ -249,7 +275,9 @@ class MetaSystem:
                     "domain": question.get("domain"),
                     "direction": assignments.get(qid),
                     "direction_status": (
-                        "source_bound" if qid in assignments else "unresolved_no_inference"
+                        "source_bound"
+                        if qid in assignments
+                        else "unresolved_no_inference"
                     ),
                     "research_axis": coordinate.get("research_axis", "unclassified"),
                     "stages": sorted(set(stages)),
@@ -262,12 +290,15 @@ class MetaSystem:
                     "experiments": sorted(self.experiments.get(qid, set())),
                     "claims": claims,
                     "claim_statuses": {
-                        cid: self.claims[cid].get("status", "untested") for cid in claims
+                        cid: self.claims[cid].get("status", "untested")
+                        for cid in claims
                     },
                     "evidence_records": evidence,
                     "literature": list(question.get("literature") or []),
                     "papers": [
-                        paper["path"] for paper in self.papers if qid in paper["questions"]
+                        paper["path"]
+                        for paper in self.papers
+                        if qid in paper["questions"]
                     ],
                     "rq_status": question.get("status", "open"),
                     "cross_cuts": list(coordinate.get("cross_cuts") or []),
@@ -309,6 +340,7 @@ class MetaSystem:
             if value is None or value == "":
                 value = "unresolved"
             return str(value).replace("|", "\\|").replace("\n", " ")
+
         lines = [
             "| " + " | ".join(headers) + " |",
             "| " + " | ".join("---" for _ in headers) + " |",
@@ -327,9 +359,7 @@ class MetaSystem:
             [item["id"], item["title"], item["source_ref"]] for item in directions
         ]
         if direction_body:
-            direction_note = (
-                "The eleven identities and their order are source-bound and lock protected."
-            )
+            direction_note = "The eleven identities and their order are source-bound and lock protected."
         else:
             direction_note = (
                 "The existence/count of eleven directions is locked, but their exact "
@@ -402,7 +432,14 @@ class MetaSystem:
                 f"Source: `{self.system['edition_path']}/{part['file']}`",
                 "",
                 self._table(
-                    ["RQ", "RQ status", "Direction", "Axis", "Experiments", "EVID records"],
+                    [
+                        "RQ",
+                        "RQ status",
+                        "Direction",
+                        "Axis",
+                        "Experiments",
+                        "EVID records",
+                    ],
                     [
                         [
                             r["research_question"],
@@ -417,14 +454,25 @@ class MetaSystem:
                 ),
                 "",
             ]
-        unmapped = [r["research_question"] for r in self.rows if not r["manuscript_parts"]]
-        dissertation += ["## Unmapped registered RQs", "", ", ".join(unmapped) or "None."]
+        unmapped = [
+            r["research_question"] for r in self.rows if not r["manuscript_parts"]
+        ]
+        dissertation += [
+            "## Unmapped registered RQs",
+            "",
+            ", ".join(unmapped) or "None.",
+        ]
         review_queue = (
             "# MHRN Review Queue / Reconciliation Matrix\n\n"
             "This projection reconciles manifest review flags with append-only review artefact "
             "presence. A review artefact is not EVID and never counts as independent replication.\n\n"
             + self._table(
-                ["Experiment", "Manifest review status", "Review artefacts", "Reconciliation"],
+                [
+                    "Experiment",
+                    "Manifest review status",
+                    "Review artefacts",
+                    "Reconciliation",
+                ],
                 [
                     [
                         item["experiment_id"],
@@ -440,7 +488,13 @@ class MetaSystem:
             "# MHRN Publication State Matrix\n\n"
             "Working paper/preprint, DOI, peer review and independent replication are independent states.\n\n"
             + self._table(
-                ["Paper", "Declared status", "Peer review", "DOI", "Independent replication"],
+                [
+                    "Paper",
+                    "Declared status",
+                    "Peer review",
+                    "DOI",
+                    "Independent replication",
+                ],
                 [
                     [
                         p["path"],
