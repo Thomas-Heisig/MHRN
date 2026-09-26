@@ -24,6 +24,7 @@ sys.path.insert(0, str(REPO_ROOT))
 
 from src.research.literature_registry import LiteratureRegistry
 from src.research.registry import ResearchRegistry
+from src.research.meta_system import MetaSystem
 from src.research.report_builder import ReportBuilder
 
 
@@ -44,10 +45,16 @@ def main() -> None:
     lit_reg = LiteratureRegistry(registry)
     lit_path = lit_reg.write_literature_matrix()
 
+    meta_outputs = MetaSystem(REPO_ROOT).write()
+
     print("\n✅ Reports generated:")
     for name, path in paths.items():
         size = path.stat().st_size
         print(f"  {name:30s} → {path.relative_to(Path.cwd())} ({size} bytes)")
+
+    for name in meta_outputs:
+        path = REPO_ROOT / "research" / "generated" / name
+        print(f"  {name:30s} → {path.relative_to(Path.cwd())} ({path.stat().st_size} bytes)")
 
     size = lit_path.stat().st_size
     print(
