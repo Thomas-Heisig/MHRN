@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026-09-26 - Sichere External-Review-Bereitstellung
+
+- GitHub-Pages-Export und isolierter Collector sind als getrennte
+  Bereitstellungswege dokumentiert.
+- Eine Hugging-Face-Docker-Variante auf Port 7860 wurde ergänzt.
+- Ein Aggregat-Exportwerkzeug erzeugt beschreibende, nicht-identifizierende
+  Daten und kopiert keine Rohantworten, Notizen oder Codes ins Repository.
+- Der Review-Portal-Workflow prüft Änderungen auch auf `develop`; Pages wird
+  weiterhin ausschließlich aus dem release-only `main` veröffentlicht.
+
 ## 2026-09-20 - Publikations-Einstieg über Einfach erklärt
 
 - „Einfach erklärt“ ist jetzt der erste und standardmäßige Tab unter

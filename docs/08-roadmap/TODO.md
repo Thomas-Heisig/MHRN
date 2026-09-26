@@ -39,6 +39,13 @@
 
 - [x] Update the GitHub Actions username secret to `ThomasHeisig`.
 - [ ] Rerun the Hugging Face publication after the current LFS rate limit clears.
+
+## 2026-09-26 External Review Deployment
+
+- [x] GitHub-Pages export-only deployment documented.
+- [x] Isolated Hugging Face Docker deployment prepared.
+- [x] Sanitized aggregate export implemented and tested.
+- [ ] Configure and independently review the real public domain, storage, TLS, backups and legal study settings.
 - [x] Make experiment cards open a complete detail dialog with form prefill.
 
 ## 2026-09-20 Publication navigation
