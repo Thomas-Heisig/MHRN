@@ -37,12 +37,12 @@ jobs:
         run: |
           python scripts/check_doc_consistency.py --check-tests
           python scripts/check_scientific_maturity_integrity.py
-          python scripts/check_meta_research_system.py
 
       - name: Regenerate derived research projections
         run: |
           python research/generate_reports.py
           python scripts/generate_catalog_audit_report.py
+          python scripts/check_meta_research_system.py
 
       - name: Upload generated research projections
         uses: actions/upload-artifact@v7
