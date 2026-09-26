@@ -109,6 +109,7 @@ class MetaSystem:
         self.experiments = self._experiment_index()
         self.evidence = self._evidence_index()
         self.papers = self._paper_index()
+        self.review_queue = self._review_queue()
         self.rows = self._crosswalk()
         self._validate()
 
@@ -177,6 +178,41 @@ class MetaSystem:
                 }
             )
         return out
+
+    def _review_queue(self) -> list[dict[str, Any]]:
+        """Project review state from manifests and append-only review artefacts.
+
+        Presence of a review file is not EVID and is not interpreted as independent
+        replication. Historical status disagreements remain visible.
+        """
+        rows: list[dict[str, Any]] = []
+        exp_root = self.root / "research" / "experiments"
+        for manifest in sorted(exp_root.glob("*/manifest.json")):
+            try:
+                data = json.loads(manifest.read_text(encoding="utf-8"))
+            except (OSError, json.JSONDecodeError):
+                continue
+            exp_id = data.get("experiment_id") or manifest.parent.name
+            manifest_state = data.get("human_review_status", "unknown")
+            review_paths = sorted(
+                path.relative_to(self.root).as_posix()
+                for path in manifest.parent.glob("*review*.json")
+                if path.is_file()
+            )
+            rows.append(
+                {
+                    "experiment_id": exp_id,
+                    "manifest_review_status": manifest_state,
+                    "review_artifacts": review_paths,
+                    "reconciliation_state": (
+                        "recorded_review_present_check_status_binding"
+                        if review_paths
+                        else "review_not_found_in_experiment_root"
+                    ),
+                    "authority": "review_record_only_not_EVID_or_replication",
+                }
+            )
+        return rows
 
     def _crosswalk(self) -> list[dict[str, Any]]:
         assignments = self.directions.get("assignments") or {}
@@ -382,6 +418,23 @@ class MetaSystem:
             ]
         unmapped = [r["research_question"] for r in self.rows if not r["manuscript_parts"]]
         dissertation += ["## Unmapped registered RQs", "", ", ".join(unmapped) or "None."]
+        review_queue = (
+            "# MHRN Review Queue / Reconciliation Matrix\n\n"
+            "This projection reconciles manifest review flags with append-only review artefact "
+            "presence. A review artefact is not EVID and never counts as independent replication.\n\n"
+            + self._table(
+                ["Experiment", "Manifest review status", "Review artefacts", "Reconciliation"],
+                [
+                    [
+                        item["experiment_id"],
+                        item["manifest_review_status"],
+                        item["review_artifacts"],
+                        item["reconciliation_state"],
+                    ]
+                    for item in self.review_queue
+                ],
+            )
+        )
         publication = (
             "# MHRN Publication State Matrix\n\n"
             "Working paper/preprint, DOI, peer review and independent replication are independent states.\n\n"
@@ -426,6 +479,7 @@ class MetaSystem:
             "questions": self.rows,
             "studies": self.studies,
             "papers": self.papers,
+            "review_queue": self.review_queue,
             "scientific_evidence": False,
             "automatic_evidence_promotion": False,
         }
@@ -434,6 +488,7 @@ class MetaSystem:
             "STAGE_MATRIX.md": stage_matrix.rstrip() + suffix,
             "CROSSWALK.md": crosswalk.rstrip() + suffix,
             "DISSERTATION_MAP.md": "\n".join(dissertation).rstrip() + suffix,
+            "REVIEW_QUEUE.md": review_queue.rstrip() + suffix,
             "PUBLICATION_STATE_MATRIX.md": publication.rstrip() + suffix,
             "META_RESEARCH_READINESS.md": meta_readiness.rstrip() + suffix,
             "META_RESEARCH_CROSSWALK.json": json.dumps(
