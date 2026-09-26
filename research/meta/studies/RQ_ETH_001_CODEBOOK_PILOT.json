@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "study_id": "PILOT-RQ-ETH-001-CODEBOOK-20260926",
+  "research_question": "RQ-ETH-001",
+  "hypotheses": [
+    "H-ETH-001-B",
+    "H-ETH-001-C",
+    "H-ETH-001-E"
+  ],
+  "status": "pilot_design_ready_not_executed",
+  "execution_authorized": false,
+  "scientific_evidence": false,
+  "unit": "claim_episode",
+  "sampling_rule": {
+    "purpose": "heterogeneous provenance-complete episodes",
+    "confirmatory_sampling": false,
+    "minimum_provenance_fields": [
+      "claim_or_rq",
+      "input_or_source",
+      "transformation_or_action",
+      "decision_or_disposition",
+      "responsible_human_or_role"
+    ]
+  },
+  "codebook_fields": [
+    "actor_type",
+    "actor_version",
+    "role",
+    "material_contribution",
+    "decision_authority",
+    "disposition",
+    "responsibility",
+    "input_ref",
+    "output_ref",
+    "evidence_ref",
+    "timestamp"
+  ],
+  "required_independent_coding_passes": 2,
+  "outputs": [
+    "disagreement_catalogue",
+    "revised_codebook",
+    "unresolved_role_classes",
+    "explicit_exclusions",
+    "candidate_reliability_metric",
+    "candidate_thresholds_for_preregistration"
+  ],
+  "prohibited_claims": [
+    "confirmatory support",
+    "formal authorship entitlement",
+    "machine responsibility",
+    "EVID promotion"
+  ],
+  "ethics_gate": "research/ethics/HUMAN_REVIEWER_STUDY_GOVERNANCE.md"
+}
