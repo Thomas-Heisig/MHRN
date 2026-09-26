@@ -54,6 +54,16 @@ def _get(host: str, port: int, path: str) -> tuple[int, dict[str, Any]]:
         conn.close()
 
 
+def _get_bytes(host: str, port: int, path: str) -> tuple[int, str, bytes]:
+    conn = HTTPConnection(host, port)
+    try:
+        conn.request("GET", path)
+        resp = conn.getresponse()
+        return resp.status, resp.getheader("Content-Type", ""), resp.read()
+    finally:
+        conn.close()
+
+
 def _post(
     host: str, port: int, path: str, payload: dict[str, Any]
 ) -> tuple[int, dict[str, Any]]:
@@ -160,6 +170,28 @@ def test_research_summary_reports_unavailable_without_source() -> None:
         status, payload = _get(host, port, "/api/research")
         assert status == 200
         assert payload["available"] is False
+    finally:
+        _stop(server, thread)
+
+
+def test_external_review_route_serves_questionnaire_assets(tmp_path: Path) -> None:
+    server, thread, host, port = _start_server(tmp_path / "research")
+    try:
+        status, content_type, index = _get_bytes(host, port, "/review")
+        assert status == 200
+        assert "text/html" in content_type
+        assert b"/review/review.css" in index
+        assert b"/review/app.js" in index
+
+        css_status, css_type, css = _get_bytes(host, port, "/review/review.css")
+        assert css_status == 200
+        assert "text/css" in css_type
+        assert b"--accent" in css
+
+        js_status, js_type, js = _get_bytes(host, port, "/review/app.js")
+        assert js_status == 200
+        assert "javascript" in js_type
+        assert b"INSTRUMENT" in js
     finally:
         _stop(server, thread)
 
