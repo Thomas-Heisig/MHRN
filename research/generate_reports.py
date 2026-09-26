@@ -23,7 +23,7 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(REPO_ROOT))
 
 from src.research.literature_registry import LiteratureRegistry
-from src.research.registry import ResearchRegistry
+from src.research.registry import ResearchRegistry\nfrom src.research.meta_system import MetaSystem
 from src.research.report_builder import ReportBuilder
 
 
@@ -42,7 +42,7 @@ def main() -> None:
     paths = builder.write_all()
 
     lit_reg = LiteratureRegistry(registry)
-    lit_path = lit_reg.write_literature_matrix()
+    lit_path = lit_reg.write_literature_matrix()\n\n    meta_paths = MetaSystem(REPO_ROOT).write()
 
     print("\n✅ Reports generated:")
     for name, path in paths.items():
