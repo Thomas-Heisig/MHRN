@@ -1,0 +1,21 @@
+- id: H-META-001-A
+  research_question: RQ-META-001
+  hypothesis: Bei identischem eingefrorenem ResearchPacket unterscheiden sich KI-Systeme messbar in Fehlklassifikationen, vorgeschlagenen Kontrollen, unbelegten Claim-Erweiterungen und Quellenfehlern.
+  status: untested
+  evidence: []
+  created: '2026-09-26'
+  updated: '2026-09-26'
+- id: H-META-002-A
+  research_question: RQ-META-002
+  hypothesis: Ein expliziter Source-Lineage-Graph reduziert vorab definierte Faelle faelschlich angenommener Quellenunabhaengigkeit.
+  status: untested
+  evidence: []
+  created: '2026-09-26'
+  updated: '2026-09-26'
+- id: H-META-003-A
+  research_question: RQ-META-003
+  hypothesis: Provenance-separierte Governance reduziert epistemische Fehlklassifikationen bei einem vorab definierten vertretbaren Zusatzaufwand.
+  status: untested
+  evidence: []
+  created: '2026-09-26'
+  updated: '2026-09-26'
