@@ -1,0 +1,24 @@
+- source_id: SRC-MUNAFO-2017
+  authors: ["Marcus R. Munafo"]
+  title: A manifesto for reproducible science
+  year: 2017
+  journal: Nature Human Behaviour
+  publisher: Nature Portfolio
+  doi: 10.1038/s41562-016-0021
+  topic: [reproducibility, transparency, research_methods]
+  claims: []
+  brain5d_questions: [RQ-EPIST-002, RQ-ETH-001, RQ-META-001, RQ-META-002, RQ-META-003]
+  brain5d_relevance: Methodische Grundlage; keine MHRN-spezifische Evidenz.
+  source_type: peer_reviewed_article
+- source_id: SRC-NOSEK-2018
+  authors: ["Brian A. Nosek"]
+  title: The preregistration revolution
+  year: 2018
+  journal: Proceedings of the National Academy of Sciences
+  publisher: National Academy of Sciences
+  doi: 10.1073/pnas.1708274114
+  topic: [preregistration, confirmatory_research, transparency]
+  claims: []
+  brain5d_questions: [RQ-EPIST-002, RQ-ETH-001, RQ-META-001, RQ-META-002, RQ-META-003]
+  brain5d_relevance: Grundlage fuer prospektive Trennung von Design, Ausfuehrung und konfirmatorischer Inferenz.
+  source_type: peer_reviewed_article

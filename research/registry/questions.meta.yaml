@@ -1,0 +1,33 @@
+- id: RQ-META-001
+  domain: Meta Research
+  question: Wie robust sind methodische Bewertungen und Revisionsvorschlaege gegenueber dem verwendeten KI-System oder der Modellversion bei eingefrorenem ResearchPacket?
+  relevance: Trennt fachliche Evidenz von Werkzeugabhaengigkeit.
+  literature: [SRC-MUNAFO-2017, SRC-NOSEK-2018]
+  hypotheses: [H-META-001-A]
+  evidence: []
+  status: open
+  answer: {current: null, confidence: none, limitations: "KI-Ausgaben sind keine Evidenz fuer die fachliche Objekthypothese."}
+  created: '2026-09-26'
+  updated: '2026-09-26'
+- id: RQ-META-002
+  domain: Meta Research
+  question: Unter welchen Bedingungen wird eine gemeinsame oder abgeleitete KI-/Quellenherkunft faelschlich als unabhaengige Bestaetigung behandelt?
+  relevance: Operationalisiert rekursive Quellenkontamination.
+  literature: [SRC-MUNAFO-2017, SRC-NOSEK-2018]
+  hypotheses: [H-META-002-A]
+  evidence: []
+  status: open
+  answer: {current: null, confidence: none, limitations: "Quellenabhaengigkeit muss auf Artefakt- und Transformationspfad-Ebene rekonstruiert werden."}
+  created: '2026-09-26'
+  updated: '2026-09-26'
+- id: RQ-META-003
+  domain: Meta Research
+  question: Welchen Zusatzaufwand verursacht provenance-separierte Governance und wie steht dieser zur Reduktion epistemischer Fehlklassifikationen?
+  relevance: Macht Governance-Nutzen gegen Kosten pruefbar.
+  literature: [SRC-MUNAFO-2017, SRC-NOSEK-2018]
+  hypotheses: [H-META-003-A]
+  evidence: []
+  status: open
+  answer: {current: null, confidence: none, limitations: "Kosten- und Nutzenregel muss vor Ausfuehrung eingefroren werden."}
+  created: '2026-09-26'
+  updated: '2026-09-26'

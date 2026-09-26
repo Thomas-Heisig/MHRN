@@ -1,0 +1,19 @@
+schema_version: 1
+status: canonical_consolidation
+as_of: 2026-09-26
+immutability_rule: titles_ids_and_order_require_explicit_human_governance_decision
+source_basis:
+  - "Brain-5D Scientific Framework v0.2: RQ1-RQ10 programme axes"
+  - "MHRN Edition 1.8 Parts VI/VII/IX and RQ-ETH/RQ-EPIST/RQ-AIR: meta-research axis"
+directions:
+  - {id: DIR-01, title: "Geometrie und Topologie", legacy_label: "Geometrie", domains: ["5D Topology", "Topology", "Connectome"]}
+  - {id: DIR-02, title: "Dynamik und Stabilitaet", legacy_label: "Dynamik", domains: ["Spiking Neural Networks", "Recurrent Dynamics", "Determinism", "Closed-loop Regulation"]}
+  - {id: DIR-03, title: "Plastizitaet und Lernen", legacy_label: "Plastizitaet", domains: ["STDP", "Plasticity", "Structural Plasticity", "Learning Generalization", "Homeostasis"]}
+  - {id: DIR-04, title: "Repraesentation und Information", legacy_label: "Repraesentation", domains: ["Representation", "Temporal Learning", "Information"]}
+  - {id: DIR-05, title: "Gedaechtnis", legacy_label: "Gedaechtnis", domains: ["Memory", "Storage"]}
+  - {id: DIR-06, title: "Continual Learning", legacy_label: "Continual Learning", domains: ["Continual Learning", "Lifelong Learning", "Semantic Memory"]}
+  - {id: DIR-07, title: "Embodiment", legacy_label: "Embodiment", domains: ["Embodiment"]}
+  - {id: DIR-08, title: "Language Organ und digitale Schnittstellen", legacy_label: "Language Organ", domains: ["Language Organ", "Gateway", "MSBA", "Digital Sense"]}
+  - {id: DIR-09, title: "Emergenz und Selbstorganisation", legacy_label: "Emergenz", domains: ["Self-Organization", "Emergence"]}
+  - {id: DIR-10, title: "Skalierung und Performance", legacy_label: "Skalierung", domains: ["Scaling", "Runtime Performance", "Research Infrastructure", "Replication"]}
+  - {id: DIR-11, title: "Human-AI / Meta-Forschung", legacy_label: "Meta-Forschung", domains: ["Ethics", "Epistemology", "AI-Assisted Research", "Research Integrity", "Meta Research"]}
