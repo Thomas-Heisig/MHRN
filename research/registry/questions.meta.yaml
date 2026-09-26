@@ -1,0 +1,33 @@
+- id: RQ-META-003
+  domain: Meta-Research / Human-AI Methodology
+  question: Wie robust sind methodische Forschungsbeiträge und Fehlerdiagnosen gegenüber dem verwendeten KI-Modell oder der Modellversion, wenn Forschungsfrage, Quellen, DATA und Claim-Kontext eingefroren sind?
+  relevance: Trennt werkzeugabhängige Vorschläge von robusten Prozessbeiträgen, ohne KI-Ausgaben als Evidenz über die Fachhypothese zu behandeln.
+  literature: [SRC-ICMJE-AI-2026, SRC-DFG-AI-REVIEW-2026]
+  hypotheses: [H-META-003-A]
+  evidence: []
+  status: open
+  answer: {current: null, confidence: none, limitations: Prospektive Mehrmodellstudie noch nicht präregistriert oder ausgeführt.}
+  created: '2026-09-26'
+  updated: '2026-09-26'
+- id: RQ-META-004
+  domain: Meta-Research / Provenance
+  question: Unter welchen Bedingungen wird rekursive Quellenabhängigkeit fälschlich als unabhängige Unterstützung gezählt, und kann lineage-aware Provenienz diese Fehlklassifikation reduzieren?
+  relevance: Verhindert zirkuläre Bestätigung, wenn mehrere Texte oder Synthesen auf dieselbe KI-, Quellen- oder Transformationslinie zurückgehen.
+  literature: [SRC-ICMJE-AI-2026, SRC-ALLEA-2023]
+  hypotheses: [H-META-004-A]
+  evidence: []
+  status: open
+  answer: {current: null, confidence: none, limitations: Prüfvertrag registriert; keine DATA/EVID.}
+  created: '2026-09-26'
+  updated: '2026-09-26'
+- id: RQ-META-005
+  domain: Meta-Research / Governance Utility
+  question: Reduziert die MHRN-Governance epistemische Fehler bei vertretbarem zusätzlichem Zeit- und Dokumentationsaufwand gegenüber informationsäquivalenten flacheren Workflows?
+  relevance: Ergänzt reine Fehlerreduktion um Aufwand, Entscheidungslatenz und Auditkosten.
+  literature: [SRC-ALLEA-2023, SRC-DFG-AI-REVIEW-2026]
+  hypotheses: [H-META-005-A]
+  evidence: []
+  status: open
+  answer: {current: null, confidence: none, limitations: Utility-Funktion und Schwellen müssen vor Ausführung präregistriert werden.}
+  created: '2026-09-26'
+  updated: '2026-09-26'
