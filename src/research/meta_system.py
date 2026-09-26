@@ -24,16 +24,16 @@ def _family(stem: str) -> list[dict[str, Any]]:
     candidates = {REG / f"{stem}.yaml", *REG.glob(f"{stem}.*.yaml")}
     for path in sorted(candidates):
         if path.is_file():
-            data = _yaml(path) or []
-            if not isinstance(data, list):
+            raw: Any = _yaml(path)
+            if raw is None:
+                raw = []
+            if not isinstance(raw, list):
                 raise ValueError(f"{path} must contain a list")
-            rows.extend(cast(list[dict[str, Any]], data))
+            rows.extend(cast(list[dict[str, Any]], raw))
     return rows
 
 
-def _index(
-    rows: list[dict[str, Any]], key: str = "id"
-) -> dict[str, dict[str, Any]]:
+def _index(rows: list[dict[str, Any]], key: str = "id") -> dict[str, dict[str, Any]]:
     out: dict[str, dict[str, Any]] = {}
     for row in rows:
         ident = str(row[key])
@@ -69,9 +69,7 @@ def manuscript_parts(question_ids: set[str]) -> dict[str, list[str]]:
     edition_root = (
         ROOT / "research/publications/2026-09-17_recursive-epistemics_v1.8"
     )
-    edition = json.loads(
-        (edition_root / "edition.json").read_text(encoding="utf-8")
-    )
+    edition = json.loads((edition_root / "edition.json").read_text(encoding="utf-8"))
     result: dict[str, list[str]] = {qid: [] for qid in question_ids}
     for part in edition["parts"]:
         text = (edition_root / part["file"]).read_text(encoding="utf-8")
@@ -147,10 +145,8 @@ def build_crosswalk() -> dict[str, Any]:
 def _table(headers: list[str], rows: list[list[Any]]) -> str:
     def cell(value: Any) -> str:
         if isinstance(value, list):
-            value = ", ".join(map(str, value))
-        return str(value if value not in (None, "") else "-").replace(
-            "|", "\\|"
-        )
+            value = ", ".join(map(str, cast(list[object], value)))
+        return str(value if value not in (None, "") else "-").replace("|", "\\|")
 
     lines = [
         "| " + " | ".join(headers) + " |",
