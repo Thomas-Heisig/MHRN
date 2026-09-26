@@ -32,7 +32,9 @@ def _load_records(path: Path) -> list[dict[str, Any]]:
     payload: object = json.loads(path.read_text(encoding="utf-8"))
     if isinstance(payload, dict):
         payload = payload.get("records", [])
-    if not isinstance(payload, list) or not all(isinstance(row, dict) for row in payload):
+    if not isinstance(payload, list) or not all(
+        isinstance(row, dict) for row in payload
+    ):
         raise ValueError("Input must be a JSON list or an admin export with records.")
     return [dict(row) for row in payload]
 
@@ -64,7 +66,9 @@ def build_aggregate(records: list[dict[str, Any]]) -> dict[str, Any]:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("input", type=Path, help="Private admin export JSON outside the repository")
+    parser.add_argument(
+        "input", type=Path, help="Private admin export JSON outside the repository"
+    )
     parser.add_argument("output", type=Path, help="Sanitized aggregate JSON")
     args = parser.parse_args()
     records = _load_records(args.input)
