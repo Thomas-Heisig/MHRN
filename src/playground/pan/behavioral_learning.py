@@ -22,6 +22,8 @@ class BehavioralLearningEngine:
         learning_rate: float = 0.05,
         epsilon: float = 0.05,
         target_action: int = 0,
+        target_mode: str = "cycle",
+        min_activity: float = 0.01,
         episode_ticks: int = 16,
         bias_current: float = 3.0,
         seed: int = 0,
@@ -37,6 +39,10 @@ class BehavioralLearningEngine:
             raise ValueError("epsilon must be between 0 and 1")
         if not 0 <= target_action < action_count:
             raise ValueError("target_action outside action range")
+        if target_mode not in {"fixed", "cycle"}:
+            raise ValueError("target_mode must be fixed or cycle")
+        if not 0.0 <= min_activity <= 1.0:
+            raise ValueError("min_activity must be between 0 and 1")
         if episode_ticks < 1:
             raise ValueError("episode_ticks must be positive")
         self.n_neurons = n_neurons
@@ -44,6 +50,8 @@ class BehavioralLearningEngine:
         self.learning_rate = learning_rate
         self.epsilon = epsilon
         self.target_action = target_action
+        self.target_mode = target_mode
+        self.min_activity = min_activity
         self.episode_ticks = episode_ticks
         self.bias_current = bias_current
         self.rng = random.Random(seed ^ 0x5A17)
@@ -54,6 +62,8 @@ class BehavioralLearningEngine:
         self.reward_history: list[float] = []
         self.policy_updates = 0
         self.correct_actions = 0
+        self.insufficient_activity_episodes = 0
+        self.target_history: list[int] = []
 
     def _bucket(self, neuron_id: int) -> int:
         if not self.output_neurons:
@@ -90,15 +100,27 @@ class BehavioralLearningEngine:
     def maybe_learn(self, tick: int) -> float | None:
         if (tick + 1) % self.episode_ticks != 0:
             return None
+        episode_index = len(self.action_history)
+        target = (
+            self.target_action
+            if self.target_mode == "fixed"
+            else (self.target_action + episode_index) % self.action_count
+        )
         action = self.choose_action()
-        reward = 1.0 if action == self.target_action else -0.25
-        prediction = self.policy[action]
-        self.policy[action] += self.learning_rate * (reward - prediction)
+        activity_level = max(self.activity, default=0.0)
+        if activity_level < self.min_activity:
+            reward = 0.0
+            self.insufficient_activity_episodes += 1
+        else:
+            reward = 1.0 if action == target else -0.25
+            prediction = self.policy[action]
+            self.policy[action] += self.learning_rate * (reward - prediction)
+            self.policy_updates += 1
+            if action == target:
+                self.correct_actions += 1
+        self.target_history.append(target)
         self.action_history.append(action)
         self.reward_history.append(reward)
-        self.policy_updates += 1
-        if action == self.target_action:
-            self.correct_actions += 1
         return reward
 
     def bias_currents(self) -> list[float]:
@@ -122,6 +144,8 @@ class BehavioralLearningEngine:
             "stores": ["policy_parameters", "activity_traces", "reward_history"],
             "action_count": self.action_count,
             "target_action": self.target_action,
+            "target_mode": self.target_mode,
+            "min_activity": self.min_activity,
             "learning_rate": self.learning_rate,
             "epsilon": self.epsilon,
             "episode_ticks": self.episode_ticks,
@@ -133,4 +157,6 @@ class BehavioralLearningEngine:
             "action_history": list(self.action_history[-128:]),
             "reward_history": list(self.reward_history[-128:]),
             "policy_updates": self.policy_updates,
+            "insufficient_activity_episodes": self.insufficient_activity_episodes,
+            "target_history": list(self.target_history[-128:]),
         }
