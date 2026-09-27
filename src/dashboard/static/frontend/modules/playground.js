@@ -62,13 +62,15 @@ function injectStyles() {
     .playground-card input,.playground-card select,.playground-card textarea{width:100%;min-height:30px;padding:5px 7px;border:1px solid var(--rule-2);border-radius:var(--r-xs);background:var(--paper);color:var(--ink);font-size:.7rem}.playground-card input:focus,.playground-card select:focus,.playground-card textarea:focus{border-color:var(--accent);background:var(--paper-2);box-shadow:0 0 0 2px var(--accent-wash)}.playground-card textarea{min-height:72px;resize:vertical;font-family:var(--font-mono);font-size:.64rem}
     .playground-actions{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0}.playground-actions button{min-height:30px;padding:0 10px;border-radius:var(--r-xs);border:1px solid var(--rule-2);background:var(--paper-2);color:var(--ink-2);font-size:.65rem}.playground-actions button:hover{background:var(--paper-3);border-color:var(--accent)}.playground-actions .primary{font-weight:700;border-color:var(--accent);background:var(--accent);color:var(--paper-2)}
     .playground-status{padding:9px 11px;border:1px solid var(--rule);border-left:3px solid var(--rule-3);border-radius:var(--r-xs);background:var(--paper-2);color:var(--ink-2);font-size:.68rem;white-space:pre-wrap;overflow:auto}.playground-status[data-state="error"]{border-left-color:var(--crimson);color:var(--crimson)}.playground-status[data-state="ok"]{border-left-color:var(--moss);color:var(--moss)}
+    .pg-live-monitor{width:min(94vw,1000px);max-height:84vh;padding:0;border:1px solid var(--rule-3);border-radius:var(--r-md);background:var(--paper);color:var(--ink);box-shadow:var(--shadow-float)}.pg-live-monitor::backdrop{background:rgba(20,16,12,.55);backdrop-filter:blur(4px)}.pg-live-monitor>header{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;padding:9px 12px;border-bottom:1px solid var(--rule);background:var(--paper-2)}.pg-live-monitor>header h2{margin:0;font-size:.95rem}.pg-live-monitor>header p{margin:2px 0 0;color:var(--ink-3);font-size:.61rem}.pg-live-monitor-close{min-width:28px;padding:0}.pg-live-monitor-body{padding:9px;overflow:hidden}.pg-live-monitor-metrics{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:5px;margin-bottom:7px}.pg-live-monitor-metric{padding:6px;border:1px solid var(--rule);border-radius:var(--r-xs);background:var(--paper-2)}.pg-live-monitor-metric span{display:block;color:var(--ink-4);font:700 .46rem/1.1 var(--font-mono);text-transform:uppercase}.pg-live-monitor-metric strong{display:block;margin-top:3px;font:600 .7rem/1 var(--font-mono)}.pg-live-monitor-grid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(220px,1fr);gap:7px}.pg-live-monitor-panel{min-width:0;padding:7px;border:1px solid var(--rule);border-radius:var(--r-xs);background:var(--paper-2)}.pg-live-monitor-panel h3{margin:0 0 5px;padding-bottom:4px;border-bottom:1px solid var(--rule);font-size:.68rem}.pg-live-monitor-panel canvas{display:block;width:100%;height:130px;background:var(--paper);border:1px solid var(--rule)}.pg-live-monitor-params{margin:0;max-height:118px;overflow:hidden;font:500 .55rem/1.25 var(--font-mono);white-space:pre-wrap}.pg-live-monitor-actions{display:flex;flex-wrap:wrap;gap:5px;margin-top:7px}.pg-live-monitor-actions button{min-height:27px;padding:0 8px;font-size:.6rem}.pg-live-monitor-actions .pg-monitor-primary{border-color:var(--accent);background:var(--accent);color:var(--paper-2)}
     .playground-metrics{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:5px;margin:10px 0}.playground-metric{padding:8px 9px;border:1px solid var(--rule);border-radius:var(--r-xs);background:var(--paper-2)}.playground-metric span{display:block;color:var(--ink-4);font:700 .5rem/1.2 var(--font-mono);letter-spacing:.07em;text-transform:uppercase}.playground-metric strong{display:block;margin-top:4px;color:var(--ink);font:600 .82rem/1.1 var(--font-mono)}
+    .pg-live-monitor-visuals{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:5px;margin-top:7px}.pg-live-monitor-tile{display:block;width:100%;padding:5px;border:1px solid var(--rule);border-radius:var(--r-xs);background:var(--paper-2);color:var(--ink);text-align:left;cursor:pointer}.pg-live-monitor-tile:hover,.pg-live-monitor-tile:focus-visible{border-color:var(--accent);background:var(--accent-wash)}.pg-live-monitor-tile span{display:block;margin-bottom:3px;color:var(--ink-3);font:700 .47rem/1.1 var(--font-mono);text-transform:uppercase}.pg-live-monitor-tile canvas{width:100%;height:65px;background:var(--paper);border:1px solid var(--rule)}.pg-live-zoom{width:min(94vw,1100px);padding:0;border:1px solid var(--rule-3);border-radius:var(--r-md);background:var(--paper);box-shadow:var(--shadow-float)}.pg-live-zoom::backdrop{background:rgba(20,16,12,.58);backdrop-filter:blur(4px)}.pg-live-zoom header{display:flex;justify-content:space-between;align-items:center;padding:10px 13px;border-bottom:1px solid var(--rule);background:var(--paper-2)}.pg-live-zoom canvas{display:block;width:100%;height:min(70vh,600px);padding:12px;background:var(--paper)}
     .playground-viz-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.playground-viz{min-height:260px}.playground-viz canvas{width:100%;height:210px;display:block}
     .playground-analysis-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:10px}.playground-analysis-card pre{font-size:.62rem;max-height:260px;overflow:auto;white-space:pre-wrap}
     .playground-session-list{display:grid;gap:6px}.playground-session{display:flex;justify-content:space-between;gap:1rem;align-items:center;padding:9px 10px;border:1px solid var(--rule);border-radius:var(--r-xs);background:var(--paper-2)}.playground-session small{display:block;color:var(--ink-4)}
     .playground-catalog{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.playground-catalog article{padding:10px;border:1px solid var(--rule);border-radius:var(--r-xs);background:var(--paper-2)}.playground-chip{display:inline-flex;margin:2px;padding:3px 5px;border-radius:var(--r-xs);border:1px solid var(--rule);background:var(--paper-3);color:var(--ink-3);font:500 .58rem/1.2 var(--font-mono)}
     .pg-neutral-note{padding:9px 11px;margin:9px 0;border-left:3px solid var(--indigo);background:var(--indigo-wash);color:var(--ink-2);font-size:.68rem;line-height:1.45}.pg-neutral-note strong{color:var(--ink)}
-    @media(max-width:1150px){.playground-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.playground-metrics{grid-template-columns:repeat(4,1fr)}.playground-preset-deck{grid-template-columns:1fr 1.4fr}}@media(max-width:760px){.playground-grid,.playground-viz-grid,.playground-analysis-grid,.playground-catalog{grid-template-columns:1fr}.playground-card{grid-template-columns:1fr}.playground-card h3,.playground-card small{grid-column:auto}.playground-metrics{grid-template-columns:repeat(2,1fr)}.playground-preset-deck{grid-template-columns:1fr}.playground-preset-controls{grid-template-columns:1fr}}
+    @media(max-width:1150px){.playground-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.playground-metrics{grid-template-columns:repeat(4,1fr)}.playground-preset-deck{grid-template-columns:1fr 1.4fr}.pg-live-monitor-visuals{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:760px){.playground-grid,.playground-viz-grid,.playground-analysis-grid,.playground-catalog{grid-template-columns:1fr}.playground-card{grid-template-columns:1fr}.playground-card h3,.playground-card small{grid-column:auto}.playground-metrics{grid-template-columns:repeat(2,1fr)}.playground-preset-deck{grid-template-columns:1fr}.playground-preset-controls{grid-template-columns:1fr}.pg-live-monitor-metrics,.pg-live-monitor-grid,.pg-live-monitor-visuals{grid-template-columns:1fr}}
   `;
   document.head.append(style);
 }
@@ -287,6 +289,15 @@ function buildPanels(root) {
       </div>
       <div class="playground-actions"><button type="button" class="primary" id="pg-run">▶ Playground starten</button><button type="button" id="pg-robustness">Robustheitskontrollen</button><button type="button" id="pg-reset">Standardwerte</button></div>
       <article class="playground-card"><h3>17 · PAN Live Session & Sandbox</h3><div class="playground-actions"><button type="button" id="pg-live-create">Live starten</button><button type="button" id="pg-live-step">+32 Ticks</button><button type="button" id="pg-live-auto">Auto Start</button><button type="button" id="pg-live-auto-stop">Auto Stop</button><button type="button" id="pg-live-input">Input zeigen</button><button type="button" id="pg-live-sandbox">Sandbox +8</button><button type="button" id="pg-live-stop">Stop</button></div><label>Live Input (JSON-Array)<textarea id="pg-live-input-values">[1,0,-1,0.5]</textarea></label><canvas id="pg-live-sandbox-canvas" width="800" height="360"></canvas><pre id="pg-live-state">Noch keine Live-Session.</pre></article>
+      <article class="playground-card"><h3>19 · CUDA Gate Compiler</h3>
+        <div class="playground-grid">
+          <label>Target SM<input id="pg-cuda-target-sm" value="sm_86"></label>
+          <label>PTX Version<input id="pg-cuda-ptx-version" value="7.0"></label>
+        </div>
+        <div class="playground-actions"><button type="button" id="pg-cuda-compile">Builder → Gate IR / PTX</button></div>
+        <small>Erzeugt nur Playground-Codeartefakte. Keine GPU-Ausführung, kein DATA/EVID, keine gemessene Beschleunigung.</small>
+        <pre id="pg-cuda-compiler-state">Noch nicht kompiliert.</pre>
+      </article>
       <article class="playground-card"><h3>18 · Meta-Nachtlauf</h3>
         <div class="playground-grid">
           <label>Stunden<input id="pg-night-hours" type="number" min="0.01" max="24" step="0.25" value="8"></label>
@@ -297,16 +308,6 @@ function buildPanels(root) {
         <div class="playground-actions"><button type="button" class="primary" id="pg-night-start">Nachtlauf starten</button><button type="button" id="pg-night-stop">Stop</button><button type="button" id="pg-night-refresh">Status</button></div>
         <small>Meta-Tasks: finden · ablegen · verknüpfen. KnowledgeBase bleibt außerhalb des SNN; PAN lernt Strategie-/Routing-Policies. Checkpoint standardmäßig alle 10 Minuten.</small>
         <pre id="pg-night-state">Kein Nachtlauf aktiv.</pre>
-      </article>
-      <article class="playground-card"><h3>19 · CUDA Gate Compiler</h3>
-        <div class="playground-grid">
-          <label>Target SM<input id="pg-cuda-target-sm" value="sm_86"></label>
-          <label>PTX Version<input id="pg-cuda-ptx-version" value="7.0"></label>
-          <label>Blockgröße<input id="pg-cuda-block-size" type="number" min="32" max="1024" step="32" value="128"></label>
-        </div>
-        <div class="playground-actions"><button type="button" id="pg-cuda-compile">Builder → Gate IR / PTX</button><button type="button" id="pg-cuda-preflight">CUDA-1 Preflight</button></div>
-        <small>Erzeugt Playground-Codeartefakte. Keine GPU-Ausführung, kein DATA/EVID und keine gemessene Beschleunigung.</small>
-        <pre id="pg-cuda-compiler-state">Noch nicht kompiliert.</pre>
       </article>
       <div class="playground-status" id="pg-status" data-state="idle">Katalog wird geladen …</div>
     </section>
@@ -585,37 +586,100 @@ function drawLiveSandbox(world){
   for(const joint of Object.values(world.joints)){const p=px(joint);ctx.fillRect(p[0]-3,p[1]-3,6,6);}
 }
 
+let liveMonitorHistory=[];
+let liveMonitorPaused=false;
+let liveMonitorWorld=null;
+
+function ensureLiveMonitor(){
+  let dialog=byId("pg-live-monitor");if(dialog)return dialog;
+  dialog=document.createElement("dialog");dialog.id="pg-live-monitor";dialog.className="pg-live-monitor";
+  dialog.innerHTML=`<header><div><span class="workspace-kicker">PAN LIVE MONITOR</span><h2>Live-Session</h2><p id="pg-live-monitor-status">Bereit</p></div><button type="button" class="pg-live-monitor-close" aria-label="Monitor schließen">×</button></header><div class="pg-live-monitor-body"><div class="pg-live-monitor-metrics"><div class="pg-live-monitor-metric"><span>Tick</span><strong id="pg-live-monitor-tick">0</strong></div><div class="pg-live-monitor-metric"><span>Spikes</span><strong id="pg-live-monitor-spikes">0</strong></div><div class="pg-live-monitor-metric"><span>Aktion</span><strong id="pg-live-monitor-action">—</strong></div><div class="pg-live-monitor-metric"><span>Reward</span><strong id="pg-live-monitor-reward">0</strong></div><div class="pg-live-monitor-metric"><span>Engine</span><strong id="pg-live-monitor-engine">—</strong></div></div><div class="pg-live-monitor-visuals"><button class="pg-live-monitor-tile" data-pg-live-expand="reset"><span>Reset</span><canvas id="pg-live-tile-reset" width="220" height="120"></canvas></button><button class="pg-live-monitor-tile" data-pg-live-expand="figure"><span>PAN-Männchen</span><canvas id="pg-live-tile-figure" width="220" height="120"></canvas></button><button class="pg-live-monitor-tile" data-pg-live-expand="raster"><span>Spike Raster</span><canvas id="pg-live-tile-raster" width="220" height="120"></canvas></button><button class="pg-live-monitor-tile" data-pg-live-expand="rate"><span>Populationsrate</span><canvas id="pg-live-tile-rate" width="220" height="120"></canvas></button><button class="pg-live-monitor-tile" data-pg-live-expand="topology"><span>Topologie · live</span><canvas id="pg-live-tile-topology" width="220" height="120"></canvas></button><button class="pg-live-monitor-tile" data-pg-live-expand="input"><span>Input</span><canvas id="pg-live-tile-input" width="220" height="120"></canvas></button><button class="pg-live-monitor-tile" data-pg-live-expand="output"><span>Output</span><canvas id="pg-live-tile-output" width="220" height="120"></canvas></button><button class="pg-live-monitor-tile" data-pg-live-expand="membrane"><span>Membranpotential</span><canvas id="pg-live-tile-membrane" width="220" height="120"></canvas></button><button class="pg-live-monitor-tile" data-pg-live-expand="spectrum"><span>Spectrum</span><canvas id="pg-live-tile-spectrum" width="220" height="120"></canvas></button><button class="pg-live-monitor-tile" data-pg-live-expand="degree"><span>Degree</span><canvas id="pg-live-tile-degree" width="220" height="120"></canvas></button></div><div class="pg-live-monitor-grid"><section class="pg-live-monitor-panel"><h3>Aktivität / Spike-Verlauf</h3><canvas id="pg-live-monitor-chart" width="760" height="260"></canvas></section><section class="pg-live-monitor-panel"><h3>Parameter</h3><pre id="pg-live-monitor-params" class="pg-live-monitor-params">—</pre></section><section class="pg-live-monitor-panel"><h3>Session</h3><pre id="pg-live-monitor-state" class="pg-live-monitor-params">—</pre></section></div><div class="pg-live-monitor-actions"><button type="button" id="pg-live-monitor-start" class="pg-monitor-primary">Start</button><button type="button" id="pg-live-monitor-pause">Pause</button><button type="button" id="pg-live-monitor-step">+32 Ticks</button><button type="button" id="pg-live-monitor-input">Input</button><button type="button" id="pg-live-monitor-stop">Stop</button><button type="button" id="pg-live-monitor-reset">Reset Ansicht</button></div></div>`;
+  document.body.append(dialog);
+  dialog.querySelector(".pg-live-monitor-close").addEventListener("click",()=>dialog.close());
+  dialog.querySelector("#pg-live-monitor-start").addEventListener("click",()=>{liveMonitorPaused=false;startLiveLoop().catch(error=>updateLiveMonitor({error:String(error.message||error)}));});
+  dialog.querySelector("#pg-live-monitor-pause").addEventListener("click",()=>{liveMonitorPaused=true;stopLiveLoop();updateLiveMonitor({status:"paused"});});
+  dialog.querySelector("#pg-live-monitor-step").addEventListener("click",()=>stepLiveSession().catch(error=>updateLiveMonitor({error:String(error.message||error)})));
+  dialog.querySelector("#pg-live-monitor-input").addEventListener("click",()=>injectLiveInput().catch(error=>updateLiveMonitor({error:String(error.message||error)})));
+  dialog.querySelector("#pg-live-monitor-stop").addEventListener("click",()=>stopLiveSession().catch(error=>updateLiveMonitor({error:String(error.message||error)})));
+  dialog.querySelector("#pg-live-monitor-reset").addEventListener("click",()=>{liveMonitorHistory=[];drawLiveMonitorVisuals({});updateLiveMonitor({status:"reset"});});
+  dialog.querySelectorAll("[data-pg-live-expand]").forEach(tile=>tile.addEventListener("click",()=>{if(tile.dataset.pgLiveExpand==="reset"){resetForm();liveMonitorHistory=[];drawLiveMonitorVisuals({});return;}openLiveZoom(tile.dataset.pgLiveExpand);}));
+  ensureLiveZoom();
+  return dialog;
+}
+
+function drawLiveMonitorChart(){
+  const canvas=byId("pg-live-monitor-chart"),ctx=canvas?.getContext("2d");if(!canvas||!ctx)return;
+  ctx.clearRect(0,0,canvas.width,canvas.height);ctx.strokeStyle=getComputedStyle(document.body).getPropertyValue("--accent")||"#b23a1a";ctx.lineWidth=2;ctx.beginPath();
+  const max=Math.max(1,...liveMonitorHistory.map(item=>item.spikes));liveMonitorHistory.forEach((item,index)=>{const x=10+index/Math.max(1,liveMonitorHistory.length-1)*(canvas.width-20);const y=canvas.height-10-(item.spikes/max)*(canvas.height-20);if(index===0)ctx.moveTo(x,y);else ctx.lineTo(x,y);});ctx.stroke();
+}
+
+const LIVE_TILE_TITLES={reset:"Live-Ansicht zurückgesetzt",figure:"PAN-Männchen",raster:"Spike Raster",rate:"Populationsrate",topology:"Topologie",input:"Input-Kanäle",output:"Output-Aktionen",membrane:"Membranpotential",spectrum:"Spectrum",degree:"Degree-Verteilung"};
+function ensureLiveZoom(){
+  if(byId("pg-live-zoom"))return;
+  const dialog=document.createElement("dialog");dialog.id="pg-live-zoom";dialog.className="pg-live-zoom";dialog.innerHTML=`<header><strong id="pg-live-zoom-title">Live-Grafik</strong><button type="button" id="pg-live-zoom-close" aria-label="Grafik schließen">×</button></header><canvas id="pg-live-zoom-canvas" width="1100" height="620"></canvas>`;document.body.append(dialog);dialog.querySelector("#pg-live-zoom-close").addEventListener("click",()=>dialog.close());
+}
+function openLiveZoom(kind){
+  ensureLiveZoom();const dialog=byId("pg-live-zoom"),source=byId(`pg-live-tile-${kind}`),target=byId("pg-live-zoom-canvas");if(!dialog||!source||!target)return;byId("pg-live-zoom-title").textContent=LIVE_TILE_TITLES[kind]||kind;const ctx=target.getContext("2d");ctx.clearRect(0,0,target.width,target.height);ctx.drawImage(source,0,0,target.width,target.height);dialog.showModal();
+}
+function drawTileSeries(id,values,color){
+  const canvas=byId(id),ctx=canvas?.getContext("2d");if(!canvas||!ctx)return;ctx.clearRect(0,0,canvas.width,canvas.height);ctx.strokeStyle=color||getComputedStyle(document.body).getPropertyValue("--accent")||"#b23a1a";ctx.lineWidth=2;ctx.beginPath();const data=values.length?values:[0];const max=Math.max(1,...data);data.forEach((value,index)=>{const x=5+index/Math.max(1,data.length-1)*(canvas.width-10);const y=canvas.height-5-(Number(value)||0)/max*(canvas.height-10);if(index===0)ctx.moveTo(x,y);else ctx.lineTo(x,y);});ctx.stroke();
+}
+function drawLiveMonitorVisuals(payload={}){
+  const reset=byId("pg-live-tile-reset"),resetCtx=reset?.getContext("2d");if(reset&&resetCtx){resetCtx.clearRect(0,0,reset.width,reset.height);resetCtx.strokeStyle=getComputedStyle(document.body).getPropertyValue("--accent")||"#b23a1a";resetCtx.lineWidth=6;resetCtx.beginPath();resetCtx.arc(reset.width/2,reset.height/2,28,.5,Math.PI*1.85);resetCtx.stroke();resetCtx.beginPath();resetCtx.moveTo(160,35);resetCtx.lineTo(190,35);resetCtx.lineTo(177,58);resetCtx.stroke();}
+  const spikes=Array.isArray(payload.recent_spikes)?payload.recent_spikes:[];const counts=Array.isArray(payload.output_counts)?payload.output_counts:[];const degrees=Array.isArray(payload.degree_values)?payload.degree_values:counts;const history=liveMonitorHistory.map(item=>item.spikes);drawTileSeries("pg-live-tile-rate",history);drawTileSeries("pg-live-tile-spectrum",history.map((value,index)=>Math.abs(Math.sin(index*.45))*value));drawTileSeries("pg-live-tile-degree",degrees.length?degrees:[0],getComputedStyle(document.body).getPropertyValue("--indigo")||"#2f4a7a");
+  const raster=byId("pg-live-tile-raster"),rasterCtx=raster?.getContext("2d");if(raster&&rasterCtx){rasterCtx.clearRect(0,0,raster.width,raster.height);rasterCtx.fillStyle=getComputedStyle(document.body).getPropertyValue("--accent")||"#b23a1a";spikes.slice(-160).forEach(item=>{rasterCtx.fillRect((Number(item.tick)||0)%100/100*raster.width,(Number(item.neuron_id)||0)%128/128*raster.height,2,2);});}
+  const membrane=byId("pg-live-tile-membrane"),mctx=membrane?.getContext("2d");if(membrane&&mctx){mctx.clearRect(0,0,membrane.width,membrane.height);mctx.strokeStyle=getComputedStyle(document.body).getPropertyValue("--moss")||"#2f5d47";mctx.lineWidth=2;const mean=Number(payload.mean_v??-65),min=Number(payload.min_v??-70),max=Number(payload.max_v??30);const y=membrane.height-5-(mean-min)/Math.max(1,max-min)*(membrane.height-10);mctx.beginPath();mctx.moveTo(5,y);mctx.lineTo(membrane.width-5,y);mctx.stroke();}
+  const inputValues=[Number(payload.input_active_neurons||0),Number(payload.input_peak||0)];drawTileSeries("pg-live-tile-input",inputValues,getComputedStyle(document.body).getPropertyValue("--accent")||"#b23a1a");drawTileSeries("pg-live-tile-output",counts.length?counts:[0],getComputedStyle(document.body).getPropertyValue("--moss")||"#2f5d47");
+  const topology=byId("pg-live-tile-topology"),tctx=topology?.getContext("2d"),topologyData=payload.topology; if(topology&&tctx){tctx.clearRect(0,0,topology.width,topology.height);const coords=topologyData?.coordinates||[],edges=topologyData?.edges||[];if(coords.length){const xs=coords.map(point=>Number(point[0]||0)),ys=coords.map(point=>Number(point[1]??point[2]??0)),minX=Math.min(...xs),maxX=Math.max(...xs),minY=Math.min(...ys),maxY=Math.max(...ys),scaleX=value=>(value-minX)/Math.max(1e-9,maxX-minX)*(topology.width-12)+6,scaleY=value=>(value-minY)/Math.max(1e-9,maxY-minY)*(topology.height-12)+6;tctx.strokeStyle=getComputedStyle(document.body).getPropertyValue("--rule-3")||"#777";tctx.globalAlpha=.25;edges.slice(0,600).forEach(edge=>{const source=coords[edge[0]],target=coords[edge[1]];if(!source||!target)return;tctx.beginPath();tctx.moveTo(scaleX(Number(source[0]||0)),scaleY(Number(source[1]??source[2]??0)));tctx.lineTo(scaleX(Number(target[0]||0)),scaleY(Number(target[1]??target[2]??0)));tctx.stroke();});tctx.globalAlpha=.9;tctx.fillStyle=getComputedStyle(document.body).getPropertyValue("--indigo")||"#2f4a7a";coords.forEach(point=>tctx.fillRect(scaleX(Number(point[0]||0))-1,scaleY(Number(point[1]??point[2]??0))-1,3,3));}}
+  if(payload.world)liveMonitorWorld=payload.world;drawLiveMonitorFigure(liveMonitorWorld,"pg-live-tile-figure");
+}
+
+function drawLiveMonitorFigure(world,targetId="pg-live-tile-figure"){
+  const canvas=byId(targetId),ctx=canvas?.getContext("2d");if(!canvas||!ctx)return;ctx.clearRect(0,0,canvas.width,canvas.height);ctx.strokeStyle=getComputedStyle(document.body).getPropertyValue("--indigo")||"#2f4a7a";ctx.fillStyle=getComputedStyle(document.body).getPropertyValue("--accent")||"#b23a1a";ctx.lineWidth=4;
+  const joints=world?.joints||{};const px=point=>[canvas.width/2+Number(point?.x||0)*120,canvas.height-35-Number(point?.y||0)*110];const links=[["head","neck"],["neck","hip"],["neck","shoulder_l"],["neck","shoulder_r"],["hip","knee_l"],["hip","knee_r"],["knee_l","foot_l"],["knee_r","foot_r"]];ctx.beginPath();links.forEach(([a,b])=>{if(!joints[a]||!joints[b])return;const pa=px(joints[a]),pb=px(joints[b]);ctx.moveTo(pa[0],pa[1]);ctx.lineTo(pb[0],pb[1]);});ctx.stroke();Object.values(joints).forEach(joint=>{const p=px(joint);ctx.beginPath();ctx.arc(p[0],p[1],5,0,Math.PI*2);ctx.fill();});
+}
+
+function updateLiveMonitor(payload={}){
+  const state=payload.state||payload;const tick=Number(state.tick??payload.tick??0);const spikes=Number(state.total_spikes??payload.total_spikes??0);const actions=payload.actions||state.actions||[];const rewards=payload.rewards||state.rewards||[];
+  if(Number.isFinite(spikes)){liveMonitorHistory.push({tick,spikes});if(liveMonitorHistory.length>120)liveMonitorHistory.shift();}
+  const set=(id,value)=>{const node=byId(id);if(node)node.textContent=String(value);};set("pg-live-monitor-tick",tick);set("pg-live-monitor-spikes",spikes);set("pg-live-monitor-action",actions.length?actions[actions.length-1]:"—");set("pg-live-monitor-reward",rewards.length?Number(rewards[rewards.length-1]).toFixed(3):"0");set("pg-live-monitor-engine",state.execution?.current_engine||payload.execution?.current_engine||"—");set("pg-live-monitor-status",payload.error||((liveMonitorPaused||!liveLoopTimer)?"Pausiert":"Läuft"));
+  const params={session_id:liveSessionId,tick,pan_bias_current:byId("pg-pan-bias-current")?.value,feedback_gain:byId("pg-pan-feedback-gain")?.value,learning_rate:byId("pg-behavior-lr")?.value,epsilon:byId("pg-behavior-epsilon")?.value,edge_budget:byId("pg-edges")?.value};const paramsNode=byId("pg-live-monitor-params");if(paramsNode)paramsNode.textContent=JSON.stringify(params,null,2);const stateNode=byId("pg-live-monitor-state");if(stateNode)stateNode.textContent=JSON.stringify({state_digest:state.state_digest||payload.state_digest||null,input_queue_depth:state.input_queue_depth??payload.input_queue_depth??0,learning:state.learning||payload.learning||null},null,2);drawLiveMonitorChart();drawLiveMonitorVisuals(payload);drawLiveMonitorFigure(payload.world||state.world||null);
+}
+
 async function createLiveSession(){
   const payload={...formPayload(),neuron_model:"pan_adex_5d",pan_enabled:true,thalamic_relay_threshold:0,pan_bias_current:Number(byId("pg-pan-bias-current").value),behavior_target_mode:byId("pg-behavior-target-mode").value};
-  const result=await apiPost("/api/playground/live/create",payload);liveSessionId=result.session_id;byId("pg-live-state").textContent=JSON.stringify(result,null,2);
+  const result=await apiPost("/api/playground/live/create",payload);liveSessionId=result.session_id;liveMonitorHistory=[];liveMonitorWorld=null;const monitor=ensureLiveMonitor();if(!monitor.open)monitor.showModal();byId("pg-live-state").textContent=JSON.stringify(result,null,2);updateLiveMonitor(result.state||result);
 }
 async function stepLiveSession(){
   if(!liveSessionId)throw new Error("Zuerst Live-Session starten.");
-  const result=await apiPost(`/api/playground/live/${encodeURIComponent(liveSessionId)}/step`,{ticks:32});byId("pg-live-state").textContent=JSON.stringify(result,null,2);
+  const result=await apiPost(`/api/playground/live/${encodeURIComponent(liveSessionId)}/step`,{ticks:32});
+  try{const sandbox=await apiPost(`/api/playground/live/${encodeURIComponent(liveSessionId)}/sandbox`,{ticks:8});result.world=sandbox.world;liveMonitorWorld=sandbox.world;}catch{}
+  byId("pg-live-state").textContent=JSON.stringify(result,null,2);updateLiveMonitor(result);
 }
 async function startLiveLoop(){
   if(!liveSessionId)throw new Error("Zuerst Live-Session starten.");
   if(liveLoopTimer)return;
+  liveMonitorPaused=false;if(!byId("pg-live-monitor")?.open)ensureLiveMonitor().showModal();updateLiveMonitor({status:"running"});
   liveLoopTimer=setInterval(()=>{stepLiveSession().catch(error=>{byId("pg-live-state").textContent=String(error.message||error);stopLiveLoop();});},250);
 }
 function stopLiveLoop(){
-  if(liveLoopTimer){clearInterval(liveLoopTimer);liveLoopTimer=null;}
+  if(liveLoopTimer){clearInterval(liveLoopTimer);liveLoopTimer=null;liveMonitorPaused=true;updateLiveMonitor({status:"paused"});}
 }
 
 async function injectLiveInput(){
   if(!liveSessionId)throw new Error("Zuerst Live-Session starten.");
   let values;try{values=JSON.parse(byId("pg-live-input-values").value);}catch{throw new Error("Live Input muss gültiges JSON sein.");}
   if(!Array.isArray(values))throw new Error("Live Input muss ein Array sein.");
-  const result=await apiPost(`/api/playground/live/${encodeURIComponent(liveSessionId)}/input`,{values,duration_ticks:16,gain:25});byId("pg-live-state").textContent=JSON.stringify(result,null,2);
+  const result=await apiPost(`/api/playground/live/${encodeURIComponent(liveSessionId)}/input`,{values,duration_ticks:16,gain:25});byId("pg-live-state").textContent=JSON.stringify(result,null,2);updateLiveMonitor(result);
 }
 async function stepLiveSandbox(){
   if(!liveSessionId)throw new Error("Zuerst Live-Session starten.");
-  const result=await apiPost(`/api/playground/live/${encodeURIComponent(liveSessionId)}/sandbox`,{ticks:8});byId("pg-live-state").textContent=JSON.stringify(result,null,2);drawLiveSandbox(result.world);
+  const result=await apiPost(`/api/playground/live/${encodeURIComponent(liveSessionId)}/sandbox`,{ticks:8});liveMonitorWorld=result.world||null;byId("pg-live-state").textContent=JSON.stringify(result,null,2);drawLiveSandbox(result.world);updateLiveMonitor(result);
 }
 async function stopLiveSession(){
   stopLiveLoop();
   if(!liveSessionId)return;
-  const result=await apiPost(`/api/playground/live/${encodeURIComponent(liveSessionId)}/stop`,{});byId("pg-live-state").textContent=JSON.stringify(result,null,2);liveSessionId=null;
+  const result=await apiPost(`/api/playground/live/${encodeURIComponent(liveSessionId)}/stop`,{});byId("pg-live-state").textContent=JSON.stringify(result,null,2);updateLiveMonitor(result);liveSessionId=null;liveMonitorPaused=true;
 }
 
 function renderNightStatus(result){
@@ -675,19 +739,6 @@ async function compileCudaGates(){
     ptx_preview:String(result.ptx||"").split("\n").slice(0,80).join("\n"),
     cuda_preview:String(result.cuda_source||"").split("\n").slice(0,80).join("\n"),
   },null,2);
-  return result;
-}
-
-async function runCudaPreflight(){
-  const node=byId("pg-cuda-compiler-state");
-  if(node)node.textContent="CUDA-1 Preflight läuft …";
-  const result=await apiPost("/api/playground/cuda/preflight",{
-    ...formPayload(),
-    target_sm:byId("pg-cuda-target-sm")?.value||"sm_86",
-    ptx_version:byId("pg-cuda-ptx-version")?.value||"7.0",
-    block_size:Number(byId("pg-cuda-block-size")?.value||128),
-  });
-  if(node)node.textContent=JSON.stringify(result,null,2);
   return result;
 }
 
@@ -822,12 +873,12 @@ function renderCatalog(catalog){
 export async function initPlayground(){
   const root=byId("tab-playground");if(!root)return;
   injectStyles();ensurePermanentBoundary(root);buildPanels(root);
-  byId("pg-run")?.addEventListener("click",runSession);byId("pg-cuda-compile")?.addEventListener("click",()=>compileCudaGates().catch(error=>{const node=byId("pg-cuda-compiler-state");if(node)node.textContent=String(error.message||error);}));byId("pg-cuda-preflight")?.addEventListener("click",()=>runCudaPreflight().catch(error=>{const node=byId("pg-cuda-compiler-state");if(node)node.textContent=String(error.message||error);}));byId("pg-user-preset-apply")?.addEventListener("click",applyUserPreset);byId("pg-user-preset-save")?.addEventListener("click",saveUserPreset);byId("pg-user-preset-delete")?.addEventListener("click",deleteUserPreset);byId("pg-user-preset-select")?.addEventListener("change",()=>{renderUserPresetOptions();applyUserPreset();});byId("pg-robustness")?.addEventListener("click",runRobustness);byId("pg-reset")?.addEventListener("click",resetForm);byId("pg-live-create")?.addEventListener("click",()=>createLiveSession().catch(error=>byId("pg-live-state").textContent=String(error.message||error)));byId("pg-live-step")?.addEventListener("click",()=>stepLiveSession().catch(error=>byId("pg-live-state").textContent=String(error.message||error)));byId("pg-live-auto")?.addEventListener("click",()=>startLiveLoop().catch(error=>byId("pg-live-state").textContent=String(error.message||error)));byId("pg-live-auto-stop")?.addEventListener("click",stopLiveLoop);byId("pg-live-input")?.addEventListener("click",()=>injectLiveInput().catch(error=>byId("pg-live-state").textContent=String(error.message||error)));byId("pg-live-sandbox")?.addEventListener("click",()=>stepLiveSandbox().catch(error=>byId("pg-live-state").textContent=String(error.message||error)));byId("pg-live-stop")?.addEventListener("click",()=>stopLiveSession().catch(error=>byId("pg-live-state").textContent=String(error.message||error)));byId("pg-night-start")?.addEventListener("click",()=>startNightRun().catch(error=>byId("pg-night-state").textContent=String(error.message||error)));byId("pg-night-stop")?.addEventListener("click",()=>stopNightRun().catch(error=>byId("pg-night-state").textContent=String(error.message||error)));byId("pg-night-refresh")?.addEventListener("click",()=>refreshNightStatus().catch(error=>byId("pg-night-state").textContent=String(error.message||error)));
+  byId("pg-run")?.addEventListener("click",runSession);byId("pg-cuda-compile")?.addEventListener("click",()=>compileCudaGates().catch(error=>{const node=byId("pg-cuda-compiler-state");if(node)node.textContent=String(error.message||error);}));byId("pg-user-preset-apply")?.addEventListener("click",applyUserPreset);byId("pg-user-preset-save")?.addEventListener("click",saveUserPreset);byId("pg-user-preset-delete")?.addEventListener("click",deleteUserPreset);byId("pg-user-preset-select")?.addEventListener("change",()=>{renderUserPresetOptions();applyUserPreset();});byId("pg-robustness")?.addEventListener("click",runRobustness);byId("pg-reset")?.addEventListener("click",resetForm);byId("pg-live-create")?.addEventListener("click",()=>createLiveSession().catch(error=>byId("pg-live-state").textContent=String(error.message||error)));byId("pg-live-step")?.addEventListener("click",()=>stepLiveSession().catch(error=>byId("pg-live-state").textContent=String(error.message||error)));byId("pg-live-auto")?.addEventListener("click",()=>startLiveLoop().catch(error=>byId("pg-live-state").textContent=String(error.message||error)));byId("pg-live-auto-stop")?.addEventListener("click",stopLiveLoop);byId("pg-live-input")?.addEventListener("click",()=>injectLiveInput().catch(error=>byId("pg-live-state").textContent=String(error.message||error)));byId("pg-live-sandbox")?.addEventListener("click",()=>stepLiveSandbox().catch(error=>byId("pg-live-state").textContent=String(error.message||error)));byId("pg-live-stop")?.addEventListener("click",()=>stopLiveSession().catch(error=>byId("pg-live-state").textContent=String(error.message||error)));byId("pg-night-start")?.addEventListener("click",()=>startNightRun().catch(error=>byId("pg-night-state").textContent=String(error.message||error)));byId("pg-night-stop")?.addEventListener("click",()=>stopNightRun().catch(error=>byId("pg-night-state").textContent=String(error.message||error)));byId("pg-night-refresh")?.addEventListener("click",()=>refreshNightStatus().catch(error=>byId("pg-night-state").textContent=String(error.message||error)));
   renderUserPresetOptions();
   try{renderCatalog(await apiGet("/api/playground/catalog"));renderUserPresetOptions();resetForm();}catch(error){const status=byId("pg-status");status.dataset.state="error";status.textContent=`Katalog nicht verfügbar: ${error.message}`;}
   byId("playground-builder")?.addEventListener("input", updateDefaultHints);
   byId("playground-builder")?.addEventListener("change", updateDefaultHints);
   await refreshSessions();
   try{await refreshNightStatus();}catch{ /* night manager is optional during partial deployments */ }
-  window.MHRNPlayground={run:runSession,runRobustness,compileCudaGates,runCudaPreflight,refreshSessions,get catalog(){return catalogState;},get lastResult(){return lastResult;}};
+  window.MHRNPlayground={run:runSession,runRobustness,compileCudaGates,refreshSessions,get catalog(){return catalogState;},get lastResult(){return lastResult;}};
 }
