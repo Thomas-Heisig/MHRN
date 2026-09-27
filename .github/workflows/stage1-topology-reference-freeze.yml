@@ -38,10 +38,42 @@ jobs:
       - name: Verify clean freeze source
         run: test -z "$(git status --porcelain)"
 
+      - name: Check freeze eligibility
+        id: eligibility
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
+          prereg_path = Path("research/preregistrations/PREREG-S1-TOPO-REFERENCE-R1.json")
+          audit_path = Path("research/audits/STAGE1_TOPOLOGY_REFERENCE_MECHANISM_AUDIT_20260927.json")
+          parity_path = Path("research/calibrations/CAL-S1-TOPO-REFERENCE-INTEGRATOR-R1/result.json")
+
+          prereg = json.loads(prereg_path.read_text(encoding="utf-8"))
+          audit = json.loads(audit_path.read_text(encoding="utf-8")) if audit_path.exists() else {}
+          parity = json.loads(parity_path.read_text(encoding="utf-8")) if parity_path.exists() else {}
+          multi = parity.get("multi_tick", {}) if isinstance(parity, dict) else {}
+
+          eligible = (
+              prereg.get("status") == "DRAFT_PRE_FREEZE_GATES_PENDING"
+              and prereg.get("execution_authorized") is False
+              and audit.get("pass") is True
+              and parity.get("pass") is True
+              and multi.get("pass") is True
+              and multi.get("contains_spike") is True
+          )
+          print(f"eligible={eligible}")
+          with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as stream:
+              stream.write(f"eligible={'true' if eligible else 'false'}\n")
+          PY
+
       - name: Freeze scientific reference contract only
+        if: steps.eligibility.outputs.eligible == 'true'
         run: python scripts/freeze_stage1_topology_reference_r1.py
 
       - name: Assert evaluation remains unauthorized
+        if: steps.eligibility.outputs.eligible == 'true'
         run: |
           python - <<'PY'
           import json
@@ -56,6 +88,7 @@ jobs:
           PY
 
       - name: Commit immutable reference contract freeze
+        if: steps.eligibility.outputs.eligible == 'true'
         shell: bash
         run: |
           git config user.name "github-actions[bot]"
@@ -66,3 +99,7 @@ jobs:
           git diff --cached --check
           git commit -m "research(stage1): freeze topology reference contract [stage1-ref-freeze]"
           git push origin HEAD:develop
+
+      - name: Report pending gates without failing
+        if: steps.eligibility.outputs.eligible != 'true'
+        run: echo "Reference freeze skipped because one or more pre-freeze gates are still pending."
