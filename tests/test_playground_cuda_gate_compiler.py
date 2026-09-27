@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from pathlib import Path
+
 import pytest
 
 from src.playground.cuda import (
@@ -391,3 +393,20 @@ def test_nontrivial_gate_inputs_exercise_current_action_feedback_and_rng() -> No
         0 <= int(action) < int(bundle.manifest["kernel_abi"]["action_space_size"])
         for action in outputs["action"]
     )
+
+
+
+def test_cuda_hardware_smoke_reports_measured_memory_recovery_contract() -> None:
+    runtime = (
+        Path(__file__).resolve().parents[1]
+        / "src"
+        / "playground"
+        / "cuda"
+        / "runtime.py"
+    ).read_text(encoding="utf-8")
+
+    assert "cuMemGetInfo_v2" in runtime
+    assert '"memory_leak_measured": True' in runtime
+    assert '"free_before_bytes"' in runtime
+    assert '"free_after_bytes"' in runtime
+    assert '"free_delta_bytes"' in runtime
