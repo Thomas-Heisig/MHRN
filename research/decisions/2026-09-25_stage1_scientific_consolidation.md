@@ -33,9 +33,9 @@ These reviews satisfy the **human-review subgate** for Stage-1 maturity. They do
 
 Current status: **BLOCKED_CURRENT_EVIDENCE_ENGINE_CONTRACT**.
 
-The existing V2/R1 DATA are not directly promotion-eligible under the current EvidenceEngine contract because no canonical claim ID is registered for `RQ-SNN-003 / H-SNN-003-B`; the historical manifests predate the current promotion contract and do not contain the required `validity.valid`, zero runtime/fatal error counters, canonical `git.dirty=false`, `provenance_digests` and matching `source_freeze_sha`; and the completed Human Reviews are interpretation decisions rather than a canonical `human_review.json` decision in the `supports | refutes | inconclusive` schema. Automatic promotion is disabled.
+The existing V2/R1 DATA are still not directly promotion-eligible under the current EvidenceEngine contract. Scoped canonical claims are now registered as `CLAIM-S1-TOPO-001` and `CLAIM-S1-TEMP-001`, but the historical manifests predate the current promotion contract and do not contain the required `validity.valid`, zero runtime/fatal error counters, canonical `git.dirty=false`, `provenance_digests` and matching `source_freeze_sha`; and the completed Human Reviews are interpretation decisions rather than a canonical `human_review.json` decision in the `supports | refutes | inconclusive` schema. Automatic promotion is disabled.
 
-No missing historical fields or stronger human decisions are invented retroactively. A future EVID path requires a separately defined scoped claim and a promotion-eligible prospective execution/review path under the current EvidenceEngine contract.
+No missing historical fields or stronger human decisions are invented retroactively. The scoped claims are now defined; the remaining EVID path requires promotion-eligible prospective executions and canonical reviews under the current EvidenceEngine contract.
 
 ## Second Stage-1 functional line
 
@@ -49,7 +49,7 @@ Deterministic publication projection for Edition 1.8 was regenerated after this 
 
 ## Remaining Stage-1 work
 
-1. define scoped claim IDs and prospective EvidenceEngine-compatible promotion paths for the topology and Temporal-Order lines if EVID registration is desired;
+1. execute prospective EvidenceEngine-compatible promotion paths for the registered topology and Temporal-Order claims and complete canonical human review before any EVID registration;
 2. obtain independently authored / independently controlled replication;
 3. broaden task, perturbation and scaling regimes without conflating them with the existing baseline;
 4. keep `RQ-5D-005 / H-5D-005-A` separate and open until its larger geometry-specific programme is executed.
