@@ -31,6 +31,46 @@ def test_playground_api_is_routed_without_research_promotion() -> None:
     assert "human_review" not in api
 
 
+def test_playground_exposes_cuda_1_3_hardware_console() -> None:
+    module = (STATIC / "frontend" / "modules" / "playground.js").read_text(
+        encoding="utf-8"
+    )
+    api = (ROOT / "src" / "dashboard" / "playground_api.py").read_text(
+        encoding="utf-8"
+    )
+
+    for marker in (
+        "CUDA-1.0",
+        "CUDA-1.1",
+        "CUDA-1.2",
+        "CUDA-1.3",
+        "CUDA-1.4",
+        "CUDA-1.5",
+        "CUDA-1.6",
+        'id="pg-cuda-status"',
+        'id="pg-cuda-reference"',
+        'id="pg-cuda-preflight"',
+        'id="pg-cuda-smoke"',
+        'id="pg-cuda-rng"',
+        'id="pg-cuda-tolerance"',
+        'id="pg-cuda-rng-samples"',
+        '"/api/playground/cuda/status"',
+        '"/api/playground/cuda/reference"',
+        '"/api/playground/cuda/preflight"',
+        '"/api/playground/cuda/smoke"',
+        '"/api/playground/cuda/rng-parity"',
+        "runCudaSmoke",
+        "runCudaRngParity",
+    ):
+        assert marker in module or marker in api
+
+    assert "CUDA-1.4–1.6" in module
+    assert "Sandbox, Physik, Sensorik, Aktorik, Posture und Reward" in module
+    assert "run_gate_hardware_smoke" in api
+    assert "run_gate_rng_parity" in api
+    assert "cuda_runtime_status" in api
+
+
 def test_playground_api_exposes_temporary_live_cleanup() -> None:
     api = (ROOT / "src" / "dashboard" / "playground_api.py").read_text(encoding="utf-8")
     daemon = (ROOT / "src" / "playground" / "pan" / "live_session.py").read_text(
