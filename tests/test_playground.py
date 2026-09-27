@@ -1137,6 +1137,7 @@ def test_live_pan_session_keeps_state_across_chunks() -> None:
     assert "recent_spikes" in second
     assert "input_active_neurons" in second
     assert "output_counts" in second
+    assert live.snapshot()["topology"]["edge_count"] == len(live.topology.edges)
 
 
 def test_live_pan_session_accepts_external_vector_input() -> None:
