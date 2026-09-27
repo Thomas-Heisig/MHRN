@@ -17,8 +17,8 @@ from ..models import PlaygroundConfig, Topology
 from ..neural_io import NeuralIOInterface
 from ..pan import (
     BehavioralLearningEngine,
-    CUDAMemoryPool,
     CorticalOrganization,
+    CUDAMemoryPool,
     DualModeScheduler,
     GrowthEngine,
     ModeSwitcher,
