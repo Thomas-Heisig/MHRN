@@ -282,6 +282,7 @@ test("Release workspace renders the documentation timeline", async ({ page }) =>
   page.on("pageerror", (error) => console.log(`[pageerror] ${error.stack || error.message}`));
   page.on("console", (message) => { if (message.type() === "error") console.log(`[console] ${message.text()}`); });
   await openDashboard(page);
+  console.log(`[module-check] ${JSON.stringify(await page.evaluate(async () => { const source = await (await fetch("/scientific-progress.js")).text(); const withoutDirectory = source.replace(/function directoryEntryPoint[\s\S]*?\n}\n\nfunction sourceMarkup/, "function sourceMarkup"); const withoutSource = source.replace(/function sourceMarkup[\s\S]*?\n}\n\nfunction setVisible/, "function setVisible"); const parse = (value) => { try { new Function(value); return "ok"; } catch (error) { return error.message; } }; return { full: parse(source), withoutDirectory: parse(withoutDirectory), withoutSource: parse(withoutSource) }; }))}`);
   await selectRoute(page, "release", "timeline");
   await expect(page.locator("#release-timeline-list .timeline-entry")).toHaveCount(1);
   await expect(page.locator("#release-timeline-list")).toContainText("Release timeline restoration");
