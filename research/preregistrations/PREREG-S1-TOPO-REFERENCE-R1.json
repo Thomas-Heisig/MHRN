@@ -1,0 +1,304 @@
+{
+  "schema_version": 1,
+  "preregistration_id": "PREREG-S1-TOPO-REFERENCE-R1",
+  "stage": 1,
+  "research_question": "RQ-SNN-003",
+  "hypothesis": "H-SNN-003-B",
+  "claim_id": "CLAIM-S1-TOPO-001",
+  "protocol": "stage1_topology_cross_implementation_reference_r1",
+  "mode": "PROSPECTIVE_CROSS_IMPLEMENTATION_PARTIAL_REPLICATION",
+  "status": "DRAFT_BEFORE_REFERENCE_IMPLEMENTATION",
+  "execution_authorized": false,
+  "scientific_evidence": false,
+  "automatic_evidence_promotion": false,
+  "replication_credit_target": "partial_only",
+  "maturity_target_if_successful": {
+    "independent_replication_component": "partial",
+    "contribution": 0.075,
+    "stage1_maturity": "85% -> 92.5%",
+    "full_external_replication_still_required_for_100_percent": true
+  },
+  "independence_contract": {
+    "framework": "Brian2",
+    "framework_version": "2.10.1",
+    "python_version": "3.13",
+    "implementation_location": "reference/stage1_topology_brian2/",
+    "separate_package_required": true,
+    "forbidden_import_prefixes": [
+      "src",
+      "scripts.run_stage1_topology",
+      "research"
+    ],
+    "forbidden_runtime_dependencies": [
+      "MHRN NeuralNetwork",
+      "MHRN Neuron",
+      "MHRN Synapse",
+      "MHRN topology builders",
+      "MHRN experiment runner modules"
+    ],
+    "allowed_shared_inputs": [
+      "frozen numeric neuron/synapse/stimulus translation contract from this preregistration",
+      "frozen topology shapes and graph rules described textually in this preregistration",
+      "evaluation seed list"
+    ],
+    "runner_blinding": "The reference runner must not contain or load the canonical MHRN effect sizes, equivalence bounds, EVID files or historical experiment statistics. Replication classification is performed only by a separate verifier after raw reference DATA are persisted.",
+    "authorship_limit": "The implementation remains under the same project leadership and therefore can earn only partial cross-implementation replication credit, never full independent external replication."
+  },
+  "source_target": {
+    "canonical_experiment": "EXP-S1-TOPO-PROMO-R1-20260927",
+    "canonical_evidence": "EVID-2026-19",
+    "canonical_operating_envelope": {
+      "neurons": 64,
+      "edges": 246,
+      "dt_ms": 1,
+      "delay_ticks": 1,
+      "synaptic_weight": 55,
+      "stimulus_current": 100,
+      "stimulus_ticks": 1,
+      "evaluation_ticks": 128,
+      "auc_window_ticks": 32,
+      "input_labels": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "output_labels": [
+        60,
+        61,
+        62,
+        63
+      ]
+    },
+    "conditions": {
+      "1d": [
+        64,
+        1,
+        1,
+        1,
+        1
+      ],
+      "2d": [
+        8,
+        8,
+        1,
+        1,
+        1
+      ],
+      "3d": [
+        4,
+        4,
+        4,
+        1,
+        1
+      ],
+      "5d": [
+        4,
+        2,
+        2,
+        2,
+        2
+      ],
+      "5d_shuffled": [
+        4,
+        2,
+        2,
+        2,
+        2
+      ],
+      "random_graph": [
+        4,
+        2,
+        2,
+        2,
+        2
+      ]
+    }
+  },
+  "translation_contract": {
+    "neuron_model": "Izhikevich 2003 regular-spiking state variables v,u",
+    "initial_state": {
+      "v": -65,
+      "u": -13
+    },
+    "parameters": {
+      "a": 0.02,
+      "b": 0.2,
+      "c": -65,
+      "d": 8,
+      "threshold_mV": 30
+    },
+    "integration": "At each 1 ms tick, use the MHRN canonical two-half-Euler update for v followed by one Euler update for u: v += 0.5*(0.04*v^2+5*v+140-u+I), repeated twice; u += a*(b*v-u). A spike is detected after integration when v>=30, then reset v=c and u=u+d.",
+    "adaptation_and_secondary_mechanisms": "The reference must reproduce the effective Stage-1 configuration used by the canonical MHRN run. Any threshold adaptation, homeostasis, energy or trace mechanism that can alter spike timing must be either translated explicitly or demonstrated by source-bound configuration to be observationally inert for this experiment before freeze. No silent omission is allowed.",
+    "synapses": "Current-based excitatory events of fixed weight 55.0 with exactly one-tick delay. No plasticity during the run.",
+    "tick_order": "External current and due synaptic events are combined for the current tick before neuron integration; spikes generated in a tick schedule outgoing events for the future delivery tick.",
+    "stimulus": "At tick 0 only, inject current 100.0 into logical labels 0,1,2,3.",
+    "topology_generation": {
+      "coordinate_order": "canonical lexicographic product order of the declared 5D shape",
+      "future_only_edges": true,
+      "out_degree_cap": 4,
+      "edge_budget": 246,
+      "geometric_rule": "For each source label, connect to the up to four future labels with smallest normalized Euclidean coordinate distance; ties are resolved by a frozen seed-derived deterministic tie key, then label.",
+      "5d_shuffled": "Shuffle coordinate-to-label assignment using the frozen reference implementation's independently specified deterministic PRNG mapping before applying the same geometric edge rule.",
+      "random_graph": "For each source, choose the same number of future targets uniformly without replacement using the frozen reference PRNG mapping.",
+      "self_connections": false,
+      "parallel_connections": false
+    },
+    "metric_translation": {
+      "active_neuron": "a neuron that emitted at least one spike by the end of the evaluated tick",
+      "final_active_fraction": "number of ever-active neurons divided by 64",
+      "activation_auc_0_32": "sum of cumulative ever-active-neuron fraction over ticks 0..31 inclusive",
+      "first_output_latency_censored": "first tick with any spike from labels 60..63; if absent use the frozen censor sentinel 129",
+      "delivered_events": "count of synaptic spike events delivered to postsynaptic neurons",
+      "total_spikes": "total emitted spikes across all neurons"
+    },
+    "deviation_policy": "Any discovered semantic mismatch that could change spike timing, event delivery or registered endpoints blocks execution and requires a new preregistration revision before reference DATA are generated."
+  },
+  "evaluation": {
+    "seeds": [
+      1200021,
+      1200022,
+      1200023,
+      1200024,
+      1200025,
+      1200026,
+      1200027,
+      1200028,
+      1200029,
+      1200030,
+      1200031,
+      1200032,
+      1200033,
+      1200034,
+      1200035,
+      1200036,
+      1200037,
+      1200038,
+      1200039,
+      1200040
+    ],
+    "seed_selection_rationale": "Arbitrary fresh contiguous block selected before reference implementation. A repository search returned no matches before drafting; an automated freshness gate must recheck at freeze.",
+    "conditions": [
+      "1d",
+      "2d",
+      "3d",
+      "5d",
+      "5d_shuffled",
+      "random_graph"
+    ],
+    "total_runs": 120,
+    "primary_endpoint": "first_output_latency_censored",
+    "secondary_endpoint": "activation_auc_0_32",
+    "primary_contrasts": [
+      [
+        "1d",
+        "2d"
+      ],
+      [
+        "2d",
+        "3d"
+      ],
+      [
+        "3d",
+        "5d"
+      ],
+      [
+        "5d",
+        "5d_shuffled"
+      ],
+      [
+        "5d",
+        "random_graph"
+      ]
+    ],
+    "primary_difference": "right-minus-left",
+    "primary_test": "exact two-sided paired sign test within reference DATA",
+    "primary_multiple_testing": "one Holm family across the five first-output-latency contrasts",
+    "alpha": 0.05,
+    "effect_interval": "deterministic paired bootstrap 95% CI for median difference",
+    "secondary_role": "activation_auc_0_32 direction is a secondary concordance check and cannot rescue failed primary replication criteria"
+  },
+  "canonical_targets": {
+    "source": "EXP-S1-TOPO-PROMO-R1-20260927 analysis/statistics.json",
+    "first_output_latency_median_deltas": {
+      "1d_to_2d": -10,
+      "2d_to_3d": -3,
+      "3d_to_5d": -1,
+      "5d_to_5d_shuffled": -3,
+      "5d_to_random_graph": -2.5
+    },
+    "equivalence_bounds_rule": "For each nonzero canonical median delta, the reference absolute median effect must fall within 50% to 150% of the canonical absolute magnitude and retain the canonical sign. These bounds are deliberately broad because the objective is cross-implementation functional reproduction, not bitwise identity.",
+    "frozen_bounds": {
+      "1d_to_2d": [
+        -15,
+        -5
+      ],
+      "2d_to_3d": [
+        -4.5,
+        -1.5
+      ],
+      "3d_to_5d": [
+        -1.5,
+        -0.5
+      ],
+      "5d_to_5d_shuffled": [
+        -4.5,
+        -1.5
+      ],
+      "5d_to_random_graph": [
+        -3.75,
+        -1.25
+      ]
+    },
+    "activation_auc_direction_only": {
+      "1d_to_2d": "positive",
+      "2d_to_3d": "positive",
+      "3d_to_5d": "negative",
+      "5d_to_5d_shuffled": "negative",
+      "5d_to_random_graph": "negative"
+    }
+  },
+  "decision_rule": {
+    "partial_replication": [
+      "reference design integrity passes",
+      "all five first-output-latency reference contrasts retain the canonical direction",
+      "all five reference median deltas lie inside their frozen equivalence bounds",
+      "all five primary paired sign tests remain Holm-significant with bootstrap CI excluding zero",
+      "at least four of five activation_auc_0_32 secondary contrast directions agree with the canonical direction"
+    ],
+    "failed_replication": [
+      "any primary latency contrast reverses canonical direction",
+      "or two or more primary latency contrasts lie outside their frozen equivalence bounds with CI wholly outside the bound",
+      "or fewer than three of five primary latency contrasts are Holm-significant"
+    ],
+    "inconclusive": [
+      "a semantic translation mismatch is discovered after freeze",
+      "or one primary effect has a CI spanning an equivalence boundary so classification is not stable",
+      "or exactly three or four primary contrasts satisfy significance/equivalence while none reverse direction",
+      "or reference runtime behavior makes a preregistered endpoint non-comparable"
+    ],
+    "equal_value_rule": "PARTIAL_REPLICATION, FAILED_REPLICATION and INCONCLUSIVE_REFERENCE_REPLICATION are equally reportable scientific outcomes. No secondary endpoint or post-hoc tuning may rescue a failed primary classification."
+  },
+  "provenance_requirements": {
+    "separate_code_digest": true,
+    "framework_version_recorded": true,
+    "python_version_recorded": true,
+    "dependency_lock_recorded": true,
+    "clean_git_tree": true,
+    "runtime_and_platform_recorded": true,
+    "raw_reference_data_persisted": true,
+    "runner_source_hash_persisted": true,
+    "verifier_source_hash_persisted": true,
+    "no_shared_mhrn_code_imports_verified": true
+  },
+  "maturity_semantics": {
+    "success": "A successful reference replication counts only as partial independent/reference replication = 7.5/15 points, advancing Stage-1 maturity from 85% to 92.5%.",
+    "failure": "A failed or inconclusive reference replication does not increase maturity and must remain visible in the canonical Stage-1 state.",
+    "full_credit": "15/15 replication credit remains reserved for genuinely external, independently controlled/authored replication."
+  },
+  "review": {
+    "human_review_required": true,
+    "automatic_evidence_promotion": false,
+    "execution_creates_reference_data_only": true
+  }
+}

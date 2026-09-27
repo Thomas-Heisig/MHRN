@@ -7,7 +7,7 @@
   "claim_id": "CLAIM-S1-EFFICIENCY-001",
   "protocol": "stage1_topology_efficiency_r1",
   "mode": "PROSPECTIVE_CONFIRMATORY_AFTER_EXPLORATORY_OBSERVATION",
-  "status": "DRAFT_BEFORE_FREEZE",
+  "status": "DRAFT_CALIBRATION_GATE_FAILED_FREEZE_BLOCKED",
   "execution_authorized": false,
   "scientific_evidence": false,
   "automatic_evidence_promotion": false,
@@ -157,7 +157,32 @@
       "p-values",
       "evaluation-seed outcomes",
       "direction of any 5D advantage"
-    ]
+    ],
+    "persistence": {
+      "path": "research/calibrations/CAL-S1-TOPO-EFFICIENCY-R1-20260927",
+      "provenance_class": "PRE_FREEZE_METHOD_CALIBRATION",
+      "confirmatory_data": false,
+      "scientific_evidence": false,
+      "immutable_after_commit": true,
+      "evaluation_seed_access_forbidden": true,
+      "note": "Calibration outputs are persisted for auditability but are neither confirmatory DATA for CLAIM-S1-EFFICIENCY-001 nor EVID."
+    },
+    "failure_policy": {
+      "infrastructure_failure": "A run that fails before producing a verified calibration result may be retried with the identical code, seed set and candidate-current grid. The failed infrastructure attempt remains in workflow history.",
+      "valid_gate_failure": "A successfully executed and verified calibration in which a preregistered selection gate is not met is a valid negative calibration result. It may not be rerun with altered candidates under this preregistration to search for a passing value.",
+      "design_change": "If a valid calibration gate fails and a different control variable, candidate grid or selection target is scientifically justified, create a new preregistration/calibration revision with a new ID and document the reason. Do not freeze this R1 design.",
+      "freeze_rule": "Freeze is prohibited unless the required 3d_recruitment_matched calibration gate passes and its selected value is hash-bound into the frozen preregistration. The 5d_high_recruitment gate is sensitivity-only; failure is recorded and the arm becomes NOT_TESTED, but it cannot be silently retuned.",
+      "not_tested_semantics": "If the required 3d recruitment-matching gate fails, the confirmatory R1 efficiency evaluation remains NOT_TESTED and execution_authorized must stay false."
+    },
+    "observed_status_after_run": {
+      "calibration_id": "CAL-S1-TOPO-EFFICIENCY-R1-20260927",
+      "verified_execution": true,
+      "evaluation_seeds_read_or_executed": false,
+      "3d_recruitment_matched_gate_passed": false,
+      "5d_high_recruitment_gate_passed": false,
+      "freeze_blocked": true,
+      "interpretation": "Across candidate stimulus currents 70-140, calibration median final_active_fraction remained 1.0 for 3d and 0.828125 for 5d. Stimulus-current modulation in this registered range therefore did not achieve either recruitment target."
+    }
   },
   "evaluation": {
     "seeds": [
@@ -241,7 +266,10 @@
       "failure_semantics": "No low-denominator run is deleted. If any evaluation run violates either denominator floor, the full confirmatory experiment is classified NOT_TESTED_DENOMINATOR_VALIDITY and no primary claim decision is made.",
       "ratio_computation": "Compute each run's ratio first; never divide condition-level aggregate numerators by aggregate denominators.",
       "summary_statistic": "paired median difference across evaluation seeds",
-      "bootstrap": "deterministic paired bootstrap over the already computed per-seed ratios/paired differences, 5000 resamples; numerator and denominator are never bootstrapped separately"
+      "bootstrap": "deterministic paired bootstrap over the already computed per-seed ratios/paired differences, 5000 resamples; numerator and denominator are never bootstrapped separately",
+      "threshold_basis": "The floor 32 is a preregistered structural stability threshold equal to one half of the 64-neuron network size. It is intended to reject degenerate runs driven by only a handful of spikes/events, not to separate conditions or maximize an efficiency effect. Historical Stage-1 runs produced denominators in the hundreds, so 32 is deliberately conservative and well below the observed regime.",
+      "boundary_rule": "Exactly 32 spikes/events is valid because the rule is >=32. The ratio is computed normally at the boundary; the threshold is not a censoring or winsorization rule.",
+      "skew_note": "Ratio distributions may remain right-skewed. This is why inference uses paired per-run ratios, median differences and paired bootstrap intervals rather than mean-ratio normal approximations. The denominator floor limits numerical blow-up but does not assume symmetry."
     },
     "exploratory_endpoints": [
       "first_output_latency_censored",
@@ -319,5 +347,10 @@
     "allowed_occurrence": "the preregistration file itself only",
     "collision_semantics": "Any calibration or evaluation seed occurrence in another tracked file blocks freeze until a completely new seed block is selected.",
     "manifest_requirement": "The freeze gate must persist the scanned commit SHA, checked seed lists and collision-free result into the frozen preregistration/freeze record."
+  },
+  "execution_block": {
+    "blocked": true,
+    "reason": "Valid pre-freeze calibration completed but the required 3d_recruitment_matched gate did not pass. R1 must not be frozen or executed.",
+    "unblocking_rule": "Only a new, explicitly versioned preregistration/calibration design may address the failed control mechanism. R1 itself remains an auditable DRAFT with execution_authorized=false."
   }
 }
