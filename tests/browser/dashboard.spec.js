@@ -279,10 +279,7 @@ test("navigation and box-state controls remain usable", async ({ page }) => {
 });
 
 test("Release workspace renders the documentation timeline", async ({ page }) => {
-  page.on("pageerror", (error) => console.log(`[pageerror] ${error.stack || error.message}`));
-  page.on("console", (message) => { if (message.type() === "error") console.log(`[console] ${message.text()}`); });
   await openDashboard(page);
-  console.log(`[module-check] ${JSON.stringify(await page.evaluate(async () => { const source = await (await fetch("/scientific-progress.js")).text(); const withoutDirectory = source.replace(/function directoryEntryPoint[\s\S]*?\n}\n\nfunction sourceMarkup/, "function sourceMarkup"); const withoutSource = source.replace(/function sourceMarkup[\s\S]*?\n}\n\nfunction setVisible/, "function setVisible"); const parse = (value) => { try { new Function(value); return "ok"; } catch (error) { return error.message; } }; return { full: parse(source), withoutDirectory: parse(withoutDirectory), withoutSource: parse(withoutSource) }; }))}`);
   await selectRoute(page, "release", "timeline");
   await expect(page.locator("#release-timeline-list .timeline-entry")).toHaveCount(1);
   await expect(page.locator("#release-timeline-list")).toContainText("Release timeline restoration");
@@ -307,6 +304,10 @@ test("Release workspace renders the documentation timeline", async ({ page }) =>
   await expect(page.locator("#scientific-progress-detail .scientific-status-partial")).toHaveCount(1);
   await expect(page.locator("#scientific-progress-detail")).toContainText("met");
   await expect(page.locator("#scientific-progress-detail")).toContainText("partial");
+  await expect(page.locator("#scientific-progress-detail .scientific-reference-panel")).toContainText("CLAIM-EVAL-006");
+  await expect(page.locator("#scientific-progress-detail .scientific-reference-panel")).toContainText("EVID-2026-18");
+  await expect(page.locator("#scientific-progress-detail .scientific-reference-panel")).toContainText("Experimente & Hypothesen");
+  await expect(page.locator("#scientific-progress-detail .scientific-reference-panel")).toContainText("H-EVAL-006-A");
   await expect(page.locator("#scientific-progress-detail .scientific-source-link").first()).toBeVisible();
   await page.locator("#scientific-progress-detail .scientific-source-link").first().click();
   await expect(page.locator("#fm-viewer-dialog")).toBeVisible();
@@ -315,7 +316,7 @@ test("Release workspace renders the documentation timeline", async ({ page }) =>
   await expect(page.locator("#scientific-progress-detail .scientific-status-open")).toHaveCount(1);
   await expect(page.locator("#scientific-progress-detail")).toContainText("open");
   await page.locator('#scientific-progress-timeline [data-scientific-stage="2"]').click();
-  await expect(page.locator('#scientific-progress-detail .scientific-source-text').filter({ hasText: "research/protocols" })).toHaveCount(1);
+  await expect(page.locator('#scientific-progress-detail .scientific-source-directory-link').filter({ hasText: "research/protocols" })).toHaveAttribute("data-scientific-source-path", "protocols/COGNITION_CONSCIOUSNESS.md");
   await page.locator('#scientific-progress-timeline [data-scientific-stage="6"]').click();
   const directorySource = page.locator('#scientific-progress-detail .scientific-source-directory-link').first();
   await expect(directorySource).toHaveAttribute("data-scientific-source-path", /experiments\/EXP-EMP-20260910\/016-memory_delayed_information_v1\/manifest\.json/);

@@ -13,6 +13,8 @@
 	unverändert und werden nicht als wissenschaftliche Evidenz umgedeutet.
 - Wissenschaftliche Kriterienkarten verwenden ein einheitliches Raster;
 	Research-/Docs-Dateiverweise öffnen den zentralen File Viewer als Popup.
+- Claims, EVID, Experimente und Hypothesen sind je Timeline-Stufe über einen
+	eigenen Registerbereich direkt erreichbar.
 
 ## 2026-09-26 External Review Deployment
 

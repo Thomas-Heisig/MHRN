@@ -11,6 +11,8 @@
   sind direkt im File Viewer als Popup öffnbar, während Ordnerreferenzen nicht
   mehr fälschlich als Dateien geöffnet werden; bekannte Experiment- und
   Publikationsordner öffnen ihre kanonische Manifest- bzw. README-Datei.
+- Jede wissenschaftliche Stufe bietet zusätzlich direkte Registerlinks für
+  Claims, EVID, Experimente und Hypothesen.
 
 ## 2026-09-26 - Sichere External-Review-Bereitstellung
 

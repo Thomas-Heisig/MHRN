@@ -32,15 +32,51 @@ function directoryEntryPoint(path) {
   return null;
 }
 
+function registryEntryPoint(identifier) {
+  if (/^CLAIM-[A-Z0-9-]+$/.test(identifier)) return "registry/claims.yaml";
+  if (/^EVID-\d{4}-\d+$/.test(identifier)) return identifier === "EVID-2026-17" ? "registry/evidence/retired_ids.json" : `registry/evidence/${identifier}.json`;
+  const families = [
+    ["MEM", "behavior_memory"], ["WM", "behavior_memory"], ["CNS", "cognition"],
+    ["EMB", "connectome"], ["GW", "gateway"], ["META", "meta"],
+    ["MSBA", "msba"], ["SAFE", "safety"],
+  ];
+  const family = families.find(([prefix]) => identifier.startsWith(`H-${prefix}-`) || identifier.startsWith(`RQ-${prefix}-`))?.[1];
+  if (identifier.startsWith("H-EVAL-")) return "registry/hypotheses.empirical.yaml";
+  if (identifier.startsWith("H-")) return family ? `registry/hypotheses.${family}.yaml` : "registry/hypotheses.yaml";
+  if (identifier.startsWith("RQ-EVAL-")) return "registry/questions.empirical.yaml";
+  if (identifier.startsWith("RQ-")) return family ? `registry/questions.${family}.yaml` : "registry/questions.yaml";
+  return null;
+}
+
 function sourceMarkup(source) {
   const label = String(source ?? "");
   const normalized = label.replaceAll("\\", "/");
   const match = normalized.match(/^\/?(research|docs)\/(.+)$/);
-  if (!match) return `<span class="scientific-source-text">${escapeHtml(label)}</span>`;
-  const filePath = /\.[A-Za-z0-9]{1,12}$/.test(match[2]) ? match[2] : directoryEntryPoint(normalized);
-  if (!filePath) return `<span class="scientific-source-text">${escapeHtml(label)}</span>`;
-  const directoryReference = filePath !== match[2];
-  return `<button type="button" class="scientific-source-link${directoryReference ? " scientific-source-directory-link" : ""}" data-scientific-source-kind="${match[1]}" data-scientific-source-path="${escapeHtml(filePath)}" title="${directoryReference ? "Ordnerreferenz öffnen" : "Im File Viewer öffnen"}">${escapeHtml(label)}</button>`;
+  let target = null;
+  if (match) {
+    const filePath = /\.[A-Za-z0-9]{1,12}$/.test(match[2]) ? match[2] : directoryEntryPoint(normalized);
+    if (filePath) target = { kind: match[1], path: filePath, directory: filePath !== match[2] };
+  } else {
+    const registryPath = registryEntryPoint(normalized.trim());
+    if (registryPath) target = { kind: "research", path: registryPath, directory: false };
+  }
+  if (!target) return `<span class="scientific-source-text">${escapeHtml(label)}</span>`;
+  return `<button type="button" class="scientific-source-link${target.directory ? " scientific-source-directory-link" : ""}" data-scientific-source-kind="${target.kind}" data-scientific-source-path="${escapeHtml(target.path)}" title="${target.directory ? "Ordnerreferenz öffnen" : "Im File Viewer öffnen"}">${escapeHtml(label)}</button>`;
+}
+
+function referenceGroupMarkup(title, references) {
+  const unique = [...new Set(references)];
+  return `<div class="scientific-reference-group"><h5>${escapeHtml(title)}</h5><div class="scientific-reference-links">${unique.length ? unique.map(sourceMarkup).join("") : '<span class="scientific-source-text">Keine registrierte Referenz</span>'}</div></div>`;
+}
+
+function referencePanelMarkup(stage, criteria) {
+  const sourceValues = criteria.flatMap((criterion) => Array.isArray(criterion.sources) ? criterion.sources : []);
+  const serialized = JSON.stringify(stage);
+  const claims = serialized.match(/CLAIM-[A-Z0-9-]+/g) || [];
+  const evidence = serialized.match(/EVID-\d{4}-\d+/g) || [];
+  const hypotheses = serialized.match(/H-[A-Z0-9-]+/g) || [];
+  const experiments = sourceValues.filter((source) => String(source).replaceAll("\\", "/").startsWith("research/experiments/"));
+  return `<section class="scientific-reference-panel" aria-label="Wissenschaftliche Register"><div class="scientific-reference-columns">${referenceGroupMarkup("Claims & EVID", [...claims, ...evidence])}${referenceGroupMarkup("Experimente & Hypothesen", [...experiments, ...hypotheses])}</div></section>`;
 }
 
 function setVisible(element, visible) {
@@ -86,11 +122,12 @@ function injectStyles() {
     .scientific-progress-status-legend{display:flex;flex-wrap:wrap;gap:7px;margin:8px 0}.scientific-progress-status-legend>span{display:inline-flex;align-items:center;gap:4px;padding:4px 7px;border:1px solid var(--rule);border-radius:999px;font-size:.72rem}.scientific-progress-status-legend .scientific-status-mark{padding:0;border:0}
     .scientific-progress-detail{margin-top:12px;padding:13px;border-top:1px solid var(--rule)}
     .scientific-progress-detail h4{margin:.2rem 0}.scientific-progress-boundary{padding:9px;border-left:3px solid var(--accent);background:var(--paper)}
+    .scientific-reference-panel{margin:10px 0;padding-top:10px;border-top:1px solid var(--rule)}.scientific-reference-columns{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.scientific-reference-group{min-height:76px;padding:8px;border:1px solid var(--rule);border-radius:6px;background:var(--paper)}.scientific-reference-group h5{margin:0 0 7px;font-size:.68rem}.scientific-reference-links{display:flex;flex-wrap:wrap;gap:4px}
     .scientific-criteria{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px;margin:10px 0}.scientific-criterion{padding:8px;border:1px solid var(--rule);border-radius:7px}.scientific-criterion strong{float:right;display:inline-flex;align-items:center;gap:4px}.scientific-status-mark{display:inline-grid;place-items:center;width:1em;height:1em;font-weight:800}.scientific-status-met{color:var(--moss,#3d8b5c)}.scientific-status-partial{color:var(--amber,#a47720)}.scientific-status-open{color:var(--ink-4,#777)}.scientific-criterion small{display:block;clear:both;margin-top:5px;opacity:.75;overflow-wrap:anywhere}
     .scientific-integrity-note{margin-top:10px;font-size:.78rem;opacity:.85}
     .scientific-two-axis-note{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:12px 0}.scientific-two-axis-note>div{min-height:76px;padding:10px;border:1px solid var(--rule);border-radius:8px;background:var(--paper)}.scientific-two-axis-note strong{display:block;margin-bottom:5px}.scientific-two-axis-note p{margin:0;font-size:.74rem;line-height:1.45}
     .scientific-criterion{display:grid;grid-template-rows:auto minmax(34px,auto);gap:8px;min-height:112px}.scientific-criterion-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;min-height:2.5em}.scientific-criterion-label{font-size:.74rem;line-height:1.35}.scientific-criterion-status{display:inline-flex;align-items:center;gap:4px;flex-shrink:0;font-size:.68rem}.scientific-criterion-sources{display:flex;flex-wrap:wrap;align-content:flex-start;gap:4px;margin:0;padding-top:7px;border-top:1px solid var(--rule)}.scientific-source-link,.scientific-source-text{max-width:100%;padding:2px 5px;border:1px solid var(--rule);border-radius:3px;background:var(--paper-3);color:var(--ink-3);font:500 .58rem/1.35 var(--font-mono);overflow-wrap:anywhere;text-align:left}.scientific-source-link{cursor:pointer;text-decoration:underline;text-underline-offset:2px}.scientific-source-directory-link{border-style:dashed}.scientific-source-link:hover,.scientific-source-link:focus-visible{border-color:var(--accent);color:var(--accent-2);background:var(--accent-wash)}
-    @media(max-width:900px){.scientific-progress-head{display:block}.scientific-progress-score{text-align:left;margin-top:8px}.scientific-progress-track{grid-template-columns:repeat(11,110px)}.scientific-two-axis-note{grid-template-columns:1fr}}
+    @media(max-width:900px){.scientific-progress-head{display:block}.scientific-progress-score{text-align:left;margin-top:8px}.scientific-progress-track{grid-template-columns:repeat(11,110px)}.scientific-two-axis-note,.scientific-reference-columns{grid-template-columns:1fr}}
   `;
   document.head.appendChild(style);
 }
@@ -171,6 +208,7 @@ function detailMarkup(stage) {
     <h4>${escapeHtml(stage.name)} · ${percent(stage.score)}</h4>
     <p class="scientific-progress-boundary"><strong>Claim-Grenze:</strong> ${escapeHtml(stage.claim_boundary)}</p>
     <div class="scientific-criteria">${criteria.map(criterionMarkup).join("")}</div>
+    ${referencePanelMarkup(stage, criteria)}
     <h5>Nächste wissenschaftliche Schritte</h5>
     <ul>${next.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
   </div>`;
