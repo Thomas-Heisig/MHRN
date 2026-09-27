@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "as_of": "2026-09-25",
+  "as_of": "2026-09-27",
   "as_of_commit": "f9d926a9209dc17a11fbe29c6c82074824f75aa0",
   "title": "MHRN scientific maturity timeline",
   "scope_note": "Scientific maturity is intentionally separate from engineering maturity. Scores summarize registered questions, frozen protocols, collected DATA, human-reviewed EVID, independent replication and attribution. They do not measure intelligence, consciousness or biological equivalence.",
@@ -126,7 +126,7 @@
       "name": "Kleines SNN",
       "score": 0.85,
       "status": "active",
-      "claim_boundary": "Die zentrale Stage-1-Topologielinie besitzt mit EVID-2026-19 nun kanonische, human-reviewte EVID innerhalb des 64-Neuronen/246-Kanten-Small-SNN-Betriebsbereichs. Die getrennte Temporal-Order-Linie bleibt reviewed DATA. Das begründet weder Kognition, Skalierbarkeit, biologische Äquivalenz, 5D-Überlegenheit noch unabhängige Replikation.",
+      "claim_boundary": "Stage 1 besitzt jetzt zwei getrennte kanonische, human-reviewte EVID-Linien: Topologie EVID-2026-19 im 64-Neuronen/246-Kanten-Regime und Temporal Order EVID-2026-20 im sechsneuronigen Zweikanal-Task. Der Temporal-Human-Review dokumentiert Perfect-Score-Sättigung und die simultane Bedingung als nicht-inferentiellen Task-Adequacy-Control. Das begründet weder Kognition, Lernen/Gedächtnis, Skalierbarkeit, biologische Äquivalenz, 5D-Überlegenheit noch unabhängige Replikation.",
       "criteria": [
         {
           "id": "research_question",
@@ -147,7 +147,8 @@
           "sources": [
             "research/preregistrations/PREREG-S1-TOPO-V2.json",
             "research/preregistrations/PREREG-S1-TOPO-V3-R1-TIME-RESOLVED.json",
-            "research/preregistrations/PREREG-S1-TEMP-ORDER-V2.json"
+            "research/preregistrations/PREREG-S1-TEMP-ORDER-V2.json",
+            "research/preregistrations/PREREG-S1-TEMP-PROMO-R1.json"
           ]
         },
         {
@@ -157,18 +158,22 @@
           "sources": [
             "research/experiments/EXP-S1-TOPO-V2-20260918",
             "research/experiments/EXP-S1-TOPO-V3-R1-20260918",
-            "research/experiments/EXP-S1-TEMP-ORDER-V2-20260919"
+            "research/experiments/EXP-S1-TEMP-ORDER-V2-20260919",
+            "research/experiments/EXP-S1-TOPO-PROMO-R1-20260927",
+            "research/experiments/EXP-S1-TEMP-PROMO-R1-20260927"
           ]
         },
         {
           "id": "reviewed_evidence",
           "status": "met",
-          "label": "Human Review + EvidenceEngine-Promotion für den scoped Topologie-Claim",
+          "label": "Human Review + EvidenceEngine-Promotion für Topologie- und Temporal-Order-Claims",
           "sources": [
             "CLAIM-S1-TOPO-001",
             "EVID-2026-19",
             "research/experiments/EXP-S1-TOPO-PROMO-R1-20260927/human_review.json",
-            "research/experiments/EXP-S1-TOPO-PROMO-R1-20260927/EVIDENCE_PROMOTION_STATUS.json"
+            "CLAIM-S1-TEMP-001",
+            "EVID-2026-20",
+            "research/experiments/EXP-S1-TEMP-PROMO-R1-20260927/human_review.json"
           ]
         },
         {
@@ -192,9 +197,9 @@
         }
       ],
       "next_scientific_steps": [
-        "Temporal-Order Promotion R1 prospektiv unter dem aktuellen EvidenceEngine-Vertrag ausführen und separat reviewen.",
-        "Topologie als unabhängig implementierte Referenz-/Cross-Implementation-Replikation präregistrieren.",
-        "RQ-5D-005 / H-5D-005-A getrennt und ohne 5D-Überlegenheitsannahme weiterführen."
+        "Topologie als unabhängig implementierte Referenz-/Cross-Implementation-Replikation präregistrieren, um den nächsten 7,5-%-Schritt zu adressieren.",
+        "Temporal-Order-Decoder/Task separat mit schwierigeren, präregistrierten Gap-/Channel-Swap-/Perturbationskontrollen stress-testen; dies ändert EVID-2026-20 nicht rückwirkend.",
+        "CLAIM-S1-EFFICIENCY-001 / H-SNN-003-C getrennt als prospektive untested Effizienzlinie weiterentwickeln; keine post-hoc Effizienzbeobachtung als EVID verwenden."
       ],
       "criterion_contracts": {
         "reviewed_evidence": {
