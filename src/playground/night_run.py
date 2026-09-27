@@ -89,11 +89,14 @@ class NightRunDaemon:
         roots = [Path("docs/playground"), Path("src/playground")] if file_roots is None else file_roots
         self.kb.index_files(roots, category="Konzepte", max_files=120)
         # Seed vector memory so find/link are available from the first episodes.
-        for index, category in enumerate(MetaTaskGenerator.categories):
-            self.kb.store_info(
-                f"bootstrap strategy note {index} for category {category}",
-                category,
-            )
+        bootstrap = {
+            "Personen": "profile contact biography bootstrap-alpha",
+            "Orte": "address location city bootstrap-beta",
+            "Ereignisse": "date meeting launch bootstrap-gamma",
+            "Konzepte": "definition principle method bootstrap-delta",
+        }
+        for category, text in bootstrap.items():
+            self.kb.store_info(text, category)
         if resume_dir is not None:
             self._restore_checkpoint()
 
