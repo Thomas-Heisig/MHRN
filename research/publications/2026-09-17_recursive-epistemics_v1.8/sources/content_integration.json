@@ -609,7 +609,34 @@
       ],
       "integration_status": "semantically_integrated_DRAFT_pre_freeze",
       "integration_mode": "translation_contract_mechanism_audit_parity_blinding_seed_governance",
-      "boundaries": "No reference evaluation DATA or replication credit exists while pre-freeze gates remain open. The project-side Brian2 implementation can earn at most partial replication credit (7.5/15) because project leadership is shared. Brian2 remains third-party software under CeCILL 2.1 and is scientifically attributed to Stimberg, Brette & Goodman (2019)."
+      "boundaries": "R1 was frozen and then aborted before any reference evaluation DATA after a topology coordinate-order ambiguity was identified. It produced no replication classification, EVID or maturity credit and may never authorize execution.",
+      "paths": [
+        "research/preregistrations/PREREG-S1-TOPO-REFERENCE-R1.freeze.json",
+        "research/decisions/2026-09-27_stage1_reference_r1_prefreeze_deviation.json"
+      ],
+      "status": "historical_frozen_aborted_before_reference_data"
+    },
+    {
+      "id": "CORPUS-STAGE1-REFERENCE-R2",
+      "title": "Corrected Brian2 Stage-1 cross-implementation reference protocol R2",
+      "source_role": "pre-DATA corrected replication protocol and executable topology-translation validation",
+      "status": "pre_freeze_execution_unauthorized",
+      "integration_mode": "method_governance_and_replication_planning",
+      "manuscript_parts": [
+        "IV",
+        "X",
+        "XI"
+      ],
+      "paths": [
+        "research/preregistrations/PREREG-S1-TOPO-REFERENCE-R2.json",
+        "reference/stage1_topology_brian2/TRANSLATION_R2.md",
+        "reference/stage1_topology_brian2/reference_protocol_r2.json",
+        "reference/stage1_topology_brian2/runner_r2.py",
+        "scripts/run_stage1_reference_topology_mapping_r2.py",
+        "scripts/verify_stage1_topology_reference_r2.py",
+        "research/decisions/2026-09-27_stage1_reference_r2_supersession.json"
+      ],
+      "boundaries": "R2 supersedes the aborted pre-DATA R1 protocol without changing the canonical MHRN target effects or strict equivalence bounds. It adds exact coordinate/edge mapping parity. No Reference DATA, replication result, EVID or maturity credit exists until separately authorized execution and Human Review."
     }
   ]
 }
