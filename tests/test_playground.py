@@ -25,12 +25,12 @@ from src.playground.meta_learning import (
     MetaTaskGenerator,
     text_vector,
 )
-from src.playground.night_run import NightRunDaemon, analyze_run
 from src.playground.neural_io import (
     NeuralIOInterface,
     PlaygroundIOAreaAdapter,
     adapter_contract_check,
 )
+from src.playground.night_run import NightRunDaemon, analyze_run
 from src.playground.pan import (
     BehavioralLearningEngine,
     ModeSwitcher,
