@@ -7,6 +7,7 @@ preflight require a CUDA driver. Scientific promotion remains disabled.
 
 from __future__ import annotations
 
+import copy
 import ctypes
 import hashlib
 import json
@@ -495,9 +496,9 @@ PARITY_CONTRACT: dict[str, object] = {
 
 
 def parity_contract() -> dict[str, object]:
-    """Return the immutable CUDA-1 parity criteria."""
+    """Return an isolated copy of the CUDA-1 parity criteria."""
 
-    return json.loads(json.dumps(PARITY_CONTRACT))
+    return copy.deepcopy(PARITY_CONTRACT)
 
 
 def _deterministic_projection(result: Mapping[str, object]) -> dict[str, object]:
