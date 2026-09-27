@@ -69,14 +69,9 @@ def run_one_tick(input_current: float) -> ProbeResult:
     # Canonical post-spike/post-tick sequence. This executes after threshold/reset.
     group.run_regularly(
         """
-        firing_rate_estimate = (1-exp(-0.001))*firing_rate_estimate + (1-(1-exp(-0.001)))*0
-        firing_rate_estimate = firing_rate_estimate + spike_seen*(1-exp(-0.001))*1000
+        firing_rate_estimate = exp(-0.001)*firing_rate_estimate + spike_seen*(1-exp(-0.001))*1000
         threshold_adaptation = threshold_adaptation * 0.999
-        threshold_adaptation = clip(
-            threshold_adaptation + 0.001*(firing_rate_estimate - 10),
-            -10,
-            10
-        )
+        threshold_adaptation = clip(threshold_adaptation + 0.001*(firing_rate_estimate - 10), -10, 10)
         """,
         dt=1 * ms,
         when="after_resets",
