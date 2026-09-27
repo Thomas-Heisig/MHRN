@@ -91,6 +91,11 @@ def test_playground_preset_lab_has_izhikevich_pan_and_local_storage() -> None:
     assert 'id="pg-user-preset-delete"' in module
     assert 'id="pg-closed-loop-preset"' not in module
     assert 'renderCatalog(await apiGet("/api/playground/catalog"));renderUserPresetOptions();resetForm();' in module
+    assert 'change",()=>{renderUserPresetOptions();applyUserPreset();}' in module
+    assert "const selected=select.value" in module
+    assert "presets[selected]" in module
+    assert 'synapse_model:"synapse-model"' in module
+    assert 'plasticity_rule:"plasticity"' in module
     assert 'n_neurons:"neurons"' in module
     assert 'edge_budget:"edges"' in module
     assert 'stimulus_current:"current"' in module
