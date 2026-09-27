@@ -60,6 +60,17 @@ class PlaygroundConfig:
     clock_mode: str = "continuous"
     clock_base_hz: float = 100.0
     clock_event_batch_ms: float = 10.0
+    execution_mode: str = "TICK_ONLY"
+    execution_initial_mode: str = "EVENT_ONLY"
+    execution_theta_high: float = 0.30
+    execution_theta_low: float = 0.05
+    execution_hysteresis: float = 0.02
+    execution_min_dwell: int = 100
+    execution_activity_window: int = 100
+    execution_transition_mode: str = "clean"
+    execution_sync_on_switch: bool = True
+    execution_log_transitions: bool = True
+    execution_log_state_hash: bool = True
     growth_enabled: bool = False
     growth_neurogenesis: bool = True
     growth_synaptogenesis: bool = True
@@ -190,6 +201,37 @@ class PlaygroundConfig:
             clock_base_hz=number("clock_base_hz", defaults.clock_base_hz),
             clock_event_batch_ms=number(
                 "clock_event_batch_ms", defaults.clock_event_batch_ms
+            ),
+            execution_mode=text("execution_mode", defaults.execution_mode).upper(),
+            execution_initial_mode=text(
+                "execution_initial_mode", defaults.execution_initial_mode
+            ).upper(),
+            execution_theta_high=number(
+                "execution_theta_high", defaults.execution_theta_high
+            ),
+            execution_theta_low=number(
+                "execution_theta_low", defaults.execution_theta_low
+            ),
+            execution_hysteresis=number(
+                "execution_hysteresis", defaults.execution_hysteresis
+            ),
+            execution_min_dwell=integer(
+                "execution_min_dwell", defaults.execution_min_dwell
+            ),
+            execution_activity_window=integer(
+                "execution_activity_window", defaults.execution_activity_window
+            ),
+            execution_transition_mode=text(
+                "execution_transition_mode", defaults.execution_transition_mode
+            ).lower(),
+            execution_sync_on_switch=bool(
+                payload.get("execution_sync_on_switch", defaults.execution_sync_on_switch)
+            ),
+            execution_log_transitions=bool(
+                payload.get("execution_log_transitions", defaults.execution_log_transitions)
+            ),
+            execution_log_state_hash=bool(
+                payload.get("execution_log_state_hash", defaults.execution_log_state_hash)
             ),
             growth_enabled=bool(
                 payload.get("growth_enabled", defaults.growth_enabled)
@@ -388,6 +430,20 @@ class PlaygroundConfig:
             raise ValueError("clock_base_hz must be between 1 and 10000")
         if not self.dt_ms <= self.clock_event_batch_ms <= 1000.0:
             raise ValueError("clock_event_batch_ms must be between dt_ms and 1000")
+        if self.execution_mode not in {"EVENT_ONLY", "TICK_ONLY", "HYBRID_AUTO"}:
+            raise ValueError("unsupported execution_mode")
+        if self.execution_initial_mode not in {"EVENT_ONLY", "TICK_ONLY"}:
+            raise ValueError("execution_initial_mode must be EVENT_ONLY or TICK_ONLY")
+        if not 0.0 <= self.execution_theta_low <= self.execution_theta_high <= 1.0:
+            raise ValueError("execution thresholds must satisfy 0 <= low <= high <= 1")
+        if not 0.0 <= self.execution_hysteresis <= 0.5:
+            raise ValueError("execution_hysteresis must be between 0 and 0.5")
+        if not 0 <= self.execution_min_dwell <= self.ticks:
+            raise ValueError("execution_min_dwell must be between 0 and ticks")
+        if not 1 <= self.execution_activity_window <= self.ticks:
+            raise ValueError("execution_activity_window must be between 1 and ticks")
+        if self.execution_transition_mode not in {"clean", "fast", "debug"}:
+            raise ValueError("unsupported execution_transition_mode")
         if not 0.0 <= self.growth_activity_threshold <= 1.0:
             raise ValueError("growth_activity_threshold must be between 0 and 1")
         if not 1 <= self.growth_coactivation_threshold <= 1000:
@@ -528,6 +584,17 @@ class PlaygroundConfig:
             "clock_mode": self.clock_mode,
             "clock_base_hz": self.clock_base_hz,
             "clock_event_batch_ms": self.clock_event_batch_ms,
+            "execution_mode": self.execution_mode,
+            "execution_initial_mode": self.execution_initial_mode,
+            "execution_theta_high": self.execution_theta_high,
+            "execution_theta_low": self.execution_theta_low,
+            "execution_hysteresis": self.execution_hysteresis,
+            "execution_min_dwell": self.execution_min_dwell,
+            "execution_activity_window": self.execution_activity_window,
+            "execution_transition_mode": self.execution_transition_mode,
+            "execution_sync_on_switch": self.execution_sync_on_switch,
+            "execution_log_transitions": self.execution_log_transitions,
+            "execution_log_state_hash": self.execution_log_state_hash,
             "growth_enabled": self.growth_enabled,
             "growth_neurogenesis": self.growth_neurogenesis,
             "growth_synaptogenesis": self.growth_synaptogenesis,
