@@ -82,7 +82,8 @@ class RewardTrigger:
 
 class _LiveSessionLike(Protocol):
     @property
-    def config(self) -> object: ...
+    def config(self) -> object:
+        ...
 
     def inject_vector(
         self, values: list[float], *, duration_ticks: int, gain: float
