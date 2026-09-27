@@ -252,3 +252,84 @@ Two additional non-registered ideas are exposed:
 
 The Playground therefore exposes 18 PAN research candidates, all
 `DRAFT_IDEA_NOT_PREREGISTERED`.
+
+
+## 9. Live PAN session and minimal embodied sandbox
+
+The Playground now has a stateful in-process live-session path in addition to
+the original bounded batch runner.
+
+### Reanimated PAN-AdEx bootstrap
+
+The `pan_adex_5d` reference model now uses:
+
+- `v_rest = -65 mV`
+- `v_t = -55 mV`
+- `threshold = -20 mV`
+- `reset = -60 mV`
+- configurable `pan_bias_current` with a default of `15.0`
+
+The general `adex` Playground model is unchanged. The bootstrap bias is
+applied only to `pan_adex_5d`.
+
+The default thalamic relay threshold is `0.0` so enabling functional
+thalamic gating cannot create an initial activity deadlock by itself.
+
+### Activity-guarded behavioral learning
+
+Behavioral policy updates now require a configurable minimum activity
+(`behavior_min_activity`). Silent episodes receive zero reward and do not
+update policy parameters.
+
+The default target mode is `cycle`, which rotates the target through the
+configured action space. A fixed target remains available explicitly.
+
+This prevents the previous trivial condition in which a silent network always
+selected action zero while action zero was also the fixed target.
+
+### Stateful API
+
+The Dashboard process can host persistent Playground sessions:
+
+```text
+POST /api/playground/live/create
+POST /api/playground/live/<id>/input
+POST /api/playground/live/<id>/step
+GET  /api/playground/live/<id>
+POST /api/playground/live/<id>/sandbox
+POST /api/playground/live/<id>/stop
+```
+
+A live session preserves neuron state, pending synaptic currents, learning
+state, execution-mode state and recent spike history across calls.
+
+This is an **in-process reference daemon**, not a background system service.
+It survives multiple API calls while the Dashboard process remains alive.
+
+### Minimal embodied sandbox
+
+The live session can be coupled to a deterministic 2-D point-mass/spring
+stick figure with:
+
+- nine point joints;
+- eight spring links;
+- four bounded actuator channels;
+- nine receptor values;
+- ground contact and gravity;
+- delayed echo feedback;
+- a synthetic motion/contact audio-level proxy.
+
+The current sandbox does **not** yet implement waveform audio/FFT or
+ReservoirPy. It also does not create a direct Ollama HTTP client. LLM
+communication is deliberately routed through the project's existing Gateway /
+Neural Symbiosis boundary when that integration is enabled.
+
+All live/sandbox state remains:
+
+```text
+classification: PLAYGROUND
+scientific_evidence: false
+evidence_eligible: false
+registry_visible: false
+promotion_path: none
+```
