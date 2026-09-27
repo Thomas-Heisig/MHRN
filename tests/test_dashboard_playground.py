@@ -183,6 +183,17 @@ def test_playground_live_monitor_exposes_popup_controls_and_graphs() -> None:
         "ensureLiveMonitor().showModal()",
         "drawLiveMonitorFigure",
         "openLiveZoom",
+        "prepareLiveTileCanvases",
+        "refreshLiveZoom",
+        "resizeLiveZoomCanvas",
+        "pg-live-zoom-toolbar",
+        "pg-live-zoom-start",
+        "pg-live-zoom-pause",
+        "pg-live-zoom-step",
+        "pg-live-zoom-input",
+        "pg-live-zoom-reset",
+        "pg-live-zoom-stop",
+        "imageSmoothingEnabled=false",
     ):
         assert marker in module
 

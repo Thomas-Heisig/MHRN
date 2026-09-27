@@ -31,6 +31,13 @@
 - Neue Backend-Einträge fallen auf eine fachliche, sprachabhängige Beschreibung
 	zurück, statt ohne Erklärung im Katalog zu erscheinen.
 
+## 2026-09-27 Live-Detailansichten
+
+- Vergrößerte Live-Grafiken werden hochauflösend und ohne einmaliges Bitmap-
+	Hochskalieren gerendert.
+- Die aktive Detailansicht folgt jedem Live-Step und zeigt ihren Laufstatus.
+- Session-Aktionen sind auch im Zoomfenster direkt erreichbar.
+
 ## 2026-09-27 Release-Statusmarker
 
 - Die Release-Ansichten für Entwicklung und Wissenschaft zeigen neben den

@@ -34,6 +34,16 @@
 - Dynamisch gelieferte neue Katalogeinträge erhalten zusätzlich eine
   sprachabhängige fachliche Fallback-Erklärung.
 
+## 2026-09-27 - Live-Detailansichten hochauflösend und bedienbar
+
+- Die vergrößerten Live-Grafiken verwenden jetzt hochauflösende Quellflächen
+  statt unscharfer 220x120-Momentaufnahmen.
+- Die aktive Detailansicht wird bei jedem Live-Step automatisch aktualisiert;
+  sie ist damit eine echte Live-Ansicht und kein eingefrorenes Bild.
+- Das Zoomfenster besitzt eigene Start-, Pause-, Schritt-, Input-, Reset- und
+  Stop-Aktionen sowie eine sichtbare Statuszeile.
+- Die Zeichenfläche passt sich an Dialoggröße und Device-Pixel-Ratio an.
+
 ## 2026-09-27 - Release-Statusmarker für Entwicklung und Wissenschaft
 
 - Die Detailfelder zeigen jetzt neben ihren unveränderten Statusbezeichnungen

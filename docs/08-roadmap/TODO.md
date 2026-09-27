@@ -79,6 +79,8 @@ MHRN / Multi-Scale Homeostatic Recurrence Network. Publication: Recursive Episte
 - [x] Ausführliche Hover- und Popup-Erklärungen für Katalogeinträge anbieten.
 - [x] Bausteine an den globalen EN/DE-Sprachselector anbinden.
 - [x] Repo- und Playground-Komponenten im Bausteine-Tab sichtbar machen.
+- [x] Hochauflösende Live-Zoomansichten ohne unscharfe Momentaufnahmen ergänzen.
+- [x] Live-Aktualisierung und Session-Steuerung im vergrößerten View anbieten.
 
 - [x] Statusmarker in den Release-Ansichten für Entwicklung und Wissenschaft
 	ergänzen, ohne die kanonischen Statusbezeichnungen zu ändern.
