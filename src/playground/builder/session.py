@@ -595,7 +595,11 @@ class PlaygroundSession:
                                         ),
                                     )
                         if (tick + 1) % config.behavior_episode_ticks == 0:
-                            action = behavior_engine.choose_action()
+                            episode_index = len(closed_loop.action_history)
+                            if config.freeze_actions:
+                                action = config.frozen_action_sequence[episode_index]
+                            else:
+                                action = behavior_engine.choose_action()
                             closed_loop.note_action(action=action, tick=tick)
                             for (
                                 action,

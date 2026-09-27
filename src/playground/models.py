@@ -183,6 +183,8 @@ class PlaygroundConfig:
     action_space_size: int = 4
     action_coupling_strength: float = 0.0
     action_noise: float = 0.0
+    freeze_actions: bool = False
+    frozen_action_sequence: tuple[int, ...] = ()
 
     reward_signal_enabled: bool = False
     reward_magnitude: float = 1.0
@@ -191,6 +193,10 @@ class PlaygroundConfig:
     reward_baseline: float = 0.0
     reward_decay: float = 0.0
     reward_channel: int = 0
+    freeze_rewards: bool = False
+    frozen_reward_sequence: tuple[float, ...] = ()
+    parity_reference_source: str = "CPU_PYTHON_PLAYGROUND"
+    parity_reference_commit: str = ""
 
     target_encoding: str = "none"
     target_persistence: int = 1
@@ -296,6 +302,26 @@ class PlaygroundConfig:
                     raise ValueError(f"{name} values must be numeric")
                 result.append(float(item))
             return tuple(result)
+
+        def integers(name: str, default: tuple[int, ...]) -> tuple[int, ...]:
+            value = payload.get(name, default)
+            if not isinstance(value, (list, tuple)):
+                raise ValueError(f"{name} must be an array")
+            result: list[int] = []
+            for item in value:
+                if isinstance(item, bool) or not isinstance(item, (int, float)):
+                    raise ValueError(f"{name} values must be integers")
+                converted = int(item)
+                if float(item) != float(converted):
+                    raise ValueError(f"{name} values must be integers")
+                result.append(converted)
+            return tuple(result)
+
+        def optional_text(name: str, default: str) -> str:
+            value = payload.get(name, default)
+            if not isinstance(value, str):
+                raise ValueError(f"{name} must be a string")
+            return value.strip()
 
         def integer_groups(
             name: str,
@@ -656,6 +682,12 @@ class PlaygroundConfig:
                 "action_coupling_strength", defaults.action_coupling_strength
             ),
             action_noise=number("action_noise", defaults.action_noise),
+            freeze_actions=bool(
+                payload.get("freeze_actions", defaults.freeze_actions)
+            ),
+            frozen_action_sequence=integers(
+                "frozen_action_sequence", defaults.frozen_action_sequence
+            ),
             reward_signal_enabled=bool(
                 payload.get(
                     "reward_signal_enabled",
@@ -672,6 +704,18 @@ class PlaygroundConfig:
             reward_channel=integer(
                 "reward_channel",
                 integer("reward_cue_channel", defaults.reward_channel),
+            ),
+            freeze_rewards=bool(
+                payload.get("freeze_rewards", defaults.freeze_rewards)
+            ),
+            frozen_reward_sequence=numbers(
+                "frozen_reward_sequence", defaults.frozen_reward_sequence
+            ),
+            parity_reference_source=optional_text(
+                "parity_reference_source", defaults.parity_reference_source
+            ),
+            parity_reference_commit=optional_text(
+                "parity_reference_commit", defaults.parity_reference_commit
             ),
             target_encoding=text("target_encoding", defaults.target_encoding).lower(),
             target_persistence=integer(
@@ -962,6 +1006,43 @@ class PlaygroundConfig:
             raise ValueError("action_coupling_strength must be between 0 and 10")
         if not 0.0 <= self.action_noise <= 1.0:
             raise ValueError("action_noise must be between 0 and 1")
+        required_episodes = self.ticks // self.behavior_episode_ticks
+        if self.freeze_actions:
+            if len(self.frozen_action_sequence) < required_episodes:
+                raise ValueError(
+                    "frozen_action_sequence must cover every completed episode"
+                )
+            if any(
+                action < 0 or action >= self.action_space_size
+                for action in self.frozen_action_sequence
+            ):
+                raise ValueError("frozen_action_sequence contains invalid action")
+        if self.freeze_rewards:
+            if not self.reward_signal_enabled:
+                raise ValueError("freeze_rewards requires reward_signal_enabled")
+            if len(self.frozen_reward_sequence) < required_episodes:
+                raise ValueError(
+                    "frozen_reward_sequence must cover every completed episode"
+                )
+            if any(
+                not math.isfinite(reward) or abs(reward) > 100.0
+                for reward in self.frozen_reward_sequence
+            ):
+                raise ValueError(
+                    "frozen_reward_sequence values must be finite and <= 100 abs"
+                )
+        if self.freeze_actions or self.freeze_rewards:
+            if self.parity_reference_source != "CPU_PYTHON_PLAYGROUND":
+                raise ValueError(
+                    "parity_reference_source must be CPU_PYTHON_PLAYGROUND"
+                )
+            if (
+                re.fullmatch(r"[0-9a-fA-F]{7,40}", self.parity_reference_commit)
+                is None
+            ):
+                raise ValueError(
+                    "parity_reference_commit must be a 7-40 character git SHA"
+                )
         if not isinstance(self.action_to_input_map, str):
             if len(self.action_to_input_map) > self.action_space_size:
                 raise ValueError("action_to_input_map has more rows than actions")
@@ -1234,6 +1315,8 @@ class PlaygroundConfig:
             "action_space_size": self.action_space_size,
             "action_coupling_strength": self.action_coupling_strength,
             "action_noise": self.action_noise,
+            "freeze_actions": self.freeze_actions,
+            "frozen_action_sequence": list(self.frozen_action_sequence),
             "reward_signal_enabled": self.reward_signal_enabled,
             "reward_magnitude": self.reward_magnitude,
             "reward_delay_ticks": self.reward_delay_ticks,
@@ -1241,6 +1324,10 @@ class PlaygroundConfig:
             "reward_baseline": self.reward_baseline,
             "reward_decay": self.reward_decay,
             "reward_channel": self.reward_channel,
+            "freeze_rewards": self.freeze_rewards,
+            "frozen_reward_sequence": list(self.frozen_reward_sequence),
+            "parity_reference_source": self.parity_reference_source,
+            "parity_reference_commit": self.parity_reference_commit,
             "target_encoding": self.target_encoding,
             "target_persistence": self.target_persistence,
             "target_cue_current": self.target_cue_current,
