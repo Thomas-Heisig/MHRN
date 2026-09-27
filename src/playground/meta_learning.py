@@ -13,7 +13,8 @@ import random
 import re
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Callable, Iterable
+from collections.abc import Mapping
+from typing import Iterable
 
 _TOKEN_RE = re.compile(r"[A-Za-zÀ-ÿ0-9_\-]+", re.UNICODE)
 
@@ -207,7 +208,8 @@ class KnowledgeBase:
 
     @classmethod
     def from_snapshot(cls, payload: dict[str, object]) -> "KnowledgeBase":
-        dimensions = int(payload.get("dimensions", 64))
+        raw_dimensions = payload.get("dimensions", 64)
+        dimensions = int(raw_dimensions) if isinstance(raw_dimensions, (int, float)) else 64
         kb = cls(dimensions=dimensions)
         raw_records = payload.get("records", [])
         if isinstance(raw_records, list):
@@ -363,9 +365,9 @@ class MetaReward:
 
     def compute(
         self,
-        task: dict[str, object],
-        action: dict[str, object],
-        result: dict[str, object],
+        task: Mapping[str, object],
+        action: Mapping[str, object],
+        result: Mapping[str, object],
     ) -> dict[str, float]:
         task_type = str(task["type"])
         components: dict[str, float] = {}
