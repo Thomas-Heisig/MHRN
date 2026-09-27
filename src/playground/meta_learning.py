@@ -11,9 +11,9 @@ import json
 import math
 import random
 import re
+from collections.abc import Mapping
 from dataclasses import dataclass
 from pathlib import Path
-from collections.abc import Mapping
 from typing import Iterable
 
 _TOKEN_RE = re.compile(r"[A-Za-zÀ-ÿ0-9_\-]+", re.UNICODE)
