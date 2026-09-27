@@ -6,6 +6,7 @@ from dataclasses import replace
 from typing import Mapping
 
 from .analysis import ensemble_summary
+from .closed_loop import closed_loop_catalog
 from .builder.session import PlaygroundSession
 from .geometry import geometry_literature_context
 from .models import PlaygroundConfig
@@ -133,6 +134,7 @@ def catalog() -> dict[str, object]:
                 "a new hypothesis, preregistration, freeze and canonical rerun."
             ),
         },
+        "closed_loop": closed_loop_catalog(),
         "neural_io": {
             "available": True,
             "classification": "PLAYGROUND_NEURAL_IO",
