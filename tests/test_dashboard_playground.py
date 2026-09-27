@@ -35,9 +35,7 @@ def test_playground_exposes_cuda_1_3_hardware_console() -> None:
     module = (STATIC / "frontend" / "modules" / "playground.js").read_text(
         encoding="utf-8"
     )
-    api = (ROOT / "src" / "dashboard" / "playground_api.py").read_text(
-        encoding="utf-8"
-    )
+    api = (ROOT / "src" / "dashboard" / "playground_api.py").read_text(encoding="utf-8")
 
     for marker in (
         "CUDA-1.0",
