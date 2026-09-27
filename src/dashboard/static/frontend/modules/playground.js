@@ -7,6 +7,32 @@ let catalogState = null;
 let liveSessionId = null;
 let liveLoopTimer = null;
 
+const PLAYGROUND_DEFAULT_HINTS = {
+  "pg-weight": "4", "pg-dimensions": "5", "pg-neurons": "128", "pg-edges": "1024",
+  "pg-radius": "0.35", "pg-k": "16", "pg-rewire": "0.15", "pg-modules": "2", "pg-delay": "1",
+  "pg-ticks": "256", "pg-current": "8", "pg-rate": "20", "pg-seed": "12345", "pg-ensemble": "1",
+  "pg-pan-dimensions": "5", "pg-pan-feedback-gain": "0.05", "pg-pan-health-decay": "0.001", "pg-pan-apoptosis": "0.1", "pg-pan-bias-current": "10",
+  "pg-geometry-lambda-a": "0.5", "pg-geometry-lambda-b": "0.5", "pg-geometry-sigma": "0.1", "pg-geometry-p0": "0.3", "pg-geometry-delay-velocity": "0.25",
+  "pg-clock-base-hz": "100", "pg-clock-event-batch": "10", "pg-execution-high": "0.30", "pg-execution-low": "0.05", "pg-execution-hysteresis": "0.02", "pg-execution-dwell": "100", "pg-execution-window": "100",
+  "pg-growth-activity": "0.25", "pg-growth-coactivation": "2", "pg-growth-info": "0.25", "pg-growth-prune": "0.05", "pg-growth-max-synapses": "128", "pg-growth-max-new": "8", "pg-cuda-budget": "2048", "pg-offload-snapshot": "1000",
+  "pg-thalamic-threshold": "0", "pg-thalamic-attention": "1.15", "pg-thalamic-inhibition": "0.35", "pg-cortical-layers": "6", "pg-cortical-lr": "0.01", "pg-behavior-actions": "4", "pg-behavior-target": "0", "pg-behavior-min-activity": "0.01", "pg-behavior-lr": "0.2", "pg-behavior-epsilon": "0.2", "pg-behavior-episode": "16", "pg-behavior-bias": "3",
+  "pg-neural-io-input-channels": "16", "pg-neural-io-output-channels": "16", "pg-neural-io-window": "16", "pg-neural-io-current": "25",
+};
+
+function updateDefaultHints() {
+  Object.entries(PLAYGROUND_DEFAULT_HINTS).forEach(([id, defaultValue]) => {
+    const field = byId(id);
+    if (!field) return;
+    const currentValue = String(field.value);
+    const changed = currentValue !== defaultValue;
+    const message = changed
+      ? `Abweichend vom Standard: ${currentValue}. Standardwert: ${defaultValue}.`
+      : `Standardwert: ${defaultValue}.`;
+    field.title = message;
+    field.closest("label")?.classList.toggle("pg-non-default", changed);
+  });
+}
+
 function injectStyles() {
   if (byId("mhrn-playground-styles")) return;
   const style = document.createElement("style");
@@ -19,6 +45,7 @@ function injectStyles() {
     .playground-card,.playground-viz,.playground-analysis-card{border:1px solid var(--line,rgba(127,127,127,.2));border-radius:12px;padding:.8rem;background:rgba(127,127,127,.035)}
     .playground-card h3,.playground-viz h3,.playground-analysis-card h3{margin:.05rem 0 .65rem;font-size:.84rem}
     .playground-card label{display:grid;gap:.25rem;margin:.48rem 0;font-size:.7rem;opacity:.9}.playground-card small{display:block;opacity:.65;line-height:1.4}
+      .playground-card label.pg-non-default{outline:1px dotted color-mix(in srgb,currentColor 45%,transparent);outline-offset:3px}
     .playground-card input,.playground-card select,.playground-card textarea{width:100%;padding:.45rem .5rem;border:1px solid var(--line,rgba(127,127,127,.25));border-radius:8px;background:rgba(0,0,0,.12);color:inherit}.playground-card textarea{min-height:72px;resize:vertical;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:.67rem}
     .playground-actions{display:flex;flex-wrap:wrap;gap:.5rem;margin:.9rem 0}.playground-actions button{padding:.58rem .8rem;border-radius:8px;border:1px solid var(--line,rgba(127,127,127,.3));background:rgba(127,127,127,.1);color:inherit;cursor:pointer}.playground-actions .primary{font-weight:700;border-color:currentColor}
     .playground-status{padding:.65rem .75rem;border-radius:9px;background:rgba(127,127,127,.06);font-size:.72rem;white-space:pre-wrap;overflow:auto}.playground-status[data-state="error"]{color:#ef8b8b}.playground-status[data-state="ok"]{color:#51d6ad}
@@ -426,6 +453,7 @@ async function runRobustness(){
 function resetForm(){
   const values={neurons:"128",edges:"1024",weight:"4",ticks:"256",dimensions:"5",delay:"1",radius:"0.35",k:"16",rewire:"0.15",modules:"2",current:"8",rate:"20",seed:"12345",ensemble:"1","pan-dimensions":"5","pan-feedback-gain":"0.05","pan-health-decay":"0.001","pan-apoptosis":"0.1","pan-bias-current":"10","geometry-lambda-a":"0.5","geometry-lambda-b":"0.5","geometry-sigma":"0.1","geometry-p0":"0.3","geometry-delay-velocity":"0.25","clock-base-hz":"100","clock-event-batch":"10","execution-high":"0.30","execution-low":"0.05","execution-hysteresis":"0.02","execution-dwell":"100","execution-window":"100","growth-activity":"0.25","growth-coactivation":"2","growth-info":"0.25","growth-prune":"0.05","growth-max-synapses":"128","growth-max-new":"8","cuda-budget":"2048","offload-snapshot":"1000","thalamic-threshold":"0","thalamic-attention":"1.15","thalamic-inhibition":"0.35","cortical-layers":"6","cortical-lr":"0.01","behavior-actions":"4","behavior-target":"0","behavior-min-activity":"0.01","behavior-lr":"0.2","behavior-epsilon":"0.2","behavior-episode":"16","behavior-bias":"3"};
   for(const[k,v]of Object.entries(values)){const el=byId(`pg-${k}`);if(el)el.value=v;}byId("pg-persist").checked=false;byId("pg-pan-enabled").checked=false;byId("pg-pan-closed-loop").checked=true;byId("pg-clock-mode").value="continuous";byId("pg-execution-mode").value="HYBRID_AUTO";byId("pg-execution-initial").value="EVENT_ONLY";byId("pg-execution-transition").value="clean";byId("pg-execution-sync").checked=true;byId("pg-execution-log").checked=true;byId("pg-growth-enabled").checked=false;byId("pg-offload-enabled").checked=false;byId("pg-hardware-profile").value="reference_cpu";byId("pg-thalamic-enabled").checked=false;byId("pg-behavior-target-mode").value="cycle";byId("pg-cortical-enabled").checked=false;byId("pg-cortical-plasticity").checked=true;byId("pg-behavior-enabled").checked=false;byId("pg-geometry-mode").value="mixed_additive";byId("pg-neural-io-enabled").checked=false;byId("pg-neural-io-payload").value="0.5";byId("pg-neural-io-input-channels").value="16";byId("pg-neural-io-output-channels").value="16";byId("pg-neural-io-window").value="16";byId("pg-neural-io-current").value="25";byId("pg-neural-io-input-role").value="GATEWAY_AFFERENT";byId("pg-neural-io-output-role").value="GATEWAY_EFFERENT";byId("pg-neural-io-phase").value="QUERY";byId("pg-neural-io-modality").value="digital";byId("pg-neural-io-source").value="playground.input";if(byId("pg-topology"))byId("pg-topology").value="mhrn_5d";
+  updateDefaultHints();
 }
 
 async function refreshSessions(){
@@ -500,7 +528,9 @@ export async function initPlayground(){
   const root=byId("tab-playground");if(!root)return;
   injectStyles();ensurePermanentBoundary(root);buildPanels(root);
   byId("pg-run")?.addEventListener("click",runSession);byId("pg-robustness")?.addEventListener("click",runRobustness);byId("pg-reset")?.addEventListener("click",resetForm);byId("pg-live-create")?.addEventListener("click",()=>createLiveSession().catch(error=>byId("pg-live-state").textContent=String(error.message||error)));byId("pg-live-step")?.addEventListener("click",()=>stepLiveSession().catch(error=>byId("pg-live-state").textContent=String(error.message||error)));byId("pg-live-auto")?.addEventListener("click",()=>startLiveLoop().catch(error=>byId("pg-live-state").textContent=String(error.message||error)));byId("pg-live-auto-stop")?.addEventListener("click",stopLiveLoop);byId("pg-live-input")?.addEventListener("click",()=>injectLiveInput().catch(error=>byId("pg-live-state").textContent=String(error.message||error)));byId("pg-live-sandbox")?.addEventListener("click",()=>stepLiveSandbox().catch(error=>byId("pg-live-state").textContent=String(error.message||error)));byId("pg-live-stop")?.addEventListener("click",()=>stopLiveSession().catch(error=>byId("pg-live-state").textContent=String(error.message||error)));
-  try{renderCatalog(await apiGet("/api/playground/catalog"));}catch(error){const status=byId("pg-status");status.dataset.state="error";status.textContent=`Katalog nicht verfügbar: ${error.message}`;}
+  try{renderCatalog(await apiGet("/api/playground/catalog"));resetForm();}catch(error){const status=byId("pg-status");status.dataset.state="error";status.textContent=`Katalog nicht verfügbar: ${error.message}`;}
+  byId("playground-builder")?.addEventListener("input", updateDefaultHints);
+  byId("playground-builder")?.addEventListener("change", updateDefaultHints);
   await refreshSessions();
   window.MHRNPlayground={run:runSession,runRobustness,refreshSessions,get catalog(){return catalogState;},get lastResult(){return lastResult;}};
 }
