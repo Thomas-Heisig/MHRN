@@ -111,6 +111,18 @@ Kanonische Temporal-Order-EVID: `research/registry/evidence/EVID-2026-20.json`.
 Topologie-Promotionsstatus: `research/experiments/EXP-S1-TOPO-PROMO-R1-20260927/EVIDENCE_PROMOTION_STATUS.json`.  
 Temporal-Promotionsstatus: `research/experiments/EXP-S1-TEMP-PROMO-R1-20260927/EVIDENCE_PROMOTION_STATUS.json`.
 
+### Efficiency-Quarantäne und Reference-Replikationspfad
+
+Die nach `EVID-2026-19` explorativ berechneten Effizienzverhältnisse wurden nicht rückwirkend in den Topologie-Claim aufgenommen. `H-SNN-003-C / CLAIM-S1-EFFICIENCY-001` bleiben `untested` mit leerer Evidence-Liste. Die dafür angelegte `PREREG-S1-TOPO-EFFICIENCY-R1` ist nach der gültigen Pre-Freeze-Kalibration `CAL-S1-TOPO-EFFICIENCY-R1-20260927` blockiert: Im registrierten Current-Bereich 70–140 blieb die mediane `final_active_fraction` für 3D bei 1,0 und für 5D bei 0,828125; die vorab definierten Recruitment-Matching-Gates wurden nicht erreicht. Der Status ist `DRAFT_CALIBRATION_GATE_FAILED_FREEZE_BLOCKED`; eine Evaluation wurde nicht ausgeführt. Das ist ein gültiger negativer Kalibrationsbefund, keine EVID.
+
+Diese Efficiency-Linie kann den Stage-1-Maturity-Score auch bei einem späteren positiven, getrennten EVID-Pfad nicht über 85 % anheben, solange die Replikationskomponente offen ist: `reviewed_evidence` ist bereits mit 20/20 erfüllt.
+
+Für den nächsten 7,5-%-Schritt wird `PREREG-S1-TOPO-REFERENCE-R1` als projektseitige Cross-Implementation-Replikation mit Brian2 2.10.1 vorbereitet. Brian2 wird dabei als externe Referenzsoftware verwendet und gemäß Stimberg, Brette & Goodman (2019), *eLife* 8:e47314, DOI 10.7554/eLife.47314 attribuiert; die Software bleibt unter CeCILL 2.1 und wird nicht durch die MHRN-MIT-Lizenz relicensed. Lizenz- und Attributionsprovenienz stehen zusätzlich in `THIRD_PARTY_NOTICES.md`.
+
+Der Reference-Pfad ist vor Reference-DATA fail-closed. Der Mechanismen-Audit identifiziert Threshold-Adaptation und Homeostasis als aktiv und timing-relevant; Energy und Traces werden zwar fortgeschrieben, sind für die registrierten Spike-Endpunkte aber nicht rückgekoppelt. Vor Freeze müssen Ein-/Mehrtick-Integratorparität, expliziter Reset, Zwei-Neuronen-Synapsen-/Delay-Parität, Mechanismen-Audit, Runner-Blinding/Unabhängigkeit und Seed-Freshness bestanden sein. Die MHRN→Brian2-Übersetzung ist in `reference/stage1_topology_brian2/TRANSLATION.md` separat dokumentiert. Der vollständige Brian2-Runner und der getrennte Verifier sind implementiert, aber eine Reference-Evaluation bleibt ohne spätere explizite Autorisierung gesperrt.
+
+Die projektseitige Cross-Implementation kann bei erfolgreichem Human Review höchstens **partial replication = 7,5/15** zum Replikationsblock beitragen und Stage 1 damit auf 92,5 % anheben. Volle 15/15 bleiben einer tatsächlich externen, unabhängig kontrollierten und autorisierten Replikation vorbehalten. Failed oder Inconclusive Reference Replication erhöhen den Score nicht und müssen ebenso sichtbar bleiben.
+
 ## Aktueller Schwerpunkt: Stage 6
 
 ### Semantization / Continual Learning
