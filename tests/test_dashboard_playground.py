@@ -339,3 +339,22 @@ def test_playground_ui_exposes_cuda_gate_compiler_preview() -> None:
     assert 'path == "/api/playground/cuda/compile"' in api
     assert "compile_mapping" in api
     assert "EvidenceEngine" not in api
+
+
+def test_playground_ui_exposes_cuda_parity_and_cpu_determinism_controls() -> None:
+    module = (STATIC / "frontend" / "modules" / "playground.js").read_text(
+        encoding="utf-8"
+    )
+    api = (ROOT / "src" / "dashboard" / "playground_api.py").read_text(
+        encoding="utf-8"
+    )
+    assert "18 · CUDA & Parität" in module
+    assert 'id="pg-cpu-determinism"' in module
+    assert 'id="pg-freeze-actions"' in module
+    assert 'id="pg-freeze-rewards"' in module
+    assert 'id="pg-parity-reference-commit"' in module
+    assert '"/api/playground/determinism"' in module
+    assert 'path == "/api/playground/determinism"' in api
+    assert "checkCpuDeterminism" in module
+    assert "D1 = exakte Spike-Ereignisse" in module
+    assert "ein echter GPU-Kernel-Launch ist hier noch nicht nachgewiesen" in module
