@@ -89,6 +89,8 @@ def test_playground_preset_lab_has_izhikevich_pan_and_local_storage() -> None:
     assert "function deleteUserPreset()" in module
     assert 'id="pg-user-preset-save"' in module
     assert 'id="pg-user-preset-delete"' in module
+    assert 'id="pg-closed-loop-preset"' not in module
+    assert 'renderCatalog(await apiGet("/api/playground/catalog"));renderUserPresetOptions();resetForm();' in module
     assert 'n_neurons:"neurons"' in module
     assert 'edge_budget:"edges"' in module
     assert 'stimulus_current:"current"' in module
@@ -262,7 +264,7 @@ def test_playground_ui_exposes_closed_loop_builder_sections() -> None:
         "13 · Belohnung",
         "14 · Kredit-Zuweisung",
         "15 · Netzwerk-Heterogenität & Zeit",
-        "16 · Closed-Loop Presets",
+        "Preset Lab",
     ):
         assert section in module
     assert 'id="pg-action-loop-enabled"' in module
@@ -270,5 +272,6 @@ def test_playground_ui_exposes_closed_loop_builder_sections() -> None:
     assert 'id="pg-target-encoding"' in module
     assert 'id="pg-reward-enabled"' in module
     assert 'id="pg-credit-assignment"' in module
-    assert 'id="pg-closed-loop-preset"' in module
-    assert "applySelectedPreset" in module
+    assert 'id="pg-user-preset-select"' in module
+    assert 'id="pg-closed-loop-preset"' not in module
+    assert "applyUserPreset" in module

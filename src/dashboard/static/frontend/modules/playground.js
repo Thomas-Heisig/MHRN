@@ -284,12 +284,6 @@ function buildPanels(root) {
           <label><span><input id="pg-oscillation-enabled" type="checkbox"> interne Oszillation</span></label>
           <label>Oszillation Hz<input id="pg-oscillation-frequency" type="number" min="0.5" max="100" step="0.5" value="8"></label>
         </article>
-        <article class="playground-card"><h3>16 · Closed-Loop Presets</h3>
-          <label>Preset<select id="pg-closed-loop-preset"><option value="custom">custom</option></select></label>
-          <div class="playground-actions"><button type="button" id="pg-apply-preset">Preset anwenden</button></div>
-          <pre id="pg-preset-description">Eigene Parameter.</pre>
-          <small>Preset-Erwartungen sind Hypothesen, keine gemessenen Resultate. Overrides bleiben nach Anwendung einzeln änderbar.</small>
-        </article>
       </div>
       <div class="playground-actions"><button type="button" class="primary" id="pg-run">▶ Playground starten</button><button type="button" id="pg-robustness">Robustheitskontrollen</button><button type="button" id="pg-reset">Standardwerte</button></div>
       <article class="playground-card"><h3>17 · PAN Live Session & Sandbox</h3><div class="playground-actions"><button type="button" id="pg-live-create">Live starten</button><button type="button" id="pg-live-step">+32 Ticks</button><button type="button" id="pg-live-auto">Auto Start</button><button type="button" id="pg-live-auto-stop">Auto Stop</button><button type="button" id="pg-live-input">Input zeigen</button><button type="button" id="pg-live-sandbox">Sandbox +8</button><button type="button" id="pg-live-stop">Stop</button></div><label>Live Input (JSON-Array)<textarea id="pg-live-input-values">[1,0,-1,0.5]</textarea></label><canvas id="pg-live-sandbox-canvas" width="800" height="360"></canvas><pre id="pg-live-state">Noch keine Live-Session.</pre></article>
@@ -459,7 +453,7 @@ function formPayload() {
     neural_io_correlation_id: "auto",
     neural_io_modality: byId("pg-neural-io-modality").value,
     neural_io_source_id: byId("pg-neural-io-source").value,
-    closed_loop_preset: byId("pg-closed-loop-preset").value,
+    closed_loop_preset: (catalogState?.closed_loop?.presets||[]).some(item=>item.name===byId("pg-user-preset-select")?.value) ? byId("pg-user-preset-select").value : "custom",
     input_topology: byId("pg-input-topology").value,
     input_channels: Number(byId("pg-input-channels").value),
     input_channel_map: parseJsonArray("pg-input-channel-map","Kanal-Map"),
@@ -698,7 +692,10 @@ function readSavedPlaygroundPresets(){
 }
 
 function writeSavedPlaygroundPresets(presets){localStorage.setItem(PLAYGROUND_PRESETS_STORAGE,JSON.stringify(presets));}
-function allPlaygroundPresets(){return {...BUILTIN_PLAYGROUND_PRESETS,...readSavedPlaygroundPresets()};}
+function allPlaygroundPresets(){
+  const catalogPresets=Object.fromEntries((catalogState?.closed_loop?.presets||[]).map(item=>[item.name,{...item,source:"catalog"}]));
+  return {...BUILTIN_PLAYGROUND_PRESETS,...catalogPresets,...readSavedPlaygroundPresets()};
+}
 
 function renderUserPresetOptions(){
   const select=byId("pg-user-preset-select");if(!select)return;
@@ -711,9 +708,10 @@ function renderUserPresetOptions(){
 
 function applyUserPreset(){
   const name=byId("pg-user-preset-select")?.value;const preset=allPlaygroundPresets()[name];if(!preset)return;
-  Object.entries(preset.settings||{}).forEach(([key,value])=>setBuilderValue(key,value));
+  const settings=preset.source==="catalog"?resolvedPresetSettings(name):preset.settings||{};
+  Object.entries(settings).forEach(([key,value])=>setBuilderValue(key,value));
   updateDefaultHints();
-  if(byId("pg-user-preset-description"))byId("pg-user-preset-description").textContent=`${preset.description||name}\nLokal gespeichert: ${BUILTIN_PLAYGROUND_PRESETS[name]?"integriert":"ja"}`;
+  if(byId("pg-user-preset-description"))byId("pg-user-preset-description").textContent=`${preset.description||name}\nQuelle: ${preset.source==="catalog"?"Presetkatalog":BUILTIN_PLAYGROUND_PRESETS[name]?"integriert":"lokal"}${preset.expected_success!=null?`\nErwartung: ${preset.expected_success}`:""}`;
 }
 
 function saveUserPreset(){
@@ -737,23 +735,11 @@ function resolvedPresetSettings(name,seen=new Set()){
   return parent?{...resolvedPresetSettings(parent,new Set([...seen,name])),...settings}:settings;
 }
 
-function applySelectedPreset(){
-  const select=byId("pg-closed-loop-preset");if(!select)return;
-  const name=select.value;
-  if(name==="custom"){byId("pg-preset-description").textContent="Eigene Parameter.";return;}
-  const preset=(catalogState?.closed_loop?.presets||[]).find(item=>item.name===name);
-  const settings=resolvedPresetSettings(name);
-  Object.entries(settings).forEach(([key,value])=>setBuilderValue(key,value));
-  byId("pg-closed-loop-preset").value=name;
-  if(byId("pg-preset-description"))byId("pg-preset-description").textContent=`${preset?.description||name}\nHypothese: ${preset?.hypothesis||"—"}\nErwartung: ${preset?.expected_success??"offen"}`;
-  updateDefaultHints();
-}
-
 function resetForm(){
   const values={neurons:"128",edges:"1024",weight:"4","weight-decay":"0","weight-max-clamp":"100",ticks:"256",dimensions:"5",delay:"1",radius:"0.35",k:"16",rewire:"0.15",modules:"2",current:"8",rate:"20",seed:"12345",ensemble:"1","pan-dimensions":"5","pan-feedback-gain":"0.05","pan-health-decay":"0.001","pan-apoptosis":"0.1","pan-bias-current":"10","geometry-lambda-a":"0.5","geometry-lambda-b":"0.5","geometry-sigma":"0.1","geometry-p0":"0.3","geometry-delay-velocity":"0.25","clock-base-hz":"100","clock-event-batch":"10","execution-high":"0.30","execution-low":"0.05","execution-hysteresis":"0.02","execution-dwell":"100","execution-window":"100","growth-activity":"0.25","growth-coactivation":"2","growth-info":"0.25","growth-prune":"0.05","growth-max-synapses":"128","growth-max-new":"8","cuda-budget":"2048","offload-snapshot":"1000","thalamic-threshold":"0","thalamic-attention":"1.15","thalamic-inhibition":"0.35","cortical-layers":"6","cortical-lr":"0.01","behavior-actions":"4","behavior-target":"0","behavior-min-activity":"0.01","behavior-lr":"0.2","behavior-epsilon":"0.2","behavior-episode":"16","behavior-bias":"3"};
   for(const[k,v]of Object.entries(values)){const el=byId(`pg-${k}`);if(el)el.value=v;}byId("pg-persist").checked=false;byId("pg-pan-enabled").checked=false;byId("pg-pan-closed-loop").checked=true;byId("pg-clock-mode").value="continuous";byId("pg-execution-mode").value="HYBRID_AUTO";byId("pg-execution-initial").value="EVENT_ONLY";byId("pg-execution-transition").value="clean";byId("pg-execution-sync").checked=true;byId("pg-execution-log").checked=true;byId("pg-growth-enabled").checked=false;byId("pg-offload-enabled").checked=false;byId("pg-hardware-profile").value="reference_cpu";byId("pg-thalamic-enabled").checked=false;byId("pg-behavior-target-mode").value="cycle";byId("pg-cortical-enabled").checked=false;byId("pg-cortical-plasticity").checked=true;byId("pg-behavior-enabled").checked=false;byId("pg-geometry-mode").value="mixed_additive";byId("pg-neural-io-enabled").checked=false;byId("pg-neural-io-payload").value="0.5";byId("pg-neural-io-input-channels").value="16";byId("pg-neural-io-output-channels").value="16";byId("pg-neural-io-window").value="16";byId("pg-neural-io-current").value="25";byId("pg-neural-io-input-role").value="GATEWAY_AFFERENT";byId("pg-neural-io-output-role").value="GATEWAY_EFFERENT";byId("pg-neural-io-phase").value="QUERY";byId("pg-neural-io-modality").value="digital";byId("pg-neural-io-source").value="playground.input";if(byId("pg-topology"))byId("pg-topology").value="mhrn_5d";
   const closedLoopDefaults={
-    "closed-loop-preset":"custom","input-topology":"uniform","input-channels":"1","input-channel-map":"[]","input-amplitudes":"[]","input-frequencies":"[]","input-phases":"[]","input-noise":"0","target-cue-channel":"0","reward-cue-channel":"0","action-feedback-channel":"0",
+    "input-topology":"uniform","input-channels":"1","input-channel-map":"[]","input-amplitudes":"[]","input-frequencies":"[]","input-phases":"[]","input-noise":"0","target-cue-channel":"0","reward-cue-channel":"0","action-feedback-channel":"0",
     "pan-feedback-delay":"0","pan-feedback-source":"population","pan-feedback-target":"all","pan-feedback-nonlinearity":"linear","pan-feedback-threshold":"0","pan-feedback-saturation":"100",
     "action-loop-delay":"1","action-persistence":"1","action-to-input-map":"auto","action-space-size":"4","action-coupling":"0","action-noise":"0","geometry-input-sigma":"0.2","sandbox-sensor-noise":"0.05",
     "target-encoding":"none","target-persistence":"1","target-cue-current":"0","target-predictability":"deterministic",
@@ -763,7 +749,6 @@ function resetForm(){
   };
   Object.entries(closedLoopDefaults).forEach(([key,value])=>{const el=byId("pg-"+key);if(el)el.value=value;});
   ["pg-action-loop-enabled","pg-geometry-input-coupling","pg-sandbox-enabled","pg-target-shuffle","pg-reward-enabled","pg-oscillation-enabled"].forEach(id=>{const el=byId(id);if(el)el.checked=false;});
-  if(byId("pg-preset-description"))byId("pg-preset-description").textContent="Eigene Parameter.";
   updateDefaultHints();
 }
 
@@ -783,8 +768,6 @@ function renderCatalog(catalog){
   byId("pg-stimulus").innerHTML=optionMarkup(catalog.stimuli,"name");
   byId("pg-neural-io-codec").innerHTML=(catalog.neural_io?.codecs||[]).filter(item=>item.available!==false).map(item=>`<option value="${item.id}">${item.id}</option>`).join("");
   byId("pg-neural-io-decoder").innerHTML=(catalog.neural_io?.decoders||[]).filter(item=>item.available!==false).map(item=>`<option value="${item.id}">${item.id}</option>`).join("");
-  const presetSelect=byId("pg-closed-loop-preset");
-  if(presetSelect)presetSelect.innerHTML='<option value="custom">custom</option>'+((catalog.closed_loop?.presets||[]).map(item=>`<option value="${item.name}">${item.name}</option>`).join(""));
   if([...byId("pg-topology").options].some(o=>o.value==="mhrn_5d"))byId("pg-topology").value="mhrn_5d";
   const panCandidates=(catalog.pan?.research_candidates||[]).map(item=>({name:item.id,note:item.question}));
   const panLiterature=(catalog.pan?.literature_context?.sources||[]).map(item=>({name:item.key,note:item.citation}));
@@ -798,9 +781,9 @@ function renderCatalog(catalog){
 export async function initPlayground(){
   const root=byId("tab-playground");if(!root)return;
   injectStyles();ensurePermanentBoundary(root);buildPanels(root);
-  byId("pg-run")?.addEventListener("click",runSession);byId("pg-apply-preset")?.addEventListener("click",applySelectedPreset);byId("pg-user-preset-apply")?.addEventListener("click",applyUserPreset);byId("pg-user-preset-save")?.addEventListener("click",saveUserPreset);byId("pg-user-preset-delete")?.addEventListener("click",deleteUserPreset);byId("pg-user-preset-select")?.addEventListener("change",renderUserPresetOptions);byId("pg-robustness")?.addEventListener("click",runRobustness);byId("pg-reset")?.addEventListener("click",resetForm);byId("pg-live-create")?.addEventListener("click",()=>createLiveSession().catch(error=>byId("pg-live-state").textContent=String(error.message||error)));byId("pg-live-step")?.addEventListener("click",()=>stepLiveSession().catch(error=>byId("pg-live-state").textContent=String(error.message||error)));byId("pg-live-auto")?.addEventListener("click",()=>startLiveLoop().catch(error=>byId("pg-live-state").textContent=String(error.message||error)));byId("pg-live-auto-stop")?.addEventListener("click",stopLiveLoop);byId("pg-live-input")?.addEventListener("click",()=>injectLiveInput().catch(error=>byId("pg-live-state").textContent=String(error.message||error)));byId("pg-live-sandbox")?.addEventListener("click",()=>stepLiveSandbox().catch(error=>byId("pg-live-state").textContent=String(error.message||error)));byId("pg-live-stop")?.addEventListener("click",()=>stopLiveSession().catch(error=>byId("pg-live-state").textContent=String(error.message||error)));byId("pg-night-start")?.addEventListener("click",()=>startNightRun().catch(error=>byId("pg-night-state").textContent=String(error.message||error)));byId("pg-night-stop")?.addEventListener("click",()=>stopNightRun().catch(error=>byId("pg-night-state").textContent=String(error.message||error)));byId("pg-night-refresh")?.addEventListener("click",()=>refreshNightStatus().catch(error=>byId("pg-night-state").textContent=String(error.message||error)));
+  byId("pg-run")?.addEventListener("click",runSession);byId("pg-user-preset-apply")?.addEventListener("click",applyUserPreset);byId("pg-user-preset-save")?.addEventListener("click",saveUserPreset);byId("pg-user-preset-delete")?.addEventListener("click",deleteUserPreset);byId("pg-user-preset-select")?.addEventListener("change",renderUserPresetOptions);byId("pg-robustness")?.addEventListener("click",runRobustness);byId("pg-reset")?.addEventListener("click",resetForm);byId("pg-live-create")?.addEventListener("click",()=>createLiveSession().catch(error=>byId("pg-live-state").textContent=String(error.message||error)));byId("pg-live-step")?.addEventListener("click",()=>stepLiveSession().catch(error=>byId("pg-live-state").textContent=String(error.message||error)));byId("pg-live-auto")?.addEventListener("click",()=>startLiveLoop().catch(error=>byId("pg-live-state").textContent=String(error.message||error)));byId("pg-live-auto-stop")?.addEventListener("click",stopLiveLoop);byId("pg-live-input")?.addEventListener("click",()=>injectLiveInput().catch(error=>byId("pg-live-state").textContent=String(error.message||error)));byId("pg-live-sandbox")?.addEventListener("click",()=>stepLiveSandbox().catch(error=>byId("pg-live-state").textContent=String(error.message||error)));byId("pg-live-stop")?.addEventListener("click",()=>stopLiveSession().catch(error=>byId("pg-live-state").textContent=String(error.message||error)));byId("pg-night-start")?.addEventListener("click",()=>startNightRun().catch(error=>byId("pg-night-state").textContent=String(error.message||error)));byId("pg-night-stop")?.addEventListener("click",()=>stopNightRun().catch(error=>byId("pg-night-state").textContent=String(error.message||error)));byId("pg-night-refresh")?.addEventListener("click",()=>refreshNightStatus().catch(error=>byId("pg-night-state").textContent=String(error.message||error)));
   renderUserPresetOptions();
-  try{renderCatalog(await apiGet("/api/playground/catalog"));resetForm();}catch(error){const status=byId("pg-status");status.dataset.state="error";status.textContent=`Katalog nicht verfügbar: ${error.message}`;}
+  try{renderCatalog(await apiGet("/api/playground/catalog"));renderUserPresetOptions();resetForm();}catch(error){const status=byId("pg-status");status.dataset.state="error";status.textContent=`Katalog nicht verfügbar: ${error.message}`;}
   byId("playground-builder")?.addEventListener("input", updateDefaultHints);
   byId("playground-builder")?.addEventListener("change", updateDefaultHints);
   await refreshSessions();
