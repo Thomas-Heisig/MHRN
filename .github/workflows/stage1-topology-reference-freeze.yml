@@ -28,7 +28,7 @@ permissions:
 
 concurrency:
   group: stage1-topology-reference-freeze-r2-develop
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   freeze:
