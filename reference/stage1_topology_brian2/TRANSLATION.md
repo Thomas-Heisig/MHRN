@@ -74,7 +74,9 @@ The reference implementation uses its own minimal integer-tick event queue. The 
 
 ## 5. Topology translation
 
-For each registered shape, coordinates and edges are independently generated from the frozen textual rules:
+For each registered shape, coordinates and edges are independently generated from the frozen textual rules.
+
+**Label-order rule:** first generate the full lexicographic Cartesian product of the declared 5D shape. Then sort that list by (1) the sum of normalized coordinates `value_i / max(size_i-1, 1)` and (2) the coordinate tuple as deterministic tie-break. This matches the canonical MHRN label-order semantics without importing its topology builder. An earlier DRAFT described this too loosely as only “lexicographic product order”; the wording was corrected before reference DATA existed.
 
 - 64 materialized neurons;
 - future-only directed edges;
