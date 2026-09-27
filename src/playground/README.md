@@ -384,3 +384,14 @@ The Dashboard exposes **11 · Meta-Nachtlauf** and
 `/api/playground/night` start/stop/status endpoints.
 
 See `docs/playground/PAN_NIGHT_RUN.md`.
+
+
+### Night-run operational profile
+
+The default PAN meta-night profile uses synaptic weight `3.0`, dual-clock
+execution, bounded generative growth and `growth_activity_threshold=0.05`.
+These are engineering defaults motivated by the last Playground diagnosis, not
+scientific parameter claims.
+
+Live checkpoints include the mutable graph and Growth/PAN/execution state, so a
+resumed run continues from the structural state that existed at the checkpoint.
