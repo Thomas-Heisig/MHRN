@@ -830,6 +830,13 @@ class PANLiveSession:
                 "mean_v": sum(voltages) / max(1, len(voltages)),
                 "min_v": min(voltages, default=0.0),
                 "max_v": max(voltages, default=0.0),
+                "topology": {
+                    "neuron_count": self.config.n_neurons,
+                    "edge_count": len(self.topology.edges),
+                    "dimensions": self.topology.dimensions,
+                    "coordinates": self.topology.coordinates,
+                    "edges": self.topology.edges,
+                },
                 "recent_spikes": [
                     {"tick": tick, "neuron_id": neuron}
                     for tick, neuron in list(self.recent_spikes)[-256:]
@@ -877,6 +884,17 @@ class PANSessionDaemon:
         final = session.snapshot()
         final["stopped"] = True
         return final
+
+    def stop_all(self) -> dict[str, object]:
+        """Stop and remove every temporary in-process live session."""
+        with self._lock:
+            sessions = list(self._sessions.values())
+            self._sessions.clear()
+        return {
+            "classification": "PLAYGROUND_LIVE_SESSIONS_CLEARED",
+            "scientific_evidence": False,
+            "cleared": len(sessions),
+        }
 
     def list(self) -> list[dict[str, object]]:
         with self._lock:

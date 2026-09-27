@@ -83,6 +83,7 @@ MHRN / Multi-Scale Homeostatic Recurrence Network. Publication: Recursive Episte
 - [x] Interaktives Live-Monitor-Popup für PAN-Session und Auto-Start ergänzen.
 - [x] Posture-Score, Reward-Trigger, getrennte Kanäle und Sandbox-Episodenreset
 	als opt-in Playground-Funktion ergänzen.
+- [x] Temporäre Live-Sessions gesammelt löschbar machen.
 - [x] Eigenen Release-Tab für die wissenschaftliche Gesamtarbeit mit elf Teilen
 	und File-Viewer-Zugriff ergänzen.
 - [x] Prozent- und `met`/`partial`/`open`-Status je Manuskriptteil darstellen.

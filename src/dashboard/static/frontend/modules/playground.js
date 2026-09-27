@@ -288,7 +288,7 @@ function buildPanels(root) {
         </article>
       </div>
       <div class="playground-actions"><button type="button" class="primary" id="pg-run">▶ Playground starten</button><button type="button" id="pg-robustness">Robustheitskontrollen</button><button type="button" id="pg-reset">Standardwerte</button></div>
-      <article class="playground-card playground-live-launcher"><h3>17 · PAN Live Monitor</h3><p>Die laufende PAN-Session mit Start/Pause, Input, Sandbox-Männchen und allen Live-Grafiken im Monitor-Popup.</p><div class="playground-actions"><button type="button" class="primary" id="pg-live-open">Live Monitor öffnen</button></div><pre id="pg-live-state">Keine Live-Session geöffnet.</pre></article>
+      <article class="playground-card playground-live-launcher"><h3>17 · PAN Live Monitor</h3><p>Die laufende PAN-Session mit Start/Pause, Input, Sandbox-Männchen und allen Live-Grafiken im Monitor-Popup.</p><div class="playground-actions"><button type="button" class="primary" id="pg-live-open">Live Monitor öffnen</button><button type="button" id="pg-live-clear">Temporäre Sessions löschen</button></div><pre id="pg-live-state">Keine Live-Session geöffnet.</pre></article>
       <article class="playground-card"><h3>18 · Meta-Nachtlauf</h3>
         <div class="playground-grid">
           <label>Stunden<input id="pg-night-hours" type="number" min="0.01" max="24" step="0.25" value="8"></label>
@@ -696,18 +696,37 @@ function updateLiveMonitor(payload={}){
   const params={session_id:liveSessionId,tick,posture_score:payload.posture_score??payload.world?.posture_score??null,reward:payload.reward??null,reward_events:payload.reward_events||[],terminal:payload.terminal||null,pan_bias_current:byId("pg-pan-bias-current")?.value,feedback_gain:byId("pg-pan-feedback-gain")?.value,learning_rate:byId("pg-behavior-lr")?.value,epsilon:byId("pg-behavior-epsilon")?.value,edge_budget:byId("pg-edges")?.value};const paramsNode=byId("pg-live-monitor-params");if(paramsNode)paramsNode.textContent=JSON.stringify(params,null,2);const stateNode=byId("pg-live-monitor-state");if(stateNode)stateNode.textContent=JSON.stringify({state_digest:state.state_digest||payload.state_digest||null,input_queue_depth:state.input_queue_depth??payload.input_queue_depth??0,learning:state.learning||payload.learning||null},null,2);drawLiveMonitorChart();drawLiveMonitorVisuals(payload);drawLiveMonitorFigure(payload.world||state.world||null);
 }
 
-async function createLiveSession(){
+async function createLiveSession(canRecover=true){
   const payload={...formPayload(),neuron_model:"pan_adex_5d",pan_enabled:true,thalamic_relay_threshold:0,pan_bias_current:Number(byId("pg-pan-bias-current").value),behavior_target_mode:byId("pg-behavior-target-mode").value};
-  const result=await apiPost("/api/playground/live/create",payload);liveSessionId=result.session_id;liveMonitorHistory=[];liveMonitorWorld=null;const monitor=ensureLiveMonitor();if(!monitor.open)monitor.showModal();byId("pg-live-state").textContent=JSON.stringify(result,null,2);updateLiveMonitor(result.state||result);
+  try{
+    const result=await apiPost("/api/playground/live/create",payload);liveSessionId=result.session_id;liveMonitorHistory=[];liveMonitorWorld=null;const monitor=ensureLiveMonitor();if(!monitor.open)monitor.showModal();byId("pg-live-state").textContent=JSON.stringify(result,null,2);updateLiveMonitor(result.state||result);
+  }catch(error){
+    if(canRecover&&/maximum live Playground sessions reached/i.test(String(error.message||error))){await clearLiveSessions();return createLiveSession(false);}
+    throw error;
+  }
 }
 async function openLiveMonitor(){
   if(liveSessionId){const monitor=ensureLiveMonitor();if(!monitor.open)monitor.showModal();return;}
   await createLiveSession();
 }
+async function clearLiveSessions(){
+  stopLiveLoop();
+  let result;
+  try{result=await apiPost("/api/playground/live/stop-all",{});}catch{
+    const listing=await apiGet("/api/playground/live");
+    const sessions=Array.isArray(listing?.sessions)?listing.sessions:[];
+    await Promise.all(sessions.map(session=>apiPost(`/api/playground/live/${encodeURIComponent(session.session_id)}/stop`,{}).catch(()=>null)));
+    result={classification:"PLAYGROUND_LIVE_SESSIONS_CLEARED",scientific_evidence:false,cleared:sessions.length,compatibility_cleanup:true};
+  }
+  liveSessionId=null;liveMonitorWorld=null;liveMonitorHistory=[];
+  byId("pg-live-state").textContent=JSON.stringify(result,null,2);
+  const monitor=byId("pg-live-monitor");if(monitor?.open)monitor.close();
+}
 async function stepLiveSession(){
   if(!liveSessionId)throw new Error("Zuerst Live-Session starten.");
   const result=await apiPost(`/api/playground/live/${encodeURIComponent(liveSessionId)}/step`,{ticks:32});
   try{const sandbox=await apiPost(`/api/playground/live/${encodeURIComponent(liveSessionId)}/sandbox`,{ticks:8});result.world=sandbox.world;liveMonitorWorld=sandbox.world;}catch{}
+  try{Object.assign(result,await apiGet(`/api/playground/live/${encodeURIComponent(liveSessionId)}`));}catch{}
   byId("pg-live-state").textContent=JSON.stringify(result,null,2);updateLiveMonitor(result);
 }
 async function startLiveLoop(){
@@ -911,7 +930,7 @@ function renderCatalog(catalog){
 export async function initPlayground(){
   const root=byId("tab-playground");if(!root)return;
   injectStyles();ensurePermanentBoundary(root);buildPanels(root);
-  byId("pg-run")?.addEventListener("click",runSession);byId("pg-user-preset-apply")?.addEventListener("click",applyUserPreset);byId("pg-user-preset-save")?.addEventListener("click",saveUserPreset);byId("pg-user-preset-delete")?.addEventListener("click",deleteUserPreset);byId("pg-user-preset-select")?.addEventListener("change",()=>{renderUserPresetOptions();applyUserPreset();});byId("pg-robustness")?.addEventListener("click",runRobustness);byId("pg-reset")?.addEventListener("click",resetForm);byId("pg-live-open")?.addEventListener("click",()=>openLiveMonitor().catch(error=>byId("pg-live-state").textContent=String(error.message||error)));byId("pg-night-start")?.addEventListener("click",()=>startNightRun().catch(error=>byId("pg-night-state").textContent=String(error.message||error)));byId("pg-night-stop")?.addEventListener("click",()=>stopNightRun().catch(error=>byId("pg-night-state").textContent=String(error.message||error)));byId("pg-night-refresh")?.addEventListener("click",()=>refreshNightStatus().catch(error=>byId("pg-night-state").textContent=String(error.message||error)));
+  byId("pg-run")?.addEventListener("click",runSession);byId("pg-user-preset-apply")?.addEventListener("click",applyUserPreset);byId("pg-user-preset-save")?.addEventListener("click",saveUserPreset);byId("pg-user-preset-delete")?.addEventListener("click",deleteUserPreset);byId("pg-user-preset-select")?.addEventListener("change",()=>{renderUserPresetOptions();applyUserPreset();});byId("pg-robustness")?.addEventListener("click",runRobustness);byId("pg-reset")?.addEventListener("click",resetForm);byId("pg-live-open")?.addEventListener("click",()=>openLiveMonitor().catch(error=>byId("pg-live-state").textContent=String(error.message||error)));byId("pg-live-clear")?.addEventListener("click",()=>clearLiveSessions().catch(error=>byId("pg-live-state").textContent=String(error.message||error)));byId("pg-night-start")?.addEventListener("click",()=>startNightRun().catch(error=>byId("pg-night-state").textContent=String(error.message||error)));byId("pg-night-stop")?.addEventListener("click",()=>stopNightRun().catch(error=>byId("pg-night-state").textContent=String(error.message||error)));byId("pg-night-refresh")?.addEventListener("click",()=>refreshNightStatus().catch(error=>byId("pg-night-state").textContent=String(error.message||error)));
   renderUserPresetOptions();
   try{renderCatalog(await apiGet("/api/playground/catalog"));renderUserPresetOptions();resetForm();}catch(error){const status=byId("pg-status");status.dataset.state="error";status.textContent=`Katalog nicht verfügbar: ${error.message}`;}
   byId("playground-builder")?.addEventListener("input", updateDefaultHints);
