@@ -607,6 +607,9 @@ def test_neural_io_catalog_matches_postulated_gateway_contract() -> None:
     assert {"QUERY", "WAIT", "RESPONSE", "TIMEOUT"} <= set(io["phases"])
     assert io["tool_plane_execution"] is False
     assert io["actuator_execution"] is False
+    assert io["gateway_action_selection_status"] == "NOT_IMPLEMENTED"
+    assert io["external_round_trip_status"] == "NOT_IMPLEMENTED"
+    assert io["lifecycle_status"] == "REFERENCE_STATE_MACHINE_ONLY"
 
 
 def test_playground_io_area_adapter_satisfies_network_area_contract() -> None:
@@ -679,6 +682,11 @@ def test_neural_io_scalar_input_output_and_lifecycle() -> None:
     assert io["output"]["actuator_execution"] is False
     assert io["lifecycle"]["phase_history"][0]["phase"] == "QUERY"
     assert io["lifecycle"]["final_phase"] in {"RESPONSE", "TIMEOUT"}
+    assert io["lifecycle"]["implementation_status"] == (
+        "REFERENCE_STATE_MACHINE_ONLY"
+    )
+    assert io["lifecycle"]["gateway_action_selection_status"] == "NOT_IMPLEMENTED"
+    assert io["lifecycle"]["external_round_trip_status"] == "NOT_IMPLEMENTED"
     assert io["lifecycle"]["correlation_id"].startswith("pgio-")
 
 

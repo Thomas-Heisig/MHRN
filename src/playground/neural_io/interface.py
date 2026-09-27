@@ -237,6 +237,13 @@ class NeuralIOInterface:
                 "phase_history": list(self._phase_history),
                 "final_phase": self._current_phase.value,
                 "contract": ["QUERY", "WAIT", "RESPONSE", "TIMEOUT"],
+                "implementation_status": "REFERENCE_STATE_MACHINE_ONLY",
+                "gateway_action_selection_status": "NOT_IMPLEMENTED",
+                "external_round_trip_status": "NOT_IMPLEMENTED",
+                "response_observation_semantics": (
+                    "Playground egress-population activity only; not an "
+                    "external GatewayResponseFrame."
+                ),
             },
             "modality": self.modality,
             "network_area_adapter_contract": (

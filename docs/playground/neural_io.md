@@ -266,6 +266,36 @@ Query und Response werden über folgende Felder auseinandergehalten:
 Damit kann derselbe logische Layout-Raum verwendet werden, ohne Query und
 Response semantisch zu vermischen.
 
+
+### 8.1 Implementierungsgrenze des Lifecycles
+
+Der Playground implementiert derzeit nur die **Referenz-State-Machine**.
+
+```text
+lifecycle_status = REFERENCE_STATE_MACHINE_ONLY
+gateway_action_selection_status = NOT_IMPLEMENTED
+external_round_trip_status = NOT_IMPLEMENTED
+```
+
+Ein `RESPONSE`-Übergang im aktuellen Playground bedeutet nur, dass nach der
+Wait-Grenze Aktivität in der dedizierten Egress-Population beobachtet wurde.
+Er ist **kein** Beleg für eine tatsächlich ausgeführte externe Query und
+**kein** empfangener `GatewayResponseFrame`.
+
+Der produktive Vertrag bleibt separat:
+
+```text
+SNN request population
+-> Gateway Action Selector
+-> external BoundaryFrame
+-> external service
+-> GatewayResponseFrame
+-> codec
+-> afferent response population
+```
+
+Dieser externe Roundtrip wird im Playground absichtlich nicht ausgeführt.
+
 ## 9. correlation_id
 
 Jeder I/O-Zyklus besitzt eine `correlation_id`.

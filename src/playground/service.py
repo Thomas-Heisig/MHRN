@@ -129,6 +129,9 @@ def catalog() -> dict[str, object]:
             },
             "tool_plane_execution": False,
             "actuator_execution": False,
+            "gateway_action_selection_status": "NOT_IMPLEMENTED",
+            "external_round_trip_status": "NOT_IMPLEMENTED",
+            "lifecycle_status": "REFERENCE_STATE_MACHINE_ONLY",
             "note": (
                 "Reference implementation of the postulated MHRN Gateway "
                 "Neural Interface. Exact payloads stay outside the SNN."
