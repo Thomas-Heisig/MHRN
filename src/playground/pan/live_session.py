@@ -7,7 +7,6 @@ neuron/synapse state across API calls so PAN can be driven interactively.
 from __future__ import annotations
 
 import hashlib
-import math
 import random
 import threading
 import uuid
