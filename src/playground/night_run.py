@@ -328,7 +328,17 @@ class NightRunDaemon:
         except Exception as exc:
             self.errors.append(f"{type(exc).__name__}: {exc}")
             self.running = False
-            self.checkpoint(final=True)
+            status = self.checkpoint(final=True)
+            analysis = analyze_run(self.run_dir)
+            self.analysis_path.write_text(
+                json.dumps(analysis, ensure_ascii=False, indent=2),
+                encoding="utf-8",
+            )
+            status["analysis"] = analysis
+            self.summary_path.write_text(
+                json.dumps(status, ensure_ascii=False, indent=2),
+                encoding="utf-8",
+            )
             raise
         self.running = False
         status = self.checkpoint(final=True)
