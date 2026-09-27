@@ -11,6 +11,7 @@ from dataclasses import dataclass
 
 from .._isolation import PlaygroundIsolation, playground_manifest
 from ..analysis import analyze_result
+from ..geometry.metrics import conduction_delay_ticks, geometry_diagnostics
 from ..instruments.monitors import RateMonitor, SpikeMonitor, StateMonitor
 from ..models import PlaygroundConfig, Topology
 from ..pan.runtime import PANRuntime
@@ -43,6 +44,11 @@ class PlaygroundSession:
             k_neighbors=self.config.k_neighbors,
             rewiring_probability=self.config.rewiring_probability,
             modules=self.config.modules,
+            geometry_lambda_a=self.config.geometry_lambda_a,
+            geometry_lambda_b=self.config.geometry_lambda_b,
+            geometry_sigma=self.config.geometry_sigma,
+            geometry_p0=self.config.geometry_p0,
+            geometry_mode=self.config.geometry_mode,
         )
         if not model.supports_dimensions(topology.dimensions):
             raise ValueError(
@@ -79,7 +85,15 @@ class PlaygroundSession:
             incoming[target].add(source)
             edge = (source, target)
             weights[edge] = config.weight
-            delays[edge] = config.delay_ticks
+            delays[edge] = (
+                conduction_delay_ticks(
+                    topology.coordinates[source],
+                    topology.coordinates[target],
+                    velocity_per_tick=config.geometry_delay_velocity,
+                )
+                if topology.name == "geometric_5d"
+                else config.delay_ticks
+            )
             eligibility[edge] = 0.0
             release_state[edge] = 1.0
 
@@ -388,8 +402,33 @@ class PlaygroundSession:
             },
             "readout": apply_readout(config.readout, rates),
         }
+        pan_summary: dict[str, object] | None = None
         if pan_runtime is not None:
-            result["pan"] = pan_runtime.summary(states)
+            pan_summary = pan_runtime.summary(states)
+            result["pan"] = pan_summary
+
+        if topology.name == "geometric_5d":
+            apoptosis_events = (
+                pan_summary.get("apoptosis_events", [])
+                if isinstance(pan_summary, dict)
+                else []
+            )
+            result["geometry"] = geometry_diagnostics(
+                topology.coordinates,
+                current_edges,
+                lambda_a=config.geometry_lambda_a,
+                lambda_b=config.geometry_lambda_b,
+                radius=config.radius,
+                mode=config.geometry_mode,
+                delays=delays,
+                apoptosis_events=(
+                    apoptosis_events
+                    if isinstance(apoptosis_events, list)
+                    else []
+                ),
+                activity_values=rates,
+            )
+
         runtime = time.perf_counter() - started
         result["analysis"] = analyze_result(
             result,

@@ -7,6 +7,7 @@ from typing import Mapping
 
 from .analysis import ensemble_summary
 from .builder.session import PlaygroundSession
+from .geometry import geometry_literature_context
 from .models import PlaygroundConfig
 from .pan import axis_schema, pan_literature_context, pan_research_candidates
 from .persist.session_recorder import list_sessions
@@ -21,6 +22,10 @@ from .registry.topology_generators import TOPOLOGY_REGISTRY
 
 def catalog() -> dict[str, object]:
     topology_notes = {
+        "geometric_5d": (
+            "Exploratory geometry with independent xyz Cartesian coordinates "
+            "and cyclic torus coordinates a/b. State dimensions remain separate."
+        ),
         "mhrn_5d": "Native MHRN (x,y,z,d4,d5) packing contract; default because it mirrors the MHRN architecture, not because it is superior.",
         "mhrn_5d_distance": "Native MHRN 5D coordinates with distance-bounded connectivity.",
         "mhrn_5d_neighbourhood": "Native MHRN 5D coordinates with k-nearest connectivity.",
@@ -66,6 +71,9 @@ def catalog() -> dict[str, object]:
             "PAN health / energy / apoptosis diagnostics",
             "PAN hyperstate population vector / bundle",
             "PAN closed-loop feedback magnitude",
+            "geometric xyz/toroidal edge decomposition",
+            "geometry Moran's-I autocorrelation",
+            "xyz-only conduction-delay diagnostics",
         ],
         "robustness_controls": [
             "seed ensemble",
@@ -88,6 +96,20 @@ def catalog() -> dict[str, object]:
                 "Exploratory PAN layer only. Any research transition requires "
                 "a new hypothesis, preregistration, freeze and canonical rerun."
             ),
+        },
+        "geometry": {
+            "available": True,
+            "classification": "PLAYGROUND_GEOMETRY",
+            "scientific_evidence": False,
+            "state_space_independent": True,
+            "geometry_dimensions": 5,
+            "axes": ["x", "y", "z", "a", "b"],
+            "topological_manifold": "torus_S1_x_S1",
+            "klein_bottle_status": "NOT_IMPLEMENTED",
+            "modes": ["mixed_additive", "shortcut_union"],
+            "activity_dependent_positioning_status": "NOT_IMPLEMENTED",
+            "neurogenesis_status": "NOT_IMPLEMENTED",
+            "literature_context": geometry_literature_context(),
         },
         "limits": {
             "n_neurons": 1024,

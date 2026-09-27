@@ -184,3 +184,45 @@ diskutiert.
 Interne Repräsentation, die für Vorhersage, Zustandsabschätzung oder Planung
 genutzt werden kann. Der PAN-Hyperraum ist derzeit nur ein explorativer
 Zustandsraum und **kein validiertes Weltmodell**.
+
+
+## Geometrischer Raum / Dg
+Vom PAN-Zustandsraum unabhängiger Raum für Position, Nachbarschaft und
+Verbindbarkeit. Im neuen `geometric_5d` gilt `Dg=5`.
+
+## Zustandsraum / Ds
+Interner PAN-Hyperzustand eines Neurons. `Ds` und `Dg` sind unabhängig.
+
+## geometric_5d
+Explorative Playground-Topologie mit drei kartesischen Achsen `x,y,z` und
+zwei zyklischen Torus-Achsen `a,b`.
+
+## Torus S¹ × S¹
+Produkt zweier Kreisräume. Zwei unabhängige periodische Koordinaten `a,b`
+bilden diesen Raum, sofern keine zusätzliche verdrehte Identifikation definiert
+wird.
+
+## Klein-Flasche
+Nicht-orientierbare Fläche mit verdrehter Randidentifikation. Wird durch zwei
+unabhängige zyklische Koordinaten **nicht automatisch** erzeugt und ist im
+Playground nicht implementiert.
+
+## Mixed Additive Geometry
+PAN-Geometriemodus mit additiver quadratischer Kombination aus xyz- und
+a/b-Abständen. Dieser Abstand ist nie kleiner als der xyz-Abstand.
+
+## Shortcut Union Geometry
+Explorativer Modus `min(d_xyz,d_ab)`. Er erlaubt topologisch nahe Kanten trotz
+großer xyz-Distanz und ist eine Modellentscheidung, keine biologische Tatsache.
+
+## Moran's I
+Statistik für räumliche Autokorrelation. Der Playground verwendet
+inverse xyz-Distanzgewichte für deskriptive Out-Degree- und Aktivitätsdiagnostik.
+
+## Activity-Dependent Positioning
+Hypothetische dynamische Verschiebung geometrischer Koordinaten in Abhängigkeit
+von Aktivität. Aktuell Research Candidate, nicht implementiert.
+
+## ADM
+Activity-Dependent Myelination. Der aktuelle Playground besitzt nur einen
+statischen xyz-basierten Geschwindigkeitsparameter; ADM ist nicht implementiert.

@@ -14,6 +14,11 @@ from src.playground._isolation import (
     PlaygroundIsolationError,
     playground_manifest,
 )
+from src.playground.geometry.metrics import (
+    conduction_delay_ticks,
+    connection_distance,
+    cyclic_distance,
+)
 from src.playground.pan.hypervector import bind, bundle
 from src.playground.pan.literature import pan_literature_context
 from src.playground.persist import session_recorder
@@ -88,6 +93,7 @@ def test_playground_catalog_contains_full_building_block_families() -> None:
 
     topology_names = {item["name"] for item in payload["topologies"]}
     assert {
+        "geometric_5d",
         "mhrn_5d",
         "mhrn_5d_distance",
         "mhrn_5d_neighbourhood",
@@ -440,3 +446,137 @@ def test_pan_literature_distinguishes_two_sadp_meanings() -> None:
     ]
     assert amplitude and agreement
     assert amplitude[0]["key"] != agreement[0]["key"]
+
+
+
+def test_geometric_5d_keeps_state_and_geometry_dimensions_independent() -> None:
+    result = run(
+        _small_payload(
+            topology="geometric_5d",
+            pan_enabled=True,
+            pan_dimensions=7,
+            radius=2.0,
+            geometry_sigma=2.0,
+            geometry_p0=1.0,
+            edge_budget=48,
+            ticks=8,
+        )
+    )
+    assert result["topology"]["dimensions"] == 5
+    assert result["pan"]["dimensions"] == 7
+    assert result["geometry"]["geometry_dimensions"] == 5
+    assert result["geometry"]["classification"] == "PLAYGROUND_GEOMETRY"
+    assert result["geometry"]["scientific_evidence"] is False
+
+
+def test_geometric_axes_are_torus_not_klein_bottle() -> None:
+    result = run(
+        _small_payload(
+            topology="geometric_5d",
+            radius=2.0,
+            geometry_sigma=2.0,
+            geometry_p0=1.0,
+            edge_budget=48,
+            ticks=4,
+        )
+    )
+    geometry = result["geometry"]
+    assert geometry["topological_manifold"] == "torus_S1_x_S1"
+    assert geometry["klein_bottle_status"] == "NOT_IMPLEMENTED"
+
+
+def test_cyclic_distance_wraps_at_two_pi() -> None:
+    near_zero = 0.01
+    near_period = 2.0 * 3.141592653589793 - 0.01
+    assert cyclic_distance(near_zero, near_period) == pytest.approx(0.02)
+
+
+def test_shortcut_union_can_be_shorter_than_additive_metric() -> None:
+    left = (0.0, 0.0, 0.0, 0.1, 0.1)
+    right = (1.0, 1.0, 1.0, 0.1, 0.1)
+    additive = connection_distance(
+        left,
+        right,
+        lambda_a=0.5,
+        lambda_b=0.5,
+        mode="mixed_additive",
+    )
+    shortcut = connection_distance(
+        left,
+        right,
+        lambda_a=0.5,
+        lambda_b=0.5,
+        mode="shortcut_union",
+    )
+    assert additive > 1.0
+    assert shortcut == pytest.approx(0.0)
+
+
+def test_geometric_delay_ignores_topological_axes() -> None:
+    left = (0.0, 0.0, 0.0, 0.0, 0.0)
+    right_a = (0.5, 0.0, 0.0, 0.0, 0.0)
+    right_b = (0.5, 0.0, 0.0, 3.0, 5.0)
+    delay_a = conduction_delay_ticks(
+        left,
+        right_a,
+        velocity_per_tick=0.1,
+    )
+    delay_b = conduction_delay_ticks(
+        left,
+        right_b,
+        velocity_per_tick=0.1,
+    )
+    assert delay_a == delay_b == 5
+
+
+def test_geometric_diagnostics_include_requested_edge_classes() -> None:
+    result = run(
+        _small_payload(
+            topology="geometric_5d",
+            radius=2.0,
+            geometry_sigma=2.0,
+            geometry_p0=1.0,
+            edge_budget=48,
+            ticks=8,
+        )
+    )
+    geometry = result["geometry"]
+    classes = geometry["topological_vs_spatial_edges"]
+    assert {
+        "spatial_only",
+        "topological_only",
+        "both",
+        "neither",
+        "topological_shortcut_fraction",
+    } <= set(classes)
+    autocorrelation = geometry["spatial_autocorrelation"]
+    assert "out_degree_morans_i" in autocorrelation
+    assert "activity_morans_i" in autocorrelation
+    assert geometry["delay_model"]["topological_axes_affect_delay"] is False
+
+
+def test_geometric_research_candidates_are_not_preregistered() -> None:
+    payload = catalog()
+    candidates = payload["pan"]["research_candidates"]
+    ids = {item["id"] for item in candidates}
+    assert {
+        "PAN-CANDIDATE-GEOMETRIC-SCALING",
+        "PAN-CANDIDATE-TOPOLOGICAL-SHORTCUTS",
+        "PAN-CANDIDATE-ACTIVITY-POSITIONING",
+        "PAN-CANDIDATE-SPATIAL-LIFECYCLE",
+    } <= ids
+    assert all(
+        item["status"] == "DRAFT_IDEA_NOT_PREREGISTERED"
+        for item in candidates
+        if item["id"] in ids
+    )
+
+
+def test_geometry_catalog_keeps_unimplemented_mechanisms_explicit() -> None:
+    geometry = catalog()["geometry"]
+    assert geometry["classification"] == "PLAYGROUND_GEOMETRY"
+    assert geometry["state_space_independent"] is True
+    assert geometry["topological_manifold"] == "torus_S1_x_S1"
+    assert geometry["klein_bottle_status"] == "NOT_IMPLEMENTED"
+    assert geometry["activity_dependent_positioning_status"] == "NOT_IMPLEMENTED"
+    assert geometry["neurogenesis_status"] == "NOT_IMPLEMENTED"

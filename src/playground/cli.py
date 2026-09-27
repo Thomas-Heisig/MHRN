@@ -34,6 +34,12 @@ def _add_run_arguments(parser: argparse.ArgumentParser) -> None:
     parser.add_argument("--plasticity", default="none")
     parser.add_argument("--stimulus", default="deterministic")
     parser.add_argument("--ensemble", type=int, default=1)
+    parser.add_argument("--geometry-mode", default="shortcut_union")
+    parser.add_argument("--geometry-lambda-a", type=float, default=0.5)
+    parser.add_argument("--geometry-lambda-b", type=float, default=0.5)
+    parser.add_argument("--geometry-sigma", type=float, default=0.1)
+    parser.add_argument("--geometry-p0", type=float, default=0.3)
+    parser.add_argument("--geometry-delay-velocity", type=float, default=0.25)
     parser.add_argument("--persist", action="store_true")
 
 
@@ -50,6 +56,12 @@ def _payload(args: argparse.Namespace) -> dict[str, object]:
         "plasticity_rule": args.plasticity,
         "stimulus": args.stimulus,
         "ensemble_runs": args.ensemble,
+        "geometry_mode": args.geometry_mode,
+        "geometry_lambda_a": args.geometry_lambda_a,
+        "geometry_lambda_b": args.geometry_lambda_b,
+        "geometry_sigma": args.geometry_sigma,
+        "geometry_p0": args.geometry_p0,
+        "geometry_delay_velocity": args.geometry_delay_velocity,
         "persist": args.persist,
     }
 

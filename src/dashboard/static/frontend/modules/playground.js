@@ -94,6 +94,15 @@ function buildPanels(root) {
           <label>Apoptose-Schwelle<input id="pg-pan-apoptosis" type="number" min="0" max="1" step="0.01" value="0.1"></label>
           <small>PAN ist eine nicht-kanonische Explorationsschicht. D4 nutzt aktuell einen Surprise-Proxy, keine validierte PID.</small>
         </article>
+        <article class="playground-card"><h3>06 · Geometrischer Raum Dg</h3>
+          <label>Geometrie-Modus<select id="pg-geometry-mode"><option value="shortcut_union">Shortcut Union</option><option value="mixed_additive">Mixed Additive</option></select></label>
+          <label>λa<input id="pg-geometry-lambda-a" type="number" min="0" max="10" step="0.05" value="0.5"></label>
+          <label>λb<input id="pg-geometry-lambda-b" type="number" min="0" max="10" step="0.05" value="0.5"></label>
+          <label>σ<input id="pg-geometry-sigma" type="number" min="0.001" max="2" step="0.01" value="0.1"></label>
+          <label>p0<input id="pg-geometry-p0" type="number" min="0" max="1" step="0.05" value="0.3"></label>
+          <label>xyz-Geschwindigkeit / Tick<input id="pg-geometry-delay-velocity" type="number" min="0.001" max="10" step="0.01" value="0.25"></label>
+          <small><code>x,y,z</code> sind kartesisch; <code>a,b</code> sind zyklische Torus-Koordinaten. Zustandsraum Ds und Geometrierraum Dg bleiben unabhängig. Klein-Flasche, dynamische Positionierung, PID-Kraft und Neurogenese sind nicht implementiert.</small>
+        </article>
       </div>
       <div class="playground-actions"><button type="button" class="primary" id="pg-run">▶ Playground starten</button><button type="button" id="pg-robustness">Robustheitskontrollen</button><button type="button" id="pg-reset">Standardwerte</button></div>
       <div class="playground-status" id="pg-status" data-state="idle">Katalog wird geladen …</div>
@@ -149,6 +158,12 @@ function formPayload() {
     pan_feedback_gain: Number(byId("pg-pan-feedback-gain").value),
     pan_health_decay: Number(byId("pg-pan-health-decay").value),
     pan_apoptosis_threshold: Number(byId("pg-pan-apoptosis").value),
+    geometry_lambda_a: Number(byId("pg-geometry-lambda-a").value),
+    geometry_lambda_b: Number(byId("pg-geometry-lambda-b").value),
+    geometry_sigma: Number(byId("pg-geometry-sigma").value),
+    geometry_p0: Number(byId("pg-geometry-p0").value),
+    geometry_mode: byId("pg-geometry-mode").value,
+    geometry_delay_velocity: Number(byId("pg-geometry-delay-velocity").value),
   };
 }
 
@@ -195,7 +210,7 @@ function renderResult(result){
   const values=[["Class",result.manifest?.class||"PLAYGROUND"],["Spikes",m.total_spikes??"—"],["Mean Hz",Number(m.mean_rate_hz||0).toFixed(2)],["Active",Number(m.active_fraction||0).toLocaleString(undefined,{style:"percent",maximumFractionDigits:1})],["Neuronen",result.topology?.neuron_count??"—"],["Kanten",result.topology?.edge_count??"—"],["Dimensionen",result.topology?.dimensions??"—"],["Eff. Dim.",Number(dim.effective_dimensionality||0).toFixed(2)]];
   byId("pg-metrics").innerHTML=values.map(([k,v])=>`<div class="playground-metric"><span>${k}</span><strong>${v}</strong></div>`).join("");
   byId("pg-analysis-spike").textContent=JSON.stringify(a.spike_time||{},null,2);
-  byId("pg-analysis-network").textContent=JSON.stringify({network:net,dimensionality:dim,ensemble:result.ensemble||null,pan:result.pan||null},null,2);
+  byId("pg-analysis-network").textContent=JSON.stringify({network:net,dimensionality:dim,ensemble:result.ensemble||null,pan:result.pan||null,geometry:result.geometry||null},null,2);
   byId("pg-analysis-plasticity").textContent=JSON.stringify({plasticity:a.plasticity||{},performance:a.performance||{},pan:result.pan||null},null,2);
   byId("pg-run-json").textContent=JSON.stringify({session_id:result.session_id,manifest:result.manifest,model:result.model,config:result.config,metrics:result.metrics,readout:result.readout},null,2);
   drawRaster(result);drawSeries("pg-rate-canvas",(result.monitors?.tick_spike_counts||[]).map(Number));drawTopology(result);drawState(result);drawSpectrum(result);drawDegree(result);
@@ -214,8 +229,8 @@ async function runRobustness(){
 }
 
 function resetForm(){
-  const values={neurons:"128",edges:"512",ticks:"256",dimensions:"5",delay:"1",radius:"0.35",k:"8",rewire:"0.15",modules:"4",current:"12",rate:"20",seed:"12345",ensemble:"1","pan-dimensions":"5","pan-feedback-gain":"0.05","pan-health-decay":"0.001","pan-apoptosis":"0.1"};
-  for(const[k,v]of Object.entries(values)){const el=byId(`pg-${k}`);if(el)el.value=v;}byId("pg-persist").checked=false;byId("pg-pan-enabled").checked=false;byId("pg-pan-closed-loop").checked=true;if(byId("pg-topology"))byId("pg-topology").value="mhrn_5d";
+  const values={neurons:"128",edges:"512",ticks:"256",dimensions:"5",delay:"1",radius:"0.35",k:"8",rewire:"0.15",modules:"4",current:"12",rate:"20",seed:"12345",ensemble:"1","pan-dimensions":"5","pan-feedback-gain":"0.05","pan-health-decay":"0.001","pan-apoptosis":"0.1","geometry-lambda-a":"0.5","geometry-lambda-b":"0.5","geometry-sigma":"0.1","geometry-p0":"0.3","geometry-delay-velocity":"0.25"};
+  for(const[k,v]of Object.entries(values)){const el=byId(`pg-${k}`);if(el)el.value=v;}byId("pg-persist").checked=false;byId("pg-pan-enabled").checked=false;byId("pg-pan-closed-loop").checked=true;byId("pg-geometry-mode").value="shortcut_union";if(byId("pg-topology"))byId("pg-topology").value="mhrn_5d";
 }
 
 async function refreshSessions(){
@@ -235,7 +250,8 @@ function renderCatalog(catalog){
   if([...byId("pg-topology").options].some(o=>o.value==="mhrn_5d"))byId("pg-topology").value="mhrn_5d";
   const panCandidates=(catalog.pan?.research_candidates||[]).map(item=>({name:item.id,note:item.question}));
   const panLiterature=(catalog.pan?.literature_context?.sources||[]).map(item=>({name:item.key,note:item.citation}));
-  const groups=[["Neuronmodelle",catalog.models],["Topologien",catalog.topologies],["Stimuli",catalog.stimuli],["Synapsen",catalog.synapses],["Plastizität",catalog.plasticity],["Readouts",catalog.readouts],["PAN Research Candidates",panCandidates],["PAN Literaturkontext",panLiterature],["Analysen",(catalog.analyses||[]).map(name=>({name}))],["Robustheit",(catalog.robustness_controls||[]).map(name=>({name}))]];
+  const geometryLiterature=(catalog.geometry?.literature_context?.sources||[]).map(item=>({name:item.key,note:item.citation}));
+  const groups=[["Neuronmodelle",catalog.models],["Topologien",catalog.topologies],["Stimuli",catalog.stimuli],["Synapsen",catalog.synapses],["Plastizität",catalog.plasticity],["Readouts",catalog.readouts],["PAN Research Candidates",panCandidates],["PAN Literaturkontext",panLiterature],["Geometrie Literaturkontext",geometryLiterature],["Analysen",(catalog.analyses||[]).map(name=>({name}))],["Robustheit",(catalog.robustness_controls||[]).map(name=>({name}))]];
   byId("pg-catalog-grid").innerHTML=groups.map(([title,items])=>`<article><h3>${title}</h3>${(items||[]).map(item=>`<span class="playground-chip" title="${item.note||""}">${item.label||item.name}</span>`).join("")}</article>`).join("");
   const status=byId("pg-status");status.dataset.state="ok";status.textContent=`Bereit · bis ${catalog.limits.n_neurons} Neuronen · ${catalog.limits.edges} Kanten · ${catalog.limits.dimensions}D · scientific_evidence=false`;
 }

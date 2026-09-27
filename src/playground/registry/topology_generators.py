@@ -16,6 +16,7 @@ from collections.abc import Callable, Sequence
 
 from src.core.spatial_index import pack_coords
 
+from ..geometry.metrics import connection_probability
 from ..models import Coordinate, Edge, Topology
 
 Generator = Callable[..., Topology]
@@ -328,6 +329,96 @@ def mhrn_experimental_nd_neighbourhood(
             "geometry_class": "mhrn_experimental_nd",
             "canonical_packed_id": False,
             "packing_contract": "explicit_tuple_only",
+        },
+    )
+
+
+def geometric_5d(
+    n: int,
+    budget: int,
+    seed: int,
+    *,
+    radius: float = 0.35,
+    geometry_lambda_a: float = 0.5,
+    geometry_lambda_b: float = 0.5,
+    geometry_sigma: float = 0.1,
+    geometry_p0: float = 0.3,
+    geometry_mode: str = "shortcut_union",
+    **_: object,
+) -> Topology:
+    """Exploratory xyz + toroidal(a,b) geometric graph.
+
+    The geometry is independent of PAN state dimensions. The a/b axes are
+    periodic torus coordinates. The shortcut_union mode permits edges that are
+    topologically near even when xyz-separated; mixed_additive implements the
+    literal additive metric and cannot shorten xyz distance.
+    """
+
+    rng = random.Random(seed ^ 0x47454F)
+    coordinates: list[Coordinate] = []
+    for _index in range(n):
+        coordinates.append(
+            (
+                rng.random(),
+                rng.random(),
+                rng.random(),
+                rng.random() * 2.0 * math.pi,
+                rng.random() * 2.0 * math.pi,
+            )
+        )
+
+    accepted: list[Edge] = []
+    for source in range(n):
+        for target in range(n):
+            if source == target:
+                continue
+            probability = connection_probability(
+                coordinates[source],
+                coordinates[target],
+                lambda_a=geometry_lambda_a,
+                lambda_b=geometry_lambda_b,
+                radius=radius,
+                sigma=geometry_sigma,
+                p0=geometry_p0,
+                mode=geometry_mode,
+            )
+            if probability > 0.0 and rng.random() < probability:
+                accepted.append((source, target))
+
+    rng.shuffle(accepted)
+    edges = tuple(accepted[:budget])
+    return Topology(
+        "geometric_5d",
+        5,
+        edges,
+        tuple(coordinates),
+        {
+            "seed": seed,
+            "edge_budget": budget,
+            "geometry_class": "pan_geometric_5d",
+            "state_space_independent": True,
+            "coordinate_semantics": ["x", "y", "z", "a", "b"],
+            "axis_types": [
+                "cartesian",
+                "cartesian",
+                "cartesian",
+                "cyclic_torus",
+                "cyclic_torus",
+            ],
+            "topological_manifold": "torus_S1_x_S1",
+            "klein_bottle_status": "NOT_IMPLEMENTED",
+            "connection_radius": radius,
+            "lambda_a": geometry_lambda_a,
+            "lambda_b": geometry_lambda_b,
+            "sigma": geometry_sigma,
+            "p0": geometry_p0,
+            "connection_mode": geometry_mode,
+            "candidate_edges": n * (n - 1),
+            "accepted_edges_before_budget": len(accepted),
+            "note": (
+                "Exploratory geometry; no claim that 5D or toroidal axes "
+                "improve network quality."
+            ),
         },
     )
 
@@ -714,6 +805,7 @@ TOPOLOGY_REGISTRY: dict[str, Generator] = {
     "mhrn_experimental_nd": mhrn_experimental_nd,
     "mhrn_experimental_nd_distance": mhrn_experimental_nd_distance,
     "mhrn_experimental_nd_neighbourhood": mhrn_experimental_nd_neighbourhood,
+    "geometric_5d": geometric_5d,
     "mhrn_5d": mhrn_5d,
     "mhrn_5d_distance": mhrn_5d_distance,
     "mhrn_5d_neighbourhood": mhrn_5d_neighbourhood,
@@ -745,6 +837,11 @@ def build_topology(
     k_neighbors: int = 8,
     rewiring_probability: float = 0.15,
     modules: int = 4,
+    geometry_lambda_a: float = 0.5,
+    geometry_lambda_b: float = 0.5,
+    geometry_sigma: float = 0.1,
+    geometry_p0: float = 0.3,
+    geometry_mode: str = "shortcut_union",
 ) -> Topology:
     try:
         generator = TOPOLOGY_REGISTRY[name]
@@ -759,4 +856,9 @@ def build_topology(
         k_neighbors=k_neighbors,
         rewiring_probability=rewiring_probability,
         modules=modules,
+        geometry_lambda_a=geometry_lambda_a,
+        geometry_lambda_b=geometry_lambda_b,
+        geometry_sigma=geometry_sigma,
+        geometry_p0=geometry_p0,
+        geometry_mode=geometry_mode,
     )

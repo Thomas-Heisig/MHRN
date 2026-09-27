@@ -71,3 +71,25 @@ def test_pan_research_context_and_glossary_exist() -> None:
     assert "kein Beweis weltweiter Neuheit" in context_text
     assert "Spike-Amplitude-Dependent Plasticity" in glossary_text
     assert "Spike Agreement Dependent Plasticity" in glossary_text
+
+
+
+def test_playground_ui_exposes_independent_geometry_controls() -> None:
+    module = (
+        STATIC / "frontend" / "modules" / "playground.js"
+    ).read_text(encoding="utf-8")
+    assert "Geometrischer Raum Dg" in module
+    assert "Shortcut Union" in module
+    assert "Mixed Additive" in module
+    assert "Torus-Koordinaten" in module
+    assert "Klein-Flasche" in module
+
+
+def test_geometry_documentation_states_core_corrections() -> None:
+    geometry = ROOT / "docs" / "playground" / "geometry.md"
+    assert geometry.exists()
+    text = geometry.read_text(encoding="utf-8")
+    assert "Torus S¹ × S¹" in text
+    assert "keine universelle Small-World-Schwelle" in text
+    assert "effektive Dimension zwischen 4 und 6" in text
+    assert "nicht als belegt übernommen" in text

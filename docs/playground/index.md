@@ -131,3 +131,10 @@ repository explicitly defines `src` as an actual package namespace.
   Spike-Agreement-Dependent Plasticity.
 
 These pages are Playground documentation and are not canonical evidence.
+
+
+## Geometric space
+
+- [Geometry](geometry.md) — independent Ds/Dg contracts, xyz+toroidal
+  `geometric_5d`, connection modes, xyz-only delays, diagnostics, literature
+  boundaries and Research Candidates 5–8.

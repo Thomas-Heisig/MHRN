@@ -56,6 +56,12 @@ class PlaygroundConfig:
     pan_feedback_gain: float = 0.05
     pan_health_decay: float = 0.001
     pan_apoptosis_threshold: float = 0.1
+    geometry_lambda_a: float = 0.5
+    geometry_lambda_b: float = 0.5
+    geometry_sigma: float = 0.1
+    geometry_p0: float = 0.3
+    geometry_mode: str = "shortcut_union"
+    geometry_delay_velocity: float = 0.25
 
     @classmethod
     def from_mapping(cls, payload: Mapping[str, object]) -> "PlaygroundConfig":
@@ -129,6 +135,18 @@ class PlaygroundConfig:
             pan_apoptosis_threshold=number(
                 "pan_apoptosis_threshold", defaults.pan_apoptosis_threshold
             ),
+            geometry_lambda_a=number(
+                "geometry_lambda_a", defaults.geometry_lambda_a
+            ),
+            geometry_lambda_b=number(
+                "geometry_lambda_b", defaults.geometry_lambda_b
+            ),
+            geometry_sigma=number("geometry_sigma", defaults.geometry_sigma),
+            geometry_p0=number("geometry_p0", defaults.geometry_p0),
+            geometry_mode=text("geometry_mode", defaults.geometry_mode),
+            geometry_delay_velocity=number(
+                "geometry_delay_velocity", defaults.geometry_delay_velocity
+            ),
         )
         config.validate()
         return config
@@ -171,6 +189,22 @@ class PlaygroundConfig:
             raise ValueError("pan_health_decay must be between 0 and 1")
         if not 0.0 <= self.pan_apoptosis_threshold <= 1.0:
             raise ValueError("pan_apoptosis_threshold must be between 0 and 1")
+        if not 0.0 <= self.geometry_lambda_a <= 10.0:
+            raise ValueError("geometry_lambda_a must be between 0 and 10")
+        if not 0.0 <= self.geometry_lambda_b <= 10.0:
+            raise ValueError("geometry_lambda_b must be between 0 and 10")
+        if not 0.001 <= self.geometry_sigma <= 2.0:
+            raise ValueError("geometry_sigma must be between 0.001 and 2")
+        if not 0.0 <= self.geometry_p0 <= 1.0:
+            raise ValueError("geometry_p0 must be between 0 and 1")
+        if self.geometry_mode not in {"mixed_additive", "shortcut_union"}:
+            raise ValueError(
+                "geometry_mode must be mixed_additive or shortcut_union"
+            )
+        if not 0.001 <= self.geometry_delay_velocity <= 10.0:
+            raise ValueError(
+                "geometry_delay_velocity must be between 0.001 and 10"
+            )
 
     def to_dict(self) -> dict[str, object]:
         return {
@@ -203,4 +237,10 @@ class PlaygroundConfig:
             "pan_feedback_gain": self.pan_feedback_gain,
             "pan_health_decay": self.pan_health_decay,
             "pan_apoptosis_threshold": self.pan_apoptosis_threshold,
+            "geometry_lambda_a": self.geometry_lambda_a,
+            "geometry_lambda_b": self.geometry_lambda_b,
+            "geometry_sigma": self.geometry_sigma,
+            "geometry_p0": self.geometry_p0,
+            "geometry_mode": self.geometry_mode,
+            "geometry_delay_velocity": self.geometry_delay_velocity,
         }

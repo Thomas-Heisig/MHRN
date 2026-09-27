@@ -178,3 +178,20 @@ canonical Research Registry.
   aging/apoptosis and the two distinct SADP meanings.
 
 The literature context reports a targeted-search result, not a proof of novelty.
+
+
+## Independent geometric space
+
+The Playground now distinguishes PAN state dimensions `Ds` from an independent
+geometric space `Dg`.
+
+The `geometric_5d` topology uses normalized Cartesian `x,y,z` coordinates
+plus two cyclic torus coordinates `a,b`. It supports a literal additive
+mixed metric and a separate shortcut-union mode. Conduction delays use xyz
+distance only.
+
+Dynamic positioning, PID-driven geometry, neurogenesis, adaptive myelination
+and Klein-bottle identification remain explicitly unimplemented research
+candidates.
+
+See `docs/playground/geometry.md`.
