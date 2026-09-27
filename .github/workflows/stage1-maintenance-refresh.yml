@@ -34,6 +34,12 @@ on:
       - scripts/check_stage1_reference_seed_freshness.py
       - scripts/check_stage1_reference_independence.py
       - scripts/run_stage1_reference_integrator_calibration.py
+      - scripts/run_stage1_reference_reset_calibration.py
+      - scripts/run_stage1_reference_synapse_calibration.py
+      - scripts/verify_stage1_topology_reference_r1.py
+      - scripts/freeze_stage1_topology_reference_r1.py
+      - tests/test_stage1_reference_preflight.py
+      - THIRD_PARTY_NOTICES.md
   workflow_dispatch:
 
 concurrency:
@@ -82,7 +88,15 @@ jobs:
             scripts/check_stage1_reference_seed_freshness.py \
             scripts/check_stage1_reference_independence.py \
             scripts/run_stage1_reference_integrator_calibration.py \
+            scripts/run_stage1_reference_reset_calibration.py \
+            scripts/run_stage1_reference_synapse_calibration.py \
+            scripts/verify_stage1_topology_reference_r1.py \
+            scripts/freeze_stage1_topology_reference_r1.py \
+            reference/stage1_topology_brian2/integrator_probe.py \
+            reference/stage1_topology_brian2/synapse_probe.py \
+            reference/stage1_topology_brian2/runner.py \
             tests/test_stage1_reference_replication_contract.py \
+            tests/test_stage1_reference_preflight.py \
             tests/test_stage1_scientific_contract.py \
             tests/test_scientific_progress_integrity.py
 
@@ -100,6 +114,7 @@ jobs:
             tests/test_stage1_temporal_order_promotion_contract.py \
             tests/test_stage1_topology_efficiency_contract.py \
             tests/test_stage1_reference_replication_contract.py \
+            tests/test_stage1_reference_preflight.py \
             tests/test_scientific_progress_integrity.py -q
 
       - name: Commit maintenance refresh
@@ -121,10 +136,18 @@ jobs:
             scripts/check_stage1_reference_seed_freshness.py \
             scripts/check_stage1_reference_independence.py \
             scripts/run_stage1_reference_integrator_calibration.py \
+            scripts/run_stage1_reference_reset_calibration.py \
+            scripts/run_stage1_reference_synapse_calibration.py \
+            scripts/verify_stage1_topology_reference_r1.py \
+            scripts/freeze_stage1_topology_reference_r1.py \
+            reference/stage1_topology_brian2/integrator_probe.py \
+            reference/stage1_topology_brian2/synapse_probe.py \
+            reference/stage1_topology_brian2/runner.py \
             tests/test_stage1_topology_promotion_contract.py \
             tests/test_stage1_temporal_order_promotion_contract.py \
             tests/test_stage1_topology_efficiency_contract.py \
             tests/test_stage1_reference_replication_contract.py \
+            tests/test_stage1_reference_preflight.py \
             tests/test_stage1_scientific_contract.py \
             tests/test_scientific_progress_integrity.py \
             research/generated
