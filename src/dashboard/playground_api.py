@@ -98,7 +98,7 @@ def post_playground(
         config_payload.setdefault("neuron_model", "pan_adex_5d")
         config_payload.setdefault("pan_enabled", True)
         config_payload.setdefault("thalamic_relay_threshold", 0.0)
-        config_payload.setdefault("pan_bias_current", 15.0)
+        config_payload.setdefault("pan_bias_current", 10.0)
         config_payload.setdefault("behavior_target_mode", "cycle")
         config = PlaygroundConfig.from_mapping(config_payload)
         session_id = _LIVE_DAEMON.create(config)
