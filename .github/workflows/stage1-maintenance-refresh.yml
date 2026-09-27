@@ -49,7 +49,7 @@ on:
 
 concurrency:
   group: stage1-maintenance-develop
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 permissions:
   contents: write
