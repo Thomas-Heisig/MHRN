@@ -287,7 +287,7 @@ test("Release workspace renders the documentation timeline", async ({ page }) =>
   // The redesigned shell separates chronological releases from maturity.
   await expect(page.locator('[data-release-view="development"]')).toBeHidden();
 
-  for (const view of ["releases", "preview", "timeline", "development", "science", "documents", "gate"]) {
+  for (const view of ["releases", "preview", "timeline", "development", "science", "publication", "documents", "gate"]) {
     await selectRoute(page, "release", view);
     await expect(page.locator(`[data-release-view="${view}"]`)).toBeVisible();
   }
@@ -330,6 +330,13 @@ test("Release workspace renders the documentation timeline", async ({ page }) =>
   const directorySource = page.locator('#scientific-progress-detail .scientific-source-directory-link').first();
   await expect(directorySource).toHaveAttribute("data-scientific-source-path", /experiments\/EXP-EMP-20260910\/016-memory_delayed_information_v1\/manifest\.json/);
   await directorySource.click();
+  await expect(page.locator("#fm-viewer-dialog")).toBeVisible();
+  await page.locator("#fm-dialog-close").click();
+
+  await selectRoute(page, "release", "publication");
+  await expect(page.locator('[data-release-view="publication"]')).toBeVisible();
+  await expect(page.locator('[data-release-view="publication"] .scientific-work-card')).toHaveCount(11);
+  await page.locator('[data-release-view="publication"] [data-scientific-work-file]').first().click();
   await expect(page.locator("#fm-viewer-dialog")).toBeVisible();
   await page.locator("#fm-dialog-close").click();
 

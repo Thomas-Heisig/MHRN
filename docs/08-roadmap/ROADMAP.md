@@ -17,6 +17,8 @@
 	eigenen Registerbereich direkt erreichbar.
 - Lange Stufennamen wie `Bewusstseinsforschung` umbrechen innerhalb der
 	Timeline-Karten ohne horizontales Überlaufen.
+- Der Release-Workspace besitzt einen eigenen Tab für die wissenschaftliche
+	Gesamtarbeit mit allen elf Manuskriptteilen.
 
 ## 2026-09-26 External Review Deployment
 

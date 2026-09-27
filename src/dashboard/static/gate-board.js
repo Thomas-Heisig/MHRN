@@ -10,7 +10,7 @@
 
 "use strict";
 
-import { openDocumentationFile } from './file-viewer.js';
+import { openBrain5DFile, openDocumentationFile } from './file-viewer.js';
 
 const $ = (id) => document.getElementById(id);
 
@@ -652,6 +652,16 @@ function bindReleaseDocumentLinks() {
   });
 }
 
+let scientificWorkLinksBound = false;
+
+function bindScientificWorkLinks() {
+  if (scientificWorkLinksBound) return;
+  scientificWorkLinksBound = true;
+  document.querySelectorAll('[data-scientific-work-file]').forEach((button) => {
+    button.addEventListener('click', () => openBrain5DFile('research', button.dataset.scientificWorkFile || ''));
+  });
+}
+
 async function loadReleaseTimeline() {
   try {
     const response = await fetch('/api/releases/timeline', { cache: 'no-store' });
@@ -703,4 +713,5 @@ export function renderGateBoard(state) {
   loadReleaseTimeline();
   loadDevelopmentTimeline();
   bindReleaseDocumentLinks();
+  bindScientificWorkLinks();
 }
