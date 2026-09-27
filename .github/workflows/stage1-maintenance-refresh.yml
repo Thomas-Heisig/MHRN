@@ -115,11 +115,13 @@ jobs:
             tests/test_stage1_scientific_contract.py \
             tests/test_scientific_progress_integrity.py
 
-      - name: Regenerate canonical research projections
+      - name: Regenerate canonical research and document-governance projections
         run: |
           python research/generate_reports.py
           python scripts/generate_catalog_audit_report.py
           python scripts/check_meta_research_system.py
+          python scripts/audit_document_governance.py --write
+          python scripts/audit_document_governance.py --strict-review
 
       - name: Rebuild Edition 1.8 from canonical source parts
         run: |
