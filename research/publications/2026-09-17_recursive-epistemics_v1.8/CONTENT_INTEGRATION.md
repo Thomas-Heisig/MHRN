@@ -300,3 +300,37 @@ Teile: IV, X, XI
 Quellpfade: `research/preregistrations/PREREG-S1-TEMP-ORDER-V2.json`; `research/experiments/EXP-S1-TEMP-ORDER-V2-20260919/manifest.json`; `research/experiments/EXP-S1-TEMP-ORDER-V2-20260919/report.md`; `research/experiments/EXP-S1-TEMP-ORDER-V2-20260919/analysis/statistics.json`; `research/experiments/EXP-S1-TEMP-ORDER-V2-20260919/review_request.json`; `research/experiments/EXP-S1-TEMP-ORDER-V2-20260919/review_request.json.review.json`
 
 Grenze: The task shows bounded temporal-order decodability in a fixed six-neuron SNN. Human review accepts the bounded interpretation but does not create canonical EVID. It does not establish learning, memory, cognition, scaling, general temporal reasoning or independent replication, and it is not an independent replication of the topology line.
+
+
+## CORPUS-STAGE1-PROMOTIONS-20260927 — Canonical Stage-1 topology and temporal EVID promotions
+
+Rolle: `canonical human-reviewed Stage-1 EVID promotion lineage`  
+Status: `semantically_integrated_EVID`  
+Modus: `prospective_promotion_runs_human_review_evidenceengine_claim-boundaries`  
+Teile: IV, VI, X, XI
+
+Quellpfade: `research/experiments/EXP-S1-TOPO-PROMO-R1-20260927/`; `research/registry/evidence/EVID-2026-19.json`; `research/experiments/EXP-S1-TEMP-PROMO-R1-20260927/`; `research/registry/evidence/EVID-2026-20.json`; `research/registry/stage1_baseline.json`
+
+Grenze: EVID-2026-19 supports only topology-sensitive propagation in the registered 64-neuron/246-edge Small-SNN envelope and does not establish 5D superiority. EVID-2026-20 supports only the fixed six-neuron two-channel temporal-order task; perfect separation is a saturation limitation and simultaneous-class accuracy is not forward/reverse order accuracy. Neither line is independent replication.
+
+## CORPUS-STAGE1-EFFICIENCY-20260927 — Quarantined efficiency hypothesis and failed pre-freeze calibration gate
+
+Rolle: `exploratory hypothesis-generation plus pre-freeze method calibration`  
+Status: `semantically_integrated_untested_freeze_blocked`  
+Modus: `posthoc_observation_quarantine_prospective_design_negative_calibration_gate`  
+Teile: IV, VI, X, XI
+
+Quellpfade: `research/notes/2026-09-27_stage1_topology_efficiency_exploratory.md`; `research/preregistrations/PREREG-S1-TOPO-EFFICIENCY-R1.json`; `research/calibrations/CAL-S1-TOPO-EFFICIENCY-R1-20260927/`; `research/registry/claims.yaml`; `research/registry/hypotheses.yaml`
+
+Grenze: `H-SNN-003-C / CLAIM-S1-EFFICIENCY-001` remain untested with empty EVID. The valid calibration failed the registered recruitment-matching gates and therefore blocks R1 freeze/execution. The calibration observation is context, not confirmatory DATA for the claim, and contributes no Stage-1 maturity credit.
+
+## CORPUS-STAGE1-REFERENCE-R1 — Brian2 cross-implementation reference replication programme
+
+Rolle: `prospective partial-replication contract and pre-freeze validation`  
+Status: `semantically_integrated_DRAFT_pre_freeze`  
+Modus: `translation_contract_mechanism_audit_parity_blinding_seed_governance`  
+Teile: IV, V, VI, VII, X, XI
+
+Quellpfade: `research/preregistrations/PREREG-S1-TOPO-REFERENCE-R1.json`; `reference/stage1_topology_brian2/`; `research/audits/STAGE1_TOPOLOGY_REFERENCE_MECHANISM_AUDIT_20260927.json`; `research/calibrations/CAL-S1-TOPO-REFERENCE-INTEGRATOR-R1/`; `THIRD_PARTY_NOTICES.md`
+
+Grenze: No reference evaluation DATA or replication credit exists while pre-freeze gates remain open. The project-side Brian2 implementation can earn at most partial replication credit (7.5/15) because project leadership is shared. Brian2 remains third-party software under CeCILL 2.1 and is scientifically attributed to Stimberg, Brette & Goodman (2019).
