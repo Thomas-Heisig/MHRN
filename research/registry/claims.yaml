@@ -215,7 +215,11 @@
   created: '2026-09-27'
   updated: '2026-09-27'
 - id: CLAIM-S1-EFFICIENCY-001
-  claim: Im registrierten 64-Neuronen-Small-SNN-Regime kann eine spezifische 5D-Koordinatenorganisation nach expliziter Kontrolle dynamischer Rekrutierung eine hoehere Propagations-Effizienz als vorab definierte Kontrollen zeigen, operationalisiert durch activation_auc_0_32 pro Spike und pro geliefertem Event; dies ist kein Claim zu Speicherreduktion, Informationskapazitaet oder allgemeiner 5D-Ueberlegenheit.
+  claim: Im registrierten 64-Neuronen-Small-SNN-Regime kann eine spezifische 5D-Koordinatenorganisation
+    nach expliziter Kontrolle dynamischer Rekrutierung eine hoehere Propagations-Effizienz
+    als vorab definierte Kontrollen zeigen, operationalisiert durch activation_auc_0_32
+    pro Spike und pro geliefertem Event; dies ist kein Claim zu Speicherreduktion,
+    Informationskapazitaet oder allgemeiner 5D-Ueberlegenheit.
   research_question: RQ-SNN-003
   hypothesis: H-SNN-003-C
   evidence: []
@@ -235,19 +239,20 @@
   minimum_runs: 20
   created: '2026-09-27'
   updated: '2026-09-27'
-
 - id: CLAIM-S1-TEMP-001
   claim: Unter dem registrierten sechsneuronigen Small-SNN-Task erzeugen unterscheidbare
     Eingabekanäle eine decodierbare zeitliche Reihenfolge an den festgelegten Ausgängen,
     während die identity-destroyed Kontrolle dieses feste Ordnungssignal entfernt.
   research_question: RQ-TEMP-002
   hypothesis: H-TEMP-002-A
-  evidence: []
+  evidence:
+  - EVID-2026-20
   experiments:
   - EXP-S1-TEMP-ORDER-V2-20260919
+  - EXP-S1-TEMP-PROMO-R1-20260927
   sources: []
-  status: untested
-  confidence: none
+  status: inconclusive
+  confidence: low
   required_evidence:
   - preregistered_temporal_order_task
   - identity_destroyed_control

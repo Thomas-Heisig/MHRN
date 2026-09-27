@@ -41,12 +41,15 @@
   updated: '2026-09-11'
 - id: H-SNN-003-C
   research_question: RQ-SNN-003
-  hypothesis: Unter dem registrierten 64-Neuronen-Small-SNN-Regime zeigt die 5D-Koordinatenorganisation nach Kontrolle der dynamischen Rekrutierung eine höhere Propagations-Effizienz als vorab definierte 3D-, 5D-shuffled- und Random-Graph-Kontrollen, operationalisiert als activation_auc_0_32 pro Spike und pro geliefertem Event; ein allgemeiner 5D-Vorteil wird nicht behauptet.
+  hypothesis: Unter dem registrierten 64-Neuronen-Small-SNN-Regime zeigt die 5D-Koordinatenorganisation
+    nach Kontrolle der dynamischen Rekrutierung eine höhere Propagations-Effizienz
+    als vorab definierte 3D-, 5D-shuffled- und Random-Graph-Kontrollen, operationalisiert
+    als activation_auc_0_32 pro Spike und pro geliefertem Event; ein allgemeiner 5D-Vorteil
+    wird nicht behauptet.
   status: untested
   evidence: []
   created: '2026-09-27'
   updated: '2026-09-27'
-
 - id: H-SNN-004-A
   research_question: RQ-SNN-004
   hypothesis: STDP führt zu einer meßbaren asymmetrischen Verschiebung der synaptischen
@@ -347,8 +350,9 @@
   research_question: RQ-TEMP-002
   hypothesis: Forward-, Reverse- und Simultanfolgen erzeugen bei gleicher Ereignisanzahl
     unterscheidbare spike-basierte Antwortsignaturen.
-  status: untested
-  evidence: []
+  status: inconclusive
+  evidence:
+  - EVID-2026-20
   created: '2026-09-05'
   updated: '2026-09-05'
 - id: H-PERF-001-A

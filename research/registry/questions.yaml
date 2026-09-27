@@ -67,9 +67,17 @@
   - EVID-2026-19
   status: inconclusive
   answer:
-    current: CLAIM-S1-TOPO-001 besitzt seit EXP-S1-TOPO-PROMO-R1-20260927 kanonische EVID (EVID-2026-19) fuer die eng begrenzte Aussage, dass Topologie im registrierten 64-Neuronen-/246-Kanten-Regime Propagationsmetriken veraendert. Eine nachtraeglich beobachtete AUC-pro-Spike/-Event-Systematik wird getrennt als explorative Motivation fuer H-SNN-003-C gefuehrt und ist keine EVID.
+    current: CLAIM-S1-TOPO-001 besitzt seit EXP-S1-TOPO-PROMO-R1-20260927 kanonische
+      EVID (EVID-2026-19) fuer die eng begrenzte Aussage, dass Topologie im registrierten
+      64-Neuronen-/246-Kanten-Regime Propagationsmetriken veraendert. Eine nachtraeglich
+      beobachtete AUC-pro-Spike/-Event-Systematik wird getrennt als explorative Motivation
+      fuer H-SNN-003-C gefuehrt und ist keine EVID.
     confidence: bounded_topology_evid_efficiency_hypothesis_untested
-    limitations: EVID-2026-19 belegt keine 5D-Ueberlegenheit. AUC-pro-Spike und AUC-pro-Event waren nicht als primaere Endpunkte preregistriert. Die 5D-Bedingung belegt im aktuellen 4x2x2x2x2-Layout alle 64 Koordinaten; geringere final_active_fraction ist dynamische Rekrutierung, nicht strukturelle Adressraum-Occupancy. H-SNN-003-C bleibt bis zu einer neuen prospektiven Studie untested.
+    limitations: EVID-2026-19 belegt keine 5D-Ueberlegenheit. AUC-pro-Spike und AUC-pro-Event
+      waren nicht als primaere Endpunkte preregistriert. Die 5D-Bedingung belegt im
+      aktuellen 4x2x2x2x2-Layout alle 64 Koordinaten; geringere final_active_fraction
+      ist dynamische Rekrutierung, nicht strukturelle Adressraum-Occupancy. H-SNN-003-C
+      bleibt bis zu einer neuen prospektiven Studie untested.
   created: '2026-08-23'
   updated: '2026-09-25'
 - id: RQ-SNN-004
@@ -689,8 +697,9 @@
   literature: []
   hypotheses:
   - H-TEMP-002-A
-  evidence: []
-  status: open
+  evidence:
+  - EVID-2026-20
+  status: inconclusive
   answer:
     current: EXP-S1-TEMP-ORDER-V2-20260919 liefert präregistrierte Stage-1-DATA aus
       120 Läufen über 20 Seeds mit identity-destroyed Kontrolle. Der Laufstatus ist

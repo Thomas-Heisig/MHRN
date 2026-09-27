@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "experiment_id": "EXP-S1-TEMP-PROMO-R1-20260927",
+  "human_review_status": "COMPLETED_SUPPORTS_SCOPED_CLAIM_WITH_LIMITATIONS",
+  "evidence_promotion_status": "COMPLETED",
+  "evidence_id": "EVID-2026-20",
+  "claim_id": "CLAIM-S1-TEMP-001",
+  "hypothesis_id": "H-TEMP-002-A",
+  "scientific_evidence": true,
+  "automatic_evidence_promotion": false,
+  "independent_replication_complete": false,
+  "independent_authorship_replication": false,
+  "maturity_effect": {
+    "reviewed_evidence": "remains met",
+    "stage1_scientific_maturity": "remains 85%",
+    "reason": "The 20% reviewed-evidence gate was already satisfied by the topology EVID line. A second internal EVID line strengthens Stage-1 support but does not fill the independent-replication component.",
+    "remaining_gap_to_92_5": "7.5% independently implemented reference/cross-implementation replication",
+    "remaining_gap_to_100": "15% full independent replication criterion"
+  },
+  "methodological_follow_up": "research/notes/2026-09-27_stage1_temporal_order_decoder_followup.md",
+  "boundaries": [
+    "No learning or memory claim",
+    "No cognition or general temporal reasoning claim",
+    "No scaling beyond the six-neuron task",
+    "No biological equivalence",
+    "No 5D superiority",
+    "No independent external replication",
+    "Perfect-score saturation remains an explicit limitation"
+  ]
+}
