@@ -75,6 +75,8 @@ MHRN / Multi-Scale Homeostatic Recurrence Network. Publication: Recursive Episte
 - [x] Lange wissenschaftliche Stufennamen ohne Kartenüberlauf darstellen.
 - [x] Playground-Topologie, Erregbarkeit, Startgewicht und Lernparameter auf
 	den aktualisierten Referenzstand setzen.
+- [x] Playground-Oberfläche mit klarer Kartenhierarchie und responsivem Raster
+	überarbeiten.
 - [x] Eigenen Release-Tab für die wissenschaftliche Gesamtarbeit mit elf Teilen
 	und File-Viewer-Zugriff ergänzen.
 - [x] Prozent- und `met`/`partial`/`open`-Status je Manuskriptteil darstellen.

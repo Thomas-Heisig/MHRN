@@ -19,6 +19,8 @@
 	Timeline-Karten ohne horizontales Überlaufen.
 - Playground-Defaults für Topologie, Erregbarkeit und Verhalten sind auf den
 	aktualisierten Referenzstand gesetzt: `weight=4`, Lernrate/Epsilon `0.2`.
+- Die Playground-Oberfläche verwendet ein ruhigeres Laborraster mit klarer
+	Kartenhierarchie, kompakten Feldern und responsiver Darstellung.
 - Der Release-Workspace besitzt einen eigenen Tab für die wissenschaftliche
 	Gesamtarbeit mit allen elf Manuskriptteilen.
 - Jeder Teil zeigt den redaktionellen Arbeitsstand als Prozentwert mit
