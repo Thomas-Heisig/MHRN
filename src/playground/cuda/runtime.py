@@ -830,7 +830,6 @@ def cpu_gate_reference(
     a3_labels = _gate_labels(bundle, "A3")
     a4_labels = _gate_labels(bundle, "A4")
     c1_labels = _gate_labels(bundle, "C1")
-    c2_labels = _gate_labels(bundle, "C2")
 
     reward_delay_params = _gate_params(
         bundle, stage="A3", label="reward_delay"
