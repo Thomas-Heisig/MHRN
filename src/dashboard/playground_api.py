@@ -6,6 +6,7 @@ import threading
 import time
 from collections import deque
 from collections.abc import Mapping
+from typing import cast
 
 from src.playground import service
 from src.playground.models import PlaygroundConfig
@@ -60,12 +61,15 @@ def _payload_text(
 def _numeric_list(value: object, name: str) -> list[float]:
     if not isinstance(value, list):
         raise ValueError(f"{name} must be a list")
+    items = cast(list[object], value)
     result: list[float] = []
-    for item in value:
+    for item in items:
         if isinstance(item, bool) or not isinstance(item, (int, float)):
             raise ValueError(f"{name} entries must be numeric")
         result.append(float(item))
     return result
+
+
 _LIVE_DAEMON = PANSessionDaemon()
 _LIVE_SANDBOXES: dict[str, PANEmbodiedSandboxSession] = {}
 _LIVE_LOCK = threading.RLock()
