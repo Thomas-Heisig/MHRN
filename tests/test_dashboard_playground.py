@@ -102,8 +102,8 @@ def test_pan_complete_documentation_covers_all_candidates() -> None:
     text = path.read_text(encoding="utf-8")
     assert "keine DATA" in text
     assert "keine EVID" in text
-    assert "Research Candidates 1–8" in text
-    for candidate in range(1, 9):
+    assert "Research Candidates 1–18" in text
+    for candidate in range(1, 19):
         assert f"### {candidate} —" in text
 
 
