@@ -250,3 +250,12 @@ Die vier offenen Prüfachsen sind:
 4. Codec/Binding -> `RQ-GW-CODEC-001 / H-GW-CODEC-001-A`, kanonisch registriert als `open` / `untested`.
 
 Keiner dieser Punkte ist durch die Integrationsentscheidung bereits DATA oder EVID.
+
+
+## Reference R2 supersession (2026-09-27)
+
+R1 was frozen, then **aborted before any reference DATA** after a code-backed audit found that the frozen coordinate-to-label topology wording was not sufficiently unambiguous relative to the canonical `canonical_coords` implementation. R1 contributes **0 replication points** and may never authorize execution.
+
+`PREREG-S1-TOPO-REFERENCE-R2` is the active successor. It preserves the canonical effect targets, strict 50–150% equivalence bounds (including `3d→5d = [-1.5,-0.5]`), endpoints and three-outcome decision rule, while adding executable coordinate ordering and mandatory exact topology/edge mapping parity. R2 execution remains unauthorized until freeze, all gates, hash binding, seed freshness, blinding, and a separate explicit human execution-authorization record are present.
+
+Stage-1 Scientific Maturity remains **85%**. No Reference DATA, replication classification or replication maturity credit exists yet.
