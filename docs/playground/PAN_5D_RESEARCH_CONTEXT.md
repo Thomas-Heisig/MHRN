@@ -353,3 +353,6 @@ Keine Playground-Session darf diesen Prozess abkürzen.
 - Ahmed HF, Samiei T, Nozari E. *On the optimal temporal resolution for
   information representation in neural activity*. Front Comput Neurosci,
   2026. DOI: 10.3389/fncom.2026.1885975.
+
+
+**Methodische Grenze:** kein Beweis weltweiter Neuheit.
