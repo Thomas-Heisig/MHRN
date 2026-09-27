@@ -26,18 +26,18 @@ FORBIDDEN_IMPORT_PREFIXES = ("src", "scripts", "research")
 
 def main() -> int:
     violations: list[str] = []
-    protocol_path = PACKAGE / "reference_protocol.json"
-    protocol = json.loads(protocol_path.read_text(encoding="utf-8"))
-    serialized = json.dumps(protocol, sort_keys=True).lower()
-    for forbidden in (
-        "canonical_targets",
-        "frozen_bounds",
-        "evid-2026-19",
-        "exp-s1-topo-promo-r1-20260927",
-        "equivalence_bounds",
-    ):
-        if forbidden in serialized:
-            violations.append(f"reference_protocol.json: leaked {forbidden}")
+    for protocol_path in sorted(PACKAGE.glob("reference_protocol*.json")):
+        protocol = json.loads(protocol_path.read_text(encoding="utf-8"))
+        serialized = json.dumps(protocol, sort_keys=True).lower()
+        for forbidden in (
+            "canonical_targets",
+            "frozen_bounds",
+            "evid-2026-19",
+            "exp-s1-topo-promo-r1-20260927",
+            "equivalence_bounds",
+        ):
+            if forbidden in serialized:
+                violations.append(f"{protocol_path.name}: leaked {forbidden}")
     for path in sorted(PACKAGE.glob("*.py")):
         text = path.read_text(encoding="utf-8")
         for token in FORBIDDEN_TEXT:
