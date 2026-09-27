@@ -7,8 +7,8 @@
   "authority": "canonical_stage_scientific_baseline",
   "source_branch_basis": "develop",
   "maturity": {
-    "score": 0.75,
-    "percent": 75,
+    "score": 0.85,
+    "percent": 85,
     "weighting_contract": {
       "research_question": {
         "weight": 0.15,
@@ -27,14 +27,14 @@
       },
       "reviewed_evidence": {
         "weight": 0.2,
-        "status": "partial",
-        "contribution": 0.1,
+        "status": "met",
+        "contribution": 0.2,
         "decomposition": {
           "human_scientific_review_fraction": 0.5,
           "canonical_evidence_engine_promotion_fraction": 0.5
         },
         "human_review_subgate": "complete",
-        "canonical_evid_promotion_subgate": "open"
+        "canonical_evid_promotion_subgate": "complete"
       },
       "independent_replication": {
         "weight": 0.15,
@@ -67,10 +67,17 @@
         "role": "corrected_preregistered_time_resolved_internal_replication",
         "human_review": "research/experiments/EXP-S1-TOPO-V3-R1-20260918/review_request.json.human-review.json",
         "human_review_decision": "accepted_as_interpretation"
+      },
+      {
+        "experiment_id": "EXP-S1-TOPO-PROMO-R1-20260927",
+        "role": "prospective_promotion_eligible_internal_replication",
+        "human_review": "research/experiments/EXP-S1-TOPO-PROMO-R1-20260927/human_review.json",
+        "human_review_decision": "supports",
+        "evidence_id": "EVID-2026-19"
       }
     ],
     "audit_only_experiment": "EXP-S1-TOPO-V3-20260918",
-    "relationship": "V2 and V3-R1 form one coherent DATA line. R1 is an internal replication/extension with fresh seeds and corrected multiple-testing implementation; it is not independent scientific replication.",
+    "relationship": "V2 and V3-R1 remain the historical coherent DATA line. EXP-S1-TOPO-PROMO-R1-20260927 prospectively reproduced the bounded topology claim on fresh seeds under the current EvidenceEngine provenance contract and was human-reviewed as supports, producing EVID-2026-19. None of these runs is independent scientific replication.",
     "claim_boundary": "Topology-sensitive propagation is supported only in the preregistered 64-neuron/246-edge Small-SNN operating envelope. No 5D superiority, scaling, cognition, biological equivalence or independent replication is established."
   },
   "second_functional_line": {
@@ -99,16 +106,17 @@
     "claim_boundary": "Scoped technical temporal-order function of a six-neuron acyclic SNN under the registered decoder/task. No learning, memory, cognition, scaling, biological equivalence, 5D advantage or independent replication is established."
   },
   "evid_promotion_assessment": {
-    "status": "BLOCKED_CURRENT_EVIDENCE_ENGINE_CONTRACT",
-    "scientific_evidence": false,
+    "status": "TOPOLOGY_PROMOTION_COMPLETED_TEMPORAL_PROMOTION_OPEN",
+    "scientific_evidence": true,
     "automatic_evidence_promotion": false,
-    "scope": "Stage-1 topology and temporal-order DATA remain DATA after accepted interpretation reviews.",
-    "reasons": [
-      "The historical experiment manifests predate the current promotion provenance contract and must not be retroactively rewritten.",
-      "The completed reviews are accepted_as_interpretation artifacts, not canonical EvidenceEngine human_review.json decisions in the supports/refutes/inconclusive schema."
-    ],
-    "registered_claims": ["CLAIM-S1-TOPO-001", "CLAIM-S1-TEMP-001"],
-    "required_next_step": "Execute prospective promotion-eligible Stage-1 runs under the current provenance contract, then perform canonical human review before any EVID registration."
+    "topology_claim_id": "CLAIM-S1-TOPO-001",
+    "topology_evidence_id": "EVID-2026-19",
+    "topology_promotion_experiment": "EXP-S1-TOPO-PROMO-R1-20260927",
+    "topology_human_review_decision": "supports",
+    "temporal_claim_id": "CLAIM-S1-TEMP-001",
+    "temporal_scientific_evidence": false,
+    "scope": "The central topology line now has canonical human-reviewed EVID. The Temporal-Order line remains reviewed DATA and requires its own prospective promotion path.",
+    "remaining_next_step": "Run the separate prospective Temporal-Order promotion path, then pursue independently implemented reference replication for the Stage-1 replication criterion."
   },
   "independent_replication": {
     "complete": false,
