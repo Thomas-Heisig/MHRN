@@ -68,6 +68,8 @@ MHRN / Multi-Scale Homeostatic Recurrence Network. Publication: Recursive Episte
 	ergänzen, ohne die kanonischen Statusbezeichnungen zu ändern.
 - [x] Browserabdeckung für `met`, `partial` und die Entwicklungsdetailmarker
 	ergänzen.
+- [x] Wissenschaftliche Kriterienkarten vereinheitlichen und Datei-Quellen
+	direkt im Popup-File-Viewer öffnen.
 
 ## 2026-09-16 Release navigation
 

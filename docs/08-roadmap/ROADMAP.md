@@ -11,6 +11,8 @@
 	erledigt und offen.
 - Die kanonischen Statusbezeichnungen `met`, `partial` und `open` bleiben
 	unverändert und werden nicht als wissenschaftliche Evidenz umgedeutet.
+- Wissenschaftliche Kriterienkarten verwenden ein einheitliches Raster;
+	Research-/Docs-Dateiverweise öffnen den zentralen File Viewer als Popup.
 
 ## 2026-09-26 External Review Deployment
 

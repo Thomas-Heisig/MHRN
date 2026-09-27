@@ -7,6 +7,10 @@
 - Die Entwicklungsdetailfelder verwenden dieselbe Darstellung für technische
   Zustände wie `implemented`, `verified`, `experimental`, `planned` und
   `missing`.
+- Kriterienkarten sind gleichförmig aufgebaut; kompatible Research-/Docs-Quellen
+  sind direkt im File Viewer als Popup öffnbar, während Ordnerreferenzen nicht
+  mehr fälschlich als Dateien geöffnet werden; bekannte Experiment- und
+  Publikationsordner öffnen ihre kanonische Manifest- bzw. README-Datei.
 
 ## 2026-09-26 - Sichere External-Review-Bereitstellung
 
