@@ -99,10 +99,15 @@ class PANLiveSession:
             degree=degree,
         )
         self.pan_runtime.initialize(self.states)
+        growth_edge_capacity = min(
+            config.n_neurons * (config.n_neurons - 1),
+            config.edge_budget
+            + max(64, config.growth_max_new_synapses_per_barrier * 16),
+        )
         self.growth = (
             GrowthEngine(
                 n_neurons=config.n_neurons,
-                edge_budget=config.edge_budget,
+                edge_budget=growth_edge_capacity,
                 max_synapses_per_neuron=config.growth_max_synapses_per_neuron,
                 max_new_synapses_per_barrier=(
                     config.growth_max_new_synapses_per_barrier
@@ -398,6 +403,10 @@ class PANLiveSession:
             "pan": self.pan_runtime.summary(self.states),
             "growth": self.growth.summary() if self.growth else None,
             "edge_count": len(self.weights),
+            "initial_edge_budget": self.config.edge_budget,
+            "growth_edge_capacity": (
+                self.growth.edge_budget if self.growth is not None else self.config.edge_budget
+            ),
             "structural_added": self.structural_added,
             "structural_removed": self.structural_removed,
             "state_digest": self.state_digest(),
