@@ -45,7 +45,10 @@
     "authorship_limit": "The implementation remains under the same project leadership and therefore can earn only partial cross-implementation replication credit, never full independent external replication.",
     "implementer": "same MHRN project leadership unless an external implementation is explicitly documented later",
     "credit_semantics": "Because the current implementation is project-side, success can only be PARTIAL_REPLICATION. A later genuinely external implementation must use a separately registered protocol and cannot inherit full-credit status from this run.",
-    "automated_leakage_guard": "A pre-freeze AST/text scan must reject imports from MHRN runtime modules and references to EVID-2026-19, EXP-S1-TOPO-PROMO-R1-20260927, canonical_targets, frozen_bounds, equivalence bounds, research/experiments, or research/registry/evidence from within reference/stage1_topology_brian2/."
+    "automated_leakage_guard": "A pre-freeze AST/text scan must reject imports from MHRN runtime modules and references to EVID-2026-19, EXP-S1-TOPO-PROMO-R1-20260927, canonical_targets, frozen_bounds, equivalence bounds, research/experiments, or research/registry/evidence from within reference/stage1_topology_brian2/.",
+    "runner_source": "reference/stage1_topology_brian2/runner.py",
+    "verifier_source": "scripts/verify_stage1_topology_reference_r1.py",
+    "execution_guard": "The Brian2 runner refuses execution unless MHRN_STAGE1_REFERENCE_EXECUTION=AUTHORIZED_REFERENCE_R1 is explicitly supplied by a later approved execution workflow."
   },
   "source_target": {
     "canonical_experiment": "EXP-S1-TOPO-PROMO-R1-20260927",
@@ -478,6 +481,13 @@
       "required": true,
       "status": "PENDING",
       "artifact": "research/calibrations/CAL-S1-TOPO-REFERENCE-SYNAPSE-R1/result.json"
+    },
+    "runner_and_verifier": {
+      "required": true,
+      "status": "IMPLEMENTED_PENDING_FREEZE_HASH_BINDING",
+      "runner": "reference/stage1_topology_brian2/runner.py",
+      "verifier": "scripts/verify_stage1_topology_reference_r1.py",
+      "rule": "Runner must pass independence/blinding scan; both files must exist before freeze and their SHA-256 digests must be written into the freeze record."
     }
   },
   "reference_implementation_authorship": {
@@ -486,7 +496,8 @@
   },
   "freeze_authorization": {
     "allowed": false,
-    "rule": "Freeze is allowed only after mechanism audit, single/multi-tick integrator parity, explicit reset parity, synapse-delay parity, independence scan and seed freshness all pass and are source-bound.",
-    "reference_runner_implementation_allowed": false
+    "rule": "Freeze is allowed only after the complete blinded Brian2 runner and separate verifier exist, and mechanism audit, single/multi-tick integrator parity, reset parity, synapse-delay parity, independence/blinding scan and seed freshness all pass. Freeze binds runner/verifier hashes. Reference evaluation remains forbidden until a later explicit execution authorization.",
+    "reference_runner_implementation_allowed": true,
+    "reference_runner_execution_allowed": false
   }
 }
