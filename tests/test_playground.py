@@ -1245,6 +1245,13 @@ def test_live_pan_checkpoint_restores_meta_policy_and_state() -> None:
     assert restored.total_spikes == first.total_spikes
     assert restored.learning.context_policies == first.learning.context_policies
     assert restored.state_digest() == first.state_digest()
+    assert restored.weights == first.weights
+    assert restored.delays == first.delays
+    assert restored.pan_runtime.population_vector == first.pan_runtime.population_vector
+    assert restored.switcher.current_engine == first.switcher.current_engine
+    assert restored.switcher.event_ticks == first.switcher.event_ticks
+    assert restored.switcher.tick_ticks == first.switcher.tick_ticks
+    assert restored.growth_events == first.growth_events
 
 
 def test_night_run_executes_meta_tasks_and_writes_resumable_checkpoint(
