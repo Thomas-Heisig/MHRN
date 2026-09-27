@@ -280,6 +280,8 @@ class PANLiveSession:
                     for tick, neuron in list(self.recent_spikes)[-256:]
                 ],
                 "output_counts": list(self.output_counts),
+                "input_queue_depth": len(self.input_queue),
+                "learning_enabled": self.learning_enabled,
                 "learning": self.learning.summary(),
                 "execution": self.switcher.summary(),
                 "state_digest": self.state_digest(),
