@@ -324,3 +324,25 @@ and tick trajectories are mathematically equivalent.
 `EVENT_ONLY` is not yet an end-to-end O(events) backend: global plasticity and
 maintenance bookkeeping can still be dense. Performance is therefore
 `NOT_BENCHMARKED`.
+
+
+## Stateful PAN live mode and sandbox
+
+The original Playground batch runner remains available. For interaction, the
+Dashboard now also hosts bounded in-process PAN live sessions that keep neuron,
+synaptic, learning and execution state across repeated API calls.
+
+The PAN-AdEx live/bootstrap defaults are intentionally active enough to avoid
+the previous zero-spike startup condition: `v_t=-55`,
+`threshold=-20`, `reset=-60`, `pan_bias_current=15`, and thalamic relay
+threshold `0.0`.
+
+Behavioral learning is activity-guarded. Silent episodes do not earn success
+and do not update the policy. The default target schedule cycles through the
+action space rather than making action zero trivially correct.
+
+A minimal point-mass/spring stick-figure sandbox provides receptors, four
+actuators, gravity, ground contact and delayed echo feedback. Audio is
+currently only a synthetic activity proxy. Direct Ollama access is not added;
+LLM communication stays behind the existing Gateway/Neural-Symbiosis
+interface.
