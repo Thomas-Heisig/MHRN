@@ -120,6 +120,12 @@ from .models import (
 )
 from .network_inspector import NetworkInspector
 from .operator_bridge import OperatorBridge
+from .playground_api import (
+    PlaygroundBusyError,
+    PlaygroundRateLimitError,
+    get_playground,
+    post_playground,
+)
 from .release_timeline import build_release_timeline
 from .research_source import ResearchSource, create_research_source
 from .review_inbox import build_review_inbox
@@ -313,6 +319,18 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
         query = parse_qs(parsed.query)
 
         try:
+            # ----------------------------------------------------------------
+            # Playground API — non-canonical, non-evidential
+            # ----------------------------------------------------------------
+
+            if path.startswith("/api/playground/"):
+                payload = get_playground(path)
+                if payload is None:
+                    self._send_api_not_found(path)
+                else:
+                    self._send_json(cast(Mapping[str, JSONValue], payload))
+                return
+
             # ----------------------------------------------------------------
             # Debug / diagnostics
             # ----------------------------------------------------------------
@@ -817,6 +835,19 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
         path = parsed.path
 
         try:
+            # ----------------------------------------------------------------
+            # Playground API — non-canonical, non-evidential
+            # ----------------------------------------------------------------
+
+            if path.startswith("/api/playground/"):
+                body = self._read_json_object()
+                payload = post_playground(path, body)
+                if payload is None:
+                    self._send_api_not_found(path)
+                else:
+                    self._send_json(cast(Mapping[str, JSONValue], payload))
+                return
+
             # ----------------------------------------------------------------
             # Control API
             # ----------------------------------------------------------------
@@ -5664,6 +5695,20 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
                     "error": str(exc),
                 },
                 HTTPStatus.NOT_FOUND,
+            )
+            return
+
+        if isinstance(exc, PlaygroundRateLimitError):
+            self._send_json(
+                {"error": str(exc)},
+                HTTPStatus.TOO_MANY_REQUESTS,
+            )
+            return
+
+        if isinstance(exc, PlaygroundBusyError):
+            self._send_json(
+                {"error": str(exc)},
+                HTTPStatus.SERVICE_UNAVAILABLE,
             )
             return
 
