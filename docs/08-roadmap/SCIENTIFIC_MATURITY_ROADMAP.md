@@ -49,13 +49,14 @@ Die fehlenden historischen EvidenceEngine-Provenienzfelder des V2-Laufs wurden n
 
 **Zentrale Baseline:** `RQ-SNN-003 / H-SNN-003-B` mit `EXP-S1-TOPO-V2-20260918` + `EXP-S1-TOPO-V3-R1-20260918` als historischer DATA-Linie sowie `EXP-S1-TOPO-PROMO-R1-20260927` als prospektivem Promotion-Lauf. Der kanonische Human Review unterstützt ausschließlich den bounded Claim; die explizite EvidenceEngine-Promotion erzeugte `EVID-2026-19`.
 
-**Zweite Funktionslinie:** `RQ-TEMP-002 / H-TEMP-002-A` mit `EXP-S1-TEMP-ORDER-V2-20260919` liefert präregistrierte task-basierte DATA mit identity-destroyed Kontrolle. Diese Linie bleibt reviewed DATA und ist keine unabhängige Replikation der Topologielinie.
+**Zweite Funktionslinie:** `RQ-TEMP-002 / H-TEMP-002-A` besitzt nach `EXP-S1-TEMP-PROMO-R1-20260927`, kanonischem Human Review (`supports` mit Perfect-Score-/Decoder-Limitierungen) und expliziter EvidenceEngine-Promotion `EVID-2026-20`. Der historische V2-Lauf bleibt reviewed DATA. Diese Linie ist funktional eigenständig und keine unabhängige Replikation der Topologielinie.
 
 **EVID-Grenze:** Das 20-%-Kriterium `reviewed_evidence` ist für die zentrale Topologielinie erfüllt. `EVID-2026-19` gilt nur für den 64-Neuronen-/246-Kanten-/Weight-55-/128-Tick-Small-SNN-Betriebsbereich. Die nicht signifikanten Half-Activation-Latency-Kontraste bleiben Teil der Evidenz. Weder 5D-Überlegenheit noch Skalierung, Kognition, biologische Äquivalenz oder unabhängige Replikation werden daraus abgeleitet.
 
 Offen:
-- Temporal-Order Promotion R1 unter dem aktuellen EvidenceEngine-Vertrag,
 - unabhängig implementierte Referenz-/Cross-Implementation-Replikation der Topologielinie für den nächsten 7,5-%-Schritt,
+- prospektiver Temporal-Order-Decoder/Task-Stresstest zur Auflösung der Perfect-Score-Sättigung,
+- `CLAIM-S1-EFFICIENCY-001 / H-SNN-003-C` als getrennte untested Effizienzlinie,
 - getrennte größere Prüfung von `H-5D-005-A`.
 
 ## Stage 2 – Stabiles rekurrentes SNN
