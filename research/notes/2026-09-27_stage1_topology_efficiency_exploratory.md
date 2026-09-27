@@ -83,3 +83,16 @@ The preregistered method calibration `CAL-S1-TOPO-EFFICIENCY-R1-20260927` tested
 This is an **exploratory method-calibration observation**, not confirmatory evidence for a structural 5D mechanism. It shows only that changing the registered stimulus-current parameter over this frozen range did not erase the dynamic-recruitment difference. The cause remains unresolved and may involve graph geometry, path structure, threshold/homeostatic dynamics, or other registered model interactions.
 
 The result must not be reformulated as “5D structurally causes lower recruitment” without a new prospective study that separates those explanations. The valid gate failure blocks the R1 efficiency freeze and is retained as an auditable negative calibration result.
+
+
+## Current-sweep calibration observation
+
+The pre-freeze method calibration `CAL-S1-TOPO-EFFICIENCY-R1-20260927` produced an additional exploratory observation:
+
+- across the registered stimulus-current candidates 70–140, the 3D calibration median `final_active_fraction` remained 1.0;
+- across the same candidate range, the 5D calibration median remained 0.828125;
+- neither the preregistered 3D recruitment-matching gate nor the 5D high-recruitment gate passed.
+
+This means that **within this specific registered current range and calibration design**, changing stimulus current did not remove the observed 3D/5D recruitment difference.
+
+This observation is context only. It does not establish that the difference is a causal or universal property of 5D geometry, and it does not identify the mechanism. Network topology, path structure, coordinate organization, input/output placement and other fixed design choices remain possible explanations. No new confirmatory hypothesis or EVID is created from this calibration observation.
