@@ -256,6 +256,8 @@ def assemble_bundle(
 
 # CUDA Driver API attribute IDs from cuda.h.
 _CU_DEVICE_ATTRIBUTE_MULTIPROCESSOR_COUNT = 16
+_CU_DEVICE_ATTRIBUTE_COMPUTE_CAPABILITY_MAJOR = 75
+_CU_DEVICE_ATTRIBUTE_COMPUTE_CAPABILITY_MINOR = 76
 _CU_DEVICE_ATTRIBUTE_COOPERATIVE_LAUNCH = 95
 
 
@@ -792,6 +794,256 @@ def smoke_gate_launch_inputs(
         seed=seed,
         epsilon=0.0,
     )
+
+
+def cuda_runtime_status(
+    *,
+    ptxas: str = "ptxas",
+    driver_library: str | None = None,
+    device_ordinal: int = 0,
+) -> dict[str, object]:
+    """Report local CUDA-1 engineering capabilities without requiring a GPU."""
+
+    ptxas_path = shutil.which(ptxas)
+    status: dict[str, object] = {
+        "classification": "PLAYGROUND_CUDA_RUNTIME_STATUS",
+        "scientific_evidence": False,
+        "ptxas_available": ptxas_path is not None,
+        "ptxas_path": ptxas_path,
+        "driver_available": False,
+        "device_ordinal": device_ordinal,
+        "compute_capability": None,
+        "multiprocessor_count": None,
+        "cooperative_launch": None,
+        "stages": {
+            "CUDA-1.0": "IMPLEMENTED_PTXAS_DRIVER_PREFLIGHT",
+            "CUDA-1.1": "IMPLEMENTED_CPU_DETERMINISM_AND_PARITY_CONTRACT",
+            "CUDA-1.2": "IMPLEMENTED_SINGLE_TICK_KERNEL_ABI_AND_LAUNCH",
+            "CUDA-1.3": "IMPLEMENTED_REQUIRES_LOCAL_GPU_VERIFICATION",
+            "CUDA-1.4": "NOT_IMPLEMENTED_10_TO_100_TICK_STATE_AND_DELAYS",
+            "CUDA-1.5": "NOT_IMPLEMENTED_GPU_PLASTICITY",
+            "CUDA-1.6": "NOT_IMPLEMENTED_GPU_CLOSED_LOOP_SANDBOX",
+        },
+    }
+    try:
+        driver = CudaDriver(driver_library)
+        driver.initialize()
+        major = driver.device_attribute(
+            device_ordinal,
+            _CU_DEVICE_ATTRIBUTE_COMPUTE_CAPABILITY_MAJOR,
+        )
+        minor = driver.device_attribute(
+            device_ordinal,
+            _CU_DEVICE_ATTRIBUTE_COMPUTE_CAPABILITY_MINOR,
+        )
+        status.update(
+            {
+                "driver_available": True,
+                "compute_capability": f"sm_{major}{minor}",
+                "multiprocessor_count": driver.device_attribute(
+                    device_ordinal,
+                    _CU_DEVICE_ATTRIBUTE_MULTIPROCESSOR_COUNT,
+                ),
+                "cooperative_launch": bool(
+                    driver.device_attribute(
+                        device_ordinal,
+                        _CU_DEVICE_ATTRIBUTE_COOPERATIVE_LAUNCH,
+                    )
+                ),
+            }
+        )
+    except (CudaRuntimeUnavailable, CudaDriverError) as exc:
+        status["driver_error"] = str(exc)
+    return status
+
+
+def nontrivial_gate_launch_inputs(
+    bundle: CompileBundle,
+    *,
+    n_neurons: int = 64,
+    seed: int = 12345,
+    epsilon: float = 0.0,
+) -> GateLaunchInputs:
+    """Build deterministic non-zero inputs for CUDA-1.3 parity checks."""
+
+    baseline = smoke_gate_launch_inputs(bundle, n_neurons=n_neurons, seed=seed)
+    input_channels = len(baseline.amplitudes)
+    action_count = len(baseline.logits) // n_neurons
+    pan_dimensions = len(baseline.population)
+    reward_delay = _gate_params(bundle, stage="A3", label="reward_delay") or {}
+    tick = max(
+        3,
+        _numeric_int(
+            reward_delay.get("delay_ticks", 0),
+            field="A3.reward_delay.delay_ticks",
+        )
+        + 1,
+    )
+
+    logits: list[float] = []
+    for gid in range(n_neurons):
+        preferred = (gid + 1) % action_count
+        for action in range(action_count):
+            value = 0.125 * float(action + 1)
+            if action == preferred:
+                value += 1.0
+            logits.append(value)
+
+    return GateLaunchInputs.from_sequences(
+        input_current=[0.5 + 0.125 * float(gid % 7) for gid in range(n_neurons)],
+        channel_masks=baseline.channel_masks,
+        amplitudes=[
+            0.75 + 0.0625 * float(channel) for channel in range(input_channels)
+        ],
+        reward_ring=[0.5, -0.25, 0.75, 0.125],
+        action_map=[
+            0.125 * float((index % 11) - 5)
+            for index in range(action_count * input_channels)
+        ],
+        feedback_matrix=[
+            0.03125 * float((index % 9) - 4)
+            for index in range(n_neurons * pan_dimensions)
+        ],
+        population=[
+            0.125 * float(index + 1) for index in range(pan_dimensions)
+        ],
+        logits=logits,
+        tick=tick,
+        target_index=2 % action_count,
+        previous_action=1 % action_count,
+        seed=seed,
+        epsilon=epsilon,
+    )
+
+
+def run_gate_hardware_smoke(
+    bundle: CompileBundle,
+    *,
+    n_neurons: int = 64,
+    seed: int = 12345,
+    tolerance: float = 1.0e-5,
+    reference_commit: str = "",
+    block_size: int = 64,
+    ptxas: str = "ptxas",
+    driver_library: str | None = None,
+    device_ordinal: int = 0,
+) -> dict[str, object]:
+    """Execute a nontrivial CUDA-1.3 CPU/GPU parity and repeatability check."""
+
+    inputs = nontrivial_gate_launch_inputs(
+        bundle,
+        n_neurons=n_neurons,
+        seed=seed,
+    )
+    reference = cpu_gate_reference(bundle, inputs)
+    first = execute_gate_bundle(
+        bundle,
+        inputs,
+        block_size=block_size,
+        ptxas=ptxas,
+        driver_library=driver_library,
+        device_ordinal=device_ordinal,
+    )
+    second = execute_gate_bundle(
+        bundle,
+        inputs,
+        block_size=block_size,
+        ptxas=ptxas,
+        driver_library=driver_library,
+        device_ordinal=device_ordinal,
+    )
+    parity = gate_execution_parity_summary(
+        reference,
+        first,
+        tolerance=tolerance,
+        reference_commit=reference_commit,
+    )
+    repeat = gate_execution_parity_summary(
+        first,
+        second,
+        tolerance=0.0,
+        reference_commit=reference_commit,
+    )
+    passed = bool(parity["passed"]) and bool(repeat["passed"])
+    return {
+        "classification": "PLAYGROUND_CUDA1_3_HARDWARE_SMOKE",
+        "scientific_evidence": False,
+        "passed": passed,
+        "reference": reference,
+        "cuda": first,
+        "repeat_cuda": second,
+        "parity": parity,
+        "repeatability": {
+            **repeat,
+            "bit_exact_observable_outputs": bool(repeat["passed"]),
+        },
+        "cleanup": {
+            "device_allocations_released_by_finally": True,
+            "module_and_context_released_by_finally": True,
+            "memory_leak_measured": False,
+        },
+        "full_snn_parity_verified": False,
+    }
+
+
+def run_gate_rng_parity(
+    bundle: CompileBundle,
+    *,
+    n_neurons: int = 1000,
+    seed: int = 12345,
+    tick: int = 17,
+    epsilon: float = 0.5,
+    block_size: int = 64,
+    ptxas: str = "ptxas",
+    driver_library: str | None = None,
+    device_ordinal: int = 0,
+) -> dict[str, object]:
+    """Compare epsilon-greedy action selection for many CPU/GPU hash samples."""
+
+    inputs = nontrivial_gate_launch_inputs(
+        bundle,
+        n_neurons=n_neurons,
+        seed=seed,
+        epsilon=epsilon,
+    )
+    inputs = GateLaunchInputs.from_sequences(
+        input_current=inputs.input_current,
+        channel_masks=inputs.channel_masks,
+        amplitudes=inputs.amplitudes,
+        reward_ring=inputs.reward_ring,
+        action_map=inputs.action_map,
+        feedback_matrix=inputs.feedback_matrix,
+        population=inputs.population,
+        logits=inputs.logits,
+        tick=tick,
+        target_index=inputs.target_index,
+        previous_action=inputs.previous_action,
+        seed=inputs.seed,
+        epsilon=inputs.epsilon,
+    )
+    reference = cpu_gate_reference(bundle, inputs)
+    cuda = execute_gate_bundle(
+        bundle,
+        inputs,
+        block_size=block_size,
+        ptxas=ptxas,
+        driver_library=driver_library,
+        device_ordinal=device_ordinal,
+    )
+    parity = gate_execution_parity_summary(reference, cuda, tolerance=1.0e-5)
+    return {
+        "classification": "PLAYGROUND_CUDA_RNG_PARITY",
+        "scientific_evidence": False,
+        "sample_count": n_neurons,
+        "seed": seed,
+        "tick": tick,
+        "epsilon": epsilon,
+        "actions_exact": parity["actions_exact"],
+        "passed": parity["actions_exact"],
+        "parity": parity,
+        "full_rng_stream_verified": False,
+        "scope": "EPSILON_GREEDY_ACTION_SELECTION_FROM_HASH",
+    }
 
 
 def _f32(value: float) -> float:
