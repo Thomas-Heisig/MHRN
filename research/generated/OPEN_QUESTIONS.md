@@ -1,6 +1,6 @@
 # MHRN Open Questions
 
-*Generiert am 2026-09-21*
+*Generiert am 2026-09-27*
 
 Die folgenden Forschungsfragen sind noch offen und warten auf experimentelle Evidenz.
 
