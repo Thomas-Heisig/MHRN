@@ -325,6 +325,7 @@ jobs:
           tests/test_ai_governance.py
           tests/test_experiment_validity.py
           tests/test_connectome_embodiment.py
+          tests/test_stage1_scientific_contract.py
       - name: Connectome design and source integrity
         run: python scripts/check_connectome_integrity.py
       - name: Summary
