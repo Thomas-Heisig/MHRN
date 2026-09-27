@@ -160,3 +160,93 @@ update state and learn the bounded Playground policy task.
 It does **not** demonstrate higher cognition, biological equivalence, general
 intelligence, CUDA-native emergence, or superiority over simpler baselines.
 Those require separately preregistered experiments and canonical DATA.
+
+
+## 8. Switchable execution: EVENT_ONLY / TICK_ONLY / HYBRID_AUTO
+
+The Playground now exposes a separate execution-policy layer above the existing
+clock/event batching machinery.
+
+### Modes
+
+| Mode | Playground reference semantics |
+| --- | --- |
+| `EVENT_ONLY` | step only neurons with current external, synaptic or PAN-feedback drive |
+| `TICK_ONLY` | step every live neuron on every simulation tick |
+| `HYBRID_AUTO` | switch between the two engines using moving spike activity, hysteresis and minimum dwell time |
+
+The public settings are:
+
+- `execution_mode`
+- `execution_initial_mode`
+- `execution_theta_high`
+- `execution_theta_low`
+- `execution_hysteresis`
+- `execution_min_dwell`
+- `execution_activity_window`
+- `execution_transition_mode`
+- `execution_sync_on_switch`
+- `execution_log_transitions`
+- `execution_log_state_hash`
+
+The Dashboard defaults to `HYBRID_AUTO`; the Python configuration default
+remains `TICK_ONLY` for backward-compatible behavior of existing sessions.
+
+### Transition protocol
+
+The current Python backend uses a **shared state** rather than two separately
+materialized neuron states. A mode transition therefore changes execution
+policy without copying `V/w/H` or other state.
+
+With `execution_sync_on_switch=true`, a deterministic SHA-256 integrity digest
+of scalar neuron state plus pending synaptic buffers is calculated immediately
+before and after the policy switch. The transition reports PASS only if the
+shared state is unchanged by the transition itself.
+
+This checks **transition integrity**, not trajectory equivalence.
+
+```text
+EVENT_ONLY vs TICK_ONLY:
+  mathematical_equivalence: NOT_CLAIMED
+  transition_check: SHARED_STATE_INTEGRITY_ONLY
+  trajectory_tolerance_claim: NONE
+```
+
+### Important performance boundary
+
+The reference `EVENT_ONLY` implementation performs sparse **neuron stepping**,
+but some global maintenance remains dense, including selected plasticity,
+trace, PAN and synaptic bookkeeping.
+
+Therefore the current backend does **not** claim `O(events)` end-to-end
+runtime, a 25% crossover, or the example millisecond timings from the design
+proposal. Those are hypotheses for later profiling.
+
+The result object exposes:
+
+```text
+result["execution"] = {
+  configured_mode,
+  current_engine,
+  mode_history,
+  transitions,
+  transition_count,
+  ticks_in_event,
+  ticks_in_tick,
+  time_in_event,
+  time_in_tick,
+  avg_activity,
+  activity_trend,
+  consistency_check,
+  equivalence: "NOT_MATHEMATICALLY_EQUIVALENT",
+  performance_claim: "NOT_BENCHMARKED"
+}
+```
+
+Two additional non-registered ideas are exposed:
+
+- `PAN-CANDIDATE-MODE-SWITCH-CONSISTENCY`
+- `PAN-CANDIDATE-HYBRID-PERFORMANCE`
+
+The Playground therefore exposes 18 PAN research candidates, all
+`DRAFT_IDEA_NOT_PREREGISTERED`.
