@@ -32,9 +32,7 @@ def test_playground_api_is_routed_without_research_promotion() -> None:
 
 
 def test_playground_api_exposes_temporary_live_cleanup() -> None:
-    api = (ROOT / "src" / "dashboard" / "playground_api.py").read_text(
-        encoding="utf-8"
-    )
+    api = (ROOT / "src" / "dashboard" / "playground_api.py").read_text(encoding="utf-8")
     daemon = (ROOT / "src" / "playground" / "pan" / "live_session.py").read_text(
         encoding="utf-8"
     )
@@ -261,7 +259,9 @@ def test_playground_ui_exposes_live_pan_session_controls() -> None:
     assert '"/api/playground/live/stop-all"' in module
     assert "maximum live Playground sessions reached" in module
     assert "compatibility_cleanup" in module
-    assert 'apiGet(`/api/playground/live/${encodeURIComponent(liveSessionId)}`)' in module
+    assert (
+        "apiGet(`/api/playground/live/${encodeURIComponent(liveSessionId)}`)" in module
+    )
 
 
 def test_playground_api_exposes_stateful_live_routes_without_research_promotion() -> (
