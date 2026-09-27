@@ -19,8 +19,9 @@ def _prereg() -> dict:
 def test_reference_replication_is_draft_and_partial_only() -> None:
     prereg = _prereg()
 
-    assert prereg["status"] == "DRAFT_BEFORE_REFERENCE_IMPLEMENTATION"
+    assert prereg["status"] == "DRAFT_PRE_FREEZE_GATES_PENDING"
     assert prereg["execution_authorized"] is False
+    assert prereg["freeze_authorization"]["allowed"] is False
     assert prereg["automatic_evidence_promotion"] is False
     assert prereg["replication_credit_target"] == "partial_only"
     assert prereg["maturity_target_if_successful"]["contribution"] == 0.075
