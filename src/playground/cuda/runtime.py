@@ -380,6 +380,49 @@ class CudaDriver:
         )
 
 
+def preflight_bundle(
+    bundle: CompileBundle,
+    *,
+    n_neurons: int,
+    block_size: int = 128,
+    dynamic_shared_bytes: int = 0,
+    output_dir: Path | None = None,
+    ptxas: str = "ptxas",
+    driver_library: str = "libcuda.so.1",
+    device_ordinal: int = 0,
+) -> dict[str, object]:
+    """Assemble, load and occupancy-check one generated kernel.
+
+    This is a technical preflight only. It does not execute the kernel and does
+    not establish CPU/CUDA semantic equivalence.
+    """
+
+    report = assemble_bundle(bundle, output_dir=output_dir, ptxas=ptxas)
+    driver = CudaDriver(driver_library)
+    loaded = driver.load_cubin(
+        report.cubin_path,
+        device_ordinal=device_ordinal,
+    )
+    try:
+        cooperative = driver.cooperative_preflight(
+            loaded,
+            n_neurons=n_neurons,
+            block_size=block_size,
+            dynamic_shared_bytes=dynamic_shared_bytes,
+        )
+    finally:
+        driver.unload(loaded)
+    return {
+        "classification": "PLAYGROUND_CUDA1_PREFLIGHT",
+        "scientific_evidence": False,
+        "execution_status": "ASSEMBLED_LOADED_NOT_EXECUTED",
+        "ptxas": report.to_mapping(),
+        "cooperative": cooperative.to_mapping(),
+        "ready_for_cooperative_launch": cooperative.launch_fits,
+        "full_snn_parity_verified": False,
+    }
+
+
 def cooperative_capacity(
     *,
     n_neurons: int,
