@@ -982,6 +982,8 @@ def run_gate_hardware_smoke(
         reference_commit=reference_commit,
     )
     passed = bool(parity["passed"]) and bool(repeat["passed"])
+    first_memory = first.get("memory")
+    second_memory = second.get("memory")
     return {
         "classification": "PLAYGROUND_CUDA1_3_HARDWARE_SMOKE",
         "scientific_evidence": False,
@@ -996,20 +998,20 @@ def run_gate_hardware_smoke(
         },
         "cleanup": {
             "device_allocations_released": bool(
-                first.get("memory", {}).get("allocations_released")
+                first_memory.get("allocations_released")
             )
-            if isinstance(first.get("memory"), Mapping)
+            if isinstance(first_memory, Mapping)
             else False,
             "module_and_context_released_by_finally": True,
             "memory_leak_measured": True,
             "first_free_delta_bytes": (
-                first.get("memory", {}).get("free_delta_bytes")
-                if isinstance(first.get("memory"), Mapping)
+                first_memory.get("free_delta_bytes")
+                if isinstance(first_memory, Mapping)
                 else None
             ),
             "second_free_delta_bytes": (
-                second.get("memory", {}).get("free_delta_bytes")
-                if isinstance(second.get("memory"), Mapping)
+                second_memory.get("free_delta_bytes")
+                if isinstance(second_memory, Mapping)
                 else None
             ),
         },
