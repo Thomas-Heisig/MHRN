@@ -2,12 +2,16 @@
 
 from __future__ import annotations
 
+import math
 import re
 from dataclasses import dataclass
 from typing import Mapping, TypeAlias
 
+from .closed_loop import CLOSED_LOOP_PRESETS
+
 Coordinate: TypeAlias = tuple[float, ...]
 Edge: TypeAlias = tuple[int, int]
+ActionInputMap: TypeAlias = str | tuple[tuple[float, ...], ...]
 
 _NAME_RE = re.compile(r"[^A-Za-z0-9_.-]+")
 
@@ -125,11 +129,110 @@ class PlaygroundConfig:
     neural_io_modality: str = "digital"
     neural_io_source_id: str = "playground.input"
 
+    closed_loop_preset: str = "custom"
+    input_topology: str = "uniform"
+    input_channels: int = 1
+    input_channel_map: tuple[tuple[int, ...], ...] = ()
+    input_amplitude_per_channel: tuple[float, ...] = ()
+    input_frequency_per_channel: tuple[float, ...] = ()
+    input_phase_per_channel: tuple[float, ...] = ()
+    input_noise_sigma: float = 0.0
+    target_cue_channel: int = 0
+    reward_cue_channel: int = 0
+    action_feedback_channel: int = 0
+
+    pan_feedback_delay: int = 0
+    pan_feedback_source: str = "population"
+    pan_feedback_target: str = "all"
+    pan_feedback_nonlinearity: str = "linear"
+    pan_feedback_threshold: float = 0.0
+    pan_feedback_saturation: float = 100.0
+
+    action_loop_enabled: bool = False
+    action_loop_delay: int = 1
+    action_persistence: int = 1
+    action_to_input_map: ActionInputMap = "auto"
+    action_space_size: int = 4
+    action_coupling_strength: float = 0.0
+    action_noise: float = 0.0
+
+    reward_signal_enabled: bool = False
+    reward_magnitude: float = 1.0
+    reward_delay_ticks: int = 0
+    reward_shaping: str = "sparse"
+    reward_baseline: float = 0.0
+    reward_decay: float = 0.0
+    reward_channel: int = 0
+
+    target_encoding: str = "none"
+    target_persistence: int = 1
+    target_cue_current: float = 0.0
+    target_shuffle: bool = False
+    target_predictability: str = "deterministic"
+
+    credit_window: int = 64
+    eligibility_trace_tau: float = 200.0
+    credit_assignment: str = "none"
+    td_lambda: float = 0.9
+    gamma_discount: float = 0.95
+
+    neuron_threshold_variance: float = 0.0
+    neuron_tau_m_variance: float = 0.0
+    inhibitory_fraction: float = 0.0
+    gaba_strength: float = 1.0
+    e_i_ratio: float = 1.0
+    delay_distribution: str = "fixed"
+    delay_mean_ticks: float = 1.0
+
+    refractory_variance: float = 0.0
+    adaptation_strength: float = 0.0
+    adaptation_tau: float = 200.0
+    oscillation_enabled: bool = False
+    oscillation_frequency: float = 8.0
+
+    geometry_input_coupling: bool = False
+    geometry_input_sigma: float = 0.2
+    sandbox_enabled: bool = False
+    sandbox_physics: str = "stick_figure"
+    sandbox_action_coupling: str = "direct"
+    sandbox_sensor_noise: float = 0.05
+
     @classmethod
     def from_mapping(cls, payload: Mapping[str, object]) -> "PlaygroundConfig":
         """Build a config from untrusted API/CLI input and validate all bounds."""
 
         defaults = cls()
+        raw_payload = dict(payload)
+        requested_preset = raw_payload.get("closed_loop_preset", "custom")
+        if not isinstance(requested_preset, str):
+            raise ValueError("closed_loop_preset must be a string")
+        requested_preset = requested_preset.strip() or "custom"
+
+        def resolve_preset(name: str, seen: set[str]) -> dict[str, object]:
+            if name == "custom":
+                return {}
+            if name in seen:
+                raise ValueError("closed_loop preset inheritance cycle")
+            item = CLOSED_LOOP_PRESETS.get(name)
+            if item is None:
+                raise ValueError(f"unknown closed_loop_preset: {name}")
+            raw_settings = item.get("settings", {})
+            if not isinstance(raw_settings, Mapping):
+                raise ValueError(f"invalid settings for preset: {name}")
+            settings = dict(raw_settings)
+            parent = settings.pop("closed_loop_preset", None)
+            merged: dict[str, object] = {}
+            if isinstance(parent, str):
+                merged.update(resolve_preset(parent, seen | {name}))
+            merged.update(settings)
+            return merged
+
+        if requested_preset != "custom":
+            preset_payload = resolve_preset(requested_preset, set())
+            preset_payload.update(raw_payload)
+            payload = preset_payload
+        else:
+            payload = raw_payload
 
         def text(name: str, default: str) -> str:
             value = payload.get(name, default)
@@ -154,6 +257,60 @@ class PlaygroundConfig:
             if isinstance(value, bool) or not isinstance(value, (int, float)):
                 raise ValueError(f"{name} must be numeric")
             return float(value)
+
+        def numbers(name: str, default: tuple[float, ...]) -> tuple[float, ...]:
+            value = payload.get(name, default)
+            if not isinstance(value, (list, tuple)):
+                raise ValueError(f"{name} must be an array")
+            result: list[float] = []
+            for item in value:
+                if isinstance(item, bool) or not isinstance(item, (int, float)):
+                    raise ValueError(f"{name} values must be numeric")
+                result.append(float(item))
+            return tuple(result)
+
+        def integer_groups(
+            name: str,
+            default: tuple[tuple[int, ...], ...],
+        ) -> tuple[tuple[int, ...], ...]:
+            value = payload.get(name, default)
+            if not isinstance(value, (list, tuple)):
+                raise ValueError(f"{name} must be an array of arrays")
+            groups: list[tuple[int, ...]] = []
+            for group in value:
+                if not isinstance(group, (list, tuple)):
+                    raise ValueError(f"{name} must be an array of arrays")
+                converted: list[int] = []
+                for item in group:
+                    if isinstance(item, bool) or not isinstance(item, (int, float)):
+                        raise ValueError(f"{name} values must be integer neuron indices")
+                    integer_value = int(item)
+                    if float(item) != float(integer_value):
+                        raise ValueError(f"{name} values must be integer neuron indices")
+                    converted.append(integer_value)
+                groups.append(tuple(converted))
+            return tuple(groups)
+
+        def action_map(name: str, default: ActionInputMap) -> ActionInputMap:
+            value = payload.get(name, default)
+            if isinstance(value, str):
+                normalized = value.strip().lower()
+                if normalized not in {"auto", "spatial"}:
+                    raise ValueError(f"{name} must be auto, spatial, or an array")
+                return normalized
+            if not isinstance(value, (list, tuple)):
+                raise ValueError(f"{name} must be auto, spatial, or an array")
+            rows: list[tuple[float, ...]] = []
+            for row in value:
+                if not isinstance(row, (list, tuple)):
+                    raise ValueError(f"{name} array rows must be arrays")
+                converted: list[float] = []
+                for item in row:
+                    if isinstance(item, bool) or not isinstance(item, (int, float)):
+                        raise ValueError(f"{name} values must be numeric")
+                    converted.append(float(item))
+                rows.append(tuple(converted))
+            return tuple(rows)
 
         raw_name = text("name", defaults.name)
         safe_name = _NAME_RE.sub("_", raw_name).strip("._-")[:80] or defaults.name
@@ -378,6 +535,180 @@ class PlaygroundConfig:
             neural_io_source_id=text(
                 "neural_io_source_id", defaults.neural_io_source_id
             ),
+            closed_loop_preset=requested_preset,
+            input_topology=text("input_topology", defaults.input_topology).lower(),
+            input_channels=integer("input_channels", defaults.input_channels),
+            input_channel_map=integer_groups(
+                "input_channel_map", defaults.input_channel_map
+            ),
+            input_amplitude_per_channel=numbers(
+                "input_amplitude_per_channel",
+                defaults.input_amplitude_per_channel,
+            ),
+            input_frequency_per_channel=numbers(
+                "input_frequency_per_channel",
+                defaults.input_frequency_per_channel,
+            ),
+            input_phase_per_channel=numbers(
+                "input_phase_per_channel",
+                defaults.input_phase_per_channel,
+            ),
+            input_noise_sigma=number(
+                "input_noise_sigma", defaults.input_noise_sigma
+            ),
+            target_cue_channel=integer(
+                "target_cue_channel", defaults.target_cue_channel
+            ),
+            reward_cue_channel=integer(
+                "reward_cue_channel", defaults.reward_cue_channel
+            ),
+            action_feedback_channel=integer(
+                "action_feedback_channel", defaults.action_feedback_channel
+            ),
+            pan_feedback_delay=integer(
+                "pan_feedback_delay", defaults.pan_feedback_delay
+            ),
+            pan_feedback_source=text(
+                "pan_feedback_source", defaults.pan_feedback_source
+            ).lower(),
+            pan_feedback_target=text(
+                "pan_feedback_target", defaults.pan_feedback_target
+            ).lower(),
+            pan_feedback_nonlinearity=text(
+                "pan_feedback_nonlinearity", defaults.pan_feedback_nonlinearity
+            ).lower(),
+            pan_feedback_threshold=number(
+                "pan_feedback_threshold", defaults.pan_feedback_threshold
+            ),
+            pan_feedback_saturation=number(
+                "pan_feedback_saturation", defaults.pan_feedback_saturation
+            ),
+            action_loop_enabled=bool(
+                payload.get("action_loop_enabled", defaults.action_loop_enabled)
+            ),
+            action_loop_delay=integer(
+                "action_loop_delay", defaults.action_loop_delay
+            ),
+            action_persistence=integer(
+                "action_persistence", defaults.action_persistence
+            ),
+            action_to_input_map=action_map(
+                "action_to_input_map", defaults.action_to_input_map
+            ),
+            action_space_size=integer(
+                "action_space_size", defaults.action_space_size
+            ),
+            action_coupling_strength=number(
+                "action_coupling_strength", defaults.action_coupling_strength
+            ),
+            action_noise=number("action_noise", defaults.action_noise),
+            reward_signal_enabled=bool(
+                payload.get(
+                    "reward_signal_enabled",
+                    defaults.reward_signal_enabled,
+                )
+            ),
+            reward_magnitude=number(
+                "reward_magnitude", defaults.reward_magnitude
+            ),
+            reward_delay_ticks=integer(
+                "reward_delay_ticks", defaults.reward_delay_ticks
+            ),
+            reward_shaping=text(
+                "reward_shaping", defaults.reward_shaping
+            ).lower(),
+            reward_baseline=number(
+                "reward_baseline", defaults.reward_baseline
+            ),
+            reward_decay=number("reward_decay", defaults.reward_decay),
+            reward_channel=integer(
+                "reward_channel",
+                integer("reward_cue_channel", defaults.reward_channel),
+            ),
+            target_encoding=text(
+                "target_encoding", defaults.target_encoding
+            ).lower(),
+            target_persistence=integer(
+                "target_persistence", defaults.target_persistence
+            ),
+            target_cue_current=number(
+                "target_cue_current", defaults.target_cue_current
+            ),
+            target_shuffle=bool(
+                payload.get("target_shuffle", defaults.target_shuffle)
+            ),
+            target_predictability=text(
+                "target_predictability", defaults.target_predictability
+            ).lower(),
+            credit_window=integer("credit_window", defaults.credit_window),
+            eligibility_trace_tau=number(
+                "eligibility_trace_tau", defaults.eligibility_trace_tau
+            ),
+            credit_assignment=text(
+                "credit_assignment", defaults.credit_assignment
+            ).lower(),
+            td_lambda=number("td_lambda", defaults.td_lambda),
+            gamma_discount=number(
+                "gamma_discount", defaults.gamma_discount
+            ),
+            neuron_threshold_variance=number(
+                "neuron_threshold_variance",
+                defaults.neuron_threshold_variance,
+            ),
+            neuron_tau_m_variance=number(
+                "neuron_tau_m_variance", defaults.neuron_tau_m_variance
+            ),
+            inhibitory_fraction=number(
+                "inhibitory_fraction", defaults.inhibitory_fraction
+            ),
+            gaba_strength=number("gaba_strength", defaults.gaba_strength),
+            e_i_ratio=number("e_i_ratio", defaults.e_i_ratio),
+            delay_distribution=text(
+                "delay_distribution", defaults.delay_distribution
+            ).lower(),
+            delay_mean_ticks=number(
+                "delay_mean_ticks", defaults.delay_mean_ticks
+            ),
+            refractory_variance=number(
+                "refractory_variance", defaults.refractory_variance
+            ),
+            adaptation_strength=number(
+                "adaptation_strength", defaults.adaptation_strength
+            ),
+            adaptation_tau=number(
+                "adaptation_tau", defaults.adaptation_tau
+            ),
+            oscillation_enabled=bool(
+                payload.get(
+                    "oscillation_enabled",
+                    defaults.oscillation_enabled,
+                )
+            ),
+            oscillation_frequency=number(
+                "oscillation_frequency", defaults.oscillation_frequency
+            ),
+            geometry_input_coupling=bool(
+                payload.get(
+                    "geometry_input_coupling",
+                    defaults.geometry_input_coupling,
+                )
+            ),
+            geometry_input_sigma=number(
+                "geometry_input_sigma", defaults.geometry_input_sigma
+            ),
+            sandbox_enabled=bool(
+                payload.get("sandbox_enabled", defaults.sandbox_enabled)
+            ),
+            sandbox_physics=text(
+                "sandbox_physics", defaults.sandbox_physics
+            ).lower(),
+            sandbox_action_coupling=text(
+                "sandbox_action_coupling",
+                defaults.sandbox_action_coupling,
+            ).lower(),
+            sandbox_sensor_noise=number(
+                "sandbox_sensor_noise", defaults.sandbox_sensor_noise
+            ),
         )
         config.validate()
         return config
@@ -508,7 +839,131 @@ class PlaygroundConfig:
         if self.geometry_mode not in {"mixed_additive", "shortcut_union"}:
             raise ValueError("geometry_mode must be mixed_additive or shortcut_union")
         if not 0.001 <= self.geometry_delay_velocity <= 10.0:
-            raise ValueError("geometry_delay_velocity must be between 0.001 and 10")
+            raise ValueError(
+                "geometry_delay_velocity must be between 0.001 and 10"
+            )
+        if self.closed_loop_preset != "custom" and self.closed_loop_preset not in CLOSED_LOOP_PRESETS:
+            raise ValueError("unsupported closed_loop_preset")
+        if self.input_topology not in {
+            "uniform",
+            "channel_partitioned",
+            "spatial_gradient",
+            "random_per_neuron",
+        }:
+            raise ValueError("unsupported input_topology")
+        if not 1 <= self.input_channels <= 64:
+            raise ValueError("input_channels must be between 1 and 64")
+        if len(self.input_channel_map) > self.input_channels:
+            raise ValueError("input_channel_map has more groups than input_channels")
+        for group in self.input_channel_map:
+            if any(index < 0 or index >= self.n_neurons for index in group):
+                raise ValueError("input_channel_map contains an invalid neuron index")
+        for name, values, low, high in (
+            ("input_amplitude_per_channel", self.input_amplitude_per_channel, 0.0, 500.0),
+            ("input_frequency_per_channel", self.input_frequency_per_channel, 1.0, 200.0),
+            ("input_phase_per_channel", self.input_phase_per_channel, 0.0, 2.0 * math.pi),
+        ):
+            if len(values) > self.input_channels:
+                raise ValueError(f"{name} has more values than input_channels")
+            if any(value < low or value > high for value in values):
+                raise ValueError(f"{name} values outside allowed range")
+        if not 0.0 <= self.input_noise_sigma <= 1.0:
+            raise ValueError("input_noise_sigma must be between 0 and 1")
+        for name, channel in (
+            ("target_cue_channel", self.target_cue_channel),
+            ("reward_cue_channel", self.reward_cue_channel),
+            ("reward_channel", self.reward_channel),
+            ("action_feedback_channel", self.action_feedback_channel),
+        ):
+            if not 0 <= channel < self.input_channels:
+                raise ValueError(f"{name} outside input channel range")
+        if not 0 <= self.pan_feedback_delay <= 64:
+            raise ValueError("pan_feedback_delay must be between 0 and 64")
+        if self.pan_feedback_source not in {"population", "layer", "subset", "hypervector"}:
+            raise ValueError("unsupported pan_feedback_source")
+        if self.pan_feedback_target not in {"all", "layer", "random_subset"}:
+            raise ValueError("unsupported pan_feedback_target")
+        if self.pan_feedback_nonlinearity not in {"linear", "tanh", "sign", "clip"}:
+            raise ValueError("unsupported pan_feedback_nonlinearity")
+        if not 0.0 <= self.pan_feedback_threshold <= 1.0:
+            raise ValueError("pan_feedback_threshold must be between 0 and 1")
+        if not 0.0 <= self.pan_feedback_saturation <= 100.0:
+            raise ValueError("pan_feedback_saturation must be between 0 and 100")
+        if not 1 <= self.action_loop_delay <= 64:
+            raise ValueError("action_loop_delay must be between 1 and 64")
+        if not 1 <= self.action_persistence <= 128:
+            raise ValueError("action_persistence must be between 1 and 128")
+        if not 2 <= self.action_space_size <= 32:
+            raise ValueError("action_space_size must be between 2 and 32")
+        if not 0.0 <= self.action_coupling_strength <= 10.0:
+            raise ValueError("action_coupling_strength must be between 0 and 10")
+        if not 0.0 <= self.action_noise <= 1.0:
+            raise ValueError("action_noise must be between 0 and 1")
+        if not isinstance(self.action_to_input_map, str):
+            if len(self.action_to_input_map) > self.action_space_size:
+                raise ValueError("action_to_input_map has more rows than actions")
+            for row in self.action_to_input_map:
+                if len(row) > self.input_channels:
+                    raise ValueError("action_to_input_map row exceeds input_channels")
+        if not 0.0 <= self.reward_magnitude <= 10.0:
+            raise ValueError("reward_magnitude must be between 0 and 10")
+        if not 0 <= self.reward_delay_ticks <= 64:
+            raise ValueError("reward_delay_ticks must be between 0 and 64")
+        if self.reward_shaping not in {"sparse", "dense", "potential_based"}:
+            raise ValueError("unsupported reward_shaping")
+        if not -1.0 <= self.reward_baseline <= 1.0:
+            raise ValueError("reward_baseline must be between -1 and 1")
+        if not 0.0 <= self.reward_decay <= 1.0:
+            raise ValueError("reward_decay must be between 0 and 1")
+        if self.target_encoding not in {"none", "one_hot", "rate", "population_latency"}:
+            raise ValueError("unsupported target_encoding")
+        if not 1 <= self.target_persistence <= 256:
+            raise ValueError("target_persistence must be between 1 and 256")
+        if not 0.0 <= self.target_cue_current <= 500.0:
+            raise ValueError("target_cue_current must be between 0 and 500")
+        if self.target_predictability not in {"deterministic", "stochastic", "adversarial"}:
+            raise ValueError("unsupported target_predictability")
+        if not 1 <= self.credit_window <= 512:
+            raise ValueError("credit_window must be between 1 and 512")
+        if not 1.0 <= self.eligibility_trace_tau <= 1000.0:
+            raise ValueError("eligibility_trace_tau must be between 1 and 1000 ms")
+        if self.credit_assignment not in {"none", "trace", "reward_modulated_stdp"}:
+            raise ValueError("unsupported credit_assignment")
+        if not 0.0 <= self.td_lambda <= 1.0:
+            raise ValueError("td_lambda must be between 0 and 1")
+        if not 0.0 <= self.gamma_discount <= 1.0:
+            raise ValueError("gamma_discount must be between 0 and 1")
+        for name, value in (
+            ("neuron_threshold_variance", self.neuron_threshold_variance),
+            ("neuron_tau_m_variance", self.neuron_tau_m_variance),
+            ("inhibitory_fraction", self.inhibitory_fraction),
+            ("refractory_variance", self.refractory_variance),
+        ):
+            if not 0.0 <= value <= 1.0:
+                raise ValueError(f"{name} must be between 0 and 1")
+        if not 0.0 <= self.gaba_strength <= 10.0:
+            raise ValueError("gaba_strength must be between 0 and 10")
+        if not 0.0 <= self.e_i_ratio <= 10.0:
+            raise ValueError("e_i_ratio must be between 0 and 10")
+        if self.delay_distribution not in {"fixed", "uniform", "lognormal", "gamma"}:
+            raise ValueError("unsupported delay_distribution")
+        if not 1.0 <= self.delay_mean_ticks <= 32.0:
+            raise ValueError("delay_mean_ticks must be between 1 and 32")
+        if not 0.0 <= self.adaptation_strength <= 10.0:
+            raise ValueError("adaptation_strength must be between 0 and 10")
+        if not 10.0 <= self.adaptation_tau <= 1000.0:
+            raise ValueError("adaptation_tau must be between 10 and 1000 ms")
+        if not 0.5 <= self.oscillation_frequency <= 100.0:
+            raise ValueError("oscillation_frequency must be between 0.5 and 100 Hz")
+        if not 0.001 <= self.geometry_input_sigma <= 2.0:
+            raise ValueError("geometry_input_sigma must be between 0.001 and 2")
+        if not 0.0 <= self.sandbox_sensor_noise <= 1.0:
+            raise ValueError("sandbox_sensor_noise must be between 0 and 1")
+        if self.sandbox_physics != "stick_figure":
+            raise ValueError("sandbox_physics must be stick_figure")
+        if self.sandbox_action_coupling != "direct":
+            raise ValueError("sandbox_action_coupling must be direct")
+
         if self.neural_io_enabled:
             if not 1 <= self.neural_io_input_channels <= 256:
                 raise ValueError("neural_io_input_channels must be between 1 and 256")
@@ -651,6 +1106,69 @@ class PlaygroundConfig:
             "neural_io_correlation_id": self.neural_io_correlation_id,
             "neural_io_modality": self.neural_io_modality,
             "neural_io_source_id": self.neural_io_source_id,
+            "closed_loop_preset": self.closed_loop_preset,
+            "input_topology": self.input_topology,
+            "input_channels": self.input_channels,
+            "input_channel_map": [list(group) for group in self.input_channel_map],
+            "input_amplitude_per_channel": list(self.input_amplitude_per_channel),
+            "input_frequency_per_channel": list(self.input_frequency_per_channel),
+            "input_phase_per_channel": list(self.input_phase_per_channel),
+            "input_noise_sigma": self.input_noise_sigma,
+            "target_cue_channel": self.target_cue_channel,
+            "reward_cue_channel": self.reward_cue_channel,
+            "action_feedback_channel": self.action_feedback_channel,
+            "pan_feedback_delay": self.pan_feedback_delay,
+            "pan_feedback_source": self.pan_feedback_source,
+            "pan_feedback_target": self.pan_feedback_target,
+            "pan_feedback_nonlinearity": self.pan_feedback_nonlinearity,
+            "pan_feedback_threshold": self.pan_feedback_threshold,
+            "pan_feedback_saturation": self.pan_feedback_saturation,
+            "action_loop_enabled": self.action_loop_enabled,
+            "action_loop_delay": self.action_loop_delay,
+            "action_persistence": self.action_persistence,
+            "action_to_input_map": (
+                self.action_to_input_map
+                if isinstance(self.action_to_input_map, str)
+                else [list(row) for row in self.action_to_input_map]
+            ),
+            "action_space_size": self.action_space_size,
+            "action_coupling_strength": self.action_coupling_strength,
+            "action_noise": self.action_noise,
+            "reward_signal_enabled": self.reward_signal_enabled,
+            "reward_magnitude": self.reward_magnitude,
+            "reward_delay_ticks": self.reward_delay_ticks,
+            "reward_shaping": self.reward_shaping,
+            "reward_baseline": self.reward_baseline,
+            "reward_decay": self.reward_decay,
+            "reward_channel": self.reward_channel,
+            "target_encoding": self.target_encoding,
+            "target_persistence": self.target_persistence,
+            "target_cue_current": self.target_cue_current,
+            "target_shuffle": self.target_shuffle,
+            "target_predictability": self.target_predictability,
+            "credit_window": self.credit_window,
+            "eligibility_trace_tau": self.eligibility_trace_tau,
+            "credit_assignment": self.credit_assignment,
+            "td_lambda": self.td_lambda,
+            "gamma_discount": self.gamma_discount,
+            "neuron_threshold_variance": self.neuron_threshold_variance,
+            "neuron_tau_m_variance": self.neuron_tau_m_variance,
+            "inhibitory_fraction": self.inhibitory_fraction,
+            "gaba_strength": self.gaba_strength,
+            "e_i_ratio": self.e_i_ratio,
+            "delay_distribution": self.delay_distribution,
+            "delay_mean_ticks": self.delay_mean_ticks,
+            "refractory_variance": self.refractory_variance,
+            "adaptation_strength": self.adaptation_strength,
+            "adaptation_tau": self.adaptation_tau,
+            "oscillation_enabled": self.oscillation_enabled,
+            "oscillation_frequency": self.oscillation_frequency,
+            "geometry_input_coupling": self.geometry_input_coupling,
+            "geometry_input_sigma": self.geometry_input_sigma,
+            "sandbox_enabled": self.sandbox_enabled,
+            "sandbox_physics": self.sandbox_physics,
+            "sandbox_action_coupling": self.sandbox_action_coupling,
+            "sandbox_sensor_noise": self.sandbox_sensor_noise,
         }
 
     def to_runtime_dict(self) -> dict[str, object]:

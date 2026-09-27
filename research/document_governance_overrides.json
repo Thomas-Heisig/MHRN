@@ -452,6 +452,15 @@
       "citation": "cite_as_context_not_result",
       "evidence_role": "context_or_planning_not_evidence",
       "rationale": "Research notes capture exploratory observations and follow-up rationale without automatic evidentiary status."
+    },
+    "docs/playground": {
+      "kind": "playground_documentation",
+      "status": "current",
+      "authority": "noncanonical_playground_documentation",
+      "mutability": "editable_with_review",
+      "citation": "cite_exact_path_and_revision_as_playground_context",
+      "evidence_role": "not_evidence_by_itself",
+      "rationale": "Documents the explicitly non-canonical Playground surface. Playground documentation, presets and exploratory runtime descriptions do not create DATA or EVID."
     }
   }
 }

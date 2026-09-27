@@ -119,6 +119,12 @@ function buildPanels(root) {
           <label>PAN-Dimensionen<input id="pg-pan-dimensions" type="number" min="5" max="32" value="5"></label>
           <label><span><input id="pg-pan-closed-loop" type="checkbox" checked> Closed Loop</span></label>
           <label>Feedback-Gain<input id="pg-pan-feedback-gain" type="number" min="0" max="5" step="0.01" value="0.05"></label>
+          <label>Feedback Delay<input id="pg-pan-feedback-delay" type="number" min="0" max="64" value="0"></label>
+          <label>Feedback Quelle<select id="pg-pan-feedback-source"><option value="population">population</option><option value="layer">layer</option><option value="subset">subset</option><option value="hypervector">hypervector</option></select></label>
+          <label>Feedback Ziel<select id="pg-pan-feedback-target"><option value="all">all</option><option value="layer">layer</option><option value="random_subset">random_subset</option></select></label>
+          <label>Nichtlinearität<select id="pg-pan-feedback-nonlinearity"><option value="linear">linear</option><option value="tanh">tanh</option><option value="sign">sign</option><option value="clip">clip</option></select></label>
+          <label>Feedback θ<input id="pg-pan-feedback-threshold" type="number" min="0" max="1" step="0.01" value="0"></label>
+          <label>Feedback Sättigung<input id="pg-pan-feedback-saturation" type="number" min="0" max="100" step="0.5" value="100"></label>
           <label>Health-Decay<input id="pg-pan-health-decay" type="number" min="0" max="1" step="0.001" value="0.001"></label>
           <label>Apoptose-Schwelle<input id="pg-pan-apoptosis" type="number" min="0" max="1" step="0.01" value="0.1"></label>
           <label>PAN Bias-Strom<input id="pg-pan-bias-current" type="number" min="0" max="500" step="0.5" value="10"></label>
@@ -196,10 +202,78 @@ function buildPanels(root) {
           <label>Source ID<input id="pg-neural-io-source" value="playground.input"></label>
           <small><strong>Payload ≠ Neural Representation.</strong> Exakte Nutzdaten bleiben außerhalb des SNN. Query/Response werden durch Richtung, Phase, <code>correlation_id</code> und Provenienz getrennt. Tools/Aktoren werden im Playground nie ausgeführt.</small>
         </article>
+        <article class="playground-card"><h3>10 · Input-Kanäle</h3>
+          <label>Input-Topologie<select id="pg-input-topology"><option value="uniform">uniform</option><option value="channel_partitioned">channel_partitioned</option><option value="spatial_gradient">spatial_gradient</option><option value="random_per_neuron">random_per_neuron</option></select></label>
+          <label>Kanäle<input id="pg-input-channels" type="number" min="1" max="64" value="1"></label>
+          <label>Kanal → Neuronen (JSON)<textarea id="pg-input-channel-map">[]</textarea></label>
+          <label>Amplituden (JSON)<textarea id="pg-input-amplitudes">[]</textarea></label>
+          <label>Frequenzen Hz (JSON)<textarea id="pg-input-frequencies">[]</textarea></label>
+          <label>Phasen rad (JSON)<textarea id="pg-input-phases">[]</textarea></label>
+          <label>Noise σ<input id="pg-input-noise" type="number" min="0" max="1" step="0.01" value="0"></label>
+          <label>Ziel-Cue Kanal<input id="pg-target-cue-channel" type="number" min="0" max="63" value="0"></label>
+          <label>Reward-Cue Kanal<input id="pg-reward-cue-channel" type="number" min="0" max="63" value="0"></label>
+          <label>Action-Feedback Kanal<input id="pg-action-feedback-channel" type="number" min="0" max="63" value="0"></label>
+        </article>
+        <article class="playground-card"><h3>11 · Aktions-Loop</h3>
+          <label><span><input id="pg-action-loop-enabled" type="checkbox"> Aktions-Loop aktiv</span></label>
+          <label>Loop Delay<input id="pg-action-loop-delay" type="number" min="1" max="64" value="1"></label>
+          <label>Persistenz<input id="pg-action-persistence" type="number" min="1" max="128" value="1"></label>
+          <label>Aktionsraum<input id="pg-action-space-size" type="number" min="2" max="32" value="4"></label>
+          <label>Action → Input Map<input id="pg-action-to-input-map" value="auto"></label>
+          <label>Kopplungsstärke<input id="pg-action-coupling" type="number" min="0" max="10" step="0.1" value="0"></label>
+          <label>Aktionsrauschen<input id="pg-action-noise" type="number" min="0" max="1" step="0.01" value="0"></label>
+          <label><span><input id="pg-geometry-input-coupling" type="checkbox"> Geometrie-Input-Kopplung</span></label>
+          <label>Geometrie σ<input id="pg-geometry-input-sigma" type="number" min="0.001" max="2" step="0.01" value="0.2"></label>
+          <label><span><input id="pg-sandbox-enabled" type="checkbox"> Stick-Figure Sandbox koppeln</span></label>
+          <label>Sandbox Sensor Noise<input id="pg-sandbox-sensor-noise" type="number" min="0" max="1" step="0.01" value="0.05"></label>
+        </article>
+        <article class="playground-card"><h3>12 · Ziel-Kodierung</h3>
+          <label>Kodierung<select id="pg-target-encoding"><option value="none">none</option><option value="one_hot">one_hot</option><option value="rate">rate</option><option value="population_latency">population_latency</option></select></label>
+          <label>Ziel sichtbar (Ticks)<input id="pg-target-persistence" type="number" min="1" max="256" value="1"></label>
+          <label>Ziel-Cue Strom<input id="pg-target-cue-current" type="number" min="0" max="500" step="0.5" value="0"></label>
+          <label><span><input id="pg-target-shuffle" type="checkbox"> Ziel-Zuordnung shuffeln</span></label>
+          <label>Sequenz<select id="pg-target-predictability"><option value="deterministic">deterministic</option><option value="stochastic">stochastic</option><option value="adversarial">adversarial</option></select></label>
+        </article>
+        <article class="playground-card"><h3>13 · Belohnung</h3>
+          <label><span><input id="pg-reward-enabled" type="checkbox"> Reward-Signal aktiv</span></label>
+          <label>Magnitude<input id="pg-reward-magnitude" type="number" min="0" max="10" step="0.1" value="1"></label>
+          <label>Reward Delay<input id="pg-reward-delay" type="number" min="0" max="64" value="0"></label>
+          <label>Shaping<select id="pg-reward-shaping"><option value="sparse">sparse</option><option value="dense">dense</option><option value="potential_based">potential_based</option></select></label>
+          <label>Baseline<input id="pg-reward-baseline" type="number" min="-1" max="1" step="0.05" value="0"></label>
+          <label>Decay<input id="pg-reward-decay" type="number" min="0" max="1" step="0.01" value="0"></label>
+          <label>Reward Kanal<input id="pg-reward-channel" type="number" min="0" max="63" value="0"></label>
+        </article>
+        <article class="playground-card"><h3>14 · Kredit-Zuweisung</h3>
+          <label>Modus<select id="pg-credit-assignment"><option value="none">none</option><option value="trace">trace</option><option value="reward_modulated_stdp">reward_modulated_stdp</option></select></label>
+          <label>Credit Window<input id="pg-credit-window" type="number" min="1" max="512" value="64"></label>
+          <label>Eligibility τ ms<input id="pg-eligibility-tau" type="number" min="1" max="1000" step="1" value="200"></label>
+          <label>TD-λ<input id="pg-td-lambda" type="number" min="0" max="1" step="0.01" value="0.9"></label>
+          <label>γ Discount<input id="pg-gamma-discount" type="number" min="0" max="1" step="0.01" value="0.95"></label>
+        </article>
+        <article class="playground-card"><h3>15 · Netzwerk-Heterogenität & Zeit</h3>
+          <label>Threshold Varianz<input id="pg-threshold-variance" type="number" min="0" max="1" step="0.01" value="0"></label>
+          <label>τm Varianz<input id="pg-tau-m-variance" type="number" min="0" max="1" step="0.01" value="0"></label>
+          <label>Inhibitorischer Anteil<input id="pg-inhibitory-fraction" type="number" min="0" max="1" step="0.01" value="0"></label>
+          <label>GABA Stärke<input id="pg-gaba-strength" type="number" min="0" max="10" step="0.1" value="1"></label>
+          <label>E/I Ratio<input id="pg-e-i-ratio" type="number" min="0" max="10" step="0.1" value="1"></label>
+          <label>Delay-Verteilung<select id="pg-delay-distribution"><option value="fixed">fixed</option><option value="uniform">uniform</option><option value="lognormal">lognormal</option><option value="gamma">gamma</option></select></label>
+          <label>Delay Mean<input id="pg-delay-mean" type="number" min="1" max="32" step="0.1" value="1"></label>
+          <label>Refraktär Varianz<input id="pg-refractory-variance" type="number" min="0" max="1" step="0.01" value="0"></label>
+          <label>Adaptation Stärke<input id="pg-adaptation-strength" type="number" min="0" max="10" step="0.1" value="0"></label>
+          <label>Adaptation τ ms<input id="pg-adaptation-tau" type="number" min="10" max="1000" value="200"></label>
+          <label><span><input id="pg-oscillation-enabled" type="checkbox"> interne Oszillation</span></label>
+          <label>Oszillation Hz<input id="pg-oscillation-frequency" type="number" min="0.5" max="100" step="0.5" value="8"></label>
+        </article>
+        <article class="playground-card"><h3>16 · Closed-Loop Presets</h3>
+          <label>Preset<select id="pg-closed-loop-preset"><option value="custom">custom</option></select></label>
+          <div class="playground-actions"><button type="button" id="pg-apply-preset">Preset anwenden</button></div>
+          <pre id="pg-preset-description">Eigene Parameter.</pre>
+          <small>Preset-Erwartungen sind Hypothesen, keine gemessenen Resultate. Overrides bleiben nach Anwendung einzeln änderbar.</small>
+        </article>
       </div>
       <div class="playground-actions"><button type="button" class="primary" id="pg-run">▶ Playground starten</button><button type="button" id="pg-robustness">Robustheitskontrollen</button><button type="button" id="pg-reset">Standardwerte</button></div>
-      <article class="playground-card"><h3>10 · PAN Live Session & Sandbox</h3><div class="playground-actions"><button type="button" id="pg-live-create">Live starten</button><button type="button" id="pg-live-step">+32 Ticks</button><button type="button" id="pg-live-auto">Auto Start</button><button type="button" id="pg-live-auto-stop">Auto Stop</button><button type="button" id="pg-live-input">Input zeigen</button><button type="button" id="pg-live-sandbox">Sandbox +8</button><button type="button" id="pg-live-stop">Stop</button></div><label>Live Input (JSON-Array)<textarea id="pg-live-input-values">[1,0,-1,0.5]</textarea></label><canvas id="pg-live-sandbox-canvas" width="800" height="360"></canvas><pre id="pg-live-state">Noch keine Live-Session.</pre></article>
-      <article class="playground-card"><h3>11 · Meta-Nachtlauf</h3>
+      <article class="playground-card"><h3>17 · PAN Live Session & Sandbox</h3><div class="playground-actions"><button type="button" id="pg-live-create">Live starten</button><button type="button" id="pg-live-step">+32 Ticks</button><button type="button" id="pg-live-auto">Auto Start</button><button type="button" id="pg-live-auto-stop">Auto Stop</button><button type="button" id="pg-live-input">Input zeigen</button><button type="button" id="pg-live-sandbox">Sandbox +8</button><button type="button" id="pg-live-stop">Stop</button></div><label>Live Input (JSON-Array)<textarea id="pg-live-input-values">[1,0,-1,0.5]</textarea></label><canvas id="pg-live-sandbox-canvas" width="800" height="360"></canvas><pre id="pg-live-state">Noch keine Live-Session.</pre></article>
+      <article class="playground-card"><h3>18 · Meta-Nachtlauf</h3>
         <div class="playground-grid">
           <label>Stunden<input id="pg-night-hours" type="number" min="0.01" max="24" step="0.25" value="8"></label>
           <label>Max. Episoden<input id="pg-night-episodes" type="number" min="1" max="1000000" value="10000"></label>
@@ -250,6 +324,23 @@ function neuralIOPayload(){
     return value;
   }
   return raw;
+}
+
+function parseJsonArray(id, label){
+  const raw=byId(id)?.value?.trim()||"[]";
+  let value;
+  try{value=JSON.parse(raw);}catch{throw new Error(`${label} muss gültiges JSON sein.`);}
+  if(!Array.isArray(value))throw new Error(`${label} muss ein JSON-Array sein.`);
+  return value;
+}
+
+function actionMapPayload(){
+  const raw=byId("pg-action-to-input-map")?.value?.trim()||"auto";
+  if(raw==="auto"||raw==="spatial")return raw;
+  let value;
+  try{value=JSON.parse(raw);}catch{throw new Error("Action → Input Map muss auto, spatial oder JSON sein.");}
+  if(!Array.isArray(value))throw new Error("Action → Input Map muss ein JSON-Array sein.");
+  return value;
 }
 
 function formPayload() {
@@ -346,6 +437,65 @@ function formPayload() {
     neural_io_correlation_id: "auto",
     neural_io_modality: byId("pg-neural-io-modality").value,
     neural_io_source_id: byId("pg-neural-io-source").value,
+    closed_loop_preset: byId("pg-closed-loop-preset").value,
+    input_topology: byId("pg-input-topology").value,
+    input_channels: Number(byId("pg-input-channels").value),
+    input_channel_map: parseJsonArray("pg-input-channel-map","Kanal-Map"),
+    input_amplitude_per_channel: parseJsonArray("pg-input-amplitudes","Amplituden"),
+    input_frequency_per_channel: parseJsonArray("pg-input-frequencies","Frequenzen"),
+    input_phase_per_channel: parseJsonArray("pg-input-phases","Phasen"),
+    input_noise_sigma: Number(byId("pg-input-noise").value),
+    target_cue_channel: Number(byId("pg-target-cue-channel").value),
+    reward_cue_channel: Number(byId("pg-reward-cue-channel").value),
+    action_feedback_channel: Number(byId("pg-action-feedback-channel").value),
+    pan_feedback_delay: Number(byId("pg-pan-feedback-delay").value),
+    pan_feedback_source: byId("pg-pan-feedback-source").value,
+    pan_feedback_target: byId("pg-pan-feedback-target").value,
+    pan_feedback_nonlinearity: byId("pg-pan-feedback-nonlinearity").value,
+    pan_feedback_threshold: Number(byId("pg-pan-feedback-threshold").value),
+    pan_feedback_saturation: Number(byId("pg-pan-feedback-saturation").value),
+    action_loop_enabled: byId("pg-action-loop-enabled").checked,
+    action_loop_delay: Number(byId("pg-action-loop-delay").value),
+    action_persistence: Number(byId("pg-action-persistence").value),
+    action_to_input_map: actionMapPayload(),
+    action_space_size: Number(byId("pg-action-space-size").value),
+    action_coupling_strength: Number(byId("pg-action-coupling").value),
+    action_noise: Number(byId("pg-action-noise").value),
+    reward_signal_enabled: byId("pg-reward-enabled").checked,
+    reward_magnitude: Number(byId("pg-reward-magnitude").value),
+    reward_delay_ticks: Number(byId("pg-reward-delay").value),
+    reward_shaping: byId("pg-reward-shaping").value,
+    reward_baseline: Number(byId("pg-reward-baseline").value),
+    reward_decay: Number(byId("pg-reward-decay").value),
+    reward_channel: Number(byId("pg-reward-channel").value),
+    target_encoding: byId("pg-target-encoding").value,
+    target_persistence: Number(byId("pg-target-persistence").value),
+    target_cue_current: Number(byId("pg-target-cue-current").value),
+    target_shuffle: byId("pg-target-shuffle").checked,
+    target_predictability: byId("pg-target-predictability").value,
+    credit_window: Number(byId("pg-credit-window").value),
+    eligibility_trace_tau: Number(byId("pg-eligibility-tau").value),
+    credit_assignment: byId("pg-credit-assignment").value,
+    td_lambda: Number(byId("pg-td-lambda").value),
+    gamma_discount: Number(byId("pg-gamma-discount").value),
+    neuron_threshold_variance: Number(byId("pg-threshold-variance").value),
+    neuron_tau_m_variance: Number(byId("pg-tau-m-variance").value),
+    inhibitory_fraction: Number(byId("pg-inhibitory-fraction").value),
+    gaba_strength: Number(byId("pg-gaba-strength").value),
+    e_i_ratio: Number(byId("pg-e-i-ratio").value),
+    delay_distribution: byId("pg-delay-distribution").value,
+    delay_mean_ticks: Number(byId("pg-delay-mean").value),
+    refractory_variance: Number(byId("pg-refractory-variance").value),
+    adaptation_strength: Number(byId("pg-adaptation-strength").value),
+    adaptation_tau: Number(byId("pg-adaptation-tau").value),
+    oscillation_enabled: byId("pg-oscillation-enabled").checked,
+    oscillation_frequency: Number(byId("pg-oscillation-frequency").value),
+    geometry_input_coupling: byId("pg-geometry-input-coupling").checked,
+    geometry_input_sigma: Number(byId("pg-geometry-input-sigma").value),
+    sandbox_enabled: byId("pg-sandbox-enabled").checked,
+    sandbox_physics: "stick_figure",
+    sandbox_action_coupling: "direct",
+    sandbox_sensor_noise: Number(byId("pg-sandbox-sensor-noise").value),
   };
 }
 
@@ -392,8 +542,8 @@ function renderResult(result){
   const values=[["Class",result.manifest?.class||"PLAYGROUND"],["Spikes",m.total_spikes??"—"],["Mean Hz",Number(m.mean_rate_hz||0).toFixed(2)],["Active",Number(m.active_fraction||0).toLocaleString(undefined,{style:"percent",maximumFractionDigits:1})],["Neuronen",result.topology?.neuron_count??"—"],["Kanten",result.topology?.edge_count??"—"],["Dimensionen",result.topology?.dimensions??"—"],["Eff. Dim.",Number(dim.effective_dimensionality||0).toFixed(2)]];
   byId("pg-metrics").innerHTML=values.map(([k,v])=>`<div class="playground-metric"><span>${k}</span><strong>${v}</strong></div>`).join("");
   byId("pg-analysis-spike").textContent=JSON.stringify(a.spike_time||{},null,2);
-  byId("pg-analysis-network").textContent=JSON.stringify({network:net,dimensionality:dim,ensemble:result.ensemble||null,pan:result.pan||null,geometry:result.geometry||null,gates:result.gates||null,clock:result.clock||null,execution:result.execution||null,growth:result.growth||null,storage:result.storage||null},null,2);
-  byId("pg-analysis-plasticity").textContent=JSON.stringify({plasticity:a.plasticity||{},performance:a.performance||{},pan:result.pan||null,growth:result.growth||null,behavioral_learning:result.behavioral_learning||null,thalamic_gating:result.thalamic_gating||null,cortical_organization:result.cortical_organization||null,storage:result.storage||null,hardware:result.hardware||null},null,2);
+  byId("pg-analysis-network").textContent=JSON.stringify({network:net,dimensionality:dim,ensemble:result.ensemble||null,pan:result.pan||null,closed_loop:result.closed_loop||null,heterogeneity:result.heterogeneity||null,temporal_dynamics:result.temporal_dynamics||null,geometry:result.geometry||null,gates:result.gates||null,clock:result.clock||null,execution:result.execution||null,growth:result.growth||null,storage:result.storage||null},null,2);
+  byId("pg-analysis-plasticity").textContent=JSON.stringify({plasticity:a.plasticity||{},performance:a.performance||{},pan:result.pan||null,growth:result.growth||null,behavioral_learning:result.behavioral_learning||null,credit_assignment:result.credit_assignment||null,closed_loop:result.closed_loop||null,thalamic_gating:result.thalamic_gating||null,cortical_organization:result.cortical_organization||null,storage:result.storage||null,hardware:result.hardware||null},null,2);
   byId("pg-analysis-io").textContent=JSON.stringify({neural_io:result.neural_io||{status:"disabled"},interfaces:result.interfaces||null},null,2);
   byId("pg-run-json").textContent=JSON.stringify({session_id:result.session_id,manifest:result.manifest,model:result.model,config:result.config,metrics:result.metrics,readout:result.readout},null,2);
   drawRaster(result);drawSeries("pg-rate-canvas",(result.monitors?.tick_spike_counts||[]).map(Number));drawTopology(result);drawState(result);drawSpectrum(result);drawDegree(result);
@@ -497,9 +647,64 @@ async function runRobustness(){
   catch(error){status.dataset.state="error";status.textContent=`Robustheitssuite fehlgeschlagen: ${error.message||error}`;}
 }
 
+function setBuilderValue(key,value){
+  const aliases={
+    input_amplitude_per_channel:"input-amplitudes",input_frequency_per_channel:"input-frequencies",input_phase_per_channel:"input-phases",input_channel_map:"input-channel-map",
+    pan_feedback_gain:"pan-feedback-gain",pan_feedback_nonlinearity:"pan-feedback-nonlinearity",pan_feedback_saturation:"pan-feedback-saturation",
+    action_loop_enabled:"action-loop-enabled",action_loop_delay:"action-loop-delay",action_persistence:"action-persistence",action_to_input_map:"action-to-input-map",action_space_size:"action-space-size",action_coupling_strength:"action-coupling",action_noise:"action-noise",
+    reward_signal_enabled:"reward-enabled",reward_magnitude:"reward-magnitude",reward_delay_ticks:"reward-delay",reward_shaping:"reward-shaping",reward_baseline:"reward-baseline",reward_decay:"reward-decay",reward_channel:"reward-channel",
+    target_encoding:"target-encoding",target_cue_channel:"target-cue-channel",target_cue_current:"target-cue-current",target_persistence:"target-persistence",target_shuffle:"target-shuffle",target_predictability:"target-predictability",
+    credit_assignment:"credit-assignment",credit_window:"credit-window",eligibility_trace_tau:"eligibility-tau",td_lambda:"td-lambda",gamma_discount:"gamma-discount",
+    neuron_threshold_variance:"threshold-variance",neuron_tau_m_variance:"tau-m-variance",inhibitory_fraction:"inhibitory-fraction",gaba_strength:"gaba-strength",e_i_ratio:"e-i-ratio",delay_distribution:"delay-distribution",delay_mean_ticks:"delay-mean",
+    refractory_variance:"refractory-variance",adaptation_strength:"adaptation-strength",adaptation_tau:"adaptation-tau",oscillation_enabled:"oscillation-enabled",oscillation_frequency:"oscillation-frequency",
+    input_topology:"input-topology",input_channels:"input-channels",input_noise_sigma:"input-noise",action_feedback_channel:"action-feedback-channel",reward_cue_channel:"reward-cue-channel",
+    geometry_input_coupling:"geometry-input-coupling",geometry_input_sigma:"geometry-input-sigma",sandbox_enabled:"sandbox-enabled",sandbox_sensor_noise:"sandbox-sensor-noise",
+    neuron_model:"neuron-model",pan_enabled:"pan-enabled",behavior_learning_enabled:"behavior-enabled",stimulus:"stimulus"
+  };
+  const id="pg-"+(aliases[key]||key.replaceAll("_","-"));
+  const el=byId(id);if(!el)return;
+  if(el.type==="checkbox")el.checked=Boolean(value);
+  else if(Array.isArray(value))el.value=JSON.stringify(value);
+  else el.value=String(value);
+}
+
+function resolvedPresetSettings(name,seen=new Set()){
+  const presets=catalogState?.closed_loop?.presets||[];
+  const preset=presets.find(item=>item.name===name);
+  if(!preset||seen.has(name))return {};
+  const settings={...(preset.settings||{})};
+  const parent=settings.closed_loop_preset;
+  delete settings.closed_loop_preset;
+  return parent?{...resolvedPresetSettings(parent,new Set([...seen,name])),...settings}:settings;
+}
+
+function applySelectedPreset(){
+  const select=byId("pg-closed-loop-preset");if(!select)return;
+  const name=select.value;
+  if(name==="custom"){byId("pg-preset-description").textContent="Eigene Parameter.";return;}
+  const preset=(catalogState?.closed_loop?.presets||[]).find(item=>item.name===name);
+  const settings=resolvedPresetSettings(name);
+  Object.entries(settings).forEach(([key,value])=>setBuilderValue(key,value));
+  byId("pg-closed-loop-preset").value=name;
+  if(byId("pg-preset-description"))byId("pg-preset-description").textContent=`${preset?.description||name}\nHypothese: ${preset?.hypothesis||"—"}\nErwartung: ${preset?.expected_success??"offen"}`;
+  updateDefaultHints();
+}
+
 function resetForm(){
   const values={neurons:"128",edges:"1024",weight:"4",ticks:"256",dimensions:"5",delay:"1",radius:"0.35",k:"16",rewire:"0.15",modules:"2",current:"8",rate:"20",seed:"12345",ensemble:"1","pan-dimensions":"5","pan-feedback-gain":"0.05","pan-health-decay":"0.001","pan-apoptosis":"0.1","pan-bias-current":"10","geometry-lambda-a":"0.5","geometry-lambda-b":"0.5","geometry-sigma":"0.1","geometry-p0":"0.3","geometry-delay-velocity":"0.25","clock-base-hz":"100","clock-event-batch":"10","execution-high":"0.30","execution-low":"0.05","execution-hysteresis":"0.02","execution-dwell":"100","execution-window":"100","growth-activity":"0.25","growth-coactivation":"2","growth-info":"0.25","growth-prune":"0.05","growth-max-synapses":"128","growth-max-new":"8","cuda-budget":"2048","offload-snapshot":"1000","thalamic-threshold":"0","thalamic-attention":"1.15","thalamic-inhibition":"0.35","cortical-layers":"6","cortical-lr":"0.01","behavior-actions":"4","behavior-target":"0","behavior-min-activity":"0.01","behavior-lr":"0.2","behavior-epsilon":"0.2","behavior-episode":"16","behavior-bias":"3"};
   for(const[k,v]of Object.entries(values)){const el=byId(`pg-${k}`);if(el)el.value=v;}byId("pg-persist").checked=false;byId("pg-pan-enabled").checked=false;byId("pg-pan-closed-loop").checked=true;byId("pg-clock-mode").value="continuous";byId("pg-execution-mode").value="HYBRID_AUTO";byId("pg-execution-initial").value="EVENT_ONLY";byId("pg-execution-transition").value="clean";byId("pg-execution-sync").checked=true;byId("pg-execution-log").checked=true;byId("pg-growth-enabled").checked=false;byId("pg-offload-enabled").checked=false;byId("pg-hardware-profile").value="reference_cpu";byId("pg-thalamic-enabled").checked=false;byId("pg-behavior-target-mode").value="cycle";byId("pg-cortical-enabled").checked=false;byId("pg-cortical-plasticity").checked=true;byId("pg-behavior-enabled").checked=false;byId("pg-geometry-mode").value="mixed_additive";byId("pg-neural-io-enabled").checked=false;byId("pg-neural-io-payload").value="0.5";byId("pg-neural-io-input-channels").value="16";byId("pg-neural-io-output-channels").value="16";byId("pg-neural-io-window").value="16";byId("pg-neural-io-current").value="25";byId("pg-neural-io-input-role").value="GATEWAY_AFFERENT";byId("pg-neural-io-output-role").value="GATEWAY_EFFERENT";byId("pg-neural-io-phase").value="QUERY";byId("pg-neural-io-modality").value="digital";byId("pg-neural-io-source").value="playground.input";if(byId("pg-topology"))byId("pg-topology").value="mhrn_5d";
+  const closedLoopDefaults={
+    "closed-loop-preset":"custom","input-topology":"uniform","input-channels":"1","input-channel-map":"[]","input-amplitudes":"[]","input-frequencies":"[]","input-phases":"[]","input-noise":"0","target-cue-channel":"0","reward-cue-channel":"0","action-feedback-channel":"0",
+    "pan-feedback-delay":"0","pan-feedback-source":"population","pan-feedback-target":"all","pan-feedback-nonlinearity":"linear","pan-feedback-threshold":"0","pan-feedback-saturation":"100",
+    "action-loop-delay":"1","action-persistence":"1","action-to-input-map":"auto","action-space-size":"4","action-coupling":"0","action-noise":"0","geometry-input-sigma":"0.2","sandbox-sensor-noise":"0.05",
+    "target-encoding":"none","target-persistence":"1","target-cue-current":"0","target-predictability":"deterministic",
+    "reward-magnitude":"1","reward-delay":"0","reward-shaping":"sparse","reward-baseline":"0","reward-decay":"0","reward-channel":"0",
+    "credit-assignment":"none","credit-window":"64","eligibility-tau":"200","td-lambda":"0.9","gamma-discount":"0.95",
+    "threshold-variance":"0","tau-m-variance":"0","inhibitory-fraction":"0","gaba-strength":"1","e-i-ratio":"1","delay-distribution":"fixed","delay-mean":"1","refractory-variance":"0","adaptation-strength":"0","adaptation-tau":"200","oscillation-frequency":"8"
+  };
+  Object.entries(closedLoopDefaults).forEach(([key,value])=>{const el=byId("pg-"+key);if(el)el.value=value;});
+  ["pg-action-loop-enabled","pg-geometry-input-coupling","pg-sandbox-enabled","pg-target-shuffle","pg-reward-enabled","pg-oscillation-enabled"].forEach(id=>{const el=byId(id);if(el)el.checked=false;});
+  if(byId("pg-preset-description"))byId("pg-preset-description").textContent="Eigene Parameter.";
   updateDefaultHints();
 }
 
@@ -519,6 +724,8 @@ function renderCatalog(catalog){
   byId("pg-stimulus").innerHTML=optionMarkup(catalog.stimuli,"name");
   byId("pg-neural-io-codec").innerHTML=(catalog.neural_io?.codecs||[]).filter(item=>item.available!==false).map(item=>`<option value="${item.id}">${item.id}</option>`).join("");
   byId("pg-neural-io-decoder").innerHTML=(catalog.neural_io?.decoders||[]).filter(item=>item.available!==false).map(item=>`<option value="${item.id}">${item.id}</option>`).join("");
+  const presetSelect=byId("pg-closed-loop-preset");
+  if(presetSelect)presetSelect.innerHTML='<option value="custom">custom</option>'+((catalog.closed_loop?.presets||[]).map(item=>`<option value="${item.name}">${item.name}</option>`).join(""));
   if([...byId("pg-topology").options].some(o=>o.value==="mhrn_5d"))byId("pg-topology").value="mhrn_5d";
   const panCandidates=(catalog.pan?.research_candidates||[]).map(item=>({name:item.id,note:item.question}));
   const panLiterature=(catalog.pan?.literature_context?.sources||[]).map(item=>({name:item.key,note:item.citation}));
@@ -532,8 +739,10 @@ function renderCatalog(catalog){
 export async function initPlayground(){
   const root=byId("tab-playground");if(!root)return;
   injectStyles();ensurePermanentBoundary(root);buildPanels(root);
-  byId("pg-run")?.addEventListener("click",runSession);byId("pg-robustness")?.addEventListener("click",runRobustness);byId("pg-reset")?.addEventListener("click",resetForm);byId("pg-live-create")?.addEventListener("click",()=>createLiveSession().catch(error=>byId("pg-live-state").textContent=String(error.message||error)));byId("pg-live-step")?.addEventListener("click",()=>stepLiveSession().catch(error=>byId("pg-live-state").textContent=String(error.message||error)));byId("pg-live-auto")?.addEventListener("click",()=>startLiveLoop().catch(error=>byId("pg-live-state").textContent=String(error.message||error)));byId("pg-live-auto-stop")?.addEventListener("click",stopLiveLoop);byId("pg-live-input")?.addEventListener("click",()=>injectLiveInput().catch(error=>byId("pg-live-state").textContent=String(error.message||error)));byId("pg-live-sandbox")?.addEventListener("click",()=>stepLiveSandbox().catch(error=>byId("pg-live-state").textContent=String(error.message||error)));byId("pg-live-stop")?.addEventListener("click",()=>stopLiveSession().catch(error=>byId("pg-live-state").textContent=String(error.message||error)));byId("pg-night-start")?.addEventListener("click",()=>startNightRun().catch(error=>byId("pg-night-state").textContent=String(error.message||error)));byId("pg-night-stop")?.addEventListener("click",()=>stopNightRun().catch(error=>byId("pg-night-state").textContent=String(error.message||error)));byId("pg-night-refresh")?.addEventListener("click",()=>refreshNightStatus().catch(error=>byId("pg-night-state").textContent=String(error.message||error)));
-  try{renderCatalog(await apiGet("/api/playground/catalog"));}catch(error){const status=byId("pg-status");status.dataset.state="error";status.textContent=`Katalog nicht verfügbar: ${error.message}`;}
+  byId("pg-run")?.addEventListener("click",runSession);byId("pg-apply-preset")?.addEventListener("click",applySelectedPreset);byId("pg-robustness")?.addEventListener("click",runRobustness);byId("pg-reset")?.addEventListener("click",resetForm);byId("pg-live-create")?.addEventListener("click",()=>createLiveSession().catch(error=>byId("pg-live-state").textContent=String(error.message||error)));byId("pg-live-step")?.addEventListener("click",()=>stepLiveSession().catch(error=>byId("pg-live-state").textContent=String(error.message||error)));byId("pg-live-auto")?.addEventListener("click",()=>startLiveLoop().catch(error=>byId("pg-live-state").textContent=String(error.message||error)));byId("pg-live-auto-stop")?.addEventListener("click",stopLiveLoop);byId("pg-live-input")?.addEventListener("click",()=>injectLiveInput().catch(error=>byId("pg-live-state").textContent=String(error.message||error)));byId("pg-live-sandbox")?.addEventListener("click",()=>stepLiveSandbox().catch(error=>byId("pg-live-state").textContent=String(error.message||error)));byId("pg-live-stop")?.addEventListener("click",()=>stopLiveSession().catch(error=>byId("pg-live-state").textContent=String(error.message||error)));byId("pg-night-start")?.addEventListener("click",()=>startNightRun().catch(error=>byId("pg-night-state").textContent=String(error.message||error)));byId("pg-night-stop")?.addEventListener("click",()=>stopNightRun().catch(error=>byId("pg-night-state").textContent=String(error.message||error)));byId("pg-night-refresh")?.addEventListener("click",()=>refreshNightStatus().catch(error=>byId("pg-night-state").textContent=String(error.message||error)));
+  try{renderCatalog(await apiGet("/api/playground/catalog"));resetForm();}catch(error){const status=byId("pg-status");status.dataset.state="error";status.textContent=`Katalog nicht verfügbar: ${error.message}`;}
+  byId("playground-builder")?.addEventListener("input", updateDefaultHints);
+  byId("playground-builder")?.addEventListener("change", updateDefaultHints);
   await refreshSessions();
   try{await refreshNightStatus();}catch{ /* night manager is optional during partial deployments */ }
   window.MHRNPlayground={run:runSession,runRobustness,refreshSessions,get catalog(){return catalogState;},get lastResult(){return lastResult;}};
