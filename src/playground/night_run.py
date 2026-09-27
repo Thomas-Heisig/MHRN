@@ -8,6 +8,7 @@ import signal
 import threading
 import time
 import uuid
+from collections.abc import Mapping
 from pathlib import Path
 from typing import Callable
 
@@ -16,6 +17,28 @@ from .models import PlaygroundConfig
 from .pan.live_session import PANLiveSession
 
 GatewayQuery = Callable[[str], str | None]
+
+
+def _as_int(value: object, default: int = 0) -> int:
+    if isinstance(value, bool):
+        return default
+    if isinstance(value, (int, float)):
+        return int(value)
+    return default
+
+
+def _as_float(value: object, default: float = 0.0) -> float:
+    if isinstance(value, bool):
+        return default
+    if isinstance(value, (int, float)):
+        return float(value)
+    return default
+
+
+def _string_list(value: object, field: str) -> list[str]:
+    if not isinstance(value, list):
+        raise ValueError(f"{field} must be a list")
+    return [str(item) for item in value]
 
 
 class NightRunDaemon:
@@ -107,23 +130,29 @@ class NightRunDaemon:
         payload = json.loads(self.checkpoint_path.read_text(encoding="utf-8"))
         raw_status = payload.get("status", {})
         if isinstance(raw_status, dict):
-            self.episode = int(raw_status.get("episode", 0))
-            self.total_reward = float(raw_status.get("total_reward", 0.0))
-            elapsed = float(raw_status.get("elapsed_seconds", 0.0))
+            self.episode = _as_int(raw_status.get("episode"), 0)
+            self.total_reward = _as_float(raw_status.get("total_reward"), 0.0)
+            elapsed = _as_float(raw_status.get("elapsed_seconds"), 0.0)
             self.started_at = time.time() - max(0.0, elapsed)
             raw_counts = raw_status.get("task_counts")
             if isinstance(raw_counts, dict):
-                self.task_counts = {key: int(raw_counts.get(key, 0)) for key in self.task_counts}
+                self.task_counts = {
+                    key: _as_int(raw_counts.get(key), 0)
+                    for key in self.task_counts
+                }
             raw_rewards = raw_status.get("reward_by_task")
             if isinstance(raw_rewards, dict):
-                self.reward_by_task = {key: float(raw_rewards.get(key, 0.0)) for key in self.reward_by_task}
+                self.reward_by_task = {
+                    key: _as_float(raw_rewards.get(key), 0.0)
+                    for key in self.reward_by_task
+                }
         raw_pan = payload.get("pan_checkpoint")
         if isinstance(raw_pan, dict):
             self.pan.import_checkpoint(raw_pan)
         raw_kb = payload.get("knowledge_base")
         if isinstance(raw_kb, dict):
             self.kb = KnowledgeBase.from_snapshot(raw_kb)
-        self.task_gen.counter = int(payload.get("task_counter", self.episode))
+        self.task_gen.counter = _as_int(payload.get("task_counter"), self.episode)
         self.last_checkpoint_at = time.time()
 
     def _install_signals(self) -> None:
@@ -161,11 +190,11 @@ class NightRunDaemon:
         return index, options[index]
 
     def _find(self, task: dict[str, object]) -> tuple[dict[str, object], dict[str, object], list[tuple[str, int, int, float]]]:
-        sources = [str(item) for item in task["possible_sources"]]
-        categories = [str(item) for item in task["possible_categories"]]
+        sources = _string_list(task.get("possible_sources"), "possible_sources")
+        categories = _string_list(task.get("possible_categories"), "possible_categories")
         source_index, source = self._choice("find:source", sources)
         category_index, category = self._choice("find:category", categories)
-        action = {"source": source, "category": category}
+        action: dict[str, object] = {"source": source, "category": category}
         if source == "gateway":
             answer = self.gateway_query(str(task["question"])) if self.gateway_query else None
             result = {
@@ -185,17 +214,17 @@ class NightRunDaemon:
         return action, result, updates
 
     def _store(self, task: dict[str, object]) -> tuple[dict[str, object], dict[str, object], list[tuple[str, int, int, float]]]:
-        categories = [str(item) for item in task["possible_categories"]]
+        categories = _string_list(task.get("possible_categories"), "possible_categories")
         index, category = self._choice("store:category", categories)
-        action = {"category": category}
+        action: dict[str, object] = {"category": category}
         result = self.kb.store_info(str(task["info"]), category)
         reward = self.reward_fn.compute(task, action, result)
         return action, result, [("store:category", index, len(categories), reward["category"])]
 
     def _link(self, task: dict[str, object]) -> tuple[dict[str, object], dict[str, object], list[tuple[str, int, int, float]]]:
-        relations = [str(item) for item in task["possible_relations"]]
+        relations = _string_list(task.get("possible_relations"), "possible_relations")
         index, relation = self._choice("link:relation", relations)
-        action = {"relation": relation}
+        action: dict[str, object] = {"relation": relation}
         result = self.kb.link(
             str(task["left_id"]), str(task["right_id"]), relation
         )
@@ -207,24 +236,28 @@ class NightRunDaemon:
             self.kb, gateway_available=self.gateway_query is not None
         )
         vector = self._encode_task(task)
-        if task["type"] == "find_source":
+        task_type = str(task.get("type"))
+        if task_type == "find_source":
             self.pan.learning.activate_context(
-                "find:source", len(task["possible_sources"])
+                "find:source",
+                len(_string_list(task.get("possible_sources"), "possible_sources")),
             )
-        elif task["type"] == "store_info":
+        elif task_type == "store_info":
             self.pan.learning.activate_context(
-                "store:category", len(task["possible_categories"])
+                "store:category",
+                len(_string_list(task.get("possible_categories"), "possible_categories")),
             )
         else:
             self.pan.learning.activate_context(
-                "link:relation", len(task["possible_relations"])
+                "link:relation",
+                len(_string_list(task.get("possible_relations"), "possible_relations")),
             )
         self.pan.inject_vector(vector, duration_ticks=8, gain=25.0)
         pan_result = self.pan.step(16)
 
-        if task["type"] == "find_source":
+        if task_type == "find_source":
             action, result, updates = self._find(task)
-        elif task["type"] == "store_info":
+        elif task_type == "store_info":
             action, result, updates = self._store(task)
         else:
             action, result, updates = self._link(task)
@@ -241,7 +274,6 @@ class NightRunDaemon:
         reward = float(reward_components["total"])
         self.episode += 1
         self.total_reward += reward
-        task_type = str(task["type"])
         self.task_counts[task_type] += 1
         self.reward_by_task[task_type] += reward
         event = {
@@ -257,9 +289,13 @@ class NightRunDaemon:
                 "linked": result.get("linked"),
             },
             "pan": {
-                "tick": pan_result["tick"],
-                "total_spikes": pan_result["total_spikes"],
-                "current_engine": pan_result["execution"]["current_engine"],
+                "tick": pan_result.get("tick"),
+                "total_spikes": pan_result.get("total_spikes"),
+                "current_engine": (
+                    pan_result.get("execution", {}).get("current_engine")
+                    if isinstance(pan_result.get("execution"), Mapping)
+                    else None
+                ),
             },
         }
         with self.metrics_path.open("a", encoding="utf-8") as handle:
@@ -362,7 +398,7 @@ def analyze_run(run_dir: Path) -> dict[str, object]:
         for line in metrics_path.read_text(encoding="utf-8").splitlines():
             if line.strip():
                 events.append(json.loads(line))
-    rewards = [float(item.get("reward", 0.0)) for item in events]
+    rewards = [_as_float(item.get("reward"), 0.0) for item in events]
     half = max(1, len(rewards) // 2)
     first = rewards[:half]
     second = rewards[-half:]
