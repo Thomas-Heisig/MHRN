@@ -49,10 +49,14 @@ jobs:
           prereg_path = Path("research/preregistrations/PREREG-S1-TOPO-REFERENCE-R1.json")
           audit_path = Path("research/audits/STAGE1_TOPOLOGY_REFERENCE_MECHANISM_AUDIT_20260927.json")
           parity_path = Path("research/calibrations/CAL-S1-TOPO-REFERENCE-INTEGRATOR-R1/result.json")
+          reset_path = Path("research/calibrations/CAL-S1-TOPO-REFERENCE-RESET-R1/result.json")
+          synapse_path = Path("research/calibrations/CAL-S1-TOPO-REFERENCE-SYNAPSE-R1/result.json")
 
           prereg = json.loads(prereg_path.read_text(encoding="utf-8"))
           audit = json.loads(audit_path.read_text(encoding="utf-8")) if audit_path.exists() else {}
           parity = json.loads(parity_path.read_text(encoding="utf-8")) if parity_path.exists() else {}
+          reset = json.loads(reset_path.read_text(encoding="utf-8")) if reset_path.exists() else {}
+          synapse = json.loads(synapse_path.read_text(encoding="utf-8")) if synapse_path.exists() else {}
           multi = parity.get("multi_tick", {}) if isinstance(parity, dict) else {}
 
           eligible = (
@@ -62,7 +66,10 @@ jobs:
               and parity.get("pass") is True
               and multi.get("pass") is True
               and multi.get("contains_spike") is True
+              and reset.get("pass") is True
+              and synapse.get("pass") is True
           )
+          print(f"integrator={parity.get('pass')}, multi_tick={multi.get('pass')}, reset={reset.get('pass')}, synapse={synapse.get('pass')}, audit={audit.get('pass')}")
           print(f"eligible={eligible}")
           with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as stream:
               stream.write(f"eligible={'true' if eligible else 'false'}\n")
