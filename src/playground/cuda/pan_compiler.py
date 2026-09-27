@@ -33,7 +33,7 @@ from ..models import PlaygroundConfig
 
 CLASSIFICATION = "PLAYGROUND_CUDA_GATE_COMPILER"
 DEFAULT_TARGET_SM = "sm_86"
-DEFAULT_PTX_VERSION = "7.0"
+DEFAULT_PTX_VERSION = "7.1"
 
 
 class GateType(str, Enum):
@@ -118,12 +118,22 @@ def _target_number(target_sm: str) -> int:
     return int(match.group(1))
 
 
-def _validate_target(config: PlaygroundConfig, target_sm: str) -> None:
+def _validate_target(
+    config: PlaygroundConfig, target_sm: str, ptx_version: str
+) -> None:
     number = _target_number(target_sm)
     if number < 50:
         raise ValueError("reference compiler requires target_sm >= sm_50")
     if config.pan_feedback_nonlinearity == "tanh" and number < 75:
         raise ValueError("tanh.approx.f32 requires target_sm >= sm_75")
+    try:
+        version = tuple(int(part) for part in ptx_version.split("."))
+    except ValueError as exc:
+        raise ValueError("ptx_version must use numeric major.minor form") from exc
+    if len(version) != 2:
+        raise ValueError("ptx_version must use numeric major.minor form")
+    if number >= 86 and version < (7, 1):
+        raise ValueError("sm_86 requires PTX ISA >= 7.1")
 
 
 def _gate(
@@ -152,7 +162,7 @@ def build_gate_program(
 ) -> GateProgram:
     """Translate a validated Playground configuration into a deterministic IR."""
 
-    _validate_target(config, target_sm)
+    _validate_target(config, target_sm, ptx_version)
     gates: list[Gate] = []
 
     # A1 - input differentiation. A 64-bit mask is used because the builder
