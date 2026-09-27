@@ -389,5 +389,17 @@
         "reference/stage1_topology_brian2/reference_protocol.json"
       ]
     }
+  },
+  "prefreeze_review_record": {
+    "review_date": "2026-09-27",
+    "status": "REVIEW_REQUIREMENTS_INTEGRATED_AWAITING_EXECUTABLE_GATES",
+    "integrated_requirements": [
+      "one-neuron one-tick integrator parity before freeze",
+      "code-backed adaptation/homeostasis/energy/traces audit before freeze",
+      "resolution-aware integer-tick equivalence bounds fixed before DATA",
+      "automated runner leakage/independence scan",
+      "complete PARTIAL_REPLICATION / FAILED_REPLICATION / INCONCLUSIVE_REFERENCE_REPLICATION decision rules"
+    ],
+    "scientific_contract_changed_by_this_record": false
   }
 }
