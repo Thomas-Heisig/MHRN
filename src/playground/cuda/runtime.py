@@ -779,6 +779,274 @@ def smoke_gate_launch_inputs(
     )
 
 
+def _f32(value: float) -> float:
+    """Round a scalar through IEEE-754 binary32 like the PTX ABI."""
+
+    return float(ctypes.c_float(float(value)).value)
+
+
+def _gate_params(
+    bundle: CompileBundle,
+    *,
+    stage: str,
+    label: str,
+) -> Mapping[str, object] | None:
+    for raw_gate in bundle.gate_ir:
+        if raw_gate.get("stage") == stage and raw_gate.get("label") == label:
+            params = raw_gate.get("params")
+            if isinstance(params, Mapping):
+                return params
+            return {}
+    return None
+
+
+def _gate_labels(bundle: CompileBundle, stage: str) -> set[str]:
+    return {
+        str(raw_gate.get("label"))
+        for raw_gate in bundle.gate_ir
+        if raw_gate.get("stage") == stage
+    }
+
+
+def cpu_gate_reference(
+    bundle: CompileBundle,
+    inputs: GateLaunchInputs,
+) -> dict[str, object]:
+    """Execute the current single-tick PTX gate ABI as a CPU reference.
+
+    The function deliberately mirrors only the values observable from the
+    current `pan_gate_kernel`: output current and selected action. Internal
+    B/C4 scratch values that do not reach those outputs are not promoted to
+    parity claims.
+    """
+
+    shape = validate_gate_launch_inputs(bundle, inputs)
+    n_neurons = shape["n_neurons"]
+    input_channels = shape["input_channels"]
+    action_count = shape["action_count"]
+    pan_dimensions = shape["pan_dimensions"]
+
+    a2_labels = _gate_labels(bundle, "A2")
+    a3_labels = _gate_labels(bundle, "A3")
+    a4_labels = _gate_labels(bundle, "A4")
+    c1_labels = _gate_labels(bundle, "C1")
+    c2_labels = _gate_labels(bundle, "C2")
+
+    reward_delay_params = _gate_params(
+        bundle, stage="A3", label="reward_delay"
+    )
+    reward_magnitude_params = _gate_params(
+        bundle, stage="A3", label="reward_magnitude"
+    )
+    reward_select_params = _gate_params(
+        bundle, stage="A3", label="reward_channel_select"
+    )
+    coupling_params = _gate_params(
+        bundle, stage="A4", label="action_coupling"
+    )
+    feedback_dot_params = _gate_params(
+        bundle, stage="C1", label="pan_feedback_dot"
+    )
+    feedback_gain_params = _gate_params(
+        bundle, stage="C1", label="pan_feedback_gain"
+    )
+    feedback_threshold_params = _gate_params(
+        bundle, stage="C2", label="pan_feedback_threshold"
+    )
+    feedback_saturation_params = _gate_params(
+        bundle, stage="C2", label="pan_feedback_saturation"
+    )
+
+    output_current: list[float] = []
+    output_action: list[int] = []
+
+    for gid in range(n_neurons):
+        mask = int(inputs.channel_masks[gid])
+        source_current = _f32(inputs.input_current[gid])
+        current = _f32(0.0)
+
+        for channel in range(input_channels):
+            if mask & (1 << channel):
+                product = _f32(source_current * _f32(inputs.amplitudes[channel]))
+                current = _f32(current + product)
+
+        for action in range(action_count):
+            label = f"target_match_{action}"
+            if label not in a2_labels:
+                continue
+            params = _gate_params(bundle, stage="A2", label=label) or {}
+            channel = int(params.get("channel", action % input_channels))
+            if inputs.target_index == action and mask & (1 << channel):
+                cue_params = (
+                    _gate_params(
+                        bundle,
+                        stage="A2",
+                        label=f"target_cue_{action}",
+                    )
+                    or {}
+                )
+                current = _f32(
+                    current + _f32(float(cue_params.get("current", 0.0)))
+                )
+
+        if "reward_channel_select" in a3_labels:
+            delay = int(
+                (reward_delay_params or {}).get("delay_ticks", 0)
+            )
+            reward_value = 0.0
+            if inputs.tick >= delay:
+                reward_index = (inputs.tick - delay) % len(inputs.reward_ring)
+                reward_value = _f32(inputs.reward_ring[reward_index])
+            magnitude = float(
+                (reward_magnitude_params or {}).get("magnitude", 1.0)
+            )
+            reward_value = _f32(reward_value * _f32(magnitude))
+            reward_channel = int(
+                (reward_select_params or {}).get("channel", 0)
+            )
+            if mask & (1 << reward_channel):
+                current = _f32(current + reward_value)
+
+        if "action_coupling" in a4_labels:
+            map_index = (
+                inputs.previous_action * input_channels
+                + gid % input_channels
+            )
+            action_value = _f32(inputs.action_map[map_index])
+            strength = float(
+                (coupling_params or {}).get("strength", 1.0)
+            )
+            current = _f32(
+                current + _f32(action_value * _f32(strength))
+            )
+
+        if "pan_feedback_dot" in c1_labels:
+            dimensions = int(
+                (feedback_dot_params or {}).get(
+                    "dimensions", pan_dimensions
+                )
+            )
+            feedback = _f32(0.0)
+            base = gid * pan_dimensions
+            for dim in range(dimensions):
+                contribution = _f32(
+                    _f32(inputs.feedback_matrix[base + dim])
+                    * _f32(inputs.population[dim])
+                )
+                feedback = _f32(feedback + contribution)
+
+            if "pan_feedback_tanh" in c1_labels:
+                feedback = _f32(math.tanh(feedback))
+            elif "pan_feedback_sign" in c1_labels:
+                feedback = _f32(1.0 if feedback > 0.0 else -1.0)
+            elif "pan_feedback_clip" in c1_labels:
+                feedback = _f32(max(-1.0, min(1.0, feedback)))
+
+            gain = float((feedback_gain_params or {}).get("gain", 1.0))
+            feedback = _f32(feedback * _f32(gain))
+            threshold = float(
+                (feedback_threshold_params or {}).get("threshold", 0.0)
+            )
+            if abs(feedback) < threshold:
+                feedback = _f32(0.0)
+            saturation = float(
+                (feedback_saturation_params or {}).get(
+                    "saturation", float("inf")
+                )
+            )
+            feedback = _f32(
+                max(-saturation, min(saturation, feedback))
+            )
+            current = _f32(current + feedback)
+
+        logits_offset = gid * action_count
+        best_action = 0
+        best_value = _f32(inputs.logits[logits_offset])
+        for candidate in range(1, action_count):
+            value = _f32(inputs.logits[logits_offset + candidate])
+            if value > best_value:
+                best_value = value
+                best_action = candidate
+
+        random_bits = (
+            (gid ^ inputs.seed ^ inputs.tick) * 2654435761
+        ) & 0xFFFFFFFF
+        uniform = _f32(_f32(float(random_bits)) * _f32(2.0**-32))
+        if uniform < _f32(inputs.epsilon):
+            best_action = random_bits % action_count
+
+        output_current.append(current)
+        output_action.append(best_action)
+
+    return {
+        "classification": "PLAYGROUND_CPU_GATE_ABI_REFERENCE",
+        "scientific_evidence": False,
+        "execution_status": "CPU_REFERENCE_EXECUTED",
+        "comparison_scope": "GATE_OUTPUT_ONLY_NOT_FULL_SNN",
+        "outputs": {
+            "current": output_current,
+            "action": output_action,
+        },
+    }
+
+
+def gate_execution_parity_summary(
+    reference: Mapping[str, object],
+    candidate: Mapping[str, object],
+    *,
+    tolerance: float = 1.0e-4,
+    reference_commit: str = "",
+) -> dict[str, object]:
+    """Compare CPU/CUDA gate-kernel output current and actions."""
+
+    reference_outputs = reference.get("outputs")
+    candidate_outputs = candidate.get("outputs")
+    if not isinstance(reference_outputs, Mapping) or not isinstance(
+        candidate_outputs, Mapping
+    ):
+        raise ValueError("gate execution results must contain outputs mappings")
+
+    reference_current = reference_outputs.get("current")
+    candidate_current = candidate_outputs.get("current")
+    reference_action = reference_outputs.get("action")
+    candidate_action = candidate_outputs.get("action")
+    if not isinstance(reference_current, Sequence) or isinstance(
+        reference_current, (str, bytes)
+    ):
+        raise ValueError("reference current output must be a sequence")
+    if not isinstance(candidate_current, Sequence) or isinstance(
+        candidate_current, (str, bytes)
+    ):
+        raise ValueError("candidate current output must be a sequence")
+    if not isinstance(reference_action, Sequence) or isinstance(
+        reference_action, (str, bytes)
+    ):
+        raise ValueError("reference action output must be a sequence")
+    if not isinstance(candidate_action, Sequence) or isinstance(
+        candidate_action, (str, bytes)
+    ):
+        raise ValueError("candidate action output must be a sequence")
+
+    reference_current_f = [float(value) for value in reference_current]
+    candidate_current_f = [float(value) for value in candidate_current]
+    current_error = max_abs_error(reference_current_f, candidate_current_f)
+    actions_exact = list(reference_action) == list(candidate_action)
+    passed = current_error <= tolerance and actions_exact
+    return {
+        "classification": "PLAYGROUND_CUDA_GATE_EXECUTION_PARITY",
+        "scientific_evidence": False,
+        "parity_class": "D2",
+        "comparison_scope": "GATE_OUTPUT_ONLY_NOT_FULL_SNN",
+        "reference_source": "CPU_GATE_ABI_REFERENCE",
+        "reference_frozen_at": reference_commit or "UNSPECIFIED",
+        "current_max_abs_error": current_error,
+        "current_tolerance": tolerance,
+        "actions_exact": actions_exact,
+        "passed": passed,
+        "full_snn_parity_verified": False,
+    }
+
+
 def _f32_buffer(values: Sequence[float]) -> object:
     array_type = ctypes.c_float * len(values)
     return array_type(*(float(value) for value in values))
