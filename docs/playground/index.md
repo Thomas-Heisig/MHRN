@@ -1,5 +1,12 @@
 # MHRN Playground
 
+## PAN master documentation
+
+- [PAN complete documentation](PAN_COMPLETE_DOCUMENTATION.md) — consolidated
+  architecture, implementation results, scientific boundaries, geometry,
+  literature, diagnostics, open design questions and Research Candidates 1–8.
+
+
 **Status: exploratory only. Not DATA. Not EVID. Not maturity-contributing.**
 
 The Playground is the dedicated non-canonical construction and exploration

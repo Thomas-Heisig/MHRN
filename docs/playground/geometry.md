@@ -70,6 +70,34 @@ oder in den zyklischen Achsen nahe liegen.
 Dieser zweite Modus ist eine **explorative Modellentscheidung**, nicht die
 Folge der additiven Gleichung.
 
+
+### 3.3 Open normalization question
+
+The `shortcut_union` mode still has an unresolved scale-comparability issue.
+Even after normalizing each cyclic component by π, the composed xyz and a/b
+distances do not automatically share an identical scale.
+
+Two preregistration-worthy alternatives are retained as design options:
+
+```text
+A) d = min(d_xyz / d_xyz_max, d_ab / d_ab_max)
+```
+
+or
+
+```text
+B) d = min(d_xyz_normalized, gamma * d_ab_normalized)
+```
+
+with an explicit `gamma >= 0`.
+
+No option is currently preferred. The choice must be fixed before a canonical
+comparison and must not be selected retrospectively from observed results.
+
+A later topological-shortcut experiment also requires a matched
+`geometric_3d` control using identical xyz coordinates, seeds, radius,
+sigma, p0, neuron/synapse models, delay rule and edge budget.
+
 ## 4. Verbindungswahrscheinlichkeit
 
 Für beide Modi gilt:

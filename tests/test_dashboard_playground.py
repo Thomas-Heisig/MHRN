@@ -93,3 +93,23 @@ def test_geometry_documentation_states_core_corrections() -> None:
     assert "keine universelle Small-World-Schwelle" in text
     assert "effektive Dimension zwischen 4 und 6" in text
     assert "nicht als belegt übernommen" in text
+
+
+
+def test_pan_complete_documentation_covers_all_candidates() -> None:
+    path = ROOT / "docs" / "playground" / "PAN_COMPLETE_DOCUMENTATION.md"
+    assert path.exists()
+    text = path.read_text(encoding="utf-8")
+    assert "keine DATA" in text
+    assert "keine EVID" in text
+    assert "Research Candidates 1–8" in text
+    for candidate in range(1, 9):
+        assert f"### {candidate} —" in text
+
+
+def test_geometry_documents_shortcut_normalization_as_open_question() -> None:
+    path = ROOT / "docs" / "playground" / "geometry.md"
+    text = path.read_text(encoding="utf-8")
+    assert "Open normalization question" in text
+    assert "geometric_3d" in text
+    assert "No option is currently preferred" in text

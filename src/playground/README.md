@@ -153,6 +153,16 @@ mhrn-playground visualize PG-... --projection 5d
 ```
 
 
+## PAN master documentation
+
+The consolidated PAN entry point is:
+
+- `docs/playground/PAN_COMPLETE_DOCUMENTATION.md`
+
+It combines architecture, implemented mechanisms, current implementation
+results, geometry, literature context, scientific boundaries, open questions
+and all eight Research Candidates.
+
 ## PAN exploratory layer
 
 The Playground contains an optional PAN hyperstate layer with bounded health,
