@@ -10,8 +10,8 @@ from typing import cast
 
 from src.playground import service
 from src.playground.models import PlaygroundConfig
-from src.playground.pan import PANEmbodiedSandboxSession, PANSessionDaemon
 from src.playground.night_run import NightRunManager
+from src.playground.pan import PANEmbodiedSandboxSession, PANSessionDaemon
 
 _MAX_CONCURRENT_RUNS = 2
 _RUNS_PER_MINUTE = 20
