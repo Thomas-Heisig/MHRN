@@ -13,6 +13,7 @@ PREREG = ROOT / "research" / "preregistrations" / "PREREG-S1-TOPO-REFERENCE-R1.j
 ALLOWED_PATHS = {
     PREREG.relative_to(ROOT).as_posix(),
     "reference/stage1_topology_brian2/reference_protocol.json",
+    "research/preregistrations/PREREG-S1-TOPO-REFERENCE-R1.freeze.json",
 }
 
 
