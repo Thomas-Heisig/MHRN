@@ -10,7 +10,7 @@ from __future__ import annotations
 import math
 import random
 from collections.abc import Mapping, Sequence
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, cast
 
 if TYPE_CHECKING:
     from .models import PlaygroundConfig
@@ -165,14 +165,16 @@ def closed_loop_catalog() -> dict[str, object]:
 
     presets = []
     for name, item in CLOSED_LOOP_PRESETS.items():
+        features = cast(list[str], item["required_features"])
+        settings = cast(dict[str, object], item["settings"])
         presets.append(
             {
                 "name": name,
                 "description": item["description"],
                 "hypothesis": item["hypothesis"],
                 "expected_success": item["expected_success"],
-                "required_features": list(item["required_features"]),
-                "settings": dict(item["settings"]),
+                "required_features": list(features),
+                "settings": dict(settings),
             }
         )
     return {
@@ -256,7 +258,7 @@ class ClosedLoopRuntime:
         if provided:
             return [list(group) for group in provided]
 
-        groups = [[] for _ in range(self.channels)]
+        groups: list[list[int]] = [[] for _ in range(self.channels)]
         if self.config.input_topology == "uniform":
             all_neurons = list(range(self.n_neurons))
             return [list(all_neurons) for _ in range(self.channels)]
@@ -336,7 +338,8 @@ class ClosedLoopRuntime:
     def _action_vector(self, action: int) -> list[float]:
         mapping = self.config.action_to_input_map
         if not isinstance(mapping, str) and mapping:
-            row = mapping[action % len(mapping)]
+            rows = cast(Sequence[Sequence[float]], mapping)
+            row = rows[action % len(rows)]
             return _expand(row, self.channels, 0.0)
 
         values = [0.0 for _ in range(self.channels)]
