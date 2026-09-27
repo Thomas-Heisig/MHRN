@@ -56,6 +56,23 @@ def test_playground_ui_exposes_corrected_setting_defaults() -> None:
     assert 'value="mixed_additive" selected' in module
 
 
+def test_playground_ui_displays_all_setting_categories() -> None:
+    module = (STATIC / "frontend" / "modules" / "playground.js").read_text(
+        encoding="utf-8"
+    )
+    assert 'id="pg-settings-reference"' in module
+    assert "Alle Einstellungsmöglichkeiten" in module
+    for category in (
+        "Katalogauswahl",
+        "Topologie & Geometrie",
+        "Stimulus & Lauf",
+        "PAN & Geometrieparameter",
+        "Runtime & Wachstum",
+        "Lernen & I/O",
+    ):
+        assert category in module
+
+
 def test_playground_api_has_bounded_concurrency_and_rate() -> None:
     api = (ROOT / "src" / "dashboard" / "playground_api.py").read_text(encoding="utf-8")
     assert "_MAX_CONCURRENT_RUNS = 2" in api
