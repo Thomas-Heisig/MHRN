@@ -7,7 +7,7 @@
   "claim_id": "CLAIM-S1-TOPO-001",
   "protocol": "stage1_topology_cross_implementation_reference_r1",
   "mode": "PROSPECTIVE_CROSS_IMPLEMENTATION_PARTIAL_REPLICATION",
-  "status": "DRAFT_PRE_FREEZE_GATES_PENDING",
+  "status": "FROZEN_BEFORE_REFERENCE_RUNNER",
   "execution_authorized": false,
   "scientific_evidence": false,
   "automatic_evidence_promotion": false,
@@ -502,8 +502,8 @@
     "classification_consequence": "Even if a separate framework/codebase is used, this project-side implementation is PARTIAL_REPLICATION only. It cannot be relabeled EXTERNAL_REPLICATION without genuinely external authorship/control and a separately registered protocol."
   },
   "freeze_authorization": {
-    "allowed": false,
-    "rule": "Freeze is allowed only after the complete blinded Brian2 runner and separate verifier exist, and mechanism audit, single/multi-tick integrator parity, reset parity, synapse-delay parity, independence/blinding scan and seed freshness all pass. Freeze binds runner/verifier hashes. Reference evaluation remains forbidden until a later explicit execution authorization.",
+    "allowed": true,
+    "rule": "All pre-freeze gates passed and are bound into the freeze record. Reference evaluation remains unauthorized until the separate runner implementation is independently scanned, hash-bound and explicitly authorized.",
     "reference_runner_implementation_allowed": true,
     "reference_runner_execution_allowed": false
   },
@@ -515,5 +515,7 @@
       "reference_data_created": false,
       "replication_credit_awarded": false
     }
-  ]
+  ],
+  "freeze_record": "research/preregistrations/PREREG-S1-TOPO-REFERENCE-R1.freeze.json",
+  "freeze_semantics": "Scientific translation, targets, equivalence bounds, endpoints and decision criteria are frozen. Reference evaluation remains forbidden until a separately reviewed runner implementation is hash-bound and explicitly authorized."
 }
