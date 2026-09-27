@@ -228,7 +228,7 @@ CLOSED_LOOP_PRESETS.update({
         "hypothesis": "PAN kann mit einem minimalen Loop über Zufall lernen.",
         "expected_success": 0.30,
         "required_features": ["action_loop", "target_cue", "reward_channel"],
-        "settings": {"closed_loop_preset": "minimal_closed_loop", "action_loop_enabled": True, "action_space_size": 4, "target_encoding": "one_hot", "target_cue_channel": 0, "reward_signal_enabled": True, "reward_channel": 5, "pan_feedback_gain": 1.5, "inhibitory_fraction": 0.25, "weight_decay": 0.01, "weight_max_clamp": 10, "behavior_learning_rate": 0.2, "behavior_epsilon": 0.2, "ticks": 2000},
+        "settings": {"closed_loop_preset": "minimal_closed_loop", "action_loop_enabled": True, "action_space_size": 4, "target_encoding": "one_hot", "target_cue_channel": 0, "reward_signal_enabled": True, "reward_channel": 5, "posture_reward_enabled": True, "posture_score_channel": 2, "reward_event_channel": 3, "pan_feedback_gain": 1.5, "inhibitory_fraction": 0.25, "weight_decay": 0.01, "weight_max_clamp": 10, "behavior_learning_rate": 0.2, "behavior_epsilon": 0.2, "ticks": 2000},
     },
     "d2_full_embodiment_v2": {
         "description": "Vollständiger räumlicher Closed Loop mit allen Hebeln.",
