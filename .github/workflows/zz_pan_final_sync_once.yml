@@ -1,0 +1,29 @@
+name: PAN final develop sync once
+
+on:
+  push:
+    branches:
+      - playground-meta-night-run-20260927
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: playground-meta-night-run-20260927
+          fetch-depth: 0
+      - name: Merge current develop
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin develop
+          git merge --no-commit -X ours origin/develop
+          rm -f .github/workflows/zz_pan_final_sync_once.yml
+          git add -A
+          git commit -m "chore(playground): final sync from develop"
+          git push origin HEAD:playground-meta-night-run-20260927
