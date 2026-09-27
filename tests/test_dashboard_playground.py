@@ -137,6 +137,11 @@ def test_playground_building_block_catalog_has_explanations_and_repo_elements() 
     assert "ensureCatalogInfoDialog" in module
     assert "showCatalogInfo" in module
     assert "data-pg-catalog-info" in module
+    assert 'import { getLanguage } from "../core/i18n.js?v=i18n-fix-20260920b";' in module
+    assert "mhrn:language-change" in module
+    assert "CATALOG_CATEGORY_COPY" in module
+    assert "CATALOG_DESCRIPTION_COPY" in module
+    assert "Boundary" in module
     for element in ("NetworkAreaAdapter", "PANRuntime", "StickFigureSandbox", "ResearchRegistry", "pack_coords"):
         assert element in module
 

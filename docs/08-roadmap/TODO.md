@@ -64,6 +64,11 @@ MHRN / Multi-Scale Homeostatic Recurrence Network. Publication: Recursive Episte
 
 ## 2026-09-27 Release-Statusmarker
 
+- [x] Fehlende Bausteinbeschreibungen im Playground-Katalog ergänzen.
+- [x] Ausführliche Hover- und Popup-Erklärungen für Katalogeinträge anbieten.
+- [x] Bausteine an den globalen EN/DE-Sprachselector anbinden.
+- [x] Repo- und Playground-Komponenten im Bausteine-Tab sichtbar machen.
+
 - [x] Statusmarker in den Release-Ansichten für Entwicklung und Wissenschaft
 	ergänzen, ohne die kanonischen Statusbezeichnungen zu ändern.
 - [x] Browserabdeckung für `met`, `partial` und die Entwicklungsdetailmarker

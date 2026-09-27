@@ -4,6 +4,17 @@
 **Baseline:** `mhrn-core 0.6.0a7`
 **Updated:** 2026-09-19
 
+## 2026-09-27 Bausteine-Katalog und Sprachumschaltung
+
+- Der Playground-Bausteine-Tab erklärt jeden Katalogeintrag per Hover und
+	ausführlichem Info-Popup.
+- Repo- und Playground-Bausteine werden gemeinsam mit den ausführbaren
+	Modellen, Topologien, Stimuli, Analysen und Robustheitskontrollen gezeigt.
+- Der globale Sprachselector schaltet Kategorietitel, Beschreibungen,
+	Quellenlabel und Explorationsgrenze zwischen Deutsch und Englisch um.
+- Neue Backend-Einträge fallen auf eine fachliche, sprachabhängige Beschreibung
+	zurück, statt ohne Erklärung im Katalog zu erscheinen.
+
 ## 2026-09-27 Release-Statusmarker
 
 - Die Release-Ansichten für Entwicklung und Wissenschaft zeigen neben den

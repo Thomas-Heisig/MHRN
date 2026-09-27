@@ -1,5 +1,17 @@
 # Changelog
 
+## 2026-09-27 - Bausteine-Katalog mit ausführlichen Sprachbeschreibungen
+
+- Jeder Baustein im Playground-Katalog besitzt jetzt eine ausführliche
+  Erklärung im Info-Popup und eine vollständige Hover-Beschreibung.
+- Fehlende Repo- und Playground-Komponenten wie Runtime, Neural I/O,
+  Embodiment-Sandbox, Registry, EvidenceEngine und Koordinatenvertrag sind im
+  Katalog sichtbar und bleiben als explorative Grenzen gekennzeichnet.
+- Der Katalog reagiert auf den globalen EN/DE-Sprachselector; Kategorien,
+  Popup-Texte, Quellenhinweis und Evidenzgrenze werden gemeinsam umgeschaltet.
+- Dynamisch gelieferte neue Katalogeinträge erhalten zusätzlich eine
+  sprachabhängige fachliche Fallback-Erklärung.
+
 ## 2026-09-27 - Release-Statusmarker für Entwicklung und Wissenschaft
 
 - Die Detailfelder zeigen jetzt neben ihren unveränderten Statusbezeichnungen
