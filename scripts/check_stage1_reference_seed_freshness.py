@@ -10,7 +10,10 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 PREREG = ROOT / "research" / "preregistrations" / "PREREG-S1-TOPO-REFERENCE-R1.json"
-ALLOWED = PREREG.relative_to(ROOT).as_posix()
+ALLOWED_PATHS = {
+    PREREG.relative_to(ROOT).as_posix(),
+    "reference/stage1_topology_brian2/reference_protocol.json",
+}
 
 
 def main() -> int:
@@ -27,7 +30,7 @@ def main() -> int:
     )
 
     for name in files:
-        if not name or name == ALLOWED:
+        if not name or name in ALLOWED_PATHS:
             continue
         path = ROOT / name
         if not path.is_file():
@@ -50,6 +53,7 @@ def main() -> int:
             ["git", "rev-parse", "HEAD"], cwd=ROOT, text=True
         ).strip(),
         "seeds": prereg["evaluation"]["seeds"],
+        "allowed_paths": sorted(ALLOWED_PATHS),
         "collisions": collisions,
         "collision_free": not collisions,
     }
