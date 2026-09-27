@@ -13,6 +13,8 @@ on:
       - research/calibrations/CAL-S1-TOPO-REFERENCE-RESET-R1/result.json
       - research/calibrations/CAL-S1-TOPO-REFERENCE-SYNAPSE-R1/result.json
       - research/calibrations/CAL-S1-TOPO-REFERENCE-TOPOLOGY-MAP-R2/result.json
+      - research/calibrations/CAL-S1-TOPO-REFERENCE-DYNAMICS-REUSE-R2/result.json
+      - scripts/verify_stage1_reference_dynamics_reuse_r2.py
       - scripts/check_stage1_reference_independence.py
       - scripts/check_stage1_reference_seed_freshness_r2.py
       - scripts/verify_stage1_topology_reference_r2.py
@@ -60,6 +62,7 @@ jobs:
             "reset":Path("research/calibrations/CAL-S1-TOPO-REFERENCE-RESET-R1/result.json"),
             "synapse":Path("research/calibrations/CAL-S1-TOPO-REFERENCE-SYNAPSE-R1/result.json"),
             "topology":Path("research/calibrations/CAL-S1-TOPO-REFERENCE-TOPOLOGY-MAP-R2/result.json"),
+            "dynamics_reuse":Path("research/calibrations/CAL-S1-TOPO-REFERENCE-DYNAMICS-REUSE-R2/result.json"),
           }
           values={k:(json.loads(v.read_text()) if v.exists() else {}) for k,v in files.items()}
           eligible=(p.get("status")=="DRAFT_PRE_FREEZE_GATES_PENDING" and p.get("execution_authorized") is False and all(v.get("pass") is True for v in values.values()) and values["integrator"].get("multi_tick",{}).get("pass") is True and values["integrator"].get("multi_tick",{}).get("contains_spike") is True)
