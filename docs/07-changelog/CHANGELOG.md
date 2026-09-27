@@ -23,6 +23,8 @@
   lokale Speicherung, Anwendung und Löschung eigener Presets.
 - Presetkatalog A–G für Kontrollen, Fixes, Diagnostik, Robustheit und
   Sanity-Checks ergänzt; Gewichtszerfall und Clamp sind ausführbar.
+- Live-PAN-Monitor ergänzt: Popup mit Start/Pause, Schritt, Input, Stop,
+  Live-Metriken, Spike-Graph, Parametern und interaktivem Männchen-Canvas.
 - Ein eigener Release-Tab zeigt die wissenschaftliche Gesamtarbeit und ihre elf
   Teile; jeder Teil öffnet das kanonische Manuskript im File Viewer.
 - Die elf Teile zeigen zusätzlich Prozentbalken und die Statuszustände `met`,
