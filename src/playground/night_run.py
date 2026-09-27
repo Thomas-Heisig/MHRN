@@ -295,7 +295,7 @@ class NightRunDaemon:
                 json.dumps(status, ensure_ascii=False, indent=2),
                 encoding="utf-8",
             )
-        self.last_checkpoint_at = now
+        self.last_checkpoint_at = time.time()
         return status
 
     def run(self) -> dict[str, object]:
