@@ -438,10 +438,10 @@ class PlaygroundConfig:
             raise ValueError("execution thresholds must satisfy 0 <= low <= high <= 1")
         if not 0.0 <= self.execution_hysteresis <= 0.5:
             raise ValueError("execution_hysteresis must be between 0 and 0.5")
-        if not 0 <= self.execution_min_dwell <= self.ticks:
-            raise ValueError("execution_min_dwell must be between 0 and ticks")
-        if not 1 <= self.execution_activity_window <= self.ticks:
-            raise ValueError("execution_activity_window must be between 1 and ticks")
+        if not 0 <= self.execution_min_dwell <= 1_000_000:
+            raise ValueError("execution_min_dwell must be between 0 and 1000000")
+        if not 1 <= self.execution_activity_window <= 1_000_000:
+            raise ValueError("execution_activity_window must be between 1 and 1000000")
         if self.execution_transition_mode not in {"clean", "fast", "debug"}:
             raise ValueError("unsupported execution_transition_mode")
         if not 0.0 <= self.growth_activity_threshold <= 1.0:
