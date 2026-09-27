@@ -6,29 +6,27 @@ Die offene Forschungslandschaft wird aus dem tatsächlich erreichten Stand abgel
 
 ### Stage 0 — einzelne Nervenzelle
 
-Der scoped Referenzkonformitätsvertrag für Izhikevich und `lif-current-v1` ist mit der Brian2-V2-Kampagne erfüllt. Offen bleiben daher **nicht** mehr allgemein „ein externer Referenzvergleich“, sondern die stärkeren nächsten Ebenen:
+Der scoped Izhikevich-/LIF-Referenzkonformitätsvertrag gegen Brian2 ist confirmatory abgeschlossen. Der prospektive Promotion-Lauf unter dem aktuellen EvidenceEngine-Provenienzvertrag wurde human-reviewed und als `EVID-2026-18` registriert. Die Gesamt-Scientific-Maturity beträgt **92,5 %**; separat kann der engere technische Research-Readiness-Vertrag 100 % erreichen.
 
-- menschliche EVID-Entscheidung zu den confirmatory DATA;
-- unabhängig autorisierte Replikation außerhalb derselben MHRN-Ausführungskette;
+Offen bleiben:
+- unabhängig autorisierte Replikation außerhalb derselben Autoren-/Toolkette als verbleibende 7,5-%-Lücke;
 - breitere Integrator-, Zeitschritt- und Parameterablationen;
 - zusätzliche Neuronmodelle nur als klar deklarierte alternative Modellarme;
-- Prüfung, welche lokalen Konformitätsaussagen über längere freie Trajektorien stabil bleiben und wo chaotische/nichtlineare Divergenz erwartbar ist.
-
-Der scoped Readiness-Vertrag kann 100 % erreicht haben, ohne dass damit die gesamte wissenschaftliche Reife der Stage abgeschlossen ist.
+- keine biologische Gleichwertigkeit oder universelle Langzeittrajektorienidentität aus der lokalen Referenzkonformität ableiten.
 
 ### Stage 1 — kleines SNN
 
-Stage 1 wird nach der Konsolidierung mit **75 % Scientific Maturity** geführt. Die zentrale Baseline ist `RQ-SNN-003 / H-SNN-003-B` mit der zusammengehörigen Topologie-DATA-Linie aus `EXP-S1-TOPO-V2-20260918` und `EXP-S1-TOPO-V3-R1-20260918`. V2 etabliert den präregistrierten Befund im 64-Neuronen-/246-Kanten-Regime; R1 repliziert die Latenzrichtungen auf neuen Seeds und löst die V2-Endpunkt-Sättigung mit prospektiven zeitaufgelösten Metriken auf. Die Human Reviews beider gültigen Linien durch Thomas Heisig sind abgeschlossen.
+Stage 1 steht kanonisch bei **85 % Scientific Maturity**. `EVID-2026-19` bindet den eng begrenzten Topologieclaim nach `EXP-S1-TOPO-PROMO-R1-20260927`; `EVID-2026-20` bindet die getrennte Temporal-Order-Funktionslinie nach `EXP-S1-TEMP-PROMO-R1-20260927`. Beide Promotionspfade wurden prospektiv unter dem aktuellen Provenienzvertrag ausgeführt und human-reviewed. Die zweite EVID-Linie erhöht den bereits vollständig erfüllten Reviewed-Evidence-Block nicht nochmals.
 
-Die Human Reviews autorisieren eine begrenzte Interpretation, aber keine automatische EVID-Promotion. Unter dem aktuellen EvidenceEngine-Vertrag fehlen den historischen V2/R1-Manifests die heutigen Validity-/Git-/Provenance-Felder; zusätzlich ist kein scoped Claim-ID registriert und die Reviews besitzen nicht das EvidenceEngine-`human_review.json`-Entscheidungsschema. Diese Lücken werden nicht rückwirkend konstruiert.
+Die Temporal-Linie bleibt durch Perfect-Score-Sättigung methodisch begrenzt; die simultane 1,0 betrifft die separate `simultaneous`-Klasse, nicht eine Forward/Reverse-Order-Accuracy. Die Topologie-EVID belegt keinen allgemeinen 5D-Vorteil.
 
-Mit `EXP-S1-TEMP-ORDER-V2-20260919` existiert außerdem eine zweite task-basierte Funktionslinie mit identity-destroyed Kontrolle. Sie ist DATA-seitig innerhalb des präregistrierten Protokolls unterstützt und ihr Human Review durch Thomas Heisig ist mit `accepted_as_interpretation` abgeschlossen. Sie ist funktional eigenständig, aber keine unabhängige Replikation der Topologielinie.
+Die explorative Efficiency-Linie `H-SNN-003-C / CLAIM-S1-EFFICIENCY-001` bleibt `untested`; ihre R1-Kalibration verfehlte die vorab definierten Recruitment-Matching-Gates und blockiert deshalb Freeze und Evaluation. Dieser negative Kalibrationspfad wird nicht nachgetunt.
 
 Offen bleiben:
-
-- scoped Claims und prospektive EvidenceEngine-kompatible Promotion-Pfade für Topologie und Temporal Order;
-- unabhängige Replikation außerhalb derselben Autoren-/Code-/Ausführungspipeline;
-- Skalierung und Generalisierung über den aktuellen Small-SNN-Operating-Envelope hinaus;
+- die projektseitige Brian2-Cross-Implementation als höchstens partielle Replikation für den nächsten möglichen 7,5-%-Schritt;
+- vollständige Pre-Freeze-Parität von Integrator, Reset sowie Synapsen-/Delay-Semantik und der Blinding-/Seed-Gates;
+- nach Freeze eine separat autorisierte Reference-Ausführung und Human Review;
+- eine tatsächlich externe unabhängige Replikation für volle 15/15 Replikationspunkte;
 - die getrennte dimensionsspezifische `RQ-5D-005 / H-5D-005-A`-Prüfung.
 
 ### Stage 2 — stabile Rekurrenz
