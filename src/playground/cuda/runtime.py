@@ -16,8 +16,8 @@ import re
 import shutil
 import subprocess
 import tempfile
-from dataclasses import dataclass
 from collections.abc import Mapping, Sequence
+from dataclasses import dataclass
 from pathlib import Path
 
 from .pan_compiler import CompileBundle
@@ -594,9 +594,7 @@ def cpu_determinism_summary(
     assert isinstance(first_monitors, Mapping)
     assert isinstance(second_monitors, Mapping)
 
-    spike_train_exact = (
-        first_monitors.get("spikes") == second_monitors.get("spikes")
-    )
+    spike_train_exact = first_monitors.get("spikes") == second_monitors.get("spikes")
     return {
         "classification": "PLAYGROUND_CPU_DETERMINISM",
         "scientific_evidence": False,
