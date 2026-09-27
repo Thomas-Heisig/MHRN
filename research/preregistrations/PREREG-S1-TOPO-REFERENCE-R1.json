@@ -187,7 +187,7 @@
     "tick_order": "For tick t: clear/read external currents; deliver events whose delivery_tick==t; combine external+synaptic current; execute two half-Euler v updates and one u Euler update; test v >= 30 + current threshold_adaptation; if spiked reset v=c,u+=d and add threshold_adaptation_rate; update firing-rate estimate; decay threshold adaptation; apply homeostasis; queue outgoing fixed-weight events for t+delay. Energy/traces may update as audited but are spike-timing inert.",
     "stimulus": "At tick 0 only, inject current 100.0 into logical labels 0,1,2,3.",
     "topology_generation": {
-      "coordinate_order": "canonical lexicographic product order of the declared 5D shape",
+      "coordinate_order": "Generate the full lexicographic Cartesian product of the declared 5D shape, then sort coordinates by (sum(value_i/max(size_i-1,1)), coordinate_tuple), exactly matching the canonical label-order semantics while remaining independently implemented.",
       "future_only_edges": true,
       "out_degree_cap": 4,
       "edge_budget": 246,
@@ -195,7 +195,14 @@
       "5d_shuffled": "Shuffle coordinate-to-label assignment using the frozen reference implementation's independently specified deterministic PRNG mapping before applying the same geometric edge rule.",
       "random_graph": "For each source, choose the same number of future targets uniformly without replacement using the frozen reference PRNG mapping.",
       "self_connections": false,
-      "parallel_connections": false
+      "parallel_connections": false,
+      "coordinate_order_correction": {
+        "date": "2026-09-27",
+        "status": "PRE_FREEZE_CORRECTION_BEFORE_REFERENCE_DATA",
+        "previous_wording": "canonical lexicographic product order",
+        "reason": "Code-backed audit of scripts/run_stage1_topology_v2.py showed that canonical_coords sorts the Cartesian product by normalized coordinate score and then coordinate tuple; pure lexicographic wording was incomplete.",
+        "data_seen": false
+      }
     },
     "metric_translation": {
       "active_neuron": "a neuron that emitted at least one spike by the end of the evaluated tick",
