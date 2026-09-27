@@ -59,6 +59,7 @@ function sourceMarkup(source) {
   } else {
     const registryPath = registryEntryPoint(normalized.trim());
     if (registryPath) target = { kind: "research", path: registryPath, directory: false };
+    if (normalized.trim() === "INDEPENDENT_REPLICATION.md") target = { kind: "project", path: normalized.trim(), directory: false };
   }
   if (!target) return `<span class="scientific-source-text">${escapeHtml(label)}</span>`;
   return `<button type="button" class="scientific-source-link${target.directory ? " scientific-source-directory-link" : ""}" data-scientific-source-kind="${target.kind}" data-scientific-source-path="${escapeHtml(target.path)}" title="${target.directory ? "Ordnerreferenz öffnen" : "Im File Viewer öffnen"}">${escapeHtml(label)}</button>`;

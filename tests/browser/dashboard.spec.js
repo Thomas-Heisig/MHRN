@@ -324,6 +324,11 @@ test("Release workspace renders the documentation timeline", async ({ page }) =>
   await page.locator('#scientific-progress-timeline [data-scientific-stage="1"]').click();
   await expect(page.locator("#scientific-progress-detail .scientific-status-open")).toHaveCount(1);
   await expect(page.locator("#scientific-progress-detail")).toContainText("open");
+  const replicationReference = page.locator('#scientific-progress-detail .scientific-source-link').filter({ hasText: "INDEPENDENT_REPLICATION.md" });
+  await expect(replicationReference).toHaveAttribute("data-scientific-source-kind", "project");
+  await replicationReference.click();
+  await expect(page.locator("#fm-viewer-dialog")).toBeVisible();
+  await page.locator("#fm-dialog-close").click();
   await page.locator('#scientific-progress-timeline [data-scientific-stage="2"]').click();
   await expect(page.locator('#scientific-progress-detail .scientific-source-directory-link').filter({ hasText: "research/protocols" })).toHaveAttribute("data-scientific-source-path", "protocols/COGNITION_CONSCIOUSNESS.md");
   await page.locator('#scientific-progress-timeline [data-scientific-stage="6"]').click();
