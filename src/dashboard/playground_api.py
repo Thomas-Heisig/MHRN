@@ -171,6 +171,11 @@ def post_playground(
     if path == "/api/playground/night/stop":
         return _NIGHT_RUN.stop()
 
+    if path == "/api/playground/live/stop-all":
+        with _LIVE_LOCK:
+            _LIVE_SANDBOXES.clear()
+        return _LIVE_DAEMON.stop_all()
+
     if path == "/api/playground/live/create":
         config_payload = dict(payload)
         config_payload.setdefault("neuron_model", "pan_adex_5d")
