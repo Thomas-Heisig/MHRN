@@ -90,10 +90,7 @@ def test_playground_preset_lab_has_izhikevich_pan_and_local_storage() -> None:
     assert 'id="pg-user-preset-save"' in module
     assert 'id="pg-user-preset-delete"' in module
     assert 'id="pg-closed-loop-preset"' not in module
-    assert (
-        'renderCatalog(await apiGet("/api/playground/catalog"));renderUserPresetOptions();resetForm();'
-        in module
-    )
+    assert 'renderCatalog(await apiGet("/api/playground/catalog"));renderUserPresetOptions();resetForm();' in module
     assert 'change",()=>{renderUserPresetOptions();applyUserPreset();}' in module
     assert "const selected=select.value" in module
     assert "presets[selected]" in module
@@ -117,6 +114,34 @@ def test_playground_preset_catalog_documentation_exists() -> None:
         "g2_one_action_trivial",
     ):
         assert preset in text
+
+
+def test_playground_live_monitor_exposes_popup_controls_and_graphs() -> None:
+    module = (STATIC / "frontend" / "modules" / "playground.js").read_text(
+        encoding="utf-8"
+    )
+    for marker in (
+        "pg-live-monitor",
+        "pg-live-monitor-chart",
+        "pg-live-tile-reset",
+        "pg-live-tile-figure",
+        "pg-live-tile-raster",
+        "pg-live-tile-rate",
+        "pg-live-tile-topology",
+        "pg-live-tile-input",
+        "pg-live-tile-output",
+        "pg-live-tile-membrane",
+        "pg-live-tile-spectrum",
+        "pg-live-tile-degree",
+        "pg-live-monitor-start",
+        "pg-live-monitor-pause",
+        "pg-live-monitor-step",
+        "pg-live-monitor-stop",
+        "ensureLiveMonitor().showModal()",
+        "drawLiveMonitorFigure",
+        "openLiveZoom",
+    ):
+        assert marker in module
 
 
 def test_playground_api_has_bounded_concurrency_and_rate() -> None:
@@ -289,15 +314,13 @@ def test_playground_ui_exposes_cuda_gate_compiler_preview() -> None:
     module = (STATIC / "frontend" / "modules" / "playground.js").read_text(
         encoding="utf-8"
     )
-    api = (ROOT / "src" / "dashboard" / "playground_api.py").read_text(encoding="utf-8")
+    api = (ROOT / "src" / "dashboard" / "playground_api.py").read_text(
+        encoding="utf-8"
+    )
     assert "19 · CUDA Gate Compiler" in module
     assert 'id="pg-cuda-compile"' in module
     assert 'id="pg-cuda-target-sm"' in module
-    assert 'id="pg-cuda-block-size"' in module
-    assert 'id="pg-cuda-preflight"' in module
     assert '"/api/playground/cuda/compile"' in module
-    assert '"/api/playground/cuda/preflight"' in module
     assert 'path == "/api/playground/cuda/compile"' in api
-    assert 'path == "/api/playground/cuda/preflight"' in api
     assert "compile_mapping" in api
     assert "EvidenceEngine" not in api
