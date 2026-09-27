@@ -12,5 +12,9 @@
   "r2_status_at_creation": "DRAFT_PRE_FREEZE_GATES_PENDING",
   "correction": "Make coordinate-to-label mapping executable and add exact topology/edge parity as a mandatory pre-freeze gate.",
   "preserved_criteria": "Canonical targets, strict 50%-150% bounds including 3d->5d [-1.5,-0.5], endpoints, multiple-testing family and three-outcome decision semantics remain unchanged.",
-  "claim_boundary": "Protocol governance before reference DATA; not evidence for or against replication."
+  "claim_boundary": "Protocol governance before reference DATA; not evidence for or against replication.",
+  "responsible_person": "Thomas Heisig",
+  "review_origin": "Methodological pre-freeze review and subsequent code-backed topology translation audit",
+  "reference_data_seen_before_correction": false,
+  "change_timing": "before any Brian2 reference evaluation DATA"
 }
