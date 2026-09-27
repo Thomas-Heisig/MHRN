@@ -3,17 +3,17 @@
   "experiment_id": "EXP-S1-TEMP-PROMO-R1-20260927",
   "claim_id": "CLAIM-S1-TEMP-001",
   "hypothesis_id": "H-TEMP-002-A",
-  "result_summary": "The prospective Stage-1 Temporal-Order promotion replication supported the bounded six-neuron two-channel temporal-order claim on 20 fresh predeclared paired seeds. Intact forward/reverse order accuracy had median 1.0, the matched identity-destroyed arm had median 0.0, the paired delta median was 1.0 with bootstrap CI [1.0, 1.0], and the exact paired sign-test p-value was 1.9073486328125e-6. The preregistered simultaneous condition was correctly decoded as simultaneous and is a non-inferential task-adequacy control. The human review explicitly records perfect-score saturation as a methodological limitation and does not extend the result to memory, cognition or general temporal reasoning.",
+  "result_summary": "The prospective Stage-1 Temporal-Order promotion replication supported the bounded six-neuron two-channel temporal-order claim on 20 fresh predeclared paired seeds. The frozen decoder classifies three presented states: forward, reverse, and simultaneous. The reported forward/reverse intact accuracy median of 1.0 and identity-destroyed accuracy median of 0.0 refer to correct classification of the presented forward/reverse conditions; the simultaneous-control value of 1.0 is a separate simultaneous-class task-adequacy accuracy, not forward/reverse order accuracy. The paired forward/reverse delta median was 1.0 with bootstrap CI [1.0, 1.0], and the exact paired sign-test p-value was 1.9073486328125e-6. The human review explicitly records perfect-score saturation as a methodological limitation and does not extend the result to memory, cognition or general temporal reasoning.",
   "effect_size": {
-    "intact_order_accuracy_median": 1.0,
-    "identity_destroyed_order_accuracy_median": 0.0,
-    "paired_accuracy_delta_median": 1.0,
+    "intact_order_accuracy_median": 1,
+    "identity_destroyed_order_accuracy_median": 0,
+    "paired_accuracy_delta_median": 1,
     "paired_accuracy_delta_bootstrap_ci95": [
-      1.0,
-      1.0
+      1,
+      1
     ],
-    "paired_sign_test_p": 1.9073486328125e-06,
-    "intact_simultaneous_success_fraction": 1.0
+    "paired_sign_test_p": 0.0000019073486328125,
+    "intact_simultaneous_success_fraction": 1
   },
   "statistical_significance": {},
   "evidence_mode": "stochastic_experiment",
@@ -66,7 +66,7 @@
           1,
           1
         ],
-        "paired_sign_test_p": 1.9073486328125e-06,
+        "paired_sign_test_p": 0.0000019073486328125,
         "all_preregistered_gates_passed": true
       },
       "allowed_interpretation": "Within the registered six-neuron acyclic two-channel Small-SNN task and frozen decoder, preserving logical A/B channel identity supports correct decoding of the fixed forward/reverse temporal order, while the matched identity-destroyed arm removes that order signal. The simultaneous control behaves as preregistered by producing equal first-output ticks and the decoder label simultaneous.",
@@ -105,6 +105,15 @@
       "explicit_evidence_promotion_permitted_after_review": true,
       "independent_authorship_replication": false,
       "comments": "Supports the narrowly scoped claim under the frozen preregistered protocol. The simultaneous-control value of 1.0 is clarified as correct simultaneous-class detection, not order accuracy. Perfect-score saturation remains a material limitation and motivates a separate prospective decoder/task stress test. No learning, memory, cognition, scaling, biological-equivalence or general temporal-reasoning claim is supported."
+    },
+    "decoder_class_semantics": {
+      "classes": [
+        "forward",
+        "reverse",
+        "simultaneous"
+      ],
+      "forward_reverse_accuracy": "accuracy for correctly classifying the presented forward/reverse condition",
+      "simultaneous_accuracy": "separate accuracy for correctly classifying the presented simultaneous condition; not forward/reverse order accuracy"
     }
   },
   "status": "supports",
