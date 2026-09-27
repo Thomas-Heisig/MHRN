@@ -8,6 +8,32 @@ let liveSessionId = null;
 let liveLoopTimer = null;
 let nightPollTimer = null;
 
+const PLAYGROUND_DEFAULT_HINTS = {
+  "pg-weight": "4", "pg-dimensions": "5", "pg-neurons": "128", "pg-edges": "1024",
+  "pg-radius": "0.35", "pg-k": "16", "pg-rewire": "0.15", "pg-modules": "2", "pg-delay": "1",
+  "pg-ticks": "256", "pg-current": "8", "pg-rate": "20", "pg-seed": "12345", "pg-ensemble": "1",
+  "pg-pan-dimensions": "5", "pg-pan-feedback-gain": "0.05", "pg-pan-health-decay": "0.001", "pg-pan-apoptosis": "0.1", "pg-pan-bias-current": "10",
+  "pg-geometry-lambda-a": "0.5", "pg-geometry-lambda-b": "0.5", "pg-geometry-sigma": "0.1", "pg-geometry-p0": "0.3", "pg-geometry-delay-velocity": "0.25",
+  "pg-clock-base-hz": "100", "pg-clock-event-batch": "10", "pg-execution-high": "0.30", "pg-execution-low": "0.05", "pg-execution-hysteresis": "0.02", "pg-execution-dwell": "100", "pg-execution-window": "100",
+  "pg-growth-activity": "0.25", "pg-growth-coactivation": "2", "pg-growth-info": "0.25", "pg-growth-prune": "0.05", "pg-growth-max-synapses": "128", "pg-growth-max-new": "8", "pg-cuda-budget": "2048", "pg-offload-snapshot": "1000",
+  "pg-thalamic-threshold": "0", "pg-thalamic-attention": "1.15", "pg-thalamic-inhibition": "0.35", "pg-cortical-layers": "6", "pg-cortical-lr": "0.01", "pg-behavior-actions": "4", "pg-behavior-target": "0", "pg-behavior-min-activity": "0.01", "pg-behavior-lr": "0.2", "pg-behavior-epsilon": "0.2", "pg-behavior-episode": "16", "pg-behavior-bias": "3",
+  "pg-neural-io-input-channels": "16", "pg-neural-io-output-channels": "16", "pg-neural-io-window": "16", "pg-neural-io-current": "25",
+};
+
+function updateDefaultHints() {
+  Object.entries(PLAYGROUND_DEFAULT_HINTS).forEach(([id, defaultValue]) => {
+    const field = byId(id);
+    if (!field) return;
+    const currentValue = String(field.value);
+    const changed = currentValue !== defaultValue;
+    const message = changed
+      ? `Abweichend vom Standard: ${currentValue}. Standardwert: ${defaultValue}.`
+      : `Standardwert: ${defaultValue}.`;
+    field.title = message;
+    field.closest("label")?.classList.toggle("pg-non-default", changed);
+  });
+}
+
 function injectStyles() {
   if (byId("mhrn-playground-styles")) return;
   const style = document.createElement("style");
@@ -20,6 +46,7 @@ function injectStyles() {
     .playground-card,.playground-viz,.playground-analysis-card{border:1px solid var(--line,rgba(127,127,127,.2));border-radius:12px;padding:.8rem;background:rgba(127,127,127,.035)}
     .playground-card h3,.playground-viz h3,.playground-analysis-card h3{margin:.05rem 0 .65rem;font-size:.84rem}
     .playground-card label{display:grid;gap:.25rem;margin:.48rem 0;font-size:.7rem;opacity:.9}.playground-card small{display:block;opacity:.65;line-height:1.4}
+      .playground-card label.pg-non-default{outline:1px dotted color-mix(in srgb,currentColor 45%,transparent);outline-offset:3px}
     .playground-card input,.playground-card select,.playground-card textarea{width:100%;padding:.45rem .5rem;border:1px solid var(--line,rgba(127,127,127,.25));border-radius:8px;background:rgba(0,0,0,.12);color:inherit}.playground-card textarea{min-height:72px;resize:vertical;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:.67rem}
     .playground-actions{display:flex;flex-wrap:wrap;gap:.5rem;margin:.9rem 0}.playground-actions button{padding:.58rem .8rem;border-radius:8px;border:1px solid var(--line,rgba(127,127,127,.3));background:rgba(127,127,127,.1);color:inherit;cursor:pointer}.playground-actions .primary{font-weight:700;border-color:currentColor}
     .playground-status{padding:.65rem .75rem;border-radius:9px;background:rgba(127,127,127,.06);font-size:.72rem;white-space:pre-wrap;overflow:auto}.playground-status[data-state="error"]{color:#ef8b8b}.playground-status[data-state="ok"]{color:#51d6ad}
@@ -170,9 +197,15 @@ function buildPanels(root) {
           <label>Modality<input id="pg-neural-io-modality" value="digital"></label>
           <label>Source ID<input id="pg-neural-io-source" value="playground.input"></label>
           <small><strong>Payload ≠ Neural Representation.</strong> Exakte Nutzdaten bleiben außerhalb des SNN. Query/Response werden durch Richtung, Phase, <code>correlation_id</code> und Provenienz getrennt. Tools/Aktoren werden im Playground nie ausgeführt.</small>
+      .playground-settings-reference{margin-top:.8rem;border:1px solid var(--line,rgba(127,127,127,.2));border-radius:12px;padding:.8rem;background:rgba(127,127,127,.025)}.playground-settings-reference header{display:flex;justify-content:space-between;gap:1rem;align-items:flex-start;margin-bottom:.65rem}.playground-settings-reference h3{margin:0;font-size:.9rem}.playground-settings-reference p{margin:.25rem 0 0;opacity:.68;font-size:.68rem;line-height:1.4}.playground-settings-reference-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.6rem}.playground-settings-reference article{min-width:0;padding:.65rem;border:1px solid var(--line,rgba(127,127,127,.18));border-radius:9px;background:rgba(127,127,127,.035)}.playground-settings-reference article h4{margin:0 0 .45rem;font-size:.72rem}.playground-settings-reference dl{display:grid;grid-template-columns:minmax(7rem,auto) 1fr;gap:.28rem .5rem;margin:0;font-size:.62rem;line-height:1.35}.playground-settings-reference dt{color:inherit;font-weight:700}.playground-settings-reference dd{margin:0;opacity:.72;overflow-wrap:anywhere}.playground-settings-option{display:inline-block;margin:.08rem .18rem .08rem 0;padding:.12rem .28rem;border:1px solid var(--line,rgba(127,127,127,.18));border-radius:999px;font-size:.58rem}
         </article>
       </div>
+        <section class="playground-settings-reference" id="pg-settings-reference" aria-labelledby="pg-settings-reference-title">
+          <header><div><h3 id="pg-settings-reference-title">Alle Einstellungsmöglichkeiten</h3><p>Vollständige Auswahlübersicht für den Playground. Katalogoptionen, feste Auswahlwerte, Schalter und gültige Wertebereiche.</p></div><span class="playground-chip">explorativ · keine EVID</span></header>
+          <div class="playground-settings-reference-grid" id="pg-settings-reference-grid"><p>Katalog wird geladen …</p></div>
+        </section>
       <div class="playground-actions"><button type="button" class="primary" id="pg-run">▶ Playground starten</button><button type="button" id="pg-robustness">Robustheitskontrollen</button><button type="button" id="pg-reset">Standardwerte</button></div>
+        @media(max-width:1150px){.playground-grid{grid-template-columns:1fr 1fr}.playground-metrics{grid-template-columns:repeat(4,1fr)}.playground-settings-reference-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:760px){.playground-grid,.playground-viz-grid,.playground-analysis-grid,.playground-catalog,.playground-settings-reference-grid{grid-template-columns:1fr}.playground-metrics{grid-template-columns:repeat(2,1fr)}}
       <article class="playground-card"><h3>10 · PAN Live Session & Sandbox</h3><div class="playground-actions"><button type="button" id="pg-live-create">Live starten</button><button type="button" id="pg-live-step">+32 Ticks</button><button type="button" id="pg-live-auto">Auto Start</button><button type="button" id="pg-live-auto-stop">Auto Stop</button><button type="button" id="pg-live-input">Input zeigen</button><button type="button" id="pg-live-sandbox">Sandbox +8</button><button type="button" id="pg-live-stop">Stop</button></div><label>Live Input (JSON-Array)<textarea id="pg-live-input-values">[1,0,-1,0.5]</textarea></label><canvas id="pg-live-sandbox-canvas" width="800" height="360"></canvas><pre id="pg-live-state">Noch keine Live-Session.</pre></article>
       <article class="playground-card"><h3>11 · Meta-Nachtlauf</h3>
         <div class="playground-grid">
@@ -475,6 +508,7 @@ async function runRobustness(){
 function resetForm(){
   const values={neurons:"128",edges:"1024",weight:"4",ticks:"256",dimensions:"5",delay:"1",radius:"0.35",k:"16",rewire:"0.15",modules:"2",current:"8",rate:"20",seed:"12345",ensemble:"1","pan-dimensions":"5","pan-feedback-gain":"0.05","pan-health-decay":"0.001","pan-apoptosis":"0.1","pan-bias-current":"10","geometry-lambda-a":"0.5","geometry-lambda-b":"0.5","geometry-sigma":"0.1","geometry-p0":"0.3","geometry-delay-velocity":"0.25","clock-base-hz":"100","clock-event-batch":"10","execution-high":"0.30","execution-low":"0.05","execution-hysteresis":"0.02","execution-dwell":"100","execution-window":"100","growth-activity":"0.25","growth-coactivation":"2","growth-info":"0.25","growth-prune":"0.05","growth-max-synapses":"128","growth-max-new":"8","cuda-budget":"2048","offload-snapshot":"1000","thalamic-threshold":"0","thalamic-attention":"1.15","thalamic-inhibition":"0.35","cortical-layers":"6","cortical-lr":"0.01","behavior-actions":"4","behavior-target":"0","behavior-min-activity":"0.01","behavior-lr":"0.2","behavior-epsilon":"0.2","behavior-episode":"16","behavior-bias":"3"};
   for(const[k,v]of Object.entries(values)){const el=byId(`pg-${k}`);if(el)el.value=v;}byId("pg-persist").checked=false;byId("pg-pan-enabled").checked=false;byId("pg-pan-closed-loop").checked=true;byId("pg-clock-mode").value="continuous";byId("pg-execution-mode").value="HYBRID_AUTO";byId("pg-execution-initial").value="EVENT_ONLY";byId("pg-execution-transition").value="clean";byId("pg-execution-sync").checked=true;byId("pg-execution-log").checked=true;byId("pg-growth-enabled").checked=false;byId("pg-offload-enabled").checked=false;byId("pg-hardware-profile").value="reference_cpu";byId("pg-thalamic-enabled").checked=false;byId("pg-behavior-target-mode").value="cycle";byId("pg-cortical-enabled").checked=false;byId("pg-cortical-plasticity").checked=true;byId("pg-behavior-enabled").checked=false;byId("pg-geometry-mode").value="mixed_additive";byId("pg-neural-io-enabled").checked=false;byId("pg-neural-io-payload").value="0.5";byId("pg-neural-io-input-channels").value="16";byId("pg-neural-io-output-channels").value="16";byId("pg-neural-io-window").value="16";byId("pg-neural-io-current").value="25";byId("pg-neural-io-input-role").value="GATEWAY_AFFERENT";byId("pg-neural-io-output-role").value="GATEWAY_EFFERENT";byId("pg-neural-io-phase").value="QUERY";byId("pg-neural-io-modality").value="digital";byId("pg-neural-io-source").value="playground.input";if(byId("pg-topology"))byId("pg-topology").value="mhrn_5d";
+  updateDefaultHints();
 }
 
 async function refreshSessions(){
@@ -500,6 +534,48 @@ function renderCatalog(catalog){
   const neuralIOCodecs=(catalog.neural_io?.codecs||[]).map(item=>({name:item.id,note:`${item.input_kind||""} · ${item.reconstruction_class||""}`}));
   const groups=[["Neuronmodelle",catalog.models],["Topologien",catalog.topologies],["Stimuli",catalog.stimuli],["Synapsen",catalog.synapses],["Plastizität",catalog.plasticity],["Readouts",catalog.readouts],["PAN Research Candidates",panCandidates],["PAN Literaturkontext",panLiterature],["Geometrie Literaturkontext",geometryLiterature],["Neural I/O Codecs",neuralIOCodecs],["Analysen",(catalog.analyses||[]).map(name=>({name}))],["Robustheit",(catalog.robustness_controls||[]).map(name=>({name}))]];
   byId("pg-catalog-grid").innerHTML=groups.map(([title,items])=>`<article><h3>${title}</h3>${(items||[]).map(item=>`<span class="playground-chip" title="${item.note||""}">${item.label||item.name}</span>`).join("")}</article>`).join("");
+  const settingGroups = [
+    ["Katalogauswahl", [
+      ["Neuronmodell", (catalog.models || []).map(item => item.label || item.name).join(" · ")],
+      ["Synapsenmodell", (catalog.synapses || []).map(item => item.label || item.name).join(" · ")],
+      ["Plastizität", (catalog.plasticity || []).map(item => item.label || item.name).join(" · ")],
+      ["Topologie", (catalog.topologies || []).map(item => item.name).join(" · ")],
+      ["Stimulus", (catalog.stimuli || []).map(item => item.name).join(" · ")],
+      ["Readout", (catalog.readouts || []).map(item => item.name).join(" · ")],
+    ]],
+    ["Topologie & Geometrie", [
+      ["Neuronen", "2–1024 · Standard 128"], ["Kanten", "Neuronen–20.000 · Standard 1024"],
+      ["Dimensionen", "1–32 · Standard 5"], ["Gewicht", "0–100 · Standard 4"],
+      ["Radius", "0.001–2 · Standard 0.35"], ["k Nachbarn", "1–64 · Standard 16"],
+      ["Module", "1–32 · Standard 2"], ["Geometrie-Modus", "mixed_additive · shortcut_union"],
+      ["λa / λb", "0–10 · Standard 0.5 / 0.5"], ["σ", "0.001–2 · Standard 0.1"], ["p0", "0–1 · Standard 0.3"],
+    ]],
+    ["Stimulus & Lauf", [
+      ["Ticks", "1–2048 · Standard 256"], ["Strom", "0–500 · Standard 8"], ["Rate", "0–1000 Hz · Standard 20"],
+      ["Seed", "0+ · Standard 12345"], ["Seed-Ensemble", "1–8 · Standard 1"], ["Delay", "1–64 Ticks · Standard 1"],
+      ["Rewiring", "0–1 · Standard 0.15"], ["Session speichern", "an / aus"],
+    ]],
+    ["PAN & Geometrieparameter", [
+      ["PAN", "an / aus"], ["PAN-Dimensionen", "5–32 · Standard 5"], ["Closed Loop", "an / aus"],
+      ["Feedback-Gain", "0–5 · Standard 0.05"], ["Health-Decay", "0–1 · Standard 0.001"],
+      ["Apoptose", "0–1 · Standard 0.1"], ["PAN Bias", "0–500 · Standard 10"], ["XYZ-Geschwindigkeit", "0.001–10 · Standard 0.25"],
+    ]],
+    ["Runtime & Wachstum", [
+      ["Clock", "continuous · dual"], ["Base Hz", "1–10.000 · Standard 100"], ["Event Batch", "0.05–1000 ms · Standard 10"],
+      ["Execution", "HYBRID_AUTO · EVENT_ONLY · TICK_ONLY"], ["Initial Engine", "EVENT_ONLY · TICK_ONLY"],
+      ["Transition", "clean · debug · fast"], ["θ high / low", "0–1 · Standard 0.30 / 0.05"], ["Hysterese", "0–0.5 · Standard 0.02"],
+      ["Dwell / Fenster", "0–2048 / 1–2048 · Standard 100 / 100"], ["Wachstum", "an / aus"], ["Wachstumsschwellen", "Aktivität · Co-Aktivierung · Info · Prune"],
+      ["Hardware", "reference_cpu · cuda_8gb_balanced_plan"], ["CUDA-Budget", "128–16.384 MiB · Standard 2048"], ["SSD-Offload", "an / aus"],
+    ]],
+    ["Lernen & I/O", [
+      ["Thalamus", "an / aus · Relay 0–1 · Attention 0–4 · Inhibition 0–1"], ["Kortex", "an / aus · 2–12 Schichten"],
+      ["Layer Lernrate", "0–1 · Standard 0.01"], ["Verhalten lernen", "an / aus"], ["Aktionen", "2–16 · Standard 4"],
+      ["Zielaktion", "0–15 · Standard 0"], ["Zielmodus", "cycle · fixed"], ["Policy-Lernrate", "0.001–1 · Standard 0.2"],
+      ["Exploration ε", "0–1 · Standard 0.2"], ["Episode", "1–2048 Ticks · Standard 16"], ["Policy Bias", "0–100 · Standard 3"],
+      ["Neural I/O", "an / aus · Codec · Decoder · Rollen · Phase · Payload"], ["I/O-Kanäle", "1–256 · Standard 16"],
+    ]],
+  ];
+  byId("pg-settings-reference-grid").innerHTML=settingGroups.map(([title,items])=>`<article><h4>${title}</h4><dl>${items.map(([label,value])=>`<dt>${label}</dt><dd>${value}</dd>`).join("")}</dl></article>`).join("");
   const status=byId("pg-status");status.dataset.state="ok";status.textContent=`Bereit · bis ${catalog.limits.n_neurons} Neuronen · ${catalog.limits.edges} Kanten · ${catalog.limits.dimensions}D · scientific_evidence=false`;
 }
 
