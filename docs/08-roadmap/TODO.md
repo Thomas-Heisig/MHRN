@@ -3,8 +3,9 @@
 - [x] Die registrierte maschinelle Kampagne ausfuehren und alle Receipts/Negativbefunde bewahren.
 - [x] Vollstaendige Publikationsfassung 1.5 und eigenstaendige Forschungsarbeit erzeugen.
 - [x] Ausfuehrung, Grenzaudit und EVID-Freigabe getrennt dokumentieren.
-- [ ] Offene wissenschaftliche Human Reviews bearbeiten: `EXP-GEN-0041`,
-  `EXP-S1-TOPO-V3-R1-20260918` und `EXP-S6-SEM-CL-003`.
+- [ ] Offene wissenschaftliche Human Reviews bearbeiten: `EXP-GEN-0041`
+  und `EXP-S6-SEM-CL-003`. Die Stage-1-Topologie- und Temporal-Order-Linien
+  besitzen inzwischen kanonische Human Reviews und scoped EVID.
 - [ ] Direkte Messvertraege fuer die ausgewiesenen Grenzfragen und gekoppelte Kognitions-/Langzeitplastizitaetspruefungen vervollstaendigen.
 - [ ] Unabhaengige Replikation und konkrete EVID-Freigaben einholen.
 
@@ -61,6 +62,16 @@ Aeltere offene Zaehler unten sind zeitgebundene Bestandsaufnahmen; der aktuelle 
 MHRN / Multi-Scale Homeostatic Recurrence Network. Publication: Recursive Epistemics / Rekursive Epistemik. [Migration and compatibility](../../NAMING.md). Historical scientific artifacts remain unchanged.
 
 # MHRN Current TODO
+
+## 2026-09-27 Alpha.7 Release
+
+- [x] Stage-0- und Stage-1-Maturity mit dem kanonischen Scientific-State abgleichen.
+- [x] `EVID-2026-18/19/20` und ihre Claim-Grenzen in der Release-Dokumentation berücksichtigen.
+- [x] Brian2-R2-Referenzpfad, CeCILL-2.1-Hinweis und Fachzitat dokumentieren.
+- [x] PAN/Closed-Loop/Live-Monitor und CUDA/PTX-Preflight als Playground-only abgrenzen.
+- [x] README, Changelog, Roadmap und `releases/current.json` auf Alpha.7 synchronisieren.
+- [ ] Release-PR `release/v0.6.0-alpha.7 -> main` vollständig grün abschließen.
+- [ ] Veralteten Remote-Branch `playground` nach bestätigter vollständiger Integration löschen.
 
 ## 2026-09-27 Release-Statusmarker
 
