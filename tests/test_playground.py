@@ -729,3 +729,122 @@ def test_neural_io_interface_can_be_constructed_directly() -> None:
     summary = interface.finalize()
     assert summary["classification"] == "PLAYGROUND_NEURAL_IO"
     assert summary["exact_boundary"]["raw_payload_persisted"] is False
+
+
+
+def test_pan_gate_generation_maps_validated_settings() -> None:
+    result = run(
+        _small_payload(
+            pan_enabled=True,
+            pan_dimensions=7,
+            clock_mode="dual",
+            clock_base_hz=100,
+            clock_event_batch_ms=4,
+        )
+    )
+    gates = result["gates"]
+    assert gates["classification"] == "PLAYGROUND_GATE_SCHEMATIC"
+    assert gates["scientific_evidence"] is False
+    assert gates["generation"] == "SETTINGS_DERIVED"
+    names = {item["name"] for item in gates["gates"]}
+    assert {
+        "apoptosis",
+        "aging",
+        "feedback",
+        "event_batch",
+        "neurogenesis",
+        "synaptogenesis",
+        "path_formation",
+        "pruning",
+    } <= names
+
+
+def test_dual_clock_reports_interleaved_reference_execution() -> None:
+    result = run(
+        _small_payload(
+            ticks=12,
+            clock_mode="dual",
+            clock_base_hz=100,
+            clock_event_batch_ms=4,
+        )
+    )
+    clock = result["clock"]
+    assert clock["classification"] == "PLAYGROUND_DUAL_CLOCK"
+    assert clock["mode"] == "dual"
+    assert clock["continuous_steps"] == 12
+    assert clock["sync_barriers"] == 3
+    assert clock["execution_semantics"] == "DETERMINISTIC_INTERLEAVED_REFERENCE"
+
+
+def test_generative_growth_is_fixed_capacity_and_non_scientific() -> None:
+    result = run(
+        _small_payload(
+            pan_enabled=True,
+            clock_mode="dual",
+            clock_event_batch_ms=4,
+            growth_enabled=True,
+            growth_activity_threshold=0.0,
+            growth_coactivation_threshold=1,
+            growth_information_threshold=0.0,
+        )
+    )
+    growth = result["growth"]
+    assert growth["classification"] == "PLAYGROUND_GENERATIVE_GROWTH"
+    assert growth["scientific_evidence"] is False
+    assert growth["evidence_eligible"] is False
+    assert growth["population_allocation"] == "FIXED_CAPACITY_POOL"
+    assert growth["neurogenesis_semantics"] == (
+        "REACTIVATE_APOPTOTIC_SLOT_NO_REALLOCATION"
+    )
+
+
+def test_cuda_budget_is_an_estimate_not_a_cuda_execution_claim() -> None:
+    result = run(_small_payload(cuda_budget_mb=2048))
+    storage = result["storage"]
+    assert storage["classification"] == "PLAYGROUND_STORAGE_BUDGET"
+    assert storage["scientific_evidence"] is False
+    assert storage["cuda_budget_mib"] == pytest.approx(2048.0)
+    assert storage["allocation_mode"] == "REFERENCE_ESTIMATE_ONLY"
+    assert storage["cuda_allocation_status"] == (
+        "NOT_IMPLEMENTED_IN_PYTHON_REFERENCE_BACKEND"
+    )
+    assert storage["offload"]["async_status"] == (
+        "NOT_IMPLEMENTED_IN_REFERENCE_BACKEND"
+    )
+
+
+def test_growth_requires_dual_clock() -> None:
+    with pytest.raises(ValueError, match="growth_enabled requires clock_mode=dual"):
+        PlaygroundConfig.from_mapping(
+            _small_payload(growth_enabled=True, clock_mode="continuous")
+        )
+
+
+def test_pan_catalog_keeps_hardware_coupling_exploratory() -> None:
+    pan = catalog()["pan"]
+    assert pan["gate_generation_status"] == "IMPLEMENTED_REFERENCE"
+    assert pan["dual_clock_status"] == "IMPLEMENTED_REFERENCE"
+    assert pan["generative_growth_status"] == (
+        "IMPLEMENTED_FIXED_CAPACITY_REFERENCE"
+    )
+    assert pan["cuda_backend_status"] == "MEMORY_ESTIMATE_ONLY"
+    assert pan["persistent_cuda_kernel_status"] == "NOT_IMPLEMENTED"
+    assert pan["dynamic_parallelism_status"] == "NOT_IMPLEMENTED"
+    assert pan["hardware_coupling_status"] == "NOT_IMPLEMENTED_EXPLORATORY_IDEA"
+    assert pan["thermal_feedback_status"] == "NOT_IMPLEMENTED_EXPLORATORY_IDEA"
+
+
+def test_new_pan_candidates_remain_unregistered_ideas() -> None:
+    candidates = catalog()["pan"]["research_candidates"]
+    by_id = {item["id"]: item for item in candidates}
+    expected = {
+        "PAN-CANDIDATE-GATE-EMERGENCE",
+        "PAN-CANDIDATE-DUAL-MODE-CONSISTENCY",
+        "PAN-CANDIDATE-GENERATIVE-GROWTH",
+        "PAN-CANDIDATE-MEMORY-SCALING",
+    }
+    assert expected <= set(by_id)
+    assert all(
+        by_id[candidate]["status"] == "DRAFT_IDEA_NOT_PREREGISTERED"
+        for candidate in expected
+    )
