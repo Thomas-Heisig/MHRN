@@ -76,6 +76,7 @@ class NightRunDaemon:
             }
         )
         self.pan = PANLiveSession(self.config)
+        self.pan.auto_reward_enabled = False
         self.running = True
         self.started_at = time.time()
         self.last_checkpoint_at = self.started_at
@@ -150,7 +151,10 @@ class NightRunDaemon:
             for key, value in task.items()
             if key not in {"true_source", "true_category", "true_relation"}
         }
-        return text_vector(json.dumps(safe, sort_keys=True, ensure_ascii=False), 64)
+        return text_vector(
+            json.dumps(safe, sort_keys=True, ensure_ascii=False),
+            self.config.n_neurons,
+        )
 
     def _choice(self, context: str, options: list[str]) -> tuple[int, str]:
         index = self.pan.learning.choose_context_action(context, len(options))
