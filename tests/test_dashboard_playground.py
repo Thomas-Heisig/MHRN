@@ -116,6 +116,34 @@ def test_playground_preset_catalog_documentation_exists() -> None:
         assert preset in text
 
 
+def test_playground_live_monitor_exposes_popup_controls_and_graphs() -> None:
+    module = (STATIC / "frontend" / "modules" / "playground.js").read_text(
+        encoding="utf-8"
+    )
+    for marker in (
+        "pg-live-monitor",
+        "pg-live-monitor-chart",
+        "pg-live-tile-reset",
+        "pg-live-tile-figure",
+        "pg-live-tile-raster",
+        "pg-live-tile-rate",
+        "pg-live-tile-topology",
+        "pg-live-tile-input",
+        "pg-live-tile-output",
+        "pg-live-tile-membrane",
+        "pg-live-tile-spectrum",
+        "pg-live-tile-degree",
+        "pg-live-monitor-start",
+        "pg-live-monitor-pause",
+        "pg-live-monitor-step",
+        "pg-live-monitor-stop",
+        "ensureLiveMonitor().showModal()",
+        "drawLiveMonitorFigure",
+        "openLiveZoom",
+    ):
+        assert marker in module
+
+
 def test_playground_api_has_bounded_concurrency_and_rate() -> None:
     api = (ROOT / "src" / "dashboard" / "playground_api.py").read_text(encoding="utf-8")
     assert "_MAX_CONCURRENT_RUNS = 2" in api

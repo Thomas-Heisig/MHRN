@@ -137,6 +137,7 @@ class PANLiveSession:
         self.tick = 0
         self.rng = random.Random(config.seed ^ 0x71AE)
         self.input_queue: deque[tuple[list[float], int]] = deque()
+        self.last_input_currents = [0.0 for _ in range(config.n_neurons)]
         self.recent_spikes: deque[tuple[int, int]] = deque(maxlen=8192)
         self.output_counts = [0 for _ in range(config.behavior_action_count)]
         self.total_spikes = 0
@@ -280,6 +281,7 @@ class PANLiveSession:
                 synaptic = self.pending[slot]
                 self.pending[slot] = [0.0 for _ in range(self.config.n_neurons)]
                 external = self._input_currents()
+                self.last_input_currents = list(external)
                 external = [value + self.config.pan_bias_current for value in external]
                 if self.thalamic is not None:
                     external = self.thalamic.apply(external, self.last_spikes)
@@ -388,6 +390,38 @@ class PANLiveSession:
             "chunk_spikes": len(chunk_spikes),
             "total_spikes": self.total_spikes,
             "alive": self.total_spikes > 0,
+            "recent_spikes": [
+                {"tick": tick_value, "neuron_id": neuron_id}
+                for tick_value, neuron_id in list(self.recent_spikes)[-256:]
+            ],
+            "mean_v": sum(float(state.get("v", 0.0)) for state in self.states)
+            / max(1, len(self.states)),
+            "min_v": min(
+                (float(state.get("v", 0.0)) for state in self.states),
+                default=0.0,
+            ),
+            "max_v": max(
+                (float(state.get("v", 0.0)) for state in self.states),
+                default=0.0,
+            ),
+            "degree_values": [
+                len(self.adjacency[index]) + len(self.incoming[index])
+                for index in range(self.config.n_neurons)
+            ],
+            "output_counts": list(self.output_counts),
+            "input_active_neurons": sum(
+                1 for value in self.last_input_currents if abs(value) > 1e-12
+            ),
+            "input_peak": max(
+                (abs(value) for value in self.last_input_currents), default=0.0
+            ),
+            "topology": {
+                "neuron_count": self.config.n_neurons,
+                "edge_count": len(self.topology.edges),
+                "dimensions": self.topology.dimensions,
+                "coordinates": self.topology.coordinates,
+                "edges": self.topology.edges,
+            },
             "actions": actions[-64:],
             "rewards": rewards[-64:],
             "learning_enabled": self.learning_enabled,
