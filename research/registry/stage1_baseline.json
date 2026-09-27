@@ -178,6 +178,7 @@
       "interpretation": "Stimulus-current sweep 70-140 did not change median recruitment enough to satisfy either preregistered gate; R1 must not be frozen or executed."
     },
     "maturity_credit": 0,
-    "note": "Exploratory efficiency work is quarantined from EVID-2026-19 and does not contribute to Stage-1 maturity."
+    "note": "Exploratory efficiency work is quarantined from EVID-2026-19 and does not contribute to Stage-1 maturity.",
+    "maturity_semantics": "Even a future successful, human-reviewed EVID promotion for CLAIM-S1-EFFICIENCY-001 would not raise Stage-1 maturity above the current 85% by itself because the reviewed_evidence component is already fully saturated at 20/20. Only the independent_replication component can provide the next maturity increase."
   }
 }
