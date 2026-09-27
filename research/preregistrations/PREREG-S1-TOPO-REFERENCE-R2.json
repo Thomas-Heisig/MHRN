@@ -440,6 +440,13 @@
       "protocol": "Across every registered condition and three non-evaluation probe seeds, compare independently generated coordinate lists and complete directed edge lists between canonical MHRN topology semantics and the Brian2 R2 reference implementation.",
       "pass_rule": "All coordinate lists and complete edge lists match exactly for every condition/probe-seed pair; source hashes are recorded.",
       "failure_rule": "R2 freeze and all reference evaluation are blocked."
+    },
+    "dynamics_reuse_validation": {
+      "required": true,
+      "artifact": "research/calibrations/CAL-S1-TOPO-REFERENCE-DYNAMICS-REUSE-R2/result.json",
+      "script": "scripts/verify_stage1_reference_dynamics_reuse_r2.py",
+      "pass_rule": "Historical R1 integrator/reset/synapse artifacts remain byte-preserved; all recorded source hashes still match current dynamics sources and all historical parity results remain PASS under Brian2 2.10.1.",
+      "failure_rule": "R2 freeze blocked; create new R2-specific dynamics calibrations rather than modifying R1 history."
     }
   },
   "prefreeze_review_record": {
@@ -493,6 +500,11 @@
       "required": true,
       "status": "PENDING_R2",
       "artifact": "research/calibrations/CAL-S1-TOPO-REFERENCE-TOPOLOGY-MAP-R2/result.json"
+    },
+    "dynamics_reuse_validation": {
+      "required": true,
+      "status": "PENDING_R2",
+      "artifact": "research/calibrations/CAL-S1-TOPO-REFERENCE-DYNAMICS-REUSE-R2/result.json"
     }
   },
   "reference_implementation_authorship": {
@@ -534,6 +546,7 @@
       "canonical R2 freeze record exists and all bound hashes match",
       "R2 runner independence/blinding scan passes at the exact freeze commit",
       "R2 seed-freshness gate passes at the exact freeze commit",
+      "R2 immutable dynamics-reuse validation passes with source hashes matching the historical R1 parity artifacts",
       "R2 topology-mapping parity passes for all registered conditions",
       "no R1 or R2 reference evaluation DATA exist before authorization",
       "verifier decision-rule contract tests match the frozen R2 preregistration",
