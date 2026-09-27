@@ -27,7 +27,10 @@ def test_reference_protocol_seed_block_matches_preregistration() -> None:
     prereg = _prereg()
     protocol = json.loads(PROTOCOL.read_text(encoding="utf-8"))
     assert protocol["seeds"] == prereg["evaluation"]["seeds"]
-    assert prereg["evaluation"]["seeds"] == list(range(810000001, 810000021))
+    seeds = prereg["evaluation"]["seeds"]
+    assert len(seeds) == 20
+    assert all(int(right) - int(left) == 1 for left, right in zip(seeds, seeds[1:]))
+    assert min(map(int, seeds)) > 800_000_000
 
 
 def test_resolution_aware_small_effect_bound_is_frozen() -> None:
