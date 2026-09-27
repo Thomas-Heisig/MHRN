@@ -1,0 +1,86 @@
+name: Stage-1 reference preflight
+
+on:
+  push:
+    branches:
+      - develop
+    paths:
+      - research/preregistrations/PREREG-S1-TOPO-REFERENCE-R1.json
+      - research/audits/2026-09-27_stage1_reference_mechanism_audit.md
+      - reference/stage1_topology_brian2/**
+      - scripts/check_stage1_reference_independence.py
+      - scripts/check_stage1_reference_seed_freshness.py
+      - tests/test_stage1_reference_preflight.py
+      - tests/test_stage1_reference_replication_contract.py
+      - .github/workflows/stage1-reference-preflight.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: stage1-reference-preflight-develop
+  cancel-in-progress: false
+
+jobs:
+  preflight:
+    if: ${{ !contains(github.event.head_commit.message || '', '[stage1-reference-preflight]') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: develop
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.13"
+
+      - name: Install preflight dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e '.[dev]'
+          python -m pip install 'brian2==2.10.1'
+
+      - name: Verify pre-freeze contracts
+        run: |
+          test -z "$(git status --porcelain)"
+          python -m pytest -q             tests/test_stage1_reference_replication_contract.py             tests/test_stage1_reference_preflight.py
+
+      - name: Verify Brian2 package isolation
+        run: python scripts/check_stage1_reference_independence.py
+
+      - name: Verify reference seed freshness
+        run: python scripts/check_stage1_reference_seed_freshness.py
+
+      - name: Run integrator and mechanism parity preflight
+        run: python reference/stage1_topology_brian2/preflight_integrator_parity.py
+
+      - name: Verify parity artifact
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          path = Path("research/audits/stage1_reference_preflight_parity.json")
+          payload = json.loads(path.read_text(encoding="utf-8"))
+          assert payload["status"] == "PASS"
+          assert payload["framework"] == "Brian2"
+          assert payload["framework_version"] == "2.10.1"
+          assert payload["mhrn_runtime_imported"] is False
+          assert payload["single_tick_absolute_tolerance"] == 1e-12
+          assert any(row["spiked"] for row in payload["multi_tick_cases"])
+          PY
+
+      - name: Commit immutable preflight audit
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research/audits/stage1_reference_preflight_parity.json
+          if git diff --cached --quiet; then
+            echo "Preflight audit already current."
+          else
+            git commit -m "research(stage1): record Brian2 reference preflight parity [stage1-reference-preflight]"
+            git push origin HEAD:develop
+          fi
