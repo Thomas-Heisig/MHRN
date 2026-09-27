@@ -7,9 +7,22 @@ let catalogState = null;
 let liveSessionId = null;
 let liveLoopTimer = null;
 let nightPollTimer = null;
+const PLAYGROUND_PRESETS_STORAGE = "mhrn.playground.presets.v1";
+const BUILTIN_PLAYGROUND_PRESETS = {
+  izhikevich_reference: {
+    label: "Izhikevich · Referenz",
+    description: "Klarer deterministischer Ausgangspunkt für das Izhikevich-RS-Modell.",
+    settings: { neuron_model: "izhikevich_rs", synapse_model: "static", plasticity_rule: "none", topology: "mhrn_5d", n_neurons: 128, edge_budget: 1024, k_neighbors: 16, modules: 2, weight: 4, stimulus_current: 8, geometry_mode: "mixed_additive", pan_enabled: false, behavior_learning_enabled: false },
+  },
+  pan_exploration: {
+    label: "PAN · Explorationsprofil",
+    description: "PAN mit geschlossenem Input-Aktion-Reward-Loop; explorativ und nicht kanonisch.",
+    settings: { neuron_model: "pan_adex_5d", pan_enabled: true, pan_closed_loop: true, pan_feedback_gain: 1.5, pan_feedback_nonlinearity: "tanh", pan_feedback_saturation: 20, input_topology: "channel_partitioned", input_channels: 8, target_encoding: "one_hot", target_cue_channel: 0, target_cue_current: 30, target_persistence: 16, action_loop_enabled: true, action_space_size: 4, action_coupling_strength: 2, reward_signal_enabled: true, reward_magnitude: 5, reward_channel: 1, inhibitory_fraction: 0.2, gaba_strength: 4, neuron_threshold_variance: 0.15, neuron_tau_m_variance: 0.1, geometry_mode: "mixed_additive", weight: 4, behavior_learning_enabled: true, behavior_learning_rate: 0.2, behavior_epsilon: 0.2 },
+  },
+};
 
 const PLAYGROUND_DEFAULT_HINTS = {
-  "pg-weight": "4", "pg-dimensions": "5", "pg-neurons": "128", "pg-edges": "1024",
+  "pg-weight": "4", "pg-weight-decay": "0", "pg-weight-max-clamp": "100", "pg-dimensions": "5", "pg-neurons": "128", "pg-edges": "1024",
   "pg-radius": "0.35", "pg-k": "16", "pg-rewire": "0.15", "pg-modules": "2", "pg-delay": "1",
   "pg-ticks": "256", "pg-current": "8", "pg-rate": "20", "pg-seed": "12345", "pg-ensemble": "1",
   "pg-pan-dimensions": "5", "pg-pan-feedback-gain": "0.05", "pg-pan-health-decay": "0.001", "pg-pan-apoptosis": "0.1", "pg-pan-bias-current": "10",
@@ -41,7 +54,8 @@ function injectStyles() {
   style.textContent = `
     #tab-playground .workspace-header{margin-bottom:0;padding-bottom:12px;border-bottom:1px solid var(--rule)}#tab-playground .workspace-header p{max-width:72rem;color:var(--ink-3)}
     .pg-permanent-boundary{position:relative;display:flex;gap:.8rem;align-items:flex-start;margin:.7rem 0 1rem;padding:.8rem 1rem;border:1px solid color-mix(in srgb,var(--amber) 48%,var(--rule));border-left:3px solid var(--amber);border-radius:var(--r-sm);background:var(--amber-wash);box-shadow:none}.pg-permanent-boundary>span{font-size:1rem;line-height:1.2}.pg-permanent-boundary strong{display:block;color:var(--ink)}.pg-permanent-boundary p{margin:.2rem 0 0;opacity:.78;font-size:.7rem;line-height:1.45}
-    .playground-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;align-items:start}
+    .playground-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;align-items:start}.playground-grid>.playground-card:nth-child(-n+4){border-top:3px solid var(--accent)}.playground-grid>.playground-card:nth-child(n+5):nth-child(-n+6){border-top:3px solid var(--indigo)}.playground-grid>.playground-card:nth-child(n+7):nth-child(-n+9){border-top:3px solid var(--moss)}.playground-grid>.playground-card:nth-child(n+10):nth-child(-n+16){border-top:3px solid var(--amber)}.playground-grid>.playground-card:nth-child(n+17){border-top:3px solid var(--rule-3)}
+    .playground-preset-deck{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);gap:10px;margin:0 0 12px;padding:12px;border:1px solid var(--rule-2);border-top:3px solid var(--accent);border-radius:var(--r-md);background:var(--paper-2)}.playground-preset-deck h3{margin:0 0 4px;font-size:.95rem}.playground-preset-deck p{margin:0;color:var(--ink-3);font-size:.68rem;line-height:1.45}.playground-preset-copy{display:flex;gap:8px;align-items:flex-start}.playground-preset-copy::before{content:"01";color:var(--accent);font:700 .56rem/1 var(--font-mono);letter-spacing:.08em}.playground-preset-controls{display:grid;grid-template-columns:1fr 1fr;gap:7px;align-items:end}.playground-preset-controls label{display:grid;gap:4px;color:var(--ink-3);font-size:.64rem}.playground-preset-controls label:first-child{grid-column:1/-1}.playground-preset-controls input,.playground-preset-controls select{width:100%;min-height:30px;padding:5px 7px;border:1px solid var(--rule-2);border-radius:var(--r-xs);background:var(--paper);color:var(--ink);font-size:.68rem}.playground-preset-controls button{min-height:30px;padding:0 8px;border:1px solid var(--rule-2);border-radius:var(--r-xs);background:var(--paper);color:var(--ink-2);font-size:.62rem}.playground-preset-controls button:hover{border-color:var(--accent);background:var(--accent-wash)}.playground-preset-description{grid-column:1/-1;margin:0!important;padding:6px 8px;border-left:2px solid var(--rule-3);background:var(--paper-3);font:500 .6rem/1.4 var(--font-mono);white-space:pre-wrap}
     .playground-card,.playground-viz,.playground-analysis-card{border:1px solid var(--rule);border-radius:var(--r-md);padding:12px;background:var(--paper-2);box-shadow:0 1px 0 color-mix(in srgb,var(--ink) 4%,transparent)}
     .playground-card{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:10px;align-content:start}.playground-card h3,.playground-card small{grid-column:1/-1}.playground-card h3,.playground-viz h3,.playground-analysis-card h3{margin:0 0 9px;padding-bottom:7px;border-bottom:1px solid var(--rule);font-size:.82rem;letter-spacing:.01em}.playground-card h3::first-letter{color:var(--accent)}
     .playground-card label{display:grid;gap:4px;margin:0 0 8px;color:var(--ink-3);font-size:.65rem;line-height:1.2}.playground-card small{display:block;margin-top:2px;color:var(--ink-4);line-height:1.45}.playground-card label.pg-non-default{outline:1px dotted color-mix(in srgb,var(--accent) 55%,transparent);outline-offset:4px;border-radius:2px}
@@ -54,7 +68,7 @@ function injectStyles() {
     .playground-session-list{display:grid;gap:6px}.playground-session{display:flex;justify-content:space-between;gap:1rem;align-items:center;padding:9px 10px;border:1px solid var(--rule);border-radius:var(--r-xs);background:var(--paper-2)}.playground-session small{display:block;color:var(--ink-4)}
     .playground-catalog{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.playground-catalog article{padding:10px;border:1px solid var(--rule);border-radius:var(--r-xs);background:var(--paper-2)}.playground-chip{display:inline-flex;margin:2px;padding:3px 5px;border-radius:var(--r-xs);border:1px solid var(--rule);background:var(--paper-3);color:var(--ink-3);font:500 .58rem/1.2 var(--font-mono)}
     .pg-neutral-note{padding:9px 11px;margin:9px 0;border-left:3px solid var(--indigo);background:var(--indigo-wash);color:var(--ink-2);font-size:.68rem;line-height:1.45}.pg-neutral-note strong{color:var(--ink)}
-    @media(max-width:1150px){.playground-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.playground-metrics{grid-template-columns:repeat(4,1fr)}}@media(max-width:760px){.playground-grid,.playground-viz-grid,.playground-analysis-grid,.playground-catalog{grid-template-columns:1fr}.playground-card{grid-template-columns:1fr}.playground-card h3,.playground-card small{grid-column:auto}.playground-metrics{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:1150px){.playground-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.playground-metrics{grid-template-columns:repeat(4,1fr)}.playground-preset-deck{grid-template-columns:1fr 1.4fr}}@media(max-width:760px){.playground-grid,.playground-viz-grid,.playground-analysis-grid,.playground-catalog{grid-template-columns:1fr}.playground-card{grid-template-columns:1fr}.playground-card h3,.playground-card small{grid-column:auto}.playground-metrics{grid-template-columns:repeat(2,1fr)}.playground-preset-deck{grid-template-columns:1fr}.playground-preset-controls{grid-template-columns:1fr}}
   `;
   document.head.append(style);
 }
@@ -82,11 +96,17 @@ function buildPanels(root) {
   root.insertAdjacentHTML("beforeend", `
     <section data-generated-panel="builder" id="playground-builder">
       <div class="pg-neutral-note"><strong>Neutraler Baukasten:</strong> Keine Modell- oder Topologieauswahl ist eine Empfehlung. <code>MHRN 5D</code> ist der Architektur-Default, weil er den nativen MHRN-Vertrag <code>(x,y,z,d4,d5)</code> verwendet — nicht weil 5D als überlegen gilt.</div>
+      <section class="playground-preset-deck" aria-labelledby="pg-preset-deck-title">
+        <div class="playground-preset-copy"><div><h3 id="pg-preset-deck-title">Preset Lab</h3><p>Empfohlene Startpunkte für Izhikevich und PAN. Presets verändern nur den Playground und werden lokal auf diesem Gerät gespeichert.</p></div></div>
+        <div class="playground-preset-controls"><label>Profil<select id="pg-user-preset-select"></select></label><label>Eigenes Preset speichern<input id="pg-user-preset-name" type="text" placeholder="z. B. PAN · Seed 2"></label><button type="button" id="pg-user-preset-apply">Anwenden</button><button type="button" id="pg-user-preset-save">Speichern</button><button type="button" id="pg-user-preset-delete">Eigenes löschen</button><p id="pg-user-preset-description" class="playground-preset-description">Preset auswählen oder eigene Einstellungen speichern.</p></div>
+      </section>
       <div class="playground-grid">
         <article class="playground-card"><h3>01 · Neuronen & Synapsen</h3>
           <label>Neuronmodell<select id="pg-neuron-model"></select></label>
           <label>Synapsenmodell<select id="pg-synapse-model"></select></label>
           <label>Startgewicht<input id="pg-weight" type="number" min="0" max="100" step="0.1" value="4"></label>
+          <label>Gewichtszerfall<input id="pg-weight-decay" type="number" min="0" max="1" step="0.001" value="0"></label>
+          <label>Gewichtsmaximum<input id="pg-weight-max-clamp" type="number" min="0.1" max="100" step="0.1" value="100"></label>
           <label>Plastizität<select id="pg-plasticity"></select></label>
           <label>Readout<select id="pg-readout"></select></label>
           <small>Enthält Izhikevich RS/FS/IB/CH/LTS/Resonator/Sensory/Motor, LIF, AdEx, HH Na/K/Ca und Multi-Compartment.</small>
@@ -349,6 +369,8 @@ function formPayload() {
     neuron_model: byId("pg-neuron-model").value,
     synapse_model: byId("pg-synapse-model").value,
     weight: Number(byId("pg-weight").value),
+    weight_decay: Number(byId("pg-weight-decay").value),
+    weight_max_clamp: Number(byId("pg-weight-max-clamp").value),
     plasticity_rule: byId("pg-plasticity").value,
     topology: byId("pg-topology").value,
     stimulus: byId("pg-stimulus").value,
@@ -649,6 +671,9 @@ async function runRobustness(){
 
 function setBuilderValue(key,value){
   const aliases={
+    n_neurons:"neurons",edge_budget:"edges",dimensions:"dimensions",ticks:"ticks",weight:"weight",delay_ticks:"delay",radius:"radius",k_neighbors:"k",rewiring_probability:"rewire",modules:"modules",stimulus_current:"current",stimulus_rate_hz:"rate",seed:"seed",ensemble_runs:"ensemble",
+    pan_dimensions:"pan-dimensions",pan_closed_loop:"pan-closed-loop",pan_health_decay:"pan-health-decay",pan_apoptosis_threshold:"pan-apoptosis",pan_bias_current:"pan-bias-current",
+    cortical_layer_count:"cortical-layers",behavior_action_count:"behavior-actions",behavior_target_action:"behavior-target",behavior_episode_ticks:"behavior-episode",behavior_bias_current:"behavior-bias",
     input_amplitude_per_channel:"input-amplitudes",input_frequency_per_channel:"input-frequencies",input_phase_per_channel:"input-phases",input_channel_map:"input-channel-map",
     pan_feedback_gain:"pan-feedback-gain",pan_feedback_nonlinearity:"pan-feedback-nonlinearity",pan_feedback_saturation:"pan-feedback-saturation",
     action_loop_enabled:"action-loop-enabled",action_loop_delay:"action-loop-delay",action_persistence:"action-persistence",action_to_input_map:"action-to-input-map",action_space_size:"action-space-size",action_coupling_strength:"action-coupling",action_noise:"action-noise",
@@ -666,6 +691,40 @@ function setBuilderValue(key,value){
   if(el.type==="checkbox")el.checked=Boolean(value);
   else if(Array.isArray(value))el.value=JSON.stringify(value);
   else el.value=String(value);
+}
+
+function readSavedPlaygroundPresets(){
+  try{return JSON.parse(localStorage.getItem(PLAYGROUND_PRESETS_STORAGE)||"{}");}catch{return {};}
+}
+
+function writeSavedPlaygroundPresets(presets){localStorage.setItem(PLAYGROUND_PRESETS_STORAGE,JSON.stringify(presets));}
+function allPlaygroundPresets(){return {...BUILTIN_PLAYGROUND_PRESETS,...readSavedPlaygroundPresets()};}
+
+function renderUserPresetOptions(){
+  const select=byId("pg-user-preset-select");if(!select)return;
+  const presets=allPlaygroundPresets();
+  select.innerHTML=Object.entries(presets).map(([name,preset])=>`<option value="${name}">${preset.label||name}${BUILTIN_PLAYGROUND_PRESETS[name]?"":" · lokal"}</option>`).join("");
+  if(!select.value)select.value="izhikevich_reference";
+  const preset=presets[select.value];
+  if(byId("pg-user-preset-description"))byId("pg-user-preset-description").textContent=preset?.description||"Preset auswählen oder eigene Einstellungen speichern.";
+}
+
+function applyUserPreset(){
+  const name=byId("pg-user-preset-select")?.value;const preset=allPlaygroundPresets()[name];if(!preset)return;
+  Object.entries(preset.settings||{}).forEach(([key,value])=>setBuilderValue(key,value));
+  updateDefaultHints();
+  if(byId("pg-user-preset-description"))byId("pg-user-preset-description").textContent=`${preset.description||name}\nLokal gespeichert: ${BUILTIN_PLAYGROUND_PRESETS[name]?"integriert":"ja"}`;
+}
+
+function saveUserPreset(){
+  const name=byId("pg-user-preset-name")?.value.trim();if(!name){byId("pg-user-preset-description").textContent="Bitte zuerst einen Namen vergeben.";return;}
+  const key=name.toLowerCase().replace(/[^a-z0-9]+/g,"_").replace(/^_|_$/g,"")||`preset_${Date.now()}`;
+  const presets=readSavedPlaygroundPresets();presets[key]={label:name,description:"Eigene lokal gespeicherte Playground-Konfiguration.",settings:formPayload(),saved_at:new Date().toISOString()};writeSavedPlaygroundPresets(presets);renderUserPresetOptions();byId("pg-user-preset-select").value=key;byId("pg-user-preset-description").textContent=`${name}\nLokal gespeichert.`;
+}
+
+function deleteUserPreset(){
+  const select=byId("pg-user-preset-select");const name=select?.value;if(!name||BUILTIN_PLAYGROUND_PRESETS[name])return;
+  const presets=readSavedPlaygroundPresets();delete presets[name];writeSavedPlaygroundPresets(presets);renderUserPresetOptions();
 }
 
 function resolvedPresetSettings(name,seen=new Set()){
@@ -691,7 +750,7 @@ function applySelectedPreset(){
 }
 
 function resetForm(){
-  const values={neurons:"128",edges:"1024",weight:"4",ticks:"256",dimensions:"5",delay:"1",radius:"0.35",k:"16",rewire:"0.15",modules:"2",current:"8",rate:"20",seed:"12345",ensemble:"1","pan-dimensions":"5","pan-feedback-gain":"0.05","pan-health-decay":"0.001","pan-apoptosis":"0.1","pan-bias-current":"10","geometry-lambda-a":"0.5","geometry-lambda-b":"0.5","geometry-sigma":"0.1","geometry-p0":"0.3","geometry-delay-velocity":"0.25","clock-base-hz":"100","clock-event-batch":"10","execution-high":"0.30","execution-low":"0.05","execution-hysteresis":"0.02","execution-dwell":"100","execution-window":"100","growth-activity":"0.25","growth-coactivation":"2","growth-info":"0.25","growth-prune":"0.05","growth-max-synapses":"128","growth-max-new":"8","cuda-budget":"2048","offload-snapshot":"1000","thalamic-threshold":"0","thalamic-attention":"1.15","thalamic-inhibition":"0.35","cortical-layers":"6","cortical-lr":"0.01","behavior-actions":"4","behavior-target":"0","behavior-min-activity":"0.01","behavior-lr":"0.2","behavior-epsilon":"0.2","behavior-episode":"16","behavior-bias":"3"};
+  const values={neurons:"128",edges:"1024",weight:"4","weight-decay":"0","weight-max-clamp":"100",ticks:"256",dimensions:"5",delay:"1",radius:"0.35",k:"16",rewire:"0.15",modules:"2",current:"8",rate:"20",seed:"12345",ensemble:"1","pan-dimensions":"5","pan-feedback-gain":"0.05","pan-health-decay":"0.001","pan-apoptosis":"0.1","pan-bias-current":"10","geometry-lambda-a":"0.5","geometry-lambda-b":"0.5","geometry-sigma":"0.1","geometry-p0":"0.3","geometry-delay-velocity":"0.25","clock-base-hz":"100","clock-event-batch":"10","execution-high":"0.30","execution-low":"0.05","execution-hysteresis":"0.02","execution-dwell":"100","execution-window":"100","growth-activity":"0.25","growth-coactivation":"2","growth-info":"0.25","growth-prune":"0.05","growth-max-synapses":"128","growth-max-new":"8","cuda-budget":"2048","offload-snapshot":"1000","thalamic-threshold":"0","thalamic-attention":"1.15","thalamic-inhibition":"0.35","cortical-layers":"6","cortical-lr":"0.01","behavior-actions":"4","behavior-target":"0","behavior-min-activity":"0.01","behavior-lr":"0.2","behavior-epsilon":"0.2","behavior-episode":"16","behavior-bias":"3"};
   for(const[k,v]of Object.entries(values)){const el=byId(`pg-${k}`);if(el)el.value=v;}byId("pg-persist").checked=false;byId("pg-pan-enabled").checked=false;byId("pg-pan-closed-loop").checked=true;byId("pg-clock-mode").value="continuous";byId("pg-execution-mode").value="HYBRID_AUTO";byId("pg-execution-initial").value="EVENT_ONLY";byId("pg-execution-transition").value="clean";byId("pg-execution-sync").checked=true;byId("pg-execution-log").checked=true;byId("pg-growth-enabled").checked=false;byId("pg-offload-enabled").checked=false;byId("pg-hardware-profile").value="reference_cpu";byId("pg-thalamic-enabled").checked=false;byId("pg-behavior-target-mode").value="cycle";byId("pg-cortical-enabled").checked=false;byId("pg-cortical-plasticity").checked=true;byId("pg-behavior-enabled").checked=false;byId("pg-geometry-mode").value="mixed_additive";byId("pg-neural-io-enabled").checked=false;byId("pg-neural-io-payload").value="0.5";byId("pg-neural-io-input-channels").value="16";byId("pg-neural-io-output-channels").value="16";byId("pg-neural-io-window").value="16";byId("pg-neural-io-current").value="25";byId("pg-neural-io-input-role").value="GATEWAY_AFFERENT";byId("pg-neural-io-output-role").value="GATEWAY_EFFERENT";byId("pg-neural-io-phase").value="QUERY";byId("pg-neural-io-modality").value="digital";byId("pg-neural-io-source").value="playground.input";if(byId("pg-topology"))byId("pg-topology").value="mhrn_5d";
   const closedLoopDefaults={
     "closed-loop-preset":"custom","input-topology":"uniform","input-channels":"1","input-channel-map":"[]","input-amplitudes":"[]","input-frequencies":"[]","input-phases":"[]","input-noise":"0","target-cue-channel":"0","reward-cue-channel":"0","action-feedback-channel":"0",
@@ -739,7 +798,8 @@ function renderCatalog(catalog){
 export async function initPlayground(){
   const root=byId("tab-playground");if(!root)return;
   injectStyles();ensurePermanentBoundary(root);buildPanels(root);
-  byId("pg-run")?.addEventListener("click",runSession);byId("pg-apply-preset")?.addEventListener("click",applySelectedPreset);byId("pg-robustness")?.addEventListener("click",runRobustness);byId("pg-reset")?.addEventListener("click",resetForm);byId("pg-live-create")?.addEventListener("click",()=>createLiveSession().catch(error=>byId("pg-live-state").textContent=String(error.message||error)));byId("pg-live-step")?.addEventListener("click",()=>stepLiveSession().catch(error=>byId("pg-live-state").textContent=String(error.message||error)));byId("pg-live-auto")?.addEventListener("click",()=>startLiveLoop().catch(error=>byId("pg-live-state").textContent=String(error.message||error)));byId("pg-live-auto-stop")?.addEventListener("click",stopLiveLoop);byId("pg-live-input")?.addEventListener("click",()=>injectLiveInput().catch(error=>byId("pg-live-state").textContent=String(error.message||error)));byId("pg-live-sandbox")?.addEventListener("click",()=>stepLiveSandbox().catch(error=>byId("pg-live-state").textContent=String(error.message||error)));byId("pg-live-stop")?.addEventListener("click",()=>stopLiveSession().catch(error=>byId("pg-live-state").textContent=String(error.message||error)));byId("pg-night-start")?.addEventListener("click",()=>startNightRun().catch(error=>byId("pg-night-state").textContent=String(error.message||error)));byId("pg-night-stop")?.addEventListener("click",()=>stopNightRun().catch(error=>byId("pg-night-state").textContent=String(error.message||error)));byId("pg-night-refresh")?.addEventListener("click",()=>refreshNightStatus().catch(error=>byId("pg-night-state").textContent=String(error.message||error)));
+  byId("pg-run")?.addEventListener("click",runSession);byId("pg-apply-preset")?.addEventListener("click",applySelectedPreset);byId("pg-user-preset-apply")?.addEventListener("click",applyUserPreset);byId("pg-user-preset-save")?.addEventListener("click",saveUserPreset);byId("pg-user-preset-delete")?.addEventListener("click",deleteUserPreset);byId("pg-user-preset-select")?.addEventListener("change",renderUserPresetOptions);byId("pg-robustness")?.addEventListener("click",runRobustness);byId("pg-reset")?.addEventListener("click",resetForm);byId("pg-live-create")?.addEventListener("click",()=>createLiveSession().catch(error=>byId("pg-live-state").textContent=String(error.message||error)));byId("pg-live-step")?.addEventListener("click",()=>stepLiveSession().catch(error=>byId("pg-live-state").textContent=String(error.message||error)));byId("pg-live-auto")?.addEventListener("click",()=>startLiveLoop().catch(error=>byId("pg-live-state").textContent=String(error.message||error)));byId("pg-live-auto-stop")?.addEventListener("click",stopLiveLoop);byId("pg-live-input")?.addEventListener("click",()=>injectLiveInput().catch(error=>byId("pg-live-state").textContent=String(error.message||error)));byId("pg-live-sandbox")?.addEventListener("click",()=>stepLiveSandbox().catch(error=>byId("pg-live-state").textContent=String(error.message||error)));byId("pg-live-stop")?.addEventListener("click",()=>stopLiveSession().catch(error=>byId("pg-live-state").textContent=String(error.message||error)));byId("pg-night-start")?.addEventListener("click",()=>startNightRun().catch(error=>byId("pg-night-state").textContent=String(error.message||error)));byId("pg-night-stop")?.addEventListener("click",()=>stopNightRun().catch(error=>byId("pg-night-state").textContent=String(error.message||error)));byId("pg-night-refresh")?.addEventListener("click",()=>refreshNightStatus().catch(error=>byId("pg-night-state").textContent=String(error.message||error)));
+  renderUserPresetOptions();
   try{renderCatalog(await apiGet("/api/playground/catalog"));resetForm();}catch(error){const status=byId("pg-status");status.dataset.state="error";status.textContent=`Katalog nicht verfügbar: ${error.message}`;}
   byId("playground-builder")?.addEventListener("input", updateDefaultHints);
   byId("playground-builder")?.addEventListener("change", updateDefaultHints);

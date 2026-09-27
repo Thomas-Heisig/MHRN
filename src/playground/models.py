@@ -45,6 +45,8 @@ class PlaygroundConfig:
     dimensions: int = 5
     dt_ms: float = 1.0
     weight: float = 4.0
+    weight_decay: float = 0.0
+    weight_max_clamp: float = 100.0
     delay_ticks: int = 1
     stimulus_current: float = 8.0
     stimulus_rate_hz: float = 20.0
@@ -333,6 +335,8 @@ class PlaygroundConfig:
             dimensions=integer("dimensions", defaults.dimensions),
             dt_ms=number("dt_ms", defaults.dt_ms),
             weight=number("weight", defaults.weight),
+            weight_decay=number("weight_decay", defaults.weight_decay),
+            weight_max_clamp=number("weight_max_clamp", defaults.weight_max_clamp),
             delay_ticks=integer("delay_ticks", defaults.delay_ticks),
             stimulus_current=number("stimulus_current", defaults.stimulus_current),
             stimulus_rate_hz=number("stimulus_rate_hz", defaults.stimulus_rate_hz),
@@ -707,6 +711,10 @@ class PlaygroundConfig:
             raise ValueError("dt_ms must be between 0.05 and 5.0")
         if not 0.0 <= self.weight <= 100.0:
             raise ValueError("weight must be between 0 and 100")
+        if not 0.0 <= self.weight_decay <= 1.0:
+            raise ValueError("weight_decay must be between 0 and 1")
+        if not 0.0 < self.weight_max_clamp <= 100.0:
+            raise ValueError("weight_max_clamp must be > 0 and <= 100")
         if not 1 <= self.delay_ticks <= 64:
             raise ValueError("delay_ticks must be between 1 and 64")
         if not 0.0 <= self.stimulus_current <= 500.0:
@@ -792,8 +800,8 @@ class PlaygroundConfig:
             raise ValueError("cortical_layer_count must be between 2 and 12")
         if not 0.0 <= self.cortical_learning_rate <= 1.0:
             raise ValueError("cortical_learning_rate must be between 0 and 1")
-        if not 2 <= self.behavior_action_count <= 16:
-            raise ValueError("behavior_action_count must be between 2 and 16")
+        if not 1 <= self.behavior_action_count <= 16:
+            raise ValueError("behavior_action_count must be between 1 and 16")
         if not 0.0 < self.behavior_learning_rate <= 1.0:
             raise ValueError("behavior_learning_rate must be > 0 and <= 1")
         if not 0.0 <= self.behavior_epsilon <= 1.0:
@@ -1029,6 +1037,8 @@ class PlaygroundConfig:
             "dimensions": self.dimensions,
             "dt_ms": self.dt_ms,
             "weight": self.weight,
+            "weight_decay": self.weight_decay,
+            "weight_max_clamp": self.weight_max_clamp,
             "delay_ticks": self.delay_ticks,
             "stimulus_current": self.stimulus_current,
             "stimulus_rate_hz": self.stimulus_rate_hz,

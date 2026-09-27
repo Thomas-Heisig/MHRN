@@ -77,6 +77,38 @@ def test_playground_resets_defaults_on_start_and_marks_overrides_by_hover() -> N
     assert "pg-non-default" in module
 
 
+def test_playground_preset_lab_has_izhikevich_pan_and_local_storage() -> None:
+    module = (STATIC / "frontend" / "modules" / "playground.js").read_text(
+        encoding="utf-8"
+    )
+    assert "Preset Lab" in module
+    assert "izhikevich_reference" in module
+    assert "pan_exploration" in module
+    assert "PLAYGROUND_PRESETS_STORAGE" in module
+    assert "function saveUserPreset()" in module
+    assert "function deleteUserPreset()" in module
+    assert 'id="pg-user-preset-save"' in module
+    assert 'id="pg-user-preset-delete"' in module
+    assert 'n_neurons:"neurons"' in module
+    assert 'edge_budget:"edges"' in module
+    assert 'stimulus_current:"current"' in module
+    assert 'behavior_episode_ticks:"behavior-episode"' in module
+
+
+def test_playground_preset_catalog_documentation_exists() -> None:
+    path = ROOT / "docs" / "playground" / "PRESETS.md"
+    assert path.exists()
+    text = path.read_text(encoding="utf-8")
+    for preset in (
+        "open_loop_baseline",
+        "fix_weight_explosion",
+        "d1_minimal_closed_loop",
+        "g1_two_action_simple",
+        "g2_one_action_trivial",
+    ):
+        assert preset in text
+
+
 def test_playground_api_has_bounded_concurrency_and_rate() -> None:
     api = (ROOT / "src" / "dashboard" / "playground_api.py").read_text(encoding="utf-8")
     assert "_MAX_CONCURRENT_RUNS = 2" in api

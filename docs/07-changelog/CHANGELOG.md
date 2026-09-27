@@ -19,6 +19,10 @@
   `behavior_learning_rate=0.2` und `behavior_epsilon=0.2`.
 - Playground-Layout visuell überarbeitet: Papierflächen, dreispaltiges
   Laborraster, kompakte Controls und bessere mobile Umbrüche.
+- Preset Lab ergänzt: Izhikevich-Referenz und PAN-Explorationsprofil sowie
+  lokale Speicherung, Anwendung und Löschung eigener Presets.
+- Presetkatalog A–G für Kontrollen, Fixes, Diagnostik, Robustheit und
+  Sanity-Checks ergänzt; Gewichtszerfall und Clamp sind ausführbar.
 - Ein eigener Release-Tab zeigt die wissenschaftliche Gesamtarbeit und ihre elf
   Teile; jeder Teil öffnet das kanonische Manuskript im File Viewer.
 - Die elf Teile zeigen zusätzlich Prozentbalken und die Statuszustände `met`,

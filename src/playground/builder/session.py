@@ -674,6 +674,13 @@ class PlaygroundSession:
                             release_state[edge] + 0.025,
                         )
 
+                if weights:
+                    for edge in list(weights):
+                        value = weights[edge]
+                        if config.weight_decay:
+                            value *= max(0.0, 1.0 - config.weight_decay)
+                        weights[edge] = min(config.weight_max_clamp, max(0.0, value))
+
                 if dual_scheduler is not None and dual_scheduler.sync_due(tick):
                     barrier_events = dual_scheduler.drain_barrier(tick)
                     offloader.flush_events(tick=tick, events=barrier_events)

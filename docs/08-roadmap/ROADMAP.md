@@ -21,6 +21,10 @@
 	aktualisierten Referenzstand gesetzt: `weight=4`, Lernrate/Epsilon `0.2`.
 - Die Playground-Oberfläche verwendet ein ruhigeres Laborraster mit klarer
 	Kartenhierarchie, kompakten Feldern und responsiver Darstellung.
+- Der Builder bietet integrierte Izhikevich- und PAN-Presets sowie lokal
+	speicherbare eigene Konfigurationen.
+- Der Presetkatalog A–G ist in `docs/playground/PRESETS.md` dokumentiert und
+	über den Closed-Loop-Selector im Builder verfügbar.
 - Der Release-Workspace besitzt einen eigenen Tab für die wissenschaftliche
 	Gesamtarbeit mit allen elf Manuskriptteilen.
 - Jeder Teil zeigt den redaktionellen Arbeitsstand als Prozentwert mit

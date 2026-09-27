@@ -31,8 +31,8 @@ class BehavioralLearningEngine:
     ) -> None:
         if n_neurons < 1:
             raise ValueError("n_neurons must be positive")
-        if not 2 <= action_count <= 32:
-            raise ValueError("action_count must be between 2 and 32")
+        if not 1 <= action_count <= 32:
+            raise ValueError("action_count must be between 1 and 32")
         if not 0.0 < learning_rate <= 1.0:
             raise ValueError("learning_rate must be between 0 and 1")
         if not 0.0 <= epsilon <= 1.0:

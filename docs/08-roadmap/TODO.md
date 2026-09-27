@@ -77,6 +77,9 @@ MHRN / Multi-Scale Homeostatic Recurrence Network. Publication: Recursive Episte
 	den aktualisierten Referenzstand setzen.
 - [x] Playground-Oberfläche mit klarer Kartenhierarchie und responsivem Raster
 	überarbeiten.
+- [x] Izhikevich- und PAN-Presets mit lokaler Speicherung im Builder ergänzen.
+- [x] Presetkatalog A–G inklusive Gewichts-Stabilisierung und Sanity-Checks
+	als auswählbare Playground-Konfigurationen ergänzen.
 - [x] Eigenen Release-Tab für die wissenschaftliche Gesamtarbeit mit elf Teilen
 	und File-Viewer-Zugriff ergänzen.
 - [x] Prozent- und `met`/`partial`/`open`-Status je Manuskriptteil darstellen.

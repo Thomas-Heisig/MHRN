@@ -1352,9 +1352,10 @@ def test_closed_loop_presets_resolve_without_research_promotion() -> None:
         "full_embodiment",
     }
     closed_loop = catalog()["closed_loop"]
-    assert {item["name"] for item in closed_loop["presets"]} == names
+    available = {item["name"] for item in closed_loop["presets"]}
+    assert names <= available
     assert closed_loop["scientific_evidence"] is False
-    for name in names:
+    for name in available:
         config = PlaygroundConfig.from_mapping({"closed_loop_preset": name})
         assert config.closed_loop_preset == name
 
