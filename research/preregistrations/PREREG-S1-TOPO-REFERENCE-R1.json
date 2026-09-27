@@ -7,7 +7,7 @@
   "claim_id": "CLAIM-S1-TOPO-001",
   "protocol": "stage1_topology_cross_implementation_reference_r1",
   "mode": "PROSPECTIVE_CROSS_IMPLEMENTATION_PARTIAL_REPLICATION",
-  "status": "DRAFT_BEFORE_REFERENCE_IMPLEMENTATION",
+  "status": "FROZEN_BEFORE_REFERENCE_RUNNER",
   "execution_authorized": false,
   "scientific_evidence": false,
   "automatic_evidence_promotion": false,
@@ -410,5 +410,7 @@
       "complete PARTIAL_REPLICATION / FAILED_REPLICATION / INCONCLUSIVE_REFERENCE_REPLICATION decision rules"
     ],
     "scientific_contract_changed_by_this_record": false
-  }
+  },
+  "freeze_record": "research/preregistrations/PREREG-S1-TOPO-REFERENCE-R1.freeze.json",
+  "freeze_semantics": "Scientific translation, targets, equivalence bounds, endpoints and decision criteria are frozen. Reference evaluation remains forbidden until a separately reviewed runner implementation is hash-bound and explicitly authorized."
 }
