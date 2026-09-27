@@ -2,7 +2,23 @@
 
 **Canonical roadmap for active `develop`; `main` is release-only**  
 **Baseline:** `mhrn-core 0.6.0a7`
-**Updated:** 2026-09-19
+**Updated:** 2026-09-27
+
+## 2026-09-27 Alpha.7 release line
+
+- `develop` remains the canonical integration branch; `main` remains release-only.
+- The former standalone `playground` branch is no longer part of the intended
+  long-lived branch topology once its content is verified as contained in
+  `develop`.
+- Stage 0 scientific maturity is 92.5%; Stage 1 is 85%. Scoped project EVID is
+  registered as `EVID-2026-18`, `EVID-2026-19` and `EVID-2026-20`.
+- The next Stage-1 maturity increment depends on the bounded Brian2 R2
+  cross-implementation replication path; full replication credit remains
+  reserved for genuinely external independent replication.
+- Playground CUDA work remains on the engineering ladder: generated/assembled/
+  loaded preflight and parity contracts precede any claim of an executed,
+  equivalent GPU SNN backend.
+- Release/DOI mechanics remain separate from Human Review, EVID and replication.
 
 ## 2026-09-27 Bausteine-Katalog und Sprachumschaltung
 
