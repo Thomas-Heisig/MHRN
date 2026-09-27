@@ -24,7 +24,10 @@ def test_efficiency_line_is_unpromoted_and_unfrozen() -> None:
     claim = next(item for item in claims if item["id"] == "CLAIM-S1-EFFICIENCY-001")
     hypothesis = next(item for item in hypotheses if item["id"] == "H-SNN-003-C")
 
-    assert prereg["status"] == "DRAFT_BEFORE_FREEZE"
+    assert prereg["status"] in {
+        "DRAFT_BEFORE_FREEZE",
+        "DRAFT_CALIBRATION_GATE_FAILED_FREEZE_BLOCKED",
+    }
     assert prereg["execution_authorized"] is False
     assert prereg["scientific_evidence"] is False
     assert prereg["automatic_evidence_promotion"] is False
@@ -32,6 +35,12 @@ def test_efficiency_line_is_unpromoted_and_unfrozen() -> None:
     assert claim["evidence"] == []
     assert hypothesis["status"] == "untested"
     assert hypothesis["evidence"] == []
+
+    if prereg["status"] == "DRAFT_CALIBRATION_GATE_FAILED_FREEZE_BLOCKED":
+        assert prereg["execution_block"]["blocked"] is True
+        assert prereg["calibration"]["observed_status_after_run"][
+            "3d_recruitment_matched_gate_passed"
+        ] is False
 
 
 def test_efficiency_primary_family_is_exactly_eight_tests() -> None:
@@ -91,3 +100,17 @@ def test_temporal_decoder_does_not_enter_efficiency_endpoints() -> None:
 
     assert readout["decoder"].startswith("none")
     assert "same propagation metrics" in readout["output_procedure"]
+
+
+def test_valid_calibration_gate_failure_blocks_freeze() -> None:
+    prereg = _prereg()
+    observed = prereg["calibration"]["observed_status_after_run"]
+    policy = prereg["calibration"]["failure_policy"]
+
+    assert observed["verified_execution"] is True
+    assert observed["evaluation_seeds_read_or_executed"] is False
+    assert observed["3d_recruitment_matched_gate_passed"] is False
+    assert observed["freeze_blocked"] is True
+    assert "may not be rerun" in policy["valid_gate_failure"]
+    assert "new preregistration/calibration revision" in policy["design_change"]
+    assert prereg["execution_authorized"] is False
