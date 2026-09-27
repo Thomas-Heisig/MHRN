@@ -78,6 +78,7 @@ class PANLiveSession:
             if config.thalamic_gating_enabled
             else None
         )
+        self.learning_enabled = config.behavior_learning_enabled
         self.learning = BehavioralLearningEngine(
             n_neurons=config.n_neurons,
             action_count=config.behavior_action_count,
@@ -183,7 +184,11 @@ class PANLiveSession:
                 ]
                 if self.thalamic is not None:
                     external = self.thalamic.apply(external, self.last_spikes)
-                behavior_bias = self.learning.bias_currents()
+                behavior_bias = (
+                    self.learning.bias_currents()
+                    if self.learning_enabled
+                    else [0.0 for _ in range(self.config.n_neurons)]
+                )
                 external = [
                     external[index] + behavior_bias[index]
                     for index in range(self.config.n_neurons)
@@ -220,10 +225,11 @@ class PANLiveSession:
                         ) % len(self.pending)
                         self.pending[delivery][target] += self.weights[edge]
 
-                self.learning.observe(spiked)
-                reward = self.learning.maybe_learn(self.tick)
-                if reward is not None:
-                    rewards.append(reward)
+                if self.learning_enabled:
+                    self.learning.observe(spiked)
+                    reward = self.learning.maybe_learn(self.tick)
+                    if reward is not None:
+                        rewards.append(reward)
                 action = self._decode_action(spiked)
                 if action is not None:
                     actions.append(action)
@@ -242,6 +248,7 @@ class PANLiveSession:
             "alive": self.total_spikes > 0,
             "actions": actions[-64:],
             "rewards": rewards[-64:],
+            "learning_enabled": self.learning_enabled,
             "learning": self.learning.summary(),
             "execution": self.switcher.summary(),
             "thalamic": self.thalamic.summary() if self.thalamic else None,
