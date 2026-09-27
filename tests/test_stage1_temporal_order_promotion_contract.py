@@ -66,8 +66,9 @@ def test_temporal_scoped_claim_remains_separate_from_topology_evidence() -> None
 
     assert temporal["research_question"] == "RQ-TEMP-002"
     assert temporal["hypothesis"] == "H-TEMP-002-A"
-    assert temporal["evidence"] == []
-    assert temporal["status"] == "untested"
+    assert temporal["evidence"] == ["EVID-2026-20"]
+    assert temporal["status"] == "inconclusive"
+    assert "EXP-S1-TEMP-PROMO-R1-20260927" in temporal["experiments"]
     assert topology["evidence"] == ["EVID-2026-19"]
 
 
