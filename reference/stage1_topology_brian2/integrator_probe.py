@@ -19,9 +19,7 @@ class ProbeResult:
         return asdict(self)
 
 
-def run_one_tick(input_current: float) -> ProbeResult:
-    """Run exactly one 1-ms tick using explicit MHRN-compatible update ordering."""
-
+def _build_probe() -> tuple[NeuronGroup, Network]:
     start_scope()
     prefs.codegen.target = "numpy"
     defaultclock.dt = 1 * ms
@@ -48,10 +46,19 @@ def run_one_tick(input_current: float) -> ProbeResult:
     )
     group.v = -65.0
     group.u = -13.0
-    group.input_current = float(input_current)
+    group.input_current = 0.0
     group.threshold_adaptation = 0.0
     group.firing_rate_estimate = 0.0
     group.spike_seen = 0
+
+    # Reset the per-tick spike flag before each update.
+    group.run_regularly(
+        "spike_seen = 0",
+        dt=1 * ms,
+        when="start",
+        order=-10,
+        name="mhrn_reset_spike_flag",
+    )
 
     # Canonical MHRN membrane update: two half-Euler v updates followed by u Euler.
     group.run_regularly(
@@ -66,17 +73,13 @@ def run_one_tick(input_current: float) -> ProbeResult:
         name="mhrn_two_half_euler",
     )
 
-    # Canonical post-spike/post-tick sequence. This executes after threshold/reset.
+    # Canonical MHRN post-spike/post-tick sequence:
+    # firing-rate update -> adaptation decay -> homeostasis update/clamp.
     group.run_regularly(
         """
-        firing_rate_estimate = (1-exp(-0.001))*firing_rate_estimate + (1-(1-exp(-0.001)))*0
-        firing_rate_estimate = firing_rate_estimate + spike_seen*(1-exp(-0.001))*1000
+        firing_rate_estimate = exp(-0.001)*firing_rate_estimate + spike_seen*(1-exp(-0.001))*1000
         threshold_adaptation = threshold_adaptation * 0.999
-        threshold_adaptation = clip(
-            threshold_adaptation + 0.001*(firing_rate_estimate - 10),
-            -10,
-            10
-        )
+        threshold_adaptation = clip(threshold_adaptation + 0.001*(firing_rate_estimate - 10), -10, 10)
         """,
         dt=1 * ms,
         when="after_resets",
@@ -84,9 +87,10 @@ def run_one_tick(input_current: float) -> ProbeResult:
         name="mhrn_post_tick",
     )
 
-    net = Network(group, *group.contained_objects)
-    net.run(1 * ms)
+    return group, Network(group, *group.contained_objects)
 
+
+def _snapshot(group: NeuronGroup) -> ProbeResult:
     return ProbeResult(
         v=float(group.v[0]),
         u=float(group.u[0]),
@@ -94,3 +98,21 @@ def run_one_tick(input_current: float) -> ProbeResult:
         firing_rate_estimate=float(group.firing_rate_estimate[0]),
         spiked=bool(group.spike_seen[0]),
     )
+
+
+def run_trajectory(input_currents: list[float]) -> list[ProbeResult]:
+    """Run a persistent one-neuron trajectory for the supplied per-tick currents."""
+
+    group, net = _build_probe()
+    results: list[ProbeResult] = []
+    for current in input_currents:
+        group.input_current = float(current)
+        net.run(1 * ms)
+        results.append(_snapshot(group))
+    return results
+
+
+def run_one_tick(input_current: float) -> ProbeResult:
+    """Run exactly one 1-ms tick using explicit MHRN-compatible update ordering."""
+
+    return run_trajectory([float(input_current)])[0]

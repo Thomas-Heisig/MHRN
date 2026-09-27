@@ -6,7 +6,7 @@ on:
       - develop
     paths:
       - research/preregistrations/PREREG-S1-TOPO-REFERENCE-R1.json
-      - reference/stage1_topology_brian2/**
+      - reference/**
       - scripts/audit_stage1_reference_mechanisms.py
       - scripts/check_stage1_reference_seed_freshness.py
       - scripts/check_stage1_reference_independence.py
