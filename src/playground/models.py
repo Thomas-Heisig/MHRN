@@ -74,6 +74,22 @@ class PlaygroundConfig:
     cuda_budget_mb: int = 2048
     offload_enabled: bool = False
     offload_snapshot_interval: int = 1000
+    hardware_profile_name: str = "reference_cpu"
+    thalamic_gating_enabled: bool = False
+    thalamic_relay_threshold: float = 0.05
+    thalamic_attention_gain: float = 1.15
+    thalamic_inhibition_gain: float = 0.35
+    cortical_layers_enabled: bool = False
+    cortical_layer_count: int = 6
+    cortical_plasticity: bool = True
+    cortical_learning_rate: float = 0.01
+    behavior_learning_enabled: bool = False
+    behavior_action_count: int = 4
+    behavior_learning_rate: float = 0.05
+    behavior_epsilon: float = 0.05
+    behavior_target_action: int = 0
+    behavior_episode_ticks: int = 16
+    behavior_bias_current: float = 3.0
     geometry_lambda_a: float = 0.5
     geometry_lambda_b: float = 0.5
     geometry_sigma: float = 0.1
@@ -217,6 +233,54 @@ class PlaygroundConfig:
             offload_snapshot_interval=integer(
                 "offload_snapshot_interval", defaults.offload_snapshot_interval
             ),
+            hardware_profile_name=text(
+                "hardware_profile_name", defaults.hardware_profile_name
+            ),
+            thalamic_gating_enabled=bool(
+                payload.get("thalamic_gating_enabled", defaults.thalamic_gating_enabled)
+            ),
+            thalamic_relay_threshold=number(
+                "thalamic_relay_threshold", defaults.thalamic_relay_threshold
+            ),
+            thalamic_attention_gain=number(
+                "thalamic_attention_gain", defaults.thalamic_attention_gain
+            ),
+            thalamic_inhibition_gain=number(
+                "thalamic_inhibition_gain", defaults.thalamic_inhibition_gain
+            ),
+            cortical_layers_enabled=bool(
+                payload.get("cortical_layers_enabled", defaults.cortical_layers_enabled)
+            ),
+            cortical_layer_count=integer(
+                "cortical_layer_count", defaults.cortical_layer_count
+            ),
+            cortical_plasticity=bool(
+                payload.get("cortical_plasticity", defaults.cortical_plasticity)
+            ),
+            cortical_learning_rate=number(
+                "cortical_learning_rate", defaults.cortical_learning_rate
+            ),
+            behavior_learning_enabled=bool(
+                payload.get("behavior_learning_enabled", defaults.behavior_learning_enabled)
+            ),
+            behavior_action_count=integer(
+                "behavior_action_count", defaults.behavior_action_count
+            ),
+            behavior_learning_rate=number(
+                "behavior_learning_rate", defaults.behavior_learning_rate
+            ),
+            behavior_epsilon=number(
+                "behavior_epsilon", defaults.behavior_epsilon
+            ),
+            behavior_target_action=integer(
+                "behavior_target_action", defaults.behavior_target_action
+            ),
+            behavior_episode_ticks=integer(
+                "behavior_episode_ticks", defaults.behavior_episode_ticks
+            ),
+            behavior_bias_current=number(
+                "behavior_bias_current", defaults.behavior_bias_current
+            ),
             geometry_lambda_a=number(
                 "geometry_lambda_a", defaults.geometry_lambda_a
             ),
@@ -344,6 +408,30 @@ class PlaygroundConfig:
             raise ValueError("offload_snapshot_interval must be between 1 and 1000000")
         if self.growth_enabled and self.clock_mode != "dual":
             raise ValueError("growth_enabled requires clock_mode=dual")
+        if self.hardware_profile_name not in {"reference_cpu", "cuda_8gb_balanced_plan"}:
+            raise ValueError("unsupported hardware_profile_name")
+        if not 0.0 <= self.thalamic_relay_threshold <= 1.0:
+            raise ValueError("thalamic_relay_threshold must be between 0 and 1")
+        if not 0.0 <= self.thalamic_attention_gain <= 4.0:
+            raise ValueError("thalamic_attention_gain must be between 0 and 4")
+        if not 0.0 <= self.thalamic_inhibition_gain <= 1.0:
+            raise ValueError("thalamic_inhibition_gain must be between 0 and 1")
+        if not 2 <= self.cortical_layer_count <= 12:
+            raise ValueError("cortical_layer_count must be between 2 and 12")
+        if not 0.0 <= self.cortical_learning_rate <= 1.0:
+            raise ValueError("cortical_learning_rate must be between 0 and 1")
+        if not 2 <= self.behavior_action_count <= 16:
+            raise ValueError("behavior_action_count must be between 2 and 16")
+        if not 0.0 < self.behavior_learning_rate <= 1.0:
+            raise ValueError("behavior_learning_rate must be > 0 and <= 1")
+        if not 0.0 <= self.behavior_epsilon <= 1.0:
+            raise ValueError("behavior_epsilon must be between 0 and 1")
+        if not 0 <= self.behavior_target_action < self.behavior_action_count:
+            raise ValueError("behavior_target_action outside action range")
+        if not 1 <= self.behavior_episode_ticks <= self.ticks:
+            raise ValueError("behavior_episode_ticks must be between 1 and ticks")
+        if not 0.0 <= self.behavior_bias_current <= 100.0:
+            raise ValueError("behavior_bias_current must be between 0 and 100")
         if not 0.0 <= self.geometry_lambda_a <= 10.0:
             raise ValueError("geometry_lambda_a must be between 0 and 10")
         if not 0.0 <= self.geometry_lambda_b <= 10.0:
@@ -456,6 +544,22 @@ class PlaygroundConfig:
             "cuda_budget_mb": self.cuda_budget_mb,
             "offload_enabled": self.offload_enabled,
             "offload_snapshot_interval": self.offload_snapshot_interval,
+            "hardware_profile_name": self.hardware_profile_name,
+            "thalamic_gating_enabled": self.thalamic_gating_enabled,
+            "thalamic_relay_threshold": self.thalamic_relay_threshold,
+            "thalamic_attention_gain": self.thalamic_attention_gain,
+            "thalamic_inhibition_gain": self.thalamic_inhibition_gain,
+            "cortical_layers_enabled": self.cortical_layers_enabled,
+            "cortical_layer_count": self.cortical_layer_count,
+            "cortical_plasticity": self.cortical_plasticity,
+            "cortical_learning_rate": self.cortical_learning_rate,
+            "behavior_learning_enabled": self.behavior_learning_enabled,
+            "behavior_action_count": self.behavior_action_count,
+            "behavior_learning_rate": self.behavior_learning_rate,
+            "behavior_epsilon": self.behavior_epsilon,
+            "behavior_target_action": self.behavior_target_action,
+            "behavior_episode_ticks": self.behavior_episode_ticks,
+            "behavior_bias_current": self.behavior_bias_current,
             "geometry_lambda_a": self.geometry_lambda_a,
             "geometry_lambda_b": self.geometry_lambda_b,
             "geometry_sigma": self.geometry_sigma,
