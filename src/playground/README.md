@@ -161,7 +161,7 @@ The consolidated PAN entry point is:
 
 It combines architecture, implemented mechanisms, current implementation
 results, geometry, literature context, scientific boundaries, open questions
-and all eight Research Candidates.
+and all 18 Research Candidates.
 
 ## PAN exploratory layer
 
