@@ -253,10 +253,40 @@ class MetaTaskGenerator:
 
     categories = ("Personen", "Orte", "Ereignisse", "Konzepte")
     relations = ("ist_verwandt_mit", "arbeitet_mit", "lebte_in", "gehört_zu")
+    category_cues = {
+        "Personen": ("profile", "contact", "biography", "name"),
+        "Orte": ("address", "location", "city", "map"),
+        "Ereignisse": ("date", "meeting", "launch", "incident"),
+        "Konzepte": ("definition", "principle", "method", "model"),
+    }
 
     def __init__(self, seed: int = 0) -> None:
         self.rng = random.Random(seed ^ 0x4D455441)
         self.counter = 0
+
+    def _semantic_category(self, text: str, fallback: str) -> str:
+        lowered = text.lower()
+        for category, cues in self.category_cues.items():
+            if any(cue in lowered for cue in cues):
+                return category
+        return fallback
+
+    def _relation_for(self, left: KnowledgeRecord, right: KnowledgeRecord) -> str:
+        left_category = self._semantic_category(left.text, left.category)
+        right_category = self._semantic_category(right.text, right.category)
+        if left_category == right_category:
+            return "ist_verwandt_mit"
+        if "Personen" in {left_category, right_category} and "Orte" in {
+            left_category,
+            right_category,
+        }:
+            return "lebte_in"
+        if "Personen" in {left_category, right_category} and "Konzepte" in {
+            left_category,
+            right_category,
+        }:
+            return "arbeitet_mit"
+        return "gehört_zu"
 
     def generate(
         self,
@@ -287,7 +317,7 @@ class MetaTaskGenerator:
                 else:
                     record = self.rng.choice(kb.records_for_source(true_source))
                     query = record.text[:240]
-                    category = record.category
+                    category = self._semantic_category(record.text, record.category)
                     target_id = record.record_id
                 return {
                     "type": "find_source",
@@ -301,12 +331,13 @@ class MetaTaskGenerator:
 
         if task_type == "store_info":
             category = self.rng.choice(self.categories)
+            cue = self.rng.choice(self.category_cues[category])
             token = hashlib.sha1(
                 f"{self.counter}:{self.rng.random()}".encode("utf-8")
             ).hexdigest()[:10]
             return {
                 "type": "store_info",
-                "info": f"night-note-{token} category={category}",
+                "info": f"{cue} night-note-{token}",
                 "true_category": category,
                 "possible_categories": list(self.categories),
             }
@@ -315,11 +346,13 @@ class MetaTaskGenerator:
         if len(records) < 2:
             return self.generate(kb, gateway_available=gateway_available)
         left, right = self.rng.sample(records, 2)
-        relation = self.rng.choice(self.relations)
+        relation = self._relation_for(left, right)
         return {
             "type": "link_info",
             "left_id": left.record_id,
             "right_id": right.record_id,
+            "left_hint": left.text[:160],
+            "right_hint": right.text[:160],
             "true_relation": relation,
             "possible_relations": list(self.relations),
         }
