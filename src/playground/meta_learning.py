@@ -205,6 +205,41 @@ class KnowledgeBase:
             "relations": list(self.relations),
         }
 
+    @classmethod
+    def from_snapshot(cls, payload: dict[str, object]) -> "KnowledgeBase":
+        dimensions = int(payload.get("dimensions", 64))
+        kb = cls(dimensions=dimensions)
+        raw_records = payload.get("records", [])
+        if isinstance(raw_records, list):
+            for item in raw_records:
+                if not isinstance(item, dict):
+                    continue
+                text = item.get("text")
+                category = item.get("category")
+                source = item.get("source")
+                if not isinstance(text, str) or not isinstance(category, str) or not isinstance(source, str):
+                    continue
+                location = item.get("location")
+                kb.store_info(
+                    text,
+                    category,
+                    source=source,
+                    location=location if isinstance(location, str) else None,
+                )
+        raw_relations = payload.get("relations", [])
+        if isinstance(raw_relations, list):
+            kb.relations = [
+                {
+                    "left": str(item["left"]),
+                    "right": str(item["right"]),
+                    "relation": str(item["relation"]),
+                }
+                for item in raw_relations
+                if isinstance(item, dict)
+                and {"left", "right", "relation"} <= set(item)
+            ]
+        return kb
+
     def save(self, path: Path) -> None:
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(
