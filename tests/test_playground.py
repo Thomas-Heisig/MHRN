@@ -19,6 +19,8 @@ from src.playground.geometry.metrics import (
     connection_distance,
     cyclic_distance,
 )
+from src.playground.meta_learning import KnowledgeBase, MetaReward, MetaTaskGenerator, text_vector
+from src.playground.night_run import NightRunDaemon, analyze_run
 from src.playground.neural_io import (
     NeuralIOInterface,
     PlaygroundIOAreaAdapter,
@@ -1128,3 +1130,161 @@ def test_live_pan_session_accepts_external_vector_input() -> None:
     result = live.step(4)
     assert result["input_queue_depth"] == 0
     assert result["state_digest"] != before
+
+
+
+def test_meta_text_vector_is_deterministic_and_normalized() -> None:
+    first = text_vector("find this source", 32)
+    second = text_vector("find this source", 32)
+    assert first == second
+    assert len(first) == 32
+    assert sum(value * value for value in first) == pytest.approx(1.0)
+
+
+def test_meta_knowledge_base_find_store_and_link() -> None:
+    kb = KnowledgeBase(dimensions=32)
+    left = kb.store_info("granite stair calculation", "Konzepte")
+    right = kb.store_info("stone installation workflow", "Konzepte")
+    result = kb.find(
+        "granite stair calculation",
+        source="vector_db",
+        category="Konzepte",
+        limit=2,
+    )
+    assert result["found"] is True
+    assert result["matches"][0]["record_id"] == left["record_id"]
+    linked = kb.link(
+        str(left["record_id"]),
+        str(right["record_id"]),
+        "ist_verwandt_mit",
+    )
+    assert linked == {"linked": True, "both_exist": True}
+
+
+def test_meta_task_generator_exposes_three_task_types_without_gateway() -> None:
+    kb = KnowledgeBase()
+    for index, category in enumerate(MetaTaskGenerator.categories):
+        kb.store_info(f"seed record {index}", category)
+    generator = MetaTaskGenerator(seed=2)
+    seen = {generator.generate(kb)["type"] for _ in range(6)}
+    assert {"find_source", "store_info", "link_info"} <= seen
+
+
+def test_meta_reward_scores_strategy_not_payload_storage() -> None:
+    reward = MetaReward()
+    task = {
+        "type": "find_source",
+        "true_source": "vector_db",
+        "true_category": "Konzepte",
+    }
+    result = reward.compute(
+        task,
+        {"source": "vector_db", "category": "Konzepte"},
+        {"found": True},
+    )
+    assert result["source"] == 1.0
+    assert result["category"] == 1.0
+    assert result["retrieval"] == 0.25
+    assert result["total"] == pytest.approx(2.25)
+
+
+def test_behavior_context_policy_accepts_external_reward_and_bias() -> None:
+    learner = BehavioralLearningEngine(
+        n_neurons=16,
+        action_count=4,
+        learning_rate=0.5,
+        epsilon=0.0,
+        episode_ticks=8,
+    )
+    learner.activate_context("find:source", 3)
+    before = learner.bias_currents()
+    action = learner.choose_context_action("find:source", 3)
+    learner.apply_external_reward(
+        context="find:source",
+        action=action,
+        reward=1.0,
+        action_count=3,
+    )
+    after = learner.bias_currents()
+    summary = learner.summary()
+    assert summary["context_updates"]["find:source"] == 1
+    assert summary["context_policies"]["find:source"][action] > 0.0
+    assert after != before
+
+
+def test_live_pan_checkpoint_restores_meta_policy_and_state() -> None:
+    config = PlaygroundConfig.from_mapping(
+        _small_payload(
+            neuron_model="pan_adex_5d",
+            pan_enabled=True,
+            pan_bias_current=15.0,
+            behavior_learning_enabled=True,
+            behavior_action_count=4,
+            execution_mode="TICK_ONLY",
+        )
+    )
+    first = PANLiveSession(config)
+    first.step(16)
+    action = first.choose_strategy("store:category", 4)
+    first.apply_strategy_reward(
+        context="store:category",
+        action=action,
+        reward=1.0,
+        action_count=4,
+    )
+    checkpoint = first.export_checkpoint()
+
+    restored = PANLiveSession(config)
+    restored.import_checkpoint(checkpoint)
+    assert restored.tick == first.tick
+    assert restored.total_spikes == first.total_spikes
+    assert restored.learning.context_policies == first.learning.context_policies
+    assert restored.state_digest() == first.state_digest()
+
+
+def test_night_run_executes_meta_tasks_and_writes_resumable_checkpoint(
+    tmp_path: Path,
+) -> None:
+    daemon = NightRunDaemon(
+        hours=1.0,
+        max_episodes=20,
+        checkpoint_seconds=10.0,
+        output_root=tmp_path,
+        file_roots=[],
+        seed=9,
+    )
+    for _ in range(9):
+        daemon.run_episode()
+    status = daemon.checkpoint()
+    assert status["episode"] == 9
+    assert status["pan"]["total_spikes"] > 0
+    assert all(status["task_counts"][name] > 0 for name in status["task_counts"])
+    assert daemon.checkpoint_path.exists()
+    assert daemon.metrics_path.exists()
+    assert daemon.kb_path.exists()
+    assert daemon.pan.learning.context_updates
+
+    resumed = NightRunDaemon(
+        hours=1.0,
+        max_episodes=20,
+        checkpoint_seconds=10.0,
+        output_root=tmp_path,
+        file_roots=[],
+        seed=9,
+        resume_dir=daemon.run_dir,
+    )
+    assert resumed.episode == daemon.episode
+    assert resumed.pan.tick == daemon.pan.tick
+    assert resumed.pan.learning.context_policies == daemon.pan.learning.context_policies
+
+    analysis = analyze_run(daemon.run_dir)
+    assert analysis["episodes"] == 9
+    assert analysis["scientific_evidence"] is False
+
+
+def test_pan_catalog_exposes_meta_night_run_as_playground_only() -> None:
+    pan = catalog()["pan"]
+    assert pan["meta_learning_status"] == "IMPLEMENTED_CONTEXT_POLICY_REFERENCE"
+    assert pan["knowledge_base_status"] == "IMPLEMENTED_HASH_VECTOR_AND_FILE_INDEX"
+    assert pan["night_run_status"] == "IMPLEMENTED_BOUNDED_RESUMABLE_REFERENCE"
+    assert pan["night_analysis_status"] == "IMPLEMENTED_DESCRIPTIVE_ONLY"
