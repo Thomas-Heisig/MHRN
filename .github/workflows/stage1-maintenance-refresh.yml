@@ -103,6 +103,7 @@ jobs:
             tests/test_stage1_reference_replication_contract.py \
             tests/test_stage1_reference_preflight.py \
             scripts/check_stage1_reference_seed_freshness_r2.py \
+            scripts/verify_stage1_reference_dynamics_reuse_r2.py \
             scripts/run_stage1_reference_topology_mapping_r2.py \
             scripts/verify_stage1_topology_reference_r2.py \
             scripts/freeze_stage1_topology_reference_r2.py \
@@ -174,6 +175,7 @@ jobs:
             tests/test_stage1_reference_replication_contract.py \
             tests/test_stage1_reference_preflight.py \
             scripts/check_stage1_reference_seed_freshness_r2.py \
+            scripts/verify_stage1_reference_dynamics_reuse_r2.py \
             scripts/run_stage1_reference_topology_mapping_r2.py \
             scripts/verify_stage1_topology_reference_r2.py \
             scripts/freeze_stage1_topology_reference_r2.py \
