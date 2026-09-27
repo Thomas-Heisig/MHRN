@@ -144,14 +144,23 @@
     "temporal_order_line_counts_as_topology_replication": false,
     "requirement": "Independently controlled and independently authored/audited preregistered replication.",
     "draft_reference_plan": {
-      "preregistration": "research/preregistrations/PREREG-S1-TOPO-REFERENCE-R1.json",
+      "preregistration": "research/preregistrations/PREREG-S1-TOPO-REFERENCE-R2.json",
       "framework": "Brian2 2.10.1",
-      "status": "DRAFT_BEFORE_REFERENCE_IMPLEMENTATION",
+      "status": "DRAFT_PRE_FREEZE_GATES_PENDING",
       "execution_authorized": false,
+      "mandatory_new_gate": "CAL-S1-TOPO-REFERENCE-TOPOLOGY-MAP-R2",
       "possible_partial_credit_if_successful": 0.075,
       "possible_stage1_maturity_if_successful": 0.925,
       "full_external_replication_still_required": true,
-      "note": "Project-side cross-implementation replication can earn only partial 7.5/15 replication credit; it cannot satisfy the full independent external replication criterion."
+      "note": "R2 supersedes the aborted pre-DATA R1 protocol. Project-side cross-implementation replication can earn only partial 7.5/15 replication credit and requires separate explicit human execution authorization after freeze."
+    },
+    "r1_reference_history": {
+      "preregistration": "research/preregistrations/PREREG-S1-TOPO-REFERENCE-R1.json",
+      "freeze": "research/preregistrations/PREREG-S1-TOPO-REFERENCE-R1.freeze.json",
+      "deviation": "research/decisions/2026-09-27_stage1_reference_r1_prefreeze_deviation.json",
+      "status": "FROZEN_ABORTED_BEFORE_REFERENCE_DATA",
+      "reference_data_created": false,
+      "maturity_credit": 0
     }
   },
   "stronger_claims_kept_separate": [
