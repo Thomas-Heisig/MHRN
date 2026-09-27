@@ -14,6 +14,9 @@ without counting the external knowledge store itself as neural memory.
   read-only file index.
 - `MetaReward`: rewards source/category/relation strategy and execution
   success; it does not reward factual memorization.
+- Context policies use current PAN action-population activity as features; reward
+  updates a small linear policy over that neural activity rather than a global
+  most-frequent-action table.
 - `NightRunDaemon`: bounded episode loop, signals, JSONL logging, resumable
   checkpoints and automatic descriptive analysis.
 - `NightRunManager`: at most one active in-process Dashboard night run.
