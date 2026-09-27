@@ -213,12 +213,8 @@ def test_smoke_launch_inputs_match_compiler_abi() -> None:
     assert shape["n_neurons"] == 12
     assert len(inputs.channel_masks) == 12
     assert len(inputs.amplitudes) == shape["input_channels"]
-    assert len(inputs.action_map) == (
-        shape["action_count"] * shape["input_channels"]
-    )
-    assert len(inputs.feedback_matrix) == (
-        shape["n_neurons"] * shape["pan_dimensions"]
-    )
+    assert len(inputs.action_map) == (shape["action_count"] * shape["input_channels"])
+    assert len(inputs.feedback_matrix) == (shape["n_neurons"] * shape["pan_dimensions"])
     assert len(inputs.logits) == shape["n_neurons"] * shape["action_count"]
     assert all(mask == 0xFF for mask in inputs.channel_masks)
 
@@ -244,7 +240,6 @@ def test_gate_launch_input_validation_fails_closed_on_bad_shape() -> None:
 
     with pytest.raises(ValueError, match="amplitudes length"):
         validate_gate_launch_inputs(bundle, broken)
-
 
 
 def test_cpu_gate_reference_matches_nontrivial_minimal_loop_math() -> None:
@@ -293,7 +288,8 @@ def test_cpu_gate_reference_matches_nontrivial_minimal_loop_math() -> None:
             0.0,
             0.0,
         ],
-        feedback_matrix=[0.0] * (2 * int(bundle.manifest["kernel_abi"]["pan_dimensions"])),
+        feedback_matrix=[0.0]
+        * (2 * int(bundle.manifest["kernel_abi"]["pan_dimensions"])),
         population=[0.0] * int(bundle.manifest["kernel_abi"]["pan_dimensions"]),
         logits=[
             0.1,
