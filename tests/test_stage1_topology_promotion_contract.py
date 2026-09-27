@@ -55,14 +55,15 @@ def test_promotion_preserves_v3_r1_matched_small_snn_envelope() -> None:
     )
 
 
-def test_scoped_claim_exists_without_retroactive_evidence() -> None:
+def test_scoped_claim_tracks_explicit_evidence_without_retroactive_history_edit() -> None:
     claims = yaml.safe_load(CLAIMS.read_text(encoding="utf-8")) or []
     claim = next(item for item in claims if item["id"] == "CLAIM-S1-TOPO-001")
 
     assert claim["research_question"] == "RQ-SNN-003"
     assert claim["hypothesis"] == "H-SNN-003-B"
-    assert claim["evidence"] == []
-    assert claim["status"] == "untested"
+    assert claim["evidence"] == ["EVID-2026-19"]
+    assert claim["status"] == "inconclusive"
+    assert "EXP-S1-TOPO-PROMO-R1-20260927" in claim["experiments"]
 
 
 def test_runner_refuses_unfrozen_or_unauthorized_execution() -> None:
