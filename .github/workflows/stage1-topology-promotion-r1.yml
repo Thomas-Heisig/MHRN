@@ -56,10 +56,15 @@ jobs:
                   encoding="utf-8"
               )
           )
+          experiment_exists = Path(
+              "research/experiments/EXP-S1-TOPO-PROMO-R1-20260927"
+          ).exists()
           authorized = (
               prereg.get("status") == "FROZEN_BEFORE_PROMOTION_REPLICATION"
               and prereg.get("execution_authorized") is True
+              and not experiment_exists
           )
+          print(f"experiment_exists={experiment_exists}")
           with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as stream:
               stream.write(f"authorized={'true' if authorized else 'false'}\n")
           print(f"authorized={authorized}")
