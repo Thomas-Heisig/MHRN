@@ -160,7 +160,7 @@ def catalog() -> dict[str, object]:
             "klein_bottle_status": "NOT_IMPLEMENTED",
             "modes": ["mixed_additive", "shortcut_union"],
             "activity_dependent_positioning_status": "NOT_IMPLEMENTED",
-            "neurogenesis_status": "PLAYGROUND_FIXED_CAPACITY_REACTIVATION_ONLY",
+            "neurogenesis_status": "NOT_IMPLEMENTED",
             "literature_context": geometry_literature_context(),
         },
         "limits": {
