@@ -846,9 +846,15 @@ def test_pan_catalog_keeps_hardware_coupling_exploratory() -> None:
     assert pan["gate_generation_status"] == "IMPLEMENTED_REFERENCE"
     assert pan["dual_clock_status"] == "IMPLEMENTED_REFERENCE"
     assert pan["generative_growth_status"] == ("IMPLEMENTED_FIXED_CAPACITY_REFERENCE")
-    assert pan["cuda_backend_status"] == "MEMORY_ESTIMATE_ONLY"
-    assert pan["persistent_cuda_kernel_status"] == "NOT_IMPLEMENTED"
-    assert pan["dynamic_parallelism_status"] == "NOT_IMPLEMENTED"
+    assert pan["cuda_backend_status"] == (
+        "GATE_CODEGEN_REFERENCE_IMPLEMENTED_GPU_EXECUTION_NOT_CLAIMED"
+    )
+    assert pan["persistent_cuda_kernel_status"] == (
+        "COOPERATIVE_SOURCE_SCAFFOLD_IMPLEMENTED_NOT_EXECUTED"
+    )
+    assert pan["dynamic_parallelism_status"] == (
+        "NOT_USED_STRUCTURAL_BARRIER_PHASE_REQUIRED"
+    )
     assert pan["hardware_coupling_status"] == "NOT_IMPLEMENTED_EXPLORATORY_IDEA"
     assert pan["thermal_feedback_status"] == "NOT_IMPLEMENTED_EXPLORATORY_IDEA"
 

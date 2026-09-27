@@ -8,6 +8,7 @@ from typing import Mapping
 from .analysis import ensemble_summary
 from .builder.session import PlaygroundSession
 from .closed_loop import closed_loop_catalog
+from .cuda import compiler_catalog
 from .geometry import geometry_literature_context
 from .models import PlaygroundConfig
 from .neural_io import CODEC_CATALOG, DECODER_CATALOG
@@ -107,9 +108,9 @@ def catalog() -> dict[str, object]:
             "execution_equivalence": "NOT_MATHEMATICALLY_EQUIVALENT",
             "execution_transition_check": "SHARED_STATE_INTEGRITY_ONLY",
             "generative_growth_status": "IMPLEMENTED_FIXED_CAPACITY_REFERENCE",
-            "cuda_backend_status": "MEMORY_ESTIMATE_ONLY",
-            "persistent_cuda_kernel_status": "NOT_IMPLEMENTED",
-            "dynamic_parallelism_status": "NOT_IMPLEMENTED",
+            "cuda_backend_status": "GATE_CODEGEN_REFERENCE_IMPLEMENTED_GPU_EXECUTION_NOT_CLAIMED",
+            "persistent_cuda_kernel_status": "COOPERATIVE_SOURCE_SCAFFOLD_IMPLEMENTED_NOT_EXECUTED",
+            "dynamic_parallelism_status": "NOT_USED_STRUCTURAL_BARRIER_PHASE_REQUIRED",
             "hardware_coupling_status": "NOT_IMPLEMENTED_EXPLORATORY_IDEA",
             "thermal_feedback_status": "NOT_IMPLEMENTED_EXPLORATORY_IDEA",
             "thalamic_gating_status": "IMPLEMENTED_FUNCTIONAL_REFERENCE",
@@ -140,6 +141,7 @@ def catalog() -> dict[str, object]:
             ),
         },
         "closed_loop": closed_loop_catalog(),
+        "cuda_gate_compiler": compiler_catalog(),
         "neural_io": {
             "available": True,
             "classification": "PLAYGROUND_NEURAL_IO",

@@ -1541,3 +1541,182 @@ CUDA-1:
 ```
 
 Damit ist Stage CUDA-0 nicht nur ein Performanceentwurf, sondern ein vollständiger **Identitäts-, State- und Execution-Contract für die spätere GPU-Beschleunigung**.
+
+---
+
+# 48. Playground-Gate-Compiler und CUDA-1-Preflight
+
+Der nicht-kanonische Playground besitzt ab PR #220 eine technische
+Gate-Codegen-Referenz:
+
+```text
+PlaygroundConfig
+    -> Gate-IR
+    -> PTX reference kernel
+    -> optional ptxas assembly
+    -> optional CUDA Driver API load
+```
+
+Diese Implementierung ändert die wissenschaftliche Einstufung nicht:
+
+```text
+scientific_evidence = false
+canonical_cuda_backend = false
+```
+
+Insbesondere bedeutet erzeugter oder erfolgreich assemblierter PTX noch nicht,
+dass ein vollständiger MHRN-CUDA-Backendvergleich abgeschlossen ist.
+
+## 48.1 Physischer Registerverbrauch
+
+Symbolische bzw. virtuelle PTX-Register sind kein gemessener Hardwareverbrauch.
+
+Deshalb gilt:
+
+```text
+physical_register_count
+    = ptxas measurement
+```
+
+und nicht eine aus dem IR abgeleitete feste Zahl.
+
+Der CUDA-1-Preflight erfasst mindestens:
+
+```text
+registers
+shared bytes
+constant bytes
+stack bytes
+spill stores
+spill loads
+target architecture
+```
+
+aus dem tatsächlichen `ptxas --verbose`-Report.
+
+## 48.2 Cooperative-Grid-Grenze
+
+`grid.sync()` ist nur mit einem kooperativ gestarteten Kernel zulässig.
+Außerdem muss das gesamte kooperative Grid gleichzeitig resident sein können.
+
+Die zulässige Grid-Größe wird daher nicht aus der SM-Zahl allein abgeleitet.
+
+Normative Vorprüfung:
+
+```text
+active_blocks_per_sm =
+    occupancy(kernel, block_size, dynamic_shared_memory)
+
+resident_block_capacity =
+    multiprocessor_count * active_blocks_per_sm
+
+required_blocks =
+    ceil(n_neurons / block_size)
+
+cooperative_launch_allowed =
+    device_supports_cooperative_launch
+    and required_blocks <= resident_block_capacity
+```
+
+Damit ist beispielsweise:
+
+```text
+28 SM
+```
+
+keine Aussage darüber, ob nur 28 Blöcke resident sein können.
+Je nach Register-, Shared-Memory- und Threadbedarf können mehrere oder auch
+weniger aktive Blöcke pro SM möglich sein.
+
+Die konkrete Grenze ist somit:
+
+> **kernel- und gerätespezifisch und vor dem Launch zu messen.**
+
+Eine Konfiguration, deren vollständiges Grid nicht resident sein kann, darf
+nicht mit `grid.sync()` gestartet werden.
+
+## 48.3 Fallback bei zu großem Grid
+
+Wenn:
+
+```text
+required_blocks > resident_block_capacity
+```
+
+darf die Runtime nicht stillschweigend dieselbe Semantik behaupten.
+
+Zulässige spätere Strategien sind beispielsweise:
+
+```text
+multi-kernel tick phases
+host/device phase barrier
+partitionierter Algorithmus mit neuem Execution Contract
+```
+
+Jede Strategie erhält einen eigenen Execution-Fingerprint und eigene
+Äquivalenztests.
+
+## 48.4 membar.gl bleibt Speicher-Fence
+
+```text
+membar.gl
+```
+
+ist ausschließlich eine Speicherordnungs-/Sichtbarkeitsoperation und keine
+Grid-Barriere.
+
+Block-interne Barriere:
+
+```text
+bar.sync / __syncthreads()
+```
+
+Grid-Barriere:
+
+```text
+cooperative_groups::grid_group::sync()
+```
+
+mit kooperativem Launch.
+
+## 48.5 Structural Growth
+
+Die Playground-Referenz verwendet für strukturelle Mutation zunächst:
+
+```text
+completed tick
+    -> explicit structural barrier
+    -> host/rebuild phase
+    -> next execution segment
+```
+
+CUDA Dynamic Parallelism ist in diesem ersten kooperativen persistenten Pfad
+nicht Bestandteil des Execution Contracts.
+
+## 48.6 CUDA-1-Paritätsstufen
+
+CUDA-1 wird nicht unmittelbar mit einer vollständigen 2000-Tick-SNN-Äquivalenz
+gleichgesetzt.
+
+Die Reihenfolge ist:
+
+```text
+1. PTX assembly validity
+2. cubin/module/function load
+3. cooperative occupancy preflight
+4. deterministic gate-output parity
+5. neuron-integrator parity
+6. synapse/plasticity parity
+7. full trace parity under a frozen Execution Contract
+```
+
+Ein Gate-Paritätstest vergleicht daher zunächst gleiche Eingaben mit gleichen
+Gate-Ausgängen und ist ausdrücklich:
+
+```text
+GATE_OUTPUT_ONLY_NOT_FULL_SNN
+```
+
+Erst nach Integration des vollständigen Neuron-/Synapsenpfades dürfen
+Spike-, Gewichts- oder Erfolgsmetriken als CPU-CUDA-Backendvergleich verwendet
+werden.
