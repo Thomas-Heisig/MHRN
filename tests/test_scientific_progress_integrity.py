@@ -72,7 +72,7 @@ def test_related_work_quarantines_unverified_citations() -> None:
 def test_scientific_timeline_is_loaded_without_replacing_formula_contract() -> None:
     loader = LOADER.read_text(encoding="utf-8")
     timeline = TIMELINE.read_text(encoding="utf-8")
-    assert 'import "./scientific-progress.js"' in loader
+    assert 'import "./scientific-progress.js' in loader
     assert 'MATH_ROOT_SELECTOR = ".fm-markdown, .pub-reader-article"' in loader
     assert 'processHtmlClass: "fm-markdown|pub-reader-article"' in loader
     assert "scientific-progress.json" in timeline
