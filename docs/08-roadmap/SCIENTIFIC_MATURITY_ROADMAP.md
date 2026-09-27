@@ -53,10 +53,18 @@ Die fehlenden historischen EvidenceEngine-Provenienzfelder des V2-Laufs wurden n
 
 **EVID-Grenze:** Das 20-%-Kriterium `reviewed_evidence` ist für die zentrale Topologielinie erfüllt. `EVID-2026-19` gilt nur für den 64-Neuronen-/246-Kanten-/Weight-55-/128-Tick-Small-SNN-Betriebsbereich. Die nicht signifikanten Half-Activation-Latency-Kontraste bleiben Teil der Evidenz. Weder 5D-Überlegenheit noch Skalierung, Kognition, biologische Äquivalenz oder unabhängige Replikation werden daraus abgeleitet.
 
+**Maturity-Buchhaltung:** Der Reviewed-Evidence-Block ist mit 20/20 bereits gesättigt. Eine zusätzliche erfolgreiche Efficiency-EVID könnte deshalb den Stage-1-Score nicht über 85 % anheben. Der nächste mögliche Maturity-Zuwachs kann ausschließlich aus dem Replikationsblock kommen.
+
+**Efficiency-Linie:** `CLAIM-S1-EFFICIENCY-001 / H-SNN-003-C` bleibt `untested`. `PREREG-S1-TOPO-EFFICIENCY-R1` ist nach einer gültigen negativen Pre-Freeze-Kalibration `DRAFT_CALIBRATION_GATE_FAILED_FREEZE_BLOCKED`; die Recruitment-Matching-Gates wurden nicht erreicht. Keine Evaluation, keine EVID, kein Maturity-Credit.
+
+**Reference-Replikation:** `PREREG-S1-TOPO-REFERENCE-R1` ist als projektseitige Brian2-2.10.1-Cross-Implementation für maximal **7,5/15 Replikationspunkte** vorbereitet. Vor Reference-DATA müssen Mechanismen-Audit, Ein-/Mehrtick-Integratorparität, Reset-Parität, Synapsen-/Delay-Parität, Code-Blinding/Unabhängigkeit und Seed-Freshness bestanden und source-bound eingefroren sein. Erfolg könnte Stage 1 auf 92,5 % anheben; Failed/Incomplete/Inconclusive erhöhen den Score nicht. Volle 15/15 bleiben externer unabhängiger Replikation vorbehalten.
+
 Offen:
-- unabhängig implementierte Referenz-/Cross-Implementation-Replikation der Topologielinie für den nächsten 7,5-%-Schritt,
-- prospektiver Temporal-Order-Decoder/Task-Stresstest zur Auflösung der Perfect-Score-Sättigung,
-- `CLAIM-S1-EFFICIENCY-001 / H-SNN-003-C` als getrennte untested Effizienzlinie,
+- alle Reference-Pre-Freeze-Gates grün und hashgebunden abschließen,
+- vollständigen unabhängigen Brian2-Runner und getrennten Verifier ohne MHRN-Runtime-Imports fertigstellen,
+- Reference-DATA erst nach Freeze und expliziter Autorisierung ausführen,
+- prospektiven Temporal-Order-Decoder/Task-Stresstest zur Auflösung der Perfect-Score-Sättigung separat behandeln,
+- für die blockierte Efficiency-R1 keine Parameter nachjustieren; ein neues Design benötigt eine neue versionierte Preregistration,
 - getrennte größere Prüfung von `H-5D-005-A`.
 
 ## Stage 2 – Stabiles rekurrentes SNN
