@@ -3,11 +3,11 @@
   "version": "0.6.0-alpha.7",
   "pep440": "0.6.0a7",
   "status": "release_candidate",
-  "title": "Public Alpha.7 Repository Hardening Release",
+  "title": "MHRN v0.6.0-alpha.7 — Stage-1 Evidence, Playground and CUDA Preflight Release",
   "parent": "v0.6.0-alpha.6",
   "gate": "pending_release_pr",
-  "as_of": "2026-09-21",
-  "milestone_status": "public_repository_hardening_release_candidate",
+  "as_of": "2026-09-27",
+  "milestone_status": "alpha7_release_candidate_from_2026_09_27_develop",
   "release_blockers": 0,
   "scope": [
     "release-only main with develop as the canonical integration branch",
@@ -19,7 +19,13 @@
     "standalone software, topology and recursive-epistemics paper objects in the publication catalog",
     "repository security baseline, CODEOWNERS and protected-branch guidance",
     "MHRN identity cleanup across active CI and public repository surfaces",
-    "scientific DATA/EVID and replication boundaries preserved unchanged"
+    "scientific DATA/EVID and replication boundaries preserved unchanged",
+    "Stage-0 scientific maturity reconciled at 92.5% with scoped EVID-2026-18",
+    "Stage-1 scientific maturity reconciled at 85% with topology EVID-2026-19 and temporal-order EVID-2026-20",
+    "Brian2 2.10.1 reference-replication R2 path with CeCILL 2.1 attribution and fail-closed pre-freeze gates",
+    "Playground PAN/closed-loop/live-monitor consolidation without scientific DATA/EVID promotion",
+    "Playground CUDA/PTX Gate-IR compiler, ptxas/driver preflight, CPU determinism and D1/D2/D3 parity contracts",
+    "Playground treated as a non-canonical repository workspace rather than a permanent branch"
   ],
   "completed": [
     "v0.6 compatibility, benchmark, storage, determinism and migration foundation",
@@ -55,14 +61,22 @@
     "Dependabot updates redirected to develop",
     "public README, contribution guide, open-science routing and release checklist aligned with the branch model",
     "three standalone paper strands registered and exposed through the Publication Reader",
-    "repository security baseline and CODEOWNERS integrated"
+    "repository security baseline and CODEOWNERS integrated",
+    "Stage-0 scoped model-conformance promotion registered as EVID-2026-18 while independent replication remains separate",
+    "Stage-1 topology promotion registered as EVID-2026-19 with bounded 64-neuron claim scope",
+    "Stage-1 temporal-order promotion registered as EVID-2026-20 with ceiling/floor limitations preserved",
+    "Stage-1 efficiency pre-freeze calibration retained as a negative gate result with no EVID or maturity credit",
+    "Stage-1 Brian2 reference R1 superseded before DATA and R2 established with explicit topology mapping and attribution",
+    "Playground PAN night-run, closed-loop builder, live monitor, posture reward, presets and session cleanup integrated",
+    "Playground CUDA preflight stack integrated with PTX 7.1/sm_86 compatibility checks, physical ptxas resource reporting, cooperative-launch preflight and fail-closed parity references",
+    "README, changelog and roadmap aligned to the 27 September 2026 integration state"
   ],
   "open": [
-    "complete remaining human scientific reviews and make explicit EVID decisions without automatic promotion",
-    "obtain independent external replication of central claims; positive, negative and null results are all admissible",
-    "continue Stage-6 semanticization controls, continual-learning evaluation, prediction-error and world-model validation under preregistered protocols",
-    "continue prediction-error and world-model validation under preregistered controls",
-    "complete systematic prior-art and external similarity/source review before formal manuscript submission",
+    "complete remaining Human Reviews including EXP-GEN-0041 and EXP-S6-SEM-CL-003 without automatic EVID promotion",
+    "complete and explicitly authorize the Stage-1 Brian2 R2 reference replication only after all frozen pre-execution gates are source-bound",
+    "obtain genuinely external independent replication of central claims; positive, negative and null results are all admissible",
+    "continue Stage-6 semanticization, prediction-error and world-model work under preregistered controls",
+    "advance CUDA beyond generated/assembled/loaded preflight only through separately verified execution and CPU/CUDA equivalence stages",
     "record the external Zenodo DOI only after the archive actually exists; DOI assignment is not scientific review"
   ],
   "scientific_maturity": {
@@ -81,27 +95,35 @@
     "novelty_claim": "requires_prior_art_review"
   },
   "research_boundary": "Engineering implementation, technical verification, UI/API availability and DATA collection are not equivalent to scientific EVID. Scientific maturity is tracked independently through registered questions, frozen protocols, source-bound DATA, human-reviewed EVID, independent replication and attribution. No stage score establishes AGI, consciousness, sentience or biological equivalence.",
-  "note": "Alpha.7 is a repository-hardening and public-readiness pre-release. It changes branch/release governance, active workflow hygiene, publication discoverability and visitor-facing repository structure; it does not create new scientific EVID or independent replication.",
+  "note": "Alpha.7 consolidates the current governed Stage-0/Stage-1 evidence state, Brian2 reference-replication preparation, the non-canonical Playground/PAN workbench, and CUDA/PTX preflight infrastructure. It does not claim a completed CUDA SNN backend, 5D superiority, cognition, biological equivalence, independent replication or automatic scientific promotion.",
   "target_tag": "v0.6.0-alpha.7",
   "publish_requested": true,
   "release_type": "pre-release",
   "development_state": {
     "status": "release_candidate",
-    "engineering": "candidate_from_exact_green_develop_freeze",
+    "engineering": "candidate_from_2026_09_27_develop_integration_state",
     "integration_branch": "develop",
-    "integration_freeze_commit": "04f2cd76fa5d18c08a903f3e30aa275afdec31a6",
-    "summary": "Alpha.7 is prepared from an exact green develop integration state. The release tag is created only after the release PR merges to main and post-merge CI succeeds."
+    "integration_freeze_commit": "f267ffe5f17877149e47e39adcc1a095b6618d67",
+    "release_branch": "release/v0.6.0-alpha.7",
+    "summary": "Alpha.7 is prepared from develop commit f267ffe5f17877149e47e39adcc1a095b6618d67 plus release-only documentation/metadata commits. The authoritative main source freeze is established by the release PR merge."
   },
   "scientific_state": {
     "status": "active_research_not_scientifically_complete",
     "publication": "Recursive Epistemics / Rekursive Epistemik 1.8 — current WIP",
-    "evidence": "DATA und scoped reviewed EVID koexistieren; keine pauschale wissenschaftliche Freigabe",
-    "external_replication": "requested_not_complete",
-    "ai_methodology": "explicitly_disclosed_and_itself_part_of_methodological_research",
-    "summary": "Technische Reife, wissenschaftliche Evidenz und externe Geltung bleiben getrennte Achsen. Unabhängige Replikation und externe Kritik sind ausdrücklich gesucht."
+    "stage0_scientific_maturity": 0.925,
+    "stage1_scientific_maturity": 0.85,
+    "evidence": [
+      "EVID-2026-18",
+      "EVID-2026-19",
+      "EVID-2026-20"
+    ],
+    "independent_replication": "requested_not_complete",
+    "brian2_reference_path": "PREREG-S1-TOPO-REFERENCE-R2",
+    "automatic_evidence_promotion": false,
+    "summary": "Stage 0 and Stage 1 have scoped reviewed EVID, while independent replication remains incomplete. Playground/CUDA engineering does not contribute scientific evidence."
   },
   "publication_state": {
-    "github_release": "pending_post_merge_green_main",
+    "github_release": "pending_release_pr_and_green_main",
     "github_tag": "v0.6.0-alpha.7",
     "zenodo": "awaiting_github_release_archive",
     "doi": null,
@@ -111,7 +133,7 @@
     "hosted_dashboard_privacy": "deployment_specific_details_pending",
     "source_freeze_commit": null
   },
-  "date": "2026-09-21",
+  "date": "2026-09-27",
   "tag": null,
   "commit": null,
   "source_freeze_commit": null
