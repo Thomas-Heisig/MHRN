@@ -1,0 +1,123 @@
+{
+  "experiment_id": "EXP-S1-TEMP-PROMO-R1-20260927",
+  "experiment_status": "completed",
+  "ai_exposure": "none",
+  "ai_reproducibility": "R0",
+  "ai_protocol": {
+    "version": 1,
+    "bump_reason": "initial registration"
+  },
+  "causal_taint": "PURE",
+  "ai_interactions": [],
+  "causal_card": {
+    "classification": "PURE",
+    "interaction_ids": [],
+    "roles": []
+  },
+  "timestamp": "2026-09-27T08:22:49.163456",
+  "created_at": "2026-09-27T08:22:49.163465+00:00",
+  "git": {
+    "commit": "07d396dd116c5e9173f0d6f0bb9fa09483949ce4",
+    "dirty": false,
+    "branch": "develop"
+  },
+  "software": {
+    "python": "3.13.15",
+    "os": "Linux 6.17.0-1022-azure",
+    "brain5d_version": "0.6.0a7"
+  },
+  "simulation": {
+    "seeds": [
+      860001,
+      860002,
+      860022,
+      860023,
+      860024,
+      860025,
+      860026,
+      860027,
+      860028,
+      860029,
+      860030,
+      860031,
+      860032,
+      860033,
+      860034,
+      860035,
+      860036,
+      860037,
+      860038,
+      860039
+    ],
+    "dt_ms": 1.0,
+    "neuron_count": 6,
+    "edge_count": 4,
+    "arms": [
+      "intact",
+      "identity_destroyed"
+    ],
+    "orders": [
+      "forward",
+      "reverse",
+      "simultaneous"
+    ]
+  },
+  "artifacts": {
+    "evaluation_data": "data/evaluation.json",
+    "statistics": "analysis/statistics.json",
+    "report": "report.md",
+    "preregistration": "research/preregistrations/PREREG-S1-TEMP-PROMO-R1.json"
+  },
+  "research_questions": [
+    "RQ-TEMP-002"
+  ],
+  "hypotheses": [
+    "H-TEMP-002-A"
+  ],
+  "config": {
+    "path": "research/preregistrations/PREREG-S1-TEMP-PROMO-R1.json",
+    "sha256": "7f808ee700b40771e297d360e5368ff5ce78349bec18e6b486b994f778faffec"
+  },
+  "validity": {
+    "valid": true,
+    "reason": null,
+    "runtime_error_count": 0,
+    "fatal_error_count": 0
+  },
+  "runtime_errors": [],
+  "research_run_mode": "REPLICATION",
+  "data_partitions": [
+    "SCIENTIFIC_HOLDOUT"
+  ],
+  "network_mode": "OFFLINE",
+  "confirmatory_lock": {
+    "protocol_digest": "19fda0314a25752c2ed9e9131c84af31643225d5d1fbcff1b588ce05ad4131c8",
+    "prompt_digest": "2b794176d1e243819e5dbf8e1dfafb08c11d778ecb05adca34ce905ad04a15ea",
+    "analysis_digest": "121f551ce5549704ccbfd6a4d000d655bc8ee05f06aa00ec6bae9b2bcf0a2aa7",
+    "locked": true
+  },
+  "provenance_digests": {
+    "code": "e13e1eb6dc8822466ddb2e257de94fdf499eaa55dafcd1775df751c752344510",
+    "config": "7f808ee700b40771e297d360e5368ff5ce78349bec18e6b486b994f778faffec",
+    "prompt": "2b794176d1e243819e5dbf8e1dfafb08c11d778ecb05adca34ce905ad04a15ea",
+    "data": "adf3e2755d9598a0202021cee1d67b52953fdc270690504b5b5442160f5dc41c"
+  },
+  "source_freeze_sha": "1239ada71c105c4caf69ac683e3caeb2a6580f5e012c004391c2f4247c73e706",
+  "results": {
+    "claim_id": "CLAIM-S1-TEMP-001",
+    "protocol": "stage1_two_channel_temporal_order_v2",
+    "replication_class": "INTERNAL_PROMOTION_REPLICATION",
+    "result_status": "SUPPORTED_WITHIN_PREREGISTERED_PROTOCOL",
+    "design_integrity_passed": true,
+    "intact_order_accuracy_median": 1.0,
+    "identity_destroyed_order_accuracy_median": 0.0,
+    "paired_accuracy_delta_median": 1.0,
+    "automatic_evidence_promotion": false,
+    "scientific_evidence": false,
+    "human_review_required": true,
+    "independent_authorship_replication": false
+  },
+  "runtime": {
+    "duration_seconds": 0.17449034600002733
+  }
+}

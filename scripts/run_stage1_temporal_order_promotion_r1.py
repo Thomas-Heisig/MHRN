@@ -100,7 +100,8 @@ def _integrity(
 ) -> dict[str, Any]:
     seeds = {int(v) for v in prereg["evaluation"]["seeds"]}
     checks = {
-        "run_count": len(runs) == len(seeds) * len(temporal.ARMS) * len(temporal.ORDERS),
+        "run_count": len(runs)
+        == len(seeds) * len(temporal.ARMS) * len(temporal.ORDERS),
         "coverage": all(
             sum(
                 int(r["seed"]) == seed and r["arm"] == arm and r["order"] == order
@@ -129,8 +130,7 @@ def _integrity(
             == 1
             for seed in seeds
         ),
-        "arm_set": {str(r["arm"]) for r in runs}
-        == {"intact", "identity_destroyed"},
+        "arm_set": {str(r["arm"]) for r in runs} == {"intact", "identity_destroyed"},
         "order_set": {str(r["order"]) for r in runs}
         == {"forward", "reverse", "simultaneous"},
         "historical_seed_disjoint": seeds.isdisjoint(HISTORICAL_SEEDS),

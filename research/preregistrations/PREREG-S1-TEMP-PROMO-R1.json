@@ -6,7 +6,7 @@
   "hypothesis": "H-TEMP-002-A",
   "protocol": "stage1_two_channel_temporal_order_v2",
   "mode": "CONFIRMATORY_INTERNAL_PROMOTION_REPLICATION",
-  "execution_authorized": false,
+  "execution_authorized": true,
   "scientific_evidence": false,
   "automatic_evidence_promotion": false,
   "human_review_required": true,
@@ -146,7 +146,7 @@
       "inconclusive"
     ]
   },
-  "status": "DRAFT_BEFORE_PROMOTION_REPLICATION",
+  "status": "FROZEN_BEFORE_PROMOTION_REPLICATION",
   "claim_id": "CLAIM-S1-TEMP-001",
   "parent_preregistration_id": "PREREG-S1-TEMP-ORDER-V2",
   "predecessor_experiment": "EXP-S1-TEMP-ORDER-V2-20260919",
@@ -180,5 +180,13 @@
     "statistics_path": "research/experiments/EXP-S1-TEMP-PROMO-R1-20260927/analysis/statistics.json",
     "report_path": "research/experiments/EXP-S1-TEMP-PROMO-R1-20260927/report.md",
     "canonical_review_path": "research/experiments/EXP-S1-TEMP-PROMO-R1-20260927/human_review.json"
+  },
+  "frozen_on": "2026-09-27",
+  "execution_authorization": {
+    "scope": "single_execution_of_EXP-S1-TEMP-PROMO-R1-20260927",
+    "target_branch": "develop",
+    "overwrite_existing_experiment": false,
+    "automatic_evidence_promotion": false,
+    "human_review_after_execution": true
   }
 }

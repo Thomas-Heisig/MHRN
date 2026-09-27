@@ -1,0 +1,185 @@
+{
+  "analysis": {
+    "gates": {
+      "bootstrap_ci_excludes_zero": true,
+      "identity_destroyed_ceiling": true,
+      "intact_order_accuracy": true,
+      "paired_delta": true,
+      "paired_sign_test": true,
+      "simultaneous_control": true
+    },
+    "per_seed": [
+      {
+        "identity_destroyed_order_accuracy": 0.0,
+        "intact_order_accuracy": 1.0,
+        "intact_simultaneous_success": true,
+        "paired_accuracy_delta": 1.0,
+        "seed": 860001
+      },
+      {
+        "identity_destroyed_order_accuracy": 0.0,
+        "intact_order_accuracy": 1.0,
+        "intact_simultaneous_success": true,
+        "paired_accuracy_delta": 1.0,
+        "seed": 860002
+      },
+      {
+        "identity_destroyed_order_accuracy": 0.0,
+        "intact_order_accuracy": 1.0,
+        "intact_simultaneous_success": true,
+        "paired_accuracy_delta": 1.0,
+        "seed": 860022
+      },
+      {
+        "identity_destroyed_order_accuracy": 0.0,
+        "intact_order_accuracy": 1.0,
+        "intact_simultaneous_success": true,
+        "paired_accuracy_delta": 1.0,
+        "seed": 860023
+      },
+      {
+        "identity_destroyed_order_accuracy": 0.0,
+        "intact_order_accuracy": 1.0,
+        "intact_simultaneous_success": true,
+        "paired_accuracy_delta": 1.0,
+        "seed": 860024
+      },
+      {
+        "identity_destroyed_order_accuracy": 0.0,
+        "intact_order_accuracy": 1.0,
+        "intact_simultaneous_success": true,
+        "paired_accuracy_delta": 1.0,
+        "seed": 860025
+      },
+      {
+        "identity_destroyed_order_accuracy": 0.0,
+        "intact_order_accuracy": 1.0,
+        "intact_simultaneous_success": true,
+        "paired_accuracy_delta": 1.0,
+        "seed": 860026
+      },
+      {
+        "identity_destroyed_order_accuracy": 0.0,
+        "intact_order_accuracy": 1.0,
+        "intact_simultaneous_success": true,
+        "paired_accuracy_delta": 1.0,
+        "seed": 860027
+      },
+      {
+        "identity_destroyed_order_accuracy": 0.0,
+        "intact_order_accuracy": 1.0,
+        "intact_simultaneous_success": true,
+        "paired_accuracy_delta": 1.0,
+        "seed": 860028
+      },
+      {
+        "identity_destroyed_order_accuracy": 0.0,
+        "intact_order_accuracy": 1.0,
+        "intact_simultaneous_success": true,
+        "paired_accuracy_delta": 1.0,
+        "seed": 860029
+      },
+      {
+        "identity_destroyed_order_accuracy": 0.0,
+        "intact_order_accuracy": 1.0,
+        "intact_simultaneous_success": true,
+        "paired_accuracy_delta": 1.0,
+        "seed": 860030
+      },
+      {
+        "identity_destroyed_order_accuracy": 0.0,
+        "intact_order_accuracy": 1.0,
+        "intact_simultaneous_success": true,
+        "paired_accuracy_delta": 1.0,
+        "seed": 860031
+      },
+      {
+        "identity_destroyed_order_accuracy": 0.0,
+        "intact_order_accuracy": 1.0,
+        "intact_simultaneous_success": true,
+        "paired_accuracy_delta": 1.0,
+        "seed": 860032
+      },
+      {
+        "identity_destroyed_order_accuracy": 0.0,
+        "intact_order_accuracy": 1.0,
+        "intact_simultaneous_success": true,
+        "paired_accuracy_delta": 1.0,
+        "seed": 860033
+      },
+      {
+        "identity_destroyed_order_accuracy": 0.0,
+        "intact_order_accuracy": 1.0,
+        "intact_simultaneous_success": true,
+        "paired_accuracy_delta": 1.0,
+        "seed": 860034
+      },
+      {
+        "identity_destroyed_order_accuracy": 0.0,
+        "intact_order_accuracy": 1.0,
+        "intact_simultaneous_success": true,
+        "paired_accuracy_delta": 1.0,
+        "seed": 860035
+      },
+      {
+        "identity_destroyed_order_accuracy": 0.0,
+        "intact_order_accuracy": 1.0,
+        "intact_simultaneous_success": true,
+        "paired_accuracy_delta": 1.0,
+        "seed": 860036
+      },
+      {
+        "identity_destroyed_order_accuracy": 0.0,
+        "intact_order_accuracy": 1.0,
+        "intact_simultaneous_success": true,
+        "paired_accuracy_delta": 1.0,
+        "seed": 860037
+      },
+      {
+        "identity_destroyed_order_accuracy": 0.0,
+        "intact_order_accuracy": 1.0,
+        "intact_simultaneous_success": true,
+        "paired_accuracy_delta": 1.0,
+        "seed": 860038
+      },
+      {
+        "identity_destroyed_order_accuracy": 0.0,
+        "intact_order_accuracy": 1.0,
+        "intact_simultaneous_success": true,
+        "paired_accuracy_delta": 1.0,
+        "seed": 860039
+      }
+    ],
+    "status": "SUPPORTED_WITHIN_PREREGISTERED_PROTOCOL",
+    "summary": {
+      "identity_destroyed_order_accuracy_median": 0.0,
+      "intact_order_accuracy_median": 1.0,
+      "intact_simultaneous_success_fraction": 1.0,
+      "paired_accuracy_delta_bootstrap_ci95": [
+        1.0,
+        1.0
+      ],
+      "paired_accuracy_delta_median": 1.0,
+      "paired_sign_test_p": 1.9073486328125e-06
+    }
+  },
+  "claim_boundary": "This prospective promotion replication tests only CLAIM-S1-TEMP-001 / RQ-TEMP-002 / H-TEMP-002-A in the registered six-neuron acyclic two-channel Small-SNN task. It asks whether preserved A/B channel identity supports fixed temporal-order decoding while the identity-destroyed matched control removes that signal. A successful run creates promotion-eligible DATA only; EVID still requires a separate canonical human review and explicit EvidenceEngine promotion. It does not establish learning, memory, cognition, biological equivalence, scaling, 5D superiority, general temporal reasoning or independent external replication.",
+  "claim_id": "CLAIM-S1-TEMP-001",
+  "experiment_id": "EXP-S1-TEMP-PROMO-R1-20260927",
+  "integrity": {
+    "checks": {
+      "arm_set": true,
+      "coverage": true,
+      "historical_seed_disjoint": true,
+      "matched_injected_charge": true,
+      "network_budget": true,
+      "order_set": true,
+      "paired_parameters": true,
+      "run_count": true,
+      "unique_seed_count": true
+    },
+    "pass": true
+  },
+  "protocol": "stage1_two_channel_temporal_order_v2",
+  "schema_version": 1
+}
