@@ -117,7 +117,7 @@ def catalog() -> dict[str, object]:
             "pan_adex_bootstrap_status": "IMPLEMENTED_REFERENCE",
             "pan_adex_threshold_mv": -20.0,
             "pan_adex_v_t_mv": -55.0,
-            "default_pan_bias_current": 15.0,
+            "default_pan_bias_current": 10.0,
             "live_session_status": "IMPLEMENTED_IN_PROCESS_STATEFUL_REFERENCE",
             "stick_figure_sandbox_status": "IMPLEMENTED_REFERENCE",
             "sandbox_audio_status": "SYNTHETIC_ACTIVITY_PROXY_ONLY",

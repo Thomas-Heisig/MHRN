@@ -41,6 +41,21 @@ def test_playground_ui_has_permanent_non_scientific_boundary() -> None:
     assert "Robustheitskontrollen" in module
 
 
+def test_playground_ui_exposes_corrected_setting_defaults() -> None:
+    module = (STATIC / "frontend" / "modules" / "playground.js").read_text(
+        encoding="utf-8"
+    )
+    assert 'id="pg-weight"' in module and 'value="4"' in module
+    assert 'id="pg-edges"' in module and 'value="1024"' in module
+    assert 'id="pg-k"' in module and 'value="16"' in module
+    assert 'id="pg-modules"' in module and 'value="2"' in module
+    assert 'id="pg-current"' in module and 'value="8"' in module
+    assert 'id="pg-pan-bias-current"' in module and 'value="10"' in module
+    assert 'id="pg-behavior-lr"' in module and 'value="0.2"' in module
+    assert 'id="pg-behavior-epsilon"' in module and 'value="0.2"' in module
+    assert 'value="mixed_additive" selected' in module
+
+
 def test_playground_api_has_bounded_concurrency_and_rate() -> None:
     api = (ROOT / "src" / "dashboard" / "playground_api.py").read_text(encoding="utf-8")
     assert "_MAX_CONCURRENT_RUNS = 2" in api

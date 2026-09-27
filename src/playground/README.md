@@ -290,7 +290,7 @@ pg = Playground(
     behavior_action_count=4,
     behavior_target_action=0,
     behavior_episode_ticks=16,
-    behavior_learning_rate=0.05,
+    behavior_learning_rate=0.2,
 )
 result = pg.run(256)
 ```
@@ -334,7 +334,7 @@ synaptic, learning and execution state across repeated API calls.
 
 The PAN-AdEx live/bootstrap defaults are intentionally active enough to avoid
 the previous zero-spike startup condition: `v_t=-55`,
-`threshold=-20`, `reset=-60`, `pan_bias_current=15`, and thalamic relay
+`threshold=-20`, `reset=-60`, `pan_bias_current=10`, and thalamic relay
 threshold `0.0`.
 
 Behavioral learning is activity-guarded. Silent episodes do not earn success
