@@ -124,9 +124,9 @@
     {
       "stage": 1,
       "name": "Kleines SNN",
-      "score": 0.75,
-      "status": "advanced",
-      "claim_boundary": "Die zentrale Stage-1-Topologielinie (V2 + V3-R1) und die getrennte Temporal-Order-Funktionslinie sind innerhalb ihrer präregistrierten Small-SNN-Operating-Envelopes human-reviewed DATA. Das ist weder kanonische EVID noch unabhängige Replikation und begründet keine Kognition, Skalierbarkeit oder 5D-Überlegenheit.",
+      "score": 0.85,
+      "status": "active",
+      "claim_boundary": "Die zentrale Stage-1-Topologielinie besitzt mit EVID-2026-19 nun kanonische, human-reviewte EVID innerhalb des 64-Neuronen/246-Kanten-Small-SNN-Betriebsbereichs. Die getrennte Temporal-Order-Linie bleibt reviewed DATA. Das begründet weder Kognition, Skalierbarkeit, biologische Äquivalenz, 5D-Überlegenheit noch unabhängige Replikation.",
       "criteria": [
         {
           "id": "research_question",
@@ -162,20 +162,19 @@
         },
         {
           "id": "reviewed_evidence",
-          "status": "partial",
-          "label": "Human Reviews der Topologie- und Temporal-Order-Linien abgeschlossen; kanonische EvidenceEngine-Promotion separat offen",
+          "status": "met",
+          "label": "Human Review + EvidenceEngine-Promotion für den scoped Topologie-Claim",
           "sources": [
-            "research/experiments/EXP-S1-TOPO-V2-20260918/review_request.json.review.json",
-            "research/experiments/EXP-S1-TOPO-V3-R1-20260918/review_request.json.human-review.json",
-            "research/experiments/EXP-S1-TEMP-ORDER-V2-20260919/review_request.json.review.json",
-            "research/registry/stage1_baseline.json",
-            "research/decisions/2026-09-25_stage1_scientific_consolidation.md"
+            "CLAIM-S1-TOPO-001",
+            "EVID-2026-19",
+            "research/experiments/EXP-S1-TOPO-PROMO-R1-20260927/human_review.json",
+            "research/experiments/EXP-S1-TOPO-PROMO-R1-20260927/EVIDENCE_PROMOTION_STATUS.json"
           ]
         },
         {
           "id": "independent_replication",
           "status": "open",
-          "label": "Interne R1-Replikation vorhanden; keine unabhängig autorisierte Replikation",
+          "label": "Unabhängige Referenz-/Cross-Implementation-Replikation offen",
           "sources": [
             "INDEPENDENT_REPLICATION.md",
             "research/registry/stage1_baseline.json",
@@ -193,9 +192,9 @@
         }
       ],
       "next_scientific_steps": [
-        "Für die human-reviewte Topologie- und Temporal-Order-DATA jeweils einen scoped Claim und einen prospektiven EvidenceEngine-kompatiblen Promotion-Pfad definieren; historische Manifeste nicht rückwirkend umschreiben.",
-        "Unabhängig implementierte beziehungsweise unabhängig kontrollierte Replikation durchführen; weder V3-R1 noch Temporal Order als unabhängige Replikation der Topologielinie zählen.",
-        "Task-, Störungs- und Skalierungsregime erweitern; die stärkere 5D-Hypothese weiterhin separat prüfen."
+        "Temporal-Order Promotion R1 prospektiv unter dem aktuellen EvidenceEngine-Vertrag ausführen und separat reviewen.",
+        "Topologie als unabhängig implementierte Referenz-/Cross-Implementation-Replikation präregistrieren.",
+        "RQ-5D-005 / H-5D-005-A getrennt und ohne 5D-Überlegenheitsannahme weiterführen."
       ],
       "criterion_contracts": {
         "reviewed_evidence": {
