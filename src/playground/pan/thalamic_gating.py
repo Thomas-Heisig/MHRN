@@ -15,7 +15,7 @@ class ThalamicGating:
         self,
         *,
         n_neurons: int,
-        relay_threshold: float = 0.05,
+        relay_threshold: float = 0.0,
         attention_gain: float = 1.15,
         inhibition_gain: float = 0.35,
     ) -> None:
