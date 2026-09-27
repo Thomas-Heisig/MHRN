@@ -9,6 +9,7 @@ let liveSessionId = null;
 let liveLoopTimer = null;
 let nightPollTimer = null;
 let catalogInfoItems = new Map();
+let activeCatalogInfo = null;
 const PLAYGROUND_PRESETS_STORAGE = "mhrn.playground.presets.v1";
 const DEFAULT_PLAYGROUND_PRESET = "full_embodiment";
 const BUILTIN_PLAYGROUND_PRESETS = {
@@ -25,12 +26,12 @@ const BUILTIN_PLAYGROUND_PRESETS = {
 };
 const PLAYGROUND_REPO_ELEMENTS = [
   ["NetworkAreaAdapter", "Repo · Embodiment", "Gemeinsamer Adaptervertrag für autorisierte neuronale Netzwerkbereiche und externe Modalitäten.", "src/embodiment/neural_symbiosis.py"],
-  ["NeuralIOInterface", "Playground · Neural I/O", "Referenzschnittstelle für Codec, Decoder, Rollen, Phasen und Provenienz; Payloads bleiben außerhalb des SNN.", "src/playground/neural_io.py"],
+  ["NeuralIOInterface", "Playground · Neural I/O", "Referenzschnittstelle für Codec, Decoder, Rollen, Phasen und Provenienz; Payloads bleiben außerhalb des SNN.", "src/playground/neural_io/interface.py"],
   ["PANRuntime", "Playground · PAN", "Bündelt Hyperzustand, Health, Energie, Aktivität, Feedback und Apoptose als explorative Runtime-Schicht.", "src/playground/pan/runtime.py"],
   ["BehavioralLearningEngine", "Playground · Lernen", "Begrenzte Policy-Referenz mit Aktivitätstraces, Reward und Exploration; kein biologischer Lernnachweis.", "src/playground/pan/behavioral_learning.py"],
   ["StickFigureSandbox", "Playground · Embodiment", "Deterministische Punktmassen-/Feder-Sandbox mit Sensorik, Aktoren, Posture-Reward und Episodenreset.", "src/playground/pan/sandbox.py"],
-  ["ResearchRegistry", "Repo · Wissenschaft", "Kanonischer Registry-Bereich für Forschungsfragen, Hypothesen, Claims und EVID; Playground-Ergebnisse werden nicht automatisch eingetragen.", "src/research/registry/"],
-  ["EvidenceEngine", "Repo · Wissenschaft", "Verarbeitet Quellen- und Reviewverträge zu EVID; nicht Teil einer explorativen Playground-Ausführung.", "src/research/"],
+  ["ResearchRegistry", "Repo · Wissenschaft", "Kanonischer Registry-Bereich für Forschungsfragen, Hypothesen, Claims und EVID; Playground-Ergebnisse werden nicht automatisch eingetragen.", "src/research/registry.py"],
+  ["EvidenceEngine", "Repo · Wissenschaft", "Verarbeitet Quellen- und Reviewverträge zu EVID; nicht Teil einer explorativen Playground-Ausführung.", "src/research/evidence_engine.py"],
   ["pack_coords", "Repo · Core", "Kanonischer Koordinaten-Packvertrag für native MHRN-5D-IDs.", "src/core/spatial_index.py"],
   ["NightRunManager", "Playground · Meta", "Begrenzter, resumierbarer Meta-Lauf für Strategie-/Routing-Experimente außerhalb des SNN.", "src/playground/night_run.py"],
 ];
@@ -1057,7 +1058,7 @@ function ensureCatalogInfoDialog(){
 }
 
 function showCatalogInfo(item){
-  const language=catalogLanguage();const dialog=ensureCatalogInfoDialog();const category=catalogCategoryTitle(item.categoryKey||item.category||"repo",language);const description=describeCatalogItem(item,category,language);byId("pg-catalog-info-category").textContent=category;byId("pg-catalog-info-title").textContent=item.label||item.name||"—";byId("pg-catalog-info-body").innerHTML=`<p>${playgroundEscape(description)}</p>${item.source?`<p><strong>${language==="de"?"Quelle":"Source"}:</strong> <code>${playgroundEscape(item.source)}</code></p>`:""}<p><strong>${language==="de"?"Grenze":"Boundary"}:</strong> ${language==="de"?"Explorativ. Der Katalogeintrag ist keine Instanzierung und erzeugt keine wissenschaftliche Evidenz.":"Exploratory. This catalog entry is not an instantiation and does not create scientific evidence."}</p>`;dialog.querySelector("#pg-catalog-info-close").setAttribute("aria-label",language==="de"?"Bausteininfo schließen":"Close component information");dialog.showModal();
+  activeCatalogInfo=item;const language=catalogLanguage();const dialog=ensureCatalogInfoDialog();const category=catalogCategoryTitle(item.categoryKey||item.category||"repo",language);const description=describeCatalogItem(item,category,language);byId("pg-catalog-info-category").textContent=category;byId("pg-catalog-info-title").textContent=item.label||item.name||"—";byId("pg-catalog-info-body").innerHTML=`<p>${playgroundEscape(description)}</p>${item.source?`<p><strong>${language==="de"?"Quelle":"Source"}:</strong> <code>${playgroundEscape(item.source)}</code></p>`:""}<p><strong>${language==="de"?"Grenze":"Boundary"}:</strong> ${language==="de"?"Explorativ. Der Katalogeintrag ist keine Instanzierung und erzeugt keine wissenschaftliche Evidenz.":"Exploratory. This catalog entry is not an instantiation and does not create scientific evidence."}</p>`;dialog.querySelector("#pg-catalog-info-close").setAttribute("aria-label",language==="de"?"Bausteininfo schließen":"Close component information");dialog.showModal();
 }
 
 function bindCatalogInfo(){
@@ -1094,7 +1095,7 @@ function renderCatalog(catalog){
 export async function initPlayground(){
   const root=byId("tab-playground");if(!root)return;
   injectStyles();ensurePermanentBoundary(root);buildPanels(root);
-  if(!root.dataset.languageBound){root.dataset.languageBound="true";document.addEventListener("mhrn:language-change",()=>{if(catalogState)renderCatalogCards(catalogState);});}
+  if(!root.dataset.languageBound){root.dataset.languageBound="true";document.addEventListener("mhrn:language-change",()=>{if(catalogState)renderCatalogCards(catalogState);const dialog=byId("pg-catalog-info-dialog");if(dialog?.open&&activeCatalogInfo)showCatalogInfo(activeCatalogInfo);});}
   byId("pg-run")?.addEventListener("click",runSession);byId("pg-cpu-determinism")?.addEventListener("click",()=>checkCpuDeterminism().catch(error=>{const node=byId("pg-cuda-compiler-state");if(node)node.textContent=String(error.message||error);}));byId("pg-cuda-compile")?.addEventListener("click",()=>compileCudaGates().catch(error=>{const node=byId("pg-cuda-compiler-state");if(node)node.textContent=String(error.message||error);}));byId("pg-user-preset-apply")?.addEventListener("click",applyUserPreset);byId("pg-user-preset-save")?.addEventListener("click",saveUserPreset);byId("pg-user-preset-delete")?.addEventListener("click",deleteUserPreset);byId("pg-user-preset-select")?.addEventListener("change",()=>{renderUserPresetOptions();applyUserPreset();});byId("pg-robustness")?.addEventListener("click",runRobustness);byId("pg-reset")?.addEventListener("click",resetForm);byId("pg-live-open")?.addEventListener("click",()=>openLiveMonitor().catch(error=>byId("pg-live-state").textContent=String(error.message||error)));byId("pg-live-clear")?.addEventListener("click",()=>clearLiveSessions().catch(error=>byId("pg-live-state").textContent=String(error.message||error)));byId("pg-night-start")?.addEventListener("click",()=>startNightRun().catch(error=>byId("pg-night-state").textContent=String(error.message||error)));byId("pg-night-stop")?.addEventListener("click",()=>stopNightRun().catch(error=>byId("pg-night-state").textContent=String(error.message||error)));byId("pg-night-refresh")?.addEventListener("click",()=>refreshNightStatus().catch(error=>byId("pg-night-state").textContent=String(error.message||error)));
   renderUserPresetOptions();
   try{renderCatalog(await apiGet("/api/playground/catalog"));renderUserPresetOptions();resetForm();}catch(error){const status=byId("pg-status");status.dataset.state="error";status.textContent=`Katalog nicht verfügbar: ${error.message}`;}
