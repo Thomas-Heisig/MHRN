@@ -21,6 +21,9 @@ PARITY = ROOT / "research" / "calibrations" / "CAL-S1-TOPO-REFERENCE-INTEGRATOR-
 RESET = ROOT / "research" / "calibrations" / "CAL-S1-TOPO-REFERENCE-RESET-R1" / "result.json"
 SYNAPSE = ROOT / "research" / "calibrations" / "CAL-S1-TOPO-REFERENCE-SYNAPSE-R1" / "result.json"
 RUNNER_PROTOCOL = ROOT / "reference" / "stage1_topology_brian2" / "reference_protocol.json"
+RUNNER_SOURCE = ROOT / "reference" / "stage1_topology_brian2" / "runner.py"
+VERIFIER_SOURCE = ROOT / "scripts" / "verify_stage1_topology_reference_r1.py"
+TRANSLATION = ROOT / "reference" / "stage1_topology_brian2" / "TRANSLATION.md"
 INDEPENDENCE = ROOT / "scripts" / "check_stage1_reference_independence.py"
 SEED_FRESHNESS = ROOT / "scripts" / "check_stage1_reference_seed_freshness.py"
 
@@ -62,7 +65,16 @@ def main() -> int:
     if prereg.get("execution_authorized") is not False:
         raise RuntimeError("Reference execution must remain unauthorized before freeze")
 
-    for required in (AUDIT, PARITY, RESET, SYNAPSE, RUNNER_PROTOCOL):
+    for required in (
+        AUDIT,
+        PARITY,
+        RESET,
+        SYNAPSE,
+        RUNNER_PROTOCOL,
+        RUNNER_SOURCE,
+        VERIFIER_SOURCE,
+        TRANSLATION,
+    ):
         if not required.is_file():
             raise RuntimeError(f"Missing pre-freeze artifact: {required.relative_to(ROOT)}")
 
@@ -142,9 +154,22 @@ def main() -> int:
             "delay_ticks": synapse["delay_ticks"],
             "tolerance_abs": synapse["tolerance_abs"],
         },
+        "translation_specification": {
+            "path": str(TRANSLATION.relative_to(ROOT)),
+            "sha256": sha256(TRANSLATION),
+        },
         "sanitized_runner_protocol": {
             "path": str(RUNNER_PROTOCOL.relative_to(ROOT)),
             "sha256": sha256(RUNNER_PROTOCOL),
+        },
+        "reference_runner": {
+            "path": str(RUNNER_SOURCE.relative_to(ROOT)),
+            "sha256": sha256(RUNNER_SOURCE),
+            "execution_authorized": False,
+        },
+        "reference_verifier": {
+            "path": str(VERIFIER_SOURCE.relative_to(ROOT)),
+            "sha256": sha256(VERIFIER_SOURCE),
         },
         "evaluation_seeds": prereg["evaluation"]["seeds"],
         "canonical_target_digest": hashlib.sha256(
@@ -186,6 +211,7 @@ def main() -> int:
             "implementation is independently scanned, hash-bound and explicitly authorized."
         ),
         "reference_runner_implementation_allowed": True,
+        "reference_runner_execution_allowed": False,
     }
     prereg["freeze_record"] = str(FREEZE.relative_to(ROOT))
     prereg["freeze_semantics"] = (
