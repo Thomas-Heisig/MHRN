@@ -38,6 +38,7 @@ venv/
 
 # Runtime artifacts
 artifacts/
+playground_sessions/
 *.b5d
 *.b5d.journal
 *.tmp
