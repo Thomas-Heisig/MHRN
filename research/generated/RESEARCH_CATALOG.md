@@ -7,7 +7,7 @@
 - **Forschungsfragen:** 112
 - **Hypothesen:** 121
 - **Claims:** 12
-- **Literaturquellen:** 62
+- **Literaturquellen:** 61
 
 ---
 
