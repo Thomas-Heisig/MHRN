@@ -290,9 +290,9 @@ Die Entscheidung ist prospektiv begrenzt: Ein positives Ergebnis stützt eine **
 
 Nach dem jüngsten Human Review ist die offene Determinismusfrage enger als zuvor. `RQ-DET-001 / H-SNN-003-A` hat im historischen `deterministic_replica_v1`-Datensatz einen positiven Same-Seed-Replica-Befund und ist semantisch `DIRECT_MATCH`. Offen ist nicht mehr die Frage, ob die registrierten Replica-Bedingungen zur RQ gehören, sondern ob derselbe Befund in einem **clean-tree, hash-gebundenen Replikationslauf** wiederholt wird. Erst danach ist eine reguläre Human-EVID-Entscheidung sinnvoll.
 
-Für `H-SNN-003-B` sind die Human Reviews der V2/R1-DATA-Linie abgeschlossen. Der nächste Schritt ist nun **separate EVID-Promotion unter aktuellem Vertrag und unabhängige Replikation**. `EXP-GEN-0047` bleibt als inadäquater Vorgänger erhalten; die neue DATA darf ihn nicht rückwirkend umdeuten. Die ≥1.000-Neuronen-/≥10-In-Degree-Schwellen werden ausschließlich für die stärkere `H-5D-005-A`-Prüfung geführt.
+Für `H-SNN-003-B` sind die Human Reviews der V2/V3-R1-DATA-Linie abgeschlossen und die separate aktuelle Promotion ist mit `EVID-2026-19` bereits erfolgt. Offen ist ausschließlich der Replikationsblock: R1 wurde vor Reference-DATA abgebrochen; R2 ist der aktive Cross-Implementation-Pfad. `EXP-GEN-0047` bleibt als inadäquater Vorgänger erhalten; bestehende DATA/EVID werden nicht rückwirkend umgedeutet. Die ≥1.000-Neuronen-/≥10-In-Degree-Schwellen werden ausschließlich für die stärkere `H-5D-005-A`-Prüfung geführt.
 
-Damit sind die nächsten methodischen Schritte **separate EVID-Promotion und unabhängige Replikation für die human-reviewten Stage-1-Funktionslinien** sowie **Testadäquanz für den separaten 5D-Claim**.
+Damit sind die nächsten methodischen Schritte **R2-Cross-Implementation/Replication für den bereits EVID-gestützten Stage-1-Topologieclaim**, ein separater prospektiver Stress-Test für die gesättigte Temporal-Order-Linie sowie **Testadäquanz für den separaten 5D-Claim**. Die vorhandenen EVID-Promotionen `EVID-2026-19` und `EVID-2026-20` sind bereits abgeschlossen und werden nicht erneut als offene Aufgabe geführt.
 
 ## 59. Forschungsagenda und Abschlusskriterien der Teilstudien
 
