@@ -87,6 +87,31 @@ def get_playground(path: str) -> dict[str, object] | None:
     return None
 
 
+def _payload_int(
+    payload: Mapping[str, object],
+    key: str,
+    default: int,
+) -> int:
+    value = payload.get(key, default)
+    if isinstance(value, bool) or not isinstance(value, (int, float)):
+        raise ValueError(f"{key} must be an integer")
+    converted = int(value)
+    if float(value) != float(converted):
+        raise ValueError(f"{key} must be an integer")
+    return converted
+
+
+def _payload_float(
+    payload: Mapping[str, object],
+    key: str,
+    default: float,
+) -> float:
+    value = payload.get(key, default)
+    if isinstance(value, bool) or not isinstance(value, (int, float)):
+        raise ValueError(f"{key} must be numeric")
+    return float(value)
+
+
 def post_playground(
     path: str, payload: Mapping[str, object]
 ) -> dict[str, object] | None:
@@ -116,14 +141,14 @@ def post_playground(
         session_id, action = parts[0], parts[1]
         session = _LIVE_DAEMON.get(session_id)
         if action == "step":
-            ticks = int(payload.get("ticks", 32))
+            ticks = _payload_int(payload, "ticks", 32)
             return {"session_id": session_id, **session.step(ticks)}
         if action == "input":
             values = payload.get("values", [])
             if not isinstance(values, list):
                 raise ValueError("live input values must be a list")
-            duration = int(payload.get("duration_ticks", 16))
-            gain = float(payload.get("gain", 25.0))
+            duration = _payload_int(payload, "duration_ticks", 16)
+            gain = _payload_float(payload, "gain", 25.0)
             session.inject_vector([float(value) for value in values], duration_ticks=duration, gain=gain)
             return {"session_id": session_id, "accepted": True}
         if action == "sandbox":
@@ -132,7 +157,7 @@ def post_playground(
                 if sandbox is None:
                     sandbox = PANEmbodiedSandboxSession(session)
                     _LIVE_SANDBOXES[session_id] = sandbox
-            ticks = int(payload.get("ticks", 1))
+            ticks = _payload_int(payload, "ticks", 1)
             return {"session_id": session_id, **sandbox.step(ticks)}
         if action == "stop":
             with _LIVE_LOCK:
