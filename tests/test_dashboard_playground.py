@@ -189,9 +189,7 @@ def test_playground_ui_exposes_live_pan_session_controls() -> None:
     assert "pg-live-stop" in module
 
 
-def test_playground_api_exposes_stateful_live_routes_without_research_promotion() -> (
-    None
-):
+def test_playground_api_exposes_stateful_live_routes_without_research_promotion() -> None:
     api = (ROOT / "src" / "dashboard" / "playground_api.py").read_text(encoding="utf-8")
     assert '"/api/playground/live/create"' in api
     assert 'action == "step"' in api
