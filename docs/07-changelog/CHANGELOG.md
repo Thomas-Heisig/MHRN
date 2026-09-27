@@ -27,6 +27,8 @@
   Live-Metriken, Spike-Graph, Parametern und interaktivem Männchen-Canvas.
 - Posture-Reward-Trigger ergänzt: Score, GOOD/WARNING/FALLING/COLLAPSED/
   RECOVERED-Events, getrennte Kanäle sowie bounded Episode-Reset.
+- Cleanup-Aktion für alle temporären PAN-Live-Sessions ergänzt; der Fehler
+  `maximum live Playground sessions reached` kann ohne Neustart behoben werden.
 - Ein eigener Release-Tab zeigt die wissenschaftliche Gesamtarbeit und ihre elf
   Teile; jeder Teil öffnet das kanonische Manuskript im File Viewer.
 - Die elf Teile zeigen zusätzlich Prozentbalken und die Statuszustände `met`,
