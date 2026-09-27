@@ -142,7 +142,17 @@
     "complete": false,
     "topology_v3_r1_counts_as_independent_replication": false,
     "temporal_order_line_counts_as_topology_replication": false,
-    "requirement": "Independently controlled and independently authored/audited preregistered replication."
+    "requirement": "Independently controlled and independently authored/audited preregistered replication.",
+    "draft_reference_plan": {
+      "preregistration": "research/preregistrations/PREREG-S1-TOPO-REFERENCE-R1.json",
+      "framework": "Brian2 2.10.1",
+      "status": "DRAFT_BEFORE_REFERENCE_IMPLEMENTATION",
+      "execution_authorized": false,
+      "possible_partial_credit_if_successful": 0.075,
+      "possible_stage1_maturity_if_successful": 0.925,
+      "full_external_replication_still_required": true,
+      "note": "Project-side cross-implementation replication can earn only partial 7.5/15 replication credit; it cannot satisfy the full independent external replication criterion."
+    }
   },
   "stronger_claims_kept_separate": [
     {
@@ -151,5 +161,23 @@
       "status": "open_untested",
       "note": "The Stage-1 baseline does not establish a 5D advantage."
     }
-  ]
+  ],
+  "efficiency_exploration": {
+    "research_question": "RQ-SNN-003",
+    "hypothesis": "H-SNN-003-C",
+    "claim_id": "CLAIM-S1-EFFICIENCY-001",
+    "status": "DRAFT_CALIBRATION_GATE_FAILED_FREEZE_BLOCKED",
+    "scientific_evidence": false,
+    "exploratory_note": "research/notes/2026-09-27_stage1_topology_efficiency_exploratory.md",
+    "preregistration": "research/preregistrations/PREREG-S1-TOPO-EFFICIENCY-R1.json",
+    "calibration": "research/calibrations/CAL-S1-TOPO-EFFICIENCY-R1-20260927/result.json",
+    "calibration_result": {
+      "verified": true,
+      "3d_recruitment_matched_gate_passed": false,
+      "5d_high_recruitment_gate_passed": false,
+      "interpretation": "Stimulus-current sweep 70-140 did not change median recruitment enough to satisfy either preregistered gate; R1 must not be frozen or executed."
+    },
+    "maturity_credit": 0,
+    "note": "Exploratory efficiency work is quarantined from EVID-2026-19 and does not contribute to Stage-1 maturity."
+  }
 }
