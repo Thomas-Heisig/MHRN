@@ -588,6 +588,14 @@ class ClosedLoopRuntime:
 
     def summary(self) -> dict[str, object]:
         episodes = len(self.action_history)
+        if self.config.freeze_actions and self.config.freeze_rewards:
+            parity_mode = "FROZEN_ACTIONS_AND_REWARDS"
+        elif self.config.freeze_actions:
+            parity_mode = "FROZEN_ACTIONS"
+        elif self.config.freeze_rewards:
+            parity_mode = "FROZEN_REWARDS"
+        else:
+            parity_mode = "LIVE_CLOSED_LOOP"
         return {
             "classification": "PLAYGROUND_CLOSED_LOOP",
             "scientific_evidence": False,
@@ -614,19 +622,7 @@ class ClosedLoopRuntime:
             "pending_action_effects": len(self.pending_actions),
             "pending_rewards": len(self.pending_rewards),
             "causal_chain": "target/input -> network -> action -> delayed input/reward",
-            "parity_mode": (
-                "FROZEN_ACTIONS_AND_REWARDS"
-                if self.config.freeze_actions and self.config.freeze_rewards
-                else (
-                    "FROZEN_ACTIONS"
-                    if self.config.freeze_actions
-                    else (
-                        "FROZEN_REWARDS"
-                        if self.config.freeze_rewards
-                        else "LIVE_CLOSED_LOOP"
-                    )
-                )
-            ),
+            "parity_mode": parity_mode,
         }
 
 
