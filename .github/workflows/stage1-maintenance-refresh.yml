@@ -188,6 +188,8 @@ jobs:
             tests/test_stage1_scientific_contract.py \
             tests/test_scientific_progress_integrity.py \
             research/generated \
+            docs/DOCUMENT_CATALOG.json \
+            research/RESEARCH_CATALOG.json \
             research/publications/2026-09-17_recursive-epistemics_v1.8
           git diff --cached --check
           if git diff --cached --quiet; then
