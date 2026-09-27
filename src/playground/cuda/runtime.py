@@ -611,6 +611,68 @@ def cpu_determinism_summary(
     }
 
 
+def exact_spike_parity_summary(
+    reference: Sequence[object],
+    candidate: Sequence[object],
+    *,
+    reference_commit: str = "",
+) -> dict[str, object]:
+    """Evaluate D1 exact spike-event parity."""
+
+    mismatches = 0
+    for index in range(max(len(reference), len(candidate))):
+        left = reference[index] if index < len(reference) else None
+        right = candidate[index] if index < len(candidate) else None
+        if left != right:
+            mismatches += 1
+    return {
+        "classification": "PLAYGROUND_CUDA_SPIKE_PARITY",
+        "scientific_evidence": False,
+        "parity_class": "D1",
+        "reference_source": "CPU_PYTHON_PLAYGROUND",
+        "reference_frozen_at": reference_commit or "UNSPECIFIED",
+        "allowed_spike_mismatches": 0,
+        "spike_mismatches": mismatches,
+        "passed": mismatches == 0,
+    }
+
+
+def behavioral_parity_summary(
+    *,
+    reference_spike_count: int,
+    candidate_spike_count: int,
+    reference_success_fraction: float,
+    candidate_success_fraction: float,
+    reference_commit: str = "",
+) -> dict[str, object]:
+    """Evaluate the bounded D3 behavioral parity criteria."""
+
+    denominator = max(abs(reference_spike_count), 1)
+    spike_count_relative_error = (
+        abs(candidate_spike_count - reference_spike_count) / denominator
+    )
+    success_fraction_abs_error = abs(
+        candidate_success_fraction - reference_success_fraction
+    )
+    spike_limit = 0.005
+    success_limit = 0.02
+    return {
+        "classification": "PLAYGROUND_CUDA_BEHAVIORAL_PARITY",
+        "scientific_evidence": False,
+        "parity_class": "D3",
+        "reference_source": "CPU_PYTHON_PLAYGROUND",
+        "reference_frozen_at": reference_commit or "UNSPECIFIED",
+        "spike_count_relative_error": spike_count_relative_error,
+        "spike_count_relative_error_limit": spike_limit,
+        "success_fraction_abs_error": success_fraction_abs_error,
+        "success_fraction_abs_error_limit": success_limit,
+        "passed": (
+            spike_count_relative_error <= spike_limit
+            and success_fraction_abs_error <= success_limit
+        ),
+    }
+
+
 def max_abs_error(reference: Sequence[float], candidate: Sequence[float]) -> float:
     """Return the maximum absolute error for a gate-parity vector."""
 
