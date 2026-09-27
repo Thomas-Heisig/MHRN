@@ -34,7 +34,7 @@ class Playground:
         return self.result
 
     def robustness(self) -> dict[str, object]:
-        return robustness(self.config.to_dict())
+        return robustness(self.config.to_runtime_dict())
 
     def record(self, path: str | Path | None = None) -> Path:
         if self.result is None:

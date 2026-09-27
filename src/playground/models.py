@@ -361,3 +361,15 @@ class PlaygroundConfig:
             "neural_io_modality": self.neural_io_modality,
             "neural_io_source_id": self.neural_io_source_id,
         }
+
+
+    def to_runtime_dict(self) -> dict[str, object]:
+        """Return transient config including the exact I/O payload.
+
+        This mapping is for in-process re-execution only and must never be
+        persisted or returned as a session result.
+        """
+
+        payload = self.to_dict()
+        payload["neural_io_input_payload"] = self.neural_io_input_payload
+        return payload
