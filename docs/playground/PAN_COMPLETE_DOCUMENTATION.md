@@ -642,7 +642,7 @@ PAN misst diese Größen daher im Playground, statt feste Werte vorauszusetzen.
 
 ---
 
-## 18. Research Candidates 1–8
+## 18. Research Candidates 1–18
 
 Alle Kandidaten tragen:
 
@@ -694,6 +694,62 @@ Apoptose eine räumliche Dichte unter definierten Stress- und
 Replacement-Regeln stabilisieren?
 
 Neurogenese ist noch nicht implementiert.
+
+### 9 — Gate Emergence
+
+**Frage:** Bleiben aus Einstellungen abgeleitete Gatter-Schemata unter
+gematchten Parameter-Sweeps und Seeds verhaltensstabil?
+
+### 10 — Dual-Mode Consistency
+
+**Frage:** Unter welchen begrenzten Bedingungen stimmen interleaved
+Event/Continuous-Läufe mit Continuous-only-Referenzen innerhalb einer
+vorab definierten Toleranz überein?
+
+### 11 — Generative Growth
+
+**Frage:** Erzeugt begrenztes ereignisgetriebenes Wachstum reproduzierbare
+Topologieänderungen unter gematchten Aktivitätsverläufen?
+
+### 12 — Memory Scaling
+
+**Frage:** Wie skaliert gemessener Hot-State-Speicher mit Neuronen,
+Kanten und PAN-Zustandsdimensionen?
+
+### 13 — Hardware-Native Emergence
+
+**Frage:** Ändert eine später gemessene register-native CUDA-Implementierung
+Dynamik oder Ressourcenskalierung gegenüber dem Referenzbackend?
+
+### 14 — Behavioral Emergence
+
+**Frage:** Generalisiert reward-moduliertes Policy-Lernen auf neue Inputs,
+ohne exakte externe Payloads als Fakten zu speichern?
+
+### 15 — Hybrid Cognition
+
+**Frage:** Liefert die Kopplung von PAN an die bestehenden
+Gateway-/Neural-Symbiosis-Schnittstellen messbare Task-Effekte gegenüber
+fixem Routing?
+
+### 16 — Layer Emergence
+
+**Frage:** Entwickeln plastische Layer-Gains oder Verbindungen reproduzierbare
+funktionale Spezialisierung über die initiale Schichtzuordnung hinaus?
+
+### 17 — Mode-Switch Consistency
+
+**Frage:** Bewahrt der Wechsel zwischen sparse Event- und full Tick-Ausführung
+die deklarierte Shared-State-Integrität und wie groß sind die
+Trajektorienabweichungen?
+
+### 18 — Hybrid Performance
+
+**Frage:** Reduziert HYBRID_AUTO gemessene Laufzeit oder Energie gegenüber
+beiden festen Modi unter gematchten Workloads?
+
+Alle 18 bleiben `DRAFT_IDEA_NOT_PREREGISTERED`. Keine dieser Ideen wird
+durch Playground-Ausführung automatisch zu DATA oder EVID.
 
 ---
 

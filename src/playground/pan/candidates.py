@@ -213,6 +213,34 @@ def pan_research_candidates() -> list[dict[str, object]]:
             ],
         },
         {
+            "id": "PAN-CANDIDATE-MODE-SWITCH-CONSISTENCY",
+            "status": "DRAFT_IDEA_NOT_PREREGISTERED",
+            "question": (
+                "Does switching between sparse event and full tick execution "
+                "preserve declared shared-state integrity within tolerance?"
+            ),
+            "required_controls": [
+                "fixed-mode EVENT_ONLY control",
+                "fixed-mode TICK_ONLY control",
+                "transition state hashes",
+                "predefined trajectory-difference metrics",
+            ],
+        },
+        {
+            "id": "PAN-CANDIDATE-HYBRID-PERFORMANCE",
+            "status": "DRAFT_IDEA_NOT_PREREGISTERED",
+            "question": (
+                "Does HYBRID_AUTO reduce measured runtime or energy relative to "
+                "both fixed execution modes under matched workloads?"
+            ),
+            "required_controls": [
+                "same seeds and input workload",
+                "same neuron and edge budgets",
+                "wall-clock and hardware-counter measurements",
+                "no performance claim from planning estimates",
+            ],
+        },
+        {
             "id": "PAN-CANDIDATE-SPATIAL-LIFECYCLE",
             "status": "DRAFT_IDEA_NOT_PREREGISTERED",
             "question": (

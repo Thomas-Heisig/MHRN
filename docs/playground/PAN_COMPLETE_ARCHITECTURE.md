@@ -115,13 +115,15 @@ hypothesis, not a property of the current runtime.
 
 ## 5. Research candidates
 
-The Playground exposes 16 ideas, all with
-`DRAFT_IDEA_NOT_PREREGISTERED` status. The final four are:
+The Playground exposes 18 ideas, all with
+`DRAFT_IDEA_NOT_PREREGISTERED` status. The final six are:
 
 13. hardware-native emergence;
 14. behavioral emergence;
 15. hybrid cognition using the existing Gateway/Neural-Symbiosis boundary;
-16. layer emergence/specialization.
+16. layer emergence/specialization;
+17. mode-switch consistency;
+18. hybrid execution performance.
 
 Nothing in this file registers a hypothesis under `research/`.
 
@@ -160,3 +162,174 @@ update state and learn the bounded Playground policy task.
 It does **not** demonstrate higher cognition, biological equivalence, general
 intelligence, CUDA-native emergence, or superiority over simpler baselines.
 Those require separately preregistered experiments and canonical DATA.
+
+
+## 8. Switchable execution: EVENT_ONLY / TICK_ONLY / HYBRID_AUTO
+
+The Playground now exposes a separate execution-policy layer above the existing
+clock/event batching machinery.
+
+### Modes
+
+| Mode | Playground reference semantics |
+| --- | --- |
+| `EVENT_ONLY` | step only neurons with current external, synaptic or PAN-feedback drive |
+| `TICK_ONLY` | step every live neuron on every simulation tick |
+| `HYBRID_AUTO` | switch between the two engines using moving spike activity, hysteresis and minimum dwell time |
+
+The public settings are:
+
+- `execution_mode`
+- `execution_initial_mode`
+- `execution_theta_high`
+- `execution_theta_low`
+- `execution_hysteresis`
+- `execution_min_dwell`
+- `execution_activity_window`
+- `execution_transition_mode`
+- `execution_sync_on_switch`
+- `execution_log_transitions`
+- `execution_log_state_hash`
+
+The Dashboard defaults to `HYBRID_AUTO`; the Python configuration default
+remains `TICK_ONLY` for backward-compatible behavior of existing sessions.
+
+### Transition protocol
+
+The current Python backend uses a **shared state** rather than two separately
+materialized neuron states. A mode transition therefore changes execution
+policy without copying `V/w/H` or other state.
+
+With `execution_sync_on_switch=true`, a deterministic SHA-256 integrity digest
+of scalar neuron state plus pending synaptic buffers is calculated immediately
+before and after the policy switch. The transition reports PASS only if the
+shared state is unchanged by the transition itself.
+
+This checks **transition integrity**, not trajectory equivalence.
+
+```text
+EVENT_ONLY vs TICK_ONLY:
+  mathematical_equivalence: NOT_CLAIMED
+  transition_check: SHARED_STATE_INTEGRITY_ONLY
+  trajectory_tolerance_claim: NONE
+```
+
+### Important performance boundary
+
+The reference `EVENT_ONLY` implementation performs sparse **neuron stepping**,
+but some global maintenance remains dense, including selected plasticity,
+trace, PAN and synaptic bookkeeping.
+
+Therefore the current backend does **not** claim `O(events)` end-to-end
+runtime, a 25% crossover, or the example millisecond timings from the design
+proposal. Those are hypotheses for later profiling.
+
+The result object exposes:
+
+```text
+result["execution"] = {
+  configured_mode,
+  current_engine,
+  mode_history,
+  transitions,
+  transition_count,
+  ticks_in_event,
+  ticks_in_tick,
+  time_in_event,
+  time_in_tick,
+  avg_activity,
+  activity_trend,
+  consistency_check,
+  equivalence: "NOT_MATHEMATICALLY_EQUIVALENT",
+  performance_claim: "NOT_BENCHMARKED"
+}
+```
+
+Two additional non-registered ideas are exposed:
+
+- `PAN-CANDIDATE-MODE-SWITCH-CONSISTENCY`
+- `PAN-CANDIDATE-HYBRID-PERFORMANCE`
+
+The Playground therefore exposes 18 PAN research candidates, all
+`DRAFT_IDEA_NOT_PREREGISTERED`.
+
+
+## 9. Live PAN session and minimal embodied sandbox
+
+The Playground now has a stateful in-process live-session path in addition to
+the original bounded batch runner.
+
+### Reanimated PAN-AdEx bootstrap
+
+The `pan_adex_5d` reference model now uses:
+
+- `v_rest = -65 mV`
+- `v_t = -55 mV`
+- `threshold = -20 mV`
+- `reset = -60 mV`
+- configurable `pan_bias_current` with a default of `15.0`
+
+The general `adex` Playground model is unchanged. The bootstrap bias is
+applied only to `pan_adex_5d`.
+
+The default thalamic relay threshold is `0.0` so enabling functional
+thalamic gating cannot create an initial activity deadlock by itself.
+
+### Activity-guarded behavioral learning
+
+Behavioral policy updates now require a configurable minimum activity
+(`behavior_min_activity`). Silent episodes receive zero reward and do not
+update policy parameters.
+
+The default target mode is `cycle`, which rotates the target through the
+configured action space. A fixed target remains available explicitly.
+
+This prevents the previous trivial condition in which a silent network always
+selected action zero while action zero was also the fixed target.
+
+### Stateful API
+
+The Dashboard process can host persistent Playground sessions:
+
+```text
+POST /api/playground/live/create
+POST /api/playground/live/<id>/input
+POST /api/playground/live/<id>/step
+GET  /api/playground/live/<id>
+POST /api/playground/live/<id>/sandbox
+POST /api/playground/live/<id>/stop
+```
+
+A live session preserves neuron state, pending synaptic currents, learning
+state, execution-mode state and recent spike history across calls.
+
+This is an **in-process reference daemon**, not a background system service.
+It survives multiple API calls while the Dashboard process remains alive.
+
+### Minimal embodied sandbox
+
+The live session can be coupled to a deterministic 2-D point-mass/spring
+stick figure with:
+
+- nine point joints;
+- eight spring links;
+- four bounded actuator channels;
+- nine receptor values;
+- ground contact and gravity;
+- delayed echo feedback;
+- a synthetic motion/contact audio-level proxy.
+
+The current sandbox does **not** yet implement waveform audio/FFT or
+ReservoirPy. It also does not create a direct Ollama HTTP client. LLM
+communication is deliberately routed through the project's existing Gateway /
+Neural Symbiosis boundary when that integration is enabled.
+
+All live/sandbox state remains:
+
+```text
+classification: PLAYGROUND
+scientific_evidence: false
+evidence_eligible: false
+registry_visible: false
+promotion_path: none
+```

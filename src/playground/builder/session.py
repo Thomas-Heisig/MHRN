@@ -21,6 +21,7 @@ from ..pan import (
     CorticalOrganization,
     DualModeScheduler,
     GrowthEngine,
+    ModeSwitcher,
     PANRuntime,
     SSDOffloader,
     ThalamicGating,
@@ -209,6 +210,8 @@ class PlaygroundSession:
                 learning_rate=config.behavior_learning_rate,
                 epsilon=config.behavior_epsilon,
                 target_action=config.behavior_target_action,
+                target_mode=config.behavior_target_mode,
+                min_activity=config.behavior_min_activity,
                 episode_ticks=config.behavior_episode_ticks,
                 bias_current=config.behavior_bias_current,
                 seed=config.seed,
@@ -218,6 +221,20 @@ class PlaygroundSession:
                     else None
                 ),
             )
+
+        execution_switcher = ModeSwitcher(
+            mode=config.execution_mode,
+            initial_mode=config.execution_initial_mode,
+            theta_high=config.execution_theta_high,
+            theta_low=config.execution_theta_low,
+            hysteresis=config.execution_hysteresis,
+            min_dwell=config.execution_min_dwell,
+            activity_window=config.execution_activity_window,
+            transition_mode=config.execution_transition_mode,
+            sync_on_switch=config.execution_sync_on_switch,
+            log_transitions=config.execution_log_transitions,
+            log_state_hash=config.execution_log_state_hash,
+        )
 
         selected_hardware_profile = hardware_profile(config.hardware_profile_name)
         memory_pool = CUDAMemoryPool(max_mb=config.cuda_budget_mb)
@@ -249,12 +266,29 @@ class PlaygroundSession:
 
         with PlaygroundIsolation():
             for tick in range(config.ticks):
+                next_engine, switch_reason = execution_switcher.decide(tick)
+                if (
+                    switch_reason is not None
+                    and next_engine != execution_switcher.current_engine
+                ):
+                    execution_switcher.transition(
+                        tick=tick,
+                        new_engine=next_engine,
+                        reason=switch_reason,
+                        states=states,
+                        pending=pending,
+                    )
+                execution_switcher.note_tick()
                 if dual_scheduler is not None:
                     dual_scheduler.begin_continuous_step()
                 slot = tick % queue_size
                 synaptic = pending[slot]
                 pending[slot] = [0.0 for _ in range(config.n_neurons)]
                 external = stimulus(tick)
+                if config.neuron_model == "pan_adex_5d":
+                    external = [
+                        value + config.pan_bias_current for value in external
+                    ]
                 if neural_io is not None:
                     io_current = neural_io.currents_for_tick(tick)
                     external = [
@@ -277,8 +311,20 @@ class PlaygroundSession:
                     else [0.0 for _ in range(config.n_neurons)]
                 )
                 spiked_this_tick: list[int] = []
+                if execution_switcher.current_engine == "EVENT_ONLY":
+                    active_neurons_for_step = [
+                        index
+                        for index in range(config.n_neurons)
+                        if abs(external[index])
+                        + abs(synaptic[index])
+                        + abs(feedback[index])
+                        > 1e-12
+                    ]
+                else:
+                    active_neurons_for_step = list(range(config.n_neurons))
 
-                for neuron_id, state in enumerate(states):
+                for neuron_id in active_neurons_for_step:
+                    state = states[neuron_id]
                     if pan_runtime is not None and not bool(
                         state.get("pan_alive", True)
                     ):
@@ -527,6 +573,7 @@ class PlaygroundSession:
 
                 state_monitor.record(tick, states, state_stride)
                 tick_spike_counts.append(len(spiked_this_tick))
+                execution_switcher.observe(spiked_this_tick, config.n_neurons)
                 previous_spikes = list(spiked_this_tick)
 
         if dual_scheduler is not None:
@@ -607,6 +654,7 @@ class PlaygroundSession:
             "offload": offloader.summary(),
         }
         result["hardware"] = selected_hardware_profile
+        result["execution"] = execution_switcher.summary()
         result["interfaces"] = {
             "existing_gateway_contract": True,
             "network_area_adapter": "src.embodiment.neural_symbiosis.NetworkAreaAdapter",

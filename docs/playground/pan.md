@@ -76,7 +76,7 @@ The Playground exposes PAN observations only as
   measure
 - health/energy/apoptosis transition dynamics under matched stress
 
-These are **not hypotheses in the MHRN Research Registry**.
+The full Playground catalog currently contains 18 PAN candidates. These are **not hypotheses in the MHRN Research Registry**.
 
 The only allowed route into science is:
 
@@ -196,3 +196,22 @@ register-native kernels, PTX gates and Dynamic Parallelism as NOT IMPLEMENTED.
 The runnable backend remains the Python reference implementation.
 
 Full status matrix: `docs/playground/PAN_COMPLETE_ARCHITECTURE.md`.
+
+
+## Switchable execution policy
+
+In addition to the legacy clock/event batching settings, PAN Playground now
+supports `EVENT_ONLY`, `TICK_ONLY` and `HYBRID_AUTO` execution.
+
+`HYBRID_AUTO` monitors the moving fraction of spiking neurons. It switches
+from event to tick execution above `theta_high + hysteresis` and back below
+`theta_low - hysteresis`, subject to `min_dwell`.
+
+Each transition can log a shared-state integrity hash. The check guarantees
+only that changing execution policy does not itself mutate the shared state;
+event and tick integration are explicitly
+`NOT_MATHEMATICALLY_EQUIVALENT`.
+
+The Python reference event path sparsifies neuron stepping but does not yet
+sparsify every maintenance operation, so no runtime crossover or speedup is
+claimed before measurement.

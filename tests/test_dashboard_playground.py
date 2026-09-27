@@ -102,8 +102,8 @@ def test_pan_complete_documentation_covers_all_candidates() -> None:
     text = path.read_text(encoding="utf-8")
     assert "keine DATA" in text
     assert "keine EVID" in text
-    assert "Research Candidates 1–8" in text
-    for candidate in range(1, 9):
+    assert "Research Candidates 1–18" in text
+    for candidate in range(1, 19):
         assert f"### {candidate} —" in text
 
 
@@ -120,7 +120,7 @@ def test_playground_ui_exposes_neural_input_output_interface() -> None:
     module = (
         STATIC / "frontend" / "modules" / "playground.js"
     ).read_text(encoding="utf-8")
-    assert "07 · Neural I/O Interface" in module
+    assert "09 · Neural I/O Interface" in module
     assert "GATEWAY_AFFERENT" in module
     assert "GATEWAY_EFFERENT" in module
     assert "Payload ≠ Neural Representation" in module
@@ -137,3 +137,29 @@ def test_neural_io_documentation_exists_and_preserves_boundary() -> None:
     assert "Codec != GatewayTopology != GatewayLearning" in text
     assert "QUERY" in text and "TIMEOUT" in text
     assert "tool_plane_execution = false" in text
+
+
+
+def test_playground_ui_exposes_live_pan_session_controls() -> None:
+    module = (STATIC / "frontend" / "modules" / "playground.js").read_text(
+        encoding="utf-8"
+    )
+    assert "10 · PAN Live Session & Sandbox" in module
+    assert "pg-live-create" in module
+    assert "pg-live-step" in module
+    assert "pg-live-input" in module
+    assert "pg-live-sandbox" in module
+    assert "pg-live-stop" in module
+
+
+def test_playground_api_exposes_stateful_live_routes_without_research_promotion() -> None:
+    api = (ROOT / "src" / "dashboard" / "playground_api.py").read_text(
+        encoding="utf-8"
+    )
+    assert '"/api/playground/live/create"' in api
+    assert 'action == "step"' in api
+    assert 'action == "input"' in api
+    assert 'action == "sandbox"' in api
+    assert 'action == "stop"' in api
+    assert "PANSessionDaemon" in api
+    assert "EvidenceEngine" not in api

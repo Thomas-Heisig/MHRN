@@ -161,7 +161,7 @@ The consolidated PAN entry point is:
 
 It combines architecture, implemented mechanisms, current implementation
 results, geometry, literature context, scientific boundaries, open questions
-and all eight Research Candidates.
+and all 18 Research Candidates.
 
 ## PAN exploratory layer
 
@@ -303,3 +303,46 @@ not a CUDA execution backend. Register-native/PTX kernels and Dynamic
 Parallelism remain NOT IMPLEMENTED.
 
 See `docs/playground/PAN_COMPLETE_ARCHITECTURE.md`.
+
+
+## Switchable execution modes
+
+The Playground supports a separate execution policy:
+
+- `EVENT_ONLY`: sparse neuron stepping for currently driven neurons;
+- `TICK_ONLY`: all live neurons are stepped every tick;
+- `HYBRID_AUTO`: activity-driven switching with hysteresis and minimum dwell.
+
+The Dashboard uses `HYBRID_AUTO` as the interactive default. The Python
+configuration default remains `TICK_ONLY` to preserve earlier Playground
+session behavior.
+
+Transitions use the same shared state. Optional transition hashes verify that
+the policy switch itself did not mutate state. They do **not** prove that event
+and tick trajectories are mathematically equivalent.
+
+`EVENT_ONLY` is not yet an end-to-end O(events) backend: global plasticity and
+maintenance bookkeeping can still be dense. Performance is therefore
+`NOT_BENCHMARKED`.
+
+
+## Stateful PAN live mode and sandbox
+
+The original Playground batch runner remains available. For interaction, the
+Dashboard now also hosts bounded in-process PAN live sessions that keep neuron,
+synaptic, learning and execution state across repeated API calls.
+
+The PAN-AdEx live/bootstrap defaults are intentionally active enough to avoid
+the previous zero-spike startup condition: `v_t=-55`,
+`threshold=-20`, `reset=-60`, `pan_bias_current=15`, and thalamic relay
+threshold `0.0`.
+
+Behavioral learning is activity-guarded. Silent episodes do not earn success
+and do not update the policy. The default target schedule cycles through the
+action space rather than making action zero trivially correct.
+
+A minimal point-mass/spring stick-figure sandbox provides receptors, four
+actuators, gravity, ground contact and delayed echo feedback. Audio is
+currently only a synthetic activity proxy. Direct Ollama access is not added;
+LLM communication stays behind the existing Gateway/Neural-Symbiosis
+interface.

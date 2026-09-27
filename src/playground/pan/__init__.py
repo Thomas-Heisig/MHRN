@@ -10,6 +10,9 @@ from .dual_scheduler import DualModeScheduler
 from .gate_schematic import GateSchematic, settings_to_gates
 from .growth_engine import GrowthEngine
 from .hardware_profile import hardware_profile
+from .mode_switcher import ActivityMonitor, ModeSwitcher, state_integrity_hash
+from .live_session import PANLiveSession, PANSessionDaemon
+from .sandbox import PANEmbodiedSandboxSession, StickFigureSandbox
 from .hypervector import axis_schema, bind, bundle
 from .literature import PAN_LITERATURE, pan_literature_context
 from .memory_pool import CUDAMemoryPool
@@ -23,6 +26,13 @@ __all__ = [
     "CorticalOrganization",
     "ThalamicGating",
     "hardware_profile",
+    "ActivityMonitor",
+    "ModeSwitcher",
+    "state_integrity_hash",
+    "PANLiveSession",
+    "PANSessionDaemon",
+    "PANEmbodiedSandboxSession",
+    "StickFigureSandbox",
     "DualModeScheduler",
     "GateSchematic",
     "GrowthEngine",
