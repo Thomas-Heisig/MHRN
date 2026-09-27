@@ -997,11 +997,11 @@ def run_gate_hardware_smoke(
             "bit_exact_observable_outputs": bool(repeat["passed"]),
         },
         "cleanup": {
-            "device_allocations_released": bool(
-                first_memory.get("allocations_released")
-            )
-            if isinstance(first_memory, Mapping)
-            else False,
+            "device_allocations_released": (
+                bool(first_memory.get("allocations_released"))
+                if isinstance(first_memory, Mapping)
+                else False
+            ),
             "module_and_context_released_by_finally": True,
             "memory_leak_measured": True,
             "first_free_delta_bytes": (
