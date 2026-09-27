@@ -28,11 +28,30 @@ class PostureAnalyzer:
         neck = figure.joints["neck"]
         hip = figure.joints["hip"]
         tilt = math.atan2(neck.x - hip.x, max(1e-6, neck.y - hip.y))
-        upright = max(0.0, 1.0 - abs(tilt) / max(float(getattr(self.config, "posture_tilt_max", 1.0)), 1e-6))
-        height = max(0.0, min(1.0, hip.y / max(float(getattr(self.config, "posture_target_height", 1.0)), 1e-6)))
+        upright = max(
+            0.0,
+            1.0
+            - abs(tilt)
+            / max(float(getattr(self.config, "posture_tilt_max", 1.0)), 1e-6),
+        )
+        height = max(
+            0.0,
+            min(
+                1.0,
+                hip.y
+                / max(float(getattr(self.config, "posture_target_height", 1.0)), 1e-6),
+            ),
+        )
         speed = math.hypot(hip.vx, hip.vy)
-        stability = max(0.0, 1.0 - speed / max(float(getattr(self.config, "posture_velocity_max", 5.0)), 1e-6))
-        symmetry = max(0.0, 1.0 - abs(figure.joints["foot_l"].y - figure.joints["foot_r"].y) / 0.5)
+        stability = max(
+            0.0,
+            1.0
+            - speed
+            / max(float(getattr(self.config, "posture_velocity_max", 5.0)), 1e-6),
+        )
+        symmetry = max(
+            0.0, 1.0 - abs(figure.joints["foot_l"].y - figure.joints["foot_r"].y) / 0.5
+        )
         weights = (
             float(getattr(self.config, "posture_weight_upright", 0.4)),
             float(getattr(self.config, "posture_weight_height", 0.3)),
@@ -40,7 +59,19 @@ class PostureAnalyzer:
             float(getattr(self.config, "posture_weight_symmetry", 0.1)),
         )
         total = sum(weights) or 1.0
-        score = max(0.0, min(1.0, (weights[0] * upright + weights[1] * height + weights[2] * stability + weights[3] * symmetry) / total))
+        score = max(
+            0.0,
+            min(
+                1.0,
+                (
+                    weights[0] * upright
+                    + weights[1] * height
+                    + weights[2] * stability
+                    + weights[3] * symmetry
+                )
+                / total,
+            ),
+        )
         self.previous_score = score
         return score
 
@@ -53,17 +84,25 @@ class RewardTrigger:
         self.good_counter = 0
         self.was_low = False
 
-    def evaluate(self, score: float, previous_score: float | None) -> tuple[float, list[str]]:
-        reward = (score - 0.5) * float(getattr(self.config, "reward_continuous_alpha", 0.1))
+    def evaluate(
+        self, score: float, previous_score: float | None
+    ) -> tuple[float, list[str]]:
+        reward = (score - 0.5) * float(
+            getattr(self.config, "reward_continuous_alpha", 0.1)
+        )
         events: list[str] = []
         if score > float(getattr(self.config, "trigger_good_score", 0.85)):
             self.good_counter += 1
-            if self.good_counter == int(getattr(self.config, "trigger_good_duration", 10)):
+            if self.good_counter == int(
+                getattr(self.config, "trigger_good_duration", 10)
+            ):
                 reward += float(getattr(self.config, "trigger_good_reward", 1.0))
                 events.append("GOOD_POSTURE")
         else:
             self.good_counter = 0
-        if previous_score is not None and score - previous_score < float(getattr(self.config, "trigger_falling_rate", -0.05)):
+        if previous_score is not None and score - previous_score < float(
+            getattr(self.config, "trigger_falling_rate", -0.05)
+        ):
             reward += float(getattr(self.config, "trigger_falling_reward", -1.0))
             events.append("FALLING")
         if score < float(getattr(self.config, "trigger_warning_score", 0.4)):
@@ -106,9 +145,15 @@ class StickFigureSandbox:
 
     def reset_to_initial_pose(self) -> None:
         initial = {
-            "head": (0.0, 1.8), "neck": (0.0, 1.5), "shoulder_l": (-0.3, 1.4),
-            "shoulder_r": (0.3, 1.4), "hip": (0.0, 1.0), "knee_l": (-0.15, 0.5),
-            "knee_r": (0.15, 0.5), "foot_l": (-0.15, 0.0), "foot_r": (0.15, 0.0),
+            "head": (0.0, 1.8),
+            "neck": (0.0, 1.5),
+            "shoulder_l": (-0.3, 1.4),
+            "shoulder_r": (0.3, 1.4),
+            "hip": (0.0, 1.0),
+            "knee_l": (-0.15, 0.5),
+            "knee_r": (0.15, 0.5),
+            "foot_l": (-0.15, 0.0),
+            "foot_r": (0.15, 0.0),
         }
         for name, (x, y) in initial.items():
             joint = self.joints[name]
@@ -300,7 +345,9 @@ class PANEmbodiedSandboxSession:
             posture_score = self.posture.compute(self.world)
             config = self.live_session.config
             if bool(getattr(config, "posture_reward_enabled", False)):
-                reward, reward_events = self.reward_trigger.evaluate(posture_score, previous_score)
+                reward, reward_events = self.reward_trigger.evaluate(
+                    posture_score, previous_score
+                )
             else:
                 reward, reward_events = 0.0, []
             reward_vector = [
@@ -314,17 +361,30 @@ class PANEmbodiedSandboxSession:
                 )
             ]
             if bool(getattr(config, "posture_reward_enabled", False)):
-                reward_vector[int(getattr(config, "posture_score_channel", 2))] = posture_score * float(getattr(config, "posture_current_scale", 25.0))
-                reward_vector[int(getattr(config, "reward_event_channel", 3))] = reward * float(getattr(config, "reward_event_scale", 25.0))
-                self.live_session.inject_vector(reward_vector, duration_ticks=1, gain=1.0)
+                reward_vector[int(getattr(config, "posture_score_channel", 2))] = (
+                    posture_score
+                    * float(getattr(config, "posture_current_scale", 25.0))
+                )
+                reward_vector[int(getattr(config, "reward_event_channel", 3))] = (
+                    reward * float(getattr(config, "reward_event_scale", 25.0))
+                )
+                self.live_session.inject_vector(
+                    reward_vector, duration_ticks=1, gain=1.0
+                )
             self.episode_tick += 1
             terminal = None
             if bool(getattr(config, "episode_termination_enabled", True)):
-                if posture_score < float(getattr(config, "trigger_collapse_score", 0.1)) or self.world.joints["hip"].y < 0.3:
+                if (
+                    posture_score
+                    < float(getattr(config, "trigger_collapse_score", 0.1))
+                    or self.world.joints["hip"].y < 0.3
+                ):
                     terminal = "COLLAPSED"
                 elif abs(self.world.joints["hip"].x) > 1.9:
                     terminal = "OUT_OF_BOUNDS"
-                elif self.episode_tick >= int(getattr(config, "episode_max_ticks", 256)):
+                elif self.episode_tick >= int(
+                    getattr(config, "episode_max_ticks", 256)
+                ):
                     terminal = "TIMEOUT"
             frame["posture_score"] = posture_score
             frame["reward"] = reward
@@ -347,8 +407,12 @@ class PANEmbodiedSandboxSession:
             "pan": pan_result,
             "frames": frames[-32:],
             "learning_claim": "EXPLORATORY_REFERENCE_ONLY",
-            "posture_score": self.last_frame.get("posture_score", 0.0) if self.last_frame else 0.0,
+            "posture_score": (
+                self.last_frame.get("posture_score", 0.0) if self.last_frame else 0.0
+            ),
             "reward": self.last_frame.get("reward", 0.0) if self.last_frame else 0.0,
-            "reward_events": self.last_frame.get("reward_events", []) if self.last_frame else [],
+            "reward_events": (
+                self.last_frame.get("reward_events", []) if self.last_frame else []
+            ),
             "terminal": self.last_frame.get("terminal") if self.last_frame else None,
         }
