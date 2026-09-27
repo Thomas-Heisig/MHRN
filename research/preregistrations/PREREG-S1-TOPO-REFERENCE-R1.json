@@ -209,28 +209,28 @@
   },
   "evaluation": {
     "seeds": [
-      1200021,
-      1200022,
-      1200023,
-      1200024,
-      1200025,
-      1200026,
-      1200027,
-      1200028,
-      1200029,
-      1200030,
-      1200031,
-      1200032,
-      1200033,
-      1200034,
-      1200035,
-      1200036,
-      1200037,
-      1200038,
-      1200039,
-      1200040
+      810000001,
+      810000002,
+      810000003,
+      810000004,
+      810000005,
+      810000006,
+      810000007,
+      810000008,
+      810000009,
+      810000010,
+      810000011,
+      810000012,
+      810000013,
+      810000014,
+      810000015,
+      810000016,
+      810000017,
+      810000018,
+      810000019,
+      810000020
     ],
-    "seed_selection_rationale": "Arbitrary fresh contiguous block selected before reference implementation. A repository search returned no matches before drafting; an automated freshness gate must recheck at freeze.",
+    "seed_selection_rationale": "The originally drafted block 1200021-1200040 failed the executable freshness gate because seed 1200035 already existed in historical Batch artifacts. Before any reference DATA and before freeze, the entire block was discarded. The replacement block 810000001-810000020 was selected as a new contiguous bookkeeping block and returned no repository-search matches at selection time; the executable freshness gate must still pass at the exact freeze commit.",
     "conditions": [
       "1d",
       "2d",
@@ -269,7 +269,16 @@
     "primary_multiple_testing": "one Holm family across the five first-output-latency contrasts",
     "alpha": 0.05,
     "effect_interval": "deterministic paired bootstrap 95% CI for median difference",
-    "secondary_role": "activation_auc_0_32 direction is a secondary concordance check and cannot rescue failed primary replication criteria"
+    "secondary_role": "activation_auc_0_32 direction is a secondary concordance check and cannot rescue failed primary replication criteria",
+    "seed_revision_history": [
+      {
+        "date": "2026-09-27",
+        "old_block": "1200021-1200040",
+        "reason": "Executable pre-freeze freshness gate found historical collision for 1200035 in EXP-BATCH-20260914074039-77 artifacts.",
+        "action": "Discarded the entire block before freeze and before any reference evaluation; no outcomes existed or were inspected.",
+        "new_block": "810000001-810000020"
+      }
+    ]
   },
   "canonical_targets": {
     "source": "EXP-S1-TOPO-PROMO-R1-20260927 analysis/statistics.json",
