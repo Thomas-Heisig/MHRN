@@ -108,6 +108,7 @@ class PlaygroundSession:
         weights: dict[tuple[int, int], float] = {}
         delays: dict[tuple[int, int], int] = {}
         eligibility: dict[tuple[int, int], float] = {}
+        eligibility_last_tick: dict[tuple[int, int], int] = {}
         release_state: dict[tuple[int, int], float] = {}
         for source, target in topology.edges:
             adjacency[source].add(target)
@@ -127,6 +128,7 @@ class PlaygroundSession:
                     else config.delay_ticks
                 )
             eligibility[edge] = 0.0
+            eligibility_last_tick[edge] = -10_000_000
             release_state[edge] = 1.0
 
         neural_io: NeuralIOInterface | None = None
@@ -454,17 +456,19 @@ class PlaygroundSession:
                                 weights[edge] - 0.04 * post_trace[target],
                             )
 
-                    if plasticity in {
-                        "eligibility_trace",
-                        "three_factor",
-                    } or synapse_mode in {
-                        "eligibility_trace",
-                        "three_factor",
-                    }:
+                    if (
+                        config.credit_assignment != "none"
+                        or plasticity in {"eligibility_trace", "three_factor"}
+                        or synapse_mode in {"eligibility_trace", "three_factor"}
+                    ):
                         for source in list(incoming[neuron_id]):
-                            eligibility[(source, neuron_id)] += 1.0
+                            edge = (source, neuron_id)
+                            eligibility[edge] += 1.0
+                            eligibility_last_tick[edge] = tick
                         for target in list(adjacency[neuron_id]):
-                            eligibility[(neuron_id, target)] -= 0.5
+                            edge = (neuron_id, target)
+                            eligibility[edge] -= 0.5
+                            eligibility_last_tick[edge] = tick
 
                     pre_trace[neuron_id] += 1.0
                     post_trace[neuron_id] += 1.0
@@ -513,7 +517,13 @@ class PlaygroundSession:
                     source, target = weakest
                     adjacency[source].discard(target)
                     incoming[target].discard(source)
-                    for mapping in (weights, delays, eligibility, release_state):
+                    for mapping in (
+                        weights,
+                        delays,
+                        eligibility,
+                        eligibility_last_tick,
+                        release_state,
+                    ):
                         mapping.pop(weakest, None)
                     structural_removed += 1
 
@@ -530,6 +540,7 @@ class PlaygroundSession:
                         weights[edge] = config.weight
                         delays[edge] = config.delay_ticks
                         eligibility[edge] = 0.0
+                        eligibility_last_tick[edge] = -10_000_000
                         release_state[edge] = 1.0
                         structural_added += 1
                         break
@@ -568,6 +579,12 @@ class PlaygroundSession:
                                     * config.gamma_discount
                                 )
                                 for edge in list(weights):
+                                    age = tick - eligibility_last_tick.get(
+                                        edge,
+                                        -10_000_000,
+                                    )
+                                    if age > config.credit_window:
+                                        continue
                                     weights[edge] = min(
                                         100.0,
                                         max(
