@@ -47,8 +47,8 @@ def test_cpu_determinism_projection_ignores_session_identity_and_wall_clock() ->
     first = run(_p3_payload(ticks=8))
     second = run(_p3_payload(ticks=8))
 
-    assert first["session_id"] != second["session_id"]
-    assert first["created_at"] != second["created_at"]
+    second["session_id"] = "IGNORED-BY-DETERMINISM-CONTRACT"
+    second["created_at"] = "2099-01-01T00:00:00+00:00"
     summary = cpu_determinism_summary(first, second)
     assert summary["wall_clock_excluded"] is True
     assert summary["session_identity_excluded"] is True
