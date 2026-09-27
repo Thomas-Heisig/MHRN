@@ -265,9 +265,17 @@ class CudaDriver:
         candidates = (
             [library]
             if library
-            else (["nvcuda.dll"] if os.name == "nt" else ["libcuda.so.1", "libcuda.so"])
+            else (
+                ["nvcuda.dll"]
+                if os.name == "nt"
+                else ["libcuda.so.1", "libcuda.so"]
+            )
         )
-        loader = getattr(ctypes, "WinDLL", ctypes.CDLL) if os.name == "nt" else ctypes.CDLL
+        loader = (
+            getattr(ctypes, "WinDLL", ctypes.CDLL)
+            if os.name == "nt"
+            else ctypes.CDLL
+        )
         last_error: OSError | None = None
         for candidate in candidates:
             try:
@@ -672,7 +680,6 @@ def cooperative_capacity(
     )
 
 
-
 def _kernel_abi(bundle: CompileBundle) -> Mapping[str, object]:
     abi = bundle.manifest.get("kernel_abi")
     if not isinstance(abi, Mapping):
@@ -753,7 +760,11 @@ def smoke_gate_launch_inputs(
     input_channels = int(abi["input_channels"])
     action_count = int(abi["action_space_size"])
     pan_dimensions = int(abi["pan_dimensions"])
-    full_mask = (1 << input_channels) - 1 if input_channels < 64 else 0xFFFFFFFFFFFFFFFF
+    full_mask = (
+        (1 << input_channels) - 1
+        if input_channels < 64
+        else 0xFFFFFFFFFFFFFFFF
+    )
     return GateLaunchInputs(
         input_current=tuple(0.0 for _ in range(n_neurons)),
         channel_masks=tuple(full_mask for _ in range(n_neurons)),
@@ -819,11 +830,13 @@ def execute_gate_bundle(
         }
         sizes = {
             "input": len(inputs.input_current) * ctypes.sizeof(ctypes.c_float),
-            "channel_masks": len(inputs.channel_masks) * ctypes.sizeof(ctypes.c_uint64),
+            "channel_masks": len(inputs.channel_masks)
+            * ctypes.sizeof(ctypes.c_uint64),
             "amplitudes": len(inputs.amplitudes) * ctypes.sizeof(ctypes.c_float),
             "reward_ring": len(inputs.reward_ring) * ctypes.sizeof(ctypes.c_float),
             "action_map": len(inputs.action_map) * ctypes.sizeof(ctypes.c_float),
-            "feedback_matrix": len(inputs.feedback_matrix) * ctypes.sizeof(ctypes.c_float),
+            "feedback_matrix": len(inputs.feedback_matrix)
+            * ctypes.sizeof(ctypes.c_float),
             "population": len(inputs.population) * ctypes.sizeof(ctypes.c_float),
             "logits": len(inputs.logits) * ctypes.sizeof(ctypes.c_float),
         }
