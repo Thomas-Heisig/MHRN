@@ -292,6 +292,123 @@ class PANLiveSession:
         )
         return hashlib.sha256(payload.encode("utf-8")).hexdigest()
 
+    def export_checkpoint(self) -> dict[str, object]:
+        """Export enough mutable state to resume this reference session."""
+
+        with self.lock:
+            return {
+                "classification": "PLAYGROUND_LIVE_CHECKPOINT",
+                "scientific_evidence": False,
+                "tick": self.tick,
+                "states": [dict(state) for state in self.states],
+                "pending": [list(row) for row in self.pending],
+                "recent_spikes": [list(item) for item in self.recent_spikes],
+                "output_counts": list(self.output_counts),
+                "total_spikes": self.total_spikes,
+                "last_spikes": list(self.last_spikes),
+                "learning": {
+                    "policy": list(self.learning.policy),
+                    "activity": list(self.learning.activity),
+                    "action_history": list(self.learning.action_history),
+                    "reward_history": list(self.learning.reward_history),
+                    "policy_updates": self.learning.policy_updates,
+                    "correct_actions": self.learning.correct_actions,
+                    "insufficient_activity_episodes": self.learning.insufficient_activity_episodes,
+                    "target_history": list(self.learning.target_history),
+                    "context_policies": {
+                        key: list(value)
+                        for key, value in self.learning.context_policies.items()
+                    },
+                    "context_updates": dict(self.learning.context_updates),
+                    "external_reward_history": list(
+                        self.learning.external_reward_history
+                    ),
+                },
+            }
+
+    def import_checkpoint(self, payload: Mapping[str, object]) -> None:
+        """Restore a checkpoint created by :meth:`export_checkpoint`."""
+
+        with self.lock:
+            raw_states = payload.get("states")
+            raw_pending = payload.get("pending")
+            if not isinstance(raw_states, list) or len(raw_states) != len(self.states):
+                raise ValueError("checkpoint state count mismatch")
+            if not isinstance(raw_pending, list) or len(raw_pending) != len(self.pending):
+                raise ValueError("checkpoint pending buffer mismatch")
+            restored_states: list[dict[str, object]] = []
+            for item in raw_states:
+                if not isinstance(item, dict):
+                    raise ValueError("checkpoint contains invalid neuron state")
+                restored_states.append(dict(item))
+            restored_pending: list[list[float]] = []
+            for row in raw_pending:
+                if not isinstance(row, list) or len(row) != self.config.n_neurons:
+                    raise ValueError("checkpoint contains invalid pending row")
+                restored_pending.append([float(value) for value in row])
+            self.states = restored_states
+            self.pending = restored_pending
+            self.tick = int(payload.get("tick", 0))
+            self.total_spikes = int(payload.get("total_spikes", 0))
+            self.last_spikes = [
+                int(value) for value in payload.get("last_spikes", [])
+            ] if isinstance(payload.get("last_spikes"), list) else []
+            raw_counts = payload.get("output_counts")
+            if isinstance(raw_counts, list):
+                self.output_counts = [int(value) for value in raw_counts]
+            raw_recent = payload.get("recent_spikes")
+            self.recent_spikes.clear()
+            if isinstance(raw_recent, list):
+                for item in raw_recent[-8192:]:
+                    if isinstance(item, list) and len(item) == 2:
+                        self.recent_spikes.append((int(item[0]), int(item[1])))
+
+            learning = payload.get("learning")
+            if isinstance(learning, Mapping):
+                raw_policy = learning.get("policy")
+                if isinstance(raw_policy, list):
+                    self.learning.policy = [float(value) for value in raw_policy]
+                raw_activity = learning.get("activity")
+                if isinstance(raw_activity, list):
+                    self.learning.activity = [
+                        float(value) for value in raw_activity
+                    ]
+                for name in ("action_history", "target_history"):
+                    raw = learning.get(name)
+                    if isinstance(raw, list):
+                        setattr(self.learning, name, [int(value) for value in raw])
+                raw_rewards = learning.get("reward_history")
+                if isinstance(raw_rewards, list):
+                    self.learning.reward_history = [
+                        float(value) for value in raw_rewards
+                    ]
+                self.learning.policy_updates = int(
+                    learning.get("policy_updates", 0)
+                )
+                self.learning.correct_actions = int(
+                    learning.get("correct_actions", 0)
+                )
+                self.learning.insufficient_activity_episodes = int(
+                    learning.get("insufficient_activity_episodes", 0)
+                )
+                raw_context = learning.get("context_policies")
+                if isinstance(raw_context, Mapping):
+                    self.learning.context_policies = {
+                        str(key): [float(value) for value in values]
+                        for key, values in raw_context.items()
+                        if isinstance(values, list)
+                    }
+                raw_updates = learning.get("context_updates")
+                if isinstance(raw_updates, Mapping):
+                    self.learning.context_updates = {
+                        str(key): int(value) for key, value in raw_updates.items()
+                    }
+                raw_external = learning.get("external_reward_history")
+                if isinstance(raw_external, list):
+                    self.learning.external_reward_history = [
+                        dict(item) for item in raw_external if isinstance(item, dict)
+                    ]
+
     def snapshot(self) -> dict[str, object]:
         with self.lock:
             voltages = [float(state.get("v", 0.0)) for state in self.states]
