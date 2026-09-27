@@ -303,3 +303,24 @@ not a CUDA execution backend. Register-native/PTX kernels and Dynamic
 Parallelism remain NOT IMPLEMENTED.
 
 See `docs/playground/PAN_COMPLETE_ARCHITECTURE.md`.
+
+
+## Switchable execution modes
+
+The Playground supports a separate execution policy:
+
+- `EVENT_ONLY`: sparse neuron stepping for currently driven neurons;
+- `TICK_ONLY`: all live neurons are stepped every tick;
+- `HYBRID_AUTO`: activity-driven switching with hysteresis and minimum dwell.
+
+The Dashboard uses `HYBRID_AUTO` as the interactive default. The Python
+configuration default remains `TICK_ONLY` to preserve earlier Playground
+session behavior.
+
+Transitions use the same shared state. Optional transition hashes verify that
+the policy switch itself did not mutate state. They do **not** prove that event
+and tick trajectories are mathematically equivalent.
+
+`EVENT_ONLY` is not yet an end-to-end O(events) backend: global plasticity and
+maintenance bookkeeping can still be dense. Performance is therefore
+`NOT_BENCHMARKED`.
