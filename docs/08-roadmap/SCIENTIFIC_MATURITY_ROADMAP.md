@@ -199,3 +199,8 @@ Jede Release-Beschreibung soll künftig mindestens enthalten:
 - Negativbefunde,
 - offene Mechanismus-/Replikationslücken,
 - neue oder geänderte Related-Work-/Attributionsbezüge.
+
+
+### Stage 1 — Reference R2
+
+R1 remains a preserved pre-DATA aborted protocol after discovery of a topology coordinate-order ambiguity and contributes 0 maturity points. The active path is `PREREG-S1-TOPO-REFERENCE-R2`, which adds exact topology-mapping parity before freeze. Stage 1 remains at **85%** until an authorized, reviewed replication result exists. Project-side Brian2 success may add at most 7.5 percentage points; only genuinely external independent replication can complete the 15-point replication component.
