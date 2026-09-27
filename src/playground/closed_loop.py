@@ -242,7 +242,8 @@ class ClosedLoopRuntime:
         self.reward_history: list[float] = []
         self.successes = 0
         self.pending_actions: list[tuple[int, int, int]] = []
-        self.pending_rewards: list[tuple[int, float]] = []
+        self.pending_rewards: list[tuple[int, float, int, int]] = []
+        self.delivered_rewards: list[tuple[int, int, float]] = []
         self.reward_trace = 0.0
         self.last_action: int | None = None
         self.previous_action: int | None = None
@@ -379,12 +380,13 @@ class ClosedLoopRuntime:
                 active_actions.append((start, end, action))
         self.pending_actions = active_actions
 
-        remaining_rewards: list[tuple[int, float]] = []
-        for reward_tick, reward in self.pending_rewards:
+        remaining_rewards: list[tuple[int, float, int, int]] = []
+        for reward_tick, reward, action, target in self.pending_rewards:
             if reward_tick <= tick:
                 self.reward_trace += reward
+                self.delivered_rewards.append((action, target, reward))
             else:
-                remaining_rewards.append((reward_tick, reward))
+                remaining_rewards.append((reward_tick, reward, action, target))
         self.pending_rewards = remaining_rewards
 
         if self.config.reward_signal_enabled and abs(self.reward_trace) > 1e-12:
@@ -455,10 +457,18 @@ class ClosedLoopRuntime:
             start = tick + self.config.action_loop_delay
             end = start + self.config.action_persistence
             self.pending_actions.append((start, end, action))
-        if self.config.reward_signal_enabled:
-            reward_tick = tick + self.config.reward_delay_ticks
-            self.pending_rewards.append((reward_tick, reward))
+        reward_tick = tick + self.config.reward_delay_ticks
+        if self.config.reward_delay_ticks == 0:
+            self.reward_trace += reward
+            self.delivered_rewards.append((action, target, reward))
+        else:
+            self.pending_rewards.append((reward_tick, reward, action, target))
         return target, reward
+
+    def consume_delivered_rewards(self) -> list[tuple[int, int, float]]:
+        rewards = list(self.delivered_rewards)
+        self.delivered_rewards.clear()
+        return rewards
 
     def summary(self) -> dict[str, object]:
         episodes = len(self.action_history)
