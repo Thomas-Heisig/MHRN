@@ -105,6 +105,58 @@ def pan_research_candidates() -> list[dict[str, object]]:
             ],
         },
         {
+            "id": "PAN-CANDIDATE-GATE-EMERGENCE",
+            "status": "DRAFT_IDEA_NOT_PREREGISTERED",
+            "question": (
+                "Do settings-derived gate schematics remain behaviorally stable "
+                "under matched parameter sweeps and seeds?"
+            ),
+            "required_controls": [
+                "fixed config-to-gate mapping",
+                "seed-paired runs",
+                "gate-disabled control",
+            ],
+        },
+        {
+            "id": "PAN-CANDIDATE-DUAL-MODE-CONSISTENCY",
+            "status": "DRAFT_IDEA_NOT_PREREGISTERED",
+            "question": (
+                "Under what bounded conditions do dual event/continuous runs "
+                "agree with continuous-only reference runs?"
+            ),
+            "required_controls": [
+                "identical initial state",
+                "matched dt and input",
+                "predefined equivalence tolerance",
+            ],
+        },
+        {
+            "id": "PAN-CANDIDATE-GENERATIVE-GROWTH",
+            "status": "DRAFT_IDEA_NOT_PREREGISTERED",
+            "question": (
+                "Does bounded event-driven growth produce reproducible topology "
+                "changes under matched activity histories?"
+            ),
+            "required_controls": [
+                "growth-disabled control",
+                "fixed-capacity pool control",
+                "matched edge budgets and seeds",
+            ],
+        },
+        {
+            "id": "PAN-CANDIDATE-MEMORY-SCALING",
+            "status": "DRAFT_IDEA_NOT_PREREGISTERED",
+            "question": (
+                "How does estimated hot-state memory scale with neuron count, "
+                "edge count and PAN state dimension?"
+            ),
+            "required_controls": [
+                "measured allocator validation before CUDA claims",
+                "dtype and index-width reporting",
+                "peak-memory rather than nominal-state comparison",
+            ],
+        },
+        {
             "id": "PAN-CANDIDATE-SPATIAL-LIFECYCLE",
             "status": "DRAFT_IDEA_NOT_PREREGISTERED",
             "question": (
