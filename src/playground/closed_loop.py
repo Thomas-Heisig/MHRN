@@ -159,13 +159,6 @@ CLOSED_LOOP_PRESETS: dict[str, dict[str, object]] = {
     },
 }
 
-CLOSED_LOOP_PRESETS.update({
-    "baseline_open_loop": {
-        "description": "Kontrolle ohne Aktions- und Reward-Loop.",
-        "hypothesis": "Ohne Closed Loop bleibt Verhalten am Zufallsniveau.",
-        "expected_success": 0.25,
-        "required_features": ["control"],
-        "settings": {"action_loop_enabled": False, "reward_signal_enabled": False, "target_encoding": "none", "pan_feedback_gain": 0.05, "inhibitory_fraction": 0.0, "input_topology": "uniform", "plasticity_rule": "structural", "weight": 4, "ticks": 2000},
     },
     "baseline_heterogeneous": {
         "description": "E/I-Balance und Neuronenheterogenität ohne Closed Loop.",
@@ -556,7 +549,10 @@ class ClosedLoopRuntime:
 
     def note_action(self, *, action: int, tick: int) -> tuple[int, float]:
         target = self.current_target(tick)
+        episode_index = len(self.action_history)
         reward = self._reward(action, target)
+        if self.config.freeze_rewards:
+            reward = self.config.frozen_reward_sequence[episode_index]
         if action == target:
             self.successes += 1
         self.previous_action = self.last_action
@@ -585,6 +581,14 @@ class ClosedLoopRuntime:
 
     def summary(self) -> dict[str, object]:
         episodes = len(self.action_history)
+        if self.config.freeze_actions and self.config.freeze_rewards:
+            parity_mode = "FROZEN_ACTIONS_AND_REWARDS"
+        elif self.config.freeze_actions:
+            parity_mode = "FROZEN_ACTIONS"
+        elif self.config.freeze_rewards:
+            parity_mode = "FROZEN_REWARDS"
+        else:
+            parity_mode = "LIVE_CLOSED_LOOP"
         return {
             "classification": "PLAYGROUND_CLOSED_LOOP",
             "scientific_evidence": False,
@@ -594,6 +598,10 @@ class ClosedLoopRuntime:
             "channel_sizes": [len(group) for group in self.channel_map],
             "action_loop_enabled": self.config.action_loop_enabled,
             "action_space_size": self.config.action_space_size,
+            "freeze_actions": self.config.freeze_actions,
+            "freeze_rewards": self.config.freeze_rewards,
+            "parity_reference_source": self.config.parity_reference_source,
+            "parity_reference_commit": self.config.parity_reference_commit,
             "target_encoding": self.config.target_encoding,
             "reward_signal_enabled": self.config.reward_signal_enabled,
             "reward_shaping": self.config.reward_shaping,
@@ -607,6 +615,7 @@ class ClosedLoopRuntime:
             "pending_action_effects": len(self.pending_actions),
             "pending_rewards": len(self.pending_rewards),
             "causal_chain": "target/input -> network -> action -> delayed input/reward",
+            "parity_mode": parity_mode,
         }
 
 
