@@ -15,7 +15,14 @@ from ..geometry.metrics import conduction_delay_ticks, geometry_diagnostics
 from ..instruments.monitors import RateMonitor, SpikeMonitor, StateMonitor
 from ..models import PlaygroundConfig, Topology
 from ..neural_io import NeuralIOInterface
-from ..pan.runtime import PANRuntime
+from ..pan import (
+    CUDAMemoryPool,
+    DualModeScheduler,
+    GrowthEngine,
+    PANRuntime,
+    SSDOffloader,
+    settings_to_gates,
+)
 from ..persist.session_recorder import record_session
 from ..registry.neuron_models import NeuronModelSpec, get_neuron_model
 from ..registry.plasticity_rules import require_plasticity_rule
@@ -125,6 +132,15 @@ class PlaygroundSession:
                 source_id=config.neural_io_source_id,
             )
 
+        gate_schematic = settings_to_gates(config)
+        dual_scheduler: DualModeScheduler | None = None
+        if config.clock_mode == "dual":
+            dual_scheduler = DualModeScheduler(
+                dt_ms=config.dt_ms,
+                base_hz=config.clock_base_hz,
+                event_batch_ms=config.clock_event_batch_ms,
+            )
+
         pan_runtime: PANRuntime | None = None
         if config.pan_enabled or config.neuron_model == "pan_adex_5d":
             degree = [
@@ -144,6 +160,37 @@ class PlaygroundSession:
             )
             pan_runtime.initialize(states)
 
+        growth_engine: GrowthEngine | None = None
+        if config.growth_enabled:
+            growth_engine = GrowthEngine(
+                n_neurons=config.n_neurons,
+                edge_budget=config.edge_budget,
+                max_synapses_per_neuron=config.growth_max_synapses_per_neuron,
+                max_new_synapses_per_barrier=(
+                    config.growth_max_new_synapses_per_barrier
+                ),
+                activity_threshold=config.growth_activity_threshold,
+                coactivation_threshold=config.growth_coactivation_threshold,
+                information_threshold=config.growth_information_threshold,
+                prune_threshold=config.growth_prune_threshold,
+                neurogenesis=config.growth_neurogenesis,
+                synaptogenesis=config.growth_synaptogenesis,
+                path_formation=config.growth_path_formation,
+                pruning=config.growth_pruning,
+            )
+
+        memory_pool = CUDAMemoryPool(max_mb=config.cuda_budget_mb)
+        memory_estimate = memory_pool.estimate(
+            neurons=config.n_neurons,
+            synapses=config.edge_budget,
+            state_dimensions=config.pan_dimensions,
+        )
+        offloader = SSDOffloader(
+            enabled=config.offload_enabled,
+            run_key=f"{config.name}-{config.seed}",
+            snapshot_interval=config.offload_snapshot_interval,
+        )
+
         initial_edge_count = len(weights)
         structural_added = 0
         structural_removed = 0
@@ -160,6 +207,8 @@ class PlaygroundSession:
 
         with PlaygroundIsolation():
             for tick in range(config.ticks):
+                if dual_scheduler is not None:
+                    dual_scheduler.begin_continuous_step()
                 slot = tick % queue_size
                 synaptic = pending[slot]
                 pending[slot] = [0.0 for _ in range(config.n_neurons)]
@@ -347,6 +396,9 @@ class PlaygroundSession:
                 if neural_io is not None:
                     neural_io.observe(tick, spiked_this_tick)
 
+                if dual_scheduler is not None:
+                    dual_scheduler.observe_spikes(tick, spiked_this_tick)
+
                 if pan_runtime is not None:
                     pan_runtime.update(
                         tick=tick,
@@ -384,8 +436,56 @@ class PlaygroundSession:
                             release_state[edge] + 0.025,
                         )
 
+                if dual_scheduler is not None and dual_scheduler.sync_due(tick):
+                    barrier_events = dual_scheduler.drain_barrier(tick)
+                    offloader.flush_events(tick=tick, events=barrier_events)
+                    if growth_engine is not None:
+                        added, removed = growth_engine.evaluate(
+                            tick=tick,
+                            events=barrier_events,
+                            states=states,
+                            adjacency=adjacency,
+                            incoming=incoming,
+                            weights=weights,
+                            delays=delays,
+                            eligibility=eligibility,
+                            release_state=release_state,
+                            default_weight=config.weight,
+                            default_delay_ticks=config.delay_ticks,
+                        )
+                        structural_added += added
+                        structural_removed += removed
+                    offloader.maybe_snapshot(
+                        tick=tick,
+                        payload={
+                            "tick": tick,
+                            "edge_count": len(weights),
+                            "spike_count": len(spiked_this_tick),
+                        },
+                    )
+
                 state_monitor.record(tick, states, state_stride)
                 tick_spike_counts.append(len(spiked_this_tick))
+
+        if dual_scheduler is not None:
+            final_events = dual_scheduler.finalize(config.ticks - 1)
+            offloader.flush_events(tick=config.ticks - 1, events=final_events)
+            if growth_engine is not None and final_events:
+                added, removed = growth_engine.evaluate(
+                    tick=config.ticks - 1,
+                    events=final_events,
+                    states=states,
+                    adjacency=adjacency,
+                    incoming=incoming,
+                    weights=weights,
+                    delays=delays,
+                    eligibility=eligibility,
+                    release_state=release_state,
+                    default_weight=config.weight,
+                    default_delay_ticks=config.delay_ticks,
+                )
+                structural_added += added
+                structural_removed += removed
 
         rates = rate_monitor.rates_hz(config.ticks, config.dt_ms)
         total_spikes = len(spike_monitor.ticks)
@@ -439,6 +539,24 @@ class PlaygroundSession:
             },
             "readout": apply_readout(config.readout, rates),
         }
+        result["gates"] = gate_schematic.descriptor()
+        result["storage"] = {
+            **memory_pool.summary(memory_estimate),
+            "offload": offloader.summary(),
+        }
+        if dual_scheduler is not None:
+            result["clock"] = dual_scheduler.summary()
+        else:
+            result["clock"] = {
+                "classification": "PLAYGROUND_CLOCK",
+                "scientific_evidence": False,
+                "mode": "continuous",
+                "continuous_steps": config.ticks,
+                "continuous_dt_ms": config.dt_ms,
+            }
+        if growth_engine is not None:
+            result["growth"] = growth_engine.summary()
+
         if neural_io is not None:
             result["neural_io"] = neural_io.finalize()
 
