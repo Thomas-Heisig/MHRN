@@ -159,6 +159,13 @@ CLOSED_LOOP_PRESETS: dict[str, dict[str, object]] = {
     },
 }
 
+CLOSED_LOOP_PRESETS.update({
+    "baseline_open_loop": {
+        "description": "Kontrolle ohne Aktions- und Reward-Loop.",
+        "hypothesis": "Ohne Closed Loop bleibt Verhalten am Zufallsniveau.",
+        "expected_success": 0.25,
+        "required_features": ["control"],
+        "settings": {"action_loop_enabled": False, "reward_signal_enabled": False, "target_encoding": "none", "pan_feedback_gain": 0.05, "inhibitory_fraction": 0.0, "input_topology": "uniform", "plasticity_rule": "structural", "weight": 4, "ticks": 2000},
     },
     "baseline_heterogeneous": {
         "description": "E/I-Balance und Neuronenheterogenität ohne Closed Loop.",
