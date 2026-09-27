@@ -104,3 +104,44 @@ browse the Internet.
 
 Gateway/LLM round-trip should be wired through the existing MHRN Gateway /
 Neural-Symbiosis boundary, not by adding a second external-I/O architecture.
+
+
+## Night profile after the live-run diagnosis
+
+The default overnight profile intentionally differs from the older interactive
+batch defaults:
+
+```text
+neuron_model: pan_adex_5d
+pan_bias_current: 15.0
+weight: 3.0
+clock_mode: dual
+growth_enabled: true
+growth_activity_threshold: 0.05
+thalamic_relay_threshold: 0.0
+execution_mode: HYBRID_AUTO
+```
+
+The lower synaptic weight is an engineering response to the observed highly
+synchronous Playground run. It is **not** a biological optimum or a validated
+scientific parameter.
+
+The live GrowthEngine also receives bounded structural edge headroom above the
+initial topology size. Without that headroom, a topology initialized exactly at
+`edge_budget` could never add a new edge even when growth thresholds were met.
+
+The resumable checkpoint now includes neuron state, pending synaptic currents,
+the mutated edge/weight/delay graph, PAN population feedback state, execution
+switcher state, GrowthEngine EMA/coactivation/log state, context policies,
+KnowledgeBase state and the pending growth events since the last barrier.
+
+## Gateway boundary
+
+The repository's existing `GatewayRuntime` remains experiment-only and
+fail-closed; it is not a general unrestricted LLM query endpoint. The night
+manager therefore uses local `vector_db` and `file_index` sources by
+default. A gateway source is offered only when an explicit authorized
+`gateway_query` callback is supplied to `NightRunDaemon`.
+
+No direct Ollama client and no autonomous web access are introduced by the
+night-run stack.
