@@ -1,0 +1,58 @@
+"""CUDA/PTX code generation helpers for the non-canonical Playground."""
+
+from .pan_compiler import (
+    CompileBundle,
+    Gate,
+    GateProgram,
+    GateType,
+    build_gate_program,
+    compile_config,
+    compile_mapping,
+    compile_yaml,
+    compiler_catalog,
+    emit_cuda_source,
+    emit_ptx,
+    write_bundle,
+)
+
+__all__ = [
+    "CompileBundle",
+    "Gate",
+    "GateProgram",
+    "GateType",
+    "build_gate_program",
+    "compile_config",
+    "compile_mapping",
+    "compile_yaml",
+    "compiler_catalog",
+    "emit_cuda_source",
+    "emit_ptx",
+    "write_bundle",
+    "CooperativePreflight",
+    "CudaDriver",
+    "CudaDriverError",
+    "CudaRuntimeUnavailable",
+    "DriverModule",
+    "PtxasReport",
+    "assemble_bundle",
+    "assemble_ptx",
+    "cooperative_capacity",
+    "gate_parity_summary",
+    "max_abs_error",
+    "parse_ptxas_verbose",
+]
+
+from .runtime import (
+    CooperativePreflight,
+    CudaDriver,
+    CudaDriverError,
+    CudaRuntimeUnavailable,
+    DriverModule,
+    PtxasReport,
+    assemble_bundle,
+    assemble_ptx,
+    cooperative_capacity,
+    gate_parity_summary,
+    max_abs_error,
+    parse_ptxas_verbose,
+)
