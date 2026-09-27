@@ -19,6 +19,53 @@ _RUN_WINDOW_SECONDS = 60.0
 _RUN_SEMAPHORE = threading.BoundedSemaphore(_MAX_CONCURRENT_RUNS)
 _RATE_LOCK = threading.Lock()
 _RECENT_RUNS: deque[float] = deque()
+
+
+def _payload_int(
+    payload: Mapping[str, object],
+    name: str,
+    default: int,
+) -> int:
+    value = payload.get(name, default)
+    if isinstance(value, bool) or not isinstance(value, (int, float)):
+        raise ValueError(f"{name} must be numeric")
+    converted = int(value)
+    if float(value) != float(converted):
+        raise ValueError(f"{name} must be an integer")
+    return converted
+
+
+def _payload_float(
+    payload: Mapping[str, object],
+    name: str,
+    default: float,
+) -> float:
+    value = payload.get(name, default)
+    if isinstance(value, bool) or not isinstance(value, (int, float)):
+        raise ValueError(f"{name} must be numeric")
+    return float(value)
+
+
+def _payload_text(
+    payload: Mapping[str, object],
+    name: str,
+    default: str,
+) -> str:
+    value = payload.get(name, default)
+    if not isinstance(value, str):
+        raise ValueError(f"{name} must be a string")
+    return value
+
+
+def _numeric_list(value: object, name: str) -> list[float]:
+    if not isinstance(value, list):
+        raise ValueError(f"{name} must be a list")
+    result: list[float] = []
+    for item in value:
+        if isinstance(item, bool) or not isinstance(item, (int, float)):
+            raise ValueError(f"{name} entries must be numeric")
+        result.append(float(item))
+    return result
 _LIVE_DAEMON = PANSessionDaemon()
 _LIVE_SANDBOXES: dict[str, PANEmbodiedSandboxSession] = {}
 _LIVE_LOCK = threading.RLock()
@@ -99,10 +146,10 @@ def post_playground(
 
     if path == "/api/playground/night/start":
         return _NIGHT_RUN.start(
-            hours=float(payload.get("hours", 8.0)),
-            max_episodes=int(payload.get("max_episodes", 10_000)),
-            checkpoint_seconds=float(payload.get("checkpoint_seconds", 600.0)),
-            seed=int(payload.get("seed", 12345)),
+            hours=_payload_float(payload, "hours", 8.0),
+            max_episodes=_payload_int(payload, "max_episodes", 10_000),
+            checkpoint_seconds=_payload_float(payload, "checkpoint_seconds", 600.0),
+            seed=_payload_int(payload, "seed", 12345),
         )
     if path == "/api/playground/night/stop":
         return _NIGHT_RUN.stop()
@@ -130,19 +177,17 @@ def post_playground(
         session_id, action = parts[0], parts[1]
         session = _LIVE_DAEMON.get(session_id)
         if action == "step":
-            ticks = int(payload.get("ticks", 32))
+            ticks = _payload_int(payload, "ticks", 32)
             return {"session_id": session_id, **session.step(ticks)}
         if action == "input":
-            values = payload.get("values", [])
-            if not isinstance(values, list):
-                raise ValueError("live input values must be a list")
-            duration = int(payload.get("duration_ticks", 16))
-            gain = float(payload.get("gain", 25.0))
-            session.inject_vector([float(value) for value in values], duration_ticks=duration, gain=gain)
+            values = _numeric_list(payload.get("values", []), "values")
+            duration = _payload_int(payload, "duration_ticks", 16)
+            gain = _payload_float(payload, "gain", 25.0)
+            session.inject_vector(values, duration_ticks=duration, gain=gain)
             return {"session_id": session_id, "accepted": True}
         if action == "strategy":
-            context = str(payload.get("context", "default"))
-            options = int(payload.get("action_count", 4))
+            context = _payload_text(payload, "context", "default")
+            options = _payload_int(payload, "action_count", 4)
             chosen = session.choose_strategy(context, options)
             return {
                 "session_id": session_id,
@@ -153,10 +198,10 @@ def post_playground(
                 "action_count": options,
             }
         if action == "reward":
-            context = str(payload.get("context", "default"))
-            chosen = int(payload.get("action", 0))
-            action_count = int(payload.get("action_count", 4))
-            reward = float(payload.get("reward", 0.0))
+            context = _payload_text(payload, "context", "default")
+            chosen = _payload_int(payload, "action", 0)
+            action_count = _payload_int(payload, "action_count", 4)
+            reward = _payload_float(payload, "reward", 0.0)
             return {
                 "session_id": session_id,
                 **session.apply_strategy_reward(
@@ -172,7 +217,7 @@ def post_playground(
                 if sandbox is None:
                     sandbox = PANEmbodiedSandboxSession(session)
                     _LIVE_SANDBOXES[session_id] = sandbox
-            ticks = int(payload.get("ticks", 1))
+            ticks = _payload_int(payload, "ticks", 1)
             return {"session_id": session_id, **sandbox.step(ticks)}
         if action == "stop":
             with _LIVE_LOCK:
