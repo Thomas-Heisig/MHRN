@@ -37,7 +37,9 @@ ID_PATTERNS = {
     "hypotheses": re.compile(
         r"^H-[A-Z0-9]+(?:-[A-Z0-9]+)*-(?:[0-9]{3}|E[0-9]{2})-[A-Z]$"
     ),
-    "claims": re.compile(r"^CLAIM-[A-Z0-9]+-[0-9]{3}$"),
+    # Claims may use the same multi-segment domain convention as RQ/H
+    # families (for example CLAIM-S1-TOPO-001).
+    "claims": re.compile(r"^CLAIM-[A-Z0-9]+(?:-[A-Z0-9]+)*-[0-9]{3}$"),
     # Most literature IDs end in the publication year. The cognition source
     # family and the connectome release source were introduced as stable,
     # source-keyed identifiers and are already referenced by protocols and
@@ -187,7 +189,7 @@ class TestRegistryIdFormat:
     def test_claim_ids_have_correct_format(
         self, registry_data: dict[str, list[RegistryEntry]]
     ) -> None:
-        """All claim IDs must match CLAIM-{DOMAIN}-{NNN}."""
+        """All claim IDs must match CLAIM-{DOMAIN[-SUBDOMAIN...]}-{NNN}."""
         pattern = ID_PATTERNS["claims"]
         for entry in registry_data.get("claims", []):
             cid: str = entry.get("id", "")  # type: ignore[assignment]
