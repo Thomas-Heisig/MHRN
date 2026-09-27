@@ -2,7 +2,10 @@
 """Freeze-gate seed freshness check for Stage-1 reference replication R2."""
 
 from __future__ import annotations
-import json, re, subprocess
+
+import json
+import re
+import subprocess
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
