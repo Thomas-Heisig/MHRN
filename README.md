@@ -448,3 +448,16 @@ The non-canonical Playground can run PAN sessions in `EVENT_ONLY`,
 hysteresis, dwell time and transition-state integrity hashes. Event and tick
 trajectories are not claimed to be mathematically equivalent, and the current
 Python event path has not been benchmarked as an O(events) implementation.
+
+
+### Stateful PAN Playground sessions
+
+The Playground now supports persistent in-process PAN sessions in addition to
+one-shot runs. The live path preserves neural and learning state across
+Dashboard calls, accepts bounded vector input, exposes output/activity state,
+and can drive a minimal local stick-figure sandbox.
+
+The PAN-AdEx reference bootstrap was adjusted to avoid the observed silent
+startup condition, and reward learning now refuses to treat silent episodes as
+successful learning. These remain exploratory Playground mechanisms and do not
+change research maturity or evidence.
