@@ -28,6 +28,10 @@ class GrowthEngine:
         coactivation_threshold: int,
         information_threshold: float,
         prune_threshold: float,
+        neurogenesis: bool = True,
+        synaptogenesis: bool = True,
+        path_formation: bool = True,
+        pruning: bool = True,
     ) -> None:
         self.n_neurons = n_neurons
         self.edge_budget = edge_budget
@@ -37,6 +41,10 @@ class GrowthEngine:
         self.coactivation_threshold = coactivation_threshold
         self.information_threshold = information_threshold
         self.prune_threshold = prune_threshold
+        self.neurogenesis = neurogenesis
+        self.synaptogenesis = synaptogenesis
+        self.path_formation = path_formation
+        self.pruning = pruning
         self.activity_ema = [0.0 for _ in range(n_neurons)]
         self.coactivation: dict[Edge, int] = defaultdict(int)
         self.neurogenesis_events: list[dict[str, object]] = []
@@ -157,14 +165,15 @@ class GrowthEngine:
                 self.coactivation[(source, target)] += 1
                 self.coactivation[(target, source)] += 1
 
-        self._reactivate_slot(tick=tick, states=states)
+        if self.neurogenesis:
+            self._reactivate_slot(tick=tick, states=states)
 
         added = 0
         candidates = sorted(
             self.coactivation.items(),
             key=lambda item: (-item[1], item[0][0], item[0][1]),
         )
-        for (source, target), score in candidates:
+        for (source, target), score in candidates if self.synaptogenesis else []:
             if added >= self.max_new_synapses_per_barrier:
                 break
             if score < self.coactivation_threshold:
@@ -193,7 +202,8 @@ class GrowthEngine:
         ]
         information.sort(reverse=True)
         if (
-            added < self.max_new_synapses_per_barrier
+            self.path_formation
+            and added < self.max_new_synapses_per_barrier
             and len(information) >= 2
             and information[0][0] >= self.information_threshold
             and information[1][0] >= self.information_threshold
@@ -226,7 +236,7 @@ class GrowthEngine:
             key=lambda item: (item[1], item[0][0], item[0][1]),
         )
         max_prune = self.max_new_synapses_per_barrier
-        for edge, value in weak_edges[:max_prune]:
+        for edge, value in (weak_edges[:max_prune] if self.pruning else []):
             source, target = edge
             adjacency[source].discard(target)
             incoming[target].discard(source)
@@ -274,4 +284,8 @@ class GrowthEngine:
             "prune_threshold": self.prune_threshold,
             "max_synapses_per_neuron": self.max_synapses_per_neuron,
             "max_new_synapses_per_barrier": self.max_new_synapses_per_barrier,
+            "neurogenesis_enabled": self.neurogenesis,
+            "synaptogenesis_enabled": self.synaptogenesis,
+            "path_formation_enabled": self.path_formation,
+            "pruning_enabled": self.pruning,
         }
