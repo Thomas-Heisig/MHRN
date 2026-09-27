@@ -399,7 +399,7 @@ function buildPanels(root) {
           <div data-state="pending"><strong>CUDA-1.5</strong><span>STDP / Plastizität auf GPU</span></div>
           <div data-state="pending"><strong>CUDA-1.6</strong><span>Closed Loop · Sandbox / Strichmann auf GPU</span></div>
         </div>
-        <small>D1 = exakte Spike-Ereignisse · D2 = numerische Zustandsparität · D3 = Verhaltens-/Metrikparität. Die CPU-Anwendungs-Schicht mit Sandbox, Physik, Sensorik, Aktorik, Posture und Reward existiert bereits; CUDA-1.4–1.6 zeigen bewusst den noch offenen GPU-Portierungsstand.</small>
+        <small>D1 = exakte Spike-Ereignisse · D2 = numerische Zustandsparität · D3 = Verhaltens-/Metrikparität. Die CPU-Anwendungs-Schicht mit Sandbox, Physik, Sensorik, Aktorik, Posture und Reward existiert bereits; CUDA-1.4–1.6 zeigen bewusst den noch offenen GPU-Portierungsstand. Bis der lokale Hardware-D2-Test erfolgreich ist, gilt: ein echter GPU-Kernel-Launch ist hier noch nicht nachgewiesen.</small>
         <pre id="pg-cuda-runtime-state">CUDA-Umgebung noch nicht geprüft.</pre>
         <pre id="pg-cuda-compiler-state">Noch kein CUDA-/Parity-Lauf.</pre>
       </article>
