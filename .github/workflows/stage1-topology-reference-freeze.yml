@@ -10,6 +10,13 @@ on:
       - research/preregistrations/PREREG-S1-TOPO-REFERENCE-R1.json
       - research/audits/STAGE1_TOPOLOGY_REFERENCE_MECHANISM_AUDIT_20260927.json
       - research/calibrations/CAL-S1-TOPO-REFERENCE-INTEGRATOR-R1/result.json
+      - scripts/check_stage1_reference_seed_freshness.py
+      - scripts/check_stage1_reference_independence.py
+      - scripts/verify_stage1_topology_reference_r1.py
+      - reference/stage1_topology_brian2/runner.py
+      - reference/stage1_topology_brian2/TRANSLATION.md
+      - research/calibrations/CAL-S1-TOPO-REFERENCE-SYNAPSE-R1/result.json
+      - research/calibrations/CAL-S1-TOPO-REFERENCE-RESET-R1/result.json
       - reference/stage1_topology_brian2/reference_protocol.json
   workflow_dispatch:
 
