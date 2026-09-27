@@ -156,6 +156,8 @@ The framework is currently alpha research software. Public availability and tech
 
 Established simulation environments such as NEST, Brian 2, PyNN, BindsNET, and Norse demonstrate different trade-offs between large-scale simulation, model expressiveness, interoperability, machine-learning integration, and event-driven computation. MHRN is not presented as a replacement for those systems.
 
+Brian 2 is used as an external reference simulator in explicitly registered conformance and cross-implementation workflows. Brian 2 remains licensed under CeCILL 2.1; its use is documented separately from MHRN's MIT license in `THIRD_PARTY_NOTICES.md`. Research relying materially on Brian 2 cites Stimberg, Brette, and Goodman (2019).
+
 Its narrower contribution is the combination of recurrent SNN experimentation with:
 
 1. explicit evidence-state separation;
@@ -203,7 +205,7 @@ This software paper does not promote any experiment from DATA to EVID.
 
 - Brette, R., et al. (2007). Simulation of networks of spiking neurons: a review of tools and strategies. *Journal of Computational Neuroscience*.
 - Gewaltig, M.-O., & Diesmann, M. (2007). NEST (NEural Simulation Tool). *Scholarpedia*.
-- Stimberg, M., Brette, R., & Goodman, D. F. M. (2019). Brian 2, an intuitive and efficient neural simulator. *eLife*.
+- Stimberg, M., Brette, R., & Goodman, D. F. M. (2019). Brian 2, an intuitive and efficient neural simulator. *eLife, 8*, e47314. https://doi.org/10.7554/eLife.47314.
 - Hazan, H., et al. (2018). BindsNET: A machine learning-oriented spiking neural networks library in Python. *Frontiers in Neuroinformatics*.
 - Pehle, C., & Pedersen, J. E. (2021). Norse — A deep learning library for spiking neural networks. Documentation/software publication.
 - MHRN repository documentation and governed research artefacts, version 0.6.0-alpha.6.
