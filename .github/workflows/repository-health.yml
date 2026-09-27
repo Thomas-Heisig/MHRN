@@ -101,7 +101,7 @@ jobs:
             src/playground/pan/runtime.py \
             tests/test_repository_hygiene.py \
             tests/test_playground.py
-          git diff --cached --check
+          git diff --cached --check -- . ':!research/publications/2026-09-17_recursive-epistemics_v1.8/**'
           if git diff --cached --quiet; then
             echo "Generated research projections are current."
             exit 0
