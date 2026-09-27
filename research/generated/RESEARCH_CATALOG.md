@@ -1,6 +1,6 @@
 # MHRN Research Catalog
 
-*Generiert am 2026-09-21*
+*Generiert am 2026-09-27*
 
 ## Übersicht
 
