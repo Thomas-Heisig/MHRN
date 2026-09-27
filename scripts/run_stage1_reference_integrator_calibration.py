@@ -5,13 +5,27 @@ from __future__ import annotations
 
 import json
 import math
+import platform
+import sys
+import hashlib
 from pathlib import Path
+
+import brian2
 
 from reference.stage1_topology_brian2.integrator_probe import run_one_tick
 from src.core.neuron import NeuronConfig, create_neuron
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "research" / "calibrations" / "CAL-S1-TOPO-REFERENCE-INTEGRATOR-R1"
+REFERENCE_PROBE = (
+    ROOT / "reference" / "stage1_topology_brian2" / "integrator_probe.py"
+)
+NEURON_SOURCE = ROOT / "src" / "core" / "neuron.py"
+MODEL_SOURCE = ROOT / "src" / "core" / "neuron_models.py"
+
+
+def sha256_file(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
 def run_mhrn_one_tick(current: float) -> dict[str, float | bool]:
@@ -77,6 +91,14 @@ def main() -> int:
         "calibration_id": "CAL-S1-TOPO-REFERENCE-INTEGRATOR-R1",
         "role": "pre-freeze method calibration; not confirmatory DATA and not EVID",
         "tolerance_abs": tolerance,
+        "provenance": {
+            "python_version": sys.version,
+            "platform": platform.platform(),
+            "brian2_version": brian2.__version__,
+            "reference_probe_sha256": sha256_file(REFERENCE_PROBE),
+            "mhrn_neuron_source_sha256": sha256_file(NEURON_SOURCE),
+            "mhrn_neuron_model_source_sha256": sha256_file(MODEL_SOURCE),
+        },
         "cases": cases,
         "pass": passed,
     }
