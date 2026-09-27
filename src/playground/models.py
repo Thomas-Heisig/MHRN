@@ -11,6 +11,7 @@ from .closed_loop import CLOSED_LOOP_PRESETS
 
 Coordinate: TypeAlias = tuple[float, ...]
 Edge: TypeAlias = tuple[int, int]
+ActionInputMap: TypeAlias = str | tuple[tuple[float, ...], ...]
 
 _NAME_RE = re.compile(r"[^A-Za-z0-9_.-]+")
 
@@ -150,7 +151,7 @@ class PlaygroundConfig:
     action_loop_enabled: bool = False
     action_loop_delay: int = 1
     action_persistence: int = 1
-    action_to_input_map: object = "auto"
+    action_to_input_map: ActionInputMap = "auto"
     action_space_size: int = 4
     action_coupling_strength: float = 0.0
     action_noise: float = 0.0
@@ -215,7 +216,10 @@ class PlaygroundConfig:
             item = CLOSED_LOOP_PRESETS.get(name)
             if item is None:
                 raise ValueError(f"unknown closed_loop_preset: {name}")
-            settings = dict(item.get("settings", {}))
+            raw_settings = item.get("settings", {})
+            if not isinstance(raw_settings, Mapping):
+                raise ValueError(f"invalid settings for preset: {name}")
+            settings = dict(raw_settings)
             parent = settings.pop("closed_loop_preset", None)
             merged: dict[str, object] = {}
             if isinstance(parent, str):
@@ -287,7 +291,7 @@ class PlaygroundConfig:
                 groups.append(tuple(converted))
             return tuple(groups)
 
-        def action_map(name: str, default: object) -> object:
+        def action_map(name: str, default: ActionInputMap) -> ActionInputMap:
             value = payload.get(name, default)
             if isinstance(value, str):
                 normalized = value.strip().lower()
