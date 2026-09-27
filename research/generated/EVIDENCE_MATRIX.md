@@ -1,6 +1,6 @@
 # MHRN Evidence Matrix
 
-*Generiert am 2026-09-21*
+*Generiert am 2026-09-27*
 
 RQ-Status und Claim-Status sind unterschiedliche wissenschaftliche Zustände und werden nicht gegenseitig abgeleitet.
 
