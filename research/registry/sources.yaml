@@ -204,3 +204,27 @@
   brain5d_questions:
     - RQ-SNN-003
   brain5d_relevance: "Related-work context for a new prospective propagation-efficiency hypothesis. It motivates careful efficiency controls but is not evidence for a 5D advantage."
+
+- source_id: SRC-STIMBERG-2019
+  authors:
+    - Marcel Stimberg
+    - Romain Brette
+    - Dan F. M. Goodman
+  title: "Brian 2, an intuitive and efficient neural simulator"
+  year: 2019
+  journal: "eLife"
+  volume: 8
+  article: e47314
+  doi: "10.7554/eLife.47314"
+  software_project: "Brian 2"
+  software_license: "CeCILL 2.1"
+  topic:
+    - snn_simulation
+    - reference_implementation
+    - reproducibility
+  claims:
+    - "Brian 2 is a flexible simulator for spiking neural networks and is used in MHRN only as an external reference implementation where explicitly declared."
+  brain5d_questions:
+    - RQ-EVAL-006
+    - RQ-SNN-003
+  brain5d_relevance: "Primary software-method citation for Brian 2 reference comparisons. Its use does not itself constitute evidence for an MHRN claim."
