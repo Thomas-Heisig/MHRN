@@ -623,32 +623,84 @@ class PlaygroundConfig:
             action_feedback_channel=integer(
                 "action_feedback_channel", defaults.action_feedback_channel
             ),
-            posture_score_channel=integer("posture_score_channel", defaults.posture_score_channel),
-            reward_event_channel=integer("reward_event_channel", defaults.reward_event_channel),
-            posture_current_scale=number("posture_current_scale", defaults.posture_current_scale),
-            reward_event_scale=number("reward_event_scale", defaults.reward_event_scale),
-            posture_reward_enabled=bool(payload.get("posture_reward_enabled", defaults.posture_reward_enabled)),
-            posture_weight_upright=number("posture_weight_upright", defaults.posture_weight_upright),
-            posture_weight_height=number("posture_weight_height", defaults.posture_weight_height),
-            posture_weight_stability=number("posture_weight_stability", defaults.posture_weight_stability),
-            posture_weight_symmetry=number("posture_weight_symmetry", defaults.posture_weight_symmetry),
-            posture_target_height=number("posture_target_height", defaults.posture_target_height),
+            posture_score_channel=integer(
+                "posture_score_channel", defaults.posture_score_channel
+            ),
+            reward_event_channel=integer(
+                "reward_event_channel", defaults.reward_event_channel
+            ),
+            posture_current_scale=number(
+                "posture_current_scale", defaults.posture_current_scale
+            ),
+            reward_event_scale=number(
+                "reward_event_scale", defaults.reward_event_scale
+            ),
+            posture_reward_enabled=bool(
+                payload.get("posture_reward_enabled", defaults.posture_reward_enabled)
+            ),
+            posture_weight_upright=number(
+                "posture_weight_upright", defaults.posture_weight_upright
+            ),
+            posture_weight_height=number(
+                "posture_weight_height", defaults.posture_weight_height
+            ),
+            posture_weight_stability=number(
+                "posture_weight_stability", defaults.posture_weight_stability
+            ),
+            posture_weight_symmetry=number(
+                "posture_weight_symmetry", defaults.posture_weight_symmetry
+            ),
+            posture_target_height=number(
+                "posture_target_height", defaults.posture_target_height
+            ),
             posture_tilt_max=number("posture_tilt_max", defaults.posture_tilt_max),
-            posture_velocity_max=number("posture_velocity_max", defaults.posture_velocity_max),
-            trigger_good_score=number("trigger_good_score", defaults.trigger_good_score),
-            trigger_good_duration=integer("trigger_good_duration", defaults.trigger_good_duration),
-            trigger_good_reward=number("trigger_good_reward", defaults.trigger_good_reward),
-            trigger_warning_score=number("trigger_warning_score", defaults.trigger_warning_score),
-            trigger_warning_reward=number("trigger_warning_reward", defaults.trigger_warning_reward),
-            trigger_falling_rate=number("trigger_falling_rate", defaults.trigger_falling_rate),
-            trigger_falling_reward=number("trigger_falling_reward", defaults.trigger_falling_reward),
-            trigger_collapse_score=number("trigger_collapse_score", defaults.trigger_collapse_score),
-            trigger_collapse_reward=number("trigger_collapse_reward", defaults.trigger_collapse_reward),
-            trigger_recovery_bonus=number("trigger_recovery_bonus", defaults.trigger_recovery_bonus),
-            reward_continuous_alpha=number("reward_continuous_alpha", defaults.reward_continuous_alpha),
-            episode_termination_enabled=bool(payload.get("episode_termination_enabled", defaults.episode_termination_enabled)),
+            posture_velocity_max=number(
+                "posture_velocity_max", defaults.posture_velocity_max
+            ),
+            trigger_good_score=number(
+                "trigger_good_score", defaults.trigger_good_score
+            ),
+            trigger_good_duration=integer(
+                "trigger_good_duration", defaults.trigger_good_duration
+            ),
+            trigger_good_reward=number(
+                "trigger_good_reward", defaults.trigger_good_reward
+            ),
+            trigger_warning_score=number(
+                "trigger_warning_score", defaults.trigger_warning_score
+            ),
+            trigger_warning_reward=number(
+                "trigger_warning_reward", defaults.trigger_warning_reward
+            ),
+            trigger_falling_rate=number(
+                "trigger_falling_rate", defaults.trigger_falling_rate
+            ),
+            trigger_falling_reward=number(
+                "trigger_falling_reward", defaults.trigger_falling_reward
+            ),
+            trigger_collapse_score=number(
+                "trigger_collapse_score", defaults.trigger_collapse_score
+            ),
+            trigger_collapse_reward=number(
+                "trigger_collapse_reward", defaults.trigger_collapse_reward
+            ),
+            trigger_recovery_bonus=number(
+                "trigger_recovery_bonus", defaults.trigger_recovery_bonus
+            ),
+            reward_continuous_alpha=number(
+                "reward_continuous_alpha", defaults.reward_continuous_alpha
+            ),
+            episode_termination_enabled=bool(
+                payload.get(
+                    "episode_termination_enabled", defaults.episode_termination_enabled
+                )
+            ),
             episode_max_ticks=integer("episode_max_ticks", defaults.episode_max_ticks),
-            episode_reset_on_collapse=bool(payload.get("episode_reset_on_collapse", defaults.episode_reset_on_collapse)),
+            episode_reset_on_collapse=bool(
+                payload.get(
+                    "episode_reset_on_collapse", defaults.episode_reset_on_collapse
+                )
+            ),
             pan_feedback_delay=integer(
                 "pan_feedback_delay", defaults.pan_feedback_delay
             ),
