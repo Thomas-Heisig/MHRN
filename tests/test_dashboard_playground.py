@@ -83,7 +83,8 @@ def test_playground_resets_defaults_on_start_and_marks_overrides_by_hover() -> N
     assert "function updateDefaultHints()" in module
     assert "field.title = message" in module
     assert (
-        'renderCatalog(await apiGet("/api/playground/catalog"));resetForm();' in module
+        'renderCatalog(await apiGet("/api/playground/catalog"));renderUserPresetOptions();resetForm();'
+        in module
     )
     assert "pg-non-default" in module
 
@@ -142,6 +143,9 @@ def test_playground_building_block_catalog_has_explanations_and_repo_elements() 
     assert "CATALOG_CATEGORY_COPY" in module
     assert "CATALOG_DESCRIPTION_COPY" in module
     assert "Boundary" in module
+    assert "src/playground/neural_io/interface.py" in module
+    assert "src/research/registry.py" in module
+    assert "src/research/evidence_engine.py" in module
     for element in ("NetworkAreaAdapter", "PANRuntime", "StickFigureSandbox", "ResearchRegistry", "pack_coords"):
         assert element in module
 
