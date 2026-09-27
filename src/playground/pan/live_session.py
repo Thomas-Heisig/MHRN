@@ -434,6 +434,53 @@ class PANLiveSession:
                 "output_counts": list(self.output_counts),
                 "total_spikes": self.total_spikes,
                 "last_spikes": list(self.last_spikes),
+                "network": {
+                    "edges": [
+                        {
+                            "source": source,
+                            "target": target,
+                            "weight": self.weights[(source, target)],
+                            "delay": self.delays[(source, target)],
+                            "eligibility": self.eligibility.get((source, target), 0.0),
+                            "release_state": self.release_state.get((source, target), 1.0),
+                        }
+                        for source, target in sorted(self.weights)
+                    ],
+                    "structural_added": self.structural_added,
+                    "structural_removed": self.structural_removed,
+                },
+                "pan_runtime": {
+                    "population_vector": list(self.pan_runtime.population_vector),
+                    "feedback_abs_total": self.pan_runtime.feedback_abs_total,
+                    "feedback_samples": self.pan_runtime.feedback_samples,
+                    "apoptosis_events": list(self.pan_runtime.apoptosis_events),
+                },
+                "execution": {
+                    "current_engine": self.switcher.current_engine,
+                    "last_switch_tick": self.switcher.last_switch_tick,
+                    "mode_history": list(self.switcher.mode_history),
+                    "transitions": list(self.switcher.transitions),
+                    "event_ticks": self.switcher.event_ticks,
+                    "tick_ticks": self.switcher.tick_ticks,
+                    "consistency_failures": self.switcher.consistency_failures,
+                    "activity_history": list(self.switcher.monitor.history),
+                },
+                "growth": (
+                    {
+                        "activity_ema": list(self.growth.activity_ema),
+                        "coactivation": [
+                            [source, target, count]
+                            for (source, target), count in sorted(self.growth.coactivation.items())
+                        ],
+                        "neurogenesis_events": list(self.growth.neurogenesis_events),
+                        "synaptogenesis_events": list(self.growth.synaptogenesis_events),
+                        "path_events": list(self.growth.path_events),
+                        "pruning_events": list(self.growth.pruning_events),
+                        "barriers": self.growth.barriers,
+                    }
+                    if self.growth is not None
+                    else None
+                ),
                 "learning": {
                     "policy": list(self.learning.policy),
                     "activity": list(self.learning.activity),
@@ -499,6 +546,156 @@ class PANLiveSession:
                         self.recent_spikes.append(
                             (_checkpoint_int(item[0]), _checkpoint_int(item[1]))
                         )
+
+            raw_network = payload.get("network")
+            if isinstance(raw_network, Mapping):
+                raw_edges = raw_network.get("edges")
+                if isinstance(raw_edges, list):
+                    self.adjacency = [set() for _ in range(self.config.n_neurons)]
+                    self.incoming = [set() for _ in range(self.config.n_neurons)]
+                    self.weights = {}
+                    self.delays = {}
+                    self.eligibility = {}
+                    self.release_state = {}
+                    for item in raw_edges:
+                        if not isinstance(item, Mapping):
+                            continue
+                        source = _checkpoint_int(item.get("source"), -1)
+                        target = _checkpoint_int(item.get("target"), -1)
+                        if not (
+                            0 <= source < self.config.n_neurons
+                            and 0 <= target < self.config.n_neurons
+                            and source != target
+                        ):
+                            continue
+                        edge = (source, target)
+                        self.adjacency[source].add(target)
+                        self.incoming[target].add(source)
+                        self.weights[edge] = _checkpoint_float(item.get("weight"))
+                        self.delays[edge] = max(
+                            1, _checkpoint_int(item.get("delay"), 1)
+                        )
+                        self.eligibility[edge] = _checkpoint_float(
+                            item.get("eligibility")
+                        )
+                        self.release_state[edge] = _checkpoint_float(
+                            item.get("release_state"), 1.0
+                        )
+                self.structural_added = _checkpoint_int(
+                    raw_network.get("structural_added"), 0
+                )
+                self.structural_removed = _checkpoint_int(
+                    raw_network.get("structural_removed"), 0
+                )
+
+            raw_pan_runtime = payload.get("pan_runtime")
+            if isinstance(raw_pan_runtime, Mapping):
+                raw_population = raw_pan_runtime.get("population_vector")
+                if isinstance(raw_population, list):
+                    self.pan_runtime.population_vector = [
+                        _checkpoint_float(value) for value in raw_population
+                    ][: self.config.pan_dimensions]
+                    if len(self.pan_runtime.population_vector) < self.config.pan_dimensions:
+                        self.pan_runtime.population_vector.extend(
+                            [0.0]
+                            * (
+                                self.config.pan_dimensions
+                                - len(self.pan_runtime.population_vector)
+                            )
+                        )
+                self.pan_runtime.feedback_abs_total = _checkpoint_float(
+                    raw_pan_runtime.get("feedback_abs_total"), 0.0
+                )
+                self.pan_runtime.feedback_samples = _checkpoint_int(
+                    raw_pan_runtime.get("feedback_samples"), 0
+                )
+                raw_apoptosis = raw_pan_runtime.get("apoptosis_events")
+                if isinstance(raw_apoptosis, list):
+                    self.pan_runtime.apoptosis_events = [
+                        dict(item) for item in raw_apoptosis if isinstance(item, dict)
+                    ]
+
+            raw_execution = payload.get("execution")
+            if isinstance(raw_execution, Mapping):
+                engine = raw_execution.get("current_engine")
+                if engine in {"EVENT_ONLY", "TICK_ONLY"}:
+                    self.switcher.current_engine = str(engine)
+                self.switcher.last_switch_tick = _checkpoint_int(
+                    raw_execution.get("last_switch_tick"), 0
+                )
+                raw_history = raw_execution.get("mode_history")
+                if isinstance(raw_history, list):
+                    self.switcher.mode_history = [
+                        dict(item) for item in raw_history if isinstance(item, dict)
+                    ]
+                raw_transitions = raw_execution.get("transitions")
+                if isinstance(raw_transitions, list):
+                    self.switcher.transitions = [
+                        dict(item) for item in raw_transitions if isinstance(item, dict)
+                    ]
+                self.switcher.event_ticks = _checkpoint_int(
+                    raw_execution.get("event_ticks"), 0
+                )
+                self.switcher.tick_ticks = _checkpoint_int(
+                    raw_execution.get("tick_ticks"), 0
+                )
+                self.switcher.consistency_failures = _checkpoint_int(
+                    raw_execution.get("consistency_failures"), 0
+                )
+                raw_activity_history = raw_execution.get("activity_history")
+                if isinstance(raw_activity_history, list):
+                    self.switcher.monitor.history.clear()
+                    for value in raw_activity_history[-self.switcher.monitor.window :]:
+                        self.switcher.monitor.history.append(_checkpoint_float(value))
+
+            raw_growth = payload.get("growth")
+            if self.growth is not None and isinstance(raw_growth, Mapping):
+                raw_activity_ema = raw_growth.get("activity_ema")
+                if (
+                    isinstance(raw_activity_ema, list)
+                    and len(raw_activity_ema) == self.config.n_neurons
+                ):
+                    self.growth.activity_ema = [
+                        _checkpoint_float(value) for value in raw_activity_ema
+                    ]
+                self.growth.coactivation.clear()
+                raw_coactivation = raw_growth.get("coactivation")
+                if isinstance(raw_coactivation, list):
+                    for item in raw_coactivation:
+                        if isinstance(item, list) and len(item) == 3:
+                            source = _checkpoint_int(item[0], -1)
+                            target = _checkpoint_int(item[1], -1)
+                            count = _checkpoint_int(item[2], 0)
+                            if (
+                                0 <= source < self.config.n_neurons
+                                and 0 <= target < self.config.n_neurons
+                                and count > 0
+                            ):
+                                self.growth.coactivation[(source, target)] = count
+                for attr in (
+                    "neurogenesis_events",
+                    "synaptogenesis_events",
+                    "path_events",
+                    "pruning_events",
+                ):
+                    raw_events = raw_growth.get(attr)
+                    if isinstance(raw_events, list):
+                        setattr(
+                            self.growth,
+                            attr,
+                            [
+                                dict(item)
+                                for item in raw_events
+                                if isinstance(item, dict)
+                            ],
+                        )
+                self.growth.barriers = _checkpoint_int(
+                    raw_growth.get("barriers"), 0
+                )
+                self.pan_runtime.degree = [
+                    len(self.adjacency[index]) + len(self.incoming[index])
+                    for index in range(self.config.n_neurons)
+                ]
 
             learning = payload.get("learning")
             if isinstance(learning, Mapping):
