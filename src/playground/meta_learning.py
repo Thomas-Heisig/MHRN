@@ -332,7 +332,7 @@ class MetaTaskGenerator:
         if task_type == "store_info":
             category = self.rng.choice(self.categories)
             cue = self.rng.choice(self.category_cues[category])
-            token = hashlib.sha1(
+            token = hashlib.sha256(
                 f"{self.counter}:{self.rng.random()}".encode("utf-8")
             ).hexdigest()[:10]
             return {
