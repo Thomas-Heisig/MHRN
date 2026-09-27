@@ -3,7 +3,7 @@
   "baseline_id": "STAGE1-SCIENTIFIC-BASELINE-20260925",
   "stage": 1,
   "name": "Kleines SNN",
-  "as_of": "2026-09-25",
+  "as_of": "2026-09-27",
   "authority": "canonical_stage_scientific_baseline",
   "source_branch_basis": "develop",
   "maturity": {
@@ -104,11 +104,11 @@
     "automatic_evidence_promotion": false,
     "scope": "Stage-1 topology and temporal-order DATA remain DATA after accepted interpretation reviews.",
     "reasons": [
-      "No canonical Stage-1 claim ID is registered for EvidenceEngine promotion of these scoped results.",
       "The historical experiment manifests predate the current promotion provenance contract and must not be retroactively rewritten.",
       "The completed reviews are accepted_as_interpretation artifacts, not canonical EvidenceEngine human_review.json decisions in the supports/refutes/inconclusive schema."
     ],
-    "required_next_step": "Define a separate scoped claim and prospective promotion-eligible execution/review path before any Stage-1 EVID registration."
+    "registered_claims": ["CLAIM-S1-TOPO-001", "CLAIM-S1-TEMP-001"],
+    "required_next_step": "Execute prospective promotion-eligible Stage-1 runs under the current provenance contract, then perform canonical human review before any EVID registration."
   },
   "independent_replication": {
     "complete": false,
