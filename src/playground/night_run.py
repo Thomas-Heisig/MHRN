@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import json
 import signal
+import threading
 import time
 import uuid
 from pathlib import Path
@@ -321,3 +322,89 @@ def _main() -> None:
 
 if __name__ == "__main__":
     _main()
+
+
+
+class NightRunManager:
+    """Bounded in-process manager for one active Playground night run."""
+
+    def __init__(self) -> None:
+        self._lock = threading.RLock()
+        self._daemon: NightRunDaemon | None = None
+        self._thread: threading.Thread | None = None
+        self._last_summary: dict[str, object] | None = None
+        self._last_error: str | None = None
+
+    def start(
+        self,
+        *,
+        hours: float = 8.0,
+        max_episodes: int = 10_000,
+        checkpoint_seconds: float = 600.0,
+        seed: int = 12345,
+    ) -> dict[str, object]:
+        with self._lock:
+            if self._thread is not None and self._thread.is_alive():
+                raise RuntimeError("a Playground night run is already active")
+            daemon = NightRunDaemon(
+                hours=hours,
+                max_episodes=max_episodes,
+                checkpoint_seconds=checkpoint_seconds,
+                seed=seed,
+            )
+            self._daemon = daemon
+            self._last_summary = None
+            self._last_error = None
+            thread = threading.Thread(
+                target=self._worker,
+                name=f"pan-night-{daemon.run_id}",
+                daemon=True,
+            )
+            self._thread = thread
+            thread.start()
+            return self.status()
+
+    def _worker(self) -> None:
+        daemon = self._daemon
+        if daemon is None:
+            return
+        try:
+            summary = daemon.run()
+            with self._lock:
+                self._last_summary = summary
+        except Exception as exc:
+            with self._lock:
+                self._last_error = f"{type(exc).__name__}: {exc}"
+
+    def stop(self) -> dict[str, object]:
+        with self._lock:
+            daemon = self._daemon
+            if daemon is None:
+                raise RuntimeError("no Playground night run exists")
+            daemon.shutdown()
+        return self.status()
+
+    def status(self) -> dict[str, object]:
+        with self._lock:
+            daemon = self._daemon
+            thread = self._thread
+            if daemon is None:
+                return {
+                    "classification": "PLAYGROUND_NIGHT_RUN_MANAGER",
+                    "scientific_evidence": False,
+                    "active": False,
+                    "last_summary": self._last_summary,
+                    "last_error": self._last_error,
+                }
+            active = bool(thread and thread.is_alive())
+            current = daemon.checkpoint() if active else (
+                self._last_summary or daemon.checkpoint(final=True)
+            )
+            return {
+                "classification": "PLAYGROUND_NIGHT_RUN_MANAGER",
+                "scientific_evidence": False,
+                "active": active,
+                "run_id": daemon.run_id,
+                "status": current,
+                "last_error": self._last_error,
+            }
