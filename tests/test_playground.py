@@ -24,6 +24,7 @@ from src.playground.neural_io import (
     PlaygroundIOAreaAdapter,
     adapter_contract_check,
 )
+from src.playground.pan import ModeSwitcher
 from src.playground.pan.hypervector import bind, bundle
 from src.playground.pan.literature import pan_literature_context
 from src.playground.persist import session_recorder
@@ -920,7 +921,7 @@ def test_cuda_8gb_profile_is_plan_not_runtime_claim() -> None:
     assert hardware["recommended_synapses_estimate"] == 50_000_000
 
 
-def test_pan_catalog_exposes_learning_blocks_and_sixteen_candidates() -> None:
+def test_pan_catalog_exposes_learning_blocks_and_eighteen_candidates() -> None:
     payload = catalog()
     pan = payload["pan"]
     assert pan["behavioral_learning_status"] == "IMPLEMENTED_REWARD_POLICY_REFERENCE"
@@ -929,15 +930,115 @@ def test_pan_catalog_exposes_learning_blocks_and_sixteen_candidates() -> None:
         "IMPLEMENTED_FIXED_LABEL_PLASTIC_GAIN_REFERENCE"
     )
     candidates = pan["research_candidates"]
-    assert len(candidates) == 16
+    assert len(candidates) == 18
     ids = {item["id"] for item in candidates}
     assert {
         "PAN-CANDIDATE-HARDWARE-NATIVE-EMERGENCE",
         "PAN-CANDIDATE-BEHAVIORAL-EMERGENCE",
         "PAN-CANDIDATE-HYBRID-COGNITION",
         "PAN-CANDIDATE-LAYER-EMERGENCE",
+        "PAN-CANDIDATE-MODE-SWITCH-CONSISTENCY",
+        "PAN-CANDIDATE-HYBRID-PERFORMANCE",
     } <= ids
     assert all(
         item["status"] == "DRAFT_IDEA_NOT_PREREGISTERED"
         for item in candidates
     )
+
+
+
+def test_event_only_execution_reports_sparse_reference_mode() -> None:
+    result = run(
+        _small_payload(
+            ticks=12,
+            execution_mode="EVENT_ONLY",
+            execution_initial_mode="EVENT_ONLY",
+        )
+    )
+    execution = result["execution"]
+    assert execution["classification"] == "PLAYGROUND_SWITCHABLE_EXECUTION"
+    assert execution["configured_mode"] == "EVENT_ONLY"
+    assert execution["ticks_in_event"] == 12
+    assert execution["ticks_in_tick"] == 0
+    assert execution["equivalence"] == "NOT_MATHEMATICALLY_EQUIVALENT"
+    assert execution["performance_claim"] == "NOT_BENCHMARKED"
+
+
+def test_tick_only_execution_preserves_full_tick_reference_path() -> None:
+    result = run(
+        _small_payload(
+            ticks=12,
+            execution_mode="TICK_ONLY",
+            execution_initial_mode="EVENT_ONLY",
+        )
+    )
+    execution = result["execution"]
+    assert execution["configured_mode"] == "TICK_ONLY"
+    assert execution["ticks_in_event"] == 0
+    assert execution["ticks_in_tick"] == 12
+    assert execution["transition_count"] == 0
+
+
+def test_hybrid_auto_switches_with_hysteresis_and_logs_integrity() -> None:
+    switcher = ModeSwitcher(
+        mode="HYBRID_AUTO",
+        initial_mode="EVENT_ONLY",
+        theta_high=0.30,
+        theta_low=0.05,
+        hysteresis=0.02,
+        min_dwell=0,
+        activity_window=2,
+        transition_mode="clean",
+        sync_on_switch=True,
+        log_transitions=True,
+        log_state_hash=True,
+    )
+    states = [{"v": -65.0, "w": 0.0} for _ in range(10)]
+    pending = [[0.0 for _ in range(10)] for _ in range(2)]
+
+    switcher.observe([0, 1, 2, 3, 4, 5], 10)
+    target, reason = switcher.decide(1)
+    assert target == "TICK_ONLY"
+    assert reason is not None
+    switcher.transition(
+        tick=1,
+        new_engine=target,
+        reason=reason,
+        states=states,
+        pending=pending,
+    )
+
+    switcher.observe([], 10)
+    switcher.observe([], 10)
+    target, reason = switcher.decide(3)
+    assert target == "EVENT_ONLY"
+    assert reason is not None
+    switcher.transition(
+        tick=3,
+        new_engine=target,
+        reason=reason,
+        states=states,
+        pending=pending,
+    )
+
+    summary = switcher.summary()
+    assert summary["transition_count"] == 2
+    assert summary["consistency_check"] == "PASS"
+    assert all(
+        item["shared_state_integrity"] == "PASS"
+        for item in summary["transitions"]
+    )
+
+
+def test_switchable_execution_config_validation() -> None:
+    with pytest.raises(ValueError, match="unsupported execution_mode"):
+        PlaygroundConfig.from_mapping(
+            _small_payload(execution_mode="INVALID")
+        )
+    with pytest.raises(ValueError, match="execution thresholds"):
+        PlaygroundConfig.from_mapping(
+            _small_payload(
+                execution_theta_low=0.6,
+                execution_theta_high=0.3,
+            )
+        )
