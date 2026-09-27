@@ -24,7 +24,7 @@ from src.playground.neural_io import (
     PlaygroundIOAreaAdapter,
     adapter_contract_check,
 )
-from src.playground.pan import ModeSwitcher
+from src.playground.pan import BehavioralLearningEngine, ModeSwitcher, PANLiveSession
 from src.playground.pan.hypervector import bind, bundle
 from src.playground.pan.literature import pan_literature_context
 from src.playground.persist import session_recorder
@@ -873,8 +873,8 @@ def test_pan_behavioral_learning_runs_and_updates_policy() -> None:
     assert learning["scientific_evidence"] is False
     assert learning["stores_raw_payloads"] is False
     assert learning["episodes"] == 4
-    assert learning["policy_updates"] == 4
-    assert learning["policy"][0] > 0.0
+    assert learning["policy_updates"] > 0
+    assert len(set(learning["target_history"])) > 1
     assert result["cortical_organization"]["layers"] == 6
 
 
@@ -1042,3 +1042,84 @@ def test_switchable_execution_config_validation() -> None:
                 execution_theta_high=0.3,
             )
         )
+
+
+
+def test_pan_adex_bootstrap_regime_produces_spikes() -> None:
+    result = run(
+        _small_payload(
+            neuron_model="pan_adex_5d",
+            pan_enabled=True,
+            ticks=128,
+            stimulus="none",
+            pan_bias_current=15.0,
+            thalamic_gating_enabled=False,
+        )
+    )
+    assert result["metrics"]["total_spikes"] > 0
+    assert result["metrics"]["active_neurons"] > 0
+    assert result["model"]["parameters"]["threshold"] == -20.0
+    assert result["model"]["parameters"]["v_t"] == -55.0
+
+
+def test_behavior_learning_does_not_reward_silence() -> None:
+    learner = BehavioralLearningEngine(
+        n_neurons=16,
+        action_count=4,
+        target_action=0,
+        target_mode="cycle",
+        min_activity=0.01,
+        episode_ticks=1,
+        epsilon=0.0,
+        seed=5,
+    )
+    for tick in range(4):
+        learner.observe([])
+        learner.maybe_learn(tick)
+    summary = learner.summary()
+    assert summary["episodes"] == 4
+    assert summary["policy_updates"] == 0
+    assert summary["correct_actions"] == 0
+    assert summary["success_fraction"] == 0.0
+    assert summary["insufficient_activity_episodes"] == 4
+    assert summary["policy"] == [0.0, 0.0, 0.0, 0.0]
+
+
+def test_live_pan_session_keeps_state_across_chunks() -> None:
+    config = PlaygroundConfig.from_mapping(
+        _small_payload(
+            neuron_model="pan_adex_5d",
+            pan_enabled=True,
+            ticks=64,
+            stimulus="none",
+            pan_bias_current=15.0,
+            behavior_episode_ticks=8,
+            execution_mode="TICK_ONLY",
+        )
+    )
+    live = PANLiveSession(config)
+    first = live.step(16)
+    first_digest = first["state_digest"]
+    second = live.step(16)
+    assert first["tick"] == 16
+    assert second["tick"] == 32
+    assert second["total_spikes"] >= first["total_spikes"] > 0
+    assert second["state_digest"] != first_digest
+
+
+def test_live_pan_session_accepts_external_vector_input() -> None:
+    config = PlaygroundConfig.from_mapping(
+        _small_payload(
+            neuron_model="pan_adex_5d",
+            pan_enabled=True,
+            ticks=64,
+            stimulus="none",
+            pan_bias_current=15.0,
+        )
+    )
+    live = PANLiveSession(config)
+    before = live.state_digest()
+    live.inject_vector([1.0, -1.0, 0.5], duration_ticks=4, gain=20.0)
+    result = live.step(4)
+    assert result["input_queue_depth"] == 0
+    assert result["state_digest"] != before
