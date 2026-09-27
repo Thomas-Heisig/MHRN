@@ -22,7 +22,9 @@ def test_playground_is_first_class_workspace() -> None:
 
 def test_playground_api_is_routed_without_research_promotion() -> None:
     server = (ROOT / "src" / "dashboard" / "server.py").read_text(encoding="utf-8")
-    api = (ROOT / "src" / "dashboard" / "playground_api.py").read_text(encoding="utf-8")
+    api = (ROOT / "src" / "dashboard" / "playground_api.py").read_text(
+        encoding="utf-8"
+    )
     assert 'path.startswith("/api/playground/")' in server
     assert '"/api/playground/run"' in api
     assert '"/api/playground/robustness"' in api
