@@ -23,6 +23,8 @@
 	`met`, `partial` oder `open`; diese Werte sind keine EVID-Metrik.
 - Der Gesamtarbeits-Tab folgt strukturell der Scientific-Maturity-Ansicht mit
 	Kicker, Gesamtprozentzahl, Einleitung, Statuslegende und Kontextboxen.
+- `INDEPENDENT_REPLICATION.md` ist aus der wissenschaftlichen Timeline wieder
+	als geschützte Root-Datei im File-Viewer öffnbar.
 
 ## 2026-09-26 External Review Deployment
 

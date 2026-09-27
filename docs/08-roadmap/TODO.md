@@ -77,6 +77,7 @@ MHRN / Multi-Scale Homeostatic Recurrence Network. Publication: Recursive Episte
 	und File-Viewer-Zugriff ergänzen.
 - [x] Prozent- und `met`/`partial`/`open`-Status je Manuskriptteil darstellen.
 - [x] Gesamtarbeits-Tab strukturell an Scientific Maturity angleichen.
+- [x] Root-Referenz `INDEPENDENT_REPLICATION.md` sicher im File Viewer öffnen.
 
 ## 2026-09-16 Release navigation
 

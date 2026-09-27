@@ -20,6 +20,8 @@
   `partial` und `open` als redaktionellen Arbeitsstand.
 - Header, Gesamtprozentzahl, Einleitung, Statuslegende und zweispaltige
   Kontextboxen entsprechen jetzt der Scientific-Maturity-Darstellung.
+- Der Quellenverweis `INDEPENDENT_REPLICATION.md` öffnet wieder als Popup;
+  andere Projekt-Root-Dateien bleiben durch eine Allowlist geschützt.
 
 ## 2026-09-26 - Sichere External-Review-Bereitstellung
 
