@@ -289,7 +289,7 @@
       "5d_to_5d_shuffled": -3,
       "5d_to_random_graph": -2.5
     },
-    "equivalence_bounds_rule": "Resolution-aware sign-preserving equivalence. Start from 50%-150% of the absolute canonical median effect. For a discrete latency effect whose half-width would be <1 tick, use a minimum half-width of 1 tick around the canonical median, while still requiring the canonical sign. This rule is frozen before reference DATA exist.",
+    "equivalence_bounds_rule": "Strict sign-preserving equivalence fixed at 50%-150% of the absolute canonical median effect for every primary latency contrast. No resolution-based widening is used.",
     "frozen_bounds": {
       "1d_to_2d": [
         -15,
@@ -300,7 +300,7 @@
         -1.5
       ],
       "3d_to_5d": [
-        -2,
+        -1.5,
         -0.5
       ],
       "5d_to_5d_shuffled": [
@@ -319,15 +319,24 @@
       "5d_to_5d_shuffled": "negative",
       "5d_to_random_graph": "negative"
     },
-    "direction_rule": "Bounds that touch zero do not permit a zero effect: every partial-replication primary contrast must separately retain the canonical non-zero sign. For 3d->5d this means the median must be <0 and >=-2.0.",
-    "resolution_note": "With 20 paired seeds, median latency differences can occur in 0.5-tick increments. The canonical 3d->5d median is -1 tick; the resolution-aware interval therefore admits {-0.5,-1.0,-1.5,-2.0}. This is fixed before Brian2 reference DATA and cannot be widened afterward.",
-    "other_bounds_unchanged": true
+    "direction_rule": "Every partial-replication primary contrast must retain the canonical non-zero sign and its median must lie inside the frozen 50%-150% equivalence interval. For 3d->5d this means median <0 and within [-1.5,-0.5].",
+    "resolution_note": "The primary latency metric is discrete and paired medians with n=20 can occur in 0.5-tick increments. This discreteness is treated as a known sensitivity limitation, not as grounds to widen the equivalence interval. A Brian2 median of -2.0 for 3d->5d is outside the preregistered equivalence bound.",
+    "other_bounds_unchanged": true,
+    "criterion_revision_history": [
+      {
+        "date": "2026-09-27",
+        "status": "DRAFT_ONLY_WITHDRAWN_BEFORE_REFERENCE_DATA",
+        "change": "A temporary DRAFT considered widening 3d->5d from [-1.5,-0.5] to [-2.0,-0.5] for metric discreteness.",
+        "resolution": "Withdrawn after methodological review before any Brian2 reference evaluation DATA existed. Canonical freeze candidate restored the original strict 50%-150% interval [-1.5,-0.5].",
+        "data_seen": false
+      }
+    ]
   },
   "decision_rule": {
     "partial_replication": [
       "reference design integrity passes",
       "all five first-output-latency reference contrasts retain the canonical direction",
-      "all five reference median deltas lie inside their frozen resolution-aware equivalence bounds",
+      "all five reference median deltas lie inside their frozen equivalence bounds",
       "all five primary paired sign tests remain Holm-significant with bootstrap CI excluding zero",
       "at least four of five activation_auc_0_32 secondary contrast directions agree with the canonical direction"
     ],
@@ -397,6 +406,22 @@
         "research/preregistrations/PREREG-S1-TOPO-REFERENCE-R1.json",
         "reference/stage1_topology_brian2/reference_protocol.json"
       ]
+    },
+    "reset_parity": {
+      "required": true,
+      "artifact": "research/calibrations/CAL-S1-TOPO-REFERENCE-RESET-R1/result.json",
+      "protocol": "one neuron, forced spike followed by the next tick; compare spike flag, reset v=c, u increment by d, threshold adaptation, firing-rate estimate and next-tick state",
+      "tolerance_abs": 1e-12,
+      "pass_rule": "all compared state fields and spike decisions match MHRN within 1e-12",
+      "failure_rule": "freeze blocked"
+    },
+    "synapse_delay_parity": {
+      "required": true,
+      "artifact": "research/calibrations/CAL-S1-TOPO-REFERENCE-SYNAPSE-R1/result.json",
+      "protocol": "two neurons, one fixed excitatory synapse weight 55 and delay 1 tick; induce a source spike at tick 0 and compare event delivery tick, delivered-event count, postsynaptic current/state and spike decision",
+      "tolerance_abs": 1e-12,
+      "pass_rule": "event is absent at source-spike tick, delivered exactly one tick later, and compared target state/spike fields match MHRN within 1e-12",
+      "failure_rule": "freeze blocked"
     }
   },
   "prefreeze_review_record": {
@@ -436,6 +461,16 @@
       "required": true,
       "rule": "Evaluation seeds 810000001-810000020 must be rechecked automatically at the freeze commit; any occurrence outside the preregistration and blinded reference_protocol.json blocks freeze.",
       "status": "PENDING"
+    },
+    "reset_parity": {
+      "required": true,
+      "status": "PENDING",
+      "artifact": "research/calibrations/CAL-S1-TOPO-REFERENCE-RESET-R1/result.json"
+    },
+    "synapse_delay_parity": {
+      "required": true,
+      "status": "PENDING",
+      "artifact": "research/calibrations/CAL-S1-TOPO-REFERENCE-SYNAPSE-R1/result.json"
     }
   },
   "reference_implementation_authorship": {
@@ -444,7 +479,7 @@
   },
   "freeze_authorization": {
     "allowed": false,
-    "rule": "Freeze is allowed only after all four pre_freeze_gates are PASS and their artifacts/commit SHA are bound into this preregistration. Until then status must remain DRAFT_PRE_FREEZE_GATES_PENDING.",
+    "rule": "Freeze is allowed only after mechanism audit, single/multi-tick integrator parity, explicit reset parity, synapse-delay parity, independence scan and seed freshness all pass and are source-bound.",
     "reference_runner_implementation_allowed": false
   }
 }
