@@ -210,6 +210,8 @@ class PlaygroundSession:
                 learning_rate=config.behavior_learning_rate,
                 epsilon=config.behavior_epsilon,
                 target_action=config.behavior_target_action,
+                target_mode=config.behavior_target_mode,
+                min_activity=config.behavior_min_activity,
                 episode_ticks=config.behavior_episode_ticks,
                 bias_current=config.behavior_bias_current,
                 seed=config.seed,
@@ -283,6 +285,10 @@ class PlaygroundSession:
                 synaptic = pending[slot]
                 pending[slot] = [0.0 for _ in range(config.n_neurons)]
                 external = stimulus(tick)
+                if config.pan_enabled or config.neuron_model == "pan_adex_5d":
+                    external = [
+                        value + config.pan_bias_current for value in external
+                    ]
                 if neural_io is not None:
                     io_current = neural_io.currents_for_tick(tick)
                     external = [
