@@ -301,36 +301,46 @@ Quellpfade: `research/preregistrations/PREREG-S1-TEMP-ORDER-V2.json`; `research/
 
 Grenze: The task shows bounded temporal-order decodability in a fixed six-neuron SNN. Human review accepts the bounded interpretation but does not create canonical EVID. It does not establish learning, memory, cognition, scaling, general temporal reasoning or independent replication, and it is not an independent replication of the topology line.
 
-
-## CORPUS-STAGE1-PROMOTIONS-20260927 — Canonical Stage-1 topology and temporal EVID promotions
+## CORPUS-STAGE1-PROMOTIONS-20260927 — Canonical Stage-1 topology and temporal EvidenceEngine promotions
 
 Rolle: `canonical human-reviewed Stage-1 EVID promotion lineage`  
 Status: `semantically_integrated_EVID`  
 Modus: `prospective_promotion_runs_human_review_evidenceengine_claim-boundaries`  
 Teile: IV, VI, X, XI
 
-Quellpfade: `research/experiments/EXP-S1-TOPO-PROMO-R1-20260927/`; `research/registry/evidence/EVID-2026-19.json`; `research/experiments/EXP-S1-TEMP-PROMO-R1-20260927/`; `research/registry/evidence/EVID-2026-20.json`; `research/registry/stage1_baseline.json`
+Quellpfade: `research/experiments/EXP-S1-TOPO-PROMO-R1-20260927/manifest.json`; `research/experiments/EXP-S1-TOPO-PROMO-R1-20260927/human_review.json`; `research/registry/evidence/EVID-2026-19.json`; `research/experiments/EXP-S1-TEMP-PROMO-R1-20260927/manifest.json`; `research/experiments/EXP-S1-TEMP-PROMO-R1-20260927/human_review.json`; `research/registry/evidence/EVID-2026-20.json`; `research/registry/stage1_baseline.json`
 
 Grenze: EVID-2026-19 supports only topology-sensitive propagation in the registered 64-neuron/246-edge Small-SNN envelope and does not establish 5D superiority. EVID-2026-20 supports only the fixed six-neuron two-channel temporal-order task; perfect separation is a saturation limitation and simultaneous-class accuracy is not forward/reverse order accuracy. Neither line is independent replication.
 
-## CORPUS-STAGE1-EFFICIENCY-20260927 — Quarantined efficiency hypothesis and failed pre-freeze calibration gate
+## CORPUS-STAGE1-EFFICIENCY-20260927 — Quarantined Stage-1 topology-efficiency hypothesis and failed pre-freeze calibration gate
 
 Rolle: `exploratory hypothesis-generation plus pre-freeze method calibration`  
 Status: `semantically_integrated_untested_freeze_blocked`  
 Modus: `posthoc_observation_quarantine_prospective_design_negative_calibration_gate`  
 Teile: IV, VI, X, XI
 
-Quellpfade: `research/notes/2026-09-27_stage1_topology_efficiency_exploratory.md`; `research/preregistrations/PREREG-S1-TOPO-EFFICIENCY-R1.json`; `research/calibrations/CAL-S1-TOPO-EFFICIENCY-R1-20260927/`; `research/registry/claims.yaml`; `research/registry/hypotheses.yaml`
+Quellpfade: `research/notes/2026-09-27_stage1_topology_efficiency_exploratory.md`; `research/preregistrations/PREREG-S1-TOPO-EFFICIENCY-R1.json`; `research/calibrations/CAL-S1-TOPO-EFFICIENCY-R1-20260927/result.json`; `research/registry/claims.yaml`; `research/registry/hypotheses.yaml`
 
-Grenze: `H-SNN-003-C / CLAIM-S1-EFFICIENCY-001` remain untested with empty EVID. The valid calibration failed the registered recruitment-matching gates and therefore blocks R1 freeze/execution. The calibration observation is context, not confirmatory DATA for the claim, and contributes no Stage-1 maturity credit.
+Grenze: H-SNN-003-C / CLAIM-S1-EFFICIENCY-001 remain untested with empty EVID. The valid calibration failed the registered recruitment-matching gates and therefore blocks R1 freeze/execution. The calibration observation is context, not confirmatory DATA for the claim, and contributes no Stage-1 maturity credit.
 
-## CORPUS-STAGE1-REFERENCE-R1 — Brian2 cross-implementation reference replication programme
+## CORPUS-STAGE1-REFERENCE-R1 — Brian2 Stage-1 cross-implementation reference-replication programme
 
 Rolle: `prospective partial-replication contract and pre-freeze validation`  
-Status: `semantically_integrated_DRAFT_pre_freeze`  
+Status: `historical_frozen_aborted_before_reference_data`  
 Modus: `translation_contract_mechanism_audit_parity_blinding_seed_governance`  
 Teile: IV, V, VI, VII, X, XI
 
-Quellpfade: `research/preregistrations/PREREG-S1-TOPO-REFERENCE-R1.json`; `reference/stage1_topology_brian2/`; `research/audits/STAGE1_TOPOLOGY_REFERENCE_MECHANISM_AUDIT_20260927.json`; `research/calibrations/CAL-S1-TOPO-REFERENCE-INTEGRATOR-R1/`; `THIRD_PARTY_NOTICES.md`
+Quellpfade: `research/preregistrations/PREREG-S1-TOPO-REFERENCE-R1.json`; `reference/stage1_topology_brian2/TRANSLATION.md`; `reference/stage1_topology_brian2/reference_protocol.json`; `reference/stage1_topology_brian2/runner.py`; `scripts/verify_stage1_topology_reference_r1.py`; `research/audits/STAGE1_TOPOLOGY_REFERENCE_MECHANISM_AUDIT_20260927.json`; `research/calibrations/CAL-S1-TOPO-REFERENCE-INTEGRATOR-R1/result.json`; `THIRD_PARTY_NOTICES.md`; `research/preregistrations/PREREG-S1-TOPO-REFERENCE-R1.freeze.json`; `research/decisions/2026-09-27_stage1_reference_r1_prefreeze_deviation.json`
 
-Grenze: No reference evaluation DATA or replication credit exists while pre-freeze gates remain open. The project-side Brian2 implementation can earn at most partial replication credit (7.5/15) because project leadership is shared. Brian2 remains third-party software under CeCILL 2.1 and is scientifically attributed to Stimberg, Brette & Goodman (2019).
+Grenze: R1 was frozen and then aborted before any reference evaluation DATA after a topology coordinate-order ambiguity was identified. It produced no replication classification, EVID or maturity credit and may never authorize execution.
+
+## CORPUS-STAGE1-REFERENCE-R2 — Corrected Brian2 Stage-1 cross-implementation reference protocol R2
+
+Rolle: `pre-DATA corrected replication protocol and executable topology-translation validation`  
+Status: `pre_freeze_execution_unauthorized`  
+Modus: `method_governance_and_replication_planning`  
+Teile: IV, X, XI
+
+Quellpfade: `research/preregistrations/PREREG-S1-TOPO-REFERENCE-R2.json`; `reference/stage1_topology_brian2/TRANSLATION_R2.md`; `reference/stage1_topology_brian2/reference_protocol_r2.json`; `reference/stage1_topology_brian2/runner_r2.py`; `scripts/check_stage1_reference_seed_freshness_r2.py`; `scripts/verify_stage1_reference_dynamics_reuse_r2.py`; `scripts/run_stage1_reference_topology_mapping_r2.py`; `scripts/verify_stage1_topology_reference_r2.py`; `scripts/freeze_stage1_topology_reference_r2.py`; `research/decisions/2026-09-27_stage1_reference_r2_supersession.json`
+
+Grenze: R2 supersedes the aborted pre-DATA R1 protocol without changing the canonical MHRN target effects or strict equivalence bounds. It adds exact coordinate/edge mapping parity. No Reference DATA, replication result, EVID or maturity credit exists until separately authorized execution and Human Review.

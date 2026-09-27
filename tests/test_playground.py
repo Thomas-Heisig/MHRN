@@ -1338,3 +1338,60 @@ def test_night_profile_reduces_weight_and_enables_live_growth(tmp_path: Path) ->
     assert result["growth"] is not None
     assert result["growth"]["activity_threshold"] == pytest.approx(0.05)
     assert result["growth_edge_capacity"] > result["initial_edge_budget"]
+
+
+def test_closed_loop_presets_resolve_without_research_promotion() -> None:
+    names = {
+        "open_loop_baseline",
+        "strong_feedback_only",
+        "differentiated_input_only",
+        "minimal_closed_loop",
+        "credit_assignment",
+        "heterogeneous_network",
+        "spatial_embodiment",
+        "full_embodiment",
+    }
+    closed_loop = catalog()["closed_loop"]
+    assert {item["name"] for item in closed_loop["presets"]} == names
+    assert closed_loop["scientific_evidence"] is False
+    for name in names:
+        config = PlaygroundConfig.from_mapping({"closed_loop_preset": name})
+        assert config.closed_loop_preset == name
+
+
+def test_minimal_closed_loop_wires_action_target_and_reward() -> None:
+    result = run(
+        _small_payload(
+            closed_loop_preset="minimal_closed_loop",
+            ticks=32,
+            behavior_episode_ticks=4,
+            behavior_min_activity=0.0,
+        )
+    )
+    loop = result["closed_loop"]
+    assert loop["classification"] == "PLAYGROUND_CLOSED_LOOP"
+    assert loop["scientific_evidence"] is False
+    assert loop["action_loop_enabled"] is True
+    assert loop["target_encoding"] == "one_hot"
+    assert loop["reward_signal_enabled"] is True
+    assert loop["episodes"] > 0
+    assert result["behavioral_learning"]["external_reward_updates"] > 0
+
+
+def test_credit_assignment_preset_enables_reward_modulated_trace() -> None:
+    config = PlaygroundConfig.from_mapping({"closed_loop_preset": "credit_assignment"})
+    assert config.action_loop_enabled is True
+    assert config.credit_assignment == "reward_modulated_stdp"
+    assert config.credit_window == 64
+    assert config.eligibility_trace_tau == 200.0
+    assert config.td_lambda == 0.9
+    assert config.gamma_discount == 0.95
+
+
+def test_closed_loop_parameter_bounds_are_validated() -> None:
+    with pytest.raises(ValueError, match="input_channels"):
+        PlaygroundConfig.from_mapping({"input_channels": 65})
+    with pytest.raises(ValueError, match="action_space_size"):
+        PlaygroundConfig.from_mapping({"action_space_size": 33})
+    with pytest.raises(ValueError, match="pan_feedback_delay"):
+        PlaygroundConfig.from_mapping({"pan_feedback_delay": 65})

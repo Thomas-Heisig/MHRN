@@ -37,6 +37,12 @@ class PANRuntime:
         closed_loop: bool,
         coordinates: Sequence[Sequence[float]],
         degree: Sequence[int],
+        feedback_delay: int = 0,
+        feedback_source: str = "population",
+        feedback_target: str = "all",
+        feedback_nonlinearity: str = "linear",
+        feedback_threshold: float = 0.0,
+        feedback_saturation: float = 100.0,
     ) -> None:
         if not 5 <= dimensions <= 32:
             raise ValueError("PAN dimensions must be between 5 and 32")
@@ -48,6 +54,12 @@ class PANRuntime:
         self.closed_loop = closed_loop
         self.coordinates = coordinates
         self.degree = degree
+        self.feedback_delay = feedback_delay
+        self.feedback_source = feedback_source
+        self.feedback_target = feedback_target
+        self.feedback_nonlinearity = feedback_nonlinearity
+        self.feedback_threshold = feedback_threshold
+        self.feedback_saturation = feedback_saturation
         rng = random.Random(seed ^ 0x50414E)
         scale = 1.0 / math.sqrt(max(dimensions, 1))
         self.feedback_weights: list[list[float]] = [
@@ -55,6 +67,9 @@ class PANRuntime:
             for _ in range(n_neurons)
         ]
         self.population_vector = [0.0 for _ in range(dimensions)]
+        self.feedback_history: list[list[float]] = []
+        target_rng = random.Random(seed ^ 0xFADE)
+        self.random_target_mask = [target_rng.random() < 0.5 for _ in range(n_neurons)]
         self.feedback_abs_total = 0.0
         self.feedback_samples = 0
         self.apoptosis_events: list[dict[str, object]] = []
@@ -75,17 +90,57 @@ class PANRuntime:
             state["pan_x_hd"] = [0.0 for _ in range(self.dimensions)]
             state["pan_neuron_id"] = neuron_id
 
+    def _feedback_vector(self) -> list[float]:
+        if self.feedback_delay <= 0:
+            vector = list(self.population_vector)
+        elif len(self.feedback_history) > self.feedback_delay:
+            vector = list(self.feedback_history[-1 - self.feedback_delay])
+        else:
+            vector = [0.0 for _ in range(self.dimensions)]
+
+        if self.feedback_source == "layer":
+            cutoff = max(1, self.dimensions // 2)
+            vector = [
+                value if index < cutoff else 0.0 for index, value in enumerate(vector)
+            ]
+        elif self.feedback_source == "subset":
+            vector = [
+                value if index % 2 == 0 else 0.0 for index, value in enumerate(vector)
+            ]
+        elif self.feedback_source == "hypervector":
+            vector = [math.tanh(value) for value in vector]
+        return vector
+
     def feedback_currents(self) -> list[float]:
-        """Project the previous population hyperstate back to neuron currents."""
+        """Project a selectable delayed PAN source back to target neurons."""
 
         if not self.closed_loop:
             return [0.0 for _ in range(self.n_neurons)]
+        vector = self._feedback_vector()
         currents: list[float] = []
-        for row in self.feedback_weights:
-            raw = sum(
-                weight * value for weight, value in zip(row, self.population_vector)
+        layer_limit = max(1, self.n_neurons // 4)
+        for neuron_id, row in enumerate(self.feedback_weights):
+            enabled = True
+            if self.feedback_target == "layer":
+                enabled = neuron_id < layer_limit
+            elif self.feedback_target == "random_subset":
+                enabled = self.random_target_mask[neuron_id]
+            raw = sum(weight * value for weight, value in zip(row, vector))
+            if self.feedback_nonlinearity == "tanh":
+                shaped = math.tanh(raw)
+            elif self.feedback_nonlinearity == "sign":
+                shaped = 1.0 if raw > 0.0 else (-1.0 if raw < 0.0 else 0.0)
+            elif self.feedback_nonlinearity == "clip":
+                shaped = max(-1.0, min(1.0, raw))
+            else:
+                shaped = raw
+            if abs(shaped) < self.feedback_threshold:
+                shaped = 0.0
+            current = self.feedback_gain * shaped if enabled else 0.0
+            current = max(
+                -self.feedback_saturation,
+                min(self.feedback_saturation, current),
             )
-            current = self.feedback_gain * raw
             currents.append(current)
             self.feedback_abs_total += abs(current)
             self.feedback_samples += 1
@@ -193,6 +248,10 @@ class PANRuntime:
                 sum(vector[index] for vector in vectors) / len(vectors)
                 for index in range(self.dimensions)
             ]
+            self.feedback_history.append(list(self.population_vector))
+            keep = max(2, self.feedback_delay + 2)
+            if len(self.feedback_history) > keep:
+                self.feedback_history = self.feedback_history[-keep:]
 
     def summary(self, states: Sequence[Mapping[str, Any]]) -> dict[str, object]:
         """Return descriptive PAN diagnostics with explicit evidence boundaries."""
@@ -229,6 +288,12 @@ class PANRuntime:
             "population_bundle": bundle(vectors),
             "closed_loop": self.closed_loop,
             "feedback_gain": self.feedback_gain,
+            "feedback_delay": self.feedback_delay,
+            "feedback_source": self.feedback_source,
+            "feedback_target": self.feedback_target,
+            "feedback_nonlinearity": self.feedback_nonlinearity,
+            "feedback_threshold": self.feedback_threshold,
+            "feedback_saturation": self.feedback_saturation,
             "mean_abs_feedback_current": feedback_mean,
             "alive_neurons": alive,
             "apoptotic_neurons": self.n_neurons - alive,
