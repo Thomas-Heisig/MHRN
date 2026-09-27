@@ -76,7 +76,7 @@ The Playground exposes PAN observations only as
   measure
 - health/energy/apoptosis transition dynamics under matched stress
 
-These are **not hypotheses in the MHRN Research Registry**.
+The full Playground catalog currently contains 18 PAN candidates. These are **not hypotheses in the MHRN Research Registry**.
 
 The only allowed route into science is:
 
