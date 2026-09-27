@@ -453,3 +453,15 @@ A scientific milestone is complete only when all applicable requirements are sat
 - [ ] Replace boundary-audit contracts with validated causal instruments only where scientifically appropriate; protected Connectome/Embodiment designs remain blocked until their native adapter/reference requirements are met.
 - [ ] Obtain independent replication, human EVID review and required external ethics decisions.
 - [ ] Add NEST/Lava task-matched network/learning benchmarks and long-horizon scaling.
+
+
+## Stage-1 reference replication R2
+
+- [x] Preserve R1 freeze and pre-DATA abort provenance.
+- [x] Create corrected `PREREG-S1-TOPO-REFERENCE-R2`.
+- [x] Make canonical coordinate-to-label ordering executable.
+- [x] Add exact topology/edge mapping parity as a mandatory pre-freeze gate.
+- [x] Keep runner blind to MHRN effects and verifier separate.
+- [x] Define explicit execution-authorization criteria.
+- [ ] Freeze R2 only after every automated pre-freeze gate is green.
+- [ ] Create a separate human execution-authorization record after freeze; do not generate Reference DATA before it.
