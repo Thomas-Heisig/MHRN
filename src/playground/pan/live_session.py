@@ -291,13 +291,18 @@ class PANLiveSession:
 class PANSessionDaemon:
     """In-process manager for persistent live sessions."""
 
-    def __init__(self) -> None:
+    def __init__(self, max_sessions: int = 8) -> None:
+        if max_sessions < 1:
+            raise ValueError("max_sessions must be positive")
+        self.max_sessions = max_sessions
         self._sessions: dict[str, PANLiveSession] = {}
         self._lock = threading.RLock()
 
     def create(self, config: PlaygroundConfig) -> str:
         session_id = "PGLIVE-" + uuid.uuid4().hex[:12]
         with self._lock:
+            if len(self._sessions) >= self.max_sessions:
+                raise RuntimeError("maximum live Playground sessions reached")
             self._sessions[session_id] = PANLiveSession(config)
         return session_id
 
