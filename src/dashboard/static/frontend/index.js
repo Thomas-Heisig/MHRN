@@ -34,6 +34,7 @@ import { initRuntimeNeuron } from "./modules/runtime-neuron.js";
 import { initSmallSNNStage } from "./modules/small-snn-stage.js";
 import { initRecurrentSNNStage } from "./modules/recurrent-snn-stage.js";
 import { initWorkspaceRouter } from "./workspace-router.js";
+import { initPlayground } from "./modules/playground.js";
 import { initExternalReview } from "../external-review.js";
 
 installPollingGovernor();
@@ -41,6 +42,7 @@ installPollingGovernor();
 function init() {
   initI18n();
   initWorkspaceRouter();
+  initPlayground();
   // The legacy bootstrap may have created this panel before its mount existed.
   // Idempotent reattachment keeps the original listeners and metadata request.
   initExternalReview();
