@@ -478,3 +478,9 @@ python scripts/analyze_pan_night.py --session last
 
 This remains Playground-only and cannot become scientific DATA or EVID
 automatically. Details: `docs/playground/PAN_NIGHT_RUN.md`.
+
+
+The default PAN night-run profile uses a reduced synaptic weight (`3.0`) and
+bounded live growth at activity threshold `0.05` to avoid carrying the highly
+synchronous diagnostic configuration into the overnight run. These are
+Playground engineering settings only.
