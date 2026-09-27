@@ -875,7 +875,13 @@ extern "C" __global__ void pan_persistent_kernel(
         previous_action = action;
         }}
 
-        grid.sync();\n    }}\n}}\n"""\n\n\ndef _resource_contract(program: GateProgram) -> dict[str, object]:
+        grid.sync();
+    }}
+}}
+"""
+
+
+def _resource_contract(program: GateProgram) -> dict[str, object]:
     target = _target_number(program.target_sm)
     ampere_86 = target == 86
     return {
