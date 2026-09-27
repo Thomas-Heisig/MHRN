@@ -285,7 +285,7 @@ class PlaygroundSession:
                 synaptic = pending[slot]
                 pending[slot] = [0.0 for _ in range(config.n_neurons)]
                 external = stimulus(tick)
-                if config.pan_enabled or config.neuron_model == "pan_adex_5d":
+                if config.neuron_model == "pan_adex_5d":
                     external = [
                         value + config.pan_bias_current for value in external
                     ]
