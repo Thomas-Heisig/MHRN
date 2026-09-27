@@ -154,7 +154,7 @@ def post_playground(
 
     if path == "/api/playground/cuda/compile":
         target_sm = _payload_text(payload, "target_sm", "sm_86")
-        ptx_version = _payload_text(payload, "ptx_version", "7.0")
+        ptx_version = _payload_text(payload, "ptx_version", "7.1")
         config_payload = dict(payload)
         config_payload.pop("target_sm", None)
         config_payload.pop("ptx_version", None)
