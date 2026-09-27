@@ -41,7 +41,9 @@ def _small_payload(**overrides: object) -> dict[str, object]:
         "name": "test",
         "n_neurons": 12,
         "edge_budget": 24,
+        "k_neighbors": 8,
         "ticks": 12,
+        "behavior_episode_ticks": 4,
         "seed": 7,
         "topology": "mhrn_5d",
         "neuron_model": "izhikevich_rs",
@@ -49,6 +51,20 @@ def _small_payload(**overrides: object) -> dict[str, object]:
     }
     payload.update(overrides)
     return payload
+
+
+def test_playground_defaults_match_requested_settings() -> None:
+    config = PlaygroundConfig()
+    assert config.n_neurons == 128
+    assert config.edge_budget == 1024
+    assert config.k_neighbors == 16
+    assert config.modules == 2
+    assert config.geometry_mode == "mixed_additive"
+    assert config.stimulus_current == 8.0
+    assert config.pan_bias_current == 10.0
+    assert config.weight == 4.0
+    assert config.behavior_learning_rate == 0.2
+    assert config.behavior_epsilon == 0.2
 
 
 def test_playground_manifest_is_never_scientific_evidence() -> None:
@@ -418,6 +434,7 @@ def test_pan_config_rejects_invalid_hyperstate_dimensions() -> None:
             {
                 "n_neurons": 12,
                 "edge_budget": 24,
+                "k_neighbors": 8,
                 "pan_enabled": True,
                 "pan_dimensions": 4,
             }
@@ -860,6 +877,9 @@ def test_pan_behavioral_learning_runs_and_updates_policy() -> None:
             stimulus="none",
             pan_enabled=True,
             pan_bias_current=15.0,
+            weight=8.0,
+            geometry_mode="shortcut_union",
+            modules=4,
             cortical_layers_enabled=True,
             cortical_layer_count=6,
             cortical_plasticity=True,
@@ -1098,6 +1118,9 @@ def test_live_pan_session_keeps_state_across_chunks() -> None:
             ticks=64,
             stimulus="none",
             pan_bias_current=15.0,
+            weight=8.0,
+            geometry_mode="shortcut_union",
+            modules=4,
             behavior_episode_ticks=8,
             execution_mode="TICK_ONLY",
         )
