@@ -27,6 +27,8 @@
 	über den Closed-Loop-Selector im Builder verfügbar.
 - Live-PAN-Sessions besitzen ein interaktives Monitor-Popup mit Start/Pause,
 	Metriken, Spike-Verlauf, Parameteransicht und Stick-Figure-Canvas.
+- Der Sandbox-Loop besitzt optionalen Posture-Score, gestaffelte Reward-Events,
+	separate Score-/Event-Kanäle, Reibung, Weltgrenzen und Episoden-Reset.
 - Der Release-Workspace besitzt einen eigenen Tab für die wissenschaftliche
 	Gesamtarbeit mit allen elf Manuskriptteilen.
 - Jeder Teil zeigt den redaktionellen Arbeitsstand als Prozentwert mit

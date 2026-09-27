@@ -32,6 +32,10 @@ stored locally in the browser only.
 - `d2_full_embodiment_v2`
 - `d3_spatial_embodiment_only`
 
+`d1_minimal_closed_loop` also enables the opt-in posture score on channel 2 and
+the discrete reward-event signal on channel 3. The sandbox reset remains
+bounded and exploratory; this does not create scientific evidence.
+
 ## Diagnostics and robustness
 
 - `e1_diagnose_silence`

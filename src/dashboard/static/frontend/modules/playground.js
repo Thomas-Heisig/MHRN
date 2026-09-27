@@ -226,7 +226,7 @@ function buildPanels(root) {
         </article>
         <article class="playground-card"><h3>10 · Input-Kanäle</h3>
           <label>Input-Topologie<select id="pg-input-topology"><option value="uniform">uniform</option><option value="channel_partitioned">channel_partitioned</option><option value="spatial_gradient">spatial_gradient</option><option value="random_per_neuron">random_per_neuron</option></select></label>
-          <label>Kanäle<input id="pg-input-channels" type="number" min="1" max="64" value="1"></label>
+          <label>Kanäle<input id="pg-input-channels" type="number" min="1" max="64" value="16"></label>
           <label>Kanal → Neuronen (JSON)<textarea id="pg-input-channel-map">[]</textarea></label>
           <label>Amplituden (JSON)<textarea id="pg-input-amplitudes">[]</textarea></label>
           <label>Frequenzen Hz (JSON)<textarea id="pg-input-frequencies">[]</textarea></label>
@@ -299,6 +299,39 @@ function buildPanels(root) {
         <div class="playground-actions"><button type="button" class="primary" id="pg-night-start">Nachtlauf starten</button><button type="button" id="pg-night-stop">Stop</button><button type="button" id="pg-night-refresh">Status</button></div>
         <small>Meta-Tasks: finden · ablegen · verknüpfen. KnowledgeBase bleibt außerhalb des SNN; PAN lernt Strategie-/Routing-Policies. Checkpoint standardmäßig alle 10 Minuten.</small>
         <pre id="pg-night-state">Kein Nachtlauf aktiv.</pre>
+      </article>
+      <article class="playground-card"><h3>19 · Posture Reward</h3>
+        <label><span><input id="pg-posture-reward-enabled" type="checkbox"> Posture Reward aktiv</span></label>
+        <label>Upright-Gewicht<input id="pg-posture-weight-upright" type="number" min="0" max="1" step="0.05" value="0.4"></label>
+        <label>Height-Gewicht<input id="pg-posture-weight-height" type="number" min="0" max="1" step="0.05" value="0.3"></label>
+        <label>Stability-Gewicht<input id="pg-posture-weight-stability" type="number" min="0" max="1" step="0.05" value="0.2"></label>
+        <label>Symmetry-Gewicht<input id="pg-posture-weight-symmetry" type="number" min="0" max="1" step="0.05" value="0.1"></label>
+        <label>Zielhöhe<input id="pg-posture-target-height" type="number" min="0" max="2" step="0.1" value="1"></label>
+        <label>Max. Tilt<input id="pg-posture-tilt-max" type="number" min="0.1" max="3.14" step="0.1" value="1"></label>
+        <label>Max. Velocity<input id="pg-posture-velocity-max" type="number" min="0.1" max="10" step="0.1" value="5"></label>
+      </article>
+      <article class="playground-card"><h3>20 · Reward Triggers</h3>
+        <label>Good Score<input id="pg-trigger-good-score" type="number" min="0.5" max="1" step="0.01" value="0.85"></label>
+        <label>Good Dauer<input id="pg-trigger-good-duration" type="number" min="1" max="100" value="10"></label>
+        <label>Good Reward<input id="pg-trigger-good-reward" type="number" min="0" max="10" step="0.1" value="1"></label>
+        <label>Warning Score<input id="pg-trigger-warning-score" type="number" min="0" max="0.5" step="0.01" value="0.4"></label>
+        <label>Warning Reward<input id="pg-trigger-warning-reward" type="number" min="-10" max="0" step="0.1" value="-0.3"></label>
+        <label>Falling Rate<input id="pg-trigger-falling-rate" type="number" min="-1" max="0" step="0.01" value="-0.05"></label>
+        <label>Falling Reward<input id="pg-trigger-falling-reward" type="number" min="-10" max="0" step="0.1" value="-1"></label>
+        <label>Collapse Score<input id="pg-trigger-collapse-score" type="number" min="0" max="0.3" step="0.01" value="0.1"></label>
+        <label>Collapse Reward<input id="pg-trigger-collapse-reward" type="number" min="-20" max="0" step="0.1" value="-5"></label>
+        <label>Recovery Bonus<input id="pg-trigger-recovery-bonus" type="number" min="0" max="10" step="0.1" value="2"></label>
+        <label>Continuous α<input id="pg-reward-continuous-alpha" type="number" min="0" max="1" step="0.01" value="0.1"></label>
+      </article>
+      <article class="playground-card"><h3>21 · Reward-Kanäle & Episoden</h3>
+        <label>Posture-Score Kanal<input id="pg-posture-score-channel" type="number" min="0" max="15" value="2"></label>
+        <label>Reward-Event Kanal<input id="pg-reward-event-channel" type="number" min="0" max="15" value="3"></label>
+        <label>Posture Current Scale<input id="pg-posture-current-scale" type="number" min="0" max="100" step="1" value="25"></label>
+        <label>Event Current Scale<input id="pg-reward-event-scale" type="number" min="0" max="100" step="1" value="25"></label>
+        <label><span><input id="pg-episode-termination-enabled" type="checkbox" checked> Episode-Terminierung</span></label>
+        <label>Episode Max Ticks<input id="pg-episode-max-ticks" type="number" min="1" max="1000000" value="256"></label>
+        <label><span><input id="pg-episode-reset-on-collapse" type="checkbox" checked> Reset bei Kollaps</span></label>
+        <small>Score- und Event-Kanal bleiben getrennt von Target- und Action-Kanal. Playground-only, keine automatische EVID.</small>
       </article>
       <div class="playground-status" id="pg-status" data-state="idle">Katalog wird geladen …</div>
     </section>
@@ -466,6 +499,32 @@ function formPayload() {
     target_cue_channel: Number(byId("pg-target-cue-channel").value),
     reward_cue_channel: Number(byId("pg-reward-cue-channel").value),
     action_feedback_channel: Number(byId("pg-action-feedback-channel").value),
+    posture_score_channel: Number(byId("pg-posture-score-channel").value),
+    reward_event_channel: Number(byId("pg-reward-event-channel").value),
+    posture_current_scale: Number(byId("pg-posture-current-scale").value),
+    reward_event_scale: Number(byId("pg-reward-event-scale").value),
+    posture_reward_enabled: byId("pg-posture-reward-enabled").checked,
+    posture_weight_upright: Number(byId("pg-posture-weight-upright").value),
+    posture_weight_height: Number(byId("pg-posture-weight-height").value),
+    posture_weight_stability: Number(byId("pg-posture-weight-stability").value),
+    posture_weight_symmetry: Number(byId("pg-posture-weight-symmetry").value),
+    posture_target_height: Number(byId("pg-posture-target-height").value),
+    posture_tilt_max: Number(byId("pg-posture-tilt-max").value),
+    posture_velocity_max: Number(byId("pg-posture-velocity-max").value),
+    trigger_good_score: Number(byId("pg-trigger-good-score").value),
+    trigger_good_duration: Number(byId("pg-trigger-good-duration").value),
+    trigger_good_reward: Number(byId("pg-trigger-good-reward").value),
+    trigger_warning_score: Number(byId("pg-trigger-warning-score").value),
+    trigger_warning_reward: Number(byId("pg-trigger-warning-reward").value),
+    trigger_falling_rate: Number(byId("pg-trigger-falling-rate").value),
+    trigger_falling_reward: Number(byId("pg-trigger-falling-reward").value),
+    trigger_collapse_score: Number(byId("pg-trigger-collapse-score").value),
+    trigger_collapse_reward: Number(byId("pg-trigger-collapse-reward").value),
+    trigger_recovery_bonus: Number(byId("pg-trigger-recovery-bonus").value),
+    reward_continuous_alpha: Number(byId("pg-reward-continuous-alpha").value),
+    episode_termination_enabled: byId("pg-episode-termination-enabled").checked,
+    episode_max_ticks: Number(byId("pg-episode-max-ticks").value),
+    episode_reset_on_collapse: byId("pg-episode-reset-on-collapse").checked,
     pan_feedback_delay: Number(byId("pg-pan-feedback-delay").value),
     pan_feedback_source: byId("pg-pan-feedback-source").value,
     pan_feedback_target: byId("pg-pan-feedback-target").value,
@@ -634,7 +693,7 @@ function updateLiveMonitor(payload={}){
   const state=payload.state||payload;const tick=Number(state.tick??payload.tick??0);const spikes=Number(state.total_spikes??payload.total_spikes??0);const actions=payload.actions||state.actions||[];const rewards=payload.rewards||state.rewards||[];
   if(Number.isFinite(spikes)){liveMonitorHistory.push({tick,spikes});if(liveMonitorHistory.length>120)liveMonitorHistory.shift();}
   const set=(id,value)=>{const node=byId(id);if(node)node.textContent=String(value);};set("pg-live-monitor-tick",tick);set("pg-live-monitor-spikes",spikes);set("pg-live-monitor-action",actions.length?actions[actions.length-1]:"—");set("pg-live-monitor-reward",rewards.length?Number(rewards[rewards.length-1]).toFixed(3):"0");set("pg-live-monitor-engine",state.execution?.current_engine||payload.execution?.current_engine||"—");set("pg-live-monitor-status",payload.error||((liveMonitorPaused||!liveLoopTimer)?"Pausiert":"Läuft"));
-  const params={session_id:liveSessionId,tick,pan_bias_current:byId("pg-pan-bias-current")?.value,feedback_gain:byId("pg-pan-feedback-gain")?.value,learning_rate:byId("pg-behavior-lr")?.value,epsilon:byId("pg-behavior-epsilon")?.value,edge_budget:byId("pg-edges")?.value};const paramsNode=byId("pg-live-monitor-params");if(paramsNode)paramsNode.textContent=JSON.stringify(params,null,2);const stateNode=byId("pg-live-monitor-state");if(stateNode)stateNode.textContent=JSON.stringify({state_digest:state.state_digest||payload.state_digest||null,input_queue_depth:state.input_queue_depth??payload.input_queue_depth??0,learning:state.learning||payload.learning||null},null,2);drawLiveMonitorChart();drawLiveMonitorVisuals(payload);drawLiveMonitorFigure(payload.world||state.world||null);
+  const params={session_id:liveSessionId,tick,posture_score:payload.posture_score??payload.world?.posture_score??null,reward:payload.reward??null,reward_events:payload.reward_events||[],terminal:payload.terminal||null,pan_bias_current:byId("pg-pan-bias-current")?.value,feedback_gain:byId("pg-pan-feedback-gain")?.value,learning_rate:byId("pg-behavior-lr")?.value,epsilon:byId("pg-behavior-epsilon")?.value,edge_budget:byId("pg-edges")?.value};const paramsNode=byId("pg-live-monitor-params");if(paramsNode)paramsNode.textContent=JSON.stringify(params,null,2);const stateNode=byId("pg-live-monitor-state");if(stateNode)stateNode.textContent=JSON.stringify({state_digest:state.state_digest||payload.state_digest||null,input_queue_depth:state.input_queue_depth??payload.input_queue_depth??0,learning:state.learning||payload.learning||null},null,2);drawLiveMonitorChart();drawLiveMonitorVisuals(payload);drawLiveMonitorFigure(payload.world||state.world||null);
 }
 
 async function createLiveSession(){
@@ -815,6 +874,7 @@ function resetForm(){
   };
   Object.entries(closedLoopDefaults).forEach(([key,value])=>{const el=byId("pg-"+key);if(el)el.value=value;});
   ["pg-action-loop-enabled","pg-geometry-input-coupling","pg-sandbox-enabled","pg-target-shuffle","pg-reward-enabled","pg-oscillation-enabled"].forEach(id=>{const el=byId(id);if(el)el.checked=false;});
+  const postureDefaults={posture_score_channel:2,reward_event_channel:3,posture_current_scale:25,reward_event_scale:25,posture_reward_enabled:false,posture_weight_upright:0.4,posture_weight_height:0.3,posture_weight_stability:0.2,posture_weight_symmetry:0.1,posture_target_height:1,posture_tilt_max:1,posture_velocity_max:5,trigger_good_score:0.85,trigger_good_duration:10,trigger_good_reward:1,trigger_warning_score:0.4,trigger_warning_reward:-0.3,trigger_falling_rate:-0.05,trigger_falling_reward:-1,trigger_collapse_score:0.1,trigger_collapse_reward:-5,trigger_recovery_bonus:2,reward_continuous_alpha:0.1,episode_termination_enabled:true,episode_max_ticks:256,episode_reset_on_collapse:true};Object.entries(postureDefaults).forEach(([key,value])=>setBuilderValue(key,value));
   updateDefaultHints();
 }
 
