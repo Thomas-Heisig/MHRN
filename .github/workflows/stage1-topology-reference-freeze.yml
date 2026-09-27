@@ -1,0 +1,68 @@
+name: Stage-1 topology reference contract freeze
+
+on:
+  push:
+    branches:
+      - develop
+    paths:
+      - .github/workflows/stage1-topology-reference-freeze.yml
+      - scripts/freeze_stage1_topology_reference_r1.py
+      - research/preregistrations/PREREG-S1-TOPO-REFERENCE-R1.json
+      - research/audits/STAGE1_TOPOLOGY_REFERENCE_MECHANISM_AUDIT_20260927.json
+      - research/calibrations/CAL-S1-TOPO-REFERENCE-INTEGRATOR-R1/result.json
+      - reference/stage1_topology_brian2/reference_protocol.json
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: stage1-topology-reference-freeze-develop
+  cancel-in-progress: false
+
+jobs:
+  freeze:
+    if: ${{ !contains(github.event.head_commit.message || '', '[stage1-ref-freeze]') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: develop
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.13"
+
+      - name: Verify clean freeze source
+        run: test -z "$(git status --porcelain)"
+
+      - name: Freeze scientific reference contract only
+        run: python scripts/freeze_stage1_topology_reference_r1.py
+
+      - name: Assert evaluation remains unauthorized
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          prereg = json.loads(Path("research/preregistrations/PREREG-S1-TOPO-REFERENCE-R1.json").read_text())
+          freeze = json.loads(Path("research/preregistrations/PREREG-S1-TOPO-REFERENCE-R1.freeze.json").read_text())
+          assert prereg["status"] == "FROZEN_BEFORE_REFERENCE_RUNNER"
+          assert prereg["execution_authorized"] is False
+          assert freeze["execution_authorized"] is False
+          assert freeze["reference_data_created"] is False
+          assert freeze["replication_credit_awarded"] is False
+          PY
+
+      - name: Commit immutable reference contract freeze
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add \
+            research/preregistrations/PREREG-S1-TOPO-REFERENCE-R1.json \
+            research/preregistrations/PREREG-S1-TOPO-REFERENCE-R1.freeze.json
+          git diff --cached --check
+          git commit -m "research(stage1): freeze topology reference contract [stage1-ref-freeze]"
+          git push origin HEAD:develop
