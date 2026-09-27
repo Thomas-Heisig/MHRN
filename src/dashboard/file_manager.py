@@ -17,8 +17,8 @@ from urllib.parse import unquote
 
 from .docs_source import DocumentationSource, create_docs_source
 from .file_rendering import (
-    FileContractError,
     PROJECT_FILE_ALLOWLIST,
+    FileContractError,
     atomic_write,
     file_is_read_only,
     handle_file_rendering,
