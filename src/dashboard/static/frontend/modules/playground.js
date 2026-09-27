@@ -289,16 +289,22 @@ function buildPanels(root) {
       </div>
       <div class="playground-actions"><button type="button" class="primary" id="pg-run">▶ Playground starten</button><button type="button" id="pg-robustness">Robustheitskontrollen</button><button type="button" id="pg-reset">Standardwerte</button></div>
       <article class="playground-card playground-live-launcher"><h3>17 · PAN Live Monitor</h3><p>Die laufende PAN-Session mit Start/Pause, Input, Sandbox-Männchen und allen Live-Grafiken im Monitor-Popup.</p><div class="playground-actions"><button type="button" class="primary" id="pg-live-open">Live Monitor öffnen</button><button type="button" id="pg-live-clear">Temporäre Sessions löschen</button></div><pre id="pg-live-state">Keine Live-Session geöffnet.</pre></article>
-      <article class="playground-card"><h3>19 · CUDA Gate Compiler</h3>
+      <article class="playground-card"><h3>18 · CUDA & Parität</h3>
         <div class="playground-grid">
           <label>Target SM<input id="pg-cuda-target-sm" value="sm_86"></label>
           <label>PTX Version<input id="pg-cuda-ptx-version" value="7.0"></label>
+          <label><span><input id="pg-freeze-actions" type="checkbox"> Actions einfrieren</span></label>
+          <label><span><input id="pg-freeze-rewards" type="checkbox"> Rewards einfrieren</span></label>
+          <label>Referenz-Commit<input id="pg-parity-reference-commit" placeholder="Git SHA"></label>
         </div>
-        <div class="playground-actions"><button type="button" id="pg-cuda-compile">Builder → Gate IR / PTX</button></div>
-        <small>Erzeugt Playground-Codeartefakte. Keine GPU-Ausführung, kein DATA/EVID, keine gemessene Beschleunigung.</small>
-        <pre id="pg-cuda-compiler-state">Noch nicht kompiliert.</pre>
+        <div class="playground-actions">
+          <button type="button" id="pg-cpu-determinism">CPU-Determinismus prüfen</button>
+          <button type="button" id="pg-cuda-compile">Builder → Gate IR / PTX</button>
+        </div>
+        <small>D1 = exakte Spike-Ereignisse · D2 = numerische Zustandsparität · D3 = Verhaltens-/Metrikparität. CUDA-Codegen ist vorhanden, ein echter GPU-Kernel-Launch ist hier noch nicht nachgewiesen.</small>
+        <pre id="pg-cuda-compiler-state">Noch kein CUDA-/Parity-Lauf.</pre>
       </article>
-      <article class="playground-card"><h3>18 · Meta-Nachtlauf</h3>
+      <article class="playground-card"><h3>19 · Meta-Nachtlauf</h3>
         <div class="playground-grid">
           <label>Stunden<input id="pg-night-hours" type="number" min="0.01" max="24" step="0.25" value="8"></label>
           <label>Max. Episoden<input id="pg-night-episodes" type="number" min="1" max="1000000" value="10000"></label>
@@ -309,7 +315,7 @@ function buildPanels(root) {
         <small>Meta-Tasks: finden · ablegen · verknüpfen. KnowledgeBase bleibt außerhalb des SNN; PAN lernt Strategie-/Routing-Policies. Checkpoint standardmäßig alle 10 Minuten.</small>
         <pre id="pg-night-state">Kein Nachtlauf aktiv.</pre>
       </article>
-      <article class="playground-card"><h3>19 · Posture Reward</h3>
+      <article class="playground-card"><h3>20 · Posture Reward</h3>
         <label><span><input id="pg-posture-reward-enabled" type="checkbox"> Posture Reward aktiv</span></label>
         <label>Upright-Gewicht<input id="pg-posture-weight-upright" type="number" min="0" max="1" step="0.05" value="0.4"></label>
         <label>Height-Gewicht<input id="pg-posture-weight-height" type="number" min="0" max="1" step="0.05" value="0.3"></label>
@@ -319,7 +325,7 @@ function buildPanels(root) {
         <label>Max. Tilt<input id="pg-posture-tilt-max" type="number" min="0.1" max="3.14" step="0.1" value="1"></label>
         <label>Max. Velocity<input id="pg-posture-velocity-max" type="number" min="0.1" max="10" step="0.1" value="5"></label>
       </article>
-      <article class="playground-card"><h3>20 · Reward Triggers</h3>
+      <article class="playground-card"><h3>21 · Reward Triggers</h3>
         <label>Good Score<input id="pg-trigger-good-score" type="number" min="0.5" max="1" step="0.01" value="0.85"></label>
         <label>Good Dauer<input id="pg-trigger-good-duration" type="number" min="1" max="100" value="10"></label>
         <label>Good Reward<input id="pg-trigger-good-reward" type="number" min="0" max="10" step="0.1" value="1"></label>
@@ -332,7 +338,7 @@ function buildPanels(root) {
         <label>Recovery Bonus<input id="pg-trigger-recovery-bonus" type="number" min="0" max="10" step="0.1" value="2"></label>
         <label>Continuous α<input id="pg-reward-continuous-alpha" type="number" min="0" max="1" step="0.01" value="0.1"></label>
       </article>
-      <article class="playground-card"><h3>21 · Reward-Kanäle & Episoden</h3>
+      <article class="playground-card"><h3>22 · Reward-Kanäle & Episoden</h3>
         <label>Posture-Score Kanal<input id="pg-posture-score-channel" type="number" min="0" max="15" value="2"></label>
         <label>Reward-Event Kanal<input id="pg-reward-event-channel" type="number" min="0" max="15" value="3"></label>
         <label>Posture Current Scale<input id="pg-posture-current-scale" type="number" min="0" max="100" step="1" value="25"></label>
@@ -547,6 +553,8 @@ function formPayload() {
     action_space_size: Number(byId("pg-action-space-size").value),
     action_coupling_strength: Number(byId("pg-action-coupling").value),
     action_noise: Number(byId("pg-action-noise").value),
+    freeze_actions: byId("pg-freeze-actions")?.checked||false,
+    frozen_action_sequence: lastResult?.closed_loop?.action_history||[],
     reward_signal_enabled: byId("pg-reward-enabled").checked,
     reward_magnitude: Number(byId("pg-reward-magnitude").value),
     reward_delay_ticks: Number(byId("pg-reward-delay").value),
@@ -554,6 +562,10 @@ function formPayload() {
     reward_baseline: Number(byId("pg-reward-baseline").value),
     reward_decay: Number(byId("pg-reward-decay").value),
     reward_channel: Number(byId("pg-reward-channel").value),
+    freeze_rewards: byId("pg-freeze-rewards")?.checked||false,
+    frozen_reward_sequence: lastResult?.closed_loop?.reward_history||[],
+    parity_reference_source: "CPU_PYTHON_PLAYGROUND",
+    parity_reference_commit: byId("pg-parity-reference-commit")?.value?.trim()||"",
     target_encoding: byId("pg-target-encoding").value,
     target_persistence: Number(byId("pg-target-persistence").value),
     target_cue_current: Number(byId("pg-target-cue-current").value),
@@ -807,6 +819,33 @@ async function stopNightRun(){
   const result=await apiPost("/api/playground/night/stop",{});renderNightStatus(result);
 }
 
+async function checkCpuDeterminism(){
+  const node=byId("pg-cuda-compiler-state");
+  if(node)node.textContent="CPU-Referenz wird zweimal mit identischem Seed ausgeführt …";
+  const payload={...formPayload(),persist:false,ensemble_runs:1,freeze_actions:false,freeze_rewards:false,parity_reference_commit:""};
+  const result=await apiPost("/api/playground/determinism",payload);
+  if(node)node.textContent=JSON.stringify({
+    classification:result.classification,
+    passed:result.passed,
+    spike_train_exact:result.spike_train_exact,
+    projection_exact:result.projection_exact,
+    fingerprint_first:result.fingerprint_first,
+    fingerprint_second:result.fingerprint_second,
+    reference:result.reference,
+    parity_contract:catalogState?.cuda_parity||null,
+    gpu_execution_status:catalogState?.pan?.cuda_backend_status||"UNKNOWN",
+  },null,2);
+  if(result.passed&&result.reference){
+    lastResult=lastResult||{};
+    lastResult.closed_loop={
+      ...(lastResult.closed_loop||{}),
+      action_history:result.reference.action_sequence||[],
+      reward_history:result.reference.reward_sequence||[],
+    };
+  }
+  return result;
+}
+
 async function compileCudaGates(){
   const node=byId("pg-cuda-compiler-state");
   if(node)node.textContent="Gate-IR/PTX wird erzeugt …";
@@ -948,7 +987,8 @@ function renderCatalog(catalog){
   const panLiterature=(catalog.pan?.literature_context?.sources||[]).map(item=>({name:item.key,note:item.citation}));
   const geometryLiterature=(catalog.geometry?.literature_context?.sources||[]).map(item=>({name:item.key,note:item.citation}));
   const neuralIOCodecs=(catalog.neural_io?.codecs||[]).map(item=>({name:item.id,note:`${item.input_kind||""} · ${item.reconstruction_class||""}`}));
-  const groups=[["Neuronmodelle",catalog.models],["Topologien",catalog.topologies],["Stimuli",catalog.stimuli],["Synapsen",catalog.synapses],["Plastizität",catalog.plasticity],["Readouts",catalog.readouts],["PAN Research Candidates",panCandidates],["PAN Literaturkontext",panLiterature],["Geometrie Literaturkontext",geometryLiterature],["Neural I/O Codecs",neuralIOCodecs],["Analysen",(catalog.analyses||[]).map(name=>({name}))],["Robustheit",(catalog.robustness_controls||[]).map(name=>({name}))],["CUDA Gate Compiler",(catalog.cuda_gate_compiler?.gate_types||[]).map(name=>({name,note:catalog.cuda_gate_compiler?.status||""}))]];
+  const parityClasses=Object.entries(catalog.cuda_parity?.classes||{}).map(([name,item])=>({name,note:item.name||item.target_stage||""}));
+  const groups=[["Neuronmodelle",catalog.models],["Topologien",catalog.topologies],["Stimuli",catalog.stimuli],["Synapsen",catalog.synapses],["Plastizität",catalog.plasticity],["Readouts",catalog.readouts],["PAN Research Candidates",panCandidates],["PAN Literaturkontext",panLiterature],["Geometrie Literaturkontext",geometryLiterature],["Neural I/O Codecs",neuralIOCodecs],["Analysen",(catalog.analyses||[]).map(name=>({name}))],["Robustheit",(catalog.robustness_controls||[]).map(name=>({name}))],["CUDA Gate Compiler",(catalog.cuda_gate_compiler?.gate_types||[]).map(name=>({name,note:catalog.cuda_gate_compiler?.status||""}))],["CUDA Parität",parityClasses]];
   byId("pg-catalog-grid").innerHTML=groups.map(([title,items])=>`<article><h3>${title}</h3>${(items||[]).map(item=>`<span class="playground-chip" title="${item.note||""}">${item.label||item.name}</span>`).join("")}</article>`).join("");
   const status=byId("pg-status");status.dataset.state="ok";status.textContent=`Bereit · bis ${catalog.limits.n_neurons} Neuronen · ${catalog.limits.edges} Kanten · ${catalog.limits.dimensions}D · scientific_evidence=false`;
 }
@@ -956,12 +996,12 @@ function renderCatalog(catalog){
 export async function initPlayground(){
   const root=byId("tab-playground");if(!root)return;
   injectStyles();ensurePermanentBoundary(root);buildPanels(root);
-  byId("pg-run")?.addEventListener("click",runSession);byId("pg-cuda-compile")?.addEventListener("click",()=>compileCudaGates().catch(error=>{const node=byId("pg-cuda-compiler-state");if(node)node.textContent=String(error.message||error);}));byId("pg-user-preset-apply")?.addEventListener("click",applyUserPreset);byId("pg-user-preset-save")?.addEventListener("click",saveUserPreset);byId("pg-user-preset-delete")?.addEventListener("click",deleteUserPreset);byId("pg-user-preset-select")?.addEventListener("change",()=>{renderUserPresetOptions();applyUserPreset();});byId("pg-robustness")?.addEventListener("click",runRobustness);byId("pg-reset")?.addEventListener("click",resetForm);byId("pg-live-open")?.addEventListener("click",()=>openLiveMonitor().catch(error=>byId("pg-live-state").textContent=String(error.message||error)));byId("pg-live-clear")?.addEventListener("click",()=>clearLiveSessions().catch(error=>byId("pg-live-state").textContent=String(error.message||error)));byId("pg-night-start")?.addEventListener("click",()=>startNightRun().catch(error=>byId("pg-night-state").textContent=String(error.message||error)));byId("pg-night-stop")?.addEventListener("click",()=>stopNightRun().catch(error=>byId("pg-night-state").textContent=String(error.message||error)));byId("pg-night-refresh")?.addEventListener("click",()=>refreshNightStatus().catch(error=>byId("pg-night-state").textContent=String(error.message||error)));
+  byId("pg-run")?.addEventListener("click",runSession);byId("pg-cpu-determinism")?.addEventListener("click",()=>checkCpuDeterminism().catch(error=>{const node=byId("pg-cuda-compiler-state");if(node)node.textContent=String(error.message||error);}));byId("pg-cuda-compile")?.addEventListener("click",()=>compileCudaGates().catch(error=>{const node=byId("pg-cuda-compiler-state");if(node)node.textContent=String(error.message||error);}));byId("pg-user-preset-apply")?.addEventListener("click",applyUserPreset);byId("pg-user-preset-save")?.addEventListener("click",saveUserPreset);byId("pg-user-preset-delete")?.addEventListener("click",deleteUserPreset);byId("pg-user-preset-select")?.addEventListener("change",()=>{renderUserPresetOptions();applyUserPreset();});byId("pg-robustness")?.addEventListener("click",runRobustness);byId("pg-reset")?.addEventListener("click",resetForm);byId("pg-live-open")?.addEventListener("click",()=>openLiveMonitor().catch(error=>byId("pg-live-state").textContent=String(error.message||error)));byId("pg-live-clear")?.addEventListener("click",()=>clearLiveSessions().catch(error=>byId("pg-live-state").textContent=String(error.message||error)));byId("pg-night-start")?.addEventListener("click",()=>startNightRun().catch(error=>byId("pg-night-state").textContent=String(error.message||error)));byId("pg-night-stop")?.addEventListener("click",()=>stopNightRun().catch(error=>byId("pg-night-state").textContent=String(error.message||error)));byId("pg-night-refresh")?.addEventListener("click",()=>refreshNightStatus().catch(error=>byId("pg-night-state").textContent=String(error.message||error)));
   renderUserPresetOptions();
   try{renderCatalog(await apiGet("/api/playground/catalog"));renderUserPresetOptions();resetForm();}catch(error){const status=byId("pg-status");status.dataset.state="error";status.textContent=`Katalog nicht verfügbar: ${error.message}`;}
   byId("playground-builder")?.addEventListener("input", updateDefaultHints);
   byId("playground-builder")?.addEventListener("change", updateDefaultHints);
   await refreshSessions();
   try{await refreshNightStatus();}catch{ /* night manager is optional during partial deployments */ }
-  window.MHRNPlayground={run:runSession,runRobustness,compileCudaGates,refreshSessions,get catalog(){return catalogState;},get lastResult(){return lastResult;}};
+  window.MHRNPlayground={run:runSession,runRobustness,checkCpuDeterminism,compileCudaGates,refreshSessions,get catalog(){return catalogState;},get lastResult(){return lastResult;}};
 }
