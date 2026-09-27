@@ -32,9 +32,7 @@ def test_playground_api_is_routed_without_research_promotion() -> None:
 
 
 def test_playground_api_exposes_temporary_live_cleanup() -> None:
-    api = (ROOT / "src" / "dashboard" / "playground_api.py").read_text(
-        encoding="utf-8"
-    )
+    api = (ROOT / "src" / "dashboard" / "playground_api.py").read_text(encoding="utf-8")
     daemon = (ROOT / "src" / "playground" / "pan" / "live_session.py").read_text(
         encoding="utf-8"
     )
@@ -102,7 +100,10 @@ def test_playground_preset_lab_has_izhikevich_pan_and_local_storage() -> None:
     assert 'id="pg-user-preset-save"' in module
     assert 'id="pg-user-preset-delete"' in module
     assert 'id="pg-closed-loop-preset"' not in module
-    assert 'renderCatalog(await apiGet("/api/playground/catalog"));renderUserPresetOptions();resetForm();' in module
+    assert (
+        'renderCatalog(await apiGet("/api/playground/catalog"));renderUserPresetOptions();resetForm();'
+        in module
+    )
     assert 'change",()=>{renderUserPresetOptions();applyUserPreset();}' in module
     assert "const selected=select.value" in module
     assert "presets[selected]" in module
@@ -113,7 +114,7 @@ def test_playground_preset_lab_has_izhikevich_pan_and_local_storage() -> None:
     assert 'stimulus_current:"current"' in module
     assert 'behavior_episode_ticks:"behavior-episode"' in module
     assert 'const DEFAULT_PLAYGROUND_PRESET = "full_embodiment"' in module
-    assert 'allPlaygroundPresets()[DEFAULT_PLAYGROUND_PRESET]' in module
+    assert "allPlaygroundPresets()[DEFAULT_PLAYGROUND_PRESET]" in module
 
 
 def test_playground_preset_catalog_documentation_exists() -> None:
@@ -138,7 +139,9 @@ def test_playground_building_block_catalog_has_explanations_and_repo_elements() 
     assert "ensureCatalogInfoDialog" in module
     assert "showCatalogInfo" in module
     assert "data-pg-catalog-info" in module
-    assert 'import { getLanguage } from "../core/i18n.js?v=i18n-fix-20260920b";' in module
+    assert (
+        'import { getLanguage } from "../core/i18n.js?v=i18n-fix-20260920b";' in module
+    )
     assert "mhrn:language-change" in module
     assert "CATALOG_CATEGORY_COPY" in module
     assert "CATALOG_DESCRIPTION_COPY" in module
@@ -146,7 +149,13 @@ def test_playground_building_block_catalog_has_explanations_and_repo_elements() 
     assert "src/playground/neural_io/interface.py" in module
     assert "src/research/registry.py" in module
     assert "src/research/evidence_engine.py" in module
-    for element in ("NetworkAreaAdapter", "PANRuntime", "StickFigureSandbox", "ResearchRegistry", "pack_coords"):
+    for element in (
+        "NetworkAreaAdapter",
+        "PANRuntime",
+        "StickFigureSandbox",
+        "ResearchRegistry",
+        "pack_coords",
+    ):
         assert element in module
 
 
@@ -284,7 +293,9 @@ def test_playground_ui_exposes_live_pan_session_controls() -> None:
     assert '"/api/playground/live/stop-all"' in module
     assert "maximum live Playground sessions reached" in module
     assert "compatibility_cleanup" in module
-    assert 'apiGet(`/api/playground/live/${encodeURIComponent(liveSessionId)}`)' in module
+    assert (
+        "apiGet(`/api/playground/live/${encodeURIComponent(liveSessionId)}`)" in module
+    )
 
 
 def test_playground_api_exposes_stateful_live_routes_without_research_promotion() -> (
@@ -304,7 +315,7 @@ def test_playground_ui_exposes_meta_night_run_monitor() -> None:
     module = (STATIC / "frontend" / "modules" / "playground.js").read_text(
         encoding="utf-8"
     )
-    assert "18 · Meta-Nachtlauf" in module
+    assert "19 · Meta-Nachtlauf" in module
     assert "pg-night-start" in module
     assert "pg-night-stop" in module
     assert "pg-night-refresh" in module
