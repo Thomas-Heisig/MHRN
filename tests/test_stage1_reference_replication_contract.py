@@ -1,6 +1,7 @@
 """Historical contract tests for the aborted-before-DATA Stage-1 R1 reference protocol."""
 
 from __future__ import annotations
+
 import json
 from pathlib import Path
 
