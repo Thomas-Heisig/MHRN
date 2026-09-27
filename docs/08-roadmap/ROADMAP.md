@@ -25,6 +25,8 @@
 	speicherbare eigene Konfigurationen.
 - Der Presetkatalog A–G ist in `docs/playground/PRESETS.md` dokumentiert und
 	über den Closed-Loop-Selector im Builder verfügbar.
+- Live-PAN-Sessions besitzen ein interaktives Monitor-Popup mit Start/Pause,
+	Metriken, Spike-Verlauf, Parameteransicht und Stick-Figure-Canvas.
 - Der Release-Workspace besitzt einen eigenen Tab für die wissenschaftliche
 	Gesamtarbeit mit allen elf Manuskriptteilen.
 - Jeder Teil zeigt den redaktionellen Arbeitsstand als Prozentwert mit
