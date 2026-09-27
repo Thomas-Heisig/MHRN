@@ -194,15 +194,9 @@ function buildPanels(root) {
           <label>Modality<input id="pg-neural-io-modality" value="digital"></label>
           <label>Source ID<input id="pg-neural-io-source" value="playground.input"></label>
           <small><strong>Payload ≠ Neural Representation.</strong> Exakte Nutzdaten bleiben außerhalb des SNN. Query/Response werden durch Richtung, Phase, <code>correlation_id</code> und Provenienz getrennt. Tools/Aktoren werden im Playground nie ausgeführt.</small>
-      .playground-settings-reference{margin-top:.8rem;border:1px solid var(--line,rgba(127,127,127,.2));border-radius:12px;padding:.8rem;background:rgba(127,127,127,.025)}.playground-settings-reference header{display:flex;justify-content:space-between;gap:1rem;align-items:flex-start;margin-bottom:.65rem}.playground-settings-reference h3{margin:0;font-size:.9rem}.playground-settings-reference p{margin:.25rem 0 0;opacity:.68;font-size:.68rem;line-height:1.4}.playground-settings-reference-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.6rem}.playground-settings-reference article{min-width:0;padding:.65rem;border:1px solid var(--line,rgba(127,127,127,.18));border-radius:9px;background:rgba(127,127,127,.035)}.playground-settings-reference article h4{margin:0 0 .45rem;font-size:.72rem}.playground-settings-reference dl{display:grid;grid-template-columns:minmax(7rem,auto) 1fr;gap:.28rem .5rem;margin:0;font-size:.62rem;line-height:1.35}.playground-settings-reference dt{color:inherit;font-weight:700}.playground-settings-reference dd{margin:0;opacity:.72;overflow-wrap:anywhere}.playground-settings-option{display:inline-block;margin:.08rem .18rem .08rem 0;padding:.12rem .28rem;border:1px solid var(--line,rgba(127,127,127,.18));border-radius:999px;font-size:.58rem}
         </article>
       </div>
-        <section class="playground-settings-reference" id="pg-settings-reference" aria-labelledby="pg-settings-reference-title">
-          <header><div><h3 id="pg-settings-reference-title">Alle Einstellungsmöglichkeiten</h3><p>Vollständige Auswahlübersicht für den Playground. Katalogoptionen, feste Auswahlwerte, Schalter und gültige Wertebereiche.</p></div><span class="playground-chip">explorativ · keine EVID</span></header>
-          <div class="playground-settings-reference-grid" id="pg-settings-reference-grid"><p>Katalog wird geladen …</p></div>
-        </section>
       <div class="playground-actions"><button type="button" class="primary" id="pg-run">▶ Playground starten</button><button type="button" id="pg-robustness">Robustheitskontrollen</button><button type="button" id="pg-reset">Standardwerte</button></div>
-        @media(max-width:1150px){.playground-grid{grid-template-columns:1fr 1fr}.playground-metrics{grid-template-columns:repeat(4,1fr)}.playground-settings-reference-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:760px){.playground-grid,.playground-viz-grid,.playground-analysis-grid,.playground-catalog,.playground-settings-reference-grid{grid-template-columns:1fr}.playground-metrics{grid-template-columns:repeat(2,1fr)}}
       <article class="playground-card"><h3>10 · PAN Live Session & Sandbox</h3><div class="playground-actions"><button type="button" id="pg-live-create">Live starten</button><button type="button" id="pg-live-step">+32 Ticks</button><button type="button" id="pg-live-auto">Auto Start</button><button type="button" id="pg-live-auto-stop">Auto Stop</button><button type="button" id="pg-live-input">Input zeigen</button><button type="button" id="pg-live-sandbox">Sandbox +8</button><button type="button" id="pg-live-stop">Stop</button></div><label>Live Input (JSON-Array)<textarea id="pg-live-input-values">[1,0,-1,0.5]</textarea></label><canvas id="pg-live-sandbox-canvas" width="800" height="360"></canvas><pre id="pg-live-state">Noch keine Live-Session.</pre></article>
       <div class="playground-status" id="pg-status" data-state="idle">Katalog wird geladen …</div>
     </section>
@@ -477,48 +471,6 @@ function renderCatalog(catalog){
   const neuralIOCodecs=(catalog.neural_io?.codecs||[]).map(item=>({name:item.id,note:`${item.input_kind||""} · ${item.reconstruction_class||""}`}));
   const groups=[["Neuronmodelle",catalog.models],["Topologien",catalog.topologies],["Stimuli",catalog.stimuli],["Synapsen",catalog.synapses],["Plastizität",catalog.plasticity],["Readouts",catalog.readouts],["PAN Research Candidates",panCandidates],["PAN Literaturkontext",panLiterature],["Geometrie Literaturkontext",geometryLiterature],["Neural I/O Codecs",neuralIOCodecs],["Analysen",(catalog.analyses||[]).map(name=>({name}))],["Robustheit",(catalog.robustness_controls||[]).map(name=>({name}))]];
   byId("pg-catalog-grid").innerHTML=groups.map(([title,items])=>`<article><h3>${title}</h3>${(items||[]).map(item=>`<span class="playground-chip" title="${item.note||""}">${item.label||item.name}</span>`).join("")}</article>`).join("");
-  const settingGroups = [
-    ["Katalogauswahl", [
-      ["Neuronmodell", (catalog.models || []).map(item => item.label || item.name).join(" · ")],
-      ["Synapsenmodell", (catalog.synapses || []).map(item => item.label || item.name).join(" · ")],
-      ["Plastizität", (catalog.plasticity || []).map(item => item.label || item.name).join(" · ")],
-      ["Topologie", (catalog.topologies || []).map(item => item.name).join(" · ")],
-      ["Stimulus", (catalog.stimuli || []).map(item => item.name).join(" · ")],
-      ["Readout", (catalog.readouts || []).map(item => item.name).join(" · ")],
-    ]],
-    ["Topologie & Geometrie", [
-      ["Neuronen", "2–1024 · Standard 128"], ["Kanten", "Neuronen–20.000 · Standard 1024"],
-      ["Dimensionen", "1–32 · Standard 5"], ["Gewicht", "0–100 · Standard 4"],
-      ["Radius", "0.001–2 · Standard 0.35"], ["k Nachbarn", "1–64 · Standard 16"],
-      ["Module", "1–32 · Standard 2"], ["Geometrie-Modus", "mixed_additive · shortcut_union"],
-      ["λa / λb", "0–10 · Standard 0.5 / 0.5"], ["σ", "0.001–2 · Standard 0.1"], ["p0", "0–1 · Standard 0.3"],
-    ]],
-    ["Stimulus & Lauf", [
-      ["Ticks", "1–2048 · Standard 256"], ["Strom", "0–500 · Standard 8"], ["Rate", "0–1000 Hz · Standard 20"],
-      ["Seed", "0+ · Standard 12345"], ["Seed-Ensemble", "1–8 · Standard 1"], ["Delay", "1–64 Ticks · Standard 1"],
-      ["Rewiring", "0–1 · Standard 0.15"], ["Session speichern", "an / aus"],
-    ]],
-    ["PAN & Geometrieparameter", [
-      ["PAN", "an / aus"], ["PAN-Dimensionen", "5–32 · Standard 5"], ["Closed Loop", "an / aus"],
-      ["Feedback-Gain", "0–5 · Standard 0.05"], ["Health-Decay", "0–1 · Standard 0.001"],
-      ["Apoptose", "0–1 · Standard 0.1"], ["PAN Bias", "0–500 · Standard 10"], ["XYZ-Geschwindigkeit", "0.001–10 · Standard 0.25"],
-    ]],
-    ["Runtime & Wachstum", [
-      ["Clock", "continuous · dual"], ["Base Hz", "1–10.000 · Standard 100"], ["Event Batch", "0.05–1000 ms · Standard 10"],
-      ["Execution", "HYBRID_AUTO · EVENT_ONLY · TICK_ONLY"], ["Initial Engine", "EVENT_ONLY · TICK_ONLY"],
-      ["Transition", "clean · debug · fast"], ["θ high / low", "0–1 · Standard 0.30 / 0.05"], ["Hysterese", "0–0.5 · Standard 0.02"],
-      ["Dwell / Fenster", "0–2048 / 1–2048 · Standard 100 / 100"], ["Wachstum", "an / aus"], ["Wachstumsschwellen", "Aktivität · Co-Aktivierung · Info · Prune"],
-      ["Hardware", "reference_cpu · cuda_8gb_balanced_plan"], ["CUDA-Budget", "128–16.384 MiB · Standard 2048"], ["SSD-Offload", "an / aus"],
-    ]],
-    ["Lernen & I/O", [
-      ["Thalamus", "an / aus · Relay 0–1 · Attention 0–4 · Inhibition 0–1"], ["Kortex", "an / aus · 2–12 Schichten"],
-      ["Layer Lernrate", "0–1 · Standard 0.01"], ["Verhalten lernen", "an / aus"], ["Aktionen", "2–16 · Standard 4"],
-      ["Zielaktion", "0–15 · Standard 0"], ["Zielmodus", "cycle · fixed"], ["Policy-Lernrate", "0.001–1 · Standard 0.2"],
-      ["Exploration ε", "0–1 · Standard 0.2"], ["Episode", "1–2048 Ticks · Standard 16"], ["Policy Bias", "0–100 · Standard 3"],
-      ["Neural I/O", "an / aus · Codec · Decoder · Rollen · Phase · Payload"], ["I/O-Kanäle", "1–256 · Standard 16"],
-    ]],
-  ];
-  byId("pg-settings-reference-grid").innerHTML=settingGroups.map(([title,items])=>`<article><h4>${title}</h4><dl>${items.map(([label,value])=>`<dt>${label}</dt><dd>${value}</dd>`).join("")}</dl></article>`).join("");
   const status=byId("pg-status");status.dataset.state="ok";status.textContent=`Bereit · bis ${catalog.limits.n_neurons} Neuronen · ${catalog.limits.edges} Kanten · ${catalog.limits.dimensions}D · scientific_evidence=false`;
 }
 

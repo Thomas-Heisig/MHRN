@@ -56,21 +56,12 @@ def test_playground_ui_exposes_corrected_setting_defaults() -> None:
     assert 'value="mixed_additive" selected' in module
 
 
-def test_playground_ui_displays_all_setting_categories() -> None:
+def test_playground_ui_keeps_settings_overview_out_of_builder() -> None:
     module = (STATIC / "frontend" / "modules" / "playground.js").read_text(
         encoding="utf-8"
     )
-    assert 'id="pg-settings-reference"' in module
-    assert "Alle Einstellungsmöglichkeiten" in module
-    for category in (
-        "Katalogauswahl",
-        "Topologie & Geometrie",
-        "Stimulus & Lauf",
-        "PAN & Geometrieparameter",
-        "Runtime & Wachstum",
-        "Lernen & I/O",
-    ):
-        assert category in module
+    assert 'id="pg-settings-reference"' not in module
+    assert "Alle Einstellungsmöglichkeiten" not in module
 
 
 def test_playground_resets_defaults_on_start_and_marks_overrides_by_hover() -> None:
