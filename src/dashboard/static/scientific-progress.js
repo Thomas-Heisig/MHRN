@@ -221,6 +221,7 @@ function renderScientificProgress(data) {
 }
 
 async function loadScientificProgress() {
+  ensureReleaseView();
   try {
     const response = await fetch(SCIENCE_MANIFEST_URL, { cache: "no-store" });
     if (!response.ok) throw new Error(`HTTP ${response.status}`);

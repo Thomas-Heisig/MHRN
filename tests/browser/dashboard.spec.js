@@ -279,6 +279,8 @@ test("navigation and box-state controls remain usable", async ({ page }) => {
 });
 
 test("Release workspace renders the documentation timeline", async ({ page }) => {
+  page.on("pageerror", (error) => console.log(`[pageerror] ${error.stack || error.message}`));
+  page.on("console", (message) => { if (message.type() === "error") console.log(`[console] ${message.text()}`); });
   await openDashboard(page);
   await selectRoute(page, "release", "timeline");
   await expect(page.locator("#release-timeline-list .timeline-entry")).toHaveCount(1);
