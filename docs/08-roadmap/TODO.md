@@ -75,6 +75,8 @@ MHRN / Multi-Scale Homeostatic Recurrence Network. Publication: Recursive Episte
 - [x] Lange wissenschaftliche Stufennamen ohne Kartenüberlauf darstellen.
 - [x] Eigenen Release-Tab für die wissenschaftliche Gesamtarbeit mit elf Teilen
 	und File-Viewer-Zugriff ergänzen.
+- [x] Prozent- und `met`/`partial`/`open`-Status je Manuskriptteil darstellen.
+- [x] Gesamtarbeits-Tab strukturell an Scientific Maturity angleichen.
 
 ## 2026-09-16 Release navigation
 

@@ -295,10 +295,10 @@ test("Release workspace renders the documentation timeline", async ({ page }) =>
   await selectRoute(page, "release", "science");
   await expect(page.locator("#scientific-progress-timeline")).toBeVisible();
   await expect(page.locator("#scientific-progress-timeline")).toContainText("Scientific Timeline");
-  await expect(page.locator(".scientific-progress-status-legend .scientific-status-met")).toBeVisible();
-  await expect(page.locator(".scientific-progress-status-legend .scientific-status-partial")).toBeVisible();
-  await expect(page.locator(".scientific-progress-status-legend .scientific-status-open")).toBeVisible();
-  await expect(page.locator(".scientific-stage-meta .scientific-status-mark")).toHaveCount(11);
+  await expect(page.locator("#scientific-progress-timeline .scientific-progress-status-legend .scientific-status-met")).toBeVisible();
+  await expect(page.locator("#scientific-progress-timeline .scientific-progress-status-legend .scientific-status-partial")).toBeVisible();
+  await expect(page.locator("#scientific-progress-timeline .scientific-progress-status-legend .scientific-status-open")).toBeVisible();
+  await expect(page.locator("#scientific-progress-timeline .scientific-stage-meta .scientific-status-mark")).toHaveCount(11);
   const stageTenName = page.locator('#scientific-progress-timeline [data-scientific-stage="10"] .scientific-stage-name');
   await expect(stageTenName).toHaveText("Bewusstseinsforschung");
   await expect(stageTenName).toHaveCSS("overflow-wrap", "anywhere");
@@ -335,7 +335,17 @@ test("Release workspace renders the documentation timeline", async ({ page }) =>
 
   await selectRoute(page, "release", "publication");
   await expect(page.locator('[data-release-view="publication"]')).toBeVisible();
+  await expect(page.locator('[data-release-view="publication"] .workspace-kicker')).toHaveText("SCIENTIFIC MATURITY");
+  await expect(page.locator('[data-release-view="publication"] #scientific-work-title')).toHaveText("Wissenschaftliche Gesamtarbeit · 11 Teile");
+  await expect(page.locator('[data-release-view="publication"] .scientific-progress-score strong')).toHaveText("87.3%");
+  await expect(page.locator('[data-release-view="publication"] .scientific-two-axis-note > div')).toHaveCount(2);
   await expect(page.locator('[data-release-view="publication"] .scientific-work-card')).toHaveCount(11);
+  await expect(page.locator('[data-release-view="publication"] .scientific-work-metric')).toHaveCount(11);
+  await expect(page.locator('[data-release-view="publication"] .scientific-work-met')).not.toHaveCount(0);
+  await expect(page.locator('[data-release-view="publication"] .scientific-work-partial')).not.toHaveCount(0);
+  await expect(page.locator('[data-release-view="publication"] .scientific-work-open')).toHaveCount(1);
+  await expect(page.locator('[data-release-view="publication"]')).toContainText("100%");
+  await expect(page.locator('[data-release-view="publication"]')).toContainText("50%");
   await page.locator('[data-release-view="publication"] [data-scientific-work-file]').first().click();
   await expect(page.locator("#fm-viewer-dialog")).toBeVisible();
   await page.locator("#fm-dialog-close").click();

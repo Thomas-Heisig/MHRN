@@ -16,6 +16,10 @@
 - Lange Stufennamen werden innerhalb der Timeline-Karten zuverlässig umgebrochen.
 - Ein eigener Release-Tab zeigt die wissenschaftliche Gesamtarbeit und ihre elf
   Teile; jeder Teil öffnet das kanonische Manuskript im File Viewer.
+- Die elf Teile zeigen zusätzlich Prozentbalken und die Statuszustände `met`,
+  `partial` und `open` als redaktionellen Arbeitsstand.
+- Header, Gesamtprozentzahl, Einleitung, Statuslegende und zweispaltige
+  Kontextboxen entsprechen jetzt der Scientific-Maturity-Darstellung.
 
 ## 2026-09-26 - Sichere External-Review-Bereitstellung
 

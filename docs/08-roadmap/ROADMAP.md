@@ -19,6 +19,10 @@
 	Timeline-Karten ohne horizontales Überlaufen.
 - Der Release-Workspace besitzt einen eigenen Tab für die wissenschaftliche
 	Gesamtarbeit mit allen elf Manuskriptteilen.
+- Jeder Teil zeigt den redaktionellen Arbeitsstand als Prozentwert mit
+	`met`, `partial` oder `open`; diese Werte sind keine EVID-Metrik.
+- Der Gesamtarbeits-Tab folgt strukturell der Scientific-Maturity-Ansicht mit
+	Kicker, Gesamtprozentzahl, Einleitung, Statuslegende und Kontextboxen.
 
 ## 2026-09-26 External Review Deployment
 
