@@ -1019,9 +1019,7 @@ class PlaygroundConfig:
                 raise ValueError("frozen_action_sequence contains invalid action")
         if self.freeze_rewards:
             if not self.reward_signal_enabled:
-                raise ValueError(
-                    "freeze_rewards requires reward_signal_enabled"
-                )
+                raise ValueError("freeze_rewards requires reward_signal_enabled")
             if len(self.frozen_reward_sequence) < required_episodes:
                 raise ValueError(
                     "frozen_reward_sequence must cover every completed episode"
@@ -1038,7 +1036,10 @@ class PlaygroundConfig:
                 raise ValueError(
                     "parity_reference_source must be CPU_PYTHON_PLAYGROUND"
                 )
-            if re.fullmatch(r"[0-9a-fA-F]{7,40}", self.parity_reference_commit) is None:
+            if (
+                re.fullmatch(r"[0-9a-fA-F]{7,40}", self.parity_reference_commit)
+                is None
+            ):
                 raise ValueError(
                     "parity_reference_commit must be a 7-40 character git SHA"
                 )
