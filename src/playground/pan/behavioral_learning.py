@@ -111,8 +111,43 @@ class BehavioralLearningEngine:
         action: int,
         reward: float,
         target: int | None = None,
+        context: str | None = None,
+        action_count: int | None = None,
     ) -> float:
-        """Apply an externally computed scalar reward to the current policy."""
+        """Apply external reward to the base policy or a named context policy."""
+
+        if context is not None:
+            count = self.action_count if action_count is None else action_count
+            if not 2 <= count <= 16:
+                raise ValueError("action_count must be between 2 and 16")
+            if not 0 <= action < count:
+                raise ValueError("action outside context action range")
+            bounded = max(-2.0, min(2.0, float(reward)))
+            policy = self.context_policies.setdefault(
+                context, [0.0 for _ in range(count)]
+            )
+            weights = self.context_weights.setdefault(
+                context,
+                [[0.0 for _ in range(self.action_count)] for _ in range(count)],
+            )
+            if len(policy) != count or len(weights) != count:
+                raise ValueError("context action_count changed after initialization")
+            prediction = policy[action] + sum(
+                weight * feature
+                for weight, feature in zip(weights[action], self.activity)
+            )
+            error = bounded - prediction
+            policy[action] += self.learning_rate * error
+            for index, feature in enumerate(self.activity):
+                weights[action][index] += self.learning_rate * error * feature
+            self.context_updates[context] = self.context_updates.get(context, 0) + 1
+            self.external_reward_history.append(
+                {"context": context, "action": action, "reward": bounded}
+            )
+            if len(self.external_reward_history) > 512:
+                del self.external_reward_history[:-512]
+            self.external_reward_updates += 1
+            return policy[action]
 
         if not 0 <= action < self.action_count:
             raise ValueError("action outside action range")
@@ -195,51 +230,6 @@ class BehavioralLearningEngine:
         if len(policy) != action_count or len(weights) != action_count:
             raise ValueError("context action_count changed after initialization")
         self.active_context = context
-
-    def apply_external_reward(
-        self,
-        *,
-        context: str,
-        action: int,
-        reward: float,
-        action_count: int,
-    ) -> float:
-        """Apply a scalar externally computed reward to a strategy policy."""
-
-        if not self.learning_enabled_external:
-            return 0.0
-        if not 2 <= action_count <= 16:
-            raise ValueError("action_count must be between 2 and 16")
-        if not 0 <= action < action_count:
-            raise ValueError("action outside context action range")
-        bounded = max(-2.0, min(2.0, float(reward)))
-        policy = self.context_policies.setdefault(
-            context, [0.0 for _ in range(action_count)]
-        )
-        weights = self.context_weights.setdefault(
-            context,
-            [[0.0 for _ in range(self.action_count)] for _ in range(action_count)],
-        )
-        if len(policy) != action_count or len(weights) != action_count:
-            raise ValueError("context action_count changed after initialization")
-        prediction = policy[action] + sum(
-            weight * feature for weight, feature in zip(weights[action], self.activity)
-        )
-        error = bounded - prediction
-        policy[action] += self.learning_rate * error
-        for index, feature in enumerate(self.activity):
-            weights[action][index] += self.learning_rate * error * feature
-        self.context_updates[context] = self.context_updates.get(context, 0) + 1
-        self.external_reward_history.append(
-            {
-                "context": context,
-                "action": action,
-                "reward": bounded,
-            }
-        )
-        if len(self.external_reward_history) > 512:
-            del self.external_reward_history[:-512]
-        return policy[action]
 
     @property
     def learning_enabled_external(self) -> bool:
