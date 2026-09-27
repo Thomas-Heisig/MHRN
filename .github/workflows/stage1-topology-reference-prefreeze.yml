@@ -12,9 +12,7 @@ on:
       - scripts/check_stage1_reference_independence.py
       - scripts/check_stage1_reference_seed_freshness_r2.py
       - scripts/run_stage1_reference_topology_mapping_r2.py
-      - scripts/run_stage1_reference_integrator_calibration.py
-      - scripts/run_stage1_reference_reset_calibration.py
-      - scripts/run_stage1_reference_synapse_calibration.py
+      - scripts/verify_stage1_reference_dynamics_reuse_r2.py
       - scripts/audit_stage1_reference_mechanisms.py
       - tests/test_stage1_reference_r2_contract.py
       - tests/test_stage1_reference_r2_preflight.py
@@ -60,12 +58,8 @@ jobs:
         run: python scripts/check_stage1_reference_independence.py
       - name: Verify R2 reference seed freshness
         run: python scripts/check_stage1_reference_seed_freshness_r2.py
-      - name: Revalidate neuron/integrator parity
-        run: python scripts/run_stage1_reference_integrator_calibration.py
-      - name: Revalidate reset parity
-        run: python scripts/run_stage1_reference_reset_calibration.py
-      - name: Revalidate synapse-delay parity
-        run: python scripts/run_stage1_reference_synapse_calibration.py
+      - name: Validate immutable R1 dynamics parity reuse for R2
+        run: python scripts/verify_stage1_reference_dynamics_reuse_r2.py
       - name: Run exact R2 topology mapping parity
         run: python scripts/run_stage1_reference_topology_mapping_r2.py
       - name: Commit immutable pre-freeze audit artifacts
@@ -73,7 +67,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add             research/audits/STAGE1_TOPOLOGY_REFERENCE_MECHANISM_AUDIT_20260927.json             research/calibrations/CAL-S1-TOPO-REFERENCE-INTEGRATOR-R1/result.json             research/calibrations/CAL-S1-TOPO-REFERENCE-RESET-R1/result.json             research/calibrations/CAL-S1-TOPO-REFERENCE-SYNAPSE-R1/result.json             research/calibrations/CAL-S1-TOPO-REFERENCE-TOPOLOGY-MAP-R2/result.json
+          git add             research/audits/STAGE1_TOPOLOGY_REFERENCE_MECHANISM_AUDIT_20260927.json             research/calibrations/CAL-S1-TOPO-REFERENCE-DYNAMICS-REUSE-R2/result.json             research/calibrations/CAL-S1-TOPO-REFERENCE-TOPOLOGY-MAP-R2/result.json
           if git diff --cached --quiet; then
             echo "Reference R2 pre-freeze artifacts are already current."
           else
@@ -87,8 +81,6 @@ jobs:
           name: stage1-topology-reference-prefreeze-r2
           path: |
             research/audits/STAGE1_TOPOLOGY_REFERENCE_MECHANISM_AUDIT_20260927.json
-            research/calibrations/CAL-S1-TOPO-REFERENCE-INTEGRATOR-R1/result.json
-            research/calibrations/CAL-S1-TOPO-REFERENCE-RESET-R1/result.json
-            research/calibrations/CAL-S1-TOPO-REFERENCE-SYNAPSE-R1/result.json
+            research/calibrations/CAL-S1-TOPO-REFERENCE-DYNAMICS-REUSE-R2/result.json
             research/calibrations/CAL-S1-TOPO-REFERENCE-TOPOLOGY-MAP-R2/result.json
           retention-days: 90
