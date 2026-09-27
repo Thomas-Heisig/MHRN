@@ -180,9 +180,7 @@ def _population(count: int) -> tuple[b2.NeuronGroup, b2.Network]:
     return group, b2.Network(group, *group.contained_objects)
 
 
-def _run_one(
-    protocol: dict[str, Any], condition: str, seed: int
-) -> dict[str, Any]:
+def _run_one(protocol: dict[str, Any], condition: str, seed: int) -> dict[str, Any]:
     shape_raw = protocol["conditions"][condition]
     shape = tuple(int(v) for v in shape_raw)
     if len(shape) != 5:
@@ -235,11 +233,7 @@ def _run_one(
 
         group.input_current = current
         network.run(1 * b2.ms)
-        spikes = [
-            index
-            for index in range(64)
-            if int(group.spike_seen[index]) != 0
-        ]
+        spikes = [index for index in range(64) if int(group.spike_seen[index]) != 0]
 
         for source in spikes:
             spike_times[str(source)].append(tick)
@@ -251,9 +245,7 @@ def _run_one(
         total_spikes += len(spikes)
         cumulative_active_per_tick.append(len(active))
 
-    active_fraction_series = [
-        count / 64.0 for count in cumulative_active_per_tick
-    ]
+    active_fraction_series = [count / 64.0 for count in cumulative_active_per_tick]
     auc = float(sum(active_fraction_series[:auc_window]))
     latency = first_output if first_output is not None else ticks + 1
 

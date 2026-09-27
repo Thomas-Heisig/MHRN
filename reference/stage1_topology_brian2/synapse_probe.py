@@ -4,7 +4,10 @@ from __future__ import annotations
 
 from dataclasses import asdict, dataclass
 
-from reference.stage1_topology_brian2.integrator_probe import ProbeResult, run_trajectory
+from reference.stage1_topology_brian2.integrator_probe import (
+    ProbeResult,
+    run_trajectory,
+)
 
 
 @dataclass(frozen=True)
