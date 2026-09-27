@@ -199,6 +199,18 @@ class NightRunDaemon:
             self.kb, gateway_available=self.gateway_query is not None
         )
         vector = self._encode_task(task)
+        if task["type"] == "find_source":
+            self.pan.learning.activate_context(
+                "find:source", len(task["possible_sources"])
+            )
+        elif task["type"] == "store_info":
+            self.pan.learning.activate_context(
+                "store:category", len(task["possible_categories"])
+            )
+        else:
+            self.pan.learning.activate_context(
+                "link:relation", len(task["possible_relations"])
+            )
         self.pan.inject_vector(vector, duration_ticks=8, gain=25.0)
         pan_result = self.pan.step(16)
 
