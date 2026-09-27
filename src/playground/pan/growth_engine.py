@@ -173,7 +173,9 @@ class GrowthEngine:
             self.coactivation.items(),
             key=lambda item: (-item[1], item[0][0], item[0][1]),
         )
-        for (source, target), score in candidates if self.synaptogenesis else []:
+        for (source, target), score in (
+            candidates if self.synaptogenesis else []
+        ):
             if added >= self.max_new_synapses_per_barrier:
                 break
             if score < self.coactivation_threshold:
