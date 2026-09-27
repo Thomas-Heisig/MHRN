@@ -1925,6 +1925,13 @@
       "original_path": "experiments/EXP-S1-TEMP-ORDER-V2-20260919",
       "reason": "manuelle Archivierung"
     },
+    "EXP-S1-TOPO-PROMO-R1-20260927": {
+      "archived_at": "2026-09-27T08:11:18.087632+00:00",
+      "experiment_id": "EXP-S1-TOPO-PROMO-R1-20260927",
+      "manifest_sha256": "7f9e02560e45c647f3d17d15688bd0ad99545398a3c20a9902180a39274bf699",
+      "original_path": "experiments/EXP-S1-TOPO-PROMO-R1-20260927",
+      "reason": "manuelle Archivierung"
+    },
     "EXP-S1-TOPO-V2-20260918": {
       "archived_at": "2026-09-19T08:00:08.341401+00:00",
       "experiment_id": "EXP-S1-TOPO-V2-20260918",
