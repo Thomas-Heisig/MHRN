@@ -334,6 +334,11 @@ class CudaDriver:
         lib.cuMemAlloc_v2.restype = ctypes.c_int
         lib.cuMemFree_v2.argtypes = [ctypes.c_uint64]
         lib.cuMemFree_v2.restype = ctypes.c_int
+        lib.cuMemGetInfo_v2.argtypes = [
+            ctypes.POINTER(ctypes.c_size_t),
+            ctypes.POINTER(ctypes.c_size_t),
+        ]
+        lib.cuMemGetInfo_v2.restype = ctypes.c_int
         lib.cuMemcpyHtoD_v2.argtypes = [
             ctypes.c_uint64,
             ctypes.c_void_p,
@@ -412,6 +417,20 @@ class CudaDriver:
                 self._lib.cuMemFree_v2(ctypes.c_uint64(allocation.ptr)),
                 "cuMemFree_v2",
             )
+
+    def memory_info(self) -> tuple[int, int]:
+        """Return free and total bytes for the current CUDA context."""
+
+        free_bytes = ctypes.c_size_t()
+        total_bytes = ctypes.c_size_t()
+        self._check(
+            self._lib.cuMemGetInfo_v2(
+                ctypes.byref(free_bytes),
+                ctypes.byref(total_bytes),
+            ),
+            "cuMemGetInfo_v2",
+        )
+        return int(free_bytes.value), int(total_bytes.value)
 
     def copy_host_to_device(
         self,
@@ -976,9 +995,23 @@ def run_gate_hardware_smoke(
             "bit_exact_observable_outputs": bool(repeat["passed"]),
         },
         "cleanup": {
-            "device_allocations_released_by_finally": True,
+            "device_allocations_released": bool(
+                first.get("memory", {}).get("allocations_released")
+            )
+            if isinstance(first.get("memory"), Mapping)
+            else False,
             "module_and_context_released_by_finally": True,
-            "memory_leak_measured": False,
+            "memory_leak_measured": True,
+            "first_free_delta_bytes": (
+                first.get("memory", {}).get("free_delta_bytes")
+                if isinstance(first.get("memory"), Mapping)
+                else None
+            ),
+            "second_free_delta_bytes": (
+                second.get("memory", {}).get("free_delta_bytes")
+                if isinstance(second.get("memory"), Mapping)
+                else None
+            ),
         },
         "full_snn_parity_verified": False,
     }
@@ -1341,6 +1374,8 @@ def execute_gate_bundle(
         device_ordinal=device_ordinal,
     )
     allocations: list[DeviceAllocation] = []
+    memory_before_free, memory_total = driver.memory_info()
+    allocations_released = False
     try:
         host_buffers = {
             "input": _f32_buffer(inputs.input_current),
@@ -1422,7 +1457,7 @@ def execute_gate_bundle(
         driver.copy_device_to_host(host_current, out_current)
         driver.copy_device_to_host(host_action, out_action)
 
-        return {
+        result: dict[str, object] = {
             "classification": "PLAYGROUND_CUDA1_SINGLE_TICK_EXECUTION",
             "scientific_evidence": False,
             "execution_status": "GPU_KERNEL_EXECUTED",
@@ -1443,12 +1478,27 @@ def execute_gate_bundle(
             "full_snn_parity_verified": False,
             "canonical_cuda_backend": False,
         }
-    finally:
         for allocation in reversed(allocations):
-            try:
-                driver.free_device(allocation)
-            except CudaDriverError:
-                pass
+            driver.free_device(allocation)
+        allocations.clear()
+        allocations_released = True
+        memory_after_free, memory_total_after = driver.memory_info()
+        result["memory"] = {
+            "free_before_bytes": memory_before_free,
+            "free_after_bytes": memory_after_free,
+            "total_before_bytes": memory_total,
+            "total_after_bytes": memory_total_after,
+            "free_delta_bytes": memory_after_free - memory_before_free,
+            "allocations_released": True,
+        }
+        return result
+    finally:
+        if not allocations_released:
+            for allocation in reversed(allocations):
+                try:
+                    driver.free_device(allocation)
+                except CudaDriverError:
+                    pass
         driver.unload(loaded)
 
 
