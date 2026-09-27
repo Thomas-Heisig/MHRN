@@ -29,6 +29,10 @@ class StickFigureSandbox:
     joints: dict[str, Joint] = field(default_factory=dict)
     muscles: dict[str, float] = field(default_factory=dict)
     echo: deque[list[float]] = field(default_factory=lambda: deque(maxlen=10))
+    springs: list[tuple[str, str, float, float]] = field(
+        init=False,
+        default_factory=list,
+    )
     tick: int = 0
 
     def __post_init__(self) -> None:
