@@ -34,7 +34,9 @@ A future preregistered stress test should consider:
 3. balanced amplitude/current perturbations independent of logical order;
 4. held-out or blinded decoder mapping where feasible;
 5. increased path asymmetry controls;
-6. evaluation of whether performance degrades smoothly as the order gap approaches zero.
+6. evaluation of whether performance degrades smoothly as the order gap approaches zero;
+7. an independently implemented decoder family (for example a separately specified threshold/readout rule) to test whether the result depends on the frozen decoder implementation;
+8. a counterfactual channel-identity condition in which A and B use identical stimulus profiles and differ only in physical channel position, to separate channel identity from amplitude/profile cues.
 
 These are prospective method-development ideas only. They are not grounds for retroactively changing the current DATA or Human Review unless a later preregistered study produces contradictory evidence.
 
