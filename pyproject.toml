@@ -39,6 +39,9 @@ dependencies = [
   "psutil>=5.9",
 ]
 
+[project.scripts]
+mhrn-playground = "mhrn_playground.cli:main"
+
 [project.urls]
 Homepage = "https://github.com/Thomas-Heisig/MHRN"
 Repository = "https://github.com/Thomas-Heisig/MHRN"
@@ -168,7 +171,7 @@ skips = ["B101", "B301", "B403", "B404", "B603", "B607"]
 # src is the import namespace, not an implicit src-layout directory.
 [tool.setuptools.packages.find]
 where = ["."]
-include = ["src", "src.*"]
+include = ["src", "src.*", "mhrn_playground", "mhrn_playground.*"]
 namespaces = false
 
 [tool.setuptools.package-data]

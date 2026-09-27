@@ -20,6 +20,21 @@
 
 MHRN is an experimental research framework for studying recurrent spiking neural networks, plasticity, self-organization, embodiment, memory and world-model mechanisms under explicit provenance and evidence boundaries.
 
+
+## Playground branch
+
+The `playground` branch is an **exploratory, non-canonical workbench**. Its
+runs are not DATA, not EVID, are invisible to the Research Registry and do not
+contribute to Scientific Maturity. It includes an optional PAN hyperstate
+exploration layer, also classified as non-scientific Playground output.
+
+Potentially useful PAN observations are exposed only as
+`DRAFT_IDEA_NOT_PREREGISTERED` candidates. Any transition into MHRN research
+requires a new hypothesis, preregistration, freeze and new canonical run.
+
+External Python use should prefer `from mhrn_playground import Playground`.
+
+
 The sparse **5D SNN remains the primary adaptive system**. Language models, research assistants, peripheral neural networks and digital gateways are bounded components; they do not receive implicit authority over canonical neural state, reward, experiment DATA or accepted EVID.
 
 > **Scientific boundary:** implementation, passing tests, dashboards, generated reports, registered protocols, software releases and DOI assignment are not automatically scientific evidence. MHRN currently makes no claim of AGI, consciousness, sentience, biological equivalence or a demonstrated general advantage of the 5D address space.
