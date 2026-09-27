@@ -395,7 +395,6 @@ def test_nontrivial_gate_inputs_exercise_current_action_feedback_and_rng() -> No
     )
 
 
-
 def test_cuda_hardware_smoke_reports_measured_memory_recovery_contract() -> None:
     runtime = (
         Path(__file__).resolve().parents[1]
