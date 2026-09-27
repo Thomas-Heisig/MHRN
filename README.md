@@ -439,3 +439,12 @@ Register-native neuron kernels, PTX-native gates and CUDA Dynamic Parallelism
 are not yet implemented and are not presented as benchmarked capabilities.
 
 See [PAN complete Playground architecture](docs/playground/PAN_COMPLETE_ARCHITECTURE.md).
+
+
+### Switchable PAN Playground execution
+
+The non-canonical Playground can run PAN sessions in `EVENT_ONLY`,
+`TICK_ONLY` or activity-controlled `HYBRID_AUTO` mode. Hybrid switching uses
+hysteresis, dwell time and transition-state integrity hashes. Event and tick
+trajectories are not claimed to be mathematically equivalent, and the current
+Python event path has not been benchmarked as an O(events) implementation.
