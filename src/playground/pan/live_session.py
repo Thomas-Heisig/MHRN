@@ -155,6 +155,35 @@ class PANLiveSession:
         self.output_counts[action] += 1
         return action
 
+    def choose_strategy(self, context: str, options: int) -> int:
+        with self.lock:
+            return self.learning.choose_context_action(context, options)
+
+    def apply_strategy_reward(
+        self,
+        *,
+        context: str,
+        action: int,
+        reward: float,
+        action_count: int,
+    ) -> dict[str, object]:
+        with self.lock:
+            value = self.learning.apply_external_reward(
+                context=context,
+                action=action,
+                reward=reward,
+                action_count=action_count,
+            )
+            return {
+                "classification": "PLAYGROUND_META_REWARD",
+                "scientific_evidence": False,
+                "context": context,
+                "action": action,
+                "reward": float(reward),
+                "updated_value": value,
+                "learning": self.learning.summary(),
+            }
+
     def step(self, ticks: int = 32) -> dict[str, object]:
         if ticks < 1 or ticks > 4096:
             raise ValueError("ticks must be between 1 and 4096")
