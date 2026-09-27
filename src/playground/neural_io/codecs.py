@@ -99,7 +99,12 @@ def _make_spike_frame(
     events: Sequence[SpikeEvent],
     empty_reason: str | None = None,
 ) -> SpikeFrame:
-    ordered = tuple(sorted(events, key=lambda event: (event.tick_offset, event.source_channel)))
+    ordered = tuple(
+        sorted(
+            events,
+            key=lambda event: (event.tick_offset, event.source_channel),
+        )
+    )
     digest = event_digest(ordered)
     frame_id = f"pg-spike-{digest[:16]}"
     return SpikeFrame(
@@ -223,7 +228,9 @@ def encode_input(
         try:
             channel = DEFAULT_SYMBOL_VOCABULARY.index(value)
         except ValueError as exc:
-            raise ValueError(f"symbol not in fixed Playground vocabulary: {value}") from exc
+            raise ValueError(
+                f"symbol not in fixed Playground vocabulary: {value}"
+            ) from exc
         contract = CodecContract.create(
             codec_id=codec_id,
             input_kind="symbol",
