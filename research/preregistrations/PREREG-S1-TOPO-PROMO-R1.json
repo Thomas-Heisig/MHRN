@@ -6,7 +6,7 @@
   "hypothesis": "H-SNN-003-B",
   "protocol": "topology_propagation_v3_r1_time_resolved_replication",
   "mode": "CONFIRMATORY_INTERNAL_PROMOTION_REPLICATION",
-  "execution_authorized": false,
+  "execution_authorized": true,
   "scientific_evidence": false,
   "automatic_evidence_promotion": false,
   "predecessor_experiment": "EXP-S1-TOPO-V3-R1-20260918",
@@ -196,7 +196,7 @@
     "report_path": "research/experiments/EXP-S1-TOPO-PROMO-R1-20260927/report.md",
     "canonical_review_path": "research/experiments/EXP-S1-TOPO-PROMO-R1-20260927/human_review.json"
   },
-  "status": "DRAFT_BEFORE_PROMOTION_REPLICATION",
+  "status": "FROZEN_BEFORE_PROMOTION_REPLICATION",
   "claim_id": "CLAIM-S1-TOPO-001",
   "evidence_engine_contract": {
     "automatic_evidence_promotion": false,
@@ -213,5 +213,13 @@
       "refutes",
       "inconclusive"
     ]
+  },
+  "frozen_on": "2026-09-27",
+  "execution_authorization": {
+    "scope": "single_execution_of_EXP-S1-TOPO-PROMO-R1-20260927",
+    "target_branch": "develop",
+    "overwrite_existing_experiment": false,
+    "automatic_evidence_promotion": false,
+    "human_review_after_execution": true
   }
 }
