@@ -1,0 +1,269 @@
+{
+  "schema_version": 1,
+  "preregistration_id": "PREREG-S1-TOPO-EFFICIENCY-R1",
+  "stage": 1,
+  "research_question": "RQ-SNN-003",
+  "hypothesis": "H-SNN-003-C",
+  "claim_id": "CLAIM-S1-EFFICIENCY-001",
+  "protocol": "stage1_topology_efficiency_r1",
+  "mode": "PROSPECTIVE_CONFIRMATORY_AFTER_EXPLORATORY_OBSERVATION",
+  "status": "DRAFT_BEFORE_FREEZE",
+  "execution_authorized": false,
+  "scientific_evidence": false,
+  "automatic_evidence_promotion": false,
+  "human_review_required": true,
+  "independent_replication": false,
+  "exploratory_origin": {
+    "source_experiment": "EXP-S1-TOPO-PROMO-R1-20260927",
+    "source_evidence": "EVID-2026-19",
+    "note": "research/notes/2026-09-27_stage1_topology_efficiency_exploratory.md",
+    "anti_harking_rule": "The historical AUC/spike and AUC/event ratios motivate this protocol only. They are not imported as confirmatory evidence and are not part of EVID-2026-19."
+  },
+  "scientific_correction": {
+    "occupancy": "The 5d shape 4x2x2x2x2 materializes all 64 coordinates. Lower final_active_fraction is dynamic recruitment, not sparse address-space occupancy.",
+    "storage_claim": "This protocol does not test bit-level storage reduction, parameter-count reduction, memory capacity, representational capacity or general information capacity."
+  },
+  "conditions": {
+    "3d_reference": {
+      "shape": [
+        4,
+        4,
+        4,
+        1,
+        1
+      ],
+      "graph_rule": "nearest-future labels under normalized Euclidean distance",
+      "role": "lower-dimensional geometric reference"
+    },
+    "5d_reference": {
+      "shape": [
+        4,
+        2,
+        2,
+        2,
+        2
+      ],
+      "graph_rule": "nearest-future labels under normalized Euclidean distance",
+      "role": "target geometry"
+    },
+    "5d_shuffled": {
+      "shape": [
+        4,
+        2,
+        2,
+        2,
+        2
+      ],
+      "graph_rule": "shuffle coordinate-to-label assignment before the same geometric edge construction",
+      "role": "same coordinate lattice with destroyed label/geometry alignment"
+    },
+    "random_graph": {
+      "shape": [
+        4,
+        2,
+        2,
+        2,
+        2
+      ],
+      "graph_rule": "uniform future-target sampling under the identical out-degree schedule",
+      "role": "non-geometric graph control"
+    },
+    "3d_recruitment_matched": {
+      "shape": [
+        4,
+        4,
+        4,
+        1,
+        1
+      ],
+      "graph_rule": "same as 3d_reference",
+      "role": "3d control whose stimulus-current level is chosen only on disjoint calibration seeds to match a preregistered dynamic-recruitment target"
+    },
+    "5d_high_recruitment": {
+      "shape": [
+        4,
+        2,
+        2,
+        2,
+        2
+      ],
+      "graph_rule": "same as 5d_reference",
+      "role": "5d control whose stimulus-current level is chosen only on disjoint calibration seeds to meet a preregistered high-recruitment gate; this is not defined by evaluation outcomes"
+    }
+  },
+  "matched_budgets": {
+    "neuron_count": 64,
+    "out_degree_cap": 4,
+    "expected_edge_count": 246,
+    "delay_ticks": 1,
+    "synaptic_weight": 55,
+    "stimulus_input_labels": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "output_labels": [
+      60,
+      61,
+      62,
+      63
+    ],
+    "stimulus_ticks": 1,
+    "evaluation_ticks": 128,
+    "auc_window_ticks": 32,
+    "note": "Reference conditions use identical neuron count, edge budget, weight, delay, stimulus accounting and evaluation window. Recruitment-control conditions may differ only in the calibration-selected stimulus-current level declared below."
+  },
+  "calibration": {
+    "purpose": "select recruitment-control stimulus-current levels only; no confirmatory hypothesis testing",
+    "seeds": [
+      991001,
+      991002,
+      991003,
+      991004,
+      991005,
+      991006,
+      991007,
+      991008,
+      991009,
+      991010
+    ],
+    "candidate_stimulus_currents": [
+      70,
+      80,
+      90,
+      100,
+      110,
+      120,
+      130,
+      140
+    ],
+    "reference_stimulus_current": 100,
+    "3d_recruitment_matched_selection_rule": "Choose the lowest candidate current whose calibration-seed median final_active_fraction lies in [0.84,0.90], median output_reach_fraction >=0.95 and median delivered_events >=32. If none qualifies, the recruitment-matched panel is NOT_TESTED.",
+    "5d_high_recruitment_selection_rule": "Choose the lowest candidate current whose calibration-seed median final_active_fraction >=0.98, median output_reach_fraction >=0.95 and median delivered_events >=32. If none qualifies, the high-recruitment panel is NOT_TESTED.",
+    "forbidden_selection_inputs": [
+      "AUC/spike effect size",
+      "AUC/event effect size",
+      "first-output latency effect size",
+      "p-values",
+      "evaluation-seed outcomes",
+      "direction of any 5D advantage"
+    ]
+  },
+  "evaluation": {
+    "seeds": [
+      992001,
+      992002,
+      992003,
+      992004,
+      992005,
+      992006,
+      992007,
+      992008,
+      992009,
+      992010,
+      992011,
+      992012,
+      992013,
+      992014,
+      992015,
+      992016,
+      992017,
+      992018,
+      992019,
+      992020
+    ],
+    "freshness_rule": "The exact evaluation-seed block was searched in the repository before freeze and returned no matches. It must be rechecked immediately before freeze; any collision invalidates this seed block.",
+    "primary_endpoints": [
+      {
+        "id": "activation_auc_per_spike",
+        "formula": "activation_auc_0_32 / total_spikes",
+        "zero_denominator_rule": "run is invalid if total_spikes == 0"
+      },
+      {
+        "id": "activation_auc_per_delivered_event",
+        "formula": "activation_auc_0_32 / delivered_events",
+        "zero_denominator_rule": "run is invalid if delivered_events == 0"
+      }
+    ],
+    "secondary_endpoints": [
+      "first_output_latency_censored",
+      "final_active_fraction",
+      "total_spikes",
+      "delivered_events",
+      "activation_auc_0_32",
+      "output_reach_fraction",
+      "AUC per active neuron",
+      "injected charge"
+    ],
+    "primary_contrasts": [
+      [
+        "3d_reference",
+        "5d_reference"
+      ],
+      [
+        "5d_shuffled",
+        "5d_reference"
+      ],
+      [
+        "random_graph",
+        "5d_reference"
+      ],
+      [
+        "3d_recruitment_matched",
+        "5d_reference"
+      ]
+    ],
+    "directional_difference": "right-minus-left; positive favors 5d_reference for efficiency endpoints",
+    "paired_by_seed": true,
+    "test": "exact one-sided paired sign test for predeclared positive efficiency differences",
+    "effect_interval": "deterministic paired bootstrap 95% CI for the median difference, 5000 resamples",
+    "multiple_testing": "one Holm family across all 8 primary tests = 4 contrasts x 2 primary efficiency endpoints",
+    "alpha": 0.05,
+    "latency_role": "first_output_latency_censored is a secondary confirmatory endpoint, not part of the primary efficiency family and cannot rescue failed primary efficiency criteria"
+  },
+  "decision_rule": {
+    "support_core_efficiency_claim": [
+      "design integrity passes",
+      "both primary efficiency endpoints are Holm-significant with CI excluding zero for 3d_reference -> 5d_reference",
+      "both primary efficiency endpoints are Holm-significant with CI excluding zero for 5d_shuffled -> 5d_reference",
+      "both primary efficiency endpoints are Holm-significant with CI excluding zero for random_graph -> 5d_reference"
+    ],
+    "support_after_recruitment_control": [
+      "3d_recruitment_matched calibration gate succeeds",
+      "both primary efficiency endpoints remain positive, Holm-significant and CI-excluding-zero for 3d_recruitment_matched -> 5d_reference"
+    ],
+    "stronger_interpretation_rule": "Only if both support_core_efficiency_claim and support_after_recruitment_control pass may the result be described as a bounded 5D-associated propagation-efficiency effect not explained by the registered 3D dynamic-recruitment control.",
+    "no_support": "If the core criteria fail, CLAIM-S1-EFFICIENCY-001 is not supported under this protocol.",
+    "partial_result": "If core criteria pass but the recruitment-matched panel is NOT_TESTED or fails, report only a topology-associated efficiency difference with unresolved dynamic-recruitment explanation.",
+    "negative_control_interpretation": "If shuffled or random controls match/exceed 5d_reference on either primary efficiency endpoint, do not claim a specific 5D-coordinate efficiency mechanism.",
+    "high_recruitment_role": "5d_high_recruitment is a mechanistic sensitivity control. It may inform whether increasing recruitment erases the ratio pattern, but it cannot create support for the claim if primary criteria fail."
+  },
+  "integrity_constraints": [
+    "clean source tree before execution",
+    "exactly 10 disjoint calibration seeds and 20 fresh evaluation seeds",
+    "64 neurons and 246 edges in every condition",
+    "reference conditions use weight 55, delay 1 and stimulus current 100",
+    "recruitment-control stimulus currents are selected only from calibration seeds under the frozen rules",
+    "no endpoint or contrast may be added after evaluation starts",
+    "all null and adverse results are persisted",
+    "historical Stage-1 artifacts remain immutable"
+  ],
+  "claim_boundary": "This study tests only a bounded propagation-efficiency hypothesis in the registered 64-neuron Small-SNN envelope. Efficiency means activation_auc_0_32 per spike and per delivered synaptic event under frozen definitions. It does not test or establish bit-level storage reduction, memory capacity, information capacity, learning, cognition, biological equivalence, scaling or universal 5D superiority.",
+  "evidence_engine_contract": {
+    "execution_creates_data_only": true,
+    "automatic_evidence_promotion": false,
+    "require_clean_git_tree": true,
+    "require_validity_true": true,
+    "require_zero_runtime_errors": true,
+    "require_zero_fatal_errors": true,
+    "require_provenance_digests": true,
+    "require_source_freeze_sha": true,
+    "require_canonical_human_review_before_promotion": true
+  },
+  "review": {
+    "human_review_status": "NOT_AVAILABLE_BEFORE_EXECUTION",
+    "ai_review_does_not_satisfy_human_gate": true,
+    "automatic_promotion_forbidden": true
+  }
+}
