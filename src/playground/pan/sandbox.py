@@ -179,20 +179,22 @@ class PANEmbodiedSandboxSession:
         pan_result: dict[str, object] = {}
         for _ in range(ticks):
             receptors = self.world.receptors()
-            audio = (
-                float(self.last_frame.get("audio", {}).get("level", 0.0))
-                if isinstance(self.last_frame, dict)
-                and isinstance(self.last_frame.get("audio"), dict)
-                else 0.0
-            )
-            echo_values = (
-                self.last_frame.get("echo", [])
-                if isinstance(self.last_frame, dict)
-                else []
-            )
-            combined = list(receptors) + [audio] + [
-                float(value) for value in echo_values
-            ]
+            audio = 0.0
+            echo_values: list[float] = []
+            if self.last_frame is not None:
+                raw_audio = self.last_frame.get("audio")
+                if isinstance(raw_audio, dict):
+                    raw_level = raw_audio.get("level", 0.0)
+                    if isinstance(raw_level, (int, float)):
+                        audio = float(raw_level)
+                raw_echo = self.last_frame.get("echo")
+                if isinstance(raw_echo, list):
+                    echo_values = [
+                        float(value)
+                        for value in raw_echo
+                        if isinstance(value, (int, float))
+                    ]
+            combined = list(receptors) + [audio] + echo_values
             self.live_session.inject_vector(combined, duration_ticks=1, gain=25.0)
             pan_result = self.live_session.step(1)
             actions = pan_result.get("actions", [])
