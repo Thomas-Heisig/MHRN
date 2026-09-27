@@ -1,6 +1,6 @@
 """Playground-only PAN gate compiler for CUDA/PTX reference kernels.
 
-This module lowers validated :class:\`PlaygroundConfig\` values into a small gate
+This module lowers validated :class:`PlaygroundConfig` values into a small gate
 IR and emits two artifacts:
 
 * PTX for a single-step reference gate kernel.
@@ -875,13 +875,7 @@ extern "C" __global__ void pan_persistent_kernel(
         previous_action = action;
         }}
 
-        grid.sync();
-    }}
-}}
-'''
-
-
-def _resource_contract(program: GateProgram) -> dict[str, object]:
+        grid.sync();\n    }}\n}}\n"""\n\n\ndef _resource_contract(program: GateProgram) -> dict[str, object]:
     target = _target_number(program.target_sm)
     ampere_86 = target == 86
     return {
