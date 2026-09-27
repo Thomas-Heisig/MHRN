@@ -67,9 +67,7 @@ class NeuralIOInterface:
             raise ValueError("I/O window_ticks must not exceed session ticks")
 
         input_ids = tuple(range(self.input_channels))
-        output_ids = tuple(
-            range(self.n_neurons - self.output_channels, self.n_neurons)
-        )
+        output_ids = tuple(range(self.n_neurons - self.output_channels, self.n_neurons))
         self.input_layout = PopulationLayout.create(
             layout_id="playground.gateway.input",
             role=_role(self.input_role),
@@ -147,10 +145,7 @@ class NeuralIOInterface:
     def currents_for_tick(self, tick: int) -> list[float]:
         """Project encoded afferent events onto dedicated input neurons."""
 
-        if (
-            self._current_phase == InterfacePhase.QUERY
-            and tick >= self.window_ticks
-        ):
+        if self._current_phase == InterfacePhase.QUERY and tick >= self.window_ticks:
             self._set_phase(tick, InterfacePhase.WAIT)
 
         values = [0.0 for _ in range(self.n_neurons)]
@@ -193,9 +188,7 @@ class NeuralIOInterface:
             ticks=self.ticks,
             dt_ms=self.dt_ms,
         )
-        associated = (
-            self.n_neurons - self.input_channels - self.output_channels
-        )
+        associated = self.n_neurons - self.input_channels - self.output_channels
         return {
             "classification": "PLAYGROUND_NEURAL_IO",
             "scientific_evidence": False,
@@ -204,9 +197,7 @@ class NeuralIOInterface:
             "registry_visible": False,
             "maturity_contributing": False,
             "boundary_principle": "Payload != Neural Representation",
-            "architecture_principle": (
-                "Codec != GatewayTopology != GatewayLearning"
-            ),
+            "architecture_principle": ("Codec != GatewayTopology != GatewayLearning"),
             "exact_boundary": self.boundary.public_metadata(),
             "input": {
                 "role": self.input_layout.role.value,

@@ -17,6 +17,8 @@
 	eigenen Registerbereich direkt erreichbar.
 - Lange Stufennamen wie `Bewusstseinsforschung` umbrechen innerhalb der
 	Timeline-Karten ohne horizontales Überlaufen.
+- Playground-Defaults für Topologie, Erregbarkeit und Verhalten sind auf den
+	aktualisierten Referenzstand gesetzt: `weight=4`, Lernrate/Epsilon `0.2`.
 - Der Release-Workspace besitzt einen eigenen Tab für die wissenschaftliche
 	Gesamtarbeit mit allen elf Manuskriptteilen.
 - Jeder Teil zeigt den redaktionellen Arbeitsstand als Prozentwert mit

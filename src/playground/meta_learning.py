@@ -167,16 +167,11 @@ class KnowledgeBase:
             and (category is None or record.category == category)
         ]
         ranked = sorted(
-            (
-                (cosine(query_vector, record.vector), record)
-                for record in candidates
-            ),
+            ((cosine(query_vector, record.vector), record) for record in candidates),
             key=lambda item: item[0],
             reverse=True,
         )[: max(1, limit)]
-        matches = [
-            {"score": score, **record.public()} for score, record in ranked
-        ]
+        matches = [{"score": score, **record.public()} for score, record in ranked]
         return {
             "found": bool(matches),
             "source": source,
@@ -209,7 +204,9 @@ class KnowledgeBase:
     @classmethod
     def from_snapshot(cls, payload: dict[str, object]) -> "KnowledgeBase":
         raw_dimensions = payload.get("dimensions", 64)
-        dimensions = int(raw_dimensions) if isinstance(raw_dimensions, (int, float)) else 64
+        dimensions = (
+            int(raw_dimensions) if isinstance(raw_dimensions, (int, float)) else 64
+        )
         kb = cls(dimensions=dimensions)
         raw_records = payload.get("records", [])
         if isinstance(raw_records, list):
@@ -219,7 +216,11 @@ class KnowledgeBase:
                 text = item.get("text")
                 category = item.get("category")
                 source = item.get("source")
-                if not isinstance(text, str) or not isinstance(category, str) or not isinstance(source, str):
+                if (
+                    not isinstance(text, str)
+                    or not isinstance(category, str)
+                    or not isinstance(source, str)
+                ):
                     continue
                 location = item.get("location")
                 kb.store_info(
@@ -237,8 +238,7 @@ class KnowledgeBase:
                     "relation": str(item["relation"]),
                 }
                 for item in raw_relations
-                if isinstance(item, dict)
-                and {"left", "right", "relation"} <= set(item)
+                if isinstance(item, dict) and {"left", "right", "relation"} <= set(item)
             ]
         return kb
 
@@ -297,14 +297,10 @@ class MetaTaskGenerator:
         gateway_available: bool = False,
     ) -> dict[str, object]:
         self.counter += 1
-        task_type = ("find_source", "store_info", "link_info")[
-            self.counter % 3
-        ]
+        task_type = ("find_source", "store_info", "link_info")[self.counter % 3]
         if task_type == "find_source":
             sources = ["vector_db", "file_index"]
-            available = [
-                source for source in sources if kb.records_for_source(source)
-            ]
+            available = [source for source in sources if kb.records_for_source(source)]
             if gateway_available:
                 sources.append("gateway")
                 available.append("gateway")

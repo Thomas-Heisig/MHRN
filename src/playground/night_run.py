@@ -67,8 +67,14 @@ class NightRunDaemon:
         self.max_episodes = max_episodes
         self.checkpoint_seconds = checkpoint_seconds
         self.gateway_query = gateway_query
-        self.run_id = resume_dir.name if resume_dir is not None else "PGNIGHT-" + uuid.uuid4().hex[:12]
-        self.run_dir = resume_dir if resume_dir is not None else output_root / self.run_id
+        self.run_id = (
+            resume_dir.name
+            if resume_dir is not None
+            else "PGNIGHT-" + uuid.uuid4().hex[:12]
+        )
+        self.run_dir = (
+            resume_dir if resume_dir is not None else output_root / self.run_id
+        )
         self.run_dir.mkdir(parents=True, exist_ok=True)
         self.metrics_path = self.run_dir / "episodes.jsonl"
         self.status_path = self.run_dir / "status.json"
@@ -117,7 +123,11 @@ class NightRunDaemon:
         self.errors: list[str] = []
         self._install_signals()
 
-        roots = [Path("docs/playground"), Path("src/playground")] if file_roots is None else file_roots
+        roots = (
+            [Path("docs/playground"), Path("src/playground")]
+            if file_roots is None
+            else file_roots
+        )
         self.kb.index_files(roots, category="Konzepte", max_files=120)
         # Seed vector memory so find/link are available from the first episodes.
         bootstrap = {
@@ -133,7 +143,9 @@ class NightRunDaemon:
 
     def _restore_checkpoint(self) -> None:
         if not self.checkpoint_path.exists():
-            raise FileNotFoundError(f"night-run checkpoint not found: {self.checkpoint_path}")
+            raise FileNotFoundError(
+                f"night-run checkpoint not found: {self.checkpoint_path}"
+            )
         payload = json.loads(self.checkpoint_path.read_text(encoding="utf-8"))
         raw_status = payload.get("status", {})
         if isinstance(raw_status, dict):
@@ -144,8 +156,7 @@ class NightRunDaemon:
             raw_counts = raw_status.get("task_counts")
             if isinstance(raw_counts, dict):
                 self.task_counts = {
-                    key: _as_int(raw_counts.get(key), 0)
-                    for key in self.task_counts
+                    key: _as_int(raw_counts.get(key), 0) for key in self.task_counts
                 }
             raw_rewards = raw_status.get("reward_by_task")
             if isinstance(raw_rewards, dict):
@@ -196,14 +207,22 @@ class NightRunDaemon:
         index = self.pan.learning.choose_context_action(context, len(options))
         return index, options[index]
 
-    def _find(self, task: dict[str, object]) -> tuple[dict[str, object], dict[str, object], list[tuple[str, int, int, float]]]:
+    def _find(
+        self, task: dict[str, object]
+    ) -> tuple[dict[str, object], dict[str, object], list[tuple[str, int, int, float]]]:
         sources = _string_list(task.get("possible_sources"), "possible_sources")
-        categories = _string_list(task.get("possible_categories"), "possible_categories")
+        categories = _string_list(
+            task.get("possible_categories"), "possible_categories"
+        )
         source_index, source = self._choice("find:source", sources)
         category_index, category = self._choice("find:category", categories)
         action: dict[str, object] = {"source": source, "category": category}
         if source == "gateway":
-            answer = self.gateway_query(str(task["question"])) if self.gateway_query else None
+            answer = (
+                self.gateway_query(str(task["question"]))
+                if self.gateway_query
+                else None
+            )
             result = {
                 "found": answer is not None,
                 "source": "gateway",
@@ -220,23 +239,35 @@ class NightRunDaemon:
         ]
         return action, result, updates
 
-    def _store(self, task: dict[str, object]) -> tuple[dict[str, object], dict[str, object], list[tuple[str, int, int, float]]]:
-        categories = _string_list(task.get("possible_categories"), "possible_categories")
+    def _store(
+        self, task: dict[str, object]
+    ) -> tuple[dict[str, object], dict[str, object], list[tuple[str, int, int, float]]]:
+        categories = _string_list(
+            task.get("possible_categories"), "possible_categories"
+        )
         index, category = self._choice("store:category", categories)
         action: dict[str, object] = {"category": category}
         result = self.kb.store_info(str(task["info"]), category)
         reward = self.reward_fn.compute(task, action, result)
-        return action, result, [("store:category", index, len(categories), reward["category"])]
+        return (
+            action,
+            result,
+            [("store:category", index, len(categories), reward["category"])],
+        )
 
-    def _link(self, task: dict[str, object]) -> tuple[dict[str, object], dict[str, object], list[tuple[str, int, int, float]]]:
+    def _link(
+        self, task: dict[str, object]
+    ) -> tuple[dict[str, object], dict[str, object], list[tuple[str, int, int, float]]]:
         relations = _string_list(task.get("possible_relations"), "possible_relations")
         index, relation = self._choice("link:relation", relations)
         action: dict[str, object] = {"relation": relation}
-        result = self.kb.link(
-            str(task["left_id"]), str(task["right_id"]), relation
-        )
+        result = self.kb.link(str(task["left_id"]), str(task["right_id"]), relation)
         reward = self.reward_fn.compute(task, action, result)
-        return action, result, [("link:relation", index, len(relations), reward["relation"])]
+        return (
+            action,
+            result,
+            [("link:relation", index, len(relations), reward["relation"])],
+        )
 
     def run_episode(self) -> dict[str, object]:
         task = self.task_gen.generate(
@@ -252,7 +283,9 @@ class NightRunDaemon:
         elif task_type == "store_info":
             self.pan.learning.activate_context(
                 "store:category",
-                len(_string_list(task.get("possible_categories"), "possible_categories")),
+                len(
+                    _string_list(task.get("possible_categories"), "possible_categories")
+                ),
             )
         else:
             self.pan.learning.activate_context(
@@ -285,9 +318,7 @@ class NightRunDaemon:
         self.reward_by_task[task_type] += reward
         execution = pan_result.get("execution")
         current_engine = (
-            execution.get("current_engine")
-            if isinstance(execution, Mapping)
-            else None
+            execution.get("current_engine") if isinstance(execution, Mapping) else None
         )
         event = {
             "episode": self.episode,
@@ -435,12 +466,16 @@ def analyze_run(run_dir: Path) -> dict[str, object]:
 
 
 def _main() -> None:
-    parser = argparse.ArgumentParser(description="Run PAN Playground overnight meta-learning.")
+    parser = argparse.ArgumentParser(
+        description="Run PAN Playground overnight meta-learning."
+    )
     parser.add_argument("--hours", type=float, default=8.0)
     parser.add_argument("--max-episodes", type=int, default=10_000)
     parser.add_argument("--checkpoint-seconds", type=float, default=600.0)
     parser.add_argument("--seed", type=int, default=12345)
-    parser.add_argument("--output-root", type=Path, default=Path("playground_sessions/night_runs"))
+    parser.add_argument(
+        "--output-root", type=Path, default=Path("playground_sessions/night_runs")
+    )
     parser.add_argument("--resume", type=Path, default=None)
     args = parser.parse_args()
     daemon = NightRunDaemon(
@@ -457,7 +492,6 @@ def _main() -> None:
 
 if __name__ == "__main__":
     _main()
-
 
 
 class NightRunManager:
@@ -532,8 +566,10 @@ class NightRunManager:
                     "last_error": self._last_error,
                 }
             active = bool(thread and thread.is_alive())
-            current = daemon.status_snapshot() if active else (
-                self._last_summary or daemon.status_snapshot(final=True)
+            current = (
+                daemon.status_snapshot()
+                if active
+                else (self._last_summary or daemon.status_snapshot(final=True))
             )
             return {
                 "classification": "PLAYGROUND_NIGHT_RUN_MANAGER",

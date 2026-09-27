@@ -61,6 +61,7 @@ function buildPanels(root) {
         <article class="playground-card"><h3>01 · Neuronen & Synapsen</h3>
           <label>Neuronmodell<select id="pg-neuron-model"></select></label>
           <label>Synapsenmodell<select id="pg-synapse-model"></select></label>
+          <label>Startgewicht<input id="pg-weight" type="number" min="0" max="100" step="0.1" value="4"></label>
           <label>Plastizität<select id="pg-plasticity"></select></label>
           <label>Readout<select id="pg-readout"></select></label>
           <small>Enthält Izhikevich RS/FS/IB/CH/LTS/Resonator/Sensory/Motor, LIF, AdEx, HH Na/K/Ca und Multi-Compartment.</small>
@@ -69,20 +70,20 @@ function buildPanels(root) {
           <label>Topologie<select id="pg-topology"></select></label>
           <label>Dimensionen (Generic N-D)<input id="pg-dimensions" type="number" min="1" max="32" value="5"></label>
           <label>Neuronen<input id="pg-neurons" type="number" min="2" max="1024" value="128"></label>
-          <label>Kanten<input id="pg-edges" type="number" min="2" max="20000" value="512"></label>
+          <label>Kanten<input id="pg-edges" type="number" min="2" max="20000" value="1024"></label>
           <small>MHRN 5D verwendet explizit x/y/z/d4/d5 und den kanonischen <code>pack_coords</code>-Vertrag. Generic N-D reicht bis 32D.</small>
         </article>
         <article class="playground-card"><h3>03 · Konnektivität</h3>
           <label>Radius<input id="pg-radius" type="number" min="0.001" max="2" step="0.01" value="0.35"></label>
-          <label>k Nachbarn<input id="pg-k" type="number" min="1" max="64" value="8"></label>
+          <label>k Nachbarn<input id="pg-k" type="number" min="1" max="64" value="16"></label>
           <label>Rewiring-Wahrscheinlichkeit<input id="pg-rewire" type="number" min="0" max="1" step="0.01" value="0.15"></label>
-          <label>Module<input id="pg-modules" type="number" min="1" max="32" value="4"></label>
+          <label>Module<input id="pg-modules" type="number" min="1" max="32" value="2"></label>
           <label>Delay (Ticks)<input id="pg-delay" type="number" min="1" max="64" value="1"></label>
         </article>
         <article class="playground-card"><h3>04 · Stimulus & Lauf</h3>
           <label>Stimulus<select id="pg-stimulus"></select></label>
           <label>Ticks<input id="pg-ticks" type="number" min="1" max="2048" value="256"></label>
-          <label>Strom<input id="pg-current" type="number" min="0" max="500" step="0.5" value="12"></label>
+          <label>Strom<input id="pg-current" type="number" min="0" max="500" step="0.5" value="8"></label>
           <label>Rate Hz<input id="pg-rate" type="number" min="0" max="1000" value="20"></label>
           <label>Seed<input id="pg-seed" type="number" min="0" value="12345"></label>
           <label>Seed-Ensemble<input id="pg-ensemble" type="number" min="1" max="8" value="1"></label>
@@ -95,11 +96,11 @@ function buildPanels(root) {
           <label>Feedback-Gain<input id="pg-pan-feedback-gain" type="number" min="0" max="5" step="0.01" value="0.05"></label>
           <label>Health-Decay<input id="pg-pan-health-decay" type="number" min="0" max="1" step="0.001" value="0.001"></label>
           <label>Apoptose-Schwelle<input id="pg-pan-apoptosis" type="number" min="0" max="1" step="0.01" value="0.1"></label>
-          <label>PAN Bias-Strom<input id="pg-pan-bias-current" type="number" min="0" max="500" step="0.5" value="15"></label>
+          <label>PAN Bias-Strom<input id="pg-pan-bias-current" type="number" min="0" max="500" step="0.5" value="10"></label>
           <small>PAN ist eine nicht-kanonische Explorationsschicht. D4 nutzt aktuell einen Surprise-Proxy, keine validierte PID.</small>
         </article>
         <article class="playground-card"><h3>06 · Geometrischer Raum Dg</h3>
-          <label>Geometrie-Modus<select id="pg-geometry-mode"><option value="shortcut_union">Shortcut Union</option><option value="mixed_additive">Mixed Additive</option></select></label>
+          <label>Geometrie-Modus<select id="pg-geometry-mode"><option value="mixed_additive" selected>Mixed Additive</option><option value="shortcut_union">Shortcut Union</option></select></label>
           <label>λa<input id="pg-geometry-lambda-a" type="number" min="0" max="10" step="0.05" value="0.5"></label>
           <label>λb<input id="pg-geometry-lambda-b" type="number" min="0" max="10" step="0.05" value="0.5"></label>
           <label>σ<input id="pg-geometry-sigma" type="number" min="0.001" max="2" step="0.01" value="0.1"></label>
@@ -148,8 +149,8 @@ function buildPanels(root) {
           <label>Zielaktion<input id="pg-behavior-target" type="number" min="0" max="15" value="0"></label>
           <label>Zielmodus<select id="pg-behavior-target-mode"><option value="cycle">cycle</option><option value="fixed">fixed</option></select></label>
           <label>Min. Aktivität<input id="pg-behavior-min-activity" type="number" min="0" max="1" step="0.01" value="0.01"></label>
-          <label>Policy Lernrate<input id="pg-behavior-lr" type="number" min="0.001" max="1" step="0.01" value="0.05"></label>
-          <label>Exploration ε<input id="pg-behavior-epsilon" type="number" min="0" max="1" step="0.01" value="0.05"></label>
+          <label>Policy Lernrate<input id="pg-behavior-lr" type="number" min="0.001" max="1" step="0.01" value="0.2"></label>
+          <label>Exploration ε<input id="pg-behavior-epsilon" type="number" min="0" max="1" step="0.01" value="0.2"></label>
           <label>Episode (Ticks)<input id="pg-behavior-episode" type="number" min="1" max="2048" value="16"></label>
           <label>Policy Bias-Strom<input id="pg-behavior-bias" type="number" min="0" max="100" step="0.5" value="3"></label>
           <small>Lernpfad speichert Policy-Parameter, Aktivitätstraces und Reward-Historie, keine exakten externen Payloads. Thalamus/Kortex sind funktionale Playground-Abstraktionen, keine biologische Gleichsetzung.</small>
@@ -231,6 +232,7 @@ function formPayload() {
     name: "dashboard_playground",
     neuron_model: byId("pg-neuron-model").value,
     synapse_model: byId("pg-synapse-model").value,
+    weight: Number(byId("pg-weight").value),
     plasticity_rule: byId("pg-plasticity").value,
     topology: byId("pg-topology").value,
     stimulus: byId("pg-stimulus").value,
@@ -471,8 +473,8 @@ async function runRobustness(){
 }
 
 function resetForm(){
-  const values={neurons:"128",edges:"512",ticks:"256",dimensions:"5",delay:"1",radius:"0.35",k:"8",rewire:"0.15",modules:"4",current:"12",rate:"20",seed:"12345",ensemble:"1","pan-dimensions":"5","pan-feedback-gain":"0.05","pan-health-decay":"0.001","pan-apoptosis":"0.1","pan-bias-current":"15","geometry-lambda-a":"0.5","geometry-lambda-b":"0.5","geometry-sigma":"0.1","geometry-p0":"0.3","geometry-delay-velocity":"0.25","clock-base-hz":"100","clock-event-batch":"10","execution-high":"0.30","execution-low":"0.05","execution-hysteresis":"0.02","execution-dwell":"100","execution-window":"100","growth-activity":"0.25","growth-coactivation":"2","growth-info":"0.25","growth-prune":"0.05","growth-max-synapses":"128","growth-max-new":"8","cuda-budget":"2048","offload-snapshot":"1000","thalamic-threshold":"0","thalamic-attention":"1.15","thalamic-inhibition":"0.35","cortical-layers":"6","cortical-lr":"0.01","behavior-actions":"4","behavior-target":"0","behavior-min-activity":"0.01","behavior-lr":"0.05","behavior-epsilon":"0.05","behavior-episode":"16","behavior-bias":"3"};
-  for(const[k,v]of Object.entries(values)){const el=byId(`pg-${k}`);if(el)el.value=v;}byId("pg-persist").checked=false;byId("pg-pan-enabled").checked=false;byId("pg-pan-closed-loop").checked=true;byId("pg-clock-mode").value="continuous";byId("pg-execution-mode").value="HYBRID_AUTO";byId("pg-execution-initial").value="EVENT_ONLY";byId("pg-execution-transition").value="clean";byId("pg-execution-sync").checked=true;byId("pg-execution-log").checked=true;byId("pg-growth-enabled").checked=false;byId("pg-offload-enabled").checked=false;byId("pg-hardware-profile").value="reference_cpu";byId("pg-thalamic-enabled").checked=false;byId("pg-behavior-target-mode").value="cycle";byId("pg-cortical-enabled").checked=false;byId("pg-cortical-plasticity").checked=true;byId("pg-behavior-enabled").checked=false;byId("pg-geometry-mode").value="shortcut_union";byId("pg-neural-io-enabled").checked=false;byId("pg-neural-io-payload").value="0.5";byId("pg-neural-io-input-channels").value="16";byId("pg-neural-io-output-channels").value="16";byId("pg-neural-io-window").value="16";byId("pg-neural-io-current").value="25";byId("pg-neural-io-input-role").value="GATEWAY_AFFERENT";byId("pg-neural-io-output-role").value="GATEWAY_EFFERENT";byId("pg-neural-io-phase").value="QUERY";byId("pg-neural-io-modality").value="digital";byId("pg-neural-io-source").value="playground.input";if(byId("pg-topology"))byId("pg-topology").value="mhrn_5d";
+  const values={neurons:"128",edges:"1024",weight:"4",ticks:"256",dimensions:"5",delay:"1",radius:"0.35",k:"16",rewire:"0.15",modules:"2",current:"8",rate:"20",seed:"12345",ensemble:"1","pan-dimensions":"5","pan-feedback-gain":"0.05","pan-health-decay":"0.001","pan-apoptosis":"0.1","pan-bias-current":"10","geometry-lambda-a":"0.5","geometry-lambda-b":"0.5","geometry-sigma":"0.1","geometry-p0":"0.3","geometry-delay-velocity":"0.25","clock-base-hz":"100","clock-event-batch":"10","execution-high":"0.30","execution-low":"0.05","execution-hysteresis":"0.02","execution-dwell":"100","execution-window":"100","growth-activity":"0.25","growth-coactivation":"2","growth-info":"0.25","growth-prune":"0.05","growth-max-synapses":"128","growth-max-new":"8","cuda-budget":"2048","offload-snapshot":"1000","thalamic-threshold":"0","thalamic-attention":"1.15","thalamic-inhibition":"0.35","cortical-layers":"6","cortical-lr":"0.01","behavior-actions":"4","behavior-target":"0","behavior-min-activity":"0.01","behavior-lr":"0.2","behavior-epsilon":"0.2","behavior-episode":"16","behavior-bias":"3"};
+  for(const[k,v]of Object.entries(values)){const el=byId(`pg-${k}`);if(el)el.value=v;}byId("pg-persist").checked=false;byId("pg-pan-enabled").checked=false;byId("pg-pan-closed-loop").checked=true;byId("pg-clock-mode").value="continuous";byId("pg-execution-mode").value="HYBRID_AUTO";byId("pg-execution-initial").value="EVENT_ONLY";byId("pg-execution-transition").value="clean";byId("pg-execution-sync").checked=true;byId("pg-execution-log").checked=true;byId("pg-growth-enabled").checked=false;byId("pg-offload-enabled").checked=false;byId("pg-hardware-profile").value="reference_cpu";byId("pg-thalamic-enabled").checked=false;byId("pg-behavior-target-mode").value="cycle";byId("pg-cortical-enabled").checked=false;byId("pg-cortical-plasticity").checked=true;byId("pg-behavior-enabled").checked=false;byId("pg-geometry-mode").value="mixed_additive";byId("pg-neural-io-enabled").checked=false;byId("pg-neural-io-payload").value="0.5";byId("pg-neural-io-input-channels").value="16";byId("pg-neural-io-output-channels").value="16";byId("pg-neural-io-window").value="16";byId("pg-neural-io-current").value="25";byId("pg-neural-io-input-role").value="GATEWAY_AFFERENT";byId("pg-neural-io-output-role").value="GATEWAY_EFFERENT";byId("pg-neural-io-phase").value="QUERY";byId("pg-neural-io-modality").value="digital";byId("pg-neural-io-source").value="playground.input";if(byId("pg-topology"))byId("pg-topology").value="mhrn_5d";
 }
 
 async function refreshSessions(){

@@ -19,7 +19,12 @@ from src.playground.geometry.metrics import (
     connection_distance,
     cyclic_distance,
 )
-from src.playground.meta_learning import KnowledgeBase, MetaReward, MetaTaskGenerator, text_vector
+from src.playground.meta_learning import (
+    KnowledgeBase,
+    MetaReward,
+    MetaTaskGenerator,
+    text_vector,
+)
 from src.playground.night_run import NightRunDaemon, analyze_run
 from src.playground.neural_io import (
     NeuralIOInterface,
@@ -48,7 +53,9 @@ def _small_payload(**overrides: object) -> dict[str, object]:
         "name": "test",
         "n_neurons": 12,
         "edge_budget": 24,
+        "k_neighbors": 8,
         "ticks": 12,
+        "behavior_episode_ticks": 4,
         "seed": 7,
         "topology": "mhrn_5d",
         "neuron_model": "izhikevich_rs",
@@ -56,6 +63,20 @@ def _small_payload(**overrides: object) -> dict[str, object]:
     }
     payload.update(overrides)
     return payload
+
+
+def test_playground_defaults_match_requested_settings() -> None:
+    config = PlaygroundConfig()
+    assert config.n_neurons == 128
+    assert config.edge_budget == 1024
+    assert config.k_neighbors == 16
+    assert config.modules == 2
+    assert config.geometry_mode == "mixed_additive"
+    assert config.stimulus_current == 8.0
+    assert config.pan_bias_current == 10.0
+    assert config.weight == 4.0
+    assert config.behavior_learning_rate == 0.2
+    assert config.behavior_epsilon == 0.2
 
 
 def test_playground_manifest_is_never_scientific_evidence() -> None:
@@ -344,7 +365,6 @@ def test_session_retention_prunes_expired_files(
     assert not old.exists()
 
 
-
 def test_pan_catalog_is_explicitly_exploratory() -> None:
     payload = catalog()
     model_names = {item["name"] for item in payload["models"]}
@@ -425,11 +445,11 @@ def test_pan_config_rejects_invalid_hyperstate_dimensions() -> None:
             {
                 "n_neurons": 12,
                 "edge_budget": 24,
+                "k_neighbors": 8,
                 "pan_enabled": True,
                 "pan_dimensions": 4,
             }
         )
-
 
 
 def test_pan_literature_context_is_bounded_and_not_novelty_proof() -> None:
@@ -450,16 +470,13 @@ def test_pan_literature_distinguishes_two_sadp_meanings() -> None:
     context = pan_literature_context()
     sources = context["sources"]
     amplitude = [
-        source for source in sources
-        if source["topic"] == "spike_amplitude_plasticity"
+        source for source in sources if source["topic"] == "spike_amplitude_plasticity"
     ]
     agreement = [
-        source for source in sources
-        if source["topic"] == "spike_agreement_plasticity"
+        source for source in sources if source["topic"] == "spike_agreement_plasticity"
     ]
     assert amplitude and agreement
     assert amplitude[0]["key"] != agreement[0]["key"]
-
 
 
 def test_geometric_5d_keeps_state_and_geometry_dimensions_independent() -> None:
@@ -595,7 +612,6 @@ def test_geometry_catalog_keeps_unimplemented_mechanisms_explicit() -> None:
     assert geometry["neurogenesis_status"] == "NOT_IMPLEMENTED"
 
 
-
 def test_neural_io_catalog_matches_postulated_gateway_contract() -> None:
     io = catalog()["neural_io"]
     assert io["classification"] == "PLAYGROUND_NEURAL_IO"
@@ -690,9 +706,7 @@ def test_neural_io_scalar_input_output_and_lifecycle() -> None:
     assert io["output"]["actuator_execution"] is False
     assert io["lifecycle"]["phase_history"][0]["phase"] == "QUERY"
     assert io["lifecycle"]["final_phase"] in {"RESPONSE", "TIMEOUT"}
-    assert io["lifecycle"]["implementation_status"] == (
-        "REFERENCE_STATE_MACHINE_ONLY"
-    )
+    assert io["lifecycle"]["implementation_status"] == ("REFERENCE_STATE_MACHINE_ONLY")
     assert io["lifecycle"]["gateway_action_selection_status"] == "NOT_IMPLEMENTED"
     assert io["lifecycle"]["external_round_trip_status"] == "NOT_IMPLEMENTED"
     assert io["lifecycle"]["correlation_id"].startswith("pgio-")
@@ -737,7 +751,6 @@ def test_neural_io_interface_can_be_constructed_directly() -> None:
     summary = interface.finalize()
     assert summary["classification"] == "PLAYGROUND_NEURAL_IO"
     assert summary["exact_boundary"]["raw_payload_persisted"] is False
-
 
 
 def test_pan_gate_generation_maps_validated_settings() -> None:
@@ -832,9 +845,7 @@ def test_pan_catalog_keeps_hardware_coupling_exploratory() -> None:
     pan = catalog()["pan"]
     assert pan["gate_generation_status"] == "IMPLEMENTED_REFERENCE"
     assert pan["dual_clock_status"] == "IMPLEMENTED_REFERENCE"
-    assert pan["generative_growth_status"] == (
-        "IMPLEMENTED_FIXED_CAPACITY_REFERENCE"
-    )
+    assert pan["generative_growth_status"] == ("IMPLEMENTED_FIXED_CAPACITY_REFERENCE")
     assert pan["cuda_backend_status"] == "MEMORY_ESTIMATE_ONLY"
     assert pan["persistent_cuda_kernel_status"] == "NOT_IMPLEMENTED"
     assert pan["dynamic_parallelism_status"] == "NOT_IMPLEMENTED"
@@ -858,7 +869,6 @@ def test_new_pan_candidates_remain_unregistered_ideas() -> None:
     )
 
 
-
 def test_pan_behavioral_learning_runs_and_updates_policy() -> None:
     result = run(
         _small_payload(
@@ -867,6 +877,9 @@ def test_pan_behavioral_learning_runs_and_updates_policy() -> None:
             stimulus="none",
             pan_enabled=True,
             pan_bias_current=15.0,
+            weight=8.0,
+            geometry_mode="shortcut_union",
+            modules=4,
             cortical_layers_enabled=True,
             cortical_layer_count=6,
             cortical_plasticity=True,
@@ -952,11 +965,7 @@ def test_pan_catalog_exposes_learning_blocks_and_eighteen_candidates() -> None:
         "PAN-CANDIDATE-MODE-SWITCH-CONSISTENCY",
         "PAN-CANDIDATE-HYBRID-PERFORMANCE",
     } <= ids
-    assert all(
-        item["status"] == "DRAFT_IDEA_NOT_PREREGISTERED"
-        for item in candidates
-    )
-
+    assert all(item["status"] == "DRAFT_IDEA_NOT_PREREGISTERED" for item in candidates)
 
 
 def test_event_only_execution_reports_sparse_reference_mode() -> None:
@@ -1037,16 +1046,13 @@ def test_hybrid_auto_switches_with_hysteresis_and_logs_integrity() -> None:
     assert summary["transition_count"] == 2
     assert summary["consistency_check"] == "PASS"
     assert all(
-        item["shared_state_integrity"] == "PASS"
-        for item in summary["transitions"]
+        item["shared_state_integrity"] == "PASS" for item in summary["transitions"]
     )
 
 
 def test_switchable_execution_config_validation() -> None:
     with pytest.raises(ValueError, match="unsupported execution_mode"):
-        PlaygroundConfig.from_mapping(
-            _small_payload(execution_mode="INVALID")
-        )
+        PlaygroundConfig.from_mapping(_small_payload(execution_mode="INVALID"))
     with pytest.raises(ValueError, match="execution thresholds"):
         PlaygroundConfig.from_mapping(
             _small_payload(
@@ -1054,7 +1060,6 @@ def test_switchable_execution_config_validation() -> None:
                 execution_theta_high=0.3,
             )
         )
-
 
 
 def test_pan_adex_bootstrap_regime_produces_spikes() -> None:
@@ -1105,6 +1110,9 @@ def test_live_pan_session_keeps_state_across_chunks() -> None:
             ticks=64,
             stimulus="none",
             pan_bias_current=15.0,
+            weight=8.0,
+            geometry_mode="shortcut_union",
+            modules=4,
             behavior_episode_ticks=8,
             execution_mode="TICK_ONLY",
         )
@@ -1135,7 +1143,6 @@ def test_live_pan_session_accepts_external_vector_input() -> None:
     result = live.step(4)
     assert result["input_queue_depth"] == 0
     assert result["state_digest"] != before
-
 
 
 def test_meta_text_vector_is_deterministic_and_normalized() -> None:
@@ -1300,7 +1307,6 @@ def test_pan_catalog_exposes_meta_night_run_as_playground_only() -> None:
     assert pan["knowledge_base_status"] == "IMPLEMENTED_HASH_VECTOR_AND_FILE_INDEX"
     assert pan["night_run_status"] == "IMPLEMENTED_BOUNDED_RESUMABLE_REFERENCE"
     assert pan["night_analysis_status"] == "IMPLEMENTED_DESCRIPTIVE_ONLY"
-
 
 
 def test_stick_figure_slots_include_springs_and_construct_cleanly() -> None:

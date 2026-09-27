@@ -14,6 +14,9 @@
 - Jede wissenschaftliche Stufe bietet zusätzlich direkte Registerlinks für
   Claims, EVID, Experimente und Hypothesen.
 - Lange Stufennamen werden innerhalb der Timeline-Karten zuverlässig umgebrochen.
+- Playground-Einstellungen korrigiert: `edge_budget=1024`, `k_neighbors=16`,
+  `modules=2`, `stimulus_current=8`, `pan_bias_current=10`, `weight=4` sowie
+  `behavior_learning_rate=0.2` und `behavior_epsilon=0.2`.
 - Ein eigener Release-Tab zeigt die wissenschaftliche Gesamtarbeit und ihre elf
   Teile; jeder Teil öffnet das kanonische Manuskript im File Viewer.
 - Die elf Teile zeigen zusätzlich Prozentbalken und die Statuszustände `met`,

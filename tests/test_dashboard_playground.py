@@ -41,6 +41,21 @@ def test_playground_ui_has_permanent_non_scientific_boundary() -> None:
     assert "Robustheitskontrollen" in module
 
 
+def test_playground_ui_exposes_corrected_setting_defaults() -> None:
+    module = (STATIC / "frontend" / "modules" / "playground.js").read_text(
+        encoding="utf-8"
+    )
+    assert 'id="pg-weight"' in module and 'value="4"' in module
+    assert 'id="pg-edges"' in module and 'value="1024"' in module
+    assert 'id="pg-k"' in module and 'value="16"' in module
+    assert 'id="pg-modules"' in module and 'value="2"' in module
+    assert 'id="pg-current"' in module and 'value="8"' in module
+    assert 'id="pg-pan-bias-current"' in module and 'value="10"' in module
+    assert 'id="pg-behavior-lr"' in module and 'value="0.2"' in module
+    assert 'id="pg-behavior-epsilon"' in module and 'value="0.2"' in module
+    assert 'value="mixed_additive" selected' in module
+
+
 def test_playground_api_has_bounded_concurrency_and_rate() -> None:
     api = (ROOT / "src" / "dashboard" / "playground_api.py").read_text(encoding="utf-8")
     assert "_MAX_CONCURRENT_RUNS = 2" in api
@@ -49,21 +64,19 @@ def test_playground_api_has_bounded_concurrency_and_rate() -> None:
     assert "PlaygroundRateLimitError" in api
 
 
-
 def test_playground_ui_exposes_pan_as_non_scientific_option() -> None:
-    module = (
-        STATIC / "frontend" / "modules" / "playground.js"
-    ).read_text(encoding="utf-8")
+    module = (STATIC / "frontend" / "modules" / "playground.js").read_text(
+        encoding="utf-8"
+    )
     assert "PAN-Hyperstate" in module
     assert "PAN explorativ aktivieren" in module
     assert "keine validierte PID" in module
     assert "PAN Research Candidates" in module
 
 
-
 def test_pan_research_context_and_glossary_exist() -> None:
-    context = (ROOT / "docs" / "playground" / "PAN_5D_RESEARCH_CONTEXT.md")
-    glossary = (ROOT / "docs" / "playground" / "GLOSSARY.md")
+    context = ROOT / "docs" / "playground" / "PAN_5D_RESEARCH_CONTEXT.md"
+    glossary = ROOT / "docs" / "playground" / "GLOSSARY.md"
     assert context.exists()
     assert glossary.exists()
     context_text = context.read_text(encoding="utf-8")
@@ -73,11 +86,10 @@ def test_pan_research_context_and_glossary_exist() -> None:
     assert "Spike Agreement Dependent Plasticity" in glossary_text
 
 
-
 def test_playground_ui_exposes_independent_geometry_controls() -> None:
-    module = (
-        STATIC / "frontend" / "modules" / "playground.js"
-    ).read_text(encoding="utf-8")
+    module = (STATIC / "frontend" / "modules" / "playground.js").read_text(
+        encoding="utf-8"
+    )
     assert "Geometrischer Raum Dg" in module
     assert "Shortcut Union" in module
     assert "Mixed Additive" in module
@@ -93,7 +105,6 @@ def test_geometry_documentation_states_core_corrections() -> None:
     assert "keine universelle Small-World-Schwelle" in text
     assert "effektive Dimension zwischen 4 und 6" in text
     assert "nicht als belegt übernommen" in text
-
 
 
 def test_pan_complete_documentation_covers_all_candidates() -> None:
@@ -115,11 +126,10 @@ def test_geometry_documents_shortcut_normalization_as_open_question() -> None:
     assert "No option is currently preferred" in text
 
 
-
 def test_playground_ui_exposes_neural_input_output_interface() -> None:
-    module = (
-        STATIC / "frontend" / "modules" / "playground.js"
-    ).read_text(encoding="utf-8")
+    module = (STATIC / "frontend" / "modules" / "playground.js").read_text(
+        encoding="utf-8"
+    )
     assert "09 · Neural I/O Interface" in module
     assert "GATEWAY_AFFERENT" in module
     assert "GATEWAY_EFFERENT" in module
@@ -139,7 +149,6 @@ def test_neural_io_documentation_exists_and_preserves_boundary() -> None:
     assert "tool_plane_execution = false" in text
 
 
-
 def test_playground_ui_exposes_live_pan_session_controls() -> None:
     module = (STATIC / "frontend" / "modules" / "playground.js").read_text(
         encoding="utf-8"
@@ -152,10 +161,10 @@ def test_playground_ui_exposes_live_pan_session_controls() -> None:
     assert "pg-live-stop" in module
 
 
-def test_playground_api_exposes_stateful_live_routes_without_research_promotion() -> None:
-    api = (ROOT / "src" / "dashboard" / "playground_api.py").read_text(
-        encoding="utf-8"
-    )
+def test_playground_api_exposes_stateful_live_routes_without_research_promotion() -> (
+    None
+):
+    api = (ROOT / "src" / "dashboard" / "playground_api.py").read_text(encoding="utf-8")
     assert '"/api/playground/live/create"' in api
     assert 'action == "step"' in api
     assert 'action == "input"' in api
@@ -163,7 +172,6 @@ def test_playground_api_exposes_stateful_live_routes_without_research_promotion(
     assert 'action == "stop"' in api
     assert "PANSessionDaemon" in api
     assert "EvidenceEngine" not in api
-
 
 
 def test_playground_ui_exposes_meta_night_run_monitor() -> None:
@@ -180,9 +188,7 @@ def test_playground_ui_exposes_meta_night_run_monitor() -> None:
 
 
 def test_playground_api_wires_meta_strategy_reward_and_night_run() -> None:
-    api = (ROOT / "src" / "dashboard" / "playground_api.py").read_text(
-        encoding="utf-8"
-    )
+    api = (ROOT / "src" / "dashboard" / "playground_api.py").read_text(encoding="utf-8")
     assert "NightRunManager" in api
     assert '"/api/playground/night/start"' in api
     assert '"/api/playground/night/stop"' in api

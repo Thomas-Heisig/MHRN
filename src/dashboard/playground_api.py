@@ -117,7 +117,7 @@ def _live_parts(path: str) -> list[str]:
     prefix = "/api/playground/live/"
     if not path.startswith(prefix):
         return []
-    return [part for part in path[len(prefix):].split("/") if part]
+    return [part for part in path[len(prefix) :].split("/") if part]
 
 
 def get_playground(path: str) -> dict[str, object] | None:
@@ -163,12 +163,14 @@ def post_playground(
         config_payload.setdefault("neuron_model", "pan_adex_5d")
         config_payload.setdefault("pan_enabled", True)
         config_payload.setdefault("thalamic_relay_threshold", 0.0)
-        config_payload.setdefault("pan_bias_current", 15.0)
+        config_payload.setdefault("pan_bias_current", 10.0)
         config_payload.setdefault("behavior_target_mode", "cycle")
         config = PlaygroundConfig.from_mapping(config_payload)
         session_id = _LIVE_DAEMON.create(config)
         with _LIVE_LOCK:
-            _LIVE_SANDBOXES[session_id] = PANEmbodiedSandboxSession(_LIVE_DAEMON.get(session_id))
+            _LIVE_SANDBOXES[session_id] = PANEmbodiedSandboxSession(
+                _LIVE_DAEMON.get(session_id)
+            )
         return {
             "class": "PLAYGROUND_LIVE_SESSION",
             "scientific_evidence": False,

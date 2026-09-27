@@ -218,8 +218,7 @@ class PANLiveSession:
         for neuron in spikes:
             bucket = min(
                 self.config.behavior_action_count - 1,
-                neuron * self.config.behavior_action_count
-                // self.config.n_neurons,
+                neuron * self.config.behavior_action_count // self.config.n_neurons,
             )
             counts[bucket] += 1
         best = max(counts)
@@ -282,9 +281,7 @@ class PANLiveSession:
                 synaptic = self.pending[slot]
                 self.pending[slot] = [0.0 for _ in range(self.config.n_neurons)]
                 external = self._input_currents()
-                external = [
-                    value + self.config.pan_bias_current for value in external
-                ]
+                external = [value + self.config.pan_bias_current for value in external]
                 if self.thalamic is not None:
                     external = self.thalamic.apply(external, self.last_spikes)
                 behavior_bias = (
@@ -326,9 +323,7 @@ class PANLiveSession:
                 for source in spiked:
                     for target in self.adjacency[source]:
                         edge = (source, target)
-                        delivery = (
-                            self.tick + self.delays[edge]
-                        ) % len(self.pending)
+                        delivery = (self.tick + self.delays[edge]) % len(self.pending)
                         self.pending[delivery][target] += self.weights[edge]
 
                 if self.learning_enabled:
@@ -405,7 +400,9 @@ class PANLiveSession:
             "edge_count": len(self.weights),
             "initial_edge_budget": self.config.edge_budget,
             "growth_edge_capacity": (
-                self.growth.edge_budget if self.growth is not None else self.config.edge_budget
+                self.growth.edge_budget
+                if self.growth is not None
+                else self.config.edge_budget
             ),
             "structural_added": self.structural_added,
             "structural_removed": self.structural_removed,
@@ -442,7 +439,9 @@ class PANLiveSession:
                             "weight": self.weights[(source, target)],
                             "delay": self.delays[(source, target)],
                             "eligibility": self.eligibility.get((source, target), 0.0),
-                            "release_state": self.release_state.get((source, target), 1.0),
+                            "release_state": self.release_state.get(
+                                (source, target), 1.0
+                            ),
                         }
                         for source, target in sorted(self.weights)
                     ],
@@ -470,10 +469,14 @@ class PANLiveSession:
                         "activity_ema": list(self.growth.activity_ema),
                         "coactivation": [
                             [source, target, count]
-                            for (source, target), count in sorted(self.growth.coactivation.items())
+                            for (source, target), count in sorted(
+                                self.growth.coactivation.items()
+                            )
                         ],
                         "neurogenesis_events": list(self.growth.neurogenesis_events),
-                        "synaptogenesis_events": list(self.growth.synaptogenesis_events),
+                        "synaptogenesis_events": list(
+                            self.growth.synaptogenesis_events
+                        ),
                         "path_events": list(self.growth.path_events),
                         "pruning_events": list(self.growth.pruning_events),
                         "barriers": self.growth.barriers,
@@ -515,7 +518,9 @@ class PANLiveSession:
             raw_pending = payload.get("pending")
             if not isinstance(raw_states, list) or len(raw_states) != len(self.states):
                 raise ValueError("checkpoint state count mismatch")
-            if not isinstance(raw_pending, list) or len(raw_pending) != len(self.pending):
+            if not isinstance(raw_pending, list) or len(raw_pending) != len(
+                self.pending
+            ):
                 raise ValueError("checkpoint pending buffer mismatch")
             restored_states: list[dict[str, object]] = []
             for item in raw_states:
@@ -597,7 +602,10 @@ class PANLiveSession:
                     self.pan_runtime.population_vector = [
                         _checkpoint_float(value) for value in raw_population
                     ][: self.config.pan_dimensions]
-                    if len(self.pan_runtime.population_vector) < self.config.pan_dimensions:
+                    if (
+                        len(self.pan_runtime.population_vector)
+                        < self.config.pan_dimensions
+                    ):
                         self.pan_runtime.population_vector.extend(
                             [0.0]
                             * (
@@ -691,9 +699,7 @@ class PANLiveSession:
                                 if isinstance(item, dict)
                             ],
                         )
-                self.growth.barriers = _checkpoint_int(
-                    raw_growth.get("barriers"), 0
-                )
+                self.growth.barriers = _checkpoint_int(raw_growth.get("barriers"), 0)
                 raw_pending_growth = raw_growth.get("pending_events")
                 self.growth_events = (
                     [
@@ -713,7 +719,9 @@ class PANLiveSession:
             if isinstance(learning, Mapping):
                 raw_policy = learning.get("policy")
                 if isinstance(raw_policy, list):
-                    self.learning.policy = [_checkpoint_float(value) for value in raw_policy]
+                    self.learning.policy = [
+                        _checkpoint_float(value) for value in raw_policy
+                    ]
                 raw_activity = learning.get("activity")
                 if isinstance(raw_activity, list):
                     self.learning.activity = [

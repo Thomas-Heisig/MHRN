@@ -289,9 +289,7 @@ def geometry_diagnostics(
             "source": "xyz_euclidean_only",
             "topological_axes_affect_delay": False,
             "mean_delay_ticks": (
-                mean([float(value) for value in delay_values])
-                if delay_values
-                else None
+                mean([float(value) for value in delay_values]) if delay_values else None
             ),
             "adm_status": "NOT_IMPLEMENTED",
         },

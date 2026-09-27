@@ -133,8 +133,5 @@ def bundle(vectors: Sequence[Sequence[float]]) -> list[float]:
     width = len(vectors[0])
     if any(len(vector) != width for vector in vectors):
         raise ValueError("all hypervectors must have equal dimensions")
-    sums = [
-        sum(float(vector[index]) for vector in vectors)
-        for index in range(width)
-    ]
+    sums = [sum(float(vector[index]) for vector in vectors) for index in range(width)]
     return [0.0 if value == 0.0 else math.copysign(1.0, value) for value in sums]

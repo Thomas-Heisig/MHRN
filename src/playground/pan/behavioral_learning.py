@@ -100,7 +100,9 @@ class BehavioralLearningEngine:
             self.policy[action] + self.activity[action]
             for action in range(self.action_count)
         ]
-        return max(range(self.action_count), key=lambda action: (scores[action], -action))
+        return max(
+            range(self.action_count), key=lambda action: (scores[action], -action)
+        )
 
     def maybe_learn(self, tick: int) -> float | None:
         if (tick + 1) % self.episode_ticks != 0:
@@ -142,10 +144,7 @@ class BehavioralLearningEngine:
         )
         weights = self.context_weights.setdefault(
             context,
-            [
-                [0.0 for _ in range(self.action_count)]
-                for _ in range(action_count)
-            ],
+            [[0.0 for _ in range(self.action_count)] for _ in range(action_count)],
         )
         self.active_context = context
         if len(policy) != action_count or len(weights) != action_count:
@@ -170,10 +169,7 @@ class BehavioralLearningEngine:
         )
         weights = self.context_weights.setdefault(
             context,
-            [
-                [0.0 for _ in range(self.action_count)]
-                for _ in range(action_count)
-            ],
+            [[0.0 for _ in range(self.action_count)] for _ in range(action_count)],
         )
         if len(policy) != action_count or len(weights) != action_count:
             raise ValueError("context action_count changed after initialization")
@@ -201,16 +197,12 @@ class BehavioralLearningEngine:
         )
         weights = self.context_weights.setdefault(
             context,
-            [
-                [0.0 for _ in range(self.action_count)]
-                for _ in range(action_count)
-            ],
+            [[0.0 for _ in range(self.action_count)] for _ in range(action_count)],
         )
         if len(policy) != action_count or len(weights) != action_count:
             raise ValueError("context action_count changed after initialization")
         prediction = policy[action] + sum(
-            weight * feature
-            for weight, feature in zip(weights[action], self.activity)
+            weight * feature for weight, feature in zip(weights[action], self.activity)
         )
         error = bounded - prediction
         policy[action] += self.learning_rate * error
@@ -283,7 +275,9 @@ class BehavioralLearningEngine:
             "policy_updates": self.policy_updates,
             "insufficient_activity_episodes": self.insufficient_activity_episodes,
             "target_history": list(self.target_history[-128:]),
-            "context_policies": {key: list(value) for key, value in self.context_policies.items()},
+            "context_policies": {
+                key: list(value) for key, value in self.context_policies.items()
+            },
             "context_weights": {
                 key: [list(row) for row in value]
                 for key, value in self.context_weights.items()

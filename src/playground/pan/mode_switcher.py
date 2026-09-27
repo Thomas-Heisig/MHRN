@@ -11,7 +11,6 @@ import json
 from collections import deque
 from collections.abc import Mapping, Sequence
 
-
 EXECUTION_MODES = {"EVENT_ONLY", "TICK_ONLY", "HYBRID_AUTO"}
 ENGINE_MODES = {"EVENT_ONLY", "TICK_ONLY"}
 
@@ -70,10 +69,7 @@ def state_integrity_hash(
     payload = {
         "engine": current_engine,
         "states": compact_states,
-        "pending": [
-            [round(float(value), 12) for value in row]
-            for row in pending
-        ],
+        "pending": [[round(float(value), 12) for value in row] for row in pending],
     }
     encoded = json.dumps(
         payload,
@@ -192,9 +188,9 @@ class ModeSwitcher:
             "transition_mode": self.transition_mode,
             "sync_on_switch": self.sync_on_switch,
             "shared_state_integrity": (
-                "PASS" if self.sync_on_switch and consistent else (
-                    "SKIPPED" if not self.sync_on_switch else "FAIL"
-                )
+                "PASS"
+                if self.sync_on_switch and consistent
+                else ("SKIPPED" if not self.sync_on_switch else "FAIL")
             ),
         }
         if self.log_state_hash:
@@ -202,9 +198,7 @@ class ModeSwitcher:
             entry["state_hash_after"] = after_shared_state
         if self.log_transitions:
             self.transitions.append(entry)
-        self.mode_history.append(
-            {"tick": tick, "mode": new_engine, "reason": reason}
-        )
+        self.mode_history.append({"tick": tick, "mode": new_engine, "reason": reason})
 
     def note_tick(self) -> None:
         if self.current_engine == "EVENT_ONLY":
@@ -225,9 +219,7 @@ class ModeSwitcher:
             "global_bookkeeping_may_remain_dense": True,
             "sync_on_switch": self.sync_on_switch,
             "transition_mode": self.transition_mode,
-            "consistency_check": (
-                "PASS" if self.consistency_failures == 0 else "FAIL"
-            ),
+            "consistency_check": ("PASS" if self.consistency_failures == 0 else "FAIL"),
             "theta_high": self.theta_high,
             "theta_low": self.theta_low,
             "hysteresis": self.hysteresis,

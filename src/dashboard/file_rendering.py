@@ -277,7 +277,9 @@ def _local_diagram_svg(diagram_format: str, source: str) -> tuple[str, str]:
 def file_is_read_only(source: str, path: str) -> bool:
     """Preserve scientific provenance even when a file is otherwise editable."""
     parts = PurePosixPath(path.replace("\\", "/")).parts
-    return source == "project" or (source == "research" and bool(parts and parts[0] in _PROTECTED_RESEARCH))
+    return source == "project" or (
+        source == "research" and bool(parts and parts[0] in _PROTECTED_RESEARCH)
+    )
 
 
 def validate_file_write_access(handler: Any) -> None:
