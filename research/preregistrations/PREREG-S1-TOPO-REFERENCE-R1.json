@@ -329,7 +329,7 @@
       "5d_to_5d_shuffled": "negative",
       "5d_to_random_graph": "negative"
     },
-    "direction_rule": "Every partial-replication primary contrast must retain the canonical non-zero sign and its median must lie inside the frozen 50%-150% equivalence interval. For 3d->5d this means median <0 and within [-1.5,-0.5].",
+    "direction_rule": "Each primary contrast must separately retain the canonical non-zero sign and its median must lie inside the frozen strict 50%-150% equivalence interval. For 3d->5d this means median <0 and within [-1.5,-0.5].",
     "resolution_note": "The primary latency metric is discrete and paired medians with n=20 can occur in 0.5-tick increments. This discreteness is treated as a known sensitivity limitation, not as grounds to widen the equivalence interval. A Brian2 median of -2.0 for 3d->5d is outside the preregistered equivalence bound.",
     "other_bounds_unchanged": true,
     "criterion_revision_history": [
@@ -438,21 +438,27 @@
     "review_date": "2026-09-27",
     "status": "REVIEW_REQUIREMENTS_INTEGRATED_AWAITING_EXECUTABLE_GATES",
     "integrated_requirements": [
-      "one-neuron one-tick integrator parity before freeze",
+      "single- and multi-tick integrator parity before freeze",
       "code-backed adaptation/homeostasis/energy/traces audit before freeze",
-      "resolution-aware integer-tick equivalence bounds fixed before DATA",
+      "strict 50%-150% sign-preserving equivalence bounds; no resolution-based widening",
+      "explicit reset parity",
+      "explicit two-neuron synapse/delay parity",
       "automated runner leakage/independence scan",
+      "seed freshness at exact freeze commit",
+      "complete blinded Brian2 runner and separate verifier implemented before freeze",
       "complete PARTIAL_REPLICATION / FAILED_REPLICATION / INCONCLUSIVE_REFERENCE_REPLICATION decision rules"
     ],
-    "scientific_contract_changed_by_this_record": false
+    "criterion_change_history": [
+      "Temporary DRAFT widening of 3d->5d to [-2.0,-0.5] was withdrawn before reference DATA; strict [-1.5,-0.5] restored.",
+      "Earlier canonical freeze attempt at commit 68cc945 was invalidated because later mandatory pre-freeze gates were not yet integrated."
+    ],
+    "reference_data_seen": false
   },
-  "freeze_record": "research/preregistrations/PREREG-S1-TOPO-REFERENCE-R1.freeze.json",
-  "freeze_semantics": "Scientific translation, targets, equivalence bounds, endpoints and decision criteria are frozen. Reference evaluation remains forbidden until a separately reviewed runner implementation is hash-bound and explicitly authorized.",
   "pre_freeze_gates": {
     "integrator_parity": {
       "required": true,
-      "artifact": "research/audits/stage1_reference_preflight_parity.json",
-      "rule": "PASS required before freeze. Single-tick subthreshold cases must match v/u/adaptation/firing-rate state at absolute tolerance 1e-12; multi-tick case must include at least one spike and match the same state plus spike decisions at every tick.",
+      "artifact": "research/calibrations/CAL-S1-TOPO-REFERENCE-INTEGRATOR-R1/result.json",
+      "rule": "PASS required before freeze. Single-tick subthreshold/spike cases and persistent multi-tick trajectory must match v/u/adaptation/firing-rate state at absolute tolerance 1e-12; the multi-tick trajectory must include at least one spike.",
       "status": "PENDING"
     },
     "mechanism_audit": {
@@ -499,5 +505,14 @@
     "rule": "Freeze is allowed only after the complete blinded Brian2 runner and separate verifier exist, and mechanism audit, single/multi-tick integrator parity, reset parity, synapse-delay parity, independence/blinding scan and seed freshness all pass. Freeze binds runner/verifier hashes. Reference evaluation remains forbidden until a later explicit execution authorization.",
     "reference_runner_implementation_allowed": true,
     "reference_runner_execution_allowed": false
-  }
+  },
+  "invalidated_freeze_history": [
+    {
+      "archived_record": "research/audits/invalidated/PREREG-S1-TOPO-REFERENCE-R1.freeze.68cc945.invalidated.json",
+      "original_freeze_commit": "68cc945db5ed0822490e63a10417dfb152aa8539",
+      "status": "INVALIDATED_PREMATURE_FREEZE",
+      "reference_data_created": false,
+      "replication_credit_awarded": false
+    }
+  ]
 }
