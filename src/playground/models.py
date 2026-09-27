@@ -57,6 +57,7 @@ class PlaygroundConfig:
     pan_health_decay: float = 0.001
     pan_apoptosis_threshold: float = 0.1
     pan_aging_threshold: float = 0.3
+    pan_bias_current: float = 15.0
     clock_mode: str = "continuous"
     clock_base_hz: float = 100.0
     clock_event_batch_ms: float = 10.0
@@ -87,7 +88,7 @@ class PlaygroundConfig:
     offload_snapshot_interval: int = 1000
     hardware_profile_name: str = "reference_cpu"
     thalamic_gating_enabled: bool = False
-    thalamic_relay_threshold: float = 0.05
+    thalamic_relay_threshold: float = 0.0
     thalamic_attention_gain: float = 1.15
     thalamic_inhibition_gain: float = 0.35
     cortical_layers_enabled: bool = False
@@ -99,6 +100,8 @@ class PlaygroundConfig:
     behavior_learning_rate: float = 0.05
     behavior_epsilon: float = 0.05
     behavior_target_action: int = 0
+    behavior_target_mode: str = "cycle"
+    behavior_min_activity: float = 0.01
     behavior_episode_ticks: int = 16
     behavior_bias_current: float = 3.0
     geometry_lambda_a: float = 0.5
@@ -197,6 +200,7 @@ class PlaygroundConfig:
             pan_aging_threshold=number(
                 "pan_aging_threshold", defaults.pan_aging_threshold
             ),
+            pan_bias_current=number("pan_bias_current", defaults.pan_bias_current),
             clock_mode=text("clock_mode", defaults.clock_mode),
             clock_base_hz=number("clock_base_hz", defaults.clock_base_hz),
             clock_event_batch_ms=number(
@@ -317,6 +321,12 @@ class PlaygroundConfig:
             behavior_target_action=integer(
                 "behavior_target_action", defaults.behavior_target_action
             ),
+            behavior_target_mode=text(
+                "behavior_target_mode", defaults.behavior_target_mode
+            ).lower(),
+            behavior_min_activity=number(
+                "behavior_min_activity", defaults.behavior_min_activity
+            ),
             behavior_episode_ticks=integer(
                 "behavior_episode_ticks", defaults.behavior_episode_ticks
             ),
@@ -422,6 +432,8 @@ class PlaygroundConfig:
             raise ValueError("pan_apoptosis_threshold must be between 0 and 1")
         if not 0.0 <= self.pan_aging_threshold <= 1.0:
             raise ValueError("pan_aging_threshold must be between 0 and 1")
+        if not 0.0 <= self.pan_bias_current <= 500.0:
+            raise ValueError("pan_bias_current must be between 0 and 500")
         if self.pan_aging_threshold < self.pan_apoptosis_threshold:
             raise ValueError("pan_aging_threshold must be >= pan_apoptosis_threshold")
         if self.clock_mode not in {"continuous", "dual"}:
@@ -484,6 +496,10 @@ class PlaygroundConfig:
             raise ValueError("behavior_epsilon must be between 0 and 1")
         if not 0 <= self.behavior_target_action < self.behavior_action_count:
             raise ValueError("behavior_target_action outside action range")
+        if self.behavior_target_mode not in {"fixed", "cycle"}:
+            raise ValueError("behavior_target_mode must be fixed or cycle")
+        if not 0.0 <= self.behavior_min_activity <= 1.0:
+            raise ValueError("behavior_min_activity must be between 0 and 1")
         if not 1 <= self.behavior_episode_ticks <= self.ticks:
             raise ValueError("behavior_episode_ticks must be between 1 and ticks")
         if not 0.0 <= self.behavior_bias_current <= 100.0:
@@ -581,6 +597,7 @@ class PlaygroundConfig:
             "pan_health_decay": self.pan_health_decay,
             "pan_apoptosis_threshold": self.pan_apoptosis_threshold,
             "pan_aging_threshold": self.pan_aging_threshold,
+            "pan_bias_current": self.pan_bias_current,
             "clock_mode": self.clock_mode,
             "clock_base_hz": self.clock_base_hz,
             "clock_event_batch_ms": self.clock_event_batch_ms,
@@ -625,6 +642,8 @@ class PlaygroundConfig:
             "behavior_learning_rate": self.behavior_learning_rate,
             "behavior_epsilon": self.behavior_epsilon,
             "behavior_target_action": self.behavior_target_action,
+            "behavior_target_mode": self.behavior_target_mode,
+            "behavior_min_activity": self.behavior_min_activity,
             "behavior_episode_ticks": self.behavior_episode_ticks,
             "behavior_bias_current": self.behavior_bias_current,
             "geometry_lambda_a": self.geometry_lambda_a,
