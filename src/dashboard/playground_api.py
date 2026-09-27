@@ -149,6 +149,9 @@ def post_playground(
     if path in {"/api/playground/run", "/api/playground/robustness"}:
         return _bounded_run(path, payload)
 
+    if path == "/api/playground/determinism":
+        return service.determinism(payload)
+
     if path == "/api/playground/cuda/compile":
         target_sm = _payload_text(payload, "target_sm", "sm_86")
         ptx_version = _payload_text(payload, "ptx_version", "7.0")
