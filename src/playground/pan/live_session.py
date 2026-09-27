@@ -477,6 +477,7 @@ class PANLiveSession:
                         "path_events": list(self.growth.path_events),
                         "pruning_events": list(self.growth.pruning_events),
                         "barriers": self.growth.barriers,
+                        "pending_events": list(self.growth_events),
                     }
                     if self.growth is not None
                     else None
@@ -502,6 +503,7 @@ class PANLiveSession:
                     "external_reward_history": list(
                         self.learning.external_reward_history
                     ),
+                    "active_context": self.learning.active_context,
                 },
             }
 
@@ -692,6 +694,16 @@ class PANLiveSession:
                 self.growth.barriers = _checkpoint_int(
                     raw_growth.get("barriers"), 0
                 )
+                raw_pending_growth = raw_growth.get("pending_events")
+                self.growth_events = (
+                    [
+                        dict(item)
+                        for item in raw_pending_growth
+                        if isinstance(item, dict)
+                    ]
+                    if isinstance(raw_pending_growth, list)
+                    else []
+                )
                 self.pan_runtime.degree = [
                     len(self.adjacency[index]) + len(self.incoming[index])
                     for index in range(self.config.n_neurons)
@@ -758,6 +770,12 @@ class PANLiveSession:
                     self.learning.external_reward_history = [
                         dict(item) for item in raw_external if isinstance(item, dict)
                     ]
+                raw_active_context = learning.get("active_context")
+                self.learning.active_context = (
+                    str(raw_active_context)
+                    if isinstance(raw_active_context, str)
+                    else None
+                )
 
     def snapshot(self) -> dict[str, object]:
         with self.lock:
