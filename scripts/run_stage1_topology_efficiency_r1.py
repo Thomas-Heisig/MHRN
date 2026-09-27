@@ -90,6 +90,22 @@ def _write_json(path: Path, value: object) -> None:
     )
 
 
+def _topology_prereg(prereg: dict[str, Any]) -> dict[str, Any]:
+    adapted = dict(prereg)
+    adapted["conditions"] = {
+        "3d": prereg["conditions"]["3d_reference"]["shape"],
+        "5d": prereg["conditions"]["5d_reference"]["shape"],
+        "5d_shuffled": prereg["conditions"]["5d_shuffled"]["shape"],
+        "random_graph": prereg["conditions"]["random_graph"]["shape"],
+    }
+    matched = dict(prereg["matched_budgets"])
+    matched["stimulus_current"] = float(
+        prereg["calibration"]["reference_stimulus_current"]
+    )
+    adapted["matched_budgets"] = matched
+    return adapted
+
+
 def _graph_condition(condition: str) -> str:
     return {
         "3d_reference": "3d",
@@ -125,7 +141,7 @@ def simulate(
     current = _stimulus_current(prereg, condition)
     weight = float(prereg["matched_budgets"]["synaptic_weight"])
     network, neuron_ids, coords, edges = build_network(
-        config, prereg, graph_condition, seed, weight
+        config, _topology_prereg(prereg), graph_condition, seed, weight
     )
     before = canonical_state_digest(network)
 
