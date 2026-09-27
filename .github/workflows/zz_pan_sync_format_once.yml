@@ -29,6 +29,7 @@ jobs:
         run: python -m black src tests scripts
       - name: Commit synchronized branch
         run: |
+          rm -f .github/workflows/zz_pan_sync_format_once.yml
           git add -A
           git commit -m "chore(playground): sync develop and format Python"
           git push origin HEAD:playground-meta-night-run-20260927
