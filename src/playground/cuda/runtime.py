@@ -667,8 +667,8 @@ def behavioral_parity_summary(
         "success_fraction_abs_error": success_fraction_abs_error,
         "success_fraction_abs_error_limit": success_limit,
         "passed": (
-            spike_count_relative_error <= spike_limit
-            and success_fraction_abs_error <= success_limit
+            spike_count_relative_error <= spike_limit + 1.0e-12
+            and success_fraction_abs_error <= success_limit + 1.0e-12
         ),
     }
 
