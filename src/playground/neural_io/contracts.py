@@ -356,11 +356,7 @@ class DecodeResult:
 
 def event_digest(events: tuple[SpikeEvent, ...]) -> str:
     return _digest_json(
-        {
-            "events": [
-                [event.tick_offset, event.source_channel] for event in events
-            ]
-        }
+        {"events": [[event.tick_offset, event.source_channel] for event in events]}
     )
 
 

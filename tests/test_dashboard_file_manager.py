@@ -52,7 +52,9 @@ def test_project_source_exposes_only_independent_replication(tmp_path: Path) -> 
     replication.write_text("# Replication", encoding="utf-8")
     manager = FileManager(None, None, docs_root)
 
-    content, _mime, is_binary = manager.get_content("project", "INDEPENDENT_REPLICATION.md")
+    content, _mime, is_binary = manager.get_content(
+        "project", "INDEPENDENT_REPLICATION.md"
+    )
 
     assert content == "# Replication"
     assert is_binary is False

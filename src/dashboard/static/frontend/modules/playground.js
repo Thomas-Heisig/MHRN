@@ -6,6 +6,7 @@ let lastResult = null;
 let catalogState = null;
 let liveSessionId = null;
 let liveLoopTimer = null;
+let nightPollTimer = null;
 
 const PLAYGROUND_DEFAULT_HINTS = {
   "pg-weight": "4", "pg-dimensions": "5", "pg-neurons": "128", "pg-edges": "1024",
@@ -198,6 +199,17 @@ function buildPanels(root) {
       </div>
       <div class="playground-actions"><button type="button" class="primary" id="pg-run">▶ Playground starten</button><button type="button" id="pg-robustness">Robustheitskontrollen</button><button type="button" id="pg-reset">Standardwerte</button></div>
       <article class="playground-card"><h3>10 · PAN Live Session & Sandbox</h3><div class="playground-actions"><button type="button" id="pg-live-create">Live starten</button><button type="button" id="pg-live-step">+32 Ticks</button><button type="button" id="pg-live-auto">Auto Start</button><button type="button" id="pg-live-auto-stop">Auto Stop</button><button type="button" id="pg-live-input">Input zeigen</button><button type="button" id="pg-live-sandbox">Sandbox +8</button><button type="button" id="pg-live-stop">Stop</button></div><label>Live Input (JSON-Array)<textarea id="pg-live-input-values">[1,0,-1,0.5]</textarea></label><canvas id="pg-live-sandbox-canvas" width="800" height="360"></canvas><pre id="pg-live-state">Noch keine Live-Session.</pre></article>
+      <article class="playground-card"><h3>11 · Meta-Nachtlauf</h3>
+        <div class="playground-grid">
+          <label>Stunden<input id="pg-night-hours" type="number" min="0.01" max="24" step="0.25" value="8"></label>
+          <label>Max. Episoden<input id="pg-night-episodes" type="number" min="1" max="1000000" value="10000"></label>
+          <label>Checkpoint Sekunden<input id="pg-night-checkpoint" type="number" min="10" max="3600" value="600"></label>
+          <label>Seed<input id="pg-night-seed" type="number" min="0" value="12345"></label>
+        </div>
+        <div class="playground-actions"><button type="button" class="primary" id="pg-night-start">Nachtlauf starten</button><button type="button" id="pg-night-stop">Stop</button><button type="button" id="pg-night-refresh">Status</button></div>
+        <small>Meta-Tasks: finden · ablegen · verknüpfen. KnowledgeBase bleibt außerhalb des SNN; PAN lernt Strategie-/Routing-Policies. Checkpoint standardmäßig alle 10 Minuten.</small>
+        <pre id="pg-night-state">Kein Nachtlauf aktiv.</pre>
+      </article>
       <div class="playground-status" id="pg-status" data-state="idle">Katalog wird geladen …</div>
     </section>
     <section data-generated-panel="run" id="playground-run">
@@ -430,6 +442,49 @@ async function stopLiveSession(){
   const result=await apiPost(`/api/playground/live/${encodeURIComponent(liveSessionId)}/stop`,{});byId("pg-live-state").textContent=JSON.stringify(result,null,2);liveSessionId=null;
 }
 
+function renderNightStatus(result){
+  const node=byId("pg-night-state");if(!node)return;
+  const s=result?.status||result||{},pan=s.pan||{},execution=pan.execution||{};
+  const compact={
+    active:Boolean(result?.active),
+    run_id:result?.run_id||s.run_id||null,
+    episode:s.episode??0,
+    max_episodes:s.max_episodes??0,
+    elapsed_seconds:Number(s.elapsed_seconds||0).toFixed(1),
+    mean_reward:Number(s.mean_reward||0).toFixed(4),
+    total_reward:Number(s.total_reward||0).toFixed(3),
+    task_counts:s.task_counts||{},
+    knowledge_records:s.knowledge_records??0,
+    relations:s.relations??0,
+    total_spikes:pan.total_spikes??0,
+    engine:execution.current_engine||null,
+    errors:s.errors||[],
+    last_error:result?.last_error||null,
+  };
+  node.textContent=JSON.stringify(compact,null,2);
+  if(result?.active)startNightPolling();else stopNightPolling();
+}
+async function refreshNightStatus(){
+  const result=await apiGet("/api/playground/night");renderNightStatus(result);return result;
+}
+function startNightPolling(){
+  if(nightPollTimer)return;
+  nightPollTimer=setInterval(()=>refreshNightStatus().catch(error=>{const node=byId("pg-night-state");if(node)node.textContent=String(error.message||error);}),2000);
+}
+function stopNightPolling(){if(nightPollTimer){clearInterval(nightPollTimer);nightPollTimer=null;}}
+async function startNightRun(){
+  const result=await apiPost("/api/playground/night/start",{
+    hours:Number(byId("pg-night-hours").value),
+    max_episodes:Number(byId("pg-night-episodes").value),
+    checkpoint_seconds:Number(byId("pg-night-checkpoint").value),
+    seed:Number(byId("pg-night-seed").value),
+  });
+  renderNightStatus(result);
+}
+async function stopNightRun(){
+  const result=await apiPost("/api/playground/night/stop",{});renderNightStatus(result);
+}
+
 async function runSession(){
   const status=byId("pg-status");status.dataset.state="running";status.textContent="Playground läuft …";
   try{const result=await apiPost("/api/playground/run",formPayload());renderResult(result);status.dataset.state="ok";status.textContent=`Lauf abgeschlossen · ${result.session_id} · PLAYGROUND · keine Evidenz`;window.MHRNWorkspaceArchitecture?.selectRoute?.("playground","run");if(result.persisted_path)await refreshSessions();}
@@ -477,10 +532,9 @@ function renderCatalog(catalog){
 export async function initPlayground(){
   const root=byId("tab-playground");if(!root)return;
   injectStyles();ensurePermanentBoundary(root);buildPanels(root);
-  byId("pg-run")?.addEventListener("click",runSession);byId("pg-robustness")?.addEventListener("click",runRobustness);byId("pg-reset")?.addEventListener("click",resetForm);byId("pg-live-create")?.addEventListener("click",()=>createLiveSession().catch(error=>byId("pg-live-state").textContent=String(error.message||error)));byId("pg-live-step")?.addEventListener("click",()=>stepLiveSession().catch(error=>byId("pg-live-state").textContent=String(error.message||error)));byId("pg-live-auto")?.addEventListener("click",()=>startLiveLoop().catch(error=>byId("pg-live-state").textContent=String(error.message||error)));byId("pg-live-auto-stop")?.addEventListener("click",stopLiveLoop);byId("pg-live-input")?.addEventListener("click",()=>injectLiveInput().catch(error=>byId("pg-live-state").textContent=String(error.message||error)));byId("pg-live-sandbox")?.addEventListener("click",()=>stepLiveSandbox().catch(error=>byId("pg-live-state").textContent=String(error.message||error)));byId("pg-live-stop")?.addEventListener("click",()=>stopLiveSession().catch(error=>byId("pg-live-state").textContent=String(error.message||error)));
-  try{renderCatalog(await apiGet("/api/playground/catalog"));resetForm();}catch(error){const status=byId("pg-status");status.dataset.state="error";status.textContent=`Katalog nicht verfügbar: ${error.message}`;}
-  byId("playground-builder")?.addEventListener("input", updateDefaultHints);
-  byId("playground-builder")?.addEventListener("change", updateDefaultHints);
+  byId("pg-run")?.addEventListener("click",runSession);byId("pg-robustness")?.addEventListener("click",runRobustness);byId("pg-reset")?.addEventListener("click",resetForm);byId("pg-live-create")?.addEventListener("click",()=>createLiveSession().catch(error=>byId("pg-live-state").textContent=String(error.message||error)));byId("pg-live-step")?.addEventListener("click",()=>stepLiveSession().catch(error=>byId("pg-live-state").textContent=String(error.message||error)));byId("pg-live-auto")?.addEventListener("click",()=>startLiveLoop().catch(error=>byId("pg-live-state").textContent=String(error.message||error)));byId("pg-live-auto-stop")?.addEventListener("click",stopLiveLoop);byId("pg-live-input")?.addEventListener("click",()=>injectLiveInput().catch(error=>byId("pg-live-state").textContent=String(error.message||error)));byId("pg-live-sandbox")?.addEventListener("click",()=>stepLiveSandbox().catch(error=>byId("pg-live-state").textContent=String(error.message||error)));byId("pg-live-stop")?.addEventListener("click",()=>stopLiveSession().catch(error=>byId("pg-live-state").textContent=String(error.message||error)));byId("pg-night-start")?.addEventListener("click",()=>startNightRun().catch(error=>byId("pg-night-state").textContent=String(error.message||error)));byId("pg-night-stop")?.addEventListener("click",()=>stopNightRun().catch(error=>byId("pg-night-state").textContent=String(error.message||error)));byId("pg-night-refresh")?.addEventListener("click",()=>refreshNightStatus().catch(error=>byId("pg-night-state").textContent=String(error.message||error)));
+  try{renderCatalog(await apiGet("/api/playground/catalog"));}catch(error){const status=byId("pg-status");status.dataset.state="error";status.textContent=`Katalog nicht verfügbar: ${error.message}`;}
   await refreshSessions();
+  try{await refreshNightStatus();}catch{ /* night manager is optional during partial deployments */ }
   window.MHRNPlayground={run:runSession,runRobustness,refreshSessions,get catalog(){return catalogState;},get lastResult(){return lastResult;}};
 }

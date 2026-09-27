@@ -19,12 +19,24 @@ from src.playground.geometry.metrics import (
     connection_distance,
     cyclic_distance,
 )
+from src.playground.meta_learning import (
+    KnowledgeBase,
+    MetaReward,
+    MetaTaskGenerator,
+    text_vector,
+)
 from src.playground.neural_io import (
     NeuralIOInterface,
     PlaygroundIOAreaAdapter,
     adapter_contract_check,
 )
-from src.playground.pan import BehavioralLearningEngine, ModeSwitcher, PANLiveSession
+from src.playground.night_run import NightRunDaemon, analyze_run
+from src.playground.pan import (
+    BehavioralLearningEngine,
+    ModeSwitcher,
+    PANLiveSession,
+    StickFigureSandbox,
+)
 from src.playground.pan.hypervector import bind, bundle
 from src.playground.pan.literature import pan_literature_context
 from src.playground.persist import session_recorder
@@ -353,7 +365,6 @@ def test_session_retention_prunes_expired_files(
     assert not old.exists()
 
 
-
 def test_pan_catalog_is_explicitly_exploratory() -> None:
     payload = catalog()
     model_names = {item["name"] for item in payload["models"]}
@@ -441,7 +452,6 @@ def test_pan_config_rejects_invalid_hyperstate_dimensions() -> None:
         )
 
 
-
 def test_pan_literature_context_is_bounded_and_not_novelty_proof() -> None:
     context = pan_literature_context()
     assert context["classification"] == "PLAYGROUND_LITERATURE_CONTEXT"
@@ -460,16 +470,13 @@ def test_pan_literature_distinguishes_two_sadp_meanings() -> None:
     context = pan_literature_context()
     sources = context["sources"]
     amplitude = [
-        source for source in sources
-        if source["topic"] == "spike_amplitude_plasticity"
+        source for source in sources if source["topic"] == "spike_amplitude_plasticity"
     ]
     agreement = [
-        source for source in sources
-        if source["topic"] == "spike_agreement_plasticity"
+        source for source in sources if source["topic"] == "spike_agreement_plasticity"
     ]
     assert amplitude and agreement
     assert amplitude[0]["key"] != agreement[0]["key"]
-
 
 
 def test_geometric_5d_keeps_state_and_geometry_dimensions_independent() -> None:
@@ -605,7 +612,6 @@ def test_geometry_catalog_keeps_unimplemented_mechanisms_explicit() -> None:
     assert geometry["neurogenesis_status"] == "NOT_IMPLEMENTED"
 
 
-
 def test_neural_io_catalog_matches_postulated_gateway_contract() -> None:
     io = catalog()["neural_io"]
     assert io["classification"] == "PLAYGROUND_NEURAL_IO"
@@ -700,9 +706,7 @@ def test_neural_io_scalar_input_output_and_lifecycle() -> None:
     assert io["output"]["actuator_execution"] is False
     assert io["lifecycle"]["phase_history"][0]["phase"] == "QUERY"
     assert io["lifecycle"]["final_phase"] in {"RESPONSE", "TIMEOUT"}
-    assert io["lifecycle"]["implementation_status"] == (
-        "REFERENCE_STATE_MACHINE_ONLY"
-    )
+    assert io["lifecycle"]["implementation_status"] == ("REFERENCE_STATE_MACHINE_ONLY")
     assert io["lifecycle"]["gateway_action_selection_status"] == "NOT_IMPLEMENTED"
     assert io["lifecycle"]["external_round_trip_status"] == "NOT_IMPLEMENTED"
     assert io["lifecycle"]["correlation_id"].startswith("pgio-")
@@ -747,7 +751,6 @@ def test_neural_io_interface_can_be_constructed_directly() -> None:
     summary = interface.finalize()
     assert summary["classification"] == "PLAYGROUND_NEURAL_IO"
     assert summary["exact_boundary"]["raw_payload_persisted"] is False
-
 
 
 def test_pan_gate_generation_maps_validated_settings() -> None:
@@ -842,9 +845,7 @@ def test_pan_catalog_keeps_hardware_coupling_exploratory() -> None:
     pan = catalog()["pan"]
     assert pan["gate_generation_status"] == "IMPLEMENTED_REFERENCE"
     assert pan["dual_clock_status"] == "IMPLEMENTED_REFERENCE"
-    assert pan["generative_growth_status"] == (
-        "IMPLEMENTED_FIXED_CAPACITY_REFERENCE"
-    )
+    assert pan["generative_growth_status"] == ("IMPLEMENTED_FIXED_CAPACITY_REFERENCE")
     assert pan["cuda_backend_status"] == "MEMORY_ESTIMATE_ONLY"
     assert pan["persistent_cuda_kernel_status"] == "NOT_IMPLEMENTED"
     assert pan["dynamic_parallelism_status"] == "NOT_IMPLEMENTED"
@@ -868,11 +869,10 @@ def test_new_pan_candidates_remain_unregistered_ideas() -> None:
     )
 
 
-
 def test_pan_behavioral_learning_runs_and_updates_policy() -> None:
     result = run(
         _small_payload(
-            ticks=32,
+            ticks=128,
             neuron_model="pan_adex_5d",
             stimulus="none",
             pan_enabled=True,
@@ -895,7 +895,7 @@ def test_pan_behavioral_learning_runs_and_updates_policy() -> None:
     assert learning["classification"] == "PLAYGROUND_BEHAVIORAL_LEARNING"
     assert learning["scientific_evidence"] is False
     assert learning["stores_raw_payloads"] is False
-    assert learning["episodes"] == 4
+    assert learning["episodes"] == 16
     assert learning["policy_updates"] > 0
     assert len(set(learning["target_history"])) > 1
     assert result["cortical_organization"]["layers"] == 6
@@ -965,11 +965,7 @@ def test_pan_catalog_exposes_learning_blocks_and_eighteen_candidates() -> None:
         "PAN-CANDIDATE-MODE-SWITCH-CONSISTENCY",
         "PAN-CANDIDATE-HYBRID-PERFORMANCE",
     } <= ids
-    assert all(
-        item["status"] == "DRAFT_IDEA_NOT_PREREGISTERED"
-        for item in candidates
-    )
-
+    assert all(item["status"] == "DRAFT_IDEA_NOT_PREREGISTERED" for item in candidates)
 
 
 def test_event_only_execution_reports_sparse_reference_mode() -> None:
@@ -1050,16 +1046,13 @@ def test_hybrid_auto_switches_with_hysteresis_and_logs_integrity() -> None:
     assert summary["transition_count"] == 2
     assert summary["consistency_check"] == "PASS"
     assert all(
-        item["shared_state_integrity"] == "PASS"
-        for item in summary["transitions"]
+        item["shared_state_integrity"] == "PASS" for item in summary["transitions"]
     )
 
 
 def test_switchable_execution_config_validation() -> None:
     with pytest.raises(ValueError, match="unsupported execution_mode"):
-        PlaygroundConfig.from_mapping(
-            _small_payload(execution_mode="INVALID")
-        )
+        PlaygroundConfig.from_mapping(_small_payload(execution_mode="INVALID"))
     with pytest.raises(ValueError, match="execution thresholds"):
         PlaygroundConfig.from_mapping(
             _small_payload(
@@ -1067,7 +1060,6 @@ def test_switchable_execution_config_validation() -> None:
                 execution_theta_high=0.3,
             )
         )
-
 
 
 def test_pan_adex_bootstrap_regime_produces_spikes() -> None:
@@ -1126,11 +1118,11 @@ def test_live_pan_session_keeps_state_across_chunks() -> None:
         )
     )
     live = PANLiveSession(config)
-    first = live.step(16)
+    first = live.step(64)
     first_digest = first["state_digest"]
-    second = live.step(16)
-    assert first["tick"] == 16
-    assert second["tick"] == 32
+    second = live.step(64)
+    assert first["tick"] == 64
+    assert second["tick"] == 128
     assert second["total_spikes"] >= first["total_spikes"] > 0
     assert second["state_digest"] != first_digest
 
@@ -1151,3 +1143,198 @@ def test_live_pan_session_accepts_external_vector_input() -> None:
     result = live.step(4)
     assert result["input_queue_depth"] == 0
     assert result["state_digest"] != before
+
+
+def test_meta_text_vector_is_deterministic_and_normalized() -> None:
+    first = text_vector("find this source", 32)
+    second = text_vector("find this source", 32)
+    assert first == second
+    assert len(first) == 32
+    assert sum(value * value for value in first) == pytest.approx(1.0)
+
+
+def test_meta_knowledge_base_find_store_and_link() -> None:
+    kb = KnowledgeBase(dimensions=32)
+    left = kb.store_info("granite stair calculation", "Konzepte")
+    right = kb.store_info("stone installation workflow", "Konzepte")
+    result = kb.find(
+        "granite stair calculation",
+        source="vector_db",
+        category="Konzepte",
+        limit=2,
+    )
+    assert result["found"] is True
+    assert result["matches"][0]["record_id"] == left["record_id"]
+    linked = kb.link(
+        str(left["record_id"]),
+        str(right["record_id"]),
+        "ist_verwandt_mit",
+    )
+    assert linked == {"linked": True, "both_exist": True}
+
+
+def test_meta_task_generator_exposes_three_task_types_without_gateway() -> None:
+    kb = KnowledgeBase()
+    for index, category in enumerate(MetaTaskGenerator.categories):
+        kb.store_info(f"seed record {index}", category)
+    generator = MetaTaskGenerator(seed=2)
+    seen = {generator.generate(kb)["type"] for _ in range(6)}
+    assert {"find_source", "store_info", "link_info"} <= seen
+
+
+def test_meta_reward_scores_strategy_not_payload_storage() -> None:
+    reward = MetaReward()
+    task = {
+        "type": "find_source",
+        "true_source": "vector_db",
+        "true_category": "Konzepte",
+    }
+    result = reward.compute(
+        task,
+        {"source": "vector_db", "category": "Konzepte"},
+        {"found": True},
+    )
+    assert result["source"] == 1.0
+    assert result["category"] == 1.0
+    assert result["retrieval"] == 0.25
+    assert result["total"] == pytest.approx(2.25)
+
+
+def test_behavior_context_policy_accepts_external_reward_and_bias() -> None:
+    learner = BehavioralLearningEngine(
+        n_neurons=16,
+        action_count=4,
+        learning_rate=0.5,
+        epsilon=0.0,
+        episode_ticks=8,
+    )
+    learner.activate_context("find:source", 3)
+    before = learner.bias_currents()
+    action = learner.choose_context_action("find:source", 3)
+    learner.apply_external_reward(
+        context="find:source",
+        action=action,
+        reward=1.0,
+        action_count=3,
+    )
+    after = learner.bias_currents()
+    summary = learner.summary()
+    assert summary["context_updates"]["find:source"] == 1
+    assert summary["context_policies"]["find:source"][action] > 0.0
+    assert after != before
+
+
+def test_live_pan_checkpoint_restores_meta_policy_and_state() -> None:
+    config = PlaygroundConfig.from_mapping(
+        _small_payload(
+            neuron_model="pan_adex_5d",
+            pan_enabled=True,
+            pan_bias_current=15.0,
+            behavior_learning_enabled=True,
+            behavior_action_count=4,
+            execution_mode="TICK_ONLY",
+        )
+    )
+    first = PANLiveSession(config)
+    first.step(16)
+    action = first.choose_strategy("store:category", 4)
+    first.apply_strategy_reward(
+        context="store:category",
+        action=action,
+        reward=1.0,
+        action_count=4,
+    )
+    checkpoint = first.export_checkpoint()
+
+    restored = PANLiveSession(config)
+    restored.import_checkpoint(checkpoint)
+    assert restored.tick == first.tick
+    assert restored.total_spikes == first.total_spikes
+    assert restored.learning.context_policies == first.learning.context_policies
+    assert restored.state_digest() == first.state_digest()
+    assert restored.weights == first.weights
+    assert restored.delays == first.delays
+    assert restored.pan_runtime.population_vector == first.pan_runtime.population_vector
+    assert restored.switcher.current_engine == first.switcher.current_engine
+    assert restored.switcher.event_ticks == first.switcher.event_ticks
+    assert restored.switcher.tick_ticks == first.switcher.tick_ticks
+    assert restored.growth_events == first.growth_events
+
+
+def test_night_run_executes_meta_tasks_and_writes_resumable_checkpoint(
+    tmp_path: Path,
+) -> None:
+    daemon = NightRunDaemon(
+        hours=1.0,
+        max_episodes=20,
+        checkpoint_seconds=10.0,
+        output_root=tmp_path,
+        file_roots=[],
+        seed=9,
+    )
+    for _ in range(9):
+        daemon.run_episode()
+    status = daemon.checkpoint()
+    assert status["episode"] == 9
+    assert status["pan"]["total_spikes"] > 0
+    assert all(status["task_counts"][name] > 0 for name in status["task_counts"])
+    assert daemon.checkpoint_path.exists()
+    assert daemon.metrics_path.exists()
+    assert daemon.kb_path.exists()
+    assert daemon.pan.learning.context_updates
+
+    resumed = NightRunDaemon(
+        hours=1.0,
+        max_episodes=20,
+        checkpoint_seconds=10.0,
+        output_root=tmp_path,
+        file_roots=[],
+        seed=9,
+        resume_dir=daemon.run_dir,
+    )
+    assert resumed.episode == daemon.episode
+    assert resumed.pan.tick == daemon.pan.tick
+    assert resumed.pan.learning.context_policies == daemon.pan.learning.context_policies
+
+    analysis = analyze_run(daemon.run_dir)
+    assert analysis["episodes"] == 9
+    assert analysis["scientific_evidence"] is False
+
+
+def test_pan_catalog_exposes_meta_night_run_as_playground_only() -> None:
+    pan = catalog()["pan"]
+    assert pan["meta_learning_status"] == "IMPLEMENTED_CONTEXT_POLICY_REFERENCE"
+    assert pan["knowledge_base_status"] == "IMPLEMENTED_HASH_VECTOR_AND_FILE_INDEX"
+    assert pan["night_run_status"] == "IMPLEMENTED_BOUNDED_RESUMABLE_REFERENCE"
+    assert pan["night_analysis_status"] == "IMPLEMENTED_DESCRIPTIVE_ONLY"
+
+
+def test_stick_figure_slots_include_springs_and_construct_cleanly() -> None:
+    sandbox = StickFigureSandbox()
+    assert len(sandbox.springs) == 8
+    assert {"head", "neck", "hip", "foot_l", "foot_r"} <= set(sandbox.joints)
+    frame = sandbox.step()
+    assert frame["classification"] == "PLAYGROUND_STICK_FIGURE_SANDBOX"
+    assert isinstance(frame["joints"], dict)
+
+
+def test_night_profile_reduces_weight_and_enables_live_growth(tmp_path: Path) -> None:
+    daemon = NightRunDaemon(
+        hours=1.0,
+        max_episodes=4,
+        checkpoint_seconds=10.0,
+        output_root=tmp_path,
+        file_roots=[],
+        seed=17,
+    )
+    assert daemon.config.weight == pytest.approx(3.0)
+    assert daemon.config.clock_mode == "dual"
+    assert daemon.config.growth_enabled is True
+    assert daemon.config.growth_activity_threshold == pytest.approx(0.05)
+    assert daemon.pan.growth is not None
+    assert daemon.pan.growth.edge_budget > daemon.config.edge_budget
+
+    result = daemon.pan.step(32)
+    assert result["growth"] is not None
+    assert result["growth"]["activity_threshold"] == pytest.approx(0.05)
+    assert result["growth_edge_capacity"] > result["initial_edge_budget"]

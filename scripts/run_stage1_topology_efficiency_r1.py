@@ -8,7 +8,6 @@ frozen into the preregistration and explicit execution authorization is granted.
 from __future__ import annotations
 
 import hashlib
-import importlib.util
 import json
 import math
 import statistics

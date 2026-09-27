@@ -15,12 +15,39 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 PREREG = ROOT / "research" / "preregistrations" / "PREREG-S1-TOPO-REFERENCE-R1.json"
-FREEZE = ROOT / "research" / "preregistrations" / "PREREG-S1-TOPO-REFERENCE-R1.freeze.json"
-AUDIT = ROOT / "research" / "audits" / "STAGE1_TOPOLOGY_REFERENCE_MECHANISM_AUDIT_20260927.json"
-PARITY = ROOT / "research" / "calibrations" / "CAL-S1-TOPO-REFERENCE-INTEGRATOR-R1" / "result.json"
-RESET = ROOT / "research" / "calibrations" / "CAL-S1-TOPO-REFERENCE-RESET-R1" / "result.json"
-SYNAPSE = ROOT / "research" / "calibrations" / "CAL-S1-TOPO-REFERENCE-SYNAPSE-R1" / "result.json"
-RUNNER_PROTOCOL = ROOT / "reference" / "stage1_topology_brian2" / "reference_protocol.json"
+FREEZE = (
+    ROOT / "research" / "preregistrations" / "PREREG-S1-TOPO-REFERENCE-R1.freeze.json"
+)
+AUDIT = (
+    ROOT
+    / "research"
+    / "audits"
+    / "STAGE1_TOPOLOGY_REFERENCE_MECHANISM_AUDIT_20260927.json"
+)
+PARITY = (
+    ROOT
+    / "research"
+    / "calibrations"
+    / "CAL-S1-TOPO-REFERENCE-INTEGRATOR-R1"
+    / "result.json"
+)
+RESET = (
+    ROOT
+    / "research"
+    / "calibrations"
+    / "CAL-S1-TOPO-REFERENCE-RESET-R1"
+    / "result.json"
+)
+SYNAPSE = (
+    ROOT
+    / "research"
+    / "calibrations"
+    / "CAL-S1-TOPO-REFERENCE-SYNAPSE-R1"
+    / "result.json"
+)
+RUNNER_PROTOCOL = (
+    ROOT / "reference" / "stage1_topology_brian2" / "reference_protocol.json"
+)
 RUNNER_SOURCE = ROOT / "reference" / "stage1_topology_brian2" / "runner.py"
 VERIFIER_SOURCE = ROOT / "scripts" / "verify_stage1_topology_reference_r1.py"
 TRANSLATION = ROOT / "reference" / "stage1_topology_brian2" / "TRANSLATION.md"
@@ -76,7 +103,9 @@ def main() -> int:
         TRANSLATION,
     ):
         if not required.is_file():
-            raise RuntimeError(f"Missing pre-freeze artifact: {required.relative_to(ROOT)}")
+            raise RuntimeError(
+                f"Missing pre-freeze artifact: {required.relative_to(ROOT)}"
+            )
 
     audit = read_json(AUDIT)
     parity = read_json(PARITY)
@@ -100,7 +129,9 @@ def main() -> int:
 
     runner_protocol = read_json(RUNNER_PROTOCOL)
     if runner_protocol.get("seeds") != prereg["evaluation"]["seeds"]:
-        raise RuntimeError("Blinded reference protocol seed block differs from preregistration")
+        raise RuntimeError(
+            "Blinded reference protocol seed block differs from preregistration"
+        )
     if runner_protocol.get("framework_version") != "2.10.1":
         raise RuntimeError("Blinded reference protocol framework version mismatch")
 

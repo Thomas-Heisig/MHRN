@@ -6,7 +6,6 @@ registry and must not be interpreted as evidence for PAN or MHRN claims.
 
 from __future__ import annotations
 
-
 PAN_LITERATURE: tuple[dict[str, object], ...] = (
     {
         "key": "orchard_spiking_phasors_2024",

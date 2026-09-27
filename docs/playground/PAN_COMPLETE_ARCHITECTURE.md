@@ -333,3 +333,33 @@ evidence_eligible: false
 registry_visible: false
 promotion_path: none
 ```
+
+
+## 10. Meta-learning and overnight execution
+
+The stateful PAN path now supports externally rewarded context policies used by
+the bounded meta night run.
+
+Implemented reference components:
+
+- deterministic `find_source / store_info / link_info` task generator;
+- learnable semantic cues without literal target-label injection;
+- local hashing-vector knowledge index;
+- bounded read-only file index;
+- source/category/relation context policies;
+- external scalar reward feedback;
+- active-context policy bias returned to PAN;
+- one bounded in-process Dashboard night runner;
+- 600-second default full-state checkpoints;
+- checkpoint resume;
+- JSONL episode log;
+- automatic descriptive morning analysis.
+
+The KnowledgeBase is an external tool/storage component, not a claim of neural
+memory. The Dashboard manager currently uses local vector/file sources only.
+An optional Python `gateway_query` callback exists for later connection to the
+already established Gateway/Neural-Symbiosis boundary.
+
+No duplicate Ollama/HTTP client or autonomous Internet access is introduced.
+
+See `PAN_NIGHT_RUN.md`.

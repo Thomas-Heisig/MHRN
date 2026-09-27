@@ -1,7 +1,7 @@
 """Visualization-data helpers for non-canonical playground sessions."""
 
-from .rate import population_rate_series
 from .raster import raster_series
+from .rate import population_rate_series
 from .session_dashboard import dashboard_payload
 from .topology_2d import project_2d
 from .topology_3d import project_3d

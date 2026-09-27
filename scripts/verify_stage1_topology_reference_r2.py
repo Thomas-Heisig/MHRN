@@ -139,7 +139,7 @@ def main() -> int:
         bound = [float(v) for v in bounds[label]]
         target = float(canonical[label])
         canonical_sign = -1 if target < 0 else 1
-        direction_retained = (median < 0 if canonical_sign < 0 else median > 0)
+        direction_retained = median < 0 if canonical_sign < 0 else median > 0
         in_bound = bound[0] <= median <= bound[1]
         row = {
             "label": label,
@@ -199,7 +199,9 @@ def main() -> int:
     spans_boundary_count = sum(
         row["ci_relation_to_bound"] == "spans_boundary" for row in primary_rows
     )
-    primary_pass_count = sum(bool(row["primary_criterion_pass"]) for row in primary_rows)
+    primary_pass_count = sum(
+        bool(row["primary_criterion_pass"]) for row in primary_rows
+    )
     auc_match_count = sum(bool(row["direction_match"]) for row in auc_rows)
 
     if errors:

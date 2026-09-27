@@ -83,8 +83,7 @@ class PANRuntime:
         currents: list[float] = []
         for row in self.feedback_weights:
             raw = sum(
-                weight * value
-                for weight, value in zip(row, self.population_vector)
+                weight * value for weight, value in zip(row, self.population_vector)
             )
             current = self.feedback_gain * raw
             currents.append(current)
@@ -118,9 +117,7 @@ class PANRuntime:
         for neuron_id, state in enumerate(states):
             alive = bool(state.get("pan_alive", True))
             if not alive:
-                vectors.append(
-                    [float(value) for value in state.get("pan_x_hd", [])]
-                )
+                vectors.append([float(value) for value in state.get("pan_x_hd", [])])
                 continue
 
             did_spike = neuron_id in spiked
@@ -153,12 +150,8 @@ class PANRuntime:
             threshold = float(state.get("pan_threshold", -50.0))
             excitability = _sigmoid((membrane - threshold) / 5.0)
             plasticity = health if plasticity_active else 0.0
-            neuromodulation = 0.5 + 0.5 * math.sin(
-                2.0 * math.pi * (tick % 64) / 64.0
-            )
-            coupling = _clamp(
-                self.degree[neuron_id] / max(self.n_neurons - 1, 1)
-            )
+            neuromodulation = 0.5 + 0.5 * math.sin(2.0 * math.pi * (tick % 64) / 64.0)
+            coupling = _clamp(self.degree[neuron_id] / max(self.n_neurons - 1, 1))
 
             vector = [0.0 for _ in range(self.dimensions)]
             base_values = [
@@ -208,8 +201,7 @@ class PANRuntime:
         energy = [float(state.get("pan_energy", 1.0)) for state in states]
         alive = sum(1 for state in states if bool(state.get("pan_alive", True)))
         vectors = [
-            [float(value) for value in state.get("pan_x_hd", [])]
-            for state in states
+            [float(value) for value in state.get("pan_x_hd", [])] for state in states
         ]
         sample = [
             {

@@ -120,6 +120,11 @@ def catalog() -> dict[str, object]:
             "default_pan_bias_current": 10.0,
             "live_session_status": "IMPLEMENTED_IN_PROCESS_STATEFUL_REFERENCE",
             "stick_figure_sandbox_status": "IMPLEMENTED_REFERENCE",
+            "meta_learning_status": "IMPLEMENTED_CONTEXT_POLICY_REFERENCE",
+            "knowledge_base_status": "IMPLEMENTED_HASH_VECTOR_AND_FILE_INDEX",
+            "night_run_status": "IMPLEMENTED_BOUNDED_RESUMABLE_REFERENCE",
+            "night_checkpoint_status": "PAN_STATE_POLICY_KB_RESUMABLE",
+            "night_analysis_status": "IMPLEMENTED_DESCRIPTIVE_ONLY",
             "sandbox_audio_status": "SYNTHETIC_ACTIVITY_PROXY_ONLY",
             "sandbox_llm_status": "EXISTING_GATEWAY_INTERFACE_REQUIRED",
             "behavior_storage_principle": "POLICY_PARAMETERS_NOT_RAW_PAYLOADS",
@@ -139,9 +144,7 @@ def catalog() -> dict[str, object]:
             "scientific_evidence": False,
             "exact_payload_outside_snn": True,
             "boundary_principle": "Payload != Neural Representation",
-            "architecture_principle": (
-                "Codec != GatewayTopology != GatewayLearning"
-            ),
+            "architecture_principle": ("Codec != GatewayTopology != GatewayLearning"),
             "roles": [
                 "ASSOCIATIVE",
                 "AFFERENT",

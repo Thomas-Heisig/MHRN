@@ -30,8 +30,7 @@ class CorticalOrganization:
         self.plasticity = plasticity
         self.learning_rate = learning_rate
         self.layer_of = [
-            min(layers - 1, (index * layers) // n_neurons)
-            for index in range(n_neurons)
+            min(layers - 1, (index * layers) // n_neurons) for index in range(n_neurons)
         ]
         self.gains = [1.0 for _ in range(layers)]
         self.updates = 0
@@ -59,9 +58,7 @@ class CorticalOrganization:
 
     def output_layer_neurons(self) -> list[int]:
         target = self.layers - 1
-        return [
-            index for index, layer in enumerate(self.layer_of) if layer == target
-        ]
+        return [index for index, layer in enumerate(self.layer_of) if layer == target]
 
     def summary(self) -> dict[str, object]:
         counts = [

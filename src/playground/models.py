@@ -188,12 +188,8 @@ class PlaygroundConfig:
             pan_closed_loop=bool(
                 payload.get("pan_closed_loop", defaults.pan_closed_loop)
             ),
-            pan_feedback_gain=number(
-                "pan_feedback_gain", defaults.pan_feedback_gain
-            ),
-            pan_health_decay=number(
-                "pan_health_decay", defaults.pan_health_decay
-            ),
+            pan_feedback_gain=number("pan_feedback_gain", defaults.pan_feedback_gain),
+            pan_health_decay=number("pan_health_decay", defaults.pan_health_decay),
             pan_apoptosis_threshold=number(
                 "pan_apoptosis_threshold", defaults.pan_apoptosis_threshold
             ),
@@ -229,17 +225,21 @@ class PlaygroundConfig:
                 "execution_transition_mode", defaults.execution_transition_mode
             ).lower(),
             execution_sync_on_switch=bool(
-                payload.get("execution_sync_on_switch", defaults.execution_sync_on_switch)
+                payload.get(
+                    "execution_sync_on_switch", defaults.execution_sync_on_switch
+                )
             ),
             execution_log_transitions=bool(
-                payload.get("execution_log_transitions", defaults.execution_log_transitions)
+                payload.get(
+                    "execution_log_transitions", defaults.execution_log_transitions
+                )
             ),
             execution_log_state_hash=bool(
-                payload.get("execution_log_state_hash", defaults.execution_log_state_hash)
+                payload.get(
+                    "execution_log_state_hash", defaults.execution_log_state_hash
+                )
             ),
-            growth_enabled=bool(
-                payload.get("growth_enabled", defaults.growth_enabled)
-            ),
+            growth_enabled=bool(payload.get("growth_enabled", defaults.growth_enabled)),
             growth_neurogenesis=bool(
                 payload.get("growth_neurogenesis", defaults.growth_neurogenesis)
             ),
@@ -249,9 +249,7 @@ class PlaygroundConfig:
             growth_path_formation=bool(
                 payload.get("growth_path_formation", defaults.growth_path_formation)
             ),
-            growth_pruning=bool(
-                payload.get("growth_pruning", defaults.growth_pruning)
-            ),
+            growth_pruning=bool(payload.get("growth_pruning", defaults.growth_pruning)),
             growth_activity_threshold=number(
                 "growth_activity_threshold", defaults.growth_activity_threshold
             ),
@@ -307,7 +305,9 @@ class PlaygroundConfig:
                 "cortical_learning_rate", defaults.cortical_learning_rate
             ),
             behavior_learning_enabled=bool(
-                payload.get("behavior_learning_enabled", defaults.behavior_learning_enabled)
+                payload.get(
+                    "behavior_learning_enabled", defaults.behavior_learning_enabled
+                )
             ),
             behavior_action_count=integer(
                 "behavior_action_count", defaults.behavior_action_count
@@ -315,9 +315,7 @@ class PlaygroundConfig:
             behavior_learning_rate=number(
                 "behavior_learning_rate", defaults.behavior_learning_rate
             ),
-            behavior_epsilon=number(
-                "behavior_epsilon", defaults.behavior_epsilon
-            ),
+            behavior_epsilon=number("behavior_epsilon", defaults.behavior_epsilon),
             behavior_target_action=integer(
                 "behavior_target_action", defaults.behavior_target_action
             ),
@@ -333,12 +331,8 @@ class PlaygroundConfig:
             behavior_bias_current=number(
                 "behavior_bias_current", defaults.behavior_bias_current
             ),
-            geometry_lambda_a=number(
-                "geometry_lambda_a", defaults.geometry_lambda_a
-            ),
-            geometry_lambda_b=number(
-                "geometry_lambda_b", defaults.geometry_lambda_b
-            ),
+            geometry_lambda_a=number("geometry_lambda_a", defaults.geometry_lambda_a),
+            geometry_lambda_b=number("geometry_lambda_b", defaults.geometry_lambda_b),
             geometry_sigma=number("geometry_sigma", defaults.geometry_sigma),
             geometry_p0=number("geometry_p0", defaults.geometry_p0),
             geometry_mode=text("geometry_mode", defaults.geometry_mode),
@@ -375,16 +369,12 @@ class PlaygroundConfig:
             neural_io_output_role=text(
                 "neural_io_output_role", defaults.neural_io_output_role
             ),
-            neural_io_phase=text(
-                "neural_io_phase", defaults.neural_io_phase
-            ),
+            neural_io_phase=text("neural_io_phase", defaults.neural_io_phase),
             neural_io_correlation_id=text(
                 "neural_io_correlation_id",
                 defaults.neural_io_correlation_id or "auto",
             ),
-            neural_io_modality=text(
-                "neural_io_modality", defaults.neural_io_modality
-            ),
+            neural_io_modality=text("neural_io_modality", defaults.neural_io_modality),
             neural_io_source_id=text(
                 "neural_io_source_id", defaults.neural_io_source_id
             ),
@@ -476,7 +466,10 @@ class PlaygroundConfig:
             raise ValueError("offload_snapshot_interval must be between 1 and 1000000")
         if self.growth_enabled and self.clock_mode != "dual":
             raise ValueError("growth_enabled requires clock_mode=dual")
-        if self.hardware_profile_name not in {"reference_cpu", "cuda_8gb_balanced_plan"}:
+        if self.hardware_profile_name not in {
+            "reference_cpu",
+            "cuda_8gb_balanced_plan",
+        }:
             raise ValueError("unsupported hardware_profile_name")
         if not 0.0 <= self.thalamic_relay_threshold <= 1.0:
             raise ValueError("thalamic_relay_threshold must be between 0 and 1")
@@ -500,8 +493,8 @@ class PlaygroundConfig:
             raise ValueError("behavior_target_mode must be fixed or cycle")
         if not 0.0 <= self.behavior_min_activity <= 1.0:
             raise ValueError("behavior_min_activity must be between 0 and 1")
-        if not 1 <= self.behavior_episode_ticks <= self.ticks:
-            raise ValueError("behavior_episode_ticks must be between 1 and ticks")
+        if not 1 <= self.behavior_episode_ticks <= 1_000_000:
+            raise ValueError("behavior_episode_ticks must be between 1 and 1000000")
         if not 0.0 <= self.behavior_bias_current <= 100.0:
             raise ValueError("behavior_bias_current must be between 0 and 100")
         if not 0.0 <= self.geometry_lambda_a <= 10.0:
@@ -513,22 +506,14 @@ class PlaygroundConfig:
         if not 0.0 <= self.geometry_p0 <= 1.0:
             raise ValueError("geometry_p0 must be between 0 and 1")
         if self.geometry_mode not in {"mixed_additive", "shortcut_union"}:
-            raise ValueError(
-                "geometry_mode must be mixed_additive or shortcut_union"
-            )
+            raise ValueError("geometry_mode must be mixed_additive or shortcut_union")
         if not 0.001 <= self.geometry_delay_velocity <= 10.0:
-            raise ValueError(
-                "geometry_delay_velocity must be between 0.001 and 10"
-            )
+            raise ValueError("geometry_delay_velocity must be between 0.001 and 10")
         if self.neural_io_enabled:
             if not 1 <= self.neural_io_input_channels <= 256:
-                raise ValueError(
-                    "neural_io_input_channels must be between 1 and 256"
-                )
+                raise ValueError("neural_io_input_channels must be between 1 and 256")
             if not 1 <= self.neural_io_output_channels <= 256:
-                raise ValueError(
-                    "neural_io_output_channels must be between 1 and 256"
-                )
+                raise ValueError("neural_io_output_channels must be between 1 and 256")
             if (
                 self.neural_io_input_channels + self.neural_io_output_channels
                 > self.n_neurons
@@ -539,9 +524,7 @@ class PlaygroundConfig:
                     "neural_io_window_ticks must be between 1 and session ticks"
                 )
             if not 0.0 <= self.neural_io_input_current <= 500.0:
-                raise ValueError(
-                    "neural_io_input_current must be between 0 and 500"
-                )
+                raise ValueError("neural_io_input_current must be between 0 and 500")
             if self.neural_io_input_role not in {
                 "AFFERENT",
                 "GATEWAY_AFFERENT",
@@ -669,7 +652,6 @@ class PlaygroundConfig:
             "neural_io_modality": self.neural_io_modality,
             "neural_io_source_id": self.neural_io_source_id,
         }
-
 
     def to_runtime_dict(self) -> dict[str, object]:
         """Return transient config including the exact I/O payload.

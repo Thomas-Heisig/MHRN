@@ -461,3 +461,26 @@ The PAN-AdEx reference bootstrap was adjusted to avoid the observed silent
 startup condition, and reward learning now refuses to treat silent episodes as
 successful learning. These remain exploratory Playground mechanisms and do not
 change research maturity or evidence.
+
+
+### PAN meta-learning night run
+
+The non-canonical Playground now has a resumable overnight meta-learning mode
+for strategy learning (`find / store / link`). A local hashing-vector index
+plus bounded file index stays outside the SNN while PAN learns context policies
+from reward. Full PAN state and policies are checkpointed by default every ten
+minutes.
+
+```bash
+python -m src.playground.night_run --hours 8 --max-episodes 10000
+python scripts/analyze_pan_night.py --session last
+```
+
+This remains Playground-only and cannot become scientific DATA or EVID
+automatically. Details: `docs/playground/PAN_NIGHT_RUN.md`.
+
+
+The default PAN night-run profile uses a reduced synaptic weight (`3.0`) and
+bounded live growth at activity threshold `0.05` to avoid carrying the highly
+synchronous diagnostic configuration into the overnight run. These are
+Playground engineering settings only.

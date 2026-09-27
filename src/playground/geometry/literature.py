@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-
 GEOMETRY_LITERATURE: tuple[dict[str, object], ...] = (
     {
         "key": "barthelemy_spatial_networks_2011",

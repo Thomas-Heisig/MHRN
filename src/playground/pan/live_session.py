@@ -7,7 +7,6 @@ neuron/synapse state across API calls so PAN can be driven interactively.
 from __future__ import annotations
 
 import hashlib
-import math
 import random
 import threading
 import uuid
@@ -18,8 +17,26 @@ from ..models import PlaygroundConfig
 from ..registry.neuron_models import get_neuron_model
 from ..registry.topology_generators import build_topology
 from .behavioral_learning import BehavioralLearningEngine
+from .growth_engine import GrowthEngine
 from .mode_switcher import ModeSwitcher
+from .runtime import PANRuntime
 from .thalamic_gating import ThalamicGating
+
+
+def _checkpoint_int(value: object, default: int = 0) -> int:
+    if isinstance(value, bool):
+        return default
+    if isinstance(value, (int, float)):
+        return int(value)
+    return default
+
+
+def _checkpoint_float(value: object, default: float = 0.0) -> float:
+    if isinstance(value, bool):
+        return default
+    if isinstance(value, (int, float)):
+        return float(value)
+    return default
 
 
 class PANLiveSession:
@@ -50,13 +67,68 @@ class PANLiveSession:
             self.model.state_factory(self.model.parameters)
             for _ in range(config.n_neurons)
         ]
-        self.adjacency: list[list[int]] = [[] for _ in range(config.n_neurons)]
+        self.adjacency: list[set[int]] = [set() for _ in range(config.n_neurons)]
+        self.incoming: list[set[int]] = [set() for _ in range(config.n_neurons)]
         self.weights: dict[tuple[int, int], float] = {}
         self.delays: dict[tuple[int, int], int] = {}
+        self.eligibility: dict[tuple[int, int], float] = {}
+        self.release_state: dict[tuple[int, int], float] = {}
         for source, target in self.topology.edges:
-            self.adjacency[source].append(target)
-            self.weights[(source, target)] = config.weight
-            self.delays[(source, target)] = max(1, config.delay_ticks)
+            self.adjacency[source].add(target)
+            self.incoming[target].add(source)
+            edge = (source, target)
+            self.weights[edge] = config.weight
+            self.delays[edge] = max(1, config.delay_ticks)
+            self.eligibility[edge] = 0.0
+            self.release_state[edge] = 1.0
+
+        degree = [
+            len(self.adjacency[index]) + len(self.incoming[index])
+            for index in range(config.n_neurons)
+        ]
+        self.pan_runtime = PANRuntime(
+            n_neurons=config.n_neurons,
+            dimensions=config.pan_dimensions,
+            seed=config.seed,
+            feedback_gain=config.pan_feedback_gain,
+            health_decay=config.pan_health_decay,
+            apoptosis_threshold=config.pan_apoptosis_threshold,
+            closed_loop=config.pan_closed_loop,
+            coordinates=self.topology.coordinates,
+            degree=degree,
+        )
+        self.pan_runtime.initialize(self.states)
+        growth_edge_capacity = min(
+            config.n_neurons * (config.n_neurons - 1),
+            config.edge_budget
+            + max(64, config.growth_max_new_synapses_per_barrier * 16),
+        )
+        self.growth = (
+            GrowthEngine(
+                n_neurons=config.n_neurons,
+                edge_budget=growth_edge_capacity,
+                max_synapses_per_neuron=config.growth_max_synapses_per_neuron,
+                max_new_synapses_per_barrier=(
+                    config.growth_max_new_synapses_per_barrier
+                ),
+                activity_threshold=config.growth_activity_threshold,
+                coactivation_threshold=config.growth_coactivation_threshold,
+                information_threshold=config.growth_information_threshold,
+                prune_threshold=config.growth_prune_threshold,
+                neurogenesis=config.growth_neurogenesis,
+                synaptogenesis=config.growth_synaptogenesis,
+                path_formation=config.growth_path_formation,
+                pruning=config.growth_pruning,
+            )
+            if config.growth_enabled
+            else None
+        )
+        self.growth_batch_ticks = max(
+            1, round(config.clock_event_batch_ms / config.dt_ms)
+        )
+        self.growth_events: list[dict[str, object]] = []
+        self.structural_added = 0
+        self.structural_removed = 0
 
         self.pending = [
             [0.0 for _ in range(config.n_neurons)]
@@ -79,6 +151,7 @@ class PANLiveSession:
             else None
         )
         self.learning_enabled = config.behavior_learning_enabled
+        self.auto_reward_enabled = True
         self.learning = BehavioralLearningEngine(
             n_neurons=config.n_neurons,
             action_count=config.behavior_action_count,
@@ -144,8 +217,7 @@ class PANLiveSession:
         for neuron in spikes:
             bucket = min(
                 self.config.behavior_action_count - 1,
-                neuron * self.config.behavior_action_count
-                // self.config.n_neurons,
+                neuron * self.config.behavior_action_count // self.config.n_neurons,
             )
             counts[bucket] += 1
         best = max(counts)
@@ -154,6 +226,35 @@ class PANLiveSession:
         action = max(range(len(counts)), key=lambda idx: (counts[idx], -idx))
         self.output_counts[action] += 1
         return action
+
+    def choose_strategy(self, context: str, options: int) -> int:
+        with self.lock:
+            return self.learning.choose_context_action(context, options)
+
+    def apply_strategy_reward(
+        self,
+        *,
+        context: str,
+        action: int,
+        reward: float,
+        action_count: int,
+    ) -> dict[str, object]:
+        with self.lock:
+            value = self.learning.apply_external_reward(
+                context=context,
+                action=action,
+                reward=reward,
+                action_count=action_count,
+            )
+            return {
+                "classification": "PLAYGROUND_META_REWARD",
+                "scientific_evidence": False,
+                "context": context,
+                "action": action,
+                "reward": float(reward),
+                "updated_value": value,
+                "learning": self.learning.summary(),
+            }
 
     def step(self, ticks: int = 32) -> dict[str, object]:
         if ticks < 1 or ticks > 4096:
@@ -179,9 +280,7 @@ class PANLiveSession:
                 synaptic = self.pending[slot]
                 self.pending[slot] = [0.0 for _ in range(self.config.n_neurons)]
                 external = self._input_currents()
-                external = [
-                    value + self.config.pan_bias_current for value in external
-                ]
+                external = [value + self.config.pan_bias_current for value in external]
                 if self.thalamic is not None:
                     external = self.thalamic.apply(external, self.last_spikes)
                 behavior_bias = (
@@ -189,8 +288,9 @@ class PANLiveSession:
                     if self.learning_enabled
                     else [0.0 for _ in range(self.config.n_neurons)]
                 )
+                feedback = self.pan_runtime.feedback_currents()
                 external = [
-                    external[index] + behavior_bias[index]
+                    external[index] + behavior_bias[index] + feedback[index]
                     for index in range(self.config.n_neurons)
                 ]
 
@@ -205,6 +305,8 @@ class PANLiveSession:
 
                 spiked: list[int] = []
                 for neuron in active:
+                    if not bool(self.states[neuron].get("pan_alive", True)):
+                        continue
                     current = external[neuron] + synaptic[neuron]
                     if self.model.step(
                         self.states[neuron],
@@ -220,16 +322,56 @@ class PANLiveSession:
                 for source in spiked:
                     for target in self.adjacency[source]:
                         edge = (source, target)
-                        delivery = (
-                            self.tick + self.delays[edge]
-                        ) % len(self.pending)
+                        delivery = (self.tick + self.delays[edge]) % len(self.pending)
                         self.pending[delivery][target] += self.weights[edge]
 
                 if self.learning_enabled:
                     self.learning.observe(spiked)
-                    reward = self.learning.maybe_learn(self.tick)
-                    if reward is not None:
-                        rewards.append(reward)
+                    if self.auto_reward_enabled:
+                        reward = self.learning.maybe_learn(self.tick)
+                        if reward is not None:
+                            rewards.append(reward)
+
+                self.pan_runtime.update(
+                    tick=self.tick,
+                    dt_ms=self.config.dt_ms,
+                    states=self.states,
+                    spiked_neurons=spiked,
+                    plasticity_active=self.learning_enabled,
+                )
+                self.growth_events.extend(
+                    {
+                        "kind": "SPIKE",
+                        "neuron_id": int(neuron_id),
+                        "tick": self.tick,
+                    }
+                    for neuron_id in spiked
+                )
+                if (
+                    self.growth is not None
+                    and (self.tick + 1) % self.growth_batch_ticks == 0
+                ):
+                    added, removed = self.growth.evaluate(
+                        tick=self.tick,
+                        events=self.growth_events,
+                        states=self.states,
+                        adjacency=self.adjacency,
+                        incoming=self.incoming,
+                        weights=self.weights,
+                        delays=self.delays,
+                        eligibility=self.eligibility,
+                        release_state=self.release_state,
+                        default_weight=self.config.weight,
+                        default_delay_ticks=self.config.delay_ticks,
+                    )
+                    self.structural_added += added
+                    self.structural_removed += removed
+                    self.growth_events.clear()
+                    self.pan_runtime.degree = [
+                        len(self.adjacency[index]) + len(self.incoming[index])
+                        for index in range(self.config.n_neurons)
+                    ]
+
                 action = self._decode_action(spiked)
                 if action is not None:
                     actions.append(action)
@@ -252,6 +394,17 @@ class PANLiveSession:
             "learning": self.learning.summary(),
             "execution": self.switcher.summary(),
             "thalamic": self.thalamic.summary() if self.thalamic else None,
+            "pan": self.pan_runtime.summary(self.states),
+            "growth": self.growth.summary() if self.growth else None,
+            "edge_count": len(self.weights),
+            "initial_edge_budget": self.config.edge_budget,
+            "growth_edge_capacity": (
+                self.growth.edge_budget
+                if self.growth is not None
+                else self.config.edge_budget
+            ),
+            "structural_added": self.structural_added,
+            "structural_removed": self.structural_removed,
             "state_digest": self.state_digest(),
             "input_queue_depth": len(self.input_queue),
         }
@@ -262,6 +415,374 @@ class PANLiveSession:
             for state in self.states
         )
         return hashlib.sha256(payload.encode("utf-8")).hexdigest()
+
+    def export_checkpoint(self) -> dict[str, object]:
+        """Export enough mutable state to resume this reference session."""
+
+        with self.lock:
+            return {
+                "classification": "PLAYGROUND_LIVE_CHECKPOINT",
+                "scientific_evidence": False,
+                "tick": self.tick,
+                "states": [dict(state) for state in self.states],
+                "pending": [list(row) for row in self.pending],
+                "recent_spikes": [list(item) for item in self.recent_spikes],
+                "output_counts": list(self.output_counts),
+                "total_spikes": self.total_spikes,
+                "last_spikes": list(self.last_spikes),
+                "network": {
+                    "edges": [
+                        {
+                            "source": source,
+                            "target": target,
+                            "weight": self.weights[(source, target)],
+                            "delay": self.delays[(source, target)],
+                            "eligibility": self.eligibility.get((source, target), 0.0),
+                            "release_state": self.release_state.get(
+                                (source, target), 1.0
+                            ),
+                        }
+                        for source, target in sorted(self.weights)
+                    ],
+                    "structural_added": self.structural_added,
+                    "structural_removed": self.structural_removed,
+                },
+                "pan_runtime": {
+                    "population_vector": list(self.pan_runtime.population_vector),
+                    "feedback_abs_total": self.pan_runtime.feedback_abs_total,
+                    "feedback_samples": self.pan_runtime.feedback_samples,
+                    "apoptosis_events": list(self.pan_runtime.apoptosis_events),
+                },
+                "execution": {
+                    "current_engine": self.switcher.current_engine,
+                    "last_switch_tick": self.switcher.last_switch_tick,
+                    "mode_history": list(self.switcher.mode_history),
+                    "transitions": list(self.switcher.transitions),
+                    "event_ticks": self.switcher.event_ticks,
+                    "tick_ticks": self.switcher.tick_ticks,
+                    "consistency_failures": self.switcher.consistency_failures,
+                    "activity_history": list(self.switcher.monitor.history),
+                },
+                "growth": (
+                    {
+                        "activity_ema": list(self.growth.activity_ema),
+                        "coactivation": [
+                            [source, target, count]
+                            for (source, target), count in sorted(
+                                self.growth.coactivation.items()
+                            )
+                        ],
+                        "neurogenesis_events": list(self.growth.neurogenesis_events),
+                        "synaptogenesis_events": list(
+                            self.growth.synaptogenesis_events
+                        ),
+                        "path_events": list(self.growth.path_events),
+                        "pruning_events": list(self.growth.pruning_events),
+                        "barriers": self.growth.barriers,
+                        "pending_events": list(self.growth_events),
+                    }
+                    if self.growth is not None
+                    else None
+                ),
+                "learning": {
+                    "policy": list(self.learning.policy),
+                    "activity": list(self.learning.activity),
+                    "action_history": list(self.learning.action_history),
+                    "reward_history": list(self.learning.reward_history),
+                    "policy_updates": self.learning.policy_updates,
+                    "correct_actions": self.learning.correct_actions,
+                    "insufficient_activity_episodes": self.learning.insufficient_activity_episodes,
+                    "target_history": list(self.learning.target_history),
+                    "context_policies": {
+                        key: list(value)
+                        for key, value in self.learning.context_policies.items()
+                    },
+                    "context_weights": {
+                        key: [list(row) for row in value]
+                        for key, value in self.learning.context_weights.items()
+                    },
+                    "context_updates": dict(self.learning.context_updates),
+                    "external_reward_history": list(
+                        self.learning.external_reward_history
+                    ),
+                    "active_context": self.learning.active_context,
+                },
+            }
+
+    def import_checkpoint(self, payload: Mapping[str, object]) -> None:
+        """Restore a checkpoint created by :meth:`export_checkpoint`."""
+
+        with self.lock:
+            raw_states = payload.get("states")
+            raw_pending = payload.get("pending")
+            if not isinstance(raw_states, list) or len(raw_states) != len(self.states):
+                raise ValueError("checkpoint state count mismatch")
+            if not isinstance(raw_pending, list) or len(raw_pending) != len(
+                self.pending
+            ):
+                raise ValueError("checkpoint pending buffer mismatch")
+            restored_states: list[dict[str, object]] = []
+            for item in raw_states:
+                if not isinstance(item, dict):
+                    raise ValueError("checkpoint contains invalid neuron state")
+                restored_states.append(dict(item))
+            restored_pending: list[list[float]] = []
+            for row in raw_pending:
+                if not isinstance(row, list) or len(row) != self.config.n_neurons:
+                    raise ValueError("checkpoint contains invalid pending row")
+                restored_pending.append([float(value) for value in row])
+            self.states = restored_states
+            self.pending = restored_pending
+            self.tick = _checkpoint_int(payload.get("tick"), 0)
+            self.total_spikes = _checkpoint_int(payload.get("total_spikes"), 0)
+            raw_last_spikes = payload.get("last_spikes")
+            self.last_spikes = (
+                [_checkpoint_int(value) for value in raw_last_spikes]
+                if isinstance(raw_last_spikes, list)
+                else []
+            )
+            raw_counts = payload.get("output_counts")
+            if isinstance(raw_counts, list):
+                self.output_counts = [_checkpoint_int(value) for value in raw_counts]
+            raw_recent = payload.get("recent_spikes")
+            self.recent_spikes.clear()
+            if isinstance(raw_recent, list):
+                for item in raw_recent[-8192:]:
+                    if isinstance(item, list) and len(item) == 2:
+                        self.recent_spikes.append(
+                            (_checkpoint_int(item[0]), _checkpoint_int(item[1]))
+                        )
+
+            raw_network = payload.get("network")
+            if isinstance(raw_network, Mapping):
+                raw_edges = raw_network.get("edges")
+                if isinstance(raw_edges, list):
+                    self.adjacency = [set() for _ in range(self.config.n_neurons)]
+                    self.incoming = [set() for _ in range(self.config.n_neurons)]
+                    self.weights = {}
+                    self.delays = {}
+                    self.eligibility = {}
+                    self.release_state = {}
+                    for item in raw_edges:
+                        if not isinstance(item, Mapping):
+                            continue
+                        source = _checkpoint_int(item.get("source"), -1)
+                        target = _checkpoint_int(item.get("target"), -1)
+                        if not (
+                            0 <= source < self.config.n_neurons
+                            and 0 <= target < self.config.n_neurons
+                            and source != target
+                        ):
+                            continue
+                        edge = (source, target)
+                        self.adjacency[source].add(target)
+                        self.incoming[target].add(source)
+                        self.weights[edge] = _checkpoint_float(item.get("weight"))
+                        self.delays[edge] = max(
+                            1, _checkpoint_int(item.get("delay"), 1)
+                        )
+                        self.eligibility[edge] = _checkpoint_float(
+                            item.get("eligibility")
+                        )
+                        self.release_state[edge] = _checkpoint_float(
+                            item.get("release_state"), 1.0
+                        )
+                self.structural_added = _checkpoint_int(
+                    raw_network.get("structural_added"), 0
+                )
+                self.structural_removed = _checkpoint_int(
+                    raw_network.get("structural_removed"), 0
+                )
+
+            raw_pan_runtime = payload.get("pan_runtime")
+            if isinstance(raw_pan_runtime, Mapping):
+                raw_population = raw_pan_runtime.get("population_vector")
+                if isinstance(raw_population, list):
+                    self.pan_runtime.population_vector = [
+                        _checkpoint_float(value) for value in raw_population
+                    ][: self.config.pan_dimensions]
+                    if (
+                        len(self.pan_runtime.population_vector)
+                        < self.config.pan_dimensions
+                    ):
+                        self.pan_runtime.population_vector.extend(
+                            [0.0]
+                            * (
+                                self.config.pan_dimensions
+                                - len(self.pan_runtime.population_vector)
+                            )
+                        )
+                self.pan_runtime.feedback_abs_total = _checkpoint_float(
+                    raw_pan_runtime.get("feedback_abs_total"), 0.0
+                )
+                self.pan_runtime.feedback_samples = _checkpoint_int(
+                    raw_pan_runtime.get("feedback_samples"), 0
+                )
+                raw_apoptosis = raw_pan_runtime.get("apoptosis_events")
+                if isinstance(raw_apoptosis, list):
+                    self.pan_runtime.apoptosis_events = [
+                        dict(item) for item in raw_apoptosis if isinstance(item, dict)
+                    ]
+
+            raw_execution = payload.get("execution")
+            if isinstance(raw_execution, Mapping):
+                engine = raw_execution.get("current_engine")
+                if engine in {"EVENT_ONLY", "TICK_ONLY"}:
+                    self.switcher.current_engine = str(engine)
+                self.switcher.last_switch_tick = _checkpoint_int(
+                    raw_execution.get("last_switch_tick"), 0
+                )
+                raw_history = raw_execution.get("mode_history")
+                if isinstance(raw_history, list):
+                    self.switcher.mode_history = [
+                        dict(item) for item in raw_history if isinstance(item, dict)
+                    ]
+                raw_transitions = raw_execution.get("transitions")
+                if isinstance(raw_transitions, list):
+                    self.switcher.transitions = [
+                        dict(item) for item in raw_transitions if isinstance(item, dict)
+                    ]
+                self.switcher.event_ticks = _checkpoint_int(
+                    raw_execution.get("event_ticks"), 0
+                )
+                self.switcher.tick_ticks = _checkpoint_int(
+                    raw_execution.get("tick_ticks"), 0
+                )
+                self.switcher.consistency_failures = _checkpoint_int(
+                    raw_execution.get("consistency_failures"), 0
+                )
+                raw_activity_history = raw_execution.get("activity_history")
+                if isinstance(raw_activity_history, list):
+                    self.switcher.monitor.history.clear()
+                    for value in raw_activity_history[-self.switcher.monitor.window :]:
+                        self.switcher.monitor.history.append(_checkpoint_float(value))
+
+            raw_growth = payload.get("growth")
+            if self.growth is not None and isinstance(raw_growth, Mapping):
+                raw_activity_ema = raw_growth.get("activity_ema")
+                if (
+                    isinstance(raw_activity_ema, list)
+                    and len(raw_activity_ema) == self.config.n_neurons
+                ):
+                    self.growth.activity_ema = [
+                        _checkpoint_float(value) for value in raw_activity_ema
+                    ]
+                self.growth.coactivation.clear()
+                raw_coactivation = raw_growth.get("coactivation")
+                if isinstance(raw_coactivation, list):
+                    for item in raw_coactivation:
+                        if isinstance(item, list) and len(item) == 3:
+                            source = _checkpoint_int(item[0], -1)
+                            target = _checkpoint_int(item[1], -1)
+                            count = _checkpoint_int(item[2], 0)
+                            if (
+                                0 <= source < self.config.n_neurons
+                                and 0 <= target < self.config.n_neurons
+                                and count > 0
+                            ):
+                                self.growth.coactivation[(source, target)] = count
+                for attr in (
+                    "neurogenesis_events",
+                    "synaptogenesis_events",
+                    "path_events",
+                    "pruning_events",
+                ):
+                    raw_events = raw_growth.get(attr)
+                    if isinstance(raw_events, list):
+                        setattr(
+                            self.growth,
+                            attr,
+                            [
+                                dict(item)
+                                for item in raw_events
+                                if isinstance(item, dict)
+                            ],
+                        )
+                self.growth.barriers = _checkpoint_int(raw_growth.get("barriers"), 0)
+                raw_pending_growth = raw_growth.get("pending_events")
+                self.growth_events = (
+                    [
+                        dict(item)
+                        for item in raw_pending_growth
+                        if isinstance(item, dict)
+                    ]
+                    if isinstance(raw_pending_growth, list)
+                    else []
+                )
+                self.pan_runtime.degree = [
+                    len(self.adjacency[index]) + len(self.incoming[index])
+                    for index in range(self.config.n_neurons)
+                ]
+
+            learning = payload.get("learning")
+            if isinstance(learning, Mapping):
+                raw_policy = learning.get("policy")
+                if isinstance(raw_policy, list):
+                    self.learning.policy = [
+                        _checkpoint_float(value) for value in raw_policy
+                    ]
+                raw_activity = learning.get("activity")
+                if isinstance(raw_activity, list):
+                    self.learning.activity = [
+                        _checkpoint_float(value) for value in raw_activity
+                    ]
+                for name in ("action_history", "target_history"):
+                    raw = learning.get(name)
+                    if isinstance(raw, list):
+                        setattr(
+                            self.learning,
+                            name,
+                            [_checkpoint_int(value) for value in raw],
+                        )
+                raw_rewards = learning.get("reward_history")
+                if isinstance(raw_rewards, list):
+                    self.learning.reward_history = [
+                        _checkpoint_float(value) for value in raw_rewards
+                    ]
+                self.learning.policy_updates = _checkpoint_int(
+                    learning.get("policy_updates"), 0
+                )
+                self.learning.correct_actions = _checkpoint_int(
+                    learning.get("correct_actions"), 0
+                )
+                self.learning.insufficient_activity_episodes = _checkpoint_int(
+                    learning.get("insufficient_activity_episodes"), 0
+                )
+                raw_context = learning.get("context_policies")
+                if isinstance(raw_context, Mapping):
+                    self.learning.context_policies = {
+                        str(key): [_checkpoint_float(value) for value in values]
+                        for key, values in raw_context.items()
+                        if isinstance(values, list)
+                    }
+                raw_weights = learning.get("context_weights")
+                if isinstance(raw_weights, Mapping):
+                    self.learning.context_weights = {
+                        str(key): [
+                            [_checkpoint_float(value) for value in row]
+                            for row in rows
+                            if isinstance(row, list)
+                        ]
+                        for key, rows in raw_weights.items()
+                        if isinstance(rows, list)
+                    }
+                raw_updates = learning.get("context_updates")
+                if isinstance(raw_updates, Mapping):
+                    self.learning.context_updates = {
+                        str(key): _checkpoint_int(value)
+                        for key, value in raw_updates.items()
+                    }
+                raw_external = learning.get("external_reward_history")
+                if isinstance(raw_external, list):
+                    self.learning.external_reward_history = [
+                        dict(item) for item in raw_external if isinstance(item, dict)
+                    ]
+                raw_active_context = learning.get("active_context")
+                self.learning.active_context = (
+                    str(raw_active_context)
+                    if isinstance(raw_active_context, str)
+                    else None
+                )
 
     def snapshot(self) -> dict[str, object]:
         with self.lock:
@@ -282,6 +803,7 @@ class PANLiveSession:
                 "output_counts": list(self.output_counts),
                 "input_queue_depth": len(self.input_queue),
                 "learning_enabled": self.learning_enabled,
+                "auto_reward_enabled": self.auto_reward_enabled,
                 "learning": self.learning.summary(),
                 "execution": self.switcher.summary(),
                 "state_digest": self.state_digest(),

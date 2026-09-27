@@ -3,18 +3,21 @@
 
 from __future__ import annotations
 
+import hashlib
 import json
 import math
 import platform
 import sys
-import hashlib
 from pathlib import Path
 
 import brian2
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from reference.stage1_topology_brian2.integrator_probe import run_one_tick, run_trajectory
+from reference.stage1_topology_brian2.integrator_probe import (
+    run_one_tick,
+    run_trajectory,
+)
 from src.core.neuron import NeuronConfig, create_neuron
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -126,9 +129,7 @@ def main() -> int:
         )
     trajectory_currents = [100.0, 0.0, 0.0, 100.0, 0.0, 0.0, 0.0, 0.0]
     mhrn_trajectory = run_mhrn_trajectory(trajectory_currents)
-    brian2_trajectory = [
-        row.to_dict() for row in run_trajectory(trajectory_currents)
-    ]
+    brian2_trajectory = [row.to_dict() for row in run_trajectory(trajectory_currents)]
     trajectory_cases = []
     trajectory_pass = True
     for tick, (mhrn, reference) in enumerate(

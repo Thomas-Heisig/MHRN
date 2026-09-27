@@ -17,8 +17,8 @@ from urllib.parse import unquote
 
 from .docs_source import DocumentationSource, create_docs_source
 from .file_rendering import (
-    FileContractError,
     PROJECT_FILE_ALLOWLIST,
+    FileContractError,
     atomic_write,
     file_is_read_only,
     handle_file_rendering,
@@ -1074,7 +1074,10 @@ def register_file_manager_routes(
             handler._send_json({"error": str(exc)}, exc.status)
             return True
     fm = FileManager(research_source, docs_source, _DEFAULT_DOCS_ROOT)
-    roots = {"docs": docs_source.docs_root if docs_source else _DEFAULT_DOCS_ROOT, "project": _DEFAULT_DOCS_ROOT.parent}
+    roots = {
+        "docs": docs_source.docs_root if docs_source else _DEFAULT_DOCS_ROOT,
+        "project": _DEFAULT_DOCS_ROOT.parent,
+    }
     if research_source is not None:
         roots["research"] = research_source.root()
     if handle_file_rendering(handler, path, query, roots):

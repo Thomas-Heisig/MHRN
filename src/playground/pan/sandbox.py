@@ -18,7 +18,9 @@ class Joint:
 
 
 class _LiveSessionLike(Protocol):
-    def inject_vector(self, values: list[float], *, duration_ticks: int, gain: float) -> None: ...
+    def inject_vector(
+        self, values: list[float], *, duration_ticks: int, gain: float
+    ) -> None: ...
     def step(self, ticks: int = 32) -> dict[str, object]: ...
 
 
@@ -29,6 +31,9 @@ class StickFigureSandbox:
     joints: dict[str, Joint] = field(default_factory=dict)
     muscles: dict[str, float] = field(default_factory=dict)
     echo: deque[list[float]] = field(default_factory=lambda: deque(maxlen=10))
+    springs: list[tuple[str, str, float, float]] = field(
+        default_factory=list, init=False
+    )
     tick: int = 0
 
     def __post_init__(self) -> None:
@@ -91,7 +96,9 @@ class StickFigureSandbox:
         self.muscles[keys[action % 4]] = 1.0
 
     def step(self, dt: float = 0.01) -> dict[str, object]:
-        forces = {name: [0.0, -9.81 * joint.mass] for name, joint in self.joints.items()}
+        forces = {
+            name: [0.0, -9.81 * joint.mass] for name, joint in self.joints.items()
+        }
         for a, b, rest, stiffness in self.springs:
             ja, jb = self.joints[a], self.joints[b]
             dx, dy = jb.x - ja.x, jb.y - ja.y
@@ -161,7 +168,6 @@ class StickFigureSandbox:
                 "direct_ollama_http_created": False,
             },
         }
-
 
 
 class PANEmbodiedSandboxSession:

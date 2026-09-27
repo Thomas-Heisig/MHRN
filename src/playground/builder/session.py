@@ -17,8 +17,8 @@ from ..models import PlaygroundConfig, Topology
 from ..neural_io import NeuralIOInterface
 from ..pan import (
     BehavioralLearningEngine,
-    CUDAMemoryPool,
     CorticalOrganization,
+    CUDAMemoryPool,
     DualModeScheduler,
     GrowthEngine,
     ModeSwitcher,
@@ -286,9 +286,7 @@ class PlaygroundSession:
                 pending[slot] = [0.0 for _ in range(config.n_neurons)]
                 external = stimulus(tick)
                 if config.neuron_model == "pan_adex_5d":
-                    external = [
-                        value + config.pan_bias_current for value in external
-                    ]
+                    external = [value + config.pan_bias_current for value in external]
                 if neural_io is not None:
                     io_current = neural_io.currents_for_tick(tick)
                     external = [
@@ -330,9 +328,7 @@ class PlaygroundSession:
                     ):
                         continue
                     current = (
-                        external[neuron_id]
-                        + synaptic[neuron_id]
-                        + feedback[neuron_id]
+                        external[neuron_id] + synaptic[neuron_id] + feedback[neuron_id]
                     )
                     if model.step(state, current, config.dt_ms, model.parameters):
                         spiked_this_tick.append(neuron_id)
@@ -520,9 +516,7 @@ class PlaygroundSession:
                         edge = (source, target)
                         amplitude = weights[edge]
                         if pan_runtime is not None:
-                            amplitude *= float(
-                                states[source].get("pan_amplitude", 1.0)
-                            )
+                            amplitude *= float(states[source].get("pan_amplitude", 1.0))
                         if synapse_mode in {"quantal_stp", "pan_stp_stdp"}:
                             available = release_state[edge]
                             released = (
@@ -706,9 +700,7 @@ class PlaygroundSession:
                 mode=config.geometry_mode,
                 delays=delays,
                 apoptosis_events=(
-                    apoptosis_events
-                    if isinstance(apoptosis_events, list)
-                    else []
+                    apoptosis_events if isinstance(apoptosis_events, list) else []
                 ),
                 activity_values=rates,
             )
