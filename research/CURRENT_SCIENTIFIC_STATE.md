@@ -99,13 +99,17 @@ Nach dem unveränderten Gewichtungsvertrag beträgt die Stage-1-Scientific-Matur
 
 Die EvidenceEngine setzt `CLAIM-S1-TOPO-001` und `H-SNN-003-B` nach ihrem generischen Mehr-EVID-Vertrag weiterhin auf `inconclusive`, weil eine einzelne EVID-Registrierung nicht automatisch einen globalen Claim-Status `supported` erzeugt. Das widerspricht nicht dem Human Review `supports`; die Stage-Maturity zählt hier die abgeschlossene kanonische Review-/EVID-Pipeline, nicht eine künstliche Hochstufung des globalen Claim-Status.
 
-Als zweite getrennte Funktionslinie wird `STAGE1-TEMPORAL-ORDER-LINE-002` mit `RQ-TEMP-002 / H-TEMP-002-A` und `EXP-S1-TEMP-ORDER-V2-20260919` geführt. Der präregistrierte Sechs-Neuronen-Task umfasst 20 Seeds, 120 Runs und eine identity-destroyed Kontrolle. Der DATA-Status ist `SUPPORTED_WITHIN_PREREGISTERED_PROTOCOL`; der frühere Human Review mit `accepted_as_interpretation` bleibt erhalten. Diese Linie besitzt noch keine kanonische EvidenceEngine-Promotion und bleibt funktional eigenständig, aber keine unabhängige Replikation der Topologielinie.
+Als zweite getrennte Funktionslinie wird `STAGE1-TEMPORAL-ORDER-LINE-002` mit `RQ-TEMP-002 / H-TEMP-002-A` geführt. Der historische Lauf `EXP-S1-TEMP-ORDER-V2-20260919` bleibt reviewed DATA. Die prospektive Promotion-Replikation `EXP-S1-TEMP-PROMO-R1-20260927` wiederholte den Sechs-Neuronen-/Zweikanal-Task auf 20 frischen Seeds und 120 Läufen mit identity-destroyed Kontrolle unter dem aktuellen Provenienzvertrag. Intact forward/reverse accuracy lag bei Median 1,0, identity-destroyed bei 0,0, der gepaarte Median-Delta bei 1,0 mit CI [1,0;1,0] und p=1,907×10^-6. Der kanonische Human Review durch Thomas Heisig lautet `supports` mit ausdrücklicher Perfect-Score-/Ceiling-Floor-Einschränkung. Die simultane Bedingung ist gemäß Preregistration ein nicht-inferentieller Task-Adequacy-Control: Erfolg bedeutet gleiche erste Output-Ticks und Decoderlabel `simultaneous`, nicht 100-%-Order-Accuracy. Die getrennte EvidenceEngine-Promotion erzeugte `EVID-2026-20`.
+
+Stage 1 bleibt trotz der zweiten EVID-Linie bei **85 %**. Das Reviewed-Evidence-Kriterium war durch `EVID-2026-19` bereits vollständig erfüllt; `EVID-2026-20` erweitert die Evidenzbreite, erfüllt aber nicht die unabhängige Replikationskomponente. Die Temporal-Linie bleibt funktional eigenständig und ist keine unabhängige Replikation der Topologielinie.
 
 Die nächste 7,5-%-Stufe bis 92,5 % erfordert eine unabhängig implementierte Referenz-/Cross-Implementation-Replikation des zentralen Topologie-Claims. Eine echte externe, unabhängig autorisierte Replikation bleibt darüber hinaus die Voraussetzung für die vollständige Replikationskomponente. `RQ-5D-005 / H-5D-005-A` bleibt separat offen; aus `EVID-2026-19` darf kein 5D-Überlegenheitsclaim abgeleitet werden.
 
 Kanonische Maschinenbaseline: `research/registry/stage1_baseline.json` (`STAGE1-SCIENTIFIC-BASELINE-20260925`).  
 Kanonische Topologie-EVID: `research/registry/evidence/EVID-2026-19.json`.  
-Kanonischer Promotionsstatus: `research/experiments/EXP-S1-TOPO-PROMO-R1-20260927/EVIDENCE_PROMOTION_STATUS.json`.
+Kanonische Temporal-Order-EVID: `research/registry/evidence/EVID-2026-20.json`.  
+Topologie-Promotionsstatus: `research/experiments/EXP-S1-TOPO-PROMO-R1-20260927/EVIDENCE_PROMOTION_STATUS.json`.  
+Temporal-Promotionsstatus: `research/experiments/EXP-S1-TEMP-PROMO-R1-20260927/EVIDENCE_PROMOTION_STATUS.json`.
 
 ## Aktueller Schwerpunkt: Stage 6
 

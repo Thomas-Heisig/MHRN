@@ -2804,9 +2804,11 @@
     },
     {
       "claim_statuses": {
+        "CLAIM-S1-EFFICIENCY-001": "untested",
         "CLAIM-S1-TOPO-001": "inconclusive"
       },
       "claims": [
+        "CLAIM-S1-EFFICIENCY-001",
         "CLAIM-S1-TOPO-001"
       ],
       "cross_cuts": [],
@@ -2828,14 +2830,17 @@
         "EXP-S1-TOPO-V3-R1-20260918"
       ],
       "hypotheses": [
-        "H-SNN-003-B"
+        "H-SNN-003-B",
+        "H-SNN-003-C"
       ],
       "hypothesis_statuses": {
-        "H-SNN-003-B": "inconclusive"
+        "H-SNN-003-B": "inconclusive",
+        "H-SNN-003-C": "untested"
       },
       "literature": [
         "SRC-WATTS-STROGATZ-1998",
-        "SRC-BARABASI-1999"
+        "SRC-BARABASI-1999",
+        "SRC-OLSHAUSEN-FIELD-1996"
       ],
       "manuscript_parts": [
         "III",
@@ -3256,7 +3261,7 @@
     },
     {
       "claim_statuses": {
-        "CLAIM-S1-TEMP-001": "untested"
+        "CLAIM-S1-TEMP-001": "inconclusive"
       },
       "claims": [
         "CLAIM-S1-TEMP-001"
@@ -3265,19 +3270,22 @@
       "direction": null,
       "direction_status": "unresolved_no_inference",
       "domain": "Temporal Learning",
-      "evidence_records": [],
+      "evidence_records": [
+        "EVID-2026-20"
+      ],
       "experiments": [
         "EXP-BATCH-20260906200118-40",
         "EXP-BATCH-20260909223705-40",
         "EXP-BATCH-20260914074039-40",
         "EXP-EMP-20260910",
-        "EXP-S1-TEMP-ORDER-V2-20260919"
+        "EXP-S1-TEMP-ORDER-V2-20260919",
+        "EXP-S1-TEMP-PROMO-R1-20260927"
       ],
       "hypotheses": [
         "H-TEMP-002-A"
       ],
       "hypothesis_statuses": {
-        "H-TEMP-002-A": "untested"
+        "H-TEMP-002-A": "inconclusive"
       },
       "literature": [],
       "manuscript_parts": [
@@ -3287,7 +3295,7 @@
       "papers": [],
       "research_axis": "unclassified",
       "research_question": "RQ-TEMP-002",
-      "rq_status": "open",
+      "rq_status": "inconclusive",
       "source_path": "research/registry/questions.yaml",
       "stages": []
     },
@@ -5406,6 +5414,17 @@
         "research/experiments/EXP-S1-TEMP-ORDER-V2-20260919/manifest.json.review.json",
         "research/experiments/EXP-S1-TEMP-ORDER-V2-20260919/review_request.json",
         "research/experiments/EXP-S1-TEMP-ORDER-V2-20260919/review_request.json.review.json"
+      ]
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-S1-TEMP-PROMO-R1-20260927",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "recorded_review_present_check_status_binding",
+      "review_artifacts": [
+        "research/experiments/EXP-S1-TEMP-PROMO-R1-20260927/human_review.json",
+        "research/experiments/EXP-S1-TEMP-PROMO-R1-20260927/review_request.json",
+        "research/experiments/EXP-S1-TEMP-PROMO-R1-20260927/review_request.json.review.json"
       ]
     },
     {

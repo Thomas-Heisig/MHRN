@@ -34,9 +34,12 @@ def test_stage1_scoped_claims_are_registered_without_retroactive_evidence() -> N
     temporal = claims["CLAIM-S1-TEMP-001"]
     assert temporal["research_question"] == "RQ-TEMP-002"
     assert temporal["hypothesis"] == "H-TEMP-002-A"
-    assert temporal["status"] == "untested"
-    assert temporal["evidence"] == []
-    assert temporal["experiments"] == ["EXP-S1-TEMP-ORDER-V2-20260919"]
+    assert temporal["status"] == "inconclusive"
+    assert temporal["evidence"] == ["EVID-2026-20"]
+    assert temporal["experiments"] == [
+        "EXP-S1-TEMP-ORDER-V2-20260919",
+        "EXP-S1-TEMP-PROMO-R1-20260927",
+    ]
 
 
 def test_stage1_claim_boundaries_do_not_assert_stronger_results() -> None:
@@ -59,6 +62,7 @@ def test_stage1_baseline_tracks_canonical_topology_evid_without_overclaim() -> N
 
     assert assessment["scientific_evidence"] is True
     assert assessment["topology_evidence_id"] == "EVID-2026-19"
+    assert assessment["temporal_evidence_id"] == "EVID-2026-20"
     assert assessment["automatic_evidence_promotion"] is False
     assert baseline["maturity"]["percent"] == 85
     assert (

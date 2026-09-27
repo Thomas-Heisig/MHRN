@@ -265,13 +265,22 @@ def test_stage1_canonical_baseline_binds_both_reviewed_functional_lines() -> Non
 
     temporal = baseline["second_functional_line"]
     assert temporal["line_id"] == "STAGE1-TEMPORAL-ORDER-LINE-002"
-    assert temporal["experiment_id"] == "EXP-S1-TEMP-ORDER-V2-20260919"
-    assert temporal["human_review_decision"] == "accepted_as_interpretation"
+    assert [item["experiment_id"] for item in temporal["experiments"]] == [
+        "EXP-S1-TEMP-ORDER-V2-20260919",
+        "EXP-S1-TEMP-PROMO-R1-20260927",
+    ]
+    assert (
+        temporal["experiments"][0]["human_review_decision"]
+        == "accepted_as_interpretation"
+    )
+    assert temporal["experiments"][1]["human_review_decision"] == "supports"
+    assert temporal["experiments"][1]["evidence_id"] == "EVID-2026-20"
     assert "not an independent replication" in temporal["independence_semantics"]
 
     promotion = baseline["evid_promotion_assessment"]
-    assert promotion["status"] == "TOPOLOGY_PROMOTION_COMPLETED_TEMPORAL_PROMOTION_OPEN"
+    assert promotion["status"] == "TOPOLOGY_AND_TEMPORAL_PROMOTIONS_COMPLETED"
     assert promotion["scientific_evidence"] is True
     assert promotion["topology_evidence_id"] == "EVID-2026-19"
+    assert promotion["temporal_evidence_id"] == "EVID-2026-20"
     assert promotion["automatic_evidence_promotion"] is False
     assert baseline["independent_replication"]["complete"] is False

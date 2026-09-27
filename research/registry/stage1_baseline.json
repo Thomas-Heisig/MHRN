@@ -86,11 +86,10 @@
     "hypothesis": "H-TEMP-002-A",
     "role": "independent_stage1_functional_line",
     "independence_semantics": "Independent in functional question/task, not an independent replication of the topology claim.",
-    "evidence_class": "DATA",
+    "evidence_class": "EVID",
     "result_status": "SUPPORTED_WITHIN_PREREGISTERED_PROTOCOL",
-    "experiment_id": "EXP-S1-TEMP-ORDER-V2-20260919",
-    "human_review": "research/experiments/EXP-S1-TEMP-ORDER-V2-20260919/review_request.json.review.json",
-    "human_review_decision": "accepted_as_interpretation",
+    "human_review": "research/experiments/EXP-S1-TEMP-PROMO-R1-20260927/human_review.json",
+    "human_review_decision": "supports",
     "key_result": {
       "runs": 120,
       "intact_order_accuracy_median": 1,
@@ -103,10 +102,28 @@
       ],
       "exact_paired_sign_test_p": 0.0000019073486
     },
-    "claim_boundary": "Scoped technical temporal-order function of a six-neuron acyclic SNN under the registered decoder/task. No learning, memory, cognition, scaling, biological equivalence, 5D advantage or independent replication is established."
+    "claim_boundary": "Scoped technical temporal-order function of a six-neuron acyclic two-channel SNN under the registered decoder/task. The simultaneous condition is a non-inferential task-adequacy control. Perfect ceiling/floor separation is an explicit methodological limitation. No learning, memory, cognition, scaling, biological equivalence, 5D advantage, general temporal reasoning or independent replication is established.",
+    "experiments": [
+      {
+        "experiment_id": "EXP-S1-TEMP-ORDER-V2-20260919",
+        "role": "preregistered_primary_functional_data",
+        "human_review": "research/experiments/EXP-S1-TEMP-ORDER-V2-20260919/review_request.json.review.json",
+        "human_review_decision": "accepted_as_interpretation"
+      },
+      {
+        "experiment_id": "EXP-S1-TEMP-PROMO-R1-20260927",
+        "role": "prospective_promotion_eligible_internal_replication",
+        "human_review": "research/experiments/EXP-S1-TEMP-PROMO-R1-20260927/human_review.json",
+        "human_review_decision": "supports",
+        "evidence_id": "EVID-2026-20",
+        "methodological_follow_up": "research/notes/2026-09-27_stage1_temporal_order_decoder_followup.md"
+      }
+    ],
+    "evidence_id": "EVID-2026-20",
+    "relationship": "The historical V2 run remains reviewed DATA. EXP-S1-TEMP-PROMO-R1-20260927 prospectively reproduced the bounded task on fresh seeds under the current EvidenceEngine provenance contract and was human-reviewed as supports with explicit perfect-score/decoder limitations, producing EVID-2026-20. This functional line is not an independent replication of the topology claim."
   },
   "evid_promotion_assessment": {
-    "status": "TOPOLOGY_PROMOTION_COMPLETED_TEMPORAL_PROMOTION_OPEN",
+    "status": "TOPOLOGY_AND_TEMPORAL_PROMOTIONS_COMPLETED",
     "scientific_evidence": true,
     "automatic_evidence_promotion": false,
     "topology_claim_id": "CLAIM-S1-TOPO-001",
@@ -114,9 +131,12 @@
     "topology_promotion_experiment": "EXP-S1-TOPO-PROMO-R1-20260927",
     "topology_human_review_decision": "supports",
     "temporal_claim_id": "CLAIM-S1-TEMP-001",
-    "temporal_scientific_evidence": false,
-    "scope": "The central topology line now has canonical human-reviewed EVID. The Temporal-Order line remains reviewed DATA and requires its own prospective promotion path.",
-    "remaining_next_step": "Run the separate prospective Temporal-Order promotion path, then pursue independently implemented reference replication for the Stage-1 replication criterion."
+    "temporal_evidence_id": "EVID-2026-20",
+    "temporal_promotion_experiment": "EXP-S1-TEMP-PROMO-R1-20260927",
+    "temporal_human_review_decision": "supports",
+    "temporal_scientific_evidence": true,
+    "scope": "Both central Stage-1 functional lines now have separate canonical human-reviewed EVID. This strengthens Stage-1 evidence breadth but does not satisfy independent replication.",
+    "remaining_next_step": "Pursue independently implemented reference/cross-implementation replication for the central topology claim. The separate topology-efficiency hypothesis remains DRAFT/untested and cannot substitute for the independent-replication criterion."
   },
   "independent_replication": {
     "complete": false,

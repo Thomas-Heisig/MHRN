@@ -701,15 +701,9 @@
   - EVID-2026-20
   status: inconclusive
   answer:
-    current: EXP-S1-TEMP-ORDER-V2-20260919 liefert präregistrierte Stage-1-DATA aus
-      120 Läufen über 20 Seeds mit identity-destroyed Kontrolle. Der Laufstatus ist
-      SUPPORTED_WITHIN_PREREGISTERED_PROTOCOL. Der Human Review durch Thomas Heisig
-      ist mit accepted_as_interpretation abgeschlossen; EVID-Promotion und unabhängige
-      Replikation stehen separat aus.
-    confidence: preregistered_task_data_human_reviewed_evid_not_promoted
-    limitations: Der Befund ist eine eng begrenzte Small-SNN-Funktionslinie. Er belegt
-      weder Lernen, Gedächtnis, allgemeines zeitliches Schlussfolgern, Skalierbarkeit
-      noch unabhängige Replikation und ist keine Replikation der Topologie-DATA-Linie.
+    current: EXP-S1-TEMP-PROMO-R1-20260927 reproduced the bounded six-neuron two-channel temporal-order task on 20 fresh paired seeds under the current EvidenceEngine provenance contract. The canonical Human Review decision is supports with explicit perfect-score saturation and decoder/task limitations. Explicit promotion created EVID-2026-20. The historical V2 run remains reviewed DATA.
+    confidence: bounded_temporal_order_evid_with_methodological_limitations
+    limitations: The simultaneous condition is a non-inferential task-adequacy control, not forward/reverse order accuracy. Perfect ceiling/floor separation limits mechanistic resolution and motivates a separate prospective decoder stress test. No learning, memory, general temporal reasoning, cognition, scaling, biological equivalence or independent replication is established.
   created: '2026-09-05'
   updated: '2026-09-25'
 - id: RQ-PERF-001

@@ -20,6 +20,7 @@ on:
       - scripts/promote_stage1_topology_r1.py
       - scripts/run_stage1_temporal_order_promotion_r1.py
       - scripts/verify_stage1_temporal_order_promotion_r1.py
+      - scripts/promote_stage1_temporal_order_r1.py
   workflow_dispatch:
 
 concurrency:
@@ -55,6 +56,7 @@ jobs:
             scripts/promote_stage1_topology_r1.py \
             scripts/run_stage1_temporal_order_promotion_r1.py \
             scripts/verify_stage1_temporal_order_promotion_r1.py \
+            scripts/promote_stage1_temporal_order_r1.py \
             tests/test_stage1_topology_promotion_contract.py \
             tests/test_stage1_temporal_order_promotion_contract.py \
             tests/test_stage1_scientific_contract.py \
@@ -83,6 +85,7 @@ jobs:
             scripts/promote_stage1_topology_r1.py \
             scripts/run_stage1_temporal_order_promotion_r1.py \
             scripts/verify_stage1_temporal_order_promotion_r1.py \
+            scripts/promote_stage1_temporal_order_r1.py \
             tests/test_stage1_topology_promotion_contract.py \
             tests/test_stage1_temporal_order_promotion_contract.py \
             tests/test_stage1_scientific_contract.py \
