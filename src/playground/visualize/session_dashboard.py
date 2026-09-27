@@ -4,8 +4,8 @@ from __future__ import annotations
 
 from collections.abc import Mapping
 
-from .rate import population_rate_series
 from .raster import raster_series
+from .rate import population_rate_series
 from .topology_2d import project_2d
 from .topology_5d_projection import project_5d
 
