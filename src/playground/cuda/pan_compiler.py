@@ -186,6 +186,7 @@ def build_gate_program(
                 GateType.G_CMP,
                 f"target_match_{action}",
                 action=action,
+                channel=(config.target_cue_channel + action) % config.input_channels,
             )
             _gate(
                 gates,
@@ -193,6 +194,7 @@ def build_gate_program(
                 GateType.G_MUL,
                 f"target_cue_{action}",
                 action=action,
+                current=config.target_cue_current,
             )
 
     if config.reward_signal_enabled:
