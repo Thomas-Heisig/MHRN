@@ -233,3 +233,27 @@ See:
 
 - `docs/playground/neural_io.md`
 - `docs/playground/neural_io_examples.md`
+
+
+## Generative PAN runtime
+
+The isolated Playground now contains a settings-derived PAN gate schematic,
+a deterministic dual event/continuous reference scheduler, bounded
+event-driven structural growth, a CUDA-memory budget estimator and optional
+compressed SSD offload.
+
+Important implementation boundaries:
+
+- generative neurogenesis uses fixed-capacity reactivation of apoptotic slots;
+  it does not expand the runtime population beyond configured `n_neurons`;
+- the 2 GiB default CUDA budget is an estimator in the Python reference
+  backend, not a claim that a CUDA allocation of that size was executed;
+- SSD offload is synchronous and remains below
+  `playground_sessions/pan_offload/`;
+- persistent CUDA kernels, Dynamic Parallelism, SM-topology coupling and
+  thermal-feedback coupling are not implemented;
+- gate emergence, dual-mode consistency, generative growth and memory scaling
+  remain `DRAFT_IDEA_NOT_PREREGISTERED` research candidates.
+
+The existing Playground safety limits remain unchanged: 1,024 neurons and
+20,000 directed edges per UI/API configuration.
