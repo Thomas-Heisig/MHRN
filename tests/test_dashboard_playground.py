@@ -292,7 +292,11 @@ def test_playground_ui_exposes_cuda_gate_compiler_preview() -> None:
     assert "19 · CUDA Gate Compiler" in module
     assert 'id="pg-cuda-compile"' in module
     assert 'id="pg-cuda-target-sm"' in module
+    assert 'id="pg-cuda-block-size"' in module
+    assert 'id="pg-cuda-preflight"' in module
     assert '"/api/playground/cuda/compile"' in module
+    assert '"/api/playground/cuda/preflight"' in module
     assert 'path == "/api/playground/cuda/compile"' in api
+    assert 'path == "/api/playground/cuda/preflight"' in api
     assert "compile_mapping" in api
     assert "EvidenceEngine" not in api
