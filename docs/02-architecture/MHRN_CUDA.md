@@ -1541,3 +1541,269 @@ CUDA-1:
 ```
 
 Damit ist Stage CUDA-0 nicht nur ein Performanceentwurf, sondern ein vollständiger **Identitäts-, State- und Execution-Contract für die spätere GPU-Beschleunigung**.
+
+---
+
+# 48. Playground-Gate-Compiler und CUDA-1-Preflight
+
+Der nicht-kanonische Playground besitzt ab PR #220 eine technische
+Gate-Codegen-Referenz:
+
+```text
+PlaygroundConfig
+    -> Gate-IR
+    -> PTX reference kernel
+    -> optional ptxas assembly
+    -> optional CUDA Driver API load
+```
+
+Diese Implementierung ändert die wissenschaftliche Einstufung nicht:
+
+```text
+scientific_evidence = false
+canonical_cuda_backend = false
+```
+
+Insbesondere bedeutet erzeugter oder erfolgreich assemblierter PTX noch nicht,
+dass ein vollständiger MHRN-CUDA-Backendvergleich abgeschlossen ist.
+
+## 48.1 Physischer Registerverbrauch
+
+Symbolische bzw. virtuelle PTX-Register sind kein gemessener Hardwareverbrauch.
+
+Deshalb gilt:
+
+```text
+physical_register_count
+    = ptxas measurement
+```
+
+und nicht eine aus dem IR abgeleitete feste Zahl.
+
+Der CUDA-1-Preflight erfasst mindestens:
+
+```text
+registers
+shared bytes
+constant bytes
+stack bytes
+spill stores
+spill loads
+target architecture
+```
+
+aus dem tatsächlichen `ptxas --verbose`-Report.
+
+## 48.2 Cooperative-Grid-Grenze
+
+`grid.sync()` ist nur mit einem kooperativ gestarteten Kernel zulässig.
+Außerdem muss das gesamte kooperative Grid gleichzeitig resident sein können.
+
+Die zulässige Grid-Größe wird daher nicht aus der SM-Zahl allein abgeleitet.
+
+Normative Vorprüfung:
+
+```text
+active_blocks_per_sm =
+    occupancy(kernel, block_size, dynamic_shared_memory)
+
+resident_block_capacity =
+    multiprocessor_count * active_blocks_per_sm
+
+required_blocks =
+    ceil(n_neurons / block_size)
+
+cooperative_launch_allowed =
+    device_supports_cooperative_launch
+    and required_blocks <= resident_block_capacity
+```
+
+Damit ist beispielsweise:
+
+```text
+28 SM
+```
+
+keine Aussage darüber, ob nur 28 Blöcke resident sein können.
+Je nach Register-, Shared-Memory- und Threadbedarf können mehrere oder auch
+weniger aktive Blöcke pro SM möglich sein.
+
+Die konkrete Grenze ist somit:
+
+> **kernel- und gerätespezifisch und vor dem Launch zu messen.**
+
+Eine Konfiguration, deren vollständiges Grid nicht resident sein kann, darf
+nicht mit `grid.sync()` gestartet werden.
+
+## 48.3 Fallback bei zu großem Grid
+
+Wenn:
+
+```text
+required_blocks > resident_block_capacity
+```
+
+darf die Runtime nicht stillschweigend dieselbe Semantik behaupten.
+
+Zulässige spätere Strategien sind beispielsweise:
+
+```text
+multi-kernel tick phases
+host/device phase barrier
+partitionierter Algorithmus mit neuem Execution Contract
+```
+
+Jede Strategie erhält einen eigenen Execution-Fingerprint und eigene
+Äquivalenztests.
+
+## 48.4 membar.gl bleibt Speicher-Fence
+
+```text
+membar.gl
+```
+
+ist ausschließlich eine Speicherordnungs-/Sichtbarkeitsoperation und keine
+Grid-Barriere.
+
+Block-interne Barriere:
+
+```text
+bar.sync / __syncthreads()
+```
+
+Grid-Barriere:
+
+```text
+cooperative_groups::grid_group::sync()
+```
+
+mit kooperativem Launch.
+
+## 48.5 Structural Growth
+
+Die Playground-Referenz verwendet für strukturelle Mutation zunächst:
+
+```text
+completed tick
+    -> explicit structural barrier
+    -> host/rebuild phase
+    -> next execution segment
+```
+
+CUDA Dynamic Parallelism ist in diesem ersten kooperativen persistenten Pfad
+nicht Bestandteil des Execution Contracts.
+
+## 48.6 CUDA-1-Paritätsstufen
+
+CUDA-1 wird nicht unmittelbar mit einer vollständigen 2000-Tick-SNN-Äquivalenz
+gleichgesetzt.
+
+Die Reihenfolge ist:
+
+```text
+1. PTX assembly validity
+2. cubin/module/function load
+3. cooperative occupancy preflight
+4. deterministic gate-output parity
+5. neuron-integrator parity
+6. synapse/plasticity parity
+7. full trace parity under a frozen Execution Contract
+```
+
+Ein Gate-Paritätstest vergleicht daher zunächst gleiche Eingaben mit gleichen
+Gate-Ausgängen und ist ausdrücklich:
+
+```text
+GATE_OUTPUT_ONLY_NOT_FULL_SNN
+```
+
+Erst nach Integration des vollständigen Neuron-/Synapsenpfades dürfen
+Spike-, Gewichts- oder Erfolgsmetriken als CPU-CUDA-Backendvergleich verwendet
+werden.
+
+## CUDA-1.1 · CPU-Referenz, Freeze-Modi und Paritätsklassen
+
+Vor einem ersten echten CUDA-Launch gilt die CPU-Playground-Ausführung als technische
+Referenz. Diese Referenz ist nur brauchbar, wenn zwei Läufe mit identischem Seed
+denselben replay-relevanten Zustand erzeugen.
+
+### CPU-Determinismus
+
+Der CUDA-1.1-Vertrag bildet einen kanonischen Fingerprint über:
+
+- Spike-Ereignisse und Tick-Spike-Counts,
+- Raten und State-Samples,
+- Topologie/Koordinaten/Kanten,
+- Readout,
+- Closed-Loop Action/Target/Reward-Historien,
+- Behavioral-Policy und Activity-State,
+- PAN- und Execution-Zustand.
+
+Nicht Teil des Fingerprints sind:
+
+- `session_id`,
+- `created_at`,
+- Wall-Clock-Laufzeit.
+
+Ein CUDA-Vergleich darf nicht beginnen, wenn zwei identische CPU-Konfigurationen
+mit identischem Seed unterschiedliche Fingerprints erzeugen.
+
+### Freeze-Modi für Closed-Loop-Parität
+
+Bei geschlossener Rückkopplung kann eine kleine numerische Abweichung die Aktion
+ändern; danach ändern sich Input, Reward und alle Folgezustände. Deshalb gibt es
+zwei fail-closed Replay-Modi:
+
+`freeze_actions=true`
+: Die Aktion wird aus einer vorher aufgezeichneten CPU-Sequenz gelesen. Die
+  Sequenz muss alle abgeschlossenen Episoden abdecken.
+
+`freeze_rewards=true`
+: Der Reward wird aus einer vorher aufgezeichneten CPU-Sequenz gelesen. Er wird
+  nicht aus dem aktuellen Kandidatenlauf neu berechnet.
+
+Für beide Modi ist
+`parity_reference_source=CPU_PYTHON_PLAYGROUND` und ein Git-SHA in
+`parity_reference_commit` Pflicht. Eine zu kurze Referenzspur ist ein
+Konfigurationsfehler; es gibt keinen stillen Fallback auf Live-Aktionen oder
+Live-Rewards.
+
+### D1 / D2 / D3
+
+| Klasse | Bedeutung | Akzeptanz |
+|---|---|---|
+| D1 | exakte Ereignisparität | 0 abweichende `(neuron_id, tick)` Spike-Ereignisse |
+| D2 | numerische Zustandsparität | `max_abs(V_cpu-V_cuda) <= 1e-4`, `max_abs(w_cpu-w_cuda) <= 1e-4` |
+| D3 | Verhaltens-/Metrikparität | Spike-Count relative Abweichung <= 0,5 %, Success-Fraction absolute Abweichung <= 0,02 |
+
+D2 ist das primäre Ziel für CUDA-1. D1 ist strenger und setzt praktisch dieselbe
+Floating-Point-Operationsreihenfolge voraus. D3 wird erst bei geschlossener
+Rückkopplung und Plastizität als geeignete Vergleichsklasse verwendet.
+
+### Gate-Parity-Scope
+
+Der aktuelle Gate-Vergleich umfasst:
+
+- verglichen: A1, A2, A3, A4, B1, C1, C2, D1,
+- noch nicht als vollständiger Gate-Parity-Teil: C4 und zustandsbehaftete
+  Feedback-Topologie,
+- explizit ausgeschlossen: spätere Weight-Updates, vollständiger rekurrenter
+  SNN-Zustand und Structural Growth.
+
+Diese Grenze ist weiterhin `GATE_OUTPUT_ONLY_NOT_FULL_SNN` und darf nicht als
+vollständige CPU/CUDA-SNN-Parität interpretiert werden.
+
+### CUDA-1-Leiter
+
+1. CPU-Determinismus mit identischem Seed.
+2. Erster CUDA-Kernel-Launch ohne Closed Loop.
+3. D2 für einen Tick.
+4. D2 für 100 Ticks ohne Plastizität.
+5. Freeze-Actions/Freeze-Rewards für Reward-/Action-Loop.
+6. Credit-/Weight-Updates mit eingefrorener Referenzspur.
+7. D3 für vollständig geschlossenen P3-Lauf.
+
+Erst danach kann ein Status oberhalb von
+`ASSEMBLED_LOADED_NOT_EXECUTED` bzw. `SOURCE_GENERATED_NOT_EXECUTED`
+gerechtfertigt werden.
+
