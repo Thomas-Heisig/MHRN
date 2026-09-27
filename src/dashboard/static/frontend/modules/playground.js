@@ -103,7 +103,23 @@ function buildPanels(root) {
           <label>xyz-Geschwindigkeit / Tick<input id="pg-geometry-delay-velocity" type="number" min="0.001" max="10" step="0.01" value="0.25"></label>
           <small><code>x,y,z</code> sind kartesisch; <code>a,b</code> sind zyklische Torus-Koordinaten. Zustandsraum Ds und Geometrierraum Dg bleiben unabhängig. Klein-Flasche, dynamische Positionierung, PID-Kraft und Neurogenese sind nicht implementiert.</small>
         </article>
-        <article class="playground-card"><h3>07 · Neural I/O Interface</h3>
+        <article class="playground-card"><h3>07 · Generative PAN Runtime</h3>
+          <label>Clock<select id="pg-clock-mode"><option value="continuous">Continuous</option><option value="dual">Dual · Event + Continuous</option></select></label>
+          <label>Base Hz<input id="pg-clock-base-hz" type="number" min="1" max="10000" value="100"></label>
+          <label>Event Batch ms<input id="pg-clock-event-batch" type="number" min="0.05" max="1000" step="0.05" value="10"></label>
+          <label><span><input id="pg-growth-enabled" type="checkbox"> generatives Wachstum</span></label>
+          <label>Aktivität θ<input id="pg-growth-activity" type="number" min="0" max="1" step="0.01" value="0.25"></label>
+          <label>Co-Aktivierung θ<input id="pg-growth-coactivation" type="number" min="1" max="1000" value="2"></label>
+          <label>Info θ<input id="pg-growth-info" type="number" min="0" max="1" step="0.01" value="0.25"></label>
+          <label>Prune θ<input id="pg-growth-prune" type="number" min="0" max="100" step="0.01" value="0.05"></label>
+          <label>max. Synapsen/Neuron<input id="pg-growth-max-synapses" type="number" min="1" max="512" value="128"></label>
+          <label>max. neue Synapsen/Barriere<input id="pg-growth-max-new" type="number" min="1" max="256" value="8"></label>
+          <label>CUDA-Budget MiB<input id="pg-cuda-budget" type="number" min="128" max="16384" value="2048"></label>
+          <label><span><input id="pg-offload-enabled" type="checkbox"> SSD-Offload</span></label>
+          <label>Snapshot-Intervall<input id="pg-offload-snapshot" type="number" min="1" max="1000000" value="1000"></label>
+          <small>Referenzpfad: deterministisch interleaved. CUDA wird hier nur budgetiert; persistente Kernel, Dynamic Parallelism, Hardware-/Thermal-Kopplung sind ausdrücklich nicht implementiert.</small>
+        </article>
+        <article class="playground-card"><h3>08 · Neural I/O Interface</h3>
           <label><span><input id="pg-neural-io-enabled" type="checkbox"> neuronales I/O aktivieren</span></label>
           <label>Input Codec<select id="pg-neural-io-codec"></select></label>
           <label>Input Payload<textarea id="pg-neural-io-payload">0.5</textarea></label>
@@ -192,6 +208,20 @@ function formPayload() {
     pan_feedback_gain: Number(byId("pg-pan-feedback-gain").value),
     pan_health_decay: Number(byId("pg-pan-health-decay").value),
     pan_apoptosis_threshold: Number(byId("pg-pan-apoptosis").value),
+    pan_aging_threshold: 0.3,
+    clock_mode: byId("pg-clock-mode").value,
+    clock_base_hz: Number(byId("pg-clock-base-hz").value),
+    clock_event_batch_ms: Number(byId("pg-clock-event-batch").value),
+    growth_enabled: byId("pg-growth-enabled").checked,
+    growth_activity_threshold: Number(byId("pg-growth-activity").value),
+    growth_coactivation_threshold: Number(byId("pg-growth-coactivation").value),
+    growth_information_threshold: Number(byId("pg-growth-info").value),
+    growth_prune_threshold: Number(byId("pg-growth-prune").value),
+    growth_max_synapses_per_neuron: Number(byId("pg-growth-max-synapses").value),
+    growth_max_new_synapses_per_barrier: Number(byId("pg-growth-max-new").value),
+    cuda_budget_mb: Number(byId("pg-cuda-budget").value),
+    offload_enabled: byId("pg-offload-enabled").checked,
+    offload_snapshot_interval: Number(byId("pg-offload-snapshot").value),
     geometry_lambda_a: Number(byId("pg-geometry-lambda-a").value),
     geometry_lambda_b: Number(byId("pg-geometry-lambda-b").value),
     geometry_sigma: Number(byId("pg-geometry-sigma").value),
@@ -258,8 +288,8 @@ function renderResult(result){
   const values=[["Class",result.manifest?.class||"PLAYGROUND"],["Spikes",m.total_spikes??"—"],["Mean Hz",Number(m.mean_rate_hz||0).toFixed(2)],["Active",Number(m.active_fraction||0).toLocaleString(undefined,{style:"percent",maximumFractionDigits:1})],["Neuronen",result.topology?.neuron_count??"—"],["Kanten",result.topology?.edge_count??"—"],["Dimensionen",result.topology?.dimensions??"—"],["Eff. Dim.",Number(dim.effective_dimensionality||0).toFixed(2)]];
   byId("pg-metrics").innerHTML=values.map(([k,v])=>`<div class="playground-metric"><span>${k}</span><strong>${v}</strong></div>`).join("");
   byId("pg-analysis-spike").textContent=JSON.stringify(a.spike_time||{},null,2);
-  byId("pg-analysis-network").textContent=JSON.stringify({network:net,dimensionality:dim,ensemble:result.ensemble||null,pan:result.pan||null,geometry:result.geometry||null},null,2);
-  byId("pg-analysis-plasticity").textContent=JSON.stringify({plasticity:a.plasticity||{},performance:a.performance||{},pan:result.pan||null},null,2);
+  byId("pg-analysis-network").textContent=JSON.stringify({network:net,dimensionality:dim,ensemble:result.ensemble||null,pan:result.pan||null,geometry:result.geometry||null,gates:result.gates||null,clock:result.clock||null,growth:result.growth||null,storage:result.storage||null},null,2);
+  byId("pg-analysis-plasticity").textContent=JSON.stringify({plasticity:a.plasticity||{},performance:a.performance||{},pan:result.pan||null,growth:result.growth||null,storage:result.storage||null},null,2);
   byId("pg-analysis-io").textContent=JSON.stringify(result.neural_io||{status:"disabled"},null,2);
   byId("pg-run-json").textContent=JSON.stringify({session_id:result.session_id,manifest:result.manifest,model:result.model,config:result.config,metrics:result.metrics,readout:result.readout},null,2);
   drawRaster(result);drawSeries("pg-rate-canvas",(result.monitors?.tick_spike_counts||[]).map(Number));drawTopology(result);drawState(result);drawSpectrum(result);drawDegree(result);
@@ -278,8 +308,8 @@ async function runRobustness(){
 }
 
 function resetForm(){
-  const values={neurons:"128",edges:"512",ticks:"256",dimensions:"5",delay:"1",radius:"0.35",k:"8",rewire:"0.15",modules:"4",current:"12",rate:"20",seed:"12345",ensemble:"1","pan-dimensions":"5","pan-feedback-gain":"0.05","pan-health-decay":"0.001","pan-apoptosis":"0.1","geometry-lambda-a":"0.5","geometry-lambda-b":"0.5","geometry-sigma":"0.1","geometry-p0":"0.3","geometry-delay-velocity":"0.25"};
-  for(const[k,v]of Object.entries(values)){const el=byId(`pg-${k}`);if(el)el.value=v;}byId("pg-persist").checked=false;byId("pg-pan-enabled").checked=false;byId("pg-pan-closed-loop").checked=true;byId("pg-geometry-mode").value="shortcut_union";byId("pg-neural-io-enabled").checked=false;byId("pg-neural-io-payload").value="0.5";byId("pg-neural-io-input-channels").value="16";byId("pg-neural-io-output-channels").value="16";byId("pg-neural-io-window").value="16";byId("pg-neural-io-current").value="25";byId("pg-neural-io-input-role").value="GATEWAY_AFFERENT";byId("pg-neural-io-output-role").value="GATEWAY_EFFERENT";byId("pg-neural-io-phase").value="QUERY";byId("pg-neural-io-modality").value="digital";byId("pg-neural-io-source").value="playground.input";if(byId("pg-topology"))byId("pg-topology").value="mhrn_5d";
+  const values={neurons:"128",edges:"512",ticks:"256",dimensions:"5",delay:"1",radius:"0.35",k:"8",rewire:"0.15",modules:"4",current:"12",rate:"20",seed:"12345",ensemble:"1","pan-dimensions":"5","pan-feedback-gain":"0.05","pan-health-decay":"0.001","pan-apoptosis":"0.1","geometry-lambda-a":"0.5","geometry-lambda-b":"0.5","geometry-sigma":"0.1","geometry-p0":"0.3","geometry-delay-velocity":"0.25","clock-base-hz":"100","clock-event-batch":"10","growth-activity":"0.25","growth-coactivation":"2","growth-info":"0.25","growth-prune":"0.05","growth-max-synapses":"128","growth-max-new":"8","cuda-budget":"2048","offload-snapshot":"1000"};
+  for(const[k,v]of Object.entries(values)){const el=byId(`pg-${k}`);if(el)el.value=v;}byId("pg-persist").checked=false;byId("pg-pan-enabled").checked=false;byId("pg-pan-closed-loop").checked=true;byId("pg-clock-mode").value="continuous";byId("pg-growth-enabled").checked=false;byId("pg-offload-enabled").checked=false;byId("pg-geometry-mode").value="shortcut_union";byId("pg-neural-io-enabled").checked=false;byId("pg-neural-io-payload").value="0.5";byId("pg-neural-io-input-channels").value="16";byId("pg-neural-io-output-channels").value="16";byId("pg-neural-io-window").value="16";byId("pg-neural-io-current").value="25";byId("pg-neural-io-input-role").value="GATEWAY_AFFERENT";byId("pg-neural-io-output-role").value="GATEWAY_EFFERENT";byId("pg-neural-io-phase").value="QUERY";byId("pg-neural-io-modality").value="digital";byId("pg-neural-io-source").value="playground.input";if(byId("pg-topology"))byId("pg-topology").value="mhrn_5d";
 }
 
 async function refreshSessions(){
