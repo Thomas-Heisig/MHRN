@@ -22,6 +22,22 @@ from .mode_switcher import ModeSwitcher
 from .thalamic_gating import ThalamicGating
 
 
+def _checkpoint_int(value: object, default: int = 0) -> int:
+    if isinstance(value, bool):
+        return default
+    if isinstance(value, (int, float)):
+        return int(value)
+    return default
+
+
+def _checkpoint_float(value: object, default: float = 0.0) -> float:
+    if isinstance(value, bool):
+        return default
+    if isinstance(value, (int, float)):
+        return float(value)
+    return default
+
+
 class PANLiveSession:
     """Persistent, bounded PAN reference session."""
 
@@ -354,53 +370,62 @@ class PANLiveSession:
                 restored_pending.append([float(value) for value in row])
             self.states = restored_states
             self.pending = restored_pending
-            self.tick = int(payload.get("tick", 0))
-            self.total_spikes = int(payload.get("total_spikes", 0))
-            self.last_spikes = [
-                int(value) for value in payload.get("last_spikes", [])
-            ] if isinstance(payload.get("last_spikes"), list) else []
+            self.tick = _checkpoint_int(payload.get("tick"), 0)
+            self.total_spikes = _checkpoint_int(payload.get("total_spikes"), 0)
+            raw_last_spikes = payload.get("last_spikes")
+            self.last_spikes = (
+                [_checkpoint_int(value) for value in raw_last_spikes]
+                if isinstance(raw_last_spikes, list)
+                else []
+            )
             raw_counts = payload.get("output_counts")
             if isinstance(raw_counts, list):
-                self.output_counts = [int(value) for value in raw_counts]
+                self.output_counts = [_checkpoint_int(value) for value in raw_counts]
             raw_recent = payload.get("recent_spikes")
             self.recent_spikes.clear()
             if isinstance(raw_recent, list):
                 for item in raw_recent[-8192:]:
                     if isinstance(item, list) and len(item) == 2:
-                        self.recent_spikes.append((int(item[0]), int(item[1])))
+                        self.recent_spikes.append(
+                            (_checkpoint_int(item[0]), _checkpoint_int(item[1]))
+                        )
 
             learning = payload.get("learning")
             if isinstance(learning, Mapping):
                 raw_policy = learning.get("policy")
                 if isinstance(raw_policy, list):
-                    self.learning.policy = [float(value) for value in raw_policy]
+                    self.learning.policy = [_checkpoint_float(value) for value in raw_policy]
                 raw_activity = learning.get("activity")
                 if isinstance(raw_activity, list):
                     self.learning.activity = [
-                        float(value) for value in raw_activity
+                        _checkpoint_float(value) for value in raw_activity
                     ]
                 for name in ("action_history", "target_history"):
                     raw = learning.get(name)
                     if isinstance(raw, list):
-                        setattr(self.learning, name, [int(value) for value in raw])
+                        setattr(
+                            self.learning,
+                            name,
+                            [_checkpoint_int(value) for value in raw],
+                        )
                 raw_rewards = learning.get("reward_history")
                 if isinstance(raw_rewards, list):
                     self.learning.reward_history = [
-                        float(value) for value in raw_rewards
+                        _checkpoint_float(value) for value in raw_rewards
                     ]
-                self.learning.policy_updates = int(
-                    learning.get("policy_updates", 0)
+                self.learning.policy_updates = _checkpoint_int(
+                    learning.get("policy_updates"), 0
                 )
-                self.learning.correct_actions = int(
-                    learning.get("correct_actions", 0)
+                self.learning.correct_actions = _checkpoint_int(
+                    learning.get("correct_actions"), 0
                 )
-                self.learning.insufficient_activity_episodes = int(
-                    learning.get("insufficient_activity_episodes", 0)
+                self.learning.insufficient_activity_episodes = _checkpoint_int(
+                    learning.get("insufficient_activity_episodes"), 0
                 )
                 raw_context = learning.get("context_policies")
                 if isinstance(raw_context, Mapping):
                     self.learning.context_policies = {
-                        str(key): [float(value) for value in values]
+                        str(key): [_checkpoint_float(value) for value in values]
                         for key, values in raw_context.items()
                         if isinstance(values, list)
                     }
@@ -408,7 +433,7 @@ class PANLiveSession:
                 if isinstance(raw_weights, Mapping):
                     self.learning.context_weights = {
                         str(key): [
-                            [float(value) for value in row]
+                            [_checkpoint_float(value) for value in row]
                             for row in rows
                             if isinstance(row, list)
                         ]
@@ -418,7 +443,8 @@ class PANLiveSession:
                 raw_updates = learning.get("context_updates")
                 if isinstance(raw_updates, Mapping):
                     self.learning.context_updates = {
-                        str(key): int(value) for key, value in raw_updates.items()
+                        str(key): _checkpoint_int(value)
+                        for key, value in raw_updates.items()
                     }
                 raw_external = learning.get("external_reward_history")
                 if isinstance(raw_external, list):
