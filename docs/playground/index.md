@@ -112,6 +112,12 @@ API:
 - `GET /api/playground/sessions/{id}`
 - `POST /api/playground/run`
 - `POST /api/playground/robustness`
+- `GET /api/playground/cuda/status`
+- `POST /api/playground/cuda/compile`
+- `POST /api/playground/cuda/reference`
+- `POST /api/playground/cuda/preflight`
+- `POST /api/playground/cuda/smoke`
+- `POST /api/playground/cuda/rng-parity`
 
 Public Python namespace:
 
@@ -157,3 +163,18 @@ These pages are Playground documentation and are not canonical evidence.
 
 The exact payload stays outside the SNN and is not persisted in Playground
 session results.
+
+
+## CUDA-1 Playground console
+
+The Playground exposes the engineering CUDA progression directly in the frontend:
+
+- CUDA-1.0: PTX assembly, driver loading and occupancy/cooperative-launch preflight.
+- CUDA-1.1: CPU determinism plus the D1/D2/D3 parity contract.
+- CUDA-1.2: the 17-parameter gate ABI, fail-closed host-buffer validation and single-tick kernel launch path.
+- CUDA-1.3: CPU gate-ABI reference, non-trivial one-tick CPU/GPU D2 comparison, repeatability check and epsilon-greedy hash/RNG action parity.
+- CUDA-1.4 through CUDA-1.6 remain explicitly marked as not implemented for multi-tick state/delays, GPU plasticity and GPU closed-loop sandbox execution.
+
+The CPU Playground already contains sandbox physics, sensors, actuators, posture analysis and reward triggers. Their appearance in the CUDA console describes GPU-porting status; it does not imply that those application layers already execute on CUDA.
+
+A hosted GitHub runner can validate the CPU contracts and assemble PTX with `ptxas`, but a real kernel execution requires a local NVIDIA device. The CUDA-1.3 Hardware-D2 button therefore reports unavailable/error status when the dashboard server cannot access the NVIDIA driver or toolkit instead of treating code generation as execution.
