@@ -13,8 +13,10 @@ from src.playground.cuda import (
     compiler_catalog,
     cooperative_capacity,
     cpu_gate_reference,
+    cuda_runtime_status,
     gate_execution_parity_summary,
     gate_parity_summary,
+    nontrivial_gate_launch_inputs,
     parse_ptxas_verbose,
     smoke_gate_launch_inputs,
     validate_gate_launch_inputs,
@@ -341,3 +343,52 @@ def test_gate_execution_parity_compares_current_and_action() -> None:
     failed = gate_execution_parity_summary(reference, candidate)
     assert failed["actions_exact"] is False
     assert failed["passed"] is False
+
+
+
+def test_cuda_runtime_status_fails_closed_without_optional_cuda_dependencies() -> None:
+    status = cuda_runtime_status(
+        ptxas="definitely-not-a-real-ptxas",
+        driver_library="definitely-not-a-real-cuda-driver",
+    )
+
+    assert status["classification"] == "PLAYGROUND_CUDA_RUNTIME_STATUS"
+    assert status["scientific_evidence"] is False
+    assert status["ptxas_available"] is False
+    assert status["driver_available"] is False
+    assert status["stages"]["CUDA-1.3"] == (
+        "IMPLEMENTED_REQUIRES_LOCAL_GPU_VERIFICATION"
+    )
+    assert status["stages"]["CUDA-1.4"].startswith("NOT_IMPLEMENTED")
+
+
+def test_nontrivial_gate_inputs_exercise_current_action_feedback_and_rng() -> None:
+    bundle = compile_mapping(
+        {
+            "closed_loop_preset": "minimal_closed_loop",
+            "pan_feedback_gain": 0.0,
+        }
+    )
+    inputs = nontrivial_gate_launch_inputs(
+        bundle,
+        n_neurons=32,
+        seed=12345,
+        epsilon=0.5,
+    )
+    reference = cpu_gate_reference(bundle, inputs)
+    outputs = reference["outputs"]
+
+    assert len(inputs.input_current) == 32
+    assert any(value != 0.0 for value in inputs.input_current)
+    assert any(value != 0.0 for value in inputs.action_map)
+    assert any(value != 0.0 for value in inputs.reward_ring)
+    assert any(value != 0.0 for value in inputs.logits)
+    assert inputs.tick >= 3
+    assert inputs.epsilon == pytest.approx(0.5)
+    assert len(outputs["current"]) == 32
+    assert len(outputs["action"]) == 32
+    assert len(set(outputs["current"])) > 1
+    assert all(
+        0 <= int(action) < int(bundle.manifest["kernel_abi"]["action_space_size"])
+        for action in outputs["action"]
+    )
