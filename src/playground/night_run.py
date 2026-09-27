@@ -32,6 +32,7 @@ class NightRunDaemon:
         gateway_query: GatewayQuery | None = None,
         file_roots: list[Path] | None = None,
         config: PlaygroundConfig | None = None,
+        resume_dir: Path | None = None,
     ) -> None:
         if not 0.01 <= hours <= 24.0:
             raise ValueError("hours must be between 0.01 and 24")
@@ -43,13 +44,14 @@ class NightRunDaemon:
         self.max_episodes = max_episodes
         self.checkpoint_seconds = checkpoint_seconds
         self.gateway_query = gateway_query
-        self.run_id = "PGNIGHT-" + uuid.uuid4().hex[:12]
-        self.run_dir = output_root / self.run_id
+        self.run_id = resume_dir.name if resume_dir is not None else "PGNIGHT-" + uuid.uuid4().hex[:12]
+        self.run_dir = resume_dir if resume_dir is not None else output_root / self.run_id
         self.run_dir.mkdir(parents=True, exist_ok=True)
         self.metrics_path = self.run_dir / "episodes.jsonl"
         self.status_path = self.run_dir / "status.json"
         self.summary_path = self.run_dir / "summary.json"
         self.kb_path = self.run_dir / "knowledge_base.json"
+        self.checkpoint_path = self.run_dir / "checkpoint.json"
         self.task_gen = MetaTaskGenerator(seed=seed)
         self.reward_fn = MetaReward()
         self.kb = KnowledgeBase()
@@ -83,7 +85,7 @@ class NightRunDaemon:
         self.errors: list[str] = []
         self._install_signals()
 
-        roots = file_roots or [Path("docs/playground"), Path("src/playground")]
+        roots = [Path("docs/playground"), Path("src/playground")] if file_roots is None else file_roots
         self.kb.index_files(roots, category="Konzepte", max_files=120)
         # Seed vector memory so find/link are available from the first episodes.
         for index, category in enumerate(MetaTaskGenerator.categories):
@@ -91,6 +93,33 @@ class NightRunDaemon:
                 f"bootstrap strategy note {index} for category {category}",
                 category,
             )
+        if resume_dir is not None:
+            self._restore_checkpoint()
+
+    def _restore_checkpoint(self) -> None:
+        if not self.checkpoint_path.exists():
+            raise FileNotFoundError(f"night-run checkpoint not found: {self.checkpoint_path}")
+        payload = json.loads(self.checkpoint_path.read_text(encoding="utf-8"))
+        raw_status = payload.get("status", {})
+        if isinstance(raw_status, dict):
+            self.episode = int(raw_status.get("episode", 0))
+            self.total_reward = float(raw_status.get("total_reward", 0.0))
+            elapsed = float(raw_status.get("elapsed_seconds", 0.0))
+            self.started_at = time.time() - max(0.0, elapsed)
+            raw_counts = raw_status.get("task_counts")
+            if isinstance(raw_counts, dict):
+                self.task_counts = {key: int(raw_counts.get(key, 0)) for key in self.task_counts}
+            raw_rewards = raw_status.get("reward_by_task")
+            if isinstance(raw_rewards, dict):
+                self.reward_by_task = {key: float(raw_rewards.get(key, 0.0)) for key in self.reward_by_task}
+        raw_pan = payload.get("pan_checkpoint")
+        if isinstance(raw_pan, dict):
+            self.pan.import_checkpoint(raw_pan)
+        raw_kb = payload.get("knowledge_base")
+        if isinstance(raw_kb, dict):
+            self.kb = KnowledgeBase.from_snapshot(raw_kb)
+        self.task_gen.counter = int(payload.get("task_counter", self.episode))
+        self.last_checkpoint_at = time.time()
 
     def _install_signals(self) -> None:
         try:
@@ -217,10 +246,10 @@ class NightRunDaemon:
             handle.write(json.dumps(event, ensure_ascii=False) + "\n")
         return event
 
-    def checkpoint(self, *, final: bool = False) -> dict[str, object]:
+    def status_snapshot(self, *, final: bool = False) -> dict[str, object]:
         now = time.time()
         elapsed = now - self.started_at
-        status = {
+        return {
             "classification": "PLAYGROUND_NIGHT_RUN",
             "scientific_evidence": False,
             "run_id": self.run_id,
@@ -239,10 +268,28 @@ class NightRunDaemon:
             "errors": list(self.errors[-20:]),
             "updated_at": now,
         }
+
+    def checkpoint(self, *, final: bool = False) -> dict[str, object]:
+        status = self.status_snapshot(final=final)
         self.status_path.write_text(
             json.dumps(status, ensure_ascii=False, indent=2), encoding="utf-8"
         )
         self.kb.save(self.kb_path)
+        self.checkpoint_path.write_text(
+            json.dumps(
+                {
+                    "classification": "PLAYGROUND_NIGHT_CHECKPOINT",
+                    "scientific_evidence": False,
+                    "status": status,
+                    "task_counter": self.task_gen.counter,
+                    "pan_checkpoint": self.pan.export_checkpoint(),
+                    "knowledge_base": self.kb.snapshot(),
+                },
+                ensure_ascii=False,
+                indent=2,
+            ),
+            encoding="utf-8",
+        )
         if final:
             self.summary_path.write_text(
                 json.dumps(status, ensure_ascii=False, indent=2),
@@ -308,6 +355,7 @@ def _main() -> None:
     parser.add_argument("--checkpoint-seconds", type=float, default=600.0)
     parser.add_argument("--seed", type=int, default=12345)
     parser.add_argument("--output-root", type=Path, default=Path("playground_sessions/night_runs"))
+    parser.add_argument("--resume", type=Path, default=None)
     args = parser.parse_args()
     daemon = NightRunDaemon(
         hours=args.hours,
@@ -315,6 +363,7 @@ def _main() -> None:
         checkpoint_seconds=args.checkpoint_seconds,
         seed=args.seed,
         output_root=args.output_root,
+        resume_dir=args.resume,
     )
     summary = daemon.run()
     print(json.dumps(summary, ensure_ascii=False, indent=2))
@@ -397,8 +446,8 @@ class NightRunManager:
                     "last_error": self._last_error,
                 }
             active = bool(thread and thread.is_alive())
-            current = daemon.checkpoint() if active else (
-                self._last_summary or daemon.checkpoint(final=True)
+            current = daemon.status_snapshot() if active else (
+                self._last_summary or daemon.status_snapshot(final=True)
             )
             return {
                 "classification": "PLAYGROUND_NIGHT_RUN_MANAGER",
