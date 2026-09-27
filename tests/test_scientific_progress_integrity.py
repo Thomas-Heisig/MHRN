@@ -269,7 +269,10 @@ def test_stage1_canonical_baseline_binds_both_reviewed_functional_lines() -> Non
         "EXP-S1-TEMP-ORDER-V2-20260919",
         "EXP-S1-TEMP-PROMO-R1-20260927",
     ]
-    assert temporal["experiments"][0]["human_review_decision"] == "accepted_as_interpretation"
+    assert (
+        temporal["experiments"][0]["human_review_decision"]
+        == "accepted_as_interpretation"
+    )
     assert temporal["experiments"][1]["human_review_decision"] == "supports"
     assert temporal["experiments"][1]["evidence_id"] == "EVID-2026-20"
     assert "not an independent replication" in temporal["independence_semantics"]

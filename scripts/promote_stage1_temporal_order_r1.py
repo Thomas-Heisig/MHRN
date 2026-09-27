@@ -40,7 +40,9 @@ def main() -> int:
 
     review = json.loads(review_path.read_text(encoding="utf-8"))
     if review.get("decision") != "supports":
-        raise RuntimeError("Temporal-Order promotion requires a canonical supports review")
+        raise RuntimeError(
+            "Temporal-Order promotion requires a canonical supports review"
+        )
     if review.get("automatic_evidence_promotion") is not False:
         raise RuntimeError("automatic evidence promotion must remain disabled")
 

@@ -12,6 +12,7 @@
 | Hebb (1949) | Neurons that fire together, wire together. | RQ-SNN-004, RQ-SELF-001 | open |
 | Watts (1998) | Small-world networks combine high clustering with short path lengths. | RQ-SNN-003 | inconclusive |
 | Barabási (1999) | Preferential attachment produces scale-free network degree distributions. | RQ-SNN-003 | inconclusive |
+| Olshausen (1996) | Sparse coding is a biologically motivated efficient-coding principle; this source does not imply that MHRN Stage-1 topology is a sparse code. | RQ-SNN-003 | inconclusive |
 | others (2026) |  | RQ-CNS-101, RQ-CNS-112, RQ-CNS-113, RQ-EPI-102, RQ-WEL-102 | open |
 | others (2025) |  | RQ-CNS-101, RQ-EPI-101 | open |
 | Naccache (2025) |  | RQ-CNS-101 | open |
