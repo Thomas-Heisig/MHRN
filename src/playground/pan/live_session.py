@@ -18,7 +18,9 @@ from ..models import PlaygroundConfig
 from ..registry.neuron_models import get_neuron_model
 from ..registry.topology_generators import build_topology
 from .behavioral_learning import BehavioralLearningEngine
+from .growth_engine import GrowthEngine
 from .mode_switcher import ModeSwitcher
+from .runtime import PANRuntime
 from .thalamic_gating import ThalamicGating
 
 
@@ -66,13 +68,63 @@ class PANLiveSession:
             self.model.state_factory(self.model.parameters)
             for _ in range(config.n_neurons)
         ]
-        self.adjacency: list[list[int]] = [[] for _ in range(config.n_neurons)]
+        self.adjacency: list[set[int]] = [set() for _ in range(config.n_neurons)]
+        self.incoming: list[set[int]] = [set() for _ in range(config.n_neurons)]
         self.weights: dict[tuple[int, int], float] = {}
         self.delays: dict[tuple[int, int], int] = {}
+        self.eligibility: dict[tuple[int, int], float] = {}
+        self.release_state: dict[tuple[int, int], float] = {}
         for source, target in self.topology.edges:
-            self.adjacency[source].append(target)
-            self.weights[(source, target)] = config.weight
-            self.delays[(source, target)] = max(1, config.delay_ticks)
+            self.adjacency[source].add(target)
+            self.incoming[target].add(source)
+            edge = (source, target)
+            self.weights[edge] = config.weight
+            self.delays[edge] = max(1, config.delay_ticks)
+            self.eligibility[edge] = 0.0
+            self.release_state[edge] = 1.0
+
+        degree = [
+            len(self.adjacency[index]) + len(self.incoming[index])
+            for index in range(config.n_neurons)
+        ]
+        self.pan_runtime = PANRuntime(
+            n_neurons=config.n_neurons,
+            dimensions=config.pan_dimensions,
+            seed=config.seed,
+            feedback_gain=config.pan_feedback_gain,
+            health_decay=config.pan_health_decay,
+            apoptosis_threshold=config.pan_apoptosis_threshold,
+            closed_loop=config.pan_closed_loop,
+            coordinates=self.topology.coordinates,
+            degree=degree,
+        )
+        self.pan_runtime.initialize(self.states)
+        self.growth = (
+            GrowthEngine(
+                n_neurons=config.n_neurons,
+                edge_budget=config.edge_budget,
+                max_synapses_per_neuron=config.growth_max_synapses_per_neuron,
+                max_new_synapses_per_barrier=(
+                    config.growth_max_new_synapses_per_barrier
+                ),
+                activity_threshold=config.growth_activity_threshold,
+                coactivation_threshold=config.growth_coactivation_threshold,
+                information_threshold=config.growth_information_threshold,
+                prune_threshold=config.growth_prune_threshold,
+                neurogenesis=config.growth_neurogenesis,
+                synaptogenesis=config.growth_synaptogenesis,
+                path_formation=config.growth_path_formation,
+                pruning=config.growth_pruning,
+            )
+            if config.growth_enabled
+            else None
+        )
+        self.growth_batch_ticks = max(
+            1, round(config.clock_event_batch_ms / config.dt_ms)
+        )
+        self.growth_events: list[dict[str, object]] = []
+        self.structural_added = 0
+        self.structural_removed = 0
 
         self.pending = [
             [0.0 for _ in range(config.n_neurons)]
@@ -235,8 +287,9 @@ class PANLiveSession:
                     if self.learning_enabled
                     else [0.0 for _ in range(self.config.n_neurons)]
                 )
+                feedback = self.pan_runtime.feedback_currents()
                 external = [
-                    external[index] + behavior_bias[index]
+                    external[index] + behavior_bias[index] + feedback[index]
                     for index in range(self.config.n_neurons)
                 ]
 
@@ -251,6 +304,8 @@ class PANLiveSession:
 
                 spiked: list[int] = []
                 for neuron in active:
+                    if not bool(self.states[neuron].get("pan_alive", True)):
+                        continue
                     current = external[neuron] + synaptic[neuron]
                     if self.model.step(
                         self.states[neuron],
@@ -277,6 +332,47 @@ class PANLiveSession:
                         reward = self.learning.maybe_learn(self.tick)
                         if reward is not None:
                             rewards.append(reward)
+
+                self.pan_runtime.update(
+                    tick=self.tick,
+                    dt_ms=self.config.dt_ms,
+                    states=self.states,
+                    spiked_neurons=spiked,
+                    plasticity_active=self.learning_enabled,
+                )
+                self.growth_events.extend(
+                    {
+                        "kind": "SPIKE",
+                        "neuron_id": int(neuron_id),
+                        "tick": self.tick,
+                    }
+                    for neuron_id in spiked
+                )
+                if (
+                    self.growth is not None
+                    and (self.tick + 1) % self.growth_batch_ticks == 0
+                ):
+                    added, removed = self.growth.evaluate(
+                        tick=self.tick,
+                        events=self.growth_events,
+                        states=self.states,
+                        adjacency=self.adjacency,
+                        incoming=self.incoming,
+                        weights=self.weights,
+                        delays=self.delays,
+                        eligibility=self.eligibility,
+                        release_state=self.release_state,
+                        default_weight=self.config.weight,
+                        default_delay_ticks=self.config.delay_ticks,
+                    )
+                    self.structural_added += added
+                    self.structural_removed += removed
+                    self.growth_events.clear()
+                    self.pan_runtime.degree = [
+                        len(self.adjacency[index]) + len(self.incoming[index])
+                        for index in range(self.config.n_neurons)
+                    ]
+
                 action = self._decode_action(spiked)
                 if action is not None:
                     actions.append(action)
@@ -299,6 +395,11 @@ class PANLiveSession:
             "learning": self.learning.summary(),
             "execution": self.switcher.summary(),
             "thalamic": self.thalamic.summary() if self.thalamic else None,
+            "pan": self.pan_runtime.summary(self.states),
+            "growth": self.growth.summary() if self.growth else None,
+            "edge_count": len(self.weights),
+            "structural_added": self.structural_added,
+            "structural_removed": self.structural_removed,
             "state_digest": self.state_digest(),
             "input_queue_depth": len(self.input_queue),
         }
