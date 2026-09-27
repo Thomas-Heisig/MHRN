@@ -241,3 +241,13 @@ Göltz, J., Weber, J., Kriener, L., Billaudelle, S., Lake, P., Schemmel, J., Pay
 Quellentyp: Primärliteratur – gemeinsames Lernen von Delays und Gewichten  
 Originalquelle: https://doi.org/10.1038/s41467-025-63120-y  
 Prüfumfang: primary_metadata_and_abstract_checked; geprüft am 2026-09-19. Aktuelle Prior Art für ereignisbasiertes Co-Learning von Delays und Gewichten; keine direkte Evidenz für MHRN.
+
+
+<a id="ref-STIMBERG2019"></a>
+
+Stimberg, M., Brette, R., & Goodman, D. F. M. (2019). Brian 2, an intuitive and efficient neural simulator. *eLife, 8*, e47314. https://doi.org/10.7554/eLife.47314
+
+Quellentyp: Primärliteratur / Forschungssoftware-Methode  
+Originalquelle: https://elifesciences.org/articles/47314  
+Softwareprojekt: Brian 2; Lizenz: CeCILL 2.1.  
+Prüfumfang: bibliographic metadata, software role and upstream citation/license notice checked on 2026-09-27. This source supports attribution and description of Brian 2, not an MHRN efficacy claim.
