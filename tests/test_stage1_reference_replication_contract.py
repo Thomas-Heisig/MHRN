@@ -101,10 +101,10 @@ def test_reference_equivalence_bounds_are_resolution_aware() -> None:
     prereg = _prereg()
     targets = prereg["canonical_targets"]
 
-    assert "1.0 tick" in targets["equivalence_bounds_rule"]
-    assert targets["frozen_bounds"]["3d_to_5d"] == [-2.0, 0.0]
+    assert "50%-150%" in targets["equivalence_bounds_rule"]
+    assert targets["frozen_bounds"]["3d_to_5d"] == [-1.5, -0.5]
     assert "must separately retain" in targets["direction_rule"]
-    assert "median must be <0" in targets["direction_rule"]
+    assert "median <0" in targets["direction_rule"]
 
 
 def test_reference_prefreeze_gates_are_mandatory() -> None:
