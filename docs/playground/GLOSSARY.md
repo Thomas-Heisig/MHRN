@@ -226,3 +226,53 @@ von Aktivität. Aktuell Research Candidate, nicht implementiert.
 ## ADM
 Activity-Dependent Myelination. Der aktuelle Playground besitzt nur einen
 statischen xyz-basierten Geschwindigkeitsparameter; ADM ist nicht implementiert.
+
+
+## BoundaryFrame
+Exakter I/O-Grenzrahmen. Hält Payload, Hash, Richtung, Provenienz,
+`correlation_id` und kausalen `admitted_tick`. Der Payload bleibt außerhalb
+des SNN und wird im Playground nicht persistiert.
+
+## CodecContract
+Versionierter Vertrag, der festlegt, wie ein Boundary-Payload in eine
+neuronale Repräsentation überführt wird.
+
+## SpikeFrame
+Atomare neuronale Nachricht eines Codecs und eines PopulationLayouts.
+Enthält deterministisch sortierte SpikeEvents, aber keinen exakten Payload.
+
+## PopulationLayout
+Explizite Zuordnung logischer Kanäle zu Neuronen einer Afferent-/Efferent-
+Population.
+
+## AFFERENT
+Neuronale Eingangsrolle relativ zum MHRN-Core.
+
+## EFFERENT
+Neuronale Ausgangsrolle relativ zum MHRN-Core.
+
+## GATEWAY_AFFERENT
+Spezialisierte Eingangsrolle des Gateway Neural Interface.
+
+## GATEWAY_EFFERENT
+Spezialisierte Ausgangsrolle des Gateway Neural Interface.
+
+## ASSOCIATIVE
+Neuronale Rolle für interne/assoziative Verarbeitung außerhalb der dedizierten
+Input- und Output-Populationen.
+
+## DecodeResult
+Explizites Ergebnis eines neuronalen Output-Decoders. Bei unzureichender
+Aktivität bleibt der Wert leer statt Inhalte zu erfinden.
+
+## correlation_id
+Stabile ID, die eine Query mit ihrer Response oder einem Timeout verbindet.
+
+## QUERY / WAIT / RESPONSE / TIMEOUT
+Kausale Lifecycle-Phasen des neuronalen Gateway-I/O. Sie verhindern, dass
+Abfrage- und Antwortmuster trotz gemeinsamem Layout semantisch vermischt werden.
+
+## NetworkAreaAdapter
+Bestehender framework-neutraler Vertrag für periphere neuronale oder virtuelle
+Verarbeitungsbereiche. Der Playground-Referenzadapter erfüllt diesen Vertrag,
+während die Codec-Schicht separat bleibt.

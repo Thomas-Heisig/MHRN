@@ -5,6 +5,7 @@ internal package layout. External callers should prefer mhrn_playground.
 """
 
 from src.playground import (
+    NeuralIOInterface,
     PANRuntime,
     Playground,
     PlaygroundComposer,
@@ -25,6 +26,7 @@ __all__ = [
     "PlaygroundConfig",
     "PlaygroundSession",
     "PANRuntime",
+    "NeuralIOInterface",
     "TopologyBuilder",
     "catalog",
     "replay",

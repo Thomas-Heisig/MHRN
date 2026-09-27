@@ -145,3 +145,15 @@ These pages are Playground documentation and are not canonical evidence.
 - [Geometry](geometry.md) — independent Ds/Dg contracts, xyz+toroidal
   `geometric_5d`, connection modes, xyz-only delays, diagnostics, literature
   boundaries and Research Candidates 5–8.
+
+
+## Neural input / output
+
+- [Neural I/O Interface](neural_io.md) — exact BoundaryFrame, codec plane,
+  AFFERENT/GATEWAY_AFFERENT input populations, EFFERENT/GATEWAY_EFFERENT
+  output populations, decoding and QUERY/WAIT/RESPONSE/TIMEOUT lifecycle.
+- [Neural I/O examples](neural_io_examples.md) — scalar, vector and symbolic
+  Playground examples.
+
+The exact payload stays outside the SNN and is not persisted in Playground
+session results.

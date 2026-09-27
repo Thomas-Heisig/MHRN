@@ -17,7 +17,7 @@ function injectStyles() {
     .playground-card,.playground-viz,.playground-analysis-card{border:1px solid var(--line,rgba(127,127,127,.2));border-radius:12px;padding:.8rem;background:rgba(127,127,127,.035)}
     .playground-card h3,.playground-viz h3,.playground-analysis-card h3{margin:.05rem 0 .65rem;font-size:.84rem}
     .playground-card label{display:grid;gap:.25rem;margin:.48rem 0;font-size:.7rem;opacity:.9}.playground-card small{display:block;opacity:.65;line-height:1.4}
-    .playground-card input,.playground-card select{width:100%;padding:.45rem .5rem;border:1px solid var(--line,rgba(127,127,127,.25));border-radius:8px;background:rgba(0,0,0,.12);color:inherit}
+    .playground-card input,.playground-card select,.playground-card textarea{width:100%;padding:.45rem .5rem;border:1px solid var(--line,rgba(127,127,127,.25));border-radius:8px;background:rgba(0,0,0,.12);color:inherit}.playground-card textarea{min-height:72px;resize:vertical;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:.67rem}
     .playground-actions{display:flex;flex-wrap:wrap;gap:.5rem;margin:.9rem 0}.playground-actions button{padding:.58rem .8rem;border-radius:8px;border:1px solid var(--line,rgba(127,127,127,.3));background:rgba(127,127,127,.1);color:inherit;cursor:pointer}.playground-actions .primary{font-weight:700;border-color:currentColor}
     .playground-status{padding:.65rem .75rem;border-radius:9px;background:rgba(127,127,127,.06);font-size:.72rem;white-space:pre-wrap;overflow:auto}.playground-status[data-state="error"]{color:#ef8b8b}.playground-status[data-state="ok"]{color:#51d6ad}
     .playground-metrics{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:.5rem;margin:.8rem 0}.playground-metric{padding:.65rem;border:1px solid var(--line,rgba(127,127,127,.2));border-radius:10px}.playground-metric span{display:block;font-size:.58rem;opacity:.62;text-transform:uppercase}.playground-metric strong{display:block;margin-top:.2rem;font-size:.9rem}
@@ -103,6 +103,22 @@ function buildPanels(root) {
           <label>xyz-Geschwindigkeit / Tick<input id="pg-geometry-delay-velocity" type="number" min="0.001" max="10" step="0.01" value="0.25"></label>
           <small><code>x,y,z</code> sind kartesisch; <code>a,b</code> sind zyklische Torus-Koordinaten. Zustandsraum Ds und Geometrierraum Dg bleiben unabhängig. Klein-Flasche, dynamische Positionierung, PID-Kraft und Neurogenese sind nicht implementiert.</small>
         </article>
+        <article class="playground-card"><h3>07 · Neural I/O Interface</h3>
+          <label><span><input id="pg-neural-io-enabled" type="checkbox"> neuronales I/O aktivieren</span></label>
+          <label>Input Codec<select id="pg-neural-io-codec"></select></label>
+          <label>Input Payload<textarea id="pg-neural-io-payload">0.5</textarea></label>
+          <label>Input-Kanäle<input id="pg-neural-io-input-channels" type="number" min="1" max="256" value="16"></label>
+          <label>Input-Rolle<select id="pg-neural-io-input-role"><option>GATEWAY_AFFERENT</option><option>AFFERENT</option></select></label>
+          <label>Output Decoder<select id="pg-neural-io-decoder"></select></label>
+          <label>Output-Kanäle<input id="pg-neural-io-output-channels" type="number" min="1" max="256" value="16"></label>
+          <label>Output-Rolle<select id="pg-neural-io-output-role"><option>GATEWAY_EFFERENT</option><option>EFFERENT</option></select></label>
+          <label>Codec-Fenster (Ticks)<input id="pg-neural-io-window" type="number" min="1" max="2048" value="16"></label>
+          <label>Input-Strom<input id="pg-neural-io-current" type="number" min="0" max="500" step="0.5" value="25"></label>
+          <label>Phase<select id="pg-neural-io-phase"><option>QUERY</option><option>IDLE</option><option>WAIT</option><option>RESPONSE</option><option>TIMEOUT</option></select></label>
+          <label>Modality<input id="pg-neural-io-modality" value="digital"></label>
+          <label>Source ID<input id="pg-neural-io-source" value="playground.input"></label>
+          <small><strong>Payload ≠ Neural Representation.</strong> Exakte Nutzdaten bleiben außerhalb des SNN. Query/Response werden durch Richtung, Phase, <code>correlation_id</code> und Provenienz getrennt. Tools/Aktoren werden im Playground nie ausgeführt.</small>
+        </article>
       </div>
       <div class="playground-actions"><button type="button" class="primary" id="pg-run">▶ Playground starten</button><button type="button" id="pg-robustness">Robustheitskontrollen</button><button type="button" id="pg-reset">Standardwerte</button></div>
       <div class="playground-status" id="pg-status" data-state="idle">Katalog wird geladen …</div>
@@ -121,12 +137,30 @@ function buildPanels(root) {
         <article class="playground-analysis-card"><h3>Spike & Zeit</h3><pre id="pg-analysis-spike">—</pre></article>
         <article class="playground-analysis-card"><h3>Netzwerk & Dimensionen</h3><pre id="pg-analysis-network">—</pre></article>
         <article class="playground-analysis-card"><h3>Plastizität & Performance</h3><pre id="pg-analysis-plasticity">—</pre></article>
+        <article class="playground-analysis-card"><h3>Input / Output / Neural Interface</h3><pre id="pg-analysis-io">—</pre></article>
       </div>
       <pre class="playground-status" id="pg-run-json">Noch kein Playground-Lauf.</pre>
     </section>
     <section data-generated-panel="sessions" id="playground-sessions"><div class="pg-neutral-note">Sessions bleiben lokal unter <code>playground_sessions/</code>, sind nicht kanonisch und werden von Git ignoriert.</div><div class="playground-session-list" id="pg-session-list">lade …</div></section>
     <section data-generated-panel="catalog" id="playground-catalog"><div class="playground-catalog" id="pg-catalog-grid"></div></section>
   `);
+}
+
+function neuralIOPayload(){
+  const codec=byId("pg-neural-io-codec")?.value||"population_latency_v1";
+  const raw=byId("pg-neural-io-payload")?.value??"";
+  if(codec==="population_latency_v1"){
+    const value=Number(raw);
+    if(!Number.isFinite(value))throw new Error("Neural-I/O Scalar muss numerisch sein.");
+    return value;
+  }
+  if(codec==="vector_population_v1"){
+    let value;
+    try{value=JSON.parse(raw);}catch{throw new Error("Vector Input muss gültiges JSON sein.");}
+    if(!Array.isArray(value))throw new Error("Vector Input muss ein JSON-Array sein.");
+    return value;
+  }
+  return raw;
 }
 
 function formPayload() {
@@ -164,6 +198,20 @@ function formPayload() {
     geometry_p0: Number(byId("pg-geometry-p0").value),
     geometry_mode: byId("pg-geometry-mode").value,
     geometry_delay_velocity: Number(byId("pg-geometry-delay-velocity").value),
+    neural_io_enabled: byId("pg-neural-io-enabled").checked,
+    neural_io_input_channels: Number(byId("pg-neural-io-input-channels").value),
+    neural_io_output_channels: Number(byId("pg-neural-io-output-channels").value),
+    neural_io_input_codec: byId("pg-neural-io-codec").value,
+    neural_io_output_decoder: byId("pg-neural-io-decoder").value,
+    neural_io_input_payload: neuralIOPayload(),
+    neural_io_window_ticks: Number(byId("pg-neural-io-window").value),
+    neural_io_input_current: Number(byId("pg-neural-io-current").value),
+    neural_io_input_role: byId("pg-neural-io-input-role").value,
+    neural_io_output_role: byId("pg-neural-io-output-role").value,
+    neural_io_phase: byId("pg-neural-io-phase").value,
+    neural_io_correlation_id: "auto",
+    neural_io_modality: byId("pg-neural-io-modality").value,
+    neural_io_source_id: byId("pg-neural-io-source").value,
   };
 }
 
@@ -212,6 +260,7 @@ function renderResult(result){
   byId("pg-analysis-spike").textContent=JSON.stringify(a.spike_time||{},null,2);
   byId("pg-analysis-network").textContent=JSON.stringify({network:net,dimensionality:dim,ensemble:result.ensemble||null,pan:result.pan||null,geometry:result.geometry||null},null,2);
   byId("pg-analysis-plasticity").textContent=JSON.stringify({plasticity:a.plasticity||{},performance:a.performance||{},pan:result.pan||null},null,2);
+  byId("pg-analysis-io").textContent=JSON.stringify(result.neural_io||{status:"disabled"},null,2);
   byId("pg-run-json").textContent=JSON.stringify({session_id:result.session_id,manifest:result.manifest,model:result.model,config:result.config,metrics:result.metrics,readout:result.readout},null,2);
   drawRaster(result);drawSeries("pg-rate-canvas",(result.monitors?.tick_spike_counts||[]).map(Number));drawTopology(result);drawState(result);drawSpectrum(result);drawDegree(result);
 }
@@ -230,7 +279,7 @@ async function runRobustness(){
 
 function resetForm(){
   const values={neurons:"128",edges:"512",ticks:"256",dimensions:"5",delay:"1",radius:"0.35",k:"8",rewire:"0.15",modules:"4",current:"12",rate:"20",seed:"12345",ensemble:"1","pan-dimensions":"5","pan-feedback-gain":"0.05","pan-health-decay":"0.001","pan-apoptosis":"0.1","geometry-lambda-a":"0.5","geometry-lambda-b":"0.5","geometry-sigma":"0.1","geometry-p0":"0.3","geometry-delay-velocity":"0.25"};
-  for(const[k,v]of Object.entries(values)){const el=byId(`pg-${k}`);if(el)el.value=v;}byId("pg-persist").checked=false;byId("pg-pan-enabled").checked=false;byId("pg-pan-closed-loop").checked=true;byId("pg-geometry-mode").value="shortcut_union";if(byId("pg-topology"))byId("pg-topology").value="mhrn_5d";
+  for(const[k,v]of Object.entries(values)){const el=byId(`pg-${k}`);if(el)el.value=v;}byId("pg-persist").checked=false;byId("pg-pan-enabled").checked=false;byId("pg-pan-closed-loop").checked=true;byId("pg-geometry-mode").value="shortcut_union";byId("pg-neural-io-enabled").checked=false;byId("pg-neural-io-payload").value="0.5";byId("pg-neural-io-input-channels").value="16";byId("pg-neural-io-output-channels").value="16";byId("pg-neural-io-window").value="16";byId("pg-neural-io-current").value="25";byId("pg-neural-io-input-role").value="GATEWAY_AFFERENT";byId("pg-neural-io-output-role").value="GATEWAY_EFFERENT";byId("pg-neural-io-phase").value="QUERY";byId("pg-neural-io-modality").value="digital";byId("pg-neural-io-source").value="playground.input";if(byId("pg-topology"))byId("pg-topology").value="mhrn_5d";
 }
 
 async function refreshSessions(){
@@ -247,11 +296,14 @@ function renderCatalog(catalog){
   byId("pg-readout").innerHTML=optionMarkup(catalog.readouts,"name");
   byId("pg-topology").innerHTML=optionMarkup(catalog.topologies,"name");
   byId("pg-stimulus").innerHTML=optionMarkup(catalog.stimuli,"name");
+  byId("pg-neural-io-codec").innerHTML=(catalog.neural_io?.codecs||[]).filter(item=>item.available!==false).map(item=>`<option value="${item.id}">${item.id}</option>`).join("");
+  byId("pg-neural-io-decoder").innerHTML=(catalog.neural_io?.decoders||[]).filter(item=>item.available!==false).map(item=>`<option value="${item.id}">${item.id}</option>`).join("");
   if([...byId("pg-topology").options].some(o=>o.value==="mhrn_5d"))byId("pg-topology").value="mhrn_5d";
   const panCandidates=(catalog.pan?.research_candidates||[]).map(item=>({name:item.id,note:item.question}));
   const panLiterature=(catalog.pan?.literature_context?.sources||[]).map(item=>({name:item.key,note:item.citation}));
   const geometryLiterature=(catalog.geometry?.literature_context?.sources||[]).map(item=>({name:item.key,note:item.citation}));
-  const groups=[["Neuronmodelle",catalog.models],["Topologien",catalog.topologies],["Stimuli",catalog.stimuli],["Synapsen",catalog.synapses],["Plastizität",catalog.plasticity],["Readouts",catalog.readouts],["PAN Research Candidates",panCandidates],["PAN Literaturkontext",panLiterature],["Geometrie Literaturkontext",geometryLiterature],["Analysen",(catalog.analyses||[]).map(name=>({name}))],["Robustheit",(catalog.robustness_controls||[]).map(name=>({name}))]];
+  const neuralIOCodecs=(catalog.neural_io?.codecs||[]).map(item=>({name:item.id,note:`${item.input_kind||""} · ${item.reconstruction_class||""}`}));
+  const groups=[["Neuronmodelle",catalog.models],["Topologien",catalog.topologies],["Stimuli",catalog.stimuli],["Synapsen",catalog.synapses],["Plastizität",catalog.plasticity],["Readouts",catalog.readouts],["PAN Research Candidates",panCandidates],["PAN Literaturkontext",panLiterature],["Geometrie Literaturkontext",geometryLiterature],["Neural I/O Codecs",neuralIOCodecs],["Analysen",(catalog.analyses||[]).map(name=>({name}))],["Robustheit",(catalog.robustness_controls||[]).map(name=>({name}))]];
   byId("pg-catalog-grid").innerHTML=groups.map(([title,items])=>`<article><h3>${title}</h3>${(items||[]).map(item=>`<span class="playground-chip" title="${item.note||""}">${item.label||item.name}</span>`).join("")}</article>`).join("");
   const status=byId("pg-status");status.dataset.state="ok";status.textContent=`Bereit · bis ${catalog.limits.n_neurons} Neuronen · ${catalog.limits.edges} Kanten · ${catalog.limits.dimensions}D · scientific_evidence=false`;
 }

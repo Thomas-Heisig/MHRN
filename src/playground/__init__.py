@@ -14,6 +14,7 @@ from .builder.composer import PlaygroundComposer
 from .builder.network_builder import TopologyBuilder
 from .builder.session import PlaygroundSession
 from .models import PlaygroundConfig
+from .neural_io import NeuralIOInterface
 from .pan import PANRuntime, pan_research_candidates
 from .persist.session_recorder import record_session
 from .service import catalog, replay, robustness, run, sessions
@@ -51,6 +52,7 @@ __all__ = [
     "PlaygroundConfig",
     "PlaygroundSession",
     "PANRuntime",
+    "NeuralIOInterface",
     "TopologyBuilder",
     "catalog",
     "replay",

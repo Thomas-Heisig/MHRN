@@ -10,6 +10,15 @@ Stimulus = Callable[[int], list[float]]
 Factory = Callable[[int, float, float, float, int], Stimulus]
 
 
+def none_stimulus(
+    n: int, _current: float, _rate: float, _dt: float, _seed: int
+) -> Stimulus:
+    def sample(_tick: int) -> list[float]:
+        return [0.0 for _ in range(n)]
+
+    return sample
+
+
 def deterministic(
     n: int, current: float, _rate: float, _dt: float, _seed: int
 ) -> Stimulus:
@@ -76,6 +85,7 @@ def channel_ab(
 
 
 STIMULUS_REGISTRY: dict[str, Factory] = {
+    "none": none_stimulus,
     "deterministic": deterministic,
     "poisson": poisson,
     "ramp": ramp,

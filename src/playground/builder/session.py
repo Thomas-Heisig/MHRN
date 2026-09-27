@@ -14,6 +14,7 @@ from ..analysis import analyze_result
 from ..geometry.metrics import conduction_delay_ticks, geometry_diagnostics
 from ..instruments.monitors import RateMonitor, SpikeMonitor, StateMonitor
 from ..models import PlaygroundConfig, Topology
+from ..neural_io import NeuralIOInterface
 from ..pan.runtime import PANRuntime
 from ..persist.session_recorder import record_session
 from ..registry.neuron_models import NeuronModelSpec, get_neuron_model
@@ -97,6 +98,33 @@ class PlaygroundSession:
             eligibility[edge] = 0.0
             release_state[edge] = 1.0
 
+        neural_io: NeuralIOInterface | None = None
+        if config.neural_io_enabled:
+            correlation_id = (
+                ""
+                if config.neural_io_correlation_id == "auto"
+                else config.neural_io_correlation_id
+            )
+            neural_io = NeuralIOInterface(
+                n_neurons=config.n_neurons,
+                input_channels=config.neural_io_input_channels,
+                output_channels=config.neural_io_output_channels,
+                input_codec=config.neural_io_input_codec,
+                output_decoder=config.neural_io_output_decoder,
+                input_payload=config.neural_io_input_payload,
+                window_ticks=config.neural_io_window_ticks,
+                input_current=config.neural_io_input_current,
+                ticks=config.ticks,
+                dt_ms=config.dt_ms,
+                seed=config.seed,
+                input_role=config.neural_io_input_role,
+                output_role=config.neural_io_output_role,
+                initial_phase=config.neural_io_phase,
+                correlation_id=correlation_id,
+                modality=config.neural_io_modality,
+                source_id=config.neural_io_source_id,
+            )
+
         pan_runtime: PANRuntime | None = None
         if config.pan_enabled or config.neuron_model == "pan_adex_5d":
             degree = [
@@ -136,6 +164,12 @@ class PlaygroundSession:
                 synaptic = pending[slot]
                 pending[slot] = [0.0 for _ in range(config.n_neurons)]
                 external = stimulus(tick)
+                if neural_io is not None:
+                    io_current = neural_io.currents_for_tick(tick)
+                    external = [
+                        external[index] + io_current[index]
+                        for index in range(config.n_neurons)
+                    ]
                 feedback = (
                     pan_runtime.feedback_currents()
                     if pan_runtime is not None
@@ -310,6 +344,9 @@ class PlaygroundSession:
                             elif delta > 24:
                                 delays[edge] = min(64, delays[edge] + 1)
 
+                if neural_io is not None:
+                    neural_io.observe(tick, spiked_this_tick)
+
                 if pan_runtime is not None:
                     pan_runtime.update(
                         tick=tick,
@@ -402,6 +439,9 @@ class PlaygroundSession:
             },
             "readout": apply_readout(config.readout, rates),
         }
+        if neural_io is not None:
+            result["neural_io"] = neural_io.finalize()
+
         pan_summary: dict[str, object] | None = None
         if pan_runtime is not None:
             pan_summary = pan_runtime.summary(states)

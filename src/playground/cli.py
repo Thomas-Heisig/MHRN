@@ -40,7 +40,27 @@ def _add_run_arguments(parser: argparse.ArgumentParser) -> None:
     parser.add_argument("--geometry-sigma", type=float, default=0.1)
     parser.add_argument("--geometry-p0", type=float, default=0.3)
     parser.add_argument("--geometry-delay-velocity", type=float, default=0.25)
+    parser.add_argument("--neural-io", action="store_true")
+    parser.add_argument("--io-input-channels", type=int, default=16)
+    parser.add_argument("--io-output-channels", type=int, default=16)
+    parser.add_argument("--io-codec", default="population_latency_v1")
+    parser.add_argument("--io-decoder", default="population_rate_v1")
+    parser.add_argument("--io-payload", default="0.5")
+    parser.add_argument("--io-window", type=int, default=16)
+    parser.add_argument("--io-current", type=float, default=25.0)
     parser.add_argument("--persist", action="store_true")
+
+
+def _io_payload(args: argparse.Namespace) -> object:
+    raw = args.io_payload
+    if args.io_codec == "population_latency_v1":
+        return float(raw)
+    if args.io_codec == "vector_population_v1":
+        value = json.loads(raw)
+        if not isinstance(value, list):
+            raise ValueError("--io-payload must be a JSON list for vector codec")
+        return value
+    return raw
 
 
 def _payload(args: argparse.Namespace) -> dict[str, object]:
@@ -62,6 +82,14 @@ def _payload(args: argparse.Namespace) -> dict[str, object]:
         "geometry_sigma": args.geometry_sigma,
         "geometry_p0": args.geometry_p0,
         "geometry_delay_velocity": args.geometry_delay_velocity,
+        "neural_io_enabled": args.neural_io,
+        "neural_io_input_channels": args.io_input_channels,
+        "neural_io_output_channels": args.io_output_channels,
+        "neural_io_input_codec": args.io_codec,
+        "neural_io_output_decoder": args.io_decoder,
+        "neural_io_input_payload": _io_payload(args),
+        "neural_io_window_ticks": args.io_window,
+        "neural_io_input_current": args.io_current,
         "persist": args.persist,
     }
 

@@ -113,3 +113,27 @@ def test_geometry_documents_shortcut_normalization_as_open_question() -> None:
     assert "Open normalization question" in text
     assert "geometric_3d" in text
     assert "No option is currently preferred" in text
+
+
+
+def test_playground_ui_exposes_neural_input_output_interface() -> None:
+    module = (
+        STATIC / "frontend" / "modules" / "playground.js"
+    ).read_text(encoding="utf-8")
+    assert "07 · Neural I/O Interface" in module
+    assert "GATEWAY_AFFERENT" in module
+    assert "GATEWAY_EFFERENT" in module
+    assert "Payload ≠ Neural Representation" in module
+    assert "pg-analysis-io" in module
+
+
+def test_neural_io_documentation_exists_and_preserves_boundary() -> None:
+    path = ROOT / "docs" / "playground" / "neural_io.md"
+    examples = ROOT / "docs" / "playground" / "neural_io_examples.md"
+    assert path.exists()
+    assert examples.exists()
+    text = path.read_text(encoding="utf-8")
+    assert "Payload != Neural Representation" in text
+    assert "Codec != GatewayTopology != GatewayLearning" in text
+    assert "QUERY" in text and "TIMEOUT" in text
+    assert "tool_plane_execution = false" in text

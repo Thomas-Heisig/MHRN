@@ -19,6 +19,11 @@ from src.playground.geometry.metrics import (
     connection_distance,
     cyclic_distance,
 )
+from src.playground.neural_io import (
+    NeuralIOInterface,
+    PlaygroundIOAreaAdapter,
+    adapter_contract_check,
+)
 from src.playground.pan.hypervector import bind, bundle
 from src.playground.pan.literature import pan_literature_context
 from src.playground.persist import session_recorder
@@ -580,3 +585,139 @@ def test_geometry_catalog_keeps_unimplemented_mechanisms_explicit() -> None:
     assert geometry["klein_bottle_status"] == "NOT_IMPLEMENTED"
     assert geometry["activity_dependent_positioning_status"] == "NOT_IMPLEMENTED"
     assert geometry["neurogenesis_status"] == "NOT_IMPLEMENTED"
+
+
+
+def test_neural_io_catalog_matches_postulated_gateway_contract() -> None:
+    io = catalog()["neural_io"]
+    assert io["classification"] == "PLAYGROUND_NEURAL_IO"
+    assert io["scientific_evidence"] is False
+    assert io["exact_payload_outside_snn"] is True
+    assert io["boundary_principle"] == "Payload != Neural Representation"
+    assert io["architecture_principle"] == (
+        "Codec != GatewayTopology != GatewayLearning"
+    )
+    assert {
+        "ASSOCIATIVE",
+        "AFFERENT",
+        "EFFERENT",
+        "GATEWAY_AFFERENT",
+        "GATEWAY_EFFERENT",
+    } <= set(io["roles"])
+    assert {"QUERY", "WAIT", "RESPONSE", "TIMEOUT"} <= set(io["phases"])
+    assert io["tool_plane_execution"] is False
+    assert io["actuator_execution"] is False
+
+
+def test_playground_io_area_adapter_satisfies_network_area_contract() -> None:
+    assert adapter_contract_check() is True
+    adapter = PlaygroundIOAreaAdapter()
+    payload = {"signal": 0.5}
+    assert adapter.process(payload, 0) == payload
+
+
+def test_neural_io_exact_payload_never_appears_in_session_result() -> None:
+    exact_value = 0.73123456789
+    result = run(
+        {
+            "name": "io-secret-test",
+            "n_neurons": 64,
+            "edge_budget": 128,
+            "ticks": 32,
+            "seed": 9,
+            "topology": "mhrn_5d",
+            "neuron_model": "izhikevich_rs",
+            "stimulus": "none",
+            "neural_io_enabled": True,
+            "neural_io_input_channels": 16,
+            "neural_io_output_channels": 16,
+            "neural_io_input_codec": "population_latency_v1",
+            "neural_io_output_decoder": "population_rate_v1",
+            "neural_io_input_payload": exact_value,
+            "neural_io_window_ticks": 8,
+            "neural_io_input_current": 35.0,
+        }
+    )
+    serialized = json.dumps(result, sort_keys=True)
+    assert str(exact_value) not in serialized
+    assert '"neural_io_input_payload"' not in serialized
+    assert result["config"]["neural_io_input_payload_present"] is True
+    boundary = result["neural_io"]["exact_boundary"]
+    assert boundary["raw_payload_persisted"] is False
+    assert len(boundary["payload_sha256"]) == 64
+
+
+def test_neural_io_scalar_input_output_and_lifecycle() -> None:
+    result = run(
+        {
+            "name": "io-scalar-test",
+            "n_neurons": 64,
+            "edge_budget": 128,
+            "ticks": 32,
+            "seed": 11,
+            "topology": "mhrn_5d",
+            "neuron_model": "izhikevich_rs",
+            "stimulus": "none",
+            "neural_io_enabled": True,
+            "neural_io_input_channels": 16,
+            "neural_io_output_channels": 16,
+            "neural_io_input_codec": "population_latency_v1",
+            "neural_io_output_decoder": "population_rate_v1",
+            "neural_io_input_payload": 0.72,
+            "neural_io_window_ticks": 8,
+            "neural_io_input_current": 40.0,
+            "neural_io_input_role": "GATEWAY_AFFERENT",
+            "neural_io_output_role": "GATEWAY_EFFERENT",
+            "neural_io_phase": "QUERY",
+        }
+    )
+    io = result["neural_io"]
+    assert io["input"]["role"] == "GATEWAY_AFFERENT"
+    assert io["output"]["role"] == "GATEWAY_EFFERENT"
+    assert io["input"]["spike_frame"]["event_count"] > 0
+    assert io["output"]["tool_plane_execution"] is False
+    assert io["output"]["actuator_execution"] is False
+    assert io["lifecycle"]["phase_history"][0]["phase"] == "QUERY"
+    assert io["lifecycle"]["final_phase"] in {"RESPONSE", "TIMEOUT"}
+    assert io["lifecycle"]["correlation_id"].startswith("pgio-")
+
+
+def test_neural_io_populations_must_not_overlap_when_enabled() -> None:
+    with pytest.raises(ValueError, match="must not overlap"):
+        PlaygroundConfig.from_mapping(
+            {
+                "n_neurons": 24,
+                "edge_budget": 48,
+                "ticks": 32,
+                "neural_io_enabled": True,
+                "neural_io_input_channels": 16,
+                "neural_io_output_channels": 16,
+            }
+        )
+
+
+def test_neural_io_interface_can_be_constructed_directly() -> None:
+    interface = NeuralIOInterface(
+        n_neurons=64,
+        input_channels=16,
+        output_channels=16,
+        input_codec="population_latency_v1",
+        output_decoder="population_rate_v1",
+        input_payload=0.5,
+        window_ticks=8,
+        input_current=25.0,
+        ticks=32,
+        dt_ms=1.0,
+        seed=3,
+        input_role="AFFERENT",
+        output_role="EFFERENT",
+        initial_phase="QUERY",
+        correlation_id="",
+        modality="digital",
+        source_id="test.input",
+    )
+    currents = interface.currents_for_tick(0)
+    assert len(currents) == 64
+    summary = interface.finalize()
+    assert summary["classification"] == "PLAYGROUND_NEURAL_IO"
+    assert summary["exact_boundary"]["raw_payload_persisted"] is False

@@ -873,3 +873,126 @@ Weitere Detailseiten:
 
 Diese Gesamtdokumentation ist die zentrale Einstiegsseite für PAN im
 Playground.
+
+
+---
+
+## 25. Input, Output und neuronales I/O-Interface
+
+PAN besitzt jetzt im Playground eine eigene Input-/Output-Grenze nach dem
+bereits postulierten MHRN Gateway Neural Interface.
+
+Die Trennung lautet:
+
+```text
+Payload != Neural Representation
+```
+
+und:
+
+```text
+Codec != GatewayTopology != GatewayLearning
+```
+
+### Input
+
+Der exakte Payload bleibt in einem BoundaryFrame außerhalb des SNN.
+
+Verfügbare Referenzcodecs:
+
+- `population_latency_v1`
+- `vector_population_v1`
+- `sparse_symbol_v1`
+
+Noch nicht produktiv:
+
+- `bit_exact_v1`
+- `hash_fingerprint_v0` als Negativkontrolle
+
+Die neuronale Projektion erfolgt auf dedizierte Rollen:
+
+- `AFFERENT`
+- `GATEWAY_AFFERENT`
+
+### Output
+
+Output wird ausschließlich aus dedizierten:
+
+- `EFFERENT`
+- `GATEWAY_EFFERENT`
+
+Populationen gelesen.
+
+Aktuelle Decoder:
+
+- `population_rate_v1`
+- `sparse_symbol_v1`
+
+Fehlende Aktivität erzeugt keinen erfundenen Inhalt, sondern
+`INSUFFICIENT_ACTIVITY`.
+
+### Query-/Response-Lifecycle
+
+```text
+QUERY -> WAIT -> RESPONSE
+```
+
+oder:
+
+```text
+QUERY -> WAIT -> TIMEOUT
+```
+
+Query und Response bleiben durch Richtung, Phase, `correlation_id` und
+Provenienz unterscheidbar.
+
+### Exakte Payload-Grenze
+
+Der Rohpayload erscheint nicht in:
+
+- `result["config"]`,
+- `result["neural_io"]`,
+- persistierten Playground-Sessions.
+
+Persistiert bzw. ausgegeben werden nur:
+
+- SHA-256,
+- Payload-Größe,
+- Content-Type,
+- Provenienz,
+- Codec-/Layout-Verträge,
+- SpikeFrame-Metadaten.
+
+### Verhältnis zu NetworkAreaAdapter
+
+Ein `PlaygroundIOAreaAdapter` erfüllt den vorhandenen
+`NetworkAreaAdapter`-Protocol. Er bleibt vom neuronalen Codec getrennt und hat
+keinen direkten Zugriff auf den MHRN-Core.
+
+### Kein Tool-/Actuator-Execution Path
+
+Im Playground gilt:
+
+```text
+tool_plane_execution = false
+actuator_execution   = false
+```
+
+Das Ergebnis endet bei `DecodeResult`.
+
+### Shared 100 × 100 Layout
+
+Der postulierte gemeinsame logische Query-/Response-Raum von 100 × 100 bzw.
+10.000 Kanälen ist als Architekturmetadatum dokumentiert, aber wegen der
+aktuellen Playground-Grenze von 1.024 Neuronen nicht physisch allokiert.
+
+Status:
+
+```text
+EXPERIMENTAL_CONCEPT_NOT_ALLOCATED_IN_PLAYGROUND
+```
+
+Detaildokumentation:
+
+- `docs/playground/neural_io.md`
+- `docs/playground/neural_io_examples.md`

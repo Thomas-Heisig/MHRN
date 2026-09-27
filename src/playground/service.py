@@ -9,6 +9,7 @@ from .analysis import ensemble_summary
 from .builder.session import PlaygroundSession
 from .geometry import geometry_literature_context
 from .models import PlaygroundConfig
+from .neural_io import CODEC_CATALOG, DECODER_CATALOG
 from .pan import axis_schema, pan_literature_context, pan_research_candidates
 from .persist.session_recorder import list_sessions
 from .persist.session_replayer import replay_session
@@ -74,6 +75,8 @@ def catalog() -> dict[str, object]:
             "geometric xyz/toroidal edge decomposition",
             "geometry Moran's-I autocorrelation",
             "xyz-only conduction-delay diagnostics",
+            "neural I/O boundary / codec / projection / readout diagnostics",
+            "QUERY / WAIT / RESPONSE / TIMEOUT lifecycle tracing",
         ],
         "robustness_controls": [
             "seed ensemble",
@@ -95,6 +98,40 @@ def catalog() -> dict[str, object]:
             "note": (
                 "Exploratory PAN layer only. Any research transition requires "
                 "a new hypothesis, preregistration, freeze and canonical rerun."
+            ),
+        },
+        "neural_io": {
+            "available": True,
+            "classification": "PLAYGROUND_NEURAL_IO",
+            "scientific_evidence": False,
+            "exact_payload_outside_snn": True,
+            "boundary_principle": "Payload != Neural Representation",
+            "architecture_principle": (
+                "Codec != GatewayTopology != GatewayLearning"
+            ),
+            "roles": [
+                "ASSOCIATIVE",
+                "AFFERENT",
+                "EFFERENT",
+                "GATEWAY_AFFERENT",
+                "GATEWAY_EFFERENT",
+            ],
+            "phases": ["IDLE", "QUERY", "WAIT", "RESPONSE", "TIMEOUT"],
+            "codecs": [dict(item) for item in CODEC_CATALOG],
+            "decoders": [dict(item) for item in DECODER_CATALOG],
+            "network_area_adapter": (
+                "src.embodiment.neural_symbiosis.NetworkAreaAdapter"
+            ),
+            "shared_query_response_layout": {
+                "logical_shape": [100, 100],
+                "logical_channels": 10_000,
+                "status": "EXPERIMENTAL_CONCEPT_NOT_ALLOCATED_IN_PLAYGROUND",
+            },
+            "tool_plane_execution": False,
+            "actuator_execution": False,
+            "note": (
+                "Reference implementation of the postulated MHRN Gateway "
+                "Neural Interface. Exact payloads stay outside the SNN."
             ),
         },
         "geometry": {

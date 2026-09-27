@@ -205,3 +205,31 @@ and Klein-bottle identification remain explicitly unimplemented research
 candidates.
 
 See `docs/playground/geometry.md`.
+
+
+## Neural input / output interface
+
+The Playground implements a bounded reference form of the already documented
+MHRN Gateway Neural Interface.
+
+Core contract:
+
+```text
+Exact Boundary
+-> Codec
+-> AFFERENT / GATEWAY_AFFERENT
+-> SNN
+-> EFFERENT / GATEWAY_EFFERENT
+-> Decoder
+-> Playground Output
+```
+
+Raw payload bytes remain outside the SNN and are never persisted in the
+Playground result. The interface records only checksum/provenance metadata.
+
+Tools and actuators are never executed from this Playground interface.
+
+See:
+
+- `docs/playground/neural_io.md`
+- `docs/playground/neural_io_examples.md`

@@ -62,6 +62,20 @@ class PlaygroundConfig:
     geometry_p0: float = 0.3
     geometry_mode: str = "shortcut_union"
     geometry_delay_velocity: float = 0.25
+    neural_io_enabled: bool = False
+    neural_io_input_channels: int = 16
+    neural_io_output_channels: int = 16
+    neural_io_input_codec: str = "population_latency_v1"
+    neural_io_output_decoder: str = "population_rate_v1"
+    neural_io_input_payload: object = 0.5
+    neural_io_window_ticks: int = 16
+    neural_io_input_current: float = 25.0
+    neural_io_input_role: str = "GATEWAY_AFFERENT"
+    neural_io_output_role: str = "GATEWAY_EFFERENT"
+    neural_io_phase: str = "QUERY"
+    neural_io_correlation_id: str = ""
+    neural_io_modality: str = "digital"
+    neural_io_source_id: str = "playground.input"
 
     @classmethod
     def from_mapping(cls, payload: Mapping[str, object]) -> "PlaygroundConfig":
@@ -147,6 +161,49 @@ class PlaygroundConfig:
             geometry_delay_velocity=number(
                 "geometry_delay_velocity", defaults.geometry_delay_velocity
             ),
+            neural_io_enabled=bool(
+                payload.get("neural_io_enabled", defaults.neural_io_enabled)
+            ),
+            neural_io_input_channels=integer(
+                "neural_io_input_channels", defaults.neural_io_input_channels
+            ),
+            neural_io_output_channels=integer(
+                "neural_io_output_channels", defaults.neural_io_output_channels
+            ),
+            neural_io_input_codec=text(
+                "neural_io_input_codec", defaults.neural_io_input_codec
+            ),
+            neural_io_output_decoder=text(
+                "neural_io_output_decoder", defaults.neural_io_output_decoder
+            ),
+            neural_io_input_payload=payload.get(
+                "neural_io_input_payload", defaults.neural_io_input_payload
+            ),
+            neural_io_window_ticks=integer(
+                "neural_io_window_ticks", defaults.neural_io_window_ticks
+            ),
+            neural_io_input_current=number(
+                "neural_io_input_current", defaults.neural_io_input_current
+            ),
+            neural_io_input_role=text(
+                "neural_io_input_role", defaults.neural_io_input_role
+            ),
+            neural_io_output_role=text(
+                "neural_io_output_role", defaults.neural_io_output_role
+            ),
+            neural_io_phase=text(
+                "neural_io_phase", defaults.neural_io_phase
+            ),
+            neural_io_correlation_id=text(
+                "neural_io_correlation_id",
+                defaults.neural_io_correlation_id or "auto",
+            ),
+            neural_io_modality=text(
+                "neural_io_modality", defaults.neural_io_modality
+            ),
+            neural_io_source_id=text(
+                "neural_io_source_id", defaults.neural_io_source_id
+            ),
         )
         config.validate()
         return config
@@ -205,6 +262,50 @@ class PlaygroundConfig:
             raise ValueError(
                 "geometry_delay_velocity must be between 0.001 and 10"
             )
+        if self.neural_io_enabled:
+            if not 1 <= self.neural_io_input_channels <= 256:
+                raise ValueError(
+                    "neural_io_input_channels must be between 1 and 256"
+                )
+            if not 1 <= self.neural_io_output_channels <= 256:
+                raise ValueError(
+                    "neural_io_output_channels must be between 1 and 256"
+                )
+            if (
+                self.neural_io_input_channels + self.neural_io_output_channels
+                > self.n_neurons
+            ):
+                raise ValueError("neural I/O populations must not overlap")
+            if not 1 <= self.neural_io_window_ticks <= self.ticks:
+                raise ValueError(
+                    "neural_io_window_ticks must be between 1 and session ticks"
+                )
+            if not 0.0 <= self.neural_io_input_current <= 500.0:
+                raise ValueError(
+                    "neural_io_input_current must be between 0 and 500"
+                )
+            if self.neural_io_input_role not in {
+                "AFFERENT",
+                "GATEWAY_AFFERENT",
+            }:
+                raise ValueError(
+                    "neural_io_input_role must be AFFERENT or GATEWAY_AFFERENT"
+                )
+            if self.neural_io_output_role not in {
+                "EFFERENT",
+                "GATEWAY_EFFERENT",
+            }:
+                raise ValueError(
+                    "neural_io_output_role must be EFFERENT or GATEWAY_EFFERENT"
+                )
+            if self.neural_io_phase not in {
+                "IDLE",
+                "QUERY",
+                "WAIT",
+                "RESPONSE",
+                "TIMEOUT",
+            }:
+                raise ValueError("unsupported neural_io_phase")
 
     def to_dict(self) -> dict[str, object]:
         return {
@@ -243,4 +344,20 @@ class PlaygroundConfig:
             "geometry_p0": self.geometry_p0,
             "geometry_mode": self.geometry_mode,
             "geometry_delay_velocity": self.geometry_delay_velocity,
+            "neural_io_enabled": self.neural_io_enabled,
+            "neural_io_input_channels": self.neural_io_input_channels,
+            "neural_io_output_channels": self.neural_io_output_channels,
+            "neural_io_input_codec": self.neural_io_input_codec,
+            "neural_io_output_decoder": self.neural_io_output_decoder,
+            "neural_io_input_payload_present": (
+                self.neural_io_input_payload is not None
+            ),
+            "neural_io_window_ticks": self.neural_io_window_ticks,
+            "neural_io_input_current": self.neural_io_input_current,
+            "neural_io_input_role": self.neural_io_input_role,
+            "neural_io_output_role": self.neural_io_output_role,
+            "neural_io_phase": self.neural_io_phase,
+            "neural_io_correlation_id": self.neural_io_correlation_id,
+            "neural_io_modality": self.neural_io_modality,
+            "neural_io_source_id": self.neural_io_source_id,
         }
