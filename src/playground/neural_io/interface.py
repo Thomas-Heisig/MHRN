@@ -11,9 +11,9 @@ from src.embodiment.msba import SymbolFrame
 from .codecs import decode_output, encode_input
 from .contracts import (
     BoundaryFrame,
+    CodecContract,
     InterfacePhase,
     NeuralRole,
-    CodecContract,
     PopulationLayout,
     SpikeFrame,
     canonical_payload_bytes,
