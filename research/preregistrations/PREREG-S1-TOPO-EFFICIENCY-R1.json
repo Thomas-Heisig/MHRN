@@ -270,7 +270,8 @@
       "threshold_basis": "The floor 32 is a preregistered structural stability threshold equal to one half of the 64-neuron network size. It is intended to reject degenerate runs driven by only a handful of spikes/events, not to separate conditions or maximize an efficiency effect. Historical Stage-1 runs produced denominators in the hundreds, so 32 is deliberately conservative and well below the observed regime.",
       "boundary_rule": "Exactly 32 spikes/events is valid because the rule is >=32. The ratio is computed normally at the boundary; the threshold is not a censoring or winsorization rule.",
       "skew_note": "Ratio distributions may remain right-skewed. This is why inference uses paired per-run ratios, median differences and paired bootstrap intervals rather than mean-ratio normal approximations. The denominator floor limits numerical blow-up but does not assume symmetry.",
-      "joint_validity_rule": "A run is denominator-valid only if total_spikes >= 32 AND delivered_events >= 32. Failure of either condition invalidates the entire confirmatory evaluation under NOT_TESTED_DENOMINATOR_VALIDITY; no run is removed."
+      "joint_validity_rule": "A run is denominator-valid only if total_spikes >= 32 AND delivered_events >= 32. Failure of either condition invalidates the entire confirmatory evaluation under NOT_TESTED_DENOMINATOR_VALIDITY; no run is removed.",
+      "joint_validity_condition": "A run is ratio-valid only if total_spikes >= 32 AND delivered_events >= 32. Failure of either condition invalidates the confirmatory evaluation under the frozen NOT_TESTED rule; no run is removed."
     },
     "exploratory_endpoints": [
       "first_output_latency_censored",
