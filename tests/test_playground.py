@@ -1125,6 +1125,12 @@ def test_live_pan_session_keeps_state_across_chunks() -> None:
     assert second["tick"] == 128
     assert second["total_spikes"] >= first["total_spikes"] > 0
     assert second["state_digest"] != first_digest
+    assert second["topology"]["neuron_count"] == config.n_neurons
+    assert second["topology"]["edge_count"] == len(live.topology.edges)
+    assert len(second["topology"]["coordinates"]) == config.n_neurons
+    assert "recent_spikes" in second
+    assert "input_active_neurons" in second
+    assert "output_counts" in second
 
 
 def test_live_pan_session_accepts_external_vector_input() -> None:
