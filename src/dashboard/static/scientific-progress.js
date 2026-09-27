@@ -1,7 +1,5 @@
 "use strict";
 
-import { openBrain5DFile } from "./file-viewer.js";
-
 const SCIENCE_MANIFEST_URL = "/scientific-progress.json";
 const SCIENTIFIC_STATUS_MARKERS = {
   met: "✓", partial: "◐", open: "○",
@@ -208,7 +206,9 @@ function renderScientificProgress(data) {
   host.addEventListener("click", (event) => {
     const source = event.target.closest("[data-scientific-source-path]");
     if (source) {
-      void openBrain5DFile(source.dataset.scientificSourceKind, source.dataset.scientificSourcePath);
+      document.dispatchEvent(new CustomEvent("brain5d:open-file", {
+        detail: { source: source.dataset.scientificSourceKind, path: source.dataset.scientificSourcePath },
+      }));
       return;
     }
     const button = event.target.closest("[data-scientific-stage]");
