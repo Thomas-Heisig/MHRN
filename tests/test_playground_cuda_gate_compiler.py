@@ -43,7 +43,7 @@ def test_minimal_closed_loop_lowers_to_45_gates() -> None:
 def test_minimal_closed_loop_emits_sm86_ptx_with_real_gate_instructions() -> None:
     bundle = compile_mapping({"closed_loop_preset": "minimal_closed_loop"})
 
-    assert ".version 7.0" in bundle.ptx
+    assert ".version 7.1" in bundle.ptx
     assert ".target sm_86" in bundle.ptx
     assert ".entry pan_gate_kernel" in bundle.ptx
     assert "and.b64" in bundle.ptx
@@ -86,6 +86,14 @@ def test_yaml_preset_alias_is_supported_with_safe_validation() -> None:
 
     with pytest.raises(ValueError, match="YAML root"):
         compile_yaml("- not\n- a\n- mapping\n")
+
+
+def test_sm86_rejects_ptx_70() -> None:
+    config = PlaygroundConfig.from_mapping(
+        {"closed_loop_preset": "minimal_closed_loop"}
+    )
+    with pytest.raises(ValueError, match="sm_86 requires PTX ISA >= 7.1"):
+        compile_config(config, target_sm="sm_86", ptx_version="7.0")
 
 
 def test_tanh_codegen_rejects_targets_below_sm75() -> None:
