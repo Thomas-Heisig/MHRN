@@ -1,0 +1,440 @@
+"""CUDA-1 runtime helpers for the Playground PAN gate compiler.
+
+The runtime is deliberately optional: importing it requires neither a CUDA
+toolkit nor a GPU. PTX assembly requires `ptxas`; driver loading and occupancy
+preflight require a CUDA driver. Scientific promotion remains disabled.
+"""
+
+from __future__ import annotations
+
+import ctypes
+import math
+import re
+import shutil
+import subprocess
+import tempfile
+from dataclasses import dataclass
+from pathlib import Path
+from typing import Sequence
+
+from .pan_compiler import CompileBundle
+
+
+class CudaRuntimeUnavailable(RuntimeError):
+    """Raised when an optional CUDA-1 dependency is not available."""
+
+
+class CudaDriverError(RuntimeError):
+    """Raised when a CUDA Driver API call fails."""
+
+
+@dataclass(frozen=True, slots=True)
+class PtxasReport:
+    """Measured resource report emitted by ptxas."""
+
+    target_sm: str
+    registers: int | None
+    shared_bytes: int | None
+    constant_bytes: int | None
+    stack_bytes: int | None
+    spill_store_bytes: int | None
+    spill_load_bytes: int | None
+    cubin_path: Path
+    verbose_output: str
+
+    def to_mapping(self) -> dict[str, object]:
+        return {
+            "target_sm": self.target_sm,
+            "registers": self.registers,
+            "shared_bytes": self.shared_bytes,
+            "constant_bytes": self.constant_bytes,
+            "stack_bytes": self.stack_bytes,
+            "spill_store_bytes": self.spill_store_bytes,
+            "spill_load_bytes": self.spill_load_bytes,
+            "cubin_path": str(self.cubin_path),
+            "verbose_output": self.verbose_output,
+        }
+
+
+@dataclass(frozen=True, slots=True)
+class CooperativePreflight:
+    """Host/device limits required for a cooperative persistent launch."""
+
+    cooperative_launch: bool
+    multiprocessor_count: int
+    active_blocks_per_sm: int
+    block_size: int
+    required_blocks: int
+    resident_block_capacity: int
+    launch_fits: bool
+    n_neurons: int
+
+    def to_mapping(self) -> dict[str, object]:
+        return {
+            "cooperative_launch": self.cooperative_launch,
+            "multiprocessor_count": self.multiprocessor_count,
+            "active_blocks_per_sm": self.active_blocks_per_sm,
+            "block_size": self.block_size,
+            "required_blocks": self.required_blocks,
+            "resident_block_capacity": self.resident_block_capacity,
+            "launch_fits": self.launch_fits,
+            "n_neurons": self.n_neurons,
+        }
+
+
+@dataclass(frozen=True, slots=True)
+class DriverModule:
+    """Opaque handles returned by CUDA Driver API loading."""
+
+    context: ctypes.c_void_p
+    module: ctypes.c_void_p
+    function: ctypes.c_void_p
+    device_ordinal: int
+
+
+_REGISTER_RE = re.compile(r"Used\s+(\d+)\s+registers")
+_SMEM_RE = re.compile(r"(\d+)\s+bytes smem")
+_CMEM_RE = re.compile(r"(\d+)\s+bytes cmem\[\d+\]")
+_STACK_RE = re.compile(r"(\d+)\s+bytes stack frame")
+_SPILL_STORE_RE = re.compile(r"(\d+)\s+bytes spill stores")
+_SPILL_LOAD_RE = re.compile(r"(\d+)\s+bytes spill loads")
+
+
+def _first_int(pattern: re.Pattern[str], text: str) -> int | None:
+    match = pattern.search(text)
+    return int(match.group(1)) if match else None
+
+
+def parse_ptxas_verbose(
+    verbose_output: str,
+    *,
+    target_sm: str,
+    cubin_path: Path,
+) -> PtxasReport:
+    """Parse stable resource fields from ptxas verbose diagnostics."""
+
+    constant_values = [int(value) for value in _CMEM_RE.findall(verbose_output)]
+    return PtxasReport(
+        target_sm=target_sm,
+        registers=_first_int(_REGISTER_RE, verbose_output),
+        shared_bytes=_first_int(_SMEM_RE, verbose_output),
+        constant_bytes=sum(constant_values) if constant_values else None,
+        stack_bytes=_first_int(_STACK_RE, verbose_output),
+        spill_store_bytes=_first_int(_SPILL_STORE_RE, verbose_output),
+        spill_load_bytes=_first_int(_SPILL_LOAD_RE, verbose_output),
+        cubin_path=cubin_path,
+        verbose_output=verbose_output,
+    )
+
+
+def assemble_ptx(
+    ptx_source: str,
+    *,
+    target_sm: str = "sm_86",
+    output_dir: Path | None = None,
+    ptxas: str = "ptxas",
+) -> PtxasReport:
+    """Assemble generated PTX and return measured ptxas resources."""
+
+    executable = shutil.which(ptxas)
+    if executable is None:
+        raise CudaRuntimeUnavailable(f"{ptxas} is not available on PATH")
+
+    root = output_dir or Path(tempfile.mkdtemp(prefix="mhrn-ptxas-"))
+    root.mkdir(parents=True, exist_ok=True)
+    ptx_path = root / "pan_gate_kernel.ptx"
+    cubin_path = root / "pan_gate_kernel.cubin"
+    ptx_path.write_text(ptx_source, encoding="utf-8")
+
+    process = subprocess.run(
+        [
+            executable,
+            "--verbose",
+            f"--gpu-name={target_sm}",
+            str(ptx_path),
+            "--output-file",
+            str(cubin_path),
+        ],
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    verbose = "\n".join(part for part in (process.stdout, process.stderr) if part)
+    if process.returncode != 0:
+        raise CudaDriverError(
+            "ptxas rejected generated PTX "
+            f"(exit={process.returncode}):\n{verbose}"
+        )
+    return parse_ptxas_verbose(
+        verbose,
+        target_sm=target_sm,
+        cubin_path=cubin_path,
+    )
+
+
+def assemble_bundle(
+    bundle: CompileBundle,
+    *,
+    output_dir: Path | None = None,
+    ptxas: str = "ptxas",
+) -> PtxasReport:
+    """Assemble one compiler bundle using its declared target architecture."""
+
+    target = str(bundle.manifest.get("target_sm", "sm_86"))
+    return assemble_ptx(
+        bundle.ptx,
+        target_sm=target,
+        output_dir=output_dir,
+        ptxas=ptxas,
+    )
+
+
+# CUDA Driver API attribute IDs from cuda.h.
+_CU_DEVICE_ATTRIBUTE_MULTIPROCESSOR_COUNT = 16
+_CU_DEVICE_ATTRIBUTE_COOPERATIVE_LAUNCH = 95
+
+
+class CudaDriver:
+    """Minimal ctypes wrapper for CUDA-1 loading and occupancy preflight."""
+
+    def __init__(self, library: str = "libcuda.so.1") -> None:
+        try:
+            self._lib = ctypes.CDLL(library)
+        except OSError as exc:
+            raise CudaRuntimeUnavailable(
+                f"CUDA driver library not available: {library}"
+            ) from exc
+        self._bind()
+
+    def _bind(self) -> None:
+        lib = self._lib
+        lib.cuInit.argtypes = [ctypes.c_uint]
+        lib.cuInit.restype = ctypes.c_int
+        lib.cuDeviceGet.argtypes = [ctypes.POINTER(ctypes.c_int), ctypes.c_int]
+        lib.cuDeviceGet.restype = ctypes.c_int
+        lib.cuDeviceGetAttribute.argtypes = [
+            ctypes.POINTER(ctypes.c_int),
+            ctypes.c_int,
+            ctypes.c_int,
+        ]
+        lib.cuDeviceGetAttribute.restype = ctypes.c_int
+        lib.cuCtxCreate_v2.argtypes = [
+            ctypes.POINTER(ctypes.c_void_p),
+            ctypes.c_uint,
+            ctypes.c_int,
+        ]
+        lib.cuCtxCreate_v2.restype = ctypes.c_int
+        lib.cuCtxDestroy_v2.argtypes = [ctypes.c_void_p]
+        lib.cuCtxDestroy_v2.restype = ctypes.c_int
+        lib.cuModuleLoad.argtypes = [
+            ctypes.POINTER(ctypes.c_void_p),
+            ctypes.c_char_p,
+        ]
+        lib.cuModuleLoad.restype = ctypes.c_int
+        lib.cuModuleUnload.argtypes = [ctypes.c_void_p]
+        lib.cuModuleUnload.restype = ctypes.c_int
+        lib.cuModuleGetFunction.argtypes = [
+            ctypes.POINTER(ctypes.c_void_p),
+            ctypes.c_void_p,
+            ctypes.c_char_p,
+        ]
+        lib.cuModuleGetFunction.restype = ctypes.c_int
+        lib.cuOccupancyMaxActiveBlocksPerMultiprocessor.argtypes = [
+            ctypes.POINTER(ctypes.c_int),
+            ctypes.c_void_p,
+            ctypes.c_int,
+            ctypes.c_size_t,
+        ]
+        lib.cuOccupancyMaxActiveBlocksPerMultiprocessor.restype = ctypes.c_int
+
+    @staticmethod
+    def _check(code: int, call: str) -> None:
+        if code != 0:
+            raise CudaDriverError(f"{call} failed with CUDA error code {code}")
+
+    def initialize(self) -> None:
+        self._check(self._lib.cuInit(0), "cuInit")
+
+    def _device(self, ordinal: int) -> int:
+        device = ctypes.c_int()
+        self._check(
+            self._lib.cuDeviceGet(ctypes.byref(device), ordinal),
+            "cuDeviceGet",
+        )
+        return int(device.value)
+
+    def device_attribute(self, ordinal: int, attribute: int) -> int:
+        device = self._device(ordinal)
+        value = ctypes.c_int()
+        self._check(
+            self._lib.cuDeviceGetAttribute(
+                ctypes.byref(value),
+                attribute,
+                device,
+            ),
+            "cuDeviceGetAttribute",
+        )
+        return int(value.value)
+
+    def load_cubin(
+        self,
+        cubin_path: Path,
+        *,
+        kernel_name: str = "pan_gate_kernel",
+        device_ordinal: int = 0,
+    ) -> DriverModule:
+        """Load a ptxas-generated cubin and resolve one kernel symbol."""
+
+        self.initialize()
+        device = self._device(device_ordinal)
+        context = ctypes.c_void_p()
+        self._check(
+            self._lib.cuCtxCreate_v2(ctypes.byref(context), 0, device),
+            "cuCtxCreate_v2",
+        )
+        module = ctypes.c_void_p()
+        try:
+            self._check(
+                self._lib.cuModuleLoad(
+                    ctypes.byref(module),
+                    str(cubin_path).encode("utf-8"),
+                ),
+                "cuModuleLoad",
+            )
+            function = ctypes.c_void_p()
+            self._check(
+                self._lib.cuModuleGetFunction(
+                    ctypes.byref(function),
+                    module,
+                    kernel_name.encode("ascii"),
+                ),
+                "cuModuleGetFunction",
+            )
+        except Exception:
+            if module.value:
+                self._lib.cuModuleUnload(module)
+            self._lib.cuCtxDestroy_v2(context)
+            raise
+        return DriverModule(
+            context=context,
+            module=module,
+            function=function,
+            device_ordinal=device_ordinal,
+        )
+
+    def unload(self, loaded: DriverModule) -> None:
+        if loaded.module.value:
+            self._check(
+                self._lib.cuModuleUnload(loaded.module),
+                "cuModuleUnload",
+            )
+        if loaded.context.value:
+            self._check(
+                self._lib.cuCtxDestroy_v2(loaded.context),
+                "cuCtxDestroy_v2",
+            )
+
+    def cooperative_preflight(
+        self,
+        loaded: DriverModule,
+        *,
+        n_neurons: int,
+        block_size: int = 128,
+        dynamic_shared_bytes: int = 0,
+    ) -> CooperativePreflight:
+        """Calculate whether the full cooperative grid can be resident."""
+
+        if block_size <= 0:
+            raise ValueError("block_size must be positive")
+        cooperative = bool(
+            self.device_attribute(
+                loaded.device_ordinal,
+                _CU_DEVICE_ATTRIBUTE_COOPERATIVE_LAUNCH,
+            )
+        )
+        sms = self.device_attribute(
+            loaded.device_ordinal,
+            _CU_DEVICE_ATTRIBUTE_MULTIPROCESSOR_COUNT,
+        )
+        active = ctypes.c_int()
+        self._check(
+            self._lib.cuOccupancyMaxActiveBlocksPerMultiprocessor(
+                ctypes.byref(active),
+                loaded.function,
+                block_size,
+                dynamic_shared_bytes,
+            ),
+            "cuOccupancyMaxActiveBlocksPerMultiprocessor",
+        )
+        required = math.ceil(n_neurons / block_size)
+        capacity = int(active.value) * sms
+        return CooperativePreflight(
+            cooperative_launch=cooperative,
+            multiprocessor_count=sms,
+            active_blocks_per_sm=int(active.value),
+            block_size=block_size,
+            required_blocks=required,
+            resident_block_capacity=capacity,
+            launch_fits=cooperative and required <= capacity,
+            n_neurons=n_neurons,
+        )
+
+
+def cooperative_capacity(
+    *,
+    n_neurons: int,
+    block_size: int,
+    multiprocessor_count: int,
+    active_blocks_per_sm: int,
+    cooperative_launch: bool = True,
+) -> CooperativePreflight:
+    """Pure helper used by CI to verify occupancy-bound grid logic."""
+
+    if min(
+        n_neurons,
+        block_size,
+        multiprocessor_count,
+        active_blocks_per_sm,
+    ) <= 0:
+        raise ValueError("cooperative capacity inputs must be positive")
+    required = math.ceil(n_neurons / block_size)
+    capacity = multiprocessor_count * active_blocks_per_sm
+    return CooperativePreflight(
+        cooperative_launch=cooperative_launch,
+        multiprocessor_count=multiprocessor_count,
+        active_blocks_per_sm=active_blocks_per_sm,
+        block_size=block_size,
+        required_blocks=required,
+        resident_block_capacity=capacity,
+        launch_fits=cooperative_launch and required <= capacity,
+        n_neurons=n_neurons,
+    )
+
+
+def max_abs_error(reference: Sequence[float], candidate: Sequence[float]) -> float:
+    """Return the maximum absolute error for a gate-parity vector."""
+
+    if len(reference) != len(candidate):
+        raise ValueError("parity vectors must have the same length")
+    if not reference:
+        return 0.0
+    return max(abs(float(left) - float(right)) for left, right in zip(reference, candidate))
+
+
+def gate_parity_summary(
+    reference: Sequence[float],
+    candidate: Sequence[float],
+    *,
+    tolerance: float = 1.0e-5,
+) -> dict[str, object]:
+    """Summarize numerical parity without claiming full SNN equivalence."""
+
+    error = max_abs_error(reference, candidate)
+    return {
+        "classification": "PLAYGROUND_CUDA_GATE_PARITY",
+        "scientific_evidence": False,
+        "comparison_scope": "GATE_OUTPUT_ONLY_NOT_FULL_SNN",
+        "max_abs_error": error,
+        "tolerance": tolerance,
+        "passed": error <= tolerance,
+    }
