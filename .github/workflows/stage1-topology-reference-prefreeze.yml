@@ -11,6 +11,9 @@ on:
       - scripts/check_stage1_reference_seed_freshness.py
       - scripts/check_stage1_reference_independence.py
       - scripts/run_stage1_reference_integrator_calibration.py
+      - reference/stage1_topology_brian2/TRANSLATION.md
+      - scripts/run_stage1_reference_synapse_calibration.py
+      - scripts/run_stage1_reference_reset_calibration.py
       - tests/test_stage1_reference_replication_contract.py
       - tests/test_stage1_reference_preflight.py
       - .github/workflows/stage1-topology-reference-prefreeze.yml
@@ -67,12 +70,22 @@ jobs:
       - name: Run one-neuron Brian2 integrator parity calibration
         run: python scripts/run_stage1_reference_integrator_calibration.py
 
+      - name: Run explicit reset parity calibration
+        run: python scripts/run_stage1_reference_reset_calibration.py
+
+      - name: Run two-neuron synapse-delay parity calibration
+        run: python scripts/run_stage1_reference_synapse_calibration.py
+
       - name: Commit immutable pre-freeze audit artifacts
         shell: bash
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add             research/audits/STAGE1_TOPOLOGY_REFERENCE_MECHANISM_AUDIT_20260927.json             research/calibrations/CAL-S1-TOPO-REFERENCE-INTEGRATOR-R1/result.json
+          git add \
+            research/audits/STAGE1_TOPOLOGY_REFERENCE_MECHANISM_AUDIT_20260927.json \
+            research/calibrations/CAL-S1-TOPO-REFERENCE-INTEGRATOR-R1/result.json \
+            research/calibrations/CAL-S1-TOPO-REFERENCE-RESET-R1/result.json \
+            research/calibrations/CAL-S1-TOPO-REFERENCE-SYNAPSE-R1/result.json
           if git diff --cached --quiet; then
             echo "Reference pre-freeze artifacts are already current."
           else
@@ -87,4 +100,6 @@ jobs:
           path: |
             research/audits/STAGE1_TOPOLOGY_REFERENCE_MECHANISM_AUDIT_20260927.json
             research/calibrations/CAL-S1-TOPO-REFERENCE-INTEGRATOR-R1/result.json
+            research/calibrations/CAL-S1-TOPO-REFERENCE-RESET-R1/result.json
+            research/calibrations/CAL-S1-TOPO-REFERENCE-SYNAPSE-R1/result.json
           retention-days: 90
