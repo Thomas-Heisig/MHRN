@@ -33,6 +33,25 @@ The lower `final_active_fraction` of the 5d condition (~0.867 median) is therefo
 
 Consequently, a prospective efficiency experiment must control dynamic recruitment/activation ceiling rather than treating address-space sparsity as an established explanation.
 
+## Competing explanations to test prospectively
+
+The post-hoc ratio pattern is compatible with several distinct explanations. None is privileged by the historical DATA:
+
+1. **Specific coordinate-organization effect.** The registered 5D graph organization itself could change how much early activation is obtained per emitted spike or delivered synaptic event.
+2. **Sparse-/efficient-coding-like activity pattern.** A lower-activity code could improve the descriptive ratios without the effect being specific to 5D geometry. This is an activity-pattern explanation, not structural address-space sparsity.
+3. **Dynamic-recruitment artifact.** Because the 5D condition recruits a smaller final fraction of neurons than 1d–3d in the historical run, a smaller denominator could mechanically increase AUC/spike or AUC/event.
+4. **Metric/window artifact.** `activation_auc_0_32` integrates activity over a fixed 32-tick window. Different onset, duration or recruitment trajectories can yield similar integrals, so a ratio based on this AUC need not identify a unique mechanism.
+
+The prospective experiment must distinguish these explanations rather than assuming that a positive ratio is evidence for 5D geometry.
+
+## Relation to the Temporal-Order line
+
+The separate Temporal-Order methodological issue around perfect decoder scores does not enter this efficiency study: the efficiency endpoints use propagation AUC, spike counts and delivered synaptic events and require **no temporal-order decoder**. The two Stage-1 lines therefore remain methodologically separate.
+
+## Sparse-coding literature boundary
+
+Olshausen & Field (1996) is included only as related-work context for the general principle that sparse activity can participate in efficient coding. The MHRN 5D coordinate construction is **not** equivalent to sparse coding in the Olshausen–Field sense, and this prospective study does not reproduce or test their natural-image coding result.
+
 ## Why this is not evidence
 
 The ratios `activation_auc_0_32 / total_spikes` and `activation_auc_0_32 / delivered_events` were not preregistered primary or secondary inferential endpoints in the promotion run. They were calculated after the topology result was known.
@@ -54,4 +73,4 @@ The intended study must:
 
 ## Claim boundary
 
-Even a positive prospective result would support only a scoped propagation-efficiency mechanism in the tested Small-SNN envelope. It would not establish memory-capacity gain, bit-level storage reduction, general information capacity, cognition, biological equivalence, scaling, or universal 5D superiority.
+Even a positive prospective result would support only a scoped propagation-efficiency mechanism in the tested Small-SNN envelope. It would not establish memory-capacity gain, bit-level storage reduction, parameter-count reduction, Shannon information capacity, general representational capacity, cognition, biological equivalence, scaling, or universal 5D superiority. AUC/spike and AUC/event are efficiency ratios, not information-capacity measures. All registered conditions materialize 64 neurons; this study does not test materialized-coordinate count or theoretical addressability.
