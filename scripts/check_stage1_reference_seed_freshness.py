@@ -14,6 +14,7 @@ ALLOWED_PATHS = {
     PREREG.relative_to(ROOT).as_posix(),
     "reference/stage1_topology_brian2/reference_protocol.json",
     "research/preregistrations/PREREG-S1-TOPO-REFERENCE-R1.freeze.json",
+    "research/audits/invalidated/PREREG-S1-TOPO-REFERENCE-R1.freeze.68cc945.invalidated.json",
 }
 
 
