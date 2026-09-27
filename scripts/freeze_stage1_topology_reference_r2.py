@@ -143,8 +143,8 @@ def main() -> int:
             "pass": True,
         },
         "integrator_parity": {
-            "path": str(I.relative_to(ROOT)),
-            "sha256": sha(I),
+            "path": str(INTEGRATOR.relative_to(ROOT)),
+            "sha256": sha(INTEGRATOR),
             "pass": True,
             "reused_from_r1_with_source_hash_revalidation": True,
         },
