@@ -115,7 +115,7 @@ function injectStyles() {
     .scientific-progress-track{display:grid;grid-template-columns:repeat(11,minmax(86px,1fr));gap:7px;overflow-x:auto;padding:5px 0 10px}
     .scientific-stage-node{display:grid;grid-template-rows:auto auto auto auto;gap:5px;text-align:left;padding:9px;border:1px solid var(--rule);border-radius:8px;background:var(--paper);color:inherit;cursor:pointer}
     .scientific-stage-node:hover,.scientific-stage-node:focus-visible,.scientific-stage-node.is-selected{outline:2px solid var(--accent);outline-offset:1px}
-    .scientific-stage-number{font-size:.72rem;opacity:.75}.scientific-stage-name{font-size:.78rem;font-weight:700;line-height:1.2;min-height:2.4em}
+    .scientific-stage-number{font-size:.72rem;opacity:.75}.scientific-stage-name{min-width:0;font-size:.78rem;font-weight:700;line-height:1.2;min-height:2.4em;overflow-wrap:anywhere;word-break:break-word}
     .scientific-stage-bar{height:6px;background:var(--paper-3,#d9d9d9);border-radius:999px;overflow:hidden}.scientific-stage-fill{display:block;height:100%;background:currentColor;opacity:.7}
     .scientific-stage-meta{display:flex;justify-content:space-between;gap:4px;font-size:.68rem;opacity:.8}.scientific-stage-meta em{display:inline-flex;align-items:center;gap:3px;font-style:normal}
     .scientific-progress-legend{display:flex;flex-wrap:wrap;gap:7px;margin:8px 0}.scientific-progress-legend span{padding:4px 7px;border:1px solid var(--rule);border-radius:999px;font-size:.72rem}

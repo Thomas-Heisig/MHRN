@@ -15,6 +15,8 @@
 	Research-/Docs-Dateiverweise öffnen den zentralen File Viewer als Popup.
 - Claims, EVID, Experimente und Hypothesen sind je Timeline-Stufe über einen
 	eigenen Registerbereich direkt erreichbar.
+- Lange Stufennamen wie `Bewusstseinsforschung` umbrechen innerhalb der
+	Timeline-Karten ohne horizontales Überlaufen.
 
 ## 2026-09-26 External Review Deployment
 

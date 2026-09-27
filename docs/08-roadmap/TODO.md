@@ -72,6 +72,7 @@ MHRN / Multi-Scale Homeostatic Recurrence Network. Publication: Recursive Episte
 	direkt im Popup-File-Viewer öffnen.
 - [x] Claims, EVID, Experimente und Hypothesen je wissenschaftlicher Stufe
 	direkt zugänglich machen.
+- [x] Lange wissenschaftliche Stufennamen ohne Kartenüberlauf darstellen.
 
 ## 2026-09-16 Release navigation
 

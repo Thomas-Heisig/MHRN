@@ -13,6 +13,7 @@
   Publikationsordner öffnen ihre kanonische Manifest- bzw. README-Datei.
 - Jede wissenschaftliche Stufe bietet zusätzlich direkte Registerlinks für
   Claims, EVID, Experimente und Hypothesen.
+- Lange Stufennamen werden innerhalb der Timeline-Karten zuverlässig umgebrochen.
 
 ## 2026-09-26 - Sichere External-Review-Bereitstellung
 

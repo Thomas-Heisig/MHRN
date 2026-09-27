@@ -299,6 +299,10 @@ test("Release workspace renders the documentation timeline", async ({ page }) =>
   await expect(page.locator(".scientific-progress-status-legend .scientific-status-partial")).toBeVisible();
   await expect(page.locator(".scientific-progress-status-legend .scientific-status-open")).toBeVisible();
   await expect(page.locator(".scientific-stage-meta .scientific-status-mark")).toHaveCount(11);
+  const stageTenName = page.locator('#scientific-progress-timeline [data-scientific-stage="10"] .scientific-stage-name');
+  await expect(stageTenName).toHaveText("Bewusstseinsforschung");
+  await expect(stageTenName).toHaveCSS("overflow-wrap", "anywhere");
+  expect(await stageTenName.evaluate((element) => element.scrollWidth <= element.clientWidth)).toBe(true);
   await page.locator('#scientific-progress-timeline [data-scientific-stage="0"]').click();
   await expect(page.locator("#scientific-progress-detail .scientific-status-met")).toHaveCount(5);
   await expect(page.locator("#scientific-progress-detail .scientific-status-partial")).toHaveCount(1);
