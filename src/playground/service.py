@@ -8,7 +8,7 @@ from typing import Mapping
 from .analysis import ensemble_summary
 from .builder.session import PlaygroundSession
 from .closed_loop import closed_loop_catalog
-from .cuda import compiler_catalog
+from .cuda import compiler_catalog, parity_contract
 from .geometry import geometry_literature_context
 from .models import PlaygroundConfig
 from .neural_io import CODEC_CATALOG, DECODER_CATALOG
@@ -142,6 +142,7 @@ def catalog() -> dict[str, object]:
         },
         "closed_loop": closed_loop_catalog(),
         "cuda_gate_compiler": compiler_catalog(),
+        "cuda_parity": parity_contract(),
         "neural_io": {
             "available": True,
             "classification": "PLAYGROUND_NEURAL_IO",
