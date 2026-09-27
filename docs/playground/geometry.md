@@ -265,3 +265,6 @@ status: DRAFT_IDEA_NOT_PREREGISTERED
 ```
 
 und gehen nicht automatisch in die MHRN Research Registry ein.
+
+
+**Methodische Grenze:** keine universelle Small-World-Schwelle wird behauptet.
