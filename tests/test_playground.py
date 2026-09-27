@@ -862,7 +862,7 @@ def test_new_pan_candidates_remain_unregistered_ideas() -> None:
 def test_pan_behavioral_learning_runs_and_updates_policy() -> None:
     result = run(
         _small_payload(
-            ticks=32,
+            ticks=128,
             neuron_model="pan_adex_5d",
             stimulus="none",
             pan_enabled=True,
@@ -882,7 +882,7 @@ def test_pan_behavioral_learning_runs_and_updates_policy() -> None:
     assert learning["classification"] == "PLAYGROUND_BEHAVIORAL_LEARNING"
     assert learning["scientific_evidence"] is False
     assert learning["stores_raw_payloads"] is False
-    assert learning["episodes"] == 4
+    assert learning["episodes"] == 16
     assert learning["policy_updates"] > 0
     assert len(set(learning["target_history"])) > 1
     assert result["cortical_organization"]["layers"] == 6
@@ -1110,11 +1110,11 @@ def test_live_pan_session_keeps_state_across_chunks() -> None:
         )
     )
     live = PANLiveSession(config)
-    first = live.step(16)
+    first = live.step(64)
     first_digest = first["state_digest"]
-    second = live.step(16)
-    assert first["tick"] == 16
-    assert second["tick"] == 32
+    second = live.step(64)
+    assert first["tick"] == 64
+    assert second["tick"] == 128
     assert second["total_spikes"] >= first["total_spikes"] > 0
     assert second["state_digest"] != first_digest
 
