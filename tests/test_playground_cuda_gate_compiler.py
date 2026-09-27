@@ -9,9 +9,11 @@ from src.playground.cuda import (
     GateType,
     compile_config,
     compile_mapping,
+    cpu_gate_reference,
     compile_yaml,
     compiler_catalog,
     cooperative_capacity,
+    gate_execution_parity_summary,
     gate_parity_summary,
     parse_ptxas_verbose,
     smoke_gate_launch_inputs,
@@ -242,3 +244,104 @@ def test_gate_launch_input_validation_fails_closed_on_bad_shape() -> None:
 
     with pytest.raises(ValueError, match="amplitudes length"):
         validate_gate_launch_inputs(bundle, broken)
+
+
+
+def test_cpu_gate_reference_matches_nontrivial_minimal_loop_math() -> None:
+    bundle = compile_mapping(
+        {
+            "closed_loop_preset": "minimal_closed_loop",
+            "pan_feedback_gain": 0.0,
+        }
+    )
+    inputs = GateLaunchInputs.from_sequences(
+        input_current=[1.0, 2.0],
+        channel_masks=[0xFF, 0xFF],
+        amplitudes=[1.0] * 8,
+        reward_ring=[0.5],
+        action_map=[
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            3.0,
+            4.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+        ],
+        feedback_matrix=[0.0] * (2 * int(bundle.manifest["kernel_abi"]["pan_dimensions"])),
+        population=[0.0] * int(bundle.manifest["kernel_abi"]["pan_dimensions"]),
+        logits=[
+            0.1,
+            0.2,
+            0.3,
+            0.9,
+            0.1,
+            0.8,
+            0.2,
+            0.3,
+        ],
+        tick=0,
+        target_index=2,
+        previous_action=1,
+        seed=123,
+        epsilon=0.0,
+    )
+
+    result = cpu_gate_reference(bundle, inputs)
+    outputs = result["outputs"]
+
+    assert outputs["current"] == pytest.approx([46.5, 56.5], abs=1.0e-6)
+    assert outputs["action"] == [3, 1]
+    assert result["comparison_scope"] == "GATE_OUTPUT_ONLY_NOT_FULL_SNN"
+    assert result["scientific_evidence"] is False
+
+
+def test_gate_execution_parity_compares_current_and_action() -> None:
+    reference = {
+        "outputs": {
+            "current": [1.0, 2.0],
+            "action": [2, 1],
+        }
+    }
+    candidate = {
+        "outputs": {
+            "current": [1.00001, 1.99999],
+            "action": [2, 1],
+        }
+    }
+    summary = gate_execution_parity_summary(reference, candidate)
+
+    assert summary["parity_class"] == "D2"
+    assert summary["actions_exact"] is True
+    assert summary["current_max_abs_error"] < 1.0e-4
+    assert summary["passed"] is True
+
+    candidate["outputs"]["action"] = [2, 0]
+    failed = gate_execution_parity_summary(reference, candidate)
+    assert failed["actions_exact"] is False
+    assert failed["passed"] is False
