@@ -1720,3 +1720,90 @@ GATE_OUTPUT_ONLY_NOT_FULL_SNN
 Erst nach Integration des vollständigen Neuron-/Synapsenpfades dürfen
 Spike-, Gewichts- oder Erfolgsmetriken als CPU-CUDA-Backendvergleich verwendet
 werden.
+
+## CUDA-1.1 · CPU-Referenz, Freeze-Modi und Paritätsklassen
+
+Vor einem ersten echten CUDA-Launch gilt die CPU-Playground-Ausführung als technische
+Referenz. Diese Referenz ist nur brauchbar, wenn zwei Läufe mit identischem Seed
+denselben replay-relevanten Zustand erzeugen.
+
+### CPU-Determinismus
+
+Der CUDA-1.1-Vertrag bildet einen kanonischen Fingerprint über:
+
+- Spike-Ereignisse und Tick-Spike-Counts,
+- Raten und State-Samples,
+- Topologie/Koordinaten/Kanten,
+- Readout,
+- Closed-Loop Action/Target/Reward-Historien,
+- Behavioral-Policy und Activity-State,
+- PAN- und Execution-Zustand.
+
+Nicht Teil des Fingerprints sind:
+
+- `session_id`,
+- `created_at`,
+- Wall-Clock-Laufzeit.
+
+Ein CUDA-Vergleich darf nicht beginnen, wenn zwei identische CPU-Konfigurationen
+mit identischem Seed unterschiedliche Fingerprints erzeugen.
+
+### Freeze-Modi für Closed-Loop-Parität
+
+Bei geschlossener Rückkopplung kann eine kleine numerische Abweichung die Aktion
+ändern; danach ändern sich Input, Reward und alle Folgezustände. Deshalb gibt es
+zwei fail-closed Replay-Modi:
+
+`freeze_actions=true`
+: Die Aktion wird aus einer vorher aufgezeichneten CPU-Sequenz gelesen. Die
+  Sequenz muss alle abgeschlossenen Episoden abdecken.
+
+`freeze_rewards=true`
+: Der Reward wird aus einer vorher aufgezeichneten CPU-Sequenz gelesen. Er wird
+  nicht aus dem aktuellen Kandidatenlauf neu berechnet.
+
+Für beide Modi ist
+`parity_reference_source=CPU_PYTHON_PLAYGROUND` und ein Git-SHA in
+`parity_reference_commit` Pflicht. Eine zu kurze Referenzspur ist ein
+Konfigurationsfehler; es gibt keinen stillen Fallback auf Live-Aktionen oder
+Live-Rewards.
+
+### D1 / D2 / D3
+
+| Klasse | Bedeutung | Akzeptanz |
+|---|---|---|
+| D1 | exakte Ereignisparität | 0 abweichende `(neuron_id, tick)` Spike-Ereignisse |
+| D2 | numerische Zustandsparität | `max_abs(V_cpu-V_cuda) <= 1e-4`, `max_abs(w_cpu-w_cuda) <= 1e-4` |
+| D3 | Verhaltens-/Metrikparität | Spike-Count relative Abweichung <= 0,5 %, Success-Fraction absolute Abweichung <= 0,02 |
+
+D2 ist das primäre Ziel für CUDA-1. D1 ist strenger und setzt praktisch dieselbe
+Floating-Point-Operationsreihenfolge voraus. D3 wird erst bei geschlossener
+Rückkopplung und Plastizität als geeignete Vergleichsklasse verwendet.
+
+### Gate-Parity-Scope
+
+Der aktuelle Gate-Vergleich umfasst:
+
+- verglichen: A1, A2, A3, A4, B1, C1, C2, D1,
+- noch nicht als vollständiger Gate-Parity-Teil: C4 und zustandsbehaftete
+  Feedback-Topologie,
+- explizit ausgeschlossen: spätere Weight-Updates, vollständiger rekurrenter
+  SNN-Zustand und Structural Growth.
+
+Diese Grenze ist weiterhin `GATE_OUTPUT_ONLY_NOT_FULL_SNN` und darf nicht als
+vollständige CPU/CUDA-SNN-Parität interpretiert werden.
+
+### CUDA-1-Leiter
+
+1. CPU-Determinismus mit identischem Seed.
+2. Erster CUDA-Kernel-Launch ohne Closed Loop.
+3. D2 für einen Tick.
+4. D2 für 100 Ticks ohne Plastizität.
+5. Freeze-Actions/Freeze-Rewards für Reward-/Action-Loop.
+6. Credit-/Weight-Updates mit eingefrorener Referenzspur.
+7. D3 für vollständig geschlossenen P3-Lauf.
+
+Erst danach kann ein Status oberhalb von
+`ASSEMBLED_LOADED_NOT_EXECUTED` bzw. `SOURCE_GENERATED_NOT_EXECUTED`
+gerechtfertigt werden.
+
