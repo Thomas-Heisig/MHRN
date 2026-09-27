@@ -231,13 +231,20 @@ def cite(text, refs):
     return CITATION.sub(repl, text)
 
 
-def registry_objects(root: Path):
+def registry_objects(root: Path, source_texts: dict[str, bytes] | None = None):
+    """Project registry objects from the edition baseline when provided."""
+
     objects = []
     for filename in ("questions.yaml", "hypotheses.yaml", "claims.yaml"):
         path = "research/registry/" + filename
-        if not (root / path).is_file():
-            continue
-        raw = (root / path).read_bytes()
+        if source_texts is not None:
+            raw = source_texts.get(path)
+            if raw is None:
+                continue
+        else:
+            if not (root / path).is_file():
+                continue
+            raw = (root / path).read_bytes()
         payload = yaml.safe_load(raw)
 
         def walk(value, pointer):
@@ -404,7 +411,7 @@ def build(root: Path = ROOT):
                         "mapping_status": method,
                     }
                 )
-    objects = registry_objects(root)
+    objects = registry_objects(root, source_texts)
     manuscript_path = EDITION + "/MANUSCRIPT.md"
     toc = [
         f"- [Teil {p['id']} — {p['title']}](#part-{p['id'].lower()})"
