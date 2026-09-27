@@ -38,9 +38,12 @@ def test_efficiency_line_is_unpromoted_and_unfrozen() -> None:
 
     if prereg["status"] == "DRAFT_CALIBRATION_GATE_FAILED_FREEZE_BLOCKED":
         assert prereg["execution_block"]["blocked"] is True
-        assert prereg["calibration"]["observed_status_after_run"][
-            "3d_recruitment_matched_gate_passed"
-        ] is False
+        assert (
+            prereg["calibration"]["observed_status_after_run"][
+                "3d_recruitment_matched_gate_passed"
+            ]
+            is False
+        )
 
 
 def test_efficiency_primary_family_is_exactly_eight_tests() -> None:
@@ -58,9 +61,9 @@ def test_efficiency_primary_family_is_exactly_eight_tests() -> None:
         "5d_vs_random_graph",
         "5d_vs_3d_recruitment_matched",
     }
-    assert "5d_high_recruitment" not in {
-        item["left"] for item in contrasts
-    } | {item["right"] for item in contrasts}
+    assert "5d_high_recruitment" not in {item["left"] for item in contrasts} | {
+        item["right"] for item in contrasts
+    }
 
 
 def test_ratio_contract_prevents_denominator_cherry_picking() -> None:
@@ -76,7 +79,10 @@ def test_ratio_contract_prevents_denominator_cherry_picking() -> None:
 def test_decision_cases_are_predeclared_and_equal_value() -> None:
     rule = _prereg()["decision_rule"]
 
-    assert "SUPPORTED_WITHIN_PREREGISTERED_PROTOCOL" in rule["case_A_supports_specific_effect"]
+    assert (
+        "SUPPORTED_WITHIN_PREREGISTERED_PROTOCOL"
+        in rule["case_A_supports_specific_effect"]
+    )
     assert "INCONCLUSIVE_SPECIFICITY" in rule["case_B_inconclusive_specificity"]
     assert "REFUTES_WITHIN_PROTOCOL" in rule["case_C_refutes"]
     assert "5d_high_recruitment" in rule["high_recruitment_role"]
@@ -88,9 +94,7 @@ def test_seed_freeze_gate_is_required() -> None:
     gate = prereg["seed_freeze_gate"]
 
     assert gate["required_before_freeze"] is True
-    assert gate["allowed_occurrence"] == (
-        "the preregistration file itself only"
-    )
+    assert gate["allowed_occurrence"] == ("the preregistration file itself only")
     assert "blocks freeze" in gate["collision_semantics"]
 
 

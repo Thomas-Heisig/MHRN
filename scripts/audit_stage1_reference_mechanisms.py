@@ -17,7 +17,12 @@ NEURON = ROOT / "src" / "core" / "neuron.py"
 MODELS = ROOT / "src" / "core" / "neuron_models.py"
 NETWORK = ROOT / "src" / "core" / "network.py"
 RUNNER = ROOT / "scripts" / "run_stage1_topology_v2.py"
-OUT = ROOT / "research" / "audits" / "STAGE1_TOPOLOGY_REFERENCE_MECHANISM_AUDIT_20260927.json"
+OUT = (
+    ROOT
+    / "research"
+    / "audits"
+    / "STAGE1_TOPOLOGY_REFERENCE_MECHANISM_AUDIT_20260927.json"
+)
 
 
 def sha256_file(path: Path) -> str:
@@ -57,29 +62,34 @@ def main() -> int:
             in neuron_text
         ),
         "energy_not_read_by_membrane_integrator": (
-            "energy" not in model_text.split("def integrate_membrane", 1)[1].split(
+            "energy"
+            not in model_text.split("def integrate_membrane", 1)[1].split(
                 "def spike_threshold", 1
             )[0]
         ),
         "traces_not_read_by_membrane_or_threshold": (
             "pre_trace" not in model_text
             and "post_trace" not in model_text
-            and "trace" not in neuron_text.split("def current_threshold", 1)[1].split(
+            and "trace"
+            not in neuron_text.split("def current_threshold", 1)[1].split(
                 "def switch_model", 1
             )[0]
         ),
         "network_step_does_not_apply_stdp": all(
-            token not in network_text.split("def step(self)", 1)[1].split(
+            token
+            not in network_text.split("def step(self)", 1)[1].split(
                 "def step_batch", 1
             )[0]
-            for token in ("compute_stdp_update", "apply_stdp_update", "update_eligibility")
+            for token in (
+                "compute_stdp_update",
+                "apply_stdp_update",
+                "update_eligibility",
+            )
         ),
         "config_energy_affects_firing_false": (
             config.get("energy", {}).get("affects_firing") is False
         ),
-        "config_stdp_enabled_false": (
-            config.get("stdp", {}).get("enabled") is False
-        ),
+        "config_stdp_enabled_false": (config.get("stdp", {}).get("enabled") is False),
     }
 
     payload = {
@@ -143,7 +153,9 @@ def main() -> int:
     }
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
-    print(json.dumps({"status": "PASS" if payload["pass"] else "FAIL", "checks": checks}))
+    print(
+        json.dumps({"status": "PASS" if payload["pass"] else "FAIL", "checks": checks})
+    )
     return 0 if payload["pass"] else 1
 
 

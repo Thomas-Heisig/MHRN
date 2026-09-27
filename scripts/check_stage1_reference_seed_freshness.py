@@ -44,9 +44,7 @@ def main() -> int:
             collisions[match.group(1)].append(name)
 
     collisions = {
-        seed: sorted(set(paths))
-        for seed, paths in collisions.items()
-        if paths
+        seed: sorted(set(paths)) for seed, paths in collisions.items() if paths
     }
     payload = {
         "preregistration_id": prereg["preregistration_id"],

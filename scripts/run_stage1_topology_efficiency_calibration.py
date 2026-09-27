@@ -157,7 +157,9 @@ def main() -> int:
     if prereg.get("status") != "DRAFT_BEFORE_FREEZE":
         raise RuntimeError("calibration is allowed only while preregistration is DRAFT")
     if prereg.get("execution_authorized") is not False:
-        raise RuntimeError("confirmatory execution must remain unauthorized during calibration")
+        raise RuntimeError(
+            "confirmatory execution must remain unauthorized during calibration"
+        )
     if OUT.exists():
         raise FileExistsError(f"Refusing to overwrite calibration: {OUT}")
 
@@ -202,7 +204,9 @@ def main() -> int:
             "3d_recruitment_matched_gate_passed": selected_3d is not None,
             "5d_high_recruitment_gate_passed": selected_5d is not None,
         },
-        "selection_inputs_excluded": prereg["calibration"]["forbidden_selection_inputs"],
+        "selection_inputs_excluded": prereg["calibration"][
+            "forbidden_selection_inputs"
+        ],
         "preregistration_sha256": sha256(PREREG),
     }
 

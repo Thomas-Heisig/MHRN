@@ -41,7 +41,9 @@ def main() -> int:
     if len(rows) != expected_runs:
         errors.append(f"expected {expected_runs} calibration runs, got {len(rows)}")
 
-    if any(int(row["seed"]) in set(map(int, prereg["evaluation"]["seeds"])) for row in rows):
+    if any(
+        int(row["seed"]) in set(map(int, prereg["evaluation"]["seeds"])) for row in rows
+    ):
         errors.append("evaluation seed appeared in calibration DATA")
 
     for graph_condition in ("3d", "5d"):

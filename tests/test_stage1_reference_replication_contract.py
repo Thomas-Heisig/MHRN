@@ -45,7 +45,9 @@ def test_reference_primary_family_and_equivalence_are_frozen() -> None:
 
     assert evaluation["primary_endpoint"] == "first_output_latency_censored"
     assert len(evaluation["primary_contrasts"]) == 5
-    assert "five first-output-latency contrasts" in evaluation["primary_multiple_testing"]
+    assert (
+        "five first-output-latency contrasts" in evaluation["primary_multiple_testing"]
+    )
     assert set(targets["frozen_bounds"]) == {
         "1d_to_2d",
         "2d_to_3d",

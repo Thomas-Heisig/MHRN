@@ -120,9 +120,7 @@ def _graph_condition(condition: str) -> str:
 def _stimulus_current(prereg: dict[str, Any], condition: str) -> float:
     if condition == "3d_recruitment_matched":
         return float(
-            prereg["frozen_calibration"][
-                "3d_recruitment_matched_stimulus_current"
-            ]
+            prereg["frozen_calibration"]["3d_recruitment_matched_stimulus_current"]
         )
     if condition == "5d_high_recruitment":
         return float(
@@ -210,10 +208,7 @@ def _one_sided_sign_test_p(values: list[float]) -> float:
     positives = sum(value > 0.0 for value in nonzero)
     return min(
         1.0,
-        sum(
-            math.comb(len(nonzero), k)
-            for k in range(positives, len(nonzero) + 1)
-        )
+        sum(math.comb(len(nonzero), k) for k in range(positives, len(nonzero) + 1))
         / (2 ** len(nonzero)),
     )
 
@@ -245,9 +240,7 @@ def _summaries(runs: list[dict[str, Any]]) -> dict[str, Any]:
                 statistics.median(row["final_active_fraction"] for row in rows)
             ),
             "first_output_latency_censored_median": float(
-                statistics.median(
-                    row["first_output_latency_censored"] for row in rows
-                )
+                statistics.median(row["first_output_latency_censored"] for row in rows)
             ),
         }
     return out
@@ -391,7 +384,10 @@ def main() -> None:
     seed_freeze = prereg.get("seed_freeze_record")
     if not isinstance(frozen_calibration, dict):
         raise RuntimeError("frozen calibration binding is missing")
-    if not isinstance(seed_freeze, dict) or seed_freeze.get("collision_free") is not True:
+    if (
+        not isinstance(seed_freeze, dict)
+        or seed_freeze.get("collision_free") is not True
+    ):
         raise RuntimeError("seed freshness freeze record is missing or failed")
     calibration_result = CALIBRATION / "result.json"
     if not calibration_result.is_file():
@@ -498,13 +494,18 @@ def main() -> None:
     recorder.record_runtime(time.perf_counter() - started)
     recorder.mark_completed().save()
 
-    print(json.dumps({
-        "experiment_id": EXPERIMENT_ID,
-        "status": analysis["status"],
-        "decision_case": analysis["decision_case"],
-        "runs": len(runs),
-        "integrity": integrity["pass"],
-    }, sort_keys=True))
+    print(
+        json.dumps(
+            {
+                "experiment_id": EXPERIMENT_ID,
+                "status": analysis["status"],
+                "decision_case": analysis["decision_case"],
+                "runs": len(runs),
+                "integrity": integrity["pass"],
+            },
+            sort_keys=True,
+        )
+    )
 
 
 if __name__ == "__main__":

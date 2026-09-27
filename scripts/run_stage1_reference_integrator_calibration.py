@@ -17,9 +17,7 @@ from src.core.neuron import NeuronConfig, create_neuron
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "research" / "calibrations" / "CAL-S1-TOPO-REFERENCE-INTEGRATOR-R1"
-REFERENCE_PROBE = (
-    ROOT / "reference" / "stage1_topology_brian2" / "integrator_probe.py"
-)
+REFERENCE_PROBE = ROOT / "reference" / "stage1_topology_brian2" / "integrator_probe.py"
 NEURON_SOURCE = ROOT / "src" / "core" / "neuron.py"
 MODEL_SOURCE = ROOT / "src" / "core" / "neuron_models.py"
 
@@ -103,7 +101,9 @@ def main() -> int:
         "pass": passed,
     }
     OUT.mkdir(parents=True, exist_ok=True)
-    (OUT / "result.json").write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
+    (OUT / "result.json").write_text(
+        json.dumps(payload, indent=2) + "\n", encoding="utf-8"
+    )
     print(json.dumps({"status": "PASS" if passed else "FAIL", "cases": cases}))
     return 0 if passed else 1
 
