@@ -20,6 +20,7 @@ import tempfile
 from collections.abc import Mapping, Sequence
 from dataclasses import dataclass
 from pathlib import Path
+from typing import Any
 
 from .pan_compiler import CompileBundle
 
@@ -413,7 +414,7 @@ class CudaDriver:
     def copy_host_to_device(
         self,
         allocation: DeviceAllocation,
-        source: object,
+        source: ctypes.Array[Any],
         *,
         size_bytes: int | None = None,
     ) -> None:
@@ -433,7 +434,7 @@ class CudaDriver:
 
     def copy_device_to_host(
         self,
-        destination: object,
+        destination: ctypes.Array[Any],
         allocation: DeviceAllocation,
         *,
         size_bytes: int | None = None,
@@ -674,6 +675,18 @@ def cooperative_capacity(
     )
 
 
+def _numeric_int(value: object, *, field: str) -> int:
+    if not isinstance(value, (int, float)):
+        raise ValueError(f"{field} must be numeric")
+    return int(value)
+
+
+def _numeric_float(value: object, *, field: str) -> float:
+    if not isinstance(value, (int, float)):
+        raise ValueError(f"{field} must be numeric")
+    return float(value)
+
+
 def _kernel_abi(bundle: CompileBundle) -> Mapping[str, object]:
     abi = bundle.manifest.get("kernel_abi")
     if not isinstance(abi, Mapping):
@@ -689,9 +702,15 @@ def validate_gate_launch_inputs(
 
     abi = _kernel_abi(bundle)
     try:
-        input_channels = int(abi["input_channels"])
-        action_count = int(abi["action_space_size"])
-        pan_dimensions = int(abi["pan_dimensions"])
+        input_channels = _numeric_int(
+            abi["input_channels"], field="kernel_abi.input_channels"
+        )
+        action_count = _numeric_int(
+            abi["action_space_size"], field="kernel_abi.action_space_size"
+        )
+        pan_dimensions = _numeric_int(
+            abi["pan_dimensions"], field="kernel_abi.pan_dimensions"
+        )
     except (KeyError, TypeError, ValueError) as exc:
         raise ValueError("kernel_abi dimensions are invalid") from exc
 
@@ -751,9 +770,15 @@ def smoke_gate_launch_inputs(
     if n_neurons <= 0:
         raise ValueError("n_neurons must be positive")
     abi = _kernel_abi(bundle)
-    input_channels = int(abi["input_channels"])
-    action_count = int(abi["action_space_size"])
-    pan_dimensions = int(abi["pan_dimensions"])
+    input_channels = _numeric_int(
+        abi["input_channels"], field="kernel_abi.input_channels"
+    )
+    action_count = _numeric_int(
+        abi["action_space_size"], field="kernel_abi.action_space_size"
+    )
+    pan_dimensions = _numeric_int(
+        abi["pan_dimensions"], field="kernel_abi.pan_dimensions"
+    )
     full_mask = (1 << input_channels) - 1 if input_channels < 64 else 0xFFFFFFFFFFFFFFFF
     return GateLaunchInputs(
         input_current=tuple(0.0 for _ in range(n_neurons)),
@@ -854,7 +879,10 @@ def cpu_gate_reference(
             if label not in a2_labels:
                 continue
             params = _gate_params(bundle, stage="A2", label=label) or {}
-            channel = int(params.get("channel", action % input_channels))
+            channel = _numeric_int(
+                params.get("channel", action % input_channels),
+                field="A2.target_match.channel",
+            )
             if inputs.target_index == action and mask & (1 << channel):
                 cue_params = (
                     _gate_params(
@@ -864,29 +892,46 @@ def cpu_gate_reference(
                     )
                     or {}
                 )
-                current = _f32(current + _f32(float(cue_params.get("current", 0.0))))
+                cue_current = _numeric_float(
+                    cue_params.get("current", 0.0),
+                    field="A2.target_cue.current",
+                )
+                current = _f32(current + _f32(cue_current))
 
         if "reward_channel_select" in a3_labels:
-            delay = int((reward_delay_params or {}).get("delay_ticks", 0))
+            delay = _numeric_int(
+                (reward_delay_params or {}).get("delay_ticks", 0),
+                field="A3.reward_delay.delay_ticks",
+            )
             reward_value = 0.0
             if inputs.tick >= delay:
                 reward_index = (inputs.tick - delay) % len(inputs.reward_ring)
                 reward_value = _f32(inputs.reward_ring[reward_index])
-            magnitude = float((reward_magnitude_params or {}).get("magnitude", 1.0))
+            magnitude = _numeric_float(
+                (reward_magnitude_params or {}).get("magnitude", 1.0),
+                field="A3.reward_magnitude.magnitude",
+            )
             reward_value = _f32(reward_value * _f32(magnitude))
-            reward_channel = int((reward_select_params or {}).get("channel", 0))
+            reward_channel = _numeric_int(
+                (reward_select_params or {}).get("channel", 0),
+                field="A3.reward_channel_select.channel",
+            )
             if mask & (1 << reward_channel):
                 current = _f32(current + reward_value)
 
         if "action_coupling" in a4_labels:
             map_index = inputs.previous_action * input_channels + gid % input_channels
             action_value = _f32(inputs.action_map[map_index])
-            strength = float((coupling_params or {}).get("strength", 1.0))
+            strength = _numeric_float(
+                (coupling_params or {}).get("strength", 1.0),
+                field="A4.action_coupling.strength",
+            )
             current = _f32(current + _f32(action_value * _f32(strength)))
 
         if "pan_feedback_dot" in c1_labels:
-            dimensions = int(
-                (feedback_dot_params or {}).get("dimensions", pan_dimensions)
+            dimensions = _numeric_int(
+                (feedback_dot_params or {}).get("dimensions", pan_dimensions),
+                field="C1.pan_feedback_dot.dimensions",
             )
             feedback = _f32(0.0)
             base = gid * pan_dimensions
@@ -904,13 +949,22 @@ def cpu_gate_reference(
             elif "pan_feedback_clip" in c1_labels:
                 feedback = _f32(max(-1.0, min(1.0, feedback)))
 
-            gain = float((feedback_gain_params or {}).get("gain", 1.0))
+            gain = _numeric_float(
+                (feedback_gain_params or {}).get("gain", 1.0),
+                field="C1.pan_feedback_gain.gain",
+            )
             feedback = _f32(feedback * _f32(gain))
-            threshold = float((feedback_threshold_params or {}).get("threshold", 0.0))
+            threshold = _numeric_float(
+                (feedback_threshold_params or {}).get("threshold", 0.0),
+                field="C2.pan_feedback_threshold.threshold",
+            )
             if abs(feedback) < threshold:
                 feedback = _f32(0.0)
-            saturation = float(
-                (feedback_saturation_params or {}).get("saturation", float("inf"))
+            saturation = _numeric_float(
+                (feedback_saturation_params or {}).get(
+                    "saturation", float("inf")
+                ),
+                field="C2.pan_feedback_saturation.saturation",
             )
             feedback = _f32(max(-saturation, min(saturation, feedback)))
             current = _f32(current + feedback)
@@ -1001,12 +1055,12 @@ def gate_execution_parity_summary(
     }
 
 
-def _f32_buffer(values: Sequence[float]) -> object:
+def _f32_buffer(values: Sequence[float]) -> ctypes.Array[Any]:
     array_type = ctypes.c_float * len(values)
     return array_type(*(float(value) for value in values))
 
 
-def _u64_buffer(values: Sequence[int]) -> object:
+def _u64_buffer(values: Sequence[int]) -> ctypes.Array[Any]:
     array_type = ctypes.c_uint64 * len(values)
     return array_type(*(int(value) for value in values))
 
