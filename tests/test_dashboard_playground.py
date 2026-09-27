@@ -241,11 +241,12 @@ def test_playground_ui_exposes_live_pan_session_controls() -> None:
     module = (STATIC / "frontend" / "modules" / "playground.js").read_text(
         encoding="utf-8"
     )
-    assert "17 · PAN Live Monitor" in module
-    assert "pg-live-open" in module
-    assert "openLiveMonitor" in module
-    assert "pg-live-monitor-start" in module
-    assert "pg-live-monitor-pause" in module
+    assert "17 · PAN Live Session & Sandbox" in module
+    assert "pg-live-create" in module
+    assert "pg-live-step" in module
+    assert "pg-live-input" in module
+    assert "pg-live-sandbox" in module
+    assert "pg-live-stop" in module
 
 
 def test_playground_api_exposes_stateful_live_routes_without_research_promotion() -> (
@@ -307,3 +308,19 @@ def test_playground_ui_exposes_closed_loop_builder_sections() -> None:
     assert 'id="pg-user-preset-select"' in module
     assert 'id="pg-closed-loop-preset"' not in module
     assert "applyUserPreset" in module
+
+
+def test_playground_ui_exposes_cuda_gate_compiler_preview() -> None:
+    module = (STATIC / "frontend" / "modules" / "playground.js").read_text(
+        encoding="utf-8"
+    )
+    api = (ROOT / "src" / "dashboard" / "playground_api.py").read_text(
+        encoding="utf-8"
+    )
+    assert "19 · CUDA Gate Compiler" in module
+    assert 'id="pg-cuda-compile"' in module
+    assert 'id="pg-cuda-target-sm"' in module
+    assert '"/api/playground/cuda/compile"' in module
+    assert 'path == "/api/playground/cuda/compile"' in api
+    assert "compile_mapping" in api
+    assert "EvidenceEngine" not in api
