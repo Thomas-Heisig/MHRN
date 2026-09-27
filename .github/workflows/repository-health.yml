@@ -42,6 +42,16 @@ jobs:
           python scripts/check_doc_consistency.py --check-tests
           python scripts/check_scientific_maturity_integrity.py
 
+      - name: Normalize consolidation Python files
+        run: |
+          python -m black \
+            src/playground/closed_loop.py \
+            src/playground/builder/session.py \
+            src/playground/models.py \
+            src/playground/pan/runtime.py \
+            tests/test_repository_hygiene.py \
+            tests/test_playground.py
+
       - name: Regenerate derived research projections
         run: |
           python research/generate_reports.py
@@ -82,13 +92,21 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          git add -- research/generated research/publications/2026-09-17_recursive-epistemics_v1.8
+          git add -- \
+            research/generated \
+            research/publications/2026-09-17_recursive-epistemics_v1.8 \
+            src/playground/closed_loop.py \
+            src/playground/builder/session.py \
+            src/playground/models.py \
+            src/playground/pan/runtime.py \
+            tests/test_repository_hygiene.py \
+            tests/test_playground.py
           git diff --cached --check
           if git diff --cached --quiet; then
             echo "Generated research projections are current."
             exit 0
           fi
-          unexpected="$(git diff --cached --name-only | grep -Ev '^(research/generated/|research/publications/2026-09-17_recursive-epistemics_v1\.8/)' || true)"
+          unexpected="$(git diff --cached --name-only | grep -Ev '^(research/generated/|research/publications/2026-09-17_recursive-epistemics_v1\.8/|src/playground/closed_loop\.py$|src/playground/builder/session\.py$|src/playground/models\.py$|src/playground/pan/runtime\.py$|tests/test_repository_hygiene\.py$|tests/test_playground\.py$)' || true)"
           if [ -n "$unexpected" ]; then
             echo "$unexpected"
             echo "::error::Generator attempted to stage files outside approved generated research/publication paths."
