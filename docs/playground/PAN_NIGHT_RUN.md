@@ -151,3 +151,5 @@ night-run stack.
 
 This night-run stack is merged only through the normal `develop -> release/* -> main`
 repository workflow. The Playground boundary remains unchanged after release.
+
+Final integration sync completed against the current `develop` line before release promotion.
