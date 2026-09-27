@@ -31,6 +31,17 @@ def test_playground_api_is_routed_without_research_promotion() -> None:
     assert "human_review" not in api
 
 
+def test_playground_api_exposes_temporary_live_cleanup() -> None:
+    api = (ROOT / "src" / "dashboard" / "playground_api.py").read_text(
+        encoding="utf-8"
+    )
+    daemon = (ROOT / "src" / "playground" / "pan" / "live_session.py").read_text(
+        encoding="utf-8"
+    )
+    assert 'path == "/api/playground/live/stop-all"' in api
+    assert "def stop_all" in daemon
+
+
 def test_playground_ui_has_permanent_non_scientific_boundary() -> None:
     module = (STATIC / "frontend" / "modules" / "playground.js").read_text(
         encoding="utf-8"
@@ -241,12 +252,16 @@ def test_playground_ui_exposes_live_pan_session_controls() -> None:
     module = (STATIC / "frontend" / "modules" / "playground.js").read_text(
         encoding="utf-8"
     )
-    assert "17 · PAN Live Session & Sandbox" in module
-    assert "pg-live-create" in module
-    assert "pg-live-step" in module
-    assert "pg-live-input" in module
-    assert "pg-live-sandbox" in module
-    assert "pg-live-stop" in module
+    assert "17 · PAN Live Monitor" in module
+    assert "pg-live-open" in module
+    assert "openLiveMonitor" in module
+    assert "pg-live-monitor-start" in module
+    assert "pg-live-monitor-pause" in module
+    assert 'id="pg-live-clear"' in module
+    assert '"/api/playground/live/stop-all"' in module
+    assert "maximum live Playground sessions reached" in module
+    assert "compatibility_cleanup" in module
+    assert 'apiGet(`/api/playground/live/${encodeURIComponent(liveSessionId)}`)' in module
 
 
 def test_playground_api_exposes_stateful_live_routes_without_research_promotion() -> (
