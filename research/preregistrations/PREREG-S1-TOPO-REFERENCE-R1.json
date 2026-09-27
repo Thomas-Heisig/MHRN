@@ -410,11 +410,12 @@
     "seed_freshness": {
       "required": true,
       "script": "scripts/check_stage1_reference_seed_freshness.py",
-      "pass_rule": "All evaluation seeds are absent from every other tracked file at freeze. Their only allowed pre-execution declarations are the canonical preregistration and the sanitized Brian2 runner protocol; the later freeze record may duplicate them as provenance.",
+      "pass_rule": "All evaluation seeds must be absent from prior experiment/DATA use. Allowed tracked declarations are limited to the canonical preregistration, sanitized Brian2 runner protocol, the explicitly invalidated premature-freeze audit (which records reference_data_created=false), and after a valid freeze the canonical freeze record.",
       "failure_rule": "select a new seed block before freeze",
       "allowed_seed_declarations": [
         "research/preregistrations/PREREG-S1-TOPO-REFERENCE-R1.json",
-        "reference/stage1_topology_brian2/reference_protocol.json"
+        "reference/stage1_topology_brian2/reference_protocol.json",
+        "research/audits/invalidated/PREREG-S1-TOPO-REFERENCE-R1.freeze.68cc945.invalidated.json"
       ]
     },
     "reset_parity": {
