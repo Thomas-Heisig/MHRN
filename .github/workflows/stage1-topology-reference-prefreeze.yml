@@ -5,17 +5,19 @@ on:
     branches:
       - develop
     paths:
-      - research/preregistrations/PREREG-S1-TOPO-REFERENCE-R1.json
-      - reference/**
-      - scripts/audit_stage1_reference_mechanisms.py
-      - scripts/check_stage1_reference_seed_freshness.py
+      - research/preregistrations/PREREG-S1-TOPO-REFERENCE-R2.json
+      - reference/stage1_topology_brian2/runner_r2.py
+      - reference/stage1_topology_brian2/reference_protocol_r2.json
+      - reference/stage1_topology_brian2/TRANSLATION_R2.md
       - scripts/check_stage1_reference_independence.py
+      - scripts/check_stage1_reference_seed_freshness_r2.py
+      - scripts/run_stage1_reference_topology_mapping_r2.py
       - scripts/run_stage1_reference_integrator_calibration.py
-      - reference/stage1_topology_brian2/TRANSLATION.md
-      - scripts/run_stage1_reference_synapse_calibration.py
       - scripts/run_stage1_reference_reset_calibration.py
-      - tests/test_stage1_reference_replication_contract.py
-      - tests/test_stage1_reference_preflight.py
+      - scripts/run_stage1_reference_synapse_calibration.py
+      - scripts/audit_stage1_reference_mechanisms.py
+      - tests/test_stage1_reference_r2_contract.py
+      - tests/test_stage1_reference_r2_preflight.py
       - .github/workflows/stage1-topology-reference-prefreeze.yml
       - src/core/neuron.py
       - src/core/neuron_models.py
@@ -28,7 +30,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: stage1-topology-reference-prefreeze-develop
+  group: stage1-topology-reference-prefreeze-r2-develop
   cancel-in-progress: true
 
 jobs:
@@ -40,66 +42,53 @@ jobs:
         with:
           ref: develop
           fetch-depth: 0
-
       - uses: actions/setup-python@v7
         with:
           python-version: "3.13"
-
       - name: Install project and pinned reference framework
         run: |
           python -m pip install --upgrade pip
           python -m pip install -e '.[dev]'
           python -m pip install 'brian2==2.10.1'
-
-      - name: Verify reference preregistration contract
+      - name: Verify R1 historical and R2 active contracts
         run: |
           test -z "$(git status --porcelain)"
-          python -m pytest \
-            tests/test_stage1_reference_replication_contract.py \
-            tests/test_stage1_reference_preflight.py -q
-
+          python -m pytest             tests/test_stage1_reference_replication_contract.py             tests/test_stage1_reference_preflight.py             tests/test_stage1_reference_r2_contract.py             tests/test_stage1_reference_r2_preflight.py -q
       - name: Audit canonical mechanism semantics
         run: python scripts/audit_stage1_reference_mechanisms.py
-
       - name: Verify reference package independence
         run: python scripts/check_stage1_reference_independence.py
-
-      - name: Verify reference seed freshness
-        run: python scripts/check_stage1_reference_seed_freshness.py
-
-      - name: Run one-neuron Brian2 integrator parity calibration
+      - name: Verify R2 reference seed freshness
+        run: python scripts/check_stage1_reference_seed_freshness_r2.py
+      - name: Revalidate neuron/integrator parity
         run: python scripts/run_stage1_reference_integrator_calibration.py
-
-      - name: Run explicit reset parity calibration
+      - name: Revalidate reset parity
         run: python scripts/run_stage1_reference_reset_calibration.py
-
-      - name: Run two-neuron synapse-delay parity calibration
+      - name: Revalidate synapse-delay parity
         run: python scripts/run_stage1_reference_synapse_calibration.py
-
+      - name: Run exact R2 topology mapping parity
+        run: python scripts/run_stage1_reference_topology_mapping_r2.py
       - name: Commit immutable pre-freeze audit artifacts
         shell: bash
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add \
-            research/audits/STAGE1_TOPOLOGY_REFERENCE_MECHANISM_AUDIT_20260927.json \
-            research/calibrations/CAL-S1-TOPO-REFERENCE-INTEGRATOR-R1/result.json \
-            research/calibrations/CAL-S1-TOPO-REFERENCE-RESET-R1/result.json \
-            research/calibrations/CAL-S1-TOPO-REFERENCE-SYNAPSE-R1/result.json
+          git add             research/audits/STAGE1_TOPOLOGY_REFERENCE_MECHANISM_AUDIT_20260927.json             research/calibrations/CAL-S1-TOPO-REFERENCE-INTEGRATOR-R1/result.json             research/calibrations/CAL-S1-TOPO-REFERENCE-RESET-R1/result.json             research/calibrations/CAL-S1-TOPO-REFERENCE-SYNAPSE-R1/result.json             research/calibrations/CAL-S1-TOPO-REFERENCE-TOPOLOGY-MAP-R2/result.json
           if git diff --cached --quiet; then
-            echo "Reference pre-freeze artifacts are already current."
+            echo "Reference R2 pre-freeze artifacts are already current."
           else
-            git commit -m "research(stage1): record reference pre-freeze audit results [stage1-ref-prefreeze]"
+            git commit -m "research(stage1): record R2 reference pre-freeze gates [stage1-ref-prefreeze-r2]"
+            git pull --rebase origin develop
             git push origin HEAD:develop
           fi
-
       - uses: actions/upload-artifact@v7
         if: always()
         with:
-          name: stage1-topology-reference-prefreeze
+          name: stage1-topology-reference-prefreeze-r2
           path: |
             research/audits/STAGE1_TOPOLOGY_REFERENCE_MECHANISM_AUDIT_20260927.json
             research/calibrations/CAL-S1-TOPO-REFERENCE-INTEGRATOR-R1/result.json
             research/calibrations/CAL-S1-TOPO-REFERENCE-RESET-R1/result.json
             research/calibrations/CAL-S1-TOPO-REFERENCE-SYNAPSE-R1/result.json
+            research/calibrations/CAL-S1-TOPO-REFERENCE-TOPOLOGY-MAP-R2/result.json
           retention-days: 90
