@@ -115,13 +115,15 @@ hypothesis, not a property of the current runtime.
 
 ## 5. Research candidates
 
-The Playground exposes 16 ideas, all with
-`DRAFT_IDEA_NOT_PREREGISTERED` status. The final four are:
+The Playground exposes 18 ideas, all with
+`DRAFT_IDEA_NOT_PREREGISTERED` status. The final six are:
 
 13. hardware-native emergence;
 14. behavioral emergence;
 15. hybrid cognition using the existing Gateway/Neural-Symbiosis boundary;
-16. layer emergence/specialization.
+16. layer emergence/specialization;
+17. mode-switch consistency;
+18. hybrid execution performance.
 
 Nothing in this file registers a hypothesis under `research/`.
 
