@@ -12,6 +12,7 @@ import ctypes
 import hashlib
 import json
 import math
+import os
 import re
 import shutil
 import subprocess
@@ -93,6 +94,67 @@ class DriverModule:
     module: ctypes.c_void_p
     function: ctypes.c_void_p
     device_ordinal: int
+
+
+@dataclass(frozen=True, slots=True)
+class DeviceAllocation:
+    """One owned CUDA device allocation."""
+
+    ptr: int
+    size_bytes: int
+
+
+@dataclass(frozen=True, slots=True)
+class GateLaunchInputs:
+    """Host-side ABI payload for one pan_gate_kernel launch."""
+
+    input_current: tuple[float, ...]
+    channel_masks: tuple[int, ...]
+    amplitudes: tuple[float, ...]
+    reward_ring: tuple[float, ...]
+    action_map: tuple[float, ...]
+    feedback_matrix: tuple[float, ...]
+    population: tuple[float, ...]
+    logits: tuple[float, ...]
+    tick: int = 0
+    target_index: int = 0
+    previous_action: int = 0
+    seed: int = 0
+    epsilon: float = 0.0
+
+    @classmethod
+    def from_sequences(
+        cls,
+        *,
+        input_current: Sequence[float],
+        channel_masks: Sequence[int],
+        amplitudes: Sequence[float],
+        reward_ring: Sequence[float],
+        action_map: Sequence[float],
+        feedback_matrix: Sequence[float],
+        population: Sequence[float],
+        logits: Sequence[float],
+        tick: int = 0,
+        target_index: int = 0,
+        previous_action: int = 0,
+        seed: int = 0,
+        epsilon: float = 0.0,
+    ) -> "GateLaunchInputs":
+        return cls(
+            input_current=tuple(float(value) for value in input_current),
+            channel_masks=tuple(int(value) for value in channel_masks),
+            amplitudes=tuple(float(value) for value in amplitudes),
+            reward_ring=tuple(float(value) for value in reward_ring),
+            action_map=tuple(float(value) for value in action_map),
+            feedback_matrix=tuple(float(value) for value in feedback_matrix),
+            population=tuple(float(value) for value in population),
+            logits=tuple(float(value) for value in logits),
+            tick=int(tick),
+            target_index=int(target_index),
+            previous_action=int(previous_action),
+            seed=int(seed),
+            epsilon=float(epsilon),
+        )
 
 
 _REGISTER_RE = re.compile(r"Used\s+(\d+)\s+registers")
@@ -197,15 +259,27 @@ _CU_DEVICE_ATTRIBUTE_COOPERATIVE_LAUNCH = 95
 
 
 class CudaDriver:
-    """Minimal ctypes wrapper for CUDA-1 loading and occupancy preflight."""
+    """Minimal ctypes wrapper for CUDA-1 loading, memory and kernel launch."""
 
-    def __init__(self, library: str = "libcuda.so.1") -> None:
-        try:
-            self._lib = ctypes.CDLL(library)
-        except OSError as exc:
+    def __init__(self, library: str | None = None) -> None:
+        candidates = (
+            [library]
+            if library
+            else (["nvcuda.dll"] if os.name == "nt" else ["libcuda.so.1", "libcuda.so"])
+        )
+        loader = getattr(ctypes, "WinDLL", ctypes.CDLL) if os.name == "nt" else ctypes.CDLL
+        last_error: OSError | None = None
+        for candidate in candidates:
+            try:
+                self._lib = loader(candidate)
+                break
+            except OSError as exc:
+                last_error = exc
+        else:
+            names = ", ".join(candidates)
             raise CudaRuntimeUnavailable(
-                f"CUDA driver library not available: {library}"
-            ) from exc
+                f"CUDA driver library not available; tried: {names}"
+            ) from last_error
         self._bind()
 
     def _bind(self) -> None:
@@ -248,6 +322,41 @@ class CudaDriver:
             ctypes.c_size_t,
         ]
         lib.cuOccupancyMaxActiveBlocksPerMultiprocessor.restype = ctypes.c_int
+        lib.cuMemAlloc_v2.argtypes = [
+            ctypes.POINTER(ctypes.c_uint64),
+            ctypes.c_size_t,
+        ]
+        lib.cuMemAlloc_v2.restype = ctypes.c_int
+        lib.cuMemFree_v2.argtypes = [ctypes.c_uint64]
+        lib.cuMemFree_v2.restype = ctypes.c_int
+        lib.cuMemcpyHtoD_v2.argtypes = [
+            ctypes.c_uint64,
+            ctypes.c_void_p,
+            ctypes.c_size_t,
+        ]
+        lib.cuMemcpyHtoD_v2.restype = ctypes.c_int
+        lib.cuMemcpyDtoH_v2.argtypes = [
+            ctypes.c_void_p,
+            ctypes.c_uint64,
+            ctypes.c_size_t,
+        ]
+        lib.cuMemcpyDtoH_v2.restype = ctypes.c_int
+        lib.cuLaunchKernel.argtypes = [
+            ctypes.c_void_p,
+            ctypes.c_uint,
+            ctypes.c_uint,
+            ctypes.c_uint,
+            ctypes.c_uint,
+            ctypes.c_uint,
+            ctypes.c_uint,
+            ctypes.c_uint,
+            ctypes.c_void_p,
+            ctypes.POINTER(ctypes.c_void_p),
+            ctypes.POINTER(ctypes.c_void_p),
+        ]
+        lib.cuLaunchKernel.restype = ctypes.c_int
+        lib.cuCtxSynchronize.argtypes = []
+        lib.cuCtxSynchronize.restype = ctypes.c_int
 
     @staticmethod
     def _check(code: int, call: str) -> None:
@@ -277,6 +386,110 @@ class CudaDriver:
             "cuDeviceGetAttribute",
         )
         return int(value.value)
+
+    def alloc_device(self, size_bytes: int) -> DeviceAllocation:
+        """Allocate device memory owned by the current CUDA context."""
+
+        if size_bytes <= 0:
+            raise ValueError("size_bytes must be positive")
+        ptr = ctypes.c_uint64()
+        self._check(
+            self._lib.cuMemAlloc_v2(ctypes.byref(ptr), size_bytes),
+            "cuMemAlloc_v2",
+        )
+        return DeviceAllocation(ptr=int(ptr.value), size_bytes=size_bytes)
+
+    def free_device(self, allocation: DeviceAllocation) -> None:
+        """Release one device allocation."""
+
+        if allocation.ptr:
+            self._check(
+                self._lib.cuMemFree_v2(ctypes.c_uint64(allocation.ptr)),
+                "cuMemFree_v2",
+            )
+
+    def copy_host_to_device(
+        self,
+        allocation: DeviceAllocation,
+        source: object,
+        *,
+        size_bytes: int | None = None,
+    ) -> None:
+        """Copy a ctypes-backed host buffer to device memory."""
+
+        count = allocation.size_bytes if size_bytes is None else size_bytes
+        if count < 0 or count > allocation.size_bytes:
+            raise ValueError("host-to-device copy exceeds allocation")
+        self._check(
+            self._lib.cuMemcpyHtoD_v2(
+                ctypes.c_uint64(allocation.ptr),
+                ctypes.cast(source, ctypes.c_void_p),
+                count,
+            ),
+            "cuMemcpyHtoD_v2",
+        )
+
+    def copy_device_to_host(
+        self,
+        destination: object,
+        allocation: DeviceAllocation,
+        *,
+        size_bytes: int | None = None,
+    ) -> None:
+        """Copy device memory into a ctypes-backed host buffer."""
+
+        count = allocation.size_bytes if size_bytes is None else size_bytes
+        if count < 0 or count > allocation.size_bytes:
+            raise ValueError("device-to-host copy exceeds allocation")
+        self._check(
+            self._lib.cuMemcpyDtoH_v2(
+                ctypes.cast(destination, ctypes.c_void_p),
+                ctypes.c_uint64(allocation.ptr),
+                count,
+            ),
+            "cuMemcpyDtoH_v2",
+        )
+
+    def launch_kernel(
+        self,
+        loaded: DriverModule,
+        *,
+        grid: tuple[int, int, int],
+        block: tuple[int, int, int],
+        arguments: Sequence[object],
+        dynamic_shared_bytes: int = 0,
+    ) -> None:
+        """Launch a loaded kernel with CUDA Driver API argument packing."""
+
+        if min(*grid, *block) <= 0:
+            raise ValueError("grid and block dimensions must be positive")
+        storage = list(arguments)
+        kernel_params = (ctypes.c_void_p * len(storage))()
+        for index, argument in enumerate(storage):
+            kernel_params[index] = ctypes.cast(
+                ctypes.byref(argument), ctypes.c_void_p  # type: ignore[arg-type]
+            )
+        self._check(
+            self._lib.cuLaunchKernel(
+                loaded.function,
+                grid[0],
+                grid[1],
+                grid[2],
+                block[0],
+                block[1],
+                block[2],
+                dynamic_shared_bytes,
+                None,
+                kernel_params,
+                None,
+            ),
+            "cuLaunchKernel",
+        )
+
+    def synchronize(self) -> None:
+        """Synchronize the current CUDA context."""
+
+        self._check(self._lib.cuCtxSynchronize(), "cuCtxSynchronize")
 
     def load_cubin(
         self,
@@ -390,7 +603,7 @@ def preflight_bundle(
     dynamic_shared_bytes: int = 0,
     output_dir: Path | None = None,
     ptxas: str = "ptxas",
-    driver_library: str = "libcuda.so.1",
+    driver_library: str | None = None,
     device_ordinal: int = 0,
 ) -> dict[str, object]:
     """Assemble, load and occupancy-check one generated kernel.
@@ -457,6 +670,250 @@ def cooperative_capacity(
         launch_fits=cooperative_launch and required <= capacity,
         n_neurons=n_neurons,
     )
+
+
+
+def _kernel_abi(bundle: CompileBundle) -> Mapping[str, object]:
+    abi = bundle.manifest.get("kernel_abi")
+    if not isinstance(abi, Mapping):
+        raise ValueError("compile bundle is missing kernel_abi metadata")
+    return abi
+
+
+def validate_gate_launch_inputs(
+    bundle: CompileBundle,
+    inputs: GateLaunchInputs,
+) -> dict[str, int]:
+    """Validate host buffers against the compiler-declared PTX ABI."""
+
+    abi = _kernel_abi(bundle)
+    try:
+        input_channels = int(abi["input_channels"])
+        action_count = int(abi["action_space_size"])
+        pan_dimensions = int(abi["pan_dimensions"])
+    except (KeyError, TypeError, ValueError) as exc:
+        raise ValueError("kernel_abi dimensions are invalid") from exc
+
+    n_neurons = len(inputs.input_current)
+    if n_neurons <= 0:
+        raise ValueError("input_current must contain at least one neuron")
+    expected_lengths = {
+        "channel_masks": n_neurons,
+        "amplitudes": input_channels,
+        "action_map": action_count * input_channels,
+        "feedback_matrix": n_neurons * pan_dimensions,
+        "population": pan_dimensions,
+        "logits": n_neurons * action_count,
+    }
+    actual_lengths = {
+        "channel_masks": len(inputs.channel_masks),
+        "amplitudes": len(inputs.amplitudes),
+        "action_map": len(inputs.action_map),
+        "feedback_matrix": len(inputs.feedback_matrix),
+        "population": len(inputs.population),
+        "logits": len(inputs.logits),
+    }
+    for name, expected in expected_lengths.items():
+        actual = actual_lengths[name]
+        if actual != expected:
+            raise ValueError(f"{name} length {actual} != expected {expected}")
+    if not inputs.reward_ring:
+        raise ValueError("reward_ring must contain at least one value")
+    if any(mask < 0 or mask > 0xFFFFFFFFFFFFFFFF for mask in inputs.channel_masks):
+        raise ValueError("channel_masks must fit unsigned 64-bit")
+    if not 0 <= inputs.target_index < action_count:
+        raise ValueError("target_index is outside action space")
+    if not 0 <= inputs.previous_action < action_count:
+        raise ValueError("previous_action is outside action space")
+    if inputs.tick < 0:
+        raise ValueError("tick must be non-negative")
+    if inputs.seed < 0 or inputs.seed > 0xFFFFFFFF:
+        raise ValueError("seed must fit unsigned 32-bit")
+    if not 0.0 <= inputs.epsilon <= 1.0:
+        raise ValueError("epsilon must be in [0, 1]")
+    return {
+        "n_neurons": n_neurons,
+        "input_channels": input_channels,
+        "action_count": action_count,
+        "pan_dimensions": pan_dimensions,
+    }
+
+
+def smoke_gate_launch_inputs(
+    bundle: CompileBundle,
+    *,
+    n_neurons: int,
+    seed: int = 0,
+) -> GateLaunchInputs:
+    """Build deterministic bounded buffers for a first single-tick GPU smoke run."""
+
+    if n_neurons <= 0:
+        raise ValueError("n_neurons must be positive")
+    abi = _kernel_abi(bundle)
+    input_channels = int(abi["input_channels"])
+    action_count = int(abi["action_space_size"])
+    pan_dimensions = int(abi["pan_dimensions"])
+    full_mask = (1 << input_channels) - 1 if input_channels < 64 else 0xFFFFFFFFFFFFFFFF
+    return GateLaunchInputs(
+        input_current=tuple(0.0 for _ in range(n_neurons)),
+        channel_masks=tuple(full_mask for _ in range(n_neurons)),
+        amplitudes=tuple(1.0 for _ in range(input_channels)),
+        reward_ring=(0.0,),
+        action_map=tuple(0.0 for _ in range(action_count * input_channels)),
+        feedback_matrix=tuple(0.0 for _ in range(n_neurons * pan_dimensions)),
+        population=tuple(0.0 for _ in range(pan_dimensions)),
+        logits=tuple(0.0 for _ in range(n_neurons * action_count)),
+        seed=seed,
+        epsilon=0.0,
+    )
+
+
+def _f32_buffer(values: Sequence[float]) -> object:
+    array_type = ctypes.c_float * len(values)
+    return array_type(*(float(value) for value in values))
+
+
+def _u64_buffer(values: Sequence[int]) -> object:
+    array_type = ctypes.c_uint64 * len(values)
+    return array_type(*(int(value) for value in values))
+
+
+def execute_gate_bundle(
+    bundle: CompileBundle,
+    inputs: GateLaunchInputs,
+    *,
+    block_size: int = 64,
+    output_dir: Path | None = None,
+    ptxas: str = "ptxas",
+    driver_library: str | None = None,
+    device_ordinal: int = 0,
+) -> dict[str, object]:
+    """Assemble, load and execute one single-tick Playground gate kernel.
+
+    This is CUDA-1.2 engineering execution only. The emitted PTX gate kernel
+    computes bounded gate current/action outputs; it is not yet the canonical
+    MHRN SNN backend and does not establish full neuron/synapse parity.
+    """
+
+    if block_size <= 0:
+        raise ValueError("block_size must be positive")
+    shape = validate_gate_launch_inputs(bundle, inputs)
+    report = assemble_bundle(bundle, output_dir=output_dir, ptxas=ptxas)
+    driver = CudaDriver(driver_library)
+    loaded = driver.load_cubin(
+        report.cubin_path,
+        kernel_name=str(_kernel_abi(bundle).get("entry", "pan_gate_kernel")),
+        device_ordinal=device_ordinal,
+    )
+    allocations: list[DeviceAllocation] = []
+    try:
+        host_buffers = {
+            "input": _f32_buffer(inputs.input_current),
+            "channel_masks": _u64_buffer(inputs.channel_masks),
+            "amplitudes": _f32_buffer(inputs.amplitudes),
+            "reward_ring": _f32_buffer(inputs.reward_ring),
+            "action_map": _f32_buffer(inputs.action_map),
+            "feedback_matrix": _f32_buffer(inputs.feedback_matrix),
+            "population": _f32_buffer(inputs.population),
+            "logits": _f32_buffer(inputs.logits),
+        }
+        sizes = {
+            "input": len(inputs.input_current) * ctypes.sizeof(ctypes.c_float),
+            "channel_masks": len(inputs.channel_masks) * ctypes.sizeof(ctypes.c_uint64),
+            "amplitudes": len(inputs.amplitudes) * ctypes.sizeof(ctypes.c_float),
+            "reward_ring": len(inputs.reward_ring) * ctypes.sizeof(ctypes.c_float),
+            "action_map": len(inputs.action_map) * ctypes.sizeof(ctypes.c_float),
+            "feedback_matrix": len(inputs.feedback_matrix) * ctypes.sizeof(ctypes.c_float),
+            "population": len(inputs.population) * ctypes.sizeof(ctypes.c_float),
+            "logits": len(inputs.logits) * ctypes.sizeof(ctypes.c_float),
+        }
+        device: dict[str, DeviceAllocation] = {}
+        for name in (
+            "input",
+            "channel_masks",
+            "amplitudes",
+            "reward_ring",
+            "action_map",
+            "feedback_matrix",
+            "population",
+            "logits",
+        ):
+            allocation = driver.alloc_device(sizes[name])
+            allocations.append(allocation)
+            device[name] = allocation
+            driver.copy_host_to_device(allocation, host_buffers[name])
+
+        out_current = driver.alloc_device(
+            shape["n_neurons"] * ctypes.sizeof(ctypes.c_float)
+        )
+        out_action = driver.alloc_device(
+            shape["n_neurons"] * ctypes.sizeof(ctypes.c_uint32)
+        )
+        allocations.extend([out_current, out_action])
+
+        arguments: list[object] = [
+            ctypes.c_uint64(device["input"].ptr),
+            ctypes.c_uint64(device["channel_masks"].ptr),
+            ctypes.c_uint64(device["amplitudes"].ptr),
+            ctypes.c_uint64(device["reward_ring"].ptr),
+            ctypes.c_uint64(device["action_map"].ptr),
+            ctypes.c_uint64(device["feedback_matrix"].ptr),
+            ctypes.c_uint64(device["population"].ptr),
+            ctypes.c_uint64(device["logits"].ptr),
+            ctypes.c_uint64(out_current.ptr),
+            ctypes.c_uint64(out_action.ptr),
+            ctypes.c_uint32(shape["n_neurons"]),
+            ctypes.c_uint32(inputs.tick),
+            ctypes.c_uint32(len(inputs.reward_ring)),
+            ctypes.c_uint32(inputs.target_index),
+            ctypes.c_uint32(inputs.previous_action),
+            ctypes.c_uint32(inputs.seed),
+            ctypes.c_float(inputs.epsilon),
+        ]
+        grid_x = math.ceil(shape["n_neurons"] / block_size)
+        driver.launch_kernel(
+            loaded,
+            grid=(grid_x, 1, 1),
+            block=(block_size, 1, 1),
+            arguments=arguments,
+        )
+        driver.synchronize()
+
+        host_current_type = ctypes.c_float * shape["n_neurons"]
+        host_action_type = ctypes.c_uint32 * shape["n_neurons"]
+        host_current = host_current_type()
+        host_action = host_action_type()
+        driver.copy_device_to_host(host_current, out_current)
+        driver.copy_device_to_host(host_action, out_action)
+
+        return {
+            "classification": "PLAYGROUND_CUDA1_SINGLE_TICK_EXECUTION",
+            "scientific_evidence": False,
+            "execution_status": "GPU_KERNEL_EXECUTED",
+            "kernel": str(_kernel_abi(bundle).get("entry", "pan_gate_kernel")),
+            "device_ordinal": device_ordinal,
+            "launch": {
+                "grid": [grid_x, 1, 1],
+                "block": [block_size, 1, 1],
+                "n_neurons": shape["n_neurons"],
+                "tick": inputs.tick,
+            },
+            "outputs": {
+                "current": [float(value) for value in host_current],
+                "action": [int(value) for value in host_action],
+            },
+            "ptxas": report.to_mapping(),
+            "comparison_scope": "GATE_OUTPUT_ONLY_NOT_FULL_SNN",
+            "full_snn_parity_verified": False,
+            "canonical_cuda_backend": False,
+        }
+    finally:
+        for allocation in reversed(allocations):
+            try:
+                driver.free_device(allocation)
+            except CudaDriverError:
+                pass
+        driver.unload(loaded)
 
 
 PARITY_CONTRACT: dict[str, object] = {
