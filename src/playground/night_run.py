@@ -50,6 +50,7 @@ class NightRunDaemon:
         self.metrics_path = self.run_dir / "episodes.jsonl"
         self.status_path = self.run_dir / "status.json"
         self.summary_path = self.run_dir / "summary.json"
+        self.analysis_path = self.run_dir / "analysis.json"
         self.kb_path = self.run_dir / "knowledge_base.json"
         self.checkpoint_path = self.run_dir / "checkpoint.json"
         self.task_gen = MetaTaskGenerator(seed=seed)
@@ -323,7 +324,18 @@ class NightRunDaemon:
             self.checkpoint(final=True)
             raise
         self.running = False
-        return self.checkpoint(final=True)
+        status = self.checkpoint(final=True)
+        analysis = analyze_run(self.run_dir)
+        self.analysis_path.write_text(
+            json.dumps(analysis, ensure_ascii=False, indent=2),
+            encoding="utf-8",
+        )
+        status["analysis"] = analysis
+        self.summary_path.write_text(
+            json.dumps(status, ensure_ascii=False, indent=2),
+            encoding="utf-8",
+        )
+        return status
 
 
 def analyze_run(run_dir: Path) -> dict[str, object]:
