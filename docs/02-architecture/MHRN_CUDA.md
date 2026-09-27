@@ -1806,4 +1806,3 @@ vollständige CPU/CUDA-SNN-Parität interpretiert werden.
 Erst danach kann ein Status oberhalb von
 `ASSEMBLED_LOADED_NOT_EXECUTED` bzw. `SOURCE_GENERATED_NOT_EXECUTED`
 gerechtfertigt werden.
-
