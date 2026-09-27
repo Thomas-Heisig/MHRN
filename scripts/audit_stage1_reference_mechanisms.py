@@ -3,10 +3,13 @@
 
 from __future__ import annotations
 
+import hashlib
 import json
 from pathlib import Path
 
 import yaml
+
+from src.core.network import Brain5DConfig
 
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / "configs" / "learning_experiment.yaml"
@@ -17,12 +20,19 @@ RUNNER = ROOT / "scripts" / "run_stage1_topology_v2.py"
 OUT = ROOT / "research" / "audits" / "STAGE1_TOPOLOGY_REFERENCE_MECHANISM_AUDIT_20260927.json"
 
 
+def sha256_file(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
 def main() -> int:
     config = yaml.safe_load(CONFIG.read_text(encoding="utf-8"))
     neuron_text = NEURON.read_text(encoding="utf-8")
     model_text = MODELS.read_text(encoding="utf-8")
     network_text = NETWORK.read_text(encoding="utf-8")
     runner_text = RUNNER.read_text(encoding="utf-8")
+
+    resolved = Brain5DConfig.from_dict(config)
+    resolved_neuron = resolved.neuron.to_dict()
 
     checks = {
         "runner_uses_normal_neural_network_config": (
@@ -51,6 +61,13 @@ def main() -> int:
                 "def spike_threshold", 1
             )[0]
         ),
+        "traces_not_read_by_membrane_or_threshold": (
+            "pre_trace" not in model_text
+            and "post_trace" not in model_text
+            and "trace" not in neuron_text.split("def current_threshold", 1)[1].split(
+                "def switch_model", 1
+            )[0]
+        ),
         "network_step_does_not_apply_stdp": all(
             token not in network_text.split("def step(self)", 1)[1].split(
                 "def step_batch", 1
@@ -72,8 +89,35 @@ def main() -> int:
             str(path.relative_to(ROOT))
             for path in (CONFIG, NEURON, MODELS, NETWORK, RUNNER)
         ],
+        "source_sha256": {
+            str(path.relative_to(ROOT)): sha256_file(path)
+            for path in (CONFIG, NEURON, MODELS, NETWORK, RUNNER)
+        },
         "checks": checks,
         "pass": all(checks.values()),
+        "resolved_runtime_config": {
+            "model": resolved_neuron["model"],
+            "dt_ms": resolved_neuron["dt_ms"],
+            "a": resolved_neuron["a"],
+            "b": resolved_neuron["b"],
+            "c": resolved_neuron["c"],
+            "d": resolved_neuron["d"],
+            "initial_v": resolved_neuron["initial_v"],
+            "initial_u": resolved_neuron["initial_u"],
+            "izhikevich_threshold": resolved_neuron["izhikevich_threshold"],
+            "refractory_ticks": resolved_neuron["refractory_ticks"],
+            "threshold_adaptation_rate": resolved_neuron["threshold_adaptation_rate"],
+            "threshold_adaptation_decay": resolved_neuron["threshold_adaptation_decay"],
+            "target_rate_hz": resolved_neuron["target_rate_hz"],
+            "firing_rate_tau_ms": resolved_neuron["firing_rate_tau_ms"],
+            "homeostasis_learning_rate": resolved_neuron["homeostasis_learning_rate"],
+            "enable_threshold_adaptation": resolved_neuron[
+                "enable_threshold_adaptation"
+            ],
+            "enable_energy_dynamics": resolved_neuron["enable_energy_dynamics"],
+            "enable_traces": resolved_neuron["enable_traces"],
+            "enable_homeostasis": resolved_neuron["enable_homeostasis"],
+        },
         "classification": {
             "threshold_adaptation": "ACTIVE_AND_SPIKE_TIMING_RELEVANT",
             "homeostasis": "ACTIVE_AND_SPIKE_TIMING_RELEVANT",

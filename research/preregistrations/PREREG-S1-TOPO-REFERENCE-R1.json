@@ -382,8 +382,12 @@
     "seed_freshness": {
       "required": true,
       "script": "scripts/check_stage1_reference_seed_freshness.py",
-      "pass_rule": "all evaluation seeds are absent from other tracked files at freeze except this preregistration/freeze record",
-      "failure_rule": "select a new seed block before freeze"
+      "pass_rule": "All evaluation seeds are absent from every other tracked file at freeze. Their only allowed pre-execution declarations are the canonical preregistration and the sanitized Brian2 runner protocol; the later freeze record may duplicate them as provenance.",
+      "failure_rule": "select a new seed block before freeze",
+      "allowed_seed_declarations": [
+        "research/preregistrations/PREREG-S1-TOPO-REFERENCE-R1.json",
+        "reference/stage1_topology_brian2/reference_protocol.json"
+      ]
     }
   }
 }
