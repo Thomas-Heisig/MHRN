@@ -309,14 +309,15 @@ jobs:
       - name: Install Python and project
         run: |
           apt-get update
-          DEBIAN_FRONTEND=noninteractive apt-get install -y python3 python3-pip
-          python3 -m pip install --upgrade pip setuptools wheel
-          python3 -m pip install -e .
-          python3 -m pip install pytest
+          DEBIAN_FRONTEND=noninteractive apt-get install -y python3 python3-pip python3-venv
+          python3 -m venv /opt/mhrn-venv
+          /opt/mhrn-venv/bin/python -m pip install --upgrade pip setuptools wheel
+          /opt/mhrn-venv/bin/python -m pip install -e .
+          /opt/mhrn-venv/bin/python -m pip install pytest
       - name: CPU reference determinism and frozen-loop parity
-        run: python3 -m pytest -q tests/test_playground_cuda_determinism.py
+        run: /opt/mhrn-venv/bin/python -m pytest -q tests/test_playground_cuda_determinism.py
       - name: Assemble generated Playground PTX
-        run: python3 scripts/validate_playground_ptx.py
+        run: /opt/mhrn-venv/bin/python scripts/validate_playground_ptx.py
       - name: Upload measured ptxas artifacts
         if: always()
         uses: actions/upload-artifact@v7
