@@ -7,7 +7,7 @@
   "claim_id": "CLAIM-S1-TOPO-001",
   "protocol": "stage1_topology_cross_implementation_reference_r1",
   "mode": "PROSPECTIVE_CROSS_IMPLEMENTATION_PARTIAL_REPLICATION",
-  "status": "FROZEN_BEFORE_REFERENCE_RUNNER",
+  "status": "DRAFT_PRE_FREEZE_GATES_PENDING",
   "execution_authorized": false,
   "scientific_evidence": false,
   "automatic_evidence_promotion": false,
@@ -417,25 +417,34 @@
     "integrator_parity": {
       "required": true,
       "artifact": "research/audits/stage1_reference_preflight_parity.json",
-      "rule": "PASS required before freeze. Single-tick subthreshold cases must match v/u/adaptation/firing-rate state at absolute tolerance 1e-12; multi-tick case must include at least one spike and match the same state plus spike decisions at every tick."
+      "rule": "PASS required before freeze. Single-tick subthreshold cases must match v/u/adaptation/firing-rate state at absolute tolerance 1e-12; multi-tick case must include at least one spike and match the same state plus spike decisions at every tick.",
+      "status": "PENDING"
     },
     "mechanism_audit": {
       "required": true,
       "artifact": "research/audits/2026-09-27_stage1_reference_mechanism_audit.md",
-      "rule": "Threshold adaptation and homeostasis are timing-relevant and must be translated. Energy and traces may be omitted only as explicitly audited causally inert state for registered propagation endpoints."
+      "rule": "Threshold adaptation and homeostasis are timing-relevant and must be translated. Energy and traces may be omitted only as explicitly audited causally inert state for registered propagation endpoints.",
+      "status": "PASS_DOCUMENTED"
     },
     "independence_scan": {
       "required": true,
       "script": "scripts/check_stage1_reference_independence.py",
-      "rule": "Reference package must have no imports from src/, research/, or Stage-1 MHRN runner modules and must not contain canonical EVID/experiment identifiers or frozen target-table labels."
+      "rule": "Reference package must have no imports from src/, research/, or Stage-1 MHRN runner modules and must not contain canonical EVID/experiment identifiers or frozen target-table labels.",
+      "status": "PENDING"
     },
     "seed_freshness": {
       "required": true,
-      "rule": "Evaluation seeds 1200021-1200040 must be rechecked automatically at the freeze commit; any occurrence outside the preregistration blocks freeze."
+      "rule": "Evaluation seeds 810000001-810000020 must be rechecked automatically at the freeze commit; any occurrence outside the preregistration and blinded reference_protocol.json blocks freeze.",
+      "status": "PENDING"
     }
   },
   "reference_implementation_authorship": {
     "project_leadership_overlap": true,
     "classification_consequence": "Even if a separate framework/codebase is used, this project-side implementation is PARTIAL_REPLICATION only. It cannot be relabeled EXTERNAL_REPLICATION without genuinely external authorship/control and a separately registered protocol."
+  },
+  "freeze_authorization": {
+    "allowed": false,
+    "rule": "Freeze is allowed only after all four pre_freeze_gates are PASS and their artifacts/commit SHA are bound into this preregistration. Until then status must remain DRAFT_PRE_FREEZE_GATES_PENDING.",
+    "reference_runner_implementation_allowed": false
   }
 }
