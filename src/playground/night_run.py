@@ -276,6 +276,12 @@ class NightRunDaemon:
         self.total_reward += reward
         self.task_counts[task_type] += 1
         self.reward_by_task[task_type] += reward
+        execution = pan_result.get("execution")
+        current_engine = (
+            execution.get("current_engine")
+            if isinstance(execution, Mapping)
+            else None
+        )
         event = {
             "episode": self.episode,
             "time": time.time(),
@@ -291,11 +297,7 @@ class NightRunDaemon:
             "pan": {
                 "tick": pan_result.get("tick"),
                 "total_spikes": pan_result.get("total_spikes"),
-                "current_engine": (
-                    pan_result.get("execution", {}).get("current_engine")
-                    if isinstance(pan_result.get("execution"), Mapping)
-                    else None
-                ),
+                "current_engine": current_engine,
             },
         }
         with self.metrics_path.open("a", encoding="utf-8") as handle:
