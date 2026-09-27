@@ -23,9 +23,9 @@ Die Temporal-Linie bleibt durch Perfect-Score-Sättigung methodisch begrenzt; di
 Die explorative Efficiency-Linie `H-SNN-003-C / CLAIM-S1-EFFICIENCY-001` bleibt `untested`; ihre R1-Kalibration verfehlte die vorab definierten Recruitment-Matching-Gates und blockiert deshalb Freeze und Evaluation. Dieser negative Kalibrationspfad wird nicht nachgetunt.
 
 Offen bleiben:
-- die projektseitige Brian2-Cross-Implementation als höchstens partielle Replikation für den nächsten möglichen 7,5-%-Schritt;
+- die projektseitige Brian2-Cross-Implementation R2 als höchstens partielle Replikation für den nächsten möglichen 7,5-%-Schritt; R1 bleibt als vor DATA abgebrochene Provenienz erhalten;
 - vollständige Pre-Freeze-Parität von Integrator, Reset sowie Synapsen-/Delay-Semantik und der Blinding-/Seed-Gates;
-- nach Freeze eine separat autorisierte Reference-Ausführung und Human Review;
+- R2 erst nach exakter Topologie-Mapping-Parität einfrieren und danach nur über einen separaten menschlichen Autorisierungsrecord ausführen; anschließend Human Review;
 - eine tatsächlich externe unabhängige Replikation für volle 15/15 Replikationspunkte;
 - die getrennte dimensionsspezifische `RQ-5D-005 / H-5D-005-A`-Prüfung.
 
