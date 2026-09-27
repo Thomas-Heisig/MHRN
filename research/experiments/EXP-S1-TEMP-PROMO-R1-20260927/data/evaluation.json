@@ -1,0 +1,5922 @@
+[
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "B"
+      ]
+    ],
+    "arm": "intact",
+    "decoded_order": "forward",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": 6
+    },
+    "logical_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "B"
+      ]
+    ],
+    "node_count": 6,
+    "order": "forward",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      },
+      {
+        "channel": "B",
+        "tick": 6
+      }
+    ],
+    "seed": 860001,
+    "state_digest_after": "b10d17fde598f74f07ce04072c3ba1243036b70cb32443893d53ec9be3c94cf8",
+    "state_digest_before": "ae5ad75d1c55841e09a17724a51f06cfbb0d9e7d622d415e86cb40208ab0aff7",
+    "stimulus_current": 101.3973442790817,
+    "synaptic_weight": 106.8204599574539,
+    "task_success": true,
+    "total_injected_charge": 202.7946885581634,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "B"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "arm": "intact",
+    "decoded_order": "reverse",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 6,
+      "B": 2
+    },
+    "logical_schedule": [
+      [
+        0,
+        "B"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "node_count": 6,
+    "order": "reverse",
+    "output_sequence": [
+      {
+        "channel": "B",
+        "tick": 2
+      },
+      {
+        "channel": "A",
+        "tick": 6
+      }
+    ],
+    "seed": 860001,
+    "state_digest_after": "488a99ed23d7f91bb75cfb1386cd2aa309c7d2cd91f97ef79dc2161bbea8d284",
+    "state_digest_before": "ae5ad75d1c55841e09a17724a51f06cfbb0d9e7d622d415e86cb40208ab0aff7",
+    "stimulus_current": 101.3973442790817,
+    "synaptic_weight": 106.8204599574539,
+    "task_success": true,
+    "total_injected_charge": 202.7946885581634,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        0,
+        "B"
+      ]
+    ],
+    "arm": "intact",
+    "decoded_order": "simultaneous",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": 2
+    },
+    "logical_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        0,
+        "B"
+      ]
+    ],
+    "node_count": 6,
+    "order": "simultaneous",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      },
+      {
+        "channel": "B",
+        "tick": 2
+      }
+    ],
+    "seed": 860001,
+    "state_digest_after": "fd58d6bf77ebfb9eaea74e33e3a55380dc8b8625d3616c60df8aeb8459371655",
+    "state_digest_before": "ae5ad75d1c55841e09a17724a51f06cfbb0d9e7d622d415e86cb40208ab0aff7",
+    "stimulus_current": 101.3973442790817,
+    "synaptic_weight": 106.8204599574539,
+    "task_success": true,
+    "total_injected_charge": 202.7946885581634,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "arm": "identity_destroyed",
+    "decoded_order": "A_only",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": null
+    },
+    "logical_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "B"
+      ]
+    ],
+    "node_count": 6,
+    "order": "forward",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      },
+      {
+        "channel": "A",
+        "tick": 6
+      }
+    ],
+    "seed": 860001,
+    "state_digest_after": "ab8821e06a34de686af800f377e050e78d081283a52fa31985ca104c6ce51376",
+    "state_digest_before": "ae5ad75d1c55841e09a17724a51f06cfbb0d9e7d622d415e86cb40208ab0aff7",
+    "stimulus_current": 101.3973442790817,
+    "synaptic_weight": 106.8204599574539,
+    "task_success": false,
+    "total_injected_charge": 202.7946885581634,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "arm": "identity_destroyed",
+    "decoded_order": "A_only",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": null
+    },
+    "logical_schedule": [
+      [
+        0,
+        "B"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "node_count": 6,
+    "order": "reverse",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      },
+      {
+        "channel": "A",
+        "tick": 6
+      }
+    ],
+    "seed": 860001,
+    "state_digest_after": "ab8821e06a34de686af800f377e050e78d081283a52fa31985ca104c6ce51376",
+    "state_digest_before": "ae5ad75d1c55841e09a17724a51f06cfbb0d9e7d622d415e86cb40208ab0aff7",
+    "stimulus_current": 101.3973442790817,
+    "synaptic_weight": 106.8204599574539,
+    "task_success": false,
+    "total_injected_charge": 202.7946885581634,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        0,
+        "A"
+      ]
+    ],
+    "arm": "identity_destroyed",
+    "decoded_order": "A_only",
+    "delivered_events": 2,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": null
+    },
+    "logical_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        0,
+        "B"
+      ]
+    ],
+    "node_count": 6,
+    "order": "simultaneous",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      }
+    ],
+    "seed": 860001,
+    "state_digest_after": "9b13a183559a519f32f3f16c3f39466f3b1fb5a5a20e134245a92fcdee0946f3",
+    "state_digest_before": "ae5ad75d1c55841e09a17724a51f06cfbb0d9e7d622d415e86cb40208ab0aff7",
+    "stimulus_current": 101.3973442790817,
+    "synaptic_weight": 106.8204599574539,
+    "task_success": false,
+    "total_injected_charge": 202.7946885581634,
+    "total_spikes": 3
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "B"
+      ]
+    ],
+    "arm": "intact",
+    "decoded_order": "forward",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": 6
+    },
+    "logical_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "B"
+      ]
+    ],
+    "node_count": 6,
+    "order": "forward",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      },
+      {
+        "channel": "B",
+        "tick": 6
+      }
+    ],
+    "seed": 860002,
+    "state_digest_after": "0c4bb2f9b815b51ad7c401d8fd4129341e850c02181d427a1ca85b3d82c5fe63",
+    "state_digest_before": "f9524b398046146e268556c621ca533f18702a2a951c687b4cc62653324ecbbb",
+    "stimulus_current": 108.2691613454961,
+    "synaptic_weight": 102.02487501668888,
+    "task_success": true,
+    "total_injected_charge": 216.5383226909922,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "B"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "arm": "intact",
+    "decoded_order": "reverse",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 6,
+      "B": 2
+    },
+    "logical_schedule": [
+      [
+        0,
+        "B"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "node_count": 6,
+    "order": "reverse",
+    "output_sequence": [
+      {
+        "channel": "B",
+        "tick": 2
+      },
+      {
+        "channel": "A",
+        "tick": 6
+      }
+    ],
+    "seed": 860002,
+    "state_digest_after": "2c8037e64a302031b3e382922d9ff99ff2ec9dd03f2e2906378cb14064ddda7c",
+    "state_digest_before": "f9524b398046146e268556c621ca533f18702a2a951c687b4cc62653324ecbbb",
+    "stimulus_current": 108.2691613454961,
+    "synaptic_weight": 102.02487501668888,
+    "task_success": true,
+    "total_injected_charge": 216.5383226909922,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        0,
+        "B"
+      ]
+    ],
+    "arm": "intact",
+    "decoded_order": "simultaneous",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": 2
+    },
+    "logical_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        0,
+        "B"
+      ]
+    ],
+    "node_count": 6,
+    "order": "simultaneous",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      },
+      {
+        "channel": "B",
+        "tick": 2
+      }
+    ],
+    "seed": 860002,
+    "state_digest_after": "fbe13bc5006f6d317ca9f219d89ec6d849c1532e39d9292e60b203a7b127a19c",
+    "state_digest_before": "f9524b398046146e268556c621ca533f18702a2a951c687b4cc62653324ecbbb",
+    "stimulus_current": 108.2691613454961,
+    "synaptic_weight": 102.02487501668888,
+    "task_success": true,
+    "total_injected_charge": 216.5383226909922,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "arm": "identity_destroyed",
+    "decoded_order": "A_only",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": null
+    },
+    "logical_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "B"
+      ]
+    ],
+    "node_count": 6,
+    "order": "forward",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      },
+      {
+        "channel": "A",
+        "tick": 6
+      }
+    ],
+    "seed": 860002,
+    "state_digest_after": "9ae43ad6e81ed6ee6b82db9a79d48b4716c744218ac24e8f06b2aaf3d44e16e6",
+    "state_digest_before": "f9524b398046146e268556c621ca533f18702a2a951c687b4cc62653324ecbbb",
+    "stimulus_current": 108.2691613454961,
+    "synaptic_weight": 102.02487501668888,
+    "task_success": false,
+    "total_injected_charge": 216.5383226909922,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "arm": "identity_destroyed",
+    "decoded_order": "A_only",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": null
+    },
+    "logical_schedule": [
+      [
+        0,
+        "B"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "node_count": 6,
+    "order": "reverse",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      },
+      {
+        "channel": "A",
+        "tick": 6
+      }
+    ],
+    "seed": 860002,
+    "state_digest_after": "9ae43ad6e81ed6ee6b82db9a79d48b4716c744218ac24e8f06b2aaf3d44e16e6",
+    "state_digest_before": "f9524b398046146e268556c621ca533f18702a2a951c687b4cc62653324ecbbb",
+    "stimulus_current": 108.2691613454961,
+    "synaptic_weight": 102.02487501668888,
+    "task_success": false,
+    "total_injected_charge": 216.5383226909922,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        0,
+        "A"
+      ]
+    ],
+    "arm": "identity_destroyed",
+    "decoded_order": "A_only",
+    "delivered_events": 2,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": null
+    },
+    "logical_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        0,
+        "B"
+      ]
+    ],
+    "node_count": 6,
+    "order": "simultaneous",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      }
+    ],
+    "seed": 860002,
+    "state_digest_after": "b154cc709850b6fe754a8ae0d9fc120d659818446c8a8bc057dda8817330d277",
+    "state_digest_before": "f9524b398046146e268556c621ca533f18702a2a951c687b4cc62653324ecbbb",
+    "stimulus_current": 108.2691613454961,
+    "synaptic_weight": 102.02487501668888,
+    "task_success": false,
+    "total_injected_charge": 216.5383226909922,
+    "total_spikes": 3
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "B"
+      ]
+    ],
+    "arm": "intact",
+    "decoded_order": "forward",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": 6
+    },
+    "logical_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "B"
+      ]
+    ],
+    "node_count": 6,
+    "order": "forward",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      },
+      {
+        "channel": "B",
+        "tick": 6
+      }
+    ],
+    "seed": 860022,
+    "state_digest_after": "0b9cd9c5d69152212d496e0b0597b3f3fee4d2e10c84f1bd506fc3c6ef2a84e1",
+    "state_digest_before": "5e50cbc970c2cc2a644903b25f66e3f4f252076d8d3cae120c5483af67970009",
+    "stimulus_current": 101.23925964741953,
+    "synaptic_weight": 109.46394500496697,
+    "task_success": true,
+    "total_injected_charge": 202.47851929483906,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "B"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "arm": "intact",
+    "decoded_order": "reverse",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 6,
+      "B": 2
+    },
+    "logical_schedule": [
+      [
+        0,
+        "B"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "node_count": 6,
+    "order": "reverse",
+    "output_sequence": [
+      {
+        "channel": "B",
+        "tick": 2
+      },
+      {
+        "channel": "A",
+        "tick": 6
+      }
+    ],
+    "seed": 860022,
+    "state_digest_after": "fde34b4ced42183efd6b5ab69d60315486c0c170b5fea44d970f92bf934500d1",
+    "state_digest_before": "5e50cbc970c2cc2a644903b25f66e3f4f252076d8d3cae120c5483af67970009",
+    "stimulus_current": 101.23925964741953,
+    "synaptic_weight": 109.46394500496697,
+    "task_success": true,
+    "total_injected_charge": 202.47851929483906,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        0,
+        "B"
+      ]
+    ],
+    "arm": "intact",
+    "decoded_order": "simultaneous",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": 2
+    },
+    "logical_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        0,
+        "B"
+      ]
+    ],
+    "node_count": 6,
+    "order": "simultaneous",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      },
+      {
+        "channel": "B",
+        "tick": 2
+      }
+    ],
+    "seed": 860022,
+    "state_digest_after": "355ed356df8fbf163ddf56188707f995ef835cf594842277f5dd94c72f572251",
+    "state_digest_before": "5e50cbc970c2cc2a644903b25f66e3f4f252076d8d3cae120c5483af67970009",
+    "stimulus_current": 101.23925964741953,
+    "synaptic_weight": 109.46394500496697,
+    "task_success": true,
+    "total_injected_charge": 202.47851929483906,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "arm": "identity_destroyed",
+    "decoded_order": "A_only",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": null
+    },
+    "logical_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "B"
+      ]
+    ],
+    "node_count": 6,
+    "order": "forward",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      },
+      {
+        "channel": "A",
+        "tick": 6
+      }
+    ],
+    "seed": 860022,
+    "state_digest_after": "f23fe01880cfc6bbf2472c9b627e173611307ab3a518ce433fe831fae64d8567",
+    "state_digest_before": "5e50cbc970c2cc2a644903b25f66e3f4f252076d8d3cae120c5483af67970009",
+    "stimulus_current": 101.23925964741953,
+    "synaptic_weight": 109.46394500496697,
+    "task_success": false,
+    "total_injected_charge": 202.47851929483906,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "arm": "identity_destroyed",
+    "decoded_order": "A_only",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": null
+    },
+    "logical_schedule": [
+      [
+        0,
+        "B"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "node_count": 6,
+    "order": "reverse",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      },
+      {
+        "channel": "A",
+        "tick": 6
+      }
+    ],
+    "seed": 860022,
+    "state_digest_after": "f23fe01880cfc6bbf2472c9b627e173611307ab3a518ce433fe831fae64d8567",
+    "state_digest_before": "5e50cbc970c2cc2a644903b25f66e3f4f252076d8d3cae120c5483af67970009",
+    "stimulus_current": 101.23925964741953,
+    "synaptic_weight": 109.46394500496697,
+    "task_success": false,
+    "total_injected_charge": 202.47851929483906,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        0,
+        "A"
+      ]
+    ],
+    "arm": "identity_destroyed",
+    "decoded_order": "A_only",
+    "delivered_events": 2,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": null
+    },
+    "logical_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        0,
+        "B"
+      ]
+    ],
+    "node_count": 6,
+    "order": "simultaneous",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      }
+    ],
+    "seed": 860022,
+    "state_digest_after": "4f181486a104338294804b8ab94550e86a9740375d0a2700ea6e6b53074236d6",
+    "state_digest_before": "5e50cbc970c2cc2a644903b25f66e3f4f252076d8d3cae120c5483af67970009",
+    "stimulus_current": 101.23925964741953,
+    "synaptic_weight": 109.46394500496697,
+    "task_success": false,
+    "total_injected_charge": 202.47851929483906,
+    "total_spikes": 3
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "B"
+      ]
+    ],
+    "arm": "intact",
+    "decoded_order": "forward",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": 6
+    },
+    "logical_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "B"
+      ]
+    ],
+    "node_count": 6,
+    "order": "forward",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      },
+      {
+        "channel": "B",
+        "tick": 6
+      }
+    ],
+    "seed": 860023,
+    "state_digest_after": "933deb28b2399c73f03690863d1f242084f1343dbd13760baf0f4281a3f9d3c1",
+    "state_digest_before": "959b286f377ca0c97440f5c61912e547ff0230138712e4c5c1f4c2b091b3e50c",
+    "stimulus_current": 109.76112433994862,
+    "synaptic_weight": 102.74749222615539,
+    "task_success": true,
+    "total_injected_charge": 219.52224867989725,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "B"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "arm": "intact",
+    "decoded_order": "reverse",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 6,
+      "B": 2
+    },
+    "logical_schedule": [
+      [
+        0,
+        "B"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "node_count": 6,
+    "order": "reverse",
+    "output_sequence": [
+      {
+        "channel": "B",
+        "tick": 2
+      },
+      {
+        "channel": "A",
+        "tick": 6
+      }
+    ],
+    "seed": 860023,
+    "state_digest_after": "0f47021e335acfd1ef747e1dd8065a9e811810660eff064d0e90f8b2ce44c685",
+    "state_digest_before": "959b286f377ca0c97440f5c61912e547ff0230138712e4c5c1f4c2b091b3e50c",
+    "stimulus_current": 109.76112433994862,
+    "synaptic_weight": 102.74749222615539,
+    "task_success": true,
+    "total_injected_charge": 219.52224867989725,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        0,
+        "B"
+      ]
+    ],
+    "arm": "intact",
+    "decoded_order": "simultaneous",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": 2
+    },
+    "logical_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        0,
+        "B"
+      ]
+    ],
+    "node_count": 6,
+    "order": "simultaneous",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      },
+      {
+        "channel": "B",
+        "tick": 2
+      }
+    ],
+    "seed": 860023,
+    "state_digest_after": "1ac1bc876a0d3b3046dac938f6d3a05c0ba07b2714f4dc92d44520c496821d96",
+    "state_digest_before": "959b286f377ca0c97440f5c61912e547ff0230138712e4c5c1f4c2b091b3e50c",
+    "stimulus_current": 109.76112433994862,
+    "synaptic_weight": 102.74749222615539,
+    "task_success": true,
+    "total_injected_charge": 219.52224867989725,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "arm": "identity_destroyed",
+    "decoded_order": "A_only",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": null
+    },
+    "logical_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "B"
+      ]
+    ],
+    "node_count": 6,
+    "order": "forward",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      },
+      {
+        "channel": "A",
+        "tick": 6
+      }
+    ],
+    "seed": 860023,
+    "state_digest_after": "37ba9265484ff72960e2578630b78db7bd90a4de33cd70ad90b7615df8022b14",
+    "state_digest_before": "959b286f377ca0c97440f5c61912e547ff0230138712e4c5c1f4c2b091b3e50c",
+    "stimulus_current": 109.76112433994862,
+    "synaptic_weight": 102.74749222615539,
+    "task_success": false,
+    "total_injected_charge": 219.52224867989725,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "arm": "identity_destroyed",
+    "decoded_order": "A_only",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": null
+    },
+    "logical_schedule": [
+      [
+        0,
+        "B"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "node_count": 6,
+    "order": "reverse",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      },
+      {
+        "channel": "A",
+        "tick": 6
+      }
+    ],
+    "seed": 860023,
+    "state_digest_after": "37ba9265484ff72960e2578630b78db7bd90a4de33cd70ad90b7615df8022b14",
+    "state_digest_before": "959b286f377ca0c97440f5c61912e547ff0230138712e4c5c1f4c2b091b3e50c",
+    "stimulus_current": 109.76112433994862,
+    "synaptic_weight": 102.74749222615539,
+    "task_success": false,
+    "total_injected_charge": 219.52224867989725,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        0,
+        "A"
+      ]
+    ],
+    "arm": "identity_destroyed",
+    "decoded_order": "A_only",
+    "delivered_events": 2,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": null
+    },
+    "logical_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        0,
+        "B"
+      ]
+    ],
+    "node_count": 6,
+    "order": "simultaneous",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      }
+    ],
+    "seed": 860023,
+    "state_digest_after": "b0a4212a9e30bc43a032ba4ddacc63d9685809f2fcc34fd33a52728276b79e7a",
+    "state_digest_before": "959b286f377ca0c97440f5c61912e547ff0230138712e4c5c1f4c2b091b3e50c",
+    "stimulus_current": 109.76112433994862,
+    "synaptic_weight": 102.74749222615539,
+    "task_success": false,
+    "total_injected_charge": 219.52224867989725,
+    "total_spikes": 3
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "B"
+      ]
+    ],
+    "arm": "intact",
+    "decoded_order": "forward",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": 6
+    },
+    "logical_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "B"
+      ]
+    ],
+    "node_count": 6,
+    "order": "forward",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      },
+      {
+        "channel": "B",
+        "tick": 6
+      }
+    ],
+    "seed": 860024,
+    "state_digest_after": "d4a3eecb9896c12dd50279019997a97434caab8fcd6709b3330f3a694b4ee204",
+    "state_digest_before": "84c31b7c05d4d451b0efc0b5fac494a384aff9b54497cb40e50d974061448890",
+    "stimulus_current": 103.20756723388585,
+    "synaptic_weight": 100.70505386389068,
+    "task_success": true,
+    "total_injected_charge": 206.4151344677717,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "B"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "arm": "intact",
+    "decoded_order": "reverse",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 6,
+      "B": 2
+    },
+    "logical_schedule": [
+      [
+        0,
+        "B"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "node_count": 6,
+    "order": "reverse",
+    "output_sequence": [
+      {
+        "channel": "B",
+        "tick": 2
+      },
+      {
+        "channel": "A",
+        "tick": 6
+      }
+    ],
+    "seed": 860024,
+    "state_digest_after": "aa8aa5fdeab01509345feb411964ad8bcfc55d439aefc3f52d997e63082b326d",
+    "state_digest_before": "84c31b7c05d4d451b0efc0b5fac494a384aff9b54497cb40e50d974061448890",
+    "stimulus_current": 103.20756723388585,
+    "synaptic_weight": 100.70505386389068,
+    "task_success": true,
+    "total_injected_charge": 206.4151344677717,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        0,
+        "B"
+      ]
+    ],
+    "arm": "intact",
+    "decoded_order": "simultaneous",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": 2
+    },
+    "logical_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        0,
+        "B"
+      ]
+    ],
+    "node_count": 6,
+    "order": "simultaneous",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      },
+      {
+        "channel": "B",
+        "tick": 2
+      }
+    ],
+    "seed": 860024,
+    "state_digest_after": "5c9d6a981a66d117f8c5e7d6a0bfc5bdcb23b523193bc695364fcfa648b64fb8",
+    "state_digest_before": "84c31b7c05d4d451b0efc0b5fac494a384aff9b54497cb40e50d974061448890",
+    "stimulus_current": 103.20756723388585,
+    "synaptic_weight": 100.70505386389068,
+    "task_success": true,
+    "total_injected_charge": 206.4151344677717,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "arm": "identity_destroyed",
+    "decoded_order": "A_only",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": null
+    },
+    "logical_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "B"
+      ]
+    ],
+    "node_count": 6,
+    "order": "forward",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      },
+      {
+        "channel": "A",
+        "tick": 6
+      }
+    ],
+    "seed": 860024,
+    "state_digest_after": "02fcd0af1718b0f8d105965a0dd368a73a6697387871fa598c2adef0498e2a7e",
+    "state_digest_before": "84c31b7c05d4d451b0efc0b5fac494a384aff9b54497cb40e50d974061448890",
+    "stimulus_current": 103.20756723388585,
+    "synaptic_weight": 100.70505386389068,
+    "task_success": false,
+    "total_injected_charge": 206.4151344677717,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "arm": "identity_destroyed",
+    "decoded_order": "A_only",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": null
+    },
+    "logical_schedule": [
+      [
+        0,
+        "B"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "node_count": 6,
+    "order": "reverse",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      },
+      {
+        "channel": "A",
+        "tick": 6
+      }
+    ],
+    "seed": 860024,
+    "state_digest_after": "02fcd0af1718b0f8d105965a0dd368a73a6697387871fa598c2adef0498e2a7e",
+    "state_digest_before": "84c31b7c05d4d451b0efc0b5fac494a384aff9b54497cb40e50d974061448890",
+    "stimulus_current": 103.20756723388585,
+    "synaptic_weight": 100.70505386389068,
+    "task_success": false,
+    "total_injected_charge": 206.4151344677717,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        0,
+        "A"
+      ]
+    ],
+    "arm": "identity_destroyed",
+    "decoded_order": "A_only",
+    "delivered_events": 2,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": null
+    },
+    "logical_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        0,
+        "B"
+      ]
+    ],
+    "node_count": 6,
+    "order": "simultaneous",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      }
+    ],
+    "seed": 860024,
+    "state_digest_after": "952563287c2a4f2a22bbd7e0e4d2426786f16d9bbc48cd7aaa1d9da919d2ef72",
+    "state_digest_before": "84c31b7c05d4d451b0efc0b5fac494a384aff9b54497cb40e50d974061448890",
+    "stimulus_current": 103.20756723388585,
+    "synaptic_weight": 100.70505386389068,
+    "task_success": false,
+    "total_injected_charge": 206.4151344677717,
+    "total_spikes": 3
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "B"
+      ]
+    ],
+    "arm": "intact",
+    "decoded_order": "forward",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": 6
+    },
+    "logical_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "B"
+      ]
+    ],
+    "node_count": 6,
+    "order": "forward",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      },
+      {
+        "channel": "B",
+        "tick": 6
+      }
+    ],
+    "seed": 860025,
+    "state_digest_after": "e62e3eb48c21e76f48940c5b7ee57184f22c42a3da6e9c3a81112c15cd5158ec",
+    "state_digest_before": "a35d3949d4bd7fb6aeb174aa3f059c8fc04ce33e0793611d153502cfc8a1f63a",
+    "stimulus_current": 104.1851963171161,
+    "synaptic_weight": 101.43677170473985,
+    "task_success": true,
+    "total_injected_charge": 208.3703926342322,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "B"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "arm": "intact",
+    "decoded_order": "reverse",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 6,
+      "B": 2
+    },
+    "logical_schedule": [
+      [
+        0,
+        "B"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "node_count": 6,
+    "order": "reverse",
+    "output_sequence": [
+      {
+        "channel": "B",
+        "tick": 2
+      },
+      {
+        "channel": "A",
+        "tick": 6
+      }
+    ],
+    "seed": 860025,
+    "state_digest_after": "659b0af86961536043a139eaa58dee297a6b1687d85b232cbb09939162a52e76",
+    "state_digest_before": "a35d3949d4bd7fb6aeb174aa3f059c8fc04ce33e0793611d153502cfc8a1f63a",
+    "stimulus_current": 104.1851963171161,
+    "synaptic_weight": 101.43677170473985,
+    "task_success": true,
+    "total_injected_charge": 208.3703926342322,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        0,
+        "B"
+      ]
+    ],
+    "arm": "intact",
+    "decoded_order": "simultaneous",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": 2
+    },
+    "logical_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        0,
+        "B"
+      ]
+    ],
+    "node_count": 6,
+    "order": "simultaneous",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      },
+      {
+        "channel": "B",
+        "tick": 2
+      }
+    ],
+    "seed": 860025,
+    "state_digest_after": "d7b4660e1360a840cea9e2428682e61050381df47fed59326e1129aaa6881dc3",
+    "state_digest_before": "a35d3949d4bd7fb6aeb174aa3f059c8fc04ce33e0793611d153502cfc8a1f63a",
+    "stimulus_current": 104.1851963171161,
+    "synaptic_weight": 101.43677170473985,
+    "task_success": true,
+    "total_injected_charge": 208.3703926342322,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "arm": "identity_destroyed",
+    "decoded_order": "A_only",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": null
+    },
+    "logical_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "B"
+      ]
+    ],
+    "node_count": 6,
+    "order": "forward",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      },
+      {
+        "channel": "A",
+        "tick": 6
+      }
+    ],
+    "seed": 860025,
+    "state_digest_after": "5817ff01eabb6da45ee0d0fdf9e78f508e499aaa0b5750fa4a8f5b75fcf96d47",
+    "state_digest_before": "a35d3949d4bd7fb6aeb174aa3f059c8fc04ce33e0793611d153502cfc8a1f63a",
+    "stimulus_current": 104.1851963171161,
+    "synaptic_weight": 101.43677170473985,
+    "task_success": false,
+    "total_injected_charge": 208.3703926342322,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "arm": "identity_destroyed",
+    "decoded_order": "A_only",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": null
+    },
+    "logical_schedule": [
+      [
+        0,
+        "B"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "node_count": 6,
+    "order": "reverse",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      },
+      {
+        "channel": "A",
+        "tick": 6
+      }
+    ],
+    "seed": 860025,
+    "state_digest_after": "5817ff01eabb6da45ee0d0fdf9e78f508e499aaa0b5750fa4a8f5b75fcf96d47",
+    "state_digest_before": "a35d3949d4bd7fb6aeb174aa3f059c8fc04ce33e0793611d153502cfc8a1f63a",
+    "stimulus_current": 104.1851963171161,
+    "synaptic_weight": 101.43677170473985,
+    "task_success": false,
+    "total_injected_charge": 208.3703926342322,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        0,
+        "A"
+      ]
+    ],
+    "arm": "identity_destroyed",
+    "decoded_order": "A_only",
+    "delivered_events": 2,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": null
+    },
+    "logical_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        0,
+        "B"
+      ]
+    ],
+    "node_count": 6,
+    "order": "simultaneous",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      }
+    ],
+    "seed": 860025,
+    "state_digest_after": "56835f9bf539fc41e775e3ee75b798719e0bd765e4d53ef152b8b73e0b2aa2ad",
+    "state_digest_before": "a35d3949d4bd7fb6aeb174aa3f059c8fc04ce33e0793611d153502cfc8a1f63a",
+    "stimulus_current": 104.1851963171161,
+    "synaptic_weight": 101.43677170473985,
+    "task_success": false,
+    "total_injected_charge": 208.3703926342322,
+    "total_spikes": 3
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "B"
+      ]
+    ],
+    "arm": "intact",
+    "decoded_order": "forward",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": 6
+    },
+    "logical_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "B"
+      ]
+    ],
+    "node_count": 6,
+    "order": "forward",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      },
+      {
+        "channel": "B",
+        "tick": 6
+      }
+    ],
+    "seed": 860026,
+    "state_digest_after": "ab6d536b22c424d3cb624189600aead463f5bf9f710d4f2b34486d87438a028e",
+    "state_digest_before": "d74be9922cd9c331918452f2b9cda54250d99f783d15ffe6e0fe269f8ec58235",
+    "stimulus_current": 108.31862049882596,
+    "synaptic_weight": 107.7513086718176,
+    "task_success": true,
+    "total_injected_charge": 216.63724099765193,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "B"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "arm": "intact",
+    "decoded_order": "reverse",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 6,
+      "B": 2
+    },
+    "logical_schedule": [
+      [
+        0,
+        "B"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "node_count": 6,
+    "order": "reverse",
+    "output_sequence": [
+      {
+        "channel": "B",
+        "tick": 2
+      },
+      {
+        "channel": "A",
+        "tick": 6
+      }
+    ],
+    "seed": 860026,
+    "state_digest_after": "09e35ca1bf4159a90c2a26eb0779af80192b22301f8f1b0d654d98d8f3daf228",
+    "state_digest_before": "d74be9922cd9c331918452f2b9cda54250d99f783d15ffe6e0fe269f8ec58235",
+    "stimulus_current": 108.31862049882596,
+    "synaptic_weight": 107.7513086718176,
+    "task_success": true,
+    "total_injected_charge": 216.63724099765193,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        0,
+        "B"
+      ]
+    ],
+    "arm": "intact",
+    "decoded_order": "simultaneous",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": 2
+    },
+    "logical_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        0,
+        "B"
+      ]
+    ],
+    "node_count": 6,
+    "order": "simultaneous",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      },
+      {
+        "channel": "B",
+        "tick": 2
+      }
+    ],
+    "seed": 860026,
+    "state_digest_after": "aec7a34563368f07ce25d543b780583a3372d3c24636c8d0532996caaf2efb25",
+    "state_digest_before": "d74be9922cd9c331918452f2b9cda54250d99f783d15ffe6e0fe269f8ec58235",
+    "stimulus_current": 108.31862049882596,
+    "synaptic_weight": 107.7513086718176,
+    "task_success": true,
+    "total_injected_charge": 216.63724099765193,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "arm": "identity_destroyed",
+    "decoded_order": "A_only",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": null
+    },
+    "logical_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "B"
+      ]
+    ],
+    "node_count": 6,
+    "order": "forward",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      },
+      {
+        "channel": "A",
+        "tick": 6
+      }
+    ],
+    "seed": 860026,
+    "state_digest_after": "d0574a68679d304ef43320353e906746e0b06fca8412d484c641063ee903009c",
+    "state_digest_before": "d74be9922cd9c331918452f2b9cda54250d99f783d15ffe6e0fe269f8ec58235",
+    "stimulus_current": 108.31862049882596,
+    "synaptic_weight": 107.7513086718176,
+    "task_success": false,
+    "total_injected_charge": 216.63724099765193,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "arm": "identity_destroyed",
+    "decoded_order": "A_only",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": null
+    },
+    "logical_schedule": [
+      [
+        0,
+        "B"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "node_count": 6,
+    "order": "reverse",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      },
+      {
+        "channel": "A",
+        "tick": 6
+      }
+    ],
+    "seed": 860026,
+    "state_digest_after": "d0574a68679d304ef43320353e906746e0b06fca8412d484c641063ee903009c",
+    "state_digest_before": "d74be9922cd9c331918452f2b9cda54250d99f783d15ffe6e0fe269f8ec58235",
+    "stimulus_current": 108.31862049882596,
+    "synaptic_weight": 107.7513086718176,
+    "task_success": false,
+    "total_injected_charge": 216.63724099765193,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        0,
+        "A"
+      ]
+    ],
+    "arm": "identity_destroyed",
+    "decoded_order": "A_only",
+    "delivered_events": 2,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": null
+    },
+    "logical_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        0,
+        "B"
+      ]
+    ],
+    "node_count": 6,
+    "order": "simultaneous",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      }
+    ],
+    "seed": 860026,
+    "state_digest_after": "56e76cac1da16fe2cdeba2b2224e007cb1a9e343887545b5a7adddea502db750",
+    "state_digest_before": "d74be9922cd9c331918452f2b9cda54250d99f783d15ffe6e0fe269f8ec58235",
+    "stimulus_current": 108.31862049882596,
+    "synaptic_weight": 107.7513086718176,
+    "task_success": false,
+    "total_injected_charge": 216.63724099765193,
+    "total_spikes": 3
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "B"
+      ]
+    ],
+    "arm": "intact",
+    "decoded_order": "forward",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": 6
+    },
+    "logical_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "B"
+      ]
+    ],
+    "node_count": 6,
+    "order": "forward",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      },
+      {
+        "channel": "B",
+        "tick": 6
+      }
+    ],
+    "seed": 860027,
+    "state_digest_after": "a6b1af786b37c27bdc50bdabce619b519893c28d63af79c9aab3992d24986d26",
+    "state_digest_before": "8ef32dce39abe5b9a9ab650f46d6408589a8e1e80fc0a2581cff506c61044e74",
+    "stimulus_current": 102.79886618927827,
+    "synaptic_weight": 103.05997803990316,
+    "task_success": true,
+    "total_injected_charge": 205.59773237855654,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "B"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "arm": "intact",
+    "decoded_order": "reverse",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 6,
+      "B": 2
+    },
+    "logical_schedule": [
+      [
+        0,
+        "B"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "node_count": 6,
+    "order": "reverse",
+    "output_sequence": [
+      {
+        "channel": "B",
+        "tick": 2
+      },
+      {
+        "channel": "A",
+        "tick": 6
+      }
+    ],
+    "seed": 860027,
+    "state_digest_after": "6fdc2b897aa866d383697eb18ec02d2f76ea0e3d705bc224e09bcfb200f91d2e",
+    "state_digest_before": "8ef32dce39abe5b9a9ab650f46d6408589a8e1e80fc0a2581cff506c61044e74",
+    "stimulus_current": 102.79886618927827,
+    "synaptic_weight": 103.05997803990316,
+    "task_success": true,
+    "total_injected_charge": 205.59773237855654,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        0,
+        "B"
+      ]
+    ],
+    "arm": "intact",
+    "decoded_order": "simultaneous",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": 2
+    },
+    "logical_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        0,
+        "B"
+      ]
+    ],
+    "node_count": 6,
+    "order": "simultaneous",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      },
+      {
+        "channel": "B",
+        "tick": 2
+      }
+    ],
+    "seed": 860027,
+    "state_digest_after": "ab69f751111c6d46e220a39792a993ebc35f6814c7c80b4478fed005f87cfc0b",
+    "state_digest_before": "8ef32dce39abe5b9a9ab650f46d6408589a8e1e80fc0a2581cff506c61044e74",
+    "stimulus_current": 102.79886618927827,
+    "synaptic_weight": 103.05997803990316,
+    "task_success": true,
+    "total_injected_charge": 205.59773237855654,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "arm": "identity_destroyed",
+    "decoded_order": "A_only",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": null
+    },
+    "logical_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "B"
+      ]
+    ],
+    "node_count": 6,
+    "order": "forward",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      },
+      {
+        "channel": "A",
+        "tick": 6
+      }
+    ],
+    "seed": 860027,
+    "state_digest_after": "e667e4ba66afa8cb4d99e1da879fbbb6b67b913548ddb7732ee92571dce7bf7d",
+    "state_digest_before": "8ef32dce39abe5b9a9ab650f46d6408589a8e1e80fc0a2581cff506c61044e74",
+    "stimulus_current": 102.79886618927827,
+    "synaptic_weight": 103.05997803990316,
+    "task_success": false,
+    "total_injected_charge": 205.59773237855654,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "arm": "identity_destroyed",
+    "decoded_order": "A_only",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": null
+    },
+    "logical_schedule": [
+      [
+        0,
+        "B"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "node_count": 6,
+    "order": "reverse",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      },
+      {
+        "channel": "A",
+        "tick": 6
+      }
+    ],
+    "seed": 860027,
+    "state_digest_after": "e667e4ba66afa8cb4d99e1da879fbbb6b67b913548ddb7732ee92571dce7bf7d",
+    "state_digest_before": "8ef32dce39abe5b9a9ab650f46d6408589a8e1e80fc0a2581cff506c61044e74",
+    "stimulus_current": 102.79886618927827,
+    "synaptic_weight": 103.05997803990316,
+    "task_success": false,
+    "total_injected_charge": 205.59773237855654,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        0,
+        "A"
+      ]
+    ],
+    "arm": "identity_destroyed",
+    "decoded_order": "A_only",
+    "delivered_events": 2,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": null
+    },
+    "logical_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        0,
+        "B"
+      ]
+    ],
+    "node_count": 6,
+    "order": "simultaneous",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      }
+    ],
+    "seed": 860027,
+    "state_digest_after": "5e1e45da2fa2b272188895145ff84c8c267eeb34d060612405da0969bc626372",
+    "state_digest_before": "8ef32dce39abe5b9a9ab650f46d6408589a8e1e80fc0a2581cff506c61044e74",
+    "stimulus_current": 102.79886618927827,
+    "synaptic_weight": 103.05997803990316,
+    "task_success": false,
+    "total_injected_charge": 205.59773237855654,
+    "total_spikes": 3
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "B"
+      ]
+    ],
+    "arm": "intact",
+    "decoded_order": "forward",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": 6
+    },
+    "logical_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "B"
+      ]
+    ],
+    "node_count": 6,
+    "order": "forward",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      },
+      {
+        "channel": "B",
+        "tick": 6
+      }
+    ],
+    "seed": 860028,
+    "state_digest_after": "cffe49977a55bd5d1ada6d03c75cc6b9d6f5ded4616a468746e014a291101633",
+    "state_digest_before": "380b135396a2c84f11e04226515975f87e896a4f04999d99ad082fdcb58879f9",
+    "stimulus_current": 101.79889721227399,
+    "synaptic_weight": 101.59332790107786,
+    "task_success": true,
+    "total_injected_charge": 203.59779442454797,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "B"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "arm": "intact",
+    "decoded_order": "reverse",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 6,
+      "B": 2
+    },
+    "logical_schedule": [
+      [
+        0,
+        "B"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "node_count": 6,
+    "order": "reverse",
+    "output_sequence": [
+      {
+        "channel": "B",
+        "tick": 2
+      },
+      {
+        "channel": "A",
+        "tick": 6
+      }
+    ],
+    "seed": 860028,
+    "state_digest_after": "be0c0b5b8ded810525347f3c5e5ee8ecd90a99939f59421e9b597da9d0c6c991",
+    "state_digest_before": "380b135396a2c84f11e04226515975f87e896a4f04999d99ad082fdcb58879f9",
+    "stimulus_current": 101.79889721227399,
+    "synaptic_weight": 101.59332790107786,
+    "task_success": true,
+    "total_injected_charge": 203.59779442454797,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        0,
+        "B"
+      ]
+    ],
+    "arm": "intact",
+    "decoded_order": "simultaneous",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": 2
+    },
+    "logical_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        0,
+        "B"
+      ]
+    ],
+    "node_count": 6,
+    "order": "simultaneous",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      },
+      {
+        "channel": "B",
+        "tick": 2
+      }
+    ],
+    "seed": 860028,
+    "state_digest_after": "cbd5cc3ad9de0bcae010ffeee03e57792d37937b12842d1c2e3489743d93f53c",
+    "state_digest_before": "380b135396a2c84f11e04226515975f87e896a4f04999d99ad082fdcb58879f9",
+    "stimulus_current": 101.79889721227399,
+    "synaptic_weight": 101.59332790107786,
+    "task_success": true,
+    "total_injected_charge": 203.59779442454797,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "arm": "identity_destroyed",
+    "decoded_order": "A_only",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": null
+    },
+    "logical_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "B"
+      ]
+    ],
+    "node_count": 6,
+    "order": "forward",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      },
+      {
+        "channel": "A",
+        "tick": 6
+      }
+    ],
+    "seed": 860028,
+    "state_digest_after": "8457a6275bcee17035dceda06d21d8c0b905f8bfbdd1556bbbcd354c065bf24c",
+    "state_digest_before": "380b135396a2c84f11e04226515975f87e896a4f04999d99ad082fdcb58879f9",
+    "stimulus_current": 101.79889721227399,
+    "synaptic_weight": 101.59332790107786,
+    "task_success": false,
+    "total_injected_charge": 203.59779442454797,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "arm": "identity_destroyed",
+    "decoded_order": "A_only",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": null
+    },
+    "logical_schedule": [
+      [
+        0,
+        "B"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "node_count": 6,
+    "order": "reverse",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      },
+      {
+        "channel": "A",
+        "tick": 6
+      }
+    ],
+    "seed": 860028,
+    "state_digest_after": "8457a6275bcee17035dceda06d21d8c0b905f8bfbdd1556bbbcd354c065bf24c",
+    "state_digest_before": "380b135396a2c84f11e04226515975f87e896a4f04999d99ad082fdcb58879f9",
+    "stimulus_current": 101.79889721227399,
+    "synaptic_weight": 101.59332790107786,
+    "task_success": false,
+    "total_injected_charge": 203.59779442454797,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        0,
+        "A"
+      ]
+    ],
+    "arm": "identity_destroyed",
+    "decoded_order": "A_only",
+    "delivered_events": 2,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": null
+    },
+    "logical_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        0,
+        "B"
+      ]
+    ],
+    "node_count": 6,
+    "order": "simultaneous",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      }
+    ],
+    "seed": 860028,
+    "state_digest_after": "b265d5775908cdc8d1c11483e62c78e5a287156cf631a5b923a1a2826f48a515",
+    "state_digest_before": "380b135396a2c84f11e04226515975f87e896a4f04999d99ad082fdcb58879f9",
+    "stimulus_current": 101.79889721227399,
+    "synaptic_weight": 101.59332790107786,
+    "task_success": false,
+    "total_injected_charge": 203.59779442454797,
+    "total_spikes": 3
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "B"
+      ]
+    ],
+    "arm": "intact",
+    "decoded_order": "forward",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": 6
+    },
+    "logical_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "B"
+      ]
+    ],
+    "node_count": 6,
+    "order": "forward",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      },
+      {
+        "channel": "B",
+        "tick": 6
+      }
+    ],
+    "seed": 860029,
+    "state_digest_after": "084752a4e632650427a719bf91bd778e33c64044f8828d74a0b938d8841ce18f",
+    "state_digest_before": "3b2ca3fd8907c2dd8c03a8b32196991e254ad10a093c216b71decf5ebc37b843",
+    "stimulus_current": 107.64234902512587,
+    "synaptic_weight": 100.22926971785219,
+    "task_success": true,
+    "total_injected_charge": 215.28469805025173,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "B"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "arm": "intact",
+    "decoded_order": "reverse",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 6,
+      "B": 2
+    },
+    "logical_schedule": [
+      [
+        0,
+        "B"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "node_count": 6,
+    "order": "reverse",
+    "output_sequence": [
+      {
+        "channel": "B",
+        "tick": 2
+      },
+      {
+        "channel": "A",
+        "tick": 6
+      }
+    ],
+    "seed": 860029,
+    "state_digest_after": "e0955c9e38c2c488f605617ddb0ba6c2c37390d35e5f32704edef4324cb15f7e",
+    "state_digest_before": "3b2ca3fd8907c2dd8c03a8b32196991e254ad10a093c216b71decf5ebc37b843",
+    "stimulus_current": 107.64234902512587,
+    "synaptic_weight": 100.22926971785219,
+    "task_success": true,
+    "total_injected_charge": 215.28469805025173,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        0,
+        "B"
+      ]
+    ],
+    "arm": "intact",
+    "decoded_order": "simultaneous",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": 2
+    },
+    "logical_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        0,
+        "B"
+      ]
+    ],
+    "node_count": 6,
+    "order": "simultaneous",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      },
+      {
+        "channel": "B",
+        "tick": 2
+      }
+    ],
+    "seed": 860029,
+    "state_digest_after": "e2e71132cb2bd4a9009b2ba3e16f5beeebfc9d4740547bf70090084f63a7979d",
+    "state_digest_before": "3b2ca3fd8907c2dd8c03a8b32196991e254ad10a093c216b71decf5ebc37b843",
+    "stimulus_current": 107.64234902512587,
+    "synaptic_weight": 100.22926971785219,
+    "task_success": true,
+    "total_injected_charge": 215.28469805025173,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "arm": "identity_destroyed",
+    "decoded_order": "A_only",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": null
+    },
+    "logical_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "B"
+      ]
+    ],
+    "node_count": 6,
+    "order": "forward",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      },
+      {
+        "channel": "A",
+        "tick": 6
+      }
+    ],
+    "seed": 860029,
+    "state_digest_after": "b8b41ef2442b3a83e8179a1c5073ca884e93e22beba71c9c7b0ad9c48902983d",
+    "state_digest_before": "3b2ca3fd8907c2dd8c03a8b32196991e254ad10a093c216b71decf5ebc37b843",
+    "stimulus_current": 107.64234902512587,
+    "synaptic_weight": 100.22926971785219,
+    "task_success": false,
+    "total_injected_charge": 215.28469805025173,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "arm": "identity_destroyed",
+    "decoded_order": "A_only",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": null
+    },
+    "logical_schedule": [
+      [
+        0,
+        "B"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "node_count": 6,
+    "order": "reverse",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      },
+      {
+        "channel": "A",
+        "tick": 6
+      }
+    ],
+    "seed": 860029,
+    "state_digest_after": "b8b41ef2442b3a83e8179a1c5073ca884e93e22beba71c9c7b0ad9c48902983d",
+    "state_digest_before": "3b2ca3fd8907c2dd8c03a8b32196991e254ad10a093c216b71decf5ebc37b843",
+    "stimulus_current": 107.64234902512587,
+    "synaptic_weight": 100.22926971785219,
+    "task_success": false,
+    "total_injected_charge": 215.28469805025173,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        0,
+        "A"
+      ]
+    ],
+    "arm": "identity_destroyed",
+    "decoded_order": "A_only",
+    "delivered_events": 2,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": null
+    },
+    "logical_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        0,
+        "B"
+      ]
+    ],
+    "node_count": 6,
+    "order": "simultaneous",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      }
+    ],
+    "seed": 860029,
+    "state_digest_after": "844219e459ee8815623e07b92e20c3406ef0bfb5fee0f3b02d0255b5fe654c33",
+    "state_digest_before": "3b2ca3fd8907c2dd8c03a8b32196991e254ad10a093c216b71decf5ebc37b843",
+    "stimulus_current": 107.64234902512587,
+    "synaptic_weight": 100.22926971785219,
+    "task_success": false,
+    "total_injected_charge": 215.28469805025173,
+    "total_spikes": 3
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "B"
+      ]
+    ],
+    "arm": "intact",
+    "decoded_order": "forward",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": 6
+    },
+    "logical_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "B"
+      ]
+    ],
+    "node_count": 6,
+    "order": "forward",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      },
+      {
+        "channel": "B",
+        "tick": 6
+      }
+    ],
+    "seed": 860030,
+    "state_digest_after": "d40539a8ae9246896bf1bc8c7a08cab6671f84decc4e3a1d8632e26ac2a6b9f3",
+    "state_digest_before": "6e91b14895d12cec0cc49a83f272f06075120dea75aad245a4d78a579fc11905",
+    "stimulus_current": 108.3203900547892,
+    "synaptic_weight": 106.55024639148559,
+    "task_success": true,
+    "total_injected_charge": 216.6407801095784,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "B"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "arm": "intact",
+    "decoded_order": "reverse",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 6,
+      "B": 2
+    },
+    "logical_schedule": [
+      [
+        0,
+        "B"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "node_count": 6,
+    "order": "reverse",
+    "output_sequence": [
+      {
+        "channel": "B",
+        "tick": 2
+      },
+      {
+        "channel": "A",
+        "tick": 6
+      }
+    ],
+    "seed": 860030,
+    "state_digest_after": "35788af190fce61802caf364876a1c40237657b443af067e9a05fc3c9d4c89a9",
+    "state_digest_before": "6e91b14895d12cec0cc49a83f272f06075120dea75aad245a4d78a579fc11905",
+    "stimulus_current": 108.3203900547892,
+    "synaptic_weight": 106.55024639148559,
+    "task_success": true,
+    "total_injected_charge": 216.6407801095784,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        0,
+        "B"
+      ]
+    ],
+    "arm": "intact",
+    "decoded_order": "simultaneous",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": 2
+    },
+    "logical_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        0,
+        "B"
+      ]
+    ],
+    "node_count": 6,
+    "order": "simultaneous",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      },
+      {
+        "channel": "B",
+        "tick": 2
+      }
+    ],
+    "seed": 860030,
+    "state_digest_after": "f20083a3a00be98ab4584677eb47d5c689aab691e9e8d738ee39371df4b8ec34",
+    "state_digest_before": "6e91b14895d12cec0cc49a83f272f06075120dea75aad245a4d78a579fc11905",
+    "stimulus_current": 108.3203900547892,
+    "synaptic_weight": 106.55024639148559,
+    "task_success": true,
+    "total_injected_charge": 216.6407801095784,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "arm": "identity_destroyed",
+    "decoded_order": "A_only",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": null
+    },
+    "logical_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "B"
+      ]
+    ],
+    "node_count": 6,
+    "order": "forward",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      },
+      {
+        "channel": "A",
+        "tick": 6
+      }
+    ],
+    "seed": 860030,
+    "state_digest_after": "5e9e9282e7ffef65cec2226f5e286207b2b29fbc6a7fd905436ee2b22be6578f",
+    "state_digest_before": "6e91b14895d12cec0cc49a83f272f06075120dea75aad245a4d78a579fc11905",
+    "stimulus_current": 108.3203900547892,
+    "synaptic_weight": 106.55024639148559,
+    "task_success": false,
+    "total_injected_charge": 216.6407801095784,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "arm": "identity_destroyed",
+    "decoded_order": "A_only",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": null
+    },
+    "logical_schedule": [
+      [
+        0,
+        "B"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "node_count": 6,
+    "order": "reverse",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      },
+      {
+        "channel": "A",
+        "tick": 6
+      }
+    ],
+    "seed": 860030,
+    "state_digest_after": "5e9e9282e7ffef65cec2226f5e286207b2b29fbc6a7fd905436ee2b22be6578f",
+    "state_digest_before": "6e91b14895d12cec0cc49a83f272f06075120dea75aad245a4d78a579fc11905",
+    "stimulus_current": 108.3203900547892,
+    "synaptic_weight": 106.55024639148559,
+    "task_success": false,
+    "total_injected_charge": 216.6407801095784,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        0,
+        "A"
+      ]
+    ],
+    "arm": "identity_destroyed",
+    "decoded_order": "A_only",
+    "delivered_events": 2,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": null
+    },
+    "logical_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        0,
+        "B"
+      ]
+    ],
+    "node_count": 6,
+    "order": "simultaneous",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      }
+    ],
+    "seed": 860030,
+    "state_digest_after": "4b3f8d4eedaa879e4239997742cd076282e5d5a60cef3fe1bcc971b2f655d0ca",
+    "state_digest_before": "6e91b14895d12cec0cc49a83f272f06075120dea75aad245a4d78a579fc11905",
+    "stimulus_current": 108.3203900547892,
+    "synaptic_weight": 106.55024639148559,
+    "task_success": false,
+    "total_injected_charge": 216.6407801095784,
+    "total_spikes": 3
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "B"
+      ]
+    ],
+    "arm": "intact",
+    "decoded_order": "forward",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": 6
+    },
+    "logical_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "B"
+      ]
+    ],
+    "node_count": 6,
+    "order": "forward",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      },
+      {
+        "channel": "B",
+        "tick": 6
+      }
+    ],
+    "seed": 860031,
+    "state_digest_after": "6d725b9abaa481fec9ce3cf8322ce23615d33970e72377a712538dddbec5b407",
+    "state_digest_before": "61334bc85ec3ec30989369811808b6cea87dc2c8560019f58ac7b3f5b7f43f25",
+    "stimulus_current": 105.37793112810692,
+    "synaptic_weight": 100.458654878689,
+    "task_success": true,
+    "total_injected_charge": 210.75586225621385,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "B"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "arm": "intact",
+    "decoded_order": "reverse",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 6,
+      "B": 2
+    },
+    "logical_schedule": [
+      [
+        0,
+        "B"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "node_count": 6,
+    "order": "reverse",
+    "output_sequence": [
+      {
+        "channel": "B",
+        "tick": 2
+      },
+      {
+        "channel": "A",
+        "tick": 6
+      }
+    ],
+    "seed": 860031,
+    "state_digest_after": "8c34a676b5c5f2a60d577262914c8c85d960b1e820014f1f817b8e221449dcce",
+    "state_digest_before": "61334bc85ec3ec30989369811808b6cea87dc2c8560019f58ac7b3f5b7f43f25",
+    "stimulus_current": 105.37793112810692,
+    "synaptic_weight": 100.458654878689,
+    "task_success": true,
+    "total_injected_charge": 210.75586225621385,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        0,
+        "B"
+      ]
+    ],
+    "arm": "intact",
+    "decoded_order": "simultaneous",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": 2
+    },
+    "logical_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        0,
+        "B"
+      ]
+    ],
+    "node_count": 6,
+    "order": "simultaneous",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      },
+      {
+        "channel": "B",
+        "tick": 2
+      }
+    ],
+    "seed": 860031,
+    "state_digest_after": "089ffd50259401b8b48157d156ecfaf6b1553e96a85510fc3ec8a5f18009481b",
+    "state_digest_before": "61334bc85ec3ec30989369811808b6cea87dc2c8560019f58ac7b3f5b7f43f25",
+    "stimulus_current": 105.37793112810692,
+    "synaptic_weight": 100.458654878689,
+    "task_success": true,
+    "total_injected_charge": 210.75586225621385,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "arm": "identity_destroyed",
+    "decoded_order": "A_only",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": null
+    },
+    "logical_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "B"
+      ]
+    ],
+    "node_count": 6,
+    "order": "forward",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      },
+      {
+        "channel": "A",
+        "tick": 6
+      }
+    ],
+    "seed": 860031,
+    "state_digest_after": "3f9803fb22b3530a14f4b34799e6e14603fd39399cdb42ccc9c3ba1d065d86fa",
+    "state_digest_before": "61334bc85ec3ec30989369811808b6cea87dc2c8560019f58ac7b3f5b7f43f25",
+    "stimulus_current": 105.37793112810692,
+    "synaptic_weight": 100.458654878689,
+    "task_success": false,
+    "total_injected_charge": 210.75586225621385,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "arm": "identity_destroyed",
+    "decoded_order": "A_only",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": null
+    },
+    "logical_schedule": [
+      [
+        0,
+        "B"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "node_count": 6,
+    "order": "reverse",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      },
+      {
+        "channel": "A",
+        "tick": 6
+      }
+    ],
+    "seed": 860031,
+    "state_digest_after": "3f9803fb22b3530a14f4b34799e6e14603fd39399cdb42ccc9c3ba1d065d86fa",
+    "state_digest_before": "61334bc85ec3ec30989369811808b6cea87dc2c8560019f58ac7b3f5b7f43f25",
+    "stimulus_current": 105.37793112810692,
+    "synaptic_weight": 100.458654878689,
+    "task_success": false,
+    "total_injected_charge": 210.75586225621385,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        0,
+        "A"
+      ]
+    ],
+    "arm": "identity_destroyed",
+    "decoded_order": "A_only",
+    "delivered_events": 2,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": null
+    },
+    "logical_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        0,
+        "B"
+      ]
+    ],
+    "node_count": 6,
+    "order": "simultaneous",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      }
+    ],
+    "seed": 860031,
+    "state_digest_after": "1a94611f4a161bf993a73d489e41431a30b5a98c92ab4ad905129d5b723f838a",
+    "state_digest_before": "61334bc85ec3ec30989369811808b6cea87dc2c8560019f58ac7b3f5b7f43f25",
+    "stimulus_current": 105.37793112810692,
+    "synaptic_weight": 100.458654878689,
+    "task_success": false,
+    "total_injected_charge": 210.75586225621385,
+    "total_spikes": 3
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "B"
+      ]
+    ],
+    "arm": "intact",
+    "decoded_order": "forward",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": 6
+    },
+    "logical_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "B"
+      ]
+    ],
+    "node_count": 6,
+    "order": "forward",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      },
+      {
+        "channel": "B",
+        "tick": 6
+      }
+    ],
+    "seed": 860032,
+    "state_digest_after": "63b4f39412d5e47e889ec509fe8ab4837c03d96b2dbd18a6ce53e931062e30e4",
+    "state_digest_before": "2f33ccfa43607d37bb368f98425e9234d0d0e20d56a5c6dd112f775961c501c6",
+    "stimulus_current": 107.31696927749468,
+    "synaptic_weight": 109.14013437938603,
+    "task_success": true,
+    "total_injected_charge": 214.63393855498936,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "B"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "arm": "intact",
+    "decoded_order": "reverse",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 6,
+      "B": 2
+    },
+    "logical_schedule": [
+      [
+        0,
+        "B"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "node_count": 6,
+    "order": "reverse",
+    "output_sequence": [
+      {
+        "channel": "B",
+        "tick": 2
+      },
+      {
+        "channel": "A",
+        "tick": 6
+      }
+    ],
+    "seed": 860032,
+    "state_digest_after": "975f916bc2ca8aed95a111a3191c082fa6df45db084518e9e9b561c5380bd917",
+    "state_digest_before": "2f33ccfa43607d37bb368f98425e9234d0d0e20d56a5c6dd112f775961c501c6",
+    "stimulus_current": 107.31696927749468,
+    "synaptic_weight": 109.14013437938603,
+    "task_success": true,
+    "total_injected_charge": 214.63393855498936,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        0,
+        "B"
+      ]
+    ],
+    "arm": "intact",
+    "decoded_order": "simultaneous",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": 2
+    },
+    "logical_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        0,
+        "B"
+      ]
+    ],
+    "node_count": 6,
+    "order": "simultaneous",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      },
+      {
+        "channel": "B",
+        "tick": 2
+      }
+    ],
+    "seed": 860032,
+    "state_digest_after": "6d6f7a1aaaa96e214b3bc82eac5d9d326b21f19da9a6659223edcd730e1e2b24",
+    "state_digest_before": "2f33ccfa43607d37bb368f98425e9234d0d0e20d56a5c6dd112f775961c501c6",
+    "stimulus_current": 107.31696927749468,
+    "synaptic_weight": 109.14013437938603,
+    "task_success": true,
+    "total_injected_charge": 214.63393855498936,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "arm": "identity_destroyed",
+    "decoded_order": "A_only",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": null
+    },
+    "logical_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "B"
+      ]
+    ],
+    "node_count": 6,
+    "order": "forward",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      },
+      {
+        "channel": "A",
+        "tick": 6
+      }
+    ],
+    "seed": 860032,
+    "state_digest_after": "8e9fb1fb73c3571a5257dcd7a820b4cf9f6d142f6791706a2ea9a76f0ad3ad0f",
+    "state_digest_before": "2f33ccfa43607d37bb368f98425e9234d0d0e20d56a5c6dd112f775961c501c6",
+    "stimulus_current": 107.31696927749468,
+    "synaptic_weight": 109.14013437938603,
+    "task_success": false,
+    "total_injected_charge": 214.63393855498936,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "arm": "identity_destroyed",
+    "decoded_order": "A_only",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": null
+    },
+    "logical_schedule": [
+      [
+        0,
+        "B"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "node_count": 6,
+    "order": "reverse",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      },
+      {
+        "channel": "A",
+        "tick": 6
+      }
+    ],
+    "seed": 860032,
+    "state_digest_after": "8e9fb1fb73c3571a5257dcd7a820b4cf9f6d142f6791706a2ea9a76f0ad3ad0f",
+    "state_digest_before": "2f33ccfa43607d37bb368f98425e9234d0d0e20d56a5c6dd112f775961c501c6",
+    "stimulus_current": 107.31696927749468,
+    "synaptic_weight": 109.14013437938603,
+    "task_success": false,
+    "total_injected_charge": 214.63393855498936,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        0,
+        "A"
+      ]
+    ],
+    "arm": "identity_destroyed",
+    "decoded_order": "A_only",
+    "delivered_events": 2,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": null
+    },
+    "logical_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        0,
+        "B"
+      ]
+    ],
+    "node_count": 6,
+    "order": "simultaneous",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      }
+    ],
+    "seed": 860032,
+    "state_digest_after": "c49aa5ff249641e6cb7f3c1fae157df17c5e1304b0421b0b698ea11b0a4227d0",
+    "state_digest_before": "2f33ccfa43607d37bb368f98425e9234d0d0e20d56a5c6dd112f775961c501c6",
+    "stimulus_current": 107.31696927749468,
+    "synaptic_weight": 109.14013437938603,
+    "task_success": false,
+    "total_injected_charge": 214.63393855498936,
+    "total_spikes": 3
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "B"
+      ]
+    ],
+    "arm": "intact",
+    "decoded_order": "forward",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": 6
+    },
+    "logical_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "B"
+      ]
+    ],
+    "node_count": 6,
+    "order": "forward",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      },
+      {
+        "channel": "B",
+        "tick": 6
+      }
+    ],
+    "seed": 860033,
+    "state_digest_after": "fc0bc53084dd43e363faac34dca79417621c5e361edda2c102ef092b6709ba4e",
+    "state_digest_before": "4e966abf70869f95bff246f0174ad3bc8395079a2fa4519bd946efa80c99f470",
+    "stimulus_current": 109.01378969669295,
+    "synaptic_weight": 101.7964475053061,
+    "task_success": true,
+    "total_injected_charge": 218.0275793933859,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "B"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "arm": "intact",
+    "decoded_order": "reverse",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 6,
+      "B": 2
+    },
+    "logical_schedule": [
+      [
+        0,
+        "B"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "node_count": 6,
+    "order": "reverse",
+    "output_sequence": [
+      {
+        "channel": "B",
+        "tick": 2
+      },
+      {
+        "channel": "A",
+        "tick": 6
+      }
+    ],
+    "seed": 860033,
+    "state_digest_after": "b7ef03d38e1e2d52a9ab743a309c1acd0a185edc05fe8c9427cf8b4bc23343af",
+    "state_digest_before": "4e966abf70869f95bff246f0174ad3bc8395079a2fa4519bd946efa80c99f470",
+    "stimulus_current": 109.01378969669295,
+    "synaptic_weight": 101.7964475053061,
+    "task_success": true,
+    "total_injected_charge": 218.0275793933859,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        0,
+        "B"
+      ]
+    ],
+    "arm": "intact",
+    "decoded_order": "simultaneous",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": 2
+    },
+    "logical_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        0,
+        "B"
+      ]
+    ],
+    "node_count": 6,
+    "order": "simultaneous",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      },
+      {
+        "channel": "B",
+        "tick": 2
+      }
+    ],
+    "seed": 860033,
+    "state_digest_after": "4e1c00cfbc6f66581732ac4a9aad965e8d29995c57d7423abf0e06a458c742e5",
+    "state_digest_before": "4e966abf70869f95bff246f0174ad3bc8395079a2fa4519bd946efa80c99f470",
+    "stimulus_current": 109.01378969669295,
+    "synaptic_weight": 101.7964475053061,
+    "task_success": true,
+    "total_injected_charge": 218.0275793933859,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "arm": "identity_destroyed",
+    "decoded_order": "A_only",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": null
+    },
+    "logical_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "B"
+      ]
+    ],
+    "node_count": 6,
+    "order": "forward",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      },
+      {
+        "channel": "A",
+        "tick": 6
+      }
+    ],
+    "seed": 860033,
+    "state_digest_after": "41469ebef774108752bf383762b6dbfb5e2d227e6135d4b373ac7632dce1d14c",
+    "state_digest_before": "4e966abf70869f95bff246f0174ad3bc8395079a2fa4519bd946efa80c99f470",
+    "stimulus_current": 109.01378969669295,
+    "synaptic_weight": 101.7964475053061,
+    "task_success": false,
+    "total_injected_charge": 218.0275793933859,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "arm": "identity_destroyed",
+    "decoded_order": "A_only",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": null
+    },
+    "logical_schedule": [
+      [
+        0,
+        "B"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "node_count": 6,
+    "order": "reverse",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      },
+      {
+        "channel": "A",
+        "tick": 6
+      }
+    ],
+    "seed": 860033,
+    "state_digest_after": "41469ebef774108752bf383762b6dbfb5e2d227e6135d4b373ac7632dce1d14c",
+    "state_digest_before": "4e966abf70869f95bff246f0174ad3bc8395079a2fa4519bd946efa80c99f470",
+    "stimulus_current": 109.01378969669295,
+    "synaptic_weight": 101.7964475053061,
+    "task_success": false,
+    "total_injected_charge": 218.0275793933859,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        0,
+        "A"
+      ]
+    ],
+    "arm": "identity_destroyed",
+    "decoded_order": "A_only",
+    "delivered_events": 2,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": null
+    },
+    "logical_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        0,
+        "B"
+      ]
+    ],
+    "node_count": 6,
+    "order": "simultaneous",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      }
+    ],
+    "seed": 860033,
+    "state_digest_after": "a13812b5ed891bb5af5b70133232a2d1d28508b1e1c3aff2108f0dfaa0b00235",
+    "state_digest_before": "4e966abf70869f95bff246f0174ad3bc8395079a2fa4519bd946efa80c99f470",
+    "stimulus_current": 109.01378969669295,
+    "synaptic_weight": 101.7964475053061,
+    "task_success": false,
+    "total_injected_charge": 218.0275793933859,
+    "total_spikes": 3
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "B"
+      ]
+    ],
+    "arm": "intact",
+    "decoded_order": "forward",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": 6
+    },
+    "logical_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "B"
+      ]
+    ],
+    "node_count": 6,
+    "order": "forward",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      },
+      {
+        "channel": "B",
+        "tick": 6
+      }
+    ],
+    "seed": 860034,
+    "state_digest_after": "2cf5a17b90cc3379c387dc5b79cce7c9b45ea418097403a5304f960422ccc963",
+    "state_digest_before": "47943da16b4128736d140667630b5bf142f3e568a82aaca07a6da997ba966022",
+    "stimulus_current": 101.69646569210266,
+    "synaptic_weight": 106.77379002433001,
+    "task_success": true,
+    "total_injected_charge": 203.39293138420533,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "B"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "arm": "intact",
+    "decoded_order": "reverse",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 6,
+      "B": 2
+    },
+    "logical_schedule": [
+      [
+        0,
+        "B"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "node_count": 6,
+    "order": "reverse",
+    "output_sequence": [
+      {
+        "channel": "B",
+        "tick": 2
+      },
+      {
+        "channel": "A",
+        "tick": 6
+      }
+    ],
+    "seed": 860034,
+    "state_digest_after": "9fbe08bc42b5994db9aac669c427da1f23644e5006203f3edfac387a575da65d",
+    "state_digest_before": "47943da16b4128736d140667630b5bf142f3e568a82aaca07a6da997ba966022",
+    "stimulus_current": 101.69646569210266,
+    "synaptic_weight": 106.77379002433001,
+    "task_success": true,
+    "total_injected_charge": 203.39293138420533,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        0,
+        "B"
+      ]
+    ],
+    "arm": "intact",
+    "decoded_order": "simultaneous",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": 2
+    },
+    "logical_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        0,
+        "B"
+      ]
+    ],
+    "node_count": 6,
+    "order": "simultaneous",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      },
+      {
+        "channel": "B",
+        "tick": 2
+      }
+    ],
+    "seed": 860034,
+    "state_digest_after": "ffc428af4e35d7cde01c823bcec8da7f21459df8dab57cb91b99a9f581db7e68",
+    "state_digest_before": "47943da16b4128736d140667630b5bf142f3e568a82aaca07a6da997ba966022",
+    "stimulus_current": 101.69646569210266,
+    "synaptic_weight": 106.77379002433001,
+    "task_success": true,
+    "total_injected_charge": 203.39293138420533,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "arm": "identity_destroyed",
+    "decoded_order": "A_only",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": null
+    },
+    "logical_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "B"
+      ]
+    ],
+    "node_count": 6,
+    "order": "forward",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      },
+      {
+        "channel": "A",
+        "tick": 6
+      }
+    ],
+    "seed": 860034,
+    "state_digest_after": "3a56c0178a38a98d9cead732ed333c96b83a4b82bd8263dff2b0e8efc3709ba3",
+    "state_digest_before": "47943da16b4128736d140667630b5bf142f3e568a82aaca07a6da997ba966022",
+    "stimulus_current": 101.69646569210266,
+    "synaptic_weight": 106.77379002433001,
+    "task_success": false,
+    "total_injected_charge": 203.39293138420533,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "arm": "identity_destroyed",
+    "decoded_order": "A_only",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": null
+    },
+    "logical_schedule": [
+      [
+        0,
+        "B"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "node_count": 6,
+    "order": "reverse",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      },
+      {
+        "channel": "A",
+        "tick": 6
+      }
+    ],
+    "seed": 860034,
+    "state_digest_after": "3a56c0178a38a98d9cead732ed333c96b83a4b82bd8263dff2b0e8efc3709ba3",
+    "state_digest_before": "47943da16b4128736d140667630b5bf142f3e568a82aaca07a6da997ba966022",
+    "stimulus_current": 101.69646569210266,
+    "synaptic_weight": 106.77379002433001,
+    "task_success": false,
+    "total_injected_charge": 203.39293138420533,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        0,
+        "A"
+      ]
+    ],
+    "arm": "identity_destroyed",
+    "decoded_order": "A_only",
+    "delivered_events": 2,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": null
+    },
+    "logical_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        0,
+        "B"
+      ]
+    ],
+    "node_count": 6,
+    "order": "simultaneous",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      }
+    ],
+    "seed": 860034,
+    "state_digest_after": "5036263cd1cb620aa07e5bd61e57b07da2550c9031f2392b0d703970d24adff3",
+    "state_digest_before": "47943da16b4128736d140667630b5bf142f3e568a82aaca07a6da997ba966022",
+    "stimulus_current": 101.69646569210266,
+    "synaptic_weight": 106.77379002433001,
+    "task_success": false,
+    "total_injected_charge": 203.39293138420533,
+    "total_spikes": 3
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "B"
+      ]
+    ],
+    "arm": "intact",
+    "decoded_order": "forward",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": 6
+    },
+    "logical_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "B"
+      ]
+    ],
+    "node_count": 6,
+    "order": "forward",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      },
+      {
+        "channel": "B",
+        "tick": 6
+      }
+    ],
+    "seed": 860035,
+    "state_digest_after": "fda4f76c09c943cc428a77627d6fcf92599907eb23a345ac6d3cb48f0e33b132",
+    "state_digest_before": "6b792c7a7e0b49747dd928701bc69a64fa64537aec1ef4486b864d7a1fc4e813",
+    "stimulus_current": 103.13197995770017,
+    "synaptic_weight": 108.65305271697812,
+    "task_success": true,
+    "total_injected_charge": 206.26395991540033,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "B"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "arm": "intact",
+    "decoded_order": "reverse",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 6,
+      "B": 2
+    },
+    "logical_schedule": [
+      [
+        0,
+        "B"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "node_count": 6,
+    "order": "reverse",
+    "output_sequence": [
+      {
+        "channel": "B",
+        "tick": 2
+      },
+      {
+        "channel": "A",
+        "tick": 6
+      }
+    ],
+    "seed": 860035,
+    "state_digest_after": "6c0f46bffb90ab9137f8f8c4b852b8d87590fc289ec8c356eb27de82323a850e",
+    "state_digest_before": "6b792c7a7e0b49747dd928701bc69a64fa64537aec1ef4486b864d7a1fc4e813",
+    "stimulus_current": 103.13197995770017,
+    "synaptic_weight": 108.65305271697812,
+    "task_success": true,
+    "total_injected_charge": 206.26395991540033,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        0,
+        "B"
+      ]
+    ],
+    "arm": "intact",
+    "decoded_order": "simultaneous",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": 2
+    },
+    "logical_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        0,
+        "B"
+      ]
+    ],
+    "node_count": 6,
+    "order": "simultaneous",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      },
+      {
+        "channel": "B",
+        "tick": 2
+      }
+    ],
+    "seed": 860035,
+    "state_digest_after": "5cb36446d4200a8bf6f40d065839ff62003855b01e22737ef42d5c09c69b7f70",
+    "state_digest_before": "6b792c7a7e0b49747dd928701bc69a64fa64537aec1ef4486b864d7a1fc4e813",
+    "stimulus_current": 103.13197995770017,
+    "synaptic_weight": 108.65305271697812,
+    "task_success": true,
+    "total_injected_charge": 206.26395991540033,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "arm": "identity_destroyed",
+    "decoded_order": "A_only",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": null
+    },
+    "logical_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "B"
+      ]
+    ],
+    "node_count": 6,
+    "order": "forward",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      },
+      {
+        "channel": "A",
+        "tick": 6
+      }
+    ],
+    "seed": 860035,
+    "state_digest_after": "ad2008615f7225caec92f2d71640b73cd4d3d3a9b781fa8e6e0f1f43e448e10e",
+    "state_digest_before": "6b792c7a7e0b49747dd928701bc69a64fa64537aec1ef4486b864d7a1fc4e813",
+    "stimulus_current": 103.13197995770017,
+    "synaptic_weight": 108.65305271697812,
+    "task_success": false,
+    "total_injected_charge": 206.26395991540033,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "arm": "identity_destroyed",
+    "decoded_order": "A_only",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": null
+    },
+    "logical_schedule": [
+      [
+        0,
+        "B"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "node_count": 6,
+    "order": "reverse",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      },
+      {
+        "channel": "A",
+        "tick": 6
+      }
+    ],
+    "seed": 860035,
+    "state_digest_after": "ad2008615f7225caec92f2d71640b73cd4d3d3a9b781fa8e6e0f1f43e448e10e",
+    "state_digest_before": "6b792c7a7e0b49747dd928701bc69a64fa64537aec1ef4486b864d7a1fc4e813",
+    "stimulus_current": 103.13197995770017,
+    "synaptic_weight": 108.65305271697812,
+    "task_success": false,
+    "total_injected_charge": 206.26395991540033,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        0,
+        "A"
+      ]
+    ],
+    "arm": "identity_destroyed",
+    "decoded_order": "A_only",
+    "delivered_events": 2,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": null
+    },
+    "logical_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        0,
+        "B"
+      ]
+    ],
+    "node_count": 6,
+    "order": "simultaneous",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      }
+    ],
+    "seed": 860035,
+    "state_digest_after": "27254ad503eb3e0c022708f04f7ec7234e33d064ada70a443c305a8276fe76c2",
+    "state_digest_before": "6b792c7a7e0b49747dd928701bc69a64fa64537aec1ef4486b864d7a1fc4e813",
+    "stimulus_current": 103.13197995770017,
+    "synaptic_weight": 108.65305271697812,
+    "task_success": false,
+    "total_injected_charge": 206.26395991540033,
+    "total_spikes": 3
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "B"
+      ]
+    ],
+    "arm": "intact",
+    "decoded_order": "forward",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": 6
+    },
+    "logical_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "B"
+      ]
+    ],
+    "node_count": 6,
+    "order": "forward",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      },
+      {
+        "channel": "B",
+        "tick": 6
+      }
+    ],
+    "seed": 860036,
+    "state_digest_after": "9a6f6ff972bcc0a029d3fb8ac96d52cb346754440f25edb7d1007f3da00130b5",
+    "state_digest_before": "5e28748a5ede781a7f4f55d1dde6c5df6b150b47321a685d15e066fd4adde73a",
+    "stimulus_current": 104.6651994127806,
+    "synaptic_weight": 109.47378616851933,
+    "task_success": true,
+    "total_injected_charge": 209.3303988255612,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "B"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "arm": "intact",
+    "decoded_order": "reverse",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 6,
+      "B": 2
+    },
+    "logical_schedule": [
+      [
+        0,
+        "B"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "node_count": 6,
+    "order": "reverse",
+    "output_sequence": [
+      {
+        "channel": "B",
+        "tick": 2
+      },
+      {
+        "channel": "A",
+        "tick": 6
+      }
+    ],
+    "seed": 860036,
+    "state_digest_after": "30021ca6f24c49e8d38e6276dd8c218b47041fdabbd313514dd02b466444e716",
+    "state_digest_before": "5e28748a5ede781a7f4f55d1dde6c5df6b150b47321a685d15e066fd4adde73a",
+    "stimulus_current": 104.6651994127806,
+    "synaptic_weight": 109.47378616851933,
+    "task_success": true,
+    "total_injected_charge": 209.3303988255612,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        0,
+        "B"
+      ]
+    ],
+    "arm": "intact",
+    "decoded_order": "simultaneous",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": 2
+    },
+    "logical_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        0,
+        "B"
+      ]
+    ],
+    "node_count": 6,
+    "order": "simultaneous",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      },
+      {
+        "channel": "B",
+        "tick": 2
+      }
+    ],
+    "seed": 860036,
+    "state_digest_after": "f24a6108042f707f4bc54fb6bc26ec3a4027bc0416c99c7197ac8dc1f32d483d",
+    "state_digest_before": "5e28748a5ede781a7f4f55d1dde6c5df6b150b47321a685d15e066fd4adde73a",
+    "stimulus_current": 104.6651994127806,
+    "synaptic_weight": 109.47378616851933,
+    "task_success": true,
+    "total_injected_charge": 209.3303988255612,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "arm": "identity_destroyed",
+    "decoded_order": "A_only",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": null
+    },
+    "logical_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "B"
+      ]
+    ],
+    "node_count": 6,
+    "order": "forward",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      },
+      {
+        "channel": "A",
+        "tick": 6
+      }
+    ],
+    "seed": 860036,
+    "state_digest_after": "d26261aa67155c62ba8501060974bd0ac0d90267bb34b81472c0d6cfb885f095",
+    "state_digest_before": "5e28748a5ede781a7f4f55d1dde6c5df6b150b47321a685d15e066fd4adde73a",
+    "stimulus_current": 104.6651994127806,
+    "synaptic_weight": 109.47378616851933,
+    "task_success": false,
+    "total_injected_charge": 209.3303988255612,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "arm": "identity_destroyed",
+    "decoded_order": "A_only",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": null
+    },
+    "logical_schedule": [
+      [
+        0,
+        "B"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "node_count": 6,
+    "order": "reverse",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      },
+      {
+        "channel": "A",
+        "tick": 6
+      }
+    ],
+    "seed": 860036,
+    "state_digest_after": "d26261aa67155c62ba8501060974bd0ac0d90267bb34b81472c0d6cfb885f095",
+    "state_digest_before": "5e28748a5ede781a7f4f55d1dde6c5df6b150b47321a685d15e066fd4adde73a",
+    "stimulus_current": 104.6651994127806,
+    "synaptic_weight": 109.47378616851933,
+    "task_success": false,
+    "total_injected_charge": 209.3303988255612,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        0,
+        "A"
+      ]
+    ],
+    "arm": "identity_destroyed",
+    "decoded_order": "A_only",
+    "delivered_events": 2,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": null
+    },
+    "logical_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        0,
+        "B"
+      ]
+    ],
+    "node_count": 6,
+    "order": "simultaneous",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      }
+    ],
+    "seed": 860036,
+    "state_digest_after": "0c87329e59e2604fbe796c9706753eaf6e5985b0abbb96bcb95da4e18c2c5f20",
+    "state_digest_before": "5e28748a5ede781a7f4f55d1dde6c5df6b150b47321a685d15e066fd4adde73a",
+    "stimulus_current": 104.6651994127806,
+    "synaptic_weight": 109.47378616851933,
+    "task_success": false,
+    "total_injected_charge": 209.3303988255612,
+    "total_spikes": 3
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "B"
+      ]
+    ],
+    "arm": "intact",
+    "decoded_order": "forward",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": 6
+    },
+    "logical_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "B"
+      ]
+    ],
+    "node_count": 6,
+    "order": "forward",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      },
+      {
+        "channel": "B",
+        "tick": 6
+      }
+    ],
+    "seed": 860037,
+    "state_digest_after": "c2bc46176f88d10df58ddd5cf8f7a7a6396f99e1493a287e84cf45738657e27f",
+    "state_digest_before": "99d8c12857d9b3cc1cece443f44476c9f61d550e56f0783695ca4690ddbc2ec6",
+    "stimulus_current": 109.09094914622533,
+    "synaptic_weight": 108.37669536630324,
+    "task_success": true,
+    "total_injected_charge": 218.18189829245065,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "B"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "arm": "intact",
+    "decoded_order": "reverse",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 6,
+      "B": 2
+    },
+    "logical_schedule": [
+      [
+        0,
+        "B"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "node_count": 6,
+    "order": "reverse",
+    "output_sequence": [
+      {
+        "channel": "B",
+        "tick": 2
+      },
+      {
+        "channel": "A",
+        "tick": 6
+      }
+    ],
+    "seed": 860037,
+    "state_digest_after": "ac8e855d2119ce9cace6f5ee747902336e798bbe5fa0726798f51d163755b805",
+    "state_digest_before": "99d8c12857d9b3cc1cece443f44476c9f61d550e56f0783695ca4690ddbc2ec6",
+    "stimulus_current": 109.09094914622533,
+    "synaptic_weight": 108.37669536630324,
+    "task_success": true,
+    "total_injected_charge": 218.18189829245065,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        0,
+        "B"
+      ]
+    ],
+    "arm": "intact",
+    "decoded_order": "simultaneous",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": 2
+    },
+    "logical_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        0,
+        "B"
+      ]
+    ],
+    "node_count": 6,
+    "order": "simultaneous",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      },
+      {
+        "channel": "B",
+        "tick": 2
+      }
+    ],
+    "seed": 860037,
+    "state_digest_after": "8595b2172a6235907ea4e0a190931f1d7addc49c187dd30f1685ca95c9300e45",
+    "state_digest_before": "99d8c12857d9b3cc1cece443f44476c9f61d550e56f0783695ca4690ddbc2ec6",
+    "stimulus_current": 109.09094914622533,
+    "synaptic_weight": 108.37669536630324,
+    "task_success": true,
+    "total_injected_charge": 218.18189829245065,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "arm": "identity_destroyed",
+    "decoded_order": "A_only",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": null
+    },
+    "logical_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "B"
+      ]
+    ],
+    "node_count": 6,
+    "order": "forward",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      },
+      {
+        "channel": "A",
+        "tick": 6
+      }
+    ],
+    "seed": 860037,
+    "state_digest_after": "75738a1a902a981cf04cc0dd174ce5033ae36840d8043bfd07e3a9951fbf01ee",
+    "state_digest_before": "99d8c12857d9b3cc1cece443f44476c9f61d550e56f0783695ca4690ddbc2ec6",
+    "stimulus_current": 109.09094914622533,
+    "synaptic_weight": 108.37669536630324,
+    "task_success": false,
+    "total_injected_charge": 218.18189829245065,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "arm": "identity_destroyed",
+    "decoded_order": "A_only",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": null
+    },
+    "logical_schedule": [
+      [
+        0,
+        "B"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "node_count": 6,
+    "order": "reverse",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      },
+      {
+        "channel": "A",
+        "tick": 6
+      }
+    ],
+    "seed": 860037,
+    "state_digest_after": "75738a1a902a981cf04cc0dd174ce5033ae36840d8043bfd07e3a9951fbf01ee",
+    "state_digest_before": "99d8c12857d9b3cc1cece443f44476c9f61d550e56f0783695ca4690ddbc2ec6",
+    "stimulus_current": 109.09094914622533,
+    "synaptic_weight": 108.37669536630324,
+    "task_success": false,
+    "total_injected_charge": 218.18189829245065,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        0,
+        "A"
+      ]
+    ],
+    "arm": "identity_destroyed",
+    "decoded_order": "A_only",
+    "delivered_events": 2,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": null
+    },
+    "logical_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        0,
+        "B"
+      ]
+    ],
+    "node_count": 6,
+    "order": "simultaneous",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      }
+    ],
+    "seed": 860037,
+    "state_digest_after": "170cd9fb1a2ee0a23606ee52610a4041c9b0612d7dc2271fb45c39c246c653e5",
+    "state_digest_before": "99d8c12857d9b3cc1cece443f44476c9f61d550e56f0783695ca4690ddbc2ec6",
+    "stimulus_current": 109.09094914622533,
+    "synaptic_weight": 108.37669536630324,
+    "task_success": false,
+    "total_injected_charge": 218.18189829245065,
+    "total_spikes": 3
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "B"
+      ]
+    ],
+    "arm": "intact",
+    "decoded_order": "forward",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": 6
+    },
+    "logical_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "B"
+      ]
+    ],
+    "node_count": 6,
+    "order": "forward",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      },
+      {
+        "channel": "B",
+        "tick": 6
+      }
+    ],
+    "seed": 860038,
+    "state_digest_after": "2d0fa5595e3b7ab61a3bd242550833e596a3849f47191ec9623c01fca0eea6b6",
+    "state_digest_before": "a312a40a062515fd578910f16f61b02f6487ef455f460c71f893f687ba3d5586",
+    "stimulus_current": 101.58825879554907,
+    "synaptic_weight": 105.27535213231663,
+    "task_success": true,
+    "total_injected_charge": 203.17651759109813,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "B"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "arm": "intact",
+    "decoded_order": "reverse",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 6,
+      "B": 2
+    },
+    "logical_schedule": [
+      [
+        0,
+        "B"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "node_count": 6,
+    "order": "reverse",
+    "output_sequence": [
+      {
+        "channel": "B",
+        "tick": 2
+      },
+      {
+        "channel": "A",
+        "tick": 6
+      }
+    ],
+    "seed": 860038,
+    "state_digest_after": "b44371d6c1133eb48abee499caafda3c3d5c39fbc06598f59e6618d987d227b5",
+    "state_digest_before": "a312a40a062515fd578910f16f61b02f6487ef455f460c71f893f687ba3d5586",
+    "stimulus_current": 101.58825879554907,
+    "synaptic_weight": 105.27535213231663,
+    "task_success": true,
+    "total_injected_charge": 203.17651759109813,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        0,
+        "B"
+      ]
+    ],
+    "arm": "intact",
+    "decoded_order": "simultaneous",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": 2
+    },
+    "logical_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        0,
+        "B"
+      ]
+    ],
+    "node_count": 6,
+    "order": "simultaneous",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      },
+      {
+        "channel": "B",
+        "tick": 2
+      }
+    ],
+    "seed": 860038,
+    "state_digest_after": "cd8da2aa20c12bd91b8aaf4753440e3c5bb3f398e104500f0a29213589c8c49b",
+    "state_digest_before": "a312a40a062515fd578910f16f61b02f6487ef455f460c71f893f687ba3d5586",
+    "stimulus_current": 101.58825879554907,
+    "synaptic_weight": 105.27535213231663,
+    "task_success": true,
+    "total_injected_charge": 203.17651759109813,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "arm": "identity_destroyed",
+    "decoded_order": "A_only",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": null
+    },
+    "logical_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "B"
+      ]
+    ],
+    "node_count": 6,
+    "order": "forward",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      },
+      {
+        "channel": "A",
+        "tick": 6
+      }
+    ],
+    "seed": 860038,
+    "state_digest_after": "fed3c2a7034d9f7cb1554ea15e2fa2403c2312907f408fa7250dac5d58cf0c1c",
+    "state_digest_before": "a312a40a062515fd578910f16f61b02f6487ef455f460c71f893f687ba3d5586",
+    "stimulus_current": 101.58825879554907,
+    "synaptic_weight": 105.27535213231663,
+    "task_success": false,
+    "total_injected_charge": 203.17651759109813,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "arm": "identity_destroyed",
+    "decoded_order": "A_only",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": null
+    },
+    "logical_schedule": [
+      [
+        0,
+        "B"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "node_count": 6,
+    "order": "reverse",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      },
+      {
+        "channel": "A",
+        "tick": 6
+      }
+    ],
+    "seed": 860038,
+    "state_digest_after": "fed3c2a7034d9f7cb1554ea15e2fa2403c2312907f408fa7250dac5d58cf0c1c",
+    "state_digest_before": "a312a40a062515fd578910f16f61b02f6487ef455f460c71f893f687ba3d5586",
+    "stimulus_current": 101.58825879554907,
+    "synaptic_weight": 105.27535213231663,
+    "task_success": false,
+    "total_injected_charge": 203.17651759109813,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        0,
+        "A"
+      ]
+    ],
+    "arm": "identity_destroyed",
+    "decoded_order": "A_only",
+    "delivered_events": 2,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": null
+    },
+    "logical_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        0,
+        "B"
+      ]
+    ],
+    "node_count": 6,
+    "order": "simultaneous",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      }
+    ],
+    "seed": 860038,
+    "state_digest_after": "dcfe56b10c923b379e4985168cb9885c430d6b308193ec13181532da5f313b29",
+    "state_digest_before": "a312a40a062515fd578910f16f61b02f6487ef455f460c71f893f687ba3d5586",
+    "stimulus_current": 101.58825879554907,
+    "synaptic_weight": 105.27535213231663,
+    "task_success": false,
+    "total_injected_charge": 203.17651759109813,
+    "total_spikes": 3
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "B"
+      ]
+    ],
+    "arm": "intact",
+    "decoded_order": "forward",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": 6
+    },
+    "logical_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "B"
+      ]
+    ],
+    "node_count": 6,
+    "order": "forward",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      },
+      {
+        "channel": "B",
+        "tick": 6
+      }
+    ],
+    "seed": 860039,
+    "state_digest_after": "64bbaa96b0e6c74042c814ece9914e870983ce691d3eb5a653365987cff7ea1d",
+    "state_digest_before": "8da6aba17b2362159a3d2e4dc69944c38118d4e20fb64bd287996f7d94a1ea0a",
+    "stimulus_current": 100.13221266633407,
+    "synaptic_weight": 107.10988695225903,
+    "task_success": true,
+    "total_injected_charge": 200.26442533266814,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "B"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "arm": "intact",
+    "decoded_order": "reverse",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 6,
+      "B": 2
+    },
+    "logical_schedule": [
+      [
+        0,
+        "B"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "node_count": 6,
+    "order": "reverse",
+    "output_sequence": [
+      {
+        "channel": "B",
+        "tick": 2
+      },
+      {
+        "channel": "A",
+        "tick": 6
+      }
+    ],
+    "seed": 860039,
+    "state_digest_after": "165195d891d6c213cbe6e9d098744eea31d233ffca30831e7ac4f1b88ee045e9",
+    "state_digest_before": "8da6aba17b2362159a3d2e4dc69944c38118d4e20fb64bd287996f7d94a1ea0a",
+    "stimulus_current": 100.13221266633407,
+    "synaptic_weight": 107.10988695225903,
+    "task_success": true,
+    "total_injected_charge": 200.26442533266814,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        0,
+        "B"
+      ]
+    ],
+    "arm": "intact",
+    "decoded_order": "simultaneous",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": 2
+    },
+    "logical_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        0,
+        "B"
+      ]
+    ],
+    "node_count": 6,
+    "order": "simultaneous",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      },
+      {
+        "channel": "B",
+        "tick": 2
+      }
+    ],
+    "seed": 860039,
+    "state_digest_after": "5ee3a8104571ef43d084d65216f2832ce189642ffc346de48765bab76d072799",
+    "state_digest_before": "8da6aba17b2362159a3d2e4dc69944c38118d4e20fb64bd287996f7d94a1ea0a",
+    "stimulus_current": 100.13221266633407,
+    "synaptic_weight": 107.10988695225903,
+    "task_success": true,
+    "total_injected_charge": 200.26442533266814,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "arm": "identity_destroyed",
+    "decoded_order": "A_only",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": null
+    },
+    "logical_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "B"
+      ]
+    ],
+    "node_count": 6,
+    "order": "forward",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      },
+      {
+        "channel": "A",
+        "tick": 6
+      }
+    ],
+    "seed": 860039,
+    "state_digest_after": "88b61adfe826814f7d64a34670e62a61ce822ca60e85d340e2d7bdea1c1f23b6",
+    "state_digest_before": "8da6aba17b2362159a3d2e4dc69944c38118d4e20fb64bd287996f7d94a1ea0a",
+    "stimulus_current": 100.13221266633407,
+    "synaptic_weight": 107.10988695225903,
+    "task_success": false,
+    "total_injected_charge": 200.26442533266814,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "arm": "identity_destroyed",
+    "decoded_order": "A_only",
+    "delivered_events": 4,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": null
+    },
+    "logical_schedule": [
+      [
+        0,
+        "B"
+      ],
+      [
+        4,
+        "A"
+      ]
+    ],
+    "node_count": 6,
+    "order": "reverse",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      },
+      {
+        "channel": "A",
+        "tick": 6
+      }
+    ],
+    "seed": 860039,
+    "state_digest_after": "88b61adfe826814f7d64a34670e62a61ce822ca60e85d340e2d7bdea1c1f23b6",
+    "state_digest_before": "8da6aba17b2362159a3d2e4dc69944c38118d4e20fb64bd287996f7d94a1ea0a",
+    "stimulus_current": 100.13221266633407,
+    "synaptic_weight": 107.10988695225903,
+    "task_success": false,
+    "total_injected_charge": 200.26442533266814,
+    "total_spikes": 6
+  },
+  {
+    "actual_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        0,
+        "A"
+      ]
+    ],
+    "arm": "identity_destroyed",
+    "decoded_order": "A_only",
+    "delivered_events": 2,
+    "edge_count": 4,
+    "first_output_tick": {
+      "A": 2,
+      "B": null
+    },
+    "logical_schedule": [
+      [
+        0,
+        "A"
+      ],
+      [
+        0,
+        "B"
+      ]
+    ],
+    "node_count": 6,
+    "order": "simultaneous",
+    "output_sequence": [
+      {
+        "channel": "A",
+        "tick": 2
+      }
+    ],
+    "seed": 860039,
+    "state_digest_after": "7c05c703089a33c89a2253b518e010af1fafdc9c3005226e4e180d00d9405f7c",
+    "state_digest_before": "8da6aba17b2362159a3d2e4dc69944c38118d4e20fb64bd287996f7d94a1ea0a",
+    "stimulus_current": 100.13221266633407,
+    "synaptic_weight": 107.10988695225903,
+    "task_success": false,
+    "total_injected_charge": 200.26442533266814,
+    "total_spikes": 3
+  }
+]
