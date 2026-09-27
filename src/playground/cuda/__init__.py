@@ -15,6 +15,22 @@ from .pan_compiler import (
     write_bundle,
 )
 
+from .runtime import (
+    CooperativePreflight,
+    CudaDriver,
+    CudaDriverError,
+    CudaRuntimeUnavailable,
+    DriverModule,
+    PtxasReport,
+    assemble_bundle,
+    assemble_ptx,
+    cooperative_capacity,
+    gate_parity_summary,
+    max_abs_error,
+    parse_ptxas_verbose,
+    preflight_bundle,
+)
+
 __all__ = [
     "CompileBundle",
     "Gate",
@@ -42,19 +58,3 @@ __all__ = [
     "parse_ptxas_verbose",
     "preflight_bundle",
 ]
-
-from .runtime import (
-    CooperativePreflight,
-    CudaDriver,
-    CudaDriverError,
-    CudaRuntimeUnavailable,
-    DriverModule,
-    PtxasReport,
-    assemble_bundle,
-    assemble_ptx,
-    cooperative_capacity,
-    gate_parity_summary,
-    max_abs_error,
-    parse_ptxas_verbose,
-    preflight_bundle,
-)
