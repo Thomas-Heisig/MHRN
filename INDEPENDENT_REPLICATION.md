@@ -99,3 +99,12 @@ Suggested archival route:
 - OSF: https://osf.io/p34uq/
 
 This call is an invitation to test the work, not a claim that external replication has already occurred.
+
+
+## Stage-1 Brian2 R1/R2 provenance
+
+- R1 is immutable historical provenance: `FROZEN_ABORTED_BEFORE_REFERENCE_DATA`.
+- No R1 Reference DATA, replication credit or EVID exists.
+- R2 is the only active project-side cross-implementation protocol and adds exact coordinate/edge topology-mapping parity before freeze.
+- A successful R2 result can contribute only **7.5/15** replication points (Stage 1: 85% → 92.5%); full credit remains reserved for genuinely external independent replication.
+- R2 freeze does not authorize execution; a separate human authorization must bind the frozen commit and runner hash.
