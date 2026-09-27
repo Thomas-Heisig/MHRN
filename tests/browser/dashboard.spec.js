@@ -306,10 +306,15 @@ test("Release workspace renders the documentation timeline", async ({ page }) =>
   await expect(page.locator("#scientific-progress-detail")).toContainText("partial");
   await expect(page.locator("#scientific-progress-detail .scientific-reference-panel")).toContainText("CLAIM-EVAL-006");
   await expect(page.locator("#scientific-progress-detail .scientific-reference-panel")).toContainText("EVID-2026-18");
-  await expect(page.locator("#scientific-progress-detail .scientific-reference-panel")).toContainText("Experimente & Hypothesen");
+  await expect(page.locator("#scientific-progress-detail .scientific-reference-panel")).toContainText(/Experimente & Hypothesen|Experiments & Hypothesen/);
   await expect(page.locator("#scientific-progress-detail .scientific-reference-panel")).toContainText("H-EVAL-006-A");
   await expect(page.locator("#scientific-progress-detail .scientific-source-link").first()).toBeVisible();
   await page.locator("#scientific-progress-detail .scientific-source-link").first().click();
+  await expect(page.locator("#fm-viewer-dialog")).toBeVisible();
+  await page.locator("#fm-dialog-close").click();
+  const claimReference = page.locator('#scientific-progress-detail .scientific-reference-group').first().getByRole("button", { name: "CLAIM-EVAL-006" });
+  await expect(claimReference).toHaveAttribute("data-scientific-source-path", "registry/claims.yaml");
+  await claimReference.click();
   await expect(page.locator("#fm-viewer-dialog")).toBeVisible();
   await page.locator("#fm-dialog-close").click();
   await page.locator('#scientific-progress-timeline [data-scientific-stage="1"]').click();
