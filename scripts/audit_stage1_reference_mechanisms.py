@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import hashlib
 import json
 from pathlib import Path
 
@@ -17,6 +18,10 @@ MODELS = ROOT / "src" / "core" / "neuron_models.py"
 NETWORK = ROOT / "src" / "core" / "network.py"
 RUNNER = ROOT / "scripts" / "run_stage1_topology_v2.py"
 OUT = ROOT / "research" / "audits" / "STAGE1_TOPOLOGY_REFERENCE_MECHANISM_AUDIT_20260927.json"
+
+
+def sha256_file(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
 def main() -> int:
@@ -84,6 +89,10 @@ def main() -> int:
             str(path.relative_to(ROOT))
             for path in (CONFIG, NEURON, MODELS, NETWORK, RUNNER)
         ],
+        "source_sha256": {
+            str(path.relative_to(ROOT)): sha256_file(path)
+            for path in (CONFIG, NEURON, MODELS, NETWORK, RUNNER)
+        },
         "checks": checks,
         "pass": all(checks.values()),
         "resolved_runtime_config": {
