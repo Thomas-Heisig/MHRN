@@ -191,7 +191,6 @@ def test_gate_parity_summary_is_explicitly_not_full_snn_equivalence() -> None:
     assert summary["scientific_evidence"] is False
 
 
-
 def test_compiler_declares_executable_kernel_abi() -> None:
     bundle = compile_mapping({"closed_loop_preset": "minimal_closed_loop"})
     abi = bundle.manifest["kernel_abi"]
