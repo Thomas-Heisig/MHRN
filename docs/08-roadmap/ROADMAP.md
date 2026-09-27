@@ -29,6 +29,8 @@
 	Metriken, Spike-Verlauf, Parameteransicht und Stick-Figure-Canvas.
 - Der Sandbox-Loop besitzt optionalen Posture-Score, gestaffelte Reward-Events,
 	separate Score-/Event-Kanäle, Reibung, Weltgrenzen und Episoden-Reset.
+- Temporäre PAN-Live-Sessions können über den Builder gesammelt gelöscht
+	werden, wenn das Session-Limit erreicht ist.
 - Der Release-Workspace besitzt einen eigenen Tab für die wissenschaftliche
 	Gesamtarbeit mit allen elf Manuskriptteilen.
 - Jeder Teil zeigt den redaktionellen Arbeitsstand als Prozentwert mit
