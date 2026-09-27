@@ -54,24 +54,30 @@
 - id: RQ-SNN-003
   domain: Spiking Neural Networks
   question: Wie variiert die Propagation mit der Topologie?
-  relevance: Grundlegendes Verständnis der Signalausbreitung in multidimensionalen SNNs.
+  relevance: Grundlegendes Verständnis der Signalausbreitung in multidimensionalen
+    SNNs.
   literature:
   - SRC-WATTS-STROGATZ-1998
   - SRC-BARABASI-1999
+  - SRC-OLSHAUSEN-FIELD-1996
   hypotheses:
   - H-SNN-003-B
-  evidence: []
-  status: open
+  - H-SNN-003-C
+  evidence:
+  - EVID-2026-19
+  status: inconclusive
   answer:
-    current: EXP-S1-TOPO-V2-20260918 und EXP-S1-TOPO-V3-R1-20260918 bilden
-      gemeinsam die kanonische Stage-1-Topologie-DATA-Linie. Beide Human Reviews
-      durch Thomas Heisig akzeptieren die begrenzte Interpretation. Die DATA sind
-      nicht als EVID promotet.
-    confidence: replicated_internal_data_human_reviewed_evid_not_promoted
-    limitations: Interne Replikation ist keine unabhängige externe Replikation.
-      Die historischen V2/R1-Manifeste erfüllen den aktuellen EvidenceEngine-
-      Promotionsvertrag nicht vollständig und werden nicht rückwirkend umgeschrieben.
-      Kein 5D-Vorteilsclaim; H-5D-005-A bleibt separat open/untested.
+    current: CLAIM-S1-TOPO-001 besitzt seit EXP-S1-TOPO-PROMO-R1-20260927 kanonische
+      EVID (EVID-2026-19) fuer die eng begrenzte Aussage, dass Topologie im registrierten
+      64-Neuronen-/246-Kanten-Regime Propagationsmetriken veraendert. Eine nachtraeglich
+      beobachtete AUC-pro-Spike/-Event-Systematik wird getrennt als explorative Motivation
+      fuer H-SNN-003-C gefuehrt und ist keine EVID.
+    confidence: bounded_topology_evid_efficiency_hypothesis_untested
+    limitations: EVID-2026-19 belegt keine 5D-Ueberlegenheit. AUC-pro-Spike und AUC-pro-Event
+      waren nicht als primaere Endpunkte preregistriert. Die 5D-Bedingung belegt im
+      aktuellen 4x2x2x2x2-Layout alle 64 Koordinaten; geringere final_active_fraction
+      ist dynamische Rekrutierung, nicht strukturelle Adressraum-Occupancy. H-SNN-003-C
+      bleibt bis zu einer neuen prospektiven Studie untested.
   created: '2026-08-23'
   updated: '2026-09-25'
 - id: RQ-SNN-004
@@ -111,8 +117,10 @@
   updated: '2026-08-23'
 - id: RQ-PING-001
   domain: Network Dynamics
-  question: Ist die beobachtete Network-Impulse-Response bei identischem Zustand und Seed reproduzierbar?
+  question: Ist die beobachtete Network-Impulse-Response bei identischem Zustand und
+    Seed reproduzierbar?
   relevance: Reproduzierbarkeit der kontrollierten Impulsantwort.
+  literature: []
   hypotheses:
   - H-PING-001-A
   evidence: []
@@ -125,8 +133,10 @@
   updated: '2026-09-03'
 - id: RQ-TEMP-001
   domain: Temporal State
-  question: Wie unterscheiden sich FAST-, MEDIUM- und SLOW-Referenzzustände unter identischer Ausführung?
+  question: Wie unterscheiden sich FAST-, MEDIUM- und SLOW-Referenzzustände unter
+    identischer Ausführung?
   relevance: Messung von Persistenz und Zustandsdrift ohne Runtime-Zurückspulen.
+  literature: []
   hypotheses:
   - H-TEMP-001-A
   evidence: []
@@ -139,8 +149,10 @@
   updated: '2026-09-03'
 - id: RQ-TIME-001
   domain: Learning Timescale
-  question: Wie verändert sich die messbare Laufzeit und Lernaktivität über die registrierte Tick-Leiter?
+  question: Wie verändert sich die messbare Laufzeit und Lernaktivität über die registrierte
+    Tick-Leiter?
   relevance: Kalibrierung der zeitlichen Ausführung vor Langzeitexperimenten.
+  literature: []
   hypotheses:
   - H-TIME-001-A
   evidence: []
@@ -153,8 +165,10 @@
   updated: '2026-09-03'
 - id: RQ-REG-001
   domain: Regulation
-  question: Wie reagieren Drives und funktionale Zustandsgrößen auf nominale, chronische und unbekannte Telemetrie?
+  question: Wie reagieren Drives und funktionale Zustandsgrößen auf nominale, chronische
+    und unbekannte Telemetrie?
   relevance: Deterministische Prüfung der Selbstregulation unter Ressourcen- und Sensorbedingungen.
+  literature: []
   hypotheses:
   - H-REG-001-A
   evidence: []
@@ -471,8 +485,10 @@
   updated: '2026-08-23'
 - id: RQ-ETH-001
   domain: Ethics
-  question: Wie verteilen sich epistemische Beiträge, Entscheidungsmacht, formale Autorenschaft und wissenschaftliche Verantwortung bei Human–AI-gestützter MHRN-Forschung?
-  relevance: Trennt Beitragsprovenienz, Generierung, Kanonisierung, formale Autorenschaft und Verantwortung, statt maschinelle Beteiligung mit Autorenschaft gleichzusetzen.
+  question: Wie verteilen sich epistemische Beiträge, Entscheidungsmacht, formale
+    Autorenschaft und wissenschaftliche Verantwortung bei Human–AI-gestützter MHRN-Forschung?
+  relevance: Trennt Beitragsprovenienz, Generierung, Kanonisierung, formale Autorenschaft
+    und Verantwortung, statt maschinelle Beteiligung mit Autorenschaft gleichzusetzen.
   literature: []
   hypotheses:
   - H-ETH-001-A
@@ -485,7 +501,9 @@
   answer:
     current: null
     confidence: none
-    limitations: Am 2026-09-18 aus der Legacy-Frage zur binären Autorenschaft präzisiert. Ältere Explorations- und Boundary-Audit-Artefakte beziehen sich auf die frühere Formulierung und sind keine direkte Evidenz für H-ETH-001-B bis H-ETH-001-E.
+    limitations: Am 2026-09-18 aus der Legacy-Frage zur binären Autorenschaft präzisiert.
+      Ältere Explorations- und Boundary-Audit-Artefakte beziehen sich auf die frühere
+      Formulierung und sind keine direkte Evidenz für H-ETH-001-B bis H-ETH-001-E.
   created: '2026-08-23'
   updated: '2026-09-18'
 - id: RQ-ETH-002
@@ -522,8 +540,11 @@
   updated: '2026-08-23'
 - id: RQ-EPIST-002
   domain: Epistemology
-  question: Unter welchen Bedingungen reduziert eine explizite Trennung von Quelle, Entscheidung, Ausfuehrung, DATA, Review, EVID und Claim epistemische Fehlklassifikationen in schnell iterierender, KI-assistierter MHRN-Forschung?
-  relevance: Macht die epistemologisch-methodische Achse selbst prospektiv pruefbar, statt Prozessverbesserung aus einzelnen Korrekturereignissen abzuleiten.
+  question: Unter welchen Bedingungen reduziert eine explizite Trennung von Quelle,
+    Entscheidung, Ausfuehrung, DATA, Review, EVID und Claim epistemische Fehlklassifikationen
+    in schnell iterierender, KI-assistierter MHRN-Forschung?
+  relevance: Macht die epistemologisch-methodische Achse selbst prospektiv pruefbar,
+    statt Prozessverbesserung aus einzelnen Korrekturereignissen abzuleiten.
   literature: []
   hypotheses:
   - H-EPIST-002-A
@@ -532,13 +553,18 @@
   answer:
     current: null
     confidence: none
-    limitations: Die historischen Korrekturfaelle motivieren das Design, sind aber keine konfirmatorische Evidenz fuer einen kausalen Governance-Nutzen. Das Vergleichsprotokoll ist noch nicht praeregistriert oder autorisiert.
+    limitations: Die historischen Korrekturfaelle motivieren das Design, sind aber
+      keine konfirmatorische Evidenz fuer einen kausalen Governance-Nutzen. Das Vergleichsprotokoll
+      ist noch nicht praeregistriert oder autorisiert.
   created: '2026-09-19'
   updated: '2026-09-19'
 - id: RQ-AIR-001
   domain: AI-Assisted Research
-  question: Kann ein LLM-basierter Scientific Research Assistant methodische Fehler in Brain-5D-Experimenten anhand eines standardisierten ResearchPacket zuverlässig identifizieren?
-  relevance: Prüft den wissenschaftlichen Nutzen der Research-Assistant-Architektur, ohne ihr wissenschaftliche Entscheidungsgewalt zu geben.
+  question: Kann ein LLM-basierter Scientific Research Assistant methodische Fehler
+    in Brain-5D-Experimenten anhand eines standardisierten ResearchPacket zuverlässig
+    identifizieren?
+  relevance: Prüft den wissenschaftlichen Nutzen der Research-Assistant-Architektur,
+    ohne ihr wissenschaftliche Entscheidungsgewalt zu geben.
   literature: []
   hypotheses:
   - H-AIR-001-A
@@ -550,11 +576,13 @@
     limitations: null
   created: '2026-09-02'
   updated: '2026-09-02'
-
 - id: RQ-SUITE-001
   domain: Research Infrastructure
-  question: Erzeugt der vollstaendige Science-Suite-Lauf unter gemeinsamer Provenienz vollstaendige und intern konsistente Diagnoseartefakte fuer alle registrierten Teilprotokolle?
-  relevance: Trennt technische Omnibus-Validierung von hypothesenspezifischer wissenschaftlicher Evidenz.
+  question: Erzeugt der vollstaendige Science-Suite-Lauf unter gemeinsamer Provenienz
+    vollstaendige und intern konsistente Diagnoseartefakte fuer alle registrierten
+    Teilprotokolle?
+  relevance: Trennt technische Omnibus-Validierung von hypothesenspezifischer wissenschaftlicher
+    Evidenz.
   literature: []
   hypotheses:
   - H-SUITE-001-A
@@ -563,14 +591,17 @@
   answer:
     current: null
     confidence: none
-    limitations: Omnibus-Diagnostik ist keine Primaerevidenz fuer die enthaltenen Fach-RQs.
+    limitations: Omnibus-Diagnostik ist keine Primaerevidenz fuer die enthaltenen
+      Fach-RQs.
   created: '2026-09-05'
   updated: '2026-09-05'
-
 - id: RQ-REC-001
   domain: Recurrent Dynamics
-  question: Unter welchen Rekurrenzgewichten und Delays wechselt Brain-5D zwischen sofortigem Erlöschen, transienter rekurrenter Aktivität und bis zum Beobachtungsende persistierender Aktivität?
-  relevance: EXP-GEN-0021 zeigte einen klaren rekurrenzabhängigen Dynamikunterschied, aber noch keine Parametergrenze.
+  question: Unter welchen Rekurrenzgewichten und Delays wechselt Brain-5D zwischen
+    sofortigem Erlöschen, transienter rekurrenter Aktivität und bis zum Beobachtungsende
+    persistierender Aktivität?
+  relevance: EXP-GEN-0021 zeigte einen klaren rekurrenzabhängigen Dynamikunterschied,
+    aber noch keine Parametergrenze.
   literature: []
   hypotheses:
   - H-REC-001-A
@@ -579,13 +610,16 @@
   answer:
     current: null
     confidence: none
-    limitations: Abgeleitet aus EXP-GEN-0021; persistente Aktivität ist nicht gleichbedeutend mit Gedächtnis oder Kognition.
+    limitations: Abgeleitet aus EXP-GEN-0021; persistente Aktivität ist nicht gleichbedeutend
+      mit Gedächtnis oder Kognition.
   created: '2026-09-05'
   updated: '2026-09-05'
 - id: RQ-GEN-001
   domain: Learning Generalization
-  question: Verbessert reward-moduliertes lokales Lernen die Leistung auf Holdout- und Perturbationsbedingungen, die nicht zur Anpassung verwendet wurden?
-  relevance: EXP-GEN-0021 zeigte funktionelle Änderung unter Learning-on, aber keine Generalisierung.
+  question: Verbessert reward-moduliertes lokales Lernen die Leistung auf Holdout-
+    und Perturbationsbedingungen, die nicht zur Anpassung verwendet wurden?
+  relevance: EXP-GEN-0021 zeigte funktionelle Änderung unter Learning-on, aber keine
+    Generalisierung.
   literature: []
   hypotheses:
   - H-GEN-001-A
@@ -594,13 +628,16 @@
   answer:
     current: null
     confidence: none
-    limitations: Generalisierung muss gegenüber Learning-off und Sham-Replay getrennt werden.
+    limitations: Generalisierung muss gegenüber Learning-off und Sham-Replay getrennt
+      werden.
   created: '2026-09-05'
   updated: '2026-09-05'
 - id: RQ-REPL-001
   domain: Replication
-  question: Bleiben die in EXP-GEN-0021 beobachteten Rekurrenz- und Learning-Effekte unter unabhängigen Initialisierungen und sauberem Prozess erhalten?
-  relevance: Identische Seedsignaturen zeigen Determinismus, aber keine statistisch unabhängige Replikation.
+  question: Bleiben die in EXP-GEN-0021 beobachteten Rekurrenz- und Learning-Effekte
+    unter unabhängigen Initialisierungen und sauberem Prozess erhalten?
+  relevance: Identische Seedsignaturen zeigen Determinismus, aber keine statistisch
+    unabhängige Replikation.
   literature: []
   hypotheses:
   - H-REPL-001-A
@@ -609,13 +646,17 @@
   answer:
     current: null
     confidence: none
-    limitations: Replikation erfordert echte Variation der Initialisierung und einen Clean Freeze.
+    limitations: Replikation erfordert echte Variation der Initialisierung und einen
+      Clean Freeze.
   created: '2026-09-05'
   updated: '2026-09-05'
 - id: RQ-5D-005
   domain: 5D Topology
-  question: Verändert 5D-Geometrie Propagation, Robustheit oder Dynamik, wenn Neuronenzahl, Synapsenzahl, Grad- und Gewichtsmuster sowie Stimulusplan kontrolliert gleich bleiben?
-  relevance: Der kleine 5D-Test in EXP-GEN-0021 isolierte keinen dimensionsspezifischen Effekt.
+  question: Verändert 5D-Geometrie Propagation, Robustheit oder Dynamik, wenn Neuronenzahl,
+    Synapsenzahl, Grad- und Gewichtsmuster sowie Stimulusplan kontrolliert gleich
+    bleiben?
+  relevance: Der kleine 5D-Test in EXP-GEN-0021 isolierte keinen dimensionsspezifischen
+    Effekt.
   literature: []
   hypotheses:
   - H-5D-005-A
@@ -624,13 +665,17 @@
   answer:
     current: null
     confidence: none
-    limitations: Der erste operationalisierte Test hält die Graphstruktur bewusst klein und identisch.
+    limitations: Der erste operationalisierte Test hält die Graphstruktur bewusst
+      klein und identisch.
   created: '2026-09-05'
   updated: '2026-09-05'
 - id: RQ-REG-002
   domain: Closed-loop Regulation
-  question: Verbessert aktive Regulation Stabilität und Recovery eines laufenden SNN unter identischen Ressourcen- oder Sensorperturbationen gegenüber deaktivierter Regulation?
-  relevance: EXP-GEN-0021 validierte Regulationszustände, aber noch keinen funktionalen Closed-loop-Nutzen.
+  question: Verbessert aktive Regulation Stabilität und Recovery eines laufenden SNN
+    unter identischen Ressourcen- oder Sensorperturbationen gegenüber deaktivierter
+    Regulation?
+  relevance: EXP-GEN-0021 validierte Regulationszustände, aber noch keinen funktionalen
+    Closed-loop-Nutzen.
   literature: []
   hypotheses:
   - H-REG-002-B
@@ -640,35 +685,33 @@
   answer:
     current: null
     confidence: none
-    limitations: Der Feedbackpfad muss als technische Intervention und nicht als Emotion interpretiert werden.
+    limitations: Der Feedbackpfad muss als technische Intervention und nicht als Emotion
+      interpretiert werden.
   created: '2026-09-05'
   updated: '2026-09-05'
 - id: RQ-TEMP-002
   domain: Temporal Learning
-  question: Reagiert Brain-5D auf spike-tragende zeitliche Reihenfolge anders als auf umgekehrte oder simultane Kontrollfolgen?
+  question: Reagiert Brain-5D auf spike-tragende zeitliche Reihenfolge anders als
+    auf umgekehrte oder simultane Kontrollfolgen?
   relevance: EXP-GEN-0021 zeigte Temporal-State-Diskrepanzen ohne Spike-Aktivität.
   literature: []
   hypotheses:
   - H-TEMP-002-A
-  evidence: []
-  status: open
+  evidence:
+  - EVID-2026-20
+  status: inconclusive
   answer:
-    current: EXP-S1-TEMP-ORDER-V2-20260919 liefert präregistrierte Stage-1-DATA
-      aus 120 Läufen über 20 Seeds mit identity-destroyed Kontrolle. Der Laufstatus
-      ist SUPPORTED_WITHIN_PREREGISTERED_PROTOCOL. Der Human Review durch Thomas
-      Heisig ist mit accepted_as_interpretation abgeschlossen; EVID-Promotion und
-      unabhängige Replikation stehen separat aus.
-    confidence: preregistered_task_data_human_reviewed_evid_not_promoted
-    limitations: Der Befund ist eine eng begrenzte Small-SNN-Funktionslinie.
-      Er belegt weder Lernen, Gedächtnis, allgemeines zeitliches Schlussfolgern,
-      Skalierbarkeit noch unabhängige Replikation und ist keine Replikation der
-      Topologie-DATA-Linie.
+    current: EXP-S1-TEMP-PROMO-R1-20260927 reproduced the bounded six-neuron two-channel temporal-order task on 20 fresh paired seeds under the current EvidenceEngine provenance contract. The canonical Human Review decision is supports with explicit perfect-score saturation and decoder/task limitations. Explicit promotion created EVID-2026-20. The historical V2 run remains reviewed DATA.
+    confidence: bounded_temporal_order_evid_with_methodological_limitations
+    limitations: The simultaneous condition is a non-inferential task-adequacy control, not forward/reverse order accuracy. Perfect ceiling/floor separation limits mechanistic resolution and motivates a separate prospective decoder stress test. No learning, memory, general temporal reasoning, cognition, scaling, biological equivalence or independent replication is established.
   created: '2026-09-05'
   updated: '2026-09-25'
 - id: RQ-PERF-001
   domain: Runtime Performance
-  question: Welche Subsysteme dominieren die Wall-Time wissenschaftlicher Läufe und welche Optimierungen erhöhen den Durchsatz bei erhaltener deterministischer Äquivalenz?
-  relevance: EXP-GEN-0021 zeigte eine große Differenz zwischen isoliertem Tick-Durchsatz und Suite-Laufzeit.
+  question: Welche Subsysteme dominieren die Wall-Time wissenschaftlicher Läufe und
+    welche Optimierungen erhöhen den Durchsatz bei erhaltener deterministischer Äquivalenz?
+  relevance: EXP-GEN-0021 zeigte eine große Differenz zwischen isoliertem Tick-Durchsatz
+    und Suite-Laufzeit.
   literature: []
   hypotheses:
   - H-PERF-001-A
@@ -677,12 +720,14 @@
   answer:
     current: null
     confidence: none
-    limitations: Performanceänderungen mit veränderter numerischer oder zeitlicher Semantik gelten als Protokolländerung.
+    limitations: Performanceänderungen mit veränderter numerischer oder zeitlicher
+      Semantik gelten als Protokolländerung.
   created: '2026-09-05'
   updated: '2026-09-05'
 - id: RQ-REC-002
   domain: Recurrent Dynamics
-  question: Wie verändern Loop-Delay und skalierte Rekurrenzstruktur Persistenzdauer, Inter-Spike-Dynamik und Extinktionsverhalten?
+  question: Wie verändern Loop-Delay und skalierte Rekurrenzstruktur Persistenzdauer,
+    Inter-Spike-Dynamik und Extinktionsverhalten?
   relevance: Der Drei-Neuronen-Loop aus EXP-GEN-0021 reicht nicht für Skalierungsaussagen.
   literature: []
   hypotheses:
@@ -692,12 +737,14 @@
   answer:
     current: null
     confidence: none
-    limitations: Version 1 operationalisiert zunächst Loop-Delay als kontrollierten Skalierungsparameter.
+    limitations: Version 1 operationalisiert zunächst Loop-Delay als kontrollierten
+      Skalierungsparameter.
   created: '2026-09-05'
   updated: '2026-09-05'
 - id: RQ-LIFE-001
   domain: Lifelong Learning
-  question: Bleibt zuvor erworbene Lernleistung bei sequenziellen Aufgaben erhalten oder entstehen messbare Interferenzeffekte?
+  question: Bleibt zuvor erworbene Lernleistung bei sequenziellen Aufgaben erhalten
+    oder entstehen messbare Interferenzeffekte?
   relevance: Das positive Single-Task-Learningsignal aus EXP-GEN-0021 motiviert Retentionstests.
   literature: []
   hypotheses:
@@ -707,14 +754,16 @@
   answer:
     current: null
     confidence: none
-    limitations: Der erste Runner ist ein Vorläufer-Screen; echte Catastrophic-Forgetting-Evidenz erfordert ein gemeinsames fortlaufend trainiertes Netzwerk.
+    limitations: Der erste Runner ist ein Vorläufer-Screen; echte Catastrophic-Forgetting-Evidenz
+      erfordert ein gemeinsames fortlaufend trainiertes Netzwerk.
   created: '2026-09-05'
   updated: '2026-09-05'
-
 - id: RQ-SNN-006
   domain: Spiking Neural Networks
-  question: Bleibt die unter RQ-SNN-001 beobachtete Langzeitstabilitaet unter vorab definierten lokalen Variationen von synaptischem Gewicht und Tonic-Drive erhalten?
-  relevance: Trennt die deterministische Stabilitaet einer festen Parameterisierung von lokaler Robustheit ueber tatsaechlich unterschiedliche, seed-gebundene Modellparameterisierungen.
+  question: Bleibt die unter RQ-SNN-001 beobachtete Langzeitstabilitaet unter vorab
+    definierten lokalen Variationen von synaptischem Gewicht und Tonic-Drive erhalten?
+  relevance: Trennt die deterministische Stabilitaet einer festen Parameterisierung
+    von lokaler Robustheit ueber tatsaechlich unterschiedliche, seed-gebundene Modellparameterisierungen.
   literature:
   - SRC-IZHIKEVICH-2003
   - SRC-GERSTNER-2014

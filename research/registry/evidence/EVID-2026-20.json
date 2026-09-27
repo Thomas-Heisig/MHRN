@@ -1,0 +1,131 @@
+{
+  "evidence_id": "EVID-2026-20",
+  "experiment_id": "EXP-S1-TEMP-PROMO-R1-20260927",
+  "claim_id": "CLAIM-S1-TEMP-001",
+  "hypothesis_id": "H-TEMP-002-A",
+  "result_summary": "The prospective Stage-1 Temporal-Order promotion replication supported the bounded six-neuron two-channel temporal-order claim on 20 fresh predeclared paired seeds. The frozen decoder classifies three presented states: forward, reverse, and simultaneous. The reported forward/reverse intact accuracy median of 1.0 and identity-destroyed accuracy median of 0.0 refer to correct classification of the presented forward/reverse conditions; the simultaneous-control value of 1.0 is a separate simultaneous-class task-adequacy accuracy, not forward/reverse order accuracy. The paired forward/reverse delta median was 1.0 with bootstrap CI [1.0, 1.0], and the exact paired sign-test p-value was 1.9073486328125e-6. The human review explicitly records perfect-score saturation as a methodological limitation and does not extend the result to memory, cognition or general temporal reasoning.",
+  "effect_size": {
+    "intact_order_accuracy_median": 1,
+    "identity_destroyed_order_accuracy_median": 0,
+    "paired_accuracy_delta_median": 1,
+    "paired_accuracy_delta_bootstrap_ci95": [
+      1,
+      1
+    ],
+    "paired_sign_test_p": 0.0000019073486328125,
+    "intact_simultaneous_success_fraction": 1
+  },
+  "statistical_significance": {},
+  "evidence_mode": "stochastic_experiment",
+  "verification": {
+    "preregistration_id": "PREREG-S1-TEMP-PROMO-R1",
+    "replication_class": "INTERNAL_PROMOTION_REPLICATION",
+    "design_integrity_passed": true,
+    "evaluation_runs": 120,
+    "evaluation_seed_count": 20,
+    "historical_seed_disjoint": true,
+    "identity_destroyed_control_present": true,
+    "simultaneous_control_role": "non-inferential task-adequacy control",
+    "all_preregistered_gates_passed": true,
+    "perfect_score_saturation_noted": true,
+    "independent_authorship_replication": false,
+    "source_freeze_sha": "1239ada71c105c4caf69ac683e3caeb2a6580f5e012c004391c2f4247c73e706",
+    "human_review": {
+      "schema_version": 1,
+      "experiment_id": "EXP-S1-TEMP-PROMO-R1-20260927",
+      "reviewer": "Thomas Heisig",
+      "review_date": "2026-09-27",
+      "decision": "supports",
+      "decision_scope": "supports CLAIM-S1-TEMP-001 only within the frozen six-neuron, two-channel task",
+      "review_basis": {
+        "human_review": "The reviewer assessed the reported preregistered results and explicitly conditioned supports on clarification of the simultaneous-control semantics, documentation of perfect-score saturation, and preservation of the narrow claim boundary.",
+        "repository_verification": "The frozen preregistration, runner, statistics and raw evaluation data were subsequently checked against the stated conditions. This repository verification is not represented as additional human inspection."
+      },
+      "simultaneous_control_clarification": {
+        "status": "resolved_as_defined_task_adequacy_control",
+        "preregistered_role": "non-inferential task-adequacy control",
+        "decoder_rule": "simultaneous if first output_A spike and first output_B spike occur on the same tick",
+        "observed_behavior": "In intact simultaneous trials, both first output spikes occur on the same tick and decoded_order is simultaneous; therefore success_fraction=1.0 means correct detection of simultaneity, not 100% forward/reverse order accuracy.",
+        "interpretation": "The value 1.0 is not a chance-level order-decoding result and does not by itself indicate a non-temporal shortcut. It verifies that the frozen decoder distinguishes the simultaneous case as designed.",
+        "residual_methodological_question": "Because all intact forward/reverse trials and all simultaneous controls are perfectly classified across the registered seeds, the task may be too easy to discriminate temporal coding from simpler deterministic path-following or decoder shortcuts under harder perturbations."
+      },
+      "perfect_score_limitation": {
+        "status": "explicit_limitation",
+        "observation": "Intact forward/reverse accuracy=1.0, identity-destroyed accuracy=0.0, paired delta=1.0 and bootstrap CI=[1.0,1.0] across all 20 seeds.",
+        "consequence": "The result establishes the bounded task behavior but does not quantify robustness margin, mechanism uniqueness, generalization, or difficulty scaling. Ceiling/floor saturation reduces mechanistic resolution."
+      },
+      "verified_results": {
+        "evaluation_runs": 120,
+        "seeds": 20,
+        "design_integrity_passed": true,
+        "intact_order_accuracy_median": 1,
+        "identity_destroyed_order_accuracy_median": 0,
+        "intact_simultaneous_success_fraction": 1,
+        "paired_accuracy_delta_median": 1,
+        "paired_accuracy_delta_ci95": [
+          1,
+          1
+        ],
+        "paired_sign_test_p": 0.0000019073486328125,
+        "all_preregistered_gates_passed": true
+      },
+      "allowed_interpretation": "Within the registered six-neuron acyclic two-channel Small-SNN task and frozen decoder, preserving logical A/B channel identity supports correct decoding of the fixed forward/reverse temporal order, while the matched identity-destroyed arm removes that order signal. The simultaneous control behaves as preregistered by producing equal first-output ticks and the decoder label simultaneous.",
+      "prohibited_interpretations": [
+        "learning",
+        "memory or order memory",
+        "cognition",
+        "general temporal reasoning",
+        "biological equivalence",
+        "scaling beyond the six-neuron task",
+        "5D superiority",
+        "independent external replication",
+        "mechanistic uniqueness of temporal coding",
+        "robustness to harder perturbations not tested here"
+      ],
+      "limitations": [
+        "The task is intentionally very small: six neurons, four synapses and two logical channels.",
+        "Perfect ceiling/floor separation across all seeds may reflect a task that is too easy to resolve robustness margin or exclude all shortcut strategies.",
+        "The simultaneous control is a preregistered task-adequacy control, not an inferential order-accuracy endpoint.",
+        "The identity-destroyed arm collapses both logical events onto physical input_A; it proves dependence on channel identity under this task but does not identify a unique neural mechanism.",
+        "This is an internal promotion replication and not independent scientific replication."
+      ],
+      "follow_up_required": {
+        "status": "open_methodological_follow_up",
+        "purpose": "stress-test decoder/task internal validity without modifying the present evidence",
+        "suggested_tests": [
+          "jitter the forward/reverse gap while freezing decoder rules prospectively",
+          "swap physical channel labels after network construction to test label shortcuts",
+          "introduce balanced amplitude/current perturbations that are independent of logical order",
+          "add near-simultaneous nonzero gaps to measure temporal resolution instead of only perfect separation",
+          "use a held-out decoder or blinded decoder mapping where feasible"
+        ],
+        "evidence_role": "exploratory planning only; not required to reinterpret or invalidate the current bounded claim unless a prospective follow-up contradicts it"
+      },
+      "automatic_evidence_promotion": false,
+      "explicit_evidence_promotion_permitted_after_review": true,
+      "independent_authorship_replication": false,
+      "comments": "Supports the narrowly scoped claim under the frozen preregistered protocol. The simultaneous-control value of 1.0 is clarified as correct simultaneous-class detection, not order accuracy. Perfect-score saturation remains a material limitation and motivates a separate prospective decoder/task stress test. No learning, memory, cognition, scaling, biological-equivalence or general temporal-reasoning claim is supported."
+    },
+    "decoder_class_semantics": {
+      "classes": [
+        "forward",
+        "reverse",
+        "simultaneous"
+      ],
+      "forward_reverse_accuracy": "accuracy for correctly classifying the presented forward/reverse condition",
+      "simultaneous_accuracy": "separate accuracy for correctly classifying the presented simultaneous condition; not forward/reverse order accuracy"
+    }
+  },
+  "status": "supports",
+  "limitations": "Internal promotion replication only. Scope is limited to the registered six-neuron, four-synapse, two-channel acyclic Small-SNN task and the frozen decoder. Perfect ceiling/floor separation limits mechanistic resolution and motivates a separate prospective stress test. No learning, memory, order memory, cognition, general temporal reasoning, biological equivalence, scaling, 5D superiority or independent external replication is established.",
+  "artifacts": {
+    "figures": [],
+    "data_files": []
+  },
+  "generated": "2026-09-27T08:41:53.662660",
+  "experiment_validity": {
+    "valid": true,
+    "runtime_error_count": 0,
+    "fatal_error_count": 0
+  }
+}

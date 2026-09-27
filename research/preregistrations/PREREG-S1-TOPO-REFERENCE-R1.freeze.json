@@ -1,0 +1,82 @@
+{
+  "canonical_target_digest": "f3616151a7ab529c610f983f4fe855b84228505d806d516c502014a576d6d3b6",
+  "decision_rule_digest": "2eca23d888f4846488a2a2db53b1702120580283c5d5a73dae26667c854a01b0",
+  "evaluation_seeds": [
+    810000001,
+    810000002,
+    810000003,
+    810000004,
+    810000005,
+    810000006,
+    810000007,
+    810000008,
+    810000009,
+    810000010,
+    810000011,
+    810000012,
+    810000013,
+    810000014,
+    810000015,
+    810000016,
+    810000017,
+    810000018,
+    810000019,
+    810000020
+  ],
+  "execution_authorized": false,
+  "freeze_commit": "7c5fd5a8fa9addf058f462375a1b022a3d193a45",
+  "freeze_date": "2026-09-27",
+  "integrator_parity": {
+    "brian2_version": "2.10.1",
+    "multi_tick_contains_spike": true,
+    "multi_tick_pass": true,
+    "pass": true,
+    "path": "research/calibrations/CAL-S1-TOPO-REFERENCE-INTEGRATOR-R1/result.json",
+    "sha256": "4779cdd5e4c8993bdc4f24a30a2d6c9206cd57f7606c107aa8dc2ea13388ea05",
+    "single_tick_pass": true,
+    "tolerance_abs": 1e-12
+  },
+  "mechanism_audit": {
+    "pass": true,
+    "path": "research/audits/STAGE1_TOPOLOGY_REFERENCE_MECHANISM_AUDIT_20260927.json",
+    "sha256": "2269d45cd8d40bbcf585c8f1de2c20072273ffbcd5fe2cc028dc8a540912eef4"
+  },
+  "note": "This record freezes the scientific comparison contract only. The full Brian2 reference runner must still be implemented, independently scanned, hash-bound and separately authorized before any evaluation DATA.",
+  "preregistration_id": "PREREG-S1-TOPO-REFERENCE-R1",
+  "preregistration_sha256_before_status_update": "39b3932be79470d713023b7f56f211a32c68d15439cfdb6672802c59ea962d8f",
+  "reference_data_created": false,
+  "reference_runner": {
+    "execution_authorized": false,
+    "path": "reference/stage1_topology_brian2/runner.py",
+    "sha256": "1cbf915f86aaccac74e5c1a8c24952f132ea10d5a8b081fc5b058f24c8677ae8"
+  },
+  "reference_verifier": {
+    "path": "scripts/verify_stage1_topology_reference_r1.py",
+    "sha256": "835596d543a6f2bc3a4f7a8638fa2b310afaf1bdd5e7d0dfd7ed9210f08f249a"
+  },
+  "replication_credit_awarded": false,
+  "reset_parity": {
+    "pass": true,
+    "path": "research/calibrations/CAL-S1-TOPO-REFERENCE-RESET-R1/result.json",
+    "sha256": "c1c50e07345e940b0cfe0599cabbbbd8b2b6f0447841fa989673ddfce522b247",
+    "tolerance_abs": 1e-12
+  },
+  "sanitized_runner_protocol": {
+    "path": "reference/stage1_topology_brian2/reference_protocol.json",
+    "sha256": "9dcdef1fc9126afcf233d7d360b3fc719f2fd6108dbd8d0636df3e0dc18e0ab4"
+  },
+  "schema_version": 1,
+  "scientific_evidence": false,
+  "synapse_delay_parity": {
+    "delay_ticks": 1,
+    "pass": true,
+    "path": "research/calibrations/CAL-S1-TOPO-REFERENCE-SYNAPSE-R1/result.json",
+    "sha256": "42b051286007b315c5400871d893883d34be2847d5f165b08a70a91d0580907e",
+    "tolerance_abs": 1e-12,
+    "weight": 55.0
+  },
+  "translation_specification": {
+    "path": "reference/stage1_topology_brian2/TRANSLATION.md",
+    "sha256": "ebcb5bf58ee9fb48e9d866f95c93697ec848e5c1b1048343ea255af05ec92b2c"
+  }
+}

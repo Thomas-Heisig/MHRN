@@ -186,3 +186,45 @@
   brain5d_questions:
     - RQ-SNN-003
   brain5d_relevance: "Klassische Referenz für skalenfreie Netzwerktopologien."
+
+- source_id: SRC-OLSHAUSEN-FIELD-1996
+  authors:
+    - Bruno A. Olshausen
+    - David J. Field
+  title: "Emergence of simple-cell receptive field properties by learning a sparse code for natural images"
+  year: 1996
+  journal: "Nature"
+  doi: "10.1038/381607a0"
+  topic:
+    - sparse_coding
+    - efficient_coding
+    - neuroscience
+  claims:
+    - "Sparse coding is a biologically motivated efficient-coding principle; this source does not imply that MHRN Stage-1 topology is a sparse code."
+  brain5d_questions:
+    - RQ-SNN-003
+  brain5d_relevance: "Related-work context for a new prospective propagation-efficiency hypothesis. It motivates careful efficiency controls but is not evidence for a 5D advantage."
+
+- source_id: SRC-STIMBERG-2019
+  authors:
+    - Marcel Stimberg
+    - Romain Brette
+    - Dan F. M. Goodman
+  title: "Brian 2, an intuitive and efficient neural simulator"
+  year: 2019
+  journal: "eLife"
+  volume: 8
+  article: e47314
+  doi: "10.7554/eLife.47314"
+  software_project: "Brian 2"
+  software_license: "CeCILL 2.1"
+  topic:
+    - snn_simulation
+    - reference_implementation
+    - reproducibility
+  claims:
+    - "Brian 2 is a flexible simulator for spiking neural networks and is used in MHRN only as an external reference implementation where explicitly declared."
+  brain5d_questions:
+    - RQ-EVAL-006
+    - RQ-SNN-003
+  brain5d_relevance: "Primary software-method citation for Brian 2 reference comparisons. Its use does not itself constitute evidence for an MHRN claim."

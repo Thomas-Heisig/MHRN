@@ -1,0 +1,113 @@
+{
+  "experiment_id": "EXP-S1-TOPO-PROMO-R1-20260927",
+  "experiment_status": "completed",
+  "ai_exposure": "none",
+  "ai_reproducibility": "R0",
+  "ai_protocol": {
+    "version": 1,
+    "bump_reason": "initial registration"
+  },
+  "causal_taint": "PURE",
+  "ai_interactions": [],
+  "causal_card": {
+    "classification": "PURE",
+    "interaction_ids": [],
+    "roles": []
+  },
+  "timestamp": "2026-09-27T08:01:03.744020",
+  "created_at": "2026-09-27T08:01:03.744031+00:00",
+  "git": {
+    "commit": "1df8b6b2e85c963060828cc92ba7f476c0bbab3f",
+    "dirty": false,
+    "branch": "develop"
+  },
+  "software": {
+    "python": "3.13.15",
+    "os": "Linux 6.17.0-1022-azure",
+    "brain5d_version": "0.6.0a7"
+  },
+  "simulation": {
+    "seeds": [
+      6301,
+      6302,
+      6303,
+      6304,
+      6305,
+      6306,
+      6307,
+      6308,
+      6309,
+      6310,
+      6311,
+      6312,
+      6313,
+      6314,
+      6315,
+      6316,
+      6317,
+      6318,
+      6319,
+      6320
+    ],
+    "dt_ms": 1.0,
+    "neuron_count": 64,
+    "edge_count": 246
+  },
+  "artifacts": {
+    "evaluation_data": "data/evaluation.json",
+    "statistics": "analysis/statistics.json",
+    "report": "report.md",
+    "preregistration": "research/preregistrations/PREREG-S1-TOPO-PROMO-R1.json"
+  },
+  "research_questions": [
+    "RQ-SNN-003"
+  ],
+  "hypotheses": [
+    "H-SNN-003-B"
+  ],
+  "config": {
+    "path": "research/preregistrations/PREREG-S1-TOPO-PROMO-R1.json",
+    "sha256": "75f116d869008e0246101e13515c6e2389fefccb15ae62f6186934d783f62d63"
+  },
+  "validity": {
+    "valid": true,
+    "reason": null,
+    "runtime_error_count": 0,
+    "fatal_error_count": 0
+  },
+  "runtime_errors": [],
+  "research_run_mode": "REPLICATION",
+  "data_partitions": [
+    "SCIENTIFIC_HOLDOUT"
+  ],
+  "network_mode": "OFFLINE",
+  "confirmatory_lock": {
+    "protocol_digest": "c45cb9f5253f1136a6a99f7172057551627e2385fec12427e23a96f2870bebb5",
+    "prompt_digest": "6b1b87ca2ea7a0dc89189adf63778f270352f211809f67f2dcd87bdfcf96b59b",
+    "analysis_digest": "37f43587269cf4ab74b769cad38d6945946f5cd68874a0f9d075004c712e5812",
+    "locked": true
+  },
+  "provenance_digests": {
+    "code": "dab0b518783c98df1720becffe59f6951531bc8b4ad899222bef2d5b99d476f8",
+    "config": "75f116d869008e0246101e13515c6e2389fefccb15ae62f6186934d783f62d63",
+    "prompt": "6b1b87ca2ea7a0dc89189adf63778f270352f211809f67f2dcd87bdfcf96b59b",
+    "data": "d131e0350f6097bc9467cc975ef83a86afad160cd56beb2c5bec584f0ce3465b"
+  },
+  "source_freeze_sha": "5c66d953f66818a8bc6f49e8703b74cccd1ad3ee18c7a717ae6c1019dc090695",
+  "results": {
+    "claim_id": "CLAIM-S1-TOPO-001",
+    "protocol": "topology_propagation_v3_r1_time_resolved_replication",
+    "replication_class": "INTERNAL_PROMOTION_REPLICATION",
+    "result_status": "SUPPORTED_WITHIN_PREREGISTERED_PROTOCOL",
+    "design_integrity_passed": true,
+    "ceiling_resolution_supported": true,
+    "replication_supported": true,
+    "automatic_evidence_promotion": false,
+    "scientific_evidence": false,
+    "human_review_required": true,
+    "independent_authorship_replication": false
+  },
+  "runtime": {
+    "duration_seconds": 4.886156271000004
+  }
+}

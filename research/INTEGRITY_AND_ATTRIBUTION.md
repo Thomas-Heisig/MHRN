@@ -35,6 +35,18 @@ A dependency listed in a package manager is not sufficient attribution when proj
 
 Algorithmic implementations should cite the paper/specification that motivates the mechanism even when the implementation is independently written.
 
+## 3.1 Third-party research software
+
+Research software used as a material simulator, reference implementation or analysis dependency must have both **license provenance** and **scientific attribution** recorded where applicable. These are separate obligations.
+
+For Brian 2, MHRN records:
+- upstream license: CeCILL 2.1;
+- pinned Stage-1 reference version where declared: Brian2 2.10.1;
+- upstream citation request for published research: Stimberg, Brette & Goodman (2019), *eLife* 8:e47314, DOI 10.7554/eLife.47314;
+- project notice: `THIRD_PARTY_NOTICES.md`.
+
+MHRN's MIT License does not relicense Brian 2. If Brian 2 is installed as an external dependency, its own license remains upstream. If it is ever bundled or redistributed with an MHRN release, the applicable CeCILL notices/license material must accompany that redistribution.
+
 ## 4. Text recycling and self-citation
 
 MHRN contains multiple public manuscript editions and addenda. Reuse across those versions is expected during development, but publication-facing reuse must be transparent.

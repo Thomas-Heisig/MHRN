@@ -1,13 +1,13 @@
 # MHRN Research Catalog
 
-*Generiert am 2026-09-21*
+*Generiert am 2026-09-27*
 
 ## Übersicht
 
 - **Forschungsfragen:** 112
-- **Hypothesen:** 120
-- **Claims:** 9
-- **Literaturquellen:** 60
+- **Hypothesen:** 121
+- **Claims:** 12
+- **Literaturquellen:** 62
 
 ---
 
@@ -1549,21 +1549,29 @@
 
 **Frage:** Wie variiert die Propagation mit der Topologie?
 
-**Status:** open
+**Status:** inconclusive
 **Relevanz:** Grundlegendes Verständnis der Signalausbreitung in multidimensionalen SNNs.
 
 **Aktuelle Antwort:**
 
-> EXP-S1-TOPO-V2-20260918 und EXP-S1-TOPO-V3-R1-20260918 bilden gemeinsam die kanonische Stage-1-Topologie-DATA-Linie. Beide Human Reviews durch Thomas Heisig akzeptieren die begrenzte Interpretation. Die DATA sind nicht als EVID promotet.
+> CLAIM-S1-TOPO-001 besitzt seit EXP-S1-TOPO-PROMO-R1-20260927 kanonische EVID (EVID-2026-19) fuer die eng begrenzte Aussage, dass Topologie im registrierten 64-Neuronen-/246-Kanten-Regime Propagationsmetriken veraendert. Eine nachtraeglich beobachtete AUC-pro-Spike/-Event-Systematik wird getrennt als explorative Motivation fuer H-SNN-003-C gefuehrt und ist keine EVID.
 
-*Konfidenz: replicated_internal_data_human_reviewed_evid_not_promoted*
+*Konfidenz: bounded_topology_evid_efficiency_hypothesis_untested*
 
 **Hypothesen:**
-- `H-SNN-003-B`: Unter gleicher Neuronenzahl, Dichte und Stimulusbedingung unterscheiden sich Propagationslatenz oder -reichweite zwischen mindestens zwei vorab definierten Topologien; ein Vorteil einer 5D-Anordnung wird nicht vorausgesetzt. *(untested)*
+- `H-SNN-003-B`: Unter gleicher Neuronenzahl, Dichte und Stimulusbedingung unterscheiden sich Propagationslatenz oder -reichweite zwischen mindestens zwei vorab definierten Topologien; ein Vorteil einer 5D-Anordnung wird nicht vorausgesetzt. *(inconclusive)* — Evidenz: EVID-2026-19
+- `H-SNN-003-C`: Unter dem registrierten 64-Neuronen-Small-SNN-Regime zeigt die 5D-Koordinatenorganisation nach Kontrolle der dynamischen Rekrutierung eine höhere Propagations-Effizienz als vorab definierte 3D-, 5D-shuffled- und Random-Graph-Kontrollen, operationalisiert als activation_auc_0_32 pro Spike und pro geliefertem Event; ein allgemeiner 5D-Vorteil wird nicht behauptet. *(untested)*
+
+**Claims:**
+- `CLAIM-S1-TOPO-001`: Unter kontrollierter Neuronenzahl, globalem Kantenbudget, Stimulus, Gewichten und Delays verändern mindestens zwei vorab definierte Netzwerktopologien die registrierten Propagationsmetriken innerhalb des definierten Stage-1-Small-SNN-Betriebsbereichs; ein Vorteil einer 5D-Anordnung wird nicht vorausgesetzt. *(inconclusive, low)* — Evidenz: EVID-2026-19
+- `CLAIM-S1-EFFICIENCY-001`: Im registrierten 64-Neuronen-Small-SNN-Regime kann eine spezifische 5D-Koordinatenorganisation nach expliziter Kontrolle dynamischer Rekrutierung eine hoehere Propagations-Effizienz als vorab definierte Kontrollen zeigen, operationalisiert durch activation_auc_0_32 pro Spike und pro geliefertem Event; dies ist kein Claim zu Speicherreduktion, Informationskapazitaet oder allgemeiner 5D-Ueberlegenheit. *(untested, none)*
 
 **Literatur:**
 - `SRC-WATTS-STROGATZ-1998`: Duncan J. Watts et al. (1998)
 - `SRC-BARABASI-1999`: Albert-László Barabási et al. (1999)
+- `SRC-OLSHAUSEN-FIELD-1996`: Bruno A. Olshausen et al. (1996)
+
+**Evidenzen:** EVID-2026-19
 
 ---
 
@@ -1693,17 +1701,22 @@
 
 **Frage:** Reagiert Brain-5D auf spike-tragende zeitliche Reihenfolge anders als auf umgekehrte oder simultane Kontrollfolgen?
 
-**Status:** open
+**Status:** inconclusive
 **Relevanz:** EXP-GEN-0021 zeigte Temporal-State-Diskrepanzen ohne Spike-Aktivität.
 
 **Aktuelle Antwort:**
 
-> EXP-S1-TEMP-ORDER-V2-20260919 liefert präregistrierte Stage-1-DATA aus 120 Läufen über 20 Seeds mit identity-destroyed Kontrolle. Der Laufstatus ist SUPPORTED_WITHIN_PREREGISTERED_PROTOCOL. Der Human Review durch Thomas Heisig ist mit accepted_as_interpretation abgeschlossen; EVID-Promotion und unabhängige Replikation stehen separat aus.
+> EXP-S1-TEMP-PROMO-R1-20260927 reproduced the bounded six-neuron two-channel temporal-order task on 20 fresh paired seeds under the current EvidenceEngine provenance contract. The canonical Human Review decision is supports with explicit perfect-score saturation and decoder/task limitations. Explicit promotion created EVID-2026-20. The historical V2 run remains reviewed DATA.
 
-*Konfidenz: preregistered_task_data_human_reviewed_evid_not_promoted*
+*Konfidenz: bounded_temporal_order_evid_with_methodological_limitations*
 
 **Hypothesen:**
-- `H-TEMP-002-A`: Forward-, Reverse- und Simultanfolgen erzeugen bei gleicher Ereignisanzahl unterscheidbare spike-basierte Antwortsignaturen. *(untested)*
+- `H-TEMP-002-A`: Forward-, Reverse- und Simultanfolgen erzeugen bei gleicher Ereignisanzahl unterscheidbare spike-basierte Antwortsignaturen. *(inconclusive)* — Evidenz: EVID-2026-20
+
+**Claims:**
+- `CLAIM-S1-TEMP-001`: Unter dem registrierten sechsneuronigen Small-SNN-Task erzeugen unterscheidbare Eingabekanäle eine decodierbare zeitliche Reihenfolge an den festgelegten Ausgängen, während die identity-destroyed Kontrolle dieses feste Ordnungssignal entfernt. *(inconclusive, low)* — Evidenz: EVID-2026-20
+
+**Evidenzen:** EVID-2026-20
 
 ---
 

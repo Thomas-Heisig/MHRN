@@ -150,7 +150,8 @@
   created: '2026-08-23'
   updated: '2026-08-23'
 - id: CLAIM-AIR-001
-  claim: Ein standardisiertes ResearchPacket verbessert die Identifikation vorab definierter methodischer Fehler gegenüber einem unstrukturierten Experimentbericht.
+  claim: Ein standardisiertes ResearchPacket verbessert die Identifikation vorab definierter
+    methodischer Fehler gegenüber einem unstrukturierten Experimentbericht.
   research_question: RQ-AIR-001
   hypothesis: H-AIR-001-A
   evidence: []
@@ -166,7 +167,9 @@
   created: '2026-09-02'
   updated: '2026-09-02'
 - id: CLAIM-EVAL-006
-  claim: Unter dem eingefrorenen V2-Protokoll konformieren die deklarierten MHRN-Einzelzellverträge für Izhikevich-2003, lif-current-v1 und das separat klassifizierte Refractory-Semantik-Mapping mit der gematchten Brian2-2.10.1-Referenz innerhalb der präregistrierten Toleranzen.
+  claim: Unter dem eingefrorenen V2-Protokoll konformieren die deklarierten MHRN-Einzelzellverträge
+    für Izhikevich-2003, lif-current-v1 und das separat klassifizierte Refractory-Semantik-Mapping
+    mit der gematchten Brian2-2.10.1-Referenz innerhalb der präregistrierten Toleranzen.
   research_question: RQ-EVAL-006
   hypothesis: H-EVAL-006-A
   evidence:
@@ -186,3 +189,75 @@
   minimum_runs: 1
   created: '2026-09-18'
   updated: '2026-09-18'
+- id: CLAIM-S1-TOPO-001
+  claim: Unter kontrollierter Neuronenzahl, globalem Kantenbudget, Stimulus, Gewichten
+    und Delays verändern mindestens zwei vorab definierte Netzwerktopologien die registrierten
+    Propagationsmetriken innerhalb des definierten Stage-1-Small-SNN-Betriebsbereichs;
+    ein Vorteil einer 5D-Anordnung wird nicht vorausgesetzt.
+  research_question: RQ-SNN-003
+  hypothesis: H-SNN-003-B
+  evidence:
+  - EVID-2026-19
+  experiments:
+  - EXP-S1-TOPO-V2-20260918
+  - EXP-S1-TOPO-V3-R1-20260918
+  - EXP-S1-TOPO-PROMO-R1-20260927
+  sources:
+  - SRC-WATTS-STROGATZ-1998
+  - SRC-BARABASI-1999
+  status: inconclusive
+  confidence: low
+  required_evidence:
+  - preregistered_topology_propagation
+  - human_scientific_review
+  - evidence_engine_provenance
+  minimum_runs: 1
+  created: '2026-09-27'
+  updated: '2026-09-27'
+- id: CLAIM-S1-EFFICIENCY-001
+  claim: Im registrierten 64-Neuronen-Small-SNN-Regime kann eine spezifische 5D-Koordinatenorganisation
+    nach expliziter Kontrolle dynamischer Rekrutierung eine hoehere Propagations-Effizienz
+    als vorab definierte Kontrollen zeigen, operationalisiert durch activation_auc_0_32
+    pro Spike und pro geliefertem Event; dies ist kein Claim zu Speicherreduktion,
+    Informationskapazitaet oder allgemeiner 5D-Ueberlegenheit.
+  research_question: RQ-SNN-003
+  hypothesis: H-SNN-003-C
+  evidence: []
+  experiments: []
+  sources:
+  - SRC-OLSHAUSEN-FIELD-1996
+  - SRC-WATTS-STROGATZ-1998
+  - SRC-BARABASI-1999
+  status: untested
+  confidence: none
+  required_evidence:
+  - prospective_efficiency_preregistration
+  - dynamic_recruitment_controls
+  - paired_efficiency_endpoints
+  - multiplicity_control
+  - human_scientific_review
+  minimum_runs: 20
+  created: '2026-09-27'
+  updated: '2026-09-27'
+- id: CLAIM-S1-TEMP-001
+  claim: Unter dem registrierten sechsneuronigen Small-SNN-Task erzeugen unterscheidbare
+    Eingabekanäle eine decodierbare zeitliche Reihenfolge an den festgelegten Ausgängen,
+    während die identity-destroyed Kontrolle dieses feste Ordnungssignal entfernt.
+  research_question: RQ-TEMP-002
+  hypothesis: H-TEMP-002-A
+  evidence:
+  - EVID-2026-20
+  experiments:
+  - EXP-S1-TEMP-ORDER-V2-20260919
+  - EXP-S1-TEMP-PROMO-R1-20260927
+  sources: []
+  status: inconclusive
+  confidence: low
+  required_evidence:
+  - preregistered_temporal_order_task
+  - identity_destroyed_control
+  - human_scientific_review
+  - evidence_engine_provenance
+  minimum_runs: 1
+  created: '2026-09-27'
+  updated: '2026-09-27'

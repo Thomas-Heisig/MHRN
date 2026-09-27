@@ -49,6 +49,19 @@ const AREAS = Object.freeze({
       ["data", "Daten", "network", "view", "data"], ["registry", "Registry", "research", "research", "registry"],
     ],
   },
+  playground: {
+    number: "PG", label: "Playground", subtitle: "Exploration & Baukasten", owner: "playground",
+    purpose: "Nicht-kanonische Exploration von Neuronen, Netzen, Hyperzuständen und PAN-Ideen unter harter Nicht-Evidenz-Grenze.",
+    howto: ["Bausteine neutral kombinieren.", "PAN und andere Läufe nur explorativ interpretieren.", "Für Forschung neue Hypothese, Preregistration und kanonischen Lauf erzeugen."],
+    contracts: ["/api/playground/catalog", "/api/playground/sessions"],
+    routes: [
+      ["overview", "Übersicht", "playground"],
+      ["builder", "Builder", "playground", "generated", "builder"],
+      ["run", "Lauf & Auswertung", "playground", "generated", "run"],
+      ["sessions", "Sessions", "playground", "generated", "sessions"],
+      ["catalog", "Bausteine", "playground", "generated", "catalog"],
+    ],
+  },
   wesen: {
     number: "03", label: "Runtime & Wesen", subtitle: "Körper & Verhalten", owner: "embodiment",
     purpose: "Runtime, Körpergrenze, Sensorik, Aktorik, Kognition und technische Identität in einer Arbeitsfläche.",
@@ -83,7 +96,7 @@ const AREAS = Object.freeze({
     routes: [
       ["overview", "Übersicht", "gate"], ["gate", "Gate", "gate", "release", "gate"], ["releases", "Releases", "gate", "release", "releases"],
       ["preview", "Vorschau", "gate", "release", "preview"], ["timeline", "Timeline", "gate", "release", "timeline"],
-      ["development", "Entwicklung", "gate", "release", "development"], ["science", "Wissenschaft", "gate", "release", "science"],
+      ["development", "Entwicklung", "gate", "release", "development"], ["science", "Wissenschaft", "gate", "release", "science"], ["publication", "Gesamtarbeit", "gate", "release", "publication"],
       ["documents", "Roadmap", "gate", "release", "documents"],
     ],
   },
@@ -187,6 +200,7 @@ function createGeneratedWorkspace(id, label, kicker) {
 }
 
 function ensureGeneratedWorkspaces() {
+  createGeneratedWorkspace("playground", "Playground", "EXPLORATION · NON-CANONICAL");
   const settings = createGeneratedWorkspace("appsettings", "Settings", "APPLICATION");
   if (settings && !byId("appsettings-content")) settings.insertAdjacentHTML("beforeend", `
     <div id="appsettings-content" class="mhrn-generated-panels">

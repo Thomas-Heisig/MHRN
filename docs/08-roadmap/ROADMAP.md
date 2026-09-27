@@ -2,7 +2,70 @@
 
 **Canonical roadmap for active `develop`; `main` is release-only**  
 **Baseline:** `mhrn-core 0.6.0a7`
-**Updated:** 2026-09-19
+**Updated:** 2026-09-27
+
+## 2026-09-27 Alpha.7 release line
+
+- `develop` remains the canonical integration branch; `main` remains release-only.
+- The former standalone `playground` branch is no longer part of the intended
+  long-lived branch topology once its content is verified as contained in
+  `develop`.
+- Stage 0 scientific maturity is 92.5%; Stage 1 is 85%. Scoped project EVID is
+  registered as `EVID-2026-18`, `EVID-2026-19` and `EVID-2026-20`.
+- The next Stage-1 maturity increment depends on the bounded Brian2 R2
+  cross-implementation replication path; full replication credit remains
+  reserved for genuinely external independent replication.
+- Playground CUDA work remains on the engineering ladder: generated/assembled/
+  loaded preflight and parity contracts precede any claim of an executed,
+  equivalent GPU SNN backend.
+- Release/DOI mechanics remain separate from Human Review, EVID and replication.
+
+## 2026-09-27 Bausteine-Katalog und Sprachumschaltung
+
+- Der Playground-Bausteine-Tab erklärt jeden Katalogeintrag per Hover und
+	ausführlichem Info-Popup.
+- Repo- und Playground-Bausteine werden gemeinsam mit den ausführbaren
+	Modellen, Topologien, Stimuli, Analysen und Robustheitskontrollen gezeigt.
+- Der globale Sprachselector schaltet Kategorietitel, Beschreibungen,
+	Quellenlabel und Explorationsgrenze zwischen Deutsch und Englisch um.
+- Neue Backend-Einträge fallen auf eine fachliche, sprachabhängige Beschreibung
+	zurück, statt ohne Erklärung im Katalog zu erscheinen.
+
+## 2026-09-27 Release-Statusmarker
+
+- Die Release-Ansichten für Entwicklung und Wissenschaft zeigen neben den
+	Statusbezeichnungen die etablierten Häkchenmarker für erledigt, teilweise
+	erledigt und offen.
+- Die kanonischen Statusbezeichnungen `met`, `partial` und `open` bleiben
+	unverändert und werden nicht als wissenschaftliche Evidenz umgedeutet.
+- Wissenschaftliche Kriterienkarten verwenden ein einheitliches Raster;
+	Research-/Docs-Dateiverweise öffnen den zentralen File Viewer als Popup.
+- Claims, EVID, Experimente und Hypothesen sind je Timeline-Stufe über einen
+	eigenen Registerbereich direkt erreichbar.
+- Lange Stufennamen wie `Bewusstseinsforschung` umbrechen innerhalb der
+	Timeline-Karten ohne horizontales Überlaufen.
+- Playground-Defaults für Topologie, Erregbarkeit und Verhalten sind auf den
+	aktualisierten Referenzstand gesetzt: `weight=4`, Lernrate/Epsilon `0.2`.
+- Die Playground-Oberfläche verwendet ein ruhigeres Laborraster mit klarer
+	Kartenhierarchie, kompakten Feldern und responsiver Darstellung.
+- Der Builder bietet integrierte Izhikevich- und PAN-Presets sowie lokal
+	speicherbare eigene Konfigurationen.
+- Der Presetkatalog A–G ist in `docs/playground/PRESETS.md` dokumentiert und
+	über den Closed-Loop-Selector im Builder verfügbar.
+- Live-PAN-Sessions besitzen ein interaktives Monitor-Popup mit Start/Pause,
+	Metriken, Spike-Verlauf, Parameteransicht und Stick-Figure-Canvas.
+- Der Sandbox-Loop besitzt optionalen Posture-Score, gestaffelte Reward-Events,
+	separate Score-/Event-Kanäle, Reibung, Weltgrenzen und Episoden-Reset.
+- Temporäre PAN-Live-Sessions können über den Builder gesammelt gelöscht
+	werden, wenn das Session-Limit erreicht ist.
+- Der Release-Workspace besitzt einen eigenen Tab für die wissenschaftliche
+	Gesamtarbeit mit allen elf Manuskriptteilen.
+- Jeder Teil zeigt den redaktionellen Arbeitsstand als Prozentwert mit
+	`met`, `partial` oder `open`; diese Werte sind keine EVID-Metrik.
+- Der Gesamtarbeits-Tab folgt strukturell der Scientific-Maturity-Ansicht mit
+	Kicker, Gesamtprozentzahl, Einleitung, Statuslegende und Kontextboxen.
+- `INDEPENDENT_REPLICATION.md` ist aus der wissenschaftlichen Timeline wieder
+	als geschützte Root-Datei im File-Viewer öffnbar.
 
 ## 2026-09-26 External Review Deployment
 

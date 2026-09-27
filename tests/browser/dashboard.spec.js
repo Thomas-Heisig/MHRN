@@ -287,7 +287,7 @@ test("Release workspace renders the documentation timeline", async ({ page }) =>
   // The redesigned shell separates chronological releases from maturity.
   await expect(page.locator('[data-release-view="development"]')).toBeHidden();
 
-  for (const view of ["releases", "preview", "timeline", "development", "science", "documents", "gate"]) {
+  for (const view of ["releases", "preview", "timeline", "development", "science", "publication", "documents", "gate"]) {
     await selectRoute(page, "release", view);
     await expect(page.locator(`[data-release-view="${view}"]`)).toBeVisible();
   }
@@ -295,6 +295,65 @@ test("Release workspace renders the documentation timeline", async ({ page }) =>
   await selectRoute(page, "release", "science");
   await expect(page.locator("#scientific-progress-timeline")).toBeVisible();
   await expect(page.locator("#scientific-progress-timeline")).toContainText("Scientific Timeline");
+  await expect(page.locator("#scientific-progress-timeline .scientific-progress-status-legend .scientific-status-met")).toBeVisible();
+  await expect(page.locator("#scientific-progress-timeline .scientific-progress-status-legend .scientific-status-partial")).toBeVisible();
+  await expect(page.locator("#scientific-progress-timeline .scientific-progress-status-legend .scientific-status-open")).toBeVisible();
+  await expect(page.locator("#scientific-progress-timeline .scientific-stage-meta .scientific-status-mark")).toHaveCount(11);
+  const stageTenName = page.locator('#scientific-progress-timeline [data-scientific-stage="10"] .scientific-stage-name');
+  await expect(stageTenName).toHaveText("Bewusstseinsforschung");
+  await expect(stageTenName).toHaveCSS("overflow-wrap", "anywhere");
+  expect(await stageTenName.evaluate((element) => element.scrollWidth <= element.clientWidth)).toBe(true);
+  await page.locator('#scientific-progress-timeline [data-scientific-stage="0"]').click();
+  await expect(page.locator("#scientific-progress-detail .scientific-status-met")).toHaveCount(5);
+  await expect(page.locator("#scientific-progress-detail .scientific-status-partial")).toHaveCount(1);
+  await expect(page.locator("#scientific-progress-detail")).toContainText("met");
+  await expect(page.locator("#scientific-progress-detail")).toContainText("partial");
+  await expect(page.locator("#scientific-progress-detail .scientific-reference-panel")).toContainText("CLAIM-EVAL-006");
+  await expect(page.locator("#scientific-progress-detail .scientific-reference-panel")).toContainText("EVID-2026-18");
+  await expect(page.locator("#scientific-progress-detail .scientific-reference-panel")).toContainText(/Experimente & Hypothesen|Experiments & Hypothesen/);
+  await expect(page.locator("#scientific-progress-detail .scientific-reference-panel")).toContainText("H-EVAL-006-A");
+  await expect(page.locator("#scientific-progress-detail .scientific-source-link").first()).toBeVisible();
+  await page.locator("#scientific-progress-detail .scientific-source-link").first().click();
+  await expect(page.locator("#fm-viewer-dialog")).toBeVisible();
+  await page.locator("#fm-dialog-close").click();
+  const claimReference = page.locator('#scientific-progress-detail .scientific-reference-group').first().getByRole("button", { name: "CLAIM-EVAL-006" });
+  await expect(claimReference).toHaveAttribute("data-scientific-source-path", "registry/claims.yaml");
+  await claimReference.click();
+  await expect(page.locator("#fm-viewer-dialog")).toBeVisible();
+  await page.locator("#fm-dialog-close").click();
+  await page.locator('#scientific-progress-timeline [data-scientific-stage="1"]').click();
+  await expect(page.locator("#scientific-progress-detail .scientific-status-open")).toHaveCount(1);
+  await expect(page.locator("#scientific-progress-detail")).toContainText("open");
+  const replicationReference = page.locator('#scientific-progress-detail .scientific-source-link').filter({ hasText: "INDEPENDENT_REPLICATION.md" });
+  await expect(replicationReference).toHaveAttribute("data-scientific-source-kind", "project");
+  await replicationReference.click();
+  await expect(page.locator("#fm-viewer-dialog")).toBeVisible();
+  await page.locator("#fm-dialog-close").click();
+  await page.locator('#scientific-progress-timeline [data-scientific-stage="2"]').click();
+  await expect(page.locator('#scientific-progress-detail .scientific-source-directory-link').filter({ hasText: "research/protocols" })).toHaveAttribute("data-scientific-source-path", "protocols/COGNITION_CONSCIOUSNESS.md");
+  await page.locator('#scientific-progress-timeline [data-scientific-stage="6"]').click();
+  const directorySource = page.locator('#scientific-progress-detail .scientific-source-directory-link').first();
+  await expect(directorySource).toHaveAttribute("data-scientific-source-path", /experiments\/EXP-EMP-20260910\/016-memory_delayed_information_v1\/manifest\.json/);
+  await directorySource.click();
+  await expect(page.locator("#fm-viewer-dialog")).toBeVisible();
+  await page.locator("#fm-dialog-close").click();
+
+  await selectRoute(page, "release", "publication");
+  await expect(page.locator('[data-release-view="publication"]')).toBeVisible();
+  await expect(page.locator('[data-release-view="publication"] .workspace-kicker')).toHaveText("SCIENTIFIC MATURITY");
+  await expect(page.locator('[data-release-view="publication"] #scientific-work-title')).toHaveText("Wissenschaftliche Gesamtarbeit · 11 Teile");
+  await expect(page.locator('[data-release-view="publication"] .scientific-progress-score strong')).toHaveText("87.3%");
+  await expect(page.locator('[data-release-view="publication"] .scientific-two-axis-note > div')).toHaveCount(2);
+  await expect(page.locator('[data-release-view="publication"] .scientific-work-card')).toHaveCount(11);
+  await expect(page.locator('[data-release-view="publication"] .scientific-work-metric')).toHaveCount(11);
+  await expect(page.locator('[data-release-view="publication"] .scientific-work-met')).not.toHaveCount(0);
+  await expect(page.locator('[data-release-view="publication"] .scientific-work-partial')).not.toHaveCount(0);
+  await expect(page.locator('[data-release-view="publication"] .scientific-work-open')).toHaveCount(1);
+  await expect(page.locator('[data-release-view="publication"]')).toContainText("100%");
+  await expect(page.locator('[data-release-view="publication"]')).toContainText("50%");
+  await page.locator('[data-release-view="publication"] [data-scientific-work-file]').first().click();
+  await expect(page.locator("#fm-viewer-dialog")).toBeVisible();
+  await page.locator("#fm-dialog-close").click();
 
   await selectRoute(page, "release", "development");
   await expect(page.locator("#development-timeline-track .dev-node-marker-tech")).toContainText("hier");
@@ -308,6 +367,7 @@ test("Release workspace renders the documentation timeline", async ({ page }) =>
   await page.locator('#development-stage-list [data-development-stage="3"]').click();
   await expect(page.locator("#development-detail")).toBeVisible();
   await expect(page.locator("#development-detail")).toContainText("Plastisches Nervengewebe");
+  await expect(page.locator("#development-detail .release-status-mark")).not.toHaveCount(0);
 
   await selectRoute(page, "release", "documents");
   await page.locator('[data-release-document="08-roadmap/TODO.md"]').click();

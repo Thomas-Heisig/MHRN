@@ -1,0 +1,23 @@
+{
+  "experiment_id": "EXP-S1-TOPO-PROMO-R1-20260927",
+  "reviewer": "Thomas Heisig",
+  "decision": "supports",
+  "comments": "Der Human Review akzeptiert die eng begrenzte Aussage von CLAIM-S1-TOPO-001: Innerhalb des präregistrierten 64-Neuronen-/246-Kanten-Small-SNN-Betriebsbereichs erzeugen die registrierten, bei Neuronenzahl, globalem Kantenbudget, Stimulus, Gewichten und Delays gematchten Topologien reproduzierbare Unterschiede in den registrierten Propagationsmetriken. Die Entscheidung berücksichtigt ausdrücklich die nicht signifikanten half_activation_latency_censored-Kontraste 3d→5d und 5d→5d_shuffled sowie den nach Holm nicht signifikanten 5d→random_graph-Endpunkt; diese werden als begrenzte Sensitivität/Sättigung dieser Metrik in diesem Regime interpretiert und nicht verschwiegen. Die Entscheidung stützt keine 5D-Überlegenheit; insbesondere zeigen die Daten keinen allgemeinen Aktivierungsvorteil von 5D gegenüber 3D. Sie stützt weder Skalierung über 64 Neuronen hinaus noch Kognition, Lernen, Gedächtnis, biologische Gleichwertigkeit oder unabhängige externe Replikation. Der Lauf bleibt interne Promotion-Replikation; EVID-Promotion ist eine separate explizite Aktion.",
+  "reviewed_at": "2026-09-27T08:05:00+02:00",
+  "source_review_artifact": "review_request.json",
+  "source_review_summary": "External scientific assessment supplied in the human review concluded that the bounded claim is scientifically supportable while preserving the null findings and the no-5D-superiority boundary.",
+  "scope": "CLAIM-S1-TOPO-001 only",
+  "independent_authorship_replication": false,
+  "null_findings_preserved": [
+    "half_activation_latency_censored 3d->5d: not significant",
+    "half_activation_latency_censored 5d->5d_shuffled: not significant",
+    "half_activation_latency_censored 5d->random_graph: p_holm=0.0234375 but CI includes zero, therefore not significant under the registered rule"
+  ],
+  "prohibited_interpretations": [
+    "5D superiority",
+    "scaling beyond the registered 64-neuron operating envelope",
+    "cognition, learning or memory",
+    "biological equivalence",
+    "independent external replication"
+  ]
+}

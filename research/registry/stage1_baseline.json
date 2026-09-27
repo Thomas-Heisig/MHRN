@@ -3,12 +3,12 @@
   "baseline_id": "STAGE1-SCIENTIFIC-BASELINE-20260925",
   "stage": 1,
   "name": "Kleines SNN",
-  "as_of": "2026-09-25",
+  "as_of": "2026-09-27",
   "authority": "canonical_stage_scientific_baseline",
   "source_branch_basis": "develop",
   "maturity": {
-    "score": 0.75,
-    "percent": 75,
+    "score": 0.85,
+    "percent": 85,
     "weighting_contract": {
       "research_question": {
         "weight": 0.15,
@@ -27,14 +27,14 @@
       },
       "reviewed_evidence": {
         "weight": 0.2,
-        "status": "partial",
-        "contribution": 0.1,
+        "status": "met",
+        "contribution": 0.2,
         "decomposition": {
           "human_scientific_review_fraction": 0.5,
           "canonical_evidence_engine_promotion_fraction": 0.5
         },
         "human_review_subgate": "complete",
-        "canonical_evid_promotion_subgate": "open"
+        "canonical_evid_promotion_subgate": "complete"
       },
       "independent_replication": {
         "weight": 0.15,
@@ -67,10 +67,17 @@
         "role": "corrected_preregistered_time_resolved_internal_replication",
         "human_review": "research/experiments/EXP-S1-TOPO-V3-R1-20260918/review_request.json.human-review.json",
         "human_review_decision": "accepted_as_interpretation"
+      },
+      {
+        "experiment_id": "EXP-S1-TOPO-PROMO-R1-20260927",
+        "role": "prospective_promotion_eligible_internal_replication",
+        "human_review": "research/experiments/EXP-S1-TOPO-PROMO-R1-20260927/human_review.json",
+        "human_review_decision": "supports",
+        "evidence_id": "EVID-2026-19"
       }
     ],
     "audit_only_experiment": "EXP-S1-TOPO-V3-20260918",
-    "relationship": "V2 and V3-R1 form one coherent DATA line. R1 is an internal replication/extension with fresh seeds and corrected multiple-testing implementation; it is not independent scientific replication.",
+    "relationship": "V2 and V3-R1 remain the historical coherent DATA line. EXP-S1-TOPO-PROMO-R1-20260927 prospectively reproduced the bounded topology claim on fresh seeds under the current EvidenceEngine provenance contract and was human-reviewed as supports, producing EVID-2026-19. None of these runs is independent scientific replication.",
     "claim_boundary": "Topology-sensitive propagation is supported only in the preregistered 64-neuron/246-edge Small-SNN operating envelope. No 5D superiority, scaling, cognition, biological equivalence or independent replication is established."
   },
   "second_functional_line": {
@@ -79,11 +86,10 @@
     "hypothesis": "H-TEMP-002-A",
     "role": "independent_stage1_functional_line",
     "independence_semantics": "Independent in functional question/task, not an independent replication of the topology claim.",
-    "evidence_class": "DATA",
+    "evidence_class": "EVID",
     "result_status": "SUPPORTED_WITHIN_PREREGISTERED_PROTOCOL",
-    "experiment_id": "EXP-S1-TEMP-ORDER-V2-20260919",
-    "human_review": "research/experiments/EXP-S1-TEMP-ORDER-V2-20260919/review_request.json.review.json",
-    "human_review_decision": "accepted_as_interpretation",
+    "human_review": "research/experiments/EXP-S1-TEMP-PROMO-R1-20260927/human_review.json",
+    "human_review_decision": "supports",
     "key_result": {
       "runs": 120,
       "intact_order_accuracy_median": 1,
@@ -96,25 +102,66 @@
       ],
       "exact_paired_sign_test_p": 0.0000019073486
     },
-    "claim_boundary": "Scoped technical temporal-order function of a six-neuron acyclic SNN under the registered decoder/task. No learning, memory, cognition, scaling, biological equivalence, 5D advantage or independent replication is established."
+    "claim_boundary": "Scoped technical temporal-order function of a six-neuron acyclic two-channel SNN under the registered decoder/task. The simultaneous condition is a non-inferential task-adequacy control. Perfect ceiling/floor separation is an explicit methodological limitation. No learning, memory, cognition, scaling, biological equivalence, 5D advantage, general temporal reasoning or independent replication is established.",
+    "experiments": [
+      {
+        "experiment_id": "EXP-S1-TEMP-ORDER-V2-20260919",
+        "role": "preregistered_primary_functional_data",
+        "human_review": "research/experiments/EXP-S1-TEMP-ORDER-V2-20260919/review_request.json.review.json",
+        "human_review_decision": "accepted_as_interpretation"
+      },
+      {
+        "experiment_id": "EXP-S1-TEMP-PROMO-R1-20260927",
+        "role": "prospective_promotion_eligible_internal_replication",
+        "human_review": "research/experiments/EXP-S1-TEMP-PROMO-R1-20260927/human_review.json",
+        "human_review_decision": "supports",
+        "evidence_id": "EVID-2026-20",
+        "methodological_follow_up": "research/notes/2026-09-27_stage1_temporal_order_decoder_followup.md"
+      }
+    ],
+    "evidence_id": "EVID-2026-20",
+    "relationship": "The historical V2 run remains reviewed DATA. EXP-S1-TEMP-PROMO-R1-20260927 prospectively reproduced the bounded task on fresh seeds under the current EvidenceEngine provenance contract and was human-reviewed as supports with explicit perfect-score/decoder limitations, producing EVID-2026-20. This functional line is not an independent replication of the topology claim."
   },
   "evid_promotion_assessment": {
-    "status": "BLOCKED_CURRENT_EVIDENCE_ENGINE_CONTRACT",
-    "scientific_evidence": false,
+    "status": "TOPOLOGY_AND_TEMPORAL_PROMOTIONS_COMPLETED",
+    "scientific_evidence": true,
     "automatic_evidence_promotion": false,
-    "scope": "Stage-1 topology and temporal-order DATA remain DATA after accepted interpretation reviews.",
-    "reasons": [
-      "No canonical Stage-1 claim ID is registered for EvidenceEngine promotion of these scoped results.",
-      "The historical experiment manifests predate the current promotion provenance contract and must not be retroactively rewritten.",
-      "The completed reviews are accepted_as_interpretation artifacts, not canonical EvidenceEngine human_review.json decisions in the supports/refutes/inconclusive schema."
-    ],
-    "required_next_step": "Define a separate scoped claim and prospective promotion-eligible execution/review path before any Stage-1 EVID registration."
+    "topology_claim_id": "CLAIM-S1-TOPO-001",
+    "topology_evidence_id": "EVID-2026-19",
+    "topology_promotion_experiment": "EXP-S1-TOPO-PROMO-R1-20260927",
+    "topology_human_review_decision": "supports",
+    "temporal_claim_id": "CLAIM-S1-TEMP-001",
+    "temporal_evidence_id": "EVID-2026-20",
+    "temporal_promotion_experiment": "EXP-S1-TEMP-PROMO-R1-20260927",
+    "temporal_human_review_decision": "supports",
+    "temporal_scientific_evidence": true,
+    "scope": "Both central Stage-1 functional lines now have separate canonical human-reviewed EVID. This strengthens Stage-1 evidence breadth but does not satisfy independent replication.",
+    "remaining_next_step": "Pursue independently implemented reference/cross-implementation replication for the central topology claim. The separate topology-efficiency hypothesis remains DRAFT/untested and cannot substitute for the independent-replication criterion."
   },
   "independent_replication": {
     "complete": false,
     "topology_v3_r1_counts_as_independent_replication": false,
     "temporal_order_line_counts_as_topology_replication": false,
-    "requirement": "Independently controlled and independently authored/audited preregistered replication."
+    "requirement": "Independently controlled and independently authored/audited preregistered replication.",
+    "draft_reference_plan": {
+      "preregistration": "research/preregistrations/PREREG-S1-TOPO-REFERENCE-R2.json",
+      "framework": "Brian2 2.10.1",
+      "status": "DRAFT_PRE_FREEZE_GATES_PENDING",
+      "execution_authorized": false,
+      "mandatory_new_gate": "CAL-S1-TOPO-REFERENCE-TOPOLOGY-MAP-R2",
+      "possible_partial_credit_if_successful": 0.075,
+      "possible_stage1_maturity_if_successful": 0.925,
+      "full_external_replication_still_required": true,
+      "note": "R2 supersedes the aborted pre-DATA R1 protocol. Project-side cross-implementation replication can earn only partial 7.5/15 replication credit and requires separate explicit human execution authorization after freeze."
+    },
+    "r1_reference_history": {
+      "preregistration": "research/preregistrations/PREREG-S1-TOPO-REFERENCE-R1.json",
+      "freeze": "research/preregistrations/PREREG-S1-TOPO-REFERENCE-R1.freeze.json",
+      "deviation": "research/decisions/2026-09-27_stage1_reference_r1_prefreeze_deviation.json",
+      "status": "FROZEN_ABORTED_BEFORE_REFERENCE_DATA",
+      "reference_data_created": false,
+      "maturity_credit": 0
+    }
   },
   "stronger_claims_kept_separate": [
     {
@@ -123,5 +170,24 @@
       "status": "open_untested",
       "note": "The Stage-1 baseline does not establish a 5D advantage."
     }
-  ]
+  ],
+  "efficiency_exploration": {
+    "research_question": "RQ-SNN-003",
+    "hypothesis": "H-SNN-003-C",
+    "claim_id": "CLAIM-S1-EFFICIENCY-001",
+    "status": "DRAFT_CALIBRATION_GATE_FAILED_FREEZE_BLOCKED",
+    "scientific_evidence": false,
+    "exploratory_note": "research/notes/2026-09-27_stage1_topology_efficiency_exploratory.md",
+    "preregistration": "research/preregistrations/PREREG-S1-TOPO-EFFICIENCY-R1.json",
+    "calibration": "research/calibrations/CAL-S1-TOPO-EFFICIENCY-R1-20260927/result.json",
+    "calibration_result": {
+      "verified": true,
+      "3d_recruitment_matched_gate_passed": false,
+      "5d_high_recruitment_gate_passed": false,
+      "interpretation": "Stimulus-current sweep 70-140 did not change median recruitment enough to satisfy either preregistered gate; R1 must not be frozen or executed."
+    },
+    "maturity_credit": 0,
+    "note": "Exploratory efficiency work is quarantined from EVID-2026-19 and does not contribute to Stage-1 maturity.",
+    "maturity_semantics": "Even a future successful, human-reviewed EVID promotion for CLAIM-S1-EFFICIENCY-001 would not raise Stage-1 maturity above the current 85% by itself because the reviewed_evidence component is already fully saturated at 20/20. Only the independent_replication component can provide the next maturity increase."
+  }
 }

@@ -1,5 +1,77 @@
 # Changelog
 
+## 2026-09-27 - v0.6.0-alpha.7 Release-Konsolidierung
+
+- Stage 0 ist im kanonischen Scientific-Maturity-Vertrag auf **92,5 %**
+  abgeglichen; der scoped Model-Conformance-Claim besitzt `EVID-2026-18`.
+- Stage 1 ist auf **85 %** abgeglichen: Topologielinie `EVID-2026-19`,
+  Temporal-Order-Linie `EVID-2026-20`; unabhängige Replikation bleibt offen.
+- Die blockierte Efficiency-Kalibration bleibt als negativer Pre-Freeze-Befund
+  ohne Evaluation, EVID oder Maturity-Credit erhalten.
+- Der Brian2-Referenzpfad wurde nach Abbruch von R1 vor jeder Reference-DATA
+  als R2 neu gebunden; Brian2 2.10.1, CeCILL 2.1 und Stimberg, Brette &
+  Goodman (2019) sind explizit attribuiert.
+- PAN-Nachtlauf, Closed-Loop Builder, Live Monitor, Presets, Posture Reward und
+  Session-Cleanup sind als nicht-kanonische Playground-Werkzeuge integriert.
+- Der Playground-CUDA-Pfad umfasst Gate-IR -> PTX/CUDA-Referenzcode,
+  ptxas-Ressourcenmessung, Driver-/Cooperative-Launch-Preflight,
+  CPU-Determinismus, Freeze-Actions/Freeze-Rewards und D1/D2/D3-Paritätsklassen.
+- Diese CUDA-Arbeit ist weiterhin **kein vollständig ausgeführtes bzw.
+  wissenschaftlich validiertes GPU-SNN-Backend**.
+- Der dauerhafte Git-Branch `playground` ist für den Workbench-Betrieb nicht
+  erforderlich; der kanonische Branchfluss bleibt Feature/Research -> develop
+  -> release/* -> main.
+
+## 2026-09-27 - Bausteine-Katalog mit ausführlichen Sprachbeschreibungen
+
+- Jeder Baustein im Playground-Katalog besitzt jetzt eine ausführliche
+  Erklärung im Info-Popup und eine vollständige Hover-Beschreibung.
+- Fehlende Repo- und Playground-Komponenten wie Runtime, Neural I/O,
+  Embodiment-Sandbox, Registry, EvidenceEngine und Koordinatenvertrag sind im
+  Katalog sichtbar und bleiben als explorative Grenzen gekennzeichnet.
+- Der Katalog reagiert auf den globalen EN/DE-Sprachselector; Kategorien,
+  Popup-Texte, Quellenhinweis und Evidenzgrenze werden gemeinsam umgeschaltet.
+- Dynamisch gelieferte neue Katalogeinträge erhalten zusätzlich eine
+  sprachabhängige fachliche Fallback-Erklärung.
+
+## 2026-09-27 - Release-Statusmarker für Entwicklung und Wissenschaft
+
+- Die Detailfelder zeigen jetzt neben ihren unveränderten Statusbezeichnungen
+  `met`, `partial` und `open` konsistente Häkchenmarker.
+- Die Entwicklungsdetailfelder verwenden dieselbe Darstellung für technische
+  Zustände wie `implemented`, `verified`, `experimental`, `planned` und
+  `missing`.
+- Kriterienkarten sind gleichförmig aufgebaut; kompatible Research-/Docs-Quellen
+  sind direkt im File Viewer als Popup öffnbar, während Ordnerreferenzen nicht
+  mehr fälschlich als Dateien geöffnet werden; bekannte Experiment- und
+  Publikationsordner öffnen ihre kanonische Manifest- bzw. README-Datei.
+- Jede wissenschaftliche Stufe bietet zusätzlich direkte Registerlinks für
+  Claims, EVID, Experimente und Hypothesen.
+- Lange Stufennamen werden innerhalb der Timeline-Karten zuverlässig umgebrochen.
+- Playground-Einstellungen korrigiert: `edge_budget=1024`, `k_neighbors=16`,
+  `modules=2`, `stimulus_current=8`, `pan_bias_current=10`, `weight=4` sowie
+  `behavior_learning_rate=0.2` und `behavior_epsilon=0.2`.
+- Playground-Layout visuell überarbeitet: Papierflächen, dreispaltiges
+  Laborraster, kompakte Controls und bessere mobile Umbrüche.
+- Preset Lab ergänzt: Izhikevich-Referenz und PAN-Explorationsprofil sowie
+  lokale Speicherung, Anwendung und Löschung eigener Presets.
+- Presetkatalog A–G für Kontrollen, Fixes, Diagnostik, Robustheit und
+  Sanity-Checks ergänzt; Gewichtszerfall und Clamp sind ausführbar.
+- Live-PAN-Monitor ergänzt: Popup mit Start/Pause, Schritt, Input, Stop,
+  Live-Metriken, Spike-Graph, Parametern und interaktivem Männchen-Canvas.
+- Posture-Reward-Trigger ergänzt: Score, GOOD/WARNING/FALLING/COLLAPSED/
+  RECOVERED-Events, getrennte Kanäle sowie bounded Episode-Reset.
+- Cleanup-Aktion für alle temporären PAN-Live-Sessions ergänzt; der Fehler
+  `maximum live Playground sessions reached` kann ohne Neustart behoben werden.
+- Ein eigener Release-Tab zeigt die wissenschaftliche Gesamtarbeit und ihre elf
+  Teile; jeder Teil öffnet das kanonische Manuskript im File Viewer.
+- Die elf Teile zeigen zusätzlich Prozentbalken und die Statuszustände `met`,
+  `partial` und `open` als redaktionellen Arbeitsstand.
+- Header, Gesamtprozentzahl, Einleitung, Statuslegende und zweispaltige
+  Kontextboxen entsprechen jetzt der Scientific-Maturity-Darstellung.
+- Der Quellenverweis `INDEPENDENT_REPLICATION.md` öffnet wieder als Popup;
+  andere Projekt-Root-Dateien bleiben durch eine Allowlist geschützt.
+
 ## 2026-09-26 - Sichere External-Review-Bereitstellung
 
 - GitHub-Pages-Export und isolierter Collector sind als getrennte

@@ -1,0 +1,203 @@
+name: Stage-1 maintenance refresh
+
+on:
+  push:
+    branches:
+      - develop
+    paths:
+      - .github/workflows/stage1-maintenance-refresh.yml
+      - research/registry/**
+      - research/experiments/EXP-S1-TOPO-PROMO-R1-20260927/**
+      - research/decisions/2026-09-25_stage1_scientific_consolidation.md
+      - research/CURRENT_SCIENTIFIC_STATE.md
+      - src/dashboard/static/scientific-progress.json
+      - tests/test_stage1_scientific_contract.py
+      - tests/test_scientific_progress_integrity.py
+      - tests/test_stage1_topology_promotion_contract.py
+      - tests/test_stage1_temporal_order_promotion_contract.py
+      - scripts/run_stage1_topology_promotion_r1.py
+      - scripts/verify_stage1_topology_promotion_r1.py
+      - scripts/promote_stage1_topology_r1.py
+      - scripts/run_stage1_temporal_order_promotion_r1.py
+      - scripts/verify_stage1_temporal_order_promotion_r1.py
+      - scripts/promote_stage1_temporal_order_r1.py
+      - tests/test_stage1_topology_efficiency_contract.py
+      - tests/test_stage1_reference_replication_contract.py
+      - scripts/check_stage1_efficiency_seed_freshness.py
+      - scripts/run_stage1_topology_efficiency_calibration.py
+      - scripts/verify_stage1_topology_efficiency_calibration.py
+      - scripts/run_stage1_topology_efficiency_r1.py
+      - scripts/verify_stage1_topology_efficiency_r1.py
+      - research/preregistrations/PREREG-S1-TOPO-REFERENCE-R1.json
+      - research/preregistrations/PREREG-S1-TOPO-REFERENCE-R2.json
+      - research/document_governance_overrides.json
+      - reference/stage1_topology_brian2/**
+      - scripts/audit_stage1_reference_mechanisms.py
+      - scripts/check_stage1_reference_seed_freshness.py
+      - scripts/check_stage1_reference_independence.py
+      - scripts/run_stage1_reference_integrator_calibration.py
+      - scripts/run_stage1_reference_reset_calibration.py
+      - scripts/run_stage1_reference_synapse_calibration.py
+      - scripts/verify_stage1_topology_reference_r1.py
+      - scripts/freeze_stage1_topology_reference_r1.py
+      - tests/test_stage1_reference_preflight.py
+      - THIRD_PARTY_NOTICES.md
+      - research/publications/2026-09-17_recursive-epistemics_v1.8/**
+      - scripts/build_publication_edition.py
+      - tests/test_publication_edition.py
+  workflow_dispatch:
+
+concurrency:
+  group: stage1-maintenance-develop
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    if: ${{ !contains(github.event.head_commit.message || '', '[stage1-maintenance]') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: develop
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.13"
+
+      - name: Install project
+        run: python -m pip install -e '.[dev,docs]'
+
+      - name: Format new Stage-1 Python files
+        run: |
+          python -m black \
+            scripts/run_stage1_topology_promotion_r1.py \
+            scripts/verify_stage1_topology_promotion_r1.py \
+            scripts/promote_stage1_topology_r1.py \
+            scripts/run_stage1_temporal_order_promotion_r1.py \
+            scripts/verify_stage1_temporal_order_promotion_r1.py \
+            scripts/promote_stage1_temporal_order_r1.py \
+            scripts/check_stage1_efficiency_seed_freshness.py \
+            scripts/run_stage1_topology_efficiency_calibration.py \
+            scripts/verify_stage1_topology_efficiency_calibration.py \
+            scripts/run_stage1_topology_efficiency_r1.py \
+            scripts/verify_stage1_topology_efficiency_r1.py \
+            tests/test_stage1_topology_promotion_contract.py \
+            tests/test_stage1_temporal_order_promotion_contract.py \
+            tests/test_stage1_topology_efficiency_contract.py \
+            scripts/audit_stage1_reference_mechanisms.py \
+            scripts/check_stage1_reference_seed_freshness.py \
+            scripts/check_stage1_reference_independence.py \
+            scripts/run_stage1_reference_integrator_calibration.py \
+            scripts/run_stage1_reference_reset_calibration.py \
+            scripts/run_stage1_reference_synapse_calibration.py \
+            scripts/verify_stage1_topology_reference_r1.py \
+            scripts/freeze_stage1_topology_reference_r1.py \
+            reference/stage1_topology_brian2/integrator_probe.py \
+            reference/stage1_topology_brian2/synapse_probe.py \
+            reference/stage1_topology_brian2/runner.py \
+            tests/test_stage1_reference_replication_contract.py \
+            tests/test_stage1_reference_preflight.py \
+            scripts/check_stage1_reference_seed_freshness_r2.py \
+            scripts/verify_stage1_reference_dynamics_reuse_r2.py \
+            scripts/run_stage1_reference_topology_mapping_r2.py \
+            scripts/verify_stage1_topology_reference_r2.py \
+            scripts/freeze_stage1_topology_reference_r2.py \
+            reference/stage1_topology_brian2/runner_r2.py \
+            tests/test_stage1_reference_r2_contract.py \
+            tests/test_stage1_reference_r2_preflight.py \
+            src/dashboard/file_manager.py \
+            src/dashboard/file_rendering.py \
+            tests/test_dashboard_file_manager.py \
+            tests/test_stage1_scientific_contract.py \
+            tests/test_scientific_progress_integrity.py
+
+      - name: Regenerate canonical research and document-governance projections
+        run: |
+          python research/generate_reports.py
+          python scripts/generate_catalog_audit_report.py
+          python scripts/check_meta_research_system.py
+          python scripts/audit_document_governance.py --write
+          python scripts/audit_document_governance.py --strict-review
+
+      - name: Rebuild Edition 1.8 from canonical source parts
+        run: |
+          python scripts/build_publication_edition.py --write
+          python scripts/build_publication_edition.py --check
+          python -m pytest tests/test_publication_edition.py -q
+
+      - name: Run Stage-1 integrity tests
+        run: |
+          python -m pytest \
+            tests/test_stage1_scientific_contract.py \
+            tests/test_stage1_topology_promotion_contract.py \
+            tests/test_stage1_temporal_order_promotion_contract.py \
+            tests/test_stage1_topology_efficiency_contract.py \
+            tests/test_stage1_reference_replication_contract.py \
+            tests/test_stage1_reference_preflight.py \
+            tests/test_stage1_reference_r2_contract.py \
+            tests/test_stage1_reference_r2_preflight.py \
+            tests/test_scientific_progress_integrity.py -q
+
+      - name: Commit maintenance refresh
+        shell: bash
+        run: |
+          git add \
+            scripts/run_stage1_topology_promotion_r1.py \
+            scripts/verify_stage1_topology_promotion_r1.py \
+            scripts/promote_stage1_topology_r1.py \
+            scripts/run_stage1_temporal_order_promotion_r1.py \
+            scripts/verify_stage1_temporal_order_promotion_r1.py \
+            scripts/promote_stage1_temporal_order_r1.py \
+            scripts/check_stage1_efficiency_seed_freshness.py \
+            scripts/run_stage1_topology_efficiency_calibration.py \
+            scripts/verify_stage1_topology_efficiency_calibration.py \
+            scripts/run_stage1_topology_efficiency_r1.py \
+            scripts/verify_stage1_topology_efficiency_r1.py \
+            scripts/audit_stage1_reference_mechanisms.py \
+            scripts/check_stage1_reference_seed_freshness.py \
+            scripts/check_stage1_reference_independence.py \
+            scripts/run_stage1_reference_integrator_calibration.py \
+            scripts/run_stage1_reference_reset_calibration.py \
+            scripts/run_stage1_reference_synapse_calibration.py \
+            scripts/verify_stage1_topology_reference_r1.py \
+            scripts/freeze_stage1_topology_reference_r1.py \
+            reference/stage1_topology_brian2/integrator_probe.py \
+            reference/stage1_topology_brian2/synapse_probe.py \
+            reference/stage1_topology_brian2/runner.py \
+            tests/test_stage1_topology_promotion_contract.py \
+            tests/test_stage1_temporal_order_promotion_contract.py \
+            tests/test_stage1_topology_efficiency_contract.py \
+            tests/test_stage1_reference_replication_contract.py \
+            tests/test_stage1_reference_preflight.py \
+            scripts/check_stage1_reference_seed_freshness_r2.py \
+            scripts/verify_stage1_reference_dynamics_reuse_r2.py \
+            scripts/run_stage1_reference_topology_mapping_r2.py \
+            scripts/verify_stage1_topology_reference_r2.py \
+            scripts/freeze_stage1_topology_reference_r2.py \
+            reference/stage1_topology_brian2/runner_r2.py \
+            tests/test_stage1_reference_r2_contract.py \
+            tests/test_stage1_reference_r2_preflight.py \
+            src/dashboard/file_manager.py \
+            src/dashboard/file_rendering.py \
+            tests/test_dashboard_file_manager.py \
+            tests/test_stage1_scientific_contract.py \
+            tests/test_scientific_progress_integrity.py \
+            research/generated \
+            docs/DOCUMENT_CATALOG.json \
+            research/RESEARCH_CATALOG.json \
+            research/publications/2026-09-17_recursive-epistemics_v1.8
+          git diff --cached --check
+          if git diff --cached --quiet; then
+            echo "Stage-1 maintenance is already current."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "chore(stage1): refresh formatting and research projections [stage1-maintenance]"
+          git pull --rebase origin develop
+          git push origin HEAD:develop

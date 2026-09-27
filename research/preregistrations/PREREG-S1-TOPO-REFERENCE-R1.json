@@ -1,0 +1,521 @@
+{
+  "schema_version": 1,
+  "preregistration_id": "PREREG-S1-TOPO-REFERENCE-R1",
+  "stage": 1,
+  "research_question": "RQ-SNN-003",
+  "hypothesis": "H-SNN-003-B",
+  "claim_id": "CLAIM-S1-TOPO-001",
+  "protocol": "stage1_topology_cross_implementation_reference_r1",
+  "mode": "PROSPECTIVE_CROSS_IMPLEMENTATION_PARTIAL_REPLICATION",
+  "status": "FROZEN_BEFORE_REFERENCE_RUNNER",
+  "execution_authorized": false,
+  "scientific_evidence": false,
+  "automatic_evidence_promotion": false,
+  "replication_credit_target": "partial_only",
+  "maturity_target_if_successful": {
+    "independent_replication_component": "partial",
+    "contribution": 0.075,
+    "stage1_maturity": "85% -> 92.5%",
+    "full_external_replication_still_required_for_100_percent": true
+  },
+  "independence_contract": {
+    "framework": "Brian2",
+    "framework_version": "2.10.1",
+    "python_version": "3.13",
+    "implementation_location": "reference/stage1_topology_brian2/",
+    "separate_package_required": true,
+    "forbidden_import_prefixes": [
+      "src",
+      "scripts.run_stage1_topology",
+      "research"
+    ],
+    "forbidden_runtime_dependencies": [
+      "MHRN NeuralNetwork",
+      "MHRN Neuron",
+      "MHRN Synapse",
+      "MHRN topology builders",
+      "MHRN experiment runner modules"
+    ],
+    "allowed_shared_inputs": [
+      "frozen numeric neuron/synapse/stimulus translation contract from this preregistration",
+      "frozen topology shapes and graph rules described textually in this preregistration",
+      "evaluation seed list"
+    ],
+    "runner_blinding": "The reference runner must not contain or load the canonical MHRN effect sizes, equivalence bounds, EVID files or historical experiment statistics. Replication classification is performed only by a separate verifier after raw reference DATA are persisted.",
+    "authorship_limit": "The implementation remains under the same project leadership and therefore can earn only partial cross-implementation replication credit, never full independent external replication.",
+    "implementer": "same MHRN project leadership unless an external implementation is explicitly documented later",
+    "credit_semantics": "Because the current implementation is project-side, success can only be PARTIAL_REPLICATION. A later genuinely external implementation must use a separately registered protocol and cannot inherit full-credit status from this run.",
+    "automated_leakage_guard": "A pre-freeze AST/text scan must reject imports from MHRN runtime modules and references to EVID-2026-19, EXP-S1-TOPO-PROMO-R1-20260927, canonical_targets, frozen_bounds, equivalence bounds, research/experiments, or research/registry/evidence from within reference/stage1_topology_brian2/.",
+    "runner_source": "reference/stage1_topology_brian2/runner.py",
+    "verifier_source": "scripts/verify_stage1_topology_reference_r1.py",
+    "execution_guard": "The Brian2 runner refuses execution unless MHRN_STAGE1_REFERENCE_EXECUTION=AUTHORIZED_REFERENCE_R1 is explicitly supplied by a later approved execution workflow."
+  },
+  "source_target": {
+    "canonical_experiment": "EXP-S1-TOPO-PROMO-R1-20260927",
+    "canonical_evidence": "EVID-2026-19",
+    "canonical_operating_envelope": {
+      "neurons": 64,
+      "edges": 246,
+      "dt_ms": 1,
+      "delay_ticks": 1,
+      "synaptic_weight": 55,
+      "stimulus_current": 100,
+      "stimulus_ticks": 1,
+      "evaluation_ticks": 128,
+      "auc_window_ticks": 32,
+      "input_labels": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "output_labels": [
+        60,
+        61,
+        62,
+        63
+      ]
+    },
+    "conditions": {
+      "1d": [
+        64,
+        1,
+        1,
+        1,
+        1
+      ],
+      "2d": [
+        8,
+        8,
+        1,
+        1,
+        1
+      ],
+      "3d": [
+        4,
+        4,
+        4,
+        1,
+        1
+      ],
+      "5d": [
+        4,
+        2,
+        2,
+        2,
+        2
+      ],
+      "5d_shuffled": [
+        4,
+        2,
+        2,
+        2,
+        2
+      ],
+      "random_graph": [
+        4,
+        2,
+        2,
+        2,
+        2
+      ]
+    }
+  },
+  "translation_contract": {
+    "neuron_model": "Izhikevich 2003 regular-spiking state variables v,u",
+    "initial_state": {
+      "v": -65,
+      "u": -13
+    },
+    "parameters": {
+      "a": 0.02,
+      "b": 0.2,
+      "c": -65,
+      "d": 8,
+      "threshold_mV": 30
+    },
+    "integration": "At each 1 ms tick, use the MHRN canonical two-half-Euler update for v followed by one Euler update for u: v += 0.5*(0.04*v^2+5*v+140-u+I), repeated twice; u += a*(b*v-u). A spike is detected after integration when v>=30, then reset v=c and u=u+d.",
+    "adaptation_and_secondary_mechanisms": {
+      "threshold_adaptation": {
+        "status": "ACTIVE_AND_SPIKE_TIMING_RELEVANT",
+        "parameters": {
+          "rate": 0.01,
+          "decay": 0.999,
+          "base_izhikevich_threshold": 30
+        },
+        "rule": "Spike detection uses 30.0 + threshold_adaptation. On spike, threshold_adaptation += 0.01; after firing-rate update it is multiplied by 0.999; homeostasis is then applied.",
+        "reference_requirement": "must be translated exactly"
+      },
+      "homeostasis": {
+        "status": "ACTIVE_AND_SPIKE_TIMING_RELEVANT",
+        "parameters": {
+          "target_rate_hz": 10,
+          "firing_rate_tau_ms": 1000,
+          "learning_rate": 0.001
+        },
+        "rule": "After each tick, firing_rate_estimate is updated with alpha=1-exp(-elapsed_ms/1000); homeostasis then adds 0.001*(firing_rate_estimate-10) to threshold_adaptation and clamps it to [-10,10].",
+        "reference_requirement": "must be translated exactly"
+      },
+      "energy": {
+        "status": "ACTIVE_STATE_BUT_SPIKE_TIMING_INERT_IN_CANONICAL_CORE",
+        "parameters": {
+          "initial": 1,
+          "spike_cost": 0.001,
+          "recovery_rate": 0.0001
+        },
+        "rule": "Energy is decremented on spikes and recovers after each tick, but Neuron.step/integrate_membrane/spike_threshold do not read energy to determine v/u or spike threshold.",
+        "reference_requirement": "may be omitted from the reference dynamics only if the pre-freeze source audit remains green; omission must be declared in provenance"
+      },
+      "traces": {
+        "status": "ACTIVE_STATE_BUT_SPIKE_TIMING_INERT_IN_CANONICAL_CORE",
+        "parameters": {
+          "decay": 0.95,
+          "increment": 1
+        },
+        "rule": "Pre/post traces increment/decay but are not read by membrane integration or spike threshold in the canonical topology runner.",
+        "reference_requirement": "may be omitted from the reference dynamics only if the pre-freeze source audit remains green"
+      },
+      "synaptic_plasticity": {
+        "status": "NOT_APPLIED_BY_CANONICAL_NETWORK_STEP",
+        "rule": "The topology runner creates fixed-weight Synapse objects. NeuralNetwork.step queues and delivers connection.weight but does not invoke pair-STDP, eligibility or reward updates.",
+        "reference_requirement": "reference synaptic weights remain fixed during each run"
+      },
+      "refractory": {
+        "status": "INACTIVE",
+        "refractory_ticks": 0,
+        "reference_requirement": "no additional refractory period"
+      }
+    },
+    "synapses": "Current-based excitatory events of fixed weight 55.0 with exactly one-tick delay. No plasticity during the run.",
+    "tick_order": "For tick t: clear/read external currents; deliver events whose delivery_tick==t; combine external+synaptic current; execute two half-Euler v updates and one u Euler update; test v >= 30 + current threshold_adaptation; if spiked reset v=c,u+=d and add threshold_adaptation_rate; update firing-rate estimate; decay threshold adaptation; apply homeostasis; queue outgoing fixed-weight events for t+delay. Energy/traces may update as audited but are spike-timing inert.",
+    "stimulus": "At tick 0 only, inject current 100.0 into logical labels 0,1,2,3.",
+    "topology_generation": {
+      "coordinate_order": "Generate the full lexicographic Cartesian product of the declared 5D shape, then sort coordinates by (sum(value_i/max(size_i-1,1)), coordinate_tuple), exactly matching the canonical label-order semantics while remaining independently implemented.",
+      "future_only_edges": true,
+      "out_degree_cap": 4,
+      "edge_budget": 246,
+      "geometric_rule": "For each source label, connect to the up to four future labels with smallest normalized Euclidean coordinate distance; ties are resolved by a frozen seed-derived deterministic tie key, then label.",
+      "5d_shuffled": "Shuffle coordinate-to-label assignment using the frozen reference implementation's independently specified deterministic PRNG mapping before applying the same geometric edge rule.",
+      "random_graph": "For each source, choose the same number of future targets uniformly without replacement using the frozen reference PRNG mapping.",
+      "self_connections": false,
+      "parallel_connections": false,
+      "coordinate_order_correction": {
+        "date": "2026-09-27",
+        "status": "PRE_FREEZE_CORRECTION_BEFORE_REFERENCE_DATA",
+        "previous_wording": "canonical lexicographic product order",
+        "reason": "Code-backed audit of scripts/run_stage1_topology_v2.py showed that canonical_coords sorts the Cartesian product by normalized coordinate score and then coordinate tuple; pure lexicographic wording was incomplete.",
+        "data_seen": false
+      }
+    },
+    "metric_translation": {
+      "active_neuron": "a neuron that emitted at least one spike by the end of the evaluated tick",
+      "final_active_fraction": "number of ever-active neurons divided by 64",
+      "activation_auc_0_32": "sum of cumulative ever-active-neuron fraction over ticks 0..31 inclusive",
+      "first_output_latency_censored": "first tick with any spike from labels 60..63; if absent use the frozen censor sentinel 129",
+      "delivered_events": "count of synaptic spike events delivered to postsynaptic neurons",
+      "total_spikes": "total emitted spikes across all neurons"
+    },
+    "deviation_policy": "Any discovered semantic mismatch that could change spike timing, event delivery or registered endpoints blocks execution and requires a new preregistration revision before reference DATA are generated."
+  },
+  "evaluation": {
+    "seeds": [
+      810000001,
+      810000002,
+      810000003,
+      810000004,
+      810000005,
+      810000006,
+      810000007,
+      810000008,
+      810000009,
+      810000010,
+      810000011,
+      810000012,
+      810000013,
+      810000014,
+      810000015,
+      810000016,
+      810000017,
+      810000018,
+      810000019,
+      810000020
+    ],
+    "seed_selection_rationale": "The originally drafted block 1200021-1200040 failed the executable freshness gate because seed 1200035 already existed in historical Batch artifacts. Before any reference DATA and before freeze, the entire block was discarded. The replacement block 810000001-810000020 was selected as a new contiguous bookkeeping block and returned no repository-search matches at selection time; the executable freshness gate must still pass at the exact freeze commit.",
+    "conditions": [
+      "1d",
+      "2d",
+      "3d",
+      "5d",
+      "5d_shuffled",
+      "random_graph"
+    ],
+    "total_runs": 120,
+    "primary_endpoint": "first_output_latency_censored",
+    "secondary_endpoint": "activation_auc_0_32",
+    "primary_contrasts": [
+      [
+        "1d",
+        "2d"
+      ],
+      [
+        "2d",
+        "3d"
+      ],
+      [
+        "3d",
+        "5d"
+      ],
+      [
+        "5d",
+        "5d_shuffled"
+      ],
+      [
+        "5d",
+        "random_graph"
+      ]
+    ],
+    "primary_difference": "right-minus-left",
+    "primary_test": "exact two-sided paired sign test within reference DATA",
+    "primary_multiple_testing": "one Holm family across the five first-output-latency contrasts",
+    "alpha": 0.05,
+    "effect_interval": "deterministic paired bootstrap 95% CI for median difference",
+    "secondary_role": "activation_auc_0_32 direction is a secondary concordance check and cannot rescue failed primary replication criteria",
+    "seed_revision_history": [
+      {
+        "date": "2026-09-27",
+        "old_block": "1200021-1200040",
+        "reason": "Executable pre-freeze freshness gate found historical collision for 1200035 in EXP-BATCH-20260914074039-77 artifacts.",
+        "action": "Discarded the entire block before freeze and before any reference evaluation; no outcomes existed or were inspected.",
+        "new_block": "810000001-810000020"
+      }
+    ]
+  },
+  "canonical_targets": {
+    "source": "EXP-S1-TOPO-PROMO-R1-20260927 analysis/statistics.json",
+    "first_output_latency_median_deltas": {
+      "1d_to_2d": -10,
+      "2d_to_3d": -3,
+      "3d_to_5d": -1,
+      "5d_to_5d_shuffled": -3,
+      "5d_to_random_graph": -2.5
+    },
+    "equivalence_bounds_rule": "Strict sign-preserving equivalence fixed at 50%-150% of the absolute canonical median effect for every primary latency contrast. No resolution-based widening is used.",
+    "frozen_bounds": {
+      "1d_to_2d": [
+        -15,
+        -5
+      ],
+      "2d_to_3d": [
+        -4.5,
+        -1.5
+      ],
+      "3d_to_5d": [
+        -1.5,
+        -0.5
+      ],
+      "5d_to_5d_shuffled": [
+        -4.5,
+        -1.5
+      ],
+      "5d_to_random_graph": [
+        -3.75,
+        -1.25
+      ]
+    },
+    "activation_auc_direction_only": {
+      "1d_to_2d": "positive",
+      "2d_to_3d": "positive",
+      "3d_to_5d": "negative",
+      "5d_to_5d_shuffled": "negative",
+      "5d_to_random_graph": "negative"
+    },
+    "direction_rule": "Each primary contrast must separately retain the canonical non-zero sign and its median must lie inside the frozen strict 50%-150% equivalence interval. For 3d->5d this means median <0 and within [-1.5,-0.5].",
+    "resolution_note": "The primary latency metric is discrete and paired medians with n=20 can occur in 0.5-tick increments. This discreteness is treated as a known sensitivity limitation, not as grounds to widen the equivalence interval. A Brian2 median of -2.0 for 3d->5d is outside the preregistered equivalence bound.",
+    "other_bounds_unchanged": true,
+    "criterion_revision_history": [
+      {
+        "date": "2026-09-27",
+        "status": "DRAFT_ONLY_WITHDRAWN_BEFORE_REFERENCE_DATA",
+        "change": "A temporary DRAFT considered widening 3d->5d from [-1.5,-0.5] to [-2.0,-0.5] for metric discreteness.",
+        "resolution": "Withdrawn after methodological review before any Brian2 reference evaluation DATA existed. Canonical freeze candidate restored the original strict 50%-150% interval [-1.5,-0.5].",
+        "data_seen": false
+      }
+    ]
+  },
+  "decision_rule": {
+    "partial_replication": [
+      "reference design integrity passes",
+      "all five first-output-latency reference contrasts retain the canonical direction",
+      "all five reference median deltas lie inside their frozen equivalence bounds",
+      "all five primary paired sign tests remain Holm-significant with bootstrap CI excluding zero",
+      "at least four of five activation_auc_0_32 secondary contrast directions agree with the canonical direction"
+    ],
+    "failed_replication": [
+      "any primary latency contrast reverses canonical direction",
+      "or two or more primary latency contrasts have median effects outside the frozen equivalence bounds and their 95% bootstrap CIs are wholly outside those bounds",
+      "or fewer than three of five primary latency contrasts are Holm-significant"
+    ],
+    "inconclusive": [
+      "a semantic translation mismatch is discovered after freeze",
+      "or one or more primary latency CIs span an equivalence boundary such that success/failure classification is unstable",
+      "or exactly three or four primary contrasts satisfy both Holm significance and equivalence while none reverse direction",
+      "or exactly one primary contrast is wholly outside its equivalence bound without direction reversal while the remaining four satisfy the primary criteria",
+      "or reference runtime behavior makes a preregistered endpoint non-comparable"
+    ],
+    "equal_value_rule": "PARTIAL_REPLICATION, FAILED_REPLICATION and INCONCLUSIVE_REFERENCE_REPLICATION are equally reportable scientific outcomes. No secondary endpoint or post-hoc tuning may rescue a failed primary classification."
+  },
+  "provenance_requirements": {
+    "separate_code_digest": true,
+    "framework_version_recorded": true,
+    "python_version_recorded": true,
+    "dependency_lock_recorded": true,
+    "clean_git_tree": true,
+    "runtime_and_platform_recorded": true,
+    "raw_reference_data_persisted": true,
+    "runner_source_hash_persisted": true,
+    "verifier_source_hash_persisted": true,
+    "no_shared_mhrn_code_imports_verified": true
+  },
+  "maturity_semantics": {
+    "success": "A successful reference replication counts only as partial independent/reference replication = 7.5/15 points, advancing Stage-1 maturity from 85% to 92.5%.",
+    "failure": "A failed or inconclusive reference replication does not increase maturity and must remain visible in the canonical Stage-1 state.",
+    "full_credit": "15/15 replication credit remains reserved for genuinely external, independently controlled/authored replication."
+  },
+  "review": {
+    "human_review_required": true,
+    "automatic_evidence_promotion": false,
+    "execution_creates_reference_data_only": true
+  },
+  "prefreeze_requirements": {
+    "integrator_parity": {
+      "required": true,
+      "artifact": "research/calibrations/CAL-S1-TOPO-REFERENCE-INTEGRATOR-R1/result.json",
+      "protocol": "one neuron, one tick, current=0 and current=100; compare MHRN and Brian2 final v,u, threshold_adaptation, firing_rate_estimate, spike flag",
+      "tolerance_abs": 1e-12,
+      "pass_rule": "all compared scalar fields match within 1e-12 and spike flags are identical in both cases",
+      "failure_rule": "freeze blocked; no reference evaluation may run"
+    },
+    "mechanism_audit": {
+      "required": true,
+      "artifact": "research/audits/STAGE1_TOPOLOGY_REFERENCE_MECHANISM_AUDIT_20260927.json",
+      "pass_rule": "every spike-timing-relevant canonical mechanism is classified and translated; every omitted mechanism is source-demonstrated spike-timing inert",
+      "failure_rule": "freeze blocked"
+    },
+    "runner_independence_scan": {
+      "required": true,
+      "script": "scripts/check_stage1_reference_independence.py",
+      "pass_rule": "no forbidden MHRN imports, EVID/experiment access, canonical target/equivalence access, or research artifact reads in the reference runner package",
+      "failure_rule": "freeze blocked"
+    },
+    "seed_freshness": {
+      "required": true,
+      "script": "scripts/check_stage1_reference_seed_freshness.py",
+      "pass_rule": "All evaluation seeds must be absent from prior experiment/DATA use. Allowed tracked declarations are limited to the canonical preregistration, sanitized Brian2 runner protocol, the explicitly invalidated premature-freeze audit (which records reference_data_created=false), and after a valid freeze the canonical freeze record.",
+      "failure_rule": "select a new seed block before freeze",
+      "allowed_seed_declarations": [
+        "research/preregistrations/PREREG-S1-TOPO-REFERENCE-R1.json",
+        "reference/stage1_topology_brian2/reference_protocol.json",
+        "research/audits/invalidated/PREREG-S1-TOPO-REFERENCE-R1.freeze.68cc945.invalidated.json"
+      ]
+    },
+    "reset_parity": {
+      "required": true,
+      "artifact": "research/calibrations/CAL-S1-TOPO-REFERENCE-RESET-R1/result.json",
+      "protocol": "one neuron, forced spike followed by the next tick; compare spike flag, reset v=c, u increment by d, threshold adaptation, firing-rate estimate and next-tick state",
+      "tolerance_abs": 1e-12,
+      "pass_rule": "all compared state fields and spike decisions match MHRN within 1e-12",
+      "failure_rule": "freeze blocked"
+    },
+    "synapse_delay_parity": {
+      "required": true,
+      "artifact": "research/calibrations/CAL-S1-TOPO-REFERENCE-SYNAPSE-R1/result.json",
+      "protocol": "two neurons, one fixed excitatory synapse weight 55 and delay 1 tick; induce a source spike at tick 0 and compare event delivery tick, delivered-event count, postsynaptic current/state and spike decision",
+      "tolerance_abs": 1e-12,
+      "pass_rule": "event is absent at source-spike tick, delivered exactly one tick later, and compared target state/spike fields match MHRN within 1e-12",
+      "failure_rule": "freeze blocked"
+    }
+  },
+  "prefreeze_review_record": {
+    "review_date": "2026-09-27",
+    "status": "REVIEW_REQUIREMENTS_INTEGRATED_AWAITING_EXECUTABLE_GATES",
+    "integrated_requirements": [
+      "single- and multi-tick integrator parity before freeze",
+      "code-backed adaptation/homeostasis/energy/traces audit before freeze",
+      "strict 50%-150% sign-preserving equivalence bounds; no resolution-based widening",
+      "explicit reset parity",
+      "explicit two-neuron synapse/delay parity",
+      "automated runner leakage/independence scan",
+      "seed freshness at exact freeze commit",
+      "complete blinded Brian2 runner and separate verifier implemented before freeze",
+      "complete PARTIAL_REPLICATION / FAILED_REPLICATION / INCONCLUSIVE_REFERENCE_REPLICATION decision rules"
+    ],
+    "criterion_change_history": [
+      "Temporary DRAFT widening of 3d->5d to [-2.0,-0.5] was withdrawn before reference DATA; strict [-1.5,-0.5] restored.",
+      "Earlier canonical freeze attempt at commit 68cc945 was invalidated because later mandatory pre-freeze gates were not yet integrated."
+    ],
+    "reference_data_seen": false
+  },
+  "pre_freeze_gates": {
+    "integrator_parity": {
+      "required": true,
+      "artifact": "research/calibrations/CAL-S1-TOPO-REFERENCE-INTEGRATOR-R1/result.json",
+      "rule": "PASS required before freeze. Single-tick subthreshold/spike cases and persistent multi-tick trajectory must match v/u/adaptation/firing-rate state at absolute tolerance 1e-12; the multi-tick trajectory must include at least one spike.",
+      "status": "PENDING"
+    },
+    "mechanism_audit": {
+      "required": true,
+      "artifact": "research/audits/2026-09-27_stage1_reference_mechanism_audit.md",
+      "rule": "Threshold adaptation and homeostasis are timing-relevant and must be translated. Energy and traces may be omitted only as explicitly audited causally inert state for registered propagation endpoints.",
+      "status": "PASS_DOCUMENTED"
+    },
+    "independence_scan": {
+      "required": true,
+      "script": "scripts/check_stage1_reference_independence.py",
+      "rule": "Reference package must have no imports from src/, research/, or Stage-1 MHRN runner modules and must not contain canonical EVID/experiment identifiers or frozen target-table labels.",
+      "status": "PENDING"
+    },
+    "seed_freshness": {
+      "required": true,
+      "rule": "Evaluation seeds 810000001-810000020 must be rechecked automatically at the freeze commit; any occurrence outside the preregistration and blinded reference_protocol.json blocks freeze.",
+      "status": "PENDING"
+    },
+    "reset_parity": {
+      "required": true,
+      "status": "PENDING",
+      "artifact": "research/calibrations/CAL-S1-TOPO-REFERENCE-RESET-R1/result.json"
+    },
+    "synapse_delay_parity": {
+      "required": true,
+      "status": "PENDING",
+      "artifact": "research/calibrations/CAL-S1-TOPO-REFERENCE-SYNAPSE-R1/result.json"
+    },
+    "runner_and_verifier": {
+      "required": true,
+      "status": "IMPLEMENTED_PENDING_FREEZE_HASH_BINDING",
+      "runner": "reference/stage1_topology_brian2/runner.py",
+      "verifier": "scripts/verify_stage1_topology_reference_r1.py",
+      "rule": "Runner must pass independence/blinding scan; both files must exist before freeze and their SHA-256 digests must be written into the freeze record."
+    }
+  },
+  "reference_implementation_authorship": {
+    "project_leadership_overlap": true,
+    "classification_consequence": "Even if a separate framework/codebase is used, this project-side implementation is PARTIAL_REPLICATION only. It cannot be relabeled EXTERNAL_REPLICATION without genuinely external authorship/control and a separately registered protocol."
+  },
+  "freeze_authorization": {
+    "allowed": true,
+    "rule": "All pre-freeze gates passed and are bound into the freeze record. Reference evaluation remains unauthorized until the separate runner implementation is independently scanned, hash-bound and explicitly authorized.",
+    "reference_runner_implementation_allowed": true,
+    "reference_runner_execution_allowed": false
+  },
+  "invalidated_freeze_history": [
+    {
+      "archived_record": "research/audits/invalidated/PREREG-S1-TOPO-REFERENCE-R1.freeze.68cc945.invalidated.json",
+      "original_freeze_commit": "68cc945db5ed0822490e63a10417dfb152aa8539",
+      "status": "INVALIDATED_PREMATURE_FREEZE",
+      "reference_data_created": false,
+      "replication_credit_awarded": false
+    }
+  ],
+  "freeze_record": "research/preregistrations/PREREG-S1-TOPO-REFERENCE-R1.freeze.json",
+  "freeze_semantics": "Scientific translation, targets, equivalence bounds, endpoints and decision criteria are frozen. Reference evaluation remains forbidden until a separately reviewed runner implementation is hash-bound and explicitly authorized."
+}

@@ -1,6 +1,6 @@
 # Current Scientific State
 
-**Stand:** 25. September 2026
+**Stand:** 27. September 2026
 
 Dieses Dokument ist der kurze Einstieg in den aktuellen wissenschaftlichen Zustand. Historische DATA, EVID-Entscheidungen und eingefrorene Publikationen bleiben unverändert in ihren datierten Verzeichnissen.
 
@@ -83,16 +83,45 @@ Der Promotion-Lauf selbst bleibt als ausgeführte DATA unverändert; seine autom
 
 ## Stage 1 — konsolidierter wissenschaftlicher Reifestand
 
-Die frühere 30-%-Projektion war gegenüber dem aktuellen Repository veraltet. Die kanonische Stage-1-Baseline ist jetzt `RQ-SNN-003 / H-SNN-003-B` mit der verknüpften Topologie-DATA-Linie `STAGE1-TOPOLOGY-LINE-001`: `EXP-S1-TOPO-V2-20260918` als primärer präregistrierter Lauf und `EXP-S1-TOPO-V3-R1-20260918` als korrigierte interne Replikation mit neuen Seeds. Der fehlerhaft analysierte erste V3-Lauf bleibt unverändert als Auditspur.
+Die frühere 30-%-Projektion und der zwischenzeitliche 75-%-Stand sind durch den prospektiven Promotion-Lauf überholt. Die kanonische Stage-1-Baseline bleibt `RQ-SNN-003 / H-SNN-003-B` mit der verknüpften Topologie-DATA-Linie `STAGE1-TOPOLOGY-LINE-001`: `EXP-S1-TOPO-V2-20260918` als primärer präregistrierter Lauf und `EXP-S1-TOPO-V3-R1-20260918` als korrigierte interne Replikation mit neuen Seeds. Der fehlerhaft analysierte erste V3-Lauf bleibt unverändert als Auditspur.
 
-Nach dem unveränderten Gewichtungsvertrag ergibt sich für Stage 1 **75 %**: RQ/H 15 %, Protokoll 20 %, DATA 20 %, Human-Review-Subgate 10 % von 20 %, unabhängige Replikation 0 % und Attribution 10 %. Die beiden Human Reviews durch Thomas Heisig sind abgeschlossen und akzeptieren die begrenzte Interpretation. Das erzeugt keine EVID.
+Zur Schließung des heutigen EvidenceEngine-Provenienzvertrags wurde `EXP-S1-TOPO-PROMO-R1-20260927` prospektiv präregistriert, eingefroren und mit den frischen Seeds 6301–6320 ausgeführt. Der Lauf verwendete weiterhin 64 Neuronen, 246 Kanten, Synapsengewicht 55 und 128 Ticks. Er war clean-tree, `validity.valid=true`, hatte null Runtime-/Fatal-Fehler und vollständige `provenance_digests` mit gültigem `source_freeze_sha`. Designintegrität, Ceiling-Resolution-Kriterium und alle fünf registrierten First-Output-Latency-Replikationskontraste bestanden.
 
-Die separate EvidenceEngine-Prüfung bleibt blockiert: kein kanonischer Claim, historische Manifeste ohne heutige `validity`-/`git`-/`provenance_digests`-/`source_freeze_sha`-Felder und vorhandene Reviews mit `accepted_as_interpretation` statt EvidenceEngine-`supports|refutes|inconclusive`. Diese Lücken werden nicht rückwirkend erfunden.
+Der kanonische Human Review durch Thomas Heisig trägt die Entscheidung `supports` ausschließlich für `CLAIM-S1-TOPO-001`. Er bewahrt ausdrücklich die nicht signifikanten `half_activation_latency_censored`-Kontraste und hält fest, dass die Daten **keine 5D-Überlegenheit** zeigen. Die anschließende separate EvidenceEngine-Promotion erzeugte `EVID-2026-19`.
 
-Als zweite getrennte Funktionslinie wird `STAGE1-TEMPORAL-ORDER-LINE-002` mit `RQ-TEMP-002 / H-TEMP-002-A` und `EXP-S1-TEMP-ORDER-V2-20260919` geführt. Der präregistrierte Sechs-Neuronen-Task umfasst 20 Seeds, 120 Runs und eine identity-destroyed Kontrolle. Der DATA-Status ist `SUPPORTED_WITHIN_PREREGISTERED_PROTOCOL`; der Human Review durch Thomas Heisig ist mit `accepted_as_interpretation` abgeschlossen. EVID-Promotion und unabhängige Replikation bleiben separat offen. Diese Linie ist funktional eigenständig, aber keine unabhängige Replikation der Topologielinie.
+Nach dem unveränderten Gewichtungsvertrag beträgt die Stage-1-Scientific-Maturity deshalb jetzt **85 %**:
+- RQ/H: **met** = 15 %;
+- eingefrorenes Protokoll: **met** = 20 %;
+- source-bound DATA: **met** = 20 %;
+- Human-reviewed EVID: **met** = 20 % von 20 %;
+- unabhängige Replikation: **open** = 0 % von 15 %;
+- Attribution: **met** = 10 %.
+
+Die EvidenceEngine setzt `CLAIM-S1-TOPO-001` und `H-SNN-003-B` nach ihrem generischen Mehr-EVID-Vertrag weiterhin auf `inconclusive`, weil eine einzelne EVID-Registrierung nicht automatisch einen globalen Claim-Status `supported` erzeugt. Das widerspricht nicht dem Human Review `supports`; die Stage-Maturity zählt hier die abgeschlossene kanonische Review-/EVID-Pipeline, nicht eine künstliche Hochstufung des globalen Claim-Status.
+
+Als zweite getrennte Funktionslinie wird `STAGE1-TEMPORAL-ORDER-LINE-002` mit `RQ-TEMP-002 / H-TEMP-002-A` geführt. Der historische Lauf `EXP-S1-TEMP-ORDER-V2-20260919` bleibt reviewed DATA. Die prospektive Promotion-Replikation `EXP-S1-TEMP-PROMO-R1-20260927` wiederholte den Sechs-Neuronen-/Zweikanal-Task auf 20 frischen Seeds und 120 Läufen mit identity-destroyed Kontrolle unter dem aktuellen Provenienzvertrag. Intact forward/reverse accuracy lag bei Median 1,0, identity-destroyed bei 0,0, der gepaarte Median-Delta bei 1,0 mit CI [1,0;1,0] und p=1,907×10^-6. Der kanonische Human Review durch Thomas Heisig lautet `supports` mit ausdrücklicher Perfect-Score-/Ceiling-Floor-Einschränkung. Die simultane Bedingung ist gemäß Preregistration ein nicht-inferentieller Task-Adequacy-Control: Erfolg bedeutet gleiche erste Output-Ticks und Decoderlabel `simultaneous`, nicht 100-%-Order-Accuracy. Die getrennte EvidenceEngine-Promotion erzeugte `EVID-2026-20`.
+
+Stage 1 bleibt trotz der zweiten EVID-Linie bei **85 %**. Das Reviewed-Evidence-Kriterium war durch `EVID-2026-19` bereits vollständig erfüllt; `EVID-2026-20` erweitert die Evidenzbreite, erfüllt aber nicht die unabhängige Replikationskomponente. Die Temporal-Linie bleibt funktional eigenständig und ist keine unabhängige Replikation der Topologielinie.
+
+Die nächste 7,5-%-Stufe bis 92,5 % erfordert eine unabhängig implementierte Referenz-/Cross-Implementation-Replikation des zentralen Topologie-Claims. Eine echte externe, unabhängig autorisierte Replikation bleibt darüber hinaus die Voraussetzung für die vollständige Replikationskomponente. `RQ-5D-005 / H-5D-005-A` bleibt separat offen; aus `EVID-2026-19` darf kein 5D-Überlegenheitsclaim abgeleitet werden.
 
 Kanonische Maschinenbaseline: `research/registry/stage1_baseline.json` (`STAGE1-SCIENTIFIC-BASELINE-20260925`).  
-Kanonische Konsolidierungsentscheidung: `research/decisions/2026-09-25_stage1_scientific_consolidation.md`.
+Kanonische Topologie-EVID: `research/registry/evidence/EVID-2026-19.json`.  
+Kanonische Temporal-Order-EVID: `research/registry/evidence/EVID-2026-20.json`.  
+Topologie-Promotionsstatus: `research/experiments/EXP-S1-TOPO-PROMO-R1-20260927/EVIDENCE_PROMOTION_STATUS.json`.  
+Temporal-Promotionsstatus: `research/experiments/EXP-S1-TEMP-PROMO-R1-20260927/EVIDENCE_PROMOTION_STATUS.json`.
+
+### Efficiency-Quarantäne und Reference-Replikationspfad
+
+Die nach `EVID-2026-19` explorativ berechneten Effizienzverhältnisse wurden nicht rückwirkend in den Topologie-Claim aufgenommen. `H-SNN-003-C / CLAIM-S1-EFFICIENCY-001` bleiben `untested` mit leerer Evidence-Liste. Die dafür angelegte `PREREG-S1-TOPO-EFFICIENCY-R1` ist nach der gültigen Pre-Freeze-Kalibration `CAL-S1-TOPO-EFFICIENCY-R1-20260927` blockiert: Im registrierten Current-Bereich 70–140 blieb die mediane `final_active_fraction` für 3D bei 1,0 und für 5D bei 0,828125; die vorab definierten Recruitment-Matching-Gates wurden nicht erreicht. Der Status ist `DRAFT_CALIBRATION_GATE_FAILED_FREEZE_BLOCKED`; eine Evaluation wurde nicht ausgeführt. Das ist ein gültiger negativer Kalibrationsbefund, keine EVID.
+
+Diese Efficiency-Linie kann den Stage-1-Maturity-Score auch bei einem späteren positiven, getrennten EVID-Pfad nicht über 85 % anheben, solange die Replikationskomponente offen ist: `reviewed_evidence` ist bereits mit 20/20 erfüllt.
+
+Für den nächsten 7,5-%-Schritt ist `PREREG-S1-TOPO-REFERENCE-R2` der aktive projektseitige Cross-Implementation-Pfad mit Brian2 2.10.1. R1 wurde nach Freeze, aber vor jeder Reference-DATA, wegen der dokumentierten Topologie-Mapping-Ambiguität abgebrochen und bleibt historische Provenienz mit 0 Replikationspunkten. Brian2 wird als externe Referenzsoftware verwendet und gemäß Stimberg, Brette & Goodman (2019), *eLife* 8:e47314, DOI 10.7554/eLife.47314 attribuiert; die Software bleibt unter CeCILL 2.1 und wird nicht durch die MHRN-MIT-Lizenz relicensed. Lizenz- und Attributionsprovenienz stehen zusätzlich in `THIRD_PARTY_NOTICES.md`.
+
+Der Reference-Pfad ist vor Reference-DATA fail-closed. Der Mechanismen-Audit identifiziert Threshold-Adaptation und Homeostasis als aktiv und timing-relevant; Energy und Traces werden zwar fortgeschrieben, sind für die registrierten Spike-Endpunkte aber nicht rückgekoppelt. Vor Freeze müssen Ein-/Mehrtick-Integratorparität, expliziter Reset, Zwei-Neuronen-Synapsen-/Delay-Parität, Mechanismen-Audit, Runner-Blinding/Unabhängigkeit und Seed-Freshness bestanden sein. Die MHRN→Brian2-Übersetzung ist in `reference/stage1_topology_brian2/TRANSLATION.md` separat dokumentiert. Der vollständige Brian2-Runner und der getrennte Verifier sind implementiert, aber eine Reference-Evaluation bleibt ohne spätere explizite Autorisierung gesperrt.
+
+Die projektseitige Cross-Implementation kann bei erfolgreichem Human Review höchstens **partial replication = 7,5/15** zum Replikationsblock beitragen und Stage 1 damit auf 92,5 % anheben. Volle 15/15 bleiben einer tatsächlich externen, unabhängig kontrollierten und autorisierten Replikation vorbehalten. Failed oder Inconclusive Reference Replication erhöhen den Score nicht und müssen ebenso sichtbar bleiben.
 
 ## Aktueller Schwerpunkt: Stage 6
 
@@ -221,3 +250,12 @@ Die vier offenen Prüfachsen sind:
 4. Codec/Binding -> `RQ-GW-CODEC-001 / H-GW-CODEC-001-A`, kanonisch registriert als `open` / `untested`.
 
 Keiner dieser Punkte ist durch die Integrationsentscheidung bereits DATA oder EVID.
+
+
+## Reference R2 supersession (2026-09-27)
+
+R1 was frozen, then **aborted before any reference DATA** after a code-backed audit found that the frozen coordinate-to-label topology wording was not sufficiently unambiguous relative to the canonical `canonical_coords` implementation. R1 contributes **0 replication points** and may never authorize execution.
+
+`PREREG-S1-TOPO-REFERENCE-R2` is the active successor. It preserves the canonical effect targets, strict 50–150% equivalence bounds (including `3d→5d = [-1.5,-0.5]`), endpoints and three-outcome decision rule, while adding executable coordinate ordering and mandatory exact topology/edge mapping parity. R2 execution remains unauthorized until freeze, all gates, hash binding, seed freshness, blinding, and a separate explicit human execution-authorization record are present.
+
+Stage-1 Scientific Maturity remains **85%**. No Reference DATA, replication classification or replication maturity credit exists yet.

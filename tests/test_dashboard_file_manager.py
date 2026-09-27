@@ -45,6 +45,27 @@ def test_research_tree_orders_experiments_by_manifest_timestamp(tmp_path: Path) 
     assert experiments["children"][0]["created_at"] == "2026-09-03T00:00:00+00:00"
 
 
+def test_project_source_exposes_only_independent_replication(tmp_path: Path) -> None:
+    docs_root = tmp_path / "docs"
+    docs_root.mkdir()
+    replication = tmp_path / "INDEPENDENT_REPLICATION.md"
+    replication.write_text("# Replication", encoding="utf-8")
+    manager = FileManager(None, None, docs_root)
+
+    content, _mime, is_binary = manager.get_content(
+        "project", "INDEPENDENT_REPLICATION.md"
+    )
+
+    assert content == "# Replication"
+    assert is_binary is False
+    try:
+        manager.get_content("project", "pyproject.toml")
+    except Exception as error:
+        assert "not exposed" in str(error)
+    else:
+        raise AssertionError("unexpected project file was exposed")
+
+
 def _start_server(tmp_path: Path):
     store = DashboardStateStore()
     docs_root = tmp_path / "docs"

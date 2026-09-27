@@ -29,11 +29,12 @@ def test_current_release_matches_canonical_published_version() -> None:
     assert current.get("release_type") == "pre-release"
     assert current.get("target_tag") == "v0.6.0-alpha.7"
     assert current["parent"] == "v0.6.0-alpha.6"
-    assert current["as_of"] == "2026-09-21"
+    assert current["as_of"] == "2026-09-27"
     assert current["milestone_status"] in {
         "stage3_engineering_reached_scientific_maturity_separate",
         "engineering_release_candidate_scientific_programme_active",
         "public_repository_hardening_release_candidate",
+        "alpha7_release_candidate_from_2026_09_27_develop",
     }
     assert current["release_blockers"] == 0
     assert current["open"]

@@ -33,6 +33,7 @@ from defusedxml.common import DefusedXmlException
 
 PREVIEW_BYTES = 256 * 1024
 EDIT_BYTES = 1024 * 1024
+PROJECT_FILE_ALLOWLIST = frozenset({"INDEPENDENT_REPLICATION.md"})
 DIGEST_BYTES = 64 * 1024 * 1024
 ARCHIVE_BYTES = 32 * 1024 * 1024
 MEDIA_PROBE_BYTES = 64 * 1024
@@ -276,7 +277,9 @@ def _local_diagram_svg(diagram_format: str, source: str) -> tuple[str, str]:
 def file_is_read_only(source: str, path: str) -> bool:
     """Preserve scientific provenance even when a file is otherwise editable."""
     parts = PurePosixPath(path.replace("\\", "/")).parts
-    return source == "research" and bool(parts and parts[0] in _PROTECTED_RESEARCH)
+    return source == "project" or (
+        source == "research" and bool(parts and parts[0] in _PROTECTED_RESEARCH)
+    )
 
 
 def validate_file_write_access(handler: Any) -> None:
@@ -343,6 +346,8 @@ class FilePreviewService:
                 "Path traversal is not allowed", HTTPStatus.FORBIDDEN
             )
         root = self.roots[source]
+        if source == "project" and path not in PROJECT_FILE_ALLOWLIST:
+            raise FileContractError("Project file is not exposed", HTTPStatus.FORBIDDEN)
         candidate = (root / path).resolve()
         if not candidate.is_relative_to(root):
             raise FileContractError("Path escapes file source", HTTPStatus.FORBIDDEN)

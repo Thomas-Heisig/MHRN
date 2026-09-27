@@ -1,6 +1,6 @@
 "use strict";
 
-import "./scientific-progress.js";
+import "./scientific-progress.js?v=scientific-register-20260927";
 
 /**
  * Scientific formula renderer for dynamically opened Markdown files and the

@@ -2,7 +2,7 @@
 
 **Open call · 19 September 2026**
 
-MHRN invites independent researchers to reproduce three bounded Stage-1 results from the Multi-Scale Homeostatic Recurrence Network project. The purpose is adversarial, transparent replication: confirming results is welcome, but contradictory, null, partially reproducible and implementation-sensitive outcomes are equally valuable.
+MHRN invites independent researchers to reproduce four bounded Stage-1 results from the Multi-Scale Homeostatic Recurrence Network project. The purpose is adversarial, transparent replication: confirming results is welcome, but contradictory, null, partially reproducible and implementation-sensitive outcomes are equally valuable.
 
 The project distinguishes `implementation test != DATA != reviewed EVID != interpretation`. None of the experiments below is presented here as independently replicated merely because the original repository can rerun it.
 
@@ -10,11 +10,30 @@ The project distinguishes `implementation test != DATA != reviewed EVID != inter
 
 | Experiment | Research object | Frozen source / canonical DATA | Current bounded status |
 | --- | --- | --- | --- |
-| `EXP-S1-TEMP-ORDER-V2-20260919` | `RQ-TEMP-002` / `H-TEMP-002-A` | source `23549a0b75f7019a6146f8513bf6628505acb079`; DATA `aed8e70f9cf227ac07bcec900fc916dcae3a243e` | `SUPPORTED_WITHIN_PREREGISTERED_PROTOCOL`; Human Review accepted as bounded interpretation; no EVID promotion; no independent replication |
+| `EXP-S1-TOPO-PROMO-R1-20260927` | `RQ-SNN-003` / `H-SNN-003-B` | central line: V2 + V3-R1 + promotion R1 | canonical `EVID-2026-19`; internal promotion only; no independent replication |
+| `EXP-S1-TEMP-PROMO-R1-20260927` | `RQ-TEMP-002` / `H-TEMP-002-A` | historical V2 DATA + promotion R1 | canonical `EVID-2026-20`; Human Review `supports` with saturation limitations; no independent replication |
 | `EXP-REC-002-CLEAN-R2-20260919` | `RQ-REC-002` / `H-REC-002-A` | source `947e64c757540ca12bbc5eaad012d5a800f05672`; DATA `df8da50f126f12bdaa9b6d943a6cc68268a42fba` | `SUPPORTED_WITHIN_PREREGISTERED_PROTOCOL`; Human Review pending; no independent replication |
 | `EXP-SNN004-STDP-ASYM-R2-20260919` | `RQ-SNN-004` / `H-SNN-004-A` | source `821d2e0ecf823af3196bda782a69be8260a54943`; DATA `c0fabb0a21dfc5823d102ccaf8726c6b90fd4532` | `SUPPORTED_WITHIN_PREREGISTERED_PROTOCOL`; Human Review pending; no independent replication |
 
-### 1. Temporal-order task
+### 1. Topology-propagation task
+
+Canonical materials:
+- `research/preregistrations/PREREG-S1-TOPO-V2.json`
+- `research/preregistrations/PREREG-S1-TOPO-V3-R1-TIME-RESOLVED.json`
+- `research/experiments/EXP-S1-TOPO-V2-20260918/`
+- `research/experiments/EXP-S1-TOPO-V3-R1-20260918/`
+- `scripts/run_stage1_topology_v2.py`
+- `scripts/run_stage1_topology_v3_r1.py`
+- `scripts/verify_stage1_topology_v2.py`
+- `scripts/verify_stage1_topology_v3_r1.py`
+
+The central Stage-1 topology line tests whether matched small SNNs with controlled neuron count, global edge budget, stimulation, weights and delays differ in preregistered propagation metrics across predefined topologies. V3-R1 is an internal corrected replication/extension and does **not** count as independent scientific replication.
+
+A replication should preregister the implementation mapping and comparison criteria before examining outcomes, preserve the bounded claim, and publish confirmatory, contradictory and null results. The original line does **not** establish a 5D advantage, scaling, cognition or biological equivalence.
+
+The project-side cross-implementation plan is now drafted as `research/preregistrations/PREREG-S1-TOPO-REFERENCE-R1.json`. It targets Brian2 2.10.1 as a separate simulation framework and is explicitly limited to **partial** reference-replication credit because the same project leadership remains involved. The draft requires a separate package, separate code digest, no MHRN runtime imports, frozen translation semantics, raw reference DATA, and predeclared `partial / failed / inconclusive` classification rules. A successful project-side cross-implementation result would address only 7.5/15 replication points; full 15/15 remains reserved for genuinely external independent replication.
+
+### 2. Temporal-order task
 
 Canonical materials:
 - `research/preregistrations/PREREG-S1-TEMP-ORDER-V2.json`
@@ -26,7 +45,7 @@ The registered task asks whether a small acyclic six-neuron SNN preserves the te
 
 A replication should report the intact, identity-destroyed and simultaneous-control results and disclose every departure from the frozen protocol. The original result does **not** establish learning, memory, cognition, biological equivalence, scaling, general temporal reasoning or a 5D advantage.
 
-### 2. Recurrent-delay task
+### 3. Recurrent-delay task
 
 Canonical materials:
 - `research/preregistrations/PREREG-REC-002-CLEAN-R2.json`
@@ -38,7 +57,7 @@ The registered task tests whether loop delay changes persistence/propagation met
 
 A replication should preserve the registered comparison or clearly preregister any modification. The original result does **not** establish memory, cognition, biological equivalence, scaling, monotonic superiority of larger delays or a 5D advantage.
 
-### 3. Pair-based STDP timing asymmetry
+### 4. Pair-based STDP timing asymmetry
 
 Canonical materials:
 - `research/preregistrations/PREREG-SNN004-STDP-ASYM-R2.json`
@@ -80,3 +99,12 @@ Suggested archival route:
 - OSF: https://osf.io/p34uq/
 
 This call is an invitation to test the work, not a claim that external replication has already occurred.
+
+
+## Stage-1 Brian2 R1/R2 provenance
+
+- R1 is immutable historical provenance: `FROZEN_ABORTED_BEFORE_REFERENCE_DATA`.
+- No R1 Reference DATA, replication credit or EVID exists.
+- R2 is the only active project-side cross-implementation protocol and adds exact coordinate/edge topology-mapping parity before freeze.
+- A successful R2 result can contribute only **7.5/15** replication points (Stage 1: 85% → 92.5%); full credit remains reserved for genuinely external independent replication.
+- R2 freeze does not authorize execution; a separate human authorization must bind the frozen commit and runner hash.

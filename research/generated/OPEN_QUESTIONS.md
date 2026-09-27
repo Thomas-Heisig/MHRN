@@ -1,6 +1,6 @@
 # MHRN Open Questions
 
-*Generiert am 2026-09-21*
+*Generiert am 2026-09-27*
 
 Die folgenden Forschungsfragen sind noch offen und warten auf experimentelle Evidenz.
 
@@ -65,9 +65,11 @@ Die folgenden Forschungsfragen sind noch offen und warten auf experimentelle Evi
 **Literatur:**
 - `SRC-WATTS-STROGATZ-1998`: Duncan J. Watts et al. (1998)
 - `SRC-BARABASI-1999`: Albert-László Barabási et al. (1999)
+- `SRC-OLSHAUSEN-FIELD-1996`: Bruno A. Olshausen et al. (1996)
 
 **Hypothesen:**
 - `H-SNN-003-B`: Unter gleicher Neuronenzahl, Dichte und Stimulusbedingung unterscheiden sich Propagationslatenz oder -reichweite zwischen mindestens zwei vorab definierten Topologien; ein Vorteil einer 5D-Anordnung wird nicht vorausgesetzt.
+- `H-SNN-003-C`: Unter dem registrierten 64-Neuronen-Small-SNN-Regime zeigt die 5D-Koordinatenorganisation nach Kontrolle der dynamischen Rekrutierung eine höhere Propagations-Effizienz als vorab definierte 3D-, 5D-shuffled- und Random-Graph-Kontrollen, operationalisiert als activation_auc_0_32 pro Spike und pro geliefertem Event; ein allgemeiner 5D-Vorteil wird nicht behauptet.
 
 ---
 

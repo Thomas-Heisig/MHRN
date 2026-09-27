@@ -159,6 +159,105 @@ Typ: `claim`; Quellstatus: `inconclusive`; Quelle: [research/registry/claims.yam
 }
 ```
 
+## CLAIM-S1-EFFICIENCY-001
+
+Typ: `claim`; Quellstatus: `untested`; Quelle: [research/registry/claims.yaml](../../registry/claims.yaml), JSON-Pointer `/10`.
+
+```json
+{
+  "id": "CLAIM-S1-EFFICIENCY-001",
+  "claim": "Im registrierten 64-Neuronen-Small-SNN-Regime kann eine spezifische 5D-Koordinatenorganisation nach expliziter Kontrolle dynamischer Rekrutierung eine hoehere Propagations-Effizienz als vorab definierte Kontrollen zeigen, operationalisiert durch activation_auc_0_32 pro Spike und pro geliefertem Event; dies ist kein Claim zu Speicherreduktion, Informationskapazitaet oder allgemeiner 5D-Ueberlegenheit.",
+  "research_question": "RQ-SNN-003",
+  "hypothesis": "H-SNN-003-C",
+  "evidence": [],
+  "experiments": [],
+  "sources": [
+    "SRC-OLSHAUSEN-FIELD-1996",
+    "SRC-WATTS-STROGATZ-1998",
+    "SRC-BARABASI-1999"
+  ],
+  "status": "untested",
+  "confidence": "none",
+  "required_evidence": [
+    "prospective_efficiency_preregistration",
+    "dynamic_recruitment_controls",
+    "paired_efficiency_endpoints",
+    "multiplicity_control",
+    "human_scientific_review"
+  ],
+  "minimum_runs": 20,
+  "created": "2026-09-27",
+  "updated": "2026-09-27"
+}
+```
+
+## CLAIM-S1-TEMP-001
+
+Typ: `claim`; Quellstatus: `inconclusive`; Quelle: [research/registry/claims.yaml](../../registry/claims.yaml), JSON-Pointer `/11`.
+
+```json
+{
+  "id": "CLAIM-S1-TEMP-001",
+  "claim": "Unter dem registrierten sechsneuronigen Small-SNN-Task erzeugen unterscheidbare Eingabekanäle eine decodierbare zeitliche Reihenfolge an den festgelegten Ausgängen, während die identity-destroyed Kontrolle dieses feste Ordnungssignal entfernt.",
+  "research_question": "RQ-TEMP-002",
+  "hypothesis": "H-TEMP-002-A",
+  "evidence": [
+    "EVID-2026-20"
+  ],
+  "experiments": [
+    "EXP-S1-TEMP-ORDER-V2-20260919",
+    "EXP-S1-TEMP-PROMO-R1-20260927"
+  ],
+  "sources": [],
+  "status": "inconclusive",
+  "confidence": "low",
+  "required_evidence": [
+    "preregistered_temporal_order_task",
+    "identity_destroyed_control",
+    "human_scientific_review",
+    "evidence_engine_provenance"
+  ],
+  "minimum_runs": 1,
+  "created": "2026-09-27",
+  "updated": "2026-09-27"
+}
+```
+
+## CLAIM-S1-TOPO-001
+
+Typ: `claim`; Quellstatus: `inconclusive`; Quelle: [research/registry/claims.yaml](../../registry/claims.yaml), JSON-Pointer `/9`.
+
+```json
+{
+  "id": "CLAIM-S1-TOPO-001",
+  "claim": "Unter kontrollierter Neuronenzahl, globalem Kantenbudget, Stimulus, Gewichten und Delays verändern mindestens zwei vorab definierte Netzwerktopologien die registrierten Propagationsmetriken innerhalb des definierten Stage-1-Small-SNN-Betriebsbereichs; ein Vorteil einer 5D-Anordnung wird nicht vorausgesetzt.",
+  "research_question": "RQ-SNN-003",
+  "hypothesis": "H-SNN-003-B",
+  "evidence": [
+    "EVID-2026-19"
+  ],
+  "experiments": [
+    "EXP-S1-TOPO-V2-20260918",
+    "EXP-S1-TOPO-V3-R1-20260918",
+    "EXP-S1-TOPO-PROMO-R1-20260927"
+  ],
+  "sources": [
+    "SRC-WATTS-STROGATZ-1998",
+    "SRC-BARABASI-1999"
+  ],
+  "status": "inconclusive",
+  "confidence": "low",
+  "required_evidence": [
+    "preregistered_topology_propagation",
+    "human_scientific_review",
+    "evidence_engine_provenance"
+  ],
+  "minimum_runs": 1,
+  "created": "2026-09-27",
+  "updated": "2026-09-27"
+}
+```
+
 ## CLAIM-SELF-001
 
 Typ: `claim`; Quellstatus: `untested`; Quelle: [research/registry/claims.yaml](../../registry/claims.yaml), JSON-Pointer `/6`.
@@ -284,7 +383,7 @@ Typ: `claim`; Quellstatus: `inconclusive`; Quelle: [research/registry/claims.yam
 
 ## H-5D-001-A
 
-Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/14`.
+Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/15`.
 
 ```json
 {
@@ -300,7 +399,7 @@ Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypothese
 
 ## H-5D-002-A
 
-Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/15`.
+Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/16`.
 
 ```json
 {
@@ -316,7 +415,7 @@ Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypothese
 
 ## H-5D-003-A
 
-Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/16`.
+Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/17`.
 
 ```json
 {
@@ -332,7 +431,7 @@ Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypothese
 
 ## H-5D-004-A
 
-Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/17`.
+Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/18`.
 
 ```json
 {
@@ -348,7 +447,7 @@ Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypothese
 
 ## H-5D-005-A
 
-Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/38`.
+Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/39`.
 
 ```json
 {
@@ -364,7 +463,7 @@ Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypothese
 
 ## H-AIR-001-A
 
-Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/33`.
+Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/34`.
 
 ```json
 {
@@ -380,7 +479,7 @@ Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypothese
 
 ## H-EMB-001-A
 
-Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/27`.
+Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/28`.
 
 ```json
 {
@@ -396,7 +495,7 @@ Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypothese
 
 ## H-EPIST-001-A
 
-Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/31`.
+Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/32`.
 
 ```json
 {
@@ -412,7 +511,7 @@ Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypothese
 
 ## H-EPIST-002-A
 
-Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/32`.
+Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/33`.
 
 ```json
 {
@@ -428,7 +527,7 @@ Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypothese
 
 ## H-ETH-001-A
 
-Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/29`.
+Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/30`.
 
 ```json
 {
@@ -444,7 +543,7 @@ Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypothese
 
 ## H-ETH-001-B
 
-Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/45`.
+Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/46`.
 
 ```json
 {
@@ -460,7 +559,7 @@ Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypothese
 
 ## H-ETH-001-C
 
-Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/46`.
+Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/47`.
 
 ```json
 {
@@ -476,7 +575,7 @@ Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypothese
 
 ## H-ETH-001-D
 
-Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/47`.
+Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/48`.
 
 ```json
 {
@@ -492,7 +591,7 @@ Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypothese
 
 ## H-ETH-001-E
 
-Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/48`.
+Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/49`.
 
 ```json
 {
@@ -508,7 +607,7 @@ Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypothese
 
 ## H-ETH-002-A
 
-Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/30`.
+Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/31`.
 
 ```json
 {
@@ -524,7 +623,7 @@ Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypothese
 
 ## H-GEN-001-A
 
-Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/36`.
+Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/37`.
 
 ```json
 {
@@ -540,7 +639,7 @@ Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypothese
 
 ## H-HOM-001-A
 
-Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/12`.
+Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/13`.
 
 ```json
 {
@@ -556,7 +655,7 @@ Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypothese
 
 ## H-HOM-002-A
 
-Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/13`.
+Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/14`.
 
 ```json
 {
@@ -572,7 +671,7 @@ Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypothese
 
 ## H-LIFE-001-A
 
-Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/43`.
+Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/44`.
 
 ```json
 {
@@ -588,7 +687,7 @@ Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypothese
 
 ## H-LLM-001-A
 
-Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/28`.
+Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/29`.
 
 ```json
 {
@@ -604,7 +703,7 @@ Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypothese
 
 ## H-MEM-001-A
 
-Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/26`.
+Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/27`.
 
 ```json
 {
@@ -620,7 +719,7 @@ Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypothese
 
 ## H-PERF-001-A
 
-Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/41`.
+Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/42`.
 
 ```json
 {
@@ -636,7 +735,7 @@ Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypothese
 
 ## H-PING-001-A
 
-Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/6`.
+Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/7`.
 
 ```json
 {
@@ -652,7 +751,7 @@ Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypothese
 
 ## H-REC-001-A
 
-Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/35`.
+Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/36`.
 
 ```json
 {
@@ -668,7 +767,7 @@ Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypothese
 
 ## H-REC-002-A
 
-Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/42`.
+Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/43`.
 
 ```json
 {
@@ -684,7 +783,7 @@ Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypothese
 
 ## H-REG-001-A
 
-Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/9`.
+Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/10`.
 
 ```json
 {
@@ -700,7 +799,7 @@ Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypothese
 
 ## H-REG-002-A
 
-Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/39`.
+Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/40`.
 
 ```json
 {
@@ -716,7 +815,7 @@ Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypothese
 
 ## H-REPL-001-A
 
-Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/37`.
+Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/38`.
 
 ```json
 {
@@ -732,7 +831,7 @@ Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypothese
 
 ## H-SCALE-001-A
 
-Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/22`.
+Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/23`.
 
 ```json
 {
@@ -748,7 +847,7 @@ Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypothese
 
 ## H-SELF-001-A
 
-Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/23`.
+Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/24`.
 
 ```json
 {
@@ -764,7 +863,7 @@ Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypothese
 
 ## H-SELF-002-A
 
-Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/24`.
+Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/25`.
 
 ```json
 {
@@ -836,23 +935,41 @@ Typ: `hypothesis`; Quellstatus: `supported`; Quelle: [research/registry/hypothes
 
 ## H-SNN-003-B
 
-Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/3`.
+Typ: `hypothesis`; Quellstatus: `inconclusive`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/3`.
 
 ```json
 {
   "id": "H-SNN-003-B",
   "research_question": "RQ-SNN-003",
   "hypothesis": "Unter gleicher Neuronenzahl, Dichte und Stimulusbedingung unterscheiden sich Propagationslatenz oder -reichweite zwischen mindestens zwei vorab definierten Topologien; ein Vorteil einer 5D-Anordnung wird nicht vorausgesetzt.",
-  "status": "untested",
-  "evidence": [],
+  "status": "inconclusive",
+  "evidence": [
+    "EVID-2026-19"
+  ],
   "created": "2026-09-11",
   "updated": "2026-09-11"
 }
 ```
 
-## H-SNN-004-A
+## H-SNN-003-C
 
 Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/4`.
+
+```json
+{
+  "id": "H-SNN-003-C",
+  "research_question": "RQ-SNN-003",
+  "hypothesis": "Unter dem registrierten 64-Neuronen-Small-SNN-Regime zeigt die 5D-Koordinatenorganisation nach Kontrolle der dynamischen Rekrutierung eine höhere Propagations-Effizienz als vorab definierte 3D-, 5D-shuffled- und Random-Graph-Kontrollen, operationalisiert als activation_auc_0_32 pro Spike und pro geliefertem Event; ein allgemeiner 5D-Vorteil wird nicht behauptet.",
+  "status": "untested",
+  "evidence": [],
+  "created": "2026-09-27",
+  "updated": "2026-09-27"
+}
+```
+
+## H-SNN-004-A
+
+Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/5`.
 
 ```json
 {
@@ -868,7 +985,7 @@ Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypothese
 
 ## H-SNN-005-A
 
-Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/5`.
+Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/6`.
 
 ```json
 {
@@ -884,7 +1001,7 @@ Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypothese
 
 ## H-SNN-006-A
 
-Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/44`.
+Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/45`.
 
 ```json
 {
@@ -900,7 +1017,7 @@ Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypothese
 
 ## H-STDP-001-A
 
-Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/10`.
+Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/11`.
 
 ```json
 {
@@ -916,7 +1033,7 @@ Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypothese
 
 ## H-STDP-002-A
 
-Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/11`.
+Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/12`.
 
 ```json
 {
@@ -932,7 +1049,7 @@ Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypothese
 
 ## H-STOR-001-A
 
-Typ: `hypothesis`; Quellstatus: `supported`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/18`.
+Typ: `hypothesis`; Quellstatus: `supported`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/19`.
 
 ```json
 {
@@ -956,7 +1073,7 @@ Typ: `hypothesis`; Quellstatus: `supported`; Quelle: [research/registry/hypothes
 
 ## H-STOR-002-A
 
-Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/19`.
+Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/20`.
 
 ```json
 {
@@ -972,7 +1089,7 @@ Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypothese
 
 ## H-STOR-003-A
 
-Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/20`.
+Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/21`.
 
 ```json
 {
@@ -988,7 +1105,7 @@ Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypothese
 
 ## H-STOR-004-A
 
-Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/21`.
+Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/22`.
 
 ```json
 {
@@ -1004,7 +1121,7 @@ Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypothese
 
 ## H-STRUCT-001-A
 
-Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/25`.
+Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/26`.
 
 ```json
 {
@@ -1020,7 +1137,7 @@ Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypothese
 
 ## H-SUITE-001-A
 
-Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/34`.
+Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/35`.
 
 ```json
 {
@@ -1036,7 +1153,7 @@ Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypothese
 
 ## H-TEMP-001-A
 
-Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/7`.
+Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/8`.
 
 ```json
 {
@@ -1052,15 +1169,17 @@ Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypothese
 
 ## H-TEMP-002-A
 
-Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/40`.
+Typ: `hypothesis`; Quellstatus: `inconclusive`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/41`.
 
 ```json
 {
   "id": "H-TEMP-002-A",
   "research_question": "RQ-TEMP-002",
   "hypothesis": "Forward-, Reverse- und Simultanfolgen erzeugen bei gleicher Ereignisanzahl unterscheidbare spike-basierte Antwortsignaturen.",
-  "status": "untested",
-  "evidence": [],
+  "status": "inconclusive",
+  "evidence": [
+    "EVID-2026-20"
+  ],
   "created": "2026-09-05",
   "updated": "2026-09-05"
 }
@@ -1068,7 +1187,7 @@ Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypothese
 
 ## H-TIME-001-A
 
-Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/8`.
+Typ: `hypothesis`; Quellstatus: `untested`; Quelle: [research/registry/hypotheses.yaml](../../registry/hypotheses.yaml), JSON-Pointer `/9`.
 
 ```json
 {
@@ -1599,6 +1718,7 @@ Typ: `research_question`; Quellstatus: `open`; Quelle: [research/registry/questi
   "domain": "Network Dynamics",
   "question": "Ist die beobachtete Network-Impulse-Response bei identischem Zustand und Seed reproduzierbar?",
   "relevance": "Reproduzierbarkeit der kontrollierten Impulsantwort.",
+  "literature": [],
   "hypotheses": [
     "H-PING-001-A"
   ],
@@ -1676,6 +1796,7 @@ Typ: `research_question`; Quellstatus: `open`; Quelle: [research/registry/questi
   "domain": "Regulation",
   "question": "Wie reagieren Drives und funktionale Zustandsgrößen auf nominale, chronische und unbekannte Telemetrie?",
   "relevance": "Deterministische Prüfung der Selbstregulation unter Ressourcen- und Sensorbedingungen.",
+  "literature": [],
   "hypotheses": [
     "H-REG-001-A"
   ],
@@ -1884,7 +2005,7 @@ Typ: `research_question`; Quellstatus: `open`; Quelle: [research/registry/questi
 
 ## RQ-SNN-003
 
-Typ: `research_question`; Quellstatus: `open`; Quelle: [research/registry/questions.yaml](../../registry/questions.yaml), JSON-Pointer `/3`.
+Typ: `research_question`; Quellstatus: `inconclusive`; Quelle: [research/registry/questions.yaml](../../registry/questions.yaml), JSON-Pointer `/3`.
 
 ```json
 {
@@ -1894,17 +2015,21 @@ Typ: `research_question`; Quellstatus: `open`; Quelle: [research/registry/questi
   "relevance": "Grundlegendes Verständnis der Signalausbreitung in multidimensionalen SNNs.",
   "literature": [
     "SRC-WATTS-STROGATZ-1998",
-    "SRC-BARABASI-1999"
+    "SRC-BARABASI-1999",
+    "SRC-OLSHAUSEN-FIELD-1996"
   ],
   "hypotheses": [
-    "H-SNN-003-B"
+    "H-SNN-003-B",
+    "H-SNN-003-C"
   ],
-  "evidence": [],
-  "status": "open",
+  "evidence": [
+    "EVID-2026-19"
+  ],
+  "status": "inconclusive",
   "answer": {
-    "current": "EXP-S1-TOPO-V2-20260918 und EXP-S1-TOPO-V3-R1-20260918 bilden gemeinsam die kanonische Stage-1-Topologie-DATA-Linie. Beide Human Reviews durch Thomas Heisig akzeptieren die begrenzte Interpretation. Die DATA sind nicht als EVID promotet.",
-    "confidence": "replicated_internal_data_human_reviewed_evid_not_promoted",
-    "limitations": "Interne Replikation ist keine unabhängige externe Replikation. Die historischen V2/R1-Manifeste erfüllen den aktuellen EvidenceEngine- Promotionsvertrag nicht vollständig und werden nicht rückwirkend umgeschrieben. Kein 5D-Vorteilsclaim; H-5D-005-A bleibt separat open/untested."
+    "current": "CLAIM-S1-TOPO-001 besitzt seit EXP-S1-TOPO-PROMO-R1-20260927 kanonische EVID (EVID-2026-19) fuer die eng begrenzte Aussage, dass Topologie im registrierten 64-Neuronen-/246-Kanten-Regime Propagationsmetriken veraendert. Eine nachtraeglich beobachtete AUC-pro-Spike/-Event-Systematik wird getrennt als explorative Motivation fuer H-SNN-003-C gefuehrt und ist keine EVID.",
+    "confidence": "bounded_topology_evid_efficiency_hypothesis_untested",
+    "limitations": "EVID-2026-19 belegt keine 5D-Ueberlegenheit. AUC-pro-Spike und AUC-pro-Event waren nicht als primaere Endpunkte preregistriert. Die 5D-Bedingung belegt im aktuellen 4x2x2x2x2-Layout alle 64 Koordinaten; geringere final_active_fraction ist dynamische Rekrutierung, nicht strukturelle Adressraum-Occupancy. H-SNN-003-C bleibt bis zu einer neuen prospektiven Studie untested."
   },
   "created": "2026-08-23",
   "updated": "2026-09-25"
@@ -2221,6 +2346,7 @@ Typ: `research_question`; Quellstatus: `open`; Quelle: [research/registry/questi
   "domain": "Temporal State",
   "question": "Wie unterscheiden sich FAST-, MEDIUM- und SLOW-Referenzzustände unter identischer Ausführung?",
   "relevance": "Messung von Persistenz und Zustandsdrift ohne Runtime-Zurückspulen.",
+  "literature": [],
   "hypotheses": [
     "H-TEMP-001-A"
   ],
@@ -2238,7 +2364,7 @@ Typ: `research_question`; Quellstatus: `open`; Quelle: [research/registry/questi
 
 ## RQ-TEMP-002
 
-Typ: `research_question`; Quellstatus: `open`; Quelle: [research/registry/questions.yaml](../../registry/questions.yaml), JSON-Pointer `/40`.
+Typ: `research_question`; Quellstatus: `inconclusive`; Quelle: [research/registry/questions.yaml](../../registry/questions.yaml), JSON-Pointer `/40`.
 
 ```json
 {
@@ -2250,12 +2376,14 @@ Typ: `research_question`; Quellstatus: `open`; Quelle: [research/registry/questi
   "hypotheses": [
     "H-TEMP-002-A"
   ],
-  "evidence": [],
-  "status": "open",
+  "evidence": [
+    "EVID-2026-20"
+  ],
+  "status": "inconclusive",
   "answer": {
-    "current": "EXP-S1-TEMP-ORDER-V2-20260919 liefert präregistrierte Stage-1-DATA aus 120 Läufen über 20 Seeds mit identity-destroyed Kontrolle. Der Laufstatus ist SUPPORTED_WITHIN_PREREGISTERED_PROTOCOL. Der Human Review durch Thomas Heisig ist mit accepted_as_interpretation abgeschlossen; EVID-Promotion und unabhängige Replikation stehen separat aus.",
-    "confidence": "preregistered_task_data_human_reviewed_evid_not_promoted",
-    "limitations": "Der Befund ist eine eng begrenzte Small-SNN-Funktionslinie. Er belegt weder Lernen, Gedächtnis, allgemeines zeitliches Schlussfolgern, Skalierbarkeit noch unabhängige Replikation und ist keine Replikation der Topologie-DATA-Linie."
+    "current": "EXP-S1-TEMP-PROMO-R1-20260927 reproduced the bounded six-neuron two-channel temporal-order task on 20 fresh paired seeds under the current EvidenceEngine provenance contract. The canonical Human Review decision is supports with explicit perfect-score saturation and decoder/task limitations. Explicit promotion created EVID-2026-20. The historical V2 run remains reviewed DATA.",
+    "confidence": "bounded_temporal_order_evid_with_methodological_limitations",
+    "limitations": "The simultaneous condition is a non-inferential task-adequacy control, not forward/reverse order accuracy. Perfect ceiling/floor separation limits mechanistic resolution and motivates a separate prospective decoder stress test. No learning, memory, general temporal reasoning, cognition, scaling, biological equivalence or independent replication is established."
   },
   "created": "2026-09-05",
   "updated": "2026-09-25"
@@ -2272,6 +2400,7 @@ Typ: `research_question`; Quellstatus: `open`; Quelle: [research/registry/questi
   "domain": "Learning Timescale",
   "question": "Wie verändert sich die messbare Laufzeit und Lernaktivität über die registrierte Tick-Leiter?",
   "relevance": "Kalibrierung der zeitlichen Ausführung vor Langzeitexperimenten.",
+  "literature": [],
   "hypotheses": [
     "H-TIME-001-A"
   ],

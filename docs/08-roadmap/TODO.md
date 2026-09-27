@@ -3,8 +3,9 @@
 - [x] Die registrierte maschinelle Kampagne ausfuehren und alle Receipts/Negativbefunde bewahren.
 - [x] Vollstaendige Publikationsfassung 1.5 und eigenstaendige Forschungsarbeit erzeugen.
 - [x] Ausfuehrung, Grenzaudit und EVID-Freigabe getrennt dokumentieren.
-- [ ] Offene wissenschaftliche Human Reviews bearbeiten: `EXP-GEN-0041`,
-  `EXP-S1-TOPO-V3-R1-20260918` und `EXP-S6-SEM-CL-003`.
+- [ ] Offene wissenschaftliche Human Reviews bearbeiten: `EXP-GEN-0041`
+  und `EXP-S6-SEM-CL-003`. Die Stage-1-Topologie- und Temporal-Order-Linien
+  besitzen inzwischen kanonische Human Reviews und scoped EVID.
 - [ ] Direkte Messvertraege fuer die ausgewiesenen Grenzfragen und gekoppelte Kognitions-/Langzeitplastizitaetspruefungen vervollstaendigen.
 - [ ] Unabhaengige Replikation und konkrete EVID-Freigaben einholen.
 
@@ -61,6 +62,49 @@ Aeltere offene Zaehler unten sind zeitgebundene Bestandsaufnahmen; der aktuelle 
 MHRN / Multi-Scale Homeostatic Recurrence Network. Publication: Recursive Epistemics / Rekursive Epistemik. [Migration and compatibility](../../NAMING.md). Historical scientific artifacts remain unchanged.
 
 # MHRN Current TODO
+
+## 2026-09-27 Alpha.7 Release
+
+- [x] Stage-0- und Stage-1-Maturity mit dem kanonischen Scientific-State abgleichen.
+- [x] `EVID-2026-18/19/20` und ihre Claim-Grenzen in der Release-Dokumentation berücksichtigen.
+- [x] Brian2-R2-Referenzpfad, CeCILL-2.1-Hinweis und Fachzitat dokumentieren.
+- [x] PAN/Closed-Loop/Live-Monitor und CUDA/PTX-Preflight als Playground-only abgrenzen.
+- [x] README, Changelog, Roadmap und `releases/current.json` auf Alpha.7 synchronisieren.
+- [ ] Release-PR `release/v0.6.0-alpha.7 -> main` vollständig grün abschließen.
+- [ ] Veralteten Remote-Branch `playground` nach bestätigter vollständiger Integration löschen.
+
+## 2026-09-27 Release-Statusmarker
+
+- [x] Fehlende Bausteinbeschreibungen im Playground-Katalog ergänzen.
+- [x] Ausführliche Hover- und Popup-Erklärungen für Katalogeinträge anbieten.
+- [x] Bausteine an den globalen EN/DE-Sprachselector anbinden.
+- [x] Repo- und Playground-Komponenten im Bausteine-Tab sichtbar machen.
+
+- [x] Statusmarker in den Release-Ansichten für Entwicklung und Wissenschaft
+	ergänzen, ohne die kanonischen Statusbezeichnungen zu ändern.
+- [x] Browserabdeckung für `met`, `partial` und die Entwicklungsdetailmarker
+	ergänzen.
+- [x] Wissenschaftliche Kriterienkarten vereinheitlichen und Datei-Quellen
+	direkt im Popup-File-Viewer öffnen.
+- [x] Claims, EVID, Experimente und Hypothesen je wissenschaftlicher Stufe
+	direkt zugänglich machen.
+- [x] Lange wissenschaftliche Stufennamen ohne Kartenüberlauf darstellen.
+- [x] Playground-Topologie, Erregbarkeit, Startgewicht und Lernparameter auf
+	den aktualisierten Referenzstand setzen.
+- [x] Playground-Oberfläche mit klarer Kartenhierarchie und responsivem Raster
+	überarbeiten.
+- [x] Izhikevich- und PAN-Presets mit lokaler Speicherung im Builder ergänzen.
+- [x] Presetkatalog A–G inklusive Gewichts-Stabilisierung und Sanity-Checks
+	als auswählbare Playground-Konfigurationen ergänzen.
+- [x] Interaktives Live-Monitor-Popup für PAN-Session und Auto-Start ergänzen.
+- [x] Posture-Score, Reward-Trigger, getrennte Kanäle und Sandbox-Episodenreset
+	als opt-in Playground-Funktion ergänzen.
+- [x] Temporäre Live-Sessions gesammelt löschbar machen.
+- [x] Eigenen Release-Tab für die wissenschaftliche Gesamtarbeit mit elf Teilen
+	und File-Viewer-Zugriff ergänzen.
+- [x] Prozent- und `met`/`partial`/`open`-Status je Manuskriptteil darstellen.
+- [x] Gesamtarbeits-Tab strukturell an Scientific Maturity angleichen.
+- [x] Root-Referenz `INDEPENDENT_REPLICATION.md` sicher im File Viewer öffnen.
 
 ## 2026-09-16 Release navigation
 
@@ -436,3 +480,15 @@ A scientific milestone is complete only when all applicable requirements are sat
 - [ ] Replace boundary-audit contracts with validated causal instruments only where scientifically appropriate; protected Connectome/Embodiment designs remain blocked until their native adapter/reference requirements are met.
 - [ ] Obtain independent replication, human EVID review and required external ethics decisions.
 - [ ] Add NEST/Lava task-matched network/learning benchmarks and long-horizon scaling.
+
+
+## Stage-1 reference replication R2
+
+- [x] Preserve R1 freeze and pre-DATA abort provenance.
+- [x] Create corrected `PREREG-S1-TOPO-REFERENCE-R2`.
+- [x] Make canonical coordinate-to-label ordering executable.
+- [x] Add exact topology/edge mapping parity as a mandatory pre-freeze gate.
+- [x] Keep runner blind to MHRN effects and verifier separate.
+- [x] Define explicit execution-authorization criteria.
+- [ ] Freeze R2 only after every automated pre-freeze gate is green.
+- [ ] Create a separate human execution-authorization record after freeze; do not generate Reference DATA before it.

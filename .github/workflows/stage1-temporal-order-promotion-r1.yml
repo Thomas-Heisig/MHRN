@@ -1,0 +1,99 @@
+name: Stage-1 Temporal-Order promotion R1
+
+on:
+  push:
+    branches:
+      - develop
+    paths:
+      - research/preregistrations/PREREG-S1-TEMP-PROMO-R1.json
+      - scripts/run_stage1_temporal_order_promotion_r1.py
+      - scripts/verify_stage1_temporal_order_promotion_r1.py
+      - scripts/run_stage1_temporal_order_v2.py
+      - tests/test_stage1_temporal_order_promotion_contract.py
+      - .github/workflows/stage1-temporal-order-promotion-r1.yml
+      - src/**
+      - configs/learning_experiment.yaml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  promotion-replication:
+    if: ${{ !contains(github.event.head_commit.message || '', '[stage1-temp-promo-data]') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+          ref: ${{ github.ref_name }}
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.13"
+
+      - name: Install project
+        run: python -m pip install -e '.[dev]'
+
+      - name: Verify promotion contract
+        run: |
+          test -z "$(git status --porcelain)"
+          python -m pytest             tests/test_small_snn_contract.py             tests/test_stage1_scientific_contract.py             tests/test_stage1_temporal_order_promotion_contract.py -q
+
+      - name: Check execution authorization
+        id: gate
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
+          prereg = json.loads(
+              Path("research/preregistrations/PREREG-S1-TEMP-PROMO-R1.json").read_text(
+                  encoding="utf-8"
+              )
+          )
+          experiment_exists = Path(
+              "research/experiments/EXP-S1-TEMP-PROMO-R1-20260927"
+          ).exists()
+          authorized = (
+              prereg.get("status") == "FROZEN_BEFORE_PROMOTION_REPLICATION"
+              and prereg.get("execution_authorized") is True
+              and not experiment_exists
+          )
+          print(f"experiment_exists={experiment_exists}")
+          with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as stream:
+              stream.write(f"authorized={'true' if authorized else 'false'}\n")
+          print(f"authorized={authorized}")
+          PY
+
+      - name: Execute promotion-eligible Temporal-Order replication
+        if: steps.gate.outputs.authorized == 'true'
+        run: python scripts/run_stage1_temporal_order_promotion_r1.py
+
+      - name: Verify generated promotion DATA
+        if: steps.gate.outputs.authorized == 'true'
+        run: python scripts/verify_stage1_temporal_order_promotion_r1.py
+
+      - name: Commit immutable promotion DATA
+        if: steps.gate.outputs.authorized == 'true'
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research/experiments/EXP-S1-TEMP-PROMO-R1-20260927
+          if git diff --cached --quiet; then
+            echo "No generated changes."
+          else
+            git commit -m "research(stage1): record Temporal-Order promotion R1 data [stage1-temp-promo-data]"
+            git push origin HEAD:develop
+          fi
+
+      - uses: actions/upload-artifact@v7
+        if: always() && steps.gate.outputs.authorized == 'true'
+        with:
+          name: stage1-temporal-order-promotion-r1
+          path: research/experiments/EXP-S1-TEMP-PROMO-R1-20260927
+          retention-days: 90

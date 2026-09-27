@@ -6,16 +6,16 @@
 
 ## Decision
 
-Stage 1 is no longer represented by the historical 30% software-contract projection. The current repository supports a **75% scientific-maturity score** under the existing six-criterion weighting contract:
+Stage 1 is no longer represented by the historical 30% software-contract projection. The current repository supports a **85% scientific-maturity score** under the existing six-criterion weighting contract:
 
 - registered RQ/H: **met** = 15%;
 - frozen scientific protocols beyond the software contract: **met** = 20%;
 - source-bound scientific DATA: **met** = 20%;
-- human-reviewed evidence gate: **partial** = 10% of 20%;
+- human-reviewed evidence gate: **met** = 20% of 20%;
 - independent replication: **open** = 0% of 15%;
 - methods/model attribution: **met** = 10%.
 
-The 10% reviewed-evidence contribution means only that the human-review half of the criterion is complete for the central topology line. It does **not** mean that Stage-1 DATA have been promoted to canonical EVID.
+The reviewed-evidence criterion is now complete for the central topology claim through the prospective promotion run `EXP-S1-TOPO-PROMO-R1-20260927`, canonical human review (`supports`) and explicit EvidenceEngine registration as `EVID-2026-19`. This remains separate from independent replication.
 
 ## Central Stage-1 baseline
 
@@ -31,11 +31,11 @@ These reviews satisfy the **human-review subgate** for Stage-1 maturity. They do
 
 ## Separate EVID-promotion assessment
 
-Current status: **BLOCKED_CURRENT_EVIDENCE_ENGINE_CONTRACT**.
+Current topology status: **COMPLETED as `EVID-2026-19`**.
 
-The existing V2/R1 DATA are not directly promotion-eligible under the current EvidenceEngine contract because no canonical claim ID is registered for `RQ-SNN-003 / H-SNN-003-B`; the historical manifests predate the current promotion contract and do not contain the required `validity.valid`, zero runtime/fatal error counters, canonical `git.dirty=false`, `provenance_digests` and matching `source_freeze_sha`; and the completed Human Reviews are interpretation decisions rather than a canonical `human_review.json` decision in the `supports | refutes | inconclusive` schema. Automatic promotion is disabled.
+The historical V2/R1 manifests remain immutable and were not retrofitted. Instead, `EXP-S1-TOPO-PROMO-R1-20260927` prospectively repeated the bounded topology claim with fresh seeds 6301–6320 under the current EvidenceEngine provenance contract. The run completed with clean Git state, valid execution, zero runtime/fatal errors, full provenance digests and source-freeze binding. The canonical Human Review by Thomas Heisig records `supports` while preserving the null findings and the explicit no-5D-superiority boundary. The subsequent explicit EvidenceEngine promotion created `EVID-2026-19`.
 
-No missing historical fields or stronger human decisions are invented retroactively. A future EVID path requires a separately defined scoped claim and a promotion-eligible prospective execution/review path under the current EvidenceEngine contract.
+Automatic promotion remains disabled. The Temporal-Order line remains reviewed DATA and still requires its own prospective promotion path.
 
 ## Second Stage-1 functional line
 
@@ -43,13 +43,13 @@ No missing historical fields or stronger human decisions are invented retroactiv
 
 This line is scientifically useful because it contains an information-destroying control and a fixed decoding task, but it is **independent only in functional question/task**. It is not an independent replication of the topology line and does not establish learning, memory, cognition, scaling or general temporal reasoning.
 
-The central machine-readable synthesis is `research/registry/stage1_baseline.json` (`STAGE1-SCIENTIFIC-BASELINE-20260925`). It binds the 75% maturity derivation, the linked V2/V3-R1 topology DATA line, the reviewed Temporal-Order functional line, the separate EVID-promotion assessment and the unchanged independence boundary in one canonical record.
+The central machine-readable synthesis is `research/registry/stage1_baseline.json` (`STAGE1-SCIENTIFIC-BASELINE-20260925`). It binds the 85% maturity derivation, the linked V2/V3-R1 topology DATA line, the reviewed Temporal-Order functional line, the separate EVID-promotion assessment and the unchanged independence boundary in one canonical record.
 
 Deterministic publication projection for Edition 1.8 was regenerated after this consolidation so manuscript, research-object registry and publication manifest describe the same canonical state.
 
 ## Remaining Stage-1 work
 
-1. define scoped claim IDs and prospective EvidenceEngine-compatible promotion paths for the topology and Temporal-Order lines if EVID registration is desired;
-2. obtain independently authored / independently controlled replication;
+1. execute the separate prospective EvidenceEngine-compatible promotion path for the Temporal-Order claim and complete canonical human review;
+2. obtain independently implemented reference/cross-implementation replication for the central topology claim;
 3. broaden task, perturbation and scaling regimes without conflating them with the existing baseline;
 4. keep `RQ-5D-005 / H-5D-005-A` separate and open until its larger geometry-specific programme is executed.

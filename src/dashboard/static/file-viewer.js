@@ -1083,7 +1083,7 @@ export function openDocumentationFile(path) {
 }
 
 export function openBrain5DFile(source, path) {
-  if (!['docs', 'research'].includes(source) || typeof path !== 'string') return Promise.resolve(null);
+  if (!['docs', 'research', 'project'].includes(source) || typeof path !== 'string') return Promise.resolve(null);
   initFileManager();
   fmCurrentSource = source;
   document.querySelectorAll('.fm-source-btn').forEach((button) => {

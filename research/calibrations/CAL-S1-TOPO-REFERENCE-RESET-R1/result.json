@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "calibration_id": "CAL-S1-TOPO-REFERENCE-RESET-R1",
+  "role": "pre-freeze method calibration; not confirmatory DATA and not EVID",
+  "tolerance_abs": 1e-12,
+  "currents": [
+    100.0,
+    0.0
+  ],
+  "cases": [
+    {
+      "tick": 0,
+      "input_current": 100.0,
+      "mhrn": {
+        "v": -65.0,
+        "u": -4.44322,
+        "threshold_adaptation": 0.0009895001666249785,
+        "firing_rate_estimate": 0.9995001666249781,
+        "spiked": true
+      },
+      "brian2_reference": {
+        "v": -65.0,
+        "u": -4.44322,
+        "threshold_adaptation": 0.0009895001666249785,
+        "firing_rate_estimate": 0.9995001666249781,
+        "spiked": true
+      },
+      "absolute_differences": {
+        "v": 0.0,
+        "u": 0.0,
+        "threshold_adaptation": 0.0,
+        "firing_rate_estimate": 0.0
+      },
+      "pass": true
+    },
+    {
+      "tick": 1,
+      "input_current": 0.0,
+      "mhrn": {
+        "v": -75.31114518015801,
+        "u": -4.655600180720632,
+        "threshold_adaptation": -0.008012988167499752,
+        "firing_rate_estimate": 0.9985011660418948,
+        "spiked": false
+      },
+      "brian2_reference": {
+        "v": -75.31114518015801,
+        "u": -4.655600180720632,
+        "threshold_adaptation": -0.008012988167499752,
+        "firing_rate_estimate": 0.9985011660418948,
+        "spiked": false
+      },
+      "absolute_differences": {
+        "v": 0.0,
+        "u": 0.0,
+        "threshold_adaptation": 0.0,
+        "firing_rate_estimate": 0.0
+      },
+      "pass": true
+    }
+  ],
+  "reset_semantics": {
+    "spike_on_tick_0": true,
+    "reset_v_equals_c": true,
+    "u_incremented_by_d_in_matching_state": true,
+    "next_tick_state_matches": true
+  },
+  "provenance": {
+    "python_version": "3.13.15 (main, Aug  6 2026, 02:15:18) [GCC 13.3.0]",
+    "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
+    "brian2_version": "2.10.1",
+    "reference_probe_sha256": "52a421cbfa6d6fbf2041b73207a82778aa3fd3b1801a424983899f6af1e0ee51",
+    "mhrn_neuron_source_sha256": "7b49f62209232b5a9e29ab2b33108e91b338a759c2a083ff4f94a0a25b2de1d7",
+    "mhrn_neuron_model_source_sha256": "8dee90a3c8f4510f8f0521a77e0cf779959954b9cfb4181f7ef2ebcfb6689c0e"
+  },
+  "pass": true
+}

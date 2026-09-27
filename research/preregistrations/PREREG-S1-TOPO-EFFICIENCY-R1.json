@@ -1,0 +1,358 @@
+{
+  "schema_version": 1,
+  "preregistration_id": "PREREG-S1-TOPO-EFFICIENCY-R1",
+  "stage": 1,
+  "research_question": "RQ-SNN-003",
+  "hypothesis": "H-SNN-003-C",
+  "claim_id": "CLAIM-S1-EFFICIENCY-001",
+  "protocol": "stage1_topology_efficiency_r1",
+  "mode": "PROSPECTIVE_CONFIRMATORY_AFTER_EXPLORATORY_OBSERVATION",
+  "status": "DRAFT_CALIBRATION_GATE_FAILED_FREEZE_BLOCKED",
+  "execution_authorized": false,
+  "scientific_evidence": false,
+  "automatic_evidence_promotion": false,
+  "human_review_required": true,
+  "independent_replication": false,
+  "exploratory_origin": {
+    "source_experiment": "EXP-S1-TOPO-PROMO-R1-20260927",
+    "source_evidence": "EVID-2026-19",
+    "note": "research/notes/2026-09-27_stage1_topology_efficiency_exploratory.md",
+    "anti_harking_rule": "The historical AUC/spike and AUC/event ratios motivate this protocol only. They are not imported as confirmatory evidence and are not part of EVID-2026-19."
+  },
+  "scientific_correction": {
+    "occupancy": "The 5d shape 4x2x2x2x2 materializes all 64 coordinates. Lower final_active_fraction is dynamic recruitment, not sparse address-space occupancy.",
+    "storage_claim": "This protocol does not test bit-level storage reduction, parameter-count reduction, memory capacity, representational capacity or general information capacity.",
+    "information_capacity": "AUC/spike and AUC/delivered-event are efficiency ratios, not Shannon-information or representational-capacity measures.",
+    "materialization": "All registered conditions materialize 64 neurons. This protocol does not test materialized-coordinate count or theoretical addressability.",
+    "related_work": "Olshausen & Field (1996) is context for sparse/efficient coding only. It does not predict that 5D geometry is efficient and is not confirmatory evidence for CLAIM-S1-EFFICIENCY-001."
+  },
+  "conditions": {
+    "3d_reference": {
+      "shape": [
+        4,
+        4,
+        4,
+        1,
+        1
+      ],
+      "graph_rule": "nearest-future labels under normalized Euclidean distance",
+      "role": "lower-dimensional geometric reference"
+    },
+    "5d_reference": {
+      "shape": [
+        4,
+        2,
+        2,
+        2,
+        2
+      ],
+      "graph_rule": "nearest-future labels under normalized Euclidean distance",
+      "role": "target geometry"
+    },
+    "5d_shuffled": {
+      "shape": [
+        4,
+        2,
+        2,
+        2,
+        2
+      ],
+      "graph_rule": "shuffle coordinate-to-label assignment before the same geometric edge construction",
+      "role": "same coordinate lattice with destroyed label/geometry alignment"
+    },
+    "random_graph": {
+      "shape": [
+        4,
+        2,
+        2,
+        2,
+        2
+      ],
+      "graph_rule": "uniform future-target sampling under the identical out-degree schedule",
+      "role": "non-geometric graph control"
+    },
+    "3d_recruitment_matched": {
+      "shape": [
+        4,
+        4,
+        4,
+        1,
+        1
+      ],
+      "graph_rule": "same as 3d_reference",
+      "role": "3d control whose stimulus-current level is chosen only on disjoint calibration seeds to match a preregistered dynamic-recruitment target"
+    },
+    "5d_high_recruitment": {
+      "shape": [
+        4,
+        2,
+        2,
+        2,
+        2
+      ],
+      "graph_rule": "same as 5d_reference",
+      "role": "mechanistic sensitivity arm only; its calibration-selected current is evaluated descriptively and is excluded from the primary Holm family and from all support/refute criteria"
+    }
+  },
+  "matched_budgets": {
+    "neuron_count": 64,
+    "out_degree_cap": 4,
+    "expected_edge_count": 246,
+    "delay_ticks": 1,
+    "synaptic_weight": 55,
+    "stimulus_input_labels": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "output_labels": [
+      60,
+      61,
+      62,
+      63
+    ],
+    "stimulus_ticks": 1,
+    "evaluation_ticks": 128,
+    "auc_window_ticks": 32,
+    "note": "Reference conditions use identical neuron count, edge budget, weight, delay, stimulus accounting and evaluation window. Recruitment-control conditions may differ only in the calibration-selected stimulus-current level declared below.",
+    "readout_contract": {
+      "stimulus_procedure": "All evaluation arms stimulate physical labels 0,1,2,3 at tick 1 using the same condition-level current contract.",
+      "output_procedure": "All evaluation arms read physical output labels 60,61,62,63 using the same propagation metrics.",
+      "decoder": "none; AUC/spike and AUC/delivered-event are computed directly from registered propagation counters.",
+      "only_graph_difference": "For 3d_reference, 5d_reference, 5d_shuffled and random_graph, graph construction is the only intended structural difference. Recruitment-control arms may additionally use only their calibration-selected stimulus current."
+    }
+  },
+  "calibration": {
+    "purpose": "select recruitment-control stimulus-current levels only; no confirmatory hypothesis testing",
+    "seeds": [
+      991001,
+      991002,
+      991003,
+      991004,
+      991005,
+      991006,
+      991007,
+      991008,
+      991009,
+      991010
+    ],
+    "candidate_stimulus_currents": [
+      70,
+      80,
+      90,
+      100,
+      110,
+      120,
+      130,
+      140
+    ],
+    "reference_stimulus_current": 100,
+    "3d_recruitment_matched_selection_rule": "Choose the lowest candidate current whose calibration-seed median final_active_fraction lies in [0.84,0.90], median output_reach_fraction >=0.95 and median delivered_events >=32. If none qualifies, the recruitment-matched panel is NOT_TESTED.",
+    "5d_high_recruitment_selection_rule": "Choose the lowest candidate current whose calibration-seed median final_active_fraction >=0.98, median output_reach_fraction >=0.95 and median delivered_events >=32. If none qualifies, the high-recruitment panel is NOT_TESTED.",
+    "forbidden_selection_inputs": [
+      "AUC/spike effect size",
+      "AUC/event effect size",
+      "first-output latency effect size",
+      "p-values",
+      "evaluation-seed outcomes",
+      "direction of any 5D advantage"
+    ],
+    "persistence": {
+      "path": "research/calibrations/CAL-S1-TOPO-EFFICIENCY-R1-20260927",
+      "provenance_class": "PRE_FREEZE_METHOD_CALIBRATION",
+      "confirmatory_data": false,
+      "scientific_evidence": false,
+      "immutable_after_commit": true,
+      "evaluation_seed_access_forbidden": true,
+      "note": "Calibration outputs are persisted for auditability but are neither confirmatory DATA for CLAIM-S1-EFFICIENCY-001 nor EVID."
+    },
+    "failure_policy": {
+      "infrastructure_failure": "A run that fails before producing a verified calibration result may be retried with the identical code, seed set and candidate-current grid. The failed infrastructure attempt remains in workflow history.",
+      "valid_gate_failure": "A successfully executed and verified calibration in which a preregistered selection gate is not met is a valid negative calibration result. It may not be rerun with altered candidates under this preregistration to search for a passing value.",
+      "design_change": "If a valid calibration gate fails and a different control variable, candidate grid or selection target is scientifically justified, create a new preregistration/calibration revision with a new ID and document the reason. Do not freeze this R1 design.",
+      "freeze_rule": "Freeze is prohibited unless the required 3d_recruitment_matched calibration gate passes and its selected value is hash-bound into the frozen preregistration. The 5d_high_recruitment gate is sensitivity-only; failure is recorded and the arm becomes NOT_TESTED, but it cannot be silently retuned.",
+      "not_tested_semantics": "If the required 3d recruitment-matching gate fails, the confirmatory R1 efficiency evaluation remains NOT_TESTED and execution_authorized must stay false."
+    },
+    "observed_status_after_run": {
+      "calibration_id": "CAL-S1-TOPO-EFFICIENCY-R1-20260927",
+      "verified_execution": true,
+      "evaluation_seeds_read_or_executed": false,
+      "3d_recruitment_matched_gate_passed": false,
+      "5d_high_recruitment_gate_passed": false,
+      "freeze_blocked": true,
+      "interpretation": "Across candidate stimulus currents 70-140, calibration median final_active_fraction remained 1.0 for 3d and 0.828125 for 5d. Stimulus-current modulation in this registered range therefore did not achieve either recruitment target."
+    }
+  },
+  "evaluation": {
+    "seeds": [
+      992001,
+      992002,
+      992003,
+      992004,
+      992005,
+      992006,
+      992007,
+      992008,
+      992009,
+      992010,
+      992011,
+      992012,
+      992013,
+      992014,
+      992015,
+      992016,
+      992017,
+      992018,
+      992019,
+      992020
+    ],
+    "freshness_rule": "The exact evaluation-seed block was searched in the repository before freeze and returned no matches. It must be rechecked immediately before freeze; any collision invalidates this seed block.",
+    "primary_endpoints": [
+      {
+        "id": "activation_auc_per_spike",
+        "formula": "activation_auc_0_32 / total_spikes",
+        "zero_denominator_rule": "run is invalid if total_spikes == 0"
+      },
+      {
+        "id": "activation_auc_per_delivered_event",
+        "formula": "activation_auc_0_32 / delivered_events",
+        "zero_denominator_rule": "run is invalid if delivered_events == 0"
+      }
+    ],
+    "primary_contrasts": [
+      {
+        "left": "3d_reference",
+        "right": "5d_reference",
+        "label": "5d_vs_3d_reference"
+      },
+      {
+        "left": "5d_shuffled",
+        "right": "5d_reference",
+        "label": "5d_vs_5d_shuffled"
+      },
+      {
+        "left": "random_graph",
+        "right": "5d_reference",
+        "label": "5d_vs_random_graph"
+      },
+      {
+        "left": "3d_recruitment_matched",
+        "right": "5d_reference",
+        "label": "5d_vs_3d_recruitment_matched"
+      }
+    ],
+    "directional_difference": "right-minus-left; positive favors 5d_reference for efficiency endpoints",
+    "paired_by_seed": true,
+    "test": "exact one-sided paired sign test for predeclared positive efficiency differences",
+    "effect_interval": "deterministic paired bootstrap 95% CI for the median difference, 5000 resamples",
+    "multiple_testing": "Exactly one Holm family across exactly 8 primary tests: the four explicitly listed contrasts x the two primary efficiency endpoints. No 5d_high_recruitment contrast belongs to this family.",
+    "alpha": 0.05,
+    "latency_role": "first_output_latency_censored is exploratory/descriptive only. It is outside the primary family and cannot create, rescue or upgrade support for CLAIM-S1-EFFICIENCY-001.",
+    "sample_size": {
+      "evaluation_seeds": 20,
+      "conditions": 6,
+      "runs_per_condition_per_seed": 1,
+      "total_evaluation_runs": 120,
+      "calibration_runs": 160,
+      "calibration_breakdown": "2 calibration-only control arms x 8 candidate currents x 10 disjoint calibration seeds",
+      "total_planned_runs_if_all_calibration_candidates_execute": 280
+    },
+    "seed_selection_rationale": "992001-992020 is an arbitrary new contiguous block chosen before freeze for bookkeeping convenience only. The block was not selected from prior outcomes or effect directions and must pass the automated repository-collision gate immediately before freeze.",
+    "ratio_validity": {
+      "total_spikes_minimum_per_run": 32,
+      "delivered_events_minimum_per_run": 32,
+      "rationale": "A fixed protocol stability floor prevents near-zero denominators from dominating ratio endpoints. The threshold is frozen before evaluation and is not tuned on evaluation outcomes.",
+      "failure_semantics": "No low-denominator run is deleted. If any evaluation run violates either denominator floor, the full confirmatory experiment is classified NOT_TESTED_DENOMINATOR_VALIDITY and no primary claim decision is made.",
+      "ratio_computation": "Compute each run's ratio first; never divide condition-level aggregate numerators by aggregate denominators.",
+      "summary_statistic": "paired median difference across evaluation seeds",
+      "bootstrap": "deterministic paired bootstrap over the already computed per-seed ratios/paired differences, 5000 resamples; numerator and denominator are never bootstrapped separately",
+      "threshold_basis": "The floor 32 is a preregistered structural stability threshold equal to one half of the 64-neuron network size. It is intended to reject degenerate runs driven by only a handful of spikes/events, not to separate conditions or maximize an efficiency effect. Historical Stage-1 runs produced denominators in the hundreds, so 32 is deliberately conservative and well below the observed regime.",
+      "boundary_rule": "Exactly 32 spikes/events is valid because the rule is >=32. The ratio is computed normally at the boundary; the threshold is not a censoring or winsorization rule.",
+      "skew_note": "Ratio distributions may remain right-skewed. This is why inference uses paired per-run ratios, median differences and paired bootstrap intervals rather than mean-ratio normal approximations. The denominator floor limits numerical blow-up but does not assume symmetry.",
+      "joint_validity_rule": "A run is denominator-valid only if total_spikes >= 32 AND delivered_events >= 32. Failure of either condition invalidates the entire confirmatory evaluation under NOT_TESTED_DENOMINATOR_VALIDITY; no run is removed.",
+      "joint_validity_condition": "A run is ratio-valid only if total_spikes >= 32 AND delivered_events >= 32. Failure of either condition invalidates the confirmatory evaluation under the frozen NOT_TESTED rule; no run is removed."
+    },
+    "exploratory_endpoints": [
+      "first_output_latency_censored",
+      "final_active_fraction",
+      "total_spikes",
+      "delivered_events",
+      "activation_auc_0_32",
+      "output_reach_fraction",
+      "AUC per active neuron",
+      "injected charge"
+    ]
+  },
+  "decision_rule": {
+    "prerequisites": [
+      "design integrity passes",
+      "all 120 evaluation runs satisfy the frozen denominator-validity floor",
+      "3d_recruitment_matched calibration gate succeeds before evaluation; otherwise classification is NOT_TESTED_RECRUITMENT_CONTROL",
+      "all eight primary tests are analyzed in the single frozen Holm family"
+    ],
+    "case_A_supports_specific_effect": "SUPPORTED_WITHIN_PREREGISTERED_PROTOCOL only if 5d_reference beats 3d_reference, 5d_shuffled, random_graph and 3d_recruitment_matched on BOTH primary efficiency endpoints with positive paired-median differences, Holm-adjusted p<0.05 and paired-bootstrap CI excluding zero for all eight tests.",
+    "case_B_inconclusive_specificity": "INCONCLUSIVE_SPECIFICITY if 5d_reference beats 3d_reference on both primary efficiency endpoints but fails one or more of the shuffled/random comparisons. A narrower descriptive 5d-vs-3d efficiency difference may be reported, but CLAIM-S1-EFFICIENCY-001 is not supported.",
+    "case_B_recruitment_explanation": "REFUTES_WITHIN_PROTOCOL if the 3d, shuffled and random specificity tests all pass but 5d_reference fails to beat 3d_recruitment_matched on either primary efficiency endpoint. This is evidence against the preregistered recruitment-independent specific-efficiency claim under this protocol.",
+    "case_C_refutes": "REFUTES_WITHIN_PROTOCOL if 5d_reference fails to beat 3d_reference on either primary efficiency endpoint under the frozen Holm+CI rule.",
+    "not_tested": "NOT_TESTED if design integrity, denominator validity or the preregistered 3d recruitment-matching calibration gate fails.",
+    "high_recruitment_role": "5d_high_recruitment is descriptive mechanistic sensitivity only. It is excluded from the primary Holm family and cannot change the A/B/C decision.",
+    "equal_value_rule": "SUPPORTED, INCONCLUSIVE and REFUTES are all scientifically valid outcomes and must be persisted and reported without rescue endpoints or post-hoc reclassification."
+  },
+  "integrity_constraints": [
+    "clean source tree before execution",
+    "exactly 10 disjoint calibration seeds and 20 fresh evaluation seeds",
+    "automated seed-collision gate passes at the freeze commit",
+    "64 neurons and 246 edges in every condition",
+    "reference conditions use weight 55, delay 1 and stimulus current 100",
+    "all graph arms use the identical stimulus labels, output labels, evaluation window and propagation readout code",
+    "recruitment-control stimulus currents are selected only from calibration seeds under the frozen rules",
+    "5d_high_recruitment is descriptive sensitivity only and cannot enter the primary decision",
+    "no endpoint or contrast may be added after evaluation starts",
+    "no invalid-denominator run may be silently dropped",
+    "all null, inconclusive and adverse results are persisted",
+    "historical Stage-1 artifacts remain immutable"
+  ],
+  "claim_boundary": "This study tests only a bounded propagation-efficiency hypothesis in the registered 64-neuron Small-SNN envelope. Efficiency means activation_auc_0_32 per spike and per delivered synaptic event under frozen definitions. It does not test or establish bit-level storage reduction, parameter-count reduction, memory capacity, Shannon information capacity, general representational capacity, number of materialized coordinates, theoretical addressability, learning, cognition, biological equivalence, scaling or universal 5D superiority.",
+  "evidence_engine_contract": {
+    "execution_creates_data_only": true,
+    "automatic_evidence_promotion": false,
+    "require_clean_git_tree": true,
+    "require_validity_true": true,
+    "require_zero_runtime_errors": true,
+    "require_zero_fatal_errors": true,
+    "require_provenance_digests": true,
+    "require_source_freeze_sha": true,
+    "require_canonical_human_review_before_promotion": true
+  },
+  "review": {
+    "human_review_status": "NOT_AVAILABLE_BEFORE_EXECUTION",
+    "ai_review_does_not_satisfy_human_gate": true,
+    "automatic_promotion_forbidden": true
+  },
+  "design_sensitivity": {
+    "method": "exact one-sided paired sign test sensitivity, expressed as positive-pair probability rather than the post-hoc +40% ratio magnitude",
+    "n_pairs": 20,
+    "family_size": 8,
+    "conservative_first_holm_threshold": 0.00625,
+    "no_tie_critical_positive_pairs": 16,
+    "conservative_power_if_true_positive_pair_probability_0_80": 0.6296482639,
+    "conservative_power_if_true_positive_pair_probability_0_85": 0.8298468463,
+    "conservative_power_if_true_positive_pair_probability_0_90": 0.9568255047,
+    "interpretation": "With 20 non-tied pairs, the most stringent Holm position is crossed by at least 16 positive pairs. This is a design-sensitivity calculation, not a post-hoc power claim and not a guarantee for every endpoint because ties reduce effective n.",
+    "anti_harking": "The historical +40.6%/+45.8% descriptive ratios are not used as the assumed effect size for this calculation."
+  },
+  "seed_freeze_gate": {
+    "script": "scripts/check_stage1_efficiency_seed_freshness.py",
+    "required_before_freeze": true,
+    "scan_scope": "tracked repository files at the proposed freeze commit",
+    "allowed_occurrence": "the preregistration file itself only",
+    "collision_semantics": "Any calibration or evaluation seed occurrence in another tracked file blocks freeze until a completely new seed block is selected.",
+    "manifest_requirement": "The freeze gate must persist the scanned commit SHA, checked seed lists and collision-free result into the frozen preregistration/freeze record."
+  },
+  "execution_block": {
+    "blocked": true,
+    "reason": "Valid pre-freeze calibration completed but the required 3d_recruitment_matched gate did not pass. R1 must not be frozen or executed.",
+    "unblocking_rule": "Only a new, explicitly versioned preregistration/calibration design may address the failed control mechanism. R1 itself remains an auditable DRAFT with execution_authorized=false."
+  }
+}

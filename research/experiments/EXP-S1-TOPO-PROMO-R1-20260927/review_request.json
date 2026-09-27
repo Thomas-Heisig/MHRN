@@ -1,0 +1,179 @@
+{
+  "schema_version": 1,
+  "experiment_id": "EXP-S1-TOPO-PROMO-R1-20260927",
+  "stage": 1,
+  "research_question": "RQ-SNN-003",
+  "hypothesis": "H-SNN-003-B",
+  "claim_id": "CLAIM-S1-TOPO-001",
+  "preregistration_id": "PREREG-S1-TOPO-PROMO-R1",
+  "protocol": "topology_propagation_v3_r1_time_resolved_replication",
+  "replication_class": "INTERNAL_PROMOTION_REPLICATION",
+  "result_status": "SUPPORTED_WITHIN_PREREGISTERED_PROTOCOL",
+  "human_review_status": "PENDING",
+  "scientific_evidence": false,
+  "automatic_evidence_promotion": false,
+  "independent_authorship_replication": false,
+  "evidence_engine_eligibility": {
+    "experiment_status": "completed",
+    "validity": {
+      "valid": true,
+      "reason": null,
+      "runtime_error_count": 0,
+      "fatal_error_count": 0
+    },
+    "git": {
+      "commit": "1df8b6b2e85c963060828cc92ba7f476c0bbab3f",
+      "dirty": false,
+      "branch": "develop"
+    },
+    "provenance_digests": {
+      "code": "dab0b518783c98df1720becffe59f6951531bc8b4ad899222bef2d5b99d476f8",
+      "config": "75f116d869008e0246101e13515c6e2389fefccb15ae62f6186934d783f62d63",
+      "prompt": "6b1b87ca2ea7a0dc89189adf63778f270352f211809f67f2dcd87bdfcf96b59b",
+      "data": "d131e0350f6097bc9467cc975ef83a86afad160cd56beb2c5bec584f0ce3465b"
+    },
+    "source_freeze_sha": "5c66d953f66818a8bc6f49e8703b74cccd1ad3ee18c7a717ae6c1019dc090695",
+    "confirmatory_lock": {
+      "protocol_digest": "c45cb9f5253f1136a6a99f7172057551627e2385fec12427e23a96f2870bebb5",
+      "prompt_digest": "6b1b87ca2ea7a0dc89189adf63778f270352f211809f67f2dcd87bdfcf96b59b",
+      "analysis_digest": "37f43587269cf4ab74b769cad38d6945946f5cd68874a0f9d075004c712e5812",
+      "locked": true
+    }
+  },
+  "frozen_design": {
+    "evaluation_seeds": [
+      6301,
+      6302,
+      6303,
+      6304,
+      6305,
+      6306,
+      6307,
+      6308,
+      6309,
+      6310,
+      6311,
+      6312,
+      6313,
+      6314,
+      6315,
+      6316,
+      6317,
+      6318,
+      6319,
+      6320
+    ],
+    "historical_seed_disjoint": true,
+    "neuron_count": 64,
+    "edge_count": 246,
+    "synaptic_weight": 55,
+    "evaluation_ticks": 128,
+    "evaluation_runs": 120,
+    "primary_multiple_testing": "single Holm family across all 10 time-resolved tests",
+    "replication_multiple_testing": "Holm across 5 first-output-latency tests"
+  },
+  "key_results": {
+    "design_integrity_passed": true,
+    "ceiling_resolution_supported": true,
+    "replication_supported": true,
+    "low_dimensional_activation_auc": {
+      "1d_to_2d": {
+        "median_delta": 4.3984375,
+        "ci95": [
+          4.3359375,
+          4.421875
+        ],
+        "holm_p": 0.000019073486328125
+      },
+      "2d_to_3d": {
+        "median_delta": 1.3828125,
+        "ci95": [
+          1.34375,
+          1.4765625
+        ],
+        "holm_p": 0.000019073486328125
+      }
+    },
+    "low_dimensional_half_activation_latency": {
+      "1d_to_2d": {
+        "median_delta": -4,
+        "ci95": [
+          -4,
+          -4
+        ],
+        "holm_p": 0.000019073486328125
+      },
+      "2d_to_3d": {
+        "median_delta": -2,
+        "ci95": [
+          -2,
+          -2
+        ],
+        "holm_p": 0.000019073486328125
+      }
+    },
+    "first_output_latency_replication": {
+      "all_five_registered_directions_replicated": true,
+      "1d_to_2d": {
+        "median_delta": -10,
+        "holm_p": 0.0000095367431640625
+      },
+      "2d_to_3d": {
+        "median_delta": -3,
+        "holm_p": 0.0000095367431640625
+      },
+      "3d_to_5d": {
+        "median_delta": -1,
+        "holm_p": 0.0000095367431640625
+      },
+      "5d_to_5d_shuffled": {
+        "median_delta": -3,
+        "holm_p": 0.0000095367431640625
+      },
+      "5d_to_random_graph": {
+        "median_delta": -2.5,
+        "holm_p": 0.0000095367431640625
+      }
+    }
+  },
+  "review_scope": [
+    "confirm PREREG-S1-TOPO-PROMO-R1 was frozen before execution and execution_authorized was explicit",
+    "confirm seeds 6301-6320 were predeclared, unique, and disjoint from the historical topology seed ranges",
+    "confirm the matched 64-neuron, 246-edge, weight-55 and 128-tick operating envelope was preserved",
+    "confirm design integrity passed and there were zero runtime/fatal errors",
+    "confirm the single Holm family across all 10 primary time-resolved tests was used",
+    "confirm the preregistered ceiling-resolution criterion was satisfied",
+    "confirm all five first_output_latency_censored replication contrasts reproduced the registered negative right-minus-left direction with corrected significance and confidence intervals excluding zero",
+    "confirm the result supports only the bounded topology-sensitive propagation claim",
+    "confirm this internal promotion replication is not independent scientific replication",
+    "confirm execution remains DATA and does not itself create EVID"
+  ],
+  "allowed_interpretation": "Within the preregistered 64-neuron/246-edge Small-SNN operating envelope, matched networks with different registered topologies show reproducible differences in the registered propagation metrics. The prospective promotion run reproduces the bounded topology-sensitive propagation result on fresh predeclared seeds under the current EvidenceEngine provenance contract.",
+  "prohibited_interpretations": [
+    "5D superiority or a general advantage of five-dimensional organization",
+    "scaling beyond the registered 64-neuron operating envelope",
+    "cognition, learning, memory, intelligence, or general temporal reasoning",
+    "biological equivalence",
+    "independent external replication",
+    "automatic EVID promotion",
+    "claiming all topology contrasts are significant for every endpoint",
+    "reinterpretation or deletion of historical V2/V3/V3-R1 DATA"
+  ],
+  "required_human_decision": "supports | refutes | inconclusive",
+  "post_review_rule": "A canonical human_review.json decision is required before explicit EvidenceEngine promotion. Even a supports decision does not count as independent replication and does not automatically create EVID.",
+  "source_data_mutated": false,
+  "artifacts": {
+    "manifest": "research/experiments/EXP-S1-TOPO-PROMO-R1-20260927/manifest.json",
+    "report": "research/experiments/EXP-S1-TOPO-PROMO-R1-20260927/report.md",
+    "statistics": "research/experiments/EXP-S1-TOPO-PROMO-R1-20260927/analysis/statistics.json",
+    "raw_data": "research/experiments/EXP-S1-TOPO-PROMO-R1-20260927/data/evaluation.json",
+    "preregistration": "research/preregistrations/PREREG-S1-TOPO-PROMO-R1.json",
+    "verifier": "scripts/verify_stage1_topology_promotion_r1.py"
+  },
+  "workflow": {
+    "run_id": 36304837300,
+    "job_id": 108579310083,
+    "artifact_id": 10926019556,
+    "artifact_sha256": "4b01a5595311776c1279c3922da84ba490fc3ea5498a147eac885aa5c2868274"
+  }
+}

@@ -20,6 +20,23 @@
 
 MHRN is an experimental research framework for studying recurrent spiking neural networks, plasticity, self-organization, embodiment, memory and world-model mechanisms under explicit provenance and evidence boundaries.
 
+
+## Playground workspace
+
+The Playground is an **exploratory, non-canonical workbench inside the normal
+repository line**. A persistent `playground` Git branch is not required for
+its operation. Playground runs are not DATA, not EVID, are invisible to the
+Research Registry and do not contribute to Scientific Maturity. PAN,
+Closed-Loop Builder, Live Sandbox, night-run tooling and the CUDA/PTX
+preflight remain explicitly non-scientific Playground functionality.
+
+Potentially useful Playground observations are exposed only as
+`DRAFT_IDEA_NOT_PREREGISTERED` candidates. Any transition into MHRN research
+requires a new hypothesis, preregistration, freeze and a new canonical run.
+
+External Python use should prefer `from mhrn_playground import Playground`.
+
+
 The sparse **5D SNN remains the primary adaptive system**. Language models, research assistants, peripheral neural networks and digital gateways are bounded components; they do not receive implicit authority over canonical neural state, reward, experiment DATA or accepted EVID.
 
 > **Scientific boundary:** implementation, passing tests, dashboards, generated reports, registered protocols, software releases and DOI assignment are not automatically scientific evidence. MHRN currently makes no claim of AGI, consciousness, sentience, biological equivalence or a demonstrated general advantage of the 5D address space.
@@ -39,7 +56,7 @@ The sparse **5D SNN remains the primary adaptive system**. Language models, rese
 | Research-data mirror | [ThomasHeisig/MHRN-Research-Data](https://huggingface.co/datasets/ThomasHeisig/MHRN-Research-Data) | rolling discovery mirror; not an immutable DOI dataset |
 | Zenodo | [Latest DOI / archived release](https://zenodo.org/badge/latestdoi/1335973891) | DOI archive for GitHub releases; badge resolves to the latest archived version once ingestion completes |
 
-The `v0.6.0-alpha.7` release is prepared from the exact green `develop` integration freeze `04f2cd76fa5d18c08a903f3e30aa275afdec31a6`; the immutable GitHub release tag is created only after the release PR has merged to `main` and the resulting `main` CI is green. The repository intentionally records a Zenodo DOI only after a real public Zenodo record exists. Once discovered, the DOI sync replaces the pending badge above with Zenodo's official DOI badge and records the DOI in the citation and publication metadata.
+The `v0.6.0-alpha.7` release candidate is based on the 27 September 2026 `develop` integration state `f267ffe5f17877149e47e39adcc1a095b6618d67`. Release-only metadata and documentation are finalized on `release/v0.6.0-alpha.7`; the authoritative tag/source-freeze is recorded only after the release PR has merged to `main` and the applicable release checks are green. The repository intentionally records a Zenodo DOI only after a real public Zenodo record exists. Release mechanics, tags and DOI assignment do not promote DATA to EVID.
 
 ### Citation model
 
@@ -47,7 +64,7 @@ MHRN deliberately separates three citable research objects:
 
 | Object | Type | Current state |
 | --- | --- | --- |
-| **MHRN v0.6.0-alpha.7** | Software | GitHub release published; Zenodo software DOI route active |
+| **MHRN v0.6.0-alpha.7** | Software | Alpha.7 release line; authoritative tag/archive state is tracked in `releases/current.json` |
 | **Recursive Epistemics / Rekursive Epistemik 1.8** | Publication / preprint | separate Zenodo publication package prepared; DOI pending |
 | **MHRN research data** | Dataset(s) | rolling discovery mirror exists; immutable experiment DOI deposits remain separate |
 
@@ -76,23 +93,33 @@ Historical publication bytes and empirical artifacts are preserved. Reconstructe
 
 ---
 
-## Current state — 21 September 2026
+## Current state — 27 September 2026
 
 | Area | Current state |
 | --- | --- |
 | Release branch | `main` — release-only, public frozen line |
 | Integration branch | `develop` — active development and research integration |
-| Package | `mhrn-core 0.6.0a7` / `0.6.0-alpha.6` |
-| Release status | **v0.6.0-alpha.7 release candidate** from green `develop` freeze `04f2cd76fa5d18c08a903f3e30aa275afdec31a6`; publication occurs only after the release PR and post-merge `main` CI are green |
+| Package | `mhrn-core 0.6.0a7` / `v0.6.0-alpha.7` |
+| Release status | **v0.6.0-alpha.7 release candidate** from the 27 September `develop` integration state; release-only preparation is isolated on `release/v0.6.0-alpha.7` |
 | Engineering | Stage 2 recurrent contract closed at its scoped engineering boundary; Stage 3 plastic neural tissue reached; Stage 4/5 engineering contracts integrated; Stage 6 mechanisms and research programme active |
-| Scientific focus | Stage 6 — memory, continual learning, semantization, prediction error and world-model validation; independent external replication remains open |
+| Scientific focus | Stage 0 = **92.5 %**; Stage 1 = **85 %** with scoped EVID `EVID-2026-18/19/20`; Stage-1 cross-implementation reference replication and Stage-6 memory/world-model work remain active; independent external replication remains open |
 | Current manuscript | **Recursive Epistemics / Rekursive Epistemik 1.8 — WIP** |
 | Publication lineage | 1.8 current WIP → 1.7 predecessor → 1.5 frozen empirical baseline |
 | Evidence policy | `implementation/test != DATA != reviewed EVID != independent replication`; release/DOI do not promote evidence |
 | AI methodology | AI assistance is explicitly disclosed; the human-AI research process is itself a methodological research object while human authorship and responsibility remain separate |
+| Playground/CUDA | Closed-loop/PAN tooling, CPU determinism fingerprints, freeze-actions/rewards, D1/D2/D3 parity contracts and Gate-IR → PTX/CUDA preflight are integrated; this is **not** a completed GPU SNN backend or scientific evidence |
 | Document governance | all `docs/` and `research/` files are classified by role, status, authority, mutability, citation rule and evidence role |
 
 The authoritative machine-readable release record is [`releases/current.json`](releases/current.json). Project identity and naming rules are in [`project_identity.json`](project_identity.json) and [`NAMING.md`](NAMING.md).
+
+### Stage-0 / Stage-1 scientific snapshot
+
+- **Stage 0:** 92.5 % Scientific Maturity. The scoped model-conformance claim has canonical Human Review and `EVID-2026-18`; the remaining gap is independent replication.
+- **Stage 1:** 85 % Scientific Maturity. The topology line has `EVID-2026-19`; the independent Temporal-Order line has `EVID-2026-20`. Neither establishes 5D superiority, cognition, scaling, biological equivalence or independent replication.
+- **Reference replication:** the active project-side Brian2 2.10.1 path is `PREREG-S1-TOPO-REFERENCE-R2`. R1 was aborted before reference DATA after a mapping ambiguity was found. Brian2 remains external CeCILL 2.1 software and is scientifically attributed to Stimberg, Brette & Goodman (2019), eLife 8:e47314.
+- **Efficiency line:** the registered pre-freeze calibration failed its recruitment-matching gate; no evaluation/EVID or maturity credit was created.
+
+See [`research/CURRENT_SCIENTIFIC_STATE.md`](research/CURRENT_SCIENTIFIC_STATE.md) and [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md) for the bounded interpretation and attribution details.
 
 ### Current Stage-6 research
 
@@ -126,6 +153,7 @@ feature / fix / research / chore
 - **`develop`** is the canonical integration branch for ongoing engineering, research tooling, documentation and publication work.
 - Normal pull requests target **`develop`**.
 - Only explicit **`release/*`** branches may target **`main`**.
+- Playground is a repository workspace, not a permanent release-topology branch.
 - Release merge requires green CI, the release-policy check, applicable integrity gates, and a clean tracked tree.
 - Force-pushes and history rewrites of `main` are outside project policy.
 
@@ -405,3 +433,67 @@ Historical names, experiment identifiers, publication checksums and compatible `
 ## License
 
 MIT License. See [`LICENSE`](LICENSE).
+
+
+### PAN Playground learning architecture
+
+The non-canonical Playground includes an executable PAN reference-learning
+stack: settings-derived gates, dual scheduling, bounded growth, functional
+thalamic-style gating, conditioned cortical layers with plastic gains, and
+reward-modulated behavioral policy learning.
+
+It deliberately reuses the existing **Neural Symbiosis / MSBA / Gateway /
+NetworkAreaAdapter** boundary for language models, digital sources, databases,
+tools and other peripherals instead of creating parallel PAN-specific external
+interfaces. Exact external payloads remain outside the SNN.
+
+A selectable 8-GB CUDA balanced profile documents capacity targets only.
+Register-native neuron kernels, PTX-native gates and CUDA Dynamic Parallelism
+are not yet implemented and are not presented as benchmarked capabilities.
+
+See [PAN complete Playground architecture](docs/playground/PAN_COMPLETE_ARCHITECTURE.md).
+
+
+### Switchable PAN Playground execution
+
+The non-canonical Playground can run PAN sessions in `EVENT_ONLY`,
+`TICK_ONLY` or activity-controlled `HYBRID_AUTO` mode. Hybrid switching uses
+hysteresis, dwell time and transition-state integrity hashes. Event and tick
+trajectories are not claimed to be mathematically equivalent, and the current
+Python event path has not been benchmarked as an O(events) implementation.
+
+
+### Stateful PAN Playground sessions
+
+The Playground now supports persistent in-process PAN sessions in addition to
+one-shot runs. The live path preserves neural and learning state across
+Dashboard calls, accepts bounded vector input, exposes output/activity state,
+and can drive a minimal local stick-figure sandbox.
+
+The PAN-AdEx reference bootstrap was adjusted to avoid the observed silent
+startup condition, and reward learning now refuses to treat silent episodes as
+successful learning. These remain exploratory Playground mechanisms and do not
+change research maturity or evidence.
+
+
+### PAN meta-learning night run
+
+The non-canonical Playground now has a resumable overnight meta-learning mode
+for strategy learning (`find / store / link`). A local hashing-vector index
+plus bounded file index stays outside the SNN while PAN learns context policies
+from reward. Full PAN state and policies are checkpointed by default every ten
+minutes.
+
+```bash
+python -m src.playground.night_run --hours 8 --max-episodes 10000
+python scripts/analyze_pan_night.py --session last
+```
+
+This remains Playground-only and cannot become scientific DATA or EVID
+automatically. Details: `docs/playground/PAN_NIGHT_RUN.md`.
+
+
+The default PAN night-run profile uses a reduced synaptic weight (`3.0`) and
+bounded live growth at activity threshold `0.05` to avoid carrying the highly
+synchronous diagnostic configuration into the overnight run. These are
+Playground engineering settings only.

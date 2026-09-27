@@ -416,6 +416,51 @@
       "citation": "cite_underlying_registry_and_protocol_sources",
       "evidence_role": "configuration_not_data_or_evidence",
       "rationale": "Machine-readable invariants for the meta-research projection; automatic execution and evidence promotion remain disabled."
+    },
+    "research/audits": {
+      "kind": "scientific_audit",
+      "status": "current",
+      "authority": "scientific_method_and_provenance_audit",
+      "mutability": "append_only_or_versioned_replacement",
+      "citation": "cite_audit_path_revision_and_bound_sources",
+      "evidence_role": "audit_not_evidence_by_itself",
+      "rationale": "Audits validate method/provenance boundaries and may block execution; they do not create scientific EVID."
+    },
+    "research/calibrations": {
+      "kind": "method_calibration",
+      "status": "experimental",
+      "authority": "pre_execution_method_calibration",
+      "mutability": "append_only_or_versioned_replacement",
+      "citation": "cite_calibration_id_path_and_source_hashes",
+      "evidence_role": "calibration_not_confirmatory_data_or_evidence",
+      "rationale": "Calibration artifacts establish method equivalence or operating gates before confirmatory execution."
+    },
+    "research/decisions": {
+      "kind": "scientific_governance_decision",
+      "status": "current",
+      "authority": "accepted_method_and_governance_decision",
+      "mutability": "versioned_replacement_only",
+      "citation": "cite_decision_path_revision_and_underlying_sources",
+      "evidence_role": "decision_or_interpretation_not_evidence_by_itself",
+      "rationale": "Scientific decisions preserve corrections, stop rules and claim boundaries without altering historical DATA."
+    },
+    "research/notes": {
+      "kind": "research_note",
+      "status": "current_wip",
+      "authority": "research_context_and_followup_note",
+      "mutability": "editable_with_review",
+      "citation": "cite_as_context_not_result",
+      "evidence_role": "context_or_planning_not_evidence",
+      "rationale": "Research notes capture exploratory observations and follow-up rationale without automatic evidentiary status."
+    },
+    "docs/playground": {
+      "kind": "playground_documentation",
+      "status": "current",
+      "authority": "noncanonical_playground_documentation",
+      "mutability": "editable_with_review",
+      "citation": "cite_exact_path_and_revision_as_playground_context",
+      "evidence_role": "not_evidence_by_itself",
+      "rationale": "Documents the explicitly non-canonical Playground surface. Playground documentation, presets and exploratory runtime descriptions do not create DATA or EVID."
     }
   }
 }

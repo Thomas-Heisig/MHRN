@@ -45,18 +45,26 @@ Die fehlenden historischen EvidenceEngine-Provenienzfelder des V2-Laufs wurden n
 
 ## Stage 1 – Kleines SNN
 
-**Aktueller Scientific-Maturity-Stand:** **75 %** nach dem kanonischen Gewichtungsvertrag.
+**Aktueller Scientific-Maturity-Stand:** **85 %** nach dem kanonischen Gewichtungsvertrag.
 
-**Zentrale Baseline:** `RQ-SNN-003 / H-SNN-003-B` mit `EXP-S1-TOPO-V2-20260918` + `EXP-S1-TOPO-V3-R1-20260918` als gemeinsamer DATA-Linie. Beide Human Reviews durch Thomas Heisig sind abgeschlossen und akzeptieren die begrenzte Interpretation.
+**Zentrale Baseline:** `RQ-SNN-003 / H-SNN-003-B` mit `EXP-S1-TOPO-V2-20260918` + `EXP-S1-TOPO-V3-R1-20260918` als historischer DATA-Linie sowie `EXP-S1-TOPO-PROMO-R1-20260927` als prospektivem Promotion-Lauf. Der kanonische Human Review unterstützt ausschließlich den bounded Claim; die explizite EvidenceEngine-Promotion erzeugte `EVID-2026-19`.
 
-**Zweite Funktionslinie:** `RQ-TEMP-002 / H-TEMP-002-A` mit `EXP-S1-TEMP-ORDER-V2-20260919` liefert präregistrierte task-basierte DATA mit identity-destroyed Kontrolle; Human Review steht hier noch aus.
+**Zweite Funktionslinie:** `RQ-TEMP-002 / H-TEMP-002-A` besitzt nach `EXP-S1-TEMP-PROMO-R1-20260927`, kanonischem Human Review (`supports` mit Perfect-Score-/Decoder-Limitierungen) und expliziter EvidenceEngine-Promotion `EVID-2026-20`. Der historische V2-Lauf bleibt reviewed DATA. Diese Linie ist funktional eigenständig und keine unabhängige Replikation der Topologielinie.
 
-**EVID-Grenze:** Die historischen Topologie-DATA sind unter dem aktuellen EvidenceEngine-Vertrag nicht direkt promotion-eligible. Es fehlen ein kanonischer Claim sowie die heutigen Validity-/Git-/Provenance-Felder und ein EvidenceEngine-`human_review.json` mit `supports|refutes|inconclusive`. Historische Artefakte werden nicht rückwirkend umgeschrieben.
+**EVID-Grenze:** Das 20-%-Kriterium `reviewed_evidence` ist für die zentrale Topologielinie erfüllt. `EVID-2026-19` gilt nur für den 64-Neuronen-/246-Kanten-/Weight-55-/128-Tick-Small-SNN-Betriebsbereich. Die nicht signifikanten Half-Activation-Latency-Kontraste bleiben Teil der Evidenz. Weder 5D-Überlegenheit noch Skalierung, Kognition, biologische Äquivalenz oder unabhängige Replikation werden daraus abgeleitet.
+
+**Maturity-Buchhaltung:** Der Reviewed-Evidence-Block ist mit 20/20 bereits gesättigt. Eine zusätzliche erfolgreiche Efficiency-EVID könnte deshalb den Stage-1-Score nicht über 85 % anheben. Der nächste mögliche Maturity-Zuwachs kann ausschließlich aus dem Replikationsblock kommen.
+
+**Efficiency-Linie:** `CLAIM-S1-EFFICIENCY-001 / H-SNN-003-C` bleibt `untested`. `PREREG-S1-TOPO-EFFICIENCY-R1` ist nach einer gültigen negativen Pre-Freeze-Kalibration `DRAFT_CALIBRATION_GATE_FAILED_FREEZE_BLOCKED`; die Recruitment-Matching-Gates wurden nicht erreicht. Keine Evaluation, keine EVID, kein Maturity-Credit.
+
+**Reference-Replikation:** `PREREG-S1-TOPO-REFERENCE-R1` ist als projektseitige Brian2-2.10.1-Cross-Implementation für maximal **7,5/15 Replikationspunkte** vorbereitet. Vor Reference-DATA müssen Mechanismen-Audit, Ein-/Mehrtick-Integratorparität, Reset-Parität, Synapsen-/Delay-Parität, Code-Blinding/Unabhängigkeit und Seed-Freshness bestanden und source-bound eingefroren sein. Erfolg könnte Stage 1 auf 92,5 % anheben; Failed/Incomplete/Inconclusive erhöhen den Score nicht. Volle 15/15 bleiben externer unabhängiger Replikation vorbehalten.
 
 Offen:
-- Human Review der Temporal-Order-V2-Linie,
-- scoped Claim + prospektiver EvidenceEngine-kompatibler Promotion-Pfad für die zentrale Topologielinie,
-- unabhängig implementierte Replikation,
+- alle Reference-Pre-Freeze-Gates grün und hashgebunden abschließen,
+- vollständigen unabhängigen Brian2-Runner und getrennten Verifier ohne MHRN-Runtime-Imports fertigstellen,
+- Reference-DATA erst nach Freeze und expliziter Autorisierung ausführen,
+- prospektiven Temporal-Order-Decoder/Task-Stresstest zur Auflösung der Perfect-Score-Sättigung separat behandeln,
+- für die blockierte Efficiency-R1 keine Parameter nachjustieren; ein neues Design benötigt eine neue versionierte Preregistration,
 - getrennte größere Prüfung von `H-5D-005-A`.
 
 ## Stage 2 – Stabiles rekurrentes SNN
@@ -191,3 +199,8 @@ Jede Release-Beschreibung soll künftig mindestens enthalten:
 - Negativbefunde,
 - offene Mechanismus-/Replikationslücken,
 - neue oder geänderte Related-Work-/Attributionsbezüge.
+
+
+### Stage 1 — Reference R2
+
+R1 remains a preserved pre-DATA aborted protocol after discovery of a topology coordinate-order ambiguity and contributes 0 maturity points. The active path is `PREREG-S1-TOPO-REFERENCE-R2`, which adds exact topology-mapping parity before freeze. Stage 1 remains at **85%** until an authorized, reviewed replication result exists. Project-side Brian2 success may add at most 7.5 percentage points; only genuinely external independent replication can complete the 15-point replication component.

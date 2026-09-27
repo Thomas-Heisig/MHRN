@@ -1,0 +1,192 @@
+{
+  "schema_version": 1,
+  "preregistration_id": "PREREG-S1-TEMP-PROMO-R1",
+  "stage": 1,
+  "research_question": "RQ-TEMP-002",
+  "hypothesis": "H-TEMP-002-A",
+  "protocol": "stage1_two_channel_temporal_order_v2",
+  "mode": "CONFIRMATORY_INTERNAL_PROMOTION_REPLICATION",
+  "execution_authorized": true,
+  "scientific_evidence": false,
+  "automatic_evidence_promotion": false,
+  "human_review_required": true,
+  "independent_replication": false,
+  "rationale": "Prospective promotion-eligible internal replication of the bounded Temporal-Order Stage-1 claim. It preserves the six-neuron dual-channel task, intact and identity-destroyed arms, simultaneous control, frozen decoder and single paired inferential contrast from V2, while using fresh predeclared seeds and the current EvidenceEngine provenance contract. Historical V2 artifacts remain immutable.",
+  "task": {
+    "network": "six-neuron acyclic dual-channel SNN",
+    "paths": [
+      "input_A -> hidden_A -> output_A",
+      "input_B -> hidden_B -> output_B"
+    ],
+    "neuron_count": 6,
+    "synapse_count": 4,
+    "synaptic_delay_ticks": 1,
+    "order_gap_ticks": 4,
+    "evaluation_ticks": 16,
+    "logical_orders": {
+      "forward": [
+        [
+          0,
+          "A"
+        ],
+        [
+          4,
+          "B"
+        ]
+      ],
+      "reverse": [
+        [
+          0,
+          "B"
+        ],
+        [
+          4,
+          "A"
+        ]
+      ],
+      "simultaneous": [
+        [
+          0,
+          "A"
+        ],
+        [
+          0,
+          "B"
+        ]
+      ]
+    },
+    "decoder": "forward if first output_A spike precedes first output_B spike; reverse if B precedes A; simultaneous if their first output spikes occur on the same tick"
+  },
+  "arms": {
+    "intact": "logical A/B event identity is preserved at the two physical input channels",
+    "identity_destroyed": "both logical A/B events are injected into physical input_A; event count, event times, per-event current and total injected charge are preserved, but channel identity is deliberately removed"
+  },
+  "seed_bound_nuisance_realizations": {
+    "purpose": "prospective paired robustness realizations; not independent external replication",
+    "xor_salt": 5359309,
+    "synaptic_weight_uniform": [
+      100,
+      110
+    ],
+    "stimulus_current_uniform": [
+      100,
+      110
+    ],
+    "matching_rule": "for a given seed, the same sampled weight and current are used for all arms and orders",
+    "forbidden_use": "parameters may not be selected from observed task outcomes"
+  },
+  "evaluation": {
+    "seeds": [
+      860001,
+      860002,
+      860022,
+      860023,
+      860024,
+      860025,
+      860026,
+      860027,
+      860028,
+      860029,
+      860030,
+      860031,
+      860032,
+      860033,
+      860034,
+      860035,
+      860036,
+      860037,
+      860038,
+      860039
+    ],
+    "freshness_rule": "All promotion seeds were checked against repository text before freeze and are disjoint from the historical TEMP-002 V1 seeds 101-120, Temporal-Order V2 seeds 7101-7120, Stage-1 topology V2 seeds 2101-2120, topology V3 seeds 6101-6120, topology V3-R1 seeds 6201-6220 and topology promotion seeds 6301-6320.",
+    "primary_endpoint": "per-seed balanced order-decoding accuracy across forward and reverse trials",
+    "primary_contrast": "intact minus identity_destroyed, paired by seed",
+    "control_endpoint": "intact simultaneous-control success fraction",
+    "secondary_endpoints": [
+      "first output tick by channel",
+      "output gap error",
+      "total spikes",
+      "delivered synaptic events",
+      "state digests"
+    ]
+  },
+  "analysis": {
+    "alpha": 0.05,
+    "test": "exact two-sided paired sign test on per-seed intact-minus-identity-destroyed accuracy deltas",
+    "effect_interval": "deterministic paired bootstrap 95% CI for median accuracy delta, 5000 resamples",
+    "multiple_testing": "not applicable; exactly one primary inferential contrast",
+    "simultaneous_condition_role": "non-inferential task-adequacy control"
+  },
+  "decision_rule": {
+    "minimum_intact_order_accuracy": 0.95,
+    "maximum_identity_destroyed_order_accuracy": 0.55,
+    "minimum_intact_simultaneous_success_fraction": 0.95,
+    "minimum_paired_accuracy_delta": 0.4,
+    "supported_within_protocol": "all four directional/task gates pass, paired sign-test p < alpha, bootstrap CI excludes zero, and all design-integrity checks pass",
+    "no_predefined_support": "one or more preregistered task/inference gates fail despite intact design integrity",
+    "not_tested": "execution or design-integrity failure"
+  },
+  "integrity_constraints": [
+    "clean source tree before execution",
+    "exactly 20 fresh seed-bound paired realizations",
+    "exactly six runs per seed: two arms x three orders",
+    "six neurons and four synapses in every run",
+    "identical sampled weight/current across all six runs of a seed",
+    "identical event count and total injected charge across arms",
+    "historical temporal_order_spiking_v1 artifacts remain unchanged"
+  ],
+  "claim_boundary": "This prospective promotion replication tests only CLAIM-S1-TEMP-001 / RQ-TEMP-002 / H-TEMP-002-A in the registered six-neuron acyclic two-channel Small-SNN task. It asks whether preserved A/B channel identity supports fixed temporal-order decoding while the identity-destroyed matched control removes that signal. A successful run creates promotion-eligible DATA only; EVID still requires a separate canonical human review and explicit EvidenceEngine promotion. It does not establish learning, memory, cognition, biological equivalence, scaling, 5D superiority, general temporal reasoning or independent external replication.",
+  "review": {
+    "human_review_status": "PENDING_AFTER_EXECUTION",
+    "ai_review_does_not_satisfy_human_gate": true,
+    "automatic_promotion_forbidden": true,
+    "canonical_review_decisions": [
+      "supports",
+      "refutes",
+      "inconclusive"
+    ]
+  },
+  "status": "FROZEN_BEFORE_PROMOTION_REPLICATION",
+  "claim_id": "CLAIM-S1-TEMP-001",
+  "parent_preregistration_id": "PREREG-S1-TEMP-ORDER-V2",
+  "predecessor_experiment": "EXP-S1-TEMP-ORDER-V2-20260919",
+  "provenance": {
+    "internal_replication_only": true,
+    "independent_external_replication": false,
+    "promotion_eligible_target": true,
+    "historical_artifacts_immutable": true,
+    "fresh_seed_search_checked_before_freeze": true,
+    "parent_experiment": "EXP-S1-TEMP-ORDER-V2-20260919"
+  },
+  "evidence_engine_contract": {
+    "automatic_evidence_promotion": false,
+    "scientific_evidence_on_execution": false,
+    "require_clean_git_tree": true,
+    "require_validity_true": true,
+    "require_zero_runtime_errors": true,
+    "require_zero_fatal_errors": true,
+    "require_provenance_digests": true,
+    "require_source_freeze_sha": true,
+    "require_canonical_human_review_before_promotion": true,
+    "allowed_review_decisions": [
+      "supports",
+      "refutes",
+      "inconclusive"
+    ]
+  },
+  "local_review": {
+    "verification_command": "python scripts/verify_stage1_temporal_order_promotion_r1.py",
+    "raw_data_path": "research/experiments/EXP-S1-TEMP-PROMO-R1-20260927/data/evaluation.json",
+    "statistics_path": "research/experiments/EXP-S1-TEMP-PROMO-R1-20260927/analysis/statistics.json",
+    "report_path": "research/experiments/EXP-S1-TEMP-PROMO-R1-20260927/report.md",
+    "canonical_review_path": "research/experiments/EXP-S1-TEMP-PROMO-R1-20260927/human_review.json"
+  },
+  "frozen_on": "2026-09-27",
+  "execution_authorization": {
+    "scope": "single_execution_of_EXP-S1-TEMP-PROMO-R1-20260927",
+    "target_branch": "develop",
+    "overwrite_existing_experiment": false,
+    "automatic_evidence_promotion": false,
+    "human_review_after_execution": true
+  }
+}

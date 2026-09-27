@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "decision_id": "DEC-S1-TOPO-REFERENCE-R1-PREFREEZE-DEVIATION-20260927",
+  "date": "2026-09-27",
+  "preregistration_id": "PREREG-S1-TOPO-REFERENCE-R1",
+  "freeze_record": "research/preregistrations/PREREG-S1-TOPO-REFERENCE-R1.freeze.json",
+  "status": "FROZEN_ABORTED_BEFORE_REFERENCE_DATA",
+  "reference_data_created": false,
+  "replication_classification": "NOT_APPLICABLE_NO_DATA",
+  "replication_credit_awarded": false,
+  "stage1_maturity_change": 0,
+  "discovered_issue": {
+    "field": "translation_contract.topology_generation.coordinate_order",
+    "frozen_text": "canonical lexicographic product order of the declared 5D shape",
+    "canonical_behavior": "Generate the 64 Cartesian-product coordinates, then sort by (sum(value/max(size-1,1) over dimensions), coordinate_tuple).",
+    "scientific_impact": "The frozen R1 translation could assign logical labels to different coordinates than the canonical MHRN topology. A failed or successful reference run would therefore be ambiguous between topology effects and translation error."
+  },
+  "governance_action": [
+    "Do not modify the frozen R1 scientific contract retroactively.",
+    "Do not authorize or execute R1 reference evaluation.",
+    "Preserve R1 freeze and pre-freeze PASS artifacts for auditability.",
+    "Create PREREG-S1-TOPO-REFERENCE-R2 with corrected topology semantics before any reference DATA.",
+    "Add an executable topology-mapping parity calibration before the R2 freeze."
+  ],
+  "claim_boundary": "This is a pre-DATA protocol correction record. It is not scientific evidence and says nothing about whether CLAIM-S1-TOPO-001 will replicate cross-implementation."
+}

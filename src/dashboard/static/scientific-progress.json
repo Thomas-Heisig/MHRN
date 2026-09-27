@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "as_of": "2026-09-25",
+  "as_of": "2026-09-27",
   "as_of_commit": "f9d926a9209dc17a11fbe29c6c82074824f75aa0",
   "title": "MHRN scientific maturity timeline",
   "scope_note": "Scientific maturity is intentionally separate from engineering maturity. Scores summarize registered questions, frozen protocols, collected DATA, human-reviewed EVID, independent replication and attribution. They do not measure intelligence, consciousness or biological equivalence.",
@@ -124,9 +124,9 @@
     {
       "stage": 1,
       "name": "Kleines SNN",
-      "score": 0.75,
-      "status": "advanced",
-      "claim_boundary": "Die zentrale Stage-1-Topologielinie (V2 + V3-R1) und die getrennte Temporal-Order-Funktionslinie sind innerhalb ihrer präregistrierten Small-SNN-Operating-Envelopes human-reviewed DATA. Das ist weder kanonische EVID noch unabhängige Replikation und begründet keine Kognition, Skalierbarkeit oder 5D-Überlegenheit.",
+      "score": 0.85,
+      "status": "active",
+      "claim_boundary": "Stage 1 besitzt jetzt zwei getrennte kanonische, human-reviewte EVID-Linien: Topologie EVID-2026-19 im 64-Neuronen/246-Kanten-Regime und Temporal Order EVID-2026-20 im sechsneuronigen Zweikanal-Task. Der Temporal-Human-Review dokumentiert Perfect-Score-Sättigung und die simultane Bedingung als nicht-inferentiellen Task-Adequacy-Control. Das begründet weder Kognition, Lernen/Gedächtnis, Skalierbarkeit, biologische Äquivalenz, 5D-Überlegenheit noch unabhängige Replikation.",
       "criteria": [
         {
           "id": "research_question",
@@ -147,7 +147,8 @@
           "sources": [
             "research/preregistrations/PREREG-S1-TOPO-V2.json",
             "research/preregistrations/PREREG-S1-TOPO-V3-R1-TIME-RESOLVED.json",
-            "research/preregistrations/PREREG-S1-TEMP-ORDER-V2.json"
+            "research/preregistrations/PREREG-S1-TEMP-ORDER-V2.json",
+            "research/preregistrations/PREREG-S1-TEMP-PROMO-R1.json"
           ]
         },
         {
@@ -157,25 +158,28 @@
           "sources": [
             "research/experiments/EXP-S1-TOPO-V2-20260918",
             "research/experiments/EXP-S1-TOPO-V3-R1-20260918",
-            "research/experiments/EXP-S1-TEMP-ORDER-V2-20260919"
+            "research/experiments/EXP-S1-TEMP-ORDER-V2-20260919",
+            "research/experiments/EXP-S1-TOPO-PROMO-R1-20260927",
+            "research/experiments/EXP-S1-TEMP-PROMO-R1-20260927"
           ]
         },
         {
           "id": "reviewed_evidence",
-          "status": "partial",
-          "label": "Human Reviews der Topologie- und Temporal-Order-Linien abgeschlossen; kanonische EvidenceEngine-Promotion separat offen",
+          "status": "met",
+          "label": "Human Review + EvidenceEngine-Promotion für Topologie- und Temporal-Order-Claims",
           "sources": [
-            "research/experiments/EXP-S1-TOPO-V2-20260918/review_request.json.review.json",
-            "research/experiments/EXP-S1-TOPO-V3-R1-20260918/review_request.json.human-review.json",
-            "research/experiments/EXP-S1-TEMP-ORDER-V2-20260919/review_request.json.review.json",
-            "research/registry/stage1_baseline.json",
-            "research/decisions/2026-09-25_stage1_scientific_consolidation.md"
+            "CLAIM-S1-TOPO-001",
+            "EVID-2026-19",
+            "research/experiments/EXP-S1-TOPO-PROMO-R1-20260927/human_review.json",
+            "CLAIM-S1-TEMP-001",
+            "EVID-2026-20",
+            "research/experiments/EXP-S1-TEMP-PROMO-R1-20260927/human_review.json"
           ]
         },
         {
           "id": "independent_replication",
           "status": "open",
-          "label": "Interne R1-Replikation vorhanden; keine unabhängig autorisierte Replikation",
+          "label": "Unabhängige Referenz-/Cross-Implementation-Replikation offen",
           "sources": [
             "INDEPENDENT_REPLICATION.md",
             "research/registry/stage1_baseline.json",
@@ -193,9 +197,9 @@
         }
       ],
       "next_scientific_steps": [
-        "Für die human-reviewte Topologie- und Temporal-Order-DATA jeweils einen scoped Claim und einen prospektiven EvidenceEngine-kompatiblen Promotion-Pfad definieren; historische Manifeste nicht rückwirkend umschreiben.",
-        "Unabhängig implementierte beziehungsweise unabhängig kontrollierte Replikation durchführen; weder V3-R1 noch Temporal Order als unabhängige Replikation der Topologielinie zählen.",
-        "Task-, Störungs- und Skalierungsregime erweitern; die stärkere 5D-Hypothese weiterhin separat prüfen."
+        "Topologie als unabhängig implementierte Referenz-/Cross-Implementation-Replikation präregistrieren, um den nächsten 7,5-%-Schritt zu adressieren.",
+        "Temporal-Order-Decoder/Task separat mit schwierigeren, präregistrierten Gap-/Channel-Swap-/Perturbationskontrollen stress-testen; dies ändert EVID-2026-20 nicht rückwirkend.",
+        "CLAIM-S1-EFFICIENCY-001 / H-SNN-003-C getrennt als prospektive untested Effizienzlinie weiterentwickeln; keine post-hoc Effizienzbeobachtung als EVID verwenden."
       ],
       "criterion_contracts": {
         "reviewed_evidence": {

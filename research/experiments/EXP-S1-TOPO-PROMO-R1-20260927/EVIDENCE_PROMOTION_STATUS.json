@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "experiment_id": "EXP-S1-TOPO-PROMO-R1-20260927",
+  "human_review_status": "COMPLETED_SUPPORTS_SCOPED_CLAIM",
+  "evidence_promotion_status": "COMPLETED",
+  "evidence_id": "EVID-2026-19",
+  "claim_id": "CLAIM-S1-TOPO-001",
+  "hypothesis_id": "H-SNN-003-B",
+  "scientific_evidence": true,
+  "automatic_evidence_promotion": false,
+  "independent_replication_complete": false,
+  "independent_authorship_replication": false,
+  "maturity_effect": {
+    "reviewed_evidence": "partial -> met",
+    "stage1_scientific_maturity": "75% -> 85%",
+    "remaining_gap_to_92_5": "7.5% independent reference/cross-implementation replication",
+    "remaining_gap_to_100": "15% full independent replication criterion"
+  },
+  "boundaries": [
+    "No 5D superiority",
+    "No scaling beyond the registered 64-neuron operating envelope",
+    "No cognition, learning or memory claim",
+    "No biological equivalence",
+    "No independent external replication claim",
+    "Null findings remain part of the evidence record"
+  ]
+}

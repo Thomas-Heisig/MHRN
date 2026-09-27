@@ -34,10 +34,22 @@
   hypothesis: Unter gleicher Neuronenzahl, Dichte und Stimulusbedingung unterscheiden
     sich Propagationslatenz oder -reichweite zwischen mindestens zwei vorab definierten
     Topologien; ein Vorteil einer 5D-Anordnung wird nicht vorausgesetzt.
-  status: untested
-  evidence: []
+  status: inconclusive
+  evidence:
+  - EVID-2026-19
   created: '2026-09-11'
   updated: '2026-09-11'
+- id: H-SNN-003-C
+  research_question: RQ-SNN-003
+  hypothesis: Unter dem registrierten 64-Neuronen-Small-SNN-Regime zeigt die 5D-Koordinatenorganisation
+    nach Kontrolle der dynamischen Rekrutierung eine höhere Propagations-Effizienz
+    als vorab definierte 3D-, 5D-shuffled- und Random-Graph-Kontrollen, operationalisiert
+    als activation_auc_0_32 pro Spike und pro geliefertem Event; ein allgemeiner 5D-Vorteil
+    wird nicht behauptet.
+  status: untested
+  evidence: []
+  created: '2026-09-27'
+  updated: '2026-09-27'
 - id: H-SNN-004-A
   research_question: RQ-SNN-004
   hypothesis: STDP führt zu einer meßbaren asymmetrischen Verschiebung der synaptischen
@@ -56,28 +68,32 @@
   updated: '2026-08-23'
 - id: H-PING-001-A
   research_question: RQ-PING-001
-  hypothesis: Identische Impulse erzeugen bei identischem Anfangszustand dieselbe beobachtete Response-Signatur.
+  hypothesis: Identische Impulse erzeugen bei identischem Anfangszustand dieselbe
+    beobachtete Response-Signatur.
   status: untested
   evidence: []
   created: '2026-09-03'
   updated: '2026-09-03'
 - id: H-TEMP-001-A
   research_question: RQ-TEMP-001
-  hypothesis: Die Temporal-State-Vergleiche unterscheiden sich deterministisch nach FAST-, MEDIUM- und SLOW-Horizont.
+  hypothesis: Die Temporal-State-Vergleiche unterscheiden sich deterministisch nach
+    FAST-, MEDIUM- und SLOW-Horizont.
   status: untested
   evidence: []
   created: '2026-09-03'
   updated: '2026-09-03'
 - id: H-TIME-001-A
   research_question: RQ-TIME-001
-  hypothesis: Die Tick-Leiter liefert reproduzierbare Durchsatz- und Zustandsmessungen bis 1.000.000 Ticks.
+  hypothesis: Die Tick-Leiter liefert reproduzierbare Durchsatz- und Zustandsmessungen
+    bis 1.000.000 Ticks.
   status: untested
   evidence: []
   created: '2026-09-03'
   updated: '2026-09-03'
 - id: H-REG-001-A
   research_question: RQ-REG-001
-  hypothesis: Chronischer Druck erhöht deterministisch Resource Pressure und Thermal Threat, während unbekannte Telemetrie Unsicherheit erhält.
+  hypothesis: Chronischer Druck erhöht deterministisch Resource Pressure und Thermal
+    Threat, während unbekannte Telemetrie Unsicherheit erhält.
   status: untested
   evidence: []
   created: '2026-09-03'
@@ -264,123 +280,147 @@
   updated: '2026-08-23'
 - id: H-EPIST-002-A
   research_question: RQ-EPIST-002
-  hypothesis: Reviewer mit einem status- und provenienzgetrennten Claim-Paket weisen gegenueber einem inhaltlich aequivalenten abgeflachten Summary-Paket eine geringere Rate vorab definierter epistemischer Klassifikationsfehler auf.
+  hypothesis: Reviewer mit einem status- und provenienzgetrennten Claim-Paket weisen
+    gegenueber einem inhaltlich aequivalenten abgeflachten Summary-Paket eine geringere
+    Rate vorab definierter epistemischer Klassifikationsfehler auf.
   status: untested
   evidence: []
   created: '2026-09-19'
   updated: '2026-09-19'
 - id: H-AIR-001-A
   research_question: RQ-AIR-001
-  hypothesis: Ein Scientific Research Assistant mit strukturiertem ResearchPacket erkennt vorab definierte methodische Defekte mit höherem F1-Score als dasselbe Modell mit einem unstrukturierten Experimentbericht.
+  hypothesis: Ein Scientific Research Assistant mit strukturiertem ResearchPacket
+    erkennt vorab definierte methodische Defekte mit höherem F1-Score als dasselbe
+    Modell mit einem unstrukturierten Experimentbericht.
   status: untested
   evidence: []
   created: '2026-09-02'
   updated: '2026-09-02'
-
 - id: H-SUITE-001-A
   research_question: RQ-SUITE-001
-  hypothesis: Alle Science-Suite-Teilprotokolle erfuellen in einem gemeinsamen Lauf ihre registrierten Ausfuehrungsvertraege und erzeugen auswertbare DATA-, Statistik- und Provenienzartefakte.
+  hypothesis: Alle Science-Suite-Teilprotokolle erfuellen in einem gemeinsamen Lauf
+    ihre registrierten Ausfuehrungsvertraege und erzeugen auswertbare DATA-, Statistik-
+    und Provenienzartefakte.
   status: untested
   evidence: []
   created: '2026-09-05'
   updated: '2026-09-05'
-
 - id: H-REC-001-A
   research_question: RQ-REC-001
-  hypothesis: Rekurrenzgewicht und Delay erzeugen reproduzierbare Übergänge zwischen sofortigem Erlöschen, transienter Aktivität und Aktivität bis zum Ende des registrierten Beobachtungsfensters.
+  hypothesis: Rekurrenzgewicht und Delay erzeugen reproduzierbare Übergänge zwischen
+    sofortigem Erlöschen, transienter Aktivität und Aktivität bis zum Ende des registrierten
+    Beobachtungsfensters.
   status: untested
   evidence: []
   created: '2026-09-05'
   updated: '2026-09-05'
 - id: H-GEN-001-A
   research_question: RQ-GEN-001
-  hypothesis: Learning-on verbessert die Erfolgsrate auf vorab registrierten Perturbationsproben gegenüber Learning-off und Sham-Replay.
+  hypothesis: Learning-on verbessert die Erfolgsrate auf vorab registrierten Perturbationsproben
+    gegenüber Learning-off und Sham-Replay.
   status: untested
   evidence: []
   created: '2026-09-05'
   updated: '2026-09-05'
 - id: H-REPL-001-A
   research_question: RQ-REPL-001
-  hypothesis: Der Rekurrenzbehandlungseffekt bleibt über mindestens 20 vorab registrierte Initialisierungsseeds in Richtung und Größenordnung konsistent.
+  hypothesis: Der Rekurrenzbehandlungseffekt bleibt über mindestens 20 vorab registrierte
+    Initialisierungsseeds in Richtung und Größenordnung konsistent.
   status: untested
   evidence: []
   created: '2026-09-05'
   updated: '2026-09-05'
 - id: H-5D-005-A
   research_question: RQ-5D-005
-  hypothesis: Mindestens eine registrierte Propagationsmetrik unterscheidet sich in 5D von topology-matched niedrigdimensionalen Einbettungen.
+  hypothesis: Mindestens eine registrierte Propagationsmetrik unterscheidet sich in
+    5D von topology-matched niedrigdimensionalen Einbettungen.
   status: untested
   evidence: []
   created: '2026-09-05'
   updated: '2026-09-05'
 - id: H-REG-002-A
   research_question: RQ-REG-002
-  hypothesis: Der registrierte Regulationsfeedbackpfad verbessert die Recovery-Metrik nach einer identischen Druckphase gegenüber Regulation-off.
+  hypothesis: Der registrierte Regulationsfeedbackpfad verbessert die Recovery-Metrik
+    nach einer identischen Druckphase gegenüber Regulation-off.
   status: untested
   evidence: []
   created: '2026-09-05'
   updated: '2026-09-05'
 - id: H-TEMP-002-A
   research_question: RQ-TEMP-002
-  hypothesis: Forward-, Reverse- und Simultanfolgen erzeugen bei gleicher Ereignisanzahl unterscheidbare spike-basierte Antwortsignaturen.
-  status: untested
-  evidence: []
+  hypothesis: Forward-, Reverse- und Simultanfolgen erzeugen bei gleicher Ereignisanzahl
+    unterscheidbare spike-basierte Antwortsignaturen.
+  status: inconclusive
+  evidence:
+  - EVID-2026-20
   created: '2026-09-05'
   updated: '2026-09-05'
 - id: H-PERF-001-A
   research_question: RQ-PERF-001
-  hypothesis: Der Core-Tick-Loop ist nicht der einzige dominante Kostenblock vollständiger Science-Läufe; mindestens ein zusätzlicher gemessener Subsystemanteil ist relevant.
+  hypothesis: Der Core-Tick-Loop ist nicht der einzige dominante Kostenblock vollständiger
+    Science-Läufe; mindestens ein zusätzlicher gemessener Subsystemanteil ist relevant.
   status: untested
   evidence: []
   created: '2026-09-05'
   updated: '2026-09-05'
 - id: H-REC-002-A
   research_question: RQ-REC-002
-  hypothesis: Größere rekurrente Delays verändern Persistenzdauer oder Propagation Depth gegenüber dem Delay-1-Kontrollarm.
+  hypothesis: Größere rekurrente Delays verändern Persistenzdauer oder Propagation
+    Depth gegenüber dem Delay-1-Kontrollarm.
   status: untested
   evidence: []
   created: '2026-09-05'
   updated: '2026-09-05'
 - id: H-LIFE-001-A
   research_question: RQ-LIFE-001
-  hypothesis: Sequenzielle Lernaufgaben zeigen eine messbare Veränderung der Retentions- oder Gewichtssignatur gegenüber einer Single-Task-Baseline.
+  hypothesis: Sequenzielle Lernaufgaben zeigen eine messbare Veränderung der Retentions-
+    oder Gewichtssignatur gegenüber einer Single-Task-Baseline.
   status: untested
   evidence: []
   created: '2026-09-05'
   updated: '2026-09-05'
-
 - id: H-SNN-006-A
   research_question: RQ-SNN-006
-  hypothesis: Alle zehn vorab registrierten, unterschiedlichen seed-gebundenen Parameterrealisierungen bleiben ueber 100.000 Ticks numerisch und topologisch stabil; unter gepaartem Tonic-Drive bleibt die post-burn-in Aktivitaet positiv mit CV und relativer Drift jeweils <= 0.25.
+  hypothesis: Alle zehn vorab registrierten, unterschiedlichen seed-gebundenen Parameterrealisierungen
+    bleiben ueber 100.000 Ticks numerisch und topologisch stabil; unter gepaartem
+    Tonic-Drive bleibt die post-burn-in Aktivitaet positiv mit CV und relativer Drift
+    jeweils <= 0.25.
   status: untested
   evidence: []
   created: '2026-09-16'
   updated: '2026-09-16'
-
 - id: H-ETH-001-B
   research_question: RQ-ETH-001
-  hypothesis: Vollständige Provenienzketten erlauben unabhängigen Kodierern, materielle epistemische Beiträge von Mensch, Modell und Software reproduzierbar definierten Rollen zuzuordnen.
+  hypothesis: Vollständige Provenienzketten erlauben unabhängigen Kodierern, materielle
+    epistemische Beiträge von Mensch, Modell und Software reproduzierbar definierten
+    Rollen zuzuordnen.
   status: untested
   evidence: []
   created: '2026-09-18'
   updated: '2026-09-18'
 - id: H-ETH-001-C
   research_question: RQ-ETH-001
-  hypothesis: Kanonisierung ist eine von der bloßen Generierung trennbare epistemische Handlung und lässt sich in MHRN-Claim-Episoden als Auswahl-, Prüf- oder Freigabeentscheidung identifizieren.
+  hypothesis: Kanonisierung ist eine von der bloßen Generierung trennbare epistemische
+    Handlung und lässt sich in MHRN-Claim-Episoden als Auswahl-, Prüf- oder Freigabeentscheidung
+    identifizieren.
   status: untested
   evidence: []
   created: '2026-09-18'
   updated: '2026-09-18'
 - id: H-ETH-001-D
   research_question: RQ-ETH-001
-  hypothesis: Unter gegenwärtigen Forschungsintegritäts- und Publikationsstandards verbleiben formale wissenschaftliche Autorenschaft und Verantwortung bei verantwortlichen natürlichen Personen, auch wenn KI-Systeme materiell beitragen.
+  hypothesis: Unter gegenwärtigen Forschungsintegritäts- und Publikationsstandards
+    verbleiben formale wissenschaftliche Autorenschaft und Verantwortung bei verantwortlichen
+    natürlichen Personen, auch wenn KI-Systeme materiell beitragen.
   status: untested
   evidence: []
   created: '2026-09-18'
   updated: '2026-09-18'
 - id: H-ETH-001-E
   research_question: RQ-ETH-001
-  hypothesis: Eine mehrdimensionale Beitrags- und Verantwortungsmatrix erhöht bei denselben Claim-Episoden die Audit-Vollständigkeit gegenüber einer binären Autor-Werkzeug-Klassifikation, ohne die Reproduzierbarkeit der Kodierung zu verschlechtern.
+  hypothesis: Eine mehrdimensionale Beitrags- und Verantwortungsmatrix erhöht bei
+    denselben Claim-Episoden die Audit-Vollständigkeit gegenüber einer binären Autor-Werkzeug-Klassifikation,
+    ohne die Reproduzierbarkeit der Kodierung zu verschlechtern.
   status: untested
   evidence: []
   created: '2026-09-18'

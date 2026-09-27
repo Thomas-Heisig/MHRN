@@ -439,5 +439,22 @@
     "source_class": "primary",
     "source_type": "Primärliteratur – gemeinsames Lernen von Delays und Gewichten",
     "scope": "Aktuelle Prior Art für ereignisbasiertes Co-Learning von Delays und Gewichten; keine direkte Evidenz für MHRN."
+  },
+  {
+    "id": "STIMBERG2019",
+    "label": "Stimberg et al., 2019",
+    "apa": "Stimberg, M., Brette, R., & Goodman, D. F. M. (2019). Brian 2, an intuitive and efficient neural simulator. eLife, 8, e47314. https://doi.org/10.7554/eLife.47314",
+    "bib_author": "Stimberg, Marcel and Brette, Romain and Goodman, Dan F. M.",
+    "title": "Brian 2, an intuitive and efficient neural simulator",
+    "year": 2019,
+    "doi": "10.7554/eLife.47314",
+    "url": "https://elifesciences.org/articles/47314",
+    "verification": "primary_text_checked",
+    "checked_on": "2026-09-27",
+    "scope": "Primary eLife article checked for bibliographic metadata and Brian 2 method description. The current CeCILL 2.1 software-license notice is verified separately against the upstream Brian2 LICENSE and recorded in THIRD_PARTY_NOTICES.md. This citation supports attribution/description of Brian 2, not MHRN efficacy claims.",
+    "source_class": "primary",
+    "source_type": "Primärliteratur / Forschungssoftware-Methode",
+    "software_project": "Brian 2",
+    "software_license": "CeCILL 2.1"
   }
 ]
