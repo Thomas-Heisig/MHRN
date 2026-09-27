@@ -596,7 +596,9 @@
         "scripts/verify_stage1_topology_reference_r1.py",
         "research/audits/STAGE1_TOPOLOGY_REFERENCE_MECHANISM_AUDIT_20260927.json",
         "research/calibrations/CAL-S1-TOPO-REFERENCE-INTEGRATOR-R1/result.json",
-        "THIRD_PARTY_NOTICES.md"
+        "THIRD_PARTY_NOTICES.md",
+        "research/preregistrations/PREREG-S1-TOPO-REFERENCE-R1.freeze.json",
+        "research/decisions/2026-09-27_stage1_reference_r1_prefreeze_deviation.json"
       ],
       "source_role": "prospective partial-replication contract and pre-freeze validation",
       "manuscript_parts": [
@@ -607,36 +609,34 @@
         "X",
         "XI"
       ],
-      "integration_status": "semantically_integrated_DRAFT_pre_freeze",
+      "integration_status": "historical_frozen_aborted_before_reference_data",
       "integration_mode": "translation_contract_mechanism_audit_parity_blinding_seed_governance",
-      "boundaries": "R1 was frozen and then aborted before any reference evaluation DATA after a topology coordinate-order ambiguity was identified. It produced no replication classification, EVID or maturity credit and may never authorize execution.",
-      "paths": [
-        "research/preregistrations/PREREG-S1-TOPO-REFERENCE-R1.freeze.json",
-        "research/decisions/2026-09-27_stage1_reference_r1_prefreeze_deviation.json"
-      ],
-      "status": "historical_frozen_aborted_before_reference_data"
+      "boundaries": "R1 was frozen and then aborted before any reference evaluation DATA after a topology coordinate-order ambiguity was identified. It produced no replication classification, EVID or maturity credit and may never authorize execution."
     },
     {
       "id": "CORPUS-STAGE1-REFERENCE-R2",
       "title": "Corrected Brian2 Stage-1 cross-implementation reference protocol R2",
       "source_role": "pre-DATA corrected replication protocol and executable topology-translation validation",
-      "status": "pre_freeze_execution_unauthorized",
       "integration_mode": "method_governance_and_replication_planning",
       "manuscript_parts": [
         "IV",
         "X",
         "XI"
       ],
-      "paths": [
+      "boundaries": "R2 supersedes the aborted pre-DATA R1 protocol without changing the canonical MHRN target effects or strict equivalence bounds. It adds exact coordinate/edge mapping parity. No Reference DATA, replication result, EVID or maturity credit exists until separately authorized execution and Human Review.",
+      "source_paths": [
         "research/preregistrations/PREREG-S1-TOPO-REFERENCE-R2.json",
         "reference/stage1_topology_brian2/TRANSLATION_R2.md",
         "reference/stage1_topology_brian2/reference_protocol_r2.json",
         "reference/stage1_topology_brian2/runner_r2.py",
+        "scripts/check_stage1_reference_seed_freshness_r2.py",
+        "scripts/verify_stage1_reference_dynamics_reuse_r2.py",
         "scripts/run_stage1_reference_topology_mapping_r2.py",
         "scripts/verify_stage1_topology_reference_r2.py",
+        "scripts/freeze_stage1_topology_reference_r2.py",
         "research/decisions/2026-09-27_stage1_reference_r2_supersession.json"
       ],
-      "boundaries": "R2 supersedes the aborted pre-DATA R1 protocol without changing the canonical MHRN target effects or strict equivalence bounds. It adds exact coordinate/edge mapping parity. No Reference DATA, replication result, EVID or maturity credit exists until separately authorized execution and Human Review."
+      "integration_status": "pre_freeze_execution_unauthorized"
     }
   ]
 }
