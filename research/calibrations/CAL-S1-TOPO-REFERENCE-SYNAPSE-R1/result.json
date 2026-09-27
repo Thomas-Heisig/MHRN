@@ -1,0 +1,142 @@
+{
+  "schema_version": 1,
+  "calibration_id": "CAL-S1-TOPO-REFERENCE-SYNAPSE-R1",
+  "role": "pre-freeze method calibration; not confirmatory DATA and not EVID",
+  "weight": 55.0,
+  "delay_ticks": 1,
+  "tolerance_abs": 1e-12,
+  "cases": [
+    {
+      "tick": 0,
+      "mhrn": {
+        "tick": 0,
+        "source_spiked": true,
+        "target_spiked": false,
+        "delivered_events": 0,
+        "target_v": -67.80499999999999,
+        "target_u": -13.01122,
+        "target_threshold_adaptation": -0.01,
+        "target_firing_rate_estimate": 0.0
+      },
+      "brian2_reference": {
+        "tick": 0,
+        "source": {
+          "v": -65.0,
+          "u": -4.44322,
+          "threshold_adaptation": 0.0009895001666249785,
+          "firing_rate_estimate": 0.9995001666249781,
+          "spiked": true
+        },
+        "target": {
+          "v": -67.80499999999999,
+          "u": -13.01122,
+          "threshold_adaptation": -0.01,
+          "firing_rate_estimate": 0.0,
+          "spiked": false
+        },
+        "delivered_events": 0,
+        "target_synaptic_current": 0
+      },
+      "absolute_differences": {
+        "target_v": 0.0,
+        "target_u": 0.0,
+        "target_threshold_adaptation": 0.0,
+        "target_firing_rate_estimate": 0.0
+      },
+      "pass": true
+    },
+    {
+      "tick": 1,
+      "mhrn": {
+        "tick": 1,
+        "source_spiked": false,
+        "target_spiked": false,
+        "delivered_events": 1,
+        "target_v": -6.544220798412603,
+        "target_u": -12.77717248319365,
+        "target_threshold_adaptation": -0.01999,
+        "target_firing_rate_estimate": 0.0
+      },
+      "brian2_reference": {
+        "tick": 1,
+        "source": {
+          "v": -75.31114518015801,
+          "u": -4.655600180720632,
+          "threshold_adaptation": -0.008012988167499752,
+          "firing_rate_estimate": 0.9985011660418948,
+          "spiked": false
+        },
+        "target": {
+          "v": -6.544220798412589,
+          "u": -12.77717248319365,
+          "threshold_adaptation": -0.01999,
+          "firing_rate_estimate": 0.0,
+          "spiked": false
+        },
+        "delivered_events": 1,
+        "target_synaptic_current": 55.0
+      },
+      "absolute_differences": {
+        "target_v": 1.4210854715202004e-14,
+        "target_u": 0.0,
+        "target_threshold_adaptation": 0.0,
+        "target_firing_rate_estimate": 0.0
+      },
+      "pass": true
+    },
+    {
+      "tick": 2,
+      "mhrn": {
+        "tick": 2,
+        "source_spiked": false,
+        "target_spiked": true,
+        "delivered_events": 0,
+        "target_v": -65.0,
+        "target_u": -3.219079898323322,
+        "target_threshold_adaptation": -0.01898050983337502,
+        "target_firing_rate_estimate": 0.9995001666249781
+      },
+      "brian2_reference": {
+        "tick": 2,
+        "source": {
+          "v": -78.92541103340268,
+          "u": -4.87818982123983,
+          "threshold_adaptation": -0.017007472015372192,
+          "firing_rate_estimate": 0.9975031639600607,
+          "spiked": false
+        },
+        "target": {
+          "v": -65.0,
+          "u": -3.219079898323322,
+          "threshold_adaptation": -0.01898050983337502,
+          "firing_rate_estimate": 0.9995001666249781,
+          "spiked": true
+        },
+        "delivered_events": 0,
+        "target_synaptic_current": 0
+      },
+      "absolute_differences": {
+        "target_v": 0.0,
+        "target_u": 0.0,
+        "target_threshold_adaptation": 0.0,
+        "target_firing_rate_estimate": 0.0
+      },
+      "pass": true
+    }
+  ],
+  "event_semantics": {
+    "source_spikes_tick_0": true,
+    "no_delivery_tick_0": true,
+    "one_delivery_tick_1": true,
+    "reference_current_tick_1_is_55": true
+  },
+  "provenance": {
+    "python_version": "3.13.15 (main, Aug  6 2026, 02:15:18) [GCC 13.3.0]",
+    "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
+    "brian2_version": "2.10.1",
+    "reference_probe_sha256": "d05bae8f00b97758cb96662acbb0f2e58cd7860776871b5edf6fd4ed09e576da",
+    "mhrn_network_source_sha256": "9ec16307adce858c4df6b9f35bb410c7c2612844f718f1d60a01e087d9de50a5",
+    "mhrn_neuron_source_sha256": "7b49f62209232b5a9e29ab2b33108e91b338a759c2a083ff4f94a0a25b2de1d7"
+  },
+  "pass": true
+}

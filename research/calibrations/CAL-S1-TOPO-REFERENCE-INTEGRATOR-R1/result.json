@@ -3,11 +3,277 @@
   "calibration_id": "CAL-S1-TOPO-REFERENCE-INTEGRATOR-R1",
   "role": "pre-freeze method calibration; not confirmatory DATA and not EVID",
   "tolerance_abs": 1e-12,
+  "single_tick_cases": [
+    {
+      "input_current": 0.0,
+      "mhrn": {
+        "v": -67.80499999999999,
+        "u": -13.01122,
+        "threshold_adaptation": -0.01,
+        "firing_rate_estimate": 0.0,
+        "spiked": false
+      },
+      "brian2_reference": {
+        "v": -67.80499999999999,
+        "u": -13.01122,
+        "threshold_adaptation": -0.01,
+        "firing_rate_estimate": 0.0,
+        "spiked": false
+      },
+      "absolute_differences": {
+        "v": 0.0,
+        "u": 0.0,
+        "threshold_adaptation": 0.0,
+        "firing_rate_estimate": 0.0
+      },
+      "pass": true
+    },
+    {
+      "input_current": 100.0,
+      "mhrn": {
+        "v": -65.0,
+        "u": -4.44322,
+        "threshold_adaptation": 0.0009895001666249785,
+        "firing_rate_estimate": 0.9995001666249781,
+        "spiked": true
+      },
+      "brian2_reference": {
+        "v": -65.0,
+        "u": -4.44322,
+        "threshold_adaptation": 0.0009895001666249785,
+        "firing_rate_estimate": 0.9995001666249781,
+        "spiked": true
+      },
+      "absolute_differences": {
+        "v": 0.0,
+        "u": 0.0,
+        "threshold_adaptation": 0.0,
+        "firing_rate_estimate": 0.0
+      },
+      "pass": true
+    }
+  ],
+  "multi_tick": {
+    "input_currents": [
+      100.0,
+      0.0,
+      0.0,
+      100.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "cases": [
+      {
+        "tick": 0,
+        "input_current": 100.0,
+        "mhrn": {
+          "v": -65.0,
+          "u": -4.44322,
+          "threshold_adaptation": 0.0009895001666249785,
+          "firing_rate_estimate": 0.9995001666249781,
+          "spiked": true
+        },
+        "brian2_reference": {
+          "v": -65.0,
+          "u": -4.44322,
+          "threshold_adaptation": 0.0009895001666249785,
+          "firing_rate_estimate": 0.9995001666249781,
+          "spiked": true
+        },
+        "absolute_differences": {
+          "v": 0.0,
+          "u": 0.0,
+          "threshold_adaptation": 0.0,
+          "firing_rate_estimate": 0.0
+        },
+        "pass": true
+      },
+      {
+        "tick": 1,
+        "input_current": 0.0,
+        "mhrn": {
+          "v": -75.31114518015801,
+          "u": -4.655600180720632,
+          "threshold_adaptation": -0.008012988167499752,
+          "firing_rate_estimate": 0.9985011660418948,
+          "spiked": false
+        },
+        "brian2_reference": {
+          "v": -75.31114518015801,
+          "u": -4.655600180720632,
+          "threshold_adaptation": -0.008012988167499752,
+          "firing_rate_estimate": 0.9985011660418948,
+          "spiked": false
+        },
+        "absolute_differences": {
+          "v": 0.0,
+          "u": 0.0,
+          "threshold_adaptation": 0.0,
+          "firing_rate_estimate": 0.0
+        },
+        "pass": true
+      },
+      {
+        "tick": 2,
+        "input_current": 0.0,
+        "mhrn": {
+          "v": -78.92541103340268,
+          "u": -4.87818982123983,
+          "threshold_adaptation": -0.017007472015372192,
+          "firing_rate_estimate": 0.9975031639600607,
+          "spiked": false
+        },
+        "brian2_reference": {
+          "v": -78.92541103340268,
+          "u": -4.87818982123983,
+          "threshold_adaptation": -0.017007472015372192,
+          "firing_rate_estimate": 0.9975031639600607,
+          "spiked": false
+        },
+        "absolute_differences": {
+          "v": 0.0,
+          "u": 0.0,
+          "threshold_adaptation": 0.0,
+          "firing_rate_estimate": 0.0
+        },
+        "pass": true
+      },
+      {
+        "tick": 3,
+        "input_current": 100.0,
+        "mhrn": {
+          "v": -65.0,
+          "u": 3.36839760953782,
+          "threshold_adaptation": -0.015004458217350369,
+          "firing_rate_estimate": 1.9960063260064518,
+          "spiked": true
+        },
+        "brian2_reference": {
+          "v": -65.0,
+          "u": 3.36839760953782,
+          "threshold_adaptation": -0.015004458217350369,
+          "firing_rate_estimate": 1.9960063260064518,
+          "spiked": true
+        },
+        "absolute_differences": {
+          "v": 0.0,
+          "u": 0.0,
+          "threshold_adaptation": 0.0,
+          "firing_rate_estimate": 0.0
+        },
+        "pass": true
+      },
+      {
+        "tick": 4,
+        "input_current": 0.0,
+        "mhrn": {
+          "v": -81.52430359925519,
+          "u": 2.9749324429500428,
+          "threshold_adaptation": -0.022995442441781994,
+          "firing_rate_estimate": 1.9940113173510239,
+          "spiked": false
+        },
+        "brian2_reference": {
+          "v": -81.52430359925519,
+          "u": 2.9749324429500428,
+          "threshold_adaptation": -0.022995442441781994,
+          "firing_rate_estimate": 1.9940113173510239,
+          "spiked": false
+        },
+        "absolute_differences": {
+          "v": 0.0,
+          "u": 0.0,
+          "threshold_adaptation": 0.0,
+          "firing_rate_estimate": 0.0
+        },
+        "pass": true
+      },
+      {
+        "tick": 5,
+        "input_current": 0.0,
+        "mhrn": {
+          "v": -84.3530195299739,
+          "u": 2.5780217159711465,
+          "threshold_adaptation": -0.030980428696633134,
+          "firing_rate_estimate": 1.9920183027070795,
+          "spiked": false
+        },
+        "brian2_reference": {
+          "v": -84.3530195299739,
+          "u": 2.5780217159711465,
+          "threshold_adaptation": -0.030980428696633134,
+          "firing_rate_estimate": 1.9920183027070795,
+          "spiked": false
+        },
+        "absolute_differences": {
+          "v": 0.0,
+          "u": 0.0,
+          "threshold_adaptation": 0.0,
+          "firing_rate_estimate": 0.0
+        },
+        "pass": true
+      },
+      {
+        "tick": 6,
+        "input_current": 0.0,
+        "mhrn": {
+          "v": -84.19831000559525,
+          "u": 2.189668041629343,
+          "threshold_adaptation": -0.0389594209878549,
+          "firing_rate_estimate": 1.9900272800816037,
+          "spiked": false
+        },
+        "brian2_reference": {
+          "v": -84.19831000559525,
+          "u": 2.189668041629343,
+          "threshold_adaptation": -0.0389594209878549,
+          "firing_rate_estimate": 1.9900272800816037,
+          "spiked": false
+        },
+        "absolute_differences": {
+          "v": 0.0,
+          "u": 0.0,
+          "threshold_adaptation": 0.0,
+          "firing_rate_estimate": 0.0
+        },
+        "pass": true
+      },
+      {
+        "tick": 7,
+        "input_current": 0.0,
+        "mhrn": {
+          "v": -83.97508747904904,
+          "u": 1.8099743308805598,
+          "threshold_adaptation": -0.046932423319383465,
+          "firing_rate_estimate": 1.9880382474835738,
+          "spiked": false
+        },
+        "brian2_reference": {
+          "v": -83.97508747904904,
+          "u": 1.8099743308805598,
+          "threshold_adaptation": -0.046932423319383465,
+          "firing_rate_estimate": 1.9880382474835738,
+          "spiked": false
+        },
+        "absolute_differences": {
+          "v": 0.0,
+          "u": 0.0,
+          "threshold_adaptation": 0.0,
+          "firing_rate_estimate": 0.0
+        },
+        "pass": true
+      }
+    ],
+    "contains_spike": true,
+    "pass": true
+  },
   "provenance": {
     "python_version": "3.13.15 (main, Aug  6 2026, 02:15:18) [GCC 13.3.0]",
     "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
     "brian2_version": "2.10.1",
-    "reference_probe_sha256": "a4e403d7bf666d9275d92e62c5f10d873ea5374f9eea6b8e74022bd4b8cbadf1",
+    "reference_probe_sha256": "52a421cbfa6d6fbf2041b73207a82778aa3fd3b1801a424983899f6af1e0ee51",
     "mhrn_neuron_source_sha256": "7b49f62209232b5a9e29ab2b33108e91b338a759c2a083ff4f94a0a25b2de1d7",
     "mhrn_neuron_model_source_sha256": "8dee90a3c8f4510f8f0521a77e0cf779959954b9cfb4181f7ef2ebcfb6689c0e"
   },
