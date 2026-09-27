@@ -155,3 +155,56 @@ class StickFigureSandbox:
                 "direct_ollama_http_created": False,
             },
         }
+
+
+
+class PANEmbodiedSandboxSession:
+    """Couple a persistent PAN live session to the stick-figure environment."""
+
+    def __init__(self, live_session: object) -> None:
+        self.live_session = live_session
+        self.world = StickFigureSandbox()
+        self.last_frame: dict[str, object] | None = None
+
+    def step(self, ticks: int = 1) -> dict[str, object]:
+        if ticks < 1 or ticks > 512:
+            raise ValueError("sandbox ticks must be between 1 and 512")
+        frames: list[dict[str, object]] = []
+        pan_result: dict[str, object] = {}
+        for _ in range(ticks):
+            receptors = self.world.receptors()
+            audio = (
+                float(self.last_frame.get("audio", {}).get("level", 0.0))
+                if isinstance(self.last_frame, dict)
+                and isinstance(self.last_frame.get("audio"), dict)
+                else 0.0
+            )
+            echo_values = (
+                self.last_frame.get("echo", [])
+                if isinstance(self.last_frame, dict)
+                else []
+            )
+            combined = list(receptors) + [audio] + [
+                float(value) for value in echo_values
+            ]
+            inject = getattr(self.live_session, "inject_vector")
+            inject(combined, duration_ticks=1, gain=25.0)
+            step_live = getattr(self.live_session, "step")
+            pan_result = step_live(1)
+            actions = pan_result.get("actions", [])
+            action = int(actions[-1]) if isinstance(actions, list) and actions else None
+            self.world.apply_action(action)
+            frame = self.world.step()
+            frame["pan_action"] = action
+            frames.append(frame)
+            self.last_frame = frame
+
+        return {
+            "classification": "PLAYGROUND_PAN_EMBODIED_SANDBOX",
+            "scientific_evidence": False,
+            "ticks": ticks,
+            "world": self.last_frame,
+            "pan": pan_result,
+            "frames": frames[-32:],
+            "learning_claim": "EXPLORATORY_REFERENCE_ONLY",
+        }
