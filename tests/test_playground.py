@@ -26,7 +26,12 @@ from src.playground.neural_io import (
     PlaygroundIOAreaAdapter,
     adapter_contract_check,
 )
-from src.playground.pan import BehavioralLearningEngine, ModeSwitcher, PANLiveSession
+from src.playground.pan import (
+    BehavioralLearningEngine,
+    ModeSwitcher,
+    PANLiveSession,
+    StickFigureSandbox,
+)
 from src.playground.pan.hypervector import bind, bundle
 from src.playground.pan.literature import pan_literature_context
 from src.playground.persist import session_recorder
@@ -1288,3 +1293,35 @@ def test_pan_catalog_exposes_meta_night_run_as_playground_only() -> None:
     assert pan["knowledge_base_status"] == "IMPLEMENTED_HASH_VECTOR_AND_FILE_INDEX"
     assert pan["night_run_status"] == "IMPLEMENTED_BOUNDED_RESUMABLE_REFERENCE"
     assert pan["night_analysis_status"] == "IMPLEMENTED_DESCRIPTIVE_ONLY"
+
+
+
+def test_stick_figure_slots_include_springs_and_construct_cleanly() -> None:
+    sandbox = StickFigureSandbox()
+    assert len(sandbox.springs) == 8
+    assert {"head", "neck", "hip", "foot_l", "foot_r"} <= set(sandbox.joints)
+    frame = sandbox.step()
+    assert frame["classification"] == "PLAYGROUND_STICK_FIGURE_SANDBOX"
+    assert isinstance(frame["joints"], dict)
+
+
+def test_night_profile_reduces_weight_and_enables_live_growth(tmp_path: Path) -> None:
+    daemon = NightRunDaemon(
+        hours=1.0,
+        max_episodes=4,
+        checkpoint_seconds=10.0,
+        output_root=tmp_path,
+        file_roots=[],
+        seed=17,
+    )
+    assert daemon.config.weight == pytest.approx(3.0)
+    assert daemon.config.clock_mode == "dual"
+    assert daemon.config.growth_enabled is True
+    assert daemon.config.growth_activity_threshold == pytest.approx(0.05)
+    assert daemon.pan.growth is not None
+    assert daemon.pan.growth.edge_budget > daemon.config.edge_budget
+
+    result = daemon.pan.step(32)
+    assert result["growth"] is not None
+    assert result["growth"]["activity_threshold"] == pytest.approx(0.05)
+    assert result["growth_edge_capacity"] > result["initial_edge_budget"]
