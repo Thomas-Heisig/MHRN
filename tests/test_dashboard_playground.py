@@ -174,7 +174,7 @@ def test_playground_ui_exposes_live_pan_session_controls() -> None:
     module = (STATIC / "frontend" / "modules" / "playground.js").read_text(
         encoding="utf-8"
     )
-    assert "10 · PAN Live Session & Sandbox" in module
+    assert "17 · PAN Live Session & Sandbox" in module
     assert "pg-live-create" in module
     assert "pg-live-step" in module
     assert "pg-live-input" in module
@@ -199,7 +199,7 @@ def test_playground_ui_exposes_meta_night_run_monitor() -> None:
     module = (STATIC / "frontend" / "modules" / "playground.js").read_text(
         encoding="utf-8"
     )
-    assert "11 · Meta-Nachtlauf" in module
+    assert "18 · Meta-Nachtlauf" in module
     assert "pg-night-start" in module
     assert "pg-night-stop" in module
     assert "pg-night-refresh" in module
@@ -217,3 +217,26 @@ def test_playground_api_wires_meta_strategy_reward_and_night_run() -> None:
     assert 'action == "reward"' in api
     assert "EvidenceEngine" not in api
     assert "promote_validated_experiment" not in api
+
+
+def test_playground_ui_exposes_closed_loop_builder_sections() -> None:
+    module = (STATIC / "frontend" / "modules" / "playground.js").read_text(
+        encoding="utf-8"
+    )
+    for section in (
+        "10 · Input-Kanäle",
+        "11 · Aktions-Loop",
+        "12 · Ziel-Kodierung",
+        "13 · Belohnung",
+        "14 · Kredit-Zuweisung",
+        "15 · Netzwerk-Heterogenität & Zeit",
+        "16 · Closed-Loop Presets",
+    ):
+        assert section in module
+    assert 'id="pg-action-loop-enabled"' in module
+    assert 'id="pg-pan-feedback-nonlinearity"' in module
+    assert 'id="pg-target-encoding"' in module
+    assert 'id="pg-reward-enabled"' in module
+    assert 'id="pg-credit-assignment"' in module
+    assert 'id="pg-closed-loop-preset"' in module
+    assert "applySelectedPreset" in module

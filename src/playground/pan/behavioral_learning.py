@@ -31,8 +31,8 @@ class BehavioralLearningEngine:
     ) -> None:
         if n_neurons < 1:
             raise ValueError("n_neurons must be positive")
-        if not 2 <= action_count <= 16:
-            raise ValueError("action_count must be between 2 and 16")
+        if not 2 <= action_count <= 32:
+            raise ValueError("action_count must be between 2 and 32")
         if not 0.0 < learning_rate <= 1.0:
             raise ValueError("learning_rate must be between 0 and 1")
         if not 0.0 <= epsilon <= 1.0:
@@ -69,6 +69,7 @@ class BehavioralLearningEngine:
         self.context_updates: dict[str, int] = {}
         self.external_reward_history: list[dict[str, object]] = []
         self.active_context: str | None = None
+        self.external_reward_updates = 0
 
     def _bucket(self, neuron_id: int) -> int:
         if not self.output_neurons:
@@ -104,6 +105,70 @@ class BehavioralLearningEngine:
             range(self.action_count), key=lambda action: (scores[action], -action)
         )
 
+    def apply_external_reward(
+        self,
+        *,
+        action: int,
+        reward: float,
+        target: int | None = None,
+        context: str | None = None,
+        action_count: int | None = None,
+    ) -> float:
+        """Apply external reward to the base policy or a named context policy."""
+
+        if context is not None:
+            count = self.action_count if action_count is None else action_count
+            if not 2 <= count <= 16:
+                raise ValueError("action_count must be between 2 and 16")
+            if not 0 <= action < count:
+                raise ValueError("action outside context action range")
+            bounded = max(-2.0, min(2.0, float(reward)))
+            policy = self.context_policies.setdefault(
+                context, [0.0 for _ in range(count)]
+            )
+            weights = self.context_weights.setdefault(
+                context,
+                [[0.0 for _ in range(self.action_count)] for _ in range(count)],
+            )
+            if len(policy) != count or len(weights) != count:
+                raise ValueError("context action_count changed after initialization")
+            prediction = policy[action] + sum(
+                weight * feature
+                for weight, feature in zip(weights[action], self.activity)
+            )
+            error = bounded - prediction
+            policy[action] += self.learning_rate * error
+            for index, feature in enumerate(self.activity):
+                weights[action][index] += self.learning_rate * error * feature
+            self.context_updates[context] = self.context_updates.get(context, 0) + 1
+            self.external_reward_history.append(
+                {"context": context, "action": action, "reward": bounded}
+            )
+            if len(self.external_reward_history) > 512:
+                del self.external_reward_history[:-512]
+            self.external_reward_updates += 1
+            return policy[action]
+
+        if not 0 <= action < self.action_count:
+            raise ValueError("action outside action range")
+        activity_level = max(self.activity, default=0.0)
+        applied = float(reward)
+        if activity_level < self.min_activity:
+            applied = 0.0
+            self.insufficient_activity_episodes += 1
+        else:
+            prediction = self.policy[action]
+            self.policy[action] += self.learning_rate * (applied - prediction)
+            self.policy_updates += 1
+            self.external_reward_updates += 1
+            if target is not None and action == target:
+                self.correct_actions += 1
+        if target is not None:
+            self.target_history.append(int(target))
+        self.action_history.append(action)
+        self.reward_history.append(applied)
+        return applied
+
     def maybe_learn(self, tick: int) -> float | None:
         if (tick + 1) % self.episode_ticks != 0:
             return None
@@ -114,21 +179,12 @@ class BehavioralLearningEngine:
             else (self.target_action + episode_index) % self.action_count
         )
         action = self.choose_action()
-        activity_level = max(self.activity, default=0.0)
-        if activity_level < self.min_activity:
-            reward = 0.0
-            self.insufficient_activity_episodes += 1
-        else:
-            reward = 1.0 if action == target else -0.25
-            prediction = self.policy[action]
-            self.policy[action] += self.learning_rate * (reward - prediction)
-            self.policy_updates += 1
-            if action == target:
-                self.correct_actions += 1
-        self.target_history.append(target)
-        self.action_history.append(action)
-        self.reward_history.append(reward)
-        return reward
+        reward = 1.0 if action == target else -0.25
+        return self.apply_external_reward(
+            action=action,
+            reward=reward,
+            target=target,
+        )
 
     def choose_context_action(self, context: str, action_count: int) -> int:
         """Choose an action from a learned context policy.
@@ -174,51 +230,6 @@ class BehavioralLearningEngine:
         if len(policy) != action_count or len(weights) != action_count:
             raise ValueError("context action_count changed after initialization")
         self.active_context = context
-
-    def apply_external_reward(
-        self,
-        *,
-        context: str,
-        action: int,
-        reward: float,
-        action_count: int,
-    ) -> float:
-        """Apply a scalar externally computed reward to a strategy policy."""
-
-        if not self.learning_enabled_external:
-            return 0.0
-        if not 2 <= action_count <= 16:
-            raise ValueError("action_count must be between 2 and 16")
-        if not 0 <= action < action_count:
-            raise ValueError("action outside context action range")
-        bounded = max(-2.0, min(2.0, float(reward)))
-        policy = self.context_policies.setdefault(
-            context, [0.0 for _ in range(action_count)]
-        )
-        weights = self.context_weights.setdefault(
-            context,
-            [[0.0 for _ in range(self.action_count)] for _ in range(action_count)],
-        )
-        if len(policy) != action_count or len(weights) != action_count:
-            raise ValueError("context action_count changed after initialization")
-        prediction = policy[action] + sum(
-            weight * feature for weight, feature in zip(weights[action], self.activity)
-        )
-        error = bounded - prediction
-        policy[action] += self.learning_rate * error
-        for index, feature in enumerate(self.activity):
-            weights[action][index] += self.learning_rate * error * feature
-        self.context_updates[context] = self.context_updates.get(context, 0) + 1
-        self.external_reward_history.append(
-            {
-                "context": context,
-                "action": action,
-                "reward": bounded,
-            }
-        )
-        if len(self.external_reward_history) > 512:
-            del self.external_reward_history[:-512]
-        return policy[action]
 
     @property
     def learning_enabled_external(self) -> bool:
@@ -273,6 +284,7 @@ class BehavioralLearningEngine:
             "action_history": list(self.action_history[-128:]),
             "reward_history": list(self.reward_history[-128:]),
             "policy_updates": self.policy_updates,
+            "external_reward_updates": self.external_reward_updates,
             "insufficient_activity_episodes": self.insufficient_activity_episodes,
             "target_history": list(self.target_history[-128:]),
             "context_policies": {

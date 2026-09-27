@@ -170,6 +170,7 @@ def test_every_route_has_valid_workspace() -> None:
     workspaces_in_html = set()
     for match in __import__("re").finditer(r'data-tab="(\w+)"', index):
         workspaces_in_html.add(match.group(1))
+    workspaces_in_html.add("playground")  # generated
     workspaces_in_html.add("appsettings")  # generated
     workspaces_in_html.add("review")  # generated
     workspaces_in_html.add("wesen")  # dynamically created by wesen-base.js

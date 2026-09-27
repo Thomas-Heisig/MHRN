@@ -3,7 +3,7 @@
   "audit": {
     "clean": false,
     "question_reference_count": 5022,
-    "hypothesis_reference_count": 3705,
+    "hypothesis_reference_count": 3708,
     "missing_questions": [
       "RQ-AI-DESIGN-001",
       "RQ-AI-EFF-001",
