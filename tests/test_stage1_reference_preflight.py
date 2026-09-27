@@ -1,6 +1,7 @@
 """Historical pre-freeze provenance tests for Stage-1 R1 reference replication."""
 
 from __future__ import annotations
+
 import json
 from pathlib import Path
 
