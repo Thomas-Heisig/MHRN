@@ -346,3 +346,41 @@ actuators, gravity, ground contact and delayed echo feedback. Audio is
 currently only a synthetic activity proxy. Direct Ollama access is not added;
 LLM communication stays behind the existing Gateway/Neural-Symbiosis
 interface.
+
+
+## Meta-learning night run
+
+The Playground now includes a bounded, resumable overnight strategy-learning
+path. It trains context policies for three operations:
+
+- find a source/category;
+- store information in a category;
+- link two records with a relation.
+
+The external KnowledgeBase uses a deterministic hashing-vector index and a
+bounded read-only file index. This store is explicitly **not neural memory**.
+PAN receives a task vector with target labels removed and learns strategy
+policy values from scalar reward.
+
+Start:
+
+```bash
+python -m src.playground.night_run --hours 8 --max-episodes 10000
+```
+
+Resume:
+
+```bash
+python -m src.playground.night_run --resume playground_sessions/night_runs/PGNIGHT-...
+```
+
+Morning report:
+
+```bash
+python scripts/analyze_pan_night.py --session last
+```
+
+The Dashboard exposes **11 · Meta-Nachtlauf** and
+`/api/playground/night` start/stop/status endpoints.
+
+See `docs/playground/PAN_NIGHT_RUN.md`.
