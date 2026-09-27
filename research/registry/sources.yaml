@@ -186,3 +186,21 @@
   brain5d_questions:
     - RQ-SNN-003
   brain5d_relevance: "Klassische Referenz für skalenfreie Netzwerktopologien."
+
+- source_id: SRC-OLSHAUSEN-FIELD-1996
+  authors:
+    - Bruno A. Olshausen
+    - David J. Field
+  title: "Emergence of simple-cell receptive field properties by learning a sparse code for natural images"
+  year: 1996
+  journal: "Nature"
+  doi: "10.1038/381607a0"
+  topic:
+    - sparse_coding
+    - efficient_coding
+    - neuroscience
+  claims:
+    - "Sparse coding is a biologically motivated efficient-coding principle; this source does not imply that MHRN Stage-1 topology is a sparse code."
+  brain5d_questions:
+    - RQ-SNN-003
+  brain5d_relevance: "Related-work context for a new prospective propagation-efficiency hypothesis. It motivates careful efficiency controls but is not evidence for a 5D advantage."
