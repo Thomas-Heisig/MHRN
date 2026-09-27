@@ -12,6 +12,8 @@ from pathlib import Path
 
 import brian2
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+
 from reference.stage1_topology_brian2.integrator_probe import run_one_tick
 from src.core.neuron import NeuronConfig, create_neuron
 
