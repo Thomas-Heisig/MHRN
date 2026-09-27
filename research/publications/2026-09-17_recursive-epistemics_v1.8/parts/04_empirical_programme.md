@@ -293,3 +293,12 @@ Damit erhält Teil IV den Charakter einer kumulativen empirischen Dissertationse
 **Falsifikation.** Der Forschungsstrang trägt keinen Claim gelernten digitalen Sinnes, wenn Quellentransfer scheitert, Queries vollständig extern getaktet werden müssen oder Modalitätsrouting nur durch feste Verdrahtung funktioniert.
 
 **Claim-Grenze.** Architekturverfügbarkeit, Checksum-Integrität oder ein erreichbarer Tool-Endpunkt sind kein Nachweis gelernten Werkzeuggebrauchs, semantischen Bindings oder eines Vorteils gegenüber nicht-neuronalen Routing-Baselines.
+
+
+### Stage-1 Reference R1 → R2: Governancekorrektur vor DATA
+
+Die projektseitige Brian2-Cross-Implementation wurde zunächst als R1 eingefroren. Nach diesem Freeze, aber **vor jeder Reference-DATA-Erzeugung**, zeigte ein code-gestützter Audit, dass die eingefrorene Beschreibung der Koordinaten-/Label-Reihenfolge die tatsächlich kanonische Sortierung nicht hinreichend eindeutig band. R1 wurde deshalb nicht ausgeführt, sondern als `FROZEN_ABORTED_BEFORE_REFERENCE_DATA` historisch erhalten. Es existieren weder ein R1-Replikationsresultat noch Replikationspunkte oder EVID.
+
+R2 übernimmt unverändert die fünf kanonischen Latenzkontraste, deren strikte 50–150-%-Äquivalenzintervalle einschließlich `3d→5d = [-1.5,-0.5]`, die Holm-Familie sowie die vorab definierten Ergebniswege `PARTIAL_REPLICATION`, `FAILED_REPLICATION` und `INCONCLUSIVE_REFERENCE_REPLICATION`. Neu ist die ausführbare Topologiebindung: vollständiges kartesisches Produkt, Sortierung nach `(sum(value_i/max(size_i-1,1)), coordinate_tuple)`, danach Labelzuweisung. Vor einem R2-Freeze muss ein eigener Mapping-Gate Koordinatenlisten und vollständige Kantenlisten für alle Bedingungen exakt gegen die kanonische MHRN-Erzeugung vergleichen.
+
+Auch ein erfolgreicher projektseitiger R2-Lauf könnte höchstens 7,5/15 Replikationspunkte beitragen. Der Freeze selbst autorisiert keine Ausführung; dafür bleibt ein separater menschlicher Autorisierungsrecord erforderlich.
