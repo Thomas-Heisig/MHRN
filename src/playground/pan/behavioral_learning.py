@@ -65,6 +65,7 @@ class BehavioralLearningEngine:
         self.insufficient_activity_episodes = 0
         self.target_history: list[int] = []
         self.context_policies: dict[str, list[float]] = {}
+        self.context_weights: dict[str, list[list[float]]] = {}
         self.context_updates: dict[str, int] = {}
         self.external_reward_history: list[dict[str, object]] = []
         self.active_context: str | None = None
@@ -139,12 +140,27 @@ class BehavioralLearningEngine:
         policy = self.context_policies.setdefault(
             context, [0.0 for _ in range(action_count)]
         )
+        weights = self.context_weights.setdefault(
+            context,
+            [
+                [0.0 for _ in range(self.action_count)]
+                for _ in range(action_count)
+            ],
+        )
         self.active_context = context
-        if len(policy) != action_count:
+        if len(policy) != action_count or len(weights) != action_count:
             raise ValueError("context action_count changed after initialization")
         if self.rng.random() < self.epsilon:
             return self.rng.randrange(action_count)
-        return max(range(action_count), key=lambda action: (policy[action], -action))
+        scores = [
+            policy[action]
+            + sum(
+                weight * feature
+                for weight, feature in zip(weights[action], self.activity)
+            )
+            for action in range(action_count)
+        ]
+        return max(range(action_count), key=lambda action: (scores[action], -action))
 
     def activate_context(self, context: str, action_count: int) -> None:
         if not 2 <= action_count <= 16:
@@ -152,7 +168,14 @@ class BehavioralLearningEngine:
         policy = self.context_policies.setdefault(
             context, [0.0 for _ in range(action_count)]
         )
-        if len(policy) != action_count:
+        weights = self.context_weights.setdefault(
+            context,
+            [
+                [0.0 for _ in range(self.action_count)]
+                for _ in range(action_count)
+            ],
+        )
+        if len(policy) != action_count or len(weights) != action_count:
             raise ValueError("context action_count changed after initialization")
         self.active_context = context
 
@@ -176,10 +199,23 @@ class BehavioralLearningEngine:
         policy = self.context_policies.setdefault(
             context, [0.0 for _ in range(action_count)]
         )
-        if len(policy) != action_count:
+        weights = self.context_weights.setdefault(
+            context,
+            [
+                [0.0 for _ in range(self.action_count)]
+                for _ in range(action_count)
+            ],
+        )
+        if len(policy) != action_count or len(weights) != action_count:
             raise ValueError("context action_count changed after initialization")
-        prediction = policy[action]
-        policy[action] += self.learning_rate * (bounded - prediction)
+        prediction = policy[action] + sum(
+            weight * feature
+            for weight, feature in zip(weights[action], self.activity)
+        )
+        error = bounded - prediction
+        policy[action] += self.learning_rate * error
+        for index, feature in enumerate(self.activity):
+            weights[action][index] += self.learning_rate * error * feature
         self.context_updates[context] = self.context_updates.get(context, 0) + 1
         self.external_reward_history.append(
             {
@@ -204,8 +240,17 @@ class BehavioralLearningEngine:
         scores = [math.tanh(value) for value in self.policy]
         if self.active_context is not None:
             context_policy = self.context_policies.get(self.active_context, [])
+            context_weights = self.context_weights.get(self.active_context, [])
             for action, value in enumerate(context_policy[: self.action_count]):
-                scores[action] += math.tanh(value)
+                contextual = 0.0
+                if action < len(context_weights):
+                    contextual = sum(
+                        weight * feature
+                        for weight, feature in zip(
+                            context_weights[action], self.activity
+                        )
+                    )
+                scores[action] += math.tanh(value + contextual)
         currents = [0.0 for _ in range(self.n_neurons)]
         for neuron_id in self.output_neurons:
             bucket = self._bucket(neuron_id)
@@ -239,6 +284,10 @@ class BehavioralLearningEngine:
             "insufficient_activity_episodes": self.insufficient_activity_episodes,
             "target_history": list(self.target_history[-128:]),
             "context_policies": {key: list(value) for key, value in self.context_policies.items()},
+            "context_weights": {
+                key: [list(row) for row in value]
+                for key, value in self.context_weights.items()
+            },
             "context_updates": dict(self.context_updates),
             "external_reward_history": list(self.external_reward_history[-128:]),
             "active_context": self.active_context,
