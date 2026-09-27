@@ -9,7 +9,15 @@ from collections.abc import Mapping
 from typing import cast
 
 from src.playground import service
-from src.playground.cuda import compile_mapping
+from src.playground.cuda import (
+    compile_mapping,
+    cpu_gate_reference,
+    cuda_runtime_status,
+    nontrivial_gate_launch_inputs,
+    preflight_bundle,
+    run_gate_hardware_smoke,
+    run_gate_rng_parity,
+)
 from src.playground.models import PlaygroundConfig
 from src.playground.night_run import NightRunManager
 from src.playground.pan import PANEmbodiedSandboxSession, PANSessionDaemon
@@ -131,6 +139,8 @@ def get_playground(path: str) -> dict[str, object] | None:
         return service.replay(session_id)
     if path == "/api/playground/night":
         return _NIGHT_RUN.status()
+    if path == "/api/playground/cuda/status":
+        return cuda_runtime_status()
     if path == "/api/playground/live":
         return {
             "class": "PLAYGROUND_LIVE_SESSIONS",
@@ -163,6 +173,70 @@ def post_playground(
             target_sm=target_sm,
             ptx_version=ptx_version,
         ).to_mapping()
+
+    if path in {
+        "/api/playground/cuda/preflight",
+        "/api/playground/cuda/reference",
+        "/api/playground/cuda/smoke",
+        "/api/playground/cuda/rng-parity",
+    }:
+        target_sm = _payload_text(payload, "target_sm", "sm_86")
+        ptx_version = _payload_text(payload, "ptx_version", "7.1")
+        config_payload = dict(payload)
+        for key in (
+            "target_sm",
+            "ptx_version",
+            "block_size",
+            "parity_tolerance",
+            "rng_samples",
+            "rng_tick",
+            "rng_epsilon",
+        ):
+            config_payload.pop(key, None)
+        bundle = compile_mapping(
+            config_payload,
+            target_sm=target_sm,
+            ptx_version=ptx_version,
+        )
+        block_size = _payload_int(payload, "block_size", 64)
+        if path == "/api/playground/cuda/preflight":
+            return preflight_bundle(
+                bundle,
+                n_neurons=_payload_int(payload, "n_neurons", 64),
+                block_size=block_size,
+            )
+        if path == "/api/playground/cuda/reference":
+            inputs = nontrivial_gate_launch_inputs(
+                bundle,
+                n_neurons=_payload_int(payload, "n_neurons", 64),
+                seed=_payload_int(payload, "seed", 12345),
+                epsilon=_payload_float(payload, "behavior_epsilon", 0.0),
+            )
+            return {
+                "classification": "PLAYGROUND_CUDA1_3_CPU_REFERENCE",
+                "scientific_evidence": False,
+                "abi": bundle.manifest.get("kernel_abi"),
+                "reference": cpu_gate_reference(bundle, inputs),
+            }
+        if path == "/api/playground/cuda/smoke":
+            return run_gate_hardware_smoke(
+                bundle,
+                n_neurons=_payload_int(payload, "n_neurons", 64),
+                seed=_payload_int(payload, "seed", 12345),
+                tolerance=_payload_float(payload, "parity_tolerance", 1.0e-5),
+                reference_commit=_payload_text(
+                    payload, "parity_reference_commit", ""
+                ),
+                block_size=block_size,
+            )
+        return run_gate_rng_parity(
+            bundle,
+            n_neurons=_payload_int(payload, "rng_samples", 1000),
+            seed=_payload_int(payload, "seed", 12345),
+            tick=_payload_int(payload, "rng_tick", 17),
+            epsilon=_payload_float(payload, "rng_epsilon", 0.5),
+            block_size=block_size,
+        )
 
     if path == "/api/playground/night/start":
         return _NIGHT_RUN.start(
