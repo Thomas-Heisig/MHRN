@@ -79,6 +79,7 @@ class PANLiveSession:
             else None
         )
         self.learning_enabled = config.behavior_learning_enabled
+        self.auto_reward_enabled = True
         self.learning = BehavioralLearningEngine(
             n_neurons=config.n_neurons,
             action_count=config.behavior_action_count,
@@ -256,9 +257,10 @@ class PANLiveSession:
 
                 if self.learning_enabled:
                     self.learning.observe(spiked)
-                    reward = self.learning.maybe_learn(self.tick)
-                    if reward is not None:
-                        rewards.append(reward)
+                    if self.auto_reward_enabled:
+                        reward = self.learning.maybe_learn(self.tick)
+                        if reward is not None:
+                            rewards.append(reward)
                 action = self._decode_action(spiked)
                 if action is not None:
                     actions.append(action)
@@ -318,6 +320,10 @@ class PANLiveSession:
                     "context_policies": {
                         key: list(value)
                         for key, value in self.learning.context_policies.items()
+                    },
+                    "context_weights": {
+                        key: [list(row) for row in value]
+                        for key, value in self.learning.context_weights.items()
                     },
                     "context_updates": dict(self.learning.context_updates),
                     "external_reward_history": list(
@@ -398,6 +404,17 @@ class PANLiveSession:
                         for key, values in raw_context.items()
                         if isinstance(values, list)
                     }
+                raw_weights = learning.get("context_weights")
+                if isinstance(raw_weights, Mapping):
+                    self.learning.context_weights = {
+                        str(key): [
+                            [float(value) for value in row]
+                            for row in rows
+                            if isinstance(row, list)
+                        ]
+                        for key, rows in raw_weights.items()
+                        if isinstance(rows, list)
+                    }
                 raw_updates = learning.get("context_updates")
                 if isinstance(raw_updates, Mapping):
                     self.learning.context_updates = {
@@ -428,6 +445,7 @@ class PANLiveSession:
                 "output_counts": list(self.output_counts),
                 "input_queue_depth": len(self.input_queue),
                 "learning_enabled": self.learning_enabled,
+                "auto_reward_enabled": self.auto_reward_enabled,
                 "learning": self.learning.summary(),
                 "execution": self.switcher.summary(),
                 "state_digest": self.state_digest(),
