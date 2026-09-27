@@ -208,8 +208,8 @@ Verbindungswahrscheinlichkeit.
 DOI: `10.1038/s41586-024-07968-y`
 
 Die in der Ausgangsskizze genannte Aussage, das Drosophila-Connectome habe eine
-etablierte „effektive Dimension zwischen 4 und 6“, wird im Playground **nicht
-als belegt übernommen**.
+etablierte „effektive Dimension zwischen 4 und 6“, wird im Playground ausdrücklich
+**nicht als belegt übernommen**.
 
 ### Grid-like conceptual coding
 
