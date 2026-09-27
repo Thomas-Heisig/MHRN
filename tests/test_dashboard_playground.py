@@ -22,9 +22,7 @@ def test_playground_is_first_class_workspace() -> None:
 
 def test_playground_api_is_routed_without_research_promotion() -> None:
     server = (ROOT / "src" / "dashboard" / "server.py").read_text(encoding="utf-8")
-    api = (ROOT / "src" / "dashboard" / "playground_api.py").read_text(
-        encoding="utf-8"
-    )
+    api = (ROOT / "src" / "dashboard" / "playground_api.py").read_text(encoding="utf-8")
     assert 'path.startswith("/api/playground/")' in server
     assert '"/api/playground/run"' in api
     assert '"/api/playground/robustness"' in api
@@ -82,7 +80,9 @@ def test_playground_resets_defaults_on_start_and_marks_overrides_by_hover() -> N
     assert "const PLAYGROUND_DEFAULT_HINTS" in module
     assert "function updateDefaultHints()" in module
     assert "field.title = message" in module
-    assert "renderCatalog(await apiGet(\"/api/playground/catalog\"));resetForm();" in module
+    assert (
+        'renderCatalog(await apiGet("/api/playground/catalog"));resetForm();' in module
+    )
     assert "pg-non-default" in module
 
 
@@ -191,7 +191,9 @@ def test_playground_ui_exposes_live_pan_session_controls() -> None:
     assert "pg-live-stop" in module
 
 
-def test_playground_api_exposes_stateful_live_routes_without_research_promotion() -> None:
+def test_playground_api_exposes_stateful_live_routes_without_research_promotion() -> (
+    None
+):
     api = (ROOT / "src" / "dashboard" / "playground_api.py").read_text(encoding="utf-8")
     assert '"/api/playground/live/create"' in api
     assert 'action == "step"' in api
