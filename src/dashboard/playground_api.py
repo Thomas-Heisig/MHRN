@@ -10,6 +10,7 @@ from collections.abc import Mapping
 from src.playground import service
 from src.playground.models import PlaygroundConfig
 from src.playground.pan import PANEmbodiedSandboxSession, PANSessionDaemon
+from src.playground.night_run import NightRunManager
 
 _MAX_CONCURRENT_RUNS = 2
 _RUNS_PER_MINUTE = 20
@@ -21,6 +22,7 @@ _RECENT_RUNS: deque[float] = deque()
 _LIVE_DAEMON = PANSessionDaemon()
 _LIVE_SANDBOXES: dict[str, PANEmbodiedSandboxSession] = {}
 _LIVE_LOCK = threading.RLock()
+_NIGHT_RUN = NightRunManager()
 
 
 class PlaygroundRateLimitError(RuntimeError):
@@ -75,6 +77,8 @@ def get_playground(path: str) -> dict[str, object] | None:
     if path.startswith("/api/playground/sessions/"):
         session_id = path[len("/api/playground/sessions/") :]
         return service.replay(session_id)
+    if path == "/api/playground/night":
+        return _NIGHT_RUN.status()
     if path == "/api/playground/live":
         return {
             "class": "PLAYGROUND_LIVE_SESSIONS",
@@ -92,6 +96,16 @@ def post_playground(
 ) -> dict[str, object] | None:
     if path in {"/api/playground/run", "/api/playground/robustness"}:
         return _bounded_run(path, payload)
+
+    if path == "/api/playground/night/start":
+        return _NIGHT_RUN.start(
+            hours=float(payload.get("hours", 8.0)),
+            max_episodes=int(payload.get("max_episodes", 10_000)),
+            checkpoint_seconds=float(payload.get("checkpoint_seconds", 600.0)),
+            seed=int(payload.get("seed", 12345)),
+        )
+    if path == "/api/playground/night/stop":
+        return _NIGHT_RUN.stop()
 
     if path == "/api/playground/live/create":
         config_payload = dict(payload)
@@ -126,6 +140,32 @@ def post_playground(
             gain = float(payload.get("gain", 25.0))
             session.inject_vector([float(value) for value in values], duration_ticks=duration, gain=gain)
             return {"session_id": session_id, "accepted": True}
+        if action == "strategy":
+            context = str(payload.get("context", "default"))
+            options = int(payload.get("action_count", 4))
+            chosen = session.choose_strategy(context, options)
+            return {
+                "session_id": session_id,
+                "classification": "PLAYGROUND_META_STRATEGY",
+                "scientific_evidence": False,
+                "context": context,
+                "action": chosen,
+                "action_count": options,
+            }
+        if action == "reward":
+            context = str(payload.get("context", "default"))
+            chosen = int(payload.get("action", 0))
+            action_count = int(payload.get("action_count", 4))
+            reward = float(payload.get("reward", 0.0))
+            return {
+                "session_id": session_id,
+                **session.apply_strategy_reward(
+                    context=context,
+                    action=chosen,
+                    reward=reward,
+                    action_count=action_count,
+                ),
+            }
         if action == "sandbox":
             with _LIVE_LOCK:
                 sandbox = _LIVE_SANDBOXES.get(session_id)
