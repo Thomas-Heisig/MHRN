@@ -75,6 +75,38 @@ jobs:
               stream.write(f"eligible={'true' if eligible else 'false'}\n")
           PY
 
+      - name: Write pre-freeze gate summary
+        if: always()
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
+          paths = {
+              "Mechanism audit": Path("research/audits/STAGE1_TOPOLOGY_REFERENCE_MECHANISM_AUDIT_20260927.json"),
+              "Integrator parity": Path("research/calibrations/CAL-S1-TOPO-REFERENCE-INTEGRATOR-R1/result.json"),
+              "Reset parity": Path("research/calibrations/CAL-S1-TOPO-REFERENCE-RESET-R1/result.json"),
+              "Synapse/delay parity": Path("research/calibrations/CAL-S1-TOPO-REFERENCE-SYNAPSE-R1/result.json"),
+          }
+          rows = []
+          for name, path in paths.items():
+              if not path.exists():
+                  rows.append((name, "MISSING"))
+                  continue
+              payload = json.loads(path.read_text(encoding="utf-8"))
+              rows.append((name, "PASS" if payload.get("pass") is True else "FAIL"))
+
+          summary = os.environ["GITHUB_STEP_SUMMARY"]
+          with open(summary, "a", encoding="utf-8") as stream:
+              stream.write("## Stage-1 reference pre-freeze gates\n\n")
+              stream.write("| Gate | Status |\n|---|---|\n")
+              for name, status in rows:
+                  stream.write(f"| {name} | {status} |\n")
+              stream.write("\nDynamic independence/blinding and seed-freshness checks are rerun by the freeze script at the exact freeze commit.\n")
+          PY
+
       - name: Freeze scientific reference contract only
         if: steps.eligibility.outputs.eligible == 'true'
         run: python scripts/freeze_stage1_topology_reference_r1.py
