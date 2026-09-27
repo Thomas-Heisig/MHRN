@@ -30,8 +30,8 @@ OUT = ROOT / "research" / "experiments" / EXPERIMENT_ID
 CANDIDATE = ROOT / "scripts" / "run_stage1_topology_v3_r1.py"
 CONFIG = ROOT / "configs" / "learning_experiment.yaml"
 
-HISTORICAL_SEEDS = set(range(2101, 2121)) | set(range(6101, 6121)) | set(
-    range(6201, 6221)
+HISTORICAL_SEEDS = (
+    set(range(2101, 2121)) | set(range(6101, 6121)) | set(range(6201, 6221))
 )
 
 
@@ -141,18 +141,17 @@ def main() -> None:
     evaluation: list[dict[str, Any]] = []
     for seed in prereg["evaluation"]["seeds"]:
         for condition in topo.CONDITIONS:
-            evaluation.append(
-                topo.simulate(base_config, prereg, condition, int(seed))
-            )
+            evaluation.append(topo.simulate(base_config, prereg, condition, int(seed)))
 
     summary = topo.summarize(evaluation)
     analysis = topo.analyze(evaluation, prereg)
     integrity = topo.validate_design(prereg, evaluation)
-    integrity.setdefault("checks", {})[
-        "all_historical_topology_seeds_disjoint"
-    ] = seeds.isdisjoint(HISTORICAL_SEEDS)
+    integrity.setdefault("checks", {})["all_historical_topology_seeds_disjoint"] = (
+        seeds.isdisjoint(HISTORICAL_SEEDS)
+    )
     integrity["pass"] = bool(
-        integrity.get("pass") and integrity["checks"]["all_historical_topology_seeds_disjoint"]
+        integrity.get("pass")
+        and integrity["checks"]["all_historical_topology_seeds_disjoint"]
     )
     if not integrity["pass"]:
         analysis["status"] = "NOT_TESTED_INTEGRITY_FAILURE"
@@ -180,9 +179,7 @@ def main() -> None:
 
     config_digest = _sha256_file(PREREG)
     prompt_digest = _sha256_bytes(b"NO_PROMPT_STAGE1_TOPOLOGY_PROMOTION_R1")
-    analysis_digest = _sha256_bytes(
-        b"V3_R1_SINGLE_HOLM_10_PRIMARY_PLUS_HOLM_5_LATENCY"
-    )
+    analysis_digest = _sha256_bytes(b"V3_R1_SINGLE_HOLM_10_PRIMARY_PLUS_HOLM_5_LATENCY")
     code_digest = _tracked_source_digest()
     data_digest = _sha256_file(data_path)
 
@@ -226,9 +223,7 @@ def main() -> None:
         replication_class="INTERNAL_PROMOTION_REPLICATION",
         result_status=analysis["status"],
         design_integrity_passed=bool(integrity["pass"]),
-        ceiling_resolution_supported=bool(
-            analysis["ceiling_resolution_supported"]
-        ),
+        ceiling_resolution_supported=bool(analysis["ceiling_resolution_supported"]),
         replication_supported=bool(analysis["replication_supported"]),
         automatic_evidence_promotion=False,
         scientific_evidence=False,

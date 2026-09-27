@@ -13,8 +13,8 @@ PREREG = ROOT / "research" / "preregistrations" / "PREREG-S1-TOPO-PROMO-R1.json"
 EXPERIMENT_ID = "EXP-S1-TOPO-PROMO-R1-20260927"
 OUT = ROOT / "research" / "experiments" / EXPERIMENT_ID
 TOPOLOGY_RUNNER = ROOT / "scripts" / "run_stage1_topology_v3_r1.py"
-HISTORICAL_SEEDS = set(range(2101, 2121)) | set(range(6101, 6121)) | set(
-    range(6201, 6221)
+HISTORICAL_SEEDS = (
+    set(range(2101, 2121)) | set(range(6101, 6121)) | set(range(6201, 6221))
 )
 
 
@@ -23,7 +23,9 @@ def _read(path: Path) -> Any:
 
 
 def _load_topology() -> Any:
-    spec = importlib.util.spec_from_file_location("stage1_topology_v3_r1", TOPOLOGY_RUNNER)
+    spec = importlib.util.spec_from_file_location(
+        "stage1_topology_v3_r1", TOPOLOGY_RUNNER
+    )
     if spec is None or spec.loader is None:
         raise RuntimeError("cannot load topology runner")
     module = importlib.util.module_from_spec(spec)

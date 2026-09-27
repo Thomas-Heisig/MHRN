@@ -6,7 +6,7 @@
 
 - **Forschungsfragen:** 112
 - **Hypothesen:** 120
-- **Claims:** 9
+- **Claims:** 11
 - **Literaturquellen:** 60
 
 ---
@@ -1549,7 +1549,7 @@
 
 **Frage:** Wie variiert die Propagation mit der Topologie?
 
-**Status:** open
+**Status:** inconclusive
 **Relevanz:** Grundlegendes Verständnis der Signalausbreitung in multidimensionalen SNNs.
 
 **Aktuelle Antwort:**
@@ -1559,11 +1559,16 @@
 *Konfidenz: replicated_internal_data_human_reviewed_evid_not_promoted*
 
 **Hypothesen:**
-- `H-SNN-003-B`: Unter gleicher Neuronenzahl, Dichte und Stimulusbedingung unterscheiden sich Propagationslatenz oder -reichweite zwischen mindestens zwei vorab definierten Topologien; ein Vorteil einer 5D-Anordnung wird nicht vorausgesetzt. *(untested)*
+- `H-SNN-003-B`: Unter gleicher Neuronenzahl, Dichte und Stimulusbedingung unterscheiden sich Propagationslatenz oder -reichweite zwischen mindestens zwei vorab definierten Topologien; ein Vorteil einer 5D-Anordnung wird nicht vorausgesetzt. *(inconclusive)* — Evidenz: EVID-2026-19
+
+**Claims:**
+- `CLAIM-S1-TOPO-001`: Unter kontrollierter Neuronenzahl, globalem Kantenbudget, Stimulus, Gewichten und Delays verändern mindestens zwei vorab definierte Netzwerktopologien die registrierten Propagationsmetriken innerhalb des definierten Stage-1-Small-SNN-Betriebsbereichs; ein Vorteil einer 5D-Anordnung wird nicht vorausgesetzt. *(inconclusive, low)* — Evidenz: EVID-2026-19
 
 **Literatur:**
 - `SRC-WATTS-STROGATZ-1998`: Duncan J. Watts et al. (1998)
 - `SRC-BARABASI-1999`: Albert-László Barabási et al. (1999)
+
+**Evidenzen:** EVID-2026-19
 
 ---
 
@@ -1704,6 +1709,9 @@
 
 **Hypothesen:**
 - `H-TEMP-002-A`: Forward-, Reverse- und Simultanfolgen erzeugen bei gleicher Ereignisanzahl unterscheidbare spike-basierte Antwortsignaturen. *(untested)*
+
+**Claims:**
+- `CLAIM-S1-TEMP-001`: Unter dem registrierten sechsneuronigen Small-SNN-Task erzeugen unterscheidbare Eingabekanäle eine decodierbare zeitliche Reihenfolge an den festgelegten Ausgängen, während die identity-destroyed Kontrolle dieses feste Ordnungssignal entfernt. *(untested, none)*
 
 ---
 

@@ -12,8 +12,8 @@ PREREG = ROOT / "research" / "preregistrations" / "PREREG-S1-TOPO-PROMO-R1.json"
 CLAIMS = ROOT / "research" / "registry" / "claims.yaml"
 RUNNER = ROOT / "scripts" / "run_stage1_topology_promotion_r1.py"
 
-HISTORICAL_SEEDS = set(range(2101, 2121)) | set(range(6101, 6121)) | set(
-    range(6201, 6221)
+HISTORICAL_SEEDS = (
+    set(range(2101, 2121)) | set(range(6101, 6121)) | set(range(6201, 6221))
 )
 
 
@@ -33,7 +33,9 @@ def test_promotion_preregistration_is_scoped_and_data_only() -> None:
     assert prereg["provenance"]["independent_external_replication"] is False
 
 
-def test_promotion_seeds_are_unique_and_disjoint_from_historical_topology_runs() -> None:
+def test_promotion_seeds_are_unique_and_disjoint_from_historical_topology_runs() -> (
+    None
+):
     prereg = _prereg()
     seeds = [int(seed) for seed in prereg["evaluation"]["seeds"]]
 
@@ -55,7 +57,9 @@ def test_promotion_preserves_v3_r1_matched_small_snn_envelope() -> None:
     )
 
 
-def test_scoped_claim_tracks_explicit_evidence_without_retroactive_history_edit() -> None:
+def test_scoped_claim_tracks_explicit_evidence_without_retroactive_history_edit() -> (
+    None
+):
     claims = yaml.safe_load(CLAIMS.read_text(encoding="utf-8")) or []
     claim = next(item for item in claims if item["id"] == "CLAIM-S1-TOPO-001")
 
@@ -69,11 +73,11 @@ def test_scoped_claim_tracks_explicit_evidence_without_retroactive_history_edit(
 def test_runner_refuses_unfrozen_or_unauthorized_execution() -> None:
     text = RUNNER.read_text(encoding="utf-8")
 
-    assert 'FROZEN_BEFORE_PROMOTION_REPLICATION' in text
-    assert 'execution_authorized' in text
-    assert 'automatic EVID promotion must remain disabled' in text
-    assert 'Refusing to overwrite existing experiment' in text
-    assert 'promotion replication requires a clean git tree' in text
-    assert 'record_provenance_digests' in text
-    assert 'human_review_required=True' in text
-    assert 'independent_authorship_replication=False' in text
+    assert "FROZEN_BEFORE_PROMOTION_REPLICATION" in text
+    assert "execution_authorized" in text
+    assert "automatic EVID promotion must remain disabled" in text
+    assert "Refusing to overwrite existing experiment" in text
+    assert "promotion replication requires a clean git tree" in text
+    assert "record_provenance_digests" in text
+    assert "human_review_required=True" in text
+    assert "independent_authorship_replication=False" in text

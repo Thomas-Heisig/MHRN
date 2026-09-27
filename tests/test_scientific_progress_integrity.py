@@ -252,8 +252,14 @@ def test_stage1_canonical_baseline_binds_both_reviewed_functional_lines() -> Non
         "EXP-S1-TOPO-V3-R1-20260918",
         "EXP-S1-TOPO-PROMO-R1-20260927",
     ]
-    assert topology["experiments"][0]["human_review_decision"] == "accepted_as_interpretation"
-    assert topology["experiments"][1]["human_review_decision"] == "accepted_as_interpretation"
+    assert (
+        topology["experiments"][0]["human_review_decision"]
+        == "accepted_as_interpretation"
+    )
+    assert (
+        topology["experiments"][1]["human_review_decision"]
+        == "accepted_as_interpretation"
+    )
     assert topology["experiments"][2]["human_review_decision"] == "supports"
     assert topology["experiments"][2]["evidence_id"] == "EVID-2026-19"
 
