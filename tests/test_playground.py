@@ -848,3 +848,96 @@ def test_new_pan_candidates_remain_unregistered_ideas() -> None:
         by_id[candidate]["status"] == "DRAFT_IDEA_NOT_PREREGISTERED"
         for candidate in expected
     )
+
+
+
+def test_pan_behavioral_learning_runs_and_updates_policy() -> None:
+    result = run(
+        _small_payload(
+            ticks=32,
+            pan_enabled=True,
+            cortical_layers_enabled=True,
+            cortical_layer_count=6,
+            cortical_plasticity=True,
+            behavior_learning_enabled=True,
+            behavior_action_count=4,
+            behavior_target_action=0,
+            behavior_episode_ticks=8,
+            behavior_learning_rate=0.1,
+            behavior_epsilon=0.0,
+        )
+    )
+    learning = result["behavioral_learning"]
+    assert learning["classification"] == "PLAYGROUND_BEHAVIORAL_LEARNING"
+    assert learning["scientific_evidence"] is False
+    assert learning["stores_raw_payloads"] is False
+    assert learning["episodes"] == 4
+    assert learning["policy_updates"] == 4
+    assert learning["policy"][0] > 0.0
+    assert result["cortical_organization"]["layers"] == 6
+
+
+def test_pan_thalamic_gating_is_functional_not_biological_claim() -> None:
+    result = run(
+        _small_payload(
+            ticks=16,
+            thalamic_gating_enabled=True,
+            thalamic_relay_threshold=0.05,
+            thalamic_attention_gain=1.15,
+            thalamic_inhibition_gain=0.35,
+        )
+    )
+    gate = result["thalamic_gating"]
+    assert gate["classification"] == "PLAYGROUND_THALAMIC_GATING"
+    assert gate["biological_equivalence_claim"] is False
+    assert gate["mode"] == "FUNCTIONAL_GATE_REFERENCE"
+    assert gate["relay_ticks"] + gate["gated_ticks"] == 16
+
+
+def test_pan_reuses_existing_gateway_contracts() -> None:
+    result = run(_small_payload(ticks=8))
+    interfaces = result["interfaces"]
+    assert interfaces["existing_gateway_contract"] is True
+    assert interfaces["new_parallel_llm_interface_created"] is False
+    assert interfaces["new_parallel_data_interface_created"] is False
+    assert interfaces["exact_payload_outside_snn"] is True
+    assert interfaces["msba_modalities"] == ["audio", "vision", "digital"]
+
+
+def test_cuda_8gb_profile_is_plan_not_runtime_claim() -> None:
+    result = run(
+        _small_payload(
+            hardware_profile_name="cuda_8gb_balanced_plan",
+            cuda_budget_mb=8192,
+        )
+    )
+    hardware = result["hardware"]
+    assert hardware["backend"] == "CUDA_TARGET_PLAN"
+    assert hardware["register_native"] == "NOT_IMPLEMENTED"
+    assert hardware["ptx_gates"] == "NOT_IMPLEMENTED"
+    assert hardware["runtime_verified"] is False
+    assert hardware["register_limited_neurons_estimate"] == 12_288
+    assert hardware["recommended_synapses_estimate"] == 50_000_000
+
+
+def test_pan_catalog_exposes_learning_blocks_and_sixteen_candidates() -> None:
+    payload = catalog()
+    pan = payload["pan"]
+    assert pan["behavioral_learning_status"] == "IMPLEMENTED_REWARD_POLICY_REFERENCE"
+    assert pan["thalamic_gating_status"] == "IMPLEMENTED_FUNCTIONAL_REFERENCE"
+    assert pan["cortical_layers_status"] == (
+        "IMPLEMENTED_FIXED_LABEL_PLASTIC_GAIN_REFERENCE"
+    )
+    candidates = pan["research_candidates"]
+    assert len(candidates) == 16
+    ids = {item["id"] for item in candidates}
+    assert {
+        "PAN-CANDIDATE-HARDWARE-NATIVE-EMERGENCE",
+        "PAN-CANDIDATE-BEHAVIORAL-EMERGENCE",
+        "PAN-CANDIDATE-HYBRID-COGNITION",
+        "PAN-CANDIDATE-LAYER-EMERGENCE",
+    } <= ids
+    assert all(
+        item["status"] == "DRAFT_IDEA_NOT_PREREGISTERED"
+        for item in candidates
+    )
