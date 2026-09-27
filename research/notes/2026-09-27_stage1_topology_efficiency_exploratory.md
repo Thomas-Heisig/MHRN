@@ -74,3 +74,12 @@ The intended study must:
 ## Claim boundary
 
 Even a positive prospective result would support only a scoped propagation-efficiency mechanism in the tested Small-SNN envelope. It would not establish memory-capacity gain, bit-level storage reduction, parameter-count reduction, Shannon information capacity, general representational capacity, cognition, biological equivalence, scaling, or universal 5D superiority. AUC/spike and AUC/event are efficiency ratios, not information-capacity measures. All registered conditions materialize 64 neurons; this study does not test materialized-coordinate count or theoretical addressability.
+
+
+## Pre-freeze calibration observation
+
+The preregistered method calibration `CAL-S1-TOPO-EFFICIENCY-R1-20260927` tested stimulus-current candidates 70–140 on disjoint calibration seeds. Across this entire registered range, the median `final_active_fraction` remained 1.0 for the 3d control and 0.828125 for the 5d control. Neither the 3d recruitment-matching gate nor the 5d high-recruitment gate passed.
+
+This is an **exploratory method-calibration observation**, not confirmatory evidence for a structural 5D mechanism. It shows only that changing the registered stimulus-current parameter over this frozen range did not erase the dynamic-recruitment difference. The cause remains unresolved and may involve graph geometry, path structure, threshold/homeostatic dynamics, or other registered model interactions.
+
+The result must not be reformulated as “5D structurally causes lower recruitment” without a new prospective study that separates those explanations. The valid gate failure blocks the R1 efficiency freeze and is retained as an auditable negative calibration result.
