@@ -2,7 +2,10 @@
 """Freeze corrected Stage-1 topology reference R2; freezing never authorizes execution."""
 
 from __future__ import annotations
-import hashlib, json, subprocess
+
+import hashlib
+import json
+import subprocess
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -14,7 +17,7 @@ A = (
     / "audits"
     / "STAGE1_TOPOLOGY_REFERENCE_MECHANISM_AUDIT_20260927.json"
 )
-I = (
+INTEGRATOR = (
     ROOT
     / "research"
     / "calibrations"
@@ -82,10 +85,10 @@ def main() -> int:
         or p.get("execution_authorized") is not False
     ):
         raise RuntimeError("R2 not freeze-eligible")
-    for x in (A, I, R, S, T, DYN, PROTO, RUN, VER, TR, CT, PT):
+    for x in (A, INTEGRATOR, R, S, T, DYN, PROTO, RUN, VER, TR, CT, PT):
         if not x.is_file():
             raise RuntimeError(f"missing {x.relative_to(ROOT)}")
-    a, i, r, s, t, dyn = map(read, (A, I, R, S, T, DYN))
+    a, i, r, s, t, dyn = map(read, (A, INTEGRATOR, R, S, T, DYN))
     if not (
         a.get("pass")
         and i.get("pass")
