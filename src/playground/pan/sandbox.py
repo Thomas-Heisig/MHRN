@@ -5,6 +5,7 @@ from __future__ import annotations
 import math
 from collections import deque
 from dataclasses import dataclass, field
+from typing import Protocol
 
 
 @dataclass(slots=True)
@@ -14,6 +15,11 @@ class Joint:
     vx: float = 0.0
     vy: float = 0.0
     mass: float = 1.0
+
+
+class _LiveSessionLike(Protocol):
+    def inject_vector(self, values: list[float], *, duration_ticks: int, gain: float) -> None: ...
+    def step(self, ticks: int = 32) -> dict[str, object]: ...
 
 
 @dataclass(slots=True)
@@ -161,7 +167,7 @@ class StickFigureSandbox:
 class PANEmbodiedSandboxSession:
     """Couple a persistent PAN live session to the stick-figure environment."""
 
-    def __init__(self, live_session: object) -> None:
+    def __init__(self, live_session: _LiveSessionLike) -> None:
         self.live_session = live_session
         self.world = StickFigureSandbox()
         self.last_frame: dict[str, object] | None = None
@@ -187,10 +193,8 @@ class PANEmbodiedSandboxSession:
             combined = list(receptors) + [audio] + [
                 float(value) for value in echo_values
             ]
-            inject = getattr(self.live_session, "inject_vector")
-            inject(combined, duration_ticks=1, gain=25.0)
-            step_live = getattr(self.live_session, "step")
-            pan_result = step_live(1)
+            self.live_session.inject_vector(combined, duration_ticks=1, gain=25.0)
+            pan_result = self.live_session.step(1)
             actions = pan_result.get("actions", [])
             action = int(actions[-1]) if isinstance(actions, list) and actions else None
             self.world.apply_action(action)
