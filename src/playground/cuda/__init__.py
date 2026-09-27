@@ -40,6 +40,7 @@ __all__ = [
     "gate_parity_summary",
     "max_abs_error",
     "parse_ptxas_verbose",
+    "preflight_bundle",
 ]
 
 from .runtime import (
@@ -55,4 +56,5 @@ from .runtime import (
     gate_parity_summary,
     max_abs_error,
     parse_ptxas_verbose,
+    preflight_bundle,
 )
