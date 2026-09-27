@@ -367,19 +367,39 @@ function buildPanels(root) {
       </div>
       <div class="playground-actions"><button type="button" class="primary" id="pg-run">▶ Playground starten</button><button type="button" id="pg-robustness">Robustheitskontrollen</button><button type="button" id="pg-reset">Standardwerte</button></div>
       <article class="playground-card playground-live-launcher"><h3>17 · PAN Live Monitor</h3><p>Die laufende PAN-Session mit Start/Pause, Input, Sandbox-Männchen und allen Live-Grafiken im Monitor-Popup.</p><div class="playground-actions"><button type="button" class="primary" id="pg-live-open">Live Monitor öffnen</button><button type="button" id="pg-live-clear">Temporäre Sessions löschen</button></div><pre id="pg-live-state">Keine Live-Session geöffnet.</pre></article>
-      <article class="playground-card"><h3>18 · CUDA & Parität</h3>
+      <article class="playground-card playground-cuda-card"><h3>18 · CUDA & Parität</h3>
         <div class="playground-grid">
           <label>Target SM<input id="pg-cuda-target-sm" value="sm_86"></label>
           <label>PTX Version<input id="pg-cuda-ptx-version" value="7.1"></label>
+          <label>Blockgröße<input id="pg-cuda-block-size" type="number" min="32" max="1024" step="32" value="64"></label>
+          <label>D2 Toleranz<input id="pg-cuda-tolerance" type="number" min="0" max="0.1" step="0.000001" value="0.00001"></label>
+          <label>RNG Samples<input id="pg-cuda-rng-samples" type="number" min="16" max="10000" value="1000"></label>
+          <label>RNG Tick<input id="pg-cuda-rng-tick" type="number" min="0" max="1000000" value="17"></label>
+          <label>RNG ε<input id="pg-cuda-rng-epsilon" type="number" min="0" max="1" step="0.01" value="0.5"></label>
           <label><span><input id="pg-freeze-actions" type="checkbox"> Actions einfrieren</span></label>
           <label><span><input id="pg-freeze-rewards" type="checkbox"> Rewards einfrieren</span></label>
           <label>Referenz-Commit<input id="pg-parity-reference-commit" placeholder="Git SHA"></label>
         </div>
         <div class="playground-actions">
-          <button type="button" id="pg-cpu-determinism">CPU-Determinismus prüfen</button>
-          <button type="button" id="pg-cuda-compile">Builder → Gate IR / PTX</button>
+          <button type="button" id="pg-cuda-status">CUDA-Status</button>
+          <button type="button" id="pg-cpu-determinism">CPU-Determinismus</button>
+          <button type="button" id="pg-cuda-compile">Gate IR / PTX</button>
+          <button type="button" id="pg-cuda-reference">CPU-Gate-Referenz</button>
+          <button type="button" id="pg-cuda-preflight">GPU-Preflight</button>
+          <button type="button" class="primary" id="pg-cuda-smoke">CUDA-1.3 Hardware-D2</button>
+          <button type="button" id="pg-cuda-rng">RNG-Parität</button>
         </div>
-        <small>D1 = exakte Spike-Ereignisse · D2 = numerische Zustandsparität · D3 = Verhaltens-/Metrikparität. CUDA-Codegen ist vorhanden, ein echter GPU-Kernel-Launch ist hier noch nicht nachgewiesen.</small>
+        <div class="pg-cuda-stage-grid" id="pg-cuda-stage-grid">
+          <div><strong>CUDA-1.0</strong><span>PTXAS · Driver · Preflight</span></div>
+          <div><strong>CUDA-1.1</strong><span>Determinismus · Freeze · D1/D2/D3</span></div>
+          <div><strong>CUDA-1.2</strong><span>17-Parameter-ABI · Buffer · Launch</span></div>
+          <div><strong>CUDA-1.3</strong><span>CPU Gate ABI ↔ GPU · 1 Tick · RNG</span></div>
+          <div data-state="pending"><strong>CUDA-1.4</strong><span>10–100 Ticks · Membran · Delays · Multi-Block</span></div>
+          <div data-state="pending"><strong>CUDA-1.5</strong><span>STDP / Plastizität auf GPU</span></div>
+          <div data-state="pending"><strong>CUDA-1.6</strong><span>Closed Loop · Sandbox / Strichmann auf GPU</span></div>
+        </div>
+        <small>D1 = exakte Spike-Ereignisse · D2 = numerische Zustandsparität · D3 = Verhaltens-/Metrikparität. Die CPU-Anwendungs-Schicht mit Sandbox, Physik, Sensorik, Aktorik, Posture und Reward existiert bereits; CUDA-1.4–1.6 zeigen bewusst den noch offenen GPU-Portierungsstand.</small>
+        <pre id="pg-cuda-runtime-state">CUDA-Umgebung noch nicht geprüft.</pre>
         <pre id="pg-cuda-compiler-state">Noch kein CUDA-/Parity-Lauf.</pre>
       </article>
       <article class="playground-card"><h3>19 · Meta-Nachtlauf</h3>
@@ -959,6 +979,84 @@ async function compileCudaGates(){
   return result;
 }
 
+function cudaPayload(extra={}){
+  return {
+    ...formPayload(),
+    target_sm:byId("pg-cuda-target-sm")?.value||"sm_86",
+    ptx_version:byId("pg-cuda-ptx-version")?.value||"7.1",
+    block_size:Number(byId("pg-cuda-block-size")?.value||64),
+    parity_tolerance:Number(byId("pg-cuda-tolerance")?.value||0.00001),
+    rng_samples:Number(byId("pg-cuda-rng-samples")?.value||1000),
+    rng_tick:Number(byId("pg-cuda-rng-tick")?.value||17),
+    rng_epsilon:Number(byId("pg-cuda-rng-epsilon")?.value||0.5),
+    ...extra,
+  };
+}
+
+function renderCudaState(result,label="CUDA"){
+  const node=byId("pg-cuda-compiler-state");if(!node)return result;
+  const compact={
+    label,
+    classification:result?.classification,
+    scientific_evidence:result?.scientific_evidence,
+    passed:result?.passed,
+    execution_status:result?.execution_status,
+    ready_for_cooperative_launch:result?.ready_for_cooperative_launch,
+    abi:result?.abi||result?.cuda?.kernel||result?.manifest?.kernel_abi||null,
+    launch:result?.cuda?.launch||result?.launch||null,
+    parity:result?.parity||null,
+    repeatability:result?.repeatability||null,
+    cleanup:result?.cleanup||null,
+    ptxas:result?.cuda?.ptxas||result?.ptxas||null,
+    cooperative:result?.cooperative||null,
+    reference:result?.reference||null,
+    sample_count:result?.sample_count,
+    seed:result?.seed,
+    tick:result?.tick,
+    epsilon:result?.epsilon,
+    actions_exact:result?.actions_exact,
+    scope:result?.scope,
+  };
+  node.textContent=JSON.stringify(compact,null,2);
+  return result;
+}
+
+async function refreshCudaStatus(){
+  const node=byId("pg-cuda-runtime-state");if(node)node.textContent="CUDA-Umgebung wird geprüft …";
+  const result=await apiGet("/api/playground/cuda/status");
+  if(node)node.textContent=JSON.stringify(result,null,2);
+  const grid=byId("pg-cuda-stage-grid");
+  if(grid){
+    [...grid.children].forEach(item=>{
+      const key=item.querySelector("strong")?.textContent;
+      const state=result.stages?.[key]||"UNKNOWN";
+      item.dataset.state=state.startsWith("IMPLEMENTED")?"ok":"pending";
+      item.title=state;
+    });
+  }
+  return result;
+}
+
+async function runCudaReference(){
+  const node=byId("pg-cuda-compiler-state");if(node)node.textContent="CPU-Gate-Referenz wird auf dem 17-Parameter-ABI ausgeführt …";
+  return renderCudaState(await apiPost("/api/playground/cuda/reference",cudaPayload()),"CUDA-1.3 CPU-Gate-Referenz");
+}
+
+async function runCudaPreflight(){
+  const node=byId("pg-cuda-compiler-state");if(node)node.textContent="PTXAS/Driver/Occupancy-Preflight läuft …";
+  return renderCudaState(await apiPost("/api/playground/cuda/preflight",cudaPayload()),"CUDA-1.0 GPU-Preflight");
+}
+
+async function runCudaSmoke(){
+  const node=byId("pg-cuda-compiler-state");if(node)node.textContent="Nichttrivialer CUDA-1.3 Hardware-D2-Test läuft …";
+  return renderCudaState(await apiPost("/api/playground/cuda/smoke",cudaPayload()),"CUDA-1.3 Hardware-D2");
+}
+
+async function runCudaRngParity(){
+  const node=byId("pg-cuda-compiler-state");if(node)node.textContent="CPU ↔ GPU ε-greedy Hash/RNG-Parität wird geprüft …";
+  return renderCudaState(await apiPost("/api/playground/cuda/rng-parity",cudaPayload()),"CUDA RNG-Parität");
+}
+
 async function runSession(){
   const status=byId("pg-status");status.dataset.state="running";status.textContent="Playground läuft …";
   try{const result=await apiPost("/api/playground/run",formPayload());renderResult(result);status.dataset.state="ok";status.textContent=`Lauf abgeschlossen · ${result.session_id} · PLAYGROUND · keine Evidenz`;window.MHRNWorkspaceArchitecture?.selectRoute?.("playground","run");if(result.persisted_path)await refreshSessions();}
@@ -1114,12 +1212,14 @@ export async function initPlayground(){
   const root=byId("tab-playground");if(!root)return;
   injectStyles();ensurePermanentBoundary(root);buildPanels(root);
   if(!root.dataset.languageBound){root.dataset.languageBound="true";document.addEventListener("mhrn:language-change",()=>{if(catalogState)renderCatalogCards(catalogState);const dialog=byId("pg-catalog-info-dialog");if(dialog?.open&&activeCatalogInfo)showCatalogInfo(activeCatalogInfo);});}
-  byId("pg-run")?.addEventListener("click",runSession);byId("pg-cpu-determinism")?.addEventListener("click",()=>checkCpuDeterminism().catch(error=>{const node=byId("pg-cuda-compiler-state");if(node)node.textContent=String(error.message||error);}));byId("pg-cuda-compile")?.addEventListener("click",()=>compileCudaGates().catch(error=>{const node=byId("pg-cuda-compiler-state");if(node)node.textContent=String(error.message||error);}));byId("pg-user-preset-apply")?.addEventListener("click",applyUserPreset);byId("pg-user-preset-save")?.addEventListener("click",saveUserPreset);byId("pg-user-preset-delete")?.addEventListener("click",deleteUserPreset);byId("pg-user-preset-select")?.addEventListener("change",()=>{renderUserPresetOptions();applyUserPreset();});byId("pg-robustness")?.addEventListener("click",runRobustness);byId("pg-reset")?.addEventListener("click",resetForm);byId("pg-live-open")?.addEventListener("click",()=>openLiveMonitor().catch(error=>byId("pg-live-state").textContent=String(error.message||error)));byId("pg-live-clear")?.addEventListener("click",()=>clearLiveSessions().catch(error=>byId("pg-live-state").textContent=String(error.message||error)));byId("pg-night-start")?.addEventListener("click",()=>startNightRun().catch(error=>byId("pg-night-state").textContent=String(error.message||error)));byId("pg-night-stop")?.addEventListener("click",()=>stopNightRun().catch(error=>byId("pg-night-state").textContent=String(error.message||error)));byId("pg-night-refresh")?.addEventListener("click",()=>refreshNightStatus().catch(error=>byId("pg-night-state").textContent=String(error.message||error)));
+  byId("pg-run")?.addEventListener("click",runSession);byId("pg-cuda-status")?.addEventListener("click",()=>refreshCudaStatus().catch(error=>{const node=byId("pg-cuda-runtime-state");if(node)node.textContent=String(error.message||error);}));byId("pg-cpu-determinism")?.addEventListener("click",()=>checkCpuDeterminism().catch(error=>{const node=byId("pg-cuda-compiler-state");if(node)node.textContent=String(error.message||error);}));byId("pg-cuda-compile")?.addEventListener("click",()=>compileCudaGates().catch(error=>{const node=byId("pg-cuda-compiler-state");if(node)node.textContent=String(error.message||error);}));byId("pg-cuda-reference")?.addEventListener("click",()=>runCudaReference().catch(error=>{const node=byId("pg-cuda-compiler-state");if(node)node.textContent=String(error.message||error);}));byId("pg-cuda-preflight")?.addEventListener("click",()=>runCudaPreflight().catch(error=>{const node=byId("pg-cuda-compiler-state");if(node)node.textContent=String(error.message||error);}));byId("pg-cuda-smoke")?.addEventListener("click",()=>runCudaSmoke().catch(error=>{const node=byId("pg-cuda-compiler-state");if(node)node.textContent=String(error.message||error);}));byId("pg-cuda-rng")?.addEventListener("click",()=>runCudaRngParity().catch(error=>{const node=byId("pg-cuda-compiler-state");if(node)node.textContent=String(error.message||error);}));byId("pg-user-preset-apply")?.addEventListener("click",applyUserPreset);byId("pg-user-preset-save")?.addEventListener("click",saveUserPreset);byId("pg-user-preset-delete")?.addEventListener("click",deleteUserPreset);byId("pg-user-preset-select")?.addEventListener("change",()=>{renderUserPresetOptions();applyUserPreset();});byId("pg-robustness")?.addEventListener("click",runRobustness);byId("pg-reset")?.addEventListener("click",resetForm);byId("pg-live-open")?.addEventListener("click",()=>openLiveMonitor().catch(error=>byId("pg-live-state").textContent=String(error.message||error)));byId("pg-live-clear")?.addEventListener("click",()=>clearLiveSessions().catch(error=>byId("pg-live-state").textContent=String(error.message||error)));byId("pg-night-start")?.addEventListener("click",()=>startNightRun().catch(error=>byId("pg-night-state").textContent=String(error.message||error)));byId("pg-night-stop")?.addEventListener("click",()=>stopNightRun().catch(error=>byId("pg-night-state").textContent=String(error.message||error)));byId("pg-night-refresh")?.addEventListener("click",()=>refreshNightStatus().catch(error=>byId("pg-night-state").textContent=String(error.message||error)));
   renderUserPresetOptions();
   try{renderCatalog(await apiGet("/api/playground/catalog"));renderUserPresetOptions();resetForm();}catch(error){const status=byId("pg-status");status.dataset.state="error";status.textContent=`Katalog nicht verfügbar: ${error.message}`;}
+  try{await refreshCudaStatus();}catch(error){const node=byId("pg-cuda-runtime-state");if(node)node.textContent=`CUDA-Status nicht verfügbar: ${error.message||error}`;}
+
   byId("playground-builder")?.addEventListener("input", updateDefaultHints);
   byId("playground-builder")?.addEventListener("change", updateDefaultHints);
   await refreshSessions();
   try{await refreshNightStatus();}catch{ /* night manager is optional during partial deployments */ }
-  window.MHRNPlayground={run:runSession,runRobustness,checkCpuDeterminism,compileCudaGates,refreshSessions,get catalog(){return catalogState;},get lastResult(){return lastResult;}};
+  window.MHRNPlayground={run:runSession,runRobustness,checkCpuDeterminism,compileCudaGates,refreshCudaStatus,runCudaReference,runCudaPreflight,runCudaSmoke,runCudaRngParity,refreshSessions,get catalog(){return catalogState;},get lastResult(){return lastResult;}};
 }
