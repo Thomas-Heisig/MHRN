@@ -8,6 +8,7 @@ from typing import Mapping
 from .analysis import ensemble_summary
 from .builder.session import PlaygroundSession
 from .closed_loop import closed_loop_catalog
+from .cuda import compiler_catalog, cpu_determinism_summary, parity_contract
 from .geometry import geometry_literature_context
 from .models import PlaygroundConfig
 from .neural_io import CODEC_CATALOG, DECODER_CATALOG
@@ -107,9 +108,9 @@ def catalog() -> dict[str, object]:
             "execution_equivalence": "NOT_MATHEMATICALLY_EQUIVALENT",
             "execution_transition_check": "SHARED_STATE_INTEGRITY_ONLY",
             "generative_growth_status": "IMPLEMENTED_FIXED_CAPACITY_REFERENCE",
-            "cuda_backend_status": "MEMORY_ESTIMATE_ONLY",
-            "persistent_cuda_kernel_status": "NOT_IMPLEMENTED",
-            "dynamic_parallelism_status": "NOT_IMPLEMENTED",
+            "cuda_backend_status": "GATE_CODEGEN_REFERENCE_IMPLEMENTED_GPU_EXECUTION_NOT_CLAIMED",
+            "persistent_cuda_kernel_status": "COOPERATIVE_SOURCE_SCAFFOLD_IMPLEMENTED_NOT_EXECUTED",
+            "dynamic_parallelism_status": "NOT_USED_STRUCTURAL_BARRIER_PHASE_REQUIRED",
             "hardware_coupling_status": "NOT_IMPLEMENTED_EXPLORATORY_IDEA",
             "thermal_feedback_status": "NOT_IMPLEMENTED_EXPLORATORY_IDEA",
             "thalamic_gating_status": "IMPLEMENTED_FUNCTIONAL_REFERENCE",
@@ -140,6 +141,8 @@ def catalog() -> dict[str, object]:
             ),
         },
         "closed_loop": closed_loop_catalog(),
+        "cuda_gate_compiler": compiler_catalog(),
+        "cuda_parity": parity_contract(),
         "neural_io": {
             "available": True,
             "classification": "PLAYGROUND_NEURAL_IO",
@@ -233,6 +236,37 @@ def run(payload: Mapping[str, object]) -> dict[str, object]:
         )
     primary["ensemble"] = ensemble_summary(ensemble)
     return primary
+
+
+def determinism(payload: Mapping[str, object]) -> dict[str, object]:
+    """Run the same bounded CPU Playground configuration twice and compare it."""
+
+    config_payload = dict(payload)
+    config_payload["persist"] = False
+    config_payload["ensemble_runs"] = 1
+    config_payload["freeze_actions"] = False
+    config_payload["frozen_action_sequence"] = []
+    config_payload["freeze_rewards"] = False
+    config_payload["frozen_reward_sequence"] = []
+    config_payload["parity_reference_commit"] = ""
+
+    first = run(config_payload)
+    second = run(config_payload)
+    summary = cpu_determinism_summary(first, second)
+
+    closed_loop = first.get("closed_loop")
+    loop_map = closed_loop if isinstance(closed_loop, Mapping) else {}
+    summary["reference"] = {
+        "seed": config_payload.get("seed"),
+        "ticks": config_payload.get("ticks"),
+        "action_sequence": list(loop_map.get("action_history") or []),
+        "reward_sequence": list(loop_map.get("reward_history") or []),
+    }
+    summary["note"] = (
+        "CPU reference check only. A passing result does not establish "
+        "CPU/CUDA parity or scientific evidence."
+    )
+    return summary
 
 
 def robustness(payload: Mapping[str, object]) -> dict[str, object]:
