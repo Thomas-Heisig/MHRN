@@ -142,31 +142,6 @@ def get_playground(path: str) -> dict[str, object] | None:
     return None
 
 
-def _payload_int(
-    payload: Mapping[str, object],
-    key: str,
-    default: int,
-) -> int:
-    value = payload.get(key, default)
-    if isinstance(value, bool) or not isinstance(value, (int, float)):
-        raise ValueError(f"{key} must be an integer")
-    converted = int(value)
-    if float(value) != float(converted):
-        raise ValueError(f"{key} must be an integer")
-    return converted
-
-
-def _payload_float(
-    payload: Mapping[str, object],
-    key: str,
-    default: float,
-) -> float:
-    value = payload.get(key, default)
-    if isinstance(value, bool) or not isinstance(value, (int, float)):
-        raise ValueError(f"{key} must be numeric")
-    return float(value)
-
-
 def post_playground(
     path: str, payload: Mapping[str, object]
 ) -> dict[str, object] | None:
