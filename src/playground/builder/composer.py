@@ -4,8 +4,8 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 
-from .network_builder import TopologyBuilder
 from ..models import Topology
+from .network_builder import TopologyBuilder
 
 
 @dataclass(slots=True)
