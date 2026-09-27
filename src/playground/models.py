@@ -133,7 +133,7 @@ class PlaygroundConfig:
 
     closed_loop_preset: str = "custom"
     input_topology: str = "uniform"
-    input_channels: int = 1
+    input_channels: int = 16
     input_channel_map: tuple[tuple[int, ...], ...] = ()
     input_amplitude_per_channel: tuple[float, ...] = ()
     input_frequency_per_channel: tuple[float, ...] = ()
@@ -142,6 +142,32 @@ class PlaygroundConfig:
     target_cue_channel: int = 0
     reward_cue_channel: int = 0
     action_feedback_channel: int = 0
+    posture_score_channel: int = 2
+    reward_event_channel: int = 3
+    posture_current_scale: float = 25.0
+    reward_event_scale: float = 25.0
+    posture_reward_enabled: bool = False
+    posture_weight_upright: float = 0.4
+    posture_weight_height: float = 0.3
+    posture_weight_stability: float = 0.2
+    posture_weight_symmetry: float = 0.1
+    posture_target_height: float = 1.0
+    posture_tilt_max: float = 1.0
+    posture_velocity_max: float = 5.0
+    trigger_good_score: float = 0.85
+    trigger_good_duration: int = 10
+    trigger_good_reward: float = 1.0
+    trigger_warning_score: float = 0.4
+    trigger_warning_reward: float = -0.3
+    trigger_falling_rate: float = -0.05
+    trigger_falling_reward: float = -1.0
+    trigger_collapse_score: float = 0.1
+    trigger_collapse_reward: float = -5.0
+    trigger_recovery_bonus: float = 2.0
+    reward_continuous_alpha: float = 0.1
+    episode_termination_enabled: bool = True
+    episode_max_ticks: int = 256
+    episode_reset_on_collapse: bool = True
 
     pan_feedback_delay: int = 0
     pan_feedback_source: str = "population"
@@ -571,6 +597,32 @@ class PlaygroundConfig:
             action_feedback_channel=integer(
                 "action_feedback_channel", defaults.action_feedback_channel
             ),
+            posture_score_channel=integer("posture_score_channel", defaults.posture_score_channel),
+            reward_event_channel=integer("reward_event_channel", defaults.reward_event_channel),
+            posture_current_scale=number("posture_current_scale", defaults.posture_current_scale),
+            reward_event_scale=number("reward_event_scale", defaults.reward_event_scale),
+            posture_reward_enabled=bool(payload.get("posture_reward_enabled", defaults.posture_reward_enabled)),
+            posture_weight_upright=number("posture_weight_upright", defaults.posture_weight_upright),
+            posture_weight_height=number("posture_weight_height", defaults.posture_weight_height),
+            posture_weight_stability=number("posture_weight_stability", defaults.posture_weight_stability),
+            posture_weight_symmetry=number("posture_weight_symmetry", defaults.posture_weight_symmetry),
+            posture_target_height=number("posture_target_height", defaults.posture_target_height),
+            posture_tilt_max=number("posture_tilt_max", defaults.posture_tilt_max),
+            posture_velocity_max=number("posture_velocity_max", defaults.posture_velocity_max),
+            trigger_good_score=number("trigger_good_score", defaults.trigger_good_score),
+            trigger_good_duration=integer("trigger_good_duration", defaults.trigger_good_duration),
+            trigger_good_reward=number("trigger_good_reward", defaults.trigger_good_reward),
+            trigger_warning_score=number("trigger_warning_score", defaults.trigger_warning_score),
+            trigger_warning_reward=number("trigger_warning_reward", defaults.trigger_warning_reward),
+            trigger_falling_rate=number("trigger_falling_rate", defaults.trigger_falling_rate),
+            trigger_falling_reward=number("trigger_falling_reward", defaults.trigger_falling_reward),
+            trigger_collapse_score=number("trigger_collapse_score", defaults.trigger_collapse_score),
+            trigger_collapse_reward=number("trigger_collapse_reward", defaults.trigger_collapse_reward),
+            trigger_recovery_bonus=number("trigger_recovery_bonus", defaults.trigger_recovery_bonus),
+            reward_continuous_alpha=number("reward_continuous_alpha", defaults.reward_continuous_alpha),
+            episode_termination_enabled=bool(payload.get("episode_termination_enabled", defaults.episode_termination_enabled)),
+            episode_max_ticks=integer("episode_max_ticks", defaults.episode_max_ticks),
+            episode_reset_on_collapse=bool(payload.get("episode_reset_on_collapse", defaults.episode_reset_on_collapse)),
             pan_feedback_delay=integer(
                 "pan_feedback_delay", defaults.pan_feedback_delay
             ),
@@ -878,6 +930,8 @@ class PlaygroundConfig:
             ("reward_cue_channel", self.reward_cue_channel),
             ("reward_channel", self.reward_channel),
             ("action_feedback_channel", self.action_feedback_channel),
+            ("posture_score_channel", self.posture_score_channel),
+            ("reward_event_channel", self.reward_event_channel),
         ):
             if not 0 <= channel < self.input_channels:
                 raise ValueError(f"{name} outside input channel range")
@@ -1137,6 +1191,32 @@ class PlaygroundConfig:
             "target_cue_channel": self.target_cue_channel,
             "reward_cue_channel": self.reward_cue_channel,
             "action_feedback_channel": self.action_feedback_channel,
+            "posture_score_channel": self.posture_score_channel,
+            "reward_event_channel": self.reward_event_channel,
+            "posture_current_scale": self.posture_current_scale,
+            "reward_event_scale": self.reward_event_scale,
+            "posture_reward_enabled": self.posture_reward_enabled,
+            "posture_weight_upright": self.posture_weight_upright,
+            "posture_weight_height": self.posture_weight_height,
+            "posture_weight_stability": self.posture_weight_stability,
+            "posture_weight_symmetry": self.posture_weight_symmetry,
+            "posture_target_height": self.posture_target_height,
+            "posture_tilt_max": self.posture_tilt_max,
+            "posture_velocity_max": self.posture_velocity_max,
+            "trigger_good_score": self.trigger_good_score,
+            "trigger_good_duration": self.trigger_good_duration,
+            "trigger_good_reward": self.trigger_good_reward,
+            "trigger_warning_score": self.trigger_warning_score,
+            "trigger_warning_reward": self.trigger_warning_reward,
+            "trigger_falling_rate": self.trigger_falling_rate,
+            "trigger_falling_reward": self.trigger_falling_reward,
+            "trigger_collapse_score": self.trigger_collapse_score,
+            "trigger_collapse_reward": self.trigger_collapse_reward,
+            "trigger_recovery_bonus": self.trigger_recovery_bonus,
+            "reward_continuous_alpha": self.reward_continuous_alpha,
+            "episode_termination_enabled": self.episode_termination_enabled,
+            "episode_max_ticks": self.episode_max_ticks,
+            "episode_reset_on_collapse": self.episode_reset_on_collapse,
             "pan_feedback_delay": self.pan_feedback_delay,
             "pan_feedback_source": self.pan_feedback_source,
             "pan_feedback_target": self.pan_feedback_target,
