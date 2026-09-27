@@ -4,6 +4,8 @@ import { apiGet, apiPost, byId } from "../core/api.js";
 
 let lastResult = null;
 let catalogState = null;
+let liveSessionId = null;
+let liveLoopTimer = null;
 
 function injectStyles() {
   if (byId("mhrn-playground-styles")) return;
