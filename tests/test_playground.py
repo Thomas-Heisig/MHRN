@@ -924,7 +924,9 @@ def test_cuda_8gb_profile_is_plan_not_runtime_claim() -> None:
 def test_pan_catalog_exposes_learning_blocks_and_eighteen_candidates() -> None:
     payload = catalog()
     pan = payload["pan"]
-    assert pan["behavioral_learning_status"] == "IMPLEMENTED_REWARD_POLICY_REFERENCE"
+    assert pan["behavioral_learning_status"] == (
+        "IMPLEMENTED_ACTIVITY_GUARDED_REWARD_POLICY_REFERENCE"
+    )
     assert pan["thalamic_gating_status"] == "IMPLEMENTED_FUNCTIONAL_REFERENCE"
     assert pan["cortical_layers_status"] == (
         "IMPLEMENTED_FIXED_LABEL_PLASTIC_GAIN_REFERENCE"
