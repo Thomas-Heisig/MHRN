@@ -163,3 +163,30 @@ def test_playground_api_exposes_stateful_live_routes_without_research_promotion(
     assert 'action == "stop"' in api
     assert "PANSessionDaemon" in api
     assert "EvidenceEngine" not in api
+
+
+
+def test_playground_ui_exposes_meta_night_run_monitor() -> None:
+    module = (STATIC / "frontend" / "modules" / "playground.js").read_text(
+        encoding="utf-8"
+    )
+    assert "11 · Meta-Nachtlauf" in module
+    assert "pg-night-start" in module
+    assert "pg-night-stop" in module
+    assert "pg-night-refresh" in module
+    assert '"/api/playground/night/start"' in module
+    assert '"/api/playground/night/stop"' in module
+    assert '"/api/playground/night"' in module
+
+
+def test_playground_api_wires_meta_strategy_reward_and_night_run() -> None:
+    api = (ROOT / "src" / "dashboard" / "playground_api.py").read_text(
+        encoding="utf-8"
+    )
+    assert "NightRunManager" in api
+    assert '"/api/playground/night/start"' in api
+    assert '"/api/playground/night/stop"' in api
+    assert 'action == "strategy"' in api
+    assert 'action == "reward"' in api
+    assert "EvidenceEngine" not in api
+    assert "promote_validated_experiment" not in api
