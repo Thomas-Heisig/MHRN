@@ -556,7 +556,10 @@ class ClosedLoopRuntime:
 
     def note_action(self, *, action: int, tick: int) -> tuple[int, float]:
         target = self.current_target(tick)
+        episode_index = len(self.action_history)
         reward = self._reward(action, target)
+        if self.config.freeze_rewards:
+            reward = self.config.frozen_reward_sequence[episode_index]
         if action == target:
             self.successes += 1
         self.previous_action = self.last_action
@@ -594,6 +597,10 @@ class ClosedLoopRuntime:
             "channel_sizes": [len(group) for group in self.channel_map],
             "action_loop_enabled": self.config.action_loop_enabled,
             "action_space_size": self.config.action_space_size,
+            "freeze_actions": self.config.freeze_actions,
+            "freeze_rewards": self.config.freeze_rewards,
+            "parity_reference_source": self.config.parity_reference_source,
+            "parity_reference_commit": self.config.parity_reference_commit,
             "target_encoding": self.config.target_encoding,
             "reward_signal_enabled": self.config.reward_signal_enabled,
             "reward_shaping": self.config.reward_shaping,
@@ -607,6 +614,19 @@ class ClosedLoopRuntime:
             "pending_action_effects": len(self.pending_actions),
             "pending_rewards": len(self.pending_rewards),
             "causal_chain": "target/input -> network -> action -> delayed input/reward",
+            "parity_mode": (
+                "FROZEN_ACTIONS_AND_REWARDS"
+                if self.config.freeze_actions and self.config.freeze_rewards
+                else (
+                    "FROZEN_ACTIONS"
+                    if self.config.freeze_actions
+                    else (
+                        "FROZEN_REWARDS"
+                        if self.config.freeze_rewards
+                        else "LIVE_CLOSED_LOOP"
+                    )
+                )
+            ),
         }
 
 
