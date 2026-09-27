@@ -206,13 +206,13 @@ def test_stage1_score_matches_consolidated_scientific_state() -> None:
         expected += float(weights[criterion["id"]]) * float(status_value)
 
     assert abs(float(stage1["score"]) - expected) < 1e-12
-    assert abs(float(stage1["score"]) - 0.75) < 1e-12
+    assert abs(float(stage1["score"]) - 0.85) < 1e-12
 
     by_id = {criterion["id"]: criterion for criterion in stage1["criteria"]}
     assert by_id["research_question"]["status"] == "met"
     assert by_id["protocol"]["status"] == "met"
     assert by_id["data"]["status"] == "met"
-    assert by_id["reviewed_evidence"]["status"] == "partial"
+    assert by_id["reviewed_evidence"]["status"] == "met"
     assert by_id["independent_replication"]["status"] == "open"
     assert by_id["attribution"]["status"] == "met"
 
@@ -233,7 +233,7 @@ def test_stage1_review_and_evid_boundaries_remain_separate() -> None:
     decision = (
         ROOT / "research/decisions/2026-09-25_stage1_scientific_consolidation.md"
     ).read_text(encoding="utf-8")
-    assert "BLOCKED_CURRENT_EVIDENCE_ENGINE_CONTRACT" in decision
+    assert "EVID-2026-19" in decision
     assert "STAGE1-TOPOLOGY-LINE-001" in decision
     assert "STAGE1-TEMPORAL-ORDER-LINE-002" in decision
 
@@ -243,18 +243,19 @@ def test_stage1_canonical_baseline_binds_both_reviewed_functional_lines() -> Non
         (ROOT / "research/registry/stage1_baseline.json").read_text(encoding="utf-8")
     )
     assert baseline["baseline_id"] == "STAGE1-SCIENTIFIC-BASELINE-20260925"
-    assert baseline["maturity"]["score"] == 0.75
+    assert baseline["maturity"]["score"] == 0.85
 
     topology = baseline["central_data_line"]
     assert topology["line_id"] == "STAGE1-TOPOLOGY-LINE-001"
     assert [item["experiment_id"] for item in topology["experiments"]] == [
         "EXP-S1-TOPO-V2-20260918",
         "EXP-S1-TOPO-V3-R1-20260918",
+        "EXP-S1-TOPO-PROMO-R1-20260927",
     ]
-    assert all(
-        item["human_review_decision"] == "accepted_as_interpretation"
-        for item in topology["experiments"]
-    )
+    assert topology["experiments"][0]["human_review_decision"] == "accepted_as_interpretation"
+    assert topology["experiments"][1]["human_review_decision"] == "accepted_as_interpretation"
+    assert topology["experiments"][2]["human_review_decision"] == "supports"
+    assert topology["experiments"][2]["evidence_id"] == "EVID-2026-19"
 
     temporal = baseline["second_functional_line"]
     assert temporal["line_id"] == "STAGE1-TEMPORAL-ORDER-LINE-002"
@@ -263,7 +264,8 @@ def test_stage1_canonical_baseline_binds_both_reviewed_functional_lines() -> Non
     assert "not an independent replication" in temporal["independence_semantics"]
 
     promotion = baseline["evid_promotion_assessment"]
-    assert promotion["status"] == "BLOCKED_CURRENT_EVIDENCE_ENGINE_CONTRACT"
-    assert promotion["scientific_evidence"] is False
+    assert promotion["status"] == "TOPOLOGY_PROMOTION_COMPLETED_TEMPORAL_PROMOTION_OPEN"
+    assert promotion["scientific_evidence"] is True
+    assert promotion["topology_evidence_id"] == "EVID-2026-19"
     assert promotion["automatic_evidence_promotion"] is False
     assert baseline["independent_replication"]["complete"] is False
