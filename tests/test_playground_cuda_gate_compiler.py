@@ -345,7 +345,6 @@ def test_gate_execution_parity_compares_current_and_action() -> None:
     assert failed["passed"] is False
 
 
-
 def test_cuda_runtime_status_fails_closed_without_optional_cuda_dependencies() -> None:
     status = cuda_runtime_status(
         ptxas="definitely-not-a-real-ptxas",
