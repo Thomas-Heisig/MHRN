@@ -9,7 +9,7 @@ from collections.abc import Mapping
 from typing import cast
 
 from src.playground import service
-from src.playground.cuda import compile_mapping
+from src.playground.cuda import compile_config, compile_mapping, preflight_bundle
 from src.playground.models import PlaygroundConfig
 from src.playground.night_run import NightRunManager
 from src.playground.pan import PANEmbodiedSandboxSession, PANSessionDaemon
@@ -160,6 +160,26 @@ def post_playground(
             target_sm=target_sm,
             ptx_version=ptx_version,
         ).to_mapping()
+
+    if path == "/api/playground/cuda/preflight":
+        target_sm = _payload_text(payload, "target_sm", "sm_86")
+        ptx_version = _payload_text(payload, "ptx_version", "7.0")
+        block_size = _payload_int(payload, "block_size", 128)
+        config_payload = dict(payload)
+        config_payload.pop("target_sm", None)
+        config_payload.pop("ptx_version", None)
+        config_payload.pop("block_size", None)
+        config = PlaygroundConfig.from_mapping(config_payload)
+        bundle = compile_config(
+            config,
+            target_sm=target_sm,
+            ptx_version=ptx_version,
+        )
+        return preflight_bundle(
+            bundle,
+            n_neurons=config.n_neurons,
+            block_size=block_size,
+        )
 
     if path == "/api/playground/night/start":
         return _NIGHT_RUN.start(
