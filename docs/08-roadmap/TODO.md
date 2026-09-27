@@ -62,6 +62,13 @@ MHRN / Multi-Scale Homeostatic Recurrence Network. Publication: Recursive Episte
 
 # MHRN Current TODO
 
+## 2026-09-27 Release-Statusmarker
+
+- [x] Statusmarker in den Release-Ansichten für Entwicklung und Wissenschaft
+	ergänzen, ohne die kanonischen Statusbezeichnungen zu ändern.
+- [x] Browserabdeckung für `met`, `partial` und die Entwicklungsdetailmarker
+	ergänzen.
+
 ## 2026-09-16 Release navigation
 
 - [x] Expose Entwicklung and Wissenschaft as separate Release routes.

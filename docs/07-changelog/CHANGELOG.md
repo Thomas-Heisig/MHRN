@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-09-27 - Release-Statusmarker für Entwicklung und Wissenschaft
+
+- Die Detailfelder zeigen jetzt neben ihren unveränderten Statusbezeichnungen
+  `met`, `partial` und `open` konsistente Häkchenmarker.
+- Die Entwicklungsdetailfelder verwenden dieselbe Darstellung für technische
+  Zustände wie `implemented`, `verified`, `experimental`, `planned` und
+  `missing`.
+
 ## 2026-09-26 - Sichere External-Review-Bereitstellung
 
 - GitHub-Pages-Export und isolierter Collector sind als getrennte

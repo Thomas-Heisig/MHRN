@@ -295,6 +295,14 @@ test("Release workspace renders the documentation timeline", async ({ page }) =>
   await selectRoute(page, "release", "science");
   await expect(page.locator("#scientific-progress-timeline")).toBeVisible();
   await expect(page.locator("#scientific-progress-timeline")).toContainText("Scientific Timeline");
+  await page.locator('#scientific-progress-timeline [data-scientific-stage="0"]').click();
+  await expect(page.locator("#scientific-progress-detail .scientific-status-met")).toHaveCount(5);
+  await expect(page.locator("#scientific-progress-detail .scientific-status-partial")).toHaveCount(1);
+  await expect(page.locator("#scientific-progress-detail")).toContainText("met");
+  await expect(page.locator("#scientific-progress-detail")).toContainText("partial");
+  await page.locator('#scientific-progress-timeline [data-scientific-stage="1"]').click();
+  await expect(page.locator("#scientific-progress-detail .scientific-status-open")).toHaveCount(1);
+  await expect(page.locator("#scientific-progress-detail")).toContainText("open");
 
   await selectRoute(page, "release", "development");
   await expect(page.locator("#development-timeline-track .dev-node-marker-tech")).toContainText("hier");
@@ -308,6 +316,7 @@ test("Release workspace renders the documentation timeline", async ({ page }) =>
   await page.locator('#development-stage-list [data-development-stage="3"]').click();
   await expect(page.locator("#development-detail")).toBeVisible();
   await expect(page.locator("#development-detail")).toContainText("Plastisches Nervengewebe");
+  await expect(page.locator("#development-detail .release-status-mark")).not.toHaveCount(0);
 
   await selectRoute(page, "release", "documents");
   await page.locator('[data-release-document="08-roadmap/TODO.md"]').click();

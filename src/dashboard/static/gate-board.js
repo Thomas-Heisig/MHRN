@@ -28,6 +28,16 @@ const LIVE_STATUS_ICON = {
   unavailable: '—',
   error: '❌',
 };
+const RELEASE_STATUS_MARKERS = {
+  met: '✓',
+  partial: '◐',
+  open: '○',
+  implemented: '✓',
+  verified: '✓',
+  experimental: '◐',
+  planned: '○',
+  missing: '○',
+};
 
 const escapeHtml = (value) => String(value ?? '').replace(/[&<>"']/g, (character) => ({
   '&': '&amp;',
@@ -36,6 +46,13 @@ const escapeHtml = (value) => String(value ?? '').replace(/[&<>"']/g, (character
   '"': '&quot;',
   "'": '&#39;',
 }[character]));
+
+const releaseStatusMarkup = (status) => {
+  const label = String(status ?? 'open');
+  const key = label.toLowerCase();
+  const marker = RELEASE_STATUS_MARKERS[key] || '·';
+  return `<span class="release-status-mark release-status-${escapeHtml(key)}" aria-hidden="true">${marker}</span><span>${escapeHtml(label)}</span>`;
+};
 
 function renderLiveRuntime(items) {
   const container = $('gate-live-list');
@@ -529,7 +546,7 @@ function renderDevelopmentDetail(stage) {
       ${criteria.map((criterion) => `
         <div class="dev-criterion dev-criterion-${escapeHtml(criterion.status || 'missing')}">
           <span>${escapeHtml(criterion.label || criterion.id)}</span>
-          <strong>${escapeHtml(criterion.status || 'missing')}</strong>
+          <strong class="release-status-value">${releaseStatusMarkup(criterion.status || 'missing')}</strong>
           ${Array.isArray(criterion.evidence) && criterion.evidence.length ? `<small>${escapeHtml(criterion.evidence.join(' · '))}</small>` : ''}
         </div>
       `).join('')}

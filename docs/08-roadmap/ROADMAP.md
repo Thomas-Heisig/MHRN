@@ -4,6 +4,14 @@
 **Baseline:** `mhrn-core 0.6.0a7`
 **Updated:** 2026-09-19
 
+## 2026-09-27 Release-Statusmarker
+
+- Die Release-Ansichten für Entwicklung und Wissenschaft zeigen neben den
+	Statusbezeichnungen die etablierten Häkchenmarker für erledigt, teilweise
+	erledigt und offen.
+- Die kanonischen Statusbezeichnungen `met`, `partial` und `open` bleiben
+	unverändert und werden nicht als wissenschaftliche Evidenz umgedeutet.
+
 ## 2026-09-26 External Review Deployment
 
 - Review-Fragebogen kann statisch über GitHub Pages oder als isolierter

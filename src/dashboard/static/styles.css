@@ -721,6 +721,11 @@ canvas { display:block; width:100%; height:auto; border:1px solid var(--rule); b
 .dev-criterion-fail { border-left:3px solid var(--crimson); }
 .dev-criterion-missing { border-left:3px solid var(--rule-3); }
 .dev-criterion strong { margin-left:auto; font-family:var(--font-mono); font-size:.6rem; }
+.release-status-value { display:inline-flex; align-items:center; gap:4px; white-space:nowrap; }
+.release-status-mark { display:inline-grid; place-items:center; width:1em; height:1em; font-weight:800; }
+.release-status-met,.release-status-implemented,.release-status-verified { color:var(--moss); }
+.release-status-partial,.release-status-experimental { color:var(--amber); }
+.release-status-open,.release-status-planned,.release-status-missing { color:var(--ink-4); }
 .dev-criterion small { display:block; width:100%; margin-top:2px; color:var(--ink-4); font-size:.55rem; }
 .dev-detail-columns { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:8px; }
 .dev-detail-columns section h4 { font-size:.7rem; margin-bottom:4px; color:var(--ink-3); }

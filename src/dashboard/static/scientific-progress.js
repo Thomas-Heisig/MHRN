@@ -1,6 +1,7 @@
 "use strict";
 
 const SCIENCE_MANIFEST_URL = "/scientific-progress.json";
+const SCIENTIFIC_STATUS_MARKERS = { met: "✓", partial: "◐", open: "○" };
 
 function escapeHtml(value) {
   return String(value ?? "").replace(/[&<>"']/g, (character) => ({
@@ -11,6 +12,13 @@ function escapeHtml(value) {
 function percent(value) {
   const pct = Math.round(Math.max(0, Math.min(1, Number(value) || 0)) * 1000) / 10;
   return `${Number.isInteger(pct) ? pct.toFixed(0) : pct.toFixed(1)}%`;
+}
+
+function statusMarkup(status) {
+  const label = String(status ?? "open");
+  const key = label.toLowerCase();
+  const marker = SCIENTIFIC_STATUS_MARKERS[key] || "·";
+  return `<span class="scientific-status-mark scientific-status-${key}" aria-hidden="true">${marker}</span><span>${escapeHtml(label)}</span>`;
 }
 
 function setVisible(element, visible) {
@@ -55,7 +63,7 @@ function injectStyles() {
     .scientific-progress-legend{display:flex;flex-wrap:wrap;gap:7px;margin:8px 0}.scientific-progress-legend span{padding:4px 7px;border:1px solid var(--rule);border-radius:999px;font-size:.72rem}
     .scientific-progress-detail{margin-top:12px;padding:13px;border-top:1px solid var(--rule)}
     .scientific-progress-detail h4{margin:.2rem 0}.scientific-progress-boundary{padding:9px;border-left:3px solid var(--accent);background:var(--paper)}
-    .scientific-criteria{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px;margin:10px 0}.scientific-criterion{padding:8px;border:1px solid var(--rule);border-radius:7px}.scientific-criterion strong{float:right}.scientific-criterion small{display:block;clear:both;margin-top:5px;opacity:.75;overflow-wrap:anywhere}
+    .scientific-criteria{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px;margin:10px 0}.scientific-criterion{padding:8px;border:1px solid var(--rule);border-radius:7px}.scientific-criterion strong{float:right;display:inline-flex;align-items:center;gap:4px}.scientific-status-mark{display:inline-grid;place-items:center;width:1em;height:1em;font-weight:800}.scientific-status-met{color:var(--moss,#3d8b5c)}.scientific-status-partial{color:var(--amber,#a47720)}.scientific-status-open{color:var(--ink-4,#777)}.scientific-criterion small{display:block;clear:both;margin-top:5px;opacity:.75;overflow-wrap:anywhere}
     .scientific-integrity-note{margin-top:10px;font-size:.78rem;opacity:.85}
     .scientific-two-axis-note{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}.scientific-two-axis-note>div{padding:10px;border:1px solid var(--rule);border-radius:8px;background:var(--paper)}
     @media(max-width:900px){.scientific-progress-head{display:block}.scientific-progress-score{text-align:left;margin-top:8px}.scientific-progress-track{grid-template-columns:repeat(11,110px)}.scientific-two-axis-note{grid-template-columns:1fr}}
@@ -126,7 +134,7 @@ function ensureReleaseView() {
 function criterionMarkup(criterion) {
   const sources = Array.isArray(criterion.sources) ? criterion.sources : [];
   return `<div class="scientific-criterion" data-status="${escapeHtml(criterion.status)}">
-    <span>${escapeHtml(criterion.label || criterion.id)}</span><strong>${escapeHtml(criterion.status)}</strong>
+    <span>${escapeHtml(criterion.label || criterion.id)}</span><strong>${statusMarkup(criterion.status)}</strong>
     ${sources.length ? `<small>${sources.map(escapeHtml).join(" · ")}</small>` : "<small>kein evidenztragender Nachweis eingetragen</small>"}
   </div>`;
 }
