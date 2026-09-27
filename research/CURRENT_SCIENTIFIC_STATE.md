@@ -1,6 +1,6 @@
 # Current Scientific State
 
-**Stand:** 25. September 2026
+**Stand:** 27. September 2026
 
 Dieses Dokument ist der kurze Einstieg in den aktuellen wissenschaftlichen Zustand. Historische DATA, EVID-Entscheidungen und eingefrorene Publikationen bleiben unverändert in ihren datierten Verzeichnissen.
 
@@ -83,16 +83,29 @@ Der Promotion-Lauf selbst bleibt als ausgeführte DATA unverändert; seine autom
 
 ## Stage 1 — konsolidierter wissenschaftlicher Reifestand
 
-Die frühere 30-%-Projektion war gegenüber dem aktuellen Repository veraltet. Die kanonische Stage-1-Baseline ist jetzt `RQ-SNN-003 / H-SNN-003-B` mit der verknüpften Topologie-DATA-Linie `STAGE1-TOPOLOGY-LINE-001`: `EXP-S1-TOPO-V2-20260918` als primärer präregistrierter Lauf und `EXP-S1-TOPO-V3-R1-20260918` als korrigierte interne Replikation mit neuen Seeds. Der fehlerhaft analysierte erste V3-Lauf bleibt unverändert als Auditspur.
+Die frühere 30-%-Projektion und der zwischenzeitliche 75-%-Stand sind durch den prospektiven Promotion-Lauf überholt. Die kanonische Stage-1-Baseline bleibt `RQ-SNN-003 / H-SNN-003-B` mit der verknüpften Topologie-DATA-Linie `STAGE1-TOPOLOGY-LINE-001`: `EXP-S1-TOPO-V2-20260918` als primärer präregistrierter Lauf und `EXP-S1-TOPO-V3-R1-20260918` als korrigierte interne Replikation mit neuen Seeds. Der fehlerhaft analysierte erste V3-Lauf bleibt unverändert als Auditspur.
 
-Nach dem unveränderten Gewichtungsvertrag ergibt sich für Stage 1 **75 %**: RQ/H 15 %, Protokoll 20 %, DATA 20 %, Human-Review-Subgate 10 % von 20 %, unabhängige Replikation 0 % und Attribution 10 %. Die beiden Human Reviews durch Thomas Heisig sind abgeschlossen und akzeptieren die begrenzte Interpretation. Das erzeugt keine EVID.
+Zur Schließung des heutigen EvidenceEngine-Provenienzvertrags wurde `EXP-S1-TOPO-PROMO-R1-20260927` prospektiv präregistriert, eingefroren und mit den frischen Seeds 6301–6320 ausgeführt. Der Lauf verwendete weiterhin 64 Neuronen, 246 Kanten, Synapsengewicht 55 und 128 Ticks. Er war clean-tree, `validity.valid=true`, hatte null Runtime-/Fatal-Fehler und vollständige `provenance_digests` mit gültigem `source_freeze_sha`. Designintegrität, Ceiling-Resolution-Kriterium und alle fünf registrierten First-Output-Latency-Replikationskontraste bestanden.
 
-Die scoped Stage-1-Claims `CLAIM-S1-TOPO-001` und `CLAIM-S1-TEMP-001` sind inzwischen kanonisch registriert. Die EvidenceEngine-Promotion bleibt dennoch blockiert, weil die historischen Manifeste die heutigen `validity`-/`git`-/`provenance_digests`-/`source_freeze_sha`-Felder nicht erfüllen und die vorhandenen Reviews `accepted_as_interpretation` statt EvidenceEngine-`supports|refutes|inconclusive` verwenden. Diese historischen Lücken werden nicht rückwirkend erfunden; erforderlich sind prospektive Promotion-Läufe mit anschließendem kanonischem Human Review.
+Der kanonische Human Review durch Thomas Heisig trägt die Entscheidung `supports` ausschließlich für `CLAIM-S1-TOPO-001`. Er bewahrt ausdrücklich die nicht signifikanten `half_activation_latency_censored`-Kontraste und hält fest, dass die Daten **keine 5D-Überlegenheit** zeigen. Die anschließende separate EvidenceEngine-Promotion erzeugte `EVID-2026-19`.
 
-Als zweite getrennte Funktionslinie wird `STAGE1-TEMPORAL-ORDER-LINE-002` mit `RQ-TEMP-002 / H-TEMP-002-A` und `EXP-S1-TEMP-ORDER-V2-20260919` geführt. Der präregistrierte Sechs-Neuronen-Task umfasst 20 Seeds, 120 Runs und eine identity-destroyed Kontrolle. Der DATA-Status ist `SUPPORTED_WITHIN_PREREGISTERED_PROTOCOL`; der Human Review durch Thomas Heisig ist mit `accepted_as_interpretation` abgeschlossen. EVID-Promotion und unabhängige Replikation bleiben separat offen. Diese Linie ist funktional eigenständig, aber keine unabhängige Replikation der Topologielinie.
+Nach dem unveränderten Gewichtungsvertrag beträgt die Stage-1-Scientific-Maturity deshalb jetzt **85 %**:
+- RQ/H: **met** = 15 %;
+- eingefrorenes Protokoll: **met** = 20 %;
+- source-bound DATA: **met** = 20 %;
+- Human-reviewed EVID: **met** = 20 % von 20 %;
+- unabhängige Replikation: **open** = 0 % von 15 %;
+- Attribution: **met** = 10 %.
+
+Die EvidenceEngine setzt `CLAIM-S1-TOPO-001` und `H-SNN-003-B` nach ihrem generischen Mehr-EVID-Vertrag weiterhin auf `inconclusive`, weil eine einzelne EVID-Registrierung nicht automatisch einen globalen Claim-Status `supported` erzeugt. Das widerspricht nicht dem Human Review `supports`; die Stage-Maturity zählt hier die abgeschlossene kanonische Review-/EVID-Pipeline, nicht eine künstliche Hochstufung des globalen Claim-Status.
+
+Als zweite getrennte Funktionslinie wird `STAGE1-TEMPORAL-ORDER-LINE-002` mit `RQ-TEMP-002 / H-TEMP-002-A` und `EXP-S1-TEMP-ORDER-V2-20260919` geführt. Der präregistrierte Sechs-Neuronen-Task umfasst 20 Seeds, 120 Runs und eine identity-destroyed Kontrolle. Der DATA-Status ist `SUPPORTED_WITHIN_PREREGISTERED_PROTOCOL`; der frühere Human Review mit `accepted_as_interpretation` bleibt erhalten. Diese Linie besitzt noch keine kanonische EvidenceEngine-Promotion und bleibt funktional eigenständig, aber keine unabhängige Replikation der Topologielinie.
+
+Die nächste 7,5-%-Stufe bis 92,5 % erfordert eine unabhängig implementierte Referenz-/Cross-Implementation-Replikation des zentralen Topologie-Claims. Eine echte externe, unabhängig autorisierte Replikation bleibt darüber hinaus die Voraussetzung für die vollständige Replikationskomponente. `RQ-5D-005 / H-5D-005-A` bleibt separat offen; aus `EVID-2026-19` darf kein 5D-Überlegenheitsclaim abgeleitet werden.
 
 Kanonische Maschinenbaseline: `research/registry/stage1_baseline.json` (`STAGE1-SCIENTIFIC-BASELINE-20260925`).  
-Kanonische Konsolidierungsentscheidung: `research/decisions/2026-09-25_stage1_scientific_consolidation.md`.
+Kanonische Topologie-EVID: `research/registry/evidence/EVID-2026-19.json`.  
+Kanonischer Promotionsstatus: `research/experiments/EXP-S1-TOPO-PROMO-R1-20260927/EVIDENCE_PROMOTION_STATUS.json`.
 
 ## Aktueller Schwerpunkt: Stage 6
 
