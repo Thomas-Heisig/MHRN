@@ -42,6 +42,22 @@ def sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def _topology_prereg(prereg: dict[str, Any]) -> dict[str, Any]:
+    adapted = dict(prereg)
+    adapted["conditions"] = {
+        "3d": prereg["conditions"]["3d_reference"]["shape"],
+        "5d": prereg["conditions"]["5d_reference"]["shape"],
+        "5d_shuffled": prereg["conditions"]["5d_shuffled"]["shape"],
+        "random_graph": prereg["conditions"]["random_graph"]["shape"],
+    }
+    matched = dict(prereg["matched_budgets"])
+    matched["stimulus_current"] = float(
+        prereg["calibration"]["reference_stimulus_current"]
+    )
+    adapted["matched_budgets"] = matched
+    return adapted
+
+
 def simulate(
     config: dict[str, Any],
     prereg: dict[str, Any],
@@ -51,7 +67,7 @@ def simulate(
 ) -> dict[str, Any]:
     weight = float(prereg["matched_budgets"]["synaptic_weight"])
     network, neuron_ids, coords, edges = build_network(
-        config, prereg, graph_condition, seed, weight
+        config, _topology_prereg(prereg), graph_condition, seed, weight
     )
     before = canonical_state_digest(network)
     ticks = int(prereg["matched_budgets"]["evaluation_ticks"])
