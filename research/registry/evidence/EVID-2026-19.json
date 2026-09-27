@@ -1,0 +1,107 @@
+{
+  "evidence_id": "EVID-2026-19",
+  "experiment_id": "EXP-S1-TOPO-PROMO-R1-20260927",
+  "claim_id": "CLAIM-S1-TOPO-001",
+  "hypothesis_id": "H-SNN-003-B",
+  "result_summary": "The prospective Stage-1 topology promotion replication reproduced the bounded topology-sensitive propagation result on predeclared fresh seeds 6301-6320 within the registered 64-neuron/246-edge Small-SNN operating envelope. Design integrity passed, the preregistered ceiling-resolution criterion passed, and all five first-output-latency replication contrasts reproduced the registered direction. The human review explicitly preserves the null findings and does not support 5D superiority.",
+  "effect_size": {
+    "activation_auc_0_32_median_delta": {
+      "1d_to_2d": 4.3984375,
+      "2d_to_3d": 1.3828125,
+      "3d_to_5d": -3.0703125,
+      "5d_to_5d_shuffled": -3.2890625,
+      "5d_to_random_graph": -2.4609375
+    },
+    "half_activation_latency_censored_median_delta": {
+      "1d_to_2d": -4.0,
+      "2d_to_3d": -2.0,
+      "3d_to_5d": 0.0,
+      "5d_to_5d_shuffled": 0.0,
+      "5d_to_random_graph": 0.0
+    },
+    "first_output_latency_censored_median_delta": {
+      "1d_to_2d": -10.0,
+      "2d_to_3d": -3.0,
+      "3d_to_5d": -1.0,
+      "5d_to_5d_shuffled": -3.0,
+      "5d_to_random_graph": -2.5
+    }
+  },
+  "statistical_significance": {},
+  "evidence_mode": "stochastic_experiment",
+  "verification": {
+    "preregistration_id": "PREREG-S1-TOPO-PROMO-R1",
+    "replication_class": "INTERNAL_PROMOTION_REPLICATION",
+    "design_integrity_passed": true,
+    "ceiling_resolution_supported": true,
+    "replication_supported": true,
+    "evaluation_runs": 120,
+    "evaluation_seeds": [
+      6301,
+      6302,
+      6303,
+      6304,
+      6305,
+      6306,
+      6307,
+      6308,
+      6309,
+      6310,
+      6311,
+      6312,
+      6313,
+      6314,
+      6315,
+      6316,
+      6317,
+      6318,
+      6319,
+      6320
+    ],
+    "historical_seed_disjoint": true,
+    "single_holm_family_primary_tests": true,
+    "null_findings_preserved": [
+      "half_activation_latency_censored 3d->5d not significant",
+      "half_activation_latency_censored 5d->5d_shuffled not significant",
+      "half_activation_latency_censored 5d->random_graph not significant under registered CI+Holm rule"
+    ],
+    "independent_authorship_replication": false,
+    "five_d_superiority_supported": false,
+    "source_freeze_sha": "5c66d953f66818a8bc6f49e8703b74cccd1ad3ee18c7a717ae6c1019dc090695",
+    "human_review": {
+      "experiment_id": "EXP-S1-TOPO-PROMO-R1-20260927",
+      "reviewer": "Thomas Heisig",
+      "decision": "supports",
+      "comments": "Der Human Review akzeptiert die eng begrenzte Aussage von CLAIM-S1-TOPO-001: Innerhalb des präregistrierten 64-Neuronen-/246-Kanten-Small-SNN-Betriebsbereichs erzeugen die registrierten, bei Neuronenzahl, globalem Kantenbudget, Stimulus, Gewichten und Delays gematchten Topologien reproduzierbare Unterschiede in den registrierten Propagationsmetriken. Die Entscheidung berücksichtigt ausdrücklich die nicht signifikanten half_activation_latency_censored-Kontraste 3d→5d und 5d→5d_shuffled sowie den nach Holm nicht signifikanten 5d→random_graph-Endpunkt; diese werden als begrenzte Sensitivität/Sättigung dieser Metrik in diesem Regime interpretiert und nicht verschwiegen. Die Entscheidung stützt keine 5D-Überlegenheit; insbesondere zeigen die Daten keinen allgemeinen Aktivierungsvorteil von 5D gegenüber 3D. Sie stützt weder Skalierung über 64 Neuronen hinaus noch Kognition, Lernen, Gedächtnis, biologische Gleichwertigkeit oder unabhängige externe Replikation. Der Lauf bleibt interne Promotion-Replikation; EVID-Promotion ist eine separate explizite Aktion.",
+      "reviewed_at": "2026-09-27T08:05:00+02:00",
+      "source_review_artifact": "review_request.json",
+      "source_review_summary": "External scientific assessment supplied in the human review concluded that the bounded claim is scientifically supportable while preserving the null findings and the no-5D-superiority boundary.",
+      "scope": "CLAIM-S1-TOPO-001 only",
+      "independent_authorship_replication": false,
+      "null_findings_preserved": [
+        "half_activation_latency_censored 3d->5d: not significant",
+        "half_activation_latency_censored 5d->5d_shuffled: not significant",
+        "half_activation_latency_censored 5d->random_graph: p_holm=0.0234375 but CI includes zero, therefore not significant under the registered rule"
+      ],
+      "prohibited_interpretations": [
+        "5D superiority",
+        "scaling beyond the registered 64-neuron operating envelope",
+        "cognition, learning or memory",
+        "biological equivalence",
+        "independent external replication"
+      ]
+    }
+  },
+  "status": "supports",
+  "limitations": "Internal promotion replication only. Scope is limited to the registered 64-neuron, 246-edge, weight-55, 128-tick Small-SNN operating envelope. No 5D superiority, no scaling claim, no cognition/learning/memory claim, no biological equivalence, and no independent external replication. The non-significant half-activation-latency contrasts are preserved.",
+  "artifacts": {
+    "figures": [],
+    "data_files": []
+  },
+  "generated": "2026-09-27T08:12:12.487861",
+  "experiment_validity": {
+    "valid": true,
+    "runtime_error_count": 0,
+    "fatal_error_count": 0
+  }
+}
