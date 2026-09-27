@@ -370,7 +370,7 @@ function buildPanels(root) {
       <article class="playground-card"><h3>18 · CUDA & Parität</h3>
         <div class="playground-grid">
           <label>Target SM<input id="pg-cuda-target-sm" value="sm_86"></label>
-          <label>PTX Version<input id="pg-cuda-ptx-version" value="7.0"></label>
+          <label>PTX Version<input id="pg-cuda-ptx-version" value="7.1"></label>
           <label><span><input id="pg-freeze-actions" type="checkbox"> Actions einfrieren</span></label>
           <label><span><input id="pg-freeze-rewards" type="checkbox"> Rewards einfrieren</span></label>
           <label>Referenz-Commit<input id="pg-parity-reference-commit" placeholder="Git SHA"></label>
@@ -930,7 +930,7 @@ async function compileCudaGates(){
   const result=await apiPost("/api/playground/cuda/compile",{
     ...formPayload(),
     target_sm:byId("pg-cuda-target-sm")?.value||"sm_86",
-    ptx_version:byId("pg-cuda-ptx-version")?.value||"7.0",
+    ptx_version:byId("pg-cuda-ptx-version")?.value||"7.1",
   });
   if(node)node.textContent=JSON.stringify({
     manifest:result.manifest,
