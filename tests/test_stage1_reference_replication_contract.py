@@ -7,6 +7,9 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 PREREG = ROOT / "research" / "preregistrations" / "PREREG-S1-TOPO-REFERENCE-R1.json"
+RUNNER_PROTOCOL = (
+    ROOT / "reference" / "stage1_topology_brian2" / "reference_protocol.json"
+)
 
 
 def _prereg() -> dict:
@@ -76,3 +79,36 @@ def test_reference_success_cannot_grant_full_replication_credit() -> None:
     assert "7.5/15" in semantics["success"]
     assert "85% to 92.5%" in semantics["success"]
     assert "15/15" in semantics["full_credit"]
+
+
+def test_reference_runner_protocol_is_sanitized() -> None:
+    protocol = json.loads(RUNNER_PROTOCOL.read_text(encoding="utf-8"))
+    serialized = json.dumps(protocol, sort_keys=True).lower()
+
+    assert protocol["framework"] == "Brian2"
+    assert protocol["framework_version"] == "2.10.1"
+    assert "canonical_targets" not in serialized
+    assert "frozen_bounds" not in serialized
+    assert "evid-2026-19" not in serialized
+    assert "exp-s1-topo-promo-r1-20260927" not in serialized
+    assert "equivalence_bounds" not in serialized
+
+
+def test_reference_equivalence_bounds_are_resolution_aware() -> None:
+    prereg = _prereg()
+    targets = prereg["canonical_targets"]
+
+    assert "1.0 tick" in targets["equivalence_bounds_rule"]
+    assert targets["frozen_bounds"]["3d_to_5d"] == [-2.0, 0.0]
+    assert "must separately retain" in targets["direction_rule"]
+    assert "median must be <0" in targets["direction_rule"]
+
+
+def test_reference_prefreeze_gates_are_mandatory() -> None:
+    prereg = _prereg()
+    gates = prereg["prefreeze_requirements"]
+
+    assert gates["integrator_parity"]["required"] is True
+    assert gates["mechanism_audit"]["required"] is True
+    assert gates["runner_independence_scan"]["required"] is True
+    assert gates["seed_freshness"]["required"] is True
