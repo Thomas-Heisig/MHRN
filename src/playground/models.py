@@ -500,8 +500,10 @@ class PlaygroundConfig:
             raise ValueError("behavior_target_mode must be fixed or cycle")
         if not 0.0 <= self.behavior_min_activity <= 1.0:
             raise ValueError("behavior_min_activity must be between 0 and 1")
-        if not 1 <= self.behavior_episode_ticks <= self.ticks:
-            raise ValueError("behavior_episode_ticks must be between 1 and ticks")
+        if not 1 <= self.behavior_episode_ticks <= 1_000_000:
+            raise ValueError(
+                "behavior_episode_ticks must be between 1 and 1000000"
+            )
         if not 0.0 <= self.behavior_bias_current <= 100.0:
             raise ValueError("behavior_bias_current must be between 0 and 100")
         if not 0.0 <= self.geometry_lambda_a <= 10.0:
