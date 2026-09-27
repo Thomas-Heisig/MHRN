@@ -111,6 +111,8 @@ def test_playground_preset_lab_has_izhikevich_pan_and_local_storage() -> None:
     assert 'edge_budget:"edges"' in module
     assert 'stimulus_current:"current"' in module
     assert 'behavior_episode_ticks:"behavior-episode"' in module
+    assert 'const DEFAULT_PLAYGROUND_PRESET = "full_embodiment"' in module
+    assert 'allPlaygroundPresets()[DEFAULT_PLAYGROUND_PRESET]' in module
 
 
 def test_playground_preset_catalog_documentation_exists() -> None:
@@ -125,6 +127,18 @@ def test_playground_preset_catalog_documentation_exists() -> None:
         "g2_one_action_trivial",
     ):
         assert preset in text
+
+
+def test_playground_building_block_catalog_has_explanations_and_repo_elements() -> None:
+    module = (STATIC / "frontend" / "modules" / "playground.js").read_text(
+        encoding="utf-8"
+    )
+    assert "PLAYGROUND_REPO_ELEMENTS" in module
+    assert "ensureCatalogInfoDialog" in module
+    assert "showCatalogInfo" in module
+    assert "data-pg-catalog-info" in module
+    for element in ("NetworkAreaAdapter", "PANRuntime", "StickFigureSandbox", "ResearchRegistry", "pack_coords"):
+        assert element in module
 
 
 def test_playground_live_monitor_exposes_popup_controls_and_graphs() -> None:
