@@ -274,6 +274,7 @@ class MetaTaskGenerator:
                 source for source in sources if kb.records_for_source(source)
             ]
             if gateway_available:
+                sources.append("gateway")
                 available.append("gateway")
             if not available:
                 task_type = "store_info"
@@ -294,7 +295,7 @@ class MetaTaskGenerator:
                     "true_source": true_source,
                     "true_category": category,
                     "target_record_id": target_id,
-                    "possible_sources": available,
+                    "possible_sources": sources,
                     "possible_categories": list(self.categories),
                 }
 
