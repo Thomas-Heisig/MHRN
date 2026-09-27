@@ -92,3 +92,75 @@ Playground observation
 ```
 
 No Playground result is promoted, copied or counted automatically.
+
+
+## Generative gate runtime
+
+The Playground can now translate validated PAN/geometry/clock settings into a
+descriptive `GateSchematic`. The mapping is explicit and inspectable; it does
+not claim that Python objects are physical logic gates or CUDA cores.
+
+Implemented reference primitives include:
+
+- apoptosis / aging threshold gates
+- feedback-gain gate
+- geometry sigma, probability, radius and conduction-delay gates
+- base-clock, continuous-step and event-batch timers
+- neurogenesis, synaptogenesis, path-formation and pruning triggers
+
+Every schematic reports `classification: PLAYGROUND_GATE_SCHEMATIC`,
+`scientific_evidence: false`, `generation: SETTINGS_DERIVED` and
+`hardware_execution: PYTHON_REFERENCE_ONLY`.
+
+## Dual event + continuous clock
+
+`clock_mode=dual` adds a deterministic interleaved scheduler around the
+existing Playground continuous tick engine. Spikes are queued as events and
+drained at explicit synchronization barriers. This is a reference execution
+model, not actual simultaneous CPU/GPU concurrency. Results report
+`execution_semantics: DETERMINISTIC_INTERLEAVED_REFERENCE`.
+
+Generative growth requires dual mode so that structural mutation occurs only
+at defined barriers.
+
+## Event-driven generative growth
+
+With `growth_enabled=true`, barrier events can drive bounded structural
+changes: repeated coactivation can trigger synaptogenesis, high
+information-proxy nodes can trigger path formation, weak edges can be pruned,
+and sufficient activity can reactivate an apoptotic slot.
+
+The current neurogenesis implementation is deliberately conservative:
+population storage is fixed at `n_neurons`. Neurogenesis means reactivating an
+existing apoptotic slot; it does not dynamically reallocate the population.
+Results report `REACTIVATE_APOPTOTIC_SLOT_NO_REALLOCATION`.
+
+## CUDA budget and SSD offload
+
+`cuda_budget_mb` provides a memory-layout estimate for a hypothetical compact
+CUDA implementation. The current Python reference backend does not allocate
+CUDA tensors from this pool. It reports `REFERENCE_ESTIMATE_ONLY` and
+`NOT_IMPLEMENTED_IN_PYTHON_REFERENCE_BACKEND`.
+
+Optional SSD offload writes compressed event batches and lightweight snapshots
+only below `playground_sessions/pan_offload/`, through the same Playground
+isolation guard that blocks canonical research paths. The reference writer is
+synchronous; asynchronous CUDA streams, pinned-memory transfer and GPU-to-SSD
+pipelines remain unimplemented.
+
+## CUDA hardware boundary
+
+| Capability | Current Playground status |
+|---|---|
+| settings -> gate schematic | implemented reference |
+| dual event + continuous scheduler | implemented reference |
+| bounded event-driven growth | implemented fixed-capacity reference |
+| 2 GiB CUDA memory planning | estimate only |
+| compressed SSD offload | implemented synchronous reference |
+| persistent CUDA gate kernels | not implemented |
+| CUDA Dynamic Parallelism growth | not implemented |
+| SM topology as PAN geometry | exploratory idea only |
+| thermal state as health feedback | exploratory idea only |
+
+No claim is made that a gate is a CUDA core or that GPU thermal behavior is a
+biological analogue.
