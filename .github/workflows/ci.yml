@@ -330,6 +330,7 @@ jobs:
           tests/test_stage1_temporal_order_promotion_contract.py
           tests/test_stage1_topology_efficiency_contract.py
           tests/test_stage1_reference_replication_contract.py
+          tests/test_stage1_reference_preflight.py
       - name: Connectome design and source integrity
         run: python scripts/check_connectome_integrity.py
       - name: Summary
