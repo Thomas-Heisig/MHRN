@@ -11,6 +11,13 @@ from dataclasses import dataclass
 
 from .._isolation import PlaygroundIsolation, playground_manifest
 from ..analysis import analyze_result
+from ..closed_loop import (
+    ClosedLoopRuntime,
+    TemporalDynamics,
+    inhibitory_mask,
+    neuron_parameter_sets,
+    sample_delay_ticks,
+)
 from ..geometry.metrics import conduction_delay_ticks, geometry_diagnostics
 from ..instruments.monitors import RateMonitor, SpikeMonitor, StateMonitor
 from ..models import PlaygroundConfig, Topology
@@ -84,9 +91,18 @@ class PlaygroundSession:
             config.seed,
         )
 
+        neuron_parameters = neuron_parameter_sets(model.parameters, config)
         states = [
-            model.state_factory(model.parameters) for _ in range(config.n_neurons)
+            model.state_factory(neuron_parameters[index])
+            for index in range(config.n_neurons)
         ]
+        closed_loop = ClosedLoopRuntime(config, topology.coordinates)
+        temporal_dynamics = TemporalDynamics(config)
+        inhibitory = inhibitory_mask(
+            config.n_neurons,
+            config.inhibitory_fraction,
+            config.seed,
+        )
         adjacency: list[set[int]] = [set() for _ in range(config.n_neurons)]
         incoming: list[set[int]] = [set() for _ in range(config.n_neurons)]
         weights: dict[tuple[int, int], float] = {}
@@ -98,15 +114,18 @@ class PlaygroundSession:
             incoming[target].add(source)
             edge = (source, target)
             weights[edge] = config.weight
-            delays[edge] = (
-                conduction_delay_ticks(
-                    topology.coordinates[source],
-                    topology.coordinates[target],
-                    velocity_per_tick=config.geometry_delay_velocity,
+            if config.delay_distribution != "fixed":
+                delays[edge] = sample_delay_ticks(config, rng)
+            else:
+                delays[edge] = (
+                    conduction_delay_ticks(
+                        topology.coordinates[source],
+                        topology.coordinates[target],
+                        velocity_per_tick=config.geometry_delay_velocity,
+                    )
+                    if topology.name == "geometric_5d"
+                    else config.delay_ticks
                 )
-                if topology.name == "geometric_5d"
-                else config.delay_ticks
-            )
             eligibility[edge] = 0.0
             release_state[edge] = 1.0
 
@@ -162,6 +181,12 @@ class PlaygroundSession:
                 closed_loop=config.pan_closed_loop,
                 coordinates=topology.coordinates,
                 degree=degree,
+                feedback_delay=config.pan_feedback_delay,
+                feedback_source=config.pan_feedback_source,
+                feedback_target=config.pan_feedback_target,
+                feedback_nonlinearity=config.pan_feedback_nonlinearity,
+                feedback_threshold=config.pan_feedback_threshold,
+                feedback_saturation=config.pan_feedback_saturation,
             )
             pan_runtime.initialize(states)
 
@@ -203,10 +228,19 @@ class PlaygroundSession:
             )
 
         behavior_engine: BehavioralLearningEngine | None = None
-        if config.behavior_learning_enabled:
+        closed_loop_behavior = (
+            config.action_loop_enabled
+            or config.target_encoding != "none"
+            or config.reward_signal_enabled
+        )
+        if config.behavior_learning_enabled or closed_loop_behavior:
             behavior_engine = BehavioralLearningEngine(
                 n_neurons=config.n_neurons,
-                action_count=config.behavior_action_count,
+                action_count=(
+                    config.action_space_size
+                    if closed_loop_behavior
+                    else config.behavior_action_count
+                ),
                 learning_rate=config.behavior_learning_rate,
                 epsilon=config.behavior_epsilon,
                 target_action=config.behavior_target_action,
@@ -266,6 +300,7 @@ class PlaygroundSession:
 
         with PlaygroundIsolation():
             for tick in range(config.ticks):
+                temporal_dynamics.begin_tick()
                 next_engine, switch_reason = execution_switcher.decide(tick)
                 if (
                     switch_reason is not None
@@ -285,6 +320,11 @@ class PlaygroundSession:
                 synaptic = pending[slot]
                 pending[slot] = [0.0 for _ in range(config.n_neurons)]
                 external = stimulus(tick)
+                loop_current = closed_loop.currents(tick)
+                external = [
+                    external[index] + loop_current[index]
+                    for index in range(config.n_neurons)
+                ]
                 if config.neuron_model == "pan_adex_5d":
                     external = [
                         value + config.pan_bias_current for value in external
@@ -325,6 +365,8 @@ class PlaygroundSession:
 
                 for neuron_id in active_neurons_for_step:
                     state = states[neuron_id]
+                    if not temporal_dynamics.can_step(neuron_id, tick):
+                        continue
                     if pan_runtime is not None and not bool(
                         state.get("pan_alive", True)
                     ):
@@ -333,8 +375,14 @@ class PlaygroundSession:
                         external[neuron_id]
                         + synaptic[neuron_id]
                         + feedback[neuron_id]
+                        + temporal_dynamics.current_adjustment(neuron_id, tick)
                     )
-                    if model.step(state, current, config.dt_ms, model.parameters):
+                    if model.step(
+                        state,
+                        current,
+                        config.dt_ms,
+                        neuron_parameters[neuron_id],
+                    ):
                         spiked_this_tick.append(neuron_id)
                         spike_monitor.record(tick, neuron_id)
                         rate_monitor.record(neuron_id)
@@ -342,8 +390,16 @@ class PlaygroundSession:
                 for neuron_id in range(config.n_neurons):
                     pre_trace[neuron_id] *= 0.95
                     post_trace[neuron_id] *= 0.95
+                eligibility_decay = (
+                    math.exp(
+                        -config.dt_ms
+                        / max(config.eligibility_trace_tau, 1e-9)
+                    )
+                    if config.credit_assignment != "none"
+                    else 0.97
+                )
                 for edge in list(eligibility):
-                    eligibility[edge] *= 0.97
+                    eligibility[edge] *= eligibility_decay
 
                 plasticity = config.plasticity_rule
                 synapse_mode = config.synapse_model
@@ -497,9 +553,63 @@ class PlaygroundSession:
                 reward_signal = 0.0
                 if behavior_engine is not None:
                     behavior_engine.observe(spiked_this_tick)
-                    learned_reward = behavior_engine.maybe_learn(tick)
-                    if learned_reward is not None:
-                        reward_signal = learned_reward
+                    if closed_loop_behavior:
+                        for action, target, reward in closed_loop.consume_delivered_rewards():
+                            applied_reward = behavior_engine.apply_external_reward(
+                                action=action,
+                                reward=reward,
+                                target=target,
+                            )
+                            reward_signal += applied_reward
+                            if config.credit_assignment == "reward_modulated_stdp":
+                                scale = (
+                                    config.behavior_learning_rate
+                                    * config.td_lambda
+                                    * config.gamma_discount
+                                )
+                                for edge in list(weights):
+                                    weights[edge] = min(
+                                        100.0,
+                                        max(
+                                            0.0,
+                                            weights[edge]
+                                            + scale
+                                            * eligibility[edge]
+                                            * applied_reward,
+                                        ),
+                                    )
+                        if (tick + 1) % config.behavior_episode_ticks == 0:
+                            action = behavior_engine.choose_action()
+                            closed_loop.note_action(action=action, tick=tick)
+                            for action, target, reward in closed_loop.consume_delivered_rewards():
+                                applied_reward = behavior_engine.apply_external_reward(
+                                    action=action,
+                                    reward=reward,
+                                    target=target,
+                                )
+                                reward_signal += applied_reward
+                                if config.credit_assignment == "reward_modulated_stdp":
+                                    scale = (
+                                        config.behavior_learning_rate
+                                        * config.td_lambda
+                                        * config.gamma_discount
+                                    )
+                                    for edge in list(weights):
+                                        weights[edge] = min(
+                                            100.0,
+                                            max(
+                                                0.0,
+                                                weights[edge]
+                                                + scale
+                                                * eligibility[edge]
+                                                * applied_reward,
+                                            ),
+                                        )
+                    else:
+                        learned_reward = behavior_engine.maybe_learn(tick)
+                        if learned_reward is not None:
+                            reward_signal = learned_reward
+                temporal_dynamics.note_spikes(spiked_this_tick, tick)
                 if cortical_org is not None:
                     cortical_org.observe(spiked_this_tick, reward_signal)
 
@@ -519,6 +629,13 @@ class PlaygroundSession:
                     for target in list(adjacency[source]):
                         edge = (source, target)
                         amplitude = weights[edge]
+                        if inhibitory[source]:
+                            ratio = config.e_i_ratio if config.e_i_ratio > 0.0 else 1.0
+                            amplitude = (
+                                -abs(amplitude)
+                                * config.gaba_strength
+                                / ratio
+                            )
                         if pan_runtime is not None:
                             amplitude *= float(
                                 states[source].get("pan_amplitude", 1.0)
@@ -682,6 +799,29 @@ class PlaygroundSession:
             result["cortical_organization"] = cortical_org.summary()
         if behavior_engine is not None:
             result["behavioral_learning"] = behavior_engine.summary()
+        result["closed_loop"] = closed_loop.summary()
+        result["heterogeneity"] = {
+            "classification": "PLAYGROUND_NETWORK_HETEROGENEITY",
+            "scientific_evidence": False,
+            "inhibitory_neurons": sum(1 for value in inhibitory if value),
+            "inhibitory_fraction": config.inhibitory_fraction,
+            "gaba_strength": config.gaba_strength,
+            "e_i_ratio": config.e_i_ratio,
+            "threshold_variance": config.neuron_threshold_variance,
+            "tau_m_variance": config.neuron_tau_m_variance,
+            "delay_distribution": config.delay_distribution,
+            "delay_mean_ticks_configured": config.delay_mean_ticks,
+        }
+        result["temporal_dynamics"] = temporal_dynamics.summary()
+        result["credit_assignment"] = {
+            "classification": "PLAYGROUND_CREDIT_ASSIGNMENT",
+            "scientific_evidence": False,
+            "mode": config.credit_assignment,
+            "credit_window": config.credit_window,
+            "eligibility_trace_tau_ms": config.eligibility_trace_tau,
+            "td_lambda": config.td_lambda,
+            "gamma_discount": config.gamma_discount,
+        }
 
         if neural_io is not None:
             result["neural_io"] = neural_io.finalize()
