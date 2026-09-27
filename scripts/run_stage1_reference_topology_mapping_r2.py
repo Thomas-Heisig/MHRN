@@ -2,9 +2,13 @@
 """Executable R2 topology mapping parity gate; calibration only, never EVID."""
 
 from __future__ import annotations
-import hashlib, json, random
+
+import hashlib
+import json
+import random
 from pathlib import Path
 from typing import Any
+
 from reference.stage1_topology_brian2 import runner_r2 as reference
 from scripts.run_stage1_topology_v2 import (
     canonical_coords,
