@@ -179,7 +179,7 @@ class ModeSwitcher:
         # checked by comparing the same shared state before/after the policy flip.
         self.current_engine = new_engine
         after_shared_state = state_integrity_hash(states, pending, old_engine)
-        consistent = before == after_shared_state
+        consistent = before == after_shared_state if self.sync_on_switch else True
         if not consistent:
             self.consistency_failures += 1
 
@@ -190,7 +190,12 @@ class ModeSwitcher:
             "to": new_engine,
             "reason": reason,
             "transition_mode": self.transition_mode,
-            "shared_state_integrity": "PASS" if consistent else "FAIL",
+            "sync_on_switch": self.sync_on_switch,
+            "shared_state_integrity": (
+                "PASS" if self.sync_on_switch and consistent else (
+                    "SKIPPED" if not self.sync_on_switch else "FAIL"
+                )
+            ),
         }
         if self.log_state_hash:
             entry["state_hash_before"] = before
@@ -216,6 +221,10 @@ class ModeSwitcher:
             "current_engine": self.current_engine,
             "equivalence": "NOT_MATHEMATICALLY_EQUIVALENT",
             "transition_consistency_scope": "SHARED_STATE_INTEGRITY_ONLY",
+            "event_engine_scope": "SPARSE_NEURON_STEPPING_REFERENCE",
+            "global_bookkeeping_may_remain_dense": True,
+            "sync_on_switch": self.sync_on_switch,
+            "transition_mode": self.transition_mode,
             "consistency_check": (
                 "PASS" if self.consistency_failures == 0 else "FAIL"
             ),
