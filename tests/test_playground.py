@@ -1178,6 +1178,7 @@ def test_minimal_closed_loop_wires_action_target_and_reward() -> None:
             closed_loop_preset="minimal_closed_loop",
             ticks=32,
             behavior_episode_ticks=4,
+            behavior_min_activity=0.0,
         )
     )
     loop = result["closed_loop"]
