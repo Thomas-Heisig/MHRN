@@ -12,7 +12,7 @@ from src.playground.cuda import (
     parity_contract,
 )
 from src.playground.models import PlaygroundConfig
-from src.playground.service import run
+from src.playground.service import determinism, run
 
 
 def _p3_payload(**overrides: object) -> dict[str, object]:
@@ -167,3 +167,15 @@ def test_d1_d2_d3_parity_evaluators_are_explicit() -> None:
     )
     assert d3["parity_class"] == "D3"
     assert d3["passed"] is True
+
+
+def test_service_determinism_returns_replay_reference_trace() -> None:
+    result = determinism(_p3_payload())
+    assert result["classification"] == "PLAYGROUND_CPU_DETERMINISM"
+    assert result["passed"] is True
+    reference = result["reference"]
+    assert isinstance(reference, dict)
+    assert reference["seed"] == 12345
+    assert len(reference["action_sequence"]) == 4
+    assert len(reference["reward_sequence"]) == 4
+    assert result["scientific_evidence"] is False
