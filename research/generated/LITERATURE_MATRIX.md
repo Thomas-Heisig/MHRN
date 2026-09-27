@@ -13,7 +13,6 @@
 | Watts (1998) | Small-world networks combine high clustering with short path lengths. | RQ-SNN-003 | inconclusive |
 | Barabási (1999) | Preferential attachment produces scale-free network degree distributions. | RQ-SNN-003 | inconclusive |
 | Olshausen (1996) | Sparse coding is a biologically motivated efficient-coding principle; this source does not imply that MHRN Stage-1 topology is a sparse code. | RQ-SNN-003 | inconclusive |
-| Stimberg (2019) | Brian 2 is a flexible simulator for spiking neural networks and is used in MHRN only as an external reference implementation where explicitly declared. | RQ-EVAL-006, RQ-SNN-003 | inconclusive |
 | others (2026) |  | RQ-CNS-101, RQ-CNS-112, RQ-CNS-113, RQ-EPI-102, RQ-WEL-102 | open |
 | others (2025) |  | RQ-CNS-101, RQ-EPI-101 | open |
 | Naccache (2025) |  | RQ-CNS-101 | open |
