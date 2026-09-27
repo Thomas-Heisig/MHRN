@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import json
+import re
 import subprocess
 from pathlib import Path
 
@@ -29,7 +30,7 @@ def main() -> int:
                 content = path.read_text(encoding="utf-8")
             except UnicodeDecodeError:
                 continue
-            if seed in content:
+            if re.search(rf"(?<!\\d){re.escape(seed)}(?!\\d)", content):
                 found.append(name)
         if found:
             collisions[seed] = sorted(found)
