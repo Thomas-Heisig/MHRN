@@ -162,8 +162,7 @@ def assemble_ptx(
     verbose = "\n".join(part for part in (process.stdout, process.stderr) if part)
     if process.returncode != 0:
         raise CudaDriverError(
-            "ptxas rejected generated PTX "
-            f"(exit={process.returncode}):\n{verbose}"
+            "ptxas rejected generated PTX " f"(exit={process.returncode}):\n{verbose}"
         )
     return parse_ptxas_verbose(
         verbose,
@@ -433,12 +432,15 @@ def cooperative_capacity(
 ) -> CooperativePreflight:
     """Pure helper used by CI to verify occupancy-bound grid logic."""
 
-    if min(
-        n_neurons,
-        block_size,
-        multiprocessor_count,
-        active_blocks_per_sm,
-    ) <= 0:
+    if (
+        min(
+            n_neurons,
+            block_size,
+            multiprocessor_count,
+            active_blocks_per_sm,
+        )
+        <= 0
+    ):
         raise ValueError("cooperative capacity inputs must be positive")
     required = math.ceil(n_neurons / block_size)
     capacity = multiprocessor_count * active_blocks_per_sm
@@ -461,7 +463,9 @@ def max_abs_error(reference: Sequence[float], candidate: Sequence[float]) -> flo
         raise ValueError("parity vectors must have the same length")
     if not reference:
         return 0.0
-    return max(abs(float(left) - float(right)) for left, right in zip(reference, candidate))
+    return max(
+        abs(float(left) - float(right)) for left, right in zip(reference, candidate)
+    )
 
 
 def gate_parity_summary(
