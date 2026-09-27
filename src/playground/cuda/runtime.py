@@ -8,14 +8,16 @@ preflight require a CUDA driver. Scientific promotion remains disabled.
 from __future__ import annotations
 
 import ctypes
+import hashlib
+import json
 import math
 import re
 import shutil
 import subprocess
 import tempfile
 from dataclasses import dataclass
+from collections.abc import Mapping, Sequence
 from pathlib import Path
-from typing import Sequence
 
 from .pan_compiler import CompileBundle
 
@@ -456,6 +458,159 @@ def cooperative_capacity(
     )
 
 
+PARITY_CONTRACT: dict[str, object] = {
+    "classification": "PLAYGROUND_CUDA_PARITY_CONTRACT",
+    "scientific_evidence": False,
+    "reference_source": "CPU_PYTHON_PLAYGROUND",
+    "classes": {
+        "D1": {
+            "name": "exact_event_parity",
+            "spike_train": "BIT_IDENTICAL_NEURON_ID_TICK",
+            "allowed_spike_mismatches": 0,
+            "target_stage": "LATER_STRICT_TARGET",
+        },
+        "D2": {
+            "name": "numerical_state_parity",
+            "voltage_max_abs_error": 1.0e-4,
+            "weight_max_abs_error": 1.0e-4,
+            "target_stage": "CUDA_1_PRIMARY_TARGET",
+        },
+        "D3": {
+            "name": "behavioral_metric_parity",
+            "spike_count_relative_error": 0.005,
+            "success_fraction_abs_error": 0.02,
+            "target_stage": "CLOSED_LOOP_AND_PLASTICITY",
+        },
+    },
+    "freeze_modes": {
+        "actions": (
+            "Replay the CPU reference action sequence; do not select new actions."
+        ),
+        "rewards": (
+            "Replay the CPU reference reward sequence; do not recompute environment "
+            "reward."
+        ),
+    },
+}
+
+
+def parity_contract() -> dict[str, object]:
+    """Return the immutable CUDA-1 parity criteria."""
+
+    return json.loads(json.dumps(PARITY_CONTRACT))
+
+
+def _deterministic_projection(result: Mapping[str, object]) -> dict[str, object]:
+    """Extract only replay-relevant CPU state from a Playground result."""
+
+    monitors = result.get("monitors")
+    metrics = result.get("metrics")
+    topology = result.get("topology")
+    closed_loop = result.get("closed_loop")
+    behavioral = result.get("behavioral_learning")
+
+    monitor_map = monitors if isinstance(monitors, Mapping) else {}
+    metric_map = metrics if isinstance(metrics, Mapping) else {}
+    topology_map = topology if isinstance(topology, Mapping) else {}
+    loop_map = closed_loop if isinstance(closed_loop, Mapping) else {}
+    behavior_map = behavioral if isinstance(behavioral, Mapping) else {}
+
+    return {
+        "config": result.get("config"),
+        "model": result.get("model"),
+        "topology": {
+            "name": topology_map.get("name"),
+            "dimensions": topology_map.get("dimensions"),
+            "neuron_count": topology_map.get("neuron_count"),
+            "edge_count": topology_map.get("edge_count"),
+            "coordinates": topology_map.get("coordinates"),
+            "edges": topology_map.get("edges"),
+        },
+        "metrics": {
+            "total_spikes": metric_map.get("total_spikes"),
+            "mean_rate_hz": metric_map.get("mean_rate_hz"),
+            "active_neurons": metric_map.get("active_neurons"),
+            "active_fraction": metric_map.get("active_fraction"),
+            "weight_mean": metric_map.get("weight_mean"),
+            "weight_min": metric_map.get("weight_min"),
+            "weight_max": metric_map.get("weight_max"),
+            "delay_mean_ticks": metric_map.get("delay_mean_ticks"),
+        },
+        "monitors": {
+            "spikes": monitor_map.get("spikes"),
+            "rates_hz": monitor_map.get("rates_hz"),
+            "tick_spike_counts": monitor_map.get("tick_spike_counts"),
+            "state_samples": monitor_map.get("state_samples"),
+        },
+        "readout": result.get("readout"),
+        "closed_loop": {
+            "action_history": loop_map.get("action_history"),
+            "target_history": loop_map.get("target_history"),
+            "reward_history": loop_map.get("reward_history"),
+            "successes": loop_map.get("successes"),
+            "success_fraction": loop_map.get("success_fraction"),
+        },
+        "behavioral_learning": {
+            "policy": behavior_map.get("policy"),
+            "activity": behavior_map.get("activity"),
+            "action_history": behavior_map.get("action_history"),
+            "target_history": behavior_map.get("target_history"),
+            "reward_history": behavior_map.get("reward_history"),
+            "policy_updates": behavior_map.get("policy_updates"),
+            "external_reward_updates": behavior_map.get("external_reward_updates"),
+            "success_fraction": behavior_map.get("success_fraction"),
+        },
+        "pan": result.get("pan"),
+        "execution": result.get("execution"),
+    }
+
+
+def cpu_determinism_fingerprint(result: Mapping[str, object]) -> str:
+    """Hash a canonical CPU replay projection, excluding timestamps/runtime."""
+
+    payload = json.dumps(
+        _deterministic_projection(result),
+        sort_keys=True,
+        separators=(",", ":"),
+        allow_nan=False,
+    ).encode("utf-8")
+    return hashlib.sha256(payload).hexdigest()
+
+
+def cpu_determinism_summary(
+    first: Mapping[str, object],
+    second: Mapping[str, object],
+) -> dict[str, object]:
+    """Check exact replay determinism of two same-seed CPU Playground runs."""
+
+    first_projection = _deterministic_projection(first)
+    second_projection = _deterministic_projection(second)
+    first_hash = cpu_determinism_fingerprint(first)
+    second_hash = cpu_determinism_fingerprint(second)
+
+    first_monitors = first_projection["monitors"]
+    second_monitors = second_projection["monitors"]
+    assert isinstance(first_monitors, Mapping)
+    assert isinstance(second_monitors, Mapping)
+
+    spike_train_exact = (
+        first_monitors.get("spikes") == second_monitors.get("spikes")
+    )
+    return {
+        "classification": "PLAYGROUND_CPU_DETERMINISM",
+        "scientific_evidence": False,
+        "reference_role": "CUDA_1_CPU_REFERENCE",
+        "same_seed_required": True,
+        "wall_clock_excluded": True,
+        "session_identity_excluded": True,
+        "spike_train_exact": spike_train_exact,
+        "fingerprint_first": first_hash,
+        "fingerprint_second": second_hash,
+        "projection_exact": first_projection == second_projection,
+        "passed": spike_train_exact and first_hash == second_hash,
+    }
+
+
 def max_abs_error(reference: Sequence[float], candidate: Sequence[float]) -> float:
     """Return the maximum absolute error for a gate-parity vector."""
 
@@ -472,15 +627,26 @@ def gate_parity_summary(
     reference: Sequence[float],
     candidate: Sequence[float],
     *,
-    tolerance: float = 1.0e-5,
+    tolerance: float = 1.0e-4,
+    reference_commit: str = "",
 ) -> dict[str, object]:
-    """Summarize numerical parity without claiming full SNN equivalence."""
+    """Summarize D2 gate parity without claiming full SNN equivalence."""
 
     error = max_abs_error(reference, candidate)
     return {
         "classification": "PLAYGROUND_CUDA_GATE_PARITY",
         "scientific_evidence": False,
         "comparison_scope": "GATE_OUTPUT_ONLY_NOT_FULL_SNN",
+        "parity_class": "D2",
+        "gates_compared": ["A1", "A2", "A3", "A4", "B1", "C1", "C2", "D1"],
+        "gates_not_compared": ["C4", "C2_FEEDBACK_TOPOLOGY_STATE"],
+        "excluded_by_design": [
+            "later_weight_updates",
+            "full_recurrent_snn_state",
+            "structural_growth",
+        ],
+        "reference_source": "CPU_PYTHON_PLAYGROUND",
+        "reference_frozen_at": reference_commit or "UNSPECIFIED",
         "max_abs_error": error,
         "tolerance": tolerance,
         "passed": error <= tolerance,
