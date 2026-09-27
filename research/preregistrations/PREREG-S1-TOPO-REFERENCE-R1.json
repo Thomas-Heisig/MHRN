@@ -289,7 +289,7 @@
       "5d_to_5d_shuffled": -3,
       "5d_to_random_graph": -2.5
     },
-    "equivalence_bounds_rule": "Resolution-aware rule for the integer-tick primary metric: for canonical median effect E, half-width = max(0.5*abs(E), 1.0 tick); acceptable reference median effects must retain the canonical sign and lie in [E-half_width, E+half_width]. The 1-tick floor is fixed before reference implementation because sub-tick tolerances cannot be resolved by the primary tick metric.",
+    "equivalence_bounds_rule": "Resolution-aware sign-preserving equivalence. Start from 50%-150% of the absolute canonical median effect. For a discrete latency effect whose half-width would be <1 tick, use a minimum half-width of 1 tick around the canonical median, while still requiring the canonical sign. This rule is frozen before reference DATA exist.",
     "frozen_bounds": {
       "1d_to_2d": [
         -15,
@@ -301,7 +301,7 @@
       ],
       "3d_to_5d": [
         -2,
-        0
+        -0.5
       ],
       "5d_to_5d_shuffled": [
         -4.5,
@@ -319,28 +319,28 @@
       "5d_to_5d_shuffled": "negative",
       "5d_to_random_graph": "negative"
     },
-    "direction_rule": "Bounds that touch zero do not permit a zero effect: every partial-replication primary contrast must separately retain the canonical non-zero sign. For 3d->5d this means the median must be <0 and >=-2.0."
+    "direction_rule": "Bounds that touch zero do not permit a zero effect: every partial-replication primary contrast must separately retain the canonical non-zero sign. For 3d->5d this means the median must be <0 and >=-2.0.",
+    "resolution_note": "With 20 paired seeds, median latency differences can occur in 0.5-tick increments. The canonical 3d->5d median is -1 tick; the resolution-aware interval therefore admits {-0.5,-1.0,-1.5,-2.0}. This is fixed before Brian2 reference DATA and cannot be widened afterward.",
+    "other_bounds_unchanged": true
   },
   "decision_rule": {
     "partial_replication": [
       "reference design integrity passes",
-      "all five first-output-latency reference contrasts retain the canonical non-zero direction",
+      "all five first-output-latency reference contrasts retain the canonical direction",
       "all five reference median deltas lie inside their frozen resolution-aware equivalence bounds",
-      "all five primary paired sign tests are Holm-significant at alpha=0.05",
-      "all five paired-bootstrap 95% CIs exclude zero",
+      "all five primary paired sign tests remain Holm-significant with bootstrap CI excluding zero",
       "at least four of five activation_auc_0_32 secondary contrast directions agree with the canonical direction"
     ],
     "failed_replication": [
       "any primary latency contrast reverses canonical direction",
-      "or two or more primary latency median effects are outside their frozen equivalence bounds and their CIs are wholly outside the corresponding bounds",
-      "or fewer than three of five primary latency contrasts are Holm-significant",
-      "or a required design-integrity condition fails after DATA generation without making the metric semantically non-comparable"
+      "or two or more primary latency contrasts have median effects outside the frozen equivalence bounds and their 95% bootstrap CIs are wholly outside those bounds",
+      "or fewer than three of five primary latency contrasts are Holm-significant"
     ],
     "inconclusive": [
-      "a semantic translation mismatch is discovered after freeze that makes an endpoint non-comparable",
-      "or one primary effect has a CI spanning an equivalence boundary so classification is not stable",
-      "or exactly three or four primary contrasts satisfy significance/equivalence while none reverse direction",
-      "or exactly one primary contrast is outside its frozen equivalence bound but its CI overlaps that bound",
+      "a semantic translation mismatch is discovered after freeze",
+      "or one or more primary latency CIs span an equivalence boundary such that success/failure classification is unstable",
+      "or exactly three or four primary contrasts satisfy both Holm significance and equivalence while none reverse direction",
+      "or exactly one primary contrast is wholly outside its equivalence bound without direction reversal while the remaining four satisfy the primary criteria",
       "or reference runtime behavior makes a preregistered endpoint non-comparable"
     ],
     "equal_value_rule": "PARTIAL_REPLICATION, FAILED_REPLICATION and INCONCLUSIVE_REFERENCE_REPLICATION are equally reportable scientific outcomes. No secondary endpoint or post-hoc tuning may rescue a failed primary classification."
@@ -412,5 +412,30 @@
     "scientific_contract_changed_by_this_record": false
   },
   "freeze_record": "research/preregistrations/PREREG-S1-TOPO-REFERENCE-R1.freeze.json",
-  "freeze_semantics": "Scientific translation, targets, equivalence bounds, endpoints and decision criteria are frozen. Reference evaluation remains forbidden until a separately reviewed runner implementation is hash-bound and explicitly authorized."
+  "freeze_semantics": "Scientific translation, targets, equivalence bounds, endpoints and decision criteria are frozen. Reference evaluation remains forbidden until a separately reviewed runner implementation is hash-bound and explicitly authorized.",
+  "pre_freeze_gates": {
+    "integrator_parity": {
+      "required": true,
+      "artifact": "research/audits/stage1_reference_preflight_parity.json",
+      "rule": "PASS required before freeze. Single-tick subthreshold cases must match v/u/adaptation/firing-rate state at absolute tolerance 1e-12; multi-tick case must include at least one spike and match the same state plus spike decisions at every tick."
+    },
+    "mechanism_audit": {
+      "required": true,
+      "artifact": "research/audits/2026-09-27_stage1_reference_mechanism_audit.md",
+      "rule": "Threshold adaptation and homeostasis are timing-relevant and must be translated. Energy and traces may be omitted only as explicitly audited causally inert state for registered propagation endpoints."
+    },
+    "independence_scan": {
+      "required": true,
+      "script": "scripts/check_stage1_reference_independence.py",
+      "rule": "Reference package must have no imports from src/, research/, or Stage-1 MHRN runner modules and must not contain canonical EVID/experiment identifiers or frozen target-table labels."
+    },
+    "seed_freshness": {
+      "required": true,
+      "rule": "Evaluation seeds 1200021-1200040 must be rechecked automatically at the freeze commit; any occurrence outside the preregistration blocks freeze."
+    }
+  },
+  "reference_implementation_authorship": {
+    "project_leadership_overlap": true,
+    "classification_consequence": "Even if a separate framework/codebase is used, this project-side implementation is PARTIAL_REPLICATION only. It cannot be relabeled EXTERNAL_REPLICATION without genuinely external authorship/control and a separately registered protocol."
+  }
 }
