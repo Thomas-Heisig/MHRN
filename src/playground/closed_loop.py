@@ -269,9 +269,11 @@ class ClosedLoopRuntime:
         ) and self.coordinates:
             ordered = sorted(
                 range(self.n_neurons),
-                key=lambda index: float(self.coordinates[index][0])
-                if self.coordinates[index]
-                else 0.0,
+                key=lambda index: (
+                    float(self.coordinates[index][0])
+                    if self.coordinates[index]
+                    else 0.0
+                ),
             )
         elif self.config.input_topology == "random_per_neuron":
             ordered = list(range(self.n_neurons))
@@ -345,9 +347,9 @@ class ClosedLoopRuntime:
         values = [0.0 for _ in range(self.channels)]
         base = self.config.action_feedback_channel % self.channels
         if mapping == "spatial":
-            center = (
-                action / max(self.config.action_space_size - 1, 1)
-            ) * max(self.channels - 1, 1)
+            center = (action / max(self.config.action_space_size - 1, 1)) * max(
+                self.channels - 1, 1
+            )
             sigma = max(self.config.geometry_input_sigma * self.channels, 0.5)
             for channel in range(self.channels):
                 distance = (channel - center) / sigma
@@ -441,9 +443,13 @@ class ClosedLoopRuntime:
                 previous_distance = self.config.action_space_size - 1
             else:
                 previous_distance = abs(self.previous_action - target)
-            reward = magnitude * (previous_distance - current_distance) / max(
-                self.config.action_space_size - 1,
-                1,
+            reward = (
+                magnitude
+                * (previous_distance - current_distance)
+                / max(
+                    self.config.action_space_size - 1,
+                    1,
+                )
             )
             if match:
                 reward += magnitude
@@ -585,9 +591,7 @@ class TemporalDynamics:
     def begin_tick(self) -> None:
         if self.config.adaptation_strength <= 0.0:
             return
-        decay = math.exp(
-            -self.config.dt_ms / max(self.config.adaptation_tau, 1e-6)
-        )
+        decay = math.exp(-self.config.dt_ms / max(self.config.adaptation_tau, 1e-6))
         self.adaptation = [value * decay for value in self.adaptation]
 
     def can_step(self, neuron_id: int, tick: int) -> bool:
@@ -604,9 +608,7 @@ class TemporalDynamics:
 
     def note_spikes(self, spiked_neurons: Sequence[int], tick: int) -> None:
         for neuron_id in spiked_neurons:
-            self.refractory_until[neuron_id] = (
-                tick + self.refractory_ticks[neuron_id]
-            )
+            self.refractory_until[neuron_id] = tick + self.refractory_ticks[neuron_id]
             self.adaptation[neuron_id] += 1.0
 
     def summary(self) -> dict[str, object]:

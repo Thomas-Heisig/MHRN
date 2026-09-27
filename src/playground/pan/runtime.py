@@ -69,9 +69,7 @@ class PANRuntime:
         self.population_vector = [0.0 for _ in range(dimensions)]
         self.feedback_history: list[list[float]] = []
         target_rng = random.Random(seed ^ 0xFADE)
-        self.random_target_mask = [
-            target_rng.random() < 0.5 for _ in range(n_neurons)
-        ]
+        self.random_target_mask = [target_rng.random() < 0.5 for _ in range(n_neurons)]
         self.feedback_abs_total = 0.0
         self.feedback_samples = 0
         self.apoptosis_events: list[dict[str, object]] = []
@@ -103,13 +101,11 @@ class PANRuntime:
         if self.feedback_source == "layer":
             cutoff = max(1, self.dimensions // 2)
             vector = [
-                value if index < cutoff else 0.0
-                for index, value in enumerate(vector)
+                value if index < cutoff else 0.0 for index, value in enumerate(vector)
             ]
         elif self.feedback_source == "subset":
             vector = [
-                value if index % 2 == 0 else 0.0
-                for index, value in enumerate(vector)
+                value if index % 2 == 0 else 0.0 for index, value in enumerate(vector)
             ]
         elif self.feedback_source == "hypervector":
             vector = [math.tanh(value) for value in vector]

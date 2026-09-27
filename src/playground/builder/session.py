@@ -391,10 +391,7 @@ class PlaygroundSession:
                     pre_trace[neuron_id] *= 0.95
                     post_trace[neuron_id] *= 0.95
                 eligibility_decay = (
-                    math.exp(
-                        -config.dt_ms
-                        / max(config.eligibility_trace_tau, 1e-9)
-                    )
+                    math.exp(-config.dt_ms / max(config.eligibility_trace_tau, 1e-9))
                     if config.credit_assignment != "none"
                     else 0.97
                 )
@@ -563,7 +560,11 @@ class PlaygroundSession:
                 if behavior_engine is not None:
                     behavior_engine.observe(spiked_this_tick)
                     if closed_loop_behavior:
-                        for action, target, reward in closed_loop.consume_delivered_rewards():
+                        for (
+                            action,
+                            target,
+                            reward,
+                        ) in closed_loop.consume_delivered_rewards():
                             applied_reward = behavior_engine.apply_external_reward(
                                 action=action,
                                 reward=reward,
@@ -596,7 +597,11 @@ class PlaygroundSession:
                         if (tick + 1) % config.behavior_episode_ticks == 0:
                             action = behavior_engine.choose_action()
                             closed_loop.note_action(action=action, tick=tick)
-                            for action, target, reward in closed_loop.consume_delivered_rewards():
+                            for (
+                                action,
+                                target,
+                                reward,
+                            ) in closed_loop.consume_delivered_rewards():
                                 applied_reward = behavior_engine.apply_external_reward(
                                     action=action,
                                     reward=reward,
@@ -646,11 +651,7 @@ class PlaygroundSession:
                         amplitude = weights[edge]
                         if inhibitory[source]:
                             ratio = config.e_i_ratio if config.e_i_ratio > 0.0 else 1.0
-                            amplitude = (
-                                -abs(amplitude)
-                                * config.gaba_strength
-                                / ratio
-                            )
+                            amplitude = -abs(amplitude) * config.gaba_strength / ratio
                         if pan_runtime is not None:
                             amplitude *= float(states[source].get("pan_amplitude", 1.0))
                         if synapse_mode in {"quantal_stp", "pan_stp_stdp"}:

@@ -1379,9 +1379,7 @@ def test_minimal_closed_loop_wires_action_target_and_reward() -> None:
 
 
 def test_credit_assignment_preset_enables_reward_modulated_trace() -> None:
-    config = PlaygroundConfig.from_mapping(
-        {"closed_loop_preset": "credit_assignment"}
-    )
+    config = PlaygroundConfig.from_mapping({"closed_loop_preset": "credit_assignment"})
     assert config.action_loop_enabled is True
     assert config.credit_assignment == "reward_modulated_stdp"
     assert config.credit_window == 64

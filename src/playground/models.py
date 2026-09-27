@@ -283,10 +283,14 @@ class PlaygroundConfig:
                 converted: list[int] = []
                 for item in group:
                     if isinstance(item, bool) or not isinstance(item, (int, float)):
-                        raise ValueError(f"{name} values must be integer neuron indices")
+                        raise ValueError(
+                            f"{name} values must be integer neuron indices"
+                        )
                     integer_value = int(item)
                     if float(item) != float(integer_value):
-                        raise ValueError(f"{name} values must be integer neuron indices")
+                        raise ValueError(
+                            f"{name} values must be integer neuron indices"
+                        )
                     converted.append(integer_value)
                 groups.append(tuple(converted))
             return tuple(groups)
@@ -553,9 +557,7 @@ class PlaygroundConfig:
                 "input_phase_per_channel",
                 defaults.input_phase_per_channel,
             ),
-            input_noise_sigma=number(
-                "input_noise_sigma", defaults.input_noise_sigma
-            ),
+            input_noise_sigma=number("input_noise_sigma", defaults.input_noise_sigma),
             target_cue_channel=integer(
                 "target_cue_channel", defaults.target_cue_channel
             ),
@@ -586,18 +588,14 @@ class PlaygroundConfig:
             action_loop_enabled=bool(
                 payload.get("action_loop_enabled", defaults.action_loop_enabled)
             ),
-            action_loop_delay=integer(
-                "action_loop_delay", defaults.action_loop_delay
-            ),
+            action_loop_delay=integer("action_loop_delay", defaults.action_loop_delay),
             action_persistence=integer(
                 "action_persistence", defaults.action_persistence
             ),
             action_to_input_map=action_map(
                 "action_to_input_map", defaults.action_to_input_map
             ),
-            action_space_size=integer(
-                "action_space_size", defaults.action_space_size
-            ),
+            action_space_size=integer("action_space_size", defaults.action_space_size),
             action_coupling_strength=number(
                 "action_coupling_strength", defaults.action_coupling_strength
             ),
@@ -608,35 +606,25 @@ class PlaygroundConfig:
                     defaults.reward_signal_enabled,
                 )
             ),
-            reward_magnitude=number(
-                "reward_magnitude", defaults.reward_magnitude
-            ),
+            reward_magnitude=number("reward_magnitude", defaults.reward_magnitude),
             reward_delay_ticks=integer(
                 "reward_delay_ticks", defaults.reward_delay_ticks
             ),
-            reward_shaping=text(
-                "reward_shaping", defaults.reward_shaping
-            ).lower(),
-            reward_baseline=number(
-                "reward_baseline", defaults.reward_baseline
-            ),
+            reward_shaping=text("reward_shaping", defaults.reward_shaping).lower(),
+            reward_baseline=number("reward_baseline", defaults.reward_baseline),
             reward_decay=number("reward_decay", defaults.reward_decay),
             reward_channel=integer(
                 "reward_channel",
                 integer("reward_cue_channel", defaults.reward_channel),
             ),
-            target_encoding=text(
-                "target_encoding", defaults.target_encoding
-            ).lower(),
+            target_encoding=text("target_encoding", defaults.target_encoding).lower(),
             target_persistence=integer(
                 "target_persistence", defaults.target_persistence
             ),
             target_cue_current=number(
                 "target_cue_current", defaults.target_cue_current
             ),
-            target_shuffle=bool(
-                payload.get("target_shuffle", defaults.target_shuffle)
-            ),
+            target_shuffle=bool(payload.get("target_shuffle", defaults.target_shuffle)),
             target_predictability=text(
                 "target_predictability", defaults.target_predictability
             ).lower(),
@@ -648,9 +636,7 @@ class PlaygroundConfig:
                 "credit_assignment", defaults.credit_assignment
             ).lower(),
             td_lambda=number("td_lambda", defaults.td_lambda),
-            gamma_discount=number(
-                "gamma_discount", defaults.gamma_discount
-            ),
+            gamma_discount=number("gamma_discount", defaults.gamma_discount),
             neuron_threshold_variance=number(
                 "neuron_threshold_variance",
                 defaults.neuron_threshold_variance,
@@ -666,18 +652,14 @@ class PlaygroundConfig:
             delay_distribution=text(
                 "delay_distribution", defaults.delay_distribution
             ).lower(),
-            delay_mean_ticks=number(
-                "delay_mean_ticks", defaults.delay_mean_ticks
-            ),
+            delay_mean_ticks=number("delay_mean_ticks", defaults.delay_mean_ticks),
             refractory_variance=number(
                 "refractory_variance", defaults.refractory_variance
             ),
             adaptation_strength=number(
                 "adaptation_strength", defaults.adaptation_strength
             ),
-            adaptation_tau=number(
-                "adaptation_tau", defaults.adaptation_tau
-            ),
+            adaptation_tau=number("adaptation_tau", defaults.adaptation_tau),
             oscillation_enabled=bool(
                 payload.get(
                     "oscillation_enabled",
@@ -699,9 +681,7 @@ class PlaygroundConfig:
             sandbox_enabled=bool(
                 payload.get("sandbox_enabled", defaults.sandbox_enabled)
             ),
-            sandbox_physics=text(
-                "sandbox_physics", defaults.sandbox_physics
-            ).lower(),
+            sandbox_physics=text("sandbox_physics", defaults.sandbox_physics).lower(),
             sandbox_action_coupling=text(
                 "sandbox_action_coupling",
                 defaults.sandbox_action_coupling,
@@ -839,10 +819,11 @@ class PlaygroundConfig:
         if self.geometry_mode not in {"mixed_additive", "shortcut_union"}:
             raise ValueError("geometry_mode must be mixed_additive or shortcut_union")
         if not 0.001 <= self.geometry_delay_velocity <= 10.0:
-            raise ValueError(
-                "geometry_delay_velocity must be between 0.001 and 10"
-            )
-        if self.closed_loop_preset != "custom" and self.closed_loop_preset not in CLOSED_LOOP_PRESETS:
+            raise ValueError("geometry_delay_velocity must be between 0.001 and 10")
+        if (
+            self.closed_loop_preset != "custom"
+            and self.closed_loop_preset not in CLOSED_LOOP_PRESETS
+        ):
             raise ValueError("unsupported closed_loop_preset")
         if self.input_topology not in {
             "uniform",
@@ -859,9 +840,24 @@ class PlaygroundConfig:
             if any(index < 0 or index >= self.n_neurons for index in group):
                 raise ValueError("input_channel_map contains an invalid neuron index")
         for name, values, low, high in (
-            ("input_amplitude_per_channel", self.input_amplitude_per_channel, 0.0, 500.0),
-            ("input_frequency_per_channel", self.input_frequency_per_channel, 1.0, 200.0),
-            ("input_phase_per_channel", self.input_phase_per_channel, 0.0, 2.0 * math.pi),
+            (
+                "input_amplitude_per_channel",
+                self.input_amplitude_per_channel,
+                0.0,
+                500.0,
+            ),
+            (
+                "input_frequency_per_channel",
+                self.input_frequency_per_channel,
+                1.0,
+                200.0,
+            ),
+            (
+                "input_phase_per_channel",
+                self.input_phase_per_channel,
+                0.0,
+                2.0 * math.pi,
+            ),
         ):
             if len(values) > self.input_channels:
                 raise ValueError(f"{name} has more values than input_channels")
@@ -879,7 +875,12 @@ class PlaygroundConfig:
                 raise ValueError(f"{name} outside input channel range")
         if not 0 <= self.pan_feedback_delay <= 64:
             raise ValueError("pan_feedback_delay must be between 0 and 64")
-        if self.pan_feedback_source not in {"population", "layer", "subset", "hypervector"}:
+        if self.pan_feedback_source not in {
+            "population",
+            "layer",
+            "subset",
+            "hypervector",
+        }:
             raise ValueError("unsupported pan_feedback_source")
         if self.pan_feedback_target not in {"all", "layer", "random_subset"}:
             raise ValueError("unsupported pan_feedback_target")
@@ -915,13 +916,22 @@ class PlaygroundConfig:
             raise ValueError("reward_baseline must be between -1 and 1")
         if not 0.0 <= self.reward_decay <= 1.0:
             raise ValueError("reward_decay must be between 0 and 1")
-        if self.target_encoding not in {"none", "one_hot", "rate", "population_latency"}:
+        if self.target_encoding not in {
+            "none",
+            "one_hot",
+            "rate",
+            "population_latency",
+        }:
             raise ValueError("unsupported target_encoding")
         if not 1 <= self.target_persistence <= 256:
             raise ValueError("target_persistence must be between 1 and 256")
         if not 0.0 <= self.target_cue_current <= 500.0:
             raise ValueError("target_cue_current must be between 0 and 500")
-        if self.target_predictability not in {"deterministic", "stochastic", "adversarial"}:
+        if self.target_predictability not in {
+            "deterministic",
+            "stochastic",
+            "adversarial",
+        }:
             raise ValueError("unsupported target_predictability")
         if not 1 <= self.credit_window <= 512:
             raise ValueError("credit_window must be between 1 and 512")
