@@ -47,7 +47,7 @@ def test_wheel_preserves_import_namespace_and_assets() -> None:
     config = tomllib.loads((ROOT / "pyproject.toml").read_text())
     discovery = config["tool"]["setuptools"]["packages"]["find"]
     assert discovery["where"] == ["."]
-    assert discovery["include"] == ["src", "src.*"]
+    assert discovery["include"] == ["src", "src.*", "mhrn_playground", "mhrn_playground.*"]
     assets = config["tool"]["setuptools"]["package-data"]["src.dashboard"]
     assert "static/*" in assets and "static/**/*" in assets
 
