@@ -114,12 +114,31 @@ function buildPanels(root) {
           <label>Prune θ<input id="pg-growth-prune" type="number" min="0" max="100" step="0.01" value="0.05"></label>
           <label>max. Synapsen/Neuron<input id="pg-growth-max-synapses" type="number" min="1" max="512" value="128"></label>
           <label>max. neue Synapsen/Barriere<input id="pg-growth-max-new" type="number" min="1" max="256" value="8"></label>
+          <label>Hardware-Profil<select id="pg-hardware-profile"><option value="reference_cpu">Python Reference</option><option value="cuda_8gb_balanced_plan">CUDA 8GB Balanced · Plan</option></select></label>
           <label>CUDA-Budget MiB<input id="pg-cuda-budget" type="number" min="128" max="16384" value="2048"></label>
           <label><span><input id="pg-offload-enabled" type="checkbox"> SSD-Offload</span></label>
           <label>Snapshot-Intervall<input id="pg-offload-snapshot" type="number" min="1" max="1000000" value="1000"></label>
           <small>Referenzpfad: deterministisch interleaved. CUDA wird hier nur budgetiert; persistente Kernel, Dynamic Parallelism, Hardware-/Thermal-Kopplung sind ausdrücklich nicht implementiert.</small>
         </article>
-        <article class="playground-card"><h3>08 · Neural I/O Interface</h3>
+        <article class="playground-card"><h3>08 · Lernen & kognitive Organisation</h3>
+          <label><span><input id="pg-thalamic-enabled" type="checkbox"> Thalamic Gating</span></label>
+          <label>Relay θ<input id="pg-thalamic-threshold" type="number" min="0" max="1" step="0.01" value="0.05"></label>
+          <label>Attention Gain<input id="pg-thalamic-attention" type="number" min="0" max="4" step="0.05" value="1.15"></label>
+          <label>Inhibition Gain<input id="pg-thalamic-inhibition" type="number" min="0" max="1" step="0.05" value="0.35"></label>
+          <label><span><input id="pg-cortical-enabled" type="checkbox"> kortikale Organisation</span></label>
+          <label>Schichten<input id="pg-cortical-layers" type="number" min="2" max="12" value="6"></label>
+          <label><span><input id="pg-cortical-plasticity" type="checkbox" checked> Layer-Gain plastisch</span></label>
+          <label>Layer Lernrate<input id="pg-cortical-lr" type="number" min="0" max="1" step="0.005" value="0.01"></label>
+          <label><span><input id="pg-behavior-enabled" type="checkbox"> Verhalten lernen</span></label>
+          <label>Aktionen<input id="pg-behavior-actions" type="number" min="2" max="16" value="4"></label>
+          <label>Zielaktion<input id="pg-behavior-target" type="number" min="0" max="15" value="0"></label>
+          <label>Policy Lernrate<input id="pg-behavior-lr" type="number" min="0.001" max="1" step="0.01" value="0.05"></label>
+          <label>Exploration ε<input id="pg-behavior-epsilon" type="number" min="0" max="1" step="0.01" value="0.05"></label>
+          <label>Episode (Ticks)<input id="pg-behavior-episode" type="number" min="1" max="2048" value="16"></label>
+          <label>Policy Bias-Strom<input id="pg-behavior-bias" type="number" min="0" max="100" step="0.5" value="3"></label>
+          <small>Lernpfad speichert Policy-Parameter, Aktivitätstraces und Reward-Historie, keine exakten externen Payloads. Thalamus/Kortex sind funktionale Playground-Abstraktionen, keine biologische Gleichsetzung.</small>
+        </article>
+        <article class="playground-card"><h3>09 · Neural I/O Interface</h3>
           <label><span><input id="pg-neural-io-enabled" type="checkbox"> neuronales I/O aktivieren</span></label>
           <label>Input Codec<select id="pg-neural-io-codec"></select></label>
           <label>Input Payload<textarea id="pg-neural-io-payload">0.5</textarea></label>
@@ -219,9 +238,25 @@ function formPayload() {
     growth_prune_threshold: Number(byId("pg-growth-prune").value),
     growth_max_synapses_per_neuron: Number(byId("pg-growth-max-synapses").value),
     growth_max_new_synapses_per_barrier: Number(byId("pg-growth-max-new").value),
+    hardware_profile_name: byId("pg-hardware-profile").value,
     cuda_budget_mb: Number(byId("pg-cuda-budget").value),
     offload_enabled: byId("pg-offload-enabled").checked,
     offload_snapshot_interval: Number(byId("pg-offload-snapshot").value),
+    thalamic_gating_enabled: byId("pg-thalamic-enabled").checked,
+    thalamic_relay_threshold: Number(byId("pg-thalamic-threshold").value),
+    thalamic_attention_gain: Number(byId("pg-thalamic-attention").value),
+    thalamic_inhibition_gain: Number(byId("pg-thalamic-inhibition").value),
+    cortical_layers_enabled: byId("pg-cortical-enabled").checked,
+    cortical_layer_count: Number(byId("pg-cortical-layers").value),
+    cortical_plasticity: byId("pg-cortical-plasticity").checked,
+    cortical_learning_rate: Number(byId("pg-cortical-lr").value),
+    behavior_learning_enabled: byId("pg-behavior-enabled").checked,
+    behavior_action_count: Number(byId("pg-behavior-actions").value),
+    behavior_target_action: Number(byId("pg-behavior-target").value),
+    behavior_learning_rate: Number(byId("pg-behavior-lr").value),
+    behavior_epsilon: Number(byId("pg-behavior-epsilon").value),
+    behavior_episode_ticks: Number(byId("pg-behavior-episode").value),
+    behavior_bias_current: Number(byId("pg-behavior-bias").value),
     geometry_lambda_a: Number(byId("pg-geometry-lambda-a").value),
     geometry_lambda_b: Number(byId("pg-geometry-lambda-b").value),
     geometry_sigma: Number(byId("pg-geometry-sigma").value),
@@ -289,8 +324,8 @@ function renderResult(result){
   byId("pg-metrics").innerHTML=values.map(([k,v])=>`<div class="playground-metric"><span>${k}</span><strong>${v}</strong></div>`).join("");
   byId("pg-analysis-spike").textContent=JSON.stringify(a.spike_time||{},null,2);
   byId("pg-analysis-network").textContent=JSON.stringify({network:net,dimensionality:dim,ensemble:result.ensemble||null,pan:result.pan||null,geometry:result.geometry||null,gates:result.gates||null,clock:result.clock||null,growth:result.growth||null,storage:result.storage||null},null,2);
-  byId("pg-analysis-plasticity").textContent=JSON.stringify({plasticity:a.plasticity||{},performance:a.performance||{},pan:result.pan||null,growth:result.growth||null,storage:result.storage||null},null,2);
-  byId("pg-analysis-io").textContent=JSON.stringify(result.neural_io||{status:"disabled"},null,2);
+  byId("pg-analysis-plasticity").textContent=JSON.stringify({plasticity:a.plasticity||{},performance:a.performance||{},pan:result.pan||null,growth:result.growth||null,behavioral_learning:result.behavioral_learning||null,thalamic_gating:result.thalamic_gating||null,cortical_organization:result.cortical_organization||null,storage:result.storage||null,hardware:result.hardware||null},null,2);
+  byId("pg-analysis-io").textContent=JSON.stringify({neural_io:result.neural_io||{status:"disabled"},interfaces:result.interfaces||null},null,2);
   byId("pg-run-json").textContent=JSON.stringify({session_id:result.session_id,manifest:result.manifest,model:result.model,config:result.config,metrics:result.metrics,readout:result.readout},null,2);
   drawRaster(result);drawSeries("pg-rate-canvas",(result.monitors?.tick_spike_counts||[]).map(Number));drawTopology(result);drawState(result);drawSpectrum(result);drawDegree(result);
 }
@@ -308,8 +343,8 @@ async function runRobustness(){
 }
 
 function resetForm(){
-  const values={neurons:"128",edges:"512",ticks:"256",dimensions:"5",delay:"1",radius:"0.35",k:"8",rewire:"0.15",modules:"4",current:"12",rate:"20",seed:"12345",ensemble:"1","pan-dimensions":"5","pan-feedback-gain":"0.05","pan-health-decay":"0.001","pan-apoptosis":"0.1","geometry-lambda-a":"0.5","geometry-lambda-b":"0.5","geometry-sigma":"0.1","geometry-p0":"0.3","geometry-delay-velocity":"0.25","clock-base-hz":"100","clock-event-batch":"10","growth-activity":"0.25","growth-coactivation":"2","growth-info":"0.25","growth-prune":"0.05","growth-max-synapses":"128","growth-max-new":"8","cuda-budget":"2048","offload-snapshot":"1000"};
-  for(const[k,v]of Object.entries(values)){const el=byId(`pg-${k}`);if(el)el.value=v;}byId("pg-persist").checked=false;byId("pg-pan-enabled").checked=false;byId("pg-pan-closed-loop").checked=true;byId("pg-clock-mode").value="continuous";byId("pg-growth-enabled").checked=false;byId("pg-offload-enabled").checked=false;byId("pg-geometry-mode").value="shortcut_union";byId("pg-neural-io-enabled").checked=false;byId("pg-neural-io-payload").value="0.5";byId("pg-neural-io-input-channels").value="16";byId("pg-neural-io-output-channels").value="16";byId("pg-neural-io-window").value="16";byId("pg-neural-io-current").value="25";byId("pg-neural-io-input-role").value="GATEWAY_AFFERENT";byId("pg-neural-io-output-role").value="GATEWAY_EFFERENT";byId("pg-neural-io-phase").value="QUERY";byId("pg-neural-io-modality").value="digital";byId("pg-neural-io-source").value="playground.input";if(byId("pg-topology"))byId("pg-topology").value="mhrn_5d";
+  const values={neurons:"128",edges:"512",ticks:"256",dimensions:"5",delay:"1",radius:"0.35",k:"8",rewire:"0.15",modules:"4",current:"12",rate:"20",seed:"12345",ensemble:"1","pan-dimensions":"5","pan-feedback-gain":"0.05","pan-health-decay":"0.001","pan-apoptosis":"0.1","geometry-lambda-a":"0.5","geometry-lambda-b":"0.5","geometry-sigma":"0.1","geometry-p0":"0.3","geometry-delay-velocity":"0.25","clock-base-hz":"100","clock-event-batch":"10","growth-activity":"0.25","growth-coactivation":"2","growth-info":"0.25","growth-prune":"0.05","growth-max-synapses":"128","growth-max-new":"8","cuda-budget":"2048","offload-snapshot":"1000","thalamic-threshold":"0.05","thalamic-attention":"1.15","thalamic-inhibition":"0.35","cortical-layers":"6","cortical-lr":"0.01","behavior-actions":"4","behavior-target":"0","behavior-lr":"0.05","behavior-epsilon":"0.05","behavior-episode":"16","behavior-bias":"3"};
+  for(const[k,v]of Object.entries(values)){const el=byId(`pg-${k}`);if(el)el.value=v;}byId("pg-persist").checked=false;byId("pg-pan-enabled").checked=false;byId("pg-pan-closed-loop").checked=true;byId("pg-clock-mode").value="continuous";byId("pg-growth-enabled").checked=false;byId("pg-offload-enabled").checked=false;byId("pg-hardware-profile").value="reference_cpu";byId("pg-thalamic-enabled").checked=false;byId("pg-cortical-enabled").checked=false;byId("pg-cortical-plasticity").checked=true;byId("pg-behavior-enabled").checked=false;byId("pg-geometry-mode").value="shortcut_union";byId("pg-neural-io-enabled").checked=false;byId("pg-neural-io-payload").value="0.5";byId("pg-neural-io-input-channels").value="16";byId("pg-neural-io-output-channels").value="16";byId("pg-neural-io-window").value="16";byId("pg-neural-io-current").value="25";byId("pg-neural-io-input-role").value="GATEWAY_AFFERENT";byId("pg-neural-io-output-role").value="GATEWAY_EFFERENT";byId("pg-neural-io-phase").value="QUERY";byId("pg-neural-io-modality").value="digital";byId("pg-neural-io-source").value="playground.input";if(byId("pg-topology"))byId("pg-topology").value="mhrn_5d";
 }
 
 async function refreshSessions(){

@@ -257,3 +257,49 @@ Important implementation boundaries:
 
 The existing Playground safety limits remain unchanged: 1,024 neurons and
 20,000 directed edges per UI/API configuration.
+
+
+## Runnable PAN learning stack
+
+The Playground now contains a runnable reference learning path in addition to
+the existing PAN state/growth work:
+
+- functional thalamic-style relay/attention gating;
+- 2..12 conditioned cortical layers (default 6) with optional plastic gains;
+- reward-modulated behavioral policy learning;
+- policy feedback into output/action populations;
+- explicit reuse of the existing `NetworkAreaAdapter`, Gateway Runtime, MSBA
+  and Neural I/O contracts.
+
+No duplicate `llm_interface.py` or `data_interface.py` is introduced.
+Language models, databases, files, web/API sources and other external systems
+remain behind the existing digital/peripheral boundary.
+
+A learning run can be configured through `PlaygroundConfig` or the Dashboard:
+
+```python
+from mhrn_playground import Playground
+
+pg = Playground(
+    pan_enabled=True,
+    cortical_layers_enabled=True,
+    cortical_layer_count=6,
+    cortical_plasticity=True,
+    thalamic_gating_enabled=True,
+    behavior_learning_enabled=True,
+    behavior_action_count=4,
+    behavior_target_action=0,
+    behavior_episode_ticks=16,
+    behavior_learning_rate=0.05,
+)
+result = pg.run(256)
+```
+
+Inspect `result["behavioral_learning"]`,
+`result["cortical_organization"]` and `result["thalamic_gating"]`.
+
+The optional `cuda_8gb_balanced_plan` hardware profile is a capacity target,
+not a CUDA execution backend. Register-native/PTX kernels and Dynamic
+Parallelism remain NOT IMPLEMENTED.
+
+See `docs/playground/PAN_COMPLETE_ARCHITECTURE.md`.

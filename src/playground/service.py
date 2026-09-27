@@ -80,6 +80,9 @@ def catalog() -> dict[str, object]:
             "geometry Moran's-I autocorrelation",
             "xyz-only conduction-delay diagnostics",
             "neural I/O boundary / codec / projection / readout diagnostics",
+            "functional thalamic relay / attention gating diagnostics",
+            "hybrid cortical layer assignment / gain-plasticity diagnostics",
+            "reward-modulated behavioral policy learning diagnostics",
             "QUERY / WAIT / RESPONSE / TIMEOUT lifecycle tracing",
         ],
         "robustness_controls": [
@@ -103,6 +106,11 @@ def catalog() -> dict[str, object]:
             "dynamic_parallelism_status": "NOT_IMPLEMENTED",
             "hardware_coupling_status": "NOT_IMPLEMENTED_EXPLORATORY_IDEA",
             "thermal_feedback_status": "NOT_IMPLEMENTED_EXPLORATORY_IDEA",
+            "thalamic_gating_status": "IMPLEMENTED_FUNCTIONAL_REFERENCE",
+            "cortical_layers_status": "IMPLEMENTED_FIXED_LABEL_PLASTIC_GAIN_REFERENCE",
+            "behavioral_learning_status": "IMPLEMENTED_REWARD_POLICY_REFERENCE",
+            "behavior_storage_principle": "POLICY_PARAMETERS_NOT_RAW_PAYLOADS",
+            "existing_interfaces_reused": True,
             "information_axis": "local_surprise_proxy_not_PID",
             "default_axes": axis_schema(10),
             "research_candidates": pan_research_candidates(),
@@ -142,6 +150,8 @@ def catalog() -> dict[str, object]:
             "tool_plane_execution": False,
             "actuator_execution": False,
             "gateway_action_selection_status": "NOT_IMPLEMENTED",
+            "external_gateway_action_selection_status": "NOT_IMPLEMENTED",
+            "playground_internal_policy_selection_status": "IMPLEMENTED_REFERENCE",
             "external_round_trip_status": "NOT_IMPLEMENTED",
             "lifecycle_status": "REFERENCE_STATE_MACHINE_ONLY",
             "note": (
@@ -171,6 +181,7 @@ def catalog() -> dict[str, object]:
             "ensemble_runs": 8,
             "cuda_budget_mb": 16384,
             "default_cuda_budget_mb": 2048,
+            "hardware_profiles": ["reference_cpu", "cuda_8gb_balanced_plan"],
         },
         "governance": {
             "promotion_path": "none",

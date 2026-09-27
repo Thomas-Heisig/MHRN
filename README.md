@@ -420,3 +420,22 @@ Historical names, experiment identifiers, publication checksums and compatible `
 ## License
 
 MIT License. See [`LICENSE`](LICENSE).
+
+
+### PAN Playground learning architecture
+
+The non-canonical Playground includes an executable PAN reference-learning
+stack: settings-derived gates, dual scheduling, bounded growth, functional
+thalamic-style gating, conditioned cortical layers with plastic gains, and
+reward-modulated behavioral policy learning.
+
+It deliberately reuses the existing **Neural Symbiosis / MSBA / Gateway /
+NetworkAreaAdapter** boundary for language models, digital sources, databases,
+tools and other peripherals instead of creating parallel PAN-specific external
+interfaces. Exact external payloads remain outside the SNN.
+
+A selectable 8-GB CUDA balanced profile documents capacity targets only.
+Register-native neuron kernels, PTX-native gates and CUDA Dynamic Parallelism
+are not yet implemented and are not presented as benchmarked capabilities.
+
+See [PAN complete Playground architecture](docs/playground/PAN_COMPLETE_ARCHITECTURE.md).

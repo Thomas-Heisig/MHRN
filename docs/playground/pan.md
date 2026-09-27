@@ -164,3 +164,35 @@ pipelines remain unimplemented.
 
 No claim is made that a gate is a CUDA core or that GPU thermal behavior is a
 biological analogue.
+
+
+## Cognitive learning extension
+
+PAN Playground now includes three executable reference components:
+
+1. **ThalamicGating** — bounded relay/attention/inhibition gains. This is a
+   functional abstraction, not a biological thalamus model.
+2. **CorticalOrganization** — conditioned layer labels (default six) with
+   optional reward-modulated layer-gain plasticity.
+3. **BehavioralLearningEngine** — bounded reward-modulated policy learning that
+   stores policy parameters/traces rather than exact external payloads.
+
+The learned policy is fed back into the output population as bounded current,
+so a single Playground session can execute, update the policy, and continue
+under the updated policy.
+
+The external boundary is not duplicated. PAN reuses the project's existing
+`NetworkAreaAdapter`, Gateway Runtime, MSBA audio/vision/digital modalities
+and Neural I/O codec/lifecycle contracts.
+
+The Dashboard exposes these settings directly under **Lernen & kognitive
+Organisation**.
+
+### Hardware profile
+
+`cuda_8gb_balanced_plan` records the 8-GB architecture estimates (including
+12,288 active-neuron and 50-million-synapse planning targets), but reports
+register-native kernels, PTX gates and Dynamic Parallelism as NOT IMPLEMENTED.
+The runnable backend remains the Python reference implementation.
+
+Full status matrix: `docs/playground/PAN_COMPLETE_ARCHITECTURE.md`.

@@ -16,11 +16,15 @@ from ..instruments.monitors import RateMonitor, SpikeMonitor, StateMonitor
 from ..models import PlaygroundConfig, Topology
 from ..neural_io import NeuralIOInterface
 from ..pan import (
+    BehavioralLearningEngine,
     CUDAMemoryPool,
+    CorticalOrganization,
     DualModeScheduler,
     GrowthEngine,
     PANRuntime,
     SSDOffloader,
+    ThalamicGating,
+    hardware_profile,
     settings_to_gates,
 )
 from ..persist.session_recorder import record_session
@@ -179,6 +183,43 @@ class PlaygroundSession:
                 pruning=config.growth_pruning,
             )
 
+        thalamic_gate: ThalamicGating | None = None
+        if config.thalamic_gating_enabled:
+            thalamic_gate = ThalamicGating(
+                n_neurons=config.n_neurons,
+                relay_threshold=config.thalamic_relay_threshold,
+                attention_gain=config.thalamic_attention_gain,
+                inhibition_gain=config.thalamic_inhibition_gain,
+            )
+
+        cortical_org: CorticalOrganization | None = None
+        if config.cortical_layers_enabled:
+            cortical_org = CorticalOrganization(
+                n_neurons=config.n_neurons,
+                layers=config.cortical_layer_count,
+                plasticity=config.cortical_plasticity,
+                learning_rate=config.cortical_learning_rate,
+            )
+
+        behavior_engine: BehavioralLearningEngine | None = None
+        if config.behavior_learning_enabled:
+            behavior_engine = BehavioralLearningEngine(
+                n_neurons=config.n_neurons,
+                action_count=config.behavior_action_count,
+                learning_rate=config.behavior_learning_rate,
+                epsilon=config.behavior_epsilon,
+                target_action=config.behavior_target_action,
+                episode_ticks=config.behavior_episode_ticks,
+                bias_current=config.behavior_bias_current,
+                seed=config.seed,
+                output_neurons=(
+                    cortical_org.output_layer_neurons()
+                    if cortical_org is not None
+                    else None
+                ),
+            )
+
+        selected_hardware_profile = hardware_profile(config.hardware_profile_name)
         memory_pool = CUDAMemoryPool(max_mb=config.cuda_budget_mb)
         memory_estimate = memory_pool.estimate(
             neurons=config.n_neurons,
@@ -204,6 +245,7 @@ class PlaygroundSession:
         state_monitor = StateMonitor()
         state_stride = max(1, math.ceil(config.ticks / 128))
         tick_spike_counts: list[int] = []
+        previous_spikes: list[int] = []
 
         with PlaygroundIsolation():
             for tick in range(config.ticks):
@@ -217,6 +259,16 @@ class PlaygroundSession:
                     io_current = neural_io.currents_for_tick(tick)
                     external = [
                         external[index] + io_current[index]
+                        for index in range(config.n_neurons)
+                    ]
+                if thalamic_gate is not None:
+                    external = thalamic_gate.apply(external, previous_spikes)
+                if cortical_org is not None:
+                    external = cortical_org.apply(external)
+                if behavior_engine is not None:
+                    behavior_bias = behavior_engine.bias_currents()
+                    external = [
+                        external[index] + behavior_bias[index]
                         for index in range(config.n_neurons)
                     ]
                 feedback = (
@@ -396,6 +448,15 @@ class PlaygroundSession:
                 if neural_io is not None:
                     neural_io.observe(tick, spiked_this_tick)
 
+                reward_signal = 0.0
+                if behavior_engine is not None:
+                    behavior_engine.observe(spiked_this_tick)
+                    learned_reward = behavior_engine.maybe_learn(tick)
+                    if learned_reward is not None:
+                        reward_signal = learned_reward
+                if cortical_org is not None:
+                    cortical_org.observe(spiked_this_tick, reward_signal)
+
                 if dual_scheduler is not None:
                     dual_scheduler.observe_spikes(tick, spiked_this_tick)
 
@@ -466,6 +527,7 @@ class PlaygroundSession:
 
                 state_monitor.record(tick, states, state_stride)
                 tick_spike_counts.append(len(spiked_this_tick))
+                previous_spikes = list(spiked_this_tick)
 
         if dual_scheduler is not None:
             final_events = dual_scheduler.finalize(config.ticks - 1)
@@ -544,6 +606,16 @@ class PlaygroundSession:
             **memory_pool.summary(memory_estimate),
             "offload": offloader.summary(),
         }
+        result["hardware"] = selected_hardware_profile
+        result["interfaces"] = {
+            "existing_gateway_contract": True,
+            "network_area_adapter": "src.embodiment.neural_symbiosis.NetworkAreaAdapter",
+            "gateway_runtime": "src.embodiment.gateway_runtime.GatewayRuntime",
+            "msba_modalities": ["audio", "vision", "digital"],
+            "new_parallel_llm_interface_created": False,
+            "new_parallel_data_interface_created": False,
+            "exact_payload_outside_snn": True,
+        }
         if dual_scheduler is not None:
             result["clock"] = dual_scheduler.summary()
         else:
@@ -556,6 +628,12 @@ class PlaygroundSession:
             }
         if growth_engine is not None:
             result["growth"] = growth_engine.summary()
+        if thalamic_gate is not None:
+            result["thalamic_gating"] = thalamic_gate.summary()
+        if cortical_org is not None:
+            result["cortical_organization"] = cortical_org.summary()
+        if behavior_engine is not None:
+            result["behavioral_learning"] = behavior_engine.summary()
 
         if neural_io is not None:
             result["neural_io"] = neural_io.finalize()

@@ -157,6 +157,62 @@ def pan_research_candidates() -> list[dict[str, object]]:
             ],
         },
         {
+            "id": "PAN-CANDIDATE-HARDWARE-NATIVE-EMERGENCE",
+            "status": "DRAFT_IDEA_NOT_PREREGISTERED",
+            "question": (
+                "Does a future measured register-native CUDA implementation alter "
+                "runtime dynamics or resource scaling relative to the reference backend?"
+            ),
+            "required_controls": [
+                "same model and seeds on reference and CUDA backends",
+                "measured occupancy/register counts",
+                "measured VRAM and bandwidth",
+                "no PTX or hardware-native claim before implementation",
+            ],
+        },
+        {
+            "id": "PAN-CANDIDATE-BEHAVIORAL-EMERGENCE",
+            "status": "DRAFT_IDEA_NOT_PREREGISTERED",
+            "question": (
+                "Does reward-modulated policy learning generalize behavior to "
+                "new inputs without storing exact external payloads?"
+            ),
+            "required_controls": [
+                "policy-frozen control",
+                "novel-input transfer split",
+                "matched reward schedule",
+                "payload leakage audit",
+            ],
+        },
+        {
+            "id": "PAN-CANDIDATE-HYBRID-COGNITION",
+            "status": "DRAFT_IDEA_NOT_PREREGISTERED",
+            "question": (
+                "Does coupling PAN to the existing Gateway/Neural-Symbiosis "
+                "interfaces yield measurable task benefits over fixed routing?"
+            ),
+            "required_controls": [
+                "fixed gateway routing",
+                "random/shuffle gateway controls",
+                "matched external model/tool outputs",
+                "separate PAN and peripheral contribution analysis",
+            ],
+        },
+        {
+            "id": "PAN-CANDIDATE-LAYER-EMERGENCE",
+            "status": "DRAFT_IDEA_NOT_PREREGISTERED",
+            "question": (
+                "Do plastic layer gains or connectivity develop reproducible "
+                "functional specialization beyond the initial layer assignment?"
+            ),
+            "required_controls": [
+                "fixed-layer non-plastic control",
+                "shuffled layer labels",
+                "matched topology and seeds",
+                "predefined specialization metric",
+            ],
+        },
+        {
             "id": "PAN-CANDIDATE-SPATIAL-LIFECYCLE",
             "status": "DRAFT_IDEA_NOT_PREREGISTERED",
             "question": (
