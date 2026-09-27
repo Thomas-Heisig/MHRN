@@ -8,7 +8,7 @@ from typing import Mapping
 from .analysis import ensemble_summary
 from .builder.session import PlaygroundSession
 from .models import PlaygroundConfig
-from .pan import axis_schema, pan_research_candidates
+from .pan import axis_schema, pan_literature_context, pan_research_candidates
 from .persist.session_recorder import list_sessions
 from .persist.session_replayer import replay_session
 from .registry.neuron_models import NEURON_MODELS
@@ -83,6 +83,7 @@ def catalog() -> dict[str, object]:
             "information_axis": "local_surprise_proxy_not_PID",
             "default_axes": axis_schema(10),
             "research_candidates": pan_research_candidates(),
+            "literature_context": pan_literature_context(),
             "note": (
                 "Exploratory PAN layer only. Any research transition requires "
                 "a new hypothesis, preregistration, freeze and canonical rerun."

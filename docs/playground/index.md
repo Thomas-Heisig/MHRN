@@ -120,3 +120,14 @@ mhrn-playground catalog
 
 Internal repository modules remain under `src.playground` because this
 repository explicitly defines `src` as an actual package namespace.
+
+
+## PAN-5D context
+
+- [PAN-5D research context](PAN_5D_RESEARCH_CONTEXT.md) — verified component
+  literature, integration gaps, bounded novelty wording and research candidates.
+- [Glossary](GLOSSARY.md) — PAN/HDC/PID/homeostasis/aging terminology and
+  explicit distinction between Spike-Amplitude-Dependent and
+  Spike-Agreement-Dependent Plasticity.
+
+These pages are Playground documentation and are not canonical evidence.

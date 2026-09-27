@@ -58,3 +58,16 @@ def test_playground_ui_exposes_pan_as_non_scientific_option() -> None:
     assert "PAN explorativ aktivieren" in module
     assert "keine validierte PID" in module
     assert "PAN Research Candidates" in module
+
+
+
+def test_pan_research_context_and_glossary_exist() -> None:
+    context = (ROOT / "docs" / "playground" / "PAN_5D_RESEARCH_CONTEXT.md")
+    glossary = (ROOT / "docs" / "playground" / "GLOSSARY.md")
+    assert context.exists()
+    assert glossary.exists()
+    context_text = context.read_text(encoding="utf-8")
+    glossary_text = glossary.read_text(encoding="utf-8")
+    assert "kein Beweis weltweiter Neuheit" in context_text
+    assert "Spike-Amplitude-Dependent Plasticity" in glossary_text
+    assert "Spike Agreement Dependent Plasticity" in glossary_text

@@ -15,6 +15,7 @@ from src.playground._isolation import (
     playground_manifest,
 )
 from src.playground.pan.hypervector import bind, bundle
+from src.playground.pan.literature import pan_literature_context
 from src.playground.persist import session_recorder
 from src.playground.persist.session_recorder import record_session
 from src.playground.registry.topology_generators import build_topology
@@ -409,3 +410,33 @@ def test_pan_config_rejects_invalid_hyperstate_dimensions() -> None:
                 "pan_dimensions": 4,
             }
         )
+
+
+
+def test_pan_literature_context_is_bounded_and_not_novelty_proof() -> None:
+    context = pan_literature_context()
+    assert context["classification"] == "PLAYGROUND_LITERATURE_CONTEXT"
+    assert context["scientific_evidence_for_pan"] is False
+    assert context["novelty_status"] == (
+        "TARGETED_SEARCH_NO_INTEGRATED_EQUIVALENT_IDENTIFIED_NOT_NOVELTY_PROOF"
+    )
+    sources = context["sources"]
+    assert len(sources) >= 10
+    assert any(source["topic"] == "pid_learning" for source in sources)
+    assert any(source["topic"] == "homeostasis" for source in sources)
+    assert any(source["topic"] == "aging_transition" for source in sources)
+
+
+def test_pan_literature_distinguishes_two_sadp_meanings() -> None:
+    context = pan_literature_context()
+    sources = context["sources"]
+    amplitude = [
+        source for source in sources
+        if source["topic"] == "spike_amplitude_plasticity"
+    ]
+    agreement = [
+        source for source in sources
+        if source["topic"] == "spike_agreement_plasticity"
+    ]
+    assert amplitude and agreement
+    assert amplitude[0]["key"] != agreement[0]["key"]

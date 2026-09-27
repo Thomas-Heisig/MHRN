@@ -165,3 +165,16 @@ proxy, **not PID**. Potentially useful observations are exposed only as
 `DRAFT_IDEA_NOT_PREREGISTERED` research candidates.
 
 See `docs/playground/pan.md` for the full boundary and transition contract.
+
+
+## PAN research context and glossary
+
+The literature/background layer is descriptive only and is kept outside the
+canonical Research Registry.
+
+- `docs/playground/PAN_5D_RESEARCH_CONTEXT.md` — verified component literature,
+  integration gaps, bounded novelty wording and testable research directions.
+- `docs/playground/GLOSSARY.md` — terminology for PAN, HDC/VSA, PID, homeostasis,
+  aging/apoptosis and the two distinct SADP meanings.
+
+The literature context reports a targeted-search result, not a proof of novelty.
