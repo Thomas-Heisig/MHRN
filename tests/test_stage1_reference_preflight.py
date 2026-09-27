@@ -31,8 +31,8 @@ def test_reference_protocol_seed_block_matches_preregistration() -> None:
 
 def test_resolution_aware_small_effect_bound_is_frozen() -> None:
     prereg = _prereg()
-    assert prereg["canonical_targets"]["frozen_bounds"]["3d_to_5d"] == [-2.0, -0.5]
-    assert "0.5-tick increments" in prereg["canonical_targets"]["resolution_note"]
+    assert prereg["canonical_targets"]["frozen_bounds"]["3d_to_5d"] == [-1.5, -0.5]
+    assert "known sensitivity limitation" in prereg["canonical_targets"]["resolution_note"]
 
 
 def test_mechanism_audit_requires_adaptation_and_homeostasis_translation() -> None:
@@ -50,3 +50,14 @@ def test_reference_outcome_classes_are_fully_predeclared() -> None:
     assert rule["failed_replication"]
     assert rule["inconclusive"]
     assert "equally reportable scientific outcomes" in rule["equal_value_rule"]
+
+
+def test_reset_and_synapse_prefreeze_gates_are_mandatory() -> None:
+    prereg = _prereg()
+    requirements = prereg["prefreeze_requirements"]
+
+    assert requirements["reset_parity"]["required"] is True
+    assert requirements["synapse_delay_parity"]["required"] is True
+    assert requirements["reset_parity"]["tolerance_abs"] == 1e-12
+    assert requirements["synapse_delay_parity"]["tolerance_abs"] == 1e-12
+    assert prereg["freeze_authorization"]["allowed"] is False
