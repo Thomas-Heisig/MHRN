@@ -224,9 +224,7 @@ def post_playground(
                 n_neurons=_payload_int(payload, "n_neurons", 64),
                 seed=_payload_int(payload, "seed", 12345),
                 tolerance=_payload_float(payload, "parity_tolerance", 1.0e-5),
-                reference_commit=_payload_text(
-                    payload, "parity_reference_commit", ""
-                ),
+                reference_commit=_payload_text(payload, "parity_reference_commit", ""),
                 block_size=block_size,
             )
         return run_gate_rng_parity(
