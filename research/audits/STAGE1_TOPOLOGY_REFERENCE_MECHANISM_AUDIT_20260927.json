@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "audit_id": "STAGE1-TOPOLOGY-REFERENCE-MECHANISM-AUDIT-20260927",
+  "source_files": [
+    "configs/learning_experiment.yaml",
+    "src/core/neuron.py",
+    "src/core/neuron_models.py",
+    "src/core/network.py",
+    "scripts/run_stage1_topology_v2.py"
+  ],
+  "source_sha256": {
+    "configs/learning_experiment.yaml": "6f6cd457caf6216c286fee47ef03b529a0b496ed2dd53ee96b85d3b51e7b3a1c",
+    "src/core/neuron.py": "7b49f62209232b5a9e29ab2b33108e91b338a759c2a083ff4f94a0a25b2de1d7",
+    "src/core/neuron_models.py": "8dee90a3c8f4510f8f0521a77e0cf779959954b9cfb4181f7ef2ebcfb6689c0e",
+    "src/core/network.py": "9ec16307adce858c4df6b9f35bb410c7c2612844f718f1d60a01e087d9de50a5",
+    "scripts/run_stage1_topology_v2.py": "144de33384814838c6f33ecbba3ff80e840882f77396e25e90f67dfd7b23972e"
+  },
+  "checks": {
+    "runner_uses_normal_neural_network_config": true,
+    "two_half_euler_present": true,
+    "threshold_adaptation_enabled_by_default": true,
+    "homeostasis_enabled_by_default": true,
+    "threshold_reads_adaptation": true,
+    "homeostasis_changes_threshold": true,
+    "energy_not_read_by_membrane_integrator": true,
+    "traces_not_read_by_membrane_or_threshold": true,
+    "network_step_does_not_apply_stdp": true,
+    "config_energy_affects_firing_false": true,
+    "config_stdp_enabled_false": true
+  },
+  "pass": true,
+  "resolved_runtime_config": {
+    "model": "izhikevich-2003",
+    "dt_ms": 1.0,
+    "a": 0.02,
+    "b": 0.2,
+    "c": -65.0,
+    "d": 8.0,
+    "initial_v": -65.0,
+    "initial_u": -13.0,
+    "izhikevich_threshold": 30.0,
+    "refractory_ticks": 0,
+    "threshold_adaptation_rate": 0.01,
+    "threshold_adaptation_decay": 0.999,
+    "target_rate_hz": 10.0,
+    "firing_rate_tau_ms": 1000.0,
+    "homeostasis_learning_rate": 0.001,
+    "enable_threshold_adaptation": true,
+    "enable_energy_dynamics": true,
+    "enable_traces": true,
+    "enable_homeostasis": true
+  },
+  "classification": {
+    "threshold_adaptation": "ACTIVE_AND_SPIKE_TIMING_RELEVANT",
+    "homeostasis": "ACTIVE_AND_SPIKE_TIMING_RELEVANT",
+    "energy": "STATE_UPDATED_BUT_SPIKE_TIMING_INERT_IN_CANONICAL_CORE",
+    "traces": "STATE_UPDATED_BUT_SPIKE_TIMING_INERT_IN_CANONICAL_CORE",
+    "synaptic_plasticity": "NOT_APPLIED_BY_CANONICAL_NETWORK_STEP",
+    "refractory": "INACTIVE_DEFAULT_ZERO_TICKS"
+  },
+  "reference_translation_required": [
+    "two-half-Euler v update",
+    "u Euler update after the second v half-step",
+    "adaptive threshold increment on spike",
+    "threshold-adaptation decay",
+    "firing-rate low-pass update",
+    "homeostatic threshold update and clamp",
+    "fixed-weight one-tick synaptic event delivery"
+  ],
+  "omittable_with_audit": [
+    "energy state",
+    "pre/post traces",
+    "STDP/reward eligibility"
+  ]
+}
