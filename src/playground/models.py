@@ -56,6 +56,24 @@ class PlaygroundConfig:
     pan_feedback_gain: float = 0.05
     pan_health_decay: float = 0.001
     pan_apoptosis_threshold: float = 0.1
+    pan_aging_threshold: float = 0.3
+    clock_mode: str = "continuous"
+    clock_base_hz: float = 100.0
+    clock_event_batch_ms: float = 10.0
+    growth_enabled: bool = False
+    growth_neurogenesis: bool = True
+    growth_synaptogenesis: bool = True
+    growth_path_formation: bool = True
+    growth_pruning: bool = True
+    growth_activity_threshold: float = 0.25
+    growth_coactivation_threshold: int = 2
+    growth_information_threshold: float = 0.25
+    growth_prune_threshold: float = 0.05
+    growth_max_synapses_per_neuron: int = 128
+    growth_max_new_synapses_per_barrier: int = 8
+    cuda_budget_mb: int = 2048
+    offload_enabled: bool = False
+    offload_snapshot_interval: int = 1000
     geometry_lambda_a: float = 0.5
     geometry_lambda_b: float = 0.5
     geometry_sigma: float = 0.1
@@ -148,6 +166,56 @@ class PlaygroundConfig:
             ),
             pan_apoptosis_threshold=number(
                 "pan_apoptosis_threshold", defaults.pan_apoptosis_threshold
+            ),
+            pan_aging_threshold=number(
+                "pan_aging_threshold", defaults.pan_aging_threshold
+            ),
+            clock_mode=text("clock_mode", defaults.clock_mode),
+            clock_base_hz=number("clock_base_hz", defaults.clock_base_hz),
+            clock_event_batch_ms=number(
+                "clock_event_batch_ms", defaults.clock_event_batch_ms
+            ),
+            growth_enabled=bool(
+                payload.get("growth_enabled", defaults.growth_enabled)
+            ),
+            growth_neurogenesis=bool(
+                payload.get("growth_neurogenesis", defaults.growth_neurogenesis)
+            ),
+            growth_synaptogenesis=bool(
+                payload.get("growth_synaptogenesis", defaults.growth_synaptogenesis)
+            ),
+            growth_path_formation=bool(
+                payload.get("growth_path_formation", defaults.growth_path_formation)
+            ),
+            growth_pruning=bool(
+                payload.get("growth_pruning", defaults.growth_pruning)
+            ),
+            growth_activity_threshold=number(
+                "growth_activity_threshold", defaults.growth_activity_threshold
+            ),
+            growth_coactivation_threshold=integer(
+                "growth_coactivation_threshold", defaults.growth_coactivation_threshold
+            ),
+            growth_information_threshold=number(
+                "growth_information_threshold", defaults.growth_information_threshold
+            ),
+            growth_prune_threshold=number(
+                "growth_prune_threshold", defaults.growth_prune_threshold
+            ),
+            growth_max_synapses_per_neuron=integer(
+                "growth_max_synapses_per_neuron",
+                defaults.growth_max_synapses_per_neuron,
+            ),
+            growth_max_new_synapses_per_barrier=integer(
+                "growth_max_new_synapses_per_barrier",
+                defaults.growth_max_new_synapses_per_barrier,
+            ),
+            cuda_budget_mb=integer("cuda_budget_mb", defaults.cuda_budget_mb),
+            offload_enabled=bool(
+                payload.get("offload_enabled", defaults.offload_enabled)
+            ),
+            offload_snapshot_interval=integer(
+                "offload_snapshot_interval", defaults.offload_snapshot_interval
             ),
             geometry_lambda_a=number(
                 "geometry_lambda_a", defaults.geometry_lambda_a
@@ -246,6 +314,36 @@ class PlaygroundConfig:
             raise ValueError("pan_health_decay must be between 0 and 1")
         if not 0.0 <= self.pan_apoptosis_threshold <= 1.0:
             raise ValueError("pan_apoptosis_threshold must be between 0 and 1")
+        if not 0.0 <= self.pan_aging_threshold <= 1.0:
+            raise ValueError("pan_aging_threshold must be between 0 and 1")
+        if self.pan_aging_threshold < self.pan_apoptosis_threshold:
+            raise ValueError("pan_aging_threshold must be >= pan_apoptosis_threshold")
+        if self.clock_mode not in {"continuous", "dual"}:
+            raise ValueError("clock_mode must be continuous or dual")
+        if not 1.0 <= self.clock_base_hz <= 10_000.0:
+            raise ValueError("clock_base_hz must be between 1 and 10000")
+        if not self.dt_ms <= self.clock_event_batch_ms <= 1000.0:
+            raise ValueError("clock_event_batch_ms must be between dt_ms and 1000")
+        if not 0.0 <= self.growth_activity_threshold <= 1.0:
+            raise ValueError("growth_activity_threshold must be between 0 and 1")
+        if not 1 <= self.growth_coactivation_threshold <= 1000:
+            raise ValueError("growth_coactivation_threshold must be between 1 and 1000")
+        if not 0.0 <= self.growth_information_threshold <= 1.0:
+            raise ValueError("growth_information_threshold must be between 0 and 1")
+        if not 0.0 <= self.growth_prune_threshold <= 100.0:
+            raise ValueError("growth_prune_threshold must be between 0 and 100")
+        if not 1 <= self.growth_max_synapses_per_neuron <= 512:
+            raise ValueError("growth_max_synapses_per_neuron must be between 1 and 512")
+        if not 1 <= self.growth_max_new_synapses_per_barrier <= 256:
+            raise ValueError(
+                "growth_max_new_synapses_per_barrier must be between 1 and 256"
+            )
+        if not 128 <= self.cuda_budget_mb <= 16_384:
+            raise ValueError("cuda_budget_mb must be between 128 and 16384")
+        if not 1 <= self.offload_snapshot_interval <= 1_000_000:
+            raise ValueError("offload_snapshot_interval must be between 1 and 1000000")
+        if self.growth_enabled and self.clock_mode != "dual":
+            raise ValueError("growth_enabled requires clock_mode=dual")
         if not 0.0 <= self.geometry_lambda_a <= 10.0:
             raise ValueError("geometry_lambda_a must be between 0 and 10")
         if not 0.0 <= self.geometry_lambda_b <= 10.0:
@@ -338,6 +436,26 @@ class PlaygroundConfig:
             "pan_feedback_gain": self.pan_feedback_gain,
             "pan_health_decay": self.pan_health_decay,
             "pan_apoptosis_threshold": self.pan_apoptosis_threshold,
+            "pan_aging_threshold": self.pan_aging_threshold,
+            "clock_mode": self.clock_mode,
+            "clock_base_hz": self.clock_base_hz,
+            "clock_event_batch_ms": self.clock_event_batch_ms,
+            "growth_enabled": self.growth_enabled,
+            "growth_neurogenesis": self.growth_neurogenesis,
+            "growth_synaptogenesis": self.growth_synaptogenesis,
+            "growth_path_formation": self.growth_path_formation,
+            "growth_pruning": self.growth_pruning,
+            "growth_activity_threshold": self.growth_activity_threshold,
+            "growth_coactivation_threshold": self.growth_coactivation_threshold,
+            "growth_information_threshold": self.growth_information_threshold,
+            "growth_prune_threshold": self.growth_prune_threshold,
+            "growth_max_synapses_per_neuron": self.growth_max_synapses_per_neuron,
+            "growth_max_new_synapses_per_barrier": (
+                self.growth_max_new_synapses_per_barrier
+            ),
+            "cuda_budget_mb": self.cuda_budget_mb,
+            "offload_enabled": self.offload_enabled,
+            "offload_snapshot_interval": self.offload_snapshot_interval,
             "geometry_lambda_a": self.geometry_lambda_a,
             "geometry_lambda_b": self.geometry_lambda_b,
             "geometry_sigma": self.geometry_sigma,
