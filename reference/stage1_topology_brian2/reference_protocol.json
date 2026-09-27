@@ -1,0 +1,134 @@
+{
+  "schema_version": 1,
+  "protocol_id": "STAGE1-TOPOLOGY-BRIAN2-REFERENCE-R1-RUNNER",
+  "framework": "Brian2",
+  "framework_version": "2.10.1",
+  "python_version": "3.13",
+  "conditions": {
+    "1d": [
+      64,
+      1,
+      1,
+      1,
+      1
+    ],
+    "2d": [
+      8,
+      8,
+      1,
+      1,
+      1
+    ],
+    "3d": [
+      4,
+      4,
+      4,
+      1,
+      1
+    ],
+    "5d": [
+      4,
+      2,
+      2,
+      2,
+      2
+    ],
+    "5d_shuffled": [
+      4,
+      2,
+      2,
+      2,
+      2
+    ],
+    "random_graph": [
+      4,
+      2,
+      2,
+      2,
+      2
+    ]
+  },
+  "seeds": [
+    1200021,
+    1200022,
+    1200023,
+    1200024,
+    1200025,
+    1200026,
+    1200027,
+    1200028,
+    1200029,
+    1200030,
+    1200031,
+    1200032,
+    1200033,
+    1200034,
+    1200035,
+    1200036,
+    1200037,
+    1200038,
+    1200039,
+    1200040
+  ],
+  "network": {
+    "neuron_count": 64,
+    "edge_count": 246,
+    "out_degree_cap": 4,
+    "dt_ms": 1,
+    "delay_ticks": 1,
+    "synaptic_weight": 55,
+    "input_labels": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "output_labels": [
+      60,
+      61,
+      62,
+      63
+    ],
+    "stimulus_current": 100,
+    "stimulus_ticks": 1,
+    "evaluation_ticks": 128,
+    "auc_window_ticks": 32
+  },
+  "neuron": {
+    "model": "izhikevich-2003",
+    "a": 0.02,
+    "b": 0.2,
+    "c": -65,
+    "d": 8,
+    "initial_v": -65,
+    "initial_u": -13,
+    "threshold": 30,
+    "threshold_adaptation_rate": 0.01,
+    "threshold_adaptation_decay": 0.999,
+    "firing_rate_tau_ms": 1000,
+    "target_rate_hz": 10,
+    "homeostasis_learning_rate": 0.001,
+    "homeostasis_clamp": [
+      -10,
+      10
+    ],
+    "refractory_ticks": 0
+  },
+  "runner_output_only": [
+    "raw spike times by logical label",
+    "delivered-event counts by tick",
+    "cumulative active-neuron counts by tick",
+    "first_output_latency_censored",
+    "activation_auc_0_32",
+    "total_spikes",
+    "delivered_events",
+    "final_active_fraction"
+  ],
+  "forbidden_runner_knowledge": [
+    "canonical MHRN effect sizes",
+    "equivalence bounds",
+    "EVID identifiers",
+    "historical MHRN statistics",
+    "replication classification"
+  ]
+}
