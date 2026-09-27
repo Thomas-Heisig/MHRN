@@ -265,16 +265,10 @@ class CudaDriver:
         candidates = (
             [library]
             if library
-            else (
-                ["nvcuda.dll"]
-                if os.name == "nt"
-                else ["libcuda.so.1", "libcuda.so"]
-            )
+            else (["nvcuda.dll"] if os.name == "nt" else ["libcuda.so.1", "libcuda.so"])
         )
         loader = (
-            getattr(ctypes, "WinDLL", ctypes.CDLL)
-            if os.name == "nt"
-            else ctypes.CDLL
+            getattr(ctypes, "WinDLL", ctypes.CDLL) if os.name == "nt" else ctypes.CDLL
         )
         last_error: OSError | None = None
         for candidate in candidates:
@@ -760,11 +754,7 @@ def smoke_gate_launch_inputs(
     input_channels = int(abi["input_channels"])
     action_count = int(abi["action_space_size"])
     pan_dimensions = int(abi["pan_dimensions"])
-    full_mask = (
-        (1 << input_channels) - 1
-        if input_channels < 64
-        else 0xFFFFFFFFFFFFFFFF
-    )
+    full_mask = (1 << input_channels) - 1 if input_channels < 64 else 0xFFFFFFFFFFFFFFFF
     return GateLaunchInputs(
         input_current=tuple(0.0 for _ in range(n_neurons)),
         channel_masks=tuple(full_mask for _ in range(n_neurons)),
@@ -831,24 +821,14 @@ def cpu_gate_reference(
     a4_labels = _gate_labels(bundle, "A4")
     c1_labels = _gate_labels(bundle, "C1")
 
-    reward_delay_params = _gate_params(
-        bundle, stage="A3", label="reward_delay"
-    )
-    reward_magnitude_params = _gate_params(
-        bundle, stage="A3", label="reward_magnitude"
-    )
+    reward_delay_params = _gate_params(bundle, stage="A3", label="reward_delay")
+    reward_magnitude_params = _gate_params(bundle, stage="A3", label="reward_magnitude")
     reward_select_params = _gate_params(
         bundle, stage="A3", label="reward_channel_select"
     )
-    coupling_params = _gate_params(
-        bundle, stage="A4", label="action_coupling"
-    )
-    feedback_dot_params = _gate_params(
-        bundle, stage="C1", label="pan_feedback_dot"
-    )
-    feedback_gain_params = _gate_params(
-        bundle, stage="C1", label="pan_feedback_gain"
-    )
+    coupling_params = _gate_params(bundle, stage="A4", label="action_coupling")
+    feedback_dot_params = _gate_params(bundle, stage="C1", label="pan_feedback_dot")
+    feedback_gain_params = _gate_params(bundle, stage="C1", label="pan_feedback_gain")
     feedback_threshold_params = _gate_params(
         bundle, stage="C2", label="pan_feedback_threshold"
     )
@@ -884,46 +864,29 @@ def cpu_gate_reference(
                     )
                     or {}
                 )
-                current = _f32(
-                    current + _f32(float(cue_params.get("current", 0.0)))
-                )
+                current = _f32(current + _f32(float(cue_params.get("current", 0.0))))
 
         if "reward_channel_select" in a3_labels:
-            delay = int(
-                (reward_delay_params or {}).get("delay_ticks", 0)
-            )
+            delay = int((reward_delay_params or {}).get("delay_ticks", 0))
             reward_value = 0.0
             if inputs.tick >= delay:
                 reward_index = (inputs.tick - delay) % len(inputs.reward_ring)
                 reward_value = _f32(inputs.reward_ring[reward_index])
-            magnitude = float(
-                (reward_magnitude_params or {}).get("magnitude", 1.0)
-            )
+            magnitude = float((reward_magnitude_params or {}).get("magnitude", 1.0))
             reward_value = _f32(reward_value * _f32(magnitude))
-            reward_channel = int(
-                (reward_select_params or {}).get("channel", 0)
-            )
+            reward_channel = int((reward_select_params or {}).get("channel", 0))
             if mask & (1 << reward_channel):
                 current = _f32(current + reward_value)
 
         if "action_coupling" in a4_labels:
-            map_index = (
-                inputs.previous_action * input_channels
-                + gid % input_channels
-            )
+            map_index = inputs.previous_action * input_channels + gid % input_channels
             action_value = _f32(inputs.action_map[map_index])
-            strength = float(
-                (coupling_params or {}).get("strength", 1.0)
-            )
-            current = _f32(
-                current + _f32(action_value * _f32(strength))
-            )
+            strength = float((coupling_params or {}).get("strength", 1.0))
+            current = _f32(current + _f32(action_value * _f32(strength)))
 
         if "pan_feedback_dot" in c1_labels:
             dimensions = int(
-                (feedback_dot_params or {}).get(
-                    "dimensions", pan_dimensions
-                )
+                (feedback_dot_params or {}).get("dimensions", pan_dimensions)
             )
             feedback = _f32(0.0)
             base = gid * pan_dimensions
@@ -943,19 +906,13 @@ def cpu_gate_reference(
 
             gain = float((feedback_gain_params or {}).get("gain", 1.0))
             feedback = _f32(feedback * _f32(gain))
-            threshold = float(
-                (feedback_threshold_params or {}).get("threshold", 0.0)
-            )
+            threshold = float((feedback_threshold_params or {}).get("threshold", 0.0))
             if abs(feedback) < threshold:
                 feedback = _f32(0.0)
             saturation = float(
-                (feedback_saturation_params or {}).get(
-                    "saturation", float("inf")
-                )
+                (feedback_saturation_params or {}).get("saturation", float("inf"))
             )
-            feedback = _f32(
-                max(-saturation, min(saturation, feedback))
-            )
+            feedback = _f32(max(-saturation, min(saturation, feedback)))
             current = _f32(current + feedback)
 
         logits_offset = gid * action_count
@@ -967,9 +924,7 @@ def cpu_gate_reference(
                 best_value = value
                 best_action = candidate
 
-        random_bits = (
-            (gid ^ inputs.seed ^ inputs.tick) * 2654435761
-        ) & 0xFFFFFFFF
+        random_bits = ((gid ^ inputs.seed ^ inputs.tick) * 2654435761) & 0xFFFFFFFF
         uniform = _f32(_f32(float(random_bits)) * _f32(2.0**-32))
         if uniform < _f32(inputs.epsilon):
             best_action = random_bits % action_count
@@ -1097,8 +1052,7 @@ def execute_gate_bundle(
         }
         sizes = {
             "input": len(inputs.input_current) * ctypes.sizeof(ctypes.c_float),
-            "channel_masks": len(inputs.channel_masks)
-            * ctypes.sizeof(ctypes.c_uint64),
+            "channel_masks": len(inputs.channel_masks) * ctypes.sizeof(ctypes.c_uint64),
             "amplitudes": len(inputs.amplitudes) * ctypes.sizeof(ctypes.c_float),
             "reward_ring": len(inputs.reward_ring) * ctypes.sizeof(ctypes.c_float),
             "action_map": len(inputs.action_map) * ctypes.sizeof(ctypes.c_float),
