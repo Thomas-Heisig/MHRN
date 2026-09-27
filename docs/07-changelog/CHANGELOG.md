@@ -1,5 +1,27 @@
 # Changelog
 
+## 2026-09-27 - v0.6.0-alpha.7 Release-Konsolidierung
+
+- Stage 0 ist im kanonischen Scientific-Maturity-Vertrag auf **92,5 %**
+  abgeglichen; der scoped Model-Conformance-Claim besitzt `EVID-2026-18`.
+- Stage 1 ist auf **85 %** abgeglichen: Topologielinie `EVID-2026-19`,
+  Temporal-Order-Linie `EVID-2026-20`; unabhängige Replikation bleibt offen.
+- Die blockierte Efficiency-Kalibration bleibt als negativer Pre-Freeze-Befund
+  ohne Evaluation, EVID oder Maturity-Credit erhalten.
+- Der Brian2-Referenzpfad wurde nach Abbruch von R1 vor jeder Reference-DATA
+  als R2 neu gebunden; Brian2 2.10.1, CeCILL 2.1 und Stimberg, Brette &
+  Goodman (2019) sind explizit attribuiert.
+- PAN-Nachtlauf, Closed-Loop Builder, Live Monitor, Presets, Posture Reward und
+  Session-Cleanup sind als nicht-kanonische Playground-Werkzeuge integriert.
+- Der Playground-CUDA-Pfad umfasst Gate-IR -> PTX/CUDA-Referenzcode,
+  ptxas-Ressourcenmessung, Driver-/Cooperative-Launch-Preflight,
+  CPU-Determinismus, Freeze-Actions/Freeze-Rewards und D1/D2/D3-Paritätsklassen.
+- Diese CUDA-Arbeit ist weiterhin **kein vollständig ausgeführtes bzw.
+  wissenschaftlich validiertes GPU-SNN-Backend**.
+- Der dauerhafte Git-Branch `playground` ist für den Workbench-Betrieb nicht
+  erforderlich; der kanonische Branchfluss bleibt Feature/Research -> develop
+  -> release/* -> main.
+
 ## 2026-09-27 - Bausteine-Katalog mit ausführlichen Sprachbeschreibungen
 
 - Jeder Baustein im Playground-Katalog besitzt jetzt eine ausführliche
