@@ -856,7 +856,10 @@ def test_pan_behavioral_learning_runs_and_updates_policy() -> None:
     result = run(
         _small_payload(
             ticks=32,
+            neuron_model="pan_adex_5d",
+            stimulus="none",
             pan_enabled=True,
+            pan_bias_current=15.0,
             cortical_layers_enabled=True,
             cortical_layer_count=6,
             cortical_plasticity=True,
