@@ -904,9 +904,7 @@ def nontrivial_gate_launch_inputs(
             0.03125 * float((index % 9) - 4)
             for index in range(n_neurons * pan_dimensions)
         ],
-        population=[
-            0.125 * float(index + 1) for index in range(pan_dimensions)
-        ],
+        population=[0.125 * float(index + 1) for index in range(pan_dimensions)],
         logits=logits,
         tick=tick,
         target_index=2 % action_count,
@@ -1213,9 +1211,7 @@ def cpu_gate_reference(
             if abs(feedback) < threshold:
                 feedback = _f32(0.0)
             saturation = _numeric_float(
-                (feedback_saturation_params or {}).get(
-                    "saturation", float("inf")
-                ),
+                (feedback_saturation_params or {}).get("saturation", float("inf")),
                 field="C2.pan_feedback_saturation.saturation",
             )
             feedback = _f32(max(-saturation, min(saturation, feedback)))
