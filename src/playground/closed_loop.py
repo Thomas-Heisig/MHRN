@@ -261,7 +261,10 @@ class ClosedLoopRuntime:
             all_neurons = list(range(self.n_neurons))
             return [list(all_neurons) for _ in range(self.channels)]
 
-        if self.config.input_topology == "spatial_gradient" and self.coordinates:
+        if (
+            self.config.input_topology == "spatial_gradient"
+            or self.config.geometry_input_coupling
+        ) and self.coordinates:
             ordered = sorted(
                 range(self.n_neurons),
                 key=lambda index: float(self.coordinates[index][0])
@@ -409,11 +412,14 @@ class ClosedLoopRuntime:
         for neuron_id in range(self.n_neurons):
             if counts[neuron_id] > 1:
                 currents[neuron_id] /= counts[neuron_id]
-            if self.config.input_noise_sigma > 0.0:
-                currents[neuron_id] += self.rng.gauss(
-                    0.0,
-                    self.config.input_noise_sigma,
+            noise_sigma = self.config.input_noise_sigma
+            if self.config.sandbox_enabled:
+                noise_sigma = min(
+                    1.0,
+                    noise_sigma + self.config.sandbox_sensor_noise,
                 )
+            if noise_sigma > 0.0:
+                currents[neuron_id] += self.rng.gauss(0.0, noise_sigma)
         return currents
 
     def _reward(self, action: int, target: int) -> float:
@@ -457,12 +463,13 @@ class ClosedLoopRuntime:
             start = tick + self.config.action_loop_delay
             end = start + self.config.action_persistence
             self.pending_actions.append((start, end, action))
-        reward_tick = tick + self.config.reward_delay_ticks
-        if self.config.reward_delay_ticks == 0:
-            self.reward_trace += reward
-            self.delivered_rewards.append((action, target, reward))
-        else:
-            self.pending_rewards.append((reward_tick, reward, action, target))
+        if self.config.reward_signal_enabled:
+            reward_tick = tick + self.config.reward_delay_ticks
+            if self.config.reward_delay_ticks == 0:
+                self.reward_trace += reward
+                self.delivered_rewards.append((action, target, reward))
+            else:
+                self.pending_rewards.append((reward_tick, reward, action, target))
         return target, reward
 
     def consume_delivered_rewards(self) -> list[tuple[int, int, float]]:
