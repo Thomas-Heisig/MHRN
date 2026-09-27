@@ -53,8 +53,10 @@ def main() -> int:
         raise RuntimeError("Reference freeze requires a clean git tree")
 
     prereg = read_json(PREREG)
-    if prereg.get("status") != "DRAFT_BEFORE_REFERENCE_IMPLEMENTATION":
-        raise RuntimeError("Reference preregistration is not in the freeze-eligible DRAFT state")
+    if prereg.get("status") != "DRAFT_PRE_FREEZE_GATES_PENDING":
+        raise RuntimeError(
+            "Reference preregistration is not in the pre-freeze-gates-pending state"
+        )
     if prereg.get("execution_authorized") is not False:
         raise RuntimeError("Reference execution must remain unauthorized before freeze")
 
@@ -70,6 +72,17 @@ def main() -> int:
         raise RuntimeError("Integrator parity did not pass")
     if parity.get("provenance", {}).get("brian2_version") != "2.10.1":
         raise RuntimeError("Integrator parity did not use Brian2 2.10.1")
+    multi_tick = parity.get("multi_tick")
+    if not isinstance(multi_tick, dict) or multi_tick.get("pass") is not True:
+        raise RuntimeError("Multi-tick integrator parity did not pass")
+    if multi_tick.get("contains_spike") is not True:
+        raise RuntimeError("Multi-tick parity did not exercise a spike")
+
+    runner_protocol = read_json(RUNNER_PROTOCOL)
+    if runner_protocol.get("seeds") != prereg["evaluation"]["seeds"]:
+        raise RuntimeError("Blinded reference protocol seed block differs from preregistration")
+    if runner_protocol.get("framework_version") != "2.10.1":
+        raise RuntimeError("Blinded reference protocol framework version mismatch")
 
     # Re-run dynamic gates at the exact freeze commit.
     run_gate(INDEPENDENCE)
@@ -99,6 +112,11 @@ def main() -> int:
             "path": str(PARITY.relative_to(ROOT)),
             "sha256": sha256(PARITY),
             "pass": True,
+            "single_tick_pass": all(
+                bool(case.get("pass")) for case in parity.get("cases", [])
+            ),
+            "multi_tick_pass": bool(parity["multi_tick"]["pass"]),
+            "multi_tick_contains_spike": bool(parity["multi_tick"]["contains_spike"]),
             "tolerance_abs": parity["tolerance_abs"],
             "brian2_version": parity["provenance"]["brian2_version"],
         },
@@ -138,6 +156,15 @@ def main() -> int:
 
     prereg["status"] = "FROZEN_BEFORE_REFERENCE_RUNNER"
     prereg["execution_authorized"] = False
+    prereg["freeze_authorization"] = {
+        "allowed": True,
+        "rule": (
+            "All pre-freeze gates passed and are bound into the freeze record. "
+            "Reference evaluation remains unauthorized until the separate runner "
+            "implementation is independently scanned, hash-bound and explicitly authorized."
+        ),
+        "reference_runner_implementation_allowed": True,
+    }
     prereg["freeze_record"] = str(FREEZE.relative_to(ROOT))
     prereg["freeze_semantics"] = (
         "Scientific translation, targets, equivalence bounds, endpoints and decision "
