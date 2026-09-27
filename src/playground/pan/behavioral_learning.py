@@ -67,6 +67,7 @@ class BehavioralLearningEngine:
         self.context_policies: dict[str, list[float]] = {}
         self.context_updates: dict[str, int] = {}
         self.external_reward_history: list[dict[str, object]] = []
+        self.active_context: str | None = None
 
     def _bucket(self, neuron_id: int) -> int:
         if not self.output_neurons:
@@ -138,11 +139,22 @@ class BehavioralLearningEngine:
         policy = self.context_policies.setdefault(
             context, [0.0 for _ in range(action_count)]
         )
+        self.active_context = context
         if len(policy) != action_count:
             raise ValueError("context action_count changed after initialization")
         if self.rng.random() < self.epsilon:
             return self.rng.randrange(action_count)
         return max(range(action_count), key=lambda action: (policy[action], -action))
+
+    def activate_context(self, context: str, action_count: int) -> None:
+        if not 2 <= action_count <= 16:
+            raise ValueError("action_count must be between 2 and 16")
+        policy = self.context_policies.setdefault(
+            context, [0.0 for _ in range(action_count)]
+        )
+        if len(policy) != action_count:
+            raise ValueError("context action_count changed after initialization")
+        self.active_context = context
 
     def apply_external_reward(
         self,
@@ -190,6 +202,10 @@ class BehavioralLearningEngine:
         if not self.output_neurons:
             return [0.0 for _ in range(self.n_neurons)]
         scores = [math.tanh(value) for value in self.policy]
+        if self.active_context is not None:
+            context_policy = self.context_policies.get(self.active_context, [])
+            for action, value in enumerate(context_policy[: self.action_count]):
+                scores[action] += math.tanh(value)
         currents = [0.0 for _ in range(self.n_neurons)]
         for neuron_id in self.output_neurons:
             bucket = self._bucket(neuron_id)
@@ -225,4 +241,5 @@ class BehavioralLearningEngine:
             "context_policies": {key: list(value) for key, value in self.context_policies.items()},
             "context_updates": dict(self.context_updates),
             "external_reward_history": list(self.external_reward_history[-128:]),
+            "active_context": self.active_context,
         }
