@@ -18,6 +18,8 @@ PREREG = ROOT / "research" / "preregistrations" / "PREREG-S1-TOPO-REFERENCE-R1.j
 FREEZE = ROOT / "research" / "preregistrations" / "PREREG-S1-TOPO-REFERENCE-R1.freeze.json"
 AUDIT = ROOT / "research" / "audits" / "STAGE1_TOPOLOGY_REFERENCE_MECHANISM_AUDIT_20260927.json"
 PARITY = ROOT / "research" / "calibrations" / "CAL-S1-TOPO-REFERENCE-INTEGRATOR-R1" / "result.json"
+RESET = ROOT / "research" / "calibrations" / "CAL-S1-TOPO-REFERENCE-RESET-R1" / "result.json"
+SYNAPSE = ROOT / "research" / "calibrations" / "CAL-S1-TOPO-REFERENCE-SYNAPSE-R1" / "result.json"
 RUNNER_PROTOCOL = ROOT / "reference" / "stage1_topology_brian2" / "reference_protocol.json"
 INDEPENDENCE = ROOT / "scripts" / "check_stage1_reference_independence.py"
 SEED_FRESHNESS = ROOT / "scripts" / "check_stage1_reference_seed_freshness.py"
@@ -60,12 +62,14 @@ def main() -> int:
     if prereg.get("execution_authorized") is not False:
         raise RuntimeError("Reference execution must remain unauthorized before freeze")
 
-    for required in (AUDIT, PARITY, RUNNER_PROTOCOL):
+    for required in (AUDIT, PARITY, RESET, SYNAPSE, RUNNER_PROTOCOL):
         if not required.is_file():
             raise RuntimeError(f"Missing pre-freeze artifact: {required.relative_to(ROOT)}")
 
     audit = read_json(AUDIT)
     parity = read_json(PARITY)
+    reset = read_json(RESET)
+    synapse = read_json(SYNAPSE)
     if audit.get("pass") is not True:
         raise RuntimeError("Mechanism audit did not pass")
     if parity.get("pass") is not True:
@@ -77,6 +81,10 @@ def main() -> int:
         raise RuntimeError("Multi-tick integrator parity did not pass")
     if multi_tick.get("contains_spike") is not True:
         raise RuntimeError("Multi-tick parity did not exercise a spike")
+    if reset.get("pass") is not True:
+        raise RuntimeError("Explicit reset parity did not pass")
+    if synapse.get("pass") is not True:
+        raise RuntimeError("Synapse-delay parity did not pass")
 
     runner_protocol = read_json(RUNNER_PROTOCOL)
     if runner_protocol.get("seeds") != prereg["evaluation"]["seeds"]:
@@ -119,6 +127,20 @@ def main() -> int:
             "multi_tick_contains_spike": bool(parity["multi_tick"]["contains_spike"]),
             "tolerance_abs": parity["tolerance_abs"],
             "brian2_version": parity["provenance"]["brian2_version"],
+        },
+        "reset_parity": {
+            "path": str(RESET.relative_to(ROOT)),
+            "sha256": sha256(RESET),
+            "pass": True,
+            "tolerance_abs": reset["tolerance_abs"],
+        },
+        "synapse_delay_parity": {
+            "path": str(SYNAPSE.relative_to(ROOT)),
+            "sha256": sha256(SYNAPSE),
+            "pass": True,
+            "weight": synapse["weight"],
+            "delay_ticks": synapse["delay_ticks"],
+            "tolerance_abs": synapse["tolerance_abs"],
         },
         "sanitized_runner_protocol": {
             "path": str(RUNNER_PROTOCOL.relative_to(ROOT)),
