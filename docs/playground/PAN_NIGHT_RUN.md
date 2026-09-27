@@ -145,3 +145,9 @@ default. A gateway source is offered only when an explicit authorized
 
 No direct Ollama client and no autonomous web access are introduced by the
 night-run stack.
+
+
+## Operational release note
+
+This night-run stack is merged only through the normal `develop -> release/* -> main`
+repository workflow. The Playground boundary remains unchanged after release.
