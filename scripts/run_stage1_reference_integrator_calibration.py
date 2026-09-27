@@ -3,11 +3,11 @@
 
 from __future__ import annotations
 
+import hashlib
 import json
 import math
 import platform
 import sys
-import hashlib
 from pathlib import Path
 
 import brian2
