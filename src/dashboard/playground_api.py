@@ -9,6 +9,7 @@ from collections.abc import Mapping
 from typing import cast
 
 from src.playground import service
+from src.playground.cuda import compile_mapping
 from src.playground.models import PlaygroundConfig
 from src.playground.night_run import NightRunManager
 from src.playground.pan import PANEmbodiedSandboxSession, PANSessionDaemon
@@ -147,6 +148,21 @@ def post_playground(
 ) -> dict[str, object] | None:
     if path in {"/api/playground/run", "/api/playground/robustness"}:
         return _bounded_run(path, payload)
+
+    if path == "/api/playground/determinism":
+        return service.determinism(payload)
+
+    if path == "/api/playground/cuda/compile":
+        target_sm = _payload_text(payload, "target_sm", "sm_86")
+        ptx_version = _payload_text(payload, "ptx_version", "7.1")
+        config_payload = dict(payload)
+        config_payload.pop("target_sm", None)
+        config_payload.pop("ptx_version", None)
+        return compile_mapping(
+            config_payload,
+            target_sm=target_sm,
+            ptx_version=ptx_version,
+        ).to_mapping()
 
     if path == "/api/playground/night/start":
         return _NIGHT_RUN.start(
