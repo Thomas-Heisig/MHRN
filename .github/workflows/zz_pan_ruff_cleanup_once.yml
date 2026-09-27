@@ -1,4 +1,5 @@
 name: PAN Ruff cleanup once
+# one-shot trigger
 
 on:
   push:
