@@ -19,7 +19,8 @@ def test_reference_freeze_is_blocked_until_all_gates_pass() -> None:
     assert prereg["status"] == "DRAFT_PRE_FREEZE_GATES_PENDING"
     assert prereg["execution_authorized"] is False
     assert prereg["freeze_authorization"]["allowed"] is False
-    assert prereg["freeze_authorization"]["reference_runner_implementation_allowed"] is False
+    assert prereg["freeze_authorization"]["reference_runner_implementation_allowed"] is True
+    assert prereg["freeze_authorization"]["reference_runner_execution_allowed"] is False
 
 
 def test_reference_protocol_seed_block_matches_preregistration() -> None:
