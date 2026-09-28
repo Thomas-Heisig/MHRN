@@ -388,6 +388,7 @@ function buildPanels(root) {
           <button type="button" class="primary" id="pg-cuda-smoke">RTX Hardware-Smoke</button>
           <button type="button" id="pg-cuda-rng">RNG-Parität</button>
           <button type="button" id="pg-cuda-recurrent">CUDA-1.4 · 100 Ticks / 3 Blöcke</button>
+          <button type="button" id="pg-cuda-plasticity">CUDA-1.5 · STP/STDP-Parität</button>
         </div>
         <small>D1 = exakte Spike-Ereignisse · D2 = numerische Zustandsparität · D3 = Verhaltens-/Metrikparität. CUDA-1.3 prüft den 17-Parameter-Gate-ABI gegen dieselbe CPU-Gate-Referenz. GPU-Portierung von Membran-/Adaptations-/Refractory-State, Synapsen, Delays, Plastizität und Sandbox folgt in CUDA-1.4 bis 1.6.</small>
         <div class="playground-analysis-grid">
@@ -396,6 +397,7 @@ function buildPanels(root) {
           <article class="playground-analysis-card"><h3>D2 Hardware-Parität</h3><pre id="pg-cuda-parity-state">Noch kein Hardware-Smoke.</pre></article>
           <article class="playground-analysis-card"><h3>RNG ε-greedy</h3><pre id="pg-cuda-rng-state">Noch kein RNG-Paritätstest.</pre></article>
           <article class="playground-analysis-card"><h3>Rekurrente Membran-Parität</h3><p>129 AdEx-Neuronen, statische Synapsen und Delays; FP64-Referenz. Noch kein vollständiger PAN-GPU-Lauf.</p><pre id="pg-cuda-recurrent-state">Noch kein Mehrtakt-Test.</pre></article>
+          <article class="playground-analysis-card"><h3>GPU-Plastizität</h3><p>STP, STDP, Eligibility und eingefrorene Reward-Folge; FP64-Referenz. Der Live-Regelkreis ist ein separater Schritt.</p><pre id="pg-cuda-plasticity-state">Noch kein Plastizitätstest.</pre></article>
         </div>
         <pre id="pg-cuda-compiler-state">Noch kein CUDA-/Parity-Lauf.</pre>
       </article>
@@ -1035,11 +1037,12 @@ async function runCudaRngParity(){
   return result;
 }
 
-async function runCudaRecurrentParity(){
-  const node=byId("pg-cuda-recurrent-state");
+async function runCudaRecurrentParity(plasticity=false){
+  plasticity=plasticity===true;
+  const node=byId(plasticity?"pg-cuda-plasticity-state":"pg-cuda-recurrent-state");
   node.textContent="100 Ticks mit kooperativem Grid und Delay-Ring werden geprüft …";
   try {
-    const result=await apiPost("/api/playground/cuda/recurrent-parity",{n_neurons:129,ticks:100,block_size:64,target_sm:byId("pg-cuda-target-sm")?.value||"sm_86"});
+    const result=await apiPost("/api/playground/cuda/recurrent-parity",{n_neurons:129,ticks:100,block_size:64,plasticity,target_sm:byId("pg-cuda-target-sm")?.value||"sm_86"});
     node.textContent=JSON.stringify(result,null,2);
   } catch(error) { node.textContent=String(error.message||error); }
 }
@@ -1218,6 +1221,7 @@ export async function initPlayground(){
   const root=byId("tab-playground");if(!root)return;
   injectStyles();ensurePermanentBoundary(root);buildPanels(root);
   byId("pg-cuda-recurrent")?.addEventListener("click",runCudaRecurrentParity);
+  byId("pg-cuda-plasticity")?.addEventListener("click",()=>runCudaRecurrentParity(true));
   if(!root.dataset.languageBound){root.dataset.languageBound="true";document.addEventListener("mhrn:language-change",()=>{if(catalogState)renderCatalogCards(catalogState);const dialog=byId("pg-catalog-info-dialog");if(dialog?.open&&activeCatalogInfo)showCatalogInfo(activeCatalogInfo);});}
   byId("pg-run")?.addEventListener("click",runSession);byId("pg-cuda-status")?.addEventListener("click",()=>refreshCudaStatus().catch(error=>{const node=byId("pg-cuda-stage-state");if(node)node.textContent=String(error.message||error);}));byId("pg-cpu-determinism")?.addEventListener("click",()=>checkCpuDeterminism().catch(error=>{const node=byId("pg-cuda-compiler-state");if(node)node.textContent=String(error.message||error);}));byId("pg-cuda-compile")?.addEventListener("click",()=>compileCudaGates().catch(error=>{const node=byId("pg-cuda-compiler-state");if(node)node.textContent=String(error.message||error);}));byId("pg-cuda-preflight")?.addEventListener("click",()=>runCudaPreflight().catch(error=>{const node=byId("pg-cuda-resource-state");if(node)node.textContent=String(error.message||error);}));byId("pg-cuda-smoke")?.addEventListener("click",()=>runCudaHardwareSmoke().catch(error=>{const node=byId("pg-cuda-parity-state");if(node)node.textContent=String(error.message||error);}));byId("pg-cuda-rng")?.addEventListener("click",()=>runCudaRngParity().catch(error=>{const node=byId("pg-cuda-rng-state");if(node)node.textContent=String(error.message||error);}));byId("pg-user-preset-apply")?.addEventListener("click",applyUserPreset);byId("pg-user-preset-save")?.addEventListener("click",saveUserPreset);byId("pg-user-preset-delete")?.addEventListener("click",deleteUserPreset);byId("pg-user-preset-select")?.addEventListener("change",()=>{renderUserPresetOptions();applyUserPreset();});byId("pg-robustness")?.addEventListener("click",runRobustness);byId("pg-reset")?.addEventListener("click",resetForm);byId("pg-live-open")?.addEventListener("click",()=>openLiveMonitor().catch(error=>byId("pg-live-state").textContent=String(error.message||error)));byId("pg-live-clear")?.addEventListener("click",()=>clearLiveSessions().catch(error=>byId("pg-live-state").textContent=String(error.message||error)));byId("pg-night-start")?.addEventListener("click",()=>startNightRun().catch(error=>byId("pg-night-state").textContent=String(error.message||error)));byId("pg-night-stop")?.addEventListener("click",()=>stopNightRun().catch(error=>byId("pg-night-state").textContent=String(error.message||error)));byId("pg-night-refresh")?.addEventListener("click",()=>refreshNightStatus().catch(error=>byId("pg-night-state").textContent=String(error.message||error)));
   renderUserPresetOptions();
