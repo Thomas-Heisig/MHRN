@@ -177,6 +177,14 @@ test("Builder run renders the coupled PAN body and recorded frame replay", async
   await expect(page.locator("#pg-run-sandbox-state")).toContainText(
     "CPU_REFERENCE",
   );
+  await expect(page.locator("#pg-run-sandbox-summary")).toContainText(
+    "Haltung",
+  );
+  expect(
+    await page
+      .locator("#pg-run-sandbox-panel")
+      .evaluate((el) => el.getBoundingClientRect().height),
+  ).toBeLessThan(800);
   await expect(page.locator("#pg-run-sandbox-frame")).toHaveAttribute(
     "max",
     "127",

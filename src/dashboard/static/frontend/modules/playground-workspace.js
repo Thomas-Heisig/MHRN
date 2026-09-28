@@ -88,12 +88,12 @@ export function initGuidedWorkspace({
   intro(
     "playground-builder",
     "Experiment aufbauen",
-    "1 · Startpunkt wählen. 2 · Parameter prüfen. 3 · Auf CPU ausführen oder den CUDA-Gate-Pfad separat testen.",
+    "1 · Startpunkt wählen. 2 · Parameter prüfen. 3 · CPU oder CUDA-Membran wählen und den Lauf starten.",
   );
   intro(
     "playground-run",
     "Lauf & Auswertung",
-    "Aktivität, Netzwerk und Lernmechanismen gemeinsam betrachten. Die Diagramme zeigen den zuletzt ausgeführten oder geladenen CPU-Lauf.",
+    "Aktivität, Netzwerk und Lernmechanismen gemeinsam betrachten. Die Diagramme zeigen den zuletzt ausgeführten oder geladenen Playground-Lauf.",
   );
   intro(
     "playground-sessions",
@@ -624,7 +624,7 @@ export function initGuidedWorkspace({
     for (const id of ["pg-run", "pg-robustness", "pg-user-preset-save"]) {
       if ($(id)) $(id).disabled = errors.length > 0;
     }
-    summary.textContent = `${value("pg-neurons")} Neuronen · ${value("pg-edges")} Kanten · ${value("pg-ticks")} Ticks · Seed ${$("pg-seed").value} · CPU-Referenz. ${errors.length ? `${errors.length} Eingabefehler.` : "Eingaben geprüft."} Laufzeit: noch keine belastbare Messung für diese Konfiguration. CUDA prüft separat Single-Tick-Gates, keinen vollständigen SNN-Lauf.`;
+    summary.textContent = `${value("pg-neurons")} Neuronen · ${value("pg-edges")} Kanten · ${value("pg-ticks")} Ticks · Seed ${$("pg-seed").value} · ${$("pg-neuron-backend")?.value === "cuda_membrane" ? "CUDA-Membran / CPU-PAN" : "CPU-Referenz"}. ${errors.length ? `${errors.length} Eingabefehler.` : "Eingaben geprüft."} Laufzeit: noch keine belastbare Messung für diese Konfiguration. Der hybride CUDA-Pfad führt die Membran auf der GPU aus; Synapsen und Körper bleiben auf der CPU.`;
     return errors.length === 0;
   }
   validation.onclick = (e) => {

@@ -454,7 +454,7 @@ function buildPanels(root) {
     <section data-generated-panel="run" id="playground-run">
       <div class="playground-metrics" id="pg-metrics"></div>
       <div class="playground-viz-grid">
-        <article class="playground-viz" id="pg-run-sandbox-panel" hidden><h3>PAN-Strichmann</h3><canvas id="pg-run-sandbox-canvas" width="800" height="360"></canvas><input id="pg-run-sandbox-frame" type="range" min="0" max="0" value="0" aria-label="Strichmann-Zeitschritt"><pre id="pg-run-sandbox-state"></pre></article>
+        <article class="playground-viz" id="pg-run-sandbox-panel" hidden><h3>PAN-Strichmann</h3><canvas id="pg-run-sandbox-canvas" width="800" height="360"></canvas><input id="pg-run-sandbox-frame" style="width:100%" type="range" min="0" max="0" value="0" aria-label="Strichmann-Zeitschritt"><p id="pg-run-sandbox-summary" aria-live="polite"></p><details><summary>Technische Frame-Daten</summary><pre id="pg-run-sandbox-state" style="max-height:240px;overflow:auto"></pre></details></article>
         <article class="playground-viz"><h3>Spike Raster</h3><canvas id="pg-raster" width="800" height="300"></canvas></article>
         <article class="playground-viz"><h3>Population Rate</h3><canvas id="pg-rate-canvas" width="800" height="300"></canvas></article>
         <article class="playground-viz"><h3>Topologie · neutrale 2D-Projektion</h3><canvas id="pg-topology-canvas" width="800" height="300"></canvas></article>
@@ -752,7 +752,7 @@ function renderResult(result){
   sandboxPanel.hidden=!result.sandbox?.world;
   const frames=result.sandbox?.frames||[];
   sandboxSlider.max=String(Math.max(0,frames.length-1));sandboxSlider.value=sandboxSlider.max;
-  const renderSandboxFrame=()=>{const frame=frames[Number(sandboxSlider.value)]||result.sandbox?.world;drawLiveSandbox(frame,"pg-run-sandbox-canvas");byId("pg-run-sandbox-state").textContent=JSON.stringify({backend:result.sandbox?.backend,ticks:result.sandbox?.ticks,dt_seconds:result.sandbox?.dt_seconds,posture_credit_updates:result.sandbox?.posture_credit_updates,frame},null,2);};
+  const renderSandboxFrame=()=>{const frame=frames[Number(sandboxSlider.value)]||result.sandbox?.world;drawLiveSandbox(frame,"pg-run-sandbox-canvas");byId("pg-run-sandbox-summary").textContent=`Schritt ${Math.max(1,(result.sandbox?.ticks||frames.length)-frames.length+Number(sandboxSlider.value)+1)} / ${result.sandbox?.ticks||frames.length} · Haltung ${(Number(frame?.posture_score||0)*100).toFixed(1)} % · Aktion ${frame?.pan_action??"keine"} · Reward ${Number(frame?.reward||0).toFixed(3)}${frame?.terminal?` · ${frame.terminal}`:""}`;byId("pg-run-sandbox-state").textContent=JSON.stringify({backend:result.sandbox?.backend,ticks:result.sandbox?.ticks,dt_seconds:result.sandbox?.dt_seconds,posture_credit_updates:result.sandbox?.posture_credit_updates,frame},null,2);};
   sandboxSlider.oninput=renderSandboxFrame;
   if(!sandboxPanel.hidden)renderSandboxFrame();
   drawRaster(result);drawSeries("pg-rate-canvas",(result.monitors?.tick_spike_counts||[]).map(Number));drawTopology(result);drawState(result);drawSpectrum(result);drawDegree(result);
