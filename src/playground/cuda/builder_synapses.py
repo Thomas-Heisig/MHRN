@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import ctypes
 import math
+from collections.abc import Sequence
 from typing import Any
 
 from .runtime import CudaDriver, CudaDriverError, DeviceAllocation, DriverModule
@@ -19,14 +20,17 @@ class BuilderSynapseStepper:
         self.emit_kernel = driver.kernel(loaded, "pan_synaptic_emit")
         self.recover_kernel = driver.kernel(loaded, "pan_synaptic_recover")
         self.reward_kernel = driver.kernel(loaded, "pan_synaptic_reward")
+        self.plasticity_kernel = driver.kernel(loaded, "pan_synaptic_plasticity")
+        self.scale_kernel = driver.kernel(loaded, "pan_synaptic_scale")
         self.device: dict[str, DeviceAllocation] = {}
         self.host: dict[str, Any] = {
-            "input": (ctypes.c_double * (5 * capacity))(),
-            "output": (ctypes.c_double * (2 * capacity))(),
+            "input": (ctypes.c_double * (12 * capacity))(),
+            "output": (ctypes.c_double * (3 * capacity))(),
         }
         self.emitted_events = 0
         self.recovery_calls = 0
         self.reward_calls = 0
+        self.plasticity_calls = 0
         try:
             for name in self.host:
                 self.device[name] = driver.alloc_device(ctypes.sizeof(self.host[name]))
@@ -177,3 +181,82 @@ class BuilderSynapseStepper:
         if values:
             self.reward_calls += 1
         return [w for w, _ in values]
+
+    def plasticity(
+        self,
+        rows: Sequence[tuple[float, ...]],
+        *,
+        pair: bool,
+        triplet: bool,
+        eligibility_active: bool,
+        decay: float,
+        learning: float,
+    ) -> list[tuple[float, float, int]]:
+        count = len(rows)
+        if (
+            count > self.capacity
+            or not math.isfinite(decay)
+            or not 0 <= decay <= 1
+            or not math.isfinite(learning)
+            or learning < 0
+            or any(
+                len(row) != 12 or any(not math.isfinite(x) for x in row) for row in rows
+            )
+        ):
+            raise ValueError("invalid CUDA plasticity input")
+        for row in rows:
+            if (
+                row[7] not in (0, 1)
+                or row[8] not in (0, 1)
+                or row[9] == row[10]
+                or any(x != int(x) for x in (row[2], row[9], row[10], row[11]))
+            ):
+                raise ValueError("invalid CUDA plasticity event/index")
+        if not count:
+            return []
+        self.host["input"][: 12 * count] = [x for row in rows for x in row]
+        self.driver.copy_host_to_device(
+            self.device["input"], self.host["input"], size_bytes=12 * count * 8
+        )
+        flags = int(pair) | int(triplet) * 2 | int(eligibility_active) * 4
+        args: list[object] = [
+            ctypes.c_uint32(count),
+            ctypes.c_uint32(flags),
+            ctypes.c_double(decay),
+            ctypes.c_double(learning),
+            ctypes.c_uint64(self.device["input"].ptr),
+            ctypes.c_uint64(self.device["output"].ptr),
+        ]
+        self.driver.launch_kernel(
+            self.plasticity_kernel,
+            grid=((count + 127) // 128, 1, 1),
+            block=(128, 1, 1),
+            arguments=args,
+        )
+        self.driver.synchronize()
+        self.driver.copy_device_to_host(
+            self.host["output"], self.device["output"], size_bytes=3 * count * 8
+        )
+        values = list(self.host["output"][: 3 * count])
+        if any(not math.isfinite(x) for x in values) or any(
+            x != int(x) for x in values[2::3]
+        ):
+            raise ValueError("invalid CUDA plasticity output")
+        self.plasticity_calls += 1
+        return [
+            (values[3 * i], values[3 * i + 1], int(values[3 * i + 2]))
+            for i in range(count)
+        ]
+
+    def scale_weights(
+        self, weights: list[float], *, factor: float, maximum: float
+    ) -> list[float]:
+        if not math.isfinite(factor) or factor < 0 or not 0 < maximum <= 100:
+            raise ValueError("invalid CUDA weight scaling")
+        rows = [(w, 0.0, 0.0, 0.0, 0.0) for w in weights]
+        return [
+            w
+            for w, _ in self._execute(
+                rows, stp=False, first=factor, second=maximum, kernel=self.scale_kernel
+            )
+        ]

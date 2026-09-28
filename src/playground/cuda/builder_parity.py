@@ -55,8 +55,12 @@ def compare_builder_runs(cpu: dict[str, Any], gpu: dict[str, Any]) -> dict[str, 
                 [e[2] for e in left_edges], [e[2] for e in right_edges]
             )
             resource_error = max_abs_error(
-                left_state["release_resources"] + left_state["eligibility"],
-                right_state["release_resources"] + right_state["eligibility"],
+                left_state["release_resources"]
+                + left_state["eligibility"]
+                + left_state["neuron_traces"],
+                right_state["release_resources"]
+                + right_state["eligibility"]
+                + right_state["neuron_traces"],
             )
             queue_error = max_abs_error(
                 [x for row in left_state["pending_currents"] for x in row],
@@ -69,6 +73,7 @@ def compare_builder_runs(cpu: dict[str, Any], gpu: dict[str, Any]) -> dict[str, 
                 and resource_error <= 1e-12
                 and queue_error <= 1e-12
                 and rng_exact
+                and left_state["last_spike"] == right_state["last_spike"]
                 and left_state["eligibility_last_tick"]
                 == right_state["eligibility_last_tick"]
             )
@@ -107,6 +112,9 @@ def compare_builder_runs(cpu: dict[str, Any], gpu: dict[str, Any]) -> dict[str, 
             "D2_pending_current_max_error": queue_error,
             "RNG_builder_state_exact": rng_exact,
             "gpu_synaptic_emissions": gpu["execution"].get("gpu_synaptic_emissions", 0),
+            "gpu_synaptic_plasticity_calls": gpu["execution"].get(
+                "gpu_synaptic_plasticity_calls", 0
+            ),
             "gpu_synaptic_reward_calls": gpu["execution"].get(
                 "gpu_synaptic_reward_calls", 0
             ),
@@ -117,7 +125,7 @@ def compare_builder_runs(cpu: dict[str, Any], gpu: dict[str, Any]) -> dict[str, 
             "gpu_membrane_ticks": gpu["execution"]["gpu_membrane_ticks"],
             "gpu_pan_feedback_calls": gpu["execution"].get("gpu_pan_feedback_calls", 0),
             "scope": (
-                "REAL_BUILDER_CUDA_PAN_STATE_CPU_SYNAPSES_AND_ENVIRONMENT"
+                "REAL_BUILDER_CUDA_PAN_SYNAPTIC_RULES_CPU_WORLD_AND_QUEUES"
                 if gpu["execution"]["neuron_backend"] == "cuda_pan"
                 else "REAL_BUILDER_CUDA_MEMBRANE_CPU_SYNAPSES_AND_ENVIRONMENT"
             ),

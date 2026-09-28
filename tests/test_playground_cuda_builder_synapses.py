@@ -162,3 +162,135 @@ def test_cuda_preset_inherits_pan_with_explicit_backend():
         gpu.edge_budget,
         gpu.weight,
     )
+
+
+@pytest.mark.skipif(
+    os.environ.get("MHRN_TEST_CUDA_HARDWARE") != "1", reason="opt-in physical CUDA test"
+)
+def test_plasticity_gpu_preserves_event_order_and_clamps(tmp_path, monkeypatch):
+    from itertools import product
+
+    monkeypatch.setenv("TMP", str(tmp_path))
+    pan = PANRuntime(
+        n_neurons=17,
+        dimensions=5,
+        seed=42,
+        feedback_gain=0.1,
+        health_decay=0.001,
+        apoptosis_threshold=0.1,
+        closed_loop=True,
+        coordinates=[[0.0]] * 17,
+        degree=[1] * 17,
+    )
+    model = get_neuron_model("pan_adex_5d")
+    rows = []
+    for i in range(129):
+        src = i % 17
+        target = (src + 1 + (i // 17) % 16) % 17
+        rows.append(
+            (
+                [0.0, 0.01, 99.99, 100.0][i % 4],
+                0.17 * (i % 7) - 0.4,
+                -10000000.0,
+                float([0, 1, 20, 21][i % 4]),
+                float([21, 20, 1, 0][i % 4]),
+                i * 0.017,
+                i * 0.031,
+                float(i % 2),
+                float(i % 3 == 0),
+                float(src),
+                float(target),
+                30.0,
+            )
+        )
+    with cuda_membrane_session(
+        model.name, [model.parameters] * 17, 1.0, pan_runtime=pan
+    ) as stepper:
+        for pair, triplet, eligible in product((False, True), repeat=3):
+            expected = []
+            for r in rows:
+                w, e, last = r[0], r[1] * 0.97, int(r[2])
+                for neuron in sorted([int(r[9]), int(r[10])]):
+                    if neuron == r[9] and r[7]:
+                        if pair and 0 < r[4] <= 20:
+                            w = max(0.0, w - 0.08 * 1.3)
+                        if triplet:
+                            w = max(
+                                0.0,
+                                w
+                                - 0.04
+                                * (r[6] + (1.0 if r[10] < r[9] and r[8] else 0.0)),
+                            )
+                        if eligible:
+                            e -= 0.5
+                            last = 30
+                    if neuron == r[10] and r[8]:
+                        if pair and 0 < r[3] <= 20:
+                            w = min(100.0, w + 0.1 * 1.3)
+                        if triplet:
+                            w = min(
+                                100.0,
+                                max(
+                                    0.0,
+                                    w
+                                    + 0.06
+                                    * (r[5] + (1.0 if r[9] < r[10] and r[7] else 0.0))
+                                    + 0.025 * r[6],
+                                ),
+                            )
+                        if eligible:
+                            e += 1.0
+                            last = 30
+                expected.append((w, e, last))
+            assert (
+                stepper.synapses.plasticity(
+                    rows,
+                    pair=pair,
+                    triplet=triplet,
+                    eligibility_active=eligible,
+                    decay=0.97,
+                    learning=1.3,
+                )
+                == expected
+            )
+        with pytest.raises(ValueError):
+            stepper.synapses.plasticity(
+                [tuple([float("nan")] * 12)],
+                pair=True,
+                triplet=False,
+                eligibility_active=True,
+                decay=0.97,
+                learning=1.0,
+            )
+
+
+@pytest.mark.skipif(
+    os.environ.get("MHRN_TEST_CUDA_HARDWARE") != "1", reason="opt-in physical CUDA test"
+)
+@pytest.mark.parametrize(
+    "rule",
+    [
+        "stdp",
+        "triplet_stdp",
+        "metaplasticity",
+        "three_factor",
+        "eligibility_trace",
+        "homeostatic",
+        "none",
+    ],
+)
+def test_actual_builder_plasticity_modes_hardware(rule, tmp_path, monkeypatch):
+    from src.playground.cuda.builder_parity import run_builder_parity
+
+    monkeypatch.setenv("TMP", str(tmp_path))
+    result = run_builder_parity(
+        {
+            "closed_loop_preset": "pan_cuda_hybrid",
+            "n_neurons": 32,
+            "edge_budget": 64,
+            "ticks": 256,
+            "plasticity_rule": rule,
+        }
+    )
+    assert result["passed"], result
+    assert result["gpu_synaptic_plasticity_calls"] == 256

@@ -355,12 +355,20 @@ class PlaygroundSession:
             )
 
             def apply_synaptic_reward(
-                tick: int, value: float, maximum: float, respect_window: bool
+                tick: int,
+                value: float,
+                maximum: float,
+                respect_window: bool,
+                strength: float | None = None,
             ) -> None:
                 scale = (
-                    config.behavior_learning_rate
-                    * config.td_lambda
-                    * config.gamma_discount
+                    (
+                        config.behavior_learning_rate
+                        * config.td_lambda
+                        * config.gamma_discount
+                    )
+                    if strength is None
+                    else strength
                 )
                 edges = list(weights)
                 if gpu_membrane is not None and gpu_membrane.synapses is not None:
@@ -522,8 +530,9 @@ class PlaygroundSession:
                     if config.credit_assignment != "none"
                     else 0.97
                 )
-                for edge in list(eligibility):
-                    eligibility[edge] *= eligibility_decay
+                if gpu_membrane is None or gpu_membrane.synapses is None:
+                    for edge in list(eligibility):
+                        eligibility[edge] *= eligibility_decay
 
                 plasticity = config.plasticity_rule
                 synapse_mode = config.synapse_model
@@ -540,81 +549,108 @@ class PlaygroundSession:
                     rate = sum(rate_monitor.counts) / config.n_neurons / elapsed_s
                     learning_scale = max(0.25, min(2.0, 10.0 / max(rate, 1.0)))
 
-                for neuron_id in spiked_this_tick:
-                    if pair_stdp or plasticity == "metaplasticity":
-                        for target in list(adjacency[neuron_id]):
-                            edge = (neuron_id, target)
-                            delta = tick - last_spike[target]
-                            if 0 < delta <= 20:
-                                weights[edge] = max(
-                                    0.0,
-                                    weights[edge] - 0.08 * learning_scale,
-                                )
-                        for source in list(incoming[neuron_id]):
-                            edge = (source, neuron_id)
-                            delta = tick - last_spike[source]
-                            if 0 < delta <= 20:
+                if gpu_membrane is not None and gpu_membrane.synapses is not None:
+                    edges = list(weights)
+                    spikes = set(spiked_this_tick)
+                    plasticity_rows = [
+                        (
+                            weights[e],
+                            eligibility[e],
+                            float(eligibility_last_tick.get(e, -10_000_000)),
+                            float(tick - last_spike[e[0]]),
+                            float(tick - last_spike[e[1]]),
+                            pre_trace[e[0]],
+                            post_trace[e[1]],
+                            float(e[0] in spikes),
+                            float(e[1] in spikes),
+                            float(e[0]),
+                            float(e[1]),
+                            float(tick),
+                        )
+                        for e in edges
+                    ]
+                    updated = gpu_membrane.synapses.plasticity(
+                        plasticity_rows,
+                        pair=pair_stdp or plasticity == "metaplasticity",
+                        triplet=triplet,
+                        eligibility_active=config.credit_assignment != "none"
+                        or plasticity in {"eligibility_trace", "three_factor"}
+                        or synapse_mode in {"eligibility_trace", "three_factor"},
+                        decay=eligibility_decay,
+                        learning=learning_scale,
+                    )
+                    for edge, (weight, trace, last) in zip(edges, updated):
+                        weights[edge] = weight
+                        eligibility[edge] = trace
+                        eligibility_last_tick[edge] = last
+                    for neuron_id in spiked_this_tick:
+                        pre_trace[neuron_id] += 1.0
+                        post_trace[neuron_id] += 1.0
+                else:
+                    for neuron_id in spiked_this_tick:
+                        if pair_stdp or plasticity == "metaplasticity":
+                            for target in list(adjacency[neuron_id]):
+                                edge = (neuron_id, target)
+                                delta = tick - last_spike[target]
+                                if 0 < delta <= 20:
+                                    weights[edge] = max(
+                                        0.0,
+                                        weights[edge] - 0.08 * learning_scale,
+                                    )
+                            for source in list(incoming[neuron_id]):
+                                edge = (source, neuron_id)
+                                delta = tick - last_spike[source]
+                                if 0 < delta <= 20:
+                                    weights[edge] = min(
+                                        100.0,
+                                        weights[edge] + 0.1 * learning_scale,
+                                    )
+
+                        if triplet:
+                            for source in list(incoming[neuron_id]):
+                                edge = (source, neuron_id)
                                 weights[edge] = min(
                                     100.0,
-                                    weights[edge] + 0.1 * learning_scale,
+                                    max(
+                                        0.0,
+                                        weights[edge]
+                                        + 0.06 * pre_trace[source]
+                                        + 0.025 * post_trace[neuron_id],
+                                    ),
+                                )
+                            for target in list(adjacency[neuron_id]):
+                                edge = (neuron_id, target)
+                                weights[edge] = max(
+                                    0.0,
+                                    weights[edge] - 0.04 * post_trace[target],
                                 )
 
-                    if triplet:
-                        for source in list(incoming[neuron_id]):
-                            edge = (source, neuron_id)
-                            weights[edge] = min(
-                                100.0,
-                                max(
-                                    0.0,
-                                    weights[edge]
-                                    + 0.06 * pre_trace[source]
-                                    + 0.025 * post_trace[neuron_id],
-                                ),
-                            )
-                        for target in list(adjacency[neuron_id]):
-                            edge = (neuron_id, target)
-                            weights[edge] = max(
-                                0.0,
-                                weights[edge] - 0.04 * post_trace[target],
-                            )
+                        if (
+                            config.credit_assignment != "none"
+                            or plasticity in {"eligibility_trace", "three_factor"}
+                            or synapse_mode in {"eligibility_trace", "three_factor"}
+                        ):
+                            for source in list(incoming[neuron_id]):
+                                edge = (source, neuron_id)
+                                eligibility[edge] += 1.0
+                                eligibility_last_tick[edge] = tick
+                            for target in list(adjacency[neuron_id]):
+                                edge = (neuron_id, target)
+                                eligibility[edge] -= 0.5
+                                eligibility_last_tick[edge] = tick
 
-                    if (
-                        config.credit_assignment != "none"
-                        or plasticity in {"eligibility_trace", "three_factor"}
-                        or synapse_mode in {"eligibility_trace", "three_factor"}
-                    ):
-                        for source in list(incoming[neuron_id]):
-                            edge = (source, neuron_id)
-                            eligibility[edge] += 1.0
-                            eligibility_last_tick[edge] = tick
-                        for target in list(adjacency[neuron_id]):
-                            edge = (neuron_id, target)
-                            eligibility[edge] -= 0.5
-                            eligibility_last_tick[edge] = tick
-
-                    pre_trace[neuron_id] += 1.0
-                    post_trace[neuron_id] += 1.0
+                        pre_trace[neuron_id] += 1.0
+                        post_trace[neuron_id] += 1.0
 
                 if plasticity == "three_factor" or synapse_mode == "three_factor":
                     modulator = math.sin(2.0 * math.pi * tick / 64.0)
-                    for edge in list(weights):
-                        weights[edge] = min(
-                            100.0,
-                            max(
-                                0.0,
-                                weights[edge] + 0.015 * eligibility[edge] * modulator,
-                            ),
-                        )
+                    apply_synaptic_reward(tick, modulator, 100.0, False, strength=0.015)
 
                 if (
                     plasticity == "eligibility_trace"
                     or synapse_mode == "eligibility_trace"
                 ):
-                    for edge in list(weights):
-                        weights[edge] = min(
-                            100.0,
-                            max(0.0, weights[edge] + 0.003 * eligibility[edge]),
-                        )
+                    apply_synaptic_reward(tick, 1.0, 100.0, False, strength=0.003)
 
                 if plasticity == "homeostatic" and tick > 0 and tick % 64 == 0:
                     elapsed_s = max((tick + 1) * config.dt_ms / 1000.0, 1e-9)
@@ -623,11 +659,19 @@ class PlaygroundSession:
                         0.95,
                         min(1.05, 1.0 + (8.0 - mean_rate) * 0.002),
                     )
-                    for edge in list(weights):
-                        weights[edge] = max(
-                            0.0,
-                            min(100.0, weights[edge] * factor),
+                    if gpu_membrane is not None and gpu_membrane.synapses is not None:
+                        edges = list(weights)
+                        scaled = gpu_membrane.synapses.scale_weights(
+                            [weights[e] for e in edges], factor=factor, maximum=100.0
                         )
+                        for edge, value in zip(edges, scaled):
+                            weights[edge] = value
+                    else:
+                        for edge in list(weights):
+                            weights[edge] = max(
+                                0.0,
+                                min(100.0, weights[edge] * factor),
+                            )
 
                 if (
                     plasticity == "structural"
@@ -998,9 +1042,14 @@ class PlaygroundSession:
                 else 0
             ),
             "synapses_backend": (
-                "cuda_emission_recovery_reward_cpu_STDP_queue"
+                "cuda_emission_STDP_eligibility_reward_cpu_queue"
                 if config.neuron_backend == "cuda_pan"
                 else "cpu"
+            ),
+            "gpu_synaptic_plasticity_calls": (
+                gpu_membrane.synapses.plasticity_calls
+                if gpu_membrane is not None and gpu_membrane.synapses is not None
+                else 0
             ),
             "gpu_synaptic_reward_calls": (
                 gpu_membrane.synapses.reward_calls
@@ -1035,7 +1084,13 @@ class PlaygroundSession:
                 "live_target_and_posture_reward_weight_updates": (
                     "cuda" if config.neuron_backend == "cuda_pan" else "cpu"
                 ),
-                "STDP_eligibility_and_delay_queue": "cpu",
+                "pair_triplet_STDP_and_eligibility": (
+                    "cuda" if config.neuron_backend == "cuda_pan" else "cpu"
+                ),
+                "synaptic_modulation_and_homeostatic_scaling": (
+                    "cuda" if config.neuron_backend == "cuda_pan" else "cpu"
+                ),
+                "neuron_traces_and_delay_queue": "cpu",
                 "Builder_traversal_RNG": "cpu",
                 "policy_and_action_selection": "cpu",
                 "world_posture_sensors_actuators_reward": "cpu",
@@ -1107,6 +1162,8 @@ class PlaygroundSession:
                 ],
                 "pending_currents": [list(slot) for slot in pending],
                 "rng_state": rng.getstate(),
+                "neuron_traces": list(pre_trace) + list(post_trace),
+                "last_spike": list(last_spike),
                 "pan_states": [
                     {k: v for k, v in state.items() if k.startswith("pan_")}
                     for state in states

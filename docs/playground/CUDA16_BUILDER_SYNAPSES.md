@@ -13,3 +13,6 @@ D3 now checks complete Builder RNG state, STP resources, eligibility and eligibi
 Seventeen tests passed with physical RTX 3060 enabled, including the three complete 256-neuron/2048-edge/2000-tick PAN D3 seeds, 129-event partial blocks, signed/inhibitory emissions, exact STP threshold and just-below-threshold cases, STP on/off, positive/zero/negative reward, credit-window boundary, recovery/decay clamps, frozen emitted values and malformed input. RNG state, actions and trajectories matched exactly; all numerical bounds passed. Resource-failure tests still cover shared-context cleanup. New kernels are assembled in main CI.
 
 `pan_cuda_hybrid` inherits the complete balanced PAN profile and explicitly selects `cuda_pan`; it requires an available NVIDIA driver and NVRTC. `pan_full_balanced` explicitly selects CPU, so switching back never accidentally retains GPU execution. No universal optimum or speedup is claimed. The body remains available in the Run page in both profiles.
+
+
+The subsequent [actual Builder plasticity stage](CUDA16_BUILDER_PLASTICITY.md) also ports pair/triplet-STDP, eligibility and per-edge modulators/scaling. Neuron traces, queue and topology remain host-owned; the current component table supersedes this stage-specific ownership snapshot.
