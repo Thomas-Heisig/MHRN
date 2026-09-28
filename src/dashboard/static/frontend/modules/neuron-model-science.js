@@ -309,11 +309,11 @@ function addOverviewRouteCard(architecture) {
   button.type = "button";
   button.dataset.routeCard = ROUTE_ID;
   button.title = "Cell Modell öffnen";
-  button.innerHTML = '<span>W0</span><strong>Wissenschaft · Cell Modell</strong>'; 
+  button.innerHTML = '<span>W0</span><strong>Wissenschaft · Cell Modell</strong>';
   const networkCard = grid.querySelector('[data-route-card="science-network"]');
   if (networkCard?.nextSibling) grid.insertBefore(button, networkCard.nextSibling);
   else grid.appendChild(button);
-  button.addEventListener("click", () => architecture.selectRoute("science", ROUTE_ID));
+  button.addEventListener("click", () => architecture.selectRoute("old", ROUTE_ID));
 }
 
 function ensureSettingsNavigationFallback(architecture) {
