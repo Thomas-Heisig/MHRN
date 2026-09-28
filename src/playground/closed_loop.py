@@ -681,7 +681,7 @@ CLOSED_LOOP_PRESETS.update(
 
 CLOSED_LOOP_PRESETS["pan_cuda_hybrid"] = {
     "label": "PAN · CUDA-Hybrid",
-    "description": "PAN-Vollprofil mit CUDA-Membran, PAN-Zustand/Feedback, synaptischer Aussendung und Reward-Updates. Körper, Policy, STDP, RNG und Delay-Queue bleiben CPU. NVIDIA-Treiber und NVRTC erforderlich; kein Speedup-Versprechen.",
+    "description": "PAN-Vollprofil mit CUDA-Membran, PAN-Zustand/Feedback, synaptischer Aussendung und Reward-Updates. Körper, Policy, RNG, Neuron-Traces und Delay-Queue bleiben CPU. NVIDIA-Treiber und NVRTC erforderlich; kein Speedup-Versprechen.",
     "hypothesis": "Explorativer hybrider CPU/GPU-Vergleich mit denselben PAN-Parametern und expliziter Komponentenanzeige.",
     "expected_success": None,
     "required_features": ["pan", "cuda_driver", "nvrtc", "sandbox", "neural_io"],

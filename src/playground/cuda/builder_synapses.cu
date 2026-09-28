@@ -30,3 +30,33 @@ extern "C" __global__ void pan_synaptic_reward(unsigned count, unsigned filter_a
     if(!filter_age || x[2]<=x[3]) weight=fmin(x[4],fmax(0.0,weight+scale*x[1]*reward));
     output[2*i]=weight; output[2*i+1]=x[1];
 }
+
+// Independent edges reproduce the original ascending-neuron event order.
+extern "C" __global__ void pan_synaptic_plasticity(unsigned count, unsigned flags,
+    double decay, double learning, const double* input, double* output) {
+    unsigned i=blockIdx.x*blockDim.x+threadIdx.x; if(i>=count) return;
+    // weight, eligibility, eligibility time, pre/post deltas, decayed traces,
+    // spike flags, source/target IDs, current tick.
+    const double* x=input+12*i;
+    double weight=x[0], eligibility=x[1]*decay, last=x[2];
+    bool pre=x[7]!=0.0, post=x[8]!=0.0, pre_first=x[9]<x[10];
+    for(unsigned event=0;event<2;++event) {
+        bool source_event=(event==0)==pre_first;
+        if(source_event && pre) {
+            if((flags&1) && x[4]>0.0 && x[4]<=20.0) weight=fmax(0.0,weight-0.08*learning);
+            if(flags&2) weight=fmax(0.0,weight-0.04*(x[6]+((!pre_first && post)?1.0:0.0)));
+            if(flags&4) {eligibility-=0.5;last=x[11];}
+        } else if(!source_event && post) {
+            if((flags&1) && x[3]>0.0 && x[3]<=20.0) weight=fmin(100.0,weight+0.1*learning);
+            if(flags&2) weight=fmin(100.0,fmax(0.0,weight+0.06*(x[5]+((pre_first && pre)?1.0:0.0))+0.025*x[6]));
+            if(flags&4) {eligibility+=1.0;last=x[11];}
+        }
+    }
+    output[3*i]=weight;output[3*i+1]=eligibility;output[3*i+2]=last;
+}
+
+extern "C" __global__ void pan_synaptic_scale(unsigned count, unsigned unused,
+    double factor, double maximum, const double* input, double* output) {
+    unsigned i=blockIdx.x*blockDim.x+threadIdx.x;if(i>=count)return;
+    output[2*i]=fmax(0.0,fmin(maximum,input[5*i]*factor));output[2*i+1]=0.0;
+}

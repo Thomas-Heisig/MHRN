@@ -199,11 +199,11 @@ def _cuda_runtime_status() -> dict[str, object]:
             "pan_apoptosis_decision": "OPTIONAL_CUDA_PAN_BUILDER",
             "pan_feedback_projection": "OPTIONAL_CUDA_PAN_BUILDER",
             "refractory_state": False,
-            "synapses": "BUILDER_GPU_EMISSION_RECOVERY_LIVE_REWARD_HOST_STDP_AND_QUEUE",
+            "synapses": "BUILDER_GPU_EMISSION_PLASTICITY_LIVE_REWARD_HOST_TRACE_AND_QUEUE",
             "builder_rng_semantics": "HOST_TRAVERSAL_STREAM_PRESERVED",
             "builder_inhibitory_emission": True,
             "delays": True,
-            "plasticity": "BOUNDED_REFERENCE_ONLY",
+            "plasticity": "BUILDER_PAIR_TRIPLET_ELIGIBILITY_MODULATION_AND_BOUNDED_REFERENCE",
             "sandbox_physics": False,
         },
         "verification": {
