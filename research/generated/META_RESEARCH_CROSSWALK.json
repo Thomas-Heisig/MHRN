@@ -38,7 +38,7 @@
       "title": "Dimensional Embedding and Propagation Dynamics in Resource-Matched Recurrent Spiking Neural Networks"
     }
   ],
-  "question_count": 112,
+  "question_count": 121,
   "questions": [
     {
       "claim_statuses": {
@@ -756,6 +756,155 @@
       "stages": []
     },
     {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Closed-loop Backend Parity",
+      "evidence_records": [],
+      "experiments": [],
+      "hypotheses": [
+        "H-CUDA-CL-001-A",
+        "H-CUDA-CL-001-B",
+        "H-CUDA-CL-001-C"
+      ],
+      "hypothesis_statuses": {
+        "H-CUDA-CL-001-A": "untested",
+        "H-CUDA-CL-001-B": "untested",
+        "H-CUDA-CL-001-C": "untested"
+      },
+      "literature": [],
+      "manuscript_parts": [],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-CUDA-CL-001",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.acceleration.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Deterministic Accelerated Execution",
+      "evidence_records": [],
+      "experiments": [],
+      "hypotheses": [
+        "H-CUDA-DET-001-A",
+        "H-CUDA-DET-001-B",
+        "H-CUDA-DET-001-C"
+      ],
+      "hypothesis_statuses": {
+        "H-CUDA-DET-001-A": "untested",
+        "H-CUDA-DET-001-B": "untested",
+        "H-CUDA-DET-001-C": "untested"
+      },
+      "literature": [
+        "SRC-STIMBERG-2019",
+        "SRC-BRIAN2-DOCS-2026",
+        "SRC-BRIAN2CUDA-2022"
+      ],
+      "manuscript_parts": [],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-CUDA-DET-001",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.acceleration.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Backend Parity",
+      "evidence_records": [],
+      "experiments": [],
+      "hypotheses": [
+        "H-CUDA-PAR-001-A",
+        "H-CUDA-PAR-001-B",
+        "H-CUDA-PAR-001-C"
+      ],
+      "hypothesis_statuses": {
+        "H-CUDA-PAR-001-A": "untested",
+        "H-CUDA-PAR-001-B": "untested",
+        "H-CUDA-PAR-001-C": "untested"
+      },
+      "literature": [
+        "SRC-STIMBERG-2019",
+        "SRC-BRIAN2-DOCS-2026",
+        "SRC-BRIAN2CUDA-2022"
+      ],
+      "manuscript_parts": [],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-CUDA-PAR-001",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.acceleration.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Computational Scaling",
+      "evidence_records": [],
+      "experiments": [],
+      "hypotheses": [
+        "H-CUDA-SCALE-001-A",
+        "H-CUDA-SCALE-001-B"
+      ],
+      "hypothesis_statuses": {
+        "H-CUDA-SCALE-001-A": "untested",
+        "H-CUDA-SCALE-001-B": "untested"
+      },
+      "literature": [
+        "SRC-BRIAN2CUDA-2022",
+        "SRC-BRIAN2GENN-DOCS-2026"
+      ],
+      "manuscript_parts": [],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-CUDA-SCALE-001",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.acceleration.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Structural Plasticity",
+      "evidence_records": [],
+      "experiments": [],
+      "hypotheses": [
+        "H-CUDA-STRUCT-001-A",
+        "H-CUDA-STRUCT-001-B"
+      ],
+      "hypothesis_statuses": {
+        "H-CUDA-STRUCT-001-A": "untested",
+        "H-CUDA-STRUCT-001-B": "untested"
+      },
+      "literature": [
+        "SRC-GENN-STRUCTPLAST-2026"
+      ],
+      "manuscript_parts": [],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-CUDA-STRUCT-001",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.acceleration.yaml",
+      "stages": []
+    },
+    {
       "claim_statuses": {
         "CLAIM-DET-001": "inconclusive"
       },
@@ -1402,6 +1551,36 @@
       "research_question": "RQ-EVAL-006",
       "rq_status": "inconclusive",
       "source_path": "research/registry/questions.empirical.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Executable Semantics",
+      "evidence_records": [],
+      "experiments": [],
+      "hypotheses": [
+        "H-GATE-IR-001-A",
+        "H-GATE-IR-001-B",
+        "H-GATE-IR-001-C"
+      ],
+      "hypothesis_statuses": {
+        "H-GATE-IR-001-A": "untested",
+        "H-GATE-IR-001-B": "untested",
+        "H-GATE-IR-001-C": "untested"
+      },
+      "literature": [
+        "SRC-BRIAN2CUDA-2022"
+      ],
+      "manuscript_parts": [],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-GATE-IR-001",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.acceleration.yaml",
       "stages": []
     },
     {
@@ -2063,6 +2242,63 @@
       "cross_cuts": [],
       "direction": null,
       "direction_status": "unresolved_no_inference",
+      "domain": "PAN Cross-Backend Execution",
+      "evidence_records": [],
+      "experiments": [],
+      "hypotheses": [
+        "H-PAN-GPU-001-A",
+        "H-PAN-GPU-001-B"
+      ],
+      "hypothesis_statuses": {
+        "H-PAN-GPU-001-A": "untested",
+        "H-PAN-GPU-001-B": "untested"
+      },
+      "literature": [
+        "SRC-BRIAN2CUDA-2022",
+        "SRC-GENN-STRUCTPLAST-2026"
+      ],
+      "manuscript_parts": [],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-PAN-GPU-001",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.acceleration.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "PAN Semantics",
+      "evidence_records": [],
+      "experiments": [],
+      "hypotheses": [
+        "H-PAN-SEM-001-A",
+        "H-PAN-SEM-001-B"
+      ],
+      "hypothesis_statuses": {
+        "H-PAN-SEM-001-A": "untested",
+        "H-PAN-SEM-001-B": "untested"
+      },
+      "literature": [
+        "SRC-GERSTNER-2014"
+      ],
+      "manuscript_parts": [],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-PAN-SEM-001",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.acceleration.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
       "domain": "Runtime Performance",
       "evidence_records": [],
       "experiments": [
@@ -2693,6 +2929,38 @@
       "research_question": "RQ-SELF-002",
       "rq_status": "open",
       "source_path": "research/registry/questions.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Simulator Interoperability",
+      "evidence_records": [],
+      "experiments": [],
+      "hypotheses": [
+        "H-SIM-INTEROP-001-A",
+        "H-SIM-INTEROP-001-B"
+      ],
+      "hypothesis_statuses": {
+        "H-SIM-INTEROP-001-A": "untested",
+        "H-SIM-INTEROP-001-B": "untested"
+      },
+      "literature": [
+        "SRC-STIMBERG-2019",
+        "SRC-BRIAN2-DOCS-2026",
+        "SRC-BRIAN2CUDA-2022",
+        "SRC-BRIAN2GENN-DOCS-2026",
+        "SRC-BRIAN2LAVA-DOCS-2026"
+      ],
+      "manuscript_parts": [],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-SIM-INTEROP-001",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.acceleration.yaml",
       "stages": []
     },
     {
