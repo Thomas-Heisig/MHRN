@@ -1221,8 +1221,8 @@ def execute_gate_bundle(
         device_ordinal=device_ordinal,
     )
     allocations: list[DeviceAllocation] = []
-    memory_before_free, memory_total = driver.memory_info()
     try:
+        memory_before_free, memory_total = driver.memory_info()
         host_buffers = {
             "input": _f32_buffer(inputs.input_current),
             "channel_masks": _u64_buffer(inputs.channel_masks),
