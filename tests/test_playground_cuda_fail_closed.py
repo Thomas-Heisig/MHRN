@@ -232,6 +232,7 @@ class _BusySemaphore:
         "/api/playground/cuda/preflight",
         "/api/playground/cuda/smoke",
         "/api/playground/cuda/rng-parity",
+        "/api/playground/cuda/recurrent-parity",
     ],
 )
 def test_cuda_diagnostics_share_two_worker_limit(

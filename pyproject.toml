@@ -176,3 +176,4 @@ namespaces = false
 
 [tool.setuptools.package-data]
 "src.dashboard" = ["static/*", "static/**/*"]
+"src.playground.cuda" = ["*.cu"]

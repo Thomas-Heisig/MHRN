@@ -6,6 +6,8 @@ import json
 from pathlib import Path
 
 from src.playground.cuda import assemble_bundle, compile_mapping
+from src.playground.cuda.nvrtc import compile_cuda_source
+from src.playground.cuda.runtime import assemble_ptx
 
 
 def main() -> int:
@@ -25,6 +27,15 @@ def main() -> int:
             "spill_store_bytes": report.spill_store_bytes,
             "spill_load_bytes": report.spill_load_bytes,
         }
+    source = Path("src/playground/cuda/recurrent.cu").read_text()
+    recurrent_dir = root / "recurrent"
+    recurrent_dir.mkdir(parents=True, exist_ok=True)
+    ptx_path = recurrent_dir / "recurrent.ptx"
+    ptx_path.write_text(compile_cuda_source(source), encoding="utf-8")
+    recurrent_report = assemble_ptx(
+        ptx_path.read_text(), output_dir=recurrent_dir, target_sm="sm_86"
+    )
+    results["recurrent"] = recurrent_report.to_mapping()
     print(json.dumps(results, indent=2, sort_keys=True))
     return 0
 
