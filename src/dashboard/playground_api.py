@@ -194,8 +194,8 @@ def _cuda_runtime_status() -> dict[str, object]:
             "cpu_gate_reference": True,
             "single_tick_d2_endpoint": True,
             "rng_action_path_endpoint": True,
-            "raw_rng_value_parity": False,
-            "memory_leak_instrumentation": False,
+            "raw_rng_value_parity": True,
+            "memory_leak_instrumentation": True,
         },
     }
 
@@ -342,7 +342,9 @@ def _cuda_smoke(payload: Mapping[str, object]) -> dict[str, object]:
         "cleanup_contract": {
             "device_allocations_released_in_finally": True,
             "driver_module_unloaded": True,
-            "memory_leak_instrumented": False,
+            "memory_leak_instrumented": True,
+            "first_memory": first.get("memory"),
+            "second_memory": second.get("memory"),
         },
     }
 
