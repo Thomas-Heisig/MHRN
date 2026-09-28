@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import shutil
 import threading
 import time
 from collections import deque
@@ -9,7 +10,17 @@ from collections.abc import Mapping
 from typing import cast
 
 from src.playground import service
-from src.playground.cuda import compile_mapping
+from src.playground.cuda import (
+    CudaDriver,
+    CudaDriverError,
+    CudaRuntimeUnavailable,
+    GateLaunchInputs,
+    compile_mapping,
+    cpu_gate_reference,
+    execute_gate_bundle,
+    gate_execution_parity_summary,
+    preflight_bundle,
+)
 from src.playground.models import PlaygroundConfig
 from src.playground.night_run import NightRunManager
 from src.playground.pan import PANEmbodiedSandboxSession, PANSessionDaemon
@@ -121,6 +132,127 @@ def _live_parts(path: str) -> list[str]:
     return [part for part in path[len(prefix) :].split("/") if part]
 
 
+def _cuda_runtime_status() -> dict[str, object]:
+    ptxas_path = shutil.which("ptxas")
+    driver_available = False
+    driver_error: str | None = None
+    try:
+        driver = CudaDriver()
+        driver.initialize()
+        driver_available = True
+    except (CudaRuntimeUnavailable, CudaDriverError, OSError) as exc:
+        driver_error = str(exc)
+
+    return {
+        "classification": "PLAYGROUND_CUDA_DIAGNOSTICS_STATUS",
+        "scientific_evidence": False,
+        "canonical_cuda_backend": False,
+        "target_default": "sm_86",
+        "ptxas_available": ptxas_path is not None,
+        "ptxas_path": ptxas_path,
+        "cuda_driver_available": driver_available,
+        "cuda_driver_error": driver_error,
+        "stages": {
+            "CUDA-1.0": "PTXAS_LOAD_PREFLIGHT_IMPLEMENTED",
+            "CUDA-1.1": "DETERMINISM_FREEZE_PARITY_CONTRACT_IMPLEMENTED",
+            "CUDA-1.2": "LAUNCH_ABI_BUFFER_VALIDATION_IMPLEMENTED",
+            "CUDA-1.3": "CPU_GATE_REFERENCE_D2_IMPLEMENTED_HARDWARE_VERIFICATION_REQUIRED",
+            "CUDA-1.4": "PENDING_10_100_TICK_STATE_DELAYS_MULTIBLOCK",
+            "CUDA-1.5": "PENDING_PLASTICITY_STDP",
+            "CUDA-1.6": "PENDING_CLOSED_LOOP_SANDBOX_GPU",
+        },
+        "application_cpu": {
+            "sandbox_physics": True,
+            "sensorics": True,
+            "actuation": True,
+            "posture_analysis": True,
+            "reward_triggers": True,
+            "closed_loop": True,
+        },
+        "gpu_porting": {
+            "gate_single_tick": True,
+            "membrane_state_100_ticks": False,
+            "adaptation_state": False,
+            "refractory_state": False,
+            "synapses": False,
+            "delays": False,
+            "plasticity": False,
+            "sandbox_physics": False,
+        },
+        "verification": {
+            "cpu_gate_reference": True,
+            "single_tick_d2_endpoint": True,
+            "rng_action_path_endpoint": True,
+            "raw_rng_value_parity": False,
+            "memory_leak_instrumentation": False,
+        },
+    }
+
+
+def _diagnostic_inputs(
+    bundle: object,
+    *,
+    n_neurons: int,
+    seed: int,
+    epsilon: float,
+) -> GateLaunchInputs:
+    manifest = getattr(bundle, "manifest")
+    if not isinstance(manifest, Mapping):
+        raise ValueError("compile bundle manifest is invalid")
+    abi = manifest.get("kernel_abi")
+    if not isinstance(abi, Mapping):
+        raise ValueError("compile bundle is missing kernel_abi")
+    input_channels = _payload_int(abi, "input_channels", 8)
+    action_count = _payload_int(abi, "action_space_size", 4)
+    pan_dimensions = _payload_int(abi, "pan_dimensions", 5)
+    full_mask = (
+        (1 << input_channels) - 1
+        if input_channels < 64
+        else 0xFFFFFFFFFFFFFFFF
+    )
+    logits: list[float] = []
+    for neuron in range(n_neurons):
+        preferred = neuron % action_count
+        for action in range(action_count):
+            logits.append(1.0 if action == preferred else 0.05 * (action + 1))
+    return GateLaunchInputs.from_sequences(
+        input_current=[1.0 + 0.125 * (index % 7) for index in range(n_neurons)],
+        channel_masks=[full_mask] * n_neurons,
+        amplitudes=[1.0 + 0.05 * channel for channel in range(input_channels)],
+        reward_ring=[0.5, -0.25, 0.75, 0.0],
+        action_map=[
+            0.1 * (action + 1) * (channel + 1)
+            for action in range(action_count)
+            for channel in range(input_channels)
+        ],
+        feedback_matrix=[
+            0.01 * (1 + ((neuron + dimension) % 5))
+            for neuron in range(n_neurons)
+            for dimension in range(pan_dimensions)
+        ],
+        population=[0.1 * (dimension + 1) for dimension in range(pan_dimensions)],
+        logits=logits,
+        tick=3,
+        target_index=min(2, action_count - 1),
+        previous_action=min(1, action_count - 1),
+        seed=seed,
+        epsilon=epsilon,
+    )
+
+
+def _cuda_config_payload(payload: Mapping[str, object]) -> dict[str, object]:
+    excluded = {
+        "target_sm",
+        "ptx_version",
+        "n_neurons",
+        "block_size",
+        "device_ordinal",
+        "reference_commit",
+        "rng_samples",
+    }
+    return {key: value for key, value in payload.items() if key not in excluded}
+
+
 def get_playground(path: str) -> dict[str, object] | None:
     if path == "/api/playground/catalog":
         return service.catalog()
@@ -131,6 +263,8 @@ def get_playground(path: str) -> dict[str, object] | None:
         return service.replay(session_id)
     if path == "/api/playground/night":
         return _NIGHT_RUN.status()
+    if path == "/api/playground/cuda/status":
+        return _cuda_runtime_status()
     if path == "/api/playground/live":
         return {
             "class": "PLAYGROUND_LIVE_SESSIONS",
@@ -163,6 +297,143 @@ def post_playground(
             target_sm=target_sm,
             ptx_version=ptx_version,
         ).to_mapping()
+
+    if path == "/api/playground/cuda/preflight":
+        target_sm = _payload_text(payload, "target_sm", "sm_86")
+        ptx_version = _payload_text(payload, "ptx_version", "7.1")
+        n_neurons = _payload_int(payload, "n_neurons", 256)
+        block_size = _payload_int(payload, "block_size", 64)
+        device_ordinal = _payload_int(payload, "device_ordinal", 0)
+        if not 1 <= n_neurons <= 12_288:
+            raise ValueError("n_neurons must be in [1, 12288]")
+        if block_size not in {32, 64, 128, 256, 512}:
+            raise ValueError("block_size must be one of 32, 64, 128, 256, 512")
+        bundle = compile_mapping(
+            _cuda_config_payload(payload),
+            target_sm=target_sm,
+            ptx_version=ptx_version,
+        )
+        return preflight_bundle(
+            bundle,
+            n_neurons=n_neurons,
+            block_size=block_size,
+            device_ordinal=device_ordinal,
+        )
+
+    if path == "/api/playground/cuda/smoke":
+        target_sm = _payload_text(payload, "target_sm", "sm_86")
+        ptx_version = _payload_text(payload, "ptx_version", "7.1")
+        n_neurons = _payload_int(payload, "n_neurons", 64)
+        block_size = _payload_int(payload, "block_size", 64)
+        device_ordinal = _payload_int(payload, "device_ordinal", 0)
+        reference_commit = _payload_text(payload, "reference_commit", "")
+        if not 1 <= n_neurons <= 4096:
+            raise ValueError("n_neurons must be in [1, 4096] for hardware smoke")
+        bundle = compile_mapping(
+            _cuda_config_payload(payload),
+            target_sm=target_sm,
+            ptx_version=ptx_version,
+        )
+        inputs = _diagnostic_inputs(
+            bundle,
+            n_neurons=n_neurons,
+            seed=12345,
+            epsilon=0.0,
+        )
+        reference = cpu_gate_reference(bundle, inputs)
+        first = execute_gate_bundle(
+            bundle,
+            inputs,
+            block_size=block_size,
+            device_ordinal=device_ordinal,
+        )
+        second = execute_gate_bundle(
+            bundle,
+            inputs,
+            block_size=block_size,
+            device_ordinal=device_ordinal,
+        )
+        first_parity = gate_execution_parity_summary(
+            reference,
+            first,
+            tolerance=1.0e-5,
+            reference_commit=reference_commit,
+        )
+        second_parity = gate_execution_parity_summary(
+            reference,
+            second,
+            tolerance=1.0e-5,
+            reference_commit=reference_commit,
+        )
+        first_outputs = first.get("outputs")
+        second_outputs = second.get("outputs")
+        deterministic = first_outputs == second_outputs
+        return {
+            "classification": "PLAYGROUND_CUDA1_3_HARDWARE_SMOKE",
+            "scientific_evidence": False,
+            "canonical_cuda_backend": False,
+            "reference": reference,
+            "first": first,
+            "second": second,
+            "parity": first_parity,
+            "second_parity": second_parity,
+            "gpu_repeat_exact": deterministic,
+            "passed": bool(first_parity["passed"])
+            and bool(second_parity["passed"])
+            and deterministic,
+            "cleanup_contract": {
+                "device_allocations_released_in_finally": True,
+                "driver_module_unloaded": True,
+                "memory_leak_instrumented": False,
+            },
+        }
+
+    if path == "/api/playground/cuda/rng-parity":
+        target_sm = _payload_text(payload, "target_sm", "sm_86")
+        ptx_version = _payload_text(payload, "ptx_version", "7.1")
+        samples = _payload_int(payload, "rng_samples", 1000)
+        block_size = _payload_int(payload, "block_size", 64)
+        device_ordinal = _payload_int(payload, "device_ordinal", 0)
+        if not 1 <= samples <= 4096:
+            raise ValueError("rng_samples must be in [1, 4096]")
+        bundle = compile_mapping(
+            _cuda_config_payload(payload),
+            target_sm=target_sm,
+            ptx_version=ptx_version,
+        )
+        inputs = _diagnostic_inputs(
+            bundle,
+            n_neurons=samples,
+            seed=12345,
+            epsilon=1.0,
+        )
+        reference = cpu_gate_reference(bundle, inputs)
+        candidate = execute_gate_bundle(
+            bundle,
+            inputs,
+            block_size=block_size,
+            device_ordinal=device_ordinal,
+        )
+        reference_outputs = cast(Mapping[str, object], reference["outputs"])
+        candidate_outputs = cast(Mapping[str, object], candidate["outputs"])
+        reference_actions = cast(list[int], reference_outputs["action"])
+        candidate_actions = cast(list[int], candidate_outputs["action"])
+        return {
+            "classification": "PLAYGROUND_CUDA_RNG_ACTION_PATH_PARITY",
+            "scientific_evidence": False,
+            "samples": samples,
+            "seed": 12345,
+            "tick": inputs.tick,
+            "epsilon": 1.0,
+            "actions_exact": reference_actions == candidate_actions,
+            "passed": reference_actions == candidate_actions,
+            "first_reference_actions": reference_actions[:20],
+            "first_cuda_actions": candidate_actions[:20],
+            "scope": (
+                "HASH_EPSILON_GREEDY_ACTION_PATH; raw hash-to-uniform values "
+                "are not exported by the 17-parameter ABI"
+            ),
+        }
 
     if path == "/api/playground/night/start":
         return _NIGHT_RUN.start(
