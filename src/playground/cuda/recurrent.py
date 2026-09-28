@@ -22,6 +22,7 @@ from .runtime import (
     max_abs_error,
     validate_cuda_block_size,
 )
+from .synapses import SynapseConfig, SynapseState
 
 PARAMETER_NAMES = (
     "v_rest",
@@ -51,6 +52,8 @@ class RecurrentInputs:
     adaptation: tuple[float, ...]
     model: str = "lif"
     dt_ms: float = 1.0
+    synapses: SynapseConfig | None = None
+    rewards: tuple[float, ...] = ()
 
 
 def _bounded_integer(value: object, lower: int, upper: int) -> bool:
@@ -78,6 +81,16 @@ def validate_recurrent_inputs(inputs: RecurrentInputs) -> None:
         if not _bounded_integer(value, 1, upper):
             raise ValueError(f"{name} must be an integer in [1,{upper}]")
     n, ticks = inputs.n_neurons, inputs.ticks
+    if inputs.synapses is not None:
+        inputs.synapses.validate()
+        if len(inputs.rewards) != ticks or any(
+            not _bounded_number(x) for x in inputs.rewards
+        ):
+            raise ValueError("plastic execution requires finite reward per tick")
+        if not inputs.sources:
+            raise ValueError("plastic execution requires at least one synapse")
+        if any(weight < 0 for weight in inputs.weights):
+            raise ValueError("plastic weights must be nonnegative")
     if n * ticks > 4_000_000:
         raise ValueError("state history exceeds bounded reference capacity")
     if inputs.model not in SUPPORTED_MODELS:
@@ -127,12 +140,17 @@ def cpu_recurrent_reference(inputs: RecurrentInputs) -> dict[str, object]:
     spikes: list[int] = []
     voltage: list[float] = []
     adaptation: list[float] = []
+    synapses = (
+        SynapseState(inputs, inputs.synapses) if inputs.synapses is not None else None
+    )
     for tick in range(inputs.ticks):
         for neuron in range(n):
             current = inputs.external[tick * n + neuron]
             for edge in range(inputs.offsets[neuron], inputs.offsets[neuron + 1]):
                 previous = tick - inputs.delays[edge]
-                if previous >= 0:
+                if synapses is not None:
+                    current += synapses.edge_current(tick, edge)
+                elif previous >= 0:
                     current += (
                         inputs.weights[edge]
                         * spikes[previous * n + inputs.sources[edge]]
@@ -141,7 +159,22 @@ def cpu_recurrent_reference(inputs: RecurrentInputs) -> dict[str, object]:
             spikes.append(int(spike))
             voltage.append(float(states[neuron]["v"]))
             adaptation.append(float(states[neuron]["w"]))
-    return {"voltage": voltage, "adaptation": adaptation, "spikes": spikes}
+        if synapses is not None:
+            synapses.update(
+                tick, spikes[tick * n : (tick + 1) * n], inputs.rewards[tick]
+            )
+    result: dict[str, object] = {
+        "voltage": voltage,
+        "adaptation": adaptation,
+        "spikes": spikes,
+    }
+    if synapses is not None:
+        result.update(
+            weights=synapses.weights,
+            eligibility=synapses.eligibility,
+            available=synapses.available,
+        )
+    return result
 
 
 def execute_recurrent(
@@ -162,9 +195,10 @@ def execute_recurrent(
                 output_dir=Path(directory),
             )
     output_dir.mkdir(parents=True, exist_ok=True)
-    ptx = compile_cuda_source(
-        Path(__file__).with_name("recurrent.cu").read_text(), target_sm=target_sm
-    )
+    source = Path(__file__).with_name("recurrent.cu").read_text()
+    if inputs.synapses is not None:
+        source = "#define PAN_PLASTIC\n" + source
+    ptx = compile_cuda_source(source, target_sm=target_sm)
     artifact = output_dir / "recurrent.ptx"
     artifact.write_text(ptx, encoding="utf-8")
     driver = CudaDriver()
@@ -199,6 +233,17 @@ def execute_recurrent(
             # CUDA does not accept a zero-byte allocation for an empty graph.
             array_type: Any = kind * max(1, len(values))
             host[name] = array_type(*values)
+        if inputs.synapses is not None:
+            edges = len(inputs.sources)
+            host.update(
+                synapse_config=(double * 11)(*inputs.synapses.parameters()),
+                rewards=(double * inputs.ticks)(*inputs.rewards),
+                eligibility=(double * edges)(),
+                available=(double * edges)(*([1.0] * edges)),
+                last_event=(ctypes.c_int32 * edges)(*([-10_000_000] * edges)),
+                last_spike=(ctypes.c_int32 * n)(*([-10_000_000] * n)),
+                emitted=(double * (ring_size * edges))(),
+            )
         device: dict[str, DeviceAllocation] = {}
         for name, buffer in host.items():
             allocation = driver.alloc_device(ctypes.sizeof(buffer))
@@ -225,12 +270,24 @@ def execute_recurrent(
         ):
             driver.copy_device_to_host(host[name], device[name])
             outputs[key] = list(host[name])
+        if inputs.synapses is not None:
+            for name in ("weights", "eligibility", "available"):
+                driver.copy_device_to_host(host[name], device[name])
+                outputs[name] = list(host[name])
         return {
-            "classification": "PLAYGROUND_CUDA14_RECURRENT_REFERENCE",
+            "classification": (
+                "PLAYGROUND_CUDA15_PLASTIC_REFERENCE"
+                if inputs.synapses
+                else "PLAYGROUND_CUDA14_RECURRENT_REFERENCE"
+            ),
             "scientific_evidence": False,
             "execution_status": "GPU_KERNEL_EXECUTED",
             "state_dtype": "float64",
-            "comparison_scope": "STATIC_SYNAPSES_AND_MEMBRANE_ONLY",
+            "comparison_scope": (
+                "MEMBRANE_AND_FROZEN_REWARD_PLASTICITY"
+                if inputs.synapses
+                else "STATIC_SYNAPSES_AND_MEMBRANE_ONLY"
+            ),
             "full_pan_backend": False,
             "preflight": preflight.to_mapping(),
             "ticks": inputs.ticks,
@@ -253,9 +310,15 @@ def recurrent_parity(
     if isinstance(tolerance, bool) or not math.isfinite(tolerance) or tolerance < 0:
         raise ValueError("tolerance must be finite and non-negative")
     try:
+        names = ["voltage", "adaptation"]
+        if any(
+            name in reference or name in candidate
+            for name in ("weights", "eligibility", "available")
+        ):
+            names.extend(("weights", "eligibility", "available"))
         errors = {
             name: max_abs_error(reference.get(name, []), candidate.get(name, []))
-            for name in ("voltage", "adaptation")
+            for name in names
         }
     except (ValueError, TypeError, OverflowError) as exc:
         return {
@@ -279,7 +342,11 @@ def recurrent_parity(
         "D1_spikes_exact": exact,
         "D2_max_abs_error": errors,
         "scientific_evidence": False,
-        "scope": "MEMBRANE_AND_STATIC_SYNAPSES",
+        "scope": (
+            "MEMBRANE_AND_FROZEN_REWARD_PLASTICITY"
+            if "weights" in names
+            else "MEMBRANE_AND_STATIC_SYNAPSES"
+        ),
     }
 
 

@@ -206,6 +206,9 @@ class DashboardServer(ThreadingHTTPServer):
 
     allow_reuse_address = True
     daemon_threads = True
+    # A browser opens bursts of parallel ES-module and asset connections.
+    # The stdlib's older backlog of five rejects some on Windows.
+    request_queue_size = 64
 
     def __init__(
         self,

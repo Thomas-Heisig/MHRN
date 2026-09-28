@@ -7,6 +7,7 @@ import threading
 import time
 from collections import deque
 from collections.abc import Callable, Mapping
+from dataclasses import replace
 from typing import cast
 
 from src.playground import service
@@ -29,6 +30,7 @@ from src.playground.cuda.recurrent import (
     recurrent_fixture,
     recurrent_parity,
 )
+from src.playground.cuda.synapses import SynapseConfig
 from src.playground.models import PlaygroundConfig
 from src.playground.night_run import NightRunManager
 from src.playground.pan import PANEmbodiedSandboxSession, PANSessionDaemon
@@ -408,6 +410,17 @@ def _cuda_recurrent_parity(payload: Mapping[str, object]) -> dict[str, object]:
         ticks=_payload_int(payload, "ticks", 100),
         model=_payload_text(payload, "model", "pan_adex_5d"),
     )
+    plasticity = payload.get("plasticity", False)
+    if not isinstance(plasticity, bool):
+        raise ValueError("plasticity must be boolean")
+    if plasticity:
+        inputs = replace(
+            inputs,
+            synapses=SynapseConfig(),
+            rewards=tuple(
+                1.0 if tick % 32 == 0 else 0.0 for tick in range(inputs.ticks)
+            ),
+        )
     reference = cpu_recurrent_reference(inputs)
     candidate = execute_recurrent(
         inputs,
@@ -415,7 +428,11 @@ def _cuda_recurrent_parity(payload: Mapping[str, object]) -> dict[str, object]:
         target_sm=_payload_text(payload, "target_sm", "sm_86"),
     )
     return {
-        "classification": "PLAYGROUND_CUDA14_RECURRENT_PARITY",
+        "classification": (
+            "PLAYGROUND_CUDA15_PLASTICITY_PARITY"
+            if plasticity
+            else "PLAYGROUND_CUDA14_RECURRENT_PARITY"
+        ),
         "scientific_evidence": False,
         "model": inputs.model,
         "ticks": inputs.ticks,

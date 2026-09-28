@@ -36,6 +36,12 @@ def main() -> int:
         ptx_path.read_text(), output_dir=recurrent_dir, target_sm="sm_86"
     )
     results["recurrent"] = recurrent_report.to_mapping()
+    plastic_report = assemble_ptx(
+        compile_cuda_source("#define PAN_PLASTIC\n" + source),
+        output_dir=root / "plasticity",
+        target_sm="sm_86",
+    )
+    results["plasticity"] = plastic_report.to_mapping()
     print(json.dumps(results, indent=2, sort_keys=True))
     return 0
 

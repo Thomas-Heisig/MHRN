@@ -158,4 +158,8 @@ test("recurrent CUDA diagnostic reports unavailability without a CPU success fal
   await expect(page.locator("#pg-cuda-recurrent-state")).toContainText(
     "CUDA driver unavailable",
   );
+  await page.locator("#pg-cuda-plasticity").click();
+  await expect(page.locator("#pg-cuda-plasticity-state")).toContainText(
+    "CUDA driver unavailable",
+  );
 });
