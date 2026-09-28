@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import hashlib
+import json
 import math
 from collections import deque
 from dataclasses import dataclass, field
@@ -312,6 +314,7 @@ class EmbodiedEnvironment:
         self.reward_trigger = RewardTrigger(config)
         self.episode_tick = 0
         self.total_ticks = 0
+        self.trajectory_digest = hashlib.sha256()
         self.terminals = 0
         self.reward_total = 0.0
         self.last_reward = 0.0
@@ -387,6 +390,9 @@ class EmbodiedEnvironment:
         frame["reward"] = reward
         frame["reward_events"] = reward_events
         frame["terminal"] = terminal
+        self.trajectory_digest.update(
+            json.dumps(frame, sort_keys=True, allow_nan=False).encode("utf-8")
+        )
         self.frames.append(frame)
         self.total_ticks += 1
         self.reward_total += reward
@@ -408,6 +414,7 @@ class EmbodiedEnvironment:
             "backend": "CPU_REFERENCE",
             "scientific_evidence": False,
             "ticks": self.total_ticks,
+            "full_trajectory_digest": self.trajectory_digest.hexdigest(),
             "terminals": self.terminals,
             "reward_total": self.reward_total,
             "world": self.last_frame,

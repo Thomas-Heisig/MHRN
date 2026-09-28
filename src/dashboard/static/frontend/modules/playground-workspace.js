@@ -773,7 +773,7 @@ export function initGuidedWorkspace({
       runSummary.className = "pg-summary";
       runSummary.textContent = !r.session_id
         ? "Robustheitskontrollen abgeschlossen. Ergebnisse stehen in den technischen Details und im Export bereit."
-        : `Session ${r.session_id || "—"} · Seed ${r.config?.seed ?? "—"} · CPU-Referenz · ${r.metrics?.total_spikes ?? 0} Spikes · explorativer Lauf, keine wissenschaftliche Evidenz.`;
+        : `Session ${r.session_id || "—"} · Seed ${r.config?.seed ?? "—"} · ${r.execution?.neuron_backend === "cuda_membrane" ? "CUDA-Membran / CPU-PAN" : "CPU-Referenz"} · ${r.metrics?.total_spikes ?? 0} Spikes · explorativer Lauf, keine wissenschaftliche Evidenz.`;
       if (r.behavioral_learning) {
         const learning = r.behavioral_learning;
         const contexts = Object.keys(learning.context_policies || {}).length;

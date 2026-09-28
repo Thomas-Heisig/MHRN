@@ -43,6 +43,10 @@ class PANLiveSession:
     """Persistent, bounded PAN reference session."""
 
     def __init__(self, config: PlaygroundConfig) -> None:
+        if config.neuron_backend != "cpu":
+            raise ValueError(
+                "CUDA membrane selection currently applies to Builder runs; live sessions require cpu"
+            )
         if config.neuron_model != "pan_adex_5d":
             raise ValueError("PAN live session currently requires pan_adex_5d")
         self.config = config
