@@ -3,7 +3,7 @@ from pathlib import Path
 STATIC = Path("src/dashboard/static")
 
 
-def test_eight_first_class_workspaces_and_parameter_ownership() -> None:
+def test_curated_workspaces_and_parameter_ownership() -> None:
     router = (STATIC / "frontend" / "workspace-router.js").read_text(encoding="utf-8")
     for area in (
         "dashboard",
@@ -14,9 +14,14 @@ def test_eight_first_class_workspaces_and_parameter_ownership() -> None:
         "settings",
         "review",
         "files",
+        "publication",
+        "playground",
+        "old",
     ):
         assert f"  {area}: {{" in router
-    assert 'number: "08"' in router
+    assert 'number: "09"' in router
+    assert 'number: "PG"' in router
+    assert 'number: "OLD"' in router
     assert '["parameters", "Parameter", "settings"]' in router
     assert 'owner: "appsettings"' in router
     assert 'owner: "review"' in router
@@ -173,6 +178,7 @@ def test_every_route_has_valid_workspace() -> None:
     workspaces_in_html.add("playground")  # generated
     workspaces_in_html.add("appsettings")  # generated
     workspaces_in_html.add("review")  # generated
+    workspaces_in_html.add("old")  # generated archive
     workspaces_in_html.add("wesen")  # dynamically created by wesen-base.js
 
     for match in __import__("re").finditer(r'\["(\w+)",\s*"[^"]+",\s*"(\w+)"', router):
@@ -240,27 +246,29 @@ def test_all_science_routes_have_unique_ownership() -> None:
     assert '"observatory", "Observatory", "research", "focus"' in router
 
 
-def test_wesen_cognition_profile_symbiosis_use_focus() -> None:
-    """Wesen focus routes must use 'focus' action, not just scroll."""
+def test_runtime_wesen_detail_views_are_preserved_under_old() -> None:
     router = (STATIC / "frontend" / "workspace-router.js").read_text(encoding="utf-8")
-    assert '"cognition", "Kognition", "wesen", "focus"' in router
-    assert '"profile", "Profil", "wesen", "focus"' in router
-    assert '"symbiosis", "Neural Symbiosis", "wesen", "focus"' in router
+    assert 'wesen: {' in router
+    assert 'routes: [\n      ["overview", "Übersicht", "embodiment"],\n    ]' in router
+    assert '"wesen-cognition", "Runtime & Wesen · Kognition", "wesen", "focus"' in router
+    assert '"wesen-profile", "Runtime & Wesen · Profil", "wesen", "focus"' in router
+    assert '"wesen-symbiosis", "Runtime & Wesen · Neural Symbiosis", "wesen", "focus"' in router
 
 
-def test_control_focusOnly_routes_exist() -> None:
-    """Control focusOnly routes must specify selectors to keep visible."""
+def test_control_keeps_console_and_structure_while_other_controls_move_to_old() -> None:
     router = (STATIC / "frontend" / "workspace-router.js").read_text(encoding="utf-8")
-    assert '"runtime", "Runtime", "control", "focusOnly"' in router
     assert '"console", "Konsole", "control", "focusOnly"' in router
-    assert '"experiments", "Experiment Mode", "control", "focusOnly"' in router
     assert '"structural", "Struktur & Lernen", "control", "focusOnly"' in router
+    assert '"control-runtime", "Control · Runtime", "control", "focusOnly"' in router
+    assert '"control-experiments", "Control · Experiment Mode", "control", "focusOnly"' in router
 
 
-def test_parameter_route_uses_settings_workspace() -> None:
-    """Parameter must remain under the settings workspace (tab-settings)."""
+def test_parameter_route_is_exposed_from_settings() -> None:
     router = (STATIC / "frontend" / "workspace-router.js").read_text(encoding="utf-8")
-    assert '["parameters", "Parameter", "settings"]' in router
+    settings_section = router.split("settings: {", 1)[1].split("review: {", 1)[0]
+    assert '["parameters", "Parameter", "settings"]' in settings_section
+    control_section = router.split("control: {", 1)[1].split("release: {", 1)[0]
+    assert '["parameters", "Parameter", "settings"]' not in control_section
 
 
 def test_review_routes_use_generated_workspace() -> None:
@@ -284,3 +292,39 @@ def test_data_mhrn_persistent_attribute_supported() -> None:
     """The router must support data-mhrn-persistent to exclude elements from hiding."""
     router = (STATIC / "frontend" / "workspace-router.js").read_text(encoding="utf-8")
     assert "isPersistent" in router or "data-mhrn-persistent" in router
+
+
+def test_primary_area_route_sets_match_frontend_cleanup_contract() -> None:
+    router = (STATIC / "frontend" / "workspace-router.js").read_text(encoding="utf-8")
+
+    dashboard = router.split("dashboard: {", 1)[1].split("science: {", 1)[0]
+    assert '["overview", "Übersicht", "overview"]' in dashboard
+    assert '["sysinfo", "System Info", "overview", "overview", "sysinfo"]' in dashboard
+    assert '"vitals", "Vitals"' not in dashboard
+
+    science = router.split("science: {", 1)[1].split("wesen: {", 1)[0]
+    assert '["observatory", "Observatory", "research", "focus"' in science
+    assert '["experiments", "Experimente", "research", "research", "experiments"]' in science
+    assert '"network", "Netzwerk"' not in science
+
+    publication = router.split("publication: {", 1)[1].split("playground: {", 1)[0]
+    assert '["paper", "Paper", "publication", "publication", "paper"]' in publication
+    assert '["openscience", "Open Wissenschaft", "publication", "publication", "openscience"]' in publication
+
+    old = router.split("old: {", 1)[1].split("});", 1)[0]
+    for route_id in (
+        "dashboard-vitals",
+        "science-network",
+        "science-cellmodel",
+        "science-snn",
+        "science-recurrent",
+        "wesen-live",
+        "wesen-cognition",
+        "wesen-snn",
+        "wesen-recurrent",
+        "control-runtime",
+        "control-experiments",
+        "control-snn",
+        "control-recurrent",
+    ):
+        assert f'["{route_id}"' in old
