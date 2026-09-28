@@ -194,6 +194,10 @@ test("Builder run renders the coupled PAN body and recorded frame replay", async
     '"pan_action": null',
   );
   await expect(page.locator("#pg-analysis-io")).toContainText("cue_decoding");
+  await expect(page.locator("#pg-backend-components")).toContainText(
+    "world posture sensors actuators reward",
+  );
+  await expect(page.locator("#pg-backend-components")).toContainText("CPU");
 });
 
 test("CUDA Builder choice and D3 control use explicit endpoints without fallback", async ({
@@ -283,5 +287,26 @@ test("synaptic transfer control displays bounded interpretation", async ({
   );
   await expect(page.locator("#pg-transfer-state")).toContainText(
     '"neural_transfer_claim": false',
+  );
+});
+
+test("PAN state backend reaches the actual D3 request", async ({ page }) => {
+  await page.locator("#pg-workspace-expand").click();
+  await page.locator("#pg-neuron-backend").selectOption("cuda_pan");
+  await page.route("**/api/playground/cuda/builder-parity", async (route) => {
+    expect(route.request().postDataJSON().neuron_backend).toBe("cuda_pan");
+    await route.fulfill({
+      status: 200,
+      contentType: "application/json",
+      body: JSON.stringify({
+        passed: true,
+        scope: "REAL_BUILDER_CUDA_PAN_STATE_CPU_SYNAPSES_AND_ENVIRONMENT",
+        full_gpu_pan: false,
+      }),
+    });
+  });
+  await page.locator("#pg-cuda-builder-parity").click();
+  await expect(page.locator("#pg-cuda-builder-parity-state")).toContainText(
+    "CUDA_PAN_STATE",
   );
 });

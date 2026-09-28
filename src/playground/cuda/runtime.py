@@ -622,6 +622,21 @@ class CudaDriver:
             device_ordinal=device_ordinal,
         )
 
+    def kernel(self, loaded: DriverModule, name: str) -> DriverModule:
+        """Borrow another function in the same owned module/context; do not unload it separately."""
+        if not name or not name.isascii() or not name.replace("_", "").isalnum():
+            raise ValueError("invalid CUDA kernel symbol")
+        function = ctypes.c_void_p()
+        self._check(
+            self._lib.cuModuleGetFunction(
+                ctypes.byref(function), loaded.module, name.encode("ascii")
+            ),
+            "cuModuleGetFunction",
+        )
+        return DriverModule(
+            loaded.context, loaded.module, function, loaded.device_ordinal
+        )
+
     def unload(self, loaded: DriverModule) -> None:
         module_error: CudaDriverError | None = None
         if loaded.module.value:

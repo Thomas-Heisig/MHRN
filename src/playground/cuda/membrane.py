@@ -10,7 +10,9 @@ from contextlib import contextmanager
 from pathlib import Path
 from typing import Any
 
+from ..pan.runtime import PANRuntime
 from .nvrtc import compile_cuda_source
+from .pan_state import PANStateStepper
 from .recurrent import PARAMETER_NAMES, SUPPORTED_MODELS
 from .runtime import CudaDriver, CudaDriverError, DeviceAllocation, DriverModule
 
@@ -32,6 +34,7 @@ class MembraneStepper:
         self.device: dict[str, DeviceAllocation] = {}
         self.host: dict[str, Any] = {}
         self.ticks = 0
+        self.pan: PANStateStepper | None = None
         row = [
             p.get(name, 1.0 if name in {"resistance", "delta_t", "tau_w_ms"} else 0.0)
             for p in parameters
@@ -122,9 +125,17 @@ class MembraneStepper:
 
 @contextmanager
 def cuda_membrane_session(
-    model: str, parameters: Sequence[Mapping[str, float]], dt_ms: float
+    model: str,
+    parameters: Sequence[Mapping[str, float]],
+    dt_ms: float,
+    *,
+    pan_runtime: PANRuntime | None = None,
 ) -> Generator[MembraneStepper]:
     source = Path(__file__).with_name("membrane.cu").read_text(encoding="utf-8")
+    if pan_runtime is not None:
+        source += "\n" + Path(__file__).with_name("pan_state.cu").read_text(
+            encoding="utf-8"
+        )
     ptx = compile_cuda_source(source, target_sm="sm_86")
     with tempfile.TemporaryDirectory(prefix="mhrn-membrane-") as directory:
         path = Path(directory) / "membrane.ptx"
@@ -134,8 +145,16 @@ def cuda_membrane_session(
         try:
             stepper = MembraneStepper(driver, loaded, model, parameters, dt_ms)
             try:
+                if pan_runtime is not None:
+                    stepper.pan = PANStateStepper(
+                        driver, driver.kernel(loaded, "pan_state_step"), pan_runtime
+                    )
                 yield stepper
             finally:
-                stepper.close()
+                try:
+                    if stepper.pan is not None:
+                        stepper.pan.close()
+                finally:
+                    stepper.close()
         finally:
             driver.unload(loaded)

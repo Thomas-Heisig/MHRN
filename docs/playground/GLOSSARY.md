@@ -276,3 +276,7 @@ Abfrage- und Antwortmuster trotz gemeinsamem Layout semantisch vermischt werden.
 Bestehender framework-neutraler Vertrag für periphere neuronale oder virtuelle
 Verarbeitungsbereiche. Der Playground-Referenzadapter erfüllt diesen Vertrag,
 während die Codec-Schicht separat bleibt.
+
+
+## PAN — Persistent Adaptive Neural
+Projektname einer Architektur-Familie auf Neuron-, Synapsen- und Netzwerkebene. Persistenz und Adaptation sind getrennt zu prüfende Zustandsverträge; der Name behauptet weder vollständige CUDA-Ausführung noch Kognition. Siehe [Definition](PAN_ARCHITECTURE_FAMILY.md) und [Gesamt-Roadmap](PAN_GPU_ROADMAP.md).

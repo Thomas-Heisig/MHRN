@@ -901,9 +901,11 @@ class PlaygroundConfig:
             raise ValueError("clock_base_hz must be between 1 and 10000")
         if not self.dt_ms <= self.clock_event_batch_ms <= 1000.0:
             raise ValueError("clock_event_batch_ms must be between dt_ms and 1000")
-        if self.neuron_backend not in {"cpu", "cuda_membrane"}:
-            raise ValueError("neuron_backend must be cpu or cuda_membrane")
-        if self.neuron_backend == "cuda_membrane" and self.neuron_model not in {
+        if self.neuron_backend == "cuda_pan" and self.neuron_model != "pan_adex_5d":
+            raise ValueError("cuda_pan requires pan_adex_5d")
+        if self.neuron_backend not in {"cpu", "cuda_membrane", "cuda_pan"}:
+            raise ValueError("neuron_backend must be cpu, cuda_membrane or cuda_pan")
+        if self.neuron_backend != "cpu" and self.neuron_model not in {
             "lif",
             "adex",
             "pan_adex_5d",

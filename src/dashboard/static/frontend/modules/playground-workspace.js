@@ -88,7 +88,7 @@ export function initGuidedWorkspace({
   intro(
     "playground-builder",
     "Experiment aufbauen",
-    "1 · Startpunkt wählen. 2 · Parameter prüfen. 3 · CPU oder CUDA-Membran wählen und den Lauf starten.",
+    "1 · Startpunkt wählen. 2 · Parameter prüfen. 3 · CPU, CUDA-Membran oder CUDA-PAN-Zustand wählen und den Lauf starten.",
   );
   intro(
     "playground-run",
@@ -624,7 +624,7 @@ export function initGuidedWorkspace({
     for (const id of ["pg-run", "pg-robustness", "pg-user-preset-save"]) {
       if ($(id)) $(id).disabled = errors.length > 0;
     }
-    summary.textContent = `${value("pg-neurons")} Neuronen · ${value("pg-edges")} Kanten · ${value("pg-ticks")} Ticks · Seed ${$("pg-seed").value} · ${$("pg-neuron-backend")?.value === "cuda_membrane" ? "CUDA-Membran / CPU-PAN" : "CPU-Referenz"}. ${errors.length ? `${errors.length} Eingabefehler.` : "Eingaben geprüft."} Laufzeit: noch keine belastbare Messung für diese Konfiguration. Der hybride CUDA-Pfad führt die Membran auf der GPU aus; Synapsen und Körper bleiben auf der CPU.`;
+    summary.textContent = `${value("pg-neurons")} Neuronen · ${value("pg-edges")} Kanten · ${value("pg-ticks")} Ticks · Seed ${$("pg-seed").value} · ${$("pg-neuron-backend")?.value === "cuda_pan" ? "CUDA-Membran + PAN-Zustand" : $("pg-neuron-backend")?.value === "cuda_membrane" ? "CUDA-Membran / CPU-PAN" : "CPU-Referenz"}. ${errors.length ? `${errors.length} Eingabefehler.` : "Eingaben geprüft."} Laufzeit: noch keine belastbare Messung für diese Konfiguration. Der hybride CUDA-Pfad führt die Membran auf der GPU aus; Synapsen und Körper bleiben auf der CPU.`;
     return errors.length === 0;
   }
   validation.onclick = (e) => {
@@ -760,6 +760,10 @@ export function initGuidedWorkspace({
   runSummary.textContent =
     "Noch kein Lauf. Im Builder ein Preset wählen und starten oder eine gespeicherte Session öffnen.";
   $("pg-metrics").before(runSummary);
+  const backendTable = document.createElement("table");
+  backendTable.id = "pg-backend-components";
+  backendTable.hidden = true;
+  runSummary.after(backendTable);
   const resultPanels = [
     ...$("playground-run").querySelectorAll(
       ".playground-metrics,.playground-viz-grid,.playground-analysis-grid",
@@ -770,10 +774,29 @@ export function initGuidedWorkspace({
     const r = lastResult();
     resultPanels.forEach((panel) => (panel.hidden = !r?.monitors));
     if (r) {
+      backendTable.replaceChildren();
+      backendTable.hidden = !r.execution?.components;
+      if (r.execution?.components) {
+        const caption = document.createElement("caption");
+        caption.textContent =
+          "Tatsächliche Ausführung dieses Laufs · hybrider Playground, kein vollständiges CUDA-MHRN";
+        backendTable.append(caption);
+        for (const [component, backend] of Object.entries(
+          r.execution.components,
+        )) {
+          const row = document.createElement("tr"),
+            label = document.createElement("th"),
+            value = document.createElement("td");
+          label.textContent = component.replaceAll("_", " ");
+          value.textContent = backend === "cuda" ? "GPU (CUDA)" : "CPU";
+          row.append(label, value);
+          backendTable.append(row);
+        }
+      }
       runSummary.className = "pg-summary";
       runSummary.textContent = !r.session_id
         ? "Robustheitskontrollen abgeschlossen. Ergebnisse stehen in den technischen Details und im Export bereit."
-        : `Session ${r.session_id || "—"} · Seed ${r.config?.seed ?? "—"} · ${r.execution?.neuron_backend === "cuda_membrane" ? "CUDA-Membran / CPU-PAN" : "CPU-Referenz"} · ${r.metrics?.total_spikes ?? 0} Spikes · explorativer Lauf, keine wissenschaftliche Evidenz.`;
+        : `Session ${r.session_id || "—"} · Seed ${r.config?.seed ?? "—"} · ${r.execution?.neuron_backend === "cuda_pan" ? "CUDA-Membran + PAN-Zustand" : r.execution?.neuron_backend === "cuda_membrane" ? "CUDA-Membran / CPU-PAN" : "CPU-Referenz"} · ${r.metrics?.total_spikes ?? 0} Spikes · explorativer Lauf, keine wissenschaftliche Evidenz.`;
       if (r.cue_decoding?.status === "DESCRIPTIVE_ONLY") {
         runSummary.textContent += ` Aktivitaetsdecoder: ${(r.cue_decoding.accuracy * 100).toFixed(1)} % auf ${r.cue_decoding.test_episodes} Testepisoden; ${r.cue_decoding.input_cue_control || "aligned"}. Kein Nachweis eines neuronalen Lernvorteils.`;
       }

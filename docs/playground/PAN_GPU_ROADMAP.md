@@ -38,3 +38,47 @@ The actual Builder can now run membrane updates on CUDA with the complete existi
 ## Cue interventions
 
 Actual independent randomized/absent input cues and a six-condition pair-STDP control suite are integrated into the Builder and research controls. The matched 3-seed sample decodes aligned cues equally well with frozen and plastic weights, so no neural-learning advantage is claimed. [Protocol and results](CUE_CONTROL_EXPERIMENTS.md). A [synaptic transfer probe](SYNAPTIC_TRANSFER.md) transfers validated weights/delays to new cue channels with fresh-state controls. Full checkpoint resumption and faster neural task learning remain unproven.
+
+
+## Integrated PAN work programme (2026-09-28)
+
+PAN is the project architecture-family name **Persistent Adaptive Neural**, with neuron, synapse and network projections. Persistence and adaptation are acceptance obligations at each level, not claims that all state already survives every backend or hardware transition. [Definition and invariants](PAN_ARCHITECTURE_FAMILY.md).
+
+Status below distinguishes the non-canonical Playground from canonical MHRN. A feature in the Playground does not automatically establish a canonical RuntimeController backend. The CUDA-1.4/1.5 reference is accurately described as **recurrent CUDA SNN + frozen-reward synaptic-plasticity reference backend**. The Builder has a separate hybrid implementation.
+
+| Work package | Current execution | Required acceptance before completion |
+| --- | --- | --- |
+| Membrane and spike detection | CPU or actual CUDA Builder | D1 full spikes, finite D2, threshold/refractory boundaries |
+| PAN Hyperstate (5–32 axes) | New optional CUDA PAN state stage | Per-tick full-state parity, dead-state retention and dimensions 5/10/32 |
+| PAN Health / Energy | New optional CUDA PAN state stage | Bounds, finite checks, stress/recovery and death-threshold cases |
+| Information Proxy | New optional CUDA PAN state stage | Local-surprise parity; no substitution for PID/information theory validation |
+| Consolidation | New optional CUDA PAN state stage | Activity-history parity; not established cognitive memory |
+| Apoptosis | CUDA decision, host event bookkeeping | Identical death tick/id, dead neurons stop spiking, buffers remain valid |
+| Feedback projection / population reduction | CPU, deterministic order | GPU ordered reduction, delayed feedback history, D2 and D3 |
+| Synaptic propagation / STDP / eligibility | CPU Builder; separate CUDA reference | Port actual Builder update order and reward credit, full synaptic-state parity |
+| Inhibitory integration | CPU Builder; reference restriction remains | Signed emissions, GABA scaling, same arrival ordering and E/I controls |
+| Full Builder RNG semantics | Host traversal stream; reference counter RNG differs | Versioned common RNG contract or exact event-draw replay, unchanged controls, STP parity |
+| Growth / dynamic synaptogenesis / structural mutation | CPU barriers | Deterministic additions/removals, stable IDs, capacity and pending-event migration |
+| Live Environment Reward | CPU in real hybrid loop | Action-time credit, sign/zero controls, same live reward on GPU synapses |
+| Stick Figure / Posture | CPU shared physical world, real Builder coupling | GPU or explicitly supported host adapter, full trajectory/reward parity |
+| Sensors / actuators / Neural I/O | CPU real Builder path | Complete codec/projection/action contract and causal sensor/action perturbations |
+| Complete closed-loop execution | Hybrid Builder verified; GPU live sessions rejected | All declared backend components executed, no silent fallback; live lifecycle tests |
+| Canonical MHRN self-organization | Separate canonical mechanisms | Map actual canonical state/rules; conformance to canonical CPU, not Playground proxies |
+| Canonical storage/checkpoint | Existing canonical path separate; synaptic probe is not full checkpoint | Versioned full state including RNG, queues, topology, time, body, policy; exact resume |
+| RuntimeController integration | Not a productive full CUDA backend | Backend capability routing, cancellation, errors, storage and rollback tests |
+| CUDA-2 persistent execution | Buffers reused within runs; per-tick transfers remain | Device-resident state, bounded stop/checkpoint, occupancy-safe launches, measured throughput |
+| CUDA-3 neurogenesis | CPU exploratory growth only | Neuron creation/death/remapping and restored pending events with reference equivalence |
+| Adaptive delays / SSD offload | Partial host facilities | Preserve emitted amplitude and arrival time during delay changes/spill/restore |
+| Multi-GPU / clusters | Open | Explicit partition/RNG/checkpoint protocol, cross-device delays, failure recovery and hardware scaling |
+
+### Ordered next stages
+
+1. Integrate and validate the new PAN state CUDA stage in Builder, D3 endpoint, visible component table and main CI.
+2. Port PAN feedback projection, then actual Builder synapses with inhibitory emissions and traversal-RNG parity. Preserve ordered reductions and emission-time amplitude. Keep the frozen-reward reference as a separate oracle.
+3. Add persistent live-session integration, bounded cancellation and complete versioned checkpoints before advertising persistence across runs/backends.
+4. Connect canonical self-organization and RuntimeController through explicit state/conformance adapters. Do not relabel exploratory health/energy/information proxies as canonical mechanisms.
+5. Move structural mutation/neurogenesis and event migration through validated barriers; then resident execution, measured optimization and multi-GPU/distributed tests.
+
+Research runs alongside engineering: aligned/randomized/absent cues and policy-current ablation are integrated. Synaptic-transfer calibration is integrated but shows no consistent advantage. Remaining tests include cue removal after a training/delay phase, activity-driven policy with a causal decoder ablation, genuinely new-task reward learning, larger paired seed samples and predeclared held-out evaluation. A negative result is a completed experiment, not a reason to change acceptance thresholds. Decodability, causal neural use and learned generalization remain different claims.
+
+The attachments motivate this programme but do not supply measured evidence. For example, high neuron count alone does not imply occupancy failure, FP64 alone does not guarantee exact execution, and matching one success rate is not sufficient D3. Occupancy is queried from the actual compiled kernel; parity states precisely which quantities and trajectories were compared.

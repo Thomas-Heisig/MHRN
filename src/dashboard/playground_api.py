@@ -181,7 +181,7 @@ def _cuda_runtime_status() -> dict[str, object]:
             "CUDA-1.3": "CPU_GATE_REFERENCE_D2_IMPLEMENTED_HARDWARE_VERIFICATION_REQUIRED",
             "CUDA-1.4": "BOUNDED_RECURRENT_FP64_REFERENCE_IMPLEMENTED",
             "CUDA-1.5": "BOUNDED_FROZEN_REWARD_PLASTICITY_REFERENCE_IMPLEMENTED",
-            "CUDA-1.6": "HYBRID_BUILDER_MEMBRANE_GPU_BODY_CPU_IMPLEMENTED",
+            "CUDA-1.6": "HYBRID_BUILDER_MEMBRANE_AND_OPTIONAL_PAN_STATE_GPU_BODY_CPU_IMPLEMENTED",
         },
         "application_cpu": {
             "sandbox_physics": True,
@@ -195,6 +195,9 @@ def _cuda_runtime_status() -> dict[str, object]:
             "gate_single_tick": True,
             "membrane_state_100_ticks": True,
             "adaptation_state": True,
+            "pan_health_energy_hyperstate": "OPTIONAL_CUDA_PAN_BUILDER",
+            "pan_apoptosis_decision": "OPTIONAL_CUDA_PAN_BUILDER",
+            "pan_feedback_projection": False,
             "refractory_state": False,
             "synapses": False,
             "delays": True,

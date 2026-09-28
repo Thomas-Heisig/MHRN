@@ -146,7 +146,7 @@ class PANRuntime:
             self.feedback_samples += 1
         return currents
 
-    def _position_projection(self, neuron_id: int) -> float:
+    def position_projection(self, neuron_id: int) -> float:
         if neuron_id >= len(self.coordinates):
             return 0.0
         point = self.coordinates[neuron_id]
@@ -217,7 +217,7 @@ class PANRuntime:
                 health,
                 neuromodulation,
                 energy,
-                self._position_projection(neuron_id),
+                self.position_projection(neuron_id),
                 consolidation,
                 coupling,
             ]
