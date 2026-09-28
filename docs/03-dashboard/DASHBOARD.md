@@ -8,17 +8,25 @@ The current UI is a responsive, full-width workspace system with one shared visu
 
 ## Primary navigation
 
-The user-facing frontend is intentionally reduced to **three primary areas**:
+Die Hauptnavigation bleibt bewusst nah an der etablierten MHRN-Struktur. Für die kommende Playground-Integration werden die aktiven Bereiche **reduziert**, während alle herausgenommenen Ansichten unter `OLD` funktionsfähig erhalten bleiben.
 
-1. **Dashboard** — operator command center with runtime/health/gate/CI state, neural activity, storage, learning, structural state and fast routes to explicit controls.
-2. **Wissenschaft** — Network Workbench, experiment workflow, research DATA/EVID/documentation, formula rendering, Research Chat and scientific parameter inspection.
-3. **Runtime & Wesen** — adaptive machine-native body, technical body boundary, interoception, connection inventory, Neural Symbiosis/MSBA visibility and capability maturity.
+1. **Dashboard · System & Betrieb** — Übersicht, System Info.
+2. **Wissenschaft · Evidenz & Analyse** — Übersicht, Observatory, Experimente.
+3. **Runtime & Wesen · Körper & Verhalten** — Übersicht.
+4. **Control · Steuerung & Parameter** — Übersicht, Konsole, Struktur & Lernen.
+5. **Release · Gate & Reife** — Übersicht, Gate, Releases, Vorschau, Timeline, Entwicklung, Wissenschaft, Gesamtarbeit, Roadmap.
+6. **Settings · App & Integrationen** — Übersicht, Oberfläche, AI & Chat, Integrationen, Grenzen, Parameter.
+7. **Review · Human Review & Prüfer** — Übersicht, Review Inbox, AI Reports, External Review, Prüferportal, Methoden & Ethik.
+8. **Dateien · Datei Viewer & Explorer** — Übersicht, Datei-Explorer.
+9. **Publikation · Wissenschaftliche Arbeit** — Einfach erklärt, Publikation, Paper, Open Wissenschaft, Impressum & Rechtliches.
+10. **Playground · Exploration & Baukasten** — Übersicht, Builder, Lauf & Auswertung, Sessions, Bausteine.
+11. **OLD · Archiv & Reserve** — alle übrigen früheren Ansichten, geordnet nach Dashboard, Wissenschaft, Runtime & Wesen und Control.
 
-The existing `Control`, `Network`, `Research`, `Settings`, `Embodiment` and `Release/Gate` workspaces remain internal routed surfaces so their lifecycle and functions are preserved. They are no longer independent top-level navigation concepts.
+`OLD` ist keine Löschung und kein technischer Rückbau. Die bisherigen Panels, Module, APIs und Datenpfade bleiben bestehen. Verschoben wird nur ihre primäre Navigation. Dazu gehören unter anderem Vitals/Organe/Gedächtnis/Struktur/Snapshot, Netzwerk/Cell Modell/Dynamik/Inspektor/Daten/Registry/SNN, die detaillierten Wesen-Ansichten sowie Runtime-/Experiment-/SNN-/Rekurrenz-Controls.
 
-`Release/Gate` remains a footer utility. `Control` belongs to the Dashboard operator flow. `Network` and `Settings` belong to Wissenschaft. Technical Embodiment is embedded into Runtime & Wesen.
+Die Parameteransicht wird aus Control in Settings eingeordnet; ihr Pending-Change-, Provenienz- und Approval-Verhalten bleibt unverändert.
 
-The three-area shell deliberately keeps the legacy route buttons in the DOM but visually hides the legacy navigation. This lets `app.js` remain the sole lifecycle owner and preserves its lazy initialization behavior.
+Der neue Untertab **Paper** verweist auf die vorhandenen versionierten Arbeitsfassungen im Research-Publikationskatalog. Die Anzeige ändert weder Review-Status noch DATA/EVID-Klassifikation.
 
 ## Operator experience
 
