@@ -6,7 +6,7 @@ for (const port of [4174, 4175]) {
     const base = `http://127.0.0.1:${port}`;
     await page.request.post(`${base}/__test__/cognition`, { data: { available: true } });
     await page.goto(base);
-    await selectRoute(page, 'wesen', 'cognition');
+    await selectRoute(page, 'old', 'wesen-cognition');
     const panel = page.locator('#mhrn-cognition');
     await expect(panel).toBeVisible();
     await expect(panel.locator('[data-world]')).toContainText('categorical_mismatch');
@@ -41,7 +41,7 @@ test('cognition does not retain an active badge or confirmed write after a faile
   const base = 'http://127.0.0.1:4174';
   await page.request.post(`${base}/__test__/cognition`, { data: { available: true } });
   await page.goto(base);
-  await selectRoute(page, 'wesen', 'cognition');
+  await selectRoute(page, 'old', 'wesen-cognition');
   const panel = page.locator('#mhrn-cognition');
   await expect(panel.locator('#cognition-state-badge')).toHaveText('active');
   await page.route('**/api/cognition/memory/controls', route => route.fulfill({ status: 503, contentType: 'application/json', body: JSON.stringify({ error: 'fixture write rejected' }) }));
@@ -59,7 +59,7 @@ test('a delayed pre-write poll cannot restore enabled memory reads or old export
   const base = 'http://127.0.0.1:4174';
   await page.request.post(`${base}/__test__/cognition`, { data: { available: true } });
   await page.goto(base);
-  await selectRoute(page, 'wesen', 'cognition');
+  await selectRoute(page, 'old', 'wesen-cognition');
   const panel = page.locator('#mhrn-cognition');
   await expect(panel.locator('[data-prediction-export]')).toBeVisible();
   let release;
