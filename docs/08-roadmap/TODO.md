@@ -530,3 +530,18 @@ Simulator capability backlog:
 - [ ] Evaluate multi-GPU only after single-GPU canonical semantics, checkpointing and parity are closed.
 
 Reference: [MHRN simulator capability gaps](MHRN_SIMULATOR_CAPABILITY_GAPS.md).
+
+
+### Contract refinements from PR #249 review
+
+- [x] Specify the canonical Learning/Synapse contract and make its alignment a prerequisite for plastic CUDA-1.6.
+- [x] Specify Frozen-Environment modes and replay/trajectory hashes before live closed-loop parity.
+- [x] Specify complete target RuntimeCheckpoint contents for backend-neutral continuation.
+- [x] Bind CUDA-1.6 explicitly to the existing canonical Neural-I/O type family: BoundaryFrame, CodecContract, PopulationLayout, SpikeFrame, DecodeResult and CodecStreamState.
+- [x] Clarify structural approval into proposal eligibility, safety/policy approval and optional human authorization; prohibit direct in-kernel structural mutation.
+- [x] Move the benchmark/restricted Brian 2 reference stage before live CUDA-1.6/PAN-GPU in the integration order.
+- [ ] Implement and test `mhrn-learning-synapse-v1` on both CPU and CUDA backends.
+- [ ] Extend RuntimeCheckpoint/RuntimeBundle to every active continuation-critical field listed in the canonical checkpoint contract.
+- [ ] Implement FE-1/FE-2/FE-3 trajectory capture and fail-closed validation.
+- [ ] Add canonical approval-policy artifact hashing and structural-barrier execution-segment tests.
+- [ ] Add the early benchmark/reference suite with frozen workload manifests and explicit Brian 2 unit/integrator/delay/RNG mappings.

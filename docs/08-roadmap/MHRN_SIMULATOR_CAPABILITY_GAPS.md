@@ -81,10 +81,12 @@ Before Playground execution can be treated as a normal MHRN backend, the followi
 2. **Canonical neuron/synapse state contract** with stable neuron and edge identities.
 3. **Canonical Learning/Synapse contract** defining STDP/STP/eligibility/reward timing, update ordering, clamping and delayed-emission semantics.
 4. **Canonical parity framework** for D1 events, D2 state and D3 causal closed-loop trajectory.
-5. **Canonical checkpoint/storage integration** including RNG, pending delays/rewards, topology generation and execution fingerprint.
-6. **Canonical BoundaryFrame/Neural-I/O contract** between external payload, codec and afferent/efferent populations.
-7. **Canonical structural barrier** routing Growth/Pruning/Apoptosis through Proposal -> Approval -> StructuralPlasticityEngine -> Journal/Undo.
-8. **Truthful execution provenance**: CPU fallback, CUDA reference, hardware smoke and scientific run must never share ambiguous labels.
+5. **Early benchmark/reference suite** using frozen MHRN workloads plus an explicit restricted Brian 2 reference subset; this validates parity infrastructure before live CUDA-1.6 rather than after PAN-GPU.
+6. **Canonical checkpoint/storage contract** including neuron/synapse state, pending events/delays/rewards, PAN/tissue sidecars, RNG, topology generation, environment state and execution fingerprint.
+7. **Canonical Neural-I/O contract** using the existing `BoundaryFrame`, `CodecContract`, `PopulationLayout`, `SpikeFrame`, `DecodeResult` and `CodecStreamState` design.
+8. **Frozen-Environment contract** defining Boundary replay, deterministic world state/RNG, live-action transitions and reward semantics before CUDA-1.6.
+9. **Canonical structural approval/barrier contract** routing Growth/Pruning/Apoptosis through Proposal -> Coordinator Approval -> StructuralPlasticityEngine -> Journal/Undo.
+10. **Truthful execution provenance**: CPU fallback, CUDA reference, hardware smoke and scientific run must never share ambiguous labels.
 
 ## Simulator capability work packages
 
@@ -157,9 +159,9 @@ EVID / bounded claim
 
 ## Priority
 
-**MUST now:** canonical ExecutionBackend, learning/synapse contract, parity framework, storage/state integration, Neural I/O boundary, CUDA-1.6 frozen then live closed-loop bridge.
+**MUST now:** canonical ExecutionBackend, learning/synapse contract, parity framework, early benchmark/reference suite, complete checkpoint/state integration, canonical Neural I/O types, Frozen-Environment contract, then CUDA-1.6 frozen and live closed-loop bridge.
 
-**SHOULD next:** standardized benchmark suite, model/unit contract, restricted Brian 2 interoperability, generalized synapse-rule interface.
+**SHOULD next:** model/unit contract, generalized synapse-rule interface and broader Brian 2 interoperability beyond the early restricted reference subset.
 
 **OPTIONAL after core closure:** multicompartment neurons, gap junctions, broad SDE model language, Loihi/SpiNNaker adapters, multi-GPU.
 

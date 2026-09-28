@@ -1050,3 +1050,15 @@ Priority order:
 7. structural mutation through canonical host barriers;
 8. standardized benchmarks and Brian 2 reference interoperability;
 9. optional broader model DSL, multicompartment, gap junction, neuromorphic and multi-GPU work.
+
+
+### Contract refinements required before CUDA-1.6
+
+The following contracts are now explicit prerequisites rather than implicit TODOs:
+
+- [Canonical Learning and Synapse Contract](../02-architecture/MHRN_LEARNING_SYNAPSE_CONTRACT.md): CPU and CUDA must implement one update-order/STDP/eligibility/reward/delay semantic contract before plastic D3 work.
+- [Frozen Environment Contract](../02-architecture/MHRN_FROZEN_ENVIRONMENT_CONTRACT.md): separates Boundary replay, frozen deterministic world with live actions and full deterministic live-loop parity.
+- [Canonical Runtime Checkpoint Contract](../02-architecture/MHRN_RUNTIME_CHECKPOINT_CONTRACT.md): enumerates continuation-critical network, learning, delay, PAN/tissue, Neural-I/O, environment and execution-provenance state.
+- [Structural Mutation Approval Contract](../02-architecture/MHRN_STRUCTURAL_APPROVAL_CONTRACT.md): clarifies proposal eligibility, deterministic policy approval, optional human authorization and mandatory host/GPU structural barriers.
+
+The benchmark/reference suite moves **before** live CUDA-1.6 and full PAN-GPU work. A restricted Brian 2 reference subset may be used as an external validation anchor, but never as a hidden MHRN implementation backend or as proof of scientific validity.
