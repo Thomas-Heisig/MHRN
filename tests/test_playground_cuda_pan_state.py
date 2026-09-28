@@ -164,6 +164,11 @@ def test_pan_state_real_builder_d3(seed, tmp_path, monkeypatch):
     assert result["D2_full_pan_state_max_error"] <= 1e-12
     assert result["D2_full_synaptic_weight_max_error"] <= 1e-12
     assert result["D3_full_body_trajectory_exact"]
+    assert result["RNG_builder_state_exact"]
+    assert result["D2_STP_eligibility_max_error"] <= 1e-12
+    assert result["D2_pending_current_max_error"] <= 1e-12
+    assert result["gpu_synaptic_emissions"] > 0
+    assert result["gpu_synaptic_reward_calls"] > 0
 
 
 def test_pan_parity_requires_full_finite_state_and_gpu_ticks():

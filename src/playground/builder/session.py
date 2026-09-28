@@ -353,6 +353,45 @@ class PlaygroundSession:
                 if config.neuron_backend != "cpu"
                 else None
             )
+
+            def apply_synaptic_reward(
+                tick: int, value: float, maximum: float, respect_window: bool
+            ) -> None:
+                scale = (
+                    config.behavior_learning_rate
+                    * config.td_lambda
+                    * config.gamma_discount
+                )
+                edges = list(weights)
+                if gpu_membrane is not None and gpu_membrane.synapses is not None:
+                    values = gpu_membrane.synapses.reward(
+                        [weights[e] for e in edges],
+                        [eligibility[e] for e in edges],
+                        [
+                            tick - eligibility_last_tick.get(e, -10_000_000)
+                            for e in edges
+                        ],
+                        scale=scale,
+                        reward=value,
+                        maximum=maximum,
+                        window=config.credit_window,
+                        respect_window=respect_window,
+                    )
+                    for edge, weight in zip(edges, values):
+                        weights[edge] = weight
+                else:
+                    for edge in edges:
+                        if (
+                            respect_window
+                            and tick - eligibility_last_tick.get(edge, -10_000_000)
+                            > config.credit_window
+                        ):
+                            continue
+                        weights[edge] = min(
+                            maximum,
+                            max(0.0, weights[edge] + scale * eligibility[edge] * value),
+                        )
+
             for tick in range(config.ticks):
                 temporal_dynamics.begin_tick()
                 next_engine, switch_reason = execution_switcher.decide(tick)
@@ -662,28 +701,7 @@ class PlaygroundSession:
                             applied_reward = apply_policy_reward(action, target, reward)
                             reward_signal += applied_reward
                             if config.credit_assignment == "reward_modulated_stdp":
-                                scale = (
-                                    config.behavior_learning_rate
-                                    * config.td_lambda
-                                    * config.gamma_discount
-                                )
-                                for edge in list(weights):
-                                    age = tick - eligibility_last_tick.get(
-                                        edge,
-                                        -10_000_000,
-                                    )
-                                    if age > config.credit_window:
-                                        continue
-                                    weights[edge] = min(
-                                        100.0,
-                                        max(
-                                            0.0,
-                                            weights[edge]
-                                            + scale
-                                            * eligibility[edge]
-                                            * applied_reward,
-                                        ),
-                                    )
+                                apply_synaptic_reward(tick, applied_reward, 100.0, True)
                         if (tick + 1) % config.behavior_episode_ticks == 0:
                             episode_index = len(closed_loop.action_history)
                             if config.freeze_actions:
@@ -711,22 +729,9 @@ class PlaygroundSession:
                                 )
                                 reward_signal += applied_reward
                                 if config.credit_assignment == "reward_modulated_stdp":
-                                    scale = (
-                                        config.behavior_learning_rate
-                                        * config.td_lambda
-                                        * config.gamma_discount
+                                    apply_synaptic_reward(
+                                        tick, applied_reward, 100.0, False
                                     )
-                                    for edge in list(weights):
-                                        weights[edge] = min(
-                                            100.0,
-                                            max(
-                                                0.0,
-                                                weights[edge]
-                                                + scale
-                                                * eligibility[edge]
-                                                * applied_reward,
-                                            ),
-                                        )
                     else:
                         learned_reward = behavior_engine.maybe_learn(tick)
                         if learned_reward is not None:
@@ -747,24 +752,9 @@ class PlaygroundSession:
                         config.posture_reward_enabled
                         and config.credit_assignment == "reward_modulated_stdp"
                     ):
-                        scale = (
-                            config.behavior_learning_rate
-                            * config.td_lambda
-                            * config.gamma_discount
+                        apply_synaptic_reward(
+                            tick, posture_reward, config.weight_max_clamp, True
                         )
-                        for edge in weights:
-                            if (
-                                tick - eligibility_last_tick.get(edge, -10_000_000)
-                                <= config.credit_window
-                            ):
-                                weights[edge] = min(
-                                    config.weight_max_clamp,
-                                    max(
-                                        0.0,
-                                        weights[edge]
-                                        + scale * eligibility[edge] * posture_reward,
-                                    ),
-                                )
                         posture_credit_updates += 1
                     if (
                         frame["terminal"] is not None
@@ -792,41 +782,93 @@ class PlaygroundSession:
                         plasticity_active=plasticity != "none",
                     )
 
-                for source in spiked_this_tick:
-                    for target in list(adjacency[source]):
-                        edge = (source, target)
-                        amplitude = weights[edge]
-                        if inhibitory[source]:
-                            ratio = config.e_i_ratio if config.e_i_ratio > 0.0 else 1.0
-                            amplitude = -abs(amplitude) * config.gaba_strength / ratio
-                        if pan_runtime is not None:
-                            amplitude *= float(states[source].get("pan_amplitude", 1.0))
-                        if synapse_mode in {"quantal_stp", "pan_stp_stdp"}:
-                            available = release_state[edge]
-                            released = (
-                                1.0
-                                if rng.random() < min(0.95, 0.25 + 0.7 * available)
-                                else 0.0
-                            )
-                            amplitude *= released
-                            release_state[edge] = max(0.1, available * 0.72)
-                        delivery_slot = (tick + delays[edge]) % queue_size
-                        pending[delivery_slot][target] += amplitude
-                    last_spike[source] = tick
-
-                if synapse_mode in {"quantal_stp", "pan_stp_stdp"}:
-                    for edge in list(release_state):
-                        release_state[edge] = min(
-                            1.0,
-                            release_state[edge] + 0.025,
+                if gpu_membrane is not None and gpu_membrane.synapses is not None:
+                    stp_active = synapse_mode in {"quantal_stp", "pan_stp_stdp"}
+                    emission_edges = [
+                        (source, target)
+                        for source in spiked_this_tick
+                        for target in list(adjacency[source])
+                    ]
+                    rows = [
+                        (
+                            weights[edge],
+                            release_state[edge],
+                            float(states[edge[0]].get("pan_amplitude", 1.0)),
+                            rng.random() if stp_active else 0.0,
+                            float(inhibitory[edge[0]]),
                         )
+                        for edge in emission_edges
+                    ]
+                    emissions = gpu_membrane.synapses.emit(
+                        rows,
+                        stp=stp_active,
+                        gaba=config.gaba_strength,
+                        ratio=config.e_i_ratio if config.e_i_ratio > 0 else 1.0,
+                    )
+                    for edge, (amplitude, available) in zip(emission_edges, emissions):
+                        pending[(tick + delays[edge]) % queue_size][
+                            edge[1]
+                        ] += amplitude
+                        if stp_active:
+                            release_state[edge] = available
+                    for source in spiked_this_tick:
+                        last_spike[source] = tick
+                    recovery_edges = list(weights)
+                    recovered = gpu_membrane.synapses.recover(
+                        [weights[e] for e in recovery_edges],
+                        [release_state[e] for e in recovery_edges],
+                        stp=stp_active,
+                        decay=config.weight_decay,
+                        maximum=config.weight_max_clamp,
+                    )
+                    for edge, (weight, available) in zip(recovery_edges, recovered):
+                        weights[edge] = weight
+                        if stp_active:
+                            release_state[edge] = available
+                else:
+                    for source in spiked_this_tick:
+                        for target in list(adjacency[source]):
+                            edge = (source, target)
+                            amplitude = weights[edge]
+                            if inhibitory[source]:
+                                ratio = (
+                                    config.e_i_ratio if config.e_i_ratio > 0.0 else 1.0
+                                )
+                                amplitude = (
+                                    -abs(amplitude) * config.gaba_strength / ratio
+                                )
+                            if pan_runtime is not None:
+                                amplitude *= float(
+                                    states[source].get("pan_amplitude", 1.0)
+                                )
+                            if synapse_mode in {"quantal_stp", "pan_stp_stdp"}:
+                                available = release_state[edge]
+                                released = (
+                                    1.0
+                                    if rng.random() < min(0.95, 0.25 + 0.7 * available)
+                                    else 0.0
+                                )
+                                amplitude *= released
+                                release_state[edge] = max(0.1, available * 0.72)
+                            delivery_slot = (tick + delays[edge]) % queue_size
+                            pending[delivery_slot][target] += amplitude
+                        last_spike[source] = tick
 
-                if weights:
-                    for edge in list(weights):
-                        value = weights[edge]
-                        if config.weight_decay:
-                            value *= max(0.0, 1.0 - config.weight_decay)
-                        weights[edge] = min(config.weight_max_clamp, max(0.0, value))
+                    if synapse_mode in {"quantal_stp", "pan_stp_stdp"}:
+                        for edge in list(release_state):
+                            release_state[edge] = min(
+                                1.0,
+                                release_state[edge] + 0.025,
+                            )
+
+                    if weights:
+                        for edge in list(weights):
+                            value = weights[edge]
+                            if config.weight_decay:
+                                value *= max(0.0, 1.0 - config.weight_decay)
+                            weights[edge] = min(
+                                config.weight_max_clamp, max(0.0, value)
+                            )
 
                 if dual_scheduler is not None and dual_scheduler.sync_due(tick):
                     barrier_events = dual_scheduler.drain_barrier(tick)
@@ -955,7 +997,26 @@ class PlaygroundSession:
                 if gpu_membrane is not None and gpu_membrane.pan is not None
                 else 0
             ),
-            "synapses_backend": "cpu",
+            "synapses_backend": (
+                "cuda_emission_recovery_reward_cpu_STDP_queue"
+                if config.neuron_backend == "cuda_pan"
+                else "cpu"
+            ),
+            "gpu_synaptic_reward_calls": (
+                gpu_membrane.synapses.reward_calls
+                if gpu_membrane is not None and gpu_membrane.synapses is not None
+                else 0
+            ),
+            "gpu_synaptic_emissions": (
+                gpu_membrane.synapses.emitted_events
+                if gpu_membrane is not None and gpu_membrane.synapses is not None
+                else 0
+            ),
+            "gpu_synaptic_recovery_calls": (
+                gpu_membrane.synapses.recovery_calls
+                if gpu_membrane is not None and gpu_membrane.synapses is not None
+                else 0
+            ),
             "environment_backend": "cpu",
             "components": {
                 "membrane_and_spikes": (
@@ -968,7 +1029,14 @@ class PlaygroundSession:
                     "cuda" if config.neuron_backend == "cuda_pan" else "cpu"
                 ),
                 "PAN_feedback_source_history_and_population_reduction": "cpu",
-                "synapses_STP_STDP_eligibility_and_inhibition": "cpu",
+                "synaptic_emission_inhibition_STP_recovery_weight_decay": (
+                    "cuda" if config.neuron_backend == "cuda_pan" else "cpu"
+                ),
+                "live_target_and_posture_reward_weight_updates": (
+                    "cuda" if config.neuron_backend == "cuda_pan" else "cpu"
+                ),
+                "STDP_eligibility_and_delay_queue": "cpu",
+                "Builder_traversal_RNG": "cpu",
                 "policy_and_action_selection": "cpu",
                 "world_posture_sensors_actuators_reward": "cpu",
                 "Neural_IO_and_episode_management": "cpu",
@@ -1032,6 +1100,13 @@ class PlaygroundSession:
                 "synaptic_digest": checkpoint.digest(),
                 "features": cue_features,
                 "labels": cue_labels,
+                "release_resources": [release_state[e] for e in sorted(weights)],
+                "eligibility": [eligibility[e] for e in sorted(weights)],
+                "eligibility_last_tick": [
+                    eligibility_last_tick.get(e, -10_000_000) for e in sorted(weights)
+                ],
+                "pending_currents": [list(slot) for slot in pending],
+                "rng_state": rng.getstate(),
                 "pan_states": [
                     {k: v for k, v in state.items() if k.startswith("pan_")}
                     for state in states

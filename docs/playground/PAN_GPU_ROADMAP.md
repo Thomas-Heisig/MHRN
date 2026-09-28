@@ -55,11 +55,11 @@ Status below distinguishes the non-canonical Playground from canonical MHRN. A f
 | Consolidation | New optional CUDA PAN state stage | Activity-history parity; not established cognitive memory |
 | Apoptosis | CUDA decision, host event bookkeeping | Identical death tick/id, dead neurons stop spiking, buffers remain valid |
 | Feedback projection / population reduction | Weighted projection/shape on CUDA; source history and ordered population reduction on CPU | 96-mode projection parity plus full D3; GPU population/history ownership remains open |
-| Synaptic propagation / STDP / eligibility | CPU Builder; separate CUDA reference | Port actual Builder update order and reward credit, full synaptic-state parity |
-| Inhibitory integration | CPU Builder; reference restriction remains | Signed emissions, GABA scaling, same arrival ordering and E/I controls |
-| Full Builder RNG semantics | Host traversal stream; reference counter RNG differs | Versioned common RNG contract or exact event-draw replay, unchanged controls, STP parity |
+| Synaptic propagation / STDP / eligibility | CUDA Builder emission/STP/recovery/live reward; CPU STDP/eligibility and ordered delay queue | Current full synaptic-state/RNG D3 passes; remaining update rules and queue need GPU ownership |
+| Inhibitory integration | Actual Builder GPU emission implemented; older frozen-reward reference restriction remains | Signed/GABA and threshold controls pass; keep reference/backend scope explicit |
+| Full Builder RNG semantics | Preserved host traversal draws supplied to CUDA emission; reference counter RNG differs | Exact complete RNG-state/STP/D3 checks pass; device RNG ownership remains separate |
 | Growth / dynamic synaptogenesis / structural mutation | CPU barriers | Deterministic additions/removals, stable IDs, capacity and pending-event migration |
-| Live Environment Reward | CPU in real hybrid loop | Action-time credit, sign/zero controls, same live reward on GPU synapses |
+| Live Environment Reward | World reward on CPU, actual live reward weight update on CUDA | Sign/zero/window controls and full D3 pass; GPU world/reward generation remains open |
 | Stick Figure / Posture | CPU shared physical world, real Builder coupling | GPU or explicitly supported host adapter, full trajectory/reward parity |
 | Sensors / actuators / Neural I/O | CPU real Builder path | Complete codec/projection/action contract and causal sensor/action perturbations |
 | Complete closed-loop execution | Hybrid Builder verified; GPU live sessions rejected | All declared backend components executed, no silent fallback; live lifecycle tests |
@@ -91,3 +91,6 @@ The existing canonical bridge is `src/self_organization/runtime_adapter.py`: it 
 `src/storage/checkpoint.py` already specifies RNG, current tick, pending currents, event slots, neurons and synapses. GPU checkpoint work must extend/implement that versioned contract and prove interrupted/resumed equivalence; the research-only synaptic snapshot cannot replace it.
 
 Two control surfaces exist: `src/controller/runtime.py` (network/homeostasis, hooks and safe snapshots) and `src/runtime/control.py` (single worker callback queue). Integration must identify the active production composition and preserve single-owner stepping, safe boundaries and structured failures. Merely adding a CUDA selector to the Playground does not attach either productive controller.
+
+
+[Builder synaptic integration](CUDA16_BUILDER_SYNAPSES.md) is the next concrete CUDA-1.6 stage: actual inhibitory emissions, STP with preserved Builder RNG, recovery/decay and live reward updates. Its explicit GPU preset inherits the existing balanced PAN parameters. It does not claim the host delay queue, STDP/eligibility evolution or body have moved to GPU.

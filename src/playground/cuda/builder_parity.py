@@ -39,6 +39,9 @@ def compare_builder_runs(cpu: dict[str, Any], gpu: dict[str, Any]) -> dict[str, 
         pan_error: float | None = None
         synapse_error: float | None = None
         state_ok = True
+        resource_error: float | None = None
+        queue_error: float | None = None
+        rng_exact: bool | None = None
         if "research_state" in cpu and "research_state" in gpu:
             left_state, right_state = cpu["research_state"], gpu["research_state"]
             left_edges, right_edges = (
@@ -51,7 +54,25 @@ def compare_builder_runs(cpu: dict[str, Any], gpu: dict[str, Any]) -> dict[str, 
             synapse_error = max_abs_error(
                 [e[2] for e in left_edges], [e[2] for e in right_edges]
             )
-            state_ok = topology and synapse_error <= 1e-12
+            resource_error = max_abs_error(
+                left_state["release_resources"] + left_state["eligibility"],
+                right_state["release_resources"] + right_state["eligibility"],
+            )
+            queue_error = max_abs_error(
+                [x for row in left_state["pending_currents"] for x in row],
+                [x for row in right_state["pending_currents"] for x in row],
+            )
+            rng_exact = left_state["rng_state"] == right_state["rng_state"]
+            state_ok = (
+                topology
+                and synapse_error <= 1e-12
+                and resource_error <= 1e-12
+                and queue_error <= 1e-12
+                and rng_exact
+                and left_state["eligibility_last_tick"]
+                == right_state["eligibility_last_tick"]
+            )
+
             pan_left, pan_right = left_state["pan_states"], right_state["pan_states"]
             if any(pan_left):
 
@@ -82,6 +103,13 @@ def compare_builder_runs(cpu: dict[str, Any], gpu: dict[str, Any]) -> dict[str, 
             "passed": actual_gpu and d1 and error <= 1e-4 and d3 and body and state_ok,
             "D2_full_pan_state_max_error": pan_error,
             "D2_full_synaptic_weight_max_error": synapse_error,
+            "D2_STP_eligibility_max_error": resource_error,
+            "D2_pending_current_max_error": queue_error,
+            "RNG_builder_state_exact": rng_exact,
+            "gpu_synaptic_emissions": gpu["execution"].get("gpu_synaptic_emissions", 0),
+            "gpu_synaptic_reward_calls": gpu["execution"].get(
+                "gpu_synaptic_reward_calls", 0
+            ),
             "D1_full_spike_digest_exact": d1,
             "D2_sampled_voltage_max_error": error,
             "D3_actions_targets_rewards_exact": d3,

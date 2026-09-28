@@ -317,3 +317,16 @@ test("PAN state backend reaches the actual D3 request", async ({ page }) => {
     "CUDA_PAN_STATE",
   );
 });
+
+test("CUDA PAN preset restores the complete profile and CPU default", async ({
+  page,
+}) => {
+  await page.locator("#pg-user-preset-select").selectOption("pan_cuda_hybrid");
+  await expect(page.locator("#pg-neuron-backend")).toHaveValue("cuda_pan");
+  await expect(page.locator("#pg-neurons")).toHaveValue("256");
+  await expect(page.locator("#pg-sandbox-enabled")).toBeChecked();
+  await page
+    .locator("#pg-user-preset-select")
+    .selectOption("pan_full_balanced");
+  await expect(page.locator("#pg-neuron-backend")).toHaveValue("cpu");
+});

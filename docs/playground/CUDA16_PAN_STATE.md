@@ -10,3 +10,6 @@ Validation includes 129-neuron partial blocks, dimensions 5/10/32, activity/ener
 
 
 Feedback validation covers all 96 source/target/nonlinearity/delay combinations (population/layer/subset/hypervector; all/layer/random subset; linear/tanh/sign/clip; delays 0/2), finite checks and the closed-loop-disabled zero-current path. The shared context still has one owner; feedback buffers join reverse-order cleanup. All 14 PAN tests passed with physical CUDA enabled after feedback integration, including the 96-mode matrix and all three full D3 seeds. The feedback kernel uses 32 registers with zero stack and spills. This does not port the source history or population reduction to GPU.
+
+
+The subsequent [Builder synaptic stage](CUDA16_BUILDER_SYNAPSES.md) moves emission, STP/recovery/decay and live reward weight updates to CUDA while retaining host RNG and arrival order. Refer to the current component table for this expanded scope.
