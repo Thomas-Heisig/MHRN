@@ -2,8 +2,8 @@
   "status": "clean",
   "audit": {
     "clean": false,
-    "question_reference_count": 5024,
-    "hypothesis_reference_count": 3709,
+    "question_reference_count": 5058,
+    "hypothesis_reference_count": 3753,
     "missing_questions": [
       "RQ-AI-DESIGN-001",
       "RQ-AI-EFF-001",

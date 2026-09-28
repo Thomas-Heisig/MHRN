@@ -1,0 +1,174 @@
+- id: RQ-CUDA-DET-001
+  domain: Deterministic Accelerated Execution
+  question: Unter welchen eingefrorenen Ausführungsbedingungen kann ein CUDA-Backend dieselbe Determinismusklasse wie die CPU-Referenz erreichen?
+  relevance: GPU-Beschleunigung darf wissenschaftliche Reproduzierbarkeit nicht implizit verändern; Seed-, RNG-, Scheduling- und Zustandsverträge müssen deshalb explizit prüfbar sein.
+  literature:
+  - SRC-STIMBERG-2019
+  - SRC-BRIAN2-DOCS-2026
+  - SRC-BRIAN2CUDA-2022
+  hypotheses:
+  - H-CUDA-DET-001-A
+  - H-CUDA-DET-001-B
+  - H-CUDA-DET-001-C
+  evidence: []
+  status: open
+  answer:
+    current: null
+    confidence: none
+    limitations: Bestehende Playground-Hardwaretests sind Engineering Verification und werden nicht rückwirkend zu DATA oder EVID.
+  created: '2026-09-28'
+  updated: '2026-09-28'
+
+- id: RQ-CUDA-PAR-001
+  domain: Backend Parity
+  question: Sind CPU- und CUDA-Ausführung für einen präregistrierten rekurrenten SNN-Vertrag auf Ereignis-, Zustands- und Plastizitätsebene semantisch äquivalent?
+  relevance: Erst ein expliziter Cross-Backend-Vertrag erlaubt wissenschaftliche Experimente auf unterschiedlichen Ausführungsbackends ohne stillen Semantikwechsel.
+  literature:
+  - SRC-STIMBERG-2019
+  - SRC-BRIAN2-DOCS-2026
+  - SRC-BRIAN2CUDA-2022
+  hypotheses:
+  - H-CUDA-PAR-001-A
+  - H-CUDA-PAR-001-B
+  - H-CUDA-PAR-001-C
+  evidence: []
+  status: open
+  answer:
+    current: null
+    confidence: none
+    limitations: D1/D2-Verifikation im Playground motiviert die Studie, ersetzt aber keine neue Preregistrierung und keinen Source Freeze.
+  created: '2026-09-28'
+  updated: '2026-09-28'
+
+- id: RQ-CUDA-SCALE-001
+  domain: Computational Scaling
+  question: Wie verändern sich Laufzeit, Speicherbedarf und numerische Stabilität des CUDA-Backends mit wachsender Netzwerkgröße, Kantenanzahl, Delay-Ring und Simulationsdauer?
+  relevance: Beschleunigung ist nur wissenschaftlich nützlich, wenn Skalierung ohne unbeobachtete Semantik- oder Stabilitätsänderung erfolgt.
+  literature:
+  - SRC-BRIAN2CUDA-2022
+  - SRC-BRIAN2GENN-DOCS-2026
+  hypotheses:
+  - H-CUDA-SCALE-001-A
+  - H-CUDA-SCALE-001-B
+  evidence: []
+  status: open
+  answer:
+    current: null
+    confidence: none
+    limitations: Diese Frage testet zunächst Computational Scaling und behauptet keine neue Selbstorganisation oder kritische Dynamik.
+  created: '2026-09-28'
+  updated: '2026-09-28'
+
+- id: RQ-GATE-IR-001
+  domain: Executable Semantics
+  question: Kann die Gate-IR als backendunabhängiger ausführbarer Semantikvertrag für die unterstützten MHRN-Gate-Operationen dienen?
+  relevance: Eine explizite Zwischenrepräsentation könnte Python-Referenz, PTX-Lowering und spätere Backends gegen denselben Vertrag prüfbar machen.
+  literature:
+  - SRC-BRIAN2CUDA-2022
+  hypotheses:
+  - H-GATE-IR-001-A
+  - H-GATE-IR-001-B
+  - H-GATE-IR-001-C
+  evidence: []
+  status: open
+  answer:
+    current: null
+    confidence: none
+    limitations: Gate-IR ist derzeit eine Engineering-IR; formale Verifikation im mathematischen Sinn ist nicht etabliert.
+  created: '2026-09-28'
+  updated: '2026-09-28'
+
+- id: RQ-PAN-SEM-001
+  domain: PAN Semantics
+  question: Welcher minimale, versionierte Zustands- und Updatevertrag ist für PAN-Hyperstate, Ressourcenregulation und strukturelle Signale notwendig, damit eine Ausführung backendneutral fortsetzbar bleibt?
+  relevance: PAN darf nicht gleichzeitig wissenschaftlich umdefiniert und auf einen neuen Backendpfad portiert werden; zuerst muss die Semantik eingefroren werden.
+  literature:
+  - SRC-GERSTNER-2014
+  hypotheses:
+  - H-PAN-SEM-001-A
+  - H-PAN-SEM-001-B
+  evidence: []
+  status: open
+  answer:
+    current: null
+    confidence: none
+    limitations: Health, Energy, Consolidation, Apoptosis und Growth sind nicht als vollständig kanonischer GPU-PAN-Vertrag nachgewiesen.
+  created: '2026-09-28'
+  updated: '2026-09-28'
+
+- id: RQ-PAN-GPU-001
+  domain: PAN Cross-Backend Execution
+  question: Kann ein eingefrorener PAN-Zustandsvertrag auf CPU und CUDA innerhalb präregistrierter Toleranzen äquivalent ausgeführt werden?
+  relevance: Erst nach Semantik-Freeze kann geprüft werden, ob PAN-Hyperstate und Ressourcenmechanismen backendunabhängig reproduzierbar sind.
+  literature:
+  - SRC-BRIAN2CUDA-2022
+  - SRC-GENN-STRUCTPLAST-2026
+  hypotheses:
+  - H-PAN-GPU-001-A
+  - H-PAN-GPU-001-B
+  evidence: []
+  status: open
+  answer:
+    current: null
+    confidence: none
+    limitations: Die derzeitige CUDA-Referenz umfasst rekurrente Membran-/Synapsendynamik und frozen-reward Plastizität, nicht den vollständigen PAN-Hyperstate.
+  created: '2026-09-28'
+  updated: '2026-09-28'
+
+- id: RQ-CUDA-STRUCT-001
+  domain: Structural Plasticity
+  question: Kann strukturelle Mutation an deterministischen Host/GPU-Barrieren durchgeführt werden, ohne Identität, Replay oder Fortsetzbarkeit der CUDA-Ausführung zu verletzen?
+  relevance: Growth, Pruning und Apoptosis verändern Graphstruktur, CSR, Delay-State und Checkpoints und benötigen deshalb einen expliziten Barrieren- und Identitätsvertrag.
+  literature:
+  - SRC-GENN-STRUCTPLAST-2026
+  hypotheses:
+  - H-CUDA-STRUCT-001-A
+  - H-CUDA-STRUCT-001-B
+  evidence: []
+  status: open
+  answer:
+    current: null
+    confidence: none
+    limitations: Die kanonische Self-Organization-Pipeline bleibt Host-seitig maßgeblich; direkte ungoverned GPU-Mutation ist nicht vorausgesetzt.
+  created: '2026-09-28'
+  updated: '2026-09-28'
+
+- id: RQ-CUDA-CL-001
+  domain: Closed-loop Backend Parity
+  question: Bleibt eine Sensor-SNN-Aktor-Umwelt-Reward-Trajektorie zwischen CPU- und CUDA-Netzbackend äquivalent, wenn Umwelt und Boundary-Vertrag eingefroren sind?
+  relevance: D3-Parität muss eine kausale Trajektorienprüfung sein und darf nicht allein durch vorgegebene Action-/Reward-Folgen entstehen.
+  literature: []
+  hypotheses:
+  - H-CUDA-CL-001-A
+  - H-CUDA-CL-001-B
+  - H-CUDA-CL-001-C
+  evidence: []
+  status: open
+  answer:
+    current: null
+    confidence: none
+    limitations: Frozen Action/Reward dient nur als Zwischenkontrolle; freie Closed-loop-Parität bleibt separat zu testen.
+  created: '2026-09-28'
+  updated: '2026-09-28'
+
+- id: RQ-SIM-INTEROP-001
+  domain: Simulator Interoperability
+  question: Kann ein eingeschränkter gemeinsamer Modellvertrag zwischen MHRN und externen Referenzsimulatoren wie Brian 2 reproduzierbar abgebildet und verglichen werden?
+  relevance: Externe Referenzbackends können Modellierungs-, Benchmark- und Replikationslücken schließen, dürfen aber keine stillen Semantikänderungen einführen.
+  literature:
+  - SRC-STIMBERG-2019
+  - SRC-BRIAN2-DOCS-2026
+  - SRC-BRIAN2CUDA-2022
+  - SRC-BRIAN2GENN-DOCS-2026
+  - SRC-BRIAN2LAVA-DOCS-2026
+  hypotheses:
+  - H-SIM-INTEROP-001-A
+  - H-SIM-INTEROP-001-B
+  evidence: []
+  status: open
+  answer:
+    current: null
+    confidence: none
+    limitations: Interoperabilität bedeutet zunächst einen expliziten gemeinsamen Modell-Subset; Brian 2, Brian2CUDA, Brian2GeNN und Brian2Lava werden nicht als identischer nativer Backend-Stack behandelt.
+  created: '2026-09-28'
+  updated: '2026-09-28'

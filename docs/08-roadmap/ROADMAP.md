@@ -1027,3 +1027,38 @@ Files such as `ROADMAP_ALPHA4.md`, `ROADMAP_ALPHA5*.md`, `ROADMAP_V*.md` and spr
 ## PAN / CUDA integration programme
 
 The non-canonical Playground PAN work and its explicit canonical-integration requirements are tracked in the [PAN/GPU work programme](../playground/PAN_GPU_ROADMAP.md). It covers neuron/synapse/network persistence, hybrid and full CUDA execution, body/Neural-I/O coupling, research controls, canonical storage/self-organization, RuntimeController and scaling. Completion of a Playground stage does not promote scientific evidence or establish a canonical backend.
+
+
+## CUDA/PAN canonicalization and simulator capability gaps (2026-09-28)
+
+The CUDA/PAN/Gate work has reached the point where it creates both a canonicalization programme and a separate simulator-capability backlog. The authoritative gap matrix and architecture decision are documented in [MHRN simulator capability gaps](MHRN_SIMULATOR_CAPABILITY_GAPS.md).
+
+The Playground is **not** promoted wholesale into the core. Reusable execution mechanisms are to be extracted behind canonical MHRN contracts while the Playground remains a composition/reference workspace.
+
+New canonical research families are registered for deterministic accelerated execution, CPU/CUDA parity, computational scaling, executable Gate-IR semantics, PAN state semantics, PAN GPU parity, structural host/GPU barriers, causal closed-loop parity and restricted external simulator interoperability. Registration creates no EVID and does not promote historical Playground verification.
+
+Simulator capability gaps tracked independently from scientific claims include equation-defined model descriptions, physical-unit validation, generalized synapse-rule contracts, multicompartment neurons, electrical/gap-junction synapses, stochastic model specification, standardized benchmark workloads and optional neuromorphic/backend adapters.
+
+Priority order:
+
+1. canonical ExecutionBackend + state identity;
+2. canonical Learning/Synapse contract;
+3. D1/D2/D3 parity + execution provenance;
+4. storage/checkpoint + BoundaryFrame/Neural I/O integration;
+5. CUDA-1.6 frozen then live closed-loop bridge;
+6. PAN semantic freeze and only then full PAN GPU work;
+7. structural mutation through canonical host barriers;
+8. standardized benchmarks and Brian 2 reference interoperability;
+9. optional broader model DSL, multicompartment, gap junction, neuromorphic and multi-GPU work.
+
+
+### Contract refinements required before CUDA-1.6
+
+The following contracts are now explicit prerequisites rather than implicit TODOs:
+
+- [Canonical Learning and Synapse Contract](../02-architecture/MHRN_LEARNING_SYNAPSE_CONTRACT.md): CPU and CUDA must implement one update-order/STDP/eligibility/reward/delay semantic contract before plastic D3 work.
+- [Frozen Environment Contract](../02-architecture/MHRN_FROZEN_ENVIRONMENT_CONTRACT.md): separates Boundary replay, frozen deterministic world with live actions and full deterministic live-loop parity.
+- [Canonical Runtime Checkpoint Contract](../02-architecture/MHRN_RUNTIME_CHECKPOINT_CONTRACT.md): enumerates continuation-critical network, learning, delay, PAN/tissue, Neural-I/O, environment and execution-provenance state.
+- [Structural Mutation Approval Contract](../02-architecture/MHRN_STRUCTURAL_APPROVAL_CONTRACT.md): clarifies proposal eligibility, deterministic policy approval, optional human authorization and mandatory host/GPU structural barriers.
+
+The benchmark/reference suite moves **before** live CUDA-1.6 and full PAN-GPU work. A restricted Brian 2 reference subset may be used as an external validation anchor, but never as a hidden MHRN implementation backend or as proof of scientific validity.

@@ -2134,3 +2134,25 @@ Das Phase-Gate verhindert, dass ein Netz sein eigenes Query-Muster im gemeinsame
 
 Details und Claim-Grenzen:
 `research/decisions/2026-09-25_digital-sense-neural-interface.md`.
+
+
+---
+
+# 33. Canonical CUDA-1.6 dependency
+
+For CUDA-1.6 the Gateway contract above is no longer an optional Playground convenience. The following type family is the canonical backend boundary:
+
+```text
+BoundaryFrame
+CodecContract
+PopulationLayout
+SpikeFrame / SpikeFrameSet
+CodecStreamState
+DecodeResult
+```
+
+CUDA does not consume raw HTTP/JSON/tool payloads and does not invent an alternate I/O schema. It consumes the canonical packed event representation derived from these contracts.
+
+The continuation-critical Neural-I/O state defined here must be covered by the canonical runtime checkpoint contract. Closed-loop parity additionally uses the Frozen Environment Contract so that Boundary replay, live actions, world state, RNG and rewards are unambiguous.
+
+This requirement does not mean the current `src/playground/neural_io` module path becomes canonical. Implementations are to be promoted/re-homed behind the existing architecture contract so that `src.core`, runtime and acceleration layers do not depend on Playground.
