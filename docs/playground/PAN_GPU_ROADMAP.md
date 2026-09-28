@@ -54,7 +54,7 @@ Status below distinguishes the non-canonical Playground from canonical MHRN. A f
 | Information Proxy | New optional CUDA PAN state stage | Local-surprise parity; no substitution for PID/information theory validation |
 | Consolidation | New optional CUDA PAN state stage | Activity-history parity; not established cognitive memory |
 | Apoptosis | CUDA decision, host event bookkeeping | Identical death tick/id, dead neurons stop spiking, buffers remain valid |
-| Feedback projection / population reduction | CPU, deterministic order | GPU ordered reduction, delayed feedback history, D2 and D3 |
+| Feedback projection / population reduction | Weighted projection/shape on CUDA; source history and ordered population reduction on CPU | 96-mode projection parity plus full D3; GPU population/history ownership remains open |
 | Synaptic propagation / STDP / eligibility | CPU Builder; separate CUDA reference | Port actual Builder update order and reward credit, full synaptic-state parity |
 | Inhibitory integration | CPU Builder; reference restriction remains | Signed emissions, GABA scaling, same arrival ordering and E/I controls |
 | Full Builder RNG semantics | Host traversal stream; reference counter RNG differs | Versioned common RNG contract or exact event-draw replay, unchanged controls, STP parity |
@@ -74,7 +74,7 @@ Status below distinguishes the non-canonical Playground from canonical MHRN. A f
 ### Ordered next stages
 
 1. Integrate and validate the new PAN state CUDA stage in Builder, D3 endpoint, visible component table and main CI.
-2. Port PAN feedback projection, then actual Builder synapses with inhibitory emissions and traversal-RNG parity. Preserve ordered reductions and emission-time amplitude. Keep the frozen-reward reference as a separate oracle.
+2. PAN feedback projection is implemented as the next validated stage. Port source history/population reduction and actual Builder synapses with inhibitory emissions and traversal-RNG parity. Preserve ordered reductions and emission-time amplitude. Keep the frozen-reward reference as a separate oracle.
 3. Add persistent live-session integration, bounded cancellation and complete versioned checkpoints before advertising persistence across runs/backends.
 4. Connect canonical self-organization and RuntimeController through explicit state/conformance adapters. Do not relabel exploratory health/energy/information proxies as canonical mechanisms.
 5. Move structural mutation/neurogenesis and event migration through validated barriers; then resident execution, measured optimization and multi-GPU/distributed tests.
@@ -82,3 +82,12 @@ Status below distinguishes the non-canonical Playground from canonical MHRN. A f
 Research runs alongside engineering: aligned/randomized/absent cues and policy-current ablation are integrated. Synaptic-transfer calibration is integrated but shows no consistent advantage. Remaining tests include cue removal after a training/delay phase, activity-driven policy with a causal decoder ablation, genuinely new-task reward learning, larger paired seed samples and predeclared held-out evaluation. A negative result is a completed experiment, not a reason to change acceptance thresholds. Decodability, causal neural use and learned generalization remain different claims.
 
 The attachments motivate this programme but do not supply measured evidence. For example, high neuron count alone does not imply occupancy failure, FP64 alone does not guarantee exact execution, and matching one success rate is not sufficient D3. Occupancy is queried from the actual compiled kernel; parity states precisely which quantities and trajectories were compared.
+
+
+### Canonical integration locations
+
+The existing canonical bridge is `src/self_organization/runtime_adapter.py`: it publishes homeostasis-derived proposals; structural mutations still pass through coordinator/approval/engine/manipulator. A CUDA adapter must preserve this separation and the existing policy, rather than silently executing Playground growth as canonical self-organization.
+
+`src/storage/checkpoint.py` already specifies RNG, current tick, pending currents, event slots, neurons and synapses. GPU checkpoint work must extend/implement that versioned contract and prove interrupted/resumed equivalence; the research-only synaptic snapshot cannot replace it.
+
+Two control surfaces exist: `src/controller/runtime.py` (network/homeostasis, hooks and safe snapshots) and `src/runtime/control.py` (single worker callback queue). Integration must identify the active production composition and preserve single-owner stepping, safe boundaries and structured failures. Merely adding a CUDA selector to the Playground does not attach either productive controller.

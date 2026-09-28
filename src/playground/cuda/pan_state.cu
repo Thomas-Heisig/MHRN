@@ -34,3 +34,21 @@ extern "C" __global__ void pan_state_step(
     for(unsigned d=0;d<dimensions;++d) vectors[i*dimensions+d]=d<10?values[d]:0.0;
     if(health<=death_threshold) alive[i]=0;
 }
+
+// Ordered projection; source history and population reduction are host-owned.
+extern "C" __global__ void pan_feedback_step(
+    unsigned n, unsigned dimensions, unsigned nonlinearity,
+    double gain, double threshold, double saturation,
+    const double* weights, const double* vector, const unsigned* enabled,
+    double* currents) {
+    unsigned i=blockIdx.x*blockDim.x+threadIdx.x;
+    if(i>=n) return;
+    double raw=0.0;
+    for(unsigned d=0;d<dimensions;++d) raw+=weights[i*dimensions+d]*vector[d];
+    double shaped=raw;
+    if(nonlinearity==1) shaped=tanh(raw);
+    else if(nonlinearity==2) shaped=raw>0.0?1.0:(raw<0.0?-1.0:0.0);
+    else if(nonlinearity==3) shaped=pan_bound(raw,-1.0,1.0);
+    if(fabs(shaped)<threshold) shaped=0.0;
+    currents[i]=pan_bound(enabled[i]?gain*shaped:0.0,-saturation,saturation);
+}

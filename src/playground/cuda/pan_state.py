@@ -30,7 +30,10 @@ class PANStateStepper:
         self.n, self.dimensions = runtime.n_neurons, runtime.dimensions
         self.host: dict[str, Any] = {}
         self.device: dict[str, DeviceAllocation] = {}
+        self.feedback_host: dict[str, Any] = {}
+        self.feedback_device: dict[str, DeviceAllocation] = {}
         self.ticks = 0
+        self.feedback_calls = 0
         if not 1 <= self.n <= 1024 or not 5 <= self.dimensions <= 32:
             raise ValueError("unsupported CUDA PAN shape")
         try:
@@ -46,17 +49,31 @@ class PANStateStepper:
             ):
                 self.host[name] = (kind * count)()
                 self.device[name] = driver.alloc_device(ctypes.sizeof(self.host[name]))
+            self.feedback_kernel = driver.kernel(loaded, "pan_feedback_step")
+            for name, count, kind in (
+                ("weights", self.n * self.dimensions, ctypes.c_double),
+                ("vector", self.dimensions, ctypes.c_double),
+                ("enabled", self.n, ctypes.c_uint32),
+                ("currents", self.n, ctypes.c_double),
+            ):
+                self.feedback_host[name] = (kind * count)()
+                self.feedback_device[name] = driver.alloc_device(
+                    ctypes.sizeof(self.feedback_host[name])
+                )
         except BaseException:
             self.close()
             raise
 
     def close(self) -> None:
-        for allocation in reversed(list(self.device.values())):
+        for allocation in reversed(
+            [*self.device.values(), *self.feedback_device.values()]
+        ):
             try:
                 self.driver.free_device(allocation)
             except CudaDriverError:
                 pass
         self.device.clear()
+        self.feedback_device.clear()
 
     def update(
         self,
@@ -151,3 +168,70 @@ class PANStateStepper:
         if len(runtime.feedback_history) > keep:
             runtime.feedback_history = runtime.feedback_history[-keep:]
         self.ticks += 1
+
+    def feedback_currents(self) -> list[float]:
+        runtime = self.runtime
+        if not runtime.closed_loop:
+            return [0.0] * self.n
+        nonlinearities = {"linear": 0, "tanh": 1, "sign": 2, "clip": 3}
+        if runtime.feedback_nonlinearity not in nonlinearities:
+            raise ValueError("unsupported CUDA feedback nonlinearity")
+        params = (
+            runtime.feedback_gain,
+            runtime.feedback_threshold,
+            runtime.feedback_saturation,
+        )
+        if any(not math.isfinite(x) for x in params) or min(params[1:]) < 0:
+            raise ValueError("invalid CUDA feedback parameters")
+        vector = runtime.feedback_vector()
+        if (
+            len(vector) != self.dimensions
+            or len(runtime.feedback_weights) != self.n
+            or any(len(row) != self.dimensions for row in runtime.feedback_weights)
+        ):
+            raise ValueError("CUDA feedback shape mismatch")
+        weights = [x for row in runtime.feedback_weights for x in row]
+        if any(not math.isfinite(x) for x in [*vector, *weights]):
+            raise ValueError("CUDA feedback input must be finite")
+        self.feedback_host["weights"][:] = weights
+        self.feedback_host["vector"][:] = vector
+        flags = [True] * self.n
+        if runtime.feedback_target == "layer":
+            flags = [i < max(1, self.n // 4) for i in range(self.n)]
+        elif runtime.feedback_target == "random_subset":
+            flags = list(runtime.random_target_mask)
+        if len(flags) != self.n or any(type(x) is not bool for x in flags):
+            raise ValueError("CUDA feedback target mask invalid")
+        self.feedback_host["enabled"][:] = [int(x) for x in flags]
+        for name in ("weights", "vector", "enabled"):
+            self.driver.copy_host_to_device(
+                self.feedback_device[name], self.feedback_host[name]
+            )
+        args: list[object] = [
+            ctypes.c_uint32(self.n),
+            ctypes.c_uint32(self.dimensions),
+            ctypes.c_uint32(nonlinearities[runtime.feedback_nonlinearity]),
+            *(ctypes.c_double(x) for x in params),
+        ]
+        args.extend(
+            ctypes.c_uint64(self.feedback_device[name].ptr)
+            for name in self.feedback_host
+        )
+        self.driver.launch_kernel(
+            self.feedback_kernel,
+            grid=((self.n + 127) // 128, 1, 1),
+            block=(128, 1, 1),
+            arguments=args,
+        )
+        self.driver.synchronize()
+        self.driver.copy_device_to_host(
+            self.feedback_host["currents"], self.feedback_device["currents"]
+        )
+        currents = list(self.feedback_host["currents"])
+        if any(not math.isfinite(x) for x in currents):
+            raise ValueError("CUDA feedback output must be finite")
+        for current in currents:
+            runtime.feedback_abs_total += abs(current)
+            runtime.feedback_samples += 1
+        self.feedback_calls += 1
+        return currents

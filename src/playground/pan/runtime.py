@@ -90,7 +90,7 @@ class PANRuntime:
             state["pan_x_hd"] = [0.0 for _ in range(self.dimensions)]
             state["pan_neuron_id"] = neuron_id
 
-    def _feedback_vector(self) -> list[float]:
+    def feedback_vector(self) -> list[float]:
         if self.feedback_delay <= 0:
             vector = list(self.population_vector)
         elif len(self.feedback_history) > self.feedback_delay:
@@ -116,7 +116,7 @@ class PANRuntime:
 
         if not self.closed_loop:
             return [0.0 for _ in range(self.n_neurons)]
-        vector = self._feedback_vector()
+        vector = self.feedback_vector()
         currents: list[float] = []
         layer_limit = max(1, self.n_neurons // 4)
         for neuron_id, row in enumerate(self.feedback_weights):
@@ -125,7 +125,10 @@ class PANRuntime:
                 enabled = neuron_id < layer_limit
             elif self.feedback_target == "random_subset":
                 enabled = self.random_target_mask[neuron_id]
-            raw = sum(weight * value for weight, value in zip(row, vector))
+            # Fixed accumulation order across Python versions and CUDA.
+            raw = 0.0
+            for weight, value in zip(row, vector):
+                raw += weight * value
             if self.feedback_nonlinearity == "tanh":
                 shaped = math.tanh(raw)
             elif self.feedback_nonlinearity == "sign":

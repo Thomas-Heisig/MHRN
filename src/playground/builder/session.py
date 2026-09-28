@@ -420,7 +420,11 @@ class PlaygroundSession:
                         for index in range(config.n_neurons)
                     ]
                 feedback = (
-                    pan_runtime.feedback_currents()
+                    (
+                        gpu_membrane.pan.feedback_currents()
+                        if gpu_membrane is not None and gpu_membrane.pan is not None
+                        else pan_runtime.feedback_currents()
+                    )
                     if pan_runtime is not None
                     else [0.0 for _ in range(config.n_neurons)]
                 )
@@ -946,6 +950,11 @@ class PlaygroundSession:
                 "cuda" if config.neuron_backend == "cuda_pan" else "cpu"
             ),
             "gpu_pan_ticks": config.ticks if config.neuron_backend == "cuda_pan" else 0,
+            "gpu_pan_feedback_calls": (
+                gpu_membrane.pan.feedback_calls
+                if gpu_membrane is not None and gpu_membrane.pan is not None
+                else 0
+            ),
             "synapses_backend": "cpu",
             "environment_backend": "cpu",
             "components": {
@@ -955,7 +964,10 @@ class PlaygroundSession:
                 "PAN_health_energy_information_consolidation_hyperstate_apoptosis": (
                     "cuda" if config.neuron_backend == "cuda_pan" else "cpu"
                 ),
-                "PAN_feedback_and_population_reduction": "cpu",
+                "PAN_feedback_projection": (
+                    "cuda" if config.neuron_backend == "cuda_pan" else "cpu"
+                ),
+                "PAN_feedback_source_history_and_population_reduction": "cpu",
                 "synapses_STP_STDP_eligibility_and_inhibition": "cpu",
                 "policy_and_action_selection": "cpu",
                 "world_posture_sensors_actuators_reward": "cpu",

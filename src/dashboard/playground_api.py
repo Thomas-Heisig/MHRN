@@ -197,7 +197,7 @@ def _cuda_runtime_status() -> dict[str, object]:
             "adaptation_state": True,
             "pan_health_energy_hyperstate": "OPTIONAL_CUDA_PAN_BUILDER",
             "pan_apoptosis_decision": "OPTIONAL_CUDA_PAN_BUILDER",
-            "pan_feedback_projection": False,
+            "pan_feedback_projection": "OPTIONAL_CUDA_PAN_BUILDER",
             "refractory_state": False,
             "synapses": False,
             "delays": True,

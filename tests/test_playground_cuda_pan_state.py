@@ -196,3 +196,51 @@ def test_pan_parity_requires_full_finite_state_and_gpu_ticks():
     assert not compare_builder_runs(cpu, gpu)["passed"]
     del gpu["research_state"]
     assert not compare_builder_runs(cpu, gpu)["passed"]
+
+
+@pytest.mark.skipif(
+    os.environ.get("MHRN_TEST_CUDA_HARDWARE") != "1", reason="opt-in physical CUDA test"
+)
+def test_gpu_feedback_projection_all_modes(tmp_path, monkeypatch):
+    import math
+
+    monkeypatch.setenv("TMP", str(tmp_path))
+    cpu = runtime(dimensions=32)
+    gpu = runtime(dimensions=32)
+    vector = [math.sin(i) * 0.8 for i in range(32)]
+    for pan in (cpu, gpu):
+        pan.population_vector = list(vector)
+        pan.feedback_history = [
+            [v * scale for v in vector] for scale in (0.2, 0.4, 0.7, 1.0)
+        ]
+        pan.feedback_gain = 7.0
+        pan.feedback_threshold = 0.05
+        pan.feedback_saturation = 0.7
+    model = get_neuron_model("pan_adex_5d")
+    with membrane.cuda_membrane_session(
+        model.name, [model.parameters] * cpu.n_neurons, 1.0, pan_runtime=gpu
+    ) as stepper:
+        for source in ("population", "layer", "subset", "hypervector"):
+            for target in ("all", "layer", "random_subset"):
+                for nonlinearity in ("linear", "tanh", "sign", "clip"):
+                    for delay in (0, 2):
+                        for pan in (cpu, gpu):
+                            pan.feedback_source = source
+                            pan.feedback_target = target
+                            pan.feedback_nonlinearity = nonlinearity
+                            pan.feedback_delay = delay
+                        assert cpu.feedback_currents() == pytest.approx(
+                            stepper.pan.feedback_currents(), abs=1e-12, rel=0
+                        )
+        assert stepper.pan.feedback_calls == 96
+        gpu.population_vector[0] = float("nan")
+        gpu.feedback_delay = 0
+        gpu.feedback_source = "population"
+        with pytest.raises(ValueError, match="finite"):
+            stepper.pan.feedback_currents()
+        gpu.closed_loop = False
+        assert stepper.pan.feedback_currents() == [0.0] * gpu.n_neurons
+    assert cpu.feedback_samples == gpu.feedback_samples
+    assert cpu.feedback_abs_total == pytest.approx(
+        gpu.feedback_abs_total, abs=1e-10, rel=0
+    )

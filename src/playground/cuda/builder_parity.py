@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any
+from typing import Any, cast
 
 from .runtime import max_abs_error
 
@@ -87,6 +87,7 @@ def compare_builder_runs(cpu: dict[str, Any], gpu: dict[str, Any]) -> dict[str, 
             "D3_actions_targets_rewards_exact": d3,
             "D3_full_body_trajectory_exact": body if embodied else None,
             "gpu_membrane_ticks": gpu["execution"]["gpu_membrane_ticks"],
+            "gpu_pan_feedback_calls": gpu["execution"].get("gpu_pan_feedback_calls", 0),
             "scope": (
                 "REAL_BUILDER_CUDA_PAN_STATE_CPU_SYNAPSES_AND_ENVIRONMENT"
                 if gpu["execution"]["neuron_backend"] == "cuda_pan"
@@ -125,9 +126,21 @@ def run_builder_parity(payload: Mapping[str, object]) -> dict[str, object]:
         PlaygroundConfig.from_mapping({**options, "neuron_backend": selected}),
         capture_research_state=True,
     ).run()
+    cpu_loop = cast(dict[str, object], cpu["closed_loop"])
+    gpu_loop = cast(dict[str, object], gpu["closed_loop"])
     return {
         "classification": "PLAYGROUND_BUILDER_BEHAVIORAL_PARITY",
         **compare_builder_runs(cpu, gpu),
         "seed": config.seed,
         "ticks": config.ticks,
+        "behavioral_baseline": {
+            "cpu": {
+                key: cpu_loop[key]
+                for key in ("episodes", "successes", "success_fraction")
+            },
+            "cuda": {
+                key: gpu_loop[key]
+                for key in ("episodes", "successes", "success_fraction")
+            },
+        },
     }
