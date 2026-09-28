@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
-  "tested_commit": "f346ca743743466b8b77c4f398120836bc71c9ee",
-  "tested_tree_digest": "a207e9e0c3c78c4dfd92a2f4d63e130e59f5b3242405715a9db1903dc99da926",
+  "tested_commit": "77a993b83421a6b27a12a8ee69766325670d9da4",
+  "tested_tree_digest": "b8b56ad3a6a23d18b6cb81197c51107128277ba6944e78ca20d934b5cbe71d0b",
   "tree_digest_paths": [
     "src/",
     "configs/",
@@ -12,20 +12,20 @@
   "tree_digest_excludes": [
     "tests/test_baseline.json"
   ],
-  "timestamp": "2026-09-28T08:37:28.697327+00:00",
+  "timestamp": "2026-09-28T13:25:48.113477+00:00",
   "python": "3.13.15",
   "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
   "source_unchanged_during_run": true,
   "full_collection": {
     "status": "passed",
-    "collected": 1849,
+    "collected": 1891,
     "collection_errors": 0
   },
   "full_suite": {
     "command": "python -m pytest tests/ -q -ra --junitxml=<temporary-report>",
     "status": "passed",
     "exit_code": 0,
-    "passed": 1847,
+    "passed": 1889,
     "failed": 0,
     "errors": 0,
     "skipped": 2,
@@ -84,7 +84,7 @@
     "src/dashboard/models.py": "79d9ae98df92908053ac9a74ebc033594b4dc9e58028b027324f9b4d8e8877d8",
     "src/dashboard/network_inspector.py": "ae35e65979738022eef2cfb70207688ae06ad670aa28bfe67df4f5f30c2667eb",
     "src/dashboard/operator_bridge.py": "b8911c68bec2d9193ed2f08fc867e68b0953c52228911c53c1eeb270857d0f3e",
-    "src/dashboard/playground_api.py": "8d6113ca8d8edf399b134b3d99961b8791dcd8934b1ab32470bc066b79341cf9",
+    "src/dashboard/playground_api.py": "ea4d17f19a6cc2bb3dd3641780a94277b345e693381c0fea889de7e454f387a5",
     "src/dashboard/release_timeline.py": "f35b3bdcb026add0f3455fc254c5fb407b698127563188fa5a61b091238105e2",
     "src/dashboard/research_source.py": "63e824dc4a93b8640d4ed269d24b21148c8b35e4eb33c53cf0b7a08e37fd5d0d",
     "src/dashboard/review_inbox.py": "9299e96b6b678a24681ac50c82a313fcc9beca9fe1c53a175f3b8c7899111cca",
@@ -295,9 +295,9 @@
     "src/playground/builder/session.py": "3d9b2c1291d81158a0c6646274b9806bb45a65a4cf6dd404255d903560c95b68",
     "src/playground/cli.py": "d17b383809d07240392e9c2c7bea5ad6b51b505b171f75b3ee0167c52882e280",
     "src/playground/closed_loop.py": "f8b781b842ca64bb8eb3ae69faf985b29f54ac00f5852d83e051a5c9f0cc1fbc",
-    "src/playground/cuda/__init__.py": "890af194e67b1e143ad14ccf6ff134cd73064a01bef94dd15889e3b941997bb1",
-    "src/playground/cuda/pan_compiler.py": "8e2dd939c4f2178676cf8ffc9ca67a93d985d41d34b2e577d7ebfb323d098255",
-    "src/playground/cuda/runtime.py": "4442f61efd0d855614ee0430d564e310d5db12f56b3541536398fee65a8e1007",
+    "src/playground/cuda/__init__.py": "06c971f12c677d95e2bbb3fe42008248c467c52bc41e391bc34cd5553ff52ea9",
+    "src/playground/cuda/pan_compiler.py": "20ba46002f8db5ba1d9a477590f2a87458764664968740145a20c2039a57c0fd",
+    "src/playground/cuda/runtime.py": "3a9eca4cc5b6888479f68fa3a815f057e11c151ff0a0440bde15dfb569176e91",
     "src/playground/geometry/__init__.py": "68d84e0acc0837619cc7bedb147c86702d8d0b18c40bbefff8af2c5b3984ce5e",
     "src/playground/geometry/literature.py": "a9ec276a1a4d26bd76aade155373f68f6de29448c0ae39e5540158da4b00467d",
     "src/playground/geometry/metrics.py": "6c13d2d6340d5fc8d9c622795d22a3852bf8d9f8661a356ad328ad61de41d07a",
@@ -644,6 +644,7 @@
     "tests/test_optical_codec.py": "b1d6c4df35d7db04beea624cc934ce4e7868ec3148698a7bb5889b0f7534a8fb",
     "tests/test_playground.py": "8f0467472b7b7fce4fd6032546a425a84abac3268c706d2d503d40b7e0669281",
     "tests/test_playground_cuda_determinism.py": "e2409e986fdf5f1f8f00f99cbba1f35207ac8d7bbbd43e5557dffae717f9aa69",
+    "tests/test_playground_cuda_fail_closed.py": "b5cf0b64e96a4ba33e7baa5bc19971887172663a768ad1f03881d94f0e84469c",
     "tests/test_playground_cuda_gate_compiler.py": "c695fbaad6b11a92857eaaab7d0b9de6f0b7e7d374fcaa56d8e45f44e35692bd",
     "tests/test_prediction_error_plasticity.py": "4a0a9d2dcf646f012ec1d597daf63b0c3469660cdee67aed9611021e95b31e5c",
     "tests/test_production_restore.py": "a5ddc19a7a36e7bfaf09b13532335820dea1ca17779749798eeba8e869858730",

@@ -3,23 +3,23 @@
     "artifact": "tests/test_baseline.json",
     "collection_errors": 0,
     "failed": 0,
-    "passed": 1847,
+    "passed": 1889,
     "python": "3.13.15",
     "skipped": 2
   },
   "continuous_integration": {
     "conclusion": "success",
-    "head_sha": "f346ca743743466b8b77c4f398120836bc71c9ee",
-    "run_id": 36398102110,
-    "workflow": "Verification Refresh #128"
+    "head_sha": "77a993b83421a6b27a12a8ee69766325670d9da4",
+    "run_id": 36428155621,
+    "workflow": "Verification Refresh #129"
   },
   "final_validation": {
     "command": "python scripts/generate_baseline.py",
     "failed": 0,
-    "passed": 1847,
+    "passed": 1889,
     "skipped": 2
   },
-  "generated": "2026-09-28T08:37:43.795535+00:00",
+  "generated": "2026-09-28T13:26:03.340370+00:00",
   "limitations": [
     "Scientific evidence status remains independent from release engineering readiness.",
     "External Hugging Face proxy smoke remains non-blocking operational follow-up."
@@ -42,8 +42,8 @@
     "overall": "passed"
   },
   "source_freeze": {
-    "commit": "f346ca743743466b8b77c4f398120836bc71c9ee",
-    "tested_tree_digest": "a207e9e0c3c78c4dfd92a2f4d63e130e59f5b3242405715a9db1903dc99da926"
+    "commit": "77a993b83421a6b27a12a8ee69766325670d9da4",
+    "tested_tree_digest": "b8b56ad3a6a23d18b6cb81197c51107128277ba6944e78ca20d934b5cbe71d0b"
   },
   "status": "verified",
   "verification_artifacts": [
