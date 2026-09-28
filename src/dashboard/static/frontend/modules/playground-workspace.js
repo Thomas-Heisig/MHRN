@@ -119,7 +119,9 @@ export function initGuidedWorkspace({
   const defaults = new Map();
   const controls = () =>
     [...root.querySelectorAll("input[id],select[id],textarea[id]")].filter(
-      (e) => !e.id.startsWith("pg-user-") && !e.id.startsWith("pg-workspace-"),
+      (e) =>
+        (e.id === "pg-user-preset-select" || !e.id.startsWith("pg-user-")) &&
+        !e.id.startsWith("pg-workspace-"),
     );
   const snapshot = () =>
     Object.fromEntries(
