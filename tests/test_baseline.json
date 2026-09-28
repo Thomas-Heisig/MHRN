@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
-  "tested_commit": "dce4d02c4857a67f0adff4944c21439455af8b35",
-  "tested_tree_digest": "d33333d91f665d0126d81be1f342405749bdb1c749d4139c6333d681c6c4eebe",
+  "tested_commit": "f423b3d90ae2905f5dcf9079451d2b02bd2c83a4",
+  "tested_tree_digest": "c88dc7959d252428cfd6e80888b9ce1423cc9d1cebd3ae02986db41662f921e4",
   "tree_digest_paths": [
     "src/",
     "configs/",
@@ -12,7 +12,7 @@
   "tree_digest_excludes": [
     "tests/test_baseline.json"
   ],
-  "timestamp": "2026-09-28T17:24:19.941742+00:00",
+  "timestamp": "2026-09-28T20:13:45.551195+00:00",
   "python": "3.13.15",
   "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
   "source_unchanged_during_run": true,
@@ -398,7 +398,7 @@
     "src/playground/pan/memory_pool.py": "0854741aa13e325797d12ba2e2bf47b5428a8c8155968563c3fad44924fa543a",
     "src/playground/pan/mode_switcher.py": "a7869426a199ece92c15279f5d2d721cb1dfdb7e8d680cb2a402507bd97dfeeb",
     "src/playground/pan/runtime.py": "61362647524a7b990ecef79f5c2a0d2005a0056896b43ee701d82f36caf918b9",
-    "src/playground/pan/sandbox.py": "a0c0b6d9dbc800018d67567e359b3213280ac1333fd5c3901906371bb5f9eef0",
+    "src/playground/pan/sandbox.py": "733d277835277a9402a2bcaae7a671f9efbd48ffcae23580a8ad5cf0967b1b74",
     "src/playground/pan/ssd_offloader.py": "e1b848db5a33cb078e544cc8f1baf5d8ed3a4d2d747d0ba568573514597315f4",
     "src/playground/pan/synaptic_checkpoint.py": "87d23d74c7ecc1eedefd6374bd33e01f0e20665736a2c963b967f7034011efde",
     "src/playground/pan/thalamic_gating.py": "578c9784c121d91ecff8a5afe484ed34cbaae36da2a6557803b90e2d6e09df3b",
@@ -558,7 +558,7 @@
     "research/schemas/preregistration.schema.json": "f4ab03fa5a8718177a843741d8fc6637ba8b80edf6833dfa48c8c31f25cba880",
     "research/schemas/question.schema.json": "ba90d930c356248ba8eb3f847a7c060cbaf3cf266b4fa8c0b6a43f2f2febdb2f",
     "research/schemas/research_object_mapping.schema.json": "b3ccdf999de3103d7543f649f2eb5e1931eedff1cf50090a2912379e330cd01b",
-    "pyproject.toml": "b0f1666a8cb927e29e23a771a3746230df1dc97676c0d0ba72da5ad71fabfed8",
+    "pyproject.toml": "12d36d96be5ba3b2c4ddf71b910b8a4bef7d627464ed610164c5620b47eddb6f",
     "tests/__init__.py": "175843bab438dd8fca59002363d761642b9830ee948f7f82d2efce275ce1ea3e",
     "tests/_restore_helpers.py": "4c01c1ae86a458cb81eac7d243e09952e941e7dbfcac95fd4aeab63ec07959ce",
     "tests/_restore_worker.py": "d7692ea535f338ccb335b811033c481f2b8dcf4ed3420e1f4a2b84ca97276c42",
