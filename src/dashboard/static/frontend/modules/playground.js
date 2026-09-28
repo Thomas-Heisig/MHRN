@@ -390,6 +390,7 @@ function buildPanels(root) {
           <button type="button" class="primary" id="pg-cuda-smoke">RTX Hardware-Smoke</button>
           <button type="button" id="pg-cuda-rng">RNG-Parität</button>
           <button type="button" id="pg-cuda-recurrent">CUDA-1.4 · 100 Ticks / 3 Blöcke</button>
+          <button type="button" id="pg-synaptic-transfer">Synaptischer Transfer · Kontrollvergleich</button>
           <button type="button" id="pg-cue-controls">Cue-Decoding · 6 Kontrollen</button>
           <button type="button" id="pg-cuda-builder-parity">D3 · Builder CPU/CUDA vergleichen</button>
           <button type="button" id="pg-cuda-plasticity">CUDA-1.5 · STP/STDP-Parität</button>
@@ -401,7 +402,7 @@ function buildPanels(root) {
           <article class="playground-analysis-card"><h3>D2 Hardware-Parität</h3><pre id="pg-cuda-parity-state">Noch kein Hardware-Smoke.</pre></article>
           <article class="playground-analysis-card"><h3>RNG ε-greedy</h3><pre id="pg-cuda-rng-state">Noch kein RNG-Paritätstest.</pre></article>
           <article class="playground-analysis-card"><h3>Rekurrente Membran-Parität</h3><p>129 AdEx-Neuronen, statische Synapsen und Delays; FP64-Referenz. Noch kein vollständiger PAN-GPU-Lauf.</p><pre id="pg-cuda-recurrent-state">Noch kein Mehrtakt-Test.</pre></article>
-          <article class="playground-analysis-card"><h3>GPU-Plastizität</h3><p>STP, STDP, Eligibility und eingefrorene Reward-Folge; FP64-Referenz. Der Live-Regelkreis ist ein separater Schritt.</p><pre id="pg-cuda-plasticity-state">Noch kein Plastizitätstest.</pre><p>Builder-D3: echte Aktionen und Koerpertrajektorie; Membran auf GPU, Synapsen und Umwelt auf CPU.</p><pre id="pg-cuda-builder-parity-state">Noch kein Builder-Vergleich.</pre><p>Cue-Experiment: passend / randomisiert / entfernt, jeweils mit und ohne Pair-STDP. Ohne Policy-Strom und Koerperrueckkopplung; kein automatischer Lernnachweis.</p><pre id="pg-cue-controls-state">Noch kein Cue-Experiment.</pre></article>
+          <article class="playground-analysis-card"><h3>GPU-Plastizität</h3><p>STP, STDP, Eligibility und eingefrorene Reward-Folge; FP64-Referenz. Der Live-Regelkreis ist ein separater Schritt.</p><pre id="pg-cuda-plasticity-state">Noch kein Plastizitätstest.</pre><p>Builder-D3: echte Aktionen und Koerpertrajektorie; Membran auf GPU, Synapsen und Umwelt auf CPU.</p><pre id="pg-cuda-builder-parity-state">Noch kein Builder-Vergleich.</pre><p>Cue-Experiment: passend / randomisiert / entfernt, jeweils mit und ohne Pair-STDP. Ohne Policy-Strom und Koerperrueckkopplung; kein automatischer Lernnachweis.</p><pre id="pg-cue-controls-state">Noch kein Cue-Experiment.</pre><p id="pg-transfer-summary">Transfer: vortrainierte Gewichte gegen frische Initialisierung auf neuen Cue-Kanaelen. Alle anderen Zustaende werden zurueckgesetzt.</p><details><summary>Transfer-Protokoll und Decoder-Kurven</summary><pre id="pg-transfer-state" style="max-height:360px;overflow:auto">Noch kein Transfer-Vergleich.</pre></details></article>
         </div>
         <pre id="pg-cuda-compiler-state">Noch kein CUDA-/Parity-Lauf.</pre>
       </article>
@@ -1234,6 +1235,10 @@ function renderCatalog(catalog){
 export async function initPlayground(){
   const root=byId("tab-playground");if(!root)return;
   injectStyles();ensurePermanentBoundary(root);buildPanels(root);
+  byId("pg-synaptic-transfer")?.addEventListener("click",async()=>{
+    const summary=byId("pg-transfer-summary"),node=byId("pg-transfer-state");summary.textContent="Vortraining und zwei gepaarte Transferlaeufe ...";
+    try{const result=await apiPost("/api/playground/research/synaptic-transfer",formPayload());node.textContent=JSON.stringify(result,null,2);summary.textContent=`Vergleich abgeschlossen · ${result.changed_pretraining_weights} veraenderte Gewichte. Externer Aktivitaetsdecoder; kein automatischer Nachweis schnellerer neuronaler Aufgabenloesung.`;}catch(error){summary.textContent=`Transfer-Vergleich fehlgeschlagen: ${error.message}`;}
+  });
   byId("pg-cue-controls")?.addEventListener("click",async()=>{
     const node=byId("pg-cue-controls-state");node.textContent="Sechs gepaarte Kontrolllaeufe ...";
     try{node.textContent=JSON.stringify(await apiPost("/api/playground/research/cue-controls",formPayload()),null,2);}catch(error){node.textContent=`Cue-Kontrollen fehlgeschlagen: ${error.message}`;}
