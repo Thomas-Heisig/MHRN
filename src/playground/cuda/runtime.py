@@ -961,9 +961,7 @@ def cpu_gate_reference(
             if abs(feedback) < threshold:
                 feedback = _f32(0.0)
             saturation = _numeric_float(
-                (feedback_saturation_params or {}).get(
-                    "saturation", float("inf")
-                ),
+                (feedback_saturation_params or {}).get("saturation", float("inf")),
                 field="C2.pan_feedback_saturation.saturation",
             )
             feedback = _f32(max(-saturation, min(saturation, feedback)))
