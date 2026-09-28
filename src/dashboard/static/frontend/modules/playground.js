@@ -450,6 +450,7 @@ function buildPanels(root) {
     <section data-generated-panel="run" id="playground-run">
       <div class="playground-metrics" id="pg-metrics"></div>
       <div class="playground-viz-grid">
+        <article class="playground-viz" id="pg-run-sandbox-panel" hidden><h3>PAN-Strichmann</h3><canvas id="pg-run-sandbox-canvas" width="800" height="360"></canvas><input id="pg-run-sandbox-frame" type="range" min="0" max="0" value="0" aria-label="Strichmann-Zeitschritt"><pre id="pg-run-sandbox-state"></pre></article>
         <article class="playground-viz"><h3>Spike Raster</h3><canvas id="pg-raster" width="800" height="300"></canvas></article>
         <article class="playground-viz"><h3>Population Rate</h3><canvas id="pg-rate-canvas" width="800" height="300"></canvas></article>
         <article class="playground-viz"><h3>Topologie · neutrale 2D-Projektion</h3><canvas id="pg-topology-canvas" width="800" height="300"></canvas></article>
@@ -739,14 +740,21 @@ function renderResult(result){
   byId("pg-analysis-spike").textContent=JSON.stringify(a.spike_time||{},null,2);
   byId("pg-analysis-network").textContent=JSON.stringify({network:net,dimensionality:dim,ensemble:result.ensemble||null,pan:result.pan||null,closed_loop:result.closed_loop||null,heterogeneity:result.heterogeneity||null,temporal_dynamics:result.temporal_dynamics||null,geometry:result.geometry||null,gates:result.gates||null,clock:result.clock||null,execution:result.execution||null,growth:result.growth||null,storage:result.storage||null},null,2);
   byId("pg-analysis-plasticity").textContent=JSON.stringify({plasticity:a.plasticity||{},performance:a.performance||{},pan:result.pan||null,growth:result.growth||null,behavioral_learning:result.behavioral_learning||null,credit_assignment:result.credit_assignment||null,closed_loop:result.closed_loop||null,thalamic_gating:result.thalamic_gating||null,cortical_organization:result.cortical_organization||null,storage:result.storage||null,hardware:result.hardware||null},null,2);
-  byId("pg-analysis-io").textContent=JSON.stringify({neural_io:result.neural_io||{status:"disabled"},interfaces:result.interfaces||null},null,2);
+  byId("pg-analysis-io").textContent=JSON.stringify({neural_io:result.neural_io||{status:"disabled"},cue_decoding:result.cue_decoding||null,interfaces:result.interfaces||null},null,2);
   byId("pg-run-json").textContent=JSON.stringify({session_id:result.session_id,manifest:result.manifest,model:result.model,config:result.config,metrics:result.metrics,readout:result.readout},null,2);
+  const sandboxPanel=byId("pg-run-sandbox-panel"),sandboxSlider=byId("pg-run-sandbox-frame");
+  sandboxPanel.hidden=!result.sandbox?.world;
+  const frames=result.sandbox?.frames||[];
+  sandboxSlider.max=String(Math.max(0,frames.length-1));sandboxSlider.value=sandboxSlider.max;
+  const renderSandboxFrame=()=>{const frame=frames[Number(sandboxSlider.value)]||result.sandbox?.world;drawLiveSandbox(frame,"pg-run-sandbox-canvas");byId("pg-run-sandbox-state").textContent=JSON.stringify({backend:result.sandbox?.backend,ticks:result.sandbox?.ticks,dt_seconds:result.sandbox?.dt_seconds,posture_credit_updates:result.sandbox?.posture_credit_updates,frame},null,2);};
+  sandboxSlider.oninput=renderSandboxFrame;
+  if(!sandboxPanel.hidden)renderSandboxFrame();
   drawRaster(result);drawSeries("pg-rate-canvas",(result.monitors?.tick_spike_counts||[]).map(Number));drawTopology(result);drawState(result);drawSpectrum(result);drawDegree(result);
 }
 
 
-function drawLiveSandbox(world){
-  const item=ctxFor("pg-live-sandbox-canvas");if(!item||!world?.joints)return;
+function drawLiveSandbox(world,canvasId="pg-live-sandbox-canvas"){
+  const item=ctxFor(canvasId);if(!item||!world?.joints)return;
   const{canvas,ctx}=item;
   const px=p=>[canvas.width/2+Number(p.x||0)*170,canvas.height-30-Number(p.y||0)*150];
   const links=[["head","neck"],["neck","hip"],["neck","shoulder_l"],["neck","shoulder_r"],["hip","knee_l"],["hip","knee_r"],["knee_l","foot_l"],["knee_r","foot_r"]];

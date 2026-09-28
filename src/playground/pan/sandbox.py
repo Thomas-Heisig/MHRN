@@ -301,16 +301,127 @@ class StickFigureSandbox:
         }
 
 
-class PANEmbodiedSandboxSession:
-    """Couple a persistent PAN live session to the stick-figure environment."""
+class EmbodiedEnvironment:
+    """Shared deterministic world used by batch and live PAN execution."""
 
-    def __init__(self, live_session: _LiveSessionLike) -> None:
-        self.live_session = live_session
+    def __init__(self, config: object) -> None:
+        self.config = config
         self.world = StickFigureSandbox()
         self.last_frame: dict[str, object] | None = None
-        self.posture = PostureAnalyzer(live_session.config)
-        self.reward_trigger = RewardTrigger(live_session.config)
+        self.posture = PostureAnalyzer(config)
+        self.reward_trigger = RewardTrigger(config)
         self.episode_tick = 0
+        self.total_ticks = 0
+        self.terminals = 0
+        self.reward_total = 0.0
+        self.last_reward = 0.0
+        self.reward_vector: list[float] = []
+        self.frames: deque[dict[str, object]] = deque(maxlen=128)
+
+    def sensor_vector(self) -> list[float]:
+        receptors = self.world.receptors()
+        audio = 0.0
+        echo_values: list[float] = []
+        if self.last_frame is not None:
+            raw_audio = self.last_frame.get("audio")
+            if isinstance(raw_audio, dict):
+                raw_level = raw_audio.get("level", 0.0)
+                if isinstance(raw_level, (int, float)):
+                    audio = float(raw_level)
+            raw_echo = self.last_frame.get("echo")
+            if isinstance(raw_echo, list):
+                echo_values = [
+                    float(value)
+                    for value in raw_echo
+                    if isinstance(value, (int, float))
+                ]
+        combined = list(receptors) + [audio] + echo_values
+        return combined
+
+    def advance(
+        self, action: int | None, *, dt_seconds: float = 0.01
+    ) -> dict[str, object]:
+        self.world.apply_action(action)
+        frame = self.world.step(dt=dt_seconds)
+        frame["pan_action"] = action
+        previous_score = self.posture.previous_score
+        posture_score = self.posture.compute(self.world)
+        config = self.config
+        if bool(getattr(config, "posture_reward_enabled", False)):
+            reward, reward_events = self.reward_trigger.evaluate(
+                posture_score, previous_score
+            )
+        else:
+            reward, reward_events = 0.0, []
+        reward_vector = [
+            0.0
+            for _ in range(
+                max(
+                    int(getattr(config, "input_channels", 1)),
+                    int(getattr(config, "posture_score_channel", 2)) + 1,
+                    int(getattr(config, "reward_event_channel", 3)) + 1,
+                )
+            )
+        ]
+        if bool(getattr(config, "posture_reward_enabled", False)):
+            reward_vector[int(getattr(config, "posture_score_channel", 2))] = (
+                posture_score * float(getattr(config, "posture_current_scale", 25.0))
+            )
+            reward_vector[int(getattr(config, "reward_event_channel", 3))] = (
+                reward * float(getattr(config, "reward_event_scale", 25.0))
+            )
+            self.reward_vector = reward_vector
+        self.episode_tick += 1
+        terminal = None
+        if bool(getattr(config, "episode_termination_enabled", True)):
+            if (
+                posture_score < float(getattr(config, "trigger_collapse_score", 0.1))
+                or self.world.joints["hip"].y < 0.3
+            ):
+                terminal = "COLLAPSED"
+            elif abs(self.world.joints["hip"].x) > 1.9:
+                terminal = "OUT_OF_BOUNDS"
+            elif self.episode_tick >= int(getattr(config, "episode_max_ticks", 256)):
+                terminal = "TIMEOUT"
+        frame["posture_score"] = posture_score
+        frame["reward"] = reward
+        frame["reward_events"] = reward_events
+        frame["terminal"] = terminal
+        self.frames.append(frame)
+        self.total_ticks += 1
+        self.reward_total += reward
+        self.last_reward = reward
+        if terminal:
+            self.terminals += 1
+        self.last_frame = frame
+        if terminal and bool(getattr(config, "episode_reset_on_collapse", True)):
+            self.world.reset_to_initial_pose()
+            self.posture.previous_score = None
+            self.reward_trigger.good_counter = 0
+            self.reward_trigger.was_low = False
+            self.episode_tick = 0
+        return frame
+
+    def summary(self) -> dict[str, object]:
+        return {
+            "classification": "PLAYGROUND_PAN_EMBODIED_SANDBOX",
+            "backend": "CPU_REFERENCE",
+            "scientific_evidence": False,
+            "ticks": self.total_ticks,
+            "terminals": self.terminals,
+            "reward_total": self.reward_total,
+            "world": self.last_frame,
+            "frames": list(self.frames),
+            "learning_claim": "EXPLORATORY_REFERENCE_ONLY",
+        }
+
+
+class PANEmbodiedSandboxSession(EmbodiedEnvironment):
+    """Couple a persistent PAN live session to the shared environment."""
+
+    def __init__(self, live_session: _LiveSessionLike) -> None:
+        super().__init__(live_session.config)
+        self.live_session = live_session
 
     def step(self, ticks: int = 1) -> dict[str, object]:
         if ticks < 1 or ticks > 512:
@@ -318,87 +429,18 @@ class PANEmbodiedSandboxSession:
         frames: list[dict[str, object]] = []
         pan_result: dict[str, object] = {}
         for _ in range(ticks):
-            receptors = self.world.receptors()
-            audio = 0.0
-            echo_values: list[float] = []
-            if self.last_frame is not None:
-                raw_audio = self.last_frame.get("audio")
-                if isinstance(raw_audio, dict):
-                    raw_level = raw_audio.get("level", 0.0)
-                    if isinstance(raw_level, (int, float)):
-                        audio = float(raw_level)
-                raw_echo = self.last_frame.get("echo")
-                if isinstance(raw_echo, list):
-                    echo_values = [
-                        float(value)
-                        for value in raw_echo
-                        if isinstance(value, (int, float))
-                    ]
-            combined = list(receptors) + [audio] + echo_values
-            self.live_session.inject_vector(combined, duration_ticks=1, gain=25.0)
+            self.live_session.inject_vector(
+                self.sensor_vector(), duration_ticks=1, gain=25.0
+            )
             pan_result = self.live_session.step(1)
             actions = pan_result.get("actions", [])
             action = int(actions[-1]) if isinstance(actions, list) and actions else None
-            self.world.apply_action(action)
-            frame = self.world.step()
-            frame["pan_action"] = action
-            previous_score = self.posture.previous_score
-            posture_score = self.posture.compute(self.world)
-            config = self.live_session.config
-            if bool(getattr(config, "posture_reward_enabled", False)):
-                reward, reward_events = self.reward_trigger.evaluate(
-                    posture_score, previous_score
-                )
-            else:
-                reward, reward_events = 0.0, []
-            reward_vector = [
-                0.0
-                for _ in range(
-                    max(
-                        int(getattr(config, "input_channels", 1)),
-                        int(getattr(config, "posture_score_channel", 2)) + 1,
-                        int(getattr(config, "reward_event_channel", 3)) + 1,
-                    )
-                )
-            ]
-            if bool(getattr(config, "posture_reward_enabled", False)):
-                reward_vector[int(getattr(config, "posture_score_channel", 2))] = (
-                    posture_score
-                    * float(getattr(config, "posture_current_scale", 25.0))
-                )
-                reward_vector[int(getattr(config, "reward_event_channel", 3))] = (
-                    reward * float(getattr(config, "reward_event_scale", 25.0))
-                )
-                self.live_session.inject_vector(
-                    reward_vector, duration_ticks=1, gain=1.0
-                )
-            self.episode_tick += 1
-            terminal = None
-            if bool(getattr(config, "episode_termination_enabled", True)):
-                if (
-                    posture_score
-                    < float(getattr(config, "trigger_collapse_score", 0.1))
-                    or self.world.joints["hip"].y < 0.3
-                ):
-                    terminal = "COLLAPSED"
-                elif abs(self.world.joints["hip"].x) > 1.9:
-                    terminal = "OUT_OF_BOUNDS"
-                elif self.episode_tick >= int(
-                    getattr(config, "episode_max_ticks", 256)
-                ):
-                    terminal = "TIMEOUT"
-            frame["posture_score"] = posture_score
-            frame["reward"] = reward
-            frame["reward_events"] = reward_events
-            frame["terminal"] = terminal
+            frame = self.advance(action)
             frames.append(frame)
-            self.last_frame = frame
-            if terminal and bool(getattr(config, "episode_reset_on_collapse", True)):
-                self.world.reset_to_initial_pose()
-                self.posture.previous_score = None
-                self.reward_trigger.good_counter = 0
-                self.reward_trigger.was_low = False
-                self.episode_tick = 0
+            if self.reward_vector:
+                self.live_session.inject_vector(
+                    self.reward_vector, duration_ticks=1, gain=1.0
+                )
 
         return {
             "classification": "PLAYGROUND_PAN_EMBODIED_SANDBOX",

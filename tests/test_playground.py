@@ -950,7 +950,7 @@ def test_cuda_8gb_profile_is_plan_not_runtime_claim() -> None:
     assert hardware["recommended_synapses_estimate"] == 50_000_000
 
 
-def test_pan_catalog_exposes_learning_blocks_and_eighteen_candidates() -> None:
+def test_pan_catalog_exposes_learning_blocks_and_cue_decoding_candidate() -> None:
     payload = catalog()
     pan = payload["pan"]
     assert pan["behavioral_learning_status"] == (
@@ -961,7 +961,8 @@ def test_pan_catalog_exposes_learning_blocks_and_eighteen_candidates() -> None:
         "IMPLEMENTED_FIXED_LABEL_PLASTIC_GAIN_REFERENCE"
     )
     candidates = pan["research_candidates"]
-    assert len(candidates) == 18
+    assert len(candidates) == 19
+    assert any(item["id"] == "PAN-CANDIDATE-NEURAL-CUE-DECODING" for item in candidates)
     ids = {item["id"] for item in candidates}
     assert {
         "PAN-CANDIDATE-HARDWARE-NATIVE-EMERGENCE",

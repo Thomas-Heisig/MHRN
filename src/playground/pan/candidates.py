@@ -8,6 +8,20 @@ def pan_research_candidates() -> list[dict[str, object]]:
 
     return [
         {
+            "id": "PAN-CANDIDATE-NEURAL-CUE-DECODING",
+            "status": "DRAFT_IDEA_NOT_PREREGISTERED",
+            "question": "Does plasticity improve held-out cue decoding from neural activity without explicit policy feedback?",
+            "required_controls": [
+                "chronological disjoint complete episodes",
+                "matched frozen-plasticity and pre-training networks",
+                "disable explicit context-policy bias currents",
+                "absent and independently randomized input cues",
+                "shuffled-label probe baseline",
+                "transfer to novel cues against matched fresh-network learning curves",
+                "multiple paired seeds and held-out evaluation",
+            ],
+        },
+        {
             "id": "PAN-CANDIDATE-HOMEOSTATIC-SURVIVAL",
             "status": "DRAFT_IDEA_NOT_PREREGISTERED",
             "question": (

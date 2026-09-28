@@ -163,3 +163,27 @@ test("recurrent CUDA diagnostic reports unavailability without a CPU success fal
     "CUDA driver unavailable",
   );
 });
+
+test("Builder run renders the coupled PAN body and recorded frame replay", async ({
+  page,
+}) => {
+  await page.locator("#pg-neurons").fill("32");
+  await page.locator("#pg-edges").fill("64");
+  await page.locator("#pg-group-1 > summary").click();
+  await page.locator("#pg-ticks").fill("128");
+  await page.locator("#pg-ticks").press("Tab");
+  await page.locator("#pg-run").click();
+  await expect(page.locator("#pg-run-sandbox-panel")).toBeVisible();
+  await expect(page.locator("#pg-run-sandbox-state")).toContainText(
+    "CPU_REFERENCE",
+  );
+  await expect(page.locator("#pg-run-sandbox-frame")).toHaveAttribute(
+    "max",
+    "127",
+  );
+  await page.locator("#pg-run-sandbox-frame").fill("0");
+  await expect(page.locator("#pg-run-sandbox-state")).toContainText(
+    '"pan_action": null',
+  );
+  await expect(page.locator("#pg-analysis-io")).toContainText("cue_decoding");
+});

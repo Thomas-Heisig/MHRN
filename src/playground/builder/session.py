@@ -36,6 +36,8 @@ from ..pan import (
     hardware_profile,
     settings_to_gates,
 )
+from ..pan.cue_decoding import decode_cues
+from ..pan.sandbox import EmbodiedEnvironment
 from ..persist.session_recorder import record_session
 from ..registry.neuron_models import NeuronModelSpec, get_neuron_model
 from ..registry.plasticity_rules import require_plasticity_rule
@@ -98,6 +100,9 @@ class PlaygroundSession:
             for index in range(config.n_neurons)
         ]
         closed_loop = ClosedLoopRuntime(config, topology.coordinates)
+        embodied = EmbodiedEnvironment(config) if config.sandbox_enabled else None
+        embodied_action: int | None = None
+        posture_credit_updates = 0
         temporal_dynamics = TemporalDynamics(config)
         inhibitory = inhibitory_mask(
             config.n_neurons,
@@ -300,6 +305,9 @@ class PlaygroundSession:
         state_stride = max(1, math.ceil(config.ticks / 128))
         tick_spike_counts: list[int] = []
         previous_spikes: list[int] = []
+        cue_features: list[list[float]] = []
+        cue_labels: list[int] = []
+        cue_counts = [0.0] * config.n_neurons
         policy_decisions: deque[tuple[str | None, tuple[float, ...]]] = deque()
 
         def apply_policy_reward(action: int, target: int, reward: float) -> float:
@@ -348,6 +356,20 @@ class PlaygroundSession:
                     external[index] + loop_current[index]
                     for index in range(config.n_neurons)
                 ]
+                if embodied is not None:
+                    sensors = embodied.sensor_vector()
+                    for index in range(config.n_neurons):
+                        sensor = min(
+                            len(sensors) - 1, index * len(sensors) // config.n_neurons
+                        )
+                        external[index] += (
+                            sensors[sensor] * config.neural_io_input_current
+                        )
+                    for channel, value in enumerate(embodied.reward_vector):
+                        for index in closed_loop.channel_map[
+                            channel % config.input_channels
+                        ]:
+                            external[index] += value
                 if config.neuron_model == "pan_adex_5d":
                     external = [value + config.pan_bias_current for value in external]
                 if neural_io is not None:
@@ -577,6 +599,12 @@ class PlaygroundSession:
                 if neural_io is not None:
                     neural_io.observe(tick, spiked_this_tick)
 
+                for neuron in spiked_this_tick:
+                    cue_counts[neuron] += 1.0
+                if (tick + 1) % config.behavior_episode_ticks == 0:
+                    cue_features.append(cue_counts)
+                    cue_labels.append(closed_loop.current_target(tick))
+                    cue_counts = [0.0] * config.n_neurons
                 reward_signal = 0.0
                 if behavior_engine is not None:
                     behavior_engine.observe(spiked_this_tick)
@@ -624,6 +652,9 @@ class PlaygroundSession:
                                         tuple(behavior_engine.activity),
                                     )
                                 )
+                            embodied_action = (
+                                action if config.action_loop_enabled else None
+                            )
                             closed_loop.note_action(action=action, tick=tick)
                             for (
                                 action,
@@ -655,6 +686,46 @@ class PlaygroundSession:
                         learned_reward = behavior_engine.maybe_learn(tick)
                         if learned_reward is not None:
                             reward_signal = learned_reward
+                if embodied is not None:
+                    if not closed_loop_behavior and behavior_engine is not None:
+                        if (
+                            config.action_loop_enabled
+                            and (tick + 1) % config.behavior_episode_ticks == 0
+                        ):
+                            embodied_action = behavior_engine.choose_action()
+                    frame = embodied.advance(
+                        embodied_action, dt_seconds=config.dt_ms / 1000.0
+                    )
+                    posture_reward = embodied.last_reward
+                    reward_signal += posture_reward
+                    if (
+                        config.posture_reward_enabled
+                        and config.credit_assignment == "reward_modulated_stdp"
+                    ):
+                        scale = (
+                            config.behavior_learning_rate
+                            * config.td_lambda
+                            * config.gamma_discount
+                        )
+                        for edge in weights:
+                            if (
+                                tick - eligibility_last_tick.get(edge, -10_000_000)
+                                <= config.credit_window
+                            ):
+                                weights[edge] = min(
+                                    config.weight_max_clamp,
+                                    max(
+                                        0.0,
+                                        weights[edge]
+                                        + scale * eligibility[edge] * posture_reward,
+                                    ),
+                                )
+                        posture_credit_updates += 1
+                    if (
+                        frame["terminal"] is not None
+                        and config.episode_reset_on_collapse
+                    ):
+                        embodied_action = None
                 temporal_dynamics.note_spikes(spiked_this_tick, tick)
                 if cortical_org is not None:
                     cortical_org.observe(spiked_this_tick, reward_signal)
@@ -847,6 +918,22 @@ class PlaygroundSession:
         if behavior_engine is not None:
             result["behavioral_learning"] = behavior_engine.summary()
         result["closed_loop"] = closed_loop.summary()
+        result["cue_decoding"] = decode_cues(
+            cue_features,
+            cue_labels,
+            seed=config.seed,
+            policy_feedback=behavior_engine is not None
+            and config.behavior_bias_current != 0,
+        )
+        if embodied is not None:
+            result["sandbox"] = {
+                **embodied.summary(),
+                "dt_seconds": config.dt_ms / 1000.0,
+                "sensor_projection": "contiguous_neuron_groups",
+                "sensor_gain": config.neural_io_input_current,
+                "posture_credit_updates": posture_credit_updates,
+                "policy_reward": "target_task_only",
+            }
         result["heterogeneity"] = {
             "classification": "PLAYGROUND_NETWORK_HETEROGENEITY",
             "scientific_evidence": False,
