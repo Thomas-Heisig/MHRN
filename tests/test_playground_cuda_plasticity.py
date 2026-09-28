@@ -124,3 +124,49 @@ def test_physical_stp_stdp_trace_and_weight_parity(
     if ticks >= 100:
         assert sum(reference["spikes"]) > 0
         assert reference["weights"] != list(inputs.weights)
+
+
+def delayed_plastic_fixture() -> RecurrentInputs:
+    # Two consecutive emissions must preserve distinct send-time amplitudes.
+    return RecurrentInputs(
+        2,
+        66,
+        (0, 0, 1),
+        (0,),
+        (64,),
+        (2.0,),
+        tuple(
+            1000.0 if tick < 2 and neuron == 0 else 0.0
+            for tick in range(66)
+            for neuron in range(2)
+        ),
+        (-65.0, -65.0),
+        (0.0, 0.0),
+        model="lif",
+        synapses=SynapseConfig(stdp=False, stp=False, weight_decay=0.0),
+        rewards=tuple(-1.0 if tick == 1 else 0.0 for tick in range(66)),
+    )
+
+
+def test_delay_64_delivers_two_distinct_frozen_emissions() -> None:
+    inputs = delayed_plastic_fixture()
+    result = cpu_recurrent_reference(inputs)
+    # The tick-1 reward increases weight, but cannot change tick-0 delivery.
+    assert result["weights"][0] > 2.0
+    assert result["voltage"][63 * 2 + 1] == -65.0
+    assert result["voltage"][64 * 2 + 1] == pytest.approx(-64.9)
+    assert result["voltage"][65 * 2 + 1] == pytest.approx(
+        -64.9 + (-0.1 + result["weights"][0]) / 20
+    )
+
+
+@pytest.mark.skipif(
+    os.environ.get("MHRN_TEST_CUDA_HARDWARE") != "1", reason="opt-in physical CUDA test"
+)
+def test_physical_plastic_delay_64_keeps_send_time_amplitudes(tmp_path: Path) -> None:
+    inputs = delayed_plastic_fixture()
+    result = execute_recurrent(inputs, output_dir=tmp_path)
+    assert recurrent_parity(cpu_recurrent_reference(inputs), result["outputs"])[
+        "passed"
+    ]
+    assert result["outputs"]["voltage"][64 * 2 + 1] == pytest.approx(-64.9)
