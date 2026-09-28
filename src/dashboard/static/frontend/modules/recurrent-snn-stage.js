@@ -1,10 +1,7 @@
 "use strict";
 
-const ROUTES = Object.freeze({
-  science: ["recurrent", "Rekurrentes SNN", "network", "view", "recurrent"],
-  wesen: ["recurrent", "Rekurrenz", "wesen", "focus", "#mhrn-runtime-recurrent"],
-  control: ["recurrent", "Rekurrenz-Parameter", "settings", "focus", "#mhrn-recurrent-control"],
-});
+const ROUTES = Object.freeze({});
+
 
 const EDITABLE = Object.freeze([
   "network.initial_connections_per_neuron",
@@ -102,7 +99,7 @@ function ensureSciencePanel() {
     <div id="recurrent-science-summary" class="small-snn-summary"></div>
     <div class="small-snn-grid">
       <section><h3>Live-Netz</h3><div id="recurrent-science-graph" class="small-snn-graph"></div></section>
-      <section><h3>Stage-2 Contract</h3><div class="small-snn-contract"><strong>A → B → C → D → A</strong><span>20.000 ticks reference run</span><span>bounded event queue</span><span>deterministic replay identity</span><span>restart/restore independently verified</span><span>RQ-SNN-001: 100.000 ticks/run research DATA</span></div><div class="small-snn-actions"><button type="button" data-route-jump="wesen:recurrent">Runtime ansehen</button><button type="button" data-route-jump="control:recurrent">Rekurrenz-Parameter</button><button type="button" data-route-jump="release:development">Release-Entwicklung</button></div></section>
+      <section><h3>Stage-2 Contract</h3><div class="small-snn-contract"><strong>A → B → C → D → A</strong><span>20.000 ticks reference run</span><span>bounded event queue</span><span>deterministic replay identity</span><span>restart/restore independently verified</span><span>RQ-SNN-001: 100.000 ticks/run research DATA</span></div><div class="small-snn-actions"><button type="button" data-route-jump="old:wesen-recurrent">Runtime ansehen</button><button type="button" data-route-jump="old:control-recurrent">Rekurrenz-Parameter</button><button type="button" data-route-jump="release:development">Release-Entwicklung</button></div></section>
     </div>
     <div id="recurrent-science-status" class="small-snn-status">lade …</div>`;
   root.appendChild(panel);
@@ -114,7 +111,7 @@ function ensureRuntimePanel() {
   const panel = document.createElement("section");
   panel.id = "mhrn-runtime-recurrent";
   panel.className = "card small-snn-panel runtime-snn-panel";
-  panel.dataset.mhrnRoute = "wesen:recurrent";
+  panel.dataset.mhrnRoute = "old:wesen-recurrent";
   panel.hidden = true;
   panel.innerHTML = `
     <header class="small-snn-head"><div><span class="workspace-kicker">RUNTIME & WESEN · STAGE 2</span><h2>Rekurrenz Live</h2><p>Read-only Beobachtung des real laufenden Netzwerks mit Tick, Aktivität, Queue und rückgekoppelten Kanten im sichtbaren Ausschnitt.</p></div><button id="recurrent-runtime-refresh" type="button">↻ Aktualisieren</button></header>
@@ -132,12 +129,12 @@ function ensureControlPanel() {
   const panel = document.createElement("section");
   panel.id = "mhrn-recurrent-control";
   panel.className = "card small-snn-panel";
-  panel.dataset.mhrnRoute = "control:recurrent";
+  panel.dataset.mhrnRoute = "old:control-recurrent";
   panel.hidden = true;
   panel.innerHTML = `
     <header class="small-snn-head"><div><span class="workspace-kicker">CONTROL · STAGE 2</span><h2>Rekurrenz-Parameter</h2><p>Relevante Konstruktionsparameter werden ausschließlich als Pending Changes vorbereitet.</p></div><span id="recurrent-pending" class="small-snn-stage-badge">0 pending</span></header>
     <div id="recurrent-control-fields" class="small-snn-control-fields"></div>
-    <div class="small-snn-actions"><button id="recurrent-stage" type="button">Stage changes</button><button id="recurrent-apply" type="button" class="btn-primary">Apply</button><button type="button" data-route-jump="control:parameters">Alle Parameter</button><button type="button" data-route-jump="science:recurrent">Wissenschaft</button></div>
+    <div class="small-snn-actions"><button id="recurrent-stage" type="button">Stage changes</button><button id="recurrent-apply" type="button" class="btn-primary">Apply</button><button type="button" data-route-jump="settings:parameters">Alle Parameter</button><button type="button" data-route-jump="old:science-recurrent">Wissenschaft</button></div>
     <div id="recurrent-control-status" class="small-snn-status">lade …</div>
     <div class="small-snn-boundary">Topologie-, Radius- und Refraktäränderungen sind wissenschaftlich sensitiv. Ein neuer Run/Restart ist erforderlich.</div>`;
   root.appendChild(panel);
@@ -228,7 +225,7 @@ function summaryHtml(data) {
 }
 
 async function refreshScience() {
-  if (document.body.dataset.currentArea !== "science" || document.body.dataset.currentRoute !== "recurrent") return;
+  if (document.body.dataset.currentArea !== "old" || document.body.dataset.currentRoute !== "science-recurrent") return;
   try {
     const data = await loadNetwork();
     $("recurrent-science-summary").innerHTML = summaryHtml(data);
@@ -241,8 +238,8 @@ async function refreshScience() {
 
 async function refreshRuntime() {
   if (
-    document.body.dataset.currentArea !== "wesen" ||
-    document.body.dataset.currentRoute !== "recurrent" ||
+    document.body.dataset.currentArea !== "old" ||
+    document.body.dataset.currentRoute !== "wesen-recurrent" ||
     state.inFlight
   ) return;
   state.inFlight = true;
@@ -284,7 +281,7 @@ function renderControl() {
 }
 
 async function refreshControl() {
-  if (document.body.dataset.currentArea !== "control" || document.body.dataset.currentRoute !== "recurrent") return;
+  if (document.body.dataset.currentArea !== "old" || document.body.dataset.currentRoute !== "control-recurrent") return;
   try {
     const [parameters, pending] = await Promise.all([
       json("/api/parameters"),
@@ -342,17 +339,17 @@ async function applyControl() {
 function routeRefresh() {
   const area = document.body.dataset.currentArea;
   const route = document.body.dataset.currentRoute;
-  if (route !== "recurrent") return;
-  if (area === "science") refreshScience();
-  if (area === "wesen") refreshRuntime();
-  if (area === "control") refreshControl();
+  if (area !== "old") return;
+  if (route === "science-recurrent") refreshScience();
+  if (route === "wesen-recurrent") refreshRuntime();
+  if (route === "control-recurrent") refreshControl();
 }
 
 function syncPolling() {
   const area = document.body.dataset.currentArea;
   const route = document.body.dataset.currentRoute;
-  const liveRoute = route === "recurrent" && (area === "science" || area === "wesen");
-  if (route === "recurrent") routeRefresh();
+  const liveRoute = area === "old" && (route === "science-recurrent" || route === "wesen-recurrent");
+  if (area === "old" && route.endsWith("-recurrent")) routeRefresh();
   if (liveRoute && !state.timer) {
     state.timer = setInterval(routeRefresh, 1000);
     return;
@@ -374,7 +371,7 @@ export function initRecurrentSNNStage() {
     attributeFilter: ["data-current-area", "data-current-route"],
   });
   document.addEventListener("click", (event) => {
-    if (event.target.closest('[data-area-route="recurrent"], [data-route-card="recurrent"]')) {
+    if (event.target.closest('[data-area-route="science-recurrent"], [data-area-route="wesen-recurrent"], [data-area-route="control-recurrent"], [data-route-card="science-recurrent"], [data-route-card="wesen-recurrent"], [data-route-card="control-recurrent"]')) {
       setTimeout(syncPolling, 0);
     }
   });
