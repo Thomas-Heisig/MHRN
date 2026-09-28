@@ -10,7 +10,7 @@ Results include `sandbox` backend, actual tick count, time step, reward total, t
 
 Every complete episode produces one vector of neuron spike counts. An offline nearest-centroid probe trains on the first two thirds of episodes and evaluates only on the final third. Labels are never included in its input features or supplied to neuron dynamics by the probe. It includes majority/chance baselines and 64 training-label permutations. Missing classes, non-finite data and excessive probe budgets produce an explicit unavailable status instead of a positive result.
 
-This measures decodability, not learned neural cue interpretation. The result flags explicit policy-current feedback as a confound. Label permutation is not a randomized-input intervention. Transfer needs matched trained-network checkpoints and fresh-network learning curves; it is not inferred from classification accuracy. The research-candidate catalog records these controls.
+This measures decodability, not learned neural cue interpretation. The result flags explicit policy-current feedback as a confound. Label permutation is not a randomized-input intervention. Actual input interventions are now available through the separate [six-condition suite](CUE_CONTROL_EXPERIMENTS.md). Transfer needs matched trained-network checkpoints and fresh-network learning curves; it is not inferred from classification accuracy. The research-candidate catalog records these controls.
 
 ## Local validation (RTX 3060 host, 2026-09-28)
 
