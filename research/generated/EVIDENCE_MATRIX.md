@@ -51,6 +51,15 @@ RQ-Status und Claim-Status sind unterschiedliche wissenschaftliche Zustände und
 | `RQ-REC-002` | open | `H-REC-002-A` | — | — | 0 | `EXP-BATCH-20260906200118-42`, `EXP-BATCH-20260909223705-42`, `EXP-BATCH-20260914074039-42`, `EXP-EMP-20260910`, `EXP-REC-002-CLEAN-R2-20260919` | — | offen |
 | `RQ-LIFE-001` | open | `H-LIFE-001-A` | — | — | 0 | `EXP-BATCH-20260909223705-43`, `EXP-BATCH-20260914074039-43`, `EXP-EMP-20260910`, `EXP-LIFE-0001-R1`, `EXP-RETRY-AIRR-2026-0001-02` | — | offen |
 | `RQ-SNN-006` | open | `H-SNN-006-A` | — | — | 2 | `EXP-GEN-0041` | — | offen |
+| `RQ-CUDA-DET-001` | open | `H-CUDA-DET-001-A`, `H-CUDA-DET-001-B`, `H-CUDA-DET-001-C` | — | — | 3 | — | — | offen |
+| `RQ-CUDA-PAR-001` | open | `H-CUDA-PAR-001-A`, `H-CUDA-PAR-001-B`, `H-CUDA-PAR-001-C` | — | — | 3 | — | — | offen |
+| `RQ-CUDA-SCALE-001` | open | `H-CUDA-SCALE-001-A`, `H-CUDA-SCALE-001-B` | — | — | 2 | — | — | offen |
+| `RQ-GATE-IR-001` | open | `H-GATE-IR-001-A`, `H-GATE-IR-001-B`, `H-GATE-IR-001-C` | — | — | 1 | — | — | offen |
+| `RQ-PAN-SEM-001` | open | `H-PAN-SEM-001-A`, `H-PAN-SEM-001-B` | — | — | 1 | — | — | offen |
+| `RQ-PAN-GPU-001` | open | `H-PAN-GPU-001-A`, `H-PAN-GPU-001-B` | — | — | 2 | — | — | offen |
+| `RQ-CUDA-STRUCT-001` | open | `H-CUDA-STRUCT-001-A`, `H-CUDA-STRUCT-001-B` | — | — | 1 | — | — | offen |
+| `RQ-CUDA-CL-001` | open | `H-CUDA-CL-001-A`, `H-CUDA-CL-001-B`, `H-CUDA-CL-001-C` | — | — | 0 | — | — | offen |
+| `RQ-SIM-INTEROP-001` | open | `H-SIM-INTEROP-001-A`, `H-SIM-INTEROP-001-B` | — | — | 5 | — | — | offen |
 | `RQ-MEM-002` | open | `H-MEM-002-A` | — | — | 0 | `EXP-BATCH-20260909223705-44`, `EXP-EMP-20260910` | — | offen |
 | `RQ-WM-001` | open | `H-WM-001-A` | — | — | 0 | `EXP-BATCH-20260909223705-45`, `EXP-EMP-20260910` | — | offen |
 | `RQ-PROFILE-001` | open | `H-PROFILE-001-A` | — | — | 0 | `EXP-BATCH-20260909223705-46`, `EXP-EMP-20260910` | — | offen |
@@ -128,8 +137,8 @@ RQ-Status und Claim-Status sind unterschiedliche wissenschaftliche Zustände und
 | answered | 1 |
 | in_progress | 1 |
 | inconclusive | 3 |
-| open | 107 |
-| **Gesamt RQs** | **112** |
+| open | 116 |
+| **Gesamt RQs** | **121** |
 
 ### Claims (Claim-Status)
 

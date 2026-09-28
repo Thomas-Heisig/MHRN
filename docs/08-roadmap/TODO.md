@@ -496,3 +496,52 @@ A scientific milestone is complete only when all applicable requirements are sat
 - [x] Define explicit execution-authorization criteria.
 - [ ] Freeze R2 only after every automated pre-freeze gate is green.
 - [ ] Create a separate human execution-authorization record after freeze; do not generate Reference DATA before it.
+
+
+## 2026-09-28 CUDA/PAN canonicalization and simulator capability gaps
+
+Canonical research registration:
+- [x] Register dedicated CUDA/PAN/Gate/interop research-question fragment without creating EVID.
+- [x] Register untested hypotheses for determinism, backend parity, scaling, Gate-IR, PAN semantics/GPU, structural barriers, closed-loop parity and simulator interoperability.
+- [x] Register current Brian 2/Brian2CUDA/Brian2GeNN/Brian2Lava and GPU structural-plasticity comparison sources with explicit limitations.
+- [x] Document that existing Playground/RTX 3060 results remain engineering verification and are not retroactively promoted to DATA/EVID.
+
+Mandatory canonicalization:
+- [ ] Introduce a canonical `ExecutionBackend` boundary; RuntimeController decides when to run, backend decides how state advances.
+- [ ] Freeze one canonical neuron/synapse state and identity contract consumed by CPU and CUDA.
+- [ ] Freeze one canonical Learning/Synapse contract for STDP, STP, eligibility, reward timing, update ordering, delayed emission, decay and clamping.
+- [ ] Move D1/D2/D3, fail-closed numeric checks, execution fingerprint and replay contracts out of Playground-specific ownership.
+- [ ] Bind CUDA execution to canonical RuntimeCheckpoint/RuntimeBundle/StructuralJournal storage rather than Playground session persistence.
+- [ ] Canonicalize BoundaryFrame/codec/gateway contracts for backend-neutral Neural I/O.
+- [ ] Execute CUDA-1.6 as frozen-boundary parity first, then deterministic live closed-loop parity.
+- [ ] Freeze PAN hyperstate semantics before porting Health/Energy/Consolidation/Apoptosis/Growth to CUDA.
+- [ ] Route CUDA structural mutation through deterministic host barriers and canonical Proposal -> Approval -> StructuralPlasticityEngine -> Journal/Undo.
+
+Simulator capability backlog:
+- [ ] Design a versioned restricted model-description/equation contract; do not begin with unrestricted user code.
+- [ ] Add explicit physical-unit metadata and dimensional validation at model/configuration boundaries.
+- [ ] Design a generalized versioned synapse-rule interface that first reproduces the canonical MHRN learning contract.
+- [ ] Create a stable benchmark suite separating codegen/build, initialization, simulation, memory and semantic parity.
+- [ ] Implement a restricted Brian 2 reference adapter for preregistered comparisons with explicit units/integrator/delay/RNG mapping.
+- [ ] Evaluate multicompartment neurons as a separate optional model family.
+- [ ] Evaluate electrical/gap-junction synapses only after spike-event and continuous-current edge semantics are separated.
+- [ ] Evaluate broader stochastic/SDE model support only where required by registered research protocols.
+- [ ] Treat Brian2GeNN/Brian2Lava/Loihi/SpiNNaker-class targets as optional interoperability adapters, not hidden MHRN core dependencies.
+- [ ] Evaluate multi-GPU only after single-GPU canonical semantics, checkpointing and parity are closed.
+
+Reference: [MHRN simulator capability gaps](MHRN_SIMULATOR_CAPABILITY_GAPS.md).
+
+
+### Contract refinements from PR #249 review
+
+- [x] Specify the canonical Learning/Synapse contract and make its alignment a prerequisite for plastic CUDA-1.6.
+- [x] Specify Frozen-Environment modes and replay/trajectory hashes before live closed-loop parity.
+- [x] Specify complete target RuntimeCheckpoint contents for backend-neutral continuation.
+- [x] Bind CUDA-1.6 explicitly to the existing canonical Neural-I/O type family: BoundaryFrame, CodecContract, PopulationLayout, SpikeFrame, DecodeResult and CodecStreamState.
+- [x] Clarify structural approval into proposal eligibility, safety/policy approval and optional human authorization; prohibit direct in-kernel structural mutation.
+- [x] Move the benchmark/restricted Brian 2 reference stage before live CUDA-1.6/PAN-GPU in the integration order.
+- [ ] Implement and test `mhrn-learning-synapse-v1` on both CPU and CUDA backends.
+- [ ] Extend RuntimeCheckpoint/RuntimeBundle to every active continuation-critical field listed in the canonical checkpoint contract.
+- [ ] Implement FE-1/FE-2/FE-3 trajectory capture and fail-closed validation.
+- [ ] Add canonical approval-policy artifact hashing and structural-barrier execution-segment tests.
+- [ ] Add the early benchmark/reference suite with frozen workload manifests and explicit Brian 2 unit/integrator/delay/RNG mappings.

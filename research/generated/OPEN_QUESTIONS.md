@@ -643,6 +643,170 @@ Die folgenden Forschungsfragen sind noch offen und warten auf experimentelle Evi
 
 ---
 
+## RQ-CUDA-DET-001
+
+**Domäne:** Deterministic Accelerated Execution
+
+**Frage:** Unter welchen eingefrorenen Ausführungsbedingungen kann ein CUDA-Backend dieselbe Determinismusklasse wie die CPU-Referenz erreichen?
+
+**Relevanz:** GPU-Beschleunigung darf wissenschaftliche Reproduzierbarkeit nicht implizit verändern; Seed-, RNG-, Scheduling- und Zustandsverträge müssen deshalb explizit prüfbar sein.
+
+**Literatur:**
+- `SRC-STIMBERG-2019`: Marcel Stimberg et al. (2019)
+- `SRC-BRIAN2-DOCS-2026`: Brian development team et al. (2026)
+- `SRC-BRIAN2CUDA-2022`: Dennis Alevi et al. (2022)
+
+**Hypothesen:**
+- `H-CUDA-DET-001-A`: Bei identischem Source Freeze, Execution-Fingerprint, Seed, Input und Anfangszustand erzeugt derselbe CUDA-Vertrag in Wiederholungsläufen exakt dieselbe Spike-Ereignisfolge.
+- `H-CUDA-DET-001-B`: Ein spezifizierter Counter-RNG erzeugt für dieselben Schlüsselwerte reproduzierbare stochastische Entscheidungen unabhängig von Thread-Scheduling und Warp-Timing.
+- `H-CUDA-DET-001-C`: Änderungen von Blockgröße oder Schedule, die laut eingefrorenem Vertrag keine arithmetische Semantik ändern dürfen, verändern die registrierte D1-Ereignissignatur nicht.
+
+---
+
+## RQ-CUDA-PAR-001
+
+**Domäne:** Backend Parity
+
+**Frage:** Sind CPU- und CUDA-Ausführung für einen präregistrierten rekurrenten SNN-Vertrag auf Ereignis-, Zustands- und Plastizitätsebene semantisch äquivalent?
+
+**Relevanz:** Erst ein expliziter Cross-Backend-Vertrag erlaubt wissenschaftliche Experimente auf unterschiedlichen Ausführungsbackends ohne stillen Semantikwechsel.
+
+**Literatur:**
+- `SRC-STIMBERG-2019`: Marcel Stimberg et al. (2019)
+- `SRC-BRIAN2-DOCS-2026`: Brian development team et al. (2026)
+- `SRC-BRIAN2CUDA-2022`: Dennis Alevi et al. (2022)
+
+**Hypothesen:**
+- `H-CUDA-PAR-001-A`: Für den präregistrierten Modell- und Parameterraum stimmen CPU- und CUDA-Spikefolgen exakt überein.
+- `H-CUDA-PAR-001-B`: Membran- und Adaptationszustände bleiben zwischen CPU und CUDA innerhalb der vorab registrierten numerischen Toleranz.
+- `H-CUDA-PAR-001-C`: Bei aktivierter präregistrierter Plastizität bleiben Gewichte, Eligibility- und STP-Zustände zwischen CPU und CUDA innerhalb der vorab registrierten Toleranzen.
+
+---
+
+## RQ-CUDA-SCALE-001
+
+**Domäne:** Computational Scaling
+
+**Frage:** Wie verändern sich Laufzeit, Speicherbedarf und numerische Stabilität des CUDA-Backends mit wachsender Netzwerkgröße, Kantenanzahl, Delay-Ring und Simulationsdauer?
+
+**Relevanz:** Beschleunigung ist nur wissenschaftlich nützlich, wenn Skalierung ohne unbeobachtete Semantik- oder Stabilitätsänderung erfolgt.
+
+**Literatur:**
+- `SRC-BRIAN2CUDA-2022`: Dennis Alevi et al. (2022)
+- `SRC-BRIAN2GENN-DOCS-2026`: Brian2GeNN development team et al. (2026)
+
+**Hypothesen:**
+- `H-CUDA-SCALE-001-A`: Oberhalb einer prospektiv zu bestimmenden Crossover-Größe reduziert das CUDA-Backend die Wall-Time pro simuliertem Neuron-Tick gegenüber der CPU-Referenz, ohne die registrierten Paritätsgrenzen zu verletzen.
+- `H-CUDA-SCALE-001-B`: Der gemessene GPU-Speicherbedarf lässt sich aus Neuronen-, Kanten-, History- und Delay-Ring-Größen innerhalb einer vorregistrierten Abweichung vorhersagen.
+
+---
+
+## RQ-GATE-IR-001
+
+**Domäne:** Executable Semantics
+
+**Frage:** Kann die Gate-IR als backendunabhängiger ausführbarer Semantikvertrag für die unterstützten MHRN-Gate-Operationen dienen?
+
+**Relevanz:** Eine explizite Zwischenrepräsentation könnte Python-Referenz, PTX-Lowering und spätere Backends gegen denselben Vertrag prüfbar machen.
+
+**Literatur:**
+- `SRC-BRIAN2CUDA-2022`: Dennis Alevi et al. (2022)
+
+**Hypothesen:**
+- `H-GATE-IR-001-A`: Jeder im Studienumfang unterstützte Gate-Typ besitzt einen deterministischen Referenzoperator mit festgelegter Eingabe-, Ausgabe- und Fehlersemantik.
+- `H-GATE-IR-001-B`: Referenzinterpreter und PTX-Lowering erzeugen für denselben gültigen Gate-Graph innerhalb der präregistrierten numerischen Toleranz äquivalente Ausgaben.
+- `H-GATE-IR-001-C`: Für die spezifizierte Fehlerklasse werden ungültige Gate-IR-/ABI-Konfigurationen vor Kernel-Ausführung fail-closed abgelehnt.
+
+---
+
+## RQ-PAN-SEM-001
+
+**Domäne:** PAN Semantics
+
+**Frage:** Welcher minimale, versionierte Zustands- und Updatevertrag ist für PAN-Hyperstate, Ressourcenregulation und strukturelle Signale notwendig, damit eine Ausführung backendneutral fortsetzbar bleibt?
+
+**Relevanz:** PAN darf nicht gleichzeitig wissenschaftlich umdefiniert und auf einen neuen Backendpfad portiert werden; zuerst muss die Semantik eingefroren werden.
+
+**Literatur:**
+- `SRC-GERSTNER-2014`: Wulfram Gerstner et al. (2014)
+
+**Hypothesen:**
+- `H-PAN-SEM-001-A`: Ein versionierter PAN-Zustandsvertrag kann alle continuation-kritischen Hyperstate- und Ressourcenfelder ohne Simulationsschritt verlustfrei packen und wiederherstellen.
+- `H-PAN-SEM-001-B`: Ein eingefrorener Update-Order-Vertrag erzeugt bei identischem Zustand und Input deterministisch dieselbe PAN-Zustandsentwicklung.
+
+---
+
+## RQ-PAN-GPU-001
+
+**Domäne:** PAN Cross-Backend Execution
+
+**Frage:** Kann ein eingefrorener PAN-Zustandsvertrag auf CPU und CUDA innerhalb präregistrierter Toleranzen äquivalent ausgeführt werden?
+
+**Relevanz:** Erst nach Semantik-Freeze kann geprüft werden, ob PAN-Hyperstate und Ressourcenmechanismen backendunabhängig reproduzierbar sind.
+
+**Literatur:**
+- `SRC-BRIAN2CUDA-2022`: Dennis Alevi et al. (2022)
+- `SRC-GENN-STRUCTPLAST-2026`: James C. Knight et al. (2026)
+
+**Hypothesen:**
+- `H-PAN-GPU-001-A`: Bei strukturell eingefrorenem Netzwerk bleiben die definierten PAN-Hyperstate-Felder zwischen CPU- und CUDA-Ausführung innerhalb vorregistrierter Toleranzen.
+- `H-PAN-GPU-001-B`: Ein GPU-PAN-Lauf kann aus demselben kanonischen Checkpoint gestartet und in einen kanonisch äquivalenten Fortsetzungszustand zurückgeführt werden.
+
+---
+
+## RQ-CUDA-STRUCT-001
+
+**Domäne:** Structural Plasticity
+
+**Frage:** Kann strukturelle Mutation an deterministischen Host/GPU-Barrieren durchgeführt werden, ohne Identität, Replay oder Fortsetzbarkeit der CUDA-Ausführung zu verletzen?
+
+**Relevanz:** Growth, Pruning und Apoptosis verändern Graphstruktur, CSR, Delay-State und Checkpoints und benötigen deshalb einen expliziten Barrieren- und Identitätsvertrag.
+
+**Literatur:**
+- `SRC-GENN-STRUCTPLAST-2026`: James C. Knight et al. (2026)
+
+**Hypothesen:**
+- `H-CUDA-STRUCT-001-A`: Dieselbe freigegebene StructuralProposal-Sequenz erzeugt an definierten Host-Barrieren dieselbe logische Topologie und dieselben stabilen edge_id-/neuron_id-Zuordnungen.
+- `H-CUDA-STRUCT-001-B`: CSR-Rebuild, Schedule-Neuberechnung und GPU-Repacking nach einer strukturellen Barriere erhalten den kanonischen Zustand und ermöglichen deterministische Fortsetzung unter dem neuen Topology-Generation-Fingerprint.
+
+---
+
+## RQ-CUDA-CL-001
+
+**Domäne:** Closed-loop Backend Parity
+
+**Frage:** Bleibt eine Sensor-SNN-Aktor-Umwelt-Reward-Trajektorie zwischen CPU- und CUDA-Netzbackend äquivalent, wenn Umwelt und Boundary-Vertrag eingefroren sind?
+
+**Relevanz:** D3-Parität muss eine kausale Trajektorienprüfung sein und darf nicht allein durch vorgegebene Action-/Reward-Folgen entstehen.
+
+**Hypothesen:**
+- `H-CUDA-CL-001-A`: Bei identischen eingefrorenen BoundaryFrames und eingefrorener Umwelt stimmen CPU- und CUDA-Decoder-Aktionen über die gesamte registrierte Episode überein.
+- `H-CUDA-CL-001-B`: In einer deterministischen Live-Umwelt erzeugen CPU- und CUDA-Netzbackends dieselbe Folge aus Aktion, Umweltzustand, nächster Observation und berechnetem Reward.
+- `H-CUDA-CL-001-C`: Eine absichtlich eingeführte Backend-Abweichung wird durch mindestens eine der registrierten D1-, D2- oder D3c-Trajektorienprüfungen fail-closed erkannt.
+
+---
+
+## RQ-SIM-INTEROP-001
+
+**Domäne:** Simulator Interoperability
+
+**Frage:** Kann ein eingeschränkter gemeinsamer Modellvertrag zwischen MHRN und externen Referenzsimulatoren wie Brian 2 reproduzierbar abgebildet und verglichen werden?
+
+**Relevanz:** Externe Referenzbackends können Modellierungs-, Benchmark- und Replikationslücken schließen, dürfen aber keine stillen Semantikänderungen einführen.
+
+**Literatur:**
+- `SRC-STIMBERG-2019`: Marcel Stimberg et al. (2019)
+- `SRC-BRIAN2-DOCS-2026`: Brian development team et al. (2026)
+- `SRC-BRIAN2CUDA-2022`: Dennis Alevi et al. (2022)
+- `SRC-BRIAN2GENN-DOCS-2026`: Brian2GeNN development team et al. (2026)
+- `SRC-BRIAN2LAVA-DOCS-2026`: Brian2Lava development team et al. (2026)
+
+**Hypothesen:**
+- `H-SIM-INTEROP-001-A`: Ein präregistrierter gemeinsamer Punktneuron-/Synapsen-Subset kann in MHRN und Brian 2 mit expliziter Einheiten-, Integrator-, Delay- und RNG-Abbildung ausgeführt und auf gemeinsame Endpunkte verglichen werden.
+- `H-SIM-INTEROP-001-B`: Der Interoperabilitätsrunner zeichnet Simulatorversion, Modellbeschreibung, Einheitenabbildung, Backend, Integrator, Seed/RNG-Vertrag und Artifact-Hashes vollständig genug auf, um denselben Vergleich unabhängig zu rekonstruieren.
+
+---
+
 ## RQ-MEM-002
 
 **Domäne:** Memory
@@ -1682,6 +1846,6 @@ Die folgenden Forschungsfragen sind noch offen und warten auf experimentelle Evi
 
 ---
 
-*Insgesamt 111 offene Fragen.*
+*Insgesamt 120 offene Fragen.*
 
 > Pruefstatus: RQ/H- und EVID-Statuswerte geben den Registry-Inhalt wieder. Insbesondere historische supports/supported-Eintraege sind keine Bestaetigung einer Freigabe nach den heutigen Clean-Freeze- und Human-Review-Gates. Ein abgeschlossener Lauf ist DATA, nicht automatisch akzeptierte Evidenz.

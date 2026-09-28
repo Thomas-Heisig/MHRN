@@ -1,0 +1,175 @@
+- id: H-CUDA-DET-001-A
+  research_question: RQ-CUDA-DET-001
+  hypothesis: Bei identischem Source Freeze, Execution-Fingerprint, Seed, Input und Anfangszustand erzeugt derselbe CUDA-Vertrag in Wiederholungsläufen exakt dieselbe Spike-Ereignisfolge.
+  status: untested
+  evidence: []
+  created: '2026-09-28'
+  updated: '2026-09-28'
+
+- id: H-CUDA-DET-001-B
+  research_question: RQ-CUDA-DET-001
+  hypothesis: Ein spezifizierter Counter-RNG erzeugt für dieselben Schlüsselwerte reproduzierbare stochastische Entscheidungen unabhängig von Thread-Scheduling und Warp-Timing.
+  status: untested
+  evidence: []
+  created: '2026-09-28'
+  updated: '2026-09-28'
+
+- id: H-CUDA-DET-001-C
+  research_question: RQ-CUDA-DET-001
+  hypothesis: Änderungen von Blockgröße oder Schedule, die laut eingefrorenem Vertrag keine arithmetische Semantik ändern dürfen, verändern die registrierte D1-Ereignissignatur nicht.
+  status: untested
+  evidence: []
+  created: '2026-09-28'
+  updated: '2026-09-28'
+
+- id: H-CUDA-PAR-001-A
+  research_question: RQ-CUDA-PAR-001
+  hypothesis: Für den präregistrierten Modell- und Parameterraum stimmen CPU- und CUDA-Spikefolgen exakt überein.
+  status: untested
+  evidence: []
+  created: '2026-09-28'
+  updated: '2026-09-28'
+
+- id: H-CUDA-PAR-001-B
+  research_question: RQ-CUDA-PAR-001
+  hypothesis: Membran- und Adaptationszustände bleiben zwischen CPU und CUDA innerhalb der vorab registrierten numerischen Toleranz.
+  status: untested
+  evidence: []
+  created: '2026-09-28'
+  updated: '2026-09-28'
+
+- id: H-CUDA-PAR-001-C
+  research_question: RQ-CUDA-PAR-001
+  hypothesis: Bei aktivierter präregistrierter Plastizität bleiben Gewichte, Eligibility- und STP-Zustände zwischen CPU und CUDA innerhalb der vorab registrierten Toleranzen.
+  status: untested
+  evidence: []
+  created: '2026-09-28'
+  updated: '2026-09-28'
+
+- id: H-CUDA-SCALE-001-A
+  research_question: RQ-CUDA-SCALE-001
+  hypothesis: Oberhalb einer prospektiv zu bestimmenden Crossover-Größe reduziert das CUDA-Backend die Wall-Time pro simuliertem Neuron-Tick gegenüber der CPU-Referenz, ohne die registrierten Paritätsgrenzen zu verletzen.
+  status: untested
+  evidence: []
+  created: '2026-09-28'
+  updated: '2026-09-28'
+
+- id: H-CUDA-SCALE-001-B
+  research_question: RQ-CUDA-SCALE-001
+  hypothesis: Der gemessene GPU-Speicherbedarf lässt sich aus Neuronen-, Kanten-, History- und Delay-Ring-Größen innerhalb einer vorregistrierten Abweichung vorhersagen.
+  status: untested
+  evidence: []
+  created: '2026-09-28'
+  updated: '2026-09-28'
+
+- id: H-GATE-IR-001-A
+  research_question: RQ-GATE-IR-001
+  hypothesis: Jeder im Studienumfang unterstützte Gate-Typ besitzt einen deterministischen Referenzoperator mit festgelegter Eingabe-, Ausgabe- und Fehlersemantik.
+  status: untested
+  evidence: []
+  created: '2026-09-28'
+  updated: '2026-09-28'
+
+- id: H-GATE-IR-001-B
+  research_question: RQ-GATE-IR-001
+  hypothesis: Referenzinterpreter und PTX-Lowering erzeugen für denselben gültigen Gate-Graph innerhalb der präregistrierten numerischen Toleranz äquivalente Ausgaben.
+  status: untested
+  evidence: []
+  created: '2026-09-28'
+  updated: '2026-09-28'
+
+- id: H-GATE-IR-001-C
+  research_question: RQ-GATE-IR-001
+  hypothesis: Für die spezifizierte Fehlerklasse werden ungültige Gate-IR-/ABI-Konfigurationen vor Kernel-Ausführung fail-closed abgelehnt.
+  status: untested
+  evidence: []
+  created: '2026-09-28'
+  updated: '2026-09-28'
+
+- id: H-PAN-SEM-001-A
+  research_question: RQ-PAN-SEM-001
+  hypothesis: Ein versionierter PAN-Zustandsvertrag kann alle continuation-kritischen Hyperstate- und Ressourcenfelder ohne Simulationsschritt verlustfrei packen und wiederherstellen.
+  status: untested
+  evidence: []
+  created: '2026-09-28'
+  updated: '2026-09-28'
+
+- id: H-PAN-SEM-001-B
+  research_question: RQ-PAN-SEM-001
+  hypothesis: Ein eingefrorener Update-Order-Vertrag erzeugt bei identischem Zustand und Input deterministisch dieselbe PAN-Zustandsentwicklung.
+  status: untested
+  evidence: []
+  created: '2026-09-28'
+  updated: '2026-09-28'
+
+- id: H-PAN-GPU-001-A
+  research_question: RQ-PAN-GPU-001
+  hypothesis: Bei strukturell eingefrorenem Netzwerk bleiben die definierten PAN-Hyperstate-Felder zwischen CPU- und CUDA-Ausführung innerhalb vorregistrierter Toleranzen.
+  status: untested
+  evidence: []
+  created: '2026-09-28'
+  updated: '2026-09-28'
+
+- id: H-PAN-GPU-001-B
+  research_question: RQ-PAN-GPU-001
+  hypothesis: Ein GPU-PAN-Lauf kann aus demselben kanonischen Checkpoint gestartet und in einen kanonisch äquivalenten Fortsetzungszustand zurückgeführt werden.
+  status: untested
+  evidence: []
+  created: '2026-09-28'
+  updated: '2026-09-28'
+
+- id: H-CUDA-STRUCT-001-A
+  research_question: RQ-CUDA-STRUCT-001
+  hypothesis: Dieselbe freigegebene StructuralProposal-Sequenz erzeugt an definierten Host-Barrieren dieselbe logische Topologie und dieselben stabilen edge_id-/neuron_id-Zuordnungen.
+  status: untested
+  evidence: []
+  created: '2026-09-28'
+  updated: '2026-09-28'
+
+- id: H-CUDA-STRUCT-001-B
+  research_question: RQ-CUDA-STRUCT-001
+  hypothesis: CSR-Rebuild, Schedule-Neuberechnung und GPU-Repacking nach einer strukturellen Barriere erhalten den kanonischen Zustand und ermöglichen deterministische Fortsetzung unter dem neuen Topology-Generation-Fingerprint.
+  status: untested
+  evidence: []
+  created: '2026-09-28'
+  updated: '2026-09-28'
+
+- id: H-CUDA-CL-001-A
+  research_question: RQ-CUDA-CL-001
+  hypothesis: Bei identischen eingefrorenen BoundaryFrames und eingefrorener Umwelt stimmen CPU- und CUDA-Decoder-Aktionen über die gesamte registrierte Episode überein.
+  status: untested
+  evidence: []
+  created: '2026-09-28'
+  updated: '2026-09-28'
+
+- id: H-CUDA-CL-001-B
+  research_question: RQ-CUDA-CL-001
+  hypothesis: In einer deterministischen Live-Umwelt erzeugen CPU- und CUDA-Netzbackends dieselbe Folge aus Aktion, Umweltzustand, nächster Observation und berechnetem Reward.
+  status: untested
+  evidence: []
+  created: '2026-09-28'
+  updated: '2026-09-28'
+
+- id: H-CUDA-CL-001-C
+  research_question: RQ-CUDA-CL-001
+  hypothesis: Eine absichtlich eingeführte Backend-Abweichung wird durch mindestens eine der registrierten D1-, D2- oder D3c-Trajektorienprüfungen fail-closed erkannt.
+  status: untested
+  evidence: []
+  created: '2026-09-28'
+  updated: '2026-09-28'
+
+- id: H-SIM-INTEROP-001-A
+  research_question: RQ-SIM-INTEROP-001
+  hypothesis: Ein präregistrierter gemeinsamer Punktneuron-/Synapsen-Subset kann in MHRN und Brian 2 mit expliziter Einheiten-, Integrator-, Delay- und RNG-Abbildung ausgeführt und auf gemeinsame Endpunkte verglichen werden.
+  status: untested
+  evidence: []
+  created: '2026-09-28'
+  updated: '2026-09-28'
+
+- id: H-SIM-INTEROP-001-B
+  research_question: RQ-SIM-INTEROP-001
+  hypothesis: Der Interoperabilitätsrunner zeichnet Simulatorversion, Modellbeschreibung, Einheitenabbildung, Backend, Integrator, Seed/RNG-Vertrag und Artifact-Hashes vollständig genug auf, um denselben Vergleich unabhängig zu rekonstruieren.
+  status: untested
+  evidence: []
+  created: '2026-09-28'
+  updated: '2026-09-28'
