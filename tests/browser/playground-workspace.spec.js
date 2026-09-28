@@ -257,3 +257,31 @@ test("randomized cue selection and paired research controls are wired", async ({
     '"neural_learning_claim": false',
   );
 });
+
+test("synaptic transfer control displays bounded interpretation", async ({
+  page,
+}) => {
+  await page.locator("#pg-workspace-expand").click();
+  await page.route("**/api/playground/research/synaptic-transfer", (route) =>
+    route.fulfill({
+      status: 200,
+      contentType: "application/json",
+      body: JSON.stringify({
+        classification: "PLAYGROUND_SYNAPTIC_TRANSFER_PROBE",
+        changed_pretraining_weights: 64,
+        neural_transfer_claim: false,
+        conditions: [],
+      }),
+    }),
+  );
+  await page.locator("#pg-synaptic-transfer").click();
+  await expect(page.locator("#pg-transfer-summary")).toContainText(
+    "64 veraenderte Gewichte",
+  );
+  await expect(page.locator("#pg-transfer-summary")).toContainText(
+    "kein automatischer Nachweis",
+  );
+  await expect(page.locator("#pg-transfer-state")).toContainText(
+    '"neural_transfer_claim": false',
+  );
+});

@@ -36,6 +36,7 @@ from src.playground.models import PlaygroundConfig
 from src.playground.night_run import NightRunManager
 from src.playground.pan import PANEmbodiedSandboxSession, PANSessionDaemon
 from src.playground.pan.cue_controls import run_cue_controls
+from src.playground.pan.transfer import run_synaptic_transfer
 
 _MAX_CONCURRENT_RUNS = 2
 _RUNS_PER_MINUTE = 20
@@ -477,6 +478,9 @@ def post_playground(
 ) -> dict[str, object] | None:
     if path in {"/api/playground/run", "/api/playground/robustness"}:
         return _bounded_run(path, payload)
+
+    if path == "/api/playground/research/synaptic-transfer":
+        return _bounded_operation(lambda: run_synaptic_transfer(payload))
 
     if path == "/api/playground/research/cue-controls":
         return _bounded_operation(lambda: run_cue_controls(payload))

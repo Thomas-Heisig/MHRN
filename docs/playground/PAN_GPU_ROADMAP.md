@@ -27,7 +27,7 @@ and neuron count; 256 neurons do not inherently require four blocks.
 
 The actual CPU Builder now shares the live stick-figure world, receives physical sensor inputs, drives muscles from actions and applies enabled posture rewards to synaptic eligibility. The Run page includes body frame replay. See [PAN embodiment integration](PAN_EMBODIED_INTEGRATION.md).
 
-An activity-only held-out decoder and shuffled-label baseline are integrated into run results. Policy feedback is flagged. The integrated six-condition suite now covers randomized input-cue interventions and pair-STDP/frozen-weight comparisons. Transfer learning curves remain open. No all-GPU PAN or neural-learning advantage is claimed.
+An activity-only held-out decoder and shuffled-label baseline are integrated into run results. Policy feedback is flagged. The integrated six-condition suite now covers randomized input-cue interventions and pair-STDP/frozen-weight comparisons. Synaptic transfer probe calibration curves are integrated; task-learning transfer remains open. No all-GPU PAN or neural-learning advantage is claimed.
 
 
 ## CUDA-1.6 hybrid integration acceptance
@@ -37,4 +37,4 @@ The actual Builder can now run membrane updates on CUDA with the complete existi
 
 ## Cue interventions
 
-Actual independent randomized/absent input cues and a six-condition pair-STDP control suite are integrated into the Builder and research controls. The matched 3-seed sample decodes aligned cues equally well with frozen and plastic weights, so no neural-learning advantage is claimed. [Protocol and results](CUE_CONTROL_EXPERIMENTS.md). Transfer from a trained neural checkpoint remains required.
+Actual independent randomized/absent input cues and a six-condition pair-STDP control suite are integrated into the Builder and research controls. The matched 3-seed sample decodes aligned cues equally well with frozen and plastic weights, so no neural-learning advantage is claimed. [Protocol and results](CUE_CONTROL_EXPERIMENTS.md). A [synaptic transfer probe](SYNAPTIC_TRANSFER.md) transfers validated weights/delays to new cue channels with fresh-state controls. Full checkpoint resumption and faster neural task learning remain unproven.

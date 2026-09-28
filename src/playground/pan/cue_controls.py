@@ -15,30 +15,7 @@ def run_cue_controls(payload: Mapping[str, object]) -> dict[str, object]:
         raise ValueError("cue controls are bounded to 256 neurons and 4096 edges")
     if config.target_encoding == "none" or config.action_space_size < 2:
         raise ValueError("cue controls require an encoded cue and at least two targets")
-    overrides: dict[str, object] = {
-        "target_predictability": "stochastic",
-        "behavior_target_mode": "cycle",
-        "target_shuffle": False,
-        "persist": False,
-        "ensemble_runs": 1,
-        "offload_enabled": False,
-        "behavior_bias_current": 0.0,
-        "behavior_learning_enabled": False,
-        "action_coupling_strength": 0.0,
-        "reward_signal_enabled": False,
-        "sandbox_enabled": False,
-        "posture_reward_enabled": False,
-        "growth_enabled": False,
-        "cortical_plasticity": False,
-        "weight_decay": 0.0,
-        "credit_assignment": "none",
-        "synapse_model": "quantal_stp",
-        "freeze_actions": False,
-        "freeze_rewards": False,
-        "frozen_action_sequence": [],
-        "frozen_reward_sequence": [],
-        "parity_reference_commit": "",
-    }
+    overrides = cue_control_overrides()
     conditions: list[dict[str, object]] = []
     for plastic in (False, True):
         for cue in ("aligned", "randomized", "absent"):
@@ -70,5 +47,32 @@ def run_cue_controls(payload: Mapping[str, object]) -> dict[str, object]:
         "conditions": conditions,
         "neural_learning_claim": False,
         "scope": "CUE_DECODE_AND_PAIR_STDP_ABLATION_WITHOUT_POLICY_CURRENT_FEEDBACK",
-        "transfer_status": "PENDING_TRAINED_NETWORK_CHECKPOINT_AND_FRESH_NETWORK_COMPARISON",
+        "transfer_status": "SEPARATE_SYNAPTIC_TRANSFER_PROBE_AVAILABLE_TASK_LEARNING_UNPROVEN",
+    }
+
+
+def cue_control_overrides() -> dict[str, object]:
+    return {
+        "target_predictability": "stochastic",
+        "behavior_target_mode": "cycle",
+        "target_shuffle": False,
+        "persist": False,
+        "ensemble_runs": 1,
+        "offload_enabled": False,
+        "behavior_bias_current": 0.0,
+        "behavior_learning_enabled": False,
+        "action_coupling_strength": 0.0,
+        "reward_signal_enabled": False,
+        "sandbox_enabled": False,
+        "posture_reward_enabled": False,
+        "growth_enabled": False,
+        "cortical_plasticity": False,
+        "weight_decay": 0.0,
+        "credit_assignment": "none",
+        "synapse_model": "quantal_stp",
+        "freeze_actions": False,
+        "freeze_rewards": False,
+        "frozen_action_sequence": [],
+        "frozen_reward_sequence": [],
+        "parity_reference_commit": "",
     }

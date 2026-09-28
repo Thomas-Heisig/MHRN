@@ -13,6 +13,7 @@ def decode_cues(
     *,
     seed: int = 12345,
     policy_feedback: bool = False,
+    train_episodes: int | None = None,
 ) -> dict[str, object]:
     """Fit centroids on early complete episodes and score later episodes.
 
@@ -38,7 +39,9 @@ def decode_cues(
         or any(not math.isfinite(value) for row in features for value in row)
     ):
         return {**base, "status": "INSUFFICIENT_OR_INVALID_EPISODES"}
-    split = len(features) * 2 // 3
+    split = len(features) * 2 // 3 if train_episodes is None else train_episodes
+    if type(split) is not int or not 1 <= split < len(features):
+        return {**base, "status": "INVALID_TRAIN_TEST_SPLIT"}
     train, test = features[:split], features[split:]
     train_labels, test_labels = labels[:split], labels[split:]
     classes = sorted(set(labels))

@@ -15,6 +15,6 @@ Three seeds (12345, 42, 777), 64 neurons, 256 edges and 2000 ticks were tested. 
 
 Chance is 25% for these four targets. These small exploratory samples show that the existing driven neural activity can carry cue information even with frozen weights. They do **not** demonstrate a learned representation or a pair-STDP advantage: aligned decoding is already perfect without that learning rule. They also do not prove that the policy uses a neural decoder. The policy reference remains explicitly cue-conditioned.
 
-The transfer experiment remains open. It requires resuming a trained neural checkpoint on novel cues and comparing its reward/learning curve with matched fresh-network initialization. Training a new external classifier on the same recordings would not establish neural transfer, so it is not reported as such.
+A separate [synaptic transfer probe](SYNAPTIC_TRANSFER.md) now compares trained weights with fresh initialization on disjoint cue channels. It resets other network state and measures external decoder calibration. Reward/task-learning transfer remains open; this probe does not establish it.
 
 Validation: deterministic emitted-cue tests preserve evaluator labels, six-condition integration tests, no-cue/randomized-feature negative controls, finite/coverage/budget guards and browser endpoint/configuration wiring. Scientific promotion remains disabled.

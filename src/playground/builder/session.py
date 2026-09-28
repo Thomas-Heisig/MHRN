@@ -40,6 +40,7 @@ from ..pan import (
 )
 from ..pan.cue_decoding import decode_cues
 from ..pan.sandbox import EmbodiedEnvironment
+from ..pan.synaptic_checkpoint import SynapticCheckpoint
 from ..persist.session_recorder import record_session
 from ..registry.neuron_models import NeuronModelSpec, get_neuron_model
 from ..registry.plasticity_rules import require_plasticity_rule
@@ -54,6 +55,8 @@ class PlaygroundSession:
     """One isolated exploratory simulation with in-memory instrumentation."""
 
     config: PlaygroundConfig
+    initial_synapses: SynapticCheckpoint | None = None
+    capture_research_state: bool = False
 
     def _prepare(self) -> tuple[NeuronModelSpec, Topology]:
         model = get_neuron_model(self.config.neuron_model)
@@ -138,6 +141,16 @@ class PlaygroundSession:
             eligibility[edge] = 0.0
             eligibility_last_tick[edge] = -10_000_000
             release_state[edge] = 1.0
+
+        if self.initial_synapses is not None:
+            self.initial_synapses.validate(
+                n_neurons=config.n_neurons,
+                neuron_model=model.name,
+                expected_edges=set(weights),
+            )
+            for source, target, weight, delay in self.initial_synapses.edges:
+                weights[source, target] = weight
+                delays[source, target] = delay
 
         neural_io: NeuralIOInterface | None = None
         if config.neural_io_enabled:
@@ -961,6 +974,21 @@ class PlaygroundSession:
             else "NOT_APPLIED"
         )
         result["cue_decoding"] = cue_probe
+        if self.capture_research_state:
+            checkpoint = SynapticCheckpoint(
+                config.n_neurons,
+                model.name,
+                tuple(
+                    (source, target, weights[source, target], delays[source, target])
+                    for source, target in sorted(weights)
+                ),
+            )
+            result["research_state"] = {
+                "synapses": checkpoint.to_dict(),
+                "synaptic_digest": checkpoint.digest(),
+                "features": cue_features,
+                "labels": cue_labels,
+            }
         if embodied is not None:
             result["sandbox"] = {
                 **embodied.summary(),
