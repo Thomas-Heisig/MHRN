@@ -83,7 +83,10 @@ def test_runtime_neuron_frontend_is_initialized_from_new_frontend() -> None:
 
     assert 'import { initRuntimeNeuron } from "./modules/runtime-neuron.js";' in index
     assert "initRuntimeNeuron();" in index
-    assert '["neuron", "Neuron", "wesen", "focus", "#mhrn-runtime-neuron"]' in router
+    assert (
+        '["wesen-neuron", "Runtime & Wesen · Neuron", "wesen", "focus", "#mhrn-runtime-neuron"]'
+        in router
+    )
     assert 'panel.id = "mhrn-runtime-neuron"' in module
     assert "/api/network/neurons?limit=1&offset=" in module
     assert "model_provenance" in module
