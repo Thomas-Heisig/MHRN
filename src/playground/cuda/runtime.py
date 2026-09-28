@@ -1580,9 +1580,7 @@ def max_abs_error(reference: Sequence[float], candidate: Sequence[float]) -> flo
         raise ValueError("reference parity vector contains NaN/Inf")
     if not all(math.isfinite(value) for value in right_values):
         raise ValueError("candidate parity vector contains NaN/Inf")
-    return max(
-        abs(left - right) for left, right in zip(left_values, right_values)
-    )
+    return max(abs(left - right) for left, right in zip(left_values, right_values))
 
 
 def gate_parity_summary(
