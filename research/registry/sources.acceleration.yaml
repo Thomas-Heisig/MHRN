@@ -1,0 +1,124 @@
+- source_id: SRC-BRIAN2-DOCS-2026
+  authors:
+  - Brian development team
+  title: Brian 2 documentation, current stable documentation
+  year: 2026
+  publisher: Brian development team
+  source_type: software_documentation
+  url: https://brian2.readthedocs.io/en/latest/
+  verified_on: '2026-09-28'
+  verification_scope: Equations, physical units, multicompartment models, synapses, random-number/reproducibility documentation and current stable feature surface.
+  limitations: Documentation establishes Brian 2 capabilities and stated reproducibility limits, not superiority over MHRN.
+  topic:
+  - snn_simulation
+  - equations
+  - units
+  - multicompartment
+  - reproducibility
+  claims:
+  - Brian 2 supports equation-defined neuron/synapse models, dimensional unit checks and multicompartment SpatialNeuron models.
+  - Brian 2 documents that exact bitwise reproducibility cannot be guaranteed across all generated-code/compiler configurations.
+  brain5d_questions:
+  - RQ-CUDA-DET-001
+  - RQ-CUDA-PAR-001
+  - RQ-SIM-INTEROP-001
+  brain5d_relevance: Current external reference for flexible model specification and reproducibility boundaries.
+
+- source_id: SRC-BRIAN2CUDA-2022
+  authors:
+  - Dennis Alevi
+  - Marcel Stimberg
+  - Henning Sprekeler
+  - Klaus Obermayer
+  - Michael Augustin
+  title: "Brian2CUDA: flexible and efficient simulation of spiking neural network models on GPUs"
+  year: 2022
+  journal: Frontiers in Neuroinformatics
+  doi: 10.3389/fninf.2022.883700
+  source_type: peer_reviewed_article
+  url: https://doi.org/10.3389/fninf.2022.883700
+  verified_on: '2026-09-28'
+  verification_scope: CUDA code-generation backend for Brian 2 and comparative GPU execution context.
+  topic:
+  - cuda
+  - snn_simulation
+  - code_generation
+  - performance
+  claims:
+  - Brian2CUDA provides a CUDA standalone backend generated from Brian 2 model descriptions.
+  brain5d_questions:
+  - RQ-CUDA-DET-001
+  - RQ-CUDA-PAR-001
+  - RQ-CUDA-SCALE-001
+  - RQ-GATE-IR-001
+  - RQ-PAN-GPU-001
+  - RQ-SIM-INTEROP-001
+  brain5d_relevance: Primary peer-reviewed comparison source for GPU code-generation and simulator-backend methodology.
+
+- source_id: SRC-BRIAN2GENN-DOCS-2026
+  authors:
+  - Brian2GeNN development team
+  title: Brian2GeNN documentation
+  year: 2026
+  publisher: Brian2GeNN project
+  source_type: software_documentation
+  url: https://brian2genn.readthedocs.io/en/stable/
+  verified_on: '2026-09-28'
+  verification_scope: External Brian 2 device targeting the GeNN GPU simulator and its supported-feature boundary.
+  limitations: Brian2GeNN is an external extension and does not imply that every Brian 2 feature is supported on GeNN.
+  topic:
+  - gpu
+  - genn
+  - interoperability
+  claims:
+  - Brian2GeNN provides a Brian 2 device that generates and runs models through GeNN, with documented unsupported features.
+  brain5d_questions:
+  - RQ-CUDA-SCALE-001
+  - RQ-SIM-INTEROP-001
+  brain5d_relevance: Reference for external backend interoperability rather than a reason to duplicate GeNN inside MHRN.
+
+- source_id: SRC-BRIAN2LAVA-DOCS-2026
+  authors:
+  - Brian2Lava development team
+  title: Brian2Lava documentation
+  year: 2026
+  publisher: Brian2Lava project
+  source_type: software_documentation
+  url: https://brian2lava.gitlab.io/
+  verified_on: '2026-09-28'
+  verification_scope: Brian 2 to Lava interoperability and current public Loihi 2 access/feature boundary.
+  limitations: Brian2Lava remains in testing; public distributions currently expose CPU models while Loihi 2 model access is restricted.
+  topic:
+  - neuromorphic
+  - lava
+  - loihi2
+  - interoperability
+  claims:
+  - Brian2Lava aims to map Brian 2 models into Lava backends; current public Loihi 2 availability is restricted and flexible mode is not a general public Loihi 2 backend.
+  brain5d_questions:
+  - RQ-SIM-INTEROP-001
+  brain5d_relevance: Supports treating neuromorphic hardware as an optional adapter/interoperability programme, not as an assumed native MHRN feature.
+
+- source_id: SRC-GENN-STRUCTPLAST-2026
+  authors:
+  - James C. Knight
+  - Johanna Senk
+  - Thomas Nowotny
+  title: A flexible framework for structural plasticity in GPU-accelerated sparse spiking neural networks
+  year: 2026
+  journal: Neuromorphic Computing and Engineering
+  doi: 10.1088/2634-4386/ae4535
+  source_type: peer_reviewed_article
+  url: https://doi.org/10.1088/2634-4386/ae4535
+  verified_on: '2026-09-28'
+  verification_scope: GPU-accelerated structural plasticity in sparse SNNs using GeNN.
+  topic:
+  - structural_plasticity
+  - gpu
+  - sparse_snn
+  claims:
+  - Structural plasticity can be implemented in GPU-accelerated sparse SNN workflows under explicit data-structure and update constraints.
+  brain5d_questions:
+  - RQ-PAN-GPU-001
+  - RQ-CUDA-STRUCT-001
+  brain5d_relevance: Contemporary comparison point for MHRN structural-barrier and topology-mutation research.
