@@ -265,7 +265,7 @@ class PANLiveSession:
                 "learning": self.learning.summary(),
             }
 
-    def step(self, ticks: int = 32) -> dict[str, object]:
+    def step(self, ticks: int = 32, *, include_topology: bool = True) -> dict[str, object]:
         if ticks < 1 or ticks > 4096:
             raise ValueError("ticks must be between 1 and 4096")
         chunk_spikes: list[tuple[int, int]] = []
@@ -429,7 +429,9 @@ class PANLiveSession:
                 "dimensions": self.topology.dimensions,
                 "coordinates": self.topology.coordinates,
                 "edges": self.topology.edges,
-            },
+            }
+            if include_topology
+            else None,
             "actions": actions[-64:],
             "rewards": rewards[-64:],
             "learning_enabled": self.learning_enabled,
