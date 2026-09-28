@@ -16,16 +16,20 @@ def test_research_workspace_is_owned_by_central_workspace_router() -> None:
     for route in (
         "observatory",
         "experiments",
-        "network",
-        "dynamics",
-        "inspect",
-        "data",
-        "registry",
+        "science-network",
+        "science-cellmodel",
+        "science-dynamics",
+        "science-inspect",
+        "science-data",
+        "science-registry",
+        "science-snn",
+        "science-recurrent",
     ):
         assert re.search(r'\[\s*"' + re.escape(route) + r'"\s*,', router)
     assert "files: {" in router
     assert 'selectRoute("files", "browse")' in router
     assert 'label: "Wissenschaft"' in router
+    assert 'label: "OLD"' in router
     assert "research-workspace-tabs" not in controller
     assert "installResearchWorkspaceStyle" not in controller
     assert "brain5d:open-file" in (
