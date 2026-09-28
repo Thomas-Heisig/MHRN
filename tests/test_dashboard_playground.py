@@ -399,3 +399,52 @@ def test_playground_ui_exposes_cuda_parity_and_cpu_determinism_controls() -> Non
     assert "checkCpuDeterminism" in module
     assert "D1 = exakte Spike-Ereignisse" in module
     assert "ein echter GPU-Kernel-Launch ist hier noch nicht nachgewiesen" in module
+
+
+
+def test_playground_ui_exposes_cuda_13_hardware_diagnostics() -> None:
+    module = (STATIC / "frontend" / "modules" / "playground.js").read_text(
+        encoding="utf-8"
+    )
+    for marker in (
+        'id="pg-cuda-status"',
+        'id="pg-cuda-preflight"',
+        'id="pg-cuda-smoke"',
+        'id="pg-cuda-rng"',
+        'id="pg-cuda-neurons"',
+        'id="pg-cuda-block-size"',
+        'id="pg-cuda-stage-state"',
+        'id="pg-cuda-resource-state"',
+        'id="pg-cuda-parity-state"',
+        'id="pg-cuda-rng-state"',
+        "refreshCudaStatus",
+        "runCudaPreflight",
+        "runCudaHardwareSmoke",
+        "runCudaRngParity",
+        '"/api/playground/cuda/status"',
+        '"/api/playground/cuda/preflight"',
+        '"/api/playground/cuda/smoke"',
+        '"/api/playground/cuda/rng-parity"',
+    ):
+        assert marker in module
+
+
+def test_playground_api_exposes_cuda_13_status_preflight_smoke_and_rng() -> None:
+    api = (ROOT / "src" / "dashboard" / "playground_api.py").read_text(
+        encoding="utf-8"
+    )
+    for marker in (
+        'path == "/api/playground/cuda/status"',
+        'path == "/api/playground/cuda/preflight"',
+        'path == "/api/playground/cuda/smoke"',
+        'path == "/api/playground/cuda/rng-parity"',
+        "cpu_gate_reference",
+        "execute_gate_bundle",
+        "gate_execution_parity_summary",
+        "preflight_bundle",
+        "gpu_repeat_exact",
+        "memory_leak_instrumented",
+        "raw_rng_value_parity",
+    ):
+        assert marker in api
+    assert "EvidenceEngine" not in api
