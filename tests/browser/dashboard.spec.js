@@ -253,7 +253,7 @@ test("research workspace switches between experiments, files and registry", asyn
   await expect(page.locator('.research-subpanel[data-subpanel="files"]')).toBeVisible();
   await expect(page.locator('.research-subpanel[data-subpanel="experiments"]')).toBeHidden();
 
-  await selectRoute(page, "science", "registry");
+  await selectRoute(page, "old", "science-registry");
   await expect(page.locator('.research-subpanel[data-subpanel="registry"]')).toBeVisible();
   await expect(page.locator('#mhrn-research-docs')).toBeVisible();
   await expect(page.locator('.research-subpanel[data-subpanel="experiments"]')).toBeHidden();
@@ -262,7 +262,7 @@ test("research workspace switches between experiments, files and registry", asyn
 
 test("navigation and box-state controls remain usable", async ({ page }) => {
   await openDashboard(page);
-  await selectRoute(page, "science", "network");
+  await selectRoute(page, "old", "science-network");
   await expect(page.locator("#tab-network")).toHaveClass(/active/);
   await selectLabStage(page, "run");
   await expect(page.locator("#tab-research")).toHaveClass(/active/);
