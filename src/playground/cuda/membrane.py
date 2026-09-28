@@ -11,6 +11,7 @@ from pathlib import Path
 from typing import Any
 
 from ..pan.runtime import PANRuntime
+from .builder_synapses import BuilderSynapseStepper
 from .nvrtc import compile_cuda_source
 from .pan_state import PANStateStepper
 from .recurrent import PARAMETER_NAMES, SUPPORTED_MODELS
@@ -35,6 +36,7 @@ class MembraneStepper:
         self.host: dict[str, Any] = {}
         self.ticks = 0
         self.pan: PANStateStepper | None = None
+        self.synapses: BuilderSynapseStepper | None = None
         row = [
             p.get(name, 1.0 if name in {"resistance", "delta_t", "tau_w_ms"} else 0.0)
             for p in parameters
@@ -136,6 +138,10 @@ def cuda_membrane_session(
         source += "\n" + Path(__file__).with_name("pan_state.cu").read_text(
             encoding="utf-8"
         )
+    if pan_runtime is not None:
+        source += "\n" + Path(__file__).with_name("builder_synapses.cu").read_text(
+            encoding="utf-8"
+        )
     ptx = compile_cuda_source(source, target_sm="sm_86")
     with tempfile.TemporaryDirectory(prefix="mhrn-membrane-") as directory:
         path = Path(directory) / "membrane.ptx"
@@ -149,11 +155,18 @@ def cuda_membrane_session(
                     stepper.pan = PANStateStepper(
                         driver, driver.kernel(loaded, "pan_state_step"), pan_runtime
                     )
+                    stepper.synapses = BuilderSynapseStepper(
+                        driver, loaded, min(20000, max(1, stepper.n * (stepper.n - 1)))
+                    )
                 yield stepper
             finally:
                 try:
-                    if stepper.pan is not None:
-                        stepper.pan.close()
+                    try:
+                        if stepper.synapses is not None:
+                            stepper.synapses.close()
+                    finally:
+                        if stepper.pan is not None:
+                            stepper.pan.close()
                 finally:
                     stepper.close()
         finally:
