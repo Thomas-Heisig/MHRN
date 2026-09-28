@@ -1062,6 +1062,11 @@ class PlaygroundSession:
                 if gpu_membrane is not None and gpu_membrane.pan is not None
                 else 0
             ),
+            "gpu_pan_population_calls": (
+                gpu_membrane.pan.population_calls
+                if gpu_membrane is not None and gpu_membrane.pan is not None
+                else 0
+            ),
             "synapses_backend": (
                 "cuda_synaptic_rules_queue_and_neuron_traces"
                 if config.neuron_backend == "cuda_pan"
@@ -1108,7 +1113,10 @@ class PlaygroundSession:
                 "PAN_feedback_projection": (
                     "cuda" if config.neuron_backend == "cuda_pan" else "cpu"
                 ),
-                "PAN_feedback_source_history_and_population_reduction": "cpu",
+                "PAN_feedback_source_history": "cpu",
+                "PAN_population_reduction": (
+                    "cuda" if config.neuron_backend == "cuda_pan" else "cpu"
+                ),
                 "synaptic_emission_inhibition_STP_recovery_weight_decay": (
                     "cuda" if config.neuron_backend == "cuda_pan" else "cpu"
                 ),

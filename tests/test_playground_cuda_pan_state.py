@@ -38,6 +38,66 @@ def test_cuda_pan_rejects_non_pan_models():
         )
 
 
+@pytest.mark.parametrize("dimensions", [5, 10, 32])
+def test_population_order_retains_dead_vectors_and_rejects_overflow(dimensions):
+    pan = runtime(n=3, dimensions=dimensions)
+    states = [{"v": -65.0} for _ in range(3)]
+    pan.initialize(states)
+    for values, expected in (([1e16, 1.0, -1e16], 0.0), ([1e16, -1e16, 1.0], 1 / 3)):
+        for state, value in zip(states, values):
+            state["pan_alive"] = False
+            state["pan_x_hd"] = [value] * dimensions
+        pan.update(
+            tick=0, dt_ms=1.0, states=states, spiked_neurons=[], plasticity_active=False
+        )
+        assert pan.population_vector == [expected] * dimensions
+    for state in states:
+        state["pan_x_hd"] = [1e308] * dimensions
+    with pytest.raises(ValueError, match="population.*finite"):
+        pan.update(
+            tick=1, dt_ms=1.0, states=states, spiked_neurons=[], plasticity_active=False
+        )
+
+
+@pytest.mark.skipif(
+    os.environ.get("MHRN_TEST_CUDA_HARDWARE") != "1", reason="opt-in physical CUDA test"
+)
+def test_gpu_population_order_and_overflow(tmp_path, monkeypatch):
+    monkeypatch.setenv("TMP", str(tmp_path))
+    pan = runtime(n=3, dimensions=32)
+    states = [{"v": -65.0} for _ in range(3)]
+    pan.initialize(states)
+    model = get_neuron_model("pan_adex_5d")
+    with membrane.cuda_membrane_session(
+        model.name, [model.parameters] * 3, 1.0, pan_runtime=pan
+    ) as stepper:
+        for tick, (values, expected) in enumerate(
+            (([1e16, 1.0, -1e16], 0.0), ([1e16, -1e16, 1.0], 1 / 3))
+        ):
+            for state, value in zip(states, values):
+                state["pan_alive"] = False
+                state["pan_x_hd"] = [value] * 32
+            stepper.pan.update(
+                tick=tick,
+                dt_ms=1.0,
+                states=states,
+                spiked_neurons=[],
+                plasticity_active=False,
+            )
+            assert pan.population_vector == [expected] * 32
+        assert stepper.pan.population_calls == 2
+        for state in states:
+            state["pan_x_hd"] = [1e308] * 32
+        with pytest.raises(ValueError, match="population.*finite"):
+            stepper.pan.update(
+                tick=2,
+                dt_ms=1.0,
+                states=states,
+                spiked_neurons=[],
+                plasticity_active=False,
+            )
+
+
 @pytest.mark.parametrize(
     "failure", ["allocation", "copy", "launch", "synchronize", "nonfinite"]
 )
@@ -172,6 +232,7 @@ def test_pan_state_real_builder_d3(seed, tmp_path, monkeypatch):
     assert result["gpu_synaptic_plasticity_calls"] == 2000
     assert result["gpu_delay_consumed_ticks"] == 2000
     assert result["gpu_neuron_trace_ticks"] == 2000
+    assert result["gpu_pan_population_calls"] == 2000
 
 
 def test_pan_parity_requires_full_finite_state_and_gpu_ticks():
@@ -197,6 +258,7 @@ def test_pan_parity_requires_full_finite_state_and_gpu_ticks():
         gpu_pan_ticks=128,
         gpu_delay_consumed_ticks=128,
         gpu_neuron_trace_ticks=128,
+        gpu_pan_population_calls=128,
     )
     assert compare_builder_runs(cpu, gpu)["passed"]
     gpu["execution"]["gpu_neuron_trace_ticks"] = 0

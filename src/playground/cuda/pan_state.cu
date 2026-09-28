@@ -1,4 +1,4 @@
-// Exploratory PAN per-neuron state. Population feedback remains host ordered.
+// Exploratory PAN per-neuron state and ordered population reduction.
 __device__ double pan_bound(double x, double lo=0.0, double hi=1.0) {
     return fmax(lo, fmin(hi, x));
 }
@@ -35,7 +35,16 @@ extern "C" __global__ void pan_state_step(
     if(health<=death_threshold) alive[i]=0;
 }
 
-// Ordered projection; source history and population reduction are host-owned.
+// One ordered writer per axis, retaining dead-neuron vectors as the CPU does.
+extern "C" __global__ void pan_population_mean(unsigned n, unsigned dimensions,
+    const double* vectors, double* population) {
+    unsigned d=threadIdx.x;if(d>=dimensions)return;
+    double total=0.0;
+    for(unsigned i=0;i<n;++i) total+=vectors[i*dimensions+d];
+    population[d]=total/(double)n;
+}
+
+// Ordered projection; source-history selection is host-owned.
 extern "C" __global__ void pan_feedback_step(
     unsigned n, unsigned dimensions, unsigned nonlinearity,
     double gain, double threshold, double saturation,

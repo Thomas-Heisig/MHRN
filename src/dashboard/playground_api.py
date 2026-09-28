@@ -205,6 +205,7 @@ def _cuda_runtime_status() -> dict[str, object]:
             "delays": True,
             "builder_delay_queue": "DEVICE_RESIDENT_RING_65",
             "builder_neuron_traces": "DEVICE_RESIDENT_TWO_PHASE",
+            "builder_pan_population": "CUDA_ORDERED_AXIS_REDUCTION",
             "plasticity": "BUILDER_PAIR_TRIPLET_ELIGIBILITY_MODULATION_AND_BOUNDED_REFERENCE",
             "sandbox_physics": False,
         },
