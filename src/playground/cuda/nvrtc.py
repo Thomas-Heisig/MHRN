@@ -49,7 +49,9 @@ def compile_cuda_source(source: str, *, target_sm: str = "sm_86") -> str:
         raise CudaRuntimeUnavailable("NVRTC library is not installed")
     library = libraries[0]
     directory = (
-        os.add_dll_directory(str(library.parent)) if os.name == "nt" else nullcontext()
+        getattr(os, "add_dll_directory")(str(library.parent))
+        if os.name == "nt"
+        else nullcontext()
     )
     with directory:
         lib = ctypes.CDLL(str(library))
