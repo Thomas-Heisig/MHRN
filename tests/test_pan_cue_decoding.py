@@ -94,3 +94,16 @@ def test_matched_six_condition_suite_has_no_explicit_policy_current() -> None:
         assert condition["probe"]["input_cue_control"] == condition["input_cue_control"]
     targets = [row["target_history"] for row in result["conditions"]]
     assert all(target == targets[0] for target in targets)
+
+
+def test_live_session_does_not_silently_ignore_builder_cue_intervention() -> None:
+    import pytest
+
+    from src.playground.models import PlaygroundConfig
+    from src.playground.pan.live_session import PANLiveSession
+
+    config = PlaygroundConfig.from_mapping(
+        {"closed_loop_preset": "pan_full_balanced", "target_cue_control": "randomized"}
+    )
+    with pytest.raises(ValueError, match="not live sessions"):
+        PANLiveSession(config)

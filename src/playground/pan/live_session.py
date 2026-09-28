@@ -43,6 +43,10 @@ class PANLiveSession:
     """Persistent, bounded PAN reference session."""
 
     def __init__(self, config: PlaygroundConfig) -> None:
+        if config.target_cue_control != "aligned":
+            raise ValueError(
+                "input-cue interventions currently apply to Builder runs, not live sessions"
+            )
         if config.neuron_backend != "cpu":
             raise ValueError(
                 "CUDA membrane selection currently applies to Builder runs; live sessions require cpu"
