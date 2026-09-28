@@ -194,6 +194,17 @@ def test_playground_live_monitor_exposes_popup_controls_and_graphs() -> None:
         "pg-live-zoom-reset",
         "pg-live-zoom-stop",
         "imageSmoothingEnabled=false",
+        "liveUpdateFactor=1",
+        "liveStepBusy=false",
+        "currentLiveUpdateFactor",
+        "Math.min(4096,32*factor)",
+        "if(liveStepBusy)return null",
+        "requestAnimationFrame",
+        "pg-live-update-factor",
+        "pg-live-zoom-factor",
+        "include_topology:includeTopology",
+        "liveMonitorTopology=null",
+        "liveTopologyRefreshCounter=0",
     ):
         assert marker in module
 
@@ -304,9 +315,9 @@ def test_playground_ui_exposes_live_pan_session_controls() -> None:
     assert '"/api/playground/live/stop-all"' in module
     assert "maximum live Playground sessions reached" in module
     assert "compatibility_cleanup" in module
-    assert (
-        "apiGet(`/api/playground/live/${encodeURIComponent(liveSessionId)}`)" in module
-    )
+    assert "currentLiveUpdateFactor" in module
+    assert "include_topology:includeTopology" in module
+    assert "if(liveStepBusy)return null" in module
 
 
 def test_playground_api_exposes_stateful_live_routes_without_research_promotion() -> (

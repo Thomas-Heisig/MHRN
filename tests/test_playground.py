@@ -1141,6 +1141,18 @@ def test_live_pan_session_keeps_state_across_chunks() -> None:
     assert live.snapshot()["topology"]["edge_count"] == len(live.topology.edges)
 
 
+def test_live_pan_session_can_omit_repeated_topology_payload() -> None:
+    config = PlaygroundConfig.from_mapping(
+        _small_payload(neuron_model="pan_adex_5d", pan_enabled=True, ticks=16)
+    )
+    live = PANLiveSession(config)
+    compact = live.step(4, include_topology=False)
+    assert compact["topology"] is None
+    assert compact["tick"] == 4
+    assert "recent_spikes" in compact
+    assert live.snapshot()["topology"]["neuron_count"] == config.n_neurons
+
+
 def test_live_pan_session_accepts_external_vector_input() -> None:
     config = PlaygroundConfig.from_mapping(
         _small_payload(
