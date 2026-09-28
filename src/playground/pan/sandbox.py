@@ -7,7 +7,7 @@ import json
 import math
 from collections import deque
 from dataclasses import dataclass, field
-from typing import Protocol
+from typing import Protocol, cast
 
 
 @dataclass(slots=True)
@@ -17,6 +17,21 @@ class Joint:
     vx: float = 0.0
     vy: float = 0.0
     mass: float = 1.0
+
+
+Spring = tuple[str, str, float, float]
+
+
+def _empty_joints() -> dict[str, Joint]:
+    return {}
+
+
+def _empty_muscles() -> dict[str, float]:
+    return {}
+
+
+def _empty_springs() -> list[Spring]:
+    return []
 
 
 class PostureAnalyzer:
@@ -135,12 +150,10 @@ class _LiveSessionLike(Protocol):
 class StickFigureSandbox:
     """Simple point-mass/spring body with four muscle controls."""
 
-    joints: dict[str, Joint] = field(default_factory=dict)
-    muscles: dict[str, float] = field(default_factory=dict)
+    joints: dict[str, Joint] = field(default_factory=_empty_joints)
+    muscles: dict[str, float] = field(default_factory=_empty_muscles)
     echo: deque[list[float]] = field(default_factory=lambda: deque(maxlen=10))
-    springs: list[tuple[str, str, float, float]] = field(
-        default_factory=list, init=False
-    )
+    springs: list[Spring] = field(default_factory=_empty_springs, init=False)
     tick: int = 0
     world_x_min: float = -2.0
     world_x_max: float = 2.0
@@ -328,14 +341,17 @@ class EmbodiedEnvironment:
         if self.last_frame is not None:
             raw_audio = self.last_frame.get("audio")
             if isinstance(raw_audio, dict):
-                raw_level = raw_audio.get("level", 0.0)
+                raw_level: object = cast(dict[str, object], raw_audio).get(
+                    "level", 0.0
+                )
                 if isinstance(raw_level, (int, float)):
                     audio = float(raw_level)
             raw_echo = self.last_frame.get("echo")
             if isinstance(raw_echo, list):
+                echo_values_raw = cast(list[object], raw_echo)
                 echo_values = [
                     float(value)
-                    for value in raw_echo
+                    for value in echo_values_raw
                     if isinstance(value, (int, float))
                 ]
         combined = list(receptors) + [audio] + echo_values
@@ -441,7 +457,11 @@ class PANEmbodiedSandboxSession(EmbodiedEnvironment):
             )
             pan_result = self.live_session.step(1)
             actions = pan_result.get("actions", [])
-            action = int(actions[-1]) if isinstance(actions, list) and actions else None
+            action = None
+            if isinstance(actions, list) and actions:
+                raw_action = cast(list[object], actions)[-1]
+                if isinstance(raw_action, (int, float)):
+                    action = int(raw_action)
             frame = self.advance(action)
             frames.append(frame)
             if self.reward_vector:
