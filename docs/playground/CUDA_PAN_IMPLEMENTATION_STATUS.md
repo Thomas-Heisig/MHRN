@@ -18,13 +18,15 @@ executed, and which may later be promoted into the canonical MHRN CUDA backend.
 | 5 Closed loop | CPU Playground implemented | action selection, target/action/reward loop exists; CUDA integration pending |
 | 6 Learning | CPU Playground partial | credit/reward mechanisms exist; full CUDA STDP/reward update pending |
 | 7 Stick figure application | CPU Playground implemented | deterministic point-mass/spring sandbox, sensors, actuators, posture and reward trigger |
-| 8 Parity | contracts + CPU reference implemented | D1/D2/D3 contracts and freeze mode exist; actual CPU<->CUDA full-state parity pending |
+| 8 Parity | fail-closed contracts + CPU gate reference implemented | D1/D2/D3 contracts and freeze mode exist; NaN/Inf, empty and length-mismatch evidence fail closed; actual CPU<->CUDA full-state parity pending |
 | 9 Infrastructure | partial | compiler manifests, validation, logging/persistence elsewhere; tiered CUDA storage remains pending |
 
 ## CUDA-1.2 executable gate ABI
 
 The generated PTX manifest now declares the `pan_gate_kernel` ABI explicitly.
-The runtime validates all host-buffer dimensions before any device allocation.
+The runtime validates all host-buffer dimensions, numeric finiteness, float32
+range, uint32 scalar fields and uint64 channel masks before any device
+allocation. H2D/DtoH copies check both host-buffer and device-allocation sizes.
 
 The first executable path performs:
 
@@ -44,8 +46,13 @@ compile_config
  -> cleanup
 ```
 
-A deterministic smoke-input builder exists for hardware validation. A successful
-single-tick launch proves only that the bounded Playground gate kernel executed.
+A deterministic non-trivial CPU gate reference and hardware-smoke path exist for
+validation. D2 comparison fails closed on NaN/Inf, empty evidence, action/current
+length mismatches and invalid action types. The epsilon-greedy mapping uses the
+upper 24 hash bits so its float32 uniform is guaranteed to remain in [0, 1).
+The smoke path also records CUDA free/total memory before allocation and after
+cleanup. A successful single-tick launch proves only that the bounded Playground
+gate kernel executed.
 It does **not** prove a complete MHRN SNN, STDP parity, behavioral equivalence,
 or scientific acceleration.
 
@@ -78,9 +85,8 @@ provenance, and structural-barrier rules.
 ## Next CUDA steps
 
 1. Execute `pan_gate_kernel` on the target RTX 3060 and persist a technical
-   smoke report.
-2. Add a CPU implementation of the exact gate ABI and compare all current/action
-   outputs for one tick (D2 gate parity).
+   smoke report with fail-closed D2, repeatability, RNG and VRAM-cleanup results.
+2. Treat CUDA-1.3 as complete only after that physical RTX 3060 run passes.
 3. Extend the executable kernel ABI with membrane/adaptation/refractory state.
 4. Add deterministic recurrent synapse gather and delay-ring state.
 5. Run 10 then 100 ticks without plasticity.
