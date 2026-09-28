@@ -157,3 +157,22 @@ These pages are Playground documentation and are not canonical evidence.
 
 The exact payload stays outside the SNN and is not persisted in Playground
 session results.
+
+
+## CUDA-1 Playground console
+
+The Playground exposes the engineering CUDA path without promoting it to
+scientific evidence.
+
+- CUDA-1.0: PTX assembly, driver loading and occupancy preflight.
+- CUDA-1.1: CPU determinism, freeze contracts and D1/D2/D3 definitions.
+- CUDA-1.2: explicit 17-parameter gate ABI, bounded buffers and kernel launch.
+- CUDA-1.3: fail-closed CPU gate reference versus GPU output, repeatability,
+  half-open epsilon-greedy RNG mapping and VRAM cleanup instrumentation.
+- CUDA-1.4 through CUDA-1.6 remain pending for multi-tick state/delays, GPU
+  plasticity and GPU closed-loop sandbox execution.
+
+CUDA-1.3 rejects NaN/Inf, float32 overflow, invalid uint32/uint64 ABI values,
+empty or length-mismatched parity evidence, illegal CUDA block sizes and
+host/device copy-size mismatches before launch. Hardware completion still
+requires a real NVIDIA run; hosted CI validates CPU contracts and PTX assembly.
