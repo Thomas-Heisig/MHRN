@@ -639,6 +639,7 @@ CLOSED_LOOP_PRESETS.update(
             "settings": {
                 "closed_loop_preset": "d1_minimal_closed_loop",
                 "behavior_action_count": 2,
+                "action_space_size": 2,
                 "behavior_target_mode": "fixed",
                 "behavior_target_action": 0,
                 "behavior_epsilon": 0.1,
@@ -653,6 +654,7 @@ CLOSED_LOOP_PRESETS.update(
             "settings": {
                 "closed_loop_preset": "d1_minimal_closed_loop",
                 "behavior_action_count": 1,
+                "action_space_size": 1,
                 "behavior_target_mode": "fixed",
                 "behavior_target_action": 0,
                 "behavior_epsilon": 0.0,
@@ -765,6 +767,7 @@ class ClosedLoopRuntime:
         self.delivered_rewards: list[tuple[int, int, float]] = []
         self.reward_trace = 0.0
         self.last_action: int | None = None
+        self.observed_context: str | None = None
         self.previous_action: int | None = None
         self.target_permutation = list(range(config.action_space_size))
         if config.target_shuffle:
@@ -810,6 +813,8 @@ class ClosedLoopRuntime:
 
     def _target_for_episode(self, episode: int) -> int:
         count = self.config.action_space_size
+        if self.config.behavior_target_mode == "fixed":
+            return self.config.behavior_target_action
         mode = self.config.target_predictability
         if mode == "stochastic":
             target_rng = random.Random(self.config.seed ^ 0x7A267 ^ episode)
@@ -885,6 +890,21 @@ class ClosedLoopRuntime:
             values.append(self.amplitudes[channel] * carrier)
 
         target_values = self._target_channel_values(tick)
+        # The policy only sees an emitted cue, never the evaluator's target.
+        # Remember a transient cue within its episode, and forget it at reset.
+        if tick % max(1, self.config.behavior_episode_ticks) == 0:
+            self.observed_context = None
+        if any(value != 0.0 for value in target_values):
+            phase = tick % max(1, self.config.behavior_episode_ticks)
+            signature = ",".join(format(value, ".12g") for value in target_values)
+            suffix = (
+                f":at:{phase}"
+                if self.config.target_encoding == "population_latency"
+                else ""
+            )
+            self.observed_context = (
+                f"cue:{self.config.target_encoding}:{signature}{suffix}"
+            )
         for channel in range(self.channels):
             values[channel] += target_values[channel]
 
@@ -1030,6 +1050,8 @@ class ClosedLoopRuntime:
             "parity_reference_source": self.config.parity_reference_source,
             "parity_reference_commit": self.config.parity_reference_commit,
             "target_encoding": self.config.target_encoding,
+            "policy_context_source": "emitted_target_cue_within_episode",
+            "observed_context": self.observed_context,
             "reward_signal_enabled": self.config.reward_signal_enabled,
             "reward_shaping": self.config.reward_shaping,
             "credit_assignment": self.config.credit_assignment,

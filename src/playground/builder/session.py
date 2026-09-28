@@ -7,6 +7,7 @@ import math
 import random
 import time
 import uuid
+from collections import deque
 from dataclasses import dataclass
 
 from .._isolation import PlaygroundIsolation, playground_manifest
@@ -299,6 +300,18 @@ class PlaygroundSession:
         state_stride = max(1, math.ceil(config.ticks / 128))
         tick_spike_counts: list[int] = []
         previous_spikes: list[int] = []
+        policy_decisions: deque[tuple[str | None, tuple[float, ...]]] = deque()
+
+        def apply_policy_reward(action: int, target: int, reward: float) -> float:
+            assert behavior_engine is not None
+            context, activity = policy_decisions.popleft()
+            return behavior_engine.apply_external_reward(
+                action=action,
+                reward=reward,
+                target=target,
+                context=context,
+                activity=activity,
+            )
 
         with PlaygroundIsolation():
             for tick in range(config.ticks):
@@ -323,6 +336,14 @@ class PlaygroundSession:
                 pending[slot] = [0.0 for _ in range(config.n_neurons)]
                 external = stimulus(tick)
                 loop_current = closed_loop.currents(tick)
+                if behavior_engine is not None and closed_loop_behavior:
+                    behavior_engine.active_context = closed_loop.observed_context
+                    if closed_loop.observed_context is not None:
+                        behavior_engine.activate_context(
+                            closed_loop.observed_context,
+                            behavior_engine.action_count,
+                            initial_value=1.0,
+                        )
                 external = [
                     external[index] + loop_current[index]
                     for index in range(config.n_neurons)
@@ -565,11 +586,7 @@ class PlaygroundSession:
                             target,
                             reward,
                         ) in closed_loop.consume_delivered_rewards():
-                            applied_reward = behavior_engine.apply_external_reward(
-                                action=action,
-                                reward=reward,
-                                target=target,
-                            )
+                            applied_reward = apply_policy_reward(action, target, reward)
                             reward_signal += applied_reward
                             if config.credit_assignment == "reward_modulated_stdp":
                                 scale = (
@@ -600,16 +617,21 @@ class PlaygroundSession:
                                 action = config.frozen_action_sequence[episode_index]
                             else:
                                 action = behavior_engine.choose_action()
+                            if config.reward_signal_enabled:
+                                policy_decisions.append(
+                                    (
+                                        behavior_engine.active_context,
+                                        tuple(behavior_engine.activity),
+                                    )
+                                )
                             closed_loop.note_action(action=action, tick=tick)
                             for (
                                 action,
                                 target,
                                 reward,
                             ) in closed_loop.consume_delivered_rewards():
-                                applied_reward = behavior_engine.apply_external_reward(
-                                    action=action,
-                                    reward=reward,
-                                    target=target,
+                                applied_reward = apply_policy_reward(
+                                    action, target, reward
                                 )
                                 reward_signal += applied_reward
                                 if config.credit_assignment == "reward_modulated_stdp":

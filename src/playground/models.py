@@ -1048,8 +1048,13 @@ class PlaygroundConfig:
             raise ValueError("action_loop_delay must be between 1 and 64")
         if not 1 <= self.action_persistence <= 128:
             raise ValueError("action_persistence must be between 1 and 128")
-        if not 2 <= self.action_space_size <= 32:
-            raise ValueError("action_space_size must be between 2 and 32")
+        if not 1 <= self.action_space_size <= 32:
+            raise ValueError("action_space_size must be between 1 and 32")
+        if (
+            self.behavior_target_mode == "fixed"
+            and self.behavior_target_action >= self.action_space_size
+        ):
+            raise ValueError("behavior_target_action outside closed-loop action range")
         if not 0.0 <= self.action_coupling_strength <= 10.0:
             raise ValueError("action_coupling_strength must be between 0 and 10")
         if not 0.0 <= self.action_noise <= 1.0:
