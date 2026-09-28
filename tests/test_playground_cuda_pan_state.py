@@ -170,6 +170,7 @@ def test_pan_state_real_builder_d3(seed, tmp_path, monkeypatch):
     assert result["gpu_synaptic_emissions"] > 0
     assert result["gpu_synaptic_reward_calls"] > 0
     assert result["gpu_synaptic_plasticity_calls"] == 2000
+    assert result["gpu_delay_consumed_ticks"] == 2000
 
 
 def test_pan_parity_requires_full_finite_state_and_gpu_ticks():
@@ -190,7 +191,10 @@ def test_pan_parity_requires_full_finite_state_and_gpu_ticks():
     ).run()
     gpu = deepcopy(cpu)
     gpu["execution"].update(
-        neuron_backend="cuda_pan", gpu_membrane_ticks=128, gpu_pan_ticks=128
+        neuron_backend="cuda_pan",
+        gpu_membrane_ticks=128,
+        gpu_pan_ticks=128,
+        gpu_delay_consumed_ticks=128,
     )
     assert compare_builder_runs(cpu, gpu)["passed"]
     gpu["research_state"]["pan_states"][0]["pan_energy"] = float("nan")

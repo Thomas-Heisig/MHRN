@@ -307,14 +307,14 @@ test("PAN state backend reaches the actual D3 request", async ({ page }) => {
       contentType: "application/json",
       body: JSON.stringify({
         passed: true,
-        scope: "REAL_BUILDER_CUDA_PAN_SYNAPTIC_RULES_CPU_WORLD_AND_QUEUES",
+        scope: "REAL_BUILDER_CUDA_PAN_SYNAPSES_RESIDENT_QUEUE_CPU_WORLD",
         full_gpu_pan: false,
       }),
     });
   });
   await page.locator("#pg-cuda-builder-parity").click();
   await expect(page.locator("#pg-cuda-builder-parity-state")).toContainText(
-    "CUDA_PAN_SYNAPTIC_RULES",
+    "CUDA_PAN_SYNAPSES_RESIDENT_QUEUE",
   );
 });
 

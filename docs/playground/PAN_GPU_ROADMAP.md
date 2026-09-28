@@ -55,7 +55,7 @@ Status below distinguishes the non-canonical Playground from canonical MHRN. A f
 | Consolidation | New optional CUDA PAN state stage | Activity-history parity; not established cognitive memory |
 | Apoptosis | CUDA decision, host event bookkeeping | Identical death tick/id, dead neurons stop spiking, buffers remain valid |
 | Feedback projection / population reduction | Weighted projection/shape on CUDA; source history and ordered population reduction on CPU | 96-mode projection parity plus full D3; GPU population/history ownership remains open |
-| Synaptic propagation / STDP / eligibility | CUDA Builder emission/STP/recovery/live reward plus pair/triplet/eligibility/modulation; host traces and delay queue | Full synaptic-state/RNG D3 and seven rule modes; persistent state, neuron traces and queue still need GPU ownership |
+| Synaptic propagation / STDP / eligibility | CUDA Builder emission/STP/recovery/live reward plus pair/triplet/eligibility/modulation; host neuron traces | Full synaptic-state/RNG D3 and seven rule modes; resident delay queue integrated; remaining persistent state and neuron traces need GPU ownership |
 | Inhibitory integration | Actual Builder GPU emission implemented; older frozen-reward reference restriction remains | Signed/GABA and threshold controls pass; keep reference/backend scope explicit |
 | Full Builder RNG semantics | Preserved host traversal draws supplied to CUDA emission; reference counter RNG differs | Exact complete RNG-state/STP/D3 checks pass; device RNG ownership remains separate |
 | Growth / dynamic synaptogenesis / structural mutation | CPU barriers | Deterministic additions/removals, stable IDs, capacity and pending-event migration |
@@ -66,7 +66,7 @@ Status below distinguishes the non-canonical Playground from canonical MHRN. A f
 | Canonical MHRN self-organization | Separate canonical mechanisms | Map actual canonical state/rules; conformance to canonical CPU, not Playground proxies |
 | Canonical storage/checkpoint | Existing canonical path separate; synaptic probe is not full checkpoint | Versioned full state including RNG, queues, topology, time, body, policy; exact resume |
 | RuntimeController integration | Not a productive full CUDA backend | Backend capability routing, cancellation, errors, storage and rollback tests |
-| CUDA-2 persistent execution | Buffers reused within runs; per-tick transfers remain | Device-resident state, bounded stop/checkpoint, occupancy-safe launches, measured throughput |
+| CUDA-2 persistent execution | Resident device delay ring with queue snapshot/restore; other host mirrors/transfers remain | Device-resident state, bounded stop/checkpoint, occupancy-safe launches, measured throughput |
 | CUDA-3 neurogenesis | CPU exploratory growth only | Neuron creation/death/remapping and restored pending events with reference equivalence |
 | Adaptive delays / SSD offload | Partial host facilities | Preserve emitted amplitude and arrival time during delay changes/spill/restore |
 | Multi-GPU / clusters | Open | Explicit partition/RNG/checkpoint protocol, cross-device delays, failure recovery and hardware scaling |
@@ -74,7 +74,7 @@ Status below distinguishes the non-canonical Playground from canonical MHRN. A f
 ### Ordered next stages
 
 1. Integrate and validate the new PAN state CUDA stage in Builder, D3 endpoint, visible component table and main CI.
-2. PAN feedback projection is implemented as the next validated stage. Builder inhibitory emission, exact host traversal-RNG supply and per-edge plasticity rules are integrated. Port source history/population reduction, neuron traces and delay-queue ownership next. Preserve ordered reductions and emission-time amplitude. Keep the frozen-reward reference as a separate oracle.
+2. PAN feedback projection is implemented as the next validated stage. Builder inhibitory emission, exact host traversal-RNG supply and per-edge plasticity rules are integrated. Resident delay-queue ownership is integrated. Port source history/population reduction, neuron traces and complete persistent-session state next. Preserve ordered reductions and emission-time amplitude. Keep the frozen-reward reference as a separate oracle.
 3. Add persistent live-session integration, bounded cancellation and complete versioned checkpoints before advertising persistence across runs/backends.
 4. Connect canonical self-organization and RuntimeController through explicit state/conformance adapters. Do not relabel exploratory health/energy/information proxies as canonical mechanisms.
 5. Move structural mutation/neurogenesis and event migration through validated barriers; then resident execution, measured optimization and multi-GPU/distributed tests.
@@ -97,3 +97,6 @@ Two control surfaces exist: `src/controller/runtime.py` (network/homeostasis, ho
 
 
 [Actual Builder plasticity](CUDA16_BUILDER_PLASTICITY.md) adds per-edge learning-rule execution with original same-tick ordering, rather than treating the frozen-reward reference as a drop-in backend. Global modulators are still host-calculated; per-edge application is CUDA.
+
+
+[Resident delay queue](CUDA_RESIDENT_DELAY_QUEUE.md) is an initial CUDA-2 state-ownership step integrated into the real Builder, with exact ordered current accumulation and raw queue restore. It does not close complete session checkpoint/resume, cancellation or productive controller integration.
