@@ -1616,9 +1616,5 @@ def gate_parity_summary(
         "max_abs_error": error,
         "tolerance": tolerance,
         "failure_reason": failure_reason,
-        "passed": (
-            failure_reason is None
-            and error is not None
-            and error <= tolerance
-        ),
+        "passed": (failure_reason is None and error is not None and error <= tolerance),
     }
