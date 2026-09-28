@@ -2,9 +2,27 @@ import { test, expect } from "@playwright/test";
 import { selectRoute } from "./routes.js";
 
 test.beforeEach(async ({ page }) => {
-  await page.goto("http://127.0.0.1:4174/");
+  await page.goto(
+    process.env.MHRN_PLAYGROUND_TEST_URL || "http://127.0.0.1:4174/",
+  );
+  await page.locator('[data-mhrn-language="de"]').click();
   await selectRoute(page, "playground", "builder");
   await expect(page.locator("#pg-groups")).toBeVisible();
+});
+
+test("PAN full profile is the initial default and restores its I/O payload", async ({
+  page,
+}) => {
+  await expect(page.locator("#pg-user-preset-select")).toHaveValue(
+    "pan_full_balanced",
+  );
+  await expect(page.locator("#pg-neurons")).toHaveValue("256");
+  await expect(page.locator("#pg-ticks")).toHaveValue("2000");
+  await expect(page.locator("#pg-pan-enabled")).toBeChecked();
+  await expect(page.locator("#pg-neural-io-enabled")).toBeChecked();
+  await expect(page.locator("#pg-input-channels")).toHaveValue("8");
+  await expect(page.locator("#pg-offload-enabled")).not.toBeChecked();
+  await expect(page.locator("#pg-neural-io-payload")).toHaveValue("0.5");
 });
 
 test("guided groups preserve controls and validate channel edits with undo", async ({
@@ -52,13 +70,11 @@ test("configuration export/import restores values and rejects malformed files", 
   await page.locator("#pg-neurons").fill("64");
   await page.locator("#pg-workspace-file").setInputFiles(path);
   await expect(page.locator("#pg-neurons")).toHaveValue("96");
-  await page
-    .locator("#pg-workspace-file")
-    .setInputFiles({
-      name: "invalid.json",
-      mimeType: "application/json",
-      buffer: Buffer.from('{"bad":true}'),
-    });
+  await page.locator("#pg-workspace-file").setInputFiles({
+    name: "invalid.json",
+    mimeType: "application/json",
+    buffer: Buffer.from('{"bad":true}'),
+  });
   await expect(page.locator("#pg-workspace-message")).toContainText(
     "Import fehlgeschlagen",
   );
