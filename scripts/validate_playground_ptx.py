@@ -47,6 +47,11 @@ def main() -> int:
         output_dir=root / "builder-membrane",
         target_sm="sm_86",
     ).to_mapping()
+    results["builder_pan_state"] = assemble_ptx(
+        compile_cuda_source(Path("src/playground/cuda/pan_state.cu").read_text()),
+        output_dir=root / "builder-pan-state",
+        target_sm="sm_86",
+    ).to_mapping()
     print(json.dumps(results, indent=2, sort_keys=True))
     return 0
 

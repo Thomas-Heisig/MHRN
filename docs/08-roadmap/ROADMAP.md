@@ -1022,3 +1022,8 @@ Files such as `ROADMAP_ALPHA4.md`, `ROADMAP_ALPHA5*.md`, `ROADMAP_V*.md` and spr
 
 [Architecture and execution](../02-architecture/CONNECTOME_EMBODIMENT.md) and
 [scientific supplement](../../research/publications/2026-09-09_connectome-embodiment_supplement/README.md).
+
+
+## PAN / CUDA integration programme
+
+The non-canonical Playground PAN work and its explicit canonical-integration requirements are tracked in the [PAN/GPU work programme](../playground/PAN_GPU_ROADMAP.md). It covers neuron/synapse/network persistence, hybrid and full CUDA execution, body/Neural-I/O coupling, research controls, canonical storage/self-organization, RuntimeController and scaling. Completion of a Playground stage does not promote scientific evidence or establish a canonical backend.

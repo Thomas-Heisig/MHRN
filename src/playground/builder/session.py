@@ -339,9 +339,18 @@ class PlaygroundSession:
         with PlaygroundIsolation(), ExitStack() as resources:
             gpu_membrane = (
                 resources.enter_context(
-                    cuda_membrane_session(model.name, neuron_parameters, config.dt_ms)
+                    cuda_membrane_session(
+                        model.name,
+                        neuron_parameters,
+                        config.dt_ms,
+                        **(
+                            {"pan_runtime": pan_runtime}
+                            if config.neuron_backend == "cuda_pan"
+                            else {}
+                        ),
+                    )
                 )
-                if config.neuron_backend == "cuda_membrane"
+                if config.neuron_backend != "cpu"
                 else None
             )
             for tick in range(config.ticks):
@@ -766,7 +775,12 @@ class PlaygroundSession:
                     dual_scheduler.observe_spikes(tick, spiked_this_tick)
 
                 if pan_runtime is not None:
-                    pan_runtime.update(
+                    pan_update = (
+                        gpu_membrane.pan.update
+                        if gpu_membrane is not None and gpu_membrane.pan is not None
+                        else pan_runtime.update
+                    )
+                    pan_update(
                         tick=tick,
                         dt_ms=config.dt_ms,
                         states=states,
@@ -926,10 +940,28 @@ class PlaygroundSession:
             **execution_switcher.summary(),
             "neuron_backend": config.neuron_backend,
             "gpu_membrane_ticks": (
-                config.ticks if config.neuron_backend == "cuda_membrane" else 0
+                config.ticks if config.neuron_backend != "cpu" else 0
             ),
+            "pan_state_backend": (
+                "cuda" if config.neuron_backend == "cuda_pan" else "cpu"
+            ),
+            "gpu_pan_ticks": config.ticks if config.neuron_backend == "cuda_pan" else 0,
             "synapses_backend": "cpu",
             "environment_backend": "cpu",
+            "components": {
+                "membrane_and_spikes": (
+                    "cuda" if config.neuron_backend != "cpu" else "cpu"
+                ),
+                "PAN_health_energy_information_consolidation_hyperstate_apoptosis": (
+                    "cuda" if config.neuron_backend == "cuda_pan" else "cpu"
+                ),
+                "PAN_feedback_and_population_reduction": "cpu",
+                "synapses_STP_STDP_eligibility_and_inhibition": "cpu",
+                "policy_and_action_selection": "cpu",
+                "world_posture_sensors_actuators_reward": "cpu",
+                "Neural_IO_and_episode_management": "cpu",
+                "growth_and_structural_mutation": "cpu",
+            },
             "full_gpu_pan": False,
         }
         result["interfaces"] = {
@@ -988,6 +1020,10 @@ class PlaygroundSession:
                 "synaptic_digest": checkpoint.digest(),
                 "features": cue_features,
                 "labels": cue_labels,
+                "pan_states": [
+                    {k: v for k, v in state.items() if k.startswith("pan_")}
+                    for state in states
+                ],
             }
         if embodied is not None:
             result["sandbox"] = {

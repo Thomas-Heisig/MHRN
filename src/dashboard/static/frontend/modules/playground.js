@@ -244,7 +244,7 @@ function buildPanels(root) {
           <label>Clock<select id="pg-clock-mode"><option value="continuous">Continuous</option><option value="dual">Dual · Event + Continuous</option></select></label>
           <label>Base Hz<input id="pg-clock-base-hz" type="number" min="1" max="10000" value="100"></label>
           <label>Event Batch ms<input id="pg-clock-event-batch" type="number" min="0.05" max="1000" step="0.05" value="10"></label>
-          <label>Membran-Ausfuehrung<select id="pg-neuron-backend"><option value="cpu">CPU-Referenz</option><option value="cuda_membrane">CUDA FP64 · Membran (PAN/Koerper auf CPU)</option></select></label>
+          <label>Neuron-/PAN-Ausfuehrung<select id="pg-neuron-backend"><option value="cpu">CPU-Referenz</option><option value="cuda_membrane">CUDA FP64 · Membran (PAN/Koerper auf CPU)</option><option value="cuda_pan">CUDA FP64 · Membran + PAN-Zustand (Synapsen/Koerper auf CPU)</option></select></label>
           <label>Execution<select id="pg-execution-mode"><option value="HYBRID_AUTO">HYBRID_AUTO</option><option value="EVENT_ONLY">EVENT_ONLY</option><option value="TICK_ONLY">TICK_ONLY</option></select></label>
           <label>Initial Engine<select id="pg-execution-initial"><option value="EVENT_ONLY">EVENT_ONLY</option><option value="TICK_ONLY">TICK_ONLY</option></select></label>
           <label>θ high<input id="pg-execution-high" type="number" min="0" max="1" step="0.01" value="0.30"></label>
