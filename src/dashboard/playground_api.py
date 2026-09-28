@@ -23,6 +23,12 @@ from src.playground.cuda import (
     preflight_bundle,
     validate_cuda_block_size,
 )
+from src.playground.cuda.recurrent import (
+    cpu_recurrent_reference,
+    execute_recurrent,
+    recurrent_fixture,
+    recurrent_parity,
+)
 from src.playground.models import PlaygroundConfig
 from src.playground.night_run import NightRunManager
 from src.playground.pan import PANEmbodiedSandboxSession, PANSessionDaemon
@@ -395,6 +401,34 @@ def _cuda_rng_parity(payload: Mapping[str, object]) -> dict[str, object]:
     }
 
 
+def _cuda_recurrent_parity(payload: Mapping[str, object]) -> dict[str, object]:
+    block_size = validate_cuda_block_size(_payload_int(payload, "block_size", 64))
+    inputs = recurrent_fixture(
+        n_neurons=_payload_int(payload, "n_neurons", 129),
+        ticks=_payload_int(payload, "ticks", 100),
+        model=_payload_text(payload, "model", "pan_adex_5d"),
+    )
+    reference = cpu_recurrent_reference(inputs)
+    candidate = execute_recurrent(
+        inputs,
+        block_size=block_size,
+        target_sm=_payload_text(payload, "target_sm", "sm_86"),
+    )
+    return {
+        "classification": "PLAYGROUND_CUDA14_RECURRENT_PARITY",
+        "scientific_evidence": False,
+        "model": inputs.model,
+        "ticks": inputs.ticks,
+        "state_dtype": candidate["state_dtype"],
+        "preflight": candidate["preflight"],
+        "parity": recurrent_parity(
+            reference, cast(dict[str, object], candidate["outputs"])
+        ),
+        "scope": candidate["comparison_scope"],
+        "full_pan_backend": False,
+    }
+
+
 def get_playground(path: str) -> dict[str, object] | None:
     if path == "/api/playground/catalog":
         return service.catalog()
@@ -448,6 +482,9 @@ def post_playground(
 
     if path == "/api/playground/cuda/rng-parity":
         return _bounded_operation(lambda: _cuda_rng_parity(payload))
+
+    if path == "/api/playground/cuda/recurrent-parity":
+        return _bounded_operation(lambda: _cuda_recurrent_parity(payload))
 
     if path == "/api/playground/night/start":
         return _NIGHT_RUN.start(

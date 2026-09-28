@@ -139,3 +139,23 @@ test("presets, secondary pages and narrow layouts remain usable", async ({
       .evaluate((e) => e.scrollWidth <= e.clientWidth + 1),
   ).toBe(true);
 });
+
+test("recurrent CUDA diagnostic reports unavailability without a CPU success fallback", async ({
+  page,
+}) => {
+  await page.route("**/api/playground/cuda/recurrent-parity", async (route) => {
+    const payload = route.request().postDataJSON();
+    expect(payload.n_neurons).toBe(129);
+    expect(payload.ticks).toBe(100);
+    await route.fulfill({
+      status: 503,
+      contentType: "application/json",
+      body: JSON.stringify({ error: "CUDA driver unavailable" }),
+    });
+  });
+  await page.locator("#pg-group-5 > summary").click();
+  await page.locator("#pg-cuda-recurrent").click();
+  await expect(page.locator("#pg-cuda-recurrent-state")).toContainText(
+    "CUDA driver unavailable",
+  );
+});

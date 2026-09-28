@@ -523,6 +523,59 @@ class CudaDriver:
 
         self._check(self._lib.cuCtxSynchronize(), "cuCtxSynchronize")
 
+    def launch_cooperative(
+        self,
+        loaded: DriverModule,
+        *,
+        n_neurons: int,
+        block_size: int,
+        arguments: Sequence[object],
+    ) -> CooperativePreflight:
+        """Launch a resident 1D grid only after checking actual kernel occupancy."""
+        preflight = self.cooperative_preflight(
+            loaded, n_neurons=n_neurons, block_size=block_size
+        )
+        if n_neurons < 1 or not preflight.launch_fits:
+            raise ValueError(
+                "cooperative grid exceeds the device/kernel resident capacity"
+            )
+        launch = self._lib.cuLaunchCooperativeKernel
+        launch.argtypes = [
+            ctypes.c_void_p,
+            ctypes.c_uint,
+            ctypes.c_uint,
+            ctypes.c_uint,
+            ctypes.c_uint,
+            ctypes.c_uint,
+            ctypes.c_uint,
+            ctypes.c_uint,
+            ctypes.c_void_p,
+            ctypes.POINTER(ctypes.c_void_p),
+        ]
+        launch.restype = ctypes.c_int
+        storage = list(arguments)
+        parameters = (ctypes.c_void_p * len(storage))()
+        for index, argument in enumerate(storage):
+            parameters[index] = ctypes.cast(
+                ctypes.byref(argument), ctypes.c_void_p  # type: ignore[arg-type]
+            )
+        self._check(
+            launch(
+                loaded.function,
+                preflight.required_blocks,
+                1,
+                1,
+                block_size,
+                1,
+                1,
+                0,
+                None,
+                parameters,
+            ),
+            "cuLaunchCooperativeKernel",
+        )
+        return preflight
+
     def load_cubin(
         self,
         cubin_path: Path,
