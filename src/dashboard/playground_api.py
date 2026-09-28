@@ -204,6 +204,7 @@ def _cuda_runtime_status() -> dict[str, object]:
             "builder_inhibitory_emission": True,
             "delays": True,
             "builder_delay_queue": "DEVICE_RESIDENT_RING_65",
+            "builder_neuron_traces": "DEVICE_RESIDENT_TWO_PHASE",
             "plasticity": "BUILDER_PAIR_TRIPLET_ELIGIBILITY_MODULATION_AND_BOUNDED_REFERENCE",
             "sandbox_physics": False,
         },

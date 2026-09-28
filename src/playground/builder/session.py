@@ -530,9 +530,14 @@ class PlaygroundSession:
                     spike_monitor.record(tick, neuron_id)
                     rate_monitor.record(neuron_id)
 
-                for neuron_id in range(config.n_neurons):
-                    pre_trace[neuron_id] *= 0.95
-                    post_trace[neuron_id] *= 0.95
+                if gpu_membrane is not None and gpu_membrane.neuron_traces is not None:
+                    pre_trace, post_trace, last_spike = (
+                        gpu_membrane.neuron_traces.begin(tick)
+                    )
+                else:
+                    for neuron_id in range(config.n_neurons):
+                        pre_trace[neuron_id] *= 0.95
+                        post_trace[neuron_id] *= 0.95
                 eligibility_decay = (
                     math.exp(-config.dt_ms / max(config.eligibility_trace_tau, 1e-9))
                     if config.credit_assignment != "none"
@@ -591,9 +596,6 @@ class PlaygroundSession:
                         weights[edge] = weight
                         eligibility[edge] = trace
                         eligibility_last_tick[edge] = last
-                    for neuron_id in spiked_this_tick:
-                        pre_trace[neuron_id] += 1.0
-                        post_trace[neuron_id] += 1.0
                 else:
                     for neuron_id in spiked_this_tick:
                         if pair_stdp or plasticity == "metaplasticity":
@@ -869,8 +871,10 @@ class PlaygroundSession:
                     for edge, (_, available) in zip(emission_edges, emissions):
                         if stp_active:
                             release_state[edge] = available
-                    for source in spiked_this_tick:
-                        last_spike[source] = tick
+                    if gpu_membrane.neuron_traces is not None:
+                        pre_trace, post_trace, last_spike = (
+                            gpu_membrane.neuron_traces.commit(tick, spiked_this_tick)
+                        )
                     recovery_edges = list(weights)
                     recovered = gpu_membrane.synapses.recover(
                         [weights[e] for e in recovery_edges],
@@ -1059,9 +1063,14 @@ class PlaygroundSession:
                 else 0
             ),
             "synapses_backend": (
-                "cuda_synaptic_rules_and_queue_cpu_neuron_traces"
+                "cuda_synaptic_rules_queue_and_neuron_traces"
                 if config.neuron_backend == "cuda_pan"
                 else "cpu"
+            ),
+            "gpu_neuron_trace_ticks": (
+                gpu_membrane.neuron_traces.completed_ticks
+                if gpu_membrane is not None and gpu_membrane.neuron_traces is not None
+                else 0
             ),
             "gpu_delay_consumed_ticks": (
                 gpu_membrane.delay_queue.consumed_ticks
@@ -1112,7 +1121,9 @@ class PlaygroundSession:
                 "synaptic_modulation_and_homeostatic_scaling": (
                     "cuda" if config.neuron_backend == "cuda_pan" else "cpu"
                 ),
-                "neuron_traces": "cpu",
+                "neuron_traces": (
+                    "cuda" if config.neuron_backend == "cuda_pan" else "cpu"
+                ),
                 "resident_delay_queue": (
                     "cuda" if config.neuron_backend == "cuda_pan" else "cpu"
                 ),

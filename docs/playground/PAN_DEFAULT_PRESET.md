@@ -38,4 +38,4 @@ compile, preflight, smoke and parity diagnostics remain separate controls.
 
 ## Explicit CUDA variant
 
-`pan_cuda_hybrid` inherits this balanced profile and selects actual CUDA membrane/PAN/feedback plus supported synaptic emission and live reward updates. It requires NVIDIA Driver + NVRTC; body, policy and neuron traces remain CPU-owned; the delay ring is device-resident. The CPU default explicitly resets `neuron_backend=cpu`. See [backend scope](CUDA16_BUILDER_SYNAPSES.md).
+`pan_cuda_hybrid` inherits this balanced profile and selects actual CUDA membrane/PAN/feedback plus supported synaptic emission and live reward updates. It requires NVIDIA Driver + NVRTC; body, policy and RNG remain CPU-owned; the delay ring and neuron traces are device-resident. The CPU default explicitly resets `neuron_backend=cpu`. See [backend scope](CUDA16_BUILDER_SYNAPSES.md).
