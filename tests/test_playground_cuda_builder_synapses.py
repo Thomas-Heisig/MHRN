@@ -32,7 +32,10 @@ def test_d3_rejects_stp_rng_and_pending_event_drift():
     for field in ("release_resources", "eligibility", "pending_currents", "rng_state"):
         gpu = deepcopy(cpu)
         gpu["execution"].update(
-            neuron_backend="cuda_pan", gpu_membrane_ticks=128, gpu_pan_ticks=128
+            neuron_backend="cuda_pan",
+            gpu_membrane_ticks=128,
+            gpu_pan_ticks=128,
+            gpu_delay_consumed_ticks=128,
         )
         if field == "rng_state":
             gpu["research_state"][field] = (0, (), None)

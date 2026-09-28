@@ -625,7 +625,7 @@ export function initGuidedWorkspace({
     for (const id of ["pg-run", "pg-robustness", "pg-user-preset-save"]) {
       if ($(id)) $(id).disabled = errors.length > 0;
     }
-    summary.textContent = `${value("pg-neurons")} Neuronen · ${value("pg-edges")} Kanten · ${value("pg-ticks")} Ticks · Seed ${$("pg-seed").value} · ${$("pg-neuron-backend")?.value === "cuda_pan" ? "CUDA-Membran + PAN-Zustand" : $("pg-neuron-backend")?.value === "cuda_membrane" ? "CUDA-Membran / CPU-PAN" : "CPU-Referenz"}. ${errors.length ? `${errors.length} Eingabefehler.` : "Eingaben geprüft."} Laufzeit: noch keine belastbare Messung für diese Konfiguration. CUDA-PAN führt auch PAN-Zustand, Feedback und synaptische Regeln auf der GPU aus. Körper, Policy und Delay-Queue bleiben CPU; die Ergebnistabelle zeigt die tatsächlichen Komponenten.`;
+    summary.textContent = `${value("pg-neurons")} Neuronen · ${value("pg-edges")} Kanten · ${value("pg-ticks")} Ticks · Seed ${$("pg-seed").value} · ${$("pg-neuron-backend")?.value === "cuda_pan" ? "CUDA-Membran + PAN-Zustand" : $("pg-neuron-backend")?.value === "cuda_membrane" ? "CUDA-Membran / CPU-PAN" : "CPU-Referenz"}. ${errors.length ? `${errors.length} Eingabefehler.` : "Eingaben geprüft."} Laufzeit: noch keine belastbare Messung für diese Konfiguration. CUDA-PAN führt auch PAN-Zustand, Feedback und synaptische Regeln auf der GPU aus. Körper, Policy und übergeordnete Steuerung bleiben CPU; die Ergebnistabelle zeigt die tatsächlichen Komponenten.`;
     return errors.length === 0;
   }
   validation.onclick = (e) => {

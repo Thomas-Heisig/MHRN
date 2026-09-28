@@ -12,3 +12,6 @@ Validation covers all eight pair/triplet/eligibility flag combinations on 129 ed
 
 
 All 26 physical-GPU/PAN tests passed, including the full default D3 seeds. After adding the remaining per-edge three-factor/eligibility/homeostatic modifiers, the 12 synaptic hardware tests were rerun and passed. Plasticity uses 33 registers and scaling 14, both with zero stack/spills. The combined software selection passed 127 tests; GPU tests are opt-in in CI. These are bounded execution checks, not a scientific learning-advantage claim.
+
+
+The subsequent [resident delay queue](CUDA_RESIDENT_DELAY_QUEUE.md) moves pending-current ownership and ordered enqueue/consume to CUDA; the earlier stage-specific host-queue description above is retained as implementation history. The current component table is authoritative for the selected run.

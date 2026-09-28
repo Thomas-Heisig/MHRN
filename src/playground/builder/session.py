@@ -407,6 +407,11 @@ class PlaygroundSession:
                     switch_reason is not None
                     and next_engine != execution_switcher.current_engine
                 ):
+                    if (
+                        gpu_membrane is not None
+                        and gpu_membrane.delay_queue is not None
+                    ):
+                        pending = gpu_membrane.delay_queue.snapshot()
                     execution_switcher.transition(
                         tick=tick,
                         new_engine=next_engine,
@@ -418,8 +423,11 @@ class PlaygroundSession:
                 if dual_scheduler is not None:
                     dual_scheduler.begin_continuous_step()
                 slot = tick % queue_size
-                synaptic = pending[slot]
-                pending[slot] = [0.0 for _ in range(config.n_neurons)]
+                if gpu_membrane is not None and gpu_membrane.delay_queue is not None:
+                    synaptic = gpu_membrane.delay_queue.consume(tick)
+                else:
+                    synaptic = pending[slot]
+                    pending[slot] = [0.0 for _ in range(config.n_neurons)]
                 external = stimulus(tick)
                 loop_current = closed_loop.currents(tick)
                 if behavior_engine is not None and closed_loop_behavior:
@@ -849,10 +857,16 @@ class PlaygroundSession:
                         gaba=config.gaba_strength,
                         ratio=config.e_i_ratio if config.e_i_ratio > 0 else 1.0,
                     )
-                    for edge, (amplitude, available) in zip(emission_edges, emissions):
-                        pending[(tick + delays[edge]) % queue_size][
-                            edge[1]
-                        ] += amplitude
+                    if gpu_membrane.delay_queue is None:
+                        raise RuntimeError("CUDA PAN requires its resident delay queue")
+                    gpu_membrane.delay_queue.enqueue(
+                        tick,
+                        [
+                            (edge[1], delays[edge], amplitude)
+                            for edge, (amplitude, _) in zip(emission_edges, emissions)
+                        ],
+                    )
+                    for edge, (_, available) in zip(emission_edges, emissions):
                         if stp_active:
                             release_state[edge] = available
                     for source in spiked_this_tick:
@@ -946,6 +960,9 @@ class PlaygroundSession:
                 tick_spike_counts.append(len(spiked_this_tick))
                 execution_switcher.observe(spiked_this_tick, config.n_neurons)
                 previous_spikes = list(spiked_this_tick)
+
+            if gpu_membrane is not None and gpu_membrane.delay_queue is not None:
+                pending = gpu_membrane.delay_queue.snapshot()
 
         if dual_scheduler is not None:
             final_events = dual_scheduler.finalize(config.ticks - 1)
@@ -1042,9 +1059,14 @@ class PlaygroundSession:
                 else 0
             ),
             "synapses_backend": (
-                "cuda_emission_STDP_eligibility_reward_cpu_queue"
+                "cuda_synaptic_rules_and_queue_cpu_neuron_traces"
                 if config.neuron_backend == "cuda_pan"
                 else "cpu"
+            ),
+            "gpu_delay_consumed_ticks": (
+                gpu_membrane.delay_queue.consumed_ticks
+                if gpu_membrane is not None and gpu_membrane.delay_queue is not None
+                else 0
             ),
             "gpu_synaptic_plasticity_calls": (
                 gpu_membrane.synapses.plasticity_calls
@@ -1090,7 +1112,10 @@ class PlaygroundSession:
                 "synaptic_modulation_and_homeostatic_scaling": (
                     "cuda" if config.neuron_backend == "cuda_pan" else "cpu"
                 ),
-                "neuron_traces_and_delay_queue": "cpu",
+                "neuron_traces": "cpu",
+                "resident_delay_queue": (
+                    "cuda" if config.neuron_backend == "cuda_pan" else "cpu"
+                ),
                 "Builder_traversal_RNG": "cpu",
                 "policy_and_action_selection": "cpu",
                 "world_posture_sensors_actuators_reward": "cpu",

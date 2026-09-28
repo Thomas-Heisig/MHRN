@@ -101,6 +101,8 @@ def compare_builder_runs(cpu: dict[str, Any], gpu: dict[str, Any]) -> dict[str, 
             state_ok = (
                 state_ok
                 and pan_error is not None
+                and gpu["execution"].get("gpu_delay_consumed_ticks", 0)
+                == gpu["execution"]["gpu_membrane_ticks"]
                 and gpu["execution"].get("gpu_pan_ticks", 0)
                 == gpu["execution"]["gpu_membrane_ticks"]
             )
@@ -111,6 +113,9 @@ def compare_builder_runs(cpu: dict[str, Any], gpu: dict[str, Any]) -> dict[str, 
             "D2_STP_eligibility_max_error": resource_error,
             "D2_pending_current_max_error": queue_error,
             "RNG_builder_state_exact": rng_exact,
+            "gpu_delay_consumed_ticks": gpu["execution"].get(
+                "gpu_delay_consumed_ticks", 0
+            ),
             "gpu_synaptic_emissions": gpu["execution"].get("gpu_synaptic_emissions", 0),
             "gpu_synaptic_plasticity_calls": gpu["execution"].get(
                 "gpu_synaptic_plasticity_calls", 0
@@ -125,7 +130,7 @@ def compare_builder_runs(cpu: dict[str, Any], gpu: dict[str, Any]) -> dict[str, 
             "gpu_membrane_ticks": gpu["execution"]["gpu_membrane_ticks"],
             "gpu_pan_feedback_calls": gpu["execution"].get("gpu_pan_feedback_calls", 0),
             "scope": (
-                "REAL_BUILDER_CUDA_PAN_SYNAPTIC_RULES_CPU_WORLD_AND_QUEUES"
+                "REAL_BUILDER_CUDA_PAN_SYNAPSES_RESIDENT_QUEUE_CPU_WORLD"
                 if gpu["execution"]["neuron_backend"] == "cuda_pan"
                 else "REAL_BUILDER_CUDA_MEMBRANE_CPU_SYNAPSES_AND_ENVIRONMENT"
             ),

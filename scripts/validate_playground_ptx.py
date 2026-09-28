@@ -59,6 +59,11 @@ def main() -> int:
         output_dir=root / "builder-synaptic-emission",
         target_sm="sm_86",
     ).to_mapping()
+    results["resident_delay_queue"] = assemble_ptx(
+        compile_cuda_source(Path("src/playground/cuda/delay_queue.cu").read_text()),
+        output_dir=root / "resident-delay-queue",
+        target_sm="sm_86",
+    ).to_mapping()
     print(json.dumps(results, indent=2, sort_keys=True))
     return 0
 
