@@ -31,7 +31,7 @@
   - Henning Sprekeler
   - Klaus Obermayer
   - Michael Augustin
-  title: Brian2CUDA: flexible and efficient simulation of spiking neural network models on GPUs
+  title: "Brian2CUDA: flexible and efficient simulation of spiking neural network models on GPUs"
   year: 2022
   journal: Frontiers in Neuroinformatics
   doi: 10.3389/fninf.2022.883700
