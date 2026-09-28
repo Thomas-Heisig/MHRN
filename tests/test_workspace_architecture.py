@@ -248,11 +248,16 @@ def test_all_science_routes_have_unique_ownership() -> None:
 
 def test_runtime_wesen_detail_views_are_preserved_under_old() -> None:
     router = (STATIC / "frontend" / "workspace-router.js").read_text(encoding="utf-8")
-    assert 'wesen: {' in router
+    assert "wesen: {" in router
     assert 'routes: [\n      ["overview", "Übersicht", "embodiment"],\n    ]' in router
-    assert '"wesen-cognition", "Runtime & Wesen · Kognition", "wesen", "focus"' in router
+    assert (
+        '"wesen-cognition", "Runtime & Wesen · Kognition", "wesen", "focus"' in router
+    )
     assert '"wesen-profile", "Runtime & Wesen · Profil", "wesen", "focus"' in router
-    assert '"wesen-symbiosis", "Runtime & Wesen · Neural Symbiosis", "wesen", "focus"' in router
+    assert (
+        '"wesen-symbiosis", "Runtime & Wesen · Neural Symbiosis", "wesen", "focus"'
+        in router
+    )
 
 
 def test_control_keeps_console_and_structure_while_other_controls_move_to_old() -> None:
@@ -260,7 +265,10 @@ def test_control_keeps_console_and_structure_while_other_controls_move_to_old() 
     assert '"console", "Konsole", "control", "focusOnly"' in router
     assert '"structural", "Struktur & Lernen", "control", "focusOnly"' in router
     assert '"control-runtime", "Control · Runtime", "control", "focusOnly"' in router
-    assert '"control-experiments", "Control · Experiment Mode", "control", "focusOnly"' in router
+    assert (
+        '"control-experiments", "Control · Experiment Mode", "control", "focusOnly"'
+        in router
+    )
 
 
 def test_parameter_route_is_exposed_from_settings() -> None:
@@ -304,12 +312,18 @@ def test_primary_area_route_sets_match_frontend_cleanup_contract() -> None:
 
     science = router.split("science: {", 1)[1].split("wesen: {", 1)[0]
     assert '["observatory", "Observatory", "research", "focus"' in science
-    assert '["experiments", "Experimente", "research", "research", "experiments"]' in science
+    assert (
+        '["experiments", "Experimente", "research", "research", "experiments"]'
+        in science
+    )
     assert '"network", "Netzwerk"' not in science
 
     publication = router.split("publication: {", 1)[1].split("playground: {", 1)[0]
     assert '["paper", "Paper", "publication", "publication", "paper"]' in publication
-    assert '["openscience", "Open Wissenschaft", "publication", "publication", "openscience"]' in publication
+    assert (
+        '["openscience", "Open Wissenschaft", "publication", "publication", "openscience"]'
+        in publication
+    )
 
     old = router.split("old: {", 1)[1].split("});", 1)[0]
     for route_id in (
