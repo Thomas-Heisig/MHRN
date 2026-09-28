@@ -199,17 +199,14 @@ def _diagnostic_inputs(
     manifest = getattr(bundle, "manifest")
     if not isinstance(manifest, Mapping):
         raise ValueError("compile bundle manifest is invalid")
-    abi = manifest.get("kernel_abi")
-    if not isinstance(abi, Mapping):
+    raw_abi = manifest.get("kernel_abi")
+    if not isinstance(raw_abi, Mapping):
         raise ValueError("compile bundle is missing kernel_abi")
+    abi = cast(Mapping[str, object], raw_abi)
     input_channels = _payload_int(abi, "input_channels", 8)
     action_count = _payload_int(abi, "action_space_size", 4)
     pan_dimensions = _payload_int(abi, "pan_dimensions", 5)
-    full_mask = (
-        (1 << input_channels) - 1
-        if input_channels < 64
-        else 0xFFFFFFFFFFFFFFFF
-    )
+    full_mask = (1 << input_channels) - 1 if input_channels < 64 else 0xFFFFFFFFFFFFFFFF
     logits: list[float] = []
     for neuron in range(n_neurons):
         preferred = neuron % action_count
