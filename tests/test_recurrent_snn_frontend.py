@@ -15,7 +15,7 @@ def test_recurrent_snn_views_are_preserved_under_old() -> None:
     script = (STATIC / "frontend" / "modules" / "recurrent-snn-stage.js").read_text(
         encoding="utf-8"
     )
-    assert 'const ROUTES = Object.freeze({});' in script
+    assert "const ROUTES = Object.freeze({});" in script
     assert 'data-route-jump="old:wesen-recurrent"' in script
     assert 'data-route-jump="old:control-recurrent"' in script
     assert 'data-route-jump="settings:parameters"' in script
@@ -39,7 +39,10 @@ def test_recurrent_snn_runtime_exposes_tick_and_queue_progress() -> None:
     )
     assert "new MutationObserver(syncPolling)" in script
     assert 'attributeFilter: ["data-current-area", "data-current-route"]' in script
-    assert 'const liveRoute = area === "old" && (route === "science-recurrent" || route === "wesen-recurrent")' in script
+    assert (
+        'const liveRoute = area === "old" && (route === "science-recurrent" || route === "wesen-recurrent")'
+        in script
+    )
     assert "setInterval(routeRefresh, 1000)" in script
     assert "clearInterval(state.timer)" in script
     assert "state.inFlight" in script
