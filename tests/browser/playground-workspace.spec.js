@@ -177,6 +177,14 @@ test("Builder run renders the coupled PAN body and recorded frame replay", async
   await expect(page.locator("#pg-run-sandbox-state")).toContainText(
     "CPU_REFERENCE",
   );
+  await expect(page.locator("#pg-run-sandbox-summary")).toContainText(
+    "Haltung",
+  );
+  expect(
+    await page
+      .locator("#pg-run-sandbox-panel")
+      .evaluate((el) => el.getBoundingClientRect().height),
+  ).toBeLessThan(800);
   await expect(page.locator("#pg-run-sandbox-frame")).toHaveAttribute(
     "max",
     "127",
@@ -219,5 +227,33 @@ test("CUDA Builder choice and D3 control use explicit endpoints without fallback
   await page.locator("#pg-cuda-builder-parity").click();
   await expect(page.locator("#pg-cuda-builder-parity-state")).toContainText(
     "REAL_BUILDER_CUDA_MEMBRANE",
+  );
+});
+
+test("randomized cue selection and paired research controls are wired", async ({
+  page,
+}) => {
+  await page.locator("#pg-workspace-expand").click();
+  await page.locator("#pg-target-cue-control").selectOption("randomized");
+  await page.route("**/api/playground/research/cue-controls", async (route) => {
+    expect(route.request().postDataJSON().target_cue_control).toBe(
+      "randomized",
+    );
+    await route.fulfill({
+      status: 200,
+      contentType: "application/json",
+      body: JSON.stringify({
+        classification: "PLAYGROUND_CUE_INTERVENTION_SUITE",
+        conditions: [],
+        neural_learning_claim: false,
+      }),
+    });
+  });
+  await page.locator("#pg-cue-controls").click();
+  await expect(page.locator("#pg-cue-controls-state")).toContainText(
+    "PLAYGROUND_CUE_INTERVENTION_SUITE",
+  );
+  await expect(page.locator("#pg-cue-controls-state")).toContainText(
+    '"neural_learning_claim": false',
   );
 });

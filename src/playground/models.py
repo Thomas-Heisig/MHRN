@@ -199,6 +199,7 @@ class PlaygroundConfig:
     parity_reference_source: str = "CPU_PYTHON_PLAYGROUND"
     parity_reference_commit: str = ""
 
+    target_cue_control: str = "aligned"
     target_encoding: str = "none"
     target_persistence: int = 1
     target_cue_current: float = 0.0
@@ -767,6 +768,9 @@ class PlaygroundConfig:
             parity_reference_commit=optional_text(
                 "parity_reference_commit", defaults.parity_reference_commit
             ),
+            target_cue_control=text(
+                "target_cue_control", defaults.target_cue_control
+            ).lower(),
             target_encoding=text("target_encoding", defaults.target_encoding).lower(),
             target_persistence=integer(
                 "target_persistence", defaults.target_persistence
@@ -1119,6 +1123,8 @@ class PlaygroundConfig:
             raise ValueError("reward_baseline must be between -1 and 1")
         if not 0.0 <= self.reward_decay <= 1.0:
             raise ValueError("reward_decay must be between 0 and 1")
+        if self.target_cue_control not in {"aligned", "randomized", "absent"}:
+            raise ValueError("unsupported target_cue_control")
         if self.target_encoding not in {
             "none",
             "one_hot",
@@ -1389,6 +1395,7 @@ class PlaygroundConfig:
             "frozen_reward_sequence": list(self.frozen_reward_sequence),
             "parity_reference_source": self.parity_reference_source,
             "parity_reference_commit": self.parity_reference_commit,
+            "target_cue_control": self.target_cue_control,
             "target_encoding": self.target_encoding,
             "target_persistence": self.target_persistence,
             "target_cue_current": self.target_cue_current,

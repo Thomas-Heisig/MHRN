@@ -838,13 +838,22 @@ class ClosedLoopRuntime:
 
     def _target_channel_values(self, tick: int) -> list[float]:
         values = [0.0 for _ in range(self.channels)]
-        if self.config.target_encoding == "none":
+        if (
+            self.config.target_encoding == "none"
+            or self.config.target_cue_control == "absent"
+        ):
             return values
         episode_ticks = max(1, self.config.behavior_episode_ticks)
         phase_tick = tick % episode_ticks
         if phase_tick >= self.config.target_persistence:
             return values
         target = self.current_target(tick)
+        if self.config.target_cue_control == "randomized":
+            # Separate RNG stream: changes the emitted cue, never the evaluator target.
+            cue_rng = random.Random(
+                self.config.seed ^ 0xC0E123 ^ (tick // episode_ticks)
+            )
+            target = cue_rng.randrange(self.config.action_space_size)
         base = self.config.target_cue_channel % self.channels
         if self.config.target_encoding == "one_hot":
             channel = (base + target) % self.channels
