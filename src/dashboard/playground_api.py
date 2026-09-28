@@ -6,7 +6,7 @@ import shutil
 import threading
 import time
 from collections import deque
-from collections.abc import Mapping
+from collections.abc import Callable, Mapping
 from typing import cast
 
 from src.playground import service
@@ -21,6 +21,7 @@ from src.playground.cuda import (
     execute_gate_bundle,
     gate_execution_parity_summary,
     preflight_bundle,
+    validate_cuda_block_size,
 )
 from src.playground.models import PlaygroundConfig
 from src.playground.night_run import NightRunManager
@@ -110,20 +111,29 @@ def _reserve_rate_slot() -> None:
         _RECENT_RUNS.append(now)
 
 
-def _bounded_run(path: str, payload: Mapping[str, object]) -> dict[str, object]:
+def _bounded_operation(
+    operation: Callable[[], dict[str, object]],
+) -> dict[str, object]:
     _reserve_rate_slot()
     if not _RUN_SEMAPHORE.acquire(blocking=False):
         raise PlaygroundBusyError(
             "Playground is busy; at most two simulation requests run concurrently."
         )
     try:
+        return operation()
+    finally:
+        _RUN_SEMAPHORE.release()
+
+
+def _bounded_run(path: str, payload: Mapping[str, object]) -> dict[str, object]:
+    def operation() -> dict[str, object]:
         if path == "/api/playground/run":
             return service.run(payload)
         if path == "/api/playground/robustness":
             return service.robustness(payload)
         raise ValueError(f"unknown Playground POST route: {path}")
-    finally:
-        _RUN_SEMAPHORE.release()
+
+    return _bounded_operation(operation)
 
 
 def _live_parts(path: str) -> list[str]:
@@ -184,8 +194,8 @@ def _cuda_runtime_status() -> dict[str, object]:
             "cpu_gate_reference": True,
             "single_tick_d2_endpoint": True,
             "rng_action_path_endpoint": True,
-            "raw_rng_value_parity": False,
-            "memory_leak_instrumentation": False,
+            "raw_rng_value_parity": True,
+            "memory_leak_instrumentation": True,
         },
     }
 
@@ -249,6 +259,142 @@ def _cuda_config_payload(payload: Mapping[str, object]) -> dict[str, object]:
     return {key: value for key, value in payload.items() if key not in excluded}
 
 
+def _cuda_preflight(payload: Mapping[str, object]) -> dict[str, object]:
+    target_sm = _payload_text(payload, "target_sm", "sm_86")
+    ptx_version = _payload_text(payload, "ptx_version", "7.1")
+    n_neurons = _payload_int(payload, "n_neurons", 256)
+    block_size = validate_cuda_block_size(_payload_int(payload, "block_size", 64))
+    device_ordinal = _payload_int(payload, "device_ordinal", 0)
+    if not 1 <= n_neurons <= 12_288:
+        raise ValueError("n_neurons must be in [1, 12288]")
+    bundle = compile_mapping(
+        _cuda_config_payload(payload),
+        target_sm=target_sm,
+        ptx_version=ptx_version,
+    )
+    return preflight_bundle(
+        bundle,
+        n_neurons=n_neurons,
+        block_size=block_size,
+        device_ordinal=device_ordinal,
+    )
+
+
+def _cuda_smoke(payload: Mapping[str, object]) -> dict[str, object]:
+    target_sm = _payload_text(payload, "target_sm", "sm_86")
+    ptx_version = _payload_text(payload, "ptx_version", "7.1")
+    n_neurons = _payload_int(payload, "n_neurons", 64)
+    block_size = validate_cuda_block_size(_payload_int(payload, "block_size", 64))
+    device_ordinal = _payload_int(payload, "device_ordinal", 0)
+    reference_commit = _payload_text(payload, "reference_commit", "")
+    if not 1 <= n_neurons <= 4096:
+        raise ValueError("n_neurons must be in [1, 4096] for hardware smoke")
+    bundle = compile_mapping(
+        _cuda_config_payload(payload),
+        target_sm=target_sm,
+        ptx_version=ptx_version,
+    )
+    inputs = _diagnostic_inputs(
+        bundle,
+        n_neurons=n_neurons,
+        seed=12345,
+        epsilon=0.0,
+    )
+    reference = cpu_gate_reference(bundle, inputs)
+    first = execute_gate_bundle(
+        bundle,
+        inputs,
+        block_size=block_size,
+        device_ordinal=device_ordinal,
+    )
+    second = execute_gate_bundle(
+        bundle,
+        inputs,
+        block_size=block_size,
+        device_ordinal=device_ordinal,
+    )
+    first_parity = gate_execution_parity_summary(
+        reference,
+        first,
+        tolerance=1.0e-5,
+        reference_commit=reference_commit,
+    )
+    second_parity = gate_execution_parity_summary(
+        reference,
+        second,
+        tolerance=1.0e-5,
+        reference_commit=reference_commit,
+    )
+    deterministic = first.get("outputs") == second.get("outputs")
+    return {
+        "classification": "PLAYGROUND_CUDA1_3_HARDWARE_SMOKE",
+        "scientific_evidence": False,
+        "canonical_cuda_backend": False,
+        "reference": reference,
+        "first": first,
+        "second": second,
+        "parity": first_parity,
+        "second_parity": second_parity,
+        "gpu_repeat_exact": deterministic,
+        "passed": bool(first_parity["passed"])
+        and bool(second_parity["passed"])
+        and deterministic,
+        "cleanup_contract": {
+            "device_allocations_released_in_finally": True,
+            "driver_module_unloaded": True,
+            "memory_leak_instrumented": True,
+            "first_memory": first.get("memory"),
+            "second_memory": second.get("memory"),
+        },
+    }
+
+
+def _cuda_rng_parity(payload: Mapping[str, object]) -> dict[str, object]:
+    target_sm = _payload_text(payload, "target_sm", "sm_86")
+    ptx_version = _payload_text(payload, "ptx_version", "7.1")
+    samples = _payload_int(payload, "rng_samples", 1000)
+    block_size = validate_cuda_block_size(_payload_int(payload, "block_size", 64))
+    device_ordinal = _payload_int(payload, "device_ordinal", 0)
+    if not 1 <= samples <= 4096:
+        raise ValueError("rng_samples must be in [1, 4096]")
+    bundle = compile_mapping(
+        _cuda_config_payload(payload),
+        target_sm=target_sm,
+        ptx_version=ptx_version,
+    )
+    inputs = _diagnostic_inputs(
+        bundle,
+        n_neurons=samples,
+        seed=12345,
+        epsilon=1.0,
+    )
+    reference = cpu_gate_reference(bundle, inputs)
+    candidate = execute_gate_bundle(
+        bundle,
+        inputs,
+        block_size=block_size,
+        device_ordinal=device_ordinal,
+    )
+    reference_outputs = cast(Mapping[str, object], reference["outputs"])
+    candidate_outputs = cast(Mapping[str, object], candidate["outputs"])
+    reference_actions = cast(list[int], reference_outputs["action"])
+    candidate_actions = cast(list[int], candidate_outputs["action"])
+    actions_exact = reference_actions == candidate_actions
+    return {
+        "classification": "PLAYGROUND_CUDA_RNG_ACTION_PATH_PARITY",
+        "scientific_evidence": False,
+        "samples": samples,
+        "seed": 12345,
+        "tick": inputs.tick,
+        "epsilon": 1.0,
+        "actions_exact": actions_exact,
+        "passed": actions_exact,
+        "first_reference_actions": reference_actions[:20],
+        "first_cuda_actions": candidate_actions[:20],
+        "scope": "HASH_EPSILON_GREEDY_ACTION_PATH_UINT24_TO_F32_HALF_OPEN",
+    }
+
+
 def get_playground(path: str) -> dict[str, object] | None:
     if path == "/api/playground/catalog":
         return service.catalog()
@@ -295,141 +441,13 @@ def post_playground(
         ).to_mapping()
 
     if path == "/api/playground/cuda/preflight":
-        target_sm = _payload_text(payload, "target_sm", "sm_86")
-        ptx_version = _payload_text(payload, "ptx_version", "7.1")
-        n_neurons = _payload_int(payload, "n_neurons", 256)
-        block_size = _payload_int(payload, "block_size", 64)
-        device_ordinal = _payload_int(payload, "device_ordinal", 0)
-        if not 1 <= n_neurons <= 12_288:
-            raise ValueError("n_neurons must be in [1, 12288]")
-        if block_size not in {32, 64, 128, 256, 512}:
-            raise ValueError("block_size must be one of 32, 64, 128, 256, 512")
-        bundle = compile_mapping(
-            _cuda_config_payload(payload),
-            target_sm=target_sm,
-            ptx_version=ptx_version,
-        )
-        return preflight_bundle(
-            bundle,
-            n_neurons=n_neurons,
-            block_size=block_size,
-            device_ordinal=device_ordinal,
-        )
+        return _bounded_operation(lambda: _cuda_preflight(payload))
 
     if path == "/api/playground/cuda/smoke":
-        target_sm = _payload_text(payload, "target_sm", "sm_86")
-        ptx_version = _payload_text(payload, "ptx_version", "7.1")
-        n_neurons = _payload_int(payload, "n_neurons", 64)
-        block_size = _payload_int(payload, "block_size", 64)
-        device_ordinal = _payload_int(payload, "device_ordinal", 0)
-        reference_commit = _payload_text(payload, "reference_commit", "")
-        if not 1 <= n_neurons <= 4096:
-            raise ValueError("n_neurons must be in [1, 4096] for hardware smoke")
-        bundle = compile_mapping(
-            _cuda_config_payload(payload),
-            target_sm=target_sm,
-            ptx_version=ptx_version,
-        )
-        inputs = _diagnostic_inputs(
-            bundle,
-            n_neurons=n_neurons,
-            seed=12345,
-            epsilon=0.0,
-        )
-        reference = cpu_gate_reference(bundle, inputs)
-        first = execute_gate_bundle(
-            bundle,
-            inputs,
-            block_size=block_size,
-            device_ordinal=device_ordinal,
-        )
-        second = execute_gate_bundle(
-            bundle,
-            inputs,
-            block_size=block_size,
-            device_ordinal=device_ordinal,
-        )
-        first_parity = gate_execution_parity_summary(
-            reference,
-            first,
-            tolerance=1.0e-5,
-            reference_commit=reference_commit,
-        )
-        second_parity = gate_execution_parity_summary(
-            reference,
-            second,
-            tolerance=1.0e-5,
-            reference_commit=reference_commit,
-        )
-        first_outputs = first.get("outputs")
-        second_outputs = second.get("outputs")
-        deterministic = first_outputs == second_outputs
-        return {
-            "classification": "PLAYGROUND_CUDA1_3_HARDWARE_SMOKE",
-            "scientific_evidence": False,
-            "canonical_cuda_backend": False,
-            "reference": reference,
-            "first": first,
-            "second": second,
-            "parity": first_parity,
-            "second_parity": second_parity,
-            "gpu_repeat_exact": deterministic,
-            "passed": bool(first_parity["passed"])
-            and bool(second_parity["passed"])
-            and deterministic,
-            "cleanup_contract": {
-                "device_allocations_released_in_finally": True,
-                "driver_module_unloaded": True,
-                "memory_leak_instrumented": False,
-            },
-        }
+        return _bounded_operation(lambda: _cuda_smoke(payload))
 
     if path == "/api/playground/cuda/rng-parity":
-        target_sm = _payload_text(payload, "target_sm", "sm_86")
-        ptx_version = _payload_text(payload, "ptx_version", "7.1")
-        samples = _payload_int(payload, "rng_samples", 1000)
-        block_size = _payload_int(payload, "block_size", 64)
-        device_ordinal = _payload_int(payload, "device_ordinal", 0)
-        if not 1 <= samples <= 4096:
-            raise ValueError("rng_samples must be in [1, 4096]")
-        bundle = compile_mapping(
-            _cuda_config_payload(payload),
-            target_sm=target_sm,
-            ptx_version=ptx_version,
-        )
-        inputs = _diagnostic_inputs(
-            bundle,
-            n_neurons=samples,
-            seed=12345,
-            epsilon=1.0,
-        )
-        reference = cpu_gate_reference(bundle, inputs)
-        candidate = execute_gate_bundle(
-            bundle,
-            inputs,
-            block_size=block_size,
-            device_ordinal=device_ordinal,
-        )
-        reference_outputs = cast(Mapping[str, object], reference["outputs"])
-        candidate_outputs = cast(Mapping[str, object], candidate["outputs"])
-        reference_actions = cast(list[int], reference_outputs["action"])
-        candidate_actions = cast(list[int], candidate_outputs["action"])
-        return {
-            "classification": "PLAYGROUND_CUDA_RNG_ACTION_PATH_PARITY",
-            "scientific_evidence": False,
-            "samples": samples,
-            "seed": 12345,
-            "tick": inputs.tick,
-            "epsilon": 1.0,
-            "actions_exact": reference_actions == candidate_actions,
-            "passed": reference_actions == candidate_actions,
-            "first_reference_actions": reference_actions[:20],
-            "first_cuda_actions": candidate_actions[:20],
-            "scope": (
-                "HASH_EPSILON_GREEDY_ACTION_PATH; raw hash-to-uniform values "
-                "are not exported by the 17-parameter ABI"
-            ),
-        }
+        return _bounded_operation(lambda: _cuda_rng_parity(payload))
 
     if path == "/api/playground/night/start":
         return _NIGHT_RUN.start(

@@ -34,11 +34,13 @@ from .runtime import (
     execute_gate_bundle,
     gate_execution_parity_summary,
     gate_parity_summary,
+    hash_to_uniform_f32,
     max_abs_error,
     parity_contract,
     parse_ptxas_verbose,
     preflight_bundle,
     smoke_gate_launch_inputs,
+    validate_cuda_block_size,
     validate_gate_launch_inputs,
 )
 
@@ -74,10 +76,12 @@ __all__ = [
     "execute_gate_bundle",
     "gate_execution_parity_summary",
     "gate_parity_summary",
+    "hash_to_uniform_f32",
     "max_abs_error",
     "parity_contract",
     "parse_ptxas_verbose",
     "preflight_bundle",
     "smoke_gate_launch_inputs",
+    "validate_cuda_block_size",
     "validate_gate_launch_inputs",
 ]

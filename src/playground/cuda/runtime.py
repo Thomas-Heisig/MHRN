@@ -142,19 +142,19 @@ class GateLaunchInputs:
         epsilon: float = 0.0,
     ) -> "GateLaunchInputs":
         return cls(
-            input_current=tuple(float(value) for value in input_current),
-            channel_masks=tuple(int(value) for value in channel_masks),
-            amplitudes=tuple(float(value) for value in amplitudes),
-            reward_ring=tuple(float(value) for value in reward_ring),
-            action_map=tuple(float(value) for value in action_map),
-            feedback_matrix=tuple(float(value) for value in feedback_matrix),
-            population=tuple(float(value) for value in population),
-            logits=tuple(float(value) for value in logits),
-            tick=int(tick),
-            target_index=int(target_index),
-            previous_action=int(previous_action),
-            seed=int(seed),
-            epsilon=float(epsilon),
+            input_current=tuple(input_current),
+            channel_masks=tuple(channel_masks),
+            amplitudes=tuple(amplitudes),
+            reward_ring=tuple(reward_ring),
+            action_map=tuple(action_map),
+            feedback_matrix=tuple(feedback_matrix),
+            population=tuple(population),
+            logits=tuple(logits),
+            tick=tick,
+            target_index=target_index,
+            previous_action=previous_action,
+            seed=seed,
+            epsilon=epsilon,
         )
 
 
@@ -332,6 +332,11 @@ class CudaDriver:
         lib.cuMemAlloc_v2.restype = ctypes.c_int
         lib.cuMemFree_v2.argtypes = [ctypes.c_uint64]
         lib.cuMemFree_v2.restype = ctypes.c_int
+        lib.cuMemGetInfo_v2.argtypes = [
+            ctypes.POINTER(ctypes.c_size_t),
+            ctypes.POINTER(ctypes.c_size_t),
+        ]
+        lib.cuMemGetInfo_v2.restype = ctypes.c_int
         lib.cuMemcpyHtoD_v2.argtypes = [
             ctypes.c_uint64,
             ctypes.c_void_p,
@@ -411,6 +416,20 @@ class CudaDriver:
                 "cuMemFree_v2",
             )
 
+    def memory_info(self) -> tuple[int, int]:
+        """Return free and total bytes for the current CUDA context."""
+
+        free_bytes = ctypes.c_size_t()
+        total_bytes = ctypes.c_size_t()
+        self._check(
+            self._lib.cuMemGetInfo_v2(
+                ctypes.byref(free_bytes),
+                ctypes.byref(total_bytes),
+            ),
+            "cuMemGetInfo_v2",
+        )
+        return int(free_bytes.value), int(total_bytes.value)
+
     def copy_host_to_device(
         self,
         allocation: DeviceAllocation,
@@ -421,8 +440,13 @@ class CudaDriver:
         """Copy a ctypes-backed host buffer to device memory."""
 
         count = allocation.size_bytes if size_bytes is None else size_bytes
+        host_bytes = ctypes.sizeof(source)
         if count < 0 or count > allocation.size_bytes:
-            raise ValueError("host-to-device copy exceeds allocation")
+            raise ValueError("host-to-device copy exceeds device allocation")
+        if count > host_bytes:
+            raise ValueError(
+                f"host-to-device copy exceeds host buffer: {count} > {host_bytes}"
+            )
         self._check(
             self._lib.cuMemcpyHtoD_v2(
                 ctypes.c_uint64(allocation.ptr),
@@ -442,8 +466,13 @@ class CudaDriver:
         """Copy device memory into a ctypes-backed host buffer."""
 
         count = allocation.size_bytes if size_bytes is None else size_bytes
+        host_bytes = ctypes.sizeof(destination)
         if count < 0 or count > allocation.size_bytes:
-            raise ValueError("device-to-host copy exceeds allocation")
+            raise ValueError("device-to-host copy exceeds device allocation")
+        if count > host_bytes:
+            raise ValueError(
+                f"device-to-host copy exceeds host buffer: {count} > {host_bytes}"
+            )
         self._check(
             self._lib.cuMemcpyDtoH_v2(
                 ctypes.cast(destination, ctypes.c_void_p),
@@ -541,16 +570,26 @@ class CudaDriver:
         )
 
     def unload(self, loaded: DriverModule) -> None:
+        module_error: CudaDriverError | None = None
         if loaded.module.value:
-            self._check(
-                self._lib.cuModuleUnload(loaded.module),
-                "cuModuleUnload",
-            )
+            try:
+                self._check(
+                    self._lib.cuModuleUnload(loaded.module),
+                    "cuModuleUnload",
+                )
+            except CudaDriverError as exc:
+                module_error = exc
         if loaded.context.value:
-            self._check(
-                self._lib.cuCtxDestroy_v2(loaded.context),
-                "cuCtxDestroy_v2",
-            )
+            try:
+                self._check(
+                    self._lib.cuCtxDestroy_v2(loaded.context),
+                    "cuCtxDestroy_v2",
+                )
+            except CudaDriverError:
+                if module_error is None:
+                    raise
+        if module_error is not None:
+            raise module_error
 
     def cooperative_preflight(
         self,
@@ -562,8 +601,7 @@ class CudaDriver:
     ) -> CooperativePreflight:
         """Calculate whether the full cooperative grid can be resident."""
 
-        if block_size <= 0:
-            raise ValueError("block_size must be positive")
+        validate_cuda_block_size(block_size)
         cooperative = bool(
             self.device_attribute(
                 loaded.device_ordinal,
@@ -675,16 +713,52 @@ def cooperative_capacity(
     )
 
 
+_FLOAT32_MAX = 3.4028234663852886e38
+_UINT32_MAX = 0xFFFFFFFF
+_UINT64_MAX = 0xFFFFFFFFFFFFFFFF
+
+
 def _numeric_int(value: object, *, field: str) -> int:
-    if not isinstance(value, (int, float)):
-        raise ValueError(f"{field} must be numeric")
-    return int(value)
+    if isinstance(value, bool) or not isinstance(value, (int, float)):
+        raise ValueError(f"{field} must be an integer")
+    converted = int(value)
+    if float(value) != float(converted):
+        raise ValueError(f"{field} must be an integer")
+    return converted
 
 
 def _numeric_float(value: object, *, field: str) -> float:
-    if not isinstance(value, (int, float)):
+    if isinstance(value, bool) or not isinstance(value, (int, float)):
         raise ValueError(f"{field} must be numeric")
-    return float(value)
+    converted = float(value)
+    if not math.isfinite(converted):
+        raise ValueError(f"{field} must be finite")
+    if abs(converted) > _FLOAT32_MAX:
+        raise ValueError(f"{field} exceeds float32 range")
+    return converted
+
+
+def validate_cuda_block_size(block_size: int) -> int:
+    """Validate a legal one-dimensional CUDA block size."""
+
+    if isinstance(block_size, bool) or not isinstance(block_size, int):
+        raise ValueError("block_size must be an integer")
+    if not 1 <= block_size <= 1024:
+        raise ValueError("block_size must be in [1, 1024]")
+    if block_size % 32 != 0:
+        raise ValueError("block_size must be a multiple of 32")
+    return block_size
+
+
+def hash_to_uniform_f32(random_bits: int) -> float:
+    """Map a uint32 hash into the exactly representable float32 interval [0, 1)."""
+
+    if isinstance(random_bits, bool) or not isinstance(random_bits, int):
+        raise ValueError("random_bits must be an integer")
+    if not 0 <= random_bits <= _UINT32_MAX:
+        raise ValueError("random_bits must fit unsigned 32-bit")
+    mantissa = random_bits >> 8
+    return _f32(float(mantissa) * (2.0**-24))
 
 
 def _kernel_abi(bundle: CompileBundle) -> Mapping[str, object]:
@@ -739,17 +813,43 @@ def validate_gate_launch_inputs(
             raise ValueError(f"{name} length {actual} != expected {expected}")
     if not inputs.reward_ring:
         raise ValueError("reward_ring must contain at least one value")
-    if any(mask < 0 or mask > 0xFFFFFFFFFFFFFFFF for mask in inputs.channel_masks):
-        raise ValueError("channel_masks must fit unsigned 64-bit")
+
+    float_vectors = {
+        "input_current": inputs.input_current,
+        "amplitudes": inputs.amplitudes,
+        "reward_ring": inputs.reward_ring,
+        "action_map": inputs.action_map,
+        "feedback_matrix": inputs.feedback_matrix,
+        "population": inputs.population,
+        "logits": inputs.logits,
+    }
+    for name, values in float_vectors.items():
+        for index, value in enumerate(values):
+            _numeric_float(value, field=f"{name}[{index}]")
+
+    for index, mask in enumerate(inputs.channel_masks):
+        if isinstance(mask, bool) or not isinstance(mask, int):
+            raise ValueError(f"channel_masks[{index}] must be an integer")
+        if not 0 <= mask <= _UINT64_MAX:
+            raise ValueError(f"channel_masks[{index}] must fit unsigned 64-bit")
+
+    for field, value in (
+        ("tick", inputs.tick),
+        ("target_index", inputs.target_index),
+        ("previous_action", inputs.previous_action),
+        ("seed", inputs.seed),
+    ):
+        checked = _numeric_int(value, field=field)
+        if not 0 <= checked <= _UINT32_MAX:
+            raise ValueError(f"{field} must fit unsigned 32-bit")
+
     if not 0 <= inputs.target_index < action_count:
         raise ValueError("target_index is outside action space")
     if not 0 <= inputs.previous_action < action_count:
         raise ValueError("previous_action is outside action space")
-    if inputs.tick < 0:
-        raise ValueError("tick must be non-negative")
-    if inputs.seed < 0 or inputs.seed > 0xFFFFFFFF:
-        raise ValueError("seed must fit unsigned 32-bit")
-    if not 0.0 <= inputs.epsilon <= 1.0:
+
+    epsilon = _numeric_float(inputs.epsilon, field="epsilon")
+    if not 0.0 <= epsilon <= 1.0:
         raise ValueError("epsilon must be in [0, 1]")
     return {
         "n_neurons": n_neurons,
@@ -977,7 +1077,7 @@ def cpu_gate_reference(
                 best_action = candidate
 
         random_bits = ((gid ^ inputs.seed ^ inputs.tick) * 2654435761) & 0xFFFFFFFF
-        uniform = _f32(_f32(float(random_bits)) * _f32(2.0**-32))
+        uniform = hash_to_uniform_f32(random_bits)
         if uniform < _f32(inputs.epsilon):
             best_action = random_bits % action_count
 
@@ -1003,53 +1103,91 @@ def gate_execution_parity_summary(
     tolerance: float = 1.0e-4,
     reference_commit: str = "",
 ) -> dict[str, object]:
-    """Compare CPU/CUDA gate-kernel output current and actions."""
+    """Compare CPU/CUDA gate outputs and fail closed on invalid evidence."""
 
-    reference_outputs = reference.get("outputs")
-    candidate_outputs = candidate.get("outputs")
-    if not isinstance(reference_outputs, Mapping) or not isinstance(
-        candidate_outputs, Mapping
-    ):
-        raise ValueError("gate execution results must contain outputs mappings")
-
-    reference_current = reference_outputs.get("current")
-    candidate_current = candidate_outputs.get("current")
-    reference_action = reference_outputs.get("action")
-    candidate_action = candidate_outputs.get("action")
-    if not isinstance(reference_current, Sequence) or isinstance(
-        reference_current, (str, bytes)
-    ):
-        raise ValueError("reference current output must be a sequence")
-    if not isinstance(candidate_current, Sequence) or isinstance(
-        candidate_current, (str, bytes)
-    ):
-        raise ValueError("candidate current output must be a sequence")
-    if not isinstance(reference_action, Sequence) or isinstance(
-        reference_action, (str, bytes)
-    ):
-        raise ValueError("reference action output must be a sequence")
-    if not isinstance(candidate_action, Sequence) or isinstance(
-        candidate_action, (str, bytes)
-    ):
-        raise ValueError("candidate action output must be a sequence")
-
-    reference_current_f = [float(value) for value in reference_current]
-    candidate_current_f = [float(value) for value in candidate_current]
-    current_error = max_abs_error(reference_current_f, candidate_current_f)
-    actions_exact = list(reference_action) == list(candidate_action)
-    passed = current_error <= tolerance and actions_exact
-    return {
+    base = {
         "classification": "PLAYGROUND_CUDA_GATE_EXECUTION_PARITY",
         "scientific_evidence": False,
         "parity_class": "D2",
         "comparison_scope": "GATE_OUTPUT_ONLY_NOT_FULL_SNN",
         "reference_source": "CPU_GATE_ABI_REFERENCE",
         "reference_frozen_at": reference_commit or "UNSPECIFIED",
-        "current_max_abs_error": current_error,
         "current_tolerance": tolerance,
-        "actions_exact": actions_exact,
-        "passed": passed,
         "full_snn_parity_verified": False,
+    }
+
+    def fail(reason: str) -> dict[str, object]:
+        return {
+            **base,
+            "current_max_abs_error": None,
+            "actions_exact": False,
+            "failure_reason": reason,
+            "passed": False,
+        }
+
+    reference_outputs = reference.get("outputs")
+    candidate_outputs = candidate.get("outputs")
+    if not isinstance(reference_outputs, Mapping) or not isinstance(
+        candidate_outputs, Mapping
+    ):
+        return fail("gate execution results must contain outputs mappings")
+
+    reference_current = reference_outputs.get("current")
+    candidate_current = candidate_outputs.get("current")
+    reference_action = reference_outputs.get("action")
+    candidate_action = candidate_outputs.get("action")
+    for name, value in (
+        ("reference current", reference_current),
+        ("candidate current", candidate_current),
+        ("reference action", reference_action),
+        ("candidate action", candidate_action),
+    ):
+        if not isinstance(value, Sequence) or isinstance(value, (str, bytes)):
+            return fail(f"{name} output must be a sequence")
+
+    assert isinstance(reference_current, Sequence)
+    assert isinstance(candidate_current, Sequence)
+    assert isinstance(reference_action, Sequence)
+    assert isinstance(candidate_action, Sequence)
+
+    if len(reference_current) != len(candidate_current):
+        return fail("current output length mismatch")
+    if len(reference_action) != len(candidate_action):
+        return fail("action output length mismatch")
+    if not reference_current or not reference_action:
+        return fail("parity outputs must not be empty")
+    if len(reference_current) != len(reference_action):
+        return fail("current/action output length mismatch")
+
+    try:
+        reference_current_f = [float(value) for value in reference_current]
+        candidate_current_f = [float(value) for value in candidate_current]
+    except (TypeError, ValueError):
+        return fail("current outputs must be numeric")
+    if not all(math.isfinite(value) for value in reference_current_f):
+        return fail("reference current contains NaN/Inf")
+    if not all(math.isfinite(value) for value in candidate_current_f):
+        return fail("candidate current contains NaN/Inf")
+
+    if any(
+        isinstance(value, bool) or not isinstance(value, int)
+        for value in reference_action
+    ):
+        return fail("reference actions must be integers")
+    if any(
+        isinstance(value, bool) or not isinstance(value, int)
+        for value in candidate_action
+    ):
+        return fail("candidate actions must be integers")
+
+    current_error = max_abs_error(reference_current_f, candidate_current_f)
+    actions_exact = list(reference_action) == list(candidate_action)
+    return {
+        **base,
+        "current_max_abs_error": current_error,
+        "actions_exact": actions_exact,
+        "failure_reason": None,
+        "passed": current_error <= tolerance and actions_exact,
     }
 
 
@@ -1080,8 +1218,7 @@ def execute_gate_bundle(
     MHRN SNN backend and does not establish full neuron/synapse parity.
     """
 
-    if block_size <= 0:
-        raise ValueError("block_size must be positive")
+    validate_cuda_block_size(block_size)
     shape = validate_gate_launch_inputs(bundle, inputs)
     report = assemble_bundle(bundle, output_dir=output_dir, ptxas=ptxas)
     driver = CudaDriver(driver_library)
@@ -1092,6 +1229,7 @@ def execute_gate_bundle(
     )
     allocations: list[DeviceAllocation] = []
     try:
+        memory_before_free, memory_total = driver.memory_info()
         host_buffers = {
             "input": _f32_buffer(inputs.input_current),
             "channel_masks": _u64_buffer(inputs.channel_masks),
@@ -1172,7 +1310,7 @@ def execute_gate_bundle(
         driver.copy_device_to_host(host_current, out_current)
         driver.copy_device_to_host(host_action, out_action)
 
-        return {
+        result: dict[str, object] = {
             "classification": "PLAYGROUND_CUDA1_SINGLE_TICK_EXECUTION",
             "scientific_evidence": False,
             "execution_status": "GPU_KERNEL_EXECUTED",
@@ -1193,6 +1331,20 @@ def execute_gate_bundle(
             "full_snn_parity_verified": False,
             "canonical_cuda_backend": False,
         }
+        while allocations:
+            allocation = allocations[-1]
+            driver.free_device(allocation)
+            allocations.pop()
+        memory_after_free, memory_total_after = driver.memory_info()
+        result["memory"] = {
+            "free_before_bytes": memory_before_free,
+            "free_after_bytes": memory_after_free,
+            "total_before_bytes": memory_total,
+            "total_after_bytes": memory_total_after,
+            "free_delta_bytes": memory_after_free - memory_before_free,
+            "allocations_released": True,
+        }
+        return result
     finally:
         for allocation in reversed(allocations):
             try:
@@ -1416,15 +1568,19 @@ def behavioral_parity_summary(
 
 
 def max_abs_error(reference: Sequence[float], candidate: Sequence[float]) -> float:
-    """Return the maximum absolute error for a gate-parity vector."""
+    """Return fail-closed maximum absolute error for a parity vector."""
 
     if len(reference) != len(candidate):
         raise ValueError("parity vectors must have the same length")
     if not reference:
-        return 0.0
-    return max(
-        abs(float(left) - float(right)) for left, right in zip(reference, candidate)
-    )
+        raise ValueError("parity vectors must not be empty")
+    left_values = [float(value) for value in reference]
+    right_values = [float(value) for value in candidate]
+    if not all(math.isfinite(value) for value in left_values):
+        raise ValueError("reference parity vector contains NaN/Inf")
+    if not all(math.isfinite(value) for value in right_values):
+        raise ValueError("candidate parity vector contains NaN/Inf")
+    return max(abs(left - right) for left, right in zip(left_values, right_values))
 
 
 def gate_parity_summary(
@@ -1436,7 +1592,13 @@ def gate_parity_summary(
 ) -> dict[str, object]:
     """Summarize D2 gate parity without claiming full SNN equivalence."""
 
-    error = max_abs_error(reference, candidate)
+    failure_reason: str | None = None
+    error: float | None
+    try:
+        error = max_abs_error(reference, candidate)
+    except ValueError as exc:
+        error = None
+        failure_reason = str(exc)
     return {
         "classification": "PLAYGROUND_CUDA_GATE_PARITY",
         "scientific_evidence": False,
@@ -1453,5 +1615,6 @@ def gate_parity_summary(
         "reference_frozen_at": reference_commit or "UNSPECIFIED",
         "max_abs_error": error,
         "tolerance": tolerance,
-        "passed": error <= tolerance,
+        "failure_reason": failure_reason,
+        "passed": (failure_reason is None and error is not None and error <= tolerance),
     }
