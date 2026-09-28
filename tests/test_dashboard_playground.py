@@ -398,7 +398,7 @@ def test_playground_ui_exposes_cuda_parity_and_cpu_determinism_controls() -> Non
     assert 'path == "/api/playground/determinism"' in api
     assert "checkCpuDeterminism" in module
     assert "D1 = exakte Spike-Ereignisse" in module
-    assert "ein echter GPU-Kernel-Launch ist hier noch nicht nachgewiesen" in module
+    assert "CUDA-1.3 prüft den 17-Parameter-Gate-ABI" in module
 
 
 def test_playground_ui_exposes_cuda_13_hardware_diagnostics() -> None:
