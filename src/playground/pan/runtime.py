@@ -247,10 +247,15 @@ class PANRuntime:
             vectors.append(vector)
 
         if vectors:
-            self.population_vector = [
-                sum(vector[index] for vector in vectors) / len(vectors)
-                for index in range(self.dimensions)
-            ]
+            # Stable neuron order across Python versions and the CUDA reduction.
+            self.population_vector = []
+            for index in range(self.dimensions):
+                total = 0.0
+                for vector in vectors:
+                    total += vector[index]
+                if not math.isfinite(total):
+                    raise ValueError("PAN population must remain finite")
+                self.population_vector.append(total / len(vectors))
             self.feedback_history.append(list(self.population_vector))
             keep = max(2, self.feedback_delay + 2)
             if len(self.feedback_history) > keep:

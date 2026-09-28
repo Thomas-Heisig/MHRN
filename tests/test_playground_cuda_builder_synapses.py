@@ -37,6 +37,7 @@ def test_d3_rejects_stp_rng_and_pending_event_drift():
             gpu_pan_ticks=128,
             gpu_delay_consumed_ticks=128,
             gpu_neuron_trace_ticks=128,
+            gpu_pan_population_calls=128,
         )
         if field == "rng_state":
             gpu["research_state"][field] = (0, (), None)

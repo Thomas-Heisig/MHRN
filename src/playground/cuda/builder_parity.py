@@ -101,6 +101,8 @@ def compare_builder_runs(cpu: dict[str, Any], gpu: dict[str, Any]) -> dict[str, 
             state_ok = (
                 state_ok
                 and pan_error is not None
+                and gpu["execution"].get("gpu_pan_population_calls", 0)
+                == gpu["execution"]["gpu_membrane_ticks"]
                 and gpu["execution"].get("gpu_neuron_trace_ticks", 0)
                 == gpu["execution"]["gpu_membrane_ticks"]
                 and gpu["execution"].get("gpu_delay_consumed_ticks", 0)
@@ -115,6 +117,9 @@ def compare_builder_runs(cpu: dict[str, Any], gpu: dict[str, Any]) -> dict[str, 
             "D2_STP_eligibility_max_error": resource_error,
             "D2_pending_current_max_error": queue_error,
             "RNG_builder_state_exact": rng_exact,
+            "gpu_pan_population_calls": gpu["execution"].get(
+                "gpu_pan_population_calls", 0
+            ),
             "gpu_neuron_trace_ticks": gpu["execution"].get("gpu_neuron_trace_ticks", 0),
             "gpu_delay_consumed_ticks": gpu["execution"].get(
                 "gpu_delay_consumed_ticks", 0

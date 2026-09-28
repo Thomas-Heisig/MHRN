@@ -32,8 +32,11 @@ class PANStateStepper:
         self.device: dict[str, DeviceAllocation] = {}
         self.feedback_host: dict[str, Any] = {}
         self.feedback_device: dict[str, DeviceAllocation] = {}
+        self.reduction_host: dict[str, Any] = {}
+        self.reduction_device: dict[str, DeviceAllocation] = {}
         self.ticks = 0
         self.feedback_calls = 0
+        self.population_calls = 0
         if not 1 <= self.n <= 1024 or not 5 <= self.dimensions <= 32:
             raise ValueError("unsupported CUDA PAN shape")
         try:
@@ -60,13 +63,22 @@ class PANStateStepper:
                 self.feedback_device[name] = driver.alloc_device(
                     ctypes.sizeof(self.feedback_host[name])
                 )
+            self.population_kernel = driver.kernel(loaded, "pan_population_mean")
+            self.reduction_host["population"] = (ctypes.c_double * self.dimensions)()
+            self.reduction_device["population"] = driver.alloc_device(
+                ctypes.sizeof(self.reduction_host["population"])
+            )
         except BaseException:
             self.close()
             raise
 
     def close(self) -> None:
         for allocation in reversed(
-            [*self.device.values(), *self.feedback_device.values()]
+            [
+                *self.device.values(),
+                *self.feedback_device.values(),
+                *self.reduction_device.values(),
+            ]
         ):
             try:
                 self.driver.free_device(allocation)
@@ -74,6 +86,7 @@ class PANStateStepper:
                 pass
         self.device.clear()
         self.feedback_device.clear()
+        self.reduction_device.clear()
 
     def update(
         self,
@@ -139,6 +152,17 @@ class PANStateStepper:
             block=(128, 1, 1),
             arguments=args,
         )
+        self.driver.launch_kernel(
+            self.population_kernel,
+            grid=(1, 1, 1),
+            block=(32, 1, 1),
+            arguments=[
+                ctypes.c_uint32(self.n),
+                ctypes.c_uint32(self.dimensions),
+                ctypes.c_uint64(self.device["vectors"].ptr),
+                ctypes.c_uint64(self.reduction_device["population"].ptr),
+            ],
+        )
         self.driver.synchronize()
         for name in ("alive", "state", "vectors"):
             self.driver.copy_device_to_host(self.host[name], self.device[name])
@@ -159,10 +183,14 @@ class PANStateStepper:
                 runtime.apoptosis_events.append(
                     {"tick": tick, "neuron_id": i, "health": s["pan_health"]}
                 )
-        runtime.population_vector = [
-            sum(float(s["pan_x_hd"][d]) for s in states) / self.n
-            for d in range(self.dimensions)
-        ]
+        self.driver.copy_device_to_host(
+            self.reduction_host["population"], self.reduction_device["population"]
+        )
+        population = list(self.reduction_host["population"])
+        if any(not math.isfinite(x) for x in population):
+            raise ValueError("CUDA PAN population must be finite")
+        runtime.population_vector = population
+        self.population_calls += 1
         runtime.feedback_history.append(list(runtime.population_vector))
         keep = max(2, runtime.feedback_delay + 2)
         if len(runtime.feedback_history) > keep:
