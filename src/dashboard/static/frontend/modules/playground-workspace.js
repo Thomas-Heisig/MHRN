@@ -774,6 +774,15 @@ export function initGuidedWorkspace({
       runSummary.textContent = !r.session_id
         ? "Robustheitskontrollen abgeschlossen. Ergebnisse stehen in den technischen Details und im Export bereit."
         : `Session ${r.session_id || "—"} · Seed ${r.config?.seed ?? "—"} · CPU-Referenz · ${r.metrics?.total_spikes ?? 0} Spikes · explorativer Lauf, keine wissenschaftliche Evidenz.`;
+      if (r.behavioral_learning) {
+        const learning = r.behavioral_learning;
+        const contexts = Object.keys(learning.context_policies || {}).length;
+        runSummary.textContent += ` Lernen: ${contexts} Reiz-Kontexte · ${learning.policy_updates || 0} Updates · ${((learning.success_fraction || 0) * 100).toFixed(1)} % Erfolg bei bewerteten Aktionen.`;
+        if (r.closed_loop?.policy_context_source) {
+          runSummary.textContent +=
+            " Kontext aus ausgesendetem Zielreiz; kein Nachweis neuronaler Reizdekodierung.";
+        }
+      }
     }
   }).observe($("pg-run-json"), { childList: true });
   const runTools = document.createElement("div");

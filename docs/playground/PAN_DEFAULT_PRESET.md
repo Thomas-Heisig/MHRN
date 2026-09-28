@@ -14,6 +14,10 @@ network is not a GPU-utilization benchmark. Sessions are saved by default.
 
 ## Measured checks, 2026-09-28
 
+The measurements below describe the original global-policy baseline. See
+[the context-policy follow-up](CONTEXT_POLICY.md) for the corrected learner and
+paired measurements (64.5–74.2% on the same three seeds).
+
 Three complete CPU runs, with persistence disabled for measurement:
 
 | Seed | Wall time (s) | Mean rate (Hz) | Active neurons | Successful episodes |

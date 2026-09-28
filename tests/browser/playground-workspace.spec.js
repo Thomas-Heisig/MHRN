@@ -92,6 +92,9 @@ test("CPU run and CUDA compilation remain connected to the real server", async (
   await page.locator("#pg-run").click();
   await expect(page.locator("#pg-status")).toContainText("Lauf abgeschlossen");
   await expect(page.locator("#pg-result-summary")).toContainText("Session");
+  await expect(page.locator("#pg-result-summary")).toContainText(
+    "Reiz-Kontexte",
+  );
   await expect(page.locator("#pg-metrics")).toContainText("Spikes");
   await selectRoute(page, "playground", "builder");
   await page.locator("#pg-group-5 > summary").click();

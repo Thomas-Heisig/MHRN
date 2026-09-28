@@ -319,7 +319,7 @@ function buildPanels(root) {
           <label><span><input id="pg-action-loop-enabled" type="checkbox"> Aktions-Loop aktiv</span></label>
           <label>Loop Delay<input id="pg-action-loop-delay" type="number" min="1" max="64" value="1"></label>
           <label>Persistenz<input id="pg-action-persistence" type="number" min="1" max="128" value="1"></label>
-          <label>Aktionsraum<input id="pg-action-space-size" type="number" min="2" max="32" value="4"></label>
+          <label>Aktionsraum<input id="pg-action-space-size" type="number" min="1" max="32" value="4"></label>
           <label>Action → Input Map<input id="pg-action-to-input-map" value="auto"></label>
           <label>Kopplungsstärke<input id="pg-action-coupling" type="number" min="0" max="10" step="0.1" value="0"></label>
           <label>Aktionsrauschen<input id="pg-action-noise" type="number" min="0" max="1" step="0.01" value="0"></label>
