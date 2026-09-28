@@ -21,3 +21,10 @@ fallback must be explicit; a selected GPU hardware profile alone does not execut
 the network on a GPU. A persistent kernel is a performance design choice, not a
 prerequisite for demonstrating learning. Grid dimensions derive from block size
 and neuron count; 256 neurons do not inherently require four blocks.
+
+
+## Builder integration and cue research
+
+The actual CPU Builder now shares the live stick-figure world, receives physical sensor inputs, drives muscles from actions and applies enabled posture rewards to synaptic eligibility. The Run page includes body frame replay. See [PAN embodiment integration](PAN_EMBODIED_INTEGRATION.md).
+
+An activity-only held-out decoder and shuffled-label baseline are integrated into run results. Policy feedback is flagged. Randomized input-cue interventions, plasticity/frozen-network comparisons and transfer learning curves remain separate required experiments. No full CUDA Builder or neural-learning claim follows from the reference kernels or this decoder.
