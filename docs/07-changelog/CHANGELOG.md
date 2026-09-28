@@ -43,6 +43,11 @@
 - Das Zoomfenster besitzt eigene Start-, Pause-, Schritt-, Input-, Reset- und
   Stop-Aktionen sowie eine sichtbare Statuszeile.
 - Die Zeichenfläche passt sich an Dialoggröße und Device-Pixel-Ratio an.
+- Für skalierte Updates werden große Topologie-Payloads nicht bei jedem Schritt
+  wiederholt übertragen; der letzte gültige Graph bleibt sichtbar und wird
+  periodisch synchronisiert.
+- Überlappende Live-Schritte werden verworfen, damit ein langsamer Batch keine
+  zweite Ausführung und keine Renderwarteschlange aufbaut.
 
 ## 2026-09-27 - Release-Statusmarker für Entwicklung und Wissenschaft
 

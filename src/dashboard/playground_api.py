@@ -561,7 +561,11 @@ def post_playground(
         session = _LIVE_DAEMON.get(session_id)
         if action == "step":
             ticks = _payload_int(payload, "ticks", 32)
-            return {"session_id": session_id, **session.step(ticks)}
+            include_topology = payload.get("include_topology", True) is not False
+            return {
+                "session_id": session_id,
+                **session.step(ticks, include_topology=include_topology),
+            }
         if action == "input":
             values = _numeric_list(payload.get("values", []), "values")
             duration = _payload_int(payload, "duration_ticks", 16)

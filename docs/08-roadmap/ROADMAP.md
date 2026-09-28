@@ -37,6 +37,10 @@
 	Hochskalieren gerendert.
 - Die aktive Detailansicht folgt jedem Live-Step und zeigt ihren Laufstatus.
 - Session-Aktionen sind auch im Zoomfenster direkt erreichbar.
+- Aktualisierungsfaktoren `1x`, `5x`, `10x`, `25x`, `50x` und `100x` bündeln
+	Simulationstakte ohne parallele Requests.
+- Wiederholte Topologie-Payloads werden bei Live-Batches reduziert; die
+	Darstellung bleibt aus dem letzten gültigen Graphen lesbar.
 
 ## 2026-09-27 Release-Statusmarker
 
