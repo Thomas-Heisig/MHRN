@@ -36,7 +36,7 @@ def test_d2_parity_fails_closed_on_nonfinite_candidate(poison: float) -> None:
         {"outputs": {"current": [1.0, poison], "action": [0, 1]}},
     )
     assert summary["passed"] is False
-    assert summary["current_max_abs_error"] == float("inf")
+    assert summary["current_max_abs_error"] is None
     assert "NaN/Inf" in str(summary["failure_reason"])
 
 
