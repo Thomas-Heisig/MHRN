@@ -1,6 +1,7 @@
 "use strict";
 
 import { apiGet, apiPost, byId } from "../core/api.js";
+import { initGuidedWorkspace } from "./playground-workspace.js";
 import { getLanguage } from "../core/i18n.js?v=i18n-fix-20260920b";
 
 let lastResult = null;
@@ -11,7 +12,7 @@ let nightPollTimer = null;
 let catalogInfoItems = new Map();
 let activeCatalogInfo = null;
 const PLAYGROUND_PRESETS_STORAGE = "mhrn.playground.presets.v1";
-const DEFAULT_PLAYGROUND_PRESET = "full_embodiment";
+const DEFAULT_PLAYGROUND_PRESET = "pan_full_balanced";
 const BUILTIN_PLAYGROUND_PRESETS = {
   izhikevich_reference: {
     label: "Izhikevich · Referenz",
@@ -177,7 +178,7 @@ function buildPanels(root) {
     <section data-generated-panel="builder" id="playground-builder">
       <div class="pg-neutral-note"><strong>Neutraler Baukasten:</strong> Keine Modell- oder Topologieauswahl ist eine Empfehlung. <code>MHRN 5D</code> ist der Architektur-Default, weil er den nativen MHRN-Vertrag <code>(x,y,z,d4,d5)</code> verwendet — nicht weil 5D als überlegen gilt.</div>
       <section class="playground-preset-deck" aria-labelledby="pg-preset-deck-title">
-        <div class="playground-preset-copy"><div><h3 id="pg-preset-deck-title">Preset Lab</h3><p>Empfohlene Startpunkte für Izhikevich und PAN. Presets verändern nur den Playground und werden lokal auf diesem Gerät gespeichert.</p></div></div>
+        <div class="playground-preset-copy"><div><h3 id="pg-preset-deck-title">Preset Lab</h3><p>Empfohlene Startpunkte für Izhikevich und PAN. Presets verändern nur den Playground. Eigene Profile liegen im Browser; der Katalog kommt vom Server.</p></div></div>
         <div class="playground-preset-controls"><label>Profil<select id="pg-user-preset-select"></select></label><label>Eigenes Preset speichern<input id="pg-user-preset-name" type="text" placeholder="z. B. PAN · Seed 2"></label><button type="button" id="pg-user-preset-apply">Anwenden</button><button type="button" id="pg-user-preset-save">Speichern</button><button type="button" id="pg-user-preset-delete">Eigenes löschen</button><p id="pg-user-preset-description" class="playground-preset-description">Preset auswählen oder eigene Einstellungen speichern.</p></div>
       </section>
       <div class="playground-grid">
@@ -276,7 +277,7 @@ function buildPanels(root) {
           <label><span><input id="pg-cortical-plasticity" type="checkbox" checked> Layer-Gain plastisch</span></label>
           <label>Layer Lernrate<input id="pg-cortical-lr" type="number" min="0" max="1" step="0.005" value="0.01"></label>
           <label><span><input id="pg-behavior-enabled" type="checkbox"> Verhalten lernen</span></label>
-          <label>Aktionen<input id="pg-behavior-actions" type="number" min="2" max="16" value="4"></label>
+          <label>Aktionen<input id="pg-behavior-actions" type="number" min="1" max="16" value="4"></label>
           <label>Zielaktion<input id="pg-behavior-target" type="number" min="0" max="15" value="0"></label>
           <label>Zielmodus<select id="pg-behavior-target-mode"><option value="cycle">cycle</option><option value="fixed">fixed</option></select></label>
           <label>Min. Aktivität<input id="pg-behavior-min-activity" type="number" min="0" max="1" step="0.01" value="0.01"></label>
@@ -1057,7 +1058,7 @@ async function runSession(){
 
 async function runRobustness(){
   const status=byId("pg-status");status.dataset.state="running";status.textContent="Explorative Robustheitskontrollen laufen …";
-  try{const result=await apiPost("/api/playground/robustness",{...formPayload(),persist:false,ensemble_runs:1});status.dataset.state="ok";status.textContent="Robustheitssuite abgeschlossen · nicht preregistriert · keine Evidenz";byId("pg-run-json").textContent=JSON.stringify(result,null,2);window.MHRNWorkspaceArchitecture?.selectRoute?.("playground","run");}
+  try{const result=await apiPost("/api/playground/robustness",{...formPayload(),persist:false,ensemble_runs:1});status.dataset.state="ok";status.textContent="Robustheitssuite abgeschlossen · nicht preregistriert · keine Evidenz";lastResult=result;byId("pg-run-json").textContent=JSON.stringify(result,null,2);window.MHRNWorkspaceArchitecture?.selectRoute?.("playground","run");}
   catch(error){status.dataset.state="error";status.textContent=`Robustheitssuite fehlgeschlagen: ${error.message||error}`;}
 }
 
@@ -1076,8 +1077,10 @@ function setBuilderValue(key,value){
     refractory_variance:"refractory-variance",adaptation_strength:"adaptation-strength",adaptation_tau:"adaptation-tau",oscillation_enabled:"oscillation-enabled",oscillation_frequency:"oscillation-frequency",
     input_topology:"input-topology",input_channels:"input-channels",input_noise_sigma:"input-noise",action_feedback_channel:"action-feedback-channel",reward_cue_channel:"reward-cue-channel",
     geometry_input_coupling:"geometry-input-coupling",geometry_input_sigma:"geometry-input-sigma",sandbox_enabled:"sandbox-enabled",sandbox_sensor_noise:"sandbox-sensor-noise",
-    neuron_model:"neuron-model",synapse_model:"synapse-model",plasticity_rule:"plasticity",topology:"topology",readout:"readout",pan_enabled:"pan-enabled",behavior_learning_enabled:"behavior-enabled",stimulus:"stimulus"
+    neuron_model:"neuron-model",synapse_model:"synapse-model",plasticity_rule:"plasticity",topology:"topology",readout:"readout",pan_enabled:"pan-enabled",behavior_learning_enabled:"behavior-enabled",stimulus:"stimulus",
+    weight_decay:"weight-decay",weight_max_clamp:"weight-max-clamp",persist:"persist",clock_mode:"clock-mode",clock_base_hz:"clock-base-hz",clock_event_batch_ms:"clock-event-batch",execution_mode:"execution-mode",execution_initial_mode:"execution-initial",execution_theta_high:"execution-high",execution_theta_low:"execution-low",execution_hysteresis:"execution-hysteresis",execution_min_dwell:"execution-dwell",execution_activity_window:"execution-window",execution_transition_mode:"execution-transition",execution_sync_on_switch:"execution-sync",execution_log_transitions:"execution-log",growth_enabled:"growth-enabled",growth_activity_threshold:"growth-activity",growth_coactivation_threshold:"growth-coactivation",growth_information_threshold:"growth-info",growth_prune_threshold:"growth-prune",growth_max_synapses_per_neuron:"growth-max-synapses",growth_max_new_synapses_per_barrier:"growth-max-new",hardware_profile_name:"hardware-profile",cuda_budget_mb:"cuda-budget",offload_enabled:"offload-enabled",offload_snapshot_interval:"offload-snapshot",thalamic_gating_enabled:"thalamic-enabled",thalamic_relay_threshold:"thalamic-threshold",thalamic_attention_gain:"thalamic-attention",thalamic_inhibition_gain:"thalamic-inhibition",cortical_layers_enabled:"cortical-enabled",cortical_plasticity:"cortical-plasticity",cortical_learning_rate:"cortical-lr",behavior_target_mode:"behavior-target-mode",behavior_min_activity:"behavior-min-activity",behavior_learning_rate:"behavior-lr",behavior_epsilon:"behavior-epsilon",geometry_lambda_a:"geometry-lambda-a",geometry_lambda_b:"geometry-lambda-b",geometry_sigma:"geometry-sigma",geometry_p0:"geometry-p0",geometry_mode:"geometry-mode",geometry_delay_velocity:"geometry-delay-velocity",neural_io_enabled:"neural-io-enabled",neural_io_input_channels:"neural-io-input-channels",neural_io_output_channels:"neural-io-output-channels",neural_io_input_codec:"neural-io-codec",neural_io_output_decoder:"neural-io-decoder",neural_io_window_ticks:"neural-io-window",neural_io_input_current:"neural-io-current",neural_io_input_role:"neural-io-input-role",neural_io_output_role:"neural-io-output-role",neural_io_phase:"neural-io-phase",neural_io_modality:"neural-io-modality",neural_io_source_id:"neural-io-source",posture_score_channel:"posture-score-channel",reward_event_channel:"reward-event-channel",posture_current_scale:"posture-current-scale",reward_event_scale:"reward-event-scale",posture_reward_enabled:"posture-reward-enabled",posture_weight_upright:"posture-weight-upright",posture_weight_height:"posture-weight-height",posture_weight_stability:"posture-weight-stability",posture_weight_symmetry:"posture-weight-symmetry",posture_target_height:"posture-target-height",posture_tilt_max:"posture-tilt-max",posture_velocity_max:"posture-velocity-max",trigger_good_score:"trigger-good-score",trigger_good_duration:"trigger-good-duration",trigger_good_reward:"trigger-good-reward",trigger_warning_score:"trigger-warning-score",trigger_warning_reward:"trigger-warning-reward",trigger_falling_rate:"trigger-falling-rate",trigger_falling_reward:"trigger-falling-reward",trigger_collapse_score:"trigger-collapse-score",trigger_collapse_reward:"trigger-collapse-reward",trigger_recovery_bonus:"trigger-recovery-bonus",reward_continuous_alpha:"reward-continuous-alpha",episode_termination_enabled:"episode-termination-enabled",episode_max_ticks:"episode-max-ticks",episode_reset_on_collapse:"episode-reset-on-collapse",pan_feedback_delay:"pan-feedback-delay",pan_feedback_source:"pan-feedback-source",pan_feedback_target:"pan-feedback-target",pan_feedback_threshold:"pan-feedback-threshold",freeze_actions:"freeze-actions",freeze_rewards:"freeze-rewards",parity_reference_commit:"parity-reference-commit"
   };
+  if(key==="neural_io_input_payload"){const field=byId("pg-neural-io-payload");if(field)field.value=typeof value==="string"?value:JSON.stringify(value);return;}
   const id="pg-"+(aliases[key]||key.replaceAll("_","-"));
   const el=byId(id);if(!el)return;
   if(el.type==="checkbox")el.checked=Boolean(value);
@@ -1099,7 +1102,7 @@ function renderUserPresetOptions(){
   const select=byId("pg-user-preset-select");if(!select)return;
   const selected=select.value;
   const presets=allPlaygroundPresets();
-  select.innerHTML=Object.entries(presets).map(([name,preset])=>`<option value="${name}">${preset.label||name}${BUILTIN_PLAYGROUND_PRESETS[name]?"":" · lokal"}</option>`).join("");
+  select.innerHTML=Object.entries(presets).map(([name,preset])=>`<option value="${playgroundEscape(name)}">${playgroundEscape(preset.label||name)} · ${preset.source==="catalog"?"Katalog":BUILTIN_PLAYGROUND_PRESETS[name]?"integriert":"Browser"}</option>`).join("");
   if(selected&&presets[selected])select.value=selected;else if(!select.value)select.value=presets[DEFAULT_PLAYGROUND_PRESET]?DEFAULT_PLAYGROUND_PRESET:"pan_exploration";
   const preset=presets[select.value];
   if(byId("pg-user-preset-description"))byId("pg-user-preset-description").textContent=preset?.description||"Preset auswählen oder eigene Einstellungen speichern.";
@@ -1209,6 +1212,7 @@ export async function initPlayground(){
   try{renderCatalog(await apiGet("/api/playground/catalog"));renderUserPresetOptions();resetForm();}catch(error){const status=byId("pg-status");status.dataset.state="error";status.textContent=`Katalog nicht verfügbar: ${error.message}`;}
   byId("playground-builder")?.addEventListener("input", updateDefaultHints);
   byId("playground-builder")?.addEventListener("change", updateDefaultHints);
+  initGuidedWorkspace({payload:formPayload,presets:()=>Object.fromEntries(Object.entries(allPlaygroundPresets()).map(([name,preset])=>[name,{...preset,settings:preset.source==="catalog"?resolvedPresetSettings(name):preset.settings}])),applyPreset:applyUserPreset,setValue:setBuilderValue,lastResult:()=>lastResult});
   await refreshSessions();
   try{await refreshNightStatus();}catch{ /* night manager is optional during partial deployments */ }
   try{await refreshCudaStatus();}catch{ /* CUDA toolkit/driver is optional */ }

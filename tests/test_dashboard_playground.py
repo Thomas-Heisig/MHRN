@@ -113,7 +113,7 @@ def test_playground_preset_lab_has_izhikevich_pan_and_local_storage() -> None:
     assert 'edge_budget:"edges"' in module
     assert 'stimulus_current:"current"' in module
     assert 'behavior_episode_ticks:"behavior-episode"' in module
-    assert 'const DEFAULT_PLAYGROUND_PRESET = "full_embodiment"' in module
+    assert 'const DEFAULT_PLAYGROUND_PRESET = "pan_full_balanced"' in module
     assert "allPlaygroundPresets()[DEFAULT_PLAYGROUND_PRESET]" in module
 
 
