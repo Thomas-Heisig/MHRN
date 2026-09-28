@@ -401,7 +401,6 @@ def test_playground_ui_exposes_cuda_parity_and_cpu_determinism_controls() -> Non
     assert "ein echter GPU-Kernel-Launch ist hier noch nicht nachgewiesen" in module
 
 
-
 def test_playground_ui_exposes_cuda_13_hardware_diagnostics() -> None:
     module = (STATIC / "frontend" / "modules" / "playground.js").read_text(
         encoding="utf-8"
@@ -430,9 +429,7 @@ def test_playground_ui_exposes_cuda_13_hardware_diagnostics() -> None:
 
 
 def test_playground_api_exposes_cuda_13_status_preflight_smoke_and_rng() -> None:
-    api = (ROOT / "src" / "dashboard" / "playground_api.py").read_text(
-        encoding="utf-8"
-    )
+    api = (ROOT / "src" / "dashboard" / "playground_api.py").read_text(encoding="utf-8")
     for marker in (
         'path == "/api/playground/cuda/status"',
         'path == "/api/playground/cuda/preflight"',
