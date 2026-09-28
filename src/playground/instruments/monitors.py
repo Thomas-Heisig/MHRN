@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import hashlib
 from dataclasses import dataclass, field
 
 
@@ -13,6 +14,13 @@ class SpikeMonitor:
     def record(self, tick: int, neuron_id: int) -> None:
         self.ticks.append(tick)
         self.neuron_ids.append(neuron_id)
+
+    def digest(self) -> str:
+        digest = hashlib.sha256()
+        for tick, neuron in zip(self.ticks, self.neuron_ids):
+            digest.update(tick.to_bytes(8, "little"))
+            digest.update(neuron.to_bytes(8, "little"))
+        return digest.hexdigest()
 
     def rows(self, limit: int = 10_000) -> list[dict[str, int]]:
         return [

@@ -242,6 +242,7 @@ def determinism(payload: Mapping[str, object]) -> dict[str, object]:
     """Run the same bounded CPU Playground configuration twice and compare it."""
 
     config_payload = dict(payload)
+    config_payload["neuron_backend"] = "cpu"
     config_payload["persist"] = False
     config_payload["ensemble_runs"] = 1
     config_payload["freeze_actions"] = False

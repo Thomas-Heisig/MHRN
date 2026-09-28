@@ -42,6 +42,11 @@ def main() -> int:
         target_sm="sm_86",
     )
     results["plasticity"] = plastic_report.to_mapping()
+    results["builder_membrane"] = assemble_ptx(
+        compile_cuda_source(Path("src/playground/cuda/membrane.cu").read_text()),
+        output_dir=root / "builder-membrane",
+        target_sm="sm_86",
+    ).to_mapping()
     print(json.dumps(results, indent=2, sort_keys=True))
     return 0
 

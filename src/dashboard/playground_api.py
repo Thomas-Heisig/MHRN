@@ -24,6 +24,7 @@ from src.playground.cuda import (
     preflight_bundle,
     validate_cuda_block_size,
 )
+from src.playground.cuda.builder_parity import run_builder_parity
 from src.playground.cuda.recurrent import (
     cpu_recurrent_reference,
     execute_recurrent,
@@ -176,9 +177,9 @@ def _cuda_runtime_status() -> dict[str, object]:
             "CUDA-1.1": "DETERMINISM_FREEZE_PARITY_CONTRACT_IMPLEMENTED",
             "CUDA-1.2": "LAUNCH_ABI_BUFFER_VALIDATION_IMPLEMENTED",
             "CUDA-1.3": "CPU_GATE_REFERENCE_D2_IMPLEMENTED_HARDWARE_VERIFICATION_REQUIRED",
-            "CUDA-1.4": "PENDING_10_100_TICK_STATE_DELAYS_MULTIBLOCK",
-            "CUDA-1.5": "PENDING_PLASTICITY_STDP",
-            "CUDA-1.6": "PENDING_CLOSED_LOOP_SANDBOX_GPU",
+            "CUDA-1.4": "BOUNDED_RECURRENT_FP64_REFERENCE_IMPLEMENTED",
+            "CUDA-1.5": "BOUNDED_FROZEN_REWARD_PLASTICITY_REFERENCE_IMPLEMENTED",
+            "CUDA-1.6": "HYBRID_BUILDER_MEMBRANE_GPU_BODY_CPU_IMPLEMENTED",
         },
         "application_cpu": {
             "sandbox_physics": True,
@@ -190,12 +191,12 @@ def _cuda_runtime_status() -> dict[str, object]:
         },
         "gpu_porting": {
             "gate_single_tick": True,
-            "membrane_state_100_ticks": False,
-            "adaptation_state": False,
+            "membrane_state_100_ticks": True,
+            "adaptation_state": True,
             "refractory_state": False,
             "synapses": False,
-            "delays": False,
-            "plasticity": False,
+            "delays": True,
+            "plasticity": "BOUNDED_REFERENCE_ONLY",
             "sandbox_physics": False,
         },
         "verification": {
@@ -499,6 +500,9 @@ def post_playground(
 
     if path == "/api/playground/cuda/rng-parity":
         return _bounded_operation(lambda: _cuda_rng_parity(payload))
+
+    if path == "/api/playground/cuda/builder-parity":
+        return _bounded_operation(lambda: run_builder_parity(payload))
 
     if path == "/api/playground/cuda/recurrent-parity":
         return _bounded_operation(lambda: _cuda_recurrent_parity(payload))

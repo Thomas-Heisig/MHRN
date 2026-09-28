@@ -187,3 +187,37 @@ test("Builder run renders the coupled PAN body and recorded frame replay", async
   );
   await expect(page.locator("#pg-analysis-io")).toContainText("cue_decoding");
 });
+
+test("CUDA Builder choice and D3 control use explicit endpoints without fallback", async ({
+  page,
+}) => {
+  await page.locator("#pg-workspace-expand").click();
+  await page.locator("#pg-neuron-backend").selectOption("cuda_membrane");
+  let attempts = 0;
+  await page.route("**/api/playground/run", async (route) => {
+    attempts++;
+    expect(route.request().postDataJSON().neuron_backend).toBe("cuda_membrane");
+    await route.fulfill({
+      status: 503,
+      contentType: "application/json",
+      body: JSON.stringify({ error: "GPU unavailable" }),
+    });
+  });
+  await page.locator("#pg-run").click();
+  await expect(page.locator("#pg-status")).toContainText("GPU unavailable");
+  expect(attempts).toBe(1);
+  await page.route("**/api/playground/cuda/builder-parity", (route) =>
+    route.fulfill({
+      status: 200,
+      contentType: "application/json",
+      body: JSON.stringify({
+        passed: false,
+        scope: "REAL_BUILDER_CUDA_MEMBRANE_CPU_SYNAPSES_AND_ENVIRONMENT",
+      }),
+    }),
+  );
+  await page.locator("#pg-cuda-builder-parity").click();
+  await expect(page.locator("#pg-cuda-builder-parity-state")).toContainText(
+    "REAL_BUILDER_CUDA_MEMBRANE",
+  );
+});

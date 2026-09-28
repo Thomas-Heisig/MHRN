@@ -67,6 +67,7 @@ class PlaygroundConfig:
     clock_mode: str = "continuous"
     clock_base_hz: float = 100.0
     clock_event_batch_ms: float = 10.0
+    neuron_backend: str = "cpu"
     execution_mode: str = "TICK_ONLY"
     execution_initial_mode: str = "EVENT_ONLY"
     execution_theta_high: float = 0.30
@@ -419,6 +420,7 @@ class PlaygroundConfig:
             clock_event_batch_ms=number(
                 "clock_event_batch_ms", defaults.clock_event_batch_ms
             ),
+            neuron_backend=text("neuron_backend", defaults.neuron_backend).lower(),
             execution_mode=text("execution_mode", defaults.execution_mode).upper(),
             execution_initial_mode=text(
                 "execution_initial_mode", defaults.execution_initial_mode
@@ -895,6 +897,14 @@ class PlaygroundConfig:
             raise ValueError("clock_base_hz must be between 1 and 10000")
         if not self.dt_ms <= self.clock_event_batch_ms <= 1000.0:
             raise ValueError("clock_event_batch_ms must be between dt_ms and 1000")
+        if self.neuron_backend not in {"cpu", "cuda_membrane"}:
+            raise ValueError("neuron_backend must be cpu or cuda_membrane")
+        if self.neuron_backend == "cuda_membrane" and self.neuron_model not in {
+            "lif",
+            "adex",
+            "pan_adex_5d",
+        }:
+            raise ValueError("CUDA membrane backend supports LIF/AdEx/PAN-AdEx only")
         if self.execution_mode not in {"EVENT_ONLY", "TICK_ONLY", "HYBRID_AUTO"}:
             raise ValueError("unsupported execution_mode")
         if self.execution_initial_mode not in {"EVENT_ONLY", "TICK_ONLY"}:
@@ -1244,6 +1254,7 @@ class PlaygroundConfig:
             "clock_mode": self.clock_mode,
             "clock_base_hz": self.clock_base_hz,
             "clock_event_batch_ms": self.clock_event_batch_ms,
+            "neuron_backend": self.neuron_backend,
             "execution_mode": self.execution_mode,
             "execution_initial_mode": self.execution_initial_mode,
             "execution_theta_high": self.execution_theta_high,

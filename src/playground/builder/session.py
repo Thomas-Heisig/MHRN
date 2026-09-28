@@ -8,6 +8,7 @@ import random
 import time
 import uuid
 from collections import deque
+from contextlib import ExitStack
 from dataclasses import dataclass
 
 from .._isolation import PlaygroundIsolation, playground_manifest
@@ -19,6 +20,7 @@ from ..closed_loop import (
     neuron_parameter_sets,
     sample_delay_ticks,
 )
+from ..cuda.membrane import cuda_membrane_session
 from ..geometry.metrics import conduction_delay_ticks, geometry_diagnostics
 from ..instruments.monitors import RateMonitor, SpikeMonitor, StateMonitor
 from ..models import PlaygroundConfig, Topology
@@ -321,7 +323,14 @@ class PlaygroundSession:
                 activity=activity,
             )
 
-        with PlaygroundIsolation():
+        with PlaygroundIsolation(), ExitStack() as resources:
+            gpu_membrane = (
+                resources.enter_context(
+                    cuda_membrane_session(model.name, neuron_parameters, config.dt_ms)
+                )
+                if config.neuron_backend == "cuda_membrane"
+                else None
+            )
             for tick in range(config.ticks):
                 temporal_dynamics.begin_tick()
                 next_engine, switch_reason = execution_switcher.decide(tick)
@@ -406,6 +415,8 @@ class PlaygroundSession:
                 else:
                     active_neurons_for_step = list(range(config.n_neurons))
 
+                membrane_currents = [0.0] * config.n_neurons
+                membrane_active = [0] * config.n_neurons
                 for neuron_id in active_neurons_for_step:
                     state = states[neuron_id]
                     if not temporal_dynamics.can_step(neuron_id, tick):
@@ -414,21 +425,29 @@ class PlaygroundSession:
                         state.get("pan_alive", True)
                     ):
                         continue
-                    current = (
+                    membrane_active[neuron_id] = 1
+                    membrane_currents[neuron_id] = (
                         external[neuron_id]
                         + synaptic[neuron_id]
                         + feedback[neuron_id]
                         + temporal_dynamics.current_adjustment(neuron_id, tick)
                     )
-                    if model.step(
-                        state,
-                        current,
-                        config.dt_ms,
-                        neuron_parameters[neuron_id],
-                    ):
-                        spiked_this_tick.append(neuron_id)
-                        spike_monitor.record(tick, neuron_id)
-                        rate_monitor.record(neuron_id)
+                if gpu_membrane is not None:
+                    spiked_this_tick = gpu_membrane.step(
+                        states, membrane_currents, membrane_active
+                    )
+                else:
+                    for neuron_id in active_neurons_for_step:
+                        if membrane_active[neuron_id] and model.step(
+                            states[neuron_id],
+                            membrane_currents[neuron_id],
+                            config.dt_ms,
+                            neuron_parameters[neuron_id],
+                        ):
+                            spiked_this_tick.append(neuron_id)
+                for neuron_id in spiked_this_tick:
+                    spike_monitor.record(tick, neuron_id)
+                    rate_monitor.record(neuron_id)
 
                 for neuron_id in range(config.n_neurons):
                     pre_trace[neuron_id] *= 0.95
@@ -877,6 +896,7 @@ class PlaygroundSession:
             },
             "monitors": {
                 "spikes": spike_monitor.rows(),
+                "full_spike_digest": spike_monitor.digest(),
                 "rates_hz": [round(value, 6) for value in rates],
                 "tick_spike_counts": tick_spike_counts,
                 "state_samples": state_monitor.samples,
@@ -889,7 +909,16 @@ class PlaygroundSession:
             "offload": offloader.summary(),
         }
         result["hardware"] = selected_hardware_profile
-        result["execution"] = execution_switcher.summary()
+        result["execution"] = {
+            **execution_switcher.summary(),
+            "neuron_backend": config.neuron_backend,
+            "gpu_membrane_ticks": (
+                config.ticks if config.neuron_backend == "cuda_membrane" else 0
+            ),
+            "synapses_backend": "cpu",
+            "environment_backend": "cpu",
+            "full_gpu_pan": False,
+        }
         result["interfaces"] = {
             "existing_gateway_contract": True,
             "network_area_adapter": "src.embodiment.neural_symbiosis.NetworkAreaAdapter",

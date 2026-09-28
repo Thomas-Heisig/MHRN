@@ -28,3 +28,8 @@ and neuron count; 256 neurons do not inherently require four blocks.
 The actual CPU Builder now shares the live stick-figure world, receives physical sensor inputs, drives muscles from actions and applies enabled posture rewards to synaptic eligibility. The Run page includes body frame replay. See [PAN embodiment integration](PAN_EMBODIED_INTEGRATION.md).
 
 An activity-only held-out decoder and shuffled-label baseline are integrated into run results. Policy feedback is flagged. Randomized input-cue interventions, plasticity/frozen-network comparisons and transfer learning curves remain separate required experiments. No full CUDA Builder or neural-learning claim follows from the reference kernels or this decoder.
+
+
+## CUDA-1.6 hybrid integration acceptance
+
+The actual Builder can now run membrane updates on CUDA with the complete existing CPU PAN/Strichmann loop. Three full RTX 3060 seed pairs passed D3 for actions, rewards and all body frames. [Scope and validation](CUDA16_BUILDER_HYBRID.md). This is not completion of all-GPU CUDA-1.6: synaptic/world/structural state and live sessions remain CPU in this integration path.
