@@ -198,6 +198,13 @@ test("Builder run renders the coupled PAN body and recorded frame replay", async
     "world posture sensors actuators reward",
   );
   await expect(page.locator("#pg-backend-components")).toContainText("CPU");
+  await page.setViewportSize({ width: 390, height: 844 });
+  expect(
+    await page
+      .locator("#playground-run .playground-analysis-card")
+      .first()
+      .evaluate((el) => el.getBoundingClientRect().right),
+  ).toBeLessThanOrEqual(390);
 });
 
 test("CUDA Builder choice and D3 control use explicit endpoints without fallback", async ({

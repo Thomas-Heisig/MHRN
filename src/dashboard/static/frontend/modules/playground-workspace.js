@@ -69,6 +69,7 @@ export function initGuidedWorkspace({
   root.dataset.guided = "true";
   const style = document.createElement("style");
   style.textContent = `
+    #playground-run .playground-analysis-card{min-width:0}#playground-run .playground-analysis-card pre{max-width:100%;overflow:auto}
     .pg-page-intro{padding:18px 0 12px;border-bottom:1px solid var(--rule);margin-bottom:16px}.pg-page-intro h2{font-size:1.35rem;margin:0 0 6px}.pg-page-intro p{color:var(--ink-3);max-width:75ch;line-height:1.5}
     .pg-group{margin:12px 0;border:1px solid var(--rule-2);border-radius:8px;background:var(--paper-2);overflow:hidden}.pg-group>summary{padding:16px;cursor:pointer;font-size:1rem;font-weight:650}.pg-group>summary small{display:block;font-size:.75rem;font-weight:400;color:var(--ink-3);margin:5px 0 0 18px}.pg-group-body{padding:0 12px 12px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.pg-group-body>*{min-width:0}.pg-group-body>.playground-card{border-top:1px solid var(--rule)}.pg-group-body>.pg-wide{grid-column:1/-1}.pg-section-reset{float:right;font-size:.65rem;padding:3px 7px}
     #tab-playground button{cursor:pointer}#tab-playground button:disabled{opacity:.5;cursor:not-allowed}#tab-playground :focus-visible{outline:2px solid var(--accent);outline-offset:3px}
