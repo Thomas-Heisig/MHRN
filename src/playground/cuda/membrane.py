@@ -13,6 +13,7 @@ from typing import Any
 from ..pan.runtime import PANRuntime
 from .builder_synapses import BuilderSynapseStepper
 from .delay_queue import DeviceDelayQueue
+from .neuron_traces import DeviceNeuronTraces
 from .nvrtc import compile_cuda_source
 from .pan_state import PANStateStepper
 from .recurrent import PARAMETER_NAMES, SUPPORTED_MODELS
@@ -39,6 +40,7 @@ class MembraneStepper:
         self.pan: PANStateStepper | None = None
         self.synapses: BuilderSynapseStepper | None = None
         self.delay_queue: DeviceDelayQueue | None = None
+        self.neuron_traces: DeviceNeuronTraces | None = None
         row = [
             p.get(name, 1.0 if name in {"resistance", "delta_t", "tau_w_ms"} else 0.0)
             for p in parameters
@@ -148,6 +150,10 @@ def cuda_membrane_session(
         source += "\n" + Path(__file__).with_name("delay_queue.cu").read_text(
             encoding="utf-8"
         )
+    if pan_runtime is not None:
+        source += "\n" + Path(__file__).with_name("neuron_traces.cu").read_text(
+            encoding="utf-8"
+        )
     ptx = compile_cuda_source(source, target_sm="sm_86")
     with tempfile.TemporaryDirectory(prefix="mhrn-membrane-") as directory:
         path = Path(directory) / "membrane.ptx"
@@ -170,13 +176,20 @@ def cuda_membrane_session(
                         stepper.n,
                         min(20000, max(1, stepper.n * (stepper.n - 1))),
                     )
+                    stepper.neuron_traces = DeviceNeuronTraces(
+                        driver, loaded, stepper.n
+                    )
                 yield stepper
             finally:
                 try:
                     try:
                         try:
-                            if stepper.delay_queue is not None:
-                                stepper.delay_queue.close()
+                            try:
+                                if stepper.neuron_traces is not None:
+                                    stepper.neuron_traces.close()
+                            finally:
+                                if stepper.delay_queue is not None:
+                                    stepper.delay_queue.close()
                         finally:
                             if stepper.synapses is not None:
                                 stepper.synapses.close()
