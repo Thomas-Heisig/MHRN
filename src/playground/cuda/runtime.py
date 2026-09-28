@@ -1169,9 +1169,15 @@ def gate_execution_parity_summary(
     if not all(math.isfinite(value) for value in candidate_current_f):
         return fail("candidate current contains NaN/Inf")
 
-    if any(isinstance(value, bool) or not isinstance(value, int) for value in reference_action):
+    if any(
+        isinstance(value, bool) or not isinstance(value, int)
+        for value in reference_action
+    ):
         return fail("reference actions must be integers")
-    if any(isinstance(value, bool) or not isinstance(value, int) for value in candidate_action):
+    if any(
+        isinstance(value, bool) or not isinstance(value, int)
+        for value in candidate_action
+    ):
         return fail("candidate actions must be integers")
 
     current_error = max_abs_error(reference_current_f, candidate_current_f)
@@ -1183,6 +1189,7 @@ def gate_execution_parity_summary(
         "failure_reason": None,
         "passed": current_error <= tolerance and actions_exact,
     }
+
 
 def _f32_buffer(values: Sequence[float]) -> ctypes.Array[Any]:
     array_type = ctypes.c_float * len(values)
