@@ -4,10 +4,10 @@
   "scope": "research",
   "warning": "Classification describes document role; it does not promote DATA to EVID or certify scientific validity.",
   "summary": {
-    "file_count": 8774,
+    "file_count": 8777,
     "status": {
       "archive": 2,
-      "current": 233,
+      "current": 236,
       "current_wip": 41,
       "experimental": 7962,
       "frozen": 83,
@@ -38,7 +38,7 @@
       "protocol": 17,
       "publication": 507,
       "publication_pointer": 2,
-      "registry": 52,
+      "registry": 55,
       "related_work_register": 1,
       "report_generator": 1,
       "research_crosswalk_configuration": 1,
@@ -94,7 +94,7 @@
       "normative_protocol_or_method": 17,
       "normative_research_development_policy": 1,
       "normative_research_integrity_policy": 1,
-      "normative_research_registry": 52,
+      "normative_research_registry": 55,
       "normative_schema": 9,
       "normative_seed_provenance_specification": 1,
       "pre_execution_method_calibration": 5,
@@ -113376,6 +113376,19 @@
       "review_required": false
     },
     {
+      "path": "research/registry/hypotheses.acceleration.yaml",
+      "domain": "research",
+      "kind": "registry",
+      "status": "current",
+      "authority": "normative_research_registry",
+      "mutability": "editable_with_review",
+      "citation": "cite_exact_object_and_revision",
+      "evidence_role": "research_definition_not_evidence_by_itself",
+      "rationale": "Canonical RQ/H/claim/experiment registry definitions.",
+      "classification_rule": "override:research/registry",
+      "review_required": false
+    },
+    {
       "path": "research/registry/hypotheses.behavior_memory.yaml",
       "domain": "research",
       "kind": "registry",
@@ -113532,6 +113545,19 @@
       "review_required": false
     },
     {
+      "path": "research/registry/questions.acceleration.yaml",
+      "domain": "research",
+      "kind": "registry",
+      "status": "current",
+      "authority": "normative_research_registry",
+      "mutability": "editable_with_review",
+      "citation": "cite_exact_object_and_revision",
+      "evidence_role": "research_definition_not_evidence_by_itself",
+      "rationale": "Canonical RQ/H/claim/experiment registry definitions.",
+      "classification_rule": "override:research/registry",
+      "review_required": false
+    },
+    {
       "path": "research/registry/questions.behavior_memory.yaml",
       "domain": "research",
       "kind": "registry",
@@ -113637,6 +113663,19 @@
     },
     {
       "path": "research/registry/questions.yaml",
+      "domain": "research",
+      "kind": "registry",
+      "status": "current",
+      "authority": "normative_research_registry",
+      "mutability": "editable_with_review",
+      "citation": "cite_exact_object_and_revision",
+      "evidence_role": "research_definition_not_evidence_by_itself",
+      "rationale": "Canonical RQ/H/claim/experiment registry definitions.",
+      "classification_rule": "override:research/registry",
+      "review_required": false
+    },
+    {
+      "path": "research/registry/sources.acceleration.yaml",
       "domain": "research",
       "kind": "registry",
       "status": "current",
