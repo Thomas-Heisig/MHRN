@@ -15,7 +15,10 @@ def test_cell_model_is_preserved_as_old_science_route() -> None:
     script = read("frontend/modules/neuron-model-science.js")
 
     assert 'const ROUTE_ID = "science-cellmodel"' in script
-    assert '[ROUTE_ID, "Wissenschaft · Cell Modell", "network", "focus", "#mhrn-neuron-model-science"]' in script
+    assert (
+        '[ROUTE_ID, "Wissenschaft · Cell Modell", "network", "focus", "#mhrn-neuron-model-science"]'
+        in script
+    )
     assert 'architecture.selectRoute("old", ROUTE_ID)' in script
     assert "button.dataset.areaRoute = ROUTE_ID" in script
     assert "button.dataset.routeCard = ROUTE_ID" in script
