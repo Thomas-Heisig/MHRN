@@ -35,6 +35,7 @@ from src.playground.cuda.synapses import SynapseConfig
 from src.playground.models import PlaygroundConfig
 from src.playground.night_run import NightRunManager
 from src.playground.pan import PANEmbodiedSandboxSession, PANSessionDaemon
+from src.playground.pan.cue_controls import run_cue_controls
 
 _MAX_CONCURRENT_RUNS = 2
 _RUNS_PER_MINUTE = 20
@@ -476,6 +477,9 @@ def post_playground(
 ) -> dict[str, object] | None:
     if path in {"/api/playground/run", "/api/playground/robustness"}:
         return _bounded_run(path, payload)
+
+    if path == "/api/playground/research/cue-controls":
+        return _bounded_operation(lambda: run_cue_controls(payload))
 
     if path == "/api/playground/determinism":
         return service.determinism(payload)

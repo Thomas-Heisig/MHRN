@@ -221,3 +221,31 @@ test("CUDA Builder choice and D3 control use explicit endpoints without fallback
     "REAL_BUILDER_CUDA_MEMBRANE",
   );
 });
+
+test("randomized cue selection and paired research controls are wired", async ({
+  page,
+}) => {
+  await page.locator("#pg-workspace-expand").click();
+  await page.locator("#pg-target-cue-control").selectOption("randomized");
+  await page.route("**/api/playground/research/cue-controls", async (route) => {
+    expect(route.request().postDataJSON().target_cue_control).toBe(
+      "randomized",
+    );
+    await route.fulfill({
+      status: 200,
+      contentType: "application/json",
+      body: JSON.stringify({
+        classification: "PLAYGROUND_CUE_INTERVENTION_SUITE",
+        conditions: [],
+        neural_learning_claim: false,
+      }),
+    });
+  });
+  await page.locator("#pg-cue-controls").click();
+  await expect(page.locator("#pg-cue-controls-state")).toContainText(
+    "PLAYGROUND_CUE_INTERVENTION_SUITE",
+  );
+  await expect(page.locator("#pg-cue-controls-state")).toContainText(
+    '"neural_learning_claim": false',
+  );
+});

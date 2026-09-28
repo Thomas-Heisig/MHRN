@@ -330,6 +330,7 @@ function buildPanels(root) {
           <label>Sandbox Sensor Noise<input id="pg-sandbox-sensor-noise" type="number" min="0" max="1" step="0.01" value="0.05"></label>
         </article>
         <article class="playground-card"><h3>12 · Ziel-Kodierung</h3>
+          <label>Cue-Kontrolle<select id="pg-target-cue-control"><option value="aligned">Zielreiz passend</option><option value="randomized">Zielreiz unabhaengig randomisiert</option><option value="absent">Zielreiz entfernt</option></select></label>
           <label>Kodierung<select id="pg-target-encoding"><option value="none">none</option><option value="one_hot">one_hot</option><option value="rate">rate</option><option value="population_latency">population_latency</option></select></label>
           <label>Ziel sichtbar (Ticks)<input id="pg-target-persistence" type="number" min="1" max="256" value="1"></label>
           <label>Ziel-Cue Strom<input id="pg-target-cue-current" type="number" min="0" max="500" step="0.5" value="0"></label>
@@ -389,6 +390,7 @@ function buildPanels(root) {
           <button type="button" class="primary" id="pg-cuda-smoke">RTX Hardware-Smoke</button>
           <button type="button" id="pg-cuda-rng">RNG-Parität</button>
           <button type="button" id="pg-cuda-recurrent">CUDA-1.4 · 100 Ticks / 3 Blöcke</button>
+          <button type="button" id="pg-cue-controls">Cue-Decoding · 6 Kontrollen</button>
           <button type="button" id="pg-cuda-builder-parity">D3 · Builder CPU/CUDA vergleichen</button>
           <button type="button" id="pg-cuda-plasticity">CUDA-1.5 · STP/STDP-Parität</button>
         </div>
@@ -399,7 +401,7 @@ function buildPanels(root) {
           <article class="playground-analysis-card"><h3>D2 Hardware-Parität</h3><pre id="pg-cuda-parity-state">Noch kein Hardware-Smoke.</pre></article>
           <article class="playground-analysis-card"><h3>RNG ε-greedy</h3><pre id="pg-cuda-rng-state">Noch kein RNG-Paritätstest.</pre></article>
           <article class="playground-analysis-card"><h3>Rekurrente Membran-Parität</h3><p>129 AdEx-Neuronen, statische Synapsen und Delays; FP64-Referenz. Noch kein vollständiger PAN-GPU-Lauf.</p><pre id="pg-cuda-recurrent-state">Noch kein Mehrtakt-Test.</pre></article>
-          <article class="playground-analysis-card"><h3>GPU-Plastizität</h3><p>STP, STDP, Eligibility und eingefrorene Reward-Folge; FP64-Referenz. Der Live-Regelkreis ist ein separater Schritt.</p><pre id="pg-cuda-plasticity-state">Noch kein Plastizitätstest.</pre><p>Builder-D3: echte Aktionen und Koerpertrajektorie; Membran auf GPU, Synapsen und Umwelt auf CPU.</p><pre id="pg-cuda-builder-parity-state">Noch kein Builder-Vergleich.</pre></article>
+          <article class="playground-analysis-card"><h3>GPU-Plastizität</h3><p>STP, STDP, Eligibility und eingefrorene Reward-Folge; FP64-Referenz. Der Live-Regelkreis ist ein separater Schritt.</p><pre id="pg-cuda-plasticity-state">Noch kein Plastizitätstest.</pre><p>Builder-D3: echte Aktionen und Koerpertrajektorie; Membran auf GPU, Synapsen und Umwelt auf CPU.</p><pre id="pg-cuda-builder-parity-state">Noch kein Builder-Vergleich.</pre><p>Cue-Experiment: passend / randomisiert / entfernt, jeweils mit und ohne Pair-STDP. Ohne Policy-Strom und Koerperrueckkopplung; kein automatischer Lernnachweis.</p><pre id="pg-cue-controls-state">Noch kein Cue-Experiment.</pre></article>
         </div>
         <pre id="pg-cuda-compiler-state">Noch kein CUDA-/Parity-Lauf.</pre>
       </article>
@@ -667,6 +669,7 @@ function formPayload() {
     frozen_reward_sequence: lastResult?.closed_loop?.reward_history||[],
     parity_reference_source: "CPU_PYTHON_PLAYGROUND",
     parity_reference_commit: byId("pg-parity-reference-commit")?.value?.trim()||"",
+    target_cue_control: byId("pg-target-cue-control").value,
     target_encoding: byId("pg-target-encoding").value,
     target_persistence: Number(byId("pg-target-persistence").value),
     target_cue_current: Number(byId("pg-target-cue-current").value),
@@ -1096,7 +1099,7 @@ function setBuilderValue(key,value){
     pan_feedback_gain:"pan-feedback-gain",pan_feedback_nonlinearity:"pan-feedback-nonlinearity",pan_feedback_saturation:"pan-feedback-saturation",
     action_loop_enabled:"action-loop-enabled",action_loop_delay:"action-loop-delay",action_persistence:"action-persistence",action_to_input_map:"action-to-input-map",action_space_size:"action-space-size",action_coupling_strength:"action-coupling",action_noise:"action-noise",
     reward_signal_enabled:"reward-enabled",reward_magnitude:"reward-magnitude",reward_delay_ticks:"reward-delay",reward_shaping:"reward-shaping",reward_baseline:"reward-baseline",reward_decay:"reward-decay",reward_channel:"reward-channel",
-    target_encoding:"target-encoding",target_cue_channel:"target-cue-channel",target_cue_current:"target-cue-current",target_persistence:"target-persistence",target_shuffle:"target-shuffle",target_predictability:"target-predictability",
+    target_cue_control:"target-cue-control",target_encoding:"target-encoding",target_cue_channel:"target-cue-channel",target_cue_current:"target-cue-current",target_persistence:"target-persistence",target_shuffle:"target-shuffle",target_predictability:"target-predictability",
     credit_assignment:"credit-assignment",credit_window:"credit-window",eligibility_trace_tau:"eligibility-tau",td_lambda:"td-lambda",gamma_discount:"gamma-discount",
     neuron_threshold_variance:"threshold-variance",neuron_tau_m_variance:"tau-m-variance",inhibitory_fraction:"inhibitory-fraction",gaba_strength:"gaba-strength",e_i_ratio:"e-i-ratio",delay_distribution:"delay-distribution",delay_mean_ticks:"delay-mean",
     refractory_variance:"refractory-variance",adaptation_strength:"adaptation-strength",adaptation_tau:"adaptation-tau",oscillation_enabled:"oscillation-enabled",oscillation_frequency:"oscillation-frequency",
@@ -1231,6 +1234,10 @@ function renderCatalog(catalog){
 export async function initPlayground(){
   const root=byId("tab-playground");if(!root)return;
   injectStyles();ensurePermanentBoundary(root);buildPanels(root);
+  byId("pg-cue-controls")?.addEventListener("click",async()=>{
+    const node=byId("pg-cue-controls-state");node.textContent="Sechs gepaarte Kontrolllaeufe ...";
+    try{node.textContent=JSON.stringify(await apiPost("/api/playground/research/cue-controls",formPayload()),null,2);}catch(error){node.textContent=`Cue-Kontrollen fehlgeschlagen: ${error.message}`;}
+  });
   byId("pg-cuda-builder-parity")?.addEventListener("click",async()=>{
     const node=byId("pg-cuda-builder-parity-state");node.textContent="CPU- und CUDA-Builder laufen ...";
     try{node.textContent=JSON.stringify(await apiPost("/api/playground/cuda/builder-parity",formPayload()),null,2);}catch(error){node.textContent=`Builder-Paritaet fehlgeschlagen: ${error.message}`;}

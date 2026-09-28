@@ -33,3 +33,8 @@ An activity-only held-out decoder and shuffled-label baseline are integrated int
 ## CUDA-1.6 hybrid integration acceptance
 
 The actual Builder can now run membrane updates on CUDA with the complete existing CPU PAN/Strichmann loop. Three full RTX 3060 seed pairs passed D3 for actions, rewards and all body frames. [Scope and validation](CUDA16_BUILDER_HYBRID.md). This is not completion of all-GPU CUDA-1.6: synaptic/world/structural state and live sessions remain CPU in this integration path.
+
+
+## Cue interventions
+
+Actual independent randomized/absent input cues and a six-condition pair-STDP control suite are integrated into the Builder and research controls. The matched 3-seed sample decodes aligned cues equally well with frozen and plastic weights, so no neural-learning advantage is claimed. [Protocol and results](CUE_CONTROL_EXPERIMENTS.md). Transfer from a trained neural checkpoint remains required.

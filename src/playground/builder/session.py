@@ -947,13 +947,20 @@ class PlaygroundSession:
         if behavior_engine is not None:
             result["behavioral_learning"] = behavior_engine.summary()
         result["closed_loop"] = closed_loop.summary()
-        result["cue_decoding"] = decode_cues(
+        cue_probe = decode_cues(
             cue_features,
             cue_labels,
             seed=config.seed,
             policy_feedback=behavior_engine is not None
             and config.behavior_bias_current != 0,
         )
+        cue_probe["input_cue_control"] = config.target_cue_control
+        cue_probe["randomized_cue_status"] = (
+            "INDEPENDENT_INPUT_CUE_INTERVENTION"
+            if config.target_cue_control == "randomized"
+            else "NOT_APPLIED"
+        )
+        result["cue_decoding"] = cue_probe
         if embodied is not None:
             result["sandbox"] = {
                 **embodied.summary(),
