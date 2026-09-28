@@ -14,6 +14,7 @@ from src.playground.cuda import (
     CudaDriver,
     CudaDriverError,
     CudaRuntimeUnavailable,
+    CompileBundle,
     GateLaunchInputs,
     compile_mapping,
     cpu_gate_reference,
@@ -190,15 +191,13 @@ def _cuda_runtime_status() -> dict[str, object]:
 
 
 def _diagnostic_inputs(
-    bundle: object,
+    bundle: CompileBundle,
     *,
     n_neurons: int,
     seed: int,
     epsilon: float,
 ) -> GateLaunchInputs:
-    manifest = getattr(bundle, "manifest")
-    if not isinstance(manifest, Mapping):
-        raise ValueError("compile bundle manifest is invalid")
+    manifest = bundle.manifest
     raw_abi = manifest.get("kernel_abi")
     if not isinstance(raw_abi, Mapping):
         raise ValueError("compile bundle is missing kernel_abi")
