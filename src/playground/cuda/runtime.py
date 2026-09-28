@@ -1119,7 +1119,7 @@ def gate_execution_parity_summary(
     def fail(reason: str) -> dict[str, object]:
         return {
             **base,
-            "current_max_abs_error": float("inf"),
+            "current_max_abs_error": None,
             "actions_exact": False,
             "failure_reason": reason,
             "passed": False,
@@ -1595,10 +1595,11 @@ def gate_parity_summary(
     """Summarize D2 gate parity without claiming full SNN equivalence."""
 
     failure_reason: str | None = None
+    error: float | None
     try:
         error = max_abs_error(reference, candidate)
     except ValueError as exc:
-        error = float("inf")
+        error = None
         failure_reason = str(exc)
     return {
         "classification": "PLAYGROUND_CUDA_GATE_PARITY",
@@ -1617,5 +1618,9 @@ def gate_parity_summary(
         "max_abs_error": error,
         "tolerance": tolerance,
         "failure_reason": failure_reason,
-        "passed": failure_reason is None and error <= tolerance,
+        "passed": (
+            failure_reason is None
+            and error is not None
+            and error <= tolerance
+        ),
     }
