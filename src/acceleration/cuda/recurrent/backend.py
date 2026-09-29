@@ -15,14 +15,14 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
-from ..nvrtc import compile_cuda_source
+from src.verification.parity import max_abs_error
+
 from ..driver import CudaDriver
 from ..errors import CudaDriverError
 from ..memory import DeviceAllocation
+from ..nvrtc import compile_cuda_source
 from ..plasticity.reference import SynapseConfig, SynapseState
 from ..preflight import validate_cuda_block_size
-from src.verification.parity import max_abs_error
-
 from .config import SUPPORTED_MODELS, cuda_reference_model_profile, step_reference
 
 PARAMETER_NAMES = (
