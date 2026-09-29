@@ -557,8 +557,8 @@ Reference: [MHRN simulator capability gaps](MHRN_SIMULATOR_CAPABILITY_GAPS.md).
 - [x] Expose GET integration catalog and POST transfer-verification API routes.
 - [x] Keep OLD frontend routes visible in the integration catalog without
   promoting them into core.
-- [x] Record wave 1 in the current manuscript and research-software paper
-  without creating DATA/EVID.
+- [x] Record wave 1 in a canonical research decision and the research-software
+  paper without creating DATA/EVID.
 - [ ] Promote deterministic neural-I/O codecs after codec/frame-ID semantics
   are frozen.
 - [ ] Extract CUDA Driver/NVRTC/ABI/parity behind a canonical ExecutionBackend.
