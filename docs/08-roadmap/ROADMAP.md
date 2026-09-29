@@ -1062,3 +1062,20 @@ The following contracts are now explicit prerequisites rather than implicit TODO
 - [Structural Mutation Approval Contract](../02-architecture/MHRN_STRUCTURAL_APPROVAL_CONTRACT.md): clarifies proposal eligibility, deterministic policy approval, optional human authorization and mandatory host/GPU structural barriers.
 
 The benchmark/reference suite moves **before** live CUDA-1.6 and full PAN-GPU work. A restricted Brian 2 reference subset may be used as an external validation anchor, but never as a hidden MHRN implementation backend or as proof of scientific validity.
+
+
+## 2026-09-29 Playground -> MHRN integration wave 1
+
+- Promoted the neural-I/O type contract from Playground ownership into the
+  canonical Embodiment layer.
+- Retained `src/playground/neural_io/contracts.py` as a compatibility
+  re-export so existing Playground code remains connected.
+- Added a Playground-visible integration catalog and transfer-verification
+  surface. Runtime source mutation is explicitly prohibited.
+- Next promotion candidate: deterministic neural-I/O codecs, after codec/frame
+  semantics are frozen.
+- CUDA infrastructure remains queued behind the canonical ExecutionBackend
+  boundary; learning, closed-loop and PAN promotion remain blocked by their
+  declared semantic contracts.
+- OLD frontend views remain retained surfaces and are not implicitly promoted
+  into MHRN core.

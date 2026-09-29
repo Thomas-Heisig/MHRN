@@ -209,3 +209,19 @@ This software paper does not promote any experiment from DATA to EVID.
 - Hazan, H., et al. (2018). BindsNET: A machine learning-oriented spiking neural networks library in Python. *Frontiers in Neuroinformatics*.
 - Pehle, C., & Pedersen, J. E. (2021). Norse — A deep learning library for spiking neural networks. Documentation/software publication.
 - MHRN repository documentation and governed research artefacts, version 0.6.0-alpha.6.
+
+
+### Playground-to-core promotion path
+
+MHRN exposes a controlled promotion path for experimental Playground
+components. The first promoted component family is the typed neural-I/O
+boundary contract. Canonical definitions live in
+`src/embodiment/neural_io_contracts.py`; the historical Playground module is
+a compatibility re-export, preserving existing callers while preventing the
+core from depending on Playground.
+
+The Dashboard Playground surfaces a promotion catalog and
+transfer-verification action. This action is deliberately not a runtime
+source-code editor: it verifies already promoted contracts or reports the
+contract/gate required for a future repository change. Promotion status is
+engineering provenance and does not constitute DATA or EVID.
