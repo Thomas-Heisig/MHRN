@@ -8,6 +8,8 @@ from typing import TYPE_CHECKING
 
 from src.runtime.determinism import (
     release_uniform as release_uniform,
+)
+from src.runtime.determinism import (
     ring_slot as ring_slot,
 )
 
