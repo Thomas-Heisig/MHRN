@@ -19,7 +19,12 @@ from .backend import (
 from .modes import ObservabilityProfile, StateMode, validate_modes
 
 if TYPE_CHECKING:
-    from .control import ControlCommand, ControlMode, ControlSnapshot, RuntimeController
+    from .control import (
+        ControlCommand,
+        ControlMode,
+        ControlSnapshot,
+        RuntimeController,
+    )
 
 __all__ = [
     "BackendCapabilities",
@@ -38,7 +43,12 @@ __all__ = [
 
 
 def __getattr__(name: str) -> object:
-    if name in {"ControlCommand", "ControlMode", "ControlSnapshot", "RuntimeController"}:
+    if name in {
+        "ControlCommand",
+        "ControlMode",
+        "ControlSnapshot",
+        "RuntimeController",
+    }:
         from . import control
 
         return getattr(control, name)
