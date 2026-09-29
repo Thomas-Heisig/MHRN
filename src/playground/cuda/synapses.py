@@ -6,7 +6,10 @@ import math
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
-from src.runtime.determinism import release_uniform, ring_slot
+from src.runtime.determinism import (
+    release_uniform as release_uniform,
+    ring_slot as ring_slot,
+)
 
 if TYPE_CHECKING:
     from .recurrent import RecurrentInputs
