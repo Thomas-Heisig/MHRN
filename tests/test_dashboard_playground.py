@@ -466,5 +466,5 @@ def test_playground_integration_api_and_frontend_are_exposed() -> None:
     assert '"/api/playground/integration"' in api
     assert '"/api/playground/integration/transfer"' in api
     assert 'id="pg-mhrn-integration"' in frontend
-    assert 'data-pg-transfer=' in frontend
+    assert "data-pg-transfer=" in frontend
     assert "Playground → MHRN" in frontend
