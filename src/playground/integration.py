@@ -124,8 +124,12 @@ def transfer_element(payload: Mapping[str, object]) -> dict[str, object]:
         raise ValueError(f"unknown Playground integration element: {raw_id}")
 
     if candidate.element_id == "neural_io_contracts":
-        from src.embodiment.neural_io_contracts import BoundaryFrame as CanonicalBoundary
-        from src.playground.neural_io.contracts import BoundaryFrame as PlaygroundBoundary
+        from src.embodiment.neural_io_contracts import (
+            BoundaryFrame as CanonicalBoundary,
+        )
+        from src.playground.neural_io.contracts import (
+            BoundaryFrame as PlaygroundBoundary,
+        )
 
         connected = CanonicalBoundary is PlaygroundBoundary
         return {
