@@ -36,8 +36,7 @@ def test_canonical_acceleration_package_has_no_playground_dependency() -> None:
         for node in ast.walk(tree):
             if isinstance(node, ast.Import):
                 assert all(
-                    not alias.name.startswith("src.playground")
-                    for alias in node.names
+                    not alias.name.startswith("src.playground") for alias in node.names
                 )
             elif isinstance(node, ast.ImportFrom):
                 assert not (node.module or "").startswith("src.playground")
