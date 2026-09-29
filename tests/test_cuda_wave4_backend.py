@@ -26,7 +26,9 @@ from src.verification.parity import (
 )
 
 
-def test_cuda_backend_satisfies_execution_protocol_and_declares_draft_plasticity() -> (\n    None\n):
+def test_cuda_backend_satisfies_execution_protocol_and_declares_draft_plasticity() -> (
+    None
+):
     backend = CUDABackend()
     assert isinstance(backend, ExecutionBackend)
     assert execution_backend_contract_check()
@@ -45,7 +47,9 @@ def test_cuda_backend_satisfies_execution_protocol_and_declares_draft_plasticity
     assert LEARNING_CONTRACT_STATUS == "ALIGNMENT_PENDING"
 
 
-def test_playground_recurrent_and_plasticity_paths_are_compatibility_consumers() -> (\n    None\n):
+def test_playground_recurrent_and_plasticity_paths_are_compatibility_consumers() -> (
+    None
+):
     from src.acceleration.cuda.plasticity.reference import SynapseConfig
     from src.acceleration.cuda.recurrent import execute_recurrent
 
@@ -67,7 +71,9 @@ def test_backend_snapshot_is_data_only_and_restoreable_without_device_handles() 
     assert restored.snapshot().state_digest == snapshot.state_digest
 
 
-def test_execution_fingerprint_is_backend_specific_while_config_identity_is_shared() -> (\n    None\n):
+def test_execution_fingerprint_is_backend_specific_while_config_identity_is_shared() -> (
+    None
+):
     config = recurrent_inputs_to_mapping(
         recurrent_fixture(n_neurons=8, ticks=4, model="lif")
     )
