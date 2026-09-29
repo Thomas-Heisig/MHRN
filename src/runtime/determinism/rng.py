@@ -15,9 +15,7 @@ def release_uniform(seed: int, tick: int, edge: int) -> float:
         raise ValueError("seed must fit uint32")
 
     bits = (
-        seed
-        ^ ((tick * 0x9E3779B9) & 0xFFFFFFFF)
-        ^ ((edge * 0x85EBCA6B) & 0xFFFFFFFF)
+        seed ^ ((tick * 0x9E3779B9) & 0xFFFFFFFF) ^ ((edge * 0x85EBCA6B) & 0xFFFFFFFF)
     ) & 0xFFFFFFFF
     bits ^= bits >> 16
     bits = (bits * 0x7FEB352D) & 0xFFFFFFFF
