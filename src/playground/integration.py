@@ -228,8 +228,7 @@ def transfer_element(payload: Mapping[str, object]) -> dict[str, object]:
         from src.verification.parity import compare_builder_runs as canonical_compare
 
         connected = (
-            playground_compare is canonical_compare
-            and playground_rng is canonical_rng
+            playground_compare is canonical_compare and playground_rng is canonical_rng
         )
         detail = {
             "same_parity_function": playground_compare is canonical_compare,
