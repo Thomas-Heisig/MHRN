@@ -21,14 +21,20 @@ def exact_behavior_parity(
     actions_exact = list(reference_actions) == list(candidate_actions)
     targets_exact = list(reference_targets) == list(candidate_targets)
     rewards_exact = list(reference_rewards) == list(candidate_rewards)
-    body_compared = reference_body_digest is not None or candidate_body_digest is not None
+    body_compared = (
+        reference_body_digest is not None or candidate_body_digest is not None
+    )
     body_exact = (
         reference_body_digest == candidate_body_digest if body_compared else True
     )
     non_empty = bool(reference_actions) and bool(candidate_actions)
     return ParityResult(
         ParityClass.D3C if body_compared else ParityClass.D3,
-        passed=non_empty and actions_exact and targets_exact and rewards_exact and body_exact,
+        passed=non_empty
+        and actions_exact
+        and targets_exact
+        and rewards_exact
+        and body_exact,
         details={
             "actions_exact": actions_exact,
             "targets_exact": targets_exact,
