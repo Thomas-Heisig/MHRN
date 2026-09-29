@@ -3359,19 +3359,3 @@ Dieser Strang erhält hohe Priorität, weil er eine direkte Falsifikation der Th
 [Alle Forschungsfragen und Hypothesen](RESEARCH_REGISTER.md) · [Quellenindex](SOURCE_INDEX.md) · [Semantische Corpus-Integration](CONTENT_INTEGRATION.md) · [Ungekürzter Quellenband 1.7](LEGACY_V17.md) · [Weitere Vorarbeiten](PRIOR_WORK_MAP.md) · [Literatur](REFERENCES.md) · [Prüfmanifest](manifest.json).
 
 Die Quellenbestandsaufnahme belegt referenzierte Datei-Erhaltung am angegebenen Commit, nicht die vollständige semantische Erfassung jeder Idee. Die außerhalb des Repositories rekonstruierte Vorgeschichte ist ausdrücklich unvollständig.
-
-
-### Engineering note: controlled promotion from Playground into MHRN
-
-Beginning 29 September 2026, Playground mechanisms are not copied wholesale
-into the scientific runtime. They pass an explicit promotion boundary. The
-first promoted family is the neural-I/O contract layer
-(`BoundaryFrame`, `CodecContract`, `PopulationLayout`, `SpikeFrame` and
-`DecodeResult`), which is now owned by the canonical Embodiment layer while
-the Playground imports it through a compatibility shim.
-
-This architectural move is intentionally **not empirical evidence**. It
-reduces duplicate interface semantics and makes future CPU/CUDA,
-closed-loop and gateway experiments testable against one boundary contract.
-Further promotion remains gated by the canonical learning/synapse contract,
-Frozen-Environment contract, PAN semantic freeze and backend-parity work.
