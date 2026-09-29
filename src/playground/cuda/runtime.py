@@ -1605,6 +1605,7 @@ def exact_spike_parity_summary(
         "passed": result.passed,
     }
 
+
 def behavioral_parity_summary(
     *,
     reference_spike_count: int,
@@ -1631,10 +1632,12 @@ def behavioral_parity_summary(
         "passed": result.passed,
     }
 
+
 def max_abs_error(reference: Sequence[float], candidate: Sequence[float]) -> float:
     """Compatibility wrapper around canonical fail-closed D2 comparison."""
 
     return canonical_max_abs_error(reference, candidate)
+
 
 def gate_parity_summary(
     reference: Sequence[float],
