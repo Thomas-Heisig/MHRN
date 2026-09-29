@@ -24,8 +24,10 @@ from typing import Any
 from src.verification.parity import (
     default_parity_contract,
     exact_spike_parity,
-    max_abs_error as canonical_max_abs_error,
     metric_behavior_parity,
+)
+from src.verification.parity import (
+    max_abs_error as canonical_max_abs_error,
 )
 
 from .pan_compiler import CompileBundle
