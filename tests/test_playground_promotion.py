@@ -26,7 +26,9 @@ def test_integration_catalog_is_non_evidentiary_and_directional() -> None:
     assert "science-snn" in candidates["old_frontend_views"]["old_routes"]
 
 
-def test_transfer_endpoint_is_idempotent_verification_not_runtime_code_mutation() -> None:
+def test_transfer_endpoint_is_idempotent_verification_not_runtime_code_mutation() -> (
+    None
+):
     result = transfer_element({"element_id": "neural_io_contracts"})
     assert result["status"] == "INTEGRATED"
     assert result["applied"] is True
