@@ -29,7 +29,11 @@ def neural_io_adapter_contract_check() -> bool:
     """Return whether the canonical adapter satisfies the gateway Protocol."""
 
     adapter: NetworkAreaAdapter = NeuralIOAreaAdapter()
-    return callable(adapter.process) and bool(adapter.area_id) and bool(adapter.architecture)
+    return (
+        callable(adapter.process)
+        and bool(adapter.area_id)
+        and bool(adapter.architecture)
+    )
 
 
 __all__ = ["NeuralIOAreaAdapter", "neural_io_adapter_contract_check"]
