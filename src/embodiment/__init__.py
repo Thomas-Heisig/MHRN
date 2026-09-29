@@ -82,6 +82,14 @@ from .neural_io_contracts import (
     event_digest,
     readout_digest,
 )
+from .neural_io_adapter import NeuralIOAreaAdapter, neural_io_adapter_contract_check
+from .neural_io_codecs import (
+    CODEC_CATALOG,
+    DECODER_CATALOG,
+    DEFAULT_SYMBOL_VOCABULARY,
+    decode_output,
+    encode_input,
+)
 from .neural_symbiosis import (
     AreaDescriptor,
     AreaKind,
@@ -165,6 +173,10 @@ __all__ = [
     "Modality",
     "ModalityProfile",
     "BoundaryFrame",
+    "CODEC_CATALOG",
+    "DECODER_CATALOG",
+    "DEFAULT_SYMBOL_VOCABULARY",
+    "NeuralIOAreaAdapter",
     "CodecContract",
     "DecodeResult",
     "InterfacePhase",
@@ -197,6 +209,9 @@ __all__ = [
     "SystemSensorAdapter",
     "VitalSignal",
     "canonical_payload_bytes",
+    "decode_output",
+    "encode_input",
+    "neural_io_adapter_contract_check",
     "event_digest",
     "readout_digest",
     "allocation_gate",
