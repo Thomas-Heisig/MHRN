@@ -9,14 +9,14 @@ from typing import Any, cast
 
 import pytest
 
+from src.dashboard.experiment_evaluation import (
+    read_experiment_evaluation,
+    write_experiment_evaluation,
+)
 from src.dashboard.experiment_workflow import (
     ExperimentWorkflowService,
     WorkflowValidationError,
     write_experiment_summary,
-)
-from src.dashboard.experiment_evaluation import (
-    read_experiment_evaluation,
-    write_experiment_evaluation,
 )
 from src.dashboard.research_source import ResearchSource
 from src.dashboard.server import DashboardRequestHandler
