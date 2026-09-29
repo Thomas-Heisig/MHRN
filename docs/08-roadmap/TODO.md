@@ -559,8 +559,10 @@ Reference: [MHRN simulator capability gaps](MHRN_SIMULATOR_CAPABILITY_GAPS.md).
   promoting them into core.
 - [x] Record wave 1 in a canonical research decision and the research-software
   paper without creating DATA/EVID.
-- [ ] Promote deterministic neural-I/O codecs after codec/frame-ID semantics
+- [x] Promote deterministic neural-I/O codecs after codec/frame-ID semantics
   are frozen.
+- [x] Promote a framework-neutral NeuralIOAreaAdapter and keep the Playground
+  adapter as an identity wrapper.
 - [ ] Extract CUDA Driver/NVRTC/ABI/parity behind a canonical ExecutionBackend.
 - [ ] Align Playground CUDA plasticity with the canonical Learning/Synapse
   contract before promotion.
