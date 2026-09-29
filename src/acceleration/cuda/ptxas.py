@@ -11,6 +11,7 @@ from pathlib import Path
 
 from .errors import CudaDriverError, CudaRuntimeUnavailable
 
+
 @dataclass(frozen=True, slots=True)
 class PtxasReport:
     """Measured resource report emitted by ptxas."""
@@ -37,6 +38,7 @@ class PtxasReport:
             "cubin_path": str(self.cubin_path),
             "verbose_output": self.verbose_output,
         }
+
 
 _REGISTER_RE = re.compile(r"Used\s+(\d+)\s+registers")
 _SMEM_RE = re.compile(r"(\d+)\s+bytes smem")
