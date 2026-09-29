@@ -233,9 +233,7 @@ def encode_input(
         try:
             channel = DEFAULT_SYMBOL_VOCABULARY.index(value)
         except ValueError as exc:
-            raise ValueError(
-                f"symbol not in fixed MHRN vocabulary: {value}"
-            ) from exc
+            raise ValueError(f"symbol not in fixed MHRN vocabulary: {value}") from exc
         contract = CodecContract.create(
             codec_id=codec_id,
             input_kind="symbol",
