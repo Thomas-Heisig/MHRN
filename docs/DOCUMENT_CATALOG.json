@@ -4,18 +4,20 @@
   "scope": "docs",
   "warning": "Classification describes document role; it does not promote DATA to EVID or certify scientific validity.",
   "summary": {
-    "file_count": 194,
+    "file_count": 197,
     "status": {
       "archive": 8,
-      "current": 125,
+      "current": 128,
       "historical": 61
     },
     "kind": {
       "architecture": 32,
       "archive": 8,
+      "canonical_architecture_contract": 1,
+      "canonical_verification_contract": 1,
       "changelog": 13,
       "dashboard_contract": 5,
-      "documentation_index": 1,
+      "documentation_index": 2,
       "governance": 2,
       "guide": 10,
       "historical_readme": 6,
@@ -30,6 +32,7 @@
     },
     "authority": {
       "archived_context": 8,
+      "canonical_contract_navigation": 1,
       "canonical_docs_navigation": 1,
       "current_architecture_documentation": 32,
       "historical_change_record": 17,
@@ -40,7 +43,9 @@
       "historical_research_context": 5,
       "historical_versioned_context": 5,
       "noncanonical_playground_documentation": 29,
+      "normative_cross_backend_parity_contract": 1,
       "normative_document_governance": 2,
+      "normative_execution_backend_contract": 1,
       "normative_quality_contract": 19,
       "operator_or_developer_guidance": 9,
       "planning": 18,
@@ -2193,6 +2198,45 @@
       "evidence_role": "navigation_not_evidence",
       "rationale": "Canonical current entrypoint for docs; historical snapshots are intentionally not repeated here.",
       "classification_rule": "override:docs/README.md",
+      "review_required": false
+    },
+    {
+      "path": "docs/canonical/EXECUTION_BACKEND_CONTRACT.md",
+      "domain": "docs",
+      "kind": "canonical_architecture_contract",
+      "status": "current",
+      "authority": "normative_execution_backend_contract",
+      "mutability": "editable_with_architecture_review",
+      "citation": "cite_current_revision_and_implementation_commit",
+      "evidence_role": "engineering_contract_not_evidence",
+      "rationale": "Defines the backend-neutral ExecutionBackend interface and state/capability boundary introduced by Playground integration Wave 3; it is an engineering contract and creates no DATA or EVID.",
+      "classification_rule": "override:docs/canonical/EXECUTION_BACKEND_CONTRACT.md",
+      "review_required": false
+    },
+    {
+      "path": "docs/canonical/PARITY_CONTRACT.md",
+      "domain": "docs",
+      "kind": "canonical_verification_contract",
+      "status": "current",
+      "authority": "normative_cross_backend_parity_contract",
+      "mutability": "editable_with_architecture_and_method_review",
+      "citation": "cite_current_revision_and_underlying verification artifacts",
+      "evidence_role": "verification_method_contract_not_evidence",
+      "rationale": "Defines D1/D2/D3 parity, stable execution fingerprints and fail-closed comparison semantics; parity verification is not scientific evidence by itself.",
+      "classification_rule": "override:docs/canonical/PARITY_CONTRACT.md",
+      "review_required": false
+    },
+    {
+      "path": "docs/canonical/README.md",
+      "domain": "docs",
+      "kind": "documentation_index",
+      "status": "current",
+      "authority": "canonical_contract_navigation",
+      "mutability": "editable_with_review",
+      "citation": "navigation_only_cite_underlying_contract",
+      "evidence_role": "navigation_not_evidence",
+      "rationale": "Index for current canonical MHRN architecture and verification contracts.",
+      "classification_rule": "override:docs/canonical/README.md",
       "review_required": false
     },
     {
