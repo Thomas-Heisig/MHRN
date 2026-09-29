@@ -456,3 +456,15 @@ def test_playground_api_exposes_cuda_13_status_preflight_smoke_and_rng() -> None
     ):
         assert marker in api
     assert "EvidenceEngine" not in api
+
+
+def test_playground_integration_api_and_frontend_are_exposed() -> None:
+    api = (ROOT / "src" / "dashboard" / "playground_api.py").read_text(encoding="utf-8")
+    frontend = (
+        ROOT / "src" / "dashboard" / "static" / "frontend" / "modules" / "playground.js"
+    ).read_text(encoding="utf-8")
+    assert '"/api/playground/integration"' in api
+    assert '"/api/playground/integration/transfer"' in api
+    assert 'id="pg-mhrn-integration"' in frontend
+    assert "data-pg-transfer=" in frontend
+    assert "Playground → MHRN" in frontend

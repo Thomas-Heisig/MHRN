@@ -176,3 +176,18 @@ CUDA-1.3 rejects NaN/Inf, float32 overflow, invalid uint32/uint64 ABI values,
 empty or length-mismatched parity evidence, illegal CUDA block sizes and
 host/device copy-size mismatches before launch. Hardware completion still
 requires a real NVIDIA run; hosted CI validates CPU contracts and PTX assembly.
+
+
+## MHRN integration / promotion
+
+The Playground exposes a controlled integration surface:
+
+- `GET /api/playground/integration` — current promotion catalog.
+- `POST /api/playground/integration/transfer` — verify an integrated element
+  or return the required next promotion gate.
+
+The action never rewrites repository source at runtime. Actual promotion occurs
+through reviewed repository changes. The first completed transfer is the
+neural-I/O contract family, now canonical under
+`src/embodiment/neural_io_contracts.py`; the former Playground contract
+module is a compatibility re-export.
