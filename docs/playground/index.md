@@ -191,3 +191,11 @@ through reviewed repository changes. The first completed transfer is the
 neural-I/O contract family, now canonical under
 `src/embodiment/neural_io_contracts.py`; the former Playground contract
 module is a compatibility re-export.
+
+
+### Promotion wave 2
+
+Deterministic codecs/decoders and the framework-neutral neural-I/O area adapter
+are now canonical MHRN components. Playground imports them through compatibility
+layers. The visible integration panel verifies function identity and the
+`NetworkAreaAdapter` protocol without editing source code at runtime.

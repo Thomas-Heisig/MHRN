@@ -2186,3 +2186,24 @@ MHRN       -X-> src.playground
 This is an engineering integration step only. It creates no scientific DATA,
 does not promote a hypothesis, and does not validate codec quality or
 closed-loop behavior.
+
+
+## Implementation promotion wave 2 — canonical codecs and area adapter
+
+The second promotion wave moves deterministic codec/decoder behavior and the
+framework-neutral area adapter into canonical Embodiment ownership.
+
+Canonical modules:
+
+- `src/embodiment/neural_io_codecs.py`
+- `src/embodiment/neural_io_adapter.py`
+
+The codec plane now produces neutral `mhrn-spike-*` frame identifiers and
+uses MHRN terminology rather than Playground-specific error semantics. The
+Playground codec module is a compatibility re-export, so Playground sessions
+exercise the exact same codec functions used by MHRN.
+
+The canonical `NeuralIOAreaAdapter` satisfies `NetworkAreaAdapter`. The
+Playground retains `PlaygroundIOAreaAdapter` only as an identity wrapper with
+Playground-specific IDs. No productive gateway learning, external tool
+execution, or scientific EVID is implied by this promotion.

@@ -2,8 +2,12 @@
 
 from __future__ import annotations
 
+from src.embodiment.neural_io_adapter import NeuralIOAreaAdapter
+from src.embodiment.neural_io_codecs import encode_input as canonical_encode_input
 from src.embodiment.neural_io_contracts import BoundaryFrame as CanonicalBoundaryFrame
 from src.playground.integration import integration_catalog, transfer_element
+from src.playground.neural_io.adapter import PlaygroundIOAreaAdapter
+from src.playground.neural_io.codecs import encode_input as playground_encode_input
 from src.playground.neural_io.contracts import BoundaryFrame as PlaygroundBoundaryFrame
 
 
@@ -41,3 +45,23 @@ def test_blocked_transfer_returns_declared_gate() -> None:
     assert result["applied"] is False
     assert result["status"] == "BLOCKED_CONTRACT_FREEZE"
     assert result["next_gate"] == "MHRN_LEARNING_SYNAPSE_CONTRACT"
+
+
+def test_playground_neural_io_codecs_are_canonical_reexports() -> None:
+    assert playground_encode_input is canonical_encode_input
+    result = transfer_element({"element_id": "neural_io_codecs"})
+    assert result["status"] == "INTEGRATED"
+    assert result["applied"] is True
+    assert result["same_codec_function"] is True
+
+
+def test_playground_adapter_wraps_canonical_network_area_adapter() -> None:
+    assert issubclass(PlaygroundIOAreaAdapter, NeuralIOAreaAdapter)
+    adapter = PlaygroundIOAreaAdapter()
+    assert adapter.area_id == "playground.io.reference"
+    assert adapter.process({"value": 1}, 0) == {"value": 1}
+    result = transfer_element({"element_id": "neural_io_adapter"})
+    assert result["status"] == "INTEGRATED"
+    assert result["applied"] is True
+    assert result["playground_wrapper_subclasses_canonical"] is True
+    assert result["network_area_adapter_contract"] is True

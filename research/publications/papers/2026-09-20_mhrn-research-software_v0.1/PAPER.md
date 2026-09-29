@@ -225,3 +225,13 @@ transfer-verification action. This action is deliberately not a runtime
 source-code editor: it verifies already promoted contracts or reports the
 contract/gate required for a future repository change. Promotion status is
 engineering provenance and does not constitute DATA or EVID.
+
+
+### Canonical neural-I/O codec plane
+
+A second staged promotion moved deterministic encoders/decoders and a
+framework-neutral neural-I/O area adapter from Playground ownership into the
+MHRN Embodiment package. Compatibility re-exports preserve existing Playground
+callers, while the core remains independent of Playground. This pattern allows
+experimental mechanisms to mature into reusable infrastructure without
+retroactively turning exploratory observations into scientific evidence.

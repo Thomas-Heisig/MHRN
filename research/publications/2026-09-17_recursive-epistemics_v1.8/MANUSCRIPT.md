@@ -3359,3 +3359,17 @@ Dieser Strang erhält hohe Priorität, weil er eine direkte Falsifikation der Th
 [Alle Forschungsfragen und Hypothesen](RESEARCH_REGISTER.md) · [Quellenindex](SOURCE_INDEX.md) · [Semantische Corpus-Integration](CONTENT_INTEGRATION.md) · [Ungekürzter Quellenband 1.7](LEGACY_V17.md) · [Weitere Vorarbeiten](PRIOR_WORK_MAP.md) · [Literatur](REFERENCES.md) · [Prüfmanifest](manifest.json).
 
 Die Quellenbestandsaufnahme belegt referenzierte Datei-Erhaltung am angegebenen Commit, nicht die vollständige semantische Erfassung jeder Idee. Die außerhalb des Repositories rekonstruierte Vorgeschichte ist ausdrücklich unvollständig.
+
+
+### Engineering integration update: canonical codec and adapter plane
+
+The controlled Playground-to-MHRN promotion path now includes deterministic
+neural-I/O codecs/decoders and the framework-neutral area adapter in addition
+to the boundary data types. Playground executions and future canonical MHRN
+gateway experiments therefore share the same encoder/decoder functions and the
+same `NetworkAreaAdapter` boundary.
+
+This remains an engineering result. It does not demonstrate useful information
+transfer, learned gateway selection, cognition, embodiment benefit, or
+scientific superiority. Those questions require preregistered experiments
+against the shared contract.
