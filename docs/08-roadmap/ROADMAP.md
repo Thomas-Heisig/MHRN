@@ -1079,3 +1079,17 @@ The benchmark/reference suite moves **before** live CUDA-1.6 and full PAN-GPU wo
   declared semantic contracts.
 - OLD frontend views remain retained surfaces and are not implicitly promoted
   into MHRN core.
+
+
+## 2026-09-29 Playground -> MHRN integration wave 2
+
+- Canonicalized deterministic neural-I/O codecs/decoders under Embodiment.
+- Canonicalized a framework-neutral `NeuralIOAreaAdapter` satisfying
+  `NetworkAreaAdapter`.
+- Kept Playground codec imports as exact compatibility re-exports and the
+  Playground adapter as an identity wrapper.
+- Neutralized new spike-frame IDs to `mhrn-spike-*`.
+- The next technical promotion is the ExecutionBackend abstraction before
+  moving CUDA Driver/NVRTC/ABI/parity infrastructure.
+- Learning, closed-loop environment and PAN remain blocked by their semantic
+  contract gates.
