@@ -42,11 +42,26 @@ _CANDIDATES: tuple[PromotionCandidate, ...] = (
     PromotionCandidate(
         "neural_io_codecs",
         "Neural I/O Codecs",
-        "READY_FOR_NEXT_WAVE",
+        "INTEGRATED",
         ("src/playground/neural_io/codecs.py",),
         ("src/embodiment/neural_io_codecs.py",),
-        "CODEC_SEMANTICS_AND_FRAME_ID_FREEZE",
-        notes="Move after frame identifiers and reconstruction semantics are canonicalized.",
+        "CANONICAL_CODEC_IDENTITY",
+        notes=(
+            "Deterministic input codecs and output decoders are canonical MHRN "
+            "implementations; Playground is a compatibility re-export."
+        ),
+    ),
+    PromotionCandidate(
+        "neural_io_adapter",
+        "Neural I/O Area Adapter",
+        "INTEGRATED",
+        ("src/playground/neural_io/adapter.py",),
+        ("src/embodiment/neural_io_adapter.py",),
+        "NETWORK_AREA_ADAPTER_PROTOCOL",
+        notes=(
+            "The framework-neutral NetworkAreaAdapter implementation is owned by "
+            "MHRN; Playground keeps only an identity wrapper."
+        ),
     ),
     PromotionCandidate(
         "cuda_execution",
@@ -132,6 +147,35 @@ def transfer_element(payload: Mapping[str, object]) -> dict[str, object]:
         )
 
         connected = CanonicalBoundary is PlaygroundBoundary
+        detail = {"same_contract_object": connected}
+    elif candidate.element_id == "neural_io_codecs":
+        from src.embodiment.neural_io_codecs import encode_input as canonical_encode
+        from src.playground.neural_io.codecs import encode_input as playground_encode
+
+        connected = canonical_encode is playground_encode
+        detail = {"same_codec_function": connected}
+    elif candidate.element_id == "neural_io_adapter":
+        from src.embodiment.neural_io_adapter import (
+            NeuralIOAreaAdapter,
+            neural_io_adapter_contract_check,
+        )
+        from src.playground.neural_io.adapter import PlaygroundIOAreaAdapter
+
+        connected = (
+            issubclass(PlaygroundIOAreaAdapter, NeuralIOAreaAdapter)
+            and neural_io_adapter_contract_check()
+        )
+        detail = {
+            "playground_wrapper_subclasses_canonical": issubclass(
+                PlaygroundIOAreaAdapter, NeuralIOAreaAdapter
+            ),
+            "network_area_adapter_contract": neural_io_adapter_contract_check(),
+        }
+    else:
+        connected = False
+        detail = {}
+
+    if candidate.status == "INTEGRATED":
         return {
             "classification": "PLAYGROUND_TO_MHRN_TRANSFER_VERIFICATION",
             "scientific_evidence": False,
@@ -141,8 +185,8 @@ def transfer_element(payload: Mapping[str, object]) -> dict[str, object]:
             "runtime_source_mutation": False,
             "canonical_target": candidate.target_paths[0],
             "compatibility_source": candidate.source_paths[0],
-            "same_contract_object": connected,
             "next_gate": candidate.next_gate,
+            **detail,
         }
 
     return {
