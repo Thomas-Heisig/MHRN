@@ -16,15 +16,6 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
-from src.verification.parity import (
-    default_parity_contract,
-    exact_spike_parity,
-    metric_behavior_parity,
-)
-from src.verification.parity import (
-    max_abs_error as canonical_max_abs_error,
-)
-
 from src.acceleration.cuda import (
     CooperativePreflight as CooperativePreflight,
     CudaDriver as CudaDriver,
@@ -37,6 +28,12 @@ from src.acceleration.cuda import (
     cooperative_capacity as cooperative_capacity,
     parse_ptxas_verbose as parse_ptxas_verbose,
     validate_cuda_block_size as validate_cuda_block_size,
+)
+from src.verification.parity import (
+    default_parity_contract,
+    exact_spike_parity,
+    max_abs_error as canonical_max_abs_error,
+    metric_behavior_parity,
 )
 
 from .pan_compiler import CompileBundle
