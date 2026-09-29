@@ -69,6 +69,14 @@ from .msba import (
     resource_pressure,
     visual_growth_probability,
 )
+from .neural_io_adapter import NeuralIOAreaAdapter, neural_io_adapter_contract_check
+from .neural_io_codecs import (
+    CODEC_CATALOG,
+    DECODER_CATALOG,
+    DEFAULT_SYMBOL_VOCABULARY,
+    decode_output,
+    encode_input,
+)
 from .neural_io_contracts import (
     BoundaryFrame,
     CodecContract,
@@ -81,14 +89,6 @@ from .neural_io_contracts import (
     canonical_payload_bytes,
     event_digest,
     readout_digest,
-)
-from .neural_io_adapter import NeuralIOAreaAdapter, neural_io_adapter_contract_check
-from .neural_io_codecs import (
-    CODEC_CATALOG,
-    DECODER_CATALOG,
-    DEFAULT_SYMBOL_VOCABULARY,
-    decode_output,
-    encode_input,
 )
 from .neural_symbiosis import (
     AreaDescriptor,
