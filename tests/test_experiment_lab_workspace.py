@@ -111,3 +111,20 @@ def test_question_stage_uses_structured_cards_and_detail_box() -> None:
     assert ".research-rq-facts" in css
     assert ".research-rq-hypothesis-list" in css
     assert ".research-rq-card.is-detail-open" in css
+
+
+def test_experiment_cards_offer_posthoc_hypothesis_evaluation() -> None:
+    workflow = (STATIC / "experiment-workflow-base.js").read_text(encoding="utf-8")
+    for marker in (
+        "data-experiment-evaluate",
+        "workflow-posthoc-evaluation-dialog",
+        "posthoc-evaluation-answer",
+        "posthoc-evaluation-observations",
+        "posthoc-evaluation-limitations",
+        "posthoc-evaluation-follow-up",
+        "/api/research/experiments/evaluation",
+        "posthoc/evaluation.md",
+        "EVID bleibt unverändert",
+        "_openArtifact(result.markdown_path)",
+    ):
+        assert marker in workflow

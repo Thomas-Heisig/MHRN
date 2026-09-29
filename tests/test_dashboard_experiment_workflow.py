@@ -14,6 +14,10 @@ from src.dashboard.experiment_workflow import (
     WorkflowValidationError,
     write_experiment_summary,
 )
+from src.dashboard.experiment_evaluation import (
+    read_experiment_evaluation,
+    write_experiment_evaluation,
+)
 from src.dashboard.research_source import ResearchSource
 from src.dashboard.server import DashboardRequestHandler
 from src.research_assistant.airr import write_artifact_review
@@ -252,6 +256,43 @@ def test_human_review_can_be_attached_to_any_experiment_artifact(
     assert review["artifact_path"].endswith("/summary.md")
     assert review["review_status"] == "accepted_as_interpretation"
     assert review["artifact_content_digest"]
+
+
+def test_posthoc_evaluation_answers_hypothesis_and_links_manifest_artifacts(
+    tmp_path: Path,
+) -> None:
+    experiment_dir = tmp_path / "experiments" / "EXP-POSTHOC-0001"
+    experiment_dir.mkdir(parents=True)
+    (experiment_dir / "manifest.json").write_text(
+        json.dumps({"experiment_status": "completed", "artifacts": {"report": "report.md"}}),
+        encoding="utf-8",
+    )
+
+    result = write_experiment_evaluation(
+        tmp_path,
+        {
+            "experiment_id": "EXP-POSTHOC-0001",
+            "research_question": "Does the intervention change the outcome?",
+            "hypothesis": "The intervention changes the outcome.",
+            "hypothesis_answer": "inconclusive",
+            "evaluator": "Dr. Test",
+            "evaluation": "The observed runs do not distinguish the hypothesis from the control.",
+            "observations": "Matched seeds were available, but the effect interval overlaps zero.",
+            "limitations": "The sample is too small for a stable conclusion.",
+            "follow_up": "Run the preregistered replication with independent seeds.",
+        },
+    )
+
+    assert result["scientific_evidence"] is False
+    assert (experiment_dir / "posthoc" / "evaluation.md").is_file()
+    saved = read_experiment_evaluation(tmp_path, "EXP-POSTHOC-0001")
+    assert saved["hypothesis_answer"] == "inconclusive"
+    assert "EVID" in (experiment_dir / "posthoc" / "evaluation.md").read_text(
+        encoding="utf-8"
+    )
+    manifest = json.loads((experiment_dir / "manifest.json").read_text(encoding="utf-8"))
+    assert manifest["artifacts"]["posthoc_evaluation"] == "posthoc/evaluation.md"
+    assert manifest["posthoc_evaluation"]["status"] == "recorded_interpretation_not_evidence"
 
 
 def test_human_review_preserves_existing_ai_artifact_review(tmp_path: Path) -> None:

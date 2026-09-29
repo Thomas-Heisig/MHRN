@@ -34,6 +34,21 @@
 - Der dauerhafte Git-Branch `playground` ist für den Workbench-Betrieb nicht
   erforderlich; der kanonische Branchfluss bleibt Feature/Research -> develop
   -> release/* -> main.
+# Changelog
+
+## 2026-09-29 - Nacherfassung wissenschaftlicher Experimentauswertungen
+
+- Jede aktive und archivierte Experimentkarte in `02 · Wissenschaft /
+  Experimente` bietet jetzt `Auswertung erfassen`.
+- Die Nacherfassung nimmt Hypothesenantwort, wissenschaftliche Begründung,
+  Beobachtungen, Limitationen, Alternativerklärungen und nächste Schritte auf.
+- Auswertungen werden kontrolliert als `posthoc/evaluation.md` und JSON-Metadaten
+  im jeweiligen Experiment gespeichert und im Manifest verknüpft.
+- Das Ergebnis öffnet sich direkt im zentralen File Viewer und kann dort als
+  Ausgangspunkt für die wissenschaftliche Arbeit weitergelesen werden.
+- Die Nacherfassung bleibt ausdrücklich Interpretation, ist nicht automatisch
+  EVID und benötigt für einen wissenschaftlichen Status einen separaten Human-
+  Review-/EVID-Workflow.
 
 ## 2026-09-27 - Bausteine-Katalog mit ausführlichen Sprachbeschreibungen
 
