@@ -41,6 +41,7 @@ from src.acceleration.cuda import (
 
 from .pan_compiler import CompileBundle
 
+
 @dataclass(frozen=True, slots=True)
 class GateLaunchInputs:
     """Host-side ABI payload for one pan_gate_kernel launch."""
@@ -94,7 +95,6 @@ class GateLaunchInputs:
         )
 
 
-
 def assemble_bundle(
     bundle: CompileBundle,
     *,
@@ -110,7 +110,6 @@ def assemble_bundle(
         output_dir=output_dir,
         ptxas=ptxas,
     )
-
 
 
 def preflight_bundle(
@@ -156,7 +155,6 @@ def preflight_bundle(
     }
 
 
-
 _FLOAT32_MAX = 3.4028234663852886e38
 _UINT32_MAX = 0xFFFFFFFF
 _UINT64_MAX = 0xFFFFFFFFFFFFFFFF
@@ -180,7 +178,6 @@ def _numeric_float(value: object, *, field: str) -> float:
     if abs(converted) > _FLOAT32_MAX:
         raise ValueError(f"{field} exceeds float32 range")
     return converted
-
 
 
 def hash_to_uniform_f32(random_bits: int) -> float:
