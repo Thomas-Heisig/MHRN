@@ -4591,7 +4591,12 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
         experiment_id = unquote(path[len(prefix) : -len("/evaluation")]).strip("/")
         try:
             source = self._require_research_source()
-            self._send_json(read_experiment_evaluation(source.root(), experiment_id))
+            self._send_json(
+                cast(
+                    Mapping[str, JSONValue],
+                    read_experiment_evaluation(source.root(), experiment_id),
+                )
+            )
         except ExperimentEvaluationError as exc:
             self._send_json({"error": str(exc)}, HTTPStatus.BAD_REQUEST)
 
@@ -4602,7 +4607,10 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
         except ExperimentEvaluationError as exc:
             self._send_json({"error": str(exc)}, HTTPStatus.BAD_REQUEST)
             return
-        self._send_json(result, HTTPStatus.CREATED)
+        self._send_json(
+            cast(Mapping[str, JSONValue], result),
+            HTTPStatus.CREATED,
+        )
 
     def _write_artifact_review(self, body: dict[str, Any]) -> None:
         source = self._require_research_source()
