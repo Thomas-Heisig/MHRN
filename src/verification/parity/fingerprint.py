@@ -17,7 +17,9 @@ def _canonical_bytes(value: object) -> bytes:
             allow_nan=False,
         )
     except (TypeError, ValueError) as exc:
-        raise ValueError("fingerprint input must be canonical JSON-serializable") from exc
+        raise ValueError(
+            "fingerprint input must be canonical JSON-serializable"
+        ) from exc
     return encoded.encode("utf-8")
 
 
