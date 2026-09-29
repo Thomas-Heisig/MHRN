@@ -330,3 +330,19 @@ test("CUDA PAN preset restores the complete profile and CPU default", async ({
     .selectOption("pan_full_balanced");
   await expect(page.locator("#pg-neuron-backend")).toHaveValue("cpu");
 });
+
+
+test('Playground exposes controlled MHRN integration transfer', async ({ page }) => {
+  await page.goto('/');
+  await page.locator('[data-mhrn-area="playground"]').click();
+  await page.evaluate(() => window.MHRNWorkspaceArchitecture?.selectRoute?.('playground', 'builder'));
+  const panel = page.locator('#pg-mhrn-integration');
+  await expect(panel).toBeVisible();
+  await expect(panel).toContainText('MHRN Integration');
+  await expect(panel).toContainText('Neural I/O Contracts');
+  const verify = panel.locator('[data-pg-transfer="neural_io_contracts"]');
+  await expect(verify).toBeVisible();
+  await verify.click();
+  await expect(page.locator('#pg-mhrn-integration-state')).toContainText('INTEGRATED');
+  await expect(page.locator('#pg-mhrn-integration-state')).toContainText('same_contract_object');
+});

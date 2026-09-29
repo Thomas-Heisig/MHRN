@@ -1247,9 +1247,76 @@ function renderCatalog(catalog){
   const status=byId("pg-status");status.dataset.state="ok";status.textContent=`Bereit · bis ${catalog.limits.n_neurons} Neuronen · ${catalog.limits.edges} Kanten · ${catalog.limits.dimensions}D · scientific_evidence=false`;
 }
 
+
+function integrationStatusLabel(status){
+  return {
+    INTEGRATED:"In MHRN integriert",
+    READY_FOR_NEXT_WAVE:"Bereit für nächste Welle",
+    READY_AFTER_BACKEND_CONTRACT:"Backend-Vertrag zuerst",
+    BLOCKED_CONTRACT_FREEZE:"Contract-Freeze erforderlich",
+    BLOCKED_FROZEN_ENVIRONMENT:"Frozen-Environment erforderlich",
+    BLOCKED_PAN_SEMANTICS:"PAN-Semantik erforderlich",
+    RETAINED_NOT_CORE:"Unter OLD behalten",
+  }[status]||status;
+}
+
+function ensureMhrnIntegrationPanel(){
+  const builder=byId("playground-builder");
+  if(!builder||byId("pg-mhrn-integration"))return;
+  const panel=document.createElement("section");
+  panel.id="pg-mhrn-integration";
+  panel.className="playground-card pg-wide";
+  panel.innerHTML=`
+    <h3>MHRN Integration</h3>
+    <p>Playground-Bausteine kontrolliert in die kanonische MHRN-Struktur übernehmen. Der Transfer erzeugt keine DATA/EVID und verändert niemals Repository-Quellcode zur Laufzeit.</p>
+    <div class="pg-summary"><strong>Richtung:</strong> Playground → MHRN. MHRN importiert niemals Playground.</div>
+    <div id="pg-mhrn-integration-list" class="playground-analysis-grid"><p>Integrationsstatus wird geladen …</p></div>
+    <pre id="pg-mhrn-integration-state" class="pg-config-preview">Noch keine Transferprüfung ausgeführt.</pre>
+  `;
+  const grid=builder.querySelector(".playground-grid");
+  if(grid)grid.before(panel);else builder.append(panel);
+}
+
+function renderIntegrationCatalog(catalog){
+  const root=byId("pg-mhrn-integration-list");if(!root)return;
+  const candidates=catalog?.candidates||[];
+  root.innerHTML=candidates.map(item=>`
+    <article class="playground-analysis-card" data-pg-integration-card="${playgroundEscape(item.element_id)}">
+      <h4>${playgroundEscape(item.label)}</h4>
+      <p><strong>${playgroundEscape(integrationStatusLabel(item.status))}</strong></p>
+      <p>${playgroundEscape(item.notes||"")}</p>
+      <small>Quelle: ${playgroundEscape((item.source_paths||[]).join(", ")||"—")}<br>Ziel: ${playgroundEscape((item.target_paths||[]).join(", ")||"OLD / kein Core-Ziel")}<br>Nächstes Gate: ${playgroundEscape(item.next_gate||"—")}</small>
+      ${(item.old_routes||[]).length?`<p><small>OLD: ${playgroundEscape(item.old_routes.join(", "))}</small></p>`:""}
+      <button type="button" data-pg-transfer="${playgroundEscape(item.element_id)}">${item.status==="INTEGRATED"?"Übertragung prüfen":"Übernahme vorbereiten"}</button>
+    </article>
+  `).join("");
+}
+
+async function refreshIntegrationCatalog(){
+  ensureMhrnIntegrationPanel();
+  const catalog=await apiGet("/api/playground/integration");
+  renderIntegrationCatalog(catalog);
+  return catalog;
+}
+
+async function transferIntegrationElement(elementId){
+  const state=byId("pg-mhrn-integration-state");
+  if(state)state.textContent=`${elementId}: Transfer-Gate wird geprüft …`;
+  try{
+    const result=await apiPost("/api/playground/integration/transfer",{element_id:elementId});
+    if(state)state.textContent=JSON.stringify(result,null,2);
+    await refreshIntegrationCatalog();
+    return result;
+  }catch(error){
+    if(state)state.textContent=`Transferprüfung fehlgeschlagen: ${error.message||error}`;
+    throw error;
+  }
+}
+
 export async function initPlayground(){
   const root=byId("tab-playground");if(!root)return;
-  injectStyles();ensurePermanentBoundary(root);buildPanels(root);
+  injectStyles();ensurePermanentBoundary(root);buildPanels(root);ensureMhrnIntegrationPanel();
+  root.addEventListener("click",event=>{const button=event.target.closest("[data-pg-transfer]");if(button)transferIntegrationElement(button.dataset.pgTransfer).catch(()=>{});});
   byId("pg-synaptic-transfer")?.addEventListener("click",async()=>{
     const summary=byId("pg-transfer-summary"),node=byId("pg-transfer-state");summary.textContent="Vortraining und zwei gepaarte Transferlaeufe ...";
     try{const result=await apiPost("/api/playground/research/synaptic-transfer",formPayload());node.textContent=JSON.stringify(result,null,2);summary.textContent=`Vergleich abgeschlossen · ${result.changed_pretraining_weights} veraenderte Gewichte. Externer Aktivitaetsdecoder; kein automatischer Nachweis schnellerer neuronaler Aufgabenloesung.`;}catch(error){summary.textContent=`Transfer-Vergleich fehlgeschlagen: ${error.message}`;}
@@ -1268,11 +1335,12 @@ export async function initPlayground(){
   byId("pg-run")?.addEventListener("click",runSession);byId("pg-cuda-status")?.addEventListener("click",()=>refreshCudaStatus().catch(error=>{const node=byId("pg-cuda-stage-state");if(node)node.textContent=String(error.message||error);}));byId("pg-cpu-determinism")?.addEventListener("click",()=>checkCpuDeterminism().catch(error=>{const node=byId("pg-cuda-compiler-state");if(node)node.textContent=String(error.message||error);}));byId("pg-cuda-compile")?.addEventListener("click",()=>compileCudaGates().catch(error=>{const node=byId("pg-cuda-compiler-state");if(node)node.textContent=String(error.message||error);}));byId("pg-cuda-preflight")?.addEventListener("click",()=>runCudaPreflight().catch(error=>{const node=byId("pg-cuda-resource-state");if(node)node.textContent=String(error.message||error);}));byId("pg-cuda-smoke")?.addEventListener("click",()=>runCudaHardwareSmoke().catch(error=>{const node=byId("pg-cuda-parity-state");if(node)node.textContent=String(error.message||error);}));byId("pg-cuda-rng")?.addEventListener("click",()=>runCudaRngParity().catch(error=>{const node=byId("pg-cuda-rng-state");if(node)node.textContent=String(error.message||error);}));byId("pg-user-preset-apply")?.addEventListener("click",applyUserPreset);byId("pg-user-preset-save")?.addEventListener("click",saveUserPreset);byId("pg-user-preset-delete")?.addEventListener("click",deleteUserPreset);byId("pg-user-preset-select")?.addEventListener("change",()=>{renderUserPresetOptions();applyUserPreset();});byId("pg-robustness")?.addEventListener("click",runRobustness);byId("pg-reset")?.addEventListener("click",resetForm);byId("pg-live-open")?.addEventListener("click",()=>openLiveMonitor().catch(error=>byId("pg-live-state").textContent=String(error.message||error)));byId("pg-live-clear")?.addEventListener("click",()=>clearLiveSessions().catch(error=>byId("pg-live-state").textContent=String(error.message||error)));byId("pg-night-start")?.addEventListener("click",()=>startNightRun().catch(error=>byId("pg-night-state").textContent=String(error.message||error)));byId("pg-night-stop")?.addEventListener("click",()=>stopNightRun().catch(error=>byId("pg-night-state").textContent=String(error.message||error)));byId("pg-night-refresh")?.addEventListener("click",()=>refreshNightStatus().catch(error=>byId("pg-night-state").textContent=String(error.message||error)));
   renderUserPresetOptions();
   try{renderCatalog(await apiGet("/api/playground/catalog"));renderUserPresetOptions();resetForm();}catch(error){const status=byId("pg-status");status.dataset.state="error";status.textContent=`Katalog nicht verfügbar: ${error.message}`;}
+  try{await refreshIntegrationCatalog();}catch(error){const state=byId("pg-mhrn-integration-state");if(state)state.textContent=`Integrationsstatus nicht verfügbar: ${error.message}`;}
   byId("playground-builder")?.addEventListener("input", updateDefaultHints);
   byId("playground-builder")?.addEventListener("change", updateDefaultHints);
   initGuidedWorkspace({payload:formPayload,presets:()=>Object.fromEntries(Object.entries(allPlaygroundPresets()).map(([name,preset])=>[name,{...preset,settings:preset.source==="catalog"?resolvedPresetSettings(name):preset.settings}])),applyPreset:applyUserPreset,setValue:setBuilderValue,lastResult:()=>lastResult});
   await refreshSessions();
   try{await refreshNightStatus();}catch{ /* night manager is optional during partial deployments */ }
   try{await refreshCudaStatus();}catch{ /* CUDA toolkit/driver is optional */ }
-  window.MHRNPlayground={run:runSession,runRobustness,checkCpuDeterminism,compileCudaGates,refreshCudaStatus,runCudaPreflight,runCudaHardwareSmoke,runCudaRngParity,refreshSessions,get catalog(){return catalogState;},get lastResult(){return lastResult;}};
+  window.MHRNPlayground={run:runSession,runRobustness,checkCpuDeterminism,compileCudaGates,refreshCudaStatus,runCudaPreflight,runCudaHardwareSmoke,runCudaRngParity,refreshSessions,refreshIntegrationCatalog,transferIntegrationElement,get catalog(){return catalogState;},get lastResult(){return lastResult;}};
 }
