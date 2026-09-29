@@ -64,13 +64,47 @@ _CANDIDATES: tuple[PromotionCandidate, ...] = (
         ),
     ),
     PromotionCandidate(
+        "execution_backend",
+        "ExecutionBackend Contract",
+        "INTEGRATED",
+        ("src/playground/cuda/",),
+        ("src/runtime/backend.py",),
+        "CANONICAL_EXECUTION_BACKEND_PROTOCOL",
+        notes=(
+            "Backend-neutral initialize/step/run/snapshot/restore/capabilities "
+            "contract is canonical in MHRN. CUDA implementation follows in Wave 4."
+        ),
+    ),
+    PromotionCandidate(
+        "parity_determinism",
+        "Parity / Determinism",
+        "INTEGRATED",
+        (
+            "src/playground/cuda/builder_parity.py",
+            "src/playground/cuda/synapses.py",
+        ),
+        (
+            "src/verification/parity/",
+            "src/runtime/determinism/",
+        ),
+        "WAVE4_CUDA_BACKEND",
+        notes=(
+            "D1/D2/D3 contracts, stable execution fingerprints, Counter-RNG, "
+            "same-tick ordering and delay-ring semantics are canonical MHRN "
+            "contracts; Playground delegates to them."
+        ),
+    ),
+    PromotionCandidate(
         "cuda_execution",
         "CUDA Execution Infrastructure",
-        "READY_AFTER_BACKEND_CONTRACT",
+        "READY_FOR_WAVE4",
         ("src/playground/cuda/",),
         ("src/acceleration/cuda/",),
-        "EXECUTION_BACKEND_CONTRACT",
-        notes="Driver/NVRTC/ABI/parity are candidates; PAN semantics remain separate.",
+        "CUDA_BACKEND_IMPLEMENTATION",
+        notes=(
+            "ExecutionBackend and parity/determinism contracts are canonical. "
+            "Driver/NVRTC/ABI/recurrent/plasticity extraction is Wave 4."
+        ),
     ),
     PromotionCandidate(
         "learning_synapse",
@@ -170,6 +204,34 @@ def transfer_element(payload: Mapping[str, object]) -> dict[str, object]:
                 PlaygroundIOAreaAdapter, NeuralIOAreaAdapter
             ),
             "network_area_adapter_contract": neural_io_adapter_contract_check(),
+        }
+    elif candidate.element_id == "execution_backend":
+        from src.runtime.backend import BackendState, ExecutionBackend
+
+        connected = (
+            ExecutionBackend.__module__ == "src.runtime.backend"
+            and BackendState.__module__ == "src.runtime.backend"
+        )
+        detail = {
+            "protocol_module": ExecutionBackend.__module__,
+            "state_module": BackendState.__module__,
+            "backend_neutral_state": connected,
+        }
+    elif candidate.element_id == "parity_determinism":
+        from src.playground.cuda.builder_parity import (
+            compare_builder_runs as playground_compare,
+        )
+        from src.playground.cuda.synapses import release_uniform as playground_rng
+        from src.runtime.determinism import release_uniform as canonical_rng
+        from src.verification.parity import compare_builder_runs as canonical_compare
+
+        connected = (
+            playground_compare is canonical_compare
+            and playground_rng is canonical_rng
+        )
+        detail = {
+            "same_parity_function": playground_compare is canonical_compare,
+            "same_counter_rng_function": playground_rng is canonical_rng,
         }
     else:
         connected = False

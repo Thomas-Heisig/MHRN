@@ -579,3 +579,20 @@ Reference: [MHRN simulator capability gaps](MHRN_SIMULATOR_CAPABILITY_GAPS.md).
 - [ ] Promote closed-loop environment pieces only after Frozen-Environment
   FE-1/FE-2/FE-3 contracts are executable.
 - [ ] Promote PAN hyperstate only after RQ-PAN-SEM-001 semantic freeze.
+
+
+## 2026-09-29 Playground -> MHRN integration wave 3
+
+- [x] Define canonical ExecutionBackend, BackendState, StepResult, RunResult and BackendCapabilities.
+- [x] Require backend-neutral serializable continuation state.
+- [x] Canonicalize D1/D2/D3 parity and fail-closed non-finite handling.
+- [x] Add stable execution/config fingerprints independent of mapping insertion order and wall-clock state.
+- [x] Canonicalize Counter-RNG, same-tick ordering and delay-ring semantics.
+- [x] Convert Playground builder parity and CUDA plasticity determinism into canonical consumers.
+- [x] Expose Wave-3 integration state in the Playground transfer panel.
+- [x] Register RQ-CUDA-PAR-002 and untested methodology hypotheses without DATA/EVID promotion.
+- [x] Add canonical ExecutionBackend and Parity contract documents.
+- [ ] Wave 4: extract CUDA Driver/NVRTC/ABI into src/acceleration/cuda.
+- [ ] Wave 4: implement a canonical CUDABackend against ExecutionBackend.
+- [ ] Wave 4: run canonical CPU-vs-CUDA D1/D2 parity through the new framework.
+- [ ] Keep learning/plasticity promotion blocked until the canonical Learning/Synapse contract is implemented by both compared backends.

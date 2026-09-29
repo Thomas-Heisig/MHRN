@@ -26,6 +26,9 @@ def test_integration_catalog_is_non_evidentiary_and_directional() -> None:
     )
     candidates = {item["element_id"]: item for item in catalog["candidates"]}
     assert candidates["neural_io_contracts"]["status"] == "INTEGRATED"
+    assert candidates["execution_backend"]["status"] == "INTEGRATED"
+    assert candidates["parity_determinism"]["status"] == "INTEGRATED"
+    assert candidates["cuda_execution"]["status"] == "READY_FOR_WAVE4"
     assert candidates["old_frontend_views"]["status"] == "RETAINED_NOT_CORE"
     assert "science-snn" in candidates["old_frontend_views"]["old_routes"]
 
@@ -65,3 +68,21 @@ def test_playground_adapter_wraps_canonical_network_area_adapter() -> None:
     assert result["applied"] is True
     assert result["playground_wrapper_subclasses_canonical"] is True
     assert result["network_area_adapter_contract"] is True
+
+
+def test_wave3_execution_backend_and_parity_are_canonical_consumers() -> None:
+    backend = transfer_element({"element_id": "execution_backend"})
+    assert backend["status"] == "INTEGRATED"
+    assert backend["applied"] is True
+    assert backend["backend_neutral_state"] is True
+
+    parity = transfer_element({"element_id": "parity_determinism"})
+    assert parity["status"] == "INTEGRATED"
+    assert parity["applied"] is True
+    assert parity["same_parity_function"] is True
+    assert parity["same_counter_rng_function"] is True
+
+    cuda = transfer_element({"element_id": "cuda_execution"})
+    assert cuda["status"] == "READY_FOR_WAVE4"
+    assert cuda["applied"] is False
+    assert cuda["next_gate"] == "CUDA_BACKEND_IMPLEMENTATION"

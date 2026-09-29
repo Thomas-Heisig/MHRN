@@ -7,7 +7,6 @@ preflight require a CUDA driver. Scientific promotion remains disabled.
 
 from __future__ import annotations
 
-import copy
 import ctypes
 import hashlib
 import json
@@ -21,6 +20,13 @@ from collections.abc import Mapping, Sequence
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
+
+from src.verification.parity import (
+    default_parity_contract,
+    exact_spike_parity,
+    max_abs_error as canonical_max_abs_error,
+    metric_behavior_parity,
+)
 
 from .pan_compiler import CompileBundle
 
@@ -1422,46 +1428,52 @@ def execute_gate_bundle(
         driver.unload(loaded)
 
 
-PARITY_CONTRACT: dict[str, object] = {
-    "classification": "PLAYGROUND_CUDA_PARITY_CONTRACT",
-    "scientific_evidence": False,
-    "reference_source": "CPU_PYTHON_PLAYGROUND",
-    "classes": {
-        "D1": {
+def parity_contract() -> dict[str, object]:
+    """Return the canonical parity criteria with Playground compatibility metadata."""
+
+    canonical = default_parity_contract().to_mapping()
+    raw_classes = canonical["classes"]
+    if not isinstance(raw_classes, dict):
+        raise RuntimeError("canonical parity classes are invalid")
+    classes = {
+        key: dict(value) if isinstance(value, Mapping) else {}
+        for key, value in raw_classes.items()
+    }
+    classes["D1"].update(
+        {
             "name": "exact_event_parity",
             "spike_train": "BIT_IDENTICAL_NEURON_ID_TICK",
-            "allowed_spike_mismatches": 0,
             "target_stage": "LATER_STRICT_TARGET",
-        },
-        "D2": {
+        }
+    )
+    classes["D2"].update(
+        {
             "name": "numerical_state_parity",
-            "voltage_max_abs_error": 1.0e-4,
-            "weight_max_abs_error": 1.0e-4,
             "target_stage": "CUDA_1_PRIMARY_TARGET",
-        },
-        "D3": {
+        }
+    )
+    classes["D3"].update(
+        {
             "name": "behavioral_metric_parity",
-            "spike_count_relative_error": 0.005,
-            "success_fraction_abs_error": 0.02,
             "target_stage": "CLOSED_LOOP_AND_PLASTICITY",
+        }
+    )
+    return {
+        "classification": "PLAYGROUND_CUDA_PARITY_CONTRACT",
+        "scientific_evidence": False,
+        "reference_source": "CPU_PYTHON_PLAYGROUND",
+        "contract_version": canonical["version"],
+        "classes": classes,
+        "freeze_modes": {
+            "actions": (
+                "Replay the CPU reference action sequence; do not select new actions."
+            ),
+            "rewards": (
+                "Replay the CPU reference reward sequence; do not recompute environment "
+                "reward."
+            ),
         },
-    },
-    "freeze_modes": {
-        "actions": (
-            "Replay the CPU reference action sequence; do not select new actions."
-        ),
-        "rewards": (
-            "Replay the CPU reference reward sequence; do not recompute environment "
-            "reward."
-        ),
-    },
-}
-
-
-def parity_contract() -> dict[str, object]:
-    """Return an isolated copy of the CUDA-1 parity criteria."""
-
-    return copy.deepcopy(PARITY_CONTRACT)
+    }
 
 
 def _deterministic_projection(result: Mapping[str, object]) -> dict[str, object]:
@@ -1579,25 +1591,19 @@ def exact_spike_parity_summary(
     *,
     reference_commit: str = "",
 ) -> dict[str, object]:
-    """Evaluate D1 exact spike-event parity."""
+    """Compatibility wrapper around canonical D1 exact event parity."""
 
-    mismatches = 0
-    for index in range(max(len(reference), len(candidate))):
-        left = reference[index] if index < len(reference) else None
-        right = candidate[index] if index < len(candidate) else None
-        if left != right:
-            mismatches += 1
+    result = exact_spike_parity(reference, candidate, require_non_empty=False)
     return {
         "classification": "PLAYGROUND_CUDA_SPIKE_PARITY",
         "scientific_evidence": False,
         "parity_class": "D1",
         "reference_source": "CPU_PYTHON_PLAYGROUND",
         "reference_frozen_at": reference_commit or "UNSPECIFIED",
-        "allowed_spike_mismatches": 0,
-        "spike_mismatches": mismatches,
-        "passed": mismatches == 0,
+        "allowed_spike_mismatches": result.details["allowed_spike_mismatches"],
+        "spike_mismatches": result.details["spike_mismatches"],
+        "passed": result.passed,
     }
-
 
 def behavioral_parity_summary(
     *,
@@ -1607,49 +1613,28 @@ def behavioral_parity_summary(
     candidate_success_fraction: float,
     reference_commit: str = "",
 ) -> dict[str, object]:
-    """Evaluate the bounded D3 behavioral parity criteria."""
+    """Compatibility wrapper around canonical D3 metric parity."""
 
-    denominator = max(abs(reference_spike_count), 1)
-    spike_count_relative_error = (
-        abs(candidate_spike_count - reference_spike_count) / denominator
+    result = metric_behavior_parity(
+        reference_spike_count=reference_spike_count,
+        candidate_spike_count=candidate_spike_count,
+        reference_success_fraction=reference_success_fraction,
+        candidate_success_fraction=candidate_success_fraction,
     )
-    success_fraction_abs_error = abs(
-        candidate_success_fraction - reference_success_fraction
-    )
-    spike_limit = 0.005
-    success_limit = 0.02
     return {
         "classification": "PLAYGROUND_CUDA_BEHAVIORAL_PARITY",
         "scientific_evidence": False,
         "parity_class": "D3",
         "reference_source": "CPU_PYTHON_PLAYGROUND",
         "reference_frozen_at": reference_commit or "UNSPECIFIED",
-        "spike_count_relative_error": spike_count_relative_error,
-        "spike_count_relative_error_limit": spike_limit,
-        "success_fraction_abs_error": success_fraction_abs_error,
-        "success_fraction_abs_error_limit": success_limit,
-        "passed": (
-            spike_count_relative_error <= spike_limit + 1.0e-12
-            and success_fraction_abs_error <= success_limit + 1.0e-12
-        ),
+        **dict(result.details),
+        "passed": result.passed,
     }
 
-
 def max_abs_error(reference: Sequence[float], candidate: Sequence[float]) -> float:
-    """Return fail-closed maximum absolute error for a parity vector."""
+    """Compatibility wrapper around canonical fail-closed D2 comparison."""
 
-    if len(reference) != len(candidate):
-        raise ValueError("parity vectors must have the same length")
-    if not reference:
-        raise ValueError("parity vectors must not be empty")
-    left_values = [float(value) for value in reference]
-    right_values = [float(value) for value in candidate]
-    if not all(math.isfinite(value) for value in left_values):
-        raise ValueError("reference parity vector contains NaN/Inf")
-    if not all(math.isfinite(value) for value in right_values):
-        raise ValueError("candidate parity vector contains NaN/Inf")
-    return max(abs(left - right) for left, right in zip(left_values, right_values))
-
+    return canonical_max_abs_error(reference, candidate)
 
 def gate_parity_summary(
     reference: Sequence[float],
