@@ -91,3 +91,28 @@ Die Real-Body-/Wesen-Arbeiten formulieren eine Infrastrukturregel, die über das
 ## 24.8 Technische Identität als reproduzierbare Konfiguration
 
 Profile & Identity ergänzt die Persistenzschicht um versionierte technische Konfiguration, Digest, Revision, Lineage und Snapshotbindung. Für Experimente können damit `profile_id`, Revision, Profil-Digest und Snapshot-Digest gemeinsam gebunden werden. Das verbessert Reproduzierbarkeit, ohne den Profilbegriff psychologisch aufzuladen. Ein Profil ist eine deklarierte technische Identität; der dynamische neuronale Zustand und der vollständige kausale Checkpoint bleiben getrennte Objekte.
+
+
+## 24.9 Kontrollierte Promotion vom Playground in den kanonischen MHRN-Kern
+
+Seit dem 29. September 2026 werden Playground-Mechanismen nicht als monolithische
+Runtime übernommen. Stattdessen durchlaufen sie eine explizite
+Promotionsgrenze. Die erste tatsächlich übertragene Familie sind die
+Neural-I/O-Verträge `BoundaryFrame`, `CodecContract`,
+`PopulationLayout`, `SpikeFrame` und `DecodeResult`. Ihre kanonischen
+Definitionen liegen jetzt in der Embodiment-Schicht; der historische
+Playground-Pfad bleibt als Compatibility-Reexport bestehen.
+
+Damit wird eine zuvor nur dokumentierte Architekturregel ausführbar:
+Playground darf kanonische MHRN-Verträge verwenden, der MHRN-Kern importiert
+umgekehrt keine Playground-Implementierung. Das Dashboard macht diesen
+Promotionszustand sichtbar und kann bereits übertragene Elemente verifizieren
+oder für noch nicht übertragene Elemente das nächste erforderliche Gate
+anzeigen. Es schreibt dabei niemals Quellcode zur Laufzeit.
+
+Diese Promotion ist **Engineering-Provenienz, keine empirische Evidenz**. Sie
+reduziert doppelte Interface-Semantik und schafft eine gemeinsame Grenze für
+spätere CPU/CUDA-, Gateway- und Closed-Loop-Prüfungen. Neural-I/O-Codecs,
+CUDA-Ausführung, Learning/Synapse, Closed Loop und PAN-Hyperstate bleiben
+separat gated; insbesondere dürfen Learning-, Frozen-Environment- und
+PAN-Semantik nicht durch bloße Codeverschiebung als kanonisch gelten.
