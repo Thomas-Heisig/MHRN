@@ -51,7 +51,7 @@ RQ-Status und Claim-Status sind unterschiedliche wissenschaftliche Zustände und
 | `RQ-REC-002` | open | `H-REC-002-A` | — | — | 0 | `EXP-BATCH-20260906200118-42`, `EXP-BATCH-20260909223705-42`, `EXP-BATCH-20260914074039-42`, `EXP-EMP-20260910`, `EXP-REC-002-CLEAN-R2-20260919` | — | offen |
 | `RQ-LIFE-001` | open | `H-LIFE-001-A` | — | — | 0 | `EXP-BATCH-20260909223705-43`, `EXP-BATCH-20260914074039-43`, `EXP-EMP-20260910`, `EXP-LIFE-0001-R1`, `EXP-RETRY-AIRR-2026-0001-02` | — | offen |
 | `RQ-SNN-006` | open | `H-SNN-006-A` | — | — | 2 | `EXP-GEN-0041` | — | offen |
-| `RQ-CUDA-DET-001` | open | `H-CUDA-DET-001-A`, `H-CUDA-DET-001-B`, `H-CUDA-DET-001-C` | — | — | 3 | — | — | offen |
+| `RQ-CUDA-DET-001` | open | `H-CUDA-DET-001-A`, `H-CUDA-DET-001-B`, `H-CUDA-DET-001-C` | — | — | 3 | `EXP-GEN-0048` | — | offen |
 | `RQ-CUDA-PAR-001` | open | `H-CUDA-PAR-001-A`, `H-CUDA-PAR-001-B`, `H-CUDA-PAR-001-C` | — | — | 3 | — | — | offen |
 | `RQ-CUDA-SCALE-001` | open | `H-CUDA-SCALE-001-A`, `H-CUDA-SCALE-001-B` | — | — | 2 | — | — | offen |
 | `RQ-GATE-IR-001` | open | `H-GATE-IR-001-A`, `H-GATE-IR-001-B`, `H-GATE-IR-001-C` | — | — | 1 | — | — | offen |
