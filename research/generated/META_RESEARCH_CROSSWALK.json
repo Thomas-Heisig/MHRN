@@ -38,7 +38,7 @@
       "title": "Dimensional Embedding and Propagation Dynamics in Resource-Matched Recurrent Spiking Neural Networks"
     }
   ],
-  "question_count": 121,
+  "question_count": 122,
   "questions": [
     {
       "claim_statuses": {
@@ -843,6 +843,34 @@
       "papers": [],
       "research_axis": "unclassified",
       "research_question": "RQ-CUDA-PAR-001",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.acceleration.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Cross-Backend Verification Methodology",
+      "evidence_records": [],
+      "experiments": [],
+      "hypotheses": [
+        "H-CUDA-PAR-002-A",
+        "H-CUDA-PAR-002-B"
+      ],
+      "hypothesis_statuses": {
+        "H-CUDA-PAR-002-A": "untested",
+        "H-CUDA-PAR-002-B": "untested"
+      },
+      "literature": [
+        "SRC-BRIAN2CUDA-2022"
+      ],
+      "manuscript_parts": [],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-CUDA-PAR-002",
       "rq_status": "open",
       "source_path": "research/registry/questions.acceleration.yaml",
       "stages": []
