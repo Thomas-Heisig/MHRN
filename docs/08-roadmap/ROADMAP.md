@@ -1093,3 +1093,16 @@ The benchmark/reference suite moves **before** live CUDA-1.6 and full PAN-GPU wo
   moving CUDA Driver/NVRTC/ABI/parity infrastructure.
 - Learning, closed-loop environment and PAN remain blocked by their semantic
   contract gates.
+
+
+## 2026-09-29 Playground -> MHRN integration wave 3
+
+- Canonical ExecutionBackend protocol added under src/runtime/backend.py.
+- BackendState is explicitly data-only and rejects opaque non-serializable runtime handles.
+- Canonical D1/D2/D3 parity framework added under src/verification/parity.
+- Stable execution fingerprints now bind seed, canonical config hash, backend identity/version, tick count and parity-contract version.
+- Counter-RNG, same-tick update ordering and delay-ring semantics are canonical under src/runtime/determinism.
+- Playground Builder parity and CUDA plasticity now consume the canonical verifier/determinism primitives through compatibility paths.
+- The visible Playground integration catalog marks ExecutionBackend and Parity/Determinism as integrated.
+- CUDA Driver/NVRTC/ABI/recurrent/plasticity extraction is the next Wave-4 task.
+- No scientific DATA or EVID is created by Wave 3.
