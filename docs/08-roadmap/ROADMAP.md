@@ -20,6 +20,17 @@
   equivalent GPU SNN backend.
 - Release/DOI mechanics remain separate from Human Review, EVID and replication.
 
+## 2026-09-29 Post-hoc Experimentauswertung
+
+- Experimentkarten im Wissenschaftsbereich erlauben die nachträgliche
+	Beantwortung und Auswertung registrierter Hypothesen.
+- Die Erfassung dokumentiert Begründung, Beobachtungen, Limitationen und
+	nächste Schritte statt nur einen technischen Ausführungsstatus.
+- Markdown- und JSON-Artefakte werden pro Experiment abgelegt, im Manifest
+	verknüpft und über den zentralen File Viewer geöffnet.
+- Interpretation, Human Review und EVID bleiben als getrennte nachgelagerte
+	Schritte erhalten; Speichern erzeugt keine automatische Evidenz.
+
 ## 2026-09-27 Bausteine-Katalog und Sprachumschaltung
 
 - Der Playground-Bausteine-Tab erklärt jeden Katalogeintrag per Hover und

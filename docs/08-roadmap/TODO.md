@@ -73,6 +73,16 @@ MHRN / Multi-Scale Homeostatic Recurrence Network. Publication: Recursive Episte
 - [ ] Release-PR `release/v0.6.0-alpha.7 -> main` vollständig grün abschließen.
 - [ ] Veralteten Remote-Branch `playground` nach bestätigter vollständiger Integration löschen.
 
+## 2026-09-29 Post-hoc Experimentauswertung
+
+- [x] Nacherfassung von Antworten und wissenschaftlichen Auswertungen je
+	Experiment ergänzen.
+- [x] Beobachtungen, Limitationen und nächste wissenschaftliche Schritte
+	dokumentierbar machen.
+- [x] Markdown-/JSON-Artefakte im Experimentmanifest verknüpfen.
+- [x] Auswertung direkt im zentralen File Viewer öffnen.
+- [x] Interpretation von Human Review und EVID getrennt halten.
+
 ## 2026-09-27 Release-Statusmarker
 
 - [x] Fehlende Bausteinbeschreibungen im Playground-Katalog ergänzen.
