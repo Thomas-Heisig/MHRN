@@ -73,7 +73,6 @@ def failures() -> list[str]:
         "CUDABackend",
         "exact_spike_parity",
         "state_vector_parity",
-        "MHRN_TEST_CUDA_HARDWARE",
         "tolerance=1.0e-4",
     )
     for token in required_tokens:
@@ -81,6 +80,10 @@ def failures() -> list[str]:
             problems.append(
                 "hardware parity acceptance test is missing canonical token: " + token
             )
+
+    full_test_source = TEST_FILE.read_text(encoding="utf-8")
+    if "MHRN_TEST_CUDA_HARDWARE" not in full_test_source:
+        problems.append("hardware parity acceptance test must remain opt-in")
 
     if "playground" in test_source.lower():
         problems.append(
