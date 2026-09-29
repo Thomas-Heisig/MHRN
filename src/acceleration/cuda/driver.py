@@ -11,6 +11,7 @@ import math
 import os
 from collections.abc import Sequence
 from dataclasses import dataclass
+from pathlib import Path
 from typing import Any
 
 from .errors import CudaDriverError, CudaRuntimeUnavailable
@@ -21,6 +22,7 @@ from .preflight import CooperativePreflight, validate_cuda_block_size
 _CU_DEVICE_ATTRIBUTE_MULTIPROCESSOR_COUNT = 16
 _CU_DEVICE_ATTRIBUTE_COOPERATIVE_LAUNCH = 95
 
+
 @dataclass(frozen=True, slots=True)
 class DriverModule:
     """Opaque handles returned by CUDA Driver API loading."""
@@ -29,6 +31,7 @@ class DriverModule:
     module: ctypes.c_void_p
     function: ctypes.c_void_p
     device_ordinal: int
+
 
 class CudaDriver:
     """Minimal ctypes wrapper for CUDA-1 loading, memory and kernel launch."""
