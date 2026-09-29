@@ -6,7 +6,7 @@ import json
 import re
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any
+from typing import Any, cast
 
 
 class ExperimentEvaluationError(ValueError):
@@ -76,7 +76,7 @@ def write_experiment_evaluation(
     if answer not in _ANSWERS:
         raise ExperimentEvaluationError("invalid hypothesis_answer")
 
-    evaluation = {
+    evaluation: dict[str, object] = {
         "schema": "MHRN_POSTHOC_EVALUATION_V1",
         "experiment_id": experiment_id,
         "research_question": _text(payload, "research_question"),
@@ -108,19 +108,23 @@ def write_experiment_evaluation(
     manifest_value: Any = json.loads(manifest_path.read_text(encoding="utf-8"))
     if not isinstance(manifest_value, dict):
         raise ExperimentEvaluationError("experiment manifest must be an object")
-    artifacts = manifest_value.get("artifacts")
-    if not isinstance(artifacts, dict):
-        artifacts = {}
+    manifest = cast(dict[str, object], manifest_value)
+    artifacts_value = manifest.get("artifacts")
+    artifacts = (
+        cast(dict[str, object], artifacts_value)
+        if isinstance(artifacts_value, dict)
+        else {}
+    )
     artifacts["posthoc_evaluation"] = "posthoc/evaluation.md"
     artifacts["posthoc_evaluation_data"] = "posthoc/evaluation.json"
-    manifest_value["artifacts"] = artifacts
-    manifest_value["posthoc_evaluation"] = {
+    manifest["artifacts"] = artifacts
+    manifest["posthoc_evaluation"] = {
         "status": "recorded_interpretation_not_evidence",
         "hypothesis_answer": answer,
         "updated_at": evaluation["created_at"],
     }
     manifest_path.write_text(
-        json.dumps(manifest_value, indent=2, ensure_ascii=True) + "\n",
+        json.dumps(manifest, indent=2, ensure_ascii=True) + "\n",
         encoding="utf-8",
     )
 
