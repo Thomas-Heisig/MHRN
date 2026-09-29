@@ -21,7 +21,9 @@ def forbidden_imports() -> list[str]:
                 if isinstance(node, ast.Import):
                     for alias in node.names:
                         if alias.name.startswith("src.playground"):
-                            failures.append(\n                                f"{path.relative_to(ROOT)}: import {alias.name}"\n                            )
+                            failures.append(
+                                f"{path.relative_to(ROOT)}: import {alias.name}"
+                            )
                 elif isinstance(node, ast.ImportFrom):
                     module = node.module or ""
                     if module.startswith("src.playground"):
