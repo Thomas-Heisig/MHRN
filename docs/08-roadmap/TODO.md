@@ -545,3 +545,25 @@ Reference: [MHRN simulator capability gaps](MHRN_SIMULATOR_CAPABILITY_GAPS.md).
 - [ ] Implement FE-1/FE-2/FE-3 trajectory capture and fail-closed validation.
 - [ ] Add canonical approval-policy artifact hashing and structural-barrier execution-segment tests.
 - [ ] Add the early benchmark/reference suite with frozen workload manifests and explicit Brian 2 unit/integrator/delay/RNG mappings.
+
+
+## 2026-09-29 Playground -> MHRN integration
+
+- [x] Promote BoundaryFrame/CodecContract/PopulationLayout/SpikeFrame/DecodeResult
+  into canonical `src/embodiment` ownership.
+- [x] Keep the Playground neural-I/O contract path as a compatibility re-export.
+- [x] Expose Playground -> MHRN integration status and transfer verification in
+  the Playground Builder.
+- [x] Expose GET integration catalog and POST transfer-verification API routes.
+- [x] Keep OLD frontend routes visible in the integration catalog without
+  promoting them into core.
+- [x] Record wave 1 in the current manuscript and research-software paper
+  without creating DATA/EVID.
+- [ ] Promote deterministic neural-I/O codecs after codec/frame-ID semantics
+  are frozen.
+- [ ] Extract CUDA Driver/NVRTC/ABI/parity behind a canonical ExecutionBackend.
+- [ ] Align Playground CUDA plasticity with the canonical Learning/Synapse
+  contract before promotion.
+- [ ] Promote closed-loop environment pieces only after Frozen-Environment
+  FE-1/FE-2/FE-3 contracts are executable.
+- [ ] Promote PAN hyperstate only after RQ-PAN-SEM-001 semantic freeze.

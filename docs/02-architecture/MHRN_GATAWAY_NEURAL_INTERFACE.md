@@ -2156,3 +2156,33 @@ CUDA does not consume raw HTTP/JSON/tool payloads and does not invent an alterna
 The continuation-critical Neural-I/O state defined here must be covered by the canonical runtime checkpoint contract. Closed-loop parity additionally uses the Frozen Environment Contract so that Boundary replay, live actions, world state, RNG and rewards are unambiguous.
 
 This requirement does not mean the current `src/playground/neural_io` module path becomes canonical. Implementations are to be promoted/re-homed behind the existing architecture contract so that `src.core`, runtime and acceleration layers do not depend on Playground.
+
+
+## Implementation promotion wave 1 — 2026-09-29
+
+The first Playground-to-MHRN promotion is now concrete rather than only
+architectural: the typed neural-I/O boundary objects are canonical under
+`src/embodiment/neural_io_contracts.py`.
+
+Promoted contract family:
+
+- `BoundaryFrame`
+- `CodecContract`
+- `PopulationLayout`
+- `SpikeEvent` / `SpikeFrame`
+- `DecodeResult`
+- `NeuralRole` / `InterfacePhase`
+- deterministic payload/event/readout digest helpers
+
+`src/playground/neural_io/contracts.py` remains as a compatibility re-export.
+Existing Playground codecs and sessions therefore use the exact same Python
+class objects as canonical MHRN. The dependency direction is:
+
+```text
+Playground -> src.embodiment.neural_io_contracts
+MHRN       -X-> src.playground
+```
+
+This is an engineering integration step only. It creates no scientific DATA,
+does not promote a hypothesis, and does not validate codec quality or
+closed-loop behavior.
