@@ -172,3 +172,22 @@
     limitations: Interoperabilität bedeutet zunächst einen expliziten gemeinsamen Modell-Subset; Brian 2, Brian2CUDA, Brian2GeNN und Brian2Lava werden nicht als identischer nativer Backend-Stack behandelt.
   created: '2026-09-28'
   updated: '2026-09-28'
+
+
+- id: RQ-CUDA-PAR-002
+  domain: Cross-Backend Verification Methodology
+  question: Kann ein kanonischer backend-neutraler D1/D2/D3-Paritaetsvertrag mit stabilem Execution Fingerprint spezifizierte Backend-Abweichungen fail-closed erkennen, bevor beschleunigte Ausfuehrungen als wissenschaftlich austauschbar behandelt werden?
+  relevance: Die Frage prueft die Verifikationsmethode selbst und trennt einen technisch konsistenten Paritaetsvertrag von der spaeter separat zu testenden CPU/CUDA-Aequivalenz.
+  literature:
+  - SRC-BRIAN2CUDA-2022
+  hypotheses:
+  - H-CUDA-PAR-002-A
+  - H-CUDA-PAR-002-B
+  evidence: []
+  status: open
+  answer:
+    current: null
+    confidence: none
+    limitations: Wave 3 implementiert Engineering-Vertraege und Unit-Tests. Das erzeugt weder Cross-Backend-DATA noch EVID und beantwortet RQ-CUDA-PAR-001 nicht.
+  created: '2026-09-29'
+  updated: '2026-09-29'
