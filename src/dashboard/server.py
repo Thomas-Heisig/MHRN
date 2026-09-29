@@ -93,6 +93,11 @@ from .development_timeline import build_development_timeline
 from .docs_source import DocumentationSource, create_docs_source
 from .embedding_jobs import EmbeddingJobError, list_embedding_jobs, run_embedding_job
 from .experiment_archive import ExperimentArchiveError, ExperimentArchiveService
+from .experiment_evaluation import (
+    ExperimentEvaluationError,
+    read_experiment_evaluation,
+    write_experiment_evaluation,
+)
 from .experiment_organizer import ExperimentOrganizerService
 from .experiment_workflow import (
     ExperimentWorkflowService,
@@ -686,6 +691,11 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
             if path == "/api/research/experiments/archive":
                 self._serve_archived_experiments()
                 return
+            if path.startswith("/api/research/experiments/") and path.endswith(
+                "/evaluation"
+            ):
+                self._serve_experiment_evaluation(path)
+                return
             if path == "/api/research/experiment-series":
                 self._serve_experiment_series()
                 return
@@ -1060,6 +1070,9 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
 
             if path == "/api/research/experiments/archive":
                 self._archive_experiment(body)
+                return
+            if path == "/api/research/experiments/evaluation":
+                self._write_experiment_evaluation(body)
                 return
             if path == "/api/research/analysis-jobs":
                 self._run_analysis_job(body)
@@ -4572,6 +4585,24 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
         self._send_json(
             {"experiments": cast(list[JSONValue], source.list_experiments())}
         )
+
+    def _serve_experiment_evaluation(self, path: str) -> None:
+        prefix = "/api/research/experiments/"
+        experiment_id = unquote(path[len(prefix) : -len("/evaluation")]).strip("/")
+        try:
+            source = self._require_research_source()
+            self._send_json(read_experiment_evaluation(source.root(), experiment_id))
+        except ExperimentEvaluationError as exc:
+            self._send_json({"error": str(exc)}, HTTPStatus.BAD_REQUEST)
+
+    def _write_experiment_evaluation(self, body: dict[str, Any]) -> None:
+        source = self._require_research_source()
+        try:
+            result = write_experiment_evaluation(source.root(), body)
+        except ExperimentEvaluationError as exc:
+            self._send_json({"error": str(exc)}, HTTPStatus.BAD_REQUEST)
+            return
+        self._send_json(result, HTTPStatus.CREATED)
 
     def _write_artifact_review(self, body: dict[str, Any]) -> None:
         source = self._require_research_source()

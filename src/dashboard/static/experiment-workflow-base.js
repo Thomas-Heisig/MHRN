@@ -613,7 +613,9 @@ export class ExperimentWorkflowPanel {
     if (artifacts.calibration) resultButtons.push(`<button type="button" class="btn-small exp-open-btn" data-experiment-open="calibration" data-experiment-id="${expId}" data-artifact-path="${escapeHtml(artifacts.calibration)}" title="Kalibrierungsdaten">⚙ Kalibrierung</button>`);
     if (artifacts.manifest) resultButtons.push(`<button type="button" class="btn-small exp-open-btn" data-experiment-open="manifest" data-experiment-id="${expId}" data-artifact-path="${escapeHtml(artifacts.manifest)}" title="Manifest und Provenienz">🧾 Manifest</button>`);
     if (artifacts.review) resultButtons.push(`<button type="button" class="btn-small exp-open-btn" data-experiment-open="review" data-experiment-id="${expId}" data-artifact-path="${escapeHtml(artifacts.review)}" title="Review und wissenschaftliche Weiterverarbeitung">✓ Review</button>`);
-    const resultActions = resultButtons.length ? `<div class="experiment-library-results">${resultButtons.join("")}</div>` : "";
+    if (artifacts.posthoc_evaluation) resultButtons.push(`<button type="button" class="btn-small exp-open-btn" data-experiment-open="posthoc" data-experiment-id="${expId}" data-artifact-path="${escapeHtml(artifacts.posthoc_evaluation)}" title="Gespeicherte wissenschaftliche Auswertung">📝 Auswertung</button>`);
+    const evaluationAction = `<button type="button" class="btn-small exp-evaluate-btn" data-experiment-evaluate="${expId}" title="Nachträgliche wissenschaftliche Auswertung erfassen">✎ Auswertung erfassen</button>`;
+    const resultActions = `<div class="experiment-library-results">${resultButtons.join("")}${evaluationAction}</div>`;
     const action = archived
       ? `<button type="button" class="btn-small" data-experiment-action="restore" data-experiment-id="${expId}">↶ Wiederherstellen</button>`
       : `<button type="button" class="btn-small" data-experiment-action="archive" data-experiment-id="${expId}">▣ Archivieren</button>`;
@@ -713,6 +715,12 @@ export class ExperimentWorkflowPanel {
     const seriesId = button.dataset.seriesId;
     const seriesReport = button.dataset.seriesReport;
     const openKind = button.dataset.experimentOpen;
+    const evaluateId = button.dataset.experimentEvaluate;
+    if (evaluateId) {
+      const item = this._findExperimentDetail(evaluateId);
+      if (item) await this._openPosthocEvaluation(item);
+      return;
+    }
     if (seriesReport) {
       await this._openArtifact(seriesReport);
       return;
