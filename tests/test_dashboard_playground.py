@@ -48,6 +48,10 @@ def test_playground_ui_has_permanent_non_scientific_boundary() -> None:
     assert "MHRN 5D" in module
     assert "Generic N-D" in module
     assert "Robustheitskontrollen" in module
+    assert "refreshCatalogOptionAvailability" in module
+    assert "data-min-dimensions" in module
+    assert "catalogExecutionLabel" in module
+    assert "Nur Katalog / nicht direkt ausführbar" in module
 
 
 def test_playground_ui_exposes_corrected_setting_defaults() -> None:

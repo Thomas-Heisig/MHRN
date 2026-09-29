@@ -124,6 +124,7 @@ function updateDefaultHints() {
     field.title = message;
     field.closest("label")?.classList.toggle("pg-non-default", changed);
   });
+  refreshCatalogOptionAvailability();
 }
 
 function injectStyles() {
@@ -157,8 +158,24 @@ function injectStyles() {
 function optionMarkup(items, labelKey = "label") {
   return (items || []).filter((item) => item.available !== false).map((item) => {
     const label = item[labelKey] || item.name;
-    return `<option value="${item.name}" title="${item.note || ""}">${label}</option>`;
+    const executable = item.executable !== false;
+    const minimum = Number(item.min_dimensions || 0);
+    const status = executable ? "" : " · nur Katalog";
+    const note = item.note || (executable ? "Ausführbarer Playground-Referenzpfad." : "Nicht ausführbar; nur dokumentierter Katalogeintrag.");
+    return `<option value="${playgroundEscape(item.name)}" data-min-dimensions="${minimum}" data-executable="${String(executable)}" title="${playgroundEscape(note)}"${executable && !minimum ? "" : " disabled"}>${playgroundEscape(label)}${status}</option>`;
   }).join("");
+}
+
+function refreshCatalogOptionAvailability() {
+  const dimensions = Number(byId("pg-dimensions")?.value || 5);
+  ["pg-neuron-model", "pg-synapse-model", "pg-plasticity", "pg-readout", "pg-topology", "pg-stimulus"].forEach((id) => {
+    byId(id)?.querySelectorAll("option").forEach((option) => {
+      const executable = option.dataset.executable !== "false";
+      const minimum = Number(option.dataset.minDimensions || 0);
+      option.disabled = !executable || (minimum > 0 && dimensions < minimum);
+      if (minimum > 0 && dimensions < minimum) option.title = `Ausführbar ab ${minimum}D; bei ${dimensions}D nur Katalogeintrag.`;
+    });
+  });
 }
 
 function ensurePermanentBoundary(root) {
@@ -1213,11 +1230,19 @@ function ensureCatalogInfoDialog(){
 }
 
 function showCatalogInfo(item){
-  activeCatalogInfo=item;const language=catalogLanguage();const dialog=ensureCatalogInfoDialog();const category=catalogCategoryTitle(item.categoryKey||item.category||"repo",language);const description=describeCatalogItem(item,category,language);byId("pg-catalog-info-category").textContent=category;byId("pg-catalog-info-title").textContent=item.label||item.name||"—";byId("pg-catalog-info-body").innerHTML=`<p>${playgroundEscape(description)}</p>${item.source?`<p><strong>${language==="de"?"Quelle":"Source"}:</strong> <code>${playgroundEscape(item.source)}</code></p>`:""}<p><strong>${language==="de"?"Grenze":"Boundary"}:</strong> ${language==="de"?"Explorativ. Der Katalogeintrag ist keine Instanzierung und erzeugt keine wissenschaftliche Evidenz.":"Exploratory. This catalog entry is not an instantiation and does not create scientific evidence."}</p>`;dialog.querySelector("#pg-catalog-info-close").setAttribute("aria-label",language==="de"?"Bausteininfo schließen":"Close component information");dialog.showModal();
+  activeCatalogInfo=item;const language=catalogLanguage();const dialog=ensureCatalogInfoDialog();const categoryKey=item.categoryKey||item.category||"repo";const category=catalogCategoryTitle(categoryKey,language);const description=describeCatalogItem(item,category,language);const execution=catalogExecutionLabel(item,categoryKey,language);byId("pg-catalog-info-category").textContent=category;byId("pg-catalog-info-title").textContent=item.label||item.name||"—";byId("pg-catalog-info-body").innerHTML=`<p><strong>${language==="de"?"Ausführbarkeit":"Execution"}:</strong> ${playgroundEscape(execution)}</p><p>${playgroundEscape(description)}</p>${item.source?`<p><strong>${language==="de"?"Quelle":"Source"}:</strong> <code>${playgroundEscape(item.source)}</code></p>`:""}<p><strong>${language==="de"?"Grenze":"Boundary"}:</strong> ${language==="de"?"Explorativ. Der Katalogeintrag ist keine Instanzierung und erzeugt keine wissenschaftliche Evidenz.":"Exploratory. This catalog entry is not an instantiation and does not create scientific evidence."}</p>`;dialog.querySelector("#pg-catalog-info-close").setAttribute("aria-label",language==="de"?"Bausteininfo schließen":"Close component information");dialog.showModal();
 }
 
 function bindCatalogInfo(){
   const grid=byId("pg-catalog-grid");if(!grid||grid.dataset.infoBound)return;grid.dataset.infoBound="true";grid.addEventListener("click",event=>{const button=event.target.closest("[data-pg-catalog-info]");if(!button)return;const item=catalogInfoItems.get(button.dataset.pgCatalogInfo);if(item)showCatalogInfo(item);});
+}
+
+function catalogExecutionLabel(item, categoryKey, language=catalogLanguage()){
+  const nonExecutableCategory=["panCandidates","panLiterature","geometryLiterature","neuralIO","analyses","robustness","cudaCompiler","cudaParity","repo"].includes(categoryKey);
+  const minimum=Number(item.min_dimensions||0);const dimensions=Number(byId("pg-dimensions")?.value||5);
+  if (item.executable===false||nonExecutableCategory) return language==="de"?"Nur Katalog / nicht direkt ausführbar":"Catalog-only / not directly executable";
+  if (minimum>0&&dimensions<minimum) return language==="de"?`Nicht ausführbar bei ${dimensions}D; benötigt ${minimum}D`:`Not executable at ${dimensions}D; requires ${minimum}D`;
+  return language==="de"?"Ausführbarer Referenzpfad":"Executable reference path";
 }
 
 function renderCatalogCards(catalog){
@@ -1227,9 +1252,9 @@ function renderCatalogCards(catalog){
   const neuralIOCodecs=(catalog.neural_io?.codecs||[]).map(item=>({name:item.id,note:`${item.input_kind||""} · ${item.reconstruction_class||""}`}));
   const parityClasses=Object.entries(catalog.cuda_parity?.classes||{}).map(([name,item])=>({name,note:item.name||item.target_stage||""}));
   const groups=[["models",catalog.models],["topologies",catalog.topologies],["stimuli",catalog.stimuli],["synapses",catalog.synapses],["plasticity",catalog.plasticity],["readouts",catalog.readouts],["panCandidates",panCandidates],["panLiterature",panLiterature],["geometryLiterature",geometryLiterature],["neuralIO",neuralIOCodecs],["analyses",(catalog.analyses||[]).map(name=>({name}))],["robustness",(catalog.robustness_controls||[]).map(name=>({name}))],["cudaCompiler",(catalog.cuda_gate_compiler?.gate_types||[]).map(name=>({name,note:catalog.cuda_gate_compiler?.status||""}))],["cudaParity",parityClasses]];
-  groups.push(["repo",PLAYGROUND_REPO_ELEMENTS.map(([name,category,description,source])=>({name,label:name,note:description,category,source}))]);
+  groups.push(["repo",PLAYGROUND_REPO_ELEMENTS.map(([name,category,description,source])=>({name,label:name,note:description,category,source,executable:false}))]);
   catalogInfoItems=new Map();let itemIndex=0;const language=catalogLanguage();
-  byId("pg-catalog-grid").innerHTML=groups.map(([categoryKey,items])=>{const title=catalogCategoryTitle(categoryKey,language);return `<article><h3>${playgroundEscape(title)}</h3>${(items||[]).map(item=>{const infoKey=String(itemIndex++);const info={...item,categoryKey};catalogInfoItems.set(infoKey,info);const description=describeCatalogItem(info,title,language);return `<button type="button" class="playground-chip" data-pg-catalog-info="${infoKey}" title="${playgroundEscape(description)}">${playgroundEscape(item.label||item.name)}</button>`;}).join("")}</article>`;}).join("");
+  byId("pg-catalog-grid").innerHTML=groups.map(([categoryKey,items])=>{const title=catalogCategoryTitle(categoryKey,language);return `<article><h3>${playgroundEscape(title)}</h3>${(items||[]).map(item=>{const infoKey=String(itemIndex++);const info={...item,categoryKey};catalogInfoItems.set(infoKey,info);const description=describeCatalogItem(info,title,language);const execution=catalogExecutionLabel(info,categoryKey,language);return `<button type="button" class="playground-chip" data-pg-catalog-info="${infoKey}" title="${playgroundEscape(`${execution}. ${description}`)}">${playgroundEscape(item.label||item.name)}</button>`;}).join("")}</article>`;}).join("");
 }
 
 function renderCatalog(catalog){

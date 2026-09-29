@@ -4,6 +4,14 @@
 **Baseline:** `mhrn-core 0.6.0a7`
 **Updated:** 2026-09-27
 
+## 2026-09-29 Ausführbarkeitsgrenzen im Playground
+
+- Sichtbare Bausteine werden nicht mehr implizit als ausführbar behandelt.
+- Katalog-, Analyse- und Referenzbausteine sind im Popup als nicht direkt
+	ausführbar gekennzeichnet.
+- Experimentelle Topologien zeigen ihre Mindestdimension und sind bei
+	inkompatibler Dimension in der Builder-Auswahl deaktiviert.
+
 ## 2026-09-27 Alpha.7 release line
 
 - `develop` remains the canonical integration branch; `main` remains release-only.
