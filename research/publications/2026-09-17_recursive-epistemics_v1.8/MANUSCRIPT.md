@@ -3352,6 +3352,20 @@ Vor positiver DATA dürfen weder selbstorganisierter Werkzeuggebrauch noch unive
 Dieser Strang erhält hohe Priorität, weil er eine direkte Falsifikation der These ermöglicht, MHRN müsse externes Faktenwissen intern memorieren: erfolgreiche Nutzung neuer Inhalte aus einer neuen Quelle bei erhaltener Aufgabenleistung würde eine gelernte Informationsnutzungsstrategie stützen; Scheitern würde die stärkere Interpretation begrenzen.
 
 
+
+## 58.7 ExecutionBackend, Parität und Determinismus als kanonische Infrastruktur
+
+Mit der dritten kontrollierten Playground-Integrationswelle wird erstmals auch die **Ausführungs- und Verifikationsseite** aus dem experimentellen Playground in kanonische MHRN-Verträge überführt. Die Änderung betrifft Infrastruktur und Methodik, nicht den empirischen Evidenzstatus der untersuchten neuronalen Mechanismen.
+
+Der neue ExecutionBackend-Vertrag trennt die Frage, **wann** der RuntimeController Arbeit zulässt, von der Frage, **wie** ein Backend einen Tick oder eine begrenzte Tickfolge ausführt. BackendState ist dabei absichtlich datenorientiert: gerätespezifische Pointer, CUDA-Kontexte, Kernel-Handles und UI-/Session-Identitäten gehören nicht zum kanonischen Fortsetzungszustand. Dadurch wird die spätere CPU/CUDA-Austauschbarkeit überhaupt erst prüfbar, ohne bereits zu behaupten, dass beide Implementierungen äquivalent seien.
+
+Parallel wurde die bisher im Playground konzentrierte Paritätssemantik in eine kanonische D1/D2/D3-Schicht überführt. D1 bezeichnet exakte geordnete Spike-/Ereignisparität. D2 vergleicht kontinuierliche Zustände mit vorab festgelegten Toleranzen und verwirft leere oder nicht-endliche Evidenz fail-closed. D3 bleibt kausal abgestuft: eingefrorene Kontrolltrajektorien sind schwächer als live erzeugte Aktionen in einer deterministischen Welt, und vollständige Umwelttrajektorien erfordern zusätzlich den Frozen-Environment-Vertrag. Ein stabiler Execution Fingerprint bindet Seed, kanonischen Konfigurationshash, Backend-Identität und -Version, Tickzahl und Vertragsversion; Zeitstempel und Mapping-Einfügereihenfolge sind ausgeschlossen.
+
+Auch der Counter-RNG für stochastische synaptische Freisetzung, die Same-Tick-Reihenfolge sowie die Delay-Ring-Semantik besitzen nun kanonische MHRN-Verträge. Der Playground bleibt für bestehende Experimente erreichbar, konsumiert diese Semantik aber nur noch als Compatibility-Layer.
+
+Wissenschaftlich ist diese Integration eng begrenzt. Sie erzeugt weder neue DATA noch EVID und beantwortet insbesondere nicht die bestehende Frage RQ-CUDA-PAR-001 nach tatsächlicher CPU/CUDA-Äquivalenz. Dafür ist zuerst ein kanonisches CUDA-Backend nötig. Die zusätzlich registrierte RQ-CUDA-PAR-002 betrifft deshalb die **Verifikationsmethode selbst**: ob der neue Vertrag definierte Divergenzklassen reproduzierbar und fail-closed erkennt. Auch diese Frage bleibt bis zu prospektiv erzeugten DATA offen.
+
+
 ---
 
 # Anhang — Quellen und Vorarbeiten
