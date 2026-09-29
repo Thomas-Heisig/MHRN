@@ -146,8 +146,7 @@ def compare_builder_runs(
                 == execution["gpu_membrane_ticks"]
                 and execution.get("gpu_delay_consumed_ticks", 0)
                 == execution["gpu_membrane_ticks"]
-                and execution.get("gpu_pan_ticks", 0)
-                == execution["gpu_membrane_ticks"]
+                and execution.get("gpu_pan_ticks", 0) == execution["gpu_membrane_ticks"]
             )
 
         cpu_fp = _fingerprint(cpu, "cpu")
@@ -166,9 +165,7 @@ def compare_builder_runs(
             "gpu_synaptic_plasticity_calls": execution.get(
                 "gpu_synaptic_plasticity_calls", 0
             ),
-            "gpu_synaptic_reward_calls": execution.get(
-                "gpu_synaptic_reward_calls", 0
-            ),
+            "gpu_synaptic_reward_calls": execution.get("gpu_synaptic_reward_calls", 0),
             "D1_full_spike_digest_exact": d1,
             "D2_sampled_voltage_max_error": error,
             "D3_actions_targets_rewards_exact": d3,
