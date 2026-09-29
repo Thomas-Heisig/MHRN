@@ -9,14 +9,14 @@ from typing import Any, cast
 
 import pytest
 
+from src.dashboard.experiment_evaluation import (
+    read_experiment_evaluation,
+    write_experiment_evaluation,
+)
 from src.dashboard.experiment_workflow import (
     ExperimentWorkflowService,
     WorkflowValidationError,
     write_experiment_summary,
-)
-from src.dashboard.experiment_evaluation import (
-    read_experiment_evaluation,
-    write_experiment_evaluation,
 )
 from src.dashboard.research_source import ResearchSource
 from src.dashboard.server import DashboardRequestHandler
@@ -264,7 +264,9 @@ def test_posthoc_evaluation_answers_hypothesis_and_links_manifest_artifacts(
     experiment_dir = tmp_path / "experiments" / "EXP-POSTHOC-0001"
     experiment_dir.mkdir(parents=True)
     (experiment_dir / "manifest.json").write_text(
-        json.dumps({"experiment_status": "completed", "artifacts": {"report": "report.md"}}),
+        json.dumps(
+            {"experiment_status": "completed", "artifacts": {"report": "report.md"}}
+        ),
         encoding="utf-8",
     )
 
@@ -290,9 +292,14 @@ def test_posthoc_evaluation_answers_hypothesis_and_links_manifest_artifacts(
     assert "EVID" in (experiment_dir / "posthoc" / "evaluation.md").read_text(
         encoding="utf-8"
     )
-    manifest = json.loads((experiment_dir / "manifest.json").read_text(encoding="utf-8"))
+    manifest = json.loads(
+        (experiment_dir / "manifest.json").read_text(encoding="utf-8")
+    )
     assert manifest["artifacts"]["posthoc_evaluation"] == "posthoc/evaluation.md"
-    assert manifest["posthoc_evaluation"]["status"] == "recorded_interpretation_not_evidence"
+    assert (
+        manifest["posthoc_evaluation"]["status"]
+        == "recorded_interpretation_not_evidence"
+    )
 
 
 def test_human_review_preserves_existing_ai_artifact_review(tmp_path: Path) -> None:

@@ -235,3 +235,14 @@ MHRN Embodiment package. Compatibility re-exports preserve existing Playground
 callers, while the core remains independent of Playground. This pattern allows
 experimental mechanisms to mature into reusable infrastructure without
 retroactively turning exploratory observations into scientific evidence.
+
+
+### Canonical execution and verification plane
+
+A third promotion wave adds a backend-neutral ExecutionBackend protocol and canonical parity/determinism modules. The protocol exposes bounded initialize, step, run, snapshot, restore, and capability operations while requiring continuation state to remain independent of device-local pointers or handles.
+
+The parity layer distinguishes exact discrete-event parity (D1), bounded continuous-state parity with fail-closed non-finite handling (D2), and behavioral/causal parity (D3). Stable execution fingerprints use canonical serialization of seed, configuration identity, backend identity/version, tick count, and contract version. Counter-based stochastic release, same-tick update ordering, and delay-ring semantics are shared runtime primitives.
+
+The existing Playground remains an integration and reference workspace but delegates Builder parity and release RNG semantics to these canonical modules. CUDA Driver/NVRTC and recurrent/plasticity kernels remain Playground-owned pending the next backend-extraction wave.
+
+These changes are software architecture and verification infrastructure. They do not demonstrate CPU/CUDA scientific equivalence, performance superiority, or new empirical support for PAN or learning mechanisms.

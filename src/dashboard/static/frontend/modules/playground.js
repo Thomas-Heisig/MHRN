@@ -1277,6 +1277,7 @@ function integrationStatusLabel(status){
   return {
     INTEGRATED:"In MHRN integriert",
     READY_FOR_NEXT_WAVE:"Bereit für nächste Welle",
+    READY_FOR_WAVE4:"Bereit für Wave 4",
     READY_AFTER_BACKEND_CONTRACT:"Backend-Vertrag zuerst",
     BLOCKED_CONTRACT_FREEZE:"Contract-Freeze erforderlich",
     BLOCKED_FROZEN_ENVIRONMENT:"Frozen-Environment erforderlich",

@@ -6,6 +6,13 @@ import math
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
+from src.runtime.determinism import (
+    release_uniform as release_uniform,
+)
+from src.runtime.determinism import (
+    ring_slot as ring_slot,
+)
+
 if TYPE_CHECKING:
     from .recurrent import RecurrentInputs
 
@@ -65,19 +72,6 @@ class SynapseConfig:
                 raise ValueError(f"invalid synapse {name}")
 
 
-def release_uniform(seed: int, tick: int, edge: int) -> float:
-    """Counter RNG: no dependence on thread scheduling or traversal order."""
-    bits = (
-        seed ^ ((tick * 0x9E3779B9) & 0xFFFFFFFF) ^ ((edge * 0x85EBCA6B) & 0xFFFFFFFF)
-    ) & 0xFFFFFFFF
-    bits ^= bits >> 16
-    bits = (bits * 0x7FEB352D) & 0xFFFFFFFF
-    bits ^= bits >> 15
-    bits = (bits * 0x846CA68B) & 0xFFFFFFFF
-    bits ^= bits >> 16
-    return (bits >> 8) / 16777216.0
-
-
 class SynapseState:
     def __init__(self, inputs: RecurrentInputs, config: SynapseConfig) -> None:
         self.inputs = inputs
@@ -101,7 +95,11 @@ class SynapseState:
 
     def edge_current(self, tick: int, edge: int) -> float:
         previous = tick - self.inputs.delays[edge]
-        return self.emitted[previous % self.ring_size][edge] if previous >= 0 else 0.0
+        return (
+            self.emitted[ring_slot(previous, self.ring_size)][edge]
+            if previous >= 0
+            else 0.0
+        )
 
     def update(self, tick: int, spikes: list[int], reward: float) -> None:
         c, inputs = self.config, self.inputs
@@ -153,7 +151,7 @@ class SynapseState:
                         available = max(0.1, available * 0.72)
                     available = min(1.0, available + 0.025)
                 self.available[edge] = available
-                self.emitted[tick % self.ring_size][edge] = amplitude
+                self.emitted[ring_slot(tick, self.ring_size)][edge] = amplitude
                 self.weights[edge] = min(
                     c.weight_max, max(0.0, weight * (1.0 - c.weight_decay))
                 )

@@ -199,3 +199,16 @@ Deterministic codecs/decoders and the framework-neutral neural-I/O area adapter
 are now canonical MHRN components. Playground imports them through compatibility
 layers. The visible integration panel verifies function identity and the
 `NetworkAreaAdapter` protocol without editing source code at runtime.
+
+
+## Wave 3 — ExecutionBackend and parity/determinism
+
+The Playground remains operational, but execution/parity semantics now come from canonical MHRN modules:
+
+- src/runtime/backend.py — backend-neutral execution protocol;
+- src/runtime/determinism — Counter-RNG, same-tick ordering and delay-ring contracts;
+- src/verification/parity — D1/D2/D3 comparison and execution fingerprints.
+
+Historical Playground import paths remain available where required, but they delegate to the canonical implementations.
+
+The integration panel reports ExecutionBackend and Parity/Determinism as integrated. CUDA execution itself remains a Wave-4 repository migration and is not performed by the dashboard transfer button.

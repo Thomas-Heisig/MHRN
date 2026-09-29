@@ -4,8 +4,8 @@
 
 ## Übersicht
 
-- **Forschungsfragen:** 121
-- **Hypothesen:** 143
+- **Forschungsfragen:** 122
+- **Hypothesen:** 145
 - **Claims:** 12
 - **Literaturquellen:** 67
 
@@ -653,6 +653,24 @@
 **Literatur:**
 - `SRC-CNS-BUTLIN`: Patrick Butlin and others et al. (2026)
 - `SRC-CNS-EQUIV`: Daniel Lakens et al. (2017)
+
+---
+
+## Cross-Backend Verification Methodology
+
+### RQ-CUDA-PAR-002
+
+**Frage:** Kann ein kanonischer backend-neutraler D1/D2/D3-Paritaetsvertrag mit stabilem Execution Fingerprint spezifizierte Backend-Abweichungen fail-closed erkennen, bevor beschleunigte Ausfuehrungen als wissenschaftlich austauschbar behandelt werden?
+
+**Status:** open
+**Relevanz:** Die Frage prueft die Verifikationsmethode selbst und trennt einen technisch konsistenten Paritaetsvertrag von der spaeter separat zu testenden CPU/CUDA-Aequivalenz.
+
+**Hypothesen:**
+- `H-CUDA-PAR-002-A`: Bei identischer kanonischer Konfiguration, Seed-, Backend-, Versions- und Tick-Spezifikation ist der Execution Fingerprint deterministisch und unabhaengig von Mapping-Einfuegereihenfolge; mindestens eine geaenderte spezifizierte Identitaetskomponente erzeugt einen anderen Fingerprint. *(untested)*
+- `H-CUDA-PAR-002-B`: Fuer die registrierte Fehlerklasse werden leere Evidenz, NaN/Inf-Zustaende, Spike-Ereignisabweichungen und kausale D3-Trajektorienabweichungen durch den kanonischen Paritaetsvertrag fail-closed erkannt. *(untested)*
+
+**Literatur:**
+- `SRC-BRIAN2CUDA-2022`: Dennis Alevi et al. (2022)
 
 ---
 

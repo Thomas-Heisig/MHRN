@@ -461,6 +461,33 @@
       "citation": "cite_exact_path_and_revision_as_playground_context",
       "evidence_role": "not_evidence_by_itself",
       "rationale": "Documents the explicitly non-canonical Playground surface. Playground documentation, presets and exploratory runtime descriptions do not create DATA or EVID."
+    },
+    "docs/canonical/EXECUTION_BACKEND_CONTRACT.md": {
+      "kind": "canonical_architecture_contract",
+      "status": "current",
+      "authority": "normative_execution_backend_contract",
+      "mutability": "editable_with_architecture_review",
+      "citation": "cite_current_revision_and_implementation_commit",
+      "evidence_role": "engineering_contract_not_evidence",
+      "rationale": "Defines the backend-neutral ExecutionBackend interface and state/capability boundary introduced by Playground integration Wave 3; it is an engineering contract and creates no DATA or EVID."
+    },
+    "docs/canonical/PARITY_CONTRACT.md": {
+      "kind": "canonical_verification_contract",
+      "status": "current",
+      "authority": "normative_cross_backend_parity_contract",
+      "mutability": "editable_with_architecture_and_method_review",
+      "citation": "cite_current_revision_and_underlying verification artifacts",
+      "evidence_role": "verification_method_contract_not_evidence",
+      "rationale": "Defines D1/D2/D3 parity, stable execution fingerprints and fail-closed comparison semantics; parity verification is not scientific evidence by itself."
+    },
+    "docs/canonical/README.md": {
+      "kind": "documentation_index",
+      "status": "current",
+      "authority": "canonical_contract_navigation",
+      "mutability": "editable_with_review",
+      "citation": "navigation_only_cite_underlying_contract",
+      "evidence_role": "navigation_not_evidence",
+      "rationale": "Index for current canonical MHRN architecture and verification contracts."
     }
   }
 }

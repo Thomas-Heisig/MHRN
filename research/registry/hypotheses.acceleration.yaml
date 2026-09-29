@@ -173,3 +173,20 @@
   evidence: []
   created: '2026-09-28'
   updated: '2026-09-28'
+
+
+- id: H-CUDA-PAR-002-A
+  research_question: RQ-CUDA-PAR-002
+  hypothesis: Bei identischer kanonischer Konfiguration, Seed-, Backend-, Versions- und Tick-Spezifikation ist der Execution Fingerprint deterministisch und unabhaengig von Mapping-Einfuegereihenfolge; mindestens eine geaenderte spezifizierte Identitaetskomponente erzeugt einen anderen Fingerprint.
+  status: untested
+  evidence: []
+  created: '2026-09-29'
+  updated: '2026-09-29'
+
+- id: H-CUDA-PAR-002-B
+  research_question: RQ-CUDA-PAR-002
+  hypothesis: Fuer die registrierte Fehlerklasse werden leere Evidenz, NaN/Inf-Zustaende, Spike-Ereignisabweichungen und kausale D3-Trajektorienabweichungen durch den kanonischen Paritaetsvertrag fail-closed erkannt.
+  status: untested
+  evidence: []
+  created: '2026-09-29'
+  updated: '2026-09-29'
