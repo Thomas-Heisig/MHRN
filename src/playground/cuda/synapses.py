@@ -70,7 +70,6 @@ class SynapseConfig:
                 raise ValueError(f"invalid synapse {name}")
 
 
-
 class SynapseState:
     def __init__(self, inputs: RecurrentInputs, config: SynapseConfig) -> None:
         self.inputs = inputs
@@ -94,7 +93,11 @@ class SynapseState:
 
     def edge_current(self, tick: int, edge: int) -> float:
         previous = tick - self.inputs.delays[edge]
-        return self.emitted[ring_slot(previous, self.ring_size)][edge] if previous >= 0 else 0.0
+        return (
+            self.emitted[ring_slot(previous, self.ring_size)][edge]
+            if previous >= 0
+            else 0.0
+        )
 
     def update(self, tick: int, spikes: list[int], reward: float) -> None:
         c, inputs = self.config, self.inputs
