@@ -246,3 +246,25 @@ The parity layer distinguishes exact discrete-event parity (D1), bounded continu
 The existing Playground remains an integration and reference workspace but delegates Builder parity and release RNG semantics to these canonical modules. CUDA Driver/NVRTC and recurrent/plasticity kernels remain Playground-owned pending the next backend-extraction wave.
 
 These changes are software architecture and verification infrastructure. They do not demonstrate CPU/CUDA scientific equivalence, performance superiority, or new empirical support for PAN or learning mechanisms.
+
+
+### Canonical CUDA extraction boundary
+
+A later engineering integration wave moves the previously Playground-owned
+CUDA infrastructure behind the backend-neutral execution contract. The
+extraction is protected by explicit architecture gates: canonical acceleration
+code may not import Playground, moved CUDA kernels must remain byte-identical
+to their frozen reference sources, and CUDA plasticity is labelled
+`NON_CANONICAL_DRAFT / ALIGNMENT_PENDING` until the common learning contract
+is implemented by both CPU and CUDA paths.
+
+CPU and CUDA executions intentionally retain different execution fingerprints
+because backend identity is provenance. Cross-backend equivalence is evaluated
+with D1/D2/D3 contracts, not by forcing backend fingerprints to match. Wave 4
+contains a named opt-in physical D1/D2 acceptance test; D3 closed-loop
+equivalence remains outside the wave pending the Frozen-Environment contract.
+
+Kernel byte preservation is verified in hosted CI. Post-extraction execution
+of the canonical facade on physical RTX-class hardware is tracked separately
+and remains pending until the dedicated hardware-acceptance runner is executed.
+These statements are Engineering Verification only and create no DATA or EVID.

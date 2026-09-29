@@ -121,3 +121,40 @@ Wave 4 adds four durable gates:
 Wave 4 is Engineering Verification and architecture integration. It creates no
 DATA, EVID, CPU/CUDA scientific-equivalence claim, performance-superiority
 claim, PAN-validity claim or learning-validity claim.
+
+
+## Post-extraction hardware reacceptance
+
+Wave 4 separates kernel preservation from physical backend reacceptance.
+
+- **Kernel preservation:** PASS. The canonical recurrent and plasticity kernels
+  are byte-identical to their frozen Playground source files.
+- **Post-extraction physical backend reacceptance:** PENDING until the canonical
+  facade is rerun on a physical NVIDIA host.
+
+Hosted CI must not report the hardware item as passed without an actual CUDA
+device. The canonical RTX-3060 acceptance command is:
+
+```bash
+python scripts/run_cuda_hardware_acceptance.py --require-gpu "RTX 3060" --full
+```
+
+The runner enables `MHRN_TEST_CUDA_HARDWARE=1`, executes the canonical
+CPU-vs-CUDA D1/D2 test and, with `--full`, reruns the historical recurrent
+and plasticity hardware matrix through the compatibility paths.
+
+A successful run remains Engineering Verification. It creates no DATA or EVID
+and does not establish D3 closed-loop equivalence.
+
+## Dedicated Wave-4 CI gate
+
+The standard CI contains a separate `wave4-contracts` job that fail-closes on:
+
+1. canonical Acceleration/Verification importing Playground;
+2. CUDA kernel byte drift;
+3. loss of the `NON_CANONICAL_DRAFT / ALIGNMENT_PENDING` plasticity boundary;
+4. loss or rewiring of the named canonical CPU-vs-CUDA parity acceptance
+   contract.
+
+Gate 4 validates the acceptance wiring without pretending that hosted CI
+executed physical CUDA.
