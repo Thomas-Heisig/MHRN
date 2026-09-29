@@ -119,8 +119,12 @@ def test_recurrent_failure_releases_every_allocation(
             if failure == "unload":
                 raise CudaDriverError("unload failed")
 
-    monkeypatch.setattr(recurrent, "CudaDriver", FakeDriver)
-    monkeypatch.setattr(recurrent, "compile_cuda_source", lambda *args, **kwargs: "PTX")
+    monkeypatch.setattr(recurrent.canonical_backend, "CudaDriver", FakeDriver)
+    monkeypatch.setattr(
+        recurrent.canonical_backend,
+        "compile_cuda_source",
+        lambda *args, **kwargs: "PTX",
+    )
     with pytest.raises(CudaDriverError, match=failure):
         execute_recurrent(recurrent_fixture(n_neurons=1, ticks=1), output_dir=tmp_path)
     assert freed == list(reversed(allocated))

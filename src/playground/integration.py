@@ -96,14 +96,16 @@ _CANDIDATES: tuple[PromotionCandidate, ...] = (
     ),
     PromotionCandidate(
         "cuda_execution",
-        "CUDA Execution Infrastructure",
-        "READY_FOR_WAVE4",
+        "CUDA Execution Backend",
+        "INTEGRATED",
         ("src/playground/cuda/",),
         ("src/acceleration/cuda/",),
-        "CUDA_BACKEND_IMPLEMENTATION",
+        "WAVE5_RESIDENT_PAN_AND_ENVIRONMENT",
         notes=(
-            "ExecutionBackend and parity/determinism contracts are canonical. "
-            "Driver/NVRTC/ABI/recurrent/plasticity extraction is Wave 4."
+            "Driver/NVRTC, recurrent reference, technical plasticity kernels and "
+            "the bounded replay CUDABackend are canonical MHRN infrastructure. "
+            "Plasticity semantics remain NON_CANONICAL_DRAFT; D3/live environment "
+            "and PAN hyperstate remain later gates."
         ),
     ),
     PromotionCandidate(
@@ -233,6 +235,24 @@ def transfer_element(payload: Mapping[str, object]) -> dict[str, object]:
         detail = {
             "same_parity_function": playground_compare is canonical_compare,
             "same_counter_rng_function": playground_rng is canonical_rng,
+        }
+    elif candidate.element_id == "cuda_execution":
+        from src.acceleration.cuda import CUDABackend, execution_backend_contract_check
+        from src.acceleration.cuda.plasticity.contracts import PLASTICITY_SEMANTICS
+        from src.acceleration.cuda.recurrent import execute_recurrent as canonical_execute
+        from src.playground.cuda.recurrent import execute_recurrent as playground_execute
+
+        connected = (
+            playground_execute is canonical_execute
+            and execution_backend_contract_check()
+            and CUDABackend().capabilities().supports_recurrent
+        )
+        detail = {
+            "same_recurrent_execute_function": playground_execute is canonical_execute,
+            "execution_backend_contract": execution_backend_contract_check(),
+            "execution_mode": CUDABackend().capabilities().execution_mode,
+            "plasticity_semantics": PLASTICITY_SEMANTICS,
+            "d3_complete": False,
         }
     else:
         connected = False

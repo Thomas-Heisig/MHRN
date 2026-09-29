@@ -1,0 +1,1 @@
+"""Canonical hardware acceleration interfaces."""

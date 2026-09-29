@@ -26,12 +26,35 @@ class BackendCapabilities:
     max_neurons: int
     max_ticks: int
     deterministic: bool
+    max_edges: int | None = None
+    plasticity_semantics: str = "NOT_SUPPORTED"
+    execution_mode: str = "GENERAL"
 
     def __post_init__(self) -> None:
         if self.max_neurons < 1:
             raise ValueError("max_neurons must be >= 1")
         if self.max_ticks < 1:
             raise ValueError("max_ticks must be >= 1")
+        if self.max_edges is not None and self.max_edges < 0:
+            raise ValueError("max_edges must be >= 0 when declared")
+        if not self.plasticity_semantics:
+            raise ValueError("plasticity_semantics must not be empty")
+        if not self.execution_mode:
+            raise ValueError("execution_mode must not be empty")
+
+    def to_mapping(self) -> dict[str, object]:
+        return {
+            "supports_recurrent": self.supports_recurrent,
+            "supports_plasticity": self.supports_plasticity,
+            "supports_pan_hyperstate": self.supports_pan_hyperstate,
+            "supports_structural_plasticity": self.supports_structural_plasticity,
+            "max_neurons": self.max_neurons,
+            "max_ticks": self.max_ticks,
+            "max_edges": self.max_edges,
+            "deterministic": self.deterministic,
+            "plasticity_semantics": self.plasticity_semantics,
+            "execution_mode": self.execution_mode,
+        }
 
 
 @dataclass(frozen=True, slots=True)
