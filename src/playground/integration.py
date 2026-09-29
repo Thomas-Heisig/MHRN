@@ -172,6 +172,8 @@ def transfer_element(payload: Mapping[str, object]) -> dict[str, object]:
     if candidate is None:
         raise ValueError(f"unknown Playground integration element: {raw_id}")
 
+    detail: dict[str, object]
+
     if candidate.element_id == "neural_io_contracts":
         from src.embodiment.neural_io_contracts import (
             BoundaryFrame as CanonicalBoundary,
