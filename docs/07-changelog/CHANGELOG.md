@@ -1,5 +1,18 @@
 # Changelog
 
+## 2026-09-28 - Frontend-Struktur für Playground-Integration korrigiert
+
+- Die bestehende Hauptstruktur bleibt erhalten und wird bewusst reduziert statt ersetzt.
+- Dashboard enthält nur noch Übersicht und System Info.
+- Wissenschaft enthält nur noch Übersicht, Observatory und Experimente.
+- Runtime & Wesen enthält als aktive Hauptansicht die Übersicht.
+- Control enthält Übersicht, Konsole sowie Struktur & Lernen.
+- Parameter wurde in Settings eingeordnet.
+- Release, Review, Dateien und Playground behalten ihre vorgesehenen Hauptfunktionen.
+- Publikation erhält zusätzlich einen Paper-Untertab für die vorhandenen versionierten Fachtexte.
+- Alle übrigen bisherigen Ansichten bleiben vollständig erhalten und werden geordnet unter `OLD` angeboten; es wurde keine fachliche Oberfläche gelöscht.
+- Cell Modell, kleines SNN und rekurrentes SNN bleiben ausführbar, sind aber nicht mehr Teil der aktiven Wissenschafts-/Wesen-/Control-Navigation.
+
 ## 2026-09-27 - v0.6.0-alpha.7 Release-Konsolidierung
 
 - Stage 0 ist im kanonischen Scientific-Maturity-Vertrag auf **92,5 %**

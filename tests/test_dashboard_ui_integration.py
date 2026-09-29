@@ -68,6 +68,9 @@ def test_visual_shell_v2_is_visible_and_exposes_global_routes() -> None:
         "settings",
         "review",
         "files",
+        "publication",
+        "playground",
+        "old",
     ):
         assert f"  {area}: {{" in router
     assert 'data-mhrn-area="${id}"' in router

@@ -341,9 +341,7 @@ class EmbodiedEnvironment:
         if self.last_frame is not None:
             raw_audio = self.last_frame.get("audio")
             if isinstance(raw_audio, dict):
-                raw_level: object = cast(dict[str, object], raw_audio).get(
-                    "level", 0.0
-                )
+                raw_level: object = cast(dict[str, object], raw_audio).get("level", 0.0)
                 if isinstance(raw_level, (int, float)):
                     audio = float(raw_level)
             raw_echo = self.last_frame.get("echo")

@@ -27,26 +27,111 @@ function isPersistent(element) {
 const AREAS = Object.freeze({
   dashboard: {
     number: "01", label: "Dashboard", subtitle: "System & Betrieb", owner: "overview",
-    purpose: "Kompakte Betriebsübersicht ohne doppelte Detailansichten.",
-    howto: ["Health und Integration prüfen.", "Passenden Untertab wählen.", "Für Detailanalysen in Wissenschaft, Runtime oder Control wechseln."],
+    purpose: "Kompakte System- und Betriebsübersicht. Detailkarten bleiben erhalten, liegen aber außerhalb der aktiven Hauptnavigation.",
+    howto: ["Übersicht für den Systemzustand nutzen.", "System Info für technische Basisdaten öffnen.", "Weitere frühere Dashboard-Ansichten liegen unter OLD."],
     contracts: ["/api/status", "/api/integration/status", "/api/snapshot-info"],
     routes: [
-      ["overview", "Übersicht", "overview"], ["vitals", "Vitals", "overview", "overview", "vitals"],
-      ["organs", "Organe", "overview", "overview", "organs"], ["memory", "Gedächtnis", "overview", "overview", "memory"],
-      ["structure", "Struktur", "overview", "overview", "structure"], ["snapshot", "Snapshot", "overview", "overview", "snapshot"],
+      ["overview", "Übersicht", "overview"],
       ["sysinfo", "System Info", "overview", "overview", "sysinfo"],
     ],
   },
   science: {
     number: "02", label: "Wissenschaft", subtitle: "Evidenz & Analyse", owner: "research",
-    purpose: "Messung, Experiment, Analyse, Registry und Dateien mit expliziter Evidenzgrenze.",
-    howto: ["Observatory für Messwerte und UNKNOWN-Zustände nutzen.", "Kausale Aussagen nur aus registrierten kontrollierten Läufen ableiten.", "Dateien immer im zentralen File Viewer öffnen."],
+    purpose: "Evidenz-, Beobachtungs- und Experimentarbeitsfläche mit expliziter Trennung von Engineering, DATA und EVID.",
+    howto: ["Übersicht für den Forschungsstatus nutzen.", "Observatory für Messwerte und UNKNOWN-Zustände verwenden.", "Experimente nur über den registrierten Workflow ausführen."],
     contracts: ["/api/science/metrics", "/api/research", "/api/research/analysis-jobs"],
     routes: [
-      ["overview", "Übersicht", "research"], ["observatory", "Observatory", "research", "focus", "#mhrn-scientific-metrics"],
-      ["experiments", "Experimente", "research", "research", "experiments"], ["network", "Netzwerk", "network", "view", "visual"],
-      ["dynamics", "Dynamik", "network", "view", "dynamics"], ["inspect", "Inspektor", "network", "view", "inspect"],
-      ["data", "Daten", "network", "view", "data"], ["registry", "Registry", "research", "research", "registry"],
+      ["overview", "Übersicht", "research"],
+      ["observatory", "Observatory", "research", "focus", "#mhrn-scientific-metrics"],
+      ["experiments", "Experimente", "research", "research", "experiments"],
+    ],
+  },
+  wesen: {
+    number: "03", label: "Runtime & Wesen", subtitle: "Körper & Verhalten", owner: "embodiment",
+    purpose: "Kompakte Einstiegsfläche für Runtime, Körpergrenze und Verhalten. Frühere Detailansichten bleiben unter OLD erhalten.",
+    howto: ["Übersicht als Einstiegspunkt verwenden.", "Technische Detailansichten bei Bedarf unter OLD öffnen.", "Verfügbarkeit niemals mit Autorisierung gleichsetzen."],
+    contracts: ["/api/embodiment/state", "/api/cognition/state", "/api/embodiment/gateways"],
+    routes: [
+      ["overview", "Übersicht", "embodiment"],
+    ],
+  },
+  control: {
+    number: "04", label: "Control", subtitle: "Steuerung & Parameter", owner: "control",
+    purpose: "Operatorsteuerung mit Konsole sowie strukturellen Lern- und Freigabefunktionen.",
+    howto: ["Übersicht für den Kontrollstatus nutzen.", "Konsole für Nachweise und Systemereignisse öffnen.", "Struktur & Lernen nur über vorhandene Approval-Grenzen verwenden."],
+    contracts: ["/api/control", "/api/parameters", "/api/structural/status"],
+    routes: [
+      ["overview", "Übersicht", "control"],
+      ["console", "Konsole", "control", "focusOnly", "#operator-console"],
+      ["structural", "Struktur & Lernen", "control", "focusOnly", "#structural-live-strip,#mhrn-learning-prep,#mhrn-structural-inspector"],
+    ],
+  },
+  release: {
+    number: "05", label: "Release", subtitle: "Gate & Reife", owner: "gate",
+    purpose: "Engineering-Reife, CI, Scientific Gate, Roadmap und veröffentlichte Releases getrennt bewerten.",
+    howto: ["Gate und Blocker zuerst prüfen.", "Engineering-Reife nicht mit wissenschaftlicher Evidenz gleichsetzen.", "Release nur aus einem verifizierten Source-Freeze ableiten."],
+    contracts: ["/api/gate/status", "/api/releases", "/api/releases/current"],
+    routes: [
+      ["overview", "Übersicht", "gate"],
+      ["gate", "Gate", "gate", "release", "gate"],
+      ["releases", "Releases", "gate", "release", "releases"],
+      ["preview", "Vorschau", "gate", "release", "preview"],
+      ["timeline", "Timeline", "gate", "release", "timeline"],
+      ["development", "Entwicklung", "gate", "release", "development"],
+      ["science", "Wissenschaft", "gate", "release", "science"],
+      ["publication", "Gesamtarbeit", "gate", "release", "publication"],
+      ["documents", "Roadmap", "gate", "release", "documents"],
+    ],
+  },
+  settings: {
+    number: "06", label: "Settings", subtitle: "App & Integrationen", owner: "appsettings",
+    purpose: "Oberfläche, AI/Chat, Integrationen, Grenzen und die aus Control herausgeführte Parameteransicht.",
+    howto: ["Oberfläche und Accessibility hier konfigurieren.", "AI-Provider und Integrationen über ihre bestehenden Verträge verwalten.", "Parameteränderungen weiterhin provenance-aware und als Pending Changes behandeln."],
+    contracts: ["/api/research/chat/settings", "/api/research/chat/providers", "/api/integration/status", "/api/parameters"],
+    routes: [
+      ["overview", "Übersicht", "appsettings"],
+      ["appearance", "Oberfläche", "appsettings", "generated", "appearance"],
+      ["ai", "AI & Chat", "appsettings", "generated", "ai"],
+      ["integrations", "Integrationen", "appsettings", "generated", "integrations"],
+      ["boundaries", "Grenzen", "appsettings", "generated", "boundaries"],
+      ["parameters", "Parameter", "settings"],
+    ],
+  },
+  review: {
+    number: "07", label: "Review", subtitle: "Human Review & Prüfer", owner: "review",
+    purpose: "Human Review, AIRR-Interpretationen, externe Prüfermetadaten und Prüferportal ohne automatische EVID-Promotion.",
+    howto: ["Offene Review-Items im Inbox-Untertab prüfen.", "AI-Interpretationen nur als Interpretation akzeptieren oder ablehnen.", "Probandenantworten bleiben außerhalb des Research-AI-Kontexts."],
+    contracts: ["/api/research/reviews", "/api/research/external-review", "/api/research/ai-reports"],
+    routes: [
+      ["overview", "Übersicht", "review"],
+      ["inbox", "Review Inbox", "review", "generated", "inbox"],
+      ["ai", "AI Reports", "review", "generated", "ai"],
+      ["external", "External Review", "review", "generated", "external"],
+      ["portal", "Prüferportal", "review", "generated", "portal"],
+      ["method", "Methoden & Ethik", "review", "generated", "method"],
+    ],
+  },
+  files: {
+    number: "08", label: "Dateien", subtitle: "Datei Viewer & Explorer", owner: "research",
+    purpose: "Zentraler Dateibrowser für Research-Artefakte, Dokumente und wissenschaftliche Quellen.",
+    howto: ["Übersicht für Dateizugänge nutzen.", "Datei-Explorer für Suche, Vorschau und Bearbeitung öffnen.", "Schreibschutz- und Provenienzgrenzen respektieren."],
+    contracts: ["/api/files/statistics", "/api/docs/tree"],
+    routes: [
+      ["overview", "Übersicht", "research"],
+      ["browse", "Datei-Explorer", "research", "research", "files"],
+    ],
+  },
+  publication: {
+    number: "09", label: "Publikation", subtitle: "Wissenschaftliche Arbeit", owner: "publication",
+    purpose: "Hauptarbeit, eigenständige Papers, Open-Wissenschaft-Zugänge und rechtliche Transparenz.",
+    howto: ["Einfach erklärt für den schnellen Einstieg nutzen.", "Publikation für die Gesamtarbeit und Paper für eigenständige Fachtexte verwenden.", "Open Wissenschaft und Impressum getrennt halten."],
+    contracts: ["/api/publication/current", "/api/publication/imprint", "Open-Science-Portale"],
+    routes: [
+      ["overview", "Einfach erklärt", "publication", "publication", "simple"],
+      ["reader", "Publikation", "publication", "publication", "reader"],
+      ["paper", "Paper", "publication", "publication", "paper"],
+      ["openscience", "Open Wissenschaft", "publication", "publication", "openscience"],
+      ["imprint", "Impressum & Rechtliches", "publication", "publication", "imprint"],
     ],
   },
   playground: {
@@ -62,80 +147,51 @@ const AREAS = Object.freeze({
       ["catalog", "Bausteine", "playground", "generated", "catalog"],
     ],
   },
-  wesen: {
-    number: "03", label: "Runtime & Wesen", subtitle: "Körper & Verhalten", owner: "embodiment",
-    purpose: "Runtime, Körpergrenze, Sensorik, Aktorik, Kognition und technische Identität in einer Arbeitsfläche.",
-    howto: ["Körpergrenze und Verbindungen prüfen.", "Pipeline und Clock nur über autorisierte Verträge steuern.", "Kognition, Profil und Symbiosis als technische Zustände interpretieren."],
-    contracts: ["/api/embodiment/state", "/api/cognition/state", "/api/embodiment/gateways"],
+  old: {
+    number: "OLD", label: "OLD", subtitle: "Archiv & Reserve", owner: "old",
+    purpose: "Vollständig erhaltene frühere Ansichten, geordnet nach ihrem ursprünglichen Bereich. Nichts wird gelöscht.",
+    howto: ["Ansichten nach ihrem Herkunftsbereich auswählen.", "OLD bleibt funktional, ist aber nicht Teil der aktiven Hauptstruktur.", "Eine spätere Reaktivierung oder Integration erfolgt bewusst und einzeln."],
+    contracts: [],
     routes: [
-      ["overview", "Übersicht", "embodiment"], ["live", "Wesen Live", "wesen", "focus", ".wesen-layout,#mhrn-runtime-io"], ["anatomy", "Anatomie", "embodiment", "embodiment", "anatomy"],
-      ["connections", "Verbindungen", "embodiment", "embodiment", "connections"], ["pipeline", "Pipeline", "embodiment", "embodiment", "pipeline"],
-      ["clock", "Runtime-Clock", "embodiment", "embodiment", "clock"], ["self", "Selbstbild", "embodiment", "embodiment", "self"],
-      ["neuron", "Neuron", "wesen", "focus", "#mhrn-runtime-neuron"], ["cognition", "Kognition", "wesen", "focus", "#mhrn-cognition"],
-      ["profile", "Profil", "wesen", "focus", "#wesen-profile-identity"],
-      ["symbiosis", "Neural Symbiosis", "wesen", "focus", "#wesen-neural-symbiosis"], ["gateways", "Gateways", "embodiment", "focus", "#mhrn-gateway-monitor"],
-    ],
-  },
-  control: {
-    number: "04", label: "Control", subtitle: "Steuerung & Parameter", owner: "control",
-    purpose: "Alle zustandsverändernden Operatorfunktionen, Experimentsteuerung, strukturelle Freigaben und wissenschaftliche Parameter.",
-    howto: ["Runtime- und Experimentmodus prüfen.", "Parameter als Pending Change vorbereiten und Provenienz kontrollieren.", "Lernen und Struktur nur über Approval-Grenzen freigeben."],
-    contracts: ["/api/control", "/api/parameters", "/api/structural/status"],
-    routes: [
-      ["overview", "Übersicht", "control"], ["runtime", "Runtime", "control", "focusOnly", "#control-causal-flow,#runtime-control-card"],
-      ["console", "Konsole", "control", "focusOnly", "#operator-console"], ["experiments", "Experiment Mode", "control", "focusOnly", "#experiment-panel"],
-      ["structural", "Struktur & Lernen", "control", "focusOnly", "#structural-live-strip,#mhrn-learning-prep,#mhrn-structural-inspector"],
-      ["parameters", "Parameter", "settings"],
-    ],
-  },
-  release: {
-    number: "05", label: "Release", subtitle: "Gate & Reife", owner: "gate",
-    purpose: "Engineering-Reife, CI, Scientific Gate, Roadmap und veröffentlichte Releases getrennt bewerten.",
-    howto: ["Gate und Blocker zuerst prüfen.", "Engineering-Reife nicht mit wissenschaftlicher Evidenz gleichsetzen.", "Release nur aus einem verifizierten Source-Freeze ableiten."],
-    contracts: ["/api/gate/status", "/api/releases", "/api/releases/current"],
-    routes: [
-      ["overview", "Übersicht", "gate"], ["gate", "Gate", "gate", "release", "gate"], ["releases", "Releases", "gate", "release", "releases"],
-      ["preview", "Vorschau", "gate", "release", "preview"], ["timeline", "Timeline", "gate", "release", "timeline"],
-      ["development", "Entwicklung", "gate", "release", "development"], ["science", "Wissenschaft", "gate", "release", "science"], ["publication", "Gesamtarbeit", "gate", "release", "publication"],
-      ["documents", "Roadmap", "gate", "release", "documents"],
-    ],
-  },
-  settings: {
-    number: "06", label: "Settings", subtitle: "App & Integrationen", owner: "appsettings",
-    purpose: "Nicht-wissenschaftliche Oberfläche, Chat-/AI-Provider und Integrationen. Modellparameter bleiben unter Control.",
-    howto: ["Oberfläche und Accessibility hier konfigurieren.", "AI-Provider über den vorhandenen Chat-Settings-Vertrag verwalten.", "Runtime-/Modellparameter ausschließlich unter Control → Parameter ändern."],
-    contracts: ["/api/research/chat/settings", "/api/research/chat/providers", "/api/integration/status"],
-    routes: [["overview", "Übersicht", "appsettings"], ["appearance", "Oberfläche", "appsettings", "generated", "appearance"], ["ai", "AI & Chat", "appsettings", "generated", "ai"], ["integrations", "Integrationen", "appsettings", "generated", "integrations"], ["boundaries", "Grenzen", "appsettings", "generated", "boundaries"]],
-  },
-  review: {
-    number: "07", label: "Review", subtitle: "Human Review & Prüfer", owner: "review",
-    purpose: "Human Review, AIRR-Interpretationen, externe Prüfermetadaten und Prüferportal ohne automatische EVID-Promotion.",
-    howto: ["Offene Review-Items im Inbox-Untertab prüfen.", "AI-Interpretationen nur als Interpretation akzeptieren oder ablehnen.", "Probandenantworten bleiben außerhalb des Research-AI-Kontexts."],
-    contracts: ["/api/research/reviews", "/api/research/external-review", "/api/research/ai-reports"],
-    routes: [["overview", "Übersicht", "review"], ["inbox", "Review Inbox", "review", "generated", "inbox"], ["ai", "AI Reports", "review", "generated", "ai"], ["external", "External Review", "review", "generated", "external"], ["portal", "Prüferportal", "review", "generated", "portal"], ["method", "Methoden & Ethik", "review", "generated", "method"]],
-  },
-  files: {
-    number: "08", label: "Dateien", subtitle: "File Viewer & Explorer", owner: "research",
-    purpose: "Zentraler Dateibrowser für Research-Artefakte, Dokumente und wissenschaftliche Quellen.",
-    howto: ["Dateibaum durchsuchen oder Suche verwenden.", "Vorschau für Markdown, Code, JSON, CSV, Bilder, Office und PDF.", "Dateien immer im kanonischen File Viewer öffnen."],
-    contracts: ["/api/files/statistics", "/api/docs/tree"],
-    routes: [
-      ["overview", "Übersicht", "research"], ["browse", "Datei-Explorer", "research", "research", "files"],
-    ],
-  },
-  publication: {
-    number: "09", label: "Publikation", subtitle: "Wissenschaftliche Arbeit", owner: "publication",
-    purpose: "Aktuelle wissenschaftliche Hauptarbeit, eine verständliche Kurzfassung sowie Projektidentität, Impressum und rechtliche Transparenz.",
-    howto: ["Publikation für Manuskript und Anhänge nutzen.", "Einfach erklärt fasst Forschungsziel, Grenzen und KI-Nutzung ohne Fachsprache zusammen.", "Impressum & Rechtliches zeigt Betreiber-, Autoren-, Lizenz- und Datenschutzangaben."],
-    contracts: ["/api/publication/current", "/api/publication/imprint", "Open-Science-Portale"],
-    routes: [
-      ["overview", "Einfach erklärt", "publication", "publication", "simple"],
-      ["reader", "Publikation", "publication", "publication", "reader"],
-      ["openscience", "Open Science", "publication", "publication", "openscience"],
-      ["imprint", "Impressum & Rechtliches", "publication", "publication", "imprint"],
+      ["overview", "Übersicht", "old"],
+
+      ["dashboard-vitals", "Dashboard · Vitals", "overview", "overview", "vitals"],
+      ["dashboard-organs", "Dashboard · Organe", "overview", "overview", "organs"],
+      ["dashboard-memory", "Dashboard · Gedächtnis", "overview", "overview", "memory"],
+      ["dashboard-structure", "Dashboard · Struktur", "overview", "overview", "structure"],
+      ["dashboard-snapshot", "Dashboard · Snapshot", "overview", "overview", "snapshot"],
+
+      ["science-network", "Wissenschaft · Netzwerk", "network", "view", "visual"],
+      ["science-cellmodel", "Wissenschaft · Cell Modell", "network", "focus", "#mhrn-neuron-model-science"],
+      ["science-dynamics", "Wissenschaft · Dynamik", "network", "view", "dynamics"],
+      ["science-inspect", "Wissenschaft · Inspektor", "network", "view", "inspect"],
+      ["science-data", "Wissenschaft · Daten", "network", "view", "data"],
+      ["science-registry", "Wissenschaft · Registry", "research", "research", "registry"],
+      ["science-snn", "Wissenschaft · Kleines SNN", "network", "focus", "#mhrn-small-snn-science"],
+      ["science-recurrent", "Wissenschaft · Rekurrentes SNN", "network", "focus", "#mhrn-recurrent-science"],
+
+      ["wesen-live", "Runtime & Wesen · Wesen Live", "wesen", "focus", ".wesen-layout,#mhrn-runtime-io"],
+      ["wesen-anatomy", "Runtime & Wesen · Anatomie", "embodiment", "embodiment", "anatomy"],
+      ["wesen-connections", "Runtime & Wesen · Verbindungen", "embodiment", "embodiment", "connections"],
+      ["wesen-pipeline", "Runtime & Wesen · Pipeline", "embodiment", "embodiment", "pipeline"],
+      ["wesen-clock", "Runtime & Wesen · Runtime-Clock", "embodiment", "embodiment", "clock"],
+      ["wesen-self", "Runtime & Wesen · Selbstbild", "embodiment", "embodiment", "self"],
+      ["wesen-neuron", "Runtime & Wesen · Neuron", "wesen", "focus", "#mhrn-runtime-neuron"],
+      ["wesen-cognition", "Runtime & Wesen · Kognition", "wesen", "focus", "#mhrn-cognition"],
+      ["wesen-profile", "Runtime & Wesen · Profil", "wesen", "focus", "#wesen-profile-identity"],
+      ["wesen-symbiosis", "Runtime & Wesen · Neural Symbiosis", "wesen", "focus", "#wesen-neural-symbiosis"],
+      ["wesen-gateways", "Runtime & Wesen · Gateways", "embodiment", "focus", "#mhrn-gateway-monitor"],
+      ["wesen-snn", "Runtime & Wesen · SNN", "wesen", "focus", "#mhrn-runtime-snn"],
+      ["wesen-recurrent", "Runtime & Wesen · Rekurrenz", "wesen", "focus", "#mhrn-runtime-recurrent"],
+
+      ["control-runtime", "Control · Runtime", "control", "focusOnly", "#control-causal-flow,#runtime-control-card"],
+      ["control-experiments", "Control · Experiment Mode", "control", "focusOnly", "#experiment-panel"],
+      ["control-snn", "Control · SNN-Parameter", "settings", "focus", "#mhrn-small-snn-control"],
+      ["control-recurrent", "Control · Rekurrenz", "settings", "focus", "#mhrn-recurrent-control"],
     ],
   },
 });
+
 let currentArea = "dashboard";
 let currentRoute = "overview";
 let refreshTimer = null;
@@ -201,14 +257,27 @@ function createGeneratedWorkspace(id, label, kicker) {
 
 function ensureGeneratedWorkspaces() {
   createGeneratedWorkspace("playground", "Playground", "EXPLORATION · NON-CANONICAL");
+  createGeneratedWorkspace("old", "OLD", "ARCHIV · RESERVE");
   const settings = createGeneratedWorkspace("appsettings", "Settings", "APPLICATION");
   if (settings && !byId("appsettings-content")) settings.insertAdjacentHTML("beforeend", `
     <div id="appsettings-content" class="mhrn-generated-panels">
       <section data-generated-panel="appearance" id="appsettings-appearance"><h3>Oberfläche & Accessibility</h3><p>Theme, Kontrast, Reader Mode, Accessibility und Hilfe bleiben UI-Einstellungen und verändern keine wissenschaftlichen Parameter.</p><div id="appearance-controls" class="appearance-grid"></div></section>
       <section data-generated-panel="ai"><h3>AI & Research Chat</h3><p>Provider, Modell, Kontext und Health über den kanonischen Research-Chat-Vertrag.</p><div id="appsettings-ai-detail" class="mhrn-kv-list">lade …</div><button type="button" id="appsettings-open-chat">Chat Settings öffnen</button></section>
       <section data-generated-panel="integrations"><h3>Integrationen</h3><p>Backend-/Frontend-Integration und verfügbare Komponenten.</p><div id="appsettings-integration-detail" class="mhrn-kv-list">lade …</div></section>
-      <section data-generated-panel="boundaries"><h3>Konfigurationsgrenzen</h3><p>App-Settings steuern Darstellung und Integrationen. Wissenschaftlich sensitive Modell- und Runtime-Parameter gehören ausschließlich zu <strong>Control → Parameter</strong>.</p><button type="button" data-route-jump="control:parameters">Parameter öffnen</button></section>
+      <section data-generated-panel="boundaries"><h3>Konfigurationsgrenzen</h3><p>App-Settings steuern Darstellung und Integrationen. Die zentrale Parameteransicht liegt jetzt unter <strong>Settings → Parameter</strong>; ihre Pending-Change-, Provenienz- und Approval-Grenzen bleiben unverändert.</p><button type="button" data-route-jump="settings:parameters">Parameter öffnen</button></section>
     </div>`);
+  const publication = rootFor("publication");
+  if (publication && !byId("publication-paper-panel")) {
+    publication.insertAdjacentHTML("beforeend", `
+      <section id="publication-paper-panel" data-publication-view="paper" hidden>
+        <header class="workspace-header"><div><span class="workspace-kicker">PAPER</span><h2>Eigenständige Fachtexte</h2><p>Versionierte Paper-Arbeitsfassungen. Kein Draft wird durch diese Ansicht automatisch zu EVID, Peer Review oder Publikation.</p></div></header>
+        <div class="publication-object-grid">
+          <article class="publication-object-card"><span class="workspace-kicker">SOFTWARE</span><h4>MHRN Research Software Paper</h4><p>Framework, Architektur und Open-Science-Workflow.</p><button type="button" data-paper-file="publications/papers/2026-09-20_mhrn-research-software_v0.1/PAPER.md">Paper öffnen</button></article>
+          <article class="publication-object-card"><span class="workspace-kicker">TOPOLOGY</span><h4>Topology & Propagation Dynamics</h4><p>DATA-basierte Arbeitsfassung zu dimensionaler Einbettung und Ausbreitungsdynamik.</p><button type="button" data-paper-file="publications/papers/2026-09-20_topology-dynamics_v0.1/PAPER.md">Paper öffnen</button></article>
+          <article class="publication-object-card"><span class="workspace-kicker">METHODS</span><h4>Recursive Epistemics Methods Paper</h4><p>Methoden- und Protokollpapier zur provenance-getrennten Forschung.</p><button type="button" data-paper-file="publications/papers/2026-09-20_recursive-epistemics-methods_v0.1/PAPER.md">Paper öffnen</button></article>
+        </div>
+      </section>`);
+  }
   const review = createGeneratedWorkspace("review", "Review", "HUMAN REVIEW");
   if (review && !byId("review-content")) review.insertAdjacentHTML("beforeend", `
     <div id="review-content" class="mhrn-generated-panels">
@@ -260,7 +329,8 @@ function ensureContextNav(areaId) {
     let nav = root.querySelector(`:scope > .mhrn-context-nav[data-area="${areaId}"]`);
     if (nav) continue;
     nav = document.createElement("nav"); nav.className = "mhrn-context-nav"; nav.dataset.area = areaId; nav.setAttribute("role", "tablist");
-    nav.innerHTML = area.routes.map(([id,label]) => `<button type="button" role="tab" data-area-route="${id}" title="${label}">${label}</button>`).join("");
+    const navRoutes = areaId === "old" ? area.routes.filter(([id, , target]) => id === "overview" || target === workspace) : area.routes;
+    nav.innerHTML = navRoutes.map(([id,label]) => `<button type="button" role="tab" data-area-route="${id}" title="${label}">${label}</button>`).join("");
     const anchor = root.querySelector(":scope > .workspace-header, :scope > .overview-command-bar, :scope > header");
     anchor?.insertAdjacentElement("afterend", nav) || root.prepend(nav);
     nav.addEventListener("click", (event) => { const button = event.target.closest("[data-area-route]"); if (button) selectRoute(areaId, button.dataset.areaRoute); });
@@ -728,6 +798,14 @@ function bindGeneratedActions() {
     if (file) {
       document.dispatchEvent(new CustomEvent("brain5d:open-file", { detail: { source: "research", path: file.dataset.reviewFile } }));
       selectRoute("files", "browse");
+    }
+    const paper = event.target.closest("[data-paper-file]");
+    if (paper) {
+      const path = paper.dataset.paperFile;
+      selectRoute("files", "browse");
+      requestAnimationFrame(() => {
+        document.dispatchEvent(new CustomEvent("brain5d:open-file", { detail: { source: "research", path } }));
+      });
     }
   });
   byId("appsettings-open-chat")?.addEventListener("click", () => {

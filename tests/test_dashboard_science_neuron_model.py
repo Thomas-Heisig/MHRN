@@ -20,10 +20,13 @@ def test_scientific_frontend_initializes_cell_model_module() -> None:
     assert "initNeuronModelScience();" in frontend
 
 
-def test_cell_model_is_a_network_workbench_view() -> None:
+def test_cell_model_remains_network_workbench_content_but_routes_via_old() -> None:
     module = _read("frontend/modules/neuron-model-science.js")
-    assert '[ROUTE_ID, "Cell Model", "network", "view", ROUTE_ID]' in module
-    assert 'architecture.selectRoute("science", ROUTE_ID)' in module
+    assert (
+        '[ROUTE_ID, "Wissenschaft · Cell Modell", "network", "focus", "#mhrn-neuron-model-science"]'
+        in module
+    )
+    assert 'architecture.selectRoute("old", ROUTE_ID)' in module
     assert "button.dataset.areaRoute = ROUTE_ID" in module
     assert "panel.dataset.networkView = ROUTE_ID" in module
     assert 'panel.id = "mhrn-neuron-model-science"' in module

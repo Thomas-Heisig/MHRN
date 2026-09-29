@@ -21,10 +21,10 @@ for (const port of [4174, 4175]) {
     await page.locator('#workflow-research-operational').check();
     await expect(page.locator('.research-rq-card')).toHaveCount(1);
     await page.locator('#workflow-research-operational').uncheck();
-    await selectRoute(page, 'wesen', 'symbiosis');
+    await selectRoute(page, 'old', 'wesen-symbiosis');
     await expect(page.locator('#wesen-neural-symbiosis')).toBeVisible();
     await expect(page.locator('#wesen-msba-pathways')).toContainText('Audio');
-    await selectRoute(page, 'wesen', 'profile');
+    await selectRoute(page, 'old', 'wesen-profile');
     await expect(page.locator('#wesen-profile-identity')).toBeVisible();
     await expect(page.locator('#wesen-profile-identity')).toContainText('Profile & Identität');
     await selectLabStage(page, 'question');
@@ -109,7 +109,7 @@ test('real registered batch: runner, manifest, DATA, report and central renderin
 
 test('real inventory changes reach the Wesen pipeline view without authorizing devices', async ({ page }) => {
   await page.goto('http://127.0.0.1:4174/');
-  await selectRoute(page, 'wesen', 'symbiosis');
+  await selectRoute(page, 'old', 'wesen-symbiosis');
   await page.request.post('/__test__/inventory', { data: { available: true } });
   const camera = page.locator('#wesen-symbiosis-pipelines .wesen-symbiosis-item').filter({ hasText: 'Camera' });
   const robot = page.locator('#wesen-symbiosis-pipelines .wesen-symbiosis-item').filter({ hasText: 'Robotics' });
