@@ -220,7 +220,7 @@ class CodecContract:
         window_ticks: int,
         reconstruction_class: str,
     ) -> "CodecContract":
-        payload = {
+        payload: dict[str, object] = {
             "schema_version": 1,
             "codec_id": codec_id,
             "codec_version": "1.0",
