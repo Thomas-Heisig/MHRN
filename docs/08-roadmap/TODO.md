@@ -82,6 +82,8 @@ MHRN / Multi-Scale Homeostatic Recurrence Network. Publication: Recursive Episte
 - [x] Markdown-/JSON-Artefakte im Experimentmanifest verknüpfen.
 - [x] Auswertung direkt im zentralen File Viewer öffnen.
 - [x] Interpretation von Human Review und EVID getrennt halten.
+- [x] Ausführbare und nur dokumentierte Playground-Bausteine unterscheiden.
+- [x] Inkompatible experimentelle Topologien in der Auswahl deaktivieren.
 
 ## 2026-09-27 Release-Statusmarker
 

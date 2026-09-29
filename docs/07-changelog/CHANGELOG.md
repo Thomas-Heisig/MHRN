@@ -1,5 +1,16 @@
 # Changelog
 
+## 2026-09-29 - Ausführbarkeitsstatus im Playground-Katalog
+
+- Katalogsichtbarkeit und tatsächliche Ausführbarkeit werden jetzt getrennt
+  ausgewiesen.
+- Explorative Analyse-, Literatur-, Repo- und Infrastrukturbausteine tragen
+  einen klaren Hinweis `Nur Katalog / nicht direkt ausführbar`.
+- Experimentelle MHRN->N-D-Topologien bleiben sichtbar, sind bei 5D aber
+  deaktiviert und werden erst ab 6D als ausführbarer Referenzpfad freigeschaltet.
+- Ausführbare Modelle, Stimuli, Readouts, Synapsen und Plastizitätsregeln
+  erhalten explizite `EXECUTABLE_REFERENCE`-Metadaten.
+
 ## 2026-09-28 - Frontend-Struktur für Playground-Integration korrigiert
 
 - Die bestehende Hauptstruktur bleibt erhalten und wird bewusst reduziert statt ersetzt.

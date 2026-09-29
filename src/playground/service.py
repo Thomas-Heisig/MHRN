@@ -39,22 +39,85 @@ def catalog() -> dict[str, object]:
         "mhrn_experimental_nd_distance": "Experimental >5D MHRN-style geometry with distance connectivity; non-canonical tuple representation.",
         "mhrn_experimental_nd_neighbourhood": "Experimental >5D MHRN-style geometry with k-neighbour connectivity; non-canonical tuple representation.",
     }
+    models = []
+    for model in NEURON_MODELS.values():
+        descriptor = model.descriptor()
+        descriptor["available"] = True
+        descriptor["executable"] = True
+        descriptor["execution_status"] = "EXECUTABLE_REFERENCE"
+        models.append(descriptor)
+
+    synapses = []
+    for item in SYNAPSE_MODELS.values():
+        descriptor = dict(item)
+        descriptor["executable"] = bool(descriptor.get("available", False))
+        descriptor["execution_status"] = (
+            "EXECUTABLE_REFERENCE"
+            if descriptor["executable"]
+            else "CATALOG_ONLY_NOT_IMPLEMENTED"
+        )
+        synapses.append(descriptor)
+
+    plasticity = []
+    for item in PLASTICITY_RULES.values():
+        descriptor = dict(item)
+        descriptor["executable"] = bool(descriptor.get("available", False))
+        descriptor["execution_status"] = (
+            "EXECUTABLE_REFERENCE"
+            if descriptor["executable"]
+            else "CATALOG_ONLY_NOT_IMPLEMENTED"
+        )
+        plasticity.append(descriptor)
+
+    experimental_topologies = {
+        "mhrn_experimental_nd",
+        "mhrn_experimental_nd_distance",
+        "mhrn_experimental_nd_neighbourhood",
+    }
+    topologies = []
+    for name in TOPOLOGY_REGISTRY:
+        descriptor = {
+            "name": name,
+            "available": True,
+            "executable": True,
+            "execution_status": "EXECUTABLE_REFERENCE",
+            "note": topology_notes.get(name, "Exploratory network building block."),
+        }
+        if name in experimental_topologies:
+            descriptor.update(
+                {
+                    "min_dimensions": 6,
+                    "execution_status": "EXECUTABLE_REFERENCE_IF_DIMENSIONS_GT_5",
+                    "note": f"{descriptor['note']} Requires dimensions > 5; at 5D this entry is catalog-only.",
+                }
+            )
+        topologies.append(descriptor)
+
     return {
         "class": "PLAYGROUND",
         "scientific_evidence": False,
-        "models": [model.descriptor() for model in NEURON_MODELS.values()],
-        "synapses": list(SYNAPSE_MODELS.values()),
-        "plasticity": list(PLASTICITY_RULES.values()),
-        "topologies": [
+        "models": models,
+        "synapses": synapses,
+        "plasticity": plasticity,
+        "topologies": topologies,
+        "stimuli": [
             {
                 "name": name,
                 "available": True,
-                "note": topology_notes.get(name, "Exploratory network building block."),
+                "executable": True,
+                "execution_status": "EXECUTABLE_REFERENCE",
             }
-            for name in TOPOLOGY_REGISTRY
+            for name in STIMULUS_REGISTRY
         ],
-        "stimuli": [{"name": name, "available": True} for name in STIMULUS_REGISTRY],
-        "readouts": [{"name": name, "available": True} for name in READOUTS],
+        "readouts": [
+            {
+                "name": name,
+                "available": True,
+                "executable": True,
+                "execution_status": "EXECUTABLE_REFERENCE",
+            }
+            for name in READOUTS
+        ],
         "analyses": [
             "ISI / CV(ISI)",
             "burst intervals",

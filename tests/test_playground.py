@@ -149,6 +149,13 @@ def test_playground_catalog_contains_full_building_block_families() -> None:
         "recurrent_small_world",
         "hierarchical",
     } <= topology_names
+    topology_by_name = {item["name"]: item for item in payload["topologies"]}
+    assert topology_by_name["mhrn_5d"]["executable"] is True
+    assert topology_by_name["mhrn_experimental_nd"]["min_dimensions"] == 6
+    assert "EXECUTABLE_REFERENCE_IF_DIMENSIONS_GT_5" in topology_by_name[
+        "mhrn_experimental_nd"
+    ]["execution_status"]
+    assert all(item["executable"] is True for item in payload["models"])
 
     plasticity_names = {item["name"] for item in payload["plasticity"]}
     assert {
