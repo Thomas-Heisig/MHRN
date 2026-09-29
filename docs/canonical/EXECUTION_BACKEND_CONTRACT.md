@@ -8,7 +8,7 @@ Scientific evidence: none created by this document
 
 MHRN separates runtime control from the mechanism that advances neural state. The canonical ExecutionBackend protocol is defined in src/runtime/backend.py. RuntimeController decides when bounded work is allowed; an ExecutionBackend decides how that work is executed.
 
-The contract exists before any canonical CUDA backend. Wave 3 therefore defines semantics only. CUDA Driver, NVRTC and recurrent/plasticity kernels remain in Playground until Wave 4.
+Wave 3 defined semantics before a canonical CUDA backend existed. Wave 4 now provides a bounded canonical CUDA reference under `src/acceleration/cuda/` while preserving this contract. The first facade is explicitly `BOUNDED_REPLAY_REFERENCE`; resident continuation state remains a later step.
 
 ## Required interface
 
@@ -59,7 +59,7 @@ BackendCapabilities declares bounded support for:
 - maximum tick count;
 - determinism under the declared contract.
 
-Capability flags are declarations, not scientific validation.
+Capability flags are declarations, not scientific validation. Optional capability metadata includes `max_edges`, `plasticity_semantics` and `execution_mode`; these fields make bounded or draft support explicit rather than implying full canonical semantics.
 
 ## Runtime relationship
 
@@ -77,9 +77,9 @@ canonical state / parity / checkpoint contracts
 
 MHRN core and runtime must not import Playground to satisfy this interface.
 
-## Wave 4 gate
+## Wave 4 implementation
 
-Wave 4 may extract CUDA infrastructure only after it can implement this protocol without weakening the state, determinism, checkpoint or parity contracts.
+Wave 4 extracts CUDA infrastructure without weakening the state, determinism, checkpoint or parity contracts. The detailed bounded backend contract is defined in [CUDA_BACKEND.md](CUDA_BACKEND.md).
 
 Acceptance for a canonical CUDA backend requires at minimum:
 

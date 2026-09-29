@@ -28,7 +28,7 @@ def test_integration_catalog_is_non_evidentiary_and_directional() -> None:
     assert candidates["neural_io_contracts"]["status"] == "INTEGRATED"
     assert candidates["execution_backend"]["status"] == "INTEGRATED"
     assert candidates["parity_determinism"]["status"] == "INTEGRATED"
-    assert candidates["cuda_execution"]["status"] == "READY_FOR_WAVE4"
+    assert candidates["cuda_execution"]["status"] == "INTEGRATED"
     assert candidates["old_frontend_views"]["status"] == "RETAINED_NOT_CORE"
     assert "science-snn" in candidates["old_frontend_views"]["old_routes"]
 
@@ -83,6 +83,11 @@ def test_wave3_execution_backend_and_parity_are_canonical_consumers() -> None:
     assert parity["same_counter_rng_function"] is True
 
     cuda = transfer_element({"element_id": "cuda_execution"})
-    assert cuda["status"] == "READY_FOR_WAVE4"
-    assert cuda["applied"] is False
-    assert cuda["next_gate"] == "CUDA_BACKEND_IMPLEMENTATION"
+    assert cuda["status"] == "INTEGRATED"
+    assert cuda["applied"] is True
+    assert cuda["same_recurrent_execute_function"] is True
+    assert cuda["execution_backend_contract"] is True
+    assert cuda["execution_mode"] == "BOUNDED_REPLAY_REFERENCE"
+    assert cuda["plasticity_semantics"] == "NON_CANONICAL_DRAFT"
+    assert cuda["d3_complete"] is False
+    assert cuda["next_gate"] == "WAVE5_RESIDENT_PAN_AND_ENVIRONMENT"
