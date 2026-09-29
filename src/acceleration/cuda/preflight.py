@@ -5,6 +5,7 @@ from __future__ import annotations
 import math
 from dataclasses import dataclass
 
+
 @dataclass(frozen=True, slots=True)
 class CooperativePreflight:
     """Host/device limits required for a cooperative persistent launch."""
@@ -30,6 +31,7 @@ class CooperativePreflight:
             "n_neurons": self.n_neurons,
         }
 
+
 def validate_cuda_block_size(block_size: int) -> int:
     """Validate a legal one-dimensional CUDA block size."""
 
@@ -40,6 +42,7 @@ def validate_cuda_block_size(block_size: int) -> int:
     if block_size % 32 != 0:
         raise ValueError("block_size must be a multiple of 32")
     return block_size
+
 
 def cooperative_capacity(
     *,
