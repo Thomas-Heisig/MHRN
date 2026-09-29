@@ -68,6 +68,10 @@ jobs:
         run: python -m black --check --diff src tests scripts
       - name: Ruff (fast linter + isort)
         run: python -m ruff check src/ tests/ scripts/
+      - name: Wave 4 canonical import boundary
+        run: python scripts/check_canonical_imports.py
+      - name: Wave 4 CUDA kernel freeze
+        run: python scripts/check_cuda_kernel_freeze.py
       - name: Pylint error diagnostics and quality threshold
         run: python -m pylint --disable=all --enable=E,F --fail-under=9.0 src
       - name: Pre-commit hooks (all files)
