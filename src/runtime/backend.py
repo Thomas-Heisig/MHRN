@@ -98,18 +98,24 @@ class ExecutionBackend(Protocol):
 
     def initialize(self, config: Mapping[str, object], seed: int) -> None:
         """Initialize from a data-only configuration and deterministic seed."""
+        ...
 
     def step(self, tick: int) -> StepResult:
         """Advance exactly one canonical tick."""
+        ...
 
     def run(self, ticks: int) -> RunResult:
         """Advance a bounded number of ticks."""
+        ...
 
     def snapshot(self) -> BackendState:
         """Capture backend-neutral continuation state."""
+        ...
 
     def restore(self, state: BackendState) -> None:
         """Restore a previously captured backend-neutral state."""
+        ...
 
     def capabilities(self) -> BackendCapabilities:
         """Return declared capabilities and bounded limits."""
+        ...
