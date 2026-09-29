@@ -102,10 +102,7 @@ def step_reference(
     w = float(state.get("w", 0.0))
     exponent = min(20.0, (v - params["v_t"]) / params["delta_t"])
     dv = (
-        -(v - params["v_rest"])
-        + params["delta_t"] * math.exp(exponent)
-        - w
-        + current
+        -(v - params["v_rest"]) + params["delta_t"] * math.exp(exponent) - w + current
     ) / params["tau_m_ms"]
     dw = (params["a"] * (v - params["v_rest"]) - w) / params["tau_w_ms"]
     v += dt_ms * dv
