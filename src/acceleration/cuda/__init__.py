@@ -8,7 +8,7 @@ from .driver import CudaDriver, DriverModule
 from .errors import CudaDriverError, CudaRuntimeUnavailable
 from .memory import DeviceAllocation
 from .nvrtc import compile_cuda_source, toolkit_root
-from .preflight import CooperativePreflight, cooperative_capacity, validate_cuda_block_size
+from .preflight import (\n    CooperativePreflight,\n    cooperative_capacity,\n    validate_cuda_block_size,\n)
 from .ptxas import PtxasReport, assemble_ptx, parse_ptxas_verbose
 
 __all__ = [
