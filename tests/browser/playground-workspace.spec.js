@@ -339,13 +339,34 @@ test("Playground exposes controlled MHRN integration transfer", async ({
   await expect(panel).toBeVisible();
   await expect(panel).toContainText("MHRN Integration");
   await expect(panel).toContainText("Neural I/O Contracts");
+  await expect(panel).toContainText("Neural I/O Codecs");
+  await expect(panel).toContainText("Neural I/O Area Adapter");
+
   const verify = panel.locator('[data-pg-transfer="neural_io_contracts"]');
   await expect(verify).toBeVisible();
   await verify.click();
   await expect(page.locator("#pg-mhrn-integration-state")).toContainText(
-    "INTEGRATED",
+    "same_contract_object",
   );
   await expect(page.locator("#pg-mhrn-integration-state")).toContainText(
-    "same_contract_object",
+    "INTEGRATED",
+  );
+
+  const codecs = panel.locator('[data-pg-transfer="neural_io_codecs"]');
+  await codecs.click();
+  await expect(page.locator("#pg-mhrn-integration-state")).toContainText(
+    "same_codec_function",
+  );
+  await expect(page.locator("#pg-mhrn-integration-state")).toContainText(
+    "INTEGRATED",
+  );
+
+  const adapter = panel.locator('[data-pg-transfer="neural_io_adapter"]');
+  await adapter.click();
+  await expect(page.locator("#pg-mhrn-integration-state")).toContainText(
+    "network_area_adapter_contract",
+  );
+  await expect(page.locator("#pg-mhrn-integration-state")).toContainText(
+    "INTEGRATED",
   );
 });
