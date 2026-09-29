@@ -166,3 +166,24 @@ EVID / bounded claim
 **OPTIONAL after core closure:** multicompartment neurons, gap junctions, broad SDE model language, Loihi/SpiNNaker adapters, multi-GPU.
 
 This ordering prevents feature parity with another simulator from displacing MHRN's primary scientific requirement: explicit semantics, provenance and reproducible evidence.
+
+
+## Wave 3 status — execution and verification plane (2026-09-29)
+
+Wave 3 closes two previously mandatory **engineering** gaps:
+
+1. the backend-neutral ExecutionBackend contract now exists;
+2. D1/D2/D3 parity, stable execution fingerprints and deterministic RNG/order/delay primitives now have canonical MHRN ownership.
+
+The Playground is no longer the authority for Builder parity or stochastic release semantics. It imports the canonical contracts while preserving its historical public import paths.
+
+This does **not** close RQ-CUDA-PAR-001. There is still no canonical CUDABackend implementing ExecutionBackend, and therefore no new preregistered CPU/CUDA DATA line produced by Wave 3.
+
+The immediate remaining acceleration gap is Wave 4:
+
+- extract CUDA Driver/NVRTC/ABI infrastructure to src/acceleration/cuda;
+- implement CUDABackend against ExecutionBackend;
+- preserve exact backend provenance and no-fallback labeling;
+- run the first canonical backend comparison through src/verification/parity.
+
+Learning, full PAN hyperstate, structural mutation and live closed-loop parity remain separately gated by their existing semantic contracts.
