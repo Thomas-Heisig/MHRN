@@ -239,8 +239,12 @@ def transfer_element(payload: Mapping[str, object]) -> dict[str, object]:
     elif candidate.element_id == "cuda_execution":
         from src.acceleration.cuda import CUDABackend, execution_backend_contract_check
         from src.acceleration.cuda.plasticity.contracts import PLASTICITY_SEMANTICS
-        from src.acceleration.cuda.recurrent import (\n            execute_recurrent as canonical_execute,\n        )
-        from src.playground.cuda.recurrent import (\n            execute_recurrent as playground_execute,\n        )
+        from src.acceleration.cuda.recurrent import (
+            execute_recurrent as canonical_execute,
+        )
+        from src.playground.cuda.recurrent import (
+            execute_recurrent as playground_execute,
+        )
 
         connected = (
             playground_execute is canonical_execute
