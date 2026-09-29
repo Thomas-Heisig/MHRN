@@ -807,6 +807,23 @@ Die folgenden Forschungsfragen sind noch offen und warten auf experimentelle Evi
 
 ---
 
+## RQ-CUDA-PAR-002
+
+**Domäne:** Cross-Backend Verification Methodology
+
+**Frage:** Kann ein kanonischer backend-neutraler D1/D2/D3-Paritaetsvertrag mit stabilem Execution Fingerprint spezifizierte Backend-Abweichungen fail-closed erkennen, bevor beschleunigte Ausfuehrungen als wissenschaftlich austauschbar behandelt werden?
+
+**Relevanz:** Die Frage prueft die Verifikationsmethode selbst und trennt einen technisch konsistenten Paritaetsvertrag von der spaeter separat zu testenden CPU/CUDA-Aequivalenz.
+
+**Literatur:**
+- `SRC-BRIAN2CUDA-2022`: Dennis Alevi et al. (2022)
+
+**Hypothesen:**
+- `H-CUDA-PAR-002-A`: Bei identischer kanonischer Konfiguration, Seed-, Backend-, Versions- und Tick-Spezifikation ist der Execution Fingerprint deterministisch und unabhaengig von Mapping-Einfuegereihenfolge; mindestens eine geaenderte spezifizierte Identitaetskomponente erzeugt einen anderen Fingerprint.
+- `H-CUDA-PAR-002-B`: Fuer die registrierte Fehlerklasse werden leere Evidenz, NaN/Inf-Zustaende, Spike-Ereignisabweichungen und kausale D3-Trajektorienabweichungen durch den kanonischen Paritaetsvertrag fail-closed erkannt.
+
+---
+
 ## RQ-MEM-002
 
 **Domäne:** Memory
@@ -1846,6 +1863,6 @@ Die folgenden Forschungsfragen sind noch offen und warten auf experimentelle Evi
 
 ---
 
-*Insgesamt 120 offene Fragen.*
+*Insgesamt 121 offene Fragen.*
 
 > Pruefstatus: RQ/H- und EVID-Statuswerte geben den Registry-Inhalt wieder. Insbesondere historische supports/supported-Eintraege sind keine Bestaetigung einer Freigabe nach den heutigen Clean-Freeze- und Human-Review-Gates. Ein abgeschlossener Lauf ist DATA, nicht automatisch akzeptierte Evidenz.

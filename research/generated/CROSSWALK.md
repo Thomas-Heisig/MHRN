@@ -32,6 +32,7 @@ All registered RQs are projected. Empty direction coordinates remain explicit un
 | RQ-CUDA-CL-001 | unresolved | unclassified | unresolved | unresolved | H-CUDA-CL-001-A, H-CUDA-CL-001-B, H-CUDA-CL-001-C | unresolved | unresolved | unresolved |
 | RQ-CUDA-DET-001 | unresolved | unclassified | unresolved | unresolved | H-CUDA-DET-001-A, H-CUDA-DET-001-B, H-CUDA-DET-001-C | unresolved | unresolved | unresolved |
 | RQ-CUDA-PAR-001 | unresolved | unclassified | unresolved | unresolved | H-CUDA-PAR-001-A, H-CUDA-PAR-001-B, H-CUDA-PAR-001-C | unresolved | unresolved | unresolved |
+| RQ-CUDA-PAR-002 | unresolved | unclassified | unresolved | unresolved | H-CUDA-PAR-002-A, H-CUDA-PAR-002-B | unresolved | unresolved | unresolved |
 | RQ-CUDA-SCALE-001 | unresolved | unclassified | unresolved | unresolved | H-CUDA-SCALE-001-A, H-CUDA-SCALE-001-B | unresolved | unresolved | unresolved |
 | RQ-CUDA-STRUCT-001 | unresolved | unclassified | unresolved | unresolved | H-CUDA-STRUCT-001-A, H-CUDA-STRUCT-001-B | unresolved | unresolved | unresolved |
 | RQ-DET-001 | unresolved | unclassified | unresolved | III, IV, X, XI | H-SNN-003-A | EXP-2026-0001, EXP-BATCH-20260906200118-03, EXP-BATCH-20260908200906-03, EXP-BATCH-20260914074039-03, EXP-DET-0001, EXP-GEN-0023, EXP-GEN-0046 | EVID-2026-01, EVID-2026-03, EVID-2026-05, EVID-2026-07, EVID-2026-09, EVID-2026-11, EVID-2026-13, EVID-2026-15 | unresolved |
