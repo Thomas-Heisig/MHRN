@@ -10,6 +10,7 @@ from __future__ import annotations
 import json
 import math
 from collections.abc import Sequence
+from typing import cast
 
 from .neural_io_contracts import (
     BoundaryFrame,
@@ -194,7 +195,8 @@ def encode_input(
     if codec_id == "vector_population_v1":
         if not isinstance(value, list):
             raise ValueError("vector_population_v1 requires a JSON numeric list")
-        if len(value) > layout.population_size:
+        vector = cast(list[object], value)
+        if len(vector) > layout.population_size:
             raise ValueError("input vector exceeds afferent population size")
         contract = CodecContract.create(
             codec_id=codec_id,
@@ -207,7 +209,7 @@ def encode_input(
             reconstruction_class="BOUNDED_LOSS",
         )
         events = []
-        for channel, item in enumerate(value):
+        for channel, item in enumerate(vector):
             scalar = _scalar(item)
             if scalar <= 0.0:
                 continue
