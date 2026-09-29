@@ -17,6 +17,7 @@ from src.verification.parity import config_fingerprint, execution_fingerprint
 from .plasticity.contracts import PLASTICITY_SEMANTICS
 from .recurrent.backend import execute_recurrent
 from .recurrent.state import (
+    canonical_int,
     prefix_inputs,
     recurrent_inputs_from_mapping,
     recurrent_inputs_to_mapping,
@@ -63,7 +64,7 @@ class CUDABackend:
         payload = step_payload(
             outputs,
             tick=tick,
-            n_neurons=int(config["n_neurons"]),
+            n_neurons=canonical_int(config["n_neurons"], field="n_neurons"),
         )
         spikes_raw = payload["spikes"]
         if not isinstance(spikes_raw, list):
@@ -86,7 +87,7 @@ class CUDABackend:
         if tick != self._tick:
             raise ValueError("tick must equal the backend continuation cursor")
         config = self._require_config()
-        if tick >= int(config["ticks"]):
+        if tick >= canonical_int(config["ticks"], field="ticks"):
             raise ValueError("configured tick limit reached")
         outputs = self._execute_prefix(tick + 1)
         self._tick = tick + 1
@@ -97,7 +98,7 @@ class CUDABackend:
             raise ValueError("ticks must be a positive int")
         config = self._require_config()
         total = self._tick + ticks
-        if total > int(config["ticks"]):
+        if total > canonical_int(config["ticks"], field="ticks"):
             raise ValueError("requested run exceeds configured tick limit")
         start = self._tick
         outputs = self._execute_prefix(total)
@@ -142,7 +143,7 @@ class CUDABackend:
         if not isinstance(raw_config, Mapping) or type(raw_seed) is not int:
             raise ValueError("checkpoint is missing canonical config/seed")
         self.initialize(raw_config, raw_seed)
-        if state.tick > int(self._require_config()["ticks"]):
+        if state.tick > canonical_int(self._require_config()["ticks"], field="ticks"):
             raise ValueError("checkpoint tick exceeds configured limit")
         self._tick = state.tick
 
