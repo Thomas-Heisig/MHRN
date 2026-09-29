@@ -38,6 +38,7 @@ PARAMETER_NAMES = (
     "resistance",
 )
 
+
 @dataclass(frozen=True)
 class RecurrentInputs:
     n_neurons: int
