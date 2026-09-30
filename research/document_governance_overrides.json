@@ -488,6 +488,15 @@
       "citation": "navigation_only_cite_underlying_contract",
       "evidence_role": "navigation_not_evidence",
       "rationale": "Index for current canonical MHRN architecture and verification contracts."
+    },
+    "docs/canonical/CUDA_BACKEND.md": {
+      "kind": "canonical_acceleration_contract",
+      "status": "current",
+      "authority": "normative_cuda_backend_contract",
+      "mutability": "editable_with_architecture_and_method_review",
+      "citation": "cite_current_revision_implementation_commit_and_hardware_verification_scope",
+      "evidence_role": "engineering_contract_not_evidence",
+      "rationale": "Defines the bounded canonical CUDA backend, kernel-freeze boundary, draft plasticity semantics and D1/D2 acceptance scope introduced by Playground integration Wave 4; it creates no DATA or EVID."
     }
   }
 }

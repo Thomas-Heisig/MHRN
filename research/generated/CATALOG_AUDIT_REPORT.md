@@ -5,8 +5,8 @@
 The canonical ResearchRegistry remains authoritative. Historical/design references and test-only fixtures are listed with explicit reasons; an unknown missing identifier fails CI.
 
 ## Summary
-- Question references: 5066
-- Hypothesis references: 3757
+- Question references: 5068
+- Hypothesis references: 3759
 - Missing questions: 27
 - Missing hypotheses: 24
 - Registry link issues: 0

@@ -598,3 +598,19 @@ Reference: [MHRN simulator capability gaps](MHRN_SIMULATOR_CAPABILITY_GAPS.md).
 - [ ] Wave 4: implement a canonical CUDABackend against ExecutionBackend.
 - [ ] Wave 4: run canonical CPU-vs-CUDA D1/D2 parity through the new framework.
 - [ ] Keep learning/plasticity promotion blocked until the canonical Learning/Synapse contract is implemented by both compared backends.
+
+
+## Wave 4 CUDA extraction verification
+
+- [x] Canonical import-direction gate.
+- [x] Byte-identical CUDA kernel-freeze gate.
+- [x] Plasticity semantic boundary gate:
+  `NON_CANONICAL_DRAFT / ALIGNMENT_PENDING`.
+- [x] Canonical cross-backend parity-contract gate.
+- [x] Physical CUDA hardware acceptance runner.
+- [ ] Execute post-extraction acceptance on RTX 3060 with
+  `python scripts/run_cuda_hardware_acceptance.py --require-gpu "RTX 3060" --full`.
+- [ ] Keep D3 incomplete until Frozen-Environment FE-2/FE-3 causal trajectory
+  parity exists.
+- [ ] Keep plasticity non-canonical until the CPU/CUDA learning-contract
+  alignment is complete.
