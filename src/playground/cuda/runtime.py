@@ -38,6 +38,20 @@ from src.verification.parity import max_abs_error as canonical_max_abs_error
 
 from .pan_compiler import CompileBundle
 
+__all__ = [
+    "CooperativePreflight",
+    "CudaDriver",
+    "CudaDriverError",
+    "CudaRuntimeUnavailable",
+    "DeviceAllocation",
+    "DriverModule",
+    "PtxasReport",
+    "assemble_ptx",
+    "cooperative_capacity",
+    "parse_ptxas_verbose",
+    "validate_cuda_block_size",
+]
+
 
 @dataclass(frozen=True, slots=True)
 class GateLaunchInputs:
