@@ -316,3 +316,21 @@ The Frozen-Environment verification layer now includes a backend-neutral live-in
 The initial acceptance fixture is frozen as `research/verification/frozen_environment/FE3_DETERMINISTIC_TARGET_V1.json`. CPUReferenceBackend and CUDABackend expose the same live-input extension without changing the recurrent CUDA kernel. Hosted CI validates the manifest and adapter; physical CPU-versus-CUDA FE-3 remains an explicit hardware-acceptance step.
 
 Cross-backend execution fingerprints are intentionally different because backend identity is provenance. FE-3 equivalence instead requires the same manifest, identical live-input fingerprint, and exact canonical D3c trajectory parity. This remains Engineering Verification and does not create DATA, EVID, a speedup claim, or evidence for PAN, learning, or cognitive capability.
+
+
+### Dashboard projection of acceleration acceptance
+
+The dashboard now projects canonical acceleration status instead of inferring it
+from Playground controls. A single backend status block reports canonical CUDA
+capabilities, the verified FE-3 manifest identity, and the latest reviewed
+physical hardware-acceptance artifact when one exists. The UI deliberately
+distinguishes `integrated`, `software_verified`, and physical
+`passed`/`pending` states.
+
+The same source is rendered differently by workspace: Playground exposes the
+promotion path, Release exposes engineering acceptance, the scientific
+Observatory exposes the DATA/EVID boundary, and OLD only documents retained
+compatibility surfaces. Absence of a dated
+`HARDWARE_ACCEPTANCE_<date>.json` is rendered fail-closed as physical
+acceptance pending. This projection is engineering provenance and does not
+promote any CUDA/FE-3 result to DATA or EVID.
