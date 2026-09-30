@@ -225,3 +225,18 @@ The first versioned FE-3 manifest is
 Hosted CI verifies the adapter and CPU/self parity. Physical CPU-vs-CUDA FE-3
 remains `HARDWARE_ACCEPTANCE_PENDING` until the dedicated RTX-class run
 passes. No DATA/EVID is produced by either bridge or hardware acceptance.
+
+
+## Frontend integration status projection — 2026-09-30
+
+The dashboard now exposes the canonical acceleration boundary without adding a
+new top-level workspace:
+
+- Playground shows the promotion/integration ladder;
+- Release → Entwicklung shows CUDA/FE-3 engineering acceptance;
+- Wissenschaft → Observatory shows the explicit no-DATA/no-EVID boundary;
+- OLD remains an archive/compatibility surface only.
+
+The projection is sourced from `/api/integration/status`. Software FE-3 readiness
+and physical RTX acceptance are separate fields. Physical acceptance remains
+fail-closed until a reviewed dated hardware acceptance JSON artifact is present.
