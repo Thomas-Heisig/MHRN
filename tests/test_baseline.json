@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
-  "tested_commit": "f7d3dfb5f287a101aea8661feeda7a2759ae9b06",
-  "tested_tree_digest": "26741ab1190dcd4de6737d66cd0ecd9ac73f153db7c18c0f18cfa99a6b9f89eb",
+  "tested_commit": "78d7758105276ef895392543ed33bb4f42d37bcc",
+  "tested_tree_digest": "280466f8e48deefc74236eeb76f4baa81e11d068f3fec831d58d0969ff7943cb",
   "tree_digest_paths": [
     "src/",
     "configs/",
@@ -12,7 +12,7 @@
   "tree_digest_excludes": [
     "tests/test_baseline.json"
   ],
-  "timestamp": "2026-09-30T09:11:03.905119+00:00",
+  "timestamp": "2026-09-30T12:33:11.503151+00:00",
   "python": "3.13.15",
   "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
   "source_unchanged_during_run": true,
@@ -345,7 +345,7 @@
     "src/learning/preparation.py": "227fd3bfa1d00b0bf577af81bdb693c622c82e1cf59663f9b5bb8a278a73b9f2",
     "src/learning/reward.py": "ccf303371445cd9b253bd00c394b4835fb72d0256431fd64b61f7cb827defa88",
     "src/learning/stdp_plugin.py": "0fa3c50588e29980a87f5fb1ad8dbd15ab0fad8fadf9319b1d3be36f3fd27b54",
-    "src/main.py": "a919a937f0b11a39d25722f6c2db460217978248f5ecac6ea0fb8a56d974af7f",
+    "src/main.py": "76ec88c410de025e988b3e2543366534b88d342adef607c6309be1b6bd9a1637",
     "src/manipulation/__init__.py": "08bf6554572e57f083b5dcae74348ad9cf851e60023db5f03d3cffa34e3b9542",
     "src/manipulation/manipulator.py": "d238dddf49fbb0727330e28092ff2801205a82f3dfe39a02c6c664023539f1cc",
     "src/memory/__init__.py": "cdefb4fb6c9386dbd47d5202e1a544faaecfbe59f44edd3052dfedc72b141fb4",
@@ -834,7 +834,7 @@
     "tests/test_self_organization_policy_alpha3.py": "526d90f52d9c20ea48f1ed564e29c0ea2bdc5dc9786a480780cd114b18b18d7c",
     "tests/test_semantic_memory.py": "1a1a8ed2d9e956a6f29693f403cfc76473da5240dec9dc90edd95fb9469773f4",
     "tests/test_signal_processing_contracts.py": "0f621943d463b9bb1602b6b9ea513f6389b8246f7e411f036961cad838c49800",
-    "tests/test_single_listener.py": "09082b585f5f89bc9e6db649bf009bd4dffc1531cd0b3a6c5c18076c08260368",
+    "tests/test_single_listener.py": "cff419a8fca94ea5ba2952e0d6250cd0024f4b9ad5e8c30af3c63d58a81d32ef",
     "tests/test_single_listener_linux_parser.py": "f00df765594b2f002dd8a28000e05fc550cd2c57a923e85b9f84d334d704244d",
     "tests/test_single_neuron_contract.py": "38ce7a6d40904c7ced7418b0247a1adf46cb2e36f00e8786681c961f1d55445c",
     "tests/test_single_neuron_scientific_readiness.py": "86890b51409503127f29a6e2eeaa293f46b486495e6391a9e01821d7ff664cb1",
