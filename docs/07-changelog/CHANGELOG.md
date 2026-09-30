@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-09-30 - CUDA/FE-3-Integration im Frontend vervollständigt
+
+- `/api/integration/status` um einen kanonischen Acceleration-Block erweitert.
+- Wave 1–4, FE-3-Softwarebrücke, Backend-Capabilities und physische Hardware-Abnahme werden getrennt dargestellt.
+- Physische RTX-Akzeptanz bleibt fail-closed `pending`, solange kein geprüftes `HARDWARE_ACCEPTANCE_<date>.json` vorliegt.
+- Playground zeigt den Promotionpfad, Release → Entwicklung den Engineering-Acceptance-Status, Wissenschaft → Observatory die Evidenzgrenze und OLD nur den Archiv-/Kompatibilitätshinweis.
+- Die wissenschaftliche Hauptarbeit und das Research-Software-Paper dokumentieren diese UI-/Provenienzgrenze ohne DATA/EVID-Promotion.
+- Das ältere Hardware-Acceptance-Dokument wurde als historischer Vor-FE-3-Adapter-Stand markiert.
+
 ## 2026-09-30 - Physical CUDA D3 bridge acceptance
 
 - `run_cuda_hardware_acceptance.py` accepts `--include-fe3` and can run the

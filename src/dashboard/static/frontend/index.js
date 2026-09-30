@@ -35,6 +35,7 @@ import { initSmallSNNStage } from "./modules/small-snn-stage.js";
 import { initRecurrentSNNStage } from "./modules/recurrent-snn-stage.js";
 import { initWorkspaceRouter } from "./workspace-router.js";
 import { initPlayground } from "./modules/playground.js";
+import { initAccelerationIntegrationStatus } from "./modules/acceleration-integration.js";
 import { initExternalReview } from "../external-review.js";
 
 installPollingGovernor();
@@ -77,6 +78,7 @@ function init() {
   initRuntimeNeuron();
   initSmallSNNStage();
   initRecurrentSNNStage();
+  initAccelerationIntegrationStatus();
 }
 
 if (document.readyState === "loading") {
