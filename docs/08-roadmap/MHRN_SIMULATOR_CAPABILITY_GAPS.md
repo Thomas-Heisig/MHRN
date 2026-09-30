@@ -84,7 +84,7 @@ Before Playground execution can be treated as a normal MHRN backend, the followi
 5. **Early benchmark/reference suite** using frozen MHRN workloads plus an explicit restricted Brian 2 reference subset; this validates parity infrastructure before live CUDA-1.6 rather than after PAN-GPU.
 6. **Canonical checkpoint/storage contract** including neuron/synapse state, pending events/delays/rewards, PAN/tissue sidecars, RNG, topology generation, environment state and execution fingerprint.
 7. **Canonical Neural-I/O contract** using the existing `BoundaryFrame`, `CodecContract`, `PopulationLayout`, `SpikeFrame`, `DecodeResult` and `CodecStreamState` design.
-8. **Frozen-Environment contract** — executable FE-1 integrity, FE-2 repeated replay and CPU/self FE-3 D3c control are implemented; physical CPU-vs-CUDA causal D3 remains pending.
+8. **Frozen-Environment contract** — executable FE-1 integrity, FE-2 repeated replay and CPU/self FE-3 D3c control are implemented; a physical Builder CPU/CUDA D3c bridge is now part of the hardware runner, while canonical FrozenEnvironment CPU-vs-CUDA FE-3 remains pending a live backend adapter.
 9. **Canonical structural approval/barrier contract** routing Growth/Pruning/Apoptosis through Proposal -> Coordinator Approval -> StructuralPlasticityEngine -> Journal/Undo.
 10. **Truthful execution provenance**: CPU fallback, CUDA reference, hardware smoke and scientific run must never share ambiguous labels.
 
@@ -201,3 +201,23 @@ control wired to the canonical parity framework.
 This closes the **verification-instrument gap**, not the scientific
 CPU/CUDA-equivalence question. Physical CUDA D3 remains pending, and no FE
 acceptance result is DATA or EVID by itself.
+
+
+## Hardware D3 bridge status — 2026-09-30
+
+The physical CUDA acceptance runner now groups three distinct engineering
+surfaces without conflating them:
+
+- canonical Wave-4 CPU/CUDA D1/D2;
+- optional recurrent/plasticity hardware reruns;
+- a live Builder CPU/CUDA D3c bridge over the existing CPU world.
+
+The third item is a useful hardware bridge because it exercises live causal
+actions and full body trajectory equality. It does **not** close the
+Frozen-Environment FE-3 gap. That gap requires a backend-neutral live adapter
+that accepts current observations, advances the backend without reset, decodes
+an action, and returns it to `FrozenWorldSession` on every tick.
+
+Until that adapter exists, the canonical state remains
+`PENDING_LIVE_BACKEND_ADAPTER`; no DATA/EVID is produced by the hardware
+bridge.
