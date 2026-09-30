@@ -4,15 +4,16 @@
   "scope": "docs",
   "warning": "Classification describes document role; it does not promote DATA to EVID or certify scientific validity.",
   "summary": {
-    "file_count": 197,
+    "file_count": 198,
     "status": {
       "archive": 8,
-      "current": 128,
+      "current": 129,
       "historical": 61
     },
     "kind": {
       "architecture": 32,
       "archive": 8,
+      "canonical_acceleration_contract": 1,
       "canonical_architecture_contract": 1,
       "canonical_verification_contract": 1,
       "changelog": 13,
@@ -44,6 +45,7 @@
       "historical_versioned_context": 5,
       "noncanonical_playground_documentation": 29,
       "normative_cross_backend_parity_contract": 1,
+      "normative_cuda_backend_contract": 1,
       "normative_document_governance": 2,
       "normative_execution_backend_contract": 1,
       "normative_quality_contract": 19,
@@ -2198,6 +2200,19 @@
       "evidence_role": "navigation_not_evidence",
       "rationale": "Canonical current entrypoint for docs; historical snapshots are intentionally not repeated here.",
       "classification_rule": "override:docs/README.md",
+      "review_required": false
+    },
+    {
+      "path": "docs/canonical/CUDA_BACKEND.md",
+      "domain": "docs",
+      "kind": "canonical_acceleration_contract",
+      "status": "current",
+      "authority": "normative_cuda_backend_contract",
+      "mutability": "editable_with_architecture_and_method_review",
+      "citation": "cite_current_revision_implementation_commit_and_hardware_verification_scope",
+      "evidence_role": "engineering_contract_not_evidence",
+      "rationale": "Defines the bounded canonical CUDA backend, kernel-freeze boundary, draft plasticity semantics and D1/D2 acceptance scope introduced by Playground integration Wave 4; it creates no DATA or EVID.",
+      "classification_rule": "override:docs/canonical/CUDA_BACKEND.md",
       "review_required": false
     },
     {
