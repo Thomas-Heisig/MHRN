@@ -1,7 +1,7 @@
 ---
 license: mit
 sdk: docker
-app_port: 8765
+app_port: 8767
 title: MHRN
 short_description: Multi-scale homeostatic recurrent spiking research
 language:

@@ -30,7 +30,7 @@ python scripts/browser_check.py
 ```
 
 Für einen bereits laufenden Dashboard-Server kann die URL direkt übergeben
-werden: `python scripts/browser_check.py --url http://127.0.0.1:8765/`.
+werden: `python scripts/browser_check.py --url http://127.0.0.1:8767/`.
 
 Die vollständige Browser-Suite läuft unabhängig mit `npm ci` und
 `npm run test:e2e`; sie prüft Batch-Optionen, Footer-Status, Routing,

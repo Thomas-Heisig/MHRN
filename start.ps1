@@ -24,7 +24,7 @@
 .PARAMETER DashboardHost
     Dashboard-Bind-Adresse (default: 0.0.0.0 fuer vertrauenswuerdiges LAN; 127.0.0.1 fuer lokal).
 .PARAMETER DashboardPort
-    Dashboard-Port (default: 8765).
+    Dashboard-Port (default: 8767).
 .PARAMETER PassThru
     Nur die Launcher-Argumente ausgeben, nicht ausfuehren.
 .PARAMETER Help
@@ -53,7 +53,7 @@ param(
     [switch]$NoHomeostasis,
     [int]$Ticks = 0,
     [string]$DashboardHost = "0.0.0.0",
-    [int]$DashboardPort = 8765,
+    [int]$DashboardPort = 8767,
 
     [switch]$PassThru,
     [switch]$Help

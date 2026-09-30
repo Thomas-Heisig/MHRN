@@ -61,7 +61,7 @@ Against an existing snapshot:
 Then open:
 
 ```text
-http://127.0.0.1:8765
+http://127.0.0.1:8767
 ```
 
 Alternative launcher:

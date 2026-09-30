@@ -4,7 +4,7 @@ This test launches MHRN, inspects TCP listeners for the dashboard port,
 and asserts exactly one LISTEN socket owned by the MHRN PID.
 
 Uses a dynamically allocated free port so the test never conflicts with
-pre-existing processes on port 8765.
+pre-existing processes on port 8767.
 """
 
 from __future__ import annotations

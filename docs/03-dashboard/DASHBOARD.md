@@ -179,9 +179,9 @@ CI success, typing, security and deterministic tests are engineering gates. Expe
 
 ## Network access
 
-The integrated dashboard can be opened from another device on the same trusted network. The Windows wrappers `start.cmd` and `start.ps1` bind to `0.0.0.0:8765` by default; use the host machine's LAN address, for example `http://192.168.1.25:8765`. The direct Python entry point remains loopback-only unless `--dashboard-host 0.0.0.0` is supplied.
+The integrated dashboard can be opened from another device on the same trusted network. The Windows wrappers `start.cmd` and `start.ps1` bind to `0.0.0.0:8767` by default; use the host machine's LAN address, for example `http://192.168.1.25:8767`. The direct Python entry point remains loopback-only unless `--dashboard-host 0.0.0.0` is supplied.
 
-If Windows Firewall blocks the connection, allow inbound TCP `8765` only on the intended private network profile. This dashboard has operator and file-management endpoints and has no network authentication layer; do not expose it through public port forwarding.
+If Windows Firewall blocks the connection, allow inbound TCP `8767` only on the intended private network profile. This dashboard has operator and file-management endpoints and has no network authentication layer; do not expose it through public port forwarding.
 
 Startup output distinguishes the bind endpoint, local URL, detected LAN URL, browser URL, configuration path, process ID and runtime mode. On Windows, the wrapper enables UTF-8 console output so status symbols remain readable instead of appearing as mojibake.
 

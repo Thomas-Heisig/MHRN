@@ -357,7 +357,7 @@
 
 ## 2026-09-09 Trusted-LAN dashboard access
 
-- Windows `start.cmd` and `start.ps1` now bind the integrated dashboard to `0.0.0.0:8765` by default so it is reachable through the host machine's LAN IP.
+- Windows `start.cmd` and `start.ps1` now bind the integrated dashboard to `0.0.0.0:8767` by default so it is reachable through the host machine's LAN IP.
 - Direct Python startup remains loopback-only by default; explicit host overrides remain available for local-only or explicitly selected bindings.
 - Documented the Windows Firewall and trusted-network boundary; public exposure remains unsupported without an authentication layer.
 - Improved startup diagnostics with the canonical version, configuration, runtime mode, bind/local/LAN URLs, process ID and UTF-8 console handling.
@@ -439,7 +439,7 @@
 
 ## 2026-09-07 Hugging Face Space
 
-- Prepared the Docker entrypoint for the integrated dashboard on `0.0.0.0:8765`.
+- Prepared the Docker entrypoint for the integrated dashboard on `0.0.0.0:8767`.
 - Added Docker Space metadata and published the live dashboard as `superdigger/MHRN-Space`.
 - Added the Space repository to the automatic GitHub-to-Hugging-Face synchronization workflow.
 
