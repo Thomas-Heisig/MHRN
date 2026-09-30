@@ -16,6 +16,7 @@ A component disabled by config is NEVER reported as "failed".
 
 from __future__ import annotations
 
+import json
 from pathlib import Path
 from typing import Any, cast
 
@@ -165,7 +166,10 @@ class IntegrationStatusBuilder:
 
         backend_status: dict[str, JSONValue]
         try:
-            from src.acceleration.cuda import CUDABackend, execution_backend_contract_check
+            from src.acceleration.cuda import (
+                CUDABackend,
+                execution_backend_contract_check,
+            )
 
             backend = CUDABackend()
             capabilities = backend.capabilities().to_mapping()
@@ -197,19 +201,24 @@ class IntegrationStatusBuilder:
         else:
             latest = reports[-1]
             try:
-                import json
-
-                raw = json.loads(latest.read_text(encoding="utf-8"))
-                if not isinstance(raw, dict):
-                    raise ValueError("hardware acceptance artifact must be an object")
-                accepted = bool(raw.get("passed")) and bool(raw.get("full_fe3_accepted"))
+                raw_object: object = json.loads(latest.read_text(encoding="utf-8"))
+                if not isinstance(raw_object, dict):
+                    raise ValueError(
+                        "hardware acceptance artifact must be an object"
+                    )
+                raw = cast(dict[str, object], raw_object)
+                accepted = bool(raw.get("passed")) and bool(
+                    raw.get("full_fe3_accepted")
+                )
                 hardware = {
                     "status": "passed" if accepted else "failed",
                     "accepted": accepted,
                     "artifact": str(latest.relative_to(self.repo_root)),
                     "gpu_identity": cast(JSONValue, raw.get("gpu_identity")),
                     "wave4_physical": cast(JSONValue, raw.get("wave4_physical")),
-                    "builder_d3c_bridge": cast(JSONValue, raw.get("builder_d3c_bridge")),
+                    "builder_d3c_bridge": cast(
+                        JSONValue, raw.get("builder_d3c_bridge")
+                    ),
                     "frozen_environment_fe3": cast(
                         JSONValue, raw.get("frozen_environment_fe3")
                     ),
@@ -224,18 +233,21 @@ class IntegrationStatusBuilder:
                     "message": str(exc),
                 }
 
-        backend_live = bool(
-            isinstance(backend_status.get("capabilities"), dict)
-            and cast(dict[str, object], backend_status["capabilities"]).get(
-                "supports_live_external_input"
-            )
-        )
+        capabilities_object = backend_status.get("capabilities")
+        backend_live = False
+        if isinstance(capabilities_object, dict):
+            capabilities_mapping = cast(dict[str, JSONValue], capabilities_object)
+            backend_live = capabilities_mapping.get("supports_live_external_input") is True
         fe3_software_ready = bool(manifest_status["valid"]) and backend_live
 
         waves: list[dict[str, JSONValue]] = [
             {"id": "wave1", "label": "Neural I/O Contracts", "status": "integrated"},
             {"id": "wave2", "label": "Codecs / Adapter / Gateway", "status": "integrated"},
-            {"id": "wave3", "label": "ExecutionBackend / Parity / Determinism", "status": "integrated"},
+            {
+                "id": "wave3",
+                "label": "ExecutionBackend / Parity / Determinism",
+                "status": "integrated",
+            },
             {"id": "wave4", "label": "Canonical CUDA Backend", "status": "integrated"},
             {
                 "id": "fe3",
