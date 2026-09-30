@@ -61,7 +61,9 @@ class DeterministicTargetEnvironment(EnvironmentAdapter):
 
         required = ("target", "position", "tick")
         if set(state) != set(required):
-            raise ValueError("deterministic world state must contain target/position/tick")
+            raise ValueError(
+                "deterministic world state must contain target/position/tick"
+            )
         values: list[int] = []
         for field in required:
             value = state[field]
