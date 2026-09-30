@@ -85,3 +85,20 @@ It does **not** establish:
 - real-world autonomy or cognitive capability.
 
 The Builder D3c bridge and canonical Frozen-Environment FE-3 remain separately named in reports so that one cannot silently stand in for the other.
+
+
+## Dashboard projection
+
+`GET /api/integration/status` exposes a read-only `acceleration` block for
+the dashboard. It verifies the versioned FE-3 manifest and reports canonical
+CUDA backend capabilities without executing GPU work.
+
+Physical acceptance is fail-closed. The dashboard searches only reviewed
+`docs/canonical/HARDWARE_ACCEPTANCE_<date>.json` reports. If none exists, the
+physical state is `pending` even when hosted CI and the FE-3 software bridge
+are green. A report is shown as accepted only when both `passed=true` and
+`full_fe3_accepted=true`.
+
+The frontend renders this source in Playground, Release, Wissenschaft and OLD
+with different contextual explanations. None of those views changes the
+artifact or evidence classification.
