@@ -13,6 +13,7 @@ from .backend import (
     BackendCapabilities,
     BackendState,
     ExecutionBackend,
+    LiveInputExecutionBackend,
     RunResult,
     StepResult,
 )
@@ -30,6 +31,7 @@ __all__ = [
     "BackendCapabilities",
     "BackendState",
     "ExecutionBackend",
+    "LiveInputExecutionBackend",
     "RunResult",
     "StepResult",
     "ControlCommand",

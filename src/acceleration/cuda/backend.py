@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from collections.abc import Mapping
+from collections.abc import Mapping, Sequence
 from typing import Any
 
 from src.runtime.backend import (
@@ -21,6 +21,7 @@ from .recurrent.state import (
     prefix_inputs,
     recurrent_inputs_from_mapping,
     recurrent_inputs_to_mapping,
+    set_external_tick_config,
     stable_digest,
     step_payload,
 )
@@ -82,6 +83,13 @@ class CUDABackend:
                 "spike_count": len(spikes),
             },
         )
+
+    def set_external_tick(self, tick: int, currents: Sequence[float]) -> None:
+        """Inject one live input row without changing CUDA kernel semantics."""
+
+        if tick != self._tick:
+            raise ValueError("live external input tick must equal continuation cursor")
+        set_external_tick_config(self._require_config(), tick=tick, currents=currents)
 
     def step(self, tick: int) -> StepResult:
         if tick != self._tick:
@@ -159,6 +167,7 @@ class CUDABackend:
             deterministic=True,
             plasticity_semantics=PLASTICITY_SEMANTICS,
             execution_mode="BOUNDED_REPLAY_REFERENCE",
+            supports_live_external_input=True,
         )
 
 

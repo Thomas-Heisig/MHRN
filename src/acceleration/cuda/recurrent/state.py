@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import hashlib
 import json
-from collections.abc import Mapping
+from collections.abc import Mapping, Sequence
 from dataclasses import asdict, replace
 
 from ..plasticity.reference import SynapseConfig
@@ -144,6 +144,38 @@ def recurrent_inputs_from_mapping(
         raise ValueError(f"missing recurrent config field: {exc.args[0]}") from exc
     validate_recurrent_inputs(inputs)
     return inputs
+
+
+def set_external_tick_config(
+    config: dict[str, object],
+    *,
+    tick: int,
+    currents: Sequence[float],
+) -> None:
+    """Replace exactly one external-current row in a canonical replay config."""
+
+    n = canonical_int(config.get("n_neurons"), field="n_neurons")
+    ticks = canonical_int(config.get("ticks"), field="ticks")
+    if type(tick) is not int or not 0 <= tick < ticks:
+        raise ValueError("tick is outside configured replay range")
+    if len(currents) != n:
+        raise ValueError("external-current row must match n_neurons")
+    raw_external = config.get("external")
+    if not isinstance(raw_external, (list, tuple)):
+        raise ValueError("external must be a list/tuple")
+    if len(raw_external) != n * ticks:
+        raise ValueError("external has invalid configured shape")
+    external = [
+        canonical_float(value, field=f"external[{index}]")
+        for index, value in enumerate(raw_external)
+    ]
+    row = [
+        canonical_float(value, field=f"currents[{index}]")
+        for index, value in enumerate(currents)
+    ]
+    start = tick * n
+    external[start : start + n] = row
+    config["external"] = external
 
 
 def prefix_inputs(inputs: RecurrentInputs, ticks: int) -> RecurrentInputs:
