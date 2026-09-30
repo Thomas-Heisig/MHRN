@@ -39,7 +39,10 @@ def main() -> int:
     parser.add_argument(
         "--require-cuda",
         action="store_true",
-        help="Fail until a physical CUDA closed-loop adapter is available.",
+        help=(
+            "Fail unless canonical FrozenEnvironment FE-3 has a live backend adapter; "
+            "the Builder D3c hardware bridge does not satisfy this gate."
+        ),
     )
     args = parser.parse_args()
 
@@ -72,7 +75,7 @@ def main() -> int:
                 ).to_mapping()
             )
 
-    cuda_status = "PENDING_PHYSICAL_CLOSED_LOOP_ADAPTER"
+    cuda_status = "PENDING_FROZEN_ENVIRONMENT_LIVE_BACKEND_ADAPTER"
     passed = all(bool(item["passed"]) for item in results)
     if args.require_cuda:
         passed = False

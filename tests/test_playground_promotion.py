@@ -30,9 +30,13 @@ def test_integration_catalog_is_non_evidentiary_and_directional() -> None:
     assert candidates["parity_determinism"]["status"] == "INTEGRATED"
     assert candidates["cuda_execution"]["status"] == "INTEGRATED"
     assert (
-        candidates["closed_loop"]["status"] == "FE_CONTRACT_EXECUTABLE_CUDA_D3_PENDING"
+        candidates["closed_loop"]["status"]
+        == "FE_CONTRACT_EXECUTABLE_BUILDER_D3_BRIDGE_AVAILABLE_FE3_PENDING"
     )
-    assert candidates["closed_loop"]["next_gate"] == "FE3_CPU_CUDA_CAUSAL_PARITY"
+    assert (
+        candidates["closed_loop"]["next_gate"]
+        == "FROZEN_ENVIRONMENT_LIVE_BACKEND_ADAPTER"
+    )
     assert candidates["old_frontend_views"]["status"] == "RETAINED_NOT_CORE"
     assert "science-snn" in candidates["old_frontend_views"]["old_routes"]
 

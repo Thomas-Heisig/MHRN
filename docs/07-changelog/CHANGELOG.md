@@ -1,5 +1,18 @@
 # Changelog
 
+## 2026-09-30 - Physical CUDA D3 bridge acceptance
+
+- `run_cuda_hardware_acceptance.py` accepts `--include-fe3` and can run the
+  existing live Builder CPU/CUDA D3c hardware comparison together with Wave-4
+  D1/D2 acceptance.
+- The report explicitly distinguishes `BUILDER_D3C_BRIDGE` from canonical
+  Frozen-Environment FE-3 and keeps `full_fe3_accepted=false`.
+- `run_fe_acceptance.py --require-cuda` continues to fail closed until a
+  canonical FrozenEnvironment live backend adapter exists.
+- Playground integration status exposes that the hardware bridge is available
+  while full FE-3 remains pending.
+- No CUDA kernel, PAN semantics, learning contract, DATA or EVID state changed.
+
 ## 2026-09-29 - Ausführbarkeitsstatus im Playground-Katalog
 
 - Katalogsichtbarkeit und tatsächliche Ausführbarkeit werden jetzt getrennt
