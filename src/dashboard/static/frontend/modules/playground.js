@@ -1282,6 +1282,7 @@ function integrationStatusLabel(status){
     BLOCKED_CONTRACT_FREEZE:"Contract-Freeze erforderlich",
     BLOCKED_FROZEN_ENVIRONMENT:"Frozen-Environment erforderlich",
     FE_CONTRACT_EXECUTABLE_CUDA_D3_PENDING:"FE-Vertrag ausführbar · CUDA-D3 offen",
+    FE_CONTRACT_EXECUTABLE_BUILDER_D3_BRIDGE_AVAILABLE_FE3_PENDING:"FE-Vertrag ausführbar · Builder-D3c Hardware-Bridge verfügbar · FE-3 Live-Adapter offen",
     BLOCKED_PAN_SEMANTICS:"PAN-Semantik erforderlich",
     RETAINED_NOT_CORE:"Unter OLD behalten",
   }[status]||status;
