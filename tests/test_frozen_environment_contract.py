@@ -19,7 +19,9 @@ from src.experience.frozen_environment import (
 )
 
 
-def _frame(*, tick: int, sequence: int = 0, arrival_time_ns: int | None = None) -> BoundaryFrame:
+def _frame(
+    *, tick: int, sequence: int = 0, arrival_time_ns: int | None = None
+) -> BoundaryFrame:
     symbol = SymbolFrame(
         payload=f'{{"tick":{tick}}}'.encode(),
         codec="json",
@@ -114,7 +116,9 @@ def test_frozen_boundary_rejects_wall_clock_input() -> None:
         FreezeMode.FE3_FULL_DETERMINISTIC_LIVE_LOOP,
     ],
 )
-def test_frozen_world_session_replays_initial_state_and_live_actions(mode: FreezeMode) -> None:
+def test_frozen_world_session_replays_initial_state_and_live_actions(
+    mode: FreezeMode,
+) -> None:
     manifest = _manifest(mode)
     world = DeterministicTargetEnvironment(target=99)
     session = FrozenWorldSession(manifest, world)
