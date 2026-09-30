@@ -19,9 +19,7 @@ def test_cuda_hardware_runner_exposes_fe3_bridge_without_claiming_full_fe3() -> 
 
 
 def test_frozen_environment_cli_still_fails_closed_for_cuda_requirement() -> None:
-    source = (ROOT / "scripts" / "run_fe_acceptance.py").read_text(
-        encoding="utf-8"
-    )
+    source = (ROOT / "scripts" / "run_fe_acceptance.py").read_text(encoding="utf-8")
     assert '"--require-cuda"' in source
     assert "PENDING_FROZEN_ENVIRONMENT_LIVE_BACKEND_ADAPTER" in source
     assert "if args.require_cuda:" in source
