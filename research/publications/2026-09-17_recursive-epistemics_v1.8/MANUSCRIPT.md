@@ -928,6 +928,12 @@ Für die erste Hardware-Abnahme ist ein versioniertes Manifest `FE3_DETERMINISTI
 
 Dieser Stand ist Engineering-Infrastruktur. Hosted CI kann Adapter, Manifest und CPU-Kontrollen prüfen; die physische CPU-vs-CUDA-FE-3-Abnahme auf der RTX-Referenzhardware bleibt ein eigener realer Nachweis. Weder Adapterimplementierung noch ein später grüner Hardware-Lauf erzeugen automatisch DATA, EVID, einen Speedup-Claim oder Aussagen über PAN-Hyperstate, Lernen oder Kognition.
 
+## 24.10 Frontend-Projektion der Backend- und Evidenzgrenze
+
+Der Dashboard-Stand bildet diese Grenze nun direkt aus kanonischen Quellen ab. Die Integrationsprojektion unterscheidet drei Zustände: **kanonisch integriert**, **softwareseitig verifiziert** und **physisch auf Referenzhardware akzeptiert**. Die ersten beiden Zustände können aus Quellstruktur, Backend-Capabilities und dem selbstverifizierenden FE-3-Manifest abgeleitet werden. Der dritte Zustand wird ausschließlich dann als erfüllt dargestellt, wenn ein geprüftes, datiertes `HARDWARE_ACCEPTANCE_<date>.json` im kanonischen Dokumentationspfad vorliegt.
+
+Die gleiche Information erscheint kontextabhängig an mehreren Stellen: im Playground als Promotion-/Integrationspfad, im Release-Bereich als Engineering-Acceptance, im wissenschaftlichen Observatory als explizite Evidenzgrenze und unter `OLD` nur als Archiv-/Kompatibilitätshinweis. Damit wird Frontend-Vollständigkeit nicht mit wissenschaftlicher Reife verwechselt. Insbesondere bleibt ein grüner Hardware-Status **Engineering Verification**; DATA/EVID benötigen weiterhin den separaten preregistrierten Forschungs- und Reviewpfad.
+
 
 ---
 
