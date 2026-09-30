@@ -15,8 +15,8 @@ from src.verification.frozen_environment import (
     deterministic_target_currents,
     load_manifest_artifact,
     run_fe3_backend_parity,
-    serialize_manifest_artifact,
     run_fe3_backend_trace,
+    serialize_manifest_artifact,
 )
 
 ROOT = Path(__file__).resolve().parents[1]
