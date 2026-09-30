@@ -55,6 +55,7 @@ All registered RQs are projected. Empty direction coordinates remain explicit un
 | RQ-EVAL-004 | unresolved | unclassified | unresolved | unresolved | H-EVAL-004-A | EXP-BATCH-20260914074039-81, EXP-EMP-20260910 | unresolved | unresolved |
 | RQ-EVAL-005 | unresolved | unclassified | unresolved | unresolved | H-EVAL-005-A | EXP-BATCH-20260914074039-82, EXP-EMP-20260910-SCALE-V2 | unresolved | unresolved |
 | RQ-EVAL-006 | unresolved | unclassified | unresolved | unresolved | H-EVAL-006-A, H-EVAL-006-B, H-EVAL-006-C | EXP-STAGE0-20260916-MODEL-CONFORMANCE-V2, EXP-STAGE0-20260918-MODEL-CONFORMANCE-V2-PROMO-R1 | EVID-2026-18 | unresolved |
+| RQ-FE-001 | unresolved | unclassified | unresolved | unresolved | H-FE-001-A, H-FE-001-B, H-FE-001-C | unresolved | unresolved | unresolved |
 | RQ-GATE-IR-001 | unresolved | unclassified | unresolved | unresolved | H-GATE-IR-001-A, H-GATE-IR-001-B, H-GATE-IR-001-C | unresolved | unresolved | unresolved |
 | RQ-GEN-001 | unresolved | unclassified | unresolved | unresolved | H-GEN-001-A | EXP-BATCH-20260906200118-36, EXP-BATCH-20260909223705-36, EXP-BATCH-20260914074039-36, EXP-EMP-20260910 | unresolved | unresolved |
 | RQ-GW-001 | unresolved | unclassified | unresolved | unresolved | H-GW-001-A | EXP-BATCH-20260909223705-78, EXP-BATCH-20260914074039-83 | unresolved | unresolved |

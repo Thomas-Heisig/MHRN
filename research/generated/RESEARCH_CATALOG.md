@@ -4,8 +4,8 @@
 
 ## Übersicht
 
-- **Forschungsfragen:** 122
-- **Hypothesen:** 145
+- **Forschungsfragen:** 123
+- **Hypothesen:** 148
 - **Claims:** 12
 - **Literaturquellen:** 67
 
@@ -947,6 +947,22 @@
 **Literatur:**
 - `SRC-CNS-STOP`: Frederick Verbruggen and others et al. (2019)
 - `SRC-CNS-NEUROGYM`: NeuroGym contributors et al. (2026)
+
+---
+
+## Frozen Environment Verification
+
+### RQ-FE-001
+
+**Frage:** Kann ein versionierter Frozen-Environment-Vertrag Manifestintegritaet, wiederholbaren Replay und kausale D3-Trajektorienpruefung fail-closed bereitstellen, ohne Engineering-Verifikation mit wissenschaftlicher Evidenz zu verwechseln?
+
+**Status:** open
+**Relevanz:** CPU/CUDA-D3-Paritaet ist nur interpretierbar, wenn Umweltzustand, Sensorfolge, Reward-Semantik, RNG-Provenienz und Episodegrenzen explizit eingefroren und reproduzierbar sind.
+
+**Hypothesen:**
+- `H-FE-001-A`: Zwei Builds aus identischen kanonischen Frozen-Environment-Eingaben erzeugen dasselbe Manifest-Artefakt und denselben Manifest-SHA256; jede claim-relevante Artefaktmanipulation wird fail-closed erkannt. *(untested)*
+- `H-FE-001-B`: Zehn Wiederholungen desselben FE-2-Vertrags mit identischem Anfangszustand, RNG-Vertrag und deterministischer Aktionspolicy erzeugen bit-identische kanonische Trajektorien-Digests. *(untested)*
+- `H-FE-001-C`: Der kanonische D3c-Paritaetsvergleich akzeptiert identische FE-3-Trajektorien und erkennt absichtliche Action-, Reward-, State-, Manifest- oder RNG-Abweichungen fail-closed. *(untested)*
 
 ---
 

@@ -268,3 +268,22 @@ Kernel byte preservation is verified in hosted CI. Post-extraction execution
 of the canonical facade on physical RTX-class hardware is tracked separately
 and remains pending until the dedicated hardware-acceptance runner is executed.
 These statements are Engineering Verification only and create no DATA or EVID.
+
+
+### Frozen-environment verification layer
+
+For closed-loop backend comparison, MHRN now treats environment state and
+causal input provenance as versioned verification inputs. A frozen-environment
+manifest records environment identity/configuration, the RNG contract, sensor
+schedule, action and reward schemas, episode policy, initial world state where
+applicable, and exact BoundaryFrames for boundary replay. The artifact is
+serialized through stable canonical JSON and is self-checked against its
+manifest SHA-256.
+
+The engineering acceptance ladder separates FE-1 exact boundary integrity,
+FE-2 repeated deterministic world replay, and FE-3 causal trajectory parity.
+FE-3 comparisons reuse the canonical D3 parity implementation rather than a
+second environment-specific comparator. Hosted CI currently exercises FE-1,
+ten-repeat replay, and a CPU/self D3c control. Physical CPU-versus-CUDA
+closed-loop D3 remains pending. These are software verification results and do
+not constitute scientific DATA or EVID.

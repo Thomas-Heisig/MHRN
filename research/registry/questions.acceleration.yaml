@@ -191,3 +191,22 @@
     limitations: Wave 3 implementiert Engineering-Vertraege und Unit-Tests. Das erzeugt weder Cross-Backend-DATA noch EVID und beantwortet RQ-CUDA-PAR-001 nicht.
   created: '2026-09-29'
   updated: '2026-09-29'
+
+
+- id: RQ-FE-001
+  domain: Frozen Environment Verification
+  question: Kann ein versionierter Frozen-Environment-Vertrag Manifestintegritaet, wiederholbaren Replay und kausale D3-Trajektorienpruefung fail-closed bereitstellen, ohne Engineering-Verifikation mit wissenschaftlicher Evidenz zu verwechseln?
+  relevance: CPU/CUDA-D3-Paritaet ist nur interpretierbar, wenn Umweltzustand, Sensorfolge, Reward-Semantik, RNG-Provenienz und Episodegrenzen explizit eingefroren und reproduzierbar sind.
+  literature: []
+  hypotheses:
+  - H-FE-001-A
+  - H-FE-001-B
+  - H-FE-001-C
+  evidence: []
+  status: open
+  answer:
+    current: null
+    confidence: none
+    limitations: FE-1/FE-2 und ein CPU-Self-Control fuer D3c sind Engineering Verification. Physische CPU-vs-CUDA-D3-Paritaet bleibt separat auszufuehren und erzeugt nicht automatisch DATA oder EVID.
+  created: '2026-09-30'
+  updated: '2026-09-30'

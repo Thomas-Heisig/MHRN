@@ -199,3 +199,30 @@ A preprint should not be released as a claim-bearing scientific result until the
 ## 12. Success criteria for the next phase
 
 The next phase is successful if MHRN produces a smaller number of stronger results rather than a larger number of mechanisms. The target is a chain of preregistered experiments in which at least one central architectural claim is either supported or clearly rejected by replicated evidence.
+
+
+## Frozen-Environment-Vertrag als methodisches Prüfinstrument
+
+Mit der CUDA-Kanonisierung entsteht eine neue methodische Fehlerquelle: Zwei
+Backends können intern jeweils deterministisch sein und trotzdem in einer
+geschlossenen Schleife verschiedene Umwelttrajektorien erzeugen. Deshalb wird
+die Umwelt selbst als versionierter, hashgebundener Vertrag behandelt.
+
+Der Frozen-Environment-Vertrag trennt drei Prüfstufen. FE-1 prüft die
+Integrität und Reihenfolge eingefrorener BoundaryFrames. FE-2 prüft, ob aus
+identischem Anfangszustand, RNG-Vertrag und Aktionspfad in Wiederholungen
+dieselbe kausale Trajektorie entsteht. FE-3 bindet diese Trajektorie an den
+kanonischen D3c-Paritätsvergleich. Der derzeitige CPU/Self-Control prüft die
+Verifikationskette, nicht die Gleichwertigkeit zweier verschiedener Backends.
+
+Daraus folgt eine strikte Evidenzgrenze: Manifest-Hashing, zehn identische
+Replays oder ein grüner CPU/Self-D3c-Test sind Engineering Verification. Erst
+ein separater physischer CPU-vs-CUDA-Lauf beantwortet die technische
+Cross-Backend-Frage; auch dieser wird nicht automatisch zu wissenschaftlicher
+DATA oder EVID. Für eine wissenschaftliche Closed-Loop-Behauptung bleiben
+Präregistrierung, Source Freeze, geeignete Kontrollen, Human Review und
+gegebenenfalls unabhängige Replikation erforderlich.
+
+Diese Methodik ist als `RQ-FE-001` registriert. Sie untersucht die
+Prüfvorrichtung selbst und darf nicht mit `RQ-CUDA-CL-001`, der späteren
+inhaltlichen Closed-Loop-Backendfrage, gleichgesetzt werden.
