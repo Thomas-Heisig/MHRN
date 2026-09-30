@@ -263,8 +263,8 @@ def main() -> int:
     parser.add_argument(
         "--dashboard-port",
         type=int,
-        default=8765,
-        help="Dashboard HTTP server port (default: 8765)",
+        default=8767,
+        help="Dashboard HTTP server port (default: 8767)",
     )
     parser.add_argument(
         "--ticks",

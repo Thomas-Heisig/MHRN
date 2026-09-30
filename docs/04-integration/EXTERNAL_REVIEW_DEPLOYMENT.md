@@ -5,7 +5,7 @@
 
 ## Security boundary
 
-The MHRN dashboard (`:8765`) is never published. The external review portal is a separate static site or isolated collector. It has no runtime, file-manager, experiment-runner, EVID-write or research-AI permissions.
+The MHRN dashboard (`:8767`) is never published. The external review portal is a separate static site or isolated collector. It has no runtime, file-manager, experiment-runner, EVID-write or research-AI permissions.
 
 ```text
 GitHub Pages or Hugging Face Space
@@ -49,7 +49,7 @@ Use `review_portal/compose.example.yaml` with Caddy from `review_portal/Caddyfil
 
 Do not expose:
 
-- MHRN dashboard port `8765`;
+- MHRN dashboard port `8767`;
 - GitHub tokens or repository write credentials to the browser;
 - admin tokens in URLs;
 - the collector data directory inside the repository.

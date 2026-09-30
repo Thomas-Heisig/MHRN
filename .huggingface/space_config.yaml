@@ -15,7 +15,7 @@ sdk: docker
 dockerfile: Dockerfile
 
 # Container Port (muss mit EXPOSE im Dockerfile übereinstimmen)
-port: 8765
+port: 8767
 
 # Startup Command
 command: python -m src.main --config configs/poc_config.yaml
@@ -25,7 +25,7 @@ env:
   - name: BRAIN5D_HEADLESS
     value: "false"
   - name: BRAIN5D_DASHBOARD_PORT
-    value: "8765"
+    value: "8767"
   - name: BRAIN5D_DASHBOARD_HOST
     value: "0.0.0.0"
 

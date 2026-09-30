@@ -433,7 +433,7 @@
 
 ## 2026-09-09 - Trusted-LAN dashboard access
 
-- Windows `start.cmd` and `start.ps1` now bind the dashboard to `0.0.0.0:8765` by default for access via the host machine's LAN IP.
+- Windows `start.cmd` and `start.ps1` now bind the dashboard to `0.0.0.0:8767` by default for access via the host machine's LAN IP.
 - Kept direct Python startup loopback-only and documented the firewall/trusted-network boundary.
 - Improved terminal diagnostics with canonical version, config, mode, PID and bind/local/LAN URL information; enabled UTF-8 console output in `start.cmd`.
 - Fixed CMD version extraction and localized Windows listener detection; occupied port errors now include the owning PID.
@@ -550,7 +550,7 @@
 
 ## 2026-09-07 — Hugging Face Space
 
-- Configured the Docker image to start the integrated dashboard on `0.0.0.0:8765`.
+- Configured the Docker image to start the integrated dashboard on `0.0.0.0:8767`.
 - Published the live dashboard as `superdigger/Brain-5D-Space`.
 - Added automatic synchronization to the Space repository alongside the model mirror.
 
@@ -1745,7 +1745,7 @@
 - **Pyright**: 0 errors.
 - **Ruff**: 0 errors.
 - **Source tree digest**: `063bc485695bc63c149344bcd9dfcffc6264814edaec120e51e7bf44d7e80107`.
-- **Single TCP LISTEN socket on 127.0.0.1:8765**: verified.
+- **Single TCP LISTEN socket on 127.0.0.1:8767**: verified.
 - **Production HomeostasisSignal → Policy → Coordinator**: verified.
 - **Structural Coordinator / PlasticityEngine / Manipulator / Approval-gated mutation / Journal**: verified via E2E proofs.
 - **Restore-and-continue identity (A/B/C)**: verified (`A == B == C`).
@@ -1781,7 +1781,7 @@
 - **Pyright**: 0 errors.
 - **Ruff**: 0 errors.
 - **Source tree digest**: `2f0d6883d4a7010b7de8e0f4a4200b62d8d3d761f5c54c599c992c4560235d5c`.
-- **Single TCP LISTEN socket on 127.0.0.1:8765**: verified.
+- **Single TCP LISTEN socket on 127.0.0.1:8767**: verified.
 - **Production HomeostasisSignal → Policy → Coordinator**: verified.
 - **Structural Coordinator / PlasticityEngine / Manipulator / Approval-gated mutation / Journal**: verified via E2E proofs.
 - **Restore-and-continue identity (A/B/C)**: verified (`A == B == C`).
@@ -2216,7 +2216,7 @@
 ### New Files for Hugging Face
 - **`HF_README.md`**: Hugging Face-spezifische README mit YAML Frontmatter (license, tags, pipeline_tag) und angepasstem Inhalt für die Hugging Face Platform.
 - **`.huggingface/metadata.yaml`**: Repository-Metadaten für huggingface_hub (library_name, tags, card-info).
-- **`.huggingface/space_config.yaml`**: Konfiguration für einen optionalen Hugging Face Space (Docker-basiert, Port 8765).
+- **`.huggingface/space_config.yaml`**: Konfiguration für einen optionalen Hugging Face Space (Docker-basiert, Port 8767).
 - **`.huggingface/README.md`**: Dokumentation zur Nutzung des Hugging Face Repositories.
 - **`.github/workflows/sync-huggingface.yml`**: GitHub Actions Workflow zur automatischen Synchronisation von GitHub → Hugging Face.
 
