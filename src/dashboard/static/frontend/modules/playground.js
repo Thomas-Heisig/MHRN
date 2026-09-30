@@ -1281,6 +1281,7 @@ function integrationStatusLabel(status){
     READY_AFTER_BACKEND_CONTRACT:"Backend-Vertrag zuerst",
     BLOCKED_CONTRACT_FREEZE:"Contract-Freeze erforderlich",
     BLOCKED_FROZEN_ENVIRONMENT:"Frozen-Environment erforderlich",
+    FE_CONTRACT_EXECUTABLE_CUDA_D3_PENDING:"FE-Vertrag ausführbar · CUDA-D3 offen",
     BLOCKED_PAN_SEMANTICS:"PAN-Semantik erforderlich",
     RETAINED_NOT_CORE:"Unter OLD behalten",
   }[status]||status;
