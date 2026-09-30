@@ -39,8 +39,10 @@ def main() -> int:
     parser.add_argument(
         "--require-cuda",
         action="store_true",
-        help=("Fail unless canonical FrozenEnvironment FE-3 has a live backend adapter; "
-            "the Builder D3c hardware bridge does not satisfy this gate."),
+        help=(
+            "Fail unless canonical FrozenEnvironment FE-3 has a live backend adapter; "
+            "the Builder D3c hardware bridge does not satisfy this gate."
+        ),
     )
     args = parser.parse_args()
 
