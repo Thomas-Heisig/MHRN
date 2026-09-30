@@ -76,28 +76,28 @@ def test_dashboard_access_urls_separate_bind_local_and_lan_addresses(
         lambda: "192.168.1.25",
     )
 
-    urls = dashboard_access_urls("0.0.0.0", 8765)
+    urls = dashboard_access_urls("0.0.0.0", 8767)
 
     assert urls == {
-        "bind": "0.0.0.0:8765",
-        "local": "http://127.0.0.1:8765",
-        "lan": "http://192.168.1.25:8765",
+        "bind": "0.0.0.0:8767",
+        "local": "http://127.0.0.1:8767",
+        "lan": "http://192.168.1.25:8767",
     }
 
 
 def test_parse_listening_pid_from_windows_netstat_output() -> None:
     output = """
-            TCP    0.0.0.0:8765       0.0.0.0:0       LISTENING       11868
-            TCP    127.0.0.1:8765     127.0.0.1:1     TIME_WAIT       0
+            TCP    0.0.0.0:8767       0.0.0.0:0       LISTENING       11868
+            TCP    127.0.0.1:8767     127.0.0.1:1     TIME_WAIT       0
         """
 
-    assert parse_listening_pid(output, 8765) == 11868
+    assert parse_listening_pid(output, 8767) == 11868
 
 
 def test_parse_localized_windows_netstat_listener_state() -> None:
-    output = "TCP    0.0.0.0:8765    0.0.0.0:0    ABHÖREN    11868"
+    output = "TCP    0.0.0.0:8767    0.0.0.0:0    ABHÖREN    11868"
 
-    assert parse_listening_pid(output, 8765) == 11868
+    assert parse_listening_pid(output, 8767) == 11868
 
 
 # ============================================================================

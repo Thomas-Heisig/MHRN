@@ -4377,7 +4377,7 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
         tenant = os.environ.get("BRAIN5D_MICROSOFT_TENANT", "common").strip()
         redirect_uri = os.environ.get(
             "BRAIN5D_MICROSOFT_REDIRECT_URI",
-            "http://127.0.0.1:8765/api/research/chat/oauth/callback",
+            "http://127.0.0.1:8767/api/research/chat/oauth/callback",
         ).strip()
         if not client_id:
             self._send_json(
@@ -6304,7 +6304,7 @@ def main() -> None:
     parser.add_argument(
         "--port",
         type=int,
-        default=8765,
+        default=8767,
     )
 
     parser.add_argument(
