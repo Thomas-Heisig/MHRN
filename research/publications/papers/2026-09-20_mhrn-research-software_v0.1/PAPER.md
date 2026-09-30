@@ -287,3 +287,24 @@ second environment-specific comparator. Hosted CI currently exercises FE-1,
 ten-repeat replay, and a CPU/self D3c control. Physical CPU-versus-CUDA
 closed-loop D3 remains pending. These are software verification results and do
 not constitute scientific DATA or EVID.
+
+
+### Physical cross-backend acceptance boundary
+
+The engineering acceptance workflow now distinguishes two CUDA closed-loop
+levels. First, the existing live Playground Builder can run the same
+deterministic configuration with CPU and CUDA neural execution while retaining
+the world/body loop on CPU; the canonical parity layer compares spike/state
+outputs together with actions, targets, rewards and body-trajectory digests.
+This provides a physical **Builder D3c bridge** on supported NVIDIA hardware.
+
+Second, the stricter Frozen-Environment FE-3 contract remains open. The
+canonical Wave-4 CUDA facade is intentionally a bounded replay backend and does
+not yet accept a causal sensor observation on each continuation tick. MHRN
+therefore does not treat a passing Builder bridge as completed FE-3. The
+hardware report records `full_fe3_accepted=false` until a backend-neutral live
+adapter connects FrozenEnvironment observations, neural execution, canonical
+readout and ActionCommand generation without resetting backend state.
+
+This distinction is an engineering-governance result, not scientific DATA or
+EVID.
