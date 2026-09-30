@@ -120,11 +120,15 @@ _CANDIDATES: tuple[PromotionCandidate, ...] = (
     PromotionCandidate(
         "closed_loop",
         "Closed Loop / Environment",
-        "BLOCKED_FROZEN_ENVIRONMENT",
+        "FE_CONTRACT_EXECUTABLE_CUDA_D3_PENDING",
         ("src/playground/closed_loop.py", "src/playground/pan/sandbox.py"),
-        ("src/experience/", "src/embodiment/"),
-        "MHRN_FROZEN_ENVIRONMENT_CONTRACT",
-        notes="Promote boundary/world contracts before Playground-specific body implementations.",
+        ("src/experience/", "src/verification/frozen_environment/"),
+        "FE3_CPU_CUDA_CAUSAL_PARITY",
+        notes=(
+            "The canonical Frozen-Environment contract is executable: FE-1 "
+            "manifest integrity, FE-2 repeated replay and a CPU/self D3c control "
+            "are available. Physical CPU-vs-CUDA closed-loop D3 remains pending."
+        ),
     ),
     PromotionCandidate(
         "pan_hyperstate",

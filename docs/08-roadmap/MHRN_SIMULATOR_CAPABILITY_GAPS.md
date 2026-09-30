@@ -84,7 +84,7 @@ Before Playground execution can be treated as a normal MHRN backend, the followi
 5. **Early benchmark/reference suite** using frozen MHRN workloads plus an explicit restricted Brian 2 reference subset; this validates parity infrastructure before live CUDA-1.6 rather than after PAN-GPU.
 6. **Canonical checkpoint/storage contract** including neuron/synapse state, pending events/delays/rewards, PAN/tissue sidecars, RNG, topology generation, environment state and execution fingerprint.
 7. **Canonical Neural-I/O contract** using the existing `BoundaryFrame`, `CodecContract`, `PopulationLayout`, `SpikeFrame`, `DecodeResult` and `CodecStreamState` design.
-8. **Frozen-Environment contract** defining Boundary replay, deterministic world state/RNG, live-action transitions and reward semantics before CUDA-1.6.
+8. **Frozen-Environment contract** — executable FE-1 integrity, FE-2 repeated replay and CPU/self FE-3 D3c control are implemented; physical CPU-vs-CUDA causal D3 remains pending.
 9. **Canonical structural approval/barrier contract** routing Growth/Pruning/Apoptosis through Proposal -> Coordinator Approval -> StructuralPlasticityEngine -> Journal/Undo.
 10. **Truthful execution provenance**: CPU fallback, CUDA reference, hardware smoke and scientific run must never share ambiguous labels.
 
@@ -132,6 +132,7 @@ The initial research families are:
 - `RQ-PAN-GPU-001` — PAN cross-backend execution
 - `RQ-CUDA-STRUCT-001` — structural mutation across host/GPU barriers
 - `RQ-CUDA-CL-001` — causal closed-loop backend parity
+- `RQ-FE-001` — Frozen-Environment verification methodology
 - `RQ-SIM-INTEROP-001` — external simulator interoperability
 
 No CLAIM entry is created by registration alone.
@@ -187,3 +188,16 @@ The immediate remaining acceleration gap is Wave 4:
 - run the first canonical backend comparison through src/verification/parity.
 
 Learning, full PAN hyperstate, structural mutation and live closed-loop parity remain separately gated by their existing semantic contracts.
+
+
+## Frozen-Environment acceptance status — 2026-09-30
+
+The Frozen-Environment programme now has an executable verification layer
+rather than documentation alone. Manifest artifacts use canonical JSON and
+self-declared SHA-256 verification; FE-1 validates exact BoundaryFrame replay;
+FE-2 verifies repeated deterministic trajectories; and FE-3 has a CPU/self D3c
+control wired to the canonical parity framework.
+
+This closes the **verification-instrument gap**, not the scientific
+CPU/CUDA-equivalence question. Physical CUDA D3 remains pending, and no FE
+acceptance result is DATA or EVID by itself.

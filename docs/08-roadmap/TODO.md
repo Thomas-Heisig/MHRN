@@ -614,3 +614,19 @@ Reference: [MHRN simulator capability gaps](MHRN_SIMULATOR_CAPABILITY_GAPS.md).
   parity exists.
 - [ ] Keep plasticity non-canonical until the CPU/CUDA learning-contract
   alignment is complete.
+
+
+## 2026-09-30 Frozen-Environment executable contract
+
+- [x] Implement canonical frozen manifest, RNG provenance and exact BoundaryFrame freeze.
+- [x] Add stable artifact serialization and fail-closed manifest hash verification.
+- [x] Add FE-1 ordered BoundaryFrame integrity acceptance.
+- [x] Add FE-2 deterministic replay acceptance with a default ten repetitions.
+- [x] Add FE-3 CPU/self D3c control through the canonical parity framework.
+- [x] Add `build_frozen_environment.py` and `run_fe_acceptance.py`.
+- [x] Add a dedicated `fe-contracts` CI job to the global CI summary.
+- [x] Keep `src/verification/frozen_environment` free of Playground imports.
+- [x] Register `RQ-FE-001` and untested FE-method hypotheses without DATA/EVID promotion.
+- [ ] Bind a physical CPU closed-loop backend and canonical CUDA backend to the same FE-3 manifest.
+- [ ] Execute physical CPU-vs-CUDA D1/D2/D3 acceptance on RTX 3060.
+- [ ] Preserve the result as Engineering Verification until a separately preregistered study exists.

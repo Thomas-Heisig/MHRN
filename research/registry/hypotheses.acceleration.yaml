@@ -190,3 +190,28 @@
   evidence: []
   created: '2026-09-29'
   updated: '2026-09-29'
+
+
+- id: H-FE-001-A
+  research_question: RQ-FE-001
+  hypothesis: Zwei Builds aus identischen kanonischen Frozen-Environment-Eingaben erzeugen dasselbe Manifest-Artefakt und denselben Manifest-SHA256; jede claim-relevante Artefaktmanipulation wird fail-closed erkannt.
+  status: untested
+  evidence: []
+  created: '2026-09-30'
+  updated: '2026-09-30'
+
+- id: H-FE-001-B
+  research_question: RQ-FE-001
+  hypothesis: Zehn Wiederholungen desselben FE-2-Vertrags mit identischem Anfangszustand, RNG-Vertrag und deterministischer Aktionspolicy erzeugen bit-identische kanonische Trajektorien-Digests.
+  status: untested
+  evidence: []
+  created: '2026-09-30'
+  updated: '2026-09-30'
+
+- id: H-FE-001-C
+  research_question: RQ-FE-001
+  hypothesis: Der kanonische D3c-Paritaetsvergleich akzeptiert identische FE-3-Trajektorien und erkennt absichtliche Action-, Reward-, State-, Manifest- oder RNG-Abweichungen fail-closed.
+  status: untested
+  evidence: []
+  created: '2026-09-30'
+  updated: '2026-09-30'

@@ -1,7 +1,7 @@
 # MHRN Frozen Environment Contract v0.1
 
-**Status:** canonical design contract  
-**Required before:** CUDA-1.6 live closed-loop parity  
+**Status:** executable canonical engineering contract; physical CPU/CUDA D3 pending  
+**Required before:** scientific use of live cross-backend closed-loop parity  
 **Scientific evidence:** none created by this document
 
 ## Purpose
@@ -142,3 +142,47 @@ CUDA-1.6 proceeds in this order:
 3. FE-2 frozen world with live backend actions;
 4. FE-3 full deterministic live loop;
 5. only after parity, scientific behavioral experiments.
+
+
+## Executable implementation status — 2026-09-30
+
+The canonical runtime contract is implemented in
+`src/experience/frozen_environment.py`. Verification and artifact handling
+live in `src/verification/frozen_environment/`; they import the runtime
+contract and the canonical parity framework rather than defining a second
+environment semantics.
+
+The current executable ladder is:
+
+1. **FE-1 / integrity:** exact BoundaryFrame payload/hash validation and ordered
+   replay.
+2. **FE-2 / repeated replay:** at least ten repetitions can be required to
+   produce an identical canonical trajectory digest.
+3. **FE-3 / CPU self-control:** two independently constructed deterministic
+   world sessions are compared through
+   `src.verification.parity.exact_frozen_environment_parity` as D3c.
+4. **FE-3 / CPU vs CUDA:** remains **PENDING** until the canonical CUDA backend
+   is connected to a physical closed-loop action adapter.
+
+The CLI tools are:
+
+```text
+python scripts/build_frozen_environment.py --mode FE-1 --output /tmp/fe1.json
+python scripts/run_fe_acceptance.py --manifest /tmp/fe1.json
+
+python scripts/build_frozen_environment.py --mode FE-3 --output /tmp/fe3.json
+python scripts/run_fe_acceptance.py --manifest /tmp/fe3.json --repeats 10
+```
+
+A dedicated `fe-contracts` CI job runs contract tests, artifact round trips,
+FE-1 acceptance and FE-3 CPU/self acceptance. It is part of the global CI
+summary.
+
+### Claim boundary
+
+These checks are **Engineering Verification**. A green FE-3 CPU/self control
+shows that the frozen-environment and D3 comparison plumbing are internally
+consistent; it does not show CPU/CUDA equivalence, PAN validity, learning
+validity, behavioral superiority, or scientific support for a biological
+claim. Physical CPU/CUDA D3 must be executed separately and a later scientific
+experiment still requires its own preregistration, source freeze and review.
