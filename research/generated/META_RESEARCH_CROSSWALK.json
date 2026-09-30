@@ -38,7 +38,7 @@
       "title": "Dimensional Embedding and Propagation Dynamics in Resource-Matched Recurrent Spiking Neural Networks"
     }
   ],
-  "question_count": 122,
+  "question_count": 123,
   "questions": [
     {
       "claim_statuses": {
@@ -1579,6 +1579,34 @@
       "research_question": "RQ-EVAL-006",
       "rq_status": "inconclusive",
       "source_path": "research/registry/questions.empirical.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Frozen Environment Verification",
+      "evidence_records": [],
+      "experiments": [],
+      "hypotheses": [
+        "H-FE-001-A",
+        "H-FE-001-B",
+        "H-FE-001-C"
+      ],
+      "hypothesis_statuses": {
+        "H-FE-001-A": "untested",
+        "H-FE-001-B": "untested",
+        "H-FE-001-C": "untested"
+      },
+      "literature": [],
+      "manuscript_parts": [],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-FE-001",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.acceleration.yaml",
       "stages": []
     },
     {

@@ -824,6 +824,21 @@ Die folgenden Forschungsfragen sind noch offen und warten auf experimentelle Evi
 
 ---
 
+## RQ-FE-001
+
+**Domäne:** Frozen Environment Verification
+
+**Frage:** Kann ein versionierter Frozen-Environment-Vertrag Manifestintegritaet, wiederholbaren Replay und kausale D3-Trajektorienpruefung fail-closed bereitstellen, ohne Engineering-Verifikation mit wissenschaftlicher Evidenz zu verwechseln?
+
+**Relevanz:** CPU/CUDA-D3-Paritaet ist nur interpretierbar, wenn Umweltzustand, Sensorfolge, Reward-Semantik, RNG-Provenienz und Episodegrenzen explizit eingefroren und reproduzierbar sind.
+
+**Hypothesen:**
+- `H-FE-001-A`: Zwei Builds aus identischen kanonischen Frozen-Environment-Eingaben erzeugen dasselbe Manifest-Artefakt und denselben Manifest-SHA256; jede claim-relevante Artefaktmanipulation wird fail-closed erkannt.
+- `H-FE-001-B`: Zehn Wiederholungen desselben FE-2-Vertrags mit identischem Anfangszustand, RNG-Vertrag und deterministischer Aktionspolicy erzeugen bit-identische kanonische Trajektorien-Digests.
+- `H-FE-001-C`: Der kanonische D3c-Paritaetsvergleich akzeptiert identische FE-3-Trajektorien und erkennt absichtliche Action-, Reward-, State-, Manifest- oder RNG-Abweichungen fail-closed.
+
+---
+
 ## RQ-MEM-002
 
 **Domäne:** Memory
@@ -1863,6 +1878,6 @@ Die folgenden Forschungsfragen sind noch offen und warten auf experimentelle Evi
 
 ---
 
-*Insgesamt 121 offene Fragen.*
+*Insgesamt 122 offene Fragen.*
 
 > Pruefstatus: RQ/H- und EVID-Statuswerte geben den Registry-Inhalt wieder. Insbesondere historische supports/supported-Eintraege sind keine Bestaetigung einer Freigabe nach den heutigen Clean-Freeze- und Human-Review-Gates. Ein abgeschlossener Lauf ist DATA, nicht automatisch akzeptierte Evidenz.

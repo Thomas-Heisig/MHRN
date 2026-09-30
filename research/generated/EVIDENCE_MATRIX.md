@@ -61,6 +61,7 @@ RQ-Status und Claim-Status sind unterschiedliche wissenschaftliche Zustände und
 | `RQ-CUDA-CL-001` | open | `H-CUDA-CL-001-A`, `H-CUDA-CL-001-B`, `H-CUDA-CL-001-C` | — | — | 0 | — | — | offen |
 | `RQ-SIM-INTEROP-001` | open | `H-SIM-INTEROP-001-A`, `H-SIM-INTEROP-001-B` | — | — | 5 | — | — | offen |
 | `RQ-CUDA-PAR-002` | open | `H-CUDA-PAR-002-A`, `H-CUDA-PAR-002-B` | — | — | 1 | — | — | offen |
+| `RQ-FE-001` | open | `H-FE-001-A`, `H-FE-001-B`, `H-FE-001-C` | — | — | 0 | — | — | offen |
 | `RQ-MEM-002` | open | `H-MEM-002-A` | — | — | 0 | `EXP-BATCH-20260909223705-44`, `EXP-EMP-20260910` | — | offen |
 | `RQ-WM-001` | open | `H-WM-001-A` | — | — | 0 | `EXP-BATCH-20260909223705-45`, `EXP-EMP-20260910` | — | offen |
 | `RQ-PROFILE-001` | open | `H-PROFILE-001-A` | — | — | 0 | `EXP-BATCH-20260909223705-46`, `EXP-EMP-20260910` | — | offen |
@@ -138,8 +139,8 @@ RQ-Status und Claim-Status sind unterschiedliche wissenschaftliche Zustände und
 | answered | 1 |
 | in_progress | 1 |
 | inconclusive | 3 |
-| open | 117 |
-| **Gesamt RQs** | **122** |
+| open | 118 |
+| **Gesamt RQs** | **123** |
 
 ### Claims (Claim-Status)
 
