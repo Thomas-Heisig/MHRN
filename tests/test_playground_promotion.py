@@ -33,10 +33,7 @@ def test_integration_catalog_is_non_evidentiary_and_directional() -> None:
         candidates["closed_loop"]["status"]
         == "FE3_LIVE_ADAPTER_IMPLEMENTED_HARDWARE_ACCEPTANCE_PENDING"
     )
-    assert (
-        candidates["closed_loop"]["next_gate"]
-        == "PHYSICAL_FE3_HARDWARE_ACCEPTANCE"
-    )
+    assert candidates["closed_loop"]["next_gate"] == "PHYSICAL_FE3_HARDWARE_ACCEPTANCE"
     assert candidates["old_frontend_views"]["status"] == "RETAINED_NOT_CORE"
     assert "science-snn" in candidates["old_frontend_views"]["old_routes"]
 
