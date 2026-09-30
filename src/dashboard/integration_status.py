@@ -203,9 +203,7 @@ class IntegrationStatusBuilder:
             try:
                 raw_object: object = json.loads(latest.read_text(encoding="utf-8"))
                 if not isinstance(raw_object, dict):
-                    raise ValueError(
-                        "hardware acceptance artifact must be an object"
-                    )
+                    raise ValueError("hardware acceptance artifact must be an object")
                 raw = cast(dict[str, object], raw_object)
                 accepted = bool(raw.get("passed")) and bool(
                     raw.get("full_fe3_accepted")
@@ -236,13 +234,19 @@ class IntegrationStatusBuilder:
         capabilities_object = backend_status.get("capabilities")
         backend_live = False
         if isinstance(capabilities_object, dict):
-            capabilities_mapping = cast(dict[str, JSONValue], capabilities_object)
-            backend_live = capabilities_mapping.get("supports_live_external_input") is True
+            capabilities_mapping = capabilities_object
+            backend_live = (
+                capabilities_mapping.get("supports_live_external_input") is True
+            )
         fe3_software_ready = bool(manifest_status["valid"]) and backend_live
 
         waves: list[dict[str, JSONValue]] = [
             {"id": "wave1", "label": "Neural I/O Contracts", "status": "integrated"},
-            {"id": "wave2", "label": "Codecs / Adapter / Gateway", "status": "integrated"},
+            {
+                "id": "wave2",
+                "label": "Codecs / Adapter / Gateway",
+                "status": "integrated",
+            },
             {
                 "id": "wave3",
                 "label": "ExecutionBackend / Parity / Determinism",
@@ -261,7 +265,11 @@ class IntegrationStatusBuilder:
             },
             {"id": "wave5", "label": "PAN Hyperstate", "status": "blocked"},
             {"id": "wave6", "label": "Structural Plasticity", "status": "blocked"},
-            {"id": "wave7", "label": "Canonical Learning Contract", "status": "blocked"},
+            {
+                "id": "wave7",
+                "label": "Canonical Learning Contract",
+                "status": "blocked",
+            },
         ]
 
         return {
