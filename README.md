@@ -399,7 +399,7 @@ These items are tracked in the canonical roadmaps rather than as fixed completio
 
 ## Security
 
-The dashboard exposes operator, research and file-management capabilities. Do not expose it directly to the public Internet. For trusted-LAN use, restrict TCP port `8765` to the intended private network.
+The dashboard exposes operator, research and file-management capabilities. Do not expose it directly to the public Internet. For trusted-LAN use, restrict TCP port `8767` to the intended private network.
 
 See [`SECURITY.md`](SECURITY.md) and [`docs/03-dashboard/DASHBOARD.md`](docs/03-dashboard/DASHBOARD.md).
 

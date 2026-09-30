@@ -31,7 +31,7 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[1]
 
 DEFAULT_HOST = "127.0.0.1"
-DEFAULT_PORT = 8765
+DEFAULT_PORT = 8767
 PID_FILE = ROOT / "artifacts" / "brain5d.pid"
 
 

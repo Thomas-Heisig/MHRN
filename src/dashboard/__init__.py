@@ -15,10 +15,10 @@ and accessed via a web browser.
 
 Example:
     >>> from src.dashboard import serve_dashboard
-    >>> serve_dashboard(host="127.0.0.1", port=8765)
+    >>> serve_dashboard(host="127.0.0.1", port=8767)
 
     Or via command line:
-    >>> python -m src.dashboard --host 0.0.0.0 --port 8765
+    >>> python -m src.dashboard --host 0.0.0.0 --port 8767
 """
 
 from __future__ import annotations
@@ -68,7 +68,7 @@ logger = logging.getLogger(__name__)
 
 def create_default_dashboard(
     host: str = "127.0.0.1",
-    port: int = 8765,
+    port: int = 8767,
     snapshot_path: str | None = None,
     docs_root: str | None = None,
     state_store: DashboardStateStore | None = None,
@@ -81,7 +81,7 @@ def create_default_dashboard(
 
     Args:
         host: Host address to bind to (default: 127.0.0.1).
-        port: Port to bind to (default: 8765).
+        port: Port to bind to (default: 8767).
         snapshot_path: Optional path to the default B5D snapshot.
         docs_root: Optional path to the documentation root.
         state_store: Optional custom state store.

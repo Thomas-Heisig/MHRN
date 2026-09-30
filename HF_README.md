@@ -108,7 +108,7 @@ pip install -e ".[dev]"
 .\start.ps1
 ```
 
-The dashboard defaults to `http://127.0.0.1:8765`.
+The dashboard defaults to `http://127.0.0.1:8767`.
 
 ## Current research focus
 

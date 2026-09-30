@@ -60,7 +60,7 @@ echo ===========================================================================
 :: Ein explizites --host in den Argumenten ueberschreibt den LAN-Standard.
 set "EXTRA="
 echo %* | findstr /C:"--no-dashboard" >nul
-if errorlevel 1 set "EXTRA=--dashboard --open-browser --config configs\poc_alpha5_live.yaml --host 0.0.0.0"
+if errorlevel 1 set "EXTRA=--dashboard --open-browser --config configs\poc_alpha5_live.yaml --host 0.0.0.0 --port 8767"
 
 :: Launcher starten
 %PYTHON_CMD% %PROJECT_ROOT%\scripts\mhrn_launcher.py start %EXTRA% %*
