@@ -112,9 +112,7 @@ def run_fe2_replay_determinism(
     if repeats < 2:
         raise ValueError("repeats must be >= 2")
 
-    traces = tuple(
-        _run_trace(manifest, world_factory, policy) for _ in range(repeats)
-    )
+    traces = tuple(_run_trace(manifest, world_factory, policy) for _ in range(repeats))
     digests = tuple(trace.trace_sha256 for trace in traces)
     passed = len(set(digests)) == 1 and bool(traces[0].records)
     return FEAcceptanceResult(
