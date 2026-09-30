@@ -55,7 +55,9 @@ def canonical_digest(value: object) -> str:
     return hashlib.sha256(raw).hexdigest()
 
 
-def _json_mapping(value: Mapping[str, JSONValue], *, field: str) -> dict[str, JSONValue]:
+def _json_mapping(
+    value: Mapping[str, JSONValue], *, field: str
+) -> dict[str, JSONValue]:
     result = dict(value)
     try:
         json.dumps(
@@ -91,7 +93,9 @@ class WorldRNGContract:
                 raise ValueError("STATE RNG contract requires serialized state")
             _json_mapping(self.state, field="rng.state")
         elif self.mode is RNGContractMode.COUNTER:
-            if not self.counter_axes or any(not axis.strip() for axis in self.counter_axes):
+            if not self.counter_axes or any(
+                not axis.strip() for axis in self.counter_axes
+            ):
                 raise ValueError("COUNTER RNG contract requires named counter axes")
             if len(set(self.counter_axes)) != len(self.counter_axes):
                 raise ValueError("counter axes must be unique")
@@ -139,7 +143,9 @@ class FrozenBoundaryFrame:
     @classmethod
     def from_frame(cls, frame: BoundaryFrame) -> "FrozenBoundaryFrame":
         if frame.arrival_time_ns is not None:
-            raise ValueError("frozen BoundaryFrame must not depend on wall-clock arrival time")
+            raise ValueError(
+                "frozen BoundaryFrame must not depend on wall-clock arrival time"
+            )
         payload = frame.payload
         return cls(
             schema_version=frame.schema_version,
@@ -252,7 +258,10 @@ class FrozenEnvironmentManifest:
     contract_id: str = FROZEN_ENVIRONMENT_CONTRACT_ID
 
     def __post_init__(self) -> None:
-        if self.schema_version != 1 or self.contract_id != FROZEN_ENVIRONMENT_CONTRACT_ID:
+        if (
+            self.schema_version != 1
+            or self.contract_id != FROZEN_ENVIRONMENT_CONTRACT_ID
+        ):
             raise ValueError("unsupported frozen-environment contract version")
         if not self.environment_id.strip() or not self.environment_version.strip():
             raise ValueError("environment identity/version must not be empty")
@@ -270,14 +279,20 @@ class FrozenEnvironmentManifest:
             _json_mapping(disturbance, field=f"external_disturbances[{index}]")
 
         frame_ids = [frame.frame_id for frame in self.boundary_frames]
-        stream_sequences = [(frame.stream_id, frame.sequence) for frame in self.boundary_frames]
+        stream_sequences = [
+            (frame.stream_id, frame.sequence) for frame in self.boundary_frames
+        ]
         if len(set(frame_ids)) != len(frame_ids):
             raise ValueError("frozen BoundaryFrame ids must be unique")
         if len(set(stream_sequences)) != len(stream_sequences):
-            raise ValueError("frozen BoundaryFrame stream/sequence pairs must be unique")
+            raise ValueError(
+                "frozen BoundaryFrame stream/sequence pairs must be unique"
+            )
         schedule = set(self.sensor_schedule)
         if any(frame.admitted_tick not in schedule for frame in self.boundary_frames):
-            raise ValueError("all frozen BoundaryFrames must belong to the sensor schedule")
+            raise ValueError(
+                "all frozen BoundaryFrames must belong to the sensor schedule"
+            )
 
         if self.mode is FreezeMode.FE1_BOUNDARY_REPLAY:
             if not self.boundary_frames:
@@ -299,7 +314,9 @@ class FrozenEnvironmentManifest:
             "reward_contract": dict(self.reward_contract),
             "episode_policy": dict(self.episode_policy),
             "initial_world_state": (
-                None if self.initial_world_state is None else dict(self.initial_world_state)
+                None
+                if self.initial_world_state is None
+                else dict(self.initial_world_state)
             ),
             "boundary_frames": [frame.to_mapping() for frame in self.boundary_frames],
             "external_disturbances": [
@@ -414,7 +431,9 @@ class FrozenBoundaryReplay:
         for frame in manifest.boundary_frames:
             grouped.setdefault(frame.admitted_tick, []).append(frame)
         self._grouped = {
-            tick: tuple(sorted(frames, key=lambda item: (item.stream_id, item.sequence)))
+            tick: tuple(
+                sorted(frames, key=lambda item: (item.stream_id, item.sequence))
+            )
             for tick, frames in grouped.items()
         }
 
@@ -477,7 +496,9 @@ def build_trajectory_record(
 ) -> FrozenTrajectoryRecord:
     if any(frame.admitted_tick != tick for frame in boundary_frames):
         raise ValueError("BoundaryFrame tick must match trajectory tick")
-    frozen_frames = tuple(FrozenBoundaryFrame.from_frame(frame) for frame in boundary_frames)
+    frozen_frames = tuple(
+        FrozenBoundaryFrame.from_frame(frame) for frame in boundary_frames
+    )
     return FrozenTrajectoryRecord(
         tick=tick,
         pre_state_hash=canonical_digest(dict(pre_state)),
