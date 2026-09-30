@@ -186,3 +186,36 @@ consistent; it does not show CPU/CUDA equivalence, PAN validity, learning
 validity, behavioral superiority, or scientific support for a biological
 claim. Physical CPU/CUDA D3 must be executed separately and a later scientific
 experiment still requires its own preregistration, source freeze and review.
+
+
+## Physical CUDA acceptance bridge — 2026-09-30
+
+The canonical hardware runner now accepts `--include-fe3`. This adds the
+existing physical live Builder CPU/CUDA D3c comparison to the same RTX-class
+acceptance invocation used for Wave-4 D1/D2.
+
+This is deliberately classified as a **Builder D3c bridge**, not as completed
+Frozen-Environment FE-3. The Builder path has a live CPU world and compares
+CPU/CUDA actions, targets, rewards and full body-trajectory digests through the
+canonical parity framework, but it does not execute from a
+`FrozenEnvironmentManifest` through a canonical per-tick backend adapter.
+
+Therefore the authoritative status remains:
+
+```text
+Wave-4 physical D1/D2                  executable
+Builder live CPU/CUDA D3c bridge       executable on physical CUDA
+FrozenEnvironment FE-3 CPU/CUDA D3c    PENDING_LIVE_BACKEND_ADAPTER
+```
+
+The hardware command is:
+
+```bash
+python scripts/run_cuda_hardware_acceptance.py \
+  --require-gpu "RTX 3060" \
+  --full \
+  --include-fe3
+```
+
+The resulting report always contains
+`full_fe3_accepted=false` until the missing canonical live adapter exists.
