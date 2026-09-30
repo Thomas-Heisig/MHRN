@@ -74,7 +74,9 @@ def _rng_from_mapping(value: object) -> WorldRNGContract:
         if state_value is None
         else _json_mapping(state_value, field="manifest.rng.state")
     )
-    axes_raw = _sequence(data.get("counter_axes", []), field="manifest.rng.counter_axes")
+    axes_raw = _sequence(
+        data.get("counter_axes", []), field="manifest.rng.counter_axes"
+    )
     axes = tuple(_text(item, field="manifest.rng.counter_axes[]") for item in axes_raw)
     return WorldRNGContract(
         algorithm=_text(data.get("algorithm"), field="manifest.rng.algorithm"),
@@ -244,9 +246,7 @@ def load_manifest_artifact(path: str | Path) -> FrozenEnvironmentManifest:
         raise ValueError("unsupported frozen-environment artifact envelope")
     manifest_raw = _mapping(envelope.get("manifest"), field="artifact.manifest")
     manifest = manifest_from_mapping(manifest_raw)
-    declared = _text(
-        envelope.get("manifest_sha256"), field="artifact.manifest_sha256"
-    )
+    declared = _text(envelope.get("manifest_sha256"), field="artifact.manifest_sha256")
     if declared != manifest.manifest_sha256:
         raise ValueError("frozen-environment manifest digest mismatch")
     return manifest
