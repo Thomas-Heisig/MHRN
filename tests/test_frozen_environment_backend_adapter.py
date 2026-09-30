@@ -15,6 +15,7 @@ from src.verification.frozen_environment import (
     deterministic_target_currents,
     load_manifest_artifact,
     run_fe3_backend_parity,
+    serialize_manifest_artifact,
     run_fe3_backend_trace,
 )
 
@@ -38,6 +39,22 @@ def test_fe3_manifest_is_versioned_and_self_verifying() -> None:
     assert manifest.manifest_sha256 == MANIFEST_SHA256
     assert manifest.environment_id == "deterministic-target-v1"
     assert manifest.sensor_schedule == (0, 1, 2)
+
+
+def test_fe3_manifest_serialization_is_reproducible() -> None:
+    first = load_manifest_artifact(MANIFEST)
+    second = load_manifest_artifact(MANIFEST)
+    assert first.manifest_sha256 == second.manifest_sha256 == MANIFEST_SHA256
+    assert serialize_manifest_artifact(first) == serialize_manifest_artifact(second)
+
+
+def test_fe3_live_adapter_is_backend_neutral() -> None:
+    adapter_source = (
+        ROOT / "src" / "verification" / "frozen_environment" / "backend_adapter.py"
+    ).read_text(encoding="utf-8")
+    assert "src.acceleration.cuda" not in adapter_source
+    assert "CUDABackend" not in adapter_source
+    assert "LiveInputExecutionBackend" in adapter_source
 
 
 def test_deterministic_target_sensor_encoder_covers_both_directions_and_hold() -> None:
