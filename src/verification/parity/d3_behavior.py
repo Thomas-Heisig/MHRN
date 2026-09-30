@@ -4,6 +4,8 @@ from __future__ import annotations
 
 from collections.abc import Sequence
 
+from src.experience.frozen_environment import FreezeMode, FrozenEnvironmentTrace
+
 from .contract import ParityClass, ParityResult
 
 
@@ -70,4 +72,38 @@ def metric_behavior_parity(
             "success_fraction_abs_error": success_error,
             "success_fraction_abs_error_limit": success_limit,
         },
+    )
+
+
+def exact_frozen_environment_parity(
+    reference: FrozenEnvironmentTrace,
+    candidate: FrozenEnvironmentTrace,
+) -> ParityResult:
+    """Compare one FE-1/FE-2/FE-3 causal trace fail-closed."""
+
+    parity_class = {
+        FreezeMode.FE1_BOUNDARY_REPLAY: ParityClass.D3A,
+        FreezeMode.FE2_FROZEN_WORLD_LIVE_ACTIONS: ParityClass.D3B,
+        FreezeMode.FE3_FULL_DETERMINISTIC_LIVE_LOOP: ParityClass.D3C,
+    }[reference.mode]
+    mode_exact = reference.mode is candidate.mode
+    manifest_exact = reference.manifest_sha256 == candidate.manifest_sha256
+    records_exact = [record.to_mapping() for record in reference.records] == [
+        record.to_mapping() for record in candidate.records
+    ]
+    non_empty = bool(reference.records) and bool(candidate.records)
+    return ParityResult(
+        parity_class,
+        passed=mode_exact and manifest_exact and records_exact and non_empty,
+        details={
+            "mode_exact": mode_exact,
+            "manifest_exact": manifest_exact,
+            "records_exact": records_exact,
+            "record_count_reference": len(reference.records),
+            "record_count_candidate": len(candidate.records),
+            "empty_evidence": not non_empty,
+            "frozen_environment_contract": "mhrn-frozen-environment-v1",
+        },
+        reference_fingerprint=reference.trace_sha256,
+        candidate_fingerprint=candidate.trace_sha256,
     )
