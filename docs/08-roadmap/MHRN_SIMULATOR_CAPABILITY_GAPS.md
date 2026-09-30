@@ -84,7 +84,7 @@ Before Playground execution can be treated as a normal MHRN backend, the followi
 5. **Early benchmark/reference suite** using frozen MHRN workloads plus an explicit restricted Brian 2 reference subset; this validates parity infrastructure before live CUDA-1.6 rather than after PAN-GPU.
 6. **Canonical checkpoint/storage contract** including neuron/synapse state, pending events/delays/rewards, PAN/tissue sidecars, RNG, topology generation, environment state and execution fingerprint.
 7. **Canonical Neural-I/O contract** using the existing `BoundaryFrame`, `CodecContract`, `PopulationLayout`, `SpikeFrame`, `DecodeResult` and `CodecStreamState` design.
-8. **Frozen-Environment contract** — executable FE-1 integrity, FE-2 repeated replay and CPU/self FE-3 D3c control are implemented; a physical Builder CPU/CUDA D3c bridge is now part of the hardware runner, while canonical FrozenEnvironment CPU-vs-CUDA FE-3 remains pending a live backend adapter.
+8. **Frozen-Environment contract** — executable FE-1 integrity, FE-2 repeated replay, CPU/self FE-3 control and a canonical live-input ExecutionBackend adapter are implemented. A versioned FE-3 manifest is frozen; physical CPU-vs-CUDA FE-3 remains pending the RTX-class hardware acceptance run.
 9. **Canonical structural approval/barrier contract** routing Growth/Pruning/Apoptosis through Proposal -> Coordinator Approval -> StructuralPlasticityEngine -> Journal/Undo.
 10. **Truthful execution provenance**: CPU fallback, CUDA reference, hardware smoke and scientific run must never share ambiguous labels.
 
@@ -212,12 +212,16 @@ surfaces without conflating them:
 - optional recurrent/plasticity hardware reruns;
 - a live Builder CPU/CUDA D3c bridge over the existing CPU world.
 
-The third item is a useful hardware bridge because it exercises live causal
-actions and full body trajectory equality. It does **not** close the
-Frozen-Environment FE-3 gap. That gap requires a backend-neutral live adapter
-that accepts current observations, advances the backend without reset, decodes
-an action, and returns it to `FrozenWorldSession` on every tick.
+The third item remains a useful historical bridge because it exercises live
+causal actions and full body trajectory equality. The canonical
+Frozen-Environment path now also has a backend-neutral live-input adapter:
+each tick converts the current frozen world state into a canonical
+BoundaryFrame and external-current row, advances CPUReferenceBackend or
+CUDABackend through the same continuation API, decodes an ActionCommand and
+returns it to `FrozenWorldSession`.
 
-Until that adapter exists, the canonical state remains
-`PENDING_LIVE_BACKEND_ADAPTER`; no DATA/EVID is produced by the hardware
-bridge.
+The first versioned FE-3 manifest is
+`research/verification/frozen_environment/FE3_DETERMINISTIC_TARGET_V1.json`.
+Hosted CI verifies the adapter and CPU/self parity. Physical CPU-vs-CUDA FE-3
+remains `HARDWARE_ACCEPTANCE_PENDING` until the dedicated RTX-class run
+passes. No DATA/EVID is produced by either bridge or hardware acceptance.

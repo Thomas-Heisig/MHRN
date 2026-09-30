@@ -308,3 +308,11 @@ readout and ActionCommand generation without resetting backend state.
 
 This distinction is an engineering-governance result, not scientific DATA or
 EVID.
+
+### Canonical Frozen-Environment live backend bridge
+
+The Frozen-Environment verification layer now includes a backend-neutral live-input bridge. For each FE-3 tick, the current frozen world state is serialized as a canonical BoundaryFrame, deterministically encoded into external currents, advanced through the same ExecutionBackend continuation surface, decoded into an ActionCommand, and applied back to FrozenWorldSession.
+
+The initial acceptance fixture is frozen as `research/verification/frozen_environment/FE3_DETERMINISTIC_TARGET_V1.json`. CPUReferenceBackend and CUDABackend expose the same live-input extension without changing the recurrent CUDA kernel. Hosted CI validates the manifest and adapter; physical CPU-versus-CUDA FE-3 remains an explicit hardware-acceptance step.
+
+Cross-backend execution fingerprints are intentionally different because backend identity is provenance. FE-3 equivalence instead requires the same manifest, identical live-input fingerprint, and exact canonical D3c trajectory parity. This remains Engineering Verification and does not create DATA, EVID, a speedup claim, or evidence for PAN, learning, or cognitive capability.

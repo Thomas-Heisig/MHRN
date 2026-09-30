@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from collections.abc import Mapping
+from collections.abc import Mapping, Sequence
 from typing import Any
 
 from src.runtime.backend import BackendCapabilities, BackendState, RunResult, StepResult
@@ -14,6 +14,7 @@ from .state import (
     prefix_inputs,
     recurrent_inputs_from_mapping,
     recurrent_inputs_to_mapping,
+    set_external_tick_config,
     stable_digest,
     step_payload,
 )
@@ -68,6 +69,11 @@ class CPUReferenceBackend:
                 "spike_count": len(spikes),
             },
         )
+
+    def set_external_tick(self, tick: int, currents: Sequence[float]) -> None:
+        if tick != self._tick:
+            raise ValueError("live external input tick must equal continuation cursor")
+        set_external_tick_config(self._require_config(), tick=tick, currents=currents)
 
     def step(self, tick: int) -> StepResult:
         if tick != self._tick:
@@ -143,4 +149,5 @@ class CPUReferenceBackend:
             deterministic=True,
             plasticity_semantics="REFERENCE_MATCH_TARGET_DRAFT",
             execution_mode="BOUNDED_REPLAY_REFERENCE",
+            supports_live_external_input=True,
         )

@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import json
-from collections.abc import Mapping
+from collections.abc import Mapping, Sequence
 from dataclasses import dataclass
 from typing import Protocol, runtime_checkable
 
@@ -29,6 +29,7 @@ class BackendCapabilities:
     max_edges: int | None = None
     plasticity_semantics: str = "NOT_SUPPORTED"
     execution_mode: str = "GENERAL"
+    supports_live_external_input: bool = False
 
     def __post_init__(self) -> None:
         if self.max_neurons < 1:
@@ -54,6 +55,7 @@ class BackendCapabilities:
             "deterministic": self.deterministic,
             "plasticity_semantics": self.plasticity_semantics,
             "execution_mode": self.execution_mode,
+            "supports_live_external_input": self.supports_live_external_input,
         }
 
 
@@ -141,4 +143,13 @@ class ExecutionBackend(Protocol):
 
     def capabilities(self) -> BackendCapabilities:
         """Return declared capabilities and bounded limits."""
+        ...
+
+
+@runtime_checkable
+class LiveInputExecutionBackend(ExecutionBackend, Protocol):
+    """ExecutionBackend extension for deterministic per-tick external input."""
+
+    def set_external_tick(self, tick: int, currents: Sequence[float]) -> None:
+        """Set external currents for exactly the current continuation tick."""
         ...

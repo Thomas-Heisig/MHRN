@@ -120,16 +120,16 @@ _CANDIDATES: tuple[PromotionCandidate, ...] = (
     PromotionCandidate(
         "closed_loop",
         "Closed Loop / Environment",
-        "FE_CONTRACT_EXECUTABLE_BUILDER_D3_BRIDGE_AVAILABLE_FE3_PENDING",
+        "FE3_LIVE_ADAPTER_IMPLEMENTED_HARDWARE_ACCEPTANCE_PENDING",
         ("src/playground/closed_loop.py", "src/playground/pan/sandbox.py"),
         ("src/experience/", "src/verification/frozen_environment/"),
-        "FROZEN_ENVIRONMENT_LIVE_BACKEND_ADAPTER",
+        "PHYSICAL_FE3_HARDWARE_ACCEPTANCE",
         notes=(
-            "The canonical Frozen-Environment contract is executable: FE-1 "
-            "manifest integrity, FE-2 repeated replay and a CPU/self D3c control "
-            "are available. A physical Builder CPU/CUDA D3c bridge can now be "
-            "run from the hardware acceptance CLI, but canonical FrozenEnvironment "
-            "FE-3 remains pending until a live backend adapter exists."
+            "The canonical Frozen-Environment contract now has a backend-neutral "
+            "live-input adapter and a versioned FE-3 deterministic-target manifest. "
+            "CPU/self controls are executable and the physical hardware runner can "
+            "compare CPUReferenceBackend with CUDABackend. Physical RTX acceptance "
+            "must still be executed before FE-3 is marked accepted."
         ),
     ),
     PromotionCandidate(

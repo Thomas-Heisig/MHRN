@@ -497,6 +497,24 @@
       "citation": "cite_current_revision_implementation_commit_and_hardware_verification_scope",
       "evidence_role": "engineering_contract_not_evidence",
       "rationale": "Defines the bounded canonical CUDA backend, kernel-freeze boundary, draft plasticity semantics and D1/D2 acceptance scope introduced by Playground integration Wave 4; it creates no DATA or EVID."
+    },
+    "docs/canonical/HARDWARE_ACCEPTANCE.md": {
+      "kind": "canonical_hardware_acceptance_contract",
+      "status": "current",
+      "authority": "normative_engineering_hardware_acceptance_contract",
+      "mutability": "editable_with_architecture_and_method_review",
+      "citation": "cite_current_revision_and_physical_hardware_artifact_when_available",
+      "evidence_role": "engineering_verification_contract_not_data_or_evidence",
+      "rationale": "Defines the bounded physical CUDA and Frozen-Environment FE-3 acceptance procedure, artifact format and interpretation limits; execution under this contract remains engineering verification and creates no DATA or EVID."
+    },
+    "research/verification/frozen_environment": {
+      "kind": "engineering_verification_manifest",
+      "status": "current",
+      "authority": "canonical_frozen_environment_verification_input",
+      "mutability": "versioned_replacement_only",
+      "citation": "cite_exact_path_manifest_sha256_and_source_revision",
+      "evidence_role": "engineering_verification_input_not_data_or_evidence",
+      "rationale": "Versioned deterministic Frozen-Environment verification inputs used for backend parity acceptance; these manifests are engineering verification inputs and do not constitute scientific DATA or EVID."
     }
   }
 }
