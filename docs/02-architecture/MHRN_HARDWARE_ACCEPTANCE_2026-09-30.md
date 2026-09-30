@@ -1,5 +1,7 @@
 # MHRN CUDA / D3 Hardware Acceptance — 2026-09-30
 
+> **Historical boundary note (superseded later on 2026-09-30):** This document records the pre-live-adapter acceptance state. The backend-neutral FE-3 live adapter has since been implemented. The current executable contract is `docs/canonical/HARDWARE_ACCEPTANCE.md`; physical RTX CPU-vs-CUDA FE-3 remains pending until a dated reviewed hardware artifact exists.
+
 **Status:** executable engineering acceptance plan  
 **Scientific evidence:** none created by this document  
 **Target reference host:** physical NVIDIA RTX 3060 class system
