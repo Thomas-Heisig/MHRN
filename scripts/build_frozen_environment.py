@@ -47,7 +47,9 @@ def _boundary_frame(tick: int) -> FrozenBoundaryFrame:
     )
 
 
-def _build(mode: FreezeMode, *, target: int, ticks: int, seed: int) -> FrozenEnvironmentManifest:
+def _build(
+    mode: FreezeMode, *, target: int, ticks: int, seed: int
+) -> FrozenEnvironmentManifest:
     if ticks < 1:
         raise ValueError("ticks must be >= 1")
     schedule = tuple(range(ticks))
@@ -99,7 +101,9 @@ def _build(mode: FreezeMode, *, target: int, ticks: int, seed: int) -> FrozenEnv
 
 def main() -> int:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--mode", choices=[mode.value for mode in FreezeMode], required=True)
+    parser.add_argument(
+        "--mode", choices=[mode.value for mode in FreezeMode], required=True
+    )
     parser.add_argument("--output", required=True)
     parser.add_argument("--target", type=int, default=2)
     parser.add_argument("--ticks", type=int, default=2)
