@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import { selectRoute } from './routes.js';
 
 test('CUDA FE3 integration status is visible in the correct workspaces', async ({ page }) => {
-  await page.goto('/');
+  await page.goto(process.env.MHRN_ACCELERATION_TEST_URL || 'http://127.0.0.1:4174/');
 
   await selectRoute(page, 'playground', 'builder');
   await expect(page.locator('#mhrn-acceleration-playground')).toBeVisible();
