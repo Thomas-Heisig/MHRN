@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
-  "tested_commit": "eacdb8ecd08899695e3f79582d0b9cd215b0cb6e",
-  "tested_tree_digest": "5e7d64a1a69ad67cead5bd48ce1ca8c265e452a5118a3342c81760fe46ad32ad",
+  "tested_commit": "f7d3dfb5f287a101aea8661feeda7a2759ae9b06",
+  "tested_tree_digest": "26741ab1190dcd4de6737d66cd0ecd9ac73f153db7c18c0f18cfa99a6b9f89eb",
   "tree_digest_paths": [
     "src/",
     "configs/",
@@ -12,20 +12,20 @@
   "tree_digest_excludes": [
     "tests/test_baseline.json"
   ],
-  "timestamp": "2026-09-30T08:39:03.471559+00:00",
+  "timestamp": "2026-09-30T09:11:03.905119+00:00",
   "python": "3.13.15",
   "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
   "source_unchanged_during_run": true,
   "full_collection": {
     "status": "passed",
-    "collected": 2066,
+    "collected": 2068,
     "collection_errors": 0
   },
   "full_suite": {
     "command": "python -m pytest tests/ -q -ra --junitxml=<temporary-report>",
     "status": "passed",
     "exit_code": 0,
-    "passed": 2015,
+    "passed": 2017,
     "failed": 0,
     "errors": 0,
     "skipped": 51,
@@ -201,7 +201,7 @@
     "src/dashboard/static/frontend/modules/neuron-model-science.js": "5cc9d976095bdd9b514f0017047000d7939c7a67d59052cc7b4a4b739da65a68",
     "src/dashboard/static/frontend/modules/overview-subtabs.js": "be9efe972ebacaaf48b4d4df0550bc6788ece812b3b11c76eedca98e1b903abd",
     "src/dashboard/static/frontend/modules/playground-workspace.js": "ad4022bccc7c1ea8e5b08df51f466aabfcf854ac8ad594261c56613a715beab1",
-    "src/dashboard/static/frontend/modules/playground.js": "3a947ce010da1fed0dc89617efb012dd837e40cbd6c67ee74fdcbef5d649e1be",
+    "src/dashboard/static/frontend/modules/playground.js": "848254d6f754f83960e2a96869f96655074844b4223dd6e641c52e18c66717f2",
     "src/dashboard/static/frontend/modules/publication-explainer.js": "9b0d676d0968d3a95d91400d6784799857f58bf94f539e9af75477cbe3e75f2f",
     "src/dashboard/static/frontend/modules/publication-imprint.js": "a0b15001845a5cdb3d2622a93f370e849320511086efdd5941211d7e9d585b86",
     "src/dashboard/static/frontend/modules/publication-reader-polish.js": "f5906bdb2918cfe09ac1f10c81e221e7d26e3b2f0bfada043ebcdd1ec21aca17",
@@ -400,7 +400,7 @@
     "src/playground/instruments/rate_monitor.py": "8d9db7e915990c194ff57cb215ec88e30263bb3be991a1048d9fe56a773ca983",
     "src/playground/instruments/spike_monitor.py": "b4c0893af37ef2301d77770d27af4aa68ac74dd33eead19989d8ada289a461f5",
     "src/playground/instruments/state_monitor.py": "f8dd1c8fc01732c2e512d7d2d072f0ad5b89fc3f587520be6c8012b6e8658437",
-    "src/playground/integration.py": "a6f76b0aed112397afbceb0a092082561a54a648da7ca35808f2d42e86212dcc",
+    "src/playground/integration.py": "47905e40292c74a62730637c6959b82f2a552718389f4b7e66a96d7c5a941be1",
     "src/playground/meta_learning.py": "8b39208aa794c8b6f6e66ed72bcd50e8eff54865a5c769e30cca90d2ea640fe1",
     "src/playground/models.py": "8325876d3bb4d855eb9cbd304edec117bd315c5574f43c8e19a7029a2f649e64",
     "src/playground/neural_io/__init__.py": "d7cf8e4fc4de1ae272d560ca4e26320df4ee2e51c51cba962da995e546e16a44",
@@ -655,6 +655,7 @@
     "tests/test_core_regressions_20260916.py": "52a6c7368a588cc8f125e770b080de86a0e0a917519672b4a8fd8e39306c0967",
     "tests/test_crc.py": "9c3d7f39c00a7dd019b7a8afab504a008e1905ee5d854ac8c3ab79272588a2c9",
     "tests/test_cuda_acceleration_extraction.py": "c21ff030df1c739515438d0502058a170ae19899f31fb3981f89b10d05baa3bf",
+    "tests/test_cuda_hardware_acceptance_runner.py": "45cbfdaead2dae641bf5e446f581813df8c697f3fad885ac79449d909a4143e5",
     "tests/test_cuda_wave4_backend.py": "7adaf8b860f82c35454dccc809424379e91ef98f98010622632570764d64199d",
     "tests/test_dashboard.py": "ba9ee183a4433c90b4c1d72f4ad02fceae0a45b1a012f67a84b9e01f1b1041f3",
     "tests/test_dashboard_alpha6.py": "e4b9c6319916fdbd5f183879e78cdc5522fa2f917c30d0c18fe5d8ff40439165",
@@ -774,7 +775,7 @@
     "tests/test_playground_cuda_pan_state.py": "5e68c11e9a95a6b1696716f8f034248a25831f0968ff80f903d65c1cfb3f5aa2",
     "tests/test_playground_cuda_plasticity.py": "8e79df4ad3f9222aa7534ce5ee0c2749d21d3df2788fb2dbc129dbb92072ffc7",
     "tests/test_playground_cuda_recurrent.py": "eb4de739e7f2a564f2ff2bd2353e0bd49f808378db2545da5b9a317aa8dfd368",
-    "tests/test_playground_promotion.py": "79940ac88953b3894098f06061ef7802e31f109ec3b2e13e625fe81d96d008da",
+    "tests/test_playground_promotion.py": "6348a300add0c8b788989264c3ff3a3fae04438e46c3086a51ed65b283e4332d",
     "tests/test_prediction_error_plasticity.py": "4a0a9d2dcf646f012ec1d597daf63b0c3469660cdee67aed9611021e95b31e5c",
     "tests/test_production_restore.py": "a5ddc19a7a36e7bfaf09b13532335820dea1ca17779749798eeba8e869858730",
     "tests/test_productive_learning_protocol.py": "64e22008590c1c7565f7c0510d498d09b1a3b4c4476250f6992bd45c860ad2ff",
