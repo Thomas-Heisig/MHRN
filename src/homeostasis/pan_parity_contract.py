@@ -22,9 +22,7 @@ PAN_PARITY_CONTRACT_STATUS = "DRAFT_PREFLIGHT"
 
 PAN_EXACT_FIELDS: tuple[str, ...] = ("pan_alive", "pan_neuron_id")
 PAN_NUMERIC_FIELDS: tuple[str, ...] = tuple(
-    field
-    for field in PAN_STATE_FIELDS
-    if field not in {*PAN_EXACT_FIELDS, "pan_x_hd"}
+    field for field in PAN_STATE_FIELDS if field not in {*PAN_EXACT_FIELDS, "pan_x_hd"}
 )
 
 
@@ -36,10 +34,7 @@ class PANParityThresholds:
     require_d3c_exact: bool = True
 
     def __post_init__(self) -> None:
-        if (
-            not math.isfinite(self.abs_tolerance)
-            or self.abs_tolerance <= 0.0
-        ):
+        if not math.isfinite(self.abs_tolerance) or self.abs_tolerance <= 0.0:
             raise ValueError("abs_tolerance must be finite and > 0")
 
 
@@ -66,9 +61,7 @@ class PANParityResult:
 
 
 def _numeric_sequence(value: object, *, name: str) -> Sequence[object]:
-    if not isinstance(value, Sequence) or isinstance(
-        value, (str, bytes, bytearray)
-    ):
+    if not isinstance(value, Sequence) or isinstance(value, (str, bytes, bytearray)):
         raise ValueError(f"{name} must be a numeric sequence")
     return cast(Sequence[object], value)
 
@@ -129,15 +122,11 @@ def compare_pan_state_mappings(
         ):
             left = _finite_number(
                 left_raw,
-                name=(
-                    f"reference[{neuron_index}].pan_x_hd[{dimension_index}]"
-                ),
+                name=(f"reference[{neuron_index}].pan_x_hd[{dimension_index}]"),
             )
             right = _finite_number(
                 right_raw,
-                name=(
-                    f"candidate[{neuron_index}].pan_x_hd[{dimension_index}]"
-                ),
+                name=(f"candidate[{neuron_index}].pan_x_hd[{dimension_index}]"),
             )
             max_error = max(max_error, abs(left - right))
 
