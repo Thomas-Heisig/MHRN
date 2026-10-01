@@ -49,13 +49,14 @@ function injectStyles() {
   document.head.append(style);
 }
 
-function panel(id, parent, title, intro) {
+function panel(id, parent, title, intro, routeTag = null) {
   if (!parent) return null;
   let node = document.getElementById(id);
   if (node) return node;
   node = document.createElement("section");
   node.id = id;
   node.className = "mhrn-accel-panel";
+  if (routeTag) node.dataset.mhrnRoute = routeTag;
   node.innerHTML = `
     <div class="mhrn-accel-head">
       <div><span class="workspace-kicker">CUDA · FE-3</span><h3>${escapeHtml(title)}</h3><p>${escapeHtml(intro)}</p></div>
@@ -70,7 +71,8 @@ function panel(id, parent, title, intro) {
 function ensurePanels() {
   const playgroundHost = document.getElementById("pg-mhrn-integration") || document.getElementById("tab-playground");
   const releaseHost = document.querySelector('[data-release-view="development"]');
-  const scienceHost = document.getElementById("mhrn-scientific-metrics");
+  const scienceMetrics = document.getElementById("mhrn-scientific-metrics");
+  const scienceHost = scienceMetrics?.parentElement || document.getElementById("tab-research");
   const oldHost = document.querySelector('#tab-old [data-area-overview="old"]') || document.getElementById("tab-old");
   return {
     playground: panel(
@@ -89,7 +91,8 @@ function ensurePanels() {
       "mhrn-acceleration-science",
       scienceHost,
       "Backend-Parität: Evidenzgrenze",
-      "Engineering Verification bleibt getrennt von wissenschaftlichen DATA/EVID."
+      "Engineering Verification bleibt getrennt von wissenschaftlichen DATA/EVID.",
+      "science:observatory"
     ),
     old: panel(
       "mhrn-acceleration-old",
