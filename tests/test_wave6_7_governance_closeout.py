@@ -26,10 +26,7 @@ def test_wave6_7_draft_documents_have_explicit_governance_overrides() -> None:
 
 def test_first_structural_governance_run_is_manual_but_not_authorized() -> None:
     decision = (
-        ROOT
-        / "research"
-        / "decisions"
-        / "2026-10-01_wave6_first_governed_run_mode.md"
+        ROOT / "research" / "decisions" / "2026-10-01_wave6_first_governed_run_mode.md"
     ).read_text(encoding="utf-8")
     assert "MANUAL_ONLY" in decision
     assert "system default remains `DISABLED`" in decision
