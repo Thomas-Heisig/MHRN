@@ -14,6 +14,7 @@ from __future__ import annotations
 import math
 from collections.abc import MutableMapping, Sequence
 from dataclasses import dataclass
+from typing import cast
 
 PAN_CONTRACT_ID = "mhrn-pan-hyperstate-v0.1-draft"
 PAN_CONTRACT_STATUS = "DRAFT_NOT_FROZEN"
@@ -170,9 +171,12 @@ def validate_pan_state_mapping(
     if isinstance(neuron_id, bool) or not isinstance(neuron_id, int) or neuron_id < 0:
         raise ValueError("pan_neuron_id must be an integer >= 0")
 
-    vector = state.get("pan_x_hd")
-    if not isinstance(vector, Sequence) or isinstance(vector, (str, bytes, bytearray)):
+    vector_value = state.get("pan_x_hd")
+    if not isinstance(vector_value, Sequence) or isinstance(
+        vector_value, (str, bytes, bytearray)
+    ):
         raise ValueError("pan_x_hd must be a numeric sequence")
+    vector = cast(Sequence[object], vector_value)
     if len(vector) != dimensions:
         raise ValueError("pan_x_hd dimension mismatch")
     for index, value in enumerate(vector):
