@@ -650,3 +650,40 @@ Reference: [MHRN simulator capability gaps](MHRN_SIMULATOR_CAPABILITY_GAPS.md).
   physical FE-3 acceptance.
 - [ ] Keep structural Growth/Pruning/Apoptosis behind the separate
   Proposal/Approval/Journal barrier contract.
+
+
+## Wave 6 / Wave 7 contract gates — 2026-10-01
+
+### Wave 6
+- [x] Implement deterministic Structural Approval descriptor/hash.
+- [x] Make MANUAL_ONLY require explicit manual authorization.
+- [x] Make POLICY_AUTO require enabled non-dry-run auto policy.
+- [x] Make PREREGISTERED_AUTO additionally require frozen policy artifact.
+- [x] Document journal commit/undo and the target host-barrier sequence.
+- [ ] Wire every structural mutation through the canonical execution barrier.
+- [ ] Verify topology-generation/CSR/schedule rebuild before resume.
+- [ ] Review and freeze the contract.
+
+### Wave 7
+- [x] Add executable Learning/Synapse draft descriptor.
+- [x] Record CPU nearest-neighbour STDP, same-tick zero rule, eligibility and
+  delayed-reward semantics.
+- [x] Record CUDA STP candidate semantics without promoting them.
+- [x] Expose real CPU/CUDA mismatches as fail-closed blockers.
+- [ ] Decide canonical edge identity for parallel synapses.
+- [ ] Decide STP contract semantics.
+- [ ] Align credit-window/delayed-reward semantics.
+- [ ] Align weight-decay semantics and pair parameters.
+- [ ] Freeze contract and implement both CPU/CUDA against the same version.
+- [ ] Run learning D2/checkpoint parity and only then preregister learning studies.
+
+## 2026-10-01 Wave 6/7 governance closeout
+
+- [x] Classify the structural-approval and learning-contract drafts explicitly in document governance.
+- [x] Select `MANUAL_ONLY` for the first future governed structural run while retaining global `DISABLED` as the safe default.
+- [x] Record the five Wave-7 CPU/CUDA learning divergences as machine-readable open blockers.
+- [x] Register `RQ-CPU-PAR-001` / `H-CPU-PAR-001-A`.
+- [x] Freeze `PREREG-CPU-PAR-001` with seeds 910001..910020.
+- [ ] Bind an exact post-merge source/config digest and separately authorize execution of `cpu_self_parity_v1`.
+- [ ] Perform the physical RTX-3060 Wave-5B acceptance separately; it remains Engineering Verification and is not substituted by this CPU study.
+- [ ] Resolve all five Wave-7 learning divergences before freezing a common CPU/CUDA learning contract.

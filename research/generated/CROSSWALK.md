@@ -29,6 +29,7 @@ All registered RQs are projected. Empty direction coordinates remain explicit un
 | RQ-CNS-117 | unresolved | unclassified | unresolved | unresolved | H-CNS-117-A | unresolved | unresolved | unresolved |
 | RQ-CONN-001 | unresolved | unclassified | unresolved | unresolved | H-CONN-001-A | unresolved | unresolved | unresolved |
 | RQ-CONN-002 | unresolved | unclassified | unresolved | unresolved | H-CONN-002-A | EXP-BATCH-20260909223705-75, EXP-BATCH-20260914074039-75, EXP-EMP-20260910 | unresolved | unresolved |
+| RQ-CPU-PAR-001 | unresolved | unclassified | unresolved | unresolved | H-CPU-PAR-001-A | unresolved | unresolved | unresolved |
 | RQ-CUDA-CL-001 | unresolved | unclassified | unresolved | unresolved | H-CUDA-CL-001-A, H-CUDA-CL-001-B, H-CUDA-CL-001-C | unresolved | unresolved | unresolved |
 | RQ-CUDA-DET-001 | unresolved | unclassified | unresolved | unresolved | H-CUDA-DET-001-A, H-CUDA-DET-001-B, H-CUDA-DET-001-C | unresolved | unresolved | unresolved |
 | RQ-CUDA-PAR-001 | unresolved | unclassified | unresolved | unresolved | H-CUDA-PAR-001-A, H-CUDA-PAR-001-B, H-CUDA-PAR-001-C | unresolved | unresolved | unresolved |
@@ -68,6 +69,7 @@ All registered RQs are projected. Empty direction coordinates remain explicit un
 | RQ-GW-CODEC-001 | unresolved | unclassified | unresolved | unresolved | H-GW-CODEC-001-A | unresolved | unresolved | unresolved |
 | RQ-HOM-001 | unresolved | unclassified | unresolved | unresolved | H-HOM-001-A | EXP-BATCH-20260906200118-13, EXP-BATCH-20260908200906-13, EXP-BATCH-20260909223705-13, EXP-BATCH-20260914074039-13 | unresolved | unresolved |
 | RQ-HOM-002 | unresolved | unclassified | unresolved | unresolved | H-HOM-002-A | EXP-BATCH-20260906200118-14, EXP-BATCH-20260908200906-14, EXP-BATCH-20260909223705-14, EXP-BATCH-20260914074039-14 | unresolved | unresolved |
+| RQ-LEARN-SEM-001 | unresolved | unclassified | unresolved | unresolved | H-LEARN-SEM-001-A, H-LEARN-SEM-001-B, H-LEARN-SEM-001-C | unresolved | unresolved | unresolved |
 | RQ-LIFE-001 | unresolved | unclassified | unresolved | unresolved | H-LIFE-001-A | EXP-BATCH-20260909223705-43, EXP-BATCH-20260914074039-43, EXP-EMP-20260910, EXP-LIFE-0001-R1, EXP-RETRY-AIRR-2026-0001-02 | unresolved | unresolved |
 | RQ-LLM-001 | unresolved | unclassified | unresolved | unresolved | H-LLM-001-A | EXP-BATCH-20260906200118-29, EXP-BATCH-20260909223705-29, EXP-BATCH-20260914074039-29 | unresolved | unresolved |
 | RQ-MEM-001 | unresolved | unclassified | unresolved | IV | H-MEM-001-A | EXP-BATCH-20260906200118-27, EXP-BATCH-20260909223705-27, EXP-BATCH-20260914074039-27 | unresolved | unresolved |
@@ -118,6 +120,7 @@ All registered RQs are projected. Empty direction coordinates remain explicit un
 | RQ-STORAGE-003 | unresolved | unclassified | unresolved | unresolved | H-STOR-003-A | EXP-BATCH-20260906200118-21, EXP-BATCH-20260908200906-21, EXP-BATCH-20260909223705-21, EXP-BATCH-20260914074039-21 | unresolved | unresolved |
 | RQ-STORAGE-004 | unresolved | unclassified | unresolved | unresolved | H-STOR-004-A | EXP-BATCH-20260906200118-22, EXP-BATCH-20260908200906-22, EXP-BATCH-20260909223705-22, EXP-BATCH-20260914074039-22 | unresolved | unresolved |
 | RQ-STRUCT-001 | unresolved | unclassified | unresolved | unresolved | H-STRUCT-001-A | EXP-BATCH-20260906200118-26, EXP-BATCH-20260908200906-26, EXP-BATCH-20260909223705-26, EXP-BATCH-20260914074039-26 | unresolved | unresolved |
+| RQ-STRUCT-APPROVAL-001 | unresolved | unclassified | unresolved | unresolved | H-STRUCT-APPROVAL-001-A, H-STRUCT-APPROVAL-001-B | unresolved | unresolved | unresolved |
 | RQ-SUITE-001 | unresolved | unclassified | unresolved | unresolved | H-SUITE-001-A | EXP-BATCH-20260906200118-34, EXP-BATCH-20260909223705-34, EXP-BATCH-20260914074039-34, EXP-GEN-0024, EXP-GEN-0025, EXP-GEN-0033, EXP-GEN-0033-R1, EXP-GEN-0036 | unresolved | unresolved |
 | RQ-TEMP-001 | unresolved | unclassified | unresolved | unresolved | H-TEMP-001-A | EXP-BATCH-20260906200118-08, EXP-BATCH-20260908200906-08, EXP-BATCH-20260909223705-08, EXP-BATCH-20260914074039-08, EXP-GEN-0013, EXP-GEN-0014, EXP-GEN-0015, EXP-GEN-0016, EXP-GEN-0018, EXP-TEMP-0001 | unresolved | unresolved |
 | RQ-TEMP-002 | unresolved | unclassified | unresolved | III, IV | H-TEMP-002-A | EXP-BATCH-20260906200118-40, EXP-BATCH-20260909223705-40, EXP-BATCH-20260914074039-40, EXP-EMP-20260910, EXP-S1-TEMP-ORDER-V2-20260919, EXP-S1-TEMP-PROMO-R1-20260927 | EVID-2026-20 | unresolved |
