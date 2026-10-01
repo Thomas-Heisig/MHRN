@@ -15,6 +15,35 @@ MANIFEST = (
     / "frozen_environment"
     / "FE3_DETERMINISTIC_TARGET_V1.json"
 )
+PREFLIGHT = (
+    ROOT
+    / "research"
+    / "verification"
+    / "pan"
+    / "PAN_WAVE5B_PREFLIGHT_V1.json"
+)
+
+
+def _copy_preflight_inputs(repo_root: Path) -> None:
+    manifest_target = (
+        repo_root
+        / "research"
+        / "verification"
+        / "frozen_environment"
+        / "FE3_DETERMINISTIC_TARGET_V1.json"
+    )
+    manifest_target.parent.mkdir(parents=True, exist_ok=True)
+    manifest_target.write_bytes(MANIFEST.read_bytes())
+
+    preflight_target = (
+        repo_root
+        / "research"
+        / "verification"
+        / "pan"
+        / "PAN_WAVE5B_PREFLIGHT_V1.json"
+    )
+    preflight_target.parent.mkdir(parents=True, exist_ok=True)
+    preflight_target.write_bytes(PREFLIGHT.read_bytes())
 
 
 def _builder(repo_root: Path) -> IntegrationStatusBuilder:
@@ -55,15 +84,7 @@ def test_acceleration_status_exposes_canonical_backend_and_manifest() -> None:
 
 
 def test_hardware_status_is_derived_from_reviewed_artifact(tmp_path: Path) -> None:
-    manifest_target = (
-        tmp_path
-        / "research"
-        / "verification"
-        / "frozen_environment"
-        / "FE3_DETERMINISTIC_TARGET_V1.json"
-    )
-    manifest_target.parent.mkdir(parents=True)
-    manifest_target.write_bytes(MANIFEST.read_bytes())
+    _copy_preflight_inputs(tmp_path)
 
     canonical = tmp_path / "docs" / "canonical"
     canonical.mkdir(parents=True)
@@ -91,15 +112,7 @@ def test_hardware_status_is_derived_from_reviewed_artifact(tmp_path: Path) -> No
 
 
 def test_missing_hardware_artifact_stays_pending(tmp_path: Path) -> None:
-    manifest_target = (
-        tmp_path
-        / "research"
-        / "verification"
-        / "frozen_environment"
-        / "FE3_DETERMINISTIC_TARGET_V1.json"
-    )
-    manifest_target.parent.mkdir(parents=True)
-    manifest_target.write_bytes(MANIFEST.read_bytes())
+    _copy_preflight_inputs(tmp_path)
     (tmp_path / "docs" / "canonical").mkdir(parents=True)
 
     status = _builder(tmp_path)._build_acceleration_status()
