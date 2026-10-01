@@ -185,9 +185,8 @@ class PANRuntime:
 
             did_spike = neuron_id in spiked
             activity = float(state.get("pan_activity_ema", 0.01))
-            activity = (
-                params.activity_decay * activity
-                + params.activity_spike_gain * (1.0 if did_spike else 0.0)
+            activity = params.activity_decay * activity + params.activity_spike_gain * (
+                1.0 if did_spike else 0.0
             )
             energy = float(state.get("pan_energy", 1.0))
             energy += params.energy_recovery * (1.0 - energy)
