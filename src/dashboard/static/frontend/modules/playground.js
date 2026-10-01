@@ -1284,6 +1284,7 @@ function integrationStatusLabel(status){
     FE_CONTRACT_EXECUTABLE_CUDA_D3_PENDING:"FE-Vertrag ausführbar · CUDA-D3 offen",
     FE_CONTRACT_EXECUTABLE_BUILDER_D3_BRIDGE_AVAILABLE_FE3_PENDING:"FE-Vertrag ausführbar · Builder-D3c Hardware-Bridge verfügbar · FE-3 Live-Adapter offen",
     BLOCKED_PAN_SEMANTICS:"PAN-Semantik erforderlich",
+    SEMANTIC_CONTRACT_DRAFT:"Semantikvertrag in Arbeit",
     RETAINED_NOT_CORE:"Unter OLD behalten",
     FE3_LIVE_ADAPTER_IMPLEMENTED_HARDWARE_ACCEPTANCE_PENDING:"FE-3 Adapter integriert · Hardware-Abnahme offen",
   }[status]||status;

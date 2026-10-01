@@ -27,6 +27,8 @@ def test_acceleration_status_exposes_canonical_backend_and_manifest() -> None:
     assert status["classification"] == "MHRN_ACCELERATION_INTEGRATION_STATUS"
     assert status["scientific_evidence"] is False
     assert status["software_path_closed"] is True
+    waves = {item["id"]: item for item in status["waves"]}
+    assert waves["wave5"]["status"] == "contract_draft"
 
     backend = status["backend"]
     assert isinstance(backend, dict)

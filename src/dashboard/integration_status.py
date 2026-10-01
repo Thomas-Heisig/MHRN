@@ -263,7 +263,11 @@ class IntegrationStatusBuilder:
                 "label": "Physical RTX Hardware Acceptance",
                 "status": str(hardware["status"]),
             },
-            {"id": "wave5", "label": "PAN Hyperstate", "status": "blocked"},
+            {
+                "id": "wave5",
+                "label": "PAN Hyperstate",
+                "status": "contract_draft",
+            },
             {"id": "wave6", "label": "Structural Plasticity", "status": "blocked"},
             {
                 "id": "wave7",

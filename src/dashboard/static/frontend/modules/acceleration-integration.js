@@ -7,6 +7,7 @@ const STATUS_LABELS = {
   passed: "physisch akzeptiert",
   failed: "fehlgeschlagen",
   blocked: "blockiert",
+  contract_draft: "Semantikvertrag in Arbeit",
   unavailable: "nicht verfügbar",
 };
 

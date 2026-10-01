@@ -240,3 +240,27 @@ new top-level workspace:
 The projection is sourced from `/api/integration/status`. Software FE-3 readiness
 and physical RTX acceptance are separate fields. Physical acceptance remains
 fail-closed until a reviewed dated hardware acceptance JSON artifact is present.
+
+
+## 2026-10-01 — Wave 5A PAN semantic draft
+
+The PAN gap is now split into two explicitly different questions:
+
+1. **semantic extraction** — state surface, update order and reference
+   coefficients are now described by
+   `docs/canonical/PAN_HYPERSTATE_CONTRACT_DRAFT.md` and executable in
+   `src/homeostasis/pan_contract.py`;
+2. **semantic acceptance / backend equivalence** — still open.
+
+Current status:
+
+- PAN state/update contract: **DRAFT_NOT_FROZEN**;
+- Playground PAN consumes the draft canonical coefficient/state contract;
+- RQ-PAN-SEM-001 remains open;
+- physical FE-3 RTX acceptance remains pending;
+- PAN GPU equivalence remains unproven;
+- Growth/Pruning/Apoptosis policy semantics remain outside the frozen contract;
+- no DATA/EVID/CLAIM is created by this extraction.
+
+This closes a documentation/duplication gap but does **not** close the PAN
+scientific or CUDA-parity gap.
