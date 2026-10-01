@@ -10,5 +10,7 @@ Current canonical contracts:
 - HARDWARE_ACCEPTANCE.md
 - PAN_HYPERSTATE_CONTRACT_DRAFT.md
 - PAN_WAVE5B_PREFLIGHT.md
+- STRUCTURAL_APPROVAL_CONTRACT_DRAFT.md
+- LEARNING_CONTRACT_DRAFT.md
 
 These documents define software semantics only. They do not create scientific DATA or EVID.
