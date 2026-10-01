@@ -247,3 +247,19 @@
     limitations: Wave 7 inventarisiert Semantik; der Vertrag ist nicht eingefroren und erzeugt keine Lern- oder Backend-Evidenz.
   created: '2026-10-01'
   updated: '2026-10-01'
+
+- id: RQ-CPU-PAR-001
+  domain: CPU Deterministic Self-Parity
+  question: Erzeugt die kanonische CPU-Ausfuehrung unter identischem Source Freeze, Netzwerkvertrag, Seed, Input und Anfangszustand in gepaarten Wiederholungslaeufen exakt dieselbe Ereignis- und Endzustandssignatur?
+  relevance: Eine prospektive CPU-Self-Parity-Baseline trennt intrinsische Nichtdeterministik des Referenzpfads von spaeteren Cross-Backend-Abweichungen und schafft einen hardwareunabhaengigen wissenschaftlichen Ausgangspunkt.
+  literature: []
+  hypotheses:
+  - H-CPU-PAR-001-A
+  evidence: []
+  status: open
+  answer:
+    current: null
+    confidence: none
+    limitations: Die Studie ist CPU-only. Sie testet weder CUDA-Aequivalenz noch PAN, Lernen, strukturelle Plastizitaet oder kognitive Leistung.
+  created: '2026-10-01'
+  updated: '2026-10-01'
