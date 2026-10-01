@@ -257,13 +257,13 @@ def main() -> int:
     parser.add_argument("--no-homeostasis", action="store_true")
     parser.add_argument(
         "--dashboard-host",
-        default="127.0.0.1",
+        default=DASHBOARD_HOST,
         help="Dashboard bind host (default: 127.0.0.1; use 0.0.0.0 for LAN)",
     )
     parser.add_argument(
         "--dashboard-port",
         type=int,
-        default=8767,
+        default=DASHBOARD_PORT,
         help="Dashboard HTTP server port (default: 8767)",
     )
     parser.add_argument(

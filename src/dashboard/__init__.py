@@ -46,6 +46,7 @@ from .models import (
     SystemMetrics,
 )
 from .operator_bridge import OperatorBridge
+from .network_settings import DASHBOARD_HOST, DASHBOARD_PORT
 from .server import serve_dashboard
 from .state import (
     DashboardStateStore,
@@ -67,8 +68,8 @@ logger = logging.getLogger(__name__)
 
 
 def create_default_dashboard(
-    host: str = "127.0.0.1",
-    port: int = 8767,
+    host: str = DASHBOARD_HOST,
+    port: int = DASHBOARD_PORT,
     snapshot_path: str | None = None,
     docs_root: str | None = None,
     state_store: DashboardStateStore | None = None,

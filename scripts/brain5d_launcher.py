@@ -30,8 +30,8 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 
-DEFAULT_HOST = "127.0.0.1"
-DEFAULT_PORT = 8767
+from src.dashboard.network_settings import DASHBOARD_HOST as DEFAULT_HOST, DASHBOARD_PORT as DEFAULT_PORT
+
 PID_FILE = ROOT / "artifacts" / "brain5d.pid"
 
 
