@@ -22,9 +22,7 @@ from src.homeostasis.pan_parity_contract import (
 from src.verification.frozen_environment import load_manifest_artifact
 
 PAN_WAVE5B_PREFLIGHT_ID = "mhrn-pan-wave5b-preflight-v1"
-DEFAULT_PREFLIGHT_PATH = Path(
-    "research/verification/pan/PAN_WAVE5B_PREFLIGHT_V1.json"
-)
+DEFAULT_PREFLIGHT_PATH = Path("research/verification/pan/PAN_WAVE5B_PREFLIGHT_V1.json")
 DEFAULT_AUTHORIZATION_PATH = Path(
     "research/verification/pan/PAN_WAVE5B_AUTHORIZATION.json"
 )
@@ -109,16 +107,18 @@ def load_pan_wave5b_preflight(path: Path) -> tuple[dict[str, object], str]:
     d3c = parity_map.get("d3c")
     if not isinstance(d2, dict) or not isinstance(d3c, dict):
         raise ValueError("PAN parity D2/D3c sections are required")
-    tolerance = d2.get("abs_tolerance")
+    d2_map = cast(dict[str, object], d2)
+    d3c_map = cast(dict[str, object], d3c)
+    tolerance = d2_map.get("abs_tolerance")
     if (
         isinstance(tolerance, bool)
         or not isinstance(tolerance, (int, float))
         or float(tolerance) <= 0.0
     ):
         raise ValueError("PAN parity tolerance must be positive")
-    if d2.get("fail_closed_nonfinite") is not True:
+    if d2_map.get("fail_closed_nonfinite") is not True:
         raise ValueError("PAN parity must fail closed on non-finite state")
-    if d3c.get("required") is not True or d3c.get("exact_trajectory") is not True:
+    if d3c_map.get("required") is not True or d3c_map.get("exact_trajectory") is not True:
         raise ValueError("Wave-5B preflight requires exact D3c trajectory parity")
 
     return payload, _canonical_digest(payload)
@@ -179,6 +179,12 @@ def _authorization_is_valid(
         and isinstance(reviewer, str)
         and bool(reviewer.strip())
     )
+
+
+def _contract_is_frozen(status: str) -> bool:
+    """Return whether a contract status is explicitly frozen."""
+
+    return status == "FROZEN"
 
 
 def _next_gate(
@@ -242,7 +248,7 @@ def evaluate_pan_wave5b_readiness(repo_root: Path) -> PanWave5BReadiness:
     except (OSError, ValueError, json.JSONDecodeError):
         hardware_accepted, gpu_identity = False, None
 
-    contract_frozen = PAN_CONTRACT_STATUS == "FROZEN"
+    contract_frozen = _contract_is_frozen(PAN_CONTRACT_STATUS)
     authorization_path = repo_root / str(
         manifest.get("authorization_artifact", DEFAULT_AUTHORIZATION_PATH)
     )
