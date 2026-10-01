@@ -118,7 +118,10 @@ def load_pan_wave5b_preflight(path: Path) -> tuple[dict[str, object], str]:
         raise ValueError("PAN parity tolerance must be positive")
     if d2_map.get("fail_closed_nonfinite") is not True:
         raise ValueError("PAN parity must fail closed on non-finite state")
-    if d3c_map.get("required") is not True or d3c_map.get("exact_trajectory") is not True:
+    if (
+        d3c_map.get("required") is not True
+        or d3c_map.get("exact_trajectory") is not True
+    ):
         raise ValueError("Wave-5B preflight requires exact D3c trajectory parity")
 
     return payload, _canonical_digest(payload)
