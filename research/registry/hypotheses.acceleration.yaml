@@ -256,3 +256,11 @@
   evidence: []
   created: '2026-10-01'
   updated: '2026-10-01'
+
+- id: H-CPU-PAR-001-A
+  research_question: RQ-CPU-PAR-001
+  hypothesis: Fuer jeden der 20 vorab eingefrorenen Seeds erzeugen zwei unabhaengig neu aufgebaute CPU-Laeufe mit identischem Netzwerk-, Stimulus- und Anfangszustandsvertrag exakt dieselbe geordnete Spike-Ereignisfolge und denselben kanonischen Endzustands-Digest.
+  status: untested
+  evidence: []
+  created: '2026-10-01'
+  updated: '2026-10-01'
