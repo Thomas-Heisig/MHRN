@@ -71,7 +71,7 @@ MHRN / Multi-Scale Homeostatic Recurrence Network. Publication: Recursive Episte
 - [x] PAN/Closed-Loop/Live-Monitor und CUDA/PTX-Preflight als Playground-only abgrenzen.
 - [x] README, Changelog, Roadmap und `releases/current.json` auf Alpha.7 synchronisieren.
 - [ ] Release-PR `release/v0.6.0-alpha.7 -> main` vollständig grün abschließen.
-- [ ] Veralteten Remote-Branch `playground` nach bestätigter vollständiger Integration löschen.
+- [x] Veralteten Remote-Branch `playground` nach bestätigter vollständiger Integration löschen; der Remote-Ref war bereits gelöscht und die lokale Tracking-Referenz wurde am 2026-10-01 gepruned.
 
 ## 2026-09-29 Post-hoc Experimentauswertung
 
