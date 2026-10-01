@@ -4,11 +4,11 @@
   "scope": "docs",
   "warning": "Classification describes document role; it does not promote DATA to EVID or certify scientific validity.",
   "summary": {
-    "file_count": 202,
+    "file_count": 204,
     "status": {
       "archive": 8,
       "current": 131,
-      "current_wip": 2,
+      "current_wip": 4,
       "historical": 61
     },
     "kind": {
@@ -17,8 +17,9 @@
       "canonical_acceleration_contract": 1,
       "canonical_architecture_contract": 1,
       "canonical_engineering_preflight_contract": 1,
+      "canonical_governance_contract_draft": 1,
       "canonical_hardware_acceptance_contract": 1,
-      "canonical_semantic_contract_draft": 1,
+      "canonical_semantic_contract_draft": 2,
       "canonical_verification_contract": 1,
       "changelog": 13,
       "dashboard_contract": 5,
@@ -53,9 +54,11 @@
       "normative_document_governance": 2,
       "normative_engineering_hardware_acceptance_contract": 1,
       "normative_execution_backend_contract": 1,
+      "normative_learning_synapse_contract_draft": 1,
       "normative_pan_semantic_contract_draft": 1,
       "normative_pan_wave5b_preflight_contract": 1,
       "normative_quality_contract": 19,
+      "normative_structural_approval_contract_draft": 1,
       "operator_or_developer_guidance": 9,
       "planning": 18,
       "research_context": 11,
@@ -2262,6 +2265,19 @@
       "review_required": false
     },
     {
+      "path": "docs/canonical/LEARNING_CONTRACT_DRAFT.md",
+      "domain": "docs",
+      "kind": "canonical_semantic_contract_draft",
+      "status": "current_wip",
+      "authority": "normative_learning_synapse_contract_draft",
+      "mutability": "editable_until_explicit_semantic_freeze",
+      "citation": "cite_current_revision_as_draft_contract_only",
+      "evidence_role": "semantic_contract_draft_not_data_or_evidence",
+      "rationale": "Defines the Wave-7 inventory of CPU learning semantics and explicit CPU/CUDA divergence blockers. It is a reviewed draft, does not establish cross-backend learning equivalence and creates no DATA/EVID.",
+      "classification_rule": "override:docs/canonical/LEARNING_CONTRACT_DRAFT.md",
+      "review_required": false
+    },
+    {
       "path": "docs/canonical/PAN_HYPERSTATE_CONTRACT_DRAFT.md",
       "domain": "docs",
       "kind": "canonical_semantic_contract_draft",
@@ -2311,6 +2327,19 @@
       "evidence_role": "navigation_not_evidence",
       "rationale": "Index for current canonical MHRN architecture and verification contracts.",
       "classification_rule": "override:docs/canonical/README.md",
+      "review_required": false
+    },
+    {
+      "path": "docs/canonical/STRUCTURAL_APPROVAL_CONTRACT_DRAFT.md",
+      "domain": "docs",
+      "kind": "canonical_governance_contract_draft",
+      "status": "current_wip",
+      "authority": "normative_structural_approval_contract_draft",
+      "mutability": "editable_until_explicit_governance_freeze",
+      "citation": "cite_current_revision_as_draft_contract_only",
+      "evidence_role": "governance_contract_draft_not_data_or_evidence",
+      "rationale": "Defines Wave-6 fail-closed structural approval modes, policy provenance and host-barrier prerequisites around existing proposal/coordinator/journal/undo mechanisms. It is a reviewed draft contract and does not authorize structural mutation or create DATA/EVID.",
+      "classification_rule": "override:docs/canonical/STRUCTURAL_APPROVAL_CONTRACT_DRAFT.md",
       "review_required": false
     },
     {
