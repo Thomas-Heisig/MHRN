@@ -273,6 +273,19 @@ def transfer_element(payload: Mapping[str, object]) -> dict[str, object]:
             "plasticity_semantics": PLASTICITY_SEMANTICS,
             "d3_complete": False,
         }
+    elif candidate.element_id == "pan_hyperstate":
+        from src.homeostasis.pan_contract import (
+            PAN_CONTRACT_ID,
+            PAN_CONTRACT_STATUS,
+            pan_contract_check,
+        )
+
+        connected = False
+        detail = {
+            "pan_contract_id": PAN_CONTRACT_ID,
+            "pan_contract_status": PAN_CONTRACT_STATUS,
+            "pan_contract_self_check": pan_contract_check(),
+        }
     else:
         connected = False
         detail = {}
@@ -306,4 +319,5 @@ def transfer_element(payload: Mapping[str, object]) -> dict[str, object]:
             "Promotion requires a repository change and its declared gate; "
             "the dashboard never rewrites source code at runtime."
         ),
+        **detail,
     }
