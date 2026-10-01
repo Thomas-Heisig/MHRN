@@ -240,6 +240,26 @@ class IntegrationStatusBuilder:
             )
         fe3_software_ready = bool(manifest_status["valid"]) and backend_live
 
+        try:
+            from src.homeostasis.pan_wave5b_preflight import (
+                evaluate_pan_wave5b_readiness,
+            )
+
+            pan_wave5b = evaluate_pan_wave5b_readiness(self.repo_root).to_mapping()
+        except Exception as exc:  # fail closed in dashboard projection
+            pan_wave5b = {
+                "classification": "PAN_WAVE5B_PREFLIGHT",
+                "scientific_evidence": False,
+                "integration_claimed": False,
+                "preflight_ready": False,
+                "ready_for_execution": False,
+                "blockers": ["PAN_WAVE5B_PREFLIGHT_UNAVAILABLE"],
+                "next_gate": "REPAIR_PAN_WAVE5B_PREFLIGHT",
+                "message": str(exc),
+            }
+
+        pan_preflight_ready = pan_wave5b.get("preflight_ready") is True
+
         waves: list[dict[str, JSONValue]] = [
             {"id": "wave1", "label": "Neural I/O Contracts", "status": "integrated"},
             {
@@ -265,8 +285,8 @@ class IntegrationStatusBuilder:
             },
             {
                 "id": "wave5",
-                "label": "PAN Hyperstate",
-                "status": "contract_draft",
+                "label": "PAN Hyperstate / Wave 5B",
+                "status": "preflight_ready" if pan_preflight_ready else "contract_draft",
             },
             {"id": "wave6", "label": "Structural Plasticity", "status": "blocked"},
             {
@@ -288,11 +308,13 @@ class IntegrationStatusBuilder:
             "backend": cast(JSONValue, backend_status),
             "fe3_manifest": cast(JSONValue, manifest_status),
             "hardware_acceptance": cast(JSONValue, hardware),
+            "pan_wave5b_preflight": cast(JSONValue, pan_wave5b),
             "waves": cast(JSONValue, waves),
-            "next_gate": (
-                "WAVE5_PAN_HYPERSTATE"
-                if bool(hardware["accepted"])
-                else "PHYSICAL_FE3_HARDWARE_ACCEPTANCE"
+            "next_gate": str(
+                pan_wave5b.get(
+                    "next_gate",
+                    "REPAIR_PAN_WAVE5B_PREFLIGHT",
+                )
             ),
             "limitations": cast(
                 JSONValue,
