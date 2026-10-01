@@ -179,8 +179,8 @@ def validate_pan_state_mapping(
     vector = cast(Sequence[object], vector_value)
     if len(vector) != dimensions:
         raise ValueError("pan_x_hd dimension mismatch")
-    for index, value in enumerate(vector):
-        _finite_number(value, f"pan_x_hd[{index}]")
+    for index, component in enumerate(vector):
+        _finite_number(component, f"pan_x_hd[{index}]")
 
 
 def pan_contract_check() -> bool:
