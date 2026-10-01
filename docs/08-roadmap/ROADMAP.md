@@ -1125,3 +1125,24 @@ The benchmark/reference suite moves **before** live CUDA-1.6 and full PAN-GPU wo
 - The visible Playground integration catalog marks ExecutionBackend and Parity/Determinism as integrated.
 - CUDA Driver/NVRTC/ABI/recurrent/plasticity extraction is the next Wave-4 task.
 - No scientific DATA or EVID is created by Wave 3.
+
+
+## 2026-10-01 — Playground integration Wave 5A
+
+**Goal:** freeze PAN semantics before further GPU promotion.
+
+- [x] Extract the PAN continuation-state surface into
+  `src/homeostasis/pan_contract.py`.
+- [x] Extract current reference coefficients into `PANFormulaParameters`.
+- [x] Declare deterministic update ordering for engineering comparison.
+- [x] Make the Playground PAN runtime consume the draft contract without
+  changing its algorithm.
+- [x] Expose Wave 5 as `contract_draft` in the acceleration status UI.
+- [x] Preserve the scientific boundary: RQ-PAN-SEM-001 remains open and PAN
+  remains non-evidentiary.
+- [ ] Human/method review of the state/update contract.
+- [ ] Freeze a versioned PAN v1 contract.
+- [ ] Extend RuntimeCheckpoint with all frozen PAN continuation state.
+- [ ] Implement the same frozen contract on canonical CUDA PAN execution.
+- [ ] Run PAN D1/D2/checkpoint parity only after physical FE-3 acceptance and
+  semantic freeze.

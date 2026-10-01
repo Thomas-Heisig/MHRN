@@ -4,10 +4,11 @@
   "scope": "docs",
   "warning": "Classification describes document role; it does not promote DATA to EVID or certify scientific validity.",
   "summary": {
-    "file_count": 200,
+    "file_count": 201,
     "status": {
       "archive": 8,
       "current": 131,
+      "current_wip": 1,
       "historical": 61
     },
     "kind": {
@@ -16,6 +17,7 @@
       "canonical_acceleration_contract": 1,
       "canonical_architecture_contract": 1,
       "canonical_hardware_acceptance_contract": 1,
+      "canonical_semantic_contract_draft": 1,
       "canonical_verification_contract": 1,
       "changelog": 13,
       "dashboard_contract": 5,
@@ -50,6 +52,7 @@
       "normative_document_governance": 2,
       "normative_engineering_hardware_acceptance_contract": 1,
       "normative_execution_backend_contract": 1,
+      "normative_pan_semantic_contract_draft": 1,
       "normative_quality_contract": 19,
       "operator_or_developer_guidance": 9,
       "planning": 18,
@@ -2254,6 +2257,19 @@
       "evidence_role": "engineering_verification_contract_not_data_or_evidence",
       "rationale": "Defines the bounded physical CUDA and Frozen-Environment FE-3 acceptance procedure, artifact format and interpretation limits; execution under this contract remains engineering verification and creates no DATA or EVID.",
       "classification_rule": "override:docs/canonical/HARDWARE_ACCEPTANCE.md",
+      "review_required": false
+    },
+    {
+      "path": "docs/canonical/PAN_HYPERSTATE_CONTRACT_DRAFT.md",
+      "domain": "docs",
+      "kind": "canonical_semantic_contract_draft",
+      "status": "current_wip",
+      "authority": "normative_pan_semantic_contract_draft",
+      "mutability": "editable_until_explicit_freeze",
+      "citation": "cite_current_revision_as_draft_contract_only",
+      "evidence_role": "semantic_contract_draft_not_data_or_evidence",
+      "rationale": "Defines the backend-neutral PAN hyperstate reference semantics prepared in Wave 5A. The contract is explicitly draft, does not establish CPU/CUDA equivalence, and creates no DATA, EVID or accepted scientific claim.",
+      "classification_rule": "override:docs/canonical/PAN_HYPERSTATE_CONTRACT_DRAFT.md",
       "review_required": false
     },
     {

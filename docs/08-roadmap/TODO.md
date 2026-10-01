@@ -630,3 +630,23 @@ Reference: [MHRN simulator capability gaps](MHRN_SIMULATOR_CAPABILITY_GAPS.md).
 - [ ] Bind a physical CPU closed-loop backend and canonical CUDA backend to the same FE-3 manifest.
 - [ ] Execute physical CPU-vs-CUDA D1/D2/D3 acceptance on RTX 3060.
 - [ ] Preserve the result as Engineering Verification until a separately preregistered study exists.
+
+
+## 2026-10-01 Playground -> MHRN Wave 5A
+
+- [x] Add `mhrn-pan-hyperstate-v0.1-draft` as a backend-neutral draft state
+  contract.
+- [x] Move current PAN reference coefficients into the canonical Homeostasis
+  layer without changing Playground behavior.
+- [x] Validate PAN state width, finite values, normalized bounds and stable
+  neuron identity fail-closed.
+- [x] Show Wave 5 in the frontend as **Semantikvertrag in Arbeit**, not as
+  integrated/accepted.
+- [x] Record the engineering boundary in the research-software paper.
+- [ ] Review/freeze RQ-PAN-SEM-001 contract semantics.
+- [ ] Canonicalize feedback projection semantics.
+- [ ] Canonicalize PAN checkpoint/restore continuation state.
+- [ ] Move PAN execution to canonical CUDA only after semantic freeze and
+  physical FE-3 acceptance.
+- [ ] Keep structural Growth/Pruning/Apoptosis behind the separate
+  Proposal/Approval/Journal barrier contract.
