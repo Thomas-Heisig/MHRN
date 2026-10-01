@@ -101,3 +101,15 @@ Wave 7 can only move from Draft to Frozen when:
 A frozen contract would establish a software semantics target only. It would
 not prove learning effectiveness, biological validity or scientific evidence.
 Those require separate preregistered experiments and Human Review.
+
+## Machine-readable divergence inventory
+
+The five blocking semantic decisions are also recorded in `research/specifications/WAVE7_LEARNING_DIVERGENCES.json`:
+
+1. stable edge identity, including parallel-edge semantics;
+2. STP state and update semantics;
+3. reward credit-window versus delayed-reward/eligibility semantics;
+4. per-tick weight-decay semantics;
+5. STDP pair amplitudes/default parameters.
+
+Every item remains `OPEN`. Cross-backend learning equivalence remains blocked until each item has an explicit versioned resolution and the common contract is implemented by both compared backends.
