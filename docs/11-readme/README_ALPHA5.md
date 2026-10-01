@@ -12,7 +12,7 @@ python -m src.dashboard --snapshot artifacts/brain5d_snapshot.b5d
 Browser:
 
 ```text
-http://127.0.0.1:8765
+http://127.0.0.1:8767
 ```
 
 ## Qualitaetsziel vor v0.4.0 final

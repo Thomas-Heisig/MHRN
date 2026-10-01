@@ -279,7 +279,7 @@ inspection surface.
 
 Default address:
 
-http://127.0.0.1:8765
+http://127.0.0.1:8767
 
 Current dashboard functions include:
 
@@ -404,7 +404,7 @@ python -m src.dashboard --snapshot artifacts/brain5d_snapshot.b5d
 
 Then open:
 
-http://127.0.0.1:8765
+http://127.0.0.1:8767
 
 If no usable snapshot/network source is attached, some heatmap or runtime controls may
 be unavailable by design.

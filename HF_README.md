@@ -1,7 +1,7 @@
 ---
 license: mit
 sdk: docker
-app_port: 8765
+app_port: 8767
 title: MHRN
 short_description: Multi-scale homeostatic recurrent spiking research
 language:
@@ -108,7 +108,7 @@ pip install -e ".[dev]"
 .\start.ps1
 ```
 
-The dashboard defaults to `http://127.0.0.1:8765`.
+The dashboard defaults to `http://127.0.0.1:8767`.
 
 ## Current research focus
 

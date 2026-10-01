@@ -95,6 +95,8 @@ class BehavioralLearningEngine:
             self.activity[action] = 0.8 * self.activity[action] + 0.2 * value
 
     def choose_action(self) -> int:
+        if self.active_context is not None:
+            return self.choose_context_action(self.active_context, self.action_count)
         if self.rng.random() < self.epsilon:
             return self.rng.randrange(self.action_count)
         scores = [
@@ -113,16 +115,34 @@ class BehavioralLearningEngine:
         target: int | None = None,
         context: str | None = None,
         action_count: int | None = None,
+        activity: Sequence[float] | None = None,
     ) -> float:
         """Apply external reward to the base policy or a named context policy."""
 
         if context is not None:
             count = self.action_count if action_count is None else action_count
-            if not 2 <= count <= 16:
-                raise ValueError("action_count must be between 2 and 16")
+            if not 1 <= count <= 32:
+                raise ValueError("action_count must be between 1 and 32")
             if not 0 <= action < count:
                 raise ValueError("action outside context action range")
             bounded = max(-2.0, min(2.0, float(reward)))
+            features = list(self.activity if activity is None else activity)
+            if len(features) != self.action_count or not all(
+                math.isfinite(value) for value in features
+            ):
+                raise ValueError("activity must contain finite action features")
+            if not math.isfinite(float(reward)):
+                raise ValueError("reward must be finite")
+            if target is not None:
+                self.target_history.append(target)
+                self.action_history.append(action)
+                if max(features, default=0.0) < self.min_activity:
+                    self.insufficient_activity_episodes += 1
+                    self.reward_history.append(0.0)
+                    return 0.0
+                self.reward_history.append(float(reward))
+                self.policy_updates += 1
+                self.correct_actions += int(action == target)
             policy = self.context_policies.setdefault(
                 context, [0.0 for _ in range(count)]
             )
@@ -133,13 +153,13 @@ class BehavioralLearningEngine:
             if len(policy) != count or len(weights) != count:
                 raise ValueError("context action_count changed after initialization")
             prediction = policy[action] + sum(
-                weight * feature
-                for weight, feature in zip(weights[action], self.activity)
+                weight * feature for weight, feature in zip(weights[action], features)
             )
             error = bounded - prediction
-            policy[action] += self.learning_rate * error
-            for index, feature in enumerate(self.activity):
-                weights[action][index] += self.learning_rate * error * feature
+            step = self.learning_rate * error / (1.0 + sum(x * x for x in features))
+            policy[action] += step
+            for index, feature in enumerate(features):
+                weights[action][index] += step * feature
             self.context_updates[context] = self.context_updates.get(context, 0) + 1
             self.external_reward_history.append(
                 {"context": context, "action": action, "reward": bounded}
@@ -147,11 +167,13 @@ class BehavioralLearningEngine:
             if len(self.external_reward_history) > 512:
                 del self.external_reward_history[:-512]
             self.external_reward_updates += 1
-            return policy[action]
+            return float(reward) if target is not None else policy[action]
 
         if not 0 <= action < self.action_count:
             raise ValueError("action outside action range")
-        activity_level = max(self.activity, default=0.0)
+        activity_level = max(
+            self.activity if activity is None else activity, default=0.0
+        )
         applied = float(reward)
         if activity_level < self.min_activity:
             applied = 0.0
@@ -193,8 +215,8 @@ class BehavioralLearningEngine:
         search) and intentionally do not store task payloads or factual answers.
         """
 
-        if not 2 <= action_count <= 16:
-            raise ValueError("action_count must be between 2 and 16")
+        if not 1 <= action_count <= 32:
+            raise ValueError("action_count must be between 1 and 32")
         policy = self.context_policies.setdefault(
             context, [0.0 for _ in range(action_count)]
         )
@@ -217,11 +239,15 @@ class BehavioralLearningEngine:
         ]
         return max(range(action_count), key=lambda action: (scores[action], -action))
 
-    def activate_context(self, context: str, action_count: int) -> None:
-        if not 2 <= action_count <= 16:
-            raise ValueError("action_count must be between 2 and 16")
+    def activate_context(
+        self, context: str, action_count: int, *, initial_value: float = 0.0
+    ) -> None:
+        if not 1 <= action_count <= 32:
+            raise ValueError("action_count must be between 1 and 32")
+        if not math.isfinite(initial_value):
+            raise ValueError("initial_value must be finite")
         policy = self.context_policies.setdefault(
-            context, [0.0 for _ in range(action_count)]
+            context, [initial_value for _ in range(action_count)]
         )
         weights = self.context_weights.setdefault(
             context,

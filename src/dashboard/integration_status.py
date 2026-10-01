@@ -16,6 +16,7 @@ A component disabled by config is NEVER reported as "failed".
 
 from __future__ import annotations
 
+import json
 from pathlib import Path
 from typing import Any, cast
 
@@ -128,6 +129,206 @@ class IntegrationStatusBuilder:
             "total": len(items),
             "items": cast(JSONValue, items),
             "source": "live_backend",
+            "acceleration": cast(JSONValue, self._build_acceleration_status()),
+        }
+
+    def _build_acceleration_status(self) -> dict[str, JSONValue]:
+        """Project canonical CUDA/FE-3 integration state without executing GPU work."""
+
+        manifest_path = (
+            self.repo_root
+            / "research"
+            / "verification"
+            / "frozen_environment"
+            / "FE3_DETERMINISTIC_TARGET_V1.json"
+        )
+        manifest_status: dict[str, JSONValue] = {
+            "path": str(manifest_path.relative_to(self.repo_root)),
+            "status": "missing",
+            "valid": False,
+        }
+        try:
+            from src.verification.frozen_environment import load_manifest_artifact
+
+            manifest = load_manifest_artifact(manifest_path)
+            manifest_status = {
+                "path": str(manifest_path.relative_to(self.repo_root)),
+                "status": "verified",
+                "valid": True,
+                "mode": manifest.mode.value,
+                "contract_id": manifest.contract_id,
+                "manifest_sha256": manifest.manifest_sha256,
+                "environment_id": manifest.environment_id,
+                "sensor_ticks": len(manifest.sensor_schedule),
+            }
+        except (OSError, ValueError) as exc:
+            manifest_status["message"] = str(exc)
+
+        backend_status: dict[str, JSONValue]
+        try:
+            from src.acceleration.cuda import (
+                CUDABackend,
+                execution_backend_contract_check,
+            )
+
+            backend = CUDABackend()
+            capabilities = backend.capabilities().to_mapping()
+            backend_status = {
+                "status": "integrated",
+                "contract_ok": execution_backend_contract_check(),
+                "backend_name": backend.backend_name,
+                "backend_version": backend.backend_version,
+                "capabilities": cast(JSONValue, capabilities),
+            }
+        except Exception as exc:  # fail closed in dashboard projection
+            backend_status = {
+                "status": "unavailable",
+                "contract_ok": False,
+                "message": str(exc),
+            }
+
+        reports = sorted(
+            (self.repo_root / "docs" / "canonical").glob("HARDWARE_ACCEPTANCE_*.json")
+        )
+        hardware: dict[str, JSONValue]
+        if not reports:
+            hardware = {
+                "status": "pending",
+                "accepted": False,
+                "artifact": None,
+                "message": "No reviewed physical hardware acceptance artifact is present.",
+            }
+        else:
+            latest = reports[-1]
+            try:
+                raw_object: object = json.loads(latest.read_text(encoding="utf-8"))
+                if not isinstance(raw_object, dict):
+                    raise ValueError("hardware acceptance artifact must be an object")
+                raw = cast(dict[str, object], raw_object)
+                accepted = bool(raw.get("passed")) and bool(
+                    raw.get("full_fe3_accepted")
+                )
+                hardware = {
+                    "status": "passed" if accepted else "failed",
+                    "accepted": accepted,
+                    "artifact": str(latest.relative_to(self.repo_root)),
+                    "gpu_identity": cast(JSONValue, raw.get("gpu_identity")),
+                    "wave4_physical": cast(JSONValue, raw.get("wave4_physical")),
+                    "builder_d3c_bridge": cast(
+                        JSONValue, raw.get("builder_d3c_bridge")
+                    ),
+                    "frozen_environment_fe3": cast(
+                        JSONValue, raw.get("frozen_environment_fe3")
+                    ),
+                    "full_fe3_accepted": bool(raw.get("full_fe3_accepted")),
+                    "scientific_evidence": False,
+                }
+            except (OSError, ValueError, json.JSONDecodeError) as exc:
+                hardware = {
+                    "status": "failed",
+                    "accepted": False,
+                    "artifact": str(latest.relative_to(self.repo_root)),
+                    "message": str(exc),
+                }
+
+        capabilities_object = backend_status.get("capabilities")
+        backend_live = False
+        if isinstance(capabilities_object, dict):
+            capabilities_mapping = capabilities_object
+            backend_live = (
+                capabilities_mapping.get("supports_live_external_input") is True
+            )
+        fe3_software_ready = bool(manifest_status["valid"]) and backend_live
+
+        try:
+            from src.homeostasis.pan_wave5b_preflight import (
+                evaluate_pan_wave5b_readiness,
+            )
+
+            pan_wave5b = evaluate_pan_wave5b_readiness(self.repo_root).to_mapping()
+        except Exception as exc:  # fail closed in dashboard projection
+            pan_wave5b = {
+                "classification": "PAN_WAVE5B_PREFLIGHT",
+                "scientific_evidence": False,
+                "integration_claimed": False,
+                "preflight_ready": False,
+                "ready_for_execution": False,
+                "blockers": ["PAN_WAVE5B_PREFLIGHT_UNAVAILABLE"],
+                "next_gate": "REPAIR_PAN_WAVE5B_PREFLIGHT",
+                "message": str(exc),
+            }
+
+        pan_preflight_ready = pan_wave5b.get("preflight_ready") is True
+
+        waves: list[dict[str, JSONValue]] = [
+            {"id": "wave1", "label": "Neural I/O Contracts", "status": "integrated"},
+            {
+                "id": "wave2",
+                "label": "Codecs / Adapter / Gateway",
+                "status": "integrated",
+            },
+            {
+                "id": "wave3",
+                "label": "ExecutionBackend / Parity / Determinism",
+                "status": "integrated",
+            },
+            {"id": "wave4", "label": "Canonical CUDA Backend", "status": "integrated"},
+            {
+                "id": "fe3",
+                "label": "FE-3 Live Backend Bridge",
+                "status": "software_verified" if fe3_software_ready else "blocked",
+            },
+            {
+                "id": "hardware",
+                "label": "Physical RTX Hardware Acceptance",
+                "status": str(hardware["status"]),
+            },
+            {
+                "id": "wave5",
+                "label": "PAN Hyperstate / Wave 5B",
+                "status": (
+                    "preflight_ready" if pan_preflight_ready else "contract_draft"
+                ),
+            },
+            {"id": "wave6", "label": "Structural Plasticity", "status": "blocked"},
+            {
+                "id": "wave7",
+                "label": "Canonical Learning Contract",
+                "status": "blocked",
+            },
+        ]
+
+        return {
+            "classification": "MHRN_ACCELERATION_INTEGRATION_STATUS",
+            "scientific_evidence": False,
+            "software_path_closed": fe3_software_ready,
+            "physical_hardware_accepted": bool(hardware["accepted"]),
+            "provenance_rule": (
+                "CPU/CUDA execution fingerprints differ by design; "
+                "semantic equality is manifest + live-input + D3c parity."
+            ),
+            "backend": cast(JSONValue, backend_status),
+            "fe3_manifest": cast(JSONValue, manifest_status),
+            "hardware_acceptance": cast(JSONValue, hardware),
+            "pan_wave5b_preflight": cast(JSONValue, pan_wave5b),
+            "waves": cast(JSONValue, waves),
+            "next_gate": str(
+                pan_wave5b.get(
+                    "next_gate",
+                    "REPAIR_PAN_WAVE5B_PREFLIGHT",
+                )
+            ),
+            "limitations": cast(
+                JSONValue,
+                {
+                    "scientific_data": False,
+                    "evidence": False,
+                    "speedup_claim": False,
+                    "pan_hyperstate": False,
+                    "structural_plasticity": False,
+                    "canonical_learning_contract": False,
+                },
+            ),
         }
 
     # ------------------------------------------------------------------------

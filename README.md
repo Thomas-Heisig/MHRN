@@ -327,7 +327,7 @@ Direct Python start:
 python -m src.main --config configs/poc_alpha5_live.yaml
 ```
 
-The direct Python entry point binds the dashboard to loopback by default. The Windows wrappers are intended for trusted-LAN operation and bind to `0.0.0.0:8765` by default; use `-DashboardHost 127.0.0.1` for local-only access.
+The direct Python entry point binds the dashboard to loopback by default. The Windows wrappers are intended for trusted-LAN operation and bind to `0.0.0.0:8767` by default; use `-DashboardHost 127.0.0.1` for local-only access.
 
 Preferred launcher implementation: [`scripts/mhrn_launcher.py`](scripts/mhrn_launcher.py).
 
@@ -399,7 +399,7 @@ These items are tracked in the canonical roadmaps rather than as fixed completio
 
 ## Security
 
-The dashboard exposes operator, research and file-management capabilities. Do not expose it directly to the public Internet. For trusted-LAN use, restrict TCP port `8765` to the intended private network.
+The dashboard exposes operator, research and file-management capabilities. Do not expose it directly to the public Internet. For trusted-LAN use, restrict TCP port `8767` to the intended private network.
 
 See [`SECURITY.md`](SECURITY.md) and [`docs/03-dashboard/DASHBOARD.md`](docs/03-dashboard/DASHBOARD.md).
 

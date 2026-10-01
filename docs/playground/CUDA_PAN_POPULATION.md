@@ -1,0 +1,11 @@
+# Ordered PAN population reduction on CUDA
+
+The actual cuda_pan Builder reduces its device hypervectors directly on CUDA after the per-neuron PAN update, in the same default stream. One thread owns each axis and sums neurons in ascending order. No atomic or tree reduction changes addition order. Retained vectors of dead neurons remain in the mean, matching the PAN CPU semantics.
+
+The CPU reference now explicitly uses the same left-to-right additions. This is an intentional floating-point-order contract: Python 3.12 changed floating-point sum behavior, so relying on builtin sum would vary the reference between supported Python versions. Mathematical averaging is unchanged; exact old compensated-sum bit patterns are not promised. Adversarial cancellation tests specify the order on CPU and GPU.
+
+Reduction reads existing device vectors and copies back only the population vector for the current host-owned feedback history. Other PAN state readbacks still support diagnostics and host algorithms; this is not full resident execution. Invalid/non-finite accumulated means fail closed. The per-tick GPU population counter is required by D3, and the visible Run table separates GPU population reduction from CPU source-history selection.
+
+Validation covers dimensions 5/10/32, partial neuron blocks, apoptosis retention, cancellation-sensitive summation, overflow, shared-context cleanup and full real Builder D3. The same source participates in main-CI NVRTC/ptxas assembly. No speedup, canonical-runtime or neural-learning claim is made.
+
+Measured RTX 3060 validation: 23 hardware/PAN cases passed, including three complete 256-neuron/2048-edge/2000-tick D3 seeds. The focused software suite passed 135 cases. Comparing the explicit-order CPU implementation against the previous Python 3.12 sum behavior for seeds 12345/42/777 gave exact full spike digests, body and closed-loop results; success fractions remain 21/31, 23/31 and 20/31. This finite sample does not promise bit-identical historical sums for arbitrary states. Real HTTP D3 reports 128 GPU reductions for 128 ticks with exact spikes/actions/body/RNG; the actual Run table was visually checked. The reduction kernel uses 25 registers and no stack/spills.

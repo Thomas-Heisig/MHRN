@@ -23,7 +23,7 @@ Example:
 Integration with dashboard:
     >>> from src.dashboard.operator_bridge import OperatorBridge
     >>> bridge = OperatorBridge(controller=controller)
-    >>> serve_dashboard(host="127.0.0.1", port=8765, structural_bridge=bridge)
+    >>> serve_dashboard(host="127.0.0.1", port=8767, structural_bridge=bridge)
 """
 
 from __future__ import annotations

@@ -918,6 +918,22 @@ Die Real-Body-/Wesen-Arbeiten formulieren eine Infrastrukturregel, die über das
 
 Profile & Identity ergänzt die Persistenzschicht um versionierte technische Konfiguration, Digest, Revision, Lineage und Snapshotbindung. Für Experimente können damit `profile_id`, Revision, Profil-Digest und Snapshot-Digest gemeinsam gebunden werden. Das verbessert Reproduzierbarkeit, ohne den Profilbegriff psychologisch aufzuladen. Ein Profil ist eine deklarierte technische Identität; der dynamische neuronale Zustand und der vollständige kausale Checkpoint bleiben getrennte Objekte.
 
+## 24.9 Frozen-Environment FE-3 als backend-neutrale Ausführungsgrenze
+
+Die Beschleunigungsintegration trennt inzwischen nicht nur neuronale Backend-Parität von wissenschaftlicher Evidenz, sondern auch zwei verschiedene Closed-Loop-Nachweise. Der ältere Builder-D3c-Pfad bleibt ein Playground-naher Engineering-Kontrollpfad. Zusätzlich existiert nun ein kanonischer FE-3-Adapter zwischen `FrozenWorldSession` und dem backend-neutralen `ExecutionBackend`.
+
+Der Adapter erzeugt pro Tick aus dem aktuellen Weltzustand einen exakten `BoundaryFrame`, kodiert daraus einen deterministischen externen Stromvektor, führt genau den aktuellen Backend-Tick aus, dekodiert Spikes in einen `ActionCommand` und gibt diesen an die eingefrorene Welt zurück. Dadurch hängt der nächste Sensorzustand kausal von der Backend-Ausgabe ab. CPU-Referenz und CUDA verwenden dieselbe Schnittstelle; der CUDA-Kernel selbst wird für diese Kopplung nicht verändert.
+
+Für die erste Hardware-Abnahme ist ein versioniertes Manifest `FE3_DETERMINISTIC_TARGET_V1.json` eingefroren. Entscheidend sind identischer Manifest-Hash, identischer Live-Input-Fingerprint und exakte D3c-Trajektorienparität. Die Execution Fingerprints von CPU und CUDA müssen dagegen absichtlich verschieden bleiben, weil Backend-Identität Teil der Provenienz ist.
+
+Dieser Stand ist Engineering-Infrastruktur. Hosted CI kann Adapter, Manifest und CPU-Kontrollen prüfen; die physische CPU-vs-CUDA-FE-3-Abnahme auf der RTX-Referenzhardware bleibt ein eigener realer Nachweis. Weder Adapterimplementierung noch ein später grüner Hardware-Lauf erzeugen automatisch DATA, EVID, einen Speedup-Claim oder Aussagen über PAN-Hyperstate, Lernen oder Kognition.
+
+## 24.10 Frontend-Projektion der Backend- und Evidenzgrenze
+
+Der Dashboard-Stand bildet diese Grenze nun direkt aus kanonischen Quellen ab. Die Integrationsprojektion unterscheidet drei Zustände: **kanonisch integriert**, **softwareseitig verifiziert** und **physisch auf Referenzhardware akzeptiert**. Die ersten beiden Zustände können aus Quellstruktur, Backend-Capabilities und dem selbstverifizierenden FE-3-Manifest abgeleitet werden. Der dritte Zustand wird ausschließlich dann als erfüllt dargestellt, wenn ein geprüftes, datiertes `HARDWARE_ACCEPTANCE_<date>.json` im kanonischen Dokumentationspfad vorliegt.
+
+Die gleiche Information erscheint kontextabhängig an mehreren Stellen: im Playground als Promotion-/Integrationspfad, im Release-Bereich als Engineering-Acceptance, im wissenschaftlichen Observatory als explizite Evidenzgrenze und unter `OLD` nur als Archiv-/Kompatibilitätshinweis. Damit wird Frontend-Vollständigkeit nicht mit wissenschaftlicher Reife verwechselt. Insbesondere bleibt ein grüner Hardware-Status **Engineering Verification**; DATA/EVID benötigen weiterhin den separaten preregistrierten Forschungs- und Reviewpfad.
+
 
 ---
 
@@ -3350,6 +3366,31 @@ Die Interface-Integration eröffnet einen eigenen, aber mit Stage 4–6 verbunde
 Vor positiver DATA dürfen weder selbstorganisierter Werkzeuggebrauch noch universeller gemeinsamer Repräsentationsraum behauptet werden. Der Decoder/Tool-Plane bleibt ein expliziter konventioneller Boundary-Baustein; wissenschaftlich geprüft wird, welche Teile der Auswahl, Nutzung, zeitlichen Erwartung und Rückkopplung tatsächlich vom neuronalen System gelernt werden.
 
 Dieser Strang erhält hohe Priorität, weil er eine direkte Falsifikation der These ermöglicht, MHRN müsse externes Faktenwissen intern memorieren: erfolgreiche Nutzung neuer Inhalte aus einer neuen Quelle bei erhaltener Aufgabenleistung würde eine gelernte Informationsnutzungsstrategie stützen; Scheitern würde die stärkere Interpretation begrenzen.
+
+
+## 58.7 Wave-6/7-Vertragsgrenzen für strukturelle Plastizität und Lernen
+
+Parallel zur noch ausstehenden physischen RTX-3060-Akzeptanz werden zwei
+Semantiklinien vorbereitet. Wave 6 formalisiert die bereits vorhandene
+Self-Organization-Pipeline als fail-closed Approval-/Barrier-Vertrag.
+`MANUAL_ONLY` benötigt eine explizite Autorisierung; automatisierte Modi
+benötigen einen gehashten Policy-Vertrag und bei `PREREGISTERED_AUTO` einen
+vorab eingefrorenen Policy-Artefaktstand. Safety-, Journal-, Barrier- und
+Scientific-Freeze-Grenzen bleiben davon unabhängig und können nicht durch eine
+menschliche oder algorithmische Freigabe übergangen werden.
+
+Wave 7 inventarisiert die reale CPU-Lernsemantik und die aktuell davon
+abweichende CUDA-Referenz. Die CPU-Linie verwendet geordnete nearest-neighbour
+Pair-STDP-Ereignisse, einen Same-Tick-Nullbeitrag, exponentielle
+Eligibility-Traces und verzögerten Reward. Die CUDA-Referenz besitzt zusätzlich
+eine STP-Kandidatensemantik, ein Credit Window und Weight Decay. Diese
+Unterschiede werden nicht durch Toleranzen verdeckt, sondern blockieren den
+Freeze eines gemeinsamen Learning-Vertrags.
+
+Beide Linien sind Engineering-/Governance-Arbeit. Sie erzeugen weder DATA noch
+EVID und autorisieren insbesondere nicht die Wave-5B-PAN-Ausführung. Erst ein
+reviewter Freeze und anschließende prospektive Cross-Backend-Tests können eine
+stärkere Aussage tragen.
 
 
 ---

@@ -24,7 +24,7 @@
 .PARAMETER DashboardHost
     Dashboard-Bind-Adresse (default: 0.0.0.0 fuer vertrauenswuerdiges LAN; 127.0.0.1 fuer lokal).
 .PARAMETER DashboardPort
-    Dashboard-Port (default: 8765).
+    Dashboard-Port (default: 8767; zentrale Quelle: src/dashboard/network_settings.py).
 .PARAMETER PassThru
     Nur die Launcher-Argumente ausgeben, nicht ausfuehren.
 .PARAMETER Help
@@ -52,8 +52,8 @@ param(
     [switch]$NoLearning,
     [switch]$NoHomeostasis,
     [int]$Ticks = 0,
-    [string]$DashboardHost = "0.0.0.0",
-    [int]$DashboardPort = 8765,
+    [string]$DashboardHost = (python -c "from src.dashboard.network_settings import DASHBOARD_LAN_HOST; print(DASHBOARD_LAN_HOST)"),
+    [int]$DashboardPort = (python -c "from src.dashboard.network_settings import DASHBOARD_PORT; print(DASHBOARD_PORT)"),
 
     [switch]$PassThru,
     [switch]$Help

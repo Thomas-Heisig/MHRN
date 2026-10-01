@@ -14,6 +14,11 @@
 | Barabási (1999) | Preferential attachment produces scale-free network degree distributions. | RQ-SNN-003 | inconclusive |
 | Olshausen (1996) | Sparse coding is a biologically motivated efficient-coding principle; this source does not imply that MHRN Stage-1 topology is a sparse code. | RQ-SNN-003 | inconclusive |
 | Stimberg (2019) | Brian 2 is a flexible simulator for spiking neural networks and is used in MHRN only as an external reference implementation where explicitly declared. | RQ-EVAL-006, RQ-SNN-003 | inconclusive |
+| team (2026) | Brian 2 supports equation-defined neuron/synapse models, dimensional unit checks and multicompartment SpatialNeuron models.; Brian 2 documents that exact bitwise reproducibility cannot be guaranteed across all generated-code/compiler configurations. | RQ-CUDA-DET-001, RQ-CUDA-PAR-001, RQ-SIM-INTEROP-001 | open |
+| Alevi (2022) | Brian2CUDA provides a CUDA standalone backend generated from Brian 2 model descriptions. | RQ-CUDA-DET-001, RQ-CUDA-PAR-001, RQ-CUDA-SCALE-001, RQ-GATE-IR-001, RQ-PAN-GPU-001, RQ-SIM-INTEROP-001 | open |
+| team (2026) | Brian2GeNN provides a Brian 2 device that generates and runs models through GeNN, with documented unsupported features. | RQ-CUDA-SCALE-001, RQ-SIM-INTEROP-001 | open |
+| team (2026) | Brian2Lava aims to map Brian 2 models into Lava backends; current public Loihi 2 availability is restricted and flexible mode is not a general public Loihi 2 backend. | RQ-SIM-INTEROP-001 | open |
+| Knight (2026) | Structural plasticity can be implemented in GPU-accelerated sparse SNN workflows under explicit data-structure and update constraints. | RQ-PAN-GPU-001, RQ-CUDA-STRUCT-001 | open |
 | others (2026) |  | RQ-CNS-101, RQ-CNS-112, RQ-CNS-113, RQ-EPI-102, RQ-WEL-102 | open |
 | others (2025) |  | RQ-CNS-101, RQ-EPI-101 | open |
 | Naccache (2025) |  | RQ-CNS-101 | open |

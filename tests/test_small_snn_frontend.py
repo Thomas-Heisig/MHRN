@@ -11,16 +11,15 @@ def test_small_snn_module_is_initialized() -> None:
     assert "./modules/small-snn-stage.js" in index
 
 
-def test_small_snn_is_routed_through_science_runtime_and_control() -> None:
+def test_small_snn_views_are_preserved_under_old() -> None:
     script = (STATIC / "frontend" / "modules" / "small-snn-stage.js").read_text(
         encoding="utf-8"
     )
-    assert '["snn", "Kleines SNN", "network", "view", "snn"]' in script
-    assert '["snn", "SNN", "wesen", "focus", "#mhrn-runtime-snn"]' in script
-    assert (
-        '["snn", "SNN-Parameter", "settings", "focus", "#mhrn-small-snn-control"]'
-        in script
-    )
+    assert "const ROUTES = Object.freeze({});" in script
+    assert 'data-route-jump="old:wesen-snn"' in script
+    assert 'data-route-jump="old:control-snn"' in script
+    assert 'data-route-jump="settings:parameters"' in script
+    assert 'data-route-jump="old:science-snn"' in script
     assert 'data-route-jump="release:development"' in script
 
 
@@ -40,7 +39,10 @@ def test_small_snn_live_polling_follows_canonical_router_state() -> None:
     )
     assert "new MutationObserver(syncPolling)" in script
     assert 'attributeFilter: ["data-current-area", "data-current-route"]' in script
-    assert 'const liveRoute = route === "snn"' in script
+    assert (
+        'const liveRoute = area === "old" && (route === "science-snn" || route === "wesen-snn")'
+        in script
+    )
     assert "setInterval(routeRefresh, 900)" in script
     assert "clearInterval(state.timer)" in script
     assert "runtimeInFlight" in script

@@ -11,12 +11,15 @@ def read(path: str) -> str:
     return (STATIC / path).read_text(encoding="utf-8")
 
 
-def test_cell_model_is_promoted_to_canonical_science_route() -> None:
+def test_cell_model_is_preserved_as_old_science_route() -> None:
     script = read("frontend/modules/neuron-model-science.js")
 
-    assert 'const ROUTE_ID = "cellmodel"' in script
-    assert '[ROUTE_ID, "Cell Model", "network", "view", ROUTE_ID]' in script
-    assert 'architecture.selectRoute("science", ROUTE_ID)' in script
+    assert 'const ROUTE_ID = "science-cellmodel"' in script
+    assert (
+        '[ROUTE_ID, "Wissenschaft · Cell Modell", "network", "focus", "#mhrn-neuron-model-science"]'
+        in script
+    )
+    assert 'architecture.selectRoute("old", ROUTE_ID)' in script
     assert "button.dataset.areaRoute = ROUTE_ID" in script
     assert "button.dataset.routeCard = ROUTE_ID" in script
 
@@ -34,7 +37,7 @@ def test_cell_model_exposes_settings_shortcuts() -> None:
     script = read("frontend/modules/neuron-model-science.js")
     styles = read("neuron-model-settings.css")
 
-    assert 'data-route-jump="control:parameters"' in script
+    assert 'data-route-jump="settings:parameters"' in script
     assert 'data-route-jump="settings:overview"' in script
     assert ">Alle Parameter<" in script
     assert ">App Settings<" in script
@@ -53,5 +56,5 @@ def test_cell_model_route_restores_from_workspace_router_storage() -> None:
     script = read("frontend/modules/neuron-model-science.js")
 
     assert "mhrn-workspace-router-v1" in script
-    assert 'saved?.area === "science"' in script
+    assert 'saved?.area === "old"' in script
     assert "saved?.route === ROUTE_ID" in script

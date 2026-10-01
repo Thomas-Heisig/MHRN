@@ -73,12 +73,28 @@ MHRN / Multi-Scale Homeostatic Recurrence Network. Publication: Recursive Episte
 - [ ] Release-PR `release/v0.6.0-alpha.7 -> main` vollständig grün abschließen.
 - [ ] Veralteten Remote-Branch `playground` nach bestätigter vollständiger Integration löschen.
 
+## 2026-09-29 Post-hoc Experimentauswertung
+
+- [x] Nacherfassung von Antworten und wissenschaftlichen Auswertungen je
+	Experiment ergänzen.
+- [x] Beobachtungen, Limitationen und nächste wissenschaftliche Schritte
+	dokumentierbar machen.
+- [x] Markdown-/JSON-Artefakte im Experimentmanifest verknüpfen.
+- [x] Auswertung direkt im zentralen File Viewer öffnen.
+- [x] Interpretation von Human Review und EVID getrennt halten.
+- [x] Ausführbare und nur dokumentierte Playground-Bausteine unterscheiden.
+- [x] Inkompatible experimentelle Topologien in der Auswahl deaktivieren.
+
 ## 2026-09-27 Release-Statusmarker
 
 - [x] Fehlende Bausteinbeschreibungen im Playground-Katalog ergänzen.
 - [x] Ausführliche Hover- und Popup-Erklärungen für Katalogeinträge anbieten.
 - [x] Bausteine an den globalen EN/DE-Sprachselector anbinden.
 - [x] Repo- und Playground-Komponenten im Bausteine-Tab sichtbar machen.
+- [x] Hochauflösende Live-Zoomansichten ohne unscharfe Momentaufnahmen ergänzen.
+- [x] Live-Aktualisierung und Session-Steuerung im vergrößerten View anbieten.
+- [x] Skalierbare Live-Update-Faktoren und komprimierte Topologie-Payloads
+	ergänzen, ohne überlappende Ausführungen zu erzeugen.
 
 - [x] Statusmarker in den Release-Ansichten für Entwicklung und Wissenschaft
 	ergänzen, ohne die kanonischen Statusbezeichnungen zu ändern.
@@ -365,7 +381,7 @@ The reviewed v0.5.0a7 release gate is closed. Version `0.6.0a1` opens the develo
 
 ## 2026-09-09 Trusted-LAN dashboard access
 
-- [x] Make the standard Windows start wrappers bind the dashboard to `0.0.0.0:8765` for access through the machine's network IP.
+- [x] Make the standard Windows start wrappers bind the dashboard to `0.0.0.0:8767` for access through the machine's network IP.
 - [x] Preserve loopback-only defaults for direct Python startup and support explicit host overrides.
 - [x] Document private-network and Windows Firewall requirements; do not claim public Internet exposure is supported.
 - [x] Improve terminal startup output with missing version, configuration, runtime mode, URL and process information; keep UTF-8 symbols readable on Windows.
@@ -492,3 +508,182 @@ A scientific milestone is complete only when all applicable requirements are sat
 - [x] Define explicit execution-authorization criteria.
 - [ ] Freeze R2 only after every automated pre-freeze gate is green.
 - [ ] Create a separate human execution-authorization record after freeze; do not generate Reference DATA before it.
+
+
+## 2026-09-28 CUDA/PAN canonicalization and simulator capability gaps
+
+Canonical research registration:
+- [x] Register dedicated CUDA/PAN/Gate/interop research-question fragment without creating EVID.
+- [x] Register untested hypotheses for determinism, backend parity, scaling, Gate-IR, PAN semantics/GPU, structural barriers, closed-loop parity and simulator interoperability.
+- [x] Register current Brian 2/Brian2CUDA/Brian2GeNN/Brian2Lava and GPU structural-plasticity comparison sources with explicit limitations.
+- [x] Document that existing Playground/RTX 3060 results remain engineering verification and are not retroactively promoted to DATA/EVID.
+
+Mandatory canonicalization:
+- [ ] Introduce a canonical `ExecutionBackend` boundary; RuntimeController decides when to run, backend decides how state advances.
+- [ ] Freeze one canonical neuron/synapse state and identity contract consumed by CPU and CUDA.
+- [ ] Freeze one canonical Learning/Synapse contract for STDP, STP, eligibility, reward timing, update ordering, delayed emission, decay and clamping.
+- [ ] Move D1/D2/D3, fail-closed numeric checks, execution fingerprint and replay contracts out of Playground-specific ownership.
+- [ ] Bind CUDA execution to canonical RuntimeCheckpoint/RuntimeBundle/StructuralJournal storage rather than Playground session persistence.
+- [ ] Canonicalize BoundaryFrame/codec/gateway contracts for backend-neutral Neural I/O.
+- [ ] Execute CUDA-1.6 as frozen-boundary parity first, then deterministic live closed-loop parity.
+- [ ] Freeze PAN hyperstate semantics before porting Health/Energy/Consolidation/Apoptosis/Growth to CUDA.
+- [ ] Route CUDA structural mutation through deterministic host barriers and canonical Proposal -> Approval -> StructuralPlasticityEngine -> Journal/Undo.
+
+Simulator capability backlog:
+- [ ] Design a versioned restricted model-description/equation contract; do not begin with unrestricted user code.
+- [ ] Add explicit physical-unit metadata and dimensional validation at model/configuration boundaries.
+- [ ] Design a generalized versioned synapse-rule interface that first reproduces the canonical MHRN learning contract.
+- [ ] Create a stable benchmark suite separating codegen/build, initialization, simulation, memory and semantic parity.
+- [ ] Implement a restricted Brian 2 reference adapter for preregistered comparisons with explicit units/integrator/delay/RNG mapping.
+- [ ] Evaluate multicompartment neurons as a separate optional model family.
+- [ ] Evaluate electrical/gap-junction synapses only after spike-event and continuous-current edge semantics are separated.
+- [ ] Evaluate broader stochastic/SDE model support only where required by registered research protocols.
+- [ ] Treat Brian2GeNN/Brian2Lava/Loihi/SpiNNaker-class targets as optional interoperability adapters, not hidden MHRN core dependencies.
+- [ ] Evaluate multi-GPU only after single-GPU canonical semantics, checkpointing and parity are closed.
+
+Reference: [MHRN simulator capability gaps](MHRN_SIMULATOR_CAPABILITY_GAPS.md).
+
+
+### Contract refinements from PR #249 review
+
+- [x] Specify the canonical Learning/Synapse contract and make its alignment a prerequisite for plastic CUDA-1.6.
+- [x] Specify Frozen-Environment modes and replay/trajectory hashes before live closed-loop parity.
+- [x] Specify complete target RuntimeCheckpoint contents for backend-neutral continuation.
+- [x] Bind CUDA-1.6 explicitly to the existing canonical Neural-I/O type family: BoundaryFrame, CodecContract, PopulationLayout, SpikeFrame, DecodeResult and CodecStreamState.
+- [x] Clarify structural approval into proposal eligibility, safety/policy approval and optional human authorization; prohibit direct in-kernel structural mutation.
+- [x] Move the benchmark/restricted Brian 2 reference stage before live CUDA-1.6/PAN-GPU in the integration order.
+- [ ] Implement and test `mhrn-learning-synapse-v1` on both CPU and CUDA backends.
+- [ ] Extend RuntimeCheckpoint/RuntimeBundle to every active continuation-critical field listed in the canonical checkpoint contract.
+- [ ] Implement FE-1/FE-2/FE-3 trajectory capture and fail-closed validation.
+- [ ] Add canonical approval-policy artifact hashing and structural-barrier execution-segment tests.
+- [ ] Add the early benchmark/reference suite with frozen workload manifests and explicit Brian 2 unit/integrator/delay/RNG mappings.
+
+
+## 2026-09-29 Playground -> MHRN integration
+
+- [x] Promote BoundaryFrame/CodecContract/PopulationLayout/SpikeFrame/DecodeResult
+  into canonical `src/embodiment` ownership.
+- [x] Keep the Playground neural-I/O contract path as a compatibility re-export.
+- [x] Expose Playground -> MHRN integration status and transfer verification in
+  the Playground Builder.
+- [x] Expose GET integration catalog and POST transfer-verification API routes.
+- [x] Keep OLD frontend routes visible in the integration catalog without
+  promoting them into core.
+- [x] Record wave 1 in a canonical research decision and the research-software
+  paper without creating DATA/EVID.
+- [x] Promote deterministic neural-I/O codecs after codec/frame-ID semantics
+  are frozen.
+- [x] Promote a framework-neutral NeuralIOAreaAdapter and keep the Playground
+  adapter as an identity wrapper.
+- [ ] Extract CUDA Driver/NVRTC/ABI/parity behind a canonical ExecutionBackend.
+- [ ] Align Playground CUDA plasticity with the canonical Learning/Synapse
+  contract before promotion.
+- [ ] Promote closed-loop environment pieces only after Frozen-Environment
+  FE-1/FE-2/FE-3 contracts are executable.
+- [ ] Promote PAN hyperstate only after RQ-PAN-SEM-001 semantic freeze.
+
+
+## 2026-09-29 Playground -> MHRN integration wave 3
+
+- [x] Define canonical ExecutionBackend, BackendState, StepResult, RunResult and BackendCapabilities.
+- [x] Require backend-neutral serializable continuation state.
+- [x] Canonicalize D1/D2/D3 parity and fail-closed non-finite handling.
+- [x] Add stable execution/config fingerprints independent of mapping insertion order and wall-clock state.
+- [x] Canonicalize Counter-RNG, same-tick ordering and delay-ring semantics.
+- [x] Convert Playground builder parity and CUDA plasticity determinism into canonical consumers.
+- [x] Expose Wave-3 integration state in the Playground transfer panel.
+- [x] Register RQ-CUDA-PAR-002 and untested methodology hypotheses without DATA/EVID promotion.
+- [x] Add canonical ExecutionBackend and Parity contract documents.
+- [ ] Wave 4: extract CUDA Driver/NVRTC/ABI into src/acceleration/cuda.
+- [ ] Wave 4: implement a canonical CUDABackend against ExecutionBackend.
+- [ ] Wave 4: run canonical CPU-vs-CUDA D1/D2 parity through the new framework.
+- [ ] Keep learning/plasticity promotion blocked until the canonical Learning/Synapse contract is implemented by both compared backends.
+
+
+## Wave 4 CUDA extraction verification
+
+- [x] Canonical import-direction gate.
+- [x] Byte-identical CUDA kernel-freeze gate.
+- [x] Plasticity semantic boundary gate:
+  `NON_CANONICAL_DRAFT / ALIGNMENT_PENDING`.
+- [x] Canonical cross-backend parity-contract gate.
+- [x] Physical CUDA hardware acceptance runner.
+- [ ] Execute post-extraction acceptance on RTX 3060 with
+  `python scripts/run_cuda_hardware_acceptance.py --require-gpu "RTX 3060" --full`.
+- [ ] Keep D3 incomplete until Frozen-Environment FE-2/FE-3 causal trajectory
+  parity exists.
+- [ ] Keep plasticity non-canonical until the CPU/CUDA learning-contract
+  alignment is complete.
+
+
+## 2026-09-30 Frozen-Environment executable contract
+
+- [x] Implement canonical frozen manifest, RNG provenance and exact BoundaryFrame freeze.
+- [x] Add stable artifact serialization and fail-closed manifest hash verification.
+- [x] Add FE-1 ordered BoundaryFrame integrity acceptance.
+- [x] Add FE-2 deterministic replay acceptance with a default ten repetitions.
+- [x] Add FE-3 CPU/self D3c control through the canonical parity framework.
+- [x] Add `build_frozen_environment.py` and `run_fe_acceptance.py`.
+- [x] Add a dedicated `fe-contracts` CI job to the global CI summary.
+- [x] Keep `src/verification/frozen_environment` free of Playground imports.
+- [x] Register `RQ-FE-001` and untested FE-method hypotheses without DATA/EVID promotion.
+- [ ] Bind a physical CPU closed-loop backend and canonical CUDA backend to the same FE-3 manifest.
+- [ ] Execute physical CPU-vs-CUDA D1/D2/D3 acceptance on RTX 3060.
+- [ ] Preserve the result as Engineering Verification until a separately preregistered study exists.
+
+
+## 2026-10-01 Playground -> MHRN Wave 5A
+
+- [x] Add `mhrn-pan-hyperstate-v0.1-draft` as a backend-neutral draft state
+  contract.
+- [x] Move current PAN reference coefficients into the canonical Homeostasis
+  layer without changing Playground behavior.
+- [x] Validate PAN state width, finite values, normalized bounds and stable
+  neuron identity fail-closed.
+- [x] Show Wave 5 in the frontend as **Semantikvertrag in Arbeit**, not as
+  integrated/accepted.
+- [x] Record the engineering boundary in the research-software paper.
+- [ ] Review/freeze RQ-PAN-SEM-001 contract semantics.
+- [ ] Canonicalize feedback projection semantics.
+- [ ] Canonicalize PAN checkpoint/restore continuation state.
+- [ ] Move PAN execution to canonical CUDA only after semantic freeze and
+  physical FE-3 acceptance.
+- [ ] Keep structural Growth/Pruning/Apoptosis behind the separate
+  Proposal/Approval/Journal barrier contract.
+
+
+## Wave 6 / Wave 7 contract gates — 2026-10-01
+
+### Wave 6
+- [x] Implement deterministic Structural Approval descriptor/hash.
+- [x] Make MANUAL_ONLY require explicit manual authorization.
+- [x] Make POLICY_AUTO require enabled non-dry-run auto policy.
+- [x] Make PREREGISTERED_AUTO additionally require frozen policy artifact.
+- [x] Document journal commit/undo and the target host-barrier sequence.
+- [ ] Wire every structural mutation through the canonical execution barrier.
+- [ ] Verify topology-generation/CSR/schedule rebuild before resume.
+- [ ] Review and freeze the contract.
+
+### Wave 7
+- [x] Add executable Learning/Synapse draft descriptor.
+- [x] Record CPU nearest-neighbour STDP, same-tick zero rule, eligibility and
+  delayed-reward semantics.
+- [x] Record CUDA STP candidate semantics without promoting them.
+- [x] Expose real CPU/CUDA mismatches as fail-closed blockers.
+- [ ] Decide canonical edge identity for parallel synapses.
+- [ ] Decide STP contract semantics.
+- [ ] Align credit-window/delayed-reward semantics.
+- [ ] Align weight-decay semantics and pair parameters.
+- [ ] Freeze contract and implement both CPU/CUDA against the same version.
+- [ ] Run learning D2/checkpoint parity and only then preregister learning studies.
+
+## 2026-10-01 Wave 6/7 governance closeout
+
+- [x] Classify the structural-approval and learning-contract drafts explicitly in document governance.
+- [x] Select `MANUAL_ONLY` for the first future governed structural run while retaining global `DISABLED` as the safe default.
+- [x] Record the five Wave-7 CPU/CUDA learning divergences as machine-readable open blockers.
+- [x] Register `RQ-CPU-PAR-001` / `H-CPU-PAR-001-A`.
+- [x] Freeze `PREREG-CPU-PAR-001` with seeds 910001..910020.
+- [ ] Bind an exact post-merge source/config digest and separately authorize execution of `cpu_self_parity_v1`.
+- [ ] Perform the physical RTX-3060 Wave-5B acceptance separately; it remains Engineering Verification and is not substituted by this CPU study.
+- [ ] Resolve all five Wave-7 learning divergences before freezing a common CPU/CUDA learning contract.

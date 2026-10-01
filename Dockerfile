@@ -4,7 +4,7 @@
 # Multi-stage build for minimal production image.
 #
 # Build:    docker build -t mhrn .
-# Run:      docker run --rm -p 8765:8765 mhrn
+# Run:      docker run --rm -p 8767:8767 mhrn
 # Run with: docker run --rm -v ./configs:/app/configs mhrn \
 #             python -m src.main --config configs/poc_config.yaml
 # ============================================================================
@@ -54,4 +54,4 @@ RUN python -c "from pathlib import Path; from src.dashboard.external_review impo
 EXPOSE 8765
 
 # Hugging Face Spaces starts the integrated dashboard from this command.
-CMD ["python", "-m", "src.main", "--config", "configs/poc_config.yaml", "--dashboard-host", "0.0.0.0", "--dashboard-port", "8765"]
+CMD ["python", "-m", "src.main", "--config", "configs/poc_config.yaml", "--dashboard-host", "0.0.0.0", "--dashboard-port", "8767"]

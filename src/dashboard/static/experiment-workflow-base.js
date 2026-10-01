@@ -613,7 +613,9 @@ export class ExperimentWorkflowPanel {
     if (artifacts.calibration) resultButtons.push(`<button type="button" class="btn-small exp-open-btn" data-experiment-open="calibration" data-experiment-id="${expId}" data-artifact-path="${escapeHtml(artifacts.calibration)}" title="Kalibrierungsdaten">⚙ Kalibrierung</button>`);
     if (artifacts.manifest) resultButtons.push(`<button type="button" class="btn-small exp-open-btn" data-experiment-open="manifest" data-experiment-id="${expId}" data-artifact-path="${escapeHtml(artifacts.manifest)}" title="Manifest und Provenienz">🧾 Manifest</button>`);
     if (artifacts.review) resultButtons.push(`<button type="button" class="btn-small exp-open-btn" data-experiment-open="review" data-experiment-id="${expId}" data-artifact-path="${escapeHtml(artifacts.review)}" title="Review und wissenschaftliche Weiterverarbeitung">✓ Review</button>`);
-    const resultActions = resultButtons.length ? `<div class="experiment-library-results">${resultButtons.join("")}</div>` : "";
+    if (artifacts.posthoc_evaluation) resultButtons.push(`<button type="button" class="btn-small exp-open-btn" data-experiment-open="posthoc" data-experiment-id="${expId}" data-artifact-path="${escapeHtml(artifacts.posthoc_evaluation)}" title="Gespeicherte wissenschaftliche Auswertung">📝 Auswertung</button>`);
+    const evaluationAction = `<button type="button" class="btn-small exp-evaluate-btn" data-experiment-evaluate="${expId}" title="Nachträgliche wissenschaftliche Auswertung erfassen">✎ Auswertung erfassen</button>`;
+    const resultActions = `<div class="experiment-library-results">${resultButtons.join("")}${evaluationAction}</div>`;
     const action = archived
       ? `<button type="button" class="btn-small" data-experiment-action="restore" data-experiment-id="${expId}">↶ Wiederherstellen</button>`
       : `<button type="button" class="btn-small" data-experiment-action="archive" data-experiment-id="${expId}">▣ Archivieren</button>`;
@@ -685,6 +687,124 @@ export class ExperimentWorkflowPanel {
     return `<details class="experiment-series-item ${item.archived ? "is-archived" : ""}"><summary><span><strong>${escapeHtml(item.series_id)}</strong><small>${escapeHtml(item.created_at || "")}</small></span><em class="series-status-${escapeHtml(item.status)}">${escapeHtml(item.status)} · ${escapeHtml(item.assessment_status)}${archiveLabel}</em></summary><div class="experiment-series-assessment"><div class="experiment-series-kpis"><span><small>Erfolgreich</small><strong>${Number(item.completed || 0)}</strong></span><span><small>Fehlgeschlagen</small><strong>${Number(item.failed || 0)}</strong></span><span><small>Ticks</small><strong>${escapeHtml(item.requested_ticks ?? "—")}</strong></span><span><small>Seeds</small><strong>${escapeHtml(item.seeds ?? "—")}</strong></span></div><p>${escapeHtml(item.assessment_boundary || "Technische Bewertung; Human Review erforderlich.")}</p><ul class="experiment-series-results">${resultRows}</ul><div class="experiment-series-actions">${reportButton}${archiveAction}</div></div></details>`;
   }
 
+  _ensurePosthocEvaluationDialog() {
+    let dialog = byId("workflow-posthoc-evaluation-dialog");
+    if (dialog) return dialog;
+    dialog = document.createElement("dialog");
+    dialog.id = "workflow-posthoc-evaluation-dialog";
+    dialog.className = "posthoc-evaluation-dialog";
+    dialog.innerHTML = `
+      <header class="posthoc-evaluation-header"><div><span class="workspace-kicker">POST-HOC INTERPRETATION</span><h3>Wissenschaftliche Auswertung</h3><p id="posthoc-evaluation-context"></p></div><button type="button" id="posthoc-evaluation-close" class="icon-btn" aria-label="Auswertung schließen">×</button></header>
+      <div class="posthoc-evaluation-boundary"><strong>Nachgelagerte Auswertung</strong><span>Diese Antwort verändert weder den Lauf noch den EVID-Status. Sie wird als Interpretation gespeichert und benötigt für wissenschaftliche Verwendung einen separaten Human-Review-/EVID-Workflow.</span></div>
+      <div class="posthoc-evaluation-form">
+        <label>Auswertende Person<input id="posthoc-evaluation-evaluator" type="text" required placeholder="Name / Verantwortliche Person"></label>
+        <label>Antwort auf die Hypothese<select id="posthoc-evaluation-answer"><option value="supported">unterstützt</option><option value="refuted">widerlegt</option><option value="mixed">gemischt / teilweise</option><option value="inconclusive">nicht entscheidbar</option><option value="not_assessed">noch nicht bewertet</option></select></label>
+        <label class="posthoc-evaluation-wide">Wissenschaftliche Auswertung<textarea id="posthoc-evaluation-text" rows="8" required placeholder="Welche Auswertung beantwortet die Hypothese? Beziehe dich auf registrierte Outcomes, Kontrollen, Seeds und die beobachteten Daten."></textarea></label>
+        <label class="posthoc-evaluation-wide">Beobachtungen und Auswertungskriterien<textarea id="posthoc-evaluation-observations" rows="5" placeholder="Welche Messwerte, Vergleiche oder Artefakte tragen die Antwort?"></textarea></label>
+        <label class="posthoc-evaluation-wide">Limitationen und Alternativerklärungen<textarea id="posthoc-evaluation-limitations" rows="5" placeholder="Welche Unsicherheiten, fehlenden Kontrollen oder alternativen Erklärungen bleiben offen?"></textarea></label>
+        <label class="posthoc-evaluation-wide">Nächste Schritte für die wissenschaftliche Arbeit<textarea id="posthoc-evaluation-follow-up" rows="5" placeholder="Welche Replikation, Kontrolle, Abbildung oder Textpassage soll daraus entstehen?"></textarea></label>
+      </div>
+      <footer class="posthoc-evaluation-actions"><span id="posthoc-evaluation-status" role="status"></span><button type="button" id="posthoc-evaluation-open" class="btn-secondary" disabled>Im File Viewer öffnen</button><button type="button" id="posthoc-evaluation-save" class="btn-primary">Auswertung speichern</button></footer>`;
+    document.body.append(dialog);
+    if (!document.getElementById("posthoc-evaluation-style")) {
+      const style = document.createElement("style");
+      style.id = "posthoc-evaluation-style";
+      style.textContent = `.posthoc-evaluation-dialog{width:min(94vw,880px);max-height:92vh;padding:0;border:1px solid var(--rule-3);border-radius:var(--r-md);background:var(--paper);color:var(--ink);box-shadow:var(--shadow-float)}.posthoc-evaluation-dialog::backdrop{background:rgba(20,16,12,.58);backdrop-filter:blur(4px)}.posthoc-evaluation-header{display:flex;justify-content:space-between;gap:12px;padding:14px 16px;border-bottom:1px solid var(--rule);background:var(--paper-2)}.posthoc-evaluation-header h3{margin:3px 0;font-size:1.05rem}.posthoc-evaluation-header p{margin:0;color:var(--ink-3);font-size:.7rem}.posthoc-evaluation-boundary{margin:12px 16px;padding:9px 11px;border-left:3px solid var(--amber);background:var(--amber-wash);font-size:.7rem;line-height:1.45}.posthoc-evaluation-boundary strong{display:block}.posthoc-evaluation-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;padding:0 16px 12px;overflow:auto}.posthoc-evaluation-form label{display:grid;gap:5px;color:var(--ink-3);font-size:.68rem}.posthoc-evaluation-form input,.posthoc-evaluation-form select,.posthoc-evaluation-form textarea{width:100%;padding:7px;border:1px solid var(--rule-2);border-radius:var(--r-xs);background:var(--paper-2);color:var(--ink);font:inherit}.posthoc-evaluation-form textarea{resize:vertical;line-height:1.45}.posthoc-evaluation-wide{grid-column:1/-1}.posthoc-evaluation-actions{display:flex;align-items:center;justify-content:flex-end;gap:8px;padding:10px 16px;border-top:1px solid var(--rule);background:var(--paper-2)}.posthoc-evaluation-actions span{margin-right:auto;color:var(--ink-3);font-size:.68rem}.posthoc-evaluation-actions button:disabled{opacity:.55}@media(max-width:700px){.posthoc-evaluation-form{grid-template-columns:1fr}.posthoc-evaluation-wide{grid-column:auto}.posthoc-evaluation-actions{flex-wrap:wrap}.posthoc-evaluation-actions span{flex-basis:100%}}`;
+      document.head.appendChild(style);
+    }
+    dialog.querySelector("#posthoc-evaluation-close")?.addEventListener("click", () => dialog.close());
+    dialog.querySelector("#posthoc-evaluation-save")?.addEventListener("click", () => this._savePosthocEvaluation());
+    dialog.querySelector("#posthoc-evaluation-open")?.addEventListener("click", () => {
+      const path = dialog.dataset.markdownPath;
+      if (path) this._openArtifact(path);
+    });
+    return dialog;
+  }
+
+  async _openPosthocEvaluation(item) {
+    const dialog = this._ensurePosthocEvaluationDialog();
+    const manifest = item.manifest && typeof item.manifest === "object" ? item.manifest : {};
+    const experimentId = String(item.experiment_id || item.id || "");
+    const questions = Array.isArray(manifest.research_questions) ? manifest.research_questions : [];
+    const hypotheses = Array.isArray(manifest.hypotheses) ? manifest.hypotheses : [];
+    const researchQuestion = questions.join(", ") || manifest.research_question || "";
+    const hypothesis = hypotheses.join(", ") || manifest.hypothesis || "";
+    dialog.dataset.experimentId = experimentId;
+    dialog.dataset.researchQuestion = String(researchQuestion);
+    dialog.dataset.hypothesis = String(hypothesis);
+    dialog.dataset.markdownPath = "";
+    const set = (id, value) => { const node = byId(id); if (node) node.value = String(value ?? ""); };
+    const context = byId("posthoc-evaluation-context");
+    if (context) context.textContent = `${experimentId} · ${researchQuestion || "Forschungsfrage nicht hinterlegt"} · ${hypothesis || "Hypothese nicht hinterlegt"}`;
+    set("posthoc-evaluation-evaluator", "");
+    set("posthoc-evaluation-answer", "not_assessed");
+    set("posthoc-evaluation-text", "");
+    set("posthoc-evaluation-observations", "");
+    set("posthoc-evaluation-limitations", "");
+    set("posthoc-evaluation-follow-up", "");
+    set("posthoc-evaluation-status", "Lade vorhandene Auswertung …");
+    const openButton = byId("posthoc-evaluation-open");
+    if (openButton) openButton.disabled = true;
+    if (!dialog.open) dialog.showModal();
+    try {
+      const saved = await fetchJson(`/api/research/experiments/${encodeURIComponent(experimentId)}/evaluation`);
+      if (saved.exists) {
+        set("posthoc-evaluation-evaluator", saved.evaluator);
+        set("posthoc-evaluation-answer", saved.hypothesis_answer || "not_assessed");
+        set("posthoc-evaluation-text", saved.evaluation);
+        set("posthoc-evaluation-observations", saved.observations);
+        set("posthoc-evaluation-limitations", saved.limitations);
+        set("posthoc-evaluation-follow-up", saved.follow_up);
+        set("posthoc-evaluation-status", "Vorhandene Auswertung geladen.");
+        dialog.dataset.markdownPath = `experiments/${experimentId}/posthoc/evaluation.md`;
+        if (openButton) openButton.disabled = false;
+      } else {
+        set("posthoc-evaluation-status", "Noch keine Auswertung erfasst.");
+      }
+    } catch (error) {
+      set("posthoc-evaluation-status", `Auswertung konnte nicht geladen werden: ${error.message || error}`);
+    }
+    byId("posthoc-evaluation-evaluator")?.focus();
+  }
+
+  async _savePosthocEvaluation() {
+    const dialog = byId("workflow-posthoc-evaluation-dialog");
+    const experimentId = dialog?.dataset.experimentId;
+    if (!dialog || !experimentId) return;
+    const value = (id) => byId(id)?.value?.trim() || "";
+    const status = byId("posthoc-evaluation-status");
+    const saveButton = byId("posthoc-evaluation-save");
+    const payload = {
+      experiment_id: experimentId,
+      research_question: dialog.dataset.researchQuestion || "",
+      hypothesis: dialog.dataset.hypothesis || "",
+      evaluator: value("posthoc-evaluation-evaluator"),
+      hypothesis_answer: value("posthoc-evaluation-answer"),
+      evaluation: value("posthoc-evaluation-text"),
+      observations: value("posthoc-evaluation-observations"),
+      limitations: value("posthoc-evaluation-limitations"),
+      follow_up: value("posthoc-evaluation-follow-up"),
+    };
+    if (!payload.evaluator || !payload.evaluation) {
+      if (status) status.textContent = "Auswertende Person und wissenschaftliche Auswertung sind Pflichtfelder.";
+      return;
+    }
+    if (saveButton) { saveButton.disabled = true; saveButton.textContent = "Speichere …"; }
+    try {
+      const result = await fetchJson("/api/research/experiments/evaluation", { method: "POST", body: JSON.stringify(payload) });
+      dialog.dataset.markdownPath = result.markdown_path;
+      if (status) status.textContent = "Gespeichert; EVID bleibt unverändert.";
+      if (byId("posthoc-evaluation-open")) byId("posthoc-evaluation-open").disabled = false;
+      await this._loadExperimentCollections();
+      await this._openArtifact(result.markdown_path);
+      dialog.close();
+    } catch (error) {
+      if (status) status.textContent = `Speichern fehlgeschlagen: ${error.message || error}`;
+    } finally {
+      if (saveButton) { saveButton.disabled = false; saveButton.textContent = "Auswertung speichern"; }
+    }
+  }
+
   async _handleExperimentLibraryAction(event) {
     const button = event.target.closest?.("[data-experiment-action], [data-series-action], [data-series-report], [data-experiment-open], [data-experiment-toggle], [data-experiment-use]");
     if (!button) return;
@@ -713,6 +833,12 @@ export class ExperimentWorkflowPanel {
     const seriesId = button.dataset.seriesId;
     const seriesReport = button.dataset.seriesReport;
     const openKind = button.dataset.experimentOpen;
+    const evaluateId = button.dataset.experimentEvaluate;
+    if (evaluateId) {
+      const item = this._findExperimentDetail(evaluateId);
+      if (item) await this._openPosthocEvaluation(item);
+      return;
+    }
     if (seriesReport) {
       await this._openArtifact(seriesReport);
       return;
@@ -1006,6 +1132,7 @@ export class ExperimentWorkflowPanel {
     if (artifacts.summary) buttons.push({ kind: "summary", label: "Summary", path: artifacts.summary });
     if (artifacts.statistics) buttons.push({ kind: "statistics", label: "Statistics", path: artifacts.statistics });
     if (artifacts.data_index || artifacts.raw_run_index) buttons.push({ kind: "raw", label: "Raw Index", path: artifacts.data_index || artifacts.raw_run_index });
+    if (artifacts.posthoc_evaluation) buttons.push({ kind: "posthoc", label: "Auswertung", path: artifacts.posthoc_evaluation });
     if (!buttons.length) return;
     const group = document.createElement("span");
     group.dataset.experimentPopupActions = "true";

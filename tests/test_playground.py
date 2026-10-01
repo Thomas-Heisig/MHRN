@@ -149,6 +149,14 @@ def test_playground_catalog_contains_full_building_block_families() -> None:
         "recurrent_small_world",
         "hierarchical",
     } <= topology_names
+    topology_by_name = {item["name"]: item for item in payload["topologies"]}
+    assert topology_by_name["mhrn_5d"]["executable"] is True
+    assert topology_by_name["mhrn_experimental_nd"]["min_dimensions"] == 6
+    assert (
+        "EXECUTABLE_REFERENCE_IF_DIMENSIONS_GT_5"
+        in topology_by_name["mhrn_experimental_nd"]["execution_status"]
+    )
+    assert all(item["executable"] is True for item in payload["models"])
 
     plasticity_names = {item["name"] for item in payload["plasticity"]}
     assert {
@@ -950,7 +958,7 @@ def test_cuda_8gb_profile_is_plan_not_runtime_claim() -> None:
     assert hardware["recommended_synapses_estimate"] == 50_000_000
 
 
-def test_pan_catalog_exposes_learning_blocks_and_eighteen_candidates() -> None:
+def test_pan_catalog_exposes_learning_blocks_and_cue_decoding_candidate() -> None:
     payload = catalog()
     pan = payload["pan"]
     assert pan["behavioral_learning_status"] == (
@@ -961,7 +969,8 @@ def test_pan_catalog_exposes_learning_blocks_and_eighteen_candidates() -> None:
         "IMPLEMENTED_FIXED_LABEL_PLASTIC_GAIN_REFERENCE"
     )
     candidates = pan["research_candidates"]
-    assert len(candidates) == 18
+    assert len(candidates) == 19
+    assert any(item["id"] == "PAN-CANDIDATE-NEURAL-CUE-DECODING" for item in candidates)
     ids = {item["id"] for item in candidates}
     assert {
         "PAN-CANDIDATE-HARDWARE-NATIVE-EMERGENCE",
@@ -1138,6 +1147,18 @@ def test_live_pan_session_keeps_state_across_chunks() -> None:
     assert "input_active_neurons" in second
     assert "output_counts" in second
     assert live.snapshot()["topology"]["edge_count"] == len(live.topology.edges)
+
+
+def test_live_pan_session_can_omit_repeated_topology_payload() -> None:
+    config = PlaygroundConfig.from_mapping(
+        _small_payload(neuron_model="pan_adex_5d", pan_enabled=True, ticks=16)
+    )
+    live = PANLiveSession(config)
+    compact = live.step(4, include_topology=False)
+    assert compact["topology"] is None
+    assert compact["tick"] == 4
+    assert "recent_spikes" in compact
+    assert live.snapshot()["topology"]["neuron_count"] == config.n_neurons
 
 
 def test_live_pan_session_accepts_external_vector_input() -> None:

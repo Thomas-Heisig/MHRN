@@ -157,3 +157,58 @@ These pages are Playground documentation and are not canonical evidence.
 
 The exact payload stays outside the SNN and is not persisted in Playground
 session results.
+
+
+## CUDA-1 Playground console
+
+The Playground exposes the engineering CUDA path without promoting it to
+scientific evidence.
+
+- CUDA-1.0: PTX assembly, driver loading and occupancy preflight.
+- CUDA-1.1: CPU determinism, freeze contracts and D1/D2/D3 definitions.
+- CUDA-1.2: explicit 17-parameter gate ABI, bounded buffers and kernel launch.
+- CUDA-1.3: fail-closed CPU gate reference versus GPU output, repeatability,
+  half-open epsilon-greedy RNG mapping and VRAM cleanup instrumentation.
+- CUDA-1.4 through CUDA-1.6 remain pending for multi-tick state/delays, GPU
+  plasticity and GPU closed-loop sandbox execution.
+
+CUDA-1.3 rejects NaN/Inf, float32 overflow, invalid uint32/uint64 ABI values,
+empty or length-mismatched parity evidence, illegal CUDA block sizes and
+host/device copy-size mismatches before launch. Hardware completion still
+requires a real NVIDIA run; hosted CI validates CPU contracts and PTX assembly.
+
+
+## MHRN integration / promotion
+
+The Playground exposes a controlled integration surface:
+
+- `GET /api/playground/integration` — current promotion catalog.
+- `POST /api/playground/integration/transfer` — verify an integrated element
+  or return the required next promotion gate.
+
+The action never rewrites repository source at runtime. Actual promotion occurs
+through reviewed repository changes. The first completed transfer is the
+neural-I/O contract family, now canonical under
+`src/embodiment/neural_io_contracts.py`; the former Playground contract
+module is a compatibility re-export.
+
+
+### Promotion wave 2
+
+Deterministic codecs/decoders and the framework-neutral neural-I/O area adapter
+are now canonical MHRN components. Playground imports them through compatibility
+layers. The visible integration panel verifies function identity and the
+`NetworkAreaAdapter` protocol without editing source code at runtime.
+
+
+## Wave 3 — ExecutionBackend and parity/determinism
+
+The Playground remains operational, but execution/parity semantics now come from canonical MHRN modules:
+
+- src/runtime/backend.py — backend-neutral execution protocol;
+- src/runtime/determinism — Counter-RNG, same-tick ordering and delay-ring contracts;
+- src/verification/parity — D1/D2/D3 comparison and execution fingerprints.
+
+Historical Playground import paths remain available where required, but they delegate to the canonical implementations.
+
+The integration panel reports ExecutionBackend and Parity/Determinism as integrated. CUDA execution itself remains a Wave-4 repository migration and is not performed by the dashboard transfer button.

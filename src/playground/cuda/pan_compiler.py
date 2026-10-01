@@ -186,6 +186,7 @@ def build_gate_program(
                 GateType.G_CMP,
                 f"target_match_{action}",
                 action=action,
+                channel=(config.target_cue_channel + action) % config.input_channels,
             )
             _gate(
                 gates,
@@ -193,6 +194,7 @@ def build_gate_program(
                 GateType.G_MUL,
                 f"target_cue_{action}",
                 action=action,
+                current=config.target_cue_current,
             )
 
     if config.reward_signal_enabled:
@@ -524,8 +526,9 @@ def _emit_gate_ptx(gate: Gate, program: GateProgram) -> list[str]:
                 "    xor.b32 %r20, %r3, %r14;",
                 "    xor.b32 %r20, %r20, %r8;",
                 "    mul.lo.u32 %r20, %r20, 2654435761;",
-                "    cvt.rn.f32.u32 %f7, %r20;",
-                "    mul.f32 %f7, %f7, 0f2f800000;",
+                "    shr.u32 %r22, %r20, 8;",
+                "    cvt.rn.f32.u32 %f7, %r22;",
+                "    mul.f32 %f7, %f7, 0f33800000;",
                 "    setp.lt.f32 %p6, %f7, %f5;",
                 f"    rem.u32 %r21, %r20, {config.action_space_size};",
                 "    selp.u32 %r13, %r21, %r13, %p6;",
@@ -867,9 +870,10 @@ extern "C" __global__ void pan_persistent_kernel(
                 action = candidate;
             }}
         }}
-        const unsigned random_bits = pan_hash(cfg.seed ^ gid ^ tick);
+        const unsigned random_bits =
+            (cfg.seed ^ gid ^ tick) * 2654435761U;
         const float uniform =
-            static_cast<float>(random_bits) * 2.3283064365386963e-10f;
+            static_cast<float>(random_bits >> 8) * 5.960464477539063e-8f;
         if (uniform < cfg.epsilon) action = random_bits % cfg.action_count;
 
         if ({1 if c.credit_assignment != 'none' else 0}) {{
@@ -907,7 +911,7 @@ def _resource_contract(program: GateProgram) -> dict[str, object]:
         "grid_sync": "COOPERATIVE_LAUNCH_REQUIRED",
         "dynamic_parallelism_inside_cooperative_kernel": False,
         "structural_mutation": "HOST_OR_EXPLICIT_STRUCTURAL_BARRIER_PHASE",
-        "rng": "DETERMINISTIC_HASH_SEED_GID_TICK",
+        "rng": "DETERMINISTIC_HASH_SEED_GID_TICK_UINT24_TO_F32_HALF_OPEN",
         "globaltimer_used_for_rng": False,
     }
 
@@ -973,6 +977,32 @@ def compile_config(
         "execution_status": "SOURCE_GENERATED_NOT_EXECUTED",
         "canonical_cuda_backend": False,
         "structural_mutation_in_kernel": False,
+        "kernel_abi": {
+            "entry": "pan_gate_kernel",
+            "parameter_count": 17,
+            "input_channels": config.input_channels,
+            "action_space_size": config.action_space_size,
+            "pan_dimensions": config.pan_dimensions,
+            "parameters": [
+                "input:f32*",
+                "channel_masks:u64*",
+                "amplitudes:f32*",
+                "reward_ring:f32*",
+                "action_map:f32*",
+                "feedback_matrix:f32*",
+                "population:f32*",
+                "logits:f32*",
+                "out_current:f32*",
+                "out_action:u32*",
+                "n_neurons:u32",
+                "tick:u32",
+                "reward_ring_size:u32",
+                "target_index:u32",
+                "previous_action:u32",
+                "seed:u32",
+                "epsilon:f32",
+            ],
+        },
     }
     return CompileBundle(
         manifest=manifest,

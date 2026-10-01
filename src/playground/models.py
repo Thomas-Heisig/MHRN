@@ -67,6 +67,7 @@ class PlaygroundConfig:
     clock_mode: str = "continuous"
     clock_base_hz: float = 100.0
     clock_event_batch_ms: float = 10.0
+    neuron_backend: str = "cpu"
     execution_mode: str = "TICK_ONLY"
     execution_initial_mode: str = "EVENT_ONLY"
     execution_theta_high: float = 0.30
@@ -198,6 +199,7 @@ class PlaygroundConfig:
     parity_reference_source: str = "CPU_PYTHON_PLAYGROUND"
     parity_reference_commit: str = ""
 
+    target_cue_control: str = "aligned"
     target_encoding: str = "none"
     target_persistence: int = 1
     target_cue_current: float = 0.0
@@ -419,6 +421,7 @@ class PlaygroundConfig:
             clock_event_batch_ms=number(
                 "clock_event_batch_ms", defaults.clock_event_batch_ms
             ),
+            neuron_backend=text("neuron_backend", defaults.neuron_backend).lower(),
             execution_mode=text("execution_mode", defaults.execution_mode).upper(),
             execution_initial_mode=text(
                 "execution_initial_mode", defaults.execution_initial_mode
@@ -765,6 +768,9 @@ class PlaygroundConfig:
             parity_reference_commit=optional_text(
                 "parity_reference_commit", defaults.parity_reference_commit
             ),
+            target_cue_control=text(
+                "target_cue_control", defaults.target_cue_control
+            ).lower(),
             target_encoding=text("target_encoding", defaults.target_encoding).lower(),
             target_persistence=integer(
                 "target_persistence", defaults.target_persistence
@@ -895,6 +901,16 @@ class PlaygroundConfig:
             raise ValueError("clock_base_hz must be between 1 and 10000")
         if not self.dt_ms <= self.clock_event_batch_ms <= 1000.0:
             raise ValueError("clock_event_batch_ms must be between dt_ms and 1000")
+        if self.neuron_backend == "cuda_pan" and self.neuron_model != "pan_adex_5d":
+            raise ValueError("cuda_pan requires pan_adex_5d")
+        if self.neuron_backend not in {"cpu", "cuda_membrane", "cuda_pan"}:
+            raise ValueError("neuron_backend must be cpu, cuda_membrane or cuda_pan")
+        if self.neuron_backend != "cpu" and self.neuron_model not in {
+            "lif",
+            "adex",
+            "pan_adex_5d",
+        }:
+            raise ValueError("CUDA membrane backend supports LIF/AdEx/PAN-AdEx only")
         if self.execution_mode not in {"EVENT_ONLY", "TICK_ONLY", "HYBRID_AUTO"}:
             raise ValueError("unsupported execution_mode")
         if self.execution_initial_mode not in {"EVENT_ONLY", "TICK_ONLY"}:
@@ -1048,8 +1064,13 @@ class PlaygroundConfig:
             raise ValueError("action_loop_delay must be between 1 and 64")
         if not 1 <= self.action_persistence <= 128:
             raise ValueError("action_persistence must be between 1 and 128")
-        if not 2 <= self.action_space_size <= 32:
-            raise ValueError("action_space_size must be between 2 and 32")
+        if not 1 <= self.action_space_size <= 32:
+            raise ValueError("action_space_size must be between 1 and 32")
+        if (
+            self.behavior_target_mode == "fixed"
+            and self.behavior_target_action >= self.action_space_size
+        ):
+            raise ValueError("behavior_target_action outside closed-loop action range")
         if not 0.0 <= self.action_coupling_strength <= 10.0:
             raise ValueError("action_coupling_strength must be between 0 and 10")
         if not 0.0 <= self.action_noise <= 1.0:
@@ -1104,6 +1125,8 @@ class PlaygroundConfig:
             raise ValueError("reward_baseline must be between -1 and 1")
         if not 0.0 <= self.reward_decay <= 1.0:
             raise ValueError("reward_decay must be between 0 and 1")
+        if self.target_cue_control not in {"aligned", "randomized", "absent"}:
+            raise ValueError("unsupported target_cue_control")
         if self.target_encoding not in {
             "none",
             "one_hot",
@@ -1239,6 +1262,7 @@ class PlaygroundConfig:
             "clock_mode": self.clock_mode,
             "clock_base_hz": self.clock_base_hz,
             "clock_event_batch_ms": self.clock_event_batch_ms,
+            "neuron_backend": self.neuron_backend,
             "execution_mode": self.execution_mode,
             "execution_initial_mode": self.execution_initial_mode,
             "execution_theta_high": self.execution_theta_high,
@@ -1373,6 +1397,7 @@ class PlaygroundConfig:
             "frozen_reward_sequence": list(self.frozen_reward_sequence),
             "parity_reference_source": self.parity_reference_source,
             "parity_reference_commit": self.parity_reference_commit,
+            "target_cue_control": self.target_cue_control,
             "target_encoding": self.target_encoding,
             "target_persistence": self.target_persistence,
             "target_cue_current": self.target_cue_current,

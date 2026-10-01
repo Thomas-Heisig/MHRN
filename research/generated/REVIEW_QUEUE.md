@@ -262,6 +262,7 @@ This projection reconciles manifest review flags with append-only review artefac
 | EXP-GEN-0045 | unknown | unresolved | review_not_found_in_experiment_root |
 | EXP-GEN-0046 | unknown | unresolved | review_not_found_in_experiment_root |
 | EXP-GEN-0047 | unknown | unresolved | review_not_found_in_experiment_root |
+| EXP-GEN-0048 | unknown | unresolved | review_not_found_in_experiment_root |
 | EXP-LEARN-20260903-2300 | unknown | unresolved | review_not_found_in_experiment_root |
 | EXP-LEARN-20260903-2330 | unknown | unresolved | review_not_found_in_experiment_root |
 | EXP-LIFE-0001-R1 | unknown | unresolved | review_not_found_in_experiment_root |

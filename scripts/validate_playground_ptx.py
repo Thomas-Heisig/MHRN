@@ -6,6 +6,8 @@ import json
 from pathlib import Path
 
 from src.playground.cuda import assemble_bundle, compile_mapping
+from src.playground.cuda.nvrtc import compile_cuda_source
+from src.playground.cuda.runtime import assemble_ptx
 
 
 def main() -> int:
@@ -25,6 +27,48 @@ def main() -> int:
             "spill_store_bytes": report.spill_store_bytes,
             "spill_load_bytes": report.spill_load_bytes,
         }
+    source = Path("src/playground/cuda/recurrent.cu").read_text()
+    recurrent_dir = root / "recurrent"
+    recurrent_dir.mkdir(parents=True, exist_ok=True)
+    ptx_path = recurrent_dir / "recurrent.ptx"
+    ptx_path.write_text(compile_cuda_source(source), encoding="utf-8")
+    recurrent_report = assemble_ptx(
+        ptx_path.read_text(), output_dir=recurrent_dir, target_sm="sm_86"
+    )
+    results["recurrent"] = recurrent_report.to_mapping()
+    plastic_report = assemble_ptx(
+        compile_cuda_source("#define PAN_PLASTIC\n" + source),
+        output_dir=root / "plasticity",
+        target_sm="sm_86",
+    )
+    results["plasticity"] = plastic_report.to_mapping()
+    results["builder_membrane"] = assemble_ptx(
+        compile_cuda_source(Path("src/playground/cuda/membrane.cu").read_text()),
+        output_dir=root / "builder-membrane",
+        target_sm="sm_86",
+    ).to_mapping()
+    results["builder_pan_state"] = assemble_ptx(
+        compile_cuda_source(Path("src/playground/cuda/pan_state.cu").read_text()),
+        output_dir=root / "builder-pan-state",
+        target_sm="sm_86",
+    ).to_mapping()
+    results["builder_synaptic_emission"] = assemble_ptx(
+        compile_cuda_source(
+            Path("src/playground/cuda/builder_synapses.cu").read_text()
+        ),
+        output_dir=root / "builder-synaptic-emission",
+        target_sm="sm_86",
+    ).to_mapping()
+    results["resident_delay_queue"] = assemble_ptx(
+        compile_cuda_source(Path("src/playground/cuda/delay_queue.cu").read_text()),
+        output_dir=root / "resident-delay-queue",
+        target_sm="sm_86",
+    ).to_mapping()
+    results["resident_neuron_traces"] = assemble_ptx(
+        compile_cuda_source(Path("src/playground/cuda/neuron_traces.cu").read_text()),
+        output_dir=root / "resident-neuron-traces",
+        target_sm="sm_86",
+    ).to_mapping()
     print(json.dumps(results, indent=2, sort_keys=True))
     return 0
 

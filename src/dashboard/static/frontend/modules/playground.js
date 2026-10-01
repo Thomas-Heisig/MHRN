@@ -1,6 +1,7 @@
 "use strict";
 
 import { apiGet, apiPost, byId } from "../core/api.js";
+import { initGuidedWorkspace } from "./playground-workspace.js";
 import { getLanguage } from "../core/i18n.js?v=i18n-fix-20260920b";
 
 let lastResult = null;
@@ -11,7 +12,7 @@ let nightPollTimer = null;
 let catalogInfoItems = new Map();
 let activeCatalogInfo = null;
 const PLAYGROUND_PRESETS_STORAGE = "mhrn.playground.presets.v1";
-const DEFAULT_PLAYGROUND_PRESET = "full_embodiment";
+const DEFAULT_PLAYGROUND_PRESET = "pan_full_balanced";
 const BUILTIN_PLAYGROUND_PRESETS = {
   izhikevich_reference: {
     label: "Izhikevich · Referenz",
@@ -123,6 +124,7 @@ function updateDefaultHints() {
     field.title = message;
     field.closest("label")?.classList.toggle("pg-non-default", changed);
   });
+  refreshCatalogOptionAvailability();
 }
 
 function injectStyles() {
@@ -142,7 +144,7 @@ function injectStyles() {
     .playground-status{padding:9px 11px;border:1px solid var(--rule);border-left:3px solid var(--rule-3);border-radius:var(--r-xs);background:var(--paper-2);color:var(--ink-2);font-size:.68rem;white-space:pre-wrap;overflow:auto}.playground-status[data-state="error"]{border-left-color:var(--crimson);color:var(--crimson)}.playground-status[data-state="ok"]{border-left-color:var(--moss);color:var(--moss)}
     .pg-live-monitor{width:min(94vw,1000px);max-height:84vh;padding:0;border:1px solid var(--rule-3);border-radius:var(--r-md);background:var(--paper);color:var(--ink);box-shadow:var(--shadow-float)}.pg-live-monitor::backdrop{background:rgba(20,16,12,.55);backdrop-filter:blur(4px)}.pg-live-monitor>header{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;padding:9px 12px;border-bottom:1px solid var(--rule);background:var(--paper-2)}.pg-live-monitor>header h2{margin:0;font-size:.95rem}.pg-live-monitor>header p{margin:2px 0 0;color:var(--ink-3);font-size:.61rem}.pg-live-monitor-close{min-width:28px;padding:0}.pg-live-monitor-body{padding:9px;overflow:hidden}.pg-live-monitor-metrics{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:5px;margin-bottom:7px}.pg-live-monitor-metric{padding:6px;border:1px solid var(--rule);border-radius:var(--r-xs);background:var(--paper-2)}.pg-live-monitor-metric span{display:block;color:var(--ink-4);font:700 .46rem/1.1 var(--font-mono);text-transform:uppercase}.pg-live-monitor-metric strong{display:block;margin-top:3px;font:600 .7rem/1 var(--font-mono)}.pg-live-monitor-grid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(220px,1fr);gap:7px}.pg-live-monitor-panel{min-width:0;padding:7px;border:1px solid var(--rule);border-radius:var(--r-xs);background:var(--paper-2)}.pg-live-monitor-panel h3{margin:0 0 5px;padding-bottom:4px;border-bottom:1px solid var(--rule);font-size:.68rem}.pg-live-monitor-panel canvas{display:block;width:100%;height:130px;background:var(--paper);border:1px solid var(--rule)}.pg-live-monitor-params{margin:0;max-height:118px;overflow:hidden;font:500 .55rem/1.25 var(--font-mono);white-space:pre-wrap}.pg-live-monitor-actions{display:flex;flex-wrap:wrap;gap:5px;margin-top:7px}.pg-live-monitor-actions button{min-height:27px;padding:0 8px;font-size:.6rem}.pg-live-monitor-actions .pg-monitor-primary{border-color:var(--accent);background:var(--accent);color:var(--paper-2)}
     .playground-metrics{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:5px;margin:10px 0}.playground-metric{padding:8px 9px;border:1px solid var(--rule);border-radius:var(--r-xs);background:var(--paper-2)}.playground-metric span{display:block;color:var(--ink-4);font:700 .5rem/1.2 var(--font-mono);letter-spacing:.07em;text-transform:uppercase}.playground-metric strong{display:block;margin-top:4px;color:var(--ink);font:600 .82rem/1.1 var(--font-mono)}
-    .pg-live-monitor-visuals{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:5px;margin-top:7px}.pg-live-monitor-tile{display:block;width:100%;padding:5px;border:1px solid var(--rule);border-radius:var(--r-xs);background:var(--paper-2);color:var(--ink);text-align:left;cursor:pointer}.pg-live-monitor-tile:hover,.pg-live-monitor-tile:focus-visible{border-color:var(--accent);background:var(--accent-wash)}.pg-live-monitor-tile span{display:block;margin-bottom:3px;color:var(--ink-3);font:700 .47rem/1.1 var(--font-mono);text-transform:uppercase}.pg-live-monitor-tile canvas{width:100%;height:65px;background:var(--paper);border:1px solid var(--rule)}.pg-live-zoom{width:min(94vw,1100px);padding:0;border:1px solid var(--rule-3);border-radius:var(--r-md);background:var(--paper);box-shadow:var(--shadow-float)}.pg-live-zoom::backdrop{background:rgba(20,16,12,.58);backdrop-filter:blur(4px)}.pg-live-zoom header{display:flex;justify-content:space-between;align-items:center;padding:10px 13px;border-bottom:1px solid var(--rule);background:var(--paper-2)}.pg-live-zoom canvas{display:block;width:100%;height:min(70vh,600px);padding:12px;background:var(--paper)}
+    .pg-live-monitor-visuals{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:5px;margin-top:7px}.pg-live-monitor-tile{display:block;width:100%;padding:5px;border:1px solid var(--rule);border-radius:var(--r-xs);background:var(--paper-2);color:var(--ink);text-align:left;cursor:pointer}.pg-live-monitor-tile:hover,.pg-live-monitor-tile:focus-visible{border-color:var(--accent);background:var(--accent-wash)}.pg-live-monitor-tile span{display:block;margin-bottom:3px;color:var(--ink-3);font:700 .47rem/1.1 var(--font-mono);text-transform:uppercase}.pg-live-monitor-tile canvas{display:block;width:100%;height:65px;background:var(--paper);border:1px solid var(--rule);image-rendering:auto}.pg-live-zoom{width:min(96vw,1400px);max-height:92vh;padding:0;border:1px solid var(--rule-3);border-radius:var(--r-md);background:var(--paper);box-shadow:var(--shadow-float)}.pg-live-zoom::backdrop{background:rgba(20,16,12,.66);backdrop-filter:blur(5px)}.pg-live-zoom header{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;padding:10px 13px;border-bottom:1px solid var(--rule);background:var(--paper-2)}.pg-live-zoom header strong{display:block;font-size:.96rem}.pg-live-zoom header p{margin:3px 0 0;color:var(--ink-3);font-size:.62rem}.pg-live-zoom-toolbar{display:flex;flex-wrap:wrap;gap:6px;padding:8px 13px;border-bottom:1px solid var(--rule);background:var(--paper-3)}.pg-live-zoom-toolbar button{min-height:30px;padding:0 9px;border:1px solid var(--rule-2);border-radius:var(--r-xs);background:var(--paper);color:var(--ink-2);font-size:.64rem}.pg-live-zoom-toolbar button:hover,.pg-live-zoom-toolbar button:focus-visible{border-color:var(--accent);background:var(--accent-wash)}.pg-live-zoom-stage{min-height:360px;padding:12px;overflow:auto;background:var(--paper)}.pg-live-zoom canvas{display:block;width:100%;height:min(72vh,760px);min-height:360px;background:var(--paper-2);border:1px solid var(--rule);image-rendering:auto}
     .playground-viz-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.playground-viz{min-height:260px}.playground-viz canvas{width:100%;height:210px;display:block}
     .playground-analysis-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:10px}.playground-analysis-card pre{font-size:.62rem;max-height:260px;overflow:auto;white-space:pre-wrap}
     .playground-session-list{display:grid;gap:6px}.playground-session{display:flex;justify-content:space-between;gap:1rem;align-items:center;padding:9px 10px;border:1px solid var(--rule);border-radius:var(--r-xs);background:var(--paper-2)}.playground-session small{display:block;color:var(--ink-4)}
@@ -156,8 +158,24 @@ function injectStyles() {
 function optionMarkup(items, labelKey = "label") {
   return (items || []).filter((item) => item.available !== false).map((item) => {
     const label = item[labelKey] || item.name;
-    return `<option value="${item.name}" title="${item.note || ""}">${label}</option>`;
+    const executable = item.executable !== false;
+    const minimum = Number(item.min_dimensions || 0);
+    const status = executable ? "" : " · nur Katalog";
+    const note = item.note || (executable ? "Ausführbarer Playground-Referenzpfad." : "Nicht ausführbar; nur dokumentierter Katalogeintrag.");
+    return `<option value="${playgroundEscape(item.name)}" data-min-dimensions="${minimum}" data-executable="${String(executable)}" title="${playgroundEscape(note)}"${executable && !minimum ? "" : " disabled"}>${playgroundEscape(label)}${status}</option>`;
   }).join("");
+}
+
+function refreshCatalogOptionAvailability() {
+  const dimensions = Number(byId("pg-dimensions")?.value || 5);
+  ["pg-neuron-model", "pg-synapse-model", "pg-plasticity", "pg-readout", "pg-topology", "pg-stimulus"].forEach((id) => {
+    byId(id)?.querySelectorAll("option").forEach((option) => {
+      const executable = option.dataset.executable !== "false";
+      const minimum = Number(option.dataset.minDimensions || 0);
+      option.disabled = !executable || (minimum > 0 && dimensions < minimum);
+      if (minimum > 0 && dimensions < minimum) option.title = `Ausführbar ab ${minimum}D; bei ${dimensions}D nur Katalogeintrag.`;
+    });
+  });
 }
 
 function ensurePermanentBoundary(root) {
@@ -177,7 +195,7 @@ function buildPanels(root) {
     <section data-generated-panel="builder" id="playground-builder">
       <div class="pg-neutral-note"><strong>Neutraler Baukasten:</strong> Keine Modell- oder Topologieauswahl ist eine Empfehlung. <code>MHRN 5D</code> ist der Architektur-Default, weil er den nativen MHRN-Vertrag <code>(x,y,z,d4,d5)</code> verwendet — nicht weil 5D als überlegen gilt.</div>
       <section class="playground-preset-deck" aria-labelledby="pg-preset-deck-title">
-        <div class="playground-preset-copy"><div><h3 id="pg-preset-deck-title">Preset Lab</h3><p>Empfohlene Startpunkte für Izhikevich und PAN. Presets verändern nur den Playground und werden lokal auf diesem Gerät gespeichert.</p></div></div>
+        <div class="playground-preset-copy"><div><h3 id="pg-preset-deck-title">Preset Lab</h3><p>Empfohlene Startpunkte für Izhikevich und PAN. Presets verändern nur den Playground. Eigene Profile liegen im Browser; der Katalog kommt vom Server.</p></div></div>
         <div class="playground-preset-controls"><label>Profil<select id="pg-user-preset-select"></select></label><label>Eigenes Preset speichern<input id="pg-user-preset-name" type="text" placeholder="z. B. PAN · Seed 2"></label><button type="button" id="pg-user-preset-apply">Anwenden</button><button type="button" id="pg-user-preset-save">Speichern</button><button type="button" id="pg-user-preset-delete">Eigenes löschen</button><p id="pg-user-preset-description" class="playground-preset-description">Preset auswählen oder eigene Einstellungen speichern.</p></div>
       </section>
       <div class="playground-grid">
@@ -214,7 +232,7 @@ function buildPanels(root) {
           <label>Seed-Ensemble<input id="pg-ensemble" type="number" min="1" max="8" value="1"></label>
           <label><span><input id="pg-persist" type="checkbox"> Session lokal speichern</span></label>
         </article>
-        <article class="playground-card"><h3>05 · PAN-Hyperstate</h3>
+        <article class="playground-card" id="pg-pan-settings"><h3>05 · PAN-Hyperstate</h3>
           <label><span><input id="pg-pan-enabled" type="checkbox"> PAN explorativ aktivieren</span></label>
           <label>PAN-Dimensionen<input id="pg-pan-dimensions" type="number" min="5" max="32" value="5"></label>
           <label><span><input id="pg-pan-closed-loop" type="checkbox" checked> Closed Loop</span></label>
@@ -243,6 +261,7 @@ function buildPanels(root) {
           <label>Clock<select id="pg-clock-mode"><option value="continuous">Continuous</option><option value="dual">Dual · Event + Continuous</option></select></label>
           <label>Base Hz<input id="pg-clock-base-hz" type="number" min="1" max="10000" value="100"></label>
           <label>Event Batch ms<input id="pg-clock-event-batch" type="number" min="0.05" max="1000" step="0.05" value="10"></label>
+          <label>Neuron-/PAN-Ausfuehrung<select id="pg-neuron-backend"><option value="cpu">CPU-Referenz</option><option value="cuda_membrane">CUDA FP64 · Membran (PAN/Koerper auf CPU)</option><option value="cuda_pan">CUDA FP64 · PAN + synaptische Regeln (Koerper/Policy/Steuerung CPU)</option></select></label>
           <label>Execution<select id="pg-execution-mode"><option value="HYBRID_AUTO">HYBRID_AUTO</option><option value="EVENT_ONLY">EVENT_ONLY</option><option value="TICK_ONLY">TICK_ONLY</option></select></label>
           <label>Initial Engine<select id="pg-execution-initial"><option value="EVENT_ONLY">EVENT_ONLY</option><option value="TICK_ONLY">TICK_ONLY</option></select></label>
           <label>θ high<input id="pg-execution-high" type="number" min="0" max="1" step="0.01" value="0.30"></label>
@@ -276,7 +295,7 @@ function buildPanels(root) {
           <label><span><input id="pg-cortical-plasticity" type="checkbox" checked> Layer-Gain plastisch</span></label>
           <label>Layer Lernrate<input id="pg-cortical-lr" type="number" min="0" max="1" step="0.005" value="0.01"></label>
           <label><span><input id="pg-behavior-enabled" type="checkbox"> Verhalten lernen</span></label>
-          <label>Aktionen<input id="pg-behavior-actions" type="number" min="2" max="16" value="4"></label>
+          <label>Aktionen<input id="pg-behavior-actions" type="number" min="1" max="16" value="4"></label>
           <label>Zielaktion<input id="pg-behavior-target" type="number" min="0" max="15" value="0"></label>
           <label>Zielmodus<select id="pg-behavior-target-mode"><option value="cycle">cycle</option><option value="fixed">fixed</option></select></label>
           <label>Min. Aktivität<input id="pg-behavior-min-activity" type="number" min="0" max="1" step="0.01" value="0.01"></label>
@@ -318,7 +337,7 @@ function buildPanels(root) {
           <label><span><input id="pg-action-loop-enabled" type="checkbox"> Aktions-Loop aktiv</span></label>
           <label>Loop Delay<input id="pg-action-loop-delay" type="number" min="1" max="64" value="1"></label>
           <label>Persistenz<input id="pg-action-persistence" type="number" min="1" max="128" value="1"></label>
-          <label>Aktionsraum<input id="pg-action-space-size" type="number" min="2" max="32" value="4"></label>
+          <label>Aktionsraum<input id="pg-action-space-size" type="number" min="1" max="32" value="4"></label>
           <label>Action → Input Map<input id="pg-action-to-input-map" value="auto"></label>
           <label>Kopplungsstärke<input id="pg-action-coupling" type="number" min="0" max="10" step="0.1" value="0"></label>
           <label>Aktionsrauschen<input id="pg-action-noise" type="number" min="0" max="1" step="0.01" value="0"></label>
@@ -328,6 +347,7 @@ function buildPanels(root) {
           <label>Sandbox Sensor Noise<input id="pg-sandbox-sensor-noise" type="number" min="0" max="1" step="0.01" value="0.05"></label>
         </article>
         <article class="playground-card"><h3>12 · Ziel-Kodierung</h3>
+          <label>Cue-Kontrolle<select id="pg-target-cue-control"><option value="aligned">Zielreiz passend</option><option value="randomized">Zielreiz unabhaengig randomisiert</option><option value="absent">Zielreiz entfernt</option></select></label>
           <label>Kodierung<select id="pg-target-encoding"><option value="none">none</option><option value="one_hot">one_hot</option><option value="rate">rate</option><option value="population_latency">population_latency</option></select></label>
           <label>Ziel sichtbar (Ticks)<input id="pg-target-persistence" type="number" min="1" max="256" value="1"></label>
           <label>Ziel-Cue Strom<input id="pg-target-cue-current" type="number" min="0" max="500" step="0.5" value="0"></label>
@@ -366,20 +386,41 @@ function buildPanels(root) {
         </article>
       </div>
       <div class="playground-actions"><button type="button" class="primary" id="pg-run">▶ Playground starten</button><button type="button" id="pg-robustness">Robustheitskontrollen</button><button type="button" id="pg-reset">Standardwerte</button></div>
-      <article class="playground-card playground-live-launcher"><h3>17 · PAN Live Monitor</h3><p>Die laufende PAN-Session mit Start/Pause, Input, Sandbox-Männchen und allen Live-Grafiken im Monitor-Popup.</p><div class="playground-actions"><button type="button" class="primary" id="pg-live-open">Live Monitor öffnen</button><button type="button" id="pg-live-clear">Temporäre Sessions löschen</button></div><pre id="pg-live-state">Keine Live-Session geöffnet.</pre></article>
-      <article class="playground-card"><h3>18 · CUDA & Parität</h3>
+      <article class="playground-card playground-live-launcher" id="pg-pan-live-monitor"><h3>17 · PAN Live Monitor</h3><p>Die laufende PAN-Session mit Start/Pause, Input, Sandbox-Männchen und allen Live-Grafiken im Monitor-Popup.</p><div class="playground-actions"><button type="button" class="primary" id="pg-live-open">Live Monitor öffnen</button><button type="button" id="pg-live-clear">Temporäre Sessions löschen</button></div><pre id="pg-live-state">Keine Live-Session geöffnet.</pre></article>
+      <article class="playground-card" id="pg-cuda-controls"><h3>18 · CUDA & Parität</h3>
         <div class="playground-grid">
           <label>Target SM<input id="pg-cuda-target-sm" value="sm_86"></label>
           <label>PTX Version<input id="pg-cuda-ptx-version" value="7.1"></label>
+          <label>GPU Neuronen<input id="pg-cuda-neurons" type="number" min="1" max="12288" value="256"></label>
+          <label>Blockgröße<select id="pg-cuda-block-size"><option>32</option><option selected>64</option><option>128</option><option>256</option><option>512</option></select></label>
+          <label>Device<input id="pg-cuda-device" type="number" min="0" value="0"></label>
+          <label>RNG Samples<input id="pg-cuda-rng-samples" type="number" min="1" max="4096" value="1000"></label>
           <label><span><input id="pg-freeze-actions" type="checkbox"> Actions einfrieren</span></label>
           <label><span><input id="pg-freeze-rewards" type="checkbox"> Rewards einfrieren</span></label>
           <label>Referenz-Commit<input id="pg-parity-reference-commit" placeholder="Git SHA"></label>
         </div>
         <div class="playground-actions">
-          <button type="button" id="pg-cpu-determinism">CPU-Determinismus prüfen</button>
-          <button type="button" id="pg-cuda-compile">Builder → Gate IR / PTX</button>
+          <button type="button" id="pg-cuda-status">CUDA-Status</button>
+          <button type="button" id="pg-cpu-determinism">CPU-Determinismus</button>
+          <button type="button" id="pg-cuda-compile">Gate IR / PTX</button>
+          <button type="button" id="pg-cuda-preflight">ptxas + Occupancy</button>
+          <button type="button" class="primary" id="pg-cuda-smoke">RTX Hardware-Smoke</button>
+          <button type="button" id="pg-cuda-rng">RNG-Parität</button>
+          <button type="button" id="pg-cuda-recurrent">CUDA-1.4 · 100 Ticks / 3 Blöcke</button>
+          <button type="button" id="pg-synaptic-transfer">Synaptischer Transfer · Kontrollvergleich</button>
+          <button type="button" id="pg-cue-controls">Cue-Decoding · 6 Kontrollen</button>
+          <button type="button" id="pg-cuda-builder-parity">D3 · Builder CPU/CUDA vergleichen</button>
+          <button type="button" id="pg-cuda-plasticity">CUDA-1.5 · STP/STDP-Parität</button>
         </div>
-        <small>D1 = exakte Spike-Ereignisse · D2 = numerische Zustandsparität · D3 = Verhaltens-/Metrikparität. CUDA-Codegen ist vorhanden, ein echter GPU-Kernel-Launch ist hier noch nicht nachgewiesen.</small>
+        <small>D1 = exakte Spike-Ereignisse · D2 = numerische Zustandsparität · D3 = Verhaltens-/Metrikparität. CUDA-1.3 prüft den 17-Parameter-Gate-ABI gegen dieselbe CPU-Gate-Referenz. GPU-Portierung von Membran-/Adaptations-/Refractory-State, Synapsen, Delays, Plastizität und Sandbox folgt in CUDA-1.4 bis 1.6.</small>
+        <div class="playground-analysis-grid">
+          <article class="playground-analysis-card"><h3>CUDA Reifegrad</h3><pre id="pg-cuda-stage-state">Status noch nicht geladen.</pre></article>
+          <article class="playground-analysis-card"><h3>ptxas & Occupancy</h3><pre id="pg-cuda-resource-state">Noch kein Preflight.</pre></article>
+          <article class="playground-analysis-card"><h3>D2 Hardware-Parität</h3><pre id="pg-cuda-parity-state">Noch kein Hardware-Smoke.</pre></article>
+          <article class="playground-analysis-card"><h3>RNG ε-greedy</h3><pre id="pg-cuda-rng-state">Noch kein RNG-Paritätstest.</pre></article>
+          <article class="playground-analysis-card"><h3>Rekurrente Membran-Parität</h3><p>129 AdEx-Neuronen, statische Synapsen und Delays; FP64-Referenz. Noch kein vollständiger PAN-GPU-Lauf.</p><pre id="pg-cuda-recurrent-state">Noch kein Mehrtakt-Test.</pre></article>
+          <article class="playground-analysis-card"><h3>GPU-Plastizität</h3><p>STP, STDP, Eligibility und eingefrorene Reward-Folge; FP64-Referenz. Der Live-Regelkreis ist ein separater Schritt.</p><pre id="pg-cuda-plasticity-state">Noch kein Plastizitätstest.</pre><p>Builder-D3: echte Aktionen und Koerpertrajektorie; Membran auf GPU, Synapsen und Umwelt auf CPU.</p><pre id="pg-cuda-builder-parity-state">Noch kein Builder-Vergleich.</pre><p>Cue-Experiment: passend / randomisiert / entfernt, jeweils mit und ohne Pair-STDP. Ohne Policy-Strom und Koerperrueckkopplung; kein automatischer Lernnachweis.</p><pre id="pg-cue-controls-state">Noch kein Cue-Experiment.</pre><p id="pg-transfer-summary">Transfer: vortrainierte Gewichte gegen frische Initialisierung auf neuen Cue-Kanaelen. Alle anderen Zustaende werden zurueckgesetzt.</p><details><summary>Transfer-Protokoll und Decoder-Kurven</summary><pre id="pg-transfer-state" style="max-height:360px;overflow:auto">Noch kein Transfer-Vergleich.</pre></details></article>
+        </div>
         <pre id="pg-cuda-compiler-state">Noch kein CUDA-/Parity-Lauf.</pre>
       </article>
       <article class="playground-card"><h3>19 · Meta-Nachtlauf</h3>
@@ -431,6 +472,7 @@ function buildPanels(root) {
     <section data-generated-panel="run" id="playground-run">
       <div class="playground-metrics" id="pg-metrics"></div>
       <div class="playground-viz-grid">
+        <article class="playground-viz" id="pg-run-sandbox-panel" hidden><h3>PAN-Strichmann</h3><canvas id="pg-run-sandbox-canvas" width="800" height="360"></canvas><input id="pg-run-sandbox-frame" style="width:100%" type="range" min="0" max="0" value="0" aria-label="Strichmann-Zeitschritt"><p id="pg-run-sandbox-summary" aria-live="polite"></p><details><summary>Technische Frame-Daten</summary><pre id="pg-run-sandbox-state" style="max-height:240px;overflow:auto"></pre></details></article>
         <article class="playground-viz"><h3>Spike Raster</h3><canvas id="pg-raster" width="800" height="300"></canvas></article>
         <article class="playground-viz"><h3>Population Rate</h3><canvas id="pg-rate-canvas" width="800" height="300"></canvas></article>
         <article class="playground-viz"><h3>Topologie · neutrale 2D-Projektion</h3><canvas id="pg-topology-canvas" width="800" height="300"></canvas></article>
@@ -522,6 +564,7 @@ function formPayload() {
     clock_mode: byId("pg-clock-mode").value,
     clock_base_hz: Number(byId("pg-clock-base-hz").value),
     clock_event_batch_ms: Number(byId("pg-clock-event-batch").value),
+    neuron_backend: byId("pg-neuron-backend").value,
     execution_mode: byId("pg-execution-mode").value,
     execution_initial_mode: byId("pg-execution-initial").value,
     execution_theta_high: Number(byId("pg-execution-high").value),
@@ -644,6 +687,7 @@ function formPayload() {
     frozen_reward_sequence: lastResult?.closed_loop?.reward_history||[],
     parity_reference_source: "CPU_PYTHON_PLAYGROUND",
     parity_reference_commit: byId("pg-parity-reference-commit")?.value?.trim()||"",
+    target_cue_control: byId("pg-target-cue-control").value,
     target_encoding: byId("pg-target-encoding").value,
     target_persistence: Number(byId("pg-target-persistence").value),
     target_cue_current: Number(byId("pg-target-cue-current").value),
@@ -720,14 +764,21 @@ function renderResult(result){
   byId("pg-analysis-spike").textContent=JSON.stringify(a.spike_time||{},null,2);
   byId("pg-analysis-network").textContent=JSON.stringify({network:net,dimensionality:dim,ensemble:result.ensemble||null,pan:result.pan||null,closed_loop:result.closed_loop||null,heterogeneity:result.heterogeneity||null,temporal_dynamics:result.temporal_dynamics||null,geometry:result.geometry||null,gates:result.gates||null,clock:result.clock||null,execution:result.execution||null,growth:result.growth||null,storage:result.storage||null},null,2);
   byId("pg-analysis-plasticity").textContent=JSON.stringify({plasticity:a.plasticity||{},performance:a.performance||{},pan:result.pan||null,growth:result.growth||null,behavioral_learning:result.behavioral_learning||null,credit_assignment:result.credit_assignment||null,closed_loop:result.closed_loop||null,thalamic_gating:result.thalamic_gating||null,cortical_organization:result.cortical_organization||null,storage:result.storage||null,hardware:result.hardware||null},null,2);
-  byId("pg-analysis-io").textContent=JSON.stringify({neural_io:result.neural_io||{status:"disabled"},interfaces:result.interfaces||null},null,2);
+  byId("pg-analysis-io").textContent=JSON.stringify({neural_io:result.neural_io||{status:"disabled"},cue_decoding:result.cue_decoding||null,interfaces:result.interfaces||null},null,2);
   byId("pg-run-json").textContent=JSON.stringify({session_id:result.session_id,manifest:result.manifest,model:result.model,config:result.config,metrics:result.metrics,readout:result.readout},null,2);
+  const sandboxPanel=byId("pg-run-sandbox-panel"),sandboxSlider=byId("pg-run-sandbox-frame");
+  sandboxPanel.hidden=!result.sandbox?.world;
+  const frames=result.sandbox?.frames||[];
+  sandboxSlider.max=String(Math.max(0,frames.length-1));sandboxSlider.value=sandboxSlider.max;
+  const renderSandboxFrame=()=>{const frame=frames[Number(sandboxSlider.value)]||result.sandbox?.world;drawLiveSandbox(frame,"pg-run-sandbox-canvas");byId("pg-run-sandbox-summary").textContent=`Schritt ${Math.max(1,(result.sandbox?.ticks||frames.length)-frames.length+Number(sandboxSlider.value)+1)} / ${result.sandbox?.ticks||frames.length} · Haltung ${(Number(frame?.posture_score||0)*100).toFixed(1)} % · Aktion ${frame?.pan_action??"keine"} · Reward ${Number(frame?.reward||0).toFixed(3)}${frame?.terminal?` · ${frame.terminal}`:""}`;byId("pg-run-sandbox-state").textContent=JSON.stringify({backend:result.sandbox?.backend,ticks:result.sandbox?.ticks,dt_seconds:result.sandbox?.dt_seconds,posture_credit_updates:result.sandbox?.posture_credit_updates,frame},null,2);};
+  sandboxSlider.oninput=renderSandboxFrame;
+  if(!sandboxPanel.hidden)renderSandboxFrame();
   drawRaster(result);drawSeries("pg-rate-canvas",(result.monitors?.tick_spike_counts||[]).map(Number));drawTopology(result);drawState(result);drawSpectrum(result);drawDegree(result);
 }
 
 
-function drawLiveSandbox(world){
-  const item=ctxFor("pg-live-sandbox-canvas");if(!item||!world?.joints)return;
+function drawLiveSandbox(world,canvasId="pg-live-sandbox-canvas"){
+  const item=ctxFor(canvasId);if(!item||!world?.joints)return;
   const{canvas,ctx}=item;
   const px=p=>[canvas.width/2+Number(p.x||0)*170,canvas.height-30-Number(p.y||0)*150];
   const links=[["head","neck"],["neck","hip"],["neck","shoulder_l"],["neck","shoulder_r"],["hip","knee_l"],["hip","knee_r"],["knee_l","foot_l"],["knee_r","foot_r"]];
@@ -738,12 +789,36 @@ function drawLiveSandbox(world){
 let liveMonitorHistory=[];
 let liveMonitorPaused=false;
 let liveMonitorWorld=null;
+let liveZoomKind=null;
+let liveUpdateFactor=1;
+let liveStepBusy=false;
+let liveVisualFrame=0;
+let pendingLivePayload=null;
+let liveMonitorTopology=null;
+let liveTopologyRefreshCounter=0;
+
+function prepareLiveTileCanvases(root){
+  root.querySelectorAll(".pg-live-monitor-tile canvas").forEach(canvas=>{canvas.width=880;canvas.height=480;canvas.dataset.pgLiveHiDpi="true";});
+}
+
+function resizeLiveZoomCanvas(){
+  const canvas=byId("pg-live-zoom-canvas");if(!canvas)return;
+  const bounds=canvas.getBoundingClientRect();const ratio=Math.min(2,window.devicePixelRatio||1);const width=Math.max(640,Math.round(bounds.width*ratio));const height=Math.max(360,Math.round(bounds.height*ratio));
+  if(canvas.width!==width||canvas.height!==height){canvas.width=width;canvas.height=height;}
+}
+
+function refreshLiveZoom(){
+  if(!liveZoomKind)return;
+  const dialog=byId("pg-live-zoom"),source=byId(`pg-live-tile-${liveZoomKind}`),target=byId("pg-live-zoom-canvas");if(!dialog?.open||!source||!target)return;
+  resizeLiveZoomCanvas();const ctx=target.getContext("2d");ctx.imageSmoothingEnabled=false;ctx.clearRect(0,0,target.width,target.height);ctx.drawImage(source,0,0,target.width,target.height);
+}
 
 function ensureLiveMonitor(){
   let dialog=byId("pg-live-monitor");if(dialog)return dialog;
   dialog=document.createElement("dialog");dialog.id="pg-live-monitor";dialog.className="pg-live-monitor";
   dialog.innerHTML=`<header><div><span class="workspace-kicker">PAN LIVE MONITOR</span><h2>Live-Session</h2><p id="pg-live-monitor-status">Bereit</p></div><button type="button" class="pg-live-monitor-close" aria-label="Monitor schließen">×</button></header><div class="pg-live-monitor-body"><div class="pg-live-monitor-metrics"><div class="pg-live-monitor-metric"><span>Tick</span><strong id="pg-live-monitor-tick">0</strong></div><div class="pg-live-monitor-metric"><span>Spikes</span><strong id="pg-live-monitor-spikes">0</strong></div><div class="pg-live-monitor-metric"><span>Aktion</span><strong id="pg-live-monitor-action">—</strong></div><div class="pg-live-monitor-metric"><span>Reward</span><strong id="pg-live-monitor-reward">0</strong></div><div class="pg-live-monitor-metric"><span>Engine</span><strong id="pg-live-monitor-engine">—</strong></div></div><div class="pg-live-monitor-visuals"><button class="pg-live-monitor-tile" data-pg-live-expand="reset"><span>Reset</span><canvas id="pg-live-tile-reset" width="220" height="120"></canvas></button><button class="pg-live-monitor-tile" data-pg-live-expand="figure"><span>PAN-Männchen</span><canvas id="pg-live-tile-figure" width="220" height="120"></canvas></button><button class="pg-live-monitor-tile" data-pg-live-expand="raster"><span>Spike Raster</span><canvas id="pg-live-tile-raster" width="220" height="120"></canvas></button><button class="pg-live-monitor-tile" data-pg-live-expand="rate"><span>Populationsrate</span><canvas id="pg-live-tile-rate" width="220" height="120"></canvas></button><button class="pg-live-monitor-tile" data-pg-live-expand="topology"><span>Topologie · live</span><canvas id="pg-live-tile-topology" width="220" height="120"></canvas></button><button class="pg-live-monitor-tile" data-pg-live-expand="input"><span>Input</span><canvas id="pg-live-tile-input" width="220" height="120"></canvas></button><button class="pg-live-monitor-tile" data-pg-live-expand="output"><span>Output</span><canvas id="pg-live-tile-output" width="220" height="120"></canvas></button><button class="pg-live-monitor-tile" data-pg-live-expand="membrane"><span>Membranpotential</span><canvas id="pg-live-tile-membrane" width="220" height="120"></canvas></button><button class="pg-live-monitor-tile" data-pg-live-expand="spectrum"><span>Spectrum</span><canvas id="pg-live-tile-spectrum" width="220" height="120"></canvas></button><button class="pg-live-monitor-tile" data-pg-live-expand="degree"><span>Degree</span><canvas id="pg-live-tile-degree" width="220" height="120"></canvas></button></div><div class="pg-live-monitor-grid"><section class="pg-live-monitor-panel"><h3>Aktivität / Spike-Verlauf</h3><canvas id="pg-live-monitor-chart" width="760" height="260"></canvas></section><section class="pg-live-monitor-panel"><h3>Parameter</h3><pre id="pg-live-monitor-params" class="pg-live-monitor-params">—</pre></section><section class="pg-live-monitor-panel"><h3>Session</h3><pre id="pg-live-monitor-state" class="pg-live-monitor-params">—</pre></section></div><div class="pg-live-monitor-actions"><button type="button" id="pg-live-monitor-start" class="pg-monitor-primary">Start</button><button type="button" id="pg-live-monitor-pause">Pause</button><button type="button" id="pg-live-monitor-step">+32 Ticks</button><button type="button" id="pg-live-monitor-input">Input</button><button type="button" id="pg-live-monitor-stop">Stop</button><button type="button" id="pg-live-monitor-reset">Reset Ansicht</button></div></div>`;
-  document.body.append(dialog);
+  document.body.append(dialog);prepareLiveTileCanvases(dialog);
+  const actions=dialog.querySelector(".pg-live-monitor-actions");if(actions&&!byId("pg-live-update-factor")){const scale=document.createElement("label");scale.className="pg-live-update-scale";scale.innerHTML='<span>UI-Update</span><select id="pg-live-update-factor" aria-label="Simulation steps per UI update"><option value="1">1x</option><option value="5">5x</option><option value="10">10x</option><option value="25">25x</option><option value="50">50x</option><option value="100">100x</option></select>';actions.prepend(scale);scale.querySelector("select").addEventListener("change",event=>{liveUpdateFactor=Math.max(1,Number(event.target.value)||1);updateLiveZoomState();});}
   dialog.querySelector(".pg-live-monitor-close").addEventListener("click",()=>dialog.close());
   dialog.querySelector("#pg-live-monitor-start").addEventListener("click",()=>{liveMonitorPaused=false;startLiveLoop().catch(error=>updateLiveMonitor({error:String(error.message||error)}));});
   dialog.querySelector("#pg-live-monitor-pause").addEventListener("click",()=>{liveMonitorPaused=true;stopLiveLoop();updateLiveMonitor({status:"paused"});});
@@ -765,10 +840,16 @@ function drawLiveMonitorChart(){
 const LIVE_TILE_TITLES={reset:"Live-Ansicht zurückgesetzt",figure:"PAN-Männchen",raster:"Spike Raster",rate:"Populationsrate",topology:"Topologie",input:"Input-Kanäle",output:"Output-Aktionen",membrane:"Membranpotential",spectrum:"Spectrum",degree:"Degree-Verteilung"};
 function ensureLiveZoom(){
   if(byId("pg-live-zoom"))return;
-  const dialog=document.createElement("dialog");dialog.id="pg-live-zoom";dialog.className="pg-live-zoom";dialog.innerHTML=`<header><strong id="pg-live-zoom-title">Live-Grafik</strong><button type="button" id="pg-live-zoom-close" aria-label="Grafik schließen">×</button></header><canvas id="pg-live-zoom-canvas" width="1100" height="620"></canvas>`;document.body.append(dialog);dialog.querySelector("#pg-live-zoom-close").addEventListener("click",()=>dialog.close());
+  const dialog=document.createElement("dialog");dialog.id="pg-live-zoom";dialog.className="pg-live-zoom";dialog.innerHTML=`<header><div><span class="workspace-kicker">LIVE DETAIL VIEW</span><strong id="pg-live-zoom-title">Live-Grafik</strong><p id="pg-live-zoom-state">Bereit</p></div><button type="button" id="pg-live-zoom-close" aria-label="Grafik schließen">×</button></header><div class="pg-live-zoom-toolbar"><button type="button" id="pg-live-zoom-start">Start</button><button type="button" id="pg-live-zoom-pause">Pause</button><button type="button" id="pg-live-zoom-step">Schritt</button><button type="button" id="pg-live-zoom-input">Input senden</button><button type="button" id="pg-live-zoom-reset">Reset</button><button type="button" id="pg-live-zoom-stop">Stop</button></div><div class="pg-live-zoom-stage"><canvas id="pg-live-zoom-canvas" width="1600" height="900"></canvas></div>`;document.body.append(dialog);dialog.querySelector("#pg-live-zoom-close").addEventListener("click",()=>{liveZoomKind=null;dialog.close();});dialog.querySelector("#pg-live-zoom-start").addEventListener("click",()=>startLiveLoop().catch(error=>updateLiveZoomState(error.message)));dialog.querySelector("#pg-live-zoom-pause").addEventListener("click",()=>{stopLiveLoop();updateLiveZoomState("Pausiert");});dialog.querySelector("#pg-live-zoom-step").addEventListener("click",()=>stepLiveSession().catch(error=>updateLiveZoomState(error.message)));dialog.querySelector("#pg-live-zoom-input").addEventListener("click",()=>injectLiveInput().catch(error=>updateLiveZoomState(error.message)));dialog.querySelector("#pg-live-zoom-reset").addEventListener("click",()=>{resetForm();liveMonitorHistory=[];drawLiveMonitorVisuals({});updateLiveZoomState("Ansicht zurückgesetzt");});dialog.querySelector("#pg-live-zoom-stop").addEventListener("click",()=>stopLiveSession().catch(error=>updateLiveZoomState(error.message)));dialog.addEventListener("close",()=>{liveZoomKind=null;});window.addEventListener("resize",refreshLiveZoom);
+}
+function currentLiveUpdateFactor(){return Math.max(1,Number(byId("pg-live-update-factor")?.value)||liveUpdateFactor);}
+function updateLiveZoomState(message){const node=byId("pg-live-zoom-state");if(node)node.textContent=`${String(message||((liveMonitorPaused||!liveLoopTimer)?"Pausiert":"Läuft"))} · ${currentLiveUpdateFactor()}x UI-Update`;}
+function ensureLiveZoomScaleControl(){
+  const toolbar=byId("pg-live-zoom")?.querySelector(".pg-live-zoom-toolbar");if(!toolbar||byId("pg-live-zoom-factor"))return;
+  const label=document.createElement("label");label.textContent="UI-Update";const select=document.createElement("select");select.id="pg-live-zoom-factor";select.setAttribute("aria-label","Simulation steps per UI update");select.innerHTML='<option value="1">1x</option><option value="5">5x</option><option value="10">10x</option><option value="25">25x</option><option value="50">50x</option><option value="100">100x</option>';select.value=String(liveUpdateFactor);select.addEventListener("change",event=>{liveUpdateFactor=Math.max(1,Number(event.target.value)||1);const monitorSelect=byId("pg-live-update-factor");if(monitorSelect)monitorSelect.value=String(liveUpdateFactor);updateLiveZoomState();});label.prepend(select);toolbar.prepend(label);
 }
 function openLiveZoom(kind){
-  ensureLiveZoom();const dialog=byId("pg-live-zoom"),source=byId(`pg-live-tile-${kind}`),target=byId("pg-live-zoom-canvas");if(!dialog||!source||!target)return;byId("pg-live-zoom-title").textContent=LIVE_TILE_TITLES[kind]||kind;const ctx=target.getContext("2d");ctx.clearRect(0,0,target.width,target.height);ctx.drawImage(source,0,0,target.width,target.height);dialog.showModal();
+  ensureLiveZoom();ensureLiveZoomScaleControl();const dialog=byId("pg-live-zoom"),source=byId(`pg-live-tile-${kind}`);if(!dialog||!source)return;liveZoomKind=kind;byId("pg-live-zoom-title").textContent=LIVE_TILE_TITLES[kind]||kind;dialog.showModal();resizeLiveZoomCanvas();refreshLiveZoom();updateLiveZoomState();
 }
 function drawTileSeries(id,values,color){
   const canvas=byId(id),ctx=canvas?.getContext("2d");if(!canvas||!ctx)return;ctx.clearRect(0,0,canvas.width,canvas.height);ctx.strokeStyle=color||getComputedStyle(document.body).getPropertyValue("--accent")||"#b23a1a";ctx.lineWidth=2;ctx.beginPath();const data=values.length?values:[0];const max=Math.max(1,...data);data.forEach((value,index)=>{const x=5+index/Math.max(1,data.length-1)*(canvas.width-10);const y=canvas.height-5-(Number(value)||0)/max*(canvas.height-10);if(index===0)ctx.moveTo(x,y);else ctx.lineTo(x,y);});ctx.stroke();
@@ -779,8 +860,8 @@ function drawLiveMonitorVisuals(payload={}){
   const raster=byId("pg-live-tile-raster"),rasterCtx=raster?.getContext("2d");if(raster&&rasterCtx){rasterCtx.clearRect(0,0,raster.width,raster.height);rasterCtx.fillStyle=getComputedStyle(document.body).getPropertyValue("--accent")||"#b23a1a";spikes.slice(-160).forEach(item=>{rasterCtx.fillRect((Number(item.tick)||0)%100/100*raster.width,(Number(item.neuron_id)||0)%128/128*raster.height,2,2);});}
   const membrane=byId("pg-live-tile-membrane"),mctx=membrane?.getContext("2d");if(membrane&&mctx){mctx.clearRect(0,0,membrane.width,membrane.height);mctx.strokeStyle=getComputedStyle(document.body).getPropertyValue("--moss")||"#2f5d47";mctx.lineWidth=2;const mean=Number(payload.mean_v??-65),min=Number(payload.min_v??-70),max=Number(payload.max_v??30);const y=membrane.height-5-(mean-min)/Math.max(1,max-min)*(membrane.height-10);mctx.beginPath();mctx.moveTo(5,y);mctx.lineTo(membrane.width-5,y);mctx.stroke();}
   const inputValues=[Number(payload.input_active_neurons||0),Number(payload.input_peak||0)];drawTileSeries("pg-live-tile-input",inputValues,getComputedStyle(document.body).getPropertyValue("--accent")||"#b23a1a");drawTileSeries("pg-live-tile-output",counts.length?counts:[0],getComputedStyle(document.body).getPropertyValue("--moss")||"#2f5d47");
-  const topology=byId("pg-live-tile-topology"),tctx=topology?.getContext("2d"),topologyData=payload.topology; if(topology&&tctx){tctx.clearRect(0,0,topology.width,topology.height);const coords=topologyData?.coordinates||[],edges=topologyData?.edges||[];if(coords.length){const xs=coords.map(point=>Number(point[0]||0)),ys=coords.map(point=>Number(point[1]??point[2]??0)),minX=Math.min(...xs),maxX=Math.max(...xs),minY=Math.min(...ys),maxY=Math.max(...ys),scaleX=value=>(value-minX)/Math.max(1e-9,maxX-minX)*(topology.width-12)+6,scaleY=value=>(value-minY)/Math.max(1e-9,maxY-minY)*(topology.height-12)+6;tctx.strokeStyle=getComputedStyle(document.body).getPropertyValue("--rule-3")||"#777";tctx.globalAlpha=.25;edges.slice(0,600).forEach(edge=>{const source=coords[edge[0]],target=coords[edge[1]];if(!source||!target)return;tctx.beginPath();tctx.moveTo(scaleX(Number(source[0]||0)),scaleY(Number(source[1]??source[2]??0)));tctx.lineTo(scaleX(Number(target[0]||0)),scaleY(Number(target[1]??target[2]??0)));tctx.stroke();});tctx.globalAlpha=.9;tctx.fillStyle=getComputedStyle(document.body).getPropertyValue("--indigo")||"#2f4a7a";coords.forEach(point=>tctx.fillRect(scaleX(Number(point[0]||0))-1,scaleY(Number(point[1]??point[2]??0))-1,3,3));}}
-  if(payload.world)liveMonitorWorld=payload.world;drawLiveMonitorFigure(liveMonitorWorld,"pg-live-tile-figure");
+  if(payload.topology)liveMonitorTopology=payload.topology;const topology=byId("pg-live-tile-topology"),tctx=topology?.getContext("2d"),topologyData=payload.topology||liveMonitorTopology; if(topology&&tctx){tctx.clearRect(0,0,topology.width,topology.height);const coords=topologyData?.coordinates||[],edges=topologyData?.edges||[];if(coords.length){const xs=coords.map(point=>Number(point[0]||0)),ys=coords.map(point=>Number(point[1]??point[2]??0)),minX=Math.min(...xs),maxX=Math.max(...xs),minY=Math.min(...ys),maxY=Math.max(...ys),scaleX=value=>(value-minX)/Math.max(1e-9,maxX-minX)*(topology.width-12)+6,scaleY=value=>(value-minY)/Math.max(1e-9,maxY-minY)*(topology.height-12)+6;tctx.strokeStyle=getComputedStyle(document.body).getPropertyValue("--rule-3")||"#777";tctx.globalAlpha=.25;edges.slice(0,600).forEach(edge=>{const source=coords[edge[0]],target=coords[edge[1]];if(!source||!target)return;tctx.beginPath();tctx.moveTo(scaleX(Number(source[0]||0)),scaleY(Number(source[1]??source[2]??0)));tctx.lineTo(scaleX(Number(target[0]||0)),scaleY(Number(target[1]??target[2]??0)));tctx.stroke();});tctx.globalAlpha=.9;tctx.fillStyle=getComputedStyle(document.body).getPropertyValue("--indigo")||"#2f4a7a";coords.forEach(point=>tctx.fillRect(scaleX(Number(point[0]||0))-1,scaleY(Number(point[1]??point[2]??0))-1,3,3));}}
+  if(payload.world)liveMonitorWorld=payload.world;drawLiveMonitorFigure(liveMonitorWorld,"pg-live-tile-figure");refreshLiveZoom();
 }
 
 function drawLiveMonitorFigure(world,targetId="pg-live-tile-figure"){
@@ -792,13 +873,13 @@ function updateLiveMonitor(payload={}){
   const state=payload.state||payload;const tick=Number(state.tick??payload.tick??0);const spikes=Number(state.total_spikes??payload.total_spikes??0);const actions=payload.actions||state.actions||[];const rewards=payload.rewards||state.rewards||[];
   if(Number.isFinite(spikes)){liveMonitorHistory.push({tick,spikes});if(liveMonitorHistory.length>120)liveMonitorHistory.shift();}
   const set=(id,value)=>{const node=byId(id);if(node)node.textContent=String(value);};set("pg-live-monitor-tick",tick);set("pg-live-monitor-spikes",spikes);set("pg-live-monitor-action",actions.length?actions[actions.length-1]:"—");set("pg-live-monitor-reward",rewards.length?Number(rewards[rewards.length-1]).toFixed(3):"0");set("pg-live-monitor-engine",state.execution?.current_engine||payload.execution?.current_engine||"—");set("pg-live-monitor-status",payload.error||((liveMonitorPaused||!liveLoopTimer)?"Pausiert":"Läuft"));
-  const params={session_id:liveSessionId,tick,posture_score:payload.posture_score??payload.world?.posture_score??null,reward:payload.reward??null,reward_events:payload.reward_events||[],terminal:payload.terminal||null,pan_bias_current:byId("pg-pan-bias-current")?.value,feedback_gain:byId("pg-pan-feedback-gain")?.value,learning_rate:byId("pg-behavior-lr")?.value,epsilon:byId("pg-behavior-epsilon")?.value,edge_budget:byId("pg-edges")?.value};const paramsNode=byId("pg-live-monitor-params");if(paramsNode)paramsNode.textContent=JSON.stringify(params,null,2);const stateNode=byId("pg-live-monitor-state");if(stateNode)stateNode.textContent=JSON.stringify({state_digest:state.state_digest||payload.state_digest||null,input_queue_depth:state.input_queue_depth??payload.input_queue_depth??0,learning:state.learning||payload.learning||null},null,2);drawLiveMonitorChart();drawLiveMonitorVisuals(payload);drawLiveMonitorFigure(payload.world||state.world||null);
+  const params={session_id:liveSessionId,tick,posture_score:payload.posture_score??payload.world?.posture_score??null,reward:payload.reward??null,reward_events:payload.reward_events||[],terminal:payload.terminal||null,pan_bias_current:byId("pg-pan-bias-current")?.value,feedback_gain:byId("pg-pan-feedback-gain")?.value,learning_rate:byId("pg-behavior-lr")?.value,epsilon:byId("pg-behavior-epsilon")?.value,edge_budget:byId("pg-edges")?.value};const paramsNode=byId("pg-live-monitor-params");if(paramsNode)paramsNode.textContent=JSON.stringify(params,null,2);const stateNode=byId("pg-live-monitor-state");if(stateNode)stateNode.textContent=JSON.stringify({state_digest:state.state_digest||payload.state_digest||null,input_queue_depth:state.input_queue_depth??payload.input_queue_depth??0,learning:state.learning||payload.learning||null},null,2);pendingLivePayload=payload;if(!liveVisualFrame){liveVisualFrame=requestAnimationFrame(()=>{liveVisualFrame=0;const nextPayload=pendingLivePayload||{};pendingLivePayload=null;drawLiveMonitorChart();drawLiveMonitorVisuals(nextPayload);drawLiveMonitorFigure(nextPayload.world||(nextPayload.state||{}).world||null);});}updateLiveZoomState(payload.error);
 }
 
 async function createLiveSession(canRecover=true){
   const payload={...formPayload(),neuron_model:"pan_adex_5d",pan_enabled:true,thalamic_relay_threshold:0,pan_bias_current:Number(byId("pg-pan-bias-current").value),behavior_target_mode:byId("pg-behavior-target-mode").value};
   try{
-    const result=await apiPost("/api/playground/live/create",payload);liveSessionId=result.session_id;liveMonitorHistory=[];liveMonitorWorld=null;const monitor=ensureLiveMonitor();if(!monitor.open)monitor.showModal();byId("pg-live-state").textContent=JSON.stringify(result,null,2);updateLiveMonitor(result.state||result);
+    const result=await apiPost("/api/playground/live/create",payload);liveSessionId=result.session_id;liveMonitorHistory=[];liveMonitorWorld=null;liveMonitorTopology=null;liveTopologyRefreshCounter=0;const monitor=ensureLiveMonitor();if(!monitor.open)monitor.showModal();byId("pg-live-state").textContent=JSON.stringify(result,null,2);updateLiveMonitor(result.state||result);
   }catch(error){
     if(canRecover&&/maximum live Playground sessions reached/i.test(String(error.message||error))){await clearLiveSessions();return createLiveSession(false);}
     throw error;
@@ -817,16 +898,19 @@ async function clearLiveSessions(){
     await Promise.all(sessions.map(session=>apiPost(`/api/playground/live/${encodeURIComponent(session.session_id)}/stop`,{}).catch(()=>null)));
     result={classification:"PLAYGROUND_LIVE_SESSIONS_CLEARED",scientific_evidence:false,cleared:sessions.length,compatibility_cleanup:true};
   }
-  liveSessionId=null;liveMonitorWorld=null;liveMonitorHistory=[];
+  liveSessionId=null;liveMonitorWorld=null;liveMonitorTopology=null;liveTopologyRefreshCounter=0;liveMonitorHistory=[];
   byId("pg-live-state").textContent=JSON.stringify(result,null,2);
   const monitor=byId("pg-live-monitor");if(monitor?.open)monitor.close();
 }
 async function stepLiveSession(){
   if(!liveSessionId)throw new Error("Zuerst Live-Session starten.");
-  const result=await apiPost(`/api/playground/live/${encodeURIComponent(liveSessionId)}/step`,{ticks:32});
-  try{const sandbox=await apiPost(`/api/playground/live/${encodeURIComponent(liveSessionId)}/sandbox`,{ticks:8});result.world=sandbox.world;liveMonitorWorld=sandbox.world;}catch{}
-  try{Object.assign(result,await apiGet(`/api/playground/live/${encodeURIComponent(liveSessionId)}`));}catch{}
-  byId("pg-live-state").textContent=JSON.stringify(result,null,2);updateLiveMonitor(result);
+  if(liveStepBusy)return null;
+  liveStepBusy=true;
+  try{
+    const factor=currentLiveUpdateFactor();const includeTopology=liveMonitorTopology===null||liveTopologyRefreshCounter++%10===0;const result=await apiPost(`/api/playground/live/${encodeURIComponent(liveSessionId)}/step`,{ticks:Math.min(4096,32*factor),include_topology:includeTopology});
+    try{const sandbox=await apiPost(`/api/playground/live/${encodeURIComponent(liveSessionId)}/sandbox`,{ticks:Math.min(64,Math.max(8,8*factor))});result.world=sandbox.world;liveMonitorWorld=sandbox.world;}catch{}
+    byId("pg-live-state").textContent=JSON.stringify(result,null,2);updateLiveMonitor(result);return result;
+  } finally {liveStepBusy=false;}
 }
 async function startLiveLoop(){
   if(!liveSessionId)throw new Error("Zuerst Live-Session starten.");
@@ -924,6 +1008,92 @@ async function checkCpuDeterminism(){
   return result;
 }
 
+function cudaRequestPayload(){
+  return {
+    ...formPayload(),
+    target_sm:byId("pg-cuda-target-sm")?.value||"sm_86",
+    ptx_version:byId("pg-cuda-ptx-version")?.value||"7.1",
+    n_neurons:Number(byId("pg-cuda-neurons")?.value||256),
+    block_size:Number(byId("pg-cuda-block-size")?.value||64),
+    device_ordinal:Number(byId("pg-cuda-device")?.value||0),
+    reference_commit:byId("pg-parity-reference-commit")?.value||"",
+    rng_samples:Number(byId("pg-cuda-rng-samples")?.value||1000),
+  };
+}
+
+async function refreshCudaStatus(){
+  const node=byId("pg-cuda-stage-state");
+  if(node)node.textContent="CUDA-Laufzeit wird geprüft …";
+  const result=await apiGet("/api/playground/cuda/status");
+  if(node)node.textContent=JSON.stringify({
+    target_default:result.target_default,
+    ptxas_available:result.ptxas_available,
+    cuda_driver_available:result.cuda_driver_available,
+    cuda_driver_error:result.cuda_driver_error,
+    stages:result.stages,
+    application_cpu:result.application_cpu,
+    gpu_porting:result.gpu_porting,
+    verification:result.verification,
+  },null,2);
+  return result;
+}
+
+async function runCudaPreflight(){
+  const node=byId("pg-cuda-resource-state");
+  if(node)node.textContent="ptxas + Driver-Load + Occupancy werden geprüft …";
+  const result=await apiPost("/api/playground/cuda/preflight",cudaRequestPayload());
+  if(node)node.textContent=JSON.stringify({
+    execution_status:result.execution_status,
+    ready_for_cooperative_launch:result.ready_for_cooperative_launch,
+    ptxas:result.ptxas,
+    cooperative:result.cooperative,
+  },null,2);
+  return result;
+}
+
+async function runCudaHardwareSmoke(){
+  const node=byId("pg-cuda-parity-state");
+  if(node)node.textContent="GPU-Kernel wird zweimal ausgeführt und gegen CPU-Gate-ABI verglichen …";
+  const payload={...cudaRequestPayload(),n_neurons:Math.min(Number(byId("pg-cuda-neurons")?.value||64),4096)};
+  const result=await apiPost("/api/playground/cuda/smoke",payload);
+  const first=result.first||{},ptxas=first.ptxas||{};
+  if(node)node.textContent=JSON.stringify({
+    passed:result.passed,
+    gpu_repeat_exact:result.gpu_repeat_exact,
+    parity:result.parity,
+    launch:first.launch,
+    registers:ptxas.registers,
+    shared_bytes:ptxas.shared_bytes,
+    spill_store_bytes:ptxas.spill_store_bytes,
+    spill_load_bytes:ptxas.spill_load_bytes,
+    cleanup_contract:result.cleanup_contract,
+  },null,2);
+  const resources=byId("pg-cuda-resource-state");
+  if(resources)resources.textContent=JSON.stringify({
+    ptxas:first.ptxas||null,
+    launch:first.launch||null,
+  },null,2);
+  return result;
+}
+
+async function runCudaRngParity(){
+  const node=byId("pg-cuda-rng-state");
+  if(node)node.textContent="ε-greedy-Hashpfad wird CPU ↔ CUDA verglichen …";
+  const result=await apiPost("/api/playground/cuda/rng-parity",cudaRequestPayload());
+  if(node)node.textContent=JSON.stringify(result,null,2);
+  return result;
+}
+
+async function runCudaRecurrentParity(plasticity=false){
+  plasticity=plasticity===true;
+  const node=byId(plasticity?"pg-cuda-plasticity-state":"pg-cuda-recurrent-state");
+  node.textContent="100 Ticks mit kooperativem Grid und Delay-Ring werden geprüft …";
+  try {
+    const result=await apiPost("/api/playground/cuda/recurrent-parity",{n_neurons:129,ticks:100,block_size:64,plasticity,target_sm:byId("pg-cuda-target-sm")?.value||"sm_86"});
+    node.textContent=JSON.stringify(result,null,2);
+  } catch(error) { node.textContent=String(error.message||error); }
+}
+
 async function compileCudaGates(){
   const node=byId("pg-cuda-compiler-state");
   if(node)node.textContent="Gate-IR/PTX wird erzeugt …";
@@ -949,7 +1119,7 @@ async function runSession(){
 
 async function runRobustness(){
   const status=byId("pg-status");status.dataset.state="running";status.textContent="Explorative Robustheitskontrollen laufen …";
-  try{const result=await apiPost("/api/playground/robustness",{...formPayload(),persist:false,ensemble_runs:1});status.dataset.state="ok";status.textContent="Robustheitssuite abgeschlossen · nicht preregistriert · keine Evidenz";byId("pg-run-json").textContent=JSON.stringify(result,null,2);window.MHRNWorkspaceArchitecture?.selectRoute?.("playground","run");}
+  try{const result=await apiPost("/api/playground/robustness",{...formPayload(),persist:false,ensemble_runs:1});status.dataset.state="ok";status.textContent="Robustheitssuite abgeschlossen · nicht preregistriert · keine Evidenz";lastResult=result;byId("pg-run-json").textContent=JSON.stringify(result,null,2);window.MHRNWorkspaceArchitecture?.selectRoute?.("playground","run");}
   catch(error){status.dataset.state="error";status.textContent=`Robustheitssuite fehlgeschlagen: ${error.message||error}`;}
 }
 
@@ -962,14 +1132,16 @@ function setBuilderValue(key,value){
     pan_feedback_gain:"pan-feedback-gain",pan_feedback_nonlinearity:"pan-feedback-nonlinearity",pan_feedback_saturation:"pan-feedback-saturation",
     action_loop_enabled:"action-loop-enabled",action_loop_delay:"action-loop-delay",action_persistence:"action-persistence",action_to_input_map:"action-to-input-map",action_space_size:"action-space-size",action_coupling_strength:"action-coupling",action_noise:"action-noise",
     reward_signal_enabled:"reward-enabled",reward_magnitude:"reward-magnitude",reward_delay_ticks:"reward-delay",reward_shaping:"reward-shaping",reward_baseline:"reward-baseline",reward_decay:"reward-decay",reward_channel:"reward-channel",
-    target_encoding:"target-encoding",target_cue_channel:"target-cue-channel",target_cue_current:"target-cue-current",target_persistence:"target-persistence",target_shuffle:"target-shuffle",target_predictability:"target-predictability",
+    target_cue_control:"target-cue-control",target_encoding:"target-encoding",target_cue_channel:"target-cue-channel",target_cue_current:"target-cue-current",target_persistence:"target-persistence",target_shuffle:"target-shuffle",target_predictability:"target-predictability",
     credit_assignment:"credit-assignment",credit_window:"credit-window",eligibility_trace_tau:"eligibility-tau",td_lambda:"td-lambda",gamma_discount:"gamma-discount",
     neuron_threshold_variance:"threshold-variance",neuron_tau_m_variance:"tau-m-variance",inhibitory_fraction:"inhibitory-fraction",gaba_strength:"gaba-strength",e_i_ratio:"e-i-ratio",delay_distribution:"delay-distribution",delay_mean_ticks:"delay-mean",
     refractory_variance:"refractory-variance",adaptation_strength:"adaptation-strength",adaptation_tau:"adaptation-tau",oscillation_enabled:"oscillation-enabled",oscillation_frequency:"oscillation-frequency",
     input_topology:"input-topology",input_channels:"input-channels",input_noise_sigma:"input-noise",action_feedback_channel:"action-feedback-channel",reward_cue_channel:"reward-cue-channel",
     geometry_input_coupling:"geometry-input-coupling",geometry_input_sigma:"geometry-input-sigma",sandbox_enabled:"sandbox-enabled",sandbox_sensor_noise:"sandbox-sensor-noise",
-    neuron_model:"neuron-model",synapse_model:"synapse-model",plasticity_rule:"plasticity",topology:"topology",readout:"readout",pan_enabled:"pan-enabled",behavior_learning_enabled:"behavior-enabled",stimulus:"stimulus"
+    neuron_model:"neuron-model",synapse_model:"synapse-model",plasticity_rule:"plasticity",topology:"topology",readout:"readout",pan_enabled:"pan-enabled",behavior_learning_enabled:"behavior-enabled",stimulus:"stimulus",
+    weight_decay:"weight-decay",weight_max_clamp:"weight-max-clamp",persist:"persist",clock_mode:"clock-mode",clock_base_hz:"clock-base-hz",clock_event_batch_ms:"clock-event-batch",neuron_backend:"neuron-backend",execution_mode:"execution-mode",execution_initial_mode:"execution-initial",execution_theta_high:"execution-high",execution_theta_low:"execution-low",execution_hysteresis:"execution-hysteresis",execution_min_dwell:"execution-dwell",execution_activity_window:"execution-window",execution_transition_mode:"execution-transition",execution_sync_on_switch:"execution-sync",execution_log_transitions:"execution-log",growth_enabled:"growth-enabled",growth_activity_threshold:"growth-activity",growth_coactivation_threshold:"growth-coactivation",growth_information_threshold:"growth-info",growth_prune_threshold:"growth-prune",growth_max_synapses_per_neuron:"growth-max-synapses",growth_max_new_synapses_per_barrier:"growth-max-new",hardware_profile_name:"hardware-profile",cuda_budget_mb:"cuda-budget",offload_enabled:"offload-enabled",offload_snapshot_interval:"offload-snapshot",thalamic_gating_enabled:"thalamic-enabled",thalamic_relay_threshold:"thalamic-threshold",thalamic_attention_gain:"thalamic-attention",thalamic_inhibition_gain:"thalamic-inhibition",cortical_layers_enabled:"cortical-enabled",cortical_plasticity:"cortical-plasticity",cortical_learning_rate:"cortical-lr",behavior_target_mode:"behavior-target-mode",behavior_min_activity:"behavior-min-activity",behavior_learning_rate:"behavior-lr",behavior_epsilon:"behavior-epsilon",geometry_lambda_a:"geometry-lambda-a",geometry_lambda_b:"geometry-lambda-b",geometry_sigma:"geometry-sigma",geometry_p0:"geometry-p0",geometry_mode:"geometry-mode",geometry_delay_velocity:"geometry-delay-velocity",neural_io_enabled:"neural-io-enabled",neural_io_input_channels:"neural-io-input-channels",neural_io_output_channels:"neural-io-output-channels",neural_io_input_codec:"neural-io-codec",neural_io_output_decoder:"neural-io-decoder",neural_io_window_ticks:"neural-io-window",neural_io_input_current:"neural-io-current",neural_io_input_role:"neural-io-input-role",neural_io_output_role:"neural-io-output-role",neural_io_phase:"neural-io-phase",neural_io_modality:"neural-io-modality",neural_io_source_id:"neural-io-source",posture_score_channel:"posture-score-channel",reward_event_channel:"reward-event-channel",posture_current_scale:"posture-current-scale",reward_event_scale:"reward-event-scale",posture_reward_enabled:"posture-reward-enabled",posture_weight_upright:"posture-weight-upright",posture_weight_height:"posture-weight-height",posture_weight_stability:"posture-weight-stability",posture_weight_symmetry:"posture-weight-symmetry",posture_target_height:"posture-target-height",posture_tilt_max:"posture-tilt-max",posture_velocity_max:"posture-velocity-max",trigger_good_score:"trigger-good-score",trigger_good_duration:"trigger-good-duration",trigger_good_reward:"trigger-good-reward",trigger_warning_score:"trigger-warning-score",trigger_warning_reward:"trigger-warning-reward",trigger_falling_rate:"trigger-falling-rate",trigger_falling_reward:"trigger-falling-reward",trigger_collapse_score:"trigger-collapse-score",trigger_collapse_reward:"trigger-collapse-reward",trigger_recovery_bonus:"trigger-recovery-bonus",reward_continuous_alpha:"reward-continuous-alpha",episode_termination_enabled:"episode-termination-enabled",episode_max_ticks:"episode-max-ticks",episode_reset_on_collapse:"episode-reset-on-collapse",pan_feedback_delay:"pan-feedback-delay",pan_feedback_source:"pan-feedback-source",pan_feedback_target:"pan-feedback-target",pan_feedback_threshold:"pan-feedback-threshold",freeze_actions:"freeze-actions",freeze_rewards:"freeze-rewards",parity_reference_commit:"parity-reference-commit"
   };
+  if(key==="neural_io_input_payload"){const field=byId("pg-neural-io-payload");if(field)field.value=typeof value==="string"?value:JSON.stringify(value);return;}
   const id="pg-"+(aliases[key]||key.replaceAll("_","-"));
   const el=byId(id);if(!el)return;
   if(el.type==="checkbox")el.checked=Boolean(value);
@@ -991,7 +1163,7 @@ function renderUserPresetOptions(){
   const select=byId("pg-user-preset-select");if(!select)return;
   const selected=select.value;
   const presets=allPlaygroundPresets();
-  select.innerHTML=Object.entries(presets).map(([name,preset])=>`<option value="${name}">${preset.label||name}${BUILTIN_PLAYGROUND_PRESETS[name]?"":" · lokal"}</option>`).join("");
+  select.innerHTML=Object.entries(presets).map(([name,preset])=>`<option value="${playgroundEscape(name)}">${playgroundEscape(preset.label||name)} · ${preset.source==="catalog"?"Katalog":BUILTIN_PLAYGROUND_PRESETS[name]?"integriert":"Browser"}</option>`).join("");
   if(selected&&presets[selected])select.value=selected;else if(!select.value)select.value=presets[DEFAULT_PLAYGROUND_PRESET]?DEFAULT_PLAYGROUND_PRESET:"pan_exploration";
   const preset=presets[select.value];
   if(byId("pg-user-preset-description"))byId("pg-user-preset-description").textContent=preset?.description||"Preset auswählen oder eigene Einstellungen speichern.";
@@ -1058,11 +1230,19 @@ function ensureCatalogInfoDialog(){
 }
 
 function showCatalogInfo(item){
-  activeCatalogInfo=item;const language=catalogLanguage();const dialog=ensureCatalogInfoDialog();const category=catalogCategoryTitle(item.categoryKey||item.category||"repo",language);const description=describeCatalogItem(item,category,language);byId("pg-catalog-info-category").textContent=category;byId("pg-catalog-info-title").textContent=item.label||item.name||"—";byId("pg-catalog-info-body").innerHTML=`<p>${playgroundEscape(description)}</p>${item.source?`<p><strong>${language==="de"?"Quelle":"Source"}:</strong> <code>${playgroundEscape(item.source)}</code></p>`:""}<p><strong>${language==="de"?"Grenze":"Boundary"}:</strong> ${language==="de"?"Explorativ. Der Katalogeintrag ist keine Instanzierung und erzeugt keine wissenschaftliche Evidenz.":"Exploratory. This catalog entry is not an instantiation and does not create scientific evidence."}</p>`;dialog.querySelector("#pg-catalog-info-close").setAttribute("aria-label",language==="de"?"Bausteininfo schließen":"Close component information");dialog.showModal();
+  activeCatalogInfo=item;const language=catalogLanguage();const dialog=ensureCatalogInfoDialog();const categoryKey=item.categoryKey||item.category||"repo";const category=catalogCategoryTitle(categoryKey,language);const description=describeCatalogItem(item,category,language);const execution=catalogExecutionLabel(item,categoryKey,language);byId("pg-catalog-info-category").textContent=category;byId("pg-catalog-info-title").textContent=item.label||item.name||"—";byId("pg-catalog-info-body").innerHTML=`<p><strong>${language==="de"?"Ausführbarkeit":"Execution"}:</strong> ${playgroundEscape(execution)}</p><p>${playgroundEscape(description)}</p>${item.source?`<p><strong>${language==="de"?"Quelle":"Source"}:</strong> <code>${playgroundEscape(item.source)}</code></p>`:""}<p><strong>${language==="de"?"Grenze":"Boundary"}:</strong> ${language==="de"?"Explorativ. Der Katalogeintrag ist keine Instanzierung und erzeugt keine wissenschaftliche Evidenz.":"Exploratory. This catalog entry is not an instantiation and does not create scientific evidence."}</p>`;dialog.querySelector("#pg-catalog-info-close").setAttribute("aria-label",language==="de"?"Bausteininfo schließen":"Close component information");dialog.showModal();
 }
 
 function bindCatalogInfo(){
   const grid=byId("pg-catalog-grid");if(!grid||grid.dataset.infoBound)return;grid.dataset.infoBound="true";grid.addEventListener("click",event=>{const button=event.target.closest("[data-pg-catalog-info]");if(!button)return;const item=catalogInfoItems.get(button.dataset.pgCatalogInfo);if(item)showCatalogInfo(item);});
+}
+
+function catalogExecutionLabel(item, categoryKey, language=catalogLanguage()){
+  const nonExecutableCategory=["panCandidates","panLiterature","geometryLiterature","neuralIO","analyses","robustness","cudaCompiler","cudaParity","repo"].includes(categoryKey);
+  const minimum=Number(item.min_dimensions||0);const dimensions=Number(byId("pg-dimensions")?.value||5);
+  if (item.executable===false||nonExecutableCategory) return language==="de"?"Nur Katalog / nicht direkt ausführbar":"Catalog-only / not directly executable";
+  if (minimum>0&&dimensions<minimum) return language==="de"?`Nicht ausführbar bei ${dimensions}D; benötigt ${minimum}D`:`Not executable at ${dimensions}D; requires ${minimum}D`;
+  return language==="de"?"Ausführbarer Referenzpfad":"Executable reference path";
 }
 
 function renderCatalogCards(catalog){
@@ -1072,9 +1252,9 @@ function renderCatalogCards(catalog){
   const neuralIOCodecs=(catalog.neural_io?.codecs||[]).map(item=>({name:item.id,note:`${item.input_kind||""} · ${item.reconstruction_class||""}`}));
   const parityClasses=Object.entries(catalog.cuda_parity?.classes||{}).map(([name,item])=>({name,note:item.name||item.target_stage||""}));
   const groups=[["models",catalog.models],["topologies",catalog.topologies],["stimuli",catalog.stimuli],["synapses",catalog.synapses],["plasticity",catalog.plasticity],["readouts",catalog.readouts],["panCandidates",panCandidates],["panLiterature",panLiterature],["geometryLiterature",geometryLiterature],["neuralIO",neuralIOCodecs],["analyses",(catalog.analyses||[]).map(name=>({name}))],["robustness",(catalog.robustness_controls||[]).map(name=>({name}))],["cudaCompiler",(catalog.cuda_gate_compiler?.gate_types||[]).map(name=>({name,note:catalog.cuda_gate_compiler?.status||""}))],["cudaParity",parityClasses]];
-  groups.push(["repo",PLAYGROUND_REPO_ELEMENTS.map(([name,category,description,source])=>({name,label:name,note:description,category,source}))]);
+  groups.push(["repo",PLAYGROUND_REPO_ELEMENTS.map(([name,category,description,source])=>({name,label:name,note:description,category,source,executable:false}))]);
   catalogInfoItems=new Map();let itemIndex=0;const language=catalogLanguage();
-  byId("pg-catalog-grid").innerHTML=groups.map(([categoryKey,items])=>{const title=catalogCategoryTitle(categoryKey,language);return `<article><h3>${playgroundEscape(title)}</h3>${(items||[]).map(item=>{const infoKey=String(itemIndex++);const info={...item,categoryKey};catalogInfoItems.set(infoKey,info);const description=describeCatalogItem(info,title,language);return `<button type="button" class="playground-chip" data-pg-catalog-info="${infoKey}" title="${playgroundEscape(description)}">${playgroundEscape(item.label||item.name)}</button>`;}).join("")}</article>`;}).join("");
+  byId("pg-catalog-grid").innerHTML=groups.map(([categoryKey,items])=>{const title=catalogCategoryTitle(categoryKey,language);return `<article><h3>${playgroundEscape(title)}</h3>${(items||[]).map(item=>{const infoKey=String(itemIndex++);const info={...item,categoryKey};catalogInfoItems.set(infoKey,info);const description=describeCatalogItem(info,title,language);const execution=catalogExecutionLabel(info,categoryKey,language);return `<button type="button" class="playground-chip" data-pg-catalog-info="${infoKey}" title="${playgroundEscape(`${execution}. ${description}`)}">${playgroundEscape(item.label||item.name)}</button>`;}).join("")}</article>`;}).join("");
 }
 
 function renderCatalog(catalog){
@@ -1092,16 +1272,107 @@ function renderCatalog(catalog){
   const status=byId("pg-status");status.dataset.state="ok";status.textContent=`Bereit · bis ${catalog.limits.n_neurons} Neuronen · ${catalog.limits.edges} Kanten · ${catalog.limits.dimensions}D · scientific_evidence=false`;
 }
 
+
+function integrationStatusLabel(status){
+  return {
+    INTEGRATED:"In MHRN integriert",
+    READY_FOR_NEXT_WAVE:"Bereit für nächste Welle",
+    READY_FOR_WAVE4:"Bereit für Wave 4",
+    READY_AFTER_BACKEND_CONTRACT:"Backend-Vertrag zuerst",
+    BLOCKED_CONTRACT_FREEZE:"Contract-Freeze erforderlich",
+    BLOCKED_FROZEN_ENVIRONMENT:"Frozen-Environment erforderlich",
+    FE_CONTRACT_EXECUTABLE_CUDA_D3_PENDING:"FE-Vertrag ausführbar · CUDA-D3 offen",
+    FE_CONTRACT_EXECUTABLE_BUILDER_D3_BRIDGE_AVAILABLE_FE3_PENDING:"FE-Vertrag ausführbar · Builder-D3c Hardware-Bridge verfügbar · FE-3 Live-Adapter offen",
+    BLOCKED_PAN_SEMANTICS:"PAN-Semantik erforderlich",
+    SEMANTIC_CONTRACT_DRAFT:"Semantikvertrag in Arbeit",
+    WAVE6_CONTRACT_DRAFT:"Wave 6 · Structural-Approval-Draft",
+    WAVE7_CONTRACT_DRAFT:"Wave 7 · Learning-Contract-Draft",
+    RETAINED_NOT_CORE:"Unter OLD behalten",
+    FE3_LIVE_ADAPTER_IMPLEMENTED_HARDWARE_ACCEPTANCE_PENDING:"FE-3 Adapter integriert · Hardware-Abnahme offen",
+  }[status]||status;
+}
+
+function ensureMhrnIntegrationPanel(){
+  const builder=byId("playground-builder");
+  if(!builder||byId("pg-mhrn-integration"))return;
+  const panel=document.createElement("section");
+  panel.id="pg-mhrn-integration";
+  panel.className="playground-card pg-wide";
+  panel.innerHTML=`
+    <h3>MHRN Integration</h3>
+    <p>Playground-Bausteine kontrolliert in die kanonische MHRN-Struktur übernehmen. Der Transfer erzeugt keine DATA/EVID und verändert niemals Repository-Quellcode zur Laufzeit.</p>
+    <div class="pg-summary"><strong>Richtung:</strong> Playground → MHRN. MHRN importiert niemals Playground.</div>
+    <div id="pg-mhrn-integration-list" class="playground-analysis-grid"><p>Integrationsstatus wird geladen …</p></div>
+    <pre id="pg-mhrn-integration-state" class="pg-config-preview">Noch keine Transferprüfung ausgeführt.</pre>
+  `;
+  const grid=builder.querySelector(".playground-grid");
+  if(grid)grid.before(panel);else builder.append(panel);
+}
+
+function renderIntegrationCatalog(catalog){
+  const root=byId("pg-mhrn-integration-list");if(!root)return;
+  const candidates=catalog?.candidates||[];
+  root.innerHTML=candidates.map(item=>`
+    <article class="playground-analysis-card" data-pg-integration-card="${playgroundEscape(item.element_id)}">
+      <h4>${playgroundEscape(item.label)}</h4>
+      <p><strong>${playgroundEscape(integrationStatusLabel(item.status))}</strong></p>
+      <p>${playgroundEscape(item.notes||"")}</p>
+      <small>Quelle: ${playgroundEscape((item.source_paths||[]).join(", ")||"—")}<br>Ziel: ${playgroundEscape((item.target_paths||[]).join(", ")||"OLD / kein Core-Ziel")}<br>Nächstes Gate: ${playgroundEscape(item.next_gate||"—")}</small>
+      ${(item.old_routes||[]).length?`<p><small>OLD: ${playgroundEscape(item.old_routes.join(", "))}</small></p>`:""}
+      <button type="button" data-pg-transfer="${playgroundEscape(item.element_id)}">${item.status==="INTEGRATED"?"Übertragung prüfen":"Übernahme vorbereiten"}</button>
+    </article>
+  `).join("");
+}
+
+async function refreshIntegrationCatalog(){
+  ensureMhrnIntegrationPanel();
+  const catalog=await apiGet("/api/playground/integration");
+  renderIntegrationCatalog(catalog);
+  return catalog;
+}
+
+async function transferIntegrationElement(elementId){
+  const state=byId("pg-mhrn-integration-state");
+  if(state)state.textContent=`${elementId}: Transfer-Gate wird geprüft …`;
+  try{
+    const result=await apiPost("/api/playground/integration/transfer",{element_id:elementId});
+    if(state)state.textContent=JSON.stringify(result,null,2);
+    await refreshIntegrationCatalog();
+    return result;
+  }catch(error){
+    if(state)state.textContent=`Transferprüfung fehlgeschlagen: ${error.message||error}`;
+    throw error;
+  }
+}
+
 export async function initPlayground(){
   const root=byId("tab-playground");if(!root)return;
-  injectStyles();ensurePermanentBoundary(root);buildPanels(root);
+  injectStyles();ensurePermanentBoundary(root);buildPanels(root);ensureMhrnIntegrationPanel();
+  root.addEventListener("click",event=>{const button=event.target.closest("[data-pg-transfer]");if(button)transferIntegrationElement(button.dataset.pgTransfer).catch(()=>{});});
+  byId("pg-synaptic-transfer")?.addEventListener("click",async()=>{
+    const summary=byId("pg-transfer-summary"),node=byId("pg-transfer-state");summary.textContent="Vortraining und zwei gepaarte Transferlaeufe ...";
+    try{const result=await apiPost("/api/playground/research/synaptic-transfer",formPayload());node.textContent=JSON.stringify(result,null,2);summary.textContent=`Vergleich abgeschlossen · ${result.changed_pretraining_weights} veraenderte Gewichte. Externer Aktivitaetsdecoder; kein automatischer Nachweis schnellerer neuronaler Aufgabenloesung.`;}catch(error){summary.textContent=`Transfer-Vergleich fehlgeschlagen: ${error.message}`;}
+  });
+  byId("pg-cue-controls")?.addEventListener("click",async()=>{
+    const node=byId("pg-cue-controls-state");node.textContent="Sechs gepaarte Kontrolllaeufe ...";
+    try{node.textContent=JSON.stringify(await apiPost("/api/playground/research/cue-controls",formPayload()),null,2);}catch(error){node.textContent=`Cue-Kontrollen fehlgeschlagen: ${error.message}`;}
+  });
+  byId("pg-cuda-builder-parity")?.addEventListener("click",async()=>{
+    const node=byId("pg-cuda-builder-parity-state");node.textContent="CPU- und CUDA-Builder laufen ...";
+    try{node.textContent=JSON.stringify(await apiPost("/api/playground/cuda/builder-parity",formPayload()),null,2);}catch(error){node.textContent=`Builder-Paritaet fehlgeschlagen: ${error.message}`;}
+  });
+  byId("pg-cuda-recurrent")?.addEventListener("click",runCudaRecurrentParity);
+  byId("pg-cuda-plasticity")?.addEventListener("click",()=>runCudaRecurrentParity(true));
   if(!root.dataset.languageBound){root.dataset.languageBound="true";document.addEventListener("mhrn:language-change",()=>{if(catalogState)renderCatalogCards(catalogState);const dialog=byId("pg-catalog-info-dialog");if(dialog?.open&&activeCatalogInfo)showCatalogInfo(activeCatalogInfo);});}
-  byId("pg-run")?.addEventListener("click",runSession);byId("pg-cpu-determinism")?.addEventListener("click",()=>checkCpuDeterminism().catch(error=>{const node=byId("pg-cuda-compiler-state");if(node)node.textContent=String(error.message||error);}));byId("pg-cuda-compile")?.addEventListener("click",()=>compileCudaGates().catch(error=>{const node=byId("pg-cuda-compiler-state");if(node)node.textContent=String(error.message||error);}));byId("pg-user-preset-apply")?.addEventListener("click",applyUserPreset);byId("pg-user-preset-save")?.addEventListener("click",saveUserPreset);byId("pg-user-preset-delete")?.addEventListener("click",deleteUserPreset);byId("pg-user-preset-select")?.addEventListener("change",()=>{renderUserPresetOptions();applyUserPreset();});byId("pg-robustness")?.addEventListener("click",runRobustness);byId("pg-reset")?.addEventListener("click",resetForm);byId("pg-live-open")?.addEventListener("click",()=>openLiveMonitor().catch(error=>byId("pg-live-state").textContent=String(error.message||error)));byId("pg-live-clear")?.addEventListener("click",()=>clearLiveSessions().catch(error=>byId("pg-live-state").textContent=String(error.message||error)));byId("pg-night-start")?.addEventListener("click",()=>startNightRun().catch(error=>byId("pg-night-state").textContent=String(error.message||error)));byId("pg-night-stop")?.addEventListener("click",()=>stopNightRun().catch(error=>byId("pg-night-state").textContent=String(error.message||error)));byId("pg-night-refresh")?.addEventListener("click",()=>refreshNightStatus().catch(error=>byId("pg-night-state").textContent=String(error.message||error)));
+  byId("pg-run")?.addEventListener("click",runSession);byId("pg-cuda-status")?.addEventListener("click",()=>refreshCudaStatus().catch(error=>{const node=byId("pg-cuda-stage-state");if(node)node.textContent=String(error.message||error);}));byId("pg-cpu-determinism")?.addEventListener("click",()=>checkCpuDeterminism().catch(error=>{const node=byId("pg-cuda-compiler-state");if(node)node.textContent=String(error.message||error);}));byId("pg-cuda-compile")?.addEventListener("click",()=>compileCudaGates().catch(error=>{const node=byId("pg-cuda-compiler-state");if(node)node.textContent=String(error.message||error);}));byId("pg-cuda-preflight")?.addEventListener("click",()=>runCudaPreflight().catch(error=>{const node=byId("pg-cuda-resource-state");if(node)node.textContent=String(error.message||error);}));byId("pg-cuda-smoke")?.addEventListener("click",()=>runCudaHardwareSmoke().catch(error=>{const node=byId("pg-cuda-parity-state");if(node)node.textContent=String(error.message||error);}));byId("pg-cuda-rng")?.addEventListener("click",()=>runCudaRngParity().catch(error=>{const node=byId("pg-cuda-rng-state");if(node)node.textContent=String(error.message||error);}));byId("pg-user-preset-apply")?.addEventListener("click",applyUserPreset);byId("pg-user-preset-save")?.addEventListener("click",saveUserPreset);byId("pg-user-preset-delete")?.addEventListener("click",deleteUserPreset);byId("pg-user-preset-select")?.addEventListener("change",()=>{renderUserPresetOptions();applyUserPreset();});byId("pg-robustness")?.addEventListener("click",runRobustness);byId("pg-reset")?.addEventListener("click",resetForm);byId("pg-live-open")?.addEventListener("click",()=>openLiveMonitor().catch(error=>byId("pg-live-state").textContent=String(error.message||error)));byId("pg-live-clear")?.addEventListener("click",()=>clearLiveSessions().catch(error=>byId("pg-live-state").textContent=String(error.message||error)));byId("pg-night-start")?.addEventListener("click",()=>startNightRun().catch(error=>byId("pg-night-state").textContent=String(error.message||error)));byId("pg-night-stop")?.addEventListener("click",()=>stopNightRun().catch(error=>byId("pg-night-state").textContent=String(error.message||error)));byId("pg-night-refresh")?.addEventListener("click",()=>refreshNightStatus().catch(error=>byId("pg-night-state").textContent=String(error.message||error)));
   renderUserPresetOptions();
   try{renderCatalog(await apiGet("/api/playground/catalog"));renderUserPresetOptions();resetForm();}catch(error){const status=byId("pg-status");status.dataset.state="error";status.textContent=`Katalog nicht verfügbar: ${error.message}`;}
+  try{await refreshIntegrationCatalog();}catch(error){const state=byId("pg-mhrn-integration-state");if(state)state.textContent=`Integrationsstatus nicht verfügbar: ${error.message}`;}
   byId("playground-builder")?.addEventListener("input", updateDefaultHints);
   byId("playground-builder")?.addEventListener("change", updateDefaultHints);
+  initGuidedWorkspace({payload:formPayload,presets:()=>Object.fromEntries(Object.entries(allPlaygroundPresets()).map(([name,preset])=>[name,{...preset,settings:preset.source==="catalog"?resolvedPresetSettings(name):preset.settings}])),applyPreset:applyUserPreset,setValue:setBuilderValue,lastResult:()=>lastResult});
   await refreshSessions();
   try{await refreshNightStatus();}catch{ /* night manager is optional during partial deployments */ }
-  window.MHRNPlayground={run:runSession,runRobustness,checkCpuDeterminism,compileCudaGates,refreshSessions,get catalog(){return catalogState;},get lastResult(){return lastResult;}};
+  try{await refreshCudaStatus();}catch{ /* CUDA toolkit/driver is optional */ }
+  window.MHRNPlayground={run:runSession,runRobustness,checkCpuDeterminism,compileCudaGates,refreshCudaStatus,runCudaPreflight,runCudaHardwareSmoke,runCudaRngParity,refreshSessions,refreshIntegrationCatalog,transferIntegrationElement,get catalog(){return catalogState;},get lastResult(){return lastResult;}};
 }

@@ -11,19 +11,15 @@ def test_recurrent_snn_module_is_initialized() -> None:
     assert "./modules/recurrent-snn-stage.js" in index
 
 
-def test_recurrent_snn_is_routed_through_science_runtime_and_control() -> None:
+def test_recurrent_snn_views_are_preserved_under_old() -> None:
     script = (STATIC / "frontend" / "modules" / "recurrent-snn-stage.js").read_text(
         encoding="utf-8"
     )
-    assert '["recurrent", "Rekurrentes SNN", "network", "view", "recurrent"]' in script
-    assert (
-        '["recurrent", "Rekurrenz", "wesen", "focus", "#mhrn-runtime-recurrent"]'
-        in script
-    )
-    assert (
-        '["recurrent", "Rekurrenz-Parameter", "settings", "focus", "#mhrn-recurrent-control"]'
-        in script
-    )
+    assert "const ROUTES = Object.freeze({});" in script
+    assert 'data-route-jump="old:wesen-recurrent"' in script
+    assert 'data-route-jump="old:control-recurrent"' in script
+    assert 'data-route-jump="settings:parameters"' in script
+    assert 'data-route-jump="old:science-recurrent"' in script
     assert 'data-route-jump="release:development"' in script
 
 
@@ -43,7 +39,10 @@ def test_recurrent_snn_runtime_exposes_tick_and_queue_progress() -> None:
     )
     assert "new MutationObserver(syncPolling)" in script
     assert 'attributeFilter: ["data-current-area", "data-current-route"]' in script
-    assert 'const liveRoute = route === "recurrent"' in script
+    assert (
+        'const liveRoute = area === "old" && (route === "science-recurrent" || route === "wesen-recurrent")'
+        in script
+    )
     assert "setInterval(routeRefresh, 1000)" in script
     assert "clearInterval(state.timer)" in script
     assert "state.inFlight" in script

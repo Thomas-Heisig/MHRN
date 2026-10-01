@@ -2134,3 +2134,76 @@ Das Phase-Gate verhindert, dass ein Netz sein eigenes Query-Muster im gemeinsame
 
 Details und Claim-Grenzen:
 `research/decisions/2026-09-25_digital-sense-neural-interface.md`.
+
+
+---
+
+# 33. Canonical CUDA-1.6 dependency
+
+For CUDA-1.6 the Gateway contract above is no longer an optional Playground convenience. The following type family is the canonical backend boundary:
+
+```text
+BoundaryFrame
+CodecContract
+PopulationLayout
+SpikeFrame / SpikeFrameSet
+CodecStreamState
+DecodeResult
+```
+
+CUDA does not consume raw HTTP/JSON/tool payloads and does not invent an alternate I/O schema. It consumes the canonical packed event representation derived from these contracts.
+
+The continuation-critical Neural-I/O state defined here must be covered by the canonical runtime checkpoint contract. Closed-loop parity additionally uses the Frozen Environment Contract so that Boundary replay, live actions, world state, RNG and rewards are unambiguous.
+
+This requirement does not mean the current `src/playground/neural_io` module path becomes canonical. Implementations are to be promoted/re-homed behind the existing architecture contract so that `src.core`, runtime and acceleration layers do not depend on Playground.
+
+
+## Implementation promotion wave 1 — 2026-09-29
+
+The first Playground-to-MHRN promotion is now concrete rather than only
+architectural: the typed neural-I/O boundary objects are canonical under
+`src/embodiment/neural_io_contracts.py`.
+
+Promoted contract family:
+
+- `BoundaryFrame`
+- `CodecContract`
+- `PopulationLayout`
+- `SpikeEvent` / `SpikeFrame`
+- `DecodeResult`
+- `NeuralRole` / `InterfacePhase`
+- deterministic payload/event/readout digest helpers
+
+`src/playground/neural_io/contracts.py` remains as a compatibility re-export.
+Existing Playground codecs and sessions therefore use the exact same Python
+class objects as canonical MHRN. The dependency direction is:
+
+```text
+Playground -> src.embodiment.neural_io_contracts
+MHRN       -X-> src.playground
+```
+
+This is an engineering integration step only. It creates no scientific DATA,
+does not promote a hypothesis, and does not validate codec quality or
+closed-loop behavior.
+
+
+## Implementation promotion wave 2 — canonical codecs and area adapter
+
+The second promotion wave moves deterministic codec/decoder behavior and the
+framework-neutral area adapter into canonical Embodiment ownership.
+
+Canonical modules:
+
+- `src/embodiment/neural_io_codecs.py`
+- `src/embodiment/neural_io_adapter.py`
+
+The codec plane now produces neutral `mhrn-spike-*` frame identifiers and
+uses MHRN terminology rather than Playground-specific error semantics. The
+Playground codec module is a compatibility re-export, so Playground sessions
+exercise the exact same codec functions used by MHRN.
+
+The canonical `NeuralIOAreaAdapter` satisfies `NetworkAreaAdapter`. The
+Playground retains `PlaygroundIOAreaAdapter` only as an identity wrapper with
+Playground-specific IDs. No productive gateway learning, external tool
+execution, or scientific EVID is implied by this promotion.

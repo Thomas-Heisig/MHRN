@@ -30,8 +30,14 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 
-DEFAULT_HOST = "127.0.0.1"
-DEFAULT_PORT = 8765
+# Read central settings directly from the source file to avoid
+# package import chains (the launcher is run via runpy, not as a package).
+_settings_file = ROOT / "src" / "dashboard" / "network_settings.py"
+_settings_globals: dict[str, object] = {}
+exec(_settings_file.read_text(encoding="utf-8"), _settings_globals)
+DEFAULT_HOST = str(_settings_globals.get("DASHBOARD_HOST", "127.0.0.1"))
+DEFAULT_PORT = int(_settings_globals.get("DASHBOARD_PORT", 8767))
+
 PID_FILE = ROOT / "artifacts" / "brain5d.pid"
 
 

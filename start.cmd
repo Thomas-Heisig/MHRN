@@ -58,6 +58,7 @@ echo ===========================================================================
 
 :: Standard: Dashboard + Browser auf allen lokalen Interfaces, es sei denn --no-dashboard wurde uebergeben.
 :: Ein explizites --host in den Argumenten ueberschreibt den LAN-Standard.
+:: Port und Host werden zentral in src/dashboard/network_settings.py definiert.
 set "EXTRA="
 echo %* | findstr /C:"--no-dashboard" >nul
 if errorlevel 1 set "EXTRA=--dashboard --open-browser --config configs\poc_alpha5_live.yaml --host 0.0.0.0"

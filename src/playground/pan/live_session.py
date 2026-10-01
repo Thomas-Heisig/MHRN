@@ -43,6 +43,14 @@ class PANLiveSession:
     """Persistent, bounded PAN reference session."""
 
     def __init__(self, config: PlaygroundConfig) -> None:
+        if config.target_cue_control != "aligned":
+            raise ValueError(
+                "input-cue interventions currently apply to Builder runs, not live sessions"
+            )
+        if config.neuron_backend != "cpu":
+            raise ValueError(
+                "CUDA membrane selection currently applies to Builder runs; live sessions require cpu"
+            )
         if config.neuron_model != "pan_adex_5d":
             raise ValueError("PAN live session currently requires pan_adex_5d")
         self.config = config
@@ -257,7 +265,9 @@ class PANLiveSession:
                 "learning": self.learning.summary(),
             }
 
-    def step(self, ticks: int = 32) -> dict[str, object]:
+    def step(
+        self, ticks: int = 32, *, include_topology: bool = True
+    ) -> dict[str, object]:
         if ticks < 1 or ticks > 4096:
             raise ValueError("ticks must be between 1 and 4096")
         chunk_spikes: list[tuple[int, int]] = []
@@ -415,13 +425,17 @@ class PANLiveSession:
             "input_peak": max(
                 (abs(value) for value in self.last_input_currents), default=0.0
             ),
-            "topology": {
-                "neuron_count": self.config.n_neurons,
-                "edge_count": len(self.topology.edges),
-                "dimensions": self.topology.dimensions,
-                "coordinates": self.topology.coordinates,
-                "edges": self.topology.edges,
-            },
+            "topology": (
+                {
+                    "neuron_count": self.config.n_neurons,
+                    "edge_count": len(self.topology.edges),
+                    "dimensions": self.topology.dimensions,
+                    "coordinates": self.topology.coordinates,
+                    "edges": self.topology.edges,
+                }
+                if include_topology
+                else None
+            ),
             "actions": actions[-64:],
             "rewards": rewards[-64:],
             "learning_enabled": self.learning_enabled,

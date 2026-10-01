@@ -62,8 +62,8 @@ const FIELD_LABELS = Object.freeze({
   "neuron.enable_homeostasis": "Homeostatic regulation",
 });
 
-const ROUTE_ID = "cellmodel";
-const ROUTE = Object.freeze([ROUTE_ID, "Cell Model", "network", "view", ROUTE_ID]);
+const ROUTE_ID = "science-cellmodel";
+const ROUTE = Object.freeze([ROUTE_ID, "Wissenschaft · Cell Modell", "network", "focus", "#mhrn-neuron-model-science"]);
 const ROUTER_STORAGE_KEY = "mhrn-workspace-router-v1";
 
 const state = {
@@ -295,25 +295,25 @@ function addContextRouteButton(nav, architecture) {
   button.setAttribute("role", "tab");
   button.dataset.areaRoute = ROUTE_ID;
   button.title = "Stage 0 single-neuron model and settings";
-  button.textContent = "Cell Model";
-  const networkButton = nav.querySelector('[data-area-route="network"]');
+  button.textContent = "Wissenschaft · Cell Modell";
+  const networkButton = nav.querySelector('[data-area-route="science-network"]');
   if (networkButton?.nextSibling) nav.insertBefore(button, networkButton.nextSibling);
   else nav.appendChild(button);
-  button.addEventListener("click", () => architecture.selectRoute("science", ROUTE_ID));
+  button.addEventListener("click", () => architecture.selectRoute("old", ROUTE_ID));
 }
 
 function addOverviewRouteCard(architecture) {
-  const grid = document.querySelector('[data-area-overview="science"] .mhrn-area-route-grid');
+  const grid = document.querySelector('[data-area-overview="old"] .mhrn-area-route-grid');
   if (!grid || grid.querySelector(`[data-route-card="${ROUTE_ID}"]`)) return;
   const button = document.createElement("button");
   button.type = "button";
   button.dataset.routeCard = ROUTE_ID;
-  button.title = "Cell Model öffnen";
-  button.innerHTML = '<span>04</span><strong>Cell Model</strong>';
-  const networkCard = grid.querySelector('[data-route-card="network"]');
+  button.title = "Cell Modell öffnen";
+  button.innerHTML = '<span>W0</span><strong>Wissenschaft · Cell Modell</strong>';
+  const networkCard = grid.querySelector('[data-route-card="science-network"]');
   if (networkCard?.nextSibling) grid.insertBefore(button, networkCard.nextSibling);
   else grid.appendChild(button);
-  button.addEventListener("click", () => architecture.selectRoute("science", ROUTE_ID));
+  button.addEventListener("click", () => architecture.selectRoute("old", ROUTE_ID));
 }
 
 function ensureSettingsNavigationFallback(architecture) {
@@ -330,15 +330,15 @@ function ensureSettingsNavigationFallback(architecture) {
 
 function ensureCanonicalRoute() {
   const architecture = window.MHRNWorkspaceArchitecture;
-  const routes = architecture?.areas?.science?.routes;
+  const routes = architecture?.areas?.old?.routes;
   if (!architecture?.selectRoute || !Array.isArray(routes)) return false;
 
   if (!routes.some(([id]) => id === ROUTE_ID)) {
-    const networkIndex = routes.findIndex(([id]) => id === "network");
+    const networkIndex = routes.findIndex(([id]) => id === "science-network");
     routes.splice(networkIndex >= 0 ? networkIndex + 1 : routes.length, 0, [...ROUTE]);
   }
 
-  document.querySelectorAll('.mhrn-context-nav[data-area="science"]').forEach((nav) => {
+  document.querySelectorAll('.mhrn-context-nav[data-area="old"]').forEach((nav) => {
     addContextRouteButton(nav, architecture);
   });
   addOverviewRouteCard(architecture);
@@ -381,7 +381,7 @@ function ensureWorkbench() {
       </div>
       <div id="science-neuron-note" class="neuron-model-warning" role="note"></div>
       <div class="neuron-model-shortcuts" aria-label="Related settings">
-        <button type="button" class="btn-secondary" data-route-jump="control:parameters">Alle Parameter</button>
+        <button type="button" class="btn-secondary" data-route-jump="settings:parameters">Alle Parameter</button>
         <button type="button" class="btn-secondary" data-route-jump="settings:overview">App Settings</button>
       </div>
       <div id="science-neuron-fields" class="neuron-model-fields" aria-live="polite"></div>
@@ -419,8 +419,8 @@ function bind() {
 function restoreCellModelRouteIfRequested() {
   try {
     const saved = JSON.parse(localStorage.getItem(ROUTER_STORAGE_KEY) || "null");
-    if (saved?.area === "science" && saved?.route === ROUTE_ID) {
-      window.MHRNWorkspaceArchitecture?.selectRoute?.("science", ROUTE_ID);
+    if (saved?.area === "old" && saved?.route === ROUTE_ID) {
+      window.MHRNWorkspaceArchitecture?.selectRoute?.("old", ROUTE_ID);
     }
   } catch (_) {}
 }

@@ -48,6 +48,10 @@ def test_playground_ui_has_permanent_non_scientific_boundary() -> None:
     assert "MHRN 5D" in module
     assert "Generic N-D" in module
     assert "Robustheitskontrollen" in module
+    assert "refreshCatalogOptionAvailability" in module
+    assert "data-min-dimensions" in module
+    assert "catalogExecutionLabel" in module
+    assert "Nur Katalog / nicht direkt ausführbar" in module
 
 
 def test_playground_ui_exposes_corrected_setting_defaults() -> None:
@@ -113,7 +117,7 @@ def test_playground_preset_lab_has_izhikevich_pan_and_local_storage() -> None:
     assert 'edge_budget:"edges"' in module
     assert 'stimulus_current:"current"' in module
     assert 'behavior_episode_ticks:"behavior-episode"' in module
-    assert 'const DEFAULT_PLAYGROUND_PRESET = "full_embodiment"' in module
+    assert 'const DEFAULT_PLAYGROUND_PRESET = "pan_full_balanced"' in module
     assert "allPlaygroundPresets()[DEFAULT_PLAYGROUND_PRESET]" in module
 
 
@@ -183,6 +187,28 @@ def test_playground_live_monitor_exposes_popup_controls_and_graphs() -> None:
         "ensureLiveMonitor().showModal()",
         "drawLiveMonitorFigure",
         "openLiveZoom",
+        "prepareLiveTileCanvases",
+        "refreshLiveZoom",
+        "resizeLiveZoomCanvas",
+        "pg-live-zoom-toolbar",
+        "pg-live-zoom-start",
+        "pg-live-zoom-pause",
+        "pg-live-zoom-step",
+        "pg-live-zoom-input",
+        "pg-live-zoom-reset",
+        "pg-live-zoom-stop",
+        "imageSmoothingEnabled=false",
+        "liveUpdateFactor=1",
+        "liveStepBusy=false",
+        "currentLiveUpdateFactor",
+        "Math.min(4096,32*factor)",
+        "if(liveStepBusy)return null",
+        "requestAnimationFrame",
+        "pg-live-update-factor",
+        "pg-live-zoom-factor",
+        "include_topology:includeTopology",
+        "liveMonitorTopology=null",
+        "liveTopologyRefreshCounter=0",
     ):
         assert marker in module
 
@@ -293,9 +319,9 @@ def test_playground_ui_exposes_live_pan_session_controls() -> None:
     assert '"/api/playground/live/stop-all"' in module
     assert "maximum live Playground sessions reached" in module
     assert "compatibility_cleanup" in module
-    assert (
-        "apiGet(`/api/playground/live/${encodeURIComponent(liveSessionId)}`)" in module
-    )
+    assert "currentLiveUpdateFactor" in module
+    assert "include_topology:includeTopology" in module
+    assert "if(liveStepBusy)return null" in module
 
 
 def test_playground_api_exposes_stateful_live_routes_without_research_promotion() -> (
@@ -387,4 +413,64 @@ def test_playground_ui_exposes_cuda_parity_and_cpu_determinism_controls() -> Non
     assert 'path == "/api/playground/determinism"' in api
     assert "checkCpuDeterminism" in module
     assert "D1 = exakte Spike-Ereignisse" in module
-    assert "ein echter GPU-Kernel-Launch ist hier noch nicht nachgewiesen" in module
+    assert "CUDA-1.3 prüft den 17-Parameter-Gate-ABI" in module
+
+
+def test_playground_ui_exposes_cuda_13_hardware_diagnostics() -> None:
+    module = (STATIC / "frontend" / "modules" / "playground.js").read_text(
+        encoding="utf-8"
+    )
+    for marker in (
+        'id="pg-cuda-status"',
+        'id="pg-cuda-preflight"',
+        'id="pg-cuda-smoke"',
+        'id="pg-cuda-rng"',
+        'id="pg-cuda-neurons"',
+        'id="pg-cuda-block-size"',
+        'id="pg-cuda-stage-state"',
+        'id="pg-cuda-resource-state"',
+        'id="pg-cuda-parity-state"',
+        'id="pg-cuda-rng-state"',
+        "refreshCudaStatus",
+        "runCudaPreflight",
+        "runCudaHardwareSmoke",
+        "runCudaRngParity",
+        '"/api/playground/cuda/status"',
+        '"/api/playground/cuda/preflight"',
+        '"/api/playground/cuda/smoke"',
+        '"/api/playground/cuda/rng-parity"',
+    ):
+        assert marker in module
+
+
+def test_playground_api_exposes_cuda_13_status_preflight_smoke_and_rng() -> None:
+    api = (ROOT / "src" / "dashboard" / "playground_api.py").read_text(encoding="utf-8")
+    for marker in (
+        'path == "/api/playground/cuda/status"',
+        'path == "/api/playground/cuda/preflight"',
+        'path == "/api/playground/cuda/smoke"',
+        'path == "/api/playground/cuda/rng-parity"',
+        "cpu_gate_reference",
+        "execute_gate_bundle",
+        "gate_execution_parity_summary",
+        "preflight_bundle",
+        "gpu_repeat_exact",
+        "memory_leak_instrumented",
+        "raw_rng_value_parity",
+    ):
+        assert marker in api
+    assert "EvidenceEngine" not in api
+
+
+def test_playground_integration_api_and_frontend_are_exposed() -> None:
+    api = (ROOT / "src" / "dashboard" / "playground_api.py").read_text(encoding="utf-8")
+    frontend = (
+        ROOT / "src" / "dashboard" / "static" / "frontend" / "modules" / "playground.js"
+    ).read_text(encoding="utf-8")
+    assert '"/api/playground/integration"' in api
+    assert '"/api/playground/integration/transfer"' in api
+    assert 'id="pg-mhrn-integration"' in frontend
+    assert "data-pg-transfer=" in frontend
+    assert "Playground → MHRN" in frontend
+    assert "SEMANTIC_CONTRACT_DRAFT" in frontend
+    assert "Semantikvertrag in Arbeit" in frontend

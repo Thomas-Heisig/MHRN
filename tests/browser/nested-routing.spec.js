@@ -3,9 +3,9 @@ import { selectRoute } from './routes.js';
 
 test('nested focus restores ancestor paths without leaking siblings or duplicate review panels', async ({ page }) => {
   await page.goto('http://127.0.0.1:4174/');
-  await selectRoute(page, 'wesen', 'live');
+  await selectRoute(page, 'old', 'wesen-live');
   await expect(page.locator('.wesen-layout')).toBeVisible();
-  await selectRoute(page, 'wesen', 'symbiosis');
+  await selectRoute(page, 'old', 'wesen-symbiosis');
   const target = page.locator('#wesen-neural-symbiosis');
   await expect(target).toBeVisible();
   expect(await target.evaluate(node => {
@@ -15,7 +15,7 @@ test('nested focus restores ancestor paths without leaking siblings or duplicate
     return true;
   })).toBe(true);
   await expect(page.locator('.wesen-layout > [data-mhrn-focus-sibling]:visible')).toHaveCount(0);
-  await selectRoute(page, 'wesen', 'live');
+  await selectRoute(page, 'old', 'wesen-live');
   await expect(page.locator('.wesen-layout [data-mhrn-focus-sibling]')).toHaveCount(0);
   await expect(target).toBeVisible();
   await selectRoute(page, 'review', 'external');

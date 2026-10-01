@@ -1,5 +1,66 @@
 # Changelog
 
+## 2026-10-01 - Playground Integration Wave 5A: PAN-Semantikvertrag
+
+- PAN-Hyperstate erhält mit `mhrn-pan-hyperstate-v0.1-draft` erstmals einen
+  backend-neutralen Draft-Vertrag in `src/homeostasis/pan_contract.py`.
+- Zustandsoberfläche, Update-Reihenfolge und die bestehenden
+  Referenzkoeffizienten wurden aus der Playground-Eigentümerschaft herausgelöst.
+- Der Playground-PAN-Runtime konsumiert den Draft-Vertrag ohne Änderung des
+  bisherigen Algorithmus.
+- Playground-Transferstatus und CUDA/FE-3-Status zeigen Wave 5 nun als
+  `Semantikvertrag in Arbeit`, nicht als integriert oder akzeptiert.
+- RQ-PAN-SEM-001 bleibt offen; physische FE-3-Hardware-Abnahme, PAN-CUDA-Parität,
+  vollständiger Checkpoint-Vertrag und strukturelle Plastizität bleiben separate
+  Gates.
+- Diese Welle erzeugt keine wissenschaftlichen DATA, EVID oder CLAIMs.
+
+## 2026-09-30 - CUDA/FE-3-Integration im Frontend vervollständigt
+
+- `/api/integration/status` um einen kanonischen Acceleration-Block erweitert.
+- Wave 1–4, FE-3-Softwarebrücke, Backend-Capabilities und physische Hardware-Abnahme werden getrennt dargestellt.
+- Physische RTX-Akzeptanz bleibt fail-closed `pending`, solange kein geprüftes `HARDWARE_ACCEPTANCE_<date>.json` vorliegt.
+- Playground zeigt den Promotionpfad, Release → Entwicklung den Engineering-Acceptance-Status, Wissenschaft → Observatory die Evidenzgrenze und OLD nur den Archiv-/Kompatibilitätshinweis.
+- Die wissenschaftliche Hauptarbeit und das Research-Software-Paper dokumentieren diese UI-/Provenienzgrenze ohne DATA/EVID-Promotion.
+- Das ältere Hardware-Acceptance-Dokument wurde als historischer Vor-FE-3-Adapter-Stand markiert.
+
+## 2026-09-30 - Physical CUDA D3 bridge acceptance
+
+- `run_cuda_hardware_acceptance.py` accepts `--include-fe3` and can run the
+  existing live Builder CPU/CUDA D3c hardware comparison together with Wave-4
+  D1/D2 acceptance.
+- The report explicitly distinguishes `BUILDER_D3C_BRIDGE` from canonical
+  Frozen-Environment FE-3 and keeps `full_fe3_accepted=false`.
+- `run_fe_acceptance.py --require-cuda` continues to fail closed until a
+  canonical FrozenEnvironment live backend adapter exists.
+- Playground integration status exposes that the hardware bridge is available
+  while full FE-3 remains pending.
+- No CUDA kernel, PAN semantics, learning contract, DATA or EVID state changed.
+
+## 2026-09-29 - Ausführbarkeitsstatus im Playground-Katalog
+
+- Katalogsichtbarkeit und tatsächliche Ausführbarkeit werden jetzt getrennt
+  ausgewiesen.
+- Explorative Analyse-, Literatur-, Repo- und Infrastrukturbausteine tragen
+  einen klaren Hinweis `Nur Katalog / nicht direkt ausführbar`.
+- Experimentelle MHRN->N-D-Topologien bleiben sichtbar, sind bei 5D aber
+  deaktiviert und werden erst ab 6D als ausführbarer Referenzpfad freigeschaltet.
+- Ausführbare Modelle, Stimuli, Readouts, Synapsen und Plastizitätsregeln
+  erhalten explizite `EXECUTABLE_REFERENCE`-Metadaten.
+
+## 2026-09-28 - Frontend-Struktur für Playground-Integration korrigiert
+
+- Die bestehende Hauptstruktur bleibt erhalten und wird bewusst reduziert statt ersetzt.
+- Dashboard enthält nur noch Übersicht und System Info.
+- Wissenschaft enthält nur noch Übersicht, Observatory und Experimente.
+- Runtime & Wesen enthält als aktive Hauptansicht die Übersicht.
+- Control enthält Übersicht, Konsole sowie Struktur & Lernen.
+- Parameter wurde in Settings eingeordnet.
+- Release, Review, Dateien und Playground behalten ihre vorgesehenen Hauptfunktionen.
+- Publikation erhält zusätzlich einen Paper-Untertab für die vorhandenen versionierten Fachtexte.
+- Alle übrigen bisherigen Ansichten bleiben vollständig erhalten und werden geordnet unter `OLD` angeboten; es wurde keine fachliche Oberfläche gelöscht.
+- Cell Modell, kleines SNN und rekurrentes SNN bleiben ausführbar, sind aber nicht mehr Teil der aktiven Wissenschafts-/Wesen-/Control-Navigation.
+
 ## 2026-09-27 - v0.6.0-alpha.7 Release-Konsolidierung
 
 - Stage 0 ist im kanonischen Scientific-Maturity-Vertrag auf **92,5 %**
@@ -21,6 +82,21 @@
 - Der dauerhafte Git-Branch `playground` ist für den Workbench-Betrieb nicht
   erforderlich; der kanonische Branchfluss bleibt Feature/Research -> develop
   -> release/* -> main.
+# Changelog
+
+## 2026-09-29 - Nacherfassung wissenschaftlicher Experimentauswertungen
+
+- Jede aktive und archivierte Experimentkarte in `02 · Wissenschaft /
+  Experimente` bietet jetzt `Auswertung erfassen`.
+- Die Nacherfassung nimmt Hypothesenantwort, wissenschaftliche Begründung,
+  Beobachtungen, Limitationen, Alternativerklärungen und nächste Schritte auf.
+- Auswertungen werden kontrolliert als `posthoc/evaluation.md` und JSON-Metadaten
+  im jeweiligen Experiment gespeichert und im Manifest verknüpft.
+- Das Ergebnis öffnet sich direkt im zentralen File Viewer und kann dort als
+  Ausgangspunkt für die wissenschaftliche Arbeit weitergelesen werden.
+- Die Nacherfassung bleibt ausdrücklich Interpretation, ist nicht automatisch
+  EVID und benötigt für einen wissenschaftlichen Status einen separaten Human-
+  Review-/EVID-Workflow.
 
 ## 2026-09-27 - Bausteine-Katalog mit ausführlichen Sprachbeschreibungen
 
@@ -33,6 +109,21 @@
   Popup-Texte, Quellenhinweis und Evidenzgrenze werden gemeinsam umgeschaltet.
 - Dynamisch gelieferte neue Katalogeinträge erhalten zusätzlich eine
   sprachabhängige fachliche Fallback-Erklärung.
+
+## 2026-09-27 - Live-Detailansichten hochauflösend und bedienbar
+
+- Die vergrößerten Live-Grafiken verwenden jetzt hochauflösende Quellflächen
+  statt unscharfer 220x120-Momentaufnahmen.
+- Die aktive Detailansicht wird bei jedem Live-Step automatisch aktualisiert;
+  sie ist damit eine echte Live-Ansicht und kein eingefrorenes Bild.
+- Das Zoomfenster besitzt eigene Start-, Pause-, Schritt-, Input-, Reset- und
+  Stop-Aktionen sowie eine sichtbare Statuszeile.
+- Die Zeichenfläche passt sich an Dialoggröße und Device-Pixel-Ratio an.
+- Für skalierte Updates werden große Topologie-Payloads nicht bei jedem Schritt
+  wiederholt übertragen; der letzte gültige Graph bleibt sichtbar und wird
+  periodisch synchronisiert.
+- Überlappende Live-Schritte werden verworfen, damit ein langsamer Batch keine
+  zweite Ausführung und keine Renderwarteschlange aufbaut.
 
 ## 2026-09-27 - Release-Statusmarker für Entwicklung und Wissenschaft
 
@@ -366,7 +457,7 @@
 
 ## 2026-09-09 - Trusted-LAN dashboard access
 
-- Windows `start.cmd` and `start.ps1` now bind the dashboard to `0.0.0.0:8765` by default for access via the host machine's LAN IP.
+- Windows `start.cmd` and `start.ps1` now bind the dashboard to `0.0.0.0:8767` by default for access via the host machine's LAN IP.
 - Kept direct Python startup loopback-only and documented the firewall/trusted-network boundary.
 - Improved terminal diagnostics with canonical version, config, mode, PID and bind/local/LAN URL information; enabled UTF-8 console output in `start.cmd`.
 - Fixed CMD version extraction and localized Windows listener detection; occupied port errors now include the owning PID.
@@ -483,7 +574,7 @@
 
 ## 2026-09-07 — Hugging Face Space
 
-- Configured the Docker image to start the integrated dashboard on `0.0.0.0:8765`.
+- Configured the Docker image to start the integrated dashboard on `0.0.0.0:8767`.
 - Published the live dashboard as `superdigger/Brain-5D-Space`.
 - Added automatic synchronization to the Space repository alongside the model mirror.
 
@@ -1678,7 +1769,7 @@
 - **Pyright**: 0 errors.
 - **Ruff**: 0 errors.
 - **Source tree digest**: `063bc485695bc63c149344bcd9dfcffc6264814edaec120e51e7bf44d7e80107`.
-- **Single TCP LISTEN socket on 127.0.0.1:8765**: verified.
+- **Single TCP LISTEN socket on 127.0.0.1:8767**: verified.
 - **Production HomeostasisSignal → Policy → Coordinator**: verified.
 - **Structural Coordinator / PlasticityEngine / Manipulator / Approval-gated mutation / Journal**: verified via E2E proofs.
 - **Restore-and-continue identity (A/B/C)**: verified (`A == B == C`).
@@ -1714,7 +1805,7 @@
 - **Pyright**: 0 errors.
 - **Ruff**: 0 errors.
 - **Source tree digest**: `2f0d6883d4a7010b7de8e0f4a4200b62d8d3d761f5c54c599c992c4560235d5c`.
-- **Single TCP LISTEN socket on 127.0.0.1:8765**: verified.
+- **Single TCP LISTEN socket on 127.0.0.1:8767**: verified.
 - **Production HomeostasisSignal → Policy → Coordinator**: verified.
 - **Structural Coordinator / PlasticityEngine / Manipulator / Approval-gated mutation / Journal**: verified via E2E proofs.
 - **Restore-and-continue identity (A/B/C)**: verified (`A == B == C`).
@@ -2149,7 +2240,7 @@
 ### New Files for Hugging Face
 - **`HF_README.md`**: Hugging Face-spezifische README mit YAML Frontmatter (license, tags, pipeline_tag) und angepasstem Inhalt für die Hugging Face Platform.
 - **`.huggingface/metadata.yaml`**: Repository-Metadaten für huggingface_hub (library_name, tags, card-info).
-- **`.huggingface/space_config.yaml`**: Konfiguration für einen optionalen Hugging Face Space (Docker-basiert, Port 8765).
+- **`.huggingface/space_config.yaml`**: Konfiguration für einen optionalen Hugging Face Space (Docker-basiert, Port 8767).
 - **`.huggingface/README.md`**: Dokumentation zur Nutzung des Hugging Face Repositories.
 - **`.github/workflows/sync-huggingface.yml`**: GitHub Actions Workflow zur automatischen Synchronisation von GitHub → Hugging Face.
 

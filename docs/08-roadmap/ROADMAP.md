@@ -4,6 +4,14 @@
 **Baseline:** `mhrn-core 0.6.0a7`
 **Updated:** 2026-09-27
 
+## 2026-09-29 Ausführbarkeitsgrenzen im Playground
+
+- Sichtbare Bausteine werden nicht mehr implizit als ausführbar behandelt.
+- Katalog-, Analyse- und Referenzbausteine sind im Popup als nicht direkt
+	ausführbar gekennzeichnet.
+- Experimentelle Topologien zeigen ihre Mindestdimension und sind bei
+	inkompatibler Dimension in der Builder-Auswahl deaktiviert.
+
 ## 2026-09-27 Alpha.7 release line
 
 - `develop` remains the canonical integration branch; `main` remains release-only.
@@ -20,6 +28,17 @@
   equivalent GPU SNN backend.
 - Release/DOI mechanics remain separate from Human Review, EVID and replication.
 
+## 2026-09-29 Post-hoc Experimentauswertung
+
+- Experimentkarten im Wissenschaftsbereich erlauben die nachträgliche
+	Beantwortung und Auswertung registrierter Hypothesen.
+- Die Erfassung dokumentiert Begründung, Beobachtungen, Limitationen und
+	nächste Schritte statt nur einen technischen Ausführungsstatus.
+- Markdown- und JSON-Artefakte werden pro Experiment abgelegt, im Manifest
+	verknüpft und über den zentralen File Viewer geöffnet.
+- Interpretation, Human Review und EVID bleiben als getrennte nachgelagerte
+	Schritte erhalten; Speichern erzeugt keine automatische Evidenz.
+
 ## 2026-09-27 Bausteine-Katalog und Sprachumschaltung
 
 - Der Playground-Bausteine-Tab erklärt jeden Katalogeintrag per Hover und
@@ -30,6 +49,17 @@
 	Quellenlabel und Explorationsgrenze zwischen Deutsch und Englisch um.
 - Neue Backend-Einträge fallen auf eine fachliche, sprachabhängige Beschreibung
 	zurück, statt ohne Erklärung im Katalog zu erscheinen.
+
+## 2026-09-27 Live-Detailansichten
+
+- Vergrößerte Live-Grafiken werden hochauflösend und ohne einmaliges Bitmap-
+	Hochskalieren gerendert.
+- Die aktive Detailansicht folgt jedem Live-Step und zeigt ihren Laufstatus.
+- Session-Aktionen sind auch im Zoomfenster direkt erreichbar.
+- Aktualisierungsfaktoren `1x`, `5x`, `10x`, `25x`, `50x` und `100x` bündeln
+	Simulationstakte ohne parallele Requests.
+- Wiederholte Topologie-Payloads werden bei Live-Batches reduziert; die
+	Darstellung bleibt aus dem letzten gültigen Graphen lesbar.
 
 ## 2026-09-27 Release-Statusmarker
 
@@ -327,7 +357,7 @@
 
 ## 2026-09-09 Trusted-LAN dashboard access
 
-- Windows `start.cmd` and `start.ps1` now bind the integrated dashboard to `0.0.0.0:8765` by default so it is reachable through the host machine's LAN IP.
+- Windows `start.cmd` and `start.ps1` now bind the integrated dashboard to `0.0.0.0:8767` by default so it is reachable through the host machine's LAN IP.
 - Direct Python startup remains loopback-only by default; explicit host overrides remain available for local-only or explicitly selected bindings.
 - Documented the Windows Firewall and trusted-network boundary; public exposure remains unsupported without an authentication layer.
 - Improved startup diagnostics with the canonical version, configuration, runtime mode, bind/local/LAN URLs, process ID and UTF-8 console handling.
@@ -409,7 +439,7 @@
 
 ## 2026-09-07 Hugging Face Space
 
-- Prepared the Docker entrypoint for the integrated dashboard on `0.0.0.0:8765`.
+- Prepared the Docker entrypoint for the integrated dashboard on `0.0.0.0:8767`.
 - Added Docker Space metadata and published the live dashboard as `superdigger/MHRN-Space`.
 - Added the Space repository to the automatic GitHub-to-Hugging-Face synchronization workflow.
 
@@ -1011,3 +1041,139 @@ Files such as `ROADMAP_ALPHA4.md`, `ROADMAP_ALPHA5*.md`, `ROADMAP_V*.md` and spr
 
 [Architecture and execution](../02-architecture/CONNECTOME_EMBODIMENT.md) and
 [scientific supplement](../../research/publications/2026-09-09_connectome-embodiment_supplement/README.md).
+
+
+## PAN / CUDA integration programme
+
+The non-canonical Playground PAN work and its explicit canonical-integration requirements are tracked in the [PAN/GPU work programme](../playground/PAN_GPU_ROADMAP.md). It covers neuron/synapse/network persistence, hybrid and full CUDA execution, body/Neural-I/O coupling, research controls, canonical storage/self-organization, RuntimeController and scaling. Completion of a Playground stage does not promote scientific evidence or establish a canonical backend.
+
+
+## CUDA/PAN canonicalization and simulator capability gaps (2026-09-28)
+
+The CUDA/PAN/Gate work has reached the point where it creates both a canonicalization programme and a separate simulator-capability backlog. The authoritative gap matrix and architecture decision are documented in [MHRN simulator capability gaps](MHRN_SIMULATOR_CAPABILITY_GAPS.md).
+
+The Playground is **not** promoted wholesale into the core. Reusable execution mechanisms are to be extracted behind canonical MHRN contracts while the Playground remains a composition/reference workspace.
+
+New canonical research families are registered for deterministic accelerated execution, CPU/CUDA parity, computational scaling, executable Gate-IR semantics, PAN state semantics, PAN GPU parity, structural host/GPU barriers, causal closed-loop parity and restricted external simulator interoperability. Registration creates no EVID and does not promote historical Playground verification.
+
+Simulator capability gaps tracked independently from scientific claims include equation-defined model descriptions, physical-unit validation, generalized synapse-rule contracts, multicompartment neurons, electrical/gap-junction synapses, stochastic model specification, standardized benchmark workloads and optional neuromorphic/backend adapters.
+
+Priority order:
+
+1. canonical ExecutionBackend + state identity;
+2. canonical Learning/Synapse contract;
+3. D1/D2/D3 parity + execution provenance;
+4. storage/checkpoint + BoundaryFrame/Neural I/O integration;
+5. CUDA-1.6 frozen then live closed-loop bridge;
+6. PAN semantic freeze and only then full PAN GPU work;
+7. structural mutation through canonical host barriers;
+8. standardized benchmarks and Brian 2 reference interoperability;
+9. optional broader model DSL, multicompartment, gap junction, neuromorphic and multi-GPU work.
+
+
+### Contract refinements required before CUDA-1.6
+
+The following contracts are now explicit prerequisites rather than implicit TODOs:
+
+- [Canonical Learning and Synapse Contract](../02-architecture/MHRN_LEARNING_SYNAPSE_CONTRACT.md): CPU and CUDA must implement one update-order/STDP/eligibility/reward/delay semantic contract before plastic D3 work.
+- [Frozen Environment Contract](../02-architecture/MHRN_FROZEN_ENVIRONMENT_CONTRACT.md): separates Boundary replay, frozen deterministic world with live actions and full deterministic live-loop parity.
+- [Canonical Runtime Checkpoint Contract](../02-architecture/MHRN_RUNTIME_CHECKPOINT_CONTRACT.md): enumerates continuation-critical network, learning, delay, PAN/tissue, Neural-I/O, environment and execution-provenance state.
+- [Structural Mutation Approval Contract](../02-architecture/MHRN_STRUCTURAL_APPROVAL_CONTRACT.md): clarifies proposal eligibility, deterministic policy approval, optional human authorization and mandatory host/GPU structural barriers.
+
+The benchmark/reference suite moves **before** live CUDA-1.6 and full PAN-GPU work. A restricted Brian 2 reference subset may be used as an external validation anchor, but never as a hidden MHRN implementation backend or as proof of scientific validity.
+
+
+## 2026-09-29 Playground -> MHRN integration wave 1
+
+- Promoted the neural-I/O type contract from Playground ownership into the
+  canonical Embodiment layer.
+- Retained `src/playground/neural_io/contracts.py` as a compatibility
+  re-export so existing Playground code remains connected.
+- Added a Playground-visible integration catalog and transfer-verification
+  surface. Runtime source mutation is explicitly prohibited.
+- Next promotion candidate: deterministic neural-I/O codecs, after codec/frame
+  semantics are frozen.
+- CUDA infrastructure remains queued behind the canonical ExecutionBackend
+  boundary; learning, closed-loop and PAN promotion remain blocked by their
+  declared semantic contracts.
+- OLD frontend views remain retained surfaces and are not implicitly promoted
+  into MHRN core.
+
+
+## 2026-09-29 Playground -> MHRN integration wave 2
+
+- Canonicalized deterministic neural-I/O codecs/decoders under Embodiment.
+- Canonicalized a framework-neutral `NeuralIOAreaAdapter` satisfying
+  `NetworkAreaAdapter`.
+- Kept Playground codec imports as exact compatibility re-exports and the
+  Playground adapter as an identity wrapper.
+- Neutralized new spike-frame IDs to `mhrn-spike-*`.
+- The next technical promotion is the ExecutionBackend abstraction before
+  moving CUDA Driver/NVRTC/ABI/parity infrastructure.
+- Learning, closed-loop environment and PAN remain blocked by their semantic
+  contract gates.
+
+
+## 2026-09-29 Playground -> MHRN integration wave 3
+
+- Canonical ExecutionBackend protocol added under src/runtime/backend.py.
+- BackendState is explicitly data-only and rejects opaque non-serializable runtime handles.
+- Canonical D1/D2/D3 parity framework added under src/verification/parity.
+- Stable execution fingerprints now bind seed, canonical config hash, backend identity/version, tick count and parity-contract version.
+- Counter-RNG, same-tick update ordering and delay-ring semantics are canonical under src/runtime/determinism.
+- Playground Builder parity and CUDA plasticity now consume the canonical verifier/determinism primitives through compatibility paths.
+- The visible Playground integration catalog marks ExecutionBackend and Parity/Determinism as integrated.
+- CUDA Driver/NVRTC/ABI/recurrent/plasticity extraction is the next Wave-4 task.
+- No scientific DATA or EVID is created by Wave 3.
+
+
+## 2026-10-01 — Playground integration Wave 5A
+
+**Goal:** freeze PAN semantics before further GPU promotion.
+
+- [x] Extract the PAN continuation-state surface into
+  `src/homeostasis/pan_contract.py`.
+- [x] Extract current reference coefficients into `PANFormulaParameters`.
+- [x] Declare deterministic update ordering for engineering comparison.
+- [x] Make the Playground PAN runtime consume the draft contract without
+  changing its algorithm.
+- [x] Expose Wave 5 as `contract_draft` in the acceleration status UI.
+- [x] Preserve the scientific boundary: RQ-PAN-SEM-001 remains open and PAN
+  remains non-evidentiary.
+- [ ] Human/method review of the state/update contract.
+- [ ] Freeze a versioned PAN v1 contract.
+- [ ] Extend RuntimeCheckpoint with all frozen PAN continuation state.
+- [ ] Implement the same frozen contract on canonical CUDA PAN execution.
+- [ ] Run PAN D1/D2/checkpoint parity only after physical FE-3 acceptance and
+  semantic freeze.
+
+
+## 2026-10-01 — Wave 6/7 contract design
+
+Wave 6 and Wave 7 proceed in parallel with physical RTX-3060 acceptance because
+they are semantics/governance work, not hardware acceptance.
+
+### Wave 6 — governed structural plasticity
+
+- [x] Add deterministic approval-policy artifact hashing.
+- [x] Define fail-closed modes: DISABLED, MANUAL_ONLY, POLICY_AUTO and PREREGISTERED_AUTO.
+- [x] Require mode-specific authorization in addition to topology permission,
+  Structural Barrier availability, journal health and scientific freeze.
+- [ ] Align the existing StructuralPlasticityEngine mutation path with one canonical host barrier.
+- [ ] Bind topology-generation increment, CSR/schedule rebuild and checkpoint
+  verification to that barrier.
+- [ ] Human Review/freeze of the structural approval contract.
+- [ ] CUDA structural mutation remains gated until those steps are complete.
+
+### Wave 7 — learning/synapse semantics
+
+- [x] Inventory current CPU STDP/eligibility/reward order and checkpoint state.
+- [x] Inventory current CUDA STP/reward/weight-decay candidate semantics.
+- [x] Expose known mismatches fail-closed in an executable contract descriptor.
+- [ ] Decide stable edge identity for parallel synapses.
+- [ ] Freeze or explicitly exclude STP semantics for the contract version.
+- [ ] Align reward-credit and weight-decay semantics across CPU/CUDA.
+- [ ] Implement the same frozen contract on both paths and run canonical learning parity.
+- [ ] Human Review/freeze before scientific learning studies.
+
+These drafts create no DATA/EVID and do not authorize Wave-5B PAN execution.

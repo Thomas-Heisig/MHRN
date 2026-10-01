@@ -209,3 +209,169 @@ This software paper does not promote any experiment from DATA to EVID.
 - Hazan, H., et al. (2018). BindsNET: A machine learning-oriented spiking neural networks library in Python. *Frontiers in Neuroinformatics*.
 - Pehle, C., & Pedersen, J. E. (2021). Norse — A deep learning library for spiking neural networks. Documentation/software publication.
 - MHRN repository documentation and governed research artefacts, version 0.6.0-alpha.6.
+
+
+### Playground-to-core promotion path
+
+MHRN exposes a controlled promotion path for experimental Playground
+components. The first promoted component family is the typed neural-I/O
+boundary contract. Canonical definitions live in
+`src/embodiment/neural_io_contracts.py`; the historical Playground module is
+a compatibility re-export, preserving existing callers while preventing the
+core from depending on Playground.
+
+The Dashboard Playground surfaces a promotion catalog and
+transfer-verification action. This action is deliberately not a runtime
+source-code editor: it verifies already promoted contracts or reports the
+contract/gate required for a future repository change. Promotion status is
+engineering provenance and does not constitute DATA or EVID.
+
+
+### Canonical neural-I/O codec plane
+
+A second staged promotion moved deterministic encoders/decoders and a
+framework-neutral neural-I/O area adapter from Playground ownership into the
+MHRN Embodiment package. Compatibility re-exports preserve existing Playground
+callers, while the core remains independent of Playground. This pattern allows
+experimental mechanisms to mature into reusable infrastructure without
+retroactively turning exploratory observations into scientific evidence.
+
+
+### Canonical execution and verification plane
+
+A third promotion wave adds a backend-neutral ExecutionBackend protocol and canonical parity/determinism modules. The protocol exposes bounded initialize, step, run, snapshot, restore, and capability operations while requiring continuation state to remain independent of device-local pointers or handles.
+
+The parity layer distinguishes exact discrete-event parity (D1), bounded continuous-state parity with fail-closed non-finite handling (D2), and behavioral/causal parity (D3). Stable execution fingerprints use canonical serialization of seed, configuration identity, backend identity/version, tick count, and contract version. Counter-based stochastic release, same-tick update ordering, and delay-ring semantics are shared runtime primitives.
+
+The existing Playground remains an integration and reference workspace but delegates Builder parity and release RNG semantics to these canonical modules. CUDA Driver/NVRTC and recurrent/plasticity kernels remain Playground-owned pending the next backend-extraction wave.
+
+These changes are software architecture and verification infrastructure. They do not demonstrate CPU/CUDA scientific equivalence, performance superiority, or new empirical support for PAN or learning mechanisms.
+
+
+### Canonical CUDA extraction boundary
+
+A later engineering integration wave moves the previously Playground-owned
+CUDA infrastructure behind the backend-neutral execution contract. The
+extraction is protected by explicit architecture gates: canonical acceleration
+code may not import Playground, moved CUDA kernels must remain byte-identical
+to their frozen reference sources, and CUDA plasticity is labelled
+`NON_CANONICAL_DRAFT / ALIGNMENT_PENDING` until the common learning contract
+is implemented by both CPU and CUDA paths.
+
+CPU and CUDA executions intentionally retain different execution fingerprints
+because backend identity is provenance. Cross-backend equivalence is evaluated
+with D1/D2/D3 contracts, not by forcing backend fingerprints to match. Wave 4
+contains a named opt-in physical D1/D2 acceptance test; D3 closed-loop
+equivalence remains outside the wave pending the Frozen-Environment contract.
+
+Kernel byte preservation is verified in hosted CI. Post-extraction execution
+of the canonical facade on physical RTX-class hardware is tracked separately
+and remains pending until the dedicated hardware-acceptance runner is executed.
+These statements are Engineering Verification only and create no DATA or EVID.
+
+
+### Frozen-environment verification layer
+
+For closed-loop backend comparison, MHRN now treats environment state and
+causal input provenance as versioned verification inputs. A frozen-environment
+manifest records environment identity/configuration, the RNG contract, sensor
+schedule, action and reward schemas, episode policy, initial world state where
+applicable, and exact BoundaryFrames for boundary replay. The artifact is
+serialized through stable canonical JSON and is self-checked against its
+manifest SHA-256.
+
+The engineering acceptance ladder separates FE-1 exact boundary integrity,
+FE-2 repeated deterministic world replay, and FE-3 causal trajectory parity.
+FE-3 comparisons reuse the canonical D3 parity implementation rather than a
+second environment-specific comparator. Hosted CI currently exercises FE-1,
+ten-repeat replay, and a CPU/self D3c control. Physical CPU-versus-CUDA
+closed-loop D3 remains pending. These are software verification results and do
+not constitute scientific DATA or EVID.
+
+
+### Physical cross-backend acceptance boundary
+
+The engineering acceptance workflow now distinguishes two CUDA closed-loop
+levels. First, the existing live Playground Builder can run the same
+deterministic configuration with CPU and CUDA neural execution while retaining
+the world/body loop on CPU; the canonical parity layer compares spike/state
+outputs together with actions, targets, rewards and body-trajectory digests.
+This provides a physical **Builder D3c bridge** on supported NVIDIA hardware.
+
+Second, the stricter Frozen-Environment FE-3 contract remains open. The
+canonical Wave-4 CUDA facade is intentionally a bounded replay backend and does
+not yet accept a causal sensor observation on each continuation tick. MHRN
+therefore does not treat a passing Builder bridge as completed FE-3. The
+hardware report records `full_fe3_accepted=false` until a backend-neutral live
+adapter connects FrozenEnvironment observations, neural execution, canonical
+readout and ActionCommand generation without resetting backend state.
+
+This distinction is an engineering-governance result, not scientific DATA or
+EVID.
+
+### Canonical Frozen-Environment live backend bridge
+
+The Frozen-Environment verification layer now includes a backend-neutral live-input bridge. For each FE-3 tick, the current frozen world state is serialized as a canonical BoundaryFrame, deterministically encoded into external currents, advanced through the same ExecutionBackend continuation surface, decoded into an ActionCommand, and applied back to FrozenWorldSession.
+
+The initial acceptance fixture is frozen as `research/verification/frozen_environment/FE3_DETERMINISTIC_TARGET_V1.json`. CPUReferenceBackend and CUDABackend expose the same live-input extension without changing the recurrent CUDA kernel. Hosted CI validates the manifest and adapter; physical CPU-versus-CUDA FE-3 remains an explicit hardware-acceptance step.
+
+Cross-backend execution fingerprints are intentionally different because backend identity is provenance. FE-3 equivalence instead requires the same manifest, identical live-input fingerprint, and exact canonical D3c trajectory parity. This remains Engineering Verification and does not create DATA, EVID, a speedup claim, or evidence for PAN, learning, or cognitive capability.
+
+
+### Dashboard projection of acceleration acceptance
+
+The dashboard now projects canonical acceleration status instead of inferring it
+from Playground controls. A single backend status block reports canonical CUDA
+capabilities, the verified FE-3 manifest identity, and the latest reviewed
+physical hardware-acceptance artifact when one exists. The UI deliberately
+distinguishes `integrated`, `software_verified`, and physical
+`passed`/`pending` states.
+
+The same source is rendered differently by workspace: Playground exposes the
+promotion path, Release exposes engineering acceptance, the scientific
+Observatory exposes the DATA/EVID boundary, and OLD only documents retained
+compatibility surfaces. Absence of a dated
+`HARDWARE_ACCEPTANCE_<date>.json` is rendered fail-closed as physical
+acceptance pending. This projection is engineering provenance and does not
+promote any CUDA/FE-3 result to DATA or EVID.
+
+
+## PAN semantic promotion boundary (Wave 5A)
+
+After canonicalizing neural I/O, execution backends, parity/determinism and the
+CUDA execution layer, the next integration step is intentionally semantic
+rather than accelerative. MHRN now contains a draft backend-neutral PAN
+hyperstate contract under `src/homeostasis/pan_contract.py`.
+
+The contract records the exact state surface, update order and current
+Playground reference coefficients for health, energy, activity EMA,
+consolidation, amplitude, information proxy and apoptosis eligibility. The
+Playground PAN runtime consumes these values from the canonical draft instead
+of owning an independent set of constants.
+
+This is an engineering integration artifact, not a scientific result. The
+contract status is `DRAFT_NOT_FROZEN`; RQ-PAN-SEM-001 remains open, physical
+FE-3/CUDA hardware acceptance remains pending, and PAN is not treated as
+scientifically validated or backend-equivalent. The separation is deliberate:
+semantic freeze precedes GPU promotion so that future CPU/CUDA PAN comparisons
+test one explicit contract rather than two evolving implementations.
+
+
+### Governed structural and learning contracts
+
+Two later integration waves deliberately separate semantics from hardware.
+Wave 6 defines fail-closed structural approval modes and a stable policy
+artifact hash around the existing proposal/coordinator/journal/undo pipeline.
+Manual approval is necessary but never sufficient: barrier availability,
+journal health, topology permission and the scientific freeze remain
+independent hard gates.
+
+Wave 7 inventories the existing CPU STDP/eligibility/reward rule together with
+the non-canonical CUDA plasticity reference. The draft explicitly records
+current mismatches in STP, edge identity, reward-credit semantics and weight
+decay. Those mismatches prevent cross-backend learning from being labelled
+canonical until a reviewed common contract is frozen and implemented by both
+paths.
+
+These are engineering governance artifacts, not empirical learning or
+structural-plasticity evidence.

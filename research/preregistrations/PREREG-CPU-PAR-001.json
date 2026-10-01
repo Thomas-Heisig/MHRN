@@ -1,0 +1,107 @@
+{
+  "schema_version": "1.0",
+  "preregistration_id": "PREREG-CPU-PAR-001",
+  "research_question": "RQ-CPU-PAR-001",
+  "hypothesis": "H-CPU-PAR-001-A",
+  "protocol_id": "cpu_self_parity_v1",
+  "mode": "CONFIRMATORY",
+  "scientific_scope": "CPU-only deterministic self-parity; no CUDA/PAN/learning/structural-plasticity equivalence claim",
+  "primary_outcomes": [
+    "ordered_spike_event_sequence_exact_match",
+    "canonical_final_state_digest_exact_match"
+  ],
+  "secondary_outcomes": [
+    "per_tick_spike_digest_exact_match",
+    "event_queue_terminal_digest_exact_match",
+    "execution_fingerprint_repeatability"
+  ],
+  "conditions": [
+    {
+      "id": "replicate_A",
+      "role": "reference_repeat"
+    },
+    {
+      "id": "replicate_B",
+      "role": "paired_independent_rebuild"
+    }
+  ],
+  "seed_strategy": {
+    "minimum_independent_seeds": 20,
+    "exact_seeds": [
+      910001,
+      910002,
+      910003,
+      910004,
+      910005,
+      910006,
+      910007,
+      910008,
+      910009,
+      910010,
+      910011,
+      910012,
+      910013,
+      910014,
+      910015,
+      910016,
+      910017,
+      910018,
+      910019,
+      910020
+    ],
+    "rule": "frozen unique integer seeds; each seed is executed once in replicate_A and once in replicate_B; no seed replacement after inspection"
+  },
+  "stopping_rule": "complete both paired repeats for all 20 frozen seeds; do not stop early for matches or mismatches",
+  "inclusion_criteria": [
+    "clean source freeze bound before execution",
+    "CPU-only canonical network path",
+    "identical protocol/config/input/initial-state contract between paired repeats",
+    "structural mutation disabled",
+    "STDP, reward learning and topology adaptation disabled",
+    "no fatal runtime/provenance error"
+  ],
+  "exclusion_criteria": [
+    "source/config digest differs between paired repeats",
+    "unauthorized protocol amendment after freeze",
+    "runtime/provenance failure that prevents the declared observations from being produced"
+  ],
+  "analysis_plan": {
+    "descriptive_statistics": [
+      "exact-match count across 20 paired seeds",
+      "first mismatching tick if any",
+      "mismatch class: spike sequence, terminal state, event queue, or fingerprint"
+    ],
+    "inference_policy": "The preregistered hypothesis is supported at DATA-analysis level only if all 20 paired seeds match exactly on both primary outcomes. Any primary mismatch refutes exact self-parity for this protocol. No p-value substitution is used for an exact deterministic contract.",
+    "planned_tests": [
+      "paired exact equality of ordered spike-event sequences",
+      "paired exact equality of canonical final-state digests"
+    ],
+    "multiplicity": "two co-primary outcomes; both must pass for every seed"
+  },
+  "expected_failure_modes": [
+    "hidden traversal-order dependence",
+    "unbound RNG consumption",
+    "event-queue ordering divergence",
+    "state serialization/digest instability",
+    "timing/telemetry field accidentally included in scientific state digest"
+  ],
+  "structural_governance": {
+    "approval_mode": "DISABLED",
+    "reason": "isolate CPU self-parity from structural mutation"
+  },
+  "ai_treatment": {
+    "role": "interpretation_only",
+    "authority_boundary": "AI cannot change seeds, protocol, inclusion/exclusion, DATA, review status or EVID.",
+    "prompt_digest_required": true
+  },
+  "execution": {
+    "authorized": false,
+    "authorization_rule": "bind exact source commit and protocol/config digests after merge; execution authorization is a separate recorded action"
+  },
+  "freeze": {
+    "immutable_after_first_run": true,
+    "human_review_required": true,
+    "status": "FROZEN",
+    "amendment_id": null
+  }
+}

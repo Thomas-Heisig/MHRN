@@ -5,14 +5,19 @@ from __future__ import annotations
 import pytest
 
 from src.playground.cuda import (
+    GateLaunchInputs,
     GateType,
     compile_config,
     compile_mapping,
     compile_yaml,
     compiler_catalog,
     cooperative_capacity,
+    cpu_gate_reference,
+    gate_execution_parity_summary,
     gate_parity_summary,
     parse_ptxas_verbose,
+    smoke_gate_launch_inputs,
+    validate_gate_launch_inputs,
 )
 from src.playground.models import PlaygroundConfig
 
@@ -186,3 +191,153 @@ def test_gate_parity_summary_is_explicitly_not_full_snn_equivalence() -> None:
     assert summary["passed"] is True
     assert summary["comparison_scope"] == "GATE_OUTPUT_ONLY_NOT_FULL_SNN"
     assert summary["scientific_evidence"] is False
+
+
+def test_compiler_declares_executable_kernel_abi() -> None:
+    bundle = compile_mapping({"closed_loop_preset": "minimal_closed_loop"})
+    abi = bundle.manifest["kernel_abi"]
+
+    assert abi["entry"] == "pan_gate_kernel"
+    assert abi["parameter_count"] == 17
+    assert abi["input_channels"] == 8
+    assert abi["action_space_size"] == 4
+    assert abi["pan_dimensions"] >= 1
+    assert abi["parameters"][-1] == "epsilon:f32"
+
+
+def test_smoke_launch_inputs_match_compiler_abi() -> None:
+    bundle = compile_mapping({"closed_loop_preset": "minimal_closed_loop"})
+    inputs = smoke_gate_launch_inputs(bundle, n_neurons=12, seed=12345)
+    shape = validate_gate_launch_inputs(bundle, inputs)
+
+    assert shape["n_neurons"] == 12
+    assert len(inputs.channel_masks) == 12
+    assert len(inputs.amplitudes) == shape["input_channels"]
+    assert len(inputs.action_map) == (shape["action_count"] * shape["input_channels"])
+    assert len(inputs.feedback_matrix) == (shape["n_neurons"] * shape["pan_dimensions"])
+    assert len(inputs.logits) == shape["n_neurons"] * shape["action_count"]
+    assert all(mask == 0xFF for mask in inputs.channel_masks)
+
+
+def test_gate_launch_input_validation_fails_closed_on_bad_shape() -> None:
+    bundle = compile_mapping({"closed_loop_preset": "minimal_closed_loop"})
+    good = smoke_gate_launch_inputs(bundle, n_neurons=4)
+    broken = GateLaunchInputs(
+        input_current=good.input_current,
+        channel_masks=good.channel_masks,
+        amplitudes=good.amplitudes[:-1],
+        reward_ring=good.reward_ring,
+        action_map=good.action_map,
+        feedback_matrix=good.feedback_matrix,
+        population=good.population,
+        logits=good.logits,
+        tick=good.tick,
+        target_index=good.target_index,
+        previous_action=good.previous_action,
+        seed=good.seed,
+        epsilon=good.epsilon,
+    )
+
+    with pytest.raises(ValueError, match="amplitudes length"):
+        validate_gate_launch_inputs(bundle, broken)
+
+
+def test_cpu_gate_reference_matches_nontrivial_minimal_loop_math() -> None:
+    bundle = compile_mapping(
+        {
+            "closed_loop_preset": "minimal_closed_loop",
+            "pan_feedback_gain": 0.0,
+        }
+    )
+    inputs = GateLaunchInputs.from_sequences(
+        input_current=[1.0, 2.0],
+        channel_masks=[0xFF, 0xFF],
+        amplitudes=[1.0] * 8,
+        reward_ring=[0.5],
+        action_map=[
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            3.0,
+            4.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+        ],
+        feedback_matrix=[0.0]
+        * (2 * int(bundle.manifest["kernel_abi"]["pan_dimensions"])),
+        population=[0.0] * int(bundle.manifest["kernel_abi"]["pan_dimensions"]),
+        logits=[
+            0.1,
+            0.2,
+            0.3,
+            0.9,
+            0.1,
+            0.8,
+            0.2,
+            0.3,
+        ],
+        tick=0,
+        target_index=2,
+        previous_action=1,
+        seed=123,
+        epsilon=0.0,
+    )
+
+    result = cpu_gate_reference(bundle, inputs)
+    outputs = result["outputs"]
+
+    assert outputs["current"] == pytest.approx([46.5, 56.5], abs=1.0e-6)
+    assert outputs["action"] == [3, 1]
+    assert result["comparison_scope"] == "GATE_OUTPUT_ONLY_NOT_FULL_SNN"
+    assert result["scientific_evidence"] is False
+
+
+def test_gate_execution_parity_compares_current_and_action() -> None:
+    reference = {
+        "outputs": {
+            "current": [1.0, 2.0],
+            "action": [2, 1],
+        }
+    }
+    candidate = {
+        "outputs": {
+            "current": [1.00001, 1.99999],
+            "action": [2, 1],
+        }
+    }
+    summary = gate_execution_parity_summary(reference, candidate)
+
+    assert summary["parity_class"] == "D2"
+    assert summary["actions_exact"] is True
+    assert summary["current_max_abs_error"] < 1.0e-4
+    assert summary["passed"] is True
+
+    candidate["outputs"]["action"] = [2, 0]
+    failed = gate_execution_parity_summary(reference, candidate)
+    assert failed["actions_exact"] is False
+    assert failed["passed"] is False

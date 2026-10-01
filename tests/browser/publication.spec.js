@@ -60,6 +60,14 @@ for (const port of [4174, 4175]) {
     await expect(portalLinks.locator('[data-portal="hf-source"]')).toHaveAttribute('href', 'https://huggingface.co/ThomasHeisig/MHRN');
     await expect(portalLinks.locator('[data-portal="hf-space"]')).toHaveAttribute('href', 'https://huggingface.co/spaces/ThomasHeisig/MHRN-Space');
     await expect(portalLinks.locator('[data-portal="hf-data"]')).toHaveAttribute('href', 'https://huggingface.co/datasets/ThomasHeisig/MHRN-Research-Data');
+    await page.evaluate(() => window.MHRNWorkspaceArchitecture?.selectRoute?.('publication', 'paper'));
+    const paperPanel = page.locator('#publication-paper-panel');
+    await expect(paperPanel).toBeVisible();
+    await expect(paperPanel.locator('[data-paper-file]')).toHaveCount(3);
+    await expect(paperPanel).toContainText('MHRN Research Software Paper');
+    await expect(paperPanel).toContainText('Topology & Propagation Dynamics');
+    await expect(paperPanel).toContainText('Recursive Epistemics Methods Paper');
+
     await page.evaluate(() => window.MHRNWorkspaceArchitecture?.selectRoute?.('publication', 'reader'));
     await expect(publicationPanel).toBeVisible();
     const readerLink = publicationPanel.locator('[data-pub-reader-link]').first();
