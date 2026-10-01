@@ -4,11 +4,11 @@
   "scope": "docs",
   "warning": "Classification describes document role; it does not promote DATA to EVID or certify scientific validity.",
   "summary": {
-    "file_count": 201,
+    "file_count": 202,
     "status": {
       "archive": 8,
       "current": 131,
-      "current_wip": 1,
+      "current_wip": 2,
       "historical": 61
     },
     "kind": {
@@ -16,6 +16,7 @@
       "archive": 8,
       "canonical_acceleration_contract": 1,
       "canonical_architecture_contract": 1,
+      "canonical_engineering_preflight_contract": 1,
       "canonical_hardware_acceptance_contract": 1,
       "canonical_semantic_contract_draft": 1,
       "canonical_verification_contract": 1,
@@ -53,6 +54,7 @@
       "normative_engineering_hardware_acceptance_contract": 1,
       "normative_execution_backend_contract": 1,
       "normative_pan_semantic_contract_draft": 1,
+      "normative_pan_wave5b_preflight_contract": 1,
       "normative_quality_contract": 19,
       "operator_or_developer_guidance": 9,
       "planning": 18,
@@ -2270,6 +2272,19 @@
       "evidence_role": "semantic_contract_draft_not_data_or_evidence",
       "rationale": "Defines the backend-neutral PAN hyperstate reference semantics prepared in Wave 5A. The contract is explicitly draft, does not establish CPU/CUDA equivalence, and creates no DATA, EVID or accepted scientific claim.",
       "classification_rule": "override:docs/canonical/PAN_HYPERSTATE_CONTRACT_DRAFT.md",
+      "review_required": false
+    },
+    {
+      "path": "docs/canonical/PAN_WAVE5B_PREFLIGHT.md",
+      "domain": "docs",
+      "kind": "canonical_engineering_preflight_contract",
+      "status": "current_wip",
+      "authority": "normative_pan_wave5b_preflight_contract",
+      "mutability": "editable_until_wave5b_freeze",
+      "citation": "cite_current_revision_as_engineering_preflight_only",
+      "evidence_role": "engineering_preflight_not_data_or_evidence",
+      "rationale": "Defines the fail-closed Wave-5B PAN CPU/CUDA parity preparation, gate ordering and interpretation boundary without authorizing execution or promoting PAN to canonical integrated status.",
+      "classification_rule": "override:docs/canonical/PAN_WAVE5B_PREFLIGHT.md",
       "review_required": false
     },
     {

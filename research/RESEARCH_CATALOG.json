@@ -4,11 +4,11 @@
   "scope": "research",
   "warning": "Classification describes document role; it does not promote DATA to EVID or certify scientific validity.",
   "summary": {
-    "file_count": 8781,
+    "file_count": 8782,
     "status": {
       "archive": 2,
       "current": 238,
-      "current_wip": 41,
+      "current_wip": 42,
       "experimental": 7964,
       "frozen": 83,
       "generated": 63,
@@ -21,7 +21,7 @@
       "archive_metadata_index": 1,
       "benchmark": 2,
       "critique": 1,
-      "engineering_verification_manifest": 1,
+      "engineering_verification_manifest": 2,
       "ethics_policy": 4,
       "experiment": 7944,
       "experiment_execution_receipt": 1,
@@ -75,6 +75,7 @@
       "benchmark_reference_or_method": 2,
       "canonical_current_publication_pointer": 1,
       "canonical_frozen_environment_verification_input": 1,
+      "canonical_pan_backend_verification_input": 1,
       "canonical_research_navigation": 1,
       "critical_analysis": 1,
       "current_scientific_state_summary": 1,
@@ -114103,6 +114104,19 @@
       "evidence_role": "engineering_verification_input_not_data_or_evidence",
       "rationale": "Versioned deterministic Frozen-Environment verification inputs used for backend parity acceptance; these manifests are engineering verification inputs and do not constitute scientific DATA or EVID.",
       "classification_rule": "override:research/verification/frozen_environment",
+      "review_required": false
+    },
+    {
+      "path": "research/verification/pan/PAN_WAVE5B_PREFLIGHT_V1.json",
+      "domain": "research",
+      "kind": "engineering_verification_manifest",
+      "status": "current_wip",
+      "authority": "canonical_pan_backend_verification_input",
+      "mutability": "versioned_replacement_only",
+      "citation": "cite_exact_manifest_path_digest_and_source_revision",
+      "evidence_role": "engineering_verification_input_not_data_or_evidence",
+      "rationale": "Versioned PAN backend parity preflight inputs and future authorization records; preparation and execution receipts do not automatically constitute scientific DATA or EVID.",
+      "classification_rule": "override:research/verification/pan",
       "review_required": false
     },
     {
