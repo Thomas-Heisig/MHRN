@@ -15,13 +15,7 @@ MANIFEST = (
     / "frozen_environment"
     / "FE3_DETERMINISTIC_TARGET_V1.json"
 )
-PREFLIGHT = (
-    ROOT
-    / "research"
-    / "verification"
-    / "pan"
-    / "PAN_WAVE5B_PREFLIGHT_V1.json"
-)
+PREFLIGHT = ROOT / "research" / "verification" / "pan" / "PAN_WAVE5B_PREFLIGHT_V1.json"
 
 
 def _copy_preflight_inputs(repo_root: Path) -> None:
@@ -36,11 +30,7 @@ def _copy_preflight_inputs(repo_root: Path) -> None:
     manifest_target.write_bytes(MANIFEST.read_bytes())
 
     preflight_target = (
-        repo_root
-        / "research"
-        / "verification"
-        / "pan"
-        / "PAN_WAVE5B_PREFLIGHT_V1.json"
+        repo_root / "research" / "verification" / "pan" / "PAN_WAVE5B_PREFLIGHT_V1.json"
     )
     preflight_target.parent.mkdir(parents=True, exist_ok=True)
     preflight_target.write_bytes(PREFLIGHT.read_bytes())
