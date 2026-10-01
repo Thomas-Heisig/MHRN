@@ -472,3 +472,5 @@ def test_playground_integration_api_and_frontend_are_exposed() -> None:
     assert 'id="pg-mhrn-integration"' in frontend
     assert "data-pg-transfer=" in frontend
     assert "Playground → MHRN" in frontend
+    assert "SEMANTIC_CONTRACT_DRAFT" in frontend
+    assert "Semantikvertrag in Arbeit" in frontend

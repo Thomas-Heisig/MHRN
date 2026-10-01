@@ -1,5 +1,20 @@
 # Changelog
 
+## 2026-10-01 - Playground Integration Wave 5A: PAN-Semantikvertrag
+
+- PAN-Hyperstate erhält mit `mhrn-pan-hyperstate-v0.1-draft` erstmals einen
+  backend-neutralen Draft-Vertrag in `src/homeostasis/pan_contract.py`.
+- Zustandsoberfläche, Update-Reihenfolge und die bestehenden
+  Referenzkoeffizienten wurden aus der Playground-Eigentümerschaft herausgelöst.
+- Der Playground-PAN-Runtime konsumiert den Draft-Vertrag ohne Änderung des
+  bisherigen Algorithmus.
+- Playground-Transferstatus und CUDA/FE-3-Status zeigen Wave 5 nun als
+  `Semantikvertrag in Arbeit`, nicht als integriert oder akzeptiert.
+- RQ-PAN-SEM-001 bleibt offen; physische FE-3-Hardware-Abnahme, PAN-CUDA-Parität,
+  vollständiger Checkpoint-Vertrag und strukturelle Plastizität bleiben separate
+  Gates.
+- Diese Welle erzeugt keine wissenschaftlichen DATA, EVID oder CLAIMs.
+
 ## 2026-09-30 - CUDA/FE-3-Integration im Frontend vervollständigt
 
 - `/api/integration/status` um einen kanonischen Acceleration-Block erweitert.

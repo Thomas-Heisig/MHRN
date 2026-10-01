@@ -135,11 +135,20 @@ _CANDIDATES: tuple[PromotionCandidate, ...] = (
     PromotionCandidate(
         "pan_hyperstate",
         "PAN Hyperstate",
-        "BLOCKED_PAN_SEMANTICS",
+        "SEMANTIC_CONTRACT_DRAFT",
         ("src/playground/pan/",),
-        ("src/homeostasis/", "src/self_organization/"),
-        "RQ-PAN-SEM-001",
-        notes="Health/Energy/Apoptosis/Growth require a frozen state/update contract first.",
+        (
+            "src/homeostasis/pan_contract.py",
+            "src/self_organization/",
+        ),
+        "PAN_CONTRACT_FREEZE_REVIEW",
+        notes=(
+            "Wave 5A has extracted the current PAN state surface, coefficients and "
+            "update ordering into a backend-neutral draft contract. The Playground "
+            "runtime consumes that contract without changing the algorithm. PAN is "
+            "not canonical or evidence-eligible until RQ-PAN-SEM-001 is reviewed "
+            "and the contract is frozen."
+        ),
     ),
     PromotionCandidate(
         "old_frontend_views",
@@ -264,6 +273,19 @@ def transfer_element(payload: Mapping[str, object]) -> dict[str, object]:
             "plasticity_semantics": PLASTICITY_SEMANTICS,
             "d3_complete": False,
         }
+    elif candidate.element_id == "pan_hyperstate":
+        from src.homeostasis.pan_contract import (
+            PAN_CONTRACT_ID,
+            PAN_CONTRACT_STATUS,
+            pan_contract_check,
+        )
+
+        connected = False
+        detail = {
+            "pan_contract_id": PAN_CONTRACT_ID,
+            "pan_contract_status": PAN_CONTRACT_STATUS,
+            "pan_contract_self_check": pan_contract_check(),
+        }
     else:
         connected = False
         detail = {}
@@ -297,4 +319,5 @@ def transfer_element(payload: Mapping[str, object]) -> dict[str, object]:
             "Promotion requires a repository change and its declared gate; "
             "the dashboard never rewrites source code at runtime."
         ),
+        **detail,
     }
