@@ -28,3 +28,4 @@ def test_acceleration_frontend_module_is_wired_once() -> None:
     assert 'readJson("/api/integration/status")' in module
     assert 'readJson("/api/playground/integration")' in module
     assert "Keine Anzeige in diesem Panel erzeugt DATA oder EVID" in module
+    assert 'contract_draft: "Semantikvertrag in Arbeit"' in module
