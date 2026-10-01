@@ -264,3 +264,36 @@ Current status:
 
 This closes a documentation/duplication gap but does **not** close the PAN
 scientific or CUDA-parity gap.
+
+## 2026-10-01 — Wave 5B PAN parity preflight
+
+Wave 5B now has a machine-readable, non-executing preflight rather than only a
+roadmap description:
+
+- `src/homeostasis/pan_parity_contract.py` defines backend-neutral PAN D2
+  comparison semantics without importing Playground or CUDA;
+- `research/verification/pan/PAN_WAVE5B_PREFLIGHT_V1.json` freezes the
+  prospective engineering comparison surface and interpretation boundary;
+- `src/homeostasis/pan_wave5b_preflight.py` projects readiness fail-closed;
+- the dashboard distinguishes **preflight ready** from **ready for execution**.
+
+The current state is deliberately asymmetric:
+
+- preflight structure: **ready**;
+- PAN semantic contract: **DRAFT_NOT_FROZEN**;
+- physical FE-3 RTX acceptance: **pending**;
+- explicit Wave-5B execution authorization: **absent**;
+- PAN canonical integration: **not claimed**;
+- DATA/EVID/CLAIM: **none created**.
+
+The physical RTX run is therefore the next hardware execution blocker, but it
+is **not the only remaining gate**. A green FE-3 hardware artifact cannot
+bypass PAN semantic freeze. After both gates pass, an explicit source-bound
+Wave-5B authorization is still required before canonical PAN CPU/CUDA parity
+execution.
+
+Wave 6 and Wave 7 are not globally blocked from design work by the missing RTX
+run. Structural host-barrier contracts and the canonical learning/synapse
+contract may be prepared independently. Their later CUDA/PAN promotion remains
+subject to their own semantic and hardware gates.
+

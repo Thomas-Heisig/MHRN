@@ -7,6 +7,8 @@ test('CUDA FE3 integration status is visible in the correct workspaces', async (
   await selectRoute(page, 'playground', 'builder');
   await expect(page.locator('#mhrn-acceleration-playground')).toBeVisible();
   await expect(page.locator('#mhrn-acceleration-playground')).toContainText('FE-3 Live Backend Bridge');
+  await expect(page.locator('#mhrn-acceleration-playground')).toContainText('Preflight bereit');
+  await expect(page.locator('#mhrn-acceleration-playground')).toContainText('Ausführung gesperrt');
 
   await selectRoute(page, 'release', 'development');
   await expect(page.locator('#mhrn-acceleration-release')).toBeVisible();

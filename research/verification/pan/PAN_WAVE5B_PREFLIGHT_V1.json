@@ -1,0 +1,61 @@
+{
+  "artifact_type": "MHRN_PAN_WAVE5B_PREFLIGHT",
+  "schema_version": 1,
+  "preflight_id": "mhrn-pan-wave5b-preflight-v1",
+  "scientific_evidence": false,
+  "execution_authorized": false,
+  "integration_claimed": false,
+  "prepared_from_develop": "35decdc720a055bcd0bb35e0d4298e8b1dc2fba6",
+  "contract": {
+    "id": "mhrn-pan-hyperstate-v0.1-draft",
+    "current_status": "DRAFT_NOT_FROZEN",
+    "required_status_for_execution": "FROZEN",
+    "source": "src/homeostasis/pan_contract.py",
+    "review_gate": "PAN_CONTRACT_FREEZE_REVIEW"
+  },
+  "parity": {
+    "id": "mhrn-pan-parity-v0.1-draft",
+    "status": "DRAFT_PREFLIGHT",
+    "source": "src/homeostasis/pan_parity_contract.py",
+    "d2": {
+      "exact_fields": [
+        "pan_alive",
+        "pan_neuron_id"
+      ],
+      "numeric_fields": [
+        "pan_health",
+        "pan_amplitude",
+        "pan_energy",
+        "pan_activity_ema",
+        "pan_consolidation",
+        "pan_information_proxy",
+        "pan_x_hd"
+      ],
+      "abs_tolerance": 1e-12,
+      "fail_closed_nonfinite": true
+    },
+    "d3c": {
+      "required": true,
+      "exact_trajectory": true,
+      "environment_contract": "mhrn-frozen-environment-v1"
+    }
+  },
+  "fe3_manifest": {
+    "path": "research/verification/frozen_environment/FE3_DETERMINISTIC_TARGET_V1.json",
+    "manifest_sha256": "e0356fcfafb5b9af37b080754ba00877f60c662243a262a3bc348e310c092e35"
+  },
+  "required_hardware": {
+    "gpu_identity_contains": "RTX 3060",
+    "acceptance_artifact_glob": "docs/canonical/HARDWARE_ACCEPTANCE_*.json",
+    "requires_passed": true,
+    "requires_full_fe3_accepted": true
+  },
+  "authorization_artifact": "research/verification/pan/PAN_WAVE5B_AUTHORIZATION.json",
+  "next_step": "freeze PAN contract and obtain reviewed physical FE-3 acceptance before explicit Wave-5B execution authorization",
+  "interpretation_boundary": [
+    "preflight readiness is not backend equivalence",
+    "hardware acceptance is engineering verification, not DATA or EVID",
+    "Playground PAN GPU checks do not automatically promote PAN to canonical MHRN",
+    "Wave 5B must remain fail-closed until all gates are satisfied"
+  ]
+}

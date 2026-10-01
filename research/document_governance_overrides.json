@@ -524,6 +524,24 @@
       "citation": "cite_current_revision_as_draft_contract_only",
       "evidence_role": "semantic_contract_draft_not_data_or_evidence",
       "rationale": "Defines the backend-neutral PAN hyperstate reference semantics prepared in Wave 5A. The contract is explicitly draft, does not establish CPU/CUDA equivalence, and creates no DATA, EVID or accepted scientific claim."
+    },
+    "docs/canonical/PAN_WAVE5B_PREFLIGHT.md": {
+      "kind": "canonical_engineering_preflight_contract",
+      "status": "current_wip",
+      "authority": "normative_pan_wave5b_preflight_contract",
+      "mutability": "editable_until_wave5b_freeze",
+      "citation": "cite_current_revision_as_engineering_preflight_only",
+      "evidence_role": "engineering_preflight_not_data_or_evidence",
+      "rationale": "Defines the fail-closed Wave-5B PAN CPU/CUDA parity preparation, gate ordering and interpretation boundary without authorizing execution or promoting PAN to canonical integrated status."
+    },
+    "research/verification/pan": {
+      "kind": "engineering_verification_manifest",
+      "status": "current_wip",
+      "authority": "canonical_pan_backend_verification_input",
+      "mutability": "versioned_replacement_only",
+      "citation": "cite_exact_manifest_path_digest_and_source_revision",
+      "evidence_role": "engineering_verification_input_not_data_or_evidence",
+      "rationale": "Versioned PAN backend parity preflight inputs and future authorization records; preparation and execution receipts do not automatically constitute scientific DATA or EVID."
     }
   }
 }

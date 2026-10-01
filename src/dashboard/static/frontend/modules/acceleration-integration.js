@@ -8,6 +8,7 @@ const STATUS_LABELS = {
   failed: "fehlgeschlagen",
   blocked: "blockiert",
   contract_draft: "Semantikvertrag in Arbeit",
+  preflight_ready: "Preflight bereit",
   unavailable: "nicht verfügbar",
 };
 
@@ -118,6 +119,7 @@ function hardwareMarkup(acceleration) {
   const manifest = acceleration.fe3_manifest || {};
   const backend = acceleration.backend || {};
   const caps = backend.capabilities || {};
+  const pan = acceleration.pan_wave5b_preflight || {};
   return `
     <div class="mhrn-accel-boundary"><strong>Interpretationsgrenze:</strong> ${escapeHtml(acceleration.provenance_rule)} Keine Anzeige in diesem Panel erzeugt DATA oder EVID.</div>
     ${waveMarkup(acceleration.waves)}
@@ -127,6 +129,9 @@ function hardwareMarkup(acceleration) {
       <dt>Live Input</dt><dd>${caps.supports_live_external_input === true ? "ja" : "nein"}</dd>
       <dt>Grenzen</dt><dd>${escapeHtml(caps.max_neurons || "—")} Neuronen · ${escapeHtml(caps.max_edges || "—")} Kanten · ${escapeHtml(caps.max_ticks || "—")} Ticks</dd>
       <dt>Plasticity</dt><dd>${escapeHtml(caps.plasticity_semantics || "—")}</dd>
+      <dt>PAN Wave 5B</dt><dd>${pan.preflight_ready === true ? "Preflight bereit" : "Preflight unvollständig"} · ${pan.ready_for_execution === true ? "Ausführung freigegeben" : "Ausführung gesperrt"}</dd>
+      <dt>PAN Contract</dt><dd>${escapeHtml(pan.contract_status || "—")} · ${pan.contract_frozen === true ? "frozen" : "nicht frozen"}</dd>
+      <dt>PAN Blocker</dt><dd>${escapeHtml((pan.blockers || []).join(", ") || "keine")}</dd>
       <dt>Hardware</dt><dd><span class="mhrn-accel-state ${statusClass(hardware.status)}">${escapeHtml(STATUS_LABELS[hardware.status] || hardware.status || "—")}</span> ${escapeHtml(hardware.gpu_identity || "")}</dd>
       <dt>Artefakt</dt><dd>${escapeHtml(hardware.artifact || "noch kein HARDWARE_ACCEPTANCE_<date>.json")}</dd>
       <dt>Nächstes Gate</dt><dd>${escapeHtml(acceleration.next_gate || "—")}</dd>
