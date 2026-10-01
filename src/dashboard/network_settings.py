@@ -12,12 +12,14 @@ from __future__ import annotations
 # ---------------------------------------------------------------------------
 
 DASHBOARD_HOST: str = "127.0.0.1"
-"""Default bind address for the dashboard HTTP server.
+"""Default bind address for direct Python dashboard startup."""
 
-- ``127.0.0.1`` — loopback only, safe for single-user local access.
-- ``0.0.0.0`` — all interfaces; required for LAN/Intranet access.
-  Only use on trusted networks; the dashboard has no built-in
-  authentication layer.
+DASHBOARD_LAN_HOST: str = "0.0.0.0"
+"""Trusted-LAN bind address used by the Windows convenience wrappers.
+
+The Windows launchers intentionally expose the dashboard to the host's private
+network by default. Direct Python startup remains loopback-only unless the user
+passes an explicit host.
 """
 
 DASHBOARD_PORT: int = 8767
