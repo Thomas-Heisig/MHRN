@@ -4,8 +4,8 @@
 
 ## Übersicht
 
-- **Forschungsfragen:** 123
-- **Hypothesen:** 148
+- **Forschungsfragen:** 125
+- **Hypothesen:** 153
 - **Claims:** 12
 - **Literaturquellen:** 67
 
@@ -656,6 +656,25 @@
 
 ---
 
+## Cross-Backend Learning Semantics
+
+### RQ-LEARN-SEM-001
+
+**Frage:** Welcher versionierte STDP-, STP-, Eligibility-, Reward- und Delay-Vertrag ist notwendig, damit CPU- und CUDA-Lernen ohne stillen Semantikwechsel verglichen werden koennen?
+
+**Status:** open
+**Relevanz:** Aktuelle CPU- und CUDA-Pfade besitzen reale Unterschiede bei STP, Credit Window, Weight Decay, Paarparametern und Synapsenidentitaet.
+
+**Hypothesen:**
+- `H-LEARN-SEM-001-A`: Die aktuelle CPU-Referenz erzeugt fuer dieselbe geordnete Spike-/Reward-Sequenz und denselben Checkpointzustand deterministisch dieselben Gewichte, Eligibility-Traces und Pending-Rewards. *(untested)*
+- `H-LEARN-SEM-001-B`: Nach Freeze eines gemeinsamen Learning-Vertrags stimmen CPU- und CUDA-Gewichte, Eligibility- und STP-Zustaende innerhalb praeregistrierter Toleranzen ueber denselben Ereignis-/Reward-Verlauf ueberein. *(untested)*
+- `H-LEARN-SEM-001-C`: Absichtlich eingefuehrte Abweichungen in Same-Tick-Ordering, Weight Decay, STP oder Reward-Credit-Semantik werden durch den spaeteren kanonischen Learning-Paritaetsvertrag fail-closed erkannt. *(untested)*
+
+**Literatur:**
+- `SRC-GERSTNER-2014`: Wulfram Gerstner et al. (2014)
+
+---
+
 ## Cross-Backend Verification Methodology
 
 ### RQ-CUDA-PAR-002
@@ -1069,6 +1088,21 @@
 - `SRC-CNS-LSNN`: Guillaume Bellec and others et al. (2018)
 - `SRC-CNS-NEURONS`: Frederico A. C. Azevedo and others et al. (2009)
 - `SRC-CNS-EQUIV`: Daniel Lakens et al. (2017)
+
+---
+
+## Governed Structural Plasticity
+
+### RQ-STRUCT-APPROVAL-001
+
+**Frage:** Kann ein versionierter Approval- und Host-Barrieren-Vertrag strukturelle Mutation fail-closed autorisieren, ohne Safety-, Journal-, Identitaets- oder wissenschaftliche Freeze-Grenzen zu umgehen?
+
+**Status:** open
+**Relevanz:** Growth, Pruning und Apoptose duerfen nicht allein aus einer Policy-Empfehlung oder GPU-Verfuegbarkeit Mutationserlaubnis ableiten.
+
+**Hypothesen:**
+- `H-STRUCT-APPROVAL-001-A`: Jeder Mutationsversuch ohne modus-spezifische Autorisierung, verfuegbare Structural Barrier, gesundes Journal und erlaubenden Scientific Freeze wird fail-closed abgelehnt. *(untested)*
+- `H-STRUCT-APPROVAL-001-B`: Der Policy-Artifact-Hash ist bei identischem Vertrag, Modus und Config deterministisch und aendert sich bei einer relevanten Policy- oder Modusaenderung. *(untested)*
 
 ---
 
