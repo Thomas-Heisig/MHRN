@@ -29,6 +29,7 @@ All registered RQs are projected. Empty direction coordinates remain explicit un
 | RQ-CNS-117 | unresolved | unclassified | unresolved | unresolved | H-CNS-117-A | unresolved | unresolved | unresolved |
 | RQ-CONN-001 | unresolved | unclassified | unresolved | unresolved | H-CONN-001-A | unresolved | unresolved | unresolved |
 | RQ-CONN-002 | unresolved | unclassified | unresolved | unresolved | H-CONN-002-A | EXP-BATCH-20260909223705-75, EXP-BATCH-20260914074039-75, EXP-EMP-20260910 | unresolved | unresolved |
+| RQ-CPU-PAR-001 | unresolved | unclassified | unresolved | unresolved | H-CPU-PAR-001-A | unresolved | unresolved | unresolved |
 | RQ-CUDA-CL-001 | unresolved | unclassified | unresolved | unresolved | H-CUDA-CL-001-A, H-CUDA-CL-001-B, H-CUDA-CL-001-C | unresolved | unresolved | unresolved |
 | RQ-CUDA-DET-001 | unresolved | unclassified | unresolved | unresolved | H-CUDA-DET-001-A, H-CUDA-DET-001-B, H-CUDA-DET-001-C | unresolved | unresolved | unresolved |
 | RQ-CUDA-PAR-001 | unresolved | unclassified | unresolved | unresolved | H-CUDA-PAR-001-A, H-CUDA-PAR-001-B, H-CUDA-PAR-001-C | unresolved | unresolved | unresolved |

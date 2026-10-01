@@ -4,8 +4,8 @@
 
 ## Übersicht
 
-- **Forschungsfragen:** 125
-- **Hypothesen:** 153
+- **Forschungsfragen:** 126
+- **Hypothesen:** 154
 - **Claims:** 12
 - **Literaturquellen:** 67
 
@@ -374,6 +374,20 @@
 
 **Literatur:**
 - `SRC-CNS-TURING`: Alan M. Turing et al. (1950)
+
+---
+
+## CPU Deterministic Self-Parity
+
+### RQ-CPU-PAR-001
+
+**Frage:** Erzeugt die kanonische CPU-Ausfuehrung unter identischem Source Freeze, Netzwerkvertrag, Seed, Input und Anfangszustand in gepaarten Wiederholungslaeufen exakt dieselbe Ereignis- und Endzustandssignatur?
+
+**Status:** open
+**Relevanz:** Eine prospektive CPU-Self-Parity-Baseline trennt intrinsische Nichtdeterministik des Referenzpfads von spaeteren Cross-Backend-Abweichungen und schafft einen hardwareunabhaengigen wissenschaftlichen Ausgangspunkt.
+
+**Hypothesen:**
+- `H-CPU-PAR-001-A`: Fuer jeden der 20 vorab eingefrorenen Seeds erzeugen zwei unabhaengig neu aufgebaute CPU-Laeufe mit identischem Netzwerk-, Stimulus- und Anfangszustandsvertrag exakt dieselbe geordnete Spike-Ereignisfolge und denselben kanonischen Endzustands-Digest. *(untested)*
 
 ---
 

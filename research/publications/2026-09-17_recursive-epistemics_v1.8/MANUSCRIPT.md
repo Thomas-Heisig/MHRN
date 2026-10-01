@@ -3400,11 +3400,3 @@ stärkere Aussage tragen.
 [Alle Forschungsfragen und Hypothesen](RESEARCH_REGISTER.md) · [Quellenindex](SOURCE_INDEX.md) · [Semantische Corpus-Integration](CONTENT_INTEGRATION.md) · [Ungekürzter Quellenband 1.7](LEGACY_V17.md) · [Weitere Vorarbeiten](PRIOR_WORK_MAP.md) · [Literatur](REFERENCES.md) · [Prüfmanifest](manifest.json).
 
 Die Quellenbestandsaufnahme belegt referenzierte Datei-Erhaltung am angegebenen Commit, nicht die vollständige semantische Erfassung jeder Idee. Die außerhalb des Repositories rekonstruierte Vorgeschichte ist ausdrücklich unvollständig.
-
-### Prospective CPU self-parity baseline
-
-The Wave-6/7 governance consolidation is accompanied by a prospective CPU-only self-parity study (`RQ-CPU-PAR-001`, `H-CPU-PAR-001-A`, `PREREG-CPU-PAR-001`). Twenty frozen seeds are paired across two independently rebuilt CPU runs. Exact equality of the ordered spike-event sequence and final canonical state digest are co-primary outcomes.
-
-Structural mutation, STDP, reward learning, PAN and CUDA are excluded from this protocol. This creates a bounded hardware-independent reference for later cross-backend studies; preregistration itself creates no DATA or EVID.
-
-For the first later governed structural-plasticity run, the selected approval mode is `MANUAL_ONLY`, while the system default remains fail-closed `DISABLED`. That selection is governance only and is not execution authorization.
