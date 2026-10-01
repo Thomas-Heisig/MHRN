@@ -296,4 +296,3 @@ Wave 6 and Wave 7 are not globally blocked from design work by the missing RTX
 run. Structural host-barrier contracts and the canonical learning/synapse
 contract may be prepared independently. Their later CUDA/PAN promotion remains
 subject to their own semantic and hardware gates.
-
