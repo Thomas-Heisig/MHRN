@@ -125,7 +125,9 @@ def test_reviewed_rtx_fe3_artifact_does_not_bypass_contract_freeze(
         "full_fe3_accepted": True,
         "passed": True,
     }
-    report_path = repo_root / "docs" / "canonical" / "HARDWARE_ACCEPTANCE_2026-10-01.json"
+    report_path = (
+        repo_root / "docs" / "canonical" / "HARDWARE_ACCEPTANCE_2026-10-01.json"
+    )
     report_path.write_text(json.dumps(report), encoding="utf-8")
 
     status = evaluate_pan_wave5b_readiness(repo_root)
