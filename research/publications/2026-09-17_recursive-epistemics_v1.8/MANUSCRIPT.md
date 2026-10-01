@@ -3368,6 +3368,31 @@ Vor positiver DATA dürfen weder selbstorganisierter Werkzeuggebrauch noch unive
 Dieser Strang erhält hohe Priorität, weil er eine direkte Falsifikation der These ermöglicht, MHRN müsse externes Faktenwissen intern memorieren: erfolgreiche Nutzung neuer Inhalte aus einer neuen Quelle bei erhaltener Aufgabenleistung würde eine gelernte Informationsnutzungsstrategie stützen; Scheitern würde die stärkere Interpretation begrenzen.
 
 
+## 58.7 Wave-6/7-Vertragsgrenzen für strukturelle Plastizität und Lernen
+
+Parallel zur noch ausstehenden physischen RTX-3060-Akzeptanz werden zwei
+Semantiklinien vorbereitet. Wave 6 formalisiert die bereits vorhandene
+Self-Organization-Pipeline als fail-closed Approval-/Barrier-Vertrag.
+`MANUAL_ONLY` benötigt eine explizite Autorisierung; automatisierte Modi
+benötigen einen gehashten Policy-Vertrag und bei `PREREGISTERED_AUTO` einen
+vorab eingefrorenen Policy-Artefaktstand. Safety-, Journal-, Barrier- und
+Scientific-Freeze-Grenzen bleiben davon unabhängig und können nicht durch eine
+menschliche oder algorithmische Freigabe übergangen werden.
+
+Wave 7 inventarisiert die reale CPU-Lernsemantik und die aktuell davon
+abweichende CUDA-Referenz. Die CPU-Linie verwendet geordnete nearest-neighbour
+Pair-STDP-Ereignisse, einen Same-Tick-Nullbeitrag, exponentielle
+Eligibility-Traces und verzögerten Reward. Die CUDA-Referenz besitzt zusätzlich
+eine STP-Kandidatensemantik, ein Credit Window und Weight Decay. Diese
+Unterschiede werden nicht durch Toleranzen verdeckt, sondern blockieren den
+Freeze eines gemeinsamen Learning-Vertrags.
+
+Beide Linien sind Engineering-/Governance-Arbeit. Sie erzeugen weder DATA noch
+EVID und autorisieren insbesondere nicht die Wave-5B-PAN-Ausführung. Erst ein
+reviewter Freeze und anschließende prospektive Cross-Backend-Tests können eine
+stärkere Aussage tragen.
+
+
 ---
 
 # Anhang — Quellen und Vorarbeiten
@@ -3375,3 +3400,11 @@ Dieser Strang erhält hohe Priorität, weil er eine direkte Falsifikation der Th
 [Alle Forschungsfragen und Hypothesen](RESEARCH_REGISTER.md) · [Quellenindex](SOURCE_INDEX.md) · [Semantische Corpus-Integration](CONTENT_INTEGRATION.md) · [Ungekürzter Quellenband 1.7](LEGACY_V17.md) · [Weitere Vorarbeiten](PRIOR_WORK_MAP.md) · [Literatur](REFERENCES.md) · [Prüfmanifest](manifest.json).
 
 Die Quellenbestandsaufnahme belegt referenzierte Datei-Erhaltung am angegebenen Commit, nicht die vollständige semantische Erfassung jeder Idee. Die außerhalb des Repositories rekonstruierte Vorgeschichte ist ausdrücklich unvollständig.
+
+### Prospective CPU self-parity baseline
+
+The Wave-6/7 governance consolidation is accompanied by a prospective CPU-only self-parity study (`RQ-CPU-PAR-001`, `H-CPU-PAR-001-A`, `PREREG-CPU-PAR-001`). Twenty frozen seeds are paired across two independently rebuilt CPU runs. Exact equality of the ordered spike-event sequence and final canonical state digest are co-primary outcomes.
+
+Structural mutation, STDP, reward learning, PAN and CUDA are excluded from this protocol. This creates a bounded hardware-independent reference for later cross-backend studies; preregistration itself creates no DATA or EVID.
+
+For the first later governed structural-plasticity run, the selected approval mode is `MANUAL_ONLY`, while the system default remains fail-closed `DISABLED`. That selection is governance only and is not execution authorization.

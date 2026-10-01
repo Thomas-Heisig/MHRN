@@ -839,6 +839,38 @@ Die folgenden Forschungsfragen sind noch offen und warten auf experimentelle Evi
 
 ---
 
+## RQ-STRUCT-APPROVAL-001
+
+**Domäne:** Governed Structural Plasticity
+
+**Frage:** Kann ein versionierter Approval- und Host-Barrieren-Vertrag strukturelle Mutation fail-closed autorisieren, ohne Safety-, Journal-, Identitaets- oder wissenschaftliche Freeze-Grenzen zu umgehen?
+
+**Relevanz:** Growth, Pruning und Apoptose duerfen nicht allein aus einer Policy-Empfehlung oder GPU-Verfuegbarkeit Mutationserlaubnis ableiten.
+
+**Hypothesen:**
+- `H-STRUCT-APPROVAL-001-A`: Jeder Mutationsversuch ohne modus-spezifische Autorisierung, verfuegbare Structural Barrier, gesundes Journal und erlaubenden Scientific Freeze wird fail-closed abgelehnt.
+- `H-STRUCT-APPROVAL-001-B`: Der Policy-Artifact-Hash ist bei identischem Vertrag, Modus und Config deterministisch und aendert sich bei einer relevanten Policy- oder Modusaenderung.
+
+---
+
+## RQ-LEARN-SEM-001
+
+**Domäne:** Cross-Backend Learning Semantics
+
+**Frage:** Welcher versionierte STDP-, STP-, Eligibility-, Reward- und Delay-Vertrag ist notwendig, damit CPU- und CUDA-Lernen ohne stillen Semantikwechsel verglichen werden koennen?
+
+**Relevanz:** Aktuelle CPU- und CUDA-Pfade besitzen reale Unterschiede bei STP, Credit Window, Weight Decay, Paarparametern und Synapsenidentitaet.
+
+**Literatur:**
+- `SRC-GERSTNER-2014`: Wulfram Gerstner et al. (2014)
+
+**Hypothesen:**
+- `H-LEARN-SEM-001-A`: Die aktuelle CPU-Referenz erzeugt fuer dieselbe geordnete Spike-/Reward-Sequenz und denselben Checkpointzustand deterministisch dieselben Gewichte, Eligibility-Traces und Pending-Rewards.
+- `H-LEARN-SEM-001-B`: Nach Freeze eines gemeinsamen Learning-Vertrags stimmen CPU- und CUDA-Gewichte, Eligibility- und STP-Zustaende innerhalb praeregistrierter Toleranzen ueber denselben Ereignis-/Reward-Verlauf ueberein.
+- `H-LEARN-SEM-001-C`: Absichtlich eingefuehrte Abweichungen in Same-Tick-Ordering, Weight Decay, STP oder Reward-Credit-Semantik werden durch den spaeteren kanonischen Learning-Paritaetsvertrag fail-closed erkannt.
+
+---
+
 ## RQ-MEM-002
 
 **Domäne:** Memory
@@ -1878,6 +1910,6 @@ Die folgenden Forschungsfragen sind noch offen und warten auf experimentelle Evi
 
 ---
 
-*Insgesamt 122 offene Fragen.*
+*Insgesamt 124 offene Fragen.*
 
 > Pruefstatus: RQ/H- und EVID-Statuswerte geben den Registry-Inhalt wieder. Insbesondere historische supports/supported-Eintraege sind keine Bestaetigung einer Freigabe nach den heutigen Clean-Freeze- und Human-Review-Gates. Ein abgeschlossener Lauf ist DATA, nicht automatisch akzeptierte Evidenz.

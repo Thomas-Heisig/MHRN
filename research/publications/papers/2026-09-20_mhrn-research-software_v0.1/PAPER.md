@@ -355,3 +355,23 @@ FE-3/CUDA hardware acceptance remains pending, and PAN is not treated as
 scientifically validated or backend-equivalent. The separation is deliberate:
 semantic freeze precedes GPU promotion so that future CPU/CUDA PAN comparisons
 test one explicit contract rather than two evolving implementations.
+
+
+### Governed structural and learning contracts
+
+Two later integration waves deliberately separate semantics from hardware.
+Wave 6 defines fail-closed structural approval modes and a stable policy
+artifact hash around the existing proposal/coordinator/journal/undo pipeline.
+Manual approval is necessary but never sufficient: barrier availability,
+journal health, topology permission and the scientific freeze remain
+independent hard gates.
+
+Wave 7 inventories the existing CPU STDP/eligibility/reward rule together with
+the non-canonical CUDA plasticity reference. The draft explicitly records
+current mismatches in STP, edge identity, reward-credit semantics and weight
+decay. Those mismatches prevent cross-backend learning from being labelled
+canonical until a reviewed common contract is frozen and implemented by both
+paths.
+
+These are engineering governance artifacts, not empirical learning or
+structural-plasticity evidence.

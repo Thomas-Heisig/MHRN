@@ -362,6 +362,10 @@ test("Playground exposes controlled MHRN integration transfer", async ({
   await expect(panel).toContainText("Neural I/O Contracts");
   await expect(panel).toContainText("Neural I/O Codecs");
   await expect(panel).toContainText("Neural I/O Area Adapter");
+  await expect(panel).toContainText("Structural Approval / Barrier");
+  await expect(panel).toContainText("Wave 6 · Structural-Approval-Draft");
+  await expect(panel).toContainText("Learning / Synapse Semantics");
+  await expect(panel).toContainText("Wave 7 · Learning-Contract-Draft");
 
   const verify = panel.locator('[data-pg-transfer="neural_io_contracts"]');
   await expect(verify).toBeVisible();

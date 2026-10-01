@@ -38,7 +38,7 @@
       "title": "Dimensional Embedding and Propagation Dynamics in Resource-Matched Recurrent Spiking Neural Networks"
     }
   ],
-  "question_count": 123,
+  "question_count": 125,
   "questions": [
     {
       "claim_statuses": {
@@ -1958,6 +1958,36 @@
       "cross_cuts": [],
       "direction": null,
       "direction_status": "unresolved_no_inference",
+      "domain": "Cross-Backend Learning Semantics",
+      "evidence_records": [],
+      "experiments": [],
+      "hypotheses": [
+        "H-LEARN-SEM-001-A",
+        "H-LEARN-SEM-001-B",
+        "H-LEARN-SEM-001-C"
+      ],
+      "hypothesis_statuses": {
+        "H-LEARN-SEM-001-A": "untested",
+        "H-LEARN-SEM-001-B": "untested",
+        "H-LEARN-SEM-001-C": "untested"
+      },
+      "literature": [
+        "SRC-GERSTNER-2014"
+      ],
+      "manuscript_parts": [],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-LEARN-SEM-001",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.acceleration.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
       "domain": "Lifelong Learning",
       "evidence_records": [],
       "experiments": [
@@ -3511,6 +3541,32 @@
       "research_question": "RQ-STRUCT-001",
       "rq_status": "open",
       "source_path": "research/registry/questions.yaml",
+      "stages": []
+    },
+    {
+      "claim_statuses": {},
+      "claims": [],
+      "cross_cuts": [],
+      "direction": null,
+      "direction_status": "unresolved_no_inference",
+      "domain": "Governed Structural Plasticity",
+      "evidence_records": [],
+      "experiments": [],
+      "hypotheses": [
+        "H-STRUCT-APPROVAL-001-A",
+        "H-STRUCT-APPROVAL-001-B"
+      ],
+      "hypothesis_statuses": {
+        "H-STRUCT-APPROVAL-001-A": "untested",
+        "H-STRUCT-APPROVAL-001-B": "untested"
+      },
+      "literature": [],
+      "manuscript_parts": [],
+      "papers": [],
+      "research_axis": "unclassified",
+      "research_question": "RQ-STRUCT-APPROVAL-001",
+      "rq_status": "open",
+      "source_path": "research/registry/questions.acceleration.yaml",
       "stages": []
     },
     {

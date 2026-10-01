@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "id": "WAVE7-LEARNING-DIVERGENCES-001",
+  "status": "OPEN_BLOCKERS",
+  "contract_id": "mhrn-learning-synapse-v0.1-draft",
+  "scientific_evidence": false,
+  "cross_backend_learning_equivalence": false,
+  "blockers": [
+    {
+      "id": "EDGE_IDENTITY",
+      "status": "OPEN",
+      "cpu": "stable key currently (pre_id,target_id); parallel edges not canonical",
+      "cuda": "array/edge position can distinguish individual edges",
+      "required_resolution": "define stable versioned edge_id semantics shared by CPU, CUDA, checkpoint and delayed-event state"
+    },
+    {
+      "id": "STP",
+      "status": "OPEN",
+      "cpu": "no canonical STP state/update rule in LearningEngine",
+      "cuda": "deterministic candidate STP release/depletion/recovery exists",
+      "required_resolution": "accept, revise or explicitly exclude one versioned STP contract and implement it on compared backends"
+    },
+    {
+      "id": "REWARD_CREDIT",
+      "status": "OPEN",
+      "cpu": "delayed reward plus continuously decaying eligibility",
+      "cuda": "reference uses a bounded fixed credit window",
+      "required_resolution": "freeze one reward/eligibility timing and credit rule"
+    },
+    {
+      "id": "WEIGHT_DECAY",
+      "status": "OPEN",
+      "cpu": "no unconditional per-tick weight decay in canonical LearningEngine",
+      "cuda": "reference applies per-tick weight decay",
+      "required_resolution": "freeze shared decay semantics or remove decay from the compared contract version"
+    },
+    {
+      "id": "PAIR_DEFAULTS",
+      "status": "OPEN",
+      "cpu": "canonical pair-STDP defaults from LearningEngine/config",
+      "cuda": "reference pair amplitudes/defaults differ",
+      "required_resolution": "freeze identical pair amplitudes, taus, same-tick rule and parameter provenance"
+    }
+  ],
+  "promotion_gate": "all five blockers resolved, contract frozen, implementations aligned, checkpoint continuation state complete, negative controls pass"
+}

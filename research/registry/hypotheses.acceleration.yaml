@@ -215,3 +215,52 @@
   evidence: []
   created: '2026-09-30'
   updated: '2026-09-30'
+
+
+- id: H-STRUCT-APPROVAL-001-A
+  research_question: RQ-STRUCT-APPROVAL-001
+  hypothesis: Jeder Mutationsversuch ohne modus-spezifische Autorisierung, verfuegbare Structural Barrier, gesundes Journal und erlaubenden Scientific Freeze wird fail-closed abgelehnt.
+  status: untested
+  evidence: []
+  created: '2026-10-01'
+  updated: '2026-10-01'
+
+- id: H-STRUCT-APPROVAL-001-B
+  research_question: RQ-STRUCT-APPROVAL-001
+  hypothesis: Der Policy-Artifact-Hash ist bei identischem Vertrag, Modus und Config deterministisch und aendert sich bei einer relevanten Policy- oder Modusaenderung.
+  status: untested
+  evidence: []
+  created: '2026-10-01'
+  updated: '2026-10-01'
+
+- id: H-LEARN-SEM-001-A
+  research_question: RQ-LEARN-SEM-001
+  hypothesis: Die aktuelle CPU-Referenz erzeugt fuer dieselbe geordnete Spike-/Reward-Sequenz und denselben Checkpointzustand deterministisch dieselben Gewichte, Eligibility-Traces und Pending-Rewards.
+  status: untested
+  evidence: []
+  created: '2026-10-01'
+  updated: '2026-10-01'
+
+- id: H-LEARN-SEM-001-B
+  research_question: RQ-LEARN-SEM-001
+  hypothesis: Nach Freeze eines gemeinsamen Learning-Vertrags stimmen CPU- und CUDA-Gewichte, Eligibility- und STP-Zustaende innerhalb praeregistrierter Toleranzen ueber denselben Ereignis-/Reward-Verlauf ueberein.
+  status: untested
+  evidence: []
+  created: '2026-10-01'
+  updated: '2026-10-01'
+
+- id: H-LEARN-SEM-001-C
+  research_question: RQ-LEARN-SEM-001
+  hypothesis: Absichtlich eingefuehrte Abweichungen in Same-Tick-Ordering, Weight Decay, STP oder Reward-Credit-Semantik werden durch den spaeteren kanonischen Learning-Paritaetsvertrag fail-closed erkannt.
+  status: untested
+  evidence: []
+  created: '2026-10-01'
+  updated: '2026-10-01'
+
+- id: H-CPU-PAR-001-A
+  research_question: RQ-CPU-PAR-001
+  hypothesis: Fuer jeden der 20 vorab eingefrorenen Seeds erzeugen zwei unabhaengig neu aufgebaute CPU-Laeufe mit identischem Netzwerk-, Stimulus- und Anfangszustandsvertrag exakt dieselbe geordnete Spike-Ereignisfolge und denselben kanonischen Endzustands-Digest.
+  status: untested
+  evidence: []
+  created: '2026-10-01'
+  updated: '2026-10-01'
