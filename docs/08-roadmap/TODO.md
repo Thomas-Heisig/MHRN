@@ -676,3 +676,14 @@ Reference: [MHRN simulator capability gaps](MHRN_SIMULATOR_CAPABILITY_GAPS.md).
 - [ ] Align weight-decay semantics and pair parameters.
 - [ ] Freeze contract and implement both CPU/CUDA against the same version.
 - [ ] Run learning D2/checkpoint parity and only then preregister learning studies.
+
+## 2026-10-01 Wave 6/7 governance closeout
+
+- [x] Classify the structural-approval and learning-contract drafts explicitly in document governance.
+- [x] Select `MANUAL_ONLY` for the first future governed structural run while retaining global `DISABLED` as the safe default.
+- [x] Record the five Wave-7 CPU/CUDA learning divergences as machine-readable open blockers.
+- [x] Register `RQ-CPU-PAR-001` / `H-CPU-PAR-001-A`.
+- [x] Freeze `PREREG-CPU-PAR-001` with seeds 910001..910020.
+- [ ] Bind an exact post-merge source/config digest and separately authorize execution of `cpu_self_parity_v1`.
+- [ ] Perform the physical RTX-3060 Wave-5B acceptance separately; it remains Engineering Verification and is not substituted by this CPU study.
+- [ ] Resolve all five Wave-7 learning divergences before freezing a common CPU/CUDA learning contract.
