@@ -55,11 +55,27 @@ def test_transfer_endpoint_is_idempotent_verification_not_runtime_code_mutation(
     assert result["runtime_source_mutation"] is False
 
 
-def test_blocked_transfer_returns_declared_gate() -> None:
+def test_wave7_learning_transfer_plan_exposes_draft_blockers() -> None:
     result = transfer_element({"element_id": "learning_synapse"})
     assert result["applied"] is False
-    assert result["status"] == "BLOCKED_CONTRACT_FREEZE"
-    assert result["next_gate"] == "MHRN_LEARNING_SYNAPSE_CONTRACT"
+    assert result["status"] == "WAVE7_CONTRACT_DRAFT"
+    assert result["next_gate"] == "LEARNING_CONTRACT_FREEZE_AND_CPU_CUDA_ALIGNMENT"
+    assert result["learning_contract_self_check"] is True
+    status = result["learning_contract_status"]
+    assert isinstance(status, dict)
+    assert status["ready_for_cross_backend_learning"] is False
+    assert "LEARNING_CONTRACT_NOT_FROZEN" in status["blockers"]
+
+
+def test_wave6_structural_transfer_plan_exposes_fail_closed_draft() -> None:
+    result = transfer_element({"element_id": "structural_approval"})
+    assert result["applied"] is False
+    assert result["status"] == "WAVE6_CONTRACT_DRAFT"
+    assert result["next_gate"] == "STRUCTURAL_BARRIER_ALIGNMENT_AND_REVIEW"
+    assert result["structural_approval_self_check"] is True
+    status = result["structural_approval_status"]
+    assert isinstance(status, dict)
+    assert status["ready_for_mutation"] is False
 
 
 def test_playground_neural_io_codecs_are_canonical_reexports() -> None:

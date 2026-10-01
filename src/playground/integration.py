@@ -111,11 +111,15 @@ _CANDIDATES: tuple[PromotionCandidate, ...] = (
     PromotionCandidate(
         "learning_synapse",
         "Learning / Synapse Semantics",
-        "BLOCKED_CONTRACT_FREEZE",
+        "WAVE7_CONTRACT_DRAFT",
         ("src/playground/cuda/synapses.py",),
-        ("src/learning/",),
-        "MHRN_LEARNING_SYNAPSE_CONTRACT",
-        notes="CPU and CUDA learning semantics must be frozen before promotion.",
+        ("src/learning/contract.py", "docs/canonical/LEARNING_CONTRACT_DRAFT.md"),
+        "LEARNING_CONTRACT_FREEZE_AND_CPU_CUDA_ALIGNMENT",
+        notes=(
+            "Wave 7 inventories current CPU semantics and known CUDA-reference "
+            "differences. STP, stable edge identity, reward-credit semantics and "
+            "weight decay remain explicit freeze blockers."
+        ),
     ),
     PromotionCandidate(
         "closed_loop",
@@ -150,6 +154,22 @@ _CANDIDATES: tuple[PromotionCandidate, ...] = (
             "projection. This is preparation only: PAN is not canonical, integrated "
             "or evidence-eligible until the semantic contract is frozen, physical "
             "FE-3 acceptance exists, and explicit Wave-5B execution is authorized."
+        ),
+    ),
+    PromotionCandidate(
+        "structural_approval",
+        "Structural Approval / Barrier",
+        "WAVE6_CONTRACT_DRAFT",
+        ("src/self_organization/",),
+        (
+            "src/self_organization/approval.py",
+            "docs/canonical/STRUCTURAL_APPROVAL_CONTRACT_DRAFT.md",
+        ),
+        "STRUCTURAL_BARRIER_ALIGNMENT_AND_REVIEW",
+        notes=(
+            "Wave 6 defines fail-closed approval modes and policy hashing. "
+            "Mutation remains blocked until the structural host barrier, journal "
+            "health and scientific-freeze gates are aligned and reviewed."
         ),
     ),
     PromotionCandidate(
@@ -274,6 +294,30 @@ def transfer_element(payload: Mapping[str, object]) -> dict[str, object]:
             "execution_mode": CUDABackend().capabilities().execution_mode,
             "plasticity_semantics": PLASTICITY_SEMANTICS,
             "d3_complete": False,
+        }
+    elif candidate.element_id == "learning_synapse":
+        from src.learning.contract import (
+            learning_contract_check,
+            learning_contract_status,
+        )
+
+        connected = False
+        detail = {
+            "learning_contract_self_check": learning_contract_check(),
+            "learning_contract_status": learning_contract_status().to_mapping(),
+        }
+    elif candidate.element_id == "structural_approval":
+        from src.self_organization.approval import (
+            structural_approval_contract_check,
+            structural_approval_contract_status,
+        )
+
+        connected = False
+        detail = {
+            "structural_approval_self_check": structural_approval_contract_check(),
+            "structural_approval_status": (
+                structural_approval_contract_status().to_mapping()
+            ),
         }
     elif candidate.element_id == "pan_hyperstate":
         from pathlib import Path
