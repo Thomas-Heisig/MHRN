@@ -334,3 +334,24 @@ compatibility surfaces. Absence of a dated
 `HARDWARE_ACCEPTANCE_<date>.json` is rendered fail-closed as physical
 acceptance pending. This projection is engineering provenance and does not
 promote any CUDA/FE-3 result to DATA or EVID.
+
+
+## PAN semantic promotion boundary (Wave 5A)
+
+After canonicalizing neural I/O, execution backends, parity/determinism and the
+CUDA execution layer, the next integration step is intentionally semantic
+rather than accelerative. MHRN now contains a draft backend-neutral PAN
+hyperstate contract under `src/homeostasis/pan_contract.py`.
+
+The contract records the exact state surface, update order and current
+Playground reference coefficients for health, energy, activity EMA,
+consolidation, amplitude, information proxy and apoptosis eligibility. The
+Playground PAN runtime consumes these values from the canonical draft instead
+of owning an independent set of constants.
+
+This is an engineering integration artifact, not a scientific result. The
+contract status is `DRAFT_NOT_FROZEN`; RQ-PAN-SEM-001 remains open, physical
+FE-3/CUDA hardware acceptance remains pending, and PAN is not treated as
+scientifically validated or backend-equivalent. The separation is deliberate:
+semantic freeze precedes GPU promotion so that future CPU/CUDA PAN comparisons
+test one explicit contract rather than two evolving implementations.
