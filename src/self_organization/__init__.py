@@ -1,9 +1,16 @@
 """Self-organization and controlled structural plasticity."""
 
 from .approval import (
+    STRUCTURAL_APPROVAL_CONTRACT_ID,
+    STRUCTURAL_APPROVAL_CONTRACT_STATUS,
     ApprovalDecision,
+    ApprovalMode,
     ProposalApprovalPolicy,
+    StructuralApprovalContractState,
     StructuralPlasticityConfig,
+    structural_approval_contract_check,
+    structural_approval_contract_status,
+    structural_policy_artifact_hash,
 )
 from .coordinator import (
     ProposalDecision,
@@ -29,7 +36,10 @@ from .policy import (
 )
 
 __all__ = [
+    "STRUCTURAL_APPROVAL_CONTRACT_ID",
+    "STRUCTURAL_APPROVAL_CONTRACT_STATUS",
     "ApprovalDecision",
+    "ApprovalMode",
     "ChangeKind",
     "PlasticitySafetyLimits",
     "PolicyReport",
@@ -47,7 +57,11 @@ __all__ = [
     "StructuralAction",
     "StructuralChange",
     "StructuralCostModel",
+    "StructuralApprovalContractState",
     "StructuralPlasticityConfig",
+    "structural_approval_contract_check",
+    "structural_approval_contract_status",
+    "structural_policy_artifact_hash",
     "StructuralPlasticityEngine",
     "StructuralProposal",
 ]

@@ -1146,3 +1146,34 @@ The benchmark/reference suite moves **before** live CUDA-1.6 and full PAN-GPU wo
 - [ ] Implement the same frozen contract on canonical CUDA PAN execution.
 - [ ] Run PAN D1/D2/checkpoint parity only after physical FE-3 acceptance and
   semantic freeze.
+
+
+## 2026-10-01 — Wave 6/7 contract design
+
+Wave 6 and Wave 7 proceed in parallel with physical RTX-3060 acceptance because
+they are semantics/governance work, not hardware acceptance.
+
+### Wave 6 — governed structural plasticity
+
+- [x] Add deterministic approval-policy artifact hashing.
+- [x] Define fail-closed modes: DISABLED, MANUAL_ONLY, POLICY_AUTO and PREREGISTERED_AUTO.
+- [x] Require mode-specific authorization in addition to topology permission,
+  Structural Barrier availability, journal health and scientific freeze.
+- [ ] Align the existing StructuralPlasticityEngine mutation path with one canonical host barrier.
+- [ ] Bind topology-generation increment, CSR/schedule rebuild and checkpoint
+  verification to that barrier.
+- [ ] Human Review/freeze of the structural approval contract.
+- [ ] CUDA structural mutation remains gated until those steps are complete.
+
+### Wave 7 — learning/synapse semantics
+
+- [x] Inventory current CPU STDP/eligibility/reward order and checkpoint state.
+- [x] Inventory current CUDA STP/reward/weight-decay candidate semantics.
+- [x] Expose known mismatches fail-closed in an executable contract descriptor.
+- [ ] Decide stable edge identity for parallel synapses.
+- [ ] Freeze or explicitly exclude STP semantics for the contract version.
+- [ ] Align reward-credit and weight-decay semantics across CPU/CUDA.
+- [ ] Implement the same frozen contract on both paths and run canonical learning parity.
+- [ ] Human Review/freeze before scientific learning studies.
+
+These drafts create no DATA/EVID and do not authorize Wave-5B PAN execution.

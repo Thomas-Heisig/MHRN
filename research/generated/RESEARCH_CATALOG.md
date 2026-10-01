@@ -4,8 +4,8 @@
 
 ## Übersicht
 
-- **Forschungsfragen:** 123
-- **Hypothesen:** 148
+- **Forschungsfragen:** 126
+- **Hypothesen:** 154
 - **Claims:** 12
 - **Literaturquellen:** 67
 
@@ -377,6 +377,20 @@
 
 ---
 
+## CPU Deterministic Self-Parity
+
+### RQ-CPU-PAR-001
+
+**Frage:** Erzeugt die kanonische CPU-Ausfuehrung unter identischem Source Freeze, Netzwerkvertrag, Seed, Input und Anfangszustand in gepaarten Wiederholungslaeufen exakt dieselbe Ereignis- und Endzustandssignatur?
+
+**Status:** open
+**Relevanz:** Eine prospektive CPU-Self-Parity-Baseline trennt intrinsische Nichtdeterministik des Referenzpfads von spaeteren Cross-Backend-Abweichungen und schafft einen hardwareunabhaengigen wissenschaftlichen Ausgangspunkt.
+
+**Hypothesen:**
+- `H-CPU-PAR-001-A`: Fuer jeden der 20 vorab eingefrorenen Seeds erzeugen zwei unabhaengig neu aufgebaute CPU-Laeufe mit identischem Netzwerk-, Stimulus- und Anfangszustandsvertrag exakt dieselbe geordnete Spike-Ereignisfolge und denselben kanonischen Endzustands-Digest. *(untested)*
+
+---
+
 ## Causal complexity
 
 ### RQ-CNS-108
@@ -653,6 +667,25 @@
 **Literatur:**
 - `SRC-CNS-BUTLIN`: Patrick Butlin and others et al. (2026)
 - `SRC-CNS-EQUIV`: Daniel Lakens et al. (2017)
+
+---
+
+## Cross-Backend Learning Semantics
+
+### RQ-LEARN-SEM-001
+
+**Frage:** Welcher versionierte STDP-, STP-, Eligibility-, Reward- und Delay-Vertrag ist notwendig, damit CPU- und CUDA-Lernen ohne stillen Semantikwechsel verglichen werden koennen?
+
+**Status:** open
+**Relevanz:** Aktuelle CPU- und CUDA-Pfade besitzen reale Unterschiede bei STP, Credit Window, Weight Decay, Paarparametern und Synapsenidentitaet.
+
+**Hypothesen:**
+- `H-LEARN-SEM-001-A`: Die aktuelle CPU-Referenz erzeugt fuer dieselbe geordnete Spike-/Reward-Sequenz und denselben Checkpointzustand deterministisch dieselben Gewichte, Eligibility-Traces und Pending-Rewards. *(untested)*
+- `H-LEARN-SEM-001-B`: Nach Freeze eines gemeinsamen Learning-Vertrags stimmen CPU- und CUDA-Gewichte, Eligibility- und STP-Zustaende innerhalb praeregistrierter Toleranzen ueber denselben Ereignis-/Reward-Verlauf ueberein. *(untested)*
+- `H-LEARN-SEM-001-C`: Absichtlich eingefuehrte Abweichungen in Same-Tick-Ordering, Weight Decay, STP oder Reward-Credit-Semantik werden durch den spaeteren kanonischen Learning-Paritaetsvertrag fail-closed erkannt. *(untested)*
+
+**Literatur:**
+- `SRC-GERSTNER-2014`: Wulfram Gerstner et al. (2014)
 
 ---
 
@@ -1069,6 +1102,21 @@
 - `SRC-CNS-LSNN`: Guillaume Bellec and others et al. (2018)
 - `SRC-CNS-NEURONS`: Frederico A. C. Azevedo and others et al. (2009)
 - `SRC-CNS-EQUIV`: Daniel Lakens et al. (2017)
+
+---
+
+## Governed Structural Plasticity
+
+### RQ-STRUCT-APPROVAL-001
+
+**Frage:** Kann ein versionierter Approval- und Host-Barrieren-Vertrag strukturelle Mutation fail-closed autorisieren, ohne Safety-, Journal-, Identitaets- oder wissenschaftliche Freeze-Grenzen zu umgehen?
+
+**Status:** open
+**Relevanz:** Growth, Pruning und Apoptose duerfen nicht allein aus einer Policy-Empfehlung oder GPU-Verfuegbarkeit Mutationserlaubnis ableiten.
+
+**Hypothesen:**
+- `H-STRUCT-APPROVAL-001-A`: Jeder Mutationsversuch ohne modus-spezifische Autorisierung, verfuegbare Structural Barrier, gesundes Journal und erlaubenden Scientific Freeze wird fail-closed abgelehnt. *(untested)*
+- `H-STRUCT-APPROVAL-001-B`: Der Policy-Artifact-Hash ist bei identischem Vertrag, Modus und Config deterministisch und aendert sich bei einer relevanten Policy- oder Modusaenderung. *(untested)*
 
 ---
 

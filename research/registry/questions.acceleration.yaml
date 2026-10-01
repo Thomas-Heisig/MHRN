@@ -210,3 +210,56 @@
     limitations: FE-1/FE-2 und ein CPU-Self-Control fuer D3c sind Engineering Verification. Physische CPU-vs-CUDA-D3-Paritaet bleibt separat auszufuehren und erzeugt nicht automatisch DATA oder EVID.
   created: '2026-09-30'
   updated: '2026-09-30'
+
+
+- id: RQ-STRUCT-APPROVAL-001
+  domain: Governed Structural Plasticity
+  question: Kann ein versionierter Approval- und Host-Barrieren-Vertrag strukturelle Mutation fail-closed autorisieren, ohne Safety-, Journal-, Identitaets- oder wissenschaftliche Freeze-Grenzen zu umgehen?
+  relevance: Growth, Pruning und Apoptose duerfen nicht allein aus einer Policy-Empfehlung oder GPU-Verfuegbarkeit Mutationserlaubnis ableiten.
+  literature: []
+  hypotheses:
+  - H-STRUCT-APPROVAL-001-A
+  - H-STRUCT-APPROVAL-001-B
+  evidence: []
+  status: open
+  answer:
+    current: null
+    confidence: none
+    limitations: Der aktuelle Descriptor ist Draft/Engineering Governance; Host-Barrieren-Alignment und Human Review sind offen.
+  created: '2026-10-01'
+  updated: '2026-10-01'
+
+- id: RQ-LEARN-SEM-001
+  domain: Cross-Backend Learning Semantics
+  question: Welcher versionierte STDP-, STP-, Eligibility-, Reward- und Delay-Vertrag ist notwendig, damit CPU- und CUDA-Lernen ohne stillen Semantikwechsel verglichen werden koennen?
+  relevance: Aktuelle CPU- und CUDA-Pfade besitzen reale Unterschiede bei STP, Credit Window, Weight Decay, Paarparametern und Synapsenidentitaet.
+  literature:
+  - SRC-GERSTNER-2014
+  hypotheses:
+  - H-LEARN-SEM-001-A
+  - H-LEARN-SEM-001-B
+  - H-LEARN-SEM-001-C
+  evidence: []
+  status: open
+  answer:
+    current: null
+    confidence: none
+    limitations: Wave 7 inventarisiert Semantik; der Vertrag ist nicht eingefroren und erzeugt keine Lern- oder Backend-Evidenz.
+  created: '2026-10-01'
+  updated: '2026-10-01'
+
+- id: RQ-CPU-PAR-001
+  domain: CPU Deterministic Self-Parity
+  question: Erzeugt die kanonische CPU-Ausfuehrung unter identischem Source Freeze, Netzwerkvertrag, Seed, Input und Anfangszustand in gepaarten Wiederholungslaeufen exakt dieselbe Ereignis- und Endzustandssignatur?
+  relevance: Eine prospektive CPU-Self-Parity-Baseline trennt intrinsische Nichtdeterministik des Referenzpfads von spaeteren Cross-Backend-Abweichungen und schafft einen hardwareunabhaengigen wissenschaftlichen Ausgangspunkt.
+  literature: []
+  hypotheses:
+  - H-CPU-PAR-001-A
+  evidence: []
+  status: open
+  answer:
+    current: null
+    confidence: none
+    limitations: Die Studie ist CPU-only. Sie testet weder CUDA-Aequivalenz noch PAN, Lernen, strukturelle Plastizitaet oder kognitive Leistung.
+  created: '2026-10-01'
+  updated: '2026-10-01'
