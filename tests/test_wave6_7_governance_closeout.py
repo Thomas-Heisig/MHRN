@@ -39,10 +39,7 @@ def test_first_structural_governance_run_is_manual_but_not_authorized() -> None:
 def test_wave7_divergence_inventory_has_exact_five_open_blockers() -> None:
     payload = json.loads(
         (
-            ROOT
-            / "research"
-            / "specifications"
-            / "WAVE7_LEARNING_DIVERGENCES.json"
+            ROOT / "research" / "specifications" / "WAVE7_LEARNING_DIVERGENCES.json"
         ).read_text(encoding="utf-8")
     )
     assert payload["cross_backend_learning_equivalence"] is False
@@ -59,12 +56,9 @@ def test_wave7_divergence_inventory_has_exact_five_open_blockers() -> None:
 
 def test_cpu_self_parity_preregistration_is_frozen_and_cpu_only() -> None:
     payload = json.loads(
-        (
-            ROOT
-            / "research"
-            / "preregistrations"
-            / "PREREG-CPU-PAR-001.json"
-        ).read_text(encoding="utf-8")
+        (ROOT / "research" / "preregistrations" / "PREREG-CPU-PAR-001.json").read_text(
+            encoding="utf-8"
+        )
     )
     assert payload["research_question"] == "RQ-CPU-PAR-001"
     assert payload["hypothesis"] == "H-CPU-PAR-001-A"
