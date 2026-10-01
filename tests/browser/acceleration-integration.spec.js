@@ -7,8 +7,15 @@ test('CUDA FE3 integration status is visible in the correct workspaces', async (
   await selectRoute(page, 'playground', 'builder');
   await expect(page.locator('#mhrn-acceleration-playground')).toBeVisible();
   await expect(page.locator('#mhrn-acceleration-playground')).toContainText('FE-3 Live Backend Bridge');
-  await expect(page.locator('#mhrn-acceleration-playground')).toContainText('Preflight bereit');
-  await expect(page.locator('#mhrn-acceleration-playground')).toContainText('Ausführung gesperrt');
+  await expect(page.locator('#mhrn-acceleration-playground')).toContainText('PAN Wave 5B');
+  await expect(page.locator('#mhrn-acceleration-playground')).toContainText('PAN_CONTRACT_NOT_FROZEN');
+
+  const acceleration = await page.evaluate(async () => {
+    const response = await fetch('/api/integration/status', { cache: 'no-store' });
+    return (await response.json()).acceleration;
+  });
+  expect(acceleration.pan_wave5b_preflight.preflight_ready).toBe(true);
+  expect(acceleration.pan_wave5b_preflight.ready_for_execution).toBe(false);
 
   await selectRoute(page, 'release', 'development');
   await expect(page.locator('#mhrn-acceleration-release')).toBeVisible();
