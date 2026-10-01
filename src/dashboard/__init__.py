@@ -45,8 +45,8 @@ from .models import (
     StructuralMetrics,
     SystemMetrics,
 )
-from .operator_bridge import OperatorBridge
 from .network_settings import DASHBOARD_HOST, DASHBOARD_PORT
+from .operator_bridge import OperatorBridge
 from .server import serve_dashboard
 from .state import (
     DashboardStateStore,
