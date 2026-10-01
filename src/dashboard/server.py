@@ -740,6 +740,10 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
             # Integration Status (real backend data, Phase 14)
             # ----------------------------------------------------------------
 
+            if path == "/api/settings/network":
+                self._serve_network_settings()
+                return
+
             if path == "/api/integration/status":
                 self._serve_integration_status()
                 return
@@ -2180,6 +2184,33 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
             return
 
         self._send_api_not_found(path)
+
+    # ========================================================================
+    # Network Settings (central config)
+    # ========================================================================
+
+    def _serve_network_settings(self) -> None:
+        from .network_settings import (
+            ALLOW_PUBLIC_DEPLOYMENT,
+            DASHBOARD_HOST,
+            DASHBOARD_PORT,
+            HF_SPACE_HOST,
+            HF_SPACE_PORT,
+            PUBLIC_DEPLOYMENT_NOTE,
+        )
+
+        self._send_json(
+            {
+                "dashboard_host": DASHBOARD_HOST,
+                "dashboard_port": DASHBOARD_PORT,
+                "local_url": f"http://127.0.0.1:{DASHBOARD_PORT}",
+                "hf_space_host": HF_SPACE_HOST,
+                "hf_space_port": HF_SPACE_PORT,
+                "allow_public_deployment": ALLOW_PUBLIC_DEPLOYMENT,
+                "public_deployment_note": PUBLIC_DEPLOYMENT_NOTE,
+                "source": "src/dashboard/network_settings.py",
+            }
+        )
 
     # ========================================================================
     # Integration Status (real backend data, Phase 14)

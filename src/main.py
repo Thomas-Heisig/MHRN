@@ -72,6 +72,8 @@ from src.telemetry.spike_history import SpikeHistory
 from src.utils.run_artifacts import RunArtifacts
 from src.version import BRAIN5D_VERSION_DISPLAY
 
+from src.dashboard.network_settings import DASHBOARD_HOST, DASHBOARD_PORT
+
 # ================================================================
 # Dashboard Integration – with None‑fallback
 # ================================================================

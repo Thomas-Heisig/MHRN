@@ -94,6 +94,7 @@ const AREAS = Object.freeze({
       ["ai", "AI & Chat", "appsettings", "generated", "ai"],
       ["integrations", "Integrationen", "appsettings", "generated", "integrations"],
       ["boundaries", "Grenzen", "appsettings", "generated", "boundaries"],
+      ["network", "Netzwerk", "appsettings", "generated", "network"],
       ["parameters", "Parameter", "settings"],
     ],
   },
@@ -265,6 +266,7 @@ function ensureGeneratedWorkspaces() {
       <section data-generated-panel="ai"><h3>AI & Research Chat</h3><p>Provider, Modell, Kontext und Health über den kanonischen Research-Chat-Vertrag.</p><div id="appsettings-ai-detail" class="mhrn-kv-list">lade …</div><button type="button" id="appsettings-open-chat">Chat Settings öffnen</button></section>
       <section data-generated-panel="integrations"><h3>Integrationen</h3><p>Backend-/Frontend-Integration und verfügbare Komponenten.</p><div id="appsettings-integration-detail" class="mhrn-kv-list">lade …</div></section>
       <section data-generated-panel="boundaries"><h3>Konfigurationsgrenzen</h3><p>App-Settings steuern Darstellung und Integrationen. Die zentrale Parameteransicht liegt jetzt unter <strong>Settings → Parameter</strong>; ihre Pending-Change-, Provenienz- und Approval-Grenzen bleiben unverändert.</p><button type="button" data-route-jump="settings:parameters">Parameter öffnen</button></section>
+      <section data-generated-panel="network" id="appsettings-network"><h3>Netzwerk</h3><p>Dashboard-Host, Port und Erreichbarkeit. Alle Werte werden zentral in <code>src/dashboard/network_settings.py</code> definiert und von Launcher, Server und Startskripten gelesen.</p><div id="appsettings-network-detail" class="mhrn-kv-list">lade …</div></section>
     </div>`);
   const publication = rootFor("publication");
   if (publication && !byId("publication-paper-panel")) {
@@ -711,6 +713,11 @@ async function refreshSettings() {
     byId("appsettings-integration-detail").innerHTML = kv(await readJson("/api/integration/status"), 24);
   } catch (error) {
     if (byId("appsettings-integration-detail")) byId("appsettings-integration-detail").textContent = `Nicht verfügbar: ${error.message}`;
+  }
+  try {
+    byId("appsettings-network-detail").innerHTML = kv(await readJson("/api/settings/network"));
+  } catch (error) {
+    if (byId("appsettings-network-detail")) byId("appsettings-network-detail").textContent = `Nicht verfügbar: ${error.message}`;
   }
 }
 
