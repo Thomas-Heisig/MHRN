@@ -52,7 +52,7 @@ param(
     [switch]$NoLearning,
     [switch]$NoHomeostasis,
     [int]$Ticks = 0,
-    [string]$DashboardHost = (python -c "from src.dashboard.network_settings import DASHBOARD_HOST; print(DASHBOARD_HOST)"),
+    [string]$DashboardHost = (python -c "from src.dashboard.network_settings import DASHBOARD_LAN_HOST; print(DASHBOARD_LAN_HOST)"),
     [int]$DashboardPort = (python -c "from src.dashboard.network_settings import DASHBOARD_PORT; print(DASHBOARD_PORT)"),
 
     [switch]$PassThru,

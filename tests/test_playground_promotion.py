@@ -34,8 +34,13 @@ def test_integration_catalog_is_non_evidentiary_and_directional() -> None:
         == "FE3_LIVE_ADAPTER_IMPLEMENTED_HARDWARE_ACCEPTANCE_PENDING"
     )
     assert candidates["closed_loop"]["next_gate"] == "PHYSICAL_FE3_HARDWARE_ACCEPTANCE"
-    assert candidates["pan_hyperstate"]["status"] == "SEMANTIC_CONTRACT_DRAFT"
-    assert candidates["pan_hyperstate"]["next_gate"] == "PAN_CONTRACT_FREEZE_REVIEW"
+    assert (
+        candidates["pan_hyperstate"]["status"]
+        == "WAVE5B_PREFLIGHT_READY_CONTRACT_DRAFT"
+    )
+    assert candidates["pan_hyperstate"]["next_gate"] == (
+        "PAN_CONTRACT_FREEZE_REVIEW_AND_PHYSICAL_FE3_HARDWARE_ACCEPTANCE"
+    )
     assert candidates["old_frontend_views"]["status"] == "RETAINED_NOT_CORE"
     assert "science-snn" in candidates["old_frontend_views"]["old_routes"]
 
@@ -100,11 +105,18 @@ def test_wave3_execution_backend_and_parity_are_canonical_consumers() -> None:
     assert cuda["next_gate"] == "WAVE5_RESIDENT_PAN_AND_ENVIRONMENT"
 
 
-def test_pan_wave5a_transfer_plan_exposes_draft_contract_without_promotion() -> None:
+def test_pan_wave5b_transfer_plan_exposes_preflight_without_promotion() -> None:
     result = transfer_element({"element_id": "pan_hyperstate"})
-    assert result["status"] == "SEMANTIC_CONTRACT_DRAFT"
+    assert result["status"] == "WAVE5B_PREFLIGHT_READY_CONTRACT_DRAFT"
     assert result["applied"] is False
-    assert result["next_gate"] == "PAN_CONTRACT_FREEZE_REVIEW"
+    assert result["next_gate"] == (
+        "PAN_CONTRACT_FREEZE_REVIEW_AND_PHYSICAL_FE3_HARDWARE_ACCEPTANCE"
+    )
     assert result["pan_contract_id"] == "mhrn-pan-hyperstate-v0.1-draft"
     assert result["pan_contract_status"] == "DRAFT_NOT_FROZEN"
     assert result["pan_contract_self_check"] is True
+    assert result["pan_parity_contract_self_check"] is True
+    preflight = result["wave5b_preflight"]
+    assert isinstance(preflight, dict)
+    assert preflight["preflight_ready"] is True
+    assert preflight["ready_for_execution"] is False

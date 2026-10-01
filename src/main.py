@@ -55,6 +55,7 @@ from src.core.spatial_index import (
     make_boundary_coord,
     unpack_coords,
 )
+from src.dashboard.network_settings import DASHBOARD_HOST, DASHBOARD_PORT
 from src.diagnostics.propagation import PropagationAnalyzer
 from src.diagnostics.stimulus import StimulusEngine, StimulusResult
 from src.diagnostics.topology_health import TopologyHealth
@@ -71,8 +72,6 @@ from src.telemetry.probes import ProbeManager
 from src.telemetry.spike_history import SpikeHistory
 from src.utils.run_artifacts import RunArtifacts
 from src.version import BRAIN5D_VERSION_DISPLAY
-
-from src.dashboard.network_settings import DASHBOARD_HOST, DASHBOARD_PORT
 
 # ================================================================
 # Dashboard Integration – with None‑fallback

@@ -135,19 +135,21 @@ _CANDIDATES: tuple[PromotionCandidate, ...] = (
     PromotionCandidate(
         "pan_hyperstate",
         "PAN Hyperstate",
-        "SEMANTIC_CONTRACT_DRAFT",
+        "WAVE5B_PREFLIGHT_READY_CONTRACT_DRAFT",
         ("src/playground/pan/",),
         (
             "src/homeostasis/pan_contract.py",
+            "src/homeostasis/pan_parity_contract.py",
+            "src/homeostasis/pan_wave5b_preflight.py",
             "src/self_organization/",
         ),
-        "PAN_CONTRACT_FREEZE_REVIEW",
+        "PAN_CONTRACT_FREEZE_REVIEW_AND_PHYSICAL_FE3_HARDWARE_ACCEPTANCE",
         notes=(
-            "Wave 5A has extracted the current PAN state surface, coefficients and "
-            "update ordering into a backend-neutral draft contract. The Playground "
-            "runtime consumes that contract without changing the algorithm. PAN is "
-            "not canonical or evidence-eligible until RQ-PAN-SEM-001 is reviewed "
-            "and the contract is frozen."
+            "Wave 5A extracted the backend-neutral PAN semantic draft. Wave 5B now "
+            "has a non-executing parity/preflight manifest and fail-closed readiness "
+            "projection. This is preparation only: PAN is not canonical, integrated "
+            "or evidence-eligible until the semantic contract is frozen, physical "
+            "FE-3 acceptance exists, and explicit Wave-5B execution is authorized."
         ),
     ),
     PromotionCandidate(
@@ -274,17 +276,26 @@ def transfer_element(payload: Mapping[str, object]) -> dict[str, object]:
             "d3_complete": False,
         }
     elif candidate.element_id == "pan_hyperstate":
+        from pathlib import Path
+
         from src.homeostasis.pan_contract import (
             PAN_CONTRACT_ID,
             PAN_CONTRACT_STATUS,
             pan_contract_check,
         )
+        from src.homeostasis.pan_parity_contract import pan_parity_contract_check
+        from src.homeostasis.pan_wave5b_preflight import (
+            evaluate_pan_wave5b_readiness,
+        )
 
+        readiness = evaluate_pan_wave5b_readiness(Path.cwd())
         connected = False
         detail = {
             "pan_contract_id": PAN_CONTRACT_ID,
             "pan_contract_status": PAN_CONTRACT_STATUS,
             "pan_contract_self_check": pan_contract_check(),
+            "pan_parity_contract_self_check": pan_parity_contract_check(),
+            "wave5b_preflight": readiness.to_mapping(),
         }
     else:
         connected = False
