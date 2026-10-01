@@ -232,7 +232,7 @@ function buildPanels(root) {
           <label>Seed-Ensemble<input id="pg-ensemble" type="number" min="1" max="8" value="1"></label>
           <label><span><input id="pg-persist" type="checkbox"> Session lokal speichern</span></label>
         </article>
-        <article class="playground-card"><h3>05 · PAN-Hyperstate</h3>
+        <article class="playground-card" id="pg-pan-settings"><h3>05 · PAN-Hyperstate</h3>
           <label><span><input id="pg-pan-enabled" type="checkbox"> PAN explorativ aktivieren</span></label>
           <label>PAN-Dimensionen<input id="pg-pan-dimensions" type="number" min="5" max="32" value="5"></label>
           <label><span><input id="pg-pan-closed-loop" type="checkbox" checked> Closed Loop</span></label>
@@ -386,8 +386,8 @@ function buildPanels(root) {
         </article>
       </div>
       <div class="playground-actions"><button type="button" class="primary" id="pg-run">▶ Playground starten</button><button type="button" id="pg-robustness">Robustheitskontrollen</button><button type="button" id="pg-reset">Standardwerte</button></div>
-      <article class="playground-card playground-live-launcher"><h3>17 · PAN Live Monitor</h3><p>Die laufende PAN-Session mit Start/Pause, Input, Sandbox-Männchen und allen Live-Grafiken im Monitor-Popup.</p><div class="playground-actions"><button type="button" class="primary" id="pg-live-open">Live Monitor öffnen</button><button type="button" id="pg-live-clear">Temporäre Sessions löschen</button></div><pre id="pg-live-state">Keine Live-Session geöffnet.</pre></article>
-      <article class="playground-card"><h3>18 · CUDA & Parität</h3>
+      <article class="playground-card playground-live-launcher" id="pg-pan-live-monitor"><h3>17 · PAN Live Monitor</h3><p>Die laufende PAN-Session mit Start/Pause, Input, Sandbox-Männchen und allen Live-Grafiken im Monitor-Popup.</p><div class="playground-actions"><button type="button" class="primary" id="pg-live-open">Live Monitor öffnen</button><button type="button" id="pg-live-clear">Temporäre Sessions löschen</button></div><pre id="pg-live-state">Keine Live-Session geöffnet.</pre></article>
+      <article class="playground-card" id="pg-cuda-controls"><h3>18 · CUDA & Parität</h3>
         <div class="playground-grid">
           <label>Target SM<input id="pg-cuda-target-sm" value="sm_86"></label>
           <label>PTX Version<input id="pg-cuda-ptx-version" value="7.1"></label>
