@@ -93,9 +93,7 @@ class StructuralApprovalContractState:
             return self.manual_authorization_present
         if self.mode is ApprovalMode.POLICY_AUTO:
             return self.policy_auto_enabled
-        if self.mode is ApprovalMode.PREREGISTERED_AUTO:
-            return self.policy_auto_enabled and self.preregistered_policy_frozen
-        return False
+        return self.policy_auto_enabled and self.preregistered_policy_frozen
 
     @property
     def ready_for_mutation(self) -> bool:
