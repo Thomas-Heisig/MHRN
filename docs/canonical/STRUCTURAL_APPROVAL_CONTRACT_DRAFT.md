@@ -97,3 +97,20 @@ Therefore descriptor self-check success does **not** imply
 
 This draft creates no DATA, EVID or structural-plasticity validity claim. It
 defines authorization semantics and fail-closed preconditions only.
+
+## First governed-run selection
+
+For the first future governed structural-plasticity run, the selected approval mode is **MANUAL_ONLY**.
+
+This is a governance selection, not execution authorization. The system-wide safe default remains `DISABLED`. Before any structural mutation is executed, the run must still bind an exact structural config and policy-artifact hash and satisfy all independent gates:
+
+- explicit human authorization for the concrete proposal/run;
+- topology changes permitted by the protocol;
+- structural barrier available;
+- structural journal healthy;
+- scientific freeze allows mutation;
+- normal safety/resource/cooldown/kind checks.
+
+`POLICY_AUTO` is deferred until an auto-approval policy has been separately validated. `PREREGISTERED_AUTO` is deferred until a frozen policy artifact and a preregistered structural study exist.
+
+The CPU self-parity preregistration introduced alongside this decision keeps structural mutation `DISABLED` so that determinism is not confounded with topology change.
