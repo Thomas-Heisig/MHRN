@@ -49,7 +49,7 @@ PUBLIC_DEPLOYMENT_NOTE: str = (
 HF_SPACE_PORT: int = DASHBOARD_PORT
 """Port used inside the Hugging Face Docker Space (must match EXPOSE)."""
 
-HF_SPACE_HOST: str = "0.0.0.0"
+HF_SPACE_HOST: str = "0.0.0.0"  # nosec B104 - required container bind for HF Spaces
 """Host used inside the Hugging Face Space container."""
 
 # ---------------------------------------------------------------------------
