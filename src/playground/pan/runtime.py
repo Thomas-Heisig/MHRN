@@ -7,6 +7,13 @@ import random
 from collections.abc import Mapping, MutableMapping, Sequence
 from typing import Any
 
+from src.homeostasis.pan_contract import (
+    PAN_CONTRACT_ID,
+    PAN_CONTRACT_STATUS,
+    PANFormulaParameters,
+    initialize_pan_state_mapping,
+)
+
 from .candidates import pan_research_candidates
 from .hypervector import axis_schema, bundle
 
@@ -73,6 +80,7 @@ class PANRuntime:
         self.feedback_abs_total = 0.0
         self.feedback_samples = 0
         self.apoptosis_events: list[dict[str, object]] = []
+        self.formula_parameters = PANFormulaParameters()
 
     def initialize(self, states: Sequence[PANState]) -> None:
         """Attach bounded PAN state variables to existing neuron states."""
@@ -80,15 +88,11 @@ class PANRuntime:
         if len(states) != self.n_neurons:
             raise ValueError("PAN state count does not match n_neurons")
         for neuron_id, state in enumerate(states):
-            state["pan_health"] = 1.0
-            state["pan_amplitude"] = 1.0
-            state["pan_energy"] = 1.0
-            state["pan_activity_ema"] = 0.01
-            state["pan_consolidation"] = 0.0
-            state["pan_alive"] = True
-            state["pan_information_proxy"] = 0.0
-            state["pan_x_hd"] = [0.0 for _ in range(self.dimensions)]
-            state["pan_neuron_id"] = neuron_id
+            initialize_pan_state_mapping(
+                state,
+                neuron_id=neuron_id,
+                dimensions=self.dimensions,
+            )
 
     def feedback_vector(self) -> list[float]:
         if self.feedback_delay <= 0:
@@ -170,7 +174,8 @@ class PANRuntime:
 
         spiked = set(spiked_neurons)
         vectors: list[list[float]] = []
-        target_activity = 0.02
+        params = self.formula_parameters
+        target_activity = params.target_activity
         dt_s = dt_ms / 1000.0
         for neuron_id, state in enumerate(states):
             alive = bool(state.get("pan_alive", True))
@@ -180,35 +185,50 @@ class PANRuntime:
 
             did_spike = neuron_id in spiked
             activity = float(state.get("pan_activity_ema", 0.01))
-            activity = 0.97 * activity + 0.03 * (1.0 if did_spike else 0.0)
+            activity = (
+                params.activity_decay * activity
+                + params.activity_spike_gain * (1.0 if did_spike else 0.0)
+            )
             energy = float(state.get("pan_energy", 1.0))
-            energy += 0.015 * (1.0 - energy)
+            energy += params.energy_recovery * (1.0 - energy)
             if did_spike:
-                energy -= 0.035
+                energy -= params.energy_spike_cost
             energy = _clamp(energy)
 
             p = _clamp(activity, 1e-6, 1.0 - 1e-6)
             surprise_bits = -math.log2(p if did_spike else (1.0 - p))
-            information_proxy = _clamp(surprise_bits / 8.0)
+            information_proxy = _clamp(surprise_bits / params.information_bits_scale)
 
-            stress = abs(activity - target_activity) + max(0.0, 0.35 - energy)
+            stress = abs(activity - target_activity) + max(
+                0.0, params.energy_stress_floor - energy
+            )
             health = float(state.get("pan_health", 1.0))
             health -= self.health_decay * dt_s
-            health -= 0.0015 * stress
-            health += 0.0005 * max(0.0, 1.0 - stress)
+            health -= params.health_stress_loss * stress
+            health += params.health_recovery_gain * max(0.0, 1.0 - stress)
             health = _clamp(health)
 
             consolidation = float(state.get("pan_consolidation", 0.0))
             consolidation = _clamp(
-                0.995 * consolidation + (0.005 if did_spike else 0.0)
+                params.consolidation_decay * consolidation
+                + (params.consolidation_spike_gain if did_spike else 0.0)
             )
-            amplitude = _clamp(0.2 + 0.8 * health, 0.2, 1.0)
+            amplitude = _clamp(
+                params.amplitude_floor + params.amplitude_health_gain * health,
+                params.amplitude_floor,
+                1.0,
+            )
 
             membrane = float(state.get("v", -65.0))
             threshold = float(state.get("pan_threshold", -50.0))
-            excitability = _sigmoid((membrane - threshold) / 5.0)
+            excitability = _sigmoid(
+                (membrane - threshold) / params.excitability_scale_mv
+            )
             plasticity = health if plasticity_active else 0.0
-            neuromodulation = 0.5 + 0.5 * math.sin(2.0 * math.pi * (tick % 64) / 64.0)
+            period = params.neuromodulation_period_ticks
+            neuromodulation = 0.5 + 0.5 * math.sin(
+                2.0 * math.pi * (tick % period) / period
+            )
             coupling = _clamp(self.degree[neuron_id] / max(self.n_neurons - 1, 1))
 
             vector = [0.0 for _ in range(self.dimensions)]
@@ -289,6 +309,8 @@ class PANRuntime:
         return {
             "classification": "PLAYGROUND_PAN",
             "scientific_evidence": False,
+            "pan_contract_id": PAN_CONTRACT_ID,
+            "pan_contract_status": PAN_CONTRACT_STATUS,
             "evidence_eligible": False,
             "dimensions": self.dimensions,
             "axes": axis_schema(self.dimensions),
