@@ -133,11 +133,10 @@ class ResearchChat:
 
         remaining = max(0, max_docs - len(paths))
         if remaining:
-            documentation_documents = self.docs.list_documents(max_count=remaining)
             _append_documents(
                 "DOCUMENTATION SOURCES",
                 self.docs,
-                documentation_documents,
+                self.docs.list_documents(max_count=remaining),
             )
 
         text = "\n\n".join(chunks)[: self.max_context_chars]
