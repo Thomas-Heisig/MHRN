@@ -286,7 +286,9 @@ class IntegrationStatusBuilder:
             {
                 "id": "wave5",
                 "label": "PAN Hyperstate / Wave 5B",
-                "status": "preflight_ready" if pan_preflight_ready else "contract_draft",
+                "status": (
+                    "preflight_ready" if pan_preflight_ready else "contract_draft"
+                ),
             },
             {"id": "wave6", "label": "Structural Plasticity", "status": "blocked"},
             {
