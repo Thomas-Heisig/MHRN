@@ -143,6 +143,9 @@ const AREAS = Object.freeze({
     routes: [
       ["overview", "Übersicht", "playground"],
       ["builder", "Builder", "playground", "generated", "builder"],
+      ["pan", "PAN-Kern", "playground", "focus", "#pg-pan-settings"],
+      ["cuda", "CUDA & Parität", "playground", "focus", "#pg-cuda-controls"],
+      ["pan-live", "PAN Live", "playground", "focus", "#pg-pan-live-monitor"],
       ["run", "Lauf & Auswertung", "playground", "generated", "run"],
       ["sessions", "Sessions", "playground", "generated", "sessions"],
       ["catalog", "Bausteine", "playground", "generated", "catalog"],
@@ -460,6 +463,8 @@ function showRouteContent(areaId, route) {
     for (const target of targets) {
       for (let node = target; node && node !== root; node = node.parentElement) {
         setRouteElementVisibility(node, true);
+        // Reveal only the grouped Playground section containing this route.
+        if (node instanceof HTMLDetailsElement) node.open = true;
         if (node === target) continue;
         for (const sibling of node.children) {
           if (onPath(sibling) || isPersistent(sibling) || sibling.hidden) continue;
