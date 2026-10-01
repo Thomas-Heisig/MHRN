@@ -1,9 +1,15 @@
-"""Wave-4 plasticity capability markers."""
+"""Wave-4 plasticity capability markers bound to the Wave-7 draft."""
 
 from __future__ import annotations
 
 from typing import Final
 
+from src.learning.contract import LEARNING_CONTRACT_ID, LEARNING_CONTRACT_STATUS
+
 PLASTICITY_SEMANTICS: Final[str] = "NON_CANONICAL_DRAFT"
-LEARNING_CONTRACT_ID: Final[str] = "mhrn-learning-synapse-v1"
-LEARNING_CONTRACT_STATUS: Final[str] = "ALIGNMENT_PENDING"
+
+__all__ = [
+    "LEARNING_CONTRACT_ID",
+    "LEARNING_CONTRACT_STATUS",
+    "PLASTICITY_SEMANTICS",
+]
