@@ -9,6 +9,17 @@ This package provides:
 - Guarded learning-preparation contracts
 """
 
+from .contract import (
+    LEARNING_CONTRACT_ID,
+    LEARNING_CONTRACT_STATUS,
+    LEARNING_CPU_REFERENCE,
+    LEARNING_CUDA_STATUS,
+    LearningContractState,
+    learning_contract_check,
+    learning_contract_descriptor,
+    learning_contract_hash,
+    learning_contract_status,
+)
 from .eligibility import EligibilityTrace, create_eligibility_trace
 from .learning_engine import LearningEngine, LearningParameters, LearningStats
 from .prediction_error import (
@@ -32,6 +43,15 @@ from .reward import RewardSignal, create_reward
 from .stdp_plugin import STDPParameters, STDPSynapse, create_stdp_synapse
 
 __all__ = [
+    "LEARNING_CONTRACT_ID",
+    "LEARNING_CONTRACT_STATUS",
+    "LEARNING_CPU_REFERENCE",
+    "LEARNING_CUDA_STATUS",
+    "LearningContractState",
+    "learning_contract_check",
+    "learning_contract_descriptor",
+    "learning_contract_hash",
+    "learning_contract_status",
     # STDP
     "STDPParameters",
     "STDPSynapse",
