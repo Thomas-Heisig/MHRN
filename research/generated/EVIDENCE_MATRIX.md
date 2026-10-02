@@ -70,28 +70,28 @@ RQ-Status und Claim-Status sind unterschiedliche wissenschaftliche Zustände und
 | `RQ-PROFILE-001` | open | `H-PROFILE-001-A` | — | — | 0 | `EXP-BATCH-20260909223705-46`, `EXP-EMP-20260910` | — | offen |
 | `RQ-S6-SEM-002` | answered | — | — | — | 0 | — | — | medium |
 | `RQ-S6-SEM-003` | in_progress | — | — | — | 0 | — | — | low |
-| `RQ-CNS-101` | open | `H-CNS-101-A` | — | — | 4 | — | — | offen |
-| `RQ-CNS-102` | open | `H-CNS-102-A` | — | — | 1 | — | — | offen |
-| `RQ-CNS-103` | open | `H-CNS-103-A` | — | — | 1 | — | — | offen |
-| `RQ-CNS-104` | open | `H-CNS-104-A` | — | — | 1 | — | — | offen |
-| `RQ-CNS-105` | open | `H-CNS-105-A` | — | — | 1 | — | — | offen |
-| `RQ-CNS-106` | open | `H-CNS-106-A` | — | — | 2 | — | — | offen |
-| `RQ-CNS-107` | open | `H-CNS-107-A` | — | — | 2 | — | — | offen |
-| `RQ-CNS-108` | open | `H-CNS-108-A` | — | — | 1 | — | — | offen |
-| `RQ-CNS-109` | open | `H-CNS-109-A` | — | — | 1 | — | — | offen |
-| `RQ-CNS-110` | open | `H-CNS-110-A` | — | — | 1 | — | — | offen |
-| `RQ-CNS-111` | open | `H-CNS-111-A` | — | — | 2 | — | — | offen |
-| `RQ-CNS-112` | open | `H-CNS-112-A` | — | — | 2 | — | — | offen |
-| `RQ-CNS-113` | open | `H-CNS-113-A` | — | — | 2 | — | — | offen |
-| `RQ-CNS-114` | open | `H-CNS-114-A` | — | — | 1 | — | — | offen |
-| `RQ-CNS-115` | open | `H-CNS-115-A` | — | — | 1 | — | — | offen |
-| `RQ-CNS-116` | open | `H-CNS-116-A` | — | — | 1 | — | — | offen |
-| `RQ-CNS-117` | open | `H-CNS-117-A` | — | — | 3 | — | — | offen |
-| `RQ-EPI-101` | open | `H-EPI-101-A` | — | — | 1 | — | — | offen |
-| `RQ-EPI-102` | open | `H-EPI-102-A` | — | — | 2 | — | — | offen |
-| `RQ-WEL-101` | open | `H-WEL-101-A` | — | — | 1 | — | — | offen |
-| `RQ-WEL-102` | open | `H-WEL-102-A` | — | — | 2 | — | — | offen |
-| `RQ-WEL-103` | open | `H-WEL-103-A` | — | — | 4 | — | — | offen |
+| `RQ-CNS-101` | open | `H-CNS-101-A` | — | — | 4 | `EXP-BATCH-CONCEPTUAL-AUDITS-20261001-PILOT2-01` | — | offen |
+| `RQ-CNS-102` | open | `H-CNS-102-A` | — | — | 1 | `EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REMAINDER-01` | — | offen |
+| `RQ-CNS-103` | open | `H-CNS-103-A` | — | — | 1 | `EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REMAINDER-02` | — | offen |
+| `RQ-CNS-104` | open | `H-CNS-104-A` | — | — | 1 | `EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REMAINDER-03` | — | offen |
+| `RQ-CNS-105` | open | `H-CNS-105-A` | — | — | 1 | `EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REMAINDER-04`, `EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-01` | — | offen |
+| `RQ-CNS-106` | open | `H-CNS-106-A` | — | — | 2 | `EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-02` | — | offen |
+| `RQ-CNS-107` | open | `H-CNS-107-A` | — | — | 2 | `EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-03` | — | offen |
+| `RQ-CNS-108` | open | `H-CNS-108-A` | — | — | 1 | `EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-04` | — | offen |
+| `RQ-CNS-109` | open | `H-CNS-109-A` | — | — | 1 | `EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-05` | — | offen |
+| `RQ-CNS-110` | open | `H-CNS-110-A` | — | — | 1 | `EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-06` | — | offen |
+| `RQ-CNS-111` | open | `H-CNS-111-A` | — | — | 2 | `EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-07` | — | offen |
+| `RQ-CNS-112` | open | `H-CNS-112-A` | — | — | 2 | `EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-08` | — | offen |
+| `RQ-CNS-113` | open | `H-CNS-113-A` | — | — | 2 | `EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-09` | — | offen |
+| `RQ-CNS-114` | open | `H-CNS-114-A` | — | — | 1 | `EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-10` | — | offen |
+| `RQ-CNS-115` | open | `H-CNS-115-A` | — | — | 1 | `EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-11` | — | offen |
+| `RQ-CNS-116` | open | `H-CNS-116-A` | — | — | 1 | `EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-12` | — | offen |
+| `RQ-CNS-117` | open | `H-CNS-117-A` | — | — | 3 | `EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-13` | — | offen |
+| `RQ-EPI-101` | open | `H-EPI-101-A` | — | — | 1 | `EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-14` | — | offen |
+| `RQ-EPI-102` | open | `H-EPI-102-A` | — | — | 2 | `EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-15` | — | offen |
+| `RQ-WEL-101` | open | `H-WEL-101-A` | — | — | 1 | `EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-16` | — | offen |
+| `RQ-WEL-102` | open | `H-WEL-102-A` | — | — | 2 | `EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-17` | — | offen |
+| `RQ-WEL-103` | open | `H-WEL-103-A` | — | — | 4 | `EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-18` | — | offen |
 | `RQ-EMB-002` | open | `H-EMB-002-A`, `H-EMB-002-B` | — | — | 3 | `EXP-BATCH-20260909223705-69`, `EXP-BATCH-20260914074039-69`, `EXP-EMB002A-DELAY-SWEEP-V4-20260924`, `EXP-EMB002A-PROPRIOCEPTION-V3-20260920`, `EXP-EMB002B-TRANSITION-V5-20260924`, `EXP-EMP-20260910` | — | offen |
 | `RQ-EMB-003` | open | `H-EMB-003-A` | — | — | 3 | — | — | offen |
 | `RQ-EMB-004` | open | `H-EMB-004-A` | — | — | 3 | `EXP-BATCH-20260909223705-71`, `EXP-BATCH-20260914074039-71`, `EXP-EMP-20260910` | — | offen |

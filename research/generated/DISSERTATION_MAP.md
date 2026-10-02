@@ -89,9 +89,9 @@ Source: `research/publications/2026-09-17_recursive-epistemics_v1.8/parts/08_eth
 
 | RQ | RQ status | Direction | Axis | Experiments | EVID records |
 | --- | --- | --- | --- | --- | --- |
-| RQ-CNS-101 | open | unresolved | unclassified | unresolved | unresolved |
-| RQ-EPI-101 | open | unresolved | unclassified | unresolved | unresolved |
-| RQ-EPI-102 | open | unresolved | unclassified | unresolved | unresolved |
+| RQ-CNS-101 | open | unresolved | unclassified | EXP-BATCH-CONCEPTUAL-AUDITS-20261001-PILOT2-01 | unresolved |
+| RQ-EPI-101 | open | unresolved | unclassified | EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-14 | unresolved |
+| RQ-EPI-102 | open | unresolved | unclassified | EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-15 | unresolved |
 | RQ-EPIST-001 | open | unresolved | unclassified | EXP-BATCH-20260906200118-32, EXP-BATCH-20260909223705-32, EXP-BATCH-20260914074039-32 | unresolved |
 | RQ-ETH-001 | open | unresolved | epistemological_methodological | EXP-BATCH-20260906200118-30, EXP-BATCH-20260909223705-30, EXP-BATCH-20260914074039-30 | unresolved |
 | RQ-ETH-002 | open | unresolved | unclassified | EXP-BATCH-20260906200118-31, EXP-BATCH-20260909223705-31, EXP-BATCH-20260914074039-31 | unresolved |
@@ -104,9 +104,9 @@ Source: `research/publications/2026-09-17_recursive-epistemics_v1.8/parts/08_eth
 | RQ-SAFE-007 | open | unresolved | unclassified | unresolved | unresolved |
 | RQ-SAFE-008 | open | unresolved | unclassified | unresolved | unresolved |
 | RQ-SAFE-009 | open | unresolved | unclassified | unresolved | unresolved |
-| RQ-WEL-101 | open | unresolved | unclassified | unresolved | unresolved |
-| RQ-WEL-102 | open | unresolved | unclassified | unresolved | unresolved |
-| RQ-WEL-103 | open | unresolved | unclassified | unresolved | unresolved |
+| RQ-WEL-101 | open | unresolved | unclassified | EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-16 | unresolved |
+| RQ-WEL-102 | open | unresolved | unclassified | EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-17 | unresolved |
+| RQ-WEL-103 | open | unresolved | unclassified | EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-18 | unresolved |
 
 ## Teil IX - Rekursive Epistemik
 
