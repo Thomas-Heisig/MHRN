@@ -63,6 +63,19 @@ MHRN / Multi-Scale Homeostatic Recurrence Network. Publication: Recursive Episte
 
 # MHRN Current TODO
 
+## 2026-10-02 CUDA-/Parity-UI-Provenienz
+
+- [x] Laufstatus für CUDA-Smoke, RNG, rekurrente Parität, Plastizität,
+	Builder-D3, Cue-Kontrollen und Transfer sichtbar machen.
+- [x] Start/Endzeit, Laufzeit und servergemeldeten HEAD je Request anzeigen;
+	fehlender CUDA-Gerätename und nicht persistierte Artefakte bleiben explizit.
+- [x] CUDA-1.3, CUDA-1.4 und CUDA-1.5 in Ergebnisflächen trennen und auf die
+	vorhandene Wave-/FE-3-/Hardware-/PAN-Governance-Übersicht verweisen.
+- [ ] Laufbelege persistent speichern und mit Working-Tree-Digest, exakter
+	Hardware-Identität sowie abrufbarem JSON-Artefakt verknüpfen.
+- [ ] Echten Fortschritt und Abbruch nur dann anbieten, wenn die Backendläufe
+	dafür sichere Checkpoints/Abbruchsemantik bereitstellen.
+
 ## 2026-09-27 Alpha.7 Release
 
 - [x] Stage-0- und Stage-1-Maturity mit dem kanonischen Scientific-State abgleichen.

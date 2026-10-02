@@ -2,7 +2,21 @@
 
 **Canonical roadmap for active `develop`; `main` is release-only**  
 **Baseline:** `mhrn-core 0.6.0a7`
-**Updated:** 2026-09-27
+**Updated:** 2026-10-02
+
+## 2026-10-02 CUDA-/Parity-UI-Provenienz
+
+- Playground-Diagnosen zeigen je Request `PENDING`, `RUNNING`, `PASSED`,
+	`FAILED` oder `COMPLETED`, dazu Start/Endzeit und Laufzeit.
+- Ergebnisflächen trennen CUDA-1.3, CUDA-1.4 und CUDA-1.5; die bereits
+	vorhandene Integrationsübersicht verknüpft Wave 4, FE-3, Hardware-Acceptance,
+	PAN Wave 5B und das nächste Gate.
+- Der CUDA-Status meldet den Repository-HEAD, kennzeichnet aber den
+	Working-Tree-Zustand als nicht erfasst. Playground-Antworten sind keine
+	persistierten Akzeptanzartefakte und melden fehlende Hardware-Identität
+	ausdrücklich.
+- Persistente Run-Receipts mit Source-Digest, Hardware-ID und Artefaktlink
+	sowie echter Fortschritt/Abbruch bleiben separate Engineering-Arbeit.
 
 ## 2026-10-02 R0 Research-Catalog-Abschluss
 

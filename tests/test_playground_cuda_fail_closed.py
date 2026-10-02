@@ -217,6 +217,26 @@ def test_smoke_route_rejects_2048_threads_before_gpu_access() -> None:
         )
 
 
+def test_cuda_runtime_status_exposes_head_without_claiming_tree_fingerprint(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    class _AvailableDriver:
+        def initialize(self) -> None:
+            return None
+
+    monkeypatch.setattr(playground_api, "CudaDriver", _AvailableDriver)
+    monkeypatch.setattr(playground_api, "current_git_head", lambda _root: "abc123")
+
+    result = playground_api._cuda_runtime_status()
+
+    assert result["provenance"] == {
+        "git_commit": "abc123",
+        "source": "runtime_repository_head",
+        "working_tree_state": "not_captured",
+    }
+    assert result["scientific_evidence"] is False
+
+
 class _BusySemaphore:
     def acquire(self, *, blocking: bool) -> bool:
         assert blocking is False

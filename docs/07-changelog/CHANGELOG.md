@@ -1,5 +1,18 @@
 # Changelog
 
+## 2026-10-02 - CUDA-/Parity-Diagnostik mit Laufstatus und Provenienzgrenze
+
+- CUDA-Smoke, RNG, CUDA-1.4/1.5-Rekurrenz, Builder-D3, Cue-Kontrollen und
+  Transfer zeigen ihren eigenen `PENDING`/`RUNNING`/Ergebnisstatus mit
+  Start-/Endzeit und Laufzeit.
+- Der Diagnose-Status zeigt den servergemeldeten Git-HEAD, ohne den nicht
+  erfassten Working Tree als reproduzierbare Provenienz auszugeben.
+- Fehlende Hardware-Identität und nicht persistierte Antworten sind sichtbar;
+  ein Verweis führt zur bestehenden Wave-/FE-3-/Hardware-/PAN-Governance-Sicht.
+- E2E-Regression für `RUNNING` → `FAILED`: bestanden; CUDA-Fail-Closed/API-
+  Regressionen: 44 bestanden. Keine DATA/EVID- oder Hardware-Acceptance-
+  Promotion.
+
 ## 2026-10-02 - R0 Research-Catalog-Audit abgeschlossen
 
 - Der Research-Catalog-Audit meldet `CLEAN`: keine disallowed missing IDs,

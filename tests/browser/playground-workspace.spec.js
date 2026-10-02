@@ -168,6 +168,7 @@ test("recurrent CUDA diagnostic reports unavailability without a CPU success fal
     const payload = route.request().postDataJSON();
     expect(payload.n_neurons).toBe(129);
     expect(payload.ticks).toBe(100);
+    await new Promise((resolve) => setTimeout(resolve, 350));
     await route.fulfill({
       status: 503,
       contentType: "application/json",
@@ -176,9 +177,15 @@ test("recurrent CUDA diagnostic reports unavailability without a CPU success fal
   });
   await page.locator("#pg-group-5 > summary").click();
   await page.locator("#pg-cuda-recurrent").click();
+  await expect(page.locator("#pg-cuda-recurrent-state").locator("..").locator("[data-pg-run-status]")).toContainText("RUNNING");
   await expect(page.locator("#pg-cuda-recurrent-state")).toContainText(
     "CUDA driver unavailable",
   );
+  const runStatus = page.locator("#pg-cuda-recurrent-state").locator("..").locator("[data-pg-run-status]");
+  await expect(runStatus).toContainText("FAILED");
+  await expect(runStatus).toContainText("Start");
+  await expect(runStatus).toContainText("HEAD");
+  await expect(runStatus).toContainText("Artefakt nicht persistiert");
   await page.locator("#pg-cuda-plasticity").click();
   await expect(page.locator("#pg-cuda-plasticity-state")).toContainText(
     "CUDA driver unavailable",
