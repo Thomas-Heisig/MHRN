@@ -18,7 +18,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def write(root: Path, path: str, text: str) -> None:
     target = root / path
     target.parent.mkdir(parents=True, exist_ok=True)
-    target.write_text(text, encoding="utf-8")
+    target.write_text(text, encoding="utf-8", newline="\n")
 
 
 @pytest.fixture
