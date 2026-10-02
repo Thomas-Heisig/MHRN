@@ -1436,6 +1436,27 @@
       "original_path": "experiments/EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REMAINDER-02",
       "reason": "manuelle Archivierung"
     },
+    "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REMAINDER-03": {
+      "archived_at": "2026-10-02T18:31:23.838152+00:00",
+      "experiment_id": "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REMAINDER-03",
+      "manifest_sha256": "fad6ea66bc0c9a195371fc47df73bb90c05bfb549372962fcedc6d90eeee7f88",
+      "original_path": "experiments/EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REMAINDER-03",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REMAINDER-04": {
+      "archived_at": "2026-10-02T18:35:10.349315+00:00",
+      "experiment_id": "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REMAINDER-04",
+      "manifest_sha256": "3bcdcbd714bff6e114e6f26d220d11b5b01972b3d464cd60d23b1484d0fca771",
+      "original_path": "experiments/EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REMAINDER-04",
+      "reason": "manuelle Archivierung"
+    },
+    "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-01": {
+      "archived_at": "2026-10-02T18:34:38.240469+00:00",
+      "experiment_id": "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-01",
+      "manifest_sha256": "51e20c10ecc8ad302467dd0c3e1505d5658ba681055d04ed1946772c2db5262b",
+      "original_path": "experiments/EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-01",
+      "reason": "manuelle Archivierung"
+    },
     "EXP-DET-0001": {
       "archived_at": "2026-09-16T13:43:34.571183+00:00",
       "experiment_id": "EXP-DET-0001",

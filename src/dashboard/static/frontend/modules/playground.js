@@ -6,6 +6,7 @@ import { getLanguage } from "../core/i18n.js?v=i18n-fix-20260920b";
 
 let lastResult = null;
 let catalogState = null;
+let cudaRuntimeStatus = null;
 let liveSessionId = null;
 let liveLoopTimer = null;
 let nightPollTimer = null;
@@ -412,14 +413,15 @@ function buildPanels(root) {
           <button type="button" id="pg-cuda-builder-parity">D3 · Builder CPU/CUDA vergleichen</button>
           <button type="button" id="pg-cuda-plasticity">CUDA-1.5 · STP/STDP-Parität</button>
         </div>
+        <p>Jeder Diagnoseaufruf zeigt seinen eigenen Laufstatus. Projektweite Wave-, FE-3-, Hardware- und PAN-Gates stehen im <a href="#mhrn-acceleration-playground">Integrationsstatus</a>; Playground-Antworten werden nicht als Akzeptanzartefakte gespeichert.</p>
         <small>D1 = exakte Spike-Ereignisse · D2 = numerische Zustandsparität · D3 = Verhaltens-/Metrikparität. CUDA-1.3 prüft den 17-Parameter-Gate-ABI gegen dieselbe CPU-Gate-Referenz. GPU-Portierung von Membran-/Adaptations-/Refractory-State, Synapsen, Delays, Plastizität und Sandbox folgt in CUDA-1.4 bis 1.6.</small>
         <div class="playground-analysis-grid">
           <article class="playground-analysis-card"><h3>CUDA Reifegrad</h3><pre id="pg-cuda-stage-state">Status noch nicht geladen.</pre></article>
           <article class="playground-analysis-card"><h3>ptxas & Occupancy</h3><pre id="pg-cuda-resource-state">Noch kein Preflight.</pre></article>
-          <article class="playground-analysis-card"><h3>D2 Hardware-Parität</h3><pre id="pg-cuda-parity-state">Noch kein Hardware-Smoke.</pre></article>
-          <article class="playground-analysis-card"><h3>RNG ε-greedy</h3><pre id="pg-cuda-rng-state">Noch kein RNG-Paritätstest.</pre></article>
-          <article class="playground-analysis-card"><h3>Rekurrente Membran-Parität</h3><p>129 AdEx-Neuronen, statische Synapsen und Delays; FP64-Referenz. Noch kein vollständiger PAN-GPU-Lauf.</p><pre id="pg-cuda-recurrent-state">Noch kein Mehrtakt-Test.</pre></article>
-          <article class="playground-analysis-card"><h3>GPU-Plastizität</h3><p>STP, STDP, Eligibility und eingefrorene Reward-Folge; FP64-Referenz. Der Live-Regelkreis ist ein separater Schritt.</p><pre id="pg-cuda-plasticity-state">Noch kein Plastizitätstest.</pre><p>Builder-D3: echte Aktionen und Koerpertrajektorie; Membran auf GPU, Synapsen und Umwelt auf CPU.</p><pre id="pg-cuda-builder-parity-state">Noch kein Builder-Vergleich.</pre><p>Cue-Experiment: passend / randomisiert / entfernt, jeweils mit und ohne Pair-STDP. Ohne Policy-Strom und Koerperrueckkopplung; kein automatischer Lernnachweis.</p><pre id="pg-cue-controls-state">Noch kein Cue-Experiment.</pre><p id="pg-transfer-summary">Transfer: vortrainierte Gewichte gegen frische Initialisierung auf neuen Cue-Kanaelen. Alle anderen Zustaende werden zurueckgesetzt.</p><details><summary>Transfer-Protokoll und Decoder-Kurven</summary><pre id="pg-transfer-state" style="max-height:360px;overflow:auto">Noch kein Transfer-Vergleich.</pre></details></article>
+          <article class="playground-analysis-card"><h3>D2 Hardware-Parität · CUDA-1.3</h3><div data-pg-run-status="pending">PENDING · noch nicht ausgeführt</div><pre id="pg-cuda-parity-state">Noch kein Hardware-Smoke.</pre></article>
+          <article class="playground-analysis-card"><h3>RNG ε-greedy · CUDA-1.3</h3><div data-pg-run-status="pending">PENDING · noch nicht ausgeführt</div><pre id="pg-cuda-rng-state">Noch kein RNG-Paritätstest.</pre></article>
+          <article class="playground-analysis-card"><h3>CUDA-1.4 · Rekurrente Membran-Parität</h3><p>129 AdEx-Neuronen, statische Synapsen und Delays; FP64-Referenz. Noch kein vollständiger PAN-GPU-Lauf.</p><div data-pg-run-status="pending">PENDING · noch nicht ausgeführt</div><pre id="pg-cuda-recurrent-state">Noch kein Mehrtakt-Test.</pre></article>
+          <article class="playground-analysis-card"><h3>CUDA-1.5 · GPU-Plastizität</h3><p>STP, STDP, Eligibility und eingefrorene Reward-Folge; FP64-Referenz. Der Live-Regelkreis ist ein separater Schritt.</p><div data-pg-run-status="pending">PENDING · noch nicht ausgeführt</div><pre id="pg-cuda-plasticity-state">Noch kein Plastizitätstest.</pre><p>Builder-D3: echte Aktionen und Koerpertrajektorie; Membran auf GPU, Synapsen und Umwelt auf CPU.</p><div data-pg-run-status="pending">PENDING · noch nicht ausgeführt</div><pre id="pg-cuda-builder-parity-state">Noch kein Builder-Vergleich.</pre><p>Cue-Experiment: passend / randomisiert / entfernt, jeweils mit und ohne Pair-STDP. Ohne Policy-Strom und Koerperrueckkopplung; kein automatischer Lernnachweis.</p><div data-pg-run-status="pending">PENDING · noch nicht ausgeführt</div><pre id="pg-cue-controls-state">Noch kein Cue-Experiment.</pre><p id="pg-transfer-summary">Transfer: vortrainierte Gewichte gegen frische Initialisierung auf neuen Cue-Kanaelen. Alle anderen Zustaende werden zurueckgesetzt.</p><details><summary>Transfer-Protokoll und Decoder-Kurven</summary><pre id="pg-transfer-state" style="max-height:360px;overflow:auto">Noch kein Transfer-Vergleich.</pre></details></article>
         </div>
         <pre id="pg-cuda-compiler-state">Noch kein CUDA-/Parity-Lauf.</pre>
       </article>
@@ -1025,6 +1027,7 @@ async function refreshCudaStatus(){
   const node=byId("pg-cuda-stage-state");
   if(node)node.textContent="CUDA-Laufzeit wird geprüft …";
   const result=await apiGet("/api/playground/cuda/status");
+  cudaRuntimeStatus=result;
   if(node)node.textContent=JSON.stringify({
     target_default:result.target_default,
     ptxas_available:result.ptxas_available,
@@ -1034,8 +1037,38 @@ async function refreshCudaStatus(){
     application_cpu:result.application_cpu,
     gpu_porting:result.gpu_porting,
     verification:result.verification,
+    provenance:result.provenance,
   },null,2);
   return result;
+}
+
+async function runCudaDiagnostic(nodeId, operation, renderResult = (result) => JSON.stringify(result, null, 2)){
+  const node=byId(nodeId);
+  const status=node?.parentElement?.querySelector("[data-pg-run-status]");
+  const startedAt=new Date();
+  const commit=cudaRuntimeStatus?.provenance?.git_commit||"unbekannt";
+  const updateStatus=(state,finishedAt=null)=>{
+    if(!status)return;
+    status.dataset.status=state.toLowerCase();
+    const elapsed=((finishedAt||new Date())-startedAt)/1000;
+    status.textContent=`${state} · Start ${startedAt.toLocaleString()}${finishedAt?` · Ende ${finishedAt.toLocaleString()}`:""} · ${elapsed.toFixed(1)} s · HEAD ${commit} (Working Tree nicht erfasst) · Artefakt nicht persistiert`;
+  };
+  updateStatus("RUNNING");
+  const timer=window.setInterval(()=>updateStatus("RUNNING"),1000);
+  try{
+    const result=await operation();
+    const passed=result?.passed===true||result?.parity?.passed===true;
+    const failed=result?.passed===false||result?.parity?.passed===false;
+    updateStatus(passed?"PASSED":failed?"FAILED":"COMPLETED",new Date());
+    if(node)node.textContent=renderResult(result);
+    return result;
+  }catch(error){
+    updateStatus("FAILED",new Date());
+    if(node)node.textContent=String(error.message||error);
+    throw error;
+  }finally{
+    window.clearInterval(timer);
+  }
 }
 
 async function runCudaPreflight(){

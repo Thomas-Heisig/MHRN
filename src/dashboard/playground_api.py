@@ -8,6 +8,7 @@ import time
 from collections import deque
 from collections.abc import Callable, Mapping
 from dataclasses import replace
+from pathlib import Path
 from typing import cast
 
 from src.playground import service
@@ -36,6 +37,7 @@ from src.playground.integration import integration_catalog, transfer_element
 from src.playground.models import PlaygroundConfig
 from src.playground.night_run import NightRunManager
 from src.playground.pan import PANEmbodiedSandboxSession, PANSessionDaemon
+from src.dashboard.verification import current_git_head
 from src.playground.pan.cue_controls import run_cue_controls
 from src.playground.pan.transfer import run_synaptic_transfer
 
@@ -170,6 +172,11 @@ def _cuda_runtime_status() -> dict[str, object]:
         "classification": "PLAYGROUND_CUDA_DIAGNOSTICS_STATUS",
         "scientific_evidence": False,
         "canonical_cuda_backend": False,
+        "provenance": {
+            "git_commit": current_git_head(Path(__file__).resolve().parents[2]),
+            "source": "runtime_repository_head",
+            "working_tree_state": "not_captured",
+        },
         "target_default": "sm_86",
         "ptxas_available": ptxas_path is not None,
         "ptxas_path": ptxas_path,
