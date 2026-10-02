@@ -4,6 +4,18 @@
 **Baseline:** `mhrn-core 0.6.0a7`
 **Updated:** 2026-09-27
 
+## 2026-10-01 Konzeptaudit-Ausführung und Review-Routing
+
+- Die 22 zuvor ausstehenden kognitiven, epistemischen und Welfare-
+	Konzeptaudit-Protokolle wurden mit ihren registrierten Seeds sequenziell
+	ausgeführt.
+- Ihre Ergebnisse bleiben ausdrücklich methodische `EXPLORATORY` DATA ohne
+	direkten Hypothesentest, SNN-Lauf oder EVID-Promotion.
+- Neue Audits gehen mit einem strukturierten Review Request direkt in die
+	Human Review Inbox; AI-Interpretation wird für diesen Audittyp übersprungen.
+- Gateway-Plastic benötigt weiterhin eine eigene eingefrorene Registrierung,
+	passende unabhängige Seeds und separate Ausführungsautorisierung.
+
 ## 2026-09-29 Ausführbarkeitsgrenzen im Playground
 
 - Sichtbare Bausteine werden nicht mehr implizit als ausführbar behandelt.
@@ -11,6 +23,13 @@
 	ausführbar gekennzeichnet.
 - Experimentelle Topologien zeigen ihre Mindestdimension und sind bei
 	inkompatibler Dimension in der Builder-Auswahl deaktiviert.
+
+## 2026-10-01 Experimentdetail und Artefaktübersicht
+
+- Die Experimentdetailfläche bündelt verfügbare Laufartefakte und öffnet sie
+	über den zentralen File Viewer.
+- Human Review, Git-Commit und Provenienz-Digests werden separat angezeigt;
+	fehlende Angaben bleiben unbekannt und erzeugen keinen Evidenzstatus.
 
 ## 2026-09-27 Alpha.7 release line
 

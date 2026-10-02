@@ -1,0 +1,11 @@
+{
+  "last_archived_run": 11,
+  "raw_artifact": {
+    "format": "json.gz",
+    "path": "DATA/raw/run-0011-claim_boundary-seed-103.json.gz",
+    "sha256": "be97f8b7e65465f7201fb7cf87f22d64598e64ab0cdc1a4279efb75e7170db75",
+    "size_bytes": 514,
+    "uncompressed_bytes": 822
+  },
+  "status": "idle"
+}

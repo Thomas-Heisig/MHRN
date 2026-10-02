@@ -799,6 +799,24 @@
   margin-top: 12px;
 }
 
+.experiment-detail-artifacts {
+  margin-top: 12px;
+  border-top: 1px solid var(--rule-1, #d3cabd);
+}
+
+.experiment-detail-artifacts h4 {
+  margin: 10px 0 2px;
+  color: var(--ink-3, #514a42);
+  font-size: .68rem;
+}
+
+.experiment-inline-details .experiment-library-results {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 6px 0 0;
+}
+
 .experiment-lab-panel .experiment-library-results {
   display: flex;
   flex-wrap: wrap;

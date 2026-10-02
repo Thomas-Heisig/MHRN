@@ -460,15 +460,10 @@ class ExperimentWorkflowService:
                     f"Registered runner '{runner_name}' is not implemented."
                 )
         runner = getattr(runner_module, runner_name)
-        runner_source_value = getattr(runner_module, "__file__", None)
-        if not isinstance(runner_source_value, str):
-            raise WorkflowValidationError(
-                f"Cannot resolve source path for runner module {runner_module.__name__}."
-            )
-        runner_source = runner_source_value
+        runner_source = runner.__code__.co_filename
         runtime_runner_digest, source_runner_digest = (
             _assert_loaded_callable_matches_source(
-                runner, Path(runner_source).resolve(), runner_name
+                runner, Path(runner_source).resolve(), runner.__code__.co_name
             )
         )
         summary_runtime_digest, summary_source_digest = (
@@ -723,7 +718,31 @@ class ExperimentWorkflowService:
         else:
             recorder.mark_completed().save()
 
-        ai_report = self._append_ai_report(workflow.experiment_id)
+        execution_kind = (
+            operational_protocol.get("execution_kind")
+            if operational_protocol is not None
+            else None
+        )
+        if execution_kind == "conceptual_audit":
+            ai_report: dict[str, object] = {
+                "status": "unavailable",
+                "reason": "Conceptual audits use direct human review; AI interpretation is intentionally skipped.",
+                "scientific_evidence": False,
+            }
+        else:
+            execution_kind = (
+                operational_protocol.get("execution_kind")
+                if operational_protocol is not None
+                else None
+            )
+            if execution_kind == "conceptual_audit":
+                ai_report: dict[str, object] = {
+                    "status": "unavailable",
+                    "reason": "Conceptual audit uses direct human review; AI interpretation is intentionally skipped.",
+                    "scientific_evidence": False,
+                }
+            else:
+                ai_report = self._append_ai_report(workflow.experiment_id)
         manifest_path = output_dir / "manifest.json"
         manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
         artifacts = manifest.setdefault("artifacts", {})
@@ -765,6 +784,37 @@ class ExperimentWorkflowService:
         if ai_report.get("status") == "generated":
             artifacts["ai_report_json"] = str(ai_report["json"])
             artifacts["ai_report_markdown"] = str(ai_report["markdown"])
+        if execution_kind == "conceptual_audit":
+            review_request = {
+                "schema": "MHRN_HUMAN_REVIEW_REQUEST_V1",
+                "experiment_id": workflow.experiment_id,
+                "research_question_id": workflow.question_id,
+                "hypothesis_id": workflow.hypothesis_id,
+                "protocol_id": workflow.protocol,
+                "human_review": "PENDING",
+                "human_review_status": "PENDING",
+                "human_review_required": True,
+                "scientific_evidence": False,
+                "evidence_readiness": "BLOCKED_HUMAN_REVIEW",
+                "result_status": "CONCEPTUAL_AUDIT_RECORDED",
+                "direct_test_of_hypothesis": False,
+                "interpretation_boundary": (
+                    "Method-template audit only; no direct causal measurement, "
+                    "no native SNN execution and no automatic evidence promotion."
+                ),
+                "artifact_paths": [
+                    "report.md",
+                    "workflow.json",
+                    "analysis/statistics.json",
+                    "DATA/runs_index.json",
+                ],
+                "created_at": datetime.now(timezone.utc).isoformat(),
+            }
+            (output_dir / "review_request.json").write_text(
+                json.dumps(review_request, indent=2, ensure_ascii=False) + "\n",
+                encoding="utf-8",
+            )
+            artifacts["review_request"] = "review_request.json"
         manifest_path.write_text(
             json.dumps(manifest, indent=2, sort_keys=True) + "\n", encoding="utf-8"
         )
@@ -1472,10 +1522,22 @@ def _assert_loaded_callable_matches_source(
     compiled = compile(
         source_path.read_text(encoding="utf-8"), str(source_path), "exec"
     )
-    source_code = _find_named_code(compiled, function_name)
+    source_name = function_name
+    if function.__code__.co_name != function_name:
+        nested_name = function.__code__.co_name
+        if (
+            function.__name__ == function_name
+            and function.__qualname__.endswith(f".{nested_name}")
+        ):
+            source_name = nested_name
+        else:
+            raise WorkflowValidationError(
+                f"Cannot verify callable identity for {function_name}."
+            )
+    source_code = _find_named_code(compiled, source_name)
     if source_code is None:
         raise WorkflowValidationError(
-            f"Cannot verify runtime/source consistency for {function_name}."
+            f"Cannot verify runtime/source consistency for {source_name}."
         )
     source_digest = _code_digest(source_code)
     if runtime_digest != source_digest:

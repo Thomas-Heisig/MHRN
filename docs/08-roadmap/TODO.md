@@ -139,7 +139,7 @@ MHRN / Multi-Scale Homeostatic Recurrence Network. Publication: Recursive Episte
 - [x] Add result-viewing buttons (Report, Summary, Statistics, Raw Data) on every experiment library item — active and archived.
 - [x] Open past experiment artifacts in the file viewer via the existing `_openArtifact` pipeline.
 - [x] Install popup artifact-switch buttons in the file viewer header for past experiments.
-- [ ] Consider adding a dedicated experiment detail view with all artifacts, human review status and provenance in one panel.
+- [x] Expand the experiment detail view to group available artifacts, explicit human-review state and provenance digests in one panel.
 
 
 ## 2026-09-14 Stage 4 specialized neural areas
@@ -687,3 +687,18 @@ Reference: [MHRN simulator capability gaps](MHRN_SIMULATOR_CAPABILITY_GAPS.md).
 - [ ] Bind an exact post-merge source/config digest and separately authorize execution of `cpu_self_parity_v1`.
 - [ ] Perform the physical RTX-3060 Wave-5B acceptance separately; it remains Engineering Verification and is not substituted by this CPU study.
 - [ ] Resolve all five Wave-7 learning divergences before freezing a common CPU/CUDA learning contract.
+
+## 2026-10-01 Sequential conceptual audits and review
+
+- [x] Execute all 22 previously unrun registered cognition/epistemic/welfare
+	conceptual-audit protocols in registered seed order (`101-103`).
+- [x] Preserve each audit as completed `EXPLORATORY` DATA with
+	`direct_test_of_hypothesis=false`, `scientific_evidence=false` and no
+	automatic DATA-to-EVID promotion.
+- [x] Add a direct `review_request.json` for each new audit and verify all 18
+	newly generated requests appear in the Human Review Inbox; earlier audit
+	records remain reviewable through their AIRR artifacts.
+- [ ] Complete the resulting human reviews; execution and review requests do
+	not substitute for reviewer decisions.
+- [ ] Keep gateway Plastic and confirmatory executions blocked until their own
+	frozen, registered preregistration and execution authorization exist.

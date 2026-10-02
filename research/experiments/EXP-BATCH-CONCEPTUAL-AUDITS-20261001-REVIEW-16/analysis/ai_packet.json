@@ -1,0 +1,707 @@
+{
+  "ai_input_policy": "compact_only_raw_on_explicit_deterministic_extract",
+  "generated_by": "deterministic_research_data_v2",
+  "limits": {
+    "ai_packet_max_bytes": 1000000,
+    "run_summary_max_bytes": 5000000,
+    "sequence_preview_items": 16
+  },
+  "raw_index": {
+    "path": "DATA/runs_index.json",
+    "run_count": 12,
+    "sha256": "8bd7d29b69ba28bc843de6e1b114043cae8ff40a89ecb8df020d94d32c74fe33"
+  },
+  "run_count": 12,
+  "run_preview": [
+    {
+      "_raw_artifact": {
+        "format": "json.gz",
+        "path": "DATA/raw/run-0000-assumption_explicit-seed-101.json.gz",
+        "sha256": "7e7013875f95bc8d198b4417fb831bba283c6352e3aa807699afc46ee3855ce6",
+        "size_bytes": 522,
+        "uncompressed_bytes": 827
+      },
+      "condition": "assumption_explicit",
+      "experiment_id": "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-16",
+      "metrics": {
+        "audit_complete": false,
+        "audit_item": 1,
+        "audit_template_generated": true,
+        "automatic_evidence_promotion": false,
+        "claim_scope": "component_engineering_screen_not_snn_learning",
+        "conceptual_or_normative": true,
+        "consciousness_inference": "not_established",
+        "external_ethics_approval": "not_claimed",
+        "external_review_instrument": "research/external_review/README.md",
+        "human_assessment": "not_recorded",
+        "native_empirical_experiment": false,
+        "phenomenal_claim_identified": false,
+        "scientific_evidence": false,
+        "snn_involved": false
+      },
+      "runtime_error": null,
+      "seed": 101,
+      "state_digest_after": "336b9098448950fc763d0ea076333ea9aee111381ffda613ac6d2db42e30b1ac",
+      "state_digest_before": "336b9098448950fc763d0ea076333ea9aee111381ffda613ac6d2db42e30b1ac"
+    },
+    {
+      "_raw_artifact": {
+        "format": "json.gz",
+        "path": "DATA/raw/run-0001-alternative_model-seed-101.json.gz",
+        "sha256": "a83fb579875118fe5d3145dafdf90b3292b9f35291f38ba4e0ab57f51db1598e",
+        "size_bytes": 519,
+        "uncompressed_bytes": 825
+      },
+      "condition": "alternative_model",
+      "experiment_id": "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-16",
+      "metrics": {
+        "audit_complete": false,
+        "audit_item": 2,
+        "audit_template_generated": true,
+        "automatic_evidence_promotion": false,
+        "claim_scope": "component_engineering_screen_not_snn_learning",
+        "conceptual_or_normative": true,
+        "consciousness_inference": "not_established",
+        "external_ethics_approval": "not_claimed",
+        "external_review_instrument": "research/external_review/README.md",
+        "human_assessment": "not_recorded",
+        "native_empirical_experiment": false,
+        "phenomenal_claim_identified": false,
+        "scientific_evidence": false,
+        "snn_involved": false
+      },
+      "runtime_error": null,
+      "seed": 101,
+      "state_digest_after": "962c0d422d78c5761d4a2287e48fabb00ff0125a847b2e0779caf25323c2d6e0",
+      "state_digest_before": "962c0d422d78c5761d4a2287e48fabb00ff0125a847b2e0779caf25323c2d6e0"
+    },
+    {
+      "_raw_artifact": {
+        "format": "json.gz",
+        "path": "DATA/raw/run-0002-measurement_limit-seed-101.json.gz",
+        "sha256": "3db114cc113daffaab47173c6bf5fc0f89b796e63136a80863e402b78d491c99",
+        "size_bytes": 519,
+        "uncompressed_bytes": 825
+      },
+      "condition": "measurement_limit",
+      "experiment_id": "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-16",
+      "metrics": {
+        "audit_complete": false,
+        "audit_item": 3,
+        "audit_template_generated": true,
+        "automatic_evidence_promotion": false,
+        "claim_scope": "component_engineering_screen_not_snn_learning",
+        "conceptual_or_normative": true,
+        "consciousness_inference": "not_established",
+        "external_ethics_approval": "not_claimed",
+        "external_review_instrument": "research/external_review/README.md",
+        "human_assessment": "not_recorded",
+        "native_empirical_experiment": false,
+        "phenomenal_claim_identified": false,
+        "scientific_evidence": false,
+        "snn_involved": false
+      },
+      "runtime_error": null,
+      "seed": 101,
+      "state_digest_after": "e1883354ff05bce795807f5acf66a1668076c7634632ffb8c302fbf0654e297e",
+      "state_digest_before": "e1883354ff05bce795807f5acf66a1668076c7634632ffb8c302fbf0654e297e"
+    },
+    {
+      "_raw_artifact": {
+        "format": "json.gz",
+        "path": "DATA/raw/run-0003-claim_boundary-seed-101.json.gz",
+        "sha256": "4c72d29d22c3d99e30509176f90ad59c1971bbe8ca136673f7116e7f4a63e5d4",
+        "size_bytes": 512,
+        "uncompressed_bytes": 822
+      },
+      "condition": "claim_boundary",
+      "experiment_id": "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-16",
+      "metrics": {
+        "audit_complete": false,
+        "audit_item": 4,
+        "audit_template_generated": true,
+        "automatic_evidence_promotion": false,
+        "claim_scope": "component_engineering_screen_not_snn_learning",
+        "conceptual_or_normative": true,
+        "consciousness_inference": "not_established",
+        "external_ethics_approval": "not_claimed",
+        "external_review_instrument": "research/external_review/README.md",
+        "human_assessment": "not_recorded",
+        "native_empirical_experiment": false,
+        "phenomenal_claim_identified": false,
+        "scientific_evidence": false,
+        "snn_involved": false
+      },
+      "runtime_error": null,
+      "seed": 101,
+      "state_digest_after": "7c02d0decc6d3caa0a2bbfb9ebda1d8febb287277d37295c6a107aeec8107437",
+      "state_digest_before": "7c02d0decc6d3caa0a2bbfb9ebda1d8febb287277d37295c6a107aeec8107437"
+    },
+    {
+      "_raw_artifact": {
+        "format": "json.gz",
+        "path": "DATA/raw/run-0004-assumption_explicit-seed-102.json.gz",
+        "sha256": "24b09613a946cf16246ced7cd75cc2d34c2973c3dceab2f22cffa52b7b4b6748",
+        "size_bytes": 519,
+        "uncompressed_bytes": 827
+      },
+      "condition": "assumption_explicit",
+      "experiment_id": "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-16",
+      "metrics": {
+        "audit_complete": false,
+        "audit_item": 1,
+        "audit_template_generated": true,
+        "automatic_evidence_promotion": false,
+        "claim_scope": "component_engineering_screen_not_snn_learning",
+        "conceptual_or_normative": true,
+        "consciousness_inference": "not_established",
+        "external_ethics_approval": "not_claimed",
+        "external_review_instrument": "research/external_review/README.md",
+        "human_assessment": "not_recorded",
+        "native_empirical_experiment": false,
+        "phenomenal_claim_identified": false,
+        "scientific_evidence": false,
+        "snn_involved": false
+      },
+      "runtime_error": null,
+      "seed": 102,
+      "state_digest_after": "360f6f2038cf2e33b3f13ede6860fa1a7454a3aba60eb26116b7d38c2bdbd7dd",
+      "state_digest_before": "360f6f2038cf2e33b3f13ede6860fa1a7454a3aba60eb26116b7d38c2bdbd7dd"
+    },
+    {
+      "_raw_artifact": {
+        "format": "json.gz",
+        "path": "DATA/raw/run-0005-alternative_model-seed-102.json.gz",
+        "sha256": "28032b6dbf2d36bf0ce6690e8d93f7f347fcaaabae63da6d603ca02026c4a46f",
+        "size_bytes": 519,
+        "uncompressed_bytes": 825
+      },
+      "condition": "alternative_model",
+      "experiment_id": "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-16",
+      "metrics": {
+        "audit_complete": false,
+        "audit_item": 2,
+        "audit_template_generated": true,
+        "automatic_evidence_promotion": false,
+        "claim_scope": "component_engineering_screen_not_snn_learning",
+        "conceptual_or_normative": true,
+        "consciousness_inference": "not_established",
+        "external_ethics_approval": "not_claimed",
+        "external_review_instrument": "research/external_review/README.md",
+        "human_assessment": "not_recorded",
+        "native_empirical_experiment": false,
+        "phenomenal_claim_identified": false,
+        "scientific_evidence": false,
+        "snn_involved": false
+      },
+      "runtime_error": null,
+      "seed": 102,
+      "state_digest_after": "479c2838a71c4c567426466cead2cfc667eaba000337b7214e699c789b21ece9",
+      "state_digest_before": "479c2838a71c4c567426466cead2cfc667eaba000337b7214e699c789b21ece9"
+    },
+    {
+      "_raw_artifact": {
+        "format": "json.gz",
+        "path": "DATA/raw/run-0006-measurement_limit-seed-102.json.gz",
+        "sha256": "b3fa5386633d18759386892562923aeed02bb1cace3f0f7fbf09d8948a15f884",
+        "size_bytes": 516,
+        "uncompressed_bytes": 825
+      },
+      "condition": "measurement_limit",
+      "experiment_id": "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-16",
+      "metrics": {
+        "audit_complete": false,
+        "audit_item": 3,
+        "audit_template_generated": true,
+        "automatic_evidence_promotion": false,
+        "claim_scope": "component_engineering_screen_not_snn_learning",
+        "conceptual_or_normative": true,
+        "consciousness_inference": "not_established",
+        "external_ethics_approval": "not_claimed",
+        "external_review_instrument": "research/external_review/README.md",
+        "human_assessment": "not_recorded",
+        "native_empirical_experiment": false,
+        "phenomenal_claim_identified": false,
+        "scientific_evidence": false,
+        "snn_involved": false
+      },
+      "runtime_error": null,
+      "seed": 102,
+      "state_digest_after": "4049d8c712a725242e9198239a2b9ecd2cbeaf2d03a5576fbb239a2a74a6fe77",
+      "state_digest_before": "4049d8c712a725242e9198239a2b9ecd2cbeaf2d03a5576fbb239a2a74a6fe77"
+    },
+    {
+      "_raw_artifact": {
+        "format": "json.gz",
+        "path": "DATA/raw/run-0007-claim_boundary-seed-102.json.gz",
+        "sha256": "11aa1dd8762fae54ceaa18c642097998a2046b9353cf33f7eae894b86d457880",
+        "size_bytes": 512,
+        "uncompressed_bytes": 822
+      },
+      "condition": "claim_boundary",
+      "experiment_id": "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-16",
+      "metrics": {
+        "audit_complete": false,
+        "audit_item": 4,
+        "audit_template_generated": true,
+        "automatic_evidence_promotion": false,
+        "claim_scope": "component_engineering_screen_not_snn_learning",
+        "conceptual_or_normative": true,
+        "consciousness_inference": "not_established",
+        "external_ethics_approval": "not_claimed",
+        "external_review_instrument": "research/external_review/README.md",
+        "human_assessment": "not_recorded",
+        "native_empirical_experiment": false,
+        "phenomenal_claim_identified": false,
+        "scientific_evidence": false,
+        "snn_involved": false
+      },
+      "runtime_error": null,
+      "seed": 102,
+      "state_digest_after": "0ee7cdecb8d92a6fa2741e68743170a92cab1dc4c900d62e32a192094efd10b2",
+      "state_digest_before": "0ee7cdecb8d92a6fa2741e68743170a92cab1dc4c900d62e32a192094efd10b2"
+    },
+    {
+      "_raw_artifact": {
+        "format": "json.gz",
+        "path": "DATA/raw/run-0008-assumption_explicit-seed-103.json.gz",
+        "sha256": "5ae97ec04a22121cdaf3d232e49a016cc77b6047ab9a2b5a4ddff4d49b28ecee",
+        "size_bytes": 524,
+        "uncompressed_bytes": 827
+      },
+      "condition": "assumption_explicit",
+      "experiment_id": "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-16",
+      "metrics": {
+        "audit_complete": false,
+        "audit_item": 1,
+        "audit_template_generated": true,
+        "automatic_evidence_promotion": false,
+        "claim_scope": "component_engineering_screen_not_snn_learning",
+        "conceptual_or_normative": true,
+        "consciousness_inference": "not_established",
+        "external_ethics_approval": "not_claimed",
+        "external_review_instrument": "research/external_review/README.md",
+        "human_assessment": "not_recorded",
+        "native_empirical_experiment": false,
+        "phenomenal_claim_identified": false,
+        "scientific_evidence": false,
+        "snn_involved": false
+      },
+      "runtime_error": null,
+      "seed": 103,
+      "state_digest_after": "9862fd47855131753ae364a5cf030cd303d2e13d704f301670a6570b5b4664d1",
+      "state_digest_before": "9862fd47855131753ae364a5cf030cd303d2e13d704f301670a6570b5b4664d1"
+    },
+    {
+      "_raw_artifact": {
+        "format": "json.gz",
+        "path": "DATA/raw/run-0009-alternative_model-seed-103.json.gz",
+        "sha256": "2e5fe867b27e5e7a12da7ad07b715e2e70d0555aada98b5acc3b6b697cb2c7e0",
+        "size_bytes": 518,
+        "uncompressed_bytes": 825
+      },
+      "condition": "alternative_model",
+      "experiment_id": "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-16",
+      "metrics": {
+        "audit_complete": false,
+        "audit_item": 2,
+        "audit_template_generated": true,
+        "automatic_evidence_promotion": false,
+        "claim_scope": "component_engineering_screen_not_snn_learning",
+        "conceptual_or_normative": true,
+        "consciousness_inference": "not_established",
+        "external_ethics_approval": "not_claimed",
+        "external_review_instrument": "research/external_review/README.md",
+        "human_assessment": "not_recorded",
+        "native_empirical_experiment": false,
+        "phenomenal_claim_identified": false,
+        "scientific_evidence": false,
+        "snn_involved": false
+      },
+      "runtime_error": null,
+      "seed": 103,
+      "state_digest_after": "12ae1c6fb08a28c082b4ddf210b68a58b8717c3f5312e13fbd0cf25074f4d62d",
+      "state_digest_before": "12ae1c6fb08a28c082b4ddf210b68a58b8717c3f5312e13fbd0cf25074f4d62d"
+    },
+    {
+      "_raw_artifact": {
+        "format": "json.gz",
+        "path": "DATA/raw/run-0010-measurement_limit-seed-103.json.gz",
+        "sha256": "c8af4dcae5731a3b2ff6b8bbe9f4f7d7dd0b84a08f0e9163e0a7092954c03524",
+        "size_bytes": 520,
+        "uncompressed_bytes": 825
+      },
+      "condition": "measurement_limit",
+      "experiment_id": "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-16",
+      "metrics": {
+        "audit_complete": false,
+        "audit_item": 3,
+        "audit_template_generated": true,
+        "automatic_evidence_promotion": false,
+        "claim_scope": "component_engineering_screen_not_snn_learning",
+        "conceptual_or_normative": true,
+        "consciousness_inference": "not_established",
+        "external_ethics_approval": "not_claimed",
+        "external_review_instrument": "research/external_review/README.md",
+        "human_assessment": "not_recorded",
+        "native_empirical_experiment": false,
+        "phenomenal_claim_identified": false,
+        "scientific_evidence": false,
+        "snn_involved": false
+      },
+      "runtime_error": null,
+      "seed": 103,
+      "state_digest_after": "e583e6f5d5cccad24cd347c48184338f6adc9107ff46a02485af337610343e68",
+      "state_digest_before": "e583e6f5d5cccad24cd347c48184338f6adc9107ff46a02485af337610343e68"
+    },
+    {
+      "_raw_artifact": {
+        "format": "json.gz",
+        "path": "DATA/raw/run-0011-claim_boundary-seed-103.json.gz",
+        "sha256": "a7ab1147f2cb38d014020e492845d789785b291d235b501b35b6de8de33717a0",
+        "size_bytes": 514,
+        "uncompressed_bytes": 822
+      },
+      "condition": "claim_boundary",
+      "experiment_id": "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-16",
+      "metrics": {
+        "audit_complete": false,
+        "audit_item": 4,
+        "audit_template_generated": true,
+        "automatic_evidence_promotion": false,
+        "claim_scope": "component_engineering_screen_not_snn_learning",
+        "conceptual_or_normative": true,
+        "consciousness_inference": "not_established",
+        "external_ethics_approval": "not_claimed",
+        "external_review_instrument": "research/external_review/README.md",
+        "human_assessment": "not_recorded",
+        "native_empirical_experiment": false,
+        "phenomenal_claim_identified": false,
+        "scientific_evidence": false,
+        "snn_involved": false
+      },
+      "runtime_error": null,
+      "seed": 103,
+      "state_digest_after": "716b4f12b4cdd51c1d1aa043d396a92d55074079a638c25b2b4003d0bbc445f2",
+      "state_digest_before": "716b4f12b4cdd51c1d1aa043d396a92d55074079a638c25b2b4003d0bbc445f2"
+    }
+  ],
+  "schema_version": "2.0",
+  "statistics": {
+    "conditions": {
+      "alternative_model": {
+        "boolean_metrics": {
+          "audit_complete": {
+            "all_true": false,
+            "false_count": 3,
+            "n": 3,
+            "true_count": 0,
+            "true_fraction": 0.0
+          },
+          "audit_template_generated": {
+            "all_true": true,
+            "false_count": 0,
+            "n": 3,
+            "true_count": 3,
+            "true_fraction": 1.0
+          },
+          "automatic_evidence_promotion": {
+            "all_true": false,
+            "false_count": 3,
+            "n": 3,
+            "true_count": 0,
+            "true_fraction": 0.0
+          },
+          "conceptual_or_normative": {
+            "all_true": true,
+            "false_count": 0,
+            "n": 3,
+            "true_count": 3,
+            "true_fraction": 1.0
+          },
+          "native_empirical_experiment": {
+            "all_true": false,
+            "false_count": 3,
+            "n": 3,
+            "true_count": 0,
+            "true_fraction": 0.0
+          },
+          "phenomenal_claim_identified": {
+            "all_true": false,
+            "false_count": 3,
+            "n": 3,
+            "true_count": 0,
+            "true_fraction": 0.0
+          },
+          "scientific_evidence": {
+            "all_true": false,
+            "false_count": 3,
+            "n": 3,
+            "true_count": 0,
+            "true_fraction": 0.0
+          },
+          "snn_involved": {
+            "all_true": false,
+            "false_count": 3,
+            "n": 3,
+            "true_count": 0,
+            "true_fraction": 0.0
+          }
+        },
+        "metrics": {
+          "audit_item": {
+            "max": 2.0,
+            "mean": 2.0,
+            "median": 2.0,
+            "min": 2.0,
+            "n": 3,
+            "std": 0.0
+          }
+        },
+        "run_count": 3,
+        "seeds": [
+          101,
+          102,
+          103
+        ]
+      },
+      "assumption_explicit": {
+        "boolean_metrics": {
+          "audit_complete": {
+            "all_true": false,
+            "false_count": 3,
+            "n": 3,
+            "true_count": 0,
+            "true_fraction": 0.0
+          },
+          "audit_template_generated": {
+            "all_true": true,
+            "false_count": 0,
+            "n": 3,
+            "true_count": 3,
+            "true_fraction": 1.0
+          },
+          "automatic_evidence_promotion": {
+            "all_true": false,
+            "false_count": 3,
+            "n": 3,
+            "true_count": 0,
+            "true_fraction": 0.0
+          },
+          "conceptual_or_normative": {
+            "all_true": true,
+            "false_count": 0,
+            "n": 3,
+            "true_count": 3,
+            "true_fraction": 1.0
+          },
+          "native_empirical_experiment": {
+            "all_true": false,
+            "false_count": 3,
+            "n": 3,
+            "true_count": 0,
+            "true_fraction": 0.0
+          },
+          "phenomenal_claim_identified": {
+            "all_true": false,
+            "false_count": 3,
+            "n": 3,
+            "true_count": 0,
+            "true_fraction": 0.0
+          },
+          "scientific_evidence": {
+            "all_true": false,
+            "false_count": 3,
+            "n": 3,
+            "true_count": 0,
+            "true_fraction": 0.0
+          },
+          "snn_involved": {
+            "all_true": false,
+            "false_count": 3,
+            "n": 3,
+            "true_count": 0,
+            "true_fraction": 0.0
+          }
+        },
+        "metrics": {
+          "audit_item": {
+            "max": 1.0,
+            "mean": 1.0,
+            "median": 1.0,
+            "min": 1.0,
+            "n": 3,
+            "std": 0.0
+          }
+        },
+        "run_count": 3,
+        "seeds": [
+          101,
+          102,
+          103
+        ]
+      },
+      "claim_boundary": {
+        "boolean_metrics": {
+          "audit_complete": {
+            "all_true": false,
+            "false_count": 3,
+            "n": 3,
+            "true_count": 0,
+            "true_fraction": 0.0
+          },
+          "audit_template_generated": {
+            "all_true": true,
+            "false_count": 0,
+            "n": 3,
+            "true_count": 3,
+            "true_fraction": 1.0
+          },
+          "automatic_evidence_promotion": {
+            "all_true": false,
+            "false_count": 3,
+            "n": 3,
+            "true_count": 0,
+            "true_fraction": 0.0
+          },
+          "conceptual_or_normative": {
+            "all_true": true,
+            "false_count": 0,
+            "n": 3,
+            "true_count": 3,
+            "true_fraction": 1.0
+          },
+          "native_empirical_experiment": {
+            "all_true": false,
+            "false_count": 3,
+            "n": 3,
+            "true_count": 0,
+            "true_fraction": 0.0
+          },
+          "phenomenal_claim_identified": {
+            "all_true": false,
+            "false_count": 3,
+            "n": 3,
+            "true_count": 0,
+            "true_fraction": 0.0
+          },
+          "scientific_evidence": {
+            "all_true": false,
+            "false_count": 3,
+            "n": 3,
+            "true_count": 0,
+            "true_fraction": 0.0
+          },
+          "snn_involved": {
+            "all_true": false,
+            "false_count": 3,
+            "n": 3,
+            "true_count": 0,
+            "true_fraction": 0.0
+          }
+        },
+        "metrics": {
+          "audit_item": {
+            "max": 4.0,
+            "mean": 4.0,
+            "median": 4.0,
+            "min": 4.0,
+            "n": 3,
+            "std": 0.0
+          }
+        },
+        "run_count": 3,
+        "seeds": [
+          101,
+          102,
+          103
+        ]
+      },
+      "measurement_limit": {
+        "boolean_metrics": {
+          "audit_complete": {
+            "all_true": false,
+            "false_count": 3,
+            "n": 3,
+            "true_count": 0,
+            "true_fraction": 0.0
+          },
+          "audit_template_generated": {
+            "all_true": true,
+            "false_count": 0,
+            "n": 3,
+            "true_count": 3,
+            "true_fraction": 1.0
+          },
+          "automatic_evidence_promotion": {
+            "all_true": false,
+            "false_count": 3,
+            "n": 3,
+            "true_count": 0,
+            "true_fraction": 0.0
+          },
+          "conceptual_or_normative": {
+            "all_true": true,
+            "false_count": 0,
+            "n": 3,
+            "true_count": 3,
+            "true_fraction": 1.0
+          },
+          "native_empirical_experiment": {
+            "all_true": false,
+            "false_count": 3,
+            "n": 3,
+            "true_count": 0,
+            "true_fraction": 0.0
+          },
+          "phenomenal_claim_identified": {
+            "all_true": false,
+            "false_count": 3,
+            "n": 3,
+            "true_count": 0,
+            "true_fraction": 0.0
+          },
+          "scientific_evidence": {
+            "all_true": false,
+            "false_count": 3,
+            "n": 3,
+            "true_count": 0,
+            "true_fraction": 0.0
+          },
+          "snn_involved": {
+            "all_true": false,
+            "false_count": 3,
+            "n": 3,
+            "true_count": 0,
+            "true_fraction": 0.0
+          }
+        },
+        "metrics": {
+          "audit_item": {
+            "max": 3.0,
+            "mean": 3.0,
+            "median": 3.0,
+            "min": 3.0,
+            "n": 3,
+            "std": 0.0
+          }
+        },
+        "run_count": 3,
+        "seeds": [
+          101,
+          102,
+          103
+        ]
+      }
+    },
+    "formulas": {
+      "difference": "Delta_x = mean(x_B) - mean(x_A)",
+      "inter_spike_interval": "ISI_i = t_(i+1) - t_i",
+      "mean": "mean(x) = (1/n) * sum_i x_i",
+      "population_std": "sigma = sqrt((1/n) * sum_i (x_i - mean(x))^2)",
+      "ratio": "R_x = mean(x_B) / mean(x_A), defined only when mean(x_A) != 0"
+    },
+    "run_count": 12,
+    "schema_version": "2.2"
+  }
+}

@@ -1,0 +1,127 @@
+{
+  "run_count": 12,
+  "runs": [
+    {
+      "condition": "assumption_explicit",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0000-assumption_explicit-seed-101.json.gz",
+      "run_index": 0,
+      "seed": 101,
+      "sha256": "022b3e707c3743d3866eb7f964620b6a0ed18e5846bf878b0d9279bb0922809f",
+      "size_bytes": 522,
+      "uncompressed_bytes": 827
+    },
+    {
+      "condition": "alternative_model",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0001-alternative_model-seed-101.json.gz",
+      "run_index": 1,
+      "seed": 101,
+      "sha256": "cdb40d32065448fac9de2d298373ca8bbb793fabe3bbfd5c61cc5a3a477a64e7",
+      "size_bytes": 519,
+      "uncompressed_bytes": 825
+    },
+    {
+      "condition": "measurement_limit",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0002-measurement_limit-seed-101.json.gz",
+      "run_index": 2,
+      "seed": 101,
+      "sha256": "681492391ad097d7d312151d4139b78e4b09e7a1795b9b759bc59ab60fdf235b",
+      "size_bytes": 517,
+      "uncompressed_bytes": 825
+    },
+    {
+      "condition": "claim_boundary",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0003-claim_boundary-seed-101.json.gz",
+      "run_index": 3,
+      "seed": 101,
+      "sha256": "a4306f084817429c12f334850795f23dcd660f8d77d72201cc8860b7e60e8229",
+      "size_bytes": 514,
+      "uncompressed_bytes": 822
+    },
+    {
+      "condition": "assumption_explicit",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0004-assumption_explicit-seed-102.json.gz",
+      "run_index": 4,
+      "seed": 102,
+      "sha256": "b8de927db733c2d07d813165c1d5fbb4fe8c2ee3ba92b5d4749f5f4a986d1d37",
+      "size_bytes": 522,
+      "uncompressed_bytes": 827
+    },
+    {
+      "condition": "alternative_model",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0005-alternative_model-seed-102.json.gz",
+      "run_index": 5,
+      "seed": 102,
+      "sha256": "d090195af4058d4d198e795a479605dd1fca9fd11ed946a7a44016e9642e087f",
+      "size_bytes": 518,
+      "uncompressed_bytes": 825
+    },
+    {
+      "condition": "measurement_limit",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0006-measurement_limit-seed-102.json.gz",
+      "run_index": 6,
+      "seed": 102,
+      "sha256": "0d9331693e963c9dcfd3cda3bd208948b19ea583515db6e9f6287a19e14114f9",
+      "size_bytes": 517,
+      "uncompressed_bytes": 825
+    },
+    {
+      "condition": "claim_boundary",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0007-claim_boundary-seed-102.json.gz",
+      "run_index": 7,
+      "seed": 102,
+      "sha256": "8217ccafb6bfb2d595e3dd19440141c9139aa26833b5a37f676ffc4d3c27ef88",
+      "size_bytes": 514,
+      "uncompressed_bytes": 822
+    },
+    {
+      "condition": "assumption_explicit",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0008-assumption_explicit-seed-103.json.gz",
+      "run_index": 8,
+      "seed": 103,
+      "sha256": "3b29ad353f52ce0e16e42c39f702e5d365472af260962967a632609282e4fb39",
+      "size_bytes": 520,
+      "uncompressed_bytes": 827
+    },
+    {
+      "condition": "alternative_model",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0009-alternative_model-seed-103.json.gz",
+      "run_index": 9,
+      "seed": 103,
+      "sha256": "8ab22a0fb45a3511f2148908a795b94bc518c90466a4d1c6cad726f8fcbfd14f",
+      "size_bytes": 519,
+      "uncompressed_bytes": 825
+    },
+    {
+      "condition": "measurement_limit",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0010-measurement_limit-seed-103.json.gz",
+      "run_index": 10,
+      "seed": 103,
+      "sha256": "262565ef937699c6302b83a0eaae3fb40b1e7a313210b4105dfda0f83f4ca2bf",
+      "size_bytes": 518,
+      "uncompressed_bytes": 825
+    },
+    {
+      "condition": "claim_boundary",
+      "format": "json.gz",
+      "path": "DATA/raw/run-0011-claim_boundary-seed-103.json.gz",
+      "run_index": 11,
+      "seed": 103,
+      "sha256": "7bd5b23dbaa936389853ad2467968e94625cbb86ec58bf7063adbcf5bfe6dba8",
+      "size_bytes": 513,
+      "uncompressed_bytes": 822
+    }
+  ],
+  "schema_version": "2.0",
+  "storage_policy": "immutable_raw_runs_plus_compact_current_experiment"
+}

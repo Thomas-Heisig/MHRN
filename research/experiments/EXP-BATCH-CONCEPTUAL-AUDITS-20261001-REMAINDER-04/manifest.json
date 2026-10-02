@@ -1,0 +1,99 @@
+{
+  "experiment_id": "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REMAINDER-04",
+  "experiment_status": "completed",
+  "ai_exposure": "none",
+  "ai_reproducibility": "R0",
+  "ai_protocol": {
+    "version": 1,
+    "bump_reason": "initial registration"
+  },
+  "causal_taint": "PURE",
+  "ai_interactions": [],
+  "causal_card": {
+    "classification": "PURE",
+    "interaction_ids": [],
+    "roles": []
+  },
+  "timestamp": "2026-10-01T23:28:52.976439",
+  "created_at": "2026-10-01T21:28:52.976448+00:00",
+  "git": {
+    "commit": "1f489c978592dc14dc20492c322a34fe25dddba3",
+    "dirty": true,
+    "branch": "develop"
+  },
+  "software": {
+    "python": "3.13.14",
+    "os": "Windows 11",
+    "brain5d_version": "0.6.0a7"
+  },
+  "simulation": {
+    "seed": 101,
+    "ticks": 1,
+    "seeds": [
+      101,
+      102,
+      103
+    ],
+    "protocol": "cog_cns_105_v1"
+  },
+  "artifacts": {
+    "data": "DATA/runs_compact.json",
+    "data_index": "DATA/runs_index.json",
+    "ai_packet": "analysis/ai_packet.json",
+    "ai_packet_digest": "analysis/ai_packet_digest.json",
+    "statistics": "analysis/statistics.json",
+    "workflow": "workflow.json",
+    "report": "report.md"
+  },
+  "research_questions": [
+    "RQ-CNS-105"
+  ],
+  "hypotheses": [
+    "H-CNS-105-A"
+  ],
+  "config": {
+    "path": "F:\\Brain-5D\\configs\\learning_experiment.yaml",
+    "sha256": "6f6cd457caf6216c286fee47ef03b529a0b496ed2dd53ee96b85d3b51e7b3a1c"
+  },
+  "validity": {
+    "valid": true,
+    "reason": null,
+    "runtime_error_count": 0,
+    "fatal_error_count": 0
+  },
+  "runtime_errors": [],
+  "research_run_mode": "EXPLORATORY",
+  "data_partitions": [],
+  "network_mode": "OFFLINE",
+  "execution_semantics": {
+    "kind": "conceptual_audit",
+    "snn_involved": false,
+    "direct_test_of_hypothesis": false,
+    "scientific_evidence": false,
+    "automatic_evidence_promotion": false,
+    "human_assessment": "not_recorded",
+    "claim_scope": "method_template_only",
+    "external_review": "external_review/INTEGRATION.md"
+  },
+  "results": {
+    "run_count": 12,
+    "protocol": "cog_cns_105_v1",
+    "runner": "run_cog_cns_105_v1",
+    "ticks_requested": 1,
+    "tick_contract": {
+      "status": "NOT_APPLICABLE",
+      "mode": "protocol_defined_internal_trials",
+      "requested_ticks": 1
+    }
+  },
+  "provenance_digests": {
+    "code": "5a11ea288e7e695c2dcd456642b533cbb3e6daf38b72e150134e60e69059531f",
+    "config": "6f6cd457caf6216c286fee47ef03b529a0b496ed2dd53ee96b85d3b51e7b3a1c",
+    "prompt": "dd18e473908e7e75b1717c240bac221729ea38753abfd28b701b37b20d5f5e14",
+    "data": "284bfe6abc1546898f2c85e199c13645f108a9c868dc268c04c70df7b69c005b"
+  },
+  "source_freeze_sha": "1d0f58a2650fc6fdf25974bd2a182653b0dac1a6c05d14bf86bdd2ac396c2bb0",
+  "runtime": {
+    "duration_seconds": 0.09654719999525696
+  }
+}

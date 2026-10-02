@@ -596,6 +596,12 @@ export class ExperimentWorkflowPanel {
       ["Ticks", manifest.ticks || manifest.requested_ticks || manifest.results?.requested_ticks || "—"],
       ["Bedingungen", manifest.conditions || manifest.experimental_design?.conditions || "—"],
       ["Erstellt", created || "—"],
+      ["Human Review", manifest.human_review_status || manifest.human_assessment || manifest.execution_semantics?.human_assessment || (manifest.human_review_required ? "erforderlich, nicht im Manifest abgeschlossen" : "nicht dokumentiert")],
+      ["Git-Commit", manifest.git?.commit || manifest.provenance?.git_commit || "—"],
+      ["Source Freeze", manifest.source_freeze_sha || manifest.provenance_digests?.source_tree || "—"],
+      ["Code-Digest", manifest.provenance_digests?.code || "—"],
+      ["Konfigurations-Digest", manifest.provenance_digests?.config || "—"],
+      ["Daten-Digest", manifest.provenance_digests?.data || "—"],
       ["Evidenz", manifest.scientific_evidence === true ? "wissenschaftliche Evidenz markiert" : "keine automatische Evidenz"],
     ];
     const detailRows = detailFields
@@ -631,10 +637,10 @@ export class ExperimentWorkflowPanel {
       <section class="experiment-inline-details" data-experiment-inline-details="${expId}" hidden aria-label="Details zu ${expId}">
         <div class="experiment-inline-details-head"><div><span class="workspace-kicker">EXPERIMENT DETAIL</span><strong>Gespeicherte Versuchsdaten</strong></div><span>inline · kein Dialog</span></div>
         <dl class="experiment-details-grid">${detailRows}</dl>
+        <section class="experiment-detail-artifacts"><h4>Artefakte &amp; File Viewer</h4>${resultActions}</section>
         <details class="experiment-stored-json"><summary>Vollständige gespeicherte Informationen</summary><pre>${storedJson}</pre></details>
         <div class="experiment-inline-actions"><button type="button" class="btn-primary" data-experiment-use="${expId}">In Ausführung übernehmen</button></div>
       </section>
-      ${resultActions}
       <div class="experiment-library-item-actions">${action}</div>
     </article>`;
   }

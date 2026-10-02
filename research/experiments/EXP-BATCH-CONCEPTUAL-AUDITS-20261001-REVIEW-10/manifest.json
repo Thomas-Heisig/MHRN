@@ -1,0 +1,126 @@
+{
+  "ai_exposure": "none",
+  "ai_interactions": [],
+  "ai_protocol": {
+    "bump_reason": "initial registration",
+    "version": 1
+  },
+  "ai_reproducibility": "R0",
+  "artifacts": {
+    "ai_packet": "analysis/ai_packet.json",
+    "ai_packet_digest": "analysis/ai_packet_digest.json",
+    "current_run": "DATA/current_run.json",
+    "data": "DATA/runs_compact.json",
+    "data_index": "DATA/runs_index.json",
+    "preregistration": "preregistrations/operational/cognition_bundle_v1.json",
+    "raw_run_index": "DATA/runs_index.json",
+    "report": "report.md",
+    "review_request": "review_request.json",
+    "statistics": "analysis/statistics.json",
+    "workflow": "workflow.json"
+  },
+  "causal_card": {
+    "classification": "PURE",
+    "interaction_ids": [],
+    "roles": []
+  },
+  "causal_taint": "PURE",
+  "config": {
+    "path": "F:\\Brain-5D\\configs\\learning_experiment.yaml",
+    "sha256": "6f6cd457caf6216c286fee47ef03b529a0b496ed2dd53ee96b85d3b51e7b3a1c"
+  },
+  "created_at": "2026-10-01T21:34:47.279237+00:00",
+  "data_partitions": [],
+  "epistemic_layers": {
+    "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+    "evid": "not_created; requires semantic validation, clean freeze and human review",
+    "interpretation": "post-hoc AI or human interpretation; never execution input",
+    "ui_state": "operator/dashboard progress only; not a scientific result"
+  },
+  "execution_contract": {
+    "hypothesis_id": "H-CNS-114-A",
+    "protocol": "cog_cns_114_v1",
+    "question_id": "RQ-CNS-114",
+    "resolved_runner": "run_cog_cns_114_v1",
+    "runtime_runner_bytecode_sha256": "93e483e29fa71c08401562dfa757d4a5f80fb7ca1fa1cce25a1e76c2b71ea1eb",
+    "runtime_summary_bytecode_sha256": "462bf872a28910b7747790c4aae29f288f6aa5361c27799f0ea52a1fdc09f7a6",
+    "source_runner_bytecode_sha256": "93e483e29fa71c08401562dfa757d4a5f80fb7ca1fa1cce25a1e76c2b71ea1eb",
+    "source_runtime_consistency": "MATCH",
+    "source_summary_bytecode_sha256": "462bf872a28910b7747790c4aae29f288f6aa5361c27799f0ea52a1fdc09f7a6",
+    "tick_validation": {
+      "mode": "protocol_defined_internal_trials",
+      "requested_ticks": 1,
+      "status": "NOT_APPLICABLE"
+    },
+    "ticks_requested": 1
+  },
+  "execution_semantics": {
+    "automatic_evidence_promotion": false,
+    "claim_scope": "method_template_only",
+    "direct_test_of_hypothesis": false,
+    "external_review": "external_review/INTEGRATION.md",
+    "human_assessment": "not_recorded",
+    "kind": "conceptual_audit",
+    "scientific_evidence": false,
+    "snn_involved": false
+  },
+  "experiment_id": "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-10",
+  "experiment_status": "completed",
+  "git": {
+    "branch": "develop",
+    "commit": "1f489c978592dc14dc20492c322a34fe25dddba3",
+    "dirty": true
+  },
+  "hypotheses": [
+    "H-CNS-114-A"
+  ],
+  "network_mode": "OFFLINE",
+  "provenance_digests": {
+    "code": "5a11ea288e7e695c2dcd456642b533cbb3e6daf38b72e150134e60e69059531f",
+    "config": "6f6cd457caf6216c286fee47ef03b529a0b496ed2dd53ee96b85d3b51e7b3a1c",
+    "data": "5256449334541ca5bed2290e40c9fc066a4983cd3b810afd8ac789bf54b93bfd",
+    "prompt": "dd18e473908e7e75b1717c240bac221729ea38753abfd28b701b37b20d5f5e14"
+  },
+  "research_questions": [
+    "RQ-CNS-114"
+  ],
+  "research_run_mode": "EXPLORATORY",
+  "results": {
+    "protocol": "cog_cns_114_v1",
+    "run_count": 12,
+    "runner": "run_cog_cns_114_v1",
+    "tick_contract": {
+      "mode": "protocol_defined_internal_trials",
+      "requested_ticks": 1,
+      "status": "NOT_APPLICABLE"
+    },
+    "ticks_requested": 1
+  },
+  "runtime": {
+    "duration_seconds": 0.008440900011919439
+  },
+  "runtime_errors": [],
+  "simulation": {
+    "protocol": "cog_cns_114_v1",
+    "seed": 101,
+    "seeds": [
+      101,
+      102,
+      103
+    ],
+    "ticks": 1
+  },
+  "software": {
+    "brain5d_version": "0.6.0a7",
+    "os": "Windows 11",
+    "python": "3.13.14"
+  },
+  "source_freeze_sha": "bf938be477c925f130ab6b5a7f25f6d1e17c7b61727726e02af8563e89e90ce0",
+  "timestamp": "2026-10-01T23:34:47.279229",
+  "validity": {
+    "fatal_error_count": 0,
+    "reason": null,
+    "runtime_error_count": 0,
+    "valid": true
+  }
+}
