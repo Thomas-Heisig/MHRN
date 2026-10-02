@@ -10,23 +10,23 @@ All registered RQs are projected. Empty direction coordinates remain explicit un
 | RQ-5D-004 | unresolved | unclassified | unresolved | unresolved | H-5D-004-A | EXP-BATCH-20260906200118-18, EXP-BATCH-20260908200906-18, EXP-BATCH-20260909223705-18, EXP-BATCH-20260914074039-18 | unresolved | unresolved |
 | RQ-5D-005 | unresolved | unclassified | unresolved | III, IV, X, XI | H-5D-005-A | EXP-BATCH-20260906200118-38, EXP-BATCH-20260909223705-38, EXP-BATCH-20260914074039-38, EXP-EMP-20260910 | unresolved | unresolved |
 | RQ-AIR-001 | unresolved | unclassified | unresolved | VII | H-AIR-001-A | EXP-BATCH-20260906200118-33, EXP-BATCH-20260909223705-33, EXP-BATCH-20260914074039-33 | unresolved | unresolved |
-| RQ-CNS-101 | unresolved | unclassified | unresolved | VIII | H-CNS-101-A | unresolved | unresolved | unresolved |
-| RQ-CNS-102 | unresolved | unclassified | unresolved | unresolved | H-CNS-102-A | unresolved | unresolved | unresolved |
-| RQ-CNS-103 | unresolved | unclassified | unresolved | unresolved | H-CNS-103-A | unresolved | unresolved | unresolved |
-| RQ-CNS-104 | unresolved | unclassified | unresolved | unresolved | H-CNS-104-A | unresolved | unresolved | unresolved |
-| RQ-CNS-105 | unresolved | unclassified | unresolved | unresolved | H-CNS-105-A | unresolved | unresolved | unresolved |
-| RQ-CNS-106 | unresolved | unclassified | unresolved | unresolved | H-CNS-106-A | unresolved | unresolved | unresolved |
-| RQ-CNS-107 | unresolved | unclassified | unresolved | unresolved | H-CNS-107-A | unresolved | unresolved | unresolved |
-| RQ-CNS-108 | unresolved | unclassified | unresolved | unresolved | H-CNS-108-A | unresolved | unresolved | unresolved |
-| RQ-CNS-109 | unresolved | unclassified | unresolved | unresolved | H-CNS-109-A | unresolved | unresolved | unresolved |
-| RQ-CNS-110 | unresolved | unclassified | unresolved | unresolved | H-CNS-110-A | unresolved | unresolved | unresolved |
-| RQ-CNS-111 | unresolved | unclassified | unresolved | unresolved | H-CNS-111-A | unresolved | unresolved | unresolved |
-| RQ-CNS-112 | unresolved | unclassified | unresolved | unresolved | H-CNS-112-A | unresolved | unresolved | unresolved |
-| RQ-CNS-113 | unresolved | unclassified | unresolved | unresolved | H-CNS-113-A | unresolved | unresolved | unresolved |
-| RQ-CNS-114 | unresolved | unclassified | unresolved | unresolved | H-CNS-114-A | unresolved | unresolved | unresolved |
-| RQ-CNS-115 | unresolved | unclassified | unresolved | unresolved | H-CNS-115-A | unresolved | unresolved | unresolved |
-| RQ-CNS-116 | unresolved | unclassified | unresolved | unresolved | H-CNS-116-A | unresolved | unresolved | unresolved |
-| RQ-CNS-117 | unresolved | unclassified | unresolved | unresolved | H-CNS-117-A | unresolved | unresolved | unresolved |
+| RQ-CNS-101 | unresolved | unclassified | unresolved | VIII | H-CNS-101-A | EXP-BATCH-CONCEPTUAL-AUDITS-20261001-PILOT2-01 | unresolved | unresolved |
+| RQ-CNS-102 | unresolved | unclassified | unresolved | unresolved | H-CNS-102-A | EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REMAINDER-01 | unresolved | unresolved |
+| RQ-CNS-103 | unresolved | unclassified | unresolved | unresolved | H-CNS-103-A | EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REMAINDER-02 | unresolved | unresolved |
+| RQ-CNS-104 | unresolved | unclassified | unresolved | unresolved | H-CNS-104-A | EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REMAINDER-03 | unresolved | unresolved |
+| RQ-CNS-105 | unresolved | unclassified | unresolved | unresolved | H-CNS-105-A | EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REMAINDER-04, EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-01 | unresolved | unresolved |
+| RQ-CNS-106 | unresolved | unclassified | unresolved | unresolved | H-CNS-106-A | EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-02 | unresolved | unresolved |
+| RQ-CNS-107 | unresolved | unclassified | unresolved | unresolved | H-CNS-107-A | EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-03 | unresolved | unresolved |
+| RQ-CNS-108 | unresolved | unclassified | unresolved | unresolved | H-CNS-108-A | EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-04 | unresolved | unresolved |
+| RQ-CNS-109 | unresolved | unclassified | unresolved | unresolved | H-CNS-109-A | EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-05 | unresolved | unresolved |
+| RQ-CNS-110 | unresolved | unclassified | unresolved | unresolved | H-CNS-110-A | EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-06 | unresolved | unresolved |
+| RQ-CNS-111 | unresolved | unclassified | unresolved | unresolved | H-CNS-111-A | EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-07 | unresolved | unresolved |
+| RQ-CNS-112 | unresolved | unclassified | unresolved | unresolved | H-CNS-112-A | EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-08 | unresolved | unresolved |
+| RQ-CNS-113 | unresolved | unclassified | unresolved | unresolved | H-CNS-113-A | EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-09 | unresolved | unresolved |
+| RQ-CNS-114 | unresolved | unclassified | unresolved | unresolved | H-CNS-114-A | EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-10 | unresolved | unresolved |
+| RQ-CNS-115 | unresolved | unclassified | unresolved | unresolved | H-CNS-115-A | EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-11 | unresolved | unresolved |
+| RQ-CNS-116 | unresolved | unclassified | unresolved | unresolved | H-CNS-116-A | EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-12 | unresolved | unresolved |
+| RQ-CNS-117 | unresolved | unclassified | unresolved | unresolved | H-CNS-117-A | EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-13 | unresolved | unresolved |
 | RQ-CONN-001 | unresolved | unclassified | unresolved | unresolved | H-CONN-001-A | unresolved | unresolved | unresolved |
 | RQ-CONN-002 | unresolved | unclassified | unresolved | unresolved | H-CONN-002-A | EXP-BATCH-20260909223705-75, EXP-BATCH-20260914074039-75, EXP-EMP-20260910 | unresolved | unresolved |
 | RQ-CPU-PAR-001 | unresolved | unclassified | unresolved | unresolved | H-CPU-PAR-001-A | unresolved | unresolved | unresolved |
@@ -44,8 +44,8 @@ All registered RQs are projected. Empty direction coordinates remain explicit un
 | RQ-EMB-007 | unresolved | unclassified | unresolved | unresolved | H-EMB-007-A | unresolved | unresolved | unresolved |
 | RQ-EMB-008 | unresolved | unclassified | unresolved | unresolved | H-EMB-008-A | unresolved | unresolved | unresolved |
 | RQ-EMB-009 | unresolved | unclassified | unresolved | unresolved | H-EMB-009-A | EXP-BATCH-20260909223705-76, EXP-BATCH-20260914074039-76, EXP-EMP-20260910 | unresolved | unresolved |
-| RQ-EPI-101 | unresolved | unclassified | unresolved | VIII | H-EPI-101-A | unresolved | unresolved | unresolved |
-| RQ-EPI-102 | unresolved | unclassified | unresolved | VIII | H-EPI-102-A | unresolved | unresolved | unresolved |
+| RQ-EPI-101 | unresolved | unclassified | unresolved | VIII | H-EPI-101-A | EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-14 | unresolved | unresolved |
+| RQ-EPI-102 | unresolved | unclassified | unresolved | VIII | H-EPI-102-A | EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-15 | unresolved | unresolved |
 | RQ-EPIST-001 | unresolved | unclassified | unresolved | VI, VII, VIII | H-EPIST-001-A | EXP-BATCH-20260906200118-32, EXP-BATCH-20260909223705-32, EXP-BATCH-20260914074039-32 | unresolved | unresolved |
 | RQ-EPIST-002 | unresolved | epistemological_methodological | unresolved | I, VI, VII, IX | H-EPIST-002-A | unresolved | unresolved | research/publications/papers/2026-09-20_recursive-epistemics-methods_v0.1/PAPER.md |
 | RQ-ETH-001 | unresolved | epistemological_methodological | unresolved | I, VI, VII, VIII, IX | H-ETH-001-A, H-ETH-001-B, H-ETH-001-C, H-ETH-001-D, H-ETH-001-E | EXP-BATCH-20260906200118-30, EXP-BATCH-20260909223705-30, EXP-BATCH-20260914074039-30 | unresolved | research/publications/papers/2026-09-20_recursive-epistemics-methods_v0.1/PAPER.md |
@@ -126,9 +126,9 @@ All registered RQs are projected. Empty direction coordinates remain explicit un
 | RQ-TEMP-002 | unresolved | unclassified | unresolved | III, IV | H-TEMP-002-A | EXP-BATCH-20260906200118-40, EXP-BATCH-20260909223705-40, EXP-BATCH-20260914074039-40, EXP-EMP-20260910, EXP-S1-TEMP-ORDER-V2-20260919, EXP-S1-TEMP-PROMO-R1-20260927 | EVID-2026-20 | unresolved |
 | RQ-TIME-001 | unresolved | unclassified | unresolved | unresolved | H-TIME-001-A | EXP-BATCH-20260906200118-09, EXP-BATCH-20260908200906-09, EXP-BATCH-20260909223705-09, EXP-BATCH-20260914074039-09, EXP-TIME-0001 | unresolved | unresolved |
 | RQ-TIME-002 | unresolved | unclassified | unresolved | unresolved | H-TIME-002-A | EXP-BATCH-20260909223705-77, EXP-BATCH-20260914074039-77, EXP-EMP-20260910 | unresolved | unresolved |
-| RQ-WEL-101 | unresolved | unclassified | unresolved | VIII | H-WEL-101-A | unresolved | unresolved | unresolved |
-| RQ-WEL-102 | unresolved | unclassified | unresolved | VIII | H-WEL-102-A | unresolved | unresolved | unresolved |
-| RQ-WEL-103 | unresolved | unclassified | unresolved | VIII | H-WEL-103-A | unresolved | unresolved | unresolved |
+| RQ-WEL-101 | unresolved | unclassified | unresolved | VIII | H-WEL-101-A | EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-16 | unresolved | unresolved |
+| RQ-WEL-102 | unresolved | unclassified | unresolved | VIII | H-WEL-102-A | EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-17 | unresolved | unresolved |
+| RQ-WEL-103 | unresolved | unclassified | unresolved | VIII | H-WEL-103-A | EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-18 | unresolved | unresolved |
 | RQ-WM-001 | unresolved | unclassified | unresolved | unresolved | H-WM-001-A | EXP-BATCH-20260909223705-45, EXP-EMP-20260910 | unresolved | unresolved |
 
 > Authority boundary: implementation != DATA != reviewed EVID != independent replication; Human Review != independent replication; DOI != peer review. This projection executes and promotes nothing.

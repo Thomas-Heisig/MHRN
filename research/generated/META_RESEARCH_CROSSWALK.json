@@ -245,7 +245,9 @@
       "direction_status": "unresolved_no_inference",
       "domain": "Consciousness methodology",
       "evidence_records": [],
-      "experiments": [],
+      "experiments": [
+        "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-PILOT2-01"
+      ],
       "hypotheses": [
         "H-CNS-101-A"
       ],
@@ -276,7 +278,9 @@
       "direction_status": "unresolved_no_inference",
       "domain": "Prediction and adaptation",
       "evidence_records": [],
-      "experiments": [],
+      "experiments": [
+        "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REMAINDER-01"
+      ],
       "hypotheses": [
         "H-CNS-102-A"
       ],
@@ -302,7 +306,9 @@
       "direction_status": "unresolved_no_inference",
       "domain": "Attention and discrimination",
       "evidence_records": [],
-      "experiments": [],
+      "experiments": [
+        "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REMAINDER-02"
+      ],
       "hypotheses": [
         "H-CNS-103-A"
       ],
@@ -328,7 +334,9 @@
       "direction_status": "unresolved_no_inference",
       "domain": "Hierarchical regularity",
       "evidence_records": [],
-      "experiments": [],
+      "experiments": [
+        "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REMAINDER-03"
+      ],
       "hypotheses": [
         "H-CNS-104-A"
       ],
@@ -354,7 +362,10 @@
       "direction_status": "unresolved_no_inference",
       "domain": "Working memory",
       "evidence_records": [],
-      "experiments": [],
+      "experiments": [
+        "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REMAINDER-04",
+        "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-01"
+      ],
       "hypotheses": [
         "H-CNS-105-A"
       ],
@@ -380,7 +391,9 @@
       "direction_status": "unresolved_no_inference",
       "domain": "Metacognition",
       "evidence_records": [],
-      "experiments": [],
+      "experiments": [
+        "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-02"
+      ],
       "hypotheses": [
         "H-CNS-106-A"
       ],
@@ -407,7 +420,9 @@
       "direction_status": "unresolved_no_inference",
       "domain": "Observation models",
       "evidence_records": [],
-      "experiments": [],
+      "experiments": [
+        "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-03"
+      ],
       "hypotheses": [
         "H-CNS-107-A"
       ],
@@ -434,7 +449,9 @@
       "direction_status": "unresolved_no_inference",
       "domain": "Causal complexity",
       "evidence_records": [],
-      "experiments": [],
+      "experiments": [
+        "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-04"
+      ],
       "hypotheses": [
         "H-CNS-108-A"
       ],
@@ -460,7 +477,9 @@
       "direction_status": "unresolved_no_inference",
       "domain": "Access and report",
       "evidence_records": [],
-      "experiments": [],
+      "experiments": [
+        "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-05"
+      ],
       "hypotheses": [
         "H-CNS-109-A"
       ],
@@ -486,7 +505,9 @@
       "direction_status": "unresolved_no_inference",
       "domain": "Temporal attention",
       "evidence_records": [],
-      "experiments": [],
+      "experiments": [
+        "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-06"
+      ],
       "hypotheses": [
         "H-CNS-110-A"
       ],
@@ -512,7 +533,9 @@
       "direction_status": "unresolved_no_inference",
       "domain": "Executive control",
       "evidence_records": [],
-      "experiments": [],
+      "experiments": [
+        "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-07"
+      ],
       "hypotheses": [
         "H-CNS-111-A"
       ],
@@ -539,7 +562,9 @@
       "direction_status": "unresolved_no_inference",
       "domain": "Multisensory integration",
       "evidence_records": [],
-      "experiments": [],
+      "experiments": [
+        "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-08"
+      ],
       "hypotheses": [
         "H-CNS-112-A"
       ],
@@ -566,7 +591,9 @@
       "direction_status": "unresolved_no_inference",
       "domain": "Embodied causality",
       "evidence_records": [],
-      "experiments": [],
+      "experiments": [
+        "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-09"
+      ],
       "hypotheses": [
         "H-CNS-113-A"
       ],
@@ -593,7 +620,9 @@
       "direction_status": "unresolved_no_inference",
       "domain": "Timescales and recurrence",
       "evidence_records": [],
-      "experiments": [],
+      "experiments": [
+        "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-10"
+      ],
       "hypotheses": [
         "H-CNS-114-A"
       ],
@@ -619,7 +648,9 @@
       "direction_status": "unresolved_no_inference",
       "domain": "Behavioral evaluation",
       "evidence_records": [],
-      "experiments": [],
+      "experiments": [
+        "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-11"
+      ],
       "hypotheses": [
         "H-CNS-115-A"
       ],
@@ -645,7 +676,9 @@
       "direction_status": "unresolved_no_inference",
       "domain": "Generalization",
       "evidence_records": [],
-      "experiments": [],
+      "experiments": [
+        "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-12"
+      ],
       "hypotheses": [
         "H-CNS-116-A"
       ],
@@ -671,7 +704,9 @@
       "direction_status": "unresolved_no_inference",
       "domain": "Geometry and scaling",
       "evidence_records": [],
-      "experiments": [],
+      "experiments": [
+        "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-13"
+      ],
       "hypotheses": [
         "H-CNS-117-A"
       ],
@@ -1237,7 +1272,9 @@
       "direction_status": "unresolved_no_inference",
       "domain": "Evidence governance",
       "evidence_records": [],
-      "experiments": [],
+      "experiments": [
+        "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-14"
+      ],
       "hypotheses": [
         "H-EPI-101-A"
       ],
@@ -1265,7 +1302,9 @@
       "direction_status": "unresolved_no_inference",
       "domain": "Critical methodology",
       "evidence_records": [],
-      "experiments": [],
+      "experiments": [
+        "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-15"
+      ],
       "hypotheses": [
         "H-EPI-102-A"
       ],
@@ -3771,7 +3810,9 @@
       "direction_status": "unresolved_no_inference",
       "domain": "Safety and welfare governance",
       "evidence_records": [],
-      "experiments": [],
+      "experiments": [
+        "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-16"
+      ],
       "hypotheses": [
         "H-WEL-101-A"
       ],
@@ -3799,7 +3840,9 @@
       "direction_status": "unresolved_no_inference",
       "domain": "AI welfare under uncertainty",
       "evidence_records": [],
-      "experiments": [],
+      "experiments": [
+        "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-17"
+      ],
       "hypotheses": [
         "H-WEL-102-A"
       ],
@@ -3828,7 +3871,9 @@
       "direction_status": "unresolved_no_inference",
       "domain": "Identity law and moral status",
       "evidence_records": [],
-      "experiments": [],
+      "experiments": [
+        "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-18"
+      ],
       "hypotheses": [
         "H-WEL-103-A"
       ],
@@ -5293,6 +5338,203 @@
       "manifest_review_status": "unknown",
       "reconciliation_state": "review_not_found_in_experiment_root",
       "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-PILOT2-01",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REMAINDER-01",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REMAINDER-02",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REMAINDER-03",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REMAINDER-04",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "review_not_found_in_experiment_root",
+      "review_artifacts": []
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-01",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "recorded_review_present_check_status_binding",
+      "review_artifacts": [
+        "research/experiments/EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-01/review_request.json"
+      ]
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-02",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "recorded_review_present_check_status_binding",
+      "review_artifacts": [
+        "research/experiments/EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-02/review_request.json"
+      ]
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-03",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "recorded_review_present_check_status_binding",
+      "review_artifacts": [
+        "research/experiments/EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-03/review_request.json"
+      ]
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-04",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "recorded_review_present_check_status_binding",
+      "review_artifacts": [
+        "research/experiments/EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-04/review_request.json"
+      ]
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-05",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "recorded_review_present_check_status_binding",
+      "review_artifacts": [
+        "research/experiments/EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-05/review_request.json"
+      ]
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-06",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "recorded_review_present_check_status_binding",
+      "review_artifacts": [
+        "research/experiments/EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-06/review_request.json"
+      ]
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-07",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "recorded_review_present_check_status_binding",
+      "review_artifacts": [
+        "research/experiments/EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-07/review_request.json"
+      ]
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-08",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "recorded_review_present_check_status_binding",
+      "review_artifacts": [
+        "research/experiments/EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-08/review_request.json"
+      ]
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-09",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "recorded_review_present_check_status_binding",
+      "review_artifacts": [
+        "research/experiments/EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-09/review_request.json"
+      ]
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-10",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "recorded_review_present_check_status_binding",
+      "review_artifacts": [
+        "research/experiments/EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-10/review_request.json"
+      ]
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-11",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "recorded_review_present_check_status_binding",
+      "review_artifacts": [
+        "research/experiments/EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-11/review_request.json"
+      ]
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-12",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "recorded_review_present_check_status_binding",
+      "review_artifacts": [
+        "research/experiments/EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-12/review_request.json"
+      ]
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-13",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "recorded_review_present_check_status_binding",
+      "review_artifacts": [
+        "research/experiments/EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-13/review_request.json"
+      ]
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-14",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "recorded_review_present_check_status_binding",
+      "review_artifacts": [
+        "research/experiments/EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-14/review_request.json"
+      ]
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-15",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "recorded_review_present_check_status_binding",
+      "review_artifacts": [
+        "research/experiments/EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-15/review_request.json"
+      ]
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-16",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "recorded_review_present_check_status_binding",
+      "review_artifacts": [
+        "research/experiments/EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-16/review_request.json"
+      ]
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-17",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "recorded_review_present_check_status_binding",
+      "review_artifacts": [
+        "research/experiments/EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-17/review_request.json"
+      ]
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-18",
+      "manifest_review_status": "unknown",
+      "reconciliation_state": "recorded_review_present_check_status_binding",
+      "review_artifacts": [
+        "research/experiments/EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-18/review_request.json"
+      ]
     },
     {
       "authority": "review_record_only_not_EVID_or_replication",
