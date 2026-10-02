@@ -412,7 +412,7 @@ The reviewed v0.5.0a7 release gate is closed. Version `0.6.0a1` opens the develo
 
 These items remain open but are not release blockers for the v0.6 engineering foundation. Their detailed task lists remain in the linked roadmap documents.
 
-- [ ] Close R0 research-catalog operationalization: assign unmapped RQ/H entries or mark them `design_pending`, freeze confirmatory controls/preregistrations, and publish the registry audit artifact. ([ROADMAP.md](ROADMAP.md))
+- [x] Close R0 research-catalog operationalization: unmatched RQ/H references are explicitly classified as historical, fixtures, or proposals; the generated audit is `CLEAN` with no disallowed missing IDs, link issues, or stale allow-list entries. All 95 operational protocols have valid frozen preregistrations. ([ROADMAP.md](ROADMAP.md), `research/generated/CATALOG_AUDIT_REPORT.md`)
 - [ ] Execute and review the evidence programme for R1-R4: recurrence, productive learning, closed-loop embodiment and Neural Symbiosis/MSBA controls. ([ROADMAP.md](ROADMAP.md), [RESEARCH_ROADMAP.md](RESEARCH_ROADMAP.md))
 - [ ] Design the versioned productive N-D storage/core migration and its equivalence tests before any productive core beyond 5D. ([ROADMAP.md](ROADMAP.md))
 - [ ] Complete the remaining R6-R12 research tracks: time calibration, 5D ablations, regulation/sensor loss, memory/world model, multimodal grounding, AI treatments and evidence-driven scaling. ([ROADMAP.md](ROADMAP.md), [RESEARCH_ROADMAP.md](RESEARCH_ROADMAP.md))

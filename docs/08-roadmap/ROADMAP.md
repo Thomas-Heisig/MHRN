@@ -4,6 +4,16 @@
 **Baseline:** `mhrn-core 0.6.0a7`
 **Updated:** 2026-09-27
 
+## 2026-10-02 R0 Research-Catalog-Abschluss
+
+- Der generierte Katalogaudit ist `CLEAN`; nichtkanonische Referenzen sind
+	begründet als historisch, Testfixture oder Vorschlag klassifiziert.
+- Es gibt keine disallowed missing RQ/H IDs, Registry-Linkfehler oder stale
+	Allow-List-Einträge.
+- 95 operationale Protokolle besitzen gültige Preregistrierungen und
+	registrierte Freeze-Status. Das ist ein Governance-/Engineeringbefund,
+	keine wissenschaftliche Evidenz.
+
 ## 2026-10-01 Konzeptaudit-Ausführung und Review-Routing
 
 - Die 22 zuvor ausstehenden kognitiven, epistemischen und Welfare-

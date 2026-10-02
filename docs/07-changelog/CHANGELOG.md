@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-10-02 - R0 Research-Catalog-Audit abgeschlossen
+
+- Der Research-Catalog-Audit meldet `CLEAN`: keine disallowed missing IDs,
+  Registry-Linkfehler oder stale Allow-List-Einträge.
+- 95 operationale Protokolle besitzen gültige Preregistrierungen und
+  registrierte Freeze-Status; historische, Test- und Designreferenzen bleiben
+  ausdrücklich als solche klassifiziert.
+- Gezielte Katalog-/Statusregressionen: 13 Tests bestanden.
+
 ## 2026-10-01 - Sequenzielle Konzeptaudits und direkte Review Requests
 
 - 22 zuvor ungelaufene, registrierte Kognitions-/Epistemik-/Welfare-
