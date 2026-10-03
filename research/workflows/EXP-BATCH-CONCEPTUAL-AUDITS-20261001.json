@@ -1,0 +1,211 @@
+{
+  "workflow_id": "EXP-BATCH-CONCEPTUAL-AUDITS-20261001",
+  "created_at": "2026-10-01T21:06:53.835975+00:00",
+  "protocols": [
+    "cog_cns_101_v1",
+    "cog_cns_102_v1",
+    "cog_cns_103_v1",
+    "cog_cns_104_v1",
+    "cog_cns_105_v1",
+    "cog_cns_106_v1",
+    "cog_cns_107_v1",
+    "cog_cns_108_v1",
+    "cog_cns_109_v1",
+    "cog_cns_110_v1",
+    "cog_cns_111_v1",
+    "cog_cns_112_v1",
+    "cog_cns_113_v1",
+    "cog_cns_114_v1",
+    "cog_cns_115_v1",
+    "cog_cns_116_v1",
+    "cog_cns_117_v1",
+    "cog_epi_101_v1",
+    "cog_epi_102_v1",
+    "cog_wel_101_v1",
+    "cog_wel_102_v1",
+    "cog_wel_103_v1"
+  ],
+  "requested_ticks": 1,
+  "seeds": "101-103",
+  "completed": 0,
+  "blocked": 0,
+  "failed": 22,
+  "results": [
+    {
+      "protocol": "cog_cns_101_v1",
+      "ticks": 1,
+      "seeds": "101-103",
+      "experiment_id": "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-01",
+      "status": "failed",
+      "error": "WorkflowValidationError: Cannot verify runtime/source consistency for run_cog_cns_101_v1."
+    },
+    {
+      "protocol": "cog_cns_102_v1",
+      "ticks": 1,
+      "seeds": "101-103",
+      "experiment_id": "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-02",
+      "status": "failed",
+      "error": "WorkflowValidationError: Cannot verify runtime/source consistency for run_cog_cns_102_v1."
+    },
+    {
+      "protocol": "cog_cns_103_v1",
+      "ticks": 1,
+      "seeds": "101-103",
+      "experiment_id": "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-03",
+      "status": "failed",
+      "error": "WorkflowValidationError: Cannot verify runtime/source consistency for run_cog_cns_103_v1."
+    },
+    {
+      "protocol": "cog_cns_104_v1",
+      "ticks": 1,
+      "seeds": "101-103",
+      "experiment_id": "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-04",
+      "status": "failed",
+      "error": "WorkflowValidationError: Cannot verify runtime/source consistency for run_cog_cns_104_v1."
+    },
+    {
+      "protocol": "cog_cns_105_v1",
+      "ticks": 1,
+      "seeds": "101-103",
+      "experiment_id": "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-05",
+      "status": "failed",
+      "error": "WorkflowValidationError: Cannot verify runtime/source consistency for run_cog_cns_105_v1."
+    },
+    {
+      "protocol": "cog_cns_106_v1",
+      "ticks": 1,
+      "seeds": "101-103",
+      "experiment_id": "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-06",
+      "status": "failed",
+      "error": "WorkflowValidationError: Cannot verify runtime/source consistency for run_cog_cns_106_v1."
+    },
+    {
+      "protocol": "cog_cns_107_v1",
+      "ticks": 1,
+      "seeds": "101-103",
+      "experiment_id": "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-07",
+      "status": "failed",
+      "error": "WorkflowValidationError: Cannot verify runtime/source consistency for run_cog_cns_107_v1."
+    },
+    {
+      "protocol": "cog_cns_108_v1",
+      "ticks": 1,
+      "seeds": "101-103",
+      "experiment_id": "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-08",
+      "status": "failed",
+      "error": "WorkflowValidationError: Cannot verify runtime/source consistency for run_cog_cns_108_v1."
+    },
+    {
+      "protocol": "cog_cns_109_v1",
+      "ticks": 1,
+      "seeds": "101-103",
+      "experiment_id": "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-09",
+      "status": "failed",
+      "error": "WorkflowValidationError: Cannot verify runtime/source consistency for run_cog_cns_109_v1."
+    },
+    {
+      "protocol": "cog_cns_110_v1",
+      "ticks": 1,
+      "seeds": "101-103",
+      "experiment_id": "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-10",
+      "status": "failed",
+      "error": "WorkflowValidationError: Cannot verify runtime/source consistency for run_cog_cns_110_v1."
+    },
+    {
+      "protocol": "cog_cns_111_v1",
+      "ticks": 1,
+      "seeds": "101-103",
+      "experiment_id": "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-11",
+      "status": "failed",
+      "error": "WorkflowValidationError: Cannot verify runtime/source consistency for run_cog_cns_111_v1."
+    },
+    {
+      "protocol": "cog_cns_112_v1",
+      "ticks": 1,
+      "seeds": "101-103",
+      "experiment_id": "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-12",
+      "status": "failed",
+      "error": "WorkflowValidationError: Cannot verify runtime/source consistency for run_cog_cns_112_v1."
+    },
+    {
+      "protocol": "cog_cns_113_v1",
+      "ticks": 1,
+      "seeds": "101-103",
+      "experiment_id": "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-13",
+      "status": "failed",
+      "error": "WorkflowValidationError: Cannot verify runtime/source consistency for run_cog_cns_113_v1."
+    },
+    {
+      "protocol": "cog_cns_114_v1",
+      "ticks": 1,
+      "seeds": "101-103",
+      "experiment_id": "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-14",
+      "status": "failed",
+      "error": "WorkflowValidationError: Cannot verify runtime/source consistency for run_cog_cns_114_v1."
+    },
+    {
+      "protocol": "cog_cns_115_v1",
+      "ticks": 1,
+      "seeds": "101-103",
+      "experiment_id": "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-15",
+      "status": "failed",
+      "error": "WorkflowValidationError: Cannot verify runtime/source consistency for run_cog_cns_115_v1."
+    },
+    {
+      "protocol": "cog_cns_116_v1",
+      "ticks": 1,
+      "seeds": "101-103",
+      "experiment_id": "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-16",
+      "status": "failed",
+      "error": "WorkflowValidationError: Cannot verify runtime/source consistency for run_cog_cns_116_v1."
+    },
+    {
+      "protocol": "cog_cns_117_v1",
+      "ticks": 1,
+      "seeds": "101-103",
+      "experiment_id": "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-17",
+      "status": "failed",
+      "error": "WorkflowValidationError: Cannot verify runtime/source consistency for run_cog_cns_117_v1."
+    },
+    {
+      "protocol": "cog_epi_101_v1",
+      "ticks": 1,
+      "seeds": "101-103",
+      "experiment_id": "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-18",
+      "status": "failed",
+      "error": "WorkflowValidationError: Cannot verify runtime/source consistency for run_cog_epi_101_v1."
+    },
+    {
+      "protocol": "cog_epi_102_v1",
+      "ticks": 1,
+      "seeds": "101-103",
+      "experiment_id": "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-19",
+      "status": "failed",
+      "error": "WorkflowValidationError: Cannot verify runtime/source consistency for run_cog_epi_102_v1."
+    },
+    {
+      "protocol": "cog_wel_101_v1",
+      "ticks": 1,
+      "seeds": "101-103",
+      "experiment_id": "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-20",
+      "status": "failed",
+      "error": "WorkflowValidationError: Cannot verify runtime/source consistency for run_cog_wel_101_v1."
+    },
+    {
+      "protocol": "cog_wel_102_v1",
+      "ticks": 1,
+      "seeds": "101-103",
+      "experiment_id": "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-21",
+      "status": "failed",
+      "error": "WorkflowValidationError: Cannot verify runtime/source consistency for run_cog_wel_102_v1."
+    },
+    {
+      "protocol": "cog_wel_103_v1",
+      "ticks": 1,
+      "seeds": "101-103",
+      "experiment_id": "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-22",
+      "status": "failed",
+      "error": "WorkflowValidationError: Cannot verify runtime/source consistency for run_cog_wel_103_v1."
+    }
+  ]
+}

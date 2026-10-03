@@ -1,0 +1,59 @@
+{
+  "workflow_id": "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-PILOT2",
+  "created_at": "2026-10-01T21:17:31.582252+00:00",
+  "protocols": [
+    "cog_cns_101_v1"
+  ],
+  "requested_ticks": 1,
+  "seeds": "101-103",
+  "completed": 1,
+  "blocked": 0,
+  "failed": 0,
+  "results": [
+    {
+      "protocol": "cog_cns_101_v1",
+      "ticks": 1,
+      "seeds": "101-103",
+      "status": "completed",
+      "experiment_id": "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-PILOT2-01",
+      "manifest": "experiments/EXP-BATCH-CONCEPTUAL-AUDITS-20261001-PILOT2-01/manifest.json",
+      "report": "experiments/EXP-BATCH-CONCEPTUAL-AUDITS-20261001-PILOT2-01/report.md",
+      "workflow": "experiments/EXP-BATCH-CONCEPTUAL-AUDITS-20261001-PILOT2-01/workflow.json",
+      "statistics": "experiments/EXP-BATCH-CONCEPTUAL-AUDITS-20261001-PILOT2-01/analysis/statistics.json",
+      "ai_packet": "experiments/EXP-BATCH-CONCEPTUAL-AUDITS-20261001-PILOT2-01/analysis/ai_packet.json",
+      "raw_run_index": "experiments/EXP-BATCH-CONCEPTUAL-AUDITS-20261001-PILOT2-01/DATA/runs_index.json",
+      "data_id": "DATA-EXP-BATCH-CONCEPTUAL-AUDITS-20261001-PILOT2-01",
+      "ai_report": {
+        "status": "generated",
+        "report_id": "AIRR-2026-0001",
+        "json": "experiments/EXP-BATCH-CONCEPTUAL-AUDITS-20261001-PILOT2-01/reports/AIRR-2026-0001.json",
+        "markdown": "experiments/EXP-BATCH-CONCEPTUAL-AUDITS-20261001-PILOT2-01/reports/AIRR-2026-0001.md",
+        "human_review": "PENDING",
+        "scientific_evidence": false
+      },
+      "summary": "experiments/EXP-BATCH-CONCEPTUAL-AUDITS-20261001-PILOT2-01/summary.md",
+      "result": {
+        "run_count": 12,
+        "duration_seconds": 0.015006800065748394,
+        "runner": "run_cog_cns_101_v1",
+        "ticks_requested": 1,
+        "seeds_executed": [
+          101,
+          102,
+          103
+        ],
+        "tick_validation": {
+          "status": "NOT_APPLICABLE",
+          "mode": "protocol_defined_internal_trials",
+          "requested_ticks": 1
+        }
+      },
+      "epistemic_layers": {
+        "ui_state": "operator/dashboard progress only; not a scientific result",
+        "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+        "evid": "not_created; requires semantic validation, clean freeze and human review",
+        "interpretation": "post-hoc AI or human interpretation; never execution input"
+      }
+    }
+  ]
+}

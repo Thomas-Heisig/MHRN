@@ -1,0 +1,318 @@
+{
+  "conditions": {
+    "alternative_model": {
+      "boolean_metrics": {
+        "audit_complete": {
+          "all_true": false,
+          "false_count": 3,
+          "n": 3,
+          "true_count": 0,
+          "true_fraction": 0.0
+        },
+        "audit_template_generated": {
+          "all_true": true,
+          "false_count": 0,
+          "n": 3,
+          "true_count": 3,
+          "true_fraction": 1.0
+        },
+        "automatic_evidence_promotion": {
+          "all_true": false,
+          "false_count": 3,
+          "n": 3,
+          "true_count": 0,
+          "true_fraction": 0.0
+        },
+        "conceptual_or_normative": {
+          "all_true": true,
+          "false_count": 0,
+          "n": 3,
+          "true_count": 3,
+          "true_fraction": 1.0
+        },
+        "native_empirical_experiment": {
+          "all_true": false,
+          "false_count": 3,
+          "n": 3,
+          "true_count": 0,
+          "true_fraction": 0.0
+        },
+        "phenomenal_claim_identified": {
+          "all_true": false,
+          "false_count": 3,
+          "n": 3,
+          "true_count": 0,
+          "true_fraction": 0.0
+        },
+        "scientific_evidence": {
+          "all_true": false,
+          "false_count": 3,
+          "n": 3,
+          "true_count": 0,
+          "true_fraction": 0.0
+        },
+        "snn_involved": {
+          "all_true": false,
+          "false_count": 3,
+          "n": 3,
+          "true_count": 0,
+          "true_fraction": 0.0
+        }
+      },
+      "metrics": {
+        "audit_item": {
+          "max": 2.0,
+          "mean": 2.0,
+          "median": 2.0,
+          "min": 2.0,
+          "n": 3,
+          "std": 0.0
+        }
+      },
+      "run_count": 3,
+      "seeds": [
+        101,
+        102,
+        103
+      ]
+    },
+    "assumption_explicit": {
+      "boolean_metrics": {
+        "audit_complete": {
+          "all_true": false,
+          "false_count": 3,
+          "n": 3,
+          "true_count": 0,
+          "true_fraction": 0.0
+        },
+        "audit_template_generated": {
+          "all_true": true,
+          "false_count": 0,
+          "n": 3,
+          "true_count": 3,
+          "true_fraction": 1.0
+        },
+        "automatic_evidence_promotion": {
+          "all_true": false,
+          "false_count": 3,
+          "n": 3,
+          "true_count": 0,
+          "true_fraction": 0.0
+        },
+        "conceptual_or_normative": {
+          "all_true": true,
+          "false_count": 0,
+          "n": 3,
+          "true_count": 3,
+          "true_fraction": 1.0
+        },
+        "native_empirical_experiment": {
+          "all_true": false,
+          "false_count": 3,
+          "n": 3,
+          "true_count": 0,
+          "true_fraction": 0.0
+        },
+        "phenomenal_claim_identified": {
+          "all_true": false,
+          "false_count": 3,
+          "n": 3,
+          "true_count": 0,
+          "true_fraction": 0.0
+        },
+        "scientific_evidence": {
+          "all_true": false,
+          "false_count": 3,
+          "n": 3,
+          "true_count": 0,
+          "true_fraction": 0.0
+        },
+        "snn_involved": {
+          "all_true": false,
+          "false_count": 3,
+          "n": 3,
+          "true_count": 0,
+          "true_fraction": 0.0
+        }
+      },
+      "metrics": {
+        "audit_item": {
+          "max": 1.0,
+          "mean": 1.0,
+          "median": 1.0,
+          "min": 1.0,
+          "n": 3,
+          "std": 0.0
+        }
+      },
+      "run_count": 3,
+      "seeds": [
+        101,
+        102,
+        103
+      ]
+    },
+    "claim_boundary": {
+      "boolean_metrics": {
+        "audit_complete": {
+          "all_true": false,
+          "false_count": 3,
+          "n": 3,
+          "true_count": 0,
+          "true_fraction": 0.0
+        },
+        "audit_template_generated": {
+          "all_true": true,
+          "false_count": 0,
+          "n": 3,
+          "true_count": 3,
+          "true_fraction": 1.0
+        },
+        "automatic_evidence_promotion": {
+          "all_true": false,
+          "false_count": 3,
+          "n": 3,
+          "true_count": 0,
+          "true_fraction": 0.0
+        },
+        "conceptual_or_normative": {
+          "all_true": true,
+          "false_count": 0,
+          "n": 3,
+          "true_count": 3,
+          "true_fraction": 1.0
+        },
+        "native_empirical_experiment": {
+          "all_true": false,
+          "false_count": 3,
+          "n": 3,
+          "true_count": 0,
+          "true_fraction": 0.0
+        },
+        "phenomenal_claim_identified": {
+          "all_true": false,
+          "false_count": 3,
+          "n": 3,
+          "true_count": 0,
+          "true_fraction": 0.0
+        },
+        "scientific_evidence": {
+          "all_true": false,
+          "false_count": 3,
+          "n": 3,
+          "true_count": 0,
+          "true_fraction": 0.0
+        },
+        "snn_involved": {
+          "all_true": false,
+          "false_count": 3,
+          "n": 3,
+          "true_count": 0,
+          "true_fraction": 0.0
+        }
+      },
+      "metrics": {
+        "audit_item": {
+          "max": 4.0,
+          "mean": 4.0,
+          "median": 4.0,
+          "min": 4.0,
+          "n": 3,
+          "std": 0.0
+        }
+      },
+      "run_count": 3,
+      "seeds": [
+        101,
+        102,
+        103
+      ]
+    },
+    "measurement_limit": {
+      "boolean_metrics": {
+        "audit_complete": {
+          "all_true": false,
+          "false_count": 3,
+          "n": 3,
+          "true_count": 0,
+          "true_fraction": 0.0
+        },
+        "audit_template_generated": {
+          "all_true": true,
+          "false_count": 0,
+          "n": 3,
+          "true_count": 3,
+          "true_fraction": 1.0
+        },
+        "automatic_evidence_promotion": {
+          "all_true": false,
+          "false_count": 3,
+          "n": 3,
+          "true_count": 0,
+          "true_fraction": 0.0
+        },
+        "conceptual_or_normative": {
+          "all_true": true,
+          "false_count": 0,
+          "n": 3,
+          "true_count": 3,
+          "true_fraction": 1.0
+        },
+        "native_empirical_experiment": {
+          "all_true": false,
+          "false_count": 3,
+          "n": 3,
+          "true_count": 0,
+          "true_fraction": 0.0
+        },
+        "phenomenal_claim_identified": {
+          "all_true": false,
+          "false_count": 3,
+          "n": 3,
+          "true_count": 0,
+          "true_fraction": 0.0
+        },
+        "scientific_evidence": {
+          "all_true": false,
+          "false_count": 3,
+          "n": 3,
+          "true_count": 0,
+          "true_fraction": 0.0
+        },
+        "snn_involved": {
+          "all_true": false,
+          "false_count": 3,
+          "n": 3,
+          "true_count": 0,
+          "true_fraction": 0.0
+        }
+      },
+      "metrics": {
+        "audit_item": {
+          "max": 3.0,
+          "mean": 3.0,
+          "median": 3.0,
+          "min": 3.0,
+          "n": 3,
+          "std": 0.0
+        }
+      },
+      "run_count": 3,
+      "seeds": [
+        101,
+        102,
+        103
+      ]
+    }
+  },
+  "formulas": {
+    "difference": "Delta_x = mean(x_B) - mean(x_A)",
+    "inter_spike_interval": "ISI_i = t_(i+1) - t_i",
+    "mean": "mean(x) = (1/n) * sum_i x_i",
+    "population_std": "sigma = sqrt((1/n) * sum_i (x_i - mean(x))^2)",
+    "ratio": "R_x = mean(x_B) / mean(x_A), defined only when mean(x_A) != 0"
+  },
+  "generated_by": "deterministic_statistics_engine",
+  "run_count": 12,
+  "schema_version": "2.2"
+}

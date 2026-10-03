@@ -1,0 +1,30 @@
+{
+  "experiment_id": "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REMAINDER-04",
+  "research_question": "RQ-CNS-105",
+  "hypothesis": "H-CNS-105-A",
+  "title": "Registered conceptual audit: cog_cns_105_v1",
+  "conditions": "frozen preregistered conceptual boundary contract",
+  "ticks": 1,
+  "ticks_contract": "minimum requested observation window",
+  "seeds": [
+    101,
+    102,
+    103
+  ],
+  "protocol": "cog_cns_105_v1",
+  "resolved_runner": "run_cog_cns_105_v1",
+  "tick_validation": {
+    "status": "NOT_APPLICABLE",
+    "mode": "protocol_defined_internal_trials",
+    "requested_ticks": 1
+  },
+  "notes": "Sequential conceptual audit only. No direct causal experiment, no empirical SNN execution, no automatic DATA-to-EVID promotion.",
+  "execution": "registered experiment_suite runner",
+  "assistant_policy": "AI is post-hoc interpretation only.",
+  "epistemic_layers": {
+    "ui_state": "operator/dashboard progress only; not a scientific result",
+    "data": "DATA artifacts and deterministic statistics are authoritative run outputs",
+    "evid": "not_created; requires semantic validation, clean freeze and human review",
+    "interpretation": "post-hoc AI or human interpretation; never execution input"
+  }
+}

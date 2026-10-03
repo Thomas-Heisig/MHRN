@@ -63,6 +63,19 @@ MHRN / Multi-Scale Homeostatic Recurrence Network. Publication: Recursive Episte
 
 # MHRN Current TODO
 
+## 2026-10-02 CUDA-/Parity-UI-Provenienz
+
+- [x] Laufstatus für CUDA-Smoke, RNG, rekurrente Parität, Plastizität,
+	Builder-D3, Cue-Kontrollen und Transfer sichtbar machen.
+- [x] Start/Endzeit, Laufzeit und servergemeldeten HEAD je Request anzeigen;
+	fehlender CUDA-Gerätename und nicht persistierte Artefakte bleiben explizit.
+- [x] CUDA-1.3, CUDA-1.4 und CUDA-1.5 in Ergebnisflächen trennen und auf die
+	vorhandene Wave-/FE-3-/Hardware-/PAN-Governance-Übersicht verweisen.
+- [ ] Laufbelege persistent speichern und mit Working-Tree-Digest, exakter
+	Hardware-Identität sowie abrufbarem JSON-Artefakt verknüpfen.
+- [ ] Echten Fortschritt und Abbruch nur dann anbieten, wenn die Backendläufe
+	dafür sichere Checkpoints/Abbruchsemantik bereitstellen.
+
 ## 2026-09-27 Alpha.7 Release
 
 - [x] Stage-0- und Stage-1-Maturity mit dem kanonischen Scientific-State abgleichen.
@@ -71,7 +84,7 @@ MHRN / Multi-Scale Homeostatic Recurrence Network. Publication: Recursive Episte
 - [x] PAN/Closed-Loop/Live-Monitor und CUDA/PTX-Preflight als Playground-only abgrenzen.
 - [x] README, Changelog, Roadmap und `releases/current.json` auf Alpha.7 synchronisieren.
 - [ ] Release-PR `release/v0.6.0-alpha.7 -> main` vollständig grün abschließen.
-- [ ] Veralteten Remote-Branch `playground` nach bestätigter vollständiger Integration löschen.
+- [x] Veralteten Remote-Branch `playground` nach bestätigter vollständiger Integration löschen; der Remote-Ref war bereits gelöscht und die lokale Tracking-Referenz wurde am 2026-10-01 gepruned.
 
 ## 2026-09-29 Post-hoc Experimentauswertung
 
@@ -139,7 +152,7 @@ MHRN / Multi-Scale Homeostatic Recurrence Network. Publication: Recursive Episte
 - [x] Add result-viewing buttons (Report, Summary, Statistics, Raw Data) on every experiment library item — active and archived.
 - [x] Open past experiment artifacts in the file viewer via the existing `_openArtifact` pipeline.
 - [x] Install popup artifact-switch buttons in the file viewer header for past experiments.
-- [ ] Consider adding a dedicated experiment detail view with all artifacts, human review status and provenance in one panel.
+- [x] Expand the experiment detail view to group available artifacts, explicit human-review state and provenance digests in one panel.
 
 
 ## 2026-09-14 Stage 4 specialized neural areas
@@ -412,7 +425,7 @@ The reviewed v0.5.0a7 release gate is closed. Version `0.6.0a1` opens the develo
 
 These items remain open but are not release blockers for the v0.6 engineering foundation. Their detailed task lists remain in the linked roadmap documents.
 
-- [ ] Close R0 research-catalog operationalization: assign unmapped RQ/H entries or mark them `design_pending`, freeze confirmatory controls/preregistrations, and publish the registry audit artifact. ([ROADMAP.md](ROADMAP.md))
+- [x] Close R0 research-catalog operationalization: unmatched RQ/H references are explicitly classified as historical, fixtures, or proposals; the generated audit is `CLEAN` with no disallowed missing IDs, link issues, or stale allow-list entries. All 95 operational protocols have valid frozen preregistrations. ([ROADMAP.md](ROADMAP.md), `research/generated/CATALOG_AUDIT_REPORT.md`)
 - [ ] Execute and review the evidence programme for R1-R4: recurrence, productive learning, closed-loop embodiment and Neural Symbiosis/MSBA controls. ([ROADMAP.md](ROADMAP.md), [RESEARCH_ROADMAP.md](RESEARCH_ROADMAP.md))
 - [ ] Design the versioned productive N-D storage/core migration and its equivalence tests before any productive core beyond 5D. ([ROADMAP.md](ROADMAP.md))
 - [ ] Complete the remaining R6-R12 research tracks: time calibration, 5D ablations, regulation/sensor loss, memory/world model, multimodal grounding, AI treatments and evidence-driven scaling. ([ROADMAP.md](ROADMAP.md), [RESEARCH_ROADMAP.md](RESEARCH_ROADMAP.md))
@@ -687,3 +700,18 @@ Reference: [MHRN simulator capability gaps](MHRN_SIMULATOR_CAPABILITY_GAPS.md).
 - [ ] Bind an exact post-merge source/config digest and separately authorize execution of `cpu_self_parity_v1`.
 - [ ] Perform the physical RTX-3060 Wave-5B acceptance separately; it remains Engineering Verification and is not substituted by this CPU study.
 - [ ] Resolve all five Wave-7 learning divergences before freezing a common CPU/CUDA learning contract.
+
+## 2026-10-01 Sequential conceptual audits and review
+
+- [x] Execute all 22 previously unrun registered cognition/epistemic/welfare
+	conceptual-audit protocols in registered seed order (`101-103`).
+- [x] Preserve each audit as completed `EXPLORATORY` DATA with
+	`direct_test_of_hypothesis=false`, `scientific_evidence=false` and no
+	automatic DATA-to-EVID promotion.
+- [x] Add a direct `review_request.json` for each new audit and verify all 18
+	newly generated requests appear in the Human Review Inbox; earlier audit
+	records remain reviewable through their AIRR artifacts.
+- [ ] Complete the resulting human reviews; execution and review requests do
+	not substitute for reviewer decisions.
+- [ ] Keep gateway Plastic and confirmatory executions blocked until their own
+	frozen, registered preregistration and execution authorization exist.

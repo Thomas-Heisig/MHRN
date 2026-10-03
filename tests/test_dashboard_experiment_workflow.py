@@ -16,11 +16,125 @@ from src.dashboard.experiment_evaluation import (
 from src.dashboard.experiment_workflow import (
     ExperimentWorkflowService,
     WorkflowValidationError,
+    _assert_loaded_callable_matches_source,
     write_experiment_summary,
 )
 from src.dashboard.research_source import ResearchSource
+from src.dashboard.review_inbox import build_review_inbox
 from src.dashboard.server import DashboardRequestHandler
 from src.research_assistant.airr import write_artifact_review
+
+
+def test_generated_cognition_runner_alias_passes_source_integrity_gate() -> None:
+    from src.research import experiment_suite
+
+    runner = experiment_suite.run_cog_cns_101_v1
+    source_path = Path(runner.__code__.co_filename)
+    runtime_digest, source_digest = _assert_loaded_callable_matches_source(
+        runner, source_path, runner.__code__.co_name
+    )
+
+    assert runner.__name__ == "run_cog_cns_101_v1"
+    assert runner.__code__.co_name == "run"
+    assert runtime_digest == source_digest
+
+
+def test_conceptual_audit_writes_human_review_request_without_ai_or_evid(
+    tmp_path: Path,
+) -> None:
+    research_root = tmp_path / "research"
+    _write_registry(research_root)
+    registry = research_root / "registry"
+    with (registry / "questions.yaml").open("a", encoding="utf-8") as handle:
+        handle.write(
+            "- id: RQ-CNS-101\n  domain: cognition\n  question: Is a review contract recorded?\n  relevance: governance\n"
+        )
+    with (registry / "hypotheses.yaml").open("a", encoding="utf-8") as handle:
+        handle.write(
+            "- id: H-CNS-101-A\n  research_question: RQ-CNS-101\n  hypothesis: The audit records its limits.\n"
+        )
+
+    preregistrations = research_root / "preregistrations" / "operational"
+    preregistrations.mkdir(parents=True)
+    protocol_id = "cog_cns_101_v1"
+    preregistration = {
+        "schema_version": "1.0",
+        "preregistration_id": "PREREG-COG-101-TEST",
+        "research_question": "RQ-CNS-101",
+        "hypothesis": "H-CNS-101-A",
+        "protocol_id": protocol_id,
+        "mode": "EXPLORATORY",
+        "primary_outcomes": ["audit_complete"],
+        "conditions": ["assumption_explicit", "alternative_model"],
+        "seed_strategy": {"minimum_independent_seeds": 3},
+        "stopping_rule": "three registered seeds",
+        "inclusion_criteria": ["registered protocol"],
+        "exclusion_criteria": ["none"],
+        "analysis_plan": {},
+        "freeze": {
+            "status": "FROZEN",
+            "immutable_after_first_run": True,
+            "human_review_required": True,
+        },
+    }
+    (preregistrations / "cognition_bundle_v1.json").write_text(
+        json.dumps(preregistration), encoding="utf-8"
+    )
+    protocols = research_root / "protocols"
+    protocols.mkdir()
+    (protocols / "EXP_GEN_0021_OPERATIONAL_PROTOCOLS.json").write_text(
+        json.dumps(
+            {
+                "protocols": [
+                    {
+                        "id": protocol_id,
+                        "research_question": "RQ-CNS-101",
+                        "hypothesis": "H-CNS-101-A",
+                        "runner": "run_cog_cns_101_v1",
+                        "preregistration": "preregistrations/operational/cognition_bundle_v1.json",
+                        "execution_kind": "conceptual_audit",
+                        "adapter_validated": True,
+                        "tick_aware": False,
+                    }
+                ]
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    result = ExperimentWorkflowService(research_root).run_science(
+        {
+            "experiment_id": "EXP-COG-AUDIT-TEST",
+            "question_id": "RQ-CNS-101",
+            "hypothesis_id": "H-CNS-101-A",
+            "title": "Conceptual audit review contract",
+            "conditions": "registered conceptual boundary audit",
+            "ticks": 1,
+            "seeds": "101-103",
+            "protocol": protocol_id,
+        }
+    )
+
+    experiment_dir = research_root / "experiments" / "EXP-COG-AUDIT-TEST"
+    request = json.loads(
+        (experiment_dir / "review_request.json").read_text(encoding="utf-8")
+    )
+    manifest = json.loads(
+        (experiment_dir / "manifest.json").read_text(encoding="utf-8")
+    )
+    inbox = build_review_inbox(research_root)
+
+    assert result["ai_report"]["status"] == "unavailable"
+    assert result["epistemic_layers"]["evid"].startswith("not_created")
+    assert manifest["artifacts"]["review_request"] == "review_request.json"
+    assert manifest["execution_semantics"]["kind"] == "conceptual_audit"
+    assert manifest["execution_semantics"]["scientific_evidence"] is False
+    assert request["human_review_status"] == "PENDING"
+    assert request["direct_test_of_hypothesis"] is False
+    assert inbox["open"] == 1
+    assert inbox["items"][0]["artifact_path"] == (
+        "experiments/EXP-COG-AUDIT-TEST/review_request.json"
+    )
 
 
 def _report_backend(_prompt: str) -> tuple[dict[str, Any], dict[str, str | float]]:

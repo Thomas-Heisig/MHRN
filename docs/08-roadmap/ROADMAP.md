@@ -2,7 +2,43 @@
 
 **Canonical roadmap for active `develop`; `main` is release-only**  
 **Baseline:** `mhrn-core 0.6.0a7`
-**Updated:** 2026-09-27
+**Updated:** 2026-10-02
+
+## 2026-10-02 CUDA-/Parity-UI-Provenienz
+
+- Playground-Diagnosen zeigen je Request `PENDING`, `RUNNING`, `PASSED`,
+	`FAILED` oder `COMPLETED`, dazu Start/Endzeit und Laufzeit.
+- Ergebnisflächen trennen CUDA-1.3, CUDA-1.4 und CUDA-1.5; die bereits
+	vorhandene Integrationsübersicht verknüpft Wave 4, FE-3, Hardware-Acceptance,
+	PAN Wave 5B und das nächste Gate.
+- Der CUDA-Status meldet den Repository-HEAD, kennzeichnet aber den
+	Working-Tree-Zustand als nicht erfasst. Playground-Antworten sind keine
+	persistierten Akzeptanzartefakte und melden fehlende Hardware-Identität
+	ausdrücklich.
+- Persistente Run-Receipts mit Source-Digest, Hardware-ID und Artefaktlink
+	sowie echter Fortschritt/Abbruch bleiben separate Engineering-Arbeit.
+
+## 2026-10-02 R0 Research-Catalog-Abschluss
+
+- Der generierte Katalogaudit ist `CLEAN`; nichtkanonische Referenzen sind
+	begründet als historisch, Testfixture oder Vorschlag klassifiziert.
+- Es gibt keine disallowed missing RQ/H IDs, Registry-Linkfehler oder stale
+	Allow-List-Einträge.
+- 95 operationale Protokolle besitzen gültige Preregistrierungen und
+	registrierte Freeze-Status. Das ist ein Governance-/Engineeringbefund,
+	keine wissenschaftliche Evidenz.
+
+## 2026-10-01 Konzeptaudit-Ausführung und Review-Routing
+
+- Die 22 zuvor ausstehenden kognitiven, epistemischen und Welfare-
+	Konzeptaudit-Protokolle wurden mit ihren registrierten Seeds sequenziell
+	ausgeführt.
+- Ihre Ergebnisse bleiben ausdrücklich methodische `EXPLORATORY` DATA ohne
+	direkten Hypothesentest, SNN-Lauf oder EVID-Promotion.
+- Neue Audits gehen mit einem strukturierten Review Request direkt in die
+	Human Review Inbox; AI-Interpretation wird für diesen Audittyp übersprungen.
+- Gateway-Plastic benötigt weiterhin eine eigene eingefrorene Registrierung,
+	passende unabhängige Seeds und separate Ausführungsautorisierung.
 
 ## 2026-09-29 Ausführbarkeitsgrenzen im Playground
 
@@ -11,6 +47,13 @@
 	ausführbar gekennzeichnet.
 - Experimentelle Topologien zeigen ihre Mindestdimension und sind bei
 	inkompatibler Dimension in der Builder-Auswahl deaktiviert.
+
+## 2026-10-01 Experimentdetail und Artefaktübersicht
+
+- Die Experimentdetailfläche bündelt verfügbare Laufartefakte und öffnet sie
+	über den zentralen File Viewer.
+- Human Review, Git-Commit und Provenienz-Digests werden separat angezeigt;
+	fehlende Angaben bleiben unbekannt und erzeugen keinen Evidenzstatus.
 
 ## 2026-09-27 Alpha.7 release line
 

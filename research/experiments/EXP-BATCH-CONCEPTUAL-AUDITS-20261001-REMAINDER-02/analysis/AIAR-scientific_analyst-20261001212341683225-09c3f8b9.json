@@ -1,0 +1,96 @@
+{
+  "analysis_id": "AIAR-scientific_analyst-20261001212341683225-09c3f8b9",
+  "role": "scientific_analyst",
+  "model": {
+    "provider": "ollama",
+    "model_name": "qwen3:8b",
+    "model_digest": "not_reported",
+    "quantization": "not_reported",
+    "context_length": "unknown",
+    "temperature": 0.0,
+    "top_p": 0.9,
+    "seed": "not_reported",
+    "backend_version": "unknown"
+  },
+  "inputs": {
+    "experiment_id": "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REMAINDER-02",
+    "packet_digest": "09c3f8b93866d36e4d1dbca0a80e430666bda3e0459aa4f031ad94e44b4c4aad"
+  },
+  "output": {
+    "assessment": "Die Daten zeigen keine signifikanten Unterschiede in der diskriminativen Leistung unter den untersuchten Bedingungen. Es wurden keine empirischen Experimente durchgeführt, die eine direkte Kausalität zwischen aktiver Zielerkennung und diskriminativer Leistung nachweisen könnten. Die Ergebnisse sind daher beschreibend und nicht inferenzfähig.",
+    "observations": [
+      "Die audit_item-Metriken sind in allen Bedingungen konstant: 1 für 'assumption_explicit', 2 für 'alternative_model', 4 für 'claim_boundary' und 3 für 'measurement_limit'.",
+      "Die audit_template_generated-Metriken sind in allen Bedingungen auf wahr gesetzt.",
+      "Die audit_complete-Metriken sind in allen Bedingungen auf falsch gesetzt.",
+      "Die snn_involved-Metriken sind in allen Bedingungen auf falsch gesetzt.",
+      "Die human_assessment-Metriken sind in allen Bedingungen nicht aufgezeichnet.",
+      "Die native_empirical_experiment-Metriken sind in allen Bedingungen auf falsch gesetzt.",
+      "Die scientific_evidence-Metriken sind in allen Bedingungen auf falsch gesetzt.",
+      "Die conceptual_or_normative-Metriken sind in allen Bedingungen auf wahr gesetzt.",
+      "Die external_ethics_approval-Metriken sind in allen Bedingungen nicht beansprucht.",
+      "Die external_review_instrument-Metriken sind in allen Bedingungen auf 'research/external_review/README.md' gesetzt."
+    ],
+    "effect_direction": "Es wurden keine messbaren Effekte in einer Richtung beobachtet, da keine inferenzfähigen Analysen durchgeführt wurden.",
+    "methodological_concerns": [
+      "Keine registrierte wissenschaftliche Evidenz ist mit diesem Experiment verknüpft.",
+      "Die Git-Provenance ist schmutzig oder nicht verfügbar.",
+      "Die Experimente sind rein konzeptionell und nicht empirisch.",
+      "Die audit_complete-Metriken sind in allen Bedingungen auf falsch gesetzt, was auf fehlende vollständige Audits hinweist.",
+      "Die human_assessment-Metriken sind in allen Bedingungen nicht aufgezeichnet, was eine fehlende menschliche Bewertung bedeutet."
+    ],
+    "alternative_explanations": [
+      "Die audit_item-Metriken könnten auf eine systematische Fehlerquelle in der Datenerfassung hinweisen.",
+      "Die audit_template_generated-Metriken könnten auf eine automatische Generierung von Audit-Vorlagen hinweisen, die nicht manuell überprüft wurde.",
+      "Die audit_complete-Metriken könnten auf eine fehlende vollständige Durchführung der Audits hinweisen.",
+      "Die human_assessment-Metriken könnten auf eine fehlende menschliche Bewertung der Ergebnisse hinweisen.",
+      "Die native_empirical_experiment-Metriken könnten auf eine fehlende empirische Durchführung der Experimente hinweisen.",
+      "Die scientific_evidence-Metriken könnten auf eine fehlende wissenschaftliche Evidenz hinweisen.",
+      "Die conceptual_or_normative-Metriken könnten auf eine fehlende empirische Validierung der konzeptionellen oder normativen Aussagen hinweisen.",
+      "Die external_ethics_approval-Metriken könnten auf eine fehlende ethische Genehmigung hinweisen.",
+      "Die external_review_instrument-Metri, die auf 'research/external_review/README.md' gesetzt sind, könnten auf eine fehlende externe Überprüfung hinweisen."
+    ],
+    "recommended_experiments": [
+      "Ein empirisches Experiment, das die diskriminative Leistung unter aktiver und passiver Zielerkennung direkt vergleicht.",
+      "Ein Experiment, das die Rolle der externen LLM-Wissen in der diskriminativen Leistung untersucht.",
+      "Ein Experiment, das die audit_complete-Metriken in einer vollständigen Audit-Durchführung überprüft.",
+      "Ein Experiment, das die human_assessment-Metriken in einer menschlichen Bewertung der Ergebnisse überprüft.",
+      "Ein Experiment, das die native_empirical_experiment-Metriken in einer empirischen Durchführung der Experimente überprüft.",
+      "Ein Experiment, das die scientific_evidence-Metriken in einer wissenschaftlichen Evidenz überprüft.",
+      "Ein Experiment, das die conceptual_or_normative-Metriken in einer empirischen Validierung der konzeptionellen oder normativen Aussagen überprüft.",
+      "Ein Experiment, das die external_ethics_approval-Metriken in einer ethischen Genehmigung überprüft.",
+      "Ein Experiment, das die external_review_instrument-Metriken in einer externen Überprüfung überprüft."
+    ],
+    "requested_evidence": [
+      "Empirische Daten, die die diskriminative Leistung unter aktiver und passiver Zielerkennung direkt vergleichen.",
+      "Daten, die die Rolle der externen LLM-Wissen in der diskriminativen Leistung untersuchen.",
+      "Daten, die die audit_complete-Metriken in einer vollständigen Audit-Durchführung überprüfen.",
+      "Daten, die die human_assessment-Metriken in einer menschlichen Bewertung der Ergebnisse überprüfen.",
+      "Daten, die die native_emp, experiment-Metriken in einer empirischen Durchführung der Experimente überprüfen.",
+      "Daten, die die scientific_evidence-Metriken in einer wissenschaftlichen Evidenz überprüfen.",
+      "Daten, die die conceptual_or_normative-Metriken in einer empirischen Validierung der konzeptionellen oder normativen Aussagen überprüfen.",
+      "Daten, die die external_ethics_approval-Metriken in einer ethischen Genehmigung überprüfen.",
+      "Daten, die die external_review_instrument-Metriken in einer externen Überprüfung überprüfen."
+    ],
+    "confidence": 0.05
+  },
+  "provenance": {
+    "prompt_sha256": "820c08ed34e159fb2231e924512b613e9a4ccc5d769e6bff25b8c9fe89dabf51",
+    "research_packet_digest": "09c3f8b93866d36e4d1dbca0a80e430666bda3e0459aa4f031ad94e44b4c4aad",
+    "prompt_protocol_version": "research_assistant_v1",
+    "assistant_schema_version": "1.3",
+    "git_commit": "1f489c978592dc14dc20492c322a34fe25dddba3",
+    "model_self_confidence": "0.05"
+  },
+  "epistemic_status": {
+    "evidence": false,
+    "interpretation_only": true,
+    "human_review_required": true
+  },
+  "review": {
+    "status": "pending",
+    "reviewer": null,
+    "reviewed_at": null,
+    "disposition": null
+  },
+  "generated_at": "2026-10-01T21:23:41.683225+00:00"
+}

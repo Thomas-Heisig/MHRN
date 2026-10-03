@@ -128,3 +128,19 @@ def test_experiment_cards_offer_posthoc_hypothesis_evaluation() -> None:
         "_openArtifact(result.markdown_path)",
     ):
         assert marker in workflow
+
+
+def test_experiment_detail_groups_artifacts_review_and_provenance() -> None:
+    workflow = (STATIC / "experiment-workflow-base.js").read_text(encoding="utf-8")
+    for marker in (
+        '"Human Review"',
+        '"Git-Commit"',
+        '"Source Freeze"',
+        '"Code-Digest"',
+        '"Konfigurations-Digest"',
+        '"Daten-Digest"',
+        'class="experiment-detail-artifacts"',
+        "Artefakte &amp; File Viewer",
+        "${resultActions}",
+    ):
+        assert marker in workflow

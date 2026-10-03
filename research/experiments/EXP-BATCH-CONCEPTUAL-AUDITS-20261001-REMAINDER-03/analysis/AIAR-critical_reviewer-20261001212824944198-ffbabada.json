@@ -1,0 +1,54 @@
+{
+  "analysis_id": "AIAR-critical_reviewer-20261001212824944198-ffbabada",
+  "role": "critical_reviewer",
+  "model": {
+    "provider": "ollama",
+    "model_name": "qwen3:8b",
+    "model_digest": "not_reported",
+    "quantization": "not_reported",
+    "context_length": "unknown",
+    "temperature": 0.0,
+    "top_p": 0.9,
+    "seed": "not_reported",
+    "backend_version": "unknown"
+  },
+  "inputs": {
+    "experiment_id": "EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REMAINDER-03",
+    "packet_digest": "ffbabada792133d535806cd613c738cb651a1ae58f3e41a18dc3648dcc869ba7"
+  },
+  "output": {
+    "ai_packet_max_bytes": 1000000,
+    "run_summary_max_bytes": 5000000,
+    "sequence_preview_items": 16,
+    "assessment": "Die Analyse konnte nicht vollstaendig schema-konform erzeugt werden. Das Modell hat keine verwertbare Bewertung geliefert.",
+    "analysis_unavailable": true,
+    "confidence_original": null,
+    "confidence": 0.0,
+    "observations": [],
+    "methodological_concerns": [],
+    "alternative_explanations": [],
+    "recommended_experiments": [],
+    "requested_evidence": [],
+    "effect_direction": "not_determined"
+  },
+  "provenance": {
+    "prompt_sha256": "9dbba769983100154b83d78a38e26e5429054b0e8cb8838db26f845469835467",
+    "research_packet_digest": "ffbabada792133d535806cd613c738cb651a1ae58f3e41a18dc3648dcc869ba7",
+    "prompt_protocol_version": "research_assistant_v1",
+    "assistant_schema_version": "1.3",
+    "git_commit": "1f489c978592dc14dc20492c322a34fe25dddba3",
+    "model_self_confidence": "0.0"
+  },
+  "epistemic_status": {
+    "evidence": false,
+    "interpretation_only": true,
+    "human_review_required": true
+  },
+  "review": {
+    "status": "pending",
+    "reviewer": null,
+    "reviewed_at": null,
+    "disposition": null
+  },
+  "generated_at": "2026-10-01T21:28:24.944198+00:00"
+}

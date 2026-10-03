@@ -1,5 +1,50 @@
 # Changelog
 
+## 2026-10-02 - CUDA-/Parity-Diagnostik mit Laufstatus und Provenienzgrenze
+
+- CUDA-Smoke, RNG, CUDA-1.4/1.5-Rekurrenz, Builder-D3, Cue-Kontrollen und
+  Transfer zeigen ihren eigenen `PENDING`/`RUNNING`/Ergebnisstatus mit
+  Start-/Endzeit und Laufzeit.
+- Der Diagnose-Status zeigt den servergemeldeten Git-HEAD, ohne den nicht
+  erfassten Working Tree als reproduzierbare Provenienz auszugeben.
+- Fehlende Hardware-Identität und nicht persistierte Antworten sind sichtbar;
+  ein Verweis führt zur bestehenden Wave-/FE-3-/Hardware-/PAN-Governance-Sicht.
+- E2E-Regression für `RUNNING` → `FAILED`: bestanden; CUDA-Fail-Closed/API-
+  Regressionen: 44 bestanden. Keine DATA/EVID- oder Hardware-Acceptance-
+  Promotion.
+
+## 2026-10-02 - R0 Research-Catalog-Audit abgeschlossen
+
+- Der Research-Catalog-Audit meldet `CLEAN`: keine disallowed missing IDs,
+  Registry-Linkfehler oder stale Allow-List-Einträge.
+- 95 operationale Protokolle besitzen gültige Preregistrierungen und
+  registrierte Freeze-Status; historische, Test- und Designreferenzen bleiben
+  ausdrücklich als solche klassifiziert.
+- Gezielte Katalog-/Statusregressionen: 13 Tests bestanden.
+
+## 2026-10-01 - Sequenzielle Konzeptaudits und direkte Review Requests
+
+- 22 zuvor ungelaufene, registrierte Kognitions-/Epistemik-/Welfare-
+  Konzeptaudit-Protokolle wurden sequenziell mit den eingefrorenen Seeds
+  `101–103` ausgeführt; Laufbelege und Batch-Receipts sind erhalten.
+- Alle Ergebnisse bleiben `EXPLORATORY` und methodisch: kein direkter
+  Hypothesentest, keine SNN-Ausführung und keine automatische EVID-Promotion.
+- Konzeptaudits überspringen unnötige AIRR-KI-Interpretation und erzeugen
+  stattdessen einen expliziten `review_request.json` für die Human Review Inbox.
+- Der Runtime-/Source-Integrity-Guard erkennt dynamisch registrierte Runner
+  über ihren echten Code-Ursprung; der Cognition-Auditpfad blockiert nicht mehr
+  fälschlich an einem Re-Export-Alias.
+- Gateway-Plastic und confirmatory Runs bleiben bis zu einer separaten
+  eingefrorenen Gateway-Präregistrierung und Ausführungsautorisierung gesperrt.
+
+## 2026-10-01 - Experimentdetails bündeln Review, Artefakte und Provenienz
+
+- Die Experimentdetailfläche fasst Report-, Summary-, Statistik-, Rohdaten-,
+  Manifest-, Review- und Post-hoc-Auswertungsaktionen zusammen.
+- Human-Review-Status sowie Commit-, Source-Freeze-, Code-, Konfigurations- und
+  Daten-Digests werden explizit gezeigt; fehlende Werte bleiben unbekannt und
+  werden nicht als Review oder Evidenz interpretiert.
+
 ## 2026-10-01 - Playground Integration Wave 5A: PAN-Semantikvertrag
 
 - PAN-Hyperstate erhält mit `mhrn-pan-hyperstate-v0.1-draft` erstmals einen

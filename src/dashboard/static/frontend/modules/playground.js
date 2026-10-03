@@ -6,6 +6,7 @@ import { getLanguage } from "../core/i18n.js?v=i18n-fix-20260920b";
 
 let lastResult = null;
 let catalogState = null;
+let cudaRuntimeStatus = null;
 let liveSessionId = null;
 let liveLoopTimer = null;
 let nightPollTimer = null;
@@ -147,6 +148,7 @@ function injectStyles() {
     .pg-live-monitor-visuals{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:5px;margin-top:7px}.pg-live-monitor-tile{display:block;width:100%;padding:5px;border:1px solid var(--rule);border-radius:var(--r-xs);background:var(--paper-2);color:var(--ink);text-align:left;cursor:pointer}.pg-live-monitor-tile:hover,.pg-live-monitor-tile:focus-visible{border-color:var(--accent);background:var(--accent-wash)}.pg-live-monitor-tile span{display:block;margin-bottom:3px;color:var(--ink-3);font:700 .47rem/1.1 var(--font-mono);text-transform:uppercase}.pg-live-monitor-tile canvas{display:block;width:100%;height:65px;background:var(--paper);border:1px solid var(--rule);image-rendering:auto}.pg-live-zoom{width:min(96vw,1400px);max-height:92vh;padding:0;border:1px solid var(--rule-3);border-radius:var(--r-md);background:var(--paper);box-shadow:var(--shadow-float)}.pg-live-zoom::backdrop{background:rgba(20,16,12,.66);backdrop-filter:blur(5px)}.pg-live-zoom header{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;padding:10px 13px;border-bottom:1px solid var(--rule);background:var(--paper-2)}.pg-live-zoom header strong{display:block;font-size:.96rem}.pg-live-zoom header p{margin:3px 0 0;color:var(--ink-3);font-size:.62rem}.pg-live-zoom-toolbar{display:flex;flex-wrap:wrap;gap:6px;padding:8px 13px;border-bottom:1px solid var(--rule);background:var(--paper-3)}.pg-live-zoom-toolbar button{min-height:30px;padding:0 9px;border:1px solid var(--rule-2);border-radius:var(--r-xs);background:var(--paper);color:var(--ink-2);font-size:.64rem}.pg-live-zoom-toolbar button:hover,.pg-live-zoom-toolbar button:focus-visible{border-color:var(--accent);background:var(--accent-wash)}.pg-live-zoom-stage{min-height:360px;padding:12px;overflow:auto;background:var(--paper)}.pg-live-zoom canvas{display:block;width:100%;height:min(72vh,760px);min-height:360px;background:var(--paper-2);border:1px solid var(--rule);image-rendering:auto}
     .playground-viz-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.playground-viz{min-height:260px}.playground-viz canvas{width:100%;height:210px;display:block}
     .playground-analysis-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:10px}.playground-analysis-card pre{font-size:.62rem;max-height:260px;overflow:auto;white-space:pre-wrap}
+    .playground-analysis-card [data-pg-run-status]{margin:0 0 8px;padding:5px 7px;border-left:3px solid var(--rule-3);background:var(--paper);font:500 .56rem/1.4 var(--font-mono);overflow-wrap:anywhere}.playground-analysis-card [data-pg-run-status][data-status="running"]{border-left-color:var(--amber)}.playground-analysis-card [data-pg-run-status][data-status="passed"]{border-left-color:var(--moss)}.playground-analysis-card [data-pg-run-status][data-status="failed"]{border-left-color:var(--crimson)}
     .playground-session-list{display:grid;gap:6px}.playground-session{display:flex;justify-content:space-between;gap:1rem;align-items:center;padding:9px 10px;border:1px solid var(--rule);border-radius:var(--r-xs);background:var(--paper-2)}.playground-session small{display:block;color:var(--ink-4)}
     .playground-catalog{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.playground-catalog article{padding:10px;border:1px solid var(--rule);border-radius:var(--r-xs);background:var(--paper-2)}.playground-chip{display:inline-flex;margin:2px;padding:3px 5px;border-radius:var(--r-xs);border:1px solid var(--rule);background:var(--paper-3);color:var(--ink-3);font:500 .58rem/1.2 var(--font-mono);cursor:pointer}.playground-chip:hover,.playground-chip:focus-visible{border-color:var(--accent);background:var(--accent-wash);color:var(--accent-2)}.playground-catalog-dialog{width:min(92vw,620px);padding:0;border:1px solid var(--rule-3);border-radius:var(--r-md);background:var(--paper);color:var(--ink);box-shadow:var(--shadow-float)}.playground-catalog-dialog::backdrop{background:rgba(20,16,12,.52);backdrop-filter:blur(4px)}.playground-catalog-dialog header{display:flex;justify-content:space-between;gap:10px;align-items:flex-start;padding:12px 14px;border-bottom:1px solid var(--rule);background:var(--paper-2)}.playground-catalog-dialog header h2{margin:0;font-size:1rem}.playground-catalog-dialog header p{margin:3px 0 0;color:var(--accent);font:700 .55rem/1.2 var(--font-mono);text-transform:uppercase}.playground-catalog-dialog-body{padding:14px}.playground-catalog-dialog-body p{font-size:.76rem;line-height:1.5}.playground-catalog-dialog-body code{font-size:.65rem}
     .pg-neutral-note{padding:9px 11px;margin:9px 0;border-left:3px solid var(--indigo);background:var(--indigo-wash);color:var(--ink-2);font-size:.68rem;line-height:1.45}.pg-neutral-note strong{color:var(--ink)}
@@ -412,14 +414,15 @@ function buildPanels(root) {
           <button type="button" id="pg-cuda-builder-parity">D3 · Builder CPU/CUDA vergleichen</button>
           <button type="button" id="pg-cuda-plasticity">CUDA-1.5 · STP/STDP-Parität</button>
         </div>
+        <p>Jeder Diagnoseaufruf zeigt seinen eigenen Laufstatus. Projektweite Wave-, FE-3-, Hardware- und PAN-Gates stehen im <a href="#mhrn-acceleration-playground">Integrationsstatus</a>; Playground-Antworten werden nicht als Akzeptanzartefakte gespeichert.</p>
         <small>D1 = exakte Spike-Ereignisse · D2 = numerische Zustandsparität · D3 = Verhaltens-/Metrikparität. CUDA-1.3 prüft den 17-Parameter-Gate-ABI gegen dieselbe CPU-Gate-Referenz. GPU-Portierung von Membran-/Adaptations-/Refractory-State, Synapsen, Delays, Plastizität und Sandbox folgt in CUDA-1.4 bis 1.6.</small>
         <div class="playground-analysis-grid">
           <article class="playground-analysis-card"><h3>CUDA Reifegrad</h3><pre id="pg-cuda-stage-state">Status noch nicht geladen.</pre></article>
           <article class="playground-analysis-card"><h3>ptxas & Occupancy</h3><pre id="pg-cuda-resource-state">Noch kein Preflight.</pre></article>
-          <article class="playground-analysis-card"><h3>D2 Hardware-Parität</h3><pre id="pg-cuda-parity-state">Noch kein Hardware-Smoke.</pre></article>
-          <article class="playground-analysis-card"><h3>RNG ε-greedy</h3><pre id="pg-cuda-rng-state">Noch kein RNG-Paritätstest.</pre></article>
-          <article class="playground-analysis-card"><h3>Rekurrente Membran-Parität</h3><p>129 AdEx-Neuronen, statische Synapsen und Delays; FP64-Referenz. Noch kein vollständiger PAN-GPU-Lauf.</p><pre id="pg-cuda-recurrent-state">Noch kein Mehrtakt-Test.</pre></article>
-          <article class="playground-analysis-card"><h3>GPU-Plastizität</h3><p>STP, STDP, Eligibility und eingefrorene Reward-Folge; FP64-Referenz. Der Live-Regelkreis ist ein separater Schritt.</p><pre id="pg-cuda-plasticity-state">Noch kein Plastizitätstest.</pre><p>Builder-D3: echte Aktionen und Koerpertrajektorie; Membran auf GPU, Synapsen und Umwelt auf CPU.</p><pre id="pg-cuda-builder-parity-state">Noch kein Builder-Vergleich.</pre><p>Cue-Experiment: passend / randomisiert / entfernt, jeweils mit und ohne Pair-STDP. Ohne Policy-Strom und Koerperrueckkopplung; kein automatischer Lernnachweis.</p><pre id="pg-cue-controls-state">Noch kein Cue-Experiment.</pre><p id="pg-transfer-summary">Transfer: vortrainierte Gewichte gegen frische Initialisierung auf neuen Cue-Kanaelen. Alle anderen Zustaende werden zurueckgesetzt.</p><details><summary>Transfer-Protokoll und Decoder-Kurven</summary><pre id="pg-transfer-state" style="max-height:360px;overflow:auto">Noch kein Transfer-Vergleich.</pre></details></article>
+          <article class="playground-analysis-card"><h3>D2 Hardware-Parität · CUDA-1.3</h3><div data-pg-run-status="pending" data-for="pg-cuda-parity-state">PENDING · noch nicht ausgeführt</div><pre id="pg-cuda-parity-state">Noch kein Hardware-Smoke.</pre></article>
+          <article class="playground-analysis-card"><h3>RNG ε-greedy · CUDA-1.3</h3><div data-pg-run-status="pending" data-for="pg-cuda-rng-state">PENDING · noch nicht ausgeführt</div><pre id="pg-cuda-rng-state">Noch kein RNG-Paritätstest.</pre></article>
+          <article class="playground-analysis-card"><h3>CUDA-1.4 · Rekurrente Membran-Parität</h3><p>129 AdEx-Neuronen, statische Synapsen und Delays; FP64-Referenz. Noch kein vollständiger PAN-GPU-Lauf.</p><div data-pg-run-status="pending" data-for="pg-cuda-recurrent-state">PENDING · noch nicht ausgeführt</div><pre id="pg-cuda-recurrent-state">Noch kein Mehrtakt-Test.</pre></article>
+          <article class="playground-analysis-card"><h3>CUDA-1.5 · GPU-Plastizität</h3><p>STP, STDP, Eligibility und eingefrorene Reward-Folge; FP64-Referenz. Der Live-Regelkreis ist ein separater Schritt.</p><div data-pg-run-status="pending" data-for="pg-cuda-plasticity-state">PENDING · noch nicht ausgeführt</div><pre id="pg-cuda-plasticity-state">Noch kein Plastizitätstest.</pre><p>Builder-D3: echte Aktionen und Koerpertrajektorie; Membran auf GPU, Synapsen und Umwelt auf CPU.</p><div data-pg-run-status="pending" data-for="pg-cuda-builder-parity-state">PENDING · noch nicht ausgeführt</div><pre id="pg-cuda-builder-parity-state">Noch kein Builder-Vergleich.</pre><p>Cue-Experiment: passend / randomisiert / entfernt, jeweils mit und ohne Pair-STDP. Ohne Policy-Strom und Koerperrueckkopplung; kein automatischer Lernnachweis.</p><div data-pg-run-status="pending" data-for="pg-cue-controls-state">PENDING · noch nicht ausgeführt</div><pre id="pg-cue-controls-state">Noch kein Cue-Experiment.</pre><p id="pg-transfer-summary">Transfer: vortrainierte Gewichte gegen frische Initialisierung auf neuen Cue-Kanaelen. Alle anderen Zustaende werden zurueckgesetzt.</p><details><summary>Transfer-Protokoll und Decoder-Kurven</summary><div id="pg-transfer-run-status" data-pg-run-status="pending">PENDING · noch nicht ausgeführt</div><pre id="pg-transfer-state" style="max-height:360px;overflow:auto">Noch kein Transfer-Vergleich.</pre></details></article>
         </div>
         <pre id="pg-cuda-compiler-state">Noch kein CUDA-/Parity-Lauf.</pre>
       </article>
@@ -1025,6 +1028,7 @@ async function refreshCudaStatus(){
   const node=byId("pg-cuda-stage-state");
   if(node)node.textContent="CUDA-Laufzeit wird geprüft …";
   const result=await apiGet("/api/playground/cuda/status");
+  cudaRuntimeStatus=result;
   if(node)node.textContent=JSON.stringify({
     target_default:result.target_default,
     ptxas_available:result.ptxas_available,
@@ -1034,8 +1038,40 @@ async function refreshCudaStatus(){
     application_cpu:result.application_cpu,
     gpu_porting:result.gpu_porting,
     verification:result.verification,
+    provenance:result.provenance,
   },null,2);
   return result;
+}
+
+async function runCudaDiagnostic(nodeId, operation, renderResult = (result) => JSON.stringify(result, null, 2), statusId = null){
+  const node=byId(nodeId);
+  const status=statusId?byId(statusId):node?.parentElement?.querySelector(`[data-pg-run-status][data-for="${nodeId}"]`);
+  const startedAt=new Date();
+  const commit=cudaRuntimeStatus?.provenance?.git_commit||"unbekannt";
+  let hardwareIdentity="nicht ausgewiesen";
+  const updateStatus=(state,finishedAt=null)=>{
+    if(!status)return;
+    status.dataset.status=state.toLowerCase();
+    const elapsed=((finishedAt||new Date())-startedAt)/1000;
+    status.textContent=`${state} · Start ${startedAt.toLocaleString()}${finishedAt?` · Ende ${finishedAt.toLocaleString()}`:""} · ${elapsed.toFixed(1)} s · HEAD ${commit} (Working Tree nicht erfasst) · Hardware ${hardwareIdentity} · Artefakt nicht persistiert`;
+  };
+  updateStatus("RUNNING");
+  const timer=window.setInterval(()=>updateStatus("RUNNING"),1000);
+  try{
+    const result=await operation();
+    const passed=result?.passed===true||result?.parity?.passed===true;
+    const failed=result?.passed===false||result?.parity?.passed===false;
+    hardwareIdentity=result?.gpu_identity||result?.hardware?.gpu_identity||result?.preflight?.device_name||result?.first?.launch?.device_name||"nicht ausgewiesen";
+    updateStatus(passed?"PASSED":failed?"FAILED":"COMPLETED",new Date());
+    if(node)node.textContent=renderResult(result);
+    return result;
+  }catch(error){
+    updateStatus("FAILED",new Date());
+    if(node)node.textContent=String(error.message||error);
+    throw error;
+  }finally{
+    window.clearInterval(timer);
+  }
 }
 
 async function runCudaPreflight(){
@@ -1052,12 +1088,19 @@ async function runCudaPreflight(){
 }
 
 async function runCudaHardwareSmoke(){
-  const node=byId("pg-cuda-parity-state");
-  if(node)node.textContent="GPU-Kernel wird zweimal ausgeführt und gegen CPU-Gate-ABI verglichen …";
-  const payload={...cudaRequestPayload(),n_neurons:Math.min(Number(byId("pg-cuda-neurons")?.value||64),4096)};
-  const result=await apiPost("/api/playground/cuda/smoke",payload);
-  const first=result.first||{},ptxas=first.ptxas||{};
-  if(node)node.textContent=JSON.stringify({
+  return runCudaDiagnostic("pg-cuda-parity-state",async()=>{
+    const payload={...cudaRequestPayload(),n_neurons:Math.min(Number(byId("pg-cuda-neurons")?.value||64),4096)};
+    const result=await apiPost("/api/playground/cuda/smoke",payload);
+    const first=result.first||{},ptxas=first.ptxas||{};
+    const resources=byId("pg-cuda-resource-state");
+    if(resources)resources.textContent=JSON.stringify({
+      ptxas:first.ptxas||null,
+      launch:first.launch||null,
+    },null,2);
+    return result;
+  },(result)=>{
+    const first=result.first||{},ptxas=first.ptxas||{};
+    return JSON.stringify({
     passed:result.passed,
     gpu_repeat_exact:result.gpu_repeat_exact,
     parity:result.parity,
@@ -1067,31 +1110,20 @@ async function runCudaHardwareSmoke(){
     spill_store_bytes:ptxas.spill_store_bytes,
     spill_load_bytes:ptxas.spill_load_bytes,
     cleanup_contract:result.cleanup_contract,
-  },null,2);
-  const resources=byId("pg-cuda-resource-state");
-  if(resources)resources.textContent=JSON.stringify({
-    ptxas:first.ptxas||null,
-    launch:first.launch||null,
-  },null,2);
-  return result;
+    },null,2);
+  });
 }
 
 async function runCudaRngParity(){
-  const node=byId("pg-cuda-rng-state");
-  if(node)node.textContent="ε-greedy-Hashpfad wird CPU ↔ CUDA verglichen …";
-  const result=await apiPost("/api/playground/cuda/rng-parity",cudaRequestPayload());
-  if(node)node.textContent=JSON.stringify(result,null,2);
-  return result;
+  return runCudaDiagnostic("pg-cuda-rng-state",()=>apiPost("/api/playground/cuda/rng-parity",cudaRequestPayload()));
 }
 
 async function runCudaRecurrentParity(plasticity=false){
   plasticity=plasticity===true;
-  const node=byId(plasticity?"pg-cuda-plasticity-state":"pg-cuda-recurrent-state");
-  node.textContent="100 Ticks mit kooperativem Grid und Delay-Ring werden geprüft …";
-  try {
-    const result=await apiPost("/api/playground/cuda/recurrent-parity",{n_neurons:129,ticks:100,block_size:64,plasticity,target_sm:byId("pg-cuda-target-sm")?.value||"sm_86"});
-    node.textContent=JSON.stringify(result,null,2);
-  } catch(error) { node.textContent=String(error.message||error); }
+  return runCudaDiagnostic(
+    plasticity?"pg-cuda-plasticity-state":"pg-cuda-recurrent-state",
+    ()=>apiPost("/api/playground/cuda/recurrent-parity",{n_neurons:129,ticks:100,block_size:64,plasticity,target_sm:byId("pg-cuda-target-sm")?.value||"sm_86"}),
+  );
 }
 
 async function compileCudaGates(){
@@ -1350,16 +1382,14 @@ export async function initPlayground(){
   injectStyles();ensurePermanentBoundary(root);buildPanels(root);ensureMhrnIntegrationPanel();
   root.addEventListener("click",event=>{const button=event.target.closest("[data-pg-transfer]");if(button)transferIntegrationElement(button.dataset.pgTransfer).catch(()=>{});});
   byId("pg-synaptic-transfer")?.addEventListener("click",async()=>{
-    const summary=byId("pg-transfer-summary"),node=byId("pg-transfer-state");summary.textContent="Vortraining und zwei gepaarte Transferlaeufe ...";
-    try{const result=await apiPost("/api/playground/research/synaptic-transfer",formPayload());node.textContent=JSON.stringify(result,null,2);summary.textContent=`Vergleich abgeschlossen · ${result.changed_pretraining_weights} veraenderte Gewichte. Externer Aktivitaetsdecoder; kein automatischer Nachweis schnellerer neuronaler Aufgabenloesung.`;}catch(error){summary.textContent=`Transfer-Vergleich fehlgeschlagen: ${error.message}`;}
+    const summary=byId("pg-transfer-summary");summary.textContent="Vortraining und zwei gepaarte Transferlaeufe ...";
+    try{const result=await runCudaDiagnostic("pg-transfer-state",()=>apiPost("/api/playground/research/synaptic-transfer",formPayload()),undefined,"pg-transfer-run-status");summary.textContent=`Vergleich abgeschlossen · ${result.changed_pretraining_weights} veraenderte Gewichte. Externer Aktivitaetsdecoder; kein automatischer Nachweis schnellerer neuronaler Aufgabenloesung.`;}catch(error){summary.textContent=`Transfer-Vergleich fehlgeschlagen: ${error.message}`;}
   });
   byId("pg-cue-controls")?.addEventListener("click",async()=>{
-    const node=byId("pg-cue-controls-state");node.textContent="Sechs gepaarte Kontrolllaeufe ...";
-    try{node.textContent=JSON.stringify(await apiPost("/api/playground/research/cue-controls",formPayload()),null,2);}catch(error){node.textContent=`Cue-Kontrollen fehlgeschlagen: ${error.message}`;}
+    try{await runCudaDiagnostic("pg-cue-controls-state",()=>apiPost("/api/playground/research/cue-controls",formPayload()));}catch{}
   });
   byId("pg-cuda-builder-parity")?.addEventListener("click",async()=>{
-    const node=byId("pg-cuda-builder-parity-state");node.textContent="CPU- und CUDA-Builder laufen ...";
-    try{node.textContent=JSON.stringify(await apiPost("/api/playground/cuda/builder-parity",formPayload()),null,2);}catch(error){node.textContent=`Builder-Paritaet fehlgeschlagen: ${error.message}`;}
+    try{await runCudaDiagnostic("pg-cuda-builder-parity-state",()=>apiPost("/api/playground/cuda/builder-parity",formPayload()));}catch{}
   });
   byId("pg-cuda-recurrent")?.addEventListener("click",runCudaRecurrentParity);
   byId("pg-cuda-plasticity")?.addEventListener("click",()=>runCudaRecurrentParity(true));

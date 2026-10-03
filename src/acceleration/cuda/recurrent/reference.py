@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping, Sequence
+from copy import deepcopy
 from typing import Any
 
 from src.runtime.backend import BackendCapabilities, BackendState, RunResult, StepResult
@@ -17,6 +18,7 @@ from .state import (
     set_external_tick_config,
     stable_digest,
     step_payload,
+    validate_checkpoint,
 )
 
 
@@ -117,7 +119,7 @@ class CPUReferenceBackend:
             "backend": self.backend_version,
             "seed": self._seed,
             "tick": self._tick,
-            "config": config,
+            "config": deepcopy(config),
             "replay_required": True,
         }
         return BackendState(
@@ -127,13 +129,7 @@ class CPUReferenceBackend:
         )
 
     def restore(self, state: BackendState) -> None:
-        payload = dict(state.payload)
-        if payload.get("backend") != self.backend_version:
-            raise ValueError("checkpoint backend version mismatch")
-        raw_config = payload.get("config")
-        raw_seed = payload.get("seed")
-        if not isinstance(raw_config, Mapping) or type(raw_seed) is not int:
-            raise ValueError("checkpoint is missing canonical config/seed")
+        raw_config, raw_seed = validate_checkpoint(state, self.backend_version)
         self.initialize(raw_config, raw_seed)
         self._tick = state.tick
 
