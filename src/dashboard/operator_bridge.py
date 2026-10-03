@@ -7,7 +7,7 @@ and consistent response formatting.
 
 from __future__ import annotations
 
-from dataclasses import replace
+from dataclasses import asdict, replace
 from typing import Any, TypeAlias, cast
 
 from src.controller.runtime import ControllerCommand, RuntimeController
@@ -532,9 +532,7 @@ class OperatorBridge:
 
         # Get current config and update with new values
         current = self.approval_policy.config
-        config_dict = {
-            k: v for k, v in current.__dict__.items() if not k.startswith("_")
-        }
+        config_dict = asdict(current)
 
         for key, value in kwargs.items():
             if key in config_dict:

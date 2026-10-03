@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import math
 from dataclasses import asdict, dataclass
 from enum import Enum
 from hashlib import sha256
@@ -247,6 +248,15 @@ class ApprovalDecision:
     reason: str
 
 
+def _valid_probability(value: object) -> bool:
+    return (
+        not isinstance(value, bool)
+        and isinstance(value, (int, float))
+        and 0.0 <= value <= 1.0
+        and math.isfinite(value)
+    )
+
+
 class ProposalApprovalPolicy:
     """Approves only explicitly allowed, safe high-confidence proposals."""
 
@@ -273,6 +283,9 @@ class ProposalApprovalPolicy:
             return ApprovalDecision(False, True, "cooldown active")
         if not kind_allowed:
             return ApprovalDecision(False, True, "proposal kind disabled")
+        for value in (proposal.confidence, self.config.auto_approval_threshold):
+            if not _valid_probability(value):
+                return ApprovalDecision(False, True, "invalid confidence or threshold")
         if proposal.confidence < self.config.auto_approval_threshold:
             return ApprovalDecision(False, True, "confidence below threshold")
         return ApprovalDecision(True, True, "auto-approval threshold satisfied")
