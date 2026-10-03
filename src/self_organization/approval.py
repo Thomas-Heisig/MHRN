@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import math
 from dataclasses import asdict, dataclass
 from enum import Enum
 from hashlib import sha256
@@ -273,6 +274,14 @@ class ProposalApprovalPolicy:
             return ApprovalDecision(False, True, "cooldown active")
         if not kind_allowed:
             return ApprovalDecision(False, True, "proposal kind disabled")
+        for value in (proposal.confidence, self.config.auto_approval_threshold):
+            if (
+                isinstance(value, bool)
+                or not isinstance(value, (int, float))
+                or not math.isfinite(value)
+                or not 0.0 <= value <= 1.0
+            ):
+                return ApprovalDecision(False, True, "invalid confidence or threshold")
         if proposal.confidence < self.config.auto_approval_threshold:
             return ApprovalDecision(False, True, "confidence below threshold")
         return ApprovalDecision(True, True, "auto-approval threshold satisfied")

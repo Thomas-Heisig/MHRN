@@ -13,7 +13,6 @@ from src.dashboard.experiment_evaluation import (
     read_experiment_evaluation,
     write_experiment_evaluation,
 )
-from src.dashboard.review_inbox import build_review_inbox
 from src.dashboard.experiment_workflow import (
     ExperimentWorkflowService,
     WorkflowValidationError,
@@ -21,6 +20,7 @@ from src.dashboard.experiment_workflow import (
     write_experiment_summary,
 )
 from src.dashboard.research_source import ResearchSource
+from src.dashboard.review_inbox import build_review_inbox
 from src.dashboard.server import DashboardRequestHandler
 from src.research_assistant.airr import write_artifact_review
 
@@ -119,7 +119,9 @@ def test_conceptual_audit_writes_human_review_request_without_ai_or_evid(
     request = json.loads(
         (experiment_dir / "review_request.json").read_text(encoding="utf-8")
     )
-    manifest = json.loads((experiment_dir / "manifest.json").read_text(encoding="utf-8"))
+    manifest = json.loads(
+        (experiment_dir / "manifest.json").read_text(encoding="utf-8")
+    )
     inbox = build_review_inbox(research_root)
 
     assert result["ai_report"]["status"] == "unavailable"

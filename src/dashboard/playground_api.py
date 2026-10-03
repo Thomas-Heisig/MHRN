@@ -11,6 +11,7 @@ from dataclasses import replace
 from pathlib import Path
 from typing import cast
 
+from src.dashboard.verification import current_git_head
 from src.playground import service
 from src.playground.cuda import (
     CompileBundle,
@@ -37,7 +38,6 @@ from src.playground.integration import integration_catalog, transfer_element
 from src.playground.models import PlaygroundConfig
 from src.playground.night_run import NightRunManager
 from src.playground.pan import PANEmbodiedSandboxSession, PANSessionDaemon
-from src.dashboard.verification import current_git_head
 from src.playground.pan.cue_controls import run_cue_controls
 from src.playground.pan.transfer import run_synaptic_transfer
 

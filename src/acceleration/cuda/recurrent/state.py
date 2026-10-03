@@ -7,6 +7,8 @@ import json
 from collections.abc import Mapping, Sequence
 from dataclasses import asdict, replace
 
+from src.runtime.backend import BackendState
+
 from ..plasticity.reference import SynapseConfig
 from .backend import RecurrentInputs, validate_recurrent_inputs
 
@@ -26,6 +28,29 @@ def canonical_int(value: object, *, field: str) -> int:
     if isinstance(value, bool) or not isinstance(value, int):
         raise ValueError(f"{field} must be an integer")
     return value
+
+
+def validate_checkpoint(
+    state: BackendState, backend_version: str
+) -> tuple[Mapping[str, object], int]:
+    """Validate integrity and continuation bounds before mutating a backend."""
+    payload = dict(state.payload)
+    if stable_digest(payload) != state.state_digest:
+        raise ValueError("checkpoint digest mismatch")
+    if payload.get("backend") != backend_version:
+        raise ValueError("checkpoint backend version mismatch")
+    tick = canonical_int(state.tick, field="checkpoint tick")
+    payload_tick = canonical_int(payload.get("tick"), field="checkpoint payload tick")
+    if tick != payload_tick:
+        raise ValueError("checkpoint tick mismatch")
+    raw_config = payload.get("config")
+    raw_seed = payload.get("seed")
+    if not isinstance(raw_config, Mapping) or type(raw_seed) is not int:
+        raise ValueError("checkpoint is missing canonical config/seed")
+    limit = canonical_int(raw_config.get("ticks"), field="checkpoint ticks")
+    if not 0 <= tick <= limit:
+        raise ValueError("checkpoint tick exceeds configured limit")
+    return raw_config, raw_seed
 
 
 def canonical_float(value: object, *, field: str) -> float:
