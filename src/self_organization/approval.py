@@ -248,6 +248,15 @@ class ApprovalDecision:
     reason: str
 
 
+def _valid_probability(value: object) -> bool:
+    return (
+        not isinstance(value, bool)
+        and isinstance(value, (int, float))
+        and 0.0 <= value <= 1.0
+        and math.isfinite(value)
+    )
+
+
 class ProposalApprovalPolicy:
     """Approves only explicitly allowed, safe high-confidence proposals."""
 
@@ -275,12 +284,7 @@ class ProposalApprovalPolicy:
         if not kind_allowed:
             return ApprovalDecision(False, True, "proposal kind disabled")
         for value in (proposal.confidence, self.config.auto_approval_threshold):
-            if (
-                isinstance(value, bool)
-                or not isinstance(value, (int, float))
-                or not math.isfinite(value)
-                or not 0.0 <= value <= 1.0
-            ):
+            if not _valid_probability(value):
                 return ApprovalDecision(False, True, "invalid confidence or threshold")
         if proposal.confidence < self.config.auto_approval_threshold:
             return ApprovalDecision(False, True, "confidence below threshold")
