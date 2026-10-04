@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
-  "tested_commit": "3740ed4aaf53f057d27bdb1a0b61f499bf9800c3",
-  "tested_tree_digest": "7bbb5e5906f46e613e8fc024d17ecdce87bf9c9e48d02b0c8741401d80fc648c",
+  "tested_commit": "f13b5bf4cfb3c8e83f3edb2e060a4fc0b62d9896",
+  "tested_tree_digest": "b49d14e7213101454ac7fb1eda48f29e9f23c72e51acdb6676b79a9a3b526194",
   "tree_digest_paths": [
     "src/",
     "configs/",
@@ -12,20 +12,20 @@
   "tree_digest_excludes": [
     "tests/test_baseline.json"
   ],
-  "timestamp": "2026-10-04T07:09:41.055566+00:00",
+  "timestamp": "2026-10-04T12:17:59.015792+00:00",
   "python": "3.13.15",
   "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
   "source_unchanged_during_run": true,
   "full_collection": {
     "status": "passed",
-    "collected": 2134,
+    "collected": 2135,
     "collection_errors": 0
   },
   "full_suite": {
     "command": "python -m pytest tests/ -q -ra --junitxml=<temporary-report>",
     "status": "passed",
     "exit_code": 0,
-    "passed": 2082,
+    "passed": 2083,
     "failed": 0,
     "errors": 0,
     "skipped": 52,
@@ -810,7 +810,7 @@
     "tests/test_recurrent_snn_contract.py": "341f638e07640c0f754b30e17cb4a8dfa31c34df501fa3ca1e0e8e32d53de22b",
     "tests/test_recurrent_snn_frontend.py": "2551827166b9cae85191583327fec99bb41750576f886fdaae970e8222958363",
     "tests/test_recurrent_snn_timeline.py": "8550940978e6d783a2ecd063684d906049466f8117d405fc3aac3dd765df77b2",
-    "tests/test_release_registry.py": "e1c8e7292fc9cee154230303d49658c9ed358db6c527c15517eb91f8b65676a1",
+    "tests/test_release_registry.py": "8e17b43a5c4890b7aaa3ffcd84ffd9355c617dd8cfd74a223845d9261ac1a228",
     "tests/test_release_timeline.py": "8fee0b89d406841332897c1a8ecd8d233608af26817bec3a4da029649711006c",
     "tests/test_repository_ai_context.py": "84d8d03a0e1d5a47bb70ae4b7e49675ec839fcc4ad64eacfb507ad41d8aaecc4",
     "tests/test_repository_hygiene.py": "1f7f515c7fe0c1c47e5492d7ae294fef7db785b47e6afe8b8f88c81321f074e9",
