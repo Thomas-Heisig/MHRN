@@ -37,6 +37,10 @@ STDP_A_MINUS = 0.12
 STDP_TAU_TICKS = 20.0
 ELIGIBILITY_TAU_TICKS = 200.0
 REWARD_LEARNING_RATE = 0.01
+PLASTICITY_MODES = {"asymmetric", "symmetric", "off"}
+ACTIVITY_PROFILES = {"uniform", "heterogeneous_cohorts"}
+COHORT_COUNT = 4
+WEIGHT_VARIANCE_TOLERANCE = 1e-12
 
 
 def estimate_peak_bytes(neuron_count: int, synapse_count: int) -> int:
@@ -103,12 +107,24 @@ def _weight_snapshot(network: Any, epoch: int) -> dict[str, Any]:
         for synapse in outgoing
     ]
     finite = all(math.isfinite(weight) for weight in weights)
+    mean_weight = sum(weights) / len(weights) if weights else None
+    variance = (
+        sum((weight - mean_weight) ** 2 for weight in weights) / len(weights)
+        if weights and mean_weight is not None
+        else None
+    )
+    active_count = sum(weight > MIN_WEIGHT + 1e-12 for weight in weights)
     return {
         "epoch": epoch,
         "finite_weights": finite,
         "min_weight": min(weights, default=None),
         "max_weight": max(weights, default=None),
-        "mean_weight": sum(weights) / len(weights) if weights else None,
+        "mean_weight": mean_weight,
+        "weight_variance": variance,
+        "active_weight_count": active_count,
+        "active_weight_fraction": active_count / len(weights) if weights else None,
+        "all_weights_equal": variance is not None
+        and variance <= WEIGHT_VARIANCE_TOLERANCE,
         "at_lower_bound_count": sum(
             weight <= MIN_WEIGHT + 1e-12 for weight in weights
         ),
@@ -129,6 +145,8 @@ def run_benchmark(
     seed: int = 42,
     memory_budget_bytes: int = DEFAULT_MEMORY_BUDGET_BYTES,
     stability_interval: int = 10,
+    plasticity_mode: str = "asymmetric",
+    activity_profile: str = "heterogeneous_cohorts",
 ) -> dict[str, Any]:
     """Run repeated causal spike/reward phases and report engineering metrics."""
     if neuron_count < 4 or neuron_count % 2:
@@ -137,6 +155,10 @@ def run_benchmark(
         raise ValueError("synapse_count, epochs and stability_interval must be positive")
     if isinstance(seed, bool) or not isinstance(seed, int):
         raise ValueError("seed must be an integer")
+    if plasticity_mode not in PLASTICITY_MODES:
+        raise ValueError(f"plasticity_mode must be one of {sorted(PLASTICITY_MODES)}")
+    if activity_profile not in ACTIVITY_PROFILES:
+        raise ValueError(f"activity_profile must be one of {sorted(ACTIVITY_PROFILES)}")
     estimated_bytes = estimate_peak_bytes(neuron_count, synapse_count)
     if estimated_bytes > memory_budget_bytes:
         raise ValueError(
@@ -146,19 +168,24 @@ def run_benchmark(
 
     from src.learning.learning_engine import LearningEngine
 
+    learning_enabled = plasticity_mode != "off"
+    a_minus = STDP_A_PLUS if plasticity_mode == "symmetric" else STDP_A_MINUS
     learning_config = {
         "stdp": {
-            "enabled": True,
+            "enabled": learning_enabled,
             "a_plus": STDP_A_PLUS,
-            "a_minus": STDP_A_MINUS,
+            "a_minus": a_minus,
             "tau_plus": STDP_TAU_TICKS,
             "tau_minus": STDP_TAU_TICKS,
             "min_weight": MIN_WEIGHT,
             "max_weight": MAX_WEIGHT,
         },
-        "eligibility": {"enabled": True, "tau_ticks": ELIGIBILITY_TAU_TICKS},
+        "eligibility": {
+            "enabled": learning_enabled,
+            "tau_ticks": ELIGIBILITY_TAU_TICKS,
+        },
         "reward": {
-            "enabled": True,
+            "enabled": learning_enabled,
             "learning_rate": REWARD_LEARNING_RATE,
             "delay_ticks": 0,
             "clamp_weights": True,
@@ -194,28 +221,44 @@ def run_benchmark(
     synapse_candidate_visits = 0
     source_spikes = 0
     target_spikes = 0
+    final_epoch_source_spikes = 0
+    final_epoch_target_spikes = 0
     core_step_seconds = 0.0
     stability: list[dict[str, Any]] = []
     run_started = time.perf_counter()
     for epoch in range(1, epochs + 1):
-        network.inject_current_batch(dict.fromkeys(source_ids, SOURCE_CURRENT))
+        cohort = epoch % COHORT_COUNT
+        active_sources = (
+            source_ids
+            if activity_profile == "uniform"
+            else source_ids[cohort::COHORT_COUNT]
+        )
+        active_targets = (
+            target_ids
+            if activity_profile == "uniform"
+            else target_ids[(cohort + 1) % COHORT_COUNT :: COHORT_COUNT]
+        )
+        network.inject_current_batch(dict.fromkeys(active_sources, SOURCE_CURRENT))
         source_result = network.step()
         core_step_seconds += source_result.core_step_ms / 1000.0
         source_spikes += len(source_result.spike_ids)
+        final_epoch_source_spikes = len(source_result.spike_ids)
         synapse_candidate_visits += sum(
             len(network.synapses[neuron_id]) for neuron_id in source_result.spike_ids
         )
 
-        network.inject_current_batch(dict.fromkeys(target_ids, SOURCE_CURRENT))
+        network.inject_current_batch(dict.fromkeys(active_targets, SOURCE_CURRENT))
         target_result = network.step()
         core_step_seconds += target_result.core_step_ms / 1000.0
         target_spikes += len(target_result.spike_ids)
+        final_epoch_target_spikes = len(target_result.spike_ids)
         synapse_candidate_visits += sum(
             incoming_degree.get(neuron_id, 0)
             for neuron_id in target_result.spike_ids
         )
-        learning.set_reward(REWARD_VALUE, target_result.tick)
-        synapse_candidate_visits += synapse_count
+        if learning_enabled:
+            learning.set_reward(REWARD_VALUE, target_result.tick)
+            synapse_candidate_visits += synapse_count
 
         if epoch % stability_interval == 0 or epoch == epochs:
             stability.append(_weight_snapshot(network, epoch))
@@ -223,6 +266,26 @@ def run_benchmark(
 
     final_snapshot = stability[-1]
     final_weight_count = network.synapse_count
+    final_active_weight_fraction = final_snapshot["active_weight_fraction"] or 0.0
+    numeric_stability_passed = all(
+        snapshot["finite_weights"] and snapshot["out_of_bounds_weights"] == 0
+        for snapshot in stability
+    )
+    functional_activity_passed = (
+        final_epoch_source_spikes > 0
+        and final_epoch_target_spikes > 0
+        and final_active_weight_fraction > 0.0
+    )
+    weight_diversity_required = (
+        activity_profile == "heterogeneous_cohorts" and learning_enabled
+    )
+    weight_diversity_passed = (
+        not weight_diversity_required
+        or (
+            final_snapshot["weight_variance"] is not None
+            and final_snapshot["weight_variance"] > WEIGHT_VARIANCE_TOLERANCE
+        )
+    )
     maximum_weight_drift = max(
         (
             abs(
@@ -245,6 +308,8 @@ def run_benchmark(
         "cpu": platform.processor() or None,
         "logical_processors": os.cpu_count(),
         "seed": seed,
+        "plasticity_mode": plasticity_mode,
+        "activity_profile": activity_profile,
         "topology": "deterministic_regular_bipartite",
         "neurons": neuron_count,
         "synapses": network.synapse_count,
@@ -264,14 +329,21 @@ def run_benchmark(
         ),
         "source_spikes": source_spikes,
         "target_spikes": target_spikes,
+        "final_epoch_source_spikes": final_epoch_source_spikes,
+        "final_epoch_target_spikes": final_epoch_target_spikes,
         "learning_stats": stats.to_dict(),
         "maximum_absolute_weight_drift": maximum_weight_drift,
         "weight_bounds": {"minimum": MIN_WEIGHT, "maximum": MAX_WEIGHT},
         "final_weights_finite": final_snapshot["finite_weights"],
         "final_out_of_bounds_weights": final_snapshot["out_of_bounds_weights"],
-        "stability_invariants_passed": all(
-            snapshot["finite_weights"] and snapshot["out_of_bounds_weights"] == 0
-            for snapshot in stability
+        "numeric_stability_passed": numeric_stability_passed,
+        "functional_activity_passed": functional_activity_passed,
+        "weight_diversity_required": weight_diversity_required,
+        "weight_diversity_passed": weight_diversity_passed,
+        "stability_invariants_passed": (
+            numeric_stability_passed
+            and functional_activity_passed
+            and weight_diversity_passed
         ),
         "final_at_lower_bound_fraction": (
             final_snapshot["at_lower_bound_count"] / final_weight_count
@@ -292,12 +364,19 @@ def run_benchmark(
             "reward_per_epoch": REWARD_VALUE,
             "stdp": {
                 "a_plus": STDP_A_PLUS,
-                "a_minus": STDP_A_MINUS,
+                "a_minus": a_minus,
                 "tau_ticks": STDP_TAU_TICKS,
             },
             "eligibility_tau_ticks": ELIGIBILITY_TAU_TICKS,
             "reward_learning_rate": REWARD_LEARNING_RATE,
             "reward_trace_reset": True,
+            "plasticity_mode": plasticity_mode,
+            "activity_profile": activity_profile,
+            "cohort_count": COHORT_COUNT,
+            "heterogeneous_profile_rule": (
+                "sources: index mod 4 = epoch mod 4; targets: index mod 4 = "
+                "(epoch + 1) mod 4"
+            ),
         },
         "stage3_target_range": {
             "neurons": list(STAGE3_NEURON_RANGE),
@@ -326,6 +405,14 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--memory-budget-mib", type=int, default=2048)
     parser.add_argument("--stability-interval", type=int, default=10)
+    parser.add_argument(
+        "--plasticity-mode", choices=sorted(PLASTICITY_MODES), default="asymmetric"
+    )
+    parser.add_argument(
+        "--activity-profile",
+        choices=sorted(ACTIVITY_PROFILES),
+        default="heterogeneous_cohorts",
+    )
     parser.add_argument("--output", type=Path)
     return parser.parse_args()
 
@@ -342,6 +429,8 @@ def main() -> int:
             seed=args.seed,
             memory_budget_bytes=args.memory_budget_mib * 1024**2,
             stability_interval=args.stability_interval,
+            plasticity_mode=args.plasticity_mode,
+            activity_profile=args.activity_profile,
         )
     except ValueError as exc:
         raise SystemExit(str(exc)) from exc

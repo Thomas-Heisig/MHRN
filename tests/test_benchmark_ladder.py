@@ -53,3 +53,40 @@ def test_plastic_scale_benchmark_refuses_excessive_memory_estimate() -> None:
             epochs=1,
             memory_budget_bytes=1,
         )
+
+
+def test_plastic_scale_off_control_keeps_weights_and_reports_activity() -> None:
+    report = run_benchmark(
+        neuron_count=40,
+        synapse_count=80,
+        epochs=8,
+        seed=7,
+        memory_budget_bytes=2 * 1024**2,
+        stability_interval=2,
+        plasticity_mode="off",
+    )
+
+    assert report["learning_stats"]["updates"] == 0
+    assert report["learning_stats"]["reward_weight_updates"] == 0
+    assert report["final_weights_finite"] is True
+    assert report["functional_activity_passed"] is True
+    assert report["weight_diversity_required"] is False
+    assert report["stability_invariants_passed"] is True
+
+
+def test_symmetric_stdp_heterogeneous_profile_distinguishes_synapses() -> None:
+    report = run_benchmark(
+        neuron_count=40,
+        synapse_count=80,
+        epochs=8,
+        seed=7,
+        memory_budget_bytes=2 * 1024**2,
+        stability_interval=2,
+        plasticity_mode="symmetric",
+    )
+
+    assert report["workload"]["stdp"]["a_minus"] == report["workload"]["stdp"]["a_plus"]
+    assert report["final_weights_finite"] is True
+    assert report["final_at_lower_bound_fraction"] < 1.0
+    assert report["stability_snapshots"][-1]["weight_variance"] > 1e-12
+    assert report["weight_diversity_passed"] is True
