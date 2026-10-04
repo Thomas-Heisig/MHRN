@@ -1049,11 +1049,22 @@ async function runCudaDiagnostic(nodeId, operation, renderResult = (result) => J
   const startedAt=new Date();
   const commit=cudaRuntimeStatus?.provenance?.git_commit||"unbekannt";
   let hardwareIdentity="nicht ausgewiesen";
-  const updateStatus=(state,finishedAt=null)=>{
+  const updateStatus=(state,finishedAt=null,evidence=null)=>{
     if(!status)return;
     status.dataset.status=state.toLowerCase();
-    const elapsed=((finishedAt||new Date())-startedAt)/1000;
-    status.textContent=`${state} · Start ${startedAt.toLocaleString()}${finishedAt?` · Ende ${finishedAt.toLocaleString()}`:""} · ${elapsed.toFixed(1)} s · HEAD ${commit} (Working Tree nicht erfasst) · Hardware ${hardwareIdentity} · Artefakt nicht persistiert`;
+    const persistedStart=evidence?.started_at?new Date(evidence.started_at):startedAt;
+    const persistedEnd=evidence?.completed_at?new Date(evidence.completed_at):finishedAt;
+    const elapsed=evidence?.duration_seconds??((persistedEnd||new Date())-persistedStart)/1000;
+    const runCommit=evidence?.provenance?.git_commit||commit;
+    const tree=evidence?.provenance?.working_tree_digest;
+    const treeLabel=tree?tree.slice(0,12):"nicht verfuegbar";
+    const device=evidence?.hardware_identity;
+    const runHardware=device?.status==="captured"?`${device.model||"GPU"} ${device.pci_bus_id||""}`.trim():device?.status==="unavailable"?`nicht erfasst (${device.reason||"unbekannt"})`:hardwareIdentity;
+    status.replaceChildren(document.createTextNode(`${state} · Start ${persistedStart.toLocaleString()}${persistedEnd?` · Ende ${persistedEnd.toLocaleString()}`:""} · ${Number(elapsed).toFixed(1)} s · HEAD ${runCommit} · Tree ${treeLabel} · Hardware ${runHardware}`));
+    if(evidence?.persistence_status==="persisted"&&evidence.artifact_url){
+      status.append(document.createTextNode(" · "));
+      const link=document.createElement("a");link.href=evidence.artifact_url;link.target="_blank";link.rel="noopener noreferrer";link.textContent="JSON-Artefakt";status.append(link);
+    }else status.append(document.createTextNode(state==="RUNNING"?" · Beleg wird erstellt":" · Artefakt nicht persistiert"));
   };
   updateStatus("RUNNING");
   const timer=window.setInterval(()=>updateStatus("RUNNING"),1000);
@@ -1062,11 +1073,11 @@ async function runCudaDiagnostic(nodeId, operation, renderResult = (result) => J
     const passed=result?.passed===true||result?.parity?.passed===true;
     const failed=result?.passed===false||result?.parity?.passed===false;
     hardwareIdentity=result?.gpu_identity||result?.hardware?.gpu_identity||result?.preflight?.device_name||result?.first?.launch?.device_name||"nicht ausgewiesen";
-    updateStatus(passed?"PASSED":failed?"FAILED":"COMPLETED",new Date());
+    updateStatus(passed?"PASSED":failed?"FAILED":"COMPLETED",new Date(),result?.run_evidence);
     if(node)node.textContent=renderResult(result);
     return result;
   }catch(error){
-    updateStatus("FAILED",new Date());
+    updateStatus("FAILED",new Date(),error?.payload?.run_evidence);
     if(node)node.textContent=String(error.message||error);
     throw error;
   }finally{

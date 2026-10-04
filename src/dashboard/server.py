@@ -858,7 +858,23 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
 
             if path.startswith("/api/playground/"):
                 body = self._read_json_object()
-                payload = post_playground(path, body)
+                try:
+                    payload = post_playground(path, body)
+                except Exception as exc:
+                    run_evidence = getattr(exc, "run_evidence", None)
+                    if not isinstance(run_evidence, Mapping):
+                        raise
+                    status_code = getattr(
+                        exc, "run_http_status", HTTPStatus.INTERNAL_SERVER_ERROR
+                    )
+                    self._send_json(
+                        {
+                            "error": str(exc),
+                            "run_evidence": cast(JSONValue, run_evidence),
+                        },
+                        cast(int, status_code),
+                    )
+                    return
                 if payload is None:
                     self._send_api_not_found(path)
                 else:
