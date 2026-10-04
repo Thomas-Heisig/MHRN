@@ -1,5 +1,22 @@
 # Changelog
 
+## 2026-10-04 - External review deployment remains unconfigured
+
+- Independent repository/deployment review found GitHub Pages unconfigured
+  (Pages API 404), no private `study.json` or collector secrets in this
+  workspace, and only example domain/legal placeholders in the deployment
+  templates.
+- The Docker named volume has no documented or tested backup/restore procedure;
+  real DNS/TLS, hosting/storage controls and study-specific legal/ethics review
+  were not available to verify. Online collection remains disabled and the
+  deployment TODO stays open.
+
+## 2026-10-04 - Hugging Face rolling mirrors rerun
+
+- GitHub Actions publication run [37201795384](https://github.com/Thomas-Heisig/MHRN/actions/runs/37201795384) completed successfully against canonical `main` SHA `963d68d523b38096619e41743c8c4b5b2ac1d42c`.
+- The publication step succeeded for the model, Docker Space and research-data mirrors. The research-data `MIRROR_MANIFEST.json` independently confirms the canonical SHA; anonymous manifest reads for the model and Space returned HTTP 401.
+- The sync excludes raw experiment DATA blobs; no scientific evidence or release status is promoted by this mirror update.
+
 ## 2026-10-04 - Zenodo Alpha.6 software archive verified
 
 - Verified the published Alpha.6 software record against the Zenodo record and

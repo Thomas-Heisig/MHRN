@@ -147,6 +147,10 @@
 - Online-Antworten bleiben außerhalb des Git-Repositories verschlüsselt.
 - Nur geprüfte, nicht-identifizierende Aggregate dürfen später veröffentlicht
 	werden.
+- Audit 2026-10-04: GitHub Pages is not configured and no real collector
+	deployment or private study configuration exists in this workspace. Domain,
+	persistent-storage backup/restore, DNS/TLS and study-specific privacy/ethics
+	decisions remain unverified; online collection stays disabled.
 
 ## 2026-09-20 Publikationsnavigation
 
@@ -167,6 +171,7 @@
 - Current Hugging Face publication namespace: `ThomasHeisig`.
 - GitHub Actions uses the repository secrets `HF_USERNAME` and `HF_TOKEN`;
 	the token value is never stored in the repository.
+- The 2026-10-04 rolling mirror sync completed successfully in [GitHub Actions run 37201795384](https://github.com/Thomas-Heisig/MHRN/actions/runs/37201795384) for canonical `main` SHA `963d68d523b38096619e41743c8c4b5b2ac1d42c`. The research-data mirror manifest reports this SHA; the workflow publication step succeeded for all three targets.
 
 ## 2026-09-20 Experimentstatus in der Übersicht
 

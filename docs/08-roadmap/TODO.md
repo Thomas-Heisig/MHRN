@@ -41,7 +41,7 @@
 ## 2026-09-20 Hugging Face namespace
 
 - [x] Update the GitHub Actions username secret to `ThomasHeisig`.
-- [ ] Rerun the Hugging Face publication after the current LFS rate limit clears.
+- [x] Rerun the Hugging Face publication after the current LFS rate limit clears. GitHub Actions run [37201795384](https://github.com/Thomas-Heisig/MHRN/actions/runs/37201795384) succeeded on `main` at `963d68d523b38096619e41743c8c4b5b2ac1d42c`; the workflow's publication step completed for the model, Space, and research-data mirrors.
 
 ## 2026-09-26 External Review Deployment
 
@@ -49,6 +49,7 @@
 - [x] Isolated Hugging Face Docker deployment prepared.
 - [x] Sanitized aggregate export implemented and tested.
 - [ ] Configure and independently review the real public domain, storage, TLS, backups and legal study settings.
+- Audit 2026-10-04: GitHub Pages is not configured (repository Pages API returns 404); no private `study.json` or collector secrets are present in this workspace. The study example is disabled and contains controller/contact/privacy placeholders with `review.example.org`; the Compose volume is not a backup plan. No real domain, online collection, backup/restore or study-specific legal/ethics review can be claimed. Keep collection disabled until those external decisions and evidence are supplied.
 - [x] Make experiment cards open a complete detail dialog with form prefill.
 
 ## 2026-09-20 Publication navigation
