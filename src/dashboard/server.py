@@ -2088,7 +2088,8 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
                 )
                 if not isinstance(protocol_id, str) or not protocol_id.strip():
                     raise InvalidRequestError(
-                        "Plastic gateway activation requires a registered protocol_id"
+                        "Plastic gateway activation requires a preregistration with "
+                        "a registered protocol_id"
                     )
                 protocol = protocol_by_id(
                     self._require_research_source().root(), protocol_id
