@@ -872,7 +872,7 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
                             "error": str(exc),
                             "run_evidence": cast(JSONValue, run_evidence),
                         },
-                        cast(int, status_code),
+                        HTTPStatus(cast(int, status_code)),
                     )
                     return
                 if payload is None:
