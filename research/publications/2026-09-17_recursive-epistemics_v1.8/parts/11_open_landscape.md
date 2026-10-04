@@ -373,3 +373,10 @@ Beide Linien sind Engineering-/Governance-Arbeit. Sie erzeugen weder DATA noch
 EVID und autorisieren insbesondere nicht die Wave-5B-PAN-Ausführung. Erst ein
 reviewter Freeze und anschließende prospektive Cross-Backend-Tests können eine
 stärkere Aussage tragen.
+
+## Aktualisierte Anschlussentscheidungen — 4. Oktober 2026
+
+1. Die 18 REVIEW-Aufträge der Oktober-Serie benötigen tatsächliche, quellengebundene menschliche Bewertungen. Die fünf Pilot-/Remainder-Läufe bleiben getrennte Provenienz; sie vervielfachen keine unabhängigen Urteile.
+2. Für EXP-GEN-0048 sind Instrumentierungsfehler und Protokolladäquanz vor einer neuen prospektiven Ausführung zu prüfen. Der gescheiterte Lauf wird weder repariert noch nachträglich als Evidenz verwendet.
+3. CL-003 Human Review, die erneute Genehmigung der revidierten Kompressionsfrage und die getrennten R2-Freeze-/Ausführungsgates bleiben offen. Die redaktionelle Integration erteilt keine Versuchsgenehmigung.
+4. Vor externer Einreichung sind das konkrete Publikationsobjekt, Zielmedium und dessen Anforderungen festzulegen. Danach werden ein versionsgebundenes Prüfpaket, fachlich unabhängige Gutachter und Interessenkonflikte dokumentiert, Kritik beantwortet und Revisionen nachvollziehbar gebunden. Das vorhandene [externe Reviewverfahren](../../../external_review/INTEGRATION.md) liefert den Ablauf; es ersetzt weder tatsächliche Gutachten noch ein Journal-Peer-Review. Ein Einreichungsdatum oder zugesagter DOI-Termin wird nicht vorweggenommen.

@@ -1,5 +1,38 @@
 # Teil I — Nullpunkt, Autor und Entstehungsbedingungen
 
+## Kurzfassung und Erkenntnisstand
+
+**Redaktioneller Abgleich: 4. Oktober 2026.** Edition 1.8 untersucht ein spikendes neuronales Forschungsframework und zugleich die Bedingungen seiner KI-assistierten Entwicklung. Die folgende Bilanz trennt gemessene Ergebnisse, menschliche Evidenzentscheidungen und methodische Interpretation.
+
+| Forschungsstrang | Tragfähige Aussage | Status und Grenze |
+| --- | --- | --- |
+| Einzelzell-Konformität | Die geprüften Izhikevich-/LIF-Verträge stimmen innerhalb der registrierten Toleranzen mit der Referenz überein. | `EVID-2026-18`; scoped Konformität, keine biologische Gleichwertigkeit; unabhängige Replikation offen. |
+| Topologie und zeitliche Ordnung | Topologie beeinflusst Propagation im geprüften kleinen Netz; ein getrennter Task unterscheidet zeitliche Eingabereihenfolgen. | `EVID-2026-19/20`; begrenzte Regime, Task-Sättigung, keine 5D-Überlegenheit. |
+| Semantisches Gedächtnis | Stärkere Raw-Replay-Kontrollen bestätigen keinen präregistrierten Zusatznutzen semantischer Prototypen; nicht-zufällige Struktur bleibt erkennbar. | CL-003: **DATA, nicht EVID**, Human Review offen. Keine allgemeine Widerlegung semantischer Kompression. |
+| Neuere Ausführungs-/Methodenarbeiten | EXP-GEN-0048 dokumentiert einen Tick-Vertragsfehler; 23 Oktober-Audits erzeugen 276 Prüfdatensätze. | Ungültiger Lauf beziehungsweise konzeptuelle Vorlagen, keine neuen direkten Hypothesentests oder EVID. |
+| Rekursive Epistemik | Kontrollen und Fehlergrenzen verändern die zulässigen Aussagen und nächsten Forschungsentscheidungen. | Quellengebundene methodische Synthese; ein Qualitätsvorteil dieses Forschungsprozesses ist noch zu prüfen. |
+
+Die [wissenschaftliche Bilanz](../SCIENTIFIC_BALANCE.md) vertieft die Claims. Teil IV beschreibt die Versuchs- und Auditquellen; Teil X verbindet Befund, Erkenntnis und Konsequenz; Teil XI nennt die offenen Entscheidungen. Die jüngsten Ergänzungen erhöhen weder Stage-Scores noch Evidenzstatus. Stage 0 bleibt bei 92,5 %, Stage 1 bei 85 % unter dem jeweiligen projektinternen Bewertungsvertrag.
+
+## Was Edition 1.8 ergänzt
+
+Gegenüber dem [Vorgänger 1.7](../../2026-09-15_recursive-epistemics_v1.7/README.md) verbindet die elfteilige Struktur Forschungsgenealogie, neuronale Architektur, empirische Teilstudien und Reflexion des Forschungsprozesses. Der [ungekürzte Quellenband](../LEGACY_V17.md), das [Forschungsregister](../RESEARCH_REGISTER.md) und die [Corpus-Integration](../CONTENT_INTEGRATION.md) bleiben öffentlich prüfbar. Die laufende Fassung integriert die September-Promotionen sowie jetzt den fehlgeschlagenen Lauf vom 29. September und die konzeptuellen Audits vom 1. Oktober. Das Editionsdatum bezeichnet den Beginn der Fassung, nicht einen Freeze sämtlicher Inhalte.
+
+## Begriffe für den Einstieg
+
+| Begriff | Bedeutung und Abgrenzung |
+| --- | --- |
+| DATA | Aufgezeichnete Laufartefakte. Vorhandene Daten garantieren weder einen gültigen Versuch noch einen bestätigten Claim. |
+| Human Review | Dokumentiertes menschliches Urteil über einen bestimmten Claim und seine Quellen; nicht automatisch unabhängig oder extern. |
+| EVID | Kanonisch registrierte, begrenzte Evidenzentscheidung; keine allgemeine Bestätigung des Projekts. |
+| Unabhängige Replikation | Separat kontrollierte Wiederholungsprüfung; interne Wiederholung und externe Referenzsoftware allein genügen nicht. |
+| RQ / H / Claim | Forschungsfrage, prüfbare Hypothese und die tatsächlich begründete Aussage; getrennte Forschungsobjekte. |
+| Stage 0–6 | Entwicklungs-/Reifeachse: 0 Einzelzelle, 1 kleines SNN, 2 stabiles rekurrentes SNN, 3 plastisches Nervengewebe, 4 spezialisierte Areale, 5 integriertes künstliches Nervensystem, 6 Gedächtnis/Weltmodell; kein einheitliches Intelligenzmaß. |
+| 5D SNN | Spikendes neuronales Netz mit fünf Koordinatenachsen; weder biologische Dimensionsbehauptung noch nachgewiesener Vorteil. |
+| Neural Symbiosis / MSBA | Kontrollierte Anbindung peripherer Verarbeitung über Gateways; deren Leistung ist nicht automatisch Lernen des SNN. |
+| PAN / Playground | Explorative Modell- und Experimentierumgebung außerhalb der kanonischen DATA-/EVID-Pipeline; siehe [Playground-Glossar](../../../../docs/playground/GLOSSARY.md). |
+| Konzeptueller Audit | Strukturierte Prüfung von Annahmen und Aussagegrenzen. Eine erzeugte Vorlage ist noch keine ausgefüllte menschliche Beurteilung. |
+
 ## Lesepfade durch Edition 1.8
 
 Edition 1.8 ist eine Gesamtarbeit und kein linear zu lesendes Einzelpaper. Die elf Teile folgen unterschiedlichen Evidenz- und Argumentationsregeln. Externe Leser können deshalb mit einem disziplinspezifischen Pfad beginnen und anschließend in die Querverweise, Register und Primärartefakte wechseln. Diese Lesepfade sind **Orientierung, keine fachliche Zuständigkeitsgrenze**.

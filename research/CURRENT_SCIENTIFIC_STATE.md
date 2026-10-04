@@ -1,6 +1,6 @@
 # Current Scientific State
 
-**Stand:** 27. September 2026
+**Redaktioneller Stand:** 4. Oktober 2026; letzte hier integrierte kanonische EVID-Promotionen: 27. September 2026
 
 Dieses Dokument ist der kurze Einstieg in den aktuellen wissenschaftlichen Zustand. Historische DATA, EVID-Entscheidungen und eingefrorene Publikationen bleiben unverändert in ihren datierten Verzeichnissen.
 
@@ -28,8 +28,10 @@ Thomas Heisig verknüpft. Diese Autorenidentität ist von technischen Runtime-
 Profilen getrennt; private Kontaktdaten aus dem ORCID-Datensatz werden nicht
 gespeichert.
 Für GitHub-Release-Archive ist `.zenodo.json` mit derselben öffentlichen
-ORCID-Creator-Verknüpfung hinterlegt. Ein Zenodo-Record oder DOI gilt erst nach
-externer Prüfung als vorhanden und wird derzeit nicht behauptet.
+ORCID-Creator-Verknüpfung hinterlegt. Der Alpha.6-Software-Record ist unter `https://zenodo.org/records/22860683`
+mit Versions-DOI `10.5281/zenodo.22860683` verifiziert. Alpha.7 und der
+separate Publikations-DOI von Edition 1.8 bleiben ausstehend; ein Software-DOI
+ist weder Publikations-Peer-Review noch EVID.
 Das öffentliche OSF-Projekt ist als Forschungs-/Provenienzressource unter
 `https://osf.io/p34uq/` verknüpft.
 
@@ -259,3 +261,11 @@ R1 was frozen, then **aborted before any reference DATA** after a code-backed au
 `PREREG-S1-TOPO-REFERENCE-R2` is the active successor. It preserves the canonical effect targets, strict 50–150% equivalence bounds (including `3d→5d = [-1.5,-0.5]`), endpoints and three-outcome decision rule, while adding executable coordinate ordering and mandatory exact topology/edge mapping parity. R2 execution remains unauthorized until freeze, all gates, hash binding, seed freshness, blinding, and a separate explicit human execution-authorization record are present.
 
 Stage-1 Scientific Maturity remains **85%**. No Reference DATA, replication classification or replication maturity credit exists yet.
+
+## Neuere Ausführungen und methodische Synthese
+
+`EXP-GEN-0048` (29. September) scheiterte mit 99 statt 100 Ticks; sein Manifest erklärt den Lauf für ungültig. Daraus folgt kein negativer Determinismusbefund.
+
+Am 1. Oktober entstanden 23 konzeptuelle Audit-Läufe (PILOT2: 1, REMAINDER: 4, REVIEW: 18) mit insgesamt 276 Datensätzen. Alle Datensätze haben `audit_complete=false`; die Manifeste deklarieren keine direkten Hypothesentests oder wissenschaftliche Evidenz und keinen aufgezeichneten Human Assessment. Die 18 REVIEW-Aufträge stehen auf `PENDING`. Diese Methodenartefakte verändern weder Stage-Scores noch die Liste akzeptierter EVID.
+
+Die quellengebundene Einordnung steht in [Teil IV](publications/2026-09-17_recursive-epistemics_v1.8/parts/04_empirical_programme.md), ihre Erkenntnis- und Entscheidungsfolgen in [Teil X](publications/2026-09-17_recursive-epistemics_v1.8/parts/10_synthesis.md). Nächster Schritt ist die tatsächliche menschliche Bearbeitung der Auditfragen; der Serienname ersetzt sie nicht.

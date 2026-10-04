@@ -173,6 +173,9 @@ def test_review_route_is_directly_addressable() -> None:
     time.sleep(0.03)
     try:
         status, payload = _request(server, "GET", "/review")
+        assert status == HTTPStatus.MOVED_PERMANENTLY
+        assert payload == ""
+        status, payload = _request(server, "GET", "/review/")
         assert status == HTTPStatus.OK
         assert isinstance(payload, str)
         assert "review" in payload.lower() or "fragen" in payload.lower()

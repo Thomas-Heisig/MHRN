@@ -244,9 +244,7 @@ def test_cuda_diagnostic_artifact_is_atomic_checksummed_and_retrievable(
         "result": {"passed": True},
     }
 
-    path, digest = playground_api._write_cuda_diagnostic_artifact(
-        tmp_path, artifact
-    )
+    path, digest = playground_api._write_cuda_diagnostic_artifact(tmp_path, artifact)
     loaded = playground_api._load_cuda_diagnostic_artifact(
         tmp_path, artifact["artifact_id"]
     )

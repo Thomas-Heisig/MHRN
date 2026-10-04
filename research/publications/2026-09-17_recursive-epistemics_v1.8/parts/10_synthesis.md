@@ -318,3 +318,16 @@ Die Gesamtarbeit behandelt digitale Informationsquellen nicht als externes Gedä
 **Nicht gezeigt:** dass MHRN Queries bereits autonom lernt, dass ein 100x100-Raum relationale Symbolik bindet, dass digitale Efferenzkopie biologisch identisch zur Motorik ist oder dass neuronales Routing RAG/klassische Tool-Policy-Systeme übertrifft.
 
 Der Wert der Verschiebung liegt deshalb nicht in einer neuen Leistungsbehauptung, sondern in einer klareren Falsifikationsstruktur: Quellentransfer, gelernte Query-Auslösung, Modalitätsrouting und Binding werden getrennte experimentelle Fragen statt implizite Eigenschaften des Gateway-Namens.
+
+## Ergänzende Erkenntnissynthese: Befund, Grenze und Entscheidung
+
+**Stand: 4. Oktober 2026; redaktionelle Synthese, keine neue EVID-Entscheidung.** Die Quellen der jüngsten Arbeiten sind in Teil IV und unter `CORPUS-FAILED-RUNTIME-20260929` beziehungsweise `CORPUS-CONCEPTUAL-AUDITS-20261001` im [Integrationsregister](../CONTENT_INTEGRATION.md) gebunden.
+
+| Ausgangsbefund | Zulässiger Erkenntnisgewinn | Konsequenz für die weitere Arbeit |
+| --- | --- | --- |
+| CL-001 positiv gegen No-Replay; CL-002/003 ohne bestätigten Semantic-over-Raw-Zusatznutzen | Die Wahl der Kontrolle begrenzt die kausale Zuschreibung. Strukturhaltigkeit ist nicht gleich zusätzlicher Lernnutzen. | CL-003 menschlich prüfen; eine Kompressionsrolle nur unter eigenem prospektivem Vertrag untersuchen. |
+| Stage-1-Promotionen und gescheiterte Effizienzkalibration | Ein begrenzter Topologie-/Order-Befund beantwortet weder Effizienz noch 5D-Überlegenheit oder unabhängige Replikation. | Claims getrennt halten; R2 und spätere Effizienzdesigns benötigen ihre eigenen Gates. |
+| EXP-GEN-0048: 99 statt 100 Ticks, Lauf ungültig | Die technische Ausführung erfüllte den angeforderten Messvertrag nicht. Die Determinismushypothese bleibt dadurch unbeantwortet. | Tick-Erfassung und Protokolladäquanz vor einem neuen autorisierten Lauf validieren; keinen wissenschaftlichen Negativbefund aus dem Fehler ableiten. |
+| Oktober: 23 abgeschlossene Vorlagenläufe, 276 Datensätze mit `audit_complete=false` | Artefakterzeugung, inhaltliche Beurteilung und Evidenzentscheidung sind tatsächlich getrennte Zustände. Der Vorlagenumfang misst keine wissenschaftliche Bestätigung. | Pro Audit eine begründete menschliche Beurteilung mit Quellen, Gegenargumenten und offener Messfrage dokumentieren; Wiederholungen nicht als unabhängige Urteile zählen. |
+
+Für die Wissensentstehung ergibt sich eine begrenzte, aber konkrete Synthese: Die älteren Experimente verengen den zulässigen Mechanismusclaim; der fehlgeschlagene Lauf verengt die auswertbare Datenbasis; die Oktober-Vorlagen benennen noch zu leistende Begründungsarbeit. Nur der erste Vorgang enthält hier bereits entsprechende experimentelle Mechanismusbefunde. Die anderen beiden tragen Fehler- und Methodenwissen bei, aber keine neue Bestätigung von Kognition, Bewusstsein oder Welfare. Ob die Governance die Forschungsqualität gegenüber Alternativen verbessert, bleibt eine eigenständige offene Forschungsfrage.

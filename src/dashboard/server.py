@@ -872,7 +872,7 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
                             "error": str(exc),
                             "run_evidence": cast(JSONValue, run_evidence),
                         },
-                        cast(int, status_code),
+                        HTTPStatus(cast(int, status_code)),
                     )
                     return
                 if payload is None:
@@ -5437,9 +5437,16 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
             self._send_api_not_found(request_path)
             return
 
+        if request_path == "/review":
+            self.send_response(HTTPStatus.MOVED_PERMANENTLY)
+            self.send_header("Location", "/review/")
+            self.send_header("Content-Length", "0")
+            self.end_headers()
+            return
+
         if request_path in {"", "/"}:
             relative = "index.html"
-        elif request_path in {"/review", "/review/"}:
+        elif request_path == "/review/":
             relative = "review/index.html"
         else:
             relative = request_path.lstrip("/")

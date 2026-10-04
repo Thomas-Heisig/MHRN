@@ -43,7 +43,8 @@ Eine spätere Rangstufe darf eine frühere nicht rückwirkend umschreiben.
 
 - `Recursive Epistemics 1.5` bleibt als **frozen empirical baseline** unverändert erreichbar.
 - `1.6` ist die unmittelbare integrative Vorgängerfassung von `1.7`.
-- `1.7` ist die aktuelle fortgeschriebene WIP-Fassung und wird im Publication Viewer direkt über `MANUSCRIPT.md` geöffnet.
+- `1.7` ist die unmittelbare Vorgängerfassung von `1.8`; Quellenband und historische Pfade bleiben erhalten.
+- `1.8` ist die aktuelle elfteilige WIP-Fassung laut `research/publications/catalog.json` und wird im Publication Viewer direkt über `MANUSCRIPT.md` geöffnet.
 - Eine WIP-Fassung darf neue Interpretation, Literatur, Nebenarbeiten und offene Hypothesen aufnehmen, aber keine historischen DATA/EVID-Entscheidungen verändern.
 - Jede neue Hauptfassung nennt Vorgänger, empirische Baseline und ihren eigenen Review-/EVID-Status.
 
