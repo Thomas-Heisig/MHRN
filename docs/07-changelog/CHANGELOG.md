@@ -2544,3 +2544,10 @@
 - Added Research UI controls to record reviewer identity, mandatory comments and accept/reject decisions through append-only review files.
 - Review completion never grants scientific evidence automatically.
 - Extended the version roadmap through v1.2 with explicit reproducibility, replication, embodiment, memory and governed-adaptation milestones.
+
+## 2026-10-04 — Publication synthesis reconciled
+
+- Added a compact findings overview, introductory glossary and edition changes to the editable publication sources.
+- Integrated the invalid EXP-GEN-0048 execution and all 23 October conceptual audit records with explicit pending-review boundaries and source ledger entries.
+- Connected recorded outcomes to bounded interpretations and next decisions; no historical DATA/EVID or maturity scores changed.
+- Corrected the active-edition governance, scientific-state date, Alpha.6 DOI distinction and published-release navigation. Alpha.7 remains a candidate.

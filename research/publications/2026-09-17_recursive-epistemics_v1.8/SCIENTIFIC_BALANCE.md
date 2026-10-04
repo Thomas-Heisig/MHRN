@@ -2,7 +2,7 @@
 
 **Status:** current_wip  
 **Autorität:** Publikationssynthese, nicht kanonisches EVID-Register  
-**Stand der Prüfung:** `main@774671bcff753489f833b50bbdd3bea7ab3e3169`, 18. September 2026
+**Redaktioneller Abgleich:** 4. Oktober 2026, Ausgangsstand `develop@6c417c2e9e1240f9a649601ca1e9f5e0a249c388`. Dieser Prüfstand ist kein neuer Experiment-Freeze oder Human Review.
 
 Diese Bilanz macht die offenen und tragfähigen Aussagen der Edition sichtbar. Sie ersetzt weder Human Review noch EVID-Entscheidungen und erzeugt keine neue Evidenz.
 
@@ -124,3 +124,7 @@ Der aktive Publication Viewer folgt `research/publications/catalog.json` und öf
 Die Arbeitsbranches, aus denen Edition 1.8 und ihre Viewer-/Corpus-Erweiterungen hervorgegangen sind, werden vor einer Branch-Bereinigung in [`EDITION_GENEALOGY.md`](EDITION_GENEALOGY.md) mit Namen und Tip-SHA dokumentiert. Wissenschaftliche Zitation soll trotzdem Commit-SHAs und Editionspfade verwenden, nicht mutable Branch-Namen.
 
 Für die Arbeit steht eine eigene [`CITATION.cff`](CITATION.cff) bereit. Sie verwendet denselben Autor (**Thomas Heisig**) und dieselbe Lizenz (**MIT**) wie die Software-`CITATION.cff` im Repository-Root, hält Software und Publikation aber als getrennte zitierbare Objekte auseinander.
+
+## Nachtrag: Ausführung und Erkenntnis seit Ende September
+
+Die [ergänzende Synthese](parts/10_synthesis.md) bindet EXP-GEN-0048 und die 23 konzeptuellen Audit-Läufe vom 1. Oktober. Der Tick-Vertragsfehler liefert keinen gültigen Determinismustest. Die 276 Auditdatensätze sind erzeugte Vorlagen mit `audit_complete=false`; die REVIEW-Serie wartet auf menschliche Beurteilung. Technische Fertigstellung ist hier keine inhaltliche Bewertung. Diese Integration verändert keine DATA, Human Reviews, EVID oder Stage-Scores.

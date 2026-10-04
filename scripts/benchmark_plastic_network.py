@@ -52,7 +52,9 @@ def estimate_peak_bytes(neuron_count: int, synapse_count: int) -> int:
     )
 
 
-def _build_network(neuron_count: int, synapse_count: int, seed: int) -> tuple[Any, list[int], list[int]]:
+def _build_network(
+    neuron_count: int, synapse_count: int, seed: int
+) -> tuple[Any, list[int], list[int]]:
     from src.core.network import Brain5DConfig, NeuralNetwork
     from src.core.spatial_index import linear_to_5d
 
@@ -104,9 +106,7 @@ def _build_network(neuron_count: int, synapse_count: int, seed: int) -> tuple[An
 
 def _weight_snapshot(network: Any, epoch: int) -> dict[str, Any]:
     weights = [
-        synapse.weight
-        for outgoing in network.synapses.values()
-        for synapse in outgoing
+        synapse.weight for outgoing in network.synapses.values() for synapse in outgoing
     ]
     finite = all(math.isfinite(weight) for weight in weights)
     mean_weight = sum(weights) / len(weights) if weights else None
@@ -127,12 +127,8 @@ def _weight_snapshot(network: Any, epoch: int) -> dict[str, Any]:
         "active_weight_fraction": active_count / len(weights) if weights else None,
         "all_weights_equal": variance is not None
         and variance <= WEIGHT_VARIANCE_TOLERANCE,
-        "at_lower_bound_count": sum(
-            weight <= MIN_WEIGHT + 1e-12 for weight in weights
-        ),
-        "at_upper_bound_count": sum(
-            weight >= MAX_WEIGHT - 1e-12 for weight in weights
-        ),
+        "at_lower_bound_count": sum(weight <= MIN_WEIGHT + 1e-12 for weight in weights),
+        "at_upper_bound_count": sum(weight >= MAX_WEIGHT - 1e-12 for weight in weights),
         "out_of_bounds_weights": sum(
             weight < MIN_WEIGHT or weight > MAX_WEIGHT for weight in weights
         ),
@@ -162,8 +158,7 @@ def assess_stability(
 ) -> dict[str, bool]:
     final_snapshot = snapshots[-1]
     numeric_passed = all(
-        bool(snapshot["finite_weights"])
-        and int(snapshot["out_of_bounds_weights"]) == 0
+        bool(snapshot["finite_weights"]) and int(snapshot["out_of_bounds_weights"]) == 0
         for snapshot in snapshots
     )
     active_weight_fraction = float(final_snapshot["active_weight_fraction"] or 0.0)
@@ -173,12 +168,8 @@ def assess_stability(
         and active_weight_fraction > 0.0
     )
     final_variance = final_snapshot["weight_variance"]
-    diversity_passed = (
-        not weight_diversity_required
-        or (
-            final_variance is not None
-            and float(final_variance) > WEIGHT_VARIANCE_TOLERANCE
-        )
+    diversity_passed = not weight_diversity_required or (
+        final_variance is not None and float(final_variance) > WEIGHT_VARIANCE_TOLERANCE
     )
     return {
         "numeric_stability_passed": numeric_passed,
@@ -205,7 +196,9 @@ def run_benchmark(
     if neuron_count < 4 or neuron_count % 2:
         raise ValueError("neuron_count must be an even integer >= 4")
     if synapse_count <= 0 or epochs <= 0 or stability_interval <= 0:
-        raise ValueError("synapse_count, epochs and stability_interval must be positive")
+        raise ValueError(
+            "synapse_count, epochs and stability_interval must be positive"
+        )
     if isinstance(seed, bool) or not isinstance(seed, int):
         raise ValueError("seed must be an integer")
     if plasticity_mode not in PLASTICITY_MODES:
@@ -330,10 +323,7 @@ def run_benchmark(
     )
     maximum_weight_drift = max(
         (
-            abs(
-                synapse.weight
-                - initial_weights[(source_id, synapse.target_id)]
-            )
+            abs(synapse.weight - initial_weights[(source_id, synapse.target_id)])
             for source_id, outgoing in network.synapses.items()
             for synapse in outgoing
         ),

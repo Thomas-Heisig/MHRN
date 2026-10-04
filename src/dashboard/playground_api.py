@@ -109,14 +109,18 @@ def _write_cuda_diagnostic_artifact(
     return destination, artifact_digest
 
 
-def _load_cuda_diagnostic_artifact(repo_root: Path, artifact_id: str) -> dict[str, object]:
+def _load_cuda_diagnostic_artifact(
+    repo_root: Path, artifact_id: str
+) -> dict[str, object]:
     if not _CUDA_DIAGNOSTIC_ID.fullmatch(artifact_id):
         raise ValueError("CUDA diagnostic artifact ID is invalid")
     path = repo_root / "artifacts" / "cuda_diagnostics" / f"{artifact_id}.json"
     value = json.loads(path.read_text(encoding="utf-8"))
-    if not isinstance(value, dict) or value.get("artifact_id") != artifact_id:
+    if not isinstance(value, dict):
         raise ValueError("CUDA diagnostic artifact is malformed")
-    record = dict(value)
+    record = dict(cast(dict[str, object], value))
+    if record.get("artifact_id") != artifact_id:
+        raise ValueError("CUDA diagnostic artifact is malformed")
     recorded_digest = record.pop("artifact_sha256", None)
     actual_digest = hashlib.sha256(_canonical_artifact_bytes(record)).hexdigest()
     if not isinstance(recorded_digest, str) or not hmac.compare_digest(
@@ -182,7 +186,9 @@ def _cuda_hardware_identity(device_ordinal: int) -> dict[str, object]:
         if selected.isdecimal():
             match = next((row for row in rows if row[0] == selected), None)
         elif selected.startswith("GPU-"):
-            match = next((row for row in rows if len(row) > 2 and row[2] == selected), None)
+            match = next(
+                (row for row in rows if len(row) > 2 and row[2] == selected), None
+            )
         else:
             match = None
     else:
@@ -225,13 +231,13 @@ def _working_tree_provenance(repo_root: Path) -> dict[str, object]:
     return {
         "git_commit": current_git_head(repo_root),
         "working_tree_digest": inspection.digest,
-        "working_tree_digest_status": "captured" if inspection.digest else "unavailable",
+        "working_tree_digest_status": (
+            "captured" if inspection.digest else "unavailable"
+        ),
         "working_tree_state": (
             "unknown"
             if not inspection.git_available
-            else "modified"
-            if dirty
-            else "clean"
+            else "modified" if dirty else "clean"
         ),
         "working_tree_digest_scope": [*SCIENTIFIC_PATHS, *TEST_PATHS],
         "dirty_relevant_paths": list(inspection.dirty_relevant_paths),
@@ -245,8 +251,10 @@ def _diagnostic_outcome(result: Mapping[str, object]) -> str:
     if isinstance(passed, bool):
         return "passed" if passed else "failed"
     parity = result.get("parity")
-    if isinstance(parity, Mapping) and isinstance(parity.get("passed"), bool):
-        return "passed" if parity["passed"] else "failed"
+    if isinstance(parity, Mapping):
+        parity_passed = cast(Mapping[str, object], parity).get("passed")
+        if isinstance(parity_passed, bool):
+            return "passed" if parity_passed else "failed"
     actions_exact = result.get("actions_exact")
     if isinstance(actions_exact, bool):
         return "passed" if actions_exact else "failed"
@@ -296,7 +304,9 @@ def _run_cuda_diagnostic(
             "started_at": started.isoformat(),
             "completed_at": completed.isoformat(),
             "duration_seconds": (completed - started).total_seconds(),
-            "request_sha256": hashlib.sha256(_canonical_artifact_bytes(payload)).hexdigest(),
+            "request_sha256": hashlib.sha256(
+                _canonical_artifact_bytes(payload)
+            ).hexdigest(),
             "provenance": provenance,
             "hardware_identity": hardware,
             "error_type": type(exc).__name__,
@@ -316,7 +326,9 @@ def _run_cuda_diagnostic(
         "started_at": started.isoformat(),
         "completed_at": completed.isoformat(),
         "duration_seconds": (completed - started).total_seconds(),
-        "request_sha256": hashlib.sha256(_canonical_artifact_bytes(payload)).hexdigest(),
+        "request_sha256": hashlib.sha256(
+            _canonical_artifact_bytes(payload)
+        ).hexdigest(),
         "provenance": provenance,
         "hardware_identity": hardware,
         "result": result,
@@ -366,9 +378,7 @@ def _bounded_cuda_diagnostic(
     payload: Mapping[str, object],
     operation: Callable[[], dict[str, object]],
 ) -> dict[str, object]:
-    return _bounded_operation(
-        lambda: _run_cuda_diagnostic(route, payload, operation)
-    )
+    return _bounded_operation(lambda: _run_cuda_diagnostic(route, payload, operation))
 
 
 def _payload_int(
@@ -855,9 +865,7 @@ def post_playground(
         ).to_mapping()
 
     if path == "/api/playground/cuda/preflight":
-        return _bounded_cuda_diagnostic(
-            path, payload, lambda: _cuda_preflight(payload)
-        )
+        return _bounded_cuda_diagnostic(path, payload, lambda: _cuda_preflight(payload))
 
     if path == "/api/playground/cuda/smoke":
         return _bounded_cuda_diagnostic(path, payload, lambda: _cuda_smoke(payload))
