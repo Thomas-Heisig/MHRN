@@ -24,6 +24,39 @@ Vorgänger: [1.7](../2026-09-15_recursive-epistemics_v1.7/README.md). Unverände
 
 # Teil I — Nullpunkt, Autor und Entstehungsbedingungen
 
+## Kurzfassung und Erkenntnisstand
+
+**Redaktioneller Abgleich: 4. Oktober 2026.** Edition 1.8 untersucht ein spikendes neuronales Forschungsframework und zugleich die Bedingungen seiner KI-assistierten Entwicklung. Die folgende Bilanz trennt gemessene Ergebnisse, menschliche Evidenzentscheidungen und methodische Interpretation.
+
+| Forschungsstrang | Tragfähige Aussage | Status und Grenze |
+| --- | --- | --- |
+| Einzelzell-Konformität | Die geprüften Izhikevich-/LIF-Verträge stimmen innerhalb der registrierten Toleranzen mit der Referenz überein. | `EVID-2026-18`; scoped Konformität, keine biologische Gleichwertigkeit; unabhängige Replikation offen. |
+| Topologie und zeitliche Ordnung | Topologie beeinflusst Propagation im geprüften kleinen Netz; ein getrennter Task unterscheidet zeitliche Eingabereihenfolgen. | `EVID-2026-19/20`; begrenzte Regime, Task-Sättigung, keine 5D-Überlegenheit. |
+| Semantisches Gedächtnis | Stärkere Raw-Replay-Kontrollen bestätigen keinen präregistrierten Zusatznutzen semantischer Prototypen; nicht-zufällige Struktur bleibt erkennbar. | CL-003: **DATA, nicht EVID**, Human Review offen. Keine allgemeine Widerlegung semantischer Kompression. |
+| Neuere Ausführungs-/Methodenarbeiten | EXP-GEN-0048 dokumentiert einen Tick-Vertragsfehler; 23 Oktober-Audits erzeugen 276 Prüfdatensätze. | Ungültiger Lauf beziehungsweise konzeptuelle Vorlagen, keine neuen direkten Hypothesentests oder EVID. |
+| Rekursive Epistemik | Kontrollen und Fehlergrenzen verändern die zulässigen Aussagen und nächsten Forschungsentscheidungen. | Quellengebundene methodische Synthese; ein Qualitätsvorteil dieses Forschungsprozesses ist noch zu prüfen. |
+
+Die [wissenschaftliche Bilanz](SCIENTIFIC_BALANCE.md) vertieft die Claims. Teil IV beschreibt die Versuchs- und Auditquellen; Teil X verbindet Befund, Erkenntnis und Konsequenz; Teil XI nennt die offenen Entscheidungen. Die jüngsten Ergänzungen erhöhen weder Stage-Scores noch Evidenzstatus. Stage 0 bleibt bei 92,5 %, Stage 1 bei 85 % unter dem jeweiligen projektinternen Bewertungsvertrag.
+
+## Was Edition 1.8 ergänzt
+
+Gegenüber dem [Vorgänger 1.7](../2026-09-15_recursive-epistemics_v1.7/README.md) verbindet die elfteilige Struktur Forschungsgenealogie, neuronale Architektur, empirische Teilstudien und Reflexion des Forschungsprozesses. Der [ungekürzte Quellenband](LEGACY_V17.md), das [Forschungsregister](RESEARCH_REGISTER.md) und die [Corpus-Integration](CONTENT_INTEGRATION.md) bleiben öffentlich prüfbar. Die laufende Fassung integriert die September-Promotionen sowie jetzt den fehlgeschlagenen Lauf vom 29. September und die konzeptuellen Audits vom 1. Oktober. Das Editionsdatum bezeichnet den Beginn der Fassung, nicht einen Freeze sämtlicher Inhalte.
+
+## Begriffe für den Einstieg
+
+| Begriff | Bedeutung und Abgrenzung |
+| --- | --- |
+| DATA | Aufgezeichnete Laufartefakte. Vorhandene Daten garantieren weder einen gültigen Versuch noch einen bestätigten Claim. |
+| Human Review | Dokumentiertes menschliches Urteil über einen bestimmten Claim und seine Quellen; nicht automatisch unabhängig oder extern. |
+| EVID | Kanonisch registrierte, begrenzte Evidenzentscheidung; keine allgemeine Bestätigung des Projekts. |
+| Unabhängige Replikation | Separat kontrollierte Wiederholungsprüfung; interne Wiederholung und externe Referenzsoftware allein genügen nicht. |
+| RQ / H / Claim | Forschungsfrage, prüfbare Hypothese und die tatsächlich begründete Aussage; getrennte Forschungsobjekte. |
+| Stage 0–6 | Forschungsbereiche von Einzelzell-Konformität über kleine Netze, Plastizität, Struktur, Spezialisierung und Integration bis Gedächtnis/Weltmodell; kein einheitliches Intelligenzmaß. |
+| 5D SNN | Spikendes neuronales Netz mit fünf Koordinatenachsen; weder biologische Dimensionsbehauptung noch nachgewiesener Vorteil. |
+| Neural Symbiosis / MSBA | Kontrollierte Anbindung peripherer Verarbeitung über Gateways; deren Leistung ist nicht automatisch Lernen des SNN. |
+| PAN / Playground | Explorative Modell- und Experimentierumgebung außerhalb der kanonischen DATA-/EVID-Pipeline; siehe [Playground-Glossar](../../../docs/playground/GLOSSARY.md). |
+| Konzeptueller Audit | Strukturierte Prüfung von Annahmen und Aussagegrenzen. Eine erzeugte Vorlage ist noch keine ausgefüllte menschliche Beurteilung. |
+
 ## Lesepfade durch Edition 1.8
 
 Edition 1.8 ist eine Gesamtarbeit und kein linear zu lesendes Einzelpaper. Die elf Teile folgen unterschiedlichen Evidenz- und Argumentationsregeln. Externe Leser können deshalb mit einem disziplinspezifischen Pfad beginnen und anschließend in die Querverweise, Register und Primärartefakte wechseln. Diese Lesepfade sind **Orientierung, keine fachliche Zuständigkeitsgrenze**.
@@ -818,6 +851,16 @@ Die projektseitige Brian2-Cross-Implementation wurde zunächst als R1 eingefrore
 R2 übernimmt unverändert die fünf kanonischen Latenzkontraste, deren strikte 50–150-%-Äquivalenzintervalle einschließlich `3d→5d = [-1.5,-0.5]`, die Holm-Familie sowie die vorab definierten Ergebniswege `PARTIAL_REPLICATION`, `FAILED_REPLICATION` und `INCONCLUSIVE_REFERENCE_REPLICATION`. Neu ist die ausführbare Topologiebindung: vollständiges kartesisches Produkt, Sortierung nach `(sum(value_i/max(size_i-1,1)), coordinate_tuple)`, danach Labelzuweisung. Vor einem R2-Freeze muss ein eigener Mapping-Gate Koordinatenlisten und vollständige Kantenlisten für alle Bedingungen exakt gegen die kanonische MHRN-Erzeugung vergleichen.
 
 Auch ein erfolgreicher projektseitiger R2-Lauf könnte höchstens 7,5/15 Replikationspunkte beitragen. Der Freeze selbst autorisiert keine Ausführung; dafür bleibt ein separater menschlicher Autorisierungsrecord erforderlich.
+
+### Ergänzung vom 4. Oktober: fehlgeschlagener Lauf und konzeptuelle Audits
+
+Der [Manifestrecord von EXP-GEN-0048](../../experiments/EXP-GEN-0048/manifest.json) vom 29. September bindet `RQ-CUDA-DET-001 / H-CUDA-DET-001-A` an einen explorativen `runtime_ticks_v1`-Lauf. Angefordert waren 100 Ticks; beobachtet wurden 99. `TickContractViolation`, `validity.valid=false`, ein fataler Runtimefehler und `git.dirty=true` begrenzen die Auswertung. Der Lauf liefert **keinen gültigen Test der Determinismushypothese**. Die dokumentierte Erkenntnis ist ein verletzter Ausführungsvertrag, kein CUDA-Determinismus-Nullbefund. Eine künftige Prüfung benötigt eine gesondert validierte Instrumentierung und einen prospektiven, geeigneten Freeze; diese Redaktion führt keinen Ersatzlauf aus.
+
+Am 1. Oktober wurden **23 konzeptuelle Audit-Läufe** gespeichert: ein PILOT2-Lauf, vier REMAINDER-Läufe und 18 Läufe der [REVIEW-Serie](../../workflows/EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW.md). Jeder enthält zwölf Datensätze aus vier Bedingungen und drei Seeds, insgesamt **276 Datensätze**. Die 18 REVIEW-Läufe betreffen 13 CNS-, zwei EPI- und drei WEL-Protokolle. Wiederholte Vorlagen über Seeds sind keine 276 unabhängigen menschlichen Urteile.
+
+Die Manifeste deklarieren `conceptual_audit`, `method_template_only`, `direct_test_of_hypothesis=false`, `snn_involved=false`, `scientific_evidence=false` und einen nicht aufgezeichneten Human Assessment. Alle 276 kompakten Datensätze haben `audit_complete=false`. Beispielquellen sind das [Manifest](../../experiments/EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-01/manifest.json), die [Datensätze](../../experiments/EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-01/DATA/runs_compact.json) und der [Reviewauftrag](../../experiments/EXP-BATCH-CONCEPTUAL-AUDITS-20261001-REVIEW-01/review_request.json). `completed` bezeichnet die Ausführung des Vorlagengenerators; `REVIEW` im Seriennamen bezeichnet keine abgeschlossene Beurteilung. Die REVIEW-Aufträge bleiben `PENDING`, alle 23 Manifeste verzeichnen `git.dirty=true`.
+
+Damit ist eine konkrete methodische Grenze sichtbar: Annahmen, Alternativmodelle, Messgrenzen und Claim-Grenzen werden als prüfbare Aufgaben materialisiert, aber noch nicht inhaltlich entschieden. Die nächste Erkenntnis muss aus einer quellengebundenen menschlichen Bearbeitung entstehen. Weder ein positiver Kognitions-/Welfare-Befund noch ein negativer Hypothesentest oder ein Scientific-Maturity-Zuwachs folgt aus den Vorlagen. Die historischen Artefakte bleiben unverändert.
 
 
 ---
@@ -3011,6 +3054,19 @@ Die Gesamtarbeit behandelt digitale Informationsquellen nicht als externes Gedä
 
 Der Wert der Verschiebung liegt deshalb nicht in einer neuen Leistungsbehauptung, sondern in einer klareren Falsifikationsstruktur: Quellentransfer, gelernte Query-Auslösung, Modalitätsrouting und Binding werden getrennte experimentelle Fragen statt implizite Eigenschaften des Gateway-Namens.
 
+## Ergänzende Erkenntnissynthese: Befund, Grenze und Entscheidung
+
+**Stand: 4. Oktober 2026; redaktionelle Synthese, keine neue EVID-Entscheidung.** Die Quellen der jüngsten Arbeiten sind in Teil IV und unter `CORPUS-FAILED-RUNTIME-20260929` beziehungsweise `CORPUS-CONCEPTUAL-AUDITS-20261001` im [Integrationsregister](CONTENT_INTEGRATION.md) gebunden.
+
+| Ausgangsbefund | Zulässiger Erkenntnisgewinn | Konsequenz für die weitere Arbeit |
+| --- | --- | --- |
+| CL-001 positiv gegen No-Replay; CL-002/003 ohne bestätigten Semantic-over-Raw-Zusatznutzen | Die Wahl der Kontrolle begrenzt die kausale Zuschreibung. Strukturhaltigkeit ist nicht gleich zusätzlicher Lernnutzen. | CL-003 menschlich prüfen; eine Kompressionsrolle nur unter eigenem prospektivem Vertrag untersuchen. |
+| Stage-1-Promotionen und gescheiterte Effizienzkalibration | Ein begrenzter Topologie-/Order-Befund beantwortet weder Effizienz noch 5D-Überlegenheit oder unabhängige Replikation. | Claims getrennt halten; R2 und spätere Effizienzdesigns benötigen ihre eigenen Gates. |
+| EXP-GEN-0048: 99 statt 100 Ticks, Lauf ungültig | Die technische Ausführung erfüllte den angeforderten Messvertrag nicht. Die Determinismushypothese bleibt dadurch unbeantwortet. | Tick-Erfassung und Protokolladäquanz vor einem neuen autorisierten Lauf validieren; keinen wissenschaftlichen Negativbefund aus dem Fehler ableiten. |
+| Oktober: 23 abgeschlossene Vorlagenläufe, 276 Datensätze mit `audit_complete=false` | Artefakterzeugung, inhaltliche Beurteilung und Evidenzentscheidung sind tatsächlich getrennte Zustände. Der Vorlagenumfang misst keine wissenschaftliche Bestätigung. | Pro Audit eine begründete menschliche Beurteilung mit Quellen, Gegenargumenten und offener Messfrage dokumentieren; Wiederholungen nicht als unabhängige Urteile zählen. |
+
+Für die Wissensentstehung ergibt sich eine begrenzte, aber konkrete Synthese: Die älteren Experimente verengen den zulässigen Mechanismusclaim; der fehlgeschlagene Lauf verengt die auswertbare Datenbasis; die Oktober-Vorlagen benennen noch zu leistende Begründungsarbeit. Nur der erste Vorgang enthält hier bereits entsprechende experimentelle Mechanismusbefunde. Die anderen beiden tragen Fehler- und Methodenwissen bei, aber keine neue Bestätigung von Kognition, Bewusstsein oder Welfare. Ob die Governance die Forschungsqualität gegenüber Alternativen verbessert, bleibt eine eigenständige offene Forschungsfrage.
+
 
 ---
 
@@ -3391,6 +3447,13 @@ Beide Linien sind Engineering-/Governance-Arbeit. Sie erzeugen weder DATA noch
 EVID und autorisieren insbesondere nicht die Wave-5B-PAN-Ausführung. Erst ein
 reviewter Freeze und anschließende prospektive Cross-Backend-Tests können eine
 stärkere Aussage tragen.
+
+## Aktualisierte Anschlussentscheidungen — 4. Oktober 2026
+
+1. Die 18 REVIEW-Aufträge der Oktober-Serie benötigen tatsächliche, quellengebundene menschliche Bewertungen. Die fünf Pilot-/Remainder-Läufe bleiben getrennte Provenienz; sie vervielfachen keine unabhängigen Urteile.
+2. Für EXP-GEN-0048 sind Instrumentierungsfehler und Protokolladäquanz vor einer neuen prospektiven Ausführung zu prüfen. Der gescheiterte Lauf wird weder repariert noch nachträglich als Evidenz verwendet.
+3. CL-003 Human Review, die erneute Genehmigung der revidierten Kompressionsfrage und die getrennten R2-Freeze-/Ausführungsgates bleiben offen. Die redaktionelle Integration erteilt keine Versuchsgenehmigung.
+4. Vor externer Einreichung sind das konkrete Publikationsobjekt, Zielmedium und dessen Anforderungen festzulegen. Danach werden ein versionsgebundenes Prüfpaket, fachlich unabhängige Gutachter und Interessenkonflikte dokumentiert, Kritik beantwortet und Revisionen nachvollziehbar gebunden. Das vorhandene [externe Reviewverfahren](../../external_review/INTEGRATION.md) liefert den Ablauf; es ersetzt weder tatsächliche Gutachten noch ein Journal-Peer-Review. Ein Einreichungsdatum oder zugesagter DOI-Termin wird nicht vorweggenommen.
 
 
 ---
