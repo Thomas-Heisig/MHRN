@@ -71,7 +71,7 @@ from src.profiles import (
     ProfileNotFoundError,
     ProfileService,
 )
-from src.research.protocol_registry import OPERATIONAL_RUNNERS
+from src.research.protocol_registry import OPERATIONAL_RUNNERS, protocol_by_id
 from src.research_assistant import (
     AIRRPipeline,
     AnalysisBackend,
@@ -2080,6 +2080,35 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
                 if isinstance(preregistration_value, Mapping)
                 else None
             )
+            if condition_value == GatewayCondition.PLASTIC.value:
+                protocol_id = (
+                    preregistration.get("protocol_id")
+                    if preregistration is not None
+                    else None
+                )
+                if not isinstance(protocol_id, str) or not protocol_id.strip():
+                    raise InvalidRequestError(
+                        "Plastic gateway activation requires a preregistration with "
+                        "a registered protocol_id"
+                    )
+                protocol = protocol_by_id(
+                    self._require_research_source().root(), protocol_id
+                )
+                if protocol is None:
+                    raise InvalidRequestError(
+                        f"Gateway Plastic protocol '{protocol_id}' is not registered"
+                    )
+                if (
+                    protocol.get("execution_kind") != "functional_experiment"
+                    or protocol.get("direct_test_of_hypothesis") is not True
+                ):
+                    raise InvalidRequestError(
+                        "Gateway Plastic boundary_audit protocols cannot authorize execution"
+                    )
+                raise InvalidRequestError(
+                    "Registered multi-seed Gateway Plastic execution is unavailable; "
+                    "single-seed activation remains disabled"
+                )
             runtime.activate(
                 condition_value,
                 experiment_id=experiment_id,

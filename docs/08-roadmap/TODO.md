@@ -79,6 +79,9 @@ MHRN / Multi-Scale Homeostatic Recurrence Network. Publication: Recursive Episte
 - [x] Publish the Pages asset-path fix from `main` with review-portal run
 	`37214631300`; the live root, `review.css`, `app.js` and `admin.html` return
 	HTTP 200. The portal remains static/export-only.
+- [x] Restore the develop lint gate by formatting the Stage-4 integration
+	helper and correcting the stale stability-helper name in the benchmark test;
+	focused tests pass without runtime behavior changes.
 
 ## 2026-10-02 CUDA-/Parity-UI-Provenienz
 
