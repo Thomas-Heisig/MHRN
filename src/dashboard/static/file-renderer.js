@@ -340,9 +340,52 @@ function renderJsonValue(value, label, state, depth = 0) {
   return details;
 }
 
-function renderJson(container, data) {
+function renderIndexedRawRuns(container, value, data, options) {
+  const experimentPath = String(data.path || "").match(
+    /^(experiments\/[^/]+)\/DATA\/runs_index\.json$/,
+  );
+  if (
+    data.source !== "research"
+    || !experimentPath
+    || value?.schema_version !== "2.0"
+    || value?.storage_policy !== "immutable_raw_runs_plus_compact_current_experiment"
+    || !Array.isArray(value.runs)
+  ) return;
+
+  const section = node("section", "", "file-renderer-raw-run-index");
+  section.dataset.rawRunIndex = "true";
+  section.append(node("h3", "Rohdatenlaeufe"));
+  const list = node("ul", "", "file-renderer-raw-run-list");
+  const entries = value.runs.filter((entry) => (
+    entry && typeof entry.path === "string"
+    && /^DATA\/raw\/[^/]+\.json\.gz$/.test(entry.path)
+  ));
+  for (const entry of entries.slice(0, 100)) {
+    const item = node("li");
+    const runNumber = Number.isInteger(entry.run_index) && entry.run_index >= 0
+      ? entry.run_index + 1
+      : "?";
+    const label = `Lauf ${runNumber}: ${String(entry.condition ?? "unbekannt")}, seed ${String(entry.seed ?? "unbekannt")}`;
+    const open = node("button", label);
+    open.type = "button";
+    open.addEventListener("click", () => options.onOpen?.({
+      source: "research",
+      path: `${experimentPath[1]}/${entry.path}`,
+    }));
+    item.append(open);
+    list.append(item);
+  }
+  section.append(list);
+  if (entries.length > 100) {
+    section.append(node("p", `100 von ${entries.length} Rohdatenlaeufen angezeigt.`));
+  }
+  container.append(section);
+}
+
+function renderJson(container, data, options = {}) {
   try {
     const value = JSON.parse(data.content || 'null');
+    renderIndexedRawRuns(container, value, data, options);
     container.append(renderJsonValue(value, 'root', { nodes: 0 }));
   } catch {
     renderSource(container, data);

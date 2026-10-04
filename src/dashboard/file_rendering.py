@@ -7,6 +7,7 @@ outputs are not executed. Scientific records are immutable through this API.
 from __future__ import annotations
 
 import csv
+import gzip
 import hashlib
 import io
 import ipaddress
@@ -22,6 +23,7 @@ import tempfile
 import threading
 import time
 import zipfile
+import zlib
 from collections.abc import Mapping
 from http import HTTPStatus
 from pathlib import Path, PurePosixPath
@@ -36,6 +38,9 @@ EDIT_BYTES = 1024 * 1024
 PROJECT_FILE_ALLOWLIST = frozenset({"INDEPENDENT_REPLICATION.md"})
 DIGEST_BYTES = 64 * 1024 * 1024
 ARCHIVE_BYTES = 32 * 1024 * 1024
+RAW_RUN_COMPRESSED_BYTES = 32 * 1024 * 1024
+RAW_RUN_INDEX_BYTES = 4 * 1024 * 1024
+RAW_RUN_PREVIEW_BYTES = 256 * 1024
 MEDIA_PROBE_BYTES = 64 * 1024
 PDF_TEXT_BYTES = 128 * 1024
 DIAGRAM_OUTPUT_BYTES = 2 * 1024 * 1024
@@ -440,6 +445,62 @@ class FilePreviewService:
                 )
             return manifest, expanded_bytes
 
+    def _raw_run_preview(self, source: str, path: str, candidate: Path) -> bytes:
+        parts = PurePosixPath(path).parts
+        if (
+            source != "research"
+            or len(parts) != 5
+            or parts[0] != "experiments"
+            or parts[2:4] != ("DATA", "raw")
+            or not parts[4].endswith(".json.gz")
+        ):
+            raise FileContractError("Only indexed research raw runs can be previewed")
+
+        experiment_path = PurePosixPath("experiments", parts[1])
+        index_relative = (experiment_path / "DATA" / "runs_index.json").as_posix()
+        index_path = self.resolve(source, index_relative)
+        if index_path.stat().st_size > RAW_RUN_INDEX_BYTES:
+            raise FileContractError("Raw-run index exceeds preview limit")
+        if candidate.stat().st_size > RAW_RUN_COMPRESSED_BYTES:
+            raise FileContractError("Compressed raw run exceeds preview limit")
+
+        try:
+            index = json.loads(index_path.read_text(encoding="utf-8"))
+        except (OSError, UnicodeDecodeError, json.JSONDecodeError) as exc:
+            raise FileContractError("Raw-run index is unavailable or invalid") from exc
+        if not isinstance(index, dict) or index.get("schema_version") != "2.0":
+            raise FileContractError("Raw-run index has an unsupported schema")
+        relative_to_experiment = candidate.relative_to(
+            index_path.parent.parent
+        ).as_posix()
+        entries = index.get("runs")
+        if not isinstance(entries, list):
+            raise FileContractError("Raw-run index has no valid run list")
+        matches = [
+            entry
+            for entry in entries
+            if isinstance(entry, dict) and entry.get("path") == relative_to_experiment
+        ]
+        if len(matches) != 1:
+            raise FileContractError("Raw run is not uniquely registered in its index")
+
+        entry = matches[0]
+        digest = entry.get("sha256")
+        if (
+            entry.get("format") != "json.gz"
+            or entry.get("size_bytes") != candidate.stat().st_size
+            or not isinstance(digest, str)
+            or len(digest) != 64
+            or _sha256(candidate) != digest
+        ):
+            raise FileContractError("Raw run does not match its indexed digest")
+
+        try:
+            with gzip.open(candidate, "rb") as stream:
+                return stream.read(RAW_RUN_PREVIEW_BYTES + 1)
+        except (OSError, EOFError, zlib.error) as exc:
+            raise FileContractError("Raw run is not a valid gzip stream") from exc
+
     def preview(self, source: str, path: str) -> dict[str, Any]:
         """Produce a bounded rendering descriptor; never load a whole large file."""
         candidate = self.resolve(source, path)
@@ -519,6 +580,30 @@ class FilePreviewService:
             ) as exc:
                 result["notice"] = (
                     f"Archivvorschau nicht verfuegbar: {exc}. Das Original bleibt verfuegbar."
+                )
+        elif candidate.name.endswith(".json.gz"):
+            try:
+                raw = self._raw_run_preview(source, path, candidate)
+                truncated = len(raw) > RAW_RUN_PREVIEW_BYTES
+                content_bytes = raw[:RAW_RUN_PREVIEW_BYTES]
+                try:
+                    content = content_bytes.decode("utf-8", errors="strict")
+                except UnicodeDecodeError as exc:
+                    if not truncated or exc.reason != "unexpected end of data":
+                        raise
+                    content = content_bytes[: exc.start].decode("utf-8")
+                result["content"] = content
+                result["raw_content"] = content
+                result["truncated"] = truncated
+                result["kind"] = "text" if truncated else "json"
+                result["notice"] = (
+                    "Begrenzte Rohdatenvorschau; das unveraenderte Original bleibt verfuegbar."
+                    if truncated
+                    else "Indexierter, unveraenderlicher Rohdatenlauf."
+                )
+            except (FileContractError, UnicodeDecodeError) as exc:
+                result["notice"] = (
+                    f"Rohdatenvorschau nicht verfuegbar: {exc}. Das Original bleibt verfuegbar."
                 )
         else:
             with candidate.open("rb") as stream:

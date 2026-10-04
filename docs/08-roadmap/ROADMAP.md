@@ -4,6 +4,14 @@
 **Baseline:** `mhrn-core 0.6.0a7`
 **Updated:** 2026-10-04
 
+## 2026-10-04 Cognition raw-run File Viewer
+
+- Added run-level drill-down from a registered cognition `runs_index.json`.
+	Only indexed research artifacts with a matching SHA-256 are previewed; the UI
+	lists at most 100 runs and backend decompression is capped at 256 KiB.
+- Source artifacts remain immutable DATA. Preview access does not constitute
+	analysis, Human Review, EVID or scientific status promotion.
+
 ## 2026-10-04 Gateway Plastic preregistration and execution boundary
 
 - The seven registered `RQ-GW-*` operational protocols are `boundary_audit`
