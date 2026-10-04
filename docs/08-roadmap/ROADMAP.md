@@ -2,7 +2,20 @@
 
 **Canonical roadmap for active `develop`; `main` is release-only**  
 **Baseline:** `mhrn-core 0.6.0a7`
-**Updated:** 2026-10-02
+**Updated:** 2026-10-04
+
+## 2026-10-04 Gateway Plastic preregistration and execution boundary
+
+- The seven registered `RQ-GW-*` operational protocols are `boundary_audit`
+  contracts with `direct_test_of_hypothesis=false`; their seed lists describe
+  audit reexecution, not independent Gateway Plastic runs.
+- The Gateway activation route accepts caller-provided preregistration JSON and
+  starts one runtime seed. There is no registered functional Plastic runner,
+  frozen input-frame sequence, or executable stop rule to define a reproducible
+  trial across independent runtime instances.
+- Keep registry-backed Plastic activation and multi-seed execution open until
+  a suitable frozen functional protocol and runner contract exist. No Gateway
+  DATA/EVID is inferred from the current audit protocols or activation status.
 
 ## 2026-10-02 CUDA-/Parity-UI-Provenienz
 

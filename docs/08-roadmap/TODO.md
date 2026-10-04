@@ -163,6 +163,14 @@ MHRN / Multi-Scale Homeostatic Recurrence Network. Publication: Recursive Episte
 - [x] Generate JSON state and Markdown report artifacts for Gateway activations.
 - [x] Preserve the boundary that Gateway activity and reports are not scientific evidence.
 - [ ] Add preregistration registry lookup and independent multi-seed execution for Plastic runs.
+- Audit 2026-10-04: `RQ-GW-001` through `RQ-GW-007` currently resolve only to
+  `boundary_audit` protocols; their three-seed audit reexecutions are not
+  Plastic DATA. The Gateway API accepts a caller-supplied preregistration object
+  and activates one seed, while no registered Plastic runner, frozen input-frame
+  sequence, or stop-rule execution contract exists. Keep this item open: do not
+  count arbitrary JSON or boundary-audit seeds as registry lookup or independent
+  Plastic execution. A suitable frozen functional protocol and runner contract
+  are prerequisites.
 
 ## 2026-09-16 Experiment archive results viewer
 

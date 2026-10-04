@@ -1,5 +1,17 @@
 # Changelog
 
+## 2026-10-04 - Gateway Plastic execution audit
+
+- Confirmed that the seven registered Gateway protocols are boundary audits,
+  not executable Plastic protocols; their audit seed reexecutions do not count
+  as independent Plastic runs.
+- The current Gateway route accepts caller-supplied preregistration JSON and
+  activates a single seed. No registered Plastic runner, frozen input-frame
+  sequence or executable stop rule is available, so registry-backed
+  multi-seed execution remains open rather than inventing a workload.
+- No scientific DATA/EVID status is inferred from Gateway activation or audit
+  artifacts.
+
 ## 2026-10-04 - Persisted CUDA diagnostic receipts
 
 - CUDA parity, Builder, cue-control and transfer runs now persist atomic JSON
