@@ -422,6 +422,24 @@ def test_neural_symbiosis_gateway_status_and_experiment_guard() -> None:
         assert rejected_status == 400
         assert "preregistration" in rejected["error"]
 
+        for protocol_id, expected_error in (
+            ("gateway_controls_v1", "not registered"),
+            ("gateway_learning_boundary_v1", "boundary_audit"),
+        ):
+            rejected_status, rejected = _post(
+                host,
+                port,
+                "/api/experiments/EXP-GW-HTTP/gateway/activate",
+                {
+                    "condition": "plastic",
+                    "seed": 101,
+                    "experiment_mode": True,
+                    "preregistration": {"protocol_id": protocol_id},
+                },
+            )
+            assert rejected_status == 400
+            assert expected_error in rejected["error"]
+
         accepted_status, accepted = _post(
             host,
             port,
