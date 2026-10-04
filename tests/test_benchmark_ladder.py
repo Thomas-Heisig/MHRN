@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from scripts.benchmark_ladder import run_tier
-from scripts.benchmark_plastic_network import run_benchmark
+from scripts.benchmark_plastic_network import _assess_stability, run_benchmark
 
 
 def test_scaling_tier_reports_neuron_and_synapse_profile() -> None:
@@ -33,7 +33,7 @@ def test_plastic_scale_benchmark_runs_bounded_learning_and_reports_stability() -
     assert report["neurons"] == 40
     assert report["synapses"] == 80
     assert report["learning_stats"]["reward_weight_updates"] > 0
-    assert report["synapse_candidate_visits_per_second"] > 0
+    assert report["estimated_synapse_candidate_visits_per_second"] > 0
     assert report["final_weights_finite"] is True
     assert report["final_out_of_bounds_weights"] == 0
     assert report["stability_invariants_passed"] is True
@@ -90,3 +90,23 @@ def test_symmetric_stdp_heterogeneous_profile_distinguishes_synapses() -> None:
     assert report["final_at_lower_bound_fraction"] < 1.0
     assert report["stability_snapshots"][-1]["weight_variance"] > 1e-12
     assert report["weight_diversity_passed"] is True
+
+
+def test_numeric_bounds_do_not_mistake_zero_weight_collapse_for_functional_stability() -> None:
+    assessment = _assess_stability(
+        [
+            {
+                "finite_weights": True,
+                "out_of_bounds_weights": 0,
+                "active_weight_fraction": 0.0,
+                "weight_variance": 0.0,
+            }
+        ],
+        final_epoch_source_spikes=1,
+        final_epoch_target_spikes=1,
+        weight_diversity_required=False,
+    )
+
+    assert assessment["numeric_stability_passed"] is True
+    assert assessment["functional_activity_passed"] is False
+    assert assessment["stability_invariants_passed"] is False

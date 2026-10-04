@@ -137,6 +137,43 @@ def _weight_snapshot(network: Any, epoch: int) -> dict[str, Any]:
     }
 
 
+def _assess_stability(
+    snapshots: list[dict[str, Any]],
+    *,
+    final_epoch_source_spikes: int,
+    final_epoch_target_spikes: int,
+    weight_diversity_required: bool,
+) -> dict[str, bool]:
+    final_snapshot = snapshots[-1]
+    numeric_passed = all(
+        bool(snapshot["finite_weights"])
+        and int(snapshot["out_of_bounds_weights"]) == 0
+        for snapshot in snapshots
+    )
+    active_weight_fraction = float(final_snapshot["active_weight_fraction"] or 0.0)
+    functional_passed = (
+        final_epoch_source_spikes > 0
+        and final_epoch_target_spikes > 0
+        and active_weight_fraction > 0.0
+    )
+    final_variance = final_snapshot["weight_variance"]
+    diversity_passed = (
+        not weight_diversity_required
+        or (
+            final_variance is not None
+            and float(final_variance) > WEIGHT_VARIANCE_TOLERANCE
+        )
+    )
+    return {
+        "numeric_stability_passed": numeric_passed,
+        "functional_activity_passed": functional_passed,
+        "weight_diversity_passed": diversity_passed,
+        "stability_invariants_passed": (
+            numeric_passed and functional_passed and diversity_passed
+        ),
+    }
+
+
 def run_benchmark(
     *,
     neuron_count: int = 10_000,
@@ -218,7 +255,7 @@ def run_benchmark(
                 incoming_degree.get(synapse.target_id, 0) + 1
             )
 
-    synapse_candidate_visits = 0
+    estimated_synapse_candidate_visits = 0
     source_spikes = 0
     target_spikes = 0
     final_epoch_source_spikes = 0
@@ -243,7 +280,7 @@ def run_benchmark(
         core_step_seconds += source_result.core_step_ms / 1000.0
         source_spikes += len(source_result.spike_ids)
         final_epoch_source_spikes = len(source_result.spike_ids)
-        synapse_candidate_visits += sum(
+        estimated_synapse_candidate_visits += sum(
             len(network.synapses[neuron_id]) for neuron_id in source_result.spike_ids
         )
 
@@ -252,13 +289,13 @@ def run_benchmark(
         core_step_seconds += target_result.core_step_ms / 1000.0
         target_spikes += len(target_result.spike_ids)
         final_epoch_target_spikes = len(target_result.spike_ids)
-        synapse_candidate_visits += sum(
-            incoming_degree.get(neuron_id, 0)
-            for neuron_id in target_result.spike_ids
-        )
         if learning_enabled:
+            estimated_synapse_candidate_visits += sum(
+                incoming_degree.get(neuron_id, 0)
+                for neuron_id in target_result.spike_ids
+            )
             learning.set_reward(REWARD_VALUE, target_result.tick)
-            synapse_candidate_visits += synapse_count
+            estimated_synapse_candidate_visits += synapse_count
 
         if epoch % stability_interval == 0 or epoch == epochs:
             stability.append(_weight_snapshot(network, epoch))
@@ -266,25 +303,14 @@ def run_benchmark(
 
     final_snapshot = stability[-1]
     final_weight_count = network.synapse_count
-    final_active_weight_fraction = final_snapshot["active_weight_fraction"] or 0.0
-    numeric_stability_passed = all(
-        snapshot["finite_weights"] and snapshot["out_of_bounds_weights"] == 0
-        for snapshot in stability
-    )
-    functional_activity_passed = (
-        final_epoch_source_spikes > 0
-        and final_epoch_target_spikes > 0
-        and final_active_weight_fraction > 0.0
-    )
     weight_diversity_required = (
         activity_profile == "heterogeneous_cohorts" and learning_enabled
     )
-    weight_diversity_passed = (
-        not weight_diversity_required
-        or (
-            final_snapshot["weight_variance"] is not None
-            and final_snapshot["weight_variance"] > WEIGHT_VARIANCE_TOLERANCE
-        )
+    stability_assessment = _assess_stability(
+        stability,
+        final_epoch_source_spikes=final_epoch_source_spikes,
+        final_epoch_target_spikes=final_epoch_target_spikes,
+        weight_diversity_required=weight_diversity_required,
     )
     maximum_weight_drift = max(
         (
@@ -299,7 +325,7 @@ def run_benchmark(
     )
     stats = learning.stats
     return {
-        "schema_version": 1,
+        "schema_version": 2,
         "benchmark": "stage3_plastic_network_scale",
         "scope": "engineering_verification_only",
         "scientific_evidence": False,
@@ -323,9 +349,15 @@ def run_benchmark(
         "simulation_seconds": elapsed_seconds,
         "core_step_seconds": core_step_seconds,
         "ticks_per_second": epochs * 2 / elapsed_seconds if elapsed_seconds else None,
-        "synapse_candidate_visits": synapse_candidate_visits,
-        "synapse_candidate_visits_per_second": (
-            synapse_candidate_visits / elapsed_seconds if elapsed_seconds else None
+        "estimated_synapse_candidate_visits": estimated_synapse_candidate_visits,
+        "estimated_synapse_candidate_visits_per_second": (
+            estimated_synapse_candidate_visits / elapsed_seconds
+            if elapsed_seconds
+            else None
+        ),
+        "candidate_visit_estimate": (
+            "Outgoing adjacency traversals for source spikes, incoming learning "
+            "event traversals for target spikes, plus one full reward scan per epoch."
         ),
         "source_spikes": source_spikes,
         "target_spikes": target_spikes,
@@ -336,15 +368,8 @@ def run_benchmark(
         "weight_bounds": {"minimum": MIN_WEIGHT, "maximum": MAX_WEIGHT},
         "final_weights_finite": final_snapshot["finite_weights"],
         "final_out_of_bounds_weights": final_snapshot["out_of_bounds_weights"],
-        "numeric_stability_passed": numeric_stability_passed,
-        "functional_activity_passed": functional_activity_passed,
         "weight_diversity_required": weight_diversity_required,
-        "weight_diversity_passed": weight_diversity_passed,
-        "stability_invariants_passed": (
-            numeric_stability_passed
-            and functional_activity_passed
-            and weight_diversity_passed
-        ),
+        **stability_assessment,
         "final_at_lower_bound_fraction": (
             final_snapshot["at_lower_bound_count"] / final_weight_count
             if final_weight_count

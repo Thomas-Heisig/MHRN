@@ -222,6 +222,21 @@ MHRN / Multi-Scale Homeostatic Recurrence Network. Publication: Recursive Episte
 	100k-neuron/1M-synapse point (20 epochs); both remained finite and within
 	configured weight bounds. The lower-bound run reached the minimum weight on
 	100% of synapses by epoch 100, an explicit saturation finding.
+- [x] Add asymmetric-STDP, symmetric-STDP and learning-off profiles plus
+	deterministic heterogeneous cohorts; distinguish numeric bounds, active
+	weights, ongoing spikes and workload-dependent weight diversity.
+- [x] Re-run matched 10k/100k profiles for 100 epochs. Asymmetric STDP ended
+	with 56.25% at the lower bound and 43.75% active; symmetric STDP ended with
+	43.75% at the lower bound and 18.75% at the upper bound; learning-off kept
+	all weights at 0.05. The earlier uniform-input run's all-zero result is kept
+	as a separate symmetry/saturation diagnostic, not generalized to all inputs.
+- [x] Re-run heterogeneous asymmetric STDP at 100k/1M for 20 epochs; all
+	weights remained finite/in bounds, 50% were active, and the estimated visit
+	rate was about 210k/s. These remain single-seed engineering observations.
+- [x] Make functional stability fail when no active synapses remain, even if
+	numeric bound checks pass; report variance and saturation separately.
+- [x] Add verified literature and explicit framework-comparability limits in
+	[Related Work](../../research/RELATED_WORK.md) and the Stage-3 contract.
 - [ ] Execute the 100k-neuron/10M-synapse upper point on a memory-appropriate
 	host. Its preflight estimate is about 19.45 GiB; it was not attempted on this
 	machine. These deterministic engineering profiles do not establish general
