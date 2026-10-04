@@ -27,7 +27,7 @@ Gegenüber dem [Vorgänger 1.7](../../2026-09-15_recursive-epistemics_v1.7/READM
 | EVID | Kanonisch registrierte, begrenzte Evidenzentscheidung; keine allgemeine Bestätigung des Projekts. |
 | Unabhängige Replikation | Separat kontrollierte Wiederholungsprüfung; interne Wiederholung und externe Referenzsoftware allein genügen nicht. |
 | RQ / H / Claim | Forschungsfrage, prüfbare Hypothese und die tatsächlich begründete Aussage; getrennte Forschungsobjekte. |
-| Stage 0–6 | Forschungsbereiche von Einzelzell-Konformität über kleine Netze, Plastizität, Struktur, Spezialisierung und Integration bis Gedächtnis/Weltmodell; kein einheitliches Intelligenzmaß. |
+| Stage 0–6 | Entwicklungs-/Reifeachse: 0 Einzelzelle, 1 kleines SNN, 2 stabiles rekurrentes SNN, 3 plastisches Nervengewebe, 4 spezialisierte Areale, 5 integriertes künstliches Nervensystem, 6 Gedächtnis/Weltmodell; kein einheitliches Intelligenzmaß. |
 | 5D SNN | Spikendes neuronales Netz mit fünf Koordinatenachsen; weder biologische Dimensionsbehauptung noch nachgewiesener Vorteil. |
 | Neural Symbiosis / MSBA | Kontrollierte Anbindung peripherer Verarbeitung über Gateways; deren Leistung ist nicht automatisch Lernen des SNN. |
 | PAN / Playground | Explorative Modell- und Experimentierumgebung außerhalb der kanonischen DATA-/EVID-Pipeline; siehe [Playground-Glossar](../../../../docs/playground/GLOSSARY.md). |
