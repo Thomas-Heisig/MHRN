@@ -35,7 +35,7 @@ def test_current_release_matches_canonical_published_version() -> None:
         "engineering_release_candidate_scientific_programme_active",
         "public_repository_hardening_release_candidate",
         "alpha7_release_candidate_from_2026_09_27_develop",
-            "alpha7_release_candidate_integrated_pending_source_freeze_and_tag",
+        "alpha7_release_candidate_integrated_pending_source_freeze_and_tag",
     }
     assert current["release_blockers"] == 0
     assert current["open"]
