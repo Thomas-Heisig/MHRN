@@ -116,9 +116,11 @@ def _load_cuda_diagnostic_artifact(
         raise ValueError("CUDA diagnostic artifact ID is invalid")
     path = repo_root / "artifacts" / "cuda_diagnostics" / f"{artifact_id}.json"
     value = json.loads(path.read_text(encoding="utf-8"))
-    if not isinstance(value, dict) or value.get("artifact_id") != artifact_id:
+    if not isinstance(value, dict):
         raise ValueError("CUDA diagnostic artifact is malformed")
-    record = dict(value)
+    record = dict(cast(dict[str, object], value))
+    if record.get("artifact_id") != artifact_id:
+        raise ValueError("CUDA diagnostic artifact is malformed")
     recorded_digest = record.pop("artifact_sha256", None)
     actual_digest = hashlib.sha256(_canonical_artifact_bytes(record)).hexdigest()
     if not isinstance(recorded_digest, str) or not hmac.compare_digest(
@@ -249,8 +251,10 @@ def _diagnostic_outcome(result: Mapping[str, object]) -> str:
     if isinstance(passed, bool):
         return "passed" if passed else "failed"
     parity = result.get("parity")
-    if isinstance(parity, Mapping) and isinstance(parity.get("passed"), bool):
-        return "passed" if parity["passed"] else "failed"
+    if isinstance(parity, Mapping):
+        parity_passed = cast(Mapping[str, object], parity).get("passed")
+        if isinstance(parity_passed, bool):
+            return "passed" if parity_passed else "failed"
     actions_exact = result.get("actions_exact")
     if isinstance(actions_exact, bool):
         return "passed" if actions_exact else "failed"
