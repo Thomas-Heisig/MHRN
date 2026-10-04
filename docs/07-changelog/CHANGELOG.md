@@ -14,15 +14,26 @@
 - Publication and DOI assignment do not change DATA, Human Review, EVID,
   scientific maturity or independent-replication state.
 
-## 2026-10-04 - Alpha.7 release candidate integration status
+## 2026-10-04 - Develop synchronization and CI runtime
+
+- Integrated released `main` into `develop` without rewriting or dropping
+  develop-only work.
+- Reduced the full-suite CI matrix to Python 3.13. Focused security, typing,
+  contracts, browser, documentation, build and Docker gates remain enabled.
+  Package metadata still declares `>=3.11`; CI no longer exercises 3.11/3.12.
+- Published the existing relative-path Pages fix with review-portal run
+  `37214631300` on `main@4a105137`; root, stylesheet, app and admin routes
+  returned HTTP 200.
+
+## 2026-10-04 - Alpha.7 release candidate preparation (pre-publication)
 
 - Merged integration PR #269 to `main` at `4a6eb988`, including the publication
   synthesis and Stage-3 benchmark diagnostics. Scientific status, Human Review,
   EVID and replication state were not promoted.
 - Added Alpha.7 candidate release notes and reconciled the release ledgers to
-  the merged integration. The dedicated release PR and post-merge CI/source
-  freeze remain pending; no tag, GitHub release or Alpha.7 Zenodo archive has
-  been created.
+  the merged integration. At that preparation point the dedicated release PR,
+  post-merge CI, tag and Zenodo archive were pending; the publication entry
+  above records their later completion.
 - The configured Hugging Face sync succeeded at the integration commit.
   Zenodo requires the eventual GitHub release; OSF and ORCID have no configured
   automatic release-update workflow, and no institution-specific endpoint is

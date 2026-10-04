@@ -151,6 +151,18 @@
 - Release and DOI publication leave Human Review, EVID, maturity and independent
 	replication state unchanged.
 
+## 2026-10-04 Develop continuation
+
+- Released `main@4a105137` is integrated into `develop` by merge commit
+	`97fa42db`; the four develop-only commits remain in history.
+- Full-suite CI now runs on Python 3.13 only. The other security, typing,
+	contract, browser, documentation, build and Docker gates remain enabled.
+	`pyproject.toml` still declares Python `>=3.11`; 3.11/3.12 are no longer CI
+	tested.
+- The export-only GitHub Pages portal was republished by workflow run
+	`37214631300` from `main@4a105137`. Root, stylesheet, application module and
+	admin page all returned HTTP 200 in the live smoke check.
+
 ## 2026-09-29 Post-hoc Experimentauswertung
 
 - Experimentkarten im Wissenschaftsbereich erlauben die nachträgliche

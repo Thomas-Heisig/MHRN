@@ -50,7 +50,7 @@
 - [x] Sanitized aggregate export implemented and tested.
 - [ ] Configure and independently review the real public domain, storage, TLS, backups and legal study settings.
 - [x] Provision GitHub Pages in workflow-only mode at <https://thomas-heisig.github.io/MHRN/>; GitHub reports HTTPS enforced and workflow run [37202191034](https://github.com/Thomas-Heisig/MHRN/actions/runs/37202191034) published the static artifact.
-- [ ] Fix and publish the Pages-root asset paths on canonical `main`, then repeat the live smoke test. Current live HTML loads, but CSS/JS requests to `/review/review.css` and `/review/app.js` return 404. The relative-path fix is on `develop` (`6c417c2`); `origin/develop` is 9 commits ahead of `main` and no PR is open, so do not deploy that branch wholesale.
+- [x] Publish the relative-path asset fix from canonical `main` and repeat the live smoke test. Review-portal run `37214631300` deployed `main@4a105137`; root, `/MHRN/review.css`, `/MHRN/app.js` and `/MHRN/admin.html` return HTTP 200.
 - Audit 2026-10-04: Pages is export-only and has no central response storage. The private study config is absent; the example remains disabled with legal/contact placeholders, and the Compose volume is not a backup plan. Online collection, backup/restore, custom-domain DNS/TLS and study-specific legal/ethics review remain unconfigured. Keep collection disabled.
 - [x] Make experiment cards open a complete detail dialog with form prefill.
 
@@ -67,6 +67,18 @@ Aeltere offene Zaehler unten sind zeitgebundene Bestandsaufnahmen; der aktuelle 
 MHRN / Multi-Scale Homeostatic Recurrence Network. Publication: Recursive Epistemics / Rekursive Epistemik. [Migration and compatibility](../../NAMING.md). Historical scientific artifacts remain unchanged.
 
 # MHRN Current TODO
+
+## 2026-10-04 Develop synchronization and CI
+
+- [x] Released `main@4a105137` into `develop` by merge commit `97fa42db`;
+	preserve the four develop-only commits without rewriting history.
+- [x] Reduce duplicate full-suite CI lanes to Python 3.13 while preserving the
+	separate security, type, contract, browser, build and Docker gates. Package
+	metadata remains `requires-python >=3.11`, so 3.11/3.12 are no longer
+	exercised in the CI matrix.
+- [x] Publish the Pages asset-path fix from `main` with review-portal run
+	`37214631300`; the live root, `review.css`, `app.js` and `admin.html` return
+	HTTP 200. The portal remains static/export-only.
 
 ## 2026-10-02 CUDA-/Parity-UI-Provenienz
 
@@ -220,6 +232,11 @@ MHRN / Multi-Scale Homeostatic Recurrence Network. Publication: Recursive Episte
 	protocol-faithful and auditable; human review remains a separate required gate.
 - [ ] Benchmark plastic-network stability/throughput at the declared Stage-3
   target scale separately from the mechanism contract.
+- Audit 2026-10-04: the 100k-neuron/10M-synapse profile estimates 20,889,600,000
+	bytes (about 19.45 GiB), above the benchmark's default 2 GiB budget. The
+	current host reports 31.2 GiB total but only 3.6 GiB free; do not override
+	preflight or run this allocation here. Keep the upper point open for a
+	memory-appropriate host.
 - [x] Add a separate deterministic plastic-network benchmark with a preflight
 	memory estimate, real LearningEngine hooks, reward updates, weight-bound
 	snapshots, throughput and workload/hardware provenance.
