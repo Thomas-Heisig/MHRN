@@ -20,20 +20,30 @@
 ## 2026-10-04 Stage-3 plastic-network scale benchmark
 
 - Added `scripts/benchmark_plastic_network.py`, separate from the small
-	mechanism reference. It uses a deterministic regular bipartite graph, a real
-	`LearningEngine` post-step hook, fixed spike/reward phases, weight-bound
-	snapshots and a preflight memory estimate. Receipts are engineering-only and
-	include exact workload, software and CPU metadata.
-- At 10,000 neurons / 100,000 synapses for 100 epochs, the runner processed
-	12.4M synapse-candidate visits at about 267k visits/s. Weights remained finite
-	and bounded, but all synapses reached the zero lower bound by epoch 100.
-- At 100,000 neurons / 1M synapses for 20 epochs, it processed 28M candidate
-	visits at about 183k visits/s with finite bounded weights and no bound
-	saturation. These are distinct deterministic load profiles, not general
-	stability or scientific claims.
+	mechanism reference. It uses a deterministic bipartite graph, a real
+	`LearningEngine` hook, preflight memory bounds, `asymmetric`, `symmetric`, and
+	`off` controls, and uniform or heterogeneous-cohort stimuli. Numeric
+	boundedness is reported separately from ongoing spikes, active-weight
+	fraction, and workload-required weight diversity. Candidate visits/s is an
+	operation-count estimate, not a hardware counter. Receipts include workload,
+	software and CPU metadata; all remain engineering-only.
+- Matched 10,000-neuron / 100,000-synapse runs (seed 42, 100 epochs): the
+	heterogeneous asymmetric profile ended with 56.25% of weights at the lower
+	bound, 43.75% active and positive variance; the symmetric profile ended with
+	43.75% at the lower bound and 18.75% at the upper bound; the learning-off
+	profile retained all weights at 0.05. The earlier uniform-input profile drove
+	all weights to zero. Its identical weights are expected under that symmetric
+	input/topology; it is not evidence by itself of an update implementation bug.
+- At 100,000 neurons / 1M synapses for 20 heterogeneous asymmetric epochs, the
+	measured Python peak was about 1.03 GB, the estimated candidate-visit rate
+	about 210k/s, and 50% of weights remained active. These workload-specific
+	profiles do not establish general or long-horizon stability.
 - The declared 100,000-neuron / 10M-synapse upper point remains unmeasured:
 	its preflight estimate is 19.45 GiB, exceeding this machine's available RAM.
 	Full Stage-3 scale benchmarking remains open pending suitable hardware.
+- Related work now includes verified STDP/homeostasis/continual-learning and
+	neural-simulator sources. No Brian 2/NEST/Norse head-to-head is claimed until
+	model semantics, workload, hardware, precision and timing policy are matched.
 
 ## 2026-10-02 CUDA-/Parity-UI-Provenienz
 

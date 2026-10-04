@@ -1,5 +1,21 @@
 # Changelog
 
+## 2026-10-04 - Stage-3 benchmark diagnostics and literature follow-up
+
+- Added matched asymmetric-STDP, symmetric-STDP and learning-off profiles with
+  deterministic heterogeneous cohorts. Functional checks now include active
+  weights, ongoing source/target spiking and, where required, weight variance;
+  numeric bounds alone cannot pass an all-zero network.
+- Re-ran 10k/100k for all three modes and heterogeneous asymmetric 100k/1M.
+  The uniform-input all-zero case is retained as a separate symmetric workload,
+  not treated as a general implementation failure. New schema-v2 receipts are
+  separate from earlier receipts.
+- Added verified STDP, homeostasis, memory, continual-learning, sensorimotor,
+  network-organization, preregistration, and simulator-comparability sources,
+  mapped to the relevant research areas. No direct 5D-advantage precedent was
+  asserted. No unmatched Brian 2/NEST/Norse speed comparison, human-review
+  closure, or EVID promotion was claimed.
+
 ## 2026-10-04 - Stage-3 plastic-network benchmark
 
 - Added a standalone engineering benchmark for a deterministic plastic

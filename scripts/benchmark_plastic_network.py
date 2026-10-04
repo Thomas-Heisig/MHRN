@@ -7,6 +7,7 @@ scientific workload or evidence of general plastic-network stability.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import math
 import os
@@ -37,6 +38,10 @@ STDP_A_MINUS = 0.12
 STDP_TAU_TICKS = 20.0
 ELIGIBILITY_TAU_TICKS = 200.0
 REWARD_LEARNING_RATE = 0.01
+PLASTICITY_MODES = {"asymmetric", "symmetric", "off"}
+ACTIVITY_PROFILES = {"uniform", "heterogeneous_cohorts"}
+COHORT_COUNT = 4
+WEIGHT_VARIANCE_TOLERANCE = 1e-12
 
 
 def estimate_peak_bytes(neuron_count: int, synapse_count: int) -> int:
@@ -82,6 +87,7 @@ def _build_network(
     source_count = neuron_count // 2
     source_ids = neuron_ids[:source_count]
     target_ids = neuron_ids[source_count:]
+    random.Random(seed).shuffle(target_ids)
     if not source_ids or not target_ids:
         raise ValueError("at least two neurons are required")
     if synapse_count % source_count:
@@ -103,16 +109,70 @@ def _weight_snapshot(network: Any, epoch: int) -> dict[str, Any]:
         synapse.weight for outgoing in network.synapses.values() for synapse in outgoing
     ]
     finite = all(math.isfinite(weight) for weight in weights)
+    mean_weight = sum(weights) / len(weights) if weights else None
+    variance = (
+        sum((weight - mean_weight) ** 2 for weight in weights) / len(weights)
+        if weights and mean_weight is not None
+        else None
+    )
+    active_count = sum(weight > MIN_WEIGHT + 1e-12 for weight in weights)
     return {
         "epoch": epoch,
         "finite_weights": finite,
         "min_weight": min(weights, default=None),
         "max_weight": max(weights, default=None),
-        "mean_weight": sum(weights) / len(weights) if weights else None,
+        "mean_weight": mean_weight,
+        "weight_variance": variance,
+        "active_weight_count": active_count,
+        "active_weight_fraction": active_count / len(weights) if weights else None,
+        "all_weights_equal": variance is not None
+        and variance <= WEIGHT_VARIANCE_TOLERANCE,
         "at_lower_bound_count": sum(weight <= MIN_WEIGHT + 1e-12 for weight in weights),
         "at_upper_bound_count": sum(weight >= MAX_WEIGHT - 1e-12 for weight in weights),
         "out_of_bounds_weights": sum(
             weight < MIN_WEIGHT or weight > MAX_WEIGHT for weight in weights
+        ),
+    }
+
+
+def _topology_digest(network: Any) -> str:
+    edges = sorted(
+        (source_id, synapse.target_id)
+        for source_id, outgoing in network.synapses.items()
+        for synapse in outgoing
+    )
+    payload = json.dumps(edges, separators=(",", ":")).encode("ascii")
+    return hashlib.sha256(payload).hexdigest()
+
+
+def _assess_stability(
+    snapshots: list[dict[str, Any]],
+    *,
+    final_epoch_source_spikes: int,
+    final_epoch_target_spikes: int,
+    weight_diversity_required: bool,
+) -> dict[str, bool]:
+    final_snapshot = snapshots[-1]
+    numeric_passed = all(
+        bool(snapshot["finite_weights"]) and int(snapshot["out_of_bounds_weights"]) == 0
+        for snapshot in snapshots
+    )
+    active_weight_fraction = float(final_snapshot["active_weight_fraction"] or 0.0)
+    functional_passed = (
+        final_epoch_source_spikes > 0
+        and final_epoch_target_spikes > 0
+        and active_weight_fraction > 0.0
+    )
+    final_variance = final_snapshot["weight_variance"]
+    diversity_passed = not weight_diversity_required or (
+        final_variance is not None and float(final_variance) > WEIGHT_VARIANCE_TOLERANCE
+    )
+    return {
+        "numeric_stability_passed": numeric_passed,
+        "functional_activity_passed": functional_passed,
+        "weight_diversity_passed": diversity_passed,
+        "stability_invariants_passed": (
+            numeric_passed and functional_passed and diversity_passed
         ),
     }
 
@@ -125,6 +185,8 @@ def run_benchmark(
     seed: int = 42,
     memory_budget_bytes: int = DEFAULT_MEMORY_BUDGET_BYTES,
     stability_interval: int = 10,
+    plasticity_mode: str = "asymmetric",
+    activity_profile: str = "heterogeneous_cohorts",
 ) -> dict[str, Any]:
     """Run repeated causal spike/reward phases and report engineering metrics."""
     if neuron_count < 4 or neuron_count % 2:
@@ -135,6 +197,10 @@ def run_benchmark(
         )
     if isinstance(seed, bool) or not isinstance(seed, int):
         raise ValueError("seed must be an integer")
+    if plasticity_mode not in PLASTICITY_MODES:
+        raise ValueError(f"plasticity_mode must be one of {sorted(PLASTICITY_MODES)}")
+    if activity_profile not in ACTIVITY_PROFILES:
+        raise ValueError(f"activity_profile must be one of {sorted(ACTIVITY_PROFILES)}")
     estimated_bytes = estimate_peak_bytes(neuron_count, synapse_count)
     if estimated_bytes > memory_budget_bytes:
         raise ValueError(
@@ -144,19 +210,24 @@ def run_benchmark(
 
     from src.learning.learning_engine import LearningEngine
 
+    learning_enabled = plasticity_mode != "off"
+    a_minus = STDP_A_PLUS if plasticity_mode == "symmetric" else STDP_A_MINUS
     learning_config = {
         "stdp": {
-            "enabled": True,
+            "enabled": learning_enabled,
             "a_plus": STDP_A_PLUS,
-            "a_minus": STDP_A_MINUS,
+            "a_minus": a_minus,
             "tau_plus": STDP_TAU_TICKS,
             "tau_minus": STDP_TAU_TICKS,
             "min_weight": MIN_WEIGHT,
             "max_weight": MAX_WEIGHT,
         },
-        "eligibility": {"enabled": True, "tau_ticks": ELIGIBILITY_TAU_TICKS},
+        "eligibility": {
+            "enabled": learning_enabled,
+            "tau_ticks": ELIGIBILITY_TAU_TICKS,
+        },
         "reward": {
-            "enabled": True,
+            "enabled": learning_enabled,
             "learning_rate": REWARD_LEARNING_RATE,
             "delay_ticks": 0,
             "clamp_weights": True,
@@ -189,30 +260,47 @@ def run_benchmark(
                 incoming_degree.get(synapse.target_id, 0) + 1
             )
 
-    synapse_candidate_visits = 0
+    estimated_synapse_candidate_visits = 0
     source_spikes = 0
     target_spikes = 0
+    final_epoch_source_spikes = 0
+    final_epoch_target_spikes = 0
     core_step_seconds = 0.0
     stability: list[dict[str, Any]] = []
     run_started = time.perf_counter()
     for epoch in range(1, epochs + 1):
-        network.inject_current_batch(dict.fromkeys(source_ids, SOURCE_CURRENT))
+        cohort = epoch % COHORT_COUNT
+        active_sources = (
+            source_ids
+            if activity_profile == "uniform"
+            else source_ids[cohort::COHORT_COUNT]
+        )
+        active_targets = (
+            target_ids
+            if activity_profile == "uniform"
+            else target_ids[(cohort + 1) % COHORT_COUNT :: COHORT_COUNT]
+        )
+        network.inject_current_batch(dict.fromkeys(active_sources, SOURCE_CURRENT))
         source_result = network.step()
         core_step_seconds += source_result.core_step_ms / 1000.0
         source_spikes += len(source_result.spike_ids)
-        synapse_candidate_visits += sum(
+        final_epoch_source_spikes = len(source_result.spike_ids)
+        estimated_synapse_candidate_visits += sum(
             len(network.synapses[neuron_id]) for neuron_id in source_result.spike_ids
         )
 
-        network.inject_current_batch(dict.fromkeys(target_ids, SOURCE_CURRENT))
+        network.inject_current_batch(dict.fromkeys(active_targets, SOURCE_CURRENT))
         target_result = network.step()
         core_step_seconds += target_result.core_step_ms / 1000.0
         target_spikes += len(target_result.spike_ids)
-        synapse_candidate_visits += sum(
-            incoming_degree.get(neuron_id, 0) for neuron_id in target_result.spike_ids
-        )
-        learning.set_reward(REWARD_VALUE, target_result.tick)
-        synapse_candidate_visits += synapse_count
+        final_epoch_target_spikes = len(target_result.spike_ids)
+        if learning_enabled:
+            estimated_synapse_candidate_visits += sum(
+                incoming_degree.get(neuron_id, 0)
+                for neuron_id in target_result.spike_ids
+            )
+            learning.set_reward(REWARD_VALUE, target_result.tick)
+            estimated_synapse_candidate_visits += synapse_count
 
         if epoch % stability_interval == 0 or epoch == epochs:
             stability.append(_weight_snapshot(network, epoch))
@@ -220,6 +308,15 @@ def run_benchmark(
 
     final_snapshot = stability[-1]
     final_weight_count = network.synapse_count
+    weight_diversity_required = (
+        activity_profile == "heterogeneous_cohorts" and learning_enabled
+    )
+    stability_assessment = _assess_stability(
+        stability,
+        final_epoch_source_spikes=final_epoch_source_spikes,
+        final_epoch_target_spikes=final_epoch_target_spikes,
+        weight_diversity_required=weight_diversity_required,
+    )
     maximum_weight_drift = max(
         (
             abs(synapse.weight - initial_weights[(source_id, synapse.target_id)])
@@ -230,7 +327,7 @@ def run_benchmark(
     )
     stats = learning.stats
     return {
-        "schema_version": 1,
+        "schema_version": 2,
         "benchmark": "stage3_plastic_network_scale",
         "scope": "engineering_verification_only",
         "scientific_evidence": False,
@@ -239,6 +336,9 @@ def run_benchmark(
         "cpu": platform.processor() or None,
         "logical_processors": os.cpu_count(),
         "seed": seed,
+        "topology_sha256": _topology_digest(network),
+        "plasticity_mode": plasticity_mode,
+        "activity_profile": activity_profile,
         "topology": "deterministic_regular_bipartite",
         "neurons": neuron_count,
         "synapses": network.synapse_count,
@@ -252,21 +352,27 @@ def run_benchmark(
         "simulation_seconds": elapsed_seconds,
         "core_step_seconds": core_step_seconds,
         "ticks_per_second": epochs * 2 / elapsed_seconds if elapsed_seconds else None,
-        "synapse_candidate_visits": synapse_candidate_visits,
-        "synapse_candidate_visits_per_second": (
-            synapse_candidate_visits / elapsed_seconds if elapsed_seconds else None
+        "estimated_synapse_candidate_visits": estimated_synapse_candidate_visits,
+        "estimated_synapse_candidate_visits_per_second": (
+            estimated_synapse_candidate_visits / elapsed_seconds
+            if elapsed_seconds
+            else None
+        ),
+        "candidate_visit_estimate": (
+            "Outgoing adjacency traversals for source spikes, incoming learning "
+            "event traversals for target spikes, plus one full reward scan per epoch."
         ),
         "source_spikes": source_spikes,
         "target_spikes": target_spikes,
+        "final_epoch_source_spikes": final_epoch_source_spikes,
+        "final_epoch_target_spikes": final_epoch_target_spikes,
         "learning_stats": stats.to_dict(),
         "maximum_absolute_weight_drift": maximum_weight_drift,
         "weight_bounds": {"minimum": MIN_WEIGHT, "maximum": MAX_WEIGHT},
         "final_weights_finite": final_snapshot["finite_weights"],
         "final_out_of_bounds_weights": final_snapshot["out_of_bounds_weights"],
-        "stability_invariants_passed": all(
-            snapshot["finite_weights"] and snapshot["out_of_bounds_weights"] == 0
-            for snapshot in stability
-        ),
+        "weight_diversity_required": weight_diversity_required,
+        **stability_assessment,
         "final_at_lower_bound_fraction": (
             final_snapshot["at_lower_bound_count"] / final_weight_count
             if final_weight_count
@@ -280,18 +386,26 @@ def run_benchmark(
         "stability_snapshots": stability,
         "workload": {
             "topology": "source_i_to_targets[(i * out_degree + edge) % target_count]",
+            "seed_effect": "seeded permutation of target node order before edge assignment",
             "initial_weight": INITIAL_WEIGHT,
             "connection_delay_ticks": 1,
             "source_and_target_current": SOURCE_CURRENT,
             "reward_per_epoch": REWARD_VALUE,
             "stdp": {
                 "a_plus": STDP_A_PLUS,
-                "a_minus": STDP_A_MINUS,
+                "a_minus": a_minus,
                 "tau_ticks": STDP_TAU_TICKS,
             },
             "eligibility_tau_ticks": ELIGIBILITY_TAU_TICKS,
             "reward_learning_rate": REWARD_LEARNING_RATE,
             "reward_trace_reset": True,
+            "plasticity_mode": plasticity_mode,
+            "activity_profile": activity_profile,
+            "cohort_count": COHORT_COUNT,
+            "heterogeneous_profile_rule": (
+                "sources: index mod 4 = epoch mod 4; targets: index mod 4 = "
+                "(epoch + 1) mod 4"
+            ),
         },
         "stage3_target_range": {
             "neurons": list(STAGE3_NEURON_RANGE),
@@ -320,6 +434,14 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--memory-budget-mib", type=int, default=2048)
     parser.add_argument("--stability-interval", type=int, default=10)
+    parser.add_argument(
+        "--plasticity-mode", choices=sorted(PLASTICITY_MODES), default="asymmetric"
+    )
+    parser.add_argument(
+        "--activity-profile",
+        choices=sorted(ACTIVITY_PROFILES),
+        default="heterogeneous_cohorts",
+    )
     parser.add_argument("--output", type=Path)
     return parser.parse_args()
 
@@ -336,6 +458,8 @@ def main() -> int:
             seed=args.seed,
             memory_budget_bytes=args.memory_budget_mib * 1024**2,
             stability_interval=args.stability_interval,
+            plasticity_mode=args.plasticity_mode,
+            activity_profile=args.activity_profile,
         )
     except ValueError as exc:
         raise SystemExit(str(exc)) from exc
