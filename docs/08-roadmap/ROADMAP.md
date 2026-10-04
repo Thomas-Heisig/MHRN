@@ -2,7 +2,48 @@
 
 **Canonical roadmap for active `develop`; `main` is release-only**  
 **Baseline:** `mhrn-core 0.6.0a7`
-**Updated:** 2026-10-02
+**Updated:** 2026-10-04
+
+## 2026-10-04 Gateway Plastic preregistration and execution boundary
+
+- The seven registered `RQ-GW-*` operational protocols are `boundary_audit`
+  contracts with `direct_test_of_hypothesis=false`; their seed lists describe
+  audit reexecution, not independent Gateway Plastic runs.
+- The Gateway activation route accepts caller-provided preregistration JSON and
+  starts one runtime seed. There is no registered functional Plastic runner,
+  frozen input-frame sequence, or executable stop rule to define a reproducible
+  trial across independent runtime instances.
+- Keep registry-backed Plastic activation and multi-seed execution open until
+  a suitable frozen functional protocol and runner contract exist. No Gateway
+  DATA/EVID is inferred from the current audit protocols or activation status.
+
+## 2026-10-04 Stage-3 plastic-network scale benchmark
+
+- Added `scripts/benchmark_plastic_network.py`, separate from the small
+	mechanism reference. It uses a deterministic bipartite graph, a real
+	`LearningEngine` hook, preflight memory bounds, `asymmetric`, `symmetric`, and
+	`off` controls, and uniform or heterogeneous-cohort stimuli. Numeric
+	boundedness is reported separately from ongoing spikes, active-weight
+	fraction, and workload-required weight diversity. Candidate visits/s is an
+	operation-count estimate, not a hardware counter. Receipts include workload,
+	software and CPU metadata; all remain engineering-only.
+- Matched 10,000-neuron / 100,000-synapse runs (seed 42, 100 epochs): the
+	heterogeneous asymmetric profile ended with 56.25% of weights at the lower
+	bound, 43.75% active and positive variance; the symmetric profile ended with
+	43.75% at the lower bound and 18.75% at the upper bound; the learning-off
+	profile retained all weights at 0.05. The earlier uniform-input profile drove
+	all weights to zero. Its identical weights are expected under that symmetric
+	input/topology; it is not evidence by itself of an update implementation bug.
+- At 100,000 neurons / 1M synapses for 20 heterogeneous asymmetric epochs, the
+	measured Python peak was about 1.03 GB, the estimated candidate-visit rate
+	about 210k/s, and 50% of weights remained active. These workload-specific
+	profiles do not establish general or long-horizon stability.
+- The declared 100,000-neuron / 10M-synapse upper point remains unmeasured:
+	its preflight estimate is 19.45 GiB, exceeding this machine's available RAM.
+	Full Stage-3 scale benchmarking remains open pending suitable hardware.
+- Related work now includes verified STDP/homeostasis/continual-learning and
+	neural-simulator sources. No Brian 2/NEST/Norse head-to-head is claimed until
+	model semantics, workload, hardware, precision and timing policy are matched.
 
 ## 2026-10-02 CUDA-/Parity-UI-Provenienz
 
@@ -12,11 +53,20 @@
 	vorhandene Integrationsübersicht verknüpft Wave 4, FE-3, Hardware-Acceptance,
 	PAN Wave 5B und das nächste Gate.
 - Der CUDA-Status meldet den Repository-HEAD, kennzeichnet aber den
-	Working-Tree-Zustand als nicht erfasst. Playground-Antworten sind keine
-	persistierten Akzeptanzartefakte und melden fehlende Hardware-Identität
-	ausdrücklich.
-- Persistente Run-Receipts mit Source-Digest, Hardware-ID und Artefaktlink
-	sowie echter Fortschritt/Abbruch bleiben separate Engineering-Arbeit.
+	Source-Working-Tree-Digest, dessen Scope sowie geänderte relevante Pfade.
+- Abgeschlossene und fehlgeschlagene Diagnose-Requests werden als atomare,
+	SHA-256-geprüfte JSON-Receipts unter dem lokalen gitignorierten
+	`artifacts/cuda_diagnostics/` aufbewahrt und über einen validierten API-Link
+	abrufbar gemacht.
+- Hardware-Receipts enthalten bei erfolgreicher Auflösung GPU-Modell,
+	PCI-Bus-ID, Treiberversion und einen gehashten Geräte-UUID; wenn die Identität
+	nicht auflösbar ist, bleibt sie ausdrücklich `unavailable`.
+- Sichere Cancel-/Resume-Semantik fehlt weiterhin: CUDA-Rekurrenz läuft als
+	ein Kernel bis zur Synchronisierung; Builder-, Cue- und Transferläufe sind
+	blockierende Aufrufe ohne Cancel-Token/Resume-Checkpoint. Die UI darf daraus
+	keinen künstlichen Fortschritt oder unsicheren Abbruch ableiten.
+- Playground-Diagnostik bleibt Engineering-/Exploratory-Output, niemals DATA,
+	EVID oder Hardware-Acceptance. Echter Fortschritt/Abbruch bleibt offen.
 
 ## 2026-10-02 R0 Research-Catalog-Abschluss
 
@@ -147,6 +197,16 @@
 - Online-Antworten bleiben außerhalb des Git-Repositories verschlüsselt.
 - Nur geprüfte, nicht-identifizierende Aggregate dürfen später veröffentlicht
 	werden.
+- GitHub Pages export-only was provisioned at
+	<https://thomas-heisig.github.io/MHRN/>; GitHub reports HTTPS enforced.
+- Live smoke on 2026-10-04 found the page HTML but 404s for its CSS/JS because
+	canonical `main` still uses absolute `/review/...` paths. A relative-path fix
+	is present on `develop` (`6c417c2`), but that branch is nine commits ahead
+	with unrelated changes and has no open PR. Keep the fix behind the normal
+	release review before republishing.
+- Online collection remains disabled. No private study configuration,
+	persistent response store, backup/restore evidence or study-specific
+	privacy/ethics disposition is configured; GitHub Pages is not a collector.
 
 ## 2026-09-20 Publikationsnavigation
 
@@ -167,6 +227,7 @@
 - Current Hugging Face publication namespace: `ThomasHeisig`.
 - GitHub Actions uses the repository secrets `HF_USERNAME` and `HF_TOKEN`;
 	the token value is never stored in the repository.
+- The 2026-10-04 rolling mirror sync completed successfully in [GitHub Actions run 37201795384](https://github.com/Thomas-Heisig/MHRN/actions/runs/37201795384) for canonical `main` SHA `963d68d523b38096619e41743c8c4b5b2ac1d42c`. The research-data mirror manifest reports this SHA; the workflow publication step succeeded for all three targets.
 
 ## 2026-09-20 Experimentstatus in der Übersicht
 
@@ -186,7 +247,12 @@
 - Public provider identity/contact data are documented; a self-hosted public dashboard remains deployment-privacy-pending until the actual hosting/proxy/logging stack is known.
 - Edition 1.8 states explicitly that AI-assisted research is both disclosed tooling and a **methodological research object**; AI remains neither author nor evidence authority.
 - Independent external replication is an explicit post-publication objective. The original author does not self-certify novelty or scientific value.
-- Zenodo/DOI status remains external: a DOI is recorded only after a concrete archive exists.
+- Zenodo/DOI status remains external and version-specific. The published
+	Alpha.6 software archive is verified at
+	[Zenodo record 22860683](https://zenodo.org/records/22860683), version DOI
+	`10.5281/zenodo.22860683`, concept DOI `10.5281/zenodo.22860682`.
+- Alpha.7 has not yet been archived; the Recursive Epistemics 1.8 publication
+	package is separate and its DOI remains pending.
 
 
 ## 2026-09-19 Public ORCID authorship linking
@@ -195,8 +261,9 @@
 	ORCID `0009-0002-9589-1872`.
 - Runtime profile identity remains separate from public authorship identity.
 - Private ORCID contact data is not stored in the repository.
-- Zenodo release metadata now links the GitHub source and the same ORCID; the
-	external record/DOI remains unverified until a concrete Zenodo record exists.
+- Zenodo release metadata links the GitHub source and the same ORCID. The
+	Alpha.6 record is now externally verified; later versions require their own
+	published record and DOI reconciliation.
 - The public OSF project resource is linked as a research/provenance location.
 
 ## 2026-09-20 Seed DATA provenance
@@ -901,6 +968,16 @@ Tasks:
 **Goal:** demonstrate whether learning changes later behavior rather than merely internal weights.
 
 Maintain frozen protocol/configuration, train/validation/holdout separation, pre/post behavior probes, learning-off and sham/replay controls, independent seeds and human-review-gated EVID promotion.
+
+Audit 2026-10-04: the frozen `PREREG-GEN-001` requires at least 20 independent
+seeds and disjoint partitions. Its current `run_generalization` runner reports
+`validation_episodes_executed=0` and `holdout_episodes_executed=0`, so declared
+partition counts and drive-perturbation probes do not yet satisfy executed
+held-out evaluation. Existing `EXP-STDP-0002` is dirty/exploratory, uses three
+seeds under `RQ-STDP-001`, and has no human review/request; it cannot close R2.
+Do not execute the confirmatory campaign until the holdout stimulus/partition
+semantics are operationalized without changing the frozen acceptance criteria.
+Human evidence review remains a post-run gate.
 
 ---
 

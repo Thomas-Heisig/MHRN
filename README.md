@@ -7,7 +7,7 @@
 
 [![Release CI](https://github.com/Thomas-Heisig/MHRN/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Thomas-Heisig/MHRN/actions/workflows/ci.yml)
 [![Develop CI](https://github.com/Thomas-Heisig/MHRN/actions/workflows/ci.yml/badge.svg?branch=develop)](https://github.com/Thomas-Heisig/MHRN/actions/workflows/ci.yml)
-[![Release](https://img.shields.io/github/v/release/Thomas-Heisig/MHRN?include_prereleases&label=release)](https://github.com/Thomas-Heisig/MHRN/releases/tag/v0.6.0-alpha.7)
+[![Release](https://img.shields.io/github/v/release/Thomas-Heisig/MHRN?include_prereleases&label=release)](https://github.com/Thomas-Heisig/MHRN/releases)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-blue.svg)](https://www.python.org/)
 [![Publication](https://img.shields.io/badge/publication-1.8_WIP-blue.svg)](research/publications/CURRENT.md)
 [![License: MIT](https://img.shields.io/badge/license-MIT-yellow.svg)](LICENSE)
@@ -48,15 +48,15 @@ The sparse **5D SNN remains the primary adaptive system**. Language models, rese
 | Resource | Canonical route | Role |
 | --- | --- | --- |
 | Source | [GitHub · Thomas-Heisig/MHRN](https://github.com/Thomas-Heisig/MHRN) | canonical code, history and governed research artefacts |
-| Current software release | [v0.6.0-alpha.7](https://github.com/Thomas-Heisig/MHRN/releases/tag/v0.6.0-alpha.7) | immutable exact-green source freeze |
+| Published software release | [v0.6.0-alpha.6](https://github.com/Thomas-Heisig/MHRN/releases/tag/v0.6.0-alpha.6) | published pre-release; Alpha.7 remains a release candidate |
 | Author identity | [ORCID · 0009-0002-9589-1872](https://orcid.org/0009-0002-9589-1872) | persistent researcher identity |
 | Open Science Framework | [OSF · p34uq](https://osf.io/p34uq/) | project / open-science route |
 | Hugging Face | [ThomasHeisig/MHRN](https://huggingface.co/ThomasHeisig/MHRN) | rolling source/discovery mirror |
 | Hugging Face Space | [ThomasHeisig/MHRN-Space](https://huggingface.co/spaces/ThomasHeisig/MHRN-Space) | public dashboard mirror |
 | Research-data mirror | [ThomasHeisig/MHRN-Research-Data](https://huggingface.co/datasets/ThomasHeisig/MHRN-Research-Data) | rolling discovery mirror; not an immutable DOI dataset |
-| Zenodo | [Latest DOI / archived release](https://zenodo.org/badge/latestdoi/1335973891) | DOI archive for GitHub releases; badge resolves to the latest archived version once ingestion completes |
+| Zenodo software archive | [Alpha.6 record](https://zenodo.org/records/22860683) · [version DOI](https://doi.org/10.5281/zenodo.22860683) · [concept DOI](https://doi.org/10.5281/zenodo.22860682) | verified archive for `0.6.0-alpha.6`; the badge resolves to this record; Alpha.7 archive is still pending |
 
-The `v0.6.0-alpha.7` release candidate is based on the 27 September 2026 `develop` integration state `f267ffe5f17877149e47e39adcc1a095b6618d67`. Release-only metadata and documentation are finalized on `release/v0.6.0-alpha.7`; the authoritative tag/source-freeze is recorded only after the release PR has merged to `main` and the applicable release checks are green. The repository intentionally records a Zenodo DOI only after a real public Zenodo record exists. Release mechanics, tags and DOI assignment do not promote DATA to EVID.
+As checked on 4 October 2026, Alpha.7 has no published GitHub release or verified archive; integration merges into `main` do not themselves publish a tag or release. The `v0.6.0-alpha.7` release candidate is based on the 27 September 2026 `develop` integration state `f267ffe5f17877149e47e39adcc1a095b6618d67`. Release-only metadata and documentation are finalized on `release/v0.6.0-alpha.7`; the authoritative tag/source-freeze is recorded only after the release PR has merged to `main` and the applicable release checks are green. The repository intentionally records a Zenodo DOI only after a real public Zenodo record exists. Release mechanics, tags and DOI assignment do not promote DATA to EVID.
 
 ### Citation model
 
@@ -64,7 +64,7 @@ MHRN deliberately separates three citable research objects:
 
 | Object | Type | Current state |
 | --- | --- | --- |
-| **MHRN v0.6.0-alpha.7** | Software | Alpha.7 release line; authoritative tag/archive state is tracked in `releases/current.json` |
+| **MHRN v0.6.0-alpha.7** | Software | Alpha.7 release line; Zenodo archive pending, authoritative state tracked in `releases/current.json` |
 | **Recursive Epistemics / Rekursive Epistemik 1.8** | Publication / preprint | separate Zenodo publication package prepared; DOI pending |
 | **MHRN research data** | Dataset(s) | rolling discovery mirror exists; immutable experiment DOI deposits remain separate |
 
@@ -78,6 +78,7 @@ Use the **software DOI** when citing the implementation, the **publication DOI**
 
 The eleven-part structure planned for publication 2.0 is implemented now as **edition 1.8 WIP**, independently of the MHRN software version. It integrates the reconstructed prehistory, architecture, empirical programme, engineering, epistemology, attribution, ethics, recursive epistemics and open research.
 
+- [Compact findings and glossary](research/publications/2026-09-17_recursive-epistemics_v1.8/parts/01_origin.md) — updated synthesis includes the failed September run and October conceptual audits; no new EVID.
 - [Current manuscript](research/publications/2026-09-17_recursive-epistemics_v1.8/MANUSCRIPT.md)
 - [Research questions and hypotheses](research/publications/2026-09-17_recursive-epistemics_v1.8/RESEARCH_REGISTER.md)
 - [Complete baseline source inventory](research/publications/2026-09-17_recursive-epistemics_v1.8/SOURCE_INDEX.md)

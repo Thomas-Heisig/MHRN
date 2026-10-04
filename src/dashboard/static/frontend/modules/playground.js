@@ -422,7 +422,7 @@ function buildPanels(root) {
           <article class="playground-analysis-card"><h3>D2 Hardware-Parität · CUDA-1.3</h3><div data-pg-run-status="pending" data-for="pg-cuda-parity-state">PENDING · noch nicht ausgeführt</div><pre id="pg-cuda-parity-state">Noch kein Hardware-Smoke.</pre></article>
           <article class="playground-analysis-card"><h3>RNG ε-greedy · CUDA-1.3</h3><div data-pg-run-status="pending" data-for="pg-cuda-rng-state">PENDING · noch nicht ausgeführt</div><pre id="pg-cuda-rng-state">Noch kein RNG-Paritätstest.</pre></article>
           <article class="playground-analysis-card"><h3>CUDA-1.4 · Rekurrente Membran-Parität</h3><p>129 AdEx-Neuronen, statische Synapsen und Delays; FP64-Referenz. Noch kein vollständiger PAN-GPU-Lauf.</p><div data-pg-run-status="pending" data-for="pg-cuda-recurrent-state">PENDING · noch nicht ausgeführt</div><pre id="pg-cuda-recurrent-state">Noch kein Mehrtakt-Test.</pre></article>
-          <article class="playground-analysis-card"><h3>CUDA-1.5 · GPU-Plastizität</h3><p>STP, STDP, Eligibility und eingefrorene Reward-Folge; FP64-Referenz. Der Live-Regelkreis ist ein separater Schritt.</p><div data-pg-run-status="pending" data-for="pg-cuda-plasticity-state">PENDING · noch nicht ausgeführt</div><pre id="pg-cuda-plasticity-state">Noch kein Plastizitätstest.</pre><p>Builder-D3: echte Aktionen und Koerpertrajektorie; Membran auf GPU, Synapsen und Umwelt auf CPU.</p><div data-pg-run-status="pending" data-for="pg-cuda-builder-parity-state">PENDING · noch nicht ausgeführt</div><pre id="pg-cuda-builder-parity-state">Noch kein Builder-Vergleich.</pre><p>Cue-Experiment: passend / randomisiert / entfernt, jeweils mit und ohne Pair-STDP. Ohne Policy-Strom und Koerperrueckkopplung; kein automatischer Lernnachweis.</p><div data-pg-run-status="pending" data-for="pg-cue-controls-state">PENDING · noch nicht ausgeführt</div><pre id="pg-cue-controls-state">Noch kein Cue-Experiment.</pre><p id="pg-transfer-summary">Transfer: vortrainierte Gewichte gegen frische Initialisierung auf neuen Cue-Kanaelen. Alle anderen Zustaende werden zurueckgesetzt.</p><details><summary>Transfer-Protokoll und Decoder-Kurven</summary><div id="pg-transfer-run-status" data-pg-run-status="pending">PENDING · noch nicht ausgeführt</div><pre id="pg-transfer-state" style="max-height:360px;overflow:auto">Noch kein Transfer-Vergleich.</pre></details></article>
+          <article class="playground-analysis-card"><h3>CUDA-1.5 · GPU-Plastizität</h3><p>STP, STDP, Eligibility und eingefrorene Reward-Folge; FP64-Referenz. Der Live-Regelkreis ist ein separater Schritt.</p><div data-pg-run-status="pending" data-for="pg-cuda-plasticity-state">PENDING · noch nicht ausgeführt</div><pre id="pg-cuda-plasticity-state">Noch kein Plastizitätstest.</pre><p>Builder-D3: echte Aktionen und Koerpertrajektorie; Membran auf GPU, Synapsen und Umwelt auf CPU.</p><div data-pg-run-status="pending" data-for="pg-cuda-builder-parity-state">PENDING · noch nicht ausgeführt</div><pre id="pg-cuda-builder-parity-state">Noch kein Builder-Vergleich.</pre><p>Cue-Experiment: passend / randomisiert / entfernt, jeweils mit und ohne Pair-STDP. Ohne Policy-Strom und Koerperrueckkopplung; kein automatischer Lernnachweis.</p><div data-pg-run-status="pending" data-for="pg-cue-controls-state">PENDING · noch nicht ausgeführt</div><pre id="pg-cue-controls-state">Noch kein Cue-Experiment.</pre><p id="pg-transfer-summary">Transfer: vortrainierte Gewichte gegen frische Initialisierung auf neuen Cue-Kanaelen. Alle anderen Zustaende werden zurueckgesetzt.</p><div id="pg-transfer-run-status" data-pg-run-status="pending">PENDING · noch nicht ausgeführt</div><details><summary>Transfer-Protokoll und Decoder-Kurven</summary><pre id="pg-transfer-state" style="max-height:360px;overflow:auto">Noch kein Transfer-Vergleich.</pre></details></article>
         </div>
         <pre id="pg-cuda-compiler-state">Noch kein CUDA-/Parity-Lauf.</pre>
       </article>
@@ -1049,11 +1049,22 @@ async function runCudaDiagnostic(nodeId, operation, renderResult = (result) => J
   const startedAt=new Date();
   const commit=cudaRuntimeStatus?.provenance?.git_commit||"unbekannt";
   let hardwareIdentity="nicht ausgewiesen";
-  const updateStatus=(state,finishedAt=null)=>{
+  const updateStatus=(state,finishedAt=null,evidence=null)=>{
     if(!status)return;
     status.dataset.status=state.toLowerCase();
-    const elapsed=((finishedAt||new Date())-startedAt)/1000;
-    status.textContent=`${state} · Start ${startedAt.toLocaleString()}${finishedAt?` · Ende ${finishedAt.toLocaleString()}`:""} · ${elapsed.toFixed(1)} s · HEAD ${commit} (Working Tree nicht erfasst) · Hardware ${hardwareIdentity} · Artefakt nicht persistiert`;
+    const persistedStart=evidence?.started_at?new Date(evidence.started_at):startedAt;
+    const persistedEnd=evidence?.completed_at?new Date(evidence.completed_at):finishedAt;
+    const elapsed=evidence?.duration_seconds??((persistedEnd||new Date())-persistedStart)/1000;
+    const runCommit=evidence?.provenance?.git_commit||commit;
+    const tree=evidence?.provenance?.working_tree_digest;
+    const treeLabel=tree?tree.slice(0,12):"nicht verfuegbar";
+    const device=evidence?.hardware_identity;
+    const runHardware=device?.status==="captured"?`${device.model||"GPU"} ${device.pci_bus_id||""}`.trim():device?.status==="unavailable"?`nicht erfasst (${device.reason||"unbekannt"})`:hardwareIdentity;
+    status.replaceChildren(document.createTextNode(`${state} · Start ${persistedStart.toLocaleString()}${persistedEnd?` · Ende ${persistedEnd.toLocaleString()}`:""} · ${Number(elapsed).toFixed(1)} s · HEAD ${runCommit} · Tree ${treeLabel} · Hardware ${runHardware}`));
+    if(evidence?.persistence_status==="persisted"&&evidence.artifact_url){
+      status.append(document.createTextNode(" · "));
+      const link=document.createElement("a");link.href=evidence.artifact_url;link.target="_blank";link.rel="noopener noreferrer";link.textContent="JSON-Artefakt";status.append(link);
+    }else status.append(document.createTextNode(state==="RUNNING"?" · Beleg wird erstellt":" · Artefakt nicht persistiert"));
   };
   updateStatus("RUNNING");
   const timer=window.setInterval(()=>updateStatus("RUNNING"),1000);
@@ -1062,11 +1073,11 @@ async function runCudaDiagnostic(nodeId, operation, renderResult = (result) => J
     const passed=result?.passed===true||result?.parity?.passed===true;
     const failed=result?.passed===false||result?.parity?.passed===false;
     hardwareIdentity=result?.gpu_identity||result?.hardware?.gpu_identity||result?.preflight?.device_name||result?.first?.launch?.device_name||"nicht ausgewiesen";
-    updateStatus(passed?"PASSED":failed?"FAILED":"COMPLETED",new Date());
+    updateStatus(passed?"PASSED":failed?"FAILED":"COMPLETED",new Date(),result?.run_evidence);
     if(node)node.textContent=renderResult(result);
     return result;
   }catch(error){
-    updateStatus("FAILED",new Date());
+    updateStatus("FAILED",new Date(),error?.payload?.run_evidence);
     if(node)node.textContent=String(error.message||error);
     throw error;
   }finally{

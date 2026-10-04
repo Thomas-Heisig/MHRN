@@ -50,6 +50,28 @@ def test_current_release_matches_canonical_published_version() -> None:
     assert current["scientific_maturity"]["automatic_evidence_promotion"] is False
 
 
+def test_zenodo_archive_is_bound_to_alpha6_not_pending_alpha7() -> None:
+    identity = json.loads((ROOT / "project_identity.json").read_text(encoding="utf-8"))
+    alpha6 = _release("v0.6.0-alpha.6.json")
+    current = _release("current.json")
+
+    assert identity["platforms"]["zenodo"] == {
+        "integration": "github_release_archive",
+        "metadata_file": ".zenodo.json",
+        "source_repository": "https://github.com/Thomas-Heisig/MHRN",
+        "record_url": "https://zenodo.org/records/22860683",
+        "doi": "10.5281/zenodo.22860683",
+        "concept_doi": "10.5281/zenodo.22860682",
+        "record_version": "0.6.0-alpha.6",
+        "status": "published_verified",
+        "creator_orcid": "0009-0002-9589-1872",
+    }
+    assert alpha6["publication_state"]["zenodo"] == "published_verified"
+    assert alpha6["publication_state"]["doi"] == "10.5281/zenodo.22860683"
+    assert current["publication_state"]["zenodo"] == "awaiting_github_release_archive"
+    assert current["publication_state"]["doi"] is None
+
+
 def test_alpha6_release_preserves_verified_historical_boundary() -> None:
     release = _release("v0.5.0-alpha.6.json")
 

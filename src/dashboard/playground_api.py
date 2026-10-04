@@ -2,16 +2,32 @@
 
 from __future__ import annotations
 
+import csv
+import hashlib
+import hmac
+import io
+import json
+import os
+import re
 import shutil
+import subprocess
 import threading
 import time
+import uuid
 from collections import deque
 from collections.abc import Callable, Mapping
 from dataclasses import replace
+from datetime import datetime, timezone
+from http import HTTPStatus
 from pathlib import Path
 from typing import cast
 
-from src.dashboard.verification import current_git_head
+from src.dashboard.verification import (
+    SCIENTIFIC_PATHS,
+    TEST_PATHS,
+    current_git_head,
+    inspect_source_tree,
+)
 from src.playground import service
 from src.playground.cuda import (
     CompileBundle,
@@ -44,10 +60,325 @@ from src.playground.pan.transfer import run_synaptic_transfer
 _MAX_CONCURRENT_RUNS = 2
 _RUNS_PER_MINUTE = 20
 _RUN_WINDOW_SECONDS = 60.0
+_CUDA_DIAGNOSTIC_ID = re.compile(r"[0-9a-f]{32}")
+_CUDA_DIAGNOSTIC_MAX_BYTES = 8 * 1024 * 1024
+_REPO_ROOT = Path(__file__).resolve().parents[2]
+_CUDA_DIAGNOSTIC_URL_PREFIX = "/api/playground/cuda/diagnostics/"
 
 _RUN_SEMAPHORE = threading.BoundedSemaphore(_MAX_CONCURRENT_RUNS)
 _RATE_LOCK = threading.Lock()
 _RECENT_RUNS: deque[float] = deque()
+
+
+def _canonical_artifact_bytes(artifact: Mapping[str, object]) -> bytes:
+    return json.dumps(
+        artifact, sort_keys=True, ensure_ascii=True, separators=(",", ":")
+    ).encode("utf-8")
+
+
+def _write_cuda_diagnostic_artifact(
+    repo_root: Path, artifact: Mapping[str, object]
+) -> tuple[Path, str]:
+    artifact_id = artifact.get("artifact_id")
+    if not isinstance(artifact_id, str) or not _CUDA_DIAGNOSTIC_ID.fullmatch(
+        artifact_id
+    ):
+        raise ValueError("CUDA diagnostic artifact ID is invalid")
+
+    directory = repo_root / "artifacts" / "cuda_diagnostics"
+    directory.mkdir(mode=0o700, parents=True, exist_ok=True)
+    if os.name != "nt":
+        directory.chmod(0o700)
+    record = dict(artifact)
+    artifact_digest = hashlib.sha256(_canonical_artifact_bytes(record)).hexdigest()
+    record["artifact_sha256"] = artifact_digest
+    serialized = json.dumps(record, sort_keys=True, indent=2, ensure_ascii=True) + "\n"
+    encoded = serialized.encode("utf-8")
+    if len(encoded) > _CUDA_DIAGNOSTIC_MAX_BYTES:
+        raise ValueError("CUDA diagnostic artifact exceeds the 8 MiB limit")
+
+    destination = directory / f"{artifact_id}.json"
+    temporary = directory / f".{artifact_id}.{uuid.uuid4().hex}.tmp"
+    try:
+        temporary.write_bytes(encoded)
+        if os.name != "nt":
+            temporary.chmod(0o600)
+        os.replace(temporary, destination)
+    finally:
+        temporary.unlink(missing_ok=True)
+    return destination, artifact_digest
+
+
+def _load_cuda_diagnostic_artifact(
+    repo_root: Path, artifact_id: str
+) -> dict[str, object]:
+    if not _CUDA_DIAGNOSTIC_ID.fullmatch(artifact_id):
+        raise ValueError("CUDA diagnostic artifact ID is invalid")
+    path = repo_root / "artifacts" / "cuda_diagnostics" / f"{artifact_id}.json"
+    value = json.loads(path.read_text(encoding="utf-8"))
+    if not isinstance(value, dict):
+        raise ValueError("CUDA diagnostic artifact is malformed")
+    record = dict(cast(dict[str, object], value))
+    if record.get("artifact_id") != artifact_id:
+        raise ValueError("CUDA diagnostic artifact is malformed")
+    recorded_digest = record.pop("artifact_sha256", None)
+    actual_digest = hashlib.sha256(_canonical_artifact_bytes(record)).hexdigest()
+    if not isinstance(recorded_digest, str) or not hmac.compare_digest(
+        recorded_digest, actual_digest
+    ):
+        raise ValueError("CUDA diagnostic artifact digest mismatch")
+    record["artifact_sha256"] = recorded_digest
+    return record
+
+
+def _cuda_hardware_identity(device_ordinal: int) -> dict[str, object]:
+    executable = shutil.which("nvidia-smi")
+    if executable is None:
+        return {
+            "status": "unavailable",
+            "source": "nvidia-smi",
+            "device_ordinal": device_ordinal,
+            "reason": "nvidia-smi_not_found",
+        }
+    try:
+        completed = subprocess.run(
+            [
+                executable,
+                "--query-gpu=index,name,uuid,pci.bus_id,driver_version",
+                "--format=csv,noheader,nounits",
+            ],
+            capture_output=True,
+            check=False,
+            text=True,
+            timeout=5,
+        )
+    except (OSError, subprocess.SubprocessError) as exc:
+        return {
+            "status": "unavailable",
+            "source": "nvidia-smi",
+            "device_ordinal": device_ordinal,
+            "reason": type(exc).__name__,
+        }
+    if completed.returncode != 0:
+        return {
+            "status": "unavailable",
+            "source": "nvidia-smi",
+            "device_ordinal": device_ordinal,
+            "reason": "query_failed",
+        }
+
+    rows = [
+        [value.strip() for value in row]
+        for row in csv.reader(io.StringIO(completed.stdout), skipinitialspace=True)
+        if row
+    ]
+    selector = os.environ.get("CUDA_VISIBLE_DEVICES")
+    visible = selector.split(",") if selector is not None else None
+    if visible is not None:
+        if device_ordinal >= len(visible):
+            return {
+                "status": "unavailable",
+                "source": "nvidia-smi",
+                "device_ordinal": device_ordinal,
+                "reason": "device_not_visible",
+            }
+        selected = visible[device_ordinal].strip()
+        if selected.isdecimal():
+            match = next((row for row in rows if row[0] == selected), None)
+        elif selected.startswith("GPU-"):
+            match = next(
+                (row for row in rows if len(row) > 2 and row[2] == selected), None
+            )
+        else:
+            match = None
+    else:
+        match = next((row for row in rows if row[0] == str(device_ordinal)), None)
+
+    if match is None or len(match) < 5 or match[2] in {"", "N/A"}:
+        return {
+            "status": "unavailable",
+            "source": "nvidia-smi",
+            "device_ordinal": device_ordinal,
+            "reason": "device_identity_unresolved",
+        }
+    return {
+        "status": "captured",
+        "source": "nvidia-smi",
+        "device_ordinal": device_ordinal,
+        "physical_index": match[0],
+        "model": match[1],
+        "device_uuid_sha256": hashlib.sha256(match[2].encode("utf-8")).hexdigest(),
+        "pci_bus_id": match[3],
+        "driver_version": match[4],
+    }
+
+
+def _working_tree_provenance(repo_root: Path) -> dict[str, object]:
+    try:
+        inspection = inspect_source_tree(repo_root)
+    except (OSError, ValueError, subprocess.SubprocessError) as exc:
+        return {
+            "git_commit": current_git_head(repo_root),
+            "working_tree_digest": None,
+            "working_tree_digest_status": type(exc).__name__,
+            "working_tree_digest_scope": [*SCIENTIFIC_PATHS, *TEST_PATHS],
+        }
+    dirty = bool(
+        inspection.dirty_relevant_paths
+        or inspection.untracked_relevant_paths
+        or inspection.missing_relevant_paths
+    )
+    return {
+        "git_commit": current_git_head(repo_root),
+        "working_tree_digest": inspection.digest,
+        "working_tree_digest_status": (
+            "captured" if inspection.digest else "unavailable"
+        ),
+        "working_tree_state": (
+            "unknown"
+            if not inspection.git_available
+            else "modified" if dirty else "clean"
+        ),
+        "working_tree_digest_scope": [*SCIENTIFIC_PATHS, *TEST_PATHS],
+        "dirty_relevant_paths": list(inspection.dirty_relevant_paths),
+        "untracked_relevant_paths": list(inspection.untracked_relevant_paths),
+        "missing_relevant_paths": list(inspection.missing_relevant_paths),
+    }
+
+
+def _diagnostic_outcome(result: Mapping[str, object]) -> str:
+    passed = result.get("passed")
+    if isinstance(passed, bool):
+        return "passed" if passed else "failed"
+    parity = result.get("parity")
+    if isinstance(parity, Mapping):
+        parity_passed = cast(Mapping[str, object], parity).get("passed")
+        if isinstance(parity_passed, bool):
+            return "passed" if parity_passed else "failed"
+    actions_exact = result.get("actions_exact")
+    if isinstance(actions_exact, bool):
+        return "passed" if actions_exact else "failed"
+    return "not_evaluated"
+
+
+def _diagnostic_http_status(exc: Exception) -> int:
+    if isinstance(exc, (ValueError, TypeError, json.JSONDecodeError)):
+        return HTTPStatus.BAD_REQUEST
+    if isinstance(exc, FileNotFoundError):
+        return HTTPStatus.NOT_FOUND
+    if isinstance(exc, TimeoutError):
+        return HTTPStatus.GATEWAY_TIMEOUT
+    if isinstance(exc, RuntimeError):
+        return HTTPStatus.SERVICE_UNAVAILABLE
+    return HTTPStatus.INTERNAL_SERVER_ERROR
+
+
+def _run_cuda_diagnostic(
+    route: str,
+    payload: Mapping[str, object],
+    operation: Callable[[], dict[str, object]],
+    *,
+    repo_root: Path | None = None,
+) -> dict[str, object]:
+    root = repo_root or _REPO_ROOT
+    started = datetime.now(timezone.utc)
+    artifact_id = uuid.uuid4().hex
+    ordinal = payload.get("device_ordinal", 0)
+    device_ordinal = (
+        ordinal
+        if isinstance(ordinal, int) and not isinstance(ordinal, bool) and ordinal >= 0
+        else 0
+    )
+    provenance = _working_tree_provenance(root)
+    hardware = _cuda_hardware_identity(device_ordinal)
+    try:
+        result = operation()
+    except Exception as exc:
+        completed = datetime.now(timezone.utc)
+        record: dict[str, object] = {
+            "schema_version": "mhrn.cuda-diagnostic.v1",
+            "artifact_id": artifact_id,
+            "route": route,
+            "execution_status": "failed",
+            "outcome": "error",
+            "started_at": started.isoformat(),
+            "completed_at": completed.isoformat(),
+            "duration_seconds": (completed - started).total_seconds(),
+            "request_sha256": hashlib.sha256(
+                _canonical_artifact_bytes(payload)
+            ).hexdigest(),
+            "provenance": provenance,
+            "hardware_identity": hardware,
+            "error_type": type(exc).__name__,
+            "error": str(exc)[:1000],
+            "scientific_evidence": False,
+        }
+        _attach_cuda_diagnostic_receipt(exc, root, record)
+        raise
+
+    completed = datetime.now(timezone.utc)
+    record = {
+        "schema_version": "mhrn.cuda-diagnostic.v1",
+        "artifact_id": artifact_id,
+        "route": route,
+        "execution_status": "completed",
+        "outcome": _diagnostic_outcome(result),
+        "started_at": started.isoformat(),
+        "completed_at": completed.isoformat(),
+        "duration_seconds": (completed - started).total_seconds(),
+        "request_sha256": hashlib.sha256(
+            _canonical_artifact_bytes(payload)
+        ).hexdigest(),
+        "provenance": provenance,
+        "hardware_identity": hardware,
+        "result": result,
+        "scientific_evidence": False,
+    }
+    receipt = _attach_cuda_diagnostic_receipt(None, root, record)
+    response = dict(result)
+    response["run_evidence"] = receipt
+    return response
+
+
+def _attach_cuda_diagnostic_receipt(
+    error: Exception | None,
+    repo_root: Path,
+    record: dict[str, object],
+) -> dict[str, object]:
+    artifact_id = cast(str, record["artifact_id"])
+    receipt: dict[str, object] = {
+        "artifact_id": artifact_id,
+        "artifact_url": f"/api/playground/cuda/diagnostics/{artifact_id}",
+        "execution_status": record["execution_status"],
+        "outcome": record["outcome"],
+        "started_at": record["started_at"],
+        "completed_at": record["completed_at"],
+        "duration_seconds": record["duration_seconds"],
+        "provenance": record["provenance"],
+        "hardware_identity": record["hardware_identity"],
+    }
+    record["artifact_url"] = receipt["artifact_url"]
+    try:
+        _, artifact_digest = _write_cuda_diagnostic_artifact(repo_root, record)
+    except (OSError, TypeError, ValueError) as exc:
+        receipt["persistence_status"] = "failed"
+        receipt["persistence_error"] = type(exc).__name__
+        receipt["artifact_url"] = None
+    else:
+        receipt["persistence_status"] = "persisted"
+        receipt["artifact_sha256"] = artifact_digest
+    if error is not None:
+        setattr(error, "run_evidence", receipt)
+        setattr(error, "run_http_status", _diagnostic_http_status(error))
+    return receipt
+
+
+def _bounded_cuda_diagnostic(
+    route: str,
+    payload: Mapping[str, object],
+    operation: Callable[[], dict[str, object]],
+) -> dict[str, object]:
+    return _bounded_operation(lambda: _run_cuda_diagnostic(route, payload, operation))
 
 
 def _payload_int(
@@ -475,6 +806,14 @@ def get_playground(path: str) -> dict[str, object] | None:
     if path.startswith("/api/playground/sessions/"):
         session_id = path[len("/api/playground/sessions/") :]
         return service.replay(session_id)
+    if path.startswith(_CUDA_DIAGNOSTIC_URL_PREFIX):
+        artifact_id = path[len(_CUDA_DIAGNOSTIC_URL_PREFIX) :]
+        if not _CUDA_DIAGNOSTIC_ID.fullmatch(artifact_id):
+            return None
+        try:
+            return _load_cuda_diagnostic_artifact(_REPO_ROOT, artifact_id)
+        except FileNotFoundError:
+            return None
     if path == "/api/playground/night":
         return _NIGHT_RUN.status()
     if path == "/api/playground/cuda/status":
@@ -501,10 +840,14 @@ def post_playground(
         return transfer_element(payload)
 
     if path == "/api/playground/research/synaptic-transfer":
-        return _bounded_operation(lambda: run_synaptic_transfer(payload))
+        return _bounded_cuda_diagnostic(
+            path, payload, lambda: run_synaptic_transfer(payload)
+        )
 
     if path == "/api/playground/research/cue-controls":
-        return _bounded_operation(lambda: run_cue_controls(payload))
+        return _bounded_cuda_diagnostic(
+            path, payload, lambda: run_cue_controls(payload)
+        )
 
     if path == "/api/playground/determinism":
         return service.determinism(payload)
@@ -522,19 +865,25 @@ def post_playground(
         ).to_mapping()
 
     if path == "/api/playground/cuda/preflight":
-        return _bounded_operation(lambda: _cuda_preflight(payload))
+        return _bounded_cuda_diagnostic(path, payload, lambda: _cuda_preflight(payload))
 
     if path == "/api/playground/cuda/smoke":
-        return _bounded_operation(lambda: _cuda_smoke(payload))
+        return _bounded_cuda_diagnostic(path, payload, lambda: _cuda_smoke(payload))
 
     if path == "/api/playground/cuda/rng-parity":
-        return _bounded_operation(lambda: _cuda_rng_parity(payload))
+        return _bounded_cuda_diagnostic(
+            path, payload, lambda: _cuda_rng_parity(payload)
+        )
 
     if path == "/api/playground/cuda/builder-parity":
-        return _bounded_operation(lambda: run_builder_parity(payload))
+        return _bounded_cuda_diagnostic(
+            path, payload, lambda: run_builder_parity(payload)
+        )
 
     if path == "/api/playground/cuda/recurrent-parity":
-        return _bounded_operation(lambda: _cuda_recurrent_parity(payload))
+        return _bounded_cuda_diagnostic(
+            path, payload, lambda: _cuda_recurrent_parity(payload)
+        )
 
     if path == "/api/playground/night/start":
         return _NIGHT_RUN.start(

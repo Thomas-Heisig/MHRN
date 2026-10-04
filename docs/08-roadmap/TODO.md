@@ -22,7 +22,9 @@
 - [x] Public ORCID authorship link in project, citation and provenance metadata.
 - [x] Keep private ORCID contact data out of the repository.
 - [x] Add GitHub-to-Zenodo release metadata with the public ORCID creator link.
-- [ ] Add a verified Zenodo record URL and DOI after the external record exists.
+- [x] Add the verified Zenodo Alpha.6 record URL, version DOI and concept DOI:
+	<https://zenodo.org/records/22860683>, `10.5281/zenodo.22860683`,
+	`10.5281/zenodo.22860682`. Alpha.7 and publication 1.8 remain separate.
 - [x] Link the public OSF project as a research/provenance resource.
 
 ## 2026-09-20 Seed DATA documentation
@@ -39,7 +41,7 @@
 ## 2026-09-20 Hugging Face namespace
 
 - [x] Update the GitHub Actions username secret to `ThomasHeisig`.
-- [ ] Rerun the Hugging Face publication after the current LFS rate limit clears.
+- [x] Rerun the Hugging Face publication after the current LFS rate limit clears. GitHub Actions run [37201795384](https://github.com/Thomas-Heisig/MHRN/actions/runs/37201795384) succeeded on `main` at `963d68d523b38096619e41743c8c4b5b2ac1d42c`; the workflow's publication step completed for the model, Space, and research-data mirrors.
 
 ## 2026-09-26 External Review Deployment
 
@@ -47,6 +49,9 @@
 - [x] Isolated Hugging Face Docker deployment prepared.
 - [x] Sanitized aggregate export implemented and tested.
 - [ ] Configure and independently review the real public domain, storage, TLS, backups and legal study settings.
+- [x] Provision GitHub Pages in workflow-only mode at <https://thomas-heisig.github.io/MHRN/>; GitHub reports HTTPS enforced and workflow run [37202191034](https://github.com/Thomas-Heisig/MHRN/actions/runs/37202191034) published the static artifact.
+- [ ] Fix and publish the Pages-root asset paths on canonical `main`, then repeat the live smoke test. Current live HTML loads, but CSS/JS requests to `/review/review.css` and `/review/app.js` return 404. The relative-path fix is on `develop` (`6c417c2`); `origin/develop` is 9 commits ahead of `main` and no PR is open, so do not deploy that branch wholesale.
+- Audit 2026-10-04: Pages is export-only and has no central response storage. The private study config is absent; the example remains disabled with legal/contact placeholders, and the Compose volume is not a backup plan. Online collection, backup/restore, custom-domain DNS/TLS and study-specific legal/ethics review remain unconfigured. Keep collection disabled.
 - [x] Make experiment cards open a complete detail dialog with form prefill.
 
 ## 2026-09-20 Publication navigation
@@ -68,13 +73,25 @@ MHRN / Multi-Scale Homeostatic Recurrence Network. Publication: Recursive Episte
 - [x] Laufstatus für CUDA-Smoke, RNG, rekurrente Parität, Plastizität,
 	Builder-D3, Cue-Kontrollen und Transfer sichtbar machen.
 - [x] Start/Endzeit, Laufzeit und servergemeldeten HEAD je Request anzeigen;
-	fehlender CUDA-Gerätename und nicht persistierte Artefakte bleiben explizit.
+	fehlende Hardware-Identität und fehlgeschlagene Persistenz bleiben explizit.
 - [x] CUDA-1.3, CUDA-1.4 und CUDA-1.5 in Ergebnisflächen trennen und auf die
 	vorhandene Wave-/FE-3-/Hardware-/PAN-Governance-Übersicht verweisen.
-- [ ] Laufbelege persistent speichern und mit Working-Tree-Digest, exakter
-	Hardware-Identität sowie abrufbarem JSON-Artefakt verknüpfen.
+- [x] CUDA-/Parity-, Cue-Control- und Transfer-Läufe als atomare JSON-Receipts
+	unter dem gitignorierten `artifacts/cuda_diagnostics/` speichern; Start/Ende,
+	Outcome, Request-Hash, HEAD, Source-Working-Tree-Digest samt Scope, geänderte
+	Sourcepfade und ein SHA-256-Prüfhash werden aufgezeichnet. Ein ID-validierter
+	GET-Link ist im Run-Status verfügbar, auch bei fehlgeschlagenen Runs.
+- [x] Hardware soweit verfügbar exakt zuordnen (GPU-Modell, PCI-Bus-ID,
+	Treiber und gehashte UUID); nicht auflösbare Identität wird als unavailable
+	markiert und nie als Hardware-Akzeptanz gewertet.
 - [ ] Echten Fortschritt und Abbruch nur dann anbieten, wenn die Backendläufe
 	dafür sichere Checkpoints/Abbruchsemantik bereitstellen.
+- Audit 2026-10-04: Die CUDA-Rekurrenz startet den gesamten Tick-Horizont als
+	einen kooperativen Kernel und synchronisiert erst danach; Builder-, Cue- und
+	Transferdiagnosen rufen blockierende Läufe ohne Cancel-Token oder Resume-
+	Checkpoint auf. Die UI zeigt nur Request-Zustand/Laufzeit, keinen Prozent-
+	Fortschritt oder Abbruch. Nicht anbieten, bis Backend-Grenzen und Cleanup-
+	Tests sichere Unterbrechung belegen.
 
 ## 2026-09-27 Alpha.7 Release
 
@@ -146,6 +163,14 @@ MHRN / Multi-Scale Homeostatic Recurrence Network. Publication: Recursive Episte
 - [x] Generate JSON state and Markdown report artifacts for Gateway activations.
 - [x] Preserve the boundary that Gateway activity and reports are not scientific evidence.
 - [ ] Add preregistration registry lookup and independent multi-seed execution for Plastic runs.
+- Audit 2026-10-04: `RQ-GW-001` through `RQ-GW-007` currently resolve only to
+  `boundary_audit` protocols; their three-seed audit reexecutions are not
+  Plastic DATA. The Gateway API accepts a caller-supplied preregistration object
+  and activates one seed, while no registered Plastic runner, frozen input-frame
+  sequence, or stop-rule execution contract exists. Keep this item open: do not
+  count arbitrary JSON or boundary-audit seeds as registry lookup or independent
+  Plastic execution. A suitable frozen functional protocol and runner contract
+  are prerequisites.
 
 ## 2026-09-16 Experiment archive results viewer
 
@@ -181,8 +206,41 @@ MHRN / Multi-Scale Homeostatic Recurrence Network. Publication: Recursive Episte
   verification artifact without automatic EVID promotion.
 - [ ] Close R2 productive-learning evidence with preregistered independent
   runs, held-out evaluation and human evidence review.
+- Audit 2026-10-04: `PREREG-GEN-001` is frozen/confirmatory and requires at
+	least 20 independent seeds, but `run_generalization` reports zero executed
+	validation and holdout episodes; declared partition counts are not executed
+	evaluation. Existing `EXP-STDP-0002` is a dirty, exploratory three-seed run
+	for `RQ-STDP-001`, not a substitute for `RQ-GEN-001`, and has no human review
+	or review request. Do not launch/promote this path until holdout execution is
+	protocol-faithful and auditable; human review remains a separate required gate.
 - [ ] Benchmark plastic-network stability/throughput at the declared Stage-3
   target scale separately from the mechanism contract.
+- [x] Add a separate deterministic plastic-network benchmark with a preflight
+	memory estimate, real LearningEngine hooks, reward updates, weight-bound
+	snapshots, throughput and workload/hardware provenance.
+- [x] Execute the 10k-neuron/100k-synapse lower bound (100 epochs) and
+	100k-neuron/1M-synapse point (20 epochs); both remained finite and within
+	configured weight bounds. The lower-bound run reached the minimum weight on
+	100% of synapses by epoch 100, an explicit saturation finding.
+- [x] Add asymmetric-STDP, symmetric-STDP and learning-off profiles plus
+	deterministic heterogeneous cohorts; distinguish numeric bounds, active
+	weights, ongoing spikes and workload-dependent weight diversity.
+- [x] Re-run matched 10k/100k profiles for 100 epochs. Asymmetric STDP ended
+	with 56.25% at the lower bound and 43.75% active; symmetric STDP ended with
+	43.75% at the lower bound and 18.75% at the upper bound; learning-off kept
+	all weights at 0.05. The earlier uniform-input run's all-zero result is kept
+	as a separate symmetry/saturation diagnostic, not generalized to all inputs.
+- [x] Re-run heterogeneous asymmetric STDP at 100k/1M for 20 epochs; all
+	weights remained finite/in bounds, 50% were active, and the estimated visit
+	rate was about 210k/s. These remain single-seed engineering observations.
+- [x] Make functional stability fail when no active synapses remain, even if
+	numeric bound checks pass; report variance and saturation separately.
+- [x] Add verified literature and explicit framework-comparability limits in
+	[Related Work](../../research/RELATED_WORK.md) and the Stage-3 contract.
+- [ ] Execute the 100k-neuron/10M-synapse upper point on a memory-appropriate
+	host. Its preflight estimate is about 19.45 GiB; it was not attempted on this
+	machine. These deterministic engineering profiles do not establish general
+	stability or scientific evidence.
 
 ## 2026-09-13 Alpha.2 timeline and frontier reconciliation
 

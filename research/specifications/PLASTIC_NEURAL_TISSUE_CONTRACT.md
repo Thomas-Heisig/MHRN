@@ -72,6 +72,23 @@ Therefore:
 - it does **not** establish stability for arbitrary reward formulations, topology, delays or plasticity rates;
 - scale/throughput and long-horizon plastic-network stability remain separate benchmark questions.
 
+The separate engineering benchmark at `scripts/benchmark_plastic_network.py`
+reports numeric boundedness separately from functional checks: final-epoch
+source/target spiking, nonzero active-weight fraction, and weight variance for
+the heterogeneous-cohort workload. Bound saturation remains a diagnostic
+metric; a network with every weight at zero fails functional stability even
+though it is finite and within its configured bounds. Uniform-input runs can
+legitimately keep identical weights by symmetry and therefore do not serve as
+a heterogeneity test.
+
+The benchmark offers matched `asymmetric`, `symmetric`, and learning-`off`
+profiles under a deterministic workload. These are engineering diagnostics,
+not frozen scientific arms. Its estimated synapse-work rate is derived from
+counted adjacency/event/reward traversals, not a hardware performance counter.
+No direct Brian 2, NEST, or Norse performance comparison is claimed; see
+[Related Work](../RELATED_WORK.md) for verified sources and matching
+requirements.
+
 ## Completion rule
 
 Stage 3 is technically reached when all repository criteria for STDP, three-factor learning, homeostasis, structural plasticity and checkpointed plastic state resolve as verified and the generated Stage-3 reference artifact passes.

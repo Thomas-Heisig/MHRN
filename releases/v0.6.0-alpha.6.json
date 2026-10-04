@@ -96,8 +96,10 @@
   },
   "publication_state": {
     "github_release": "published",
-    "zenodo": "awaiting_external_archive_verification",
-    "doi": null,
+    "zenodo": "published_verified",
+    "zenodo_record_url": "https://zenodo.org/records/22860683",
+    "doi": "10.5281/zenodo.22860683",
+    "concept_doi": "10.5281/zenodo.22860682",
     "orcid": "0009-0002-9589-1872",
     "release_type": "pre-release",
     "public_imprint": "identity_and_contact_complete",

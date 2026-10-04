@@ -22,8 +22,11 @@ through `src.identity.public_author_identity()`, `project_identity.json`,
 not copied into the repository.
 
 Zenodo release metadata is stored in `.zenodo.json` and uses the same public
-ORCID creator identifier. A Zenodo record URL or DOI is added only after the
-external record has been verified; no placeholder DOI is asserted.
+ORCID creator identifier. The published Alpha.6 software archive is verified at
+`https://zenodo.org/records/22860683` (version DOI
+`10.5281/zenodo.22860683`, concept DOI `10.5281/zenodo.22860682`). The Alpha.7
+archive and the separate publication DOI remain pending until their own records
+are published and verified.
 
 The public OSF project resource is linked as `https://osf.io/p34uq/` through
 `project_identity.json`, `pyproject.toml`, `CITATION.cff` and

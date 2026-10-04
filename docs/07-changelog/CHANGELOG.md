@@ -1,5 +1,106 @@
 # Changelog
 
+## 2026-10-04 - Stage-3 benchmark diagnostics and literature follow-up
+
+- Added matched asymmetric-STDP, symmetric-STDP and learning-off profiles with
+  deterministic heterogeneous cohorts. Functional checks now include active
+  weights, ongoing source/target spiking and, where required, weight variance;
+  numeric bounds alone cannot pass an all-zero network.
+- Re-ran 10k/100k for all three modes and heterogeneous asymmetric 100k/1M.
+  The uniform-input all-zero case is retained as a separate symmetric workload,
+  not treated as a general implementation failure. New schema-v2 receipts are
+  separate from earlier receipts.
+- Added verified STDP, homeostasis, memory, continual-learning, sensorimotor,
+  network-organization, preregistration, and simulator-comparability sources,
+  mapped to the relevant research areas. No direct 5D-advantage precedent was
+  asserted. No unmatched Brian 2/NEST/Norse speed comparison, human-review
+  closure, or EVID promotion was claimed.
+
+## 2026-10-04 - Stage-3 plastic-network benchmark
+
+- Added a standalone engineering benchmark for a deterministic plastic
+  bipartite network, with memory preflight, LearningEngine reward/STDP updates,
+  stability snapshots and workload/hardware provenance.
+- Ran 10k neurons / 100k synapses for 100 epochs and 100k / 1M for 20 epochs.
+  Both stayed finite and within weight bounds; the smaller run saturated all
+  weights at the lower bound by epoch 100. Receipts are in
+  `research/generated/verification/plastic_network_scale_benchmark*.json`.
+- The 100k / 10M upper point was not attempted: estimated memory is 19.45 GiB.
+  Full-range Stage-3 performance/stability remains open; these measurements
+  are engineering observations, not scientific evidence.
+
+## 2026-10-04 - R2 productive-learning evidence audit
+
+- Confirmed `PREREG-GEN-001` is frozen/confirmatory with a minimum of 20
+  independent seeds, but the registered generalization runner reports zero
+  executed validation and holdout episodes. Partition declarations alone do
+  not satisfy the held-out evaluation requirement.
+- Existing `EXP-STDP-0002` is a dirty, exploratory three-seed run linked to
+  `RQ-STDP-001`; it has no human review or review request and is not a substitute
+  for the `RQ-GEN-001` campaign.
+- R2 remains open. Confirmatory execution must wait for protocol-faithful
+  holdout execution; human evidence review remains a separate gate. No EVID was
+  promoted.
+
+## 2026-10-04 - Gateway Plastic execution audit
+
+- Confirmed that the seven registered Gateway protocols are boundary audits,
+  not executable Plastic protocols; their audit seed reexecutions do not count
+  as independent Plastic runs.
+- The current Gateway route accepts caller-supplied preregistration JSON and
+  activates a single seed. No registered Plastic runner, frozen input-frame
+  sequence or executable stop rule is available, so registry-backed
+  multi-seed execution remains open rather than inventing a workload.
+- No scientific DATA/EVID status is inferred from Gateway activation or audit
+  artifacts.
+
+## 2026-10-04 - Persisted CUDA diagnostic receipts
+
+- CUDA parity, Builder, cue-control and transfer runs now persist atomic JSON
+  receipts under gitignored `artifacts/cuda_diagnostics/`; every receipt has a
+  SHA-256 integrity digest and a validated GET artifact URL.
+- Receipts capture server start/end time, outcome, request digest, Git HEAD,
+  the declared source-tree working-copy digest/scope and modified relevant
+  paths. Hardware identity records model, PCI bus, driver and a hashed UUID;
+  unresolved hardware is explicitly `unavailable`.
+- Failed diagnostic responses retain their HTTP error status and include the
+  persisted receipt link. No DATA/EVID or hardware-acceptance promotion occurs.
+- Real progress/cancel remains unavailable: recurrent CUDA work is one kernel
+  through synchronization, while Builder/cue/transfer tests are blocking calls
+  without safe cancel tokens or resumable checkpoints. The UI reports request
+  state and elapsed time only.
+- Focused verification: 51 CUDA backend tests and 14 Playground browser tests
+  passed.
+
+## 2026-10-04 - External-review Pages export provisioned; live fix pending
+
+- Provisioned workflow-only GitHub Pages at
+  `https://thomas-heisig.github.io/MHRN/`; GitHub reports HTTPS enforcement.
+  Workflow run [37202191034](https://github.com/Thomas-Heisig/MHRN/actions/runs/37202191034)
+  passed verification and static publication.
+- Live smoke found that HTML loads but CSS/JS requests to `/review/review.css`
+  and `/review/app.js` return 404. The relative-path fix is on `develop`
+  (`6c417c2`); its nine-commit delta from `main` includes unrelated changes, so
+  no branch-wide deployment was attempted.
+- Pages is export-only. No private study configuration, central response store,
+  backup/restore process or study-specific legal/ethics disposition is active;
+  the comprehensive deployment TODO remains open.
+
+## 2026-10-04 - Hugging Face rolling mirrors rerun
+
+- GitHub Actions publication run [37201795384](https://github.com/Thomas-Heisig/MHRN/actions/runs/37201795384) completed successfully against canonical `main` SHA `963d68d523b38096619e41743c8c4b5b2ac1d42c`.
+- The publication step succeeded for the model, Docker Space and research-data mirrors. The research-data `MIRROR_MANIFEST.json` independently confirms the canonical SHA; anonymous manifest reads for the model and Space returned HTTP 401.
+- The sync excludes raw experiment DATA blobs; no scientific evidence or release status is promoted by this mirror update.
+
+## 2026-10-04 - Zenodo Alpha.6 software archive verified
+
+- Verified the published Alpha.6 software record against the Zenodo record and
+  public API: `https://zenodo.org/records/22860683`, version DOI
+  `10.5281/zenodo.22860683`, concept DOI `10.5281/zenodo.22860682`.
+- Reconciled `project_identity.json`, the Alpha.6 release record and README.
+- Alpha.7 and the separate Recursive Epistemics 1.8 publication DOI remain
+  pending; DOI assignment is archival metadata, not scientific review.
+
 ## 2026-10-02 - CUDA-/Parity-Diagnostik mit Laufstatus und Provenienzgrenze
 
 - CUDA-Smoke, RNG, CUDA-1.4/1.5-Rekurrenz, Builder-D3, Cue-Kontrollen und
@@ -2434,3 +2535,10 @@
 - Added Research UI controls to record reviewer identity, mandatory comments and accept/reject decisions through append-only review files.
 - Review completion never grants scientific evidence automatically.
 - Extended the version roadmap through v1.2 with explicit reproducibility, replication, embodiment, memory and governed-adaptation milestones.
+
+## 2026-10-04 — Publication synthesis reconciled
+
+- Added a compact findings overview, introductory glossary and edition changes to the editable publication sources.
+- Integrated the invalid EXP-GEN-0048 execution and all 23 October conceptual audit records with explicit pending-review boundaries and source ledger entries.
+- Connected recorded outcomes to bounded interpretations and next decisions; no historical DATA/EVID or maturity scores changed.
+- Corrected the active-edition governance, scientific-state date, Alpha.6 DOI distinction and published-release navigation. Alpha.7 remains a candidate.
