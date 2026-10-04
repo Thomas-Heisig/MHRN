@@ -47,9 +47,11 @@
       "integration": "github_release_archive",
       "metadata_file": ".zenodo.json",
       "source_repository": "https://github.com/Thomas-Heisig/MHRN",
-      "record_url": null,
-      "doi": null,
-      "status": "metadata_ready_record_not_verified",
+      "record_url": "https://zenodo.org/records/22860683",
+      "doi": "10.5281/zenodo.22860683",
+      "concept_doi": "10.5281/zenodo.22860682",
+      "record_version": "0.6.0-alpha.6",
+      "status": "published_verified",
       "creator_orcid": "0009-0002-9589-1872"
     },
     "osf": {

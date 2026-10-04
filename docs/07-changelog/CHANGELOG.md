@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-10-04 - Zenodo Alpha.6 software archive verified
+
+- Verified the published Alpha.6 software record against the Zenodo record and
+  public API: `https://zenodo.org/records/22860683`, version DOI
+  `10.5281/zenodo.22860683`, concept DOI `10.5281/zenodo.22860682`.
+- Reconciled `project_identity.json`, the Alpha.6 release record and README.
+- Alpha.7 and the separate Recursive Epistemics 1.8 publication DOI remain
+  pending; DOI assignment is archival metadata, not scientific review.
+
 ## 2026-10-02 - CUDA-/Parity-Diagnostik mit Laufstatus und Provenienzgrenze
 
 - CUDA-Smoke, RNG, CUDA-1.4/1.5-Rekurrenz, Builder-D3, Cue-Kontrollen und

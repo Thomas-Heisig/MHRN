@@ -22,7 +22,9 @@
 - [x] Public ORCID authorship link in project, citation and provenance metadata.
 - [x] Keep private ORCID contact data out of the repository.
 - [x] Add GitHub-to-Zenodo release metadata with the public ORCID creator link.
-- [ ] Add a verified Zenodo record URL and DOI after the external record exists.
+- [x] Add the verified Zenodo Alpha.6 record URL, version DOI and concept DOI:
+	<https://zenodo.org/records/22860683>, `10.5281/zenodo.22860683`,
+	`10.5281/zenodo.22860682`. Alpha.7 and publication 1.8 remain separate.
 - [x] Link the public OSF project as a research/provenance resource.
 
 ## 2026-09-20 Seed DATA documentation

@@ -186,7 +186,12 @@
 - Public provider identity/contact data are documented; a self-hosted public dashboard remains deployment-privacy-pending until the actual hosting/proxy/logging stack is known.
 - Edition 1.8 states explicitly that AI-assisted research is both disclosed tooling and a **methodological research object**; AI remains neither author nor evidence authority.
 - Independent external replication is an explicit post-publication objective. The original author does not self-certify novelty or scientific value.
-- Zenodo/DOI status remains external: a DOI is recorded only after a concrete archive exists.
+- Zenodo/DOI status remains external and version-specific. The published
+	Alpha.6 software archive is verified at
+	[Zenodo record 22860683](https://zenodo.org/records/22860683), version DOI
+	`10.5281/zenodo.22860683`, concept DOI `10.5281/zenodo.22860682`.
+- Alpha.7 has not yet been archived; the Recursive Epistemics 1.8 publication
+	package is separate and its DOI remains pending.
 
 
 ## 2026-09-19 Public ORCID authorship linking
@@ -195,8 +200,9 @@
 	ORCID `0009-0002-9589-1872`.
 - Runtime profile identity remains separate from public authorship identity.
 - Private ORCID contact data is not stored in the repository.
-- Zenodo release metadata now links the GitHub source and the same ORCID; the
-	external record/DOI remains unverified until a concrete Zenodo record exists.
+- Zenodo release metadata links the GitHub source and the same ORCID. The
+	Alpha.6 record is now externally verified; later versions require their own
+	published record and DOI reconciliation.
 - The public OSF project resource is linked as a research/provenance location.
 
 ## 2026-09-20 Seed DATA provenance

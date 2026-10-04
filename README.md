@@ -54,7 +54,7 @@ The sparse **5D SNN remains the primary adaptive system**. Language models, rese
 | Hugging Face | [ThomasHeisig/MHRN](https://huggingface.co/ThomasHeisig/MHRN) | rolling source/discovery mirror |
 | Hugging Face Space | [ThomasHeisig/MHRN-Space](https://huggingface.co/spaces/ThomasHeisig/MHRN-Space) | public dashboard mirror |
 | Research-data mirror | [ThomasHeisig/MHRN-Research-Data](https://huggingface.co/datasets/ThomasHeisig/MHRN-Research-Data) | rolling discovery mirror; not an immutable DOI dataset |
-| Zenodo | [Latest DOI / archived release](https://zenodo.org/badge/latestdoi/1335973891) | DOI archive for GitHub releases; badge resolves to the latest archived version once ingestion completes |
+| Zenodo software archive | [Alpha.6 record](https://zenodo.org/records/22860683) · [version DOI](https://doi.org/10.5281/zenodo.22860683) · [concept DOI](https://doi.org/10.5281/zenodo.22860682) | verified archive for `0.6.0-alpha.6`; the badge resolves to this record; Alpha.7 archive is still pending |
 
 The `v0.6.0-alpha.7` release candidate is based on the 27 September 2026 `develop` integration state `f267ffe5f17877149e47e39adcc1a095b6618d67`. Release-only metadata and documentation are finalized on `release/v0.6.0-alpha.7`; the authoritative tag/source-freeze is recorded only after the release PR has merged to `main` and the applicable release checks are green. The repository intentionally records a Zenodo DOI only after a real public Zenodo record exists. Release mechanics, tags and DOI assignment do not promote DATA to EVID.
 
@@ -64,7 +64,7 @@ MHRN deliberately separates three citable research objects:
 
 | Object | Type | Current state |
 | --- | --- | --- |
-| **MHRN v0.6.0-alpha.7** | Software | Alpha.7 release line; authoritative tag/archive state is tracked in `releases/current.json` |
+| **MHRN v0.6.0-alpha.7** | Software | Alpha.7 release line; Zenodo archive pending, authoritative state tracked in `releases/current.json` |
 | **Recursive Epistemics / Rekursive Epistemik 1.8** | Publication / preprint | separate Zenodo publication package prepared; DOI pending |
 | **MHRN research data** | Dataset(s) | rolling discovery mirror exists; immutable experiment DOI deposits remain separate |
 
