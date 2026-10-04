@@ -1,5 +1,19 @@
 # Changelog
 
+## 2026-10-04 - Alpha.7 release candidate integration status
+
+- Merged integration PR #269 to `main` at `4a6eb988`, including the publication
+  synthesis and Stage-3 benchmark diagnostics. Scientific status, Human Review,
+  EVID and replication state were not promoted.
+- Added Alpha.7 candidate release notes and reconciled the release ledgers to
+  the merged integration. The dedicated release PR and post-merge CI/source
+  freeze remain pending; no tag, GitHub release or Alpha.7 Zenodo archive has
+  been created.
+- The configured Hugging Face sync succeeded at the integration commit.
+  Zenodo requires the eventual GitHub release; OSF and ORCID have no configured
+  automatic release-update workflow, and no institution-specific endpoint is
+  registered.
+
 ## 2026-10-04 - Stage-3 benchmark diagnostics and literature follow-up
 
 - Added matched asymmetric-STDP, symmetric-STDP and learning-off profiles with

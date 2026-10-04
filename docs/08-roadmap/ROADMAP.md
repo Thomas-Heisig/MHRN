@@ -121,6 +121,19 @@
   equivalent GPU SNN backend.
 - Release/DOI mechanics remain separate from Human Review, EVID and replication.
 
+## 2026-10-04 Alpha.7 release integration
+
+- Integration PR #269 merged to `main` at `4a6eb988`; it adds the publication
+	synthesis and Stage-3 benchmark diagnostics without promoting scientific
+	status.
+- The dedicated `release/v0.6.0-alpha.7 -> main` PR, its green post-merge CI,
+	and the exact source-freeze record are still pending. No Alpha.7 tag, GitHub
+	release, or Zenodo archive exists yet.
+- The Hugging Face mirror workflow succeeded for the integration commit.
+	Zenodo archival is downstream of the GitHub release; OSF/ORCID are linked
+	routes without a configured automatic release-update workflow. No
+	institution-specific update endpoint is registered.
+
 ## 2026-09-29 Post-hoc Experimentauswertung
 
 - Experimentkarten im Wissenschaftsbereich erlauben die nachträgliche
