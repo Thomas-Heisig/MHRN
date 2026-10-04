@@ -110,3 +110,19 @@ def test_numeric_bounds_do_not_mistake_zero_weight_collapse_for_functional_stabi
     assert assessment["numeric_stability_passed"] is True
     assert assessment["functional_activity_passed"] is False
     assert assessment["stability_invariants_passed"] is False
+
+
+def test_benchmark_seed_replays_topology_and_changes_it_across_seeds() -> None:
+    shared = {
+        "neuron_count": 40,
+        "synapse_count": 80,
+        "epochs": 1,
+        "memory_budget_bytes": 2 * 1024**2,
+        "plasticity_mode": "off",
+    }
+    first = run_benchmark(seed=42, **shared)
+    replay = run_benchmark(seed=42, **shared)
+    independent = run_benchmark(seed=43, **shared)
+
+    assert first["topology_sha256"] == replay["topology_sha256"]
+    assert first["topology_sha256"] != independent["topology_sha256"]

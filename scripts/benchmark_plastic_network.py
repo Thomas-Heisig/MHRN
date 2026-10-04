@@ -7,6 +7,7 @@ scientific workload or evidence of general plastic-network stability.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import math
 import os
@@ -84,6 +85,7 @@ def _build_network(neuron_count: int, synapse_count: int, seed: int) -> tuple[An
     source_count = neuron_count // 2
     source_ids = neuron_ids[:source_count]
     target_ids = neuron_ids[source_count:]
+    random.Random(seed).shuffle(target_ids)
     if not source_ids or not target_ids:
         raise ValueError("at least two neurons are required")
     if synapse_count % source_count:
@@ -135,6 +137,16 @@ def _weight_snapshot(network: Any, epoch: int) -> dict[str, Any]:
             weight < MIN_WEIGHT or weight > MAX_WEIGHT for weight in weights
         ),
     }
+
+
+def _topology_digest(network: Any) -> str:
+    edges = sorted(
+        (source_id, synapse.target_id)
+        for source_id, outgoing in network.synapses.items()
+        for synapse in outgoing
+    )
+    payload = json.dumps(edges, separators=(",", ":")).encode("ascii")
+    return hashlib.sha256(payload).hexdigest()
 
 
 def _assess_stability(
@@ -334,6 +346,7 @@ def run_benchmark(
         "cpu": platform.processor() or None,
         "logical_processors": os.cpu_count(),
         "seed": seed,
+        "topology_sha256": _topology_digest(network),
         "plasticity_mode": plasticity_mode,
         "activity_profile": activity_profile,
         "topology": "deterministic_regular_bipartite",
@@ -383,6 +396,7 @@ def run_benchmark(
         "stability_snapshots": stability,
         "workload": {
             "topology": "source_i_to_targets[(i * out_degree + edge) % target_count]",
+            "seed_effect": "seeded permutation of target node order before edge assignment",
             "initial_weight": INITIAL_WEIGHT,
             "connection_delay_ticks": 1,
             "source_and_target_current": SOURCE_CURRENT,
