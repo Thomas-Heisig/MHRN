@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "benchmark": "stage3_plastic_network_scale",
+  "scope": "engineering_verification_only",
+  "scientific_evidence": false,
+  "python": "3.13.14",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "seed": 42,
+  "topology": "deterministic_regular_bipartite",
+  "neurons": 100000,
+  "synapses": 1000000,
+  "out_degree": 20,
+  "epochs": 20,
+  "ticks": 40,
+  "estimated_peak_bytes": 2457600000,
+  "tracemalloc_peak_bytes": 1026407783,
+  "memory_budget_bytes": 3221225472,
+  "setup_seconds": 26.493667499977164,
+  "simulation_seconds": 149.25454389990773,
+  "core_step_seconds": 32.4567568001803,
+  "ticks_per_second": 0.26799854098126874,
+  "synapse_candidate_visits": 28000000,
+  "synapse_candidate_visits_per_second": 187598.97868688815,
+  "source_spikes": 450000,
+  "target_spikes": 450000,
+  "learning_stats": {
+    "updates": 40,
+    "stdp_weight_updates": 17000000,
+    "reward_weight_updates": 8000000,
+    "rewards_received": 20,
+    "rewards_applied": 20,
+    "pending_rewards": 0,
+    "last_update_ms": 0.009999959729611874,
+    "total_update_ms": 56513.60960036982
+  },
+  "maximum_absolute_weight_drift": 0.060960532034050954,
+  "weight_bounds": {
+    "minimum": 0.0,
+    "maximum": 0.5
+  },
+  "final_weights_finite": true,
+  "final_out_of_bounds_weights": 0,
+  "stability_invariants_passed": true,
+  "final_at_lower_bound_fraction": 0.0,
+  "final_at_upper_bound_fraction": 0.0,
+  "stability_snapshots": [
+    {
+      "epoch": 10,
+      "finite_weights": true,
+      "min_weight": 0.0949937824474686,
+      "max_weight": 0.0949937824474686,
+      "mean_weight": 0.0949937824474686,
+      "at_lower_bound_count": 0,
+      "at_upper_bound_count": 0,
+      "out_of_bounds_weights": 0
+    },
+    {
+      "epoch": 20,
+      "finite_weights": true,
+      "min_weight": 0.11096053203405096,
+      "max_weight": 0.11096053203405096,
+      "mean_weight": 0.11096053203405097,
+      "at_lower_bound_count": 0,
+      "at_upper_bound_count": 0,
+      "out_of_bounds_weights": 0
+    }
+  ],
+  "stage3_target_range": {
+    "neurons": [
+      10000,
+      100000
+    ],
+    "synapses": [
+      100000,
+      10000000
+    ],
+    "lower_bound_covered": true,
+    "upper_bound_covered": false
+  },
+  "interpretation_limit": "One deterministic topology/load profile; not general stability, scientific evidence, or full-range Stage-3 acceptance."
+}

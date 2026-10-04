@@ -9,6 +9,7 @@ from __future__ import annotations
 import argparse
 import json
 import math
+import os
 import platform
 import random
 import sys
@@ -26,6 +27,16 @@ BYTES_PER_SYNAPSE_ESTIMATE = 2_048
 DEFAULT_MEMORY_BUDGET_BYTES = 2 * 1024**3
 STAGE3_NEURON_RANGE = (10_000, 100_000)
 STAGE3_SYNAPSE_RANGE = (100_000, 10_000_000)
+INITIAL_WEIGHT = 0.05
+MIN_WEIGHT = 0.0
+MAX_WEIGHT = 0.5
+SOURCE_CURRENT = 100.0
+REWARD_VALUE = 1.0
+STDP_A_PLUS = 0.1
+STDP_A_MINUS = 0.12
+STDP_TAU_TICKS = 20.0
+ELIGIBILITY_TAU_TICKS = 200.0
+REWARD_LEARNING_RATE = 0.01
 
 
 def estimate_peak_bytes(neuron_count: int, synapse_count: int) -> int:
@@ -50,14 +61,14 @@ def _build_network(neuron_count: int, synapse_count: int, seed: int) -> tuple[An
             "simulation": {"max_delay": 1},
             "network": {
                 "initial_connections_per_neuron": 0,
-                "weight_min": 0.0,
-                "weight_max": 0.5,
+                "weight_min": MIN_WEIGHT,
+                "weight_max": MAX_WEIGHT,
             },
             "stdp": {
-                "a_plus": 0.1,
-                "a_minus": 0.12,
-                "tau_plus": 20.0,
-                "tau_minus": 20.0,
+                "a_plus": STDP_A_PLUS,
+                "a_minus": STDP_A_MINUS,
+                "tau_plus": STDP_TAU_TICKS,
+                "tau_minus": STDP_TAU_TICKS,
             },
         }
     )
@@ -81,7 +92,7 @@ def _build_network(neuron_count: int, synapse_count: int, seed: int) -> tuple[An
         first_target = source_index * degree
         for edge_index in range(degree):
             target_id = target_ids[(first_target + edge_index) % len(target_ids)]
-            network.connect(source_id, target_id, weight=0.05, delay=1)
+            network.connect(source_id, target_id, weight=INITIAL_WEIGHT, delay=1)
     return network, source_ids, target_ids
 
 
@@ -98,10 +109,14 @@ def _weight_snapshot(network: Any, epoch: int) -> dict[str, Any]:
         "min_weight": min(weights, default=None),
         "max_weight": max(weights, default=None),
         "mean_weight": sum(weights) / len(weights) if weights else None,
-        "at_lower_bound_count": sum(weight <= 1e-12 for weight in weights),
-        "at_upper_bound_count": sum(weight >= 0.5 - 1e-12 for weight in weights),
+        "at_lower_bound_count": sum(
+            weight <= MIN_WEIGHT + 1e-12 for weight in weights
+        ),
+        "at_upper_bound_count": sum(
+            weight >= MAX_WEIGHT - 1e-12 for weight in weights
+        ),
         "out_of_bounds_weights": sum(
-            weight < 0.0 or weight > 0.5 for weight in weights
+            weight < MIN_WEIGHT or weight > MAX_WEIGHT for weight in weights
         ),
     }
 
@@ -134,17 +149,17 @@ def run_benchmark(
     learning_config = {
         "stdp": {
             "enabled": True,
-            "a_plus": 0.1,
-            "a_minus": 0.12,
-            "tau_plus": 20.0,
-            "tau_minus": 20.0,
-            "min_weight": 0.0,
-            "max_weight": 0.5,
+            "a_plus": STDP_A_PLUS,
+            "a_minus": STDP_A_MINUS,
+            "tau_plus": STDP_TAU_TICKS,
+            "tau_minus": STDP_TAU_TICKS,
+            "min_weight": MIN_WEIGHT,
+            "max_weight": MAX_WEIGHT,
         },
-        "eligibility": {"enabled": True, "tau_ticks": 200.0},
+        "eligibility": {"enabled": True, "tau_ticks": ELIGIBILITY_TAU_TICKS},
         "reward": {
             "enabled": True,
-            "learning_rate": 0.01,
+            "learning_rate": REWARD_LEARNING_RATE,
             "delay_ticks": 0,
             "clamp_weights": True,
             "reset_trace_after_reward": True,
@@ -183,7 +198,7 @@ def run_benchmark(
     stability: list[dict[str, Any]] = []
     run_started = time.perf_counter()
     for epoch in range(1, epochs + 1):
-        network.inject_current_batch(dict.fromkeys(source_ids, 100.0))
+        network.inject_current_batch(dict.fromkeys(source_ids, SOURCE_CURRENT))
         source_result = network.step()
         core_step_seconds += source_result.core_step_ms / 1000.0
         source_spikes += len(source_result.spike_ids)
@@ -191,7 +206,7 @@ def run_benchmark(
             len(network.synapses[neuron_id]) for neuron_id in source_result.spike_ids
         )
 
-        network.inject_current_batch(dict.fromkeys(target_ids, 100.0))
+        network.inject_current_batch(dict.fromkeys(target_ids, SOURCE_CURRENT))
         target_result = network.step()
         core_step_seconds += target_result.core_step_ms / 1000.0
         target_spikes += len(target_result.spike_ids)
@@ -199,7 +214,7 @@ def run_benchmark(
             incoming_degree.get(neuron_id, 0)
             for neuron_id in target_result.spike_ids
         )
-        learning.set_reward(1.0, target_result.tick)
+        learning.set_reward(REWARD_VALUE, target_result.tick)
         synapse_candidate_visits += synapse_count
 
         if epoch % stability_interval == 0 or epoch == epochs:
@@ -227,6 +242,8 @@ def run_benchmark(
         "scientific_evidence": False,
         "python": platform.python_version(),
         "platform": platform.platform(),
+        "cpu": platform.processor() or None,
+        "logical_processors": os.cpu_count(),
         "seed": seed,
         "topology": "deterministic_regular_bipartite",
         "neurons": neuron_count,
@@ -249,7 +266,7 @@ def run_benchmark(
         "target_spikes": target_spikes,
         "learning_stats": stats.to_dict(),
         "maximum_absolute_weight_drift": maximum_weight_drift,
-        "weight_bounds": {"minimum": 0.0, "maximum": 0.5},
+        "weight_bounds": {"minimum": MIN_WEIGHT, "maximum": MAX_WEIGHT},
         "final_weights_finite": final_snapshot["finite_weights"],
         "final_out_of_bounds_weights": final_snapshot["out_of_bounds_weights"],
         "stability_invariants_passed": all(
@@ -267,6 +284,21 @@ def run_benchmark(
             else None
         ),
         "stability_snapshots": stability,
+        "workload": {
+            "topology": "source_i_to_targets[(i * out_degree + edge) % target_count]",
+            "initial_weight": INITIAL_WEIGHT,
+            "connection_delay_ticks": 1,
+            "source_and_target_current": SOURCE_CURRENT,
+            "reward_per_epoch": REWARD_VALUE,
+            "stdp": {
+                "a_plus": STDP_A_PLUS,
+                "a_minus": STDP_A_MINUS,
+                "tau_ticks": STDP_TAU_TICKS,
+            },
+            "eligibility_tau_ticks": ELIGIBILITY_TAU_TICKS,
+            "reward_learning_rate": REWARD_LEARNING_RATE,
+            "reward_trace_reset": True,
+        },
         "stage3_target_range": {
             "neurons": list(STAGE3_NEURON_RANGE),
             "synapses": list(STAGE3_SYNAPSE_RANGE),
