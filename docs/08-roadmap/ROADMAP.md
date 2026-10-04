@@ -135,6 +135,22 @@
   equivalent GPU SNN backend.
 - Release/DOI mechanics remain separate from Human Review, EVID and replication.
 
+## 2026-10-04 Alpha.7 release integration
+
+- Integration PR #269 merged to `main` at `4a6eb988`; it adds the publication
+	synthesis and Stage-3 benchmark diagnostics without promoting scientific
+	status.
+- Release PR #270 merged at source freeze `8a0bb095`; post-merge CI run
+	`37210840569` passed completely. Tag and GitHub pre-release
+	`v0.6.0-alpha.7` point to that exact commit.
+- Zenodo record `23138847` is publicly verified at DOI
+	`10.5281/zenodo.23138847`; concept DOI `10.5281/zenodo.22860682` is stable.
+	Hugging Face sync also succeeded on the release commit.
+- OSF/ORCID are linked routes without a configured automatic release-update
+	workflow. No institution-specific update endpoint is registered.
+- Release and DOI publication leave Human Review, EVID, maturity and independent
+	replication state unchanged.
+
 ## 2026-09-29 Post-hoc Experimentauswertung
 
 - Experimentkarten im Wissenschaftsbereich erlauben die nachträgliche

@@ -25,7 +25,7 @@ def test_current_release_matches_canonical_published_version() -> None:
     assert project["version"] == "0.6.0a7"
     assert current["version"] == "0.6.0-alpha.7"
     assert current["pep440"] == project["version"]
-    assert current["status"] == "release_candidate"
+    assert current["status"] == "released"
     assert current.get("release_type") == "pre-release"
     assert current.get("target_tag") == "v0.6.0-alpha.7"
     assert current["parent"] == "v0.6.0-alpha.6"
@@ -35,6 +35,7 @@ def test_current_release_matches_canonical_published_version() -> None:
         "engineering_release_candidate_scientific_programme_active",
         "public_repository_hardening_release_candidate",
         "alpha7_release_candidate_from_2026_09_27_develop",
+        "alpha7_released_from_green_main_and_zenodo_verified",
     }
     assert current["release_blockers"] == 0
     assert current["open"]
@@ -50,26 +51,38 @@ def test_current_release_matches_canonical_published_version() -> None:
     assert current["scientific_maturity"]["automatic_evidence_promotion"] is False
 
 
-def test_zenodo_archive_is_bound_to_alpha6_not_pending_alpha7() -> None:
+def test_zenodo_archive_is_bound_to_published_alpha7() -> None:
     identity = json.loads((ROOT / "project_identity.json").read_text(encoding="utf-8"))
     alpha6 = _release("v0.6.0-alpha.6.json")
+    alpha7 = _release("v0.6.0-alpha.7.json")
     current = _release("current.json")
 
     assert identity["platforms"]["zenodo"] == {
         "integration": "github_release_archive",
         "metadata_file": ".zenodo.json",
         "source_repository": "https://github.com/Thomas-Heisig/MHRN",
-        "record_url": "https://zenodo.org/records/22860683",
-        "doi": "10.5281/zenodo.22860683",
+        "record_url": "https://zenodo.org/records/23138847",
+        "doi": "10.5281/zenodo.23138847",
         "concept_doi": "10.5281/zenodo.22860682",
-        "record_version": "0.6.0-alpha.6",
+        "record_version": "0.6.0-alpha.7",
         "status": "published_verified",
         "creator_orcid": "0009-0002-9589-1872",
     }
     assert alpha6["publication_state"]["zenodo"] == "published_verified"
     assert alpha6["publication_state"]["doi"] == "10.5281/zenodo.22860683"
-    assert current["publication_state"]["zenodo"] == "awaiting_github_release_archive"
-    assert current["publication_state"]["doi"] is None
+    assert alpha7["publication_state"]["zenodo"] == "published_verified"
+    assert current["publication_state"]["github_release"] == "published"
+    assert (
+        current["tag"] == current["publication_state"]["github_tag"] == "v0.6.0-alpha.7"
+    )
+    assert current["source_freeze_commit"] == "8a0bb09530751df40da1ffa30f9ee1640c5370a7"
+    assert alpha7["publication_state"]["doi"] == "10.5281/zenodo.23138847"
+    assert (
+        alpha7["publication_state"]["source_freeze_commit"]
+        == "8a0bb09530751df40da1ffa30f9ee1640c5370a7"
+    )
+    assert current["publication_state"]["zenodo"] == "published_verified"
+    assert current["publication_state"]["doi"] == "10.5281/zenodo.23138847"
 
 
 def test_alpha6_release_preserves_verified_historical_boundary() -> None:

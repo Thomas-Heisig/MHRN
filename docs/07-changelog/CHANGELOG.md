@@ -1,5 +1,33 @@
 # Changelog
 
+## 2026-10-04 - Alpha.7 pre-release and Zenodo archive verified
+
+- Published GitHub pre-release `v0.6.0-alpha.7` on source freeze
+  `8a0bb09530751df40da1ffa30f9ee1640c5370a7` after post-merge CI run
+  `37210840569` passed.
+- Verified public Zenodo record `23138847`, version DOI
+  `10.5281/zenodo.23138847`, and concept DOI `10.5281/zenodo.22860682`.
+  The 58.6 MB software archive identifies the same source commit.
+- Hugging Face mirrors synced successfully on the release commit. OSF/ORCID
+  remain linked routes without automatic release-update workflows; no
+  institution-specific endpoint is registered.
+- Publication and DOI assignment do not change DATA, Human Review, EVID,
+  scientific maturity or independent-replication state.
+
+## 2026-10-04 - Alpha.7 release candidate integration status
+
+- Merged integration PR #269 to `main` at `4a6eb988`, including the publication
+  synthesis and Stage-3 benchmark diagnostics. Scientific status, Human Review,
+  EVID and replication state were not promoted.
+- Added Alpha.7 candidate release notes and reconciled the release ledgers to
+  the merged integration. The dedicated release PR and post-merge CI/source
+  freeze remain pending; no tag, GitHub release or Alpha.7 Zenodo archive has
+  been created.
+- The configured Hugging Face sync succeeded at the integration commit.
+  Zenodo requires the eventual GitHub release; OSF and ORCID have no configured
+  automatic release-update workflow, and no institution-specific endpoint is
+  registered.
+
 ## 2026-10-04 - Stage-3 benchmark diagnostics and literature follow-up
 
 - Added matched asymmetric-STDP, symmetric-STDP and learning-off profiles with

@@ -81,11 +81,14 @@
       "status": "ACTIVE",
       "url": "https://zenodo.org/badge/latestdoi/1335973891",
       "connection_authorized_on": "2026-09-19",
-      "note": "GitHub release v0.6.0-alpha.6 is published. The dynamic badge/latestdoi route is canonical until the concrete DOI is publicly resolvable and then recorded back into repository metadata.",
+      "note": "GitHub pre-release v0.6.0-alpha.7 is published and its Zenodo version DOI is publicly verified; the dynamic latestdoi badge resolves to the latest version.",
       "badge_url": "https://zenodo.org/badge/1335973891.svg",
       "github_repository_id": 1335973891,
-      "release": "v0.6.0-alpha.6",
-      "archive_status": "awaiting_public_doi_resolution"
+      "release": "v0.6.0-alpha.7",
+      "record_url": "https://zenodo.org/records/23138847",
+      "doi": "10.5281/zenodo.23138847",
+      "concept_doi": "10.5281/zenodo.22860682",
+      "archive_status": "published_verified"
     },
     {
       "name": "DataCite",
@@ -175,8 +178,18 @@
       "version": "0.6.0-alpha.6",
       "canonical_url": "https://github.com/Thomas-Heisig/MHRN/releases/tag/v0.6.0-alpha.6",
       "zenodo_route": "https://zenodo.org/badge/latestdoi/1335973891",
-      "doi": null,
-      "status": "published_awaiting_concrete_doi_capture"
+      "doi": "10.5281/zenodo.22860683",
+      "status": "published_verified"
+    },
+    {
+      "id": "mhrn-software-alpha7",
+      "kind": "software",
+      "title": "Multi-Scale Homeostatic Recurrence Network (MHRN)",
+      "version": "0.6.0-alpha.7",
+      "canonical_url": "https://github.com/Thomas-Heisig/MHRN/releases/tag/v0.6.0-alpha.7",
+      "zenodo_route": "https://zenodo.org/badge/latestdoi/1335973891",
+      "doi": "10.5281/zenodo.23138847",
+      "status": "published_verified"
     },
     {
       "id": "recursive-epistemics-1.8",

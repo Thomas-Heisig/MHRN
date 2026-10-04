@@ -4,12 +4,12 @@
   "scope": "docs",
   "warning": "Classification describes document role; it does not promote DATA to EVID or certify scientific validity.",
   "summary": {
-    "file_count": 204,
+    "file_count": 205,
     "status": {
       "archive": 8,
       "current": 131,
       "current_wip": 4,
-      "historical": 61
+      "historical": 62
     },
     "kind": {
       "architecture": 33,
@@ -30,7 +30,7 @@
       "integration_record": 9,
       "playground_documentation": 29,
       "quality_policy": 19,
-      "release_record": 9,
+      "release_record": 10,
       "research_documentation": 19,
       "roadmap": 18,
       "sprint_record": 10,
@@ -45,7 +45,7 @@
       "historical_context": 6,
       "historical_integration_context": 9,
       "historical_planning_record": 10,
-      "historical_release_provenance": 9,
+      "historical_release_provenance": 10,
       "historical_research_context": 5,
       "historical_versioned_context": 5,
       "noncanonical_playground_documentation": 29,
@@ -1967,6 +1967,19 @@
     },
     {
       "path": "docs/10-releases/RELEASE_NOTES_v060a6.md",
+      "domain": "docs",
+      "kind": "release_record",
+      "status": "historical",
+      "authority": "historical_release_provenance",
+      "mutability": "editable",
+      "citation": "cite_with_version_or_date",
+      "evidence_role": "historical_only",
+      "rationale": "Rule-classified repository documentation; exact scientific authority depends on referenced DATA/EVID.",
+      "classification_rule": "docs-zone:10-releases",
+      "review_required": false
+    },
+    {
+      "path": "docs/10-releases/RELEASE_NOTES_v060a7.md",
       "domain": "docs",
       "kind": "release_record",
       "status": "historical",

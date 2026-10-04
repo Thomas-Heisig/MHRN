@@ -48,15 +48,15 @@ The sparse **5D SNN remains the primary adaptive system**. Language models, rese
 | Resource | Canonical route | Role |
 | --- | --- | --- |
 | Source | [GitHub · Thomas-Heisig/MHRN](https://github.com/Thomas-Heisig/MHRN) | canonical code, history and governed research artefacts |
-| Published software release | [v0.6.0-alpha.6](https://github.com/Thomas-Heisig/MHRN/releases/tag/v0.6.0-alpha.6) | published pre-release; Alpha.7 remains a release candidate |
+| Published software release | [v0.6.0-alpha.7](https://github.com/Thomas-Heisig/MHRN/releases/tag/v0.6.0-alpha.7) | published pre-release from source freeze `8a0bb095` |
 | Author identity | [ORCID · 0009-0002-9589-1872](https://orcid.org/0009-0002-9589-1872) | persistent researcher identity |
 | Open Science Framework | [OSF · p34uq](https://osf.io/p34uq/) | project / open-science route |
 | Hugging Face | [ThomasHeisig/MHRN](https://huggingface.co/ThomasHeisig/MHRN) | rolling source/discovery mirror |
 | Hugging Face Space | [ThomasHeisig/MHRN-Space](https://huggingface.co/spaces/ThomasHeisig/MHRN-Space) | public dashboard mirror |
 | Research-data mirror | [ThomasHeisig/MHRN-Research-Data](https://huggingface.co/datasets/ThomasHeisig/MHRN-Research-Data) | rolling discovery mirror; not an immutable DOI dataset |
-| Zenodo software archive | [Alpha.6 record](https://zenodo.org/records/22860683) · [version DOI](https://doi.org/10.5281/zenodo.22860683) · [concept DOI](https://doi.org/10.5281/zenodo.22860682) | verified archive for `0.6.0-alpha.6`; the badge resolves to this record; Alpha.7 archive is still pending |
+| Zenodo software archive | [Alpha.7 record](https://zenodo.org/records/23138847) · [version DOI](https://doi.org/10.5281/zenodo.23138847) · [concept DOI](https://doi.org/10.5281/zenodo.22860682) | verified `0.6.0-alpha.7` archive; Alpha.6 remains available at [its version DOI](https://doi.org/10.5281/zenodo.22860683) |
 
-As checked on 4 October 2026, Alpha.7 has no published GitHub release or verified archive; integration merges into `main` do not themselves publish a tag or release. The `v0.6.0-alpha.7` release candidate is based on the 27 September 2026 `develop` integration state `f267ffe5f17877149e47e39adcc1a095b6618d67`. Release-only metadata and documentation are finalized on `release/v0.6.0-alpha.7`; the authoritative tag/source-freeze is recorded only after the release PR has merged to `main` and the applicable release checks are green. The repository intentionally records a Zenodo DOI only after a real public Zenodo record exists. Release mechanics, tags and DOI assignment do not promote DATA to EVID.
+Alpha.7 was published on 4 October 2026 as a GitHub pre-release at `v0.6.0-alpha.7`, bound to source freeze `8a0bb09530751df40da1ffa30f9ee1640c5370a7`. Post-merge CI run `37210840569` passed on that exact commit. Zenodo record `23138847` and DOI `10.5281/zenodo.23138847` are publicly verified; the concept DOI remains `10.5281/zenodo.22860682`. The Hugging Face mirrors synchronized from the same commit. OSF and ORCID are linked routes without an automatic release-update workflow, and no institution-specific endpoint is registered. Release mechanics, tags and DOI assignment do not promote DATA to EVID.
 
 ### Citation model
 
@@ -64,7 +64,7 @@ MHRN deliberately separates three citable research objects:
 
 | Object | Type | Current state |
 | --- | --- | --- |
-| **MHRN v0.6.0-alpha.7** | Software | Alpha.7 release line; Zenodo archive pending, authoritative state tracked in `releases/current.json` |
+| **MHRN v0.6.0-alpha.7** | Software | published pre-release; verified Zenodo DOI `10.5281/zenodo.23138847` |
 | **Recursive Epistemics / Rekursive Epistemik 1.8** | Publication / preprint | separate Zenodo publication package prepared; DOI pending |
 | **MHRN research data** | Dataset(s) | rolling discovery mirror exists; immutable experiment DOI deposits remain separate |
 

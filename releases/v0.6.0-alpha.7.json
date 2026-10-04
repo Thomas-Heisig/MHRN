@@ -2,12 +2,12 @@
   "schema_version": 2,
   "version": "0.6.0-alpha.7",
   "pep440": "0.6.0a7",
-  "status": "release_candidate",
-  "title": "Public Alpha.7 Repository Hardening Release",
+  "status": "released",
+  "title": "MHRN v0.6.0-alpha.7 — Stage-1 Evidence, Publication Synthesis, Stage-3 Benchmark and CUDA Preflight",
   "parent": "v0.6.0-alpha.6",
-  "gate": "pending_release_pr",
-  "as_of": "2026-09-21",
-  "milestone_status": "public_repository_hardening_release_candidate",
+  "gate": "passed",
+  "as_of": "2026-10-04",
+  "milestone_status": "alpha7_released_from_green_main_and_zenodo_verified",
   "release_blockers": 0,
   "scope": [
     "release-only main with develop as the canonical integration branch",
@@ -18,6 +18,7 @@
     "Dependabot routed to develop instead of main",
     "standalone software, topology and recursive-epistemics paper objects in the publication catalog",
     "repository security baseline, CODEOWNERS and protected-branch guidance",
+    "October publication synthesis and bounded Stage-3 scale benchmark, with explicit DATA/EVID limits",
     "MHRN identity cleanup across active CI and public repository surfaces",
     "scientific DATA/EVID and replication boundaries preserved unchanged"
   ],
@@ -55,7 +56,10 @@
     "Dependabot updates redirected to develop",
     "public README, contribution guide, open-science routing and release checklist aligned with the branch model",
     "three standalone paper strands registered and exposed through the Publication Reader",
-    "repository security baseline and CODEOWNERS integrated"
+    "repository security baseline and CODEOWNERS integrated",
+    "Publication synthesis and Stage-3 benchmark diagnostics integrated by release PR #269 at main commit 4a6eb988; no scientific status was promoted",
+    "Release PR #270 merged at source freeze 8a0bb095; post-merge CI run 37210840569 passed",
+    "GitHub pre-release v0.6.0-alpha.7 published and Zenodo version DOI 10.5281/zenodo.23138847 verified"
   ],
   "open": [
     "complete remaining human scientific reviews and make explicit EVID decisions without automatic promotion",
@@ -63,7 +67,8 @@
     "continue Stage-6 semanticization controls, continual-learning evaluation, prediction-error and world-model validation under preregistered protocols",
     "continue prediction-error and world-model validation under preregistered controls",
     "complete systematic prior-art and external similarity/source review before formal manuscript submission",
-    "record the external Zenodo DOI only after the archive actually exists; DOI assignment is not scientific review"
+    "complete remaining Human Reviews and independent replication without automatic EVID promotion",
+    "record all subsequent external review and replication outcomes without inferring positive results"
   ],
   "scientific_maturity": {
     "separate_from_engineering": true,
@@ -86,11 +91,17 @@
   "publish_requested": true,
   "release_type": "pre-release",
   "development_state": {
-    "status": "release_candidate",
-    "engineering": "candidate_from_exact_green_develop_freeze",
+    "status": "released",
+    "engineering": "released_from_exact_green_source_freeze",
     "integration_branch": "develop",
     "integration_freeze_commit": "04f2cd76fa5d18c08a903f3e30aa275afdec31a6",
-    "summary": "Alpha.7 is prepared from an exact green develop integration state. The release tag is created only after the release PR merges to main and post-merge CI succeeds."
+    "release_branch": "release/v0.6.0-alpha.7",
+    "main_integration_commit": "4a6eb9887255ebb2ede0a5f2e13460c4b5878946",
+    "source_freeze_commit": "8a0bb09530751df40da1ffa30f9ee1640c5370a7",
+    "integration_pr": 269,
+    "release_pr": 270,
+    "post_merge_ci_run": 37210840569,
+    "summary": "Alpha.7 was published from exact green source freeze 8a0bb095 after post-merge CI passed; Zenodo version DOI 10.5281/zenodo.23138847 is verified."
   },
   "scientific_state": {
     "status": "active_research_not_scientifically_complete",
@@ -101,18 +112,20 @@
     "summary": "Technische Reife, wissenschaftliche Evidenz und externe Geltung bleiben getrennte Achsen. Unabhängige Replikation und externe Kritik sind ausdrücklich gesucht."
   },
   "publication_state": {
-    "github_release": "pending_post_merge_green_main",
+    "github_release": "published",
     "github_tag": "v0.6.0-alpha.7",
-    "zenodo": "awaiting_github_release_archive",
-    "doi": null,
+    "zenodo": "published_verified",
+    "zenodo_record_url": "https://zenodo.org/records/23138847",
+    "doi": "10.5281/zenodo.23138847",
+    "concept_doi": "10.5281/zenodo.22860682",
     "orcid": "0009-0002-9589-1872",
     "release_type": "pre-release",
     "public_imprint": "identity_and_contact_complete",
     "hosted_dashboard_privacy": "deployment_specific_details_pending",
-    "source_freeze_commit": null
+    "source_freeze_commit": "8a0bb09530751df40da1ffa30f9ee1640c5370a7"
   },
-  "date": "2026-09-21",
-  "tag": null,
-  "commit": null,
-  "source_freeze_commit": null
+  "date": "2026-10-04",
+  "tag": "v0.6.0-alpha.7",
+  "commit": "8a0bb09530751df40da1ffa30f9ee1640c5370a7",
+  "source_freeze_commit": "8a0bb09530751df40da1ffa30f9ee1640c5370a7"
 }
