@@ -1,0 +1,161 @@
+{
+  "schema_version": 1,
+  "benchmark": "stage3_plastic_network_scale",
+  "scope": "engineering_verification_only",
+  "scientific_evidence": false,
+  "python": "3.13.14",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "seed": 42,
+  "topology": "deterministic_regular_bipartite",
+  "neurons": 10000,
+  "synapses": 100000,
+  "out_degree": 20,
+  "epochs": 100,
+  "ticks": 200,
+  "estimated_peak_bytes": 245760000,
+  "tracemalloc_peak_bytes": 107229161,
+  "memory_budget_bytes": 2147483648,
+  "setup_seconds": 2.400728899985552,
+  "simulation_seconds": 44.6311057000421,
+  "core_step_seconds": 11.12358550040517,
+  "ticks_per_second": 4.481179591295928,
+  "synapse_candidate_visits": 12400000,
+  "synapse_candidate_visits_per_second": 277833.13466034754,
+  "source_spikes": 130000,
+  "target_spikes": 155000,
+  "learning_stats": {
+    "updates": 200,
+    "stdp_weight_updates": 5300000,
+    "reward_weight_updates": 3600000,
+    "rewards_received": 100,
+    "rewards_applied": 100,
+    "pending_rewards": 0,
+    "last_update_ms": 0.0068999361246824265,
+    "total_update_ms": 15698.147699818946
+  },
+  "maximum_absolute_weight_drift": 0.05,
+  "weight_bounds": {
+    "minimum": 0.0,
+    "maximum": 0.5
+  },
+  "final_weights_finite": true,
+  "final_out_of_bounds_weights": 0,
+  "stability_invariants_passed": true,
+  "final_at_lower_bound_fraction": 1.0,
+  "final_at_upper_bound_fraction": 0.0,
+  "stability_snapshots": [
+    {
+      "epoch": 10,
+      "finite_weights": true,
+      "min_weight": 0.0949937824474686,
+      "max_weight": 0.0949937824474686,
+      "mean_weight": 0.0949937824474686,
+      "at_lower_bound_count": 0,
+      "at_upper_bound_count": 0,
+      "out_of_bounds_weights": 0
+    },
+    {
+      "epoch": 20,
+      "finite_weights": true,
+      "min_weight": 0.11096053203405096,
+      "max_weight": 0.11096053203405096,
+      "mean_weight": 0.11096053203405096,
+      "at_lower_bound_count": 0,
+      "at_upper_bound_count": 0,
+      "out_of_bounds_weights": 0
+    },
+    {
+      "epoch": 30,
+      "finite_weights": true,
+      "min_weight": 0.06402478325638745,
+      "max_weight": 0.06402478325638745,
+      "mean_weight": 0.06402478325638745,
+      "at_lower_bound_count": 0,
+      "at_upper_bound_count": 0,
+      "out_of_bounds_weights": 0
+    },
+    {
+      "epoch": 40,
+      "finite_weights": true,
+      "min_weight": 0.07342864377999239,
+      "max_weight": 0.07342864377999239,
+      "mean_weight": 0.07342864377999239,
+      "at_lower_bound_count": 0,
+      "at_upper_bound_count": 0,
+      "out_of_bounds_weights": 0
+    },
+    {
+      "epoch": 50,
+      "finite_weights": true,
+      "min_weight": 0.18739280281323506,
+      "max_weight": 0.18739280281323506,
+      "mean_weight": 0.18739280281323506,
+      "at_lower_bound_count": 0,
+      "at_upper_bound_count": 0,
+      "out_of_bounds_weights": 0
+    },
+    {
+      "epoch": 60,
+      "finite_weights": true,
+      "min_weight": 0.198564281585984,
+      "max_weight": 0.198564281585984,
+      "mean_weight": 0.198564281585984,
+      "at_lower_bound_count": 0,
+      "at_upper_bound_count": 0,
+      "out_of_bounds_weights": 0
+    },
+    {
+      "epoch": 70,
+      "finite_weights": true,
+      "min_weight": 0.1367478610309586,
+      "max_weight": 0.1367478610309586,
+      "mean_weight": 0.1367478610309586,
+      "at_lower_bound_count": 0,
+      "at_upper_bound_count": 0,
+      "out_of_bounds_weights": 0
+    },
+    {
+      "epoch": 80,
+      "finite_weights": true,
+      "min_weight": 0.11819714830632422,
+      "max_weight": 0.11819714830632422,
+      "mean_weight": 0.11819714830632422,
+      "at_lower_bound_count": 0,
+      "at_upper_bound_count": 0,
+      "out_of_bounds_weights": 0
+    },
+    {
+      "epoch": 90,
+      "finite_weights": true,
+      "min_weight": 0.09138406632618222,
+      "max_weight": 0.09138406632618222,
+      "mean_weight": 0.09138406632618222,
+      "at_lower_bound_count": 0,
+      "at_upper_bound_count": 0,
+      "out_of_bounds_weights": 0
+    },
+    {
+      "epoch": 100,
+      "finite_weights": true,
+      "min_weight": 0.0,
+      "max_weight": 0.0,
+      "mean_weight": 0.0,
+      "at_lower_bound_count": 100000,
+      "at_upper_bound_count": 0,
+      "out_of_bounds_weights": 0
+    }
+  ],
+  "stage3_target_range": {
+    "neurons": [
+      10000,
+      100000
+    ],
+    "synapses": [
+      100000,
+      10000000
+    ],
+    "lower_bound_covered": true,
+    "upper_bound_covered": false
+  },
+  "interpretation_limit": "One deterministic topology/load profile; not general stability, scientific evidence, or full-range Stage-3 acceptance."
+}
