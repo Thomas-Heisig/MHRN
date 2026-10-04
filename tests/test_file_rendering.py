@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import gzip
+import hashlib
 import json
 import struct
 import zipfile
@@ -30,6 +32,37 @@ def service(tmp_path: Path) -> FilePreviewService:
         (tmp_path / source).mkdir()
     return FilePreviewService(
         {"docs": tmp_path / "docs", "research": tmp_path / "research"}
+    )
+
+
+def _write_indexed_raw_run(
+    service: FilePreviewService, payload: bytes
+) -> tuple[str, Path, bytes]:
+    experiment = service.roots["research"] / "experiments" / "EXP-COGNITION"
+    raw = experiment / "DATA" / "raw" / "run-0000-control-seed-1.json.gz"
+    raw.parent.mkdir(parents=True)
+    compressed = gzip.compress(payload, mtime=0)
+    raw.write_bytes(compressed)
+    (raw.parent.parent / "runs_index.json").write_text(
+        json.dumps(
+            {
+                "schema_version": "2.0",
+                "runs": [
+                    {
+                        "path": "DATA/raw/run-0000-control-seed-1.json.gz",
+                        "format": "json.gz",
+                        "sha256": hashlib.sha256(compressed).hexdigest(),
+                        "size_bytes": len(compressed),
+                    }
+                ],
+            }
+        ),
+        encoding="utf-8",
+    )
+    return (
+        "experiments/EXP-COGNITION/DATA/raw/run-0000-control-seed-1.json.gz",
+        raw,
+        compressed,
     )
 
 
@@ -204,6 +237,63 @@ def test_json_pretty_preview_keeps_exact_editor_source(
     preview = service.preview("docs", target.name)
     assert preview["raw_content"] == original
     assert json.loads(preview["content"])["value"] == 1
+
+
+def test_indexed_gzip_raw_run_has_bounded_json_preview(
+    service: FilePreviewService,
+) -> None:
+    payload = json.dumps({"condition": "control", "seed": 1}).encode("utf-8")
+    path, _, _ = _write_indexed_raw_run(service, payload)
+
+    preview = service.preview("research", path)
+
+    assert preview["kind"] == "json"
+    assert json.loads(preview["content"]) == {"condition": "control", "seed": 1}
+    assert preview["editable"] is False
+    assert "Indexierter" in preview["notice"]
+
+
+def test_raw_run_preview_limits_decompressed_content(
+    service: FilePreviewService, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    from src.dashboard import file_rendering
+
+    path, _, _ = _write_indexed_raw_run(service, b'{"value":"' + b"x" * 128 + b'"}')
+    monkeypatch.setattr(file_rendering, "RAW_RUN_PREVIEW_BYTES", 32)
+
+    preview = service.preview("research", path)
+
+    assert preview["kind"] == "text"
+    assert preview["truncated"] is True
+    assert len(preview["content"].encode("utf-8")) == 32
+    assert "Begrenzte" in preview["notice"]
+
+
+def test_raw_run_preview_requires_matching_index_digest(
+    service: FilePreviewService,
+) -> None:
+    path, raw, _ = _write_indexed_raw_run(service, b'{"condition":"control"}')
+    raw.write_bytes(gzip.compress(b'{"condition":"changed"}', mtime=0))
+
+    preview = service.preview("research", path)
+
+    assert preview["kind"] == "binary"
+    assert "digest" in preview["notice"].lower()
+
+
+def test_raw_run_preview_requires_index_registration(
+    service: FilePreviewService,
+) -> None:
+    path, raw, _ = _write_indexed_raw_run(service, b'{"condition":"control"}')
+    index_path = raw.parent.parent / "runs_index.json"
+    index = json.loads(index_path.read_text(encoding="utf-8"))
+    index["runs"] = []
+    index_path.write_text(json.dumps(index), encoding="utf-8")
+
+    preview = service.preview("research", path)
+
+    assert preview["kind"] == "binary"
+    assert "not uniquely registered" in preview["notice"]
 
 
 def test_csv_quoted_cells_and_binary_fallback(service: FilePreviewService) -> None:

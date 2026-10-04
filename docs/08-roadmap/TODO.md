@@ -379,8 +379,10 @@ MHRN / Multi-Scale Homeostatic Recurrence Network. Publication: Recursive Episte
 - [x] Execute registered exploratory component controls for delayed information
 	(`016-memory_delayed_information_v1`) and one-step world-model prediction
 	(`017-world_model_prediction_v1`); these runs remain DATA, not automatic EVID.
-- [ ] Add explicit File Viewer drill-down for the existing cognition campaign,
-	including bounded inspection of compressed raw-run data.
+- [x] Add explicit File Viewer drill-down for the existing cognition campaign.
+	Only up to 100 indexed runs are listed; each compressed raw-run preview is
+	read-only, SHA-256 checked against `runs_index.json`, and bounded to 256 KiB
+	of decompressed content. This exposes DATA only, not analysis or EVID.
 
 Neural Symbiosis gateway status: **experimental activation implemented; Frozen / Random / Shuffle controls implemented; experimental plasticity implemented; productive activation locked pending validation**.
 

@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-10-04 - Bounded cognition raw-run viewer
+
+- Added File Viewer drill-down from a registered cognition `runs_index.json` to
+  immutable compressed raw runs. The viewer exposes at most 100 indexed runs;
+  previews require a matching SHA-256 entry and decompress at most 256 KiB.
+- Raw runs remain read-only DATA. This viewer does not create analysis, Human
+  Review, EVID or scientific status promotion.
+
 ## 2026-10-04 - Alpha.7 pre-release and Zenodo archive verified
 
 - Published GitHub pre-release `v0.6.0-alpha.7` on source freeze
