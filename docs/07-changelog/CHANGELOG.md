@@ -1,15 +1,18 @@
 # Changelog
 
-## 2026-10-04 - External review deployment remains unconfigured
+## 2026-10-04 - External-review Pages export provisioned; live fix pending
 
-- Independent repository/deployment review found GitHub Pages unconfigured
-  (Pages API 404), no private `study.json` or collector secrets in this
-  workspace, and only example domain/legal placeholders in the deployment
-  templates.
-- The Docker named volume has no documented or tested backup/restore procedure;
-  real DNS/TLS, hosting/storage controls and study-specific legal/ethics review
-  were not available to verify. Online collection remains disabled and the
-  deployment TODO stays open.
+- Provisioned workflow-only GitHub Pages at
+  `https://thomas-heisig.github.io/MHRN/`; GitHub reports HTTPS enforcement.
+  Workflow run [37202191034](https://github.com/Thomas-Heisig/MHRN/actions/runs/37202191034)
+  passed verification and static publication.
+- Live smoke found that HTML loads but CSS/JS requests to `/review/review.css`
+  and `/review/app.js` return 404. The relative-path fix is on `develop`
+  (`6c417c2`); its nine-commit delta from `main` includes unrelated changes, so
+  no branch-wide deployment was attempted.
+- Pages is export-only. No private study configuration, central response store,
+  backup/restore process or study-specific legal/ethics disposition is active;
+  the comprehensive deployment TODO remains open.
 
 ## 2026-10-04 - Hugging Face rolling mirrors rerun
 

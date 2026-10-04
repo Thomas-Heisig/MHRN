@@ -147,10 +147,16 @@
 - Online-Antworten bleiben außerhalb des Git-Repositories verschlüsselt.
 - Nur geprüfte, nicht-identifizierende Aggregate dürfen später veröffentlicht
 	werden.
-- Audit 2026-10-04: GitHub Pages is not configured and no real collector
-	deployment or private study configuration exists in this workspace. Domain,
-	persistent-storage backup/restore, DNS/TLS and study-specific privacy/ethics
-	decisions remain unverified; online collection stays disabled.
+- GitHub Pages export-only was provisioned at
+	<https://thomas-heisig.github.io/MHRN/>; GitHub reports HTTPS enforced.
+- Live smoke on 2026-10-04 found the page HTML but 404s for its CSS/JS because
+	canonical `main` still uses absolute `/review/...` paths. A relative-path fix
+	is present on `develop` (`6c417c2`), but that branch is nine commits ahead
+	with unrelated changes and has no open PR. Keep the fix behind the normal
+	release review before republishing.
+- Online collection remains disabled. No private study configuration,
+	persistent response store, backup/restore evidence or study-specific
+	privacy/ethics disposition is configured; GitHub Pages is not a collector.
 
 ## 2026-09-20 Publikationsnavigation
 
