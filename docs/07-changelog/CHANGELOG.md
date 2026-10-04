@@ -97,10 +97,12 @@
 - Confirmed that the seven registered Gateway protocols are boundary audits,
   not executable Plastic protocols; their audit seed reexecutions do not count
   as independent Plastic runs.
-- The current Gateway route accepts caller-supplied preregistration JSON and
-  activates a single seed. No registered Plastic runner, frozen input-frame
-  sequence or executable stop rule is available, so registry-backed
-  multi-seed execution remains open rather than inventing a workload.
+- The HTTP Plastic activation route now resolves protocol IDs against the
+  operational registry and rejects unknown or boundary-audit protocols. It
+  remains fail-closed even for a future functional protocol until a registered
+  multi-seed runner exists; it does not execute one caller-supplied seed.
+- No frozen functional Plastic runner, input-frame sequence or executable stop
+  rule is available, so registry-backed multi-seed execution remains open.
 - No scientific DATA/EVID status is inferred from Gateway activation or audit
   artifacts.
 

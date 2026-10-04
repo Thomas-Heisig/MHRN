@@ -182,15 +182,17 @@ MHRN / Multi-Scale Homeostatic Recurrence Network. Publication: Recursive Episte
 - [x] Explain Gateway conditions and the Plastic preregistration guard in the frontend.
 - [x] Generate JSON state and Markdown report artifacts for Gateway activations.
 - [x] Preserve the boundary that Gateway activity and reports are not scientific evidence.
-- [ ] Add preregistration registry lookup and independent multi-seed execution for Plastic runs.
-- Audit 2026-10-04: `RQ-GW-001` through `RQ-GW-007` currently resolve only to
-  `boundary_audit` protocols; their three-seed audit reexecutions are not
-  Plastic DATA. The Gateway API accepts a caller-supplied preregistration object
-  and activates one seed, while no registered Plastic runner, frozen input-frame
-  sequence, or stop-rule execution contract exists. Keep this item open: do not
-  count arbitrary JSON or boundary-audit seeds as registry lookup or independent
-  Plastic execution. A suitable frozen functional protocol and runner contract
-  are prerequisites.
+- [x] Resolve public Plastic `protocol_id` values against the operational
+	registry; reject unknown and `boundary_audit` protocols before activation.
+- [ ] Add a registered frozen functional Plastic protocol and independent
+	multi-seed runner with frozen input frames, executable stop rules and bound
+	outcomes. Keep single-seed Plastic activation disabled until that runner exists.
+- Audit 2026-10-04: `RQ-GW-001` through `RQ-GW-007` are still only
+	`boundary_audit` protocols; their three-seed audit reexecutions are not
+	Plastic DATA. The public route now performs registry lookup and fails closed
+	for unknown/audit IDs. No functional Plastic runner, frozen input-frame
+	sequence or stop-rule execution contract exists yet. Do not count audit seeds
+	as independent Plastic execution; no DATA/EVID is promoted.
 
 ## 2026-09-16 Experiment archive results viewer
 

@@ -9,13 +9,13 @@
 - The seven registered `RQ-GW-*` operational protocols are `boundary_audit`
   contracts with `direct_test_of_hypothesis=false`; their seed lists describe
   audit reexecution, not independent Gateway Plastic runs.
-- The Gateway activation route accepts caller-provided preregistration JSON and
-  starts one runtime seed. There is no registered functional Plastic runner,
-  frozen input-frame sequence, or executable stop rule to define a reproducible
-  trial across independent runtime instances.
-- Keep registry-backed Plastic activation and multi-seed execution open until
-  a suitable frozen functional protocol and runner contract exist. No Gateway
-  DATA/EVID is inferred from the current audit protocols or activation status.
+- The public Plastic activation route resolves `protocol_id` against the
+	operational registry and rejects unknown or `boundary_audit` entries before
+	activation. A single-seed API call cannot authorize a Plastic run.
+- The seven registered Gateway protocols remain boundary audits. No frozen
+	functional Plastic protocol, input-frame sequence, executable stop rule or
+	independent multi-seed runner exists yet; keep Plastic execution and Gateway
+	DATA/EVID blocked until those contracts are independently reviewable.
 
 ## 2026-10-04 Stage-3 plastic-network scale benchmark
 
