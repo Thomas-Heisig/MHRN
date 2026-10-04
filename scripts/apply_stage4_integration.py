@@ -206,8 +206,7 @@ def patch_wesen_frontend() -> None:
     )
     render_anchor = '  msba.innerHTML = MSBA.map(([name, path, coords, plasticity, throttle]) => `<div class="wesen-symbiosis-item"><span class="wesen-symbiosis-dot"></span><div><strong>${escapeHtml(name)} · ${escapeHtml(path)}</strong><small>${escapeHtml(coords)} · ${escapeHtml(plasticity)} · throttle: ${escapeHtml(throttle)}</small></div></div>`).join("");\n'
     render = (
-        render_anchor
-        + """  const specialized = lastSymbiosis?.specialized_areas || {};
+        render_anchor + """  const specialized = lastSymbiosis?.specialized_areas || {};
   const specializedRows = Array.isArray(specialized.areas) ? specialized.areas : [];
   const scale = specialized.topology || {};
   if (stage4Scale) stage4Scale.textContent = `${Number(scale.total_neuron_budget || 0).toLocaleString("de-DE")} N · ${Number(scale.total_synapse_budget || 0).toLocaleString("de-DE")} S · ${scale.dynamic_scale_execution_verified ? "DYNAMIC VERIFIED" : "AGGREGATED"}`;

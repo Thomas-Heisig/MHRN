@@ -24,6 +24,8 @@
 - Published the existing relative-path Pages fix with review-portal run
   `37214631300` on `main@4a105137`; root, stylesheet, app and admin routes
   returned HTTP 200.
+- Restored the develop lint gate by formatting the Stage-4 integration helper
+  and fixing a stale benchmark-test helper name; no runtime behavior changed.
 
 ## 2026-10-04 - Alpha.7 release candidate preparation (pre-publication)
 

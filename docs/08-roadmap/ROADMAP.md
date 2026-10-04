@@ -162,6 +162,8 @@
 - The export-only GitHub Pages portal was republished by workflow run
 	`37214631300` from `main@4a105137`. Root, stylesheet, application module and
 	admin page all returned HTTP 200 in the live smoke check.
+- A develop-only formatting drift and stale benchmark-test helper name were
+	corrected; the fix changes no runtime behavior.
 
 ## 2026-09-29 Post-hoc Experimentauswertung
 
