@@ -858,7 +858,23 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
 
             if path.startswith("/api/playground/"):
                 body = self._read_json_object()
-                payload = post_playground(path, body)
+                try:
+                    payload = post_playground(path, body)
+                except Exception as exc:
+                    run_evidence = getattr(exc, "run_evidence", None)
+                    if not isinstance(run_evidence, Mapping):
+                        raise
+                    status_code = getattr(
+                        exc, "run_http_status", HTTPStatus.INTERNAL_SERVER_ERROR
+                    )
+                    self._send_json(
+                        {
+                            "error": str(exc),
+                            "run_evidence": cast(JSONValue, run_evidence),
+                        },
+                        cast(int, status_code),
+                    )
+                    return
                 if payload is None:
                     self._send_api_not_found(path)
                 else:
@@ -5421,9 +5437,16 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
             self._send_api_not_found(request_path)
             return
 
+        if request_path == "/review":
+            self.send_response(HTTPStatus.MOVED_PERMANENTLY)
+            self.send_header("Location", "/review/")
+            self.send_header("Content-Length", "0")
+            self.end_headers()
+            return
+
         if request_path in {"", "/"}:
             relative = "index.html"
-        elif request_path in {"/review", "/review/"}:
+        elif request_path == "/review/":
             relative = "review/index.html"
         else:
             relative = request_path.lstrip("/")

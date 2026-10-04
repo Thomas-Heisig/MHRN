@@ -172,7 +172,20 @@ test("recurrent CUDA diagnostic reports unavailability without a CPU success fal
     await route.fulfill({
       status: 503,
       contentType: "application/json",
-      body: JSON.stringify({ error: "CUDA driver unavailable" }),
+      body: JSON.stringify({
+        error: "CUDA driver unavailable",
+        run_evidence: {
+          artifact_id: "a".repeat(32),
+          artifact_url: `/api/playground/cuda/diagnostics/${"a".repeat(32)}`,
+          persistence_status: "persisted",
+          execution_status: "failed",
+          started_at: "2026-10-04T12:00:00.000Z",
+          completed_at: "2026-10-04T12:00:01.000Z",
+          duration_seconds: 1,
+          provenance: { git_commit: "abc123", working_tree_digest: "b".repeat(64) },
+          hardware_identity: { status: "captured", model: "Test GPU", pci_bus_id: "0000:01:00.0" },
+        },
+      }),
     });
   });
   await page.locator("#pg-group-5 > summary").click();
@@ -185,7 +198,11 @@ test("recurrent CUDA diagnostic reports unavailability without a CPU success fal
   await expect(runStatus).toContainText("FAILED");
   await expect(runStatus).toContainText("Start");
   await expect(runStatus).toContainText("HEAD");
-  await expect(runStatus).toContainText("Artefakt nicht persistiert");
+  await expect(runStatus).toContainText("Tree bbbbbbbbbbbb");
+  await expect(runStatus.getByRole("link", { name: "JSON-Artefakt" })).toHaveAttribute(
+    "href",
+    `/api/playground/cuda/diagnostics/${"a".repeat(32)}`,
+  );
   await page.locator("#pg-cuda-plasticity").click();
   await expect(page.locator("#pg-cuda-plasticity-state")).toContainText(
     "CUDA driver unavailable",

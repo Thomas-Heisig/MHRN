@@ -49,7 +49,9 @@
 - [x] Isolated Hugging Face Docker deployment prepared.
 - [x] Sanitized aggregate export implemented and tested.
 - [ ] Configure and independently review the real public domain, storage, TLS, backups and legal study settings.
-- Audit 2026-10-04: GitHub Pages is not configured (repository Pages API returns 404); no private `study.json` or collector secrets are present in this workspace. The study example is disabled and contains controller/contact/privacy placeholders with `review.example.org`; the Compose volume is not a backup plan. No real domain, online collection, backup/restore or study-specific legal/ethics review can be claimed. Keep collection disabled until those external decisions and evidence are supplied.
+- [x] Provision GitHub Pages in workflow-only mode at <https://thomas-heisig.github.io/MHRN/>; GitHub reports HTTPS enforced and workflow run [37202191034](https://github.com/Thomas-Heisig/MHRN/actions/runs/37202191034) published the static artifact.
+- [ ] Fix and publish the Pages-root asset paths on canonical `main`, then repeat the live smoke test. Current live HTML loads, but CSS/JS requests to `/review/review.css` and `/review/app.js` return 404. The relative-path fix is on `develop` (`6c417c2`); `origin/develop` is 9 commits ahead of `main` and no PR is open, so do not deploy that branch wholesale.
+- Audit 2026-10-04: Pages is export-only and has no central response storage. The private study config is absent; the example remains disabled with legal/contact placeholders, and the Compose volume is not a backup plan. Online collection, backup/restore, custom-domain DNS/TLS and study-specific legal/ethics review remain unconfigured. Keep collection disabled.
 - [x] Make experiment cards open a complete detail dialog with form prefill.
 
 ## 2026-09-20 Publication navigation

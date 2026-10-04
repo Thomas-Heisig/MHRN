@@ -3,7 +3,10 @@
 from __future__ import annotations
 
 import ctypes
+import hashlib
+import subprocess
 from dataclasses import replace
+from types import SimpleNamespace
 
 import pytest
 
@@ -209,12 +212,176 @@ def test_cuda_block_size_validation_accepts_legal_warp_multiples(
     assert validate_cuda_block_size(block_size) == block_size
 
 
-def test_smoke_route_rejects_2048_threads_before_gpu_access() -> None:
+def test_smoke_route_rejects_2048_threads_before_gpu_access(
+    monkeypatch: pytest.MonkeyPatch, tmp_path
+) -> None:
+    monkeypatch.setattr(playground_api, "_REPO_ROOT", tmp_path)
+    monkeypatch.setattr(playground_api, "_reserve_rate_slot", lambda: None)
+    monkeypatch.setattr(
+        playground_api,
+        "_working_tree_provenance",
+        lambda _root: {"working_tree_digest": "a" * 64},
+    )
+    monkeypatch.setattr(
+        playground_api,
+        "_cuda_hardware_identity",
+        lambda _ordinal: {"status": "captured", "model": "test GPU"},
+    )
     with pytest.raises(ValueError, match="block_size"):
         playground_api.post_playground(
             "/api/playground/cuda/smoke",
             {"block_size": 2048},
         )
+
+
+def test_cuda_diagnostic_artifact_is_atomic_checksummed_and_retrievable(
+    tmp_path,
+) -> None:
+    artifact = {
+        "artifact_id": "0123456789abcdef0123456789abcdef",
+        "route": "/api/playground/cuda/smoke",
+        "result": {"passed": True},
+    }
+
+    path, digest = playground_api._write_cuda_diagnostic_artifact(
+        tmp_path, artifact
+    )
+    loaded = playground_api._load_cuda_diagnostic_artifact(
+        tmp_path, artifact["artifact_id"]
+    )
+
+    assert path.parent == tmp_path / "artifacts" / "cuda_diagnostics"
+    assert path.is_file()
+    assert loaded["result"] == {"passed": True}
+    assert loaded["artifact_sha256"] == digest
+
+
+def test_cuda_diagnostic_artifact_rejects_path_traversal(tmp_path) -> None:
+    with pytest.raises(ValueError, match="ID is invalid"):
+        playground_api._load_cuda_diagnostic_artifact(tmp_path, "../secret")
+
+
+def test_cuda_diagnostic_route_returns_retrievable_receipt(
+    monkeypatch: pytest.MonkeyPatch, tmp_path
+) -> None:
+    monkeypatch.setattr(playground_api, "_REPO_ROOT", tmp_path)
+    monkeypatch.setattr(playground_api, "_reserve_rate_slot", lambda: None)
+    monkeypatch.setattr(
+        playground_api,
+        "_working_tree_provenance",
+        lambda _root: {
+            "git_commit": "abc123",
+            "working_tree_digest": "b" * 64,
+            "working_tree_state": "modified",
+        },
+    )
+    monkeypatch.setattr(
+        playground_api,
+        "_cuda_hardware_identity",
+        lambda ordinal: {
+            "status": "captured",
+            "device_ordinal": ordinal,
+            "model": "test GPU",
+            "device_uuid_sha256": "c" * 64,
+        },
+    )
+    monkeypatch.setattr(
+        playground_api,
+        "_cuda_smoke",
+        lambda _payload: {"classification": "test", "passed": True},
+    )
+
+    result = playground_api.post_playground(
+        "/api/playground/cuda/smoke", {"device_ordinal": 1}
+    )
+
+    receipt = result["run_evidence"]
+    artifact_id = receipt["artifact_id"]
+    assert receipt["persistence_status"] == "persisted"
+    assert receipt["provenance"]["working_tree_digest"] == "b" * 64
+    assert receipt["hardware_identity"]["device_ordinal"] == 1
+    artifact = playground_api.get_playground(
+        f"/api/playground/cuda/diagnostics/{artifact_id}"
+    )
+    assert artifact["result"]["passed"] is True
+    assert artifact["artifact_sha256"] == receipt["artifact_sha256"]
+
+
+def test_failed_cuda_diagnostic_keeps_a_retrievable_receipt(
+    monkeypatch: pytest.MonkeyPatch, tmp_path
+) -> None:
+    monkeypatch.setattr(playground_api, "_REPO_ROOT", tmp_path)
+    monkeypatch.setattr(playground_api, "_reserve_rate_slot", lambda: None)
+    monkeypatch.setattr(
+        playground_api,
+        "_working_tree_provenance",
+        lambda _root: {"working_tree_digest": "d" * 64},
+    )
+    monkeypatch.setattr(
+        playground_api,
+        "_cuda_hardware_identity",
+        lambda _ordinal: {"status": "unavailable", "reason": "test"},
+    )
+
+    def fail() -> dict[str, object]:
+        raise RuntimeError("CUDA driver unavailable")
+
+    monkeypatch.setattr(playground_api, "_cuda_smoke", lambda _payload: fail())
+    with pytest.raises(RuntimeError, match="CUDA driver unavailable") as caught:
+        playground_api.post_playground("/api/playground/cuda/smoke", {})
+
+    receipt = caught.value.run_evidence
+    assert receipt["execution_status"] == "failed"
+    assert receipt["persistence_status"] == "persisted"
+    artifact = playground_api.get_playground(receipt["artifact_url"])
+    assert artifact["error"] == "CUDA driver unavailable"
+
+
+def test_cuda_hardware_identity_resolves_visible_device_and_hashes_uuid(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    output = "0, GPU A, GPU-aaa, 0000:01:00.0, 550.10\n1, GPU B, GPU-bbb, 0000:02:00.0, 550.10\n"
+    monkeypatch.setattr(playground_api.shutil, "which", lambda _name: "nvidia-smi")
+    monkeypatch.setattr(
+        playground_api.subprocess,
+        "run",
+        lambda *_args, **_kwargs: subprocess.CompletedProcess(
+            args=["nvidia-smi"], returncode=0, stdout=output, stderr=""
+        ),
+    )
+    monkeypatch.setenv("CUDA_VISIBLE_DEVICES", "1,0")
+
+    result = playground_api._cuda_hardware_identity(0)
+
+    assert result["status"] == "captured"
+    assert result["model"] == "GPU B"
+    assert result["pci_bus_id"] == "0000:02:00.0"
+    assert result["device_uuid_sha256"] == hashlib.sha256(b"GPU-bbb").hexdigest()
+
+
+def test_working_tree_provenance_records_digest_scope_and_dirty_paths(
+    monkeypatch: pytest.MonkeyPatch, tmp_path
+) -> None:
+    monkeypatch.setattr(playground_api, "current_git_head", lambda _root: "a" * 40)
+    monkeypatch.setattr(
+        playground_api,
+        "inspect_source_tree",
+        lambda _root: SimpleNamespace(
+            digest="b" * 64,
+            dirty_relevant_paths=("src/dashboard/playground_api.py",),
+            untracked_relevant_paths=(),
+            missing_relevant_paths=(),
+            git_available=True,
+        ),
+    )
+
+    result = playground_api._working_tree_provenance(tmp_path)
+
+    assert result["git_commit"] == "a" * 40
+    assert result["working_tree_digest"] == "b" * 64
+    assert result["working_tree_state"] == "modified"
+    assert "src/" in result["working_tree_digest_scope"]
+    assert result["dirty_relevant_paths"] == ["src/dashboard/playground_api.py"]
 
 
 def test_cuda_runtime_status_exposes_head_without_claiming_tree_fingerprint(
