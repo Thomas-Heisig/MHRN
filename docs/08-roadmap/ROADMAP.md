@@ -26,7 +26,9 @@
 	boundedness is reported separately from ongoing spikes, active-weight
 	fraction, and workload-required weight diversity. Candidate visits/s is an
 	operation-count estimate, not a hardware counter. Receipts include workload,
-	software and CPU metadata; all remain engineering-only.
+	software, CPU, benchmark-source SHA-256 and topology SHA-256; all remain
+	engineering-only. Pair-STDP, eligibility, and reward modulation are included;
+	homeostasis, structural growth/pruning, and checkpoint/restore are excluded.
 - Matched 10,000-neuron / 100,000-synapse runs (seed 42, 100 epochs): the
 	heterogeneous asymmetric profile ended with 56.25% of weights at the lower
 	bound, 43.75% active and positive variance; the symmetric profile ended with
@@ -34,9 +36,21 @@
 	profile retained all weights at 0.05. The earlier uniform-input profile drove
 	all weights to zero. Its identical weights are expected under that symmetric
 	input/topology; it is not evidence by itself of an update implementation bug.
+- In matched heterogeneous 100-epoch runs, asymmetric `a_minus > a_plus` has
+	12.5 percentage points more lower-bound weights than symmetric STDP, which is
+	consistent with a depression contribution. Symmetric STDP also puts 18.75%
+	at the upper bound, so the comparison does not isolate a sole collapse cause
+	or establish a generally preferred parameterization.
+- Repeating that uniform-input profile with V2 checks reproduces 100% lower-bound
+	saturation and correctly reports `numeric_stability_passed=true`, but
+	`functional_activity_passed=false` and `stability_invariants_passed=false`.
+- The `seed` now deterministically permutes target-node order. A 42/43/44,
+	three-mode, 20-epoch sweep at 10k/100k produced active fractions of 50%
+	(asymmetric), 62.5% (symmetric), and 100% (off) for every seed. This checks
+	engineering topology sensitivity only; the seeds are not biological samples.
 - At 100,000 neurons / 1M synapses for 20 heterogeneous asymmetric epochs, the
 	measured Python peak was about 1.03 GB, the estimated candidate-visit rate
-	about 210k/s, and 50% of weights remained active. These workload-specific
+	about 195k/s, and 50% of weights remained active. These workload-specific
 	profiles do not establish general or long-horizon stability.
 - The declared 100,000-neuron / 10M-synapse upper point remains unmeasured:
 	its preflight estimate is 19.45 GiB, exceeding this machine's available RAM.

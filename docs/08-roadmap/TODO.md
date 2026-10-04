@@ -230,11 +230,26 @@ MHRN / Multi-Scale Homeostatic Recurrence Network. Publication: Recursive Episte
 	43.75% at the lower bound and 18.75% at the upper bound; learning-off kept
 	all weights at 0.05. The earlier uniform-input run's all-zero result is kept
 	as a separate symmetry/saturation diagnostic, not generalized to all inputs.
+- Audit: `a_minus > a_plus` is consistent with the 12.5-point increase in
+	lower-bound occupancy versus symmetric STDP, but symmetric STDP also saturates
+	18.75% of weights at the upper bound. The current profile does not isolate a
+	sole cause or identify a universally stable parameterization.
 - [x] Re-run heterogeneous asymmetric STDP at 100k/1M for 20 epochs; all
 	weights remained finite/in bounds, 50% were active, and the estimated visit
-	rate was about 210k/s. These remain single-seed engineering observations.
+	rate was about 195k/s. These remain single-seed engineering observations.
 - [x] Make functional stability fail when no active synapses remain, even if
 	numeric bound checks pass; report variance and saturation separately.
+- [x] Re-run the uniform asymmetric 10k/100k profile with the V2 functional
+	gate: all weights reach zero, so `numeric_stability_passed=true` but
+	`functional_activity_passed=false` and
+	`stability_invariants_passed=false`. The old collapse is now directly
+	reproduced and correctly rejected as functional stability.
+- [x] Make `seed` permute target-node order reproducibly and bind each receipt
+	to both benchmark-source SHA-256 and topology SHA-256.
+- [x] Run a three-seed (42, 43, 44), three-mode, 20-epoch engineering sweep at
+	10k/100k. Every run passed functional checks; asymmetric active fraction was
+	50%, symmetric 62.5%, and learning-off 100%. This is seed/topology sensitivity,
+	not biological replication or inferential evidence.
 - [x] Add verified literature and explicit framework-comparability limits in
 	[Related Work](../../research/RELATED_WORK.md) and the Stage-3 contract.
 - [ ] Execute the 100k-neuron/10M-synapse upper point on a memory-appropriate

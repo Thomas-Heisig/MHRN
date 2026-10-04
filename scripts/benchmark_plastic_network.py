@@ -153,7 +153,7 @@ def _benchmark_source_digest() -> str:
     return hashlib.sha256(Path(__file__).read_bytes()).hexdigest()
 
 
-def _assess_stability(
+def assess_stability(
     snapshots: list[dict[str, Any]],
     *,
     final_epoch_source_spikes: int,
@@ -322,7 +322,7 @@ def run_benchmark(
     weight_diversity_required = (
         activity_profile == "heterogeneous_cohorts" and learning_enabled
     )
-    stability_assessment = _assess_stability(
+    stability_assessment = assess_stability(
         stability,
         final_epoch_source_spikes=final_epoch_source_spikes,
         final_epoch_target_spikes=final_epoch_target_spikes,

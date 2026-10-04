@@ -3,6 +3,7 @@
   "benchmark": "stage3_plastic_network_scale",
   "scope": "engineering_verification_only",
   "scientific_evidence": false,
+  "benchmark_source_sha256": "4a130c3a8ad4efbc3c6ea04b36c0da1f15b61af295a7855b9c7e079220e5d92d",
   "python": "3.13.14",
   "platform": "Windows-11-10.0.26200-SP0",
   "cpu": "AMD64 Family 26 Model 68 Stepping 0, AuthenticAMD",
@@ -18,14 +19,14 @@
   "epochs": 20,
   "ticks": 40,
   "estimated_peak_bytes": 245760000,
-  "tracemalloc_peak_bytes": 107228474,
+  "tracemalloc_peak_bytes": 107228456,
   "memory_budget_bytes": 2147483648,
-  "setup_seconds": 2.3856009000446647,
-  "simulation_seconds": 8.424205199931748,
-  "core_step_seconds": 2.166795900207944,
-  "ticks_per_second": 4.748222419881709,
+  "setup_seconds": 2.4612670999486,
+  "simulation_seconds": 9.02766830008477,
+  "core_step_seconds": 2.2882195999845862,
+  "ticks_per_second": 4.430822962295192,
   "estimated_synapse_candidate_visits": 2400000,
-  "estimated_synapse_candidate_visits_per_second": 284893.34519290255,
+  "estimated_synapse_candidate_visits_per_second": 265849.37773771153,
   "candidate_visit_estimate": "Outgoing adjacency traversals for source spikes, incoming learning event traversals for target spikes, plus one full reward scan per epoch.",
   "source_spikes": 23750,
   "target_spikes": 25000,
@@ -38,8 +39,8 @@
     "rewards_received": 20,
     "rewards_applied": 20,
     "pending_rewards": 0,
-    "last_update_ms": 59.934800025075674,
-    "total_update_ms": 2558.9399001328275
+    "last_update_ms": 60.50710007548332,
+    "total_update_ms": 2737.652800162323
   },
   "maximum_absolute_weight_drift": 0.19913732535535927,
   "weight_bounds": {
@@ -103,7 +104,18 @@
     "plasticity_mode": "symmetric",
     "activity_profile": "heterogeneous_cohorts",
     "cohort_count": 4,
-    "heterogeneous_profile_rule": "sources: index mod 4 = epoch mod 4; targets: index mod 4 = (epoch + 1) mod 4"
+    "heterogeneous_profile_rule": "sources: index mod 4 = epoch mod 4; targets: index mod 4 = (epoch + 1) mod 4",
+    "mechanisms_included": [
+      "pair_stdp",
+      "eligibility_traces",
+      "reward_modulated_plasticity"
+    ],
+    "mechanisms_excluded": [
+      "firing_rate_homeostasis",
+      "energy_homeostasis",
+      "structural_growth_pruning",
+      "checkpoint_restore"
+    ]
   },
   "stage3_target_range": {
     "neurons": [

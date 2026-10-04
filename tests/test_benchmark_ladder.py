@@ -1,7 +1,17 @@
 from __future__ import annotations
 
+from typing import Literal, TypedDict
+
 from scripts.benchmark_ladder import run_tier
-from scripts.benchmark_plastic_network import _assess_stability, run_benchmark
+from scripts.benchmark_plastic_network import assess_stability, run_benchmark
+
+
+class _TopologyReplayBenchmarkOptions(TypedDict):
+    neuron_count: int
+    synapse_count: int
+    epochs: int
+    memory_budget_bytes: int
+    plasticity_mode: Literal["off"]
 
 
 def test_scaling_tier_reports_neuron_and_synapse_profile() -> None:
@@ -95,7 +105,7 @@ def test_symmetric_stdp_heterogeneous_profile_distinguishes_synapses() -> None:
 
 
 def test_numeric_bounds_do_not_mistake_zero_weight_collapse_for_functional_stability() -> None:
-    assessment = _assess_stability(
+    assessment = assess_stability(
         [
             {
                 "finite_weights": True,
@@ -115,7 +125,7 @@ def test_numeric_bounds_do_not_mistake_zero_weight_collapse_for_functional_stabi
 
 
 def test_benchmark_seed_replays_topology_and_changes_it_across_seeds() -> None:
-    shared = {
+    shared: _TopologyReplayBenchmarkOptions = {
         "neuron_count": 40,
         "synapse_count": 80,
         "epochs": 1,

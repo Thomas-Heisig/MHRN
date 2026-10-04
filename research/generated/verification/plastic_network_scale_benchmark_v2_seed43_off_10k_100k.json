@@ -3,6 +3,7 @@
   "benchmark": "stage3_plastic_network_scale",
   "scope": "engineering_verification_only",
   "scientific_evidence": false,
+  "benchmark_source_sha256": "4a130c3a8ad4efbc3c6ea04b36c0da1f15b61af295a7855b9c7e079220e5d92d",
   "python": "3.13.14",
   "platform": "Windows-11-10.0.26200-SP0",
   "cpu": "AMD64 Family 26 Model 68 Stepping 0, AuthenticAMD",
@@ -18,14 +19,14 @@
   "epochs": 20,
   "ticks": 40,
   "estimated_peak_bytes": 245760000,
-  "tracemalloc_peak_bytes": 107228627,
+  "tracemalloc_peak_bytes": 107228694,
   "memory_budget_bytes": 2147483648,
-  "setup_seconds": 2.602019999991171,
-  "simulation_seconds": 3.600624700076878,
-  "core_step_seconds": 1.9449656000360847,
-  "ticks_per_second": 11.109183358972667,
+  "setup_seconds": 2.549418400041759,
+  "simulation_seconds": 5.8790863999165595,
+  "core_step_seconds": 2.9549487003823742,
+  "ticks_per_second": 6.803778219787297,
   "estimated_synapse_candidate_visits": 200000,
-  "estimated_synapse_candidate_visits_per_second": 55545.91679486333,
+  "estimated_synapse_candidate_visits_per_second": 34018.89109893649,
   "candidate_visit_estimate": "Outgoing adjacency traversals for source spikes, incoming learning event traversals for target spikes, plus one full reward scan per epoch.",
   "source_spikes": 23750,
   "target_spikes": 25000,
@@ -103,7 +104,18 @@
     "plasticity_mode": "off",
     "activity_profile": "heterogeneous_cohorts",
     "cohort_count": 4,
-    "heterogeneous_profile_rule": "sources: index mod 4 = epoch mod 4; targets: index mod 4 = (epoch + 1) mod 4"
+    "heterogeneous_profile_rule": "sources: index mod 4 = epoch mod 4; targets: index mod 4 = (epoch + 1) mod 4",
+    "mechanisms_included": [
+      "pair_stdp",
+      "eligibility_traces",
+      "reward_modulated_plasticity"
+    ],
+    "mechanisms_excluded": [
+      "firing_rate_homeostasis",
+      "energy_homeostasis",
+      "structural_growth_pruning",
+      "checkpoint_restore"
+    ]
   },
   "stage3_target_range": {
     "neurons": [

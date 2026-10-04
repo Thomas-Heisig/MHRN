@@ -9,7 +9,16 @@
 - Re-ran 10k/100k for all three modes and heterogeneous asymmetric 100k/1M.
   The uniform-input all-zero case is retained as a separate symmetric workload,
   not treated as a general implementation failure. New schema-v2 receipts are
-  separate from earlier receipts.
+  separate from earlier receipts and include benchmark-source/topology SHA-256.
+- The uniform 10k/100k rerun confirms all weights hit zero; numeric bounds pass
+  but the functional stability gate fails. A seed-aware 42/43/44 by
+  asymmetric/symmetric/off sweep was also recorded; its engineering variation
+  is not independent biological replication.
+- In matched heterogeneous 100-epoch runs, asymmetric STDP increases lower-bound
+  occupancy by 12.5 percentage points relative to symmetric STDP, while
+  symmetric STDP also saturates the upper bound. This is consistent with a
+  depression contribution but does not isolate a sole cause or a universal
+  parameter recommendation.
 - Added verified STDP, homeostasis, memory, continual-learning, sensorimotor,
   network-organization, preregistration, and simulator-comparability sources,
   mapped to the relevant research areas. No direct 5D-advantage precedent was
