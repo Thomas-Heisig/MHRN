@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
-  "tested_commit": "5f6ede18598e80985259d8b910f63c2aa9de47a2",
-  "tested_tree_digest": "b03fca2dfbe4e5f93e6773a1199c3d33b4f80eeef2ceb09b2afc44e7ef56a444",
+  "tested_commit": "3740ed4aaf53f057d27bdb1a0b61f499bf9800c3",
+  "tested_tree_digest": "7bbb5e5906f46e613e8fc024d17ecdce87bf9c9e48d02b0c8741401d80fc648c",
   "tree_digest_paths": [
     "src/",
     "configs/",
@@ -12,7 +12,7 @@
   "tree_digest_excludes": [
     "tests/test_baseline.json"
   ],
-  "timestamp": "2026-10-03T07:37:22.663226+00:00",
+  "timestamp": "2026-10-04T07:09:41.055566+00:00",
   "python": "3.13.15",
   "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
   "source_unchanged_during_run": true,
@@ -204,7 +204,7 @@
     "src/dashboard/static/frontend/modules/neuron-model-science.js": "5cc9d976095bdd9b514f0017047000d7939c7a67d59052cc7b4a4b739da65a68",
     "src/dashboard/static/frontend/modules/overview-subtabs.js": "be9efe972ebacaaf48b4d4df0550bc6788ece812b3b11c76eedca98e1b903abd",
     "src/dashboard/static/frontend/modules/playground-workspace.js": "ad4022bccc7c1ea8e5b08df51f466aabfcf854ac8ad594261c56613a715beab1",
-    "src/dashboard/static/frontend/modules/playground.js": "cace531df7a99760fe2b90f8d4493aff130ecb0ca54e0b15b33ea7f6b28cce59",
+    "src/dashboard/static/frontend/modules/playground.js": "4d6a6f1cf23b023e9af87e3a53feb1640d7d7a04030ba60600397e73654f7317",
     "src/dashboard/static/frontend/modules/publication-explainer.js": "9b0d676d0968d3a95d91400d6784799857f58bf94f539e9af75477cbe3e75f2f",
     "src/dashboard/static/frontend/modules/publication-imprint.js": "a0b15001845a5cdb3d2622a93f370e849320511086efdd5941211d7e9d585b86",
     "src/dashboard/static/frontend/modules/publication-reader-polish.js": "f5906bdb2918cfe09ac1f10c81e221e7d26e3b2f0bfada043ebcdd1ec21aca17",
