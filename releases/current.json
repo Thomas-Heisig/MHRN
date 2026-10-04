@@ -3,11 +3,11 @@
   "version": "0.6.0-alpha.7",
   "pep440": "0.6.0a7",
   "status": "release_candidate",
-  "title": "MHRN v0.6.0-alpha.7 — Stage-1 Evidence, Playground and CUDA Preflight Release",
+  "title": "MHRN v0.6.0-alpha.7 — Stage-1 Evidence, Publication Synthesis, Stage-3 Benchmark and CUDA Preflight",
   "parent": "v0.6.0-alpha.6",
-  "gate": "pending_release_pr",
+  "gate": "pending_release_pr_and_green_main",
   "as_of": "2026-09-27",
-  "milestone_status": "alpha7_release_candidate_from_2026_09_27_develop",
+  "milestone_status": "alpha7_release_candidate_integrated_pending_source_freeze_and_tag",
   "release_blockers": 0,
   "scope": [
     "release-only main with develop as the canonical integration branch",
@@ -69,7 +69,8 @@
     "Stage-1 Brian2 reference R1 superseded before DATA and R2 established with explicit topology mapping and attribution",
     "Playground PAN night-run, closed-loop builder, live monitor, posture reward, presets and session cleanup integrated",
     "Playground CUDA preflight stack integrated with PTX 7.1/sm_86 compatibility checks, physical ptxas resource reporting, cooperative-launch preflight and fail-closed parity references",
-    "README, changelog and roadmap aligned to the 27 September 2026 integration state"
+    "README, changelog and roadmap aligned to the 27 September 2026 integration state",
+    "Publication synthesis and Stage-3 benchmark diagnostics integrated by PR #269 at main commit 4a6eb988; no scientific status was promoted"
   ],
   "open": [
     "complete remaining Human Reviews including EXP-GEN-0041 and EXP-S6-SEM-CL-003 without automatic EVID promotion",
@@ -77,6 +78,8 @@
     "obtain genuinely external independent replication of central claims; positive, negative and null results are all admissible",
     "continue Stage-6 semanticization, prediction-error and world-model work under preregistered controls",
     "advance CUDA beyond generated/assembled/loaded preflight only through separately verified execution and CPU/CUDA equivalence stages",
+    "complete post-merge main CI and bind its exact clean source-freeze commit before tagging",
+    "publish the GitHub pre-release and verify the resulting Zenodo archive before recording its DOI",
     "record the external Zenodo DOI only after the archive actually exists; DOI assignment is not scientific review"
   ],
   "scientific_maturity": {
@@ -105,7 +108,9 @@
     "integration_branch": "develop",
     "integration_freeze_commit": "f267ffe5f17877149e47e39adcc1a095b6618d67",
     "release_branch": "release/v0.6.0-alpha.7",
-    "summary": "Alpha.7 is prepared from develop commit f267ffe5f17877149e47e39adcc1a095b6618d67 plus release-only documentation/metadata commits. The authoritative main source freeze is established by the release PR merge."
+    "main_integration_commit": "4a6eb9887255ebb2ede0a5f2e13460c4b5878946",
+    "integration_pr": 269,
+    "summary": "Alpha.7 release integration PR #269 is merged at main commit 4a6eb988. Post-merge CI and an exact source-freeze record remain pending; no tag, GitHub release, or Alpha.7 Zenodo archive exists yet."
   },
   "scientific_state": {
     "status": "active_research_not_scientifically_complete",
@@ -133,7 +138,7 @@
     "hosted_dashboard_privacy": "deployment_specific_details_pending",
     "source_freeze_commit": null
   },
-  "date": "2026-09-27",
+  "date": "2026-10-04",
   "tag": null,
   "commit": null,
   "source_freeze_commit": null

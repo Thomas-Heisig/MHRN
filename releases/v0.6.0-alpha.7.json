@@ -3,11 +3,11 @@
   "version": "0.6.0-alpha.7",
   "pep440": "0.6.0a7",
   "status": "release_candidate",
-  "title": "Public Alpha.7 Repository Hardening Release",
+  "title": "MHRN v0.6.0-alpha.7 — Stage-1 Evidence, Publication Synthesis, Stage-3 Benchmark and CUDA Preflight",
   "parent": "v0.6.0-alpha.6",
-  "gate": "pending_release_pr",
-  "as_of": "2026-09-21",
-  "milestone_status": "public_repository_hardening_release_candidate",
+  "gate": "pending_release_pr_and_green_main",
+  "as_of": "2026-10-04",
+  "milestone_status": "alpha7_release_candidate_integrated_pending_source_freeze_and_tag",
   "release_blockers": 0,
   "scope": [
     "release-only main with develop as the canonical integration branch",
@@ -18,6 +18,7 @@
     "Dependabot routed to develop instead of main",
     "standalone software, topology and recursive-epistemics paper objects in the publication catalog",
     "repository security baseline, CODEOWNERS and protected-branch guidance",
+    "October publication synthesis and bounded Stage-3 scale benchmark, with explicit DATA/EVID limits",
     "MHRN identity cleanup across active CI and public repository surfaces",
     "scientific DATA/EVID and replication boundaries preserved unchanged"
   ],
@@ -55,7 +56,8 @@
     "Dependabot updates redirected to develop",
     "public README, contribution guide, open-science routing and release checklist aligned with the branch model",
     "three standalone paper strands registered and exposed through the Publication Reader",
-    "repository security baseline and CODEOWNERS integrated"
+    "repository security baseline and CODEOWNERS integrated",
+    "Publication synthesis and Stage-3 benchmark diagnostics integrated by release PR #269 at main commit 4a6eb988; no scientific status was promoted"
   ],
   "open": [
     "complete remaining human scientific reviews and make explicit EVID decisions without automatic promotion",
@@ -63,6 +65,8 @@
     "continue Stage-6 semanticization controls, continual-learning evaluation, prediction-error and world-model validation under preregistered protocols",
     "continue prediction-error and world-model validation under preregistered controls",
     "complete systematic prior-art and external similarity/source review before formal manuscript submission",
+    "complete post-merge main CI and bind its exact clean source-freeze commit before tagging",
+    "publish the GitHub pre-release and verify the resulting Zenodo archive before recording its DOI",
     "record the external Zenodo DOI only after the archive actually exists; DOI assignment is not scientific review"
   ],
   "scientific_maturity": {
@@ -90,7 +94,10 @@
     "engineering": "candidate_from_exact_green_develop_freeze",
     "integration_branch": "develop",
     "integration_freeze_commit": "04f2cd76fa5d18c08a903f3e30aa275afdec31a6",
-    "summary": "Alpha.7 is prepared from an exact green develop integration state. The release tag is created only after the release PR merges to main and post-merge CI succeeds."
+    "release_branch": "release/v0.6.0-alpha.7",
+    "main_integration_commit": "4a6eb9887255ebb2ede0a5f2e13460c4b5878946",
+    "integration_pr": 269,
+    "summary": "Release integration PR #269 is merged at main commit 4a6eb988. The named Alpha.7 release PR and green post-merge source-freeze gate remain pending; do not create the tag before those checks pass."
   },
   "scientific_state": {
     "status": "active_research_not_scientifically_complete",
@@ -101,7 +108,7 @@
     "summary": "Technische Reife, wissenschaftliche Evidenz und externe Geltung bleiben getrennte Achsen. Unabhängige Replikation und externe Kritik sind ausdrücklich gesucht."
   },
   "publication_state": {
-    "github_release": "pending_post_merge_green_main",
+    "github_release": "pending_release_pr_and_green_main",
     "github_tag": "v0.6.0-alpha.7",
     "zenodo": "awaiting_github_release_archive",
     "doi": null,
@@ -111,7 +118,7 @@
     "hosted_dashboard_privacy": "deployment_specific_details_pending",
     "source_freeze_commit": null
   },
-  "date": "2026-09-21",
+  "date": "2026-10-04",
   "tag": null,
   "commit": null,
   "source_freeze_commit": null
