@@ -17,6 +17,24 @@
   a suitable frozen functional protocol and runner contract exist. No Gateway
   DATA/EVID is inferred from the current audit protocols or activation status.
 
+## 2026-10-04 Stage-3 plastic-network scale benchmark
+
+- Added `scripts/benchmark_plastic_network.py`, separate from the small
+	mechanism reference. It uses a deterministic regular bipartite graph, a real
+	`LearningEngine` post-step hook, fixed spike/reward phases, weight-bound
+	snapshots and a preflight memory estimate. Receipts are engineering-only and
+	include exact workload, software and CPU metadata.
+- At 10,000 neurons / 100,000 synapses for 100 epochs, the runner processed
+	12.4M synapse-candidate visits at about 267k visits/s. Weights remained finite
+	and bounded, but all synapses reached the zero lower bound by epoch 100.
+- At 100,000 neurons / 1M synapses for 20 epochs, it processed 28M candidate
+	visits at about 183k visits/s with finite bounded weights and no bound
+	saturation. These are distinct deterministic load profiles, not general
+	stability or scientific claims.
+- The declared 100,000-neuron / 10M-synapse upper point remains unmeasured:
+	its preflight estimate is 19.45 GiB, exceeding this machine's available RAM.
+	Full Stage-3 scale benchmarking remains open pending suitable hardware.
+
 ## 2026-10-02 CUDA-/Parity-UI-Provenienz
 
 - Playground-Diagnosen zeigen je Request `PENDING`, `RUNNING`, `PASSED`,
