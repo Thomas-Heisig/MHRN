@@ -5,6 +5,8 @@
   "scientific_evidence": false,
   "python": "3.13.14",
   "platform": "Windows-11-10.0.26200-SP0",
+  "cpu": "AMD64 Family 26 Model 68 Stepping 0, AuthenticAMD",
+  "logical_processors": 12,
   "seed": 42,
   "topology": "deterministic_regular_bipartite",
   "neurons": 100000,
@@ -13,14 +15,14 @@
   "epochs": 20,
   "ticks": 40,
   "estimated_peak_bytes": 2457600000,
-  "tracemalloc_peak_bytes": 1026407783,
+  "tracemalloc_peak_bytes": 1026407924,
   "memory_budget_bytes": 3221225472,
-  "setup_seconds": 26.493667499977164,
-  "simulation_seconds": 149.25454389990773,
-  "core_step_seconds": 32.4567568001803,
-  "ticks_per_second": 0.26799854098126874,
+  "setup_seconds": 27.602028699941002,
+  "simulation_seconds": 153.08603999996558,
+  "core_step_seconds": 33.37655119970441,
+  "ticks_per_second": 0.2612909707508862,
   "synapse_candidate_visits": 28000000,
-  "synapse_candidate_visits_per_second": 187598.97868688815,
+  "synapse_candidate_visits_per_second": 182903.67952562033,
   "source_spikes": 450000,
   "target_spikes": 450000,
   "learning_stats": {
@@ -30,8 +32,8 @@
     "rewards_received": 20,
     "rewards_applied": 20,
     "pending_rewards": 0,
-    "last_update_ms": 0.009999959729611874,
-    "total_update_ms": 56513.60960036982
+    "last_update_ms": 0.0068999361246824265,
+    "total_update_ms": 58007.549100439064
   },
   "maximum_absolute_weight_drift": 0.060960532034050954,
   "weight_bounds": {
@@ -65,6 +67,21 @@
       "out_of_bounds_weights": 0
     }
   ],
+  "workload": {
+    "topology": "source_i_to_targets[(i * out_degree + edge) % target_count]",
+    "initial_weight": 0.05,
+    "connection_delay_ticks": 1,
+    "source_and_target_current": 100.0,
+    "reward_per_epoch": 1.0,
+    "stdp": {
+      "a_plus": 0.1,
+      "a_minus": 0.12,
+      "tau_ticks": 20.0
+    },
+    "eligibility_tau_ticks": 200.0,
+    "reward_learning_rate": 0.01,
+    "reward_trace_reset": true
+  },
   "stage3_target_range": {
     "neurons": [
       10000,

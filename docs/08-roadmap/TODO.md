@@ -215,6 +215,17 @@ MHRN / Multi-Scale Homeostatic Recurrence Network. Publication: Recursive Episte
 	protocol-faithful and auditable; human review remains a separate required gate.
 - [ ] Benchmark plastic-network stability/throughput at the declared Stage-3
   target scale separately from the mechanism contract.
+- [x] Add a separate deterministic plastic-network benchmark with a preflight
+	memory estimate, real LearningEngine hooks, reward updates, weight-bound
+	snapshots, throughput and workload/hardware provenance.
+- [x] Execute the 10k-neuron/100k-synapse lower bound (100 epochs) and
+	100k-neuron/1M-synapse point (20 epochs); both remained finite and within
+	configured weight bounds. The lower-bound run reached the minimum weight on
+	100% of synapses by epoch 100, an explicit saturation finding.
+- [ ] Execute the 100k-neuron/10M-synapse upper point on a memory-appropriate
+	host. Its preflight estimate is about 19.45 GiB; it was not attempted on this
+	machine. These deterministic engineering profiles do not establish general
+	stability or scientific evidence.
 
 ## 2026-09-13 Alpha.2 timeline and frontier reconciliation
 

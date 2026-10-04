@@ -1,5 +1,18 @@
 # Changelog
 
+## 2026-10-04 - Stage-3 plastic-network benchmark
+
+- Added a standalone engineering benchmark for a deterministic plastic
+  bipartite network, with memory preflight, LearningEngine reward/STDP updates,
+  stability snapshots and workload/hardware provenance.
+- Ran 10k neurons / 100k synapses for 100 epochs and 100k / 1M for 20 epochs.
+  Both stayed finite and within weight bounds; the smaller run saturated all
+  weights at the lower bound by epoch 100. Receipts are in
+  `research/generated/verification/plastic_network_scale_benchmark*.json`.
+- The 100k / 10M upper point was not attempted: estimated memory is 19.45 GiB.
+  Full-range Stage-3 performance/stability remains open; these measurements
+  are engineering observations, not scientific evidence.
+
 ## 2026-10-04 - R2 productive-learning evidence audit
 
 - Confirmed `PREREG-GEN-001` is frozen/confirmatory with a minimum of 20
