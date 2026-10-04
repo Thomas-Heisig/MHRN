@@ -412,7 +412,9 @@ def test_embodiment_connections_reflect_runtime_appearance_change() -> None:
 def test_neural_symbiosis_gateway_status_and_experiment_guard() -> None:
     server, thread, host, port = _start(
         DashboardStateStore(),
-        research_source=ResearchSource(Path(__file__).resolve().parents[1] / "research"),
+        research_source=ResearchSource(
+            Path(__file__).resolve().parents[1] / "research"
+        ),
     )
     try:
         status = _get(host, port, "/api/embodiment/neural-symbiosis")
