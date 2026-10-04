@@ -39,6 +39,8 @@ def test_plastic_scale_benchmark_runs_bounded_learning_and_reports_stability() -
     assert report["stability_invariants_passed"] is True
     assert 0 <= report["final_at_lower_bound_fraction"] <= 1
     assert report["workload"]["reward_per_epoch"] == 1.0
+    assert len(report["benchmark_source_sha256"]) == 64
+    assert "firing_rate_homeostasis" in report["workload"]["mechanisms_excluded"]
     assert "cpu" in report
     assert report["stage3_target_range"]["lower_bound_covered"] is False
 
