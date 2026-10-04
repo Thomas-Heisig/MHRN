@@ -1,10 +1,12 @@
 """HTTP route tests for the B5D-SEF research dashboard API."""
 
 import json
+import re
 from http.client import HTTPConnection
 from pathlib import Path
 from threading import Thread
 from typing import Any, cast
+from urllib.parse import urljoin
 
 from src.dashboard.research_source import (  # type: ignore
     ResearchSource,
@@ -177,18 +179,36 @@ def test_research_summary_reports_unavailable_without_source() -> None:
 def test_external_review_route_serves_questionnaire_assets(tmp_path: Path) -> None:
     server, thread, host, port = _start_server(tmp_path / "research")
     try:
-        status, content_type, index = _get_bytes(host, port, "/review")
+        conn = HTTPConnection(host, port)
+        try:
+            conn.request("GET", "/review")
+            response = conn.getresponse()
+            assert response.status == 301
+            index_path = response.getheader("Location")
+            assert index_path == "/review/"
+            assert response.read() == b""
+        finally:
+            conn.close()
+
+        status, content_type, index = _get_bytes(host, port, index_path)
         assert status == 200
         assert "text/html" in content_type
-        assert b"/review/review.css" in index
-        assert b"/review/app.js" in index
+        html = index.decode("utf-8")
+        stylesheet = re.search(r'<link[^>]+href="([^"]+\.css)"', html)
+        script = re.search(r'<script[^>]+src="([^"]+\.js)"', html)
+        assert stylesheet is not None
+        assert script is not None
 
-        css_status, css_type, css = _get_bytes(host, port, "/review/review.css")
+        css_status, css_type, css = _get_bytes(
+            host, port, urljoin(index_path, stylesheet.group(1))
+        )
         assert css_status == 200
         assert "text/css" in css_type
         assert b"--accent" in css
 
-        js_status, js_type, js = _get_bytes(host, port, "/review/app.js")
+        js_status, js_type, js = _get_bytes(
+            host, port, urljoin(index_path, script.group(1))
+        )
         assert js_status == 200
         assert "javascript" in js_type
         assert b"INSTRUMENT" in js

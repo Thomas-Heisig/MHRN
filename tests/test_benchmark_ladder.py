@@ -92,7 +92,9 @@ def test_symmetric_stdp_heterogeneous_profile_distinguishes_synapses() -> None:
     assert report["weight_diversity_passed"] is True
 
 
-def test_numeric_bounds_do_not_mistake_zero_weight_collapse_for_functional_stability() -> None:
+def test_numeric_bounds_do_not_mistake_zero_weight_collapse_for_functional_stability() -> (
+    None
+):
     assessment = _assess_stability(
         [
             {
