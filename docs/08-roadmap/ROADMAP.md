@@ -941,6 +941,16 @@ Tasks:
 
 Maintain frozen protocol/configuration, train/validation/holdout separation, pre/post behavior probes, learning-off and sham/replay controls, independent seeds and human-review-gated EVID promotion.
 
+Audit 2026-10-04: the frozen `PREREG-GEN-001` requires at least 20 independent
+seeds and disjoint partitions. Its current `run_generalization` runner reports
+`validation_episodes_executed=0` and `holdout_episodes_executed=0`, so declared
+partition counts and drive-perturbation probes do not yet satisfy executed
+held-out evaluation. Existing `EXP-STDP-0002` is dirty/exploratory, uses three
+seeds under `RQ-STDP-001`, and has no human review/request; it cannot close R2.
+Do not execute the confirmatory campaign until the holdout stimulus/partition
+semantics are operationalized without changing the frozen acceptance criteria.
+Human evidence review remains a post-run gate.
+
 ---
 
 ## R3 — Closed-loop embodiment evidence

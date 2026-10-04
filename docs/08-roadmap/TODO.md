@@ -206,6 +206,13 @@ MHRN / Multi-Scale Homeostatic Recurrence Network. Publication: Recursive Episte
   verification artifact without automatic EVID promotion.
 - [ ] Close R2 productive-learning evidence with preregistered independent
   runs, held-out evaluation and human evidence review.
+- Audit 2026-10-04: `PREREG-GEN-001` is frozen/confirmatory and requires at
+	least 20 independent seeds, but `run_generalization` reports zero executed
+	validation and holdout episodes; declared partition counts are not executed
+	evaluation. Existing `EXP-STDP-0002` is a dirty, exploratory three-seed run
+	for `RQ-STDP-001`, not a substitute for `RQ-GEN-001`, and has no human review
+	or review request. Do not launch/promote this path until holdout execution is
+	protocol-faithful and auditable; human review remains a separate required gate.
 - [ ] Benchmark plastic-network stability/throughput at the declared Stage-3
   target scale separately from the mechanism contract.
 

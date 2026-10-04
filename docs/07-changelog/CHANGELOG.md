@@ -1,5 +1,18 @@
 # Changelog
 
+## 2026-10-04 - R2 productive-learning evidence audit
+
+- Confirmed `PREREG-GEN-001` is frozen/confirmatory with a minimum of 20
+  independent seeds, but the registered generalization runner reports zero
+  executed validation and holdout episodes. Partition declarations alone do
+  not satisfy the held-out evaluation requirement.
+- Existing `EXP-STDP-0002` is a dirty, exploratory three-seed run linked to
+  `RQ-STDP-001`; it has no human review or review request and is not a substitute
+  for the `RQ-GEN-001` campaign.
+- R2 remains open. Confirmatory execution must wait for protocol-faithful
+  holdout execution; human evidence review remains a separate gate. No EVID was
+  promoted.
+
 ## 2026-10-04 - Gateway Plastic execution audit
 
 - Confirmed that the seven registered Gateway protocols are boundary audits,
