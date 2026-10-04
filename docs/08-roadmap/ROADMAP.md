@@ -20,6 +20,10 @@
 - Hardware-Receipts enthalten bei erfolgreicher Auflösung GPU-Modell,
 	PCI-Bus-ID, Treiberversion und einen gehashten Geräte-UUID; wenn die Identität
 	nicht auflösbar ist, bleibt sie ausdrücklich `unavailable`.
+- Sichere Cancel-/Resume-Semantik fehlt weiterhin: CUDA-Rekurrenz läuft als
+	ein Kernel bis zur Synchronisierung; Builder-, Cue- und Transferläufe sind
+	blockierende Aufrufe ohne Cancel-Token/Resume-Checkpoint. Die UI darf daraus
+	keinen künstlichen Fortschritt oder unsicheren Abbruch ableiten.
 - Playground-Diagnostik bleibt Engineering-/Exploratory-Output, niemals DATA,
 	EVID oder Hardware-Acceptance. Echter Fortschritt/Abbruch bleibt offen.
 

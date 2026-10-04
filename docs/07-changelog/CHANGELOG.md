@@ -11,6 +11,10 @@
   unresolved hardware is explicitly `unavailable`.
 - Failed diagnostic responses retain their HTTP error status and include the
   persisted receipt link. No DATA/EVID or hardware-acceptance promotion occurs.
+- Real progress/cancel remains unavailable: recurrent CUDA work is one kernel
+  through synchronization, while Builder/cue/transfer tests are blocking calls
+  without safe cancel tokens or resumable checkpoints. The UI reports request
+  state and elapsed time only.
 - Focused verification: 51 CUDA backend tests and 14 Playground browser tests
   passed.
 

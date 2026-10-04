@@ -86,6 +86,12 @@ MHRN / Multi-Scale Homeostatic Recurrence Network. Publication: Recursive Episte
 	markiert und nie als Hardware-Akzeptanz gewertet.
 - [ ] Echten Fortschritt und Abbruch nur dann anbieten, wenn die Backendläufe
 	dafür sichere Checkpoints/Abbruchsemantik bereitstellen.
+- Audit 2026-10-04: Die CUDA-Rekurrenz startet den gesamten Tick-Horizont als
+	einen kooperativen Kernel und synchronisiert erst danach; Builder-, Cue- und
+	Transferdiagnosen rufen blockierende Läufe ohne Cancel-Token oder Resume-
+	Checkpoint auf. Die UI zeigt nur Request-Zustand/Laufzeit, keinen Prozent-
+	Fortschritt oder Abbruch. Nicht anbieten, bis Backend-Grenzen und Cleanup-
+	Tests sichere Unterbrechung belegen.
 
 ## 2026-09-27 Alpha.7 Release
 
