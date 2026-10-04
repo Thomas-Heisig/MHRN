@@ -29,6 +29,13 @@ def state_vector_parity(
     tolerance: float,
 ) -> ParityResult:
     try:
+        if (
+            isinstance(tolerance, bool)
+            or not isinstance(tolerance, (int, float))
+            or not math.isfinite(tolerance)
+            or tolerance < 0.0
+        ):
+            raise ValueError("tolerance must be finite and non-negative")
         error = max_abs_error(reference, candidate)
     except ValueError as exc:
         return ParityResult(

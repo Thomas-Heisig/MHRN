@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping, Sequence
+from copy import deepcopy
 from typing import Any
 
 from src.runtime.backend import (
@@ -24,6 +25,7 @@ from .recurrent.state import (
     set_external_tick_config,
     stable_digest,
     step_payload,
+    validate_checkpoint,
 )
 
 
@@ -133,7 +135,7 @@ class CUDABackend:
             "backend": self.backend_version,
             "seed": self._seed,
             "tick": self._tick,
-            "config": config,
+            "config": deepcopy(config),
             "replay_required": True,
         }
         return BackendState(
@@ -143,16 +145,8 @@ class CUDABackend:
         )
 
     def restore(self, state: BackendState) -> None:
-        payload = dict(state.payload)
-        if payload.get("backend") != self.backend_version:
-            raise ValueError("checkpoint backend version mismatch")
-        raw_config = payload.get("config")
-        raw_seed = payload.get("seed")
-        if not isinstance(raw_config, Mapping) or type(raw_seed) is not int:
-            raise ValueError("checkpoint is missing canonical config/seed")
+        raw_config, raw_seed = validate_checkpoint(state, self.backend_version)
         self.initialize(raw_config, raw_seed)
-        if state.tick > canonical_int(self._require_config()["ticks"], field="ticks"):
-            raise ValueError("checkpoint tick exceeds configured limit")
         self._tick = state.tick
 
     def capabilities(self) -> BackendCapabilities:

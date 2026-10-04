@@ -730,19 +730,7 @@ class ExperimentWorkflowService:
                 "scientific_evidence": False,
             }
         else:
-            execution_kind = (
-                operational_protocol.get("execution_kind")
-                if operational_protocol is not None
-                else None
-            )
-            if execution_kind == "conceptual_audit":
-                ai_report: dict[str, object] = {
-                    "status": "unavailable",
-                    "reason": "Conceptual audit uses direct human review; AI interpretation is intentionally skipped.",
-                    "scientific_evidence": False,
-                }
-            else:
-                ai_report = self._append_ai_report(workflow.experiment_id)
+            ai_report = self._append_ai_report(workflow.experiment_id)
         manifest_path = output_dir / "manifest.json"
         manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
         artifacts = manifest.setdefault("artifacts", {})
@@ -1525,9 +1513,8 @@ def _assert_loaded_callable_matches_source(
     source_name = function_name
     if function.__code__.co_name != function_name:
         nested_name = function.__code__.co_name
-        if (
-            function.__name__ == function_name
-            and function.__qualname__.endswith(f".{nested_name}")
+        if function.__name__ == function_name and function.__qualname__.endswith(
+            f".{nested_name}"
         ):
             source_name = nested_name
         else:
