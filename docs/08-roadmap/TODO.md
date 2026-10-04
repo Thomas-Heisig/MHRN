@@ -101,9 +101,10 @@ MHRN / Multi-Scale Homeostatic Recurrence Network. Publication: Recursive Episte
 - [x] PAN/Closed-Loop/Live-Monitor und CUDA/PTX-Preflight als Playground-only abgrenzen.
 - [x] README, Changelog, Roadmap und `releases/current.json` auf Alpha.7 synchronisieren.
 - [x] Integrations-PR #269 auf `main` zusammenführen (Commit `4a6eb988`); Stage-3-Benchmark und Publikationssynthese sind integriert, ohne wissenschaftliche Statuspromotion.
-- [ ] Release-PR `release/v0.6.0-alpha.7 -> main` vollständig grün abschließen; Post-Merge-CI für `main@4a6eb988` läuft.
-- [ ] Erst nach grünem Post-Merge-CI Source-Freeze festhalten, Alpha.7 taggen und GitHub-Pre-Release veröffentlichen.
-- [ ] Zenodo-Archiv und DOI nach tatsächlicher Veröffentlichung extern verifizieren; Hugging-Face-Sync erneut am Release-Commit prüfen.
+- [x] Release-PR #270 `release/v0.6.0-alpha.7 -> main` mit allen erforderlichen Checks grün zusammenführen.
+- [x] Post-Merge-CI für Source-Freeze `8a0bb09530751df40da1ffa30f9ee1640c5370a7` vollständig grün abschließen (Run #37210840569).
+- [x] Tag `v0.6.0-alpha.7` und GitHub-Pre-Release am exakten Source-Freeze veröffentlichen.
+- [x] Zenodo-Archiv/DOI `10.5281/zenodo.23138847` öffentlich verifizieren und Hugging-Face-Sync am Release-Commit bestätigen.
 - [ ] OSF/ORCID und institutionelle Empfänger nur über konfigurierte bzw. autorisierte Aktualisierungswege informieren; derzeit ist kein institutioneller Endpoint registriert.
 - [x] Veralteten Remote-Branch `playground` nach bestätigter vollständiger Integration löschen; der Remote-Ref war bereits gelöscht und die lokale Tracking-Referenz wurde am 2026-10-01 gepruned.
 
