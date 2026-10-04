@@ -11,6 +11,7 @@ from types import SimpleNamespace
 import pytest
 
 from src.dashboard import playground_api
+from src.dashboard import server as dashboard_server
 from src.playground.cuda import (
     CudaDriver,
     CudaDriverError,
@@ -382,6 +383,37 @@ def test_working_tree_provenance_records_digest_scope_and_dirty_paths(
     assert result["working_tree_state"] == "modified"
     assert "src/" in result["working_tree_digest_scope"]
     assert result["dirty_relevant_paths"] == ["src/dashboard/playground_api.py"]
+
+
+def test_dashboard_http_error_preserves_cuda_run_receipt(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    receipt = {
+        "artifact_id": "e" * 32,
+        "artifact_url": f"/api/playground/cuda/diagnostics/{'e' * 32}",
+        "persistence_status": "persisted",
+    }
+
+    def fail_with_receipt(_path: str, _payload: object) -> None:
+        error = RuntimeError("CUDA driver unavailable")
+        error.run_evidence = receipt
+        error.run_http_status = 503
+        raise error
+
+    monkeypatch.setattr(dashboard_server, "post_playground", fail_with_receipt)
+    handler = object.__new__(dashboard_server.DashboardRequestHandler)
+    handler.path = "/api/playground/cuda/smoke"
+    handler._read_json_object = lambda: {}
+    response: dict[str, object] = {}
+    handler._send_json = lambda body, status: response.update(
+        {"body": body, "status": status}
+    )
+
+    handler.do_POST()
+
+    assert response["status"] == 503
+    assert response["body"]["error"] == "CUDA driver unavailable"
+    assert response["body"]["run_evidence"] == receipt
 
 
 def test_cuda_runtime_status_exposes_head_without_claiming_tree_fingerprint(

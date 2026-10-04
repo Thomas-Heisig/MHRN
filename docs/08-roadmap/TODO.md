@@ -73,11 +73,17 @@ MHRN / Multi-Scale Homeostatic Recurrence Network. Publication: Recursive Episte
 - [x] Laufstatus für CUDA-Smoke, RNG, rekurrente Parität, Plastizität,
 	Builder-D3, Cue-Kontrollen und Transfer sichtbar machen.
 - [x] Start/Endzeit, Laufzeit und servergemeldeten HEAD je Request anzeigen;
-	fehlender CUDA-Gerätename und nicht persistierte Artefakte bleiben explizit.
+	fehlende Hardware-Identität und fehlgeschlagene Persistenz bleiben explizit.
 - [x] CUDA-1.3, CUDA-1.4 und CUDA-1.5 in Ergebnisflächen trennen und auf die
 	vorhandene Wave-/FE-3-/Hardware-/PAN-Governance-Übersicht verweisen.
-- [ ] Laufbelege persistent speichern und mit Working-Tree-Digest, exakter
-	Hardware-Identität sowie abrufbarem JSON-Artefakt verknüpfen.
+- [x] CUDA-/Parity-, Cue-Control- und Transfer-Läufe als atomare JSON-Receipts
+	unter dem gitignorierten `artifacts/cuda_diagnostics/` speichern; Start/Ende,
+	Outcome, Request-Hash, HEAD, Source-Working-Tree-Digest samt Scope, geänderte
+	Sourcepfade und ein SHA-256-Prüfhash werden aufgezeichnet. Ein ID-validierter
+	GET-Link ist im Run-Status verfügbar, auch bei fehlgeschlagenen Runs.
+- [x] Hardware soweit verfügbar exakt zuordnen (GPU-Modell, PCI-Bus-ID,
+	Treiber und gehashte UUID); nicht auflösbare Identität wird als unavailable
+	markiert und nie als Hardware-Akzeptanz gewertet.
 - [ ] Echten Fortschritt und Abbruch nur dann anbieten, wenn die Backendläufe
 	dafür sichere Checkpoints/Abbruchsemantik bereitstellen.
 

@@ -1,5 +1,19 @@
 # Changelog
 
+## 2026-10-04 - Persisted CUDA diagnostic receipts
+
+- CUDA parity, Builder, cue-control and transfer runs now persist atomic JSON
+  receipts under gitignored `artifacts/cuda_diagnostics/`; every receipt has a
+  SHA-256 integrity digest and a validated GET artifact URL.
+- Receipts capture server start/end time, outcome, request digest, Git HEAD,
+  the declared source-tree working-copy digest/scope and modified relevant
+  paths. Hardware identity records model, PCI bus, driver and a hashed UUID;
+  unresolved hardware is explicitly `unavailable`.
+- Failed diagnostic responses retain their HTTP error status and include the
+  persisted receipt link. No DATA/EVID or hardware-acceptance promotion occurs.
+- Focused verification: 51 CUDA backend tests and 14 Playground browser tests
+  passed.
+
 ## 2026-10-04 - External-review Pages export provisioned; live fix pending
 
 - Provisioned workflow-only GitHub Pages at

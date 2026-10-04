@@ -12,11 +12,16 @@
 	vorhandene Integrationsübersicht verknüpft Wave 4, FE-3, Hardware-Acceptance,
 	PAN Wave 5B und das nächste Gate.
 - Der CUDA-Status meldet den Repository-HEAD, kennzeichnet aber den
-	Working-Tree-Zustand als nicht erfasst. Playground-Antworten sind keine
-	persistierten Akzeptanzartefakte und melden fehlende Hardware-Identität
-	ausdrücklich.
-- Persistente Run-Receipts mit Source-Digest, Hardware-ID und Artefaktlink
-	sowie echter Fortschritt/Abbruch bleiben separate Engineering-Arbeit.
+	Source-Working-Tree-Digest, dessen Scope sowie geänderte relevante Pfade.
+- Abgeschlossene und fehlgeschlagene Diagnose-Requests werden als atomare,
+	SHA-256-geprüfte JSON-Receipts unter dem lokalen gitignorierten
+	`artifacts/cuda_diagnostics/` aufbewahrt und über einen validierten API-Link
+	abrufbar gemacht.
+- Hardware-Receipts enthalten bei erfolgreicher Auflösung GPU-Modell,
+	PCI-Bus-ID, Treiberversion und einen gehashten Geräte-UUID; wenn die Identität
+	nicht auflösbar ist, bleibt sie ausdrücklich `unavailable`.
+- Playground-Diagnostik bleibt Engineering-/Exploratory-Output, niemals DATA,
+	EVID oder Hardware-Acceptance. Echter Fortschritt/Abbruch bleibt offen.
 
 ## 2026-10-02 R0 Research-Catalog-Abschluss
 
