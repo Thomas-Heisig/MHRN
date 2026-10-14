@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
-  "tested_commit": "d1b35ba05ce13367cd20d4c83f22704d94240d44",
-  "tested_tree_digest": "6452978a6bd3bb2946d09c9a2be8492e31820f9d0d42f9da185a8420cf29647c",
+  "tested_commit": "59fad67a8f3e292a91efd44f6958fefbc88bb3a4",
+  "tested_tree_digest": "6e36a9b0c848ffe20c3e07811d7407b903baba3a519bee76340ebf3a3b6f4554",
   "tree_digest_paths": [
     "src/",
     "configs/",
@@ -12,8 +12,8 @@
   "tree_digest_excludes": [
     "tests/test_baseline.json"
   ],
-  "timestamp": "2026-10-04T17:21:22.428675+00:00",
-  "python": "3.13.15",
+  "timestamp": "2026-10-14T17:57:18.459898+00:00",
+  "python": "3.13.16",
   "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
   "source_unchanged_during_run": true,
   "full_collection": {
@@ -609,7 +609,7 @@
     "research/schemas/preregistration.schema.json": "f4ab03fa5a8718177a843741d8fc6637ba8b80edf6833dfa48c8c31f25cba880",
     "research/schemas/question.schema.json": "ba90d930c356248ba8eb3f847a7c060cbaf3cf266b4fa8c0b6a43f2f2febdb2f",
     "research/schemas/research_object_mapping.schema.json": "b3ccdf999de3103d7543f649f2eb5e1931eedff1cf50090a2912379e330cd01b",
-    "pyproject.toml": "12d36d96be5ba3b2c4ddf71b910b8a4bef7d627464ed610164c5620b47eddb6f",
+    "pyproject.toml": "d2d152e9267085a1f36eaf2e6a11329ff938e1236cd4cf1a2080eefdac7dcac4",
     "tests/__init__.py": "175843bab438dd8fca59002363d761642b9830ee948f7f82d2efce275ce1ea3e",
     "tests/_restore_helpers.py": "4c01c1ae86a458cb81eac7d243e09952e941e7dbfcac95fd4aeab63ec07959ce",
     "tests/_restore_worker.py": "d7692ea535f338ccb335b811033c481f2b8dcf4ed3420e1f4a2b84ca97276c42",
