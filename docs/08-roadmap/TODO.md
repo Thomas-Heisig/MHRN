@@ -68,6 +68,24 @@ MHRN / Multi-Scale Homeostatic Recurrence Network. Publication: Recursive Episte
 
 # MHRN Current TODO
 
+## 2026-10-17 Manuscript-review follow-up
+
+- [ ] Reproduce the documented determinism finding from a clean, exact source
+  tree; record the commit, environment, command and result artifacts.
+- [ ] Before executing `OBJ-MEM-COMPRESSION-001`, freeze the complete 10%
+  budget accounting, matched-budget baselines, acceptable performance loss
+  and the decision rule for retaining or de-centering SemanticMemory.
+- [ ] Complete `H-EMB-001-B` with a controlled closed-loop/yoked comparison
+  whose disturbance and control logic test the claimed causal difference.
+- [ ] For the planned 5D ablation, freeze matched neuron/edge budgets,
+  topology, training and hyperparameter-search effort, resource limits and
+  primary outcome before execution.
+- [ ] Complete an independent prior-art review of the research-provenance,
+  preregistration, executable-publication and reflexive-methodology claims;
+  state the limits of any novelty claim.
+- [ ] Explain the criteria, weighting, mandatory gates and limits of published
+  scientific-maturity percentages; do not present them as probabilities.
+
 ## 2026-10-04 Develop synchronization and CI
 
 - [x] Released `main@4a105137` into `develop` by merge commit `97fa42db`;
