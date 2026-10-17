@@ -6,7 +6,7 @@ The canonical ResearchRegistry remains authoritative. Historical/design referenc
 
 ## Summary
 - Question references: 5250
-- Hypothesis references: 3907
+- Hypothesis references: 3908
 - Missing questions: 27
 - Missing hypotheses: 24
 - Registry link issues: 0
