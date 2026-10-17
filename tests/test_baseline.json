@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
-  "tested_commit": "59fad67a8f3e292a91efd44f6958fefbc88bb3a4",
-  "tested_tree_digest": "6e36a9b0c848ffe20c3e07811d7407b903baba3a519bee76340ebf3a3b6f4554",
+  "tested_commit": "e4f1ece90442a385ffafc334af6f1b438cd143db",
+  "tested_tree_digest": "edecf6c6263c1d266bd1deb977da3ffd4992113793d447225c65e104db2fea1a",
   "tree_digest_paths": [
     "src/",
     "configs/",
@@ -12,7 +12,7 @@
   "tree_digest_excludes": [
     "tests/test_baseline.json"
   ],
-  "timestamp": "2026-10-14T17:57:18.459898+00:00",
+  "timestamp": "2026-10-17T11:40:38.958722+00:00",
   "python": "3.13.16",
   "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
   "source_unchanged_during_run": true,
@@ -146,7 +146,7 @@
     "src/dashboard/experiment_workflow.py": "67e1974118ecd5328a32c1639ad6ffab43ecbe1320a0af33e7653801faecd7a4",
     "src/dashboard/external_review.py": "6fd49d856c027bce307f600b8478332149fcf831da432869f38c3cda54be9465",
     "src/dashboard/file_manager.py": "94451bd8e396f35bacdccb9f658dd2b98fa4cdc85e7138e1e9fba33af77355fe",
-    "src/dashboard/file_rendering.py": "696cada3dc6989b6f40c3b0cc25474f67e2b1cc5024389c4df1c227e44259ff0",
+    "src/dashboard/file_rendering.py": "79676dd469f811c8d1d203fd60eebfb33e0acba46060012d7a2a886c4aca8016",
     "src/dashboard/gate_status.py": "e0fbf999da27c304b1e61d2dac9829471d63bbac27f8b75940abca54929f41fa",
     "src/dashboard/health_builder.py": "f48a333cab5b0ecd18f795664688b3b68204387da113040912740b70bc43e6e3",
     "src/dashboard/heatmap_source.py": "a73906a137fa5fcaccf5404538267d0e39acb30258733d761b580a9f06acae72",
