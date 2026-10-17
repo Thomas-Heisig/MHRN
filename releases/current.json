@@ -2,12 +2,12 @@
   "schema_version": 2,
   "version": "0.6.0-alpha.8",
   "pep440": "0.6.0a8",
-  "status": "release_candidate",
+  "status": "released",
   "title": "MHRN v0.6.0-alpha.8 — Integration Sync, CI Restoration and Bounded Raw-Run Viewer",
   "parent": "v0.6.0-alpha.7",
-  "gate": "pending",
+  "gate": "passed",
   "as_of": "2026-10-17",
-  "milestone_status": "alpha8_release_candidate_from_2026_10_17_develop",
+  "milestone_status": "alpha8_released_from_green_main_and_zenodo_verified",
   "release_blockers": 0,
   "scope": [
     "release-only main with develop as the canonical integration branch",
@@ -76,7 +76,9 @@
     "alpha.7 published state carried forward unchanged as the parent release",
     "develop CI restored to green by PR #282 (strict pyright fix in the raw-run index) at 343d1634",
     "OPEN_SCIENCE Zenodo status aligned with the verified alpha.7 archive",
-    "manuscript-review follow-up (clean-tree determinism replication, memory-compression decision rule, yoked H-EMB-001-B comparison, matched 5D ablation, prior-art review, maturity explanation) recorded as open TODOs"
+    "manuscript-review follow-up (clean-tree determinism replication, memory-compression decision rule, yoked H-EMB-001-B comparison, matched 5D ablation, prior-art review, maturity explanation) recorded as open TODOs",
+    "Release PR #283 merged at source freeze 466ae6e8; post-merge CI run 39035891664 passed",
+    "GitHub pre-release v0.6.0-alpha.8 published and Zenodo version DOI 10.5281/zenodo.23437187 verified"
   ],
   "open": [
     "complete remaining Human Reviews including EXP-GEN-0041 and EXP-S6-SEM-CL-003 without automatic EVID promotion",
@@ -110,13 +112,16 @@
   "publish_requested": true,
   "release_type": "pre-release",
   "development_state": {
-    "status": "release_candidate",
-    "engineering": "release_candidate_from_green_develop",
+    "status": "released",
+    "engineering": "released_from_exact_green_source_freeze",
     "integration_branch": "develop",
     "integration_freeze_commit": "343d1634e24a30b34dc0fdf5cdca10186a9dba0c",
     "release_branch": "release/v0.6.0-alpha.8",
     "integration_pr": 282,
-    "summary": "Alpha.8 is cut from green develop commit 343d1634 (PR #282). Source freeze, tag, GitHub release and Zenodo DOI are set only after the release PR and post-merge main CI pass."
+    "summary": "Alpha.8 was published from exact green source freeze 466ae6e8 after post-merge CI passed; Zenodo version DOI 10.5281/zenodo.23437187 is verified.",
+    "source_freeze_commit": "466ae6e87de276549cff5a7ef52c55419843ace7",
+    "release_pr": 283,
+    "post_merge_ci_run": 39035891664
   },
   "scientific_state": {
     "status": "active_research_not_scientifically_complete",
@@ -134,22 +139,25 @@
     "summary": "Stage 0 and Stage 1 have scoped reviewed EVID, while independent replication remains incomplete. Playground/CUDA engineering does not contribute scientific evidence."
   },
   "publication_state": {
-    "github_release": "pending",
-    "github_tag": null,
-    "zenodo": "pending_github_release",
-    "zenodo_record_url": null,
-    "doi": null,
+    "github_release": "published",
+    "github_tag": "v0.6.0-alpha.8",
+    "zenodo": "published_verified",
+    "zenodo_record_url": "https://zenodo.org/records/23437187",
+    "doi": "10.5281/zenodo.23437187",
     "concept_doi": "10.5281/zenodo.22860682",
     "orcid": "0009-0002-9589-1872",
     "release_type": "pre-release",
     "public_imprint": "identity_and_contact_complete",
     "hosted_dashboard_privacy": "deployment_specific_details_pending",
-    "source_freeze_commit": null,
+    "source_freeze_commit": "466ae6e87de276549cff5a7ef52c55419843ace7",
     "previous_verified_release": {
       "tag": "v0.6.0-alpha.7",
       "doi": "10.5281/zenodo.23138847",
       "source_freeze_commit": "8a0bb09530751df40da1ffa30f9ee1640c5370a7"
     }
   },
-  "date": "2026-10-17"
+  "date": "2026-10-17",
+  "tag": "v0.6.0-alpha.8",
+  "commit": "466ae6e87de276549cff5a7ef52c55419843ace7",
+  "source_freeze_commit": "466ae6e87de276549cff5a7ef52c55419843ace7"
 }

@@ -73,9 +73,11 @@ MHRN / Multi-Scale Homeostatic Recurrence Network. Publication: Recursive Episte
 - [x] Restore green `develop` CI and merge integration PR #282 at `343d1634`.
 - [x] Prepare `release/v0.6.0-alpha.8` with version `0.6.0a8`, release notes
 	and release records.
-- [ ] Merge the release PR to `main`, verify post-merge CI, tag the exact
-	source freeze and publish the GitHub pre-release.
-- [ ] Verify the Zenodo archive/DOI and record the publication state.
+- [x] Merge release PR #283 to `main` (`466ae6e8`), verify post-merge CI run
+	`39035891664`, tag the exact source freeze and publish the GitHub
+	pre-release.
+- [x] Verify Zenodo record `23437187` / DOI `10.5281/zenodo.23437187` and
+	record the publication state.
 
 ## 2026-10-17 Manuscript-review follow-up
 

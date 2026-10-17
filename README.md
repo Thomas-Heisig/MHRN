@@ -48,15 +48,15 @@ The sparse **5D SNN remains the primary adaptive system**. Language models, rese
 | Resource | Canonical route | Role |
 | --- | --- | --- |
 | Source | [GitHub · Thomas-Heisig/MHRN](https://github.com/Thomas-Heisig/MHRN) | canonical code, history and governed research artefacts |
-| Published software release | [v0.6.0-alpha.7](https://github.com/Thomas-Heisig/MHRN/releases/tag/v0.6.0-alpha.7) | published pre-release from source freeze `8a0bb095` |
+| Published software release | [v0.6.0-alpha.8](https://github.com/Thomas-Heisig/MHRN/releases/tag/v0.6.0-alpha.8) | published pre-release from source freeze `466ae6e8` |
 | Author identity | [ORCID · 0009-0002-9589-1872](https://orcid.org/0009-0002-9589-1872) | persistent researcher identity |
 | Open Science Framework | [OSF · p34uq](https://osf.io/p34uq/) | project / open-science route |
 | Hugging Face | [ThomasHeisig/MHRN](https://huggingface.co/ThomasHeisig/MHRN) | rolling source/discovery mirror |
 | Hugging Face Space | [ThomasHeisig/MHRN-Space](https://huggingface.co/spaces/ThomasHeisig/MHRN-Space) | public dashboard mirror |
 | Research-data mirror | [ThomasHeisig/MHRN-Research-Data](https://huggingface.co/datasets/ThomasHeisig/MHRN-Research-Data) | rolling discovery mirror; not an immutable DOI dataset |
-| Zenodo software archive | [Alpha.7 record](https://zenodo.org/records/23138847) · [version DOI](https://doi.org/10.5281/zenodo.23138847) · [concept DOI](https://doi.org/10.5281/zenodo.22860682) | verified `0.6.0-alpha.7` archive; Alpha.6 remains available at [its version DOI](https://doi.org/10.5281/zenodo.22860683) |
+| Zenodo software archive | [Alpha.8 record](https://zenodo.org/records/23437187) · [version DOI](https://doi.org/10.5281/zenodo.23437187) · [concept DOI](https://doi.org/10.5281/zenodo.22860682) | verified `0.6.0-alpha.8` archive; Alpha.7 remains available at [its version DOI](https://doi.org/10.5281/zenodo.23138847) |
 
-Alpha.7 was published on 4 October 2026 as a GitHub pre-release at `v0.6.0-alpha.7`, bound to source freeze `8a0bb09530751df40da1ffa30f9ee1640c5370a7`. Post-merge CI run `37210840569` passed on that exact commit. Zenodo record `23138847` and DOI `10.5281/zenodo.23138847` are publicly verified; the concept DOI remains `10.5281/zenodo.22860682`. The Hugging Face mirrors synchronized from the same commit. OSF and ORCID are linked routes without an automatic release-update workflow, and no institution-specific endpoint is registered. Release mechanics, tags and DOI assignment do not promote DATA to EVID.
+Alpha.8 was published on 17 October 2026 as a GitHub pre-release at `v0.6.0-alpha.8`, bound to source freeze `466ae6e87de276549cff5a7ef52c55419843ace7` (release PR #283). Post-merge CI run `39035891664` passed on that exact commit. Zenodo record `23437187` and DOI `10.5281/zenodo.23437187` are publicly verified; the concept DOI remains `10.5281/zenodo.22860682`. The Hugging Face mirrors synchronized from the same commit. OSF and ORCID are linked routes without an automatic release-update workflow, and no institution-specific endpoint is registered. Release mechanics, tags and DOI assignment do not promote DATA to EVID.
 
 ### Citation model
 
@@ -64,7 +64,7 @@ MHRN deliberately separates three citable research objects:
 
 | Object | Type | Current state |
 | --- | --- | --- |
-| **MHRN v0.6.0-alpha.7** | Software | published pre-release; verified Zenodo DOI `10.5281/zenodo.23138847` |
+| **MHRN v0.6.0-alpha.8** | Software | published pre-release; verified Zenodo DOI `10.5281/zenodo.23437187` |
 | **Recursive Epistemics / Rekursive Epistemik 1.8** | Publication / preprint | separate Zenodo publication package prepared; DOI pending |
 | **MHRN research data** | Dataset(s) | rolling discovery mirror exists; immutable experiment DOI deposits remain separate |
 
@@ -101,7 +101,7 @@ Historical publication bytes and empirical artifacts are preserved. Reconstructe
 | Release branch | `main` — release-only, public frozen line |
 | Integration branch | `develop` — active development and research integration |
 | Package | `mhrn-core 0.6.0a8` / `v0.6.0-alpha.8` |
-| Release status | **v0.6.0-alpha.8 release candidate** from the 17 October `develop` integration state; release-only preparation is isolated on `release/v0.6.0-alpha.8`. `v0.6.0-alpha.7` remains the latest published release until the alpha.8 tag and archive are verified |
+| Release status | **v0.6.0-alpha.8 published** pre-release from source freeze `466ae6e8`; Zenodo DOI `10.5281/zenodo.23437187` verified |
 | Engineering | Stage 2 recurrent contract closed at its scoped engineering boundary; Stage 3 plastic neural tissue reached; Stage 4/5 engineering contracts integrated; Stage 6 mechanisms and research programme active |
 | Scientific focus | Stage 0 = **92.5 %**; Stage 1 = **85 %** with scoped EVID `EVID-2026-18/19/20`; Stage-1 cross-implementation reference replication and Stage-6 memory/world-model work remain active; independent external replication remains open |
 | Current manuscript | **Recursive Epistemics / Rekursive Epistemik 1.8 — WIP** |

@@ -1,7 +1,9 @@
 # MHRN v0.6.0-alpha.8
 
-**Status:** release candidate; not published until the release PR and exact
-post-merge `main` CI/source-freeze gates are green.
+**Status:** published pre-release (17 October 2026). Source freeze
+`466ae6e87de276549cff5a7ef52c55419843ace7` (release PR #283); post-merge `main`
+CI run `39035891664` passed. Zenodo version DOI `10.5281/zenodo.23437187`
+(record `23437187`) is publicly verified.
 
 Alpha.8 is an integration and maintenance pre-release. It publishes the green
 `develop` state accumulated after alpha.7. It is a software pre-release, not a
@@ -39,8 +41,8 @@ claim that the scientific programme is complete.
 - Implementation, passing CI, DATA, Human Review, accepted EVID and independent
   replication remain distinct states.
 - Alpha.7 (`10.5281/zenodo.23138847`) is the latest published and verified
-  archive at preparation time. Alpha.8 archival and DOI are pending the actual
-  GitHub release and external archive verification.
+  archive at preparation time; the alpha.8 archive was verified after the
+  GitHub release (see status above).
 
 ## Connected publication routes
 
@@ -56,8 +58,9 @@ claim that the scientific programme is complete.
 - Integration PR: #282, merged to `develop` at
   `343d1634e24a30b34dc0fdf5cdca10186a9dba0c` with all checks green.
 - Named release branch: `release/v0.6.0-alpha.8`.
-- Source-freeze commit, tag, GitHub release URL and Zenodo DOI remain unset
-  until their respective gates complete.
+- Source freeze `466ae6e8`, tag `v0.6.0-alpha.8`, GitHub release
+  <https://github.com/Thomas-Heisig/MHRN/releases/tag/v0.6.0-alpha.8>, Zenodo
+  DOI `10.5281/zenodo.23437187`.
 
 AI systems materially assisted with software, tests, debugging and release
 preparation. Thomas Heisig remains the human author and release authority.

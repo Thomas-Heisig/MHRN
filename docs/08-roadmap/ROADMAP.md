@@ -11,6 +11,8 @@
 	without scientific status changes.
 - The recursive causal loopback programme (legacy alpha.8 TODO label) remains
 	open and is not part of this release.
+- Published from source freeze `466ae6e8` after green post-merge CI; Zenodo
+	DOI `10.5281/zenodo.23437187` is verified.
 
 ## 2026-10-04 Cognition raw-run File Viewer
 
