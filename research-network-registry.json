@@ -81,12 +81,12 @@
       "status": "ACTIVE",
       "url": "https://zenodo.org/badge/latestdoi/1335973891",
       "connection_authorized_on": "2026-09-19",
-      "note": "GitHub pre-release v0.6.0-alpha.7 is published and its Zenodo version DOI is publicly verified; the dynamic latestdoi badge resolves to the latest version.",
+      "note": "GitHub pre-release v0.6.0-alpha.8 is published and its Zenodo version DOI is publicly verified; the dynamic latestdoi badge resolves to the latest version.",
       "badge_url": "https://zenodo.org/badge/1335973891.svg",
       "github_repository_id": 1335973891,
-      "release": "v0.6.0-alpha.7",
-      "record_url": "https://zenodo.org/records/23138847",
-      "doi": "10.5281/zenodo.23138847",
+      "release": "v0.6.0-alpha.8",
+      "record_url": "https://zenodo.org/records/23437187",
+      "doi": "10.5281/zenodo.23437187",
       "concept_doi": "10.5281/zenodo.22860682",
       "archive_status": "published_verified"
     },
@@ -189,6 +189,16 @@
       "canonical_url": "https://github.com/Thomas-Heisig/MHRN/releases/tag/v0.6.0-alpha.7",
       "zenodo_route": "https://zenodo.org/badge/latestdoi/1335973891",
       "doi": "10.5281/zenodo.23138847",
+      "status": "published_verified"
+    },
+    {
+      "id": "mhrn-software-alpha8",
+      "kind": "software",
+      "title": "Multi-Scale Homeostatic Recurrence Network (MHRN)",
+      "version": "0.6.0-alpha.8",
+      "canonical_url": "https://github.com/Thomas-Heisig/MHRN/releases/tag/v0.6.0-alpha.8",
+      "zenodo_route": "https://zenodo.org/badge/latestdoi/1335973891",
+      "doi": "10.5281/zenodo.23437187",
       "status": "published_verified"
     },
     {

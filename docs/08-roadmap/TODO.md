@@ -68,6 +68,17 @@ MHRN / Multi-Scale Homeostatic Recurrence Network. Publication: Recursive Episte
 
 # MHRN Current TODO
 
+## 2026-10-17 Alpha.8 Release
+
+- [x] Restore green `develop` CI and merge integration PR #282 at `343d1634`.
+- [x] Prepare `release/v0.6.0-alpha.8` with version `0.6.0a8`, release notes
+	and release records.
+- [x] Merge release PR #283 to `main` (`466ae6e8`), verify post-merge CI run
+	`39035891664`, tag the exact source freeze and publish the GitHub
+	pre-release.
+- [x] Verify Zenodo record `23437187` / DOI `10.5281/zenodo.23437187` and
+	record the publication state.
+
 ## 2026-10-17 Manuscript-review follow-up
 
 - [ ] Reproduce the documented determinism finding from a clean, exact source
@@ -231,7 +242,7 @@ MHRN / Multi-Scale Homeostatic Recurrence Network. Publication: Recursive Episte
 
 
 **Canonical TODO for `main`**  
-**Baseline:** `mhrn-core 0.6.0a7`
+**Baseline:** `mhrn-core 0.6.0a8`
 **Updated:** 2026-09-13
 **Current release-blocking backlog:** **0**
 

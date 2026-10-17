@@ -1,8 +1,18 @@
 # MHRN Development Roadmap
 
 **Canonical roadmap for active `develop`; `main` is release-only**  
-**Baseline:** `mhrn-core 0.6.0a7`
-**Updated:** 2026-10-04
+**Baseline:** `mhrn-core 0.6.0a8`
+**Updated:** 2026-10-17
+
+## 2026-10-17 Alpha.8 release line
+
+- `v0.6.0-alpha.8` is cut from green `develop@343d1634` (PR #282) through
+	`release/v0.6.0-alpha.8`. It is an integration/maintenance pre-release
+	without scientific status changes.
+- The recursive causal loopback programme (legacy alpha.8 TODO label) remains
+	open and is not part of this release.
+- Published from source freeze `466ae6e8` after green post-merge CI; Zenodo
+	DOI `10.5281/zenodo.23437187` is verified.
 
 ## 2026-10-04 Cognition raw-run File Viewer
 
