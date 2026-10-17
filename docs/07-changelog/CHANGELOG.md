@@ -1,5 +1,17 @@
 # Changelog
 
+## 2026-10-17 - Alpha.8 pre-release and Zenodo archive verified
+
+- Published GitHub pre-release `v0.6.0-alpha.8` on source freeze
+  `466ae6e87de276549cff5a7ef52c55419843ace7` (release PR #283) after
+  post-merge CI run `39035891664` passed.
+- Verified public Zenodo record `23437187`, version DOI
+  `10.5281/zenodo.23437187`, and concept DOI `10.5281/zenodo.22860682`.
+  The 58.6 MB software archive identifies the same release tag.
+- Hugging Face mirrors synced successfully on the release commit.
+- Publication and DOI assignment do not change DATA, Human Review, EVID,
+  scientific maturity or independent-replication state.
+
 ## 2026-10-17 - Alpha.8 release candidate preparation (pre-publication)
 
 - Restored green `develop` CI (strict pyright typing in the raw-run index) and
