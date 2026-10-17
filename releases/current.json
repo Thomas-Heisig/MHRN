@@ -1,13 +1,13 @@
 {
   "schema_version": 2,
-  "version": "0.6.0-alpha.7",
-  "pep440": "0.6.0a7",
-  "status": "released",
-  "title": "MHRN v0.6.0-alpha.7 — Stage-1 Evidence, Publication Synthesis, Stage-3 Benchmark and CUDA Preflight",
-  "parent": "v0.6.0-alpha.6",
-  "gate": "passed",
-  "as_of": "2026-09-27",
-  "milestone_status": "alpha7_released_from_green_main_and_zenodo_verified",
+  "version": "0.6.0-alpha.8",
+  "pep440": "0.6.0a8",
+  "status": "release_candidate",
+  "title": "MHRN v0.6.0-alpha.8 — Integration Sync, CI Restoration and Bounded Raw-Run Viewer",
+  "parent": "v0.6.0-alpha.7",
+  "gate": "pending",
+  "as_of": "2026-10-17",
+  "milestone_status": "alpha8_release_candidate_from_2026_10_17_develop",
   "release_blockers": 0,
   "scope": [
     "release-only main with develop as the canonical integration branch",
@@ -20,12 +20,12 @@
     "repository security baseline, CODEOWNERS and protected-branch guidance",
     "MHRN identity cleanup across active CI and public repository surfaces",
     "scientific DATA/EVID and replication boundaries preserved unchanged",
-    "Stage-0 scientific maturity reconciled at 92.5% with scoped EVID-2026-18",
-    "Stage-1 scientific maturity reconciled at 85% with topology EVID-2026-19 and temporal-order EVID-2026-20",
-    "Brian2 2.10.1 reference-replication R2 path with CeCILL 2.1 attribution and fail-closed pre-freeze gates",
-    "Playground PAN/closed-loop/live-monitor consolidation without scientific DATA/EVID promotion",
-    "Playground CUDA/PTX Gate-IR compiler, ptxas/driver preflight, CPU determinism and D1/D2/D3 parity contracts",
-    "Playground treated as a non-canonical repository workspace rather than a permanent branch"
+    "plastic-gateway activation validation requiring protocol_id and explicit research_source",
+    "bounded, SHA-256-checked cognition raw-run viewer in the File Viewer (at most 100 runs, 256 KiB decompression cap)",
+    "Stage-3 plastic-network benchmark source digests, mechanism details and functional-stability assessment",
+    "dependency refresh (fastapi>=0.143, uvicorn>=0.54) and Python 3.13 CI matrix",
+    "strict pyright compliance restored on develop",
+    "manuscript-review follow-up tasks recorded without changing maturity or EVID"
   ],
   "completed": [
     "v0.6 compatibility, benchmark, storage, determinism and migration foundation",
@@ -72,7 +72,11 @@
     "README, changelog and roadmap aligned to the 27 September 2026 integration state",
     "Publication synthesis and Stage-3 benchmark diagnostics integrated by PR #269 at main commit 4a6eb988; no scientific status was promoted",
     "Release PR #270 merged at source freeze 8a0bb095; post-merge CI run 37210840569 passed",
-    "GitHub pre-release v0.6.0-alpha.7 published and Zenodo version DOI 10.5281/zenodo.23138847 verified"
+    "GitHub pre-release v0.6.0-alpha.7 published and Zenodo version DOI 10.5281/zenodo.23138847 verified",
+    "alpha.7 published state carried forward unchanged as the parent release",
+    "develop CI restored to green by PR #282 (strict pyright fix in the raw-run index) at 343d1634",
+    "OPEN_SCIENCE Zenodo status aligned with the verified alpha.7 archive",
+    "manuscript-review follow-up (clean-tree determinism replication, memory-compression decision rule, yoked H-EMB-001-B comparison, matched 5D ablation, prior-art review, maturity explanation) recorded as open TODOs"
   ],
   "open": [
     "complete remaining Human Reviews including EXP-GEN-0041 and EXP-S6-SEM-CL-003 without automatic EVID promotion",
@@ -81,7 +85,9 @@
     "continue Stage-6 semanticization, prediction-error and world-model work under preregistered controls",
     "advance CUDA beyond generated/assembled/loaded preflight only through separately verified execution and CPU/CUDA equivalence stages",
     "complete remaining Human Reviews and independent replication without automatic EVID promotion",
-    "record all subsequent external review and replication outcomes without inferring positive results"
+    "record all subsequent external review and replication outcomes without inferring positive results",
+    "execute the 17 October 2026 manuscript-review follow-up items before any further maturity claim",
+    "recursive causal loopback programme (legacy alpha.8 TODO label) remains unimplemented and is not part of this release"
   ],
   "scientific_maturity": {
     "separate_from_engineering": true,
@@ -99,22 +105,18 @@
     "novelty_claim": "requires_prior_art_review"
   },
   "research_boundary": "Engineering implementation, technical verification, UI/API availability and DATA collection are not equivalent to scientific EVID. Scientific maturity is tracked independently through registered questions, frozen protocols, source-bound DATA, human-reviewed EVID, independent replication and attribution. No stage score establishes AGI, consciousness, sentience or biological equivalence.",
-  "note": "Alpha.7 consolidates the current governed Stage-0/Stage-1 evidence state, Brian2 reference-replication preparation, the non-canonical Playground/PAN workbench, and CUDA/PTX preflight infrastructure. It does not claim a completed CUDA SNN backend, 5D superiority, cognition, biological equivalence, independent replication or automatic scientific promotion.",
-  "target_tag": "v0.6.0-alpha.7",
+  "note": "Alpha.8 is an integration and maintenance pre-release: it ships the post-alpha.7 develop state (gateway validation, bounded raw-run viewer, Stage-3 benchmark provenance, dependency and CI fixes). It does not include the recursive causal loopback programme, promote any DATA or EVID, change scientific maturity, or claim cognition, biological equivalence, 5D superiority or independent replication.",
+  "target_tag": "v0.6.0-alpha.8",
   "publish_requested": true,
   "release_type": "pre-release",
   "development_state": {
-    "status": "released",
-    "engineering": "released_from_exact_green_source_freeze",
+    "status": "release_candidate",
+    "engineering": "release_candidate_from_green_develop",
     "integration_branch": "develop",
-    "integration_freeze_commit": "f267ffe5f17877149e47e39adcc1a095b6618d67",
-    "release_branch": "release/v0.6.0-alpha.7",
-    "main_integration_commit": "4a6eb9887255ebb2ede0a5f2e13460c4b5878946",
-    "source_freeze_commit": "8a0bb09530751df40da1ffa30f9ee1640c5370a7",
-    "integration_pr": 269,
-    "release_pr": 270,
-    "post_merge_ci_run": 37210840569,
-    "summary": "Alpha.7 was published from exact green source freeze 8a0bb095 after post-merge CI passed; Zenodo version DOI 10.5281/zenodo.23138847 is verified."
+    "integration_freeze_commit": "343d1634e24a30b34dc0fdf5cdca10186a9dba0c",
+    "release_branch": "release/v0.6.0-alpha.8",
+    "integration_pr": 282,
+    "summary": "Alpha.8 is cut from green develop commit 343d1634 (PR #282). Source freeze, tag, GitHub release and Zenodo DOI are set only after the release PR and post-merge main CI pass."
   },
   "scientific_state": {
     "status": "active_research_not_scientifically_complete",
@@ -132,20 +134,22 @@
     "summary": "Stage 0 and Stage 1 have scoped reviewed EVID, while independent replication remains incomplete. Playground/CUDA engineering does not contribute scientific evidence."
   },
   "publication_state": {
-    "github_release": "published",
-    "github_tag": "v0.6.0-alpha.7",
-    "zenodo": "published_verified",
-    "zenodo_record_url": "https://zenodo.org/records/23138847",
-    "doi": "10.5281/zenodo.23138847",
+    "github_release": "pending",
+    "github_tag": null,
+    "zenodo": "pending_github_release",
+    "zenodo_record_url": null,
+    "doi": null,
     "concept_doi": "10.5281/zenodo.22860682",
     "orcid": "0009-0002-9589-1872",
     "release_type": "pre-release",
     "public_imprint": "identity_and_contact_complete",
     "hosted_dashboard_privacy": "deployment_specific_details_pending",
-    "source_freeze_commit": "8a0bb09530751df40da1ffa30f9ee1640c5370a7"
+    "source_freeze_commit": null,
+    "previous_verified_release": {
+      "tag": "v0.6.0-alpha.7",
+      "doi": "10.5281/zenodo.23138847",
+      "source_freeze_commit": "8a0bb09530751df40da1ffa30f9ee1640c5370a7"
+    }
   },
-  "date": "2026-10-04",
-  "tag": "v0.6.0-alpha.7",
-  "commit": "8a0bb09530751df40da1ffa30f9ee1640c5370a7",
-  "source_freeze_commit": "8a0bb09530751df40da1ffa30f9ee1640c5370a7"
+  "date": "2026-10-17"
 }

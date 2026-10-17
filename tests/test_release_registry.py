@@ -22,20 +22,22 @@ def test_current_release_matches_canonical_published_version() -> None:
         project = tomllib.load(stream)["project"]
     current = _release("current.json")
 
-    assert project["version"] == "0.6.0a7"
-    assert current["version"] == "0.6.0-alpha.7"
+    assert project["version"] == "0.6.0a8"
+    assert current["version"] == "0.6.0-alpha.8"
     assert current["pep440"] == project["version"]
-    assert current["status"] == "released"
+    assert current["status"] in {"release_candidate", "released"}
     assert current.get("release_type") == "pre-release"
-    assert current.get("target_tag") == "v0.6.0-alpha.7"
-    assert current["parent"] == "v0.6.0-alpha.6"
-    assert current["as_of"] == "2026-09-27"
+    assert current.get("target_tag") == "v0.6.0-alpha.8"
+    assert current["parent"] == "v0.6.0-alpha.7"
+    assert current["as_of"] == "2026-10-17"
     assert current["milestone_status"] in {
         "stage3_engineering_reached_scientific_maturity_separate",
         "engineering_release_candidate_scientific_programme_active",
         "public_repository_hardening_release_candidate",
         "alpha7_release_candidate_from_2026_09_27_develop",
         "alpha7_released_from_green_main_and_zenodo_verified",
+        "alpha8_release_candidate_from_2026_10_17_develop",
+        "alpha8_released_from_green_main_and_zenodo_verified",
     }
     assert current["release_blockers"] == 0
     assert current["open"]
@@ -71,18 +73,19 @@ def test_zenodo_archive_is_bound_to_published_alpha7() -> None:
     assert alpha6["publication_state"]["zenodo"] == "published_verified"
     assert alpha6["publication_state"]["doi"] == "10.5281/zenodo.22860683"
     assert alpha7["publication_state"]["zenodo"] == "published_verified"
-    assert current["publication_state"]["github_release"] == "published"
-    assert (
-        current["tag"] == current["publication_state"]["github_tag"] == "v0.6.0-alpha.7"
-    )
-    assert current["source_freeze_commit"] == "8a0bb09530751df40da1ffa30f9ee1640c5370a7"
+    assert alpha7["status"] == "released"
+    assert alpha7["publication_state"]["github_release"] == "published"
+    assert alpha7["publication_state"]["github_tag"] == "v0.6.0-alpha.7"
     assert alpha7["publication_state"]["doi"] == "10.5281/zenodo.23138847"
     assert (
         alpha7["publication_state"]["source_freeze_commit"]
         == "8a0bb09530751df40da1ffa30f9ee1640c5370a7"
     )
-    assert current["publication_state"]["zenodo"] == "published_verified"
-    assert current["publication_state"]["doi"] == "10.5281/zenodo.23138847"
+    assert current["publication_state"]["concept_doi"] == "10.5281/zenodo.22860682"
+    if current["status"] == "release_candidate":
+        previous = current["publication_state"]["previous_verified_release"]
+        assert previous["tag"] == "v0.6.0-alpha.7"
+        assert previous["doi"] == "10.5281/zenodo.23138847"
 
 
 def test_alpha6_release_preserves_verified_historical_boundary() -> None:

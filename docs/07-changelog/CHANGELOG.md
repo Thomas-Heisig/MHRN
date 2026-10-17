@@ -1,5 +1,16 @@
 # Changelog
 
+## 2026-10-17 - Alpha.8 release candidate preparation (pre-publication)
+
+- Restored green `develop` CI (strict pyright typing in the raw-run index) and
+  merged integration PR #282 at `343d1634`, including the `OPEN_SCIENCE.md`
+  Zenodo alignment and the manuscript-review follow-up TODOs.
+- Bumped the package to `0.6.0a8` and added alpha.8 candidate release notes
+  and release records. Alpha.8 is an integration/maintenance pre-release; the
+  legacy "Alpha.8" recursive-loopback programme is not included.
+- No DATA, Human Review, EVID, scientific maturity or replication state
+  changed. Tag, GitHub release and Zenodo DOI are pending their gates.
+
 ## 2026-10-04 - Bounded cognition raw-run viewer
 
 - Added File Viewer drill-down from a registered cognition `runs_index.json` to

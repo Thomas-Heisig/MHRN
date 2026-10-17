@@ -1992,6 +1992,19 @@
       "review_required": false
     },
     {
+      "path": "docs/10-releases/RELEASE_NOTES_v060a8.md",
+      "domain": "docs",
+      "kind": "release_record",
+      "status": "historical",
+      "authority": "historical_release_provenance",
+      "mutability": "editable",
+      "citation": "cite_with_version_or_date",
+      "evidence_role": "historical_only",
+      "rationale": "Rule-classified repository documentation; exact scientific authority depends on referenced DATA/EVID.",
+      "classification_rule": "docs-zone:10-releases",
+      "review_required": false
+    },
+    {
       "path": "docs/11-readme/README_ALPHA4_BLOCK.md",
       "domain": "docs",
       "kind": "historical_readme",

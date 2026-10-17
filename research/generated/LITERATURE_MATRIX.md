@@ -71,4 +71,4 @@
 | Langosco (2022) |  | RQ-SAFE-002 | open |
 
 ---
-*Automatisch generiert am 2026-09-27*
+*Automatisch generiert am 2026-10-17*

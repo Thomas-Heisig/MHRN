@@ -100,8 +100,8 @@ Historical publication bytes and empirical artifacts are preserved. Reconstructe
 | --- | --- |
 | Release branch | `main` — release-only, public frozen line |
 | Integration branch | `develop` — active development and research integration |
-| Package | `mhrn-core 0.6.0a7` / `v0.6.0-alpha.7` |
-| Release status | **v0.6.0-alpha.7 release candidate** from the 27 September `develop` integration state; release-only preparation is isolated on `release/v0.6.0-alpha.7` |
+| Package | `mhrn-core 0.6.0a8` / `v0.6.0-alpha.8` |
+| Release status | **v0.6.0-alpha.8 release candidate** from the 17 October `develop` integration state; release-only preparation is isolated on `release/v0.6.0-alpha.8`. `v0.6.0-alpha.7` remains the latest published release until the alpha.8 tag and archive are verified |
 | Engineering | Stage 2 recurrent contract closed at its scoped engineering boundary; Stage 3 plastic neural tissue reached; Stage 4/5 engineering contracts integrated; Stage 6 mechanisms and research programme active |
 | Scientific focus | Stage 0 = **92.5 %**; Stage 1 = **85 %** with scoped EVID `EVID-2026-18/19/20`; Stage-1 cross-implementation reference replication and Stage-6 memory/world-model work remain active; independent external replication remains open |
 | Current manuscript | **Recursive Epistemics / Rekursive Epistemik 1.8 — WIP** |
@@ -423,7 +423,7 @@ Independent replication invitation: [`INDEPENDENT_REPLICATION.md`](INDEPENDENT_R
   author  = {Thomas Heisig},
   title   = {Multi-Scale Homeostatic Recurrence Network (MHRN)},
   year    = {2026},
-  version = {0.6.0a7},
+  version = {0.6.0a8},
   url     = {https://github.com/Thomas-Heisig/MHRN},
   license = {MIT}
 }
