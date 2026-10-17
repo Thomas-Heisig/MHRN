@@ -465,22 +465,27 @@ class FilePreviewService:
             raise FileContractError("Compressed raw run exceeds preview limit")
 
         try:
-            index = json.loads(index_path.read_text(encoding="utf-8"))
+            index_object: object = json.loads(index_path.read_text(encoding="utf-8"))
         except (OSError, UnicodeDecodeError, json.JSONDecodeError) as exc:
             raise FileContractError("Raw-run index is unavailable or invalid") from exc
-        if not isinstance(index, dict) or index.get("schema_version") != "2.0":
+        if not isinstance(index_object, dict):
+            raise FileContractError("Raw-run index has an unsupported schema")
+        index = cast(dict[str, object], index_object)
+        if index.get("schema_version") != "2.0":
             raise FileContractError("Raw-run index has an unsupported schema")
         relative_to_experiment = candidate.relative_to(
             index_path.parent.parent
         ).as_posix()
-        entries = index.get("runs")
-        if not isinstance(entries, list):
+        entries_object = index.get("runs")
+        if not isinstance(entries_object, list):
             raise FileContractError("Raw-run index has no valid run list")
-        matches = [
-            entry
-            for entry in entries
-            if isinstance(entry, dict) and entry.get("path") == relative_to_experiment
-        ]
+        matches: list[dict[str, object]] = []
+        for entry_object in cast(list[object], entries_object):
+            if not isinstance(entry_object, dict):
+                continue
+            candidate_entry = cast(dict[str, object], entry_object)
+            if candidate_entry.get("path") == relative_to_experiment:
+                matches.append(candidate_entry)
         if len(matches) != 1:
             raise FileContractError("Raw run is not uniquely registered in its index")
 
