@@ -20,7 +20,7 @@ This file is the public routing map for MHRN research visibility. GitHub is the 
 | Hugging Face MHRN-Research-Data | rolling research-tree discovery mirror | **CONFIGURED** | same credentials; workflow creates and synchronizes `MHRN-Research-Data`; immutable experiment DOIs remain separate |
 | ORCID | author identity and cross-service identity anchor | **ACTIVE in repository** — `0009-0002-9589-1872` | verify public ORCID record and authorize trusted auto-updates where desired |
 | OSF | project landing page; registrations/preregistrations | **ACTIVE in repository** — `https://osf.io/p34uq/` | use registrations for protocol freezes; do not rely on OSF Projects as the only long-term file store |
-| Zenodo | immutable software/data/preprint deposits and DOI minting | **CONFIGURED** — `.zenodo.json` + `CITATION.cff` present | enable/verify MHRN in Zenodo GitHub integration and publish DOI-bearing records |
+| Zenodo | immutable software/data/preprint deposits and DOI minting | **ACTIVE** — Alpha.7 software archive published and recorded at [10.5281/zenodo.23138847](https://doi.org/10.5281/zenodo.23138847) | create separate DOI deposits for release-quality experiment datasets and suitable preprints; keep each record linked to its exact source/data freeze |
 | DataCite | DOI metadata network | **HARVEST TARGET** | reached through Zenodo and other DOI repositories; ensure ORCID and relations are present in DOI metadata |
 | OpenAIRE Research Graph | research-object aggregation and linking | **HARVEST TARGET** | verify records after DOI publication; link funding/project metadata only when factual |
 | OpenAlex | scholarly graph / DOI and author discovery | **HARVEST TARGET** | verify DOI/ORCID records after indexing |
@@ -116,8 +116,8 @@ For each release-quality scientific object:
 
 Repository metadata prepares the records, but these require the account owner or an external submission system:
 
-- enable/verify the Zenodo-GitHub repository connection;
-- publish Zenodo deposits/DOIs;
+- verify the Zenodo-ORCID account link and authorize DOI auto-updates where desired;
+- publish separate Zenodo deposits/DOIs for release-quality experiment datasets and suitable preprints;
 - create/finalize OSF registrations;
 - authorize ORCID update permissions;
 - verify/claim OpenAIRE, OpenAlex, Semantic Scholar, Google Scholar, HAL or ResearchGate records where user action is offered;
