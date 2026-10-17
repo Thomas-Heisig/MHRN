@@ -1,21 +1,37 @@
 # MHRN Development Roadmap
 
 **Canonical roadmap for active `develop`; `main` is release-only**  
-**Baseline:** `mhrn-core 0.6.0a7`
-**Updated:** 2026-10-04
+**Baseline:** `mhrn-core 0.6.0a8`
+**Updated:** 2026-10-17
+
+## 2026-10-17 Alpha.8 release line
+
+- `v0.6.0-alpha.8` is cut from green `develop@343d1634` (PR #282) through
+	`release/v0.6.0-alpha.8`. It is an integration/maintenance pre-release
+	without scientific status changes.
+- The recursive causal loopback programme (legacy alpha.8 TODO label) remains
+	open and is not part of this release.
+
+## 2026-10-04 Cognition raw-run File Viewer
+
+- Added run-level drill-down from a registered cognition `runs_index.json`.
+	Only indexed research artifacts with a matching SHA-256 are previewed; the UI
+	lists at most 100 runs and backend decompression is capped at 256 KiB.
+- Source artifacts remain immutable DATA. Preview access does not constitute
+	analysis, Human Review, EVID or scientific status promotion.
 
 ## 2026-10-04 Gateway Plastic preregistration and execution boundary
 
 - The seven registered `RQ-GW-*` operational protocols are `boundary_audit`
   contracts with `direct_test_of_hypothesis=false`; their seed lists describe
   audit reexecution, not independent Gateway Plastic runs.
-- The Gateway activation route accepts caller-provided preregistration JSON and
-  starts one runtime seed. There is no registered functional Plastic runner,
-  frozen input-frame sequence, or executable stop rule to define a reproducible
-  trial across independent runtime instances.
-- Keep registry-backed Plastic activation and multi-seed execution open until
-  a suitable frozen functional protocol and runner contract exist. No Gateway
-  DATA/EVID is inferred from the current audit protocols or activation status.
+- The public Plastic activation route resolves `protocol_id` against the
+	operational registry and rejects unknown or `boundary_audit` entries before
+	activation. A single-seed API call cannot authorize a Plastic run.
+- The seven registered Gateway protocols remain boundary audits. No frozen
+	functional Plastic protocol, input-frame sequence, executable stop rule or
+	independent multi-seed runner exists yet; keep Plastic execution and Gateway
+	DATA/EVID blocked until those contracts are independently reviewable.
 
 ## 2026-10-04 Stage-3 plastic-network scale benchmark
 
@@ -26,7 +42,9 @@
 	boundedness is reported separately from ongoing spikes, active-weight
 	fraction, and workload-required weight diversity. Candidate visits/s is an
 	operation-count estimate, not a hardware counter. Receipts include workload,
-	software and CPU metadata; all remain engineering-only.
+	software, CPU, benchmark-source SHA-256 and topology SHA-256; all remain
+	engineering-only. Pair-STDP, eligibility, and reward modulation are included;
+	homeostasis, structural growth/pruning, and checkpoint/restore are excluded.
 - Matched 10,000-neuron / 100,000-synapse runs (seed 42, 100 epochs): the
 	heterogeneous asymmetric profile ended with 56.25% of weights at the lower
 	bound, 43.75% active and positive variance; the symmetric profile ended with
@@ -34,9 +52,21 @@
 	profile retained all weights at 0.05. The earlier uniform-input profile drove
 	all weights to zero. Its identical weights are expected under that symmetric
 	input/topology; it is not evidence by itself of an update implementation bug.
+- In matched heterogeneous 100-epoch runs, asymmetric `a_minus > a_plus` has
+	12.5 percentage points more lower-bound weights than symmetric STDP, which is
+	consistent with a depression contribution. Symmetric STDP also puts 18.75%
+	at the upper bound, so the comparison does not isolate a sole collapse cause
+	or establish a generally preferred parameterization.
+- Repeating that uniform-input profile with V2 checks reproduces 100% lower-bound
+	saturation and correctly reports `numeric_stability_passed=true`, but
+	`functional_activity_passed=false` and `stability_invariants_passed=false`.
+- The `seed` now deterministically permutes target-node order. A 42/43/44,
+	three-mode, 20-epoch sweep at 10k/100k produced active fractions of 50%
+	(asymmetric), 62.5% (symmetric), and 100% (off) for every seed. This checks
+	engineering topology sensitivity only; the seeds are not biological samples.
 - At 100,000 neurons / 1M synapses for 20 heterogeneous asymmetric epochs, the
 	measured Python peak was about 1.03 GB, the estimated candidate-visit rate
-	about 210k/s, and 50% of weights remained active. These workload-specific
+	about 195k/s, and 50% of weights remained active. These workload-specific
 	profiles do not establish general or long-horizon stability.
 - The declared 100,000-neuron / 10M-synapse upper point remains unmeasured:
 	its preflight estimate is 19.45 GiB, exceeding this machine's available RAM.
@@ -136,6 +166,20 @@
 	workflow. No institution-specific update endpoint is registered.
 - Release and DOI publication leave Human Review, EVID, maturity and independent
 	replication state unchanged.
+
+## 2026-10-04 Develop continuation
+
+- Released `main@4a105137` is integrated into `develop` by merge commit
+	`97fa42db`; the four develop-only commits remain in history.
+- Full-suite CI now runs on Python 3.13 only. The other security, typing,
+	contract, browser, documentation, build and Docker gates remain enabled.
+	`pyproject.toml` still declares Python `>=3.11`; 3.11/3.12 are no longer CI
+	tested.
+- The export-only GitHub Pages portal was republished by workflow run
+	`37214631300` from `main@4a105137`. Root, stylesheet, application module and
+	admin page all returned HTTP 200 in the live smoke check.
+- A develop-only formatting drift and stale benchmark-test helper name were
+	corrected; the fix changes no runtime behavior.
 
 ## 2026-09-29 Post-hoc Experimentauswertung
 

@@ -7,7 +7,7 @@
 #   1. lint-format   — code style, linting, pre-commit
 #   2. type-check    — static type analysis (mypy + pyright)
 #   3. security      — SAST / dependency scanning
-#   4. tests         — full test suite across Python versions (matrix)
+#   4. tests         — full test suite on the canonical Python 3.13 CI runtime
 #   5. build         — wheel build + install verification
 #   6. docker        — Docker image build test
 #   7. docs          — documentation structure check
@@ -243,7 +243,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: ["3.11", "3.12", "3.13"]
+        python-version: ["3.13"]
     steps:
       - uses: actions/checkout@v7
         with:

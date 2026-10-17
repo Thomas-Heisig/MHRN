@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "mhrn-core"
-version = "0.6.0a7"
+version = "0.6.0a8"
 description = "Multi-scale homeostatic recurrent spiking-neural research architecture."
 readme = "README.md"
 requires-python = ">=3.11"
@@ -65,13 +65,13 @@ browser = [
   "playwright>=1.55.0",
 ]
 dev = [
-  "black==26.5.1",
-  "mypy==2.3.1",
-  "pylint==4.0.9",
+  "black==26.10.0",
+  "mypy==2.4.0",
+  "pylint==4.1.2",
   "pyright==1.1.414",
   "pytest>=8.0",
   "pytest-cov>=5.0",
-  "ruff==0.16.9",
+  "ruff==0.16.10",
   "scikit-learn>=1.5",
   "umap-learn>=0.5",
   "types-defusedxml>=0.7.0",

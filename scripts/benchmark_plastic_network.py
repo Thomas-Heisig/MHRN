@@ -145,7 +145,11 @@ def _topology_digest(network: Any) -> str:
     return hashlib.sha256(payload).hexdigest()
 
 
-def _assess_stability(
+def _benchmark_source_digest() -> str:
+    return hashlib.sha256(Path(__file__).read_bytes()).hexdigest()
+
+
+def assess_stability(
     snapshots: list[dict[str, Any]],
     *,
     final_epoch_source_spikes: int,
@@ -311,7 +315,7 @@ def run_benchmark(
     weight_diversity_required = (
         activity_profile == "heterogeneous_cohorts" and learning_enabled
     )
-    stability_assessment = _assess_stability(
+    stability_assessment = assess_stability(
         stability,
         final_epoch_source_spikes=final_epoch_source_spikes,
         final_epoch_target_spikes=final_epoch_target_spikes,
@@ -331,6 +335,7 @@ def run_benchmark(
         "benchmark": "stage3_plastic_network_scale",
         "scope": "engineering_verification_only",
         "scientific_evidence": False,
+        "benchmark_source_sha256": _benchmark_source_digest(),
         "python": platform.python_version(),
         "platform": platform.platform(),
         "cpu": platform.processor() or None,
@@ -406,6 +411,17 @@ def run_benchmark(
                 "sources: index mod 4 = epoch mod 4; targets: index mod 4 = "
                 "(epoch + 1) mod 4"
             ),
+            "mechanisms_included": [
+                "pair_stdp",
+                "eligibility_traces",
+                "reward_modulated_plasticity",
+            ],
+            "mechanisms_excluded": [
+                "firing_rate_homeostasis",
+                "energy_homeostasis",
+                "structural_growth_pruning",
+                "checkpoint_restore",
+            ],
         },
         "stage3_target_range": {
             "neurons": list(STAGE3_NEURON_RANGE),

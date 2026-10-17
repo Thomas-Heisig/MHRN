@@ -50,7 +50,7 @@
 - [x] Sanitized aggregate export implemented and tested.
 - [ ] Configure and independently review the real public domain, storage, TLS, backups and legal study settings.
 - [x] Provision GitHub Pages in workflow-only mode at <https://thomas-heisig.github.io/MHRN/>; GitHub reports HTTPS enforced and workflow run [37202191034](https://github.com/Thomas-Heisig/MHRN/actions/runs/37202191034) published the static artifact.
-- [ ] Fix and publish the Pages-root asset paths on canonical `main`, then repeat the live smoke test. Current live HTML loads, but CSS/JS requests to `/review/review.css` and `/review/app.js` return 404. The relative-path fix is on `develop` (`6c417c2`); `origin/develop` is 9 commits ahead of `main` and no PR is open, so do not deploy that branch wholesale.
+- [x] Publish the relative-path asset fix from canonical `main` and repeat the live smoke test. Review-portal run `37214631300` deployed `main@4a105137`; root, `/MHRN/review.css`, `/MHRN/app.js` and `/MHRN/admin.html` return HTTP 200.
 - Audit 2026-10-04: Pages is export-only and has no central response storage. The private study config is absent; the example remains disabled with legal/contact placeholders, and the Compose volume is not a backup plan. Online collection, backup/restore, custom-domain DNS/TLS and study-specific legal/ethics review remain unconfigured. Keep collection disabled.
 - [x] Make experiment cards open a complete detail dialog with form prefill.
 
@@ -67,6 +67,48 @@ Aeltere offene Zaehler unten sind zeitgebundene Bestandsaufnahmen; der aktuelle 
 MHRN / Multi-Scale Homeostatic Recurrence Network. Publication: Recursive Epistemics / Rekursive Epistemik. [Migration and compatibility](../../NAMING.md). Historical scientific artifacts remain unchanged.
 
 # MHRN Current TODO
+
+## 2026-10-17 Alpha.8 Release
+
+- [x] Restore green `develop` CI and merge integration PR #282 at `343d1634`.
+- [x] Prepare `release/v0.6.0-alpha.8` with version `0.6.0a8`, release notes
+	and release records.
+- [ ] Merge the release PR to `main`, verify post-merge CI, tag the exact
+	source freeze and publish the GitHub pre-release.
+- [ ] Verify the Zenodo archive/DOI and record the publication state.
+
+## 2026-10-17 Manuscript-review follow-up
+
+- [ ] Reproduce the documented determinism finding from a clean, exact source
+  tree; record the commit, environment, command and result artifacts.
+- [ ] Before executing `OBJ-MEM-COMPRESSION-001`, freeze the complete 10%
+  budget accounting, matched-budget baselines, acceptable performance loss
+  and the decision rule for retaining or de-centering SemanticMemory.
+- [ ] Complete `H-EMB-001-B` with a controlled closed-loop/yoked comparison
+  whose disturbance and control logic test the claimed causal difference.
+- [ ] For the planned 5D ablation, freeze matched neuron/edge budgets,
+  topology, training and hyperparameter-search effort, resource limits and
+  primary outcome before execution.
+- [ ] Complete an independent prior-art review of the research-provenance,
+  preregistration, executable-publication and reflexive-methodology claims;
+  state the limits of any novelty claim.
+- [ ] Explain the criteria, weighting, mandatory gates and limits of published
+  scientific-maturity percentages; do not present them as probabilities.
+
+## 2026-10-04 Develop synchronization and CI
+
+- [x] Released `main@4a105137` into `develop` by merge commit `97fa42db`;
+	preserve the four develop-only commits without rewriting history.
+- [x] Reduce duplicate full-suite CI lanes to Python 3.13 while preserving the
+	separate security, type, contract, browser, build and Docker gates. Package
+	metadata remains `requires-python >=3.11`, so 3.11/3.12 are no longer
+	exercised in the CI matrix.
+- [x] Publish the Pages asset-path fix from `main` with review-portal run
+	`37214631300`; the live root, `review.css`, `app.js` and `admin.html` return
+	HTTP 200. The portal remains static/export-only.
+- [x] Restore the develop lint gate by formatting the Stage-4 integration
+	helper and correcting the stale stability-helper name in the benchmark test;
+	focused tests pass without runtime behavior changes.
 
 ## 2026-10-02 CUDA-/Parity-UI-Provenienz
 
@@ -167,15 +209,17 @@ MHRN / Multi-Scale Homeostatic Recurrence Network. Publication: Recursive Episte
 - [x] Explain Gateway conditions and the Plastic preregistration guard in the frontend.
 - [x] Generate JSON state and Markdown report artifacts for Gateway activations.
 - [x] Preserve the boundary that Gateway activity and reports are not scientific evidence.
-- [ ] Add preregistration registry lookup and independent multi-seed execution for Plastic runs.
-- Audit 2026-10-04: `RQ-GW-001` through `RQ-GW-007` currently resolve only to
-  `boundary_audit` protocols; their three-seed audit reexecutions are not
-  Plastic DATA. The Gateway API accepts a caller-supplied preregistration object
-  and activates one seed, while no registered Plastic runner, frozen input-frame
-  sequence, or stop-rule execution contract exists. Keep this item open: do not
-  count arbitrary JSON or boundary-audit seeds as registry lookup or independent
-  Plastic execution. A suitable frozen functional protocol and runner contract
-  are prerequisites.
+- [x] Resolve public Plastic `protocol_id` values against the operational
+	registry; reject unknown and `boundary_audit` protocols before activation.
+- [ ] Add a registered frozen functional Plastic protocol and independent
+	multi-seed runner with frozen input frames, executable stop rules and bound
+	outcomes. Keep single-seed Plastic activation disabled until that runner exists.
+- Audit 2026-10-04: `RQ-GW-001` through `RQ-GW-007` are still only
+	`boundary_audit` protocols; their three-seed audit reexecutions are not
+	Plastic DATA. The public route now performs registry lookup and fails closed
+	for unknown/audit IDs. No functional Plastic runner, frozen input-frame
+	sequence or stop-rule execution contract exists yet. Do not count audit seeds
+	as independent Plastic execution; no DATA/EVID is promoted.
 
 ## 2026-09-16 Experiment archive results viewer
 
@@ -196,7 +240,7 @@ MHRN / Multi-Scale Homeostatic Recurrence Network. Publication: Recursive Episte
 
 
 **Canonical TODO for `main`**  
-**Baseline:** `mhrn-core 0.6.0a7`
+**Baseline:** `mhrn-core 0.6.0a8`
 **Updated:** 2026-09-13
 **Current release-blocking backlog:** **0**
 
@@ -220,6 +264,11 @@ MHRN / Multi-Scale Homeostatic Recurrence Network. Publication: Recursive Episte
 	protocol-faithful and auditable; human review remains a separate required gate.
 - [ ] Benchmark plastic-network stability/throughput at the declared Stage-3
   target scale separately from the mechanism contract.
+- Audit 2026-10-04: the 100k-neuron/10M-synapse profile estimates 20,889,600,000
+	bytes (about 19.45 GiB), above the benchmark's default 2 GiB budget. The
+	current host reports 31.2 GiB total but only 3.6 GiB free; do not override
+	preflight or run this allocation here. Keep the upper point open for a
+	memory-appropriate host.
 - [x] Add a separate deterministic plastic-network benchmark with a preflight
 	memory estimate, real LearningEngine hooks, reward updates, weight-bound
 	snapshots, throughput and workload/hardware provenance.
@@ -235,11 +284,26 @@ MHRN / Multi-Scale Homeostatic Recurrence Network. Publication: Recursive Episte
 	43.75% at the lower bound and 18.75% at the upper bound; learning-off kept
 	all weights at 0.05. The earlier uniform-input run's all-zero result is kept
 	as a separate symmetry/saturation diagnostic, not generalized to all inputs.
+- Audit: `a_minus > a_plus` is consistent with the 12.5-point increase in
+	lower-bound occupancy versus symmetric STDP, but symmetric STDP also saturates
+	18.75% of weights at the upper bound. The current profile does not isolate a
+	sole cause or identify a universally stable parameterization.
 - [x] Re-run heterogeneous asymmetric STDP at 100k/1M for 20 epochs; all
 	weights remained finite/in bounds, 50% were active, and the estimated visit
-	rate was about 210k/s. These remain single-seed engineering observations.
+	rate was about 195k/s. These remain single-seed engineering observations.
 - [x] Make functional stability fail when no active synapses remain, even if
 	numeric bound checks pass; report variance and saturation separately.
+- [x] Re-run the uniform asymmetric 10k/100k profile with the V2 functional
+	gate: all weights reach zero, so `numeric_stability_passed=true` but
+	`functional_activity_passed=false` and
+	`stability_invariants_passed=false`. The old collapse is now directly
+	reproduced and correctly rejected as functional stability.
+- [x] Make `seed` permute target-node order reproducibly and bind each receipt
+	to both benchmark-source SHA-256 and topology SHA-256.
+- [x] Run a three-seed (42, 43, 44), three-mode, 20-epoch engineering sweep at
+	10k/100k. Every run passed functional checks; asymmetric active fraction was
+	50%, symmetric 62.5%, and learning-off 100%. This is seed/topology sensitivity,
+	not biological replication or inferential evidence.
 - [x] Add verified literature and explicit framework-comparability limits in
 	[Related Work](../../research/RELATED_WORK.md) and the Stage-3 contract.
 - [ ] Execute the 100k-neuron/10M-synapse upper point on a memory-appropriate
@@ -342,8 +406,10 @@ MHRN / Multi-Scale Homeostatic Recurrence Network. Publication: Recursive Episte
 - [x] Execute registered exploratory component controls for delayed information
 	(`016-memory_delayed_information_v1`) and one-step world-model prediction
 	(`017-world_model_prediction_v1`); these runs remain DATA, not automatic EVID.
-- [ ] Add explicit File Viewer drill-down for the existing cognition campaign,
-	including bounded inspection of compressed raw-run data.
+- [x] Add explicit File Viewer drill-down for the existing cognition campaign.
+	Only up to 100 indexed runs are listed; each compressed raw-run preview is
+	read-only, SHA-256 checked against `runs_index.json`, and bounded to 256 KiB
+	of decompressed content. This exposes DATA only, not analysis or EVID.
 
 Neural Symbiosis gateway status: **experimental activation implemented; Frozen / Random / Shuffle controls implemented; experimental plasticity implemented; productive activation locked pending validation**.
 

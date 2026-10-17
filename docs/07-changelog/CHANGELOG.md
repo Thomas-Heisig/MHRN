@@ -1,5 +1,24 @@
 # Changelog
 
+## 2026-10-17 - Alpha.8 release candidate preparation (pre-publication)
+
+- Restored green `develop` CI (strict pyright typing in the raw-run index) and
+  merged integration PR #282 at `343d1634`, including the `OPEN_SCIENCE.md`
+  Zenodo alignment and the manuscript-review follow-up TODOs.
+- Bumped the package to `0.6.0a8` and added alpha.8 candidate release notes
+  and release records. Alpha.8 is an integration/maintenance pre-release; the
+  legacy "Alpha.8" recursive-loopback programme is not included.
+- No DATA, Human Review, EVID, scientific maturity or replication state
+  changed. Tag, GitHub release and Zenodo DOI are pending their gates.
+
+## 2026-10-04 - Bounded cognition raw-run viewer
+
+- Added File Viewer drill-down from a registered cognition `runs_index.json` to
+  immutable compressed raw runs. The viewer exposes at most 100 indexed runs;
+  previews require a matching SHA-256 entry and decompress at most 256 KiB.
+- Raw runs remain read-only DATA. This viewer does not create analysis, Human
+  Review, EVID or scientific status promotion.
+
 ## 2026-10-04 - Alpha.7 pre-release and Zenodo archive verified
 
 - Published GitHub pre-release `v0.6.0-alpha.7` on source freeze
@@ -14,15 +33,28 @@
 - Publication and DOI assignment do not change DATA, Human Review, EVID,
   scientific maturity or independent-replication state.
 
-## 2026-10-04 - Alpha.7 release candidate integration status
+## 2026-10-04 - Develop synchronization and CI runtime
+
+- Integrated released `main` into `develop` without rewriting or dropping
+  develop-only work.
+- Reduced the full-suite CI matrix to Python 3.13. Focused security, typing,
+  contracts, browser, documentation, build and Docker gates remain enabled.
+  Package metadata still declares `>=3.11`; CI no longer exercises 3.11/3.12.
+- Published the existing relative-path Pages fix with review-portal run
+  `37214631300` on `main@4a105137`; root, stylesheet, app and admin routes
+  returned HTTP 200.
+- Restored the develop lint gate by formatting the Stage-4 integration helper
+  and fixing a stale benchmark-test helper name; no runtime behavior changed.
+
+## 2026-10-04 - Alpha.7 release candidate preparation (pre-publication)
 
 - Merged integration PR #269 to `main` at `4a6eb988`, including the publication
   synthesis and Stage-3 benchmark diagnostics. Scientific status, Human Review,
   EVID and replication state were not promoted.
 - Added Alpha.7 candidate release notes and reconciled the release ledgers to
-  the merged integration. The dedicated release PR and post-merge CI/source
-  freeze remain pending; no tag, GitHub release or Alpha.7 Zenodo archive has
-  been created.
+  the merged integration. At that preparation point the dedicated release PR,
+  post-merge CI, tag and Zenodo archive were pending; the publication entry
+  above records their later completion.
 - The configured Hugging Face sync succeeded at the integration commit.
   Zenodo requires the eventual GitHub release; OSF and ORCID have no configured
   automatic release-update workflow, and no institution-specific endpoint is
@@ -37,7 +69,16 @@
 - Re-ran 10k/100k for all three modes and heterogeneous asymmetric 100k/1M.
   The uniform-input all-zero case is retained as a separate symmetric workload,
   not treated as a general implementation failure. New schema-v2 receipts are
-  separate from earlier receipts.
+  separate from earlier receipts and include benchmark-source/topology SHA-256.
+- The uniform 10k/100k rerun confirms all weights hit zero; numeric bounds pass
+  but the functional stability gate fails. A seed-aware 42/43/44 by
+  asymmetric/symmetric/off sweep was also recorded; its engineering variation
+  is not independent biological replication.
+- In matched heterogeneous 100-epoch runs, asymmetric STDP increases lower-bound
+  occupancy by 12.5 percentage points relative to symmetric STDP, while
+  symmetric STDP also saturates the upper bound. This is consistent with a
+  depression contribution but does not isolate a sole cause or a universal
+  parameter recommendation.
 - Added verified STDP, homeostasis, memory, continual-learning, sensorimotor,
   network-organization, preregistration, and simulator-comparability sources,
   mapped to the relevant research areas. No direct 5D-advantage precedent was
@@ -75,10 +116,12 @@
 - Confirmed that the seven registered Gateway protocols are boundary audits,
   not executable Plastic protocols; their audit seed reexecutions do not count
   as independent Plastic runs.
-- The current Gateway route accepts caller-supplied preregistration JSON and
-  activates a single seed. No registered Plastic runner, frozen input-frame
-  sequence or executable stop rule is available, so registry-backed
-  multi-seed execution remains open rather than inventing a workload.
+- The HTTP Plastic activation route now resolves protocol IDs against the
+  operational registry and rejects unknown or boundary-audit protocols. It
+  remains fail-closed even for a future functional protocol until a registered
+  multi-seed runner exists; it does not execute one caller-supplied seed.
+- No frozen functional Plastic runner, input-frame sequence or executable stop
+  rule is available, so registry-backed multi-seed execution remains open.
 - No scientific DATA/EVID status is inferred from Gateway activation or audit
   artifacts.
 

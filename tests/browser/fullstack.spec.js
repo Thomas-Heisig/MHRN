@@ -58,6 +58,63 @@ for (const port of [4174, 4175]) {
   });
 }
 
+test('File Viewer drills into indexed cognition raw runs', async ({ page }) => {
+  const indexPath = 'experiments/EXP-COGNITION/DATA/runs_index.json';
+  const rawPath = 'experiments/EXP-COGNITION/DATA/raw/run-0000-control-seed-1.json.gz';
+  const index = {
+    schema_version: '2.0',
+    storage_policy: 'immutable_raw_runs_plus_compact_current_experiment',
+    runs: [
+      ...Array.from({ length: 101 }, (_, run_index) => ({
+        run_index,
+        condition: 'control',
+        seed: run_index + 1,
+        path: `DATA/raw/run-${String(run_index).padStart(4, '0')}-control-seed-${run_index + 1}.json.gz`,
+      })),
+      { run_index: 1, condition: 'invalid', seed: 2, path: '../../outside.json.gz' },
+    ],
+  };
+  await page.route('**/api/files/preview/**', async (route) => {
+    const url = new URL(route.request().url());
+    const path = decodeURIComponent(url.pathname.slice('/api/files/preview/'.length));
+    const isIndex = path === indexPath;
+    const content = JSON.stringify(isIndex ? index : { condition: 'control', seed: 1 });
+    await route.fulfill({
+      contentType: 'application/json',
+      json: {
+        source: 'research',
+        path,
+        name: path.split('/').at(-1),
+        mime_type: 'application/json',
+        ext: isIndex ? '.json' : '.gz',
+        size_bytes: content.length,
+        sha256: 'a'.repeat(64),
+        digest_status: 'COMPLETE',
+        preview_limit_bytes: 262144,
+        truncated: false,
+        raw_url: `/api/files/raw/${encodeURIComponent(path)}?source=research`,
+        download_url: `/api/files/raw/${encodeURIComponent(path)}?source=research&download=1`,
+        read_only: true,
+        editable: false,
+        kind: 'json',
+        content,
+      },
+    });
+  });
+  await page.goto('http://127.0.0.1:4174/');
+  await selectLabStage(page, 'question');
+  await selectResearchView(page, 'files');
+  await page.locator('#fm-popup-toggle').uncheck();
+  await page.evaluate((path) => window.openBrain5DFile('research', path), indexPath);
+
+  const viewer = page.locator('#fm-viewer');
+  await expect(viewer.locator('[data-raw-run-index] button')).toHaveCount(100);
+  await expect(viewer.locator('[data-raw-run-index]')).toContainText('100 von 101');
+  await viewer.getByRole('button', { name: 'Lauf 1: control, seed 1' }).click();
+  await expect(viewer.locator('.fm-file-header strong')).toHaveText(`research/${rawPath}`);
+  await expect(viewer.locator('.file-renderer-body')).toContainText('control');
+});
+
 test('real file service: edits persist, stale writers fail, originals stream', async ({ page }) => {
   await page.goto('http://127.0.0.1:4174/');
   const reference = 'notes/browser-edit.md';

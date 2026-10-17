@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 from http.client import HTTPConnection
+from pathlib import Path
 from threading import Thread
 from types import SimpleNamespace
 from typing import Any, cast
@@ -24,8 +25,17 @@ from src.memory import MemoryStore, MemoryWorldModel, TransitionWorldModel
 from src.profiles import BehaviorProfile
 
 
-def _start(state: DashboardStateStore) -> tuple[DashboardServer, Thread, str, int]:
-    server = DashboardServer(("127.0.0.1", 0), state, heatmaps=None)
+def _start(
+    state: DashboardStateStore,
+    *,
+    research_source: ResearchSource | None = None,
+) -> tuple[DashboardServer, Thread, str, int]:
+    server = DashboardServer(
+        ("127.0.0.1", 0),
+        state,
+        heatmaps=None,
+        research_source=research_source,
+    )
     thread = Thread(target=server.serve_forever, daemon=True)
     thread.start()
     host, port = server.server_address[:2]
@@ -400,7 +410,12 @@ def test_embodiment_connections_reflect_runtime_appearance_change() -> None:
 
 
 def test_neural_symbiosis_gateway_status_and_experiment_guard() -> None:
-    server, thread, host, port = _start(DashboardStateStore())
+    server, thread, host, port = _start(
+        DashboardStateStore(),
+        research_source=ResearchSource(
+            Path(__file__).resolve().parents[1] / "research"
+        ),
+    )
     try:
         status = _get(host, port, "/api/embodiment/neural-symbiosis")
         assert status["status"] == "implemented_experimental"
@@ -421,6 +436,24 @@ def test_neural_symbiosis_gateway_status_and_experiment_guard() -> None:
         )
         assert rejected_status == 400
         assert "preregistration" in rejected["error"]
+
+        for protocol_id, expected_error in (
+            ("gateway_controls_v1", "not registered"),
+            ("gateway_learning_boundary_v1", "boundary_audit"),
+        ):
+            rejected_status, rejected = _post(
+                host,
+                port,
+                "/api/experiments/EXP-GW-HTTP/gateway/activate",
+                {
+                    "condition": "plastic",
+                    "seed": 101,
+                    "experiment_mode": True,
+                    "preregistration": {"protocol_id": protocol_id},
+                },
+            )
+            assert rejected_status == 400
+            assert expected_error in rejected["error"]
 
         accepted_status, accepted = _post(
             host,
