@@ -241,7 +241,7 @@
       820000019,
       820000020
     ],
-    "seed_selection_rationale": "The originally drafted block 1200021-1200040 failed the executable freshness gate because seed 1200035 already existed in historical Batch artifacts. Before any reference DATA and before freeze, the entire block was discarded. The replacement block 810000001-810000020 was selected as a new contiguous bookkeeping block and returned no repository-search matches at selection time; the executable freshness gate must still pass at the exact freeze commit.",
+    "seed_selection_rationale": "The originally drafted block 1200021-1200040 failed the executable freshness gate because seed 1200035 already existed in historical Batch artifacts. Before any reference DATA and before freeze, the entire block was discarded. The replacement block 810000001-810000020 was selected as a new contiguous bookkeeping block and returned no repository-search matches at selection time; R2 subsequently uses the distinct block recorded in evaluation.seeds and reference_protocol_r2.json (820000001-820000020); the executable freshness gate must still pass at the exact freeze commit.",
     "conditions": [
       "1d",
       "2d",
@@ -476,7 +476,7 @@
     },
     "seed_freshness": {
       "required": true,
-      "rule": "Evaluation seeds 810000001-810000020 must be rechecked automatically at the freeze commit; any occurrence outside the preregistration and blinded reference_protocol.json blocks freeze.",
+      "rule": "The current R2 evaluation seeds in evaluation.seeds (820000001-820000020) must be rechecked automatically at the freeze commit; any occurrence outside the paths explicitly allowed by check_stage1_reference_seed_freshness_r2.py blocks freeze.",
       "status": "PENDING_R2"
     },
     "reset_parity": {

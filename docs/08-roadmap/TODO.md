@@ -1,3 +1,55 @@
+# Aktuelle Prioritäten — Abgleich 24. Oktober 2026
+
+Diese Übersicht priorisiert den lokalen Arbeitsstand. Die folgenden datierten
+Blöcke bleiben als Verlauf erhalten; ihre Checkboxen und historischen Zähler
+sind keine aktuelle Release-Freigabe. Release-Autorität: `releases/current.json`.
+Wissenschaftliche Autorität: Registry, source-bound DATA und Human Reviews.
+
+| Priorität | Aufgabe | Abschlusskriterium / Status |
+| --- | --- | --- |
+| P1 | Lokale CUDA-Feedback-History abschließen | Physische GPU-Parität einschließlich Ring-Wrap, Delay-Wechsel, Source-Modi und Builder D3; UI-Regression; anschließend reguläre Integration |
+| P1 | Alpha.7 Release-Zustand verifizieren | Lokal weiterhin `release_candidate` / `pending_release_pr`; erst bestätigte Release-/CI-Artefakte erlauben finalen Tag, Commit und DOI |
+| P1 Wissenschaft | `EXP-GEN-0041` prüfen | Menschliche Prüfung der RQ-/Condition-Zuordnung und des eingefrorenen Protokolls; `BLOCKED_UNCLASSIFIED_SEMANTICS` nicht durch technischen Erfolg übergehen |
+| P1 Wissenschaft | `EXP-S6-SEM-CL-003` Human Review | Vorhandenen `HUMAN-REVIEW-CANDIDATE-2026-09-18.md` prüfen; Entscheidung, Identität und Begründung erfassen; C3 nicht als Semantic-over-Raw-Vorteil deuten |
+| P2 Wissenschaft | Brian2-R2 / externe Replikation | Pre-Freeze-Gates, Blinding, Seed-Freshness und Source-Freeze prüfen; kontrollierte Ausführung und externe unabhängige Replikation getrennt behandeln |
+| P2 | Vollständige CUDA-Sessions | Versionierte Checkpoints, exakte Wiederaufnahme, Cancellation und RuntimeController-Adapter; derzeit nicht abgeschlossen |
+
+- [x] CUDA-Statusübersicht mit den implementierten Referenz- und Builder-Stufen abgleichen.
+- [x] Wissenschaftliche Bilanz mit dem Editionsmanifest synchronisieren: 107 Forschungsobjekte, 31 Integrationseinträge.
+- [x] README-Releasebezeichnung auf den lokal belegten Kandidatenstatus begrenzen.
+- [x] Aktuelle Prioritäten von historischen TODO-Blöcken abgrenzen.
+- [x] Lokale CUDA-Hardwareprüfung: 51 Tests auf RTX 3060 mit aktivierter Hardwareausführung bestanden; siehe `docs/playground/CUDA_PAN_FEEDBACK_HISTORY.md`.
+- [x] Playground-Browserprüfungen: alle 13 Tests in isolierter Serverumgebung bestanden (ein Timeout mit regulärem 10-Sekunden-Expect erneut geprüft).
+- [x] Windows-Zeilenenden der Publikations-Test-Fixture stabilisieren; alle zehn Builder-Tests bestanden.
+
+### Wissenschaftliche Übergabe — konkrete nächste Prüfungen
+
+- `EXP-GEN-0041`: `research/experiments/EXP-GEN-0041/summary.md` und
+  `workflow.json` dokumentieren 20 Runs, Seeds 101–110, zwei Bedingungen und
+  jeweils 100.000 Ticks. Human Review muss die Zuordnung zu `RQ-SNN-006` /
+  `H-SNN-006-A` und den Status `BLOCKED_UNCLASSIFIED_SEMANTICS` klären.
+  Technische Vollständigkeit allein hebt diese Sperre nicht auf.
+- `EXP-S6-SEM-CL-003`: vorhandenen Review-Kandidaten gegen Präregistrierung,
+  Source-Hashes und vollständige 12 × 7 Bedingungen prüfen; H1/H2 bleiben
+  negativ, C3 ist nur der Vergleich gegen die gematchte Zufallskontrolle.
+- Brian2-R2: Independence-Scan ohne Verstöße und alle 20 Evaluation-Seeds
+  kollisionsfrei geprüft. Der aktuelle Reuse-Audit unter
+  `research/calibrations/CAL-S1-TOPO-REFERENCE-DYNAMICS-REUSE-R2/result.json`
+  besteht nach bytegenauer Wiederherstellung des ursprünglich kalibrierten
+  `synapse_probe.py`. Die Abweichung war ausschließlich Importformatierung;
+  AST-Gleichheit wurde geprüft, der negative Audit bleibt separat erhalten.
+  In einer isolierten Python-3.13-/Brian2-2.10.1-Umgebung bestehen alle 18
+  Topology-Mapping-Fälle und neun Source-Hash-Prüfungen. Im separaten sauberen
+  Worktree `MHRN-r2-prefreeze-20261024` ist der Freeze auf Branch
+  `codex/stage1-r2-prefreeze-20261024` abgeschlossen: Source-Freeze `e5d2fe71`,
+  Freeze-Artefakt-Commit `137b4197`. Alle 13 Hash-Bindungen wurden gegen die
+  committed Git-Bytes geprüft. Status dort:
+  `FROZEN_BEFORE_REFERENCE_EXECUTION_AUTHORIZATION`, `execution_authorized=false`.
+  Dieser Arbeitscheckout enthält weiterhin den Draft; der isolierte Branch
+  ist noch nicht integriert oder veröffentlicht. Keine Reference-Evaluation ausgeführt.
+
+## Historischer Verlauf und weiterhin nachvollziehbare Einzelaufgaben
+
 ## Alpha.3 - wissenschaftlicher Abgleich, 2026-09-13
 
 - [x] Die registrierte maschinelle Kampagne ausfuehren und alle Receipts/Negativbefunde bewahren.
@@ -47,6 +99,9 @@
 - [x] Isolated Hugging Face Docker deployment prepared.
 - [x] Sanitized aggregate export implemented and tested.
 - [ ] Configure and independently review the real public domain, storage, TLS, backups and legal study settings.
+- [x] 2026-10-24: GitHub Pages im Exportmodus gewählt; isoliertes, verbindungsfreies Veröffentlichungspaket mit relativen Assets, Datenschutzhinweisen und Prüfsummen vorbereitet.
+- [x] Exportpaket geprüft: 57 Python-Tests, sechs JavaScript-Tests und Browserprüfung mit lokalem JSON-Export, Mobilansicht und null API-Anfragen bestanden.
+- [ ] Vor Veröffentlichung die tatsächliche Pages-Adresse, bestehende Site und HTTPS prüfen; danach eine reale unabhängige Abnahme dokumentieren. Der übergeordnete Punkt bleibt offen. Zentrale Datenspeicherung und Antwort-Backups entfallen im gewählten Exportmodus; spätere Online-Erhebung ist ein eigener Auftrag.
 - [x] Make experiment cards open a complete detail dialog with form prefill.
 
 ## 2026-09-20 Publication navigation

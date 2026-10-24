@@ -233,6 +233,7 @@ def test_pan_state_real_builder_d3(seed, tmp_path, monkeypatch):
     assert result["gpu_delay_consumed_ticks"] == 2000
     assert result["gpu_neuron_trace_ticks"] == 2000
     assert result["gpu_pan_population_calls"] == 2000
+    assert result["gpu_pan_source_calls"] == 2000
 
 
 def test_pan_parity_requires_full_finite_state_and_gpu_ticks():

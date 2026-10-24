@@ -18,12 +18,16 @@ ROOT = Path(__file__).resolve().parents[1]
 def write(root: Path, path: str, text: str) -> None:
     target = root / path
     target.parent.mkdir(parents=True, exist_ok=True)
-    target.write_text(text, encoding="utf-8")
+    target.write_text(text, encoding="utf-8", newline="\n")
 
 
 @pytest.fixture
 def repository(tmp_path: Path) -> Path:
     subprocess.run(["git", "init", "-q", str(tmp_path)], check=True)
+    # Byte-preservation tests must not inherit host-specific Git EOL conversion.
+    subprocess.run(
+        ["git", "-C", str(tmp_path), "config", "core.autocrlf", "false"], check=True
+    )
     subprocess.run(
         ["git", "-C", str(tmp_path), "config", "user.email", "test@example.invalid"],
         check=True,

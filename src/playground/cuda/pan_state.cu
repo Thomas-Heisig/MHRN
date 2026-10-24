@@ -36,15 +36,28 @@ extern "C" __global__ void pan_state_step(
 }
 
 // One ordered writer per axis, retaining dead-neuron vectors as the CPU does.
-extern "C" __global__ void pan_population_mean(unsigned n, unsigned dimensions,
-    const double* vectors, double* population) {
+extern "C" __global__ void pan_population_mean(unsigned n, unsigned dimensions, unsigned slot,
+    const double* vectors, double* population, double* history) {
     unsigned d=threadIdx.x;if(d>=dimensions)return;
     double total=0.0;
     for(unsigned i=0;i<n;++i) total+=vectors[i*dimensions+d];
     population[d]=total/(double)n;
+    history[slot*dimensions+d]=population[d];
 }
 
-// Ordered projection; source-history selection is host-owned.
+// History availability is bounded by the same retention window as the CPU.
+extern "C" __global__ void pan_feedback_source(unsigned dimensions, unsigned source,
+    unsigned delay, unsigned count, unsigned next_slot,
+    const double* population, const double* history, double* vector) {
+    unsigned d=threadIdx.x;if(d>=dimensions)return;
+    double value=delay==0?population[d]:(count>delay?history[((next_slot+66-1-delay)%66)*dimensions+d]:0.0);
+    if(source==1 && d>=dimensions/2) value=0.0;
+    else if(source==2 && d%2) value=0.0;
+    else if(source==3) value=tanh(value);
+    vector[d]=value;
+}
+
+// Ordered projection of the selected device source.
 extern "C" __global__ void pan_feedback_step(
     unsigned n, unsigned dimensions, unsigned nonlinearity,
     double gain, double threshold, double saturation,

@@ -48,7 +48,7 @@ The sparse **5D SNN remains the primary adaptive system**. Language models, rese
 | Resource | Canonical route | Role |
 | --- | --- | --- |
 | Source | [GitHub · Thomas-Heisig/MHRN](https://github.com/Thomas-Heisig/MHRN) | canonical code, history and governed research artefacts |
-| Current software release | [v0.6.0-alpha.7](https://github.com/Thomas-Heisig/MHRN/releases/tag/v0.6.0-alpha.7) | immutable exact-green source freeze |
+| Software release candidate | v0.6.0-alpha.7 | candidate; final tag/source freeze remains pending in `releases/current.json` |
 | Author identity | [ORCID · 0009-0002-9589-1872](https://orcid.org/0009-0002-9589-1872) | persistent researcher identity |
 | Open Science Framework | [OSF · p34uq](https://osf.io/p34uq/) | project / open-science route |
 | Hugging Face | [ThomasHeisig/MHRN](https://huggingface.co/ThomasHeisig/MHRN) | rolling source/discovery mirror |

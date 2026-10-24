@@ -1,6 +1,6 @@
 # External Review Deployment
 
-**Status:** deployment design for the isolated review portal  
+**Status:** export-only GitHub Pages preparation selected on 24 October 2026; no new deployment or independent approval asserted.
 **Scope:** public questionnaire, optional online collection and sanitized descriptive export
 
 ## Security boundary
@@ -22,9 +22,33 @@ encrypted storage outside Git
 
 ## Option 1: GitHub Pages, export-only
 
-The existing workflow `.github/workflows/review-portal.yml` verifies the portal and publishes only `src/dashboard/static/review` when Pages is enabled. Start it manually with `publish_pages: true`, or set the repository variable `MHRN_REVIEW_PAGES_ENABLED=true`.
+The workflow `.github/workflows/review-portal.yml` verifies the portal and builds an allowlisted package with `python -m review_portal.build_static --output <new-directory>`. Only this package is uploaded when Pages is enabled. Start publication manually with `publish_pages: true` on `main`; preparation alone does not run this workflow. Avoid enabling the automatic publication variable until the published configuration has been reviewed.
 
 This mode has no central response storage. Participants export their JSON/CSV locally. The export is not automatically sent anywhere.
+
+The prepared package uses relative assets for the project subpath, explicitly disables API discovery and blocks network connections through `connect-src 'none'`. Admin pages and collector files are excluded. A browser test opens `/MHRN/index.html`, exports a synthetic answer and verifies that no API requests occur. The package includes an export-specific privacy page and SHA-256 manifest. Instrument questions, version and reviewed-materials revision remain unchanged.
+
+Local verification on 24 October 2026: 57 Python tests, six JavaScript model tests,
+catalogue byte check, workflow YAML check and the static browser scenario passed.
+The browser scenario verified the project subpath, a synthetic JSON download,
+disabled online controls, privacy page, mobile layout and zero API requests.
+These results verify the prepared package, not the deployed site or independent review.
+
+### Selected deployment and acceptance boundaries
+
+| Area | Export-only preparation | Remaining production check |
+| --- | --- | --- |
+| Address | `https://thomas-heisig.github.io/MHRN/`; no custom domain purchase | Confirm actual Pages URL and whether an existing site would be replaced |
+| TLS | GitHub Pages-managed HTTPS | Verify actual certificate and HTTPS enforcement after publication |
+| Response storage | Browser memory; optional local draft/export | No central database; users manage their own local files |
+| Backups | Rebuild public assets from reviewed Git commit and package hashes | Keep the release commit/package available; no server response-backup claim |
+| Study settings | Local review context; central collection disabled | Any future collection requires a separate concrete study configuration |
+| Legal/privacy | Export-specific notice with public project contact and GitHub hosting disclosure | Human review of actual deployment and intended use remains open |
+| Independent review | Not asserted by technical tests | Record actual reviewer, scope, findings and conflicts before claiming completion |
+
+GitHub reports Pages enabled for this repository, but that is not proof that the prepared package is live. The local GitHub CLI credentials could not be verified; no settings or public site were changed during preparation.
+
+GitHub Pages documents both its project URL structure and security-related visitor IP logging in [About Pages](https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages). HTTPS behavior is described in [Securing Pages](https://docs.github.com/en/pages/getting-started-with-github-pages/securing-your-github-pages-site-with-https). Hosting logs are distinct from questionnaire responses. Before central collection, information duties must be assessed against the actual processing; see the [official Article 13 text](https://www.ms.niedersachsen.de/startseite/uber_uns/datenschutzerklaerung-nach-dsgvo-181391.html).
 
 ## Option 2: Hugging Face Docker Space
 

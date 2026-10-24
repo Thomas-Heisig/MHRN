@@ -37,6 +37,11 @@ class PANStateStepper:
         self.ticks = 0
         self.feedback_calls = 0
         self.population_calls = 0
+        self.source_calls = 0
+        self._history_next = 0
+        self._history_size = 0
+        self._population_mirror: list[float] | None = None
+        self._history_mirror: list[list[float]] | None = None
         if not 1 <= self.n <= 1024 or not 5 <= self.dimensions <= 32:
             raise ValueError("unsupported CUDA PAN shape")
         try:
@@ -64,10 +69,16 @@ class PANStateStepper:
                     ctypes.sizeof(self.feedback_host[name])
                 )
             self.population_kernel = driver.kernel(loaded, "pan_population_mean")
-            self.reduction_host["population"] = (ctypes.c_double * self.dimensions)()
-            self.reduction_device["population"] = driver.alloc_device(
-                ctypes.sizeof(self.reduction_host["population"])
-            )
+            self.source_kernel = driver.kernel(loaded, "pan_feedback_source")
+            for name, count in (
+                ("population", self.dimensions),
+                ("history", 66 * self.dimensions),
+            ):
+                self.reduction_host[name] = (ctypes.c_double * count)()
+                self.reduction_device[name] = driver.alloc_device(
+                    ctypes.sizeof(self.reduction_host[name])
+                )
+            self._sync_feedback_edits()
         except BaseException:
             self.close()
             raise
@@ -87,6 +98,40 @@ class PANStateStepper:
         self.device.clear()
         self.feedback_device.clear()
         self.reduction_device.clear()
+
+    def _remember_feedback(self) -> None:
+        self._population_mirror = list(self.runtime.population_vector)
+        self._history_mirror = [list(row) for row in self.runtime.feedback_history]
+
+    def _sync_feedback_edits(self) -> None:
+        """Upload initial/externally edited state; ordinary history evolves on device."""
+        runtime = self.runtime
+        if (
+            type(runtime.feedback_delay) is not int
+            or not 0 <= runtime.feedback_delay <= 64
+        ):
+            raise ValueError("CUDA feedback delay must be an integer between 0 and 64")
+        population, history = runtime.population_vector, runtime.feedback_history
+        if len(population) != self.dimensions or any(
+            len(row) != self.dimensions for row in history
+        ):
+            raise ValueError("CUDA feedback history shape mismatch")
+        if any(not math.isfinite(x) for row in [population, *history] for x in row):
+            raise ValueError("CUDA feedback history must be finite")
+        if population == self._population_mirror and history == self._history_mirror:
+            return
+        recent = history[-66:]
+        self.reduction_host["population"][:] = population
+        self.reduction_host["history"][:] = [x for row in recent for x in row] + [
+            0.0
+        ] * ((66 - len(recent)) * self.dimensions)
+        for name in ("population", "history"):
+            self.driver.copy_host_to_device(
+                self.reduction_device[name], self.reduction_host[name]
+            )
+        self._history_size = len(recent)
+        self._history_next = len(recent) % 66
+        self._remember_feedback()
 
     def update(
         self,
@@ -111,6 +156,7 @@ class PANStateStepper:
             raise ValueError("CUDA PAN parameters must be finite and bounded")
         if any(type(i) is not int or not 0 <= i < self.n for i in spiked_neurons):
             raise ValueError("CUDA PAN spike index invalid")
+        self._sync_feedback_edits()
         spiked = set(spiked_neurons)
         self.host["voltage"][:] = [float(s.get("v", -65.0)) for s in states]
         self.host["threshold"][:] = [
@@ -159,8 +205,10 @@ class PANStateStepper:
             arguments=[
                 ctypes.c_uint32(self.n),
                 ctypes.c_uint32(self.dimensions),
+                ctypes.c_uint32(self._history_next),
                 ctypes.c_uint64(self.device["vectors"].ptr),
                 ctypes.c_uint64(self.reduction_device["population"].ptr),
+                ctypes.c_uint64(self.reduction_device["history"].ptr),
             ],
         )
         self.driver.synchronize()
@@ -195,6 +243,9 @@ class PANStateStepper:
         keep = max(2, runtime.feedback_delay + 2)
         if len(runtime.feedback_history) > keep:
             runtime.feedback_history = runtime.feedback_history[-keep:]
+        self._history_next = (self._history_next + 1) % 66
+        self._history_size = min(self._history_size + 1, keep)
+        self._remember_feedback()
         self.ticks += 1
 
     def feedback_currents(self) -> list[float]:
@@ -211,18 +262,18 @@ class PANStateStepper:
         )
         if any(not math.isfinite(x) for x in params) or min(params[1:]) < 0:
             raise ValueError("invalid CUDA feedback parameters")
-        vector = runtime.feedback_vector()
-        if (
-            len(vector) != self.dimensions
-            or len(runtime.feedback_weights) != self.n
-            or any(len(row) != self.dimensions for row in runtime.feedback_weights)
+        sources = {"population": 0, "layer": 1, "subset": 2, "hypervector": 3}
+        if runtime.feedback_source not in sources:
+            raise ValueError("unsupported CUDA feedback source")
+        self._sync_feedback_edits()
+        if len(runtime.feedback_weights) != self.n or any(
+            len(row) != self.dimensions for row in runtime.feedback_weights
         ):
             raise ValueError("CUDA feedback shape mismatch")
         weights = [x for row in runtime.feedback_weights for x in row]
-        if any(not math.isfinite(x) for x in [*vector, *weights]):
+        if any(not math.isfinite(x) for x in weights):
             raise ValueError("CUDA feedback input must be finite")
         self.feedback_host["weights"][:] = weights
-        self.feedback_host["vector"][:] = vector
         flags = [True] * self.n
         if runtime.feedback_target == "layer":
             flags = [i < max(1, self.n // 4) for i in range(self.n)]
@@ -231,10 +282,25 @@ class PANStateStepper:
         if len(flags) != self.n or any(type(x) is not bool for x in flags):
             raise ValueError("CUDA feedback target mask invalid")
         self.feedback_host["enabled"][:] = [int(x) for x in flags]
-        for name in ("weights", "vector", "enabled"):
+        for name in ("weights", "enabled"):
             self.driver.copy_host_to_device(
                 self.feedback_device[name], self.feedback_host[name]
             )
+        self.driver.launch_kernel(
+            self.source_kernel,
+            grid=(1, 1, 1),
+            block=(32, 1, 1),
+            arguments=[
+                ctypes.c_uint32(self.dimensions),
+                ctypes.c_uint32(sources[runtime.feedback_source]),
+                ctypes.c_uint32(runtime.feedback_delay),
+                ctypes.c_uint32(self._history_size),
+                ctypes.c_uint32(self._history_next),
+                ctypes.c_uint64(self.reduction_device["population"].ptr),
+                ctypes.c_uint64(self.reduction_device["history"].ptr),
+                ctypes.c_uint64(self.feedback_device["vector"].ptr),
+            ],
+        )
         args: list[object] = [
             ctypes.c_uint32(self.n),
             ctypes.c_uint32(self.dimensions),
@@ -262,4 +328,5 @@ class PANStateStepper:
             runtime.feedback_abs_total += abs(current)
             runtime.feedback_samples += 1
         self.feedback_calls += 1
+        self.source_calls += 1
         return currents

@@ -1,0 +1,82 @@
+{
+  "brian2_version": "2.10.1",
+  "calibration_id": "CAL-S1-TOPO-REFERENCE-DYNAMICS-REUSE-R2",
+  "historical_artifacts": {
+    "integrator": {
+      "pass": true,
+      "path": "research\\calibrations\\CAL-S1-TOPO-REFERENCE-INTEGRATOR-R1\\result.json",
+      "sha256": "4779cdd5e4c8993bdc4f24a30a2d6c9206cd57f7606c107aa8dc2ea13388ea05"
+    },
+    "reset": {
+      "pass": true,
+      "path": "research\\calibrations\\CAL-S1-TOPO-REFERENCE-RESET-R1\\result.json",
+      "sha256": "c1c50e07345e940b0cfe0599cabbbbd8b2b6f0447841fa989673ddfce522b247"
+    },
+    "synapse_delay": {
+      "pass": true,
+      "path": "research\\calibrations\\CAL-S1-TOPO-REFERENCE-SYNAPSE-R1\\result.json",
+      "sha256": "42b051286007b315c5400871d893883d34be2847d5f165b08a70a91d0580907e"
+    }
+  },
+  "historical_artifacts_modified": false,
+  "pass": true,
+  "python_version": "3.13.14",
+  "role": "R2 pre-freeze source-hash revalidation of immutable R1 dynamics parity artifacts; not DATA and not EVID",
+  "schema_version": 1,
+  "source_hash_checks": [
+    {
+      "current_sha256": "52a421cbfa6d6fbf2041b73207a82778aa3fd3b1801a424983899f6af1e0ee51",
+      "expected_sha256": "52a421cbfa6d6fbf2041b73207a82778aa3fd3b1801a424983899f6af1e0ee51",
+      "match": true,
+      "path": "reference/stage1_topology_brian2/integrator_probe.py"
+    },
+    {
+      "current_sha256": "7b49f62209232b5a9e29ab2b33108e91b338a759c2a083ff4f94a0a25b2de1d7",
+      "expected_sha256": "7b49f62209232b5a9e29ab2b33108e91b338a759c2a083ff4f94a0a25b2de1d7",
+      "match": true,
+      "path": "src/core/neuron.py"
+    },
+    {
+      "current_sha256": "8dee90a3c8f4510f8f0521a77e0cf779959954b9cfb4181f7ef2ebcfb6689c0e",
+      "expected_sha256": "8dee90a3c8f4510f8f0521a77e0cf779959954b9cfb4181f7ef2ebcfb6689c0e",
+      "match": true,
+      "path": "src/core/neuron_models.py"
+    },
+    {
+      "current_sha256": "52a421cbfa6d6fbf2041b73207a82778aa3fd3b1801a424983899f6af1e0ee51",
+      "expected_sha256": "52a421cbfa6d6fbf2041b73207a82778aa3fd3b1801a424983899f6af1e0ee51",
+      "match": true,
+      "path": "reference/stage1_topology_brian2/integrator_probe.py"
+    },
+    {
+      "current_sha256": "7b49f62209232b5a9e29ab2b33108e91b338a759c2a083ff4f94a0a25b2de1d7",
+      "expected_sha256": "7b49f62209232b5a9e29ab2b33108e91b338a759c2a083ff4f94a0a25b2de1d7",
+      "match": true,
+      "path": "src/core/neuron.py"
+    },
+    {
+      "current_sha256": "8dee90a3c8f4510f8f0521a77e0cf779959954b9cfb4181f7ef2ebcfb6689c0e",
+      "expected_sha256": "8dee90a3c8f4510f8f0521a77e0cf779959954b9cfb4181f7ef2ebcfb6689c0e",
+      "match": true,
+      "path": "src/core/neuron_models.py"
+    },
+    {
+      "current_sha256": "d05bae8f00b97758cb96662acbb0f2e58cd7860776871b5edf6fd4ed09e576da",
+      "expected_sha256": "d05bae8f00b97758cb96662acbb0f2e58cd7860776871b5edf6fd4ed09e576da",
+      "match": true,
+      "path": "reference/stage1_topology_brian2/synapse_probe.py"
+    },
+    {
+      "current_sha256": "9ec16307adce858c4df6b9f35bb410c7c2612844f718f1d60a01e087d9de50a5",
+      "expected_sha256": "9ec16307adce858c4df6b9f35bb410c7c2612844f718f1d60a01e087d9de50a5",
+      "match": true,
+      "path": "src/core/network.py"
+    },
+    {
+      "current_sha256": "7b49f62209232b5a9e29ab2b33108e91b338a759c2a083ff4f94a0a25b2de1d7",
+      "expected_sha256": "7b49f62209232b5a9e29ab2b33108e91b338a759c2a083ff4f94a0a25b2de1d7",
+      "match": true,
+      "path": "src/core/neuron.py"
+    }
+  ]
+}

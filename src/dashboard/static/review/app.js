@@ -44,6 +44,10 @@ function displayStudy() {
   $('mode').textContent = study.collection_enabled ? 'Geschuetzte Online-Abgabe' : 'Lokales Formular - kein Versand';
 }
 async function loadConfig() {
+  if (document.documentElement.dataset.reviewMode === 'export-only') {
+    displayStudy(); $('start').disabled = false;
+    return;
+  }
   try {
     const res = await fetch('/api/review/config', {credentials:'omit', cache:'no-store', signal:AbortSignal.timeout(4000)});
     if (!res.ok || !res.headers.get('content-type')?.includes('application/json')) return;

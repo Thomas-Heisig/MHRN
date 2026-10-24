@@ -2,7 +2,8 @@
 
 **Status:** current_wip  
 **Autorität:** Publikationssynthese, nicht kanonisches EVID-Register  
-**Stand der Prüfung:** `main@774671bcff753489f833b50bbdd3bea7ab3e3169`, 18. September 2026
+**Historische Ausgangsprüfung:** `main@774671bcff753489f833b50bbdd3bea7ab3e3169`, 18. September 2026
+**Metadatenabgleich:** 24. Oktober 2026, lokales Editionsmanifest; die unten dokumentierten September-Fortschreibungen bleiben getrennte wissenschaftliche Entscheidungen.
 
 Diese Bilanz macht die offenen und tragfähigen Aussagen der Edition sichtbar. Sie ersetzt weder Human Review noch EVID-Entscheidungen und erzeugt keine neue Evidenz.
 
@@ -103,9 +104,9 @@ Nach dem **aktuellen Manifest der Edition 1.8** sind dokumentiert:
 - 18.022 indexierte Markdown-Abschnitte,
 - 411 erhaltene historische Publikationsdateien,
 - 1.965 Repository-/Rekonstruktionsereignisse,
-- 96 projizierte Forschungsobjekte,
+- 107 projizierte Forschungsobjekte,
 - 7 Vorarbeiten,
-- 24 Einträge im semantischen Content-Integration-Ledger.
+- 31 Einträge im semantischen Content-Integration-Ledger.
 
 Das stützt die Aussage, dass die dokumentierte Materialabdeckung hoch ist. Es ist **keine absolute Vollständigkeitszertifizierung**. Das Manifest setzt ausdrücklich:
 

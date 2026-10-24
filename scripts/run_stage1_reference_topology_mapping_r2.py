@@ -6,8 +6,11 @@ from __future__ import annotations
 import hashlib
 import json
 import random
+import sys
 from pathlib import Path
 from typing import Any
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from reference.stage1_topology_brian2 import runner_r2 as reference
 from scripts.run_stage1_topology_v2 import (
@@ -90,7 +93,9 @@ def main() -> int:
     }
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(
-        json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+        json.dumps(payload, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+        newline="\n",
     )
     print(
         json.dumps(

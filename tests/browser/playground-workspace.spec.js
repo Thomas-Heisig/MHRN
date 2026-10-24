@@ -140,6 +140,27 @@ test("presets, secondary pages and narrow layouts remain usable", async ({
   ).toBe(true);
 });
 
+test("PAN, CUDA and PAN live controls have direct navigation without starting a run", async ({
+  page,
+}) => {
+  await selectRoute(page, "playground", "pan");
+  await expect(page.locator("#pg-pan-settings")).toBeVisible();
+  await expect(page.locator("#pg-group-2")).toHaveAttribute("open", "");
+  await expect(page.locator("#pg-pan-enabled")).toBeVisible();
+
+  await selectRoute(page, "playground", "cuda");
+  await expect(page.locator("#pg-cuda-controls")).toBeVisible();
+  await expect(page.locator("#pg-group-5")).toHaveAttribute("open", "");
+  await expect(page.locator("#pg-cuda-status")).toBeVisible();
+  await expect(page.locator("#pg-cuda-builder-parity")).toBeVisible();
+
+  await selectRoute(page, "playground", "pan-live");
+  await expect(page.locator("#pg-pan-live-monitor")).toBeVisible();
+  await expect(page.locator("#pg-live-open")).toBeVisible();
+  await expect(page.locator("#pg-run")).toBeEnabled();
+  await expect(page.locator("#pg-status")).not.toContainText("läuft");
+});
+
 test("recurrent CUDA diagnostic reports unavailability without a CPU success fallback", async ({
   page,
 }) => {
