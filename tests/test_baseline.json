@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
-  "tested_commit": "2a32093dd3ad7b060a5448c9864fdd05c908d52e",
-  "tested_tree_digest": "73c116b5990f4a1da8520457163944e61aaf7a94d22fec1a9c77d3a6fe5729db",
+  "tested_commit": "359b17b7759beadf883354ba61953e51c3a134f5",
+  "tested_tree_digest": "fd40f85877572792bc3df30279ce3f40c19cdfe32e3171bc030708d561d0a112",
   "tree_digest_paths": [
     "src/",
     "configs/",
@@ -12,20 +12,20 @@
   "tree_digest_excludes": [
     "tests/test_baseline.json"
   ],
-  "timestamp": "2026-10-24T15:35:49.072188+00:00",
+  "timestamp": "2026-10-24T15:42:02.942815+00:00",
   "python": "3.13.16",
   "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
   "source_unchanged_during_run": true,
   "full_collection": {
     "status": "passed",
-    "collected": 2166,
+    "collected": 2167,
     "collection_errors": 0
   },
   "full_suite": {
     "command": "python -m pytest tests/ -q -ra --junitxml=<temporary-report>",
     "status": "passed",
     "exit_code": 0,
-    "passed": 2112,
+    "passed": 2113,
     "failed": 0,
     "errors": 0,
     "skipped": 54,
@@ -287,7 +287,7 @@
     "src/dashboard/static/wesen.js": "1ff154076ef730400245390454369d08d4add7a688b4b8162b456eb036aecaac",
     "src/dashboard/static/workspace-panels.js": "1ee152bed3a3cb89366caeb2a4b510e25e511a0923b4206a927ac876d4a4f248",
     "src/dashboard/structural_api.py": "2c77a69bac1b8cc531adafb7f9a148280d3b0ead8431eefcc8fe8ac43eb0044a",
-    "src/dashboard/verification.py": "3468213e6387206170b6487612160e23acf20c2715c617fd2ee5c1b3722f827f",
+    "src/dashboard/verification.py": "0649f161bcc0ad4dd67ef24323632a5a6369103784cf5326cbaabd83960f972b",
     "src/diagnostics/__init__.py": "7d98999f8b37bf4e78977bf69c76f710612c9e3d81316ba864ddeed3c1f6dbe0",
     "src/diagnostics/performance_contract.py": "d67e9d66488f5ba9299abccfac8f31c74112b34526263c8f734b19a058a08227",
     "src/diagnostics/propagation.py": "55819224277c616e8b3430b76e1fdeb601d628a41991f0d7ec16144ffde80603",
@@ -863,7 +863,7 @@
     "tests/test_small_snn_frontend.py": "354c76cd7079bb3fc83396f5f0a0a136caecd0ccef58359eb0263e1ce7b9e351",
     "tests/test_small_snn_timeline.py": "cffb020a8196e49ca4084c75509ea74c18bfd540ce2ca3b1402d395d1cbd3bd2",
     "tests/test_snn_evidence_pipeline_regressions.py": "5d1c64c341cdb73835b6cb5e6644a69851e8c09d41ae88a4018afc3373e883d1",
-    "tests/test_source_digest.py": "0faac0359d8c544819b4d403f0cc24988217ace35680c263ad91bd657306b897",
+    "tests/test_source_digest.py": "40d7b7ef3d8657cb210ee7bbaa2b148141c1d682c3ada0db52e7f95b6e053382",
     "tests/test_spatial_index.py": "a7b4d03b7dbfb7fe51a869291859d50d4ecb72c528e8a06be90e36e2f1f2f5f5",
     "tests/test_spiking_world_model.py": "efd44a559fdd0a1132dd18753f018a18551417f4417bb01f16edb689ccf1f861",
     "tests/test_stability_followups.py": "3c05407a4cd5f166badb3cc0ef8a3d1081434d3f584f6f99cd8c86f4f802fb57",
