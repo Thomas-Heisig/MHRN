@@ -1,0 +1,177 @@
+{
+  "checks": [
+    {
+      "all_metrics_equal": true,
+      "arm": "recurrence_off",
+      "expected": [
+        3,
+        2,
+        0,
+        1
+      ],
+      "final_state_equal": true,
+      "historical_totals": [
+        3,
+        2,
+        0,
+        1
+      ],
+      "initial_state_equal": true,
+      "no_runtime_errors": true,
+      "observed": [
+        3,
+        2,
+        0,
+        1
+      ],
+      "seed": 101,
+      "ticks_satisfied": true
+    },
+    {
+      "all_metrics_equal": true,
+      "arm": "recurrence_on",
+      "expected": [
+        33,
+        33,
+        10,
+        61
+      ],
+      "final_state_equal": true,
+      "historical_totals": [
+        33,
+        33,
+        10,
+        61
+      ],
+      "initial_state_equal": true,
+      "no_runtime_errors": true,
+      "observed": [
+        33,
+        33,
+        10,
+        61
+      ],
+      "seed": 101,
+      "ticks_satisfied": true
+    },
+    {
+      "all_metrics_equal": true,
+      "arm": "recurrence_off",
+      "expected": [
+        3,
+        2,
+        0,
+        1
+      ],
+      "final_state_equal": true,
+      "historical_totals": [
+        3,
+        2,
+        0,
+        1
+      ],
+      "initial_state_equal": true,
+      "no_runtime_errors": true,
+      "observed": [
+        3,
+        2,
+        0,
+        1
+      ],
+      "seed": 102,
+      "ticks_satisfied": true
+    },
+    {
+      "all_metrics_equal": true,
+      "arm": "recurrence_on",
+      "expected": [
+        33,
+        33,
+        10,
+        61
+      ],
+      "final_state_equal": true,
+      "historical_totals": [
+        33,
+        33,
+        10,
+        61
+      ],
+      "initial_state_equal": true,
+      "no_runtime_errors": true,
+      "observed": [
+        33,
+        33,
+        10,
+        61
+      ],
+      "seed": 102,
+      "ticks_satisfied": true
+    },
+    {
+      "all_metrics_equal": true,
+      "arm": "recurrence_off",
+      "expected": [
+        3,
+        2,
+        0,
+        1
+      ],
+      "final_state_equal": true,
+      "historical_totals": [
+        3,
+        2,
+        0,
+        1
+      ],
+      "initial_state_equal": true,
+      "no_runtime_errors": true,
+      "observed": [
+        3,
+        2,
+        0,
+        1
+      ],
+      "seed": 103,
+      "ticks_satisfied": true
+    },
+    {
+      "all_metrics_equal": true,
+      "arm": "recurrence_on",
+      "expected": [
+        33,
+        33,
+        10,
+        61
+      ],
+      "final_state_equal": true,
+      "historical_totals": [
+        33,
+        33,
+        10,
+        61
+      ],
+      "initial_state_equal": true,
+      "no_runtime_errors": true,
+      "observed": [
+        33,
+        33,
+        10,
+        61
+      ],
+      "seed": 103,
+      "ticks_satisfied": true
+    }
+  ],
+  "fresh_process_outputs_identical": true,
+  "metric_order": [
+    "total_spikes",
+    "delivered_synaptic_events",
+    "recurrent_events",
+    "propagation_depth"
+  ],
+  "pair_count": 18,
+  "passed": true,
+  "run_count": 36,
+  "status_after": ""
+}

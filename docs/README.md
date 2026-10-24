@@ -1,6 +1,6 @@
 # MHRN Documentation — kanonischer Einstieg
 
-**Stand:** 17. September 2026  
+**Navigationsabgleich:** 24. Oktober 2026; wissenschaftliche Entscheidungen behalten ihre eigenen Datierungen.
 **Release-Zweig:** `main` · **Integrationszweig:** `develop`  
 **Aktuelle wissenschaftliche Arbeitsfassung:** Recursive Epistemics **1.8 WIP**  
 **Dokumentgovernance:** [`00-governance/DOCUMENT_GOVERNANCE.md`](00-governance/DOCUMENT_GOVERNANCE.md)

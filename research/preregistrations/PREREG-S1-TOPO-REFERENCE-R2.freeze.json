@@ -1,0 +1,107 @@
+{
+  "authorization_rule": {
+    "all_required": [
+      "canonical R2 freeze record exists and all bound hashes match",
+      "R2 runner independence/blinding scan passes at the exact freeze commit",
+      "R2 seed-freshness gate passes at the exact freeze commit",
+      "R2 immutable dynamics-reuse validation passes with source hashes matching the historical R1 parity artifacts",
+      "R2 topology-mapping parity passes for all registered conditions",
+      "no R1 or R2 reference evaluation DATA exist before authorization",
+      "verifier decision-rule contract tests match the frozen R2 preregistration",
+      "an explicit separate human execution-authorization record names the frozen commit and runner hash"
+    ],
+    "automatic_authorization_forbidden": true,
+    "current_value": false,
+    "human_authority": "Thomas Heisig or a separately documented authorized human reviewer"
+  },
+  "canonical_target_digest": "f3616151a7ab529c610f983f4fe855b84228505d806d516c502014a576d6d3b6",
+  "contract_tests": {
+    "tests\\test_stage1_reference_r2_contract.py": "ff153bea7840ca9df7dae046f1bf64f473afa9ad88b29da4c87aca7775c977ce",
+    "tests\\test_stage1_reference_r2_preflight.py": "10f9ca088bcdc23a9f573107fbccca56a871c91ed62f76aff3f9c2d7c0da1bc3"
+  },
+  "decision_rule_digest": "2eca23d888f4846488a2a2db53b1702120580283c5d5a73dae26667c854a01b0",
+  "dynamics_reuse_validation": {
+    "historical_artifacts_modified": false,
+    "pass": true,
+    "path": "research\\calibrations\\CAL-S1-TOPO-REFERENCE-DYNAMICS-REUSE-R2\\result.json",
+    "sha256": "73c6269f0a6886a77d9d824295d30979387a64c78a553127f7807c71af78c4b8"
+  },
+  "evaluation_seeds": [
+    820000001,
+    820000002,
+    820000003,
+    820000004,
+    820000005,
+    820000006,
+    820000007,
+    820000008,
+    820000009,
+    820000010,
+    820000011,
+    820000012,
+    820000013,
+    820000014,
+    820000015,
+    820000016,
+    820000017,
+    820000018,
+    820000019,
+    820000020
+  ],
+  "execution_authorized": false,
+  "freeze_commit": "e5d2fe71bd755b2ace7f12c80ba4c4624913a610",
+  "freeze_date": "2026-10-24",
+  "integrator_parity": {
+    "pass": true,
+    "path": "research\\calibrations\\CAL-S1-TOPO-REFERENCE-INTEGRATOR-R1\\result.json",
+    "reused_from_r1_with_source_hash_revalidation": true,
+    "sha256": "4779cdd5e4c8993bdc4f24a30a2d6c9206cd57f7606c107aa8dc2ea13388ea05"
+  },
+  "mechanism_audit": {
+    "pass": true,
+    "path": "research\\audits\\STAGE1_TOPOLOGY_REFERENCE_MECHANISM_AUDIT_20260927.json",
+    "sha256": "2269d45cd8d40bbcf585c8f1de2c20072273ffbcd5fe2cc028dc8a540912eef4"
+  },
+  "note": "R2 corrects the pre-DATA R1 mapping ambiguity. Freeze fixes the scientific contract only; separate explicit human execution authorization remains mandatory.",
+  "preregistration_id": "PREREG-S1-TOPO-REFERENCE-R2",
+  "preregistration_sha256_before_status_update": "4fbe9f36c7d7d97b5d83edef060e53ba05d70c85c571709c2c472be9ae35062c",
+  "reference_data_created": false,
+  "reference_runner": {
+    "execution_authorized": false,
+    "path": "reference\\stage1_topology_brian2\\runner_r2.py",
+    "sha256": "b4a7945210b4d836d5d9940c1695b92b6b0af8f5296f88ac8b3894974136f932"
+  },
+  "reference_verifier": {
+    "path": "scripts\\verify_stage1_topology_reference_r2.py",
+    "sha256": "be031bc8dfec4fd7b8c62e1ca86022d52beb6c31aba2dfc0b8867afc22ee1ef6"
+  },
+  "replication_credit_awarded": false,
+  "reset_parity": {
+    "pass": true,
+    "path": "research\\calibrations\\CAL-S1-TOPO-REFERENCE-RESET-R1\\result.json",
+    "reused_from_r1_with_source_hash_revalidation": true,
+    "sha256": "c1c50e07345e940b0cfe0599cabbbbd8b2b6f0447841fa989673ddfce522b247"
+  },
+  "sanitized_runner_protocol": {
+    "path": "reference\\stage1_topology_brian2\\reference_protocol_r2.json",
+    "sha256": "9a855c266cd9bf865f017c0d6e128735213eef6d8b2b2c508d6c64e153eccfc2"
+  },
+  "schema_version": 1,
+  "scientific_evidence": false,
+  "supersedes": "PREREG-S1-TOPO-REFERENCE-R1",
+  "synapse_delay_parity": {
+    "pass": true,
+    "path": "research\\calibrations\\CAL-S1-TOPO-REFERENCE-SYNAPSE-R1\\result.json",
+    "reused_from_r1_with_source_hash_revalidation": true,
+    "sha256": "42b051286007b315c5400871d893883d34be2847d5f165b08a70a91d0580907e"
+  },
+  "topology_mapping_parity": {
+    "pass": true,
+    "path": "research\\calibrations\\CAL-S1-TOPO-REFERENCE-TOPOLOGY-MAP-R2\\result.json",
+    "sha256": "ca96b049c57d8c75c5e1eb7112565756bbfb1eca7df402143c63dd8ab05e85dc"
+  },
+  "translation_specification": {
+    "path": "reference\\stage1_topology_brian2\\TRANSLATION_R2.md",
+    "sha256": "74caf0b06c5a36065a9f8b20dadfc2418185bd2254785307f12f9a3400bc1be6"
+  }
+}

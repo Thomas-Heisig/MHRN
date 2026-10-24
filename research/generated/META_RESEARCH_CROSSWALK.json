@@ -1058,6 +1058,7 @@
         "EXP-EMB-0001",
         "EXP-EMB001B-MATCHED-V2-20260920",
         "EXP-EMB001B-TEMPORAL-V3-20260920",
+        "EXP-EMB001B-UNSEEN-V4-20261024",
         "EXP-EMP-20260910"
       ],
       "hypotheses": [
@@ -5568,6 +5569,15 @@
       "review_artifacts": [
         "research/experiments/EXP-EMB001B-TEMPORAL-V3-20260920/review_request.json",
         "research/experiments/EXP-EMB001B-TEMPORAL-V3-20260920/review_request.json.review.json"
+      ]
+    },
+    {
+      "authority": "review_record_only_not_EVID_or_replication",
+      "experiment_id": "EXP-EMB001B-UNSEEN-V4-20261024",
+      "manifest_review_status": "PENDING",
+      "reconciliation_state": "recorded_review_present_check_status_binding",
+      "review_artifacts": [
+        "research/experiments/EXP-EMB001B-UNSEEN-V4-20261024/review_request.json"
       ]
     },
     {

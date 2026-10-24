@@ -24,6 +24,10 @@ def write(root: Path, path: str, text: str) -> None:
 @pytest.fixture
 def repository(tmp_path: Path) -> Path:
     subprocess.run(["git", "init", "-q", str(tmp_path)], check=True)
+    # Byte-preservation tests must not inherit host-specific Git EOL conversion.
+    subprocess.run(
+        ["git", "-C", str(tmp_path), "config", "core.autocrlf", "false"], check=True
+    )
     subprocess.run(
         ["git", "-C", str(tmp_path), "config", "user.email", "test@example.invalid"],
         check=True,

@@ -1,5 +1,5 @@
 /**
- * MHRN Dashboard — Alpha.5 Release Gate Board
+ * MHRN Dashboard -- Alpha.5 Release Gate Board
  *
  * Renders the VERIFY/Gate tab from the central dashboard store.
  * Does NOT issue its own HTTP requests; all data arrives via store subscription.
@@ -15,28 +15,28 @@ import { openBrain5DFile, openDocumentationFile } from './file-viewer.js';
 const $ = (id) => document.getElementById(id);
 
 const GATE_STATUS_ICON = {
-  passed: '✅',
-  pending: '⏳',
-  blocked: '🚫',
-  stale: '🔄',
-  failed: '❌',
+  passed: 'PASSED',
+  pending: 'PENDING',
+  blocked: 'BLOCKED',
+  stale: 'STALE',
+  failed: 'FAILED',
 };
 
 const LIVE_STATUS_ICON = {
-  active: '✅',
-  disabled: '⊘',
-  unavailable: '—',
-  error: '❌',
+  active: 'ACTIVE',
+  disabled: 'DISABLED',
+  unavailable: '-',
+  error: 'ERROR',
 };
 const RELEASE_STATUS_MARKERS = {
-  met: '✓',
-  partial: '◐',
-  open: '○',
-  implemented: '✓',
-  verified: '✓',
-  experimental: '◐',
-  planned: '○',
-  missing: '○',
+  met: 'YES',
+  partial: 'PARTIAL',
+  open: 'OPEN',
+  implemented: 'YES',
+  verified: 'YES',
+  experimental: 'PARTIAL',
+  planned: 'OPEN',
+  missing: 'OPEN',
 };
 
 const escapeHtml = (value) => String(value ?? '').replace(/[&<>"']/g, (character) => ({

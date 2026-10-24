@@ -84,9 +84,17 @@ def _simulate(
     donor: LoopResult | None = None,
     perturb: bool = True,
     delay_ticks: int = 20,
+    external_torque_schedule: tuple[float, ...] | None = None,
 ) -> LoopResult:
     if type(delay_ticks) is not int or delay_ticks < 0 or delay_ticks >= ticks:
         raise ValueError("delay_ticks must be an integer in [0, ticks)")
+    if external_torque_schedule is not None and (
+        len(external_torque_schedule) != ticks
+        or not all(math.isfinite(value) for value in external_torque_schedule)
+    ):
+        raise ValueError(
+            "External torque schedule must contain one finite value per tick"
+        )
     topology = (
         condition
         if condition
@@ -170,7 +178,11 @@ def _simulate(
                 motor_tape.append(torque)
                 actions += int(torque != 0.0)
                 torque_sum += torque
-                force_sum += 0.003 if perturb and ticks // 4 <= t < ticks // 2 else 0.0
+                force_sum += (
+                    external_torque_schedule[t]
+                    if external_torque_schedule is not None
+                    else (0.003 if perturb and ticks // 4 <= t < ticks // 2 else 0.0)
+                )
                 pending_steps += 1
                 gain = 1.0
                 blocked = False

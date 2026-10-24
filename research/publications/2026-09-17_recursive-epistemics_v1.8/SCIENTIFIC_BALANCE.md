@@ -103,9 +103,9 @@ Nach dem **aktuellen Manifest der Edition 1.8** sind dokumentiert:
 - 18.022 indexierte Markdown-Abschnitte,
 - 411 erhaltene historische Publikationsdateien,
 - 1.965 Repository-/Rekonstruktionsereignisse,
-- 96 projizierte Forschungsobjekte,
+- 107 projizierte Forschungsobjekte,
 - 7 Vorarbeiten,
-- 24 Einträge im semantischen Content-Integration-Ledger.
+- 31 Einträge im semantischen Content-Integration-Ledger.
 
 Das stützt die Aussage, dass die dokumentierte Materialabdeckung hoch ist. Es ist **keine absolute Vollständigkeitszertifizierung**. Das Manifest setzt ausdrücklich:
 

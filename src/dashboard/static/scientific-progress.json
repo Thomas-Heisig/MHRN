@@ -3,7 +3,7 @@
   "as_of": "2026-09-27",
   "as_of_commit": "f9d926a9209dc17a11fbe29c6c82074824f75aa0",
   "title": "MHRN scientific maturity timeline",
-  "scope_note": "Scientific maturity is intentionally separate from engineering maturity. Scores summarize registered questions, frozen protocols, collected DATA, human-reviewed EVID, independent replication and attribution. They do not measure intelligence, consciousness or biological equivalence.",
+  "scope_note": "Scientific maturity is intentionally separate from engineering maturity. Scores summarize registered questions, frozen protocols, collected DATA, human-reviewed EVID, independent replication and attribution. They do not measure intelligence, consciousness or biological equivalence. Gewichteter Bearbeitungsindex, keine Wahrscheinlichkeit. Berechnungskorrektur vom 24.10.2026 bei unveraenderten Kriterien; kein neuer Evidenzgewinn. Pflichtpruefungen gelten unabhaengig vom Prozentwert.",
   "integrity_note": "Repository checks reduce attribution and text-recycling risk but cannot certify plagiarism-freedom. External similarity review and human source verification remain pre-submission requirements.",
   "status_scale": {
     "met": 1,
@@ -223,7 +223,7 @@
     {
       "stage": 2,
       "name": "Stabiles rekurrentes SNN",
-      "score": 0.65,
+      "score": 0.75,
       "status": "advanced",
       "claim_boundary": "Stabile deterministische Runs stützen Stabilität im geprüften Bereich; sie sind kein Nachweis von Gedächtnis oder Kognition.",
       "criteria": [
@@ -285,7 +285,7 @@
     {
       "stage": 3,
       "name": "Plastisches Nervengewebe",
-      "score": 0.55,
+      "score": 0.65,
       "status": "advanced",
       "claim_boundary": "STDP, Drei-Faktor-Lernen, Homöostase und Strukturplastizität sind implementierte Mechanismen; ihre wissenschaftliche Wirksamkeit bleibt interventions- und EVID-gebunden.",
       "criteria": [
@@ -347,7 +347,7 @@
     {
       "stage": 4,
       "name": "Spezialisierte neuronale Areale",
-      "score": 0.55,
+      "score": 0.65,
       "status": "advanced",
       "claim_boundary": "Modality-specific pathways und Gateway-Verträge sind technisch vorhanden; E01-E05 bleiben DATA bis zur unabhängigen wissenschaftlichen Prüfung.",
       "criteria": [
@@ -410,7 +410,7 @@
     {
       "stage": 5,
       "name": "Integriertes künstliches Nervensystem",
-      "score": 0.55,
+      "score": 0.65,
       "status": "advanced",
       "claim_boundary": "Der geschlossene Regelkreis ist in einer synthetischen deterministischen Umgebung belegt; reale Embodiment- oder biologische Interozeptionsclaims sind nicht gedeckt.",
       "criteria": [
@@ -472,7 +472,7 @@
     {
       "stage": 6,
       "name": "Gedächtnis und Weltmodell",
-      "score": 0.4,
+      "score": 0.45,
       "status": "active",
       "claim_boundary": "Working/episodic foundations und Ein-Schritt-Vorhersage sind keine Semantization, kein hierarchisches Predictive Coding und kein generatives Weltmodell.",
       "criteria": [
@@ -534,7 +534,7 @@
     {
       "stage": 7,
       "name": "Selbstmodell und verkörperte Identität",
-      "score": 0.28,
+      "score": 0.325,
       "status": "early",
       "claim_boundary": "Versionierte technische Identität und Behavior State sind Grundlagen, aber kein kausales Selbstmodell und kein Bewusstseinsnachweis.",
       "criteria": [
@@ -594,7 +594,7 @@
     {
       "stage": 8,
       "name": "Autonome lebenslange Entwicklung",
-      "score": 0.23,
+      "score": 0.4,
       "status": "planned",
       "claim_boundary": "Interferenz-Screens und Forschungsplanung sind keine Evidenz für autonomes lebenslanges Lernen.",
       "criteria": [
@@ -654,7 +654,7 @@
     {
       "stage": 9,
       "name": "Hochintegrierte künstliche Kognition",
-      "score": 0.15,
+      "score": 0.3,
       "status": "planned",
       "claim_boundary": "Architektur- und Experimententwürfe sind keine beobachtete integrierte Kognition.",
       "criteria": [
@@ -714,7 +714,7 @@
     {
       "stage": 10,
       "name": "Bewusstseinsforschung",
-      "score": 0.13,
+      "score": 0.3,
       "status": "frontier",
       "claim_boundary": "Diese Stufe ist ausschließlich eine Forschungs- und Governance-Frontier. Kein Score begründet Bewusstsein, Sentienz oder moralischen Status.",
       "criteria": [
@@ -772,5 +772,8 @@
         "Unabhängige adversariale Replikation als Mindestbedingung festschreiben."
       ]
     }
-  ]
+  ],
+  "calculation_method": "sum(weights[criterion.id] * status_scale[criterion.status]); stage mean is unweighted; no implicit caps; all six criteria mandatory",
+  "method_document": "docs/05-quality/SCIENTIFIC_MATURITY_METHOD.md",
+  "score_recalculated_on": "2026-10-24"
 }

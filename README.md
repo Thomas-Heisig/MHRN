@@ -142,11 +142,11 @@ MHRN uses a release-oriented branch model:
 
 ```text
 feature / fix / research / chore
-            ↓
+            â†“
           develop
-            ↓
+            â†“
         release/*
-            ↓
+            â†“
            main
 ```
 

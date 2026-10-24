@@ -7,7 +7,7 @@
   "claim_id": "CLAIM-S1-TOPO-001",
   "protocol": "stage1_topology_reference_replication_r2",
   "mode": "PROSPECTIVE_CROSS_IMPLEMENTATION_PARTIAL_REPLICATION",
-  "status": "DRAFT_PRE_FREEZE_GATES_PENDING",
+  "status": "FROZEN_BEFORE_REFERENCE_EXECUTION_AUTHORIZATION",
   "execution_authorized": false,
   "scientific_evidence": false,
   "automatic_evidence_promotion": false,
@@ -241,7 +241,7 @@
       820000019,
       820000020
     ],
-    "seed_selection_rationale": "The originally drafted block 1200021-1200040 failed the executable freshness gate because seed 1200035 already existed in historical Batch artifacts. Before any reference DATA and before freeze, the entire block was discarded. The replacement block 810000001-810000020 was selected as a new contiguous bookkeeping block and returned no repository-search matches at selection time; the executable freshness gate must still pass at the exact freeze commit.",
+    "seed_selection_rationale": "The originally drafted block 1200021-1200040 failed the executable freshness gate because seed 1200035 already existed in historical Batch artifacts. Before any reference DATA and before freeze, the entire block was discarded. The replacement block 810000001-810000020 was selected as a new contiguous bookkeeping block and returned no repository-search matches at selection time; R2 subsequently uses the distinct block recorded in evaluation.seeds and reference_protocol_r2.json (820000001-820000020); the executable freshness gate must still pass at the exact freeze commit.",
     "conditions": [
       "1d",
       "2d",
@@ -476,7 +476,7 @@
     },
     "seed_freshness": {
       "required": true,
-      "rule": "Evaluation seeds 810000001-810000020 must be rechecked automatically at the freeze commit; any occurrence outside the preregistration and blinded reference_protocol.json blocks freeze.",
+      "rule": "The current R2 evaluation seeds in evaluation.seeds (820000001-820000020) must be rechecked automatically at the freeze commit; any occurrence outside the paths explicitly allowed by check_stage1_reference_seed_freshness_r2.py blocks freeze.",
       "status": "PENDING_R2"
     },
     "reset_parity": {
@@ -512,8 +512,8 @@
     "classification_consequence": "Even if a separate framework/codebase is used, this project-side implementation is PARTIAL_REPLICATION only. It cannot be relabeled EXTERNAL_REPLICATION without genuinely external authorship/control and a separately registered protocol."
   },
   "freeze_authorization": {
-    "allowed": false,
-    "rule": "R2 may freeze only after all source-bound dynamics gates, R2 independence/seed freshness, and exact topology-mapping parity pass.",
+    "allowed": true,
+    "rule": "All R2 pre-freeze gates passed and are hash-bound. This does not authorize reference evaluation.",
     "reference_runner_implementation_allowed": true,
     "reference_runner_execution_allowed": false
   },
@@ -526,8 +526,8 @@
       "replication_credit_awarded": false
     }
   ],
-  "freeze_record": "research/preregistrations/PREREG-S1-TOPO-REFERENCE-R2.freeze.json",
-  "freeze_semantics": "R2 is not frozen yet. Its corrected topology mapping and all comparison criteria must be frozen before any reference evaluation DATA. R1 remains historical and may never authorize execution.",
+  "freeze_record": "research\\preregistrations\\PREREG-S1-TOPO-REFERENCE-R2.freeze.json",
+  "freeze_semantics": "R2 scientific contract is frozen. Reference DATA remain forbidden until a separate explicit human execution-authorization record binds this freeze commit and runner hash.",
   "supersedes": "PREREG-S1-TOPO-REFERENCE-R1",
   "supersession": {
     "date": "2026-09-27",

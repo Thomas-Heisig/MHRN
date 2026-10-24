@@ -1,11 +1,15 @@
 # Keep source and documentation deterministic across Windows/Linux checkouts.
 * text=auto
+research/reviews/DETERMINISM_REPRODUCTION_20261024/artifacts/pip-freeze.txt -text
+research/experiments/EXP-EMB001B-UNSEEN-V4-20261024/pip-freeze.txt -text whitespace=cr-at-eol
 *.py text eol=lf
 *.toml text eol=lf
 *.yaml text eol=lf
 *.yml text eol=lf
 *.md text eol=lf
 *.json text eol=lf
+# Preserve the original failed R2 audit bytes, including its Windows line endings.
+research/calibrations/CAL-S1-TOPO-REFERENCE-DYNAMICS-REUSE-R2/failed-before-format-restoration-20261024.json -text
 *.bib text eol=lf
 *.cff text eol=lf
 *.diff text eol=lf

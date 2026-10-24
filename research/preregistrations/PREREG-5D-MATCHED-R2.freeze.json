@@ -1,0 +1,18 @@
+{
+  "status": "FROZEN_DESIGN_ONLY",
+  "date": "2026-10-24",
+  "execution_authorized": false,
+  "evaluation_executed": false,
+  "base_commit": "fdfd0568",
+  "hashes": {
+    "research/preregistrations/PREREG-5D-MATCHED-R2.md": "041543ec8103f810e2d7eab7c1867ea79b487b163e7a4e53a8a31303f93f6f54",
+    "scripts/run_stage1_topology_v2.py": "144de33384814838c6f33ecbba3ff80e840882f77396e25e90f67dfd7b23972e",
+    "scripts/run_stage1_topology_v3_r1.py": "0a7dced0f158eae315a72a33e2de9cfc69b6a99d92eb0755b74e95903f0513df",
+    "configs/learning_experiment.yaml": "6f6cd457caf6216c286fee47ef03b529a0b496ed2dd53ee96b85d3b51e7b3a1c"
+  },
+  "pending": [
+    "dedicated R2 runner and analysis enforcement",
+    "synthetic preflight and seed freshness",
+    "execution authorization"
+  ]
+}

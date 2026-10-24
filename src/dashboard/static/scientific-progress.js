@@ -225,11 +225,12 @@ function renderScientificProgress(data) {
   host.innerHTML = `<section id="scientific-progress-timeline" class="scientific-progress-panel" aria-labelledby="scientific-progress-title">
     <header class="scientific-progress-head">
       <div><span class="workspace-kicker">SCIENTIFIC MATURITY</span><h2 id="scientific-progress-title">Wissenschaftliche Timeline · Stufen 0–10</h2><p>${escapeHtml(data.scope_note)}</p></div>
-      <div class="scientific-progress-score"><span>Stage-Mittel</span><strong>${percent(overall)}</strong><small>keine Kognitionskennzahl</small></div>
+      <div class="scientific-progress-score"><span>Stage-Mittel</span><strong>${percent(overall)}</strong><small>Bearbeitungsindex · keine Wahrscheinlichkeit · keine Kognitionskennzahl</small></div>
     </header>
     <div class="scientific-progress-status-legend" aria-label="Statusmarker der wissenschaftlichen Kriterien"><span>${statusMarkup("met")}</span><span>${statusMarkup("partial")}</span><span>${statusMarkup("open")}</span></div>
     <div class="scientific-two-axis-note"><div><strong>Technische Timeline</strong><p>Implementierung · Integration · Verification · Runtime/Persistenz</p></div><div><strong>Wissenschaftliche Timeline</strong><p>RQ/Hypothese · Protokoll · DATA · reviewte EVID · Replikation · Attribution</p></div></div>
     <div class="scientific-progress-legend"><span>RQ 15%</span><span>Protokoll 20%</span><span>DATA 20%</span><span>reviewte EVID 20%</span><span>Replikation 15%</span><span>Attribution 10%</span></div>
+    <p>Berechnung: Gewicht × Status (erfüllt 1, teilweise 0,5, offen 0), dann Summe. Die Gewichte sind Projektentscheidungen. Pflichtprüfungen sind nicht durch Punkte ersetzbar. ${sourceMarkup("docs/05-quality/SCIENTIFIC_MATURITY_METHOD.md")}</p>
     <div class="scientific-progress-track" role="list" aria-label="Wissenschaftliche Reife je Entwicklungsstufe">
       ${stages.map((stage) => `<button type="button" class="scientific-stage-node ${stage.stage === 6 ? "is-selected" : ""}" data-scientific-stage="${stage.stage}" role="listitem" title="Stufe ${stage.stage}: ${escapeHtml(stage.name)}">
         <span class="scientific-stage-number">STUFE ${stage.stage}</span><span class="scientific-stage-name">${escapeHtml(stage.name)}</span>

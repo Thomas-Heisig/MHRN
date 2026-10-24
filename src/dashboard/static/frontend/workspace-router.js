@@ -4,7 +4,7 @@ const STORAGE_KEY = "mhrn-workspace-router-v1";
 const ROUTED_CLASS = "mhrn-routed-local-tabs";
 const HIDDEN_CLASS = "mhrn-route-hidden";
 
-// ── Central visibility controller ──────────────────────────────
+// â”€â”€ Central visibility controller â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 // Every visibility change goes through this function.
 function setRouteElementVisibility(element, visible) {
   if (!element) return;
@@ -23,7 +23,7 @@ function setRouteElementVisibility(element, visible) {
 function isPersistent(element) {
   return element.matches && element.matches("[data-mhrn-persistent]");
 }
-// ── Route configuration ────────────────────────────────────────
+// â”€â”€ Route configuration â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 const AREAS = Object.freeze({
   dashboard: {
     number: "01", label: "Dashboard", subtitle: "System & Betrieb", owner: "overview",
@@ -204,7 +204,7 @@ let reconcileDebounceTimer = null;
 const byId = (id) => document.getElementById(id);
 const rootFor = (workspace) => byId(`tab-${workspace}`);
 
-// ── Legacy workspace activation ────────────────────────────────
+// â”€â”€ Legacy workspace activation â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function activateLegacy(workspace) {
   if (workspace === "publication") {
     // Publication tab uses style=display:none (not hidden), so click() won't bubble.
@@ -236,7 +236,7 @@ function activateLegacy(workspace) {
   });
   return true;
 }
-// ── Generated workspaces ───────────────────────────────────────
+// â”€â”€ Generated workspaces â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function createGeneratedWorkspace(id, label, kicker) {
   if (rootFor(id)) return rootFor(id);
   const main = document.querySelector("main");
@@ -293,7 +293,7 @@ function ensureGeneratedWorkspaces() {
       <section data-generated-panel="method"><h3>Methoden & Ethik</h3><p>Standardisierte Fragen, Einwilligung, Anonymität, Rücktritt, Auswertungsplan und Trennung von AI-Interpretation und wissenschaftlicher Evidenz.</p><button type="button" data-review-file="external_review/INTEGRATION.md">Methodik im File Viewer</button></section>
     </div>`);
 }
-// ── Overview markup ────────────────────────────────────────────
+// â”€â”€ Overview markup â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function overviewMarkup(areaId, area) {
   const routes = area.routes.filter(([id]) => id !== "overview");
   return `<section class="mhrn-area-overview" data-area-overview="${areaId}">
@@ -591,7 +591,7 @@ function applyRoute(areaId, route) {
   });
 }
 
-// ── Legacy helpers (preserved for backward compat) ─────────────
+// â”€â”€ Legacy helpers (preserved for backward compat) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function showGenerated(workspace, id) {
   rootFor(workspace)?.querySelectorAll("[data-generated-panel]").forEach((node) => {
     node.hidden = node.dataset.generatedPanel !== id;
@@ -662,7 +662,7 @@ function syncNav() {
   });
   syncBreadcrumb();
 }
-// ── Contract probing and data refresh ──────────────────────────
+// â”€â”€ Contract probing and data refresh â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 async function probeContracts(areaId) {
   const area = AREAS[areaId];
   const overview = rootFor(area.owner)?.querySelector(`[data-area-overview="${areaId}"]`);
@@ -796,7 +796,7 @@ async function refreshReview() {
     if (byId("review-inbox-list")) byId("review-inbox-list").textContent = `Nicht verfügbar: ${error.message}`;
   }
 }
-// ── Generated actions ──────────────────────────────────────────
+// â”€â”€ Generated actions â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function bindGeneratedActions() {
   document.addEventListener("click", (event) => {
     const proxy = event.target.closest("[data-proxy]");
@@ -843,7 +843,7 @@ function addHoverInfo() {
   });
 }
 
-// ── Public API ─────────────────────────────────────────────────
+// â”€â”€ Public API â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 export function selectRoute(areaId, routeId = "overview") {
   const area = AREAS[areaId] || AREAS.dashboard;
   const route = area.routes.find(([id]) => id === routeId) || area.routes[0];

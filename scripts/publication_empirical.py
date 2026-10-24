@@ -34,7 +34,7 @@ def save(path: Path, value: object) -> None:
 
 def inventory(path: Path) -> dict[str, str]:
     return {
-        str(p.relative_to(path)): sha(p)
+        p.relative_to(path).as_posix(): sha(p)
         for p in sorted(path.rglob("*"))
         if p.is_file() and p.name != "ARTIFACTS.json"
     }

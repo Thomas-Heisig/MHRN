@@ -3,9 +3,12 @@
 
 from __future__ import annotations
 
+import argparse
 import hashlib
 import json
 import subprocess
+import sys
+from datetime import date
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -75,6 +78,14 @@ def git(*args):
 
 
 def main() -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--freeze-date",
+        type=date.fromisoformat,
+        required=True,
+        help="Actual freeze date (YYYY-MM-DD); never inherit the draft's date",
+    )
+    args = parser.parse_args()
     if F.exists():
         raise FileExistsError(F)
     if git("status", "--porcelain"):
@@ -106,11 +117,11 @@ def main() -> int:
         or proto.get("framework_version") != "2.10.1"
     ):
         raise RuntimeError("R2 protocol mismatch")
-    subprocess.run(["python", str(IND.relative_to(ROOT))], cwd=ROOT, check=True)
-    subprocess.run(["python", str(SEED.relative_to(ROOT))], cwd=ROOT, check=True)
+    subprocess.run([sys.executable, str(IND.relative_to(ROOT))], cwd=ROOT, check=True)
+    subprocess.run([sys.executable, str(SEED.relative_to(ROOT))], cwd=ROOT, check=True)
     subprocess.run(
         [
-            "python",
+            sys.executable,
             "-m",
             "pytest",
             str(CT.relative_to(ROOT)),
@@ -130,7 +141,7 @@ def main() -> int:
         "schema_version": 1,
         "preregistration_id": p["preregistration_id"],
         "supersedes": "PREREG-S1-TOPO-REFERENCE-R1",
-        "freeze_date": "2026-09-27",
+        "freeze_date": args.freeze_date.isoformat(),
         "freeze_commit": git("rev-parse", "HEAD"),
         "preregistration_sha256_before_status_update": sha(P),
         "reference_data_created": False,
@@ -203,7 +214,11 @@ def main() -> int:
         "authorization_rule": p["execution_authorization_requirements"],
         "note": "R2 corrects the pre-DATA R1 mapping ambiguity. Freeze fixes the scientific contract only; separate explicit human execution authorization remains mandatory.",
     }
-    F.write_text(json.dumps(freeze, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    F.write_text(
+        json.dumps(freeze, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+        newline="\n",
+    )
     p["status"] = "FROZEN_BEFORE_REFERENCE_EXECUTION_AUTHORIZATION"
     p["execution_authorized"] = False
     p["freeze_authorization"] = {
@@ -216,7 +231,11 @@ def main() -> int:
     p["freeze_semantics"] = (
         "R2 scientific contract is frozen. Reference DATA remain forbidden until a separate explicit human execution-authorization record binds this freeze commit and runner hash."
     )
-    P.write_text(json.dumps(p, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    P.write_text(
+        json.dumps(p, indent=2, ensure_ascii=False) + "\n",
+        encoding="utf-8",
+        newline="\n",
+    )
     print(json.dumps({"status": p["status"], "execution_authorized": False}))
     return 0
 

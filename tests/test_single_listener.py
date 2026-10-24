@@ -60,6 +60,8 @@ def _get_listener_pids_windows(port: int) -> dict[int, list[int]]:
             ["netstat", "-ano"],
             capture_output=True,
             text=True,
+            # Native netstat uses the Windows OEM code page, even in UTF-8 mode.
+            encoding="oem",
             timeout=10,
         )
     except (FileNotFoundError, subprocess.TimeoutExpired):

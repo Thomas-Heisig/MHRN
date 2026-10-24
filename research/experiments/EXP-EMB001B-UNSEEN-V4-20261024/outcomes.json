@@ -1,0 +1,842 @@
+[
+  {
+    "condition": "donor_unperturbed",
+    "error": null,
+    "full_rmse": 0.12924665025790444,
+    "post_disturbance_rmse": 0.1327255300617207,
+    "seed": 94001
+  },
+  {
+    "condition": "yoked_unperturbed",
+    "error": null,
+    "full_rmse": 0.12924665025790444,
+    "post_disturbance_rmse": 0.1327255300617207,
+    "seed": 94001
+  },
+  {
+    "condition": "closed_challenge",
+    "error": null,
+    "full_rmse": 0.11927838900244199,
+    "post_disturbance_rmse": 0.11963660102021374,
+    "seed": 94001
+  },
+  {
+    "condition": "yoked_challenge",
+    "error": null,
+    "full_rmse": 0.2479956241181707,
+    "post_disturbance_rmse": 0.2781107278920766,
+    "seed": 94001
+  },
+  {
+    "condition": "feedback_absent_challenge",
+    "error": null,
+    "full_rmse": 0.4761912293199899,
+    "post_disturbance_rmse": 0.5300590197690478,
+    "seed": 94001
+  },
+  {
+    "condition": "pd_challenge",
+    "error": null,
+    "full_rmse": 0.1570496965920721,
+    "post_disturbance_rmse": 0.15526134670081118,
+    "seed": 94001
+  },
+  {
+    "condition": "donor_unperturbed",
+    "error": null,
+    "full_rmse": 0.1439175318742845,
+    "post_disturbance_rmse": 0.14524062441682464,
+    "seed": 94002
+  },
+  {
+    "condition": "yoked_unperturbed",
+    "error": null,
+    "full_rmse": 0.1439175318742845,
+    "post_disturbance_rmse": 0.14524062441682464,
+    "seed": 94002
+  },
+  {
+    "condition": "closed_challenge",
+    "error": null,
+    "full_rmse": 0.16241467333659734,
+    "post_disturbance_rmse": 0.16926271245213154,
+    "seed": 94002
+  },
+  {
+    "condition": "yoked_challenge",
+    "error": null,
+    "full_rmse": 0.36815829580238235,
+    "post_disturbance_rmse": 0.4173717831431519,
+    "seed": 94002
+  },
+  {
+    "condition": "feedback_absent_challenge",
+    "error": null,
+    "full_rmse": 0.47413592981169145,
+    "post_disturbance_rmse": 0.5296859305617815,
+    "seed": 94002
+  },
+  {
+    "condition": "pd_challenge",
+    "error": null,
+    "full_rmse": 0.2052444117148246,
+    "post_disturbance_rmse": 0.2114785996197214,
+    "seed": 94002
+  },
+  {
+    "condition": "donor_unperturbed",
+    "error": null,
+    "full_rmse": 0.12976435294698754,
+    "post_disturbance_rmse": 0.13436904628174604,
+    "seed": 94003
+  },
+  {
+    "condition": "yoked_unperturbed",
+    "error": null,
+    "full_rmse": 0.12976435294698754,
+    "post_disturbance_rmse": 0.13436904628174604,
+    "seed": 94003
+  },
+  {
+    "condition": "closed_challenge",
+    "error": null,
+    "full_rmse": 0.11951121238169647,
+    "post_disturbance_rmse": 0.12102574402824173,
+    "seed": 94003
+  },
+  {
+    "condition": "yoked_challenge",
+    "error": null,
+    "full_rmse": 0.24692983060928478,
+    "post_disturbance_rmse": 0.27731290244770845,
+    "seed": 94003
+  },
+  {
+    "condition": "feedback_absent_challenge",
+    "error": null,
+    "full_rmse": 0.47651099355777793,
+    "post_disturbance_rmse": 0.530073056402349,
+    "seed": 94003
+  },
+  {
+    "condition": "pd_challenge",
+    "error": null,
+    "full_rmse": 0.15618974011309927,
+    "post_disturbance_rmse": 0.15524035494941799,
+    "seed": 94003
+  },
+  {
+    "condition": "donor_unperturbed",
+    "error": null,
+    "full_rmse": 0.1291793683564345,
+    "post_disturbance_rmse": 0.13477136077419724,
+    "seed": 94004
+  },
+  {
+    "condition": "yoked_unperturbed",
+    "error": null,
+    "full_rmse": 0.1291793683564345,
+    "post_disturbance_rmse": 0.13477136077419724,
+    "seed": 94004
+  },
+  {
+    "condition": "closed_challenge",
+    "error": null,
+    "full_rmse": 0.1561184888285051,
+    "post_disturbance_rmse": 0.16855528512953974,
+    "seed": 94004
+  },
+  {
+    "condition": "yoked_challenge",
+    "error": null,
+    "full_rmse": 0.35991368397771617,
+    "post_disturbance_rmse": 0.41064671023340826,
+    "seed": 94004
+  },
+  {
+    "condition": "feedback_absent_challenge",
+    "error": null,
+    "full_rmse": 0.47623195377778516,
+    "post_disturbance_rmse": 0.5289431514738733,
+    "seed": 94004
+  },
+  {
+    "condition": "pd_challenge",
+    "error": null,
+    "full_rmse": 0.19977634540769096,
+    "post_disturbance_rmse": 0.21269117284283848,
+    "seed": 94004
+  },
+  {
+    "condition": "donor_unperturbed",
+    "error": null,
+    "full_rmse": 0.14249601302346698,
+    "post_disturbance_rmse": 0.14773964250443009,
+    "seed": 94005
+  },
+  {
+    "condition": "yoked_unperturbed",
+    "error": null,
+    "full_rmse": 0.14249601302346698,
+    "post_disturbance_rmse": 0.14773964250443009,
+    "seed": 94005
+  },
+  {
+    "condition": "closed_challenge",
+    "error": null,
+    "full_rmse": 0.12074660010725768,
+    "post_disturbance_rmse": 0.11913510081908697,
+    "seed": 94005
+  },
+  {
+    "condition": "yoked_challenge",
+    "error": null,
+    "full_rmse": 0.24662892515005022,
+    "post_disturbance_rmse": 0.2754171731963171,
+    "seed": 94005
+  },
+  {
+    "condition": "feedback_absent_challenge",
+    "error": null,
+    "full_rmse": 0.47550531904954313,
+    "post_disturbance_rmse": 0.5299833026557466,
+    "seed": 94005
+  },
+  {
+    "condition": "pd_challenge",
+    "error": null,
+    "full_rmse": 0.1589776849971694,
+    "post_disturbance_rmse": 0.1553135789410211,
+    "seed": 94005
+  },
+  {
+    "condition": "donor_unperturbed",
+    "error": null,
+    "full_rmse": 0.1429523837700501,
+    "post_disturbance_rmse": 0.14560099552612646,
+    "seed": 94006
+  },
+  {
+    "condition": "yoked_unperturbed",
+    "error": null,
+    "full_rmse": 0.1429523837700501,
+    "post_disturbance_rmse": 0.14560099552612646,
+    "seed": 94006
+  },
+  {
+    "condition": "closed_challenge",
+    "error": null,
+    "full_rmse": 0.16354130755306306,
+    "post_disturbance_rmse": 0.17208568669619292,
+    "seed": 94006
+  },
+  {
+    "condition": "yoked_challenge",
+    "error": null,
+    "full_rmse": 0.367552728691899,
+    "post_disturbance_rmse": 0.41722793413508047,
+    "seed": 94006
+  },
+  {
+    "condition": "feedback_absent_challenge",
+    "error": null,
+    "full_rmse": 0.47463796711708456,
+    "post_disturbance_rmse": 0.5298321170782939,
+    "seed": 94006
+  },
+  {
+    "condition": "pd_challenge",
+    "error": null,
+    "full_rmse": 0.2041034500277067,
+    "post_disturbance_rmse": 0.21170407997226787,
+    "seed": 94006
+  },
+  {
+    "condition": "donor_unperturbed",
+    "error": null,
+    "full_rmse": 0.13223839849091265,
+    "post_disturbance_rmse": 0.1407230654037926,
+    "seed": 94007
+  },
+  {
+    "condition": "yoked_unperturbed",
+    "error": null,
+    "full_rmse": 0.13223839849091265,
+    "post_disturbance_rmse": 0.1407230654037926,
+    "seed": 94007
+  },
+  {
+    "condition": "closed_challenge",
+    "error": null,
+    "full_rmse": 0.11928861529401943,
+    "post_disturbance_rmse": 0.12433833174476365,
+    "seed": 94007
+  },
+  {
+    "condition": "yoked_challenge",
+    "error": null,
+    "full_rmse": 0.24828502976994055,
+    "post_disturbance_rmse": 0.2805012128907796,
+    "seed": 94007
+  },
+  {
+    "condition": "feedback_absent_challenge",
+    "error": null,
+    "full_rmse": 0.4772771547427967,
+    "post_disturbance_rmse": 0.5289338300997078,
+    "seed": 94007
+  },
+  {
+    "condition": "pd_challenge",
+    "error": null,
+    "full_rmse": 0.15254558744631383,
+    "post_disturbance_rmse": 0.15516916281433224,
+    "seed": 94007
+  },
+  {
+    "condition": "donor_unperturbed",
+    "error": null,
+    "full_rmse": 0.13383115733116782,
+    "post_disturbance_rmse": 0.13773991923201045,
+    "seed": 94008
+  },
+  {
+    "condition": "yoked_unperturbed",
+    "error": null,
+    "full_rmse": 0.13383115733116782,
+    "post_disturbance_rmse": 0.13773991923201045,
+    "seed": 94008
+  },
+  {
+    "condition": "closed_challenge",
+    "error": null,
+    "full_rmse": 0.15708681579981304,
+    "post_disturbance_rmse": 0.16731090037434368,
+    "seed": 94008
+  },
+  {
+    "condition": "yoked_challenge",
+    "error": null,
+    "full_rmse": 0.3617560226090114,
+    "post_disturbance_rmse": 0.41180230731719203,
+    "seed": 94008
+  },
+  {
+    "condition": "feedback_absent_challenge",
+    "error": null,
+    "full_rmse": 0.4759372107457864,
+    "post_disturbance_rmse": 0.5300501985832718,
+    "seed": 94008
+  },
+  {
+    "condition": "pd_challenge",
+    "error": null,
+    "full_rmse": 0.2015040776965654,
+    "post_disturbance_rmse": 0.21226800475064034,
+    "seed": 94008
+  },
+  {
+    "condition": "donor_unperturbed",
+    "error": null,
+    "full_rmse": 0.1328749720216117,
+    "post_disturbance_rmse": 0.14190581564434776,
+    "seed": 94009
+  },
+  {
+    "condition": "yoked_unperturbed",
+    "error": null,
+    "full_rmse": 0.1328749720216117,
+    "post_disturbance_rmse": 0.14190581564434776,
+    "seed": 94009
+  },
+  {
+    "condition": "closed_challenge",
+    "error": null,
+    "full_rmse": 0.11921343797433143,
+    "post_disturbance_rmse": 0.12468109179920527,
+    "seed": 94009
+  },
+  {
+    "condition": "yoked_challenge",
+    "error": null,
+    "full_rmse": 0.25083935452760503,
+    "post_disturbance_rmse": 0.28370775803126974,
+    "seed": 94009
+  },
+  {
+    "condition": "feedback_absent_challenge",
+    "error": null,
+    "full_rmse": 0.4773351124844893,
+    "post_disturbance_rmse": 0.528802217664154,
+    "seed": 94009
+  },
+  {
+    "condition": "pd_challenge",
+    "error": null,
+    "full_rmse": 0.15216458778407096,
+    "post_disturbance_rmse": 0.15516355309622495,
+    "seed": 94009
+  },
+  {
+    "condition": "donor_unperturbed",
+    "error": null,
+    "full_rmse": 0.1297415428994749,
+    "post_disturbance_rmse": 0.13435384686023244,
+    "seed": 94010
+  },
+  {
+    "condition": "yoked_unperturbed",
+    "error": null,
+    "full_rmse": 0.1297415428994749,
+    "post_disturbance_rmse": 0.13435384686023244,
+    "seed": 94010
+  },
+  {
+    "condition": "closed_challenge",
+    "error": null,
+    "full_rmse": 0.1562779705132766,
+    "post_disturbance_rmse": 0.16784180344764876,
+    "seed": 94010
+  },
+  {
+    "condition": "yoked_challenge",
+    "error": null,
+    "full_rmse": 0.3596503431414677,
+    "post_disturbance_rmse": 0.40996539446225805,
+    "seed": 94010
+  },
+  {
+    "condition": "feedback_absent_challenge",
+    "error": null,
+    "full_rmse": 0.4757300102499652,
+    "post_disturbance_rmse": 0.5288115413582551,
+    "seed": 94010
+  },
+  {
+    "condition": "pd_challenge",
+    "error": null,
+    "full_rmse": 0.20042060110784032,
+    "post_disturbance_rmse": 0.21252817808936075,
+    "seed": 94010
+  },
+  {
+    "condition": "donor_unperturbed",
+    "error": null,
+    "full_rmse": 0.12875857916151012,
+    "post_disturbance_rmse": 0.13086548372918455,
+    "seed": 94011
+  },
+  {
+    "condition": "yoked_unperturbed",
+    "error": null,
+    "full_rmse": 0.12875857916151012,
+    "post_disturbance_rmse": 0.13086548372918455,
+    "seed": 94011
+  },
+  {
+    "condition": "closed_challenge",
+    "error": null,
+    "full_rmse": 0.11935715224469769,
+    "post_disturbance_rmse": 0.1183874385680518,
+    "seed": 94011
+  },
+  {
+    "condition": "yoked_challenge",
+    "error": null,
+    "full_rmse": 0.24387297946820305,
+    "post_disturbance_rmse": 0.27261594360507185,
+    "seed": 94011
+  },
+  {
+    "condition": "feedback_absent_challenge",
+    "error": null,
+    "full_rmse": 0.4758419000576807,
+    "post_disturbance_rmse": 0.5300287489780924,
+    "seed": 94011
+  },
+  {
+    "condition": "pd_challenge",
+    "error": null,
+    "full_rmse": 0.15801794665999466,
+    "post_disturbance_rmse": 0.15528671122485638,
+    "seed": 94011
+  },
+  {
+    "condition": "donor_unperturbed",
+    "error": null,
+    "full_rmse": 0.13517125945187813,
+    "post_disturbance_rmse": 0.1465263688182421,
+    "seed": 94012
+  },
+  {
+    "condition": "yoked_unperturbed",
+    "error": null,
+    "full_rmse": 0.13517125945187813,
+    "post_disturbance_rmse": 0.1465263688182421,
+    "seed": 94012
+  },
+  {
+    "condition": "closed_challenge",
+    "error": null,
+    "full_rmse": 0.1557545971141809,
+    "post_disturbance_rmse": 0.17162248380166054,
+    "seed": 94012
+  },
+  {
+    "condition": "yoked_challenge",
+    "error": null,
+    "full_rmse": 0.366256716564499,
+    "post_disturbance_rmse": 0.41948412066266255,
+    "seed": 94012
+  },
+  {
+    "condition": "feedback_absent_challenge",
+    "error": null,
+    "full_rmse": 0.4783513234499703,
+    "post_disturbance_rmse": 0.5289431514738733,
+    "seed": 94012
+  },
+  {
+    "condition": "pd_challenge",
+    "error": null,
+    "full_rmse": 0.19676464743991878,
+    "post_disturbance_rmse": 0.21355890999744456,
+    "seed": 94012
+  },
+  {
+    "condition": "donor_unperturbed",
+    "error": null,
+    "full_rmse": 0.13256615118922985,
+    "post_disturbance_rmse": 0.14176836565138065,
+    "seed": 94013
+  },
+  {
+    "condition": "yoked_unperturbed",
+    "error": null,
+    "full_rmse": 0.13256615118922985,
+    "post_disturbance_rmse": 0.14176836565138065,
+    "seed": 94013
+  },
+  {
+    "condition": "closed_challenge",
+    "error": null,
+    "full_rmse": 0.11871089289126939,
+    "post_disturbance_rmse": 0.12432320123781863,
+    "seed": 94013
+  },
+  {
+    "condition": "yoked_challenge",
+    "error": null,
+    "full_rmse": 0.250651142371923,
+    "post_disturbance_rmse": 0.28360985609535727,
+    "seed": 94013
+  },
+  {
+    "condition": "feedback_absent_challenge",
+    "error": null,
+    "full_rmse": 0.4774492463546822,
+    "post_disturbance_rmse": 0.528802217664154,
+    "seed": 94013
+  },
+  {
+    "condition": "pd_challenge",
+    "error": null,
+    "full_rmse": 0.1519071480224018,
+    "post_disturbance_rmse": 0.15515997854176478,
+    "seed": 94013
+  },
+  {
+    "condition": "donor_unperturbed",
+    "error": null,
+    "full_rmse": 0.13174211713410358,
+    "post_disturbance_rmse": 0.1401639538845208,
+    "seed": 94014
+  },
+  {
+    "condition": "yoked_unperturbed",
+    "error": null,
+    "full_rmse": 0.13174211713410358,
+    "post_disturbance_rmse": 0.1401639538845208,
+    "seed": 94014
+  },
+  {
+    "condition": "closed_challenge",
+    "error": null,
+    "full_rmse": 0.15360204019997442,
+    "post_disturbance_rmse": 0.167220619952705,
+    "seed": 94014
+  },
+  {
+    "condition": "yoked_challenge",
+    "error": null,
+    "full_rmse": 0.36011517962586154,
+    "post_disturbance_rmse": 0.41160078983791604,
+    "seed": 94014
+  },
+  {
+    "condition": "feedback_absent_challenge",
+    "error": null,
+    "full_rmse": 0.47730960677923945,
+    "post_disturbance_rmse": 0.5289431514738733,
+    "seed": 94014
+  },
+  {
+    "condition": "pd_challenge",
+    "error": null,
+    "full_rmse": 0.1981529369744451,
+    "post_disturbance_rmse": 0.21313435660028968,
+    "seed": 94014
+  },
+  {
+    "condition": "donor_unperturbed",
+    "error": null,
+    "full_rmse": 0.1379095105762225,
+    "post_disturbance_rmse": 0.13937972289405542,
+    "seed": 94015
+  },
+  {
+    "condition": "yoked_unperturbed",
+    "error": null,
+    "full_rmse": 0.1379095105762225,
+    "post_disturbance_rmse": 0.13937972289405542,
+    "seed": 94015
+  },
+  {
+    "condition": "closed_challenge",
+    "error": null,
+    "full_rmse": 0.12761020696835756,
+    "post_disturbance_rmse": 0.12562039208478637,
+    "seed": 94015
+  },
+  {
+    "condition": "yoked_challenge",
+    "error": null,
+    "full_rmse": 0.25418628874553395,
+    "post_disturbance_rmse": 0.28322350807415336,
+    "seed": 94015
+  },
+  {
+    "condition": "feedback_absent_challenge",
+    "error": null,
+    "full_rmse": 0.4746756564345289,
+    "post_disturbance_rmse": 0.5297930642853114,
+    "seed": 94015
+  },
+  {
+    "condition": "pd_challenge",
+    "error": null,
+    "full_rmse": 0.1614387468299358,
+    "post_disturbance_rmse": 0.1553898235755077,
+    "seed": 94015
+  },
+  {
+    "condition": "donor_unperturbed",
+    "error": null,
+    "full_rmse": 0.13039163774644155,
+    "post_disturbance_rmse": 0.1350718151839571,
+    "seed": 94016
+  },
+  {
+    "condition": "yoked_unperturbed",
+    "error": null,
+    "full_rmse": 0.13039163774644155,
+    "post_disturbance_rmse": 0.1350718151839571,
+    "seed": 94016
+  },
+  {
+    "condition": "closed_challenge",
+    "error": null,
+    "full_rmse": 0.1585665587639736,
+    "post_disturbance_rmse": 0.1705859345779177,
+    "seed": 94016
+  },
+  {
+    "condition": "yoked_challenge",
+    "error": null,
+    "full_rmse": 0.36029794767452344,
+    "post_disturbance_rmse": 0.4106838660041584,
+    "seed": 94016
+  },
+  {
+    "condition": "feedback_absent_challenge",
+    "error": null,
+    "full_rmse": 0.47648826727325855,
+    "post_disturbance_rmse": 0.5300814830182431,
+    "seed": 94016
+  },
+  {
+    "condition": "pd_challenge",
+    "error": null,
+    "full_rmse": 0.20053127366263,
+    "post_disturbance_rmse": 0.2125008290197316,
+    "seed": 94016
+  },
+  {
+    "condition": "donor_unperturbed",
+    "error": null,
+    "full_rmse": 0.1398908794839537,
+    "post_disturbance_rmse": 0.1413664782095627,
+    "seed": 94017
+  },
+  {
+    "condition": "yoked_unperturbed",
+    "error": null,
+    "full_rmse": 0.1398908794839537,
+    "post_disturbance_rmse": 0.1413664782095627,
+    "seed": 94017
+  },
+  {
+    "condition": "closed_challenge",
+    "error": null,
+    "full_rmse": 0.12811700427386818,
+    "post_disturbance_rmse": 0.1256071627063118,
+    "seed": 94017
+  },
+  {
+    "condition": "yoked_challenge",
+    "error": null,
+    "full_rmse": 0.2535343730026745,
+    "post_disturbance_rmse": 0.282131366570247,
+    "seed": 94017
+  },
+  {
+    "condition": "feedback_absent_challenge",
+    "error": null,
+    "full_rmse": 0.4744347752821251,
+    "post_disturbance_rmse": 0.5296708018320445,
+    "seed": 94017
+  },
+  {
+    "condition": "pd_challenge",
+    "error": null,
+    "full_rmse": 0.16201517315963365,
+    "post_disturbance_rmse": 0.155409125403653,
+    "seed": 94017
+  },
+  {
+    "condition": "donor_unperturbed",
+    "error": null,
+    "full_rmse": 0.13179348558654383,
+    "post_disturbance_rmse": 0.14027471006583947,
+    "seed": 94018
+  },
+  {
+    "condition": "yoked_unperturbed",
+    "error": null,
+    "full_rmse": 0.13179348558654383,
+    "post_disturbance_rmse": 0.14027471006583947,
+    "seed": 94018
+  },
+  {
+    "condition": "closed_challenge",
+    "error": null,
+    "full_rmse": 0.15438670146995812,
+    "post_disturbance_rmse": 0.16822000063712167,
+    "seed": 94018
+  },
+  {
+    "condition": "yoked_challenge",
+    "error": null,
+    "full_rmse": 0.3602285449291506,
+    "post_disturbance_rmse": 0.41174883517627436,
+    "seed": 94018
+  },
+  {
+    "condition": "feedback_absent_challenge",
+    "error": null,
+    "full_rmse": 0.47732797283486994,
+    "post_disturbance_rmse": 0.5289431514738733,
+    "seed": 94018
+  },
+  {
+    "condition": "pd_challenge",
+    "error": null,
+    "full_rmse": 0.19812694593774807,
+    "post_disturbance_rmse": 0.2131418802065233,
+    "seed": 94018
+  },
+  {
+    "condition": "donor_unperturbed",
+    "error": null,
+    "full_rmse": 0.13472724082448737,
+    "post_disturbance_rmse": 0.14609862422493017,
+    "seed": 94019
+  },
+  {
+    "condition": "yoked_unperturbed",
+    "error": null,
+    "full_rmse": 0.13472724082448737,
+    "post_disturbance_rmse": 0.14609862422493017,
+    "seed": 94019
+  },
+  {
+    "condition": "closed_challenge",
+    "error": null,
+    "full_rmse": 0.11824683200681295,
+    "post_disturbance_rmse": 0.12564229574354346,
+    "seed": 94019
+  },
+  {
+    "condition": "yoked_challenge",
+    "error": null,
+    "full_rmse": 0.2455991771949211,
+    "post_disturbance_rmse": 0.27851063993788067,
+    "seed": 94019
+  },
+  {
+    "condition": "feedback_absent_challenge",
+    "error": null,
+    "full_rmse": 0.4784231890336932,
+    "post_disturbance_rmse": 0.5289338300997078,
+    "seed": 94019
+  },
+  {
+    "condition": "pd_challenge",
+    "error": null,
+    "full_rmse": 0.15004062199040996,
+    "post_disturbance_rmse": 0.15513961150543334,
+    "seed": 94019
+  },
+  {
+    "condition": "donor_unperturbed",
+    "error": null,
+    "full_rmse": 0.1441556203116032,
+    "post_disturbance_rmse": 0.14656180698746565,
+    "seed": 94020
+  },
+  {
+    "condition": "yoked_unperturbed",
+    "error": null,
+    "full_rmse": 0.1441556203116032,
+    "post_disturbance_rmse": 0.14656180698746565,
+    "seed": 94020
+  },
+  {
+    "condition": "closed_challenge",
+    "error": null,
+    "full_rmse": 0.16332483747639004,
+    "post_disturbance_rmse": 0.17128701884980266,
+    "seed": 94020
+  },
+  {
+    "condition": "yoked_challenge",
+    "error": null,
+    "full_rmse": 0.36871600028254986,
+    "post_disturbance_rmse": 0.4183792831829536,
+    "seed": 94020
+  },
+  {
+    "condition": "feedback_absent_challenge",
+    "error": null,
+    "full_rmse": 0.4744253434295208,
+    "post_disturbance_rmse": 0.5297750962434326,
+    "seed": 94020
+  },
+  {
+    "condition": "pd_challenge",
+    "error": null,
+    "full_rmse": 0.20457685828763797,
+    "post_disturbance_rmse": 0.2116090752564552,
+    "seed": 94020
+  }
+]

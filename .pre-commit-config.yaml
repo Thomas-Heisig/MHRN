@@ -29,22 +29,34 @@ repos:
         language: system
         pass_filenames: false
         types: [python]
+      - id: determinism-artifact-integrity
+        name: verify immutable determinism reproduction artifacts
+        entry: python scripts/verify_determinism_reproduction.py
+        language: system
+        pass_filenames: false
+        always_run: true
+      - id: embodiment-v4-artifact-integrity
+        name: verify immutable embodiment V4 trace archive
+        entry: python scripts/verify_emb001b_unseen_v4.py
+        language: system
+        pass_filenames: false
+        always_run: true
   # Trailing whitespace, EOF newline, merge conflicts
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v5.0.0
     hooks:
       - id: trailing-whitespace
-        exclude: ^(research/(experiments/|preregistrations/|publications/|registry/evidence/|generated/data/)|docs/99-archive/)
+        exclude: ^(research/(reviews/DETERMINISM_REPRODUCTION_20261024/artifacts/|experiments/|preregistrations/|publications/|registry/evidence/|generated/data/)|docs/99-archive/)
         args: [--markdown-linebreak-ext=md]
       - id: end-of-file-fixer
         # Frozen experiment manifests are evidence artifacts and must not be
         # byte-rewritten by an automatic formatting hook.
-        exclude: ^research/(experiments/|preregistrations/|publications/|registry/evidence/|generated/data/|generated/verification/)
+        exclude: ^research/(reviews/DETERMINISM_REPRODUCTION_20261024/artifacts/|experiments/|preregistrations/|publications/|registry/evidence/|generated/data/|generated/verification/)
       - id: check-merge-conflict
       - id: check-yaml
       - id: check-toml
       - id: check-added-large-files
         # Publication and the explicitly listed immutable trace hashes are checked
         # by empirical-data-integrity. All other paths retain the 500 KiB cap.
-        exclude: ^(research/publications/|research/experiments/EXP-EMP-20260910/(024-embodied_timing_v1|027-brian2_single_neuron_v1)/runs\.json\.gz$|research/experiments/EXP-EMP-20260913-A3/(064-embodied_timing_v1|068-brian2_single_neuron_v1)/runs\.json\.gz$)
+        exclude: ^(research/publications/|research/experiments/EXP-EMB001B-UNSEEN-V4-20261024/raw-traces\.zip$|research/experiments/EXP-EMP-20260910/(024-embodied_timing_v1|027-brian2_single_neuron_v1)/runs\.json\.gz$|research/experiments/EXP-EMP-20260913-A3/(064-embodied_timing_v1|068-brian2_single_neuron_v1)/runs\.json\.gz$)
         args: [--maxkb=500]
