@@ -46,8 +46,9 @@ def test_runner_verifier_separate():
 def test_reused_synapse_probe_preserves_calibrated_bytes():
     """Even formatting changes invalidate the strict historical reuse contract."""
     artifact = json.loads(
-        (ROOT / "research/calibrations/CAL-S1-TOPO-REFERENCE-SYNAPSE-R1/result.json")
-        .read_text(encoding="utf-8")
+        (
+            ROOT / "research/calibrations/CAL-S1-TOPO-REFERENCE-SYNAPSE-R1/result.json"
+        ).read_text(encoding="utf-8")
     )
     source = ROOT / "reference/stage1_topology_brian2/synapse_probe.py"
     assert hashlib.sha256(source.read_bytes()).hexdigest() == (

@@ -45,7 +45,7 @@ SCIENTIFIC_PATHS: list[str] = [
 TEST_PATHS: list[str] = ["tests/"]
 _DIGEST_EXCLUDE_FILES: set[str] = {"tests/test_baseline.json"}
 _DIGEST_EXCLUDE_SUFFIXES: tuple[str, ...] = (".pyc", ".pyo")
-_DIGEST_EXCLUDE_DIRS: tuple[str, ...] = ("__pycache__", "static")
+_DIGEST_EXCLUDE_DIRS: tuple[str, ...] = ("__pycache__",)
 
 
 _INSPECTION_CACHE_LOCK = threading.RLock()
@@ -619,7 +619,7 @@ def evaluate_test_baseline(repo_root: Path) -> BaselineEvaluation:
     stale_reason: str | None = "missing_tree_digest"
     if tested_tree_digest is not None and current_tree_digest is not None:
         local_tree_changed = bool(inspection.mismatching_files)
-        stale = tested_tree_digest != current_tree_digest
+        stale = tested_tree_digest != current_tree_digest or local_tree_changed
         if not stale:
             stale_reason = None
         elif inspection.dirty_relevant_paths or inspection.missing_relevant_paths:

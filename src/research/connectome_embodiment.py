@@ -92,7 +92,9 @@ def _simulate(
         len(external_torque_schedule) != ticks
         or not all(math.isfinite(value) for value in external_torque_schedule)
     ):
-        raise ValueError("External torque schedule must contain one finite value per tick")
+        raise ValueError(
+            "External torque schedule must contain one finite value per tick"
+        )
     topology = (
         condition
         if condition

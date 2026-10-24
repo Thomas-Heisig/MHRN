@@ -112,8 +112,6 @@ function renderGateCriteria(containerId, items) {
 }
 
 function renderReleaseTree(releases, current) {
-// Ensure router route for files browse is present for tests
-selectRoute("files", "browse");
   const container = $('release-tree');
   if (!container) return;
   container.innerHTML = '';
@@ -511,7 +509,7 @@ function renderDevelopmentTrack(data, containerId) {
     const isTech = idx === technicalIdx;
     const isSci = idx === scientificIdx;
     const status = stage.status || 'planned';
-    const score = Math.round(Math.max(0, Math.min(1, Number(stage.implementation_score) || 0) * 100);
+    const score = Math.round(Math.max(0, Math.min(1, Number(stage.implementation_score) || 0)) * 100);
     return `
       <button type="button" class="dev-node dev-node-${escapeHtml(status)} ${isTech ? 'is-tech-here' : ''} ${isSci ? 'is-sci-here' : ''}" data-development-stage="${stage.stage}" role="listitem" title="Stufe ${stage.stage}: ${escapeHtml(stage.name)}">
         <span class="dev-node-number">${stage.stage}</span>
