@@ -64,18 +64,14 @@ Aeltere offene Zaehler unten sind zeitgebundene Bestandsaufnahmen; der aktuelle 
 
 MHRN / Multi-Scale Homeostatic Recurrence Network. Publication: Recursive Epistemics / Rekursive Epistemik. [Migration and compatibility](../../NAMING.md). Historical scientific artifacts remain unchanged.
 
-# MHRN Current TODO
+## MHRN Current TODO
 
 ## 2026-10-17 Alpha.8 Release
 
 - [x] Restore green `develop` CI and merge integration PR #282 at `343d1634`.
-- [x] Prepare `release/v0.6.0-alpha.8` with version `0.6.0a8`, release notes
-	and release records.
-- [x] Merge release PR #283 to `main` (`466ae6e8`), verify post-merge CI run
-	`39035891664`, tag the exact source freeze and publish the GitHub
-	pre-release.
-- [x] Verify Zenodo record `23437187` / DOI `10.5281/zenodo.23437187` and
-	record the publication state.
+- [x] Prepare `release/v0.6.0-alpha.8` with version `0.6.0a8`, release notesand release records.
+- [x] Merge release PR #283 to `main` (`466ae6e8`), verify post-merge CI run`39035891664`, tag the exact source freeze and publish the GitHub pre-release.
+- [x] Verify Zenodo record `23437187` / DOI `10.5281/zenodo.23437187` and record the publication state.
 
 ## 2026-10-17 Manuscript-review follow-up
 
@@ -97,18 +93,10 @@ MHRN / Multi-Scale Homeostatic Recurrence Network. Publication: Recursive Episte
 
 ## 2026-10-04 Develop synchronization and CI
 
-- [x] Released `main@4a105137` into `develop` by merge commit `97fa42db`;
-	preserve the four develop-only commits without rewriting history.
-- [x] Reduce duplicate full-suite CI lanes to Python 3.13 while preserving the
-	separate security, type, contract, browser, build and Docker gates. Package
-	metadata remains `requires-python >=3.11`, so 3.11/3.12 are no longer
-	exercised in the CI matrix.
-- [x] Publish the Pages asset-path fix from `main` with review-portal run
-	`37214631300`; the live root, `review.css`, `app.js` and `admin.html` return
-	HTTP 200. The portal remains static/export-only.
-- [x] Restore the develop lint gate by formatting the Stage-4 integration
-	helper and correcting the stale stability-helper name in the benchmark test;
-	focused tests pass without runtime behavior changes.
+- [x] Released `main@4a105137` into `develop` by merge commit `97fa42db`;preserve the four develop-only commits without rewriting history.
+- [x] Reduce duplicate full-suite CI lanes to Python 3.13 while preserving thseparate security, type, contract, browser, build and Docker gates. Package	metadata remains `requires-python >=3.11`, so 3.11/3.12 are no longer exercised in the CI matrix.
+- [x] Publish the Pages asset-path fix from `main` with review-portal run`37214631300`; the live root, `review.css`, `app.js` and `admin.html` return	HTTP 200. The portal remains static/export-only.
+- [x] Restore the develop lint gate by formatting the Stage-4 integrationhelper and correcting the stale stability-helper name in the benchmark test;	focused tests pass without runtime behavior changes.
 
 ## 2026-10-02 CUDA-/Parity-UI-Provenienz
 
@@ -238,12 +226,10 @@ MHRN / Multi-Scale Homeostatic Recurrence Network. Publication: Recursive Episte
 - [x] Add deterministic Stage-4 tests and generated engineering verification.
 - [ ] Scientific EVID promotion, independent review and dynamically materialized large-scale multimodal benchmarks remain separate research work.
 
-
 **Canonical TODO for `main`**  
 **Baseline:** `mhrn-core 0.6.0a8`
 **Updated:** 2026-09-13
 **Current release-blocking backlog:** **0**
-
 
 ## 2026-09-13 Stage 2 / Stage 3 development boundary
 
