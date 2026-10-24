@@ -830,7 +830,7 @@ Reference: [MHRN simulator capability gaps](MHRN_SIMULATOR_CAPABILITY_GAPS.md).
 - [x] Freeze `PREREG-CPU-PAR-001` with seeds 910001..910020.
 - [ ] Bind an exact post-merge source/config digest and separately authorize execution of `cpu_self_parity_v1`.
 - [ ] Perform the physical RTX-3060 Wave-5B acceptance separately; it remains Engineering Verification and is not substituted by this CPU study.
-- [ ] Resolve all five Wave-7 learning divergences before freezing a common CPU/CUDA learning contract.
+- [x] Resolve all five Wave-7 learning divergences before freezing a common CPU/CUDA learning contract.
 
 ## 2026-10-01 Sequential conceptual audits and review
 
