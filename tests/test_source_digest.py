@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import hashlib
 import json
 import subprocess
 from pathlib import Path
@@ -33,6 +34,17 @@ def test_lf_and_crlf_text_have_identical_scientific_digest(tmp_path: Path) -> No
     lf_digest = compute_source_tree_digest(tmp_path, ["src/"])
     source.write_bytes(b"one\r\ntwo\r\n")
     assert compute_source_tree_digest(tmp_path, ["src/"]) == lf_digest
+
+
+def test_source_digest_uses_case_sensitive_portable_path_order(tmp_path: Path) -> None:
+    source = tmp_path / "src"
+    source.mkdir()
+    for name in ("b.py", "Z.py", "A.py"):
+        (source / name).write_bytes(b"value = 1\n")
+    expected = hashlib.sha256()
+    for name in ("A.py", "Z.py", "b.py"):
+        expected.update(f"src/{name}".encode() + b"\0value = 1\n\0")
+    assert compute_source_tree_digest(tmp_path, ["src/"]) == expected.hexdigest()
 
 
 def test_real_text_change_changes_digest(tmp_path: Path) -> None:

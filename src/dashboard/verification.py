@@ -91,7 +91,10 @@ def _filesystem_digest_paths(repo_root: Path, paths: list[str]) -> list[str]:
         elif target.is_dir():
             result.extend(
                 path.relative_to(repo_root).as_posix()
-                for path in sorted(target.rglob("*"))
+                for path in sorted(
+                    target.rglob("*"),
+                    key=lambda item: item.relative_to(repo_root).parts,
+                )
                 if _is_digest_file(path, repo_root)
             )
     return result
