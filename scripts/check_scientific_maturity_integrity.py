@@ -90,6 +90,25 @@ def main() -> int:
                 isinstance(criteria, list) and bool(criteria),
                 f"stage {stage_no} missing scientific criteria",
             )
+            if isinstance(criteria, list) and isinstance(weights, dict):
+                ids = [c.get("id") for c in criteria if isinstance(c, dict)]
+                require(
+                    len(ids) == len(set(ids)) and set(ids) == set(weights),
+                    f"stage {stage_no} must contain each weighted criterion once",
+                )
+                scale = {"met": 1.0, "partial": 0.5, "open": 0.0}
+                valid = all(
+                    isinstance(c, dict) and c.get("status") in scale for c in criteria
+                )
+                require(valid, f"stage {stage_no} has an unsupported criterion status")
+                if valid and set(ids) == set(weights):
+                    expected = sum(
+                        float(weights[c["id"]]) * scale[c["status"]] for c in criteria
+                    )
+                    require(
+                        abs(score - expected) < 1e-9,
+                        f"stage {stage_no} score does not match weighted criteria",
+                    )
 
         stage6 = next(
             (

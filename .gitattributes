@@ -1,6 +1,7 @@
 # Keep source and documentation deterministic across Windows/Linux checkouts.
 * text=auto
 research/reviews/DETERMINISM_REPRODUCTION_20261024/artifacts/pip-freeze.txt -text
+research/experiments/EXP-EMB001B-UNSEEN-V4-20261024/pip-freeze.txt -text
 *.py text eol=lf
 *.toml text eol=lf
 *.yaml text eol=lf

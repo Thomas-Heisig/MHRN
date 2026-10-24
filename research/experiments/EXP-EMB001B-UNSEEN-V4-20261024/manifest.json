@@ -1,0 +1,37 @@
+{
+  "experiment_id": "EXP-EMB001B-UNSEEN-V4-20261024",
+  "experiment_status": "completed",
+  "research_questions": [
+    "RQ-EMB-001"
+  ],
+  "hypotheses": [
+    "H-EMB-001-B"
+  ],
+  "mode": "PROSPECTIVE_EXPLORATORY_CAUSAL_DIAGNOSTIC",
+  "git": {
+    "commit": "fdfd0568f096b44e91ac16cf57299fcc823fca32",
+    "dirty": false
+  },
+  "validity": {
+    "valid": true,
+    "runtime_error_count": 0,
+    "fatal_error_count": 0
+  },
+  "scientific_evidence": false,
+  "automatic_evidence_promotion": false,
+  "human_review_status": "PENDING",
+  "independent_replication": false,
+  "results": {
+    "run_count": 120,
+    "paired_seeds": 20,
+    "ticks_per_run": 1000
+  },
+  "artifacts": {
+    "freeze": "freeze.json",
+    "data": "raw-traces.zip",
+    "statistics": "result.json",
+    "report": "report.md",
+    "checksums": "sha256sums.json",
+    "archive_index": "archive-index.json"
+  }
+}

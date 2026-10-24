@@ -1,0 +1,12 @@
+{
+  "experiment_id": "EXP-EMB001B-UNSEEN-V4-20261024",
+  "status": "PENDING",
+  "reviewer": null,
+  "required_scope": [
+    "adequacy of disturbance-unseen donor intervention",
+    "fixed-controller attribution boundary",
+    "pre-execution source/protocol bindings",
+    "raw traces and integrity checks",
+    "exploratory scope; no automatic EVID promotion"
+  ]
+}

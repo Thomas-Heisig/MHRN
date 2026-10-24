@@ -88,16 +88,27 @@ MHRN / Multi-Scale Homeostatic Recurrence Network. Publication: Recursive Episte
 - [ ] Before executing `OBJ-MEM-COMPRESSION-001`, freeze the complete 10%
   budget accounting, matched-budget baselines, acceptable performance loss
   and the decision rule for retaining or de-centering SemanticMemory.
-- [ ] Complete `H-EMB-001-B` with a controlled closed-loop/yoked comparison
+  R1 design completed 2026-10-24; full freeze remains blocked on executable
+  accounting and scientific approval: [review-ready protocol](../../research/preregistrations/PREREG-MEM-COMPRESSION-R1.md).
+- [x] Complete `H-EMB-001-B` with a controlled closed-loop/yoked comparison
   whose disturbance and control logic test the claimed causal difference.
-- [ ] For the planned 5D ablation, freeze matched neuron/edge budgets,
+  Completed exploratory V4: 120 runs, 20 paired seeds;
+  [report and limits](../../research/experiments/EXP-EMB001B-UNSEEN-V4-20261024/report.md).
+  Human scientific review/EVID promotion remain pending.
+- [x] For the planned 5D ablation, freeze matched neuron/edge budgets,
   topology, training and hyperparameter-search effort, resource limits and
   primary outcome before execution.
+  [R2 design freeze](../../research/preregistrations/PREREG-5D-MATCHED-R2.md)
+  completed 2026-10-24; executable-runner freeze/authorization remain pending.
 - [ ] Complete an independent prior-art review of the research-provenance,
   preregistration, executable-publication and reflexive-methodology claims;
   state the limits of any novelty claim.
-- [ ] Explain the criteria, weighting, mandatory gates and limits of published
+  [Source-based review prepared](../../research/reviews/PRIOR_ART_REVIEW_20261024.md);
+  independence requirement remains open until external assessment.
+- [x] Explain the criteria, weighting, mandatory gates and limits of published
   scientific-maturity percentages; do not present them as probabilities.
+  [Method and arithmetic correction](../05-quality/SCIENTIFIC_MATURITY_METHOD.md),
+  2026-10-24; no evidence-status promotion.
 
 ## 2026-10-04 Develop synchronization and CI
 
