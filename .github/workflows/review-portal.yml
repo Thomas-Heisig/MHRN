@@ -33,7 +33,7 @@ jobs:
           python -m review_portal.build --check
           python -m compileall -q review_portal
       - name: API, consent, privacy and statistics tests
-        run: python -m pytest review_portal/tests/test_portal.py -q
+        run: python -m pytest review_portal/tests/test_portal.py review_portal/tests/test_static_export.py -q
       - name: JavaScript contract tests
         run: |
           node --check src/dashboard/static/review/app.js
@@ -43,6 +43,8 @@ jobs:
         run: python -m playwright install --with-deps chromium
       - name: Browser checks on desktop and mobile
         run: python -m review_portal.tests.browser_smoke
+      - name: Static export under GitHub Pages project subpath
+        run: python -m review_portal.tests.browser_static
       - name: Upload synthetic UI screenshots
         if: always()
         uses: actions/upload-artifact@v6
@@ -68,9 +70,11 @@ jobs:
     steps:
       - uses: actions/checkout@v7
       - uses: actions/configure-pages@v6
+      - name: Build collection-disabled export package
+        run: python -m review_portal.build_static --output "${{ runner.temp }}/review-pages"
       - uses: actions/upload-pages-artifact@v5
         with:
-          path: src/dashboard/static/review
+          path: ${{ runner.temp }}/review-pages
       - name: Publish questionnaire ONLY, never response data or the runtime
         id: deployment
         uses: actions/deploy-pages@v5

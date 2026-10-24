@@ -74,3 +74,9 @@ Remain Playground/reference-specific unless separately promoted:
 8. Only then evaluate scaling, multi-GPU and optional external/neuromorphic adapters.
 
 See also `docs/08-roadmap/MHRN_SIMULATOR_CAPABILITY_GAPS.md`.
+
+## Integrated resident feedback history (2026-10-24)
+
+The bounded Builder PAN path now retains feedback history across dynamic delays
+and source transforms. See [feedback history](CUDA_PAN_FEEDBACK_HISTORY.md).
+This is an engineering extension, not full canonical GPU/PAN or EVID promotion.

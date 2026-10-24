@@ -12,10 +12,10 @@
 ## 2026-09-19 Experiment archive follow-up
 
 - [x] Einzelarchivierung idempotent machen.
-- [x] Metadata-only Archivierung und Wiederherstellung für Experimentreihen ergänzen.
-- [x] Kanonische Experiment- und Workflow-Artefakte unverändert am Platz lassen.
+- [x] Metadata-only Archivierung und Wiederherstellung fÃ¼r Experimentreihen ergÃ¤nzen.
+- [x] Kanonische Experiment- und Workflow-Artefakte unverÃ¤ndert am Platz lassen.
 - [x] Teilweise archivierte Reihen im Archiv mit ihrem Kinderstatus ausweisen.
-- [x] Archivfrontend standardmäßig ausblenden und Reihen/Einzelexperimente gemeinsam durchsuchen.
+- [x] Archivfrontend standardmÃ¤ÃŸig ausblenden und Reihen/Einzelexperimente gemeinsam durchsuchen.
 
 ## 2026-09-19 Public identity linking
 
@@ -56,11 +56,11 @@
 
 - [x] Move Open Science portals into a dedicated publication sub-tab.
 - [x] Keep the publication reader focused on manuscript content and attachments.
-- [x] Make „Einfach erklärt“ the first publication tab and keep the manuscript as a separate tab.
+- [x] Make â€žEinfach erklÃ¤rtâ€œ the first publication tab and keep the manuscript as a separate tab.
 
 Aeltere offene Zaehler unten sind zeitgebundene Bestandsaufnahmen; der aktuelle Registerabgleich steht in research/generated/EXPERIMENT_COVERAGE_ALPHA3.json.
 
-## Naming update — 2026-09-08
+## Naming update â€” 2026-09-08
 
 MHRN / Multi-Scale Homeostatic Recurrence Network. Publication: Recursive Epistemics / Rekursive Epistemik. [Migration and compatibility](../../NAMING.md). Historical scientific artifacts remain unchanged.
 
@@ -113,25 +113,25 @@ MHRN / Multi-Scale Homeostatic Recurrence Network. Publication: Recursive Episte
 
 ## 2026-10-02 CUDA-/Parity-UI-Provenienz
 
-- [x] Laufstatus für CUDA-Smoke, RNG, rekurrente Parität, Plastizität,
+- [x] Laufstatus fÃ¼r CUDA-Smoke, RNG, rekurrente ParitÃ¤t, PlastizitÃ¤t,
 Builder-D3, Cue-Kontrollen und Transfer sichtbar machen.
 - [x] Start/Endzeit, Laufzeit und servergemeldeten HEAD je Request anzeigen;
-fehlende Hardware-Identität und fehlgeschlagene Persistenz bleiben explizit.
-- [x] CUDA-1.3, CUDA-1.4 und CUDA-1.5 in Ergebnisflächen trennen und auf die
-vorhandene Wave-/FE-3-/Hardware-/PAN-Governance-Übersicht verweisen.
-- [x] CUDA-/Parity-, Cue-Control- und Transfer-Läufe als atomare JSON-Receipts
+fehlende Hardware-IdentitÃ¤t und fehlgeschlagene Persistenz bleiben explizit.
+- [x] CUDA-1.3, CUDA-1.4 und CUDA-1.5 in ErgebnisflÃ¤chen trennen und auf die
+vorhandene Wave-/FE-3-/Hardware-/PAN-Governance-Ãœbersicht verweisen.
+- [x] CUDA-/Parity-, Cue-Control- und Transfer-LÃ¤ufe als atomare JSON-Receipts
 unter dem gitignorierten `artifacts/cuda_diagnostics/` speichern; Start/Ende,
-Outcome, Request-Hash, HEAD, Source-Working-Tree-Digest samt Scope, geänderte
-Sourcepfade und ein SHA-256-Prüfhash werden aufgezeichnet. Ein ID-validierter
-GET-Link ist im Run-Status verfügbar, auch bei fehlgeschlagenen Runs.
-- [x] Hardware soweit verfügbar exakt zuordnen (GPU-Modell, PCI-Bus-ID,
-Treiber und gehashte UUID); nicht auflösbare Identität wird als unavailable
+Outcome, Request-Hash, HEAD, Source-Working-Tree-Digest samt Scope, geÃ¤nderte
+Sourcepfade und ein SHA-256-PrÃ¼fhash werden aufgezeichnet. Ein ID-validierter
+GET-Link ist im Run-Status verfÃ¼gbar, auch bei fehlgeschlagenen Runs.
+- [x] Hardware soweit verfÃ¼gbar exakt zuordnen (GPU-Modell, PCI-Bus-ID,
+Treiber und gehashte UUID); nicht auflÃ¶sbare IdentitÃ¤t wird als unavailable
 markiert und nie als Hardware-Akzeptanz gewertet.
-- [ ] Echten Fortschritt und Abbruch nur dann anbieten, wenn die Backendläufe
-dafür sichere Checkpoints/Abbruchsemantik bereitstellen.
+- [ ] Echten Fortschritt und Abbruch nur dann anbieten, wenn die BackendlÃ¤ufe
+dafÃ¼r sichere Checkpoints/Abbruchsemantik bereitstellen.
 - Audit 2026-10-04: Die CUDA-Rekurrenz startet den gesamten Tick-Horizont als
 einen kooperativen Kernel und synchronisiert erst danach; Builder-, Cue- und
-Transferdiagnosen rufen blockierende Läufe ohne Cancel-Token oder Resume-
+Transferdiagnosen rufen blockierende LÃ¤ufe ohne Cancel-Token oder Resume-
 Checkpoint auf. Die UI zeigt nur Request-Zustand/Laufzeit, keinen Prozent-
 Fortschritt oder Abbruch. Nicht anbieten, bis Backend-Grenzen und Cleanup-
 Tests sichere Unterbrechung belegen.
@@ -139,66 +139,66 @@ Tests sichere Unterbrechung belegen.
 ## 2026-09-27 Alpha.7 Release
 
 - [x] Stage-0- und Stage-1-Maturity mit dem kanonischen Scientific-State abgleichen.
-- [x] `EVID-2026-18/19/20` und ihre Claim-Grenzen in der Release-Dokumentation berücksichtigen.
+- [x] `EVID-2026-18/19/20` und ihre Claim-Grenzen in der Release-Dokumentation berÃ¼cksichtigen.
 - [x] Brian2-R2-Referenzpfad, CeCILL-2.1-Hinweis und Fachzitat dokumentieren.
 - [x] PAN/Closed-Loop/Live-Monitor und CUDA/PTX-Preflight als Playground-only abgrenzen.
 - [x] README, Changelog, Roadmap und `releases/current.json` auf Alpha.7 synchronisieren.
-- [x] Integrations-PR #269 auf `main` zusammenführen (Commit `4a6eb988`); Stage-3-Benchmark und Publikationssynthese sind integriert, ohne wissenschaftliche Statuspromotion.
-- [x] Release-PR #270 `release/v0.6.0-alpha.7 -> main` mit allen erforderlichen Checks grün zusammenführen.
-- [x] Post-Merge-CI für Source-Freeze `8a0bb09530751df40da1ffa30f9ee1640c5370a7` vollständig grün abschließen (Run #37210840569).
-- [x] Tag `v0.6.0-alpha.7` und GitHub-Pre-Release am exakten Source-Freeze veröffentlichen.
-- [x] Zenodo-Archiv/DOI `10.5281/zenodo.23138847` öffentlich verifizieren und Hugging-Face-Sync am Release-Commit bestätigen.
-- [ ] OSF/ORCID und institutionelle Empfänger nur über konfigurierte bzw. autorisierte Aktualisierungswege informieren; derzeit ist kein institutioneller Endpoint registriert.
-- [x] Veralteten Remote-Branch `playground` nach bestätigter vollständiger Integration löschen; der Remote-Ref war bereits gelöscht und die lokale Tracking-Referenz wurde am 2026-10-01 gepruned.
+- [x] Integrations-PR #269 auf `main` zusammenfÃ¼hren (Commit `4a6eb988`); Stage-3-Benchmark und Publikationssynthese sind integriert, ohne wissenschaftliche Statuspromotion.
+- [x] Release-PR #270 `release/v0.6.0-alpha.7 -> main` mit allen erforderlichen Checks grÃ¼n zusammenfÃ¼hren.
+- [x] Post-Merge-CI fÃ¼r Source-Freeze `8a0bb09530751df40da1ffa30f9ee1640c5370a7` vollstÃ¤ndig grÃ¼n abschlieÃŸen (Run #37210840569).
+- [x] Tag `v0.6.0-alpha.7` und GitHub-Pre-Release am exakten Source-Freeze verÃ¶ffentlichen.
+- [x] Zenodo-Archiv/DOI `10.5281/zenodo.23138847` Ã¶ffentlich verifizieren und Hugging-Face-Sync am Release-Commit bestÃ¤tigen.
+- [ ] OSF/ORCID und institutionelle EmpfÃ¤nger nur Ã¼ber konfigurierte bzw. autorisierte Aktualisierungswege informieren; derzeit ist kein institutioneller Endpoint registriert.
+- [x] Veralteten Remote-Branch `playground` nach bestÃ¤tigter vollstÃ¤ndiger Integration lÃ¶schen; der Remote-Ref war bereits gelÃ¶scht und die lokale Tracking-Referenz wurde am 2026-10-01 gepruned.
 
 ## 2026-09-29 Post-hoc Experimentauswertung
 
 - [x] Nacherfassung von Antworten und wissenschaftlichen Auswertungen je
-Experiment ergänzen.
-- [x] Beobachtungen, Limitationen und nächste wissenschaftliche Schritte
+Experiment ergÃ¤nzen.
+- [x] Beobachtungen, Limitationen und nÃ¤chste wissenschaftliche Schritte
 dokumentierbar machen.
-- [x] Markdown-/JSON-Artefakte im Experimentmanifest verknüpfen.
-- [x] Auswertung direkt im zentralen File Viewer öffnen.
+- [x] Markdown-/JSON-Artefakte im Experimentmanifest verknÃ¼pfen.
+- [x] Auswertung direkt im zentralen File Viewer Ã¶ffnen.
 - [x] Interpretation von Human Review und EVID getrennt halten.
-- [x] Ausführbare und nur dokumentierte Playground-Bausteine unterscheiden.
+- [x] AusfÃ¼hrbare und nur dokumentierte Playground-Bausteine unterscheiden.
 - [x] Inkompatible experimentelle Topologien in der Auswahl deaktivieren.
 
 ## 2026-09-27 Release-Statusmarker
 
-- [x] Fehlende Bausteinbeschreibungen im Playground-Katalog ergänzen.
-- [x] Ausführliche Hover- und Popup-Erklärungen für Katalogeinträge anbieten.
+- [x] Fehlende Bausteinbeschreibungen im Playground-Katalog ergÃ¤nzen.
+- [x] AusfÃ¼hrliche Hover- und Popup-ErklÃ¤rungen fÃ¼r KatalogeintrÃ¤ge anbieten.
 - [x] Bausteine an den globalen EN/DE-Sprachselector anbinden.
 - [x] Repo- und Playground-Komponenten im Bausteine-Tab sichtbar machen.
-- [x] Hochauflösende Live-Zoomansichten ohne unscharfe Momentaufnahmen ergänzen.
-- [x] Live-Aktualisierung und Session-Steuerung im vergrößerten View anbieten.
+- [x] HochauflÃ¶sende Live-Zoomansichten ohne unscharfe Momentaufnahmen ergÃ¤nzen.
+- [x] Live-Aktualisierung und Session-Steuerung im vergrÃ¶ÃŸerten View anbieten.
 - [x] Skalierbare Live-Update-Faktoren und komprimierte Topologie-Payloads
-ergänzen, ohne überlappende Ausführungen zu erzeugen.
+ergÃ¤nzen, ohne Ã¼berlappende AusfÃ¼hrungen zu erzeugen.
 
-- [x] Statusmarker in den Release-Ansichten für Entwicklung und Wissenschaft
-ergänzen, ohne die kanonischen Statusbezeichnungen zu ändern.
-- [x] Browserabdeckung für `met`, `partial` und die Entwicklungsdetailmarker
-ergänzen.
+- [x] Statusmarker in den Release-Ansichten fÃ¼r Entwicklung und Wissenschaft
+ergÃ¤nzen, ohne die kanonischen Statusbezeichnungen zu Ã¤ndern.
+- [x] Browserabdeckung fÃ¼r `met`, `partial` und die Entwicklungsdetailmarker
+ergÃ¤nzen.
 - [x] Wissenschaftliche Kriterienkarten vereinheitlichen und Datei-Quellen
-direkt im Popup-File-Viewer öffnen.
+direkt im Popup-File-Viewer Ã¶ffnen.
 - [x] Claims, EVID, Experimente und Hypothesen je wissenschaftlicher Stufe
-direkt zugänglich machen.
-- [x] Lange wissenschaftliche Stufennamen ohne Kartenüberlauf darstellen.
+direkt zugÃ¤nglich machen.
+- [x] Lange wissenschaftliche Stufennamen ohne KartenÃ¼berlauf darstellen.
 - [x] Playground-Topologie, Erregbarkeit, Startgewicht und Lernparameter auf
 den aktualisierten Referenzstand setzen.
-- [x] Playground-Oberfläche mit klarer Kartenhierarchie und responsivem Raster
-überarbeiten.
-- [x] Izhikevich- und PAN-Presets mit lokaler Speicherung im Builder ergänzen.
-- [x] Presetkatalog A–G inklusive Gewichts-Stabilisierung und Sanity-Checks
-als auswählbare Playground-Konfigurationen ergänzen.
-- [x] Interaktives Live-Monitor-Popup für PAN-Session und Auto-Start ergänzen.
-- [x] Posture-Score, Reward-Trigger, getrennte Kanäle und Sandbox-Episodenreset
-als opt-in Playground-Funktion ergänzen.
-- [x] Temporäre Live-Sessions gesammelt löschbar machen.
-- [x] Eigenen Release-Tab für die wissenschaftliche Gesamtarbeit mit elf Teilen
-und File-Viewer-Zugriff ergänzen.
+- [x] Playground-OberflÃ¤che mit klarer Kartenhierarchie und responsivem Raster
+Ã¼berarbeiten.
+- [x] Izhikevich- und PAN-Presets mit lokaler Speicherung im Builder ergÃ¤nzen.
+- [x] Presetkatalog Aâ€“G inklusive Gewichts-Stabilisierung und Sanity-Checks
+als auswÃ¤hlbare Playground-Konfigurationen ergÃ¤nzen.
+- [x] Interaktives Live-Monitor-Popup fÃ¼r PAN-Session und Auto-Start ergÃ¤nzen.
+- [x] Posture-Score, Reward-Trigger, getrennte KanÃ¤le und Sandbox-Episodenreset
+als opt-in Playground-Funktion ergÃ¤nzen.
+- [x] TemporÃ¤re Live-Sessions gesammelt lÃ¶schbar machen.
+- [x] Eigenen Release-Tab fÃ¼r die wissenschaftliche Gesamtarbeit mit elf Teilen
+und File-Viewer-Zugriff ergÃ¤nzen.
 - [x] Prozent- und `met`/`partial`/`open`-Status je Manuskriptteil darstellen.
 - [x] Gesamtarbeits-Tab strukturell an Scientific Maturity angleichen.
-- [x] Root-Referenz `INDEPENDENT_REPLICATION.md` sicher im File Viewer öffnen.
+- [x] Root-Referenz `INDEPENDENT_REPLICATION.md` sicher im File Viewer Ã¶ffnen.
 
 ## 2026-09-16 Release navigation
 
@@ -224,7 +224,7 @@ as independent Plastic execution; no DATA/EVID is promoted.
 
 ## 2026-09-16 Experiment archive results viewer
 
-- [x] Add result-viewing buttons (Report, Summary, Statistics, Raw Data) on every experiment library item — active and archived.
+- [x] Add result-viewing buttons (Report, Summary, Statistics, Raw Data) on every experiment library item â€” active and archived.
 - [x] Open past experiment artifacts in the file viewer via the existing `_openArtifact` pipeline.
 - [x] Install popup artifact-switch buttons in the file viewer header for past experiments.
 - [x] Expand the experiment detail view to group available artifacts, explicit human-review state and provenance digests in one panel.
@@ -349,7 +349,7 @@ version the frontend assets so stale browser bundles cannot hide the new UI.
 - [x] Link sidebar menu 07 to the runtime Parameter Inspector and keep it
 active while the inspector is open.
 - [x] Remove all redundant dashboard elements: experience-status-cluster,
-⌘K button, header-context span, workspace headers, utility bars, ribbons,
+âŒ˜K button, header-context span, workspace headers, utility bars, ribbons,
 welcome panel, overview-command-bar, overview-actions, overview-status-rail.
 - [x] Fix sidebar navigation: `nav` click handler was matching
 `data-primary-area` on `document.body` via `closest()`, causing all
@@ -460,7 +460,7 @@ This file contains **active release-blocking work only**. Long-horizon engineeri
 - [x] Rewrite `workspace-router.js` with a central `setRouteElementVisibility()` function that consistently sets `hidden`, `aria-hidden`, `inert` and CSS classes.
 - [x] Add `reconcileRouteVisibility()` as the single authority for panel visibility after every navigation, eliminating content leakage between subtabs.
 - [x] Fix Science tab isolation: Observatory, Experiments, Network, Dynamics, Inspect,Data, Files and Registry subtabs now exclusively show their own panels.
-- [x] Fix `focus` action: no longer just `scrollIntoView()` — now hides all other content in the workspace and shows only the targeted element(s).
+- [x] Fix `focus` action: no longer just `scrollIntoView()` â€” now hides all other content in the workspace and shows only the targeted element(s).
 - [x] Fix `focusOnly` action: properly isolates deeply nested panels, not just direct children.
 - [x] Add `data-mhrn-persistent` attribute support for elements that must remain visibl across routes (e.g. context navigation).
 - [x] Update `MutationObserver` to re-apply route visibility after dynamically loaded modules appear in the DOM, with debounce guard against infinite loops.
@@ -469,7 +469,7 @@ This file contains **active release-blocking work only**. Long-horizon engineeri
 - [x] Add 18 new automated tests covering: central visibility function, reconciliation,all route action handlers, valid workspace references, CSS hide rules, MutationObserver integration, old architecture removal, and route-specific ownership.
 - [x] Verify: 24 workspace-architecture tests pass, 1130/1156 full suite pass(26 pre-existing failures from missing CSS files, sklearn dependency, etc.).
 
-## Current development milestone — v0.6 Scaling & Deterministic Performance
+## Current development milestone â€” v0.6 Scaling & Deterministic Performance
 
 The reviewed v0.5.0a7 release gate is closed. Version `0.6.0a1` opens the development line. The engineering acceptance contract is documented in [V06_ACCEPTANCE.md](V06_ACCEPTANCE.md). The final release-record step deliberately remains open until the exact source-freeze CI and release-readiness snapshot are green.
 
@@ -488,7 +488,7 @@ The reviewed v0.5.0a7 release gate is closed. Version `0.6.0a1` opens the develo
 
 - [x] Replace move-based experiment archiving with a non-destructive metadata-only work-view index; canonical experiment paths remain stable.
 - [x] Preserve one-time restore compatibility for legacy archives that were physically moved by older dashboard versions.
-- [x] Split Research into Planen & Ausführen, Läufe & Reihen, Reviews, and Dateien & Analyse work views.
+- [x] Split Research into Planen & AusfÃ¼hren, LÃ¤ufe & Reihen, Reviews, and Dateien & Analyse work views.
 - [x] Extend shared panel state controls to Research workspace surfaces so working areas can be minimized, restored and maximized.
 - [x] Keep Review/AIRR handling separate from automatic EVID promotion.
 
@@ -775,7 +775,7 @@ Reference: [MHRN simulator capability gaps](MHRN_SIMULATOR_CAPABILITY_GAPS.md).
 - [ ] Keep structural Growth/Pruning/Apoptosis behind the separate
   Proposal/Approval/Journal barrier contract.
 
-## Wave 6 / Wave 7 contract gates — 2026-10-01
+## Wave 6 / Wave 7 contract gates â€” 2026-10-01
 
 ### Wave 6
 
