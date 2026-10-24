@@ -1,4 +1,4 @@
-## Alpha.3 - wissenschaftlicher Abgleich, 2026-09-13
+# Alpha.3 - wissenschaftlicher Abgleich, 2026-09-13
 
 - [x] Die registrierte maschinelle Kampagne ausfuehren und alle Receipts/Negativbefunde bewahren.
 - [x] Vollstaendige Publikationsfassung 1.5 und eigenstaendige Forschungsarbeit erzeugen.
@@ -22,9 +22,7 @@
 - [x] Public ORCID authorship link in project, citation and provenance metadata.
 - [x] Keep private ORCID contact data out of the repository.
 - [x] Add GitHub-to-Zenodo release metadata with the public ORCID creator link.
-- [x] Add the verified Zenodo Alpha.6 record URL, version DOI and concept DOI:
-	<https://zenodo.org/records/22860683>, `10.5281/zenodo.22860683`,
-	`10.5281/zenodo.22860682`. Alpha.7 and publication 1.8 remain separate.
+- [x] Add the verified Zenodo Alpha.6 record URL, version DOI and concept DOI:<https://zenodo.org/records/22860683>, `10.5281/zenodo.22860683`,`10.5281/zenodo.22860682`. Alpha.7 and publication 1.8 remain separate.
 - [x] Link the public OSF project as a research/provenance resource.
 
 ## 2026-09-20 Seed DATA documentation
@@ -66,18 +64,14 @@ Aeltere offene Zaehler unten sind zeitgebundene Bestandsaufnahmen; der aktuelle 
 
 MHRN / Multi-Scale Homeostatic Recurrence Network. Publication: Recursive Epistemics / Rekursive Epistemik. [Migration and compatibility](../../NAMING.md). Historical scientific artifacts remain unchanged.
 
-# MHRN Current TODO
+## MHRN Current TODO
 
 ## 2026-10-17 Alpha.8 Release
 
 - [x] Restore green `develop` CI and merge integration PR #282 at `343d1634`.
-- [x] Prepare `release/v0.6.0-alpha.8` with version `0.6.0a8`, release notes
-	and release records.
-- [x] Merge release PR #283 to `main` (`466ae6e8`), verify post-merge CI run
-	`39035891664`, tag the exact source freeze and publish the GitHub
-	pre-release.
-- [x] Verify Zenodo record `23437187` / DOI `10.5281/zenodo.23437187` and
-	record the publication state.
+- [x] Prepare `release/v0.6.0-alpha.8` with version `0.6.0a8`, release notesand release records.
+- [x] Merge release PR #283 to `main` (`466ae6e8`), verify post-merge CI run`39035891664`, tag the exact source freeze and publish the GitHub pre-release.
+- [x] Verify Zenodo record `23437187` / DOI `10.5281/zenodo.23437187` and record the publication state.
 
 ## 2026-10-17 Manuscript-review follow-up
 
@@ -112,43 +106,35 @@ MHRN / Multi-Scale Homeostatic Recurrence Network. Publication: Recursive Episte
 
 ## 2026-10-04 Develop synchronization and CI
 
-- [x] Released `main@4a105137` into `develop` by merge commit `97fa42db`;
-	preserve the four develop-only commits without rewriting history.
-- [x] Reduce duplicate full-suite CI lanes to Python 3.13 while preserving the
-	separate security, type, contract, browser, build and Docker gates. Package
-	metadata remains `requires-python >=3.11`, so 3.11/3.12 are no longer
-	exercised in the CI matrix.
-- [x] Publish the Pages asset-path fix from `main` with review-portal run
-	`37214631300`; the live root, `review.css`, `app.js` and `admin.html` return
-	HTTP 200. The portal remains static/export-only.
-- [x] Restore the develop lint gate by formatting the Stage-4 integration
-	helper and correcting the stale stability-helper name in the benchmark test;
-	focused tests pass without runtime behavior changes.
+- [x] Released `main@4a105137` into `develop` by merge commit `97fa42db`;preserve the four develop-only commits without rewriting history.
+- [x] Reduce duplicate full-suite CI lanes to Python 3.13 while preserving thseparate security, type, contract, browser, build and Docker gates. Package metadata remains `requires-python >=3.11`, so 3.11/3.12 are no longer exercised in the CI matrix.
+- [x] Publish the Pages asset-path fix from `main` with review-portal run`37214631300`; the live root, `review.css`, `app.js` and `admin.html` return HTTP 200. The portal remains static/export-only.
+- [x] Restore the develop lint gate by formatting the Stage-4 integrationhelper and correcting the stale stability-helper name in the benchmark test; focused tests pass without runtime behavior changes.
 
 ## 2026-10-02 CUDA-/Parity-UI-Provenienz
 
 - [x] Laufstatus für CUDA-Smoke, RNG, rekurrente Parität, Plastizität,
-	Builder-D3, Cue-Kontrollen und Transfer sichtbar machen.
+Builder-D3, Cue-Kontrollen und Transfer sichtbar machen.
 - [x] Start/Endzeit, Laufzeit und servergemeldeten HEAD je Request anzeigen;
-	fehlende Hardware-Identität und fehlgeschlagene Persistenz bleiben explizit.
+fehlende Hardware-Identität und fehlgeschlagene Persistenz bleiben explizit.
 - [x] CUDA-1.3, CUDA-1.4 und CUDA-1.5 in Ergebnisflächen trennen und auf die
-	vorhandene Wave-/FE-3-/Hardware-/PAN-Governance-Übersicht verweisen.
+vorhandene Wave-/FE-3-/Hardware-/PAN-Governance-Übersicht verweisen.
 - [x] CUDA-/Parity-, Cue-Control- und Transfer-Läufe als atomare JSON-Receipts
-	unter dem gitignorierten `artifacts/cuda_diagnostics/` speichern; Start/Ende,
-	Outcome, Request-Hash, HEAD, Source-Working-Tree-Digest samt Scope, geänderte
-	Sourcepfade und ein SHA-256-Prüfhash werden aufgezeichnet. Ein ID-validierter
-	GET-Link ist im Run-Status verfügbar, auch bei fehlgeschlagenen Runs.
+unter dem gitignorierten `artifacts/cuda_diagnostics/` speichern; Start/Ende,
+Outcome, Request-Hash, HEAD, Source-Working-Tree-Digest samt Scope, geänderte
+Sourcepfade und ein SHA-256-Prüfhash werden aufgezeichnet. Ein ID-validierter
+GET-Link ist im Run-Status verfügbar, auch bei fehlgeschlagenen Runs.
 - [x] Hardware soweit verfügbar exakt zuordnen (GPU-Modell, PCI-Bus-ID,
-	Treiber und gehashte UUID); nicht auflösbare Identität wird als unavailable
-	markiert und nie als Hardware-Akzeptanz gewertet.
+Treiber und gehashte UUID); nicht auflösbare Identität wird als unavailable
+markiert und nie als Hardware-Akzeptanz gewertet.
 - [ ] Echten Fortschritt und Abbruch nur dann anbieten, wenn die Backendläufe
-	dafür sichere Checkpoints/Abbruchsemantik bereitstellen.
+dafür sichere Checkpoints/Abbruchsemantik bereitstellen.
 - Audit 2026-10-04: Die CUDA-Rekurrenz startet den gesamten Tick-Horizont als
-	einen kooperativen Kernel und synchronisiert erst danach; Builder-, Cue- und
-	Transferdiagnosen rufen blockierende Läufe ohne Cancel-Token oder Resume-
-	Checkpoint auf. Die UI zeigt nur Request-Zustand/Laufzeit, keinen Prozent-
-	Fortschritt oder Abbruch. Nicht anbieten, bis Backend-Grenzen und Cleanup-
-	Tests sichere Unterbrechung belegen.
+einen kooperativen Kernel und synchronisiert erst danach; Builder-, Cue- und
+Transferdiagnosen rufen blockierende Läufe ohne Cancel-Token oder Resume-
+Checkpoint auf. Die UI zeigt nur Request-Zustand/Laufzeit, keinen Prozent-
+Fortschritt oder Abbruch. Nicht anbieten, bis Backend-Grenzen und Cleanup-
+Tests sichere Unterbrechung belegen.
 
 ## 2026-09-27 Alpha.7 Release
 
@@ -168,9 +154,9 @@ MHRN / Multi-Scale Homeostatic Recurrence Network. Publication: Recursive Episte
 ## 2026-09-29 Post-hoc Experimentauswertung
 
 - [x] Nacherfassung von Antworten und wissenschaftlichen Auswertungen je
-	Experiment ergänzen.
+Experiment ergänzen.
 - [x] Beobachtungen, Limitationen und nächste wissenschaftliche Schritte
-	dokumentierbar machen.
+dokumentierbar machen.
 - [x] Markdown-/JSON-Artefakte im Experimentmanifest verknüpfen.
 - [x] Auswertung direkt im zentralen File Viewer öffnen.
 - [x] Interpretation von Human Review und EVID getrennt halten.
@@ -186,30 +172,30 @@ MHRN / Multi-Scale Homeostatic Recurrence Network. Publication: Recursive Episte
 - [x] Hochauflösende Live-Zoomansichten ohne unscharfe Momentaufnahmen ergänzen.
 - [x] Live-Aktualisierung und Session-Steuerung im vergrößerten View anbieten.
 - [x] Skalierbare Live-Update-Faktoren und komprimierte Topologie-Payloads
-	ergänzen, ohne überlappende Ausführungen zu erzeugen.
+ergänzen, ohne überlappende Ausführungen zu erzeugen.
 
 - [x] Statusmarker in den Release-Ansichten für Entwicklung und Wissenschaft
-	ergänzen, ohne die kanonischen Statusbezeichnungen zu ändern.
+ergänzen, ohne die kanonischen Statusbezeichnungen zu ändern.
 - [x] Browserabdeckung für `met`, `partial` und die Entwicklungsdetailmarker
-	ergänzen.
+ergänzen.
 - [x] Wissenschaftliche Kriterienkarten vereinheitlichen und Datei-Quellen
-	direkt im Popup-File-Viewer öffnen.
+direkt im Popup-File-Viewer öffnen.
 - [x] Claims, EVID, Experimente und Hypothesen je wissenschaftlicher Stufe
-	direkt zugänglich machen.
+direkt zugänglich machen.
 - [x] Lange wissenschaftliche Stufennamen ohne Kartenüberlauf darstellen.
 - [x] Playground-Topologie, Erregbarkeit, Startgewicht und Lernparameter auf
-	den aktualisierten Referenzstand setzen.
+den aktualisierten Referenzstand setzen.
 - [x] Playground-Oberfläche mit klarer Kartenhierarchie und responsivem Raster
-	überarbeiten.
+überarbeiten.
 - [x] Izhikevich- und PAN-Presets mit lokaler Speicherung im Builder ergänzen.
 - [x] Presetkatalog A–G inklusive Gewichts-Stabilisierung und Sanity-Checks
-	als auswählbare Playground-Konfigurationen ergänzen.
+als auswählbare Playground-Konfigurationen ergänzen.
 - [x] Interaktives Live-Monitor-Popup für PAN-Session und Auto-Start ergänzen.
 - [x] Posture-Score, Reward-Trigger, getrennte Kanäle und Sandbox-Episodenreset
-	als opt-in Playground-Funktion ergänzen.
+als opt-in Playground-Funktion ergänzen.
 - [x] Temporäre Live-Sessions gesammelt löschbar machen.
 - [x] Eigenen Release-Tab für die wissenschaftliche Gesamtarbeit mit elf Teilen
-	und File-Viewer-Zugriff ergänzen.
+und File-Viewer-Zugriff ergänzen.
 - [x] Prozent- und `met`/`partial`/`open`-Status je Manuskriptteil darstellen.
 - [x] Gesamtarbeits-Tab strukturell an Scientific Maturity angleichen.
 - [x] Root-Referenz `INDEPENDENT_REPLICATION.md` sicher im File Viewer öffnen.
@@ -225,16 +211,16 @@ MHRN / Multi-Scale Homeostatic Recurrence Network. Publication: Recursive Episte
 - [x] Generate JSON state and Markdown report artifacts for Gateway activations.
 - [x] Preserve the boundary that Gateway activity and reports are not scientific evidence.
 - [x] Resolve public Plastic `protocol_id` values against the operational
-	registry; reject unknown and `boundary_audit` protocols before activation.
+registry; reject unknown and `boundary_audit` protocols before activation.
 - [ ] Add a registered frozen functional Plastic protocol and independent
-	multi-seed runner with frozen input frames, executable stop rules and bound
-	outcomes. Keep single-seed Plastic activation disabled until that runner exists.
+multi-seed runner with frozen input frames, executable stop rules and bound
+outcomes. Keep single-seed Plastic activation disabled until that runner exists.
 - Audit 2026-10-04: `RQ-GW-001` through `RQ-GW-007` are still only
-	`boundary_audit` protocols; their three-seed audit reexecutions are not
-	Plastic DATA. The public route now performs registry lookup and fails closed
-	for unknown/audit IDs. No functional Plastic runner, frozen input-frame
-	sequence or stop-rule execution contract exists yet. Do not count audit seeds
-	as independent Plastic execution; no DATA/EVID is promoted.
+`boundary_audit` protocols; their three-seed audit reexecutions are not
+Plastic DATA. The public route now performs registry lookup and fails closed
+for unknown/audit IDs. No functional Plastic runner, frozen input-frame
+sequence or stop-rule execution contract exists yet. Do not count audit seeds
+as independent Plastic execution; no DATA/EVID is promoted.
 
 ## 2026-09-16 Experiment archive results viewer
 
@@ -242,7 +228,6 @@ MHRN / Multi-Scale Homeostatic Recurrence Network. Publication: Recursive Episte
 - [x] Open past experiment artifacts in the file viewer via the existing `_openArtifact` pipeline.
 - [x] Install popup artifact-switch buttons in the file viewer header for past experiments.
 - [x] Expand the experiment detail view to group available artifacts, explicit human-review state and provenance digests in one panel.
-
 
 ## 2026-09-14 Stage 4 specialized neural areas
 
@@ -253,12 +238,10 @@ MHRN / Multi-Scale Homeostatic Recurrence Network. Publication: Recursive Episte
 - [x] Add deterministic Stage-4 tests and generated engineering verification.
 - [ ] Scientific EVID promotion, independent review and dynamically materialized large-scale multimodal benchmarks remain separate research work.
 
-
 **Canonical TODO for `main`**  
 **Baseline:** `mhrn-core 0.6.0a8`
 **Updated:** 2026-09-13
 **Current release-blocking backlog:** **0**
-
 
 ## 2026-09-13 Stage 2 / Stage 3 development boundary
 
@@ -271,60 +254,60 @@ MHRN / Multi-Scale Homeostatic Recurrence Network. Publication: Recursive Episte
 - [ ] Close R2 productive-learning evidence with preregistered independent
   runs, held-out evaluation and human evidence review.
 - Audit 2026-10-04: `PREREG-GEN-001` is frozen/confirmatory and requires at
-	least 20 independent seeds, but `run_generalization` reports zero executed
-	validation and holdout episodes; declared partition counts are not executed
-	evaluation. Existing `EXP-STDP-0002` is a dirty, exploratory three-seed run
-	for `RQ-STDP-001`, not a substitute for `RQ-GEN-001`, and has no human review
-	or review request. Do not launch/promote this path until holdout execution is
-	protocol-faithful and auditable; human review remains a separate required gate.
+least 20 independent seeds, but `run_generalization` reports zero executed
+validation and holdout episodes; declared partition counts are not executed
+evaluation. Existing `EXP-STDP-0002` is a dirty, exploratory three-seed run
+for `RQ-STDP-001`, not a substitute for `RQ-GEN-001`, and has no human review
+or review request. Do not launch/promote this path until holdout execution is
+protocol-faithful and auditable; human review remains a separate required gate.
 - [ ] Benchmark plastic-network stability/throughput at the declared Stage-3
   target scale separately from the mechanism contract.
 - Audit 2026-10-04: the 100k-neuron/10M-synapse profile estimates 20,889,600,000
-	bytes (about 19.45 GiB), above the benchmark's default 2 GiB budget. The
-	current host reports 31.2 GiB total but only 3.6 GiB free; do not override
-	preflight or run this allocation here. Keep the upper point open for a
-	memory-appropriate host.
+bytes (about 19.45 GiB), above the benchmark's default 2 GiB budget. The
+current host reports 31.2 GiB total but only 3.6 GiB free; do not override
+preflight or run this allocation here. Keep the upper point open for a
+memory-appropriate host.
 - [x] Add a separate deterministic plastic-network benchmark with a preflight
-	memory estimate, real LearningEngine hooks, reward updates, weight-bound
-	snapshots, throughput and workload/hardware provenance.
+memory estimate, real LearningEngine hooks, reward updates, weight-bound
+snapshots, throughput and workload/hardware provenance.
 - [x] Execute the 10k-neuron/100k-synapse lower bound (100 epochs) and
-	100k-neuron/1M-synapse point (20 epochs); both remained finite and within
-	configured weight bounds. The lower-bound run reached the minimum weight on
-	100% of synapses by epoch 100, an explicit saturation finding.
+100k-neuron/1M-synapse point (20 epochs); both remained finite and within
+configured weight bounds. The lower-bound run reached the minimum weight on
+100% of synapses by epoch 100, an explicit saturation finding.
 - [x] Add asymmetric-STDP, symmetric-STDP and learning-off profiles plus
-	deterministic heterogeneous cohorts; distinguish numeric bounds, active
-	weights, ongoing spikes and workload-dependent weight diversity.
+deterministic heterogeneous cohorts; distinguish numeric bounds, active
+weghts, ongoing spikes and workload-dependent weight diversity.
 - [x] Re-run matched 10k/100k profiles for 100 epochs. Asymmetric STDP ended
-	with 56.25% at the lower bound and 43.75% active; symmetric STDP ended with
-	43.75% at the lower bound and 18.75% at the upper bound; learning-off kept
-	all weights at 0.05. The earlier uniform-input run's all-zero result is kept
-	as a separate symmetry/saturation diagnostic, not generalized to all inputs.
+with 56.25% at the lower bound and 43.75% active; symmetric STDP ended with
+43.75% at the lower bound and 18.75% at the upper bound; learning-off kept
+all weights at 0.05. The earlier uniform-input run's all-zero result is kept
+as a separate symmetry/saturation diagnostic, not generalized to all inputs.
 - Audit: `a_minus > a_plus` is consistent with the 12.5-point increase in
-	lower-bound occupancy versus symmetric STDP, but symmetric STDP also saturates
-	18.75% of weights at the upper bound. The current profile does not isolate a
-	sole cause or identify a universally stable parameterization.
+lower-bound occupancy versus symmetric STDP, but symmetric STDP also saturates
+18.75% of weights at the upper bound. The current profile does not isolate a
+sole cause or identify a universally stable parameterization.
 - [x] Re-run heterogeneous asymmetric STDP at 100k/1M for 20 epochs; all
-	weights remained finite/in bounds, 50% were active, and the estimated visit
-	rate was about 195k/s. These remain single-seed engineering observations.
+weights remained finite/in bounds, 50% were active, and the estimated visit
+rate was about 195k/s. These remain single-seed engineering observations.
 - [x] Make functional stability fail when no active synapses remain, even if
-	numeric bound checks pass; report variance and saturation separately.
+numeric bound checks pass; report variance and saturation separately.
 - [x] Re-run the uniform asymmetric 10k/100k profile with the V2 functional
-	gate: all weights reach zero, so `numeric_stability_passed=true` but
-	`functional_activity_passed=false` and
-	`stability_invariants_passed=false`. The old collapse is now directly
-	reproduced and correctly rejected as functional stability.
+gate: all weights reach zero, so `numeric_stability_passed=true` but
+`functional_activity_passed=false` and
+`stability_invariants_passed=false`. The old collapse is now directly
+reproduced and correctly rejected as functional stability.
 - [x] Make `seed` permute target-node order reproducibly and bind each receipt
-	to both benchmark-source SHA-256 and topology SHA-256.
+to both benchmark-source SHA-256 and topology SHA-256.
 - [x] Run a three-seed (42, 43, 44), three-mode, 20-epoch engineering sweep at
-	10k/100k. Every run passed functional checks; asymmetric active fraction was
-	50%, symmetric 62.5%, and learning-off 100%. This is seed/topology sensitivity,
-	not biological replication or inferential evidence.
+10k/100k. Every run passed functional checks; asymmetric active fraction was
+50%, symmetric 62.5%, and learning-off 100%. This is seed/topology sensitivity,
+not biological replication or inferential evidence.
 - [x] Add verified literature and explicit framework-comparability limits in
-	[Related Work](../../research/RELATED_WORK.md) and the Stage-3 contract.
+[Related Work](../../research/RELATED_WORK.md) and the Stage-3 contract.
 - [ ] Execute the 100k-neuron/10M-synapse upper point on a memory-appropriate
-	host. Its preflight estimate is about 19.45 GiB; it was not attempted on this
-	machine. These deterministic engineering profiles do not establish general
-	stability or scientific evidence.
+host. Its preflight estimate is about 19.45 GiB; it was not attempted on this
+machine. These deterministic engineering profiles do not establish general
+stability or scientific evidence.
 
 ## 2026-09-13 Alpha.2 timeline and frontier reconciliation
 
@@ -337,22 +320,22 @@ MHRN / Multi-Scale Homeostatic Recurrence Network. Publication: Recursive Episte
 ## 2026-09-12 Scientific metrics workbench
 
 - [x] Add `GET /api/science/metrics` with bounded live spike-window,
-	topology, criticality, learning, homeostasis, statistics and provenance
-	groups.
+topology, criticality, learning, homeostasis, statistics and provenance
+groups.
 - [x] Expose ISI, CV(ISI), Fano factor, Victor-Purpura, van Rossum,
-	Avalanche/Branching, degree/fan-in/fan-out and 5D synapse-distance metrics
-	when the retained telemetry window supports them.
+Avalanche/Branching, degree/fan-in/fan-out and 5D synapse-distance metrics
+when the retained telemetry window supports them.
 - [x] Add Research UI panels for measured values, explicit `UNKNOWN` states,
-	falsification annotations, baseline comparison and drill-down controls.
+falsification annotations, baseline comparison and drill-down controls.
 - [x] Keep Lyapunov, UMAP/latent dynamics, null/surrogate statistics,
-	confidence intervals, effect sizes, power and causal information flow
-	`UNKNOWN` until a validated experiment data contract exists.
+confidence intervals, effect sizes, power and causal information flow
+`UNKNOWN` until a validated experiment data contract exists.
 - [x] Rebuild the Research scientific surface as a twelve-layer workbench:
-	Observatory, Spike trains, Topology/5D, Criticality, Learning,
-	Energy/Homeostasis, Statistics, Causality, Embodiment, Provenance,
-	Benchmarks and Falsification.
+Observatory, Spike trains, Topology/5D, Criticality, Learning,
+Energy/Homeostasis, Statistics, Causality, Embodiment, Provenance,
+Benchmarks and Falsification.
 - [x] Wire the Observatory directly into the primary dashboard lifecycle and
-	version the frontend assets so stale browser bundles cannot hide the new UI.
+version the frontend assets so stale browser bundles cannot hide the new UI.
 
 ## 2026-09-12 Research workspace sub-tabs
 
@@ -364,67 +347,67 @@ MHRN / Multi-Scale Homeostatic Recurrence Network. Publication: Recursive Episte
 ## 2026-09-12 Sidebar navigation fix and dashboard cleanup
 
 - [x] Link sidebar menu 07 to the runtime Parameter Inspector and keep it
-	active while the inspector is open.
+active while the inspector is open.
 - [x] Remove all redundant dashboard elements: experience-status-cluster,
-	⌘K button, header-context span, workspace headers, utility bars, ribbons,
-	welcome panel, overview-command-bar, overview-actions, overview-status-rail.
+⌘K button, header-context span, workspace headers, utility bars, ribbons,
+welcome panel, overview-command-bar, overview-actions, overview-status-rail.
 - [x] Fix sidebar navigation: `nav` click handler was matching
-	`data-primary-area` on `document.body` via `closest()`, causing all
-	sidebar global-workspace button clicks to reset to overview.
+`data-primary-area` on `document.body` via `closest()`, causing all
+sidebar global-workspace button clicks to reset to overview.
 - [x] Verify all 8 sidebar links navigate to correct destinations.
 
 ## 2026-09-11 Full backend API integration into frontend
 
 - [x] Audit all 130 backend API routes and identify 25 endpoints not yet used
-	in the frontend.
+in the frontend.
 - [x] Create 7 new ES-module panels covering all 25 missing endpoints:
-	cognition, gateway-monitor, docs-browser, research-docs, ai-report-tools,
-	learning-prep, structural-inspector, system-info.
+cognition, gateway-monitor, docs-browser, research-docs, ai-report-tools,
+learning-prep, structural-inspector, system-info.
 - [x] Wire all new modules into `index.js` `init()` and add shared CSS layout
-	rules in `shell.css`.
+rules in `shell.css`.
 - [x] Verify all relevant dashboard shell tests pass (7/7; 2 pre-existing
-	failures from commit 9ef87300 remain unrelated).
+failures from commit 9ef87300 remain unrelated).
 
 ## 2026-09-11 Frontend shell accessibility
 
 - [x] Reserve measured fixed header/navigation and footer space so the active
-	workspace remains reachable and scrollable at desktop and mobile widths.
+workspace remains reachable and scrollable at desktop and mobile widths.
 - [x] Add a browser regression check for workspace clearance from fixed chrome
-	and footer overlays.
+and footer overlays.
 
 ## 2026-09-10 Memory / World Model / Behavior Profile foundation
 
 - [x] Connect bounded working and episodic memory to the existing
-	`ExperienceEngine` data flow with independent read/write controls.
+`ExperienceEngine` data flow with independent read/write controls.
 - [x] Add one-step observation-only prediction before environment feedback and
-	record later error and uncertainty without target-state leakage.
+record later error and uncertainty without target-state leakage.
 - [x] Add atomic, versioned and integrity-checked memory/world-model state plus
-	bounded retention and capacity controls.
+bounded retention and capacity controls.
 - [x] Add an operational, non-psychological behavior profile with explicit
-	candidate-action influence and auditable bounded updates.
+candidate-action influence and auditable bounded updates.
 - [x] Construct configured Behavior Profiles in the canonical
-	`ExperienceEngine` composition path.
+`ExperienceEngine` composition path.
 - [x] Expose cognition status, memory, episodes, predictions, world-model and
-	Behavior Profile telemetry in the existing Wesen surface.
+Behavior Profile telemetry in the existing Wesen surface.
 - [x] Add backend-confirmed Memory Read/Write controls without arbitrary
-	memory-content injection.
+memory-content injection.
 - [x] Add individual sensor lifecycle routes and UI controls with fail-closed
-	adapter/authorization/safety checks and audit records.
+adapter/authorization/safety checks and audit records.
 - [x] Add experiment-only Gateway lifecycle controls while keeping productive
-	Gateway activation locked.
+Gateway activation locked.
 - [x] Add explicit Profile Snapshot binding metadata and central File Viewer
-	access, plus a machine-readable backend/frontend coverage contract.
+access, plus a machine-readable backend/frontend coverage contract.
 - [ ] Connect coupled cognition state to the canonical runtime snapshot/
-	checkpoint boundary.
+checkpoint boundary.
 - [ ] Prove deterministic pause/resume equivalence for the complete coupled
-	cognition state.
+cognition state.
 - [x] Execute registered exploratory component controls for delayed information
-	(`016-memory_delayed_information_v1`) and one-step world-model prediction
-	(`017-world_model_prediction_v1`); these runs remain DATA, not automatic EVID.
+(`016-memory_delayed_information_v1`) and one-step world-model prediction
+(`017-world_model_prediction_v1`); these runs remain DATA, not automatic EVID.
 - [x] Add explicit File Viewer drill-down for the existing cognition campaign.
-	Only up to 100 indexed runs are listed; each compressed raw-run preview is
-	read-only, SHA-256 checked against `runs_index.json`, and bounded to 256 KiB
-	of decompressed content. This exposes DATA only, not analysis or EVID.
+Only up to 100 indexed runs are listed; each compressed raw-run preview is
+read-only, SHA-256 checked against `runs_index.json`, and bounded to 256 KiB
+of decompressed content. This exposes DATA only, not analysis or EVID.
 
 Neural Symbiosis gateway status: **experimental activation implemented; Frozen / Random / Shuffle controls implemented; experimental plasticity implemented; productive activation locked pending validation**.
 
@@ -474,28 +457,17 @@ This file contains **active release-blocking work only**. Long-horizon engineeri
 
 ## 2026-09-13 Frontend deterministic tab routing
 
-- [x] Rewrite `workspace-router.js` with a central `setRouteElementVisibility()` function
-	that consistently sets `hidden`, `aria-hidden`, `inert` and CSS classes.
-- [x] Add `reconcileRouteVisibility()` as the single authority for panel visibility after
-	every navigation, eliminating content leakage between subtabs.
-- [x] Fix Science tab isolation: Observatory, Experiments, Network, Dynamics, Inspect,
-	Data, Files and Registry subtabs now exclusively show their own panels.
-- [x] Fix `focus` action: no longer just `scrollIntoView()` — now hides all other content
-	in the workspace and shows only the targeted element(s).
+- [x] Rewrite `workspace-router.js` with a central `setRouteElementVisibility()` function that consistently sets `hidden`, `aria-hidden`, `inert` and CSS classes.
+- [x] Add `reconcileRouteVisibility()` as the single authority for panel visibility after every navigation, eliminating content leakage between subtabs.
+- [x] Fix Science tab isolation: Observatory, Experiments, Network, Dynamics, Inspect,Data, Files and Registry subtabs now exclusively show their own panels.
+- [x] Fix `focus` action: no longer just `scrollIntoView()` — now hides all other content in the workspace and shows only the targeted element(s).
 - [x] Fix `focusOnly` action: properly isolates deeply nested panels, not just direct children.
-- [x] Add `data-mhrn-persistent` attribute support for elements that must remain visible
-	across routes (e.g. context navigation).
-- [x] Update `MutationObserver` to re-apply route visibility after dynamically loaded
-	modules appear in the DOM, with debounce guard against infinite loops.
-- [x] Remove old three-area `frontend-architecture.js` import from `console-log.js` to
-	prevent conflicting navigation systems.
-- [x] Strengthen CSS hide rules with `!important` cascade for all route-hidden states
-	including `[hidden]`, `[aria-hidden="true"]`, `.mhrn-route-hidden`, etc.
-- [x] Add 18 new automated tests covering: central visibility function, reconciliation,
-	all route action handlers, valid workspace references, CSS hide rules,
-	MutationObserver integration, old architecture removal, and route-specific ownership.
-- [x] Verify: 24 workspace-architecture tests pass, 1130/1156 full suite pass
-	(26 pre-existing failures from missing CSS files, sklearn dependency, etc.).
+- [x] Add `data-mhrn-persistent` attribute support for elements that must remain visibl across routes (e.g. context navigation).
+- [x] Update `MutationObserver` to re-apply route visibility after dynamically loaded modules appear in the DOM, with debounce guard against infinite loops.
+- [x] Remove old three-area `frontend-architecture.js` import from `console-log.js` to prevent conflicting navigation systems.
+- [x] Strengthen CSS hide rules with `!important` cascade for all route-hidden states including `[hidden]`, `[aria-hidden="true"]`, `.mhrn-route-hidden`, etc.
+- [x] Add 18 new automated tests covering: central visibility function, reconciliation,all route action handlers, valid workspace references, CSS hide rules, MutationObserver integration, old architecture removal, and route-specific ownership.
+- [x] Verify: 24 workspace-architecture tests pass, 1130/1156 full suite pass(26 pre-existing failures from missing CSS files, sklearn dependency, etc.).
 
 ## Current development milestone — v0.6 Scaling & Deterministic Performance
 
@@ -654,7 +626,6 @@ A scientific milestone is complete only when all applicable requirements are sat
 - [ ] Obtain independent replication, human EVID review and required external ethics decisions.
 - [ ] Add NEST/Lava task-matched network/learning benchmarks and long-horizon scaling.
 
-
 ## Stage-1 reference replication R2
 
 - [x] Preserve R1 freeze and pre-DATA abort provenance.
@@ -666,16 +637,17 @@ A scientific milestone is complete only when all applicable requirements are sat
 - [ ] Freeze R2 only after every automated pre-freeze gate is green.
 - [ ] Create a separate human execution-authorization record after freeze; do not generate Reference DATA before it.
 
-
 ## 2026-09-28 CUDA/PAN canonicalization and simulator capability gaps
 
 Canonical research registration:
+
 - [x] Register dedicated CUDA/PAN/Gate/interop research-question fragment without creating EVID.
 - [x] Register untested hypotheses for determinism, backend parity, scaling, Gate-IR, PAN semantics/GPU, structural barriers, closed-loop parity and simulator interoperability.
 - [x] Register current Brian 2/Brian2CUDA/Brian2GeNN/Brian2Lava and GPU structural-plasticity comparison sources with explicit limitations.
 - [x] Document that existing Playground/RTX 3060 results remain engineering verification and are not retroactively promoted to DATA/EVID.
 
 Mandatory canonicalization:
+
 - [ ] Introduce a canonical `ExecutionBackend` boundary; RuntimeController decides when to run, backend decides how state advances.
 - [ ] Freeze one canonical neuron/synapse state and identity contract consumed by CPU and CUDA.
 - [ ] Freeze one canonical Learning/Synapse contract for STDP, STP, eligibility, reward timing, update ordering, delayed emission, decay and clamping.
@@ -687,6 +659,7 @@ Mandatory canonicalization:
 - [ ] Route CUDA structural mutation through deterministic host barriers and canonical Proposal -> Approval -> StructuralPlasticityEngine -> Journal/Undo.
 
 Simulator capability backlog:
+
 - [ ] Design a versioned restricted model-description/equation contract; do not begin with unrestricted user code.
 - [ ] Add explicit physical-unit metadata and dimensional validation at model/configuration boundaries.
 - [ ] Design a generalized versioned synapse-rule interface that first reproduces the canonical MHRN learning contract.
@@ -699,7 +672,6 @@ Simulator capability backlog:
 - [ ] Evaluate multi-GPU only after single-GPU canonical semantics, checkpointing and parity are closed.
 
 Reference: [MHRN simulator capability gaps](MHRN_SIMULATOR_CAPABILITY_GAPS.md).
-
 
 ### Contract refinements from PR #249 review
 
@@ -714,7 +686,6 @@ Reference: [MHRN simulator capability gaps](MHRN_SIMULATOR_CAPABILITY_GAPS.md).
 - [ ] Implement FE-1/FE-2/FE-3 trajectory capture and fail-closed validation.
 - [ ] Add canonical approval-policy artifact hashing and structural-barrier execution-segment tests.
 - [ ] Add the early benchmark/reference suite with frozen workload manifests and explicit Brian 2 unit/integrator/delay/RNG mappings.
-
 
 ## 2026-09-29 Playground -> MHRN integration
 
@@ -739,7 +710,6 @@ Reference: [MHRN simulator capability gaps](MHRN_SIMULATOR_CAPABILITY_GAPS.md).
   FE-1/FE-2/FE-3 contracts are executable.
 - [ ] Promote PAN hyperstate only after RQ-PAN-SEM-001 semantic freeze.
 
-
 ## 2026-09-29 Playground -> MHRN integration wave 3
 
 - [x] Define canonical ExecutionBackend, BackendState, StepResult, RunResult and BackendCapabilities.
@@ -756,7 +726,6 @@ Reference: [MHRN simulator capability gaps](MHRN_SIMULATOR_CAPABILITY_GAPS.md).
 - [ ] Wave 4: run canonical CPU-vs-CUDA D1/D2 parity through the new framework.
 - [ ] Keep learning/plasticity promotion blocked until the canonical Learning/Synapse contract is implemented by both compared backends.
 
-
 ## Wave 4 CUDA extraction verification
 
 - [x] Canonical import-direction gate.
@@ -772,7 +741,6 @@ Reference: [MHRN simulator capability gaps](MHRN_SIMULATOR_CAPABILITY_GAPS.md).
 - [ ] Keep plasticity non-canonical until the CPU/CUDA learning-contract
   alignment is complete.
 
-
 ## 2026-09-30 Frozen-Environment executable contract
 
 - [x] Implement canonical frozen manifest, RNG provenance and exact BoundaryFrame freeze.
@@ -787,7 +755,6 @@ Reference: [MHRN simulator capability gaps](MHRN_SIMULATOR_CAPABILITY_GAPS.md).
 - [ ] Bind a physical CPU closed-loop backend and canonical CUDA backend to the same FE-3 manifest.
 - [ ] Execute physical CPU-vs-CUDA D1/D2/D3 acceptance on RTX 3060.
 - [ ] Preserve the result as Engineering Verification until a separately preregistered study exists.
-
 
 ## 2026-10-01 Playground -> MHRN Wave 5A
 
@@ -808,10 +775,10 @@ Reference: [MHRN simulator capability gaps](MHRN_SIMULATOR_CAPABILITY_GAPS.md).
 - [ ] Keep structural Growth/Pruning/Apoptosis behind the separate
   Proposal/Approval/Journal barrier contract.
 
-
 ## Wave 6 / Wave 7 contract gates — 2026-10-01
 
 ### Wave 6
+
 - [x] Implement deterministic Structural Approval descriptor/hash.
 - [x] Make MANUAL_ONLY require explicit manual authorization.
 - [x] Make POLICY_AUTO require enabled non-dry-run auto policy.
@@ -822,6 +789,7 @@ Reference: [MHRN simulator capability gaps](MHRN_SIMULATOR_CAPABILITY_GAPS.md).
 - [ ] Review and freeze the contract.
 
 ### Wave 7
+
 - [x] Add executable Learning/Synapse draft descriptor.
 - [x] Record CPU nearest-neighbour STDP, same-tick zero rule, eligibility and
   delayed-reward semantics.
@@ -843,19 +811,13 @@ Reference: [MHRN simulator capability gaps](MHRN_SIMULATOR_CAPABILITY_GAPS.md).
 - [x] Freeze `PREREG-CPU-PAR-001` with seeds 910001..910020.
 - [ ] Bind an exact post-merge source/config digest and separately authorize execution of `cpu_self_parity_v1`.
 - [ ] Perform the physical RTX-3060 Wave-5B acceptance separately; it remains Engineering Verification and is not substituted by this CPU study.
-- [ ] Resolve all five Wave-7 learning divergences before freezing a common CPU/CUDA learning contract.
+- [x] Resolve all five Wave-7 learning divergences before freezing a common CPU/CUDA learning contract.
 
 ## 2026-10-01 Sequential conceptual audits and review
 
-- [x] Execute all 22 previously unrun registered cognition/epistemic/welfare
-	conceptual-audit protocols in registered seed order (`101-103`).
-- [x] Preserve each audit as completed `EXPLORATORY` DATA with
-	`direct_test_of_hypothesis=false`, `scientific_evidence=false` and no
-	automatic DATA-to-EVID promotion.
-- [x] Add a direct `review_request.json` for each new audit and verify all 18
-	newly generated requests appear in the Human Review Inbox; earlier audit
-	records remain reviewable through their AIRR artifacts.
-- [ ] Complete the resulting human reviews; execution and review requests do
-	not substitute for reviewer decisions.
-- [ ] Keep gateway Plastic and confirmatory executions blocked until their own
-	frozen, registered preregistration and execution authorization exist.
+- [x] Execute all 22 previously unrun registered cognition/epistemic/welfare conceptual-audit protocols in registered seed order (`101-103`).
+- [x] Preserve each audit as completed `EXPLORATORY` DATA with `direct_test_of_hypothesis=false`, `scientific_evidence=false` and no
+ automatic DATA-to-EVID promotion.
+- [x] Add a direct `review_request.json` for each new audit and verify all 18 newly generated requests appear in the Human Review Inbox; earlier audit records remain reviewable through their AIRR artifacts.
+- [ ] Complete the resulting human reviews; execution and review requests do not substitute for reviewer decisions.
+- [ ] Keep gateway Plastic and confirmatory executions blocked until their own frozen, registered preregistration and execution authorization exist.
