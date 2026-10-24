@@ -81,8 +81,10 @@ MHRN / Multi-Scale Homeostatic Recurrence Network. Publication: Recursive Episte
 
 ## 2026-10-17 Manuscript-review follow-up
 
-- [ ] Reproduce the documented determinism finding from a clean, exact source
+- [x] Reproduce the documented determinism finding from a clean, exact source
   tree; record the commit, environment, command and result artifacts.
+  Completed 2026-10-24 on `556dd5e0`: 36 runs / 18 identical replica pairs;
+  [source-bound reproduction](../../research/reviews/DETERMINISM_REPRODUCTION_20261024/README.md).
 - [ ] Before executing `OBJ-MEM-COMPRESSION-001`, freeze the complete 10%
   budget accounting, matched-budget baselines, acceptable performance loss
   and the decision rule for retaining or de-centering SemanticMemory.
