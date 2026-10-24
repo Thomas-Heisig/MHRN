@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
   "status": "verified",
-  "test_run_head": "f633ee81625056011b084b3a7f93c8849054d798",
-  "tested_commit": "f633ee81625056011b084b3a7f93c8849054d798",
-  "tested_tree_digest": "422c4777551fb55c77307eefd76451b5a5c4e1bbe83c2e3a1b7ed5bb70963625",
+  "test_run_head": "2a32093dd3ad7b060a5448c9864fdd05c908d52e",
+  "tested_commit": "2a32093dd3ad7b060a5448c9864fdd05c908d52e",
+  "tested_tree_digest": "73c116b5990f4a1da8520457163944e61aaf7a94d22fec1a9c77d3a6fe5729db",
   "scope": "restore_determinism",
   "scope_digest": "2948f92769ea97075e943e55f06fd99318869379e84a207c88fa5de50b468a23",
-  "timestamp": "2026-10-24T17:21:38+0200",
-  "python": "3.13.14",
+  "timestamp": "2026-10-24T15:36:03+0000",
+  "python": "3.13.16",
   "test_files": [
     "tests/test_rng_persistence.py",
     "tests/test_iteration_determinism.py",
