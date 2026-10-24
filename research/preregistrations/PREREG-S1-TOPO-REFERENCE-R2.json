@@ -7,7 +7,7 @@
   "claim_id": "CLAIM-S1-TOPO-001",
   "protocol": "stage1_topology_reference_replication_r2",
   "mode": "PROSPECTIVE_CROSS_IMPLEMENTATION_PARTIAL_REPLICATION",
-  "status": "DRAFT_PRE_FREEZE_GATES_PENDING",
+  "status": "FROZEN_BEFORE_REFERENCE_EXECUTION_AUTHORIZATION",
   "execution_authorized": false,
   "scientific_evidence": false,
   "automatic_evidence_promotion": false,
@@ -512,8 +512,8 @@
     "classification_consequence": "Even if a separate framework/codebase is used, this project-side implementation is PARTIAL_REPLICATION only. It cannot be relabeled EXTERNAL_REPLICATION without genuinely external authorship/control and a separately registered protocol."
   },
   "freeze_authorization": {
-    "allowed": false,
-    "rule": "R2 may freeze only after all source-bound dynamics gates, R2 independence/seed freshness, and exact topology-mapping parity pass.",
+    "allowed": true,
+    "rule": "All R2 pre-freeze gates passed and are hash-bound. This does not authorize reference evaluation.",
     "reference_runner_implementation_allowed": true,
     "reference_runner_execution_allowed": false
   },
@@ -526,8 +526,8 @@
       "replication_credit_awarded": false
     }
   ],
-  "freeze_record": "research/preregistrations/PREREG-S1-TOPO-REFERENCE-R2.freeze.json",
-  "freeze_semantics": "R2 is not frozen yet. Its corrected topology mapping and all comparison criteria must be frozen before any reference evaluation DATA. R1 remains historical and may never authorize execution.",
+  "freeze_record": "research\\preregistrations\\PREREG-S1-TOPO-REFERENCE-R2.freeze.json",
+  "freeze_semantics": "R2 scientific contract is frozen. Reference DATA remain forbidden until a separate explicit human execution-authorization record binds this freeze commit and runner hash.",
   "supersedes": "PREREG-S1-TOPO-REFERENCE-R1",
   "supersession": {
     "date": "2026-09-27",
