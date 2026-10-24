@@ -98,7 +98,6 @@ jobs:
             scripts/verify_stage1_topology_reference_r1.py \
             scripts/freeze_stage1_topology_reference_r1.py \
             reference/stage1_topology_brian2/integrator_probe.py \
-            reference/stage1_topology_brian2/synapse_probe.py \
             reference/stage1_topology_brian2/runner.py \
             tests/test_stage1_reference_replication_contract.py \
             tests/test_stage1_reference_preflight.py \

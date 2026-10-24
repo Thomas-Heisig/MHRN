@@ -5,6 +5,8 @@ from __future__ import annotations
 
 import hashlib
 import json
+import re
+import subprocess
 from pathlib import Path
 from typing import Any
 
@@ -100,9 +102,16 @@ def main() -> int:
     assert hashes["preregistration"] == sha256(PREREG)
     assert hashes["evaluation_data"] == sha256(OUT / "data/evaluation.json")
     assert hashes["statistics"] == sha256(OUT / "analysis/statistics.json")
-    assert hashes["canonical_embodiment_source"] == sha256(
-        ROOT / "src/research/connectome_embodiment.py"
-    )
+    # Persisted DATA bind the executed commit, not later runtime development.
+    source_commit = manifest["source_freeze"]["commit"]
+    assert re.fullmatch(r"[0-9a-f]{40}", source_commit)
+    source = subprocess.run(
+        ["git", "show", f"{source_commit}:src/research/connectome_embodiment.py"],
+        cwd=ROOT,
+        check=True,
+        capture_output=True,
+    ).stdout
+    assert hashes["canonical_embodiment_source"] == hashlib.sha256(source).hexdigest()
 
     for line in (OUT / "checksums.sha256").read_text(encoding="utf-8").splitlines():
         digest, relpath = line.split("  ", 1)
