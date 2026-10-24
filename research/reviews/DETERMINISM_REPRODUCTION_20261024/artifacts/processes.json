@@ -1,0 +1,38 @@
+[
+  {
+    "PYTHONHASHSEED": 0,
+    "command": [
+      "C:\\Users\\T_hei\\.codex\\.chatgpt-projects\\g-p-6a81a80bd5648191ba798a03a586c7a5\\reference-r2-env\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\T_hei\\.codex\\.chatgpt-projects\\g-p-6a81a80bd5648191ba798a03a586c7a5\\determinism-reproduction-20261024\\reproduce.py",
+      "C:\\Users\\T_hei\\.codex\\.chatgpt-projects\\g-p-6a81a80bd5648191ba798a03a586c7a5\\MHRN-determinism-20261024",
+      "C:\\Users\\T_hei\\.codex\\.chatgpt-projects\\g-p-6a81a80bd5648191ba798a03a586c7a5\\determinism-reproduction-20261024\\results-verified\\runs-hashseed-0.json",
+      "--worker"
+    ],
+    "exit_code": 0
+  },
+  {
+    "PYTHONHASHSEED": 1,
+    "command": [
+      "C:\\Users\\T_hei\\.codex\\.chatgpt-projects\\g-p-6a81a80bd5648191ba798a03a586c7a5\\reference-r2-env\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\T_hei\\.codex\\.chatgpt-projects\\g-p-6a81a80bd5648191ba798a03a586c7a5\\determinism-reproduction-20261024\\reproduce.py",
+      "C:\\Users\\T_hei\\.codex\\.chatgpt-projects\\g-p-6a81a80bd5648191ba798a03a586c7a5\\MHRN-determinism-20261024",
+      "C:\\Users\\T_hei\\.codex\\.chatgpt-projects\\g-p-6a81a80bd5648191ba798a03a586c7a5\\determinism-reproduction-20261024\\results-verified\\runs-hashseed-1.json",
+      "--worker"
+    ],
+    "exit_code": 0
+  },
+  {
+    "PYTHONHASHSEED": 42,
+    "command": [
+      "C:\\Users\\T_hei\\.codex\\.chatgpt-projects\\g-p-6a81a80bd5648191ba798a03a586c7a5\\reference-r2-env\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\T_hei\\.codex\\.chatgpt-projects\\g-p-6a81a80bd5648191ba798a03a586c7a5\\determinism-reproduction-20261024\\reproduce.py",
+      "C:\\Users\\T_hei\\.codex\\.chatgpt-projects\\g-p-6a81a80bd5648191ba798a03a586c7a5\\MHRN-determinism-20261024",
+      "C:\\Users\\T_hei\\.codex\\.chatgpt-projects\\g-p-6a81a80bd5648191ba798a03a586c7a5\\determinism-reproduction-20261024\\results-verified\\runs-hashseed-42.json",
+      "--worker"
+    ],
+    "exit_code": 0
+  }
+]
