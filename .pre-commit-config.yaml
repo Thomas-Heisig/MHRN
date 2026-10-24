@@ -41,6 +41,12 @@ repos:
         language: system
         pass_filenames: false
         always_run: true
+      - id: reference-r2-artifact-integrity
+        name: verify reference R2 archive and replay frozen analysis
+        entry: python scripts/verify_stage1_reference_r2_archive.py
+        language: system
+        pass_filenames: false
+        always_run: true
   # Trailing whitespace, EOF newline, merge conflicts
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v5.0.0

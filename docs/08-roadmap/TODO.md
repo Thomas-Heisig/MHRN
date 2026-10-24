@@ -634,8 +634,10 @@ A scientific milestone is complete only when all applicable requirements are sat
 - [x] Add exact topology/edge mapping parity as a mandatory pre-freeze gate.
 - [x] Keep runner blind to MHRN effects and verifier separate.
 - [x] Define explicit execution-authorization criteria.
-- [ ] Freeze R2 only after every automated pre-freeze gate is green.
-- [ ] Create a separate human execution-authorization record after freeze; do not generate Reference DATA before it.
+- [x] Freeze R2 only after every automated pre-freeze gate is green. Exact freeze source: `e5d2fe71`.
+- [x] Record the user execution instruction separately after freeze and before Reference DATA, binding source and runner; no scientific Human Review is implied.
+- [x] Execute and analyze all 120 R2 reference runs: `PARTIAL_REPLICATION` at DATA-analysis level; five primary criteria and five secondary directions pass. See [report](../../research/experiments/EXP-S1-TOPO-REFERENCE-R2-20261024/report.md).
+- [ ] Complete the separate scientific Human Review of R2 before EVID or replication-credit changes.
 
 ## 2026-09-28 CUDA/PAN canonicalization and simulator capability gaps
 

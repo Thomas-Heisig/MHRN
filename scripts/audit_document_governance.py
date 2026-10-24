@@ -401,7 +401,10 @@ def inventory(
 ) -> list[dict[str, Any]]:
     base = ROOT / domain
     files = []
-    for file in sorted(path for path in base.rglob("*") if path.is_file()):
+    for file in sorted(
+        (path for path in base.rglob("*") if path.is_file()),
+        key=lambda path: path.relative_to(ROOT).parts,
+    ):
         rel = file.relative_to(ROOT).as_posix()
         if rel in SKIP:
             continue

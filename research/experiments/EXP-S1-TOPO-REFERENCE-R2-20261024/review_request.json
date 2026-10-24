@@ -1,0 +1,12 @@
+{
+  "experiment_id": "EXP-S1-TOPO-REFERENCE-R2-20261024",
+  "required_scope": [
+    "User execution instruction and agent-selected scope; no implied scientific approval",
+    "Frozen source/protocol bindings and seed freshness",
+    "Reference implementation independence limits and calibration",
+    "Primary concordance, discrete bootstrap intervals and control-arm interpretation",
+    "Separate decision before any EVID or maturity update"
+  ],
+  "reviewer": null,
+  "status": "PENDING"
+}

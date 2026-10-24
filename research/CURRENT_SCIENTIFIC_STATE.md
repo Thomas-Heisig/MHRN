@@ -1,6 +1,6 @@
 # Current Scientific State
 
-**Redaktioneller Stand:** 4. Oktober 2026; letzte hier integrierte kanonische EVID-Promotionen: 27. September 2026
+**Redaktioneller Stand:** 24. Oktober 2026; letzte hier integrierte kanonische EVID-Promotionen: 27. September 2026
 
 Dieses Dokument ist der kurze Einstieg in den aktuellen wissenschaftlichen Zustand. Historische DATA, EVID-Entscheidungen und eingefrorene Publikationen bleiben unverändert in ihren datierten Verzeichnissen.
 
@@ -260,7 +260,7 @@ R1 was frozen, then **aborted before any reference DATA** after a code-backed au
 
 `PREREG-S1-TOPO-REFERENCE-R2` is the active successor. It preserves the canonical effect targets, strict 50–150% equivalence bounds (including `3d→5d = [-1.5,-0.5]`), endpoints and three-outcome decision rule, while adding executable coordinate ordering and mandatory exact topology/edge mapping parity. R2 execution remains unauthorized until freeze, all gates, hash binding, seed freshness, blinding, and a separate explicit human execution-authorization record are present.
 
-Stage-1 Scientific Maturity remains **85%**. No Reference DATA, replication classification or replication maturity credit exists yet.
+Historical status on 27 September 2026: Stage-1 Scientific Maturity remained **85%**; no Reference DATA, replication classification or replication maturity credit existed then. See the dated execution update below.
 
 ## Neuere Ausführungen und methodische Synthese
 
@@ -275,3 +275,12 @@ Die quellengebundene Einordnung steht in [Teil IV](publications/2026-09-17_recur
 Der [Benchmark vom 4. Oktober](generated/verification/plastic_network_scale_benchmark_100k_1m.json) erfasst 100.000 Neuronen und 1.000.000 Synapsen über 40 Ticks: rund 153 Sekunden Simulationszeit und 1,03 GB `tracemalloc`-Spitzenwert. Endliche, begrenzte Gewichte sind für diese Last verifiziert. Allgemeine Lernstabilität, andere Topologien und zehn Millionen Synapsen sind damit nicht abgenommen. Die [Synthese](publications/2026-09-17_recursive-epistemics_v1.8/parts/10_synthesis.md) grenzt dies auch gegenüber der Gewichtssättigung im kleineren Lauf ab. Beide Benchmarkartefakte sind ausdrücklich technische Verifikation und keine wissenschaftliche Evidenz; Stage-Scores und EVID-Status ändern sich dadurch nicht.
 
 Die späteren [Schema-v2-Kontrollen](generated/verification/plastic_network_scale_benchmark_v2_asymmetric.json) mit asymmetrischer/symmetrischer STDP und ausgeschaltetem Lernen ergänzen funktionale Aktivitäts- und Diversitätskriterien. Heterogene Lasten behalten aktive Gewichte; der uniforme Kontrolllauf scheitert trotz numerischer Bereichstreue am Aktivitätskriterium. Die detaillierte Einordnung steht in Teil X. Diese Eingrenzung ist technisches Methodenwissen, keine allgemeine Lernstabilitätsaussage und kein neuer wissenschaftlicher Evidenzstatus.
+
+
+## Reference R2 execution and analysis (2026-10-24)
+
+[EXP-S1-TOPO-REFERENCE-R2-20261024](experiments/EXP-S1-TOPO-REFERENCE-R2-20261024/report.md) completed all 120 runs under the frozen source `e5d2fe71`, following the separately recorded user instruction to begin experiments. The frozen verifier classifies the result as **PARTIAL_REPLICATION** at DATA-analysis level: design integrity passes, all five primary concordance criteria pass, and all five secondary AUC directions match. An internal reconstruction from the raw spike traces confirms the observations and sign/Holm statistics.
+
+This is project-side cross-implementation replication with Brian2, not independent external authorship. Scientific Human Review remains **PENDING**; there is no new EVID or replication-credit/maturity promotion. The execution instruction is not a scientific review decision.
+
+Interpretation must preserve both endpoints: 5D first-output latency is one tick earlier than 3D (paired median), while 5D early-activation AUC is lower by 3.4765625. Shuffled-5D and random-graph controls reach the output three ticks earlier than 5D. These data do not establish a general superiority of five-dimensional geometry. The already frozen matched-5D follow-up retains its AUC primary outcome without result-dependent changes.

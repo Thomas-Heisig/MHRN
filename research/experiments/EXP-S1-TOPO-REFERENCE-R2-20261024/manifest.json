@@ -1,0 +1,48 @@
+{
+  "ai_assistance": "Execution orchestration, internal trace audit, analysis presentation; no human review",
+  "artifacts": {
+    "archive_index": "archive-index.json",
+    "authorization": "execution-authorization.json",
+    "checksums": "sha256sums.json",
+    "data": "raw-data-and-provenance.zip",
+    "report": "report.md",
+    "statistics": "analysis.json"
+  },
+  "automatic_evidence_promotion": false,
+  "experiment_id": "EXP-S1-TOPO-REFERENCE-R2-20261024",
+  "experiment_status": "completed",
+  "git": {
+    "commit": "e5d2fe71bd755b2ace7f12c80ba4c4624913a610",
+    "dirty": false
+  },
+  "human_review_status": "PENDING",
+  "hypotheses": [
+    "H-SNN-003-B"
+  ],
+  "independent_replication": false,
+  "mode": "PROSPECTIVE_CROSS_IMPLEMENTATION_PARTIAL_REPLICATION",
+  "protocol": "stage1_topology_reference_replication_r2",
+  "publication_base_main_commit": "6bb97fb9a95926f8118bd61bec366af28afa0e5c",
+  "replication_credit_automatically_awarded": false,
+  "research_questions": [
+    "RQ-SNN-003"
+  ],
+  "results": {
+    "auc_direction_matches": 5,
+    "classification": "PARTIAL_REPLICATION",
+    "holm_significant_primary": 5,
+    "paired_seeds": 20,
+    "primary_criteria_passed": 5,
+    "primary_direction_reversals": 0,
+    "primary_spanning_bounds": 0,
+    "primary_wholly_outside_bounds": 0,
+    "run_count": 120,
+    "ticks_per_run": 128
+  },
+  "scientific_evidence": false,
+  "validity": {
+    "fatal_error_count": 0,
+    "runtime_error_count": 0,
+    "valid": true
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "pass": true,
+  "primary_sign_tests": [
+    {
+      "contrast": "1d_to_2d",
+      "non_tied_pairs": 20,
+      "p_raw": 1.9073486328125e-06,
+      "positive_pairs": 0
+    },
+    {
+      "contrast": "2d_to_3d",
+      "non_tied_pairs": 20,
+      "p_raw": 1.9073486328125e-06,
+      "positive_pairs": 0
+    },
+    {
+      "contrast": "3d_to_5d",
+      "non_tied_pairs": 19,
+      "p_raw": 3.814697265625e-06,
+      "positive_pairs": 0
+    },
+    {
+      "contrast": "5d_to_5d_shuffled",
+      "non_tied_pairs": 20,
+      "p_raw": 1.9073486328125e-06,
+      "positive_pairs": 0
+    },
+    {
+      "contrast": "5d_to_random_graph",
+      "non_tied_pairs": 20,
+      "p_raw": 1.9073486328125e-06,
+      "positive_pairs": 0
+    }
+  ],
+  "scope": "Internal separate arithmetic/trace audit, not independent scientific review",
+  "trace_runs_recomputed": 120
+}

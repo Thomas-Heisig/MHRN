@@ -1,0 +1,33 @@
+{
+  "authority": "User instruction in current conversation",
+  "brian2": "2.10.1",
+  "checked_bound_files": {
+    "reference/stage1_topology_brian2/TRANSLATION_R2.md": "74caf0b06c5a36065a9f8b20dadfc2418185bd2254785307f12f9a3400bc1be6",
+    "reference/stage1_topology_brian2/reference_protocol_r2.json": "9a855c266cd9bf865f017c0d6e128735213eef6d8b2b2c508d6c64e153eccfc2",
+    "reference/stage1_topology_brian2/runner_r2.py": "b4a7945210b4d836d5d9940c1695b92b6b0af8f5296f88ac8b3894974136f932",
+    "research/audits/STAGE1_TOPOLOGY_REFERENCE_MECHANISM_AUDIT_20260927.json": "2269d45cd8d40bbcf585c8f1de2c20072273ffbcd5fe2cc028dc8a540912eef4",
+    "research/calibrations/CAL-S1-TOPO-REFERENCE-DYNAMICS-REUSE-R2/result.json": "73c6269f0a6886a77d9d824295d30979387a64c78a553127f7807c71af78c4b8",
+    "research/calibrations/CAL-S1-TOPO-REFERENCE-INTEGRATOR-R1/result.json": "4779cdd5e4c8993bdc4f24a30a2d6c9206cd57f7606c107aa8dc2ea13388ea05",
+    "research/calibrations/CAL-S1-TOPO-REFERENCE-RESET-R1/result.json": "c1c50e07345e940b0cfe0599cabbbbd8b2b6f0447841fa989673ddfce522b247",
+    "research/calibrations/CAL-S1-TOPO-REFERENCE-SYNAPSE-R1/result.json": "42b051286007b315c5400871d893883d34be2847d5f165b08a70a91d0580907e",
+    "research/calibrations/CAL-S1-TOPO-REFERENCE-TOPOLOGY-MAP-R2/result.json": "ca96b049c57d8c75c5e1eb7112565756bbfb1eca7df402143c63dd8ab05e85dc",
+    "scripts/verify_stage1_topology_reference_r2.py": "be031bc8dfec4fd7b8c62e1ca86022d52beb6c31aba2dfc0b8867afc22ee1ef6",
+    "tests/test_stage1_reference_r2_contract.py": "ff153bea7840ca9df7dae046f1bf64f473afa9ad88b29da4c87aca7775c977ce",
+    "tests/test_stage1_reference_r2_preflight.py": "10f9ca088bcdc23a9f573107fbccca56a871c91ed62f76aff3f9c2d7c0da1bc3"
+  },
+  "driver_sha256": "bf269436c32042a632afde93e0ff753e28b7210827ac8da573356f940960ebc2",
+  "evidence_promotion_authorized": false,
+  "execution_authorized": true,
+  "freeze_sha256": "6fb4ae12ce0d0046e3d37fce9a4abb3f911e5263c16181f61e7a8989dd90c33b",
+  "instruction_verbatim": "beginne mit den experimenten und ihren auswertungen ,",
+  "no_outcome_inspection_before_authorization": true,
+  "platform": "Windows-11-10.0.26300-SP0",
+  "preregistration_sha256": "4fbe9f36c7d7d97b5d83edef060e53ba05d70c85c571709c2c472be9ae35062c",
+  "python": "3.13.14 (tags/v3.13.14:fd17997, Jun 10 2026, 13:03:48) [MSC v.1944 64 bit (AMD64)]",
+  "recorded_before_execution_utc": "2026-10-24T16:09:38.639975+00:00",
+  "runner_sha256": "b4a7945210b4d836d5d9940c1695b92b6b0af8f5296f88ac8b3894974136f932",
+  "scientific_human_review_performed": false,
+  "scope_selection": "Agent selected ready, previously frozen Stage-1 reference R2",
+  "source_commit": "e5d2fe71bd755b2ace7f12c80ba4c4624913a610",
+  "source_tree": "df274b368f8eb509b01c82286e44f076187155c7"
+}

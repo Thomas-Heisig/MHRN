@@ -1,0 +1,292 @@
+{
+  "claim_boundary": "This verifier classifies only the preregistered project-side cross-implementation reference result. Even PARTIAL_REPLICATION cannot become EVID or Stage-1 maturity credit without separate human review and canonical state update.",
+  "classification": "PARTIAL_REPLICATION",
+  "classification_reason": "all_primary_and_secondary_concordance_criteria_met",
+  "design_integrity_passed": true,
+  "human_review_required": true,
+  "integrity_errors": [],
+  "maturity_update_automatic": false,
+  "preregistration_id": "PREREG-S1-TOPO-REFERENCE-R2",
+  "primary_endpoint": "first_output_latency_censored",
+  "primary_tests": [
+    {
+      "bootstrap_ci95": [
+        -10.0,
+        -10.0
+      ],
+      "canonical_sign": -1,
+      "ci_excludes_zero": true,
+      "ci_relation_to_bound": "wholly_inside",
+      "contrast": [
+        "1d",
+        "2d"
+      ],
+      "direction_retained": true,
+      "equivalence_bound": [
+        -15.0,
+        -5.0
+      ],
+      "holm_significant": true,
+      "label": "1d_to_2d",
+      "median_difference": -10.0,
+      "median_inside_bound": true,
+      "p_holm": 9.5367431640625e-06,
+      "p_raw": 1.9073486328125e-06,
+      "paired_differences": [
+        -10.0,
+        -10.0,
+        -11.0,
+        -10.0,
+        -10.0,
+        -11.0,
+        -10.0,
+        -10.0,
+        -10.0,
+        -11.0,
+        -10.0,
+        -10.0,
+        -10.0,
+        -10.0,
+        -10.0,
+        -10.0,
+        -10.0,
+        -10.0,
+        -10.0,
+        -10.0
+      ],
+      "primary_criterion_pass": true
+    },
+    {
+      "bootstrap_ci95": [
+        -3.0,
+        -3.0
+      ],
+      "canonical_sign": -1,
+      "ci_excludes_zero": true,
+      "ci_relation_to_bound": "wholly_inside",
+      "contrast": [
+        "2d",
+        "3d"
+      ],
+      "direction_retained": true,
+      "equivalence_bound": [
+        -4.5,
+        -1.5
+      ],
+      "holm_significant": true,
+      "label": "2d_to_3d",
+      "median_difference": -3.0,
+      "median_inside_bound": true,
+      "p_holm": 9.5367431640625e-06,
+      "p_raw": 1.9073486328125e-06,
+      "paired_differences": [
+        -3.0,
+        -3.0,
+        -2.0,
+        -3.0,
+        -3.0,
+        -2.0,
+        -3.0,
+        -3.0,
+        -3.0,
+        -2.0,
+        -3.0,
+        -3.0,
+        -3.0,
+        -3.0,
+        -3.0,
+        -4.0,
+        -3.0,
+        -3.0,
+        -3.0,
+        -2.0
+      ],
+      "primary_criterion_pass": true
+    },
+    {
+      "bootstrap_ci95": [
+        -1.0,
+        -1.0
+      ],
+      "canonical_sign": -1,
+      "ci_excludes_zero": true,
+      "ci_relation_to_bound": "wholly_inside",
+      "contrast": [
+        "3d",
+        "5d"
+      ],
+      "direction_retained": true,
+      "equivalence_bound": [
+        -1.5,
+        -0.5
+      ],
+      "holm_significant": true,
+      "label": "3d_to_5d",
+      "median_difference": -1.0,
+      "median_inside_bound": true,
+      "p_holm": 9.5367431640625e-06,
+      "p_raw": 3.814697265625e-06,
+      "paired_differences": [
+        -1.0,
+        -1.0,
+        -2.0,
+        -1.0,
+        -1.0,
+        -1.0,
+        -1.0,
+        -1.0,
+        -1.0,
+        -1.0,
+        -1.0,
+        -1.0,
+        -1.0,
+        -1.0,
+        -1.0,
+        0.0,
+        -1.0,
+        -1.0,
+        -1.0,
+        -2.0
+      ],
+      "primary_criterion_pass": true
+    },
+    {
+      "bootstrap_ci95": [
+        -3.0,
+        -2.5
+      ],
+      "canonical_sign": -1,
+      "ci_excludes_zero": true,
+      "ci_relation_to_bound": "wholly_inside",
+      "contrast": [
+        "5d",
+        "5d_shuffled"
+      ],
+      "direction_retained": true,
+      "equivalence_bound": [
+        -4.5,
+        -1.5
+      ],
+      "holm_significant": true,
+      "label": "5d_to_5d_shuffled",
+      "median_difference": -3.0,
+      "median_inside_bound": true,
+      "p_holm": 9.5367431640625e-06,
+      "p_raw": 1.9073486328125e-06,
+      "paired_differences": [
+        -2.0,
+        -3.0,
+        -2.0,
+        -2.0,
+        -3.0,
+        -3.0,
+        -3.0,
+        -2.0,
+        -2.0,
+        -4.0,
+        -3.0,
+        -3.0,
+        -3.0,
+        -3.0,
+        -3.0,
+        -3.0,
+        -3.0,
+        -2.0,
+        -3.0,
+        -4.0
+      ],
+      "primary_criterion_pass": true
+    },
+    {
+      "bootstrap_ci95": [
+        -3.0,
+        -2.5
+      ],
+      "canonical_sign": -1,
+      "ci_excludes_zero": true,
+      "ci_relation_to_bound": "wholly_inside",
+      "contrast": [
+        "5d",
+        "random_graph"
+      ],
+      "direction_retained": true,
+      "equivalence_bound": [
+        -3.75,
+        -1.25
+      ],
+      "holm_significant": true,
+      "label": "5d_to_random_graph",
+      "median_difference": -3.0,
+      "median_inside_bound": true,
+      "p_holm": 9.5367431640625e-06,
+      "p_raw": 1.9073486328125e-06,
+      "paired_differences": [
+        -3.0,
+        -2.0,
+        -2.0,
+        -2.0,
+        -4.0,
+        -3.0,
+        -2.0,
+        -3.0,
+        -3.0,
+        -2.0,
+        -3.0,
+        -3.0,
+        -3.0,
+        -3.0,
+        -3.0,
+        -3.0,
+        -3.0,
+        -4.0,
+        -2.0,
+        -3.0
+      ],
+      "primary_criterion_pass": true
+    }
+  ],
+  "reference_data": "C:\\Users\\T_hei\\.codex\\.chatgpt-projects\\g-p-6a81a80bd5648191ba798a03a586c7a5\\r2-results-20261024\\reference-data.json",
+  "replication_credit_automatically_awarded": false,
+  "schema_version": 1,
+  "scientific_evidence": false,
+  "secondary_auc_direction_checks": [
+    {
+      "direction_match": true,
+      "expected_direction": "positive",
+      "label": "1d_to_2d",
+      "median_difference": 4.359375
+    },
+    {
+      "direction_match": true,
+      "expected_direction": "positive",
+      "label": "2d_to_3d",
+      "median_difference": 1.4765625
+    },
+    {
+      "direction_match": true,
+      "expected_direction": "negative",
+      "label": "3d_to_5d",
+      "median_difference": -3.4765625
+    },
+    {
+      "direction_match": true,
+      "expected_direction": "negative",
+      "label": "5d_to_5d_shuffled",
+      "median_difference": -4.0078125
+    },
+    {
+      "direction_match": true,
+      "expected_direction": "negative",
+      "label": "5d_to_random_graph",
+      "median_difference": -2.8515625
+    }
+  ],
+  "summary": {
+    "auc_direction_matches": 5,
+    "holm_significant_primary": 5,
+    "primary_criteria_passed": 5,
+    "primary_direction_reversals": 0,
+    "primary_spanning_bounds": 0,
+    "primary_wholly_outside_bounds": 0
+  }
+}
