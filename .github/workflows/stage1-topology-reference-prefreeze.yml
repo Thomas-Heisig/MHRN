@@ -52,17 +52,24 @@ jobs:
         run: |
           test -z "$(git status --porcelain)"
           python -m pytest             tests/test_stage1_reference_replication_contract.py             tests/test_stage1_reference_preflight.py             tests/test_stage1_reference_r2_contract.py             tests/test_stage1_reference_r2_preflight.py -q
+      - name: Revalidate frozen R2 without rewriting bound artifacts
+        if: hashFiles('research/preregistrations/PREREG-S1-TOPO-REFERENCE-R2.freeze.json') != ''
+        run: python scripts/check_stage1_frozen_prefreeze.py
       - name: Audit canonical mechanism semantics
+        if: hashFiles('research/preregistrations/PREREG-S1-TOPO-REFERENCE-R2.freeze.json') == ''
         run: python scripts/audit_stage1_reference_mechanisms.py
       - name: Verify reference package independence
         run: python scripts/check_stage1_reference_independence.py
       - name: Verify R2 reference seed freshness
         run: python scripts/check_stage1_reference_seed_freshness_r2.py
       - name: Validate immutable R1 dynamics parity reuse for R2
+        if: hashFiles('research/preregistrations/PREREG-S1-TOPO-REFERENCE-R2.freeze.json') == ''
         run: python scripts/verify_stage1_reference_dynamics_reuse_r2.py
       - name: Run exact R2 topology mapping parity
+        if: hashFiles('research/preregistrations/PREREG-S1-TOPO-REFERENCE-R2.freeze.json') == ''
         run: python scripts/run_stage1_reference_topology_mapping_r2.py
       - name: Commit immutable pre-freeze audit artifacts
+        if: hashFiles('research/preregistrations/PREREG-S1-TOPO-REFERENCE-R2.freeze.json') == ''
         shell: bash
         run: |
           git config user.name "github-actions[bot]"
