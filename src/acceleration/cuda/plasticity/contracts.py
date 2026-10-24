@@ -16,8 +16,8 @@ PLASTICITY_SEMANTICS: Final[str] = "NON_CANONICAL_DRAFT"
 # Frozen Wave-4 compatibility boundary. These values are intentionally retained
 # so the extracted CUDA backend does not retroactively change its acceptance
 # contract while Wave 7 is still drafting the common learning semantics.
-LEARNING_CONTRACT_ID: Final[str] = "mhrn-learning-synapse-v1"
-LEARNING_CONTRACT_STATUS: Final[str] = "ALIGNMENT_PENDING"
+LEARNING_CONTRACT_ID: Final[str] = "mhrn-learning-synapse-v0.1-draft"
+LEARNING_CONTRACT_STATUS: Final[str] = "DRAFT_NOT_FROZEN"
 
 __all__ = [
     "LEARNING_CONTRACT_ID",
