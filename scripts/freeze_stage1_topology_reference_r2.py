@@ -214,7 +214,11 @@ def main() -> int:
         "authorization_rule": p["execution_authorization_requirements"],
         "note": "R2 corrects the pre-DATA R1 mapping ambiguity. Freeze fixes the scientific contract only; separate explicit human execution authorization remains mandatory.",
     }
-    F.write_text(json.dumps(freeze, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    F.write_text(
+        json.dumps(freeze, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+        newline="\n",
+    )
     p["status"] = "FROZEN_BEFORE_REFERENCE_EXECUTION_AUTHORIZATION"
     p["execution_authorized"] = False
     p["freeze_authorization"] = {
@@ -227,7 +231,11 @@ def main() -> int:
     p["freeze_semantics"] = (
         "R2 scientific contract is frozen. Reference DATA remain forbidden until a separate explicit human execution-authorization record binds this freeze commit and runner hash."
     )
-    P.write_text(json.dumps(p, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    P.write_text(
+        json.dumps(p, indent=2, ensure_ascii=False) + "\n",
+        encoding="utf-8",
+        newline="\n",
+    )
     print(json.dumps({"status": p["status"], "execution_authorized": False}))
     return 0
 
