@@ -3,9 +3,12 @@
 
 from __future__ import annotations
 
+import argparse
 import hashlib
 import json
 import subprocess
+import sys
+from datetime import date
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -75,6 +78,14 @@ def git(*args):
 
 
 def main() -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--freeze-date",
+        type=date.fromisoformat,
+        required=True,
+        help="Actual freeze date (YYYY-MM-DD); never inherit the draft's date",
+    )
+    args = parser.parse_args()
     if F.exists():
         raise FileExistsError(F)
     if git("status", "--porcelain"):
@@ -106,11 +117,11 @@ def main() -> int:
         or proto.get("framework_version") != "2.10.1"
     ):
         raise RuntimeError("R2 protocol mismatch")
-    subprocess.run(["python", str(IND.relative_to(ROOT))], cwd=ROOT, check=True)
-    subprocess.run(["python", str(SEED.relative_to(ROOT))], cwd=ROOT, check=True)
+    subprocess.run([sys.executable, str(IND.relative_to(ROOT))], cwd=ROOT, check=True)
+    subprocess.run([sys.executable, str(SEED.relative_to(ROOT))], cwd=ROOT, check=True)
     subprocess.run(
         [
-            "python",
+            sys.executable,
             "-m",
             "pytest",
             str(CT.relative_to(ROOT)),
@@ -130,7 +141,7 @@ def main() -> int:
         "schema_version": 1,
         "preregistration_id": p["preregistration_id"],
         "supersedes": "PREREG-S1-TOPO-REFERENCE-R1",
-        "freeze_date": "2026-09-27",
+        "freeze_date": args.freeze_date.isoformat(),
         "freeze_commit": git("rev-parse", "HEAD"),
         "preregistration_sha256_before_status_update": sha(P),
         "reference_data_created": False,
