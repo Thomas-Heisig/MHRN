@@ -14,7 +14,7 @@
 241	2026-09-14 Stage 4 specialized neural 	Scientific EVID promotion, independent review and dynamically materialized large-scale multimodal benchmarks remain separate research work.
 258	2026-09-13 Stage 2 / Stage 3 developme	Close R2 productive-learning evidence with preregistered independent runs, held-out evaluation and human evidence review.
 267	2026-09-13 Stage 2 / Stage 3 developme	Benchmark plastic-network stability/throughput at the declared Stage-3 target scale separately from the mechanism contract.
-311	2026-09-13 Stage 2 / Stage 3 developme	Execute the 100k-neuron/10M-synapse upper point on a memory-appropriate host. Its preflight estimate is about 19.45 GiB; it was not attempted on this 
+311	2026-09-13 Stage 2 / Stage 3 developme	Execute the 100k-neuron/10M-synapse upper point on a memory-appropriate host. Its preflight estimate is about 19.45 GiB; it was not attempted on this
 404	2026-09-10 Memory / World Model / Beha	Connect coupled cognition state to the canonical runtime snapshot/ checkpoint boundary.
 406	2026-09-10 Memory / World Model / Beha	Prove deterministic pause/resume equivalence for the complete coupled cognition state.
 500	Current development milestone — v0.6 S	Generate the v0.6 release record only after the exact source-freeze CI and release-readiness snapshot are both green. **Do not close this checkbox bef

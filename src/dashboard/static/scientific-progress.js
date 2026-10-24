@@ -225,7 +225,7 @@ function renderScientificProgress(data) {
   host.innerHTML = `<section id="scientific-progress-timeline" class="scientific-progress-panel" aria-labelledby="scientific-progress-title">
     <header class="scientific-progress-head">
       <div><span class="workspace-kicker">SCIENTIFIC MATURITY</span><h2 id="scientific-progress-title">Wissenschaftliche Timeline · Stufen 0–10</h2><p>${escapeHtml(data.scope_note)}</p></div>
-      <div class="scientific-progress-score"><span>Stage-Mittel</span><strong>${percent(overall)}</strong><small>Bearbeitungsindex · keine Wahrscheinlichkeit</small></div>
+      <div class="scientific-progress-score"><span>Stage-Mittel</span><strong>${percent(overall)}</strong><small>Bearbeitungsindex · keine Wahrscheinlichkeit · keine Kognitionskennzahl</small></div>
     </header>
     <div class="scientific-progress-status-legend" aria-label="Statusmarker der wissenschaftlichen Kriterien"><span>${statusMarkup("met")}</span><span>${statusMarkup("partial")}</span><span>${statusMarkup("open")}</span></div>
     <div class="scientific-two-axis-note"><div><strong>Technische Timeline</strong><p>Implementierung · Integration · Verification · Runtime/Persistenz</p></div><div><strong>Wissenschaftliche Timeline</strong><p>RQ/Hypothese · Protokoll · DATA · reviewte EVID · Replikation · Attribution</p></div></div>

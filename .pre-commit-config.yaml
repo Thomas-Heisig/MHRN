@@ -29,6 +29,12 @@ repos:
         language: system
         pass_filenames: false
         types: [python]
+      - id: determinism-artifact-integrity
+        name: verify immutable determinism reproduction artifacts
+        entry: python scripts/verify_determinism_reproduction.py
+        language: system
+        pass_filenames: false
+        always_run: true
       - id: embodiment-v4-artifact-integrity
         name: verify immutable embodiment V4 trace archive
         entry: python scripts/verify_emb001b_unseen_v4.py
@@ -40,12 +46,12 @@ repos:
     rev: v5.0.0
     hooks:
       - id: trailing-whitespace
-        exclude: ^(research/(experiments/|preregistrations/|publications/|registry/evidence/|generated/data/)|docs/99-archive/)
+        exclude: ^(research/(reviews/DETERMINISM_REPRODUCTION_20261024/artifacts/|experiments/|preregistrations/|publications/|registry/evidence/|generated/data/)|docs/99-archive/)
         args: [--markdown-linebreak-ext=md]
       - id: end-of-file-fixer
         # Frozen experiment manifests are evidence artifacts and must not be
         # byte-rewritten by an automatic formatting hook.
-        exclude: ^research/(experiments/|preregistrations/|publications/|registry/evidence/|generated/data/|generated/verification/)
+        exclude: ^research/(reviews/DETERMINISM_REPRODUCTION_20261024/artifacts/|experiments/|preregistrations/|publications/|registry/evidence/|generated/data/|generated/verification/)
       - id: check-merge-conflict
       - id: check-yaml
       - id: check-toml

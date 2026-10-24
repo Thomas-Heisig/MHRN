@@ -1,9 +1,9 @@
 # Multi-Scale Homeostatic Recurrence Network (MHRN)
 
-## Mehrskaliges homÃ¶ostatisches Rekurrenznetzwerk
+## Mehrskaliges homöostatisches Rekurrenznetzwerk
 
 **A Spiking Neural Architecture with Topological Plasticity**  
-*Eine spikende neuronale Architektur mit topologischer PlastizitÃ¤t*
+*Eine spikende neuronale Architektur mit topologischer Plastizität*
 
 [![Release CI](https://github.com/Thomas-Heisig/MHRN/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Thomas-Heisig/MHRN/actions/workflows/ci.yml)
 [![Develop CI](https://github.com/Thomas-Heisig/MHRN/actions/workflows/ci.yml/badge.svg?branch=develop)](https://github.com/Thomas-Heisig/MHRN/actions/workflows/ci.yml)
@@ -47,14 +47,14 @@ The sparse **5D SNN remains the primary adaptive system**. Language models, rese
 
 | Resource | Canonical route | Role |
 | --- | --- | --- |
-| Source | [GitHub Â· Thomas-Heisig/MHRN](https://github.com/Thomas-Heisig/MHRN) | canonical code, history and governed research artefacts |
+| Source | [GitHub · Thomas-Heisig/MHRN](https://github.com/Thomas-Heisig/MHRN) | canonical code, history and governed research artefacts |
 | Published software release | [v0.6.0-alpha.8](https://github.com/Thomas-Heisig/MHRN/releases/tag/v0.6.0-alpha.8) | published pre-release from source freeze `466ae6e8` |
-| Author identity | [ORCID Â· 0009-0002-9589-1872](https://orcid.org/0009-0002-9589-1872) | persistent researcher identity |
-| Open Science Framework | [OSF Â· p34uq](https://osf.io/p34uq/) | project / open-science route |
+| Author identity | [ORCID · 0009-0002-9589-1872](https://orcid.org/0009-0002-9589-1872) | persistent researcher identity |
+| Open Science Framework | [OSF · p34uq](https://osf.io/p34uq/) | project / open-science route |
 | Hugging Face | [ThomasHeisig/MHRN](https://huggingface.co/ThomasHeisig/MHRN) | rolling source/discovery mirror |
 | Hugging Face Space | [ThomasHeisig/MHRN-Space](https://huggingface.co/spaces/ThomasHeisig/MHRN-Space) | public dashboard mirror |
 | Research-data mirror | [ThomasHeisig/MHRN-Research-Data](https://huggingface.co/datasets/ThomasHeisig/MHRN-Research-Data) | rolling discovery mirror; not an immutable DOI dataset |
-| Zenodo software archive | [Alpha.8 record](https://zenodo.org/records/23437187) Â· [version DOI](https://doi.org/10.5281/zenodo.23437187) Â· [concept DOI](https://doi.org/10.5281/zenodo.22860682) | verified `0.6.0-alpha.8` archive; Alpha.7 remains available at [its version DOI](https://doi.org/10.5281/zenodo.23138847) |
+| Zenodo software archive | [Alpha.8 record](https://zenodo.org/records/23437187) · [version DOI](https://doi.org/10.5281/zenodo.23437187) · [concept DOI](https://doi.org/10.5281/zenodo.22860682) | verified `0.6.0-alpha.8` archive; Alpha.7 remains available at [its version DOI](https://doi.org/10.5281/zenodo.23138847) |
 
 Alpha.8 was published on 17 October 2026 as a GitHub pre-release at `v0.6.0-alpha.8`, bound to source freeze `466ae6e87de276549cff5a7ef52c55419843ace7` (release PR #283). Post-merge CI run `39035891664` passed on that exact commit. Zenodo record `23437187` and DOI `10.5281/zenodo.23437187` are publicly verified; the concept DOI remains `10.5281/zenodo.22860682`. The Hugging Face mirrors synchronized from the same commit. OSF and ORCID are linked routes without an automatic release-update workflow, and no institution-specific endpoint is registered. Release mechanics, tags and DOI assignment do not promote DATA to EVID.
 
@@ -78,7 +78,7 @@ Use the **software DOI** when citing the implementation, the **publication DOI**
 
 The eleven-part structure planned for publication 2.0 is implemented now as **edition 1.8 WIP**, independently of the MHRN software version. It integrates the reconstructed prehistory, architecture, empirical programme, engineering, epistemology, attribution, ethics, recursive epistemics and open research.
 
-- [Compact findings and glossary](research/publications/2026-09-17_recursive-epistemics_v1.8/parts/01_origin.md) â€” updated synthesis includes the failed September run and October conceptual audits; no new EVID.
+- [Compact findings and glossary](research/publications/2026-09-17_recursive-epistemics_v1.8/parts/01_origin.md) — updated synthesis includes the failed September run and October conceptual audits; no new EVID.
 - [Current manuscript](research/publications/2026-09-17_recursive-epistemics_v1.8/MANUSCRIPT.md)
 - [Research questions and hypotheses](research/publications/2026-09-17_recursive-epistemics_v1.8/RESEARCH_REGISTER.md)
 - [Complete baseline source inventory](research/publications/2026-09-17_recursive-epistemics_v1.8/SOURCE_INDEX.md)
@@ -86,7 +86,7 @@ The eleven-part structure planned for publication 2.0 is implemented now as **ed
 - [Prior research map](research/publications/2026-09-17_recursive-epistemics_v1.8/PRIOR_WORK_MAP.md)
 - [Extension and citation contract](research/publications/2026-09-17_recursive-epistemics_v1.8/EXTENDING.md)
 - [Scientific balance of Edition 1.8](research/publications/2026-09-17_recursive-epistemics_v1.8/SCIENTIFIC_BALANCE.md)
-- [Paper offshoots â€” six bounded publication strands](research/paper_offshoots/README.md)
+- [Paper offshoots — six bounded publication strands](research/paper_offshoots/README.md)
 - [Edition and working-branch genealogy](research/publications/2026-09-17_recursive-epistemics_v1.8/EDITION_GENEALOGY.md)
 - [Publication-specific citation metadata](research/publications/2026-09-17_recursive-epistemics_v1.8/CITATION.cff)
 
@@ -94,21 +94,21 @@ Historical publication bytes and empirical artifacts are preserved. Reconstructe
 
 ---
 
-## Current state â€” 27 September 2026
+## Current state — 27 September 2026
 
 | Area | Current state |
 | --- | --- |
-| Release branch | `main` â€” release-only, public frozen line |
-| Integration branch | `develop` â€” active development and research integration |
+| Release branch | `main` — release-only, public frozen line |
+| Integration branch | `develop` — active development and research integration |
 | Package | `mhrn-core 0.6.0a8` / `v0.6.0-alpha.8` |
 | Release status | **v0.6.0-alpha.8 published** pre-release from source freeze `466ae6e8`; Zenodo DOI `10.5281/zenodo.23437187` verified |
 | Engineering | Stage 2 recurrent contract closed at its scoped engineering boundary; Stage 3 plastic neural tissue reached; Stage 4/5 engineering contracts integrated; Stage 6 mechanisms and research programme active |
 | Scientific focus | Stage 0 = **92.5 %**; Stage 1 = **85 %** with scoped EVID `EVID-2026-18/19/20`; Stage-1 cross-implementation reference replication and Stage-6 memory/world-model work remain active; independent external replication remains open |
-| Current manuscript | **Recursive Epistemics / Rekursive Epistemik 1.8 â€” WIP** |
-| Publication lineage | 1.8 current WIP â†’ 1.7 predecessor â†’ 1.5 frozen empirical baseline |
+| Current manuscript | **Recursive Epistemics / Rekursive Epistemik 1.8 — WIP** |
+| Publication lineage | 1.8 current WIP → 1.7 predecessor → 1.5 frozen empirical baseline |
 | Evidence policy | `implementation/test != DATA != reviewed EVID != independent replication`; release/DOI do not promote evidence |
 | AI methodology | AI assistance is explicitly disclosed; the human-AI research process is itself a methodological research object while human authorship and responsibility remain separate |
-| Playground/CUDA | Closed-loop/PAN tooling, CPU determinism fingerprints, freeze-actions/rewards, D1/D2/D3 parity contracts and Gate-IR â†’ PTX/CUDA preflight are integrated; this is **not** a completed GPU SNN backend or scientific evidence |
+| Playground/CUDA | Closed-loop/PAN tooling, CPU determinism fingerprints, freeze-actions/rewards, D1/D2/D3 parity contracts and Gate-IR → PTX/CUDA preflight are integrated; this is **not** a completed GPU SNN backend or scientific evidence |
 | Document governance | all `docs/` and `research/` files are classified by role, status, authority, mutability, citation rule and evidence role |
 
 The authoritative machine-readable release record is [`releases/current.json`](releases/current.json). Project identity and naming rules are in [`project_identity.json`](project_identity.json) and [`NAMING.md`](NAMING.md).
@@ -128,7 +128,7 @@ The present scientific focus is deliberately narrower than the implemented featu
 
 - **`EXP-S6-SEM-CL-001`** produced a positive preregistered mechanism result against its own naive online/no-replay baseline.
 - **`EXP-S6-SEM-CL-002`** produced a preregistered paired **negative result** for the more specific claim that semantic prototypes outperform matched raw replay under that protocol. The preregistered H1 success criteria were not met.
-- **`EXP-S6-SEM-CL-003`** was executed exactly once under its frozen authorization as 84 runs (12 seeds Ã— 7 conditions). The preregistered classification is `H1_negative_H2_negative`: no confirmed Semantic-over-Raw advantage and no confirmed dose interaction. C3 (`S20 âˆ’ X20`) is positive at about +14.9 percentage points and shows that the semantic representation carries non-random task-relevant structure. The complete result remains **DATA pending human review**, not accepted EVID.
+- **`EXP-S6-SEM-CL-003`** was executed exactly once under its frozen authorization as 84 runs (12 seeds × 7 conditions). The preregistered classification is `H1_negative_H2_negative`: no confirmed Semantic-over-Raw advantage and no confirmed dose interaction. C3 (`S20 − X20`) is positive at about +14.9 percentage points and shows that the semantic representation carries non-random task-relevant structure. The complete result remains **DATA pending human review**, not accepted EVID.
 
 The bounded DATA-level conclusion is therefore: **Replay contributes to the observed benefit; under the matched CL-002/CL-003 conditions semantic compression has not shown a preregistered additional advantage over Raw-Replay, although the semantic representation itself carries relevant structure.** Stage 6 is not declared solved; the Semantization/Replay subquestion is treated as **empirically narrowed** pending Human Review.
 
@@ -235,7 +235,7 @@ and integrity gates surround the complete loop.
 | --- | --- |
 | SNN core | sparse 5D coordinates, recurrent connectivity, delayed event propagation, deterministic RNG state, Izhikevich/LIF model paths |
 | Plasticity | STDP, eligibility traces, delayed reward / three-factor learning, homeostatic regulation and structural plasticity contracts |
-| Structural change | proposal â†’ approval/rejection â†’ bounded mutation â†’ journal â†’ undo/recovery |
+| Structural change | proposal → approval/rejection → bounded mutation → journal → undo/recovery |
 | Persistence | `.b5d` snapshots, checkpoints, journals, deterministic restore/continue and compatibility contracts |
 | Embodiment | typed sensors/actuators, authorization, audit trails, device discovery and machine-native interoception |
 | Neural Symbiosis / MSBA | bounded modality-specific and peripheral neural/virtual gateway contracts with explicit learning controls |
@@ -252,14 +252,14 @@ Detailed architecture: [`docs/02-architecture/ARCHITECTURE.md`](docs/02-architec
 
 MHRN uses two deliberately separate maturity axes:
 
-1. **Engineering maturity** â€” whether mechanisms, interfaces, persistence, UI and verification contracts exist and behave as specified.
-2. **Scientific maturity** â€” whether registered questions have suitable frozen protocols, source-bound DATA, reviewed EVID, replications, controls and defensible claim scope.
+1. **Engineering maturity** — whether mechanisms, interfaces, persistence, UI and verification contracts exist and behave as specified.
+2. **Scientific maturity** — whether registered questions have suitable frozen protocols, source-bound DATA, reviewed EVID, replications, controls and defensible claim scope.
 
 A technically complete stage can therefore remain scientifically open.
 
 Key safeguards include:
 
-- no automatic DATA â†’ EVID promotion;
+- no automatic DATA → EVID promotion;
 - historical DATA and frozen publications are not silently rewritten;
 - negative and null results remain part of the record;
 - exploratory runs are not relabelled as confirmatory evidence;
@@ -387,7 +387,7 @@ Major open items include:
 
 - human scientific review of CL-003 and an explicit EVID decision;
 - a deliberate post-review Stage-6 research decision before any CL-004 is defined;
-- independent replication of central Stage 2â€“6 findings;
+- independent replication of central Stage 2–6 findings;
 - neuronally defined and ablatable prediction-error mechanisms;
 - multi-step action-conditioned world-model dynamics and decision benefit;
 - complete coupled-state checkpoint/restore identity for claim-relevant cognition state;

@@ -4,8 +4,8 @@ Date: 2026-10-24. Status: **REVIEW_READY_NOT_FROZEN**. Execution authorized:
 **false**. No evaluation data collected. This document resolves design choices;
 it does not attest to a reviewed or executable implementation.
 
-Proposed new canonical binding: `RQ-MEM-COMPRESSION-001 / H-MEM-COMPRESSION-001-A`.
-These IDs are proposals, not silently substituted for the existing memory
+Canonical RQ/H binding remains pending for `OBJ-MEM-COMPRESSION-001`.
+No unregistered identifier is substituted for the existing memory
 hypotheses. R1 approval and registry admission remain necessary. The authority
 for this gate is edition 1.8, section 19.7: source/config hashes, canonical
 RQ/H binding and R1 human approval must be bound before FROZEN.
