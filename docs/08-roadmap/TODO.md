@@ -1,4 +1,4 @@
-## Alpha.3 - wissenschaftlicher Abgleich, 2026-09-13
+# Alpha.3 - wissenschaftlicher Abgleich, 2026-09-13
 
 - [x] Die registrierte maschinelle Kampagne ausfuehren und alle Receipts/Negativbefunde bewahren.
 - [x] Vollstaendige Publikationsfassung 1.5 und eigenstaendige Forschungsarbeit erzeugen.
@@ -22,9 +22,7 @@
 - [x] Public ORCID authorship link in project, citation and provenance metadata.
 - [x] Keep private ORCID contact data out of the repository.
 - [x] Add GitHub-to-Zenodo release metadata with the public ORCID creator link.
-- [x] Add the verified Zenodo Alpha.6 record URL, version DOI and concept DOI:
-	<https://zenodo.org/records/22860683>, `10.5281/zenodo.22860683`,
-	`10.5281/zenodo.22860682`. Alpha.7 and publication 1.8 remain separate.
+- [x] Add the verified Zenodo Alpha.6 record URL, version DOI and concept DOI:<https://zenodo.org/records/22860683>, `10.5281/zenodo.22860683`,`10.5281/zenodo.22860682`. Alpha.7 and publication 1.8 remain separate.
 - [x] Link the public OSF project as a research/provenance resource.
 
 ## 2026-09-20 Seed DATA documentation
